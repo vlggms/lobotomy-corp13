@@ -23,7 +23,7 @@ export const ShowAttributes = (props, context) => {
           <br /><br />
           Level <AnimatedNumber initial={1} value={level} />
           <br /><br />
-          {attributes.map(attr =>
+          {attributes.map(attr => (
             <span key={attr}>
               {data[attr + "name"]}
               <span> </span>
@@ -31,32 +31,32 @@ export const ShowAttributes = (props, context) => {
               <span>: </span>
               <AnimatedNumber initial={0} value={
                 data[attr + "level_current"]
-                } />
+              } />
               <span>/</span>
               <AnimatedNumber initial={0} value={
                 data[attr + "level_max"]
-                } />
+              } />
               <span> + </span>
               <AnimatedNumber initial={0} value={
                 data[attr + "level_buff"]
-                } />
+              } />
               <br />
-            </span>
+            </span>)
           )}
           <br />
-          {stats.map(stat =>
+          {stats.map(stat => (
             <span key={stat}>
               {data[stat + "name"]}
               <span> : </span>
               <AnimatedNumber initial={0} value={
                 data[stat + "base"]
-                } />
+              } />
               <span> + </span>
               <AnimatedNumber initial={0} value={
                 data[stat + "bonus"]
-                } />
+              } />
               <br />
-            </span>
+            </span>)
           )}
         </Box>
       </Window.Content>
