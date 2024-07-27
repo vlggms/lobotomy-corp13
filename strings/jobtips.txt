@@ -13,6 +13,7 @@ As a Clerk, RAKs can modify a Regenerator to change how it works. Use it in hand
 As a Clerk, you can cook at Training. Cooking is an art form.
 As a Clerk, you can clean using a Janitor's Chemsprayer. By setting it to spray 5 units instead of 10, it will clean anything it passes over.
 As a Clerk, you can butcher and destroy bodies with a Hunting or Kitchen Knife. You can do this to prevent enemies from benefitting from that corpse, as well as gathering tasty meats for cooking.
+There are two kinds of clerks, Facility clerks have tools to help the facility as a whole, Agent clerks have tools to help agents more directly.
 Agents are constantly in an arms race against tougher abnormalities and ordeals. If you can't keep up, try to help those who can.
 Agents extract EGO slower than the Extraction Officer. Ask them for help with getting EGO.
 The Disciplinary Officer runs the Emergency Response Agents. Make sure that you properly order your squad to murderball with you; It's a tried and true strategy!
