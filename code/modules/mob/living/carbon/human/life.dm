@@ -65,11 +65,11 @@
 
 /mob/living/carbon/human/handle_mutations_and_radiation()
 	if(!dna || !dna.species.handle_mutations_and_radiation(src))
-		..()
+		return ..()
 
 /mob/living/carbon/human/breathe()
 	if(!dna.species.breathe(src))
-		..()
+		return ..()
 
 /mob/living/carbon/human/check_breath(datum/gas_mixture/breath)
 
