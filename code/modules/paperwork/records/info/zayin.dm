@@ -127,3 +127,11 @@
 		"After work was completed, the fireflies glowed brighter.",
 		"The fireflies increased healing of HP and SP as long as the employee stayed in the room.",
 		"While the fireflies were glowing, no other work could be completed on O-02-183.")
+
+//Oracle of No Future
+/obj/item/paper/fluff/info/zayin/oracle
+	abno_type = /mob/living/simple_animal/hostile/abnormality/oracle
+	abno_code = "O-06-200"
+	abno_info = list(
+		"After working on O-06-200, EMPLOYEE fell asleep.",
+		"While asleep, EMPLOYEE heard many strange things, seeming to divine the future.")
