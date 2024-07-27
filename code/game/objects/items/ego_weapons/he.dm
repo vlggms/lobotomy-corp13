@@ -117,8 +117,9 @@
 	name = "bear paw"
 	desc = "The paws made form, and given life."
 	icon_state = "bear_paw"
-	force = 12
-	attack_speed = 0.3
+	force = 17
+	attack_speed = 0.5
+	swingstyle = WEAPONSWING_LARGESWEEP
 	damtype = RED_DAMAGE
 	attack_verb_continuous = list("punches", "jabs", "slaps")
 	attack_verb_simple = list("punches", "jabs", "slaps")
@@ -501,8 +502,9 @@
 	name = "alleyway"
 	desc = "It's a small knife forged of black metal."
 	icon_state = "alleyway"
-	force = 9
-	attack_speed = 0.3
+	force = 17
+	attack_speed = 0.5
+	swingstyle = WEAPONSWING_LARGESWEEP
 	damtype = BLACK_DAMAGE
 	attack_verb_continuous = list("slices", "cleaves", "chops")
 	attack_verb_simple = list("slice", "cleave", "chop")
@@ -945,6 +947,7 @@
 	icon_state = "sanguine"
 	force = 40//about 1.3x the average dps
 	attack_speed = 1
+	swingstyle = WEAPONSWING_LARGESWEEP
 	damtype = RED_DAMAGE
 	attack_verb_continuous = list("hacks", "slashes", "attacks")
 	attack_verb_simple = list("hack", "slash", "attack")
@@ -1122,7 +1125,8 @@
 	righthand_file = 'icons/mob/inhands/64x64_righthand.dmi'
 	inhand_x_dimension = 64
 	inhand_y_dimension = 64
-	force = 24
+	force = 23
+	swingstyle = WEAPONSWING_LARGESWEEP
 	attack_speed = 0.8
 	reach = 1
 	stuntime = 0

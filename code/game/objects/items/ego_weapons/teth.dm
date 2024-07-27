@@ -74,8 +74,9 @@
 	desc = "The flesh cleanly cut by a sharp tool creates a grotesque pattern with the bloodstains on the suit."
 	special = "Use this weapon in hand to dodgeroll."
 	icon_state = "wrist"
-	force = 7
-	attack_speed = 0.3
+	force = 12
+	attack_speed = 0.5
+	swingstyle = WEAPONSWING_LARGESWEEP
 	damtype = WHITE_DAMAGE
 	hitsound = 'sound/weapons/fixer/generic/knife2.ogg'
 	var/dodgelanding
@@ -108,7 +109,8 @@
 	desc = "The flesh cleanly cut by a sharp tool creates a grotesque pattern with the bloodstains on the suit."
 	special = "Upon throwing, this weapon returns to the user."
 	icon_state = "blossoms"
-	force = 17
+	force = 15
+	swingstyle = WEAPONSWING_LARGESWEEP
 	throwforce = 30
 	throw_speed = 1
 	throw_range = 7
@@ -132,13 +134,15 @@
 	force = 13
 	attack_speed = 0.5
 	damtype = RED_DAMAGE
+	swingstyle = WEAPONSWING_LARGESWEEP
 	hitsound = 'sound/weapons/slashmiss.ogg'
 
 /obj/item/ego_weapon/mini/trick
 	name = "hat trick"
 	desc = "Imagination is the only weapon in the war with reality."
 	icon_state = "trick"
-	force = 16
+	force = 15
+	swingstyle = WEAPONSWING_LARGESWEEP
 	throwforce = 35		//You can only hold 4 so go nuts.
 	throw_speed = 5
 	throw_range = 7
@@ -450,6 +454,7 @@
 	icon_state = "fourleaf_clover"
 	force = 12
 	attack_speed = 0.5
+	swingstyle = WEAPONSWING_LARGESWEEP
 	damtype = RED_DAMAGE
 	attack_verb_continuous = list("slices", "slashes", "stabs")
 	attack_verb_simple = list("slice", "slash", "stab")

@@ -178,7 +178,7 @@
 							JUSTICE_ATTRIBUTE = 80
 							)
 
-	wielded_force = 70
+	wielded_force = 80
 	should_slow = TRUE
 	wielded_slow_down = 1.5
 
