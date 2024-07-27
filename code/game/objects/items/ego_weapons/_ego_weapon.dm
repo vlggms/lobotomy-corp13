@@ -198,3 +198,8 @@
 	icon_state = "stun"
 	layer = ABOVE_ALL_MOB_LAYER
 	duration = 9
+
+/obj/item/ego_weapon/MiddleClickAction(atom/target, mob/living/user)
+	. = ..()
+	if(. || !CanUseEgo(user))
+		return TRUE

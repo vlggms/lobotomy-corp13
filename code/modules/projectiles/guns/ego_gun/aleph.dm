@@ -152,14 +152,16 @@
 			Can guns really bring peace and love?"
 	icon_state = "pink"
 	inhand_icon_state = "pink"
-	special = "This weapon has a scope, and fires projectiles with zero travel time. Damage dealt is increased when hitting targets further away."
+	special = "This weapon has a scope, and fires projectiles with zero travel time. Damage dealt is increased when hitting targets further away. Middle mouse button click/alt click to zoom in that direction."
 	ammo_type = /obj/item/ammo_casing/caseless/pink
 	weapon_weight = WEAPON_HEAVY
 	fire_sound = 'sound/abnormalities/armyinblack/pink.ogg'
-	fire_delay = 18
+	fire_delay = 9
 	zoomable = TRUE
 	zoom_amt = 10
 	zoom_out_amt = 13
+	shotsleft = 5
+	reloadtime = 2.1 SECONDS
 	attribute_requirements = list(
 							FORTITUDE_ATTRIBUTE = 80,
 							PRUDENCE_ATTRIBUTE = 100,
@@ -168,9 +170,11 @@
 							)
 	var/mob/current_holder
 
-/obj/item/gun/ego_gun/pink/attack_self(mob/user)
-	zoom(user, user.dir)
-	..()
+/obj/item/gun/ego_gun/pink/MiddleClickAction(atom/target, mob/living/user)
+	. = ..()
+	if(.)
+		return
+	zoom(user, get_cardinal_dir(user, target))
 
 /obj/item/gun/ego_gun/pink/zoom(mob/living/user, direc, forced_zoom)
 	if(!CanUseEgo(user))
@@ -199,7 +203,7 @@
 
 /obj/item/gun/ego_gun/pink/proc/UserMoved(mob/living/user, direc)
 	SIGNAL_HANDLER
-	attack_self(user)//disengage
+	zoom(user)//disengage
 
 /obj/item/gun/ego_gun/pink/Destroy(mob/user)//FIXME: causes component runtimes
 	if(!user)
