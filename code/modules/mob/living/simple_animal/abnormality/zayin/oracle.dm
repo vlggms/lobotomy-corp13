@@ -63,10 +63,13 @@
 			SLEEP_CHECK_DEATH(50)
 			if(!PlayerAsleep(user))
 				return
-		if(prob(50) || !SSlobotomy_corp.next_ordeal)
+		if(prob(50))
 			var/chosenfake = pick(fakeordeals)
 			to_chat(user, span_notice("[chosenfake]"))
 			return
+		if(!SSlobotomy_corp.next_ordeal)
+			to_chat(user, span_notice("All ordeals.... are completed..."))
+
 		to_chat(user, span_notice("[SSlobotomy_corp.next_ordeal.name]"))
 
 
