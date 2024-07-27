@@ -44,6 +44,15 @@
 		/mob/living/simple_animal/hostile/abnormality/kqe = 1.5,
 	)
 
+	observation_prompt = "No matter where you walk to in the cell, the mirror is always facing you. <br>You trace a path around it but all you ever see is your own reflection. <br>\
+		\"It's not fair, why do you get to be you and not me?\" <br>Your reflection mutters, parroting your voice. <br>\"Why are you, you and not I? I could be you so much better than you can, just let me try.\" <br>\
+		Your reflection is holding out its hand, waiting for a handshake."
+	observation_choices = list("Shake their hand", "Turn away and leave")
+	correct_choices = list("Turn away and leave")
+	observation_success_message = "You make to exit the cell. \"Don't just leave me! I'm somebody, I'm real! I'm..! What's my name?! Just give me your name!\" <br>\
+		You don't give your name to the imitation, the closer it starts to mirrors another, the more its mimicry becomes mockery."
+	observation_fail_message = "The you in the mirror smiles. <br>\"Just you wait, I'll show you what we can do.\""
+
 	//Contained Variables
 	var/reflect_timer
 	var/mob/living/disguise = null
@@ -365,7 +374,7 @@
 		ChangeResistances(list(BRUIT = 1, RED_DAMAGE = 0.6, WHITE_DAMAGE = 0.3, BLACK_DAMAGE = 0, PALE_DAMAGE = 0.5))
 		heal_percent_per_second = 0.00425//half of what it was when it had just 5k hp
 		maxHealth = 10000
-		adjustBruteLoss(-maxHealth) // It's not over yet!.
+		adjustBruteLoss(-maxHealth, forced = TRUE) // It's not over yet!.
 		melee_damage_lower = 45
 		melee_damage_upper = 65
 		grab_damage = 140
@@ -621,7 +630,9 @@
 
 /mob/living/simple_animal/hostile/abnormality/nobody_is/patrol_select() //Hunt down the chosen one
 	if(chosen) //YOU'RE MINE
-		patrol_to(get_turf(chosen))
+		SEND_SIGNAL(src, COMSIG_PATROL_START, src, get_turf(chosen)) //Overrides the usual proc to target a specific tile
+		SEND_GLOBAL_SIGNAL(src, COMSIG_GLOB_PATROL_START, src, get_turf(chosen))
+		patrol_path = get_path_to(src, get_turf(chosen), TYPE_PROC_REF(/turf, Distance_cardinal), 0, 200)
 		return
 	else
 		ChangeReflection()
@@ -674,7 +685,7 @@
 	M.set_lying_angle(0)
 	M.set_body_position(STANDING_UP)
 	M.forceMove(src) // Hide them for examine message to work
-	adjustBruteLoss(-maxHealth)
+	adjustBruteLoss(-maxHealth, forced = TRUE)
 	Transform(M)
 
 /mob/living/simple_animal/hostile/abnormality/nobody_is/proc/Transform(mob/living/carbon/human/M)

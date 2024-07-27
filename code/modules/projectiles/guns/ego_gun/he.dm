@@ -42,7 +42,7 @@
 	ammo_type =	/obj/item/ammo_casing/caseless/ego_galaxy
 	fire_delay = 15
 	fire_sound = 'sound/magic/wand_teleport.ogg'
-	weapon_weight = WEAPON_HEAVY
+	weapon_weight = WEAPON_MEDIUM
 	fire_sound_volume = 70
 	attribute_requirements = list(
 							TEMPERANCE_ATTRIBUTE = 40
@@ -178,7 +178,7 @@
 	inhand_icon_state = "song"
 	ammo_type = /obj/item/ammo_casing/caseless/ego_song
 	fire_sound = 'sound/weapons/gun/pistol/shot_alt.ogg'
-	weapon_weight = WEAPON_HEAVY
+	weapon_weight = WEAPON_MEDIUM
 	shotsleft = 32
 	reloadtime = 1.6 SECONDS
 	spread = 8
@@ -280,7 +280,7 @@
 	inhand_icon_state = "syrinx"
 	special = "This weapon fires slow bullets with limited range."
 	ammo_type = /obj/item/ammo_casing/caseless/ego_syrinx
-	weapon_weight = WEAPON_HEAVY
+	weapon_weight = WEAPON_MEDIUM
 	spread = 40
 	shotsleft = 40
 	reloadtime = 2 SECONDS
@@ -290,3 +290,18 @@
 							PRUDENCE_ATTRIBUTE = 40
 	)
 
+
+/obj/item/gun/ego_gun/ardor_star
+	name = "ardor blossom star"
+	desc = "Though I can't guide you... I can offer a warm embrace."
+	icon_state = "ardor_star"
+	inhand_icon_state = "ardor_star"
+	ammo_type = /obj/item/ammo_casing/caseless/ego_ardor
+	weapon_weight = WEAPON_HEAVY
+	fire_sound = 'sound/weapons/gun/sniper/shot.ogg'
+	fire_delay = 5
+	shotsleft = 1
+	reloadtime = 1.4 SECONDS
+	attribute_requirements = list(
+							FORTITUDE_ATTRIBUTE = 40
+							)

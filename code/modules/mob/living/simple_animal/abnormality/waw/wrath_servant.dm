@@ -58,6 +58,16 @@
 		/mob/living/simple_animal/hostile/abnormality/nihil = 1.5,
 	)
 
+	observation_prompt = "I made a mistake, I put my trust in someone I shouldn't have and my world paid the price for my indiscretion. <br>\
+		Was I wrong to call them friend? <br>Were they really my friend, all along?"
+	observation_choices = list("You were wrong", "It wasn't wrong")
+	correct_choices = list("It wasn't wrong")
+	observation_success_message = "If that's the case, then why did balance, why did justice, fail me? <br>\
+		Why did my world burn if I truly did not make a mistake? <br>It still hurts, but, if you're right then maybe I can put my trust in you..."
+	observation_fail_message = "It was the most precious relationship to me... <br>\
+		That's why I lost; I fell to my beloved companion... <br>\
+		I should have killed them when I had the chance! <br>Sinners!! <br>Embodiments of evil..!"
+
 	var/friendly = TRUE
 	var/list/friend_ship = list()
 	var/instability = 0
@@ -214,7 +224,7 @@
 	if(!stunned)
 		return
 	status_flags &= ~GODMODE
-	adjustBruteLoss(-maxHealth)
+	adjustBruteLoss(-maxHealth, forced = TRUE)
 	stunned = FALSE
 	icon_state = icon_living
 	desc = "A large red monster with white bandages hanging from it. Its flesh oozes a bubble acid."
@@ -481,7 +491,7 @@
 	can_act = FALSE
 	SLEEP_CHECK_DEATH(1 SECONDS)
 	breach_affected = list()
-	adjustBruteLoss(-maxHealth)
+	adjustBruteLoss(-maxHealth, forced = TRUE)
 	toggle_ai(AI_OFF)
 	status_flags |= GODMODE
 	dir = EAST
@@ -493,7 +503,7 @@
 	ending = TRUE
 	can_act = FALSE
 	target.gib(TRUE)
-	adjustBruteLoss(-maxHealth)
+	adjustBruteLoss(-maxHealth, forced = TRUE)
 	toggle_ai(AI_OFF)
 	status_flags |= GODMODE
 	density = FALSE
@@ -538,7 +548,7 @@
 		Teleport(src.datum_reference.landmark)
 		breach_affected = list()
 		toggle_ai(AI_OFF)
-		adjustBruteLoss(-maxHealth)
+		adjustBruteLoss(-maxHealth, forced = TRUE)
 		can_act = TRUE
 		return FALSE
 	say("GR-RRAHHH!!!")
@@ -547,7 +557,7 @@
 	SLEEP_CHECK_DEATH(15 SECONDS)
 	status_flags &= ~GODMODE
 	icon_state = icon_living
-	adjustBruteLoss(-maxHealth)
+	adjustBruteLoss(-maxHealth, forced = TRUE)
 	visible_message(span_warning("[src] gets back up!"))
 	can_act = TRUE
 
@@ -804,7 +814,7 @@
 	SLEEP_CHECK_DEATH(20 SECONDS)
 	status_flags &= ~GODMODE
 	icon_state = icon_living
-	adjustBruteLoss(-maxHealth)
+	adjustBruteLoss(-maxHealth, forced = TRUE)
 	density = TRUE
 
 /mob/living/simple_animal/hostile/azure_hermit/death()

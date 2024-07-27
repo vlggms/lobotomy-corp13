@@ -28,6 +28,17 @@
 	)
 	gift_type = /datum/ego_gifts/blossom
 	abnormality_origin = ABNORMALITY_ORIGIN_ALTERED
+
+	observation_prompt = "The tree is adorned with beautiful leaves growing here and there. <br>\
+		The kind of sight you could never even hope to see in this dark and dreary place. <br>\
+		You can take a moment to take in the beauty before you begin to work."
+	observation_choices = list("Take in the beauty")
+	correct_choices = list("Take in the beauty")
+	observation_success_message = "You feel refreshed after just taking a moment to watch such a beautiful thing. <br>\
+		This doesn't mean that you don't know that this is a dangerous abnormality. <br>\
+		There is beauty even in great and terrible things. <br>\
+		Even the bodies underneath this tree would agree with you."
+
 	var/numbermarked = 5
 
 

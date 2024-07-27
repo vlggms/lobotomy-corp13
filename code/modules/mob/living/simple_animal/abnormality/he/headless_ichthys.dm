@@ -42,6 +42,16 @@
 	)
 	gift_type =  /datum/ego_gifts/fluid_sac
 	abnormality_origin = ABNORMALITY_ORIGIN_LIMBUS
+
+	observation_prompt = "Deep, deep, at the bottom of the sea, a creature lies, dreaming. <br>\
+		It seems to be holding on to a sack of fluid. <br>What will you do?"
+	observation_choices = list("Try and swim away", "Puncture the sack")
+	correct_choices = list("Try and swim away")
+	observation_success_message = "You swim upwards, hoping it doesn't notice you. <br>\
+		Surprisingly, after a few seconds you break the water's surface and make your escape. <br>You find a trinket in your pocket."
+	observation_fail_message = "You cannot get close enough, the water slows your movements. <br>\
+		The creature notices you, and prepares an attack. <br>It is impossible to evade, and you are torn to shreds."
+
 	var/can_act = TRUE
 	var/jump_cooldown = 0
 	var/jump_cooldown_time = 8 SECONDS
@@ -262,7 +272,7 @@
 	cannon_cooldown = world.time + cannon_cooldown_time //Can't fire it right away.
 
 /mob/living/simple_animal/hostile/abnormality/headless_ichthys/death(gibbed)
-	playsound(src, 'sound/abnormalities/doomsdaycalendar/Limbus_Dead_Generic.ogg', 60, 1)
+	playsound(src, 'sound/effects/limbus_death.ogg', 60, 1)
 	animate(src, transform = matrix()*0.6,time = 0)
 	icon_state = "headless_ichthys"
 	icon = 'ModularTegustation/Teguicons/64x64.dmi'

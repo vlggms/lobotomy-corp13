@@ -44,6 +44,16 @@
 	gift_type = /datum/ego_gifts/dipsia
 	abnormality_origin = ABNORMALITY_ORIGIN_ARTBOOK
 
+	observation_prompt = "I was human once, am still human. <br>I think. It's hard to tell anymore. <br>\
+		He seemed lost, wandering the backstreets in such finery made him a tempting target, I never realised it was everyone else who was in danger. <br>\
+		He wears the mask of humanity well, but a single drop of blood is all it took for him to reveal his ferocity. <br>\
+		\"It's too early for a nap... <br>Won't you join me and share the pleasure?\" <br>He asks, his lips still red with my blood."
+	observation_choices = list("Join the Danse Macabre")
+	correct_choices = list("Join the Danse Macabre")
+	observation_success_message = "Refusing wasn't an option and he smiles, raising his glass. <br>\
+		\"A toast then! To a night when one is allowed to pursue all kinds of desire, a never-ending blood-red night!\" <br>\
+		Blood.... <br>The blood brings me eternal happiness, forfeiting false hope, let's forget all pretenses of humanity..."
+
 	//work stuff
 	var/feeding
 	//breach stuff

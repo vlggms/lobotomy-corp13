@@ -357,7 +357,7 @@
 	name = "green stem"
 	desc = "All personnel involved in the equipment's production wore heavy protection to prevent them from being influenced by the entity."
 	special = "Wielding this weapon grants an immunity to the slowing effects of the princess's vines. \
-				When used in hand 30 sanity will be consumed before channeling a 7 second vine burst that \
+				When used in hand the user will begin channeling a 7 second vine burst that \
 				will hit all hostiles in a 3 tile range around the user. If vine burst is used at 30% sanity the damage is \
 				increased by 50% but will hit allies due to the intense hatred of F-04-42 influencing the user."
 	icon_state = "green_stem"
@@ -373,12 +373,18 @@
 	attribute_requirements = list(
 							TEMPERANCE_ATTRIBUTE = 80
 							)
-	var/vine_cooldown
-
-
-/obj/item/ego_weapon/stem/Initialize(mob/user)
-	. = ..()
-	vine_cooldown = world.time
+	var/vine_cooldown = 0
+	/*
+	* Added for debugging. channeling_duration_start
+	* is divided by each cycle. So if we go through 2
+	* channeling cycles the duration of the channel would
+	* be (channelling_duration_start / 2). After 6 cycles
+	* the channeling ends. At the end of each cycle
+	* vine_damage is applied to enemies in a 5 tile AOE.
+	*/
+	var/channeling_duration_start = 1 SECONDS
+	var/channeling_cycle_max = 6
+	var/vine_damage = 40
 
 /obj/item/ego_weapon/stem/attack_self(mob/living/user)
 	. = ..()
@@ -386,28 +392,46 @@
 		return
 	if(vine_cooldown <= world.time)
 		user.visible_message(span_notice("[user] stabs [src] into the ground."), span_nicegreen("You stab your [src] into the ground."))
+		vine_cooldown = world.time + (channeling_duration_start * channeling_cycle_max)
+		vine_damage *=force_multiplier
 		var/mob/living/carbon/human/L = user
-		L.adjustSanityLoss(30)
-
+		var/vine_damage_bonus = 0
 		var/affected_mobs = 0
-		for(var/i = 1 to 6)
-			var/channel_level = (3 SECONDS) / i //Burst is 3 + 1.5 + 1 + 0.75 + 0.6 + 0.2 seconds for a total of 60-90 damage over a period of 7.05 seconds if you allow it to finish.
-			vine_cooldown = world.time + channel_level + (1 SECONDS)
+		AlterMoveResist(user, 2.5)
+		//Bonus Damage is applied if sanity is below 30%
+		if(L.sanityhealth <= (L.maxSanity * 0.3))
+			to_chat(user, span_warning("You feel her influence as the [src] digs into your arm."))
+			vine_damage_bonus = vine_damage * 0.5
+
+		for(var/i = 1 to channeling_cycle_max)
+			//Burst is (channeling_duration_start / channeling_cycle_max) seconds
+			var/channel_level = channeling_duration_start / i
 			if(!do_after(user, channel_level, target = user))
 				to_chat(user, span_warning("Your vineburst is interrupted."))
+				AlterMoveResist(user, 0.4)
 				break
-			for(var/mob/living/C in oview(3, get_turf(src)))
-				var/vine_damage = 10
-				vine_damage *=force_multiplier
-				if(user.sanityhealth <= (user.maxSanity * 0.3))
-					vine_damage *= 1.5
-				else if(user.faction_check_mob(C))
+			for(var/mob/living/C in oview(5, get_turf(src)))
+				//If you have a vine damage bonus, destroy them ALL.
+				if(user.faction_check_mob(C) && !vine_damage_bonus)
 					continue
 				new /obj/effect/temp_visual/vinespike(get_turf(C))
-				C.apply_damage(vine_damage, BLACK_DAMAGE, null, C.run_armor_check(null, BLACK_DAMAGE), spread_damage = FALSE)
+				C.apply_damage(vine_damage + vine_damage_bonus, BLACK_DAMAGE, null, C.run_armor_check(null, BLACK_DAMAGE), spread_damage = TRUE)
 				affected_mobs += 1
 			playsound(loc, 'sound/creatures/venus_trap_hurt.ogg', min(75, affected_mobs * 15), TRUE, round( affected_mobs * 0.5))
-		vine_cooldown = world.time + (3 SECONDS)
+		AlterMoveResist(user, 0.4)
+
+/*
+* Alters Move resist to prevent knockback
+* throw_safe knockback checks for anchored
+* or a lower move_resist to its force.
+* The default force is MOVE_FORCE_STRONG
+* which is 2x the force of default.
+* To be honest this should be a mob proc.
+*/
+/obj/item/ego_weapon/stem/proc/AlterMoveResist(mob/living/M, num)
+	if(!M || !num)
+		return
+	M.move_resist *= num
 
 /obj/item/ego_weapon/ebony_stem
 	name = "ebony stem"
@@ -1079,7 +1103,7 @@
 	name = "bleeding heart"
 	desc = "The supplicant will suffer various ordeals in a manner like being put through a trial."
 	icon_state = "heart"
-	special = "Hit yourself to heal others."
+	special = "Hit yourself to heal HP to others within 10 metres."
 	inhand_icon_state = "bloodbath"
 	force = 30
 	damtype = RED_DAMAGE
@@ -1303,7 +1327,7 @@
 	user.do_attack_animation(target)
 	target.attacked_by(src, user)
 
-	log_combat(user, target, "attacked", src.name, "(INTENT: [uppertext(user.a_intent)]) (DAMTYPE: [uppertext(damtype)])")
+	log_combat(user, target, pick(attack_verb_continuous), src.name, "(INTENT: [uppertext(user.a_intent)]) (DAMTYPE: [uppertext(damtype)])")
 
 /obj/item/ego_weapon/discord/proc/Harmony(mob/living/carbon/human/user)
 	var/heal_amount = 5
@@ -1439,18 +1463,18 @@
 /obj/item/ego_weapon/animalism/attack(mob/living/target, mob/living/user)
 	if(!..())
 		return
-	var/multihit = force
-	var/userjust = (get_modified_attribute_level(user, JUSTICE_ATTRIBUTE))
-	var/justicemod = 1 + userjust/100
-	multihit*= justicemod * force_multiplier
 	for(var/i = 1 to 3)
 		sleep(2)
 		if(target in view(reach,user))
-			target.send_item_attack_message(src, user,target)
-			target.apply_damage(force, damtype, null, target.run_armor_check(null, damtype), spread_damage = TRUE)
-			user.do_attack_animation(target)
 			playsound(loc, hitsound, get_clamped_volume(), TRUE, extrarange = stealthy_audio ? SILENCED_SOUND_EXTRARANGE : -1, falloff_distance = 0)
-			new /obj/effect/temp_visual/dir_setting/bloodsplatter(get_turf(target), pick(GLOB.alldirs))
+			user.do_attack_animation(target)
+			target.attacked_by(src, user)
+			log_combat(user, target, pick(attack_verb_continuous), src.name, "(INTENT: [uppertext(user.a_intent)]) (DAMTYPE: [uppertext(damtype)])")
+
+/obj/item/ego_weapon/animalism/melee_attack_chain(mob/living/user, atom/target, params)
+	..()
+	if(isliving(target))
+		new /obj/effect/temp_visual/dir_setting/bloodsplatter(get_turf(target), pick(GLOB.alldirs))
 
 /obj/item/ego_weapon/psychic
 	name = "psychic dagger"
@@ -1531,7 +1555,7 @@
 /obj/item/ego_weapon/cobalt
 	name = "cobalt scar"
 	desc = "Once upon a time, these claws would cut open the bellies of numerous creatures and tear apart their guts."
-	special = "Preform an additional attack of 50% damage when at half health."
+	special = "Preform an additional attack of 75% damage when at half health."
 	icon_state = "cobalt"
 	force = 24
 	attack_speed = 0.5
@@ -1545,9 +1569,11 @@
 							)
 
 /obj/item/ego_weapon/cobalt/attack(mob/living/target, mob/living/user)
+	force = initial(force)
 	if(!..())
 		return
 	var/our_health = 100 * (user.health / user.maxHealth)
+	sleep(2)
 	if(our_health <= 50 && isliving(target) && target.stat != DEAD)
 		FrenzySwipe(user)
 
@@ -1568,18 +1594,13 @@
 		return FALSE
 	if(prob(25))
 		wolf.visible_message(span_warning("[wolf] claws [those_we_rend] in a blind frenzy!"), span_warning("You swipe your claws at [those_we_rend]!"))
-	wolf.do_attack_animation(those_we_rend)
 	if(ishuman(wolf))
-		var/rend_damage = 16
-		var/userjust = (get_modified_attribute_level(wolf, JUSTICE_ATTRIBUTE))
-		var/justicemod = 1 + userjust/100
-		rend_damage*=justicemod
-		rend_damage*=force_multiplier
-		those_we_rend.apply_damage(rend_damage, damtype, null, those_we_rend.run_armor_check(null, damtype), spread_damage = TRUE)
-		those_we_rend.lastattacker = wolf.real_name
-		those_we_rend.lastattackerckey = wolf.ckey
+		force = 16
 		playsound(loc, hitsound, get_clamped_volume(), TRUE, extrarange = stealthy_audio ? SILENCED_SOUND_EXTRARANGE : -1, falloff_distance = 0)
-		wolf.log_message(" attacked [those_we_rend] due to the cobalt scar weapon ability.", LOG_ATTACK) //the following attack will log itself
+		wolf.do_attack_animation(those_we_rend)
+		those_we_rend.attacked_by(src, wolf)
+		log_combat(wolf, those_we_rend, pick(attack_verb_continuous), src.name, "(INTENT: [uppertext(wolf.a_intent)]) (DAMTYPE: [uppertext(damtype)])")
+		wolf.log_message("[wolf] attacked [those_we_rend] due to the cobalt scar weapon ability.", LOG_ATTACK) //the following attack will log itself
 	return TRUE
 
 /obj/item/ego_weapon/scene
@@ -1666,7 +1687,7 @@
 	icon_state = "warring2"
 	force = 30
 	attack_speed = 0.8
-	throwforce = 65
+	throwforce = 55
 	throw_speed = 1
 	throw_range = 7
 	damtype = BLACK_DAMAGE
@@ -1677,8 +1698,10 @@
 	)
 
 	charge = TRUE
+	ability_type = ABILITY_UNIQUE
 	charge_cost = 5
-	charge_effect = "expend all charge stacks in a powerful burst."
+	allow_ability_cancel = FALSE
+	charge_effect = "Expend all charge stacks in a powerful burst."
 	successfull_activation = "You release your charge!"
 
 /obj/item/ego_weapon/warring/Initialize()
@@ -1686,21 +1709,26 @@
 	AddElement(/datum/element/update_icon_updates_onmob)
 
 /obj/item/ego_weapon/warring/attack(mob/living/target, mob/living/user)
-	if(charge_amount == 19)//max power, get ready to throw!
+	if(charge_amount == 4 || charge_amount == 19)//audio tells for min and maximum charge bursts
 		playsound(src, 'sound/magic/lightningshock.ogg', 50, TRUE)
 	. = ..()
-	if(charge_amount == 5)
+
+/obj/item/ego_weapon/warring/attack_self(mob/living/user)
+	if(!currently_charging && charge_amount >= 5)
 		playsound(src, 'sound/magic/lightningshock.ogg', 50, TRUE)
 		icon_state = "warring2_firey"
 		hitsound = 'sound/abnormalities/thunderbird/tbird_peck.ogg'
 		if(user)
 			user.update_inv_hands()
+	else
+		return
+	. = ..()
 
 /obj/item/ego_weapon/warring/ChargeAttack(mob/living/user)
 	playsound(src, 'sound/abnormalities/thunderbird/tbird_bolt.ogg', 50, TRUE)
 	var/turf/T = get_turf(src)
 	for(var/mob/living/L in view(1, T))
-		var/aoe = charge_amount * 5
+		var/aoe = (charge_amount + 5) * 5
 		var/userjust = (get_modified_attribute_level(user, JUSTICE_ATTRIBUTE))
 		var/justicemod = 1 + userjust/100
 		aoe*=justicemod
@@ -1711,6 +1739,7 @@
 	icon_state = initial(icon_state)
 	hitsound = initial(hitsound)
 	charge_amount = initial(charge_amount)
+	currently_charging = FALSE
 
 /obj/item/ego_weapon/warring/on_thrown(mob/living/carbon/user, atom/target)//No, clerks cannot hilariously kill themselves with this
 	if(!CanUseEgo(user))
@@ -1720,7 +1749,7 @@
 /obj/item/ego_weapon/warring/throw_impact(atom/hit_atom, datum/thrownthing/throwingdatum)
 	var/caught = hit_atom.hitby(src, FALSE, FALSE, throwingdatum=throwingdatum)
 	if(thrownby && !caught)
-		if(charge >= charge_cost && isliving(hit_atom))
+		if(currently_charging && isliving(hit_atom))
 			ChargeAttack(hit_atom)
 		addtimer(CALLBACK(src, TYPE_PROC_REF(/atom/movable, throw_at), thrownby, throw_range+2, throw_speed, null, TRUE), 1)
 	if(caught)
@@ -1764,7 +1793,7 @@
 		return
 	if(do_after(user, 10, src, IGNORE_USER_LOC_CHANGE))
 		user.emote("scream")
-		playsound(get_turf(src),'sound/abnormalities/doomsdaycalendar/Limbus_Dead_Generic.ogg', 50, 1)//YEOWCH!
+		playsound(get_turf(src),'sound/effects/limbus_death.ogg', 75, 1)//YEOWCH!
 		icon_state = ("hyde_" + chosen_style)
 		force = 42
 		switch(chosen_style)

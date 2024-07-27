@@ -9,7 +9,7 @@
 	slot_flags = ITEM_SLOT_BELT
 	drag_slowdown = 1
 	var/list/attribute_requirements = list()
-	var/attack_speed
+	var/attack_speed = 1
 	var/special
 	var/force_multiplier = 1
 
@@ -29,7 +29,7 @@
 	if(!CanUseEgo(user))
 		return FALSE
 	. = ..()
-	if(attack_speed)
+	if(attack_speed && attack_speed != 1)
 		user.changeNext_move(CLICK_CD_MELEE * attack_speed)
 
 	if(charge && attack_charge_gain)
@@ -42,17 +42,17 @@
 	switch(knockback)
 		if(KNOCKBACK_LIGHT)
 			var/whack_speed = (prob(60) ? 1 : 4)
-			target.throw_at(throw_target, rand(1, 2), whack_speed, user)
+			target.safe_throw_at(throw_target, rand(1, 2), whack_speed, user)
 
 		if(KNOCKBACK_MEDIUM)
 			var/whack_speed = (prob(60) ? 3 : 6)
-			target.throw_at(throw_target, rand(2, 3), whack_speed, user)
+			target.safe_throw_at(throw_target, rand(2, 3), whack_speed, user)
 
 		if(KNOCKBACK_HEAVY) // neck status: snapped
-			target.throw_at(throw_target, 7, 7, user)
+			target.safe_throw_at(throw_target, 7, 7, user)
 
 		else // should only be used by admins messing around in-game, please consider using above variables as a coder
-			target.throw_at(throw_target, (knockback * 0.5) , knockback, user)
+			target.safe_throw_at(throw_target, (knockback * 0.5) , knockback, user)
 
 	return TRUE
 
@@ -104,10 +104,6 @@
 
 		if(0.7 to 0.99)
 			. += span_notice("This weapon attacks slightly faster than normal.")
-
-		if(1) // why
-			attack_speed = FALSE
-			CRASH("[src] has a unique attack speed variable that does nothing, please inform coders to delete the variable")
 
 		if(1.01 to 1.49)
 			. += span_notice("This weapon attacks slightly slower than normal.")
@@ -202,3 +198,8 @@
 	icon_state = "stun"
 	layer = ABOVE_ALL_MOB_LAYER
 	duration = 9
+
+/obj/item/ego_weapon/MiddleClickAction(atom/target, mob/living/user)
+	. = ..()
+	if(. || !CanUseEgo(user))
+		return TRUE

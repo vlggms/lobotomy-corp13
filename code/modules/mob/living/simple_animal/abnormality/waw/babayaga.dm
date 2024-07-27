@@ -35,6 +35,17 @@
 	)
 	gift_type =  /datum/ego_gifts/rimeshank
 
+	observation_prompt = "You're freezing to death, the chill bites deep, down to the marrow in your bones. <br>\
+		Through the blizzard, you spy lights leading your way. <br>They're contained in skulls of various creatures, human and animal. <br>\
+		Seeing little recourse, you follow them to a palace made of ice, surrounded by a fence made out of various bones. <br>\
+		The palace stands on the precipice of life and death. <br>You know this palace and who it belongs to. <br>\
+		A terrifying witch lives here."
+	observation_choices = list("Knock on the door", "Keep wandering the blizzard")
+	correct_choices = list("Knock on the door")
+	observation_success_message = "You can't keep shivering in the cold forever. <br>You knock on the door..."
+	observation_fail_message = "You keep wandering the blizzard, the cold continuing to sap your strength. <br>\
+		Eventually you collapse in the snow, your whole body frozen. <br>Ahh... <br>There's no more pain..."
+
 	var/jump_cooldown = 0
 	var/jump_cooldown_time = 35 SECONDS
 	var/list/spawned_mobs = list()

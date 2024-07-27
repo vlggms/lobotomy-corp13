@@ -36,6 +36,17 @@
 	abnormality_origin = ABNORMALITY_ORIGIN_LOBOTOMY
 	gift_type =  /datum/ego_gifts/hypocrisy
 	gift_message = "Your ears seem to have grown longer. Weird."
+
+	observation_prompt = "The containment unit is overrun with plant-life, in spite of the fact its artifical floors and walls could never have hoped to support life. <br>\
+		At the heart of the minituare forest you see a lush green tree with heavy, ripened fruit and a peaceful-looking face upon its trunk. <br>\
+		\"Hello, have you come here to recieve my blessing, too?\" <br>\
+		The voice on the wind (there is no wind) spoke, carrying a sweet, flowery scent asked. \"I just want to help you all, could you bring your friends to me as well?\" "
+	observation_choices = list("Accept the blessing and do as it asks", "Accept the blessing and refuse", "Refuse the blessing") //waiting for multiple answer functionality
+	correct_choices = list("Accept the blessing and refuse")
+	observation_success_message = "\"You're a bad child, I don't need someone like you.\" <br>\
+		Blessings should be given earnestly, not treated as an obligation. <br>You leave the chamber, pleased with yourself."
+	observation_fail_message = "I can feel something sprouting from my body." //temporary
+
 	var/origin_cooldown = 0 //null when compared to numbers is a eldritch concept so world.time cannot be more or less.
 	var/static/list/blessed = list() //keeps track of status effected individuals
 	var/static/list/minions = list() //keeps track of minions if suppressed forcefully

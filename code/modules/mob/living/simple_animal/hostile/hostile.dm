@@ -276,14 +276,22 @@
 	else
 		damage_modifier = damage_coeff.getCoeff(damtype)
 
-	if(damage_modifier > 0)
-		return FALSE
 	if(damage_modifier == 0)
 		//Visual Effect for immunity.
 		return new /obj/effect/temp_visual/healing/no_dam(get_turf(src))
 	if(damage_modifier < 0)
 		//Visual Effect for healing.
 		return new /obj/effect/temp_visual/healing(get_turf(src))
+
+	switch(damtype)
+		if(RED_DAMAGE)
+			return new /obj/effect/temp_visual/damage_effect/red(get_turf(src))
+		if(WHITE_DAMAGE)
+			return new /obj/effect/temp_visual/damage_effect/white(get_turf(src))
+		if(BLACK_DAMAGE)
+			return new /obj/effect/temp_visual/damage_effect/black(get_turf(src))
+		if(PALE_DAMAGE)
+			return new /obj/effect/temp_visual/damage_effect/pale(get_turf(src))
 
 /*Used in LC13 abnormality calculations.
 	Moved here so we can use it for all hostiles.

@@ -32,21 +32,21 @@ GLOBAL_LIST_EMPTY(meat_list)
 	)
 	gift_type = /datum/ego_gifts/willing
 
-	observation_prompt = "The room reeks of sickly sweet rot and blood. Every moment inside of here makes your head spin. \
-\"Attention!\" The mass of flesh in the center of the room calls out to you. \
-\"You won't survive out there. Every single day in this facility is a constant, unending battle.\" \
-\"The only way you'll survive is if you join me. To serve L-Corp til your last breath.\" \
-A tendril of rotten meat is held out to you, beckoning for you to join it."
+	observation_prompt = "The room reeks of sickly sweet rot and blood. <br>Every moment inside of here makes your head spin. <br>\
+		\"Attention!\" <br>The mass of flesh in the center of the room calls out to you. <br>\
+		\"You won't survive out there. <br>Every single day in this facility is a constant, unending battle.\" <br>\
+		\"The only way you'll survive is if you join me. <br>To serve L-Corp til your last breath.\" <br>\
+		A tendril of rotten meat is held out to you, beckoning for you to join it."
 	observation_choices = list("EMBRACE IT", "REJECT IT")
 	correct_choices = list("EMBRACE IT")
-	observation_success_message = "You grab onto the tendril. You can feel your flesh tingling. \
-\"Good choice.\" \
-\"Don't worry. You won't regret this, you know? This is the only path you had.\" \
-\"You're dead meat out there. Might as well accept who you are.\""
-	observation_fail_message = "You slap the tendril away. \
-\"Feh. So be it. You won't survive out there, you know?\" \
-\"When there's nothing left of the staff but blood and gore, I'll remain. Do you understand?\" \
-You can't help but to shudder in disgust as you exit the cell. Was it right? You'll never know."
+	observation_success_message = "You grab onto the tendril. You can feel your flesh tingling. <br>\
+		\"Good choice.\" <br>\
+		\"Don't worry. <br>You won't regret this, you know? <br>This is the only path you had.\" <br>\
+		\"You're dead meat out there. <br>Might as well accept who you are.\""
+	observation_fail_message = "You slap the tendril away. <br>\
+		\"Feh. <br>So be it. <br>You won't survive out there, you know?\" <br>\
+		\"When there's nothing left of the staff but blood and gore, I'll remain. <br>Do you understand?\" <br>\
+		You can't help but to shudder in disgust as you exit the cell. <br>Was it right? You'll never know."
 
 	var/list/gremlins = list()	//For the meatballs
 	var/list/meat = list()		//For the floors

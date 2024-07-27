@@ -140,6 +140,8 @@ GLOBAL_VAR_INIT(embedpocalypse, FALSE) // if true, all items will be able to emb
 	var/mob/thrownby = null
 	///Items can by default thrown up to 10 tiles by TK users
 	tk_throw_range = 10
+	///What action is performed when throwing the item "i.e. flick"
+	var/throw_verb
 
 	///the icon to indicate this object is being dragged
 	mouse_drag_pointer = MOUSE_ACTIVE_POINTER
@@ -1154,4 +1156,9 @@ GLOBAL_VAR_INIT(embedpocalypse, FALSE) // if true, all items will be able to emb
  */
 /obj/item/proc/on_offer_taken(mob/living/carbon/offerer, mob/living/carbon/taker)
 	if(SEND_SIGNAL(src, COMSIG_ITEM_OFFER_TAKEN, offerer, taker) & COMPONENT_OFFER_INTERRUPT)
+		return TRUE
+
+/obj/item/proc/MiddleClickAction(atom/target, mob/living/user)
+	SHOULD_CALL_PARENT(TRUE)
+	if(SEND_SIGNAL(src, COMSIG_ITEM_MIDDLE_CLICK_ACTION, target, user) & COMPONENT_CANCEL_MIDDLE_CLICK_ACTION)
 		return TRUE

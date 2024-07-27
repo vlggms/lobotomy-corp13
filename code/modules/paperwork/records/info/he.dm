@@ -371,6 +371,19 @@
 		"Suppression of O-06-154-1 will immediately suppress KQE-1J-23.")
 	abno_breach_damage_count = "High"
 
+//Snow Queen
+/obj/item/paper/fluff/info/he/snow_queen
+	abno_type = /mob/living/simple_animal/hostile/abnormality/snow_queen
+	abno_code = "F-01-37"
+	abno_info = list(
+		"When the work result was Normal, the employee was kissed by The Snow Queen with a normal probability.",
+		"When the work result was Bad, the employee was kissed by The Snow Queen with a high probability.",
+		"The employee who received The Snow Queen’s second kiss forgot everything and was trapped inside the Containment Unit.",
+		"To avoid The Snow Queen’s deadly third kiss, and to rescue the trapped employee, a duel with The Snow Queen must be commenced.",
+		"Both employees were considered lost after 10 minutes of continuous combat within the Snow Queens ice palace.",
+		"Attempting to remove the employee from the Snow Queens influence physically resulted in the employees death.",
+		"Employee could not be rescued if the Snow Queen breached containment without a duel.",)
+
 //Puss in Boots
 /obj/item/paper/fluff/info/he/puss_in_boots
 	abno_type = /mob/living/simple_animal/hostile/abnormality/puss_in_boots
@@ -472,6 +485,16 @@
 		"If the employee lost the game, T-01-187 presented them with a blessing, increasing all of their stats under level 4.")
 
 
+//Ardor Blossom Moth
+/obj/item/paper/fluff/info/he/ardor_blossom_moth
+	abno_type = /mob/living/simple_animal/hostile/abnormality/ardor_moth
+	abno_code = "T-02-182"
+	abno_info = list(
+		"When Attachment work was completed on T-02-182 the employee working started to stoke the moth's flames.",
+		"While stoked, work chance was increased, and the Qliphoth Counter increased.",
+		"Employees who worked on Ardor Blossom Moth without a proper fire had a small chance of lowering the Qliphoth counter by 2.",
+		)
+
 //Highway Devotee
 /obj/item/paper/fluff/info/he/highway
 	abno_type = /mob/living/simple_animal/hostile/abnormality/highway_devotee
@@ -511,10 +534,12 @@
 	abno_code = "T-02-173"
 	abno_info = list(
 		"It was noted that working on T-02-11-03 with a Temperance level of less than 2 lowered the Qliphoth counter.",
-		"Employees who pet T-02-11-03 before a work were noted to have remarkably increased success rates with the Abnormality when completing Attachment work.",
+		"Employees who pet T-02-11-03 before attempting work were noted to have remarkably increased success rates with the Abnormality when attempting Attachment work.",
+		"However, the employee who pet T-02-11-03 noted that success rates with the other work types diminished until work was completed.",
 		"When the work result was Bad, the Qliphoth counter lowered.")
 
-//basilisoup
+//Basilisoup
+/obj/item/paper/fluff/info/he/basilisoup
 	abno_type = /mob/living/simple_animal/hostile/abnormality/basilisoup
 	abno_code = "F-02-153"
 	abno_info = list(

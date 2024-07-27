@@ -12,9 +12,13 @@
 	if(user in active_users)
 		active_users -= user
 		user.remove_status_effect(STATUS_EFFECT_BRACELET)
-		if(user.health != user.maxHealth)
-			to_chat(user, span_userdanger("You put the bracelet back, and feel your heart explode!"))
-			user.gib()
+		if(user.health != user.maxHealth) // check for oxyloss, because of anemics
+			if(user.oxyloss > 0)
+				to_chat(user, span_userdanger("You put the bracelet back, feeling as if you body wanted to tear itself apart!"))
+				user.deal_damage(user.health * 0.75, BRUTE)
+			else
+				to_chat(user, span_userdanger("You put the bracelet back, and feel your heart explode!"))
+				user.gib()
 		else
 			to_chat(user, span_userdanger("You put the bracelet back, and take a sigh of relief."))
 	else
@@ -36,7 +40,7 @@
 	. = ..()
 	if(ishuman(owner))
 		var/mob/living/carbon/human/H = owner
-		H.adjust_attribute_bonus(FORTITUDE_ATTRIBUTE, 40)
+		H.adjust_attribute_bonus(FORTITUDE_ATTRIBUTE, -40)
 
 /datum/status_effect/display/bracelet/tick()
 	. = ..()
@@ -59,6 +63,6 @@
 	. = ..()
 	if(ishuman(owner))
 		var/mob/living/carbon/human/H = owner
-		H.adjust_attribute_bonus(FORTITUDE_ATTRIBUTE, -40)
+		H.adjust_attribute_bonus(FORTITUDE_ATTRIBUTE, 40)
 
 #undef STATUS_EFFECT_BRACELET

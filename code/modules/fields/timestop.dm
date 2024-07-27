@@ -79,6 +79,9 @@
 		if(M.anti_magic_check(check_anti_magic, check_holy))
 			immune[A] = TRUE
 			return
+		if(M.status_flags & GODMODE)		//Why were you ever able to timestop godmodded things?
+			immune[A] = TRUE
+			return FALSE
 	var/frozen = TRUE
 	if(isliving(A))
 		freeze_mob(A)

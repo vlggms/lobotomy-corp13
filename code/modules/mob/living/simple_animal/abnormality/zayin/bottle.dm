@@ -51,6 +51,14 @@
 	harvest_phrase = span_notice("You sweep up some crumbs from around %ABNO into %VESSEL.")
 	harvest_phrase_third = "%PERSON sweeps up crumbs from around %ABNO into %VESSEL."
 
+	observation_prompt = "It was all very well to say \"Drink me\" but wisdom told you not to do that in a hurry. <br>\
+		The bottle had no markings to denote whether it was poisonous but you could not be sure, it was almost certain to disagree with you, sooner or later..."
+	observation_choices = list("Drink the bottle", "Eat the cake", "Leave")
+	correct_choices = list("Leave")
+	observation_success_message = "Suspicious things are suspicious, common sense hasn't failed you yet."
+	observation_fail_message = "However this bottle was not marked as poisonous and you ventured a taste, \
+		and found it horrid, the brine clung to your tongue. <br>Who'd mark such a horrible thing for drinking?" //Awaiting the update for eating the cake result
+
 /mob/living/simple_animal/hostile/abnormality/bottle/Life()
 	. = ..()
 	if(!.)

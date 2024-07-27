@@ -362,3 +362,11 @@ It's not great though.
 	desc = "A coat that has been use for a very long time, by a very experienced officer. This one is orange with an intricate copper pattern on it. Worn by the Training Officer"
 	icon_state = "training"
 	armor = list(RED_DAMAGE = 20, WHITE_DAMAGE = 20, BLACK_DAMAGE = 20, PALE_DAMAGE = 20)
+
+/obj/item/clothing/suit/armor/control
+	name = "ragged coat"
+	icon = 'icons/obj/clothing/suits.dmi'
+	worn_icon = 'icons/mob/clothing/suit.dmi'
+	desc = "A coat that has been use for a very long time, by an officer that is very observant. This one is brown, from both dye and dirt. Worn by the control officer"
+	icon_state = "coatcargo_t"		//Temporary sprite
+	armor = list(RED_DAMAGE = 20, WHITE_DAMAGE = 20, BLACK_DAMAGE = 20, PALE_DAMAGE = 20)

@@ -39,6 +39,16 @@
 	projectiletype = /obj/projectile/oceanic // it's like wellcheers, but crack
 	projectilesound = 'sound/machines/machine_vend.ogg'
 
+	observation_prompt = "In an empty space, you find a lone vending machine. <br>\
+		Where does it get its power…? <br>Besides that, what’s with this sound of crashing waves? <br>\
+		Regardless, this vacant lot looks to be a good place to take a break. <br>\
+		Standing in front of the vending machine, you see rows of buttons."
+	observation_choices = list("Press one")
+	correct_choices = list("Press one")
+	observation_success_message = "With just a single press, the machine ejected one can after another. <br>\
+		All the cans are purple. You can’t fathom the meaning of the ships and grapes doodled on them, but they somehow feel familiar, and well… cheery. <br>\
+		They should be okay to drink."
+
 	var/list/goodsoders = list(
 		/obj/item/reagent_containers/food/drinks/soda_cans/oceanwave/oxan,
 		/obj/item/reagent_containers/food/drinks/soda_cans/oceanwave/omni,

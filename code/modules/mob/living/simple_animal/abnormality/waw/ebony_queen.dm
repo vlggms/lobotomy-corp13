@@ -42,6 +42,24 @@
 	)
 	work_damage_amount = 8
 	work_damage_type = BLACK_DAMAGE
+
+	observation_prompt = "(I hear something) <br>\
+		The wicked queen is speaking with the magic mirror again and frowns when its answer remains unchanged. <br>\
+		(I see something) <br>\
+		I see her take an apple from next to me and imbue it with a poison that can kill with but a drop. <br>\
+		She takes on the guise of a wizened old hag and places the poisoned apple back next to me and heads out, a small amount of its poison leaves an impression upon me. <br>\
+		(I feel something) <br>\
+		I feel her cast me aside, taking a bite of my white flesh to prove her genuinity as Snow White bit the poisoned apple's red flesh. <br>\
+		Her plan was a success - her behated Snow White has fallen into a death-like state. <br>\
+		Is that all I was for? <br>To bring pain to others whilst never experiencing it myself? <br>\
+		I'm beginning to rot and feel pests and other lowly creatures make a meal out of me..."
+	observation_choices = list("Rot into nothing", "Don't accept the end")
+	correct_choices = list("Don't accept the end")
+	observation_success_message = "The impression of poison brings pause to the pests and even they no longer wish to remain with me. <br>\
+		Petrified roots grow from within me and I gain some sense of being ambulatory. <br>I know now how long I had laid but I refuse to remain still. <br>\
+		I shall find vengeance. <br>Bring me snow white..."
+	observation_fail_message = "An apple culminates when it shrivels up and attracts lesser creatures. <br>I'm just an apple, I can't change a thing."
+
 	var/barrier_cooldown
 	var/barrier_cooldown_time = 4 SECONDS
 	var/barrage_cooldown

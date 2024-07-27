@@ -226,6 +226,8 @@
 /obj/machinery/body_fabricator/proc/SlottedBrain(obj/item/organ/brain/B)
 	if(slotted_brain)
 		return FALSE
+	if(B.brainmob == null)
+		return FALSE
 	slotted_brain = B
 	B.forceMove(src)
 	return TRUE
@@ -234,6 +236,8 @@
 	if(slotted_brain)
 		return FALSE
 	if(!H.brain)
+		return FALSE
+	if(H.brainmob == null)
 		return FALSE
 	slotted_brain = H.brain
 	H.drop_organs()
@@ -259,6 +263,7 @@
 		var/datum/dna/gibbed_dna = B.stored_dna
 		if(gibbed_dna)
 			H.real_name = gibbed_dna.real_name
+			H.set_species(gibbed_dna.species)
 			gibbed_dna.transfer_identity(H)
 
 	//BRAIN INSERTION
@@ -269,6 +274,8 @@
 	H.revive(full_heal = FALSE, admin_revive = FALSE)
 	H.emote("gasp")
 	H.Jitter(100)
+	ADD_TRAIT(H, TRAIT_COMBATFEAR_IMMUNE, JOB_TRAIT)
+	ADD_TRAIT(H, TRAIT_WORK_FORBIDDEN, JOB_TRAIT)
 
 	//YOU DIDNT PAY FOR PREMIUM SO WE ARE MAKING YOUR BODY WORSE
 	if(biotype == 2)

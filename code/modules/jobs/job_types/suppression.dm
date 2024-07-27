@@ -77,6 +77,7 @@
 	backpack_contents = list(
 		/obj/item/melee/classic_baton,
 		/obj/item/suppressionupdate,
+		/obj/item/powered_gadget/enkephalin_injector,
 	)
 
 // Suppression Officer
@@ -89,7 +90,7 @@
 	display_order = JOB_DISPLAY_ORDER_COMMAND
 	normal_attribute_level = 20
 
-	access = list(ACCESS_COMMAND) // LC13:To-Do
+	access = list(ACCESS_COMMAND)
 	exp_requirements = 6000
 	exp_type = EXP_TYPE_CREW
 	exp_type_department = EXP_TYPE_SECURITY
@@ -103,21 +104,22 @@
 	for(var/datum/job/processing in SSjob.occupations)
 		if(istype(processing, /datum/job/suppression))
 			processing.total_positions = 3
+
 		if(istype(processing, /datum/job/suppression/captain))
 			processing.total_positions = 1
 
 /datum/outfit/job/suppression/captain
 	name = "Disciplinary Officer"
 	jobtype = /datum/job/suppression/captain
-	head = /obj/item/clothing/head/hos/beret
 	ears = /obj/item/radio/headset/heads/headset_discipline
 	l_pocket = /obj/item/commandprojector
-	suit = /obj/item/clothing/suit/armor/vest/alt
+	suit = /obj/item/clothing/suit/armor/ego_gear/disc_off
 
 	backpack_contents = list(
 		/obj/item/melee/classic_baton,
 		/obj/item/announcementmaker/lcorp,
 		/obj/item/suppressionupdate,
+		/obj/item/powered_gadget/enkephalin_injector,
 	)
 
 	//Stat update
@@ -168,6 +170,9 @@
 
 	if(user?.mind?.assigned_role in allowedroles)		//only give these if you're the guy that's allowed to have this, it's here so the Rec Agent can use it on interns
 		set_attribute += GetFacilityUpgradeValue(UPGRADE_AGENT_STATS) + SSlobotomy_corp.ordeal_stats
+
+	else
+		return
 
 	//Set all stats to 0
 	for(var/A in attribute_list)
