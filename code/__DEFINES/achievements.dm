@@ -34,6 +34,16 @@
 //#define MEDAL_CHEM_TUT "Beginner Chemist"
 #define MEDAL_HOT_DAMN "Hot Damn!"
 
+//LC13 Achievements
+#define MEDAL_SCORPWORLD "Scorp World"
+#define MEDAL_LCORPWORLD "Lcorp World"
+#define MEDAL_TWILIGHT "Twilight"
+#define BOSS_MEDAL_WHITENIGHT "White Night"
+#define BOSS_MEDAL_AMBERMIDNIGHT "Amber Midnight"
+#define BOSS_MEDAL_GREENMIDNIGHT "Green Midnight"
+#define BOSS_MEDAL_VIOLETMIDNIGHT "Violet Midnight"
+#define BOSS_MEDAL_WHITEMIDNIGHT "White Midnight"
+
 //Skill medal hub IDs
 #define MEDAL_LEGENDARY_MINER		"Legendary Miner"
 

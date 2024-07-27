@@ -103,6 +103,7 @@ GLOBAL_LIST_EMPTY(apostles)
 			revive_humans()
 
 /mob/living/simple_animal/hostile/abnormality/white_night/death(gibbed)
+	GrantMedal()
 	for(var/mob/living/carbon/human/heretic in heretics)
 		if(heretic.stat == DEAD || !heretic.ckey)
 			continue
@@ -235,6 +236,15 @@ GLOBAL_LIST_EMPTY(apostles)
 	particles = new /particles/white_night()
 	addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(sound_to_playing_players), 'sound/abnormalities/whitenight/rapture2.ogg', 50), 10 SECONDS)
 	return
+
+/// Grants medals and achievements to surrounding players
+//May move this to _abnormality some day.
+/mob/living/simple_animal/hostile/abnormality/white_night/proc/GrantMedal()
+	if(!client && !(flags_1 & ADMIN_SPAWNED_1) && SSachievements.achievements_enabled)
+		for(var/mob/living/L in view(7,src))
+			if(L.stat || !L.client)
+				continue
+			L.client.give_award(/datum/award/achievement/boss/white_night, L)
 
 /* Apostles */
 
