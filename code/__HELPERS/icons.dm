@@ -1304,6 +1304,9 @@ GLOBAL_LIST_EMPTY(transformation_animation_objects)
 				continue
 			colors += list(hex2rgb(color_code))
 	qdel(temp_icon)
+	if(colors.len == 0)
+		stack_trace("GetAverageColor called on [target] and got no colors. Is [target.icon] at state [target.icon_state] transparent?")
+		return
 	var/list/final_color_code = list(0, 0, 0)
 	var/total = 0
 	for(var/list/color_codes in colors)
@@ -1320,8 +1323,7 @@ GLOBAL_LIST_EMPTY(transformation_animation_objects)
 		final_color_code[2] += color_codes[2]
 		final_color_code[3] += color_codes[3]
 		total++
-	if(total == 0)
-		CRASH("GetAverageColor called on [target] and got no colors. Is [target.icon] at state [target.icon_state] transparent?")
+	if(!total)
 		return
 	final_color_code[1] = FLOOR(final_color_code[1]/total, 1)
 	final_color_code[2] = FLOOR(final_color_code[2]/total, 1)
