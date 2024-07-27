@@ -40,7 +40,7 @@
 		I won't give you a present, but, could you stay and play with me some more today?"
 	observation_fail_message = "I'm glad! <br>I wish I could have seen their faces, I bet they were so surprised! <br>\
 		You look lonely too, I hope my present will make you laugh as well!"
-    
+
 	attack_action_types = list(/datum/action/cooldown/laetitia_gift, /datum/action/cooldown/laetitia_summon)
 
 /datum/action/cooldown/laetitia_summon
