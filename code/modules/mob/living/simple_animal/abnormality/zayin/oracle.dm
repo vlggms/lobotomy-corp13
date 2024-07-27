@@ -27,8 +27,6 @@
 //	gift_type =  /datum/ego_gifts/oracle
 	abnormality_origin = ABNORMALITY_ORIGIN_ORIGINAL
 
-	var/currently_talking = FALSE
-
 	var/list/sleeplines = list(
 		"Hello...",
 		"I am reaching you from beyond the veil...",
@@ -60,14 +58,11 @@
 	if(work_type == ABNORMALITY_WORK_INSIGHT)
 		user.drowsyness += 30
 		user.Sleeping(30 SECONDS) //Sleep with her, so that you can get some information
-		currently_talking = TRUE
 		for(var/line in sleeplines)
 			to_chat(user, span_notice(line))
 			SLEEP_CHECK_DEATH(50)
 			if(!PlayerAsleep(user))
-				currently_talking = FALSE
 				return
-		currently_talking = FALSE
 		if(prob(50) || !SSlobotomy_corp.next_ordeal)
 			var/chosenfake = pick(fakeordeals)
 			to_chat(user, span_notice("[chosenfake]"))
