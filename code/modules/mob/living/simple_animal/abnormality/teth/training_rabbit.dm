@@ -44,7 +44,7 @@
 		In spite of all this, it provides a gift to you. It continues moving around as if it were alive. <br>\
 		So this is what they call an abnormality. <br>\
 		Are all abnormalities at Lobotomy Corporation this strange?"
-	observation_fail_message = "Your imagination must be going hawywire due to the stress. <br>There's no way such an out-of-place thing could be there!"
+	observation_fail_message = "Your imagination must be going haywire due to the stress. <br>There's no way such an out-of-place thing could be there!"
 
 /mob/living/simple_animal/hostile/abnormality/training_rabbit/BreachEffect(mob/living/carbon/human/user, breach_type)
 	. = ..()

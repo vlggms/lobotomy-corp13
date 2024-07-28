@@ -44,7 +44,7 @@
 		\"Well, how is it?\" <br>The monster, disguised as a human asks me. <br>\
 		There is a sweet, revolting scent in the air. <br>\
 		Raw meat and organs are piled high on the serving plates, being attacked by the occasional fly. <br>The monster in front of me dines with knife and fork.<br>\
-		A human head is on prominant display on my plate.<br> It belongs to someone who was assigned to work on \"Eris\", not too long ago.<br>\
+		A human head is on prominent display on my plate.<br> It belongs to someone who was assigned to work on \"Eris\", not too long ago.<br>\
 		\"Not hungry? Perhaps you'd like to visit my boudoir?\"<br>\
 		Vile, disgusting. <br>I want to get out of here."
 	observation_choices = list("Accept her proposal", "Run")
@@ -53,7 +53,7 @@
 		Surprisingly, it's not locked. <br>I hear the imitation of a young woman's voice on my way out. <br>\
 	\"Come back soon, sweetie!\"<br> \"You're always invited to dinner, and i'll be sure to serve you one day!\""
 	observation_fail_message = "How bad can it be? <br>I follow Eris as she leads me into a room. <br>\
-		Suffice to say, I died the moment I stepped into that room. <br>Literally."
+		Hours later, Eris dines with another stranger. <br>My head is resting on that very same plate."
 
 	var/girlboss_level = 0
 

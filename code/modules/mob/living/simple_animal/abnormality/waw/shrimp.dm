@@ -30,6 +30,19 @@
 		/mob/living/simple_animal/hostile/abnormality/wellcheers = 1.5, // I... if you ever get a zayin this far in, good luck.
 	)
 
+	observation_prompt = "You sit in an office decorated with shrimp-related memorabilia. <br>\
+		Various trophies and medals and other trinkets with shrimp on them. <br>A PHD in shrimpology printed on printer paper is displayed prominantly on the wall. <br>\
+		\"Enjoying my collection? <br>I played college ball in Shrimp-Corp's nest, you know.\" <br>\
+		A delicious looking shrimp in a snazzy suit sits before you in an immaculate office chair. <br>\
+		\"But where are my manners... <br>Why don't you enjoy some of our finest locally produced champagne?\" <br>\
+		The shrimp offers you a champagne glass full of... Something. <br>\
+		It looks and smells like wellcheers grape soda. It's soda. <br>\
+		You can even see the can's label torn off and stuck on the side. <br>Will you drink it?"
+	observation_choices = list("Drink the soda","Refuse")
+	correct_choices = list("Drink the soda","Refuse")
+	observation_success_message = "Before you can make a choice, two gigantic and heavily armed shrimp guards bust in through the door. <br>\
+		They hold you down and force you to drink the soda, and you fall asleep... <br>... <br>Somewhere in the distance, you hear seagulls."
+
 	var/liked
 	var/happy = TRUE
 	pet_bonus = "blurbles" //saves a few lines of code by allowing funpet() to be called by attack_hand()
