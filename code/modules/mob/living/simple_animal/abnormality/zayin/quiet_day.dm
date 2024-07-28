@@ -184,7 +184,7 @@
 
 		if(ABNORMALITY_WORK_REPRESSION)
 			var/list/dementia_clone = dementia.Copy()
-			for(var/left_lines = 7, left_lines >= 1, left_lines--)
+			for(var/i in 1 to 7)
 				say(length(dementia_clone) > 1 ? pick_n_take(dementia_clone) : pick(dementia_clone)) // if the list has 1 object, dont remove it
 				SLEEP_CHECK_DEATH(5 SECONDS)
 				if(!PlayerInView(user))
