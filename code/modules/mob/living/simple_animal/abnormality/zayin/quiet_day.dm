@@ -162,7 +162,7 @@
 		if(ABNORMALITY_WORK_INSTINCT)
 			for(var/line in war_story)
 				say(line)
-				SLEEP_CHECK_DEATH(50)
+				SLEEP_CHECK_DEATH(5 SECONDS)
 				if(!PlayerInView(user))
 					ResetIcon()
 					return
@@ -170,7 +170,7 @@
 		if(ABNORMALITY_WORK_INSIGHT)
 			for(var/line in parable)
 				say(line)
-				SLEEP_CHECK_DEATH(50)
+				SLEEP_CHECK_DEATH(5 SECONDS)
 				if(!PlayerInView(user))
 					ResetIcon()
 					return
@@ -178,22 +178,19 @@
 		if(ABNORMALITY_WORK_ATTACHMENT)
 			for(var/line in wife)
 				say(line)
-				SLEEP_CHECK_DEATH(50)
+				SLEEP_CHECK_DEATH(5 SECONDS)
 				if(!PlayerInView(user))
 					ResetIcon()
 					return
 
 		if(ABNORMALITY_WORK_REPRESSION)
-			for(var/i=7, i>=1, i--)
-				var/current = pick(dementia)
-				dementia -= current
-				say(current)
-				SLEEP_CHECK_DEATH(50)
+			var/list/dementia_clone = dementia.Copy()
+			for(var/i in 1 to 7)
+				say(length(dementia_clone) > 1 ? pick_n_take(dementia_clone) : pick(dementia_clone)) // if the list has 1 object, dont remove it
+				SLEEP_CHECK_DEATH(5 SECONDS)
 				if(!PlayerInView(user))
-					dementia = initial(dementia)
 					ResetIcon()
 					return
-			dementia = initial(dementia)
 
 	TalkEnd(user)
 
