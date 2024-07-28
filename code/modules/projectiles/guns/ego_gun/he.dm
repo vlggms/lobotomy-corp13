@@ -305,3 +305,27 @@
 	attribute_requirements = list(
 							FORTITUDE_ATTRIBUTE = 40
 							)
+
+/obj/item/gun/ego_gun/pistol/deathdealer
+	name = "death dealer"
+	desc = "A gilded revolver which seems to defy all known laws of gun manufacturing... Feel lucky?"
+	icon_state = "deathdealer" //Placeholder sprite. Will need to comission/replace with proper sprites
+	inhand_icon_state = "deathdealer"
+	special = "This weapon changes its projectile each time it is reloaded. It cannot be reloaded without firing all six shots first."
+	ammo_type = /obj/item/ammo_casing/caseless/ego_gaze
+	weapon_weight = WEAPON_HEAVY
+	fire_delay = 8
+	shotsleft = 6
+	reloadtime = 1.3 SECONDS
+	fire_sound = 'sound/weapons/gun/revolver/shot_alt.ogg'
+	vary_fire_sound = FALSE
+	var/list/ammotypes = list(/obj/item/ammo_casing/caseless/ego_magicbullet,/obj/item/ammo_casing/caseless/ego_supershotgun,/obj/item/ammo_casing/caseless/ego_solemnlament,/obj/item/ammo_casing/caseless/ego_harmony,/obj/item/ammo_casing/caseless/ego_match,/obj/item/ammo_casing/caseless/ego_gaze)
+	//NOTE: Dud round currently breaks the gun, causing it to no longer fire regardless of current ammo type. Will need help fixing this at some point, but for now the dud's removed from the list.
+	//If you feel like having a go at fixing it, the projectile's /obj/item/ammo_casing/caseless/ego_dud, under ZAYIN.
+
+/obj/item/gun/ego_gun/pistol/deathdealer/reload_ego(mob/user)
+	if(shotsleft!=0)
+		to_chat(user,span_warning("You cannot reload this gun without an empty cylinder!"))
+		return
+	ammo_type = pick(ammotypes)
+	..()
