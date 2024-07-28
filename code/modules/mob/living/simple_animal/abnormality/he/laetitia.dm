@@ -61,6 +61,7 @@
 	if(!istype(owner, /mob/living/simple_animal/hostile/abnormality/laetitia))
 		return FALSE
 
+	StartCooldown()
 	G1 = new /mob/living/simple_animal/hostile/gift(owner.loc)
 	G2 = new /mob/living/simple_animal/hostile/gift(owner.loc)
 	delete_timer = addtimer(CALLBACK(src, PROC_REF(delete)), delete_cooldown, TIMER_STOPPABLE)
