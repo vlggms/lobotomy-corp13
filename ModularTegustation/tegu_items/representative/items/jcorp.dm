@@ -9,7 +9,7 @@
 /obj/item/a_gift/jcorp
 	name = "J Corp Brand Lootbox"
 	desc = "What could be inside of this?"
-	icon_state = "jcorplootbox1"
+	icon_state = "jcorplootbox1" //Sprite by RayAleciana
 	inhand_icon_state = "jcorplootbox"
 	slot_flags = ITEM_SLOT_POCKETS
 	w_class = WEIGHT_CLASS_SMALL
