@@ -40,6 +40,7 @@
 	icon_state = "crate_allas"
 	rarechance = 25
 	veryrarechance = 1
+	crate_multiplier = 4
 	lootlist =	list(
 		/obj/item/ego_weapon/city/fixerblade,
 		/obj/item/ego_weapon/city/fixergreatsword,

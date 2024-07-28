@@ -30,6 +30,7 @@
 	var/cosmeticloot = list()
 	var/cosmeticchance = 0 //These do not count on the total odds of a crate
 	var/repmodifier = 0
+	var/crate_multiplier = 2
 
 /obj/structure/lootcrate/Initialize()
 	. = ..()
@@ -55,10 +56,7 @@
 
 	rarechance += repmodifier
 	if(veryrarechance)
-		if(istype(src, /obj/structure/lootcrate/workshopallas))
-			veryrarechance += (repmodifier/4)
-		else
-			veryrarechance += (repmodifier/2)
+		veryrarechance += (repmodifier/crate_multiplier)
 
 	if(SSmaptype.maptype in SSmaptype.citymaps)	//Fuckers shouldn't loot like this
 		if(!do_after(user, 7 SECONDS, src))

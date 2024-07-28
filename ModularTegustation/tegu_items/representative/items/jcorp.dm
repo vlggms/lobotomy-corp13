@@ -9,9 +9,14 @@
 /obj/item/a_gift/jcorp
 	name = "J Corp Brand Lootbox"
 	desc = "What could be inside of this?"
-	icon_state = "deliverypackage1" //Temporary Icon
+	icon_state = "jcorplootbox1"
+	inhand_icon_state = "jcorplootbox"
 	slot_flags = ITEM_SLOT_POCKETS
 	w_class = WEIGHT_CLASS_SMALL
+
+/obj/item/a_gift/jcorp/Initialize()
+	. = ..()
+	icon_state = "jcorplootbox[rand(1,3)]"
 
 /obj/item/a_gift/jcorp/get_gift_type()
 	var/list/banned_items = subtypesof(/obj/item/lc_debug) + subtypesof(/obj/item/reagent_containers/glass/bottle) + subtypesof(/obj/item/uplink)
