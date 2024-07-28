@@ -4,7 +4,7 @@
 	icon = 'ModularTegustation/Teguicons/48x96.dmi'
 	icon_state = "wayward"
 	icon_living = "wayward_breach"
-	icon_dead = "wayward_dead"
+	icon_dead = "waywardpass_egg"
 	core_icon = "waywardpass_egg"
 	portrait = "wayward_passenger"
 	del_on_death = FALSE
@@ -101,7 +101,10 @@
 	chosen_attack_num = 2
 
 //*** Simple mob procs ***
-/mob/living/simple_animal/hostile/abnormality/wayward/death()
+/mob/living/simple_animal/hostile/abnormality/wayward/death(gibbed)
+	playsound(src, 'sound/effects/limbus_death.ogg', 100, 1)
+	icon = 'ModularTegustation/Teguicons/abno_cores/he.dmi'
+	pixel_x = -16
 	density = FALSE
 	animate(src, alpha = 0, time = 10 SECONDS)
 	QDEL_IN(src, 10 SECONDS)

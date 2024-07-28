@@ -111,6 +111,9 @@
 	pixel_y = -6
 
 /mob/living/simple_animal/hostile/abnormality/drifting_fox/death(gibbed)
+	icon = 'ModularTegustation/Teguicons/abno_cores/he.dmi'
+	pixel_x = -16
+	pixel_y = 0
 	density = FALSE
 	animate(src, alpha = 0, time = 10 SECONDS)
 	QDEL_IN(src, 10 SECONDS)

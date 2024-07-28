@@ -275,7 +275,7 @@
 	playsound(src, 'sound/effects/limbus_death.ogg', 60, 1)
 	animate(src, transform = matrix()*0.6,time = 0)
 	icon_state = "headless_ichthys"
-	icon = 'ModularTegustation/Teguicons/64x64.dmi'
+	icon = 'ModularTegustation/Teguicons/abno_cores/he.dmi'
 	QDEL_NULL(current_beam)
 	update_icon_state()
 	density = FALSE
