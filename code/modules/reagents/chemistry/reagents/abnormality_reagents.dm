@@ -323,27 +323,6 @@
 		for(var/reportLine in readout2)
 			to_chat(usr, reportLine)
 
-/obj/item/chemical_extraction_attachment
-	name = "chemical extraction cell upgrade"
-	desc = "Attaches to the abnormality cell console of completely understood abnormalities and allows for the extraction of enkephalin-derived substances."
-	icon = 'ModularTegustation/Teguicons/teguitems.dmi'
-	icon_state = "abnochem_attachment"
-
-/obj/machinery/computer/abnormality/attackby(obj/O, mob/user, params)
-	if(istype(O, /obj/item/chemical_extraction_attachment))
-		if(datum_reference.understanding < datum_reference.max_understanding)
-			to_chat(user, span_notice("Abnormality [datum_reference.current] is not yet fully understood."))
-			return ..()
-		var/obj/item/chemical_extraction_attachment/attachment = locate() in contents
-		if(attachment)
-			to_chat(user, span_notice("This cell already has a chemical extraction upgrade installed."))
-			return ..()
-		to_chat(user, span_notice("You start attaching \the [O] to \the [src]..."))
-		if(do_after(user, 5 SECONDS, src))
-			user.transferItemToLoc(O, src)
-			src.desc += "\nIt seems to be equipped with a chemical extraction upgrade."
-	return ..()
-
 /obj/structure/closet/crate/science/abnochem_startercrate
 	name = "Abnormality chemistry crate"
 	desc = "A crate containing abnormality chemistry materials."
@@ -357,3 +336,4 @@
 	new /obj/item/paper/guides/jobs/abnochem_effects_he(src)
 	new /obj/item/storage/box/beakers(src)
 	new /obj/item/storage/box/beakers(src)
+	new /obj/item/work_console_upgrade/chemical_extraction_attachment(src)
