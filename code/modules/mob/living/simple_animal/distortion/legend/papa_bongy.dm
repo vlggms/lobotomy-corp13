@@ -278,48 +278,40 @@
 /datum/ai_controller/insane/murder/bongy
 	lines_type = /datum/ai_behavior/say_line/insanity_lines
 
-/datum/ai_controller/insane/murder/bongy/FindEnemies()
-	. = FALSE
-	var/mob/living/living_pawn = pawn
-	var/list/potential_enemies = livinginview(9, living_pawn)
-
-	if(!LAZYLEN(potential_enemies)) // We aint see shit!
-		return
-
-	var/list/weighted_list = list()
-	for(var/mob/living/L in potential_enemies) // Oh the CHOICES!
-		if(ishuman(L))
-			var/mob/living/carbon/human/H = L
+/datum/ai_controller/insane/murder/bongy/CanTarget(atom/movable/thing)
+	. = ..()
+	var/mob/living/living_thing = thing
+	if(. && istype(living_thing))
+		if(ishuman(living_thing))
+			var/mob/living/carbon/human/H = living_thing
 			if(HAS_AI_CONTROLLER_TYPE(H, /datum/ai_controller/insane/murder/bongy))
-				continue
-		if(L == living_pawn)
-			continue
-		if(L.status_flags & GODMODE)
-			continue
-		if(L.stat == DEAD)
-			continue
-		if(living_pawn.see_invisible < L.invisibility)
-			continue
-		if(istype(L, /mob/living/simple_animal/hostile/bongy_hostile) || istype(L, /mob/living/simple_animal/hostile/distortion/papa_bongy))
-			continue
-		if(!isturf(L.loc) && !ismecha(L.loc))
-			continue
-		weighted_list += L
-	for(var/i in weighted_list)
+				return FALSE
+		if(istype(living_thing, /mob/living/simple_animal/hostile/bongy_hostile) || istype(living_thing, /mob/living/simple_animal/hostile/distortion/papa_bongy))
+			return FALSE
+
+/datum/ai_controller/insane/murder/bongy/FindEnemies(range = aggro_range)
+	var/list/weighted_list = PossibleEnemies(range)
+	for(var/atom/movable/i in weighted_list)
+		//target type weight
 		if(istype(i, /mob/living/simple_animal/hostile))
-			weighted_list[i] = 3
+			weighted_list[i] = 4
 		else if(ishuman(i))
 			var/mob/living/carbon/human/H = i
 			if(H.sanity_lost)
-				weighted_list[i] = 0
-			if(ismecha(H.loc))
-				weighted_list[i] = 3
+				weighted_list[i] = 1
+			else if(ismecha(H.loc))
+				weighted_list[i] = 4
 			else
-				weighted_list[i] = 5
+				weighted_list[i] = 7
 		else
 			weighted_list[i] = 1
+		//target distance weight
+		weighted_list[i] += 10 - min(get_dist(get_turf(pawn), get_turf(i)), 10)
+		//previous target weight
+		if(blackboard[BB_INSANE_CURRENT_ATTACK_TARGET] == i)
+			weighted_list[i] = max(weighted_list[i] - 10, 1)
 	if(weighted_list.len > 0)
-		blackboard[BB_INSANE_CURRENT_ATTACK_TARGET] = pickweight(weighted_list)
+		GiveTarget(pickweight(weighted_list))
 		return TRUE
 	return FALSE
 

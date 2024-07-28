@@ -463,7 +463,8 @@
 ///From post-can inject check of syringe after attack (mob/user)
 #define COMSIG_LIVING_TRY_SYRINGE "living_try_syringe"
 
-
+///from /mob/living/bullet_act() since it does not call /atom/bullet_act()
+#define COMSIG_LIVING_BULLET_ACT "living_bullet_act"
 ///Sent when bloodcrawl ends in mob/living/phasein(): (phasein_decal)
 #define COMSIG_LIVING_AFTERPHASEIN "living_phasein"
 

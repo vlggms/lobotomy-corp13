@@ -48,6 +48,7 @@
 	return BULLET_ACT_HIT
 
 /mob/living/bullet_act(obj/projectile/P, def_zone, piercing_hit = FALSE)
+	SEND_SIGNAL(src, COMSIG_LIVING_BULLET_ACT, P, def_zone, piercing_hit)
 	var/armor = run_armor_check(def_zone, P.damage_type, "","",P.armour_penetration)
 	var/on_hit_state = P.on_hit(src, armor, piercing_hit)
 	if(!P.nodamage && on_hit_state != BULLET_ACT_BLOCK)
