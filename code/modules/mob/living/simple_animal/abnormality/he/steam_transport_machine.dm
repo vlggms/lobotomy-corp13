@@ -4,8 +4,10 @@
 	icon = 'ModularTegustation/Teguicons/64x64.dmi'
 	icon_state = "steam"
 	icon_living = "steam"
+	icon_dead = "steammachine_egg"
 	core_icon = "steammachine_egg"
 	portrait = "steam_transport_machine"
+	del_on_death = FALSE
 	maxHealth = 1600
 	health = 1600
 	ranged = TRUE
@@ -223,6 +225,11 @@
 		deltimer(guntimer)
 	if(updatetimer)
 		deltimer(updatetimer)
+	icon = 'ModularTegustation/Teguicons/abno_cores/he.dmi'
+	pixel_x = -16
+	density = FALSE
+	animate(src, alpha = 0, time = 10 SECONDS)
+	QDEL_IN(src, 10 SECONDS)
 
 /obj/projectile/steam
 	name = "steam"

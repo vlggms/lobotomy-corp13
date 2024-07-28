@@ -98,6 +98,7 @@
 /mob/living/simple_animal/hostile/abnormality/doomsday_calendar/death()
 	density = FALSE
 	playsound(src, 'sound/abnormalities/doomsdaycalendar/Doomsday_Dead.ogg', 100, 1)
+	icon = 'ModularTegustation/Teguicons/abno_cores/he.dmi'
 	for(var/mob/living/simple_animal/hostile/doomsday_doll/D in spawned_dolls) //delete the dolls when suppressed
 		D.death()
 		QDEL_IN(D, rand(1,5) SECONDS)

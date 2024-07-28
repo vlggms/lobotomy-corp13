@@ -332,10 +332,10 @@
 		ChangeForm()
 	can_act = FALSE
 	icon_state = icon_dead
-	icon = 'ModularTegustation/Teguicons/32x32.dmi'
+	icon = 'ModularTegustation/Teguicons/abno_cores/aleph.dmi'
 	desc = "A gross, pathetic looking thing that was once a terrible monster."
-	pixel_x = 0
-	base_pixel_x = 0
+	pixel_x = -16
+	base_pixel_x = -16
 	pixel_y = 0
 	base_pixel_y = 0
 	density = FALSE

@@ -158,6 +158,7 @@
 /datum/abnormality/proc/ModifyOdds()
 	var/turf/spawn_turf = locate(1, 1, 1)
 	var/mob/living/simple_animal/hostile/abnormality/abno = new abno_path(spawn_turf)
+	abno.core_enabled = FALSE
 	for(var/path in abno.grouped_abnos)
 		var/mob/living/simple_animal/hostile/abnormality/abno_friend = path
 		if(abno_friend in SSabnormality_queue.possible_abnormalities[initial(abno_friend.threat_level)])

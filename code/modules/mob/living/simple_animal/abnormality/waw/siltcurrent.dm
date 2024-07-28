@@ -256,6 +256,9 @@
 		H.adjustOxyLoss(4, updating_health=TRUE, forced=TRUE)
 
 /mob/living/simple_animal/hostile/abnormality/siltcurrent/death()
+	icon = 'ModularTegustation/Teguicons/abno_cores/waw.dmi'
+	pixel_x = -16
+	base_pixel_x = -16
 	density = FALSE
 	animate(src, alpha = 0, time = 10 SECONDS)
 	QDEL_IN(src, 10 SECONDS)

@@ -80,6 +80,7 @@
 		EndEnchant(H)
 	icon_state = icon_dead
 	playsound(src, 'sound/effects/limbus_death.ogg', 100, 1)
+	icon = 'ModularTegustation/Teguicons/abno_cores/teth.dmi'
 	animate(src, alpha = 0, time = 10 SECONDS)
 	QDEL_IN(src, 10 SECONDS)
 

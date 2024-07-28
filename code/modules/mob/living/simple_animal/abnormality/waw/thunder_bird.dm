@@ -139,6 +139,7 @@
 /mob/living/simple_animal/hostile/abnormality/thunder_bird/death()
 	if(health > 0)
 		return
+	icon = 'ModularTegustation/Teguicons/abno_cores/waw.dmi'
 	density = FALSE
 	playsound(src, 'sound/abnormalities/thunderbird/tbird_charge.ogg', 100, 1)
 	animate(src, alpha = 0, time = 10 SECONDS)
