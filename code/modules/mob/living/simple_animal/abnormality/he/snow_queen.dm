@@ -56,8 +56,8 @@
 	observation_fail_message = "Gerda saved Kai and returned home. <br>They lived happily ever after."
 
 	ego_list = list(
+		/datum/ego_datum/weapon/frostsplinter,
 		/datum/ego_datum/armor/frostsplinter,
-		/datum/ego_datum/weapon/frostsplinter
 	)
 	gift_type = null
 	//Gift is rewarded at the end of a duel with Snow Queen.
