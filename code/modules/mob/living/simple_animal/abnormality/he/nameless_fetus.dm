@@ -70,7 +70,7 @@
 		to_chat(user, span_nicegreen("[src] is satisfied by your offering!"))
 		satisfied = TRUE
 		hunger += 4
-		playsound(get_turf(src),'sound/abnormalities/doomsdaycalendar/Limbus_Dead_Generic.ogg', 50, 1)
+		playsound(get_turf(src),'sound/effects/limbus_death.ogg', 50, 1)
 
 /mob/living/simple_animal/hostile/abnormality/fetus/ZeroQliphoth(mob/living/carbon/human/user)
 	if(satisfied)
