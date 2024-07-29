@@ -870,7 +870,7 @@
 		P.xo = target.x - T.x
 		P.original = target
 		P.preparePixelProjectile(target, T)
-		addtimer(CALLBACK (P, TYPE_PROC_REF(/obj/projectile, fire)), 30)
+		addtimer(CALLBACK (P, TYPE_PROC_REF(/obj/projectile, fire)), 45)
 		var/list/hit_line = getline(T, get_turf(target)) //targetting line
 		for(var/turf/TF in hit_line)
 			if(TF.density)
