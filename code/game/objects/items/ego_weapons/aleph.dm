@@ -703,6 +703,12 @@
 	force = season_list[current_season][1]
 	attack_speed = season_list[current_season][2]
 	reach = season_list[current_season][3]
+	if(reach > 1)
+		stuntime = 5
+		swingstyle = WEAPONSWING_THRUST
+	else
+		stuntime = 0
+		swingstyle = WEAPONSWING_SMALLSWEEP
 	attack_verb_continuous = season_list[current_season][4]
 	attack_verb_simple = season_list[current_season][5]
 	hitsound = season_list[current_season][6]
