@@ -1445,7 +1445,6 @@
 	can_act = FALSE //we stay transformed until the skill finishes firing
 	addtimer(CALLBACK(src, PROC_REF(BaldBlast), FALSE), 5)
 
-
 /mob/living/simple_animal/hostile/abnormality/distortedform/proc/BaldBlast(attack_chain)
 	if(!attack_chain)
 		icon_state = "bald3"
@@ -1463,14 +1462,15 @@
 					H.Stun(20)
 					H.Paralyze(20)
 					H.Knockdown(200)
-					H.adjust_blindness(2)
 					to_chat(H, span_notice("You feel awesome?"))
 					ADD_TRAIT(H, TRAIT_BALD, "ABNORMALITY_BALD")
 					H.hairstyle = "Bald"
 					H.update_hair()
-					H.apply_damage(100, WHITE_DAMAGE, null, H.run_armor_check(null, WHITE_DAMAGE), spread_damage = TRUE)
-					if(H.sanity_lost) // They can't deal with being bald
-						H.dust()
+				H.adjust_blindness(2)
+				to_chat(L, span_userdanger("IT BURNS!!"))
+				H.apply_damage(100, WHITE_DAMAGE, null, H.run_armor_check(null, WHITE_DAMAGE), spread_damage = TRUE)
+				if(H.sanity_lost) // They can't deal with being bald
+					H.dust()
 	if(!attack_chain)
 		BaldBlast(TRUE)
 		return
