@@ -29,8 +29,8 @@
 	work_damage_type = WHITE_DAMAGE
 
 	ego_list = list(
+		/datum/ego_datum/weapon/morii,
 		/datum/ego_datum/armor/morii,
-		/datum/ego_datum/weapon/morii
 	)
 	gift_type = /datum/ego_gifts/morii
 	//Abnormality Jam Submission
