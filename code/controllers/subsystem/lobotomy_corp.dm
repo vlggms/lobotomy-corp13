@@ -110,7 +110,7 @@ SUBSYSTEM_DEF(lobotomy_corp)
 		upgrades += new F
 
 /datum/controller/subsystem/lobotomy_corp/proc/SetGoal()
-	var/player_mod = GLOB.clients.len * 0.15
+	var/player_mod = GLOB.player_list.len * 0.2
 	box_goal = clamp(round(7500 * player_mod), 3000, 36000)
 	return TRUE
 
