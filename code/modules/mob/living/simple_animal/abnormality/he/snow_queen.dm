@@ -90,6 +90,8 @@
 	var/static/list/arena_cleave = list()
 	//We may be getting too many lists now. List for existing temporary elements like illusions
 	var/static/list/temp_effects = list()
+	//Reusable visuals for cleave attacks.
+	var/datum/reusable_visual_pool/RVP = new(200)
 
 /mob/living/simple_animal/hostile/abnormality/snow_queen/Move()
 	if(!can_act)
@@ -234,7 +236,7 @@
 	density = FALSE
 	animate(src, alpha = 0, time = 10 SECONDS)
 	QDEL_IN(src, 10 SECONDS)
-	..()
+	return ..()
 
 //This is here so that people can see the death animation before snow queen is defeated.
 /mob/living/simple_animal/hostile/abnormality/snow_queen/Destroy()
@@ -243,7 +245,8 @@
 	else
 		ReleasePrisoners()
 	ClearEffects()
-	..()
+	QDEL_NULL(RVP)
+	return ..()
 
 		/*---------------------\
 		|CROSS ABNO INTERACTION|
@@ -552,7 +555,7 @@
 	else
 		if(do_after(src, 1 SECONDS, target = src) && get_health == health)
 			for(var/turf/after_spike in after_image_locations)
-				AoeTurfEffect(after_spike, /obj/effect/temp_visual/ice_spike)
+				AoeTurfEffect(after_spike, 6)
 			BladeDash(target)
 
 //Rapidly shoots frost splinters at the target
@@ -614,9 +617,10 @@
 		if(second_attack_area)
 			turfs_to_hit = ReturnNoOverlap(arena_cleave[attack_area], arena_cleave[second_attack_area])
 
+		var/cleave_chargeup = (3 SECONDS) - (i * 5)
 		for(var/turf/T in turfs_to_hit)
-			AoeTurfEffect(T, /obj/effect/temp_visual/floor_cracks, TRUE)
-		if(do_after(src, (3 SECONDS) - (i * 5), target = src) && snow_health <= health)
+			AoeTurfEffect(T, cleave_chargeup, TRUE)
+		if(do_after(src, cleave_chargeup, target = src) && snow_health <= health)
 			if(i > 0)
 				ProjectileHell(target)
 			Cleave(turfs_to_hit)
@@ -632,7 +636,7 @@
 /mob/living/simple_animal/hostile/abnormality/snow_queen/proc/Cleave(list/turfs_to_cleave)
 	playsound(get_turf(src), 'sound/effects/podwoosh.ogg', 100, 1)
 	for(var/turf/T in turfs_to_cleave)
-		AoeTurfEffect(T, /obj/effect/temp_visual/ice_spike)
+		AoeTurfEffect(T, 4)
 
 //Shoots projectiles from teleport spots that the snow queen isnt at.
 /mob/living/simple_animal/hostile/abnormality/snow_queen/proc/ProjectileHell(mob/living/L)
@@ -645,10 +649,10 @@
 		playsound(shootems, 'sound/abnormalities/despairknight/attack.ogg', 50, 0, 4)
 
 //Determines if the effect on a AOE area is telegraphed or actually harmful.
-/mob/living/simple_animal/hostile/abnormality/snow_queen/proc/AoeTurfEffect(turf/T, effect_type, telegraph = FALSE)
-	if(!effect_type)
+/mob/living/simple_animal/hostile/abnormality/snow_queen/proc/AoeTurfEffect(turf/T, duration, telegraph = FALSE)
+	if(!T)
 		return
-	new effect_type(T)
+	RVP.NewSnowQueenEffect(T, duration, telegraph)
 	if(telegraph)
 		return
 	return HurtInTurf(T, list(), 35, RED_DAMAGE, check_faction = TRUE, hurt_mechs = TRUE)
@@ -701,6 +705,25 @@
 		if(D.density)
 			return FALSE
 	return TRUE
+
+		/*-------------------\
+		|REUSABLE VISUAL PROC|
+		\-------------------*/
+// It feels like this should be more modular but i dont want to overstep
+/datum/reusable_visual_pool/proc/NewSnowQueenEffect(turf/location, duration = 10, telegraph = FALSE)
+	var/obj/effect/reusable_visual/RV = TakePoolElement()
+	if(telegraph)
+		RV.name = "cracked floor"
+		RV.icon = 'ModularTegustation/Teguicons/tegu_effects.dmi'
+		RV.icon_state = "cracks_dark"
+	else
+		RV.name = "ice spike"
+		RV.icon = 'ModularTegustation/Teguicons/32x48.dmi'
+		RV.icon_state = pick("ice_spike1", "ice_spike2", "ice_spike3")
+	RV.layer = ABOVE_MOB_LAYER
+	RV.loc = location
+	DelayedReturn(RV, duration)
+	return RV
 
 		/*-----------\
 		|MAP ELEMENTS|
