@@ -16,9 +16,10 @@
 	InjectTrait(user)
 
 /obj/item/trait_injector/proc/InjectTrait(mob/living/carbon/human/user)
-	if(HAS_TRAIT(user, trait))
-		to_chat(user, span_notice("You wouldn't double-dip, would you?"))
-		return
+	if(trait)
+		if(HAS_TRAIT(user, trait)) // we need to check for if there is a trait in the first place
+			to_chat(user, span_notice("You wouldn't double-dip, would you?"))
+			return
 	to_chat(user, span_nicegreen("The injector blinks green before it disintegrates. [success_message]"))
 	if(trait)
 		ADD_TRAIT(user, trait, JOB_TRAIT)
