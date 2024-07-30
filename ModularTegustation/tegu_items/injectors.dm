@@ -16,9 +16,12 @@
 	InjectTrait(user)
 
 /obj/item/trait_injector/proc/InjectTrait(mob/living/carbon/human/user)
-	to_chat(user, span_nicegreen("The injector blinks green before it disintegrates. [success_message]"))
 	if(trait)
+		if(HAS_TRAIT(user, trait)) // we need to check for if there is a trait in the first place
+			to_chat(user, span_notice("You wouldn't double-dip, would you?"))
+			return
 		ADD_TRAIT(user, trait, JOB_TRAIT)
+	to_chat(user, span_nicegreen("The injector blinks green before it disintegrates. [success_message]"))
 	qdel(src)
 	return
 
@@ -32,8 +35,7 @@
 
 /obj/item/trait_injector/officer_upgrade_injector/InjectTrait(mob/living/carbon/human/user)
 	user.adjust_all_attribute_levels(20)
-	..()
-	return
+	return ..()
 
 /obj/item/trait_injector/agent_workchance_trait_injector
 	name = "Agent Work Chance Injector"
@@ -43,9 +45,11 @@
 	error_message = "You aren't an agent."
 	success_message = "You feel enlightened and wiser."
 
-/obj/item/trait_injector/agent_workchance_trait_injector/Initialize()
-	. = ..()
-	roles = GLOB.security_positions
+/obj/item/trait_injector/attack_self(mob/living/carbon/human/user)
+	if(!istype(user) || HAS_TRAIT(user, TRAIT_WORK_FORBIDDEN))
+		to_chat(user, span_notice("The injector light flashes red. [error_message] Check the label before use."))
+		return
+	InjectTrait(user)
 
 /obj/item/trait_injector/clerk_fear_immunity_injector
 	name = "C-Fear Protection Injector"
@@ -73,13 +77,12 @@
 /obj/item/trait_injector/shrimp_injector/InjectTrait(mob/living/carbon/human/user)
 	if(!faction_check(user.faction, list("shrimp")))
 		user.faction |= "shrimp"
-		..()
-		return
+		return ..()
 	to_chat(user, span_userdanger("The injector burns red before switching to green and dissapearing. You feel uneasy."))
 	qdel(src)
-	sleep(rand(20, 50)) // 2 to 5 seconds
-	if(prob(70))
-		new /mob/living/simple_animal/hostile/shrimp(get_turf(user))
-	else
+	sleep(rand(2 SECONDS, 5 SECONDS))
+	if(prob(30) || is_species(user, /datum/species/shrimp))
 		new /mob/living/simple_animal/hostile/shrimp_soldier(get_turf(user))
+	else
+		new /mob/living/simple_animal/hostile/shrimp(get_turf(user))
 	user.gib()

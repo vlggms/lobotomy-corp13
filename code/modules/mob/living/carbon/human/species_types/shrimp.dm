@@ -3,11 +3,12 @@
 	id = "shrimp"
 	mutant_bodyparts = list()
 	say_mod = "burbles"
-	sexes = 0
+	sexes = 0 // shrimp are shrimp, nothing more nothing less
 
+	mutanttongue = /obj/item/organ/tongue/shrimp
 	nojumpsuit = TRUE
-	species_traits = list(NO_UNDERWEAR,NOEYESPRITES)
-	inherent_traits = list(TRAIT_ADVANCEDTOOLUSER,TRAIT_GENELESS)
+	species_traits = list(NO_UNDERWEAR, NOEYESPRITES)
+	inherent_traits = list(TRAIT_ADVANCEDTOOLUSER, TRAIT_GENELESS)
 	use_skintones = FALSE
 	limbs_id = "shrimp"
 	no_equip = list(ITEM_SLOT_EYES, ITEM_SLOT_MASK)
@@ -20,24 +21,40 @@
 	var/shrimp_name = pick(special_names)
 	if(prob(human_name_chance))
 		shrimp_name = pick(GLOB.last_names)
-	return shrimp_name//95% chance to pick a shrimp name, 5% to pick a human lastname. These guys only use one name
+	return shrimp_name // 95% chance to pick a shrimp name, 5% to pick a human lastname. These guys only use one name
 
-/mob/living/carbon/human/species/shrimp/attack_ghost(mob/dead/observer/O)
-	if(!(src.key))
-		if(O.can_reenter_corpse)
-			var/response = alert(O,"Do you want to take it over?","This creature has no soul","Yes","No")
-			if(response == "Yes")
-				if(!(src.key))
-					src.transfer_personality(O.client)
-				else if(src.key)
-					to_chat(src, span_notice("Somebody is already controlling this creature."))
-		else if(!(O.can_reenter_corpse))
-			to_chat(O,span_notice("You cannot control this creature."))
-
-/mob/living/carbon/human/species/shrimp/proc/transfer_personality(client/candidate)
-	if(!candidate)
+/mob/living/carbon/human/species/shrimp/attack_ghost(mob/dead/observer/ghost)
+	if(key)
+		to_chat(src, span_notice("Somebody is already controlling this crustacean."))
 		return
-	src.ckey = candidate.ckey
-	if(src.mind)
-		src.mind.assigned_role = "Clerk"
-		to_chat(src, span_info("You are a Clerk. You're the jack of all trades in LCorp. You are to assist with cleanup, cooking, medical and other miscellaneous tasks. You are fragile, but important."))
+
+	var/response = alert(ghost, "Do you want to take it over?", "Soul transfer", "Yes", "No")
+	if(response == "No")
+		return
+
+	if(key)
+		to_chat(src, span_notice("Somebody has taken this crustacean whilst you were busy selecting!"))
+		return
+
+	ckey = ghost.client.ckey
+	mind?.assigned_role = "Clerk"
+	to_chat(src, span_info("You are a shrimp, your possibilities are endless. You can both choose a path of an agent or a path of a clerk. All gates are open to you."))
+
+/obj/item/organ/tongue/shrimp
+	name = "shrimp tongue"
+	desc = "A fleshy muscle mostly used for making shrimp puns."
+	say_mod = "hisses"
+	taste_sensitivity = 5 // The most sensitive tongue that exists, the shrimp has fried rice so many times it can tell anything apart
+	modifies_speech = TRUE
+
+/obj/item/organ/tongue/shrimp/handle_speech(datum/source, list/speech_args)
+	var/message = speech_args[SPEECH_MESSAGE]
+	if(message[1] == "*") // They are emoting, no point in looking
+		return
+
+	message = replacetext(message, "simp", "shrimp") // We are not simps
+	message = replacetext(message, "confusing", "conchfusing")
+	message = replacetext(message, "complicated", "clampified")
+	message = replacetext(message, "self", "shellf")
+	message = replacetext(message, "kill", "krill") // Krill yourshellf... or skrill issue
+	speech_args[SPEECH_MESSAGE] = message
