@@ -95,32 +95,47 @@
 	desc = "Sing a song of six pense, a pocket full of dosh."
 	special = "This armor grows stronger depending on how filthy rich you are."
 	icon_state = "pocket_dosh"
-	worn_icon - "code/modules/mob/living/simple_animal/abnormality/_auxiliary_modes/joke/!icons/ego_worn.dmi"
-	icon = "code/modules/mob/living/simple_animal/abnormality/_auxiliary_modes/joke/!icons/ego_armor.dmi"
+	worn_icon = 'code/modules/mob/living/simple_animal/abnormality/_auxiliary_modes/joke/!icons/ego_worn.dmi'
+	icon = 'code/modules/mob/living/simple_animal/abnormality/_auxiliary_modes/joke/!icons/ego_armor.dmi'
+	var/datum/bank_account
 	armor = list(RED_DAMAGE = 0, WHITE_DAMAGE = 10, BLACK_DAMAGE = 10, PALE_DAMAGE = 0)
 	attribute_requirements = list(
-		FORTITUDE_ATTRIBUTE = 40
-		PRUDENCE_ATTRIBUTE = 60
-		TEMPERANCE_ATTRIBUTE = 80
+		FORTITUDE_ATTRIBUTE = 40,
+		PRUDENCE_ATTRIBUTE = 60,
+		TEMPERANCE_ATTRIBUTE = 80,
 		JUSTICE_ATTRIBUTE = 60
 		)
 
-	if (account.has_money >= 100 && < 500)
-	{
-		armor = list(RED_DAMAGE = 20, WHITE_DAMAGE = 30, BLACK_DAMAGE = 30, PALE_DAMAGE = 20)
-	}
+/obj/item/clothing/suit/armor/ego_gear/zayin/pocketdosh/Initialize()
+	INVOKE_ASYNC(src, PROC_REF(update_armor))
+	return ..()
 
-	if else (account.has_money >= 500 && < 1000)
-	{
-		armor = list(RED_DAMAGE = 40, WHITE_DAMAGE = 50, BLACK_DAMAGE = 50, PALE_DAMAGE = 40)
-	}
+/obj/item/clothing/suit/armor/ego_gear/zayin/pocketdosh/equipped(mob/user, slot)
+	. = ..()
+	if(slot == ITEM_SLOT_CLOTHING && isliving(user))
+		var/mob/living/living_user = user
+		account = living_user.get_bank_account()
 
-	if else (account.has_money >= 1000 && < 1000000)
-	{
-		armor = list(RED_DAMAGE = 60, WHITE_DAMAGE = 90, BLACK_DAMAGE = 90, PALE _DAMAGE = 60)
-	}
+/obj/item/clothing/suit/armor/ego_gear/zayin/pocketdosh/proc/update_armor()
+	sleep(5 MINUTES)
 
-	if else (account.has_money >= 1000000) //if someone spends the time to become a millionaire I say they deserve it
-	{
-		armor = list(RED_DAMAGE = 100, WHITE_DAMAGE = 100, BLACK_DAMAGE = 100, PALE_DAMAGE = 100)
-	}
+	if(!linked_account)
+		update_armor()
+		return
+
+	if(account_balance >= 1000000) //if someone spends the time to become a millionaire I say they deserve it
+		src.armor = new(RED_DAMAGE = 100, WHITE_DAMAGE = 100, BLACK_DAMAGE = 100, PALE_DAMAGE = 100)
+
+	else if(account_balance >= 1000)
+		src.armor = new(RED_DAMAGE = 60, WHITE_DAMAGE = 90, BLACK_DAMAGE = 90, PALE_DAMAGE = 60)
+
+	else if(account_balance >= 500)
+		src.armor = new(RED_DAMAGE = 40, WHITE_DAMAGE = 50, BLACK_DAMAGE = 50, PALE_DAMAGE = 40)
+
+	else if(account_balance >= 100)
+		src.armor = new(RED_DAMAGE = 20, WHITE_DAMAGE = 30, BLACK_DAMAGE = 30, PALE_DAMAGE = 20)
+
+	else
+		armor = initial(armor)
+
+	update_armor()

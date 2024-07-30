@@ -353,62 +353,57 @@
 
 //Lods of Emone (Netz)
 
-//////////////////////////////////////////////////////
-////POSSIBLE ERRORS HERE - PLEASE CHECK AND NOTIFY////
-//////////////////////////////////////////////////////
+/////////////////////////////////
+////FIXED BY KIRIE, THANK YOU////
+/////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////
+////14 TOTAL ERRORS, I DON'T UNDERSTAND WHERE THEY ARE OR HOW TO FIX THEM////
+/////////////////////////////////////////////////////////////////////////////
 
 /obj/item/ego_weapon/dosh
 	name = "Dosh"
 	desc = "Oi you! Shut your mouth and look at my wad!"
 	special = "Use this weapon in your hand with the corresponding armor for various effects depending on how filthy rich you are."
 	icon_state = "dosh_weapon"
-	worn_icon - "code/modules/mob/living/simple_animal/abnormality/_auxiliary_modes/joke/!icons/ego_worn.dmi"
+	worn_icon = "code/modules/mob/living/simple_animal/abnormality/_auxiliary_modes/joke/!icons/ego_worn.dmi"
 	icon = "code/modules/mob/living/simple_animal/abnormality/_auxiliary_modes/joke/!icons/ego_weapons.dmi"
 	force = 10
 	damtype = BLACK_DAMAGE
 	attack_verb_continuous = list("throws", "showers", "bribes")
 	attack_verb_simple = list("throw", "shower", "bribe") //these suck lmao
-	matching_armor = /obj/item/clothing/suit/armor/ego_gear/zayin/penitence //CHANGE TO DOSH ARMOR
-	pulse_enable_toggle = TRUE
-	use_message = "Money makes the world go round!"
-	use_sound = "\code\modules\mob\living\simple_animal\abnormality\_auxiliary_modes\joke\!soundeffects\dosh_sfx.ogg" //gotta make the sound effect - has a planned sound effect
-	//sfx should work hopefully
 	attribute_requirements = list(
-		FORTITUDE_ATTRIBUTE = 40
-		PRUDENCE_ATTRIBUTE = 60
-		TEMPERANCE_ATTRIBUTE = 80
-		JUSTICE_ATTRIBUTE = 60
+		FORTITUDE_ATTRIBUTE = 40,
+		PRUDENCE_ATTRIBUTE = 60,
+		TEMPERANCE_ATTRIBUTE = 80,
+		JUSTICE_ATTRIBUTE = 60,
 		)
-	var/pulse_slow = -0.5 //dunno if this is right, also gotta make sure this is right and isnt speeding abnos up
-	span_notice("Some people will slow down a bit, out of confusion.")
+	var/users_money = 0
 
-	if (account.has_money >= 100)
-	{
-		force = 15
-		var/pulse_stun = 5 //this is in seconds, right?
-		span_notice("Anything will stop to look at your stacks... for a second or two, until they realize its all 1$ bills.")
-	}
+	/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-	if else (account.has_money >= 500)
-	{
-		force = 30
-		var/pulse_burn = 5 //I don't know if a single thing here it right tbh
-		span_warn("The stack is getting red hot, it could burst into flames!")
-	}
+/obj/item/ego_weapon/dosh/attack(mob/living/M, mob/living/user)
+	update_damage()
+	return ..()
 
-	if else (account.has_money >= 1000)
-	{
-		force = 50
-		var/pulse_aoe = 100 //(Guessing this is 100 Black damage) Im just flatout guessing at this point please point it out if im wrong with these
-		span_warning("You hear clicking from the stack of cash, and it feels like it could explode.")
-	}
 
-	if else (account.has_money >= 1000000)
-	{
-		force = 5000000000000 //if someone spends the time to become a millionaire I say they deserve it
+/obj/item/ego_weapon/dosh/equipped(mob/living/user, slot)
+	. = ..()
+	if(isliving(user)) ///////////////////////////////////////
+		var/datum/bank_account/account = user.get_bank_account()
+		users_money = account.account_balance
+
+/obj/item/ego_weapon/dosh/proc/update_damage()
+	if(users_money >= 1000000) //if someone spends the time to become a millionaire I say they deserve it
+		force = 5000000000000
 		damtype = PALE_DAMAGE
-		var/godmode = 10 //should acitavte godmode for 10 seconds
-		var/nuke //should nuke the station
-		span_userdanger("You hear a Geiger counter's clicks from the bills, that can't be good.")
-	}
 
+	else if(users_money >= 1000)
+		force = 50
+
+	else if(users_money >= 500)
+		force = 30
+
+	else if(users_money >= 100)
+		force = 15
+	else
+		force = initial(force)
