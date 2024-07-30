@@ -45,7 +45,7 @@
 	error_message = "You aren't an agent."
 	success_message = "You feel enlightened and wiser."
 
-/obj/item/trait_injector/attack_self(mob/living/carbon/human/user)
+/obj/item/trait_injector/agent_workchance_trait_injector/attack_self(mob/living/carbon/human/user)
 	if(!istype(user) || HAS_TRAIT(user, TRAIT_WORK_FORBIDDEN))
 		to_chat(user, span_notice("The injector light flashes red. [error_message] Check the label before use."))
 		return
