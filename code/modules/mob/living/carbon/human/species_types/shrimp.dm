@@ -64,4 +64,6 @@
 	message = replacetext(message, "calamity", "clamity")
 	message = replacetext(message, "help", "kelp")
 	message = replacetext(message, "not", "naught")
+	message = replacetext(message, "ill", "eel")
+	message = replacetext(message, "sophisticated", "sofishticated")
 	speech_args[SPEECH_MESSAGE] = message
