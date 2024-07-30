@@ -80,7 +80,7 @@
 		return ..()
 	to_chat(user, span_userdanger("The injector burns red before switching to green and dissapearing. You feel uneasy."))
 	qdel(src)
-	sleep(rand(2 SECONDS, 5 SECONDS)) // 2 to 5 seconds
+	sleep(rand(2 SECONDS, 5 SECONDS))
 	if(prob(30) || is_species(user, /datum/species/shrimp))
 		new /mob/living/simple_animal/hostile/shrimp_soldier(get_turf(user))
 	else
