@@ -76,13 +76,13 @@
 //Gear Shift - Most mechanics are determined by round time
 /mob/living/simple_animal/hostile/abnormality/steam/proc/GearUpdate()
 	var/new_gear = gear
-	if(world.time >= 75 MINUTES) // Full facility expected
+	if(world.time >= 105 MINUTES) // Full facility expected
 		new_gear = 4
-	else if(world.time >= 60 MINUTES) // More than one ALEPH
+	else if(world.time >= 90 MINUTES) // More than one ALEPH
 		new_gear = 3
-	else if(world.time >= 45 MINUTES) // Wowzer, an ALEPH?
+	else if(world.time >= 75 MINUTES) // Wowzer, an ALEPH?
 		new_gear = 2
-	else if(world.time >= 30 MINUTES) // Expecting WAW
+	else if(world.time >= 45 MINUTES) // Expecting WAW
 		new_gear = 1
 	else
 		new_gear = 0
