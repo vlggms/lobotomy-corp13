@@ -20,9 +20,8 @@
 		if(HAS_TRAIT(user, trait)) // we need to check for if there is a trait in the first place
 			to_chat(user, span_notice("You wouldn't double-dip, would you?"))
 			return
-	to_chat(user, span_nicegreen("The injector blinks green before it disintegrates. [success_message]"))
-	if(trait)
 		ADD_TRAIT(user, trait, JOB_TRAIT)
+	to_chat(user, span_nicegreen("The injector blinks green before it disintegrates. [success_message]"))
 	qdel(src)
 	return
 
