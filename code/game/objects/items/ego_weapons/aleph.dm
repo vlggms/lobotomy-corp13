@@ -155,7 +155,7 @@
 /obj/item/ego_weapon/da_capo/get_clamped_volume()
 	return 40
 
-/obj/item/ego_weapon/wield/mimicry
+/obj/item/ego_weapon/mimicry
 	name = "mimicry"
 	desc = "The yearning to imitate the human form is sloppily reflected on the E.G.O, \
 	as if it were a reminder that it should remain a mere desire."
@@ -165,7 +165,7 @@
 	righthand_file = 'icons/mob/inhands/64x64_righthand.dmi'
 	inhand_x_dimension = 64
 	inhand_y_dimension = 64
-	force = 55
+	force = 65
 	damtype = RED_DAMAGE
 	swingstyle = WEAPONSWING_LARGESWEEP
 	attack_verb_continuous = list("slashes", "slices", "rips", "cuts")
@@ -178,9 +178,6 @@
 							JUSTICE_ATTRIBUTE = 80
 							)
 
-	wielded_force = 80
-	should_slow = TRUE
-	wielded_slow_down = 1.5
 
 /obj/item/ego_weapon/mimicry/attack(mob/living/target, mob/living/carbon/human/user)
 	if(!CanUseEgo(user))
