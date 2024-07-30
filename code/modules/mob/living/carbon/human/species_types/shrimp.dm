@@ -57,4 +57,9 @@
 	message = replacetext(message, "complicated", "clampified")
 	message = replacetext(message, "self", "shellf")
 	message = replacetext(message, "kill", "krill") // Krill yourshellf... or skrill issue
+	message = replacetext(message, "about", "a-boat")
+	message = replacetext(message, "real", "reel")
+	message = replacetext(message, "cap", "carp")
+	message = replacetext(message, "god", "cod")
+	message = replacetext(message, "calamity", "clamity")
 	speech_args[SPEECH_MESSAGE] = message
