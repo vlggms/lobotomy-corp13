@@ -257,10 +257,11 @@
 	)
 	loot_level2 = list(
 		/obj/item/food/fish/fresh_water/catfish = 50,
-		/obj/item/food/fish/fresh_water/bass = 15,
+		/obj/item/food/fish/fresh_water/bass = 10,
+		/obj/item/food/fish/fresh_water/eel = 10,
 		/obj/item/stack/sheet/sinew/wolf = 10,
 		/obj/item/stack/sheet/leather = 10,
-		/obj/item/reagent_containers/food/drinks/bottle/wine/unlabeled = 10,
+		/obj/item/reagent_containers/food/drinks/bottle/wine/unlabeled = 5,
 		/obj/item/clothing/head/beret/fishing_hat = 5,
 	)
 	loot_level3 = list(
@@ -285,15 +286,20 @@
 	)
 	loot_level2 = list(
 		/obj/item/food/fish/trout = 35,
-		/obj/item/food/fish/salt_water/cardinal = 30,
-		/obj/item/food/fish/salt_water/sheephead = 20,
+		/obj/item/food/fish/salt_water/cardinal = 25,
+		/obj/item/food/fish/salt_water/sheephead = 10,
+		/obj/item/food/fish/salt_water/blue_tang = 10,
 		/obj/item/reagent_containers/food/drinks/bottle/wine/unlabeled = 10,
+		/obj/item/food/fish/salt_water/squid = 5,
 		/obj/item/clothing/head/beret/fishing_hat = 5,
 	)
 	loot_level3 = list(
-		/obj/item/food/fish/salt_water/lanternfish = 75,
+		/obj/item/food/fish/salt_water/lanternfish = 60,
+		/obj/item/food/fish/salt_water/smolshark = 10,
 		/obj/item/food/fish/salt_water/tuna_pallid = 10,
 		/mob/living/simple_animal/crab = 10,
+		/obj/item/food/fish/salt_water/deep_fry = 5,
+		/obj/item/food/fish/salt_water/pigfish = 5,
 		/obj/item/food/fish/emulsijack = 5,
 	)
 
