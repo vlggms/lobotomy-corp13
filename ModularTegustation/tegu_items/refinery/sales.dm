@@ -211,3 +211,4 @@
 	crate = /obj/structure/lootcrate/jcorp
 	power_timer = 180 	//Takes a bit
 	crate_timer = 180	//And it's super cheap
+	our_corporation = "J corp"
