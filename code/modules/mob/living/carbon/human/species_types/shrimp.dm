@@ -62,4 +62,5 @@
 	message = replacetext(message, "cap", "carp")
 	message = replacetext(message, "god", "cod")
 	message = replacetext(message, "calamity", "clamity")
+	message = replacetext(message, "help", "kelp")
 	speech_args[SPEECH_MESSAGE] = message
