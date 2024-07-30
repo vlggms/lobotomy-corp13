@@ -657,6 +657,8 @@
 /mob/living/simple_animal/hostile/abnormality/nobody_is/proc/disguise_as(mob/living/carbon/human/M)
 	if(!istype(M))
 		return
+	if(!M || QDELETED(M))
+		return //We screwed up or the player successfully committed self-delete. Try again next time!
 	SetOccupiedTiles()
 	offsets_pixel_x = list("south" = 0, "north" = 0, "west" = 0, "east" = 0)
 	//UnregisterSignal(src, COMSIG_ATOM_DIR_CHANGE)
@@ -691,7 +693,7 @@
 /mob/living/simple_animal/hostile/abnormality/nobody_is/proc/Transform(mob/living/carbon/human/M)
 	set waitfor = FALSE
 	SLEEP_CHECK_DEATH(5)
-	if(!M)
+	if(!M || QDELETED(M))
 		return //We screwed up or the player successfully committed self-delete. Try again next time!
 	disguise = M
 	shelled = TRUE
@@ -766,7 +768,7 @@
 /mob/living/simple_animal/hostile/abnormality/nobody_is/proc/Transform_No_Kill(mob/living/carbon/human/M)
 	set waitfor = FALSE
 	SLEEP_CHECK_DEATH(5)
-	if(!M)
+	if(!M || QDELETED(M))
 		return //We screwed up or the player successfully committed self-delete. Try again next time!
 	disguise = M
 	shelled = TRUE
