@@ -377,7 +377,7 @@
 		if(living_enemy.status_flags & GODMODE)
 			blackboard[BB_INSANE_CURRENT_ATTACK_TARGET] = null
 			return
-		if(!(living_enemy in livinginrange(10, living_pawn)))
+		if(!(living_enemy in range(10, living_pawn)))
 			blackboard[BB_INSANE_CURRENT_ATTACK_TARGET] = null
 			return
 		if(living_enemy.stat != DEAD)

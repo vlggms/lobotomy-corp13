@@ -747,7 +747,7 @@
 /mob/living/simple_animal/hostile/spicebush_plant/proc/HealPulse()
 	pulse_cooldown = world.time + pulse_cooldown_time
 	//playsound(src, 'sound/abnormalities/rudolta/throw.ogg', 50, FALSE, 4)//TODO: proper SFX goes here
-	for(var/mob/living/carbon/human/L in livinginrange(8, src))//livinginview(8, src))
+	for(var/mob/living/carbon/human/L in range(8, src))//livinginview(8, src))
 		if(L.stat == DEAD || L.is_working)
 			continue
 		L.adjustBruteLoss(-2)

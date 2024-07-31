@@ -182,7 +182,7 @@
 	animate(V, alpha = 0, transform = matrix()*2, time = 10)
 	for(var/turf/open/T in view(2, target))
 		new /obj/effect/temp_visual/small_smoke/halfsecond(T)
-	for(var/mob/living/L in livinginrange(2, target))
+	for(var/mob/living/L in range(2, target))
 		if(L.z != user.z)
 			continue
 		var/userjust = (get_modified_attribute_level(user, JUSTICE_ATTRIBUTE))

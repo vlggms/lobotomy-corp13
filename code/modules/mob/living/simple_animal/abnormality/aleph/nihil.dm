@@ -276,7 +276,7 @@
 			TeleportIn() //Same effect
 		if("DESPAIR")
 			var/list/target_list = list()
-			for(var/mob/living/L in livinginrange(10, src))
+			for(var/mob/living/L in range(10, src))
 				if(L.z != z || (L.status_flags & GODMODE))
 					continue
 				if(faction_check_mob(L, FALSE))
