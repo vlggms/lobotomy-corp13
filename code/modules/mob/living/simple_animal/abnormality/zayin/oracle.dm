@@ -70,6 +70,7 @@
 			return
 		if(!SSlobotomy_corp.next_ordeal)
 			to_chat(user, span_notice("All ordeals.... are completed..."))
+			return
 		to_chat(user, span_notice("[SSlobotomy_corp.next_ordeal.name]"))
 
 

@@ -134,4 +134,5 @@
 	abno_code = "O-06-200"
 	abno_info = list(
 		"After working on O-06-200 with insight work, EMPLOYEE fell asleep.",
-		"While asleep, EMPLOYEE heard many strange things, seeming to divine the future.")
+		"While asleep after Insight work, EMPLOYEE heard many strange things, seeming to divine the future.",
+		"However, O-06-200 had a strong influence on any and all sleeping personnel in the facility. They seemed to get information they would otherwise not get.")
