@@ -300,7 +300,7 @@ GLOBAL_LIST_EMPTY(army)
 		return
 	playsound(get_turf(src), 'sound/abnormalities/armyinblack/black_explosion.ogg', 125, 0, 8)
 	visible_message(span_danger("[src] suddenly explodes!"))
-	for(var/mob/living/simple_animal/hostile/abnormality/P in range(20, src))
+	for(var/mob/living/simple_animal/hostile/abnormality/P in livinginrange(20, src))
 		if(!P.datum_reference)//Prevents a runtime if the abno lacks datums, such as those spawned by contract
 			continue
 		P.datum_reference.qliphoth_change(-1)

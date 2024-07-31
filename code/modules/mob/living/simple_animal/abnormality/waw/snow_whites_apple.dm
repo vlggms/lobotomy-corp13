@@ -152,7 +152,7 @@
 			if(toggleplants)
 				SpreadPlants()
 			oldGrowth()
-	for(var/obj/structure/spreading/apple_vine/W in range(15, get_turf(src)))
+	for(var/obj/structure/spreading/apple_vine/W in urange(15, get_turf(src)))
 		if(W.last_expand <= world.time)
 			W.expand()
 	if(teleport_cooldown <= world.time && !togglemovement && !client && !IsCombatMap())
@@ -239,7 +239,7 @@
 	ranged_cooldown = world.time + ranged_cooldown_time
 
 /mob/living/simple_animal/hostile/abnormality/snow_whites_apple/proc/oldGrowth()
-	for(var/obj/structure/spreading/apple_vine/W in range(15, get_turf(src)))
+	for(var/obj/structure/spreading/apple_vine/W in urange(15, get_turf(src)))
 		if(!W.old_growth)
 			W.OverGrowth()
 
