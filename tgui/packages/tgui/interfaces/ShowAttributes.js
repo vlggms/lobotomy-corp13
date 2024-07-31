@@ -62,7 +62,7 @@ export const ShowAttributes = (props, context) => {
           <Button
             content="View Gifts"
             textAlign="center"
-            width={24}
+            width="100%"
             onClick={() => act('show_gifts')}
             />
         </Box>
