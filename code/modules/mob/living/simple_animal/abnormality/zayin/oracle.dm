@@ -61,7 +61,7 @@
 		user.Sleeping(30 SECONDS) //Sleep with her, so that you can get some information
 		for(var/line in sleeplines)
 			to_chat(user, span_notice(line))
-			SLEEP_CHECK_DEATH(50)
+			SLEEP_CHECK_DEATH(40)
 			if(!user.IsSleeping())
 				return
 		if(prob(50))
