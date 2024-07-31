@@ -108,6 +108,18 @@
 		ui = new(user, src, "ShowAttributes")
 		ui.open()
 
+/mob/living/carbon/human/ui_act(action, list/params)
+	. = ..()
+	if(.)
+		return
+
+	switch(action)
+		if("show_gifts")
+			ShowGifts()
+			return TRUE
+
+	return FALSE
+
 /mob/living/carbon/human/verb/show_gifts_self()
 	set category = "IC"
 	set name = "View Gifts"

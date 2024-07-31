@@ -1,9 +1,9 @@
 import { useBackend } from '../backend';
-import { Box, AnimatedNumber } from '../components';
+import { Box, AnimatedNumber, Button } from '../components';
 import { Window } from '../layouts';
 
 export const ShowAttributes = (props, context) => {
-  const { data } = useBackend(context);
+  const { act, data } = useBackend(context);
   const {
     name,
     level,
@@ -16,7 +16,7 @@ export const ShowAttributes = (props, context) => {
     <Window
       title="Attributes"
       width={300}
-      height={350}>
+      height={375}>
       <Window.Content>
         <Box lineHeight={1.75}>
           <b>{name}</b>
@@ -58,6 +58,13 @@ export const ShowAttributes = (props, context) => {
               <br />
             </span>)
           )}
+          <br />
+          <Button
+            content="View Gifts"
+            textAlign="center"
+            width="100%"
+            onClick={() => act('show_gifts')}
+          />
         </Box>
       </Window.Content>
     </Window>
