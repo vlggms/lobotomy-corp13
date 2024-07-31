@@ -64,7 +64,7 @@ export const ShowAttributes = (props, context) => {
             textAlign="center"
             width="100%"
             onClick={() => act('show_gifts')}
-            />
+          />
         </Box>
       </Window.Content>
     </Window>
