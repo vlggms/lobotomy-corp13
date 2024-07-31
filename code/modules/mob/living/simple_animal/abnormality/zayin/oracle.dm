@@ -72,6 +72,7 @@
 			to_chat(user, span_notice("All ordeals.... are completed..."))
 			return
 		to_chat(user, span_notice("[SSlobotomy_corp.next_ordeal.name]"))
+	..()
 
 
 /mob/living/simple_animal/hostile/abnormality/oracle/Initialize(mob/living/carbon/human/user)
@@ -80,15 +81,15 @@
 
 /mob/living/simple_animal/hostile/abnormality/oracle/Destroy()
 	UnregisterSignal(SSdcs, COMSIG_GLOB_ABNORMALITY_BREACH)
-	..()
+	return ..()
+
 
 /mob/living/simple_animal/hostile/abnormality/oracle/AttemptWork(mob/living/carbon/human/user, work_type)
-	
 	if(work_type == "Fall Asleep")
 		user.drowsyness += 30
 		user.Sleeping(30 SECONDS) // Won't get any info, but you can listen for any breaches for 30 seconds
-		return
-	..()
+		return FALSE
+	return TRUE
 
 /mob/living/simple_animal/hostile/abnormality/oracle/proc/OnAbnoBreach(datum/source, mob/living/simple_animal/hostile/abnormality/abno)
 	SIGNAL_HANDLER
