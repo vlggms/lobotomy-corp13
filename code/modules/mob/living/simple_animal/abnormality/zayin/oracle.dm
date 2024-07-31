@@ -16,6 +16,7 @@
 		ABNORMALITY_WORK_INSIGHT = 70,
 		ABNORMALITY_WORK_ATTACHMENT = 40,
 		ABNORMALITY_WORK_REPRESSION = 80,
+		"Fall Asleep" = 100,
 	)
 	work_damage_amount = 5
 	work_damage_type = WHITE_DAMAGE
@@ -61,7 +62,7 @@
 		for(var/line in sleeplines)
 			to_chat(user, span_notice(line))
 			SLEEP_CHECK_DEATH(50)
-			if(!PlayerAsleep(user))
+			if(!user.IsSleeping())
 				return
 		if(prob(50))
 			var/chosenfake = pick(fakeordeals)
@@ -69,11 +70,32 @@
 			return
 		if(!SSlobotomy_corp.next_ordeal)
 			to_chat(user, span_notice("All ordeals.... are completed..."))
-
 		to_chat(user, span_notice("[SSlobotomy_corp.next_ordeal.name]"))
 
 
-/mob/living/simple_animal/hostile/abnormality/oracle/proc/PlayerAsleep(mob/living/carbon/human/user)
-	if(user.IsSleeping())
-		return TRUE
-	return FALSE
+/mob/living/simple_animal/hostile/abnormality/oracle/Initialize(mob/living/carbon/human/user)
+	. = ..()
+	RegisterSignal(SSdcs, COMSIG_GLOB_ABNORMALITY_BREACH, PROC_REF(OnAbnoBreach))
+
+/mob/living/simple_animal/hostile/abnormality/oracle/Destroy()
+	UnregisterSignal(SSdcs, COMSIG_GLOB_ABNORMALITY_BREACH)
+	..()
+
+/mob/living/simple_animal/hostile/abnormality/oracle/AttemptWork(mob/living/carbon/human/user, work_type)
+	if(work_type == "Fall Asleep")
+		user.drowsyness += 30
+		user.Sleeping(30 SECONDS) // Won't get any info, but you can listen for any breaches for 30 seconds
+
+/mob/living/simple_animal/hostile/abnormality/oracle/proc/OnAbnoBreach(datum/source, mob/living/simple_animal/hostile/abnormality/abno)
+	SIGNAL_HANDLER
+	if(z != abno.z)
+		return
+	addtimer(CALLBACK(src, PROC_REF(NotifyEscape), loc, abno), rand(1 SECONDS, 3 SECONDS))
+
+/mob/living/simple_animal/hostile/abnormality/oracle/proc/NotifyEscape(mob/living/carbon/human/user, mob/living/simple_animal/hostile/abnormality/abno)
+	if(QDELETED(abno) || abno.stat == DEAD)
+		return
+	for(var/mob/living/carbon/human/H in GLOB.clients)
+		if(H.IsSleeping())
+			continue //You need to be sleeping to get notified
+		to_chat(H, "<span class='notice'>Oh.... [abno]... It has breached containment...</span>")
