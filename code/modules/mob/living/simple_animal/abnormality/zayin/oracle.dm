@@ -88,7 +88,7 @@
 		user.drowsyness += 30
 		user.Sleeping(30 SECONDS) // Won't get any info, but you can listen for any breaches for 30 seconds
 		return
-	..()
+	return ..()
 
 /mob/living/simple_animal/hostile/abnormality/oracle/proc/OnAbnoBreach(datum/source, mob/living/simple_animal/hostile/abnormality/abno)
 	SIGNAL_HANDLER
