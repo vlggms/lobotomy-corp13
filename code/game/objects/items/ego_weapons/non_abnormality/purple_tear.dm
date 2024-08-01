@@ -407,7 +407,7 @@
 	if(active || !CanUseEgo(user))
 		return FALSE
 	active = TRUE
-	for(var/mob/living/L in livinginrange(8, user))
+	for(var/mob/living/L in range(8, user))
 		if(L == src)
 			continue
 		if(faction_check(user.faction, L.faction))

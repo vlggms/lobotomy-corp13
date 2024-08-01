@@ -86,7 +86,7 @@
 	for(var/turf/open/T in turf_list)
 		if(prob(25))
 			new /obj/effect/temp_visual/revenant(T)
-	for(var/mob/living/L in livinginrange(15, target_c))
+	for(var/mob/living/L in range(15, target_c))
 		if(faction_check_mob(L))
 			continue
 		L.apply_damage(33, WHITE_DAMAGE, null, L.run_armor_check(null, WHITE_DAMAGE))

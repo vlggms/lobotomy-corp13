@@ -97,7 +97,7 @@
 	playsound(get_turf(src), 'sound/abnormalities/judgementbird/pre_ability.ogg', 50, 0, 2)
 	SLEEP_CHECK_DEATH(2 SECONDS)
 	playsound(get_turf(src), 'sound/abnormalities/judgementbird/ability.ogg', 75, 0, 7)
-	for(var/mob/living/L in livinginrange(judgement_range, src))
+	for(var/mob/living/L in urange(judgement_range, src))
 		if(faction_check_mob(L, FALSE))
 			continue
 		if(L.stat == DEAD)

@@ -636,7 +636,7 @@ It has now been over four months. Now we get her for real. -Coxswain
 		say("Work's done. Time to go home.")
 	else
 		say("Finally, the nightmare is over...")
-		for(var/mob/living/carbon/human/survivor in range(10, src))
+		for(var/mob/living/carbon/human/survivor in urange(10, src))
 			if(survivor.stat == DEAD || !survivor.ckey)
 				continue
 			survivor.Apply_Gift(new /datum/ego_gifts/sheep)

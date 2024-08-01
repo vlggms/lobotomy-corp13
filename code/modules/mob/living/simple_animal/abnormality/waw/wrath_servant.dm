@@ -161,7 +161,7 @@
 	if(IsContained() || !can_act)
 		return
 	if(stunned && COOLDOWN_FINISHED(src, stun))
-		for(var/mob/living/L in range(10, src))
+		for(var/mob/living/L in urange(10, src))
 			if(L.z != z)
 				continue
 			if(istype(L, /mob/living/simple_animal/hostile/azure_hermit) || istype(L, /mob/living/simple_animal/hostile/azure_stave))

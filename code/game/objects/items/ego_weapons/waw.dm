@@ -1433,7 +1433,7 @@
 	force = initial(force)
 	can_attack = FALSE
 	addtimer(CALLBACK(src, PROC_REF(JumpReset)), 20)
-	for(var/mob/living/L in livinginrange(2, A))
+	for(var/mob/living/L in range(2, A))
 		if(L.z != user.z) // Not on our level
 			continue
 		var/aoe = 25
@@ -2086,7 +2086,7 @@
 	for(var/turf/open/T in range(1, user))
 		var/obj/effect/temp_visual/small_smoke/halfsecond/smonk = new(T)
 		smonk.color = COLOR_TEAL
-	for(var/mob/living/L in livinginrange(1, user))
+	for(var/mob/living/L in range(1, user))
 		if(L.z != user.z) // Not on our level
 			continue
 		var/aoe = 40

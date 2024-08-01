@@ -115,7 +115,7 @@
 	var/mob/living/selected_enemy = blackboard[BB_INSANE_CURRENT_ATTACK_TARGET]
 
 	if(selected_enemy)
-		if(!(selected_enemy in livinginrange(10, living_pawn)))
+		if(!(selected_enemy in urange(10, living_pawn)))
 			blackboard[BB_INSANE_CURRENT_ATTACK_TARGET] = null
 			return
 		if(selected_enemy.status_flags & GODMODE)

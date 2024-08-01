@@ -828,7 +828,7 @@
 			to_chat(user, span_userdanger("Impending Day extends outward!"))
 			playsound('sound/abnormalities/doomsdaycalendar/Doomsday_Attack.ogg', 3, TRUE)
 			sacrifice = FALSE
-		for(var/mob/living/L in livinginrange(1, target))
+		for(var/mob/living/L in range(1, target))
 			var/aoe = 50
 			var/userjust = (get_modified_attribute_level(user, JUSTICE_ATTRIBUTE))
 			var/justicemod = 1 + userjust/100
@@ -912,7 +912,7 @@
 	force = initial(force)
 	can_attack = FALSE
 	addtimer(CALLBACK(src, PROC_REF(JumpReset)), 20)
-	for(var/mob/living/L in livinginrange(1, A))
+	for(var/mob/living/L in range(1, A))
 		if(L.z != user.z) // Not on our level
 			continue
 		var/aoe = 25

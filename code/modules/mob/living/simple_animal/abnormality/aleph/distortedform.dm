@@ -390,7 +390,7 @@
 		return
 	var/punishment = TRUE
 	var/transform_target
-	for(var/mob/living/L in livinginrange(15, src))
+	for(var/mob/living/L in urange(15, src))
 		if(L.z != z)
 			continue
 		if(faction_check_mob(L))
@@ -548,7 +548,7 @@
 	if(!can_act)
 		return
 	var/list/target_list = list()
-	for(var/mob/living/L in livinginrange(10, src))
+	for(var/mob/living/L in urange(10, src))
 		if(L.z != z || (L.status_flags & GODMODE))
 			continue
 		if(faction_check_mob(L, FALSE))
@@ -682,7 +682,7 @@
 	for(var/turf/T in range(1, target))
 		new /obj/effect/temp_visual/mustardgas(T)
 	var/list/target_list = list()
-	for(var/mob/living/L in livinginrange(1, target))
+	for(var/mob/living/L in range(1, target))
 		if(L.z != z || (L.status_flags & GODMODE))
 			continue
 		if(faction_check_mob(L, FALSE))
@@ -737,7 +737,7 @@
 	playsound(target, 'sound/abnormalities/crying_children/sorrow_shot.ogg', 50, FALSE)
 	new /obj/effect/temp_visual/beam_in_giant(get_turf(target))
 	var/list/target_list = list()
-	for(var/mob/living/L in livinginrange(2, target))
+	for(var/mob/living/L in range(2, target))
 		if(L.z != z || (L.status_flags & GODMODE))
 			continue
 		if(faction_check_mob(L, FALSE))
@@ -948,7 +948,7 @@
 	addtimer(CALLBACK(src, PROC_REF(CrumblingArmorAttack)), 20)
 
 /mob/living/simple_animal/hostile/abnormality/distortedform/proc/CrumblingArmorAttack()
-	for(var/mob/living/L in livinginrange(10, src))
+	for(var/mob/living/L in urange(10, src))
 		if(L.z != z || (L.status_flags & GODMODE))
 			continue
 		if(faction_check_mob(L, FALSE))
@@ -985,7 +985,7 @@
 /mob/living/simple_animal/hostile/abnormality/distortedform/proc/HammerOfLightAttack()
 	playsound(src, 'sound/abnormalities/crying_children/sorrow_shot.ogg', 50, FALSE, 7)
 	var/targetAmount = 0
-	for(var/mob/living/L in livinginrange(10, src))
+	for(var/mob/living/L in urange(10, src))
 		if(L.z != z || (L.status_flags & GODMODE))
 			continue
 		if(faction_check_mob(L, FALSE))
@@ -1638,7 +1638,7 @@
 	can_move = FALSE
 	can_attack = FALSE
 	var/LongRange = TRUE //Check if there's anyone within 15 tiles when we transformed
-	for(var/mob/living/L in livinginrange(15, src))
+	for(var/mob/living/L in urange(15, src))
 		if(L.z != z)
 			continue
 		if(faction_check_mob(L))
