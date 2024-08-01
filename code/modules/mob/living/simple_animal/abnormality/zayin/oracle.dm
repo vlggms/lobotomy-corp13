@@ -28,6 +28,20 @@
 //	gift_type =  /datum/ego_gifts/oracle
 	abnormality_origin = ABNORMALITY_ORIGIN_ORIGINAL
 
+	observation_prompt = "In a vivid dream you see her, as she was. \
+		<br>She was told that it would feel like no time at all. \
+		<br>Silently sleeping she dreams of the future, a future she was promised. \
+		<br>Before your eyes untold time passes until one day."
+	observation_choices = list("She woke up.", "The pod broke.")
+	correct_choices = list("The pod broke.")
+	observation_success_message = "You look into the window as you see her stir in her slumber before falling still. \
+		<br>Holding your breath in silence, \
+		<br>You remember Maria, \
+		<br>Forever dreaming of a future she will never see."
+	observation_fail_message = "The pod opens with a hiss as you watch her step out. \
+		<br>The joy on her face is immesurable, for she left behind so much to be here. \
+		<br>Then she melts away, for this was your dream."
+
 	var/list/sleeplines = list(
 		"Hello...",
 		"I am reaching you from beyond the veil...",
