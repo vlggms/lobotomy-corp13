@@ -4,7 +4,7 @@
 	flavor_name = "The Perfect Meal"
 	announce_text = "A perfect meal, an excellent substitute."
 	end_announce_text = "We ate incessantly to live. The inevitable diminution, the waste..."
-	level = 1
+	level = 0
 	reward_percent = 0.1
 	announce_sound = 'sound/effects/ordeals/amber_start.ogg'
 	end_sound = 'sound/effects/ordeals/amber_end.ogg'

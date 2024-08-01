@@ -1,13 +1,13 @@
 // A testing
-/mob/living/simple_animal/hostile/ordeal/hept
+/mob/living/simple_animal/hostile/ordeal/ipar
 	name = "envy peccetulum"
 	icon = 'ModularTegustation/Teguicons/envy_peccetulum.dmi'
 
-/mob/living/simple_animal/hostile/ordeal/hept/beak
+/mob/living/simple_animal/hostile/ordeal/ipar/beak
 	desc = "An envy peccetulum, wearing beak EGO."
 	icon_state = "beak_envy"
 	icon_living = "beak_envy"
-	faction = list("hept_ordeal")
+	faction = list("ipar_ordeal")
 	health = 140	//Same HP as you
 	maxHealth = 140
 	melee_damage_type = RED_DAMAGE
@@ -24,21 +24,21 @@
 	ranged = 1
 	retreat_distance = 2
 	minimum_distance = 3
-	casingtype = /obj/item/ammo_casing/caseless/ego_beak
+	casingtype = 'sound/weapons/gun/revolver/shot_alt.ogg'
 	ranged_cooldown_time = 10
 	projectilesound = 'sound/weapons/gun/smg/mp7.ogg'
 
-/mob/living/simple_animal/hostile/ordeal/hept/beak/attacked_by(obj/item/I, mob/living/user)
+/mob/living/simple_animal/hostile/ordeal/ipar/beak/attacked_by(obj/item/I, mob/living/user)
 	if(CanAttack(user)) // Retailate when attacked
 		user.attack_animal(src)
 	return ..()
 
 
-/mob/living/simple_animal/hostile/ordeal/hept/daredevil
+/mob/living/simple_animal/hostile/ordeal/ipar/daredevil
 	desc = "An envy peccetulum, wearing daredevil EGO."
 	icon_state = "daredevil_envy"
 	icon_living = "daredevil_envy"
-	faction = list("hept_ordeal")
+	faction = list("ipar_ordeal")
 	health = 140
 	maxHealth = 140
 	melee_damage_type = PALE_DAMAGE
@@ -54,15 +54,15 @@
 	attack_sound = 'sound/weapons/bladeslice.ogg'
 	speak_emote = list("says")
 
-/mob/living/simple_animal/hostile/ordeal/hept/daredevil/bullet_act(obj/projectile/P)
+/mob/living/simple_animal/hostile/ordeal/ipar/daredevil/bullet_act(obj/projectile/P)
 	visible_message(span_userdanger("[src] deflects \the [P]!"))
 	P.Destroy()
 
-/mob/living/simple_animal/hostile/ordeal/hept/fragment
+/mob/living/simple_animal/hostile/ordeal/ipar/fragment
 	desc = "An envy peccetulum, wearing fragment EGO."
 	icon_state = "fragment_envy"
 	icon_living = "fragment_envy"
-	faction = list("hept_ordeal")
+	faction = list("ipar_ordeal")
 	health = 140
 	maxHealth = 140
 	melee_damage_type = BLACK_DAMAGE
@@ -79,7 +79,7 @@
 	attack_sound = 'sound/weapons/ego/spear1.ogg'
 	speak_emote = list("says")
 
-/mob/living/simple_animal/hostile/ordeal/hept/fragment/AttackingTarget()
+/mob/living/simple_animal/hostile/ordeal/ipar/fragment/AttackingTarget()
 	..()
-	SLEEP_CHECK_DEATH(10)
+	Immobilize(10)
 	new /obj/effect/temp_visual/weapon_stun(get_turf(src))

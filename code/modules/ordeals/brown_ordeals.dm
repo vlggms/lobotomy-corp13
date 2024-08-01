@@ -5,7 +5,7 @@
 	flavor_name = "Peccata Capitalia"
 	announce_text = "Planted within the hearts of all are seeds with ever-present potential to bloom."
 	end_announce_text = "These reflections are merely twisted forms of the soul dreamt by those who are nothing."
-	level = 1
+	level = 0
 	reward_percent = 0.1
 	announce_sound = 'sound/effects/ordeals/brown_start.ogg'
 	end_sound = 'sound/effects/ordeals/brown_end.ogg'

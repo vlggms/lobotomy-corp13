@@ -5,7 +5,7 @@
 	announce_text = "Let us light a flame yet more radiant in our lives; for life is a candlelight, \
 	destined to snuff out one day."
 	end_announce_text = "To live is to yearn and fight for our desires."
-	level = 1
+	level = 0
 	reward_percent = 0.1
 	announce_sound = 'sound/effects/ordeals/crimson_start.ogg'
 	end_sound = 'sound/effects/ordeals/crimson_end.ogg'

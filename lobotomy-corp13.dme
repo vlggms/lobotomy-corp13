@@ -3232,6 +3232,7 @@
 #include "code\modules\ordeals\amber_ordeals.dm"
 #include "code\modules\ordeals\brown_ordeals.dm"
 #include "code\modules\ordeals\crimson_ordeals.dm"
+#include "code\modules\ordeals\envytesting.dm"
 #include "code\modules\ordeals\event_ordeals.dm"
 #include "code\modules\ordeals\gold_ordeals.dm"
 #include "code\modules\ordeals\green_ordeals.dm"

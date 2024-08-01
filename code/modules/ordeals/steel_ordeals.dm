@@ -5,7 +5,7 @@
 	end_announce_text = "This... This is what a war is. I was wholly unqualified."
 	announce_sound = 'sound/effects/ordeals/steel_start.ogg'
 	end_sound = 'sound/effects/ordeals/steel_end.ogg'
-	level = 1
+	level = 0
 	reward_percent = 0.1
 	spawn_places = 4
 	spawn_amount = 2

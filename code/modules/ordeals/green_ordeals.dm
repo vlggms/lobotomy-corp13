@@ -9,7 +9,7 @@
 	announce_sound = 'sound/effects/ordeals/green_start.ogg'
 	end_sound = 'sound/effects/ordeals/green_end.ogg'
 	spawn_places = 6
-	spawn_amount = 1
+	level = 0
 	spawn_type = list(
 		/mob/living/simple_animal/hostile/ordeal/green_bot,
 		/mob/living/simple_animal/hostile/ordeal/green_bot/syringe,

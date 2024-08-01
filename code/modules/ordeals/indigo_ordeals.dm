@@ -7,7 +7,7 @@
 	announce_sound = 'sound/effects/ordeals/indigo_start.ogg'
 	end_sound = 'sound/effects/ordeals/indigo_end.ogg'
 	reward_percent = 0.1
-	level = 1
+	level = 0
 	spawn_places = 5
 	spawn_amount = 2
 	spawn_type = list(

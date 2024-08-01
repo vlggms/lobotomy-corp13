@@ -6,7 +6,7 @@
 	flavor_name = "The Miracle in District 12"
 	announce_text = "Cute teddy bears, wonderous toy trains! Christmas gifts just for you!"
 	end_announce_text = "Have a merry Christmas and a happy new year!"
-	level = 1
+	level = 0
 	reward_percent = 0.1
 	announce_sound = 'sound/effects/ordeals/holiday/xmas_start.ogg'
 	end_sound = 'sound/effects/ordeals/holiday/xmas_end.ogg'

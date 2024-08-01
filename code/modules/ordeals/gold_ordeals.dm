@@ -4,7 +4,7 @@
 	flavor_name = "Sky, Wind, Star and Poem"
 	announce_text = "Our choice could be hope or despair as the sun comes."
 	end_announce_text = "Only now can you understand the radiance of Dawn."
-	level = 1
+	level = 0
 	reward_percent = 0.1
 	announce_sound = 'sound/effects/ordeals/gold_start.ogg'
 	end_sound = 'sound/effects/ordeals/gold_end.ogg'
