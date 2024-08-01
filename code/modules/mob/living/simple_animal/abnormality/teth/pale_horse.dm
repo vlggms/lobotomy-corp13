@@ -48,6 +48,7 @@
 		Death is terrifying but at least you know something weeps for you."
 	observation_fail_message = "You pretend you didn't get the order and make to leave, your PDA flashes again, you've been assigned to \"Nothing There\" and this time, you're being escorted."
 
+	abnormality_origin = ABNORMALITY_ORIGIN_DISABLED
 	//teleport
 	var/can_act = TRUE
 	var/teleport_cooldown

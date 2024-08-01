@@ -39,7 +39,7 @@
 	)
 	gift_type =  /datum/ego_gifts/sanitizer
 	gift_message = "Contamination scan complete. Initiating cleaning protocol."
-	abnormality_origin = ABNORMALITY_ORIGIN_LIMBUS
+	abnormality_origin = ABNORMALITY_ORIGIN_DISABLED
 
 	grouped_abnos = list(
 		/mob/living/simple_animal/hostile/abnormality/helper = 1.5,

@@ -33,7 +33,7 @@
 		/datum/ego_datum/armor/hypocrisy,
 	)
 
-	abnormality_origin = ABNORMALITY_ORIGIN_LOBOTOMY
+	abnormality_origin = ABNORMALITY_ORIGIN_DISABLED
 	gift_type =  /datum/ego_gifts/hypocrisy
 	gift_message = "Your ears seem to have grown longer. Weird."
 

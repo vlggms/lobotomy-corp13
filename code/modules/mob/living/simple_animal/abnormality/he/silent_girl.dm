@@ -32,7 +32,7 @@
 		/datum/ego_datum/armor/remorse,
 	)
 	gift_type = /datum/ego_gifts/remorse
-	abnormality_origin = ABNORMALITY_ORIGIN_ARTBOOK
+	abnormality_origin = ABNORMALITY_ORIGIN_DISABLED
 
 	observation_prompt = "..."
 	observation_choices = list("Accept your guilt", "Plead your ignorance")

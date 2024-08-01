@@ -29,7 +29,7 @@ Finally, an abnormality that DOESN'T have to do any fancy movement shit. It's a 
 		/datum/ego_datum/armor/harmony,
 	)
 	gift_type = /datum/ego_gifts/harmony
-	abnormality_origin = ABNORMALITY_ORIGIN_ALTERED
+	abnormality_origin = ABNORMALITY_ORIGIN_DISABLED
 
 	pixel_x = -8
 	base_pixel_x = -8

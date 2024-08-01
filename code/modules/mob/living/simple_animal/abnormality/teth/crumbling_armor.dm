@@ -25,7 +25,7 @@
 	)
 	gift_type = null
 	gift_chance = 100
-	abnormality_origin = ABNORMALITY_ORIGIN_LOBOTOMY
+	abnormality_origin = ABNORMALITY_ORIGIN_DISABLED
 
 	secret_chance = TRUE
 	secret_icon_state = "megalovania"

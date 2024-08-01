@@ -24,7 +24,7 @@
 		/datum/ego_datum/armor/eyes,
 	)
 	gift_type =  /datum/ego_gifts/redeyes
-	abnormality_origin = ABNORMALITY_ORIGIN_LOBOTOMY
+	abnormality_origin = ABNORMALITY_ORIGIN_DISABLED
 
 	observation_prompt = "I am a spider. <br>I eat anything my web catches. <br>I am starving. <br>\
 		I haven't eaten anything for days. <br>There is a big prey hanging on my web. <br>\

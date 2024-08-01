@@ -30,6 +30,7 @@
 		/datum/ego_datum/armor/zauberhorn,
 	)
 	gift_type =  /datum/ego_gifts/zauberhorn
+	abnormality_origin = ABNORMALITY_ORIGIN_DISABLED
 
 	observation_prompt = "A severed horse-like creature's head hangs high on the wall, sobbing. <br>\
 		You can't help but feel some pity for the thing."

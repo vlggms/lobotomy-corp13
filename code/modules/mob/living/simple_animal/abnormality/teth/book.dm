@@ -22,7 +22,7 @@
 		/datum/ego_datum/armor/page,
 	)
 	gift_type = /datum/ego_gifts/page
-	abnormality_origin = ABNORMALITY_ORIGIN_ARTBOOK
+	abnormality_origin = ABNORMALITY_ORIGIN_DISABLED
 
 	observation_prompt = "It's just a stupid rumour. <br>\"If you fill it in whatever way, then the book will grant one wish!\" <br>\
 		All the newbies crow, waiting for their chance to fill the pages with their wishes. <br>\

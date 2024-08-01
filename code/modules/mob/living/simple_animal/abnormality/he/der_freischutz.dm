@@ -33,7 +33,7 @@
 		/datum/ego_datum/armor/magicbullet,
 	)
 	gift_type =  /datum/ego_gifts/magicbullet
-	abnormality_origin = ABNORMALITY_ORIGIN_LOBOTOMY
+	abnormality_origin = ABNORMALITY_ORIGIN_DISABLED
 
 	observation_prompt = "Before you stands a man with an ornate rifle. <br>\
 		\"My bullets never miss, whatever I take aim at will have its head pierced true by the inevitability of my bullets. <br>\

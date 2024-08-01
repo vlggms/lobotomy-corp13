@@ -41,7 +41,7 @@
 	)
 	gift_type =  /datum/ego_gifts/amrita
 	gift_message = "But if you were to consume them, perhaps, you would display more sarira than Buddha himself..."
-	abnormality_origin = ABNORMALITY_ORIGIN_LOBOTOMY
+	abnormality_origin = ABNORMALITY_ORIGIN_DISABLED
 
 	observation_prompt = "Are you a monk?"
 	observation_choices = list("I am no longer a monk")

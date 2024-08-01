@@ -30,6 +30,7 @@
 		/mob/living/simple_animal/hostile/abnormality/mhz = 1.5,
 		/mob/living/simple_animal/hostile/abnormality/army = 1.5,
 	)
+	abnormality_origin = ABNORMALITY_ORIGIN_DISABLED
 
 	observation_prompt = "A faint buzzing enters your ears from your radio.<br>\
 		Sounds of gunshots. <br>Sounds of a battle. <br>\

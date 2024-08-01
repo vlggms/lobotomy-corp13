@@ -24,7 +24,7 @@
 		/datum/ego_datum/armor/get_strong,
 	)
 	gift_type = /datum/ego_gifts/get_strong
-	abnormality_origin = ABNORMALITY_ORIGIN_LIMBUS
+	abnormality_origin = ABNORMALITY_ORIGIN_DISABLED
 
 	max_boxes = 16
 	speak_emote = list("beeps", "crackles", "buzzes")

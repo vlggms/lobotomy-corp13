@@ -50,7 +50,7 @@ It has now been over four months. Now we get her for real. -Coxswain
 		/datum/ego_datum/armor/crimson
 		)
 	gift_type = /datum/ego_gifts/crimson
-	abnormality_origin = ABNORMALITY_ORIGIN_LOBOTOMY
+	abnormality_origin = ABNORMALITY_ORIGIN_DISABLED
 
 	observation_prompt = "(The chamber is empty, except the Little Red Riding Hooded Mercenary, and her axe and gun. She seems exhausted) <br>\
 		Am I really alive? <br>What if I'm a ghost that doesn't even know it's dead? <br>\

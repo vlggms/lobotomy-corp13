@@ -28,6 +28,7 @@
 		/datum/ego_datum/armor/nostalgia,
 	)
 	gift_type =  /datum/ego_gifts/nostalgia
+	abnormality_origin = ABNORMALITY_ORIGIN_DISABLED
 
 	grouped_abnos = list(
 		/mob/living/simple_animal/hostile/abnormality/mhz = 1.5,

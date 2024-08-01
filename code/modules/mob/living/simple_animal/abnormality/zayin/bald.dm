@@ -37,7 +37,7 @@
 	gift_type =  /datum/ego_gifts/tough
 	gift_chance = 10
 	gift_message = "Now we're feeling awesome!"
-	abnormality_origin = ABNORMALITY_ORIGIN_LOBOTOMY
+	abnormality_origin = ABNORMALITY_ORIGIN_DISABLED
 	harvest_phrase = span_notice("You squeeze %ABNO. Some juice drips into %VESSEL.")
 	harvest_phrase_third = "%PERSON squeezes %ABNO. Some juice drips into %VESSEL."
 

@@ -13,7 +13,7 @@
 	portrait = "hatred_queen"
 	faction = list("neutral")
 	is_flying_animal = TRUE
-	abnormality_origin = ABNORMALITY_ORIGIN_LOBOTOMY
+	abnormality_origin = ABNORMALITY_ORIGIN_DISABLED
 
 	ranged = TRUE
 	retreat_distance = 1

@@ -69,6 +69,7 @@
 	var/barrage_range = 10
 
 	var/can_act = TRUE
+	abnormality_origin = ABNORMALITY_ORIGIN_DISABLED
 
 	ego_list = list(
 		/datum/ego_datum/weapon/ebony_stem,

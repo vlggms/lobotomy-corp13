@@ -26,7 +26,7 @@
 		/datum/ego_datum/armor/sorority,
 	)
 	gift_type =  /datum/ego_gifts/sorority
-	abnormality_origin = ABNORMALITY_ORIGIN_WONDERLAB
+	abnormality_origin = ABNORMALITY_ORIGIN_DISABLED
 
 	observation_prompt = "You sit cross-legged before the pair, flowers conceal their faces and expression. <br>\
 		\"Ahh, woe is us. We have become sinners. Please hear us, hear of our sins that we do not know we've committed, and absolve us of our grief...\""

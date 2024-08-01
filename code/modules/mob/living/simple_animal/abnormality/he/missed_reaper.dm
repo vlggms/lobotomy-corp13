@@ -30,7 +30,7 @@
 		/datum/ego_datum/armor/grasp,
 	)
 	gift_type = /datum/ego_gifts/grasp
-	abnormality_origin = ABNORMALITY_ORIGIN_ARTBOOK
+	abnormality_origin = ABNORMALITY_ORIGIN_DISABLED
 	light_color = "FFFFFFF"
 	light_power = 5
 	light_range = 2

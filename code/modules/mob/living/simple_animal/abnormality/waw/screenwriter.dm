@@ -37,7 +37,7 @@ Defeating the murderer also surpresses the abnormality.
 		/datum/ego_datum/armor/scene,
 	)
 	gift_type = /datum/ego_gifts/scene
-	abnormality_origin = ABNORMALITY_ORIGIN_ARTBOOK //Technically it was in the beta but I dont want it showing it up in LC-only modes
+	abnormality_origin = ABNORMALITY_ORIGIN_DISABLED //Technically it was in the beta but I dont want it showing it up in LC-only modes
 
 	observation_prompt = "The play started long ago. Here is the man who killed many. And you are holding a gun."
 	observation_choices = list("Shoot the man", "Wait and see", "Shoot someone else")

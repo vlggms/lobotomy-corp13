@@ -36,7 +36,7 @@
 		/datum/ego_datum/armor/fragment,
 	)
 	gift_type =  /datum/ego_gifts/fragments
-	abnormality_origin = ABNORMALITY_ORIGIN_LOBOTOMY
+	abnormality_origin = ABNORMALITY_ORIGIN_DISABLED
 
 	observation_prompt = "It started singing. You..."
 	observation_choices = list("Listen to it", "Plug your ears")

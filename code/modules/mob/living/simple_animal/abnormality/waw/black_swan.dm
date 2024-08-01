@@ -52,7 +52,7 @@
 	)
 	gift_type =  /datum/ego_gifts/swan
 	gift_message = "You feel exhausted but if you work a little harder, things will work themselves out."
-	abnormality_origin = ABNORMALITY_ORIGIN_LOBOTOMY
+	abnormality_origin = ABNORMALITY_ORIGIN_DISABLED
 
 	observation_prompt = "Elijah loved her brothers. <br>\
 		She kept working even through the constant haze that enveloped all of the Wing's nest. <br>\

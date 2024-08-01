@@ -39,7 +39,7 @@
 	)
 	gift_type = /datum/ego_gifts/sloshing
 	gift_message = "This wine tastes quite good..."
-	abnormality_origin = ABNORMALITY_ORIGIN_LIMBUS
+	abnormality_origin = ABNORMALITY_ORIGIN_DISABLED
 
 	grouped_abnos = list(
 		/mob/living/simple_animal/hostile/abnormality/fairy_festival = 1.5,

@@ -37,7 +37,7 @@
 		/datum/ego_datum/armor/coiling,
 	)
 	gift_type =  /datum/ego_gifts/coiling
-	abnormality_origin = ABNORMALITY_ORIGIN_ORIGINAL
+	abnormality_origin = ABNORMALITY_ORIGIN_DISABLED
 
 	observation_prompt = "I am seated at a banquet. <br>\
 		The tablecloth is of the finest red velvet, and seated across from me is the abnormality Eris.<br>\

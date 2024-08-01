@@ -43,7 +43,7 @@
 		/datum/ego_datum/armor/totalitarianism,
 	)
 	gift_type = /datum/ego_gifts/totalitarianism
-	abnormality_origin = ABNORMALITY_ORIGIN_WONDERLAB
+	abnormality_origin = ABNORMALITY_ORIGIN_DISABLED
 
 	grouped_abnos = list(
 		/mob/living/simple_animal/hostile/abnormality/blue_shepherd = 5,

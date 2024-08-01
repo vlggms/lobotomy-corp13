@@ -27,6 +27,7 @@
 		/datum/ego_datum/armor/song,
 	)
 	gift_type = /datum/ego_gifts/song
+	abnormality_origin = ABNORMALITY_ORIGIN_DISABLED
 
 	observation_prompt = "My grandfather loved this song once, he used to tell me it was the first song he and his wife, my grandmother, danced and shared their first kiss to. <br>\
 		When she passed he would play this song all the time until the vinyl began to warp. <br>One day, I visited him after a long time and the song wasn't playing. <br>\

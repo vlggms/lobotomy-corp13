@@ -49,7 +49,7 @@
 		/datum/ego_datum/armor/nixie,
 	)
 	gift_type =  /datum/ego_gifts/nixie
-	abnormality_origin = ABNORMALITY_ORIGIN_LIMBUS
+	abnormality_origin = ABNORMALITY_ORIGIN_DISABLED
 
 	observation_prompt = "It carries heavy objects without a word. <br>\
 		As it does its work, the number on the electronic display seems to update. <br>\

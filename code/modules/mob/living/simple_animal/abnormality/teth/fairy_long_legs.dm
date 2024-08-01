@@ -36,7 +36,7 @@
 	work_damage_type = RED_DAMAGE
 	death_message = "coalesces into a primordial egg."
 	death_sound = 'sound/abnormalities/fairy_longlegs/death.ogg'
-	abnormality_origin = ABNORMALITY_ORIGIN_LIMBUS
+	abnormality_origin = ABNORMALITY_ORIGIN_DISABLED
 
 	grouped_abnos = list(
 		/mob/living/simple_animal/hostile/abnormality/fairy_gentleman = 1.5,

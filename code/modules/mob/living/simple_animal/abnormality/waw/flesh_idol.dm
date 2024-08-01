@@ -25,7 +25,7 @@
 		/datum/ego_datum/armor/heart,
 	)
 	gift_type = /datum/ego_gifts/heart
-	abnormality_origin = ABNORMALITY_ORIGIN_ALTERED
+	abnormality_origin = ABNORMALITY_ORIGIN_DISABLED
 
 	observation_prompt = "I've been praying for 7 days and 7 nights, my skin is taut from malnutrition, my eyes bloodshot from lack of sleep and my clothes soiled with my own filth. <br>\
 		Though my throat is so dry I cannot even maintain the chants I move my lips anyway. <br>\

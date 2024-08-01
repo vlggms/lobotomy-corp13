@@ -41,7 +41,7 @@
 		/datum/ego_datum/armor/justitia,
 	)
 	gift_type =  /datum/ego_gifts/justitia
-	abnormality_origin = ABNORMALITY_ORIGIN_LOBOTOMY
+	abnormality_origin = ABNORMALITY_ORIGIN_DISABLED
 
 	grouped_abnos = list(
 		/mob/living/simple_animal/hostile/abnormality/big_bird = 3,

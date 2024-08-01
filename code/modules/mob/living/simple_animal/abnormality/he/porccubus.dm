@@ -42,7 +42,7 @@
 		/datum/ego_datum/armor/pleasure,
 	)
 	gift_type = /datum/ego_gifts/pleasure
-	abnormality_origin = ABNORMALITY_ORIGIN_LOBOTOMY
+	abnormality_origin = ABNORMALITY_ORIGIN_DISABLED
 
 	observation_prompt = "The red flower waits expectantly for you as you enter the containment unit, \
 		studying your movements it leans down towards you and bares its thorns to you."

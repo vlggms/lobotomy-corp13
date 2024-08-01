@@ -38,7 +38,7 @@
 		/datum/ego_datum/armor/inheritance,
 	)
 	gift_type =  /datum/ego_gifts/inheritance
-	abnormality_origin = "Artbook"
+	abnormality_origin = ABNORMALITY_ORIGIN_DISABLED
 
 	observation_prompt = "The miller, my old master, when he passed he left his mill, his donkey and myself to his three sons. <br>\
 		I was left to the youngest and the elders denied him any right to the mill. <br>I felt for the poor lad and so, I turned the young master into a Prince, <br>\

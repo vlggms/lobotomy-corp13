@@ -35,7 +35,7 @@
 		/datum/ego_datum/armor/christmas,
 	)
 	gift_type =  /datum/ego_gifts/christmas
-	abnormality_origin = ABNORMALITY_ORIGIN_LOBOTOMY
+	abnormality_origin = ABNORMALITY_ORIGIN_DISABLED
 	//Try not to make other observations this long - This is by PM though so, we have to use it. -Coxswain
 	observation_prompt = "I heard about a man who could give you anything you want once a year. <br>Good kids have a better chance of seeing him. <br>\
 		A man who carries giant sack on his back. <br>A man who can go anywhere in the world with his reindeer-pulled sled. <br>\

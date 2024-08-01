@@ -53,7 +53,7 @@
 		/datum/ego_datum/armor/blind_obsession
 		)
 	gift_type = /datum/ego_gifts/blind_obsession
-	abnormality_origin = ABNORMALITY_ORIGIN_LIMBUS
+	abnormality_origin = ABNORMALITY_ORIGIN_DISABLED
 
 	grouped_abnos = list(
 		/mob/living/simple_animal/hostile/abnormality/dreaming_current = 2,//both are heavily related

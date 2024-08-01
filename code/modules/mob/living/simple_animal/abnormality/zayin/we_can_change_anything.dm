@@ -37,7 +37,7 @@
 
 	gift_type =  /datum/ego_gifts/change
 	gift_message = "Your heart beats with new vigor."
-	abnormality_origin = ABNORMALITY_ORIGIN_ALTERED
+	abnormality_origin = ABNORMALITY_ORIGIN_DISABLED
 
 	grouped_abnos = list(
 		/mob/living/simple_animal/hostile/abnormality/helper = 1.5,

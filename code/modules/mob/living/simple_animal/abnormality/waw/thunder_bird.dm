@@ -51,7 +51,7 @@
 	)
 	gift_type =  /datum/ego_gifts/warring
 	gift_message = "The totem somehow dons a seemingly ridiculous hat on your head."
-	abnormality_origin = ABNORMALITY_ORIGIN_ORIGINAL
+	abnormality_origin = ABNORMALITY_ORIGIN_DISABLED
 
 	observation_prompt = "The totem sits atop a pile of gore and viscera. <br>\
 		Human scalps dangle motionlessly, strung to its wings. <br>\
