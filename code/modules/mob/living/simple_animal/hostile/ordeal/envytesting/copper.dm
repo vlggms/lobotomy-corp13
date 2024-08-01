@@ -68,7 +68,5 @@
 	T.set_confusion(max(10, T.get_confusion()))
 	T.stuttering = max(8, T.stuttering)
 	T.adjustStaminaLoss(melee_damage_lower, TRUE, TRUE)
-
 	SEND_SIGNAL(T, COMSIG_LIVING_MINOR_SHOCK)
-
 	playsound(src, 'sound/weapons/egloves.ogg', 50, TRUE, -1)

@@ -2,11 +2,12 @@
 /mob/living/simple_animal/hostile/ordeal/ipar
 	name = "envy peccetulum"
 	icon = 'ModularTegustation/Teguicons/envy_peccetulum.dmi'
-	var/can_move
+	var/can_move = TRUE
 
 /mob/living/simple_animal/hostile/ordeal/ipar/Move()
 	if(!can_move)
 		return FALSE
+	..()
 
 
 /mob/living/simple_animal/hostile/ordeal/ipar/beak
@@ -25,7 +26,7 @@
 	del_on_death = TRUE
 	attack_verb_continuous = "punches"
 	attack_verb_simple = "punches"
-	attack_sound = 'sound/weapons/bite.ogg'
+	attack_sound = 'sound/weapons/pbird_bite.ogg'
 	speak_emote = list("says")
 	ranged = 1
 	retreat_distance = 2
@@ -87,5 +88,9 @@
 
 /mob/living/simple_animal/hostile/ordeal/ipar/fragment/AttackingTarget()
 	..()
-	Immobilize(10)
+	can_move = FALSE
+	addtimer(CALLBACK(src, PROC_REF(Return), src), 10)
 	new /obj/effect/temp_visual/weapon_stun(get_turf(src))
+
+/mob/living/simple_animal/hostile/ordeal/ipar/fragment/proc/Return()
+	can_move = TRUE
