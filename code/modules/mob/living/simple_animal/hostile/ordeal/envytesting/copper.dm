@@ -22,19 +22,20 @@
 	var/list/buffed_envy
 
 /mob/living/simple_animal/hostile/ordeal/ipar/zwei/OpenFire()
-	if(prob(30))
+	if(prob(70))
 		return
 	buffed_envy = list()
 	for(var/mob/living/simple_animal/hostile/ordeal/ipar/M in range(10, src))
 		buffed_envy +=M
 		M.ChangeResistances(list(RED_DAMAGE = 0.5, WHITE_DAMAGE = 0.5, BLACK_DAMAGE = 0.5, PALE_DAMAGE = 0.5))
 	addtimer(CALLBACK(src, PROC_REF(Return), src), 3 SECONDS)
-	Immobilize(30)
+	can_move = FALSE
 	playsound(src, 'sound/misc/whistle.ogg', 50, TRUE)
 
 /mob/living/simple_animal/hostile/ordeal/ipar/zwei/proc/Return()
 	for(var/mob/living/simple_animal/hostile/ordeal/ipar/M in buffed_envy)
-		ChangeResistances(initial(damage_coeff))
+		ChangeResistances(initial(M.damage_coeff))
+	can_move = TRUE
 
 /mob/living/simple_animal/hostile/ordeal/ipar/zweiriot
 	desc = "An envy peccetulum, wearing zwei association gear."

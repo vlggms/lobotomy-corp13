@@ -16,7 +16,6 @@
 		/mob/living/simple_animal/hostile/ordeal/green_bot/fast,
 		)
 	spawn_player_multiplicator = 0.05
-	level = 1
 	color = COLOR_DARK_LIME
 	reward_percent = 0.1
 

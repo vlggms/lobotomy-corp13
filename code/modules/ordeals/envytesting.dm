@@ -1,4 +1,3 @@
-
 /datum/ordeal/simplespawn/copper_dawn
 	name = "The Dawn of Copper"
 	flavor_name = "Envy Peccetulum - Zwei Association"
@@ -34,6 +33,4 @@
 		/mob/living/simple_animal/hostile/ordeal/ipar/daredevil,
 		/mob/living/simple_animal/hostile/ordeal/ipar/fragment
 		)
-	place_player_multiplicator = 0.08
-	spawn_player_multiplicator = 0
-	color = "#87b861"
+	color = "#945f9c"

@@ -2,6 +2,12 @@
 /mob/living/simple_animal/hostile/ordeal/ipar
 	name = "envy peccetulum"
 	icon = 'ModularTegustation/Teguicons/envy_peccetulum.dmi'
+	var/can_move
+
+/mob/living/simple_animal/hostile/ordeal/ipar/Move()
+	if(!can_move)
+		return FALSE
+
 
 /mob/living/simple_animal/hostile/ordeal/ipar/beak
 	desc = "An envy peccetulum, wearing beak EGO."
