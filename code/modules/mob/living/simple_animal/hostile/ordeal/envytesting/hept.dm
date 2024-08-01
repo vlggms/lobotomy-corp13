@@ -50,8 +50,8 @@
 	maxHealth = 140
 	melee_damage_type = PALE_DAMAGE
 	damage_coeff = list(RED_DAMAGE = 0.7, WHITE_DAMAGE = 0.8, BLACK_DAMAGE = 0.8, PALE_DAMAGE = 1.5)
-	melee_damage_lower = 16
-	melee_damage_upper = 17
+	melee_damage_lower = 10
+	melee_damage_upper = 13
 	rapid_melee = 3
 	robust_searching = TRUE
 	stat_attack = HARD_CRIT
@@ -62,8 +62,10 @@
 	speak_emote = list("says")
 
 /mob/living/simple_animal/hostile/ordeal/ipar/daredevil/bullet_act(obj/projectile/P)
-	visible_message(span_userdanger("[src] deflects \the [P]!"))
-	P.Destroy()
+	if(prob(30))
+		visible_message(span_userdanger("[src] deflects \the [P]!"))
+		P.Destroy()
+	..()
 
 /mob/living/simple_animal/hostile/ordeal/ipar/fragment
 	desc = "An envy peccetulum, wearing fragment EGO."
