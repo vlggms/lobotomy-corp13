@@ -168,7 +168,7 @@ No Ability	250
 
 /obj/item/clothing/suit/armor/ego_gear/realization/stupor
 	name = "stupor"
-	desc = "Drink! Drink yourselves into a stupor! Foul tasting louts like you won't satisfy me until you're all as pickled as me, hah!"
+	desc = "Drink! Drink yourselves into a stupor! Foul tasting louts like you won't satisfy me until you're all as pickled as me, hah!" //Descriptions made by Anonmare
 	icon_state = "stupor" //Art by TemperanceTempy
 	armor = list(RED_DAMAGE = 80, WHITE_DAMAGE = 30, BLACK_DAMAGE = 50, PALE_DAMAGE = 70)		//Defensive
 	hat = /obj/item/clothing/head/ego_hat/stupor
