@@ -428,7 +428,7 @@
 	if(get_dist(user, target) > 10 || !(target in view(9, user)))
 		return
 	var/turf/target_turf = get_turf(target)
-	new /obj/projectile/black_hole_realized(target_turf, user)
+	new /obj/projectile/black_hole_realized(target_turf)
 	return ..()
 
 /obj/projectile/black_hole_realized
@@ -453,13 +453,13 @@
 	for(var/i = 1 to 10)
 		addtimer(CALLBACK(src, PROC_REF(SplashEffect)), i * 2 SECONDS)
 
-/obj/projectile/black_hole_realized/proc/SplashEffect(mob/user)
+/obj/projectile/black_hole_realized/proc/SplashEffect()
 	playsound(src, 'sound/effects/footstep/slime1.ogg', 100, FALSE, 12)
 
 	for(var/turf/T in view(damage_range, src))
 		new /obj/effect/temp_visual/revenant(T)
 	for(var/mob/living/L in view(damage_range, src))
-		if(!user.faction_check_mob(L))
+		if(ishostile(L))
 			var/distance_decrease = get_dist(src, L) * 40
 			L.apply_damage(ishuman(L) ? (damage_amount - distance_decrease)*0.5 : (damage_amount - distance_decrease), BLACK_DAMAGE, null, L.run_armor_check(null, BLACK_DAMAGE), spread_damage = TRUE)
 			var/atom/throw_target = get_edge_target_turf(L, get_dir(L, get_step_towards(L, get_turf(src))))
