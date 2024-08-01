@@ -21,6 +21,7 @@
 		/obj/item/clothing/suit/armor/ego_gear/teth/wrist 			= /obj/item/clothing/suit/armor/ego_gear/realization/exsanguination,
 		/obj/item/clothing/suit/armor/ego_gear/teth/match 			= /obj/item/clothing/suit/armor/ego_gear/realization/ember_matchlight,
 		/obj/item/clothing/suit/armor/ego_gear/teth/blossoms 		= /obj/item/clothing/suit/armor/ego_gear/realization/sakura_bloom,
+		/obj/item/clothing/suit/armor/ego_gear/teth/sloshing		= /obj/item/clothing/suit/armor/ego_gear/realization/stupor,
 		// HE
 		/obj/item/clothing/suit/armor/ego_gear/he/grinder 			= /obj/item/clothing/suit/armor/ego_gear/realization/grinder,
 		/obj/item/clothing/suit/armor/ego_gear/he/magicbullet		= /obj/item/clothing/suit/armor/ego_gear/realization/bigiron,
