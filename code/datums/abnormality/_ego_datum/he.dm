@@ -482,3 +482,12 @@
 /datum/ego_datum/weapon/telepole
 	item_path = /obj/item/ego_weapon/telepole
 	cost = 35
+
+// Teddy in Pain - Hex Nail
+/datum/ego_datum/weapon/hexnail
+	item_path = /obj/item/ego_weapon/hexnail
+	cost = 35
+
+/datum/ego_datum/armor/hexnail
+	item_path = /obj/item/clothing/suit/armor/ego_gear/he/hexnail
+	cost = 35
