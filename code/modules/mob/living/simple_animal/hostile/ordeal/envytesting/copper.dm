@@ -34,7 +34,7 @@
 
 /mob/living/simple_animal/hostile/ordeal/ipar/zwei/proc/Return()
 	for(var/mob/living/simple_animal/hostile/ordeal/ipar/M in buffed_envy)
-		ChangeResistances(initial(M.damage_coeff))
+		M.ChangeResistances(initial(M.damage_coeff))
 	can_move = TRUE
 
 /mob/living/simple_animal/hostile/ordeal/ipar/zweiriot
