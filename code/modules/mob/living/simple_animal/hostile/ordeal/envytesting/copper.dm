@@ -7,8 +7,8 @@
 	maxHealth = 140
 	melee_damage_type = RED_DAMAGE
 	damage_coeff = list(RED_DAMAGE = 0.6, WHITE_DAMAGE = 0.8, BLACK_DAMAGE = 0.8, PALE_DAMAGE = 1)
-	melee_damage_lower = 55
-	melee_damage_upper = 55
+	melee_damage_lower = 40
+	melee_damage_upper = 40
 	move_to_delay = 3
 	rapid_melee = 1
 	robust_searching = TRUE
@@ -46,8 +46,8 @@
 	maxHealth = 140
 	melee_damage_type = RED_DAMAGE
 	damage_coeff = list(RED_DAMAGE = 0.3, WHITE_DAMAGE = 0.6, BLACK_DAMAGE = 0.6, PALE_DAMAGE = 0.8)
-	melee_damage_lower = 40
-	melee_damage_upper = 40
+	melee_damage_lower = 20
+	melee_damage_upper = 25
 	move_to_delay = 4
 	rapid_melee = 1
 	robust_searching = TRUE
