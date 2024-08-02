@@ -12,10 +12,10 @@
 	damage_coeff = list(RED_DAMAGE = 1, WHITE_DAMAGE = 1.5, BLACK_DAMAGE = 0.5, PALE_DAMAGE = 2)
 	threat_level = ZAYIN_LEVEL
 	work_chances = list( //In the comic they work on it. They say you can do any work as long as you don't eat the cake
-		ABNORMALITY_WORK_INSTINCT = list(50, 40, 30, 30, 30),
-		ABNORMALITY_WORK_INSIGHT = list(50, 40, 30, 30, 30),
-		ABNORMALITY_WORK_ATTACHMENT = list(50, 40, 30, 30, 30),
-		ABNORMALITY_WORK_REPRESSION = list(50, 40, 30, 30, 30), //How the fuck do you beat up a cake?
+		ABNORMALITY_WORK_INSTINCT = list(60, 50, 40, 30, 30),
+		ABNORMALITY_WORK_INSIGHT = list(60, 50, 40, 30, 30),
+		ABNORMALITY_WORK_ATTACHMENT = list(60, 50, 40, 30, 30),
+		ABNORMALITY_WORK_REPRESSION = list(60, 50, 40, 30, 30), //How the fuck do you beat up a cake?
 		"Dining" = 100, //You can instead decide to eat the cake.
 		"Drink" = 100, //Or Drink the water
 	)
