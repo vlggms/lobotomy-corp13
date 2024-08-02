@@ -86,7 +86,7 @@
 
 /mob/living/simple_animal/hostile/abnormality/queen_bee/NeutralEffect(mob/living/carbon/human/user, work_type, pe)
 	. = ..()
-	if(prob(40))
+	if(prob(10))
 		datum_reference.qliphoth_change(-1)
 	return
 
