@@ -1,8 +1,8 @@
 /obj/machinery/fish_market
 	name = "fishing equipment vendor"
 	desc = "A machine filled with brass pebbles. It appears that a fisher can exchange fish for brass pebbles here."
-	icon = 'icons/obj/money_machine.dmi'
-	icon_state = "bogdanoff"
+	icon = 'ModularTegustation/Teguicons/lc13_structures.dmi'
+	icon_state = "fish_machine"
 	density = TRUE
 	resistance_flags = INDESTRUCTIBLE
 	var/fish_points = 0
