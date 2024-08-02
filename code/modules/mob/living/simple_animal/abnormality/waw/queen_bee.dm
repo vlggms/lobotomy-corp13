@@ -76,7 +76,7 @@
 		if(prob(25))
 			new /obj/effect/temp_visual/bee_gas(T)
 		for(var/mob/living/carbon/human/H in T.contents)
-			if(prob(90))
+			if(prob(90))			//TODO: Make this based off armor
 				var/datum/disease/bee_spawn/D = new()
 				H.ForceContractDisease(D, FALSE, TRUE)
 		for(var/mob/living/simple_animal/hostile/abnormality/general_b/Y in T.contents)
