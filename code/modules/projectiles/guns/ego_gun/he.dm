@@ -320,6 +320,7 @@
 	fire_sound = 'sound/weapons/gun/revolver/shot_alt.ogg'
 	vary_fire_sound = FALSE
 	var/list/ammotypes = list(/obj/item/ammo_casing/caseless/ego_magicbullet,/obj/item/ammo_casing/caseless/ego_supershotgun,/obj/item/ammo_casing/caseless/ego_solemnlament,/obj/item/ammo_casing/caseless/ego_harmony,/obj/item/ammo_casing/caseless/ego_match,/obj/item/ammo_casing/caseless/ego_gaze)
+	//TODO: Make it so that the fire_sound manages to match the bullet, I.E. magic bullet shots use the magic bullet sound.
 	//NOTE: Dud round currently breaks the gun, causing it to no longer fire regardless of current ammo type. Will need help fixing this at some point, but for now the dud's removed from the list.
 	//If you feel like having a go at fixing it, the projectile's /obj/item/ammo_casing/caseless/ego_dud, under ZAYIN.
 
