@@ -114,7 +114,6 @@
 	throw_range = 7
 	damtype = WHITE_DAMAGE
 	hitsound = 'sound/weapons/bladeslice.ogg'
-	swingstyle = WEAPONSWING_LARGESWEEP
 
 /obj/item/ego_weapon/mini/blossom/throw_impact(atom/hit_atom, datum/thrownthing/throwingdatum)
 	var/caught = hit_atom.hitby(src, FALSE, FALSE, throwingdatum=throwingdatum)
