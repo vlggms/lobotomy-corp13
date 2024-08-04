@@ -109,7 +109,7 @@
 	desc = "The flesh cleanly cut by a sharp tool creates a grotesque pattern with the bloodstains on the suit."
 	special = "Upon throwing, this weapon returns to the user."
 	icon_state = "blossoms"
-	force = 15
+	force = 17
 	swingstyle = WEAPONSWING_LARGESWEEP
 	throwforce = 30
 	throw_speed = 1
