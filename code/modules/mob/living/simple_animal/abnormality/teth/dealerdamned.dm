@@ -1,7 +1,7 @@
 /mob/living/simple_animal/hostile/abnormality/dealerdamned
 	name = "Dealer of the Damned"
 	desc = "A floating playing card with what appears to be a cursor acting as its hand."
-	icon = 'ModularTegustation/Teguicons/48x48.dmi'
+	icon = 'ModularTegustation/Teguicons/64x64.dmi'
 	icon_state = "dealerdamned"
 	maxHealth = 400
 	health = 400
@@ -13,7 +13,6 @@
 		ABNORMALITY_WORK_REPRESSION = 25,
 		"Gamble" = 100
 	)
-	is_flying_animal = TRUE
 	work_damage_amount = 6
 	work_damage_type = BLACK_DAMAGE
 	speak_emote = list("states")
@@ -25,6 +24,7 @@
 		/datum/ego_datum/armor/luckdraw,
 	)
 	gift_type =  /datum/ego_gifts/luckdraw
+	pixel_x = -16
 	abnormality_origin = ABNORMALITY_ORIGIN_ORIGINAL
 	var/coin_status
 	var/has_flipped
@@ -43,8 +43,10 @@
 	has_flipped = TRUE
 	var/mob/living/user = petter
 	user.deal_damage(user.maxHealth*0.2, RED_DAMAGE)
+	icon_state = "dealerflip"
 	manual_emote("flips a gold coin.")
 	SLEEP_CHECK_DEATH(10)
+	icon_state = "dealerdamned"
 	if(prob(35))
 		say("Heads, huh? Looks like you win this one.")
 		coin_status = TRUE
@@ -61,14 +63,14 @@
 	else
 		return TRUE
 
-//TODO: Prevent people from working Gamble more than once, similarly to Realization Engine's restriction
+//TODO: Add the revolver open sprite, replace gibbing with "death" sprite
 /mob/living/simple_animal/hostile/abnormality/dealerdamned/PostWorkEffect(mob/living/carbon/human/user, work_type, pe, work_time)
 	..()
 	if(work_type == "Gamble")
 		say("Feelin' like putting your life on the line, huh? Sounds good to me!")
 		user.Immobilize(15)
 		SLEEP_CHECK_DEATH(10)
-		playsound(user, "revolver_spin", 30, FALSE)
+		playsound(user, "revolver_spin", 70, FALSE)
 		gambled_prior |= user.ckey
 
 		//We need to set if the game is going on, who's being shot, and then spent chambers
@@ -96,7 +98,6 @@
 					player_shot = FALSE
 				else
 					player_shot = TRUE
-		//Note that I'd like to replace the abno gibbing with an animation of them getting shot/regerating at some point, but I don't have the spriting experience for that
 
 /mob/living/simple_animal/hostile/abnormality/dealerdamned/WorkChance(mob/living/carbon/human/user, chance)
 	var/newchance
