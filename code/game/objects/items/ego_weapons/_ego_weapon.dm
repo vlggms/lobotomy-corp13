@@ -42,7 +42,7 @@
 	if(charge && attack_charge_gain)
 		HandleCharge(1, target)
 
-	if(target.anchored || !knockback) // lets not throw machines around
+	if(target.anchored || !knockback || QDELETED(target)) // lets not throw machines around
 		return TRUE
 
 	var/atom/throw_target = get_edge_target_turf(target, user.dir)
