@@ -62,7 +62,7 @@
 		/datum/ego_datum/armor/goldrush,
 	)
 	gift_type =  /datum/ego_gifts/goldrush
-	abnormality_origin = ABNORMALITY_ORIGIN_DISABLED
+	abnormality_origin = ABNORMALITY_ORIGIN_LOBOTOMY
 
 	grouped_abnos = list(
 		/mob/living/simple_animal/hostile/abnormality/despair_knight = 2,
