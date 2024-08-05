@@ -123,6 +123,12 @@
 	premium = list(
 		/obj/item/storage/firstaid/regular = 100,
 		// Skills Below:
+		//Level 0
+		/obj/item/book/granter/action/skill/heal_order = 100,
+		/obj/item/book/granter/action/skill/defend_order = 100,
+		/obj/item/book/granter/action/skill/assault_order = 100,
+		/obj/item/book/granter/action/skill/retreat_order = 100,
+		/obj/item/book/granter/action/skill/kill_order = 100,
 		//Level 1
 		/obj/item/book/granter/action/skill/dash = 100,
 		/obj/item/book/granter/action/skill/dashback = 100,
