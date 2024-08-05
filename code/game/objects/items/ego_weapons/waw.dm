@@ -100,6 +100,7 @@
 	special = "Use in hand to unlock its full power."
 	icon_state = "totalitarianism"
 	force = 80
+	swingstyle = WEAPONSWING_LARGESWEEP
 	attack_speed = 3
 	damtype = RED_DAMAGE
 	attack_verb_continuous = list("cleaves", "cuts")
@@ -130,6 +131,7 @@
 	special = "This weapon builds up charge on every hit. Use the weapon in hand to charge the blade."
 	icon_state = "oppression"
 	force = 13
+	swingstyle = WEAPONSWING_LARGESWEEP
 	attack_speed = 0.3
 	damtype = BLACK_DAMAGE
 	attack_verb_continuous = list("cleaves", "cuts")
@@ -220,7 +222,8 @@
 	special = "Use it in hand to activate ranged attack."
 	icon_state = "crimsonclaw"
 	special = "This weapon hits faster than usual."
-	force = 18
+	force = 17
+	swingstyle = WEAPONSWING_LARGESWEEP
 	attack_speed = 0.5
 	damtype = RED_DAMAGE
 	hitsound = 'sound/abnormalities/redhood/attack_1.ogg'
@@ -325,7 +328,8 @@
 	desc = "Time flows as life does, and life goes as time does."
 	special = "This weapon deals an absurd amount of damage on the 13th hit."
 	icon_state = "thirteen"
-	force = 30
+	force = 28
+	swingstyle = WEAPONSWING_LARGESWEEP
 	damtype = PALE_DAMAGE
 	attack_verb_continuous = list("cuts", "attacks", "slashes")
 	attack_verb_simple = list("cut", "attack", "slash")
@@ -1006,8 +1010,9 @@
 	desc = "Look on my Works, ye Mighty, and despair!"
 	special = "This weapon can remove petrification."
 	icon_state = "pharaoh"
-	force = 20
+	force = 19
 	attack_speed = 0.5
+	swingstyle = WEAPONSWING_LARGESWEEP
 	damtype = WHITE_DAMAGE
 	attack_verb_continuous = list("decimates", "bisects")
 	attack_verb_simple = list("decimate", "bisect")
@@ -1128,7 +1133,8 @@
 	desc = "Many employees have sustained injuries from erroneous calculation."
 	special = "This weapon deals double damage to targets under 20% HP."
 	icon_state = "diffraction"
-	force = 40
+	force = 35
+	swingstyle = WEAPONSWING_LARGESWEEP
 	damtype = WHITE_DAMAGE
 	attack_verb_continuous = list("slices", "cuts")
 	attack_verb_simple = list("slice", "cut")
@@ -1561,6 +1567,7 @@
 	icon_state = "cobalt"
 	force = 24
 	attack_speed = 0.5
+	swingstyle = WEAPONSWING_LARGESWEEP
 	damtype = RED_DAMAGE
 	attack_verb_continuous = list("claws")
 	attack_verb_simple = list("claw")
@@ -1687,8 +1694,9 @@
 	desc = "It was a good day to die, but everybody did."
 	special = "Upon throwing, this weapon returns to the user. Throwing will activate the charge effect."
 	icon_state = "warring2"
-	force = 30
+	force = 28
 	attack_speed = 0.8
+	swingstyle = WEAPONSWING_LARGESWEEP
 	throwforce = 55
 	throw_speed = 1
 	throw_range = 7
@@ -2003,8 +2011,9 @@
 	special = "This weapon has a combo system ending with a dive attack. To turn off this combo system, use in hand. \
 			This weapon has a fast attack speed"
 	icon_state = "abyssal_route"
-	force = 20
+	force = 18
 	damtype = BLACK_DAMAGE
+	swingstyle = WEAPONSWING_LARGESWEEP
 	attack_verb_continuous = list("stabs", "attacks", "slashes")
 	attack_verb_simple = list("stab", "attack", "slash")
 	hitsound = 'sound/weapons/ego/rapier1.ogg'

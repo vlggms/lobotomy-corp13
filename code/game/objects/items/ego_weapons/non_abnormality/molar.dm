@@ -32,7 +32,7 @@
 	name = "molar chainknife"
 	desc = "A short chainsword used by the Molar Office's leader. Its chain sings with the speed it moves at."
 	icon_state = "olga"
-	force = 38
+	force = 37
 	attack_speed = 0.7
 	attribute_requirements = list(
 							FORTITUDE_ATTRIBUTE = 100,
@@ -40,3 +40,4 @@
 							TEMPERANCE_ATTRIBUTE = 60,	//She's got bad temperance, get it? Because temperance is another word for not drinking alcohol?
 							JUSTICE_ATTRIBUTE = 80
 							)
+	swingstyle = WEAPONSWING_LARGESWEEP

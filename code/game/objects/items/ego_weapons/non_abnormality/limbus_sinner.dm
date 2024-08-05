@@ -32,9 +32,10 @@
 	icon = 'icons/obj/limbus_weapons.dmi'
 	lefthand_file = 'icons/mob/inhands/weapons/limbus_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/weapons/limbus_righthand.dmi'
-	force = 35
+	force = 33
 	attack_speed = 1.6
 	damtype = WHITE_DAMAGE
+	swingstyle = WEAPONSWING_LARGESWEEP
 
 	attack_verb_continuous = list("cuts", "smacks", "bashes")
 	attack_verb_simple = list("cuts", "smacks", "bashes")
@@ -75,9 +76,10 @@
 	lefthand_file = 'icons/mob/inhands/weapons/limbus_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/weapons/limbus_righthand.dmi'
 	hitsound = 'sound/weapons/bladeslice.ogg'
-	force = 13
+	force = 12
 	attack_speed = 0.5
 	damtype = BLACK_DAMAGE
+	swingstyle = WEAPONSWING_LARGESWEEP
 
 	attack_verb_continuous = list("pokes", "jabs", "tears", "lacerates", "gores")
 	attack_verb_simple = list("poke", "jab", "tear", "lacerate", "gore")
@@ -226,8 +228,9 @@
 	icon = 'icons/obj/limbus_weapons.dmi'
 	lefthand_file = 'icons/mob/inhands/weapons/limbus_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/weapons/limbus_righthand.dmi'
-	force = 20
+	force = 19
 	damtype = RED_DAMAGE
+	swingstyle = WEAPONSWING_LARGESWEEP
 
 	attack_speed = 0.8
 	attack_verb_continuous = list("cuts", "slices")

@@ -13,8 +13,9 @@
 				Use weapon in hand to see stored target, and its current health."
 	icon_state = "sevenassociation"
 	inhand_icon_state = "sevenassociation"
-	force = 38
+	force = 36
 	damtype = BLACK_DAMAGE
+	swingstyle = WEAPONSWING_LARGESWEEP
 
 	var/stored_target
 	var/stored_target_hp
