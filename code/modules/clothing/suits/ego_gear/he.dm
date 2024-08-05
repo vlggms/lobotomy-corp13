@@ -473,4 +473,11 @@ Any attempt to code risk class armor will result in a 10 day Github ban.*/
 							PRUDENCE_ATTRIBUTE = 40
 							)
 
-
+/obj/item/clothing/suit/armor/ego_gear/he/telepole
+	name = "telepole"
+	desc = "Alright, I'll sear you down to your guts!"
+	icon_state = "telepole"
+	armor = list(RED_DAMAGE = 30, WHITE_DAMAGE = -10, BLACK_DAMAGE = 40, PALE_DAMAGE = 10) // 70
+	attribute_requirements = list(
+							FORTITUDE_ATTRIBUTE = 40
+							)
