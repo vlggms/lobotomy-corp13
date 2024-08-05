@@ -266,7 +266,6 @@
 	},
 /obj/structure/window/reinforced/spawner/north{
 	max_integrity = 25;
-	pixel_x = 32;
 	resistance_flags = 115
 	},
 /obj/effect/light_emitter{
@@ -618,13 +617,13 @@
 /turf/open/floor/facility/dark,
 /area/department_main/information)
 "de" = (
+/obj/structure/lattice/lava/enkephalin,
 /obj/structure/window/reinforced/spawner/north{
 	max_integrity = 25;
-	pixel_y = 128;
 	resistance_flags = 115
 	},
 /turf/open/lava/enkephalin,
-/area/facility_hallway/east)
+/area/facility_hallway/west)
 "dj" = (
 /obj/effect/turf_decal/siding/thinplating/dark{
 	dir = 1
@@ -888,16 +887,17 @@
 /turf/open/floor/plasteel/white,
 /area/facility_hallway/training)
 "eo" = (
-/obj/structure/window/reinforced/spawner{
-	resistance_flags = 115
-	},
-/obj/structure/window/reinforced/spawner{
-	pixel_x = 32;
-	resistance_flags = 115
+/obj/machinery/light{
+	dir = 8;
+	pixel_x = -9;
+	pixel_y = 4
 	},
 /obj/structure/lattice/lava/enkephalin,
+/obj/structure/window/reinforced/spawner{
+	resistance_flags = 115
+	},
 /turf/open/lava/enkephalin,
-/area/facility_hallway/west)
+/area/facility_hallway/east)
 "ep" = (
 /obj/machinery/light{
 	dir = 4;
@@ -1979,9 +1979,7 @@
 	name = "wing-grade railing";
 	resistance_flags = 115
 	},
-/obj/structure/window/reinforced/spawner{
-	pixel_y = 2
-	},
+/obj/structure/window/reinforced/spawner,
 /obj/machinery/computer/abnormality_logs{
 	dir = 8
 	},
@@ -2186,13 +2184,9 @@
 /area/department_main/safety)
 "kG" = (
 /obj/structure/window/reinforced/spawner/east{
-	pixel_x = -224;
 	resistance_flags = 115
 	},
-/obj/structure/window/reinforced/spawner{
-	pixel_x = -224;
-	pixel_y = 25
-	},
+/obj/structure/window/reinforced/spawner,
 /turf/closed/indestructible/rock,
 /area/space)
 "kI" = (
@@ -3077,6 +3071,10 @@
 /area/department_main/extraction)
 "of" = (
 /obj/structure/lattice/lava/enkephalin,
+/obj/structure/window/reinforced/spawner/west{
+	max_integrity = 25;
+	resistance_flags = 115
+	},
 /turf/open/lava/enkephalin,
 /area/facility_hallway/south)
 "oi" = (
@@ -3444,8 +3442,7 @@
 	dir = 8
 	},
 /obj/structure/window/reinforced/spawner/west{
-	max_integrity = 25;
-	pixel_x = -6
+	max_integrity = 25
 	},
 /turf/open/floor/plasteel/dark{
 	color = "#ccc8c0"
@@ -3524,19 +3521,12 @@
 	},
 /area/facility_hallway/east)
 "qt" = (
-/obj/structure/window/reinforced/spawner/north{
-	max_integrity = 25;
-	pixel_y = 128;
-	resistance_flags = 115
-	},
-/obj/structure/window/reinforced/spawner/north{
-	max_integrity = 25;
-	pixel_x = 32;
-	pixel_y = 128;
+/obj/structure/lattice/lava/enkephalin,
+/obj/structure/window/reinforced/spawner/east{
 	resistance_flags = 115
 	},
 /turf/open/lava/enkephalin,
-/area/facility_hallway/west)
+/area/facility_hallway/north)
 "qx" = (
 /obj/effect/turf_decal/siding/green{
 	color = "#006400";
@@ -5459,18 +5449,12 @@
 /turf/open/floor/plating,
 /area/facility_hallway/west)
 "za" = (
-/obj/structure/window/reinforced/spawner/east{
-	density = 0;
-	resistance_flags = 115
-	},
-/obj/structure/window/reinforced/spawner/east{
-	density = 0;
-	pixel_y = -32;
-	resistance_flags = 115
-	},
 /obj/structure/lattice/lava/enkephalin,
+/obj/structure/window/reinforced/spawner{
+	resistance_flags = 115
+	},
 /turf/open/lava/enkephalin,
-/area/facility_hallway/north)
+/area/facility_hallway/west)
 "zc" = (
 /obj/machinery/computer/security/telescreen{
 	dir = 4;
@@ -5515,14 +5499,17 @@
 	},
 /area/facility_hallway/east)
 "zl" = (
-/obj/structure/window/reinforced/spawner/north{
-	density = 0;
-	max_integrity = 25;
-	pixel_x = -128;
+/obj/machinery/light{
+	dir = 4;
+	pixel_x = 9;
+	pixel_y = 4
+	},
+/obj/structure/lattice/lava/enkephalin,
+/obj/structure/window/reinforced/spawner{
 	resistance_flags = 115
 	},
-/turf/closed/indestructible/rock,
-/area/space)
+/turf/open/lava/enkephalin,
+/area/facility_hallway/west)
 "zn" = (
 /obj/effect/turf_decal/siding/thinplating/dark{
 	dir = 1
@@ -5771,7 +5758,6 @@
 /area/department_main/training)
 "Az" = (
 /obj/structure/window/reinforced/spawner/east{
-	density = 0;
 	resistance_flags = 115
 	},
 /obj/structure/lattice/lava/enkephalin,
@@ -5896,16 +5882,11 @@
 /turf/open/floor/carpet/green,
 /area/department_main/safety)
 "AX" = (
-/obj/structure/window/reinforced/spawner/west{
-	max_integrity = 25;
-	resistance_flags = 115
-	},
-/obj/structure/window/reinforced/spawner/west{
-	max_integrity = 25;
-	pixel_y = -32;
-	resistance_flags = 115
-	},
 /obj/structure/lattice/lava/enkephalin,
+/obj/structure/window/reinforced/spawner/west{
+	max_integrity = 25;
+	resistance_flags = 115
+	},
 /turf/open/lava/enkephalin,
 /area/facility_hallway/north)
 "AY" = (
@@ -6428,7 +6409,6 @@
 /area/department_main/command)
 "Dc" = (
 /obj/structure/window/reinforced/spawner{
-	density = 0;
 	resistance_flags = 115
 	},
 /obj/structure/lattice/lava/enkephalin,
@@ -6464,9 +6444,7 @@
 	name = "wing-grade railing";
 	resistance_flags = 115
 	},
-/obj/structure/window/reinforced/spawner{
-	pixel_y = 2
-	},
+/obj/structure/window/reinforced/spawner,
 /obj/machinery/computer/message_monitor{
 	dir = 1
 	},
@@ -6595,18 +6573,12 @@
 /turf/open/floor/facility/dark,
 /area/department_main/command)
 "DJ" = (
-/obj/structure/window/reinforced/spawner{
-	density = 0;
-	resistance_flags = 115
-	},
-/obj/structure/window/reinforced/spawner{
-	density = 0;
-	pixel_x = -32;
-	resistance_flags = 115
-	},
 /obj/structure/lattice/lava/enkephalin,
+/obj/structure/window/reinforced/spawner{
+	resistance_flags = 115
+	},
 /turf/open/lava/enkephalin,
-/area/facility_hallway/north)
+/area/facility_hallway/east)
 "DK" = (
 /obj/structure/disposalpipe/junction/yjunction{
 	dir = 4
@@ -7951,6 +7923,9 @@
 /obj/item/reagent_containers/hypospray/emais{
 	pixel_y = 9
 	},
+/obj/structure/window/reinforced/spawner/east{
+	resistance_flags = 115
+	},
 /turf/open/floor/facility/white,
 /area/department_main/safety)
 "KC" = (
@@ -8067,13 +8042,12 @@
 	},
 /area/facility_hallway/human)
 "Lg" = (
-/obj/structure/window/reinforced/spawner{
-	pixel_x = 32;
-	pixel_y = 32;
+/obj/structure/lattice/lava/enkephalin,
+/obj/structure/window/reinforced/spawner/east{
 	resistance_flags = 115
 	},
 /turf/open/lava/enkephalin,
-/area/facility_hallway/west)
+/area/facility_hallway/south)
 "Lh" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 1
@@ -8152,10 +8126,6 @@
 	view_range = 5
 	},
 /obj/structure/window/reinforced/spawner{
-	resistance_flags = 115
-	},
-/obj/structure/window/reinforced/spawner{
-	pixel_x = -32;
 	resistance_flags = 115
 	},
 /obj/structure/lattice/lava/enkephalin,
@@ -8483,6 +8453,10 @@
 /obj/item/reagent_containers/hypospray/medipen/mental,
 /obj/item/reagent_containers/hypospray/medipen/mental,
 /obj/item/reagent_containers/hypospray/medipen/mental,
+/obj/structure/window/reinforced/spawner/north{
+	max_integrity = 25;
+	resistance_flags = 115
+	},
 /turf/open/floor/facility/white,
 /area/department_main/safety)
 "Ne" = (
@@ -9270,11 +9244,6 @@
 	max_integrity = 25;
 	resistance_flags = 115
 	},
-/obj/structure/window/reinforced/spawner/west{
-	max_integrity = 25;
-	pixel_y = 32;
-	resistance_flags = 115
-	},
 /obj/structure/lattice/lava/enkephalin,
 /turf/open/lava/enkephalin,
 /area/facility_hallway/south)
@@ -9307,12 +9276,9 @@
 /area/facility_hallway/control)
 "Qx" = (
 /obj/structure/window/reinforced/spawner/east{
-	pixel_x = 6;
 	resistance_flags = 115
 	},
 /obj/structure/window/reinforced/spawner/east{
-	pixel_x = 6;
-	pixel_y = 32;
 	resistance_flags = 115
 	},
 /obj/item/toy/plush/mosb,
@@ -9703,7 +9669,6 @@
 	color = "#7D6521"
 	},
 /obj/structure/window/reinforced/spawner/east{
-	pixel_x = 6;
 	resistance_flags = 115
 	},
 /turf/open/floor/plasteel/dark{
@@ -9755,21 +9720,11 @@
 /turf/open/lava/enkephalin,
 /area/facility_hallway/east)
 "SI" = (
-/obj/structure/window/reinforced/spawner{
-	density = 0;
-	resistance_flags = 115
-	},
-/obj/structure/window/reinforced/spawner{
-	density = 0;
-	pixel_x = -32;
-	resistance_flags = 115
-	},
-/obj/structure/window/reinforced/spawner{
-	density = 0;
-	pixel_x = 32;
-	resistance_flags = 115
-	},
 /obj/structure/lattice/lava/enkephalin,
+/obj/structure/window/reinforced/spawner/north{
+	max_integrity = 25;
+	resistance_flags = 115
+	},
 /turf/open/lava/enkephalin,
 /area/facility_hallway/east)
 "SK" = (
@@ -10254,12 +10209,12 @@
 /turf/open/floor/plasteel/dark,
 /area/department_main/safety)
 "Vq" = (
-/obj/structure/window/reinforced/spawner/east{
-	pixel_x = -160;
+/obj/structure/lattice/lava/enkephalin,
+/obj/structure/window/reinforced/spawner{
 	resistance_flags = 115
 	},
-/turf/closed/indestructible/rock,
-/area/space)
+/turf/open/lava/enkephalin,
+/area/facility_hallway/north)
 "Vs" = (
 /obj/effect/turf_decal/siding/red{
 	color = "#440000";
@@ -10609,10 +10564,6 @@
 /turf/open/floor/plasteel/dark,
 /area/department_main/information)
 "Xr" = (
-/obj/structure/window/reinforced/spawner/east{
-	pixel_y = 32;
-	resistance_flags = 115
-	},
 /obj/structure/window/reinforced/spawner/east{
 	resistance_flags = 115
 	},
@@ -40328,7 +40279,7 @@ wP
 wP
 wP
 lT
-eo
+bH
 IY
 IY
 IY
@@ -40585,7 +40536,7 @@ bB
 iP
 iP
 iP
-bB
+zl
 IY
 IY
 IY
@@ -41089,11 +41040,11 @@ Mh
 Yg
 IY
 IY
-IY
+de
 hG
 bH
-Lg
-qt
+IY
+IY
 IY
 Yg
 Mh
@@ -41346,9 +41297,9 @@ Mh
 Yg
 IY
 IY
-IY
+de
 Jr
-iP
+za
 IY
 IY
 IY
@@ -42619,7 +42570,7 @@ Bi
 wM
 Ic
 ys
-tA
+Vq
 oF
 oF
 oF
@@ -42876,7 +42827,7 @@ Bi
 wM
 oo
 ys
-DJ
+Dc
 oF
 oF
 Ok
@@ -43649,8 +43600,8 @@ HD
 Et
 tA
 Dx
+Dx
 AX
-tA
 sB
 Xn
 Xn
@@ -44163,8 +44114,8 @@ qk
 Qc
 tA
 Az
-za
-tA
+Az
+qt
 sB
 CA
 CA
@@ -44184,7 +44135,7 @@ CA
 CA
 CA
 sB
-of
+Lg
 Xr
 AA
 Qp
@@ -46486,11 +46437,11 @@ zA
 kL
 QY
 QY
-ju
+SI
 dy
-ju
+DJ
 QY
-de
+QY
 QY
 kL
 Mh
@@ -47267,7 +47218,7 @@ cH
 ju
 ju
 ju
-cH
+eo
 QY
 QY
 QY
@@ -47524,7 +47475,7 @@ rj
 rj
 rj
 iG
-SI
+xI
 QY
 QY
 QY
@@ -47781,7 +47732,7 @@ ZO
 ZO
 ct
 ed
-ju
+DJ
 QY
 QY
 QY
@@ -55732,8 +55683,8 @@ Mh
 Mh
 Mh
 Mh
-Vq
-zl
+Mh
+Mh
 Mh
 Mh
 Mh
