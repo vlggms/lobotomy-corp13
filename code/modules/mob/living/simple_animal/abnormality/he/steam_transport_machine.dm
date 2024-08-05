@@ -76,16 +76,21 @@
 //Gear Shift - Most mechanics are determined by round time
 /mob/living/simple_animal/hostile/abnormality/steam/proc/GearUpdate()
 	var/new_gear = gear
-	if(world.time >= 75 MINUTES) // Full facility expected
-		new_gear = 4
-	else if(world.time >= 60 MINUTES) // More than one ALEPH
-		new_gear = 3
-	else if(world.time >= 45 MINUTES) // Wowzer, an ALEPH?
-		new_gear = 2
-	else if(world.time >= 30 MINUTES) // Expecting WAW
-		new_gear = 1
-	else
-		new_gear = 0
+	var/facility_full_percentage = 0
+	if(SSabnormality_queue.spawned_abnos) // dont divide by 0
+		facility_full_percentage = 100 * (SSabnormality_queue.spawned_abnos / SSabnormality_queue.rooms_start)
+	// how full the facility is, from 0 abnormalities out of 24 cells being 0% and 24/24 cells being 100%
+	switch(facility_full_percentage)
+		if(0 to 49) // Expecting Hes and Teths still
+			new_gear = 1
+		if(50 to 69)  // Expecting WAW
+			new_gear = 1
+		if(70 to 79) // Wowzer, an ALEPH?
+			new_gear = 2
+		if(80 to 99) // More than one ALEPH
+			new_gear = 3
+		if(100) // Full facility expected
+			new_gear = 4
 	if(gear != new_gear)
 		gear = new_gear
 		ClankSound()

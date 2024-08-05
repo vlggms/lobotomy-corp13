@@ -373,19 +373,29 @@
 	return ..()
 
 /datum/status_effect/chosen/proc/StatUpdate(mob/living/carbon/human/user)
-	var/new_bonus = 0
-	if(world.time >= 75 MINUTES) // Full facility expected
-		new_bonus = 80
-	else if(world.time >= 60 MINUTES) // More than one ALEPH
-		new_bonus = 60
-	else if(world.time >= 45 MINUTES) // Wowzer, an ALEPH?
-		new_bonus = 50
-	else if(world.time >= 30 MINUTES) // Expecting WAW
-		new_bonus = 40
-	else if(world.time >= 15 MINUTES) // Usual time for HEs
-		new_bonus = 30
-	else
-		new_bonus = 20
+	var/new_bonus = 20
+	var/facility_full_percentage = 0
+	if(SSabnormality_queue.spawned_abnos) // dont divide by 0
+		facility_full_percentage = 100 * (SSabnormality_queue.spawned_abnos / SSabnormality_queue.rooms_start)
+	// how full the facility is, from 0 abnormalities out of 24 cells being 0% and 24/24 cells being 100%
+	switch(facility_full_percentage)
+		if(15 to 29) // Shouldn't be anything more than TETHs (4 Abnormalities)
+			new_bonus *= 1.5
+
+		if(29 to 44) // HEs (8 Abnormalities)
+			new_bonus *= 2
+
+		if(44 to 59) // A bit before WAWs (11 Abnormalities)
+			new_bonus *= 2.5
+
+		if(59 to 69) // WAWs around here (15 Abnormalities)
+			new_bonus *= 3
+
+		if(69 to 79) // ALEPHs starting to spawn (17 Abnormalities)
+			new_bonus *= 3.5
+
+		if(79 to 100) // ALEPHs around here (20 Abnormalities)
+			new_bonus *= 4
 	if(new_bonus <= attribute_bonus)
 		return
 	for(var/attribute in user.attributes)
