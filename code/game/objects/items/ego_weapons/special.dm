@@ -1,5 +1,14 @@
 //Abnormality rewards
 //Bottle of Tears
+/**
+ * Here's how it works. It scales with Fortitude.
+ * This is more balanced than it sounds.
+ * Think of it as if Fortitude adjusted base force.
+ * Once you get yourself to 80, an additional scaling factor begins to kick in that will let you keep up through the endgame.
+ * This scaling factor only applies if it's the only weapon in your inventory, however. Use it faithfully, and it can cut through even enemies immune to black.
+ * Why? Because well Catt has been stated to work on WAWs, which means that she's at least level 3-4.
+ * Why is she still using Eyeball Scooper from a Zayin? Maybe it scales with fortitude?
+ */
 /obj/item/ego_weapon/eyeball
 	name = "eyeball scooper"
 	desc = "Mind if I take them?"
@@ -15,6 +24,8 @@
 	)
 
 /obj/item/ego_weapon/eyeball/attack(mob/living/target, mob/living/carbon/human/user)
+	force = initial(force)
+	damtype = initial(damtype)
 	var/userfort = (get_attribute_level(user, FORTITUDE_ATTRIBUTE))
 	var/fortitude_mod = clamp((userfort - 40) / 2 + 2, 0, 50) // 2 at 40 fortitude, 12 at 60 fortitude, 22 at 80 fortitude, 32 at 100 fortitude
 	var/extra_mod = clamp((userfort - 80) * 1.3 + 2, 0, 28) // 2 at 80 fortitude, 28 at 100 fortitude
@@ -41,18 +52,10 @@
 			force *= 0.1
 			damtype = BRUTE //Armor-piercing
 	else
-		icon_state = "eyeball1"				//Cool sprite gone
+		icon_state = "eyeball1" //Cool sprite gone
 	if(ishuman(target))
-		force*=1.3						//I've seen Catt one shot someone, This is also only a detriment lol
-	..()
-	force = initial(force)
-	damtype = initial(damtype)
-
-	/*Here's how it works. It scales with Fortitude. This is more balanced than it sounds. Think of it as if Fortitude adjusted base force.
-	Once you get yourself to 80, an additional scaling factor begins to kick in that will let you keep up through the endgame.
-	This scaling factor only applies if it's the only weapon in your inventory, however. Use it faithfully, and it can cut through even enemies immune to black.
-	Why? Because well Catt has been stated to work on WAWs, which means that she's at least level 3-4.
-	Why is she still using Eyeball Scooper from a Zayin? Maybe it scales with fortitude?*/
+		force *= 1.3 //I've seen Catt one shot someone, This is also only a detriment lol
+	return ..()
 
 //Pile of Mail
 /obj/item/ego_weapon/mail_satchel
@@ -68,14 +71,14 @@
 	attribute_requirements = list(TEMPERANCE_ATTRIBUTE = 20) //pesky clerks!
 
 /obj/item/ego_weapon/mail_satchel/attack(atom/A, mob/living/user, proximity_flag, params)
+	force = initial(force)
 	var/usertemp = (get_attribute_level(user, TEMPERANCE_ATTRIBUTE))
 	var/temperance_mod = clamp((usertemp - 20) / 3 + 2, 0, 20)
 	force = 12 + temperance_mod
-	..()
-	force = initial(force)
-	damtype = initial(damtype)
 	if(prob(30))
 		new /obj/effect/temp_visual/maildecal(get_turf(A))
+
+	return ..()
 
 //Puss in Boots
 /obj/item/ego_weapon/lance/famiglia
