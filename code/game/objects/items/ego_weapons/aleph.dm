@@ -1520,3 +1520,74 @@
 	damage = 25
 	damage_type = PALE_DAMAGE
 	hitsound = "sound/weapons/ego/gasharpoon_bullet_impact.ogg"
+
+
+/obj/item/ego_weapon/support/erlking
+	name = "fused blade of ruined mirror worlds"
+	desc = "May you wake in torment, my dear Catherine."
+	icon_state = "erlking"
+	worn_icon_state = "erlking"
+	lefthand_file = ''
+	righthand_file = ''
+	inhand_x_dimension = 96
+	inhand_y_dimension = 96
+	force = 160
+	attack_speed = 1.5 //I hope thats slow enough, erlcliff swings it around without much issue though?
+	damtype = BLACK_DAMAGE
+	attack_verb_continuous = list("cuts", "slashes", "crushes", "skewers")
+	attack_verb_simple = list("cut", "slash", "crush", "skewer")
+	hitsound = 'sound/items/konigheath2_6_1.wav'
+	var/revive_type = SENTIENCE_ORGANIC //So you can't revive boss monsters or robots with it
+	var/list/exceptions = /mob/living/simple_animal/hostile/abnormality
+	//var/matching_armor = /obj/item/clothing/suit/armor/ego_gear/realization/erlking
+	attribute_requirements = list(
+							FORTITUDE_ATTRIBUTE = 100,
+							PRUDENCE_ATTRIBUTE = 100,
+							TEMPERANCE_ATTRIBUTE = 100,
+							JUSTICE_ATTRIBUTE = 120
+							)
+
+/obj/item/ego_weapon/erlking/attack(mob/living/target, mob/living/user)
+	..()
+	var/userjust = (get_modified_attribute_level(user, JUSTICE_ATTRIBUTE))
+	var/justicemod = 1 + userjust/100
+	var/damage = force * justicemod * force_multiplier
+	target.apply_damage(damage, PALE_DAMAGE, null, target.run_armor_check(null, PALE_DAMAGE), spread_damage = TRUE)
+
+/obj/item/ego_weapon/support/erlking/Pulse(atom/target, mob/living/carbon/human/user, count)
+	..()
+	if(LAZYLEN(SSlobotomy_corp.current_ordeals))
+		for(var/datum/ordeal/O in SSlobotomy_corp.current_ordeals)
+			if(O.level >= 1)
+				to_chat(user, span_notice("This weapon cannot be used during ordeals!"))
+				return //no ordeal prolonging 4 u
+	for(var/mob/living in livinginview(10, user))
+		if(isanimal(target))
+			var/mob/living/simple_animal/M = target
+			if(M.sentience_type == exceptions)
+				to_chat(user, span_info("the [src] does not work on this sort of creature."))
+				return
+			if(M.stat == DEAD)
+				M.faction |= list("erlking", "[REF(user)]")
+				M.revive(full_heal = TRUE, admin_revive = TRUE)
+				if(ishostile(target))
+					var/mob/living/simple_animal/hostile/H = M
+					H.attack_same = 1
+				user.visible_message(span_notice("[user] brings [M] into the hunt."))
+				return
+			else
+				to_chat(user, span_info("[src] is only effective on the dead."))
+				return
+		else
+			to_chat(user, span_info("[src] is only effective on lesser beings."))
+			return
+
+/* /obj/item/ego_weapon/support/erlking/proc/check_suit(mob/living/carbon/user)
+	var/mob/living/carbon/human/H = user
+	var/obj/item/clothing/suit/armor/ego_gear/realization/erlking/P = H.get_item_by_slot(ITEM_SLOT_OCLOTHING)
+	if(!istype(P, matching_armor))
+		Revert()
+		to_chat(current_holder,span_notice("[src] appears unable to release its full potential."))
+		return FALSE
+	return TRUE
+*/
