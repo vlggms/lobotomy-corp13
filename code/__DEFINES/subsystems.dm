@@ -119,6 +119,7 @@
 #define INIT_ORDER_EVENTS 70
 #define INIT_ORDER_JOBS 65
 #define INIT_ORDER_QUIRKS 60
+#define INIT_ORDER_BACKSTORIES 59 //Needs to load after quirks
 #define INIT_ORDER_TICKER 55
 #define INIT_ORDER_TCG 55
 #define INIT_ORDER_MAPPING 50
