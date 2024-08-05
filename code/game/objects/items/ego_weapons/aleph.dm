@@ -229,9 +229,9 @@
 /obj/item/ego_weapon/goldrush
 	name = "gold rush"
 	desc = "The weapon of someone who can swing their weight around like a truck"
-	special = "This weapon 2x damage in a bonus attack after a short windup."
+	special = "This weapon deals its damage after a short windup."
 	icon_state = "gold_rush"
-	force = 70
+	force = 140
 	attribute_requirements = list(
 							FORTITUDE_ATTRIBUTE = 100,
 							PRUDENCE_ATTRIBUTE = 80,
@@ -246,7 +246,9 @@
 /obj/item/ego_weapon/goldrush/attack(mob/living/target, mob/living/user)
 	if(!CanUseEgo(user))
 		return
-	..()
+	if(!finisher_on)
+		..()
+		return
 	if(do_after(user, 5, target))
 
 		target.visible_message(span_danger("[user] rears up and slams into [target]!"), \
