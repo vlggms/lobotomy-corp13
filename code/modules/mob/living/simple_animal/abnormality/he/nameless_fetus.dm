@@ -68,7 +68,7 @@
 /mob/living/simple_animal/hostile/abnormality/fetus/proc/check_players()
 	if(datum_reference.qliphoth_meter == 1)
 		return
-	if(!criesleft)
+	if(criesleft<=0)
 		for(var/mob/living/carbon/human/H in GLOB.player_list)
 			to_chat(H, span_warning("The crying stops. Finally, silence."))
 		return
