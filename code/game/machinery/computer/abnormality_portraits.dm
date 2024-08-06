@@ -178,5 +178,6 @@
 	'icons/UI_Icons/abnormality_portraits/oceanicwaves.png',
 	'icons/UI_Icons/abnormality_portraits/barkley.png',
 	'icons/UI_Icons/abnormality_portraits/mcrib.png',
+	'icons/UI_Icons/abnormality_portraits/pink_shoes.png',
 	)
 	return paths

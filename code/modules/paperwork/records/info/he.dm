@@ -551,3 +551,19 @@
 		"When the work result was Bad, the Qliphoth counter lowered.",
 		"When work was successfully performed, a certain amount of the raw material was converted into nutritous and healing Lifetime Stew, and ejected from the abnormality.",
 		"Employees who consume too much of the Lifetime Stew, or food in general become easy meals for this abnormality.")
+
+//Pink Shoes
+/obj/item/paper/fluff/info/he/pink_shoes
+	abno_type = /mob/living/simple_animal/hostile/abnormality/pink_shoes
+	abno_code = "F-04-147"//F-04-10-13 in LCB
+	abno_info = list(
+		"Employees with temperance level 1 immediately panicked after working on Pink Shoes.",
+		"When the qliphoth counter became 0, Pink Shoes escaped and wove ribbons in the surrounding area.",
+		"When Pink Shoes escaped, it attacked indiscriminately, and any hostile entities attacked would wear them.",
+		"Employees who panic while working on Pink Shoes will decide to wear them.",
+		"Agent Acacia who wore Pink Shoes was asphyxiated during suppression.",
+		"Employees who crossed the ribbons were occasionally bound by them, having their prudence and temperance temporarily reduced.",
+		"Employees with a high temperance attribute were unlikely to be bound by ribbons.",
+		"Employees who perished on the ribbons became entities regarded as F-04-147-01.")
+	abno_breach_damage_type = "White"
+	abno_breach_damage_count = "Moderate"
