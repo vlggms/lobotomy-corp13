@@ -43,11 +43,11 @@
 	var/criesleft
 
 /mob/living/simple_animal/hostile/abnormality/fetus/ZeroQliphoth(mob/living/carbon/human/user)
-	check_players()
-	check_range()
 	for(var/mob/living/carbon/human/H in GLOB.player_list)	//Way harder to get a list of living humans.
 		if(H.stat != DEAD)
 			criesleft+=3		//Get a max of 3 cries per person.
+	check_players()
+	check_range()
 
 	//Are they nearby?
 /mob/living/simple_animal/hostile/abnormality/fetus/proc/check_range()
