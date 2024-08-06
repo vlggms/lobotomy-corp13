@@ -2034,3 +2034,22 @@
 /obj/item/ego_weapon/telepole/ChargeAttack(mob/living/target, mob/living/user)
 	..()
 	//do the thing
+
+/obj/item/ego_weapon/hexnail
+	name = "hex nail"
+	desc = "A bear paw with a couple nails jabbed into the ends of the digits. It's hard not to poke yourself when putting it on."
+	icon_state = "hex_nail"
+	force = 17
+	attack_speed = 0.5
+	swingstyle = WEAPONSWING_LARGESWEEP
+	damtype = BLACK_DAMAGE
+	attack_verb_continuous = list("slashes", "stabs", "slaps")
+	attack_verb_simple = list("slash", "stab", "slap")
+	hitsound = 'sound/weapons/fixer/generic/knife1.ogg'
+	attribute_requirements = list(
+							FORTITUDE_ATTRIBUTE = 40
+							)
+
+/obj/item/ego_weapon/hexnail/melee_attack_chain(mob/user, atom/target, params)
+	..()
+	hitsound = "sound/weapons/fixer/generic/knife[pick(1,2,3,4)].ogg"
