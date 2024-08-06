@@ -2,7 +2,7 @@
 	name = "Bee Infection"
 	form = "Infection"
 	max_stages = 5
-	stage_prob = 33
+	stage_prob = 10
 	spread_text = "Blood"
 	disease_flags = CAN_CARRY
 	spread_flags = DISEASE_SPREAD_BLOOD
@@ -22,7 +22,7 @@
 		return
 
 	var/mob/living/carbon/human/H = affected_mob
-	H.apply_damage(stage*4, RED_DAMAGE, null, H.run_armor_check(null, RED_DAMAGE), spread_damage = TRUE)
+	H.apply_damage(stage*2, RED_DAMAGE, null, H.run_armor_check(null, RED_DAMAGE), spread_damage = TRUE)
 
 	if(H.health <= 0)
 		var/turf/T = get_turf(H)
