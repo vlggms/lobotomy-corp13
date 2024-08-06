@@ -24,11 +24,16 @@
 /turf/open/floor/plasteel/shuttle,
 /area/city/backstreets_room)
 "k" = (
-/mob/living/simple_animal/hostile/ordeal/steel_dawn,
+/obj/effect/spawner/mobspawner/steel_noon_fly{
+	max_spawns = 2
+	},
 /turf/open/floor/plasteel/shuttle,
 /area/city/backstreets_room)
 "l" = (
-/mob/living/simple_animal/hostile/ordeal/steel_dawn/steel_noon/flying,
+/obj/effect/spawner/mobspawner/steel_noon_fly{
+	max_spawns = 1;
+	radius = 0
+	},
 /turf/open/floor/plasteel/shuttle,
 /area/city/backstreets_room)
 "m" = (
@@ -72,6 +77,13 @@
 	dir = 1
 	},
 /area/city/backstreets_room)
+"B" = (
+/obj/item/stack/spacecash/c100,
+/obj/effect/spawner/mobspawner/steel_noon{
+	max_spawns = 2
+	},
+/turf/open/floor/plasteel/shuttle,
+/area/city/backstreets_room)
 "C" = (
 /obj/item/stack/spacecash/c100,
 /turf/open/floor/plasteel/shuttle,
@@ -95,6 +107,13 @@
 /obj/item/dice/fourdd6,
 /turf/open/floor/plasteel/shuttle,
 /area/city/backstreets_room)
+"K" = (
+/obj/effect/spawner/mobspawner/steel_dawn{
+	max_spawns = 3;
+	radius = 2
+	},
+/turf/open/floor/plasteel/shuttle,
+/area/city/backstreets_room)
 "L" = (
 /turf/closed/indestructible/reinforced,
 /area/city/backstreets_room)
@@ -104,7 +123,10 @@
 /turf/open/floor/plasteel/shuttle,
 /area/city/backstreets_room)
 "O" = (
-/mob/living/simple_animal/hostile/ordeal/steel_dawn/steel_noon,
+/obj/effect/spawner/mobspawner/steel_noon_fly{
+	radius = 0;
+	max_spawns = 1
+	},
 /turf/open/floor/plasteel/shuttle,
 /area/city/backstreets_room)
 "Q" = (
@@ -154,14 +176,14 @@ n
 b
 o
 b
-l
+O
 c
 b
 L
 "}
 (4,1,1) = {"
 n
-O
+b
 x
 o
 x
@@ -175,16 +197,16 @@ b
 b
 b
 b
-O
+b
 b
 L
 "}
 (6,1,1) = {"
 n
 b
-l
 b
-C
+b
+B
 b
 G
 L
@@ -212,7 +234,7 @@ L
 (9,1,1) = {"
 b
 b
-k
+b
 H
 p
 b
@@ -223,9 +245,9 @@ L
 n
 b
 b
+K
 b
-b
-l
+k
 f
 L
 "}
@@ -234,14 +256,14 @@ n
 C
 b
 b
-k
+b
 C
 a
 L
 "}
 (12,1,1) = {"
 n
-k
+b
 b
 b
 b
