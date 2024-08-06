@@ -2,6 +2,15 @@
 // Zayin //
 ///////////
 
+// The Dragon's Skull - Dragon Staff (Enkephalin Rush)
+/datum/ego_datum/weapon/dragon_staff
+	item_path = /obj/item/ego_weapon/support/dragon_staff
+	cost = 12
+
+/datum/ego_datum/armor/dragon_staff
+	item_path = /obj/item/clothing/suit/armor/ego_gear/zayin/dragon_staff
+	cost = 12
+
 //////////
 // Teth //
 //////////
@@ -28,6 +37,15 @@
 	item_path = /obj/item/clothing/suit/armor/ego_gear/he/sunspit
 	cost = 35
 
+// Creek Transportation Agency - Security (Enkephalin Rush)
+/datum/ego_datum/weapon/security_ego
+	item_path = /obj/item/ego_weapon/security_ego
+	cost = 35
+
+/datum/ego_datum/armor/security_ego
+	item_path = /obj/item/clothing/suit/armor/ego_gear/he/security_ego
+	cost = 35
+
 /////////
 // Waw //
 /////////
@@ -50,9 +68,30 @@
 	item_path = /obj/item/clothing/suit/armor/ego_gear/waw/miasma
 	cost = 50
 
+// Tools of the Forgotten Farm - Furrows (Enkephalin Rush)
+/**Enable this when the mining subtype is created.
+/datum/ego_datum/weapon/furrows
+	item_path = /obj/item/ego_weapon/furrows
+	cost = 50
+
+//Missing sprites
+/datum/ego_datum/armor/furrows
+	item_path = /obj/item/clothing/suit/armor/ego_gear/waw/furrows
+	cost = 50
+**/
+
 ///////////
 // Aleph //
 ///////////
+
+// The Crying Children - Waxen Pinion
+/datum/ego_datum/weapon/shield/waxen
+	item_path = /obj/item/ego_weapon/shield/waxen
+	cost = 100
+
+/datum/ego_datum/armor/waxen
+	item_path = /obj/item/clothing/suit/armor/ego_gear/aleph/waxen
+	cost = 100
 
 // Old Mother Hunger - Limos
 /datum/ego_datum/weapon/limos
@@ -63,11 +102,11 @@
 	item_path = /obj/item/clothing/suit/armor/ego_gear/aleph/limos
 	cost = 100
 
-// The Crying Children - Waxen Pinion
-/datum/ego_datum/weapon/shield/waxen
-	item_path = /obj/item/ego_weapon/shield/waxen
+//The Beast of the Faraway Cabin - Lucid Nightmares (Enkephalin Rush)
+/datum/ego_datum/weapon/nightmares
+	item_path = /obj/item/ego_weapon/nightmares
 	cost = 100
 
-/datum/ego_datum/armor/waxen
-	item_path = /obj/item/clothing/suit/armor/ego_gear/aleph/waxen
-	cost = 100
+/datum/ego_datum/armor/nightmares
+	item_path = /obj/item/clothing/suit/armor/ego_gear/aleph/nightmares
+	cost = 150

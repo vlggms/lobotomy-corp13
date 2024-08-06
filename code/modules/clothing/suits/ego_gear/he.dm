@@ -327,7 +327,7 @@ Any attempt to code risk class armor will result in a 10 day Github ban.*/
 
 /obj/item/clothing/suit/armor/ego_gear/he/jackrabbit
 	name = "jackrabbit"
-	desc = "A lone rabbit hops down a snowy path in a forest it's blakc antlers matching the dead tree's around it."
+	desc = "A lone rabbit hops down a snowy path in a forest it's black antlers matching the dead trees around it."
 	icon_state = "jackrabbit"
 	armor = list(RED_DAMAGE = 20, WHITE_DAMAGE = 0, BLACK_DAMAGE = 50, PALE_DAMAGE = 0) // 70
 	attribute_requirements = list(
