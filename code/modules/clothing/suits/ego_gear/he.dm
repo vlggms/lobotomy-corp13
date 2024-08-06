@@ -327,7 +327,7 @@ Any attempt to code risk class armor will result in a 10 day Github ban.*/
 
 /obj/item/clothing/suit/armor/ego_gear/he/jackrabbit
 	name = "jackrabbit"
-	desc = "A lone rabbit hops down a snowy path in a forest it's blakc antlers matching the dead tree's around it."
+	desc = "A lone rabbit hops down a snowy path in a forest it's black antlers matching the dead trees around it."
 	icon_state = "jackrabbit"
 	armor = list(RED_DAMAGE = 20, WHITE_DAMAGE = 0, BLACK_DAMAGE = 50, PALE_DAMAGE = 0) // 70
 	attribute_requirements = list(
@@ -489,4 +489,14 @@ Any attempt to code risk class armor will result in a 10 day Github ban.*/
 	armor = list(RED_DAMAGE = 0, WHITE_DAMAGE = 20, BLACK_DAMAGE = 30, PALE_DAMAGE = 20) // 70
 	attribute_requirements = list(
 							FORTITUDE_ATTRIBUTE = 40
+							)
+
+/obj/item/clothing/suit/armor/ego_gear/he/security_ego
+	name = "security"
+	desc = "An armored vest covered in metallic eyeballs. You occasionally feel them moving, as if searching for something."
+	icon_state = "security"
+	flags_inv = NONE
+	armor = list(RED_DAMAGE = 0, WHITE_DAMAGE = 0, BLACK_DAMAGE = 30, PALE_DAMAGE = 40) // 70
+	attribute_requirements = list(
+							JUSTICE_ATTRIBUTE = 40
 							)
