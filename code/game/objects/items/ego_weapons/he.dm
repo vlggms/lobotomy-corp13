@@ -2014,3 +2014,23 @@
 	attribute_requirements = list(
 							FORTITUDE_ATTRIBUTE = 40
 							)
+
+/obj/item/ego_weapon/telepole//FIXME: actually make it do stuff
+	name = "telepole"
+	desc = "A hairy wooden longsword that's covered in barbed wire. It crackles with arcs of electricity."
+	special = "Activating the weapon in your hand allows you to dash, grazing nearby targets with BLACK damage."
+	icon_state = "telepole"
+	lefthand_file = 'icons/mob/inhands/64x64_lefthand.dmi'
+	righthand_file = 'icons/mob/inhands/64x64_righthand.dmi'
+	force = 25
+	damtype = BLACK_DAMAGE
+	attack_verb_continuous = list("slashes", "stabs")
+	attack_verb_simple = list("slash", "stab")
+	attribute_requirements = list(
+							FORTITUDE_ATTRIBUTE = 40
+							)
+	charge = TRUE
+
+/obj/item/ego_weapon/telepole/ChargeAttack(mob/living/target, mob/living/user)
+	..()
+	//do the thing
