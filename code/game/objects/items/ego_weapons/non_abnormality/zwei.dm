@@ -10,6 +10,7 @@
 	force = 55
 	attack_speed = 2
 	damtype = RED_DAMAGE
+	swingstyle = WEAPONSWING_LARGESWEEP
 
 	hitsound = 'sound/weapons/bladeslice.ogg'
 	attack_verb_continuous = list("attacks", "slashes", "stabs", "slices", "tears", "lacerates", "rips", "dices", "cuts")

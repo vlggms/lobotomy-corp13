@@ -110,3 +110,8 @@
 /obj/projectile/ego_bullet/pink/on_hit(atom/target, blocked = FALSE, pierce_hit)
 	..()
 	new /obj/effect/temp_visual/friend_hearts(get_turf(target))//looks better than impact_effect_type and works
+
+/obj/projectile/ego_bullet/arcadia
+	name = "arcadia"
+	damage = 120 // VERY high damage
+	damage_type = RED_DAMAGE

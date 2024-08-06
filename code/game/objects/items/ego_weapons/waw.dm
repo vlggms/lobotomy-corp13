@@ -100,6 +100,7 @@
 	special = "Use in hand to unlock its full power."
 	icon_state = "totalitarianism"
 	force = 80
+	swingstyle = WEAPONSWING_LARGESWEEP
 	attack_speed = 3
 	damtype = RED_DAMAGE
 	attack_verb_continuous = list("cleaves", "cuts")
@@ -130,6 +131,7 @@
 	special = "This weapon builds up charge on every hit. Use the weapon in hand to charge the blade."
 	icon_state = "oppression"
 	force = 13
+	swingstyle = WEAPONSWING_LARGESWEEP
 	attack_speed = 0.3
 	damtype = BLACK_DAMAGE
 	attack_verb_continuous = list("cleaves", "cuts")
@@ -220,7 +222,8 @@
 	special = "Use it in hand to activate ranged attack."
 	icon_state = "crimsonclaw"
 	special = "This weapon hits faster than usual."
-	force = 18
+	force = 17
+	swingstyle = WEAPONSWING_LARGESWEEP
 	attack_speed = 0.5
 	damtype = RED_DAMAGE
 	hitsound = 'sound/abnormalities/redhood/attack_1.ogg'
@@ -325,7 +328,8 @@
 	desc = "Time flows as life does, and life goes as time does."
 	special = "This weapon deals an absurd amount of damage on the 13th hit."
 	icon_state = "thirteen"
-	force = 30
+	force = 28
+	swingstyle = WEAPONSWING_LARGESWEEP
 	damtype = PALE_DAMAGE
 	attack_verb_continuous = list("cuts", "attacks", "slashes")
 	attack_verb_simple = list("cut", "attack", "slash")
@@ -654,7 +658,7 @@
 /obj/item/ego_weapon/mini/mirth
 	name = "mirth"
 	desc = "A round of applause, for the clowns who joined us for tonight’s show!"
-	special = "This weapon can be paired with its sister blade."
+	special = "This weapon can be combined with its sister blade to create a new weapon."
 	icon_state = "mirth"
 	force = 15
 	attack_speed = 0.5
@@ -667,45 +671,28 @@
 							PRUDENCE_ATTRIBUTE = 60
 							)
 
-	var/combo_on = TRUE
-	var/sound = FALSE
 	var/dash_cooldown
 	var/dash_cooldown_time = 4 SECONDS
 	var/dash_range = 6
 
-//Switch between weapons every hit, or don't
-/obj/item/ego_weapon/mini/mirth/attack_self(mob/user)
+/obj/item/ego_weapon/mini/mirth/attackby(obj/item/I, mob/living/user, params)
 	..()
-	if(combo_on)
-		to_chat(user,span_warning("You swap your grip, and will no longer fight with two weapons."))
-		combo_on = FALSE
+	if(!istype(I, /obj/item/ego_weapon/mini/malice))
 		return
-	if(!combo_on)
-		to_chat(user,span_warning("You swap your grip, and will now fight with two weapons."))
-		combo_on =TRUE
-		return
-
-/obj/item/ego_weapon/mini/mirth/attack(mob/living/M, mob/living/user)
-	if(!CanUseEgo(user))
-		return
-	var/combo = FALSE
-	force = 15
-	hitsound = 'sound/weapons/fixer/generic/knife1.ogg'
-	var/mob/living/carbon/human/myman = user
-	var/obj/item/ego_weapon/mini/malice/Y = myman.get_inactive_held_item()
-	if(istype(Y) && combo_on) //dual wielding? if so...
-		combo = TRUE //hits twice, you're spending as much PE as you would getting an ALEPH anyways
-		if(sound)
-			hitsound = 'sound/weapons/fixer/generic/knife3.ogg'
-			sound = FALSE
-		else
-			sound = TRUE
-	..()
-	if(combo)
-		for(var/damage_type in list(RED_DAMAGE))
-			damtype = damage_type
-			M.attacked_by(src, user)
-		damtype = initial(damtype)
+	switch(tgui_alert(user,"Combine [I] and [src] to create a new E.G.O. weapon? This new weapon will require 100 fortitude and 80 of the other attributes to equip.","Combine E.G.O.",list("Yes", "No"), 5 SECONDS))
+		if("Yes")
+			if(get_dist(src, user) > 1 || get_dist(I, user) > 1)
+				to_chat(user, span_notice("You're too far away to perform this combination!"))
+				return
+		if("No")
+			return FALSE
+	playsound(loc, 'sound/items/screwdriver.ogg', 100, TRUE)
+	var/obj/item/ego_weapon/wield/darkcarnival/theweapon = new /obj/item/ego_weapon/wield/darkcarnival(get_turf(src))
+	var/obj/item/ego_weapon/mini/malice/component = I
+	theweapon.force_multiplier = max(component.force_multiplier, force_multiplier)
+	to_chat(user, span_notice("You combine [src] and [I] to create [theweapon]!"))
+	qdel(I)
+	qdel(src)
 
 /obj/item/ego_weapon/mini/mirth/afterattack(atom/A, mob/living/user, proximity_flag, params)
 	if(!CanUseEgo(user))
@@ -723,14 +710,14 @@
 		step_towards(user,A)
 	if((get_dist(user, A) < 2))
 		A.attackby(src,user)
-	playsound(src, 'sound/weapons/fwoosh.ogg', 300, FALSE, 9)
+	playsound(src, 'sound/abnormalities/clownsmiling/jumpscare.ogg', 50, FALSE, 9)
 	to_chat(user, "<span class='warning'>You dash to [A]!")
 
 /obj/item/ego_weapon/mini/malice
 	name = "malice"
 	desc = "Seeing that I wasn't amused, it took out another tool. \
 	I thought it was a tool. Just that moment."
-	special = "This weapon can be paired with its sister blade."
+	special = "This weapon can be combined with its sister blade to create a new weapon."
 	icon_state = "malice"
 	force = 15
 	attack_speed = 0.5
@@ -743,44 +730,28 @@
 							PRUDENCE_ATTRIBUTE = 60
 							)
 
-	var/combo_on = TRUE
-	var/sound = FALSE
 	var/dash_cooldown
 	var/dash_cooldown_time = 4 SECONDS
 	var/dash_range = 6
 
-/obj/item/ego_weapon/mini/malice/attack_self(mob/user)
+/obj/item/ego_weapon/mini/malice/attackby(obj/item/I, mob/living/user, params)
 	..()
-	if(combo_on)
-		to_chat(user,span_warning("You swap your grip, and will no longer fight with two weapons."))
-		combo_on = FALSE
+	if(!istype(I, /obj/item/ego_weapon/mini/mirth))
 		return
-	if(!combo_on)
-		to_chat(user,span_warning("You swap your grip, and will now fight with two weapons."))
-		combo_on =TRUE
-		return
-
-/obj/item/ego_weapon/mini/malice/attack(mob/living/M, mob/living/user)
-	if(!CanUseEgo(user))
-		return
-	var/combo = FALSE
-	force = 15
-	hitsound = 'sound/weapons/fixer/generic/knife3.ogg'
-	var/mob/living/carbon/human/myman = user
-	var/obj/item/ego_weapon/mini/mirth/Y = myman.get_inactive_held_item()
-	if(istype(Y) && combo_on)
-		combo = TRUE //hits twice, you're spending as much PE as you would getting an ALEPH anyways
-		if(sound)
-			hitsound = 'sound/weapons/fixer/generic/knife1.ogg'
-			sound = FALSE
-		else
-			sound = TRUE
-	..()
-	if(combo)
-		for(var/damage_type in list(WHITE_DAMAGE))
-			damtype = damage_type
-			M.attacked_by(src, user)
-		damtype = initial(damtype)
+	switch(tgui_alert(user,"Combine [I] and [src] to create a new E.G.O. weapon? This new weapon will require 100 fortitude and 80 of the other attributes to equip.","Combine E.G.O.",list("Yes", "No"), 5 SECONDS))
+		if("Yes")
+			if(get_dist(src, user) > 1 || get_dist(I, user) > 1)
+				to_chat(user, span_notice("You're too far away to perform this combination!"))
+				return
+		if("No")
+			return FALSE
+	playsound(loc, 'sound/items/screwdriver.ogg', 100, TRUE)
+	var/obj/item/ego_weapon/wield/darkcarnival/theweapon = new /obj/item/ego_weapon/wield/darkcarnival(get_turf(src))
+	var/obj/item/ego_weapon/mini/mirth/component = I
+	theweapon.force_multiplier = max(component.force_multiplier, force_multiplier)
+	to_chat(user, span_notice("You combine [src] and [I] to create [theweapon]!"))
+	qdel(I)
+	qdel(src)
 
 /obj/item/ego_weapon/mini/malice/afterattack(atom/A, mob/living/user, proximity_flag, params)
 	if(!CanUseEgo(user))
@@ -798,7 +769,7 @@
 		step_towards(user,A)
 	if((get_dist(user, A) < 2))
 		A.attackby(src,user)
-	playsound(src, 'sound/weapons/fwoosh.ogg', 300, FALSE, 9)
+	playsound(src, 'sound/abnormalities/clownsmiling/jumpscare.ogg', 50, FALSE, 9)
 	to_chat(user, "<span class='warning'>You dash to [A]!")
 
 /obj/item/ego_weapon/shield/swan
@@ -1006,8 +977,9 @@
 	desc = "Look on my Works, ye Mighty, and despair!"
 	special = "This weapon can remove petrification."
 	icon_state = "pharaoh"
-	force = 20
+	force = 19
 	attack_speed = 0.5
+	swingstyle = WEAPONSWING_LARGESWEEP
 	damtype = WHITE_DAMAGE
 	attack_verb_continuous = list("decimates", "bisects")
 	attack_verb_simple = list("decimate", "bisect")
@@ -1128,7 +1100,8 @@
 	desc = "Many employees have sustained injuries from erroneous calculation."
 	special = "This weapon deals double damage to targets under 20% HP."
 	icon_state = "diffraction"
-	force = 40
+	force = 35
+	swingstyle = WEAPONSWING_LARGESWEEP
 	damtype = WHITE_DAMAGE
 	attack_verb_continuous = list("slices", "cuts")
 	attack_verb_simple = list("slice", "cut")
@@ -1561,6 +1534,7 @@
 	icon_state = "cobalt"
 	force = 24
 	attack_speed = 0.5
+	swingstyle = WEAPONSWING_LARGESWEEP
 	damtype = RED_DAMAGE
 	attack_verb_continuous = list("claws")
 	attack_verb_simple = list("claw")
@@ -1687,8 +1661,9 @@
 	desc = "It was a good day to die, but everybody did."
 	special = "Upon throwing, this weapon returns to the user. Throwing will activate the charge effect."
 	icon_state = "warring2"
-	force = 30
+	force = 28
 	attack_speed = 0.8
+	swingstyle = WEAPONSWING_LARGESWEEP
 	throwforce = 55
 	throw_speed = 1
 	throw_range = 7
@@ -2003,8 +1978,9 @@
 	special = "This weapon has a combo system ending with a dive attack. To turn off this combo system, use in hand. \
 			This weapon has a fast attack speed"
 	icon_state = "abyssal_route"
-	force = 20
+	force = 18
 	damtype = BLACK_DAMAGE
+	swingstyle = WEAPONSWING_LARGESWEEP
 	attack_verb_continuous = list("stabs", "attacks", "slashes")
 	attack_verb_simple = list("stab", "attack", "slash")
 	hitsound = 'sound/weapons/ego/rapier1.ogg'
@@ -2153,3 +2129,27 @@
 		playsound(src.loc, 'sound/weapons/fixer/generic/energy3.ogg', 75, TRUE)
 		return
 	playsound(src.loc, 'sound/abnormalities/clock/turn_on.ogg', 75, TRUE)
+
+/obj/item/ego_weapon/holiday
+	name = "holiday"
+	desc = "This bag is heavy, like the burden of bringing joy to the world every night on Christmas Eve."
+	icon_state = "ultimate_christmas"
+	icon = 'code/modules/mob/living/simple_animal/abnormality/_auxiliary_modes/joke/!icons/ego_weapons.dmi' //Just stealing the ultimate christmas sprites
+	lefthand_file = 'icons/mob/inhands/64x64_lefthand.dmi'
+	righthand_file = 'icons/mob/inhands/64x64_righthand.dmi'
+	inhand_x_dimension = 64
+	inhand_y_dimension = 64
+	force = 54
+	attack_speed = 1.6
+	swingstyle = WEAPONSWING_LARGESWEEP
+	damtype = RED_DAMAGE
+	knockback = KNOCKBACK_MEDIUM
+	attack_verb_continuous = list("bashes", "clubs")
+	attack_verb_simple = list("bashes", "clubs")
+	hitsound = 'sound/abnormalities/rudolta_buff/onrush1.ogg'
+	attribute_requirements = list(
+							FORTITUDE_ATTRIBUTE = 80
+							)
+
+/obj/item/ego_weapon/holiday/get_clamped_volume()
+	return 30

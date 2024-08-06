@@ -18,6 +18,7 @@
 	attack_verb_continuous = list("slices", "slashes", "stabs")
 	attack_verb_simple = list("slice", "slash", "stab")
 	hitsound = 'sound/weapons/bladeslice.ogg'
+	swingstyle = WEAPONSWING_LARGESWEEP
 
 /obj/item/ego_weapon/city/yun/chainsaw
 	name = "yun office chainsword"

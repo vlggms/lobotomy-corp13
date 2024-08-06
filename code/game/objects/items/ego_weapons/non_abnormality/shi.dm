@@ -6,8 +6,9 @@
 	desc = "A blade that is used by Shi Section 2 assassins to go out with honour."
 	special = "Attack yourself with this weapon to instantly kill yourself."
 	icon_state = "shi_dagger"
-	force = 44
+	force = 40
 	damtype = RED_DAMAGE
+	swingstyle = WEAPONSWING_LARGESWEEP
 
 	attack_verb_continuous = list("pokes", "jabs", "tears", "lacerates", "gores")
 	attack_verb_simple = list("poke", "jab", "tear", "lacerate", "gore")
@@ -43,9 +44,10 @@
 	desc = "A blade that is used by Shi Section 2."
 	special = "Use this weapon in hand to immobilize yourself for 1 second, cut your HP by 25%, and deal 2x damage in pale."
 	icon_state = "shiassassin"
-	force = 44
+	force = 42
 	attack_speed = 1.2
 	damtype = RED_DAMAGE
+	swingstyle = WEAPONSWING_LARGESWEEP
 
 	attack_verb_continuous = list("pokes", "jabs", "tears", "lacerates", "gores")
 	attack_verb_simple = list("poke", "jab", "tear", "lacerate", "gore")
@@ -100,7 +102,7 @@
 	name = "shi association veteran sheathed blade"
 	desc = "A blade that is used by Shi Section 2 veterans. It's extremely sharp."
 	icon_state = "shiassassin_vet"
-	force = 52
+	force = 50
 	attribute_requirements = list(
 							FORTITUDE_ATTRIBUTE = 80,
 							PRUDENCE_ATTRIBUTE = 80,
@@ -113,7 +115,7 @@
 	name = "shi association director sheathed blade"
 	desc = "A blade that is used by Shi Section 2 directors. It's extremely sharp."
 	icon_state = "shiassassin_director"
-	force = 65
+	force = 63
 	attribute_requirements = list(
 							FORTITUDE_ATTRIBUTE = 80,
 							PRUDENCE_ATTRIBUTE = 100,
@@ -139,7 +141,7 @@
 /obj/item/ego_weapon/city/shi_assassin/yokai
 	name = "shi association yokai blade"
 	desc = "A unique specialized assassin blade that is used by Shi Section 2. Created for highly armored targets, this one deals pale damage"
-	force = 20
+	force = 18
 	icon_state = "shi_yokai"
 	damtype = PALE_DAMAGE
 

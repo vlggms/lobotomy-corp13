@@ -222,3 +222,53 @@
 		UnregisterSignal(current_holder, COMSIG_MOVABLE_MOVED)
 		UnregisterSignal(current_holder, COMSIG_ATOM_DIR_CHANGE)
 		current_holder = null
+
+/obj/item/gun/ego_gun/arcadia
+	name = "Et in Arcadia Ego"
+	desc = "With the waxing of the sun, humanity wanes."
+	icon_state = "arcadia"
+	inhand_icon_state = "arcadia"
+	special = "Use in hand to load bullets."
+	ammo_type = /obj/item/ammo_casing/caseless/arcadia
+	weapon_weight = WEAPON_HEAVY
+	spread = 5
+	recoil = 1.5
+	fire_sound = 'sound/weapons/gun/rifle/shot_atelier.ogg'
+	vary_fire_sound = TRUE
+	fire_sound_volume = 30
+	fire_delay = 7
+
+	attribute_requirements = list(
+							FORTITUDE_ATTRIBUTE = 80,
+							PRUDENCE_ATTRIBUTE = 80,
+							TEMPERANCE_ATTRIBUTE = 80,
+							JUSTICE_ATTRIBUTE = 100
+							)
+
+
+	shotsleft = 16	//Based off a henry .44
+	reloadtime = 0.5 SECONDS
+
+/obj/item/gun/ego_gun/arcadia/reload_ego(mob/user)
+	if(shotsleft == initial(shotsleft))
+		return
+	is_reloading = TRUE
+	to_chat(user,"<span class='notice'>You start loading a bullet.</span>")
+	if(do_after(user, reloadtime, src)) //gotta reload
+		playsound(src, 'sound/weapons/gun/general/slide_lock_1.ogg', 50, TRUE)
+		shotsleft +=1
+	is_reloading = FALSE
+
+/obj/item/gun/ego_gun/arcadia/judge
+	name = "Judge"
+	desc = "You will be judged; as I have."
+	icon_state = "judge"
+	inhand_icon_state = "judge"
+	weapon_weight = WEAPON_MEDIUM	//Cannot be dual wielded
+	recoil = 2
+	fire_sound_volume = 30
+	fire_delay = 12
+
+
+	shotsleft = 6	//Based off a colt Single Action Navy
+	reloadtime = 0.8 SECONDS

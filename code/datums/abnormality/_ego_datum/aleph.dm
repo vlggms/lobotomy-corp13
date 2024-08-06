@@ -143,7 +143,7 @@
 	item_path = /obj/item/ego_weapon/spicebush/fan
 	cost = 100//appears in wishing well
 
-//Til the Last Shot - Flesh Is Willing
+// Til the Last Shot - Flesh Is Willing
 /datum/ego_datum/armor/willing
 	item_path = /obj/item/clothing/suit/armor/ego_gear/aleph/willing
 	cost = 100
@@ -152,7 +152,7 @@
 	item_path = /obj/item/ego_weapon/willing
 	cost = 100
 
-//Army In Black - Pink
+// Army In Black - Pink
 /datum/ego_datum/armor/pink
 	item_path = /obj/item/clothing/suit/armor/ego_gear/aleph/pink
 	cost = 100
@@ -161,12 +161,12 @@
 	item_path = /obj/item/gun/ego_gun/pink
 	cost = 100
 
-//We Can Change Anything - Iron maiden
+// We Can Change Anything - Iron maiden
 /datum/ego_datum/weapon/iron_maiden
 	item_path = /obj/item/ego_weapon/iron_maiden
 	cost = 1000
 
-//Nobody Is - Mockery
+// Nobody Is - Mockery
 /datum/ego_datum/armor/mockery
 	item_path = /obj/item/clothing/suit/armor/ego_gear/aleph/mockery
 	cost = 100
@@ -175,7 +175,30 @@
 	item_path = /obj/item/ego_weapon/mockery
 	cost = 100
 
-//Ahab Personal E.G.O - Gasharpoon
+// Waxing of the Black Sun - Et in Arcadia ego and Judge
+/datum/ego_datum/armor/arcadia
+	item_path = /obj/item/clothing/suit/armor/ego_gear/aleph/arcadia
+	cost = 100
+
+/datum/ego_datum/weapon/arcadia
+	item_path = /obj/item/gun/ego_gun/arcadia
+	cost = 100
+
+/datum/ego_datum/weapon/judge
+	item_path = /obj/item/gun/ego_gun/arcadia/judge
+	cost = 100
+
+// Ahab Personal E.G.O - Gasharpoon
 /datum/ego_datum/weapon/gasharpoon
 	item_path = /obj/item/ego_weapon/shield/gasharpoon
 	cost = 100//appears in wishing well
+
+//The Giant Atop the Beanstalk - Giant
+/datum/ego_datum/armor/giant
+	item_path = /obj/item/clothing/suit/armor/ego_gear/aleph/giant
+	cost = 100
+
+// Clown Smiling at Me - Dark Carnival
+/datum/ego_datum/weapon/darkcarnival
+	item_path = /obj/item/ego_weapon/wield/darkcarnival
+	cost = 100 //This weapon is normally a result of fusion but is treated as ALEPH for certain purposes

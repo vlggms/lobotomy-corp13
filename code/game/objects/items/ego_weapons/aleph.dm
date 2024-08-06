@@ -112,6 +112,7 @@
 	icon_state = "da_capo"
 	force = 40 // It attacks very fast
 	attack_speed = 0.5
+	swingstyle = WEAPONSWING_LARGESWEEP
 	damtype = WHITE_DAMAGE
 	attack_verb_continuous = list("slashes", "slices", "rips", "cuts")
 	attack_verb_simple = list("slash", "slice", "rip", "cut")
@@ -164,8 +165,9 @@
 	righthand_file = 'icons/mob/inhands/64x64_righthand.dmi'
 	inhand_x_dimension = 64
 	inhand_y_dimension = 64
-	force = 70
+	force = 65
 	damtype = RED_DAMAGE
+	swingstyle = WEAPONSWING_LARGESWEEP
 	attack_verb_continuous = list("slashes", "slices", "rips", "cuts")
 	attack_verb_simple = list("slash", "slice", "rip", "cut")
 	hitsound = 'sound/abnormalities/nothingthere/attack.ogg'
@@ -175,6 +177,7 @@
 							TEMPERANCE_ATTRIBUTE = 80,
 							JUSTICE_ATTRIBUTE = 80
 							)
+
 
 /obj/item/ego_weapon/mimicry/attack(mob/living/target, mob/living/carbon/human/user)
 	if(!CanUseEgo(user))
@@ -201,6 +204,7 @@
 	icon_state = "twilight"
 	worn_icon_state = "twilight"
 	force = 35
+	swingstyle = WEAPONSWING_LARGESWEEP
 	damtype = RED_DAMAGE // It's all damage types, actually
 	attack_verb_continuous = list("slashes", "slices", "rips", "cuts")
 	attack_verb_simple = list("slash", "slice", "rip", "cut")
@@ -328,6 +332,7 @@
 	icon_state = "rosered"
 	force = 80 //Less damage, can swap damage type
 	damtype = RED_DAMAGE
+	swingstyle = WEAPONSWING_LARGESWEEP
 	attack_verb_continuous = list("cuts", "slices")
 	attack_verb_simple = list("cuts", "slices")
 	hitsound = 'sound/weapons/ego/rapier2.ogg'
@@ -364,6 +369,7 @@
 	worn_icon_state = "censored"
 	force = 70	//there's a focus on the ranged attack here.
 	damtype = BLACK_DAMAGE
+	swingstyle = WEAPONSWING_THRUST
 	attack_verb_continuous = list("attacks")
 	attack_verb_simple = list("attack")
 	hitsound = 'sound/weapons/ego/censored1.ogg'
@@ -436,6 +442,7 @@
 	special = "Hitting enemies will mark them. Hitting marked enemies will give different buffs depending on attack type."
 	icon_state = "soulmate"
 	force = 40
+	swingstyle = WEAPONSWING_LARGESWEEP
 	damtype = RED_DAMAGE
 	attack_speed = 0.8
 	attack_verb_continuous = list("cuts", "slices")
@@ -545,6 +552,7 @@
 	icon_state = "space"
 	force = 50	//Half white, half black.
 	damtype = WHITE_DAMAGE
+	swingstyle = WEAPONSWING_LARGESWEEP
 	attack_verb_continuous = list("cuts", "attacks", "slashes")
 	attack_verb_simple = list("cut", "attack", "slash")
 	hitsound = 'sound/weapons/rapierhit.ogg'
@@ -1520,3 +1528,69 @@
 	damage = 25
 	damage_type = PALE_DAMAGE
 	hitsound = "sound/weapons/ego/gasharpoon_bullet_impact.ogg"
+
+/obj/item/ego_weapon/wield/darkcarnival
+	name = "dark carnival"
+	desc = "Get ready! I'm comin' to get ya!"
+	icon_state = "dark_carnival"
+	special = "This weapon deals RED damage when wielded and WHITE otherwise."
+	swingstyle = WEAPONSWING_LARGESWEEP
+	icon_state = "dark_carnival"
+	lefthand_file = 'icons/mob/inhands/64x64_lefthand.dmi'
+	righthand_file = 'icons/mob/inhands/64x64_righthand.dmi'
+	inhand_x_dimension = 64
+	inhand_y_dimension = 64
+	force = 90
+	damtype = WHITE_DAMAGE
+	wielded_attack_speed = 0.5
+	wielded_reach = 2
+	wielded_force = 52
+	attack_speed = 1.2
+	attack_verb_continuous = list("slashes", "slices", "rips", "cuts")
+	attack_verb_simple = list("slash", "slice", "rip", "cut")
+	hitsound = 'sound/abnormalities/clownsmiling/egoslash.ogg'
+	attribute_requirements = list(
+							FORTITUDE_ATTRIBUTE = 100,
+							PRUDENCE_ATTRIBUTE = 80,
+							TEMPERANCE_ATTRIBUTE = 80,
+							JUSTICE_ATTRIBUTE = 80
+							)
+
+	var/dash_cooldown
+	var/dash_cooldown_time = 4 SECONDS
+	var/dash_range = 6
+
+/obj/item/ego_weapon/wield/darkcarnival/OnWield(obj/item/source, mob/user)
+	damtype = RED_DAMAGE
+	hitsound = 'sound/abnormalities/clownsmiling/egostab.ogg'
+	icon_state = "dark_carnival_open"
+	stuntime = 3
+	swingstyle = WEAPONSWING_THRUST
+	return ..()
+
+/obj/item/ego_weapon/wield/darkcarnival/on_unwield(obj/item/source, mob/user)
+	damtype = WHITE_DAMAGE
+	hitsound = 'sound/abnormalities/clownsmiling/egoslash.ogg'
+	icon_state = "dark_carnival"
+	stuntime = 0
+	swingstyle = WEAPONSWING_LARGESWEEP
+	return ..()
+
+/obj/item/ego_weapon/wield/darkcarnival/afterattack(atom/A, mob/living/user, proximity_flag, params)
+	if(!CanUseEgo(user))
+		return
+	if(!isliving(A))
+		return
+	if(dash_cooldown > world.time)
+		to_chat(user, "<span class='warning'>Your dash is still recharging!")
+		return
+	if((get_dist(user, A) < 2) || (!(can_see(user, A, dash_range))))
+		return
+	..()
+	dash_cooldown = world.time + dash_cooldown_time
+	for(var/i in 2 to get_dist(user, A))
+		step_towards(user,A)
+	if((get_dist(user, A) < 2))
+		A.attackby(src,user)
+	playsound(src, 'sound/abnormalities/clownsmiling/jumpscare.ogg', 50, FALSE, 9)
+	to_chat(user, "<span class='warning'>You dash to [A]!")

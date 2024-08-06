@@ -1,4 +1,4 @@
-//Warden - Correctional
+// Warden - Correctional
 /datum/ego_datum/weapon/correctional
 	item_path = /obj/item/gun/ego_gun/correctional
 	cost = 50
@@ -83,7 +83,7 @@
 	item_path = /obj/item/clothing/suit/armor/ego_gear/waw/totalitarianism
 	cost = 50
 
-//Funeral of the Dead Butterflies - Solemn Vow and Solemn Lament
+// Funeral of the Dead Butterflies - Solemn Vow and Solemn Lament
 /datum/ego_datum/weapon/solemnvow
 	item_category = "Weapon (Black Pistol)"
 	item_path = /obj/item/gun/ego_gun/pistol/solemnvow
@@ -141,7 +141,7 @@
 	item_path = /obj/item/gun/ego_gun/ecstasy
 	cost = 50
 
-//Snow Whites Apple - Green_Stem
+// Snow Whites Apple - Green_Stem
 /datum/ego_datum/armor/stem
 	item_path = /obj/item/clothing/suit/armor/ego_gear/waw/stem
 	cost = 50
@@ -245,7 +245,7 @@
 	item_path = /obj/item/ego_weapon/mini/malice
 	cost = 50
 
-//Dream of a Black Swan - Black Swan
+// Dream of a Black Swan - Black Swan
 /datum/ego_datum/weapon/swan
 	item_path = /obj/item/ego_weapon/shield/swan
 	cost = 50
@@ -297,7 +297,6 @@
 	cost = 50
 
 // Servant of Wrath - Blind Rage
-
 /datum/ego_datum/weapon/blind_rage
 	item_path = /obj/item/ego_weapon/blind_rage
 	cost = 50
@@ -346,7 +345,7 @@
 	item_path = /obj/item/ego_weapon/amrita
 	cost = 50
 
-//Yin - Discord
+// Yin - Discord
 /datum/ego_datum/armor/discord
 	item_path = /obj/item/clothing/suit/armor/ego_gear/waw/discord
 	cost = 50
@@ -355,7 +354,7 @@
 	item_path = /obj/item/ego_weapon/discord
 	cost = 50
 
-//Little Red Riding Hood Mercenary - Crimson Scar & Crimson Claw
+// Little Red Riding Hood Mercenary - Crimson Scar & Crimson Claw
 /datum/ego_datum/armor/crimson
 	item_path = /obj/item/clothing/suit/armor/ego_gear/waw/crimson
 	cost = 50
@@ -370,7 +369,7 @@
 	item_path = /obj/item/gun/ego_gun/pistol/crimson
 	cost = 50
 
-//My Sweet Orange Tree - Innocence
+// My Sweet Orange Tree - Innocence
 /datum/ego_datum/armor/innocence
 	item_path = /obj/item/clothing/suit/armor/ego_gear/waw/innocence
 	cost = 50
@@ -385,7 +384,7 @@
 	item_path = /obj/item/gun/ego_gun/pistol/innocence
 	cost = 50
 
-//Baba Yaga - Rimeshank
+// Baba Yaga - Rimeshank
 /datum/ego_datum/armor/rimeshank
 	item_path = /obj/item/clothing/suit/armor/ego_gear/waw/rimeshank
 	cost = 50
@@ -430,7 +429,7 @@
 	item_path = /obj/item/ego_weapon/psychic
 	cost = 50
 
-//Missed Reaper - Grasp
+// Missed Reaper - Grasp
 /datum/ego_datum/weapon/grasp
 	item_path = /obj/item/ego_weapon/grasp
 	cost = 50
@@ -444,7 +443,7 @@
 	item_path = /obj/item/ego_weapon/cobalt
 	cost = 50
 
-//Poor Screenwriter's Note - Scenario
+// Poor Screenwriter's Note - Scenario
 /datum/ego_datum/armor/scene
 	item_path = /obj/item/clothing/suit/armor/ego_gear/waw/scene
 	cost = 50
@@ -453,7 +452,7 @@
 	item_path = /obj/item/ego_weapon/scene
 	cost = 50
 
-//Sign of Roses - Garden Of Thorns
+// Sign of Roses - Garden Of Thorns
 /datum/ego_datum/armor/rosa
 	item_path = /obj/item/clothing/suit/armor/ego_gear/waw/rosa
 	cost = 50
@@ -462,7 +461,7 @@
 	item_path = /obj/item/ego_weapon/rosa
 	cost = 50
 
-//Dream-Devouring Siltcurrent - Blind Obsession/Abyssal-Route
+// Dream-Devouring Siltcurrent - Blind Obsession/Abyssal-Route
 /datum/ego_datum/armor/blind_obsession
 	item_path = /obj/item/clothing/suit/armor/ego_gear/waw/blind_obsession
 	cost = 50
@@ -475,3 +474,11 @@
 	item_path = /obj/item/ego_weapon/abyssal_route
 	cost = 50
 
+// Sandolph - Holiday
+/datum/ego_datum/weapon/holiday
+	item_path = /obj/item/ego_weapon/holiday
+	cost = 50
+
+/datum/ego_datum/armor/holiday
+	item_path = /obj/item/clothing/suit/armor/ego_gear/waw/holiday
+	cost = 50

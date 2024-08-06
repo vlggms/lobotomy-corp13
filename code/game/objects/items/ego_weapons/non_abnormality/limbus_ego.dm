@@ -53,8 +53,9 @@
 	inhand_icon_state = "shiv"
 	lefthand_file = 'icons/mob/inhands/weapons/swords_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/weapons/swords_righthand.dmi'
-	force = 25
+	force = 24
 	attack_speed = 0.5 //this shit goes FAST
+	swingstyle = WEAPONSWING_LARGESWEEP
 	damtype = WHITE_DAMAGE
 	attack_verb_continuous = list("stabs", "slices", "rips", "shanks")
 	attack_verb_simple = list("stab", "slice", "rip", "shank")

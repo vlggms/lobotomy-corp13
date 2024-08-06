@@ -28,6 +28,7 @@
 							TEMPERANCE_ATTRIBUTE = 40,
 							JUSTICE_ATTRIBUTE = 40
 							)
+	swingstyle = WEAPONSWING_LARGESWEEP
 
 /obj/item/ego_weapon/city/liu/fire/examine(mob/user)
 	. = ..()
@@ -55,6 +56,7 @@
 							TEMPERANCE_ATTRIBUTE = 60,
 							JUSTICE_ATTRIBUTE = 60
 							)
+	swingstyle = WEAPONSWING_SMALLSWEEP
 
 /obj/item/ego_weapon/city/liu/fire/spear
 	name = "liu spear"
@@ -69,6 +71,7 @@
 							TEMPERANCE_ATTRIBUTE = 60,
 							JUSTICE_ATTRIBUTE = 80
 							)
+	swingstyle = WEAPONSWING_THRUST
 
 
 /obj/item/ego_weapon/city/liu/fire/sword
@@ -82,6 +85,7 @@
 							TEMPERANCE_ATTRIBUTE = 100,
 							JUSTICE_ATTRIBUTE = 100
 							)
+	swingstyle = WEAPONSWING_LARGESWEEP
 
 
 
