@@ -1,19 +1,21 @@
-/// Returns list of all living agents that can work
-/proc/AllLivingAgents()
+/// Returns list of all living agents that can work (Also Suppression Agents if suppressioncount = TRUE)
+/proc/AllLivingAgents(suppressioncount = FALSE)
 	. = list()
+	var/suppression_roles = list("Emergency Response Agent", "Disciplinary Officer")
 	for(var/mob/living/carbon/human/H in GLOB.player_list)
 		if(H.stat == DEAD)
 			continue
 		if(!(H.mind.assigned_role in GLOB.security_positions))
 			continue
 		if(HAS_TRAIT(H, TRAIT_WORK_FORBIDDEN))
-			continue
+			if(suppressioncount == FALSE || !(H.mind.assigned_role in suppression_roles))
+				continue
 		. += H
 
-/// Returns amount of available agents that can work
-/proc/AvailableAgentCount()
+/// Returns amount of available agents that can work (Also Suppression Agents if suppressioncount = TRUE)
+/proc/AvailableAgentCount(suppressioncount = FALSE)
 	. = 0
-	for(var/mob/living/carbon/human/H in AllLivingAgents())
+	for(var/mob/living/carbon/human/H in AllLivingAgents(suppressioncount))
 		if(!H.client)
 			continue
 		if(!H.mind)

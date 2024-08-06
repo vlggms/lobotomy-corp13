@@ -44,6 +44,15 @@
 	gift_message = "Let the blood flow, the fire ignite, and the star fall."
 	abnormality_origin = ABNORMALITY_ORIGIN_LIMBUS
 
+	observation_prompt = "I'm standing before an altar on top of an impossibly long flight of stairs, the sky is crimson red and the heat from the air licks at my skin painfully. <br>The world is ending. <br>\
+		On the altar is a tied and bound man with a clay mask on his head, he squirms and is clearly crying but I cannot hear his words. <br>\
+		In my hand is a dagger. <br>I know what I have to do."
+	observation_choices = list("Plunge the dagger into his chest", "Cut his bindings")
+	correct_choices = list("Plunge the dagger into his chest")
+	observation_success_message = "I'm laying on an altar, a heavy clay mask is on my head, my arms and legs are tied with thick rope and the air is hot enough to scald my skin. <br>\
+		I see the priest through the pinholes of the mask and plead for him to spare me, before I feel cold metal plunge into my chest."
+	observation_fail_message = "I cut the man free and he thanks me profusely before he speeds down the stairs. <br>He won't make it. <br>I close my eyes and accept the end."
+
 	var/player_count
 	var/other_works_maximum
 	var/other_works = 0
@@ -89,6 +98,7 @@
 /mob/living/simple_animal/hostile/abnormality/doomsday_calendar/death()
 	density = FALSE
 	playsound(src, 'sound/abnormalities/doomsdaycalendar/Doomsday_Dead.ogg', 100, 1)
+	icon = 'ModularTegustation/Teguicons/abno_cores/he.dmi'
 	for(var/mob/living/simple_animal/hostile/doomsday_doll/D in spawned_dolls) //delete the dolls when suppressed
 		D.death()
 		QDEL_IN(D, rand(1,5) SECONDS)
@@ -306,7 +316,7 @@
 		is_fed = TRUE
 		adjustBruteLoss(100)
 		pulse_damage -= 1
-		playsound(get_turf(src),'sound/abnormalities/doomsdaycalendar/Limbus_Dead_Generic.ogg', 50, 1)
+		playsound(get_turf(src),'sound/effects/limbus_death.ogg', 50, 1)
 		AddModifier(/datum/dc_change/sacrificed)
 
 //***Simple Mobs***//

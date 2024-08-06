@@ -1,35 +1,34 @@
 #define STATUS_EFFECT_SLAB /datum/status_effect/stacking/slab
-/obj/structure/toolabnormality/theonite_slab
+/obj/structure/toolabnormality/attribute_giver/theonite_slab
 	name = "theonite slab"
 	desc = "A slab, made out of a seamless mixture of stone and metal. It's covered in runes, and bloody spikes erupt from the centerpiece."
 	icon_state = "slab"
 	var/list/users = list()
+
+	max_boost = 50
+	given_attribute = JUSTICE_ATTRIBUTE
+	given_status_effect = STATUS_EFFECT_SLAB
+	feedback_message = "You caress the slab, and blood painlessly flows from your fingers. The runes begin to glow."
+	full_boost_message = "That's enough."
 
 	ego_list = list(
 		/datum/ego_datum/weapon/divinity,
 		/datum/ego_datum/armor/divinity,
 	)
 
-/obj/structure/toolabnormality/theonite_slab/attack_hand(mob/living/carbon/human/user)
-	..()
-	if(!do_after(user, 6, user))
+/obj/structure/toolabnormality/attribute_giver/theonite_slab/attack_hand(mob/living/carbon/human/user)
+	. = ..()
+	if(!.)
 		return
-	if(get_level_buff(user, JUSTICE_ATTRIBUTE) >= 50)
-		to_chat(user, span_notice("That's enough."))
-		return //You don't need any more.
 
 	flick(icon_state, src)
-	user.adjust_attribute_buff(JUSTICE_ATTRIBUTE, 5)
-	var/datum/status_effect/stacking/slab/S = user.has_status_effect(/datum/status_effect/stacking/slab)
-	if(!(user in users))
-		users += user
-	else
-		user.physiology.pale_mod *= 1.06
-		if(S)
-			S.add_stacks(1)
 
-	user.apply_status_effect(STATUS_EFFECT_SLAB)
-	to_chat(user, span_userdanger("You caress the slab, and blood painlessly flows from your fingers. The runes begin to glow."))
+	if(used_by[user] == 1) // Lets start effects AFTER their first use
+		return
+
+	user.physiology.pale_mod *= 1.06
+	var/datum/status_effect/stacking/slab/status_effect = user.has_status_effect(/datum/status_effect/stacking/slab)
+	status_effect.add_stacks(1)
 
 // Status Effect
 /datum/status_effect/stacking/slab

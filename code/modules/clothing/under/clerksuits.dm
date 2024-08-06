@@ -145,3 +145,7 @@
 	desc = "A sepiatone suit with white undershirt. Used by T-corp staff."
 	icon_state = "tcorp"
 
+/obj/item/clothing/under/suit/lobotomy/jcorp
+	name = "j-corp officer uniform"
+	desc = "A business suit. Used by J-corp staff."
+	icon_state = "agent" //Placeholder until a sprite is made

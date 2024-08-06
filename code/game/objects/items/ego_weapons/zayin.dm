@@ -120,6 +120,14 @@
 		L.adjustBruteLoss(pulse_healing)
 		to_chat(L, span_nicegreen("Fairies come from [user] to heal your wounds."))
 
+/obj/item/ego_weapon/support/wingbeat/suicide_act(mob/living/carbon/user)
+	. = ..()
+	user.visible_message(span_suicide("[user] yells to the fairies around [user.p_them()] that [user.p_they()] won't spend time with the fairies anymore! It looks like [user.p_theyre()] trying to commit suicide!"))
+	playsound(user, 'sound/abnormalities/fairyfestival/fairy_festival_bite.ogg', 50, TRUE, -1)
+	user.unequip_everything()
+	user.dust()
+	return MANUAL_SUICIDE
+
 /obj/item/ego_weapon/change
 	name = "change"
 	desc = "A hammer made with the desire to change anything"

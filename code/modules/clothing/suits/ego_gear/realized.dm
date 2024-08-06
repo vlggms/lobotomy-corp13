@@ -81,7 +81,14 @@ No Ability	250
 	realized_ability = /obj/effect/proc_holder/ability/brokencrown
 	hat = /obj/item/clothing/head/ego_hat/brokencrown
 
-/obj/item/clothing/suit/armor/ego_gear/realization/brokencrown/attackby(obj/item/I, mob/living/user, params)
+/obj/item/clothing/suit/armor/ego_gear/realization/brokencrown/dropped(mob/user) //Reload the item automatically if dropped
+	for(var/datum/action/spell_action/ability/item/theability in actions)
+		if(istype(theability.target, /obj/effect/proc_holder/ability/brokencrown))
+			var/obj/effect/proc_holder/ability/brokencrown/power = theability.target
+			power.Reabsorb()
+	. = ..()
+
+/obj/item/clothing/suit/armor/ego_gear/realization/brokencrown/attackby(obj/item/I, mob/living/user, params) //Reload the item
 	for(var/datum/action/spell_action/ability/item/theability in actions)
 		if(istype(theability.target, /obj/effect/proc_holder/ability/brokencrown))
 			var/obj/effect/proc_holder/ability/brokencrown/power = theability.target
@@ -158,6 +165,18 @@ No Ability	250
 	desc = "Spring is coming."
 	worn_icon = 'icons/mob/clothing/big_hat.dmi'
 	icon_state = "sakura"
+
+/obj/item/clothing/suit/armor/ego_gear/realization/stupor
+	name = "stupor"
+	desc = "Drink! Drink yourselves into a stupor! Foul tasting louts like you won't satisfy me until you're all as pickled as me, hah!" //Descriptions made by Anonmare
+	icon_state = "stupor" //Art by TemperanceTempy
+	armor = list(RED_DAMAGE = 80, WHITE_DAMAGE = 30, BLACK_DAMAGE = 50, PALE_DAMAGE = 70)		//Defensive
+	hat = /obj/item/clothing/head/ego_hat/stupor
+
+/obj/item/clothing/head/ego_hat/stupor
+	name = "stupor"
+	desc = "Many people look for oblivion at the bottom of the glass, I can't be blamed if I give it to 'em now, can I?"
+	icon_state = "stupor"
 
 /* HE Realizations */
 

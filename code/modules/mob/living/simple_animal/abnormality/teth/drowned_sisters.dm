@@ -28,6 +28,13 @@
 	gift_type =  /datum/ego_gifts/sorority
 	abnormality_origin = ABNORMALITY_ORIGIN_WONDERLAB
 
+	observation_prompt = "You sit cross-legged before the pair, flowers conceal their faces and expression. <br>\
+		\"Ahh, woe is us. We have become sinners. Please hear us, hear of our sins that we do not know we've committed, and absolve us of our grief...\""
+	observation_choices = list("Listen to their story", "Don't listen")
+	correct_choices = list("Listen to their story", "Don't listen")
+	observation_success_message = "You exit the cell, their story leaving your mind and voices on the wind but their sorrow remains. <br>\
+		You'll be back again and still won't understand their grief."
+
 	var/breaching = FALSE
 
 //Work Mechanics

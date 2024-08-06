@@ -47,6 +47,13 @@
 		/mob/living/simple_animal/hostile/abnormality/faelantern = 1.5,
 	)
 
+	observation_prompt = "\"Care for a drink?\""
+	observation_choices = list("Yes", "No")
+	correct_choices = list("Yes")
+	observation_success_message = "\"Yer a good drinkin buddy as any!\""
+	observation_fail_message = "\"Pssh! you're no fun!\" <br>\
+		The fairy walks away, stumbling along the way."
+
 	var/can_act = TRUE
 	var/jump_cooldown = 0
 	var/jump_cooldown_time = 8 SECONDS

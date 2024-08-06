@@ -747,7 +747,7 @@
 /mob/living/simple_animal/hostile/spicebush_plant/proc/HealPulse()
 	pulse_cooldown = world.time + pulse_cooldown_time
 	//playsound(src, 'sound/abnormalities/rudolta/throw.ogg', 50, FALSE, 4)//TODO: proper SFX goes here
-	for(var/mob/living/carbon/human/L in livinginrange(8, src))//livinginview(8, src))
+	for(var/mob/living/carbon/human/L in range(8, src))//livinginview(8, src))
 		if(L.stat == DEAD || L.is_working)
 			continue
 		L.adjustBruteLoss(-2)
@@ -1002,13 +1002,14 @@
 /* Wishing Well - Broken Crown */
 /obj/effect/proc_holder/ability/brokencrown
 	name = "Broken Crown"
-	desc = "Extract a random empowered E.G.O. weapon once, return it to the armor to try for a different weapon."
+	desc = "Extract a random empowered E.G.O. weapon once, return it to the armor to try for a different weapon. The item will automatically be returned if the armor is taken off."
 	action_icon_state = "brokencrown0"
 	base_icon_state = "brokencrown"
 	cooldown_time = 5 MINUTES
 	var/obj/structure/toolabnormality/wishwell/linked_structure
 	var/list/ego_list = list()
 	var/obj/item/ego_weapon/chosenEGO
+	var/obj/item/linkeditem = null
 	var/ready = TRUE
 
 /obj/effect/proc_holder/ability/brokencrown/proc/Absorb(obj/item/I, mob/living/user)
@@ -1064,6 +1065,7 @@
 			egoweapon.name = "shimmering [egoweapon.name]"
 			egoweapon.set_light(3, 6, "#D4FAF37")
 			egoweapon.color = "#FFD700"
+			linkeditem = egoweapon
 
 		else if(ispath(ego, /obj/item/gun/ego_gun))
 			var/obj/item/gun/ego_gun/egogun = new ego(get_turf(user))
@@ -1071,8 +1073,16 @@
 			egogun.name = "shimmering [egogun.name]"
 			egogun.set_light(3, 6, "#D4FAF37")
 			egogun.color = "#FFD700"
+			linkeditem = egogun
 		ready = FALSE
 		return ..()
+
+/obj/effect/proc_holder/ability/brokencrown/proc/Reabsorb()
+	if(linkeditem && !ready)
+		linkeditem.visible_message(span_userdanger("<font color='#CECA2B'>[linkeditem] glows brightly for a moment then... fades away without a trace.</font>"))
+		qdel(linkeditem)
+		ready = TRUE
+	return
 
 /* Opened Can of Wellcheers - Wellcheers */
 /obj/effect/proc_holder/ability/wellcheers

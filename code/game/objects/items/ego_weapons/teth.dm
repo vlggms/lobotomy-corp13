@@ -12,13 +12,15 @@
 	desc = "The spear often tries to lead the wielder into a long and endless realm of mind, \
 	but they must try to not be swayed by it."
 	icon_state = "fragment"
-	force = 22
+	force = 33
 	reach = 2		//Has 2 Square Reach.
+	stuntime = 5	//Longer reach, gives you a short stun.
 	attack_speed = 1.2
 	damtype = BLACK_DAMAGE
 	attack_verb_continuous = list("pokes", "jabs", "tears", "lacerates", "gores")
 	attack_verb_simple = list("poke", "jab", "tear", "lacerate", "gore")
 	hitsound = 'sound/weapons/ego/spear1.ogg'
+
 
 /obj/item/ego_weapon/horn
 	name = "horn"
@@ -72,8 +74,9 @@
 	desc = "The flesh cleanly cut by a sharp tool creates a grotesque pattern with the bloodstains on the suit."
 	special = "Use this weapon in hand to dodgeroll."
 	icon_state = "wrist"
-	force = 7
-	attack_speed = 0.3
+	force = 12
+	attack_speed = 0.5
+	swingstyle = WEAPONSWING_LARGESWEEP
 	damtype = WHITE_DAMAGE
 	hitsound = 'sound/weapons/fixer/generic/knife2.ogg'
 	var/dodgelanding
@@ -107,6 +110,7 @@
 	special = "Upon throwing, this weapon returns to the user."
 	icon_state = "blossoms"
 	force = 17
+	swingstyle = WEAPONSWING_LARGESWEEP
 	throwforce = 30
 	throw_speed = 1
 	throw_range = 7
@@ -130,13 +134,15 @@
 	force = 13
 	attack_speed = 0.5
 	damtype = RED_DAMAGE
+	swingstyle = WEAPONSWING_LARGESWEEP
 	hitsound = 'sound/weapons/slashmiss.ogg'
 
 /obj/item/ego_weapon/mini/trick
 	name = "hat trick"
 	desc = "Imagination is the only weapon in the war with reality."
 	icon_state = "trick"
-	force = 16
+	force = 15
+	swingstyle = WEAPONSWING_LARGESWEEP
 	throwforce = 35		//You can only hold 4 so go nuts.
 	throw_speed = 5
 	throw_range = 7
@@ -195,8 +201,9 @@
 	name = "magic bean"
 	desc = "We may never find out what lies at the top, but perhaps those who made it are doing well up there."
 	icon_state = "bean"
-	force = 20
+	force = 18
 	damtype = BLACK_DAMAGE
+	swingstyle = WEAPONSWING_LARGESWEEP
 	attack_verb_continuous = list("slices", "slashes", "stabs")
 	attack_verb_simple = list("slice", "slash", "stab")
 	hitsound = 'sound/weapons/fixer/generic/knife3.ogg'
@@ -447,6 +454,7 @@
 	icon_state = "fourleaf_clover"
 	force = 12
 	attack_speed = 0.5
+	swingstyle = WEAPONSWING_LARGESWEEP
 	damtype = RED_DAMAGE
 	attack_verb_continuous = list("slices", "slashes", "stabs")
 	attack_verb_simple = list("slice", "slash", "stab")
@@ -541,6 +549,7 @@
 	inhand_y_dimension = 96
 	force = 22
 	reach = 2		//Has 2 Square Reach.
+	stuntime = 6	//Longer reach, gives you a short stun.
 	attack_speed = 1.8// really slow
 	damtype = WHITE_DAMAGE
 	attack_verb_continuous = list("bludgeons", "whacks")

@@ -33,10 +33,6 @@
 	AddElement(/datum/element/ridable, /datum/component/riding/creature/human)
 	GLOB.human_list += src
 
-	//Crit stuff. Each Fort gets you 0.5 more soft crit health, and 0.5 more hard crit health
-	crit_threshold -= get_attribute_level(src, FORTITUDE_ATTRIBUTE)/2
-	hardcrit_threshold -= get_attribute_level(src, FORTITUDE_ATTRIBUTE)
-
 /mob/living/carbon/human/proc/init_attributes()
 	for(var/type in GLOB.attribute_types)
 		if(ispath(type, /datum/attribute))
@@ -78,22 +74,51 @@
 		to_chat(viewer, "<span class='warning'>[src] has no attributes!</span>")
 		return
 
-	var/list/dat = list()
-	dat += "<b>[real_name]</b><br>"
-	dat += "Level [get_text_level()]<br>"
+	ui_interact(viewer)
+
+/mob/living/carbon/human/ui_static_data(mob/user)
+	. = ..()
+	.["name"] = real_name
+
+/mob/living/carbon/human/ui_data(mob/user)
+	. = ..()
+	.["level"] = get_text_level()
+	.["attributes"] = list()
+	.["stats"] = list()
+	if(!attributes)
+		return
 	for(var/atrname in attributes)
 		var/datum/attribute/atr = attributes[atrname]
-		dat += "[atr.name] [get_attribute_text_level(atr.get_level())]: [round(atr.level)]/[round(atr.level_limit)] + [round(atr.level_buff)]"
-
-	dat += ""
-	for(var/atrname in attributes) //raw stats (health, sanity etc)
-		var/datum/attribute/atr = attributes[atrname]
+		.["attributes"] += atrname
+		.[atrname + "name"] = atrname
+		.[atrname + "level_text"] = get_attribute_text_level(atr.get_level())
+		.[atrname + "level_current"] = round(atr.level)
+		.[atrname + "level_max"] = round(atr.level_limit)
+		.[atrname + "level_buff"] = atr.level_buff
 		for(var/stat in atr.affected_stats)
-			dat += "[stat] : [atr.get_printed_level_bonus() + atr.get_level_buff()] + [round(atr.stat_bonus)]" //todo: calculate work chance/speed/etc for respective values
+			.["stats"] += stat
+			.[stat + "name"] = stat
+			.[stat + "base"] = atr.get_printed_level_bonus() + atr.get_level_buff()
+			.[stat + "bonus"] = round(atr.get_stat_bonus())
 
-	var/datum/browser/popup = new(viewer, "skills", "<div align='center'>Attributes</div>", 300, 350)
-	popup.set_content(dat.Join("<br>"))
-	popup.open(FALSE)
+/mob/living/carbon/human/ui_interact(mob/user, datum/tgui/ui)
+	. = ..()
+	ui = SStgui.try_update_ui(user, src, ui)
+	if(!ui)
+		ui = new(user, src, "ShowAttributes")
+		ui.open()
+
+/mob/living/carbon/human/ui_act(action, list/params)
+	. = ..()
+	if(.)
+		return
+
+	switch(action)
+		if("show_gifts")
+			ShowGifts()
+			return TRUE
+
+	return FALSE
 
 /mob/living/carbon/human/verb/show_gifts_self()
 	set category = "IC"
@@ -1068,7 +1093,7 @@
 	remove_all_embedded_objects()
 	set_heartattack(FALSE)
 	drunkenness = 0
-	adjustSanityLoss(-maxSanity)
+	adjustSanityLoss(-maxSanity, TRUE)
 	for(var/datum/mutation/human/HM in dna.mutations)
 		if(HM.quality != POSITIVE)
 			dna.remove_mutation(HM.name)

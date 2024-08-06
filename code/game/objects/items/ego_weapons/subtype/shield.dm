@@ -24,6 +24,7 @@
 /obj/item/ego_weapon/shield
 	attack_speed = 3
 	force = 40
+	swingstyle = FALSE
 	var/attacking = FALSE
 	var/block = FALSE
 	var/block_success

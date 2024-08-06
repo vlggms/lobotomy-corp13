@@ -30,6 +30,19 @@
 	)
 	gift_type =  /datum/ego_gifts/horn
 	abnormality_origin = ABNORMALITY_ORIGIN_LOBOTOMY
+
+	observation_prompt = "I see blood puddle here and there in the room. \
+		This is not the blood of employees. I hear the monster roaring. It wants to die. Every single day. \
+		These puddles are evidence of monster's futile struggle to end its life. \
+		\"Kill me. Stab me with that knife you have.\" The monster cannot talk. However, the soul trapped in it can talk and I can hear it. \
+		\"Why are you not helping me when you can hear me?\" The monster asks reproachfully."
+	observation_choices = list("Because I don't have a knife.", "Because this problem can't be solved with death.")
+	correct_choices = list("Because this problem can't be solved with death.")
+	observation_success_message = "'That's not important. Every single second is an agony for me. \
+		Death is a prize compared to this endless pain.' \"But you are right. It is your job to solve it. Not mine.\" \
+		\"Child, would you make a promise? Would you free me from this cycle when you are ready?\""
+	observation_fail_message = "You are lying. You know you can pull out that knife out from your pocket whenever you want."
+
 	var/injured = FALSE
 
 //it needs to use PostSpawn or we can't get the datum of beauty

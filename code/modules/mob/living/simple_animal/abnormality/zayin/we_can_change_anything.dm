@@ -44,6 +44,16 @@
 		/mob/living/simple_animal/hostile/abnormality/cleaner = 1.5,
 	)
 
+	observation_prompt = "Is your child a troublemaker who cries all the time? We can change that! <br>\
+		Don’t like how you look? Are you too fat? Too skinny? We can change that! <br>\
+		Is your house suffering from an outage because you don’t have the money to pay for the power bill? <br>\
+		We can change that!<br>\
+		It’s quite simple. Just open up the machine, step inside, and press the button to make it shut."
+	observation_choices = list("Enter the machine")
+	correct_choices = list("Enter the machine")
+	observation_success_message = "You step inside the machine, it's just as comfortable as advertised. <br>\
+		Now everything will be just fine."
+
 	var/grinding = FALSE
 	var/grind_duration = 5 SECONDS
 	var/grind_damage = 2 // Dealt 100 times

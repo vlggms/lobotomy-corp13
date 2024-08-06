@@ -31,29 +31,6 @@
 	H.adjust_attribute_buff(TEMPERANCE_ATTRIBUTE, 5)
 	H.adjust_attribute_buff(JUSTICE_ATTRIBUTE, 5)
 
-/datum/quirk/fluffy_tongue //not positive, but it costs points so we ball
-	name = "Fluffy Tongue"
-	desc = "You offended the wrong people and have been forced to undergo experimental surgery as punishment. You regret your existance."
-	value = 6
-	gain_text = "<span class='danger'>How can I bear to speak to my co-workers now?</span>"
-	medical_record_text = "Patient has gotten \"uwufication\" surgery by order of the Head. The condition is not to be treated."
-//	hardcore_value = -2 // un-comment to let hardcore random cause chaos, unrecommended
-
-/datum/quirk/fluffy_tongue/on_spawn()
-	RegisterSignal(quirk_holder, COMSIG_MOB_SAY, PROC_REF(handle_speech))
-
-/datum/quirk/fluffy_tongue/proc/handle_speech(datum/source, list/speech_args)
-	var/message = speech_args[SPEECH_MESSAGE]
-	if(message[1] != "*")
-		message = replacetext(message, "ne", "nye")
-		message = replacetext(message, "nu", "nyu")
-		message = replacetext(message, "na", "nya")
-		message = replacetext(message, "no", "nyo")
-		message = replacetext(message, "ove", "uv")
-		message = replacetext(message, "r", "w")
-		message = replacetext(message, "l", "w")
-	speech_args[SPEECH_MESSAGE] = message
-
 // Special quirks end
 
 /datum/quirk/musician

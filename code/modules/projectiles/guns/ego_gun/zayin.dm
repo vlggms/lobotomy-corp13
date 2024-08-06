@@ -285,6 +285,11 @@
 	var/list/lootoptions = list(
 		/obj/item/reagent_containers/food/drinks/soda_cans/wellcheers_red,
 		/obj/item/reagent_containers/food/drinks/soda_cans/wellcheers_white,
+		/obj/item/food/salad/lifestew,
+		/obj/item/reagent_containers/food/drinks/fairywine,
+		/obj/item/food/breadslice/plain,
+		/obj/item/food/mint,
+		/obj/item/food/rationpack,
 		/obj/item/clothing/mask/facehugger/bongy,
 		/obj/item/clothing/neck/tie/black,
 		/obj/item/clothing/neck/tie/blue,
@@ -303,7 +308,8 @@
 		/obj/item/trash/popcorn,
 		/obj/item/trash/sosjerky,
 		/obj/item/trash/plate,
-		/obj/item/trash/pistachios)
+		/obj/item/trash/pistachios,
+		/obj/item/food/candy_corn/prison,)
 	for(var/mob/living/carbon/human/L in livinginview(5, user))
 		if((!ishuman(L)) || L.stat == DEAD || L == user)
 			continue

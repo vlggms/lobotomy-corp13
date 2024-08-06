@@ -8,6 +8,7 @@
 	inhand_icon_state = "index"
 	force = 37
 	damtype = PALE_DAMAGE
+	swingstyle = WEAPONSWING_LARGESWEEP
 
 	attack_verb_continuous = list("smacks", "hammers", "beats")
 	attack_verb_simple = list("smack", "hammer", "beat")
@@ -108,6 +109,7 @@
 	hitsound = 'sound/weapons/fixer/generic/nail1.ogg'
 	attack_speed = 1.2
 	reach = 2
+	swingstyle = WEAPONSWING_THRUST
 
 //Fockin massive sword
 /obj/item/ego_weapon/city/index/yan

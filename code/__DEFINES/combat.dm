@@ -78,11 +78,12 @@
 #define CANUNCONSCIOUS	(1<<2)
 #define CANPUSH			(1<<3)
 #define GODMODE			(1<<4)
+#define MUST_HIT_PROJECTILE (1<<5)
 
 //Health Defines
 #define HEALTH_THRESHOLD_CRIT 0
-#define HEALTH_THRESHOLD_FULLCRIT -10		//increased later.
-#define HEALTH_THRESHOLD_DEAD -20
+#define HEALTH_THRESHOLD_FULLCRIT -15		//increased later.
+#define HEALTH_THRESHOLD_DEAD -30
 
 #define HEALTH_THRESHOLD_NEARDEATH -30 //Not used mechanically, but to determine if someone is so close to death they hear the other side
 

@@ -64,3 +64,8 @@
 	name = "syrinx casing"
 	desc = "A syrinx casing."
 	projectile_type = /obj/projectile/ego_bullet/ego_syrinx
+
+/obj/item/ammo_casing/caseless/ego_ardor
+	name = "ardor star casing"
+	desc = "A ardor star casing."
+	projectile_type = /obj/projectile/ego_bullet/ardor_star

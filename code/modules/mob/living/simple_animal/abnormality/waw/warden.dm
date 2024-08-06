@@ -39,6 +39,19 @@
 	)
 	gift_type =  /datum/ego_gifts/correctional
 	abnormality_origin = ABNORMALITY_ORIGIN_ARTBOOK
+
+	observation_prompt = "She wanders the facility's halls, doing her rounds and picking the last of us off. <br>\
+		As far as I know it's just me left. <br>\
+		The site burial went off and escape is impossible, yet, the other abnormalities remain in their cells - if they leave she forces them back inside. <br>\
+		Maybe if I enter one of the unused cells, she might leave me alone?"
+	observation_choices = list("Enter a cell", "Surrender to her")
+	correct_choices = list("Enter a cell")
+	observation_success_message = "I step inside and lock the door behind me, <br>I'm stuck inside. <br>\
+		She passes by the containment unit and peers through the glass and seems satisfied."
+	observation_fail_message = "Steeling myself, I confront her during one of her rounds. <br>I tell her I'm tired and just want it to end. <br>\
+		She gets closer and lifts her skirt(?) and I'm thrust underneath, my colleagues are here- they're alive and well! <br>\
+		But, they seem despondent. <br>One looks at me says simply; \"In here, you're with us. Forever.\""
+
 	var/finishing = FALSE
 
 /mob/living/simple_animal/hostile/abnormality/warden/AttackingTarget()

@@ -35,6 +35,23 @@
 	)
 	gift_type = /datum/ego_gifts/rosa
 	abnormality_origin = ABNORMALITY_ORIGIN_LIMBUS
+
+	observation_prompt = "What does this signboard say? <br>\
+		It hangs itself on a tree, trying to make its content known. <br>\
+		Its desperation is almost pitiable."
+	observation_choices = list("Pick a rose", "Unravel the brambles")
+	correct_choices = list("Pick a rose")
+	observation_success_message = "You pick a rose out of it. <br>\
+		With closer examination, you notice <br>\
+		that it has an intestinal texture. <br>\
+		What is a flower-shaped organ for?"
+	observation_fail_message = "As you try to untangle the vines, <br>\
+		sallow bits of flesh fall off. <br>\
+		The thorny brambles you thought were a source of constricting pain <br>\
+		ironically had been keeping the body together. <br>\
+		The body writhes as its flesh falls apart. <br>\
+		Blossoms of flowers sprawled on the ground substitute its screams."
+
 	var/list/work_roses = list()
 	var/list/work_damages = list()
 	var/list/summoned_roses = list()
@@ -65,6 +82,7 @@
 /mob/living/simple_animal/hostile/abnormality/rose_sign/death()
 	for(var/mob/living/R in summoned_roses)
 		R.death()
+	icon = 'ModularTegustation/Teguicons/abno_cores/waw.dmi'
 	density = FALSE
 	animate(src, alpha = 0, time = 10 SECONDS)
 	QDEL_IN(src, 10 SECONDS)

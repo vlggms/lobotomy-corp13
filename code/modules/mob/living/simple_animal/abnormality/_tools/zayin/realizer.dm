@@ -21,6 +21,7 @@
 		/obj/item/clothing/suit/armor/ego_gear/teth/wrist 			= /obj/item/clothing/suit/armor/ego_gear/realization/exsanguination,
 		/obj/item/clothing/suit/armor/ego_gear/teth/match 			= /obj/item/clothing/suit/armor/ego_gear/realization/ember_matchlight,
 		/obj/item/clothing/suit/armor/ego_gear/teth/blossoms 		= /obj/item/clothing/suit/armor/ego_gear/realization/sakura_bloom,
+		/obj/item/clothing/suit/armor/ego_gear/teth/sloshing		= /obj/item/clothing/suit/armor/ego_gear/realization/stupor,
 		// HE
 		/obj/item/clothing/suit/armor/ego_gear/he/grinder 			= /obj/item/clothing/suit/armor/ego_gear/realization/grinder,
 		/obj/item/clothing/suit/armor/ego_gear/he/magicbullet		= /obj/item/clothing/suit/armor/ego_gear/realization/bigiron,
@@ -132,7 +133,7 @@
 	for(var/attribute in user.attributes)
 		stat_total += get_raw_level(user, attribute)
 
-	if(stat_total <= 500) // ~125 in all stats required
+	if(stat_total < 500) // ~125 in all stats required
 		to_chat(user, span_warning("You are too weak to use this machine."))
 		return
 

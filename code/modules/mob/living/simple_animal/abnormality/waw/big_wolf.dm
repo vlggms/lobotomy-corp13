@@ -57,6 +57,16 @@
 	gift_type =  /datum/ego_gifts/cobalt
 	abnormality_origin = ABNORMALITY_ORIGIN_LOBOTOMY
 
+	observation_prompt = "(You see a wolf with patchy fur) <br>\
+		I like it here. <br>At least it's better than where I used to live. <br>There are no pigs or chickens, but I don't have to be Big Bad Wolf, at least. <br>\
+		You didn't immediately kick me out, so I will tell you my name. <br>My name is..."
+	observation_choices = list("Forget the name", "Remember the name")
+	correct_choices = list("Remember the name")
+	observation_success_message = "It's no use to remember it. <br>Nobody cares about my name. <br>\
+		(Even though the wolf said such a thing, it seems happy.)"
+	observation_fail_message = "You better watch out. <br>I can eat you with one bite if I want to. <br>\
+		(The wolf seems unhappy)"
+
 	var/can_act = TRUE
 	//For when the wolf becomes incorporal and flees.
 	var/last_reached_health = 75
@@ -115,17 +125,13 @@
 	. = ..()
 	update_icon()
 
-/* NOTICE TO ANY LITTLE RED CODER
-	Put little red here when possible. This proc will make it so that if the target
-	is little red they will not check faction they WILL fight. -IP
-
+//If the target is little red they will not check faction they WILL fight. -IP
 /mob/living/simple_animal/hostile/abnormality/big_wolf/CanAttack(atom/the_target)
-	if(istype(the_target, LITTLE_RED)
+	if(istype(the_target, /mob/living/simple_animal/hostile/abnormality/red_hood))
 		var/mob/living/L = the_target
 		if(L.stat != DEAD)
 			return TRUE
-	..()
-*/
+	return ..()
 
 /mob/living/simple_animal/hostile/abnormality/big_wolf/death(gibbed)
 	update_icon()
@@ -324,6 +330,8 @@
 					continue
 				new /obj/effect/temp_visual/slice(T)
 				hit_mob = HurtInTurf(T, hit_mob, 50, RED_DAMAGE, null, TRUE, FALSE, TRUE, hurt_structure = TRUE)
+				for(var/mob/living/simple_animal/hostile/abnormality/red_hood/mercenary in hit_mob)
+					mercenary.deal_damage(100, RED_DAMAGE) //triple damge to red
 	can_act = TRUE
 
 //Used in Steel noons for if they are allowed to fly through something.
@@ -361,7 +369,15 @@
 				if(ABNO.IsContained())
 					//Spot for when little red is added so we can breach her when she hears us.
 					ABNO.datum_reference.qliphoth_change(-1)
-					continue
+					if(!istype(ABNO, /mob/living/simple_animal/hostile/abnormality/red_hood))
+						continue
+			if(istype(L, /mob/living/simple_animal/hostile/abnormality/red_hood))
+				var/mob/living/simple_animal/hostile/abnormality/red_hood/mercenary = L
+				if(mercenary.IsContained())
+					mercenary.BreachEffect()
+				mercenary.priority_target = src
+				mercenary.deal_damage(150, WHITE_DAMAGE) //She takes triple damage from the wolf, becauser her resistances are high
+				mercenary.RageUpdate(2)
 			if(faction_check_mob(L, FALSE))
 				continue
 			if(L.stat == DEAD)
@@ -372,6 +388,13 @@
 		playsound(get_turf(src), 'sound/abnormalities/big_wolf/Wolf_Howl.ogg', 30, 0, 4)
 	cut_overlay(visual_overlay)
 	can_act = TRUE
+
+/mob/living/simple_animal/hostile/abnormality/big_wolf/AttackingTarget()
+	if(istype(target, /mob/living/simple_animal/hostile/abnormality/red_hood)) //Red takes triple damage from the wolf, becauser her resistances are high
+		var/mob/living/simple_animal/hostile/abnormality/red_hood/mercenary = target
+		var/bonus_damage_dealt = 2 * (rand(melee_damage_lower,melee_damage_upper))
+		mercenary.deal_damage(bonus_damage_dealt, RED_DAMAGE)
+	return ..()
 
 #undef BIGWOLF_COOLDOWN_HOWL
 #undef BIGWOLF_COOLDOWN_DASH

@@ -33,8 +33,9 @@
 	desc = "The last legacy of the man who sought wisdom. The rake tilled the human brain instead of farmland."
 	special = "Use this weapon in your hand to damage every non-human within reach."
 	icon_state = "harvest"
-	force = 30
+	force = 25
 	damtype = BLACK_DAMAGE
+	swingstyle = WEAPONSWING_LARGESWEEP
 	attack_verb_continuous = list("attacks", "bashes", "tills")
 	attack_verb_simple = list("attack", "bash", "till")
 	hitsound = 'sound/weapons/ego/harvest.ogg'
@@ -116,8 +117,9 @@
 	name = "bear paw"
 	desc = "The paws made form, and given life."
 	icon_state = "bear_paw"
-	force = 12
-	attack_speed = 0.3
+	force = 17
+	attack_speed = 0.5
+	swingstyle = WEAPONSWING_LARGESWEEP
 	damtype = RED_DAMAGE
 	attack_verb_continuous = list("punches", "jabs", "slaps")
 	attack_verb_simple = list("punches", "jabs", "slaps")
@@ -135,8 +137,9 @@
 	name = "life for a daredevil"
 	desc = "An ancient sword surrounded in death, yet it's having it in your grasp that makes you feel the most alive."
 	icon_state = "daredevil"
-	force = 12
+	force = 11
 	attack_speed = 0.5
+	swingstyle = WEAPONSWING_LARGESWEEP
 	damtype = PALE_DAMAGE
 	attack_verb_continuous = list("decimates", "bisects")
 	attack_verb_simple = list("decimate", "bisect")
@@ -365,6 +368,7 @@
 	special = "This weapon deals more damage the more allies you can see."
 	icon_state = "courage"
 	force = 10 //if 4 people are around, the weapon can deal up to 70 damage per strike, but alone it's a glorified baton.
+	swingstyle = WEAPONSWING_LARGESWEEP
 	damtype = RED_DAMAGE
 	attack_verb_continuous = list("slashes")
 	attack_verb_simple = list("slash")
@@ -484,6 +488,7 @@
 	desc = "Looks to be a fan blade with a handle welded to it."
 	icon_state = "metal"
 	force = 40
+	swingstyle = WEAPONSWING_LARGESWEEP
 	attack_speed = 1.5
 	damtype = RED_DAMAGE
 	attack_verb_continuous = list("slices", "cleaves", "chops")
@@ -497,8 +502,9 @@
 	name = "alleyway"
 	desc = "It's a small knife forged of black metal."
 	icon_state = "alleyway"
-	force = 9
-	attack_speed = 0.3
+	force = 17
+	attack_speed = 0.5
+	swingstyle = WEAPONSWING_LARGESWEEP
 	damtype = BLACK_DAMAGE
 	attack_verb_continuous = list("slices", "cleaves", "chops")
 	attack_verb_simple = list("slice", "cleave", "chop")
@@ -599,8 +605,9 @@
 	desc = "Death, where is thy sting?"
 	special = "This weapon attacks faster when hitting targets below 50% health"
 	icon_state = "revelation"
-	force = 25
+	force = 22
 	attack_speed = 1.5
+	swingstyle = WEAPONSWING_LARGESWEEP
 	damtype = PALE_DAMAGE
 	attack_verb_continuous = list("slashes", "slices", "rips", "cuts")
 	attack_verb_simple = list("slash", "slice", "rip", "cut")
@@ -719,7 +726,8 @@
 	name = "Get Strong"
 	desc = "It whirls and twirls and yet feels limp... Do you love the City you live in?"
 	special = "This weapon has multiple modes.\nA low power spear. A medium power sword, and a high-power gauntlet.\n\
-	Hitting with the spear and sword improve the damage of the next gauntlet."
+	Hitting with the spear and sword improve the damage of the next gauntlet. \n\
+	This weapon stuns you for a short period of time on spear mode."
 	icon_state = "become_strong_sp"
 	worn_icon = 'icons/obj/clothing/belt_overlays.dmi'
 	worn_icon_state = "become_strong"
@@ -732,8 +740,8 @@
 	hitsound = 'sound/weapons/ego/spear1.ogg'
 	var/mode = "Spear"
 	var/list/mode_stats = list(
-		"Spear" = list("_sp", 15, 1, 2, list("pokes", "jabs"), list("poke", "jab"), 'sound/weapons/ego/spear1.ogg'),
-		"Sword" = list("_sw", 25, 1, 1, list("slashes", "slices"), list("slash", "slice"), 'sound/weapons/bladeslice.ogg'),
+		"Spear" = list("_sp", 42, 1, 2, list("pokes", "jabs"), list("poke", "jab"), 'sound/weapons/ego/spear1.ogg'),	//Now immobilizes you.
+		"Sword" = list("_sw", 22, 1, 1, list("slashes", "slices"), list("slash", "slice"), 'sound/weapons/bladeslice.ogg'),
 		"Gauntlet" = list("_f", 50, 3, 1, list("crushes", "smashes"), list("crush", "smash"), 'sound/weapons/ego/strong_gauntlet.ogg')
 		)
 	var/windup = 0
@@ -750,10 +758,13 @@
 	switch(mode)
 		if("Spear")
 			mode = "Sword"
+			swingstyle = WEAPONSWING_LARGESWEEP
 		if("Sword")
 			mode = "Gauntlet"
+			swingstyle = WEAPONSWING_SMALLSWEEP
 		if("Gauntlet")
 			mode = "Spear"
+			swingstyle = WEAPONSWING_THRUST
 	to_chat(user, span_notice("[src] makes a whirling sound as it changes shape!"))
 	if(prob(5))
 		to_chat(user, span_notice("Do you love your city?"))
@@ -783,6 +794,8 @@
 			force += windup
 			windup = 0
 	..()
+	if(mode == "Spear")	//Due to the nature of the weapon, it must.
+		user.Immobilize(5)
 	force = mode_stats[mode][2]
 	switch(windup)
 		if(50 to INFINITY)
@@ -825,7 +838,7 @@
 			to_chat(user, span_userdanger("Impending Day extends outward!"))
 			playsound('sound/abnormalities/doomsdaycalendar/Doomsday_Attack.ogg', 3, TRUE)
 			sacrifice = FALSE
-		for(var/mob/living/L in livinginrange(1, target))
+		for(var/mob/living/L in range(1, target))
 			var/aoe = 50
 			var/userjust = (get_modified_attribute_level(user, JUSTICE_ATTRIBUTE))
 			var/justicemod = 1 + userjust/100
@@ -842,7 +855,7 @@
 /obj/item/ego_weapon/fluid_sac
 	name = "fluid sac"
 	desc = "Crush them, even if you must disgorge everything."
-	special = "This weapon can be used to perform a jump attack after a short wind-up."
+	special = "This weapon can be used to perform a jump attack after a short wind-up (Middle mouse button click/alt click an enemy)."
 	icon_state = "fluid_sac"
 	force = 55
 	attack_speed = 2
@@ -869,17 +882,20 @@
 /obj/item/ego_weapon/fluid_sac/proc/JumpReset()
 	can_attack = TRUE
 
-/obj/item/ego_weapon/fluid_sac/afterattack(atom/A, mob/living/user, proximity_flag, params)
-	if(!CanUseEgo(user) || !can_attack)
+/obj/item/ego_weapon/fluid_sac/MiddleClickAction(atom/target, mob/living/user)
+	. = ..()
+	if(.)
 		return
-	if(!isliving(A))
+	if(!can_attack)
 		return
+	if(!isliving(target))
+		return
+	var/mob/living/A = target
 	if(dash_cooldown > world.time)
 		to_chat(user, span_warning("Your dash is still recharging!"))
 		return
 	if((get_dist(user, A) < 2) || (!(can_see(user, A, dash_range))))
 		return
-	..()
 	if(do_after(user, 5, src))
 		dash_cooldown = world.time + dash_cooldown_time
 		playsound(src, 'sound/abnormalities/ichthys/jump.ogg', 50, FALSE, -1)
@@ -906,7 +922,7 @@
 	force = initial(force)
 	can_attack = FALSE
 	addtimer(CALLBACK(src, PROC_REF(JumpReset)), 20)
-	for(var/mob/living/L in livinginrange(1, A))
+	for(var/mob/living/L in range(1, A))
 		if(L.z != user.z) // Not on our level
 			continue
 		var/aoe = 25
@@ -931,6 +947,7 @@
 	icon_state = "sanguine"
 	force = 40//about 1.3x the average dps
 	attack_speed = 1
+	swingstyle = WEAPONSWING_LARGESWEEP
 	damtype = RED_DAMAGE
 	attack_verb_continuous = list("hacks", "slashes", "attacks")
 	attack_verb_simple = list("hack", "slash", "attack")
@@ -1011,13 +1028,14 @@
 	desc = "They should've died after bleeding so much. You usually don't quarantine a corpse...."
 	special = "This weapon builds charge every 10 steps you've taken."
 	icon_state = "warp2"
-	force = 24
+	force = 34 		//Spears get reduced damage
 	lefthand_file = 'icons/mob/inhands/weapons/ego_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/weapons/ego_righthand.dmi'
 	inhand_x_dimension = 32
 	inhand_y_dimension = 32
 	hitsound = 'sound/abnormalities/wayward_passenger/attack1.ogg'
 	reach = 2
+	stuntime = 5	//Longer reach, gives you a short stun.
 	damtype = RED_DAMAGE
 	attack_verb_continuous = list("stabs", "slashes", "attacks")
 	attack_verb_simple = list("stab", "slash", "attack")
@@ -1107,9 +1125,11 @@
 	righthand_file = 'icons/mob/inhands/64x64_righthand.dmi'
 	inhand_x_dimension = 64
 	inhand_y_dimension = 64
-	force = 24
+	force = 23
+	swingstyle = WEAPONSWING_LARGESWEEP
 	attack_speed = 0.8
 	reach = 1
+	stuntime = 0
 
 /obj/item/ego_weapon/marionette
 	name = "marionette"
@@ -1192,7 +1212,8 @@
 	desc = "The elderly man showed a red thread connecting the young boy with his future lover. Disgusted at the sight, he ordered her to be executed."
 	special = "This weapon deals significantly more damage when attacking the same target repeatedly."
 	icon_state = "destiny"
-	force = 12
+	force = 11
+	swingstyle = WEAPONSWING_LARGESWEEP
 	attack_speed = 0.5
 	damtype = RED_DAMAGE
 	attack_verb_continuous = list("stabs", "slashes", "attacks")
@@ -1290,6 +1311,23 @@
 	..()
 	force = initial(force)
 
+/obj/item/ego_weapon/frostsplinter
+	name = "frost splinter"
+	desc = "Anyone damaged by it will lose themselves for a moment. \
+	As the equipment was forged from snow, it shall disappear without a trace someday."
+	icon_state = "frostsplinter"
+	force = 44
+	reach = 2		//Has 2 Square Reach.
+	stuntime = 5	//Longer reach, gives you a short stun.
+	attack_speed = 1.2
+	damtype = WHITE_DAMAGE
+	attack_verb_continuous = list("pokes", "jabs", "tears", "lacerates", "gores")
+	attack_verb_simple = list("poke", "jab", "tear", "lacerate", "gore")
+	hitsound = 'sound/weapons/ego/spear1.ogg'
+	attribute_requirements = list(
+							FORTITUDE_ATTRIBUTE = 40
+							)
+
 /obj/item/ego_weapon/aedd//it's just a HE W.corp baton that deals red
 	name = "AEDD"
 	desc = "A nasty-looking bat covered with nails."
@@ -1340,8 +1378,9 @@
 	righthand_file = 'icons/mob/inhands/96x96_righthand.dmi'
 	inhand_x_dimension = 96
 	inhand_y_dimension = 96
-	force = 33
+	force = 45
 	reach = 2		//Has 2 Square Reach.
+	stuntime = 5	//Longer reach, gives you a short stun.
 	attack_speed = 1.8// really slow
 	damtype = RED_DAMAGE
 	attack_verb_continuous = list("stabs", "impales")
@@ -1370,8 +1409,9 @@
 	righthand_file = 'icons/mob/inhands/96x96_righthand.dmi'
 	inhand_x_dimension = 96
 	inhand_y_dimension = 96
-	force = 35
+	force = 39
 	reach = 2		//Has 2 Square Reach.
+	stuntime = 5	//Longer reach, gives you a short stun.
 	attack_speed = 2.0 // really slow
 	damtype = BLACK_DAMAGE
 	attack_verb_continuous = list("burns", "boils")
@@ -1399,6 +1439,7 @@
 		user.HurtInTurf(T, list(), 40, BLACK_DAMAGE, check_faction = TRUE)
 	return
 
+
 /obj/item/ego_weapon/lance/lifestew_lance/get_clamped_volume()
 	return 40
 
@@ -1412,7 +1453,7 @@
 	righthand_file = 'icons/mob/inhands/64x64_righthand.dmi'
 	inhand_x_dimension = 64
 	inhand_y_dimension = 64
-	force = 45	//Low dps. You'll see why later
+	force = 45	//Low dps - has a ranged attack
 	attack_speed = 2
 	damtype = BLACK_DAMAGE
 	attack_verb_continuous = list("burns", "boils")
@@ -1470,6 +1511,9 @@
 		G.color = "#622F22"
 		G.fire()
 		G.damage*=force_multiplier
+		var/userjust = (get_modified_attribute_level(user, JUSTICE_ATTRIBUTE))
+		var/justicemod = 1 + userjust/100
+		G.damage*=justicemod
 		firing_cooldown = firing_cooldown_time + world.time
 		stored_projectiles -= 1
 		update_icon_state(user)
@@ -1600,7 +1644,7 @@
 	lefthand_file = 'icons/mob/inhands/96x96_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/96x96_righthand.dmi'
 	damtype = WHITE_DAMAGE
-	force = 50
+	force = 60
 	inhand_x_dimension = 96
 	inhand_y_dimension = 96
 	attack_speed = 4//Really really slow.
@@ -1611,6 +1655,7 @@
 							JUSTICE_ATTRIBUTE = 40
 							)
 	reach = 2
+	stuntime = 5	//Longer reach, gives you a short stun.
 	force_cap = 100 //Old max damage when it was damage = amount you walked.
 	force_per_tile = 5 //if I can read, this means you need to cross 20 tiles for max damage
 	pierce_force_cost = 20
@@ -1673,7 +1718,7 @@
 	icon_state = "coiling"
 	force = 30
 	reach = 4		//Has 4 Square Reach.
-	attack_speed = 1.8
+	attack_speed = 2.1
 	damtype = BLACK_DAMAGE
 	attack_verb_continuous = list("whips", "lashes", "tears")
 	attack_verb_simple = list("whip", "lash", "tear")
@@ -1686,8 +1731,9 @@
 	name = "voodoo"
 	desc = "What seems to be a giant half of a scissors pair."
 	icon_state = "voodoo"
-	special = "This weapon can be paired with itself to unlock the ability to parry."
-	force = 20
+	special = "This weapon can be paired with a second copy to use both at the same time."
+	force = 18
+	swingstyle = WEAPONSWING_LARGESWEEP
 	attack_speed = 0.7
 	damtype = WHITE_DAMAGE
 	attack_verb_continuous = list("stabs", "slashes", "attacks")
@@ -1709,10 +1755,10 @@
 	if(combo)
 		sleep(attack_speed/2 SECONDS)
 		if(target in view(reach,user))
-			target.attacked_by(src, user)
-			target.send_item_attack_message(src, user,target)
-			user.do_attack_animation(target)
 			playsound(loc, hitsound, get_clamped_volume(), TRUE, extrarange = stealthy_audio ? SILENCED_SOUND_EXTRARANGE : -1, falloff_distance = 0)
+			user.do_attack_animation(target)
+			target.attacked_by(Y, user)
+			log_combat(user, target, pick(attack_verb_continuous), Y.name, "(INTENT: [uppertext(user.a_intent)]) (DAMTYPE: [uppertext(Y.damtype)])")
 
 /obj/item/ego_weapon/nixie
 	name = "nixie divergence"
@@ -1724,6 +1770,7 @@
 	inhand_x_dimension = 64
 	inhand_y_dimension = 64
 	force = 60
+	swingstyle = WEAPONSWING_LARGESWEEP
 	attack_speed = 3
 	damtype = RED_DAMAGE
 	attack_verb_continuous = list("bashes", "clubs")
@@ -1765,13 +1812,14 @@
 /obj/item/ego_weapon/nixie/get_clamped_volume()
 	return 50
 
-/obj/item/ego_weapon/sunshower //TD
+//Gimmicky weapon with a potentially high payout
+/obj/item/ego_weapon/sunshower
 	name = "sunshower"
 	desc = "I cannot protect you from this rain, but I can guard you from false kindness."
-	special = "This weapon gains 1 poise for every attack. 1 poise gives you a 2% chance to crit at 3x damage, stacking linearly. Critical hits reduce poise to 0."
+	special = "This weapon gains 1 poise for every attack. 1 poise gives you a 2% chance to crit and deal 3x damage, stacking linearly. Critical hits reduce poise to 0."
 	icon_state = "sunshower"
-	force = 17
-	attack_speed = 0.5
+	force = 26
+	attack_speed = 1
 	damtype = BLACK_DAMAGE
 	attack_verb_continuous = list("slices", "cleaves", "chops")
 	attack_verb_simple = list("slice", "cleave", "chop")
@@ -1780,6 +1828,11 @@
 							TEMPERANCE_ATTRIBUTE = 40
 							)
 	var/poise = 0
+	var/combo = 0
+	/// Maximum world.time after which combo is reset
+	var/combo_time
+	/// Wait time between attacks for combo to reset
+	var/combo_wait = 20
 
 /obj/item/ego_weapon/sunshower/examine(mob/user)
 	. = ..()
@@ -1788,17 +1841,37 @@
 /obj/item/ego_weapon/sunshower/attack(mob/living/target, mob/living/carbon/human/user)
 	if(!CanUseEgo(user))
 		return
+	if(world.time > combo_time)
+		combo = 1
+	combo_time = world.time + combo_wait
+	switch(combo) //Weird combo where the later attacks deal more damage
+		if(1)
+			hitsound = 'sound/weapons/ego/sunshower1.ogg'
+			force *= 1.2
+			user.changeNext_move(CLICK_CD_MELEE * 1.8)
+		if(2)
+			hitsound = 'sound/weapons/ego/sunshower2.ogg'
+			force *= 1.8
+			user.changeNext_move(CLICK_CD_MELEE * 1.2)
+		if(3)
+			hitsound = 'sound/weapons/ego/sunshower3.ogg'
+			combo = 0
+			force *= 2
+			user.changeNext_move(CLICK_CD_MELEE * 1)
 	poise+=1
 	if(poise>= 20)
 		poise = 20
-
 	//Crit stuff, taken from fourleaf, so thanks to whomever coded that!
 	if(prob(poise*2))
 		force*=3
 		to_chat(user, span_userdanger("Critical!"))
 		poise = 0
 	..()
+	combo += 1
 	force = initial(force)
+
+/obj/item/ego_weapon/sunshower/get_clamped_volume()
+	return 40
 
 /*
 * Look i cant think of anything for this fucking camera
@@ -1822,7 +1895,7 @@
 	name = "u-turn"
 	desc = "It's a large scythe, that probably hurts a lot."
 	special = "Knocks certain enemies towards you in an area. \
-	This weapon does half damage when attacking 3 or tiles more away."
+	This weapon does half damage when attacking 3 or more tiles more away."
 	icon_state = "uturn"
 	force = 40
 	reach = 4
@@ -1941,3 +2014,42 @@
 	attribute_requirements = list(
 							FORTITUDE_ATTRIBUTE = 40
 							)
+
+/obj/item/ego_weapon/telepole//FIXME: actually make it do stuff
+	name = "telepole"
+	desc = "A hairy wooden longsword that's covered in barbed wire. It crackles with arcs of electricity."
+	special = "Activating the weapon in your hand allows you to dash, grazing nearby targets with BLACK damage."
+	icon_state = "telepole"
+	lefthand_file = 'icons/mob/inhands/64x64_lefthand.dmi'
+	righthand_file = 'icons/mob/inhands/64x64_righthand.dmi'
+	force = 25
+	damtype = BLACK_DAMAGE
+	attack_verb_continuous = list("slashes", "stabs")
+	attack_verb_simple = list("slash", "stab")
+	attribute_requirements = list(
+							FORTITUDE_ATTRIBUTE = 40
+							)
+	charge = TRUE
+
+/obj/item/ego_weapon/telepole/ChargeAttack(mob/living/target, mob/living/user)
+	..()
+	//do the thing
+
+/obj/item/ego_weapon/hexnail
+	name = "hex nail"
+	desc = "A bear paw with a couple nails jabbed into the ends of the digits. It's hard not to poke yourself when putting it on."
+	icon_state = "hex_nail"
+	force = 17
+	attack_speed = 0.5
+	swingstyle = WEAPONSWING_LARGESWEEP
+	damtype = BLACK_DAMAGE
+	attack_verb_continuous = list("slashes", "stabs", "slaps")
+	attack_verb_simple = list("slash", "stab", "slap")
+	hitsound = 'sound/weapons/fixer/generic/knife1.ogg'
+	attribute_requirements = list(
+							FORTITUDE_ATTRIBUTE = 40
+							)
+
+/obj/item/ego_weapon/hexnail/melee_attack_chain(mob/user, atom/target, params)
+	..()
+	hitsound = "sound/weapons/fixer/generic/knife[pick(1,2,3,4)].ogg"

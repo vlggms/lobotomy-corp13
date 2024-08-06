@@ -74,6 +74,16 @@
 	chem_type = /datum/reagent/abnormality/ambrosia
 	harvest_phrase = span_notice("You score %ABNO and it bleeds a golden syrup into %VESSEL.")
 	harvest_phrase_third = "%PERSON scores %ABNO, dripping a golden syrup into %VESSEL."
+
+	observation_prompt = "A giant, glistening golden apple stands before you. <br>\
+		Radiant, shining, and pure. <br>There is a tempting crack in it, what could possibly be inside?"
+	observation_choices = list("Slice it open", "Destroy it")
+	correct_choices = list("Destroy it")
+	observation_success_message = "You put the golden apple to the torch. <br>You hear a sickening pops and sizzling as the swarm of maggots inside begins to burn and scatter. <br>\
+		The mass of maggots falls apart in a hail of silent screams."
+	observation_fail_message = "You slice open the apple, and a tidal wave of disgusting maggots bursts out. <br>\
+		You are swept in the tide. <br>Your flesh is riddled with wounds as they slowly devour you."
+
 	var/is_maggot = FALSE
 	var/can_act = TRUE
 	var/victim_name
@@ -292,6 +302,17 @@
 			if(isliving(target))
 				var/mob/living/hit = target
 				if((hit.stat == DEAD) ||!ishuman(hit))//if the target is dead or not human
+					return ..()
+				if(istype(target, /mob/living/carbon/human/species/pinocchio))
+					return ..()
+				pulse_count += 1
+			if(ismecha(target))
+				var/inhabited = FALSE
+				for(var/mob/living/L in target.contents)
+					if(L.stat == DEAD)
+						continue
+					inhabited = TRUE
+				if(!inhabited)
 					return ..()
 				pulse_count += 1
 		return ..()

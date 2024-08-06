@@ -665,7 +665,8 @@ GLOBAL_LIST_EMPTY(species_list)
  * * hit_list - A list containing all things hit by this proc.
  */
 /mob/proc/HurtInTurf(turf/target, list/hit_list = list(), damage = 0, damage_type = RED_DAMAGE, def_zone = null, check_faction = FALSE, exact_faction_match = FALSE, hurt_mechs = FALSE, mech_damage = 0, hurt_hidden = FALSE, hurt_structure = FALSE, break_not_destroy = FALSE, attack_direction = null)
-	var/static/list/exclude = typecacheof(list(/obj/machinery/navbeacon/wayfinding, /obj/structure/disposalpipe, /obj/structure/lattice, /obj/machinery/cryopod, /obj/structure/sign, /obj/machinery/button, /obj/machinery/light, /obj/structure/extinguisher_cabinet, /obj/machinery/containment_panel, /obj/machinery/computer/security/telescreen, /obj/machinery/facility_holomap)) // Types that should never be hit by HurtInTurf
+	// Types that should never be hit by HurtInTurf
+	var/static/list/exclude = typecacheof(list(/obj/machinery/navbeacon/wayfinding, /obj/structure/disposalpipe, /obj/structure/lattice, /obj/machinery/cryopod, /obj/structure/sign, /obj/machinery/button, /obj/machinery/light, /obj/structure/extinguisher_cabinet, /obj/machinery/containment_panel, /obj/machinery/computer/security/telescreen, /obj/machinery/facility_holomap, /obj/structure/fans/tiny, /obj/machinery/requests_console))
 	var/static/list/hiding_places = typecacheof(list(/obj/structure/closet, /obj/structure/bodycontainer, /obj/machinery/disposal, /obj/machinery/cryopod, /obj/machinery/sleeper, /obj/machinery/fat_sucker))
 	. = list()
 	. += hit_list
@@ -726,8 +727,6 @@ GLOBAL_LIST_EMPTY(species_list)
 					continue
 				if(O in .)
 					continue
-				if(damage)
-					O.take_damage(damage, damage_type)
 				if(damage)
 					var/dealt_damage = damage
 					if(break_not_destroy && (O.obj_integrity - damage <= 0))

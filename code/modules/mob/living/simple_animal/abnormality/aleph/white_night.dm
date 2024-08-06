@@ -52,6 +52,13 @@ GLOBAL_LIST_EMPTY(apostles)
 		/mob/living/simple_animal/hostile/abnormality/onesin = 5,
 	)
 
+	observation_prompt = "Thou knocked the door, now it hath opened. <br>\
+		Thou who carries burden, came to seek the answer."
+	observation_choices = list("Who are you?", "Where did you come from?", "Why have you come?")
+	correct_choices = list("Where did you come from?")
+	observation_success_message = "I am from the end." //TODO: multiple messages, the answer should be irrelevant, code should check for wing gift.
+	observation_fail_message = "Thy question is empty, I cannot answer"
+
 	var/holy_revival_cooldown
 	var/holy_revival_cooldown_base = 75 SECONDS
 	var/holy_revival_damage = 80 // Pale damage, scales with distance
@@ -96,6 +103,7 @@ GLOBAL_LIST_EMPTY(apostles)
 			revive_humans()
 
 /mob/living/simple_animal/hostile/abnormality/white_night/death(gibbed)
+	GrantMedal()
 	for(var/mob/living/carbon/human/heretic in heretics)
 		if(heretic.stat == DEAD || !heretic.ckey)
 			continue
@@ -130,14 +138,14 @@ GLOBAL_LIST_EMPTY(apostles)
 					(target_c.y + i <= world.maxy ? getline(locate(min(target_c.x + i, world.maxx), target_c.y + i, target_c.z), locate(max(target_c.x - i + 1, 1), target_c.y + i, target_c.z)) : list()) +\
 					(target_c.x - i > 0 			? getline(locate(target_c.x - i, min(target_c.y + i, world.maxy), target_c.z), locate(target_c.x - i, max(target_c.y - i + 1, 1), target_c.z)) : list())
 		for(var/turf/open/T in turf_list)
+			CHECK_TICK
 			if(faction_check != "apostle")
 				RVP.NewSparkles(T, 10, "#AAFFAA") // Indicating that it's a good thing
 			else
 				RVP.NewCultSparks(T, 10)
 			for(var/mob/living/L in T)
 				RVP.NewCultIn(T, L.dir)
-				addtimer(CALLBACK(src, PROC_REF(revive_target), L, i, faction_check))
-			CHECK_TICK
+				INVOKE_ASYNC(src, PROC_REF(revive_target), L, i, faction_check)
 		SLEEP_CHECK_DEATH(1.5)
 
 /mob/living/simple_animal/hostile/abnormality/white_night/proc/revive_target(mob/living/L, attack_range = 1, faction_check = "apostle")
@@ -228,6 +236,15 @@ GLOBAL_LIST_EMPTY(apostles)
 	particles = new /particles/white_night()
 	addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(sound_to_playing_players), 'sound/abnormalities/whitenight/rapture2.ogg', 50), 10 SECONDS)
 	return
+
+/// Grants medals and achievements to surrounding players
+//May move this to _abnormality some day.
+/mob/living/simple_animal/hostile/abnormality/white_night/proc/GrantMedal()
+	if(!client && !(flags_1 & ADMIN_SPAWNED_1) && SSachievements.achievements_enabled)
+		for(var/mob/living/L in view(7,src))
+			if(L.stat || !L.client)
+				continue
+			L.client.give_award(/datum/award/achievement/boss/white_night, L)
 
 /* Apostles */
 

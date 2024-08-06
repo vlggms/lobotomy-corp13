@@ -34,6 +34,14 @@
 	ranged = TRUE
 	casingtype = /obj/item/ammo_casing/caseless/nihil_abnormality
 	projectilesound = 'sound/abnormalities/wrath_servant/hermit_magic.ogg'
+
+	observation_prompt = "I have no plans or destination. I'm too tired to fly. <br>With no one to guide me, and no path open to me. <br>It is my fate to play the fool. <br>\
+		Before I do, I turn to face the 4 Magical Girls. <br>Are they just like me, or am I just like them?"
+	observation_choices = list("They've become me", "I came to resemble them")
+	correct_choices = list("They've become me", "I came to resemble them")
+	observation_success_message = "It doesn't matter. <br>My choices do not matter. <br>\
+		Nothing matters. <br>We will repeat this song and dance until the end of time.<br> I can only laugh at this pointless endeavor."
+
 	var/can_act = TRUE
 	//Teleports
 	var/icon_inverted
@@ -160,7 +168,7 @@
 			L.flicker(4)
 	for(var/turf/open/L in range(7, src))
 		new /obj/effect/temp_visual/cult/sparks(L)
-	for(var/turf/open/T in range(25, src))
+	for(var/turf/open/T in urange(25, src))
 		if(prob(50))
 			addtimer(CALLBACK(src, PROC_REF(NukeAttackEffectHelper),T), rand(0,40))
 	SLEEP_CHECK_DEATH(50)
@@ -195,7 +203,7 @@
 	if(!can_act && !forced)
 		return FALSE
 	var/list/teleport_potential = list()
-	for(var/mob/living/L in range(13, src)) //1st priority - anyone in about viewport distance
+	for(var/mob/living/L in urange(13, src)) //1st priority - anyone in about viewport distance
 		if(!faction_check_mob(L) && L.stat != DEAD && !(L.status_flags & GODMODE))
 			if(ishuman(L))
 				var/mob/living/carbon/human/H = L
@@ -219,7 +227,7 @@
 		teleport_potential += P
 	can_act = FALSE
 	LoseTarget()
-	for(var/mob/living/L in range(13, src)) //vfx
+	for(var/mob/living/L in urange(13, src)) //vfx
 		if(L.z == z && L.client)
 			shake_camera(L, 10, 1)
 	playsound(src, 'sound/abnormalities/hatredqueen/gun.ogg', 65, FALSE, 10)
@@ -268,7 +276,7 @@
 			TeleportIn() //Same effect
 		if("DESPAIR")
 			var/list/target_list = list()
-			for(var/mob/living/L in livinginrange(10, src))
+			for(var/mob/living/L in urange(10, src))
 				if(L.z != z || (L.status_flags & GODMODE))
 					continue
 				if(faction_check_mob(L, FALSE))

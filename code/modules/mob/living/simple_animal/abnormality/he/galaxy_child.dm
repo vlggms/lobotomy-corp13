@@ -28,6 +28,16 @@
 	gift_message = "A teardrop fell from the child’s dewy eyes, as stars showered from the sky."
 	abnormality_origin = ABNORMALITY_ORIGIN_LOBOTOMY
 
+	observation_prompt = "You entered the containment chamber. <br>\
+		A child is standing there. <br>\"I know who you are.\" <br>\
+		\"Of course. <br>We were born from each other.\" <br>You decided to......."
+	observation_choices = list("Stay", "Exit the chamber")
+	correct_choices = list("Exit the chamber")
+	observation_success_message = "You turned your back to the child and walked out. <br>\
+		The pebble in your hands sparkles sways, and tickles. <br>It becomes the universe. <br>\
+		\"Goodbye. <br>I hope you never come back.\" <br>As the child bid the cold farewell, he was smiling."
+	observation_fail_message = "\"Will you stay here with me?\" <br>\"If you won't, I don't need you.\""
+
 	var/heal_cooldown_time = 2 SECONDS
 	var/heal_cooldown
 	var/list/galaxy_friend = list()

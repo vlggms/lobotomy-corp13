@@ -29,7 +29,6 @@
 	base_pixel_x = -48
 	del_on_death = FALSE
 	death_message = "reverts into a tiny, disgusting fetus-like creature."
-	death_sound = 'sound/abnormalities/doomsdaycalendar/Limbus_Dead_Generic.ogg'
 	can_breach = TRUE
 	work_chances = list(
 		ABNORMALITY_WORK_INSTINCT = 25,
@@ -46,6 +45,27 @@
 	)
 	gift_type = /datum/ego_gifts/distortion
 	abnormality_origin = ABNORMALITY_ORIGIN_ARTBOOK
+
+	observation_prompt = "I find myself in a void, filled to the brim with monsters. <br>\
+		All sorts of indescribably horrible creatures surround me, passing by as if I were not there. <br>\
+		But the largest creature of all surrounds me entirely. <br>Every direction is covered in a undulating mass of flesh, blood, fur, and feathers. <br>\
+		I am always butchering monsters like these. <br>I tear them limb from limb.<br>\
+		Bringing death in brutal fashion. <br>Am I not a fitting piece of the scenery before me?"
+	observation_choices = list("I am a monster", "I am not a monster")
+	correct_choices = list("I am not a monster")
+	observation_success_message = "It is hard to live in the city. <br>\
+		To pretend to be a civilized human when living in this manner. <br>\
+		It is easy to give into the temptation of giving up all pretenses of humanity. <br>\
+		But I do it because it is hard. <br>\
+		... <br>\
+		I am not a monster. <br>\
+		I will never become a monster."
+	observation_fail_message = "\"Do you wish to be so?\" <br>\
+		\"Then it can be as you wish.\" <br>\
+		... <br>\
+		Her voice is like sunshine. <br>\
+		... <br>\
+		I am a monster. <br>"
 
 //Work vars
 	var/transform_timer
@@ -312,18 +332,20 @@
 		ChangeForm()
 	can_act = FALSE
 	icon_state = icon_dead
-	icon = 'ModularTegustation/Teguicons/32x32.dmi'
+	icon = 'ModularTegustation/Teguicons/abno_cores/aleph.dmi'
 	desc = "A gross, pathetic looking thing that was once a terrible monster."
-	pixel_x = 0
-	base_pixel_x = 0
+	pixel_x = -16
+	base_pixel_x = -16
 	pixel_y = 0
 	base_pixel_y = 0
 	density = FALSE
-	playsound(src, 'sound/abnormalities/doomsdaycalendar/Limbus_Dead_Generic.ogg', 60, 1)
+	playsound(src, 'sound/effects/limbus_death.ogg', 100, 1)
 	animate(src, transform = matrix()*0.6,time = 0)
 	for(var/mob/living/carbon/human/survivor in survivors)
 		if(survivor.stat == DEAD || !survivor.ckey)
 			continue
+		if(src.z == 6) //Test Range Z Level
+			return ..()
 		survivor.Apply_Gift(new /datum/ego_gifts/fervor)
 		survivor.playsound_local(get_turf(survivor), 'sound/weapons/black_silence/snap.ogg', 50)
 		to_chat(survivor, span_userdanger("The screams subside - you recieve a gift!"))
@@ -368,7 +390,7 @@
 		return
 	var/punishment = TRUE
 	var/transform_target
-	for(var/mob/living/L in livinginrange(15, src))
+	for(var/mob/living/L in urange(15, src))
 		if(L.z != z)
 			continue
 		if(faction_check_mob(L))
@@ -526,7 +548,7 @@
 	if(!can_act)
 		return
 	var/list/target_list = list()
-	for(var/mob/living/L in livinginrange(10, src))
+	for(var/mob/living/L in urange(10, src))
 		if(L.z != z || (L.status_flags & GODMODE))
 			continue
 		if(faction_check_mob(L, FALSE))
@@ -660,7 +682,7 @@
 	for(var/turf/T in range(1, target))
 		new /obj/effect/temp_visual/mustardgas(T)
 	var/list/target_list = list()
-	for(var/mob/living/L in livinginrange(1, target))
+	for(var/mob/living/L in range(1, target))
 		if(L.z != z || (L.status_flags & GODMODE))
 			continue
 		if(faction_check_mob(L, FALSE))
@@ -715,7 +737,7 @@
 	playsound(target, 'sound/abnormalities/crying_children/sorrow_shot.ogg', 50, FALSE)
 	new /obj/effect/temp_visual/beam_in_giant(get_turf(target))
 	var/list/target_list = list()
-	for(var/mob/living/L in livinginrange(2, target))
+	for(var/mob/living/L in range(2, target))
 		if(L.z != z || (L.status_flags & GODMODE))
 			continue
 		if(faction_check_mob(L, FALSE))
@@ -926,7 +948,7 @@
 	addtimer(CALLBACK(src, PROC_REF(CrumblingArmorAttack)), 20)
 
 /mob/living/simple_animal/hostile/abnormality/distortedform/proc/CrumblingArmorAttack()
-	for(var/mob/living/L in livinginrange(10, src))
+	for(var/mob/living/L in urange(10, src))
 		if(L.z != z || (L.status_flags & GODMODE))
 			continue
 		if(faction_check_mob(L, FALSE))
@@ -963,7 +985,7 @@
 /mob/living/simple_animal/hostile/abnormality/distortedform/proc/HammerOfLightAttack()
 	playsound(src, 'sound/abnormalities/crying_children/sorrow_shot.ogg', 50, FALSE, 7)
 	var/targetAmount = 0
-	for(var/mob/living/L in livinginrange(10, src))
+	for(var/mob/living/L in urange(10, src))
 		if(L.z != z || (L.status_flags & GODMODE))
 			continue
 		if(faction_check_mob(L, FALSE))
@@ -1616,7 +1638,7 @@
 	can_move = FALSE
 	can_attack = FALSE
 	var/LongRange = TRUE //Check if there's anyone within 15 tiles when we transformed
-	for(var/mob/living/L in livinginrange(15, src))
+	for(var/mob/living/L in urange(15, src))
 		if(L.z != z)
 			continue
 		if(faction_check_mob(L))

@@ -27,6 +27,18 @@
 	)
 	gift_type =  /datum/ego_gifts/syrinx
 	abnormality_origin = ABNORMALITY_ORIGIN_LOBOTOMY
+
+	observation_prompt = "The baby never cries. <br>It kept that way forever. <br>\
+		As a lack of words doesn't necessarily mean a lack of emotions, a lack of crying doesn't mean lack of desire. <br>\
+		Since time unknown, the baby has had a mouth. <br>The baby who does not understand cries, expresses hunger, and causes pain for the others. <br>You..."
+	observation_choices = list("Call its name.", "Didn't call its name.")
+	correct_choices = list("Call its name.")
+	observation_success_message = "No one else knows the name of the fetus. <br>\
+		But you know. <br>You called its name. <br>\
+		The unstoppable desire shut its mouth for a while. <br>Even only for a short time, the desire silenced."
+	observation_fail_message = "The fetus is still crying. <br>\
+		You plugged your ears silently. <br>No sound is heard."
+
 	var/mob/living/carbon/human/calling = null
 
 /mob/living/simple_animal/hostile/abnormality/fetus/ZeroQliphoth(mob/living/carbon/human/user)
@@ -78,7 +90,7 @@
 
 	//Babies crying hurts your head
 	SLEEP_CHECK_DEATH(3)
-	for(var/mob/living/L in range(10, src))
+	for(var/mob/living/L in urange(10, src))
 		if(faction_check_mob(L, FALSE))
 			continue
 		if(L.stat == DEAD)

@@ -219,6 +219,24 @@
 	inuse = FALSE
 	update_icon()
 
+/obj/item/powered_gadget/teleporter/suicide_act(mob/living/carbon/user)
+	. = ..()
+	user.visible_message(span_suicide("[user] tries to pull the switch of \the [src] off to break it! It looks like [user.p_theyre()] trying to commit suicide!"))
+	new /obj/effect/temp_visual/dir_setting/ninja/phase/out (get_turf(user))
+	var/obj/item/bodypart/head/head = user.get_bodypart(BODY_ZONE_HEAD)
+	var/obj/item/bodypart/l_arm/l_arm = user.get_bodypart(BODY_ZONE_L_ARM)
+	var/obj/item/bodypart/r_arm/r_arm = user.get_bodypart(BODY_ZONE_R_ARM)
+	var/obj/item/bodypart/l_leg/l_leg = user.get_bodypart(BODY_ZONE_L_LEG)
+	var/obj/item/bodypart/r_leg/r_leg = user.get_bodypart(BODY_ZONE_R_LEG)
+	var/list/limbs = list(head, l_arm, r_arm, l_leg, r_leg)
+	for(var/obj/item/bodypart/limb in limbs)
+		limb.dismember()
+		var/turf/T = pick(GLOB.department_centers)
+		limb.forceMove(T)
+		new /obj/effect/temp_visual/dir_setting/ninja/phase (get_turf(limb))
+		playsound(limb, 'sound/effects/contractorbatonhit.ogg', 100, FALSE, 9)
+	return MANUAL_SUICIDE
+
 //The taser
 /obj/item/powered_gadget/handheld_taser
 	name = "Handheld Taser"
@@ -392,16 +410,13 @@
 	name = "Prototype Enkephalin Injector"
 	desc = "A tool designed to inject raw enkephalin from our batteries to pacify hostile lifeforms. \
 			However, the development was discontinued after the safety department abused it for... other purposes. \
-			This version only makes the entities even more hostile towards you. Only for clerks"
+			This version only makes the entities even more hostile towards you."
 	icon_state = "e_injector"
 	default_icon = "e_injector"
 	batterycost = 5000
 	var/hit_message= null
 
 /obj/item/powered_gadget/enkephalin_injector/attack(mob/living/T, mob/user)
-	if(!istype(user) || !(user?.mind?.assigned_role in GLOB.service_positions))
-		to_chat(user, span_notice("The Gadget's light flashes red. You aren't a clerk. Check the label before use."))
-		return
 	if(T.status_flags & GODMODE)
 		to_chat(user, span_notice("[T] simply ignores you."))
 		return

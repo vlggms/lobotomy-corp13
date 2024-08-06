@@ -4,8 +4,10 @@
 	icon = 'ModularTegustation/Teguicons/64x64.dmi'
 	icon_state = "steam"
 	icon_living = "steam"
+	icon_dead = "steammachine_egg"
 	core_icon = "steammachine_egg"
 	portrait = "steam_transport_machine"
+	del_on_death = FALSE
 	maxHealth = 1600
 	health = 1600
 	ranged = TRUE
@@ -48,6 +50,21 @@
 	)
 	gift_type =  /datum/ego_gifts/nixie
 	abnormality_origin = ABNORMALITY_ORIGIN_LIMBUS
+
+	observation_prompt = "It carries heavy objects without a word. <br>\
+		As it does its work, the number on the electronic display seems to update. <br>\
+		Machines exist for a purpose. <br>\
+		You feel like you should give it an order."
+	observation_choices = list("Order it to carry luggage", "Order it to do nothing")
+	correct_choices = list("Order it to carry luggage")
+	observation_success_message = "It lifts a nearby object to carry it from left to right. <br>\
+		The count on its body went up by 1. <br>\
+		Just as you started to wonder if that was it, the machine replaced one of its vacuum tubes with a new one. <br>\
+		It presented the old one to you, and naturally, you accepted."
+	observation_fail_message = "A purposeless machine is bound to lose the meaning of its existence, even if it is functional. <br>\
+		A machine whose purpose is to do nothing will do whatever it takes to achieve its directive. <br>\
+		With a loud boiling noise, the machine’s body begins to heat, expelling hot steam. <br>\
+		Seeing it glow a dangerous-looking hue, you quickly escaped the room."
 
 	var/gear = 0
 	var/steam_damage = 5
@@ -208,6 +225,11 @@
 		deltimer(guntimer)
 	if(updatetimer)
 		deltimer(updatetimer)
+	icon = 'ModularTegustation/Teguicons/abno_cores/he.dmi'
+	pixel_x = -16
+	density = FALSE
+	animate(src, alpha = 0, time = 10 SECONDS)
+	QDEL_IN(src, 10 SECONDS)
 
 /obj/projectile/steam
 	name = "steam"

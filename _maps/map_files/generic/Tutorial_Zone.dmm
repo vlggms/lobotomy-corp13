@@ -1,4 +1,8 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"ap" = (
+/obj/machinery/smartfridge/extraction_storage/ego_weapon,
+/turf/open/floor/facility,
+/area/test_range)
 "au" = (
 /obj/machinery/computer/camera_advanced{
 	dir = 4
@@ -88,6 +92,16 @@
 /obj/machinery/light,
 /turf/open/floor/wood,
 /area/facility_hallway/human)
+"ck" = (
+/obj/structure/filingcabinet/zayininfo{
+	pixel_x = -10
+	},
+/obj/structure/filingcabinet/tethinfo,
+/obj/structure/filingcabinet/heinfo{
+	pixel_x = 10
+	},
+/turf/open/floor/facility,
+/area/test_range)
 "cl" = (
 /obj/structure/table/wood,
 /obj/item/paper/guides/jobs/teth{
@@ -132,6 +146,10 @@
 /obj/machinery/regenerator/tutorial,
 /turf/open/floor/wood,
 /area/department_main/human)
+"dx" = (
+/obj/machinery/smartfridge/extraction_storage/ego_armor,
+/turf/open/floor/facility,
+/area/test_range)
 "dA" = (
 /obj/effect/portal/permanent/one_way{
 	id = "tutorial2"
@@ -152,6 +170,9 @@
 	},
 /turf/open/floor/wood,
 /area/facility_hallway/human)
+"eg" = (
+/turf/open/floor/facility,
+/area/test_range)
 "eo" = (
 /obj/structure/sign/departments/human{
 	pixel_x = -32
@@ -189,6 +210,13 @@
 "fd" = (
 /obj/effect/turf_decal/siding/white{
 	dir = 4
+	},
+/obj/structure/filingcabinet/lore/waw{
+	pixel_x = -10
+	},
+/obj/structure/filingcabinet/lore/aleph,
+/obj/structure/filingcabinet/toolinfo{
+	pixel_x = 10
 	},
 /turf/open/floor/carpet/black,
 /area/department_main/human)
@@ -236,6 +264,14 @@
 /obj/structure/sign/poster/official/dick_gum,
 /turf/closed/indestructible/reinforced,
 /area/department_main/human)
+"hp" = (
+/obj/structure/toolabnormality/bracelet,
+/turf/open/floor/facility,
+/area/test_range)
+"hw" = (
+/obj/machinery/computer/testrangespawner,
+/turf/open/floor/facility,
+/area/test_range)
 "hD" = (
 /obj/structure/table/reinforced,
 /obj/item/megaphone,
@@ -253,12 +289,28 @@
 /obj/item/disk/holodisk/tutorial/info2,
 /turf/open/floor/wood,
 /area/department_main/human)
+"hS" = (
+/obj/structure/table,
+/obj/effect/spawner/lootdrop/three_course_meal,
+/obj/effect/spawner/lootdrop/three_course_meal,
+/obj/effect/spawner/lootdrop/three_course_meal,
+/turf/open/floor/facility,
+/area/test_range)
 "ih" = (
 /obj/machinery/shower{
 	pixel_y = 15
 	},
 /turf/open/floor/noslip,
 /area/department_main/human)
+"iv" = (
+/obj/effect/light_emitter{
+	light_power = 4;
+	light_range = 25;
+	set_cap = 3;
+	set_luminosity = 24
+	},
+/turf/open/floor/facility,
+/area/test_range)
 "iO" = (
 /obj/structure/chair/wood{
 	dir = 4
@@ -360,6 +412,10 @@
 /turf/open/floor/wood,
 /turf/open/floor/wood,
 /area/department_main/human)
+"mO" = (
+/obj/effect/mob_spawn/human/testrange,
+/turf/open/floor/facility,
+/area/test_range)
 "mQ" = (
 /obj/structure/sign/warning/firingrange,
 /turf/closed/indestructible/reinforced,
@@ -383,6 +439,9 @@
 	},
 /turf/open/floor/wood,
 /area/facility_hallway/human)
+"nf" = (
+/turf/closed/indestructible/reinforced,
+/area/test_range)
 "nm" = (
 /obj/item/paper/fluff/info/tutorial/cube{
 	anchored = 1
@@ -400,6 +459,16 @@
 /obj/item/disk/holodisk/tutorial/stats,
 /turf/open/floor/wood,
 /area/department_main/human)
+"oe" = (
+/obj/structure/filingcabinet/wawinfo{
+	pixel_x = -10
+	},
+/obj/structure/filingcabinet/alephinfo,
+/obj/structure/filingcabinet/toolinfo{
+	pixel_x = 10
+	},
+/turf/open/floor/facility,
+/area/test_range)
 "or" = (
 /obj/structure/plasticflaps/opaque,
 /obj/machinery/scanner_gate/tutorialscanner{
@@ -484,6 +553,14 @@
 /obj/machinery/door/airlock/public/glass,
 /turf/open/floor/wood,
 /area/department_main/human)
+"rZ" = (
+/obj/structure/toolabnormality/dr_jekyll,
+/turf/open/floor/facility,
+/area/test_range)
+"sc" = (
+/obj/machinery/regenerator/safety,
+/turf/open/floor/facility,
+/area/test_range)
 "sn" = (
 /obj/structure/rack,
 /obj/item/clothing/suit/armor/ego_gear/freshman,
@@ -537,6 +614,10 @@
 /obj/machinery/vending/cola,
 /turf/open/floor/wood,
 /area/department_main/human)
+"sR" = (
+/obj/structure/toolabnormality/skin,
+/turf/open/floor/facility,
+/area/test_range)
 "sS" = (
 /obj/structure/table/reinforced,
 /turf/open/floor/wood,
@@ -615,6 +696,16 @@
 /obj/structure/sign/poster/official/work_for_a_future,
 /turf/closed/indestructible/reinforced,
 /area/department_main/human)
+"vX" = (
+/obj/machinery/quantumpad/warp{
+	teleport_cooldown = 40;
+	map_pad_id = "test_range_lobby";
+	map_pad_link_id = "test_range_arena";
+	teleport_speed = 20;
+	resistance_flags = 64
+	},
+/turf/open/floor/facility,
+/area/test_range)
 "wb" = (
 /obj/structure/table/wood,
 /obj/machinery/light/small{
@@ -634,6 +725,10 @@
 	},
 /turf/open/floor/carpet/cyan,
 /area/department_main/human)
+"wn" = (
+/obj/machinery/ego_printer,
+/turf/open/floor/facility,
+/area/test_range)
 "wy" = (
 /obj/effect/portal/permanent/one_way{
 	id = "tutorial2"
@@ -673,10 +768,6 @@
 	},
 /turf/open/floor/wood,
 /area/department_main/human)
-"xA" = (
-/obj/effect/mapping_helpers/records_spawner/second,
-/turf/open/floor/carpet/black,
-/area/department_main/human)
 "xG" = (
 /obj/structure/table/wood,
 /obj/item/paper/guides/jobs/zayin/guide/wellcheers,
@@ -704,6 +795,13 @@
 	},
 /turf/open/floor/carpet/cyan,
 /area/department_main/human)
+"zg" = (
+/obj/structure/table,
+/obj/item/scrying,
+/obj/item/scrying,
+/obj/item/scrying,
+/turf/open/floor/facility,
+/area/test_range)
 "zy" = (
 /obj/machinery/door/airlock/highsecurity{
 	name = "Human Resources Department"
@@ -837,6 +935,12 @@
 	},
 /turf/open/floor/wood,
 /area/department_main/human)
+"Dh" = (
+/obj/structure/table,
+/obj/item/lc_debug/attribute_injector,
+/obj/item/lc_debug/attribute_injector,
+/turf/open/floor/facility,
+/area/test_range)
 "Di" = (
 /obj/structure/sign/poster/lobotomycorp/egoinfo{
 	pixel_y = 32
@@ -880,8 +984,19 @@
 /turf/open/floor/wood,
 /area/department_main/human)
 "Ev" = (
+/obj/structure/filingcabinet/wawinfo{
+	pixel_x = -10
+	},
+/obj/structure/filingcabinet/alephinfo,
+/obj/structure/filingcabinet/toolinfo{
+	pixel_x = 10
+	},
 /turf/open/floor/carpet/black,
 /area/department_main/human)
+"Ex" = (
+/obj/structure/toolabnormality/you_happy,
+/turf/open/floor/facility,
+/area/test_range)
 "FC" = (
 /obj/machinery/holopad/tutorial{
 	proximity_cooldown_time = 1200
@@ -898,6 +1013,10 @@
 /obj/item/storage/belt/ego,
 /turf/open/floor/wood,
 /area/department_main/human)
+"FX" = (
+/obj/structure/toolabnormality/snake_oil,
+/turf/open/floor/facility,
+/area/test_range)
 "FY" = (
 /obj/structure/mirror{
 	pixel_y = 28
@@ -1135,6 +1254,10 @@
 	},
 /turf/open/floor/wood,
 /area/department_main/human)
+"LY" = (
+/obj/structure/toolabnormality/vivavoce,
+/turf/open/floor/facility,
+/area/test_range)
 "Mo" = (
 /obj/effect/light_emitter{
 	light_power = 4;
@@ -1192,11 +1315,19 @@
 	},
 /turf/open/floor/carpet/black,
 /area/department_main/human)
+"NI" = (
+/obj/structure/toolabnormality/aspiration,
+/turf/open/floor/facility,
+/area/test_range)
 "NP" = (
 /obj/machinery/holopad/tutorial,
 /obj/item/disk/holodisk/tutorial/works,
 /turf/open/floor/wood,
 /area/department_main/human)
+"Om" = (
+/obj/structure/toolabnormality/behavior,
+/turf/open/floor/facility,
+/area/test_range)
 "Oz" = (
 /obj/machinery/regenerator/tutorial,
 /turf/open/floor/carpet/cyan,
@@ -1256,6 +1387,10 @@
 	},
 /turf/open/floor/carpet/cyan,
 /area/department_main/human)
+"Qi" = (
+/obj/structure/toolabnormality/fateloom,
+/turf/open/floor/facility,
+/area/test_range)
 "Ql" = (
 /turf/open/floor/carpet/cyan,
 /area/department_main/human)
@@ -1330,6 +1465,10 @@
 /obj/item/paper/guides/jobs/zayin,
 /turf/open/floor/wood,
 /area/department_main/human)
+"SV" = (
+/obj/structure/mirror/magic/lesser,
+/turf/closed/indestructible/reinforced,
+/area/test_range)
 "Tu" = (
 /obj/machinery/light{
 	dir = 1
@@ -1355,6 +1494,10 @@
 	},
 /turf/open/indestructible/light,
 /area/facility_hallway/human)
+"Uf" = (
+/obj/structure/toolabnormality/theonite_slab,
+/turf/open/floor/facility,
+/area/test_range)
 "Uo" = (
 /obj/machinery/holopad/tutorial{
 	proximity_cooldown_time = 600
@@ -1419,12 +1562,28 @@
 /obj/structure/table/optable,
 /turf/open/floor/wood,
 /area/department_main/human)
+"VT" = (
+/obj/structure/filingcabinet/lore/zayin{
+	pixel_x = -10
+	},
+/obj/structure/filingcabinet/lore/teth,
+/obj/structure/filingcabinet/lore/he{
+	pixel_x = 10
+	},
+/turf/open/floor/carpet/black,
+/area/department_main/human)
 "VW" = (
 /obj/effect/spawner/randomcolavend,
 /turf/open/floor/wood,
 /area/department_main/human)
 "VZ" = (
-/obj/effect/mapping_helpers/records_spawner,
+/obj/structure/filingcabinet/heinfo{
+	pixel_x = 10
+	},
+/obj/structure/filingcabinet/zayininfo{
+	pixel_x = -10
+	},
+/obj/structure/filingcabinet/tethinfo,
 /turf/open/floor/carpet/black,
 /area/department_main/human)
 "Wf" = (
@@ -1437,6 +1596,12 @@
 /obj/structure/sign/poster/contraband/kudzu,
 /turf/closed/indestructible/reinforced,
 /area/department_main/human)
+"WR" = (
+/obj/machinery/cryopod{
+	dir = 1
+	},
+/turf/open/floor/facility,
+/area/test_range)
 "WU" = (
 /obj/structure/railing{
 	dir = 1
@@ -6151,15 +6316,15 @@ XL
 XL
 XL
 XL
-XL
-XL
-XL
-XL
-XL
-XL
-XL
-XL
-XL
+nf
+nf
+nf
+nf
+nf
+nf
+nf
+nf
+nf
 XL
 XL
 XL
@@ -6253,15 +6418,15 @@ XL
 XL
 XL
 XL
-XL
-XL
-XL
-XL
-XL
-XL
-XL
-XL
-XL
+nf
+mO
+WR
+WR
+WR
+eg
+eg
+NI
+nf
 XL
 XL
 XL
@@ -6355,15 +6520,15 @@ XL
 XL
 XL
 XL
-XL
-XL
-XL
-XL
-XL
-XL
-XL
-XL
-XL
+nf
+eg
+eg
+eg
+eg
+eg
+eg
+Om
+nf
 XL
 XL
 XL
@@ -6457,15 +6622,15 @@ XL
 XL
 XL
 XL
-XL
-XL
-XL
-XL
-XL
-XL
-XL
-XL
-XL
+nf
+eg
+eg
+eg
+eg
+eg
+eg
+hp
+nf
 XL
 XL
 XL
@@ -6559,15 +6724,15 @@ XL
 XL
 XL
 XL
-XL
-XL
-XL
-XL
-XL
-XL
-XL
-XL
-XL
+SV
+eg
+eg
+eg
+eg
+eg
+eg
+rZ
+nf
 XL
 XL
 XL
@@ -6661,15 +6826,15 @@ XL
 XL
 XL
 XL
-XL
-XL
-XL
-XL
-XL
-XL
-XL
-XL
-XL
+nf
+ck
+eg
+eg
+eg
+eg
+eg
+Qi
+nf
 XL
 XL
 XL
@@ -6763,15 +6928,15 @@ XL
 XL
 XL
 XL
-XL
-XL
-XL
-XL
-XL
-XL
-XL
-XL
-XL
+nf
+oe
+eg
+eg
+eg
+eg
+eg
+Ex
+nf
 XL
 XL
 XL
@@ -6865,15 +7030,15 @@ XL
 XL
 XL
 XL
-XL
-XL
-XL
-XL
-XL
-XL
-XL
-XL
-XL
+nf
+wn
+eg
+eg
+eg
+eg
+eg
+hS
+nf
 XL
 XL
 XL
@@ -6967,15 +7132,15 @@ XL
 XL
 XL
 XL
-XL
-XL
-XL
-XL
-XL
-XL
-XL
-XL
-XL
+nf
+ap
+eg
+eg
+iv
+eg
+eg
+zg
+nf
 XL
 XL
 XL
@@ -7069,15 +7234,15 @@ XL
 XL
 XL
 XL
-XL
-XL
-XL
-XL
-XL
-XL
-XL
-XL
-XL
+nf
+dx
+eg
+eg
+eg
+eg
+eg
+Dh
+nf
 XL
 XL
 XL
@@ -7171,15 +7336,15 @@ XL
 XL
 XL
 XL
-XL
-XL
-XL
-XL
-XL
-XL
-XL
-XL
-XL
+nf
+eg
+eg
+eg
+eg
+eg
+eg
+FX
+nf
 XL
 XL
 XL
@@ -7273,15 +7438,15 @@ XL
 XL
 XL
 XL
-XL
-XL
-XL
-XL
-XL
-XL
-XL
-XL
-XL
+nf
+eg
+eg
+eg
+eg
+eg
+eg
+sR
+nf
 XL
 XL
 XL
@@ -7375,15 +7540,15 @@ XL
 XL
 XL
 XL
-XL
-XL
-XL
-XL
-XL
-XL
-XL
-XL
-XL
+nf
+eg
+eg
+eg
+eg
+eg
+eg
+LY
+nf
 XL
 XL
 XL
@@ -7477,15 +7642,15 @@ XL
 XL
 XL
 XL
-XL
-XL
-XL
-XL
-XL
-XL
-XL
-XL
-XL
+nf
+vX
+eg
+eg
+eg
+eg
+eg
+Uf
+nf
 XL
 XL
 XL
@@ -7579,15 +7744,15 @@ XL
 XL
 XL
 XL
-XL
-XL
-XL
-XL
-XL
-XL
-XL
-XL
-XL
+nf
+eg
+eg
+eg
+eg
+eg
+eg
+eg
+nf
 XL
 XL
 XL
@@ -7681,15 +7846,15 @@ XL
 XL
 XL
 XL
-XL
-XL
-XL
-XL
-XL
-XL
-XL
-XL
-XL
+nf
+hw
+eg
+eg
+eg
+eg
+eg
+sc
+nf
 XL
 XL
 XL
@@ -7783,15 +7948,15 @@ XL
 XL
 XL
 XL
-XL
-XL
-XL
-XL
-XL
-XL
-XL
-XL
-XL
+nf
+nf
+nf
+nf
+nf
+nf
+nf
+nf
+nf
 XL
 XL
 XL
@@ -8879,7 +9044,7 @@ XL
 XL
 OU
 iU
-Ev
+VZ
 Yy
 xf
 jp
@@ -9287,7 +9452,7 @@ XL
 XL
 XL
 iU
-xA
+Ev
 Yy
 Ql
 xG
@@ -9491,7 +9656,7 @@ XL
 XL
 XL
 iU
-Ev
+VT
 Yy
 Ql
 yu

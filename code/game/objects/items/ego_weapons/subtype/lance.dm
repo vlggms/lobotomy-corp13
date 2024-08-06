@@ -8,6 +8,7 @@
 	var/charge_speed = 0
 	var/raised = TRUE
 	var/required_movement_time = 2 SECONDS
+	swingstyle = WEAPONSWING_THRUST
 // Mutable vars - Play around with these for funky weapons
 	var/list/default_attack_verbs = list("bludgeons", "whacks")
 	var/list/couch_attack_verbs = list("impales", "stabs")
@@ -103,6 +104,9 @@
 	couch_cooldown = world.time + couch_cooldown_time
 	user.add_movespeed_modifier(/datum/movespeed_modifier/charge)
 
+	//If you lower your lance, you lose your stun
+	stuntime = 0
+
 //The player has stopped a charge for some reason or another
 /obj/item/ego_weapon/lance/proc/RaiseLance(mob/user)
 	raised = TRUE
@@ -113,6 +117,9 @@
 	update_icon_state()
 	user.update_inv_hands()
 	user.remove_movespeed_modifier(/datum/movespeed_modifier/charge)
+
+	//Raise it to give stun again
+	stuntime = initial(stuntime)
 
 //Icon stuff
 /obj/item/ego_weapon/lance/update_icon_state()

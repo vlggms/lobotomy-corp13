@@ -95,6 +95,16 @@
 	 */
 	gift_type =  /datum/ego_gifts/regret
 	abnormality_origin = ABNORMALITY_ORIGIN_LOBOTOMY
+
+	/**
+	* Final observation code. These variables should be self-explanatory.
+	*/
+	observation_prompt = "Around his neck is a rope. It is up to you to cut his rope."
+	observation_choices = list("Cut the rope.", "Don't cut the rope.")
+	correct_choices = list("Don't cut the rope.")
+	observation_success_message = "His neck snaps, granting him silence and eternal rest."
+	observation_fail_message = "\"You think I'm pathetic, huh? But is you people who are really pathetic. Because you get killed. By people like me.\""
+
 	//Unique variable im defining for this abnormality. This is the timer for their during work emotes.
 	var/work_emote_cooldown = 0
 

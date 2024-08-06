@@ -178,6 +178,19 @@
 	/// A string for an emote used when pet_bonus == true for the mob being pet.
 	var/pet_bonus_emote = ""
 
+	var/occupied_tiles_left = 0
+	var/occupied_tiles_right = 0
+	var/occupied_tiles_down = 0
+	var/occupied_tiles_up = 0
+	var/occupied_tiles_left_current = 0
+	var/occupied_tiles_right_current = 0
+	var/occupied_tiles_down_current = 0
+	var/occupied_tiles_up_current = 0
+	var/list/projectile_blockers = null
+	var/list/offsets_pixel_x = list("south" = 0, "north" = 0, "west" = 0, "east" = 0)
+	var/list/offsets_pixel_y = list("south" = 0, "north" = 0, "west" = 0, "east" = 0)
+	var/should_projectile_blockers_change_orientation = FALSE
+
 /mob/living/simple_animal/Initialize()
 	. = ..()
 	GLOB.simple_animals[AIStatus] += src
@@ -225,12 +238,94 @@
 	//LC13 Check. If it's the citymap, they all gain a faction
 	if(SSmaptype.maptype in SSmaptype.citymaps)
 		faction += "city"
+	if(occupied_tiles_down > 0 || occupied_tiles_up > 0 || occupied_tiles_left > 0 || occupied_tiles_right > 0)
+		occupied_tiles_left_current = occupied_tiles_left
+		occupied_tiles_right_current = occupied_tiles_right
+		occupied_tiles_down_current = occupied_tiles_down
+		occupied_tiles_up_current = occupied_tiles_up
+		projectile_blockers = list()
+		for(var/i in (x - occupied_tiles_left) to (x + occupied_tiles_right))
+			for(var/j in (y - occupied_tiles_down) to (y + occupied_tiles_up))
+				if(i == x && j == y)
+					continue
+				projectile_blockers += new /mob/living/simple_animal/projectile_blocker_dummy(locate(i, j, z), src)
+		RegisterSignal(src, COMSIG_ATOM_DIR_CHANGE, PROC_REF(OnDirChange))
 
+/mob/living/simple_animal/proc/SetOccupiedTiles(down = 0, up = 0, left = 0, right = 0)
+	occupied_tiles_down = down
+	occupied_tiles_up = up
+	occupied_tiles_left = left
+	occupied_tiles_right = right
+	occupied_tiles_down_current = down
+	occupied_tiles_up_current = up
+	occupied_tiles_left_current = left
+	occupied_tiles_right_current = right
+	var/amount_needed = (down + up + 1) * (left + right + 1) - 1
+	if(!projectile_blockers)
+		projectile_blockers = list()
+		RegisterSignal(src, COMSIG_ATOM_DIR_CHANGE, PROC_REF(OnDirChange))
+	if(amount_needed > projectile_blockers.len)
+		for(var/i in (projectile_blockers.len + 1) to amount_needed)
+			projectile_blockers += new /mob/living/simple_animal/projectile_blocker_dummy(get_turf(src), src)
+	else if(amount_needed < projectile_blockers.len)
+		for(var/i in (amount_needed + 1) to projectile_blockers.len)
+			qdel(projectile_blockers[1])
+			projectile_blockers.Cut(1, 2)
+	var/current_element = 1
+	for(var/i in (-occupied_tiles_left) to occupied_tiles_right)
+		for(var/j in (-occupied_tiles_down) to occupied_tiles_up)
+			if(i == 0 && j == 0)
+				continue
+			var/mob/living/simple_animal/projectile_blocker_dummy/pbd = projectile_blockers[current_element]
+			pbd.offset_x = i
+			pbd.offset_y = j
+			++current_element
+	setDir(dir)
 
 /mob/living/simple_animal/Life()
 	. = ..()
 	if(staminaloss > 0)
 		adjustStaminaLoss(-stamina_recovery, FALSE, TRUE)
+
+/mob/living/simple_animal/proc/OnDirChange(atom/thing, dir, newdir)
+	SIGNAL_HANDLER
+	pixel_x = offsets_pixel_x[dir2text(newdir)]
+	base_pixel_x = pixel_x
+	pixel_y = offsets_pixel_y[dir2text(newdir)]
+	base_pixel_y = pixel_y
+	if(should_projectile_blockers_change_orientation)
+		for(var/mob/living/simple_animal/projectile_blocker_dummy/D in projectile_blockers)
+			var/turf/T
+			switch(newdir)
+				if(SOUTH)
+					occupied_tiles_left_current = occupied_tiles_left
+					occupied_tiles_right_current = occupied_tiles_right
+					occupied_tiles_down_current = occupied_tiles_down
+					occupied_tiles_up_current = occupied_tiles_up
+					T = locate(x + D.offset_x, y + D.offset_y, z)
+				if(NORTH)
+					occupied_tiles_left_current = occupied_tiles_right
+					occupied_tiles_right_current = occupied_tiles_left
+					occupied_tiles_down_current = occupied_tiles_up
+					occupied_tiles_up_current = occupied_tiles_down
+					T = locate(x - D.offset_x, y - D.offset_y, z)
+				if(WEST)
+					occupied_tiles_left_current = occupied_tiles_down
+					occupied_tiles_right_current = occupied_tiles_up
+					occupied_tiles_down_current = occupied_tiles_right
+					occupied_tiles_up_current = occupied_tiles_left
+					T = locate(x + D.offset_y, y - D.offset_x, z)
+				if(EAST)
+					occupied_tiles_left_current = occupied_tiles_up
+					occupied_tiles_right_current = occupied_tiles_down
+					occupied_tiles_down_current = occupied_tiles_left
+					occupied_tiles_up_current = occupied_tiles_right
+					T = locate(x - D.offset_y, y + D.offset_x, z)
+			D.doMove(T)
+
+/mob/living/simple_animal/onTransitZ(old_z, new_z)
+	. = ..()
+	Moved()
 
 /mob/living/simple_animal/Destroy()
 	GLOB.simple_animals[AIStatus] -= src
@@ -245,6 +340,8 @@
 	if (T && AIStatus == AI_Z_OFF)
 		SSidlenpcpool.idle_mobs_by_zlevel[T.z] -= src
 
+	if(projectile_blockers)
+		QDEL_LIST(projectile_blockers)
 	return ..()
 
 /mob/living/simple_animal/vv_edit_var(var_name, var_value)

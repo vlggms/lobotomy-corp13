@@ -115,6 +115,8 @@ GLOBAL_LIST_INIT(admin_verbs_fun, list(
 	/client/proc/AbnoRadio,
 	/client/proc/InitCoreSuppression,
 	/client/proc/ConfigFood,
+	/client/proc/ExecutionBulletToggle,
+	/client/proc/distort_all,
 	))
 GLOBAL_PROTECT(admin_verbs_fun)
 GLOBAL_LIST_INIT(admin_verbs_spawn, list(/datum/admins/proc/spawn_atom, /datum/admins/proc/podspawn_atom, /datum/admins/proc/spawn_cargo, /datum/admins/proc/spawn_objasmob, /client/proc/respawn_character, /datum/admins/proc/beaker_panel))
@@ -838,10 +840,12 @@ GLOBAL_PROTECT(admin_verbs_hideable)
 
 	var/mob/living/simple_animal/hostile/abnormality/abno_type = input("Choose the Abnormality to 100% understand",) as null|anything in GLOB.abnormality_mob_list
 	if(!abno_type || !abno_type.IsContained())
-		return to_chat(src, "<span class='interface'>LC13 Admin Verb Failed.</span>")
+		return to_chat(src, span_interface("LC13 Admin Verb Failed."))
 	var/datum/abnormality/abno_datum = abno_type.datum_reference
+	abno_datum.observation_ready = TRUE
+	to_chat(src, span_interface("Abnormality Observation status successfully set to ready."))
 	if(abno_datum.understanding == abno_datum.max_understanding)
-		return to_chat(src, "<span class='interface'>Error Abnormality Already Full Understanding.</span>")
+		return to_chat(src, span_interface("Error - Abnormality Already Full Understanding."))
 	abno_datum.understanding = abno_datum.max_understanding
 
 	log_admin("[key_name(usr)] has fully understood [abno_type].")
