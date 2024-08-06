@@ -92,16 +92,6 @@
 /obj/machinery/light,
 /turf/open/floor/wood,
 /area/facility_hallway/human)
-"ck" = (
-/obj/structure/filingcabinet/zayininfo{
-	pixel_x = -10
-	},
-/obj/structure/filingcabinet/tethinfo,
-/obj/structure/filingcabinet/heinfo{
-	pixel_x = 10
-	},
-/turf/open/floor/facility,
-/area/test_range)
 "cl" = (
 /obj/structure/table/wood,
 /obj/item/paper/guides/jobs/teth{
@@ -215,9 +205,6 @@
 	pixel_x = -10
 	},
 /obj/structure/filingcabinet/lore/aleph,
-/obj/structure/filingcabinet/toolinfo{
-	pixel_x = 10
-	},
 /turf/open/floor/carpet/black,
 /area/department_main/human)
 "fz" = (
@@ -459,16 +446,6 @@
 /obj/item/disk/holodisk/tutorial/stats,
 /turf/open/floor/wood,
 /area/department_main/human)
-"oe" = (
-/obj/structure/filingcabinet/wawinfo{
-	pixel_x = -10
-	},
-/obj/structure/filingcabinet/alephinfo,
-/obj/structure/filingcabinet/toolinfo{
-	pixel_x = 10
-	},
-/turf/open/floor/facility,
-/area/test_range)
 "or" = (
 /obj/structure/plasticflaps/opaque,
 /obj/machinery/scanner_gate/tutorialscanner{
@@ -615,7 +592,7 @@
 /turf/open/floor/wood,
 /area/department_main/human)
 "sR" = (
-/obj/structure/toolabnormality/skin,
+/obj/structure/toolabnormality/attribute_giver/skin,
 /turf/open/floor/facility,
 /area/test_range)
 "sS" = (
@@ -984,13 +961,7 @@
 /turf/open/floor/wood,
 /area/department_main/human)
 "Ev" = (
-/obj/structure/filingcabinet/wawinfo{
-	pixel_x = -10
-	},
-/obj/structure/filingcabinet/alephinfo,
-/obj/structure/filingcabinet/toolinfo{
-	pixel_x = 10
-	},
+/obj/effect/mapping_helpers/records_spawner/second,
 /turf/open/floor/carpet/black,
 /area/department_main/human)
 "Ex" = (
@@ -1014,7 +985,7 @@
 /turf/open/floor/wood,
 /area/department_main/human)
 "FX" = (
-/obj/structure/toolabnormality/snake_oil,
+/obj/structure/toolabnormality/attribute_giver/snake_oil,
 /turf/open/floor/facility,
 /area/test_range)
 "FY" = (
@@ -1255,7 +1226,7 @@
 /turf/open/floor/wood,
 /area/department_main/human)
 "LY" = (
-/obj/structure/toolabnormality/vivavoce,
+/obj/structure/toolabnormality/attribute_giver/vivavoce,
 /turf/open/floor/facility,
 /area/test_range)
 "Mo" = (
@@ -1331,9 +1302,6 @@
 "Oz" = (
 /obj/machinery/regenerator/tutorial,
 /turf/open/floor/carpet/cyan,
-/area/department_main/human)
-"OU" = (
-/turf/open/space/basic,
 /area/department_main/human)
 "Pc" = (
 /obj/machinery/bookbinder,
@@ -1495,7 +1463,7 @@
 /turf/open/indestructible/light,
 /area/facility_hallway/human)
 "Uf" = (
-/obj/structure/toolabnormality/theonite_slab,
+/obj/structure/toolabnormality/attribute_giver/theonite_slab,
 /turf/open/floor/facility,
 /area/test_range)
 "Uo" = (
@@ -1577,13 +1545,7 @@
 /turf/open/floor/wood,
 /area/department_main/human)
 "VZ" = (
-/obj/structure/filingcabinet/heinfo{
-	pixel_x = 10
-	},
-/obj/structure/filingcabinet/zayininfo{
-	pixel_x = -10
-	},
-/obj/structure/filingcabinet/tethinfo,
+/obj/effect/mapping_helpers/records_spawner,
 /turf/open/floor/carpet/black,
 /area/department_main/human)
 "Wf" = (
@@ -6827,7 +6789,7 @@ XL
 XL
 XL
 nf
-ck
+eg
 eg
 eg
 eg
@@ -6929,7 +6891,7 @@ XL
 XL
 XL
 nf
-oe
+eg
 eg
 eg
 eg
@@ -9042,7 +9004,7 @@ XL
 XL
 XL
 XL
-OU
+XL
 iU
 VZ
 Yy
