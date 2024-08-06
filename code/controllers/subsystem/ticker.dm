@@ -256,6 +256,9 @@ SUBSYSTEM_DEF(ticker)
 				)
 		mode = new choosingmode
 
+		for(var/obj/structure/filingcabinet/smart/cabinet in GLOB.records_cabinets)
+			cabinet.spawn_records()
+
 	CHECK_TICK
 
 	//Configure mode and assign player to special mode stuff
