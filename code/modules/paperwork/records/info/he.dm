@@ -338,7 +338,7 @@
 		"When the work result was Bad, the Qliphoth Counter lowered with a high probability.",
 		"When the Qliphoth Counter reached 0, Nameless Fetus began crying. Employees who heard its wails complained of a headache. Furthermore, the Qliphoth Counters of all nearby Abnormalities gradually decreased over time.",
 		"While Nameless Fetus was in a crying state, the designated agent must approach it. After a moment of turmoil, the crying stopped.",
-		"Nameless Fetus will stop crying after a period of time. The more employees in the facility, the longer it will cry.")
+		"Nameless Fetus will stop crying after a long period of time. The more employees in the facility, the longer it will cry.")
 
 //Doomsday Calendar
 /obj/item/paper/fluff/info/he/doomsday_calendar
