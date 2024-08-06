@@ -2153,3 +2153,60 @@
 
 /obj/item/ego_weapon/holiday/get_clamped_volume()
 	return 30
+
+/obj/item/ego_weapon/sunyata
+	name = "ya sunyata tad rupam"
+	desc = "One. Two. The weight of your Karma returns with each rumbling of the earth."
+	icon_state = "sunyata"
+	force = 40
+	attack_speed = 1.2
+	damtype = WHITE_DAMAGE
+	attack_verb_continuous = list("smacks", "slaps", "attacks", "pokes")
+	attack_verb_simple = list("smack", "slap", "attack", "poke")
+	hitsound = 'sound/abnormalities/myformempties/attack.ogg'
+	attribute_requirements = list(
+							PRUDENCE_ATTRIBUTE = 60,
+							TEMPERANCE_ATTRIBUTE = 60)
+	var/can_spin = TRUE
+	var/spin_range = 3
+	var/spinning = FALSE
+
+/obj/item/ego_weapon/sunyata/attack(mob/living/target, mob/living/user)
+	if(spinning)
+		return FALSE
+	..()
+	can_spin = FALSE
+	addtimer(CALLBACK(src, PROC_REF(spin_reset)), 12)
+
+/obj/item/ego_weapon/sunyata/attack_self(mob/user)
+	if(!CanUseEgo(user))
+		return
+	if(!can_spin)
+		to_chat(user,span_warning("You attacked too recently."))
+		return
+	if(do_after(user, 12, src))
+		can_spin = TRUE
+		addtimer(CALLBACK(src, PROC_REF(spin_reset)), 12)
+		playsound(src, 'sound/abnormalities/myformempties/MFEattack.ogg', 75, FALSE, 4)//get a proper sound for this
+		var/aoe = 40
+		var/userjust = (get_modified_attribute_level(user, JUSTICE_ATTRIBUTE))
+		var/justicemod = 1 + userjust/100
+		aoe*=force_multiplier
+		aoe*=justicemod
+		var/turf/target_c = get_turf(src)
+		var/list/turf_list = list()
+		for(var/i = 1 to spin_range)
+			turf_list = spiral_range_turfs(i, target_c) - spiral_range_turfs(i-1, target_c)
+			for(var/turf/open/T in turf_list)
+				new /obj/effect/temp_visual/cult/sparks(T)
+				for(var/mob/living/L in T)
+					if(L == user || ishuman(L))
+						continue
+					L.apply_damage(aoe, WHITE_DAMAGE, null, L.run_armor_check(null, WHITE_DAMAGE), spread_damage = TRUE)
+			sleep(1.5)
+
+/obj/item/ego_weapon/sunyata/proc/spin_reset()
+	can_spin = TRUE
+
+/obj/item/ego_weapon/sunyata/get_clamped_volume()
+	return 40
