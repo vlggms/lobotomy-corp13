@@ -40,8 +40,12 @@
 		You plugged your ears silently. <br>No sound is heard."
 
 	var/mob/living/carbon/human/calling = null
+	var/criesleft
 
 /mob/living/simple_animal/hostile/abnormality/fetus/ZeroQliphoth(mob/living/carbon/human/user)
+	for(var/mob/living/carbon/human/H in GLOB.player_list)	//Way harder to get a list of living humans.
+		if(H.stat != DEAD)
+			criesleft+=3		//Get a max of 3 cries per person.
 	check_players()
 	check_range()
 
@@ -64,6 +68,13 @@
 /mob/living/simple_animal/hostile/abnormality/fetus/proc/check_players()
 	if(datum_reference.qliphoth_meter == 1)
 		return
+	if(criesleft<=0)
+		for(var/mob/living/carbon/human/H in GLOB.player_list)
+			to_chat(H, span_warning("The crying stops. Finally, silence."))
+		return
+
+
+	criesleft--
 
 	//Find a living player, they're the new target.
 	var/list/checking = list()
