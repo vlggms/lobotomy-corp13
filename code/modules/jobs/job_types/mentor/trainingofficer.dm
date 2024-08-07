@@ -16,6 +16,7 @@
 
 	job_abbreviation = "TO"
 	mentor_only = TRUE
+	alt_titles = list()
 
 /datum/job/agent/training_officer/announce(mob/living/carbon/human/outfit_owner)
 	..()
