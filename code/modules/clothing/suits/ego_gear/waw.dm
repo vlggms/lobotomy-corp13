@@ -470,3 +470,13 @@ Any attempt to code risk class armor will result in a 10 day Github ban.*/
 	attribute_requirements = list(
 							FORTITUDE_ATTRIBUTE = 80
 							)
+
+/obj/item/clothing/suit/armor/ego_gear/waw/sunyata
+	name = "ya sunyata tad rupam"
+	desc = "Karma shall find its way back to you, and rest atop your head."
+	icon_state = "sunyata"
+	armor = list(RED_DAMAGE = 50, WHITE_DAMAGE = 50, BLACK_DAMAGE = -10, PALE_DAMAGE = 50)//140
+	attribute_requirements = list(
+							PRUDENCE_ATTRIBUTE = 60,
+							TEMPERANCE_ATTRIBUTE = 60
+							)
