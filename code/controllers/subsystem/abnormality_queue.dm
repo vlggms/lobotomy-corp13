@@ -42,7 +42,7 @@ SUBSYSTEM_DEF(abnormality_queue)
 	/// Contains all suppression agents, clears itself of agents that are without a body.
 	var/list/active_suppression_agents = list()
 	/// the % values of when we give the agents in active_suppression_agents +10 attributes
-	var/list/abnormality_milestones = list(0.15, 0.29, 0.44, 0.59, 0.69, 0.79, 100)
+	var/list/abnormality_milestones = list(0.15, 0.29, 0.44, 0.59, 0.69, 0.79, 1000000)
 	/// How far we currently are along the chain of milestones
 	var/current_milestone = 1
 
