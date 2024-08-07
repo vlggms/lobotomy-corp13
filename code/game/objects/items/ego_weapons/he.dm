@@ -2033,7 +2033,7 @@
 
 /obj/item/ego_weapon/telepole/ChargeAttack(mob/living/target, mob/living/user)
 	..()
-	//do the thing
+	//do the thing!
 
 /obj/item/ego_weapon/hexnail
 	name = "hex nail"
