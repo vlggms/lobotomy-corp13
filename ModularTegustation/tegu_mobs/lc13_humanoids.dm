@@ -436,11 +436,10 @@ Skittish, they prefer to move in groups and will run away if the enemies are in 
 
 
 /mob/living/simple_animal/hostile/metal_fixer_statue/bullet_act(obj/projectile/P, def_zone, piercing_hit = FALSE)
-	if (istype(P, /obj/projectile/metal_fixer))
-		DamageEffect(P.damage, P.damage_type)
-	else
-		. = ..()
+	if(!istype(P, /obj/projectile/metal_fixer))
+		return ..()
 
+	DamageEffect(P.damage_type)
 
 /mob/living/simple_animal/hostile/metal_fixer_statue/Initialize()
 	. = ..()
