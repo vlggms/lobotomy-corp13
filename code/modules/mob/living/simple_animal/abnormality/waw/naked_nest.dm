@@ -79,7 +79,7 @@
 		return
 	if(serpentsnested <= 2)
 		serpentsnested = serpentsnested + 1
-	return
+	return ..()
 
 /mob/living/simple_animal/hostile/abnormality/naked_nest/death(gibbed)
 	for(var/atom/movable/AM in src)
@@ -87,7 +87,7 @@
 	if(serpentsnested > 0)
 		var/mob/living/simple_animal/hostile/naked_nest_serpent/S = new(get_turf(src))
 		S.Hide()
-	..()
+	return ..()
 
 /mob/living/simple_animal/hostile/abnormality/naked_nest/Move()
 	return FALSE
@@ -298,7 +298,7 @@
 /mob/living/simple_animal/hostile/naked_nested/gib()
 	for(var/atom/movable/AM in src) //morph code
 		AM.forceMove(loc)
-	..()
+	return ..()
 
 /mob/living/simple_animal/hostile/naked_nested/proc/Nest()
 	var/mob/living/simple_animal/hostile/abnormality/naked_nest/N = new(get_turf(src))
