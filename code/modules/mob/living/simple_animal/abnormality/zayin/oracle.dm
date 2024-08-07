@@ -66,6 +66,15 @@
 		"Cold.... Endless Cold.....",
 		"A man with many arms......",
 		"A woman without a face.... and many children screaming....",
+		// -IP additions
+		"In a ruined hallway... scavengers feed on a worker...",
+		"Hundred eyes... a endless maw... long legs... im scared...",
+		"I hear it around the corner... but i cant look... i dont want to see whats there...",
+		"The corner of a room... someone is smiling... their skin isnt on right...",
+		"A plume of light erupts from a city...",
+		"Monsters... monsters everywhere... they are eating people in the streets...",
+		"A woman with a dog head... she is smoking silently...",
+		"A person in a blue coat... they fold into a book...",
 		)
 
 
