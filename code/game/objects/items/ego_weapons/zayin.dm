@@ -387,6 +387,30 @@
 	var/mob/living/carbon/human/H = owner
 	H.adjust_attribute_bonus(JUSTICE_ATTRIBUTE, amount)
 
+/*
+* Ironically this shield reveals to you all the dangerous
+* things around you.
+*/
+/obj/item/ego_weapon/shield/dead_dream
+	name = "dead dream"
+	desc = "The last thing Maria saw before entering the dream. She felt... safe."
+	special = "Upon deflecting a attack, glimpse the location of all nearby mobs for 1 seconds."
+	icon_state = "dead_dream"
+	damtype = WHITE_DAMAGE
+	var/glimpse_cooldown = 0
+	var/glimpse_cooldown_delay = 3 SECONDS
+
+/obj/item/ego_weapon/shield/dead_dream/attack_self(mob/user)
+	. = ..()
+	if(glimpse_cooldown < world.time)
+		Glimpse()
+
+//Experimental Feature, Most likely too costly for its own good.
+/obj/item/ego_weapon/shield/dead_dream/proc/Glimpse()
+	for(var/mob/living/carbon/human/H in view(6, get_turf(src)))
+		H.apply_status_effect(/datum/status_effect/display/glimpse_thermal)
+		to_chat(H, span_info("You glimpse into her dream."))
+	glimpse_cooldown = world.time + glimpse_cooldown_delay
 
 /obj/item/ego_weapon/prohibited
 	name = "PROHIBITED!!!"

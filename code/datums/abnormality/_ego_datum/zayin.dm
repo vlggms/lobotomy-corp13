@@ -115,6 +115,15 @@
 	item_path = /obj/item/clothing/suit/armor/ego_gear/zayin/eclipse
 	cost = 12
 
+// Oracle of No Future
+/datum/ego_datum/weapon/dead_dream
+	item_path = /obj/item/ego_weapon/shield/dead_dream
+	cost = 12
+
+/datum/ego_datum/armor/dead_dream
+	item_path = /obj/item/clothing/suit/armor/ego_gear/zayin/dead_dream
+	cost = 12
+
 // Vending Machine and Oceanic Breeze - A Taste of the Ocean
 /datum/ego_datum/weapon/oceanic
 	item_path = /obj/item/gun/ego_gun/pistol/oceanic
