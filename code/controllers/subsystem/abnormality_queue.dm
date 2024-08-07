@@ -126,7 +126,7 @@ SUBSYSTEM_DEF(abnormality_queue)
 
 	current_milestone += 1
 	for(var/mob/living/carbon/human/person as anything in active_suppression_agents)
-		if(!istype(person)) // gibbed or cryo'd, we no longer care about them
+		if(!istype(person) || QDELETED(person)) // gibbed or cryo'd, we no longer care about them
 			active_suppression_agents -= person
 			continue
 

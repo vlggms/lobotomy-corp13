@@ -25,6 +25,7 @@
 
 /datum/job/suppression/after_spawn(mob/living/carbon/human/outfit_owner, mob/M, latejoin = FALSE)
 	ADD_TRAIT(outfit_owner, TRAIT_WORK_FORBIDDEN, JOB_TRAIT)
+	SSabnormality_queue.active_suppression_agents += M
 
 	//Blatant Copypasta. pls fix
 	var/set_attribute = normal_attribute_level
@@ -105,8 +106,6 @@
 
 		if(istype(processing, /datum/job/suppression/captain))
 			processing.total_positions = 1
-
-	SSabnormality_queue.active_suppression_agents += M
 
 /datum/outfit/job/suppression/captain
 	name = "Disciplinary Officer"
