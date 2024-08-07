@@ -21,6 +21,7 @@
 	start_qliphoth = 3
 	work_damage_amount = 5
 	work_damage_type = WHITE_DAMAGE
+	good_hater = TRUE
 
 	ego_list = list(
 		/datum/ego_datum/weapon/blossom,

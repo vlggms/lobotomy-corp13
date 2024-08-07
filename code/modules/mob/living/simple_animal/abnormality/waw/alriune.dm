@@ -26,6 +26,7 @@
 	)
 	work_damage_amount = 10
 	work_damage_type = WHITE_DAMAGE
+	good_hater = TRUE
 
 	light_color = COLOR_PINK
 	light_range = 9
