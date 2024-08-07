@@ -131,7 +131,6 @@ SUBSYSTEM_DEF(abnormality_queue)
 			continue
 
 		person.adjust_all_attribute_levels(10)
-
 		to_chat(person, span_notice("You feel stronger than before."))
 
 /datum/controller/subsystem/abnormality_queue/proc/PickAbno()
