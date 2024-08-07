@@ -121,7 +121,7 @@ SUBSYSTEM_DEF(abnormality_queue)
 	queued_abnormality = null
 	spawned_abnos++
 
-	if((SSabnormality_queue.spawned_abnos / SSabnormality_queue.rooms_start) < abnormality_milestones[current_milestone])
+	if((spawned_abnos / rooms_start) < abnormality_milestones[current_milestone])
 		return
 
 	current_milestone += 1
