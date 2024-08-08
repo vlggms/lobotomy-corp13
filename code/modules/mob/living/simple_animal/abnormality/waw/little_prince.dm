@@ -60,9 +60,14 @@
 
 /mob/living/simple_animal/hostile/abnormality/little_prince/proc/Hypno(mob/living/carbon/human/user)
 	if (!(user.sanity_lost))
-		to_chat(user, span_userdanger("You see mushrooms growing all over your body!"))
 		playsound(get_turf(user), 'sound/abnormalities/littleprince/Prince_Active.ogg', 50, 0, 2)
-		user.adjustSanityLoss(500)
+		user.deal_damage(user.maxSanity, WHITE_DAMAGE)
+		if (!(user.sanity_lost))
+			//Check Sanity twice to make sure you're actually insane
+			twice -= user
+			to_chat(user, span_userdanger("You see mushrooms growing all over your body, and you tear them off!"))
+			return
+	to_chat(user, span_userdanger("You see mushrooms growing all over your body!"))
 	user.add_overlay(mutable_appearance('ModularTegustation/Teguicons/tegu_effects32x48.dmi', "spore_hypno", -HALO_LAYER))
 	QDEL_NULL(user.ai_controller)
 	user.ai_controller = /datum/ai_controller/insane/hypno

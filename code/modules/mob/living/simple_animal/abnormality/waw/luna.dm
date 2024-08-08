@@ -16,7 +16,7 @@
 		ABNORMALITY_WORK_INSIGHT = list(40, 45, 50, 55, 55),
 		ABNORMALITY_WORK_ATTACHMENT = list(30, 30, 50, 50, 55),
 		ABNORMALITY_WORK_REPRESSION = 30,
-		"Performance" = 70,
+		"Performance" = 100,
 	)
 	pixel_x = -32
 	base_pixel_x = -32
@@ -95,7 +95,7 @@
 
 /mob/living/simple_animal/hostile/abnormality/luna/Worktick(mob/living/carbon/human/user, work_type)
 	if(performance)
-		user.deal_damage(work_damage_amount, BLACK_DAMAGE)
+		user.deal_damage(work_damage_amount*0.60, BLACK_DAMAGE)	//take work damage
 
 
 /mob/living/simple_animal/hostile/abnormality/luna/AttemptWork(mob/living/carbon/human/user, work_type)

@@ -299,9 +299,9 @@
 	ammo_type = /obj/item/ammo_casing/caseless/ego_ardor
 	weapon_weight = WEAPON_HEAVY
 	fire_sound = 'sound/weapons/gun/sniper/shot.ogg'
-	fire_delay = 5
-	shotsleft = 1
-	reloadtime = 1.4 SECONDS
+	fire_delay = 10
+	shotsleft = 4
+	reloadtime = 2.1 SECONDS
 	attribute_requirements = list(
 							FORTITUDE_ATTRIBUTE = 40
 							)
