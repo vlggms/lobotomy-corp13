@@ -330,3 +330,12 @@
 /datum/ego_datum/armor/faelantern
 	item_path = /obj/item/clothing/suit/armor/ego_gear/teth/faelantern
 	cost = 20
+
+//Dealer of the Damned - Luck of the Draw
+/datum/ego_datum/weapon/luckdraw
+	item_path = /obj/item/gun/ego_gun/luckdraw
+	cost = 20
+
+/datum/ego_datum/armor/luckdraw
+	item_path = /obj/item/clothing/suit/armor/ego_gear/teth/luckdraw
+	cost = 20
