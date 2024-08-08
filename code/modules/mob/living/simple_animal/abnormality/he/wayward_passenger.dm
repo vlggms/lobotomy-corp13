@@ -46,7 +46,7 @@
 	)
 	gift_type =  /datum/ego_gifts/warp
 	gift_message = "This lighter is branded with a certain company logo."
-	abnormality_origin = ABNORMALITY_ORIGIN_LIMBUS
+	abnormality_origin = ABNORMALITY_ORIGIN_DISABLED
 
 	attack_action_types = list(
 		/datum/action/innate/abnormality_attack/wayward_tele,

@@ -25,7 +25,7 @@
 		/datum/ego_datum/armor/oceanic,
 	)
 	gift_type = /datum/ego_gifts/oceanic
-	abnormality_origin = ABNORMALITY_ORIGIN_LIMBUS
+	abnormality_origin = ABNORMALITY_ORIGIN_DISABLED
 
 	blood_volume = 0
 

@@ -41,7 +41,7 @@
 		/datum/ego_datum/armor/unrequited,
 	)
 	gift_type =  /datum/ego_gifts/unrequited_love
-	abnormality_origin = ABNORMALITY_ORIGIN_WONDERLAB
+	abnormality_origin = ABNORMALITY_ORIGIN_DISABLED
 
 	grouped_abnos = list(
 		/mob/living/simple_animal/hostile/abnormality/siltcurrent = 1.5//check siltcurrent.dm for my reasoning

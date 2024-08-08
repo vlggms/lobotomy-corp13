@@ -25,7 +25,7 @@
 
 	gift_type =  /datum/ego_gifts/wrist
 
-	abnormality_origin = ABNORMALITY_ORIGIN_LOBOTOMY
+	abnormality_origin = ABNORMALITY_ORIGIN_DISABLED
 
 	observation_prompt = "The Enkephalin cure affected not only mind, but also body. <br>\
 		The problem is, the supply of cure became tremendously huge to control when we realized the problem. <br>\

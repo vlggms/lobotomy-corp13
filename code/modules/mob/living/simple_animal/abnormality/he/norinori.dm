@@ -39,7 +39,7 @@
 		/datum/ego_datum/armor/split,
 	)
 	gift_type =  /datum/ego_gifts/split
-	abnormality_origin = ABNORMALITY_ORIGIN_ARTBOOK
+	abnormality_origin = ABNORMALITY_ORIGIN_DISABLED
 
 	observation_prompt = "The split fox stands before you. <br>\
 		Despite it's unassuming appearance, this thing can kill you in seconds. <br>\

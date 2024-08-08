@@ -37,7 +37,7 @@
 	)
 	gift_type =  /datum/ego_gifts/grinder
 	gift_message = "Contamination scan complete. Initiating cleaning protocol."
-	abnormality_origin = ABNORMALITY_ORIGIN_LOBOTOMY
+	abnormality_origin = ABNORMALITY_ORIGIN_DISABLED
 
 	grouped_abnos = list(
 		/mob/living/simple_animal/hostile/abnormality/we_can_change_anything = 1.5,

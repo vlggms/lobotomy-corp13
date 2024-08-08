@@ -42,7 +42,7 @@
 		/datum/ego_datum/armor/pharaoh,
 	)
 	gift_type =  /datum/ego_gifts/pharaoh
-	abnormality_origin = ABNORMALITY_ORIGIN_ARTBOOK
+	abnormality_origin = ABNORMALITY_ORIGIN_DISABLED
 
 	secret_chance = TRUE // Why do we live, just to suffer?
 	secret_icon_file = 'ModularTegustation/Teguicons/64x64.dmi'

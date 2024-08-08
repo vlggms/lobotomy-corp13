@@ -26,7 +26,7 @@
 	)
 	gift_type = /datum/ego_gifts/lutemis
 	gift_message = "Let's all become fruits. Let's hang together. Your despair, sadness... Let's all dangle down."
-	abnormality_origin = ABNORMALITY_ORIGIN_WONDERLAB
+	abnormality_origin = ABNORMALITY_ORIGIN_DISABLED
 
 	observation_prompt = "You pass by the containment cell and, in the corner of your eye, spy your comrades dangling from ribbons, furiously scratching at their necks in choked agony."
 	observation_choices = list("Save them", "Do not save them")

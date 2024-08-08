@@ -23,7 +23,7 @@
 		/datum/ego_datum/armor/fury,
 	)
 	gift_type = /datum/ego_gifts/fury
-	abnormality_origin = ABNORMALITY_ORIGIN_WONDERLAB
+	abnormality_origin = ABNORMALITY_ORIGIN_DISABLED
 
 	observation_prompt = "This abnormality has a notorious reputation for being particularly dry to work with. <br>It's hard to tell what it's thinking or what work it prefers. <br>\
 		What type of work will you attempt?"

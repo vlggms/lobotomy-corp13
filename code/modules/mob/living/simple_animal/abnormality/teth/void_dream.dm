@@ -34,7 +34,7 @@
 		/datum/ego_datum/armor/dream,
 	)
 	gift_type =  /datum/ego_gifts/dream
-	abnormality_origin = ABNORMALITY_ORIGIN_LOBOTOMY
+	abnormality_origin = ABNORMALITY_ORIGIN_DISABLED
 
 	observation_prompt = "\"There's nothing wrong with dreams. <br>\
 		I go out and bring such sweet dreams to those who've only learned to stop dreaming, <br>\

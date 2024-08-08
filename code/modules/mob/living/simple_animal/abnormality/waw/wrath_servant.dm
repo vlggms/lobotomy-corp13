@@ -49,7 +49,7 @@
 		/datum/ego_datum/armor/blind_rage,
 	)
 	gift_type = /datum/ego_gifts/blind_rage
-	abnormality_origin = ABNORMALITY_ORIGIN_WONDERLAB
+	abnormality_origin = ABNORMALITY_ORIGIN_DISABLED
 
 	grouped_abnos = list(
 		/mob/living/simple_animal/hostile/abnormality/despair_knight = 2,

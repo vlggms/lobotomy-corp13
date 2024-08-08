@@ -25,7 +25,7 @@
 		/datum/ego_datum/armor/metal,
 	)
 	gift_type = /datum/ego_gifts/metal
-	abnormality_origin = ABNORMALITY_ORIGIN_ARTBOOK
+	abnormality_origin = ABNORMALITY_ORIGIN_DISABLED
 
 	observation_prompt = "It's an ordinary office fan, made of metal. <br>It's turned off for now and you're feeling warm. <br>\
 		Turn it on?"

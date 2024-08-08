@@ -28,7 +28,7 @@
 		/datum/ego_datum/armor/evening,
 	)
 	gift_type = /datum/ego_gifts/evening
-	abnormality_origin = ABNORMALITY_ORIGIN_ARTBOOK //Technically it was in the beta but I dont want it showing it up in LC-only modes
+	abnormality_origin = ABNORMALITY_ORIGIN_DISABLED //Technically it was in the beta but I dont want it showing it up in LC-only modes
 	//add an abnochem at some point. Looking at you, nutter
 
 	observation_prompt = "I was the unluckiest man in the world. <br>\

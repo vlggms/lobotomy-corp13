@@ -25,6 +25,7 @@
 		/datum/ego_datum/armor/infinity,
 	)
 	gift_type = /datum/ego_gifts/infinity
+	abnormality_origin = ABNORMALITY_ORIGIN_DISABLED
 
 	observation_prompt = "Before you, sitting on a desk is a man with a flaming head. <br>\
 		On the table sits a rather conspicuous piece of paper. <br>\

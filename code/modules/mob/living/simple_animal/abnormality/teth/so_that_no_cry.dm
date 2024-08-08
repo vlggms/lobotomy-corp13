@@ -38,7 +38,7 @@
 		/datum/ego_datum/armor/red_sheet,
 	)
 	gift_type = /datum/ego_gifts/red_sheet
-	abnormality_origin = ABNORMALITY_ORIGIN_LIMBUS
+	abnormality_origin = ABNORMALITY_ORIGIN_DISABLED
 
 	observation_prompt = "You hear the quiet creaking of wood. <br>\
 		In this cramped cell, the wooden doll stands. <br>\

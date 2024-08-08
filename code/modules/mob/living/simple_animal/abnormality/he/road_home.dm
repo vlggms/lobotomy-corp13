@@ -33,7 +33,7 @@
 		/datum/ego_datum/armor/homing_instinct,
 	)
 	gift_type = /datum/ego_gifts/homing_instinct
-	abnormality_origin = ABNORMALITY_ORIGIN_WONDERLAB
+	abnormality_origin = ABNORMALITY_ORIGIN_DISABLED
 
 	grouped_abnos = list(
 		/mob/living/simple_animal/hostile/abnormality/scarecrow = 2,

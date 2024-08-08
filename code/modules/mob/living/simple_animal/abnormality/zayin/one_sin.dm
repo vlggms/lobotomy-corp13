@@ -26,7 +26,7 @@
 	max_boxes = 10
 	gift_type =  /datum/ego_gifts/penitence
 	gift_message = "From this day forth, you shall never forget his words."
-	abnormality_origin = ABNORMALITY_ORIGIN_LOBOTOMY
+	abnormality_origin = ABNORMALITY_ORIGIN_DISABLED
 
 	grouped_abnos = list(
 		/mob/living/simple_animal/hostile/abnormality/white_night = 5,

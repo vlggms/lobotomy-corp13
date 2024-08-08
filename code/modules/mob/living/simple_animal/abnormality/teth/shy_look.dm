@@ -27,7 +27,7 @@
 		/datum/ego_datum/armor/shy,
 	)
 	gift_type =  /datum/ego_gifts/shy
-	abnormality_origin = ABNORMALITY_ORIGIN_LOBOTOMY
+	abnormality_origin = ABNORMALITY_ORIGIN_DISABLED
 
 	observation_prompt = "It's a good day! Are you still shy today?"
 	observation_choices = list("Yes", "No")

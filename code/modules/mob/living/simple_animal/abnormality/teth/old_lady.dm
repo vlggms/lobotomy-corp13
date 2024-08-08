@@ -23,7 +23,7 @@
 		/datum/ego_datum/armor/solitude,
 	)
 	gift_type =  /datum/ego_gifts/solitude
-	abnormality_origin = ABNORMALITY_ORIGIN_LOBOTOMY
+	abnormality_origin = ABNORMALITY_ORIGIN_DISABLED
 
 	observation_prompt = "There was some cracking along the floor. \
 		Hair-raising screeching of wooden rocking chair filled the air. I did not want to enter this house. \

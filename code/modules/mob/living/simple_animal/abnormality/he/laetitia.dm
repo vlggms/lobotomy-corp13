@@ -29,7 +29,7 @@
 	)
 	gift_type = /datum/ego_gifts/prank
 	gift_message = "I hope you're pleased with this!"
-	abnormality_origin = ABNORMALITY_ORIGIN_LOBOTOMY
+	abnormality_origin = ABNORMALITY_ORIGIN_DISABLED
 
 	observation_prompt = "This place is so gloomy, everyone always seems so sad and they don't smile. <br>\
 		It's lonely to be sad, so, this little lady has been secretly giving them all presents filled with friends! <br>\

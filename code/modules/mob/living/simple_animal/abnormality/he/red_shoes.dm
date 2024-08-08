@@ -35,7 +35,7 @@
 		/datum/ego_datum/armor/sanguine,
 	)
 	gift_type =  /datum/ego_gifts/desire
-	abnormality_origin = ABNORMALITY_ORIGIN_LOBOTOMY
+	abnormality_origin = ABNORMALITY_ORIGIN_DISABLED
 
 	observation_prompt = "There is a pair of red shoes. <br>\
 		It could be sitting in front of me, or in my feet. I am......"

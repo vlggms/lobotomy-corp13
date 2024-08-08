@@ -29,7 +29,7 @@
 		/datum/ego_datum/armor/horn,
 	)
 	gift_type =  /datum/ego_gifts/horn
-	abnormality_origin = ABNORMALITY_ORIGIN_LOBOTOMY
+	abnormality_origin = ABNORMALITY_ORIGIN_DISABLED
 
 	observation_prompt = "I see blood puddle here and there in the room. \
 		This is not the blood of employees. I hear the monster roaring. It wants to die. Every single day. \

@@ -36,7 +36,7 @@
 		/datum/ego_datum/armor/gaze,
 	)
 	gift_type =  /datum/ego_gifts/gaze
-	abnormality_origin = ABNORMALITY_ORIGIN_LOBOTOMY
+	abnormality_origin = ABNORMALITY_ORIGIN_DISABLED
 
 	observation_prompt = "You put on the blindfold and entered the containment unit. <br>You can feel the metal box's gaze through the thick fabric."
 	observation_choices = list("Take off the blindfold", "Feel for the wall")

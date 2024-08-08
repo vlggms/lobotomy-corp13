@@ -43,7 +43,7 @@
 	)
 	gift_type =  /datum/ego_gifts/solemnlament
 	gift_message = "The butterflies are waiting for the end of the world."
-	abnormality_origin = ABNORMALITY_ORIGIN_LOBOTOMY
+	abnormality_origin = ABNORMALITY_ORIGIN_DISABLED
 
 	observation_prompt = "A tall butterfly-faced man stands before, clad in an undertakers's garment. <br>\
 		Between the two of you is a coffin and he gestures you towards it with all 3 of his hands."

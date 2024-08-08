@@ -55,7 +55,7 @@
 		/datum/ego_datum/armor/cobalt,
 	)
 	gift_type =  /datum/ego_gifts/cobalt
-	abnormality_origin = ABNORMALITY_ORIGIN_LOBOTOMY
+	abnormality_origin = ABNORMALITY_ORIGIN_DISABLED
 
 	observation_prompt = "(You see a wolf with patchy fur) <br>\
 		I like it here. <br>At least it's better than where I used to live. <br>There are no pigs or chickens, but I don't have to be Big Bad Wolf, at least. <br>\

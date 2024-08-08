@@ -41,7 +41,7 @@
 		/datum/ego_datum/armor/my_own_bride,
 	)
 	gift_type =  /datum/ego_gifts/bride
-	abnormality_origin = ABNORMALITY_ORIGIN_WONDERLAB
+	abnormality_origin = ABNORMALITY_ORIGIN_DISABLED
 
 	observation_prompt = "The King Pygmalion prayed earnestly to the Goddess Aphrodite, wishing for the marble statue he had made and fallen in love to come to life. <br>\
 		She answered his prayer, bringing Galatea to life and united them in matrinomy. <br>\

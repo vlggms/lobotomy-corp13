@@ -35,6 +35,7 @@
 	)
 	gift_type =  /datum/ego_gifts/rimeshank
 
+	abnormality_origin = ABNORMALITY_ORIGIN_DISABLED
 	observation_prompt = "You're freezing to death, the chill bites deep, down to the marrow in your bones. <br>\
 		Through the blizzard, you spy lights leading your way. <br>They're contained in skulls of various creatures, human and animal. <br>\
 		Seeing little recourse, you follow them to a palace made of ice, surrounded by a fence made out of various bones. <br>\

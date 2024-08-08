@@ -50,7 +50,7 @@
 	)
 	gift_type =  /datum/ego_gifts/melty_eyeball
 	gift_message = "The toad gave you an eyeball, maybe it was for lending an ear?"
-	abnormality_origin = ABNORMALITY_ORIGIN_LIMBUS
+	abnormality_origin = ABNORMALITY_ORIGIN_DISABLED
 
 	observation_prompt = "\"Croohoo, croohoo, croohoo.\" <br>\
 		A giant toad cries inside a cave. <br>\

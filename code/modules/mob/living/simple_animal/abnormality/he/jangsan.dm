@@ -42,7 +42,7 @@
 		/datum/ego_datum/armor/maneater,
 	)
 	gift_type =  /datum/ego_gifts/maneater
-	abnormality_origin = ABNORMALITY_ORIGIN_ARTBOOK
+	abnormality_origin = ABNORMALITY_ORIGIN_DISABLED
 
 	observation_prompt = "I'm in a field of flowers, the flowers are my friends. <br>There are many kinds of friends but I wish to pluck them all. <br>\
 		Some friends have thorns and hurt when I try to pick them. <br>Before me is a particularly juicy, thornless flower."

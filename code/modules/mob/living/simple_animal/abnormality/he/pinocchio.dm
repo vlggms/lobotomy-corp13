@@ -30,7 +30,7 @@
 		/datum/ego_datum/armor/marionette,
 	)
 	gift_type = /datum/ego_gifts/marionette
-	abnormality_origin = ABNORMALITY_ORIGIN_RUINA
+	abnormality_origin = ABNORMALITY_ORIGIN_DISABLED
 
 	observation_prompt = "I've been watching people for as long as I've known them, it's not hard to imitate others. <br>\
 		Can I be a human if I mimic humans?"

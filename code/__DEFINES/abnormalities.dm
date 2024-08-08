@@ -60,6 +60,8 @@
 #define ABNORMALITY_ORIGIN_JOKE "Joke"
 #define ABNORMALITY_ORIGIN_COMMUNITY "Community"
 
+#define ABNORMALITY_ORIGIN_DISABLED "Disabled"
+
 // Persistent PE things
 #define PE_GOAL_REACHED	"goal_reached"
 #define PE_GOAL_SPENT	"goal_spent"

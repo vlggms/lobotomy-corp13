@@ -26,7 +26,7 @@
 	)
 	gift_type = /datum/ego_gifts/galaxy
 	gift_message = "A teardrop fell from the child’s dewy eyes, as stars showered from the sky."
-	abnormality_origin = ABNORMALITY_ORIGIN_LOBOTOMY
+	abnormality_origin = ABNORMALITY_ORIGIN_DISABLED
 
 	observation_prompt = "You entered the containment chamber. <br>\
 		A child is standing there. <br>\"I know who you are.\" <br>\

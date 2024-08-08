@@ -41,7 +41,7 @@
 		/datum/ego_datum/armor/fluid_sac,
 	)
 	gift_type =  /datum/ego_gifts/fluid_sac
-	abnormality_origin = ABNORMALITY_ORIGIN_LIMBUS
+	abnormality_origin = ABNORMALITY_ORIGIN_DISABLED
 
 	observation_prompt = "Deep, deep, at the bottom of the sea, a creature lies, dreaming. <br>\
 		It seems to be holding on to a sack of fluid. <br>What will you do?"

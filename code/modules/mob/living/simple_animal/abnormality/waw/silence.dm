@@ -21,7 +21,7 @@
 		/datum/ego_datum/armor/thirteen,
 	)
 	gift_type = /datum/ego_gifts/thirteen
-	abnormality_origin = ABNORMALITY_ORIGIN_ARTBOOK
+	abnormality_origin = ABNORMALITY_ORIGIN_DISABLED
 
 	observation_prompt = "Time's wasting. <br>Time's running out... <br>They are nothing but meaningless tantrums. <br>\
 		The watch will not only take your lost time back, but also give you even more time."

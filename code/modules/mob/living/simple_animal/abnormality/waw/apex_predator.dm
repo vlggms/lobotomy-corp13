@@ -39,6 +39,7 @@
 	)
 	work_damage_amount = 10
 	work_damage_type = RED_DAMAGE
+	abnormality_origin = ABNORMALITY_ORIGIN_DISABLED
 
 	ego_list = list(
 		/datum/ego_datum/weapon/animalism,

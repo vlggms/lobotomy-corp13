@@ -33,7 +33,7 @@
 		/datum/ego_datum/armor/match,
 	)
 	gift_type =  /datum/ego_gifts/match
-	abnormality_origin = ABNORMALITY_ORIGIN_LOBOTOMY
+	abnormality_origin = ABNORMALITY_ORIGIN_DISABLED
 
 	observation_prompt = "I thought it was cold. \
 		It got warm before I even realize it. The match nailed to my heart doesn't stop burning. \

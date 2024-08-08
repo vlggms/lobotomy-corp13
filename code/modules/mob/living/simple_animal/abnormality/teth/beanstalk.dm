@@ -25,7 +25,7 @@
 		/datum/ego_datum/armor/bean,
 	)
 	gift_type = /datum/ego_gifts/bean
-	abnormality_origin = ABNORMALITY_ORIGIN_ARTBOOK
+	abnormality_origin = ABNORMALITY_ORIGIN_DISABLED
 
 	observation_prompt = "You remember an employee was obsessed with this abnormality. <br>\"\
 		If you reach the top, you'll find what you've been looking for!\", He'd tell every employee. <br>\

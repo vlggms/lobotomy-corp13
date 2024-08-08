@@ -24,7 +24,7 @@
 		/datum/ego_datum/armor/snapshot,
 	)
 	gift_type = /datum/ego_gifts/snapshot
-	abnormality_origin = ABNORMALITY_ORIGIN_ARTBOOK
+	abnormality_origin = ABNORMALITY_ORIGIN_DISABLED
 
 //TODO: Resprite + redo of this
 	observation_prompt = "The portrait has been in our family's possession for a long time. <br>\
