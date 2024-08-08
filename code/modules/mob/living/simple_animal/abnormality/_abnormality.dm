@@ -60,6 +60,8 @@
 	var/success_boxes = null
 	/// How much PE you have to produce for neutral result, if not null or 0.
 	var/neutral_boxes = null
+	/// Check to see if the abnormality hates goods or can't get them.
+	var/good_hater = FALSE
 	/// List of ego equipment datums
 	var/list/ego_list = list()
 	/// EGO Gifts

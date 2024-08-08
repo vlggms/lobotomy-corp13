@@ -24,6 +24,7 @@
 	)
 	work_damage_amount = 10
 	work_damage_type = RED_DAMAGE
+	good_hater = TRUE
 	faction = list("hostile", "neutral")
 	can_breach = TRUE
 	start_qliphoth = 3
