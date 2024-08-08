@@ -89,11 +89,7 @@
 		if(79 to 100) // ALEPHs around here (20 Abnormalities)
 			set_attribute *= 4
 
-	if(user?.mind?.assigned_role == "Records Agent") //only give these if you're the guy that's allowed to have this, it's here so the Rec Agent can use it on interns
-		set_attribute += GetFacilityUpgradeValue(UPGRADE_AGENT_STATS) + SSlobotomy_corp.ordeal_stats
-
-	else
-		return
+	set_attribute += GetFacilityUpgradeValue(UPGRADE_AGENT_STATS)
 
 	//Set all stats to 0
 	for(var/A in attribute_list)
