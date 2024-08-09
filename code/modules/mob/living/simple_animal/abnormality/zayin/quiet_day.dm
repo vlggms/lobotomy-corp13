@@ -11,6 +11,7 @@
 	core_icon = "quiet_day"
 	maxHealth = 451
 	health = 451
+	blood_volume = 0
 	threat_level = ZAYIN_LEVEL
 	faction = list("hostile", "neutral")
 	//Bad for stat gain, but the damage is negligable and there's a nice bonus at the end

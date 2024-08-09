@@ -11,6 +11,7 @@
 	base_pixel_y = -32
 	maxHealth = 400
 	health = 400
+	blood_volume = 0
 	start_qliphoth = 4
 	threat_level = TETH_LEVEL
 	work_chances = list(
