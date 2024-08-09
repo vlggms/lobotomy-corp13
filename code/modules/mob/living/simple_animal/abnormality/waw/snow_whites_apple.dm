@@ -10,6 +10,7 @@
 	portrait = "snow_whites_apple"
 	maxHealth = 1600
 	health = 1600
+	blood_volume = 0
 	obj_damage = 0
 	damage_coeff = list(RED_DAMAGE = 0.5, WHITE_DAMAGE = 1.0, BLACK_DAMAGE = 0, PALE_DAMAGE = 1.5)
 	ranged = TRUE
