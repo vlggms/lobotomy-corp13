@@ -6,6 +6,7 @@
 	portrait = "book"
 	maxHealth = 600
 	health = 600
+	blood_volume = 0
 	start_qliphoth = 2
 	threat_level = TETH_LEVEL
 	work_chances = list(
@@ -133,6 +134,7 @@
 	spawnedmob.health = spawnedmob.maxHealth
 	spawnedmob.death_message = "collapses into a bunch of writing material."
 	spawnedmob.filters += filter(type="drop_shadow", x=0, y=0, size=1, offset=0, color=rgb(0, 0, 0))
+	spawnedmob.blood_volume = 0
 	src.visible_message(span_warning("Pages of [src] fold into [spawnedmob]!"))
 	playsound(get_turf(src), 'sound/items/handling/paper_pickup.ogg', 90, 1, FALSE)
 
