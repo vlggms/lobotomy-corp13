@@ -108,8 +108,7 @@
 	if(!locate(/obj/structure/basilisoup_pot) in datum_reference.connected_structures)
 		connected_soup = SpawnConnectedStructure(/obj/structure/basilisoup_pot)
 
-	for(var/atom/movable/A in datum_reference.connected_structures)
-		A.forceMove(get_step(src, NORTH))
+	connected_soup.forceMove(get_step(src, NORTH))
 
 // Work Mechanics
 /mob/living/simple_animal/hostile/abnormality/basilisoup/AttemptWork(mob/living/carbon/human/user, work_type)
