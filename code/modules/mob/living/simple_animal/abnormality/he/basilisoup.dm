@@ -10,7 +10,7 @@
 	base_pixel_x = -32
 	maxHealth = 1600 // Quite high HP
 	health = 1600
-	move_to_delay = 4 //H igh range, and thus slow
+	move_to_delay = 4 //High range, and thus slow
 	rapid_melee = 1
 	melee_reach = 2 // Long neck = long range
 	ranged = TRUE
@@ -459,7 +459,7 @@
 	else
 		AdjustSoupLevels(15)
 
-	qdel(M)
+	qdel(soup_sacrifice)
 	playsound(src, 'sound/abnormalities/bloodbath/Bloodbath_EyeOn.ogg', 80, FALSE, -3)
 	var/list/water_area = range(1, src)
 	for(var/turf/open/O in water_area)
