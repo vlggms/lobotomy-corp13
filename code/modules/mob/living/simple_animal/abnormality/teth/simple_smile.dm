@@ -101,7 +101,7 @@
 
 	for(var/attribute in stats)
 		if(get_attribute_level(user, attribute)>= 40)
-			chance_modifier *= 0.85
+			chance_modifier *= 0.8
 			lucky_counter += 1
 
 	return chance * chance_modifier
