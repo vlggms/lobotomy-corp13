@@ -28,10 +28,10 @@
 	retreat_distance = 3
 	minimum_distance = 1
 	work_chances = list(
-		ABNORMALITY_WORK_INSTINCT = 80,
-		ABNORMALITY_WORK_INSIGHT = 80,
-		ABNORMALITY_WORK_ATTACHMENT = 80,
-		ABNORMALITY_WORK_REPRESSION = 80,
+		ABNORMALITY_WORK_INSTINCT = 85,
+		ABNORMALITY_WORK_INSIGHT = 85,
+		ABNORMALITY_WORK_ATTACHMENT = 85,
+		ABNORMALITY_WORK_REPRESSION = 85,
 	)
 	work_damage_amount = 5
 	work_damage_type = BLACK_DAMAGE
@@ -101,7 +101,7 @@
 
 	for(var/attribute in stats)
 		if(get_attribute_level(user, attribute)>= 40)
-			chance_modifier *= 0.7
+			chance_modifier *= 0.8
 			lucky_counter += 1
 
 	return chance * chance_modifier
