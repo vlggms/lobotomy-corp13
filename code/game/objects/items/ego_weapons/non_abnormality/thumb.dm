@@ -5,7 +5,7 @@
 	icon_state = "thumb_soldato"
 	inhand_icon_state = "thumb_soldato"
 	force = 30
-	var/attack_speed = 1.5
+	attack_speed = 1.5
 	ammo_type = /obj/item/ammo_casing/caseless/fullstop	//Does 10 damage
 	weapon_weight = WEAPON_HEAVY
 	fire_sound = 'sound/weapons/gun/rifle/shot_alt.ogg'
@@ -25,7 +25,6 @@
 	..()
 	if(shotsleft < initial(shotsleft))
 		shotsleft += 1
-	user.changeNext_move(CLICK_CD_MELEE * attack_speed)
 
 //Capo
 /obj/item/gun/ego_gun/city/thumb/capo

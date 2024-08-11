@@ -10,9 +10,7 @@
 	drag_slowdown = 1
 	swingstyle = WEAPONSWING_SMALLSWEEP
 	var/list/attribute_requirements = list()
-	var/attack_speed = 1
 	var/special
-	var/force_multiplier = 1
 
 	/// Is CleanUp proc running?
 	var/cleaning = FALSE
@@ -36,8 +34,6 @@
 	if(!CanUseEgo(user))
 		return FALSE
 	. = ..()
-	if(attack_speed && attack_speed != 1)
-		user.changeNext_move(CLICK_CD_MELEE * attack_speed)
 
 	if(charge && attack_charge_gain)
 		HandleCharge(1, target)

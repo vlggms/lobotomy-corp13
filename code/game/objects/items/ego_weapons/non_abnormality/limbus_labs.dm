@@ -6,6 +6,8 @@
 	inhand_icon_state = "lccb_pistol"
 	icon = 'icons/obj/limbus_weapons.dmi'
 	fire_sound = 'sound/weapons/gun/pistol/shot.ogg'
+	force = 8
+	attack_speed = 0.5
 	weapon_weight = WEAPON_LIGHT
 	ammo_type = /obj/item/ammo_casing/caseless/fullstop
 	shotsleft = 13
@@ -19,6 +21,8 @@
 	icon_state = "lccb_burstpistol"
 	inhand_icon_state = "lccb_pistol"
 	icon = 'icons/obj/limbus_weapons.dmi'
+	force = 8
+	attack_speed = 0.5
 	fire_sound = 'sound/weapons/gun/pistol/shot.ogg'
 	weapon_weight = WEAPON_LIGHT
 	ammo_type = /obj/item/ammo_casing/caseless/fullstop
@@ -35,6 +39,8 @@
 	inhand_icon_state = "lccb_magnum"
 	icon = 'icons/obj/limbus_weapons.dmi'
 	fire_sound = 'sound/weapons/gun/pistol/shot.ogg'
+	force = 8
+	attack_speed = 0.5
 	weapon_weight = WEAPON_HEAVY
 	ammo_type = /obj/item/ammo_casing/caseless/fullstop
 	projectile_damage_multiplier = 6 //60 damage per bullet
@@ -49,6 +55,7 @@
 	icon_state = "lccb_smg"
 	inhand_icon_state = "lccb_smg"
 	icon = 'icons/obj/limbus_weapons.dmi'
+	force = 14
 	fire_sound = 'sound/weapons/gun/smg/mp7.ogg'
 	ammo_type = /obj/item/ammo_casing/caseless/fullstop
 	spread = 30
@@ -63,6 +70,7 @@
 	icon_state = "lccb_shotgun"
 	inhand_icon_state = "lccb_shotgun"
 	icon = 'icons/obj/limbus_weapons.dmi'
+	force = 14
 	ammo_type = /obj/item/ammo_casing/caseless/thumbshell //Does 8 shells at 5 damage, total 40
 	projectile_damage_multiplier = 0.5 //5 damage per bullet
 	fire_delay = 10

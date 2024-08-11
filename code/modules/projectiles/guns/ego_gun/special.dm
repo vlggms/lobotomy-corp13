@@ -3,6 +3,7 @@
 	desc = "A gun used by shrimp corp, apparently."
 	icon_state = "sodarifle"
 	inhand_icon_state = "sodalong"
+	force = 14 // These guns don't have any stat requirements so they won't do high damage
 	ammo_type = /obj/item/ammo_casing/caseless/ego_shrimprifle
 	weapon_weight = WEAPON_HEAVY
 	fire_delay = 3
@@ -14,6 +15,8 @@
 	icon_state = "sodashotgun"
 	inhand_icon_state = "sodalong"
 	special = "This weapon fires 3 pellets."
+	force = 18
+	attack_speed = 1.3
 	ammo_type = /obj/item/ammo_casing/caseless/ego_shrimpshotgun
 	weapon_weight = WEAPON_HEAVY
 	fire_delay = 10
@@ -24,6 +27,7 @@
 	desc = "A gun used by shrimp corp, apparently."
 	icon_state = "sodasmg"
 	inhand_icon_state = "soda"
+	force = 14
 	ammo_type = /obj/item/ammo_casing/caseless/ego_soda
 	weapon_weight = WEAPON_HEAVY
 	spread = 8
@@ -67,6 +71,8 @@
 	fire_delay = 1
 	autofire = 0.5 SECONDS
 	special = "This weapon heals humans that it hits."
+	force = 56
+	damtype = BLACK_DAMAGE
 	weapon_weight = WEAPON_HEAVY
 	ammo_type = /obj/item/ammo_casing/caseless/ego_hatred
 	fire_sound = 'sound/abnormalities/hatredqueen/attack.ogg'

@@ -734,9 +734,7 @@
 	..()
 	retaliate(user)
 	var/aggro = I.force
-	if(istype(I, /obj/item/ego_weapon))
-		var/obj/item/ego_weapon/EW = I
-		aggro *= EW.force_multiplier
+	aggro *= I.force_multiplier
 	if(ishuman(user))
 		aggro *= 1 + get_modified_attribute_level(user, JUSTICE_ATTRIBUTE) * 0.01
 	RegisterAggroValue(user, aggro, I.damtype)
@@ -779,9 +777,7 @@
 			var/mob/living/carbon/human/H = I.thrownby
 			retaliate(H)
 			var/aggro = I.throwforce * (1 + get_modified_attribute_level(H, JUSTICE_ATTRIBUTE) * 0.01)
-			if(istype(I, /obj/item/ego_weapon))
-				var/obj/item/ego_weapon/EW = I
-				aggro *= EW.force_multiplier
+			aggro *= I.force_multiplier
 			RegisterAggroValue(H, aggro, I.damtype)
 	return
 

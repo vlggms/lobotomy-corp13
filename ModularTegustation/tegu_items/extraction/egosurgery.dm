@@ -9,7 +9,7 @@
 	var/maximum_energy = 5
 	var/target_item = null
 	var/current_progress = 0
-	var/random_sound_list = list( //Random surgery sound for every step
+	var/random_sound_list = list( // Random surgery sound for every step
 	'sound/items/jaws_pry.ogg',
 	'sound/items/drill_use.ogg',
 	'sound/items/welder.ogg',
@@ -24,8 +24,8 @@
 	. = ..()
 	RegisterSignal(SSdcs, COMSIG_GLOB_WORK_COMPLETED, PROC_REF(WorkCharge))
 	RegisterSignal(SSdcs, COMSIG_GLOB_ORDEAL_END, PROC_REF(OrdealCharge))
-	if(SSlobotomy_corp.next_ordeal_level > 2) //next_ordeal_level is 2 at roundstart
-		maximum_energy = (5 + (5 * (SSlobotomy_corp.next_ordeal_level - 2))) //The math is weird on this - next_ordeal_level is the ordeal AFTER the one about to spawn, so 2 higher.
+	if(SSlobotomy_corp.next_ordeal_level > 2) // next_ordeal_level is 2 at roundstart
+		maximum_energy = (5 + (5 * (SSlobotomy_corp.next_ordeal_level - 2))) // The math is weird on this - next_ordeal_level is the ordeal AFTER the one about to spawn, so 2 higher.
 
 /obj/item/extraction/upgrade_tool/Destroy()
 	UnregisterSignal(SSdcs, COMSIG_GLOB_WORK_COMPLETED)
@@ -59,7 +59,7 @@
 /obj/item/extraction/upgrade_tool/pre_attack(atom/A, mob/living/user, params)
 	. = ..()
 	if(!tool_checks(user))
-		return FALSE //You can't do any special interactions
+		return FALSE // You can't do any special interactions
 	if(energy < 1)
 		to_chat(user, span_warning("The [src] is out of energy!"))
 		return FALSE
@@ -85,14 +85,14 @@
 
 	if(istype(A, /obj/item/ego_weapon))
 		var/obj/item/ego_weapon/theweapon = A
-		if(theweapon.force_multiplier >= 1.09) //Should prevent weirdness with numbers like 19.9999
+		if(theweapon.force_multiplier >= 1.09) // Should prevent weirdness with numbers like 19.9999
 			to_chat(user, span_warning("You can't modify this any further!"))
 			return
 		target_item = theweapon
 		ToolPrepare(user)
 	else if(istype(A, /obj/item/gun/ego_gun))
 		var/obj/item/gun/ego_gun/thegun = A
-		if(thegun.projectile_damage_multiplier >= 1.09) //Should prevent weirdness with numbers like 19.9999
+		if(thegun.projectile_damage_multiplier >= 1.09) // Should prevent weirdness with numbers like 19.9999
 			to_chat(user, span_warning("You can't modify this any further!"))
 			return
 		target_item = thegun
@@ -113,7 +113,7 @@
 	if(!target_item)
 		return
 	to_chat(user, span_warning("You continue to attempt to modify [target_item]!"))
-	playsound(get_turf(user), "[pick(random_sound_list)]", 50, TRUE) //I should probably give each sound custom text but its funnier to leave it to the player's imagination
+	playsound(get_turf(user), "[pick(random_sound_list)]", 50, TRUE) // I should probably give each sound custom text but its funnier to leave it to the player's imagination
 
 /obj/item/extraction/upgrade_tool/proc/ToolProgress(mob/user)
 	if(!target_item)
@@ -135,11 +135,15 @@
 		return
 	if(istype(target_item, /obj/item/ego_weapon))
 		var/obj/item/ego_weapon/theweapon = target_item
-		theweapon.force_multiplier = (clamp(theweapon.force_multiplier + 0.05, 0, 1.2))
+		theweapon.force_multiplier = (clamp(theweapon.force_multiplier + 0.05, 0, 1.2)) // Add 0.05 or 5% to the force multiplier
 
 	else if(istype(target_item, /obj/item/gun/ego_gun))
 		var/obj/item/gun/ego_gun/thegun = target_item
-		thegun.projectile_damage_multiplier = (clamp(thegun.projectile_damage_multiplier + 0.05, 0, 1.2))
+		var/old_multiplier = thegun.force_multiplier
+		thegun.force_multiplier = (clamp(thegun.force_multiplier + 0.05, 0, 1.2))
+		var/difference = thegun.force_multiplier - old_multiplier
+		if(difference > 0)
+			thegun.projectile_damage_multiplier *= (1 + difference) // Sure we COULD just set it equal to force_multiplier but that would break some guns
 	to_chat(user, span_warning("You successfully improve [target_item]!"))
 	target_item = null
 	current_progress = 0

@@ -29,6 +29,25 @@
 /obj/item/gun/ego_gun/examine(mob/user)
 	. = ..()
 	. += EgoAttackInfo(user)
+	switch(attack_speed)
+		if(-INFINITY to 0.39)
+			. += span_notice("This weapon has a very fast attack speed.")
+
+		if(0.4 to 0.69) // nice
+			. += span_notice("This weapon has a fast attack speed.")
+
+		if(0.7 to 0.99)
+			. += span_notice("This weapon attacks slightly faster than normal.")
+
+		if(1.01 to 1.49)
+			. += span_notice("This weapon attacks slightly slower than normal.")
+
+		if(1.5 to 1.99)
+			. += span_notice("This weapon has a slow attack speed.")
+
+		if(2 to INFINITY)
+			. += span_notice("This weapon attacks extremely slow.")
+	. += GunAttackInfo(user)
 	if(special)
 		. += "<span class='notice'>[special]</span>"
 	if(reloadtime)
@@ -90,6 +109,11 @@
 		to_chat(usr, display_text)
 
 /obj/item/gun/ego_gun/proc/EgoAttackInfo(mob/user)
+	if(force_multiplier != 1)
+		return span_notice("It deals [round(force * force_multiplier, 0.1)] [damtype] damage in melee. (+ [(force_multiplier - 1) * 100]%)")
+	return span_notice("It deals [force] [damtype] damage in melee.")
+
+/obj/item/gun/ego_gun/proc/GunAttackInfo(mob/user)
 	if(chambered && chambered.BB)
 		if(projectile_damage_multiplier != 1)
 			return "<span class='notice'>Its bullets deal [round((chambered.BB.damage * projectile_damage_multiplier), 0.1)] [chambered.BB.damage_type] damage. (+ [(projectile_damage_multiplier - 1) * 100]%)</span>"
@@ -167,8 +191,20 @@
 		playsound(src, 'sound/weapons/gun/general/bolt_rack.ogg', 50, TRUE)
 		shotsleft = initial(shotsleft)
 	is_reloading = FALSE
+	forced_melee = FALSE //no longer forced to resort to melee
 
-//Examine text for pistols.
+/obj/item/gun/ego_gun/attack(mob/M as mob, mob/user)
+	if(!CanUseEgo(user))
+		return FALSE
+	if(!can_shoot())
+		forced_melee = TRUE // Forces us to melee
+	return ..()
+
+//Pistols... There's really nothing attached to the default type except examine and attack speed
+/obj/item/gun/ego_gun/pistol
+	attack_speed = 0.5
+	force = 6
+
 /obj/item/gun/ego_gun/pistol/examine(mob/user)
 	. = ..()
 	. += "<span class='notice'>This weapon fits in an ego weapon belt.</span>"

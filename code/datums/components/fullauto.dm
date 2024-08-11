@@ -117,6 +117,8 @@
 		return
 	if(get_dist(source.mob, _target) < 2) //Adjacent clicking.
 		return
+	if(source.mob.next_move > world.time) //Too busy doing something else to fire
+		return
 
 	if(isnull(location)) //Clicking on a screen object.
 		if(_target.plane != CLICKCATCHER_PLANE) //The clickcatcher is a special case. We want the click to trigger then, under it.
