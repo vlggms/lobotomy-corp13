@@ -491,3 +491,12 @@
 /datum/ego_datum/armor/hexnail
 	item_path = /obj/item/clothing/suit/armor/ego_gear/he/hexnail
 	cost = 35
+
+// Creek Transportation Agency - Security (Enkephalin Rush)
+/datum/ego_datum/weapon/security_ego
+	item_path = /obj/item/ego_weapon/security_ego
+	cost = 35
+
+/datum/ego_datum/armor/security_ego
+	item_path = /obj/item/clothing/suit/armor/ego_gear/he/security_ego
+	cost = 35
