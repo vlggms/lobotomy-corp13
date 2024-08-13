@@ -49,7 +49,8 @@
 
 /mob/living/simple_animal/hostile/abnormality/cherry_blossoms/SuccessEffect(mob/living/carbon/human/user, work_type, pe)
 	. = ..()
-	datum_reference.qliphoth_change(-1)
+	if(prob(70))
+		datum_reference.qliphoth_change(-1)
 	if(datum_reference.qliphoth_meter !=3)
 		icon_state = "graveofcherryblossoms_[datum_reference.qliphoth_meter]"
 
@@ -99,10 +100,10 @@
 	if(!ishuman(owner))
 		return
 	var/mob/living/carbon/human/status_holder = owner
-	status_holder.physiology.red_mod *= 4
-	status_holder.physiology.white_mod *= 4
-	status_holder.physiology.black_mod *= 4
-	status_holder.physiology.pale_mod *= 4
+	status_holder.physiology.red_mod *= 3
+	status_holder.physiology.white_mod *= 3
+	status_holder.physiology.black_mod *= 3
+	status_holder.physiology.pale_mod *= 3
 
 /datum/status_effect/markedfordeath/tick()
 	var/mob/living/carbon/human/status_holder = owner
@@ -122,9 +123,9 @@
 	if(!ishuman(owner))
 		return
 	var/mob/living/carbon/human/status_holder = owner
-	status_holder.physiology.red_mod /= 4
-	status_holder.physiology.white_mod /= 4
-	status_holder.physiology.black_mod /= 4
-	status_holder.physiology.pale_mod /= 4
+	status_holder.physiology.red_mod /= 3
+	status_holder.physiology.white_mod /= 3
+	status_holder.physiology.black_mod /= 3
+	status_holder.physiology.pale_mod /= 3
 
 #undef STATUS_EFFECT_MARKEDFORDEATH

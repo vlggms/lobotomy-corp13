@@ -109,8 +109,7 @@
 	desc = "The flesh cleanly cut by a sharp tool creates a grotesque pattern with the bloodstains on the suit."
 	special = "Upon throwing, this weapon returns to the user."
 	icon_state = "blossoms"
-	force = 17
-	swingstyle = WEAPONSWING_LARGESWEEP
+	force = 19		//Slight damage boost due to it being from Cherry Tree
 	throwforce = 30
 	throw_speed = 1
 	throw_range = 7
