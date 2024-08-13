@@ -563,3 +563,22 @@
 		M.cut_overlay(visual)
 		M.melee_damage_lower -= 5
 		M.melee_damage_upper -= 10
+
+/datum/status_effect/display/glimpse_thermal
+	id = "glimpse thermal"
+	status_type = STATUS_EFFECT_UNIQUE
+	duration = 1 SECONDS
+	alert_type = null
+	display_name = "glimpse"
+	var/trait = TRAIT_THERMAL_VISION
+
+/datum/status_effect/display/glimpse_thermal/on_apply()
+	. = ..()
+	if(ishuman(owner) && owner.mind)
+		ADD_TRAIT(owner, trait, src)
+		owner.update_sight()
+
+/datum/status_effect/display/glimpse_thermal/on_remove()
+	. = ..()
+	REMOVE_TRAIT(owner, trait, src)
+	owner.update_sight()
