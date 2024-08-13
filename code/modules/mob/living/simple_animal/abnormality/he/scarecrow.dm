@@ -106,6 +106,7 @@
 			finishing = FALSE
 
 /mob/living/simple_animal/hostile/abnormality/scarecrow/WorkChance(mob/living/carbon/human/user, chance, work_type)
+	var/newchance = chance
 	if(get_attribute_level(user, PRUDENCE_ATTRIBUTE) >= 60)
 		newchance = chance-20
 	return newchance

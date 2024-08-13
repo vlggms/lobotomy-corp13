@@ -72,6 +72,7 @@
 
 // Modifiers for work chance
 /mob/living/simple_animal/hostile/abnormality/road_home/WorkChance(mob/living/carbon/human/user, chance, work_type)
+	var/newchance = chance
 	if(get_attribute_level(user, JUSTICE_ATTRIBUTE) >= 60) //Apparently the original road home is fortitude but I already made scaredy cat fort and I'm too stubborn to change it.
 		newchance = chance-20
 	return newchance

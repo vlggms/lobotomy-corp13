@@ -83,6 +83,7 @@
 	RegisterSignal(SSdcs, COMSIG_GLOB_ABNORMALITY_BREACH, PROC_REF(OnAbnoBreach))
 
 /mob/living/simple_animal/hostile/abnormality/scaredy_cat/WorkChance(mob/living/carbon/human/user, chance, work_type)
+	var/newchance = chance
 	if(get_attribute_level(user, FORTITUDE_ATTRIBUTE) >= 60)
 		newchance = chance-20
 	return newchance

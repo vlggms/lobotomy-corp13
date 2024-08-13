@@ -325,6 +325,7 @@
 
 
 /mob/living/simple_animal/hostile/abnormality/woodsman/WorkChance(mob/living/carbon/human/user, chance, work_type)
+	var/newchance = chance
 	if (get_attribute_level(user, TEMPERANCE_ATTRIBUTE) >= 60)
 		newchance = chance-20
 	return newchance
