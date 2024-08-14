@@ -160,11 +160,11 @@
 	var/temperance = get_attribute_level(user, TEMPERANCE_ATTRIBUTE)
 	var/justice = get_attribute_level(user, JUSTICE_ATTRIBUTE)
 	if(temperance >= (fortitude + prudence + justice) / 1.5) // If your temperance is at least twice your average stat, you aren't hurt, but lose temperance.
+		var/raw_temperance = get_raw_level(user, TEMPERANCE_ATTRIBUTE)
 		to_chat(user, span_userdanger("The room is filling with water... but you feel oddly unconcerned."))
-		user.adjust_attribute_level(TEMPERANCE_ATTRIBUTE, 20 - temperance)
+		user.adjust_attribute_level(TEMPERANCE_ATTRIBUTE, 20 - raw_temperance)
 		// This is a PERMANENT stat change, VERY significant. But it can happen only once per round. You're The Protagonist, after all.
-		var/stat_change = 0
-		stat_change = temperance - 20
+		var/stat_change = raw_temperance - 20
 		user.adjust_attribute_buff(JUSTICE_ATTRIBUTE, stat_change) // Gain benefit from what you lost.
 		addtimer(CALLBACK(src, PROC_REF(DecayProtagonistBuff), user, stat_change), 20 SECONDS) // Short grace period. 10s of this happens while you're asleep.
 	else
@@ -176,7 +176,6 @@
 	user.AdjustSleeping(10 SECONDS)
 	if(user.stat == DEAD)
 		animate(user, alpha = 0, time = 2 SECONDS)
-		to_chat(user.client, span_userdanger("You have died from the bottle, and your body is now a part of the endless sea."))
 		QDEL_IN(user, 3.5 SECONDS)
 		return
 
@@ -184,7 +183,7 @@
 
 /mob/living/simple_animal/hostile/abnormality/bottle/proc/DecayProtagonistBuff(mob/living/carbon/human/buffed, justice = 0)
 	// Goes faster when the buff is higher, so you don't have an overwhelming buff for an overwhelming length of time.
-	if(justice <= 0 || !buffed)
+	if(!buffed)
 		return FALSE
 	var/factor = justice / 10
 	var/timing = 10 + max(0, (100 - factor * factor))
