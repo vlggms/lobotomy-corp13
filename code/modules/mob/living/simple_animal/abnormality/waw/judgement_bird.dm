@@ -184,6 +184,10 @@
 	retreat_distance = 3
 	minimum_distance = 1
 
+/mob/living/simple_animal/hostile/nosferatu_mob/OpenFire(atom/A)
+	visible_message(span_danger("<b>[src]</b> taunts [A]!"))
+	ranged_cooldown = world.time + ranged_cooldown_time
+
 /mob/living/simple_animal/hostile/runawaybird/AttackingTarget()
 	. = ..()
 	if(ishuman(target))
