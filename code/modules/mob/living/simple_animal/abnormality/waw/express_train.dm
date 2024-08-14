@@ -48,8 +48,21 @@
 	meltdown_timer = world.time + meltdown_tick
 	return ..()
 
+/mob/living/simple_animal/hostile/abnormality/express_train/proc/Tick_Update()
+	var/player_count
+	for(var/mob/living/carbon/human/H in GLOB.player_list)	//Way harder to get a list of living humans.
+		if(H.stat != DEAD)
+			player_count+=1
+
+	//Here's what the scaling looks like:
+	//The more players you have, the less time you have to press the button.
+	//At 20 players, you have 55 seconds, 10 players, you have 64 Seconds, at 1 player you get 82 Seconds.
+	//At infinite players, you get 40 seconds.
+	meltdown_tick = 1000 - 600*TOUGHER_TIMES(player_count)
+
 /mob/living/simple_animal/hostile/abnormality/express_train/Life()
 	if(meltdown_timer < world.time && !datum_reference?.working)
+		Tick_Update()	//update the tick
 		if(datum_reference.qliphoth_meter)
 			meltdown_timer = world.time + meltdown_tick
 			datum_reference.qliphoth_change(-1)
