@@ -22,8 +22,8 @@
 	work_damage_type = WHITE_DAMAGE
 
 	ego_list = list(
-		/datum/ego_datum/weapon/penitence,		//Placeholder
-		/datum/ego_datum/armor/penitence
+		/datum/ego_datum/weapon/dead_dream,	
+		/datum/ego_datum/armor/dead_dream
 	)
 //	gift_type =  /datum/ego_gifts/oracle
 	abnormality_origin = ABNORMALITY_ORIGIN_ORIGINAL
