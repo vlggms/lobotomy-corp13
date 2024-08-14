@@ -274,4 +274,8 @@
 			B.bloodiness = 100
 	return ..()
 
+/mob/living/simple_animal/hostile/nosferatu_mob/OpenFire(atom/A)
+	visible_message(span_danger("<b>[src]</b> flies around, seemingly aiming for [A]!"))
+	ranged_cooldown = world.time + ranged_cooldown_time
+
 #undef NOSFERATU_BANQUET_COOLDOWN
