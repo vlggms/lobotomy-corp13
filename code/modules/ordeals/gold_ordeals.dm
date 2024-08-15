@@ -10,18 +10,18 @@
 	end_sound = 'sound/effects/ordeals/gold_end.ogg'
 	color = "#FFD700"
 
-	//Sort of a combination of specific commanders and random spawns
+	// Sort of a combination of specific commanders and random spawns
 	var/list/boss_type = list(/mob/living/simple_animal/hostile/ordeal/fallen_amurdad_corrosion)
-	//Randomly picked from these.
+	// Randomly picked from these.
 	var/list/grunt_type = list(/mob/living/simple_animal/hostile/ordeal/beanstalk_corrosion)
-	var/list/roamer_type = list(/mob/living/simple_animal/hostile/ordeal/beanstalk_corrosion) //Randomly spawned around the map
+	var/list/roamer_type = list(/mob/living/simple_animal/hostile/ordeal/beanstalk_corrosion) // Randomly spawned around the map
 	var/boss_amount = 2
 	var/grunt_amount = 3
 	var/roamer_amount = 3
 	var/boss_player_multiplicator = 0.05
 	var/grunt_player_multiplicator = 0.1
 
-/datum/ordeal/gold_dawn/Run() //We want our own variant that spawns both groups of mobs and roamers
+/datum/ordeal/gold_dawn/Run() // We want our own variant that spawns both groups of mobs and roamers
 	..()
 	if(!LAZYLEN(GLOB.xeno_spawn))
 		message_admins("No xeno spawns found when spawning in ordeal!")
@@ -30,7 +30,7 @@
 	var/grunt_player_mod = round(GLOB.clients.len * grunt_player_multiplicator)
 	var/list/available_locs = GLOB.xeno_spawn.Copy()
 
-	for(var/i = 1 to round(boss_amount + boss_player_mod)) //Run the usual simplecommander code
+	for(var/i = 1 to round(boss_amount + boss_player_mod)) // Run the usual simplecommander code
 		var/turf/T = pick(available_locs)
 		if(available_locs.len > 1)
 			available_locs -= T
@@ -40,7 +40,7 @@
 			C.ordeal_reference = src
 		spawngrunts(T, grunt_type, (grunt_amount + grunt_player_mod))
 
-	for(var/i = 1 to round(roamer_amount + boss_player_mod)) //we spawn groups of roamers using boss slots as a base
+	for(var/i = 1 to round(roamer_amount + boss_player_mod)) // we spawn groups of roamers using boss slots as a base
 		var/turf/T = pick(available_locs)
 		if(available_locs.len > 1)
 			available_locs -= T
@@ -66,7 +66,7 @@
 	var/boss_player_multiplicator = 0.05
 	var/grunt_player_multiplicator = 0.1
 
-/datum/ordeal/boss/gold_noon/Run() //We need to spawn roamers, still.
+/datum/ordeal/boss/gold_noon/Run() // We need to spawn roamers, still.
 	..()
 	if(!LAZYLEN(GLOB.xeno_spawn))
 		message_admins("No xeno spawns found when spawning in ordeal!")
@@ -74,7 +74,7 @@
 	var/boss_player_mod = round(GLOB.clients.len * boss_player_multiplicator)
 	var/grunt_player_mod = round(GLOB.clients.len * grunt_player_multiplicator)
 	var/list/available_locs = GLOB.xeno_spawn.Copy()
-	for(var/i = 1 to round(roamer_amount + boss_player_mod)) //we spawn single roamers using boss slots as a base
+	for(var/i = 1 to round(roamer_amount + boss_player_mod)) // we spawn single roamers using boss slots as a base
 		var/turf/T = pick(available_locs)
 		if(available_locs.len > 1)
 			available_locs -= T
@@ -104,10 +104,14 @@
 	end_announce_text = "I try calling each star something beautiful."
 	level = 4
 	reward_percent = 0.25
-	//3 different simplespawns in one ordeal. Similar to simplecommanders but each commander has its own set of grunts
+	end_sound = 'sound/effects/ordeals/gold_end_special.ogg' // I had 3 sound effects so I guess i'll use one here.
+
+	can_run = FALSE // Currently reworking this
+
+	// 3 different simplespawns in one ordeal. Similar to simplecommanders but each commander has its own set of grunts
 	boss_type = /mob/living/simple_animal/hostile/ordeal/NT_corrosion
 	grunt_type = list(/mob/living/simple_animal/hostile/ordeal/NT_corrosion)
-	//2 other pools of simplespawns.
+	// 2 other pools of simplespawns.
 	var/boss_2 = /mob/living/simple_animal/hostile/ordeal/snake_corrosion/strong
 	var/list/group_2_grunts = list(/mob/living/simple_animal/hostile/ordeal/snake_corrosion)
 	var/boss_3 = /mob/living/simple_animal/hostile/ordeal/dog_corrosion/strong
@@ -119,7 +123,7 @@
 	boss_player_multiplicator = 0.025
 	grunt_player_multiplicator = 0.05
 
-/datum/ordeal/gold_dawn/gold_midnight/Run() //Icky copypaste code but the important part is it works
+/datum/ordeal/gold_dawn/gold_midnight/Run() // Icky copypaste code but the important part is it works
 	..()
 	if(!LAZYLEN(GLOB.xeno_spawn))
 		message_admins("No xeno spawns found when spawning in ordeal!")
@@ -153,7 +157,7 @@
 		C.ordeal_reference = src
 		spawngrunts(T, group_3_grunts, (grunt_amount + grunt_player_mod))
 
-	for(var/i = 1 to round(roamer_amount + boss_player_mod)) //we spawn groups of roamers using boss slots as a base
+	for(var/i = 1 to round(roamer_amount + boss_player_mod)) // we spawn groups of roamers using boss slots as a base
 		var/turf/T = pick(available_locs)
 		if(available_locs.len > 1)
 			available_locs -= T
