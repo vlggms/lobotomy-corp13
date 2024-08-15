@@ -9,13 +9,11 @@
 	health = 100
 	threat_level = ZAYIN_LEVEL
 	work_chances = list(
-		ABNORMALITY_WORK_INSTINCT = list(30, 40, 50, 60, 70),
+		ABNORMALITY_WORK_INSTINCT = 60,
 		ABNORMALITY_WORK_INSIGHT = 60,
 		ABNORMALITY_WORK_ATTACHMENT = list(70, 60, 50, 40, 30),
-		ABNORMALITY_WORK_REPRESSION = 0,
+		ABNORMALITY_WORK_REPRESSION = 40,
 	)
-	pixel_x = 0
-	base_pixel_x = 0
 
 	work_damage_amount = 5
 	work_damage_type = RED_DAMAGE
@@ -44,6 +42,12 @@
 	var/cooldown
 	var/cooldown_time = 10 SECONDS
 	var/spawned_effects = list()
+	var/list/bad_mail_types = list(
+		/obj/item/mailpaper/junk,
+		/obj/item/mailpaper/pipebomb,
+		/obj/item/mailpaper/hatred,
+		/obj/item/mailpaper/trapped/flashbang,
+	)
 
 /mob/living/simple_animal/hostile/abnormality/mailpile/Destroy()
 	for(var/obj/effect/VFX in spawned_effects)
@@ -62,9 +66,27 @@
 /mob/living/simple_animal/hostile/abnormality/mailpile/WorktickFailure(mob/living/carbon/human/user)
 	if(prob(10))
 		to_chat(user, span_warning("Ouch! I got a paper cut!"))
+		user.deal_damage(1, RED_DAMAGE)
 	return ..()
 
-/mob/living/simple_animal/hostile/abnormality/mailpile/proc/DeliveryRepress(mob/living/carbon/human/user, work_type, pe, work_time)
+/mob/living/simple_animal/hostile/abnormality/mailpile/proc/Delivery(mob/living/carbon/human/user, work_type, pe, work_time)
+	playsound(get_turf(src), 'sound/abnormalities/mailpile/gotmail.ogg', 50, 1)
+	to_chat(user, span_notice("One of the letters from the pile slowly waves in the air."))
+	var/obj/item/mailpaper/MAIL
+	switch(work_type)
+		if(ABNORMALITY_WORK_INSTINCT)
+			MAIL = new /obj/item/mailpaper/instinct(get_turf(src),user)
+		if(ABNORMALITY_WORK_INSIGHT)
+			MAIL = new /obj/item/mailpaper/insight(get_turf(src),user)
+		if(ABNORMALITY_WORK_ATTACHMENT)
+			MAIL = new /obj/item/mailpaper/attachment(get_turf(src),user)
+		if(ABNORMALITY_WORK_REPRESSION)
+			var/mailtype = pick(bad_mail_types)
+			MAIL = new mailtype(get_turf(src))
+	MAIL.throw_at(user, 4, 1, src, spin = FALSE, gentle = TRUE, quickstart = FALSE)
+	return
+
+/mob/living/simple_animal/hostile/abnormality/mailpile/proc/BadDelivery(mob/living/carbon/human/user, work_type, pe, work_time)
 	if(cooldown > world.time)
 		to_chat(user, span_warning("You realized you have made a grave mistake as envelopes start flying out of the mailbox towards you."))
 		user.Stun(10 SECONDS)
@@ -79,11 +101,8 @@
 		for(var/obj/item/mailpaper/MAIL in letterssave)
 			qdel(MAIL)
 		return
-
 	cooldown = world.time + cooldown_time
-
 	playsound(get_turf(src), 'sound/abnormalities/mailpile/gotmail.ogg', 50, 1)
-
 	if(prob(25))
 		var/obj/item/parcelself/PARCEL = new(get_turf(src),user)
 		PARCEL.throw_at(user, 4, 1, src, spin = FALSE, gentle = TRUE, quickstart = FALSE)
@@ -92,36 +111,10 @@
 		MAIL.throw_at(user, 4, 1, src, spin = FALSE, gentle = TRUE, quickstart = FALSE)
 	return
 
-/mob/living/simple_animal/hostile/abnormality/mailpile/proc/Delivery(mob/living/carbon/human/user, work_type, pe, work_time)
-	if(prob(60))
-		to_chat(user, span_notice("It seems the pile did not find a message for you."))
-		return
-	playsound(get_turf(src), 'sound/abnormalities/mailpile/gotmail.ogg', 50, 1)
-
-	to_chat(user, span_notice("One of the letters from the pile slowly waves in the air."))
-	var/obj/item/mailpaper/MAIL
-	if(prob(20))
-		if(prob(10))
-			MAIL = new /obj/item/mailpaper/pipebomb(get_turf(src))
-		else
-			MAIL = new /obj/item/mailpaper/junk(get_turf(src))
-	else
-		switch(work_type)
-			if(ABNORMALITY_WORK_INSTINCT)
-				MAIL = new /obj/item/mailpaper/instinct(get_turf(src),user)
-			if(ABNORMALITY_WORK_INSIGHT)
-				MAIL = new /obj/item/mailpaper/insight(get_turf(src),user)
-			if(ABNORMALITY_WORK_ATTACHMENT)
-				MAIL = new /obj/item/mailpaper/attachment(get_turf(src),user)
-	MAIL.throw_at(user, 4, 1, src, spin = FALSE, gentle = TRUE, quickstart = FALSE)
-	return
-
 //players get a parcel / letters for completing works
-/mob/living/simple_animal/hostile/abnormality/mailpile/PostWorkEffect(mob/living/carbon/human/user, work_type, pe, work_time, canceled)
+/mob/living/simple_animal/hostile/abnormality/mailpile/FailureEffect(mob/living/carbon/human/user, work_type, pe, work_time, canceled)
 	. = ..()
-	if(work_type == ABNORMALITY_WORK_REPRESSION)
-		DeliveryRepress(user,work_type,pe)
-	return
+	BadDelivery(user,work_type,pe)
 
 /mob/living/simple_animal/hostile/abnormality/mailpile/NeutralEffect(mob/living/carbon/human/user, work_type, pe)
 	. = ..()
@@ -169,9 +162,7 @@
 			else
 				new threat_type(get_turf(H))
 
-
-
-//what the fuck is this
+// kinda bad visual effect. Someone PLEASE update this.
 /obj/effect/letters_flow
 	name = "storm of letters"
 	desc = "The storm rages on."
@@ -179,12 +170,12 @@
 	icon_state = "letters"
 	layer = ABOVE_MOB_LAYER
 
-//x2 workspeed buff pro 2022 free hack free robux
+// x2 workspeed buff pro 2022 free hack free robux
 /datum/status_effect/workspeed_buff
 	id = "workspeed_buff"
 	status_type = STATUS_EFFECT_UNIQUE
 	alert_type = /atom/movable/screen/alert/status_effect/workspeed_buff
-	duration = 6 SECONDS
+	duration = 30 SECONDS
 
 /datum/status_effect/workspeed_buff/on_apply()
 	. = ..()
@@ -206,7 +197,7 @@
 	id = "nofear_buff"
 	status_type = STATUS_EFFECT_UNIQUE
 	alert_type = /atom/movable/screen/alert/status_effect/nofear_buff
-	duration = 6 SECONDS
+	duration = 3 MINUTES
 
 /datum/status_effect/nofear_buff/on_apply()
 	. = ..()
@@ -273,12 +264,14 @@
 
 /obj/item/mailpaper/pipebomb
 	name = "Suspicious letter"
-	desc = "letter addressed to a scratched out name, by... Neco-Arc?"
+	desc = "A letter with all identifying features scratched off. Sketchy."
+	icon = 'icons/obj/grenade.dmi'
+	icon_state = "pipebomb_gift"
 
 /obj/item/mailpaper/pipebomb/attack_self(mob/living/carbon/human/user)
 	to_chat(user, span_warning("What is this... Is this a pipebomb!?"))
 	sleep(10)
-	//add glitterbomb sfx, maybe a toot horn or something funny
+	playsound(get_turf(user), 'sound/weapons/flashbang.ogg', 30, TRUE, 8, 0.9)
 	for(var/direction in GLOB.alldirs)
 		var/turf/dispense_turf = get_step(src, direction)
 		new /obj/effect/decal/cleanable/glitter(dispense_turf)
@@ -287,12 +280,20 @@
 /obj/item/mailpaper/junk
 	var/JUNKMAIL = list(
 		list(
-			"letter from RobustCO",
+			"Letter from RobustCO",
 			"The outside reads \"Improve your robustness today! Read our letter now!\"",
 		),
 		list(
 			"Suspicious message",
 			"Ever felt like you need a boost? Get swole today!",
+		),
+		list(
+			"Letter from Shrimpcorp",
+			"Is your establishment or workplace completely and utterly lacking in shrimp? Call now for a free chonchsultation!",
+		),
+		list(
+			"Notice from the Head",
+			"To: Ayin, As of -/--/----, we have not received your overdue tax after sending several notices to you. You must pay your balance by -/--/---- or we may levy (seize) your property.",
 		),
 	)
 
