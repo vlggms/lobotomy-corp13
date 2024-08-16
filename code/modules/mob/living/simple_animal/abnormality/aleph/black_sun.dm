@@ -87,8 +87,6 @@
 	for(var/i = 0 to 2)
 		var/X = pick(GLOB.department_centers)
 		var/turf/T = get_turf(X)
-		if(/mob/living/simple_animal/hostile/sun_pillar in T.contents)	//Don't put two down at the same time
-			continue
 		new /mob/living/simple_animal/hostile/sun_pillar(T)
 
 
@@ -163,6 +161,12 @@
 	del_on_death = TRUE
 	a_intent = INTENT_HARM
 	var/aoe_range = 10
+
+/mob/living/simple_animal/hostile/sun_pillar/Initialize()
+	..()
+	for(var/mob/living/simple_animal/hostile/sun_pillar/M in src.loc)	//Don't put two down at the same place
+		if(M!=src)
+			qdel(src)
 
 /mob/living/simple_animal/hostile/sun_pillar/AttackingTarget()
 	return FALSE
