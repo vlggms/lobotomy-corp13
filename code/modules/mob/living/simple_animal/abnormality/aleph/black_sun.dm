@@ -87,7 +87,7 @@
 	for(var/i = 0 to 2)
 		var/X = pick(GLOB.department_centers)
 		var/turf/T = get_turf(X)
-		for(var/mob/living/simple_animal/hostile/sun_pillar/M in T.contents)	//Don't put two down at the same time
+		if(/mob/living/simple_animal/hostile/sun_pillar in T.contents)	//Don't put two down at the same time
 			continue
 		new /mob/living/simple_animal/hostile/sun_pillar(T)
 
@@ -127,8 +127,8 @@
 	telegraph_duration = 150
 
 	weather_message = "<span class='danger'>The blood.... it sings to you</span>"
-	weather_duration_lower = 3000
-	weather_duration_upper = 3000
+	weather_duration_lower = 1200
+	weather_duration_upper = 1200
 	weather_overlay = "bloodwater"
 
 	end_message = "<span class='danger'>The blood subsides.</span>"
