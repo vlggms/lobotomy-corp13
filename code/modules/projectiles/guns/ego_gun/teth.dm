@@ -181,7 +181,7 @@
 	name = "luck of the draw"
 	desc = "A seemingly infinite deck of bladed cards. How much are you willing to risk to win it big?"
 	icon_state = "luckdraw"
-	inhand_icon_state = "luckdraw" //Current sprites sans the projectile are either a devsprite or full-on placeholder. Will need to replace at some point.
+	inhand_icon_state = "luckdraw"
 	lefthand_file = 'icons/mob/inhands/items_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/items_righthand.dmi'
 	special = "This weapon's projectiles move slowly and pierce enemies."

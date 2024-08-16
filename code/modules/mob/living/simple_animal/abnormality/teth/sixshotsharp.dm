@@ -1,8 +1,8 @@
-/mob/living/simple_animal/hostile/abnormality/dealerdamned
-	name = "Dealer of the Damned"
-	desc = "A floating playing card with what appears to be a cursor acting as its hand."
+/mob/living/simple_animal/hostile/abnormality/sixshotsharp
+	name = "Six-Shot Sharper"
+	desc = "A gaunt, towering man with a magnum revolver for a head. It's seated at a dealer's table.."
 	icon = 'ModularTegustation/Teguicons/64x64.dmi'
-	icon_state = "dealerdamned"
+	icon_state = "sixshotsharp"
 	maxHealth = 400
 	health = 400
 	threat_level = TETH_LEVEL
@@ -32,7 +32,7 @@
 	var/work_count = 0
 
 //Coinflip V1; Expect Jank
-/mob/living/simple_animal/hostile/abnormality/dealerdamned/funpet(mob/petter)
+/mob/living/simple_animal/hostile/abnormality/sixshotsharp/funpet(mob/petter)
 	..()
 	if(!isliving(petter))
 		return
@@ -43,10 +43,10 @@
 	has_flipped = TRUE
 	var/mob/living/user = petter
 	user.deal_damage(user.maxHealth*0.2, RED_DAMAGE)
-	icon_state = "dealerflip"
+	icon_state = "sixsharpflip"
 	manual_emote("flips a gold coin.")
 	SLEEP_CHECK_DEATH(10)
-	icon_state = "dealerdamned"
+	icon_state = "sixshotsharp"
 	if(prob(35))
 		say("Heads, huh? Looks like you win this one.")
 		coin_status = TRUE
@@ -55,7 +55,7 @@
 		say("Tails. Sorry, high roller, but a deal's a deal.")
 	return
 
-/mob/living/simple_animal/hostile/abnormality/dealerdamned/AttemptWork(mob/living/carbon/human/user, work_type)
+/mob/living/simple_animal/hostile/abnormality/sixshotsharp/AttemptWork(mob/living/carbon/human/user, work_type)
 	..()
 	if((work_type == "Gamble") && (user.ckey in gambled_prior))
 		say("Hey, I know I'm all for high stakes, but you've already put your life on the line once. I've got standards.")
@@ -64,7 +64,7 @@
 		return TRUE
 
 //TODO: Add the revolver open sprite, replace gibbing with "death" sprite
-/mob/living/simple_animal/hostile/abnormality/dealerdamned/PostWorkEffect(mob/living/carbon/human/user, work_type, pe, work_time)
+/mob/living/simple_animal/hostile/abnormality/sixshotsharp/PostWorkEffect(mob/living/carbon/human/user, work_type, pe, work_time)
 	..()
 	if(work_type == "Gamble")
 		say("Feelin' like putting your life on the line, huh? Sounds good to me!")
@@ -99,7 +99,7 @@
 				else
 					player_shot = TRUE
 
-/mob/living/simple_animal/hostile/abnormality/dealerdamned/WorkChance(mob/living/carbon/human/user, chance)
+/mob/living/simple_animal/hostile/abnormality/sixshotsharp/WorkChance(mob/living/carbon/human/user, chance)
 	var/newchance
 	if(coin_status)
 		newchance = 20
