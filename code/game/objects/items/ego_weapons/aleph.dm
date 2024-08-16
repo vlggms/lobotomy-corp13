@@ -253,7 +253,7 @@
 	if(!finisher_on)
 		..()
 		return
-	if(do_after(user, 5, target))
+	if(do_after(user, 4, target))
 
 		target.visible_message(span_danger("[user] rears up and slams into [target]!"), \
 						span_userdanger("[user] punches you with everything you got!!"), vision_distance = COMBAT_MESSAGE_RANGE, ignored_mobs = user)
