@@ -244,3 +244,9 @@ Any attempt to code risk class armor will result in a 10 day Github ban.*/
 	desc = "Some things are too good to be true."
 	icon_state = "faelantern"
 	armor = list(RED_DAMAGE = 20, WHITE_DAMAGE = 30, BLACK_DAMAGE = -30, PALE_DAMAGE = 0) // 20
+
+/obj/item/clothing/suit/armor/ego_gear/teth/luckdraw
+	name = "luck of the draw"
+	desc = "How many have lost it all to a simple game of chance?"
+	icon_state = "luckdraw"
+	armor = list(RED_DAMAGE = 0, WHITE_DAMAGE = 10, BLACK_DAMAGE = 30, PALE_DAMAGE = -20) // 20
