@@ -222,7 +222,10 @@
 		slash_current = slash_cooldown
 		say(pick(combat_lines))
 		slashing = TRUE
-		slash()
+		if(prob(50))
+			slash()
+		else
+			targetslash()
 	if(awakened_buddy)
 		awakened_buddy.GiveTarget(target)
 
@@ -231,6 +234,7 @@
 		slash_current = slash_cooldown
 		say(pick(combat_lines))
 		slashing = TRUE
+		playsound(src, 'sound/weapons/slice.ogg', 75, FALSE, 4)
 		slash()
 	..()
 
@@ -287,13 +291,23 @@
 		return FALSE
 	return ..()
 
+/mob/living/simple_animal/hostile/abnormality/blue_shepherd/proc/targetslash()
+	if(buddy?.current?.status_flags & GODMODE)
+		buddy.qliphoth_change(-1) //buddy can hear it fight
+	var/turf/orgin = get_turf(target)
+	var/list/all_turfs = RANGE_TURFS(range, orgin)
+	for(var/i = 0 to range)
+		for(var/turf/T in all_turfs)
+			if(get_dist(orgin, T) > i)
+				continue
+			addtimer(CALLBACK(src, PROC_REF(SlashHit), T, all_turfs, i, buddy_hit), i*0.4 SECONDS)
+
 /mob/living/simple_animal/hostile/abnormality/blue_shepherd/proc/slash()
 	if(buddy?.current?.status_flags & GODMODE)
 		buddy.qliphoth_change(-1) //buddy can hear it fight
 	var/turf/orgin = get_turf(src)
 	var/list/all_turfs = RANGE_TURFS(range, orgin)
 	for(var/i = 0 to range)
-		playsound(src, 'sound/weapons/slice.ogg', 75, FALSE, 4)
 		for(var/turf/T in all_turfs)
 			if(get_dist(orgin, T) > i)
 				continue
@@ -304,6 +318,9 @@
 		return
 	new /obj/effect/temp_visual/smash_effect(T)
 	for(var/mob/living/L in HurtInTurf(T, list(), slash_damage, BLACK_DAMAGE, check_faction = combat_map, hurt_mechs = TRUE, hurt_structure = TRUE, break_not_destroy = TRUE))
+		if(L == src)
+			//Don't hit yourself.
+			continue
 		if(L == awakened_buddy && !buddy_hit)
 			buddy_hit = TRUE //sometimes buddy get hit twice so we check if it got hit in this slash
 			awakened_buddy.adjustHealth(700) //it would take approximatively 9 slashes to take buddy down
