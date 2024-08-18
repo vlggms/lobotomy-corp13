@@ -60,6 +60,8 @@
 	var/success_boxes = null
 	/// How much PE you have to produce for neutral result, if not null or 0.
 	var/neutral_boxes = null
+	/// Check to see if the abnormality hates goods or can't get them.
+	var/good_hater = FALSE
 	/// List of ego equipment datums
 	var/list/ego_list = list()
 	/// EGO Gifts
@@ -160,6 +162,11 @@
 
 	if(secret_chance && (prob(1)))
 		InitializeSecretIcon()
+
+	//Abnormalities have no name here. And we don't want nonsentient ones to breach
+	if(SSmaptype.maptype == "limbus_labs")
+		name = "Limbus Company Specimen"
+		faction = list("neutral")
 
 /mob/living/simple_animal/hostile/abnormality/proc/InitializeSecretIcon()
 	SHOULD_CALL_PARENT(TRUE) // if you ever need to override this proc, consider adding onto it instead or not using all the variables given
@@ -544,10 +551,10 @@
 	var/answer = final_observation_alert(user, "[observation_prompt]", "Final Observation of [src]", observation_choices, timeout = 60 SECONDS)
 	if(answer in correct_choices)
 		condition = TRUE
-	ObservationResult(user, condition)
+	ObservationResult(user, condition, answer) //We pass along the answer just in case
 	observation_in_progress = FALSE
 
-/mob/living/simple_animal/hostile/abnormality/proc/ObservationResult(mob/living/carbon/human/user, condition)
+/mob/living/simple_animal/hostile/abnormality/proc/ObservationResult(mob/living/carbon/human/user, condition, answer)
 	if(condition) //Successful, could override for longer observations as well.
 		final_observation_alert(user,"[observation_success_message]", "OBSERVATION SUCCESS",list("Ok"), timeout=20 SECONDS) //Some of these take a long time to read
 		if(gift_type)

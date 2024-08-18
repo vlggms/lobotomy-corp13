@@ -16,6 +16,7 @@
 
 	job_abbreviation = "TO"
 	mentor_only = TRUE
+	alt_titles = list()
 
 /datum/job/agent/training_officer/announce(mob/living/carbon/human/outfit_owner)
 	..()
@@ -39,26 +40,66 @@
 		/obj/item/melee/classic_baton,
 		/obj/item/info_printer,
 		/obj/item/announcementmaker/lcorp,
-		/obj/item/suppressionupdate/training_officer,
+		/obj/item/stat_equalizer,
 		/obj/item/sensor_device,
 	)
 
 	//Training Stat update
-/obj/item/suppressionupdate/training_officer
+/obj/item/stat_equalizer
 	name = "training stat equalizer"
 	desc = "A localized source of stats, only usable by the Training Officers to equalize the stats of them and any interns."
+	icon = 'ModularTegustation/Teguicons/teguitems.dmi'
 	icon_state = "records_stats"
-	allowedroles = list("Records Agent")
+	w_class = WEIGHT_CLASS_SMALL
+	slot_flags = ITEM_SLOT_BELT | ITEM_SLOT_POCKETS
 
-/obj/item/suppressionupdate/training_officer/attack_self(mob/living/carbon/human/user)
-	if(!LAZYLEN(allowedroles))
-		if(!istype(user) || !(user?.mind?.assigned_role in allowedroles))
-			to_chat(user, span_notice("The Gadget's light flashes red. You aren't a Training Officer. Check the label before use."))
-			return
+/obj/item/stat_equalizer/attack_self(mob/living/carbon/human/user)
+	if(!istype(user) || user?.mind?.assigned_role != "Training Officer")
+		to_chat(user, span_notice("The Gadget's light flashes red. You aren't a Training Officer. Check the label before use."))
+		return
 	update_stats(user)
 
-/obj/item/suppressionupdate/training_officer/attack(mob/living/M, mob/user)
-	if(!istype(user) || !(user?.mind?.assigned_role in allowedroles))
+/obj/item/stat_equalizer/attack(mob/living/M, mob/user)
+	if(!istype(user) || user?.mind?.assigned_role != "Training Officer")
 		to_chat(user, span_notice("The Gadget's light flashes red. You aren't a Training Officer. Check the label before use."))
 		return
 	update_stats(M)
+
+/obj/item/stat_equalizer/proc/update_stats(mob/living/carbon/human/user)
+	var/list/attribute_list = list(FORTITUDE_ATTRIBUTE, PRUDENCE_ATTRIBUTE, TEMPERANCE_ATTRIBUTE, JUSTICE_ATTRIBUTE)
+
+	//I got lazy and this needs to be shipped out today
+	var/set_attribute = 20
+	var/facility_full_percentage = 0
+	if(SSabnormality_queue.spawned_abnos) // dont divide by 0
+		facility_full_percentage = 100 * (SSabnormality_queue.spawned_abnos / SSabnormality_queue.rooms_start)
+	// how full the facility is, from 0 abnormalities out of 24 cells being 0% and 24/24 cells being 100%
+	switch(facility_full_percentage)
+		if(15 to 29) // Shouldn't be anything more than TETHs (4 Abnormalities)
+			set_attribute *= 1.5
+
+		if(29 to 44) // HEs (8 Abnormalities)
+			set_attribute *= 2
+
+		if(44 to 59) // A bit before WAWs (11 Abnormalities)
+			set_attribute *= 2.5
+
+		if(59 to 69) // WAWs around here (15 Abnormalities)
+			set_attribute *= 3
+
+		if(69 to 79) // ALEPHs starting to spawn (17 Abnormalities)
+			set_attribute *= 3.5
+
+		if(79 to 100) // ALEPHs around here (20 Abnormalities)
+			set_attribute *= 4
+
+	set_attribute += GetFacilityUpgradeValue(UPGRADE_AGENT_STATS)
+
+	//Set all stats to 0
+	for(var/A in attribute_list)
+		var/processing = get_attribute_level(user, A)
+		user.adjust_attribute_level(A, -1*processing)
+
+	//Now we have to bring it back up
+	user.adjust_all_attribute_levels(set_attribute)
+	to_chat(user, span_notice("You feel reset, and more ready for combat."))

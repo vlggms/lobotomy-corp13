@@ -7,6 +7,7 @@
 #define W_CORP_REP "W corp"
 #define N_CORP_REP "N corp"
 #define P_CORP_REP "P corp"
+#define J_CORP_REP "J corp"
 #define IS_MONIES istype(I, /obj/item/holochip)
 #define IS_REFINED_PE istype(I, /obj/item/refinedpe)
 #define IS_RAW_PE istype(I, /obj/item/rawpe)
@@ -220,6 +221,14 @@
 			order_list = list(
 				new /datum/data/extraction_cargo("P Corp Canned Bread", /obj/item/food/canned/pcorp, 10, P_CORP_REP) = 1,
 			)
+
+		if("J Corp Representative")
+			our_corporation = J_CORP_REP
+			CustomizeOffice(null, /obj/structure/pe_sales/jcorp)
+			order_list = list(
+				new /datum/data/extraction_cargo("J Corp Casino Token", /obj/item/casinotoken, 200, J_CORP_REP) = 1,
+			)
+
 
 		else
 			to_chat(usr, span_warning("ASSIGNMENT ERROR."))

@@ -12,10 +12,10 @@
 	damage_coeff = list(RED_DAMAGE = 1, WHITE_DAMAGE = 1.5, BLACK_DAMAGE = 0.5, PALE_DAMAGE = 2)
 	threat_level = ZAYIN_LEVEL
 	work_chances = list( //In the comic they work on it. They say you can do any work as long as you don't eat the cake
-		ABNORMALITY_WORK_INSTINCT = list(50, 40, 30, 30, 30),
-		ABNORMALITY_WORK_INSIGHT = list(50, 40, 30, 30, 30),
-		ABNORMALITY_WORK_ATTACHMENT = list(50, 40, 30, 30, 30),
-		ABNORMALITY_WORK_REPRESSION = list(50, 40, 30, 30, 30), //How the fuck do you beat up a cake?
+		ABNORMALITY_WORK_INSTINCT = list(60, 50, 40, 30, 30),
+		ABNORMALITY_WORK_INSIGHT = list(60, 50, 40, 30, 30),
+		ABNORMALITY_WORK_ATTACHMENT = list(60, 50, 40, 30, 30),
+		ABNORMALITY_WORK_REPRESSION = list(60, 50, 40, 30, 30), //How the fuck do you beat up a cake?
 		"Dining" = 100, //You can instead decide to eat the cake.
 		"Drink" = 100, //Or Drink the water
 	)
@@ -54,10 +54,24 @@
 	observation_prompt = "It was all very well to say \"Drink me\" but wisdom told you not to do that in a hurry. <br>\
 		The bottle had no markings to denote whether it was poisonous but you could not be sure, it was almost certain to disagree with you, sooner or later..."
 	observation_choices = list("Drink the bottle", "Eat the cake", "Leave")
-	correct_choices = list("Leave")
+	correct_choices = list("Leave", "Eat the cake")
 	observation_success_message = "Suspicious things are suspicious, common sense hasn't failed you yet."
 	observation_fail_message = "However this bottle was not marked as poisonous and you ventured a taste, \
-		and found it horrid, the brine clung to your tongue. <br>Who'd mark such a horrible thing for drinking?" //Awaiting the update for eating the cake result
+		and found it horrid, the brine clung to your tongue. <br>Who'd mark such a horrible thing for drinking?"
+	//Special answer for choice 2
+	var/observation_success_message_2 = "Abandon reason, that's how you survive in Wonderland. <br>\
+		You devour the cake by the handful, frosting and crumbs smear your hands, your face and the floor. <br>\
+		It's sweet and tart, with only the slightest hint of salt. <br>\
+		As you breach the final layer of cake, the top of the bottle cracks and a deluge of brine spills forth, filling the room faster than you could draw a breath. <br>\
+		In spite of that, you're at peace and smiling. <br>\
+		Through your fading eyesight, you spy yourself through the other side of the containment door's window - frowning."
+
+/mob/living/simple_animal/hostile/abnormality/bottle/ObservationResult(mob/living/carbon/human/user, condition, answer) //special answer for cake result
+	if(answer == "Eat the cake")
+		observation_success_message = observation_success_message_2
+	else
+		observation_success_message = initial(observation_success_message)
+	return ..()
 
 /mob/living/simple_animal/hostile/abnormality/bottle/Life()
 	. = ..()
@@ -146,11 +160,11 @@
 	var/temperance = get_attribute_level(user, TEMPERANCE_ATTRIBUTE)
 	var/justice = get_attribute_level(user, JUSTICE_ATTRIBUTE)
 	if(temperance >= (fortitude + prudence + justice) / 1.5) // If your temperance is at least twice your average stat, you aren't hurt, but lose temperance.
+		var/raw_temperance = get_raw_level(user, TEMPERANCE_ATTRIBUTE)
 		to_chat(user, span_userdanger("The room is filling with water... but you feel oddly unconcerned."))
-		user.adjust_attribute_level(TEMPERANCE_ATTRIBUTE, 20 - temperance)
+		user.adjust_attribute_level(TEMPERANCE_ATTRIBUTE, 20 - floor(raw_temperance))
 		// This is a PERMANENT stat change, VERY significant. But it can happen only once per round. You're The Protagonist, after all.
-		var/stat_change = 0
-		stat_change = temperance - 20
+		var/stat_change = floor(raw_temperance - 20)
 		user.adjust_attribute_buff(JUSTICE_ATTRIBUTE, stat_change) // Gain benefit from what you lost.
 		addtimer(CALLBACK(src, PROC_REF(DecayProtagonistBuff), user, stat_change), 20 SECONDS) // Short grace period. 10s of this happens while you're asleep.
 	else
@@ -162,22 +176,21 @@
 	user.AdjustSleeping(10 SECONDS)
 	if(user.stat == DEAD)
 		animate(user, alpha = 0, time = 2 SECONDS)
-		to_chat(user.client, span_userdanger("You have died from the bottle, and your body is now a part of the endless sea."))
 		QDEL_IN(user, 3.5 SECONDS)
 		return
 
 	user.adjustBruteLoss(-((user.maxHealth - fortitude) * 0.25)) // If you didn't die instantly, heal up some.
 
-/mob/living/simple_animal/hostile/abnormality/bottle/proc/DecayProtagonistBuff(mob/living/carbon/human/buffed, justice = 0)
+/mob/living/simple_animal/hostile/abnormality/bottle/proc/DecayProtagonistBuff(mob/living/carbon/human/buffed, given_justice = 0)
 	// Goes faster when the buff is higher, so you don't have an overwhelming buff for an overwhelming length of time.
-	if(justice <= 0 || !buffed)
+	if(!buffed || given_justice == 0)
 		return FALSE
-	var/factor = justice / 10
+	var/factor = given_justice / 10
 	var/timing = 10 + max(0, (100 - factor * factor))
 	buffed.adjust_attribute_buff(JUSTICE_ATTRIBUTE, -1)
 	if(prob(10))
 		buffed.adjust_attribute_level(JUSTICE_ATTRIBUTE, 1) // 10% chance for justice buff to become real justice as it decays.
-	addtimer(CALLBACK(src, PROC_REF(DecayProtagonistBuff), buffed, justice - 1), timing)
+	addtimer(CALLBACK(src, PROC_REF(DecayProtagonistBuff), buffed, given_justice - 1), timing)
 
 /mob/living/simple_animal/hostile/abnormality/bottle/BreachEffect(mob/living/carbon/human/user, breach_type)
 	if(breach_type == BREACH_PINK)

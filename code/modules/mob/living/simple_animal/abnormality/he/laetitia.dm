@@ -5,8 +5,8 @@
 	icon = 'ModularTegustation/Teguicons/tegumobs.dmi'
 	icon_state = "laetitia"
 	portrait = "laetitia"
-	maxHealth = 600
-	health = 600
+	maxHealth = 1500
+	health = 1500
 	threat_level = HE_LEVEL
 	work_chances = list(
 		ABNORMALITY_WORK_INSTINCT = list(40, 45, 50, 50, 50),
@@ -17,6 +17,11 @@
 	work_damage_amount = 8
 	work_damage_type = BLACK_DAMAGE
 	max_boxes = 16 // Accurate to base game
+	melee_damage_type = WHITE_DAMAGE
+	melee_damage_lower = 1
+	melee_damage_upper = 5
+	attack_verb_continuous = "slaps"
+	attack_verb_simple = "slap"
 
 	ego_list = list(
 		/datum/ego_datum/weapon/prank,
@@ -35,6 +40,104 @@
 		I won't give you a present, but, could you stay and play with me some more today?"
 	observation_fail_message = "I'm glad! <br>I wish I could have seen their faces, I bet they were so surprised! <br>\
 		You look lonely too, I hope my present will make you laugh as well!"
+
+	attack_action_types = list(/datum/action/cooldown/laetitia_gift, /datum/action/cooldown/laetitia_summon)
+
+/datum/action/cooldown/laetitia_summon
+	name = "Call for Friends"
+	icon_icon = 'ModularTegustation/Teguicons/tegu_effects.dmi'
+	button_icon_state = "prank_gift"
+	check_flags = AB_CHECK_CONSCIOUS
+	transparent_when_unavailable = TRUE
+	cooldown_time = 40 SECONDS
+	var/delete_timer
+	var/delete_cooldown = 30 SECONDS
+	var/mob/living/simple_animal/hostile/gift/G1
+	var/mob/living/simple_animal/hostile/gift/G2
+
+/datum/action/cooldown/laetitia_summon/Trigger()
+	if(!..())
+		return FALSE
+	if(!istype(owner, /mob/living/simple_animal/hostile/abnormality/laetitia))
+		return FALSE
+
+	StartCooldown()
+	G1 = new /mob/living/simple_animal/hostile/gift(owner.loc)
+	G2 = new /mob/living/simple_animal/hostile/gift(owner.loc)
+	delete_timer = addtimer(CALLBACK(src, PROC_REF(delete)), delete_cooldown, TIMER_STOPPABLE)
+	// send poll to all ghosts and wait
+	var/list/candidates = pollGhostCandidates("Laetitia is calling for help! Are you willing to protect her?", poll_time=100)
+	if (LAZYLEN(candidates) > 0)
+		var/mob/dead/observer/C = pick(candidates)
+		G1.key = C.key
+		candidates -= C
+	if (LAZYLEN(candidates) > 0)
+		var/mob/dead/observer/C = pick(candidates)
+		G2.key = C.key
+		candidates -= C
+
+/datum/action/cooldown/laetitia_summon/proc/delete()
+	if (!G1.ckey)
+		qdel(G1)
+	if (!G2.ckey)
+		qdel(G2)
+
+/datum/action/cooldown/laetitia_gift
+	name = "Gift"
+	icon_icon = 'ModularTegustation/Teguicons/tegu_effects.dmi'
+	button_icon_state = "prank_gift"
+	check_flags = AB_CHECK_CONSCIOUS
+	transparent_when_unavailable = TRUE
+	cooldown_time = 10 SECONDS
+	var/view_distance = 3
+
+/datum/action/cooldown/laetitia_gift/Trigger()
+	if(!..())
+		return FALSE
+	if(!istype(owner, /mob/living/simple_animal/hostile/abnormality/laetitia))
+		return FALSE
+	var/kind = tgui_alert(owner, "What kind of gift?", "Custom Speech", list("Good", "Bad"))
+	var/strength = text2num(tgui_alert(owner, "What is the strength of the gift?", "Custom Speech", list("1", "2", "3")))
+	if (strength == null)
+		strength = 2
+	var/obj/item/laetitia_gift/g = new /obj/item/laetitia_gift(owner.loc)
+	g.strength = strength
+	if (strength == 1)
+		g.color = "#F48FB1"
+		g.name = "small laetitia's gift"
+	else if (strength == 3)
+		g.color = "#C2185B"
+		g.name = "big laetitia's gift"
+	if (kind == "Good")
+		g.strength *= -1
+	StartCooldown()
+
+/obj/item/laetitia_gift
+	name = "laetitia's gift"
+	icon = 'ModularTegustation/Teguicons/tegu_effects.dmi'
+	icon_state = "prank_gift"
+	var/opening = FALSE
+	var/oneuse = TRUE
+	var/basepower = 25
+	var/strength = 1
+
+/obj/item/laetitia_gift/attack_self(mob/user)
+	if(opening)
+		to_chat(user, span_warning("You're already opening this gift!"))
+		return FALSE
+	opening = TRUE
+	to_chat(user, "Opening the gift!")
+	if(do_after(user, 5 SECONDS, src))
+		playsound(get_turf(src), 'sound/abnormalities/laetitia/spider_born.ogg', 50, 1)
+		if (istype(user, /mob/living))
+			var/mob/living/L = user
+			L.apply_damage((basepower*strength), RED_DAMAGE, null, L.run_armor_check(null, RED_DAMAGE), FALSE, TRUE)
+		for(var/turf/T in range(2, user))
+			new /obj/effect/temp_visual/smash_effect(T)
+			user.HurtInTurf(T, list(), (basepower*strength), RED_DAMAGE, check_faction = FALSE, hurt_mechs = TRUE)
+		to_chat(user, "You opened the gift!")
+		qdel(src)
+	opening = FALSE
 
 
 /mob/living/simple_animal/hostile/abnormality/laetitia/NeutralEffect(mob/living/carbon/human/user, work_type, pe)
@@ -89,6 +192,12 @@
 /mob/living/simple_animal/hostile/gift/Initialize()
 	. = ..()
 	playsound(get_turf(src), 'sound/abnormalities/laetitia/spider_born.ogg', 50, 1)
+
+/mob/living/simple_animal/hostile/gift/AttackingTarget(atom/attacked_target)
+	if (istype(target, /mob/living/simple_animal/hostile/abnormality/laetitia))
+		manual_emote("pats Laetitia")
+		return FALSE
+	return ..()
 
 /mob/living/simple_animal/hostile/gift/death(gibbed)
 	density = FALSE

@@ -161,7 +161,7 @@
 	var/datum/effect_system/smoke_spread/S = new
 	S.set_up(7, get_turf(src))
 	S.start()
-	for(var/mob/living/simple_animal/hostile/abnormality/P in range(pulse_range, src))
+	for(var/mob/living/simple_animal/hostile/abnormality/P in urange(pulse_range, src))
 		if(!(P.IsContained()))
 			continue
 		P.datum_reference.qliphoth_change(-1)

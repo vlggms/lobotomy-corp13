@@ -272,10 +272,10 @@
 	cannon_cooldown = world.time + cannon_cooldown_time //Can't fire it right away.
 
 /mob/living/simple_animal/hostile/abnormality/headless_ichthys/death(gibbed)
-	playsound(src, 'sound/abnormalities/doomsdaycalendar/Limbus_Dead_Generic.ogg', 60, 1)
+	playsound(src, 'sound/effects/limbus_death.ogg', 60, 1)
 	animate(src, transform = matrix()*0.6,time = 0)
 	icon_state = "headless_ichthys"
-	icon = 'ModularTegustation/Teguicons/64x64.dmi'
+	icon = 'ModularTegustation/Teguicons/abno_cores/he.dmi'
 	QDEL_NULL(current_beam)
 	update_icon_state()
 	density = FALSE

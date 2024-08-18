@@ -630,7 +630,9 @@
 
 /mob/living/simple_animal/hostile/abnormality/nobody_is/patrol_select() //Hunt down the chosen one
 	if(chosen) //YOU'RE MINE
-		patrol_to(get_turf(chosen))
+		SEND_SIGNAL(src, COMSIG_PATROL_START, src, get_turf(chosen)) //Overrides the usual proc to target a specific tile
+		SEND_GLOBAL_SIGNAL(src, COMSIG_GLOB_PATROL_START, src, get_turf(chosen))
+		patrol_path = get_path_to(src, get_turf(chosen), TYPE_PROC_REF(/turf, Distance_cardinal), 0, 200)
 		return
 	else
 		ChangeReflection()
@@ -655,6 +657,8 @@
 /mob/living/simple_animal/hostile/abnormality/nobody_is/proc/disguise_as(mob/living/carbon/human/M)
 	if(!istype(M))
 		return
+	if(!M || QDELETED(M))
+		return //We screwed up or the player successfully committed self-delete. Try again next time!
 	SetOccupiedTiles()
 	offsets_pixel_x = list("south" = 0, "north" = 0, "west" = 0, "east" = 0)
 	//UnregisterSignal(src, COMSIG_ATOM_DIR_CHANGE)
@@ -689,7 +693,7 @@
 /mob/living/simple_animal/hostile/abnormality/nobody_is/proc/Transform(mob/living/carbon/human/M)
 	set waitfor = FALSE
 	SLEEP_CHECK_DEATH(5)
-	if(!M)
+	if(!M || QDELETED(M))
 		return //We screwed up or the player successfully committed self-delete. Try again next time!
 	disguise = M
 	shelled = TRUE
@@ -764,7 +768,7 @@
 /mob/living/simple_animal/hostile/abnormality/nobody_is/proc/Transform_No_Kill(mob/living/carbon/human/M)
 	set waitfor = FALSE
 	SLEEP_CHECK_DEATH(5)
-	if(!M)
+	if(!M || QDELETED(M))
 		return //We screwed up or the player successfully committed self-delete. Try again next time!
 	disguise = M
 	shelled = TRUE

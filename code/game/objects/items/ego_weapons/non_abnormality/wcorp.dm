@@ -50,7 +50,7 @@
 	desc = "A glowing blue axe used by senior W corp staff."
 	icon_state = "wcorp_axe"
 	inhand_icon_state = "wcorp_axe"
-	force = 70
+	force = 67
 	attack_speed = 2
 	attack_verb_continuous = list("cleaves", "cuts")
 	attack_verb_simple = list("cleave", "cut")
@@ -64,6 +64,7 @@
 	charge_cost = 4
 	charge_effect = "deal 3x damage and slow your next attack down."
 	successfull_activation = "You release your charge, attempting to execute your opponent!"
+	swingstyle = WEAPONSWING_LARGESWEEP
 
 /obj/item/ego_weapon/city/wcorp/axe/ChargeAttack(mob/living/target, mob/living/user)
 	. = ..()
@@ -112,7 +113,7 @@
 	desc = "A glowing blue dagger used by senior W corp staff."
 	icon_state = "wcorp_dagger"
 	inhand_icon_state = "wcorp_dagger"
-	force = 24
+	force = 22
 	attack_speed = 0.5
 
 	attack_verb_continuous = list("slices", "stabs")
@@ -123,6 +124,7 @@
 							TEMPERANCE_ATTRIBUTE = 80,
 							JUSTICE_ATTRIBUTE = 60
 							)
+	swingstyle = WEAPONSWING_LARGESWEEP
 
 	charge_cost = 8
 	charge_effect = "rip the space itself!"
@@ -154,6 +156,7 @@
 	inhand_y_dimension = 64
 	force = 34	//Slowing is massive.
 	attack_speed = 1
+	swingstyle = WEAPONSWING_LARGESWEEP
 	attack_verb_continuous = list("cleaves", "slashes", "carves")
 	attack_verb_simple = list("cleave", "slash", "carve")
 	attribute_requirements = list(

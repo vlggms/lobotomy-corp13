@@ -8,6 +8,7 @@
 	desc = "An old weather damaged bench, it feels oddly nostalgic to you. Like a spring day at the side of a lake."
 	icon = 'ModularTegustation/Teguicons/48x48.dmi'
 	icon_state = "quiet_day"
+	core_icon = "quiet_day"
 	maxHealth = 451
 	health = 451
 	threat_level = ZAYIN_LEVEL
@@ -161,7 +162,7 @@
 		if(ABNORMALITY_WORK_INSTINCT)
 			for(var/line in war_story)
 				say(line)
-				SLEEP_CHECK_DEATH(50)
+				SLEEP_CHECK_DEATH(5 SECONDS)
 				if(!PlayerInView(user))
 					ResetIcon()
 					return
@@ -169,7 +170,7 @@
 		if(ABNORMALITY_WORK_INSIGHT)
 			for(var/line in parable)
 				say(line)
-				SLEEP_CHECK_DEATH(50)
+				SLEEP_CHECK_DEATH(5 SECONDS)
 				if(!PlayerInView(user))
 					ResetIcon()
 					return
@@ -177,22 +178,19 @@
 		if(ABNORMALITY_WORK_ATTACHMENT)
 			for(var/line in wife)
 				say(line)
-				SLEEP_CHECK_DEATH(50)
+				SLEEP_CHECK_DEATH(5 SECONDS)
 				if(!PlayerInView(user))
 					ResetIcon()
 					return
 
 		if(ABNORMALITY_WORK_REPRESSION)
-			for(var/i=7, i>=1, i--)
-				var/current = pick(dementia)
-				dementia -= current
-				say(current)
-				SLEEP_CHECK_DEATH(50)
+			var/list/dementia_clone = dementia.Copy()
+			for(var/i in 1 to 7)
+				say(length(dementia_clone) > 1 ? pick_n_take(dementia_clone) : pick(dementia_clone)) // if the list has 1 object, dont remove it
+				SLEEP_CHECK_DEATH(5 SECONDS)
 				if(!PlayerInView(user))
-					dementia = initial(dementia)
 					ResetIcon()
 					return
-			dementia = initial(dementia)
 
 	TalkEnd(user)
 

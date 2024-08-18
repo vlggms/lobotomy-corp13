@@ -1,4 +1,4 @@
-//Abnormality sprited by Mel Taculo
+// Abnormality sprited by Mel Taculo
 /mob/living/simple_animal/hostile/abnormality/basilisoup
 	name = "Basilisoup"
 	desc = "A giant bird or lizard, with a pot for a head and soup seeping out of its skin."
@@ -8,11 +8,11 @@
 	portrait = "basilisoup"
 	pixel_x = -32
 	base_pixel_x = -32
-	maxHealth = 1600 //Quite high HP
+	maxHealth = 1600 // Quite high HP
 	health = 1600
 	move_to_delay = 4 //High range, and thus slow
 	rapid_melee = 1
-	melee_reach = 2 //Long neck = long range
+	melee_reach = 2 // Long neck = long range
 	ranged = TRUE
 	threat_level = HE_LEVEL
 	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 0.8, WHITE_DAMAGE = 1.2, BLACK_DAMAGE = 0.8, PALE_DAMAGE = 1.5)
@@ -54,14 +54,18 @@
 	var/can_act = TRUE
 	/// Actually it fires this amount thrice, so, multiply it by 3 to get actual amount
 	var/spit_amount = 9
-	//Stolen charge code from KOG
+	/// Stolen charge code from KOG
 	var/charging = FALSE
-	var/charge_num = 10//the length of the dash, in tiles
+	/// the length of the dash, in tiles
+	var/charge_num = 10
 	var/dash_cooldown = 0
 	var/dash_cooldown_time = 8 SECONDS
-	var/charge_damage = 50 //This is intentionally a bit on the low side
-	var/list/been_hit = list() // Don't get hit twice.
-	var/work_bonus = 0
+	/// Damage dealt with a charge hit, this is intentionally a bit on the low side
+	var/charge_damage = 50
+	/// Those hit by the charge won't be hit again by the same charge
+	var/list/been_hit = list()
+	/// The soup connected to us
+	var/obj/structure/basilisoup_pot/connected_soup = null
 
 	attack_action_types = list(
 		/datum/action/innate/abnormality_attack/Spit,
@@ -81,6 +85,10 @@
 	chosen_message = span_colossus("You will now charge while attacking.")
 	chosen_attack_num = 2
 
+/mob/living/simple_animal/hostile/abnormality/basilisoup/Destroy()
+	connected_soup = null
+	return ..()
+
 //Spawning
 /mob/living/simple_animal/hostile/abnormality/basilisoup/PostSpawn()
 	. = ..()
@@ -89,67 +97,62 @@
 	animate(src, alpha = 0, time = 0 SECONDS) //We hide until we actually breach
 	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 	density = FALSE
+	var/soup_located = locate(/obj/structure/basilisoup_pot) in datum_reference.connected_structures
+	if(soup_located)
+		connected_soup = soup_located
 
 /mob/living/simple_animal/hostile/abnormality/basilisoup/HandleStructures()
 	. = ..()
 	if(!.)
 		return
 	if(!locate(/obj/structure/basilisoup_pot) in datum_reference.connected_structures)
-		SpawnConnectedStructure(/obj/structure/basilisoup_pot)
-	if(.)
-		for(var/atom/movable/A in datum_reference.connected_structures)
-			A.forceMove(get_step(src, NORTH))
+		connected_soup = SpawnConnectedStructure(/obj/structure/basilisoup_pot)
 
+	connected_soup.forceMove(get_step(src, NORTH))
 
-//Overwritten proc because we want to move the structure a tile north
-/mob/living/simple_animal/hostile/abnormality/basilisoup/SpawnConnectedStructure(atom/movable/A = null, x_offset = 0, y_offset = 0)
-	if(!ispath(A))
-		return
-	if(!istype(datum_reference))
-		return
-	A = new A(get_turf(src))
-	A.x += x_offset
-	A.y += y_offset
-	datum_reference.connected_structures[A] = list(x_offset, y_offset)
-	return A
-
-//Work Mechanics
+// Work Mechanics
 /mob/living/simple_animal/hostile/abnormality/basilisoup/AttemptWork(mob/living/carbon/human/user, work_type)
-	for(var/obj/structure/basilisoup_pot/S in range(1, src))
-		switch(S.soup_level)
-			if(-INFINITY to 0)
-				work_bonus = 0
-			if(1 to 50)
-				work_bonus = 15
-				S.AdjustSoupLevels(-10)
-			if(51 to 100)
-				work_bonus = 20
-				S.AdjustSoupLevels(-15)
-		if(S.poisoned)
-			work_bonus = -50 //OH NO
-			animate(src, alpha = 255, time = 3 SECONDS)
-			density = TRUE
-			INVOKE_ASYNC(src, PROC_REF(Spit), user)	//Garunteed death for lower level agents
-	return . = ..()
+	switch(connected_soup.soup_level)
+		if(1 to 50)
+			connected_soup.AdjustSoupLevels(-10)
+		if(51 to 100)
+			connected_soup.AdjustSoupLevels(-15)
+
+	if(connected_soup.poisoned)
+		animate(src, alpha = 255, time = 3 SECONDS)
+		density = TRUE
+		INVOKE_ASYNC(src, PROC_REF(Spit), user)	// Guaranteed death for lower level agents
+
+	return ..()
 
 /mob/living/simple_animal/hostile/abnormality/basilisoup/WorkChance(mob/living/carbon/human/user, chance)
-	return chance + work_bonus
+	switch(connected_soup.soup_level)
+		if(1 to 50)
+			chance += 15
+
+		if(51 to 100)
+			chance += 20
+
+	if(connected_soup.poisoned) // Not a good time
+		chance -= 50
+
+	return chance
 
 /mob/living/simple_animal/hostile/abnormality/basilisoup/PostWorkEffect(mob/living/carbon/human/user, work_type, pe, work_time)
 	. = ..()
-	if(work_bonus <= 0)
+	if(connected_soup.soup_level == 0)
 		datum_reference.qliphoth_change(-1)
-		if(work_bonus < 0) //It was poisoned
-			datum_reference.qliphoth_change(-1)
-	if(work_bonus >= 20)
+
+	if(connected_soup.poisoned)
+		datum_reference.qliphoth_change(-1)
+
+	if(connected_soup.soup_level > 50)
 		var/obj/item/food/lifestew_glob/thesoup = new(get_turf(src))
 		thesoup.throw_at(user, 3, 3)
-	work_bonus = 0
 
 /mob/living/simple_animal/hostile/abnormality/basilisoup/FailureEffect(mob/living/carbon/human/user, work_type, pe)
 	. = ..()
 	datum_reference.qliphoth_change(-1)
-	return
 
 //Breach
 /mob/living/simple_animal/hostile/abnormality/basilisoup/BreachEffect()
@@ -272,7 +275,7 @@
 		new /obj/effect/temp_visual/small_smoke/halfsecond(R)
 	addtimer(CALLBACK(src, PROC_REF(charge), move_dir, (times_ran + 1)), 2)
 
-/mob/living/simple_animal/hostile/abnormality/basilisoup/Move()
+/mob/living/simple_animal/hostile/abnormality/basilisoup/Move(turf/newloc, dir, step_x, step_y)
 	if(!can_act)
 		return FALSE
 	return ..()
@@ -298,21 +301,21 @@
 	var/soup_level = 0
 	var/poisoned = FALSE
 	var/list/valid_types = list(
-	/obj/item/food,
-	/obj/item/grown,
-	/obj/item/seeds,
-	/obj/item/organ,
-	/obj/item/bodypart,
-	/obj/item/toy/plush, //It's funny
-	/obj/item/clothing/mask/facehugger/bongy,
+		/obj/item/food,
+		/obj/item/grown,
+		/obj/item/seeds,
+		/obj/item/organ,
+		/obj/item/bodypart,
+		/obj/item/toy/plush, //It's funny
+		/obj/item/clothing/mask/facehugger/bongy,
 	)
 	var/list/verboten_types = list(
-	/obj/item/food/lifestew_glob,
-	/obj/item/food/salad/lifestew,
+		/obj/item/food/lifestew_glob,
+		/obj/item/food/salad/lifestew,
 	)
 	var/list/rawfood = list( //"Technically edible" foodstuffs that are converted to soup
-	/datum/reagent/consumable/nutriment/organ_tissue,
-	/datum/reagent/consumable/nutriment/vile_fluid,
+		/datum/reagent/consumable/nutriment/organ_tissue,
+		/datum/reagent/consumable/nutriment/vile_fluid,
 	)
 
 /obj/structure/basilisoup_pot/examine(mob/user)
@@ -324,14 +327,14 @@
 /obj/structure/basilisoup_pot/update_overlays()
 	. = ..()
 	switch(soup_level)
-		if(-INFINITY to 0)
-			return
+		if(0)
+
 		if(1 to 49)
 			. += "soup_1"
-			return
+
 		if(50 to 99)
 			. += "soup_2"
-			return
+
 		if(100)
 			. += "soup_3"
 
@@ -379,16 +382,17 @@
 	playsound(src, 'sound/effects/bubbles.ogg', 80, TRUE, -3)
 
 
-/obj/structure/basilisoup_pot/proc/dump_soup(obj/item/w, mob/user)
-	if(w)
-		qdel(w)
-		AdjustSoupLevels(-20)
-		to_chat(user, span_notice("You take some soup."))
-		var/obj/item/food/salad/lifestew/thesoup = new(get_turf(user))
-		if(poisoned) //Poisoned soup has added spewum to make you puke
-			thesoup.reagents.add_reagent(/datum/reagent/toxin/spewium, 5)
+/obj/structure/basilisoup_pot/proc/dump_soup(obj/item/object, mob/user)
+	if(!object)
+		to_chat(user, span_notice("You'd probably be able to get some soup if you used a bowl."))
 		return
-	to_chat(user, span_notice("You'd probably be able to get some soup if you used a bowl."))
+
+	qdel(object)
+	AdjustSoupLevels(-20)
+	to_chat(user, span_notice("You take some soup."))
+	var/obj/item/food/salad/lifestew/thesoup = new(get_turf(user))
+	if(poisoned) //Poisoned soup has added spewum to make you puke
+		thesoup.reagents.add_reagent(/datum/reagent/toxin/spewium, 5)
 
 /obj/structure/basilisoup_pot/attack_hand(mob/user)
 	. = ..()
@@ -397,24 +401,26 @@
 	user.changeNext_move(CLICK_CD_MELEE)
 	if(soup_level >= 20 && user.a_intent == INTENT_HELP)
 		dump_soup(null, user)
-		add_fingerprint(user)
 		return
-	if(soup_level > 0)
-		switch(alert("Empty out the pot?","Waste food?","Yes","No"))
-			if("Yes")
-				AdjustSoupLevels(-soup_level)
-				to_chat(usr, span_notice("You dump the soup on the floor!"))
-				playsound(get_turf(src), 'sound/effects/splat.ogg', 50, TRUE)
-			if("No")
-				to_chat(usr, span_notice("You decide not to waste food."))
-		add_fingerprint(user)
 
-/obj/structure/basilisoup_pot/attackby(obj/item/w, mob/user, params)
-	if(istype(w, /obj/item/reagent_containers/glass/bowl))
-		if(soup_level >= 20)
-			dump_soup(w, user)
+	if(soup_level == 0)
 		return
-	if(add_food(w, user))
+
+	switch(alert("Empty out the pot?","Waste food?","Yes","No"))
+		if("Yes")
+			AdjustSoupLevels(-soup_level)
+			to_chat(usr, span_notice("You dump the soup on the floor!"))
+			playsound(get_turf(src), 'sound/effects/splat.ogg', 50, TRUE)
+
+		if("No")
+			to_chat(usr, span_notice("You decide not to waste food."))
+
+/obj/structure/basilisoup_pot/attackby(obj/item/object, mob/user, params)
+	if(istype(object, /obj/item/reagent_containers/glass/bowl))
+		if(soup_level >= 20)
+			dump_soup(object, user)
+		return
+	if(add_food(object, user))
 		return
 	return ..()
 
@@ -425,34 +431,41 @@
 	update_icon()
 
 /obj/structure/basilisoup_pot/user_buckle_mob(mob/living/M, mob/user, check_loc = TRUE)
-	if(M != user)
-		if(!ishostile(M) && !ishuman(M))
-			to_chat(user, span_warning("You're not hungry enough to want to eat [M]."))
-			return
-		if(soup_level >= 100)
-			to_chat(user, span_notice("You can't fit any more in the pot!"))
-			return
-		to_chat(user, span_warning("You start pulling [M] into the pot."))
-		if(!do_after(user, 4 SECONDS, M)) //If you're going to throw someone else, they have to be dead first.
-			to_chat(user, span_warning("[M] is fidgeting too much, you'll have to kill them."))
-		if(M.stat == DEAD)
-			to_chat(user, span_notice("You throw [M] in the pot! How barbaric!"))
-			buckle_mob(M, check_loc = check_loc)
-			return
-		to_chat(user, span_warning("How could think of something so cruel? [M] is still alive!"))
+	if(M == user)
+		return
 
-/obj/structure/basilisoup_pot/post_buckle_mob(mob/living/carbon/human/M)
-	if(ishuman(M))
+	if(!ishostile(M) && !ishuman(M))
+		to_chat(user, span_warning("You're not hungry enough to want to eat [M]."))
+		return
+
+	if(soup_level == 100)
+		to_chat(user, span_notice("You can't fit any more in the pot!"))
+		return
+
+	if(M.stat != DEAD)
+		to_chat(user, span_warning("How could think of something so cruel? [M] is still alive!"))
+		return
+
+	to_chat(user, span_warning("You start pulling [M] into the pot."))
+	if(!do_after(user, 4 SECONDS, M)) //If you're going to throw someone else, they have to be dead first.
+		to_chat(user, span_warning("You reconsider throwing [M] into the soup."))
+
+	to_chat(user, span_notice("You throw [M] in the pot! How barbaric!"))
+	buckle_mob(M, check_loc = check_loc)
+
+/obj/structure/basilisoup_pot/post_buckle_mob(mob/living/carbon/human/soup_sacrifice)
+	if(istype(soup_sacrifice))
 		AdjustSoupLevels(25)
 	else
 		AdjustSoupLevels(15)
-	qdel(M)
+
+	qdel(soup_sacrifice)
 	playsound(src, 'sound/abnormalities/bloodbath/Bloodbath_EyeOn.ogg', 80, FALSE, -3)
 	var/list/water_area = range(1, src)
 	for(var/turf/open/O in water_area)
 		var/obj/effect/particle_effect/water/soupeffect = new(O)
 		soupeffect.color = "#622F22"
-	..()
+	return ..()
 
 //The stars of the show
 /obj/item/food/lifestew_glob

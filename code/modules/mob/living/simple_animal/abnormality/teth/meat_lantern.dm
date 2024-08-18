@@ -136,9 +136,8 @@
 	..()
 
 /mob/living/simple_animal/hostile/abnormality/meat_lantern/PostWorkEffect(mob/living/carbon/human/user, work_type, pe, work_time, canceled)
-	if(work_time < 18 SECONDS)
-		if(prob(80))
-			datum_reference.qliphoth_change(-1)
+	if (get_attribute_level(user, TEMPERANCE_ATTRIBUTE) >= 60)
+		datum_reference.qliphoth_change(-1)
 	return
 
 /mob/living/simple_animal/hostile/abnormality/meat_lantern/FailureEffect(mob/living/carbon/human/user, work_type, pe)

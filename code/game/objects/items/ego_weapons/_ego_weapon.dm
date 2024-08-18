@@ -8,8 +8,9 @@
 	w_class = WEIGHT_CLASS_BULKY			//No more stupid 10 egos in bag
 	slot_flags = ITEM_SLOT_BELT
 	drag_slowdown = 1
+	swingstyle = WEAPONSWING_SMALLSWEEP
 	var/list/attribute_requirements = list()
-	var/attack_speed
+	var/attack_speed = 1
 	var/special
 	var/force_multiplier = 1
 
@@ -25,37 +26,48 @@
 	//How long do you stun on hit?
 	var/stuntime = 0
 
+/obj/item/ego_weapon/Initialize()
+	. = ..()
+	if(swingstyle == WEAPONSWING_SMALLSWEEP && reach > 1)
+		swingstyle = WEAPONSWING_THRUST
+	RegisterSignal(src, COMSIG_OBJ_PAINTED, PROC_REF(GetSwingColor))
+
 /obj/item/ego_weapon/attack(mob/living/target, mob/living/user)
 	if(!CanUseEgo(user))
 		return FALSE
 	. = ..()
-	if(attack_speed)
+	if(attack_speed && attack_speed != 1)
 		user.changeNext_move(CLICK_CD_MELEE * attack_speed)
 
 	if(charge && attack_charge_gain)
 		HandleCharge(1, target)
 
-	if(target.anchored || !knockback) // lets not throw machines around
+	if(target.anchored || !knockback || QDELETED(target)) // lets not throw machines around
 		return TRUE
 
 	var/atom/throw_target = get_edge_target_turf(target, user.dir)
 	switch(knockback)
 		if(KNOCKBACK_LIGHT)
 			var/whack_speed = (prob(60) ? 1 : 4)
-			target.throw_at(throw_target, rand(1, 2), whack_speed, user)
+			target.safe_throw_at(throw_target, rand(1, 2), whack_speed, user)
 
 		if(KNOCKBACK_MEDIUM)
 			var/whack_speed = (prob(60) ? 3 : 6)
-			target.throw_at(throw_target, rand(2, 3), whack_speed, user)
+			target.safe_throw_at(throw_target, rand(2, 3), whack_speed, user)
 
 		if(KNOCKBACK_HEAVY) // neck status: snapped
-			target.throw_at(throw_target, 7, 7, user)
+			target.safe_throw_at(throw_target, 7, 7, user)
 
 		else // should only be used by admins messing around in-game, please consider using above variables as a coder
-			target.throw_at(throw_target, (knockback * 0.5) , knockback, user)
+			target.safe_throw_at(throw_target, (knockback * 0.5) , knockback, user)
 
 	return TRUE
 
+/obj/item/ego_weapon/Sweep(atom/target, mob/living/carbon/human/user, params)
+	if(isturf(target) && user.a_intent == INTENT_HARM)
+		if(!CanUseEgo(user))
+			return TRUE
+	return ..(target, user, params)
 
 //Speed and stun stuff
 /obj/item/ego_weapon/attack_obj(obj/target, mob/living/user)
@@ -105,10 +117,6 @@
 		if(0.7 to 0.99)
 			. += span_notice("This weapon attacks slightly faster than normal.")
 
-		if(1) // why
-			attack_speed = FALSE
-			CRASH("[src] has a unique attack speed variable that does nothing, please inform coders to delete the variable")
-
 		if(1.01 to 1.49)
 			. += span_notice("This weapon attacks slightly slower than normal.")
 
@@ -117,6 +125,16 @@
 
 		if(2 to INFINITY)
 			. += span_notice("This weapon attacks extremely slow.")
+
+	switch(swingstyle)
+		if(WEAPONSWING_SMALLSWEEP)
+			. += span_notice("This weapon can be swung at a single tile instead of a specific target.")
+
+		if(WEAPONSWING_LARGESWEEP)
+			. += span_notice("This weapon can be swung in an arc instead of at a specific target.")
+
+		if(WEAPONSWING_THRUST)
+			. += span_notice("This weapon can be thrust at tiles up to [reach] tiles away instead of a specific target.")
 
 	switch(stuntime)
 		if(1 to 2)
@@ -193,6 +211,26 @@
 /obj/item/ego_weapon/proc/CleanUp()
 	cleaning = TRUE
 
+/obj/item/ego_weapon/GetTarget(mob/user, list/potential_targets = list())
+	if(damtype != WHITE_DAMAGE)
+		return ..()
+
+	. = null
+
+	for(var/mob/living/carbon/human/H in potential_targets)
+		if(.)
+			break
+		if(!H.sanity_lost)
+			continue
+		if(H.stat == DEAD)
+			continue
+		. = H
+
+	if(.)
+		return
+
+	return ..()
+
 /obj/item/ego_weapon/Destroy()
 	CleanUp()
 	return ..()
@@ -202,3 +240,20 @@
 	icon_state = "stun"
 	layer = ABOVE_ALL_MOB_LAYER
 	duration = 9
+
+/obj/item/ego_weapon/MiddleClickAction(atom/target, mob/living/user)
+	. = ..()
+	if(. || !CanUseEgo(user))
+		return TRUE
+
+/obj/item/ego_weapon/update_icon()
+	. = ..()
+	GetSwingColor()
+
+/obj/item/ego_weapon/update_icon_state()
+	. = ..()
+	GetSwingColor()
+
+/obj/item/ego_weapon/wash(clean_types)
+	. = ..()
+	GetSwingColor()

@@ -50,7 +50,7 @@
 	abnormality_origin = ABNORMALITY_ORIGIN_ARTBOOK
 
 //Should be unique for each season, for now let's use Spring
-	observation_prompt = "I'm standing outside a forest I both have never seen before, yet know well. <br>There is no City, no civilisation on the horizon, I am utterly alone. <br>\
+	observation_prompt = "I'm standing outside a forest I both have never seen before, yet know well. <br>There is no City, no civilization on the horizon, I am utterly alone. <br>\
 		Dauntlessly, I press into the forest, seeing no other path forward, and encounter a cute-looking, pink forest spirit. <br>\
 		The spirits of the forest are playful, but it's best not to offend them by forgetting to make an offering"
 	observation_choices = list("Make an offering", "Continue on")

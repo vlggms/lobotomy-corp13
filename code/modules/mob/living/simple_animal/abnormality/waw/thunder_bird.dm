@@ -139,6 +139,7 @@
 /mob/living/simple_animal/hostile/abnormality/thunder_bird/death()
 	if(health > 0)
 		return
+	icon = 'ModularTegustation/Teguicons/abno_cores/waw.dmi'
 	density = FALSE
 	playsound(src, 'sound/abnormalities/thunderbird/tbird_charge.ogg', 100, 1)
 	animate(src, alpha = 0, time = 10 SECONDS)
@@ -270,7 +271,7 @@
 //thunderbolts
 /mob/living/simple_animal/hostile/abnormality/thunder_bird/proc/fireshell()
 	fire_cooldown = world.time + fire_cooldown_time
-	for(var/mob/living/carbon/human/L in livinginrange(fireball_range, src))
+	for(var/mob/living/carbon/human/L in range(fireball_range, src))
 		if(faction_check_mob(L, FALSE))
 			continue
 		if (targetAmount <= 2)

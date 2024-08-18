@@ -19,6 +19,7 @@
 
 	work_damage_amount = 7
 	work_damage_type = RED_DAMAGE
+	good_hater = TRUE
 	ego_list = list(
 		/datum/ego_datum/weapon/eyes,
 		/datum/ego_datum/armor/eyes,

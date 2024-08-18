@@ -156,6 +156,9 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	///What does the player think of TerraGov.
 	var/terragov_relation = RELATION_NEUTRAL
 
+	/// Preference about the user's prefered auxiliary console TGUI
+	var/auxiliary_console_tgui = TRUE
+
 /datum/preferences/New(client/C)
 	parent = C
 

@@ -140,6 +140,8 @@ GLOBAL_VAR_INIT(embedpocalypse, FALSE) // if true, all items will be able to emb
 	var/mob/thrownby = null
 	///Items can by default thrown up to 10 tiles by TK users
 	tk_throw_range = 10
+	///What action is performed when throwing the item "i.e. flick"
+	var/throw_verb
 
 	///the icon to indicate this object is being dragged
 	mouse_drag_pointer = MOUSE_ACTIVE_POINTER
@@ -195,6 +197,11 @@ GLOBAL_VAR_INIT(embedpocalypse, FALSE) // if true, all items will be able to emb
 	///No item attack animation, only person tilt.
 	var/run_item_attack_animation = TRUE
 
+	/// Whether it sweeps in an arc or not.
+	var/swingstyle = WEAPONSWING_NONE
+	/// What Color its swing animation is
+	var/swingcolor
+
 /obj/item/Initialize()
 
 	if(attack_verb_continuous)
@@ -217,6 +224,8 @@ GLOBAL_VAR_INIT(embedpocalypse, FALSE) // if true, all items will be able to emb
 			hitsound = 'sound/items/welder.ogg'
 		if(damtype in list(BRUTE, RED_DAMAGE, WHITE_DAMAGE, BLACK_DAMAGE, PALE_DAMAGE))
 			hitsound = "swing_hit"
+	if(swingstyle > WEAPONSWING_NONE)
+		GetSwingColor()
 
 /obj/item/Destroy()
 	item_flags &= ~DROPDEL	//prevent reqdels
@@ -1155,3 +1164,19 @@ GLOBAL_VAR_INIT(embedpocalypse, FALSE) // if true, all items will be able to emb
 /obj/item/proc/on_offer_taken(mob/living/carbon/offerer, mob/living/carbon/taker)
 	if(SEND_SIGNAL(src, COMSIG_ITEM_OFFER_TAKEN, offerer, taker) & COMPONENT_OFFER_INTERRUPT)
 		return TRUE
+
+/obj/item/proc/MiddleClickAction(atom/target, mob/living/user)
+	SHOULD_CALL_PARENT(TRUE)
+	if(SEND_SIGNAL(src, COMSIG_ITEM_MIDDLE_CLICK_ACTION, target, user) & COMPONENT_CANCEL_MIDDLE_CLICK_ACTION)
+		return TRUE
+
+/**
+ * * Sets the Swing Color of an item, typically by calling GetAverageColor.
+*/
+/obj/item/proc/GetSwingColor()
+	// If we had a default and got washed or something, then we return to that.
+	if(initial(swingcolor) && !color)
+		swingcolor = initial(swingcolor)
+		return
+	// Otherwise we find what our current icon's average is.
+	swingcolor = GetAverageColor(src)

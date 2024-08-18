@@ -56,12 +56,12 @@
 	observation_fail_message = "Gerda saved Kai and returned home. <br>They lived happily ever after."
 
 	ego_list = list(
+		/datum/ego_datum/weapon/frostsplinter,
 		/datum/ego_datum/armor/frostsplinter,
-		/datum/ego_datum/weapon/frostsplinter
 	)
-	gift_type = /datum/ego_gifts/frost_splinter
+	gift_type = null
 	//Gift is rewarded at the end of a duel with Snow Queen.
-	gift_chance = 0
+	gift_chance = 100
 	abnormality_origin = ABNORMALITY_ORIGIN_LOBOTOMY
 	var/can_act = TRUE
 	//The purpose of this variable is to prevent people from ghosting in the arena and making snow queen unworkable.
@@ -90,6 +90,8 @@
 	var/static/list/arena_cleave = list()
 	//We may be getting too many lists now. List for existing temporary elements like illusions
 	var/static/list/temp_effects = list()
+	//Reusable visuals for cleave attacks.
+	var/datum/reusable_visual_pool/RVP = new(200)
 
 /mob/living/simple_animal/hostile/abnormality/snow_queen/Move()
 	if(!can_act)
@@ -107,6 +109,11 @@
 				teleport_turf = get_turf(T)
 				teleport_locations += teleport_turf
 		RegisterCleaveZones()
+
+/mob/living/simple_animal/hostile/abnormality/snow_queen/ObservationResult(mob/living/carbon/human/user, condition)
+	. = ..()
+	if(condition)
+		user.Apply_Gift(new /datum/ego_gifts/frostcrown)
 
 /mob/living/simple_animal/hostile/abnormality/snow_queen/SuccessEffect(mob/living/carbon/human/user, work_type, pe)
 	. = ..()
@@ -229,7 +236,7 @@
 	density = FALSE
 	animate(src, alpha = 0, time = 10 SECONDS)
 	QDEL_IN(src, 10 SECONDS)
-	..()
+	return ..()
 
 //This is here so that people can see the death animation before snow queen is defeated.
 /mob/living/simple_animal/hostile/abnormality/snow_queen/Destroy()
@@ -238,7 +245,8 @@
 	else
 		ReleasePrisoners()
 	ClearEffects()
-	..()
+	QDEL_NULL(RVP)
+	return ..()
 
 		/*---------------------\
 		|CROSS ABNO INTERACTION|
@@ -498,12 +506,15 @@
 	storybook_hero = null
 	frozen_employee = null
 
-/mob/living/simple_animal/hostile/abnormality/snow_queen/proc/RewardPrisoner(mob/living/carbon/rewardee)
+/mob/living/simple_animal/hostile/abnormality/snow_queen/proc/RewardPrisoner(mob/living/carbon/human/rewardee)
 	if(!rewardee)
 		return
 	rewardee.forceMove(release_location)
 	to_chat(rewardee, "The roses blossom and the Snow Palace falls. Not a single soul remembered the woman sleeping there.")
-	GiftUser(rewardee, 1, 100)
+	if(ishuman(rewardee))
+		var/datum/ego_gifts/frostsplinter/S = new
+		S.datum_reference = datum_reference
+		rewardee.Apply_Gift(S)
 
 //Procs when the hero is dusted by Snow Queen or the arena timer runs out.
 /mob/living/simple_animal/hostile/abnormality/snow_queen/proc/WinterContinues()
@@ -544,7 +555,7 @@
 	else
 		if(do_after(src, 1 SECONDS, target = src) && get_health == health)
 			for(var/turf/after_spike in after_image_locations)
-				AoeTurfEffect(after_spike, /obj/effect/temp_visual/ice_spike)
+				AoeTurfEffect(after_spike, 6)
 			BladeDash(target)
 
 //Rapidly shoots frost splinters at the target
@@ -606,9 +617,10 @@
 		if(second_attack_area)
 			turfs_to_hit = ReturnNoOverlap(arena_cleave[attack_area], arena_cleave[second_attack_area])
 
+		var/cleave_chargeup = (3 SECONDS) - (i * 5)
 		for(var/turf/T in turfs_to_hit)
-			AoeTurfEffect(T, /obj/effect/temp_visual/floor_cracks, TRUE)
-		if(do_after(src, (3 SECONDS) - (i * 5), target = src) && snow_health <= health)
+			AoeTurfEffect(T, cleave_chargeup, TRUE)
+		if(do_after(src, cleave_chargeup, target = src) && snow_health <= health)
 			if(i > 0)
 				ProjectileHell(target)
 			Cleave(turfs_to_hit)
@@ -624,7 +636,7 @@
 /mob/living/simple_animal/hostile/abnormality/snow_queen/proc/Cleave(list/turfs_to_cleave)
 	playsound(get_turf(src), 'sound/effects/podwoosh.ogg', 100, 1)
 	for(var/turf/T in turfs_to_cleave)
-		AoeTurfEffect(T, /obj/effect/temp_visual/ice_spike)
+		AoeTurfEffect(T, 4)
 
 //Shoots projectiles from teleport spots that the snow queen isnt at.
 /mob/living/simple_animal/hostile/abnormality/snow_queen/proc/ProjectileHell(mob/living/L)
@@ -637,10 +649,10 @@
 		playsound(shootems, 'sound/abnormalities/despairknight/attack.ogg', 50, 0, 4)
 
 //Determines if the effect on a AOE area is telegraphed or actually harmful.
-/mob/living/simple_animal/hostile/abnormality/snow_queen/proc/AoeTurfEffect(turf/T, effect_type, telegraph = FALSE)
-	if(!effect_type)
+/mob/living/simple_animal/hostile/abnormality/snow_queen/proc/AoeTurfEffect(turf/T, duration, telegraph = FALSE)
+	if(!T)
 		return
-	new effect_type(T)
+	RVP.NewSnowQueenEffect(T, duration, telegraph)
 	if(telegraph)
 		return
 	return HurtInTurf(T, list(), 35, RED_DAMAGE, check_faction = TRUE, hurt_mechs = TRUE)
@@ -693,6 +705,25 @@
 		if(D.density)
 			return FALSE
 	return TRUE
+
+		/*-------------------\
+		|REUSABLE VISUAL PROC|
+		\-------------------*/
+// It feels like this should be more modular but i dont want to overstep
+/datum/reusable_visual_pool/proc/NewSnowQueenEffect(turf/location, duration = 10, telegraph = FALSE)
+	var/obj/effect/reusable_visual/RV = TakePoolElement()
+	if(telegraph)
+		RV.name = "cracked floor"
+		RV.icon = 'ModularTegustation/Teguicons/tegu_effects.dmi'
+		RV.icon_state = "cracks_dark"
+	else
+		RV.name = "ice spike"
+		RV.icon = 'ModularTegustation/Teguicons/32x48.dmi'
+		RV.icon_state = pick("ice_spike1", "ice_spike2", "ice_spike3")
+	RV.layer = ABOVE_MOB_LAYER
+	RV.loc = location
+	DelayedReturn(RV, duration)
+	return RV
 
 		/*-----------\
 		|MAP ELEMENTS|

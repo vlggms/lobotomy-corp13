@@ -51,3 +51,9 @@
 	projectile_type = /obj/projectile/ego_bullet/pink
 	pellets = 1
 	variance = 0
+
+/obj/item/ammo_casing/caseless/arcadia
+	name = "arcadia bullet"
+	desc = "An arcadia bullet."
+	projectile_type = /obj/projectile/ego_bullet/arcadia
+	variance = 0

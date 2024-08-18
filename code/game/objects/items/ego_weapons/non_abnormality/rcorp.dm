@@ -130,7 +130,7 @@
 	desc = "An energy gun produced specifically to suppress threats within Lobotomy Corporation, it has four firing modes to switch between."
 	icon = 'ModularTegustation/Teguicons/lc13_weapons.dmi'
 	icon_state = "rabbit"
-	inhand_icon_state = "rabbit"
+	inhand_icon_state = "rabbit4"
 	cell_type = /obj/item/stock_parts/cell/infinite
 	ammo_type = list(
 		/obj/item/ammo_casing/energy/laser/red,
@@ -162,6 +162,7 @@
 	name = "R-Corporation R-4000 'Mark 3'"
 	desc = "An energy gun produced especially for the rabbit captain. This weapon can be fired with one hand."
 	icon_state = "rabbitcaptain"
+	inhand_icon_state = "rabbith1"
 	weapon_weight = WEAPON_LIGHT
 	pin = /obj/item/firing_pin
 

@@ -246,8 +246,7 @@ Skittish, they prefer to move in groups and will run away if the enemies are in 
 /mob/living/simple_animal/hostile/humanoid/fixer/AttackingTarget(atom/attacked_target)
 	if(!can_act)
 		return FALSE
-	. = ..()
-
+	return ..()
 
 /mob/living/simple_animal/hostile/humanoid/fixer/metal
 	name = "Metal Fixer"
@@ -310,56 +309,55 @@ Skittish, they prefer to move in groups and will run away if the enemies are in 
 	if(!can_act)
 		return FALSE
 
-	if (ranged_cooldown <= world.time)
+	if(ranged_cooldown <= world.time)
 		OpenFire()
 
 	// do AOE
-	if (world.time > last_aoe_time + aoe_cooldown)
-		last_aoe_time = world.time
-		can_act = FALSE
-		say("This is the culmination of my work.")
-		SLEEP_CHECK_DEATH(20)
-		var/hit_statue = FALSE
-		for(var/turf/T in view(2, src))
-			playsound(src, 'sound/weapons/fixer/generic/finisher2.ogg', 75, TRUE, 2)
-			new /obj/effect/temp_visual/slice(T)
-			for(var/mob/living/L in T)
-				if (istype(L, /mob/living/simple_animal/hostile/metal_fixer_statue))
-					var/mob/living/simple_animal/hostile/metal_fixer_statue/S = L
-					qdel(S)
-					hit_statue = TRUE
-			HurtInTurf(T, list(), aoe_damage, BLACK_DAMAGE, null, TRUE, FALSE, TRUE, TRUE, TRUE, TRUE)
+	if(world.time < (last_aoe_time + aoe_cooldown))
+		return ..()
 
-		if (hit_statue)
-			say("...")
-			adjustHealth(self_damage_statue)
-			var/mutable_appearance/colored_overlay = mutable_appearance(icon, "small_stagger", layer + 0.1)
-			add_overlay(colored_overlay)
-			SLEEP_CHECK_DEATH(stun_duration)
-			cut_overlays()
-		can_act = TRUE
-	else
-		. = ..()
+	last_aoe_time = world.time
+	can_act = FALSE
+	say("This is the culmination of my work.")
+	SLEEP_CHECK_DEATH(2 SECONDS)
+	var/hit_statue = FALSE
+	for(var/turf/T in view(2, src))
+		playsound(src, 'sound/weapons/fixer/generic/finisher2.ogg', 75, TRUE, 2)
+		new /obj/effect/temp_visual/slice(T)
+		for(var/mob/living/L in T)
+			if (istype(L, /mob/living/simple_animal/hostile/metal_fixer_statue))
+				var/mob/living/simple_animal/hostile/metal_fixer_statue/S = L
+				qdel(S)
+				hit_statue = TRUE
+		HurtInTurf(T, list(), aoe_damage, BLACK_DAMAGE, null, TRUE, FALSE, TRUE, TRUE, TRUE, TRUE)
+
+	if(hit_statue)
+		say("...")
+		adjustHealth(self_damage_statue)
+		var/mutable_appearance/colored_overlay = mutable_appearance(icon, "small_stagger", layer + 0.1)
+		add_overlay(colored_overlay)
+		SLEEP_CHECK_DEATH(stun_duration)
+		cut_overlays()
+	can_act = TRUE
 
 /mob/living/simple_animal/hostile/humanoid/fixer/metal/adjustHealth(amount, updating_health = TRUE, forced = FALSE)
-	//say("Damage taken. Current health: [health]")
 	var/old_health = health
 	. = ..()
 	var/health_loss = old_health - health
 	current_healthloss += health_loss
-	if (current_healthloss > health_lost_per_statue)
+	if(current_healthloss > health_lost_per_statue)
 		current_healthloss -= health_lost_per_statue
 		spawn_statue()
 
 /mob/living/simple_animal/hostile/humanoid/fixer/metal/proc/spawn_statue()
-	if (statues.len < max_statues && world.time > last_statue_cooldown_time + statue_cooldown)
+	if(statues.len < max_statues && world.time > last_statue_cooldown_time + statue_cooldown)
 		last_statue_cooldown_time = world.time
 		var/list/available_turfs = list()
 		for(var/turf/T in view(4, loc))
 			if(isfloorturf(T) && !T.density && !locate(/mob/living) in T)
 				available_turfs += T
 		visible_message("<span class='danger'>[src] starts spawning a statue!</span>")
-		if (world.time > last_creation_line_time + creation_line_cooldown)
+		if(world.time > last_creation_line_time + creation_line_cooldown)
 			last_creation_line_time = world.time
 			say("The days of the past.")
 
@@ -386,13 +384,13 @@ Skittish, they prefer to move in groups and will run away if the enemies are in 
 	P.fire(set_angle)
 
 /mob/living/simple_animal/hostile/humanoid/fixer/metal/bullet_act(obj/projectile/P, def_zone, piercing_hit = FALSE)
-	if (istype(P, /obj/projectile/metal_fixer))
-		adjustHealth(-(P.damage/4))
-		playsound(src, 'sound/abnormalities/voiddream/skill.ogg', 50, TRUE, 2)
-		visible_message("<span class='warning'>[P]  contacts with [src] and heals them!</span>")
-		DamageEffect(P.damage, P.damage_type)
-	else
-		. = ..()
+	if(!istype(P, /obj/projectile/metal_fixer))
+		return ..()
+
+	adjustHealth(-(P.damage/4))
+	playsound(src, 'sound/abnormalities/voiddream/skill.ogg', 50, TRUE, 2)
+	visible_message(span_warning("[P]  contacts with [src] and heals them!"))
+	DamageEffect(P.damage_type)
 
 /obj/projectile/metal_fixer
 	name ="metal bolt"
@@ -417,8 +415,7 @@ Skittish, they prefer to move in groups and will run away if the enemies are in 
 		//var/mob/living/simple_animal/hostile/humanoid/fixer/metal/M = target
 		qdel(src)
 		return BULLET_ACT_BLOCK
-	. = ..()
-
+	return ..()
 
 /mob/living/simple_animal/hostile/metal_fixer_statue
 	name = "Memory Statue"
@@ -439,11 +436,10 @@ Skittish, they prefer to move in groups and will run away if the enemies are in 
 
 
 /mob/living/simple_animal/hostile/metal_fixer_statue/bullet_act(obj/projectile/P, def_zone, piercing_hit = FALSE)
-	if (istype(P, /obj/projectile/metal_fixer))
-		DamageEffect(P.damage, P.damage_type)
-	else
-		. = ..()
+	if(!istype(P, /obj/projectile/metal_fixer))
+		return ..()
 
+	DamageEffect(P.damage_type)
 
 /mob/living/simple_animal/hostile/metal_fixer_statue/Initialize()
 	. = ..()

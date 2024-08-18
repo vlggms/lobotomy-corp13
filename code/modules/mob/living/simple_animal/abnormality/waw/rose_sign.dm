@@ -82,6 +82,7 @@
 /mob/living/simple_animal/hostile/abnormality/rose_sign/death()
 	for(var/mob/living/R in summoned_roses)
 		R.death()
+	icon = 'ModularTegustation/Teguicons/abno_cores/waw.dmi'
 	density = FALSE
 	animate(src, alpha = 0, time = 10 SECONDS)
 	QDEL_IN(src, 10 SECONDS)
@@ -379,7 +380,7 @@
 	var/mob/living/status_target
 	var/killed = TRUE
 
-/mob/living/simple_animal/hostile/rose_summoned/proc/PickColor(picked_color)//fixme: new roses STILL spawn with added weaknesses, even from spawn commands
+/mob/living/simple_animal/hostile/rose_summoned/proc/PickColor(picked_color)
 	icon_state = "rose_" + picked_color
 	desc = "The heavier your sins, the deeper the color of petals will be."
 	flower_damage_type = picked_color
@@ -510,6 +511,7 @@
 	if(master)
 		master.adjustBruteLoss(-100)
 	if(!status_holder.stat >= HARD_CRIT || stacks != max_stacks)
+		INVOKE_ASYNC(src, PROC_REF(PointToFlower))
 		return
 	status_applicant.killed = FALSE
 	status_applicant.death()
@@ -528,6 +530,18 @@
 	status_holder.adjust_attribute_bonus(FORTITUDE_ATTRIBUTE, attribute_penalty)
 	status_holder.adjustBruteLoss(-attribute_penalty)
 	return ..()
+
+/datum/status_effect/stacking/crownthorns/proc/PointToFlower()
+	if(!owner || !status_applicant)
+		return
+	var/list/rose_path = get_path_to(get_turf(owner), get_turf(status_applicant), TYPE_PROC_REF(/turf, Distance_cardinal), 100)
+	var/i = 0
+	for(var/turf/T in rose_path)
+		if(i > 10)
+			break
+		new /obj/effect/temp_visual/cult/sparks(T)
+		i++
+		sleep(1)
 
 //On-kill visual effect
 /obj/structure/rose_crucifix

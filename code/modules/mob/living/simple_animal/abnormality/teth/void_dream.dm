@@ -129,7 +129,7 @@
 
 /mob/living/simple_animal/hostile/abnormality/voiddream/proc/Shout()
 	playsound(get_turf(src), 'sound/abnormalities/voiddream/shout.ogg', 75, FALSE, 5)
-	for(var/mob/living/carbon/human/L in range(10, src))
+	for(var/mob/living/carbon/human/L in urange(10, src))
 		if(faction_check(src.faction, L.faction)) // I LOVE NESTING IF STATEMENTS
 			continue
 		if(L.has_status_effect(STATUS_EFFECT_SLEEPING))

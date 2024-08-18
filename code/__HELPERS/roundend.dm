@@ -179,6 +179,39 @@
 		file_data["wanted"] = list("author" = "[GLOB.news_network.wanted_issue.scannedUser]", "criminal" = "[GLOB.news_network.wanted_issue.criminal]", "description" = "[GLOB.news_network.wanted_issue.body]", "photo file" = "[GLOB.news_network.wanted_issue.photo_file]")
 	WRITE_FILE(json_file, json_encode(file_data))
 
+//LC13 Survival Achivments
+/datum/controller/subsystem/ticker/proc/SurvivalAwards(client/player_client)
+	if(!ishuman(player_client.mob))
+		return FALSE
+	var/mob/living/carbon/human/human_mob = player_client.mob
+	if(human_mob.stat == DEAD)
+		return FALSE
+
+	if(human_mob.mind)
+		var/datum/mind/M = human_mob.mind
+		if(M.get_skill_level(/datum/skill/fishing) >= 6)
+			player_client.give_award(/datum/award/achievement/misc/scorpworld, human_mob)
+		//If you join not from roundstart you do not apply for these achivements.
+		if(M.late_joiner)
+			return FALSE
+
+		if(SSmaptype.maptype == "standard")
+			//Standard LC13 Gamemode Achivements.
+			var/list/valid_roles = list(
+				"Manager",
+				"Clerk",
+				"Agent Captain",
+				"Agent",
+				"Agent Intern",
+				"Extraction Officer",
+				"Records Officer",
+				"Training Officer",
+				)
+			if(M.assigned_role in valid_roles)
+				player_client.give_award(/datum/award/achievement/misc/lcorpworld, human_mob)
+			if(istype(human_mob.ego_gift_list["Right Back Slot"], /datum/ego_gifts/twilight))
+				player_client.give_award(/datum/award/achievement/misc/twilight, human_mob)
+
 ///Handles random hardcore point rewarding if it applies.
 /datum/controller/subsystem/ticker/proc/HandleRandomHardcoreScore(client/player_client)
 	if(!ishuman(player_client.mob))
@@ -230,6 +263,9 @@
 	var/speed_round = FALSE
 	if(world.time - SSticker.round_start_time <= 300 SECONDS)
 		speed_round = TRUE
+	var/check_survival = FALSE
+	if(world.time - SSticker.round_start_time >= 1 HOURS)
+		check_survival = TRUE
 
 	for(var/client/C in GLOB.clients)
 		if(!C.credits)
@@ -237,6 +273,9 @@
 		C.playcreditsmusic(40)//playtitlemusic(40) // Tegustation Music edit
 		if(speed_round)
 			C.give_award(/datum/award/achievement/misc/speed_round, C.mob)
+		//You survived for more than a hour!
+		if(check_survival)
+			SurvivalAwards(C)
 		HandleRandomHardcoreScore(C)
 
 	var/popcount = gather_roundend_feedback()

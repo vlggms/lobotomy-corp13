@@ -8,6 +8,7 @@
 	var/charge_speed = 0
 	var/raised = TRUE
 	var/required_movement_time = 2 SECONDS
+	swingstyle = WEAPONSWING_THRUST
 // Mutable vars - Play around with these for funky weapons
 	var/list/default_attack_verbs = list("bludgeons", "whacks")
 	var/list/couch_attack_verbs = list("impales", "stabs")

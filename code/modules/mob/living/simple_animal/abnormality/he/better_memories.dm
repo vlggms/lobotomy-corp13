@@ -29,8 +29,8 @@
 	work_damage_type = WHITE_DAMAGE
 
 	ego_list = list(
+		/datum/ego_datum/weapon/morii,
 		/datum/ego_datum/armor/morii,
-		/datum/ego_datum/weapon/morii
 	)
 	gift_type = /datum/ego_gifts/morii
 	//Abnormality Jam Submission
@@ -59,10 +59,9 @@
 
 // Those with low temperance will find a memory in the pile.
 /mob/living/simple_animal/hostile/abnormality/better_memories/PostWorkEffect(mob/living/carbon/human/user, work_type, pe, work_time)
-	if(get_attribute_level(user, TEMPERANCE_ATTRIBUTE) <= 60)
+	if(get_attribute_level(user, TEMPERANCE_ATTRIBUTE) < 60)
 		datum_reference.qliphoth_change(-1)
 		user.apply_status_effect(MEMORY_DEBUFF)
-	return
 
 // Better memories can have 3 seperate minions who will terroize the facility. Code modified from luna.dm
 /mob/living/simple_animal/hostile/abnormality/better_memories/ZeroQliphoth(mob/living/carbon/human/user)

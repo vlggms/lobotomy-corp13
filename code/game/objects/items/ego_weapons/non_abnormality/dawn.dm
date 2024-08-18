@@ -6,6 +6,7 @@
 	icon_state = "philip"
 	inhand_icon_state = "philip"
 	damtype = RED_DAMAGE
+	swingstyle = WEAPONSWING_LARGESWEEP
 
 	attack_verb_continuous = list("bashes", "crushes")
 	attack_verb_simple = list("bash", "crush")
@@ -52,6 +53,7 @@
 	force = 40		//Bigger range, less force
 	attack_speed = 1.5
 	aoe_range = 5
+	swingstyle = WEAPONSWING_SMALLSWEEP
 
 //Salvador's Zweihander
 /obj/item/ego_weapon/city/dawn/zwei

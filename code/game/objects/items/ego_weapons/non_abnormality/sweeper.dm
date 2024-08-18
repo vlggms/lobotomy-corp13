@@ -7,8 +7,8 @@
 	force = 27
 	damtype = BLACK_DAMAGE
 
-	attack_verb_continuous = "stabs"
-	attack_verb_simple = "stab"
+	attack_verb_continuous = list("stabs")
+	attack_verb_simple = list("stab")
 	hitsound = 'sound/effects/ordeals/indigo/stab_1.ogg'
 	attribute_requirements = list(
 		FORTITUDE_ATTRIBUTE = 40,

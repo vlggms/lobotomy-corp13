@@ -147,9 +147,9 @@
 	abno_type = /mob/living/simple_animal/hostile/abnormality/cherry_blossoms
 	abno_code = "O-04-100"
 	abno_info = list(
-		"When the work result was Good, the Qliphoth Counter lowered.",
+		"When the work result was Good, the Qliphoth Counter lowered with a high probability.",
 		"When an employee panicked in the Containment Unit, the Qliphoth Counter lowered.",
-		"When the Qliphoth Counter reached 0, five employees were marked for death. Whilst under its effect, employees with the mark recieved 4x as much damage from all sources.",
+		"When the Qliphoth Counter reached 0, five employees were marked for death. Whilst under its effect, employees with the mark recieved 3x as much damage from all sources.",
 		"Upon the death of one of these employees, the HP and SP of every employee in the facility was healed, and all marks were removed.")
 
 //Gone with a Simple Smile
@@ -219,7 +219,7 @@
 	abno_code = "O-04-84"
 	abno_info = list(
 		"When the work result was Bad, the Qliphoth Counter lowered.",
-		"When the work took less than 18 seconds to complete, the Qliphoth Counter lowered with a high probability.",
+		"When an Agent with Level 3 Temperance or above completed the work the Qliphoth Counter lowered.",
 		"The facility’s systems and the employees will be unable to detect the Abnormality when it escapes. Thus the manager will need to manually pinpoint it and order suppression directly.")
 
 //Lady facing the Wall

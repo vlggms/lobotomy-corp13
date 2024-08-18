@@ -69,6 +69,9 @@
 	// final obervation details
 	var/observation_ready = FALSE
 
+	//Check for Neutral abnormalities
+	var/good_hater = FALSE
+
 /datum/abnormality/New(obj/effect/landmark/abnormality_spawn/new_landmark, mob/living/simple_animal/hostile/abnormality/new_type = null)
 	if(!istype(new_landmark))
 		CRASH("Abnormality datum was created without reference to landmark.")
@@ -125,6 +128,7 @@
 		neutral_boxes = round(max_boxes * 0.4)
 	else
 		neutral_boxes = current.neutral_boxes
+	good_hater = current.good_hater
 	available_work = current.work_chances
 	switch(threat_level)
 		if(ZAYIN_LEVEL)
@@ -158,6 +162,7 @@
 /datum/abnormality/proc/ModifyOdds()
 	var/turf/spawn_turf = locate(1, 1, 1)
 	var/mob/living/simple_animal/hostile/abnormality/abno = new abno_path(spawn_turf)
+	abno.core_enabled = FALSE
 	for(var/path in abno.grouped_abnos)
 		var/mob/living/simple_animal/hostile/abnormality/abno_friend = path
 		if(abno_friend in SSabnormality_queue.possible_abnormalities[initial(abno_friend.threat_level)])
@@ -196,7 +201,10 @@
 	if (pe >= success_boxes) // If they got a good result, adds 10% understanding, up to 100%
 		UpdateUnderstanding(10, pe)
 	else if (pe >= neutral_boxes) // Otherwise if they got a Neutral result, adds 5% understanding up to 100%
-		UpdateUnderstanding(5, pe)
+		if(good_hater == TRUE) //Exception for abnormalities that hate goods or are even impossible.
+			UpdateUnderstanding(10, pe)
+		else
+			UpdateUnderstanding(5, pe)
 	stored_boxes += round(pe * SSlobotomy_corp.box_work_multiplier)
 	overload_chance[user.ckey] = max(overload_chance[user.ckey] + overload_chance_amount, overload_chance_limit)
 

@@ -68,7 +68,7 @@
 /datum/status_effect/boomsap/on_remove()
 	. = ..()
 	owner.gib()
-	for(var/mob/living/carbon/human/L in livinginrange(10, src))
+	for(var/mob/living/carbon/human/L in urange(10, src))
 		L.deal_damage(60, WHITE_DAMAGE)
 		to_chat(L, span_danger("Oh god, what the fuck was that!?"))
 

@@ -70,6 +70,7 @@
 
 
 /mob/living/simple_animal/hostile/abnormality/fairy_longlegs/death(gibbed)
+	icon = 'ModularTegustation/Teguicons/abno_cores/teth.dmi'
 	density = FALSE
 	animate(src, alpha = 0, time = 10 SECONDS)
 	QDEL_IN(src, 10 SECONDS)

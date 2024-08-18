@@ -116,15 +116,33 @@
 	desc = "You've now ruined years of mythical storytelling."
 	database_id = BOSS_MEDAL_WENDIGO_CRUSHER
 
-//should be removed soon
-/datum/award/achievement/boss/king_goat_kill
-	name = "King Goat Killer"
-	desc = "The king is dead, long live the king!"
-	database_id = BOSS_MEDAL_KINGGOAT
-	icon = "goatboss"
+//LC13 Bosses
+/datum/award/achievement/boss/white_night
+	name = "Atonement"
+	desc = "Slay T-03-46 and prevent divine judgement."
+	database_id = BOSS_MEDAL_WHITENIGHT
+	icon = "whitenight"
 
-/datum/award/achievement/boss/king_goat_crusher
-	name = "King Goat Crusher"
-	desc = "The king is dead, long live the king!"
-	database_id = BOSS_MEDAL_KINGGOAT_CRUSHER
-	icon = "goatboss"
+/datum/award/achievement/boss/ambermidnight
+	name = "Eternal Meal"
+	desc = "Defend the facility from an insatiable swarm."
+	database_id = BOSS_MEDAL_AMBERMIDNIGHT
+	icon = "amber"
+
+/datum/award/achievement/boss/greenmidnight
+	name = "Last Helix"
+	desc = "Save the facility from being cleansed."
+	database_id = BOSS_MEDAL_GREENMIDNIGHT
+	icon = "green"
+
+/datum/award/achievement/boss/violetmidnight
+	name = "The God Delusion"
+	desc = "Defend the facility from an enigmatic force."
+	database_id = BOSS_MEDAL_VIOLETMIDNIGHT
+	icon = "violet"
+
+/datum/award/achievement/boss/whitemidnight
+	name = "The Claw"
+	desc = "Relive the worst day of the founders life."
+	database_id = BOSS_MEDAL_WHITEMIDNIGHT
+	icon = "claw"

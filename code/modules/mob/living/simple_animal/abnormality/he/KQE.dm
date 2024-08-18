@@ -128,7 +128,10 @@
 	if(!heart)
 		return Life()//PRANKED!
 	can_act = FALSE
+	icon = 'ModularTegustation/Teguicons/abno_cores/he.dmi'
 	icon_state = icon_dead
+	pixel_x = -16
+	base_pixel_x = -16
 	animate(src, alpha = 0, time = 10 SECONDS)
 	QDEL_IN(src, 10 SECONDS)
 	if(istype(heart, /mob/living/simple_animal/hostile/kqe_heart))

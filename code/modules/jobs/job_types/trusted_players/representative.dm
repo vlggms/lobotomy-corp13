@@ -42,6 +42,7 @@
 		"K Corp Representative",
 		"N Corp Representative",
 		"P Corp Representative",
+		"J Corp Representative",
 	)
 
 /datum/outfit/job/representative/rcorprepresentative
@@ -64,3 +65,7 @@
 /datum/outfit/job/representative/pcorprepresentative
 	name = "P Corp Representative"
 	uniform = /obj/item/clothing/under/suit/lobotomy/pcorp
+
+/datum/outfit/job/representitive/jcorprepresentative
+	name = "J Corp Representative"
+	uniform = /obj/item/clothing/under/suit/lobotomy/jcorp

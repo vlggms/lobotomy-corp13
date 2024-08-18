@@ -11,6 +11,7 @@
 		/obj/item/ego_weapon/lance/suenoimpossible,
 		/obj/item/ego_weapon/shield/sangria,
 		/obj/item/ego_weapon/mini/soleil,
+		/obj/item/ego_weapon/mini/crow,
 		/obj/item/ego_weapon/taixuhuanjing,
 		/obj/item/ego_weapon/revenge,
 		/obj/item/ego_weapon/shield/hearse,

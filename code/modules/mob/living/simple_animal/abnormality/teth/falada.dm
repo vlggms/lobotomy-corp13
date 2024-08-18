@@ -36,7 +36,7 @@
 	observation_choices = list("Why the long face?", "What happened to you?")
 	correct_choices = list("What happened to you?")
 	observation_success_message = "The horse head begins speaking. <br>\
-		\"Oh, woe is me. If only it could be - the powers at be, would see fit to have me die in her stead.\" <br>\
+		\"Oh, woe is me. If only it could be - the powers that be, would see fit to have me die in her stead.\" <br>\
 		It speaks in rhymes, but it clearly lost someone important to it. <br>\
 		Even if there is nothing you can do, at least you are there to listen."
 	observation_fail_message = "The horse head continues sobbing, despite your cheesy joke. <br>Maybe that wasn't the best approach."

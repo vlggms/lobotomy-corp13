@@ -21,6 +21,7 @@
 	start_qliphoth = 3
 	work_damage_amount = 5
 	work_damage_type = WHITE_DAMAGE
+	good_hater = TRUE
 
 	ego_list = list(
 		/datum/ego_datum/weapon/blossom,
@@ -39,25 +40,24 @@
 		There is beauty even in great and terrible things. <br>\
 		Even the bodies underneath this tree would agree with you."
 
-	var/numbermarked = 5
+	var/number_of_marks = 5
 
 
 /mob/living/simple_animal/hostile/abnormality/cherry_blossoms/PostWorkEffect(mob/living/carbon/human/user, work_type, pe, work_time)
 	if(user.sanity_lost)
 		datum_reference.qliphoth_change(-1)
-	return
 
 /mob/living/simple_animal/hostile/abnormality/cherry_blossoms/SuccessEffect(mob/living/carbon/human/user, work_type, pe)
 	. = ..()
-	datum_reference.qliphoth_change(-1)
+	if(prob(70))
+		datum_reference.qliphoth_change(-1)
 	if(datum_reference.qliphoth_meter !=3)
 		icon_state = "graveofcherryblossoms_[datum_reference.qliphoth_meter]"
 
 /mob/living/simple_animal/hostile/abnormality/cherry_blossoms/ZeroQliphoth(mob/living/carbon/human/user)
-	mark_for_death()
+	INVOKE_ASYNC(src, PROC_REF(mark_for_death))
 	icon_state = "graveofcherryblossoms_0"
 	datum_reference.qliphoth_change(3)
-	return
 
 /mob/living/simple_animal/hostile/abnormality/cherry_blossoms/proc/mark_for_death()
 	var/list/potentialmarked = list()
@@ -70,18 +70,16 @@
 		to_chat(L, span_danger("It's cherry blossom season."))
 
 	SLEEP_CHECK_DEATH(10 SECONDS)
-	for(var/i=numbermarked, i>=1, i--)
+	for(var/blossoming in 1 to number_of_marks)
 		var/mob/living/Y = pick(potentialmarked)
 		if(faction_check_mob(Y, FALSE) || Y.z != z || Y.stat == DEAD)
 			continue
 		if(Y in marked)
 			continue
-		marked+=Y
+		marked += Y
 		new /obj/effect/temp_visual/markedfordeath(get_turf(Y))
 		to_chat(Y, span_userdanger("You feel like you're going to die!"))
 		Y.apply_status_effect(STATUS_EFFECT_MARKEDFORDEATH)
-
-
 
 //Mark for Death
 //A very quick, frantic 10 seconds of instadeath.
@@ -102,10 +100,10 @@
 	if(!ishuman(owner))
 		return
 	var/mob/living/carbon/human/status_holder = owner
-	status_holder.physiology.red_mod *= 4
-	status_holder.physiology.white_mod *= 4
-	status_holder.physiology.black_mod *= 4
-	status_holder.physiology.pale_mod *= 4
+	status_holder.physiology.red_mod *= 3
+	status_holder.physiology.white_mod *= 3
+	status_holder.physiology.black_mod *= 3
+	status_holder.physiology.pale_mod *= 3
 
 /datum/status_effect/markedfordeath/tick()
 	var/mob/living/carbon/human/status_holder = owner
@@ -125,9 +123,9 @@
 	if(!ishuman(owner))
 		return
 	var/mob/living/carbon/human/status_holder = owner
-	status_holder.physiology.red_mod /= 4
-	status_holder.physiology.white_mod /= 4
-	status_holder.physiology.black_mod /= 4
-	status_holder.physiology.pale_mod /= 4
+	status_holder.physiology.red_mod /= 3
+	status_holder.physiology.white_mod /= 3
+	status_holder.physiology.black_mod /= 3
+	status_holder.physiology.pale_mod /= 3
 
 #undef STATUS_EFFECT_MARKEDFORDEATH
