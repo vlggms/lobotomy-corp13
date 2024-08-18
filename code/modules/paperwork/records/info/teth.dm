@@ -369,9 +369,9 @@
 		"When the Qliphoth Counter reached zero, the physical condition of the abnormality improved significantly.",
 		"After its condition improves beyond a certain point, the abnormality will breach containment and travel through the facility on a horizontal path, dealing massive WHITE damage to everything it impacts.")
 
-//Six-Shot Sharper
-/obj/item/paper/fluff/info/teth/sixshotsharp
-	abno_type = /mob/living/simple_animal/hostile/abnormality/sixshotsharp
+//Dealer of the Damned
+/obj/item/paper/fluff/info/teth/dealerdamned
+	abno_type = /mob/living/simple_animal/hostile/abnormality/dealerdamned
 	abno_code = "T-01-72"
 	abno_info = list(
 		"When Agent Jamie poked T-01-72, the abnormality took some of Agent Jamie's health as a wager for a coin flip. When the coin landed heads, Jamie's health was refunded and the next work had a higher success rate. When the coin landed tails, nothing happened.",
