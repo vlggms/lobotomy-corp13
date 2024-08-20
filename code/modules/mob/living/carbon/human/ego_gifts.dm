@@ -525,6 +525,12 @@
 	justice_bonus = 1
 	slot = HAND_1
 
+/datum/ego_gifts/trapped //Needs a sprite
+	name = "Trapped"
+	//icon_state = "trapped"
+	justice_bonus = 3
+	slot = HAND_2
+
 /**
  * HE EGO Gifts
  */
