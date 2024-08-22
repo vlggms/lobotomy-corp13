@@ -1,6 +1,6 @@
 //Wcorp
 /obj/item/clothing/suit/armor/ego_gear/wcorp
-	name = "\improper w corp armor vest"
+	name = "w corp armor vest"
 	desc = "A light armor vest worn by W corp. It's light as a feather."
 	icon_state = "w_corp"
 	armor = list(RED_DAMAGE = 30, WHITE_DAMAGE = 30, BLACK_DAMAGE = 30, PALE_DAMAGE = 30)
@@ -14,7 +14,7 @@
 							)
 
 /obj/item/clothing/head/ego_hat/wcorp
-	name = "\improper w-corp cap"
+	name = "w-corp cap"
 	desc = "A ball cap worn by w-corp."
 	icon_state = "what"
 	perma = TRUE
