@@ -646,6 +646,13 @@
 	insight_mod = 3
 	slot = EYE
 
+/datum/ego_gifts/aedd
+	name = "AEDD"
+	icon_state = "grinder"
+	temperance_bonus = -2
+	justice_bonus = 5
+	slot = CHEEK
+
 /datum/ego_gifts/morii
 	name = "Morii"
 	icon_state = "morii"
