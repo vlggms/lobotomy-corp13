@@ -596,8 +596,8 @@
 /datum/ego_gifts/frostcrown
 	name = "The Winters Kiss"
 	icon_state = "frostcrown"
-	fortitude_bonus = 6
-	prudence_bonus = 6
+	fortitude_bonus = 2
+	prudence_bonus = 2
 	slot = HAT
 
 /datum/ego_gifts/fury
