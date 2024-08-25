@@ -491,3 +491,12 @@
 /datum/ego_datum/weapon/sunyata
 	item_path = /obj/item/ego_weapon/sunyata
 	cost = 50
+
+// Ambling Pearl - Effervescent Corrosion
+/datum/ego_datum/weapon/effervescent
+	item_path = /obj/item/ego_weapon/effervescent
+	cost = 50
+
+/datum/ego_datum/armor/effervescent
+	item_path = /obj/item/clothing/suit/armor/ego_gear/waw/effervescent
+	cost = 50

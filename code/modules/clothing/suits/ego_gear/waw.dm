@@ -480,3 +480,13 @@ Any attempt to code risk class armor will result in a 10 day Github ban.*/
 							PRUDENCE_ATTRIBUTE = 60,
 							TEMPERANCE_ATTRIBUTE = 60
 							)
+
+/obj/item/clothing/suit/armor/ego_gear/waw/effervescent
+	name = "effervescent corrosion"
+	desc = "Coalesce all your flaws and fears into something stronger."
+	icon_state = "shell"
+	armor = list(RED_DAMAGE = 50, WHITE_DAMAGE = 60, BLACK_DAMAGE = 20, PALE_DAMAGE = 10) // 140
+	attribute_requirements = list(
+							FORTITUDE_ATTRIBUTE = 60,
+							PRUDENCE_ATTRIBUTE = 60,
+							)
