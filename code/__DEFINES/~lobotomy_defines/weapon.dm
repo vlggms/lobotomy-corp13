@@ -13,6 +13,6 @@
 
 /// Sweeping and Thrusting Defines
 #define WEAPONSWING_NONE (1<<0)
-#define WEAPONSWING_SMALLSWEEP (1<<1)
-#define WEAPONSWING_LARGESWEEP (1<<2)
-#define WEAPONSWING_THRUST (1<<3)
+#define WEAPONSWING_SMALLSWEEP (1<<1) // Sweeps a single tile.
+#define WEAPONSWING_LARGESWEEP (1<<2) // Sweeps 3 adjacent tiles.
+#define WEAPONSWING_THRUST (1<<3) // Sweeps in a straight line.
