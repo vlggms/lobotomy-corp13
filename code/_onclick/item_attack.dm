@@ -88,19 +88,14 @@
 
 	potential_targets -= user
 
-	var/mob/to_smack = ismob(target) ? target : GetTarget(user, potential_targets)
+	var/mob/to_smack = GetTarget(user, potential_targets, target)
+
+	if(!to_smack)
+		SweepMiss(target, user)
+		return TRUE
 
 	var/old_animation = run_item_attack_animation
 	run_item_attack_animation = FALSE
-
-	if(!to_smack)
-		user.visible_message("<span class='danger'>[user] [swingstyle > WEAPONSWING_LARGESWEEP ? "thrusts" : "swings"] at [target]!</span>",\
-			"<span class='danger'>You [swingstyle > WEAPONSWING_LARGESWEEP ? "thrust" : "swing"] at [target]!</span>", null, COMBAT_MESSAGE_RANGE, user)
-		playsound(src, 'sound/weapons/thudswoosh.ogg', 60, TRUE)
-		user.do_attack_animation(target, used_item = src, no_effect = !run_item_attack_animation)
-		run_item_attack_animation = old_animation
-		return TRUE
-
 	. = to_smack.attackby(src, user, params)
 	run_item_attack_animation = old_animation
 
@@ -108,8 +103,15 @@
 	add_fingerprint(user)
 	return
 
-/obj/item/proc/GetTarget(mob/user, list/potential_targets = list())
-	. = null
+/obj/item/proc/SweepMiss(atom/target, mob/living/carbon/human/user)
+	user.visible_message("<span class='danger'>[user] [swingstyle > WEAPONSWING_LARGESWEEP ? "thrusts" : "swings"] at [target]!</span>",\
+		"<span class='danger'>You [swingstyle > WEAPONSWING_LARGESWEEP ? "thrust" : "swing"] at [target]!</span>", null, COMBAT_MESSAGE_RANGE, user)
+	playsound(src, 'sound/weapons/thudswoosh.ogg', 60, TRUE)
+	user.do_attack_animation(target, used_item = src, no_effect = TRUE)
+
+/obj/item/proc/GetTarget(mob/user, list/potential_targets = list(), atom/clicked)
+	if(ismob(clicked))
+		. = clicked
 
 	for(var/mob/living/simple_animal/hostile/H in potential_targets) // Hostile List
 		if(.)
