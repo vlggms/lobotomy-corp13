@@ -272,7 +272,7 @@
 
 /obj/item/paper/fluff/info/he/shock_centipede
 	abno_type = /mob/living/simple_animal/hostile/abnormality/shock_centipede
-	abno_code = "T-02-137"
+	abno_code = "T-02-138"
 	abno_info = list(
 		"Employees of Justice level 3 or lower suffered greater work damage.",
 		"When getting a bad work result, the Qliphoth Counter lowered by 1.",
