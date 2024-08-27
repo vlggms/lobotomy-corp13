@@ -388,4 +388,5 @@
 	abno_info = list(
 		"When the work result was Bad, the Qliphoth Counter lowered.",
 		"When the Qliphoth Counter reached 0, the abnormality let out a yell that seems to damage the electricity of the nearest connected circuit.",
-		"Considering how the containment cells are designed, the nearest circuits seem to be the ciruitry for the facility's lighting.")
+		"Considering how the containment cells are designed, the nearest circuits seem to be the ciruitry for the facility's lighting.",
+		"The energy lost from an electric surge from this abnormality will be taken out of the quota.")

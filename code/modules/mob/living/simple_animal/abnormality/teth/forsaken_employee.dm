@@ -48,16 +48,21 @@
 	. = ..()
 	datum_reference.qliphoth_change(1)
 	visible_message("[src] lets out a muffled scream!")
+	SSlobotomy_corp.AdjustGoalBoxes(-25)
 	var/list/possible_areas = list()
 	for(var/area/A in world)
 		var/lightcheck = FALSE
 		if(istype(A, /area/facility_hallway) || istype(A, /area/department_main))
-			for(var/obj/machinery/light/O in A)
-				if(O.icon_state == "[O.base_state]")
-					lightcheck = TRUE
-			if(lightcheck == TRUE)
-				possible_areas += A
+			if(A.z == z)
+				for(var/obj/machinery/light/O in A)
+					if(O.icon_state == "[O.base_state]")
+						lightcheck = TRUE
+				if(lightcheck == TRUE)
+					possible_areas += A
 	if(length(possible_areas) != 0)
 		var/chosen_area = pick(possible_areas)
 		for(var/obj/machinery/light/O in chosen_area)
+			O.break_light_tube()
+	else
+		for(var/obj/machinery/light/O in /area/facility_hallway/manager) //I figured this would be a funny addition
 			O.break_light_tube()
