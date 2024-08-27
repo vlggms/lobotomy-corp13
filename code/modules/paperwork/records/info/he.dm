@@ -28,7 +28,8 @@
 	abno_type = /mob/living/simple_animal/hostile/abnormality/scarecrow
 	abno_code = "F-01-87"
 	abno_info = list(
-		"When an employee with Prudence Level 3 or higher finished their work, the Qliphoth Counter lowered.",
+		"Employees with Prudence Level 3 or higher had a workrate reduction when working on F-01-87.",
+		"When an employee with Prudence Level 3 or higher finished their work with a neutral work result, the Qliphoth Counter lowered at a normal chance.",
 		"When the work result was Bad, the Qliphoth Counter lowered.",
 		"When Scarecrow Searching for Wisdom was escaping and killed an employee, it sucked their brain out to recover its HP.")
 
@@ -114,8 +115,9 @@
 	abno_type = /mob/living/simple_animal/hostile/abnormality/woodsman
 	abno_code = "F-05-32"
 	abno_info = list(
+		"Employees with Temperance Level 3 or higher had a workrate reduction when working on F-05-32.",
+		"When an employee with Temperance Level 3 or higher finished their work with a neutral work result, the Qliphoth Counter lowered at a normal chance.",
 		"When the work result was Bad, the Qliphoth Counter lowered.",
-		"When an employee with Temperance Level 3 or higher completed their work, the Qliphoth Counter lowered.",
 		"When an employee attempts work while the Qliphoth Counter is at 1, they will immediately die. Then, the Abnormality will escape.",
 		"Whenever a body, living or dead, was placed into the Warm-Hearted Woodsman’s chest while the Qliphoth Counter was at 1, the Qliphoth Counter increased.",
 		"WARNING: When a body was placed into the Warm-Hearted Woodsman’s chest when the Qliphoth Counter was not at 1, it breached immediately.")
@@ -148,9 +150,11 @@
 	abno_type = /mob/living/simple_animal/hostile/abnormality/scaredy_cat
 	abno_code = "F-02-126"
 	abno_info = list(
+		"Employees with Fortitude Level 3 or higher had a workrate reduction when working on F-02-126.",
+		"When an employee with Fortitude Level 3 or higher finished their work with a neutral work result, the Qliphoth Counter lowered at a normal chance.",
+		"When an employee with Fortitude Level 3 or higher finished their work with a bad work result, the Qliphoth Counter lowered.",
 		"When another Abnormality breached containment, the Qliphoth Counter lowered.",
 		"When another \"Oz\" Abnormality breached containment, the Qliphoth Counter dropped to 0.",
-		"When an employee with Fortitude Level 3 or higher completed their work, the Qliphoth Counter lowered.",
 		"When another Abnormality was suppressed, the Qliphoth Counter increased.",
 		"When the Qliphoth Counter reached 0, Scaredy Cat teleported out of the Containment Unit to protect another breached Abnormality.",
 		"Scaredy Cat could not be fully suppressed as long as the Abnormality it protected was alive.",
@@ -259,7 +263,8 @@
 	abno_type = /mob/living/simple_animal/hostile/abnormality/road_home
 	abno_code = "F-01-136"
 	abno_info = list(
-		"When an employee with Justice Level 3 or higher completed their work, the Qliphoth Counter lowered.",
+		"Employees with Justice Level 3 or higher had a workrate reduction when working on F-01-136.",
+		"When an employee with Justice Level 3 or higher finished their work with a neutral work result, the Qliphoth Counter lowered at a normal chance.",
 		"When the work result was Bad, the Qliphoth Counter lowered.",
 		"When the Road Home breached containment, a house landed in a random department, dealing massive white damage around it.",
 		"The Road Home also teleported to another department, and tried to make a golden road to the house.",

@@ -323,9 +323,18 @@
 	icon_state = icon_living
 	can_act = TRUE
 
-/mob/living/simple_animal/hostile/abnormality/woodsman/PostWorkEffect(mob/living/carbon/human/user, work_type, pe, work_time)
+
+/mob/living/simple_animal/hostile/abnormality/woodsman/WorkChance(mob/living/carbon/human/user, chance, work_type)
+	var/newchance = chance
 	if (get_attribute_level(user, TEMPERANCE_ATTRIBUTE) >= 60)
-		datum_reference.qliphoth_change(-1)
+		newchance = chance-20
+	return newchance
+
+/mob/living/simple_animal/hostile/abnormality/woodsman/NeutralEffect(mob/living/carbon/human/user, work_type, pe)
+	. = ..()
+	if (get_attribute_level(user, TEMPERANCE_ATTRIBUTE) >= 60)
+		if(prob(40))
+			datum_reference.qliphoth_change(-1)
 	return
 
 /mob/living/simple_animal/hostile/abnormality/woodsman/FailureEffect(mob/living/carbon/human/user, work_type, pe)
