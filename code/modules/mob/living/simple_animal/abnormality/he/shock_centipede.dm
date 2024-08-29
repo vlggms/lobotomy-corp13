@@ -227,7 +227,7 @@
 		coil_cooldown = world.time + coil_cooldown_decisec + coil_timer_decisec
 		shield = coil_max_shield
 		// icon_state end chage
-		currentShieldTimerID = addtimer(CALLBACK(src, PROC_REF(CoilEnd)), coil_cooldown_decisec)
+		currentShieldTimerID = addtimer(CALLBACK(src, PROC_REF(CoilEnd)), coil_cooldown_decisec, TIMER_STOPPABLE)
 		manual_emote("starts coiling up...")
 
 /mob/living/simple_animal/hostile/abnormality/shock_centipede/proc/CoilEnd()
