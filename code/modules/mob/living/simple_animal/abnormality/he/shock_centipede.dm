@@ -278,6 +278,7 @@
 	if (!immortal)
 		manual_emote("rises back up...")
 		immortal = TRUE
+		icon_state = "shock_centipede_broken"
 		melee_damage_type = immortal_damagetype
 		melee_damage_upper = immortal_melee_damage_upper
 		melee_damage_lower = immortal_melee_damage_lower
@@ -293,6 +294,7 @@
 		//say("Reached Death")
 		animate(src, alpha = 0, time = 10 SECONDS)
 		QDEL_IN(src, 10 SECONDS)
+		icon_state = "shock_centipede"
 		return ..()
 
 /mob/living/simple_animal/hostile/abnormality/shock_centipede/proc/ChargeCountDown()
@@ -304,6 +306,8 @@
 		adjustHealth(health)
 
 /mob/living/simple_animal/hostile/abnormality/shock_centipede/proc/TailAttack(target)
+	var/current_icon
+	current_icon = icon_state
 	manual_emote("leans it's tail back...")
 	tail_attack_cooldown = world.time + tailattack_cooldown_decisec
 	stunned = TRUE
@@ -331,5 +335,5 @@
 	self_charge_counter += length(been_hit) * tailattack_charge_per_target
 	//say("Hit targets #: " + num2text(length(been_hit)))
 	//playsound(get_turf(src), 'sound/abnormalities/nothingthere/hello_bam.ogg', 100, 0, 7)
-	icon_state = icon_living
+	icon_state = current_icon
 	stunned = FALSE
