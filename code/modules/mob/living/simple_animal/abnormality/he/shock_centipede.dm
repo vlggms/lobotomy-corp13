@@ -308,17 +308,36 @@
 /mob/living/simple_animal/hostile/abnormality/shock_centipede/proc/TailAttack(target)
 	var/current_icon
 	current_icon = icon_state
-	manual_emote("leans it's tail back...")
+	manual_emote("pulls it's tail back...")
 	tail_attack_cooldown = world.time + tailattack_cooldown_decisec
 	stunned = TRUE
 	face_atom(target)
 	//playsound(get_turf(src), 'sound/abnormalities/nothingthere/hello_cast.ogg', 75, 0, 3)
 	//icon_state windup
 	var/turf/target_turf = get_turf(target)
-	SLEEP_CHECK_DEATH(tailattack_windup_decisec)
-	var/been_hit = list()
+	// warning animation
 	var/broken = FALSE
 	var/distance = tailattack_range
+
+	for(var/turf/T in getline(get_turf(src), target_turf))
+		if (distance < 0)
+			break
+		distance--
+		if(T.density)
+			if(broken)
+				break
+			broken = TRUE
+		for(var/turf/TF in range(1, T))
+			if(TF.density)
+				continue
+			TF.add_overlay(icon('icons/effects/effects.dmi', "galaxy_aura"))
+			addtimer(CALLBACK(TF, TYPE_PROC_REF(/atom, cut_overlay), \
+								icon('icons/effects/effects.dmi', "galaxy_aura")), tailattack_windup_decisec)
+
+	SLEEP_CHECK_DEATH(tailattack_windup_decisec)
+	distance = tailattack_range
+	broken = FALSE
+	var/been_hit = list()
 	for(var/turf/T in getline(get_turf(src), target_turf))
 		if (distance < 0)
 			break
