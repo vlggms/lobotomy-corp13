@@ -10,7 +10,7 @@
 	ranged = TRUE
 	attack_verb_continuous = "bites"
 	attack_verb_simple = "bite"
-	attack_sound = 'sound/abnormalities/helper/attack.ogg'
+	attack_sound = 'sound/abnormalities/laetitia/spider_attack.ogg'
 	stat_attack = HARD_CRIT
 	melee_damage_lower = 3
 	melee_damage_upper = 4
@@ -254,16 +254,16 @@
 	if(stat == DEAD)
 		return
 	//say("Discharging")
-	for(var/turf/T in view(2, src))
-		new /obj/effect/temp_visual/army_hearts(get_turf(T))
+	for(var/turf/T in view(4, src))
+		new /obj/effect/temp_visual/blubbering_smash(get_turf(T))
 	var/count = 0
-	for(var/mob/living/L in view(2, src))
+	for(var/mob/living/L in view(4, src))
 		if(faction_check_mob(L))
 			continue
 		L.apply_damage(coil_discharge_aoe_damage, coil_discharge_aoe_damagetype, null, L.run_armor_check(null, coil_discharge_aoe_damagetype), spread_damage = TRUE)
 		L.Stun(coil_discharge_aoe_stun_duration_decisec)
 		count ++
-	playsound(get_turf(src), 'sound/abnormalities/armyinblack/black_attack.ogg', 100, 0, 8)
+	playsound(get_turf(src), 'sound/abnormalities/kqe/hitsound2.ogg', 100, 0, 8)
 	shield = 0
 	if (count == 0)
 		self_charge_counter -= coil_discharge_aoe_missed_charge_loss
