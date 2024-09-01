@@ -147,7 +147,7 @@
 
 /* Breach Effects*/
 /mob/living/simple_animal/hostile/abnormality/shock_centipede/adjustHealth(amount, updating_health = TRUE, forced = FALSE)
-	say("Damage taken - "  + num2text(amount) + ". Current health: " + num2text(health))
+	//say("Damage taken - "  + num2text(amount) + ". Current health: " + num2text(health))
 	if (amount >= 0 && shield > 0) // actual damage
 		amount = UpdateShield(amount)
 	if (amount >= 0)
@@ -155,10 +155,10 @@
 
 	if (immortal && amount >= 0)
 		if (self_charge_counter == 0)
-			say("Immortal. No charge. Dying.")
+			//say("Immortal. No charge. Dying.")
 			amount = health
 		else
-			say("Immortal. Not taking damage")
+			//say("Immortal. Not taking damage")
 			return FALSE
 	. = ..()
 
