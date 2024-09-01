@@ -147,7 +147,6 @@
 
 /* Breach Effects*/
 /mob/living/simple_animal/hostile/abnormality/shock_centipede/adjustHealth(amount, updating_health = TRUE, forced = FALSE)
-	//say("Damage taken - "  + num2text(amount) + ". Current health: " + num2text(health))
 	if (amount >= 0 && shield > 0) // actual damage
 		amount = UpdateShield(amount)
 	if (amount >= 0)
@@ -155,20 +154,15 @@
 
 	if (immortal && amount >= 0)
 		if (self_charge_counter == 0)
-			//say("Immortal. No charge. Dying.")
 			amount = health
 		else
-			//say("Immortal. Not taking damage")
 			return FALSE
 	. = ..()
 
 
 /mob/living/simple_animal/hostile/abnormality/shock_centipede/proc/UpdateCharge(amount)
-	//say("Damage taken, current charge health, current charge" + num2text(amount) + ",  " + num2text(self_charge_health) + ",  " + num2text(self_charge_counter))
 	self_charge_health += amount
 	self_charge_counter -= self_charge_health / self_charge_threshold
-	//if(self_charge_health / self_charge_threshold > 0)
-		//say("Charge reduced by " + num2text((self_charge_health / self_charge_threshold)))
 	if (self_charge_counter < 0)
 		self_charge_counter = 0
 	self_charge_health %= self_charge_threshold
@@ -177,7 +171,6 @@
 
 /mob/living/simple_animal/hostile/abnormality/shock_centipede/proc/UpdateShield(amount)
 	var/remainder = amount - shield
-	//say("Appling shield, amount, shield remainer " + num2text(shield) + ", " +  num2text(amount) + ", " + num2text(remainder))
 	shield -= amount
 	if (remainder >= 0)
 		shield = 0
@@ -232,10 +225,8 @@
 	. = ..()
 	if (!immortal)
 		self_charge_counter += 1
-		//say("Gained 1 Charge")
 	if (self_charge_counter > max_charge)
 		self_charge_counter = max_charge
-		//say("Reached Max Charge")
 	CheckCharge()
 
 /mob/living/simple_animal/hostile/abnormality/shock_centipede/OpenFire()
@@ -278,7 +269,6 @@
 	if(stat == DEAD)
 		return
 	icon_state = "shock_centipede"
-	//say("Discharging")
 	for(var/turf/T in view(4, src))
 		new /obj/effect/temp_visual/blubbering_smash(get_turf(T))
 	var/count = 0
@@ -315,7 +305,6 @@
 		addtimer(CALLBACK(src, PROC_REF(ChargeCountDown)), immortal_countdown_duration_decisec)
 		return FALSE
 	else
-		//say("Reached Death")
 		animate(src, alpha = 0, time = 10 SECONDS)
 		QDEL_IN(src, 10 SECONDS)
 		icon_state = "shock_centipede"
@@ -325,17 +314,14 @@
 	if (self_charge_counter > 1)
 		self_charge_counter--
 		addtimer(CALLBACK(src, PROC_REF(ChargeCountDown)), immortal_countdown_duration_decisec)
-		//say("Lost 1 Charge")
 	else
 		adjustHealth(health)
 
 /mob/living/simple_animal/hostile/abnormality/shock_centipede/proc/TailAttack(target)
-	//var/current_icon
 	manual_emote("pulls it's tail back...")
 	tail_attack_cooldown = world.time + tailattack_cooldown_decisec
 	stunned = TRUE
 	face_atom(target)
-	//playsound(get_turf(src), 'sound/abnormalities/nothingthere/hello_cast.ogg', 75, 0, 3)
 	//icon_state windup
 	var/turf/target_turf = get_turf(target)
 	// warning animation
@@ -375,7 +361,6 @@
 			new /obj/effect/temp_visual/smash_effect(TF)
 			been_hit = HurtInTurf(TF, been_hit, tailattack_damage, tailattack_damagetype, null, null, TRUE, FALSE, TRUE, TRUE)
 	self_charge_counter += length(been_hit) * tailattack_charge_per_target
-	//say("Hit targets #: " + num2text(length(been_hit)))
 	//playsound(get_turf(src), 'sound/abnormalities/nothingthere/hello_bam.ogg', 100, 0, 7)
 	//current_icon = icon_state
 	//icon_state = current_icon
