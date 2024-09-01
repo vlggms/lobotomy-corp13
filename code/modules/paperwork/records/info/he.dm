@@ -274,14 +274,12 @@
 	abno_type = /mob/living/simple_animal/hostile/abnormality/shock_centipede
 	abno_code = "T-02-138"
 	abno_info = list(
-		"Employees of Justice level 3 or lower suffered greater work damage.",
-		"When getting a bad work result, the Qliphoth Counter lowered by 1.",
-		"When Repression Work was performed, the Qliphoth Counter lowered by 1. While the counter was at 2, Shock Centipede began emitting electricity. Getting a good result with any work at this point will increase the Counter by 1. A normal result has a normal probability of increasing the counter or decreasing it..",
-		"When the Qliphoth Counter was at 1 or 2, Repression work was much more difficult to preform.",
-		"When the Qliphoth Counter was at 1,The next Repression Work performed will deal Black damage instead of Red. Upon getting a good result with the next Repression Work, the abnormality produced 6 extra PE-Boxes and the Qliphoth Counter was raised back up to 3. A normal result did not produce extra PE-Boxes and increased the counter by 1. A bad result lowered the counter and Shock Centipede breached. When any work other than Repression Work was performed during this time, the Counter immediately lowered and also resulted in a breach.",
-		"During suppression, when Shock Centipede attacked anything, it gained Self-Charge. If sufficient damage was dealt to Shock Centipede, it lost Self-Charge.",
-		"After enough Self-Charge was gained, Shock Centipede coiled up and became more durable. While it was coiled up, it began charging further. When Agents dealt enough damage to Shock Centipede during this state, it lost a substantial amount of Self-Charge and stunned the abnormality for a moment. When Shock Centipede was allowed to fully charge, it unleashed a High-Voltage Discharge that severely injured Agents and paralyzed their movements.",
-		"Upon successful suppression, the remaining Self-Charge kept Shock Centipede alive. While in this state, Shock Centipede became more aggressive. It passively lost Self-Charge until it was fully depleted. Once depleted, Shock Centipede was properly suppressed.")
+		"Employees of Justice level 3 or lower suffer greater work damage. Bad work results lower the Qliphoth Counter by 1.",
+		"Repression Work also lowers the Counter by 1. At Counter 2, Shock Centipede emits electricity. While in this state,",
+		"good work results increase the Counter by 1, while normal results have a chance to increase or decrease it.",
+		"Repression Work becomes much harder at Counter 1-2. At Counter 1, the next Repression Work deals Black damage instead of Red.",
+		"A good Repression result at this point produces 6 extra PE-Boxes and resets the Counter to 3.",
+		"A normal result increases the Counter by 1 without extra PE-Boxes. A bad result or any non-Repression work causes Shock Centipede to breach.")
 	abno_breach_damage_type = "Red/Black"
 	abno_breach_damage_count = "Low/Medium"
 
