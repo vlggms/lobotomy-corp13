@@ -147,7 +147,7 @@
 
 /* Breach Effects*/
 /mob/living/simple_animal/hostile/abnormality/shock_centipede/adjustHealth(amount, updating_health = TRUE, forced = FALSE)
-	//say("Damage taken - "  + num2text(amount) + ". Current health: " + num2text(health))
+	say("Damage taken - "  + num2text(amount) + ". Current health: " + num2text(health))
 	if (amount >= 0 && shield > 0) // actual damage
 		amount = UpdateShield(amount)
 	if (amount >= 0)
@@ -155,10 +155,10 @@
 
 	if (immortal && amount >= 0)
 		if (self_charge_counter == 0)
-			//say("Immortal. No charge. Dying.")
+			say("Immortal. No charge. Dying.")
 			amount = health
 		else
-			//say("Immortal. Not taking damage")
+			say("Immortal. Not taking damage")
 			return FALSE
 	. = ..()
 
@@ -187,13 +187,36 @@
 			currentShieldTimerID = 0
 		manual_emote("crumbles to the ground...")
 		// stun
-		// icon_state
+		icon_state = "shock_centipede"
 		stunned = TRUE
 		addtimer(CALLBACK(src, PROC_REF(StunEnd)), coil_shield_broken_selfstun_duration_decisec)
 		self_charge_counter -= coil_shield_broken_charge_loss
-		return 0
-	else
 		return remainder
+	else
+		var/obj/effect/temp_visual/shock_shield/AT = new /obj/effect/temp_visual/shock_shield(loc, src)
+		var/random_x = rand(-16, 16)
+		AT.pixel_x += random_x
+
+		var/random_y = rand(5, 32)
+		AT.pixel_y += random_y
+		return 0
+
+/obj/effect/temp_visual/shock_shield
+	name = "shock_sheild"
+	desc = "A shimmering forcefield protecting the shock centipede."
+	icon = 'icons/effects/effects.dmi'
+	icon_state = "shield"
+	layer = FLY_LAYER
+	light_system = MOVABLE_LIGHT
+	light_range = 2
+	duration = 8
+	var/target
+
+/obj/effect/temp_visual/at_shield/Initialize(mapload, new_target)
+	. = ..()
+	target = new_target
+	INVOKE_ASYNC(src, TYPE_PROC_REF(/atom/movable, orbit), target, 0, FALSE, 0, 0, FALSE, TRUE)
+
 
 /mob/living/simple_animal/hostile/abnormality/shock_centipede/AttackingTarget()
 	if (shield > 0 || stunned)  // dont attack if coiled or stunned
@@ -227,6 +250,7 @@
 		coil_cooldown = world.time + coil_cooldown_decisec + coil_timer_decisec
 		shield = coil_max_shield
 		// icon_state end chage
+		icon_state = "shock_centipede_coil"
 		currentShieldTimerID = addtimer(CALLBACK(src, PROC_REF(CoilEnd)), coil_cooldown_decisec, TIMER_STOPPABLE)
 		manual_emote("starts coiling up...")
 
@@ -253,6 +277,7 @@
 /mob/living/simple_animal/hostile/abnormality/shock_centipede/proc/CoilDischargeAoe()
 	if(stat == DEAD)
 		return
+	icon_state = "shock_centipede"
 	//say("Discharging")
 	for(var/turf/T in view(4, src))
 		new /obj/effect/temp_visual/blubbering_smash(get_turf(T))
@@ -287,7 +312,6 @@
 		// i don't know what this does. copied from mountain
 		UpdateSpeed()
 		update_simplemob_varspeed()
-		// icon_state for immortality
 		addtimer(CALLBACK(src, PROC_REF(ChargeCountDown)), immortal_countdown_duration_decisec)
 		return FALSE
 	else
@@ -306,8 +330,7 @@
 		adjustHealth(health)
 
 /mob/living/simple_animal/hostile/abnormality/shock_centipede/proc/TailAttack(target)
-	var/current_icon
-	current_icon = icon_state
+	//var/current_icon
 	manual_emote("pulls it's tail back...")
 	tail_attack_cooldown = world.time + tailattack_cooldown_decisec
 	stunned = TRUE
@@ -354,5 +377,6 @@
 	self_charge_counter += length(been_hit) * tailattack_charge_per_target
 	//say("Hit targets #: " + num2text(length(been_hit)))
 	//playsound(get_turf(src), 'sound/abnormalities/nothingthere/hello_bam.ogg', 100, 0, 7)
-	icon_state = current_icon
+	//current_icon = icon_state
+	//icon_state = current_icon
 	stunned = FALSE
