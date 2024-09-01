@@ -79,7 +79,7 @@
 
 	var/tailattack_range = 5
 
-	var/repression_change_qlip_1 = 30
+	var/repression_change_qlip_1_2 = 50
 
 
 /* Work effects */
@@ -108,8 +108,8 @@
 	return TRUE
 
 /mob/living/simple_animal/hostile/abnormality/shock_centipede/ChanceWorktickOverride(mob/living/carbon/human/user, work_chance, init_work_chance, work_type)
-	if((datum_reference?.qliphoth_meter == 1 || datum_reference?.qliphoth_meter == 2) && work_type != ABNORMALITY_WORK_REPRESSION)
-		return repression_change_qlip_1
+	if((datum_reference?.qliphoth_meter == 1 || datum_reference?.qliphoth_meter == 2) && work_type == ABNORMALITY_WORK_REPRESSION)
+		return repression_change_qlip_1_2
 	else
 		return work_chance
 
