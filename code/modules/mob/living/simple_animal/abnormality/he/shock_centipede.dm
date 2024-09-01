@@ -37,8 +37,6 @@
 		/datum/ego_datum/weapon/aedd,
 		/datum/ego_datum/armor/aedd
 		)
-	gift_type =  /datum/ego_gifts/aedd
-	gift_message = "Electricity crackles around you as you feel charged with power."
 	abnormality_origin = ABNORMALITY_ORIGIN_LIMBUS
 
 	var/self_charge_counter = 0
