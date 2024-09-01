@@ -275,6 +275,19 @@
 	abno_breach_damage_type = "Black"
 	abno_breach_damage_count = "Medium"
 
+/obj/item/paper/fluff/info/he/shock_centipede
+	abno_type = /mob/living/simple_animal/hostile/abnormality/shock_centipede
+	abno_code = "T-02-138"
+	abno_info = list(
+		"Employees of Justice level 3 or lower suffer greater work damage. Bad work results lower the Qliphoth Counter by 1.",
+		"Repression Work also lowers the Counter by 1. At Counter 2, Shock Centipede emits electricity. While in this state,",
+		"good work results increase the Counter by 1, while normal results have a chance to increase or decrease it.",
+		"Repression Work becomes much harder at Counter 1-2. At Counter 1, the next Repression Work deals Black damage instead of Red.",
+		"A good Repression result at this point produces 6 extra PE-Boxes and resets the Counter to 3.",
+		"A normal result increases the Counter by 1 without extra PE-Boxes. A bad result or any non-Repression work causes Shock Centipede to breach.")
+	abno_breach_damage_type = "Red/Black"
+	abno_breach_damage_count = "Low/Medium"
+
 //Siren
 /obj/item/paper/fluff/info/he/siren
 	abno_type = /mob/living/simple_animal/hostile/abnormality/siren
