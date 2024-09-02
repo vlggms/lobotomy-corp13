@@ -235,12 +235,6 @@
 	CleanUp()
 	return ..()
 
-//Stuntime visual for when you're stunned by your weapon, so you know what happened.
-/obj/effect/temp_visual/weapon_stun
-	icon_state = "stun"
-	layer = ABOVE_ALL_MOB_LAYER
-	duration = 9
-
 /obj/item/ego_weapon/MiddleClickAction(atom/target, mob/living/user)
 	. = ..()
 	if(. || !CanUseEgo(user))
