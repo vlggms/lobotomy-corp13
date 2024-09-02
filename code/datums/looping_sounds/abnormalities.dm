@@ -130,6 +130,13 @@
 	mid_length = 4 SECONDS
 	volume = 20
 
+/datum/looping_sound/my_form_empties//it's the BGM from the limbus bossfight
+	mid_sounds = 'sound/abnormalities/myformempties/MFE_theme.ogg'
+	mid_length = 120 SECONDS
+	volume = 50
+	extra_range = 40
+	channel = CHANNEL_MFE
+
 // Ordeals
 /datum/looping_sound/amberdusk
 	mid_sounds = 'sound/effects/ordeals/amber/dusk_ambience.ogg'
