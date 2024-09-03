@@ -90,6 +90,8 @@
 		new /obj/effect/temp_visual/healing/no_dam(get_turf(TB))
 
 /mob/living/simple_animal/hostile/ordeal/centipede_corrosion/proc/AdjustCharge(addition)
+	if(addition > 0 && charge_level < charge_level_cap)
+		new /obj/effect/temp_visual/healing/charge(get_turf(src))
 	charge_level = clamp(charge_level + addition, 0, charge_level_cap)
 	update_icon()
 

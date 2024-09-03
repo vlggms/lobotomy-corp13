@@ -849,44 +849,6 @@
 	pixel_y = 0
 	pixel_x = -16
 
-/obj/effect/temp_visual/healing
-	icon_state = "healing"
-	layer = ABOVE_ALL_MOB_LAYER
-	//duration based on the frames in the sprites.
-	duration = 8
-
-/obj/effect/temp_visual/healing/Initialize(mapload)
-	. = ..()
-	pixel_x = rand(-12, 12)
-	pixel_y = rand(-9, 0)
-
-/obj/effect/temp_visual/healing/no_dam
-	icon_state = "no_dam"
-
-//Damage Effects
-/obj/effect/temp_visual/damage_effect
-	icon = 'ModularTegustation/Teguicons/lc13_coloreffect.dmi'
-	layer = ABOVE_ALL_MOB_LAYER
-	//Icon state is actually the base icon for intilization
-
-/obj/effect/temp_visual/damage_effect/Initialize(mapload)
-	icon_state = "[icon_state][rand(1,2)]"
-	pixel_x = rand(-12, 12)
-	pixel_y = rand(-9, 9)
-	return ..()
-
-/obj/effect/temp_visual/damage_effect/red
-	icon_state = "dam_red"
-
-/obj/effect/temp_visual/damage_effect/white
-	icon_state = "dam_white"
-
-/obj/effect/temp_visual/damage_effect/black
-	icon_state = "dam_black"
-
-/obj/effect/temp_visual/damage_effect/pale
-	icon_state = "dam_pale"
-
 /obj/effect/temp_visual/pale_eye_attack
 	name = "pale particles"
 	icon_state = "ion_fade_flight"
