@@ -48,6 +48,7 @@
 	. = ..()
 	datum_reference.qliphoth_change(1)
 	visible_message("[src] lets out a muffled scream!")
+	playsound(get_turf(src), 'sound/voice/human/malescream_6.ogg', 15, 3, 3)
 	SSlobotomy_corp.AdjustGoalBoxes(-25)
 	var/list/possible_areas = list()
 	for(var/area/A in world)
@@ -63,6 +64,8 @@
 		var/chosen_area = pick(possible_areas)
 		for(var/obj/machinery/light/O in chosen_area)
 			O.break_light_tube()
+			addtimer(CALLBACK(O, TYPE_PROC_REF(/obj/machinery/light, fix)), 15 MINUTES)
 	else
 		for(var/obj/machinery/light/O in /area/facility_hallway/manager) //I figured this would be a funny addition
 			O.break_light_tube()
+			addtimer(CALLBACK(O, TYPE_PROC_REF(/obj/machinery/light, fix)), 15 MINUTES)
