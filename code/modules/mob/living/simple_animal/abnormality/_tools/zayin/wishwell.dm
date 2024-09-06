@@ -215,7 +215,7 @@
 		output = "MONEY"
 		to_chat(user, span_notice("You hear a plop as the holochip comes in contact with the water..."))
 		user.playsound_local(user, 'sound/items/coinflip.ogg', 80, TRUE)
-	else if(istype(I, /obj/item/clothing/suit/armor/ego_gear) || istype(I, /obj/item/gun/ego_gun/pistol) || istype(I, /obj/item/ego_weapon) || istype(I, /obj/item/gun/ego_gun) && !istype(I, /obj/item/gun/ego_gun/city/clerk))
+	else if(istype(I, /obj/item/clothing/suit/armor/ego_gear) || istype(I, /obj/item/gun/ego_gun/pistol) || istype(I, /obj/item/ego_weapon) || istype(I, /obj/item/gun/ego_gun) && !istype(I, /obj/item/gun/ego_gun/clerk))
 		to_chat(user, span_notice("You hear the ego dissolve as it comes in contact with the water..."))
 		user.playsound_local(user, 'sound/effects/wounds/sizzle1.ogg', 40, TRUE)
 		if(locate(I) in tethitem)

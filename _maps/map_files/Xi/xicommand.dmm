@@ -2124,7 +2124,7 @@
 /obj/effect/decal/cleanable/blood/tracks{
 	dir = 8
 	},
-/obj/item/gun/ego_gun/city/clerk,
+/obj/item/gun/ego_gun/clerk,
 /turf/open/floor/plating/dirt/jungle/dark,
 /area/city/backstreets_room)
 "fp" = (
@@ -12259,7 +12259,7 @@
 "EG" = (
 /obj/structure/closet/cabinet,
 /obj/item/ego_weapon/city/streetlight_bat,
-/obj/item/gun/ego_gun/city/clerk{
+/obj/item/gun/ego_gun/clerk{
 	desc = "A pistol that looks to be loaded with 9mm rounds. Fit and comforms to the Heads regulations.";
 	name = "9mm Pistol"
 	},
@@ -15647,7 +15647,7 @@
 /obj/structure/filingcabinet{
 	pixel_x = 10
 	},
-/obj/item/gun/ego_gun/city/clerk{
+/obj/item/gun/ego_gun/clerk{
 	desc = "A pistol that looks to be loaded with 9mm rounds. Fit and comforms to the Heads regulations.";
 	name = "9mm Pistol";
 	pixel_y = 10

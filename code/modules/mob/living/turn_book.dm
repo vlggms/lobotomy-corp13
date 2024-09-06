@@ -16,7 +16,7 @@
 		for(var/obj/item/storage/spare_space in search_area)
 			search_area |= spare_space.contents
 		for(var/obj/item/I in search_area)
-			if(istype(I, /obj/item/clothing/suit/armor/ego_gear) || istype(I, /obj/item/gun/ego_gun/pistol) || istype(I, /obj/item/ego_weapon) || istype(I, /obj/item/gun/ego_gun) && !istype(I, /obj/item/gun/ego_gun/city/clerk))
+			if(istype(I, /obj/item/clothing/suit/armor/ego_gear) || istype(I, /obj/item/gun/ego_gun/pistol) || istype(I, /obj/item/ego_weapon) || istype(I, /obj/item/gun/ego_gun) && !istype(I, /obj/item/gun/ego_gun/clerk))
 				lor.lootbox += I.type
 		body = "[user.job] from Lobotomy Corporation"
 		user.death()
