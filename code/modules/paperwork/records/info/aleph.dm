@@ -228,7 +228,8 @@
 		"When an employee whose Justice was lower than Level 4 completed the work, the Qliphoth Counter decreased.",
 		"When the work result was Bad, the Qliphoth Counter lowered.",
 		"An employee in the facility will be reflected upon the mirror on the face of Nobody Is.",
-		"When the selected employee completed work, they were assimilated into the abnormality.")
+		"When only one employee with the clearance to work on abnormalities was present in the facility, work damage increased.",
+		"Otherwise, when the selected employee completed work, they were assimilated into the abnormality.",)
 	abno_breach_damage_count = "Extreme" // Once it transforms its over
 	abno_resistances = list(
 		RED_DAMAGE = "Endured/Endured/Resistant",

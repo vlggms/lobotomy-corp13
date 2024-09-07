@@ -43,7 +43,8 @@ It has now been over four months. Now we get her for real. -Coxswain
 	faction = list("redhood") // I'LL FUCKIN FIGHT YOU TOO, MATE
 	can_breach = TRUE
 	start_qliphoth = 3
-	density = FALSE //Prevents red from getting stuck unable to reach her target
+	density = FALSE // Prevents red from getting stuck unable to reach her target
+	status_flags = MUST_HIT_PROJECTILE // Allows projectiles to hit even though she's not dense.
 	ego_list = list(
 		/datum/ego_datum/weapon/crimson,
 		/datum/ego_datum/weapon/crimson/gun,

@@ -70,6 +70,7 @@
 		"Silky",
 	)
 	var/list/longbeard = list("Beard (Very Long)")
+	var/solo_punish = FALSE
 
 	//Breach Variables
 	var/whip_attack_cooldown
@@ -162,9 +163,12 @@
 			continue
 		potentialmarked += L
 	if(LAZYLEN(potentialmarked)) //It's fine if no one got picked. Probably.
+		solo_punish = FALSE
+		if(LAZYLEN(potentialmarked) < 2)
+			solo_punish = TRUE
 		ReflectChosen(pick(potentialmarked))
 		if(!IsContained())
-			to_chat(chosen, span_warning("You feel uneasy..."))
+			to_chat(chosen, span_warning("You feel the mirror's gaze upon you..."))
 	else
 		ReflectChosen(null)
 
@@ -206,12 +210,19 @@
 		adjusted_chance -= (100 - brainpower) * 0.5
 	return adjusted_chance
 
+/mob/living/simple_animal/hostile/abnormality/nobody_is/AttemptWork(mob/living/carbon/human/user, work_type)
+	if(solo_punish)
+		work_damage_amount = 22
+		return ..()
+	work_damage_amount = initial(work_damage_amount)
+	return ..()
+
 /mob/living/simple_animal/hostile/abnormality/nobody_is/PostWorkEffect(mob/living/carbon/human/user, work_type, pe, work_time)
-	if(Finisher(user)) //Checks if they are the chosen, and disguises as them if they are.
-		return
+	if(!solo_punish)
+		if(Finisher(user)) //Checks if they are the chosen, and disguises as them if they are.
+			return
 	else if(get_attribute_level(user, JUSTICE_ATTRIBUTE) < 80)
 		datum_reference.qliphoth_change(-1)
-	return
 
 /mob/living/simple_animal/hostile/abnormality/nobody_is/FailureEffect(mob/living/carbon/human/user, work_type, pe)
 	. = ..()
@@ -562,7 +573,7 @@
 			grab_victim.deal_damage(strangle_damage, BLACK_DAMAGE)
 		else	//Apply ramping damage
 			playsound(get_turf(src), 'sound/effects/wounds/crackandbleed.ogg', 200, 0, 7)
-			grab_victim.deal_damage((strangle_damage * count), BLACK_DAMAGE)
+			grab_victim.deal_damage((strangle_damage * (3 - count)), BLACK_DAMAGE)
 	count += 1
 	if(grab_victim.sanity_lost) //This should prevent weird things like panics running away halfway through
 		grab_victim.Stun(10) //Immobilize does not stop AI controllers from moving, for some reason.
