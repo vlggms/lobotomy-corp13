@@ -18,6 +18,10 @@
 		)
 	var/list/gamemode_abnos = list(ZAYIN_LEVEL = list(), TETH_LEVEL = list(), HE_LEVEL = list(), WAW_LEVEL = list(), ALEPH_LEVEL = list())
 
+/datum/game_mode/management/pre_setup()
+	create_portrait_paths()
+	return ..()
+
 /datum/game_mode/management/post_setup()
 	SSpersistence.LoadAbnoPicks() // Persistence system WILL have loaded at this point. Functionally means 0 abnos are slotted/loaded before the game itself is ready.
 	var/list/all_abnos = SSpersistence.abno_rates

@@ -82,10 +82,13 @@
 /*
 	Try to keep images 256px on at least one side to keep file sizes small - Coxswain
 */
-/proc/get_portrait_path()
+GLOBAL_LIST_EMPTY(abnormality_portraits)
+
+/proc/create_portrait_paths()
 	. = list()
 	var/path = "icons/UI_Icons/abnormality_portraits/"
 	for(var/file in flist(path))
 		if(copytext("[file]", -1) == "/")
 			continue
 		. += file("[path][file]")
+	GLOB.abnormality_portraits = .
