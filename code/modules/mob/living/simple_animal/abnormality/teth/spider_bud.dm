@@ -50,6 +50,9 @@
 	if(get_attribute_level(user, PRUDENCE_ATTRIBUTE) >= 40 && work_type != ABNORMALITY_WORK_INSIGHT)
 		return
 
+	turn_into_burger(user)
+
+/mob/living/simple_animal/hostile/abnormality/spider/proc/turn_into_burger(mob/living/carbon/human/user, skip_waiting = FALSE)
 	icon_state = "spider_open"
 	if(GODMODE in user.status_flags)
 		manual_emote("stares at [user], visibly annoyed.")
@@ -62,7 +65,9 @@
 	user.forceMove(casing)
 
 	user.death()
-	SLEEP_CHECK_DEATH(5 SECONDS)
+	if(!skip_waiting)
+		SLEEP_CHECK_DEATH(4 SECONDS)
+
 	icon_state = "spider_closed"
 	datum_reference.max_boxes += 2
 
@@ -76,11 +81,7 @@
 	. = ..()
 	pixel_x = rand(-16, 16)
 	pixel_y = rand(-10, 20)
-	icon_state = pick(
-		"cocoon_large1",
-		"cocoon_large2",
-		"cocoon_large3",
-	)
+	icon_state = "cocoon_large[rand(1, 3)]"
 
 /obj/structure/spider/cocoon/spider_bud/Destroy()
 	if(!istype(spooder))
@@ -88,12 +89,17 @@
 
 	spooder.datum_reference.max_boxes -= 2
 	for(var/mob/living/carbon/human/sinner in oview(2, src))
+		if(sinner.stat == DEAD || isnull(sinner.ckey))
+			continue
+
 		if(!spooder.metagame_list[sinner.ckey])
 			spooder.metagame_list += sinner.ckey
 			spooder.metagame_list[sinner.ckey] = 0
 
 		spooder.metagame_list[sinner.ckey] += 1
 		sinner.deal_damage(50 * spooder.metagame_list[sinner.ckey], RED_DAMAGE)
-		to_chat(sinner, span_userdanger("As you destroy the cocoon, tiny spiders swarm you and tear out some of your flesh before returning to [spooder]!"))
+		to_chat(sinner, span_userdanger("As the cocoon breaks tiny spiders swarm you and tear out some of your flesh before returning to [spooder]!"))
+		if(sinner.stat == DEAD) // if they are dead after our attack, burger them
+			spooder.turn_into_burger(sinner, TRUE)
 
 	return ..()
