@@ -93,13 +93,12 @@
 	dat += "<br>"
 
 	//Abnormality portraits
-	if(datum_reference.GetPortrait() in GLOB.abnormality_portraits)
-		for(var/pahs in GLOB.abnormality_portraits)
-			user << browse_rsc(pahs)
-		dat += {"<div style="float:right; width: 60%;">
-		<img src='[datum_reference.GetPortrait()].png' class="fit-picture" width="192" height="192">
-		</div>"}
-		dat += "<br>"
+	for(var/pahs in GLOB.abnormality_portraits)
+		user << browse_rsc(pahs)
+	dat += {"<div style="float:right; width: 60%;">
+	<img src='[datum_reference.GetPortrait()].png' class="fit-picture" width="192" height="192">
+	</div>"}
+	dat += "<br>"
 
 	var/list/work_list = datum_reference.available_work
 	if(!tutorial && istype(SSlobotomy_corp.core_suppression, /datum/suppression/information))
