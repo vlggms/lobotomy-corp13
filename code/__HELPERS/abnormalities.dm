@@ -78,3 +78,14 @@
 			return "High"
 
 	return "Unknown ([rate])"
+
+/*
+	Try to keep images 256px on at least one side to keep file sizes small - Coxswain
+*/
+/proc/get_portrait_path()
+	. = list()
+	var/path = "icons/UI_Icons/abnormality_portraits/"
+	for(var/file in flist(path))
+		if(copytext("[file]", -1) == "/")
+			continue
+		. += file("[path][file]")
