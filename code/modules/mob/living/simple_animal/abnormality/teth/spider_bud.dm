@@ -13,7 +13,7 @@
 		ABNORMALITY_WORK_ATTACHMENT = list(50, 50, 55, 55, 55),
 		ABNORMALITY_WORK_REPRESSION = list(40, 40, 45, 45, 45),
 	)
-	success_boxes = 99 //Should be impossible
+	success_boxes = 99 // Under normal circumstances, impossible
 	pixel_x = -8
 	base_pixel_x = -8
 
@@ -38,21 +38,62 @@
 	observation_fail_message = "I devoured the prey. <br>\
 		My body reacted faster than my thoughts. <br>... <br>I am a spider. <br>I eat anything my web catches."
 
+	/// Filled with ckeys of people who broke our cocoons, they need to pay if they dare mess with us
+	var/list/metagame_list = list()
+
+/mob/living/simple_animal/hostile/abnormality/spider/Destroy()
+	metagame_list = null
+	return ..()
 
 /mob/living/simple_animal/hostile/abnormality/spider/PostWorkEffect(mob/living/carbon/human/user, work_type, pe, work_time)
 	// If you do insight or have low prudence, fuck you and die for stepping on a spider
-	if((get_attribute_level(user, PRUDENCE_ATTRIBUTE) < 40 || work_type == ABNORMALITY_WORK_INSIGHT) && !(GODMODE in user.status_flags))
-		icon_state = "spider_open"
-		var/obj/structure/spider/cocoon/casing = SpawnConnectedStructure(/obj/structure/spider/cocoon, pick(-1,0,1), pick(-1,0,1))
-		user.death()
-		user.forceMove(casing)
-		casing.icon_state = pick(
-			"cocoon_large1",
-			"cocoon_large2",
-			"cocoon_large3",
-		)
-		casing.density = FALSE
-		SLEEP_CHECK_DEATH(50)
+	if(get_attribute_level(user, PRUDENCE_ATTRIBUTE) >= 40 && work_type != ABNORMALITY_WORK_INSIGHT)
+		return
+
+	icon_state = "spider_open"
+	if(GODMODE in user.status_flags)
+		manual_emote("stares at [user], visibly annoyed.")
+		SLEEP_CHECK_DEATH(5 SECONDS)
 		icon_state = "spider_closed"
-		datum_reference.max_boxes+=2
-	return
+		return
+
+	var/obj/structure/spider/cocoon/spider_bud/casing = SpawnConnectedStructure(/obj/structure/spider/cocoon/spider_bud, rand(-1, 1), rand(-1, 1))
+	casing.spooder = src
+	user.forceMove(casing)
+
+	user.death()
+	SLEEP_CHECK_DEATH(5 SECONDS)
+	icon_state = "spider_closed"
+	datum_reference.max_boxes += 2
+
+/obj/structure/spider/cocoon/spider_bud
+	desc = "Something wrapped in silky spider web. You should probably not destroy this."
+
+	/// Whoever controls us, meant for spider bud
+	var/mob/living/simple_animal/hostile/abnormality/spider/spooder
+
+/obj/structure/spider/cocoon/spider_bud/Initialize()
+	. = ..()
+	pixel_x = rand(-16, 16)
+	pixel_y = rand(-10, 20)
+	icon_state = pick(
+		"cocoon_large1",
+		"cocoon_large2",
+		"cocoon_large3",
+	)
+
+/obj/structure/spider/cocoon/spider_bud/Destroy()
+	if(!istype(spooder))
+		return ..()
+
+	spooder.datum_reference.max_boxes -= 2
+	for(var/mob/living/carbon/human/sinner in oview(2, src))
+		if(!spooder.metagame_list[sinner.ckey])
+			spooder.metagame_list += sinner.ckey
+			spooder.metagame_list[sinner.ckey] = 0
+
+		spooder.metagame_list[sinner.ckey] += 1
+		sinner.deal_damage(50 * spooder.metagame_list[sinner.ckey], RED_DAMAGE)
+		to_chat(sinner, span_userdanger("As you destroy the cocoon, tiny spiders swarm you and tear out some of your flesh before returning to [spooder]!"))
+
+	return ..()
