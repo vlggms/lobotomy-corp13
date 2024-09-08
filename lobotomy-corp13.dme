@@ -4120,6 +4120,7 @@
 #include "ModularTegustation\tegu_items\extraction\_extraction.dm"
 #include "ModularTegustation\tegu_items\extraction\egodelivery.dm"
 #include "ModularTegustation\tegu_items\extraction\egosurgery.dm"
+#include "ModularTegustation\tegu_items\extraction\egotelepad.dm"
 #include "ModularTegustation\tegu_items\extraction\key.dm"
 #include "ModularTegustation\tegu_items\extraction\lock.dm"
 #include "ModularTegustation\tegu_items\extraction\toolextractor.dm"
