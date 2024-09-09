@@ -15,7 +15,9 @@
 		"Employees with Prudence Level 1 squashed the spiderlings. Spider Bud turned those who harmed its children into cocoons.",
 		"When cleaning the unit as a part of Insight Work, the employee was quickly turned into a cocoon by Spider Bud.",
 		"For each person encased in a cocoon, Spider Bud's max PE available from work was increased by 2.",
-		"Employees were entirely unable to get a good work result from spider bud.",)
+		"Employees were entirely unable to get a good work result from spider bud, unless very special circumstances arose",
+		"Employees that destroyed or closelly watched a destruction of a cocoon made by Spider Bud had reported tiny spiders coming out of the cocoon and biting them, in rare cases this resulted in the employees death",
+	)
 
 //Scorched girl
 /obj/item/paper/fluff/info/teth/match
