@@ -56,7 +56,7 @@
 	icon_state = "spider_open"
 	if(GODMODE in user.status_flags)
 		manual_emote("stares at [user], visibly annoyed.")
-		SLEEP_CHECK_DEATH(5 SECONDS)
+		SLEEP_CHECK_DEATH(3 SECONDS)
 		icon_state = "spider_closed"
 		return
 
@@ -66,7 +66,7 @@
 
 	user.death()
 	if(!skip_waiting)
-		SLEEP_CHECK_DEATH(4 SECONDS)
+		SLEEP_CHECK_DEATH(3 SECONDS)
 
 	icon_state = "spider_closed"
 	datum_reference.max_boxes += 2
