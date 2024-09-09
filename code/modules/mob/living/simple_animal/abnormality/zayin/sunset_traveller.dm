@@ -155,6 +155,7 @@
 	light_color = COLOR_ORANGE
 	light_range = 5
 	light_power = 7
+	density = FALSE
 
 /mob/living/simple_animal/hostile/scarlet_moths/Initialize()
 	. = ..()
