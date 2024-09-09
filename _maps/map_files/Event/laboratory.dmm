@@ -23,26 +23,33 @@
 	},
 /turf/open/floor/pod/light,
 /area/centcom)
+"ad" = (
+/obj/structure/sign/logo{
+	icon_state = "limbus_sign 0,0";
+	pixel_y = 32
+	},
+/turf/open/floor/facility/dark,
+/area/centcom)
 "ae" = (
 /turf/open/water,
 /area/space)
 "af" = (
 /obj/structure/chair/comfy/teal{
-	can_buckle = 0;
 	dir = 4;
+	pixel_y = 15;
 	pixel_x = -5;
-	pixel_y = 15
+	can_buckle = 0
 	},
 /obj/structure/table/wood{
 	alpha = 0;
 	density = 0;
-	mouse_opacity = 0;
-	resistance_flags = 115
+	resistance_flags = 115;
+	mouse_opacity = 0
 	},
 /obj/item/kirbyplants{
-	anchored = 1;
 	icon_state = "plant-12";
-	pixel_x = 8
+	pixel_x = 8;
+	anchored = 1
 	},
 /obj/effect/turf_decal/siding/yellow{
 	dir = 4
@@ -83,12 +90,12 @@
 	color = "#000000";
 	opacity = 1
 	},
-/obj/item/ego_weapon/city/lccb_bat{
-	pixel_x = -6
-	},
-/obj/item/gun/ego_gun/city/limbusshottie{
-	pixel_x = 5
-	},
+/obj/item/ego_weapon/shield/lccb,
+/obj/item/ego_weapon/shield/lccb,
+/obj/item/ego_weapon/shield/lccb,
+/obj/item/gun/ego_gun/city/limbuspistol,
+/obj/item/gun/ego_gun/city/limbuspistol,
+/obj/item/gun/ego_gun/city/limbuspistol,
 /turf/open/floor/mineral/plastitanium/red,
 /area/centcom)
 "ap" = (
@@ -105,7 +112,8 @@
 "av" = (
 /obj/structure/rack,
 /obj/item/ego_weapon/city/lccb_bat,
-/obj/item/gun/ego_gun/city/limbusshottie,
+/obj/item/barrier_taperoll/police,
+/obj/item/gun/ego_gun/city/limbuspistol,
 /turf/open/floor/mineral/titanium/blue,
 /area/centcom)
 "aA" = (
@@ -118,14 +126,14 @@
 /area/centcom)
 "aC" = (
 /obj/effect/decal/cleanable/crayon{
-	color = "#5269e9";
 	icon_state = "t";
-	pixel_x = -9
+	pixel_x = -9;
+	color = "#5269e9"
 	},
 /obj/effect/decal/cleanable/crayon{
-	color = "#5269e9";
 	icon_state = "o";
-	pixel_x = 3
+	pixel_x = 3;
+	color = "#5269e9"
 	},
 /turf/open/floor/plasteel/white,
 /area/centcom)
@@ -140,21 +148,21 @@
 /area/centcom)
 "aJ" = (
 /obj/structure/filingcabinet{
-	density = 0;
+	resistance_flags = 115;
 	pixel_y = 15;
-	resistance_flags = 115
+	density = 0
 	},
 /obj/structure/filingcabinet{
-	density = 0;
 	pixel_x = 10;
+	resistance_flags = 115;
 	pixel_y = 15;
-	resistance_flags = 115
+	density = 0
 	},
 /obj/structure/filingcabinet{
-	density = 0;
 	pixel_x = -10;
+	resistance_flags = 115;
 	pixel_y = 15;
-	resistance_flags = 115
+	density = 0
 	},
 /obj/machinery/light{
 	dir = 8;
@@ -175,18 +183,20 @@
 	color = "#5269e9";
 	dir = 8
 	},
-/obj/structure/window/reinforced/spawner{
-	color = "#000000";
-	opacity = 1
-	},
 /turf/open/floor/mineral/titanium/tiled,
 /area/centcom)
 "aN" = (
+/obj/item/vending_refill/drugs,
+/obj/item/vending_refill/drugs,
+/obj/item/vending_refill/drugs,
+/obj/item/vending_refill/drugs,
+/obj/item/vending_refill/drugs,
+/obj/item/vending_refill/drugs,
+/obj/structure/table,
 /obj/machinery/light/small{
 	dir = 1;
 	pixel_y = 17
 	},
-/obj/machinery/vending/drugs,
 /turf/open/floor/plasteel/showroomfloor,
 /area/centcom)
 "aQ" = (
@@ -237,8 +247,8 @@
 	},
 /obj/structure/railing{
 	alpha = 0;
-	dir = 1;
-	name = "hidden"
+	name = "hidden";
+	dir = 1
 	},
 /obj/effect/turf_decal/siding/yellow{
 	dir = 8
@@ -247,8 +257,8 @@
 	pixel_x = 32
 	},
 /obj/item/paper_bin{
-	pixel_x = 4;
-	pixel_y = -10
+	pixel_y = -10;
+	pixel_x = 4
 	},
 /turf/open/floor/carpet/royalblue,
 /area/centcom)
@@ -258,7 +268,7 @@
 	req_access_txt = "7;19"
 	},
 /obj/machinery/door/poddoor/preopen{
-	id = "assetprotection2"
+	id = "rd2"
 	},
 /turf/open/floor/facility/halls,
 /area/centcom)
@@ -329,15 +339,15 @@
 /area/centcom)
 "bo" = (
 /obj/machinery/vending/snack/blue{
-	density = 0;
-	pixel_y = 19
+	pixel_y = 19;
+	density = 0
 	},
 /turf/open/floor/mineral/plastitanium,
 /area/centcom)
 "bp" = (
 /obj/machinery/vending/snack/blue{
-	density = 0;
-	pixel_y = 19
+	pixel_y = 19;
+	density = 0
 	},
 /obj/machinery/light{
 	dir = 1;
@@ -384,8 +394,8 @@
 "bz" = (
 /obj/structure/table/reinforced,
 /obj/structure/extinguisher_cabinet{
-	pixel_x = 8;
-	pixel_y = 27
+	pixel_y = 27;
+	pixel_x = 8
 	},
 /obj/item/paper_bin{
 	pixel_y = 5
@@ -421,7 +431,7 @@
 	icon_state = "limbus_sign 4,0";
 	pixel_y = 32
 	},
-/turf/open/floor/carpet/black,
+/turf/open/floor/facility/dark,
 /area/centcom)
 "bF" = (
 /obj/effect/turf_decal/trimline/purple/filled/end{
@@ -431,9 +441,9 @@
 /area/centcom)
 "bG" = (
 /obj/machinery/jukebox{
-	density = 0;
 	pixel_y = 15;
-	req_access = list()
+	req_access = list();
+	density = 0
 	},
 /turf/open/floor/carpet/blue,
 /area/centcom)
@@ -516,16 +526,16 @@
 "bW" = (
 /obj/structure/chair/comfy/shuttle{
 	color = "#D381C9";
+	name = "fancy chair";
 	desc = "A comfortable seat. Since its custom made, its quite expensive";
-	dir = 1;
-	name = "fancy chair"
+	dir = 1
 	},
 /turf/open/floor/mineral/titanium/tiled,
 /area/centcom)
 "bX" = (
 /obj/machinery/door/airlock/medical/glass{
 	name = "pharmacy";
-	req_access_txt = "69;19"
+	req_one_access_txt = "69;19"
 	},
 /turf/open/floor/facility/halls,
 /area/centcom)
@@ -549,8 +559,8 @@
 /area/centcom)
 "ca" = (
 /obj/machinery/door/poddoor{
-	id = "LSZ Containment Door #2";
-	name = "LSZ Containment Door #2"
+	name = "LSZ Containment Door #2";
+	id = "LSZ Containment Door #2"
 	},
 /turf/open/floor/facility/halls,
 /area/centcom)
@@ -607,7 +617,7 @@
 	dir = 4
 	},
 /obj/machinery/door/poddoor{
-	id = "lowsec_inside";
+	id = "south_lowsec_inside";
 	name = "Low Security Blast Door"
 	},
 /turf/open/floor/facility/halls,
@@ -643,7 +653,7 @@
 	short_range = 5;
 	view_range = 5
 	},
-/turf/open/floor/mineral/titanium/tiled,
+/turf/open/floor/plasteel,
 /area/centcom)
 "cz" = (
 /obj/structure/noticeboard{
@@ -672,8 +682,8 @@
 	dir = 4
 	},
 /obj/effect/turf_decal/caution/white{
-	color = "#5269e9";
-	dir = 8
+	dir = 8;
+	color = "#5269e9"
 	},
 /turf/open/floor/mineral/titanium/tiled,
 /area/centcom)
@@ -757,8 +767,8 @@
 /obj/structure/table/wood{
 	alpha = 0;
 	density = 0;
-	mouse_opacity = 0;
-	resistance_flags = 115
+	resistance_flags = 115;
+	mouse_opacity = 0
 	},
 /turf/closed/indestructible/reinforced{
 	color = "#9cadc7"
@@ -771,8 +781,8 @@
 /area/centcom)
 "cT" = (
 /obj/structure/chair/comfy/shuttle{
-	desc = "A comfortable seat. Since its custom made, its quite expensive";
-	name = "fancy chair"
+	name = "fancy chair";
+	desc = "A comfortable seat. Since its custom made, its quite expensive"
 	},
 /obj/machinery/camera{
 	alpha = 0;
@@ -797,23 +807,27 @@
 /turf/open/floor/plasteel/white,
 /area/centcom)
 "cZ" = (
-/obj/machinery/jukebox,
-/turf/open/floor/plasteel/dark,
+/obj/structure/cable/layer1,
+/obj/structure/cable,
+/obj/structure/disposalpipe/segment{
+	dir = 1
+	},
+/turf/open/floor/plating,
 /area/centcom)
 "db" = (
 /obj/structure/chair/comfy/shuttle{
-	color = "#ff7f7f";
-	desc = "A magnificient seat. Its ruby red comes from a special leather made out of 'natural' materials";
 	dir = 8;
-	name = "glorious chair"
+	color = "#ff7f7f";
+	name = "glorious chair";
+	desc = "A magnificient seat. Its ruby red comes from a special leather made out of 'natural' materials"
 	},
 /obj/effect/turf_decal/siding/red{
 	color = "#440000";
 	dir = 8
 	},
 /obj/structure/window/reinforced/spawner{
-	color = "#000000";
 	dir = 4;
+	color = "#000000";
 	opacity = 1
 	},
 /turf/open/floor/mineral/plastitanium,
@@ -837,10 +851,10 @@
 /area/centcom)
 "di" = (
 /obj/structure/chair/comfy/shuttle{
-	color = "#ff7f7f";
-	desc = "A magnificient seat. Its ruby red comes from a special leather made out of 'natural' materials";
 	dir = 8;
-	name = "glorious chair"
+	color = "#ff7f7f";
+	name = "glorious chair";
+	desc = "A magnificient seat. Its ruby red comes from a special leather made out of 'natural' materials"
 	},
 /obj/machinery/light{
 	dir = 4;
@@ -862,8 +876,8 @@
 /obj/item/restraints/legcuffs/bola/tactical,
 /obj/item/flashlight/seclite,
 /obj/structure/closet{
-	anchored = 1;
-	name = "high-security officer equipment"
+	name = "high-security officer equipment";
+	anchored = 1
 	},
 /turf/open/floor/mineral/titanium/white{
 	color = "#791500"
@@ -895,6 +909,18 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/centcom)
+"dx" = (
+/obj/machinery/light{
+	dir = 4;
+	pixel_x = 9;
+	pixel_y = 4
+	},
+/obj/effect/turf_decal/stripes/white/corner{
+	dir = 4;
+	color = "#5269e9"
+	},
+/turf/open/floor/mineral/plastitanium,
+/area/centcom)
 "dA" = (
 /obj/machinery/door/airlock/highsecurity{
 	name = "damage mitigation armory";
@@ -915,9 +941,9 @@
 /obj/item/restraints/legcuffs/bola/tactical,
 /obj/item/flashlight/seclite,
 /obj/structure/closet{
-	anchored = 1;
 	name = "high-security officer equipment";
-	pixel_y = 8
+	pixel_y = 8;
+	anchored = 1
 	},
 /obj/machinery/light{
 	dir = 1;
@@ -931,22 +957,32 @@
 	},
 /turf/open/floor/facility/halls,
 /area/centcom)
+"dF" = (
+/obj/item/assembly/control{
+	id = "centralh2"
+	},
+/obj/item/assembly/signaler,
+/obj/item/assembly_holder{
+	preassembled = 1
+	},
+/turf/open/floor/circuit/telecomms/mainframe,
+/area/facility_hallway/north)
 "dL" = (
 /obj/structure/chair/office/light{
 	anchored = 1;
 	can_buckle = 0;
 	dir = 8;
-	pixel_x = -8;
-	pixel_y = 4
+	pixel_y = 4;
+	pixel_x = -8
 	},
 /obj/machinery/light,
 /turf/open/floor/mineral/titanium/tiled/white,
 /area/centcom)
 "dM" = (
 /obj/structure/chair/comfy/shuttle{
+	name = "fancy chair";
 	desc = "A comfortable seat. Since its custom made, its quite expensive";
-	dir = 4;
-	name = "fancy chair"
+	dir = 4
 	},
 /turf/open/floor/mineral/titanium/tiled,
 /area/centcom)
@@ -1052,18 +1088,18 @@
 /obj/structure/table/wood{
 	alpha = 0;
 	density = 0;
-	mouse_opacity = 0;
-	resistance_flags = 115
+	resistance_flags = 115;
+	mouse_opacity = 0
 	},
 /obj/item/kirbyplants{
-	anchored = 1;
 	icon_state = "plant-12";
+	pixel_y = 20;
 	pixel_x = -8;
-	pixel_y = 20
+	anchored = 1
 	},
 /obj/structure/railing{
-	color = "#9cadc7";
-	dir = 4
+	dir = 4;
+	color = "#9cadc7"
 	},
 /obj/effect/turf_decal/siding/white/corner,
 /obj/effect/turf_decal/siding/wideplating/dark/corner{
@@ -1117,8 +1153,8 @@
 /area/centcom)
 "eI" = (
 /obj/item/blackbox{
-	anchored = 1;
-	pixel_y = 6
+	pixel_y = 6;
+	anchored = 1
 	},
 /obj/structure/table/reinforced{
 	color = "#9cadc7"
@@ -1155,8 +1191,8 @@
 "eS" = (
 /obj/structure/table/glass,
 /obj/structure/window/reinforced/spawner{
-	color = "#000000";
 	dir = 1;
+	color = "#000000";
 	opacity = 1
 	},
 /obj/item/storage/backpack/duffelbag/med/surgery,
@@ -1187,8 +1223,8 @@
 /area/centcom)
 "fc" = (
 /obj/structure/window/reinforced/spawner{
-	color = "#000000";
 	dir = 8;
+	color = "#000000";
 	opacity = 1
 	},
 /obj/effect/spawner/randomarcade{
@@ -1220,6 +1256,18 @@
 	},
 /turf/open/floor/carpet/black,
 /area/centcom)
+"fi" = (
+/obj/machinery/light{
+	dir = 8;
+	pixel_x = -9;
+	pixel_y = 4
+	},
+/obj/effect/turf_decal/stripes/white/corner{
+	color = "#5269e9";
+	dir = 1
+	},
+/turf/open/floor/mineral/plastitanium,
+/area/centcom)
 "fq" = (
 /obj/machinery/camera/autoname,
 /turf/open/floor/mineral/titanium/tiled,
@@ -1229,8 +1277,8 @@
 	color = "#5269e9"
 	},
 /obj/structure/window/reinforced/spawner{
-	color = "#000000";
 	dir = 8;
+	color = "#000000";
 	opacity = 1
 	},
 /obj/structure/window/reinforced/spawner{
@@ -1257,18 +1305,12 @@
 /turf/open/floor/mineral/plastitanium/red,
 /area/centcom)
 "fx" = (
-/obj/structure/window/reinforced/spawner{
-	dir = 4;
-	resistance_flags = 115
-	},
 /obj/effect/turf_decal/stripes/white/line{
 	color = "#5269e9";
 	dir = 1
 	},
 /obj/structure/window/reinforced/spawner{
-	color = "#000000";
-	dir = 8;
-	opacity = 1
+	dir = 4
 	},
 /turf/open/floor/mineral/titanium/tiled/blue,
 /area/centcom)
@@ -1278,13 +1320,10 @@
 /turf/open/floor/bluespace,
 /area/centcom)
 "fB" = (
-/obj/structure/window/reinforced/fulltile{
-	armor = list("melee" = 30, "bullet" = 30, "laser" = 20, "energy" = 20, "bomb" = 10, "bio" = 100, "rad" = 100, "fire" = 80, "acid" = 70);
-	max_integrity = 500
-	},
 /obj/machinery/door/poddoor/preopen{
 	id = "rd"
 	},
+/obj/effect/spawner/structure/window/reinforced,
 /turf/open/floor/facility/dark,
 /area/centcom)
 "fG" = (
@@ -1303,9 +1342,9 @@
 /obj/item/restraints/legcuffs/bola/tactical,
 /obj/item/flashlight/seclite,
 /obj/structure/closet{
-	anchored = 1;
 	name = "high-security officer equipment";
-	pixel_y = 8
+	pixel_y = 8;
+	anchored = 1
 	},
 /obj/machinery/light{
 	dir = 1;
@@ -1384,7 +1423,7 @@
 	dir = 4;
 	id = "garbage"
 	},
-/turf/open/floor/mineral/titanium/tiled,
+/turf/open/floor/plasteel,
 /area/centcom)
 "gl" = (
 /obj/machinery/cryopod{
@@ -1430,12 +1469,12 @@
 "gu" = (
 /obj/structure/chair/comfy/shuttle{
 	color = "#D381C9";
-	desc = "A comfortable seat. Since its custom made, its quite expensive";
-	name = "fancy chair"
+	name = "fancy chair";
+	desc = "A comfortable seat. Since its custom made, its quite expensive"
 	},
 /obj/structure/window/reinforced/spawner{
-	color = "#000000";
 	dir = 1;
+	color = "#000000";
 	opacity = 1
 	},
 /turf/open/floor/carpet/purple,
@@ -1493,10 +1532,10 @@
 /area/centcom)
 "gK" = (
 /obj/structure/chair/comfy/shuttle{
-	color = "#9cadc7";
-	desc = "A comfortable seat. Since its custom made, its quite expensive";
 	dir = 4;
-	name = "fancy chair"
+	color = "#9cadc7";
+	name = "fancy chair";
+	desc = "A comfortable seat. Since its custom made, its quite expensive"
 	},
 /turf/open/floor/mineral/titanium/tiled,
 /area/centcom)
@@ -1513,8 +1552,8 @@
 "gN" = (
 /obj/machinery/computer/med_data{
 	dir = 1;
-	pixel_x = -3;
-	pixel_y = 2
+	pixel_y = 2;
+	pixel_x = -3
 	},
 /obj/structure/window/reinforced/spawner{
 	dir = 4
@@ -1524,8 +1563,8 @@
 /area/centcom)
 "gP" = (
 /obj/effect/turf_decal/siding/red/corner{
-	color = "#440000";
-	dir = 4
+	dir = 4;
+	color = "#440000"
 	},
 /obj/machinery/light{
 	dir = 8;
@@ -1541,14 +1580,26 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/centcom)
+"gR" = (
+/obj/effect/turf_decal/stripes/white/line{
+	color = "#5269e9";
+	dir = 8
+	},
+/obj/effect/turf_decal/arrows/white{
+	color = "#5269e9";
+	dir = 4
+	},
+/obj/machinery/light{
+	dir = 1;
+	pixel_y = 19
+	},
+/turf/open/floor/mineral/plastitanium,
+/area/centcom)
 "gS" = (
 /obj/machinery/door/poddoor/preopen{
 	id = "rd2"
 	},
-/obj/structure/window/reinforced/fulltile{
-	armor = list("melee" = 30, "bullet" = 30, "laser" = 20, "energy" = 20, "bomb" = 10, "bio" = 100, "rad" = 100, "fire" = 80, "acid" = 70);
-	max_integrity = 500
-	},
+/obj/effect/spawner/structure/window/reinforced,
 /turf/open/floor/facility/dark,
 /area/centcom)
 "gX" = (
@@ -1601,7 +1652,7 @@
 	dir = 8;
 	id = "garbage"
 	},
-/turf/open/floor/mineral/titanium/tiled,
+/turf/open/floor/plasteel,
 /area/centcom)
 "hg" = (
 /obj/effect/turf_decal/stripes/white/line{
@@ -1657,16 +1708,16 @@
 /area/centcom)
 "ht" = (
 /obj/structure/railing/corner{
-	color = "#9cadc7";
-	dir = 8
+	dir = 8;
+	color = "#9cadc7"
 	},
 /obj/effect/turf_decal/stripes/white/line{
 	color = "#bf48b1";
 	dir = 4
 	},
 /obj/effect/turf_decal/caution/white{
-	color = "#bf48b1";
-	dir = 8
+	dir = 8;
+	color = "#bf48b1"
 	},
 /turf/open/floor/mineral/plastitanium,
 /area/centcom)
@@ -1727,8 +1778,8 @@
 	dir = 8
 	},
 /obj/structure/window/reinforced/spawner{
-	color = "#000000";
 	dir = 4;
+	color = "#000000";
 	opacity = 1
 	},
 /turf/open/floor/mineral/plastitanium,
@@ -1741,9 +1792,9 @@
 /area/centcom)
 "hL" = (
 /obj/structure/chair/comfy/shuttle{
+	name = "fancy chair";
 	desc = "A comfortable seat. Since its custom made, its quite expensive";
-	dir = 1;
-	name = "fancy chair"
+	dir = 1
 	},
 /turf/open/floor/mineral/titanium/tiled,
 /area/centcom)
@@ -1798,6 +1849,10 @@
 	},
 /turf/open/floor/mineral/plastitanium,
 /area/centcom)
+"hZ" = (
+/obj/machinery/holopad,
+/turf/open/floor/facility/dark,
+/area/centcom)
 "ic" = (
 /obj/effect/turf_decal/trimline/purple/filled/line,
 /obj/machinery/light{
@@ -1821,8 +1876,8 @@
 	dir = 1
 	},
 /obj/machinery/vending/dinnerware{
-	density = 0;
-	pixel_y = 19
+	pixel_y = 19;
+	density = 0
 	},
 /turf/open/floor/plasteel/white,
 /area/centcom)
@@ -1840,8 +1895,8 @@
 	color = "#5269e9"
 	},
 /obj/effect/turf_decal/caution/stand_clear/white{
-	color = "#5269e9";
-	dir = 1
+	dir = 1;
+	color = "#5269e9"
 	},
 /turf/open/floor/mineral/titanium/blue,
 /area/centcom)
@@ -1877,7 +1932,7 @@
 /obj/structure/table/reinforced{
 	color = "#9cadc7"
 	},
-/obj/machinery/button{
+/obj/machinery/button/door/indestructible{
 	id = "LSZ Containment Door #4"
 	},
 /turf/open/floor/mineral/titanium/blue,
@@ -1895,27 +1950,11 @@
 /obj/item/restraints/legcuffs/bola/tactical,
 /obj/item/flashlight/seclite,
 /obj/structure/closet{
-	anchored = 1;
 	name = "high-security officer equipment";
-	pixel_y = 8
+	pixel_y = 8;
+	anchored = 1
 	},
 /turf/open/floor/mineral/plastitanium/red,
-/area/centcom)
-"iC" = (
-/obj/structure/filingcabinet,
-/obj/structure/filingcabinet{
-	pixel_x = 10;
-	resistance_flags = 115
-	},
-/obj/structure/filingcabinet{
-	pixel_x = -10;
-	resistance_flags = 115
-	},
-/obj/structure/sign/logo{
-	icon_state = "limbus_sign 1,0";
-	pixel_y = 32
-	},
-/turf/open/floor/carpet/black,
 /area/centcom)
 "iE" = (
 /obj/machinery/cryopod{
@@ -1950,8 +1989,8 @@
 /area/centcom)
 "iL" = (
 /obj/structure/railing/corner{
-	color = "#9cadc7";
-	dir = 1
+	dir = 1;
+	color = "#9cadc7"
 	},
 /obj/effect/turf_decal/siding/white/corner{
 	dir = 1
@@ -1967,14 +2006,14 @@
 /area/centcom)
 "iO" = (
 /obj/structure/chair/comfy/shuttle{
-	color = "#9cadc7";
-	desc = "A comfortable seat. Since its custom made, its quite expensive";
 	dir = 8;
-	name = "fancy chair"
+	color = "#9cadc7";
+	name = "fancy chair";
+	desc = "A comfortable seat. Since its custom made, its quite expensive"
 	},
 /obj/structure/window/reinforced/spawner{
-	color = "#000000";
 	dir = 4;
+	color = "#000000";
 	opacity = 1
 	},
 /turf/open/floor/mineral/plastitanium,
@@ -1998,14 +2037,10 @@
 	resistance_flags = 115
 	},
 /obj/structure/window/reinforced/spawner{
-	color = "#000000";
-	dir = 8;
-	opacity = 1
+	dir = 8
 	},
 /obj/structure/window/reinforced/spawner{
-	color = "#000000";
-	dir = 1;
-	opacity = 1
+	dir = 1
 	},
 /turf/open/floor/mineral/titanium/tiled/purple,
 /area/centcom)
@@ -2044,13 +2079,13 @@
 /obj/structure/table/wood{
 	alpha = 0;
 	density = 0;
-	mouse_opacity = 0;
-	resistance_flags = 115
+	resistance_flags = 115;
+	mouse_opacity = 0
 	},
 /obj/structure/railing{
 	alpha = 0;
-	dir = 4;
-	name = "hidden"
+	name = "hidden";
+	dir = 4
 	},
 /obj/effect/turf_decal/tile/blue{
 	color = "#5269e9"
@@ -2106,8 +2141,8 @@
 "jy" = (
 /obj/structure/table/wood/fancy/black{
 	alpha = 0;
-	density = 0;
-	mouse_opacity = 0
+	mouse_opacity = 0;
+	density = 0
 	},
 /turf/open/floor/carpet/black,
 /area/centcom)
@@ -2160,11 +2195,11 @@
 /obj/structure/table/reinforced{
 	color = "#9cadc7"
 	},
-/obj/machinery/button{
-	id = "LSZ Containment Door #5"
-	},
 /obj/effect/turf_decal/siding/blue{
 	dir = 1
+	},
+/obj/machinery/button/door/indestructible{
+	id = "LSZ Containment Door #5"
 	},
 /turf/open/floor/mineral/titanium/blue,
 /area/centcom)
@@ -2209,7 +2244,7 @@
 	pixel_y = 12
 	},
 /obj/structure/sign/logo{
-	icon_state = "limbus_sign 1,0";
+	icon_state = "limbus_sign 3,0";
 	pixel_y = 32
 	},
 /turf/open/floor/plasteel/dark,
@@ -2226,7 +2261,8 @@
 /area/centcom)
 "kd" = (
 /obj/machinery/door/airlock/security/glass{
-	name = "high-security meeting room"
+	name = "high-security meeting room";
+	req_access_txt = "3"
 	},
 /turf/open/floor/facility/halls,
 /area/centcom)
@@ -2253,7 +2289,9 @@
 "ki" = (
 /obj/machinery/door/airlock/highsecurity{
 	name = "high-security armory";
-	req_access_txt = "3"
+	req_access_txt = "3";
+	integrity_failure = 0.01;
+	max_integrity = 3000
 	},
 /turf/open/floor/facility/halls,
 /area/centcom)
@@ -2425,10 +2463,10 @@
 /area/centcom)
 "kO" = (
 /obj/machinery/door/window/brigdoor{
+	req_access_txt = "19;1";
 	dir = 8;
-	name = "high-security commander office";
 	opacity = 1;
-	req_access_txt = "19;1"
+	name = "high-security commander office"
 	},
 /obj/machinery/light{
 	dir = 1;
@@ -2608,38 +2646,54 @@
 /area/centcom)
 "kY" = (
 /obj/effect/decal/cleanable/crayon{
-	color = "#5269e9";
 	icon_state = "y";
-	pixel_x = 11
+	pixel_x = 11;
+	color = "#5269e9"
 	},
 /obj/effect/decal/cleanable/crayon{
-	color = "#5269e9";
 	icon_state = "a";
-	pixel_x = 3
+	pixel_x = 3;
+	color = "#5269e9"
 	},
 /obj/effect/decal/cleanable/crayon{
-	color = "#5269e9";
 	icon_state = "b";
-	pixel_x = -6
+	pixel_x = -6;
+	color = "#5269e9"
 	},
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
 /turf/open/floor/plasteel/white,
 /area/centcom)
-"lc" = (
-/obj/structure/window/reinforced/spawner{
-	dir = 8;
-	resistance_flags = 115
+"kZ" = (
+/obj/machinery/light{
+	dir = 1;
+	pixel_y = 19
 	},
+/turf/open/floor/plasteel,
+/area/centcom)
+"lb" = (
+/obj/structure/table/wood{
+	alpha = 0;
+	density = 0;
+	resistance_flags = 115;
+	mouse_opacity = 0
+	},
+/obj/item/kirbyplants{
+	icon_state = "plant-12";
+	pixel_x = -10;
+	anchored = 1;
+	pixel_y = 20
+	},
+/turf/open/floor/mineral/titanium/tiled,
+/area/centcom)
+"lc" = (
 /obj/effect/turf_decal/stripes/white/line{
 	color = "#5269e9";
 	dir = 1
 	},
 /obj/structure/window/reinforced/spawner{
-	color = "#000000";
-	dir = 4;
-	opacity = 1
+	dir = 8
 	},
 /turf/open/floor/mineral/titanium/tiled/blue,
 /area/centcom)
@@ -2655,15 +2709,15 @@
 	anchored = 1;
 	can_buckle = 0;
 	dir = 8;
-	pixel_x = -6;
-	pixel_y = 4
+	pixel_y = 4;
+	pixel_x = -6
 	},
 /turf/open/floor/mineral/plastitanium,
 /area/centcom)
 "lg" = (
 /obj/structure/railing/corner{
-	color = "#9cadc7";
-	dir = 4
+	dir = 4;
+	color = "#9cadc7"
 	},
 /obj/effect/turf_decal/siding/white/corner{
 	dir = 4
@@ -2675,11 +2729,6 @@
 /obj/structure/chair/sofa/corp/left{
 	dir = 8
 	},
-/obj/structure/window/reinforced/spawner{
-	color = "#000000";
-	dir = 4;
-	opacity = 1
-	},
 /turf/open/floor/mineral/titanium/tiled/purple,
 /area/centcom)
 "li" = (
@@ -2690,8 +2739,8 @@
 /area/centcom)
 "lk" = (
 /obj/structure/chair/comfy{
-	color = "#D381C9";
-	dir = 1
+	dir = 1;
+	color = "#D381C9"
 	},
 /turf/open/floor/carpet/purple,
 /area/centcom)
@@ -2721,8 +2770,8 @@
 /area/centcom)
 "lp" = (
 /obj/structure/window/reinforced/spawner{
-	color = "#000000";
 	dir = 1;
+	color = "#000000";
 	opacity = 1
 	},
 /turf/open/floor/carpet/stellar,
@@ -2733,8 +2782,8 @@
 	dir = 8
 	},
 /obj/effect/turf_decal/caution/white{
-	color = "#5269e9";
-	dir = 4
+	dir = 4;
+	color = "#5269e9"
 	},
 /turf/open/floor/mineral/titanium/tiled,
 /area/centcom)
@@ -2782,6 +2831,17 @@
 	},
 /obj/structure/chair/comfy/brown{
 	dir = 4
+	},
+/turf/open/floor/mineral/plastitanium,
+/area/centcom)
+"lw" = (
+/obj/machinery/light{
+	dir = 4;
+	pixel_x = 9;
+	pixel_y = 4
+	},
+/obj/effect/turf_decal/stripes/white/corner{
+	color = "#5269e9"
 	},
 /turf/open/floor/mineral/plastitanium,
 /area/centcom)
@@ -2835,24 +2895,8 @@
 /turf/open/floor/mineral/titanium/tiled,
 /area/centcom)
 "lL" = (
-/obj/structure/table/reinforced{
-	color = "#9cadc7"
-	},
-/obj/item/papercutter{
-	pixel_x = 3;
-	pixel_y = 3
-	},
-/obj/structure/window/reinforced/spawner{
-	color = "#000000";
-	dir = 4;
-	opacity = 1
-	},
-/obj/structure/window/reinforced/spawner{
-	color = "#000000";
-	dir = 8;
-	opacity = 1
-	},
-/turf/open/floor/mineral/titanium/tiled/purple,
+/obj/effect/spawner/structure/window/reinforced,
+/turf/open/floor/facility/dark,
 /area/centcom)
 "lN" = (
 /obj/machinery/telecomms/relay/preset/telecomms,
@@ -2862,8 +2906,8 @@
 /area/facility_hallway/north)
 "lT" = (
 /obj/machinery/door/poddoor{
-	id = "LSZ Containment Door #5";
-	name = "LSZ Containment Door #5"
+	name = "LSZ Containment Door #5";
+	id = "LSZ Containment Door #5"
 	},
 /turf/open/floor/facility/halls,
 /area/centcom)
@@ -2883,7 +2927,7 @@
 /obj/effect/turf_decal/stripes/white/box{
 	color = "#5269e9"
 	},
-/turf/open/floor/mineral/titanium/tiled,
+/turf/open/floor/mineral/titanium/tiled/blue,
 /area/centcom)
 "mb" = (
 /obj/structure/filingcabinet/chestdrawer{
@@ -2913,7 +2957,9 @@
 /turf/open/floor/mineral/titanium/blue,
 /area/centcom)
 "mg" = (
-/obj/structure/riser/dark,
+/obj/structure/riser/dark{
+	pixel_y = 13
+	},
 /turf/open/floor/mineral/plastitanium,
 /area/centcom)
 "mh" = (
@@ -2943,8 +2989,8 @@
 /obj/item/reagent_containers/spray/cleaner,
 /obj/item/reagent_containers/spray/cleaner,
 /obj/structure/window/reinforced/spawner{
-	color = "#000000";
 	dir = 1;
+	color = "#000000";
 	opacity = 1
 	},
 /obj/effect/turf_decal/tile/blue,
@@ -2952,8 +2998,8 @@
 	dir = 8
 	},
 /obj/structure/window/reinforced/spawner{
-	color = "#000000";
 	dir = 8;
+	color = "#000000";
 	opacity = 1
 	},
 /turf/open/floor/facility/white,
@@ -2965,21 +3011,17 @@
 /turf/open/floor/mineral/plastitanium,
 /area/centcom)
 "mt" = (
-/obj/structure/window/reinforced/spawner{
-	color = "#000000";
-	dir = 4;
-	opacity = 1
-	},
-/obj/structure/window/reinforced/spawner{
-	color = "#000000";
-	dir = 1;
-	opacity = 1
-	},
 /obj/structure/showcase/machinery{
 	desc = "A server for the information department. Stores information.";
 	icon_state = "blackbox";
 	name = "Information Server";
 	resistance_flags = 115
+	},
+/obj/structure/window/reinforced/spawner{
+	dir = 4
+	},
+/obj/structure/window/reinforced/spawner{
+	dir = 1
 	},
 /turf/open/floor/mineral/titanium/tiled/purple,
 /area/centcom)
@@ -3044,8 +3086,8 @@
 /area/centcom)
 "mI" = (
 /obj/machinery/door/airlock/command/glass{
-	name = "command center";
-	req_access_txt = "19"
+	req_access_txt = "19";
+	name = "command center"
 	},
 /turf/open/floor/facility/halls,
 /area/centcom)
@@ -3150,8 +3192,8 @@
 /area/centcom)
 "nf" = (
 /obj/structure/railing{
-	color = "#9cadc7";
-	dir = 4
+	dir = 4;
+	color = "#9cadc7"
 	},
 /turf/open/floor/mineral/titanium/tiled/white,
 /area/centcom)
@@ -3201,12 +3243,12 @@
 	color = "#9cadc7"
 	},
 /obj/item/toy/plush/hod{
-	pixel_x = -9;
-	pixel_y = 7
+	pixel_y = 7;
+	pixel_x = -9
 	},
 /obj/structure/window/reinforced/spawner{
-	color = "#000000";
 	dir = 1;
+	color = "#000000";
 	opacity = 1
 	},
 /turf/open/floor/carpet/executive,
@@ -3214,8 +3256,8 @@
 "nt" = (
 /obj/effect/landmark/latejoin,
 /obj/machinery/light/floor{
-	pixel_x = -18;
-	pixel_y = -18
+	pixel_y = -18;
+	pixel_x = -18
 	},
 /turf/open/indestructible/crystal_floor,
 /area/centcom)
@@ -3252,8 +3294,8 @@
 	pixel_y = -7
 	},
 /obj/item/stamp/hos{
-	pixel_x = 8;
-	pixel_y = 14
+	pixel_y = 14;
+	pixel_x = 8
 	},
 /turf/open/floor/carpet,
 /area/centcom)
@@ -3291,8 +3333,8 @@
 	color = "#9cadc7"
 	},
 /obj/structure/window/reinforced/spawner{
-	color = "#000000";
 	dir = 1;
+	color = "#000000";
 	opacity = 1
 	},
 /obj/machinery/light{
@@ -3311,10 +3353,10 @@
 /area/centcom)
 "nQ" = (
 /obj/structure/chair/comfy/shuttle{
-	color = "#ff7f7f";
+	name = "fancy chair";
 	desc = "A comfortable seat. Since its custom made, its quite expensive";
 	dir = 8;
-	name = "fancy chair"
+	color = "#ff7f7f"
 	},
 /turf/open/floor/mineral/titanium/tiled,
 /area/centcom)
@@ -3346,9 +3388,9 @@
 	dir = 8
 	},
 /obj/structure/closet{
-	anchored = 1;
 	name = "high-security officer equipment";
-	pixel_y = 8
+	pixel_y = 8;
+	anchored = 1
 	},
 /obj/machinery/light{
 	dir = 1;
@@ -3358,10 +3400,10 @@
 /area/centcom)
 "nV" = (
 /obj/structure/chair/comfy/shuttle{
-	color = "#9cadc7";
-	desc = "A comfortable seat. Since its custom made, its quite expensive";
 	dir = 4;
-	name = "fancy chair"
+	color = "#9cadc7";
+	name = "fancy chair";
+	desc = "A comfortable seat. Since its custom made, its quite expensive"
 	},
 /obj/effect/turf_decal/siding/yellow{
 	dir = 4
@@ -3409,11 +3451,11 @@
 /area/centcom)
 "oi" = (
 /obj/structure/closet{
-	anchored = 1;
+	pixel_y = 16;
 	icon_state = "cmo";
 	name = "cmo closet";
-	pixel_y = 16;
-	req_access_txt = "5;19"
+	req_access_txt = "5;19";
+	anchored = 1
 	},
 /obj/item/stack/spacecash/c1000,
 /obj/item/stack/spacecash/c1000,
@@ -3435,7 +3477,7 @@
 	pixel_x = -9;
 	pixel_y = 4
 	},
-/obj/item/gun/ego_gun/city/limbuspistol,
+/obj/item/gun/ego_gun/city/limbusautopistol,
 /turf/open/floor/carpet/royalblue,
 /area/centcom)
 "oj" = (
@@ -3454,8 +3496,8 @@
 "om" = (
 /obj/structure/railing{
 	alpha = 0;
-	dir = 8;
-	name = "hidden"
+	name = "hidden";
+	dir = 8
 	},
 /obj/machinery/computer/libraryconsole{
 	pixel_y = 5
@@ -3471,21 +3513,21 @@
 /area/centcom)
 "on" = (
 /obj/structure/filingcabinet{
-	density = 0;
 	pixel_x = -10;
+	resistance_flags = 115;
 	pixel_y = 15;
-	resistance_flags = 115
+	density = 0
 	},
 /obj/structure/filingcabinet{
-	density = 0;
+	resistance_flags = 115;
 	pixel_y = 15;
-	resistance_flags = 115
+	density = 0
 	},
 /obj/structure/filingcabinet{
-	density = 0;
 	pixel_x = 10;
+	resistance_flags = 115;
 	pixel_y = 15;
-	resistance_flags = 115
+	density = 0
 	},
 /obj/machinery/light{
 	dir = 4;
@@ -3503,9 +3545,9 @@
 /area/centcom)
 "oq" = (
 /obj/machinery/vending/snack/blue{
+	pixel_y = 19;
 	density = 0;
-	pixel_x = -8;
-	pixel_y = 19
+	pixel_x = -8
 	},
 /obj/effect/turf_decal/siding/blue{
 	dir = 4
@@ -3546,8 +3588,8 @@
 /area/centcom)
 "ov" = (
 /obj/structure/chair/comfy/black{
-	color = "#9cadc7";
-	dir = 4
+	dir = 4;
+	color = "#9cadc7"
 	},
 /turf/open/floor/carpet/stellar,
 /area/centcom)
@@ -3555,8 +3597,8 @@
 /obj/structure/table/wood/fancy/black,
 /obj/structure/railing{
 	alpha = 0;
-	dir = 4;
-	name = "hidden"
+	name = "hidden";
+	dir = 4
 	},
 /obj/item/paper_bin{
 	pixel_y = 6
@@ -3565,8 +3607,8 @@
 	pixel_y = 6
 	},
 /obj/item/stamp{
-	pixel_x = -13;
-	pixel_y = 10
+	pixel_y = 10;
+	pixel_x = -13
 	},
 /obj/item/stamp/denied{
 	pixel_x = -13;
@@ -3600,18 +3642,18 @@
 /obj/structure/table/reinforced{
 	color = "#ff7f7f"
 	},
-/obj/machinery/button{
-	id = "mosb_containment";
-	name = "cell door 1 button"
-	},
-/obj/machinery/button{
-	id = "mosb_containment2";
-	name = "emergency lockdown button";
-	pixel_y = 9
-	},
 /obj/effect/turf_decal/siding/red{
 	color = "#440000";
 	dir = 1
+	},
+/obj/machinery/button/door/indestructible{
+	id = "mosb_containment";
+	name = "cell 1 door button"
+	},
+/obj/machinery/button/door/indestructible{
+	id = "emergency_lockdown1";
+	name = "emergency lockdown button";
+	pixel_y = 9
 	},
 /turf/open/floor/mineral/titanium/white{
 	color = "#791500"
@@ -3680,8 +3722,8 @@
 "pc" = (
 /obj/effect/turf_decal/siding/blue/corner,
 /obj/effect/turf_decal/stripes/white/corner{
-	color = "#5269e9";
-	dir = 4
+	dir = 4;
+	color = "#5269e9"
 	},
 /obj/effect/turf_decal/stripes/white/corner{
 	color = "#5269e9"
@@ -3697,8 +3739,8 @@
 /area/centcom)
 "pg" = (
 /obj/structure/railing/corner{
-	color = "#9cadc7";
-	dir = 4
+	dir = 4;
+	color = "#9cadc7"
 	},
 /obj/machinery/light{
 	dir = 4;
@@ -3709,8 +3751,8 @@
 /area/centcom)
 "ph" = (
 /obj/structure/window/reinforced/spawner{
-	color = "#000000";
 	dir = 8;
+	color = "#000000";
 	opacity = 1
 	},
 /obj/structure/closet/crate/bin{
@@ -3754,13 +3796,13 @@
 /turf/open/floor/mineral/titanium/tiled,
 /area/centcom)
 "pr" = (
+/obj/structure/closet/crate/freezer/surplus_limbs,
 /obj/effect/turf_decal/stripes/red/box,
 /obj/machinery/light{
 	dir = 8;
 	pixel_x = -9;
 	pixel_y = 4
 	},
-/obj/machinery/vending/prosthetic,
 /turf/open/floor/mineral/titanium/blue,
 /area/centcom)
 "pt" = (
@@ -3780,12 +3822,11 @@
 "pu" = (
 /obj/machinery/door/poddoor/preopen{
 	armor = list("melee" = 20, "bullet" = 100, "laser" = 100, "energy" = 100, "bomb" = 50, "bio" = 100, "rad" = 100, "fire" = 100, "acid" = 70);
-	id = "mosb_containment3";
-	max_integrity = 1800
+	max_integrity = 1800;
+	id = "mosb_containment3"
 	},
-/obj/structure/window/reinforced/fulltile{
-	armor = list("melee" = 30, "bullet" = 30, "laser" = 20, "energy" = 20, "bomb" = 10, "bio" = 100, "rad" = 100, "fire" = 80, "acid" = 70);
-	max_integrity = 500
+/obj/effect/spawner/structure/window/reinforced{
+	max_integrity = 3000
 	},
 /turf/open/floor/facility/dark,
 /area/centcom)
@@ -3847,12 +3888,12 @@
 	color = "#5269e9";
 	dir = 1
 	},
-/obj/machinery/button{
-	id = "kitchen";
-	pixel_x = -23;
-	pixel_y = 7
-	},
 /obj/machinery/light,
+/obj/machinery/button/door/indestructible{
+	pixel_y = 8;
+	pixel_x = -21;
+	id = "kitchen"
+	},
 /turf/open/floor/plasteel/white,
 /area/centcom)
 "pO" = (
@@ -3874,7 +3915,9 @@
 "pS" = (
 /obj/machinery/door/airlock/highsecurity{
 	name = "high-security checkpoint";
-	req_access_txt = "3"
+	req_access_txt = "3";
+	max_integrity = 3000;
+	integrity_failure = 0.01
 	},
 /turf/open/floor/facility/halls,
 /area/centcom)
@@ -3884,15 +3927,15 @@
 	},
 /obj/structure/railing{
 	alpha = 0;
-	dir = 1;
-	name = "hidden"
+	name = "hidden";
+	dir = 1
 	},
 /obj/item/wallframe/painting{
 	pixel_x = -32
 	},
 /obj/item/paper_bin{
-	pixel_x = -4;
-	pixel_y = -10
+	pixel_y = -10;
+	pixel_x = -4
 	},
 /obj/effect/turf_decal/siding/yellow{
 	dir = 4
@@ -3906,14 +3949,14 @@
 /area/centcom)
 "pX" = (
 /obj/machinery/door/window/brigdoor{
-	dir = 8;
 	name = "research director office";
 	opacity = 1;
-	req_access_txt = "7;19"
+	req_access_txt = "7;19";
+	dir = 8
 	},
 /obj/structure/window/reinforced/spawner{
-	color = "#000000";
 	dir = 1;
+	color = "#000000";
 	opacity = 1
 	},
 /turf/open/floor/carpet/purple,
@@ -3931,8 +3974,8 @@
 /obj/structure/lattice/catwalk,
 /obj/machinery/light/small{
 	dir = 4;
-	pixel_x = 8;
-	pixel_y = 9
+	pixel_y = 9;
+	pixel_x = 8
 	},
 /turf/open/floor/plating,
 /area/centcom)
@@ -3942,6 +3985,16 @@
 	dir = 1
 	},
 /turf/open/floor/mineral/plastitanium,
+/area/centcom)
+"qe" = (
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/obj/effect/turf_decal/arrows/white{
+	color = "#5269e9";
+	dir = 4
+	},
+/turf/open/floor/mineral/titanium/tiled,
 /area/centcom)
 "qh" = (
 /obj/effect/turf_decal/stripes/white/line{
@@ -3957,8 +4010,8 @@
 "qj" = (
 /obj/structure/table/optable,
 /obj/structure/window/reinforced/spawner{
-	color = "#000000";
 	dir = 1;
+	color = "#000000";
 	opacity = 1
 	},
 /obj/effect/turf_decal/tile/blue{
@@ -3978,10 +4031,12 @@
 	},
 /area/centcom)
 "qp" = (
-/obj/machinery/chem_dispenser{
-	pixel_y = 12
-	},
 /obj/effect/turf_decal/trimline/red/filled/warning,
+/obj/machinery/chem_dispenser/fullupgrade{
+	pixel_y = 14;
+	emagged_reagents = list();
+	dispensable_reagents = list(/datum/reagent/aluminium,/datum/reagent/bromine,/datum/reagent/carbon,/datum/reagent/chlorine,/datum/reagent/copper,/datum/reagent/consumable/ethanol,/datum/reagent/fluorine,/datum/reagent/hydrogen,/datum/reagent/iodine,/datum/reagent/iron,/datum/reagent/lithium,/datum/reagent/mercury,/datum/reagent/nitrogen,/datum/reagent/oxygen,/datum/reagent/phosphorus,/datum/reagent/potassium,/datum/reagent/uranium/radium,/datum/reagent/silicon,/datum/reagent/sodium,/datum/reagent/silver,/datum/reagent/stable_plasma,/datum/reagent/consumable/sugar,/datum/reagent/sulfur,/datum/reagent/toxin/acid,/datum/reagent/water,/datum/reagent/fuel)
+	},
 /turf/open/floor/noslip,
 /area/centcom)
 "qu" = (
@@ -4038,16 +4093,16 @@
 /area/centcom)
 "qF" = (
 /obj/structure/railing{
-	color = "#9cadc7";
-	dir = 8
+	dir = 8;
+	color = "#9cadc7"
 	},
 /obj/effect/turf_decal/stripes/white/line{
 	color = "#bf48b1";
 	dir = 4
 	},
 /obj/effect/turf_decal/caution/white{
-	color = "#bf48b1";
-	dir = 8
+	dir = 8;
+	color = "#bf48b1"
 	},
 /turf/open/floor/mineral/plastitanium,
 /area/centcom)
@@ -4182,29 +4237,19 @@
 /turf/open/floor/mineral/plastitanium,
 /area/centcom)
 "re" = (
-/obj/structure/showcase/machinery{
-	desc = "A server for the information department. Stores information.";
-	icon_state = "blackbox";
-	name = "Information Server";
-	resistance_flags = 115
+/obj/machinery/door/airlock/maintenance_hatch{
+	req_access_txt = "1";
+	name = "low-security maintenance hatch";
+	max_integrity = 3000;
+	integrity_failure = 0.01
 	},
-/obj/structure/window/reinforced/spawner{
-	color = "#000000";
-	dir = 4;
-	opacity = 1
-	},
-/obj/structure/window/reinforced/spawner{
-	color = "#000000";
-	dir = 1;
-	opacity = 1
-	},
-/turf/open/floor/mineral/titanium/tiled/purple,
+/turf/open/floor/facility/halls,
 /area/centcom)
 "rh" = (
 /obj/machinery/door/airlock/highsecurity{
 	name = "low-security checkpoint";
-	opacity = 0;
-	req_access_txt = "1"
+	req_access_txt = "1";
+	opacity = 0
 	},
 /turf/open/floor/facility/halls,
 /area/centcom)
@@ -4253,11 +4298,25 @@
 	},
 /turf/open/floor/mineral/plastitanium,
 /area/centcom)
+"rv" = (
+/obj/effect/landmark/department_center,
+/obj/effect/turf_decal/arrows{
+	dir = 1
+	},
+/turf/open/floor/mineral/titanium/tiled,
+/area/centcom)
 "rx" = (
 /obj/effect/turf_decal/bot,
 /obj/machinery/telecomms/processor/preset_two,
 /turf/open/floor/circuit/telecomms/mainframe,
 /area/facility_hallway/north)
+"rz" = (
+/obj/structure/sign/logo{
+	icon_state = "limbus_sign 3,0";
+	pixel_y = 32
+	},
+/turf/open/floor/facility/dark,
+/area/centcom)
 "rA" = (
 /obj/machinery/light{
 	dir = 4;
@@ -4304,17 +4363,15 @@
 /turf/open/floor/carpet/blue,
 /area/centcom)
 "rQ" = (
-/obj/item/kirbyplants{
-	anchored = 1;
-	icon_state = "plant-03"
+/obj/item/assembly/control{
+	id = "centralh1"
 	},
-/obj/structure/table/wood{
-	alpha = 0;
-	mouse_opacity = 0;
-	resistance_flags = 115
+/obj/item/assembly/signaler,
+/obj/item/assembly_holder{
+	preassembled = 1
 	},
-/turf/open/floor/carpet/purple,
-/area/centcom)
+/turf/open/floor/circuit/telecomms/mainframe,
+/area/facility_hallway/north)
 "rT" = (
 /obj/machinery/door/airlock/glass_large,
 /turf/open/floor/plasteel/white,
@@ -4360,21 +4417,21 @@
 /obj/structure/table/wood{
 	alpha = 0;
 	density = 0;
-	mouse_opacity = 0;
-	resistance_flags = 115
+	resistance_flags = 115;
+	mouse_opacity = 0
 	},
 /obj/structure/railing{
-	color = "#9cadc7";
-	dir = 8
+	dir = 8;
+	color = "#9cadc7"
 	},
 /obj/effect/turf_decal/siding/white/corner{
 	dir = 8
 	},
 /obj/item/kirbyplants{
-	anchored = 1;
 	icon_state = "plant-12";
+	pixel_y = 20;
 	pixel_x = 8;
-	pixel_y = 20
+	anchored = 1
 	},
 /obj/effect/turf_decal/siding/wideplating/dark/corner{
 	dir = 4
@@ -4390,14 +4447,15 @@
 /turf/open/floor/mineral/plastitanium,
 /area/centcom)
 "se" = (
+/obj/structure/railing/corner{
+	dir = 8;
+	color = "#9cadc7"
+	},
 /obj/machinery/door/airlock{
 	icon = 'icons/obj/doors/airlocks/station/science.dmi';
 	max_integrity = 500;
-	name = "Research"
-	},
-/obj/structure/railing/corner{
-	color = "#9cadc7";
-	dir = 8
+	name = "Research";
+	req_access_txt = "7"
 	},
 /turf/open/floor/facility/halls,
 /area/centcom)
@@ -4409,11 +4467,6 @@
 "sk" = (
 /obj/structure/table/reinforced{
 	color = "#9cadc7"
-	},
-/obj/item/camera{
-	anchored = 1;
-	pixel_x = 14;
-	pixel_y = 21
 	},
 /obj/structure/window/reinforced/spawner{
 	dir = 4
@@ -4469,9 +4522,9 @@
 /area/centcom)
 "sv" = (
 /obj/structure/chair/comfy/shuttle{
+	name = "fancy chair";
 	desc = "A comfortable seat. Since its custom made, its quite expensive";
-	dir = 8;
-	name = "fancy chair"
+	dir = 8
 	},
 /turf/open/floor/carpet/green,
 /area/centcom)
@@ -4486,23 +4539,29 @@
 /obj/structure/table/reinforced{
 	color = "#9cadc7"
 	},
-/obj/machinery/button{
-	id = "LSZ Containment Door #1"
-	},
 /obj/effect/turf_decal/siding/blue{
 	dir = 1
+	},
+/obj/machinery/button/door/indestructible{
+	id = "LSZ Containment Door #1"
 	},
 /turf/open/floor/mineral/titanium/blue,
 /area/centcom)
 "sy" = (
 /obj/machinery/conveyor,
-/turf/open/floor/mineral/titanium/tiled,
+/turf/open/floor/plasteel,
 /area/centcom)
 "sB" = (
-/obj/structure/chair/comfy/teal,
 /obj/machinery/light{
 	dir = 1;
 	pixel_y = 19
+	},
+/obj/effect/turf_decal/siding/blue,
+/obj/effect/turf_decal/stripes/white/line{
+	color = "#5269e9"
+	},
+/obj/structure/chair/comfy/teal{
+	pixel_y = 8
 	},
 /turf/open/floor/mineral/plastitanium,
 /area/centcom)
@@ -4530,8 +4589,8 @@
 /obj/structure/cable,
 /obj/machinery/light/small{
 	dir = 4;
-	pixel_x = 8;
-	pixel_y = 9
+	pixel_y = 9;
+	pixel_x = 8
 	},
 /turf/open/floor/plating,
 /area/centcom)
@@ -4551,23 +4610,26 @@
 /obj/machinery/icecream_vat{
 	anchored = 1
 	},
+/obj/machinery/door/poddoor/preopen{
+	id = "kitchen"
+	},
 /turf/open/floor/facility/dark,
 /area/centcom)
 "tb" = (
 /obj/effect/decal/cleanable/crayon{
-	color = "#5269e9";
 	icon_state = "d";
-	pixel_x = 15
+	pixel_x = 15;
+	color = "#5269e9"
 	},
 /obj/effect/decal/cleanable/crayon{
-	color = "#5269e9";
 	icon_state = "e";
-	pixel_x = 3
+	pixel_x = 3;
+	color = "#5269e9"
 	},
 /obj/effect/decal/cleanable/crayon{
-	color = "#5269e9";
 	icon_state = "m";
-	pixel_x = -12
+	pixel_x = -12;
+	color = "#5269e9"
 	},
 /obj/structure/disposalpipe/segment{
 	dir = 10
@@ -4608,8 +4670,8 @@
 "tr" = (
 /obj/machinery/vending/cigarette{
 	density = 0;
-	pixel_x = 6;
-	pixel_y = 19
+	pixel_y = 19;
+	pixel_x = 6
 	},
 /obj/structure/chair/stool/bar,
 /turf/open/floor/mineral/titanium/tiled/blue,
@@ -4757,8 +4819,8 @@
 /turf/open/floor/carpet/blue,
 /area/centcom)
 "tS" = (
-/obj/machinery/door/poddoor{
-	id = "highsec_outside";
+/obj/machinery/door/poddoor/preopen{
+	id = "centralh2";
 	name = "High Security Blast Door"
 	},
 /turf/open/floor/facility/halls,
@@ -4771,8 +4833,10 @@
 /turf/open/floor/facility/dark,
 /area/centcom)
 "tX" = (
-/obj/machinery/door/airlock/maintenance_hatch,
-/turf/open/floor/plating,
+/obj/effect/turf_decal/arrows{
+	dir = 1
+	},
+/turf/open/floor/mineral/titanium/tiled,
 /area/centcom)
 "tY" = (
 /obj/structure/table/reinforced{
@@ -4791,13 +4855,14 @@
 /turf/open/floor/mineral/titanium/blue,
 /area/centcom)
 "ua" = (
-/obj/structure/closet/secure_closet/chemical{
-	pixel_y = 12
-	},
 /obj/effect/turf_decal/trimline/red/filled/warning,
 /obj/machinery/light{
 	dir = 1;
 	pixel_y = 19
+	},
+/obj/structure/closet/secure_closet/chemical{
+	req_access = null;
+	pixel_y = 14
 	},
 /turf/open/floor/noslip,
 /area/centcom)
@@ -4806,11 +4871,6 @@
 	dir = 8
 	},
 /obj/machinery/light,
-/obj/structure/window/reinforced/spawner{
-	color = "#000000";
-	dir = 4;
-	opacity = 1
-	},
 /turf/open/floor/mineral/titanium/tiled/blue,
 /area/centcom)
 "ue" = (
@@ -4818,8 +4878,8 @@
 /area/centcom)
 "uj" = (
 /obj/machinery/door/airlock/security/glass{
-	name = "Internal Affairs Office";
-	req_access_txt = "19"
+	req_access_txt = "19";
+	name = "Internal Affairs Office"
 	},
 /turf/open/floor/facility/halls,
 /area/centcom)
@@ -4940,8 +5000,8 @@
 /area/centcom)
 "uL" = (
 /obj/structure/closet{
-	anchored = 1;
-	pixel_x = 6
+	pixel_x = 6;
+	anchored = 1
 	},
 /obj/item/folder,
 /obj/item/folder,
@@ -4961,14 +5021,14 @@
 	dir = 8
 	},
 /obj/structure/reagent_dispensers/water_cooler{
-	density = 0;
+	pixel_y = 14;
 	pixel_x = 7;
-	pixel_y = 14
+	density = 0
 	},
 /obj/structure/filingcabinet/filingcabinet{
-	density = 0;
+	pixel_y = 16;
 	pixel_x = -5;
-	pixel_y = 16
+	density = 0
 	},
 /obj/machinery/light{
 	dir = 1;
@@ -4987,8 +5047,8 @@
 	},
 /obj/machinery/computer/security/telescreen{
 	dir = 1;
-	pixel_x = 1;
-	pixel_y = 8
+	pixel_y = 8;
+	pixel_x = 1
 	},
 /turf/open/floor/mineral/titanium/blue,
 /area/centcom)
@@ -5000,19 +5060,19 @@
 /area/centcom)
 "uW" = (
 /obj/effect/decal/cleanable/crayon{
-	color = "#5269e9";
 	icon_state = "y";
-	pixel_x = 11
+	pixel_x = 11;
+	color = "#5269e9"
 	},
 /obj/effect/decal/cleanable/crayon{
-	color = "#5269e9";
 	icon_state = "a";
-	pixel_x = 3
+	pixel_x = 3;
+	color = "#5269e9"
 	},
 /obj/effect/decal/cleanable/crayon{
-	color = "#5269e9";
 	icon_state = "b";
-	pixel_x = -6
+	pixel_x = -6;
+	color = "#5269e9"
 	},
 /turf/open/floor/plasteel/white,
 /area/centcom)
@@ -5034,14 +5094,27 @@
 "va" = (
 /obj/machinery/door/poddoor/preopen{
 	armor = list("melee" = 20, "bullet" = 100, "laser" = 100, "energy" = 100, "bomb" = 50, "bio" = 100, "rad" = 100, "fire" = 100, "acid" = 70);
-	id = "mosb_containment2";
-	max_integrity = 1800
+	max_integrity = 1800;
+	id = "emergency_lockdown1"
 	},
-/obj/structure/window/reinforced/fulltile{
-	armor = list("melee" = 30, "bullet" = 30, "laser" = 20, "energy" = 20, "bomb" = 10, "bio" = 100, "rad" = 100, "fire" = 80, "acid" = 70);
-	max_integrity = 500
+/obj/effect/spawner/structure/window/reinforced{
+	max_integrity = 3000
 	},
 /turf/open/floor/facility/dark,
+/area/centcom)
+"vb" = (
+/obj/structure/table/wood{
+	alpha = 0;
+	density = 0;
+	resistance_flags = 115;
+	mouse_opacity = 0
+	},
+/obj/item/kirbyplants{
+	icon_state = "plant-12";
+	pixel_x = 10;
+	anchored = 1
+	},
+/turf/open/floor/mineral/titanium/tiled,
 /area/centcom)
 "vf" = (
 /obj/effect/turf_decal/bot,
@@ -5123,8 +5196,8 @@
 "vB" = (
 /obj/machinery/door/window/brigdoor{
 	dir = 8;
-	opacity = 1;
-	req_one_access_txt = "32;19"
+	req_one_access_txt = "32;19";
+	opacity = 1
 	},
 /obj/machinery/camera{
 	alpha = 0;
@@ -5134,26 +5207,19 @@
 	view_range = 5
 	},
 /obj/structure/window/reinforced/spawner{
-	color = "#000000";
 	dir = 1;
+	color = "#000000";
 	opacity = 1
 	},
 /turf/open/floor/carpet/stellar,
-/area/centcom)
-"vF" = (
-/obj/structure/sign/logo{
-	icon_state = "limbus_sign 3,0";
-	pixel_y = 32
-	},
-/turf/open/floor/facility/dark,
 /area/centcom)
 "vG" = (
 /turf/open/floor/plasteel/stairs,
 /area/centcom)
 "vK" = (
 /obj/structure/window/reinforced/spawner{
-	color = "#000000";
 	dir = 8;
+	color = "#000000";
 	opacity = 1
 	},
 /obj/machinery/photocopier,
@@ -5266,10 +5332,7 @@
 /obj/machinery/door/poddoor/preopen{
 	id = "cmo office"
 	},
-/obj/structure/window/reinforced/fulltile{
-	armor = list("melee" = 30, "bullet" = 30, "laser" = 20, "energy" = 20, "bomb" = 10, "bio" = 100, "rad" = 100, "fire" = 80, "acid" = 70);
-	max_integrity = 500
-	},
+/obj/effect/spawner/structure/window/reinforced,
 /turf/open/floor/facility/dark,
 /area/centcom)
 "wb" = (
@@ -5369,8 +5432,8 @@
 	anchored = 1;
 	can_buckle = 0;
 	dir = 8;
-	pixel_x = -8;
-	pixel_y = 4
+	pixel_y = 4;
+	pixel_x = -8
 	},
 /turf/open/floor/mineral/plastitanium,
 /area/centcom)
@@ -5385,8 +5448,8 @@
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
-/obj/machinery/door/poddoor{
-	id = "highsec_outside";
+/obj/machinery/door/poddoor/preopen{
+	id = "centralh2";
 	name = "High Security Blast Door"
 	},
 /turf/open/floor/facility/halls,
@@ -5484,18 +5547,18 @@
 /area/centcom)
 "wZ" = (
 /obj/effect/turf_decal/tile{
-	alpha = 150;
 	color = "#ffb964";
+	alpha = 150;
 	dir = 4
 	},
 /obj/effect/turf_decal/tile{
-	alpha = 150;
 	color = "FF8C00";
+	alpha = 150;
 	dir = 1
 	},
 /obj/effect/turf_decal/tile{
-	alpha = 150;
 	color = "#ffb964";
+	alpha = 150;
 	dir = 8
 	},
 /obj/effect/turf_decal/siding/yellow{
@@ -5516,6 +5579,13 @@
 /obj/effect/turf_decal/arrows,
 /turf/open/floor/mineral/titanium/tiled/blue,
 /area/centcom)
+"xd" = (
+/obj/machinery/door/poddoor{
+	id = "south_lowsec_inside";
+	name = "Low Security Blast Door"
+	},
+/turf/open/floor/facility/halls,
+/area/centcom)
 "xh" = (
 /obj/effect/turf_decal/arrows/white{
 	color = "#5269e9";
@@ -5529,8 +5599,8 @@
 	},
 /obj/item/clipboard,
 /obj/structure/window/reinforced/spawner{
-	color = "#000000";
 	dir = 4;
+	color = "#000000";
 	opacity = 1
 	},
 /turf/open/floor/mineral/plastitanium,
@@ -5541,8 +5611,8 @@
 	color = "#5269e9"
 	},
 /obj/effect/turf_decal/stripes/white/corner{
-	color = "#5269e9";
-	dir = 4
+	dir = 4;
+	color = "#5269e9"
 	},
 /obj/effect/turf_decal/siding/blue/corner{
 	dir = 4
@@ -5564,17 +5634,39 @@
 "xl" = (
 /obj/structure/chair/comfy/shuttle{
 	color = "#00ffff";
-	desc = "A once wing-singularity, a once patented and protected, of one-time design and craftmenship. Now, this is one of few evidence of it.";
-	name = "chair of glory"
+	name = "chair of glory";
+	desc = "A once wing-singularity, a once patented and protected, of one-time design and craftmenship. Now, this is one of few evidence of it."
 	},
 /turf/open/floor/mineral/titanium/tiled,
 /area/centcom)
+"xm" = (
+/obj/structure/filingcabinet,
+/obj/structure/filingcabinet{
+	pixel_x = 10;
+	resistance_flags = 115
+	},
+/obj/structure/filingcabinet{
+	pixel_x = -10;
+	resistance_flags = 115
+	},
+/obj/structure/sign/logo{
+	icon_state = "limbus_sign 3,0";
+	pixel_y = 32
+	},
+/turf/open/floor/facility/dark,
+/area/centcom)
 "xn" = (
 /obj/machinery/door/poddoor{
-	id = "LSZ Containment Door #3";
-	name = "LSZ Containment Door #3"
+	name = "LSZ Containment Door #3";
+	id = "LSZ Containment Door #3"
 	},
 /turf/open/floor/facility/halls,
+/area/centcom)
+"xo" = (
+/obj/structure/lattice/catwalk,
+/obj/effect/mapping_helpers/simple_pipes,
+/obj/structure/disposalpipe/segment,
+/turf/open/floor/plating,
 /area/centcom)
 "xq" = (
 /obj/machinery/chem_heater{
@@ -5584,7 +5676,13 @@
 /turf/open/floor/noslip,
 /area/centcom)
 "xr" = (
-/obj/structure/chair/comfy/teal,
+/obj/structure/chair/comfy/teal{
+	pixel_y = 8
+	},
+/obj/effect/turf_decal/siding/blue,
+/obj/effect/turf_decal/stripes/white/line{
+	color = "#5269e9"
+	},
 /turf/open/floor/mineral/plastitanium,
 /area/centcom)
 "xt" = (
@@ -5616,22 +5714,7 @@
 /turf/open/floor/facility/dark,
 /area/centcom)
 "xz" = (
-/obj/effect/turf_decal/arrows/white{
-	color = "#bf48b1";
-	dir = 4
-	},
-/obj/effect/turf_decal/stripes/white/line{
-	color = "#bf48b1"
-	},
-/obj/machinery/light{
-	dir = 1;
-	pixel_y = 19
-	},
-/obj/structure/window/reinforced/spawner{
-	color = "#000000";
-	opacity = 1
-	},
-/turf/open/floor/mineral/titanium/tiled,
+/turf/open/floor/facility,
 /area/centcom)
 "xB" = (
 /obj/effect/turf_decal/trimline/red/filled/line,
@@ -5639,6 +5722,19 @@
 	dir = 1
 	},
 /turf/open/floor/pod/dark,
+/area/centcom)
+"xD" = (
+/obj/effect/turf_decal/siding/wideplating/dark{
+	dir = 1
+	},
+/obj/machinery/light/floor{
+	pixel_y = 12
+	},
+/obj/structure/sign/logo{
+	icon_state = "limbus_sign 1,0";
+	pixel_y = 32
+	},
+/turf/open/floor/plasteel/dark,
 /area/centcom)
 "xE" = (
 /obj/machinery/button/crematorium/indestructible{
@@ -5666,8 +5762,8 @@
 /obj/structure/table/wood{
 	alpha = 0;
 	density = 0;
-	mouse_opacity = 0;
-	resistance_flags = 115
+	resistance_flags = 115;
+	mouse_opacity = 0
 	},
 /turf/closed/indestructible/reinforced{
 	color = "#9cadc7"
@@ -5683,9 +5779,9 @@
 /area/centcom)
 "xL" = (
 /obj/structure/closet{
-	anchored = 1;
 	name = "high-security officer equipment";
-	pixel_y = 8
+	pixel_y = 8;
+	anchored = 1
 	},
 /obj/effect/turf_decal/stripes/white/line{
 	color = "#5269e9"
@@ -5743,8 +5839,8 @@
 /area/centcom)
 "yg" = (
 /obj/structure/closet/crate/bin{
-	pixel_x = 8;
-	pixel_y = 8
+	pixel_y = 8;
+	pixel_x = 8
 	},
 /turf/open/floor/mineral/titanium/blue,
 /area/centcom)
@@ -5936,12 +6032,12 @@
 /area/centcom)
 "zd" = (
 /obj/effect/turf_decal/tile{
-	alpha = 150;
-	color = "FF8C00"
+	color = "FF8C00";
+	alpha = 150
 	},
 /obj/effect/turf_decal/tile{
-	alpha = 150;
 	color = "#ffb964";
+	alpha = 150;
 	dir = 4
 	},
 /turf/open/floor/plasteel/white,
@@ -5955,10 +6051,10 @@
 /area/centcom)
 "zh" = (
 /obj/structure/chair/comfy/shuttle{
-	color = "#9cadc7";
-	desc = "A comfortable seat. Since its custom made, its quite expensive";
 	dir = 4;
-	name = "fancy chair"
+	color = "#9cadc7";
+	name = "fancy chair";
+	desc = "A comfortable seat. Since its custom made, its quite expensive"
 	},
 /turf/open/floor/carpet/blue,
 /area/centcom)
@@ -5994,7 +6090,13 @@
 	color = "#9cadc7"
 	},
 /obj/machinery/button/door/indestructible{
-	id = "lowsec_outside"
+	id = "south_lowsec_inside";
+	name = "south inner door"
+	},
+/obj/machinery/button/door/indestructible{
+	id = "south_lowsec_outside";
+	name = "south outer door";
+	pixel_y = 9
 	},
 /turf/open/floor/mineral/titanium/blue,
 /area/centcom)
@@ -6038,8 +6140,8 @@
 /obj/effect/mapping_helpers/simple_pipes,
 /obj/machinery/light/small{
 	dir = 4;
-	pixel_x = 8;
-	pixel_y = 9
+	pixel_y = 9;
+	pixel_x = 8
 	},
 /turf/open/floor/plating,
 /area/centcom)
@@ -6089,29 +6191,29 @@
 /area/centcom)
 "zK" = (
 /obj/machinery/door/poddoor{
-	id = "lowsec_outside";
+	id = "north_lowsec_outside";
 	name = "Low Security Blast Door"
 	},
 /turf/open/floor/facility/halls,
 /area/centcom)
 "zL" = (
 /obj/structure/chair/comfy/teal{
-	can_buckle = 0;
 	dir = 8;
+	pixel_y = 5;
 	pixel_x = 5;
-	pixel_y = 5
+	can_buckle = 0
 	},
 /obj/structure/table/wood{
 	alpha = 0;
 	density = 0;
-	mouse_opacity = 0;
-	resistance_flags = 115
+	resistance_flags = 115;
+	mouse_opacity = 0
 	},
 /obj/item/kirbyplants{
-	anchored = 1;
 	icon_state = "plant-12";
+	pixel_y = 20;
 	pixel_x = -8;
-	pixel_y = 20
+	anchored = 1
 	},
 /obj/effect/turf_decal/siding/yellow{
 	dir = 8
@@ -6127,14 +6229,14 @@
 /obj/structure/table/wood{
 	alpha = 0;
 	density = 0;
-	mouse_opacity = 0;
-	resistance_flags = 115
+	resistance_flags = 115;
+	mouse_opacity = 0
 	},
 /obj/item/kirbyplants{
-	anchored = 1;
 	icon_state = "plant-08";
+	pixel_y = 2;
 	pixel_x = -8;
-	pixel_y = 2
+	anchored = 1
 	},
 /obj/machinery/light{
 	dir = 8;
@@ -6149,35 +6251,20 @@
 	pixel_x = 9;
 	pixel_y = 4
 	},
-/turf/open/floor/mineral/titanium/tiled,
+/turf/open/floor/plasteel,
 /area/centcom)
 "zQ" = (
-/obj/structure/filingcabinet,
-/obj/structure/filingcabinet{
-	pixel_x = 10;
-	resistance_flags = 115
-	},
-/obj/structure/filingcabinet{
-	pixel_x = -10;
-	resistance_flags = 115
-	},
-/obj/structure/sign/logo{
-	icon_state = "limbus_sign 2,0";
-	pixel_y = 32
-	},
-/turf/open/floor/carpet/black,
+/obj/structure/closet/crate,
+/turf/open/floor/facility,
 /area/centcom)
 "zV" = (
-/obj/machinery/jukebox,
-/obj/machinery/light{
-	dir = 1;
-	pixel_y = 15
+/obj/machinery/door/airlock/maintenance_hatch{
+	req_access_txt = "3";
+	name = "high-security maintenance hatch";
+	max_integrity = 3000;
+	integrity_failure = 0.01
 	},
-/obj/machinery/light{
-	dir = 1;
-	pixel_y = 19
-	},
-/turf/open/floor/plasteel/dark,
+/turf/open/floor/facility/halls,
 /area/centcom)
 "zY" = (
 /obj/effect/turf_decal/tile/green{
@@ -6194,18 +6281,18 @@
 /obj/structure/table/wood/fancy/black,
 /obj/structure/railing{
 	alpha = 0;
-	dir = 8;
-	name = "hidden"
+	name = "hidden";
+	dir = 8
 	},
-/obj/machinery/button{
+/obj/machinery/button/door/indestructible{
 	id = "assetprotection";
 	name = "privacy button";
 	pixel_y = 7
 	},
-/obj/machinery/button{
-	id = "assetprotection2";
+/obj/machinery/button/door/indestructible{
 	name = "lockdown button";
-	pixel_y = -1
+	id = "assetprotection2";
+	pixel_y = -2
 	},
 /turf/open/floor/carpet/black,
 /area/centcom)
@@ -6254,6 +6341,17 @@
 	pixel_y = 7
 	},
 /turf/open/floor/mineral/titanium/blue,
+/area/centcom)
+"Ai" = (
+/obj/machinery/light{
+	dir = 8;
+	pixel_x = -9;
+	pixel_y = 4
+	},
+/obj/effect/turf_decal/siding/red/corner{
+	color = "#440000"
+	},
+/turf/open/floor/mineral/plastitanium,
 /area/centcom)
 "Ak" = (
 /obj/effect/turf_decal/siding/blue{
@@ -6374,8 +6472,8 @@
 "AD" = (
 /obj/structure/table/optable,
 /obj/structure/window/reinforced/spawner{
-	color = "#000000";
 	dir = 1;
+	color = "#000000";
 	opacity = 1
 	},
 /obj/effect/turf_decal/tile/blue,
@@ -6399,7 +6497,13 @@
 	color = "#9cadc7"
 	},
 /obj/machinery/button/door/indestructible{
-	id = "lowsec_inside"
+	id = "north_lowsec_inside";
+	name = "north inner door"
+	},
+/obj/machinery/button/door/indestructible{
+	id = "north_lowsec_outside";
+	name = "north outer door";
+	pixel_y = 9
 	},
 /turf/open/floor/mineral/titanium/blue,
 /area/centcom)
@@ -6426,8 +6530,8 @@
 	anchored = 1;
 	can_buckle = 0;
 	dir = 8;
-	pixel_x = -6;
-	pixel_y = 4
+	pixel_y = 4;
+	pixel_x = -6
 	},
 /turf/open/floor/mineral/titanium/blue,
 /area/centcom)
@@ -6454,12 +6558,12 @@
 	pixel_y = -6
 	},
 /obj/item/reagent_containers/food/drinks/drinkingglass/shotglass{
-	pixel_x = 1;
-	pixel_y = 25
+	pixel_y = 25;
+	pixel_x = 1
 	},
 /obj/item/reagent_containers/food/drinks/drinkingglass/shotglass{
-	pixel_x = 7;
-	pixel_y = 18
+	pixel_y = 18;
+	pixel_x = 7
 	},
 /turf/open/floor/carpet/executive,
 /area/centcom)
@@ -6487,6 +6591,13 @@
 	},
 /obj/effect/turf_decal/stripes/red/line{
 	dir = 4
+	},
+/turf/open/floor/mineral/titanium/tiled,
+/area/centcom)
+"Bc" = (
+/obj/effect/landmark/department_center,
+/obj/effect/turf_decal/arrows/red{
+	dir = 1
 	},
 /turf/open/floor/mineral/titanium/tiled,
 /area/centcom)
@@ -6533,15 +6644,15 @@
 /area/centcom)
 "Bm" = (
 /obj/machinery/door/poddoor{
-	id = "highsec_inside";
-	name = "High Security Blast Door"
+	name = "High Security Blast Door";
+	id = "centralh1"
 	},
 /turf/open/floor/facility/halls,
 /area/centcom)
 "Bp" = (
 /obj/structure/chair/comfy{
-	color = "#9cadc7";
-	dir = 8
+	dir = 8;
+	color = "#9cadc7"
 	},
 /turf/open/floor/carpet/blue,
 /area/centcom)
@@ -6566,6 +6677,12 @@
 	},
 /turf/open/floor/pod/dark,
 /area/centcom)
+"Bv" = (
+/obj/effect/turf_decal/siding/red{
+	color = "#440000"
+	},
+/turf/open/floor/mineral/plastitanium,
+/area/centcom)
 "Bw" = (
 /obj/effect/turf_decal/tile/blue{
 	color = "#5269e9";
@@ -6584,6 +6701,13 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/centcom)
+"Bx" = (
+/obj/machinery/door/poddoor{
+	id = "south_lowsec_outside";
+	name = "Low Security Blast Door"
+	},
+/turf/open/floor/facility/halls,
+/area/centcom)
 "By" = (
 /obj/structure/chair/sofa/corp/right{
 	dir = 1
@@ -6592,7 +6716,7 @@
 /area/centcom)
 "Bz" = (
 /obj/machinery/door/poddoor{
-	id = "lowsec_inside";
+	id = "north_lowsec_inside";
 	name = "Low Security Blast Door"
 	},
 /turf/open/floor/facility/halls,
@@ -6605,7 +6729,7 @@
 /area/centcom)
 "BC" = (
 /obj/structure/sign/logo{
-	icon_state = "limbus_sign 0,0";
+	icon_state = "limbus_sign 1,0";
 	pixel_y = 32
 	},
 /turf/open/floor/facility/dark,
@@ -6622,8 +6746,8 @@
 /area/centcom)
 "BI" = (
 /obj/machinery/door/poddoor{
-	id = "LSZ Containment Door #4";
-	name = "LSZ Containment Door #4"
+	name = "LSZ Containment Door #4";
+	id = "LSZ Containment Door #4"
 	},
 /turf/open/floor/facility/halls,
 /area/centcom)
@@ -6645,15 +6769,15 @@
 /obj/structure/window/reinforced/spawner{
 	dir = 8
 	},
-/obj/machinery/button{
+/obj/machinery/button/door/indestructible{
+	pixel_y = -2;
 	id = "rd2";
-	name = "lockdown button";
-	pixel_y = -2
+	name = "lockdown button"
 	},
-/obj/machinery/button{
+/obj/machinery/button/door/indestructible{
+	pixel_y = 7;
 	id = "rd";
-	name = "privacy button";
-	pixel_y = 7
+	name = "privacy button"
 	},
 /turf/open/floor/carpet/purple,
 /area/centcom)
@@ -6680,9 +6804,7 @@
 	pixel_y = 3
 	},
 /obj/structure/window/reinforced/spawner{
-	color = "#000000";
-	dir = 8;
-	opacity = 1
+	dir = 8
 	},
 /turf/open/floor/mineral/titanium/tiled/purple,
 /area/centcom)
@@ -6751,13 +6873,16 @@
 /turf/open/floor/plasteel/white,
 /area/centcom)
 "Cj" = (
-/obj/structure/disposalpipe/segment,
-/obj/structure/cable,
-/obj/machinery/light/small{
-	dir = 1;
-	pixel_y = 17
+/obj/machinery/light{
+	dir = 8;
+	pixel_x = -9;
+	pixel_y = 4
 	},
-/turf/open/floor/plating,
+/obj/effect/turf_decal/stripes/white/corner{
+	color = "#5269e9";
+	dir = 8
+	},
+/turf/open/floor/mineral/plastitanium,
 /area/centcom)
 "Cn" = (
 /obj/structure/table/wood/fancy/green,
@@ -6778,15 +6903,6 @@
 /obj/structure/table/reinforced{
 	color = "#ff7f7f"
 	},
-/obj/machinery/button{
-	id = "mosb_containment3";
-	name = "emergency lockdown button";
-	pixel_y = 9
-	},
-/obj/machinery/button{
-	id = "hsz2_containment";
-	name = "cell door 2 button"
-	},
 /obj/machinery/light{
 	dir = 1;
 	pixel_y = 19
@@ -6794,6 +6910,15 @@
 /obj/machinery/light{
 	dir = 1;
 	pixel_y = 15
+	},
+/obj/machinery/button/door/indestructible{
+	pixel_y = 9;
+	id = "mosb_containment3";
+	name = "emergency lockdown button"
+	},
+/obj/machinery/button/door/indestructible{
+	id = "hsz2_containment";
+	name = "cell 2 door button"
 	},
 /turf/open/floor/mineral/titanium/white{
 	color = "#791500"
@@ -6901,8 +7026,10 @@
 	color = "#000000";
 	opacity = 1
 	},
-/obj/item/ego_weapon/shield/lccb,
-/obj/item/gun/ego_gun/city/limbusautopistol,
+/obj/item/ego_weapon/city/lccb_bat,
+/obj/item/ego_weapon/city/lccb_bat,
+/obj/item/gun/ego_gun/city/limbusshottie,
+/obj/item/gun/ego_gun/city/limbusshottie,
 /turf/open/floor/mineral/plastitanium/red,
 /area/centcom)
 "CP" = (
@@ -6917,8 +7044,8 @@
 "CS" = (
 /obj/effect/landmark/latejoin,
 /obj/machinery/light/floor{
-	pixel_x = 18;
-	pixel_y = 18
+	pixel_y = 18;
+	pixel_x = 18
 	},
 /turf/open/indestructible/crystal_floor,
 /area/centcom)
@@ -6934,11 +7061,14 @@
 	short_range = 13;
 	view_range = 13
 	},
+/obj/effect/turf_decal/arrows/red{
+	dir = 1
+	},
 /turf/open/floor/mineral/titanium/tiled,
 /area/centcom)
 "CV" = (
 /obj/structure/closet/crate,
-/turf/open/floor/mineral/titanium/tiled,
+/turf/open/floor/plasteel,
 /area/centcom)
 "CW" = (
 /obj/structure/window/reinforced/spawner{
@@ -6946,8 +7076,8 @@
 	},
 /obj/machinery/computer/crew{
 	dir = 1;
-	pixel_x = 2;
-	resistance_flags = 115
+	resistance_flags = 115;
+	pixel_x = 2
 	},
 /turf/open/floor/mineral/titanium/blue,
 /area/centcom)
@@ -6988,8 +7118,8 @@
 "Dg" = (
 /obj/structure/chair/comfy/shuttle{
 	color = "#D381C9";
-	desc = "A comfortable seat. Since its custom made, its quite expensive";
-	name = "fancy chair"
+	name = "fancy chair";
+	desc = "A comfortable seat. Since its custom made, its quite expensive"
 	},
 /obj/machinery/camera{
 	alpha = 0;
@@ -7069,8 +7199,8 @@
 "Ds" = (
 /obj/effect/landmark/latejoin,
 /obj/machinery/light/floor{
-	pixel_x = 18;
-	pixel_y = -18
+	pixel_y = -18;
+	pixel_x = 18
 	},
 /turf/open/indestructible/crystal_floor,
 /area/centcom)
@@ -7080,8 +7210,8 @@
 /obj/effect/landmark/xeno_spawn,
 /obj/machinery/light/small{
 	dir = 4;
-	pixel_x = 8;
-	pixel_y = 9
+	pixel_y = 9;
+	pixel_x = 8
 	},
 /turf/open/floor/plating,
 /area/centcom)
@@ -7092,19 +7222,19 @@
 /area/facility_hallway/north)
 "DD" = (
 /obj/structure/chair/plastic{
+	pixel_y = 12;
 	can_buckle = 0;
-	mouse_opacity = 0;
-	pixel_y = 12
+	mouse_opacity = 0
 	},
 /obj/structure/chair/plastic{
+	pixel_y = 15;
 	can_buckle = 0;
-	mouse_opacity = 0;
-	pixel_y = 15
+	mouse_opacity = 0
 	},
 /obj/structure/chair/plastic{
+	pixel_y = 18;
 	can_buckle = 0;
-	mouse_opacity = 0;
-	pixel_y = 18
+	mouse_opacity = 0
 	},
 /obj/machinery/light{
 	dir = 1;
@@ -7117,6 +7247,19 @@
 	dir = 8
 	},
 /turf/open/floor/mineral/plastitanium,
+/area/centcom)
+"DJ" = (
+/obj/structure/table/wood{
+	alpha = 0;
+	resistance_flags = 115;
+	mouse_opacity = 0
+	},
+/obj/item/kirbyplants{
+	icon_state = "plant-03";
+	anchored = 1;
+	pixel_y = 24
+	},
+/turf/open/floor/carpet/purple,
 /area/centcom)
 "DN" = (
 /obj/machinery/door/airlock/medical{
@@ -7151,6 +7294,13 @@
 	},
 /obj/structure/barricade/security,
 /turf/open/floor/mineral/titanium/tiled,
+/area/centcom)
+"DS" = (
+/obj/effect/turf_decal/siding/red/corner{
+	color = "#440000";
+	dir = 4
+	},
+/turf/open/floor/mineral/plastitanium,
 /area/centcom)
 "DU" = (
 /obj/structure/disposalpipe/segment{
@@ -7201,8 +7351,8 @@
 /area/centcom)
 "Ef" = (
 /obj/effect/turf_decal/caution/white{
-	color = "#5269e9";
-	dir = 8
+	dir = 8;
+	color = "#5269e9"
 	},
 /obj/effect/turf_decal/stripes/white/line{
 	color = "#5269e9";
@@ -7242,8 +7392,8 @@
 /obj/structure/lattice/catwalk,
 /obj/machinery/light/small{
 	dir = 4;
-	pixel_x = 8;
-	pixel_y = 9
+	pixel_y = 9;
+	pixel_x = 8
 	},
 /turf/open/floor/plating,
 /area/centcom)
@@ -7285,17 +7435,13 @@
 /obj/structure/table/reinforced{
 	color = "#9cadc7"
 	},
-/obj/structure/window/reinforced/spawner{
-	color = "#000000";
-	dir = 4;
-	opacity = 1
-	},
-/obj/structure/window/reinforced/spawner{
-	color = "#000000";
-	dir = 1;
-	opacity = 1
-	},
 /obj/item/flashlight/lamp,
+/obj/structure/window/reinforced/spawner{
+	dir = 4
+	},
+/obj/structure/window/reinforced/spawner{
+	dir = 1
+	},
 /turf/open/floor/mineral/titanium/tiled/purple,
 /area/centcom)
 "EA" = (
@@ -7318,8 +7464,8 @@
 "EC" = (
 /obj/machinery/door/airlock/glass_large,
 /obj/structure/railing/corner{
-	color = "#9cadc7";
-	dir = 8
+	dir = 8;
+	color = "#9cadc7"
 	},
 /turf/open/floor/facility/halls,
 /area/centcom)
@@ -7373,8 +7519,8 @@
 /area/centcom)
 "EL" = (
 /obj/machinery/modular_computer/console/preset/research{
-	dir = 1;
-	resistance_flags = 115
+	resistance_flags = 115;
+	dir = 1
 	},
 /obj/effect/turf_decal/siding/red{
 	color = "#440000";
@@ -7442,9 +7588,7 @@
 	dir = 8
 	},
 /obj/structure/window/reinforced/spawner{
-	color = "#000000";
-	dir = 4;
-	opacity = 1
+	dir = 4
 	},
 /turf/open/floor/mineral/titanium/tiled/purple,
 /area/centcom)
@@ -7488,9 +7632,9 @@
 /obj/item/flashlight/seclite,
 /obj/item/gun/energy/e_gun/advtaser,
 /obj/structure/closet{
-	anchored = 1;
 	name = "high-security officer equipment";
-	pixel_y = 8
+	pixel_y = 8;
+	anchored = 1
 	},
 /obj/machinery/light{
 	dir = 1;
@@ -7629,8 +7773,8 @@
 "FP" = (
 /obj/machinery/modular_computer/console,
 /obj/structure/window/reinforced/spawner{
-	color = "#000000";
 	dir = 1;
+	color = "#000000";
 	opacity = 1
 	},
 /obj/effect/turf_decal/tile/blue{
@@ -7642,14 +7786,25 @@
 	},
 /turf/open/floor/facility/white,
 /area/centcom)
+"FS" = (
+/obj/structure/disposalpipe/segment{
+	dir = 1
+	},
+/obj/effect/mapping_helpers/simple_pipes,
+/obj/structure/lattice/catwalk,
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/turf/open/floor/plating,
+/area/centcom)
 "FX" = (
 /obj/machinery/sleeper/syndie,
 /turf/open/floor/mineral/titanium/blue,
 /area/centcom)
 "Gc" = (
 /obj/machinery/door/poddoor{
-	id = "LSZ Containment Door #1";
-	name = "LSZ Containment Door #1"
+	name = "LSZ Containment Door #1";
+	id = "LSZ Containment Door #1"
 	},
 /turf/open/floor/facility/halls,
 /area/centcom)
@@ -7674,14 +7829,14 @@
 /area/centcom)
 "Gq" = (
 /obj/effect/decal/cleanable/crayon{
-	color = "#5269e9";
 	icon_state = "t";
-	pixel_x = -9
+	pixel_x = -9;
+	color = "#5269e9"
 	},
 /obj/effect/decal/cleanable/crayon{
-	color = "#5269e9";
 	icon_state = "o";
-	pixel_x = 3
+	pixel_x = 3;
+	color = "#5269e9"
 	},
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -7730,16 +7885,16 @@
 /area/centcom)
 "Gu" = (
 /obj/structure/bed/pod{
-	mouse_opacity = 0;
-	pixel_y = 13
+	pixel_y = 13;
+	mouse_opacity = 0
 	},
 /obj/structure/bed/pod{
 	name = "king-sized bed"
 	},
 /obj/item/bedsheet/wiz{
+	pixel_y = 12;
 	anchored = 1;
-	mouse_opacity = 0;
-	pixel_y = 12
+	mouse_opacity = 0
 	},
 /obj/item/bedsheet/wiz{
 	anchored = 1;
@@ -7772,6 +7927,16 @@
 	view_range = 13
 	},
 /obj/effect/landmark/department_center,
+/obj/effect/turf_decal/arrows/white{
+	color = "#5269e9";
+	dir = 4
+	},
+/obj/effect/turf_decal/arrows{
+	dir = 1
+	},
+/obj/effect/turf_decal/arrows/red{
+	dir = 8
+	},
 /turf/open/floor/mineral/titanium/tiled,
 /area/centcom)
 "GD" = (
@@ -7811,12 +7976,27 @@
 	},
 /turf/open/floor/mineral/titanium/tiled,
 /area/centcom)
+"GN" = (
+/obj/structure/table/wood{
+	alpha = 0;
+	density = 0;
+	resistance_flags = 115;
+	mouse_opacity = 0
+	},
+/obj/item/kirbyplants{
+	icon_state = "plant-12";
+	pixel_x = 10;
+	anchored = 1;
+	pixel_y = 20
+	},
+/turf/open/floor/mineral/plastitanium,
+/area/centcom)
 "GO" = (
 /obj/structure/chair/comfy/shuttle{
 	color = "#D381C9";
+	name = "fancy chair";
 	desc = "A comfortable seat. Since its custom made, its quite expensive";
-	dir = 1;
-	name = "fancy chair"
+	dir = 1
 	},
 /obj/effect/turf_decal/siding/red{
 	color = "#440000";
@@ -7913,28 +8093,28 @@
 /area/centcom)
 "Hi" = (
 /obj/structure/railing/corner{
-	color = "#9cadc7";
-	dir = 8
+	dir = 8;
+	color = "#9cadc7"
 	},
 /turf/open/floor/plasteel/stairs,
 /area/centcom)
 "Hl" = (
 /obj/structure/chair/comfy/teal{
-	can_buckle = 0;
 	dir = 8;
+	pixel_y = 15;
 	pixel_x = 5;
-	pixel_y = 15
+	can_buckle = 0
 	},
 /obj/structure/table/wood{
 	alpha = 0;
 	density = 0;
-	mouse_opacity = 0;
-	resistance_flags = 115
+	resistance_flags = 115;
+	mouse_opacity = 0
 	},
 /obj/item/kirbyplants{
-	anchored = 1;
 	icon_state = "plant-12";
-	pixel_x = -8
+	pixel_x = -8;
+	anchored = 1
 	},
 /obj/effect/turf_decal/siding/yellow{
 	dir = 8
@@ -7948,8 +8128,8 @@
 /area/centcom)
 "Hn" = (
 /obj/machinery/vending/boozeomat/all_access{
-	density = 0;
-	pixel_y = 32
+	pixel_y = 32;
+	density = 0
 	},
 /turf/open/floor/carpet,
 /area/centcom)
@@ -8003,13 +8183,12 @@
 /turf/open/floor/carpet/purple,
 /area/centcom)
 "Hy" = (
-/obj/structure/window/reinforced/fulltile{
-	armor = list("melee" = 30, "bullet" = 30, "laser" = 20, "energy" = 20, "bomb" = 10, "bio" = 100, "rad" = 100, "fire" = 80, "acid" = 70);
-	max_integrity = 500
-	},
 /obj/machinery/door/poddoor/preopen{
 	armor = list("melee" = 20, "bullet" = 100, "laser" = 100, "energy" = 100, "bomb" = 50, "bio" = 100, "rad" = 100, "fire" = 100, "acid" = 70);
 	max_integrity = 1800
+	},
+/obj/effect/spawner/structure/window/reinforced{
+	max_integrity = 3000
 	},
 /turf/open/floor/facility/dark,
 /area/centcom)
@@ -8084,9 +8263,7 @@
 	pixel_y = 3
 	},
 /obj/structure/window/reinforced/spawner{
-	color = "#000000";
-	dir = 4;
-	opacity = 1
+	dir = 4
 	},
 /turf/open/floor/mineral/titanium/tiled/purple,
 /area/centcom)
@@ -8112,8 +8289,8 @@
 	dir = 4
 	},
 /obj/effect/turf_decal/stripes/white/corner{
-	color = "#5269e9";
-	dir = 4
+	dir = 4;
+	color = "#5269e9"
 	},
 /obj/effect/turf_decal/stripes/white/corner{
 	color = "#5269e9"
@@ -8236,9 +8413,9 @@
 /area/centcom)
 "Iw" = (
 /obj/structure/closet{
-	anchored = 1;
 	name = "high-security officer equipment";
-	pixel_y = 8
+	pixel_y = 8;
+	anchored = 1
 	},
 /obj/effect/turf_decal/stripes/white/line{
 	color = "#5269e9"
@@ -8278,11 +8455,6 @@
 /area/space)
 "ID" = (
 /obj/structure/reagent_dispensers/water_cooler,
-/obj/structure/window/reinforced/spawner{
-	color = "#000000";
-	dir = 8;
-	opacity = 1
-	},
 /turf/open/floor/mineral/titanium/tiled/purple,
 /area/centcom)
 "IG" = (
@@ -8290,7 +8462,7 @@
 	dir = 4
 	},
 /obj/machinery/door/poddoor{
-	id = "lowsec_outside";
+	id = "south_lowsec_outside";
 	name = "Low Security Blast Door"
 	},
 /turf/open/floor/facility/halls,
@@ -8335,9 +8507,9 @@
 /obj/item/restraints/legcuffs/bola/tactical,
 /obj/item/flashlight/seclite,
 /obj/structure/closet{
-	anchored = 1;
 	name = "high-security officer equipment";
-	pixel_y = 8
+	pixel_y = 8;
+	anchored = 1
 	},
 /obj/machinery/light{
 	dir = 1;
@@ -8367,6 +8539,13 @@
 	},
 /turf/open/floor/mineral/plastitanium,
 /area/centcom)
+"IW" = (
+/obj/effect/mapping_helpers/simple_pipes,
+/obj/structure/lattice/catwalk,
+/obj/structure/cable,
+/obj/structure/cable/layer1,
+/turf/open/floor/plating,
+/area/centcom)
 "IZ" = (
 /obj/item/grenade/smokebomb,
 /obj/item/grenade/smokebomb,
@@ -8380,9 +8559,9 @@
 /obj/item/restraints/legcuffs/bola/tactical,
 /obj/item/flashlight/seclite,
 /obj/structure/closet{
-	anchored = 1;
 	name = "high-security officer equipment";
-	pixel_y = 8
+	pixel_y = 8;
+	anchored = 1
 	},
 /turf/open/floor/mineral/titanium/blue,
 /area/centcom)
@@ -8396,8 +8575,8 @@
 /area/centcom)
 "Je" = (
 /obj/structure/window/reinforced/spawner{
-	color = "#000000";
 	dir = 8;
+	color = "#000000";
 	opacity = 1
 	},
 /obj/machinery/jukebox,
@@ -8414,9 +8593,7 @@
 	dir = 4
 	},
 /obj/structure/window/reinforced/spawner{
-	color = "#000000";
-	dir = 8;
-	opacity = 1
+	dir = 8
 	},
 /turf/open/floor/mineral/titanium/tiled/purple,
 /area/centcom)
@@ -8527,21 +8704,21 @@
 	},
 /obj/item/modular_computer/laptop,
 /obj/structure/window/reinforced/spawner{
-	color = "#000000";
 	dir = 1;
+	color = "#000000";
 	opacity = 1
 	},
 /turf/open/floor/carpet/executive,
 /area/centcom)
 "JD" = (
 /obj/structure/railing/corner{
-	color = "#9cadc7";
-	dir = 1
+	dir = 1;
+	color = "#9cadc7"
 	},
 /obj/machinery/door/airlock/highsecurity{
 	name = "low-security checkpoint";
-	opacity = 0;
-	req_access_txt = "1"
+	req_access_txt = "1";
+	opacity = 0
 	},
 /turf/open/floor/facility/halls,
 /area/centcom)
@@ -8568,8 +8745,8 @@
 /area/centcom)
 "JH" = (
 /obj/structure/window/reinforced/spawner{
-	color = "#000000";
 	dir = 1;
+	color = "#000000";
 	opacity = 1
 	},
 /turf/open/floor/carpet/purple,
@@ -8590,9 +8767,9 @@
 	resistance_flags = 115
 	},
 /obj/machinery/computer/camera_advanced{
-	dir = 8;
 	pixel_x = -5;
-	pixel_y = -18
+	pixel_y = -22;
+	dir = 8
 	},
 /obj/machinery/light{
 	dir = 4;
@@ -8600,8 +8777,8 @@
 	pixel_y = 4
 	},
 /obj/structure/window/reinforced/spawner{
-	color = "#000000";
 	dir = 1;
+	color = "#000000";
 	opacity = 1
 	},
 /turf/open/floor/carpet/purple,
@@ -8617,8 +8794,8 @@
 /area/centcom)
 "JM" = (
 /obj/structure/railing{
-	color = "#9cadc7";
-	dir = 8
+	dir = 8;
+	color = "#9cadc7"
 	},
 /turf/open/floor/mineral/titanium/tiled/white,
 /area/centcom)
@@ -8645,19 +8822,19 @@
 /obj/structure/lattice/catwalk,
 /obj/machinery/light/small{
 	dir = 4;
-	pixel_x = 8;
-	pixel_y = 9
+	pixel_y = 9;
+	pixel_x = 8
 	},
 /turf/open/floor/plating,
 /area/centcom)
 "JU" = (
 /obj/machinery/recharger{
-	pixel_x = -5;
-	pixel_y = 5
+	pixel_y = 5;
+	pixel_x = -5
 	},
 /obj/machinery/recharger{
-	pixel_x = 5;
-	pixel_y = 5
+	pixel_y = 5;
+	pixel_x = 5
 	},
 /obj/structure/table/reinforced{
 	color = "#9cadc7"
@@ -8723,8 +8900,8 @@
 /obj/structure/plasticflaps/opaque,
 /obj/structure/fluff/big_chain{
 	alpha = 0;
-	mouse_opacity = 0;
-	resistance_flags = 115
+	resistance_flags = 115;
+	mouse_opacity = 0
 	},
 /turf/open/floor/plasteel,
 /area/centcom)
@@ -8738,8 +8915,8 @@
 	dir = 8
 	},
 /obj/effect/turf_decal/caution/white{
-	color = "#bf48b1";
-	dir = 4
+	dir = 4;
+	color = "#bf48b1"
 	},
 /obj/machinery/camera{
 	alpha = 0;
@@ -8767,16 +8944,16 @@
 /area/centcom)
 "Kk" = (
 /obj/structure/railing{
-	color = "#9cadc7";
-	dir = 8
+	dir = 8;
+	color = "#9cadc7"
 	},
 /obj/effect/turf_decal/stripes/white/line{
 	color = "#bf48b1";
 	dir = 4
 	},
 /obj/effect/turf_decal/caution/white{
-	color = "#bf48b1";
-	dir = 8
+	dir = 8;
+	color = "#bf48b1"
 	},
 /turf/open/floor/mineral/titanium/tiled,
 /area/centcom)
@@ -8807,8 +8984,8 @@
 /area/centcom)
 "Kq" = (
 /obj/structure/railing/corner{
-	color = "#9cadc7";
-	dir = 1
+	dir = 1;
+	color = "#9cadc7"
 	},
 /turf/open/floor/plasteel/stairs,
 /area/centcom)
@@ -8829,10 +9006,19 @@
 	dir = 4
 	},
 /obj/effect/turf_decal/stripes/white/corner{
-	color = "#5269e9";
-	dir = 4
+	dir = 4;
+	color = "#5269e9"
 	},
 /turf/open/floor/mineral/plastitanium,
+/area/centcom)
+"Kx" = (
+/obj/structure/disposalpipe/segment{
+	dir = 1
+	},
+/obj/effect/turf_decal/arrows/red{
+	dir = 1
+	},
+/turf/open/floor/mineral/titanium/tiled,
 /area/centcom)
 "Kz" = (
 /obj/structure/table/glass,
@@ -8850,7 +9036,7 @@
 /obj/machinery/conveyor/inverted{
 	dir = 5
 	},
-/turf/open/floor/mineral/titanium/tiled,
+/turf/open/floor/plasteel,
 /area/centcom)
 "KE" = (
 /obj/structure/chair/office/light{
@@ -8922,8 +9108,8 @@
 /obj/item/restraints/legcuffs/bola/tactical,
 /obj/item/flashlight/seclite,
 /obj/structure/closet{
-	anchored = 1;
-	name = "high-security officer equipment"
+	name = "high-security officer equipment";
+	anchored = 1
 	},
 /obj/machinery/light{
 	dir = 8;
@@ -8951,8 +9137,8 @@
 	pixel_y = 19
 	},
 /obj/effect/turf_decal/stripes/white/corner{
-	color = "#5269e9";
-	dir = 4
+	dir = 4;
+	color = "#5269e9"
 	},
 /turf/open/floor/mineral/plastitanium,
 /area/centcom)
@@ -8982,8 +9168,8 @@
 	color = "#5269e9"
 	},
 /obj/effect/turf_decal/caution/white{
-	color = "#5269e9";
-	dir = 1
+	dir = 1;
+	color = "#5269e9"
 	},
 /turf/open/floor/mineral/titanium/tiled,
 /area/centcom)
@@ -8996,12 +9182,12 @@
 /area/centcom)
 "Ll" = (
 /obj/effect/turf_decal/tile{
-	alpha = 150;
-	color = "FF8C00"
+	color = "FF8C00";
+	alpha = 150
 	},
 /obj/effect/turf_decal/tile{
-	alpha = 150;
 	color = "#ffb964";
+	alpha = 150;
 	dir = 8
 	},
 /turf/open/floor/plasteel/white,
@@ -9021,18 +9207,7 @@
 /turf/open/floor/plasteel/white,
 /area/centcom)
 "Lo" = (
-/obj/effect/turf_decal/arrows/white{
-	color = "#bf48b1";
-	dir = 4
-	},
-/obj/effect/turf_decal/stripes/white/line{
-	color = "#bf48b1"
-	},
-/obj/structure/window/reinforced/spawner{
-	color = "#000000";
-	opacity = 1
-	},
-/turf/open/floor/mineral/titanium/tiled,
+/turf/open/floor/plasteel,
 /area/centcom)
 "Lq" = (
 /obj/effect/turf_decal/tile/bar,
@@ -9076,8 +9251,8 @@
 /area/centcom)
 "LA" = (
 /obj/effect/turf_decal/stripes/white/corner{
-	color = "#5269e9";
-	dir = 4
+	dir = 4;
+	color = "#5269e9"
 	},
 /turf/open/floor/mineral/plastitanium,
 /area/centcom)
@@ -9107,22 +9282,22 @@
 /area/centcom)
 "LG" = (
 /obj/structure/chair/comfy/teal{
-	can_buckle = 0;
 	dir = 4;
+	pixel_y = 5;
 	pixel_x = -5;
-	pixel_y = 5
+	can_buckle = 0
 	},
 /obj/structure/table/wood{
 	alpha = 0;
 	density = 0;
-	mouse_opacity = 0;
-	resistance_flags = 115
+	resistance_flags = 115;
+	mouse_opacity = 0
 	},
 /obj/item/kirbyplants{
-	anchored = 1;
 	icon_state = "plant-12";
+	pixel_y = 20;
 	pixel_x = 8;
-	pixel_y = 20
+	anchored = 1
 	},
 /obj/effect/turf_decal/siding/yellow{
 	dir = 4
@@ -9181,8 +9356,8 @@
 /obj/structure/table/wood{
 	alpha = 0;
 	density = 0;
-	mouse_opacity = 0;
-	resistance_flags = 115
+	resistance_flags = 115;
+	mouse_opacity = 0
 	},
 /turf/closed/indestructible/reinforced{
 	color = "#9cadc7"
@@ -9236,7 +9411,7 @@
 /area/centcom)
 "Mg" = (
 /obj/structure/closet/crate/wooden,
-/turf/open/floor/mineral/titanium/tiled,
+/turf/open/floor/plasteel,
 /area/centcom)
 "Mk" = (
 /obj/machinery/jukebox,
@@ -9256,27 +9431,27 @@
 /area/centcom)
 "Mn" = (
 /obj/effect/turf_decal/tile{
-	alpha = 150;
-	color = "FF8C00"
+	color = "FF8C00";
+	alpha = 150
 	},
 /obj/effect/turf_decal/tile{
-	alpha = 150;
 	color = "#ffb964";
+	alpha = 150;
 	dir = 4
 	},
 /obj/effect/turf_decal/tile{
-	alpha = 150;
 	color = "#ffb964";
+	alpha = 150;
 	dir = 8
 	},
 /turf/open/floor/plasteel/white,
 /area/centcom)
 "Mo" = (
 /obj/structure/chair/comfy/shuttle{
-	color = "#9cadc7";
-	desc = "A comfortable seat. Since its custom made, its quite expensive";
 	dir = 8;
+	color = "#9cadc7";
 	name = "fancy chair";
+	desc = "A comfortable seat. Since its custom made, its quite expensive";
 	pixel_x = -5
 	},
 /turf/open/floor/carpet/royalblue,
@@ -9290,13 +9465,13 @@
 /area/centcom)
 "Mu" = (
 /obj/effect/turf_decal/tile{
-	alpha = 150;
 	color = "FF8C00";
+	alpha = 150;
 	dir = 1
 	},
 /obj/effect/turf_decal/tile{
-	alpha = 150;
 	color = "#ffb964";
+	alpha = 150;
 	dir = 8
 	},
 /turf/open/floor/plasteel/white,
@@ -9398,11 +9573,11 @@
 /obj/structure/table/reinforced{
 	color = "#9cadc7"
 	},
-/obj/machinery/button{
-	id = "LSZ Containment Door #3"
-	},
 /obj/effect/turf_decal/siding/blue{
 	dir = 1
+	},
+/obj/machinery/button/door/indestructible{
+	id = "LSZ Containment Door #3"
 	},
 /turf/open/floor/mineral/titanium/blue,
 /area/centcom)
@@ -9517,13 +9692,13 @@
 /area/centcom)
 "Ni" = (
 /obj/effect/turf_decal/tile{
-	alpha = 150;
 	color = "#ffb964";
+	alpha = 150;
 	dir = 4
 	},
 /obj/effect/turf_decal/tile{
-	alpha = 150;
 	color = "FF8C00";
+	alpha = 150;
 	dir = 1
 	},
 /obj/effect/turf_decal/siding/yellow{
@@ -9603,8 +9778,8 @@
 	view_range = 5
 	},
 /obj/structure/window/reinforced/spawner{
-	color = "#000000";
 	dir = 4;
+	color = "#000000";
 	opacity = 1
 	},
 /turf/open/floor/plasteel/white,
@@ -9694,13 +9869,8 @@
 /obj/structure/table/reinforced{
 	color = "#9cadc7"
 	},
-/obj/machinery/button/door/indestructible{
-	id = "highsec_outside"
-	},
-/obj/machinery/button/door/indestructible{
-	id = "highsec_inside";
-	name = "inside lock button";
-	pixel_y = 8
+/obj/machinery/button{
+	device_type = /obj/item/assembly/signaler
 	},
 /turf/open/floor/mineral/plastitanium/red,
 /area/centcom)
@@ -9712,8 +9882,8 @@
 	pixel_y = 12
 	},
 /obj/item/reagent_containers/food/drinks/bottle/lizardwine{
-	desc = "An alcoholic beverage from a certain district, whether it is made by or made of rats - the human kind - is left unanswered. Tasty and strong regardless.";
 	name = "bottle of rat wine";
+	desc = "An alcoholic beverage from a certain district, whether it is made by or made of rats - the human kind - is left unanswered. Tasty and strong regardless.";
 	pixel_y = 8
 	},
 /turf/open/floor/carpet/royalblue,
@@ -9722,13 +9892,13 @@
 /obj/structure/table/wood{
 	alpha = 0;
 	density = 0;
-	mouse_opacity = 0;
-	resistance_flags = 115
+	resistance_flags = 115;
+	mouse_opacity = 0
 	},
 /obj/structure/railing{
 	alpha = 0;
-	dir = 8;
-	name = "hidden"
+	name = "hidden";
+	dir = 8
 	},
 /obj/effect/turf_decal/tile/blue{
 	color = "#5269e9"
@@ -9779,9 +9949,9 @@
 /area/centcom)
 "Or" = (
 /obj/structure/closet{
-	anchored = 1;
 	icon_state = "hos";
-	name = "hos closet"
+	name = "hos closet";
+	anchored = 1
 	},
 /obj/item/folder{
 	pixel_y = 2
@@ -9826,18 +9996,18 @@
 /obj/structure/table/wood{
 	alpha = 0;
 	density = 0;
-	mouse_opacity = 0;
-	resistance_flags = 115
+	resistance_flags = 115;
+	mouse_opacity = 0
 	},
 /obj/item/kirbyplants{
-	anchored = 1;
 	icon_state = "plant-08";
+	pixel_y = 20;
 	pixel_x = -8;
-	pixel_y = 20
+	anchored = 1
 	},
 /obj/machinery/vending/cola{
-	pixel_x = 16;
-	pixel_y = 19
+	pixel_y = 19;
+	pixel_x = 16
 	},
 /obj/machinery/light{
 	dir = 8;
@@ -9855,8 +10025,8 @@
 	dir = 4
 	},
 /obj/machinery/door/poddoor{
-	id = "highsec_inside";
-	name = "High Security Blast Door"
+	name = "High Security Blast Door";
+	id = "centralh1"
 	},
 /turf/open/floor/facility/halls,
 /area/centcom)
@@ -9872,12 +10042,12 @@
 /obj/item/stack/spacecash/c1000,
 /obj/item/stack/spacecash/c1000,
 /obj/structure/closet{
-	anchored = 1;
 	icon_state = "rd";
+	req_access_txt = "7;19";
 	name = "rd closet";
-	req_access_txt = "7;19"
+	anchored = 1
 	},
-/obj/item/gun/ego_gun/city/limbuspistol,
+/obj/item/gun/ego_gun/city/limbusautopistol,
 /turf/open/floor/carpet/green,
 /area/centcom)
 "OB" = (
@@ -9890,6 +10060,12 @@
 /obj/structure/window/reinforced/spawner,
 /turf/open/floor/carpet/blue,
 /area/centcom)
+"OC" = (
+/obj/effect/mapping_helpers/simple_pipes,
+/obj/structure/lattice/catwalk,
+/obj/structure/cable,
+/turf/open/floor/plating,
+/area/centcom)
 "OJ" = (
 /obj/effect/turf_decal/trimline/blue/filled/line{
 	dir = 4
@@ -9898,8 +10074,8 @@
 /area/centcom)
 "OK" = (
 /obj/structure/railing/corner{
-	color = "#9cadc7";
-	dir = 4
+	dir = 4;
+	color = "#9cadc7"
 	},
 /turf/open/floor/plasteel/stairs,
 /area/centcom)
@@ -9951,11 +10127,6 @@
 	pixel_y = 7
 	},
 /obj/item/storage/box/donkpockets,
-/obj/structure/window/reinforced/spawner{
-	color = "#000000";
-	dir = 8;
-	opacity = 1
-	},
 /turf/open/floor/mineral/titanium/tiled/purple,
 /area/centcom)
 "OR" = (
@@ -9979,11 +10150,6 @@
 	dir = 4
 	},
 /obj/machinery/light,
-/obj/structure/window/reinforced/spawner{
-	color = "#000000";
-	dir = 8;
-	opacity = 1
-	},
 /turf/open/floor/mineral/titanium/tiled/blue,
 /area/centcom)
 "OW" = (
@@ -10080,14 +10246,14 @@
 	dir = 4
 	},
 /obj/structure/filingcabinet/chestdrawer{
-	density = 0;
+	pixel_y = 16;
 	pixel_x = 4;
-	pixel_y = 16
+	density = 0
 	},
 /obj/structure/filingcabinet/filingcabinet{
-	density = 0;
+	pixel_y = 16;
 	pixel_x = -10;
-	pixel_y = 16
+	density = 0
 	},
 /turf/open/floor/mineral/titanium,
 /area/centcom)
@@ -10189,6 +10355,13 @@
 	pixel_y = 19
 	},
 /turf/open/floor/plasteel/white,
+/area/centcom)
+"PS" = (
+/obj/effect/turf_decal/siding/red/corner{
+	dir = 1;
+	color = "#440000"
+	},
+/turf/open/floor/mineral/plastitanium,
 /area/centcom)
 "PT" = (
 /obj/structure/cable/layer1,
@@ -10401,13 +10574,30 @@
 	},
 /turf/open/floor/carpet/green,
 /area/centcom)
+"QE" = (
+/obj/machinery/door/airlock/highsecurity{
+	name = "Cell 2 observation room"
+	},
+/turf/open/floor/facility/halls,
+/area/centcom)
 "QH" = (
 /obj/effect/landmark/latejoin,
 /obj/machinery/light/floor{
-	pixel_x = -18;
-	pixel_y = 18
+	pixel_y = 18;
+	pixel_x = -18
 	},
 /turf/open/indestructible/crystal_floor,
+/area/centcom)
+"QJ" = (
+/obj/machinery/light{
+	dir = 8;
+	pixel_x = -9;
+	pixel_y = 4
+	},
+/obj/effect/turf_decal/siding/blue/corner{
+	dir = 4
+	},
+/turf/open/floor/mineral/plastitanium,
 /area/centcom)
 "QL" = (
 /obj/structure/filingcabinet,
@@ -10446,10 +10636,10 @@
 /area/centcom)
 "QU" = (
 /obj/structure/chair/comfy/shuttle{
-	color = "#9cadc7";
-	desc = "A comfortable seat. Since its custom made, its quite expensive";
 	dir = 8;
-	name = "fancy chair"
+	color = "#9cadc7";
+	name = "fancy chair";
+	desc = "A comfortable seat. Since its custom made, its quite expensive"
 	},
 /turf/open/floor/carpet/executive,
 /area/centcom)
@@ -10463,6 +10653,12 @@
 	dir = 8
 	},
 /turf/open/floor/mineral/plastitanium/red,
+/area/centcom)
+"Ra" = (
+/obj/machinery/door/airlock/highsecurity{
+	name = "Cell 1 observation room"
+	},
+/turf/open/floor/facility/halls,
 /area/centcom)
 "Rb" = (
 /obj/structure/railing{
@@ -10560,15 +10756,15 @@
 	color = "#9cadc7"
 	},
 /obj/item/blackbox{
-	anchored = 1;
-	pixel_y = 6
+	pixel_y = 6;
+	anchored = 1
 	},
 /turf/open/floor/circuit,
 /area/centcom)
 "Rz" = (
 /obj/structure/railing/corner{
-	color = "#9cadc7";
-	dir = 1
+	dir = 1;
+	color = "#9cadc7"
 	},
 /obj/effect/turf_decal/siding/white{
 	dir = 1
@@ -10613,17 +10809,20 @@
 /turf/open/floor/pod/light,
 /area/centcom)
 "RJ" = (
-/obj/effect/turf_decal/siding/wideplating/dark{
-	dir = 1
+/obj/structure/filingcabinet,
+/obj/structure/filingcabinet{
+	pixel_x = 10;
+	resistance_flags = 115
 	},
-/obj/machinery/light/floor{
-	pixel_y = 12
+/obj/structure/filingcabinet{
+	pixel_x = -10;
+	resistance_flags = 115
 	},
 /obj/structure/sign/logo{
-	icon_state = "limbus_sign 3,0";
+	icon_state = "limbus_sign 2,0";
 	pixel_y = 32
 	},
-/turf/open/floor/plasteel/dark,
+/turf/open/floor/facility/dark,
 /area/centcom)
 "RM" = (
 /obj/machinery/door/window,
@@ -10759,13 +10958,11 @@
 	pixel_x = 3;
 	pixel_y = 3
 	},
-/obj/structure/window/reinforced/spawner{
-	color = "#000000";
-	dir = 8;
-	opacity = 1
-	},
 /obj/effect/turf_decal/tile/purple{
 	color = "#bf48b1";
+	dir = 8
+	},
+/obj/structure/window/reinforced/spawner{
 	dir = 8
 	},
 /turf/open/floor/mineral/titanium/tiled/purple,
@@ -10826,7 +11023,7 @@
 /obj/structure/table/reinforced{
 	color = "#9cadc7"
 	},
-/obj/machinery/button{
+/obj/machinery/button/door/indestructible{
 	id = "LSZ Containment Door #2"
 	},
 /turf/open/floor/mineral/titanium/blue,
@@ -10876,10 +11073,6 @@
 	},
 /obj/effect/turf_decal/stripes/white/corner{
 	color = "#5269e9"
-	},
-/obj/structure/window/reinforced/spawner{
-	color = "#000000";
-	opacity = 1
 	},
 /turf/open/floor/mineral/titanium/tiled,
 /area/centcom)
@@ -11047,6 +11240,9 @@
 	view_range = 13
 	},
 /obj/effect/landmark/department_center,
+/obj/effect/turf_decal/arrows/red{
+	dir = 4
+	},
 /turf/open/floor/mineral/titanium/tiled,
 /area/centcom)
 "Tp" = (
@@ -11058,15 +11254,12 @@
 	armor = list("melee" = 20, "bullet" = 100, "laser" = 100, "energy" = 100, "bomb" = 50, "bio" = 100, "rad" = 100, "fire" = 100, "acid" = 70);
 	max_integrity = 1800
 	},
-/obj/structure/window/reinforced/fulltile{
-	armor = list("melee" = 30, "bullet" = 30, "laser" = 20, "energy" = 20, "bomb" = 10, "bio" = 100, "rad" = 100, "fire" = 80, "acid" = 70);
-	max_integrity = 500
-	},
+/obj/effect/spawner/structure/window/reinforced,
 /turf/open/floor/facility/dark,
 /area/centcom)
 "Tt" = (
 /obj/structure/sign/logo{
-	icon_state = "limbus_sign 1,0";
+	icon_state = "limbus_sign 2,0";
 	pixel_y = 32
 	},
 /turf/open/floor/facility/dark,
@@ -11084,8 +11277,8 @@
 /obj/item/restraints/legcuffs/bola/tactical,
 /obj/item/flashlight/seclite,
 /obj/structure/closet{
-	anchored = 1;
-	name = "high-security officer equipment"
+	name = "high-security officer equipment";
+	anchored = 1
 	},
 /obj/machinery/light{
 	dir = 8;
@@ -11193,27 +11386,27 @@
 /area/centcom)
 "TW" = (
 /obj/effect/decal/cleanable/crayon{
-	color = "#5269e9";
 	icon_state = "g";
 	pixel_x = -16;
+	color = "#5269e9";
 	pixel_y = -13
 	},
 /obj/effect/decal/cleanable/crayon{
-	color = "#5269e9";
 	icon_state = "o";
 	pixel_x = -5;
+	color = "#5269e9";
 	pixel_y = -14
 	},
 /obj/effect/decal/cleanable/crayon{
-	color = "#5269e9";
 	icon_state = "e";
 	pixel_x = 7;
+	color = "#5269e9";
 	pixel_y = -14
 	},
 /obj/effect/decal/cleanable/crayon{
-	color = "#5269e9";
 	icon_state = "s";
 	pixel_x = 18;
+	color = "#5269e9";
 	pixel_y = -14
 	},
 /obj/machinery/camera{
@@ -11294,18 +11487,18 @@
 /obj/structure/table/wood{
 	alpha = 0;
 	density = 0;
-	mouse_opacity = 0;
-	resistance_flags = 115
+	resistance_flags = 115;
+	mouse_opacity = 0
 	},
 /obj/item/toy/figure/warden{
 	pixel_x = -11;
 	pixel_y = -1
 	},
 /obj/item/kirbyplants{
-	anchored = 1;
 	icon_state = "plant-11";
 	pixel_x = 4;
-	pixel_y = 2
+	pixel_y = 2;
+	anchored = 1
 	},
 /turf/closed/indestructible/reinforced{
 	color = "#9cadc7"
@@ -11380,10 +11573,11 @@
 /turf/open/floor/pod/dark,
 /area/centcom)
 "UD" = (
-/obj/machinery/button{
-	id = "cmo office";
+/obj/machinery/button/door/indestructible{
+	pixel_y = 12;
 	pixel_x = -23;
-	pixel_y = 7
+	id = "cmo office";
+	name = "cmo office lockdown button"
 	},
 /turf/open/floor/carpet/blue,
 /area/centcom)
@@ -11425,8 +11619,8 @@
 "UJ" = (
 /obj/structure/railing{
 	alpha = 0;
-	dir = 4;
-	name = "hidden"
+	name = "hidden";
+	dir = 4
 	},
 /obj/machinery/computer/libraryconsole{
 	pixel_y = 5
@@ -11486,8 +11680,8 @@
 	dir = 4
 	},
 /obj/structure/window/reinforced/spawner{
-	color = "#000000";
 	dir = 4;
+	color = "#000000";
 	opacity = 1
 	},
 /turf/open/floor/plasteel/white,
@@ -11534,8 +11728,8 @@
 /area/centcom)
 "UX" = (
 /obj/effect/turf_decal/stripes/white/corner{
-	color = "#5269e9";
-	dir = 4
+	dir = 4;
+	color = "#5269e9"
 	},
 /turf/open/floor/plasteel/white,
 /area/centcom)
@@ -11574,8 +11768,8 @@
 	anchored = 1;
 	can_buckle = 0;
 	dir = 8;
-	pixel_x = -8;
-	pixel_y = 4
+	pixel_y = 4;
+	pixel_x = -8
 	},
 /turf/open/floor/mineral/titanium/blue,
 /area/centcom)
@@ -11612,8 +11806,8 @@
 /obj/structure/cable,
 /obj/machinery/light/small{
 	dir = 4;
-	pixel_x = 8;
-	pixel_y = 9
+	pixel_y = 9;
+	pixel_x = 8
 	},
 /turf/open/floor/plating,
 /area/centcom)
@@ -11636,16 +11830,16 @@
 	resistance_flags = 115
 	},
 /obj/structure/sign/logo{
-	icon_state = "limbus_sign 3,0";
+	icon_state = "limbus_sign 1,0";
 	pixel_y = 32
 	},
-/turf/open/floor/carpet/black,
+/turf/open/floor/facility/dark,
 /area/centcom)
 "Vw" = (
 /obj/machinery/conveyor/inverted{
 	dir = 9
 	},
-/turf/open/floor/mineral/titanium/tiled,
+/turf/open/floor/plasteel,
 /area/centcom)
 "Vy" = (
 /obj/machinery/telecomms/server/presets/engineering,
@@ -11654,13 +11848,14 @@
 /area/facility_hallway/north)
 "VB" = (
 /obj/structure/rack,
+/obj/item/ego_weapon/city/lccb_bat,
 /obj/item/barrier_taperoll/police,
 /obj/machinery/light{
 	dir = 8;
 	pixel_x = -9;
 	pixel_y = 4
 	},
-/obj/item/gun/ego_gun/city/limbussmg,
+/obj/item/gun/ego_gun/city/limbuspistol,
 /turf/open/floor/mineral/titanium/blue,
 /area/centcom)
 "VC" = (
@@ -11672,21 +11867,21 @@
 	dir = 1
 	},
 /obj/structure/riser/dark{
-	layer = 2.95;
-	pixel_y = 10
+	pixel_y = 10;
+	layer = 2.95
 	},
 /turf/open/floor/mineral/plastitanium,
 /area/centcom)
 "VD" = (
 /obj/structure/table/abductor,
 /obj/item/stamp/rd{
-	pixel_x = 10;
-	pixel_y = 11
+	pixel_y = 11;
+	pixel_x = 10
 	},
 /obj/item/reagent_containers/food/drinks/mug/tea{
-	desc = "Tea fit for an arbiter, keep calm and drink.";
+	pixel_x = 11;
 	name = "arbiter tea";
-	pixel_x = 11
+	desc = "Tea fit for an arbiter, keep calm and drink."
 	},
 /turf/open/floor/carpet/purple,
 /area/centcom)
@@ -11724,17 +11919,13 @@
 /obj/structure/table/reinforced{
 	color = "#9cadc7"
 	},
-/obj/structure/window/reinforced/spawner{
-	color = "#000000";
-	dir = 8;
-	opacity = 1
-	},
-/obj/structure/window/reinforced/spawner{
-	color = "#000000";
-	dir = 1;
-	opacity = 1
-	},
 /obj/item/flashlight/lamp,
+/obj/structure/window/reinforced/spawner{
+	dir = 8
+	},
+/obj/structure/window/reinforced/spawner{
+	dir = 1
+	},
 /turf/open/floor/mineral/titanium/tiled/purple,
 /area/centcom)
 "VJ" = (
@@ -11779,6 +11970,7 @@
 /turf/open/floor/mineral/titanium/blue,
 /area/centcom)
 "VT" = (
+/obj/structure/closet,
 /obj/item/folder,
 /obj/item/folder,
 /obj/item/folder,
@@ -11794,8 +11986,7 @@
 	icon_state = "limbus_sign 0,0";
 	pixel_y = 32
 	},
-/obj/structure/closet/cabinet,
-/turf/open/floor/carpet/black,
+/turf/open/floor/facility/dark,
 /area/centcom)
 "VV" = (
 /obj/structure/table/reinforced{
@@ -11831,8 +12022,8 @@
 /obj/structure/plasticflaps/opaque,
 /obj/structure/fluff/big_chain{
 	alpha = 0;
-	mouse_opacity = 0;
-	resistance_flags = 115
+	resistance_flags = 115;
+	mouse_opacity = 0
 	},
 /turf/open/floor/plasteel,
 /area/centcom)
@@ -11899,6 +12090,20 @@
 	},
 /obj/item/pen/fountain/captain{
 	pixel_y = 6
+	},
+/turf/open/floor/mineral/plastitanium,
+/area/centcom)
+"Ws" = (
+/obj/structure/table/wood{
+	alpha = 0;
+	density = 0;
+	resistance_flags = 115;
+	mouse_opacity = 0
+	},
+/obj/item/kirbyplants{
+	icon_state = "plant-12";
+	pixel_x = -10;
+	anchored = 1
 	},
 /turf/open/floor/mineral/plastitanium,
 /area/centcom)
@@ -12004,8 +12209,8 @@
 	dir = 1
 	},
 /obj/machinery/vending/cola/red{
-	density = 0;
-	pixel_y = 19
+	pixel_y = 19;
+	density = 0
 	},
 /turf/open/floor/plasteel/white,
 /area/centcom)
@@ -12096,8 +12301,8 @@
 /area/centcom)
 "Xl" = (
 /obj/machinery/door/poddoor{
-	id = "LSZ Containment Door #6";
-	name = "LSZ Containment Door #6"
+	name = "LSZ Containment Door #6";
+	id = "LSZ Containment Door #6"
 	},
 /turf/open/floor/facility/halls,
 /area/centcom)
@@ -12145,8 +12350,8 @@
 	dir = 4
 	},
 /obj/effect/turf_decal/stripes/white/corner{
-	color = "FF8C00";
-	dir = 4
+	dir = 4;
+	color = "FF8C00"
 	},
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/facility/white,
@@ -12213,8 +12418,8 @@
 /area/centcom)
 "XN" = (
 /obj/structure/railing/corner{
-	color = "#9cadc7";
-	dir = 4
+	dir = 4;
+	color = "#9cadc7"
 	},
 /obj/effect/turf_decal/siding/white{
 	dir = 1
@@ -12246,8 +12451,8 @@
 /area/facility_hallway/north)
 "XW" = (
 /obj/structure/chair/comfy/shuttle{
-	desc = "A comfortable seat. Since its custom made, its quite expensive";
-	name = "fancy chair"
+	name = "fancy chair";
+	desc = "A comfortable seat. Since its custom made, its quite expensive"
 	},
 /turf/open/floor/mineral/titanium/tiled,
 /area/centcom)
@@ -12306,13 +12511,6 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/centcom)
-"Yq" = (
-/obj/structure/sign/logo{
-	icon_state = "limbus_sign 2,0";
-	pixel_y = 32
-	},
-/turf/open/floor/facility/dark,
-/area/centcom)
 "Yt" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 8
@@ -12326,13 +12524,17 @@
 /obj/machinery/status_display{
 	pixel_y = 32
 	},
+/obj/effect/turf_decal/siding/blue,
+/obj/effect/turf_decal/stripes/white/line{
+	color = "#5269e9"
+	},
 /turf/open/floor/mineral/plastitanium,
 /area/centcom)
 "Yx" = (
 /obj/structure/table/glass,
 /obj/item/storage/box/syringes{
-	pixel_x = -9;
-	pixel_y = 11
+	pixel_y = 11;
+	pixel_x = -9
 	},
 /obj/item/storage/box/syringes{
 	pixel_x = -9
@@ -12357,8 +12559,8 @@
 	color = "#9cadc7"
 	},
 /obj/structure/extinguisher_cabinet{
-	pixel_x = -8;
-	pixel_y = 27
+	pixel_y = 27;
+	pixel_x = -8
 	},
 /obj/structure/window/reinforced/spawner{
 	dir = 4
@@ -12464,11 +12666,6 @@
 /obj/structure/window/reinforced/spawner{
 	dir = 1
 	},
-/obj/structure/window/reinforced/spawner{
-	color = "#000000";
-	dir = 4;
-	opacity = 1
-	},
 /turf/open/floor/mineral/titanium/tiled/purple,
 /area/centcom)
 "Zg" = (
@@ -12499,8 +12696,8 @@
 "Zl" = (
 /obj/machinery/door/airlock/highsecurity{
 	name = "asset protection office";
-	opacity = 0;
-	req_access_txt = "20"
+	req_access_txt = "20";
+	opacity = 0
 	},
 /obj/machinery/door/poddoor/preopen{
 	id = "assetprotection2"
@@ -12532,11 +12729,20 @@
 	},
 /turf/open/floor/mineral/titanium/tiled,
 /area/centcom)
+"Zw" = (
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/obj/effect/turf_decal/arrows/red{
+	dir = 8
+	},
+/turf/open/floor/mineral/titanium/tiled,
+/area/centcom)
 "Zy" = (
 /obj/structure/chair/comfy/shuttle{
+	name = "fancy chair";
 	desc = "A comfortable seat. Since its custom made, its quite expensive";
-	dir = 8;
-	name = "fancy chair"
+	dir = 8
 	},
 /turf/open/floor/mineral/titanium/tiled,
 /area/centcom)
@@ -12546,9 +12752,14 @@
 /area/centcom)
 "ZA" = (
 /obj/machinery/door/airlock/security/glass{
-	name = "low-security meeting room"
+	name = "low-security meeting room";
+	req_access_txt = "1"
 	},
 /turf/open/floor/facility/halls,
+/area/centcom)
+"ZC" = (
+/obj/effect/turf_decal/siding/blue/corner,
+/turf/open/floor/mineral/plastitanium,
 /area/centcom)
 "ZG" = (
 /obj/effect/turf_decal/trimline/red/filled/line{
@@ -12587,7 +12798,7 @@
 /obj/structure/table/reinforced{
 	color = "#9cadc7"
 	},
-/obj/machinery/button{
+/obj/machinery/button/door/indestructible{
 	id = "LSZ Containment Door #6"
 	},
 /turf/open/floor/mineral/titanium/blue,
@@ -12614,9 +12825,9 @@
 /area/centcom)
 "ZT" = (
 /obj/structure/closet{
-	anchored = 1;
 	name = "high-security officer equipment";
-	pixel_y = 8
+	pixel_y = 8;
+	anchored = 1
 	},
 /obj/structure/window/reinforced/spawner{
 	dir = 8
@@ -12682,19 +12893,19 @@
 /area/centcom)
 "ZZ" = (
 /obj/effect/decal/cleanable/crayon{
-	color = "#5269e9";
 	icon_state = "d";
-	pixel_x = 15
+	pixel_x = 15;
+	color = "#5269e9"
 	},
 /obj/effect/decal/cleanable/crayon{
-	color = "#5269e9";
 	icon_state = "e";
-	pixel_x = 3
+	pixel_x = 3;
+	color = "#5269e9"
 	},
 /obj/effect/decal/cleanable/crayon{
-	color = "#5269e9";
 	icon_state = "m";
-	pixel_x = -12
+	pixel_x = -12;
+	color = "#5269e9"
 	},
 /obj/structure/disposalpipe/segment{
 	dir = 6
@@ -29532,7 +29743,7 @@ LD
 LD
 LD
 uT
-nY
+ap
 Wv
 Wv
 Sv
@@ -30043,7 +30254,7 @@ uT
 ap
 ap
 ap
-nY
+zV
 ap
 ap
 ap
@@ -30818,7 +31029,7 @@ Sf
 kY
 tO
 ap
-zV
+SU
 Wv
 oI
 ap
@@ -31076,7 +31287,7 @@ fe
 mv
 ap
 ap
-pS
+Ra
 ap
 ap
 nM
@@ -31088,7 +31299,7 @@ nM
 nM
 ap
 ap
-nY
+ap
 ap
 Cs
 Cs
@@ -31306,7 +31517,7 @@ Cs
 Cs
 Cs
 ap
-yr
+cZ
 ks
 ks
 ks
@@ -31326,7 +31537,7 @@ ks
 ks
 ks
 ks
-ks
+FS
 ap
 nT
 lX
@@ -31564,7 +31775,7 @@ Cs
 Cs
 ap
 yr
-ks
+IW
 yr
 yr
 sO
@@ -31583,14 +31794,14 @@ yr
 yr
 yr
 yr
-ks
+aA
 ap
 AR
 To
 GG
 GG
 GG
-GG
+Kx
 GG
 GG
 GG
@@ -31821,7 +32032,7 @@ Cs
 Cs
 ap
 yr
-ks
+uT
 ap
 ap
 ap
@@ -31840,7 +32051,7 @@ ap
 ap
 ap
 yr
-ks
+aA
 ap
 AR
 zo
@@ -32078,7 +32289,7 @@ Cs
 Cs
 ap
 yr
-ks
+uT
 ap
 Cs
 Cs
@@ -32097,7 +32308,7 @@ Cs
 Cs
 ap
 lB
-ks
+aA
 ap
 ME
 jb
@@ -32111,7 +32322,7 @@ ap
 ap
 ap
 ap
-nY
+ap
 ap
 ap
 mQ
@@ -32335,7 +32546,7 @@ Cs
 Cs
 ap
 na
-ks
+uT
 ap
 Cs
 Cs
@@ -32354,7 +32565,7 @@ Cs
 Cs
 ap
 yr
-ks
+aA
 ap
 Tk
 Nn
@@ -32592,7 +32803,7 @@ Cs
 Cs
 ap
 yr
-ks
+uT
 ap
 Cs
 Cs
@@ -32611,7 +32822,7 @@ Cs
 Cs
 ap
 na
-ks
+aA
 ap
 AR
 zo
@@ -32849,7 +33060,7 @@ Cs
 Cs
 ap
 yr
-ks
+uT
 ap
 Cs
 Cs
@@ -32868,7 +33079,7 @@ Cs
 Cs
 ap
 yr
-ks
+aA
 ap
 AR
 zo
@@ -32882,7 +33093,7 @@ ap
 ap
 ap
 ap
-bT
+LD
 Ho
 ap
 AR
@@ -33106,7 +33317,7 @@ Cs
 Cs
 ap
 yr
-ks
+uT
 ap
 Cs
 Cs
@@ -33125,7 +33336,7 @@ Cs
 Cs
 ap
 yr
-ks
+aA
 ap
 Td
 zo
@@ -33139,7 +33350,7 @@ Cs
 Cs
 Cs
 ap
-bT
+LD
 Ho
 ap
 AR
@@ -33363,7 +33574,7 @@ Cs
 Cs
 ap
 yr
-ks
+uT
 ap
 Cs
 Cs
@@ -33382,8 +33593,8 @@ Cs
 Cs
 ap
 yr
-ks
-nY
+aA
+ap
 AR
 Zz
 AR
@@ -33396,7 +33607,7 @@ Cs
 Cs
 Cs
 ap
-bT
+LD
 Ho
 ap
 Td
@@ -33620,7 +33831,7 @@ Cs
 Cs
 ap
 lB
-ks
+uT
 ap
 Cs
 Cs
@@ -33639,7 +33850,7 @@ Cs
 Cs
 ap
 yr
-ks
+aA
 ap
 AR
 zo
@@ -33653,7 +33864,7 @@ Cs
 Cs
 Cs
 ap
-bT
+LD
 Ho
 ap
 AR
@@ -33877,7 +34088,7 @@ Cs
 Cs
 ap
 yr
-ks
+uT
 ap
 Cs
 Cs
@@ -33896,7 +34107,7 @@ Cs
 Cs
 ap
 yr
-ks
+aA
 ap
 AR
 zo
@@ -33910,7 +34121,7 @@ Cs
 Cs
 Cs
 ap
-bT
+LD
 Ho
 ap
 AR
@@ -34134,7 +34345,7 @@ Cs
 Cs
 ap
 yr
-ks
+uT
 ap
 Cs
 Cs
@@ -34153,7 +34364,7 @@ Cs
 Cs
 ap
 yr
-ks
+aA
 ap
 Td
 zo
@@ -34167,7 +34378,7 @@ Cs
 Cs
 Cs
 ap
-bT
+LD
 Ho
 ap
 AR
@@ -34391,7 +34602,7 @@ Cs
 Cs
 ap
 yr
-ks
+uT
 ap
 Cs
 Cs
@@ -34410,7 +34621,7 @@ Cs
 Cs
 ap
 yr
-ks
+aA
 ap
 Hu
 zo
@@ -34424,7 +34635,7 @@ Cs
 Cs
 Cs
 ap
-bT
+LD
 Ho
 ap
 Ge
@@ -34648,7 +34859,7 @@ Cs
 Cs
 ap
 na
-ks
+uT
 ap
 Cs
 Cs
@@ -34667,7 +34878,7 @@ Cs
 Cs
 ap
 yr
-ks
+aA
 ap
 AR
 zo
@@ -34681,7 +34892,7 @@ Cs
 Cs
 Cs
 ap
-Cj
+br
 Ho
 ap
 AR
@@ -34905,7 +35116,7 @@ Cs
 Cs
 ap
 yr
-ks
+uT
 ap
 Cs
 Cs
@@ -34924,7 +35135,7 @@ Cs
 Cs
 ap
 na
-ks
+aA
 ap
 AR
 zo
@@ -34938,7 +35149,7 @@ Cs
 Cs
 Cs
 ap
-bT
+LD
 Nc
 ap
 AR
@@ -35162,7 +35373,7 @@ Cs
 Cs
 ap
 yr
-ks
+uT
 ap
 Cs
 Cs
@@ -35181,12 +35392,12 @@ Cs
 Cs
 ap
 yr
-ks
+aA
 ap
 Td
 zo
 AR
-nY
+ap
 LD
 Ho
 ap
@@ -35195,7 +35406,7 @@ Cs
 Cs
 Cs
 ap
-bT
+LD
 Ho
 ap
 AR
@@ -35419,7 +35630,7 @@ Cs
 Cs
 ap
 yr
-ks
+uT
 ap
 Cs
 Cs
@@ -35438,7 +35649,7 @@ Cs
 Cs
 ap
 lB
-ks
+aA
 ap
 AR
 gE
@@ -35452,7 +35663,7 @@ Cs
 Cs
 Cs
 ap
-bT
+LD
 Ho
 ap
 Td
@@ -35462,7 +35673,7 @@ ap
 Cs
 Cs
 Cs
-Cs
+rQ
 Cs
 Cs
 Cs
@@ -35676,7 +35887,7 @@ Cs
 ap
 ap
 yr
-ks
+uT
 ap
 ap
 ap
@@ -35695,7 +35906,7 @@ ap
 ap
 ap
 yr
-ks
+aA
 ap
 AR
 zo
@@ -35709,7 +35920,7 @@ Cs
 Cs
 Cs
 ap
-bT
+LD
 Ho
 ap
 AR
@@ -35719,7 +35930,7 @@ ap
 Cs
 Cs
 Cs
-Cs
+dF
 Cs
 Cs
 Cs
@@ -35933,7 +36144,7 @@ Cs
 ap
 yr
 yr
-AM
+OC
 LD
 yr
 yr
@@ -35952,7 +36163,7 @@ yr
 yr
 yr
 yr
-ks
+aA
 ap
 AR
 zo
@@ -35966,7 +36177,7 @@ Cs
 Cs
 Cs
 ap
-bT
+LD
 Ho
 ap
 AR
@@ -36188,7 +36399,7 @@ Cs
 Cs
 Cs
 ap
-yr
+cZ
 ks
 ks
 JS
@@ -36209,7 +36420,7 @@ ks
 ks
 ks
 JS
-ks
+FS
 ap
 vT
 jb
@@ -36223,7 +36434,7 @@ Cs
 Cs
 Cs
 ap
-bT
+LD
 Ho
 ap
 AR
@@ -36458,11 +36669,11 @@ ap
 ap
 ap
 LD
-ks
+uT
 ap
 ap
 ap
-nY
+ap
 ap
 ap
 ap
@@ -36480,7 +36691,7 @@ Cs
 Cs
 Cs
 ap
-bT
+LD
 Ho
 ap
 HC
@@ -36737,7 +36948,7 @@ Cs
 Cs
 Cs
 ap
-bT
+LD
 Ho
 ap
 DH
@@ -36973,7 +37184,7 @@ Cs
 ap
 LD
 uT
-nY
+zV
 zo
 zo
 gE
@@ -36983,9 +37194,9 @@ zo
 zo
 zo
 zo
-vQ
+Bc
 AR
-ap
+zV
 LD
 Ho
 ap
@@ -36994,11 +37205,11 @@ Cs
 Cs
 Cs
 ap
-bT
+LD
 Ho
 ap
 AR
-tn
+Zw
 AR
 ap
 Cs
@@ -37251,7 +37462,7 @@ Cs
 Cs
 Cs
 ap
-Cj
+br
 Ho
 ap
 AR
@@ -37497,7 +37708,7 @@ Zd
 Zd
 ap
 ap
-pS
+QE
 ap
 ap
 LD
@@ -37508,7 +37719,7 @@ ap
 ap
 ap
 ap
-bT
+LD
 Ho
 ap
 jP
@@ -37755,7 +37966,7 @@ Zd
 ap
 Co
 gQ
-cZ
+Wv
 ap
 bT
 Cp
@@ -37766,7 +37977,7 @@ bT
 bT
 bT
 bT
-Ho
+xo
 ap
 AR
 tn
@@ -38026,7 +38237,7 @@ Dz
 uT
 ap
 AR
-tn
+Zw
 Jf
 ap
 nU
@@ -38549,7 +38760,7 @@ aj
 AR
 UE
 gL
-um
+PS
 yX
 kK
 Pi
@@ -39054,7 +39265,7 @@ NN
 zD
 ap
 AR
-tn
+Zw
 qz
 pS
 SI
@@ -39313,7 +39524,7 @@ ap
 Wz
 AZ
 Rt
-mv
+Hy
 QX
 qc
 ap
@@ -39570,7 +39781,7 @@ ap
 Bm
 Ox
 Bm
-ap
+Hy
 GS
 AE
 ap
@@ -39811,7 +40022,7 @@ ap
 ap
 ap
 ap
-tX
+ap
 ap
 LD
 uT
@@ -39827,7 +40038,7 @@ ap
 Iu
 Cz
 Nx
-mv
+Hy
 Oe
 Tw
 ap
@@ -40084,7 +40295,7 @@ ap
 tS
 wA
 tS
-ap
+Hy
 GS
 AE
 ap
@@ -40341,7 +40552,7 @@ ap
 cb
 UK
 rG
-mv
+Hy
 iG
 qc
 ap
@@ -41857,13 +42068,13 @@ EO
 gl
 ap
 Li
-AR
-nT
+ZC
+QJ
 LZ
 nV
 ai
-nT
-AR
+Ai
+DS
 AR
 ap
 gD
@@ -41881,7 +42092,7 @@ gN
 Rp
 kF
 KW
-tn
+Zw
 KW
 ap
 YD
@@ -42115,11 +42326,11 @@ kQ
 ap
 xr
 VS
-KW
+Jz
 ff
 EA
 hs
-KW
+Bv
 LI
 cL
 ap
@@ -42372,11 +42583,11 @@ iE
 ap
 Yu
 Qq
-KW
+Jz
 KW
 wj
 KW
-KW
+Bv
 qP
 oh
 ap
@@ -42391,7 +42602,7 @@ Ch
 jx
 bd
 Ll
-mv
+lL
 yM
 kF
 KW
@@ -42629,11 +42840,11 @@ iE
 ap
 sB
 VS
+Jz
 KW
 KW
 KW
-KW
-KW
+Bv
 LI
 cL
 ap
@@ -42648,7 +42859,7 @@ nF
 qN
 zd
 Mn
-mv
+lL
 yM
 kF
 KW
@@ -42903,13 +43114,13 @@ ap
 Xg
 bX
 VJ
-mv
-mv
+lL
+lL
 ap
 hD
 Sn
 KW
-tn
+Zw
 bk
 ap
 xu
@@ -43145,7 +43356,7 @@ cP
 KW
 KW
 KW
-KW
+zo
 KW
 KW
 cP
@@ -43169,7 +43380,7 @@ KW
 tn
 KW
 ap
-jZ
+xD
 pb
 Cg
 QH
@@ -43394,34 +43605,34 @@ zo
 zo
 dd
 kw
-zo
+KW
 zo
 hc
+tX
 zo
 zo
 zo
-zo
-vQ
-zo
+rv
 zo
 zo
 zo
+tX
 zo
 zo
 zo
-zo
+tX
 zo
 Ya
 zo
+tX
 zo
 zo
 zo
+tX
 zo
 zo
 zo
-zo
-zo
-zo
+tX
 zo
 Gz
 KW
@@ -43643,13 +43854,13 @@ Cs
 Cs
 Cs
 ap
-zo
-zo
-zo
-CV
-zo
-zo
-zo
+xz
+xz
+xz
+zQ
+xz
+xz
+xz
 ap
 vL
 KW
@@ -43683,7 +43894,7 @@ KW
 tn
 KW
 ap
-RJ
+jZ
 Uf
 Cg
 CS
@@ -43901,12 +44112,12 @@ Cs
 Cs
 ap
 CV
-zo
+Lo
 Mg
-zo
-zo
+Lo
+Lo
 CV
-zo
+Lo
 ap
 ap
 ON
@@ -43937,7 +44148,7 @@ ST
 sK
 HG
 KW
-tn
+qe
 bk
 ap
 Wd
@@ -44157,13 +44368,13 @@ Cs
 Cs
 Cs
 ap
-zo
-zo
-zo
+Lo
+Lo
+Lo
 cy
-zo
-zo
-zo
+Lo
+Lo
+Lo
 ap
 VT
 Rm
@@ -44419,10 +44630,10 @@ KD
 sy
 Vw
 CV
-zo
+Lo
 Mg
 ap
-iC
+Vu
 Rm
 ar
 Aa
@@ -44671,15 +44882,15 @@ Cs
 Cs
 Cs
 ap
-zo
+Lo
 hf
-zo
+Lo
 gj
-zo
-zo
-zo
+Lo
+Lo
+Lo
 ap
-zQ
+RJ
 Rm
 cT
 zb
@@ -44928,15 +45139,15 @@ Cs
 Cs
 Cs
 ap
-zo
+Lo
 hf
-zo
+Lo
 gj
-Mg
-zo
+Lo
 CV
+Lo
 ap
-Vu
+xm
 Rm
 Fl
 ow
@@ -44965,7 +45176,7 @@ pH
 hE
 Yn
 KW
-tn
+qe
 KW
 ap
 bz
@@ -45185,18 +45396,18 @@ Cs
 Cs
 Cs
 ap
-SA
+kZ
 hf
 zO
 gj
-zo
+CV
 zO
-zo
+Lo
 ap
 bE
 Rm
 Rm
-Rm
+jy
 Jc
 hU
 AR
@@ -45206,11 +45417,11 @@ ap
 Ee
 Va
 JJ
-rQ
 gZ
+DJ
 Pj
 gS
-Lo
+mT
 mt
 Fd
 ap
@@ -45467,7 +45678,7 @@ ap
 ap
 ap
 ap
-Lo
+mT
 iY
 Jg
 ap
@@ -45691,8 +45902,8 @@ Cs
 Cs
 Cs
 ap
-yr
-uT
+ap
+ap
 ap
 Cs
 Cs
@@ -45967,23 +46178,23 @@ KL
 KL
 KL
 ap
-BC
+ad
 ue
 ue
 mg
-zo
+vb
 dM
 gK
 dM
-zo
+GN
 ap
 XG
 pR
 KS
 ap
-xz
+NP
 Ex
-lL
+HJ
 ap
 PD
 iH
@@ -45993,7 +46204,7 @@ je
 pK
 cR
 KW
-tn
+qe
 KW
 ap
 ap
@@ -46224,7 +46435,7 @@ KL
 KL
 KL
 ap
-Tt
+BC
 ue
 ue
 mg
@@ -46481,8 +46692,8 @@ KL
 KL
 KL
 ap
-Yq
-ue
+Tt
+hZ
 ue
 mg
 xl
@@ -46738,7 +46949,7 @@ Pi
 Pi
 Tm
 ap
-vF
+rz
 ue
 ue
 mg
@@ -46999,11 +47210,11 @@ tV
 ue
 ue
 mg
-zo
+Ws
 Zy
 nQ
 Zy
-zo
+lb
 ap
 Zg
 nb
@@ -47021,7 +47232,7 @@ Oj
 Si
 LV
 KW
-tn
+qe
 KW
 KW
 KW
@@ -47266,7 +47477,7 @@ Ko
 KE
 nb
 JX
-Lo
+mT
 VI
 Sm
 ap
@@ -47779,9 +47990,9 @@ KW
 Mv
 Mv
 KW
-mv
-Lo
-re
+lL
+mT
+mt
 Fd
 ap
 hk
@@ -48036,8 +48247,8 @@ NG
 ra
 Jv
 Tl
-mv
-Lo
+lL
+mT
 iY
 Jg
 ap
@@ -48049,7 +48260,7 @@ mP
 tC
 hp
 KW
-tn
+qe
 KW
 ap
 ZT
@@ -48807,7 +49018,7 @@ SC
 kB
 Mv
 Mv
-mv
+lL
 zj
 fx
 OV
@@ -49064,7 +49275,7 @@ dl
 bt
 Ib
 zw
-mv
+lL
 iS
 tY
 me
@@ -49077,7 +49288,7 @@ zY
 tC
 mv
 KW
-tn
+qe
 KW
 ap
 Iw
@@ -49836,7 +50047,7 @@ km
 km
 km
 ap
-HX
+gR
 qh
 HX
 JD
@@ -50091,19 +50302,19 @@ ap
 ap
 ap
 ap
-km
+ap
 ap
 yx
 Dn
 yx
-mv
+Hy
 ZX
 pc
 le
 le
 HR
 ZX
-mv
+Hy
 yx
 qu
 yx
@@ -50347,23 +50558,23 @@ uT
 uT
 uT
 uT
-ap
-ap
+uT
+uT
 ap
 zK
 zK
 zK
-Ay
+Hy
 uo
 wx
 by
 yq
 Qa
 yu
-ap
-zK
+Hy
+Bx
 IG
-zK
+Bx
 ap
 Cs
 Cs
@@ -50603,21 +50814,21 @@ LD
 LD
 LD
 LD
-uT
-uT
+LD
+LD
 uT
 ap
 vZ
 ma
 Gs
-mv
+Hy
 AH
 Ms
 uU
 ty
 el
 zq
-mv
+Hy
 vZ
 ND
 Gs
@@ -50859,25 +51070,25 @@ ap
 ap
 ap
 ap
-LD
-LD
-LD
+ap
+ap
+br
 uT
 ap
 Bz
 Bz
 Bz
-Ay
+Hy
 ha
 xj
 gI
 ah
 ZM
 Yk
-ap
-Bz
+Hy
+xd
 cl
-Bz
+xd
 ap
 ap
 ap
@@ -51116,22 +51327,22 @@ Cs
 Cs
 Cs
 ap
-ap
-ap
-br
+LD
+LD
+LD
 uT
 ap
 it
 lK
 it
-mv
+Hy
 Ak
 hY
 Rx
 Rx
 yB
 Ak
-mv
+Hy
 it
 EG
 it
@@ -51374,8 +51585,8 @@ Cs
 Cs
 ap
 LD
-LD
-LD
+uT
+uT
 uT
 ap
 zo
@@ -51639,12 +51850,12 @@ AR
 zo
 AR
 Ay
-mv
-mv
-mv
-mv
-mv
-mv
+Hy
+Hy
+Hy
+Hy
+Hy
+Hy
 Ay
 AR
 tn
@@ -52408,16 +52619,16 @@ AR
 zo
 AR
 AR
+lw
+cD
+LA
 FL
 AR
 AR
 FL
-AR
-AR
-FL
-AR
-AR
-FL
+uZ
+cD
+dx
 AR
 AR
 tn
@@ -52660,7 +52871,7 @@ Cs
 ap
 br
 uT
-nY
+ap
 AR
 zo
 AR
@@ -53688,7 +53899,7 @@ LD
 LD
 LD
 uT
-ap
+nY
 AR
 zo
 AR
@@ -53964,7 +54175,7 @@ rZ
 XM
 oP
 AR
-nY
+ap
 Ho
 yr
 ap
@@ -54191,7 +54402,7 @@ ap
 ap
 ap
 ap
-nY
+re
 ap
 ap
 ap
@@ -56006,16 +56217,16 @@ AR
 zo
 AR
 AR
+Cj
+lq
+Ql
 nT
 AR
 AR
 nT
-AR
-AR
-nT
-AR
-AR
-nT
+et
+lq
+fi
 AR
 AR
 tn
@@ -56235,7 +56446,7 @@ Cs
 ap
 yr
 aA
-nY
+re
 AR
 zo
 vQ
@@ -57560,7 +57771,7 @@ ap
 AR
 tn
 AR
-nY
+re
 Ho
 yr
 ap
@@ -58300,7 +58511,7 @@ ap
 ap
 ap
 ap
-nY
+re
 ap
 ap
 ap
@@ -58318,7 +58529,7 @@ ap
 ap
 ap
 ap
-nY
+re
 ap
 ap
 ap
@@ -59355,7 +59566,7 @@ aA
 LD
 ap
 ap
-nY
+ap
 ap
 ap
 ap
