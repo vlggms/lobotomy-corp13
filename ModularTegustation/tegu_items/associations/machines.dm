@@ -20,6 +20,7 @@
 		/obj/item/clothing/suit/armor/ego_gear/city,
 		/obj/item/ego_weapon/city,
 		/obj/item/gun/ego_gun,
+		/obj/item/head_trophie,
 	)
 	var/list/level_3 = list(
 		/obj/item/raw_anomaly_core,
