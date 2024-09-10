@@ -6,7 +6,7 @@
 	timestamp = list()
 
 /obj/item/tape/resurgence/first
-	name = "Tinker's Log: Moving Out"
+	name = "Tinkerer's Log: Moving Out"
 	icon_state = "tape_red"
 	desc = "A magnetic tape that can hold up to ten minutes of content. It appers to have 'Resurgence Clan's first move.' written on it's back."
 
@@ -23,22 +23,22 @@
 		span_game_say(span_name("Human Voice ") + span_message(" weakly says,") + " &quot;Wha-at are you doing... Wait! I can still provide something for you! Do you need gears or me-&quot;"),
 		span_game_say(span_name("Human Voice") + span_message("  screams")),
 		"*Sounds of drills and saws tearing into flesh are heard before a heavy door is heard screeching open…*",
-		span_game_say(span_name("Slow Robotic Voice") + span_message(" says,") + " &quot;Dear Tinker... Was this why you wanted me to give you this new human to you?&quot;"),
+		span_game_say(span_name("Slow Robotic Voice") + span_message(" says,") + " &quot;Dear Tinkerer... Was this why you wanted me to give you this new human to you?&quot;"),
 		span_game_say(span_name("Slow Robotic Voice") + span_message(" says,") + " &quot;At least I could of woven them into something much more valuable than fresh gibs…&quot;"),
 		"*The sounds of drills and saws slowly slowed down...*",
-		span_game_say(span_name("The Tinker") + span_message(" says,") + " &quot;Oh? Didn’t expect you to arrive here today Mister Weaver, Were you this worried about this human?&quot;"),
+		span_game_say(span_name("The Tinkerer") + span_message(" says,") + " &quot;Oh? Didn’t expect you to arrive here today Mister Weaver, Were you this worried about this human?&quot;"),
 		span_game_say(span_name("The Weaver") + span_message(" says,") + " &quot;No, With the recent events that occurred here with the... FLS members and my citizens have been much more opposed to using humans as materials.&quot;"),
 		span_game_say(span_name("The Weaver") + span_message(" says,") + " &quot;After all, once you get to meet the humans you are using to become more human it does feel more sinful of using them this way…&quot;"),
 		span_game_say(span_name("The Weaver") + span_message(" says,") + " &quot;No, I am here to deliver some... Rather upsetting news to you...&quot;"),
-		span_game_say(span_name("The Tinker") + span_message(" says,") + " &quot;Really now? You got to drown out my perfectly fine mood after executing a monster...&quot;"),
+		span_game_say(span_name("The Tinkerer") + span_message(" says,") + " &quot;Really now? You got to drown out my perfectly fine mood after executing a monster...&quot;"),
 		span_game_say(span_name("The Weaver") + span_message(" says,") + " &quot;Yet, It has to be said. After discussing this with the Historian, We have decided that this town is no place for you.&quot;"),
 		span_game_say(span_name("The Weaver") + span_message(" says,") + " &quot;So I kindly ask you to kindly leave this town soon...&quot;"),
 		"*A loud fleshy crunch is heard coming from the human head...*",
-		span_game_say(span_name("The Tinker") + span_message(" whispers,") + " &quot;I really should of seen that one coming yet...&quot;"),
-		span_game_say(span_name("The Tinker") + span_message(" says,") + " &quot;No big deal, I can start moving tomorrow. This place was quite limiting after all.&quot;"),
+		span_game_say(span_name("The Tinkerer") + span_message(" whispers,") + " &quot;I really should of seen that one coming yet...&quot;"),
+		span_game_say(span_name("The Tinkerer") + span_message(" says,") + " &quot;No big deal, I can start moving tomorrow. This place was quite limiting after all.&quot;"),
 		span_game_say(span_name("The Weaver") + span_message(" says,") + " &quot;Thank you for understanding our decision, as it was not an easy one we ma-&quot;"),
-		span_game_say(span_name("The Tinker") + span_message(" says,") + " &quot;Yada yada... No need to exaggerate this. This ‘difficult decision’ only took you like, 12 hours to make.&quot;"),
-		span_game_say(span_name("The Tinker") + span_message(" yells,") + " &quot;ALL OF THE SCOUTS HERE, YOU BETTER START MOVING NOW!...&quot;"),
+		span_game_say(span_name("The Tinkerer") + span_message(" says,") + " &quot;Yada yada... No need to exaggerate this. This ‘difficult decision’ only took you like, 12 hours to make.&quot;"),
+		span_game_say(span_name("The Tinkerer") + span_message(" yells,") + " &quot;ALL OF THE SCOUTS HERE, YOU BETTER START MOVING NOW!...&quot;"),
 		span_game_say(span_name("Scout") + span_message(" yells,") + " &quot;Ye-es Sir, Moving o-out...&quot;"),
 		span_game_say(span_name("Scout") + span_message(" yells,") + " &quot;Yes Si-ir, Moving ou-ut...&quot;"),
 		span_game_say(span_name("Scout") + span_message(" yells,") + " &quot;Ye-es Sir, Mo-ov...&quot;"),
@@ -123,3 +123,38 @@
 	)
 
 	timestamp = list(1, 4, 8, 12, 16, 20, 26, 30, 34, 38, 41, 45, 52, 56, 59, 62)
+
+/obj/item/tape/resurgence/joshua
+	name = "Temple Log #15"
+	desc = "A magnetic tape that can hold up to ten minutes of content. It apper to have 'The Library' written on it's back."
+	storedinfo = list(
+	"*Sounds of distant conversations slowly moving away...*",
+	span_game_say(span_name("Rusty Robotic Voice") + span_message(" says,") + " &quot;That was quite a procedure! Fascinating how the human brain is able to produce such emotions. &quot;"),
+	span_game_say(span_name("Rusty Robotic Voice") + span_message(" says,") + " &quot;Thank the Historian that I was able to record all of...&quot;"),
+	span_game_say(span_name("Rusty Robotic Voice") + span_message(" says,") + " &quot;Wait, Shoot... Don't tell me that it was off the whole time...&quot;"),
+	span_game_say(span_name("Rusty Robotic Voice") + span_message(" asks,") + " &quot;Well one of my seniors must have have left one spare recording here...&quot;"),
+	span_game_say(span_name("Distant Robotic Voice") + span_message(" says,") + " &quot;Hey! Elliot! Are you still in the study room?&quot;"),
+	span_game_say(span_name("Elliot") + span_message(" says,") + " &quot;Yes-s. Give me just a moment, I think I have forgotten something here...&quot;"),
+	span_game_say(span_name("Distant Robotic Voice") + span_message(" says,") + " &quot;Okay... Just get out of there soon, other scholars will be using it soon.&quot;"),
+	span_game_say(span_name("Elliot") + span_message(" says,") + " &quot;Of course... I would not want to prevent the study!&quot;"),
+	"*Sounds of books and metallic objects being thrown around.*",
+	span_game_say(span_name("Human Voice") + span_message(" coughs")),
+	span_game_say(span_name("Elliot") + span_message(" asks,") + " &quot;Oh... It appears that they are already being woken up. I really should get moving.&quot;"),
+	span_game_say(span_name("Human Voice") + span_message(" says weakly,") + " &quot;Wait... Who are you, why am I here.&quot;"),
+	span_game_say(span_name("Elliot") + span_message(" says,") + " &quot;Um... Normally we young scholars don't get the chance to speak with you.&quot;"),
+	span_game_say(span_name("Human Voice") + span_message(" says,") + " &quot;Scholars... Wait, Oh fuck... What have I gotten myself into.&quot;"),
+	span_game_say(span_name("Elliot") + span_message(" says,") + " &quot;Oh please don't use such rude language around here. The Priest doesn't like hearing it.&quot;"),
+	span_game_say(span_name("Human Voice") + span_message(" says,") + " &quot;Well Steelface, Sorry for not acting all pleasant to you after waking up tied up to a metal bed.&quot;"),
+	span_game_say(span_name("Human Voice") + span_message(" says,") + " &quot;Especially when I see your metal face...&quot;"),
+	span_game_say(span_name("Elliot") + span_message(" says,") + " &quot;Really? Is it really that disconcerting... I tried so hard to mimic how a human face looks like...&quot;"),
+	span_game_say(span_name("Human Voice") + span_message(" says,") + " &quot;Ha... That is the problem. You are trying far to hard. I heard that it causes some sort of uncanny effect...&quot;"),
+	span_game_say(span_name("Elliot") + span_message(" says,") + " &quot;Oh! Now that is something to note down... “Don't try too hard in mimicing a face...” &quot;"),
+	span_game_say(span_name("Elliot") + span_message(" says,") + " &quot;You know what pal... We should have more talks like these!&quot;"),
+	span_game_say(span_name("Elliot") + span_message(" says,") + " &quot; It is so much more fun talking to you rather then listening to my teachers.&quot;"),
+	span_game_say(span_name("Human Voice") + span_message(" says,") + " &quot;Well, There is not much that I can do...&quot;"),
+	span_game_say(span_name("Elliot") + span_message(" says,") + " &quot;Wonderful! I have to get going now but what is your name so I could remember it?&quot;"),
+	span_game_say(span_name("Joshua") + span_message(" says,") + " &quot;... Call me Joshua.&quot;"),
+	"*The tape cuts right after some quick footsteps are heard moving out of the room.*"
+	)
+
+	timestamp = list(1, 4, 8, 12, 16, 20, 26, 30, 34, 38, 41, 45, 52, 56, 59, 62, 65, 68, 71, 74, 77, 80, 83, 86, 89, 92, 95, 98)
