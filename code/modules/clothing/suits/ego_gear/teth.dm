@@ -250,3 +250,9 @@ Any attempt to code risk class armor will result in a 10 day Github ban.*/
 	desc = "How many have lost it all to a simple game of chance?"
 	icon_state = "luckdraw"
 	armor = list(RED_DAMAGE = 0, WHITE_DAMAGE = 10, BLACK_DAMAGE = 30, PALE_DAMAGE = -20) // 20
+
+/obj/item/clothing/suit/armor/ego_gear/teth/trapped
+	name = "trapped"
+	desc = "Spare a thought for the poor employees at the branches that fail, trapped and abandoned - buried alive."
+	icon_state = "trapped"
+	armor = list(RED_DAMAGE = 20, WHITE_DAMAGE = -20, BLACK_DAMAGE = 0, PALE_DAMAGE = 20)
