@@ -1515,10 +1515,3 @@
 	if(!damage)
 		return
 	owner.adjustBruteLoss(-damage*0.75)
-
-/datum/ego_gifts/luckdraw
-	name = "Luck of the Draw"
-	icon_state = "luckdraw"
-	temperance_bonus = -1
-	justice_bonus = 3
-	slot = HAT

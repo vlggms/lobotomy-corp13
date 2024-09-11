@@ -66,9 +66,3 @@
 	projectile_type = /obj/projectile/ego_bullet/ego_patriot
 	pellets = 4
 	variance = 25
-
-/obj/item/ammo_casing/caseless/ego_luckdraw
-	name = "luckdraw casing"
-	desc = "A Luck of the Draw casing."
-	projectile_type = /obj/projectile/ego_bullet/ego_luckdraw
-

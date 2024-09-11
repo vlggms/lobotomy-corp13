@@ -341,7 +341,3 @@
 	damage = 55
 	damage_type = WHITE_DAMAGE
 
-/obj/projectile/ego_bullet/ego_supershotgun
-	name = "super shotgun"
-	damage = 10
-	damage_type = RED_DAMAGE

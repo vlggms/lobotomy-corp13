@@ -195,16 +195,3 @@
 	shotsleft = 8
 	reloadtime = 1.4 SECONDS
 	fire_sound = 'sound/weapons/gun/shotgun/shot.ogg'
-
-/obj/item/gun/ego_gun/luckdraw
-	name = "luck of the draw"
-	desc = "A seemingly infinite deck of bladed cards. How much are you willing to risk to win it big?"
-	icon_state = "luckdraw"
-	inhand_icon_state = "luckdraw"
-	lefthand_file = 'icons/mob/inhands/items_lefthand.dmi'
-	righthand_file = 'icons/mob/inhands/items_righthand.dmi'
-	special = "This weapon's projectiles move slowly and pierce enemies."
-	ammo_type = /obj/item/ammo_casing/caseless/ego_luckdraw
-	weapon_weight = WEAPON_HEAVY
-	autofire = 0.6 SECONDS
-	fire_sound = 'sound/items/handling/paper_pickup.ogg' //Mostly just using this for a lack of a better "card-flicking" noise

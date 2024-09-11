@@ -127,12 +127,3 @@
 	damage = 15
 	damage_type = RED_DAMAGE
 
-/obj/projectile/ego_bullet/ego_luckdraw
-	name = "luck_of_the_draw"
-	icon_state = "drawcard"
-	damage = 18
-	damage_type = WHITE_DAMAGE
-	projectile_piercing = PASSMOB
-	speed = 0.45
-	range = 14
-	hit_nondense_targets = TRUE

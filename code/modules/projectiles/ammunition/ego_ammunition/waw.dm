@@ -144,10 +144,3 @@
 	name = "bride casing"
 	desc = "A bride casing."
 	projectile_type = /obj/projectile/ego_bullet/ego_bride
-
-/obj/item/ammo_casing/caseless/ego_supershotgun
-	name = "super shotgun casing"
-	desc = "A super shotgun casing."
-	projectile_type = /obj/projectile/ego_bullet/ego_supershotgun
-	pellets = 10
-	variance = 35
