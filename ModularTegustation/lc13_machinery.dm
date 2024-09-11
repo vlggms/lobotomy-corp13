@@ -313,3 +313,219 @@
 	dude.forceMove(get_turf(src))
 
 #undef ANIMATE_FABRICATOR_ACTIVE
+
+/*---------------\
+|Body Preservation Unit|
+\---------------*/
+
+/obj/machinery/body_preservation_unit
+	name = "body preservation unit"
+	desc = "A high-tech machine that can store a digital copy of your body and attributes for a fee. In case of death, it can revive you with a small attribute penalty."
+	icon = 'icons/obj/machines/body_preservation.dmi'
+	icon_state = "bpu"
+	density = TRUE
+	use_power = IDLE_POWER_USE
+	idle_power_usage = 50
+	active_power_usage = 300
+	var/preservation_fee = 500
+	var/revival_fee = 1000
+	var/revival_attribute_penalty = 2
+	var/list/stored_bodies = list()
+
+/obj/machinery/body_preservation_unit/examine(mob/user)
+	. = ..()
+	. += "<span class='notice'>Preservation Fee: [preservation_fee] AHN</span>"
+	. += "<span class='notice'>Revival Fee: [revival_fee] AHN</span>"
+
+/obj/machinery/body_preservation_unit/attackby(obj/item/I, mob/user, params)
+	if(istype(I, /obj/item/holochip))
+		var/obj/item/holochip/H = I
+		var/ahn_amount = H.get_item_credit_value()
+		H.spend(ahn_amount)
+		to_chat(user, "<span class='notice'>You insert [ahn_amount] AHN into the machine.</span>")
+		return
+	return ..()
+
+/obj/machinery/body_preservation_unit/ui_interact(mob/user)
+	. = ..()
+	var/dat
+	dat += "<b>Body Preservation Unit</b><br>"
+	dat += "Preservation Fee: [preservation_fee] AHN<br>"
+	dat += "Revival Fee: [revival_fee] AHN<br>"
+	dat += "<hr>"
+
+	if(ishuman(user))
+		var/mob/living/carbon/human/H = user
+		if(stored_bodies[H.real_name])
+			dat += "<a href='?src=[REF(src)];revive=[H.real_name]'>Revive Stored Body ([revival_fee] AHN)</a><br>"
+		else
+			dat += "<a href='?src=[REF(src)];preserve=[REF(H)]'>Preserve Current Body ([preservation_fee] AHN)</a><br>"
+
+	if (isobserver(user))
+		var/mob/dead/observer/O = user
+		if(stored_bodies[O.real_name])
+			dat += "<a href='?src=[REF(src)];revive=[O.real_name]'>Revive Stored Body</a><br>"
+
+	var/datum/browser/popup = new(user, "body_preservation", "Body Preservation Unit", 300, 300)
+	popup.set_content(dat)
+	popup.open()
+
+/obj/machinery/body_preservation_unit/Topic(href, href_list)
+	if(..() && !isobserver(usr))
+		return
+
+	if(href_list["preserve"])
+		var/mob/living/carbon/human/H = locate(href_list["preserve"])
+		if(H && ishuman(H))
+			if(try_payment(preservation_fee, H))
+				preserve_body(H)
+
+	if(href_list["revive"])
+		var/mob_name = href_list["revive"]
+		//var/mob/living/carbon/human/H = locate(stored_bodies[mob_name]["ref"])
+		//if(H && ishuman(H))
+		//	if(try_payment(revival_fee, H))
+		revive_body(mob_name)
+
+	updateUsrDialog()
+
+/obj/machinery/body_preservation_unit/proc/try_payment(amount, mob/living/carbon/human/H)
+	// Implement payment logic here
+	// For simplicity, we'll assume the payment is always successful
+	return TRUE
+
+/obj/machinery/body_preservation_unit/proc/preserve_body(mob/living/carbon/human/H)
+	if(!H || !H.mind)
+		return
+	var/datum/mind/M = H.mind
+	var/list/preserved_data = list()
+	preserved_data["ref"] = REF(H)
+	preserved_data["ckey"] = M.key
+	preserved_data["real_name"] = H.real_name
+	preserved_data["species"] = H.dna.species.type
+	var/datum/dna/D = new /datum/dna
+	H.dna.copy_dna(D)
+	preserved_data["dna"] = D
+	var/list/attributes = list()
+	for(var/type in GLOB.attribute_types)
+		if(ispath(type, /datum/attribute))
+			var/datum/attribute/atr = new type
+			attributes[atr.name] = atr
+			atr.level = get_raw_level(H, atr)
+	preserved_data["attributes"] = attributes
+	preserved_data["underwear"] = H.underwear
+	preserved_data["underwear_color"] = H.underwear_color
+
+	stored_bodies[H.real_name] = preserved_data
+	to_chat(H, span_notice("Your body data has been preserved."))
+
+	// Instead of implanting, add a component
+	H.AddComponent(/datum/component/respawnable, respawn_time = 15 SECONDS)
+
+	to_chat(H, span_notice("You've been granted the ability to respawn after death."))
+
+/obj/machinery/body_preservation_unit/proc/revive_body(real_name, ckey)
+	if(!stored_bodies[real_name])
+		return
+
+	var/list/stored_data = stored_bodies[real_name]
+
+	// if (stored_data["ckey"] != usr.ckey)
+	// 	log_game("Body Preservation Unit: Wrong ckey for [real_name]. Not respawning!")
+	// 	return
+
+
+	// Create a new body
+	var/mob/living/carbon/human/new_body = new(get_turf(src))
+
+	// Set up the new body with stored data
+	new_body.real_name = stored_data["real_name"]
+
+	// Check if the stored DNA is valid
+	if(istype(stored_data["dna"], /datum/dna))
+		var/datum/dna/stored_dna = stored_data["dna"]
+		stored_dna.transfer_identity(new_body)
+	else
+		log_game("Body Preservation Unit: Stored DNA for [real_name] was invalid.")
+		qdel(new_body)
+		return
+
+	// Check if the species type is valid
+	var/species_type = stored_data["species"]
+	if(ispath(species_type, /datum/species))
+		new_body.set_species(species_type)
+	else
+		log_game("Body Preservation Unit: Stored species type for [real_name] was invalid.")
+		qdel(new_body)
+		return
+
+	// Apply attribute penalty and set attributes
+	var/list/stored_attributes = stored_data["attributes"]
+	if(islist(stored_attributes))
+		// TODO Punishment
+		new_body.attributes = stored_attributes
+	else
+		log_game("Body Preservation Unit: Stored attributes for [real_name] were invalid.")
+		qdel(new_body)
+		return
+
+	var/underwear = stored_data["underwear"]
+	if (underwear)
+		new_body.underwear = underwear
+
+	var/underwear_color = stored_data["underwear_color"]
+	if (underwear_color)
+		new_body.underwear_color = underwear_color
+
+	new_body.AddComponent(/datum/component/respawnable, respawn_time = 15 SECONDS)
+
+	// Revive the new body
+	new_body.revive(full_heal = TRUE, admin_revive = FALSE)
+	new_body.updateappearance()
+
+	if (isnull(usr))
+		new_body.ckey = ckey
+	else
+		new_body.ckey = usr.ckey
+
+	to_chat(new_body, "<span class='warning'>You have been revived in a new body, but your attributes have decreased slightly.</span>")
+
+	// Remove the stored body data after revival
+	//stored_bodies -= H.real_name
+
+	// Delete the old body if it exists
+	//if(H && !QDELETED(H))
+	//	qdel(H)
+
+// New component for handling respawns
+/datum/component/respawnable
+	var/respawn_time = 15 SECONDS
+
+/datum/component/respawnable/Initialize(respawn_time)
+	if(!isliving(parent))
+		return COMPONENT_INCOMPATIBLE
+	src.respawn_time = respawn_time
+	RegisterSignal(parent, COMSIG_LIVING_DEATH, PROC_REF(on_death))
+
+/datum/component/respawnable/proc/on_death(mob/living/L, gibbed)
+	SIGNAL_HANDLER
+	if (ishuman(L))
+		var/mob/living/carbon/human/H = L
+		addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(offer_respawn_global), H.real_name), respawn_time)
+
+// Define this as a global proc
+/proc/offer_respawn_global(real_name)
+	var/mob/dead/observer/ghost = find_dead_player(real_name)
+	if(!ghost || !ghost.client)
+		return
+	var/response = alert(ghost, "Do you want to respawn?", "Respawn Offer", "Yes", "No")
+	if(response == "Yes")
+		var/obj/machinery/body_preservation_unit/BPU = locate() in GLOB.machines
+		if(BPU && BPU.stored_bodies[real_name])
+			BPU.revive_body(real_name, ghost.ckey)
+
+/proc/find_dead_player(real_name)
+	for(var/mob/dead/observer/O in GLOB.dead_mob_list)
+		if(O.real_name == real_name)
+			return O
+	return null
