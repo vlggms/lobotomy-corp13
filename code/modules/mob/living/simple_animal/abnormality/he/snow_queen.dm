@@ -60,8 +60,6 @@
 		/datum/ego_datum/armor/frostsplinter,
 	)
 	gift_type = /datum/ego_gifts/frostcrown
-	//Gift is rewarded at the end of a duel with Snow Queen.
-	gift_chance = 100
 	abnormality_origin = ABNORMALITY_ORIGIN_LOBOTOMY
 	var/can_act = TRUE
 	//The purpose of this variable is to prevent people from ghosting in the arena and making snow queen unworkable.
