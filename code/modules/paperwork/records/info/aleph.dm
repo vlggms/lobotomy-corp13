@@ -235,14 +235,3 @@
 		WHITE_DAMAGE = "Endured/Endured/Resistant",
 		BLACK_DAMAGE = "Resistant/Immune/Immune",
 		PALE_DAMAGE = "Weak/Normal/Endured")
-
-// Black Sun
-/obj/item/paper/fluff/info/aleph/blacksun
-	abno_type = /mob/living/simple_animal/hostile/abnormality/black_sun
-	abno_code = "M-03-192"
-	abno_info = list(
-		"This abnormality will rise over the course of 12 minutes",
-		"The closer the sun is to the peak, the more PE was generated from M-03-192.",
-		"As time goes on, this abnormality boosts your stats significantly.",
-		"Working on the abnormality will cause it to set once more, and cause all of it's boosts to subside.",
-		)
