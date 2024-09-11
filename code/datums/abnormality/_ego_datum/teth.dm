@@ -341,7 +341,6 @@
 	cost = 20
 
 //Forsaken Employee - Trapped
-
 /datum/ego_datum/weapon/trapped
 	item_path = /obj/item/gun/ego_weapon/trapped
 	cost = 20
