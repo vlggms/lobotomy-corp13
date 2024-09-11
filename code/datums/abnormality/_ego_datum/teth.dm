@@ -342,9 +342,9 @@
 
 //Forsaken Employee - Trapped
 /datum/ego_datum/weapon/trapped
-	item_path = /obj/item/gun/ego_weapon/trapped
+	item_path = /obj/item/ego_weapon/trapped
 	cost = 20
 
-/datum/ego_datum/armor/luckdraw
+/datum/ego_datum/armor/trapped
 	item_path = /obj/item/clothing/suit/armor/ego_gear/teth/trapped
 	cost = 20
