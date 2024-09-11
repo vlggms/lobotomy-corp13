@@ -59,7 +59,7 @@
 		/datum/ego_datum/weapon/frostsplinter,
 		/datum/ego_datum/armor/frostsplinter,
 	)
-	gift_type = /datum/ego_gifts/frostcrown
+	gift_type = null
 	//Gift is rewarded at the end of a duel with Snow Queen.
 	gift_chance = 100
 	abnormality_origin = ABNORMALITY_ORIGIN_LOBOTOMY
@@ -110,6 +110,11 @@
 				teleport_locations += teleport_turf
 		RegisterCleaveZones()
 
+/mob/living/simple_animal/hostile/abnormality/snow_queen/ObservationResult(mob/living/carbon/human/user, condition)
+	. = ..()
+	if(condition)
+		user.Apply_Gift(new /datum/ego_gifts/frostcrown)
+
 /mob/living/simple_animal/hostile/abnormality/snow_queen/SuccessEffect(mob/living/carbon/human/user, work_type, pe)
 	. = ..()
 	if(CheckArmor(user))
@@ -140,10 +145,8 @@
 		if(!QDELETED(frozen_employee))
 			if(!storybook_hero)
 				BringToArena(src, user, snow_prison)
-				datum_reference.console.meltdown = FALSE
 			else
 				to_chat(user, span_notice("The Snow Queen is currently in battle."))
-				datum_reference.console.meltdown = FALSE
 				return FALSE
 		else
 			to_chat(user, span_notice("No one is frozen by the Snow Queen yet."))
@@ -160,21 +163,14 @@
 	return TRUE
 
 /mob/living/simple_animal/hostile/abnormality/snow_queen/BreachEffect(mob/living/carbon/human/user, breach_type)
-	//If your in the arena dont breach, if your not in godmode dont breach.
 	if(breach_type == BREACH_PINK)
 		faction += "pink_midnight"
-	//Call root code but with normal breach
-	. = ..(null, BREACH_NORMAL)
 	if(!IsCombatMap())
 		var/turf/T = pick(GLOB.department_centers)
 		forceMove(T)
+	//Call root code but with normal breach
+	. = ..(null, BREACH_NORMAL)
 	update_icon()
-
-/mob/living/simple_animal/hostile/abnormality/snow_queen/ZeroQliphoth(mob/living/carbon/human/user)
-	if(arena_attacks)
-		datum_reference.qliphoth_change(1)
-		return
-	return ..()
 
 /mob/living/simple_animal/hostile/abnormality/snow_queen/Life()
 	. = ..()
@@ -785,8 +781,6 @@
 			ReleaseSafe()
 			return
 		to_chat(user, span_notice("The ice slowly melts."))
-		playsound(get_turf(src), 'sound/effects/glass_step.ogg', 50, TRUE)
-		return
 	return ..()
 
 /obj/structure/snowqueened_employee/Destroy()
@@ -804,20 +798,20 @@
 	if(!H)
 		return
 	H.forceMove(src)
-	ADD_TRAIT(H, TRAIT_NOBREATH, src)
-	ADD_TRAIT(H, TRAIT_INCAPACITATED, src)
-	ADD_TRAIT(H, TRAIT_IMMOBILIZED, src)
-	ADD_TRAIT(H, TRAIT_HANDS_BLOCKED, src)
+	ADD_TRAIT(H, TRAIT_NOBREATH, ICE_ARENA_VICTEM_SPAWN)
+	ADD_TRAIT(H, TRAIT_INCAPACITATED, ICE_ARENA_VICTEM_SPAWN)
+	ADD_TRAIT(H, TRAIT_IMMOBILIZED, ICE_ARENA_VICTEM_SPAWN)
+	ADD_TRAIT(H, TRAIT_HANDS_BLOCKED, ICE_ARENA_VICTEM_SPAWN)
 
 /obj/structure/snowqueened_employee/proc/ReleaseSafe()
 	release_safe = TRUE
-	Destroy()
+	QDEL_IN(src, 5)
 
 /obj/structure/snowqueened_employee/proc/ReleaseEmployee(mob/living/carbon/human/prisoner)
-	REMOVE_TRAIT(prisoner, TRAIT_NOBREATH, src)
-	REMOVE_TRAIT(prisoner, TRAIT_INCAPACITATED, src)
-	REMOVE_TRAIT(prisoner, TRAIT_IMMOBILIZED, src)
-	REMOVE_TRAIT(prisoner, TRAIT_HANDS_BLOCKED, src)
+	REMOVE_TRAIT(prisoner, TRAIT_NOBREATH, ICE_ARENA_VICTEM_SPAWN)
+	REMOVE_TRAIT(prisoner, TRAIT_INCAPACITATED, ICE_ARENA_VICTEM_SPAWN)
+	REMOVE_TRAIT(prisoner, TRAIT_IMMOBILIZED, ICE_ARENA_VICTEM_SPAWN)
+	REMOVE_TRAIT(prisoner, TRAIT_HANDS_BLOCKED, ICE_ARENA_VICTEM_SPAWN)
 
 /obj/structure/chair/snowqueen
 	name = "Snow Queen's Throne"
@@ -860,10 +854,9 @@
 	if(dueling_sword)
 		user.put_in_hands(dueling_sword)
 		RegisterSignal(dueling_sword, COMSIG_PARENT_QDELETING, PROC_REF(Refresh))
-		to_chat(user, span_notice("You pull out [dueling_sword]!"))
+		to_chat(user, span_notice("You pull out [dueling_sword]!."))
 		src.add_fingerprint(user)
 		empty = TRUE
-		playsound(get_turf(src), 'sound/items/unsheath.ogg', 50, TRUE)
 		update_icon()
 		return
 
@@ -887,7 +880,6 @@
 /obj/item/ego_weapon/shield/ice_sword
 	name = "old sword"
 	desc = "This blade is almost encased in frost yet it eminates a soothing warmth."
-	special = "Use in hand to deflect attacks and prevent damage."
 	icon = 'ModularTegustation/Teguicons/lc13_weapons.dmi'
 	lefthand_file = 'ModularTegustation/Teguicons/lc13_left.dmi'
 	righthand_file = 'ModularTegustation/Teguicons/lc13_right.dmi'
@@ -897,7 +889,7 @@
 	attack_verb_continuous = list("slashes", "stabs")
 	attack_verb_simple = list("slash", "stab")
 	hitsound = 'sound/weapons/bladeslice.ogg'
-	reductions = list(80, 0, 0, 0) // 80
+	reductions = list(40, 20, 20, 0) // 80
 	projectile_block_duration = 0.5 SECONDS
 	block_duration = 1 SECONDS
 	block_cooldown = 3 SECONDS
