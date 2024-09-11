@@ -59,7 +59,7 @@
 		/datum/ego_datum/weapon/frostsplinter,
 		/datum/ego_datum/armor/frostsplinter,
 	)
-	gift_type = /datum/ego_gifts/frostcrown
+	gift_type = null
 	//Gift is rewarded at the end of a duel with Snow Queen.
 	gift_chance = 100
 	abnormality_origin = ABNORMALITY_ORIGIN_LOBOTOMY
