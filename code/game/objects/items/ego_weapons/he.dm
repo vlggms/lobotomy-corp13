@@ -1047,7 +1047,6 @@
 	charge = TRUE
 	attack_charge_gain = FALSE // we have a unique way of getting charge
 	charge_cost = 10
-	var/accumulated_charge = 0
 	charge_effect = "Teleport and create a temporary two-way portal."
 
 	var/current_holder
@@ -1103,18 +1102,6 @@
 		P2.link_portal(P1)
 		P1.teleport(user)
 
-/obj/item/ego_weapon/warp/HandleCharge(added_charge) // Proc override so that charge icon appears every 1 charge gained
-	if(charge_amount < 0) // ???
-		charge_amount = initial(charge_amount)
-		CRASH("[src] has somehow aquired a negative charge amount, automatically reset it to the initial charge amount")
-
-	if(charge_amount < charge_cap)
-		charge_amount += added_charge
-		accumulated_charge += 1
-		if(accumulated_charge >= 10)
-			new /obj/effect/temp_visual/healing/charge(get_turf(src))
-			accumulated_charge = 0
-
 /obj/effect/portal/warp
 	name = "dimensional rift"
 	desc = "A glowing, pulsating rift through space and time."
@@ -1130,7 +1117,7 @@
 	QDEL_IN(src, 3 SECONDS)
 	return ..()
 
-/obj/item/ego_weapon/warp/knife	// knife subtype of the above. knife has to be the subtype because it fits in a belt
+/obj/item/ego_weapon/warp/knife		//knife subtype of the above. knife has to be the subtype because it fits in a belt
 	name = "dimension shredder"
 	desc = "The path is intent on thwarting all attempts to memorize it."
 	icon_state = "warp"

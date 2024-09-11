@@ -44,7 +44,7 @@
 							)
 
 //Cane is here too, mostly just need to lower requirements
-/obj/item/ego_weapon/city/cane/cane/weak
+/obj/item/ego_weapon/city/charge/cane/cane/weak
 	attribute_requirements = list(
 							FORTITUDE_ATTRIBUTE = 60,
 							PRUDENCE_ATTRIBUTE = 60,
@@ -52,7 +52,7 @@
 							JUSTICE_ATTRIBUTE = 60
 							)
 
-/obj/item/ego_weapon/city/cane/claw/weak
+/obj/item/ego_weapon/city/charge/cane/claw/weak
 	attribute_requirements = list(
 							FORTITUDE_ATTRIBUTE = 60,
 							PRUDENCE_ATTRIBUTE = 60,
@@ -60,7 +60,7 @@
 							JUSTICE_ATTRIBUTE = 60
 							)
 
-/obj/item/ego_weapon/city/cane/fist/weak
+/obj/item/ego_weapon/city/charge/cane/fist/weak
 	attribute_requirements = list(
 							FORTITUDE_ATTRIBUTE = 60,
 							PRUDENCE_ATTRIBUTE = 60,
@@ -68,7 +68,7 @@
 							JUSTICE_ATTRIBUTE = 60
 							)
 
-/obj/item/ego_weapon/city/cane/briefcase/weak
+/obj/item/ego_weapon/city/charge/cane/briefcase/weak
 	attribute_requirements = list(
 							FORTITUDE_ATTRIBUTE = 60,
 							PRUDENCE_ATTRIBUTE = 60,

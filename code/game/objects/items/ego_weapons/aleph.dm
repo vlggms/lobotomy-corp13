@@ -253,7 +253,7 @@
 	if(!finisher_on)
 		..()
 		return
-	if(do_after(user, 4, target))
+	if(do_after(user, 5, target))
 
 		target.visible_message(span_danger("[user] rears up and slams into [target]!"), \
 						span_userdanger("[user] punches you with everything you got!!"), vision_distance = COMBAT_MESSAGE_RANGE, ignored_mobs = user)
@@ -271,6 +271,9 @@
 		target.apply_damage(goldrush_damage, RED_DAMAGE, null, target.run_armor_check(null, RED_DAMAGE), spread_damage = TRUE)		//MASSIVE fuckoff punch
 
 		playsound(src, 'sound/weapons/fixer/generic/gen2.ogg', 50, TRUE)
+		var/atom/throw_target = get_edge_target_turf(target, user.dir)
+		if(!target.anchored)
+			target.throw_at(throw_target, 2, 4, user)		//Bigass knockback. You are punching someone with a glove of GOLD
 		goldrush_damage = initial(goldrush_damage)
 	else
 		to_chat(user, "<span class='spider'><b>Your attack was interrupted!</b></span>")

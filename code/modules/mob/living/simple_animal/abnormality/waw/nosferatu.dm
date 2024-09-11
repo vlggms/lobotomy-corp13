@@ -249,7 +249,6 @@
 	faction = list("hostile")
 	is_flying_animal = TRUE
 	density = FALSE
-	status_flags = MUST_HIT_PROJECTILE // Lets them be shot
 	speak_emote = list("screeches")
 	attack_verb_continuous = "bites"
 	attack_verb_simple = "bite"

@@ -19,7 +19,7 @@
 	icon_state = "jcorplootbox[rand(1,3)]"
 
 /obj/item/a_gift/jcorp/get_gift_type()
-	var/list/banned_items = subtypesof(/obj/item/lc_debug) + subtypesof(/obj/item/reagent_containers/glass/bottle) + subtypesof(/obj/item/uplink) + /obj/item/storage/box/lc_debugtools
+	var/list/banned_items = subtypesof(/obj/item/lc_debug) + subtypesof(/obj/item/reagent_containers/glass/bottle) + subtypesof(/obj/item/uplink)
 	if(!GLOB.possible_gifts.len)
 		var/list/gift_types_list = subtypesof(/obj/item)
 		for(var/V in gift_types_list)

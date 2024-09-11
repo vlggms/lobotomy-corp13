@@ -139,10 +139,10 @@
 	desc = "A kit containing Cane Office gear."
 
 /obj/item/storage/box/fixerhard/cane/PopulateContents()
-	new /obj/item/ego_weapon/city/cane/cane/weak(src)
-	new /obj/item/ego_weapon/city/cane/claw/weak(src)
-	new /obj/item/ego_weapon/city/cane/fist/weak(src)
-	new /obj/item/ego_weapon/city/cane/briefcase/weak(src)
+	new /obj/item/ego_weapon/city/charge/cane/cane/weak(src)
+	new /obj/item/ego_weapon/city/charge/cane/claw/weak(src)
+	new /obj/item/ego_weapon/city/charge/cane/fist/weak(src)
+	new /obj/item/ego_weapon/city/charge/cane/briefcase/weak(src)
 	new /obj/item/clothing/under/suit/tuxedo(src)
 	new /obj/item/clothing/under/suit/tuxedo(src)
 	new /obj/item/clothing/under/suit/tuxedo(src)
