@@ -374,7 +374,7 @@
 //Forsaken Employee
 /obj/item/paper/fluff/info/teth/forsaken_employee
 	abno_type = /mob/living/simple_animal/hostile/abnormality/forsaken_employee
-	abno_code = "T-01-201" //We can change the number once we figure out the proper code
+	abno_code = "T-01-199" //We can change the number once we figure out the proper code
 	abno_info = list(
 		"When the work result was Bad, the Qliphoth Counter lowered.",
 		"When the Qliphoth Counter reached 0, the abnormality let out a yell that seems to damage the electricity of the nearest connected circuit.",

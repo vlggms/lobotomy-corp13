@@ -64,8 +64,8 @@
 		var/chosen_area = pick(possible_areas)
 		for(var/obj/machinery/light/O in chosen_area)
 			O.break_light_tube()
-			addtimer(CALLBACK(O, TYPE_PROC_REF(/obj/machinery/light, fix)), 10 MINUTES)
+			addtimer(CALLBACK(O, TYPE_PROC_REF(/obj/machinery/light, fix)), 15 MINUTES)
 	else
 		for(var/obj/machinery/light/O in /area/facility_hallway/manager) //I figured this would be a funny addition
 			O.break_light_tube()
-			addtimer(CALLBACK(O, TYPE_PROC_REF(/obj/machinery/light, fix)), 10 MINUTES)
+			addtimer(CALLBACK(O, TYPE_PROC_REF(/obj/machinery/light, fix)), 15 MINUTES)

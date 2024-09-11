@@ -575,26 +575,3 @@
 	pierce_force_cost = 20
 	charge_speed_cap = 2
 	couch_cooldown_time = 3 SECONDS
-
-/obj/item/ego_weapon/trapped
-	name = "trapped"
-	desc = "Unregulated ingestion of Enkephalin may cause a wide range of unverified psychopathological symptoms."
-	special = "This weapon's power varies based on how full the quota is."
-	icon_state = "trapped"
-	force = 20
-	damtype = RED_DAMAGE
-	attack_speed = 2
-	attack_verb_continuous = list("smashes", "bludgeons", "crushes")
-	attack_verb_simple = list("smash", "bludgeon", "crush")
-	hitsound = 'sound/weapons/fixer/generic/club3.ogg'
-
-/obj/item/ego_weapon/trapped/attack(atom/A, mob/living/user, proximity_flag, params)
-	force = initial(force)
-	var/current_boxes = SSlobotomy_corp.goal_boxes
-	var/max_boxes = SSlobotomy_corp.box_goal
-	var/box_ratio = current_boxes/max_boxes
-	if(SSlobotomy_corp.goal_reached == TRUE)
-		force = 55
-	else
-		force = ((805/3) * TOUGHER_TIMES(box_ratio)) + 20
-	return ..()
