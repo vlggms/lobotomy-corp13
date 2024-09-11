@@ -551,18 +551,23 @@
 	if(!can_act)
 		return
 	var/list/target_list = list()
+	var/list/human_targets = list()
 	for(var/mob/living/L in urange(10, src))
 		if(L.z != z || (L.status_flags & GODMODE))
 			continue
 		if(faction_check_mob(L, FALSE))
 			continue
+		if(L.stat >= DEAD)
+			continue
 		target_list += L
+		if(ishuman(L))
+			human_targets += L
 
 	if(!target)
 		if(LAZYLEN(target_list))
 			target = pick(target_list)
-
-	if(!target || !ishuman(target) || QDELETED(target) || (target_list.len < 2) || prob(50))
+// We're checking for a lot of things here. Basically, this is a check to determine whether or not we use a mechanic that requires teamwork and/or coordination to solve.
+	if(!target || !ishuman(target) || QDELETED(target) || (human_targets.len < 2) || prob(50))
 		if(prob(50))
 			DFLine() //Safe in the middle, unsafe outside
 		else

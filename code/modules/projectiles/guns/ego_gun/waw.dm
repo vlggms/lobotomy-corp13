@@ -456,6 +456,7 @@
 /obj/item/gun/ego_gun/warring/proc/Build_Charge()
 	if(charge<=20)
 		charge+=1
+		new /obj/effect/temp_visual/healing/charge(get_turf(src))
 
 /obj/item/gun/ego_gun/warring/can_shoot()
 	if(drawn == 0)

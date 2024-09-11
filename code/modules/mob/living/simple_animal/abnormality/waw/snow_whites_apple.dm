@@ -138,7 +138,7 @@
 	if(!. || !client)
 		return FALSE
 	togglemovement = TRUE
-	to_chat(src, "<b>Snow Whites Apple can only harm creatures that are ontop of her vines. \
+	to_chat(src, "<b>Snow White's Apple can only harm creatures that are ontop of her vines. \
 		Your ranged attack will harm all standing on vines. \
 		Your barrier spell can only be used on thick vines.</b>")
 
@@ -476,10 +476,10 @@
 		lonely.adjustBruteLoss(-1)
 		if(prob(2))
 			lonely.whisper(pick(
-				"First they had feasted upon my poisioned flesh, then i feasted upon them.",
+				"First they had feasted upon my poisoned flesh, then I feasted upon them.",
 				"Even after they left, my form would not decay.",
 				"She cast me aside and left with her prince.",
-				"After many days i wondered why i continued to exist.",
+				"After many days I wondered why I continued to exist.",
 				"Those that trampled me would speak of a witch who casted a spell that had taken her life.",
 			))
 

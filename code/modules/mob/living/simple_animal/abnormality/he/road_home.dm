@@ -70,9 +70,19 @@
 	///Agents with the "stay home" status effect, they will be driven insane when the home is reached.
 	var/list/agent_friends = list()
 
-/mob/living/simple_animal/hostile/abnormality/road_home/PostWorkEffect(mob/living/carbon/human/user, work_type, pe, work_time)
+// Modifiers for work chance
+/mob/living/simple_animal/hostile/abnormality/road_home/WorkChance(mob/living/carbon/human/user, chance, work_type)
+	var/newchance = chance
 	if(get_attribute_level(user, JUSTICE_ATTRIBUTE) >= 60) //Apparently the original road home is fortitude but I already made scaredy cat fort and I'm too stubborn to change it.
-		datum_reference.qliphoth_change(-1)
+		newchance = chance-20
+	return newchance
+
+/mob/living/simple_animal/hostile/abnormality/road_home/NeutralEffect(mob/living/carbon/human/user, work_type, pe)
+	. = ..()
+	if(get_attribute_level(user, JUSTICE_ATTRIBUTE) >= 60)
+		if(prob(40))
+			datum_reference.qliphoth_change(-1)
+	return
 
 /mob/living/simple_animal/hostile/abnormality/road_home/FailureEffect(mob/living/carbon/human/user, work_type, pe)
 	. = ..()

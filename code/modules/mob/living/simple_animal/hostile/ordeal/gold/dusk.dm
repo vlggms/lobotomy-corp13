@@ -60,10 +60,10 @@
 
 /mob/living/simple_animal/hostile/ordeal/centipede_corrosion/proc/Pulse()//Periodic weak AOE attack, gain charge constantly
 	pulse_cooldown = world.time + pulse_cooldown_time
-	playsound(get_turf(src), 'sound/weapons/fixer/generic/energy2.ogg', 10, FALSE, 3)
 	AdjustCharge(1)
 	if(charge_level < 5 || broken)
 		return
+	playsound(get_turf(src), 'sound/weapons/fixer/generic/energy2.ogg', 10, FALSE, 3)
 	var/turf/orgin = get_turf(src)
 	var/list/all_turfs = RANGE_TURFS(5, orgin)
 	for(var/i = 0 to 2)
@@ -82,14 +82,15 @@
 	new /obj/effect/temp_visual/smash_effect(T)
 	HurtInTurf(T, list(), 5, BLACK_DAMAGE, check_faction = TRUE, hurt_mechs = TRUE)
 	for(var/mob/living/simple_animal/hostile/ordeal/thunderbird_corrosion/TB in T)
-		if(TB.charged)
+		if(TB.charge_level >= TB.charge_level_cap)
 			continue
-		TB.charged = TRUE
+		TB.AdjustCharge(4)
 		playsound(get_turf(TB), 'sound/weapons/fixer/generic/energy3.ogg', 75, FALSE, 3)
 		TB.visible_message(span_warning("[TB] absorbs the arcing electricity!"))
-		new /obj/effect/temp_visual/healing/no_dam(get_turf(TB))
 
 /mob/living/simple_animal/hostile/ordeal/centipede_corrosion/proc/AdjustCharge(addition)
+	if(addition > 0 && charge_level < charge_level_cap)
+		new /obj/effect/temp_visual/healing/charge(get_turf(src))
 	charge_level = clamp(charge_level + addition, 0, charge_level_cap)
 	update_icon()
 
@@ -169,16 +170,24 @@
 	ranged = TRUE
 	projectiletype = /obj/projectile/thunder_tomahawk
 	projectilesound = 'sound/abnormalities/thunderbird/tbird_peck.ogg'
-	var/charged = FALSE
 	var/list/spawned_mobs = list()
 	var/datum/beam/current_beam = null
 	var/recharge_cooldown
 	var/recharge_cooldown_time = 10 SECONDS
+	var/charge_level = 0
+	var/charge_level_cap = 20
 
+/mob/living/simple_animal/hostile/ordeal/thunderbird_corrosion/proc/AdjustCharge(addition)
+	if(addition > 0 && charge_level < charge_level_cap)
+		new /obj/effect/temp_visual/healing/charge(get_turf(src))
+	charge_level = clamp(charge_level + addition, 0, charge_level_cap)
 
-/mob/living/simple_animal/hostile/ordeal/thunderbird_corrosion/proc/Recharge(atom/A)
+/mob/living/simple_animal/hostile/ordeal/thunderbird_corrosion/proc/Recharge(atom/A) // Recharging the centipede
 	if(recharge_cooldown >= world.time)
 		return FALSE
+	if(charge_level < 10)
+		return FALSE
+	AdjustCharge(-10)
 	recharge_cooldown = world.time + recharge_cooldown_time
 	current_beam = Beam(A, icon_state="lightning[rand(1,12)]", time = 3 SECONDS)
 
@@ -187,11 +196,11 @@
 	if(!isliving(target))
 		return
 	var/mob/living/L = target
-	if(charged)
-		L.deal_damage(15, BLACK_DAMAGE)
+	if(charge_level) // We deal up to 20 more damage, 1 for every point of charge.
+		L.deal_damage(charge_level, BLACK_DAMAGE)
 		playsound(get_turf(src), 'sound/weapons/fixer/generic/energyfinisher1.ogg', 75, 1)
 		to_chat(L,span_danger("The [src] unleashes its charge!"))
-		charged = FALSE
+		AdjustCharge(-charge_level)
 	if(!ishuman(target))
 		return
 	var/mob/living/carbon/human/H = target

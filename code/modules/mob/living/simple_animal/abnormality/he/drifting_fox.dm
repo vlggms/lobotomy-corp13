@@ -163,6 +163,7 @@
 	maxHealth = 125
 	health = 125
 	density = FALSE
+	status_flags = MUST_HIT_PROJECTILE // Allows projectiles to hit non-dense mob
 	damage_coeff = list(RED_DAMAGE = 1, WHITE_DAMAGE = 0.7, BLACK_DAMAGE = 0.5, PALE_DAMAGE = 2)
 	del_on_death = FALSE
 	ranged = TRUE

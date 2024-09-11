@@ -575,10 +575,7 @@
 		if(prob(10))
 			if(prob(66))
 				sleep(rand(1,5))
-			new /obj/effect/hotspot(T)
-			for(var/mob/living/M in T.contents)
-				M.adjust_fire_stacks(3)
-				M.IgniteMob()
+			new /obj/structure/turf_fire(T)
 
 /datum/weather/fog //Fall weather, causes nearsightedness.
 	name = "fog"
