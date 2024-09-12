@@ -1,4 +1,4 @@
-//EGO shield subtype code
+j//EGO shield subtype code
 
 /*
 	Regular Shields
