@@ -328,7 +328,7 @@
 	use_power = NO_POWER_USE
 	var/stored_money = 0
 	var/preservation_fee = 500
-	var/revival_attribute_penalty = 2
+	var/revival_attribute_penalty = -2
 	var/list/stored_bodies = list()
 
 /obj/machinery/body_preservation_unit/attackby(obj/item/I, mob/user, params)
@@ -355,10 +355,9 @@
 	if(ishuman(user))
 		var/mob/living/carbon/human/H = user
 		if(stored_bodies[H.real_name])
-			dat += "<a href='?src=[REF(src)];preserve=[REF(H)]'>Scan Current Body ([preservation_fee] AHN)</a><br>"
-			dat += "<a href='?src=[REF(src)];revive=[H.real_name]'>Retrieve Stored Body</a><br>"
+			dat += "<a href='?src=[REF(src)];preserve=[REF(H)]'>Update body scan ([preservation_fee] AHN)</a><br>"
 		else
-			dat += "<a href='?src=[REF(src)];preserve=[REF(H)]'>Scan Current Body ([preservation_fee] AHN)</a><br>"
+			dat += "<a href='?src=[REF(src)];preserve=[REF(H)]'>Create body scan ([preservation_fee] AHN)</a><br>"
 
 	if (isobserver(user))
 		var/mob/dead/observer/O = user
@@ -398,6 +397,17 @@
 		stored_money -= amount
 		return TRUE
 
+/obj/machinery/body_preservation_unit/proc/store_attributes(mob/living/carbon/human/H, list/preserved_data)
+	var/list/attributes = list()
+	for(var/type in GLOB.attribute_types)
+		if(ispath(type, /datum/attribute))
+			var/datum/attribute/atr = new type
+			attributes[atr.name] = atr
+			var/datum/attribute/old_atr = H.attributes[atr.name]
+			atr.level = old_atr.level
+	preserved_data["attributes"] = attributes
+
+
 /obj/machinery/body_preservation_unit/proc/preserve_body(mob/living/carbon/human/H)
 	if(!H || !H.mind)
 		return
@@ -410,23 +420,22 @@
 	var/datum/dna/D = new /datum/dna
 	H.dna.copy_dna(D)
 	preserved_data["dna"] = D
-	var/list/attributes = list()
-	for(var/type in GLOB.attribute_types)
-		if(ispath(type, /datum/attribute))
-			var/datum/attribute/atr = new type
-			attributes[atr.name] = atr
-			atr.level = get_raw_level(H, atr)
-	preserved_data["attributes"] = attributes
+
+	store_attributes(H, preserved_data)
+
 	preserved_data["underwear"] = H.underwear
 	preserved_data["underwear_color"] = H.underwear_color
 
 	stored_bodies[H.real_name] = preserved_data
-	to_chat(H, span_notice("Your body data has been preserved."))
 
-	// Instead of implanting, add a component
-	H.AddComponent(/datum/component/respawnable, respawn_time = 15 SECONDS)
 
-	to_chat(H, span_notice("You've been granted the ability to respawn after death."))
+	var/datum/component/respawnable/R = H.GetComponent(/datum/component/respawnable)
+	if (!R)
+		// Instead of implanting, add a component
+		H.AddComponent(/datum/component/respawnable, respawn_time = 15 SECONDS)
+		to_chat(H, span_notice("You've been granted the ability to respawn after death and your body data has been preserved."))
+	else
+		to_chat(H, span_notice("Your body data has been preserved."))
 
 /obj/machinery/body_preservation_unit/proc/revive_body(real_name, ckey)
 	if(!stored_bodies[real_name])
@@ -468,6 +477,8 @@
 	if(islist(stored_attributes))
 		// TODO Punishment
 		new_body.attributes = stored_attributes
+		new_body.adjust_all_attribute_levels(revival_attribute_penalty)
+		store_attributes(new_body, stored_data)
 	else
 		log_game("Body Preservation Unit: Stored attributes for [real_name] were invalid.")
 		qdel(new_body)
