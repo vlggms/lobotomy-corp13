@@ -130,7 +130,7 @@
 	health = 3000
 	damage_coeff = list(RED_DAMAGE = 0.8, WHITE_DAMAGE = 1, BLACK_DAMAGE = 2, PALE_DAMAGE = 1)
 	butcher_results = list(/obj/item/food/meat/slab/robot = 3)
-	guaranteed_butcher_results = list(/obj/item/food/meat/slab/robot = 2)
+	guaranteed_butcher_results = list(/obj/item/food/meat/slab/robot = 2, /obj/item/head_trophie/green_datachip = 1)
 	silk_results = list(/obj/item/stack/sheet/silk/green_elegant = 1,
 						/obj/item/stack/sheet/silk/green_advanced = 2,
 						/obj/item/stack/sheet/silk/green_simple = 4)

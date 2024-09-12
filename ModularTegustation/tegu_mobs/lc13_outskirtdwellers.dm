@@ -778,6 +778,7 @@ Mobs that mostly focus on dealing RED damage, they are all a bit more frail than
 	move_resist = MOVE_FORCE_OVERPOWERING
 	mob_spawn_amount = 2 //:(
 	spawn_prob = 0 //100%, always spawn them
+	guaranteed_butcher_results = list(/obj/item/head_trophie/flesh_head = 1)
 
 	var/can_act = TRUE
 	var/current_stage = 1 //changes behaviour slightly on phase 2
