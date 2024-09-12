@@ -126,7 +126,7 @@
 
 /obj/item/tape/resurgence/joshua
 	name = "Temple Log #15"
-	desc = "A magnetic tape that can hold up to ten minutes of content. It apper to have 'The Library' written on it's back."
+	desc = "A magnetic tape that can hold up to ten minutes of content. It apper to have 'New Friend?' written on it's back."
 	storedinfo = list(
 	"*Sounds of distant conversations slowly moving away...*",
 	span_game_say(span_name("Rusty Robotic Voice") + span_message(" says,") + " &quot;That was quite a procedure! Fascinating how the human brain is able to produce such emotions. &quot;"),
@@ -136,6 +136,41 @@
 	span_game_say(span_name("Distant Robotic Voice") + span_message(" says,") + " &quot;Hey! Elliot! Are you still in the study room?&quot;"),
 	span_game_say(span_name("Elliot") + span_message(" says,") + " &quot;Yes-s. Give me just a moment, I think I have forgotten something here...&quot;"),
 	span_game_say(span_name("Distant Robotic Voice") + span_message(" says,") + " &quot;Okay... Just get out of there soon, other scholars will be using it soon.&quot;"),
+	span_game_say(span_name("Elliot") + span_message(" says,") + " &quot;Of course... I would not want to prevent the study!&quot;"),
+	"*Sounds of books and metallic objects being thrown around.*",
+	span_game_say(span_name("Human Voice") + span_message(" coughs")),
+	span_game_say(span_name("Elliot") + span_message(" asks,") + " &quot;Oh... It appears that they are already being woken up. I really should get moving.&quot;"),
+	span_game_say(span_name("Human Voice") + span_message(" says weakly,") + " &quot;Wait... Who are you, why am I here.&quot;"),
+	span_game_say(span_name("Elliot") + span_message(" says,") + " &quot;Um... Normally we young scholars don't get the chance to speak with you.&quot;"),
+	span_game_say(span_name("Human Voice") + span_message(" says,") + " &quot;Scholars... Wait, Oh fuck... What have I gotten myself into.&quot;"),
+	span_game_say(span_name("Elliot") + span_message(" says,") + " &quot;Oh please don't use such rude language around here. The Priest doesn't like hearing it.&quot;"),
+	span_game_say(span_name("Human Voice") + span_message(" says,") + " &quot;Well Steelface, Sorry for not acting all pleasant to you after waking up tied up to a metal bed.&quot;"),
+	span_game_say(span_name("Human Voice") + span_message(" says,") + " &quot;Especially when I see your metal face...&quot;"),
+	span_game_say(span_name("Elliot") + span_message(" says,") + " &quot;Really? Is it really that disconcerting... I tried so hard to mimic how a human face looks like...&quot;"),
+	span_game_say(span_name("Human Voice") + span_message(" says,") + " &quot;Ha... That is the problem. You are trying far to hard. I heard that it causes some sort of uncanny effect...&quot;"),
+	span_game_say(span_name("Elliot") + span_message(" says,") + " &quot;Oh! Now that is something to note down... “Don't try too hard in mimicing a face...” &quot;"),
+	span_game_say(span_name("Elliot") + span_message(" says,") + " &quot;You know what pal... We should have more talks like these!&quot;"),
+	span_game_say(span_name("Elliot") + span_message(" says,") + " &quot; It is so much more fun talking to you rather then listening to my teachers.&quot;"),
+	span_game_say(span_name("Human Voice") + span_message(" says,") + " &quot;Well, There is not much that I can do...&quot;"),
+	span_game_say(span_name("Elliot") + span_message(" says,") + " &quot;Wonderful! I have to get going now but what is your name so I could remember it?&quot;"),
+	span_game_say(span_name("Joshua") + span_message(" says,") + " &quot;... Call me Joshua.&quot;"),
+	"*The tape cuts right after some quick footsteps are heard moving out of the room.*"
+	)
+
+	timestamp = list(1, 4, 8, 12, 16, 20, 26, 30, 34, 38, 41, 45, 52, 56, 59, 62, 65, 68, 71, 74, 77, 80, 83, 86, 89, 92, 95, 98)
+
+/obj/item/tape/resurgence/backstage
+	name = "Historians Podcast: Backstage Records"
+	desc = "A magnetic tape that can hold up to ten minutes of content. It apper to have 'Backstage Records' written on it's back."
+	storedinfo = list(
+	"*Sounds of a robotic laughter in the background along with some clapping.*",
+	span_game_say(span_name("The Historian") + span_message(" says,") + " &quot;Thank you all for tuning in for this episode! All of you learned a good amount about the liu today!&quot;"),
+	span_game_say(span_name("The Historian") + span_message(" says,") + " &quot;See you all, Next week!&quot;"),
+	"*Suddenly all of the clapping stops as a sceen shuts down...*",
+	span_game_say(span_name("The Historian") + span_message(" sighs")),
+	span_game_say(span_name("Robotic Voice") + span_message(" says,") + " &quot;Cut! You did great dear Historian! You followed your script perfectly.&quot;"),
+	span_game_say(span_name("The Historian") + span_message(" says,") + " &quot;Yes, As it should be... I would not want to disappoint my citizens...&quot;"),
+	span_game_say(span_name("Robotic Voice") + span_message(" says,") + " &quot;Disappointed? Citizens.&quot;"),
 	span_game_say(span_name("Elliot") + span_message(" says,") + " &quot;Of course... I would not want to prevent the study!&quot;"),
 	"*Sounds of books and metallic objects being thrown around.*",
 	span_game_say(span_name("Human Voice") + span_message(" coughs")),
