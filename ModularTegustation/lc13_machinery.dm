@@ -326,6 +326,7 @@
 	density = TRUE
 	layer = BELOW_OBJ_LAYER
 	use_power = NO_POWER_USE
+	var/public_use = FALSE
 	var/stored_money = 0
 	var/preservation_fee = 500
 	var/revival_attribute_penalty = -2
