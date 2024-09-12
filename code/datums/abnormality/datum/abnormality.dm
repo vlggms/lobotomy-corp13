@@ -95,11 +95,12 @@
 		qdel(ED)
 	for(var/atom/A in connected_structures)
 		qdel(A)
-	QDEL_NULL(landmark)
+	door = null
+	camera = null
 	QDEL_NULL(current)
+	QDEL_NULL(landmark)
+	console = null
 	ego_datums = null
-	landmark = null
-	current = null
 	connected_structures = null
 	return ..()
 
