@@ -324,42 +324,41 @@
 	icon = 'icons/obj/machines/body_preservation.dmi'
 	icon_state = "bpu"
 	density = TRUE
-	use_power = IDLE_POWER_USE
-	idle_power_usage = 50
-	active_power_usage = 300
+	layer = BELOW_OBJ_LAYER
+	use_power = NO_POWER_USE
+	var/stored_money = 0
 	var/preservation_fee = 500
-	var/revival_fee = 1000
 	var/revival_attribute_penalty = 2
 	var/list/stored_bodies = list()
-
-/obj/machinery/body_preservation_unit/examine(mob/user)
-	. = ..()
-	. += "<span class='notice'>Preservation Fee: [preservation_fee] AHN</span>"
-	. += "<span class='notice'>Revival Fee: [revival_fee] AHN</span>"
 
 /obj/machinery/body_preservation_unit/attackby(obj/item/I, mob/user, params)
 	if(istype(I, /obj/item/holochip))
 		var/obj/item/holochip/H = I
 		var/ahn_amount = H.get_item_credit_value()
 		H.spend(ahn_amount)
+		AdjustMoney(ahn_amount)
 		to_chat(user, "<span class='notice'>You insert [ahn_amount] AHN into the machine.</span>")
 		return
 	return ..()
+
+/obj/machinery/body_preservation_unit/proc/AdjustMoney(amount)
+	stored_money += amount
 
 /obj/machinery/body_preservation_unit/ui_interact(mob/user)
 	. = ..()
 	var/dat
 	dat += "<b>Body Preservation Unit</b><br>"
+	dat += "<b>FUNDS: [stored_money]</b><br>----------------------<br>"
 	dat += "Preservation Fee: [preservation_fee] AHN<br>"
-	dat += "Revival Fee: [revival_fee] AHN<br>"
 	dat += "<hr>"
 
 	if(ishuman(user))
 		var/mob/living/carbon/human/H = user
 		if(stored_bodies[H.real_name])
-			dat += "<a href='?src=[REF(src)];revive=[H.real_name]'>Revive Stored Body ([revival_fee] AHN)</a><br>"
+			dat += "<a href='?src=[REF(src)];preserve=[REF(H)]'>Scan Current Body ([preservation_fee] AHN)</a><br>"
+			dat += "<a href='?src=[REF(src)];revive=[H.real_name]'>Retrieve Stored Body</a><br>"
 		else
-			dat += "<a href='?src=[REF(src)];preserve=[REF(H)]'>Preserve Current Body ([preservation_fee] AHN)</a><br>"
+			dat += "<a href='?src=[REF(src)];preserve=[REF(H)]'>Scan Current Body ([preservation_fee] AHN)</a><br>"
 
 	if (isobserver(user))
 		var/mob/dead/observer/O = user
@@ -379,6 +378,8 @@
 		if(H && ishuman(H))
 			if(try_payment(preservation_fee, H))
 				preserve_body(H)
+			else
+				to_chat(H, "<span class='notice'>You don't have enough AHN.</span>")
 
 	if(href_list["revive"])
 		var/mob_name = href_list["revive"]
@@ -390,9 +391,12 @@
 	updateUsrDialog()
 
 /obj/machinery/body_preservation_unit/proc/try_payment(amount, mob/living/carbon/human/H)
-	// Implement payment logic here
-	// For simplicity, we'll assume the payment is always successful
-	return TRUE
+	if(stored_money < amount)
+		return FALSE
+	else
+		playsound(get_turf(src), 'sound/effects/cashregister.ogg', 35, 3, 3)
+		stored_money -= amount
+		return TRUE
 
 /obj/machinery/body_preservation_unit/proc/preserve_body(mob/living/carbon/human/H)
 	if(!H || !H.mind)
@@ -488,6 +492,8 @@
 	else
 		new_body.ckey = usr.ckey
 
+	playsound(get_turf(src), 'sound/effects/bin_close.ogg', 35, 3, 3)
+	playsound(get_turf(src), 'sound/misc/splort.ogg', 35, 3, 3)
 	to_chat(new_body, "<span class='warning'>You have been revived in a new body, but your attributes have decreased slightly.</span>")
 
 	// Remove the stored body data after revival
