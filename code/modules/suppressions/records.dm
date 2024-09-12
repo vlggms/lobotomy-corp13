@@ -8,7 +8,7 @@
 	run_text = "The core suppression of Records department has begun. \n\
 			The abnormalities will switch positions every meltdown. \n\
 			All living creatures will teleport slightly at even intervals."
-	/// How many of abnormality cells will swap places on meltdown, by percent of current count
+	/// How many of abnormality cells will swap places on meltdown, in percent
 	var/abno_swap_percentage = 10
 	/// How often teleportations happen
 	var/teleport_interval = 35 SECONDS
@@ -49,7 +49,7 @@
 	sound_to_playing_players('sound/effects/hokma_meltdown.ogg', 50)
 	// Swap shit, wreck havoc
 	var/list/abnos = SSlobotomy_corp.all_abnormality_datums.Copy()
-	var/max_swap = floor(length(abnos) / abno_swap_percentage)
+	var/max_swap = floor(max(1, length(abnos) / abno_swap_percentage))
 	for(var/i in 1 to max_swap)
 		if(!length(abnos))
 			break
