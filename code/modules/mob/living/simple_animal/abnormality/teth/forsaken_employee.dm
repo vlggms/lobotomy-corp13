@@ -17,8 +17,8 @@
 	work_damage_type = RED_DAMAGE
 
 	ego_list = list(
-		/datum/ego_datum/weapon/regret, //Placeholder till we get one. It would be /datum/ego_datum/weapon/trapped
-		/datum/ego_datum/armor/regret,
+		/datum/ego_datum/weapon/trapped
+		/datum/ego_datum/armor/trapped,
 	)
 	gift_type =  /datum/ego_gifts/trapped
 	abnormality_origin = ABNORMALITY_ORIGIN_LIMBUS
