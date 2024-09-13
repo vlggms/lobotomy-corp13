@@ -323,14 +323,16 @@
 	desc = "A high-tech machine that can store a digital copy of your body and attributes for a fee. In case of death, it can revive you with a small attribute penalty."
 	icon = 'icons/obj/machines/body_preservation.dmi'
 	icon_state = "bpu"
+	var/icon_state_animation = "bpu_animation"
 	density = TRUE
 	layer = BELOW_OBJ_LAYER
 	use_power = NO_POWER_USE
 	var/public_use = FALSE
 	var/stored_money = 0
-	var/preservation_fee = 500
+	//var/preservation_fee = 500
 	var/revival_attribute_penalty = -2
 	var/list/stored_bodies = list()
+	var/clone_delay_seconds = 15
 
 /obj/machinery/body_preservation_unit/attackby(obj/item/I, mob/user, params)
 	if(istype(I, /obj/item/holochip))
@@ -345,25 +347,49 @@
 /obj/machinery/body_preservation_unit/proc/AdjustMoney(amount)
 	stored_money += amount
 
+/obj/machinery/body_preservation_unit/proc/calculate_fee(mob/living/carbon/human/H)
+	var/preservation_fee = 0
+
+	for(var/atr_type in H.attributes)
+		var/datum/attribute/atr = H.attributes[atr_type]
+		preservation_fee += atr.level * 5
+
+	return preservation_fee
+
+
 /obj/machinery/body_preservation_unit/ui_interact(mob/user)
 	. = ..()
+
 	var/dat
 	dat += "<b>Body Preservation Unit</b><br>"
 	dat += "<b>FUNDS: [stored_money]</b><br>----------------------<br>"
-	dat += "Preservation Fee: [preservation_fee] AHN<br>"
-	dat += "<hr>"
 
 	if(ishuman(user))
 		var/mob/living/carbon/human/H = user
+		var/preservation_fee = calculate_fee(H)
+
+		dat += "Preservation Fee: [preservation_fee] AHN<br>"
+		dat += "<hr>"
+
+
 		if(stored_bodies[H.real_name])
 			dat += "<a href='?src=[REF(src)];preserve=[REF(H)]'>Update body scan ([preservation_fee] AHN)</a><br>"
 		else
 			dat += "<a href='?src=[REF(src)];preserve=[REF(H)]'>Create body scan ([preservation_fee] AHN)</a><br>"
 
 	if (isobserver(user))
+		dat += "<hr>"
+
 		var/mob/dead/observer/O = user
-		if(stored_bodies[O.real_name])
-			dat += "<a href='?src=[REF(src)];revive=[O.real_name]'>Revive Stored Body</a><br>"
+		var/list/stored_data = stored_bodies[O.real_name]
+		if(stored_data)
+			var/tod = stored_data["time_of_death"]
+			var/sec_since_death = (world.time - tod)/10
+			to_chat(usr, "Tod: " + num2text(tod) + " world.realtime " + num2text(world.realtime) + " (world.realtime - tod)/10 " + num2text((world.realtime - tod)/10))
+			if (sec_since_death < clone_delay_seconds)
+				dat += "<span>Seconds to cloning remaining: [clone_delay_seconds - sec_since_death]<br>"
+			else
+				dat += "<a href='?src=[REF(src)];revive=[O.real_name]'>Revive Stored Body</a><br>"
 
 	var/datum/browser/popup = new(user, "body_preservation", "Body Preservation Unit", 300, 300)
 	popup.set_content(dat)
@@ -376,12 +402,17 @@
 	if(href_list["preserve"])
 		var/mob/living/carbon/human/H = locate(href_list["preserve"])
 		if(H && ishuman(H))
+			var/preservation_fee = calculate_fee(H)
 			if(try_payment(preservation_fee, H))
 				preserve_body(H)
 			else
 				to_chat(H, "<span class='notice'>You don't have enough AHN.</span>")
 
 	if(href_list["revive"])
+		if (icon_state == icon_state_animation)
+			to_chat(usr, "<span class='notice'>BPU busy.</span>")
+			return
+
 		var/mob_name = href_list["revive"]
 		//var/mob/living/carbon/human/H = locate(stored_bodies[mob_name]["ref"])
 		//if(H && ishuman(H))
@@ -433,7 +464,8 @@
 	var/datum/component/respawnable/R = H.GetComponent(/datum/component/respawnable)
 	if (!R)
 		// Instead of implanting, add a component
-		H.AddComponent(/datum/component/respawnable, respawn_time = 15 SECONDS)
+		R = H.AddComponent(/datum/component/respawnable, respawn_time = 15 SECONDS)
+		R.BPU = src
 		to_chat(H, span_notice("You've been granted the ability to respawn after death and your body data has been preserved."))
 	else
 		to_chat(H, span_notice("Your body data has been preserved."))
@@ -447,7 +479,10 @@
 	// if (stored_data["ckey"] != usr.ckey)
 	// 	log_game("Body Preservation Unit: Wrong ckey for [real_name]. Not respawning!")
 	// 	return
-
+	var/temp_icon_state = icon_state
+	icon_state = icon_state_animation
+	sleep(10)
+	icon_state = temp_icon_state
 
 	// Create a new body
 	var/mob/living/carbon/human/new_body = new(get_turf(src))
@@ -493,7 +528,8 @@
 	if (underwear_color)
 		new_body.underwear_color = underwear_color
 
-	new_body.AddComponent(/datum/component/respawnable, respawn_time = 15 SECONDS)
+	var/datum/component/respawnable/R = new_body.AddComponent(/datum/component/respawnable, respawn_time = 15 SECONDS)
+	R.BPU = src
 
 	// Revive the new body
 	new_body.revive(full_heal = TRUE, admin_revive = FALSE)
@@ -518,6 +554,7 @@
 // New component for handling respawns
 /datum/component/respawnable
 	var/respawn_time = 15 SECONDS
+	var/obj/machinery/body_preservation_unit/BPU
 
 /datum/component/respawnable/Initialize(respawn_time)
 	if(!isliving(parent))
@@ -529,16 +566,19 @@
 	SIGNAL_HANDLER
 	if (ishuman(L))
 		var/mob/living/carbon/human/H = L
-		addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(offer_respawn_global), H.real_name), respawn_time)
+		addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(offer_respawn_global), H.real_name, BPU), respawn_time)
+		var/list/stored_data = BPU.stored_bodies[H.real_name]
+		stored_data["time_of_death"] = world.time
+
 
 // Define this as a global proc
-/proc/offer_respawn_global(real_name)
+/proc/offer_respawn_global(real_name, obj/machinery/body_preservation_unit/BPU)
 	var/mob/dead/observer/ghost = find_dead_player(real_name)
 	if(!ghost || !ghost.client)
 		return
 	var/response = alert(ghost, "Do you want to respawn?", "Respawn Offer", "Yes", "No")
 	if(response == "Yes")
-		var/obj/machinery/body_preservation_unit/BPU = locate() in GLOB.machines
+//		var/obj/machinery/body_preservation_unit/BPU = locate() in GLOB.machines
 		if(BPU && BPU.stored_bodies[real_name])
 			BPU.revive_body(real_name, ghost.ckey)
 
