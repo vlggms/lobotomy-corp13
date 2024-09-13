@@ -17,7 +17,7 @@
 	work_damage_type = RED_DAMAGE
 
 	ego_list = list(
-		/datum/ego_datum/weapon/trapped
+		/datum/ego_datum/weapon/trapped,
 		/datum/ego_datum/armor/trapped,
 	)
 	gift_type =  /datum/ego_gifts/trapped
