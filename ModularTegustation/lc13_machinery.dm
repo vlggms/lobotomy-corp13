@@ -364,32 +364,34 @@
 	dat += "<b>Body Preservation Unit</b><br>"
 	dat += "<b>FUNDS: [stored_money]</b><br>----------------------<br>"
 
-	if(ishuman(user))
-		var/mob/living/carbon/human/H = user
-		var/preservation_fee = calculate_fee(H)
+	if (!public_use && !(user?.mind?.assigned_role in list("Civilian")))
+		dat += "<b>Only civilians can use this machine</b><br>"
+	else
+		if(ishuman(user))
+			var/mob/living/carbon/human/H = user
+			var/preservation_fee = calculate_fee(H)
 
-		dat += "Preservation Fee: [preservation_fee] AHN<br>"
-		dat += "<hr>"
+			dat += "Preservation Fee: [preservation_fee] AHN<br>"
+			dat += "<hr>"
 
 
-		if(stored_bodies[H.real_name])
-			dat += "<a href='?src=[REF(src)];preserve=[REF(H)]'>Update body scan ([preservation_fee] AHN)</a><br>"
-		else
-			dat += "<a href='?src=[REF(src)];preserve=[REF(H)]'>Create body scan ([preservation_fee] AHN)</a><br>"
-
-	if (isobserver(user))
-		dat += "<hr>"
-
-		var/mob/dead/observer/O = user
-		var/list/stored_data = stored_bodies[O.real_name]
-		if(stored_data)
-			var/tod = stored_data["time_of_death"]
-			var/sec_since_death = (world.time - tod)/10
-			to_chat(usr, "Tod: " + num2text(tod) + " world.realtime " + num2text(world.realtime) + " (world.realtime - tod)/10 " + num2text((world.realtime - tod)/10))
-			if (sec_since_death < clone_delay_seconds)
-				dat += "<span>Seconds to cloning remaining: [clone_delay_seconds - sec_since_death]<br>"
+			if(stored_bodies[H.real_name])
+				dat += "<a href='?src=[REF(src)];preserve=[REF(H)]'>Update body scan ([preservation_fee] AHN)</a><br>"
 			else
-				dat += "<a href='?src=[REF(src)];revive=[O.real_name]'>Revive Stored Body</a><br>"
+				dat += "<a href='?src=[REF(src)];preserve=[REF(H)]'>Create body scan ([preservation_fee] AHN)</a><br>"
+
+		if (isobserver(user))
+			dat += "<hr>"
+
+			var/mob/dead/observer/O = user
+			var/list/stored_data = stored_bodies[O.real_name]
+			if(stored_data)
+				var/tod = stored_data["time_of_death"]
+				var/sec_since_death = (world.time - tod)/10
+				if (sec_since_death < clone_delay_seconds)
+					dat += "<span>Seconds to cloning remaining: [clone_delay_seconds - sec_since_death]<br>"
+				else
+					dat += "<a href='?src=[REF(src)];revive=[O.real_name]'>Revive Stored Body</a><br>"
 
 	var/datum/browser/popup = new(user, "body_preservation", "Body Preservation Unit", 300, 300)
 	popup.set_content(dat)
