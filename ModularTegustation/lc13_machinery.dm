@@ -330,7 +330,7 @@
 	var/public_use = FALSE
 	var/stored_money = 0
 	//var/preservation_fee = 500
-	var/revival_attribute_penalty = -2
+	var/revival_attribute_penalty = -6
 	var/list/stored_bodies = list()
 	var/clone_delay_seconds = 120
 
