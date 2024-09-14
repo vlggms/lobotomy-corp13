@@ -73,10 +73,17 @@
 	* defeated. -IP
 	*/
 	var/list/exchange_shop_list = list(
-		new /datum/data/extraction_cargo("SNAP POP	",	/obj/item/toy/snappop,			10) = 1,
-		new /datum/data/extraction_cargo("CAT TOY	",	/obj/item/toy/cattoy,			15) = 1,
-		new /datum/data/extraction_cargo("CHILDRENS TOY",/obj/item/toy/prize/ripley,	20) = 1,
-		new /datum/data/extraction_cargo("HOURGLASS",	/obj/item/hourglass,			25) = 1,
+		new /datum/data/extraction_cargo("SNAP POP",	/obj/item/toy/snappop,				10) = 1,
+		new /datum/data/extraction_cargo("WATER BALLOON",	/obj/item/toy/waterballoon,		10) = 1,
+		new /datum/data/extraction_cargo("TOY SWORD",	/obj/item/toy/waterballoon,			10) = 1,
+		new /datum/data/extraction_cargo("CAT TOY",	/obj/item/toy/cattoy,					15) = 1,
+		new /datum/data/extraction_cargo("PLUSH OF A FRIEND",/obj/item/toy/plush/binah,		15) = 1,
+		new /datum/data/extraction_cargo("UNMARKED CRATE",/obj/structure/lootcrate,			20) = 1,
+		new /datum/data/extraction_cargo("SUSPICIOUS CRATE",/obj/structure/lootcrate/money,	20) = 1,
+		new /datum/data/extraction_cargo("HOURGLASS",	/obj/item/hourglass,				25) = 1,
+		new /datum/data/extraction_cargo("CAT",	/mob/living/simple_animal/pet/cat,			50) = 1,
+		new /datum/data/extraction_cargo("CAK",	/mob/living/simple_animal/pet/cat/cak,		100) = 1,
+		new /datum/data/extraction_cargo("SNAKE", /mob/living/simple_animal/hostile/retaliate/poison/snake,	100) = 1,
 	)
 
 /datum/adventure_layout/New(set_debug_menu = FALSE)
