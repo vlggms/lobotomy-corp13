@@ -482,3 +482,12 @@
 /datum/ego_datum/armor/holiday
 	item_path = /obj/item/clothing/suit/armor/ego_gear/waw/holiday
 	cost = 50
+
+//My Form Empties- Ya Sunyata Tad Rupam
+/datum/ego_datum/armor/sunyata
+	item_path = /obj/item/clothing/suit/armor/ego_gear/waw/sunyata
+	cost = 50
+
+/datum/ego_datum/weapon/sunyata
+	item_path = /obj/item/ego_weapon/sunyata
+	cost = 50

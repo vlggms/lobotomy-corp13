@@ -93,6 +93,7 @@
 
 	if(charge_amount < charge_cap)
 		charge_amount += added_charge
+		new /obj/effect/temp_visual/healing/charge(get_turf(src))
 
 /// Lets people refund their charge if the allow_ability_cancel var is set to TRUE
 /obj/item/ego_weapon/proc/CancelCharge(mob/user)

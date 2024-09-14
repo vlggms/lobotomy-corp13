@@ -56,14 +56,16 @@
 	message = replacetext(message, "confusing", "conchfusing")
 	message = replacetext(message, "complicated", "clampified")
 	message = replacetext(message, "self", "shellf")
-	message = replacetext(message, "kill", "krill") // Krill yourshellf... or skrill issue
 	message = replacetext(message, "about", "a-boat")
-	message = replacetext(message, "real", "reel")
 	message = replacetext(message, "cap", "carp")
 	message = replacetext(message, "god", "cod")
 	message = replacetext(message, "calamity", "clamity")
 	message = replacetext(message, "help", "kelp")
 	message = replacetext(message, "not", "naught")
-	message = replacetext(message, "ill", "eel")
 	message = replacetext(message, "sophisticated", "sofishticated")
+	message = replacetext(message, "kill", "%1") // Krill yourshellf... or skrill issue
+	message = replacetext(message, "real", "reel")
+	message = replacetext(message, "ill", "eel")
+	message = replacetext(message, "%1", "krill") // earlier on we added a symbol so it dosen't get messed up by ill regex, we fix it here
+
 	speech_args[SPEECH_MESSAGE] = message

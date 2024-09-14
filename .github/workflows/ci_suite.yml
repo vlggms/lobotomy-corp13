@@ -14,19 +14,19 @@ jobs:
     env:
       TG_BOOTSTRAP_NODE_LINUX: 1
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
       - name: Setup SpacemanDMM cache
-        uses: actions/cache@v2
+        uses: actions/cache@v3
         with:
           path: $HOME/SpacemanDMM
           key: ${{ runner.os }}-spacemandmm
       - name: Setup bootstrap cache
-        uses: actions/cache@v2
+        uses: actions/cache@v3
         with:
           path: tools/bootstrap/.cache
           key: ${{ runner.os }}-bootstrap
       - name: Setup yarn cache
-        uses: actions/cache@v2
+        uses: actions/cache@v3
         with:
           path: tgui/.yarn/cache
           key: ${{ runner.os }}-yarn
@@ -59,19 +59,19 @@ jobs:
     env:
       TG_BOOTSTRAP_NODE_LINUX: 1
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
       - name: Setup BYOND cache
-        uses: actions/cache@v2
+        uses: actions/cache@v3
         with:
           path: $HOME/BYOND
           key: ${{ runner.os }}-byond
       - name: Setup bootstrap cache
-        uses: actions/cache@v2
+        uses: actions/cache@v3
         with:
           path: tools/bootstrap/.cache
           key: ${{ runner.os }}-bootstrap
       - name: Setup yarn cache
-        uses: actions/cache@v2
+        uses: actions/cache@v3
         with:
           path: tgui/.yarn/cache
           key: ${{ runner.os }}-yarn
@@ -98,19 +98,19 @@ jobs:
           - 3306
         options: --health-cmd="mysqladmin ping" --health-interval=10s --health-timeout=5s --health-retries=3
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
       - name: Setup BYOND cache
-        uses: actions/cache@v2
+        uses: actions/cache@v3
         with:
           path: $HOME/BYOND
           key: ${{ runner.os }}-byond
       - name: Setup bootstrap cache
-        uses: actions/cache@v2
+        uses: actions/cache@v3
         with:
           path: tools/bootstrap/.cache
           key: ${{ runner.os }}-bootstrap
       - name: Setup yarn cache
-        uses: actions/cache@v2
+        uses: actions/cache@v3
         with:
           path: tgui/.yarn/cache
           key: ${{ runner.os }}-yarn
@@ -140,14 +140,14 @@ jobs:
     name: Windows Build
     runs-on: windows-latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
       - name: Setup bootstrap cache
-        uses: actions/cache@v2
+        uses: actions/cache@v3
         with:
           path: tools/bootstrap/.cache
           key: ${{ runner.os }}-bootstrap
       - name: Setup yarn cache
-        uses: actions/cache@v2
+        uses: actions/cache@v3
         with:
           path: tgui/.yarn/cache
           key: ${{ runner.os }}-yarn
@@ -160,7 +160,7 @@ jobs:
           md deploy
           bash tools/deploy.sh ./deploy
       - name: Deploy artifact
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v4
         with:
           name: deploy
           path: deploy

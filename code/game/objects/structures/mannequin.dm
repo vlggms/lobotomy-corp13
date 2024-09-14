@@ -159,7 +159,7 @@
 					slot_examine = " in its left hand"
 			msg += "Wearing [cloth_to_examine][slot_examine].<br>"
 
-	to_chat(user, msg)
+	. += msg
 
 /obj/structure/mannequin/update_icon()
 	..()
