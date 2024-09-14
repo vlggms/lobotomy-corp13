@@ -120,7 +120,12 @@
 	melee_damage_lower = 42
 	melee_damage_upper = 55
 	damage_coeff = list(RED_DAMAGE = 0.7, WHITE_DAMAGE = 0.5, BLACK_DAMAGE = 1.5, PALE_DAMAGE = 0.7)
-	guaranteed_butcher_results = list(/obj/item/food/meat/slab/sweeper = 1, /obj/item/head_trophie/indigo_head/white = 1)
+	guaranteed_butcher_results = list(/obj/item/food/meat/slab/sweeper = 1)
+
+/mob/living/simple_animal/hostile/ordeal/indigo_dusk/white/Initialize(mapload)
+	. = ..()
+	if(SSmaptype.maptype in SSmaptype.citymaps)
+		guaranteed_butcher_results += list(/obj/item/head_trophie/indigo_head/white = 1)
 
 /mob/living/simple_animal/hostile/ordeal/indigo_dusk/white/CanAttack(atom/the_target)
 	if(ishuman(the_target))
