@@ -332,7 +332,7 @@
 	//var/preservation_fee = 500
 	var/revival_attribute_penalty = -2
 	var/list/stored_bodies = list()
-	var/clone_delay_seconds = 15
+	var/clone_delay_seconds = 120
 
 /obj/machinery/body_preservation_unit/attackby(obj/item/I, mob/user, params)
 	if(istype(I, /obj/item/holochip))
