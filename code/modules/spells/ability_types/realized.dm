@@ -1018,16 +1018,8 @@
 		return FALSE
 	if(!is_type_in_list(I, ego_list))
 		return FALSE
-	if(istype(I, /obj/item/ego_weapon))
-		var/obj/item/ego_weapon/egoweapon = I
-		if(egoweapon.force_multiplier < 1.2)
-			to_chat(user, span_notice("You must use a weapon with a damage multiplier of 20% or higher!"))
-			return FALSE
-		Reload(I, user)
-		return TRUE
-	if(istype(I, /obj/item/gun/ego_gun))
-		var/obj/item/gun/ego_gun/egogun = I
-		if(egogun.projectile_damage_multiplier < 1.2)
+	if(istype(I, /obj/item/ego_weapon) || istype(I, /obj/item/gun/ego_gun))
+		if(I.force_multiplier < 1.2)
 			to_chat(user, span_notice("You must use a weapon with a damage multiplier of 20% or higher!"))
 			return FALSE
 		Reload(I, user)
@@ -1069,6 +1061,7 @@
 
 		else if(ispath(ego, /obj/item/gun/ego_gun))
 			var/obj/item/gun/ego_gun/egogun = new ego(get_turf(user))
+			egogun.force_multiplier = 1.20
 			egogun.projectile_damage_multiplier = 1.20
 			egogun.name = "shimmering [egogun.name]"
 			egogun.set_light(3, 6, "#D4FAF37")

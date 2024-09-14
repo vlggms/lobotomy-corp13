@@ -56,6 +56,7 @@
 
 /obj/item/gun/ego_gun/city/lcorp/proc/IncreaseAttributes(mob/living/user, obj/item/egoshard/egoshard)
 	damtype = egoshard.damage_type
+	force = (egoshard.base_damage * 0.7) //70% of base damage which is to be expected of guns. Currently all guns override this with their own values.
 	tier = egoshard.tier
 	for(var/atr in attribute_requirements)
 		attribute_requirements[atr] = egoshard.stat_requirement
@@ -116,6 +117,8 @@
 	inhand_icon_state = "pistol"
 	special = "This weapon has pinpoint accuracy when dual wielded."
 	ammo_type = /obj/item/ammo_casing/caseless/lcorp/pistol
+	attack_speed = 0.5
+	force = 6
 	fire_delay = 10
 	shotsleft = 7
 	reloadtime = 2.1 SECONDS
@@ -134,6 +137,10 @@
 	damage = 11
 	damage_tier = list(11,20,30,55,90)
 
+/obj/item/gun/ego_gun/city/lcorp/pistol/IncreaseAttributes(mob/living/user, obj/item/egoshard/egoshard)
+	..()
+	force = (egoshard.base_damage * 0.42) // 2 attacks per attack cycle due to being a pistol
+
 /obj/item/gun/ego_gun/city/lcorp/automatic_pistol
 	name = "l-corp automatic pistol"
 	desc = "A rapid-fire pistol issued by L-Corp to those who cannot utilize E.G.O."
@@ -141,6 +148,8 @@
 	inhand_icon_state = "automatic"
 	w_class = WEIGHT_CLASS_NORMAL
 	ammo_type = /obj/item/ammo_casing/caseless/lcorp/automatic
+	attack_speed = 0.5
+	force = 6
 	fire_sound = 'sound/weapons/gun/pistol/shot.ogg'
 	vary_fire_sound = FALSE
 	shotsleft = 20
@@ -157,6 +166,10 @@
 	damage = 2
 	damage_tier = list(2,4,6,9,15)
 
+/obj/item/gun/ego_gun/city/lcorp/automatic_pistol/IncreaseAttributes(mob/living/user, obj/item/egoshard/egoshard)
+	..()
+	force = (egoshard.base_damage * 0.42) // 2 attacks per attack cycle due to being a pistol
+
 ///////////////////
 //CLERK EQUIPMENT//
 ///////////////////
@@ -170,6 +183,8 @@
 	worn_icon_state = "gun"
 	lefthand_file = 'icons/mob/inhands/weapons/guns_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/weapons/guns_righthand.dmi'
+	attack_speed = 0.5
+	force = 6
 	w_class = WEIGHT_CLASS_NORMAL
 	ammo_type = /obj/item/ammo_casing/caseless/ego_clerk
 	burst_size = 1

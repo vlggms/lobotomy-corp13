@@ -44,7 +44,7 @@
 
 /obj/item/ego_weapon/city/lcorp/proc/IncreaseAttributes(mob/living/user, obj/item/egoshard/egoshard)
 	damtype = egoshard.damage_type
-	force = (egoshard.base_damage) //base damage
+	force = egoshard.base_damage //base damage
 	for(var/atr in attribute_requirements)
 		attribute_requirements[atr] = egoshard.stat_requirement
 	to_chat(user, span_warning("The requirements to equip [src] have increased!"))
@@ -65,6 +65,7 @@
 	name = "l-corp combat baton"
 	icon_state = "baton"
 	desc = "A baton issued by L-Corp to those who cannot utilize E.G.O."
+	swingstyle = WEAPONSWING_LARGESWEEP
 	hitsound = 'sound/weapons/fixer/generic/baton1.ogg'
 	force = 22
 
@@ -84,6 +85,7 @@
 	name = "l-corp club"
 	icon_state = "club"
 	desc = "A heavy club issued by L-Corp to those who cannot utilize E.G.O."
+	swingstyle = WEAPONSWING_LARGESWEEP
 	hitsound = 'sound/weapons/fixer/generic/club2.ogg'
 	force = 35 //Still less DPS, replaces baseball bat
 	attack_speed = 1.6
