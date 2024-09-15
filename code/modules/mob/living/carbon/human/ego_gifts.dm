@@ -525,9 +525,9 @@
 	justice_bonus = 1
 	slot = HAND_1
 
-/datum/ego_gifts/trapped
-	name = "Trapped"
-	icon_state = "trapped"
+/datum/ego_gifts/denial
+	name = "Denial"
+	icon_state = "denial"
 	justice_bonus = 3
 	slot = HELMET
 

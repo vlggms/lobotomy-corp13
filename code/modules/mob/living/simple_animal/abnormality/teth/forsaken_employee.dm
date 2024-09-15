@@ -17,10 +17,10 @@
 	work_damage_type = RED_DAMAGE
 
 	ego_list = list(
-		/datum/ego_datum/weapon/trapped,
-		/datum/ego_datum/armor/trapped,
+		/datum/ego_datum/weapon/denial,
+		/datum/ego_datum/armor/denial,
 	)
-	gift_type =  /datum/ego_gifts/trapped
+	gift_type =  /datum/ego_gifts/denial
 	abnormality_origin = ABNORMALITY_ORIGIN_LIMBUS
 
 	//Observation is mostly mirror dungeon but with some changed phrasing
