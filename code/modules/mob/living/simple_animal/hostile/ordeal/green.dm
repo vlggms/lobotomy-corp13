@@ -142,7 +142,7 @@
 /mob/living/simple_animal/hostile/ordeal/green_dusk/Initialize(mapload)
 	. = ..()
 	if(SSmaptype.maptype in SSmaptype.citymaps)
-		guaranteed_butcher_results += list(/obj/item/head_trophie/green_datachip = 1)
+		guaranteed_butcher_results += list(/obj/item/head_trophy/green_datachip = 1)
 
 /mob/living/simple_animal/hostile/ordeal/green_dusk/Initialize()
 	. = ..()

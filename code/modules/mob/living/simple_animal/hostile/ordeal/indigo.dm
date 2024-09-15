@@ -125,7 +125,7 @@
 /mob/living/simple_animal/hostile/ordeal/indigo_dusk/white/Initialize(mapload)
 	. = ..()
 	if(SSmaptype.maptype in SSmaptype.citymaps)
-		guaranteed_butcher_results += list(/obj/item/head_trophie/indigo_head/white = 1)
+		guaranteed_butcher_results += list(/obj/item/head_trophy/indigo_head/white = 1)
 
 /mob/living/simple_animal/hostile/ordeal/indigo_dusk/white/CanAttack(atom/the_target)
 	if(ishuman(the_target))
@@ -148,7 +148,7 @@
 /mob/living/simple_animal/hostile/ordeal/indigo_dusk/black/Initialize(mapload)
 	. = ..()
 	if(SSmaptype.maptype in SSmaptype.citymaps)
-		guaranteed_butcher_results += list(/obj/item/head_trophie/indigo_head/black = 1)
+		guaranteed_butcher_results += list(/obj/item/head_trophy/indigo_head/black = 1)
 
 /mob/living/simple_animal/hostile/ordeal/indigo_dusk/red
 	name = "\proper Commander Jacques"
@@ -163,7 +163,7 @@
 /mob/living/simple_animal/hostile/ordeal/indigo_dusk/red/Initialize(mapload)
 	. = ..()
 	if(SSmaptype.maptype in SSmaptype.citymaps)
-		guaranteed_butcher_results += list(/obj/item/head_trophie/indigo_head = 1)
+		guaranteed_butcher_results += list(/obj/item/head_trophy/indigo_head = 1)
 
 
 /mob/living/simple_animal/hostile/ordeal/indigo_dusk/pale
@@ -179,7 +179,7 @@
 /mob/living/simple_animal/hostile/ordeal/indigo_dusk/pale/Initialize(mapload)
 	. = ..()
 	if(SSmaptype.maptype in SSmaptype.citymaps)
-		guaranteed_butcher_results += list(/obj/item/head_trophie/indigo_head/pale = 1)
+		guaranteed_butcher_results += list(/obj/item/head_trophy/indigo_head/pale = 1)
 
 /mob/living/simple_animal/hostile/ordeal/indigo_dusk/Initialize(mapload)
 	. = ..()

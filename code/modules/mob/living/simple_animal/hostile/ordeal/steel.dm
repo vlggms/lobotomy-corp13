@@ -253,7 +253,7 @@
 	AddComponent(/datum/component/ai_leadership, units_to_add, 8, TRUE, TRUE)
 
 	if(SSmaptype.maptype in SSmaptype.citymaps)
-		guaranteed_butcher_results += list(/obj/item/head_trophie/steel_head = 1)
+		guaranteed_butcher_results += list(/obj/item/head_trophy/steel_head = 1)
 
 /mob/living/simple_animal/hostile/ordeal/steel_dusk/Life()
 	. = ..()

@@ -21,7 +21,7 @@
 		/obj/item/clothing/suit/armor/ego_gear/city,
 		/obj/item/ego_weapon/city,
 		/obj/item/gun/ego_gun,
-		/obj/item/head_trophie,
+		/obj/item/head_trophy,
 		/obj/item/tape/resurgence,
 		/obj/item/refinedpe,
 	)
