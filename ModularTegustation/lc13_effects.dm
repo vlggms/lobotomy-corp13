@@ -24,22 +24,36 @@
 
 /obj/effect/temp_visual/workcomplete  // Work complete effect
 	name = "work complete"
-	duration = 15
+	duration = 20
 	icon = 'icons/effects/160x96.dmi'
 	icon_state = "normal"
 	layer = ABOVE_ALL_MOB_LAYER
 	alpha = 200
+	maptext_x = 25
+	maptext_y = 5
 	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
+	var/style = "font-family: 'BM DoHyeon'; font-size:18pt;"
+	var/spawn_time
+	var/work_delayed
 
 /obj/effect/temp_visual/workcomplete/Initialize(mapload, set_dir)
 	. = ..()
 	animate(src, alpha = 100, time = 5)
 	addtimer(CALLBACK(src, PROC_REF(ResetAnim)),5)
+	spawn_time = world.time
+
+/obj/effect/temp_visual/workcomplete/proc/SetWorkDelay()
+	deltimer(timerid)
+	timerid = QDEL_IN(src, duration)
+	maptext = "<span style=\"[style]\">[((floor(duration) + spawn_time) - world.time) / 10]</span>"
 
 /obj/effect/temp_visual/workcomplete/proc/ResetAnim()
 	animate(src, alpha = 200, time = 5)
 	sleep(5)
 	animate(src, alpha = 0, time = 5)
+	if(maptext) // Our duration is looping for longer than 1.5s
+		maptext = "<span style=\"[style]\">[((floor(duration) + spawn_time) - world.time) / 10]</span>"
+		addtimer(CALLBACK(src, PROC_REF(ResetAnim)),5)
 
 /obj/effect/extraction_effect
 	name = "extraction effect"

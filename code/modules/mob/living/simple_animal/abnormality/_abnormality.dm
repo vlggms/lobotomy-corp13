@@ -118,6 +118,9 @@
 	/// Offset for secret skins in the Y axis
 	var/secret_vertical_offset = 0
 
+	/// A variable for storing work cooldown. This is modified by the datum.
+	var/work_cooldown = 20
+
 	/// Final Observation details
 	var/observation_in_progress = FALSE
 	var/observation_prompt = "The abnormality is watching you. What will you do?"
@@ -382,8 +385,10 @@
 	return chance
 
 // Called by datum_reference when work is done
-/mob/living/simple_animal/hostile/abnormality/proc/WorkComplete(mob/living/carbon/human/user, work_type, pe, work_time, canceled)
+/mob/living/simple_animal/hostile/abnormality/proc/WorkComplete(mob/living/carbon/human/user, work_type, pe, work_time, canceled, cooldown)
 	SHOULD_CALL_PARENT(TRUE)
+	if(cooldown)
+		work_cooldown = cooldown
 	if(pe >= datum_reference.success_boxes)
 		SuccessEffect(user, work_type, pe, work_time, canceled)
 	else if(pe >= datum_reference.neutral_boxes)
@@ -418,6 +423,9 @@
 	var/turf/target_turf = get_ranged_target_turf(src, SOUTHWEST, 1)
 	var/obj/effect/temp_visual/workcomplete/VFX = new(target_turf)
 	VFX.icon_state = state
+	if(VFX) // TODO: Check if there is a work delay
+		VFX.duration = work_cooldown // Set to work delay time
+		VFX.SetWorkDelay()
 	return
 
 // Giving an EGO gift to the user after work is complete

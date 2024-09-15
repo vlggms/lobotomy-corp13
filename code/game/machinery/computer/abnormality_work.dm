@@ -281,6 +281,7 @@
 	return FALSE
 
 /obj/machinery/computer/abnormality/proc/finish_work(mob/living/carbon/human/user, work_type, pe = 0, work_speed = 2 SECONDS, was_melting, canceled = FALSE)
+	var/cooldown_time = SetWorkCooldown()
 	if(recorded)
 		SEND_SIGNAL(user, COMSIG_WORK_COMPLETED, datum_reference, user, work_type)
 		SEND_GLOBAL_SIGNAL(COMSIG_GLOB_WORK_COMPLETED, datum_reference, user, work_type)
@@ -301,7 +302,7 @@
 			audible_message(span_notice("Work Result: Bad"),\
 				span_notice("Work Result: Bad"))
 	if(istype(user))
-		datum_reference.work_complete(user, work_type, pe, work_speed*datum_reference.max_boxes, was_melting, canceled)
+		datum_reference.work_complete(user, work_type, pe, work_speed*datum_reference.max_boxes, was_melting, canceled, cooldown = cooldown_time)
 		if(recorded) //neither rabbit nor tutorial calls this
 			SSlobotomy_corp.WorkComplete(pe, (meltdown_time <= 0))
 	var/obj/item/chemical_extraction_attachment/attachment = locate() in src.contents
@@ -310,7 +311,7 @@
 	else
 		chem_charges = min(chem_charges + 0.2, 10)
 	meltdown_time = 0
-	datum_reference.working = FALSE
+	addtimer(CALLBACK(src, PROC_REF(FinishWorkCooldown)), cooldown_time)
 	return TRUE
 
 /obj/machinery/computer/abnormality/process()
@@ -353,6 +354,18 @@
 //Links to containment panel
 /obj/machinery/computer/abnormality/proc/LinkPanel(obj/machinery/panel)
 	linked_panel = panel
+
+//Cooldowns between work
+/obj/machinery/computer/abnormality/proc/SetWorkCooldown()
+	if(!LAZYLEN(SSlobotomy_corp.all_abnormality_datums)) // This should never happen
+		return 20
+	var/abnormality_mod = length(SSlobotomy_corp.all_abnormality_datums)
+	abnormality_mod = ceil(abnormality_mod/2)
+	var/cooldown = clamp(abnormality_mod * 10, 20, 100)
+	return cooldown
+
+/obj/machinery/computer/abnormality/proc/FinishWorkCooldown()
+	datum_reference.working = FALSE
 
 //Applies or Removes Extraction Officer Key or Lock
 /obj/machinery/computer/abnormality/proc/ApplyEOTool(modifier = 0, removal = FALSE, obj/item/extraction/key/thetool = null)

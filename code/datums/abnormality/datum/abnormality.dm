@@ -169,8 +169,8 @@
 			SSabnormality_queue.possible_abnormalities[initial(abno_friend.threat_level)][abno_friend] = SSabnormality_queue.possible_abnormalities[initial(abno_friend.threat_level)][abno_friend] * abno.grouped_abnos[abno_friend]
 	QDEL_NULL(abno)
 
-/datum/abnormality/proc/work_complete(mob/living/carbon/human/user, work_type, pe, work_time, was_melting, canceled)
-	current.WorkComplete(user, work_type, pe, work_time, canceled) // Cross-referencing gone wrong
+/datum/abnormality/proc/work_complete(mob/living/carbon/human/user, work_type, pe, work_time, was_melting, canceled, cooldown)
+	current.WorkComplete(user, work_type, pe, work_time, canceled, cooldown) // Cross-referencing gone wrong
 	if(!console?.recorded && !console?.tutorial) //only training rabbit should not train stats
 		return
 	var/attribute_type = "N/A"

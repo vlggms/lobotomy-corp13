@@ -74,8 +74,8 @@
 	//work-related
 	var/happy = FALSE
 	var/demand
-	var/work_cooldown
-	var/work_cooldown_time = 3 SECONDS
+	var/work_delay
+	var/work_delay_time = 3 SECONDS
 	var/list/worked = list()
 	var/list/satisfied = list(
 		"Ipi etog sind lemanto.", //You mind big human
@@ -140,10 +140,10 @@
 /mob/living/simple_animal/hostile/abnormality/sphinx/AttemptWork(mob/living/carbon/human/user, work_type)
 	if((work_type != "Riddle") && work_type != "Make Offering")
 		return ..()
-	else if(work_cooldown > world.time)
+	else if(work_delay > world.time)
 		return FALSE
 
-	work_cooldown = world.time + work_cooldown_time
+	work_delay = world.time + work_delay_time
 	if(work_type == "Riddle")
 		if(!(user in worked))
 			worked += user
