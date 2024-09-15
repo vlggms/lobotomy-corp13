@@ -130,7 +130,7 @@
 	health = 3000
 	damage_coeff = list(RED_DAMAGE = 0.8, WHITE_DAMAGE = 1, BLACK_DAMAGE = 2, PALE_DAMAGE = 1)
 	butcher_results = list(/obj/item/food/meat/slab/robot = 3)
-	guaranteed_butcher_results = list(/obj/item/food/meat/slab/robot = 2, /obj/item/head_trophie/green_datachip = 1)
+	guaranteed_butcher_results = list(/obj/item/food/meat/slab/robot = 2)
 	silk_results = list(/obj/item/stack/sheet/silk/green_elegant = 1,
 						/obj/item/stack/sheet/silk/green_advanced = 2,
 						/obj/item/stack/sheet/silk/green_simple = 4)
@@ -138,6 +138,11 @@
 	var/spawn_progress = 18 //spawn ready to produce robots
 	var/list/spawned_mobs = list()
 	var/producing = FALSE
+
+/mob/living/simple_animal/hostile/ordeal/green_dusk/Initialize(mapload)
+	. = ..()
+	if(SSmaptype.maptype in SSmaptype.citymaps)
+		guaranteed_butcher_results += list(/obj/item/head_trophie/green_datachip = 1)
 
 /mob/living/simple_animal/hostile/ordeal/green_dusk/Initialize()
 	. = ..()

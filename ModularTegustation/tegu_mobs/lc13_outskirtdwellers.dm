@@ -778,7 +778,6 @@ Mobs that mostly focus on dealing RED damage, they are all a bit more frail than
 	move_resist = MOVE_FORCE_OVERPOWERING
 	mob_spawn_amount = 2 //:(
 	spawn_prob = 0 //100%, always spawn them
-	guaranteed_butcher_results = list(/obj/item/head_trophie/flesh_head = 1)
 
 	var/can_act = TRUE
 	var/current_stage = 1 //changes behaviour slightly on phase 2
@@ -793,6 +792,11 @@ Mobs that mostly focus on dealing RED damage, they are all a bit more frail than
 
 	var/lovewhip_damage = 100
 	var/damage_taken
+
+/mob/living/simple_animal/hostile/lovetown/abomination/Initialize(mapload)
+	. = ..()
+	if(SSmaptype.maptype in SSmaptype.citymaps)
+		guaranteed_butcher_results += list(/obj/item/head_trophie/flesh_head = 1)
 
 /mob/living/simple_animal/hostile/lovetown/abomination/proc/StageTransition()
 	icon_living = "lovetown_abomination2"

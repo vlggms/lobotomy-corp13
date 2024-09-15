@@ -229,7 +229,7 @@
 	footstep_type = FOOTSTEP_MOB_SHOE
 	possible_a_intents = list(INTENT_HELP, INTENT_DISARM, INTENT_HARM)
 	death_sound = 'sound/voice/hiss5.ogg'
-	butcher_results = list(/obj/item/food/meat/slab/human = 2, /obj/item/food/meat/slab/human/mutant/moth = 1, /obj/item/head_trophie/steel_head = 1)
+	butcher_results = list(/obj/item/food/meat/slab/human = 2, /obj/item/food/meat/slab/human/mutant/moth = 1)
 	//Last command issued
 	var/last_command = 0
 	//Delay on charge command
@@ -251,6 +251,9 @@
 		/mob/living/simple_animal/hostile/ordeal/steel_dawn/steel_noon/flying = 2
 		)
 	AddComponent(/datum/component/ai_leadership, units_to_add, 8, TRUE, TRUE)
+
+	if(SSmaptype.maptype in SSmaptype.citymaps)
+		guaranteed_butcher_results += list(/obj/item/head_trophie/steel_head = 1)
 
 /mob/living/simple_animal/hostile/ordeal/steel_dusk/Life()
 	. = ..()
