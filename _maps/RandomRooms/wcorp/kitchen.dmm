@@ -8,8 +8,8 @@
 	icon_state = "tracks"
 	},
 /obj/effect/decal/cleanable/blood/gibs/torso{
-	icon_state = "trails_2";
-	dir = 1
+	dir = 1;
+	icon_state = "trails_2"
 	},
 /turf/open/floor/carpet/royalblack,
 /area/city/outskirts)
@@ -21,8 +21,8 @@
 /area/city/outskirts)
 "aS" = (
 /obj/effect/decal/cleanable/blood/gibs/up{
-	icon_state = "tracks";
-	dir = 8
+	dir = 8;
+	icon_state = "tracks"
 	},
 /obj/effect/decal/cleanable/blood/gibs/up{
 	icon_state = "splatter5"
@@ -46,16 +46,16 @@
 /area/city/outskirts)
 "cg" = (
 /obj/effect/decal/cleanable/blood/gibs/body{
-	icon_state = "tracks";
-	dir = 4
+	dir = 4;
+	icon_state = "tracks"
 	},
 /obj/effect/decal/cleanable/blood/gibs/body{
-	icon_state = "tracks";
-	dir = 4
+	dir = 4;
+	icon_state = "tracks"
 	},
 /obj/effect/decal/cleanable/blood/gibs/body{
-	icon_state = "tracks";
-	dir = 4
+	dir = 4;
+	icon_state = "tracks"
 	},
 /turf/open/floor/mineral/titanium/tiled/white,
 /area/city/outskirts)
@@ -93,16 +93,16 @@
 /area/city/outskirts)
 "er" = (
 /obj/effect/decal/cleanable/blood/gibs/torso{
-	icon_state = "tracks";
-	dir = 4
+	dir = 4;
+	icon_state = "tracks"
 	},
 /obj/effect/decal/cleanable/blood/gibs/torso{
-	icon_state = "trails_2";
-	dir = 4
+	dir = 4;
+	icon_state = "trails_2"
 	},
 /obj/effect/decal/cleanable/blood/gibs/torso{
-	icon_state = "trails_2";
-	dir = 8
+	dir = 8;
+	icon_state = "trails_2"
 	},
 /obj/effect/turf_decal/siding/thinplating/dark,
 /turf/open/floor/mineral/plastitanium,
@@ -122,16 +122,16 @@
 /area/city/outskirts)
 "gC" = (
 /obj/effect/decal/cleanable/blood/gibs/torso{
-	icon_state = "tracks";
-	dir = 5
+	dir = 5;
+	icon_state = "tracks"
 	},
 /obj/effect/decal/cleanable/blood/gibs/torso{
-	icon_state = "tracks";
-	dir = 5
+	dir = 5;
+	icon_state = "tracks"
 	},
 /obj/effect/decal/cleanable/blood/gibs/torso{
-	icon_state = "trails_2";
-	dir = 5
+	dir = 5;
+	icon_state = "trails_2"
 	},
 /obj/effect/turf_decal/siding/thinplating/dark,
 /turf/open/floor/mineral/plastitanium,
@@ -153,8 +153,8 @@
 /area/city/outskirts)
 "jq" = (
 /obj/effect/decal/cleanable/blood/gibs/torso{
-	icon_state = "tracks";
-	dir = 4
+	dir = 4;
+	icon_state = "tracks"
 	},
 /obj/effect/turf_decal/siding/thinplating/dark,
 /turf/open/floor/mineral/plastitanium,
@@ -166,7 +166,6 @@
 /turf/open/floor/mineral/plastitanium,
 /area/city/outskirts)
 "pd" = (
-/obj/machinery/deepfryer,
 /obj/effect/decal/cleanable/blood/gibs/body{
 	icon_state = "coatblood"
 	},
@@ -176,13 +175,14 @@
 /obj/effect/decal/cleanable/blood/gibs/body{
 	icon_state = "floor1"
 	},
+/obj/structure/table/reinforced,
 /turf/open/floor/mineral/titanium/tiled/white,
 /area/city/outskirts)
 "qc" = (
 /obj/effect/decal/cleanable/glass,
 /obj/effect/decal/cleanable/blood/gibs/torso{
-	icon_state = "tracks";
-	dir = 4
+	dir = 4;
+	icon_state = "tracks"
 	},
 /obj/effect/turf_decal/siding/thinplating/dark,
 /turf/open/floor/mineral/plastitanium,
@@ -196,8 +196,8 @@
 /area/city/outskirts)
 "sd" = (
 /obj/effect/decal/cleanable/blood/tracks{
-	icon_state = "gib5";
-	dir = 4
+	dir = 4;
+	icon_state = "gib5"
 	},
 /turf/open/floor/carpet/royalblack,
 /area/city/outskirts)
@@ -224,12 +224,12 @@
 /area/city/outskirts)
 "tM" = (
 /obj/effect/decal/cleanable/blood/gibs/up{
-	icon_state = "gib3-old";
-	dir = 4
+	dir = 4;
+	icon_state = "gib3-old"
 	},
 /obj/effect/decal/cleanable/blood/gibs/up{
-	icon_state = "tracks";
-	dir = 8
+	dir = 8;
+	icon_state = "tracks"
 	},
 /turf/open/floor/mineral/plastitanium,
 /area/city/outskirts)
@@ -268,8 +268,8 @@
 /area/city/outskirts)
 "vk" = (
 /obj/effect/decal/cleanable/blood/gibs/body{
-	icon_state = "tracks";
-	dir = 10
+	dir = 10;
+	icon_state = "tracks"
 	},
 /turf/open/floor/mineral/titanium/tiled/white,
 /area/city/outskirts)
@@ -314,12 +314,12 @@
 /area/city/outskirts)
 "zU" = (
 /obj/effect/decal/cleanable/blood/gibs/torso{
-	icon_state = "tracks";
-	dir = 10
+	dir = 10;
+	icon_state = "tracks"
 	},
 /obj/effect/decal/cleanable/blood/gibs/torso{
-	icon_state = "trails_2";
-	dir = 10
+	dir = 10;
+	icon_state = "trails_2"
 	},
 /obj/effect/turf_decal/siding/thinplating/dark/corner{
 	dir = 4;
@@ -355,8 +355,8 @@
 /area/city/outskirts)
 "DI" = (
 /obj/effect/decal/cleanable/blood/gibs/up{
-	icon_state = "tracks";
-	dir = 10
+	dir = 10;
+	icon_state = "tracks"
 	},
 /turf/open/floor/mineral/plastitanium,
 /area/city/outskirts)
@@ -374,16 +374,16 @@
 /area/city/outskirts)
 "EX" = (
 /obj/effect/decal/cleanable/blood/gibs/torso{
-	icon_state = "tracks";
-	dir = 4
+	dir = 4;
+	icon_state = "tracks"
 	},
 /obj/effect/decal/cleanable/blood/gibs/torso{
-	icon_state = "tracks";
-	dir = 4
+	dir = 4;
+	icon_state = "tracks"
 	},
 /obj/effect/decal/cleanable/blood/gibs/torso{
-	icon_state = "trails_2";
-	dir = 4
+	dir = 4;
+	icon_state = "trails_2"
 	},
 /obj/effect/turf_decal/siding/thinplating/dark,
 /turf/open/floor/mineral/plastitanium,
@@ -413,12 +413,12 @@
 /area/city/outskirts)
 "Iv" = (
 /obj/effect/decal/cleanable/blood/gibs/torso{
-	icon_state = "tracks";
-	dir = 9
+	dir = 9;
+	icon_state = "tracks"
 	},
 /obj/effect/decal/cleanable/blood/gibs/torso{
-	icon_state = "trails_2";
-	dir = 9
+	dir = 9;
+	icon_state = "trails_2"
 	},
 /obj/effect/turf_decal/siding/thinplating/dark/corner,
 /turf/open/floor/mineral/plastitanium,
@@ -442,12 +442,12 @@
 /area/city/outskirts)
 "Jh" = (
 /obj/effect/decal/cleanable/blood/gibs/up{
-	icon_state = "tracks";
-	dir = 5
+	dir = 5;
+	icon_state = "tracks"
 	},
 /obj/effect/decal/cleanable/blood/gibs/up{
-	icon_state = "tracks";
-	dir = 5
+	dir = 5;
+	icon_state = "tracks"
 	},
 /turf/open/floor/mineral/plastitanium,
 /area/city/outskirts)
@@ -462,12 +462,12 @@
 	icon_state = "drip1"
 	},
 /obj/effect/decal/cleanable/blood/gibs/torso{
-	icon_state = "tracks";
-	dir = 4
+	dir = 4;
+	icon_state = "tracks"
 	},
 /obj/effect/decal/cleanable/blood/gibs/torso{
-	icon_state = "trails_2";
-	dir = 4
+	dir = 4;
+	icon_state = "trails_2"
 	},
 /obj/effect/turf_decal/siding/thinplating/dark,
 /turf/open/floor/mineral/plastitanium,
@@ -499,12 +499,12 @@
 	icon_state = "gibbl1"
 	},
 /obj/effect/decal/cleanable/blood/gibs/torso{
-	icon_state = "tracks";
-	dir = 6
+	dir = 6;
+	icon_state = "tracks"
 	},
 /obj/effect/decal/cleanable/blood/gibs/torso{
-	icon_state = "trails_2";
-	dir = 6
+	dir = 6;
+	icon_state = "trails_2"
 	},
 /turf/open/floor/carpet/royalblack,
 /area/city/outskirts)
@@ -545,12 +545,12 @@
 /area/city/outskirts)
 "OH" = (
 /obj/effect/decal/cleanable/blood/gibs/body{
-	icon_state = "gib3";
-	dir = 4
+	dir = 4;
+	icon_state = "gib3"
 	},
 /obj/effect/decal/cleanable/blood/gibs/body{
-	icon_state = "tracks";
-	dir = 4
+	dir = 4;
+	icon_state = "tracks"
 	},
 /turf/open/floor/mineral/titanium/tiled/white,
 /area/city/outskirts)
@@ -596,12 +596,12 @@
 /area/city/outskirts)
 "Rt" = (
 /obj/effect/decal/cleanable/blood/gibs/torso{
-	icon_state = "tracks";
-	dir = 4
+	dir = 4;
+	icon_state = "tracks"
 	},
 /obj/effect/decal/cleanable/blood/gibs/torso{
-	icon_state = "trails_2";
-	dir = 8
+	dir = 8;
+	icon_state = "trails_2"
 	},
 /obj/effect/turf_decal/siding/thinplating/dark,
 /turf/open/floor/mineral/plastitanium,
@@ -615,8 +615,8 @@
 /area/city/outskirts)
 "TW" = (
 /obj/effect/decal/cleanable/blood/gibs/torso{
-	icon_state = "tracks";
-	dir = 4
+	dir = 4;
+	icon_state = "tracks"
 	},
 /obj/effect/decal/cleanable/blood/gibs/torso{
 	icon_state = "u_dangerous_l"
@@ -626,12 +626,12 @@
 /area/city/outskirts)
 "Ud" = (
 /obj/effect/decal/cleanable/blood/gibs/torso{
-	icon_state = "gib3";
-	dir = 4
+	dir = 4;
+	icon_state = "gib3"
 	},
 /obj/effect/decal/cleanable/blood/gibs/torso{
-	icon_state = "tracks";
-	dir = 4
+	dir = 4;
+	icon_state = "tracks"
 	},
 /turf/open/floor/carpet/royalblack,
 /area/city/outskirts)
