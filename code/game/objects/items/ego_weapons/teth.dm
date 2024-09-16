@@ -579,22 +579,10 @@
 /obj/item/ego_weapon/denial
 	name = "denial"
 	desc = "Unregulated ingestion of Enkephalin may cause a wide range of unverified psychopathological symptoms."
-	special = "This weapon's power varies based on how full the quota is."
 	icon_state = "denial"
-	force = 30
+	force = 36
 	damtype = RED_DAMAGE
-	attack_speed = 2
+	attack_speed = 1.5
 	attack_verb_continuous = list("smashes", "bludgeons", "crushes")
 	attack_verb_simple = list("smash", "bludgeon", "crush")
 	hitsound = 'sound/weapons/fixer/generic/club3.ogg'
-
-/obj/item/ego_weapon/denial/attack(atom/A, mob/living/user, proximity_flag, params)
-	force = initial(force)
-	var/current_boxes = SSlobotomy_corp.goal_boxes
-	var/max_boxes = SSlobotomy_corp.box_goal
-	var/force_modifier =  (50*current_boxes/max_boxes) + 30
-	if(SSlobotomy_corp.goal_reached == TRUE)
-		force = 45
-	else
-		force = clamp(force_modifier, 30, 45)
-	return ..()
