@@ -37,9 +37,3 @@
 	name = "oceanic casing"
 	desc = "A oceanica casing."
 	projectile_type = /obj/projectile/ego_bullet/ego_oceanic
-
-/obj/item/ammo_casing/caseless/ego_dud
-	name = "dud casing"
-	desc = "A dud casing."
-	projectile_type = /obj/projectile/ego_bullet/ego_dud
-	pellets = 0

@@ -57,12 +57,3 @@
 	name = "oceanic"
 	damage = 11		//Worse than tough lol
 	damage_type = WHITE_DAMAGE
-
-/obj/projectile/ego_bullet/ego_dud
-	name = "dud"
-	damage = 1
-	damage_type = RED_DAMAGE
-
-/obj/projectile/ego_bullet/ego_dud/Initialize()
-	qdel(src)
-	..()
