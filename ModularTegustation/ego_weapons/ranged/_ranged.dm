@@ -25,48 +25,49 @@
 	var/fire_sound = 'sound/weapons/emitter.ogg'
 	trigger_guard = TRIGGER_GUARD_ALLOW_ALL	//trigger guard on the weapon, hulks can't fire them with their big meaty fingers
 
+	/// The current ammo_type we are using
+	var/obj/item/ammo_casing/ammo_type = null
+	/// Just 'slightly' snowflakey way to modify projectile damage for projectiles fired from this gun.
+	var/projectile_damage_multiplier = 1
+	/// If the weapon allows dual-weilding/can be used in 1 hand/needs 2 hands
+	var/weapon_weight = WEAPON_LIGHT
+
+	/// If set, the gun will allow you to hold your mouse instead of clicking it to fire.
+	/// In Rounds per decisecond
+	var/autofire = 0
+
+	//// Reload/Ammo mechanics
+	/// The amount of shots we hold.
+	var/shotsleft = 0
+	/// How long it takes to reload this weapon, if blank it wont need to be reloaded
+	var/reloadtime = 0 SECONDS
+	/// Are we currently reloading?
+	var/is_reloading = FALSE
+
+	/// Vars used for when you examine a gun
 	var/last_projectile_damage = 0
 	var/last_projectile_type = RED_DAMAGE
+
+	/// Controls if pacifists can use the gun or not. Should be TRUE unless you are doing something funky
 	var/lethal = TRUE
+	/// Should clumsy people shoot themselfes at a chance with it? Usually unused
+	var/clumsy_check = TRUE
 
-	var/obj/item/ammo_casing/ammo_type
-
-	var/autofire	//In Rounds per decisecond
-
-	//Reload mechanics
-	var/shotsleft
-	var/reloadtime
-	var/is_reloading
-
-
-
-
-
+	/// Sound controls
 	var/vary_fire_sound = TRUE
 	var/fire_sound_volume = 50
 	var/dry_fire_sound = 'sound/weapons/gun/general/dry_fire.ogg'
-	var/can_suppress = FALSE
-	var/can_unsuppress = TRUE
+
 	var/recoil = 0						//boom boom shake the room
-	var/clumsy_check = TRUE
-	var/sawn_desc = null				//description change if weapon is sawn-off
-	var/sawn_off = FALSE
 	var/burst_size = 1					//how large a burst is
 	var/fire_delay = 0					//rate of fire for burst firing and semi auto
 	var/firing_burst = 0				//Prevent the weapon from firing again while already firing
 	var/semicd = 0						//cooldown handler
-	var/weapon_weight = WEAPON_LIGHT
 	var/dual_wield_spread = 24			//additional spread when dual wielding
 	var/forced_melee = FALSE			//forced to melee attack. Currently only used for the ego_gun subtype
 
-	/// Just 'slightly' snowflakey way to modify projectile damage for projectiles fired from this gun.
-	var/projectile_damage_multiplier = 1
-
 	var/spread = 0						//Spread induced by the gun itself.
 	var/randomspread = 1				//Set to 0 for shotguns. This is used for weapons that don't fire all their bullets at once.
-
-	lefthand_file = 'icons/mob/inhands/weapons/guns_lefthand.dmi'
-	righthand_file = 'icons/mob/inhands/weapons/guns_righthand.dmi'
 
 	var/ammo_x_offset = 0 //used for positioning ammo count overlay on sprite
 	var/ammo_y_offset = 0
@@ -105,47 +106,6 @@
 	if(azoom)
 		QDEL_NULL(azoom)
 	return ..()
-
-/**
- * Unassigned procs follow dis
- */
-
-//Happens before the actual projectile creation
-/obj/item/ego_weapon/ranged/proc/before_firing(atom/target, mob/user)
-	return
-
-/// Updates the damage/type of projectiles inside of the gun
-/obj/item/ego_weapon/ranged/proc/update_projectile_examine()
-	var/obj/item/ammo_casing/casing = new ammo_type(src)
-	casing.newshot()
-	last_projectile_damage = casing.BB.damage
-	last_projectile_type = casing.BB.damage_type
-	qdel(casing.BB)
-	casing.BB = null
-	qdel(casing)
-
-
-
-
-
-
-
-
-/obj/item/ego_weapon/ranged/attack_self(mob/user)
-	if(reloadtime && !is_reloading)
-		INVOKE_ASYNC(src, PROC_REF(reload_ego), user)
-	return ..()
-
-/obj/item/ego_weapon/ranged/proc/reload_ego(mob/user)
-	is_reloading = TRUE
-	to_chat(user,span_notice("You start loading a new magazine."))
-	playsound(src, 'sound/weapons/gun/general/slide_lock_1.ogg', 50, TRUE)
-	if(do_after(user, reloadtime, src)) //gotta reload
-		playsound(src, 'sound/weapons/gun/general/bolt_rack.ogg', 50, TRUE)
-		shotsleft = initial(shotsleft)
-		forced_melee = FALSE //no longer forced to resort to melee
-
-	is_reloading = FALSE
 
 /obj/item/ego_weapon/ranged/handle_atom_del(atom/A)
 	if(A == pin)
@@ -208,27 +168,62 @@
 /obj/item/ego_weapon/ranged/proc/GunAttackInfo()
 	if(!last_projectile_damage || !last_projectile_type)
 		return span_userdanger("The bullet of this EGO gun has not properly initialized, report this to coders!")
-	return span_notice("Its bullets deal [round(last_projectile_damage, 0.1)] [last_projectile_type] damage.[projectile_damage_multiplier ? " (+ [(projectile_damage_multiplier - 1) * 100]%)" : ""]")
+	return span_notice("Its bullets deal [round(last_projectile_damage, 0.1)] [last_projectile_type] damage.[projectile_damage_multiplier != 1 ? " (+ [(projectile_damage_multiplier - 1) * 100]%)" : ""]")
 
+/// Updates the damage/type of projectiles inside of the gun
+/obj/item/ego_weapon/ranged/proc/update_projectile_examine()
+	var/obj/item/ammo_casing/casing = new ammo_type(src)
+	casing.newshot()
+	last_projectile_damage = casing.BB.damage
+	last_projectile_type = casing.BB.damage_type
+	qdel(casing.BB)
+	casing.BB = null
+	qdel(casing)
 
+/obj/item/ego_weapon/ranged/attack_self(mob/user)
+	if(reloadtime && !is_reloading)
+		INVOKE_ASYNC(src, PROC_REF(reload_ego), user)
+	return ..()
 
+/obj/item/ego_weapon/ranged/proc/reload_ego(mob/user)
+	is_reloading = TRUE
+	to_chat(user,span_notice("You start loading a new magazine."))
+	playsound(src, 'sound/weapons/gun/general/slide_lock_1.ogg', 50, TRUE)
+	if(do_after(user, reloadtime, src)) //gotta reload
+		playsound(src, 'sound/weapons/gun/general/bolt_rack.ogg', 50, TRUE)
+		shotsleft = initial(shotsleft)
+		forced_melee = FALSE //no longer forced to resort to melee
+
+	is_reloading = FALSE
 
 /obj/item/ego_weapon/ranged/equipped(mob/living/user, slot)
 	. = ..()
 	if(zoomed && user.get_active_held_item() != src)
 		zoom(user, user.dir, FALSE) //we can only stay zoomed in if it's in our hands	//yeah and we only unzoom if we're actually zoomed using the gun!!
 
+/obj/item/ego_weapon/ranged/pickup(mob/user)
+	..()
+	if(azoom)
+		azoom.Grant(user)
+
+/obj/item/ego_weapon/ranged/dropped(mob/user)
+	. = ..()
+	if(azoom)
+		azoom.Remove(user)
+	if(zoomed)
+		zoom(user, user.dir)
+
 //called after the gun has successfully fired its chambered ammo.
 /obj/item/ego_weapon/ranged/proc/process_chamber()
 	if(reloadtime && shotsleft)
 		shotsleft -= 1
 
-//check if there's enough ammo/energy/whatever to shoot one time
+//check if there's enough ammo to shoot one time
 //i.e if clicking would make it shoot
 /obj/item/ego_weapon/ranged/proc/can_shoot()
 	if(reloadtime && !shotsleft)
 		visible_message(span_notice("The gun is out of ammo."))
-		playsound(src, dry_fire_sound, 30, TRUE)
+		shoot_with_empty_chamber()
 		return FALSE
 
 	if(is_reloading)
@@ -240,25 +235,32 @@
 	to_chat(user, span_danger("*click*"))
 	playsound(src, dry_fire_sound, 30, TRUE)
 
+/// Happens before projectile creation
+/obj/item/ego_weapon/ranged/proc/before_firing(atom/target, mob/user)
+	return
+
 /obj/item/ego_weapon/ranged/proc/shoot_live_shot(mob/living/user, pointblank = 0, atom/pbtarget = null, message = 1)
 	if(recoil)
 		shake_camera(user, recoil + 1, recoil)
 
 	playsound(user, fire_sound, fire_sound_volume, vary_fire_sound)
-	if(message)
-		if(pointblank)
-			user.visible_message(span_danger("[user] fires [src] point blank at [pbtarget]!"), \
-							span_danger("You fire [src] point blank at [pbtarget]!"), \
-							span_hear("You hear a gunshot!"), COMBAT_MESSAGE_RANGE, pbtarget)
-			to_chat(pbtarget, span_userdanger("[user] fires [src] point blank at you!"))
-			if(pb_knockback > 0 && ismob(pbtarget))
-				var/mob/PBT = pbtarget
-				var/atom/throw_target = get_edge_target_turf(PBT, user.dir)
-				PBT.throw_at(throw_target, pb_knockback, 2)
-		else
-			user.visible_message(span_danger("[user] fires [src]!"), \
+	if(!message)
+		return
+
+	if(!pointblank)
+		user.visible_message(span_danger("[user] fires [src]!"), \
 							span_danger("You fire [src]!"), \
 							span_hear("You hear a gunshot!"), COMBAT_MESSAGE_RANGE)
+		return
+
+	user.visible_message(span_danger("[user] fires [src] point blank at [pbtarget]!"), \
+						span_danger("You fire [src] point blank at [pbtarget]!"), \
+						span_hear("You hear a gunshot!"), COMBAT_MESSAGE_RANGE, pbtarget)
+	to_chat(pbtarget, span_userdanger("[user] fires [src] point blank at you!"))
+	if(pb_knockback > 0 && ismob(pbtarget))
+		var/mob/PBT = pbtarget
+		var/atom/throw_target = get_edge_target_turf(PBT, user.dir)
+		PBT.throw_at(throw_target, pb_knockback, 2)
 
 /obj/item/ego_weapon/ranged/afterattack(atom/target, mob/living/user, flag, params)
 	. = ..()
@@ -322,6 +324,11 @@
 
 	return process_fire(target, user, TRUE, params, null, bonus_spread)
 
+/obj/item/ego_weapon/ranged/can_trigger_gun(mob/living/user)
+	. = ..()
+	if(!handle_pins(user))
+		return FALSE
+
 /obj/item/ego_weapon/ranged/proc/check_botched(mob/living/user, params)
 	if(clumsy_check && istype(user))
 		if(HAS_TRAIT(user, TRAIT_CLUMSY) && prob(40))
@@ -331,11 +338,6 @@
 			SEND_SIGNAL(user, COMSIG_MOB_CLUMSY_SHOOT_FOOT)
 			user.dropItemToGround(src, TRUE)
 			return TRUE
-
-/obj/item/ego_weapon/ranged/can_trigger_gun(mob/living/user)
-	. = ..()
-	if(!handle_pins(user))
-		return FALSE
 
 /obj/item/ego_weapon/ranged/proc/handle_pins(mob/living/user)
 	if(pin)
@@ -475,18 +477,6 @@
 		return ..()
 
 	return TRUE
-
-/obj/item/ego_weapon/ranged/pickup(mob/user)
-	..()
-	if(azoom)
-		azoom.Grant(user)
-
-/obj/item/ego_weapon/ranged/dropped(mob/user)
-	. = ..()
-	if(azoom)
-		azoom.Remove(user)
-	if(zoomed)
-		zoom(user, user.dir)
 
 /obj/item/ego_weapon/ranged/proc/handle_suicide(mob/living/carbon/human/user, mob/living/carbon/human/target, params, bypass_timer)
 	if(!ishuman(user) || !ishuman(target))
