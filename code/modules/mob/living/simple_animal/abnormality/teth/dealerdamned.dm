@@ -89,7 +89,7 @@
 					user.gib()
 					say("Shame. Was quite fun havin' ya here, but you know how it is.")
 				else
-					new /obj/item/gun/ego_gun/pistol/deathdealer(get_turf(user))
+					new /obj/item/ego_weapon/ranged/pistol/deathdealer(get_turf(user))
 					new /obj/effect/gibspawner/generic/silent(get_turf(src))
 					gib()
 			else

@@ -250,13 +250,13 @@
 
 /obj/projectile/ego_bullet/ego_warring/on_hit(atom/target, blocked = FALSE)
 	. = ..()
-	var/obj/item/gun/ego_gun/warring/bow = fired_from
+	var/obj/item/ego_weapon/ranged/warring/bow = fired_from
 	var/mob/living/L = target
 	if(!isliving(target))
 		return
 	if((L.stat == DEAD) || L.status_flags & GODMODE)//if the target is dead or godmode
 		return FALSE
-	bow.Build_Charge()
+	bow.HandleCharge(1, target)
 	return
 
 //feather of valor cont'd

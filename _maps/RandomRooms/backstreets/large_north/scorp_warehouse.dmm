@@ -126,7 +126,7 @@
 /area/city/backstreets_room)
 "S" = (
 /obj/structure/table/wood/fancy/purple,
-/obj/item/gun/ego_gun/sodashotty,
+/obj/item/ego_weapon/ranged/sodashotty,
 /turf/open/floor/carpet/purple,
 /area/city/backstreets_room)
 "W" = (

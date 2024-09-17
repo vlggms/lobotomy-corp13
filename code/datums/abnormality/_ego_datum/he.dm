@@ -83,7 +83,7 @@
 
 // Laetitia - Funny Prank
 /datum/ego_datum/weapon/prank
-	item_path = /obj/item/gun/ego_gun/prank
+	item_path = /obj/item/ego_weapon/ranged/prank
 	cost = 35
 
 /datum/ego_datum/armor/prank
@@ -123,7 +123,7 @@
 	cost = 35
 
 /datum/ego_datum/weapon/galaxy
-	item_path = /obj/item/gun/ego_gun/galaxy
+	item_path = /obj/item/ego_weapon/ranged/galaxy
 	cost = 35
 
 //Piscine Mermaid - Unrequited Love
@@ -132,7 +132,7 @@
 	cost = 35
 
 /datum/ego_datum/weapon/unrequited
-	item_path = /obj/item/gun/ego_gun/unrequited
+	item_path = /obj/item/ego_weapon/ranged/unrequited
 	cost = 35
 
 //Singing Machine - Harmony
@@ -142,7 +142,7 @@
 
 /datum/ego_datum/weapon/harmony
 	item_category = "Weapon (LMG)"
-	item_path = /obj/item/gun/ego_gun/harmony
+	item_path = /obj/item/ego_weapon/ranged/harmony
 	cost = 35
 
 /datum/ego_datum/weapon/rhythm
@@ -165,7 +165,7 @@
 	cost = 35
 
 /datum/ego_datum/weapon/gaze
-	item_path = /obj/item/gun/ego_gun/pistol/gaze
+	item_path = /obj/item/ego_weapon/ranged/pistol/gaze
 	cost = 35
 
 //F.A.N - Bare Metal
@@ -183,7 +183,7 @@
 	cost = 35
 
 /datum/ego_datum/weapon/transmission
-	item_path = /obj/item/gun/ego_gun/transmission
+	item_path = /obj/item/ego_weapon/ranged/transmission
 	cost = 35
 
 //Beanstalk without Jack - Giant
@@ -238,11 +238,11 @@
 	cost = 35
 
 /datum/ego_datum/weapon/song
-	item_path = /obj/item/gun/ego_gun/song
+	item_path = /obj/item/ego_weapon/ranged/song
 	cost = 35
 
 /datum/ego_datum/weapon/songmini
-	item_path = /obj/item/gun/ego_gun/pistol/songmini
+	item_path = /obj/item/ego_weapon/ranged/pistol/songmini
 	cost = 35
 
 //Golden False Apple - Legerdemain
@@ -256,7 +256,7 @@
 
 //Lady facing the Wall - Wedge
 /datum/ego_datum/weapon/wedge
-	item_path = /obj/item/gun/ego_gun/wedge
+	item_path = /obj/item/ego_weapon/ranged/wedge
 	cost = 35
 
 //You Must Become Strong - Get Strong
@@ -292,7 +292,7 @@
 	cost = 35
 
 /datum/ego_datum/weapon/syrinx
-	item_path = /obj/item/gun/ego_gun/syrinx
+	item_path = /obj/item/ego_weapon/ranged/syrinx
 	cost = 35
 
 /datum/ego_datum/weapon/trachea
@@ -471,7 +471,7 @@
 	cost = 35
 
 /datum/ego_datum/weapon/ardor_star
-	item_path = /obj/item/gun/ego_gun/ardor_star
+	item_path = /obj/item/ego_weapon/ranged/ardor_star
 	cost = 35
 
 //Alleyway Watchdog - Telepole

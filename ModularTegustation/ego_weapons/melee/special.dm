@@ -32,7 +32,7 @@
 	var/list/search_area = user.contents.Copy()
 	for(var/obj/item/storage/spare_space in search_area)
 		search_area |= spare_space.contents
-	for(var/obj/item/gun/ego_gun/disloyal_gun in search_area)
+	for(var/obj/item/ego_weapon/ranged/disloyal_gun in search_area)
 		extra_mod = 0
 		break
 	for(var/obj/item/ego_weapon/disloyal_weapon in search_area)

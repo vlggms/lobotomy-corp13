@@ -1309,8 +1309,8 @@
 	if(wielded)
 		heal_amount = 4
 	for(var/mob/living/carbon/human/Yang in view(7, user))
-		var/obj/item/gun/ego_gun/assonance/A = Yang.get_active_held_item()
-		if(istype(A, /obj/item/gun/ego_gun/assonance))
+		var/obj/item/ego_weapon/ranged/assonance/A = Yang.get_active_held_item()
+		if(istype(A, /obj/item/ego_weapon/ranged/assonance))
 			if(!A.CanUseEgo(Yang))
 				continue
 			Yang.adjustBruteLoss(-heal_amount)

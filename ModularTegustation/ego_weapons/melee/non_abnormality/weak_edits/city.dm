@@ -124,7 +124,7 @@
 	)
 
 //Thumb
-/obj/item/gun/ego_gun/city/thumb/weak
+/obj/item/ego_weapon/ranged/city/thumb/weak
 	force = 20
 	projectile_damage_multiplier = 2 //20 damage per bullet
 	attribute_requirements = list(
@@ -135,7 +135,7 @@
 	)
 
 //Capo
-/obj/item/gun/ego_gun/city/thumb/capo/weak
+/obj/item/ego_weapon/ranged/city/thumb/capo/weak
 	force = 25
 	projectile_damage_multiplier = 3 //30 damage per bullet
 	attribute_requirements = list(
@@ -146,7 +146,7 @@
 	)
 
 //Sottocapo
-/obj/item/gun/ego_gun/city/thumb/sottocapo/weak
+/obj/item/ego_weapon/ranged/city/thumb/sottocapo/weak
 	force = 10	//It's a pistol
 	projectile_damage_multiplier = 0.7 //5 damage per bullet
 	ammo_type = /obj/item/ammo_casing/caseless/thumbshell //Does 8 shells at 7 damage, total 56

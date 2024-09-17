@@ -1,6 +1,6 @@
 // All of these are usably by clerks
 
-/obj/item/gun/ego_gun/shrimp/minigun
+/obj/item/ego_weapon/ranged/shrimp/minigun
 	name = "soda minigun"
 	desc = "A gun used by shrimp corp, apparently."
 	icon = 'ModularTegustation/Teguicons/lc13_weapons.dmi'
@@ -24,7 +24,7 @@
 	fire_sound = 'sound/weapons/gun/smg/shot.ogg'
 	autofire = 0.04 SECONDS
 
-/obj/item/gun/ego_gun/shrimp/assault
+/obj/item/ego_weapon/ranged/shrimp/assault
 	name = "soda assault rifle"
 	desc = "A gun used by shrimp corp, apparently."
 	icon = 'ModularTegustation/Teguicons/lc13_weapons.dmi'
@@ -37,7 +37,7 @@
 	fire_delay = 5
 	fire_sound = 'sound/weapons/gun/rifle/shot.ogg'
 
-/obj/item/gun/ego_gun/shrimp/rambominigun
+/obj/item/ego_weapon/ranged/shrimp/rambominigun
 	name = "Shrimp Rambo's Minigun"
 	desc = "A gun used by THE shrimp rambo."
 	icon = 'ModularTegustation/Teguicons/lc13_weapons.dmi'

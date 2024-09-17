@@ -1,4 +1,4 @@
-/obj/item/gun/ego_gun/sodarifle
+/obj/item/ego_weapon/ranged/sodarifle
 	name = "soda rifle"
 	desc = "A gun used by shrimp corp, apparently."
 	icon_state = "sodarifle"
@@ -9,7 +9,7 @@
 	fire_delay = 3
 	fire_sound = 'sound/weapons/gun/rifle/shot.ogg'
 
-/obj/item/gun/ego_gun/sodashotty
+/obj/item/ego_weapon/ranged/sodashotty
 	name = "soda shotgun"
 	desc = "A gun used by shrimp corp, apparently."
 	icon_state = "sodashotgun"
@@ -22,7 +22,7 @@
 	fire_delay = 10
 	fire_sound = 'sound/weapons/gun/shotgun/shot.ogg'
 
-/obj/item/gun/ego_gun/sodasmg
+/obj/item/ego_weapon/ranged/sodasmg
 	name = "soda submachinegun"
 	desc = "A gun used by shrimp corp, apparently."
 	icon_state = "sodasmg"
@@ -35,7 +35,7 @@
 	autofire = 0.15 SECONDS
 
 //My sweet orange tree - The cure
-/obj/item/gun/ego_gun/flammenwerfer
+/obj/item/ego_weapon/ranged/flammenwerfer
 	name = "flamethrower"
 	desc = "A shitty flamethrower, great for clearing out infested areas and people."
 	special = "Use this in-hand to cover yourself in flames. To prevent infection, of course."
@@ -51,7 +51,7 @@
 	autofire = 0.08 SECONDS
 	fire_sound_volume = 5
 
-/obj/item/gun/ego_gun/flammenwerfer/attack_self(mob/user)
+/obj/item/ego_weapon/ranged/flammenwerfer/attack_self(mob/user)
 	if(!ishuman(user))
 		return
 	var/mob/living/carbon/human/H = user
@@ -63,7 +63,7 @@
 		H.IgniteMob()
 
 //Nihil Upgrade
-/obj/item/gun/ego_gun/hatred_nihil
+/obj/item/ego_weapon/ranged/hatred_nihil
 	name = "pointless hate"
 	desc = "If I am on the side of good, then someone has to be on the side of evil. Without someone to play the villain, I can’t exist."
 	icon_state = "hate"
@@ -86,11 +86,11 @@
 	var/blasting = FALSE
 	var/blast_damage = 150
 
-/obj/item/gun/ego_gun/hatred_nihil/proc/Recharge(mob/user)
+/obj/item/ego_weapon/ranged/hatred_nihil/proc/Recharge(mob/user)
 	can_blast = TRUE
 	to_chat(user,"<span class='nicegreen'>Arcana beats is ready to fire again.</span>")
 
-/obj/item/gun/ego_gun/hatred_nihil/attack_self(mob/user)
+/obj/item/ego_weapon/ranged/hatred_nihil/attack_self(mob/user)
 	if(!CanUseEgo(user))
 		return
 	if(!can_blast)

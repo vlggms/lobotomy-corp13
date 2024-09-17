@@ -1,6 +1,6 @@
 //Zayin
 //The Mcrib
-/obj/item/gun/ego_gun/pistol/mcrib
+/obj/item/ego_weapon/ranged/pistol/mcrib
 	name = "mcrib"
 	desc = "Try a mcrib at your nearest McDonalds!"
 	special = "Use this weapon in your hand when wearing matching armor to create food for people nearby."
@@ -14,7 +14,7 @@
 	var/ability_cooldown_time = 60 SECONDS
 	var/ability_cooldown
 
-/obj/item/gun/ego_gun/pistol/mcrib/attack_self(mob/user)
+/obj/item/ego_weapon/ranged/pistol/mcrib/attack_self(mob/user)
 	if(!ishuman(user))
 		return
 	var/mob/living/carbon/human/H = user
@@ -30,7 +30,7 @@
 	SpawnItem(user)
 	ability_cooldown = world.time + ability_cooldown_time
 
-/obj/item/gun/ego_gun/pistol/mcrib/proc/SpawnItem(mob/user)
+/obj/item/ego_weapon/ranged/pistol/mcrib/proc/SpawnItem(mob/user)
 	var/foodoption = /obj/item/food/mcrib
 	for(var/mob/living/carbon/human/L in livinginview(5, user))
 		if((!ishuman(L)) || L.stat == DEAD || L == user)

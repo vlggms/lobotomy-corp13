@@ -2,7 +2,7 @@
 #define DOT_MODE 1
 #define AOE_MODE 2
 
-/obj/item/gun/ego_gun/star
+/obj/item/ego_weapon/ranged/star
 	name = "sound of a star"
 	desc = "The star shines brighter as our despair gathers. The weapon's small, evocative sphere fires a warm ray."
 	icon_state = "star"
@@ -28,7 +28,7 @@
 							JUSTICE_ATTRIBUTE = 80
 							)
 
-/obj/item/gun/ego_gun/star/suicide_act(mob/living/carbon/user)
+/obj/item/ego_weapon/ranged/star/suicide_act(mob/living/carbon/user)
 	. = ..()
 	user.visible_message(span_suicide("[user]'s legs distort and face opposite directions, as [user.p_their()] torso seems to pulsate! It looks like [user.p_theyre()] trying to commit suicide!"))
 	playsound(src, 'sound/abnormalities/bluestar/pulse.ogg', 50, FALSE, 40, falloff_distance = 10)
@@ -36,7 +36,7 @@
 	QDEL_IN(user, 1)
 	return MANUAL_SUICIDE
 
-/obj/item/gun/ego_gun/adoration
+/obj/item/ego_weapon/ranged/adoration
 	name = "adoration"
 	desc = "A big mug filled with mysterious slime that never runs out. \
 	It’s the byproduct of some horrid experiment in a certain laboratory that eventually failed."
@@ -59,8 +59,8 @@
 							)
 	var/mode = 0
 
-/obj/item/gun/ego_gun/adoration/attack_self(mob/user)
-	..()
+/obj/item/ego_weapon/ranged/adoration/attack_self(mob/user)
+	. = ..()
 	switch(mode)
 		if(SHOT_MODE)
 			to_chat(user,"<span class='warning'>You focus, changing for a DOT blast</span>")
@@ -82,7 +82,7 @@
 #undef DOT_MODE
 #undef AOE_MODE
 
-/obj/item/gun/ego_gun/nihil
+/obj/item/ego_weapon/ranged/nihil
 	name = "nihil"
 	desc = "Having decided to trust its own intuition, the jester spake the names of everyone it had met on that path with each step it took."
 	icon_state = "nihil"
@@ -106,7 +106,7 @@
 	var/hate
 	var/list/powers = list("hatred", "despair", "greed", "wrath")
 
-/obj/item/gun/ego_gun/nihil/attackby(obj/item/I, mob/living/user, params)
+/obj/item/ego_weapon/ranged/nihil/attackby(obj/item/I, mob/living/user, params)
 	..()
 	if(!istype(I, /obj/item/nihil))
 		return
@@ -130,7 +130,7 @@
 	else
 		to_chat(user,"<span class='warning'>You have already used this upgrade!</span>")
 
-/obj/item/gun/ego_gun/nihil/proc/IncreaseAttributes(user, current_suit)
+/obj/item/ego_weapon/ranged/nihil/proc/IncreaseAttributes(user, current_suit)
 	for(var/atr in attribute_requirements)
 		if(atr == TEMPERANCE_ATTRIBUTE)
 			attribute_requirements[atr] += 5
@@ -153,7 +153,7 @@
 	to_chat(user,"<span class='nicegreen'>The ace of [current_suit] fades away as it makes [src] become even more powerful!</span>")
 	return
 
-/obj/item/gun/ego_gun/pink
+/obj/item/ego_weapon/ranged/pink
 	name = "pink"
 	desc = "Pink is considered to be the color of warmth and love, but is that true? \
 			Can guns really bring peace and love?"
@@ -179,13 +179,13 @@
 							)
 	var/mob/current_holder
 
-/obj/item/gun/ego_gun/pink/MiddleClickAction(atom/target, mob/living/user)
+/obj/item/ego_weapon/ranged/pink/MiddleClickAction(atom/target, mob/living/user)
 	. = ..()
 	if(.)
 		return
 	zoom(user, get_cardinal_dir(user, target))
 
-/obj/item/gun/ego_gun/pink/zoom(mob/living/user, direc, forced_zoom)
+/obj/item/ego_weapon/ranged/pink/zoom(mob/living/user, direc, forced_zoom)
 	if(!CanUseEgo(user))
 		return
 	if(!user || !user.client)
@@ -210,11 +210,11 @@
 		user.client.view_size.zoomOut(zoom_out_amt, zoom_amt, direc)
 	return zoomed
 
-/obj/item/gun/ego_gun/pink/proc/UserMoved(mob/living/user, direc)
+/obj/item/ego_weapon/ranged/pink/proc/UserMoved(mob/living/user, direc)
 	SIGNAL_HANDLER
 	zoom(user)//disengage
 
-/obj/item/gun/ego_gun/pink/Destroy(mob/user)//FIXME: causes component runtimes
+/obj/item/ego_weapon/ranged/pink/Destroy(mob/user)//FIXME: causes component runtimes
 	if(!user)
 		return ..()
 	if(zoomed)
@@ -223,7 +223,7 @@
 		current_holder = null
 		return ..()
 
-/obj/item/gun/ego_gun/pink/dropped(mob/user)
+/obj/item/ego_weapon/ranged/pink/dropped(mob/user)
 	. = ..()
 	if(!user)
 		return
@@ -232,7 +232,7 @@
 		UnregisterSignal(current_holder, COMSIG_ATOM_DIR_CHANGE)
 		current_holder = null
 
-/obj/item/gun/ego_gun/arcadia
+/obj/item/ego_weapon/ranged/arcadia
 	name = "Et in Arcadia Ego"
 	desc = "With the waxing of the sun, humanity wanes."
 	icon_state = "arcadia"
@@ -259,7 +259,7 @@
 	shotsleft = 16	//Based off a henry .44
 	reloadtime = 0.5 SECONDS
 
-/obj/item/gun/ego_gun/arcadia/reload_ego(mob/user)
+/obj/item/ego_weapon/ranged/arcadia/reload_ego(mob/user)
 	if(shotsleft == initial(shotsleft))
 		return
 	is_reloading = TRUE
@@ -269,7 +269,7 @@
 		shotsleft +=1
 	is_reloading = FALSE
 
-/obj/item/gun/ego_gun/arcadia/judge
+/obj/item/ego_weapon/ranged/arcadia/judge
 	name = "Judge"
 	desc = "You will be judged; as I have."
 	icon_state = "judge"

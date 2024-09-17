@@ -63,7 +63,7 @@
 	if (!istype(user,/mob/living/carbon/human))
 		return
 	attacking = TRUE
-	if(cleaning)
+	if(QDELING(src))
 		DropStance()
 	else
 		projectile_timer = addtimer(CALLBACK(src, PROC_REF(DropStance)), projectile_block_duration, TIMER_OVERRIDE & TIMER_UNIQUE & TIMER_STOPPABLE)
@@ -96,7 +96,7 @@
 		shield_user.physiology.black_mod *= max(0.001, (1 - ((reductions[3]) / 100)))
 		shield_user.physiology.pale_mod *= max(0.001, (1 - ((reductions[4]) / 100)))
 		RegisterSignal(user, COMSIG_MOB_APPLY_DAMGE, PROC_REF(AnnounceBlock))
-		if(cleaning)
+		if(QDELING(src))
 			DisableBlock(shield_user)
 		else
 			parry_timer = addtimer(CALLBACK(src, PROC_REF(DisableBlock), shield_user), block_duration, TIMER_STOPPABLE)
@@ -113,7 +113,7 @@
 
 	UnregisterSignal(user, COMSIG_MOB_APPLY_DAMGE)
 	deltimer(parry_timer)
-	if(cleaning)
+	if(QDELING(src))
 		BlockCooldown(user)
 	else
 		parry_timer = addtimer(CALLBACK(src, PROC_REF(BlockCooldown), user), block_cooldown, TIMER_STOPPABLE)
@@ -132,7 +132,7 @@
 	user.physiology.white_mod *= 1.2
 	user.physiology.black_mod *= 1.2
 	user.physiology.pale_mod *= 1.2
-	if(cleaning)
+	if(QDELING(src))
 		RemoveDebuff(user)
 	else
 		addtimer(CALLBACK(src, PROC_REF(RemoveDebuff), user), debuff_duration)
@@ -166,15 +166,14 @@
 		return ..()
 	return ..()
 
-/obj/item/ego_weapon/shield/CleanUp()
-	. = ..()
+/obj/item/ego_weapon/shield/Destroy()
 	for(var/datum/timedevent/T in active_timers)
 		var/datum/callback/TC = T.callBack
 		TC.InvokeAsync()
 		T.spent = world.time
 		T.bucketEject()
 		qdel(T)
-	return
+	return ..()
 
 //Examine text
 /obj/item/ego_weapon/shield/examine(mob/user)

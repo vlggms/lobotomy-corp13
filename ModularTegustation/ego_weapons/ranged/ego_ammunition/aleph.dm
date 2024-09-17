@@ -40,8 +40,8 @@
 
 /obj/item/ammo_casing/caseless/ego_nihil/ready_proj(atom/target, mob/living/user, quiet, zone_override = "", atom/fired_from)
 	..()
-	if(isgun(fired_from) && istype(fired_from, /obj/item/gun/ego_gun/nihil) && istype(BB, /obj/projectile/ego_bullet/nihil))
-		var/obj/item/gun/ego_gun/nihil/G = fired_from
+	if(isgun(fired_from) && istype(fired_from, /obj/item/ego_weapon/ranged/nihil) && istype(BB, /obj/projectile/ego_bullet/nihil))
+		var/obj/item/ego_weapon/ranged/nihil/G = fired_from
 		var/obj/projectile/ego_bullet/nihil/GG = BB
 		GG.powers = G.powers
 

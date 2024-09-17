@@ -218,7 +218,7 @@
 
 	resistance_flags = INDESTRUCTIBLE
 	var/open = FALSE
-	var/obj/item/gun/ego_gun/flammenwerfer/flamethrower
+	var/obj/item/ego_weapon/ranged/flammenwerfer/flamethrower
 
 /obj/structure/flamethrowercabinet/Initialize()
 	. = ..()
@@ -264,8 +264,8 @@
 
 /obj/structure/flamethrowercabinet/attackby(obj/item/I, mob/user, params)
 	if(open)
-		if(istype(I, /obj/item/gun/ego_gun/flammenwerfer) && !flamethrower)
-			var/obj/item/gun/ego_gun/flammenwerfer/F = I
+		if(istype(I, /obj/item/ego_weapon/ranged/flammenwerfer) && !flamethrower)
+			var/obj/item/ego_weapon/ranged/flammenwerfer/F = I
 			if(!user.transferItemToLoc(F, src))
 				return
 			flamethrower = F

@@ -2,7 +2,7 @@
 //All Teth Pistols should hit about
 
 //Does slightly less damage due to AOE.
-/obj/item/gun/ego_gun/match
+/obj/item/ego_weapon/ranged/match
 	name = "fourth match flame"
 	desc = "The light of the match will not go out until it has burned away happiness, warmth, light, \
 	and all the other good things of the world; there's no need to worry about it being quenched."
@@ -18,7 +18,7 @@
 	reloadtime = 2.2 SECONDS
 	fire_sound = 'sound/weapons/ego/cannon.ogg'
 
-/obj/item/gun/ego_gun/beak
+/obj/item/ego_weapon/ranged/beak
 	name = "beak"
 	desc = "As if to prove that size doesn't matter when it comes to force, \
 	the weapon has high firepower despite its small size."
@@ -33,7 +33,7 @@
 	fire_sound = 'sound/weapons/gun/smg/mp7.ogg'
 	autofire = 0.14 SECONDS
 
-/obj/item/gun/ego_gun/pistol/beakmagnum
+/obj/item/ego_weapon/ranged/pistol/beakmagnum
 	name = "beak mk2"
 	desc = "A heavy revolver that fires at a surprisingly fast rate, and is deadly accurate."
 	icon_state = "beakmagnum"
@@ -49,7 +49,7 @@
 	fire_sound_volume = 70
 	dual_wield_spread = 0
 
-/obj/item/gun/ego_gun/noise
+/obj/item/ego_weapon/ranged/noise
 	name = "noise"
 	desc = "The noises take you back to the very moment of the day that everyone had forgotten."
 	icon_state = "noise"
@@ -64,7 +64,7 @@
 	reloadtime = 1.6 SECONDS
 	fire_sound = 'sound/weapons/gun/shotgun/shot_auto.ogg'
 
-/obj/item/gun/ego_gun/pistol/solitude
+/obj/item/ego_weapon/ranged/pistol/solitude
 	name = "solitude"
 	desc = "A classic blue revolver, that gives you feelings of loneliness."
 	icon_state = "solitude"
@@ -79,7 +79,7 @@
 	vary_fire_sound = FALSE
 	fire_sound_volume = 70
 
-/obj/item/gun/ego_gun/pistol/shy
+/obj/item/ego_weapon/ranged/pistol/shy
 	name = "todays expression"
 	desc = "Many different expressions are padded on the equipment like patches. \
 	When throbbing emotions surge up from time to time, it's best to simply cover the face."
@@ -94,7 +94,7 @@
 	reloadtime = 1.2 SECONDS
 	autofire = 0.2 SECONDS
 
-/obj/item/gun/ego_gun/dream
+/obj/item/ego_weapon/ranged/dream
 	name = "engulfing dream"
 	desc = "And when the crying stops, dawn will break."
 	icon_state = "dream"
@@ -106,7 +106,7 @@
 	fire_sound = "dreamy_gun"
 	autofire = 0.25 SECONDS
 
-/obj/item/gun/ego_gun/page
+/obj/item/ego_weapon/ranged/page
 	name = "page"
 	desc = "The pain of creation! The pain! The pain!"
 	icon_state = "page"
@@ -120,7 +120,7 @@
 	reloadtime = 1.4 SECONDS
 	fire_sound = 'sound/weapons/gun/rifle/shot_alt.ogg'
 
-/obj/item/gun/ego_gun/snapshot
+/obj/item/ego_weapon/ranged/snapshot
 	name = "snapshot"
 	desc = "I swear, that obscene portrait was just trying to make us lower our guard."
 	icon_state = "snapshot"
@@ -133,7 +133,7 @@
 	fire_delay = 10
 	fire_sound = 'sound/weapons/sonic_jackhammer.ogg'
 
-/obj/item/gun/ego_gun/wishing_cairn
+/obj/item/ego_weapon/ranged/wishing_cairn
 	name = "wishing cairn"
 	desc = "Speak unto me your wish, vocalize your eagerness..."
 	icon_state = "wishing_cairn"
@@ -148,17 +148,16 @@
 	fire_sound = 'sound/abnormalities/pagoda/throw.ogg'
 	var/ammo2 = /obj/item/ammo_casing/caseless/ego_wishing2
 
-/obj/item/gun/ego_gun/wishing_cairn/proc/Ammo_Change()
-	chambered = new ammo2
+/obj/item/ego_weapon/ranged/wishing_cairn/proc/Ammo_Change()
+	ammo_type = ammo2
 	fire_sound = 'sound/abnormalities/pagoda/throw2.ogg'
-	return
 
-/obj/item/gun/ego_gun/wishing_cairn/afterattack(atom/target, mob/user)
+/obj/item/ego_weapon/ranged/wishing_cairn/afterattack(atom/target, mob/user)
 	..()
-	chambered = new ammo_type
+	ammo_type = initial(ammo_type)
 	fire_sound = 'sound/abnormalities/pagoda/throw.ogg'
 
-/obj/item/gun/ego_gun/aspiration
+/obj/item/ego_weapon/ranged/aspiration
 	name = "aspiration"
 	desc = "The desire to live was stronger than anything. That is when regret finally ran a shudder through my body."
 	icon_state = "aspiration"
@@ -170,14 +169,14 @@
 	autofire = 0.5 SECONDS
 	fire_sound = 'sound/abnormalities/fragment/attack.ogg'
 
-/obj/item/gun/ego_gun/aspiration/before_firing(atom/target,mob/user)
+/obj/item/ego_weapon/ranged/aspiration/before_firing(atom/target,mob/user)
 	if(ishuman(user))
 		var/mob/living/carbon/human/H = user
 		H.adjustBruteLoss(3)
 	..()
 	return
 
-/obj/item/gun/ego_gun/patriot
+/obj/item/ego_weapon/ranged/patriot
 	name = "patriot"
 	desc = "Are you willing to do what it takes to protect your country?"
 	icon_state = "patriot"
@@ -196,7 +195,7 @@
 	reloadtime = 1.4 SECONDS
 	fire_sound = 'sound/weapons/gun/shotgun/shot.ogg'
 
-/obj/item/gun/ego_gun/luckdraw
+/obj/item/ego_weapon/ranged/luckdraw
 	name = "luck of the draw"
 	desc = "A seemingly infinite deck of bladed cards. How much are you willing to risk to win it big?"
 	icon_state = "luckdraw"

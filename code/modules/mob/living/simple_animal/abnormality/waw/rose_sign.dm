@@ -236,9 +236,9 @@
 	for(var/obj/item/W in target.held_items + target.get_equipped_items())//Searches the human for any E.G.O and adds them to a list.
 		if(istype(W, /obj/item/ego_weapon))//FIXME!!!! The above line doesn't actually check suit storage slots, could be more efficient too
 			flower_damtype += W.damtype
-		if(istype(W, /obj/item/gun/ego_gun))
-			var/obj/item/gun/ego_gun/G = W
-			flower_damtype += G.chambered.BB.damage_type
+		if(istype(W, /obj/item/ego_weapon/ranged))
+			var/obj/item/ego_weapon/ranged/G = W
+			flower_damtype += G.last_projectile_type
 	if(LAZYLEN(flower_damtype))//Picks damage types from the list compiled previously, spawning a rose of that color.
 		damtype = pick(flower_damtype)
 	else

@@ -12,9 +12,6 @@
 	var/list/attribute_requirements = list()
 	var/special
 
-	/// Is CleanUp proc running?
-	var/cleaning = FALSE
-
 	/// How much knockback does this weapon deal, if at all?
 	var/knockback = FALSE
 
@@ -201,12 +198,6 @@
 		return span_notice("It deals [round(force * force_multiplier, 0.1)] [damtype] damage. (+ [(force_multiplier - 1) * 100]%)")
 	return span_notice("It deals [force] [damtype] damage.")
 
-/**
- * Used to clean up any remaining variables or timers in an ego weapon.
- */
-/obj/item/ego_weapon/proc/CleanUp()
-	cleaning = TRUE
-
 /obj/item/ego_weapon/GetTarget(mob/user, list/potential_targets = list())
 	if(damtype != WHITE_DAMAGE)
 		return ..()
@@ -228,7 +219,6 @@
 	return ..()
 
 /obj/item/ego_weapon/Destroy()
-	CleanUp()
 	return ..()
 
 /obj/item/ego_weapon/MiddleClickAction(atom/target, mob/living/user)

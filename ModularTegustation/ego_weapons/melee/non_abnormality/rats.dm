@@ -60,7 +60,7 @@
 	hitsound = 'sound/weapons/ego/pipesuffering.ogg'
 
 // From CRUELTY SQUAD. It's really, really bad
-/obj/item/gun/ego_gun/pistol/rats
+/obj/item/ego_weapon/ranged/pistol/rats
 	name = "XX-Corp Zippy 3000"
 	desc = "The ultimate weapon, in ejection failures and misfires. You'll be lucky to get two shots out of this thing without blowing off your fingers. \
 		One of the weapons made by XX Corp. Due to the vast amount of ejections, failures, and being so unbearable for the lowest of the low fixers, \
@@ -77,7 +77,7 @@
 	fire_sound = 'sound/weapons/gun/pistol/shot.ogg'
 	fire_sound_volume = 70
 
-/obj/item/gun/ego_gun/pistol/rats/can_shoot()
+/obj/item/ego_weapon/ranged/pistol/rats/can_shoot()
 	..()
 	if(prob(33))
 		playsound(src, 'sound/weapons/gun/general/dry_fire.ogg', 30, TRUE)
@@ -86,7 +86,7 @@
 	else
 		return TRUE
 
-/obj/item/gun/ego_gun/pistol/rats/afterattack(atom/target, mob/living/user, flag, params)
+/obj/item/ego_weapon/ranged/pistol/rats/afterattack(atom/target, mob/living/user, flag, params)
 	if(flag && (user.a_intent == INTENT_HARM || forced_melee)) // Don't want to take damage when just using melee
 		return ..()
 	if(prob(50))

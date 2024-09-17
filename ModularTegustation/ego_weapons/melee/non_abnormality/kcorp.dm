@@ -87,7 +87,7 @@
 	item_flags = SLOWS_WHILE_IN_HAND
 
 // Guns below
-/obj/item/gun/ego_gun/pistol/kcorp
+/obj/item/ego_weapon/ranged/pistol/kcorp
 	name = "Kcorp pistol"
 	desc = "A lime green pistol used by Kcorp."
 	icon_state = "kpistol"
@@ -105,7 +105,7 @@
 
 
 // Guns below
-/obj/item/gun/ego_gun/pistol/kcorp/smg
+/obj/item/ego_weapon/ranged/pistol/kcorp/smg
 	name = "Kcorp Machinepistole"
 	desc = "A lime green machinepistol used by Kcorp."
 	icon_state = "ksmg"
@@ -124,7 +124,7 @@
 							)
 
 
-/obj/item/gun/ego_gun/pistol/kcorp/nade
+/obj/item/ego_weapon/ranged/pistol/kcorp/nade
 	name = "Kcorp grenade launcher"
 	desc = "A short grenade launcher used by Kcorp."
 	icon_state = "kgrenade"

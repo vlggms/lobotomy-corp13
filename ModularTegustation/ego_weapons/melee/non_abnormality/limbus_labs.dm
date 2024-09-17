@@ -1,5 +1,5 @@
 //Pistol
-/obj/item/gun/ego_gun/city/limbuspistol
+/obj/item/ego_weapon/ranged/city/limbuspistol
 	name = "LCCB pistol"
 	desc = "A pistol often found in the hands of LCCB staff."
 	icon_state = "lccb_pistol"
@@ -15,7 +15,7 @@
 	fire_delay = 5
 
 //Auto Pistol
-/obj/item/gun/ego_gun/city/limbusautopistol
+/obj/item/ego_weapon/ranged/city/limbusautopistol
 	name = "LCCB auto pistol"
 	desc = "A pistol often found in the hands of LCCB staff. This one is fully automatic"
 	icon_state = "lccb_burstpistol"
@@ -32,7 +32,7 @@
 	autofire = 0.12 SECONDS
 
 //Magnum
-/obj/item/gun/ego_gun/city/limbusmagnum
+/obj/item/ego_weapon/ranged/city/limbusmagnum
 	name = "LCCB magnum"
 	desc = "A pistol often found in the hands of LCCB combat officers."
 	icon_state = "lccb_magnum"
@@ -49,7 +49,7 @@
 	fire_delay = 12
 
 //SMG
-/obj/item/gun/ego_gun/city/limbussmg
+/obj/item/ego_weapon/ranged/city/limbussmg
 	name = "LCCB submachine gun"
 	desc = "An SMG often found in the hands of LCCB staff. This one is fully automatic, but requires two hands."
 	icon_state = "lccb_smg"
@@ -64,7 +64,7 @@
 	autofire = 0.12 SECONDS
 
 //Shottie
-/obj/item/gun/ego_gun/city/limbusshottie
+/obj/item/ego_weapon/ranged/city/limbusshottie
 	name = "LCCB shotgun"
 	desc = "A shotgun found in the hands of LCCB staff. Has limited ammo and a long reload."
 	icon_state = "lccb_shotgun"
@@ -81,7 +81,7 @@
 	damtype = RED_DAMAGE
 
 
-/obj/item/gun/ego_gun/city/limbusshottie/attack(mob/living/target, mob/living/user)
+/obj/item/ego_weapon/ranged/city/limbusshottie/attack(mob/living/target, mob/living/user)
 	. = ..()
 	user.changeNext_move(CLICK_CD_MELEE * 1.5)
 	if(!.)

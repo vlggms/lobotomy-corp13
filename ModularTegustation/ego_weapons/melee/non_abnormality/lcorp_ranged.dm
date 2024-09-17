@@ -6,7 +6,7 @@
 //ERA/AGENT EQUIPMENT//
 ///////////////////////
 
-/obj/item/gun/ego_gun/city/lcorp
+/obj/item/ego_weapon/ranged/city/lcorp
 	icon = 'ModularTegustation/Teguicons/lcorp_weapons.dmi'
 	lefthand_file = 'ModularTegustation/Teguicons/lcorp_left.dmi'
 	righthand_file = 'ModularTegustation/Teguicons/lcorp_right.dmi'
@@ -21,7 +21,7 @@
 	var/equipped
 	var/tier = 0
 
-/obj/item/gun/ego_gun/city/lcorp/examine(mob/user)
+/obj/item/ego_weapon/ranged/city/lcorp/examine(mob/user)
 	. = ..()
 	if(user.mind)
 		if(user.mind.assigned_role in list("Disciplinary Officer", "Emergency Response Agent"))
@@ -31,15 +31,15 @@
 	else
 		. += span_nicegreen("It has a [installed_shard] installed.")
 
-/obj/item/gun/ego_gun/city/lcorp/equipped(mob/user, slot, initial = FALSE)
+/obj/item/ego_weapon/ranged/city/lcorp/equipped(mob/user, slot, initial = FALSE)
 	..()
 	equipped = TRUE
 
-/obj/item/gun/ego_gun/city/lcorp/dropped(mob/user)
+/obj/item/ego_weapon/ranged/city/lcorp/dropped(mob/user)
 	..()
 	equipped = FALSE
 
-/obj/item/gun/ego_gun/city/lcorp/attackby(obj/item/I, mob/living/user, params)
+/obj/item/ego_weapon/ranged/city/lcorp/attackby(obj/item/I, mob/living/user, params)
 	..()
 	if(!istype(I, /obj/item/egoshard))
 		return
@@ -54,7 +54,7 @@
 	playsound(get_turf(src), 'sound/effects/light_flicker.ogg', 50, TRUE)
 	qdel(I)
 
-/obj/item/gun/ego_gun/city/lcorp/proc/IncreaseAttributes(mob/living/user, obj/item/egoshard/egoshard)
+/obj/item/ego_weapon/ranged/city/lcorp/proc/IncreaseAttributes(mob/living/user, obj/item/egoshard/egoshard)
 	damtype = egoshard.damage_type
 	force = (egoshard.base_damage * 0.7) //70% of base damage which is to be expected of guns. Currently all guns override this with their own values.
 	tier = egoshard.tier
@@ -63,12 +63,7 @@
 	to_chat(user, span_warning("The requirements to equip [src] have increased!"))
 	to_chat(user, span_nicegreen("[src] has been successfully improved!"))
 	icon_state = "[initial(icon_state)]_[egoshard.damage_type]"
-	if(chambered) //This bit of code is supposed to update the examine by loading in a fresh bullet. It doesn't. I do not know why, but I do know that it at least runs properly.
-		if(chambered.BB)
-			QDEL_NULL(chambered.BB)
-	else
-		chambered = new ammo_type(src)
-	chambered.newshot()
+	update_projectile_examine()
 
 /obj/item/ammo_casing/caseless/lcorp
 	name = "9mm pistol casing"
@@ -78,11 +73,11 @@
 	damtype = RED_DAMAGE
 
 /obj/item/ammo_casing/caseless/lcorp/ready_proj(atom/target, mob/living/user, quiet, zone_override = "", atom/fired_from)
-	..()
+	. = ..()
 	if(tier) //No reason to run this again
 		return
-	if(isgun(fired_from))
-		var/obj/item/gun/ego_gun/city/lcorp/G = fired_from
+	if(isgun(fired_from) || istype(fired_from, /obj/item/ego_weapon/ranged))
+		var/obj/item/ego_weapon/ranged/city/lcorp/G = fired_from
 		var/obj/projectile/ego_bullet/lcorp/GG = BB
 		GG.tier = G.tier
 		GG.damage_type = G.damtype
@@ -110,7 +105,7 @@
 	var/tier = 0
 	var/list/damage_tier = list(11,20,30,55,90) //These numbers are just for reference
 
-/obj/item/gun/ego_gun/city/lcorp/pistol
+/obj/item/ego_weapon/ranged/city/lcorp/pistol
 	name = "l-corp suppression pistol"
 	desc = "A special pistol issued by L-Corp to those who cannot utilize E.G.O."
 	icon_state = "pistol"
@@ -137,11 +132,11 @@
 	damage = 11
 	damage_tier = list(11,20,30,55,90)
 
-/obj/item/gun/ego_gun/city/lcorp/pistol/IncreaseAttributes(mob/living/user, obj/item/egoshard/egoshard)
+/obj/item/ego_weapon/ranged/city/lcorp/pistol/IncreaseAttributes(mob/living/user, obj/item/egoshard/egoshard)
 	..()
 	force = (egoshard.base_damage * 0.42) // 2 attacks per attack cycle due to being a pistol
 
-/obj/item/gun/ego_gun/city/lcorp/automatic_pistol
+/obj/item/ego_weapon/ranged/city/lcorp/automatic_pistol
 	name = "l-corp automatic pistol"
 	desc = "A rapid-fire pistol issued by L-Corp to those who cannot utilize E.G.O."
 	icon_state = "automatic"
@@ -166,7 +161,7 @@
 	damage = 2
 	damage_tier = list(2,4,6,9,15)
 
-/obj/item/gun/ego_gun/city/lcorp/automatic_pistol/IncreaseAttributes(mob/living/user, obj/item/egoshard/egoshard)
+/obj/item/ego_weapon/ranged/city/lcorp/automatic_pistol/IncreaseAttributes(mob/living/user, obj/item/egoshard/egoshard)
 	..()
 	force = (egoshard.base_damage * 0.42) // 2 attacks per attack cycle due to being a pistol
 
@@ -175,7 +170,7 @@
 ///////////////////
 
 //Standard clerk pistol
-/obj/item/gun/ego_gun/clerk
+/obj/item/ego_weapon/ranged/clerk
 	name = "clerk pistol"
 	desc = "A shitty pistol, labeled 'Point open end towards enemy'."
 	icon_state = "clerk"
@@ -195,7 +190,7 @@
 	vary_fire_sound = FALSE
 	fire_sound_volume = 70
 
-/obj/item/gun/ego_gun/clerk/handle_suicide(mob/living/carbon/human/user, mob/living/carbon/human/target, params, bypass_timer)
+/obj/item/ego_weapon/ranged/clerk/handle_suicide(mob/living/carbon/human/user, mob/living/carbon/human/target, params, bypass_timer)
 	if(!ishuman(user) || !ishuman(target))
 		return
 	if(semicd)
@@ -219,13 +214,5 @@
 		return
 	semicd = FALSE
 	target.visible_message("<span class='warning'>[user] pulls the trigger!</span>", "<span class='userdanger'>[(user == target) ? "You pull" : "[user] pulls"] the trigger!</span>")
-	if(chambered?.BB)
-		chambered.BB.damage *= (user_target ? 100 : 5) // This should certainly kill you on suicide
-		chambered.BB.wound_bonus += (user_target ? 200 : 10) // THERE WILL BE BLOOD
-		chambered.BB.dismemberment = (user_target ? 5 : 0) // Tiny chance to behead you for no reason at all
 
-	var/fired = process_fire(target, user, TRUE, params, BODY_ZONE_HEAD)
-	if(!fired && chambered?.BB)
-		chambered.BB.damage /= (user_target ? 100 : 5)
-		chambered.BB.wound_bonus -= (user_target ? 200 : 10)
-		chambered.BB.dismemberment = 0
+	process_fire(target, user, TRUE, params, BODY_ZONE_HEAD, bonus_damage_multiplier = (user_target ? 100 : 5))

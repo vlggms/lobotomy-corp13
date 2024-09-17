@@ -1,5 +1,5 @@
 // All zayin pistols use the default 6 force for ego_gun pistols
-/obj/item/gun/ego_gun/pistol/tough
+/obj/item/ego_weapon/ranged/pistol/tough
 	name = "tough pistol"
 	desc = "A glock reminiscent of a certain detective who fought evil for 25 years, losing hair as time went by."
 	special = "Use this weapon in your hand when wearing matching armor to turn others nearby bald."
@@ -16,7 +16,7 @@
 	var/pulse_cooldown_time = 60 SECONDS
 	var/blast_delay = 3 SECONDS
 
-/obj/item/gun/ego_gun/pistol/tough/attack_self(mob/user)
+/obj/item/ego_weapon/ranged/pistol/tough/attack_self(mob/user)
 	if(!ishuman(user))
 		return
 	var/mob/living/carbon/human/H = user
@@ -32,7 +32,7 @@
 	BaldBlast(user)
 	pulse_cooldown = world.time + pulse_cooldown_time
 
-/obj/item/gun/ego_gun/pistol/tough/proc/BaldBlast(mob/living/carbon/human/user ,list/baldtargets = list(), burst_chain)
+/obj/item/ego_weapon/ranged/pistol/tough/proc/BaldBlast(mob/living/carbon/human/user ,list/baldtargets = list(), burst_chain)
 	for(var/mob/living/carbon/human/L in livinginview(5, user)) //not even the dead are safe.
 		if(!ishuman(L))
 			continue
@@ -50,16 +50,16 @@
 	if(!burst_chain)
 		addtimer(CALLBACK(src, PROC_REF(BaldBlast), user, baldtargets, TRUE), blast_delay)
 
-/obj/item/gun/ego_gun/pistol/tough/SpecialEgoCheck(mob/living/carbon/human/H)
+/obj/item/ego_weapon/ranged/pistol/tough/SpecialEgoCheck(mob/living/carbon/human/H)
 	if(HAS_TRAIT(H, TRAIT_BALD))
 		return TRUE
 	to_chat(H, "<span class='notice'>Only the ones with dedication to clean hairstyle can use [src]!</span>")
 	return FALSE
 
-/obj/item/gun/ego_gun/pistol/tough/SpecialGearRequirements()
+/obj/item/ego_weapon/ranged/pistol/tough/SpecialGearRequirements()
 	return "\n<span class='warning'>The user must have clean hairstyle.</span>"
 
-/obj/item/gun/ego_gun/pistol/soda
+/obj/item/ego_weapon/ranged/pistol/soda
 	name = "soda pistol"
 	desc = "A pistol painted in a refreshing purple. Whenever this EGO is used, a faint scent of grapes wafts through the air."
 	special = "Perish while wearing matching armor and Wellcheers shrimp will arrive to mourn you."
@@ -75,28 +75,28 @@
 	fire_sound_volume = 70
 	var/shrimp_chosen
 
-/obj/item/gun/ego_gun/pistol/soda/equipped(mob/living/carbon/human/user, slot)
+/obj/item/ego_weapon/ranged/pistol/soda/equipped(mob/living/carbon/human/user, slot)
 	. = ..()
 	if(!user)
 		return
 	shrimp_chosen = user
 	RegisterSignal(shrimp_chosen, COMSIG_LIVING_DEATH, PROC_REF(ShrimpFuneral))
 
-/obj/item/gun/ego_gun/pistol/soda/dropped(mob/user)
+/obj/item/ego_weapon/ranged/pistol/soda/dropped(mob/user)
 	. = ..()
 	if(!user)
 		return
 	UnregisterSignal(shrimp_chosen, COMSIG_LIVING_DEATH)
 	shrimp_chosen = null
 
-/obj/item/gun/ego_gun/pistol/soda/Destroy(mob/user)
+/obj/item/ego_weapon/ranged/pistol/soda/Destroy(mob/user)
 	if(!user)
 		return ..()
 	UnregisterSignal(shrimp_chosen, COMSIG_LIVING_DEATH)
 	shrimp_chosen = null
 	return ..()
 
-/obj/item/gun/ego_gun/pistol/soda/proc/ShrimpFuneral(mob/user)
+/obj/item/ego_weapon/ranged/pistol/soda/proc/ShrimpFuneral(mob/user)
 	var/obj/item/clothing/suit/armor/ego_gear/zayin/soda/S = user.get_item_by_slot(ITEM_SLOT_OCLOTHING)
 	if(istype(S))
 		var/shrimpcount
@@ -113,7 +113,7 @@
 	icon_living = "wellcheers_funeral"
 	faction = list("neutral", "shrimp")
 
-/obj/item/gun/ego_gun/pistol/nostalgia
+/obj/item/ego_weapon/ranged/pistol/nostalgia
 	name = "nostalgia"
 	desc = "An old-looking pistol made of wood"
 	special = "Use this weapon in your hand when wearing matching armor to heal the SP of others nearby."
@@ -131,7 +131,7 @@
 	var/pulse_healing = -0.5 //negative damage
 	var/pulse_enabled = FALSE
 
-/obj/item/gun/ego_gun/pistol/nostalgia/attack_self(mob/user)
+/obj/item/ego_weapon/ranged/pistol/nostalgia/attack_self(mob/user)
 	if(!ishuman(user))
 		return
 	var/mob/living/carbon/human/H = user
@@ -149,15 +149,15 @@
 		pulse_enabled = FALSE
 		to_chat(H, "<span class='warning'>You must have the corrosponding armor equipped to use this ability!</span>")
 
-/obj/item/gun/ego_gun/pistol/nostalgia/dropped(mob/user)
+/obj/item/ego_weapon/ranged/pistol/nostalgia/dropped(mob/user)
 	. = ..()
 	pulse_enabled = FALSE
 
-/obj/item/gun/ego_gun/pistol/nostalgia/Destroy(mob/user)
+/obj/item/ego_weapon/ranged/pistol/nostalgia/Destroy(mob/user)
 	. = ..()
 	pulse_enabled = FALSE
 
-/obj/item/gun/ego_gun/pistol/nostalgia/proc/HealPulse(mob/living/carbon/human/user, count)
+/obj/item/ego_weapon/ranged/pistol/nostalgia/proc/HealPulse(mob/living/carbon/human/user, count)
 	if(!pulse_enabled)
 		return
 	if(count >= 10)
@@ -169,7 +169,7 @@
 		to_chat(L, "<span class='nicegreen'>A pulse from [user] makes your mind feel a bit clearer.</span>")
 	addtimer(CALLBACK(src, PROC_REF(HealPulse), user, count += 1), pulse_cooldown)
 
-/obj/item/gun/ego_gun/pistol/nightshade
+/obj/item/ego_weapon/ranged/pistol/nightshade
 	name = "nightshade"
 	desc = "Strange that it was more than just a bleeding person in a vegetative state."
 	special = "If you are wearing the matching armor, fired shots will heal friendlies on hit."
@@ -183,7 +183,7 @@
 	vary_fire_sound = FALSE
 	fire_sound_volume = 50
 
-/obj/item/gun/ego_gun/pistol/nightshade/process_fire(atom/target, mob/living/user)
+/obj/item/ego_weapon/ranged/pistol/nightshade/process_fire(atom/target, mob/living/user, message = TRUE, params = null, zone_override = "", bonus_spread = 0, bonus_damage_multiplier = 1)
 	var/obj/item/clothing/suit/armor/ego_gear/zayin/nightshade/C = user.get_item_by_slot(ITEM_SLOT_OCLOTHING)
 	if(!istype(C))
 		if(ammo_type == /obj/item/ammo_casing/caseless/ego_nightshade/healing)
@@ -193,7 +193,7 @@
 			ammo_type = /obj/item/ammo_casing/caseless/ego_nightshade/healing
 	return ..()
 
-/obj/item/gun/ego_gun/bucket
+/obj/item/ego_weapon/ranged/bucket
 	name = "bucket"
 	desc = "A slingshot made from wooden staves that fires skipping stones. What will you wish for?"
 	special = "Use this weapon in your hand when wearing matching armor to create gifts for people nearby."
@@ -208,7 +208,7 @@
 	var/ability_cooldown_time = 60 SECONDS
 	var/ability_cooldown
 
-/obj/item/gun/ego_gun/bucket/attack_self(mob/user)
+/obj/item/ego_weapon/ranged/bucket/attack_self(mob/user)
 	if(!ishuman(user))
 		return
 	var/mob/living/carbon/human/H = user
@@ -224,7 +224,7 @@
 	SpawnItem(user)
 	ability_cooldown = world.time + ability_cooldown_time
 
-/obj/item/gun/ego_gun/bucket/proc/SpawnItem(mob/user)
+/obj/item/ego_weapon/ranged/bucket/proc/SpawnItem(mob/user)
 	var/list/lootoptions = list(
 		/obj/item/reagent_containers/food/drinks/soda_cans/wellcheers_red,
 		/obj/item/reagent_containers/food/drinks/soda_cans/wellcheers_white,
@@ -262,7 +262,7 @@
 	var/gift = pick(lootoptions)//you get one too!
 	new gift(get_turf(user))
 
-/obj/item/gun/ego_gun/pistol/oceanic
+/obj/item/ego_weapon/ranged/pistol/oceanic
 	name = "a taste of the ocean"
 	desc = "A pistol painted in a refreshing orange. Whenever this EGO is used, a faint scent of orange wafts through the air."
 	icon_state = "oceanic"

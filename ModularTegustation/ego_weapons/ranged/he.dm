@@ -1,4 +1,4 @@
-/obj/item/gun/ego_gun/prank
+/obj/item/ego_weapon/ranged/prank
 	name = "funny prank"
 	desc = "The small accessory remains like the wishes of a child who yearned for happiness."
 	icon_state = "prank"
@@ -16,7 +16,7 @@
 							TEMPERANCE_ATTRIBUTE = 40
 							)
 
-/obj/item/gun/ego_gun/pistol/gaze
+/obj/item/ego_weapon/ranged/pistol/gaze
 	name = "gaze"
 	desc = "A magnum pistol featuring excellent burst firing potential."
 	icon_state = "gaze"
@@ -34,7 +34,7 @@
 							FORTITUDE_ATTRIBUTE = 40
 							)
 
-/obj/item/gun/ego_gun/galaxy
+/obj/item/ego_weapon/ranged/galaxy
 	name = "galaxy"
 	desc = "A shimmering wand."
 	icon_state = "galaxy"
@@ -53,22 +53,22 @@
 							)
 	var/homing = FALSE
 
-/obj/item/gun/ego_gun/galaxy/attack_self(mob/user)
+/obj/item/ego_weapon/ranged/galaxy/attack_self(mob/user)
 	..()
 	if(homing)
-		to_chat(user,"<span class='warning'>You release your energy, and turn off homing.</span>")
-		ammo_type = /obj/item/ammo_casing/caseless/ego_galaxy
+		to_chat(user,span_warning("You release your energy, and turn off homing."))
 		fire_delay = 15
+		ammo_type = initial(ammo_type)
 		homing = FALSE
 		return
 	if(!homing)
-		to_chat(user,"<span class='warning'>You channel your energy, enabling homing.</span>")
+		to_chat(user,span_warning("You channel your energy, enabling homing."))
 		fire_delay = 20
 		ammo_type = /obj/item/ammo_casing/caseless/ego_galaxy/homing
 		homing = TRUE
 		return
 
-/obj/item/gun/ego_gun/unrequited
+/obj/item/ego_weapon/ranged/unrequited
 	name = "unrequited love"
 	desc = "This weapon yearns for affection and will do anything to get your attention. Of course it will misunderstand your care for something else."
 	icon_state = "unrequited"
@@ -93,27 +93,27 @@
 	var/jammed = FALSE
 	var/jam_noticed = FALSE
 
-/obj/item/gun/ego_gun/unrequited/Initialize()
+/obj/item/ego_weapon/ranged/unrequited/Initialize()
 	. = ..()
 	jam_cooldown_time = rand(1, 5) MINUTES
 	jam_cooldown = jam_cooldown_time + world.time
 	START_PROCESSING(SSobj, src)
 
-/obj/item/gun/ego_gun/unrequited/process()
+/obj/item/ego_weapon/ranged/unrequited/process()
 	if(jammed)
 		return
 	if(jam_cooldown < world.time)
 		jammed = TRUE
 
-/obj/item/gun/ego_gun/unrequited/Destroy()
+/obj/item/ego_weapon/ranged/unrequited/Destroy()
 	STOP_PROCESSING(SSobj, src)
 	return ..()
 
-/obj/item/gun/ego_gun/unrequited/proc/ResetDelay()
+/obj/item/ego_weapon/ranged/unrequited/proc/ResetDelay()
 	fire_delay = 3
 	burst_size = 3
 
-/obj/item/gun/ego_gun/unrequited/SpecialEgoCheck(mob/living/carbon/human/H)
+/obj/item/ego_weapon/ranged/unrequited/SpecialEgoCheck(mob/living/carbon/human/H)
 	if(!jammed)
 		return TRUE
 
@@ -123,27 +123,27 @@
 		playsound(src, 'sound/weapons/gun/general/bolt_drop.ogg', 50, TRUE)
 		jam_noticed = TRUE
 
-	to_chat(H, "<span class='notice'>[src] is jammed!</span>")
+	to_chat(H, span_notice("[src] is jammed!"))
 	return FALSE
 
-/obj/item/gun/ego_gun/unrequited/attack_self(mob/user)
-	to_chat(user,"<span class='notice'>You try to unjam [src].</span>")
+/obj/item/ego_weapon/ranged/unrequited/attack_self(mob/user)
+	to_chat(user,span_notice("You try to unjam [src]."))
 	playsound(src, 'sound/weapons/gun/general/slide_lock_1.ogg', 50, TRUE)
 	if(do_after(user, 3 SECONDS, src)) //it's a massive annoyance to unjam in the middle of a fight but the extra damage should make it more than worth it.
 		playsound(src, 'sound/weapons/gun/general/bolt_rack.ogg', 50, TRUE)
 		if(!jammed)
-			to_chat(user,"<span class='notice'>Turns out the weapon is working just fine.</span>")
+			to_chat(user,span_notice("Turns out the weapon is working just fine."))
 			return
 		jammed = FALSE
 		jam_noticed = FALSE
 		fire_delay = 2
 		burst_size = 5
 		addtimer(CALLBACK(src, PROC_REF(ResetDelay)), 15 SECONDS)
-		to_chat(user,"<span class='notice'>You succesfully unjammed [src]!</span>")
+		to_chat(user,span_notice("You succesfully unjammed [src]!"))
 		jam_cooldown_time = rand(1, 5) MINUTES
 		jam_cooldown = jam_cooldown_time + world.time
 
-/obj/item/gun/ego_gun/harmony
+/obj/item/ego_weapon/ranged/harmony
 	name = "harmony"
 	desc = "A massive blocky launcher with some suspicious stains on it."
 	icon_state = "harmony"
@@ -165,7 +165,7 @@
 							FORTITUDE_ATTRIBUTE = 40
 							)
 
-/obj/item/gun/ego_gun/transmission
+/obj/item/ego_weapon/ranged/transmission
 	name = "broken transmission"
 	desc = "It's an old wooden longrifle."
 	icon_state = "transmission"
@@ -181,7 +181,7 @@
 							FORTITUDE_ATTRIBUTE = 40
 							)
 
-/obj/item/gun/ego_gun/song
+/obj/item/ego_weapon/ranged/song
 	name = "song of the past"
 	desc = "Nothing beats the classics."
 	icon_state = "song"
@@ -199,7 +199,7 @@
 							PRUDENCE_ATTRIBUTE = 40
 							)
 
-/obj/item/gun/ego_gun/pistol/songmini
+/obj/item/ego_weapon/ranged/pistol/songmini
 	name = "greatest oldies"
 	desc = "The past is far behind us."
 	icon_state = "songmini"
@@ -217,7 +217,7 @@
 							PRUDENCE_ATTRIBUTE = 40
 							)
 
-/obj/item/gun/ego_gun/wedge
+/obj/item/ego_weapon/ranged/wedge
 	name = "screaming wedge"
 	desc = "Hair has grown on the crossbow as if to express that the woman’s dejection will never be forgotten."
 	icon_state = "screamingwedge"
@@ -233,7 +233,7 @@
 							PRUDENCE_ATTRIBUTE = 40
 							)
 
-/obj/item/gun/ego_gun/pistol/swindle
+/obj/item/ego_weapon/ranged/pistol/swindle
 	name = "swindle"
 	desc = "Good for man and beast, it gives immediate relief. Snake oil is good for everything a liniment ought to be for!"
 	icon = 'icons/obj/guns/projectile.dmi'//put some non-E.G.O sprites to use
@@ -253,7 +253,7 @@
 							FORTITUDE_ATTRIBUTE = 40
 							)
 
-/obj/item/gun/ego_gun/ringing
+/obj/item/ego_weapon/ranged/ringing
 	name = "ringing"
 	desc = "Voices from your past emanate from this gun. Now they can be put into use."
 	icon_state = "ringing"
@@ -272,27 +272,27 @@
 	var/spamcheck = 0
 	var/list/voicespan = list(SPAN_COMMAND)
 
-/obj/item/gun/ego_gun/ringing/equipped(mob/M, slot)//megaphone code
+/obj/item/ego_weapon/ranged/ringing/equipped(mob/M, slot)//megaphone code
 	. = ..()
 	if (slot == ITEM_SLOT_HANDS && !HAS_TRAIT(M, TRAIT_SIGN_LANG))
 		RegisterSignal(M, COMSIG_MOB_SAY, PROC_REF(handle_speech))
 	else
 		UnregisterSignal(M, COMSIG_MOB_SAY)
 
-/obj/item/gun/ego_gun/ringing/dropped(mob/M)
+/obj/item/ego_weapon/ranged/ringing/dropped(mob/M)
 	. = ..()
 	UnregisterSignal(M, COMSIG_MOB_SAY)
 
-/obj/item/gun/ego_gun/ringing/proc/handle_speech(mob/living/carbon/user, list/speech_args)
+/obj/item/ego_weapon/ranged/ringing/proc/handle_speech(mob/living/carbon/user, list/speech_args)
 	if (user.get_active_held_item() == src)
 		if(spamcheck > world.time)
-			to_chat(user, "<span class='warning'>\The [src] needs to recharge!</span>")
+			to_chat(user, span_warning("\The [src] needs to recharge!"))
 		else
 			playsound(loc, 'sound/items/megaphone.ogg', 100, FALSE, TRUE)
 			spamcheck = world.time + 50
 			speech_args[SPEECH_SPANS] |= voicespan
 
-/obj/item/gun/ego_gun/syrinx
+/obj/item/ego_weapon/ranged/syrinx
 	name = "syrinx"
 	desc = "What cry could be more powerful than one spurred by primal instinct?"
 	icon_state = "syrinx"
@@ -312,7 +312,7 @@
 	)
 
 
-/obj/item/gun/ego_gun/ardor_star
+/obj/item/ego_weapon/ranged/ardor_star
 	name = "ardor blossom star"
 	desc = "Though I can't guide you... I can offer a warm embrace."
 	icon_state = "ardor_star"
@@ -329,7 +329,7 @@
 							FORTITUDE_ATTRIBUTE = 40
 							)
 
-/obj/item/gun/ego_gun/pistol/deathdealer
+/obj/item/ego_weapon/ranged/pistol/deathdealer
 	name = "death dealer"
 	desc = "A gilded revolver which seems to defy all known laws of gun manufacturing... Feel lucky?"
 	icon_state = "deathdealer" //Placeholder sprite. Will need to comission/replace with proper sprites
@@ -347,7 +347,7 @@
 	//NOTE: Dud round currently breaks the gun, causing it to no longer fire regardless of current ammo type. Will need help fixing this at some point, but for now the dud's removed from the list.
 	//If you feel like having a go at fixing it, the projectile's /obj/item/ammo_casing/caseless/ego_dud, under ZAYIN.
 
-/obj/item/gun/ego_gun/pistol/deathdealer/reload_ego(mob/user)
+/obj/item/ego_weapon/ranged/pistol/deathdealer/reload_ego(mob/user)
 	if(shotsleft!=0)
 		to_chat(user,span_warning("You cannot reload this gun without an empty cylinder!"))
 		return

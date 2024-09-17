@@ -66,7 +66,7 @@
 	dir = 4
 	},
 /obj/item/ego_weapon/city/kcorp/spear,
-/obj/item/gun/ego_gun/pistol/kcorp/smg,
+/obj/item/ego_weapon/ranged/pistol/kcorp/smg,
 /obj/item/clothing/under/rank/k_corporation/officer,
 /obj/item/clothing/under/rank/k_corporation/officer,
 /turf/open/indestructible/white,

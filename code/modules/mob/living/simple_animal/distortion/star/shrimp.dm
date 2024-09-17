@@ -29,7 +29,7 @@
 	attack_sound = 'sound/abnormalities/distortedform/slam.ogg'
 
 	ego_list = list(
-		/obj/item/gun/ego_gun/shrimp/rambominigun,
+		/obj/item/ego_weapon/ranged/shrimp/rambominigun,
 		/obj/item/clothing/suit/armor/ego_gear/realization/wellcheers
 		)
 
@@ -37,7 +37,7 @@
 	gender = MALE
 	egoist_outfit = /datum/outfit/job/fishing
 	egoist_attributes = 120
-	loot = list(/obj/item/gun/ego_gun/shrimp/rambominigun)
+	loot = list(/obj/item/ego_weapon/ranged/shrimp/rambominigun)
 	unmanifest_effect = /obj/effect/temp_visual/water_waves
 	can_spawn = 0
 

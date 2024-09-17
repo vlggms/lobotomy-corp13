@@ -1,5 +1,5 @@
 //Guns that reload on melee. You can reload them, but it's really slow
-/obj/item/gun/ego_gun/city/thumb
+/obj/item/ego_weapon/ranged/city/thumb
 	name = "thumb soldato rifle"
 	desc = "A 5 round magazine rifle used by The Thumb."
 	icon_state = "thumb_soldato"
@@ -21,13 +21,13 @@
 		JUSTICE_ATTRIBUTE = 60,
 	)
 
-/obj/item/gun/ego_gun/city/thumb/attack(mob/living/target, mob/living/carbon/human/user)
+/obj/item/ego_weapon/ranged/city/thumb/attack(mob/living/target, mob/living/carbon/human/user)
 	..()
 	if(shotsleft < initial(shotsleft))
 		shotsleft += 1
 
 //Capo
-/obj/item/gun/ego_gun/city/thumb/capo
+/obj/item/ego_weapon/ranged/city/thumb/capo
 	name = "thumb capo rifle"
 	desc = "A rifle used by thumb Capos. The gun is inlaid with silver."
 	icon_state = "thumb_capo"
@@ -42,7 +42,7 @@
 							)
 
 //Sottoacpo
-/obj/item/gun/ego_gun/city/thumb/sottocapo
+/obj/item/ego_weapon/ranged/city/thumb/sottocapo
 	name = "thumb sottocapo shotgun"
 	desc = "A pistol used by thumb sottocapos. While expensive, it's power is rarely matched among syndicates."
 	icon_state = "thumb_sottocapo"

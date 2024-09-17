@@ -86,7 +86,7 @@
 
 /obj/projectile/ego_bullet/ego_wishing/on_hit(atom/target, blocked = FALSE)
 	. = ..()
-	var/obj/item/gun/ego_gun/wishing_cairn/gun = fired_from
+	var/obj/item/ego_weapon/ranged/wishing_cairn/gun = fired_from
 	gun.Ammo_Change()
 	return
 

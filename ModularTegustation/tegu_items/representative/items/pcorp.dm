@@ -28,7 +28,7 @@
 	STR.max_w_class = WEIGHT_CLASS_BULKY
 	STR.max_combined_w_class = 100
 	STR.set_holdable(list(
-		/obj/item/gun/ego_gun,
+		/obj/item/ego_weapon/ranged,
 		/obj/item/ego_weapon,
 	))
 

@@ -1,4 +1,4 @@
-/obj/item/gun/ego_gun/correctional
+/obj/item/ego_weapon/ranged/correctional
 	name = "correctional"
 	desc = "In here, you're with us. Forever."
 	icon_state = "correctional"
@@ -19,7 +19,7 @@
 							JUSTICE_ATTRIBUTE = 60
 							)
 
-/obj/item/gun/ego_gun/hornet
+/obj/item/ego_weapon/ranged/hornet
 	name = "hornet"
 	desc = "The kingdom needed to stay prosperous, and more bees were required for that task. \
 	The projectiles relive the legacy of the kingdom as they travel toward the target."
@@ -37,7 +37,7 @@
 							)
 
 
-/obj/item/gun/ego_gun/hatred
+/obj/item/ego_weapon/ranged/hatred
 	name = "in the name of love and hate"
 	desc = "A magic wand surging with the lovely energy of a magical girl. \
 	The holy light can cleanse the body and mind of every villain, and they shall be born anew."
@@ -56,24 +56,22 @@
 							JUSTICE_ATTRIBUTE = 60
 							)
 
-/obj/item/gun/ego_gun/hatred/GunAttackInfo(mob/user)
-	if(chambered && chambered.BB)
-		return "<span class='notice'>Its bullets deal [chambered.BB.damage] randomly chosen damage.</span>"
-	return
+/obj/item/ego_weapon/ranged/hatred/GunAttackInfo(mob/user)
+	return span_notice("Its bullets deal [last_projectile_damage] randomly chosen damage.")
 
-/obj/item/gun/ego_gun/hatred/attackby(obj/item/I, mob/living/user, params)
+/obj/item/ego_weapon/ranged/hatred/attackby(obj/item/I, mob/living/user, params)
 	..()
 	if(!istype(I, /obj/item/nihil/heart))
 		return
-	new /obj/item/gun/ego_gun/hatred_nihil(get_turf(src))
-	to_chat(user,"<span class='warning'>The [I] seems to drain all of the light away as it is absorbed into [src]!</span>")
+	new /obj/item/ego_weapon/ranged/hatred_nihil(get_turf(src))
+	to_chat(user,span_warning("The [I] seems to drain all of the light away as it is absorbed into [src]!"))
 	playsound(user, 'sound/abnormalities/nihil/filter.ogg', 15, FALSE, -3)
 	qdel(I)
 	qdel(src)
 
 // Magic Bullet armour increases attack speed from 30 to 15
 // Big Iron armour on the other hand increases damage by a factor of 2.5x80, which will give it 40 more damage than the magic bullet armour
-/obj/item/gun/ego_gun/magicbullet
+/obj/item/ego_weapon/ranged/magicbullet
 	name = "magic bullet"
 	desc = "Though the original's power couldn't be fully extracted, the magic this holds is still potent. \
 	The weapon's bullets travel across the corridor, along the horizon."
@@ -96,7 +94,7 @@
 							)
 	var/cached_multiplier
 
-/obj/item/gun/ego_gun/magicbullet/before_firing(atom/target, mob/user)
+/obj/item/ego_weapon/ranged/magicbullet/before_firing(atom/target, mob/user)
 	if(cached_multiplier)
 		projectile_damage_multiplier = cached_multiplier
 	fire_delay = initial(fire_delay)
@@ -115,7 +113,7 @@
 //Funeral guns have two different names;
 //Solemn Lament is the white gun, Solemn Vow is the black gun.
 //Likewise, they emit butterflies of those respective colors.
-/obj/item/gun/ego_gun/pistol/solemnlament
+/obj/item/ego_weapon/ranged/pistol/solemnlament
 	name = "solemn lament"
 	desc = "A pistol which carries with it a lamentation for those that live. \
 	Can feathers gain their own wings?"
@@ -133,7 +131,7 @@
 	attribute_requirements = list(PRUDENCE_ATTRIBUTE = 80)
 	var/cached_multiplier
 
-/obj/item/gun/ego_gun/pistol/solemnlament/before_firing(atom/target, mob/user)
+/obj/item/ego_weapon/ranged/pistol/solemnlament/before_firing(atom/target, mob/user)
 	if(cached_multiplier)
 		projectile_damage_multiplier = cached_multiplier
 	fire_delay = initial(fire_delay)
@@ -142,17 +140,17 @@
 	if(istype(Z))
 		cached_multiplier = projectile_damage_multiplier
 		projectile_damage_multiplier *= 2.5
-	..()
+	return ..()
 
-/obj/item/gun/ego_gun/pistol/solemnlament/process_fire(atom/target, mob/living/user)
-	for(var/obj/item/gun/ego_gun/pistol/solemnvow/Vow in user.held_items)
+/obj/item/ego_weapon/ranged/pistol/solemnlament/process_fire(atom/target, mob/living/user, message = TRUE, params = null, zone_override = "", bonus_spread = 0, bonus_damage_multiplier = 1)
+	for(var/obj/item/ego_weapon/ranged/pistol/solemnvow/Vow in user.held_items)
 		projectile_damage_multiplier = 1.5
 		break
-	..()
+	. = ..()
 	projectile_damage_multiplier = 1
 
 
-/obj/item/gun/ego_gun/pistol/solemnvow
+/obj/item/ego_weapon/ranged/pistol/solemnvow
 	name = "solemn vow"
 	desc = "A pistol which carries with it grief for those who have perished. \
 	Even with wings, no feather can leave this place."
@@ -170,7 +168,7 @@
 	var/cached_multiplier
 	attribute_requirements = list(JUSTICE_ATTRIBUTE = 80)
 
-/obj/item/gun/ego_gun/pistol/solemnvow/before_firing(atom/target, mob/user)
+/obj/item/ego_weapon/ranged/pistol/solemnvow/before_firing(atom/target, mob/user)
 	if(cached_multiplier)
 		projectile_damage_multiplier = cached_multiplier
 	fire_delay = initial(fire_delay)
@@ -179,17 +177,17 @@
 	if(istype(Z))
 		cached_multiplier = projectile_damage_multiplier
 		projectile_damage_multiplier *= 2.5
-	..()
+	return ..()
 
-/obj/item/gun/ego_gun/pistol/solemnvow/process_fire(atom/target, mob/living/user)
-	for(var/obj/item/gun/ego_gun/pistol/solemnlament/Lament in user.held_items)
+/obj/item/ego_weapon/ranged/pistol/solemnvow/process_fire(atom/target, mob/living/user, message = TRUE, params = null, zone_override = "", bonus_spread = 0, bonus_damage_multiplier = 1)
+	for(var/obj/item/ego_weapon/ranged/pistol/solemnlament/Lament in user.held_items)
 		projectile_damage_multiplier = 1.5
 		break
-	..()
 	projectile_damage_multiplier = 1
+	return ..()
 
 
-/obj/item/gun/ego_gun/loyalty
+/obj/item/ego_weapon/ranged/loyalty
 	name = "loyalty"
 	desc = "Courtesy of the 16th Ego rifleman's brigade."
 	icon_state = "loyalty"
@@ -208,7 +206,7 @@
 	)
 
 //Just a funny gold soda pistol. It was originally meant to just be a golden meme weapon, now it is the only pale gun, lol
-/obj/item/gun/ego_gun/pistol/executive
+/obj/item/ego_weapon/ranged/pistol/executive
 	name = "executive"
 	desc = "A pistol painted in black with a gold finish. Whenever this EGO is used, a faint scent of fillet mignon wafts through the air."
 	icon_state = "executive"
@@ -229,7 +227,7 @@
 	)
 
 
-/obj/item/gun/ego_gun/pistol/crimson
+/obj/item/ego_weapon/ranged/pistol/crimson
 	name = "crimson scar"
 	desc = "With steel in one hand and gunpowder in the other, there's nothing to fear in this place."
 	icon_state = "crimsonscar"
@@ -247,7 +245,7 @@
 							JUSTICE_ATTRIBUTE = 60
 	)
 
-/obj/item/gun/ego_gun/ecstasy
+/obj/item/ego_weapon/ranged/ecstasy
 	name = "ecstasy"
 	desc = "Tell the kid today's treat is going to be grape-flavored candy. It's his favorite."
 	icon_state = "ecstasy"
@@ -267,7 +265,7 @@
 							TEMPERANCE_ATTRIBUTE = 60
 	)
 
-/obj/item/gun/ego_gun/pistol/praetorian
+/obj/item/ego_weapon/ranged/pistol/praetorian
 	name = "praetorian"
 	desc = "And with her guard, she conquered all."
 	icon_state = "praetorian"
@@ -285,7 +283,7 @@
 							JUSTICE_ATTRIBUTE = 60
 	)
 
-/obj/item/gun/ego_gun/pistol/magic_pistol
+/obj/item/ego_weapon/ranged/pistol/magic_pistol
 	name = "magic pistol"
 	desc = "All the power of magic bullet, in a smaller package."
 	icon_state = "magic_pistol"
@@ -303,7 +301,7 @@
 							)
 	var/cached_multiplier
 
-/obj/item/gun/ego_gun/pistol/magic_pistol/before_firing(atom/target, mob/user)
+/obj/item/ego_weapon/ranged/pistol/magic_pistol/before_firing(atom/target, mob/user)
 	if(cached_multiplier)
 		projectile_damage_multiplier = cached_multiplier
 	fire_delay = initial(fire_delay)
@@ -318,7 +316,7 @@
 		fire_delay = 8
 	..()
 
-/obj/item/gun/ego_gun/pistol/laststop
+/obj/item/ego_weapon/ranged/pistol/laststop
 	name = "last stop"
 	desc = "There are no clocks to alert the arrival times."
 	icon_state = "laststop"
@@ -334,7 +332,7 @@
 							FORTITUDE_ATTRIBUTE = 80
 							)
 
-/obj/item/gun/ego_gun/intentions
+/obj/item/ego_weapon/ranged/intentions
 	name = "good intentions"
 	desc = "Go ahead and rattle 'em boys."
 	icon_state = "intentions"
@@ -351,7 +349,7 @@
 							PRUDENCE_ATTRIBUTE = 80
 	)
 
-/obj/item/gun/ego_gun/aroma
+/obj/item/ego_weapon/ranged/aroma
 	name = "faint aroma"
 	desc = "Simply carrying it gives the illusion that you're standing in a forest in the middle of nowhere. \
 			The arrowhead is dull and sprouts flowers of vivid color wherever it strikes."
@@ -367,7 +365,7 @@
 							PRUDENCE_ATTRIBUTE = 80
 	)
 
-/obj/item/gun/ego_gun/assonance
+/obj/item/ego_weapon/ranged/assonance
 	name = "assonance"
 	desc = "However, the world is more than simply warmth and light. The sky exists, for so does the land; darkness exists, \
 				for so does light; life exists for so does death; hope exists for so does despair."
@@ -387,7 +385,7 @@
 	)
 
 //It's a magic sword. Cope Egor
-/obj/item/gun/ego_gun/feather
+/obj/item/ego_weapon/ranged/feather
 	name = "feather of honor"
 	desc = "A flaming, but very sharp, feather."
 	icon_state = "featherofhonor"
@@ -404,7 +402,7 @@
 							PRUDENCE_ATTRIBUTE = 60
 	)
 
-/obj/item/gun/ego_gun/exuviae
+/obj/item/ego_weapon/ranged/exuviae
 	name = "exuviae"
 	desc = "A chunk of the naked nest inigrated with a launching mechanism."
 	icon_state = "exuviae"
@@ -423,7 +421,7 @@
 	)
 
 //Full manual bow-type E.G.O, must be loaded before firing.
-/obj/item/gun/ego_gun/warring
+/obj/item/ego_weapon/ranged/warring
 	name = "feather of valor"
 	desc = "A shimmering bow adorned with carved wooden panels. It crackes with arcing electricity."
 	icon_state = "warring"
@@ -442,65 +440,63 @@
 							JUSTICE_ATTRIBUTE = 60
 	)
 	var/drawn = 0
-	var/charge_effect = "fire a beam of electricity."
-	var/charge_cost = 3
-	var/charge = 0
-	var/ammo_2= /obj/item/ammo_casing/caseless/ego_warring2
+	charge = TRUE
+	attack_charge_gain = FALSE
+	charge_cost = 3
+	charge_effect = "fire a beam of electricity."
+	var/ammo_2 = /obj/item/ammo_casing/caseless/ego_warring2
 
-/obj/item/gun/ego_gun/warring/examine(mob/user)//attack speed isn't used, so it needs to be overridden
+/obj/item/ego_weapon/ranged/warring/examine(mob/user)//attack speed isn't used, so it needs to be overridden
 	. = ..()
-	. -= "<span class='notice'>This weapon fires fast.</span>"//it doesn't
-	. += "<span class='notice'>This weapon must be loaded manually by activating it in your hand.</span>"
-	. += "Spend [charge]/[charge_cost] charge to [charge_effect]"
+	. -= span_notice("This weapon fires fast.")//it doesn't
+	. += span_notice("This weapon must be loaded manually by activating it in your hand.")
 
-/obj/item/gun/ego_gun/warring/proc/Build_Charge()
-	if(charge<=20)
-		charge+=1
-		new /obj/effect/temp_visual/healing/charge(get_turf(src))
-
-/obj/item/gun/ego_gun/warring/can_shoot()
+/obj/item/ego_weapon/ranged/warring/can_shoot()
 	if(drawn == 0)
 		icon_state = "[initial(icon_state)]"
 		return FALSE
 	return TRUE
 
-/obj/item/gun/ego_gun/warring/afterattack(atom/target, mob/user)
-	..()
+/obj/item/ego_weapon/ranged/warring/afterattack(atom/target, mob/user)
+	. = ..()
 	drawn = 0
+	ammo_type = initial(ammo_type)
 	icon_state = "[initial(icon_state)]"
 
-/obj/item/gun/ego_gun/warring/attack_self(mob/user)
+/obj/item/ego_weapon/ranged/warring/attack_self(mob/user)
 	switch(drawn)
-		if (0)
-			if(do_after(user, 10, src, IGNORE_USER_LOC_CHANGE))
-				drawn  = 1
-				to_chat(user,"<span class='warning'>You draw the [src] with all your might.</span>")
-				ammo_type = /obj/item/ammo_casing/caseless/ego_warring
-				fire_sound = 'sound/weapons/bowfire.ogg'
-				icon_state = "warring_drawn"
-		if (1)
-			if(do_after(user, 1, src, IGNORE_USER_LOC_CHANGE))
-				if(drawn != 1 || charge < charge_cost)
-					return
-				drawn = 2
-				charge -= charge_cost
-				QDEL_NULL(chambered)
-				chambered = new ammo_2
-				playsound(src, 'sound/magic/lightningshock.ogg', 50, TRUE)
-				to_chat(user,"<span class='warning'>An arrow of lightning appears.</span>")
-				fire_sound = 'sound/abnormalities/thunderbird/tbird_beam.ogg'
-				icon_state = "warring_firey"
-		if (2)
-			if(do_after(user, 1, src, IGNORE_USER_LOC_CHANGE))
-				drawn = 1
-				charge += charge_cost
-				QDEL_NULL(chambered)
-				chambered = new ammo_type
-				fire_sound = 'sound/weapons/bowfire.ogg'
-				icon_state = "warring_drawn"
-				to_chat(user,"<span class='warning'>The lightning fades.</span>")
+		if(0)
+			if(!do_after(user, 1 SECONDS, src, IGNORE_USER_LOC_CHANGE))
+				return
 
-/obj/item/gun/ego_gun/banquet
+			drawn  = 1
+			to_chat(user, span_warning("You draw the [src] with all your might."))
+			ammo_type = /obj/item/ammo_casing/caseless/ego_warring
+			fire_sound = 'sound/weapons/bowfire.ogg'
+			icon_state = "warring_drawn"
+		if(1)
+			if(do_after(user, 1, src, IGNORE_USER_LOC_CHANGE))
+				return
+			if(drawn != 1 || charge_amount < charge_cost)
+				return
+			drawn = 2
+			charge_amount -= charge_cost
+			ammo_type = ammo_2
+			playsound(src, 'sound/magic/lightningshock.ogg', 50, TRUE)
+			to_chat(user, span_warning("An arrow of lightning appears."))
+			fire_sound = 'sound/abnormalities/thunderbird/tbird_beam.ogg'
+			icon_state = "warring_firey"
+		if(2)
+			if(!do_after(user, 1, src, IGNORE_USER_LOC_CHANGE))
+				return
+			drawn = 1
+			charge_amount += charge_cost
+			ammo_type = initial(ammo_type)
+			fire_sound = 'sound/weapons/bowfire.ogg'
+			icon_state = "warring_drawn"
+			to_chat(user, span_warning("The lightning fades."))
+
+/obj/item/ego_weapon/ranged/banquet
 	name = "banquet"
 	desc = "Time for a feast! Enjoy the blood-red night imbued with madness to your heart’s content!"
 	icon_state = "banquet"
@@ -520,7 +516,7 @@
 							TEMPERANCE_ATTRIBUTE = 60
 	)
 
-/obj/item/gun/ego_gun/banquet/attack(mob/living/target, mob/living/carbon/human/user)
+/obj/item/ego_weapon/ranged/banquet/attack(mob/living/target, mob/living/carbon/human/user)
 	if(!CanUseEgo(user))
 		return
 	if(!(target.status_flags & GODMODE) && target.stat != DEAD)
@@ -534,7 +530,7 @@
 		user.adjustBruteLoss(-heal_amt)
 	..()
 
-/obj/item/gun/ego_gun/banquet/reload_ego(mob/user)
+/obj/item/ego_weapon/ranged/banquet/reload_ego(mob/user)
 	is_reloading = TRUE
 	to_chat(user,span_notice("You start loading a new magazine."))
 	playsound(src, 'sound/weapons/gun/general/slide_lock_1.ogg', 50, TRUE)
@@ -547,7 +543,7 @@
 	is_reloading = FALSE
 	forced_melee = FALSE //no longer forced to resort to melee
 
-/obj/item/gun/ego_gun/blind_rage
+/obj/item/ego_weapon/ranged/blind_rage
 	name = "Blind Fire"
 	desc = "The pain inflicted by rash action and harsh words last longer than most think."
 	icon_state = "blind_gun"
@@ -565,7 +561,7 @@
 							JUSTICE_ATTRIBUTE = 80
 							)
 
-/obj/item/gun/ego_gun/my_own_bride
+/obj/item/ego_weapon/ranged/my_own_bride
 	name = "My own Bride"
 	desc = "Simply carrying it gives the illusion that you're standing in a forest in the middle of nowhere. \
 			The arrowhead is dull and sprouts flowers of vivid color wherever it strikes."
@@ -583,7 +579,7 @@
 							FORTITUDE_ATTRIBUTE = 80
 	)
 
-/obj/item/gun/ego_gun/hookah //TODO: Seems like lots of these are placeholder. remind me to finish this weapon if you are reading this.
+/obj/item/ego_weapon/ranged/hookah //TODO: Seems like lots of these are placeholder. remind me to finish this weapon if you are reading this.
 	name = "lethargy"
 	desc = "Courtesy of the 16th Ego rifleman's brigade."
 	icon_state = "loyalty"
@@ -603,7 +599,7 @@
 							JUSTICE_ATTRIBUTE = 80
 	)
 
-/obj/item/gun/ego_gun/pistol/innocence
+/obj/item/ego_weapon/ranged/pistol/innocence
 	name = "childhood memories"
 	desc = "If no one had come in to get me, I would have stayed in that room, not even realizing the passing time."
 	icon_state = "innocence_gun"
@@ -621,7 +617,7 @@
 							PRUDENCE_ATTRIBUTE = 80
 	)
 
-/obj/item/gun/ego_gun/hypocrisy
+/obj/item/ego_weapon/ranged/hypocrisy
 	name = "hypocrisy"
 	desc = "The tree turned out to be riddled with hypocrisy and deception; those who wear its blessing act in the name of bravery and faith."
 	icon_state = "hypocrisy"
@@ -640,15 +636,15 @@
 	)
 	var/trap_cooldown = 0
 
-/obj/item/gun/ego_gun/hypocrisy/attack_self(mob/living/carbon/user)
+/obj/item/ego_weapon/ranged/hypocrisy/attack_self(mob/living/carbon/user)
 	if(locate(/obj/structure/liars_trap) in range(1, get_turf(src)))
-		to_chat(user,"<span class='notice'>Your too close to another trap.</span>")
+		to_chat(user,span_notice("Your too close to another trap."))
 		return
-	to_chat(user,"<span class='notice'>You pull out an arrow and attempt to stab it into the ground.</span>")
+	to_chat(user,span_notice("You pull out an arrow and attempt to stab it into the ground."))
 	playsound(src, 'sound/items/crowbar.ogg', 50, TRUE)
 	if(do_after(user, 3 SECONDS, src))
 		if(trap_cooldown >= world.time)
-			to_chat(user,"<span class='notice'>You cant place a sapling trap yet.</span>")
+			to_chat(user,span_notice("You cant place a sapling trap yet."))
 			return
 		playsound(get_turf(user), 'sound/creatures/venus_trap_hurt.ogg', 50, TRUE)
 		var/obj/structure/liars_trap/c = new(get_turf(user))
@@ -683,5 +679,5 @@
 			playsound(get_turf(src), 'sound/machines/clockcult/steam_whoosh.ogg', 10, 1)
 			L.apply_damage(50, RED_DAMAGE, null, L.run_armor_check(null, RED_DAMAGE), spread_damage = FALSE)
 			new /obj/effect/temp_visual/cloud_swirl(get_turf(L)) //placeholder
-			to_chat(creator, "<span class='warning'>You feel a itch towards [get_area(L)].</span>")
+			to_chat(creator, span_warning("You feel a itch towards [get_area(L)]."))
 			qdel(src)

@@ -1,5 +1,5 @@
 //Guns that gotta be reloaded.
-/obj/item/gun/ego_gun/city/fullstop
+/obj/item/ego_weapon/ranged/city/fullstop
 	name = "fullstop template"
 	desc = "a template for fullstop."
 	icon_state = "fullstop"
@@ -13,7 +13,7 @@
 	reloadtime = 2 SECONDS
 
 //The actual weapons
-/obj/item/gun/ego_gun/city/fullstop/assault
+/obj/item/ego_weapon/ranged/city/fullstop/assault
 	name = "fullstop assault gun"
 	desc = "A heavy rifle. Guns like these are expensive in the City. You could buy a whole other weapon of good quality with the money for this one's bullets."
 	icon_state = "fullstop"
@@ -30,7 +30,7 @@
 							JUSTICE_ATTRIBUTE = 60
 							)
 
-/obj/item/gun/ego_gun/city/fullstop/pistol
+/obj/item/ego_weapon/ranged/city/fullstop/pistol
 	name = "fullstop pistol"
 	desc = "A fullstop pistol. Looks familiar."
 	icon_state = "fullstoppistol"
@@ -47,7 +47,7 @@
 							JUSTICE_ATTRIBUTE = 60
 							)
 
-/obj/item/gun/ego_gun/city/fullstop/sniper
+/obj/item/ego_weapon/ranged/city/fullstop/sniper
 	name = "fullstop sniper"
 	desc = "A sniper rifle. Despite the cost and heavy regulations, you could still kill someone stealthily from a good distance with this."
 	icon_state = "fullstopsniper"
@@ -67,7 +67,7 @@
 							JUSTICE_ATTRIBUTE = 60
 							)
 
-/obj/item/gun/ego_gun/city/fullstop/deagle
+/obj/item/ego_weapon/ranged/city/fullstop/deagle
 	name = "fullstop magnum"
 	desc = "An expensive pistol. Keep your hands steady. It's not over yet."
 	icon_state = "fullstopdeagle"

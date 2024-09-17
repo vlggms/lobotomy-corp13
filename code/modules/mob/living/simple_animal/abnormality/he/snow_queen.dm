@@ -473,7 +473,7 @@
 	slash_cooldown_time = 2 SECONDS
 	//Drop all your weapons.
 	for(var/obj/item/E in hero.GetAllContents())
-		if(!istype(E, /obj/item/ego_weapon) && !istype(E, /obj/item/gun/ego_gun))
+		if(!istype(E, /obj/item/ego_weapon) && !istype(E, /obj/item/ego_weapon/ranged))
 			continue
 		hero.dropItemToGround(E, TRUE, TRUE)
 	hero.forceMove(arena_landmarks[ICE_ARENA_HERO_SPAWN])
