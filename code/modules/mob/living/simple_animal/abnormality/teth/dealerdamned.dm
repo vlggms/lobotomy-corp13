@@ -1,6 +1,6 @@
 /mob/living/simple_animal/hostile/abnormality/dealerdamned
 	name = "Dealer of the Damned"
-	desc = "A floating playing card with what appears to be a cursor acting as its hand."
+	desc = "A towering figure with a revolver for a head. It's seated in front of a poker table."
 	icon = 'ModularTegustation/Teguicons/64x64.dmi'
 	icon_state = "dealerdamned"
 	maxHealth = 400
@@ -18,7 +18,6 @@
 	speak_emote = list("states")
 	pet_bonus = "waves"
 
-	//Forsaken gift is just a placeholder so it doesn't bug tf out when I compile
 	ego_list = list(
 		/datum/ego_datum/weapon/luckdraw,
 		/datum/ego_datum/armor/luckdraw,
@@ -30,6 +29,13 @@
 	var/has_flipped
 	var/static/gambled_prior = list()
 	var/work_count = 0
+
+	observation_prompt = "You awaken to a building flooded with stimulation; guests mingle and drink as slot machines whirr and blare their tunes, drowning out the mourning of those who have lost it all. <br>\
+	Amidst all this, you find yourself sat in front of a poker table, already in the middle of a game. The Dealer turns to you, eagerly awaiting your next move."
+	observation_choices = list("Call", "Fold")
+	correct_choices = list("Call")
+	observation_success_message = "You call, confident your hand is enough to win. However, you lose, beat by none other than a Royal Flush. Despite this loss, you continue to play, confident your luck will eventually turn around..."
+	observation_fail_message = "You fold, wishing to cling to what little remains of your wealth. Despite lacking any facial features, you can feel the Dealer's disappointment..."
 
 //Coinflip V1; Expect Jank
 /mob/living/simple_animal/hostile/abnormality/dealerdamned/funpet(mob/petter)
