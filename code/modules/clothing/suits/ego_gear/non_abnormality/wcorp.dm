@@ -13,6 +13,21 @@
 							JUSTICE_ATTRIBUTE = 55
 							)
 
+/obj/item/clothing/suit/armor/ego_gear/wcorp/examine(mob/user)
+	. = ..()
+	if(user.mind)
+		if(user.mind.assigned_role in list("Disciplinary Officer", "Emergency Response Agent")) //These guys get a bonus to equipping gacha.
+			. += span_notice("Due to your abilities, you get a -20 reduction to stat requirements when equipping this armor.")
+
+/obj/item/clothing/suit/armor/ego_gear/wcorp/CanUseEgo(mob/living/user)
+	if(user.mind)
+		if(user.mind.assigned_role in list("Disciplinary Officer", "Emergency Response Agent")) //These guys get a bonus to equipping gacha.
+			equip_bonus = 20
+		else
+			equip_bonus = 0
+	. = ..()
+
+
 /obj/item/clothing/head/ego_hat/wcorp
 	name = "w-corp cap"
 	desc = "A ball cap worn by w-corp."
