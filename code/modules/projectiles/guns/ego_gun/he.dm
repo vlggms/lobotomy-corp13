@@ -4,12 +4,13 @@
 	icon_state = "prank"
 	worn_icon_state = "prank"
 	inhand_icon_state = "prank"
+	force = 20
+	damtype = BLACK_DAMAGE
 	ammo_type = /obj/item/ammo_casing/caseless/ego_prank
 	weapon_weight = WEAPON_HEAVY
 	fire_delay = 5
 	shotsleft = 10
 	reloadtime = 1.4 SECONDS
-	damtype = BLACK_DAMAGE
 	fire_sound = 'sound/weapons/gun/rifle/shot_alt.ogg'
 	attribute_requirements = list(
 							TEMPERANCE_ATTRIBUTE = 40
@@ -20,6 +21,7 @@
 	desc = "A magnum pistol featuring excellent burst firing potential."
 	icon_state = "gaze"
 	inhand_icon_state = "gaze"
+	force = 12
 	ammo_type = /obj/item/ammo_casing/caseless/ego_gaze
 	fire_delay = 10
 	shotsleft = 8
@@ -40,6 +42,8 @@
 	special = "Use in hand to turn on homing mode. This mode fires slower, but homes in on a random target within 15 metres.	\
 			WARNING: This feature is not accurate."
 	ammo_type =	/obj/item/ammo_casing/caseless/ego_galaxy
+	force = 20
+	damtype = BLACK_DAMAGE
 	fire_delay = 15
 	fire_sound = 'sound/magic/wand_teleport.ogg'
 	weapon_weight = WEAPON_MEDIUM
@@ -72,6 +76,8 @@
 	special = "This weapon will sometimes jam. \
 			Use this weapon in hand to unjam it. \
 			this weapon fires faster and in a bigger burst for 15 seconds after being unjammed."
+	force = 20
+	damtype = WHITE_DAMAGE
 	ammo_type = /obj/item/ammo_casing/caseless/ego_unrequited
 	fire_delay = 3
 	burst_size = 3
@@ -143,6 +149,9 @@
 	icon_state = "harmony"
 	inhand_icon_state = "harmony"
 	special = "This weapon fires bouncing, piercing shots."
+	force = 30
+	damtype = WHITE_DAMAGE
+	attack_speed = 1.8
 	ammo_type = /obj/item/ammo_casing/caseless/ego_harmony
 	fire_sound = 'sound/weapons/ego/harmony1.ogg'
 	vary_fire_sound = FALSE
@@ -161,6 +170,7 @@
 	desc = "It's an old wooden longrifle."
 	icon_state = "transmission"
 	inhand_icon_state = "transmission"
+	force = 20
 	ammo_type = /obj/item/ammo_casing/caseless/ego_transmission
 	weapon_weight = WEAPON_HEAVY
 	fire_delay = 5
@@ -176,6 +186,8 @@
 	desc = "Nothing beats the classics."
 	icon_state = "song"
 	inhand_icon_state = "song"
+	force = 20
+	damtype = WHITE_DAMAGE
 	ammo_type = /obj/item/ammo_casing/caseless/ego_song
 	fire_sound = 'sound/weapons/gun/pistol/shot_alt.ogg'
 	weapon_weight = WEAPON_MEDIUM
@@ -193,6 +205,8 @@
 	icon_state = "songmini"
 	inhand_icon_state = "songmini"
 	special = "This weapon fires 3 pellets."
+	force = 12
+	damtype = WHITE_DAMAGE
 	ammo_type = /obj/item/ammo_casing/caseless/ego_songmini
 	fire_sound = 'sound/weapons/gun/revolver/shot_light.ogg'
 	shotsleft = 16
@@ -208,6 +222,8 @@
 	desc = "Hair has grown on the crossbow as if to express that the woman’s dejection will never be forgotten."
 	icon_state = "screamingwedge"
 	inhand_icon_state = "screamingwedge"
+	force = 20
+	damtype = WHITE_DAMAGE
 	ammo_type = /obj/item/ammo_casing/caseless/ego_wedge
 	weapon_weight = WEAPON_HEAVY
 	fire_delay = 10
@@ -226,6 +242,7 @@
 	lefthand_file = 'icons/mob/inhands/weapons/guns_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/weapons/guns_righthand.dmi'
 	special = "This weapon fires dice that deal varying amounts of damage."
+	force = 12
 	ammo_type = /obj/item/ammo_casing/caseless/ego_swindle
 	weapon_weight = WEAPON_HEAVY
 	fire_delay = 5
@@ -242,6 +259,8 @@
 	icon_state = "ringing"
 	inhand_icon_state = "ringing"
 	special = "This weapon can be used as a megaphone."
+	force = 20
+	damtype = BLACK_DAMAGE
 	ammo_type = /obj/item/ammo_casing/caseless/ego_ringing
 	weapon_weight = WEAPON_HEAVY
 	autofire = 0.15 SECONDS
@@ -279,6 +298,8 @@
 	icon_state = "syrinx"
 	inhand_icon_state = "syrinx"
 	special = "This weapon fires slow bullets with limited range."
+	force = 20
+	damtype = WHITE_DAMAGE
 	ammo_type = /obj/item/ammo_casing/caseless/ego_syrinx
 	weapon_weight = WEAPON_MEDIUM
 	spread = 40
@@ -296,6 +317,8 @@
 	desc = "Though I can't guide you... I can offer a warm embrace."
 	icon_state = "ardor_star"
 	inhand_icon_state = "ardor_star"
+	force = 30
+	attack_speed = 1.8
 	ammo_type = /obj/item/ammo_casing/caseless/ego_ardor
 	weapon_weight = WEAPON_HEAVY
 	fire_sound = 'sound/weapons/gun/sniper/shot.ogg'

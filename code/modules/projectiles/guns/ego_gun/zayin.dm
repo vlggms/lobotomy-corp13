@@ -1,9 +1,11 @@
+// All zayin pistols use the default 6 force for ego_gun pistols
 /obj/item/gun/ego_gun/pistol/tough
 	name = "tough pistol"
 	desc = "A glock reminiscent of a certain detective who fought evil for 25 years, losing hair as time went by."
 	special = "Use this weapon in your hand when wearing matching armor to turn others nearby bald."
 	icon_state = "bald"
 	inhand_icon_state = "bald"
+	damtype = WHITE_DAMAGE
 	ammo_type = /obj/item/ammo_casing/caseless/ego_tough
 	burst_size = 1
 	fire_delay = 10
@@ -173,6 +175,7 @@
 	special = "If you are wearing the matching armor, fired shots will heal friendlies on hit."
 	icon_state = "nightshade"
 	inhand_icon_state = "nightshade"
+	damtype = BLACK_DAMAGE
 	ammo_type = /obj/item/ammo_casing/caseless/ego_nightshade
 	burst_size = 1
 	fire_delay = 10
@@ -264,6 +267,7 @@
 	desc = "A pistol painted in a refreshing orange. Whenever this EGO is used, a faint scent of orange wafts through the air."
 	icon_state = "oceanic"
 	inhand_icon_state = "oceanic"
+	damtype = WHITE_DAMAGE
 	ammo_type = /obj/item/ammo_casing/caseless/ego_oceanic
 	burst_size = 1
 	fire_delay = 5

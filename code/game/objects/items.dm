@@ -202,6 +202,11 @@ GLOBAL_VAR_INIT(embedpocalypse, FALSE) // if true, all items will be able to emb
 	/// What Color its swing animation is
 	var/swingcolor
 
+	/// How many deciseconds between attacks, times ten.
+	var/attack_speed = 1
+	/// A multiplier added to force through various means. Used primarily for weapon upgrades.
+	var/force_multiplier = 1
+
 /obj/item/Initialize()
 
 	if(attack_verb_continuous)
@@ -353,6 +358,11 @@ GLOBAL_VAR_INIT(embedpocalypse, FALSE) // if true, all items will be able to emb
 /obj/item/ui_act(action, list/params)
 	add_fingerprint(usr)
 	return ..()
+
+/obj/item/attack(mob/M, mob/user)
+	. = ..()
+	if(attack_speed && attack_speed != 1)
+		user.changeNext_move(CLICK_CD_MELEE * attack_speed)
 
 /obj/item/attack_hand(mob/user)
 	. = ..()

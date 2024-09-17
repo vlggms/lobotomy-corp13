@@ -8,6 +8,9 @@
 	icon_state = "star"
 	inhand_icon_state = "star"
 	special = "This gun scales with remaining SP."
+	force = 33
+	damtype = WHITE_DAMAGE
+	attack_speed = 0.5
 	ammo_type = /obj/item/ammo_casing/caseless/ego_star
 	weapon_weight = WEAPON_HEAVY
 	spread = 5
@@ -40,6 +43,8 @@
 	icon_state = "adoration"
 	inhand_icon_state = "adoration"
 	special = "Use in hand to swap between AOE, DOT and shotgun modes."
+	force = 56
+	damtype = BLACK_DAMAGE
 	ammo_type = /obj/item/ammo_casing/caseless/ego_adoration
 	weapon_weight = WEAPON_HEAVY
 	fire_sound = 'sound/effects/attackblob.ogg'
@@ -82,6 +87,8 @@
 	desc = "Having decided to trust its own intuition, the jester spake the names of everyone it had met on that path with each step it took."
 	icon_state = "nihil"
 	inhand_icon_state = "nihil"
+	force = 56
+	damtype = BLACK_DAMAGE
 	ammo_type = /obj/item/ammo_casing/caseless/ego_nihil
 	weapon_weight = WEAPON_HEAVY
 	fire_sound = 'sound/weapons/fixer/generic/energy1.ogg'
@@ -153,6 +160,8 @@
 	icon_state = "pink"
 	inhand_icon_state = "pink"
 	special = "This weapon has a scope, and fires projectiles with zero travel time. Damage dealt is increased when hitting targets further away. Middle mouse button click/alt click to zoom in that direction."
+	force = 56
+	damtype = WHITE_DAMAGE
 	ammo_type = /obj/item/ammo_casing/caseless/pink
 	weapon_weight = WEAPON_HEAVY
 	fire_sound = 'sound/abnormalities/armyinblack/pink.ogg'
@@ -229,6 +238,7 @@
 	icon_state = "arcadia"
 	inhand_icon_state = "arcadia"
 	special = "Use in hand to load bullets."
+	force = 56
 	ammo_type = /obj/item/ammo_casing/caseless/arcadia
 	weapon_weight = WEAPON_HEAVY
 	spread = 5
@@ -264,6 +274,8 @@
 	desc = "You will be judged; as I have."
 	icon_state = "judge"
 	inhand_icon_state = "judge"
+	force = 56
+	damtype = WHITE_DAMAGE
 	weapon_weight = WEAPON_MEDIUM	//Cannot be dual wielded
 	recoil = 2
 	fire_sound_volume = 30
