@@ -348,8 +348,9 @@
 	//If you feel like having a go at fixing it, the projectile's /obj/item/ammo_casing/caseless/ego_dud, under ZAYIN.
 
 /obj/item/ego_weapon/ranged/pistol/deathdealer/reload_ego(mob/user)
-	if(shotsleft!=0)
+	if(shotsleft != 0)
 		to_chat(user,span_warning("You cannot reload this gun without an empty cylinder!"))
 		return
 	ammo_type = pick(ammotypes)
-	..()
+	update_projectile_examine()
+	return ..()
