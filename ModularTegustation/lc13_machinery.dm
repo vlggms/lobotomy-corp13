@@ -333,6 +333,9 @@
 	var/revival_attribute_penalty = -6
 	var/list/stored_bodies = list()
 	var/clone_delay_seconds = 120
+	var/cost_multiplier = 5
+	resistance_flags = INDESTRUCTIBLE
+	max_integrity = 1000000
 
 /obj/machinery/body_preservation_unit/attackby(obj/item/I, mob/user, params)
 	if(istype(I, /obj/item/holochip))
@@ -352,7 +355,7 @@
 
 	for(var/atr_type in H.attributes)
 		var/datum/attribute/atr = H.attributes[atr_type]
-		preservation_fee += atr.level * 5
+		preservation_fee += atr.level * cost_multiplier
 
 	return preservation_fee
 
@@ -454,6 +457,7 @@
 	var/datum/dna/D = new /datum/dna
 	H.dna.copy_dna(D)
 	preserved_data["dna"] = D
+	preserved_data["assigned_role"] = H.mind.assigned_role
 
 	store_attributes(H, preserved_data)
 
@@ -464,13 +468,14 @@
 
 
 	var/datum/component/respawnable/R = H.GetComponent(/datum/component/respawnable)
-	if (!R)
-		// Instead of implanting, add a component
-		R = H.AddComponent(/datum/component/respawnable, respawn_time = 15 SECONDS)
-		R.BPU = src
-		to_chat(H, span_notice("You've been granted the ability to respawn after death and your body data has been preserved."))
-	else
-		to_chat(H, span_notice("Your body data has been preserved."))
+	if (R)
+		R.RemoveComponent()
+		R.UnregisterDeathSignal()
+
+	// Instead of implanting, add a component
+	R = H.AddComponent(/datum/component/respawnable, respawn_time = clone_delay_seconds * 10)
+	R.BPU = src
+	to_chat(H, span_notice("Your body data has been preserved."))
 
 /obj/machinery/body_preservation_unit/proc/revive_body(real_name, ckey)
 	if(!stored_bodies[real_name])
@@ -530,7 +535,7 @@
 	if (underwear_color)
 		new_body.underwear_color = underwear_color
 
-	var/datum/component/respawnable/R = new_body.AddComponent(/datum/component/respawnable, respawn_time = 15 SECONDS)
+	var/datum/component/respawnable/R = new_body.AddComponent(/datum/component/respawnable, respawn_time = clone_delay_seconds * 10)
 	R.BPU = src
 
 	// Revive the new body
@@ -542,20 +547,19 @@
 	else
 		new_body.ckey = usr.ckey
 
+	var/assigned_role = stored_data["assigned_role"]
+	if (assigned_role)
+		new_body.mind.assigned_role = assigned_role
+
+
 	playsound(get_turf(src), 'sound/effects/bin_close.ogg', 35, 3, 3)
 	playsound(get_turf(src), 'sound/misc/splort.ogg', 35, 3, 3)
 	to_chat(new_body, "<span class='warning'>You have been revived in a new body, but your attributes have decreased slightly.</span>")
 
-	// Remove the stored body data after revival
-	//stored_bodies -= H.real_name
-
-	// Delete the old body if it exists
-	//if(H && !QDELETED(H))
-	//	qdel(H)
 
 // New component for handling respawns
 /datum/component/respawnable
-	var/respawn_time = 15 SECONDS
+	var/respawn_time = 10 SECONDS
 	var/obj/machinery/body_preservation_unit/BPU
 
 /datum/component/respawnable/Initialize(respawn_time)
@@ -563,6 +567,9 @@
 		return COMPONENT_INCOMPATIBLE
 	src.respawn_time = respawn_time
 	RegisterSignal(parent, COMSIG_LIVING_DEATH, PROC_REF(on_death))
+
+/datum/component/respawnable/proc/UnregisterDeathSignal()
+	UnregisterSignal(parent, COMSIG_LIVING_DEATH)
 
 /datum/component/respawnable/proc/on_death(mob/living/L, gibbed)
 	SIGNAL_HANDLER
@@ -578,10 +585,13 @@
 	var/mob/dead/observer/ghost = find_dead_player(real_name)
 	if(!ghost || !ghost.client)
 		return
+	if (!istype(BPU) || !BPU.loc)
+		return
+
 	var/response = alert(ghost, "Do you want to respawn?", "Respawn Offer", "Yes", "No")
 	if(response == "Yes")
 //		var/obj/machinery/body_preservation_unit/BPU = locate() in GLOB.machines
-		if(BPU && BPU.stored_bodies[real_name])
+		if(BPU.stored_bodies[real_name])
 			BPU.revive_body(real_name, ghost.ckey)
 
 /proc/find_dead_player(real_name)
