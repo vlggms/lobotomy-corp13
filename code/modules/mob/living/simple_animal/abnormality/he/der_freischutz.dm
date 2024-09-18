@@ -49,7 +49,6 @@
 	var/bullet_cooldown_time = 7 SECONDS
 	var/bullet_fire_delay = 1.5 SECONDS
 	var/bullet_max_range = 50
-	var/bullet_damage = 80
 
 	//PLAYABLES ATTACKS (action in this case)
 	attack_action_types = list(/datum/action/innate/abnormality_attack/toggle/der_freischutz_zoom)
