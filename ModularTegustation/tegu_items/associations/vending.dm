@@ -1,6 +1,7 @@
 /obj/machinery/vending/hana
 	name = "\improper Hana vending"
 	desc = "A machine used to start your own office!."
+	armor = list(RED_DAMAGE = 100, WHITE_DAMAGE = 100, BLACK_DAMAGE = 100, PALE_DAMAGE = 100, MELEE = 100, BULLET = 100, LASER = 100, ENERGY = 100, BOMB = 100, BIO = 100, RAD = 100, FIRE = 100, ACID = 100)
 	product_slogans = "Start your career today!"
 	product_ads = "The best in the business!"
 	icon_state = "generic" //Placeholder
@@ -69,6 +70,7 @@
 /obj/machinery/vending/weaving
 	name = "\improper Weaving Books/Tools"
 	desc = "A machine used to purchase new weaving recipes!"
+	armor = list(RED_DAMAGE = 100, WHITE_DAMAGE = 100, BLACK_DAMAGE = 100, PALE_DAMAGE = 100, MELEE = 100, BULLET = 100, LASER = 100, ENERGY = 100, BOMB = 100, BIO = 100, RAD = 100, FIRE = 100, ACID = 100)
 	product_slogans = "Read up on all of the city gear!"
 	product_ads = "Can't go with out it!"
 	icon_state = "sec"
@@ -99,6 +101,7 @@
 /obj/machinery/vending/fixer
 	name = "\improper Fixer Equipment vending"
 	desc = "A machine used by fixers to get equipment"
+	armor = list(RED_DAMAGE = 100, WHITE_DAMAGE = 100, BLACK_DAMAGE = 100, PALE_DAMAGE = 100, MELEE = 100, BULLET = 100, LASER = 100, ENERGY = 100, BOMB = 100, BIO = 100, RAD = 100, FIRE = 100, ACID = 100)
 	product_slogans = "What's a fixer without gear?"
 	product_ads = "You need it!"
 	icon_state = "robotics"
