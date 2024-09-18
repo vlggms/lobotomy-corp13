@@ -67,5 +67,3 @@
 		jump_damage = 100
 		jump_aoe = 2
 	return ..()
-
-
