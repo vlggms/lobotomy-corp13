@@ -56,7 +56,7 @@
 	name = "roadrunner teleport zone"
 	desc = "A authorized zone for teleporting in roadrunners."
 	mob_name = "Suppressive Roadrunner"
-	outfit = /datum/outfit/job/roadrunner
+	outfit = /datum/outfit/job/roadrunner/ert
 	assignedrole = "SGT"
 	spawn_level = 70
 	uses = 4 //Just 130 so I think they need less uses
@@ -69,7 +69,7 @@
 	name = "rooster teleport zone"
 	desc = "A authorized zone for teleporting in roosters."
 	mob_name = "Gunner Rooster"
-	outfit = /datum/outfit/job/rooster
+	outfit = /datum/outfit/job/rooster/ert
 	assignedrole = "SGT"
 	spawn_level = 60
 
@@ -82,7 +82,7 @@
 	name = "berserker reindeer teleport zone"
 	desc = "A authorized zone for teleporting in reindeers."
 	mob_name = "Berserker Reindeer"
-	outfit = /datum/outfit/job/reindeer/berserker
+	outfit = /datum/outfit/job/reindeer/berserker/ert
 	assignedrole = "SGT"
 	spawn_level = 60
 
