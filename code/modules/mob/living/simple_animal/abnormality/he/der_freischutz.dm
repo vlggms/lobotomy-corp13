@@ -149,7 +149,6 @@
 	B.original = end_turf
 	B.preparePixelProjectile(end_turf, start_turf)
 	B.range = bullet_max_range
-	B.damage = bullet_damage
 	B.fire()
 	new /datum/beam(start_turf.Beam(end_turf, "magic_bullet_tracer", time = 3 SECONDS))
 	IconChange(firing = FALSE)
