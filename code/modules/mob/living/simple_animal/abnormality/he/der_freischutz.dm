@@ -267,3 +267,4 @@
 			for(var/obj/effect/frei_magic/Port in portals)
 				Port.fade_out()
 	return
+
