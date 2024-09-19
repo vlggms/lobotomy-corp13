@@ -139,15 +139,15 @@
 		return
 	if(istype(target_item, /obj/item/ego_weapon))
 		var/obj/item/ego_weapon/weapon = target_item
-		theweapon.force_multiplier = min(weapon.force_multiplier + 0.05, 1.1) // Add 5% to the force multiplier
+		weapon.force_multiplier = min(weapon.force_multiplier + 0.05, 1.1) // Add 5% to the force multiplier
 
 	else if(istype(target_item, /obj/item/gun/ego_gun))
 		var/obj/item/gun/ego_gun/gun = target_item
-		var/old_multiplier = thegun.force_multiplier
-		thegun.force_multiplier = min(gun.force_multiplier + 0.05, 1.1)
-		var/difference = thegun.force_multiplier - old_multiplier
+		var/old_multiplier = gun.force_multiplier
+		gun.force_multiplier = min(gun.force_multiplier + 0.05, 1.1)
+		var/difference = gun.force_multiplier - old_multiplier
 		if(difference > 0)
-			thegun.projectile_damage_multiplier *= (1 + difference) // Sure we COULD just set it equal to force_multiplier but that would break some guns
+			gun.projectile_damage_multiplier *= (1 + difference) // Sure we COULD just set it equal to force_multiplier but that would break some guns
 
 	to_chat(user, span_warning("You successfully improve [target_item]!"))
 	target_item = null
