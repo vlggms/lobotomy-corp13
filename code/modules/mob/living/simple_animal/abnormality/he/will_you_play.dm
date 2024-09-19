@@ -117,7 +117,7 @@
 		say("You win, now get outta here.")
 		IncreaseStats(user, statgain, TRUE)
 
-/mob/living/simple_animal/hostile/abnormality/willyouplay/proc/IncreaseStats(mob/living/carbon/human/user, var/statgain, var/check_melt = FALSE)
+/mob/living/simple_animal/hostile/abnormality/willyouplay/proc/IncreaseStats(mob/living/carbon/human/user, statgain, check_melt = FALSE)
 	var/list/attribute_list = list(FORTITUDE_ATTRIBUTE, PRUDENCE_ATTRIBUTE, TEMPERANCE_ATTRIBUTE, JUSTICE_ATTRIBUTE)
 	for(var/A in attribute_list)
 		var/processing = get_attribute_level(user, A)
