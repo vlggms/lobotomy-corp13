@@ -87,7 +87,7 @@
 
 	if(istype(A, /obj/item/ego_weapon))
 		var/obj/item/ego_weapon/theweapon = A
-		if(theweapon.force_multiplier == 1.10)
+		if(theweapon.force_multiplier >= 1.10)
 			to_chat(user, span_warning("You can't modify this any further!"))
 			return
 		target_item = theweapon
@@ -95,7 +95,7 @@
 
 	else if(istype(A, /obj/item/gun/ego_gun))
 		var/obj/item/gun/ego_gun/thegun = A
-		if(thegun.projectile_damage_multiplier == 1.10)
+		if(thegun.projectile_damage_multiplier >= 1.10)
 			to_chat(user, span_warning("You can't modify this any further!"))
 			return
 		target_item = thegun
