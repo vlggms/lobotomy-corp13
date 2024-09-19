@@ -254,5 +254,5 @@ Any attempt to code risk class armor will result in a 10 day Github ban.*/
 /obj/item/clothing/suit/armor/ego_gear/teth/denial
 	name = "denial"
 	desc = "Spare a thought for the poor employees at the branches that fail, trapped and abandoned - buried alive."
-	icon_state = "tdenial"
+	icon_state = "denial"
 	armor = list(RED_DAMAGE = 20, WHITE_DAMAGE = -20, BLACK_DAMAGE = 0, PALE_DAMAGE = 20)
