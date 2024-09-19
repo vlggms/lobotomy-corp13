@@ -41,9 +41,10 @@
 		You replace the button with one off your suit with great care. <br>While the teddy looks awkward because of the mismatching buttons, it adds to its charm."
 	observation_fail_message = "You don't know what to do with it so you just left it alone. <br>The teddy sits there without any movement."
 
-	/// if the same person works on Happy Teddy Bear twice in a row, the person will die.
+	/// if the same person works on Happy Teddy Bear twice in a row, the person will die unless certain requirements are met.
 	var/last_worker = null
 	var/hugging = FALSE
+	var/break_check
 
 /mob/living/simple_animal/hostile/abnormality/happyteddybear/proc/Strangle(mob/living/carbon/human/user)
 	src.hugging = TRUE
@@ -66,6 +67,17 @@
 	var/last_pinged = 0
 	var/time_strangled = 0
 	while(user.stat != DEAD)
+		if(time_strangled >= 4 && get_attribute_level(user, FORTITUDE_ATTRIBUTE) >= 60)
+			if(user.stat != UNCONSCIOUS) //Wouldn't make sense if they break free while passed out
+				src.break_check = TRUE
+				src.unbuckle_mob(user, force=TRUE)
+				src.icon_state = "teddy"
+				src.visible_message(span_warning("[user] breaks free from [src]'s hug!"))
+				src.hugging = FALSE
+				last_worker = null
+				user.SetStun(0)
+				src.break_check = FALSE
+				return
 		if(time_strangled > 30) // up to 30 seconds, so this doesn't go on forever
 			user.death(gibbed=FALSE)
 			break
@@ -90,7 +102,7 @@
 // hopefully prevents people from attempting to "save" the victim, which would break the immersion
 // (because strangle code will continue whether they're buckled or not)
 /mob/living/simple_animal/hostile/abnormality/happyteddybear/unbuckle_mob(mob/living/buckled_mob, force)
-	if(buckled_mob.stat != DEAD)
+	if(buckled_mob.stat != DEAD && break_check == FALSE)
 		return
 	..()
 

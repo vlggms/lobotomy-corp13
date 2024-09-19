@@ -102,25 +102,25 @@
 	//Selecting input and playing sound effect
 	switch(output)
 		if(1)
-			playsound(get_turf(src), 'sound/abnormalities/khz/Clip1.ogg', 200, 8)
+			playsound(get_turf(src), 'sound/abnormalities/khz/Clip1.ogg', 300, 8)
 			input = 8	//01000
 		if(2)
-			playsound(get_turf(src), 'sound/abnormalities/khz/Clip2.ogg', 200, 8)
+			playsound(get_turf(src), 'sound/abnormalities/khz/Clip2.ogg', 300, 8)
 			input = 25	//11001
 		if(3)
-			playsound(get_turf(src), 'sound/abnormalities/khz/Clip3.ogg', 200, 8)
+			playsound(get_turf(src), 'sound/abnormalities/khz/Clip3.ogg', 300, 8)
 			input = 24	//11000
 		if(4)
-			playsound(get_turf(src), 'sound/abnormalities/khz/Clip4.ogg', 200, 8)
+			playsound(get_turf(src), 'sound/abnormalities/khz/Clip4.ogg', 300, 8)
 			input = 13	//01101
 		if(5)
-			playsound(get_turf(src), 'sound/abnormalities/khz/Clip5.ogg', 200, 8)
+			playsound(get_turf(src), 'sound/abnormalities/khz/Clip5.ogg', 300, 8)
 			input = 26	//11010
 		if(6)
-			playsound(get_turf(src), 'sound/abnormalities/khz/Clip6.ogg', 200, 8)
+			playsound(get_turf(src), 'sound/abnormalities/khz/Clip6.ogg', 300, 8)
 			input = 16	//10000
 		if(7)
-			playsound(get_turf(src), 'sound/abnormalities/khz/Clip7.ogg', 200, 8)
+			playsound(get_turf(src), 'sound/abnormalities/khz/Clip7.ogg', 300, 8)
 			input = 28	//11100
 
 //This is for sending messages back

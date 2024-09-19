@@ -3,8 +3,9 @@
 	abno_type = /mob/living/simple_animal/hostile/abnormality/happyteddybear
 	abno_code = "T-04-06"
 	abno_info = list(
-		"An employee died of asphyxiation after working with Happy Teddy Bear multiple times in a row.",
-		"An employee was found dead in Happy Teddy Bear’s arms with a broken neck. It is believed that visiting Happy Teddy Bear’s Containment Unit several times in a row is what causes these unfortunate incidents. Please refer to the Old Letter document for more information.")
+		"An employee died of asphyxiation after working with Happy Teddy Bear multiple times in a row unless the employee has Fortitude Level 3 or higher.",
+		"An employee was found dead in Happy Teddy Bear’s arms with a broken neck. It is believed that visiting Happy Teddy Bear’s Containment Unit several times in a row is what causes these unfortunate incidents. Please refer to the Old Letter document for more information.",
+		"If the employee has Fortitude level 3 or higher, the employee will eventually break free if they stay conscuious")
 
 // Reddit
 /obj/item/paper/fluff/info/he/reddit
@@ -504,8 +505,8 @@
 		"T-01-187 refused standard work, insisting that the employee play a game of janken.",
 		"T-01-187 seems to prefer scissors work, however on occasion has been shown to use other work types.",
 		"If the employee was the last person to work on T-01-187, the stats gained from work was decreased.",
-		"If the employee won the game, they took severe RED damage, and if their fortitude was under level 3, T-01-187 cut off their arm.",
-		"If the employee lost the game, T-01-187 presented them with a blessing, increasing all of their stats under level 4.")
+		"If the employee won the game, they took severe RED damage, and if their fortitude was under level 3, T-01-187 cut off their arm. The employee also would get some stats under level 4, but not as much as compared to losing.",
+		"If the employee lost the game, T-01-187 presented them with a blessing, increasing all of their stats under level 4. If T-01-187 is going through a meltdown. Stats at level 4 and higher would increase by a smaller amount.")
 
 
 // Ardor Blossom Moth

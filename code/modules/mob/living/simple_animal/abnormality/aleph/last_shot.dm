@@ -80,7 +80,7 @@ GLOBAL_LIST_EMPTY(meat_list)
 	if(get_attribute_level(user, TEMPERANCE_ATTRIBUTE) <= 80)
 		newchance += 20
 	else if(get_attribute_level(user, TEMPERANCE_ATTRIBUTE) >= 100)
-		newchance -= 20
+		newchance -= 10
 
 	work_damage_amount = initial(work_damage_amount)
 

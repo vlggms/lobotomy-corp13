@@ -427,7 +427,7 @@
 
 /datum/reagent/drug/amurdad/on_mob_life(mob/living/M)
 	. = ..()
-	M.hallucination += 20
+	M.hallucination += 4
 	if(ishuman(M))
 		var/mob/living/carbon/human/H = M
 		H.adjustSanityLoss(-2)
