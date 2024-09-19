@@ -93,8 +93,7 @@
 	dat += "<br>"
 
 	//Abnormality portraits
-	var/list/paths = get_portrait_path()
-	for(var/pahs in paths)
+	for(var/pahs in GLOB.abnormality_portraits)
 		user << browse_rsc(pahs)
 	dat += {"<div style="float:right; width: 60%;">
 	<img src='[datum_reference.GetPortrait()].png' class="fit-picture" width="192" height="192">
