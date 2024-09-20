@@ -1018,7 +1018,7 @@
 		return FALSE
 	if(!is_type_in_list(I, ego_list))
 		return FALSE
-	if(istype(I, /obj/item/ego_weapon))
+	if(is_ego_melee_weapon(I))
 		if(I.force_multiplier < 1.2)
 			to_chat(user, span_notice("You must use a weapon with a damage multiplier of 20% or higher!"))
 			return FALSE

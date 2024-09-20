@@ -234,9 +234,9 @@
 	var/mob/living/simple_animal/hostile/rose_summoned/R = new(T)//Spawns the rose
 	summoned_roses += R
 	for(var/obj/item/W in target.held_items + target.get_equipped_items())//Searches the human for any E.G.O and adds them to a list.
-		if(istype(W, /obj/item/ego_weapon))//FIXME!!!! The above line doesn't actually check suit storage slots, could be more efficient too
+		if(is_ego_melee_weapon(W)) //FIXME!!!! The above line doesn't actually check suit storage slots, could be more efficient too
 			flower_damtype += W.damtype
-		if(istype(W, /obj/item/ego_weapon/ranged))
+		else if(is_ego_weapon(W))
 			var/obj/item/ego_weapon/ranged/G = W
 			flower_damtype += G.last_projectile_type
 	if(LAZYLEN(flower_damtype))//Picks damage types from the list compiled previously, spawning a rose of that color.
