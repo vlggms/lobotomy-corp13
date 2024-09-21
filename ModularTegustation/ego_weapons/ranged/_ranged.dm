@@ -27,6 +27,13 @@
 
 	/// The current ammo_type we are using
 	var/obj/item/ammo_casing/ammo_type = null
+	/// Ammo type to edit, if you want to make custom guns as an admin
+	/// To do so, initialize THIS as a new atom in the VV menu. Then you can edit some of the pre-defined vars.
+	/// Search for "admin_ammo" in this file to see them.
+	var/obj/item/ammo_casing/admin_ammo = null
+	// WARNING: due to gun limitations, if your casing naturally has only 1 pellet and you add in more any edits will only reflect the first pellet
+	var/obj/projectile/admin_ammo_projectile = null
+
 	/// Just 'slightly' snowflakey way to modify projectile damage for projectiles fired from this gun.
 	var/projectile_damage_multiplier = 1
 	/// If the weapon allows dual-weilding/can be used in 1 hand/needs 2 hands
@@ -105,6 +112,10 @@
 		QDEL_NULL(pin)
 	if(azoom)
 		QDEL_NULL(azoom)
+	if(admin_ammo)
+		QDEL_NULL(admin_ammo)
+	if(admin_ammo_projectile)
+		QDEL_NULL(admin_ammo_projectile)
 	return ..()
 
 /obj/item/ego_weapon/ranged/handle_atom_del(atom/A)
@@ -360,10 +371,6 @@
 			firing_burst = FALSE
 			return FALSE
 
-	if(HAS_TRAIT(user, TRAIT_PACIFISM) && lethal) // If the user has the pacifist trait, then they won't be able to fire [src] if the [lethal] var is TRUE.
-		to_chat(user, span_warning("[src] is lethal! You don't want to risk harming anyone..."))
-		return
-
 	if(randomspread)
 		sprd = round((rand() - 0.5) * DUALWIELD_PENALTY_EXTRA_MULTIPLIER * (randomized_gun_spread + randomized_bonus_spread))
 	else //Smart spread
@@ -371,7 +378,26 @@
 
 	before_firing(target,user)
 	var/obj/item/ammo_casing/boolet = new ammo_type(src)
+	if(admin_ammo)
+		boolet.variance = admin_ammo.variance
+		boolet.pellets = admin_ammo.pellets
+
 	boolet.newshot()
+	if(admin_ammo_projectile)
+		boolet.BB.damage = admin_ammo_projectile.damage // The bullet's damage [AS NUMBER]
+		boolet.BB.damage_type = admin_ammo_projectile.damage_type // The bullet's damage type [AS TEXT](red white black pale)
+		boolet.BB.speed = admin_ammo_projectile.speed // the bullet's speed [AS NUMBER]
+
+		// the bullet's passing ability, [AS BITFLAGS(number)] (goodluck)
+		// 'https://github.com/vlggms/lobotomy-corp13/blob/master/code/__DEFINES/flags.dm#L110-L121'
+		boolet.BB.projectile_piercing = admin_ammo_projectile.projectile_piercing
+		boolet.BB.ricochets_max = admin_ammo_projectile.ricochets_max // How many times a bullet can ricochet
+		boolet.BB.ricochet_chance = admin_ammo_projectile.ricochet_chance // What chance it has each bounce to ricochet again
+		boolet.BB.ricochet_decay_damage = 1
+		boolet.BB.ricochet_decay_chance = 1
+		boolet.BB.ricochet_incidence_leeway = 0
+		boolet.BB.ricochet_ignore_flag = TRUE
+
 	last_projectile_damage = boolet.BB.damage
 	last_projectile_type = boolet.BB.damage_type
 
@@ -400,6 +426,10 @@
 	if(!CanUseEgo(user))
 		return
 
+	if(HAS_TRAIT(user, TRAIT_PACIFISM) && lethal) // If the user has the pacifist trait, then they won't be able to fire [src] if the [lethal] var is TRUE.
+		to_chat(user, span_warning("[src] is lethal! You don't want to risk harming anyone..."))
+		return
+
 	if(user)
 		SEND_SIGNAL(user, COMSIG_MOB_FIRED_GUN, src, target, params, zone_override)
 
@@ -425,15 +455,30 @@
 		for(var/i = 1 to burst_size)
 			addtimer(CALLBACK(src, PROC_REF(process_burst), user, target, message, params, zone_override, sprd, randomized_gun_spread, randomized_bonus_spread, rand_spr, i), fire_delay * (i - 1))
 	else
-		if(HAS_TRAIT(user, TRAIT_PACIFISM) && lethal) // If the user has the pacifist trait, then they won't be able to fire [src] if the [lethal] var is TRUE.
-			to_chat(user, span_warning("[src] is lethal! You don't want to risk harming anyone..."))
-			return
-
 		sprd = round((rand() - 0.5) * DUALWIELD_PENALTY_EXTRA_MULTIPLIER * (randomized_gun_spread + randomized_bonus_spread))
 
 		before_firing(target,user)
 		var/obj/item/ammo_casing/boolet = new ammo_type(src)
+		if(admin_ammo)
+			boolet.variance = admin_ammo.variance
+			boolet.pellets = admin_ammo.pellets
+
 		boolet.newshot()
+		if(admin_ammo_projectile)
+			boolet.BB.damage = admin_ammo_projectile.damage // The bullet's damage [AS NUMBER]
+			boolet.BB.damage_type = admin_ammo_projectile.damage_type // The bullet's damage type [AS TEXT](red white black pale)
+			boolet.BB.speed = admin_ammo_projectile.speed // the bullet's speed [AS NUMBER]
+
+			// the bullet's passing ability, [AS BITFLAGS(number)] (goodluck)
+			// 'https://github.com/vlggms/lobotomy-corp13/blob/master/code/__DEFINES/flags.dm#L110-L121'
+			boolet.BB.projectile_piercing = admin_ammo_projectile.projectile_piercing
+			boolet.BB.ricochets_max = admin_ammo_projectile.ricochets_max // How many times a bullet can ricochet
+			boolet.BB.ricochet_chance = admin_ammo_projectile.ricochet_chance // What chance it has each bounce to ricochet
+			boolet.BB.ricochet_decay_damage = 1
+			boolet.BB.ricochet_decay_chance = 1
+			boolet.BB.ricochet_incidence_leeway = 0
+			boolet.BB.ricochet_ignore_flag = TRUE
+
 		boolet.BB.damage = boolet.BB.damage * bonus_damage_multiplier
 		last_projectile_damage = boolet.BB.damage
 		last_projectile_type = boolet.BB.damage_type
