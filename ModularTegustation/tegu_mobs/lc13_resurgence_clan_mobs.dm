@@ -84,7 +84,7 @@
 /mob/living/simple_animal/hostile/clan/scout/AttackingTarget()
 	. = ..()
 	if (charge > 0)
-		charge -= 1
+		charge -= 2
 
 /mob/living/simple_animal/hostile/clan/scout/death(gibbed)
 	. = ..()
