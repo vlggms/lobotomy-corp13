@@ -15,15 +15,17 @@
 	)
 
 //Electric Fixer Weapons
-/obj/item/ego_weapon/city/echo/sodom
-	name = "sodom"
+/obj/item/ego_weapon/city/echo/twins
+	name = "twins"
 	desc = "Soon, All of the wicked shall be punished..."
-	special = "Upon hit the targets WHITE vulnerability is increased by 0.2."
+	special = "Upon hit the targets WHITE vulnerability is increased by 0.2. \
+		When using both sodom and gomorrah, increase their attack speed by 0.2"
 	hitsound = 'sound/weapons/fixer/generic/knife3.ogg'
 	icon_state = "sodom"
-	force = 20
+	force = 18
 	attack_speed = 0.5
 	damtype = WHITE_DAMAGE
+	var/attack_speed_buff = 0.2
 
 	attribute_requirements = list(
 		FORTITUDE_ATTRIBUTE = 60,
@@ -32,18 +34,32 @@
 		JUSTICE_ATTRIBUTE = 60,
 	)
 
-/obj/item/ego_weapon/city/echo/sodom/attack(mob/living/target, mob/living/user)
+/obj/item/ego_weapon/city/echo/twins/attack(mob/living/target, mob/living/user)
+	var/old_attack_speed = attack_speed
+	if ((locate(/obj/item/ego_weapon/city/echo/twins/gomorrah) in user.held_items) && (locate(/obj/item/ego_weapon/city/echo/twins/sodom) in user.held_items))
+		attack_speed -= attack_speed_buff
+
 	. = ..()
+
 	if(!.)
 		return FALSE
+
+	attack_speed = old_attack_speed
+
 	if(isliving(target))
 		var/mob/living/simple_animal/M = target
 		if(!ishuman(M) && !M.has_status_effect(/datum/status_effect/rend_white))
 			new /obj/effect/temp_visual/cult/sparks(get_turf(M))
 			M.apply_status_effect(/datum/status_effect/rend_white)
 
-/obj/item/ego_weapon/city/echo/sodom/gomorrah
+/obj/item/ego_weapon/city/echo/twins/gomorrah
 	name = "gomorrah"
+	icon_state = "gomorrah"
+
+/obj/item/ego_weapon/city/echo/twins/sodom
+	name = "sodom"
+	icon_state = "sodom"
+
 
 //Metal Fixer Weapons
 /obj/item/ego_weapon/shield/eria
@@ -102,9 +118,11 @@
 	name = "iria"
 	desc = "Experiences have shaped me this way."
 	icon_state = "iria"
-	force = 50
+	special = "When attacking while using both iria and eria, deal 0.3 more damage and increase the knockback caused by iria."
+	force = 45
 	attack_speed = 1.5
 	damtype = BLACK_DAMAGE
+	var/damage_multiplier = 1.3
 	attack_verb_continuous = list("bashes", "hammers", "smacks")
 	attack_verb_simple = list("bash", "hammer", "smack")
 	hitsound = 'sound/weapons/fixer/generic/fist1.ogg'
@@ -114,6 +132,19 @@
 		TEMPERANCE_ATTRIBUTE = 80,
 		JUSTICE_ATTRIBUTE = 60,
 	)
+
+/obj/item/ego_weapon/city/echo/iria/attack(mob/living/target, mob/living/user)
+	var/old_force_multiplier = force_multiplier
+	if ((locate(/obj/item/ego_weapon/city/echo/iria) in user.held_items) && (locate(/obj/item/ego_weapon/shield/eria) in user.held_items))
+		force_multiplier = damage_multiplier
+		knockback = KNOCKBACK_MEDIUM
+	. = ..()
+
+	if(!.)
+		return FALSE
+
+	force_multiplier = old_force_multiplier
+	knockback = KNOCKBACK_LIGHT
 
 //Flame Fixer Weapon
 /obj/item/ego_weapon/city/echo/sunstrike
