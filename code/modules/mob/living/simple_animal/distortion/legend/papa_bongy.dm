@@ -33,6 +33,8 @@
 	gender = MALE
 	egoist_attributes = 40
 	egoist_outfit = /datum/outfit/job/civilian
+	/// Prolonged exposure to a monolith will convert the distortion into an abnormality. Lifetime stew's background has bongy's head mounted on the wall, giving an obvious connection.
+	monolith_abnormality = /mob/living/simple_animal/hostile/abnormality/basilisoup
 	loot = list(/obj/item/documents/ncorporation)
 
 	var/can_act = TRUE

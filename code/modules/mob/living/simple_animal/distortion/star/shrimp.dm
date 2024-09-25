@@ -38,6 +38,8 @@
 	egoist_outfit = /datum/outfit/job/fishing
 	egoist_attributes = 120
 	loot = list(/obj/item/gun/ego_gun/shrimp/rambominigun)
+	/// Prolonged exposure to a monolith will convert the distortion into an abnormality. When if null, they are unaffected by it.
+	monolith_abnormality = /mob/living/simple_animal/hostile/abnormality/shrimp_exec
 	unmanifest_effect = /obj/effect/temp_visual/water_waves
 	can_spawn = 0
 
