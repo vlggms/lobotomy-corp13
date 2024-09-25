@@ -10,14 +10,14 @@
 	var/target_item = null
 	var/current_progress = 0
 	var/random_sound_list = list( // Random surgery sound for every step
-	'sound/items/jaws_pry.ogg',
-	'sound/items/drill_use.ogg',
-	'sound/items/welder.ogg',
-	'sound/items/ratchet.ogg',
-	'sound/items/zip.ogg',
-	'sound/weapons/circsawhit.ogg',
-	'sound/weapons/blade1.ogg',
-	'sound/weapons/sear.ogg',
+		'sound/items/jaws_pry.ogg',
+		'sound/items/drill_use.ogg',
+		'sound/items/welder.ogg',
+		'sound/items/ratchet.ogg',
+		'sound/items/zip.ogg',
+		'sound/weapons/circsawhit.ogg',
+		'sound/weapons/blade1.ogg',
+		'sound/weapons/sear.ogg',
 	)
 
 /obj/item/extraction/upgrade_tool/Initialize()
@@ -68,6 +68,7 @@
 			to_chat(user, span_notice("You decide to stop operating on [target_item]."))
 			target_item = null
 			return
+
 		if(current_progress < 4)
 			ToolAttempt(user)
 			if(!do_after(user, 50, A))
@@ -75,7 +76,8 @@
 				return
 			ToolProgress(user)
 			return
-		if(current_progress >= 4)
+
+		else // they got it
 			ToolAttempt(user)
 			if(!do_after(user, 50, A))
 				ToolFailure(user)
@@ -85,18 +87,20 @@
 
 	if(istype(A, /obj/item/ego_weapon))
 		var/obj/item/ego_weapon/theweapon = A
-		if(theweapon.force_multiplier >= 1.09) // Should prevent weirdness with numbers like 19.9999
+		if(theweapon.force_multiplier >= 1.10)
 			to_chat(user, span_warning("You can't modify this any further!"))
 			return
 		target_item = theweapon
 		ToolPrepare(user)
+
 	else if(istype(A, /obj/item/gun/ego_gun))
 		var/obj/item/gun/ego_gun/thegun = A
-		if(thegun.projectile_damage_multiplier >= 1.09) // Should prevent weirdness with numbers like 19.9999
+		if(thegun.projectile_damage_multiplier >= 1.10)
 			to_chat(user, span_warning("You can't modify this any further!"))
 			return
 		target_item = thegun
 		ToolPrepare(user)
+
 	return FALSE
 
 /obj/item/extraction/upgrade_tool/proc/ToolPrepare(mob/user)
@@ -134,16 +138,17 @@
 	if(!target_item)
 		return
 	if(istype(target_item, /obj/item/ego_weapon))
-		var/obj/item/ego_weapon/theweapon = target_item
-		theweapon.force_multiplier = (clamp(theweapon.force_multiplier + 0.05, 0, 1.2)) // Add 0.05 or 5% to the force multiplier
+		var/obj/item/ego_weapon/weapon = target_item
+		weapon.force_multiplier = min(weapon.force_multiplier + 0.05, 1.1) // Add 5% to the force multiplier
 
 	else if(istype(target_item, /obj/item/gun/ego_gun))
-		var/obj/item/gun/ego_gun/thegun = target_item
-		var/old_multiplier = thegun.force_multiplier
-		thegun.force_multiplier = (clamp(thegun.force_multiplier + 0.05, 0, 1.2))
-		var/difference = thegun.force_multiplier - old_multiplier
+		var/obj/item/gun/ego_gun/gun = target_item
+		var/old_multiplier = gun.force_multiplier
+		gun.force_multiplier = min(gun.force_multiplier + 0.05, 1.1)
+		var/difference = gun.force_multiplier - old_multiplier
 		if(difference > 0)
-			thegun.projectile_damage_multiplier *= (1 + difference) // Sure we COULD just set it equal to force_multiplier but that would break some guns
+			gun.projectile_damage_multiplier *= (1 + difference) // Sure we COULD just set it equal to force_multiplier but that would break some guns
+
 	to_chat(user, span_warning("You successfully improve [target_item]!"))
 	target_item = null
 	current_progress = 0
@@ -154,4 +159,5 @@
 	if(energy >= (5 - current_progress)) //Able to complete at least one procedure
 		icon_state = "ego_surgery"
 		return
+
 	icon_state = "ego_surgery_empty"
