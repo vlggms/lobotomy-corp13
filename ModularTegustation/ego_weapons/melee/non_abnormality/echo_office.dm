@@ -64,7 +64,7 @@
 //Metal Fixer Weapons
 /obj/item/ego_weapon/shield/eria
 	name = "eria"
-	desc = "It has been quiet a while since I last used you two. I missed the feeling."
+	desc = "It has been quite a while since I last used you two. I missed the feeling."
 	special = "This weapon restores health on a successful block."
 	icon_state = "eria"
 	icon = 'ModularTegustation/Teguicons/lc13_weapons.dmi'
