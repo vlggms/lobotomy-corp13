@@ -49,6 +49,7 @@
 	var/bullet_cooldown_time = 7 SECONDS
 	var/bullet_fire_delay = 1.5 SECONDS
 	var/bullet_max_range = 50
+	var/bullet_damage = 80
 
 	//PLAYABLES ATTACKS (action in this case)
 	attack_action_types = list(/datum/action/innate/abnormality_attack/toggle/der_freischutz_zoom)
@@ -149,6 +150,7 @@
 	B.original = end_turf
 	B.preparePixelProjectile(end_turf, start_turf)
 	B.range = bullet_max_range
+	B.damage = bullet_damage
 	B.fire()
 	new /datum/beam(start_turf.Beam(end_turf, "magic_bullet_tracer", time = 3 SECONDS))
 	IconChange(firing = FALSE)
@@ -267,4 +269,3 @@
 			for(var/obj/effect/frei_magic/Port in portals)
 				Port.fade_out()
 	return
-
