@@ -43,7 +43,7 @@
 		In your hands you carry a bow nocked with an arrow, it's your last one. <br>\
 		You've been pursuing your prey for days, you..."
 	observation_choices = list("Fire an arrow", "Take off your blindfold", "Do nothing") //awaiting extra answers functionality //"Take off your blindfold" should be a third option
-	correct_choices = list("Do nothing")
+	correct_choices = list("Do nothing", "Take off your blindfold")
 	observation_success_message = "You watch and wait as the light and heat pass until only cold and darkness reign in the forest. <br>\
 		Feeling safe, you remove your blindfold and find on the ground one of its radiant feathers. <br>\
 		Bravo brave hunter, have you found what you were seeking?"
