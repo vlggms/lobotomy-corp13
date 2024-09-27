@@ -1537,6 +1537,10 @@
 /obj/item/clothing/head/chefhat,
 /turf/open/floor/plasteel/white,
 /area/city/outskirts)
+"Ks" = (
+/obj/effect/landmark/abnospawn/rhinobuster,
+/turf/open/floor/plasteel,
+/area/city/outskirts)
 "KL" = (
 /obj/machinery/door/airlock/highsecurity{
 	name = "Records Office"
@@ -16061,7 +16065,7 @@ iD
 Ze
 Lh
 Lh
-Lh
+Ks
 Ze
 Tf
 Tf

@@ -333,6 +333,10 @@
 /obj/item/paper_bin,
 /turf/open/floor/wood,
 /area/city/outskirts)
+"IT" = (
+/obj/effect/landmark/abnospawn/rhinobuster,
+/turf/open/floor/facility/dark,
+/area/city/outskirts)
 "JR" = (
 /turf/open/floor/plasteel,
 /area/city/outskirts)
@@ -13267,7 +13271,7 @@ WS
 Fl
 Ke
 Ke
-Ke
+IT
 Ke
 aM
 HD
