@@ -16,14 +16,9 @@
 	var/pulse_cooldown
 	var/pulse_cooldown_time = 1 SECONDS
 	var/speaking = FALSE
-	var/speech = list("Hello", "This is a test.", "Emote: Emote","Goodbye")
-
-
-/mob/living/simple_animal/npc/Initialize()
-
-
-/mob/living/simple_animal/npc/Move()
-	return FALSE
+	var/default_delay = 15
+	var/speech = list("Hello", "This is a test.", "Emote: Emote", "Move: NORTH", "Goodbye", "Delay: 20", "Icon: priest_wings_open")
+	wander = FALSE
 
 /mob/living/simple_animal/npc/Life()
 	. = ..()
@@ -44,13 +39,18 @@
 	for (var/S in speech)
 		if (findtext(S, "Emote: ") == 1)
 			manual_emote(copytext(S, 8, length(S) + 1))
+		else if (findtext(S, "Move: ") == 1)
+			step(src, text2dir(copytext(S, 7, length(S) + 1)))
+		else if (findtext(S, "Icon: ") == 1)
+			icon_state = copytext(S, 7, length(S) + 1)
+		else if (findtext(S, "Delay: ") == 1)
+			SLEEP_CHECK_DEATH(text2num(copytext(S, 8, length(S) + 1)))
 		else
 			say(S)
-		SLEEP_CHECK_DEATH(20)
+		SLEEP_CHECK_DEATH(default_delay)
 
 
 /mob/living/simple_animal/npc/proc/Leave()
-	icon_state = "priest_wings_open"
 	playsound(loc, 'sound/abnormalities/crumbling/warning.ogg', vol = 50, vary = TRUE, extrarange = -3)
 	animate(src, pixel_z = 100, time = 5 SECONDS, flags = ANIMATION_RELATIVE)
 	animate(src, alpha = 0, time = 1 SECONDS)
