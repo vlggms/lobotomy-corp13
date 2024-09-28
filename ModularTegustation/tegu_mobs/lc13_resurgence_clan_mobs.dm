@@ -279,6 +279,7 @@
 	emote_hear = list("creaks.", "emits the sound of grinding gears.")
 	maxHealth = 1000
 	health = 1000
+	is_flying_animal = TRUE
 	death_message = "falls down as their lights slowly go out..."
 	melee_damage_lower = 10
 	melee_damage_upper = 12
@@ -291,6 +292,12 @@
 	charge = 10
 	max_charge = 20
 	clan_charge_cooldown = 1 SECONDS
+//Current Goals: This mob will be able to follow mobs that share a faction with it. (Sweeper Leader Code)
+//Then, If there is a mob within 5 sqrs of it who has less then full health, attach a beam to them and start healing them 25 HP per second.
+//If they are a part of the Clan, Also give them charge.
+//If the mob they are healing has less then 20% HP of their max HP, Spend their charge to instantly heal them [(Charge on Drone)*25] HP, then it goes on a 5 second cooldown.
+//If this healing would go over the mobs max HP, only spend the charge needed to bring them up to Full Health.
+//This mob will also run away from players. (Ranged Code)
 
 /mob/living/simple_animal/hostile/clan/drone/ChargeUpdated()
 	var/chargelayer = layer + 0.1
