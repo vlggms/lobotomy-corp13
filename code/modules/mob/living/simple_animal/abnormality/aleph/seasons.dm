@@ -1,5 +1,6 @@
 #define STATUS_EFFECT_FREEZING /datum/status_effect/freezing
 #define STATUS_EFFECT_FOGBOUND /datum/status_effect/fogbound
+#define STATUS_EFFECT_PALE_BLIND /datum/status_effect/pale_blind
 #define SEASONS_SLAM_COOLDOWN (20 SECONDS)
 
 /mob/living/simple_animal/hostile/abnormality/seasons
@@ -143,7 +144,7 @@
 	var/fire_wall_amount = 3
 	var/fire_width = 3
 	var/fire_length = 5
-	var/fire_damage = 150
+	var/fire_damage = 120
 	var/wisp_amount = 6
 	var/bomb_amount = 4
 	var/trap_amount = 6
@@ -812,15 +813,17 @@
 	for(var/turf/open/T in view(6, src))
 		turfs += T
 	for(var/i = 1 to bomb_amount)
-		var/turf/T2 = pick(turfs)
-		turfs -= T2
-		var/obj/structure/thorn_bomb/B = new(T2)
-		structures += B
+		if(LAZYLEN(turfs))
+			var/turf/T2 = pick(turfs)
+			turfs -= T2
+			var/obj/structure/thorn_bomb/B = new(T2)
+			structures += B
 	for(var/i = 1 to trap_amount)
-		var/turf/T2 = pick(turfs)
-		turfs -= T2
-		var/mob/living/simple_animal/hostile/flytrap/F = new(T2)
-		summons += F
+		if(LAZYLEN(turfs))
+			var/turf/T2 = pick(turfs)
+			turfs -= T2
+			var/mob/living/simple_animal/hostile/flytrap/F = new(T2)
+			summons += F
 
 /mob/living/simple_animal/hostile/abnormality/seasons/proc/Summer_Special()
 	playsound(get_turf(src), "[breaching_stats[current_season][2]]", 30, 0, 8)
@@ -1349,11 +1352,10 @@
 	for(var/mob/living/L in get_turf(src))
 		if(faction_check(faction, L.faction, FALSE))
 			continue
-		L.apply_damage(8, PALE_DAMAGE, null, L.run_armor_check(null, PALE_DAMAGE), spread_damage = TRUE)
+		L.apply_damage(5, PALE_DAMAGE, null, L.run_armor_check(null, PALE_DAMAGE), spread_damage = TRUE)
 		if(ishuman(L))
 			var/mob/living/carbon/human/H = L
-			H.become_nearsighted(TRAUMA_TRAIT)
-			addtimer(CALLBACK(src, PROC_REF(Revert),H), 3 SECONDS)
+			H.apply_status_effect(STATUS_EFFECT_PALE_BLIND)
 			if(H.stat >= HARD_CRIT || H.health < 0)
 				if(HAS_TRAIT(H, TRAIT_HUSK))
 					return FALSE
@@ -1362,8 +1364,31 @@
 				H.adjustBruteLoss(H.maxHealth)
 				H.Drain()
 
-/obj/effect/temp_visual/winter_god/proc/Revert(mob/living/carbon/human/H)
-	H.cure_nearsighted(TRAUMA_TRAIT)
+/datum/status_effect/pale_blind
+	id = "pale_blind"
+	status_type = STATUS_EFFECT_UNIQUE
+	duration = 5 SECONDS
+	alert_type = /atom/movable/screen/alert/status_effect/pale_blind
+
+/atom/movable/screen/alert/status_effect/pale_blind
+	name = "Pale blind"
+	desc = "The pale mist blinded you!"
+	icon = 'ModularTegustation/Teguicons/status_sprites.dmi'
+	icon_state = "bg_template"
+
+/datum/status_effect/pale_blind/on_apply()
+	. = ..()
+	if(!ishuman(owner))
+		return
+	var/mob/living/carbon/human/status_holder = owner
+	status_holder.become_nearsighted(TRAUMA_TRAIT)
+
+/datum/status_effect/pale_blind/on_remove()
+	. = ..()
+	if(!ishuman(owner))
+		return
+	var/mob/living/carbon/human/status_holder = owner
+	status_holder.cure_nearsighted(TRAUMA_TRAIT)
 
 /mob/living/simple_animal/hostile/willo_wisp
 	name = "Willo-O-Wisp"
@@ -1438,8 +1463,8 @@
 	attack_sound = 'sound/effects/hit_kick.ogg'
 	projectilesound = 'sound/machines/clockcult/steam_whoosh.ogg'
 	death_sound = 'sound/creatures/venus_trap_death.ogg'
-	health = 500
-	maxHealth = 500
+	health = 750
+	maxHealth = 750
 	obj_damage = 120
 	damage_coeff = list(RED_DAMAGE = 0.7, WHITE_DAMAGE = 0, BLACK_DAMAGE = 1.5, PALE_DAMAGE = 1.2)//no mind to break
 	melee_damage_type = RED_DAMAGE
@@ -1447,14 +1472,14 @@
 	melee_damage_upper = 80
 	rapid_melee = 1
 	speed = 5
-	move_to_delay = 4
+	move_to_delay = 3.75
 	ranged = TRUE
-	ranged_cooldown_time = 1 SECONDS
+	ranged_cooldown_time = 1.5 SECONDS
 	robust_searching = TRUE
 	stat_attack = HARD_CRIT
 	del_on_death = FALSE
 	density = TRUE
-	guaranteed_butcher_results = list(/obj/item/food/badrecipe = 1)
+	guaranteed_butcher_results = list(/obj/item/food/meat/slab = 1)
 	var/list/breach_affected = list()
 	var/can_act = TRUE
 	var/mob/living/simple_animal/hostile/abnormality/seasons/master
@@ -1470,7 +1495,7 @@
 		S.set_up(5, get_turf(src))
 		S.start()
 		return TRUE
-	ranged_cooldown += 1 SECONDS
+	ranged_cooldown = world.time + ranged_cooldown_time
 
 //Zombie conversion from zombie kills
 /mob/living/simple_animal/hostile/flora_zombie/AttackingTarget()
