@@ -20,7 +20,7 @@
 /obj/projectile/ego_bullet/melting_blob/dot/on_hit(target)
 	. = ..()
 	var/mob/living/H = target
-	if(!isbot(H) && isliving(H))
+	if(!isbot(H) && isliving(H) && !QDELETED(H))
 		H.visible_message("<span class='warning'>[target] is hit by [src], they seem to wither away!</span>")
 		for(var/i = 1 to 14)
 			addtimer(CALLBACK(H, TYPE_PROC_REF(/mob/living, apply_damage), rand(4,8), BLACK_DAMAGE, null, H.run_armor_check(null, BLACK_DAMAGE)), 2 SECONDS * i)
