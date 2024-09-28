@@ -267,3 +267,48 @@
 /datum/status_effect/locked/on_remove()
 	UnregisterSignal(owner, COMSIG_MOVABLE_PRE_MOVE)
 	return ..()
+
+/mob/living/simple_animal/hostile/clan/drone
+	name = "Drone"
+	desc = "A drone hovering above the ground... It appears to have 'Resurgence Clan' etched on their back..."
+	icon = 'ModularTegustation/Teguicons/resurgence_32x48.dmi'
+	icon_state = "clan_drone"
+	icon_living = "clan_drone"
+	icon_dead = "clan_drone_dead"
+	faction = list("resurgence_clan", "hostile")
+	emote_hear = list("creaks.", "emits the sound of grinding gears.")
+	maxHealth = 1000
+	health = 1000
+	death_message = "falls down as their lights slowly go out..."
+	melee_damage_lower = 10
+	melee_damage_upper = 12
+	melee_damage_type = BLACK_DAMAGE
+	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 0.8, WHITE_DAMAGE = 1.2, BLACK_DAMAGE = 1.5, PALE_DAMAGE = 2)
+	attack_sound = 'sound/weapons/emitter2.ogg'
+	silk_results = list(/obj/item/stack/sheet/silk/azure_simple = 2,
+						/obj/item/stack/sheet/silk/azure_advanced = 1)
+	guaranteed_butcher_results = list(/obj/item/food/meat/slab/robot = 3, /obj/item/food/meat/slab/sweeper = 2)
+	charge = 10
+	max_charge = 20
+	clan_charge_cooldown = 1 SECONDS
+
+/mob/living/simple_animal/hostile/clan/drone/ChargeUpdated()
+	var/chargelayer = layer + 0.1
+	var/charge_icon
+	if(charge > 19)
+		cut_overlays()
+		charge_icon = "clan_drone_100%"
+	else if(charge > 15)
+		cut_overlays()
+		charge_icon = "clan_drone_75%"
+	else if(charge > 10)
+		cut_overlays()
+		charge_icon = "clan_drone_50%"
+	else if(charge > 5)
+		cut_overlays()
+		charge_icon = "clan_drone_25%"
+	else
+		cut_overlays()
+		return
+	var/mutable_appearance/colored_overlay = mutable_appearance(icon, charge_icon, chargelayer)
+	add_overlay(colored_overlay)
