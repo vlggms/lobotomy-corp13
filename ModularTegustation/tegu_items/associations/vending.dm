@@ -1,6 +1,7 @@
 /obj/machinery/vending/hana
 	name = "\improper Hana vending"
 	desc = "A machine used to start your own office!."
+	resistance_flags = INDESTRUCTIBLE | LAVA_PROOF | FIRE_PROOF | UNACIDABLE | ACID_PROOF | FREEZE_PROOF
 	product_slogans = "Start your career today!"
 	product_ads = "The best in the business!"
 	icon_state = "generic" //Placeholder
@@ -69,6 +70,7 @@
 /obj/machinery/vending/weaving
 	name = "\improper Weaving Books/Tools"
 	desc = "A machine used to purchase new weaving recipes!"
+	resistance_flags = INDESTRUCTIBLE | LAVA_PROOF | FIRE_PROOF | UNACIDABLE | ACID_PROOF | FREEZE_PROOF
 	product_slogans = "Read up on all of the city gear!"
 	product_ads = "Can't go with out it!"
 	icon_state = "sec"
@@ -99,6 +101,7 @@
 /obj/machinery/vending/fixer
 	name = "\improper Fixer Equipment vending"
 	desc = "A machine used by fixers to get equipment"
+	resistance_flags = INDESTRUCTIBLE | LAVA_PROOF | FIRE_PROOF | UNACIDABLE | ACID_PROOF | FREEZE_PROOF
 	product_slogans = "What's a fixer without gear?"
 	product_ads = "You need it!"
 	icon_state = "robotics"
@@ -191,6 +194,7 @@
 /obj/machinery/vending/prosthetic
 	name = "\improper Prosthetic plus vending"
 	desc = "A machine used to purchase new prosthetic limbs"
+	resistance_flags = INDESTRUCTIBLE | LAVA_PROOF | FIRE_PROOF | UNACIDABLE | ACID_PROOF | FREEZE_PROOF
 	product_slogans = "Looking good!"
 	product_ads = "You need it!"
 	icon_state = "robotics"
@@ -227,6 +231,7 @@
 /obj/machinery/vending/prosthetic
 	name = "\improper Prosthetic plus vending"
 	desc = "A machine used to purchase new prosthetic limbs"
+	resistance_flags = INDESTRUCTIBLE | LAVA_PROOF | FIRE_PROOF | UNACIDABLE | ACID_PROOF | FREEZE_PROOF
 	product_slogans = "Looking good!"
 	product_ads = "You need it!"
 	icon_state = "robotics"

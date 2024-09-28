@@ -2210,3 +2210,110 @@
 
 /obj/item/ego_weapon/sunyata/get_clamped_volume()
 	return 40
+
+/obj/item/ego_weapon/effervescent
+	name = "effervescent corrosion"
+	desc = "Even the scum of the earth can be molded into something useful with time and pressure."
+	icon_state = "shell"
+	force = 60
+	reach = 2
+	stuntime = 5
+	damtype = RED_DAMAGE
+	swingstyle = WEAPONSWING_THRUST
+
+	attack_verb_continuous = list("coats", "covers", "sprays")
+	attack_verb_simple = list("coat", "cover", "spray")
+
+	hitsound = 'sound/weapons/ego/effervescent.ogg'
+	attribute_requirements = list(
+							FORTITUDE_ATTRIBUTE = 60,
+							PRUDENCE_ATTRIBUTE = 60,
+	)
+
+/obj/item/ego_weapon/effervescent/proc/StickyMuck(mob/living/target)
+	target.apply_status_effect(/datum/status_effect/effervescent_sticky)
+
+/obj/item/ego_weapon/effervescent/get_thrust_turfs(atom/target, mob/user)
+	. = getline(get_step_towards(user, target), target)
+	. += get_turf_in_angle(Get_Angle(user, target), get_turf(target), 1)
+	for(var/turf/T in .)
+		var/obj/effect/temp_visual/thrust/TT = new(T, swingcolor ? swingcolor : COLOR_GRAY)
+		var/matrix/M = matrix(TT.transform)
+		M.Turn(Get_Angle(user, target)-90)
+		TT.transform = M
+	return
+
+/obj/item/ego_weapon/effervescent/SweepMiss(atom/target, mob/living/carbon/human/user)
+	user.visible_message("<span class='danger'>[user] [swingstyle > WEAPONSWING_LARGESWEEP ? "thrusts" : "swings"] at [target]!</span>",\
+		"<span class='danger'>You [swingstyle > WEAPONSWING_LARGESWEEP ? "thrust" : "swing"] at [target]!</span>", null, COMBAT_MESSAGE_RANGE, user)
+	playsound(src, 'sound/abnormalities/ambling pearl/goo effect.ogg', 30, TRUE)
+	user.do_attack_animation(target, used_item = src, no_effect = TRUE)
+
+/obj/item/ego_weapon/effervescent/GetTarget(mob/user, list/potential_targets = list(), atom/clicked)
+	if(ismob(clicked))
+		. = clicked
+
+	for(var/mob/living/simple_animal/hostile/H in potential_targets) // Hostile List
+		if(H.status_flags & GODMODE)
+			continue
+		if(user.faction_check_mob(H))
+			continue
+		if(H.stat == DEAD)
+			continue
+		StickyMuck(H)
+		if(.)
+			continue
+		. = H
+		break
+
+	if(.)
+		return
+	return ..()
+
+/datum/status_effect/effervescent_sticky
+	id = "EGOeffervescent"
+	duration = 50 SECONDS
+	tick_interval = 7
+	status_type = STATUS_EFFECT_REFRESH
+	examine_text = span_warning("SUBJECTPRONOUN is covered in sticky green goo filled with writhing maggots.")
+	alert_type = null
+
+/datum/status_effect/effervescent_sticky/on_apply()
+	. = ..()
+	RegisterSignal(owner, COMSIG_ATOM_ATTACK_HAND, PROC_REF(CleanOff))
+
+/datum/status_effect/effervescent_sticky/on_remove()
+	UnregisterSignal(owner, COMSIG_ATOM_ATTACK_HAND)
+	return ..()
+
+/datum/status_effect/effervescent_sticky/tick()
+	. = ..()
+	for(var/mob/living/victim in orange(2, src))
+		if(faction_check(victim.faction, owner.faction))
+			victim.deal_damage(10, WHITE_DAMAGE)
+	if(prob(40))
+		playsound(owner, 'sound/abnormalities/ambling pearl/goo effect.ogg', 40)
+
+/datum/status_effect/effervescent_sticky/proc/CleanOff(datum/source, mob/living/carbon/wiper)
+	. = FALSE
+	if(!istype(wiper))
+		return
+	if(wiper.a_intent != INTENT_HELP)
+		return
+	if(wiper != owner)
+		owner.visible_message(span_notice("[wiper] begins to clean the muck off [owner]."), span_notice("You begin to wipe the muck off [owner]."), ignored_mobs = owner)
+		to_chat(owner, span_notice("[wiper] begins to wipe the muck off of you."))
+	else
+		owner.visible_message(span_notice("[owner] begins to wipe the muck off themselves."), span_notice("You begin to wipe the muck off yourself."))
+	if(!do_after(wiper, 5, owner))
+		return TRUE
+	if(QDELETED(src))
+		return
+	if(wiper != owner)
+		owner.visible_message(span_nicegreen("[wiper] wipes the muck off [owner]."), span_nicegreen("You wipe the muck off [owner]."), ignored_mobs = owner)
+		to_chat(owner, span_nicegreen("[wiper] wipes the muck off of you."))
+	else
+		owner.visible_message(span_nicegreen("[owner] wipes the muck off themselves."), span_nicegreen("You wipe the muck off yourself."))
+	qdel(src)
+	return TRUE
+

@@ -23,6 +23,7 @@
 	stat_attack = DEAD
 	move_to_delay = 3
 	threat_level = WAW_LEVEL
+	fear_level = ALEPH_LEVEL
 	attack_sound = 'sound/weapons/bladeslice.ogg'
 	attack_verb_continuous = "stabs"
 	attack_verb_simple = "stab"
