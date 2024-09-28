@@ -145,7 +145,7 @@
 		for(var/attribute in stats)
 			if(get_attribute_level(user, attribute)< 61)
 				weak_counter += 1
-			if(get_attribute_level(user, attribute)>= 80)
+			if(get_attribute_level(user, attribute)>= 60) //This doesnt matter for rca
 				strong_counter += 1
 		return
 	else
