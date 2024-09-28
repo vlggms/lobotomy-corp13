@@ -319,3 +319,24 @@
 		return
 	var/mutable_appearance/colored_overlay = mutable_appearance(icon, charge_icon, chargelayer)
 	add_overlay(colored_overlay)
+
+//Beams from Priest Code
+/mob/living/simple_animal/hostile/clan/drone/proc/create_beam(mob/living/target)
+	var/datum/beam/B = Beam(target, icon_state="medbeam", time=INFINITY, maxdistance=lifelink_range, beam_type=/obj/effect/ebeam/medical)
+	current_beams[target] = B
+/mob/living/simple_animal/hostile/clan/drone/proc/remove_beam(mob/living/target)
+	var/datum/beam/B = current_beams[target]
+	if(B)
+		B.End()
+		current_beams -= target
+
+//Following low HP target from Priest Code
+/mob/living/simple_animal/hostile/clan/drone/proc/follow_lowest_hp_target()
+	if(lifelinked_creatures.len > 0)
+		var/mob/living/lowest_hp_target = lifelinked_creatures[1]
+		for(var/mob/living/L in lifelinked_creatures)
+			if(L.health < lowest_hp_target.health)
+				lowest_hp_target = L
+
+		// Use the existing AI to move towards the target
+		target = lowest_hp_target
