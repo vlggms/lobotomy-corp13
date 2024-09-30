@@ -76,6 +76,8 @@
 				if(MAT_CATEGORY_RIGID)
 					var/list/temp = SSmaterials.rigid_stack_recipes.Copy()
 					recipes += temp
+	if(SSmaptype.maptype == "enkephalin_rush") //combat mode override
+		bypassmode = TRUE
 	update_weight()
 	update_icon()
 
