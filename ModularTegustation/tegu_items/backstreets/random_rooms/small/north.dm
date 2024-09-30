@@ -52,6 +52,6 @@
     mappath = "_maps/RandomRooms/backstreets/small_north/snow_forest.dmm"
 
 /datum/map_template/random_room/backstreets/small_north/small_clan_hideout
-    name = "Clan Hideout - Small North"
+    name = "Clan Hideout - Small North A"
     room_id = "small_clan_hideout"
     mappath = "_maps/RandomRooms/backstreets/small_north/small_clan_hideout.dmm"

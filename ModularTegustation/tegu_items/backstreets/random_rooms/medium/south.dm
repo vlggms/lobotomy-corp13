@@ -42,6 +42,6 @@
     mappath = "_maps/RandomRooms/backstreets/medium_south/theatre.dmm"
 
 /datum/map_template/random_room/backstreets/medium_south/clan_storage
-    name = "Clan - Medium South"
+    name = "Clan - Medium South A"
     room_id = "clan_storage"
     mappath = "_maps/RandomRooms/backstreets/medium_south/clan_storage.dmm"

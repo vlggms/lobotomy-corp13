@@ -29,3 +29,13 @@
 	name = "Clan - Bossroom"
 	room_id = "clan_stronghold"
 	mappath = "_maps/RandomRooms/backstreets/bossroom/clan_stronghold.dmm"
+
+/datum/map_template/random_room/backstreets/bossroom/flame_fixer
+	name = "Flame - Bossroom"
+	room_id = "flame_fixer"
+	mappath = "_maps/RandomRooms/backstreets/bossroom/flame_fixer.dmm"
+
+/datum/map_template/random_room/backstreets/bossroom/metal_fixer
+	name = "Metal - Bossroom"
+	room_id = "metal_fixer"
+	mappath = "_maps/RandomRooms/backstreets/bossroom/metal_fixer.dmm"

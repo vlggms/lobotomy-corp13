@@ -1,0 +1,61 @@
+"a" = (/obj/effect/decal/cleanable/dirt/dust,/turf/open/floor/stone,/area/city/backstreets_room)
+"b" = (/obj/effect/decal/cleanable/dirt/dust,/turf/open/floor/plating/ashplanet/ash,/area/city/backstreets_room)
+"d" = (/obj/effect/light_emitter{light_power = 4; light_range = 25; set_cap = 3; set_luminosity = 24},/obj/effect/decal/cleanable/dirt/dust,/turf/open/floor/carpet/royalblack,/area/city/backstreets_room)
+"e" = (/obj/effect/decal/cleanable/dirt/dust,/obj/item/statuebust/hippocratic{dir = 6},/turf/open/floor/stone,/area/city/backstreets_room)
+"f" = (/obj/structure/table/reinforced,/obj/effect/decal/cleanable/dirt/dust,/obj/item/chisel,/obj/item/workshop_mod/sharp/pale,/turf/open/floor/plating/ashplanet/ash,/area/city/backstreets_room)
+"g" = (/obj/effect/decal/cleanable/dirt/dust,/mob/living/simple_animal/hostile/ordeal/green_bot_big{name = "constructed bot"},/turf/open/floor/plating/ashplanet/ash,/area/city/backstreets_room)
+"h" = (/obj/effect/decal/cleanable/dirt/dust,/mob/living/simple_animal/hostile/humanoid/fixer/metal{name = "Memory Forger"; health = 2000; maxHealth = 2000; real_name = MemoryForger},/turf/open/floor/plating/ashplanet/ash,/area/city/backstreets_room)
+"i" = (/obj/effect/decal/cleanable/dirt/dust,/obj/effect/landmark/cratespawn,/turf/open/floor/plating/ashplanet/ash,/area/city/backstreets_room)
+"j" = (/obj/structure/statue/sandstone/venus,/obj/effect/light_emitter{light_power = 4; light_range = 25; set_cap = 3; set_luminosity = 24},/obj/effect/decal/cleanable/dirt/dust,/turf/open/floor/plating/ashplanet/ash,/area/city/backstreets_room)
+"l" = (/obj/effect/decal/cleanable/dirt/dust,/obj/effect/turf_decal/siding/wideplating/dark/corner{dir = 4},/turf/open/floor/stone,/area/city/backstreets_room)
+"m" = (/obj/effect/decal/cleanable/dirt/dust,/obj/structure/statue/petrified,/obj/structure/statue/custom{anchored = 1},/turf/open/floor/stone,/area/city/backstreets_room)
+"p" = (/obj/effect/decal/cleanable/dirt/dust,/obj/effect/turf_decal/siding/wideplating/dark/corner{dir = 8},/turf/open/floor/stone,/area/city/backstreets_room)
+"q" = (/obj/effect/decal/cleanable/dirt/dust,/obj/effect/turf_decal/siding/wideplating/dark{dir = 1},/obj/effect/turf_decal/siding/wideplating/dark{dir = 8},/turf/open/floor/stone,/area/city/backstreets_room)
+"r" = (/turf/closed/wall/mineral/iron,/area/city/backstreets_room)
+"t" = (/obj/effect/decal/cleanable/dirt/dust,/obj/effect/turf_decal/siding/wideplating/dark{dir = 3},/turf/open/floor/stone,/area/city/backstreets_room)
+"v" = (/obj/effect/decal/cleanable/dirt/dust,/obj/effect/turf_decal/siding/wideplating/dark/corner{dir = 1},/turf/open/floor/stone,/area/city/backstreets_room)
+"y" = (/obj/effect/decal/cleanable/dirt/dust,/obj/structure/statue/petrified,/obj/structure/statue/custom{anchored = 1},/obj/effect/turf_decal/siding/wideplating/dark{dir = 8},/turf/open/floor/stone,/area/city/backstreets_room)
+"A" = (/obj/effect/decal/cleanable/dirt/dust,/mob/living/simple_animal/hostile/ordeal/green_bot{name = "clerk bot"},/turf/open/floor/carpet/royalblack,/area/city/backstreets_room)
+"C" = (/obj/effect/decal/cleanable/dirt/dust,/obj/item/statuebust,/turf/open/floor/plating/ashplanet/ash,/area/city/backstreets_room)
+"D" = (/obj/effect/decal/cleanable/dirt/dust,/turf/closed/wall/mineral/iron,/area/city/backstreets_room)
+"F" = (/obj/effect/decal/cleanable/dirt/dust,/obj/effect/turf_decal/siding/wideplating/dark{dir = 6},/turf/open/floor/stone,/area/city/backstreets_room)
+"G" = (/obj/effect/light_emitter{light_power = 4; light_range = 25; set_cap = 3; set_luminosity = 24},/obj/effect/decal/cleanable/dirt/dust,/turf/open/floor/plating/ashplanet/ash,/area/city/backstreets_room)
+"H" = (/obj/effect/decal/cleanable/dirt/dust,/obj/effect/turf_decal/siding/wideplating/dark,/obj/effect/turf_decal/siding/wideplating/dark{dir = 4},/turf/open/floor/stone,/area/city/backstreets_room)
+"I" = (/obj/effect/decal/cleanable/dirt/dust,/obj/effect/turf_decal/siding/wideplating/dark{dir = 8},/turf/open/floor/stone,/area/city/backstreets_room)
+"J" = (/obj/effect/decal/cleanable/dirt/dust,/obj/effect/turf_decal/siding/wideplating/dark{dir = 3},/mob/living/simple_animal/hostile/ordeal/green_bot{name = "clerk bot"},/turf/open/floor/stone,/area/city/backstreets_room)
+"K" = (/obj/effect/decal/cleanable/dirt/dust,/obj/effect/turf_decal/siding/wideplating/dark,/obj/effect/turf_decal/siding/wideplating/dark{dir = 8},/turf/open/floor/stone,/area/city/backstreets_room)
+"L" = (/obj/effect/decal/cleanable/dirt/dust,/obj/effect/turf_decal/siding/wideplating/dark/corner{dir = 5},/turf/open/floor/stone,/area/city/backstreets_room)
+"M" = (/obj/effect/decal/cleanable/dirt/dust,/obj/effect/turf_decal/siding/wideplating/dark,/turf/open/floor/stone,/area/city/backstreets_room)
+"N" = (/obj/structure/table/reinforced,/obj/effect/decal/cleanable/dirt/dust,/obj/structure/lootcrate/money,/obj/structure/lootcrate/syndicate,/obj/structure/lootcrate/money,/turf/open/floor/plating/ashplanet/ash,/area/city/backstreets_room)
+"P" = (/obj/effect/decal/cleanable/dirt/dust,/obj/effect/turf_decal/siding/wideplating/dark{dir = 4},/turf/open/floor/stone,/area/city/backstreets_room)
+"Q" = (/obj/structure/statue/sandstone/venus{anchored = 1; dir = 8},/obj/effect/light_emitter{light_power = 4; light_range = 25; set_cap = 3; set_luminosity = 24},/obj/effect/decal/cleanable/dirt/dust,/turf/open/floor/plating/ashplanet/ash,/area/city/backstreets_room)
+"S" = (/obj/effect/decal/cleanable/dirt/dust,/obj/effect/turf_decal/siding/wideplating/dark{dir = 5},/turf/open/floor/stone,/area/city/backstreets_room)
+"T" = (/obj/structure/sign/painting/library,/turf/closed/wall/mineral/iron,/area/city/backstreets_room)
+"U" = (/obj/effect/decal/cleanable/dirt/dust,/obj/effect/turf_decal/siding/wideplating/dark{dir = 1},/turf/open/floor/stone,/area/city/backstreets_room)
+"V" = (/obj/effect/decal/cleanable/dirt/dust,/turf/open/floor/carpet/royalblack,/area/city/backstreets_room)
+"W" = (/obj/effect/decal/cleanable/dirt/dust,/obj/effect/turf_decal/siding/wideplating/dark{dir = 6},/mob/living/simple_animal/hostile/ordeal/green_bot{name = "clerk bot"},/turf/open/floor/stone,/area/city/backstreets_room)
+"X" = (/obj/effect/decal/cleanable/dirt/dust,/obj/effect/turf_decal/siding/wideplating/dark{dir = 8},/obj/effect/turf_decal/siding/wideplating/dark,/mob/living/simple_animal/hostile/ordeal/green_bot{name = "clerk bot"},/turf/open/floor/stone,/area/city/backstreets_room)
+"Z" = (/obj/effect/decal/cleanable/dirt/dust,/obj/structure/statue/petrified,/obj/structure/statue/custom{anchored = 1},/obj/effect/turf_decal/siding/wideplating/dark{dir = 1},/turf/open/floor/stone,/area/city/backstreets_room)
+
+(1,1,1) = {"
+rrrrrrrTrrrrTrrrrrrr
+rjbbbbiCfNNfCibbbbQr
+rbqZUUUSbhbbqUZUUSbr
+rbIaaaalSbbqvaaaaPbr
+rbIaDDaalUUvaaDDaPbr
+rbIaDDaaaaaaaaDDaPbr
+TbIaeaaaLMMpaaaeaPbT
+rbyaaaaaPddIaaaaaPbr
+rbIaaaaaPVVIaaaamPbr
+rbIaaaaaPVVIaaaaaPbr
+rGIaaaaaPVVIaaaaaPGr
+rbIaaaaaPVVIamaaaPbr
+rbIaaaaaPVVIaaaaaPbr
+TbIaeaaaPddIaaaeaPbT
+rbIaDDaaPVVIaaDDaPbr
+rbIaDDaaPVVIaaDDaPbr
+rbyaaaaLHAAKpaaaaPbr
+rbKtttJWgVVgXJtttFbr
+rGbbbbbbbVVbbbbbbbGr
+rrrrrrrrbVVbrrrrrrrr
+"}

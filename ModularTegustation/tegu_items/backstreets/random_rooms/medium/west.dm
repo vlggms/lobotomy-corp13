@@ -42,6 +42,6 @@
 	mappath = "_maps/RandomRooms/backstreets/medium_west/lcorp_office.dmm"
 
 /datum/map_template/random_room/backstreets/medium_west/clan_cages
-	name = "Clan - Medium West"
+	name = "Clan - Medium West A"
 	room_id = "clan_cages"
 	mappath = "_maps/RandomRooms/backstreets/medium_west/clan_cages.dmm"
