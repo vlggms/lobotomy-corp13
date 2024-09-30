@@ -97,7 +97,6 @@
 	},
 /mob/living/simple_animal/hostile/humanoid/fixer/flame{
 	name = "Sanguine Flame";
-	real_name = SanguineFlame;
 	health = 2500
 	},
 /turf/open/floor/wood,

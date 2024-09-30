@@ -43,8 +43,7 @@
 /mob/living/simple_animal/hostile/humanoid/fixer/metal{
 	name = "Memory Forger";
 	health = 2000;
-	maxHealth = 2000;
-	real_name = MemoryForger
+	maxHealth = 2000
 	},
 /turf/open/floor/plating/ashplanet/ash,
 /area/city/backstreets_room)
