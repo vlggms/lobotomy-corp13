@@ -1041,7 +1041,7 @@
 			linked_structure = locate(/obj/structure/toolabnormality/wishwell) in world.contents
 			if(!linked_structure) //Somehow you got this ego on a non-facility map
 				ego_list += /obj/item/ego_weapon/mimicry
-				ego_list += /obj/item/ego_weapon/smile
+				ego_list += /obj/item/ego_weapon/mining/smile
 				ego_list += /obj/item/ego_weapon/da_capo
 				linked_structure = TRUE
 		if(!LAZYLEN(ego_list))
