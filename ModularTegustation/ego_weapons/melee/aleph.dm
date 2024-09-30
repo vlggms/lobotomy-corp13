@@ -290,7 +290,7 @@
 	qdel(I)
 	qdel(src)
 
-/obj/item/ego_weapon/smile
+/obj/item/ego_weapon/mining/smile
 	name = "smile"
 	desc = "The monstrous mouth opens wide to devour the target, its hunger insatiable."
 	special = "This weapon instantly kills targets below 10% health"	//To make it more unique, if it's too strong
@@ -301,6 +301,8 @@
 	attack_verb_continuous = list("slams", "attacks")
 	attack_verb_simple = list("slam", "attack")
 	hitsound = 'sound/weapons/ego/hammer.ogg'
+	usesound = 'sound/weapons/ego/hammer.ogg'
+	toolspeed = 0.12
 	attribute_requirements = list(
 							FORTITUDE_ATTRIBUTE = 80,
 							PRUDENCE_ATTRIBUTE = 100,
@@ -308,7 +310,7 @@
 							JUSTICE_ATTRIBUTE = 80
 							)
 
-/obj/item/ego_weapon/smile/attack(mob/living/target, mob/living/carbon/human/user)
+/obj/item/ego_weapon/mining/smile/attack(mob/living/target, mob/living/carbon/human/user)
 	if(!CanUseEgo(user))
 		return
 	. = ..()
@@ -316,10 +318,10 @@
 		target.gib()
 		user.adjustBruteLoss(-user.maxHealth * 0.15)	//Heal 15% HP. Moved here from the armor, because that's a nightmare to code
 
-/obj/item/ego_weapon/smile/get_clamped_volume()
+/obj/item/ego_weapon/mining/smile/get_clamped_volume()
 	return 50
 
-/obj/item/ego_weapon/smile/suicide_act(mob/living/carbon/user)
+/obj/item/ego_weapon/mining/smile/suicide_act(mob/living/carbon/user)
 	. = ..()
 	user.visible_message(span_suicide("[user] holds \the [src] in front of [user.p_them()], and begins to swing [user.p_them()]self with it! It looks like [user.p_theyre()] trying to commit suicide!"))
 	playsound(user, 'sound/weapons/ego/hammer.ogg', 50, TRUE, -1)

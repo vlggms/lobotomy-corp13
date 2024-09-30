@@ -50,7 +50,7 @@
 
 // Mountain of smiling bodies - Smile
 /datum/ego_datum/weapon/smile
-	item_path = /obj/item/ego_weapon/smile
+	item_path = /obj/item/ego_weapon/mining/smile
 	cost = 100
 
 /datum/ego_datum/armor/smile
