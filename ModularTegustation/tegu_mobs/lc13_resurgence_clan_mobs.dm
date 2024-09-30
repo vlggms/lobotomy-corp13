@@ -41,6 +41,7 @@
 
 	if (charge < max_charge)
 		charge += 1
+		new /obj/effect/temp_visual/healing/charge(get_turf(src))
 		ChargeUpdated()
 
 /mob/living/simple_animal/hostile/clan/proc/ChargeUpdated()

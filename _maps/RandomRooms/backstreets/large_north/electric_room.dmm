@@ -12,13 +12,14 @@
 /turf/open/floor/carpet/cyan,
 /area/city/backstreets_room)
 "bx" = (
-/mob/living/simple_animal/hostile/sweeper{
-	health = 0
-	},
 /obj/machinery/light/dim{
 	dir = 4
 	},
 /obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/gibspawner/human/bodypartless,
+/obj/item/food/meat/slab/sweeper,
+/obj/item/food/meat/slab/sweeper,
+/obj/item/food/meat/slab/sweeper,
 /turf/open/floor/facility/dark,
 /area/city/backstreets_room)
 "cm" = (
@@ -92,9 +93,6 @@
 "jB" = (
 /obj/machinery/light/dim,
 /obj/structure/window/reinforced/spawner/west,
-/mob/living/simple_animal/hostile/sweeper{
-	health = 0
-	},
 /turf/open/floor/facility/dark,
 /area/city/backstreets_room)
 "kb" = (
@@ -263,6 +261,9 @@
 "EH" = (
 /mob/living/simple_animal/npc/electic,
 /obj/effect/decal/cleanable/dirt/dust,
+/obj/item/flashlight/lantern{
+	on = 1
+	},
 /turf/open/floor/carpet/cyan,
 /area/city/backstreets_room)
 "EO" = (
@@ -280,9 +281,6 @@
 /turf/closed/indestructible/reinforced,
 /area/city/backstreets_room)
 "Kl" = (
-/mob/living/simple_animal/hostile/sweeper{
-	health = 0
-	},
 /obj/structure/table/abductor{
 	name = "strange table"
 	},
@@ -306,10 +304,11 @@
 /turf/open/floor/carpet/cyan,
 /area/city/backstreets_room)
 "Oe" = (
-/mob/living/simple_animal/hostile/sweeper{
-	health = 0
-	},
 /obj/effect/decal/cleanable/blood,
+/obj/effect/gibspawner/human/bodypartless,
+/obj/item/food/meat/slab/sweeper,
+/obj/item/food/meat/slab/sweeper,
+/obj/item/food/meat/slab/sweeper,
 /turf/open/floor/facility/dark,
 /area/city/backstreets_room)
 "OD" = (
@@ -347,9 +346,6 @@
 /area/city/backstreets_room)
 "RE" = (
 /obj/effect/decal/cleanable/dirt/dust,
-/mob/living/simple_animal/hostile/sweeper{
-	health = 0
-	},
 /turf/open/floor/facility/dark,
 /area/city/backstreets_room)
 "RN" = (
@@ -390,9 +386,10 @@
 /turf/open/floor/carpet/cyan,
 /area/city/backstreets_room)
 "Vb" = (
-/mob/living/simple_animal/hostile/sweeper{
-	health = 0
-	},
+/obj/effect/gibspawner/human/bodypartless,
+/obj/item/food/meat/slab/sweeper,
+/obj/item/food/meat/slab/sweeper,
+/obj/item/food/meat/slab/sweeper,
 /turf/open/floor/carpet/cyan,
 /area/city/backstreets_room)
 "Wj" = (
@@ -429,9 +426,6 @@
 /area/city/backstreets_room)
 "Yl" = (
 /obj/effect/decal/cleanable/cobweb,
-/mob/living/simple_animal/hostile/sweeper{
-	health = 0
-	},
 /turf/open/floor/facility/dark,
 /area/city/backstreets_room)
 "YR" = (

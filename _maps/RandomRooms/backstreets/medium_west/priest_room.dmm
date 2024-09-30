@@ -219,6 +219,12 @@
 /obj/structure/sign/departments/holy,
 /turf/closed/indestructible/reinforced,
 /area/city/backstreets_room)
+"X" = (
+/obj/item/flashlight/lantern{
+	on = 1
+	},
+/turf/open/floor/carpet/cyan,
+/area/city/backstreets_room)
 "Y" = (
 /obj/structure/chair/pew/left{
 	dir = 1
@@ -255,7 +261,7 @@ a
 "}
 (3,1,1) = {"
 a
-p
+A
 G
 d
 Y
@@ -267,7 +273,7 @@ a
 "}
 (4,1,1) = {"
 a
-A
+X
 V
 x
 D
