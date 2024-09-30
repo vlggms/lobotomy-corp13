@@ -24,3 +24,8 @@
 	name = "Robot - Bossroom"
 	room_id = "robotboss"
 	mappath = "_maps/RandomRooms/backstreets/bossroom/robot.dmm"
+
+/datum/map_template/random_room/backstreets/bossroom/clan_stronghold
+	name = "Clan - Bossroom"
+	room_id = "clan_stronghold"
+	mappath = "_maps/RandomRooms/backstreets/bossroom/clan_stronghold.dmm"

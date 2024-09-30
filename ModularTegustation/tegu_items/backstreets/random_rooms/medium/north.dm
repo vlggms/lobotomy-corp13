@@ -31,7 +31,7 @@
 	name = "Hana Office - Medium North"
 	room_id = "hana_office_mn"
 	mappath = "_maps/RandomRooms/backstreets/medium_north/hana_office_mn.dmm"
-  
+
 /datum/map_template/random_room/backstreets/medium_north/rage_cage
     name = "Rage Cage - Medium North"
     room_id = "rage_cage"
@@ -41,7 +41,10 @@
     name = "Rat - Medium North A"
     room_id = "rat_mna"
     mappath = "_maps/RandomRooms/backstreets/medium_north/rat_mna.dmm"
-    
 
+/datum/map_template/random_room/backstreets/medium_north/clan_outskirts
+    name = "Clan - Medium North A"
+    room_id = "clan_outskirts"
+    mappath = "_maps/RandomRooms/backstreets/medium_north/clan_outskirts.dmm"
 
 

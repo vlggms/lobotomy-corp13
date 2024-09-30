@@ -50,6 +50,7 @@
 	room_id = "lab_ln"
 	mappath = "_maps/RandomRooms/backstreets/large_north/lab_ln.dmm"
 
-
-
-
+/datum/map_template/random_room/backstreets/medium_south/electric_room
+    name = "Electric - Medium South"
+    room_id = "electric_room"
+    mappath = "_maps/RandomRooms/backstreets/large_north/electric_room.dmm"

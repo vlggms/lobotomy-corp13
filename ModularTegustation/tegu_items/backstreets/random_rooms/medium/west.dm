@@ -40,3 +40,8 @@
 	name = "LCorp Office - Medium West"
 	room_id = "lcorp_office_me"
 	mappath = "_maps/RandomRooms/backstreets/medium_west/lcorp_office.dmm"
+
+/datum/map_template/random_room/backstreets/medium_west/clan_cages
+	name = "Clan - Medium West"
+	room_id = "clan_cages"
+	mappath = "_maps/RandomRooms/backstreets/medium_west/clan_cages.dmm"
