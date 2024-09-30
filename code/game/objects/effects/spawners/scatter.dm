@@ -7,6 +7,12 @@
 	///This weighted list acts as the loot table for the spawner
 	var/list/loot_table
 
+/obj/effect/spawner/scatter/New(loc, spawns, range)
+	if(max_spawns || radius)
+		max_spawns = spawns
+		radius = range
+	..()
+
 /obj/effect/spawner/scatter/Initialize()
 	..()
 	if(!length(loot_table))

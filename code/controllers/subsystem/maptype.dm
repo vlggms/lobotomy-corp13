@@ -30,13 +30,14 @@ SUBSYSTEM_DEF(maptype)
 	var/list/spacemaps = list("skeld")
 
 	//This is for maps where crafting is enabled.
-	var/list/craftingmaps = list("skeld", "limbus_labs")
+	var/list/craftingmaps = list("skeld", "limbus_labs", "enkephalin_rush")
 
 	//Maps that give no fear. Everyone cannot work as is fear immune.
 	var/list/nofear = list("limbus_labs")
 
 	//What departments are we looking at
 	var/list/departments = list("Command","Security","Service")
+
 
 
 /datum/controller/subsystem/maptype/Initialize()
@@ -77,3 +78,6 @@ SUBSYSTEM_DEF(maptype)
 					GLOB.rcorp_objective = "payload_rcorp"
 				if(5)
 					GLOB.rcorp_objective = "payload_abno"
+		if("enkephalin_rush")
+			SSabnormality_queue.can_fire = FALSE
+			SSabnormality_queue.next_abno_spawn_time = INFINITY
