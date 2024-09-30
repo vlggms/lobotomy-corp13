@@ -1,0 +1,99 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"a" = (
+/obj/docking_port/mobile{
+	name = enkephalin rush elevator;
+	id = "enkephalin_rush_elevator";
+	port_direction = 2;
+	dwidth = 2;
+	height = 4;
+	width = 4
+	},
+/obj/machinery/door/airlock/public/glass{
+	normalspeed = 0
+	},
+/turf/open/floor/pod/light,
+/area/shuttle/mining)
+"c" = (
+/obj/structure/chair{
+	dir = 8
+	},
+/turf/open/floor/pod,
+/area/shuttle/mining)
+"g" = (
+/obj/machinery/door/airlock/public/glass{
+	normalspeed = 0
+	},
+/turf/open/floor/pod/light,
+/area/shuttle/mining)
+"i" = (
+/obj/structure/chair{
+	dir = 8
+	},
+/obj/item/shard,
+/turf/open/floor/pod,
+/area/shuttle/mining)
+"v" = (
+/obj/item/shard,
+/turf/open/floor/pod,
+/area/shuttle/mining)
+"w" = (
+/turf/closed/wall/mineral/plastitanium/nodiagonal,
+/area/shuttle/mining)
+"C" = (
+/turf/closed/wall/mineral/plastitanium,
+/area/shuttle/mining)
+"E" = (
+/obj/machinery/computer/shuttle/mining{
+	name = "elevator console";
+	shuttleId = "enkephalin_rush_elevator";
+	possible_destinations = "enkephalinrush_floor1;enkephalinrush_floor2";
+	dir = 4
+	},
+/obj/machinery/light/broken{
+	dir = 8
+	},
+/turf/open/floor/pod,
+/area/shuttle/mining)
+"F" = (
+/turf/open/floor/pod,
+/area/shuttle/mining)
+"U" = (
+/obj/item/shard,
+/turf/open/floor/pod/light,
+/area/shuttle/mining)
+
+(1,1,1) = {"
+w
+C
+C
+C
+w
+"}
+(2,1,1) = {"
+C
+v
+E
+F
+C
+"}
+(3,1,1) = {"
+g
+v
+U
+F
+a
+"}
+(4,1,1) = {"
+C
+i
+c
+i
+C
+"}
+(5,1,1) = {"
+w
+C
+C
+C
+w
+"}
