@@ -1347,7 +1347,7 @@
 							PRUDENCE_ATTRIBUTE = 80
 							)
 
-/obj/item/ego_weapon/rimeshank
+/obj/item/ego_weapon/mining/rimeshank
 	name = "rimeshank"
 	desc = "Stay frozen... And there will be no pain."
 	special = "This weapon can be used to perform a jump attack after a short wind-up."
@@ -1358,6 +1358,7 @@
 	attack_verb_continuous = list("slams", "attacks")
 	attack_verb_simple = list("slam", "attack")
 	hitsound = 'sound/abnormalities/babayaga/attack.ogg'
+	toolspeed = 0.3
 	attribute_requirements = list(
 							FORTITUDE_ATTRIBUTE = 80
 							)
@@ -1367,20 +1368,20 @@
 	var/dash_range = 10
 	var/can_attack = TRUE
 
-/obj/item/ego_weapon/rimeshank/get_clamped_volume()
+/obj/item/ego_weapon/mining/rimeshank/get_clamped_volume()
 	return 30
 
-/obj/item/ego_weapon/rimeshank/attack(mob/living/target, mob/living/user)
+/obj/item/ego_weapon/mining/rimeshank/attack(mob/living/target, mob/living/user)
 	if(!can_attack)
 		return
 	..()
 	can_attack = FALSE
 	addtimer(CALLBACK(src, PROC_REF(JumpReset)), 20)
 
-/obj/item/ego_weapon/rimeshank/proc/JumpReset()
+/obj/item/ego_weapon/mining/rimeshank/proc/JumpReset()
 	can_attack = TRUE
 
-/obj/item/ego_weapon/rimeshank/afterattack(atom/A, mob/living/user, proximity_flag, params)
+/obj/item/ego_weapon/mining/rimeshank/afterattack(atom/A, mob/living/user, proximity_flag, params)
 	if(!CanUseEgo(user) || !can_attack)
 		return
 	if(!isliving(A))
@@ -1411,7 +1412,7 @@
 		animate(user, alpha = 255,pixel_x = 0, pixel_z = -16, time = 0.1 SECONDS)
 		user.pixel_z = 0
 
-/obj/item/ego_weapon/rimeshank/proc/JumpAttack(atom/A, mob/living/user, proximity_flag, params)
+/obj/item/ego_weapon/mining/rimeshank/proc/JumpAttack(atom/A, mob/living/user, proximity_flag, params)
 	force = 25
 	A.attackby(src,user)
 	force = initial(force)

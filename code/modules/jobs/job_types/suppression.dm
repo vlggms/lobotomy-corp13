@@ -18,6 +18,7 @@
 	allow_bureaucratic_error = FALSE
 	departments = DEPARTMENT_SECURITY
 
+	mapexclude = list("enkephalin_rush")
 	job_important = "You are an L-Corp Emergency Response Agent. Your job is to suppress Abnormalities. You cannot work. Use :h to talk on your departmental radio."
 	job_abbreviation = "ERA"
 
@@ -103,7 +104,7 @@
 	exp_requirements = 6000
 	exp_type = EXP_TYPE_CREW
 	exp_type_department = EXP_TYPE_SECURITY
-	mapexclude = list("wonderlabs", "mini")
+	mapexclude = list("wonderlabs", "mini", "enkephalin_rush")
 	job_important = "You are the Disciplinary Officer. Lead the Emergency Response Agents and other Disciplinary staff into combat."
 
 	job_abbreviation = "DO"
