@@ -112,7 +112,7 @@
 	. = ..()
 	if(!breaching)
 		return
-	if(summon_count > 15)
+	if(summon_count > 10)
 		qdel(src)
 		return
 	if((meltdown_cooldown < world.time) && !(status_flags & GODMODE))

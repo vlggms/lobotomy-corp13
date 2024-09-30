@@ -1,0 +1,103 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"a" = (
+/obj/docking_port/mobile{
+	id = "enkephalin_rush";
+	port_direction = 2;
+	dwidth = 2;
+	height = 4;
+	width = 4
+	},
+/obj/machinery/door/airlock/public/glass{
+	normalspeed = 0
+	},
+/turf/open/floor/pod/light,
+/area/shuttle/mining)
+"c" = (
+/obj/structure/chair{
+	dir = 8
+	},
+/turf/open/floor/pod,
+/area/shuttle/mining)
+"e" = (
+/obj/effect/decal/cleanable/glass,
+/obj/effect/decal/cleanable/generic,
+/turf/open/floor/pod,
+/area/shuttle/mining)
+"i" = (
+/obj/structure/chair{
+	dir = 8
+	},
+/obj/effect/decal/cleanable/vomit,
+/turf/open/floor/pod,
+/area/shuttle/mining)
+"v" = (
+/obj/effect/decal/cleanable/glass,
+/obj/effect/decal/cleanable/generic,
+/obj/effect/decal/cleanable/blood,
+/obj/effect/mob_spawn/human/agent,
+/turf/open/floor/pod,
+/area/shuttle/mining)
+"w" = (
+/turf/closed/wall/mineral/plastitanium/nodiagonal,
+/area/shuttle/mining)
+"C" = (
+/turf/closed/wall/mineral/plastitanium,
+/area/shuttle/mining)
+"E" = (
+/obj/machinery/light/broken{
+	dir = 8
+	},
+/obj/machinery/computer/shuttle/mining{
+	name = "elevator Console";
+	possible_destinations = "ER1;ER2";
+	resistance_flags = 115;
+	shuttleId = "enkephalin_rush";
+	dir = 4
+	},
+/obj/effect/decal/cleanable/glass,
+/obj/effect/decal/cleanable/generic,
+/turf/open/floor/pod,
+/area/shuttle/mining)
+"F" = (
+/turf/open/floor/pod,
+/area/shuttle/mining)
+"U" = (
+/obj/effect/decal/cleanable/glass,
+/turf/open/floor/pod/light,
+/area/shuttle/mining)
+
+(1,1,1) = {"
+w
+C
+C
+C
+w
+"}
+(2,1,1) = {"
+C
+v
+E
+e
+C
+"}
+(3,1,1) = {"
+C
+F
+U
+e
+a
+"}
+(4,1,1) = {"
+C
+i
+c
+c
+C
+"}
+(5,1,1) = {"
+w
+C
+C
+C
+w
+"}
