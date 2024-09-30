@@ -105,6 +105,8 @@
 	attack_verb_continuous = list("smashes", "bludgeons", "crushes")
 	attack_verb_simple = list("smash", "bludgeon", "crush")
 	hitsound = 'sound/weapons/fixer/generic/club3.ogg'
+	usesound = 'sound/weapons/fixer/generic/club3.ogg'
+	tool_behaviour = TOOL_MINING
 
 /obj/item/ego_weapon/mini/blossom
 	name = "cherry blossoms"

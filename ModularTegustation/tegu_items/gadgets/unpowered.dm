@@ -419,6 +419,7 @@
 	attack_verb_simple = list("attack", "bash", "batter", "bludgeon", "whack")
 	toolspeed = 1
 	armor = list(MELEE = 0, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 0, RAD = 0, FIRE = 100, ACID = 100)
+	custom_price = 300
 	var/mode = RAK_HP_MODE
 
 /obj/item/safety_kit/attack_self(mob/user)

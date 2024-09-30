@@ -20,7 +20,7 @@
 
 	display_order = JOB_DISPLAY_ORDER_MEDICAL
 	alt_titles = list("Surgeon")
-	maptype = list("wonderlabs", "city", "fixers", "lcorp_city")
+	maptype = list("wonderlabs", "city", "fixers", "lcorp_city", "enkephalin_rush")
 	job_important = "You are the town doctor, visit your clinic to the east of town and start healing peopl who come in. You must charge money for your services."
 	job_notice = "You are forbidden from reviving lobotomy corp employees."
 
