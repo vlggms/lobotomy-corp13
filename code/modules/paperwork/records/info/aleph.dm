@@ -247,3 +247,16 @@
 		"As time goes on, this abnormality boosts your stats significantly.",
 		"Working on the abnormality will cause it to set once more, and cause all of it's boosts to subside.",
 		)
+
+// The Giant Atop the Beanstalk
+/*
+/obj/item/paper/fluff/info/aleph/giant
+	abno_type = /mob/living/simple_animal/hostile/abnormality/giant
+	abno_code = "F-01-216"
+	no_archive = TRUE
+	abno_info = list(
+		"The Giant Atop the Beanstalk was discovered as a subordinate entity of another.",
+		"When the work result was Bad, the Qliphoth Counter lowered.",
+		"When an employee whose Fortitude was lower than Level 4 completed the work, the Qliphoth Counter decreased.",
+		"When Agent Yumi completed work while wearing the gift of F-03-16, Qliphoth Counter lowered.",
+		)*/

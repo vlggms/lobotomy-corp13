@@ -1064,3 +1064,25 @@
 	icon = 'icons/obj/manager_bullets.dmi'
 	icon_state = "execution"
 	duration = 10
+
+/obj/effect/temp_visual/tile_broken
+	name = "damaged floor"
+	icon = 'icons/turf/floors.dmi'
+	icon_state = "platingdmg3"
+	layer = TURF_LAYER
+	density = FALSE
+	duration = 8 SECONDS
+
+/obj/effect/temp_visual/tile_broken/Initialize()
+	. = ..()
+	addtimer(CALLBACK(src, PROC_REF(FadeOut)), 6 SECONDS)
+
+/obj/effect/temp_visual/tile_broken/proc/FadeOut()
+	animate(src, alpha = 0, time = 2 SECONDS)
+
+/obj/effect/temp_visual/tile_broken/type_2
+	icon_state = "damaged5"
+
+/obj/effect/temp_visual/tile_broken/type_3
+	icon_state = "damaged3"
+	layer = ABOVE_NORMAL_TURF_LAYER

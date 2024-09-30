@@ -1591,3 +1591,76 @@
 		A.attackby(src,user)
 	playsound(src, 'sound/abnormalities/clownsmiling/jumpscare.ogg', 50, FALSE, 9)
 	to_chat(user, "<span class='warning'>You dash to [A]!")
+
+/obj/item/ego_weapon/bonecrusher
+	name = "bone crusher"
+	desc = "A heavy, dirty millstone attached to a chain. Though it looks unwieldy, it feels completely natural in your hands."
+	special = "This weapon has a ranged attack."
+	icon_state = "bone_crusher"
+	force = 90
+	damtype = RED_DAMAGE
+	attack_speed = 1.5
+	attack_verb_continuous = list("crushes", "cracks", "smacks")
+	attack_verb_simple = list("crush", "crack", "smack")
+	hitsound = 'sound/abnormalities/foresaken_murderer/regret_hori.ogg'
+	attribute_requirements = list(
+		FORTITUDE_ATTRIBUTE = 100,
+		PRUDENCE_ATTRIBUTE = 80,
+		TEMPERANCE_ATTRIBUTE = 80,
+		JUSTICE_ATTRIBUTE = 80,
+	)
+	var/pvp_enabled = FALSE
+	var/throw_cooldown_time = 10 SECONDS
+	var/throw_cooldown
+
+/obj/item/ego_weapon/bonecrusher/attack_self(mob/living/carbon/user)
+	if(!CanUseEgo(user))
+		return
+	if(!do_after(user, 7, src))
+		return
+	if(pvp_enabled)
+		pvp_enabled = FALSE
+		to_chat(user, span_danger("Your ranged attack will no longer target other humans."))
+		return
+	to_chat(user, span_danger("Your ranged attack will now target other humans."))
+	pvp_enabled = TRUE
+
+/obj/item/ego_weapon/bonecrusher/afterattack(atom/A, mob/living/user, proximity_flag, params)
+	..()
+	MillThrow(A, user)
+
+/obj/item/ego_weapon/bonecrusher/proc/MillThrow(target, mob/living/user)//Basically a player hello
+	if(throw_cooldown > world.time)
+		to_chat(user, span_danger("Ability under cooldown!"))
+		return
+	var/aoe = 150
+	var/userjust = (get_modified_attribute_level(user, JUSTICE_ATTRIBUTE))
+	var/justicemod = 1 + userjust / 100
+	aoe *= justicemod
+	aoe *= force_multiplier
+	var/turf/target_turf = get_turf(target)
+	for(var/i = 1 to 3)
+		target_turf = get_step(target, get_dir(get_turf(user), target_turf))
+	var/throw_delay = (get_dist(user, target_turf) <= 2) ? (0.5 SECONDS) : (2 SECONDS)
+	if(!do_after(user, throw_delay, src))
+		return
+	throw_cooldown = world.time + throw_cooldown_time
+	var/broken = FALSE
+	var/been_hit = list()
+	for(var/turf/T in getline(get_turf(user), target_turf))
+		if(T.density)
+			if(broken)
+				break
+			broken = TRUE
+		for(var/turf/TF in range(1, T))
+			new /obj/effect/temp_visual/smash_effect(TF)
+		for(var/mob/living/L in hearers(1, T))
+			if(L in been_hit)
+				continue
+			if(L == user)
+				continue
+			if(ishuman(L) && ! pvp_enabled)
+				continue
+			L.apply_damage(aoe, RED_DAMAGE, null, L.run_armor_check(null, RED_DAMAGE), spread_damage = TRUE)
+			been_hit += L
+	playsound(get_turf(user), 'sound/abnormalities/foresaken_murderer/regret_vert.ogg', 75, 0, 3)

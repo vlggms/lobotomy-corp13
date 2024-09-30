@@ -194,6 +194,10 @@
 	cost = 100//appears in wishing well
 
 //The Giant Atop the Beanstalk - Giant
+/datum/ego_datum/weapon/bonecrusher
+	item_path = /obj/item/ego_weapon/bonecrusher
+	cost = 100
+
 /datum/ego_datum/armor/giant
 	item_path = /obj/item/clothing/suit/armor/ego_gear/aleph/giant
 	cost = 100
