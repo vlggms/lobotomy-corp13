@@ -101,7 +101,7 @@
 
 // Forsaken Murderer - Regret
 /datum/ego_datum/weapon/regret
-	item_path = /obj/item/ego_weapon/regret
+	item_path = /obj/item/ego_weapon/mining/regret
 	cost = 20
 
 /datum/ego_datum/armor/regret
