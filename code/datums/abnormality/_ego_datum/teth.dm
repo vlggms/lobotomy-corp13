@@ -339,3 +339,12 @@
 /datum/ego_datum/armor/luckdraw
 	item_path = /obj/item/clothing/suit/armor/ego_gear/teth/luckdraw
 	cost = 20
+
+//Forsaken Employee - Denial
+/datum/ego_datum/weapon/denial
+	item_path = /obj/item/ego_weapon/denial
+	cost = 20
+
+/datum/ego_datum/armor/denial
+	item_path = /obj/item/clothing/suit/armor/ego_gear/teth/denial
+	cost = 20
