@@ -53,7 +53,6 @@
 	playsound(get_turf(src), 'sound/voice/human/malescream_6.ogg', 15, 3, 3)
 	SSlobotomy_corp.AdjustGoalBoxes(-25)
 	var/list/possible_areas = list()
-	for(var/area/A in world)
 	if(LAZYLEN(blackout_list) < 3)
 		for(var/area/A in world)
 			if(istype(A, /area/facility_hallway) || istype(A, /area/department_main))
