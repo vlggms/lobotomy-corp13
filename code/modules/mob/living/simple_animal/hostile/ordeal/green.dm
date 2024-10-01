@@ -139,6 +139,11 @@
 	var/list/spawned_mobs = list()
 	var/producing = FALSE
 
+/mob/living/simple_animal/hostile/ordeal/green_dusk/Initialize(mapload)
+	. = ..()
+	if(SSmaptype.maptype in SSmaptype.citymaps)
+		guaranteed_butcher_results += list(/obj/item/head_trophy/green_datachip = 1)
+
 /mob/living/simple_animal/hostile/ordeal/green_dusk/Initialize()
 	. = ..()
 	update_icon()

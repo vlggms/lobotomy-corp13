@@ -15,11 +15,15 @@
 		/obj/item/food/meat/slab/worm,
 		/obj/item/food/meat/slab/robot,
 		/obj/item/food/meat/slab/human/mutant/moth,
+		/obj/item/rawpe,
 	)
 	var/list/level_2 = list(
 		/obj/item/clothing/suit/armor/ego_gear/city,
 		/obj/item/ego_weapon/city,
 		/obj/item/gun/ego_gun,
+		/obj/item/head_trophy,
+		/obj/item/tape/resurgence,
+		/obj/item/refinedpe,
 	)
 	var/list/level_3 = list(
 		/obj/item/raw_anomaly_core,

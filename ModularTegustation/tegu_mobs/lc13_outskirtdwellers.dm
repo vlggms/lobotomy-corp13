@@ -793,6 +793,11 @@ Mobs that mostly focus on dealing RED damage, they are all a bit more frail than
 	var/lovewhip_damage = 100
 	var/damage_taken
 
+/mob/living/simple_animal/hostile/lovetown/abomination/Initialize(mapload)
+	. = ..()
+	if(SSmaptype.maptype in SSmaptype.citymaps)
+		guaranteed_butcher_results += list(/obj/item/head_trophy/flesh_head = 1)
+
 /mob/living/simple_animal/hostile/lovetown/abomination/proc/StageTransition()
 	icon_living = "lovetown_abomination2"
 	if(!countering && can_act)

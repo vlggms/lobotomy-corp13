@@ -4099,6 +4099,7 @@
 #include "ModularTegustation\tegu_items\associations\cityspawners.dm"
 #include "ModularTegustation\tegu_items\associations\fixer.dm"
 #include "ModularTegustation\tegu_items\associations\fixeroffice.dm"
+#include "ModularTegustation\tegu_items\associations\head_trophies.dm"
 #include "ModularTegustation\tegu_items\associations\items.dm"
 #include "ModularTegustation\tegu_items\associations\machines.dm"
 #include "ModularTegustation\tegu_items\associations\syndicateoffice.dm"
