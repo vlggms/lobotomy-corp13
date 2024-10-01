@@ -293,6 +293,17 @@
 	charge = 10
 	max_charge = 20
 	clan_charge_cooldown = 1 SECONDS
+	ranged = TRUE
+	retreat_distance = 1
+	minimum_distance = 2
+	var/healing_range = 6
+	var/searching_range = 10
+	var/datum/beam/current_beam
+
+/mob/living/simple_animal/hostile/clan/drone/Initialize()
+	. = ..()
+	addtimer(CALLBACK(src, .proc/update_beam), 5 SECONDS, TIMER_LOOP)
+
 //Current Goals: This mob will be able to follow mobs that share a faction with it. (Sweeper Leader Code)
 //Then, If there is a mob within 5 sqrs of it who has less then full health, attach a beam to them and start healing them 25 HP per second.
 //If they are a part of the Clan, Also give them charge.
@@ -321,23 +332,63 @@
 	var/mutable_appearance/colored_overlay = mutable_appearance(icon, charge_icon, chargelayer)
 	add_overlay(colored_overlay)
 
-//Beams from Priest Code
-// /mob/living/simple_animal/hostile/clan/drone/proc/create_beam(mob/living/target)
-// 	var/datum/beam/B = Beam(target, icon_state="medbeam", time=INFINITY, maxdistance=lifelink_range, beam_type=/obj/effect/ebeam/medical)
-// 	current_beams[target] = B
-// /mob/living/simple_animal/hostile/clan/drone/proc/remove_beam(mob/living/target)
-// 	var/datum/beam/B = current_beams[target]
-// 	if(B)
-// 		B.End()
-// 		current_beams -= target
+/mob/living/simple_animal/hostile/clan/drone/Life()
+	. = ..()
+	// check if can_see and cut the beam
+	if (!target || !can_see(src, target, healing_range) || (current_beam && length(current_beam.elements) == 0))
+		remove_beam()
+	// check if we should heal or overheal
+	try_to_heal()
 
-// //Following low HP target from Priest Code
-// /mob/living/simple_animal/hostile/clan/drone/proc/follow_lowest_hp_target()
-// 	if(lifelinked_creatures.len > 0)
-// 		var/mob/living/lowest_hp_target = lifelinked_creatures[1]
-// 		for(var/mob/living/L in lifelinked_creatures)
-// 			if(L.health < lowest_hp_target.health)
-// 				lowest_hp_target = L
+/mob/living/simple_animal/hostile/clan/drone/AttackingTarget()
+	return FALSE
 
-// 		// Use the existing AI to move towards the target
-// 		target = lowest_hp_target
+/mob/living/simple_animal/hostile/clan/drone/OpenFire()
+	return FALSE
+
+/mob/living/simple_animal/hostile/clan/drone/CanAttack(atom/the_target)
+	return faction_check_mob(the_target, FALSE)
+
+/mob/living/simple_animal/hostile/clan/drone/proc/try_to_heal()
+	if (target && can_see(src, target, healing_range) && !current_beam)
+		create_beam(target)
+
+/mob/living/simple_animal/hostile/clan/drone/proc/update_beam()
+	var/mob/living/potential_target
+	var/potential_health_missing = -10000
+	for(var/mob/living/L in view(searching_range, src))
+		if(L != src && faction_check_mob(L, FALSE))
+			var/missing = (L.maxHealth - L.health)/L.maxHealth
+			if (missing > potential_health_missing)
+				potential_target = L
+				potential_health_missing = missing
+
+	if (potential_target)
+		say("Potential target " + potential_target.name )
+	else
+		say("No Potential target")
+
+	if (target)
+		say("target " + target.name )
+	else
+		say("no target ")
+
+	if (potential_target && target && potential_target != target)
+		remove_beam()
+		target = potential_target
+		//current_follow_target = lowest_hp_target
+		// Use the existing AI to move towards the target
+		if(ai_controller)
+			ai_controller.current_movement_target = target
+
+
+// Beams from Priest Code
+/mob/living/simple_animal/hostile/clan/drone/proc/create_beam(mob/living/target)
+	current_beam = Beam(target, icon_state="medbeam", time=INFINITY, maxdistance=healing_range * 2, beam_type=/obj/effect/ebeam/medical)
+	say("Creating beam")
+
+/mob/living/simple_animal/hostile/clan/drone/proc/remove_beam()
+	if(current_beam)
+		say("Removing beam")
+		qdel(current_beam)
+		current_beam = null
