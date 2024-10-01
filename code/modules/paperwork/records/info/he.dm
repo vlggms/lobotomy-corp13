@@ -5,7 +5,7 @@
 	abno_info = list(
 		"An employee died of asphyxiation after working with Happy Teddy Bear multiple times in a row unless the employee has Fortitude Level 3 or higher.",
 		"An employee was found dead in Happy Teddy Bear’s arms with a broken neck. It is believed that visiting Happy Teddy Bear’s Containment Unit several times in a row is what causes these unfortunate incidents. Please refer to the Old Letter document for more information.",
-		"If the employee has Fortitude level 3 or higher, the employee will eventually break free if they stay conscuious",
+		"If the employee has Fortitude level 4 or higher, the employee will eventually break free if they stay conscuious",
 	)
 
 // Reddit

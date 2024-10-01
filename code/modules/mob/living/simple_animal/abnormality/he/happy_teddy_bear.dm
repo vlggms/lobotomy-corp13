@@ -67,7 +67,7 @@
 	var/last_pinged = 0
 	var/time_strangled = 0
 	while(user.stat != DEAD)
-		if(time_strangled >= 4 && get_attribute_level(user, FORTITUDE_ATTRIBUTE) >= 60)
+		if(time_strangled >= 4 && get_attribute_level(user, FORTITUDE_ATTRIBUTE) >= 80)
 			if(user.stat != UNCONSCIOUS) //Wouldn't make sense if they break free while passed out
 				break_check = TRUE
 				unbuckle_mob(user, force=TRUE)
