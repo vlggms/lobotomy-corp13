@@ -1106,7 +1106,7 @@
 	if(!can_have_status())
 		qdel(src)
 	to_chat(owner, "<span class='warning'>The flame consumes you!!</span>")
-	owner.playsound_local(owner, 'sound/effects/book_burn.ogg', 50, TRUE)
+	owner.playsound_local(owner, 'sound/effects/burn.ogg', 50, TRUE)
 	Check_Resist(owner)
 	if(ishuman(owner))
 		owner.adjustBruteLoss(max(0, stacks - burn_res))

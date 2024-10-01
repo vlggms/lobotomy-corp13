@@ -182,7 +182,7 @@
 	if(stacks <= 10)
 		return
 	owner.deal_damage((stacks / 5), RED_DAMAGE)
-	owner.playsound_local(owner, 'sound/effects/book_burn.ogg', 25, TRUE)
+	owner.playsound_local(owner, 'sound/effects/burn.ogg', 25, TRUE)
 
 /datum/status_effect/stacking/fanhot/on_remove()
 	. = ..()
