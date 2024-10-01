@@ -14,12 +14,18 @@
 	template_height = 109
 	room_type = "backstreets_template"
 
-/datum/map_template/random_room/backstreet_template/lcorp
-	name = "L-Corp Template"
-	room_id = "template_lcorp"
-	mappath = "_maps/RandomRooms/backstreetlayout/lcorp.dmm"
+// /datum/map_template/random_room/backstreet_template/lcorp
+// 	name = "L-Corp Template"
+// 	room_id = "template_lcorp"
+// 	mappath = "_maps/RandomRooms/backstreetlayout/lcorp.dmm"
 
-/datum/map_template/random_room/backstreet_template/large
-	name = "Large Template"
-	room_id = "template_large"
-	mappath = "_maps/RandomRooms/backstreetlayout/dungeon_backstreets.dmm"
+// /datum/map_template/random_room/backstreet_template/large
+// 	name = "Large Template"
+// 	room_id = "template_large"
+// 	mappath = "_maps/RandomRooms/backstreetlayout/dungeon_backstreets.dmm"
+
+tunnels_backstreets
+/datum/map_template/random_room/backstreet_template/tunnels
+	name = "Tunnels Template"
+	room_id = "tunnels_backstreets"
+	mappath = "_maps/RandomRooms/backstreetlayout/tunnels_backstreets.dmm"
