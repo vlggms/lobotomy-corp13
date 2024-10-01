@@ -6,14 +6,14 @@
 	faction = "Station"
 	supervisors = "hana association"
 	selection_color = "#e09660"
-	total_positions = 1
-	spawn_positions = 1
-	display_order = JOB_DISPLAY_ORDER_ASSOCIATION
+	total_positions = 0
+	spawn_positions = 0
+	display_order = JOB_DISPLAY_ORDER_FIXER
 	trusted_only = TRUE
 	access = list(ACCESS_NETWORK)
 	minimal_access = list(ACCESS_NETWORK)
 	paycheck = 700
-	maptype = list("fixers")
+	maptype = list("fixers", "city")
 
 
 	//They actually need this for their weapons
