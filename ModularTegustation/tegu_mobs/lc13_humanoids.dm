@@ -560,20 +560,6 @@ Skittish, they prefer to move in groups and will run away if the enemies are in 
 						L.apply_damage(dash_damage, RED_DAMAGE, null, L.run_armor_check(null, RED_DAMAGE), spread_damage = TRUE)
 						LAZYADD(hit_mob, L)
 
-/mob/living/simple_animal/hostile/humanoid/fixer/flame/proc/ClearSky(turf/T)
-	if(!T || isclosedturf(T) || T == loc)
-		return FALSE
-	if(locate(/obj/structure/window) in T.contents)
-		return FALSE
-	if(locate(/obj/structure/table) in T.contents)
-		return FALSE
-	if(locate(/obj/structure/railing) in T.contents)
-		return FALSE
-	for(var/obj/machinery/door/D in T.contents)
-		if(D.density)
-			return FALSE
-	return TRUE
-
 
 /mob/living/simple_animal/hostile/humanoid/fixer/flame/OpenFire(atom/A)
 	if (!can_act)
