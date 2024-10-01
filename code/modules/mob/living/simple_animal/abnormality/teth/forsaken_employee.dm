@@ -23,6 +23,8 @@
 	gift_type =  /datum/ego_gifts/denial
 	abnormality_origin = ABNORMALITY_ORIGIN_LIMBUS
 
+	var/list/blackout_list = list()
+
 	//Observation is mostly mirror dungeon but with some changed phrasing
 	observation_prompt = "The sound of plastic crashing is accompanied by the sloshing of a liquid. <br>\
 		It looks like something that used to be a fellow employee. <br>\
@@ -52,20 +54,21 @@
 	SSlobotomy_corp.AdjustGoalBoxes(-25)
 	var/list/possible_areas = list()
 	for(var/area/A in world)
-		var/lightcheck = FALSE
-		if(istype(A, /area/facility_hallway) || istype(A, /area/department_main))
-			if(A.z == z)
-				for(var/obj/machinery/light/O in A)
-					if(O.icon_state == "[O.base_state]")
-						lightcheck = TRUE
-				if(lightcheck == TRUE)
+	if(LAZYLEN(blackout_list) < 3)
+		for(var/area/A in world)
+			if(istype(A, /area/facility_hallway) || istype(A, /area/department_main))
+				if(A.z == z && A.lightswitch == TRUE)
 					possible_areas += A
-	if(length(possible_areas) != 0)
-		var/chosen_area = pick(possible_areas)
-		for(var/obj/machinery/light/O in chosen_area)
-			O.break_light_tube()
-			addtimer(CALLBACK(O, TYPE_PROC_REF(/obj/machinery/light, fix)), 10 MINUTES)
-	else
-		for(var/obj/machinery/light/O in /area/facility_hallway/manager) //I figured this would be a funny addition
-			O.break_light_tube()
-			addtimer(CALLBACK(O, TYPE_PROC_REF(/obj/machinery/light, fix)), 10 MINUTES)
+		if(length(possible_areas) != 0)
+			var/area/chosen_area = pick(possible_areas)
+			blackout_list += chosen_area
+			chosen_area.lightswitch = FALSE
+			chosen_area.update_icon()
+			chosen_area.power_change()
+			addtimer(CALLBACK(src, PROC_REF(TurnOn), chosen_area), 10 MINUTES)
+
+/mob/living/simple_animal/hostile/abnormality/forsaken_employee/proc/TurnOn(area/A)
+	A.lightswitch = TRUE
+	blackout_list -= A
+	A.update_icon()
+	A.power_change()
