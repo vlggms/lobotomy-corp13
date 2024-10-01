@@ -549,9 +549,9 @@
 	abno_info = list(
 		"When the work result was Neutral, the Qliphoth counter lowered at a moderate probability.",
 		"When the work result was Bad, the Qliphoth counter lowered.",
-		"When a certain amount of time passed, the abnormality \"activated\". Each activation increased the severity of the activation effects.",
+		"When a certain amount of abnormalities have arrived, the abnormality \"activated\". Each activation increased the severity of the activation effects.",
 		"When activated, the abnormality's maximum Qliphoth counter lowered, all work types became less effective, work damage increased, and the abnormality generally became more aggressive.",
-		"At 1 hour and 15 minutes the maximum Qliphoth counter reduced to 1 and the abnormality became extremely dangerous.")
+		"When the facility is full, the maximum Qliphoth counter reduced to 1 and the abnormality became extremely dangerous.")
 
 // Drifting Fox
 /obj/item/paper/fluff/info/he/drifting_fox
