@@ -90,3 +90,8 @@
 	name = "Records Officer"
 	jobtype = /datum/job/command/records
 	suit =  /obj/item/clothing/suit/armor/records
+
+	backpack_contents = list(
+		/obj/item/portacopier,
+		/obj/item/portablepredict,
+	)

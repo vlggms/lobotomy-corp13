@@ -27,6 +27,11 @@
 	var/work_bonus = 0
 	/// Stored reference to Extraction Officer Tool
 	var/obj/item/extraction/key/EOTool = null
+	/// Console Upgrades
+	var/list/mechanical_upgrades = list(
+		"abnochem" = 0,
+		"workrate" = 0,
+		)
 
 /obj/machinery/computer/abnormality/Initialize()
 	. = ..()
@@ -67,6 +72,14 @@
 			if(MELTDOWN_BLACK)
 				melt_text = " of Lunacy. Failure to clear the meltdown will cause another abnormality to breach"
 		. += span_warning("The containment unit is currently affected by a Qliphoth Meltdown[melt_text]. Time left: [meltdown_time].")
+	//Show what upgrades you have. I dont have visuals for the upgrades yet so for now just exsamine tell them.
+	. += span_info("This console is augmented with the following upgrades:")
+	var/upgrade_list = ""
+	for(var/i in mechanical_upgrades)
+		if(mechanical_upgrades[i] == 0)
+			continue
+		upgrade_list += "[i]|"
+	. += upgrade_list
 
 /obj/machinery/computer/abnormality/ui_interact(mob/user)
 	. = ..()
@@ -110,7 +123,7 @@
 		var/datum/suppression/information/I = GetCoreSuppression(/datum/suppression/information)
 		if(!tutorial && istype(I))
 			work_display = Gibberish(work_display, TRUE, I.gibberish_value)
-		if(HAS_TRAIT(user, TRAIT_WORK_KNOWLEDGE))
+		if(HAS_TRAIT(user, TRAIT_WORK_KNOWLEDGE) || mechanical_upgrades["workrate"])
 			dat += "<A href='byond://?src=[REF(src)];do_work=[wt]'>[work_display] \[[datum_reference.get_work_chance(wt, user)]%\]</A> <br>"
 		else
 			dat += "<A href='byond://?src=[REF(src)];do_work=[wt]'>[work_display]</A> <br>"
@@ -303,8 +316,7 @@
 		datum_reference.work_complete(user, work_type, pe, work_speed*datum_reference.max_boxes, was_melting, canceled)
 		if(recorded) //neither rabbit nor tutorial calls this
 			SSlobotomy_corp.WorkComplete(pe, (meltdown_time <= 0))
-	var/obj/item/chemical_extraction_attachment/attachment = locate() in src.contents
-	if(attachment)
+	if(mechanical_upgrades["abnochem"])
 		chem_charges += 1
 	else
 		chem_charges = min(chem_charges + 0.2, 10)
@@ -390,6 +402,14 @@
 		return TRUE
 	return FALSE
 
+//Install a work console upgrade
+/obj/machinery/computer/abnormality/proc/InstallUpgrade(obj/upgrade_tech, upgrade_slot = "")
+	if(!upgrade_tech)
+		return
+	if(!upgrade_slot)
+		return
+	upgrade_tech.forceMove(src)
+	mechanical_upgrades[upgrade_slot] = upgrade_tech
 
 //special console just for training rabbit
 /obj/machinery/computer/abnormality/training_rabbit
