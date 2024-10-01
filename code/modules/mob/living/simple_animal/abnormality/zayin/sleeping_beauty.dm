@@ -93,6 +93,7 @@
 /mob/living/simple_animal/hostile/abnormality/sleeping/post_buckle_mob(mob/living/M)
 	..()
 	icon_state = icon_active
+	M.set_resting(TRUE, silent = TRUE)
 	M.apply_status_effect(STATUS_EFFECT_RESTED)
 	animate(M, pixel_y = -6, time = 3)
 
@@ -139,17 +140,22 @@
 
 /atom/movable/screen/alert/status_effect/rested
 	name = "Well Rested"
-	desc = "You are slowly recovering HP and SP."
+	desc = "You are slowly recovering HP and SP. More effective when resting or sleeping."
 	icon = 'ModularTegustation/Teguicons/status_sprites.dmi'
 	icon_state = "rest"
 
 /datum/status_effect/rested/tick()
 	. = ..()
 	var/mob/living/carbon/human/status_holder = owner
-	if(prob(50))
-		return
-	status_holder.adjustBruteLoss(-1)
-	status_holder.adjustSanityLoss(-1)
+	var/heal_amount = 3
+	if(status_holder.stat == UNCONSCIOUS)
+		heal_amount = 10 // Heals you really fast if you're actually sleeping
+		duration += 10 // Does not tick down if you are asleep
+	else if(status_holder.resting) // If you are at least sitting it helps
+		heal_amount = 6
+		duration += 5
+	status_holder.adjustBruteLoss(-heal_amount)
+	status_holder.adjustSanityLoss(-heal_amount)
 
 //pink midnight code
 

@@ -54,7 +54,7 @@
 		\"...Yet why can't I remember her face?\" <br>\
 		As you're about to leave, you hear the old man croak out something. \"Who are you again?\""
 
-	var/buff_given
+	var/performed_work
 	var/datum/looping_sound/quietday_ambience/soundloop
 
 	var/list/war_story = list(
@@ -151,14 +151,14 @@
 /mob/living/simple_animal/hostile/abnormality/quiet_day/PostWorkEffect(mob/living/carbon/human/user, work_type, pe, work_time)
 	if(pe == 0)
 		return
-	buff_given = work_type
+	performed_work = work_type
 	TalkStart(user)
 
 /mob/living/simple_animal/hostile/abnormality/quiet_day/proc/TalkStart(mob/living/carbon/human/user)
 	flick("quiet_fadein", src)
 	icon_state = "quiet_ghost"
 	currently_talking = TRUE
-	switch(buff_given)
+	switch(performed_work)
 		if(ABNORMALITY_WORK_INSTINCT)
 			for(var/line in war_story)
 				say(line)
@@ -196,18 +196,24 @@
 
 /mob/living/simple_animal/hostile/abnormality/quiet_day/proc/TalkEnd(mob/living/carbon/human/user)
 	ResetIcon()
-	switch(buff_given)
+	var/given_status_effect = STATUS_EFFECT_DEMENTIA_RAMBLINGS
+	var/list/affected_list = list()
+	switch(performed_work)
 		if(ABNORMALITY_WORK_INSTINCT)
-			user.apply_status_effect(STATUS_EFFECT_WAR_STORY)
+			given_status_effect = STATUS_EFFECT_WAR_STORY
 
 		if(ABNORMALITY_WORK_INSIGHT)
-			user.apply_status_effect(STATUS_EFFECT_PARABLE)
+			given_status_effect = STATUS_EFFECT_PARABLE
 
 		if(ABNORMALITY_WORK_ATTACHMENT)
-			user.apply_status_effect(STATUS_EFFECT_WIFE_STORY)
+			given_status_effect = STATUS_EFFECT_WIFE_STORY
 
-		else
-			user.apply_status_effect(STATUS_EFFECT_DEMENTIA_RAMBLINGS)
+	if(user) // In theory the user can be added twice to the list, thankfully that doesn't matter.
+		affected_list += user
+	for(var/mob/living/sitter in buckled_mobs)
+		affected_list += sitter
+	for(var/mob/living/carbon/human/person in affected_list) // Buff the worker and anyone sitting in the bench
+		person.apply_status_effect(given_status_effect)
 
 /mob/living/simple_animal/hostile/abnormality/quiet_day/proc/ResetIcon()
 	flick("quiet_fadeout", src)
