@@ -47,7 +47,7 @@
 	ammo_type = /obj/item/ammo_casing/caseless/flammenwerfer
 	weapon_weight = WEAPON_HEAVY
 	spread = 50
-	fire_sound = 'sound/abnormalities/doomsdaycalendar/Effect_Burn.ogg'
+	fire_sound = 'sound/effects/burn.ogg'
 	autofire = 0.08 SECONDS
 	fire_sound_volume = 5
 
@@ -57,7 +57,7 @@
 	var/mob/living/carbon/human/H = user
 	if(do_after(H, 12, src))
 		to_chat(H,"<span class='warning'>You cover yourself in flames!</span>")
-		H.playsound_local(get_turf(H), 'sound/abnormalities/doomsdaycalendar/Effect_Burn.ogg', 100, 0)
+		H.playsound_local(get_turf(H), 'sound/effects/burn.ogg', 100, 0)
 		H.apply_damage(10, RED_DAMAGE, null, H.run_armor_check(null, RED_DAMAGE), spread_damage = TRUE)
 		H.adjust_fire_stacks(1)
 		H.IgniteMob()
