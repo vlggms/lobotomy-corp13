@@ -63,6 +63,8 @@
 	var/normal_speed = 3
 	var/max_attack_speed = 4
 	var/normal_attack_speed = 1
+	var/scout_speech_cooldown = 8 SECONDS
+	var/last_speech_update = 0
 
 /mob/living/simple_animal/hostile/clan/scout/ChargeUpdated()
 	move_to_delay = normal_speed - (normal_speed - max_speed) * charge / max_charge
@@ -84,7 +86,11 @@
 
 /mob/living/simple_animal/hostile/clan/scout/AttackingTarget()
 	. = ..()
-	if (charge > 0)
+	if (charge > 7 && last_speech_update < world.time - scout_speech_cooldown)
+		say("Co-mmen-cing Pr-otoco-l: Ra-pid Str-ik-es")
+		last_speech_update = world.time
+
+	if (charge > 1)
 		charge -= 2
 
 /mob/living/simple_animal/hostile/clan/scout/death(gibbed)
@@ -141,6 +147,7 @@
 	stunned = TRUE
 	density = FALSE
 	icon_state = "defender_locked_down"
+	say("Co-mmen-cing Pr-otoco-l: Lo-ckdo-wn")
 	// create tiles
 	for(var/turf/T in view(2, src))
 		var/obj/effect/defender_field/DF = new(T)
@@ -296,7 +303,7 @@
 	ranged = TRUE
 	retreat_distance = 1
 	minimum_distance = 2
-	var/overheal_threshold = 0.999
+	var/overheal_threshold = 0.2
 	var/heal_per_charge = 25
 	var/healing_range = 6
 	var/searching_range = 10
@@ -361,15 +368,16 @@
 				if (L.health / L.maxHealth < overheal_threshold)
 					var/missingHealth = L.maxHealth - L.health
 					var/neededCharge = round(missingHealth / heal_per_charge)
-					say("Missing health: " + num2text(missingHealth))
+					//say("Missing health: " + num2text(missingHealth))
 					if (charge > 0 && overheal_cooldown < world.time)
+						say("Co-mmen-cing Pr-otoco-l: E-mergency Re-pairs")
 						overheal_cooldown = world.time + overheal_cooldown_time
 						if (charge <= neededCharge)
-							say("all charge spent: " + num2text(charge))
+							//say("all charge spent: " + num2text(charge))
 							L.adjustBruteLoss(-1 * charge * heal_per_charge)
 							charge = 0
 						else
-							say("charge spent: " + num2text(neededCharge))
+							//say("charge spent: " + num2text(neededCharge))
 							L.adjustBruteLoss(-1 * missingHealth)
 							charge -= neededCharge
 						// say("Removing blue beam")
@@ -400,7 +408,7 @@
 
 /mob/living/simple_animal/hostile/clan/drone/proc/update_beam()
 	var/mob/living/potential_target
-	var/potential_health_missing = -10000
+	var/potential_health_missing = 10
 	for(var/mob/living/L in view(searching_range, src))
 		if(L != src && faction_check_mob(L, FALSE))
 			var/missing = (L.maxHealth - L.health)/L.maxHealth
@@ -431,7 +439,7 @@
 // Beams from Priest Code
 /mob/living/simple_animal/hostile/clan/drone/proc/create_beam(mob/living/target)
 	current_beam = Beam(target, icon_state="medbeam", time=INFINITY, maxdistance=healing_range * 2, beam_type=/obj/effect/ebeam/medical)
-	say("Creating blue beam")
+	//say("Creating blue beam")
 
 // /mob/living/simple_animal/hostile/clan/drone/proc/create_red_beam(mob/living/target)
 // 	current_beam = Beam(target, icon_state="sendbeam", time=INFINITY, maxdistance=healing_range * 2, beam_type=/obj/effect/ebeam/medical)
@@ -439,13 +447,14 @@
 
 /mob/living/simple_animal/hostile/clan/drone/proc/remove_beam()
 	if(current_beam)
-		say("Removing beam")
+		//say("Removing beam")
 		qdel(current_beam)
 		current_beam = null
 
 /mob/living/simple_animal/hostile/clan/drone/death(gibbed)
 	. = ..()
-	say("Removing beam. Death")
+	//say("Removing beam. Death")
+	cut_overlays()
 	remove_beam()
 
 /mob/living/simple_animal/hostile/clan/drone/proc/on_beam_tick(mob/living/target)
@@ -460,3 +469,9 @@
 		if (C.charge < C.max_charge)
 			C.GainCharge()
 	return
+
+//Current Bugs:
+//Red Beam does not work.
+//It does not change targets even if there is someone with less health then it's current target.
+//When it does change targets, the beam does not change targets.
+//The overlays don't disappear after death.
