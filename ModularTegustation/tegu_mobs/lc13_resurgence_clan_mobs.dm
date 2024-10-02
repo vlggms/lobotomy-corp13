@@ -303,6 +303,9 @@
 	var/datum/beam/current_beam
 	var/overheal_cooldown
 	var/overheal_cooldown_time = 50
+	var/red_beam_cooldown
+	var/red_beam_cooldown_time = 10
+	var/red_beam = FALSE
 
 /mob/living/simple_animal/hostile/clan/drone/Initialize()
 	. = ..()
@@ -342,6 +345,9 @@
 	if (!target || !can_see(src, target, healing_range) || (current_beam && length(current_beam.elements) == 0))
 		remove_beam()
 	else
+		if (red_beam && red_beam_cooldown < world.time )
+			remove_beam()
+			red_beam = FALSE
 		// check if we should heal or overheal
 		try_to_heal()
 		if (current_beam && target)
@@ -362,6 +368,12 @@
 							say("charge spent: " + num2text(neededCharge))
 							L.adjustBruteLoss(-1 * missingHealth)
 							charge -= neededCharge
+						remove_beam()
+						create_red_beam()
+						red_beam_cooldown = world.time + red_beam_cooldown_time
+						red_beam = TRUE
+
+
 
 
 
@@ -410,6 +422,10 @@
 // Beams from Priest Code
 /mob/living/simple_animal/hostile/clan/drone/proc/create_beam(mob/living/target)
 	current_beam = Beam(target, icon_state="medbeam", time=INFINITY, maxdistance=healing_range * 2, beam_type=/obj/effect/ebeam/medical)
+	say("Creating beam")
+
+/mob/living/simple_animal/hostile/clan/drone/proc/create_red_beam(mob/living/target)
+	current_beam = Beam(target, icon_state="sendbeam", time=INFINITY, maxdistance=healing_range * 2, beam_type=/obj/effect/ebeam/medical)
 	say("Creating beam")
 
 /mob/living/simple_animal/hostile/clan/drone/proc/remove_beam()
