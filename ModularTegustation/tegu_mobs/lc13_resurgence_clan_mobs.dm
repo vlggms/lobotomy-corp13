@@ -341,13 +341,17 @@
 
 /mob/living/simple_animal/hostile/clan/drone/Life()
 	. = ..()
+	if (stat == DEAD)
+		return
+
+	// if (red_beam && red_beam_cooldown < world.time )
+	// 	say(" Removing red beam")
+	// 	current_beam.icon_state = "medbeam"
+	// 	red_beam = FALSE
 	// check if can_see and cut the beam
 	if (!target || !can_see(src, target, healing_range) || (current_beam && length(current_beam.elements) == 0))
 		remove_beam()
 	else
-		if (red_beam && red_beam_cooldown < world.time )
-			remove_beam()
-			red_beam = FALSE
 		// check if we should heal or overheal
 		try_to_heal()
 		if (current_beam && target)
@@ -368,10 +372,10 @@
 							say("charge spent: " + num2text(neededCharge))
 							L.adjustBruteLoss(-1 * missingHealth)
 							charge -= neededCharge
-						remove_beam()
-						create_red_beam()
-						red_beam_cooldown = world.time + red_beam_cooldown_time
-						red_beam = TRUE
+						// say("Removing blue beam")
+						// current_beam.icon_state = "sendbeam"
+						// red_beam_cooldown = world.time + red_beam_cooldown_time
+						// red_beam = TRUE
 
 
 
@@ -384,7 +388,11 @@
 	return FALSE
 
 /mob/living/simple_animal/hostile/clan/drone/CanAttack(atom/the_target)
-	return faction_check_mob(the_target, FALSE)
+	if (istype(the_target, /mob))
+		var/mob/M = the_target
+		return faction_check_mob(M, FALSE) && M.stat != DEAD
+	else
+		return FALSE
 
 /mob/living/simple_animal/hostile/clan/drone/proc/try_to_heal()
 	if (target && can_see(src, target, healing_range) && !current_beam)
@@ -411,6 +419,7 @@
 		say("no target ")
 
 	if (potential_target && target && potential_target != target)
+		say("Removing beam. New target")
 		remove_beam()
 		target = potential_target
 		//current_follow_target = lowest_hp_target
@@ -422,11 +431,11 @@
 // Beams from Priest Code
 /mob/living/simple_animal/hostile/clan/drone/proc/create_beam(mob/living/target)
 	current_beam = Beam(target, icon_state="medbeam", time=INFINITY, maxdistance=healing_range * 2, beam_type=/obj/effect/ebeam/medical)
-	say("Creating beam")
+	say("Creating blue beam")
 
-/mob/living/simple_animal/hostile/clan/drone/proc/create_red_beam(mob/living/target)
-	current_beam = Beam(target, icon_state="sendbeam", time=INFINITY, maxdistance=healing_range * 2, beam_type=/obj/effect/ebeam/medical)
-	say("Creating beam")
+// /mob/living/simple_animal/hostile/clan/drone/proc/create_red_beam(mob/living/target)
+// 	current_beam = Beam(target, icon_state="sendbeam", time=INFINITY, maxdistance=healing_range * 2, beam_type=/obj/effect/ebeam/medical)
+// 	say("Creating red beam")
 
 /mob/living/simple_animal/hostile/clan/drone/proc/remove_beam()
 	if(current_beam)
@@ -434,11 +443,20 @@
 		qdel(current_beam)
 		current_beam = null
 
+/mob/living/simple_animal/hostile/clan/drone/death(gibbed)
+	. = ..()
+	say("Removing beam. Death")
+	remove_beam()
+
 /mob/living/simple_animal/hostile/clan/drone/proc/on_beam_tick(mob/living/target)
-	if(target.health != target.maxHealth)
+	if(target.health != target.maxHealth )
 		new /obj/effect/temp_visual/heal(get_turf(target), "#E02D2D")
 	target.adjustBruteLoss(-5)
 	target.adjustFireLoss(-4)
 	target.adjustToxLoss(-1)
 	target.adjustOxyLoss(-1)
+	if (istype(target, /mob/living/simple_animal/hostile/clan))
+		var/mob/living/simple_animal/hostile/clan/C = target
+		if (C.charge < C.max_charge)
+			C.GainCharge()
 	return
