@@ -296,9 +296,13 @@
 	ranged = TRUE
 	retreat_distance = 1
 	minimum_distance = 2
+	var/overheal_threshold = 0.999
+	var/heal_per_charge = 25
 	var/healing_range = 6
 	var/searching_range = 10
 	var/datum/beam/current_beam
+	var/overheal_cooldown
+	var/overheal_cooldown_time = 50
 
 /mob/living/simple_animal/hostile/clan/drone/Initialize()
 	. = ..()
@@ -337,8 +341,29 @@
 	// check if can_see and cut the beam
 	if (!target || !can_see(src, target, healing_range) || (current_beam && length(current_beam.elements) == 0))
 		remove_beam()
-	// check if we should heal or overheal
-	try_to_heal()
+	else
+		// check if we should heal or overheal
+		try_to_heal()
+		if (current_beam && target)
+			on_beam_tick(target)
+			if (istype(target, /mob/living))
+				var/mob/living/L = target
+				if (L.health / L.maxHealth < overheal_threshold)
+					var/missingHealth = L.maxHealth - L.health
+					var/neededCharge = round(missingHealth / heal_per_charge)
+					say("Missing health: " + num2text(missingHealth))
+					if (charge > 0 && overheal_cooldown < world.time)
+						overheal_cooldown = world.time + overheal_cooldown_time
+						if (charge <= neededCharge)
+							say("all charge spent: " + num2text(charge))
+							L.adjustBruteLoss(-1 * charge * heal_per_charge)
+							charge = 0
+						else
+							say("charge spent: " + num2text(neededCharge))
+							L.adjustBruteLoss(-1 * missingHealth)
+							charge -= neededCharge
+
+
 
 /mob/living/simple_animal/hostile/clan/drone/AttackingTarget()
 	return FALSE
@@ -392,3 +417,12 @@
 		say("Removing beam")
 		qdel(current_beam)
 		current_beam = null
+
+/mob/living/simple_animal/hostile/clan/drone/proc/on_beam_tick(mob/living/target)
+	if(target.health != target.maxHealth)
+		new /obj/effect/temp_visual/heal(get_turf(target), "#E02D2D")
+	target.adjustBruteLoss(-5)
+	target.adjustFireLoss(-4)
+	target.adjustToxLoss(-1)
+	target.adjustOxyLoss(-1)
+	return
