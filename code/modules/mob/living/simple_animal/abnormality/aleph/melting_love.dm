@@ -451,6 +451,8 @@
 	if(is_type_in_list(AM, slime_types, FALSE))
 		return
 	var/mob/living/L = AM
+	if((("hostile" in L.faction) && (SSmaptype.maptype in SSmaptype.combatmaps)))
+		return
 	L.apply_status_effect(STATUS_EFFECT_SLIMED)
 
 /obj/effect/gibspawner/generic/silent/melty_slime

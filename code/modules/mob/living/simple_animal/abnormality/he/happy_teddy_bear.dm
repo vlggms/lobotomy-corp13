@@ -41,31 +41,43 @@
 		You replace the button with one off your suit with great care. <br>While the teddy looks awkward because of the mismatching buttons, it adds to its charm."
 	observation_fail_message = "You don't know what to do with it so you just left it alone. <br>The teddy sits there without any movement."
 
-	/// if the same person works on Happy Teddy Bear twice in a row, the person will die.
+	/// if the same person works on Happy Teddy Bear twice in a row, the person will die unless certain requirements are met.
 	var/last_worker = null
 	var/hugging = FALSE
+	var/break_check
 
 /mob/living/simple_animal/hostile/abnormality/happyteddybear/proc/Strangle(mob/living/carbon/human/user)
-	src.hugging = TRUE
+	hugging = TRUE
 	user.Stun(30 SECONDS)
 	step_towards(user, src)
 	sleep(0.5 SECONDS)
 	if(QDELETED(user))
-		src.hugging = FALSE
+		hugging = FALSE
 		last_worker = null
 		return
 	step_towards(user, src)
 	sleep(0.5 SECONDS)
 	if(QDELETED(user))
-		src.hugging = FALSE
+		hugging = FALSE
 		last_worker = null
 		return
-	src.buckle_mob(user, force = TRUE, check_loc = FALSE)
-	src.icon_state = "teddy_hug"
-	src.visible_message(span_warning("[src] hugs [user]!"))
+	buckle_mob(user, force = TRUE, check_loc = FALSE)
+	icon_state = "teddy_hug"
+	visible_message(span_warning("[src] hugs [user]!"))
 	var/last_pinged = 0
 	var/time_strangled = 0
 	while(user.stat != DEAD)
+		if(time_strangled >= 4 && get_attribute_level(user, FORTITUDE_ATTRIBUTE) >= 80)
+			if(user.stat != UNCONSCIOUS) //Wouldn't make sense if they break free while passed out
+				break_check = TRUE
+				unbuckle_mob(user, force=TRUE)
+				icon_state = "teddy"
+				visible_message(span_warning("[user] breaks free from [src]'s hug!"))
+				hugging = FALSE
+				last_worker = null
+				user.SetStun(0)
+				break_check = FALSE
+				return
 		if(time_strangled > 30) // up to 30 seconds, so this doesn't go on forever
 			user.death(gibbed=FALSE)
 			break
@@ -76,26 +88,26 @@
 		time_strangled++
 		SLEEP_CHECK_DEATH(1 SECONDS)
 		if(QDELETED(user))
-			src.hugging = FALSE
+			hugging = FALSE
 			last_worker = null
-			src.icon_state = "teddy"
+			icon_state = "teddy"
 			return
-	src.unbuckle_mob(user, force=TRUE)
-	src.icon_state = "teddy"
-	src.visible_message(span_warning("[src] drops [user] to the ground!"))
-	src.hugging = FALSE
+	unbuckle_mob(user, force=TRUE)
+	icon_state = "teddy"
+	visible_message(span_warning("[src] drops [user] to the ground!"))
+	hugging = FALSE
 	last_worker = null
 
 // can only unbuckle dead things
 // hopefully prevents people from attempting to "save" the victim, which would break the immersion
 // (because strangle code will continue whether they're buckled or not)
 /mob/living/simple_animal/hostile/abnormality/happyteddybear/unbuckle_mob(mob/living/buckled_mob, force)
-	if(buckled_mob.stat != DEAD)
+	if(buckled_mob.stat != DEAD && break_check == FALSE)
 		return
 	..()
 
 /mob/living/simple_animal/hostile/abnormality/happyteddybear/AttemptWork(mob/living/carbon/human/user, work_type)
-	if(src.hugging) // can't work while someone is being killed by it
+	if(hugging) // can't work while someone is being killed by it
 		return FALSE
 	if(user == last_worker)
 		Strangle(user)

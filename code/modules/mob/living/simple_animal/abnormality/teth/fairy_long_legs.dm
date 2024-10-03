@@ -111,6 +111,7 @@
 	if((work_type == "Take cover") && raining) //Uh oh, you goofed up
 		to_chat(user, span_danger("You decide to take cover under the fairy's clover."))
 		work_count = 0
+		raining = FALSE
 		Execute(user)
 		return FALSE
 	if((work_type != "Take cover") && raining)
