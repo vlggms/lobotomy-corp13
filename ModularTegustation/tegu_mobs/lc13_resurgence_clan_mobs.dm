@@ -303,6 +303,7 @@
 	ranged = TRUE
 	retreat_distance = 1
 	minimum_distance = 2
+	move_to_delay = 2
 	var/overheal_threshold = 0.2
 	var/heal_per_charge = 25
 	var/healing_range = 6
@@ -310,22 +311,12 @@
 	var/datum/beam/current_beam
 	var/overheal_cooldown
 	var/overheal_cooldown_time = 50
-	var/red_beam_cooldown
-	var/red_beam_cooldown_time = 10
-	var/red_beam = FALSE
 	var/update_beam_timer
 
 
 /mob/living/simple_animal/hostile/clan/drone/Initialize()
 	. = ..()
 	update_beam_timer = addtimer(CALLBACK(src, .proc/update_beam), 5 SECONDS, TIMER_LOOP | TIMER_STOPPABLE)
-
-//Current Goals: This mob will be able to follow mobs that share a faction with it. (Sweeper Leader Code)
-//Then, If there is a mob within 5 sqrs of it who has less then full health, attach a beam to them and start healing them 25 HP per second.
-//If they are a part of the Clan, Also give them charge.
-//If the mob they are healing has less then 20% HP of their max HP, Spend their charge to instantly heal them [(Charge on Drone)*25] HP, then it goes on a 5 second cooldown.
-//If this healing would go over the mobs max HP, only spend the charge needed to bring them up to Full Health.
-//This mob will also run away from players. (Ranged Code)
 
 /mob/living/simple_animal/hostile/clan/drone/ChargeUpdated()
 	var/chargelayer = layer + 0.1
@@ -353,11 +344,6 @@
 	if (stat == DEAD)
 		return
 
-	// if (red_beam && red_beam_cooldown < world.time )
-	// 	say(" Removing red beam")
-	// 	current_beam.icon_state = "medbeam"
-	// 	red_beam = FALSE
-	// check if can_see and cut the beam
 	if (istype(target, /mob))
 		var/mob/M = target
 		if (M && M.stat == DEAD)
@@ -366,7 +352,6 @@
 	if (current_beam && (!target || !can_see(src, target, healing_range) || (length(current_beam.elements) == 0)))
 		remove_beam()
 	else
-		// check if we should heal or overheal
 		try_to_heal()
 		if (current_beam && target)
 			on_beam_tick(target)
@@ -375,30 +360,17 @@
 				if (L.health / L.maxHealth < overheal_threshold)
 					var/missingHealth = L.maxHealth - L.health
 					var/neededCharge = round(missingHealth / heal_per_charge)
-					//say("Missing health: " + num2text(missingHealth))
 					if (charge > 0 && overheal_cooldown < world.time)
 						say("Co-mmen-cing Pr-otoco-l: E-mergency Re-pairs")
-						var/mutable_appearance/colored_overlay = mutable_appearance('icons/effects/effects.dmi', "shield-old")
+						var/mutable_appearance/colored_overlay = mutable_appearance('icons/effects/effects.dmi', "purplesparkles")
 						L.add_overlay(colored_overlay)
-						//addtimer()
-
 						overheal_cooldown = world.time + overheal_cooldown_time
 						if (charge <= neededCharge)
-							//say("all charge spent: " + num2text(charge))
 							L.adjustBruteLoss(-1 * charge * heal_per_charge)
 							charge = 0
 						else
-							//say("charge spent: " + num2text(neededCharge))
 							L.adjustBruteLoss(-1 * missingHealth)
 							charge -= neededCharge
-						// say("Removing blue beam")
-						// current_beam.icon_state = "sendbeam"
-						// red_beam_cooldown = world.time + red_beam_cooldown_time
-						// red_beam = TRUE
-
-
-
-
 
 /mob/living/simple_animal/hostile/clan/drone/AttackingTarget()
 	return FALSE
@@ -427,22 +399,9 @@
 				potential_target = L
 				potential_health_missing = missing
 
-	if (potential_target)
-		say("Potential target " + potential_target.name )
-	else
-		say("No Potential target")
-
-	if (target)
-		say("target " + target.name )
-	else
-		say("no target ")
-
 	if (potential_target && target && potential_target != target)
-		say("Removing beam. New target")
 		remove_beam()
 		target = potential_target
-		//current_follow_target = lowest_hp_target
-		// Use the existing AI to move towards the target
 		if(ai_controller)
 			ai_controller.current_movement_target = target
 
@@ -450,21 +409,14 @@
 // Beams from Priest Code
 /mob/living/simple_animal/hostile/clan/drone/proc/create_beam(mob/living/target)
 	current_beam = Beam(target, icon_state="medbeam", time=INFINITY, maxdistance=healing_range * 2, beam_type=/obj/effect/ebeam/medical)
-	//say("Creating blue beam")
-
-// /mob/living/simple_animal/hostile/clan/drone/proc/create_red_beam(mob/living/target)
-// 	current_beam = Beam(target, icon_state="sendbeam", time=INFINITY, maxdistance=healing_range * 2, beam_type=/obj/effect/ebeam/medical)
-// 	say("Creating red beam")
 
 /mob/living/simple_animal/hostile/clan/drone/proc/remove_beam()
 	if(current_beam)
-		//say("Removing beam")
 		qdel(current_beam)
 		current_beam = null
 
 /mob/living/simple_animal/hostile/clan/drone/death(gibbed)
 	. = ..()
-	//say("Removing beam. Death")
 	cut_overlays()
 	remove_beam()
 	deltimer(update_beam_timer)
@@ -481,9 +433,3 @@
 		if (C.charge < C.max_charge)
 			C.GainCharge()
 	return
-
-//Current Bugs:
-//Red Beam does not work.
-//It does not change targets even if there is someone with less health then it's current target.
-//When it does change targets, the beam does not change targets.
-//The overlays don't disappear after death.
