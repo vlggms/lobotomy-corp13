@@ -33,6 +33,8 @@
 	var/clan_charge_cooldown = 2 SECONDS
 	var/last_charge_update = 0
 
+/mob/living/simple_animal/hostile/clan/spawn_gibs()
+	new /obj/effect/gibspawner/scrap_metal(drop_location(), src)
 
 /mob/living/simple_animal/hostile/clan/proc/GainCharge()
 	if(stat == DEAD)
@@ -161,10 +163,8 @@
 /mob/living/simple_animal/hostile/clan/defender/death(gibbed)
 	charge = 0
 	var/turf/T = get_turf(src)
-	if (prob(50))
+	if (prob(25))
 		new /obj/item/tape/resurgence/first(T)
-	else
-		new /obj/item/tape/resurgence/podcast_seven(T)
 
 	if (stunned == TRUE)
 		Unlock()
@@ -374,7 +374,6 @@
 							charge -= neededCharge
 
 /mob/living/simple_animal/hostile/clan/drone/proc/clear_overlay(mutable_appearance/overheal_overlay, mob/living/L)
-	say("Cut overlay")
 	L.cut_overlay(overheal_overlay)
 
 /mob/living/simple_animal/hostile/clan/drone/AttackingTarget()
