@@ -362,8 +362,9 @@
 					var/neededCharge = round(missingHealth / heal_per_charge)
 					if (charge > 0 && overheal_cooldown < world.time)
 						say("Co-mmen-cing Pr-otoco-l: E-mergency Re-pairs")
-						var/mutable_appearance/colored_overlay = mutable_appearance('icons/effects/effects.dmi', "purplesparkles")
-						L.add_overlay(colored_overlay)
+						var/mutable_appearance/overheal_overlay = mutable_appearance('icons/effects/effects.dmi', "purplesparkles")
+						L.add_overlay(overheal_overlay)
+						addtimer(CALLBACK(src, PROC_REF(clear_overlay), overheal_overlay, L), 2.5 SECONDS)
 						overheal_cooldown = world.time + overheal_cooldown_time
 						if (charge <= neededCharge)
 							L.adjustBruteLoss(-1 * charge * heal_per_charge)
@@ -371,6 +372,10 @@
 						else
 							L.adjustBruteLoss(-1 * missingHealth)
 							charge -= neededCharge
+
+/mob/living/simple_animal/hostile/clan/drone/proc/clear_overlay(mutable_appearance/overheal_overlay, mob/living/L)
+	say("Cut overlay")
+	L.cut_overlay(overheal_overlay)
 
 /mob/living/simple_animal/hostile/clan/drone/AttackingTarget()
 	return FALSE
