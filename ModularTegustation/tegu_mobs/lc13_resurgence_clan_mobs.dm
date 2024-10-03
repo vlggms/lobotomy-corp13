@@ -313,10 +313,12 @@
 	var/red_beam_cooldown
 	var/red_beam_cooldown_time = 10
 	var/red_beam = FALSE
+	var/update_beam_timer
+
 
 /mob/living/simple_animal/hostile/clan/drone/Initialize()
 	. = ..()
-	addtimer(CALLBACK(src, .proc/update_beam), 5 SECONDS, TIMER_LOOP)
+	update_beam_timer = addtimer(CALLBACK(src, .proc/update_beam), 5 SECONDS, TIMER_LOOP | TIMER_STOPPABLE)
 
 //Current Goals: This mob will be able to follow mobs that share a faction with it. (Sweeper Leader Code)
 //Then, If there is a mob within 5 sqrs of it who has less then full health, attach a beam to them and start healing them 25 HP per second.
@@ -356,7 +358,12 @@
 	// 	current_beam.icon_state = "medbeam"
 	// 	red_beam = FALSE
 	// check if can_see and cut the beam
-	if (!target || !can_see(src, target, healing_range) || (current_beam && length(current_beam.elements) == 0))
+	if (istype(target, /mob))
+		var/mob/M = target
+		if (M && M.stat == DEAD)
+			remove_beam()
+			LoseTarget()
+	if (current_beam && (!target || !can_see(src, target, healing_range) || (length(current_beam.elements) == 0)))
 		remove_beam()
 	else
 		// check if we should heal or overheal
@@ -371,6 +378,10 @@
 					//say("Missing health: " + num2text(missingHealth))
 					if (charge > 0 && overheal_cooldown < world.time)
 						say("Co-mmen-cing Pr-otoco-l: E-mergency Re-pairs")
+						var/mutable_appearance/colored_overlay = mutable_appearance('icons/effects/effects.dmi', "shield-old")
+						L.add_overlay(colored_overlay)
+						//addtimer()
+
 						overheal_cooldown = world.time + overheal_cooldown_time
 						if (charge <= neededCharge)
 							//say("all charge spent: " + num2text(charge))
@@ -403,14 +414,14 @@
 		return FALSE
 
 /mob/living/simple_animal/hostile/clan/drone/proc/try_to_heal()
-	if (target && can_see(src, target, healing_range) && !current_beam)
+	if (target && can_see(src, target, healing_range) && !current_beam )
 		create_beam(target)
 
 /mob/living/simple_animal/hostile/clan/drone/proc/update_beam()
 	var/mob/living/potential_target
-	var/potential_health_missing = 10
+	var/potential_health_missing = 0.01
 	for(var/mob/living/L in view(searching_range, src))
-		if(L != src && faction_check_mob(L, FALSE))
+		if(L != src && faction_check_mob(L, FALSE) && L.stat != DEAD)
 			var/missing = (L.maxHealth - L.health)/L.maxHealth
 			if (missing > potential_health_missing)
 				potential_target = L
@@ -456,6 +467,7 @@
 	//say("Removing beam. Death")
 	cut_overlays()
 	remove_beam()
+	deltimer(update_beam_timer)
 
 /mob/living/simple_animal/hostile/clan/drone/proc/on_beam_tick(mob/living/target)
 	if(target.health != target.maxHealth )
