@@ -45,23 +45,20 @@
 	RegisterSignal(current_holder, COMSIG_MOVABLE_MOVED, PROC_REF(UserMoved))
 
 //Destroy setup
-/obj/item/ego_weapon/wield/Destroy(mob/user)
-	UnregisterSignal(current_holder, COMSIG_MOVABLE_MOVED)
-	current_holder = null
-	current_slow_down = 0
-	user.add_or_update_variable_movespeed_modifier(/datum/movespeed_modifier/wield, multiplicative_slowdown = 0)
+/obj/item/ego_weapon/wield/Destroy(force)
+	dropped(current_holder)
 	return ..()
 
 //Dropped setup
 /obj/item/ego_weapon/wield/dropped(mob/user)
 	. = ..()
-	if(!user)
+	if(!current_holder)
 		return
-	current_holder = null
 	UnregisterSignal(current_holder, COMSIG_MOVABLE_MOVED)
 	current_slow_down = 0
-	user.add_or_update_variable_movespeed_modifier(/datum/movespeed_modifier/wield, multiplicative_slowdown = 0)
-	on_unwield(src,user)
+	current_holder.add_or_update_variable_movespeed_modifier(/datum/movespeed_modifier/wield, multiplicative_slowdown = 0)
+	on_unwield(src,current_holder)
+	current_holder = null
 
 /obj/item/ego_weapon/wield/attack_self(mob/user)
 	if (should_unwield_cooldown && unwield_cooldown > world.time)

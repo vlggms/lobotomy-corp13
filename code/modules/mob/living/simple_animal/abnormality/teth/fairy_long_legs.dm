@@ -137,6 +137,7 @@
 		datum_reference.qliphoth_change(-2)
 
 /mob/living/simple_animal/hostile/abnormality/fairy_longlegs/proc/Execute(mob/living/carbon/human/user)
+	raining = FALSE
 	user.Stun(3 SECONDS)
 	step_towards(user, src)
 	sleep(0.5 SECONDS)
@@ -147,10 +148,13 @@
 	if(QDELETED(user))
 		return
 	user.visible_message(span_warning("You feel a stinging pain in your chest, is that...blood?!"))
-	playsound(get_turf(src), 'sound/abnormalities/fairy_longlegs/attack.ogg', 50, 1)
+	icon_state = "fairy_longlegs_healing"
+	playsound(get_turf(src), 'sound/abnormalities/fairy_longlegs/heal.ogg', 50, 1)
 	user.deal_damage(100, RED_DAMAGE)
 	for(var/obj/effect/rainy_effect/rain in range(3, src))
 		rain.End(FALSE)
+	sleep(1.5 SECONDS)
+	icon_state = "fairy_longlegs"
 
 //Breach Stuff
 /mob/living/simple_animal/hostile/abnormality/fairy_longlegs/AttackingTarget()

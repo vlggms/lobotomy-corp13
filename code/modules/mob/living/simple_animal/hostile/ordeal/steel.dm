@@ -89,6 +89,8 @@
 	//Buff allies, all of these buffs only activate once.
 	//Buff the grunts around you when you die
 	for(var/mob/living/simple_animal/hostile/ordeal/steel_dawn/Y in view(7, src))
+		if(Y.stat >= UNCONSCIOUS)
+			return
 		Y.say("FOR G CORP!!!")
 
 		//increase damage
@@ -99,6 +101,8 @@
 
 	//And any manager
 	for(var/mob/living/simple_animal/hostile/ordeal/steel_dusk/Z in view(7, src))
+		if(Z.stat >= UNCONSCIOUS)
+			return
 		Z.say("There will be full-on roll call tonight.")
 		Z.screech_windup = 3 SECONDS
 
