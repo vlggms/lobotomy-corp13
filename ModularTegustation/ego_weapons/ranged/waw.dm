@@ -7,8 +7,10 @@
 	force = 33
 	damtype = BLACK_DAMAGE
 	attack_speed = 1.3
-	ammo_type = /obj/item/ammo_casing/caseless/ego_correctional
+	projectile_path = /obj/projectile/ego_bullet/ego_correctional
 	weapon_weight = WEAPON_HEAVY
+	pellets = 8
+	variance = 20
 	fire_delay = 7
 	shotsleft = 12
 	reloadtime = 1.4 SECONDS
@@ -26,7 +28,7 @@
 	icon_state = "hornet"
 	inhand_icon_state = "hornet"
 	force = 28
-	ammo_type = /obj/item/ammo_casing/caseless/ego_hornet
+	projectile_path = /obj/projectile/ego_bullet/ego_hornet
 	weapon_weight = WEAPON_HEAVY
 	fire_sound = 'sound/weapons/gun/rifle/leveraction.ogg'
 	fire_delay = 2
@@ -46,7 +48,7 @@
 	special = "This weapon heals humans that it hits."
 	force = 28
 	damtype = BLACK_DAMAGE
-	ammo_type = /obj/item/ammo_casing/caseless/ego_hatred
+	projectile_path = /obj/projectile/ego_bullet/ego_hatred
 	weapon_weight = WEAPON_HEAVY
 	fire_delay = 15
 	fire_sound = 'sound/abnormalities/hatredqueen/attack.ogg'
@@ -82,7 +84,7 @@
 		This weapon gets a firespeed bonus when wearing the matching armor."
 	force = 28
 	damtype = BLACK_DAMAGE
-	ammo_type = /obj/item/ammo_casing/caseless/ego_magicbullet
+	projectile_path = /obj/projectile/ego_bullet/ego_magicbullet
 	weapon_weight = WEAPON_HEAVY
 	fire_delay = 30	//Put on the armor, jackass.
 	shotsleft = 7
@@ -122,7 +124,7 @@
 	special = "Firing both solemn lament and solemn vow at the same time will increase damage by 1.5x"
 	force = 17
 	damtype = WHITE_DAMAGE
-	ammo_type = /obj/item/ammo_casing/caseless/ego_solemnlament
+	projectile_path = /obj/projectile/ego_bullet/ego_solemnlament
 	fire_delay = 5
 	shotsleft = 18
 	reloadtime = 0.7 SECONDS
@@ -142,7 +144,7 @@
 		projectile_damage_multiplier *= 2.5
 	return ..()
 
-/obj/item/ego_weapon/ranged/pistol/solemnlament/process_fire(atom/target, mob/living/user, message = TRUE, params = null, zone_override = "", bonus_spread = 0, bonus_damage_multiplier = 1)
+/obj/item/ego_weapon/ranged/pistol/solemnlament/process_fire(atom/target, mob/living/user, message = TRUE, params = null, zone_override = "", bonus_spread = 0, temporary_damage_multiplier = 1)
 	for(var/obj/item/ego_weapon/ranged/pistol/solemnvow/Vow in user.held_items)
 		projectile_damage_multiplier = 1.5
 		break
@@ -159,7 +161,7 @@
 	special = "Firing both solemn lament and solemn vow at the same time will increase damage by 1.5x"
 	force = 17
 	damtype = BLACK_DAMAGE
-	ammo_type = /obj/item/ammo_casing/caseless/ego_solemnvow
+	projectile_path = /obj/projectile/ego_bullet/ego_solemnvow
 	fire_delay = 5
 	shotsleft = 18
 	reloadtime = 0.7 SECONDS
@@ -179,7 +181,7 @@
 		projectile_damage_multiplier *= 2.5
 	return ..()
 
-/obj/item/ego_weapon/ranged/pistol/solemnvow/process_fire(atom/target, mob/living/user, message = TRUE, params = null, zone_override = "", bonus_spread = 0, bonus_damage_multiplier = 1)
+/obj/item/ego_weapon/ranged/pistol/solemnvow/process_fire(atom/target, mob/living/user, message = TRUE, params = null, zone_override = "", bonus_spread = 0, temporary_damage_multiplier = 1)
 	for(var/obj/item/ego_weapon/ranged/pistol/solemnlament/Lament in user.held_items)
 		projectile_damage_multiplier = 1.5
 		break
@@ -193,7 +195,7 @@
 	icon_state = "loyalty"
 	inhand_icon_state = "loyalty"
 	force = 28
-	ammo_type = /obj/item/ammo_casing/caseless/ego_loyalty
+	projectile_path = /obj/projectile/ego_bullet/ego_loyalty/iff
 	weapon_weight = WEAPON_HEAVY
 	spread = 26
 	shotsleft = 95
@@ -221,11 +223,19 @@
 	fire_sound = 'sound/weapons/gun/pistol/shot.ogg'
 	vary_fire_sound = FALSE
 	fire_sound_volume = 70
-	ammo_type = /obj/item/ammo_casing/caseless/ego_executive
+	projectile_path = /obj/projectile/ego_bullet/ego_executive
 	attribute_requirements = list(
 							JUSTICE_ATTRIBUTE = 80
 	)
 
+/obj/item/ego_weapon/ranged/pistol/executive/fire_projectile(atom/target, mob/living/user, params, distro, quiet, zone_override, spread, atom/fired_from, temporary_damage_multiplier)
+	if(!ishuman(user))
+		return ..()
+
+	var/userjust = get_attribute_level(user, JUSTICE_ATTRIBUTE)
+	var/justicemod = 1 + userjust/100
+	temporary_damage_multiplier = justicemod
+	return ..()
 
 /obj/item/ego_weapon/ranged/pistol/crimson
 	name = "crimson scar"
@@ -233,8 +243,10 @@
 	icon_state = "crimsonscar"
 	inhand_icon_state = "crimsonscar"
 	force = 17
-	ammo_type = /obj/item/ammo_casing/caseless/ego_crimson
+	projectile_path = /obj/projectile/ego_bullet/ego_crimson
 	weapon_weight = WEAPON_MEDIUM
+	pellets = 3
+	variance = 14
 	special = "This weapon fires 3 pellets."
 	fire_delay = 7
 	shotsleft = 9
@@ -253,7 +265,7 @@
 	special = "This weapon fires slow bullets with limited range."
 	force = 28
 	damtype = WHITE_DAMAGE
-	ammo_type = /obj/item/ammo_casing/caseless/ego_ecstasy
+	projectile_path = /obj/projectile/ego_bullet/ego_ecstasy
 	weapon_weight = WEAPON_MEDIUM
 	spread = 40
 	fire_sound = 'sound/weapons/ego/ecstasy.ogg'
@@ -272,7 +284,7 @@
 	inhand_icon_state = "executive"
 	special = "This weapon fires IFF bullets."
 	force = 28
-	ammo_type = /obj/item/ammo_casing/caseless/ego_praetorian
+	projectile_path = /obj/projectile/ego_bullet/ego_praetorian
 	fire_sound = 'sound/weapons/gun/pistol/tp17.ogg'
 	autofire = 0.12 SECONDS
 	shotsleft = 12
@@ -291,7 +303,7 @@
 	special = "This weapon pierces all targets. This weapon fires faster with the matching armor"
 	force = 17
 	damtype = BLACK_DAMAGE
-	ammo_type = /obj/item/ammo_casing/caseless/ego_magicpistol
+	projectile_path = /obj/projectile/ego_bullet/ego_magicpistol
 	fire_delay = 6
 	shotsleft = 7
 	reloadtime = 1.2 SECONDS
@@ -322,7 +334,7 @@
 	icon_state = "laststop"
 	inhand_icon_state = "laststop"
 	force = 17
-	ammo_type = /obj/item/ammo_casing/caseless/ego_laststop
+	projectile_path = /obj/projectile/ego_bullet/ego_laststop
 	weapon_weight = WEAPON_HEAVY
 	fire_delay = 5
 	shotsleft = 2
@@ -338,7 +350,7 @@
 	icon_state = "intentions"
 	inhand_icon_state = "intentions"
 	force = 17
-	ammo_type = /obj/item/ammo_casing/caseless/ego_intentions
+	projectile_path = /obj/projectile/ego_bullet/ego_intention
 	weapon_weight = WEAPON_MEDIUM
 	spread = 40
 	fire_sound = 'sound/weapons/gun/smg/mp7.ogg'
@@ -357,7 +369,7 @@
 	inhand_icon_state = "aroma"
 	force = 28
 	damtype = WHITE_DAMAGE
-	ammo_type = /obj/item/ammo_casing/caseless/ego_aroma
+	projectile_path = /obj/projectile/ego_bullet/ego_aroma
 	weapon_weight = WEAPON_HEAVY
 	fire_delay = 25
 	fire_sound = 'sound/weapons/ego/crossbow.ogg'
@@ -374,7 +386,7 @@
 	special = "This weapon fires a hitscan beam. \nUpon hitting an enemy, this weapon heals a nearby Discord weapon user."
 	force = 28
 	damtype = WHITE_DAMAGE
-	ammo_type = /obj/item/ammo_casing/caseless/ego_assonance
+	projectile_path = /obj/projectile/beam/assonance
 	weapon_weight = WEAPON_HEAVY
 	fire_delay = 5
 	shotsleft = 17
@@ -391,7 +403,7 @@
 	icon_state = "featherofhonor"
 	worn_icon_state = "featherofhonor"
 	inhand_icon_state = "featherofhonor"
-	ammo_type = /obj/item/ammo_casing/caseless/ego_feather
+	projectile_path = /obj/projectile/ego_bullet/ego_feather
 	weapon_weight = WEAPON_HEAVY
 	special = "This weapon is highly effective in melee."
 	force = 42
@@ -409,7 +421,7 @@
 	inhand_icon_state = "exuviae"
 	force = 33
 	attack_speed = 1.3
-	ammo_type = /obj/item/ammo_casing/caseless/ego_exuviae
+	projectile_path = /obj/projectile/ego_bullet/ego_exuviae
 	weapon_weight = WEAPON_HEAVY
 	special = "Upon hit the targets RED vulnerability is increased by 0.2."
 	damtype = RED_DAMAGE
@@ -429,7 +441,7 @@
 	special = "This weapon can unleash a special attack by loading a second arrow."
 	force = 28
 	damtype = BLACK_DAMAGE
-	ammo_type = /obj/item/ammo_casing/caseless/ego_warring
+	projectile_path = /obj/projectile/ego_bullet/ego_warring
 	weapon_weight = WEAPON_HEAVY
 	fire_delay = 0//it caused some jank, like failing to charge after the do-after
 	spread = 0
@@ -444,7 +456,7 @@
 	attack_charge_gain = FALSE
 	charge_cost = 3
 	charge_effect = "fire a beam of electricity."
-	var/ammo_2 = /obj/item/ammo_casing/caseless/ego_warring2
+	var/ammo_2 = /obj/projectile/ego_bullet/ego_warring2
 
 /obj/item/ego_weapon/ranged/warring/examine(mob/user)//attack speed isn't used, so it needs to be overridden
 	. = ..()
@@ -460,7 +472,7 @@
 /obj/item/ego_weapon/ranged/warring/afterattack(atom/target, mob/user)
 	. = ..()
 	drawn = 0
-	ammo_type = initial(ammo_type)
+	projectile_path = initial(projectile_path)
 	icon_state = "[initial(icon_state)]"
 
 /obj/item/ego_weapon/ranged/warring/attack_self(mob/user)
@@ -471,7 +483,7 @@
 
 			drawn  = 1
 			to_chat(user, span_warning("You draw the [src] with all your might."))
-			ammo_type = /obj/item/ammo_casing/caseless/ego_warring
+			projectile_path = initial(projectile_path)
 			fire_sound = 'sound/weapons/bowfire.ogg'
 			icon_state = "warring_drawn"
 		if(1)
@@ -481,7 +493,7 @@
 				return
 			drawn = 2
 			charge_amount -= charge_cost
-			ammo_type = ammo_2
+			projectile_path = ammo_2
 			playsound(src, 'sound/magic/lightningshock.ogg', 50, TRUE)
 			to_chat(user, span_warning("An arrow of lightning appears."))
 			fire_sound = 'sound/abnormalities/thunderbird/tbird_beam.ogg'
@@ -491,7 +503,7 @@
 				return
 			drawn = 1
 			charge_amount += charge_cost
-			ammo_type = initial(ammo_type)
+			projectile_path = initial(projectile_path)
 			fire_sound = 'sound/weapons/bowfire.ogg'
 			icon_state = "warring_drawn"
 			to_chat(user, span_warning("The lightning fades."))
@@ -505,7 +517,7 @@
 	force = 36
 	damtype = BLACK_DAMAGE
 	attack_speed = 1.8
-	ammo_type = /obj/item/ammo_casing/caseless/ego_banquet
+	projectile_path = /obj/projectile/ego_bullet/ego_banquet
 	weapon_weight = WEAPON_MEDIUM
 	fire_delay = 13
 	shotsleft = 7
@@ -528,7 +540,7 @@
 			else
 				heal_amt = 0
 		user.adjustBruteLoss(-heal_amt)
-	..()
+	return ..()
 
 /obj/item/ego_weapon/ranged/banquet/reload_ego(mob/user)
 	is_reloading = TRUE
@@ -548,10 +560,12 @@
 	desc = "The pain inflicted by rash action and harsh words last longer than most think."
 	icon_state = "blind_gun"
 	special = "This weapon fires burning bullets. Watch out for friendly fire!"
-	ammo_type = /obj/item/ammo_casing/caseless/ego_blind_rage
+	projectile_path = /obj/projectile/ego_bullet/ego_blind_rage
 	force = 28
 	damtype = BLACK_DAMAGE
 	weapon_weight = WEAPON_HEAVY
+	pellets = 4
+	variance = 30
 	fire_delay = 8
 	shotsleft = 8
 	reloadtime = 1.4 SECONDS
@@ -569,7 +583,7 @@
 	inhand_icon_state = "wife"
 	force = 28
 	damtype = WHITE_DAMAGE
-	ammo_type = /obj/item/ammo_casing/caseless/ego_bride
+	projectile_path = /obj/projectile/ego_bullet/ego_bride
 	weapon_weight = WEAPON_HEAVY
 	fire_delay = 5
 	shotsleft = 10
@@ -586,7 +600,7 @@
 	inhand_icon_state = "loyalty"
 	force = 20
 	damtype = PALE_DAMAGE
-	ammo_type = /obj/item/ammo_casing/caseless/ego_hookah
+	projectile_path = /obj/projectile/ego_bullet/ego_hookah
 	weapon_weight = WEAPON_HEAVY
 	spread = 20
 	special = "This weapon fires 750 rounds per minute. \
@@ -606,7 +620,7 @@
 	inhand_icon_state = "innocence_gun"
 	force = 17
 	damtype = WHITE_DAMAGE
-	ammo_type = /obj/item/ammo_casing/caseless/ego_innocence
+	projectile_path = /obj/projectile/ego_bullet/ego_innocence
 	fire_sound = 'sound/abnormalities/orangetree/ding.ogg'
 	vary_fire_sound = TRUE
 	autofire = 0.2 SECONDS
@@ -627,7 +641,7 @@
 		50 RED damage and alerts the user of the area it was triggered."
 	force = 28
 	damtype = WHITE_DAMAGE
-	ammo_type = /obj/item/ammo_casing/caseless/ego_hypocrisy
+	projectile_path = /obj/projectile/ego_bullet/ego_hypocrisy
 	weapon_weight = WEAPON_HEAVY
 	fire_delay = 25
 	fire_sound = 'sound/weapons/ego/crossbow.ogg'

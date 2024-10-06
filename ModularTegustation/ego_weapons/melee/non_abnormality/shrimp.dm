@@ -8,7 +8,7 @@
 	inhand_icon_state = "sodaminigun"
 	force = 31
 	attack_speed = 1.8
-	ammo_type = /obj/item/ammo_casing/caseless/ego_soda
+	projectile_path = /obj/projectile/ego_bullet/ego_soda
 	weapon_weight = WEAPON_HEAVY
 	drag_slowdown = 3
 	attribute_requirements = list(
@@ -31,7 +31,7 @@
 	icon_state = "sodaassault"
 	inhand_icon_state = "sodaassault"
 	force = 11
-	ammo_type = /obj/item/ammo_casing/caseless/ego_soda
+	projectile_path = /obj/projectile/ego_bullet/ego_soda
 	weapon_weight = WEAPON_HEAVY
 	burst_size = 3
 	fire_delay = 5
@@ -45,7 +45,7 @@
 	inhand_icon_state = "sodaminigun"
 	force = 105
 	attack_speed = 1.7
-	ammo_type = /obj/item/ammo_casing/caseless/ego_soda
+	projectile_path = /obj/projectile/ego_bullet/ego_soda
 	weapon_weight = WEAPON_HEAVY
 	drag_slowdown = 2
 	slowdown = 1.5

@@ -176,7 +176,7 @@
 		move_mod = the_mecha.movedelay + 0.1 //just a little bit more to guarantee that we can always move when mecha is ready to move
 	else if(living_pawn.held_items && living_pawn.held_items.len == 2 && istype(living_pawn.held_items[1], /obj/item/ego_weapon/ranged))
 		banger = living_pawn.held_items[1]
-		var/obj/item/ammo_casing/casing = initial(banger.ammo_type)
+		var/obj/item/ammo_casing/casing = initial(banger.projectile_path)
 		var/obj/projectile/boolet = initial(casing.projectile_type)
 		if(initial(boolet.damage_type) == WHITE_DAMAGE && ishuman(selected_enemy))
 			var/mob/living/carbon/human/H = selected_enemy
@@ -342,7 +342,7 @@
 			has_weapon = TRUE
 			if(istype(I, /obj/item/ego_weapon/ranged))
 				var/obj/item/ego_weapon/ranged/G = I
-				var/obj/item/ammo_casing/casing = initial(G.ammo_type)
+				var/obj/item/ammo_casing/casing = initial(G.projectile_path)
 				var/obj/projectile/boolet = initial(casing.projectile_type)
 				if(initial(boolet.damage_type) != WHITE_DAMAGE)
 					has_non_white_weapon = TRUE
@@ -497,7 +497,7 @@
 				item_blacklist[I] = TRUE
 				continue
 			if(!is_white_allowed)
-				var/obj/item/ammo_casing/casing = initial(EG.ammo_type)
+				var/obj/item/ammo_casing/casing = initial(EG.projectile_path)
 				var/obj/projectile/boolet = initial(casing.projectile_type)
 				if(initial(boolet.damage_type) == WHITE_DAMAGE)
 					continue
@@ -527,7 +527,7 @@
 				item_blacklist[i] = TRUE
 				continue
 			if(!is_white_allowed)
-				var/obj/item/ammo_casing/casing = initial(EG.ammo_type)
+				var/obj/item/ammo_casing/casing = initial(EG.projectile_path)
 				var/obj/projectile/boolet = initial(casing.projectile_type)
 				if(initial(boolet.damage_type) == WHITE_DAMAGE)
 					continue
@@ -555,7 +555,7 @@
 				item_blacklist[i] = TRUE
 				continue
 			if(!is_white_allowed)
-				var/obj/item/ammo_casing/casing = initial(EG.ammo_type)
+				var/obj/item/ammo_casing/casing = initial(EG.projectile_path)
 				var/obj/projectile/boolet = initial(casing.projectile_type)
 				if(initial(boolet.damage_type) == WHITE_DAMAGE)
 					continue
@@ -583,7 +583,7 @@
 				power *= 3 //not sure how accurate but will make them love using it
 	else if(considerRangedAttack && istype(I, /obj/item/ego_weapon/ranged))
 		var/obj/item/ego_weapon/ranged/gun_i = I
-		var/obj/item/ammo_casing/casing = initial(gun_i.ammo_type)
+		var/obj/item/ammo_casing/casing = initial(gun_i.projectile_path)
 		var/obj/projectile/boolet = initial(casing.projectile_type)
 		var/gun_power = initial(boolet.damage) * gun_i.burst_size * initial(casing.pellets)
 		if(gun_i.autofire)

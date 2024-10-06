@@ -6,7 +6,7 @@
 	inhand_icon_state = "prank"
 	force = 20
 	damtype = BLACK_DAMAGE
-	ammo_type = /obj/item/ammo_casing/caseless/ego_prank
+	projectile_path = /obj/projectile/ego_bullet/ego_prank
 	weapon_weight = WEAPON_HEAVY
 	fire_delay = 5
 	shotsleft = 10
@@ -22,7 +22,7 @@
 	icon_state = "gaze"
 	inhand_icon_state = "gaze"
 	force = 12
-	ammo_type = /obj/item/ammo_casing/caseless/ego_gaze
+	projectile_path = /obj/projectile/ego_bullet/ego_gaze
 	fire_delay = 10
 	shotsleft = 8
 	reloadtime = 1.8 SECONDS
@@ -41,7 +41,7 @@
 	inhand_icon_state = "galaxy"
 	special = "Use in hand to turn on homing mode. This mode fires slower, but homes in on a random target within 15 metres.	\
 			WARNING: This feature is not accurate."
-	ammo_type =	/obj/item/ammo_casing/caseless/ego_galaxy
+	projectile_path = /obj/projectile/ego_bullet/ego_galaxy
 	force = 20
 	damtype = BLACK_DAMAGE
 	fire_delay = 15
@@ -58,13 +58,13 @@
 	if(homing)
 		to_chat(user,span_warning("You release your energy, and turn off homing."))
 		fire_delay = 15
-		ammo_type = initial(ammo_type)
+		projectile_path = initial(projectile_path)
 		homing = FALSE
 		return
 	if(!homing)
 		to_chat(user,span_warning("You channel your energy, enabling homing."))
 		fire_delay = 20
-		ammo_type = /obj/item/ammo_casing/caseless/ego_galaxy/homing
+		projectile_path = /obj/projectile/ego_bullet/ego_galaxy/homing
 		homing = TRUE
 		return
 
@@ -78,7 +78,7 @@
 			this weapon fires faster and in a bigger burst for 15 seconds after being unjammed."
 	force = 20
 	damtype = WHITE_DAMAGE
-	ammo_type = /obj/item/ammo_casing/caseless/ego_unrequited
+	projectile_path = /obj/projectile/ego_bullet/ego_unrequited
 	fire_delay = 3
 	burst_size = 3
 	fire_sound = 'sound/weapons/gun/l6/shot.ogg'
@@ -152,7 +152,7 @@
 	force = 30
 	damtype = WHITE_DAMAGE
 	attack_speed = 1.8
-	ammo_type = /obj/item/ammo_casing/caseless/ego_harmony
+	projectile_path = /obj/projectile/ego_bullet/ego_harmony
 	fire_sound = 'sound/weapons/ego/harmony1.ogg'
 	vary_fire_sound = FALSE
 	weapon_weight = WEAPON_HEAVY
@@ -171,7 +171,7 @@
 	icon_state = "transmission"
 	inhand_icon_state = "transmission"
 	force = 20
-	ammo_type = /obj/item/ammo_casing/caseless/ego_transmission
+	projectile_path = /obj/projectile/ego_bullet/ego_transmission
 	weapon_weight = WEAPON_HEAVY
 	fire_delay = 5
 	shotsleft = 10
@@ -188,7 +188,7 @@
 	inhand_icon_state = "song"
 	force = 20
 	damtype = WHITE_DAMAGE
-	ammo_type = /obj/item/ammo_casing/caseless/ego_song
+	projectile_path = /obj/projectile/ego_bullet/ego_song
 	fire_sound = 'sound/weapons/gun/pistol/shot_alt.ogg'
 	weapon_weight = WEAPON_MEDIUM
 	shotsleft = 32
@@ -207,7 +207,9 @@
 	special = "This weapon fires 3 pellets."
 	force = 12
 	damtype = WHITE_DAMAGE
-	ammo_type = /obj/item/ammo_casing/caseless/ego_songmini
+	pellets = 4
+	variance = 20
+	projectile_path = /obj/projectile/ego_bullet/ego_songmini
 	fire_sound = 'sound/weapons/gun/revolver/shot_light.ogg'
 	shotsleft = 16
 	reloadtime = 2.1 SECONDS
@@ -224,7 +226,7 @@
 	inhand_icon_state = "screamingwedge"
 	force = 20
 	damtype = WHITE_DAMAGE
-	ammo_type = /obj/item/ammo_casing/caseless/ego_wedge
+	projectile_path = /obj/projectile/ego_bullet/ego_wedge
 	weapon_weight = WEAPON_HEAVY
 	fire_delay = 10
 
@@ -243,7 +245,7 @@
 	righthand_file = 'icons/mob/inhands/weapons/guns_righthand.dmi'
 	special = "This weapon fires dice that deal varying amounts of damage."
 	force = 12
-	ammo_type = /obj/item/ammo_casing/caseless/ego_swindle
+	projectile_path = /obj/projectile/ego_bullet/ego_swindle
 	weapon_weight = WEAPON_HEAVY
 	fire_delay = 5
 	shotsleft = 12
@@ -261,7 +263,7 @@
 	special = "This weapon can be used as a megaphone."
 	force = 20
 	damtype = BLACK_DAMAGE
-	ammo_type = /obj/item/ammo_casing/caseless/ego_ringing
+	projectile_path = /obj/projectile/ego_bullet/ego_ringing
 	weapon_weight = WEAPON_HEAVY
 	autofire = 0.15 SECONDS
 	spread = 25
@@ -300,7 +302,7 @@
 	special = "This weapon fires slow bullets with limited range."
 	force = 20
 	damtype = WHITE_DAMAGE
-	ammo_type = /obj/item/ammo_casing/caseless/ego_syrinx
+	projectile_path = /obj/projectile/ego_bullet/ego_syrinx
 	weapon_weight = WEAPON_MEDIUM
 	spread = 40
 	shotsleft = 40
@@ -319,7 +321,7 @@
 	inhand_icon_state = "ardor_star"
 	force = 30
 	attack_speed = 1.8
-	ammo_type = /obj/item/ammo_casing/caseless/ego_ardor
+	projectile_path = /obj/projectile/ego_bullet/ardor_star
 	weapon_weight = WEAPON_HEAVY
 	fire_sound = 'sound/weapons/gun/sniper/shot.ogg'
 	fire_delay = 10
@@ -335,7 +337,7 @@
 	icon_state = "deathdealer" //Placeholder sprite. Will need to comission/replace with proper sprites
 	inhand_icon_state = "deathdealer"
 	special = "This weapon changes its projectile each time it is reloaded. It cannot be reloaded without firing all six shots first."
-	ammo_type = /obj/item/ammo_casing/caseless/ego_gaze
+	projectile_path = /obj/projectile/ego_bullet/ego_gaze
 	weapon_weight = WEAPON_HEAVY
 	fire_delay = 8
 	shotsleft = 6
@@ -343,12 +345,12 @@
 	fire_sound = 'sound/weapons/gun/revolver/shot_alt.ogg'
 	vary_fire_sound = FALSE
 	var/list/ammotypes = list(
-		/obj/item/ammo_casing/caseless/ego_magicbullet,
-		/obj/item/ammo_casing/caseless/ego_supershotgun,
-		/obj/item/ammo_casing/caseless/ego_solemnlament,
-		/obj/item/ammo_casing/caseless/ego_harmony,
-		/obj/item/ammo_casing/caseless/ego_match,
-		/obj/item/ammo_casing/caseless/ego_gaze,
+		/obj/projectile/ego_bullet/ego_magicbullet,
+		/obj/projectile/ego_bullet/ego_supershotgun,
+		/obj/projectile/ego_bullet/ego_solemnlament,
+		/obj/projectile/ego_bullet/ego_harmony,
+		/obj/projectile/ego_bullet/ego_match,
+		/obj/projectile/ego_bullet/ego_gaze,
 	)
 	//TODO: Make it so that the fire_sound manages to match the bullet, I.E. magic bullet shots use the magic bullet sound.
 
@@ -356,6 +358,13 @@
 	if(shotsleft != 0)
 		to_chat(user,span_warning("You cannot reload this gun without an empty cylinder!"))
 		return
-	ammo_type = pick(ammotypes)
+	projectile_path = pick(ammotypes)
 	update_projectile_examine()
+	if(projectile_path == /obj/projectile/ego_bullet/ego_supershotgun)
+		pellets = 10
+		variance = 35
+	else
+		pellets = initial(pellets)
+		variance = initial(variance)
 	return ..()
+/obj/item/ego_weapon/ranged/pistol/kcorp/nade

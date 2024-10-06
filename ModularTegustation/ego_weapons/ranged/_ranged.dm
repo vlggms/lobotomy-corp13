@@ -22,17 +22,12 @@
 	attack_verb_simple = list("strike", "hit", "bash")
 
 	var/obj/item/firing_pin/pin = /obj/item/firing_pin/magic //standard firing pin for most guns
-	var/fire_sound = 'sound/weapons/emitter.ogg'
+	var/fire_sound = 'sound/weapons/emitter.ogg' //What sound should play when this ammo is fired
+
 	trigger_guard = TRIGGER_GUARD_ALLOW_ALL	//trigger guard on the weapon, hulks can't fire them with their big meaty fingers
 
-	/// The current ammo_type we are using
-	var/obj/item/ammo_casing/ammo_type = null
-	/// Ammo type to edit, if you want to make custom guns as an admin
-	/// To do so, initialize THIS as a new atom in the VV menu. Then you can edit some of the pre-defined vars.
-	/// Search for "admin_ammo" in this file to see them.
-	var/obj/item/ammo_casing/admin_ammo = null
-	// WARNING: due to gun limitations, if your casing naturally has only 1 pellet and you add in more any edits will only reflect the first pellet
-	var/obj/projectile/admin_ammo_projectile = null
+	/// The current projectile we are shooting
+	var/obj/projectile/projectile_path = null
 
 	/// Just 'slightly' snowflakey way to modify projectile damage for projectiles fired from this gun.
 	var/projectile_damage_multiplier = 1
@@ -112,10 +107,6 @@
 		QDEL_NULL(pin)
 	if(azoom)
 		QDEL_NULL(azoom)
-	if(admin_ammo)
-		QDEL_NULL(admin_ammo)
-	if(admin_ammo_projectile)
-		QDEL_NULL(admin_ammo_projectile)
 	return ..()
 
 /obj/item/ego_weapon/ranged/handle_atom_del(atom/A)
@@ -183,13 +174,13 @@
 
 /// Updates the damage/type of projectiles inside of the gun
 /obj/item/ego_weapon/ranged/proc/update_projectile_examine()
-	var/obj/item/ammo_casing/casing = new ammo_type(src)
-	casing.newshot()
-	last_projectile_damage = casing.BB.damage
-	last_projectile_type = casing.BB.damage_type
-	qdel(casing.BB)
-	casing.BB = null
-	qdel(casing)
+	if(isnull(projectile_path))
+		message_admins("[src] has an invalid projectile path.")
+		return
+	var/obj/projectile/projectile = new projectile_path(src, src)
+	last_projectile_damage = projectile.damage
+	last_projectile_type = projectile.damage_type
+	qdel(projectile)
 
 /obj/item/ego_weapon/ranged/attack_self(mob/user)
 	if(reloadtime && !is_reloading)
@@ -377,52 +368,19 @@
 		sprd = round((((rand_spr/burst_size) * iteration) - (0.5 + (rand_spr * 0.25))) * (randomized_gun_spread + randomized_bonus_spread))
 
 	before_firing(target,user)
-	var/obj/item/ammo_casing/boolet = new ammo_type(src)
-	if(admin_ammo)
-		boolet.variance = admin_ammo.variance
-		boolet.pellets = admin_ammo.pellets
+	fire_projectile(target, user, params, 0, FALSE, zone_override, sprd, src)
 
-	boolet.newshot()
-	if(admin_ammo_projectile)
-		boolet.BB.damage = admin_ammo_projectile.damage // The bullet's damage [AS NUMBER]
-		boolet.BB.damage_type = admin_ammo_projectile.damage_type // The bullet's damage type [AS TEXT](red white black pale)
-		boolet.BB.speed = admin_ammo_projectile.speed // the bullet's speed [AS NUMBER]
-
-		// the bullet's passing ability, [AS BITFLAGS(number)] (goodluck)
-		// 'https://github.com/vlggms/lobotomy-corp13/blob/master/code/__DEFINES/flags.dm#L110-L121'
-		boolet.BB.projectile_piercing = admin_ammo_projectile.projectile_piercing
-		boolet.BB.ricochets_max = admin_ammo_projectile.ricochets_max // How many times a bullet can ricochet
-		boolet.BB.ricochet_chance = admin_ammo_projectile.ricochet_chance // What chance it has each bounce to ricochet again
-		boolet.BB.ricochet_decay_damage = 1
-		boolet.BB.ricochet_decay_chance = 1
-		boolet.BB.ricochet_incidence_leeway = 0
-		boolet.BB.ricochet_ignore_flag = TRUE
-
-	last_projectile_damage = boolet.BB.damage
-	last_projectile_type = boolet.BB.damage_type
-
-	if(!boolet.fire_casing(target, user, params, 0, FALSE, zone_override, sprd, src))
-		// Something VERY BAD happened, cleanup
-		if(boolet)
-			if(boolet.BB)
-				qdel(boolet.BB)
-				boolet.BB = null
-			qdel(boolet)
-		shoot_with_empty_chamber(user)
-		firing_burst = FALSE
-		return FALSE
+	if(get_dist(user, target) <= 1) //Making sure whether the target is in vicinity for the pointblank shot
+		shoot_live_shot(user, 1, target, message)
 	else
-		if(get_dist(user, target) <= 1) //Making sure whether the target is in vicinity for the pointblank shot
-			shoot_live_shot(user, 1, target, message)
-		else
-			shoot_live_shot(user, 0, target, message)
-		if (iteration >= burst_size)
-			firing_burst = FALSE
+		shoot_live_shot(user, 0, target, message)
+	if(iteration >= burst_size)
+		firing_burst = FALSE
 
 	process_chamber()
 	return TRUE
 
-/obj/item/ego_weapon/ranged/proc/process_fire(atom/target, mob/living/user, message = TRUE, params = null, zone_override = "", bonus_spread = 0, bonus_damage_multiplier = 1)
+/obj/item/ego_weapon/ranged/proc/process_fire(atom/target, mob/living/user, message = TRUE, params = null, zone_override = "", bonus_spread = 0, temporary_damage_multiplier = 1)
 	if(!CanUseEgo(user))
 		return
 
@@ -458,45 +416,12 @@
 		sprd = round((rand() - 0.5) * DUALWIELD_PENALTY_EXTRA_MULTIPLIER * (randomized_gun_spread + randomized_bonus_spread))
 
 		before_firing(target,user)
-		var/obj/item/ammo_casing/boolet = new ammo_type(src)
-		if(admin_ammo)
-			boolet.variance = admin_ammo.variance
-			boolet.pellets = admin_ammo.pellets
+		fire_projectile(target, user, params, 0, FALSE, zone_override, sprd, src, temporary_damage_multiplier)
 
-		boolet.newshot()
-		if(admin_ammo_projectile)
-			boolet.BB.damage = admin_ammo_projectile.damage // The bullet's damage [AS NUMBER]
-			boolet.BB.damage_type = admin_ammo_projectile.damage_type // The bullet's damage type [AS TEXT](red white black pale)
-			boolet.BB.speed = admin_ammo_projectile.speed // the bullet's speed [AS NUMBER]
-
-			// the bullet's passing ability, [AS BITFLAGS(number)] (goodluck)
-			// 'https://github.com/vlggms/lobotomy-corp13/blob/master/code/__DEFINES/flags.dm#L110-L121'
-			boolet.BB.projectile_piercing = admin_ammo_projectile.projectile_piercing
-			boolet.BB.ricochets_max = admin_ammo_projectile.ricochets_max // How many times a bullet can ricochet
-			boolet.BB.ricochet_chance = admin_ammo_projectile.ricochet_chance // What chance it has each bounce to ricochet
-			boolet.BB.ricochet_decay_damage = 1
-			boolet.BB.ricochet_decay_chance = 1
-			boolet.BB.ricochet_incidence_leeway = 0
-			boolet.BB.ricochet_ignore_flag = TRUE
-
-		boolet.BB.damage = boolet.BB.damage * bonus_damage_multiplier
-		last_projectile_damage = boolet.BB.damage
-		last_projectile_type = boolet.BB.damage_type
-
-		if(!boolet.fire_casing(target, user, params, 0, FALSE, zone_override, sprd, src))
-			// Something VERY BAD happened, cleanup
-			if(boolet)
-				if(boolet.BB)
-					qdel(boolet.BB)
-					boolet.BB = null
-				qdel(boolet)
-			shoot_with_empty_chamber(user)
-			return
+		if(get_dist(user, target) <= 1) //Making sure whether the target is in vicinity for the pointblank shot
+			shoot_live_shot(user, 1, target, message)
 		else
-			if(get_dist(user, target) <= 1) //Making sure whether the target is in vicinity for the pointblank shot
-				shoot_live_shot(user, 1, target, message)
-			else
-				shoot_live_shot(user, 0, target, message)
+			shoot_live_shot(user, 0, target, message)
 
 		process_chamber()
 		semicd = TRUE
@@ -551,7 +476,7 @@
 	semicd = FALSE
 
 	target.visible_message(span_warning("[user] pulls the trigger!"), span_userdanger("[(user == target) ? "You pull" : "[user] pulls"] the trigger!"))
-	process_fire(target, user, TRUE, params, BODY_ZONE_HEAD, bonus_damage_multiplier = 5)
+	process_fire(target, user, TRUE, params, BODY_ZONE_HEAD, temporary_damage_multiplier = 5)
 
 /obj/item/ego_weapon/ranged/proc/unlock() //used in summon guns and as a convience for admins
 	if(pin)

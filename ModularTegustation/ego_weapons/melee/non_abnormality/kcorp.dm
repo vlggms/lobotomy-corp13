@@ -96,7 +96,7 @@
 	lefthand_file = 'ModularTegustation/Teguicons/lc13_left.dmi'
 	righthand_file = 'ModularTegustation/Teguicons/lc13_right.dmi'
 	force = 8
-	ammo_type = /obj/item/ammo_casing/caseless/ego_kcorp
+	projectile_path = /obj/projectile/ego_bullet/ego_kcorp
 	fire_delay = 5
 	shotsleft = 12
 	reloadtime = 0.8 SECONDS
@@ -144,7 +144,7 @@
 	icon_state = "kgrenade"
 	inhand_icon_state = "kgrenade"
 	force = 17
-	ammo_type = /obj/item/ammo_casing/caseless/ego_knade
+	projectile_path = /obj/projectile/ego_bullet/ego_knade
 	fire_delay = 7
 	shotsleft = 6
 	reloadtime = 1.8 SECONDS

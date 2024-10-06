@@ -8,18 +8,22 @@
 	icon_state = "star"
 	inhand_icon_state = "star"
 	special = "This gun scales with remaining SP."
+
 	force = 33
 	damtype = WHITE_DAMAGE
 	attack_speed = 0.5
-	ammo_type = /obj/item/ammo_casing/caseless/ego_star
+
+	projectile_path = /obj/projectile/ego_bullet/star
 	weapon_weight = WEAPON_HEAVY
 	spread = 5
-	fire_sound = 'sound/weapons/ego/star.ogg'
-	vary_fire_sound = TRUE
-	fire_sound_volume = 25
+
 	autofire = 0.25 SECONDS
 	shotsleft = 333
 	reloadtime = 2.1 SECONDS
+
+	fire_sound = 'sound/weapons/ego/star.ogg'
+	vary_fire_sound = TRUE
+	fire_sound_volume = 25
 
 	attribute_requirements = list(
 							FORTITUDE_ATTRIBUTE = 80,
@@ -27,6 +31,14 @@
 							TEMPERANCE_ATTRIBUTE = 100,
 							JUSTICE_ATTRIBUTE = 80
 							)
+
+/obj/item/ego_weapon/ranged/star/fire_projectile(atom/target, mob/living/user, params, distro, quiet, zone_override, spread, atom/fired_from, temporary_damage_multiplier)
+	if(!ishuman(user))
+		return ..()
+
+	var/mob/living/carbon/human/H = user
+	temporary_damage_multiplier = 1 + (H.sanityhealth / H.maxSanity * 0.5) // Maximum SP will add 50% to the damage
+	return ..()
 
 /obj/item/ego_weapon/ranged/star/suicide_act(mob/living/carbon/user)
 	. = ..()
@@ -43,13 +55,18 @@
 	icon_state = "adoration"
 	inhand_icon_state = "adoration"
 	special = "Use in hand to swap between AOE, DOT and shotgun modes."
+
 	force = 56
 	damtype = BLACK_DAMAGE
-	ammo_type = /obj/item/ammo_casing/caseless/ego_adoration
+
+	projectile_path = /obj/projectile/ego_bullet/adoration
 	weapon_weight = WEAPON_HEAVY
+	fire_delay = 10
+	pellets = 3
+	variance = 20
+
 	fire_sound = 'sound/effects/attackblob.ogg'
 	fire_sound_volume = 50
-	fire_delay = 10
 
 	attribute_requirements = list(
 							FORTITUDE_ATTRIBUTE = 80,
@@ -64,17 +81,21 @@
 	switch(mode)
 		if(SHOT_MODE)
 			to_chat(user,"<span class='warning'>You focus, changing for a DOT blast</span>")
-			ammo_type = /obj/item/ammo_casing/caseless/ego_adoration/dot
+			projectile_path = /obj/projectile/ego_bullet/adoration/dot
+			pellets = 1
+			variance = 0
 			mode = DOT_MODE
 			return
 		if(DOT_MODE)
 			to_chat(user,"<span class='warning'>You focus, changing for an AOE blast</span>")
-			ammo_type = /obj/item/ammo_casing/caseless/ego_adoration/aoe
+			projectile_path = /obj/projectile/ego_bullet/adoration/aoe
 			mode = AOE_MODE
 			return
 		if(AOE_MODE)
 			to_chat(user,"<span class='warning'>You focus, changing for a shotgun blast</span>")
-			ammo_type = /obj/item/ammo_casing/caseless/ego_adoration
+			projectile_path = /obj/projectile/ego_bullet/adoration
+			pellets = initial(pellets)
+			variance = initial(variance)
 			mode = SHOT_MODE
 			return
 
@@ -89,8 +110,10 @@
 	inhand_icon_state = "nihil"
 	force = 56
 	damtype = BLACK_DAMAGE
-	ammo_type = /obj/item/ammo_casing/caseless/ego_nihil
+	projectile_path = /obj/projectile/ego_bullet/nihil
 	weapon_weight = WEAPON_HEAVY
+	pellets = 4
+	variance = 20
 	fire_sound = 'sound/weapons/fixer/generic/energy1.ogg'
 	fire_sound_volume = 50
 	fire_delay = 10
@@ -107,7 +130,7 @@
 	var/list/powers = list("hatred", "despair", "greed", "wrath")
 
 /obj/item/ego_weapon/ranged/nihil/attackby(obj/item/I, mob/living/user, params)
-	..()
+	. = ..()
 	if(!istype(I, /obj/item/nihil))
 		return
 
@@ -162,7 +185,7 @@
 	special = "This weapon has a scope, and fires projectiles with zero travel time. Damage dealt is increased when hitting targets further away. Middle mouse button click/alt click to zoom in that direction."
 	force = 56
 	damtype = WHITE_DAMAGE
-	ammo_type = /obj/item/ammo_casing/caseless/pink
+	projectile_path = /obj/projectile/ego_bullet/pink
 	weapon_weight = WEAPON_HEAVY
 	fire_sound = 'sound/abnormalities/armyinblack/pink.ogg'
 	fire_delay = 9
@@ -239,7 +262,7 @@
 	inhand_icon_state = "arcadia"
 	special = "Use in hand to load bullets."
 	force = 56
-	ammo_type = /obj/item/ammo_casing/caseless/arcadia
+	projectile_path = /obj/projectile/ego_bullet/arcadia
 	weapon_weight = WEAPON_HEAVY
 	spread = 5
 	recoil = 1.5

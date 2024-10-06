@@ -235,7 +235,7 @@
 				continue
 			has_weapon = TRUE
 			sorted_insert(owned_weapons, I , GLOBAL_PROC_REF(ComparatorItemForceGreater))
-			var/obj/item/ammo_casing/casing = initial(EG.ammo_type)
+			var/obj/item/ammo_casing/casing = initial(EG.projectile_path)
 			var/obj/projectile/boolet = initial(casing.projectile_type)
 			if(initial(boolet.damage_type) != WHITE_DAMAGE)
 				has_non_white_weapon = TRUE
@@ -261,7 +261,7 @@
 		if(need_non_white_weapon)
 			var/obj/item/ego_weapon/ranged/EG = I
 			if(istype(EG))
-				var/obj/item/ammo_casing/casing = initial(EG.ammo_type)
+				var/obj/item/ammo_casing/casing = initial(EG.projectile_path)
 				var/obj/projectile/boolet = initial(casing.projectile_type)
 				if(initial(boolet.damage_type) != WHITE_DAMAGE)
 					selected_weapon = I

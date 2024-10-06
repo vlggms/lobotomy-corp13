@@ -6,7 +6,7 @@
 	inhand_icon_state = "thumb_soldato"
 	force = 30
 	attack_speed = 1.5
-	ammo_type = /obj/item/ammo_casing/caseless/fullstop	//Does 10 damage
+	projectile_path = /obj/projectile/ego_bullet/tendamage	//Does 10 damage
 	weapon_weight = WEAPON_HEAVY
 	fire_sound = 'sound/weapons/gun/rifle/shot_alt.ogg'
 	special = "Attack an enemy with your bayonet to reload."
@@ -48,7 +48,9 @@
 	icon_state = "thumb_sottocapo"
 	inhand_icon_state = "thumb_sottocapo"
 	force = 20	//It's a pistol
-	ammo_type = /obj/item/ammo_casing/caseless/thumbshell	//Does 10 damage
+	projectile_path = /obj/projectile/ego_bullet/tendamage // does 10 damage
+	pellets = 8
+	variance = 16
 	attribute_requirements = list(
 							FORTITUDE_ATTRIBUTE = 100,
 							PRUDENCE_ATTRIBUTE = 100,

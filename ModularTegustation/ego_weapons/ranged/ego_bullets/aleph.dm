@@ -1,10 +1,10 @@
-/obj/projectile/ego_bullet/ego_star
+/obj/projectile/ego_bullet/star
 	name = "star"
 	icon_state = "star"
 	damage = 28 // Multiplied by 1.5x when at high SP
 	damage_type = WHITE_DAMAGE
 
-/obj/projectile/ego_bullet/melting_blob
+/obj/projectile/ego_bullet/adoration
 	name = "slime projectile"
 	icon_state = "slime"
 	desc = "A glob of infectious slime. It's going for your heart."
@@ -13,11 +13,11 @@
 	damage_type = BLACK_DAMAGE
 	hitsound = "sound/effects/footstep/slime1.ogg"
 
-/obj/projectile/ego_bullet/melting_blob/dot
+/obj/projectile/ego_bullet/adoration/dot
 	color = "#111111"
 	speed = 1.3
 
-/obj/projectile/ego_bullet/melting_blob/dot/on_hit(target)
+/obj/projectile/ego_bullet/adoration/dot/on_hit(target)
 	. = ..()
 	var/mob/living/H = target
 	if(!isbot(H) && isliving(H) && !QDELETED(H))
@@ -25,10 +25,10 @@
 		for(var/i = 1 to 14)
 			addtimer(CALLBACK(H, TYPE_PROC_REF(/mob/living, apply_damage), rand(4,8), BLACK_DAMAGE, null, H.run_armor_check(null, BLACK_DAMAGE)), 2 SECONDS * i)
 
-/obj/projectile/ego_bullet/melting_blob/aoe
+/obj/projectile/ego_bullet/adoration/aoe
 	color = "#6666BB"
 
-/obj/projectile/ego_bullet/melting_blob/aoe/on_hit(target)
+/obj/projectile/ego_bullet/adoration/aoe/on_hit(target)
 	. = ..()
 	for(var/mob/living/L in view(2, target))
 		new /obj/effect/temp_visual/revenant/cracks(get_turf(L))
@@ -72,10 +72,14 @@
 			H.visible_message("<span class='warning'>[src] vanishes on contact with [H]!</span>")
 			qdel(src)
 			return BULLET_ACT_BLOCK
-	..()
+	return ..()
 
 /obj/projectile/ego_bullet/nihil/fire(angle, atom/direct_target)
-	..()
+	if(fired_from)
+		if(istype(fired_from, /obj/item/ego_weapon/ranged/nihil))
+			var/obj/item/ego_weapon/ranged/nihil/our_weapon = fired_from
+			powers = our_weapon.powers
+	. = ..()
 	if(powers[1] == "hearts")
 		icon_list += "heart"
 		damage += 10
@@ -108,8 +112,8 @@
 	damage_falloff_tile = 5//the damage ramps up; 5 extra damage per tile. Maximum range is about 32 tiles, dealing 290 damage
 
 /obj/projectile/ego_bullet/pink/on_hit(atom/target, blocked = FALSE, pierce_hit)
-	..()
 	new /obj/effect/temp_visual/friend_hearts(get_turf(target))//looks better than impact_effect_type and works
+	return ..()
 
 /obj/projectile/ego_bullet/arcadia
 	name = "arcadia"

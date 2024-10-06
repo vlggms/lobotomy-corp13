@@ -9,7 +9,7 @@
 	force = 8
 	attack_speed = 0.5
 	weapon_weight = WEAPON_LIGHT
-	ammo_type = /obj/item/ammo_casing/caseless/fullstop
+	projectile_path = /obj/projectile/ego_bullet/tendamage
 	shotsleft = 13
 	reloadtime = 1 SECONDS
 	fire_delay = 5
@@ -25,7 +25,7 @@
 	attack_speed = 0.5
 	fire_sound = 'sound/weapons/gun/pistol/shot.ogg'
 	weapon_weight = WEAPON_LIGHT
-	ammo_type = /obj/item/ammo_casing/caseless/fullstop
+	projectile_path = /obj/projectile/ego_bullet/tendamage
 	spread = 30
 	shotsleft = 13
 	reloadtime = 1.5 SECONDS
@@ -42,7 +42,7 @@
 	force = 8
 	attack_speed = 0.5
 	weapon_weight = WEAPON_HEAVY
-	ammo_type = /obj/item/ammo_casing/caseless/fullstop
+	projectile_path = /obj/projectile/ego_bullet/tendamage
 	projectile_damage_multiplier = 6 //60 damage per bullet
 	shotsleft = 6
 	reloadtime = 3 SECONDS
@@ -57,7 +57,7 @@
 	icon = 'icons/obj/limbus_weapons.dmi'
 	force = 14
 	fire_sound = 'sound/weapons/gun/smg/mp7.ogg'
-	ammo_type = /obj/item/ammo_casing/caseless/fullstop
+	projectile_path = /obj/projectile/ego_bullet/tendamage
 	spread = 30
 	shotsleft = 30
 	reloadtime = 2.7 SECONDS
@@ -71,7 +71,9 @@
 	inhand_icon_state = "lccb_shotgun"
 	icon = 'icons/obj/limbus_weapons.dmi'
 	force = 14
-	ammo_type = /obj/item/ammo_casing/caseless/thumbshell //Does 8 shells at 5 damage, total 40
+	projectile_path = /obj/projectile/ego_bullet/tendamage // total 40 damage
+	pellets = 8
+	variance = 16
 	projectile_damage_multiplier = 0.5 //5 damage per bullet
 	fire_delay = 10
 	fire_sound = 'sound/weapons/gun/rifle/shot_alt.ogg'

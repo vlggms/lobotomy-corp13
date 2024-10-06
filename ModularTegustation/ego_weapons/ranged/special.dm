@@ -4,7 +4,7 @@
 	icon_state = "sodarifle"
 	inhand_icon_state = "sodalong"
 	force = 14 // These guns don't have any stat requirements so they won't do high damage
-	ammo_type = /obj/item/ammo_casing/caseless/ego_shrimprifle
+	projectile_path = /obj/projectile/ego_bullet/ego_soda/rifle
 	weapon_weight = WEAPON_HEAVY
 	fire_delay = 3
 	fire_sound = 'sound/weapons/gun/rifle/shot.ogg'
@@ -17,7 +17,9 @@
 	special = "This weapon fires 3 pellets."
 	force = 18
 	attack_speed = 1.3
-	ammo_type = /obj/item/ammo_casing/caseless/ego_shrimpshotgun
+	projectile_path = /obj/projectile/ego_bullet/ego_soda
+	pellets = 3
+	variance = 12
 	weapon_weight = WEAPON_HEAVY
 	fire_delay = 10
 	fire_sound = 'sound/weapons/gun/shotgun/shot.ogg'
@@ -28,7 +30,7 @@
 	icon_state = "sodasmg"
 	inhand_icon_state = "soda"
 	force = 14
-	ammo_type = /obj/item/ammo_casing/caseless/ego_soda
+	projectile_path = /obj/projectile/ego_bullet/ego_soda
 	weapon_weight = WEAPON_HEAVY
 	spread = 8
 	fire_sound = 'sound/weapons/gun/smg/shot.ogg'
@@ -44,7 +46,7 @@
 	righthand_file = 'icons/mob/inhands/weapons/flamethrower_righthand.dmi'
 	icon_state = "flamethrower1"
 	inhand_icon_state = "flamethrower_1"
-	ammo_type = /obj/item/ammo_casing/caseless/flammenwerfer
+	projectile_path = /obj/projectile/ego_bullet/flammenwerfer
 	weapon_weight = WEAPON_HEAVY
 	spread = 50
 	fire_sound = 'sound/abnormalities/doomsdaycalendar/Effect_Burn.ogg'
@@ -74,7 +76,7 @@
 	force = 56
 	damtype = BLACK_DAMAGE
 	weapon_weight = WEAPON_HEAVY
-	ammo_type = /obj/item/ammo_casing/caseless/ego_hatred
+	projectile_path = /obj/projectile/ego_bullet/ego_hatred
 	fire_sound = 'sound/abnormalities/hatredqueen/attack.ogg'
 	attribute_requirements = list(
 							FORTITUDE_ATTRIBUTE = 80,

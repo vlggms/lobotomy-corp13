@@ -5,7 +5,7 @@
 	icon_state = "fullstop"
 	inhand_icon_state = "fullstop"
 	force = 14
-	ammo_type = /obj/item/ammo_casing/caseless/fullstop	//Does 10 damage
+	projectile_path = /obj/projectile/ego_bullet/tendamage	//Does 10 damage
 	weapon_weight = WEAPON_HEAVY
 	fire_sound = 'sound/weapons/gun/rifle/shot_alt.ogg'
 	special = "Use in hand to reload"

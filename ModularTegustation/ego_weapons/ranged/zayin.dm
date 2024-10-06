@@ -6,7 +6,7 @@
 	icon_state = "bald"
 	inhand_icon_state = "bald"
 	damtype = WHITE_DAMAGE
-	ammo_type = /obj/item/ammo_casing/caseless/ego_tough
+	projectile_path = /obj/projectile/ego_bullet/ego_tough
 	burst_size = 1
 	fire_delay = 10
 	fire_sound = 'sound/weapons/gun/pistol/shot.ogg'
@@ -65,7 +65,7 @@
 	special = "Perish while wearing matching armor and Wellcheers shrimp will arrive to mourn you."
 	icon_state = "soda"
 	inhand_icon_state = "soda"
-	ammo_type = /obj/item/ammo_casing/caseless/ego_soda
+	projectile_path = /obj/projectile/ego_bullet/ego_soda
 	burst_size = 1
 	fire_delay = 5
 	shotsleft = 12
@@ -119,7 +119,7 @@
 	special = "Use this weapon in your hand when wearing matching armor to heal the SP of others nearby."
 	icon_state = "nostalgia"
 	inhand_icon_state = "nostalgia"
-	ammo_type = /obj/item/ammo_casing/caseless/ego_nostalgia
+	projectile_path = /obj/projectile/ego_bullet/ego_nostalgia
 	fire_sound = 'sound/weapons/gun/pistol/shot.ogg'
 	vary_fire_sound = FALSE
 	fire_sound_volume = 70
@@ -176,21 +176,19 @@
 	icon_state = "nightshade"
 	inhand_icon_state = "nightshade"
 	damtype = BLACK_DAMAGE
-	ammo_type = /obj/item/ammo_casing/caseless/ego_nightshade
+	projectile_path = /obj/projectile/ego_bullet/ego_nightshade
 	burst_size = 1
 	fire_delay = 10
 	fire_sound = 'sound/weapons/bowfire.ogg'
 	vary_fire_sound = FALSE
 	fire_sound_volume = 50
 
-/obj/item/ego_weapon/ranged/pistol/nightshade/process_fire(atom/target, mob/living/user, message = TRUE, params = null, zone_override = "", bonus_spread = 0, bonus_damage_multiplier = 1)
+/obj/item/ego_weapon/ranged/pistol/nightshade/process_fire(atom/target, mob/living/user, message = TRUE, params = null, zone_override = "", bonus_spread = 0, temporary_damage_multiplier = 1)
 	var/obj/item/clothing/suit/armor/ego_gear/zayin/nightshade/C = user.get_item_by_slot(ITEM_SLOT_OCLOTHING)
-	if(!istype(C))
-		if(ammo_type == /obj/item/ammo_casing/caseless/ego_nightshade/healing)
-			ammo_type = /obj/item/ammo_casing/caseless/ego_nightshade
+	if(istype(C))
+		projectile_path = /obj/projectile/ego_bullet/ego_nightshade/healing
 	else
-		if(ammo_type == /obj/item/ammo_casing/caseless/ego_nightshade)
-			ammo_type = /obj/item/ammo_casing/caseless/ego_nightshade/healing
+		projectile_path = /obj/projectile/ego_bullet/ego_nightshade
 	return ..()
 
 /obj/item/ego_weapon/ranged/bucket
@@ -199,7 +197,7 @@
 	special = "Use this weapon in your hand when wearing matching armor to create gifts for people nearby."
 	icon_state = "bucket"
 	inhand_icon_state = "bucket"
-	ammo_type = /obj/item/ammo_casing/caseless/ego_bucket
+	projectile_path = /obj/projectile/ego_bullet/ego_bucket
 	fire_delay = 10
 	fire_sound = 'sound/weapons/bowfire.ogg'
 	vary_fire_sound = TRUE
@@ -268,7 +266,7 @@
 	icon_state = "oceanic"
 	inhand_icon_state = "oceanic"
 	damtype = WHITE_DAMAGE
-	ammo_type = /obj/item/ammo_casing/caseless/ego_oceanic
+	projectile_path = /obj/projectile/ego_bullet/ego_oceanic
 	burst_size = 1
 	fire_delay = 5
 	shotsleft = 7

@@ -11,7 +11,7 @@
 	special = "This weapon does AOE damage."
 	force = 23
 	attack_speed = 1.8
-	ammo_type = /obj/item/ammo_casing/caseless/ego_match
+	projectile_path = /obj/projectile/ego_bullet/ego_match
 	weapon_weight = WEAPON_HEAVY
 	fire_delay = 15
 	shotsleft = 8
@@ -25,7 +25,7 @@
 	icon_state = "beak"
 	inhand_icon_state = "beak"
 	force = 14
-	ammo_type = /obj/item/ammo_casing/caseless/ego_beak
+	projectile_path = /obj/projectile/ego_bullet/ego_beak
 	weapon_weight = WEAPON_MEDIUM
 	spread = 10
 	shotsleft = 30
@@ -40,7 +40,7 @@
 	inhand_icon_state = "beakmagnum"
 	force = 8
 	special = "This weapon has pinpoint accuracy when dual wielded."
-	ammo_type = /obj/item/ammo_casing/caseless/ego_beakmagnum
+	projectile_path = /obj/projectile/ego_bullet/ego_beakmagnum
 	fire_delay = 10
 	shotsleft = 7
 	reloadtime = 2.1 SECONDS
@@ -57,8 +57,10 @@
 	special = "This weapon fires 5 pellets."
 	force = 14
 	damtype = WHITE_DAMAGE
-	ammo_type = /obj/item/ammo_casing/caseless/ego_noise
+	projectile_path = /obj/projectile/ego_bullet/ego_noise
 	weapon_weight = WEAPON_HEAVY
+	pellets = 5
+	variance = 20
 	fire_delay = 10
 	shotsleft = 8
 	reloadtime = 1.6 SECONDS
@@ -71,7 +73,7 @@
 	inhand_icon_state = "solitude"
 	force = 8
 	damtype = WHITE_DAMAGE
-	ammo_type = /obj/item/ammo_casing/caseless/ego_solitude
+	projectile_path = /obj/projectile/ego_bullet/ego_solitude
 	fire_delay = 10
 	shotsleft = 5
 	reloadtime = 2 SECONDS
@@ -87,7 +89,7 @@
 	inhand_icon_state = "shy"
 	force = 8
 	damtype = BLACK_DAMAGE
-	ammo_type = /obj/item/ammo_casing/caseless/ego_shy
+	projectile_path = /obj/projectile/ego_bullet/ego_shy
 	fire_sound = 'sound/effects/meatslap.ogg'
 	vary_fire_sound = FALSE
 	shotsleft = 20
@@ -101,7 +103,7 @@
 	inhand_icon_state = "dream"
 	force = 14
 	damtype = WHITE_DAMAGE
-	ammo_type = /obj/item/ammo_casing/caseless/ego_dream
+	projectile_path = /obj/projectile/ego_bullet/ego_dream
 	weapon_weight = WEAPON_HEAVY
 	fire_sound = "dreamy_gun"
 	autofire = 0.25 SECONDS
@@ -113,7 +115,7 @@
 	inhand_icon_state = "page"
 	force = 14
 	damtype = BLACK_DAMAGE
-	ammo_type = /obj/item/ammo_casing/caseless/ego_page
+	projectile_path = /obj/projectile/ego_bullet/ego_page
 	weapon_weight = WEAPON_HEAVY
 	fire_delay = 5
 	shotsleft = 10
@@ -128,7 +130,7 @@
 	special = "This weapon fires a hitscan beam."
 	force = 14
 	damtype = WHITE_DAMAGE
-	ammo_type = /obj/item/ammo_casing/caseless/ego_snapshot
+	projectile_path = /obj/projectile/beam/snapshot
 	weapon_weight = WEAPON_HEAVY
 	fire_delay = 10
 	fire_sound = 'sound/weapons/sonic_jackhammer.ogg'
@@ -141,20 +143,20 @@
 	special = "This weapon has a combo system with a short range."
 	force = 14
 	damtype = BLACK_DAMAGE
-	ammo_type = /obj/item/ammo_casing/caseless/ego_wishing
+	projectile_path = /obj/projectile/ego_bullet/ego_wishing
 	weapon_weight = WEAPON_HEAVY
 	fire_delay = 3
 	burst_size = 2
 	fire_sound = 'sound/abnormalities/pagoda/throw.ogg'
-	var/ammo2 = /obj/item/ammo_casing/caseless/ego_wishing2
+	var/ammo2 = /obj/projectile/ego_bullet/ego_wishing2
 
 /obj/item/ego_weapon/ranged/wishing_cairn/proc/Ammo_Change()
-	ammo_type = ammo2
+	projectile_path = ammo2
 	fire_sound = 'sound/abnormalities/pagoda/throw2.ogg'
 
 /obj/item/ego_weapon/ranged/wishing_cairn/afterattack(atom/target, mob/user)
-	..()
-	ammo_type = initial(ammo_type)
+	. = ..()
+	projectile_path = initial(projectile_path)
 	fire_sound = 'sound/abnormalities/pagoda/throw.ogg'
 
 /obj/item/ego_weapon/ranged/aspiration
@@ -164,7 +166,7 @@
 	inhand_icon_state = "aspiration"
 	special = "This weapon fires a hitscan beam at the cost of health. \n Upon hitting an ally, this weapon heals the target,"
 	force = 14
-	ammo_type = /obj/item/ammo_casing/caseless/ego_aspiration
+	projectile_path = /obj/projectile/ego_bullet/ego_aspiration
 	weapon_weight = WEAPON_HEAVY
 	autofire = 0.5 SECONDS
 	fire_sound = 'sound/abnormalities/fragment/attack.ogg'
@@ -173,8 +175,7 @@
 	if(ishuman(user))
 		var/mob/living/carbon/human/H = user
 		H.adjustBruteLoss(3)
-	..()
-	return
+	return ..()
 
 /obj/item/ego_weapon/ranged/patriot
 	name = "patriot"
@@ -188,7 +189,9 @@
 	special = "This weapon fires 4 pellets."
 	force = 18
 	attack_speed = 1.3
-	ammo_type = /obj/item/ammo_casing/caseless/ego_patriot
+	projectile_path = /obj/projectile/ego_bullet/ego_patriot
+	pellets = 4
+	variance = 25
 	weapon_weight = WEAPON_HEAVY
 	fire_delay = 12
 	shotsleft = 8
@@ -203,7 +206,7 @@
 	lefthand_file = 'icons/mob/inhands/items_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/items_righthand.dmi'
 	special = "This weapon's projectiles move slowly and pierce enemies."
-	ammo_type = /obj/item/ammo_casing/caseless/ego_luckdraw
+	projectile_path = /obj/projectile/ego_bullet/ego_luckdraw
 	weapon_weight = WEAPON_HEAVY
 	autofire = 0.6 SECONDS
 	fire_sound = 'sound/items/handling/paper_pickup.ogg' //Mostly just using this for a lack of a better "card-flicking" noise

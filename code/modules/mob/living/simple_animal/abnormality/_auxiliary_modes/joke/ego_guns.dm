@@ -7,7 +7,7 @@
 	icon = 'code/modules/mob/living/simple_animal/abnormality/_auxiliary_modes/joke/!icons/ego_weapons.dmi'
 	icon_state = "mcrib"
 	force = 6
-	ammo_type = /obj/item/ammo_casing/caseless/ego_mcrib
+	projectile_path = /obj/projectile/ego_bullet/ego_mcrib
 	burst_size = 1
 	fire_delay = 10
 	fire_sound = 'sound/effects/meatslap.ogg'
@@ -38,11 +38,6 @@
 		to_chat(L, "<span class='warning'>Is that... authentic Kansas City Barbecue sauce I smell? [user] gives you a snack!</span>")
 		new foodoption(get_turf(L))
 	new foodoption(get_turf(user))
-
-/obj/item/ammo_casing/caseless/ego_mcrib
-	name = "mcrib casing"
-	desc = "A mcrib casing."
-	projectile_type = /obj/projectile/ego_bullet/ego_mcrib
 
 /obj/projectile/ego_bullet/ego_mcrib
 	name = "mcrib"

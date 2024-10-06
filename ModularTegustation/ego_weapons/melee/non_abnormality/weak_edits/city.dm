@@ -149,7 +149,9 @@
 /obj/item/ego_weapon/ranged/city/thumb/sottocapo/weak
 	force = 10	//It's a pistol
 	projectile_damage_multiplier = 0.7 //5 damage per bullet
-	ammo_type = /obj/item/ammo_casing/caseless/thumbshell //Does 8 shells at 7 damage, total 56
+	projectile_path = /obj/projectile/ego_bullet/tendamage // total 56 damage
+	pellets = 8
+	variance = 16
 	attribute_requirements = list(
 		FORTITUDE_ATTRIBUTE = 100,
 		PRUDENCE_ATTRIBUTE = 100,

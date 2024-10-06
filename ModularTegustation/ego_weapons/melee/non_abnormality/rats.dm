@@ -72,7 +72,7 @@
 	worn_icon_state = "gun"
 	lefthand_file = 'icons/mob/inhands/weapons/guns_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/weapons/guns_righthand.dmi'
-	ammo_type = /obj/item/ammo_casing/caseless/ego_kcorp
+	projectile_path = /obj/projectile/ego_bullet/ego_kcorp
 	fire_delay = 5
 	fire_sound = 'sound/weapons/gun/pistol/shot.ogg'
 	fire_sound_volume = 70

@@ -2,6 +2,32 @@
 
 //Contains ERA, clerk. and officer (?) weapons
 
+/obj/projectile/ego_bullet/lcorp
+	name = "bullet"
+	damage = 4
+	damage_type = RED_DAMAGE
+	var/list/damage_tier = list(11,20,30,55,90) //These numbers are just for reference
+
+/obj/projectile/ego_bullet/lcorp/fire(angle, atom/direct_target)
+	if(fired_from)
+		if(istype(fired_from, /obj/item/ego_weapon/ranged/city/lcorp))
+			var/obj/item/ego_weapon/ranged/city/lcorp/our_weapon = fired_from
+			damage_type = our_weapon.damtype
+			damage = damage_tier[max(1, our_weapon.tier)]
+			if(damage_type == PALE_DAMAGE) //pale deals 25% less damage
+				damage = floor(damage * 0.75)
+	return ..()
+
+/obj/projectile/ego_bullet/lcorp/pistol
+	name = "bullet"
+	damage = 11
+	damage_tier = list(11,20,30,55,90)
+
+/obj/projectile/ego_bullet/lcorp/automatic
+	name = "bullet"
+	damage = 2
+	damage_tier = list(2,4,6,9,15)
+
 ///////////////////////
 //ERA/AGENT EQUIPMENT//
 ///////////////////////
@@ -10,7 +36,7 @@
 	icon = 'ModularTegustation/Teguicons/lcorp_weapons.dmi'
 	lefthand_file = 'ModularTegustation/Teguicons/lcorp_left.dmi'
 	righthand_file = 'ModularTegustation/Teguicons/lcorp_right.dmi'
-	ammo_type = /obj/item/ammo_casing/caseless/ego_clerk
+	projectile_path = /obj/projectile/ego_bullet/ego_clerk
 	attribute_requirements = list(
 							FORTITUDE_ATTRIBUTE = 20,
 							PRUDENCE_ATTRIBUTE = 20,
@@ -65,53 +91,13 @@
 	icon_state = "[initial(icon_state)]_[egoshard.damage_type]"
 	update_projectile_examine()
 
-/obj/item/ammo_casing/caseless/lcorp
-	name = "9mm pistol casing"
-	desc = "A casing."
-	projectile_type = /obj/projectile/ego_bullet/lcorp
-	var/tier = 0
-	damtype = RED_DAMAGE
-
-/obj/item/ammo_casing/caseless/lcorp/ready_proj(atom/target, mob/living/user, quiet, zone_override = "", atom/fired_from)
-	. = ..()
-	if(tier) //No reason to run this again
-		return
-	if(isgun(fired_from) || istype(fired_from, /obj/item/ego_weapon/ranged))
-		var/obj/item/ego_weapon/ranged/city/lcorp/G = fired_from
-		var/obj/projectile/ego_bullet/lcorp/GG = BB
-		GG.tier = G.tier
-		GG.damage_type = G.damtype
-		GG.damage = GG.damage_tier[GG.tier]
-		tier = G.tier
-		damtype = GG.damage_type
-		if(damtype == PALE_DAMAGE) //pale deals 25% less damage
-			GG.damage = round(GG.damage * 0.75)
-
-/obj/item/ammo_casing/caseless/lcorp/newshot() //We're reusing the code here so that the damage shows up on examine
-	if(!BB)
-		BB = new projectile_type(src, src)
-	if(tier)
-		var/obj/projectile/ego_bullet/lcorp/GG = BB
-		GG.tier = tier
-		GG.damage_type = damtype
-		GG.damage = GG.damage_tier[GG.tier]
-		if(damtype == PALE_DAMAGE)
-			GG.damage = round(GG.damage * 0.75)
-
-/obj/projectile/ego_bullet/lcorp
-	name = "bullet"
-	damage = 4
-	damage_type = RED_DAMAGE
-	var/tier = 0
-	var/list/damage_tier = list(11,20,30,55,90) //These numbers are just for reference
-
 /obj/item/ego_weapon/ranged/city/lcorp/pistol
 	name = "l-corp suppression pistol"
 	desc = "A special pistol issued by L-Corp to those who cannot utilize E.G.O."
 	icon_state = "pistol"
 	inhand_icon_state = "pistol"
 	special = "This weapon has pinpoint accuracy when dual wielded."
-	ammo_type = /obj/item/ammo_casing/caseless/lcorp/pistol
+	projectile_path = /obj/projectile/ego_bullet/lcorp/pistol
 	attack_speed = 0.5
 	force = 6
 	fire_delay = 10
@@ -121,16 +107,6 @@
 	vary_fire_sound = FALSE
 	fire_sound_volume = 70
 	dual_wield_spread = 0
-
-/obj/item/ammo_casing/caseless/lcorp/pistol
-	name = ".357 l-corp bullet casing"
-	desc = "A casing."
-	projectile_type = /obj/projectile/ego_bullet/lcorp/pistol
-
-/obj/projectile/ego_bullet/lcorp/pistol
-	name = "bullet"
-	damage = 11
-	damage_tier = list(11,20,30,55,90)
 
 /obj/item/ego_weapon/ranged/city/lcorp/pistol/IncreaseAttributes(mob/living/user, obj/item/egoshard/egoshard)
 	..()
@@ -142,7 +118,7 @@
 	icon_state = "automatic"
 	inhand_icon_state = "automatic"
 	w_class = WEIGHT_CLASS_NORMAL
-	ammo_type = /obj/item/ammo_casing/caseless/lcorp/automatic
+	projectile_path = /obj/projectile/ego_bullet/lcorp/automatic
 	attack_speed = 0.5
 	force = 6
 	fire_sound = 'sound/weapons/gun/pistol/shot.ogg'
@@ -150,16 +126,6 @@
 	shotsleft = 20
 	reloadtime = 1.2 SECONDS
 	autofire = 0.2 SECONDS
-
-/obj/item/ammo_casing/caseless/lcorp/automatic
-	name = "9mm l-corp bullet casing"
-	desc = "A casing."
-	projectile_type = /obj/projectile/ego_bullet/lcorp/automatic
-
-/obj/projectile/ego_bullet/lcorp/automatic
-	name = "bullet"
-	damage = 2
-	damage_tier = list(2,4,6,9,15)
 
 /obj/item/ego_weapon/ranged/city/lcorp/automatic_pistol/IncreaseAttributes(mob/living/user, obj/item/egoshard/egoshard)
 	..()
@@ -181,7 +147,7 @@
 	attack_speed = 0.5
 	force = 6
 	w_class = WEIGHT_CLASS_NORMAL
-	ammo_type = /obj/item/ammo_casing/caseless/ego_clerk
+	projectile_path = /obj/projectile/ego_bullet/ego_clerk
 	burst_size = 1
 	fire_delay = 3
 	shotsleft = 10
@@ -215,4 +181,4 @@
 	semicd = FALSE
 	target.visible_message("<span class='warning'>[user] pulls the trigger!</span>", "<span class='userdanger'>[(user == target) ? "You pull" : "[user] pulls"] the trigger!</span>")
 
-	process_fire(target, user, TRUE, params, BODY_ZONE_HEAD, bonus_damage_multiplier = (user_target ? 100 : 5))
+	process_fire(target, user, TRUE, params, BODY_ZONE_HEAD, temporary_damage_multiplier = (user_target ? 100 : 5))
