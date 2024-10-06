@@ -54,7 +54,8 @@
 		"The employee working on We Can Change Anything took continuous RED damage during work.",
 		"Upon successful work completion, the employee received a slight temporary resistance to RED damage.",
 		"Placing an employee inside the machine will produce energy over time, and the RED damage was increased.",
-		"The amount of energy produced this way will increase as time goes by.")
+		"The amount of energy produced this way will increase as time goes by.",
+		"Unfortunately, only half of the energy generated could be used to meet the PE quota of the day.")
 
 //Sleeping Beauty
 /obj/item/paper/fluff/info/zayin/sleeping
@@ -71,16 +72,16 @@
 	abno_code = "D-01-145"
 	abno_info = list(
 		"When work with T-01-145 was completed, it started to speak.",
-		"If the agent working with T-01-145 listened to it's entire story, they received a buff for the corresponding attribute, lasting 5 minutes.")
+		"If the agent working with or sitting next to T-01-145 listened to it's entire story, they received a buff for the corresponding attribute, lasting 5 minutes.")
 
 //Letters on Standby
 /obj/item/paper/fluff/info/zayin/mail
 	abno_type = /mob/living/simple_animal/hostile/abnormality/mailpile
 	abno_code = "C-04-147"
 	abno_info = list("When an agent completed work with the abnormality with a neutral or good result, they were delivered a piece of mail.",
-	"Reading the mail produced differing effects depending on the type of mail received.",
-	"Upon successful repression work, the employee received a parcel.",
-	"Multiple repression works within short succession resulted in the death of the working agent.")
+		"Reading the mail produced differing effects depending on the type of mail received.",
+		"Upon successful repression work, the employee received a parcel.",
+		"When the work result was bad, the abnormality released a lethal barrage of hate mail.")
 
 //Fallen Amurdad
 /obj/item/paper/fluff/info/zayin/fallen_amurdad
@@ -104,6 +105,7 @@
 	abno_type = /mob/living/simple_animal/hostile/abnormality/hammer_light
 	abno_code = "O-05-48"
 	abno_info = list(
+		"When the work result was good, up to 5 sane employees with low HP or SP were healed over time. This effect only occured every 3 minutes at most.",
 		"Hammer of Light's room cannot be accessed when the facility is in peace, the seal is broken during an emergency.",
 		"When the seal is broken, an employee can simply walk up to the abnormality and pick up the hammer.",
 		"When a level 1 employee tried to pick up the hammer, they were reduced to ashes by its power.",
@@ -115,9 +117,10 @@
 	abno_type = /mob/living/simple_animal/hostile/abnormality/oceanicwaves
 	abno_code = "O-05-181"
 	abno_info = list(
-		"After work was completed, O-04-181 dispensed 3 soda cans.",
-		"After testing, it showed that the soda cans were spiked with various medicines, both beneficial and not.",
-		"The chances of recieving a beneficial soda increased the better the work result.")
+		"After work was completed, O-04-181 dispensed a soda can.",
+		"Soda cans dispensed by O-05-181 usually contained chemicals with anomalous properties.",
+		"The chances of recieving a soda with healing properties increased the better the work result.",
+		"When the work result was bad, soda cans were violently ejected at nearby employees.")
 
 //Sunset Traveller
 /obj/item/paper/fluff/info/zayin/sunset_traveller

@@ -693,21 +693,6 @@
 	icon_state = "snowqueen"
 	update_icon()
 
-//Used in Steel noons for if they are allowed to fly through something.
-/mob/living/simple_animal/hostile/abnormality/snow_queen/proc/ClearSky(turf/T)
-	if(!T || isclosedturf(T) || T == loc)
-		return FALSE
-	if(locate(/obj/structure/window) in T.contents)
-		return FALSE
-	if(locate(/obj/structure/table) in T.contents)
-		return FALSE
-	if(locate(/obj/structure/railing) in T.contents)
-		return FALSE
-	for(var/obj/machinery/door/D in T.contents)
-		if(D.density)
-			return FALSE
-	return TRUE
-
 		/*-------------------\
 		|REUSABLE VISUAL PROC|
 		\-------------------*/

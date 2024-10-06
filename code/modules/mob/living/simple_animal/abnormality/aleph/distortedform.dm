@@ -116,7 +116,7 @@
 		"Blubbering Toad",
 		"Bloodbath",
 		"Price of Silence",
-		"You’re Bald...",
+		"You're Bald...",
 	)
 	var/list/transform_list_longrange = list("Doomsday Calendar", "Blue Star", "Der Freischutz", "Apocalypse bird", "Siren")
 	var/list/transform_list_jump = list("Light", "Medium", "Heavy")
@@ -471,7 +471,7 @@
 			ChangeSiren()
 		if("Apocalypse bird")
 			ChangeApoc()
-		if("You’re Bald...")
+		if("You're Bald...")
 			ChangeBald()
 		if("Jump")
 			ReadyJump()
@@ -1455,7 +1455,7 @@
 	H.remove_atom_colour(TEMPORARY_COLOUR_PRIORITY)
 
 
-//You’re Bald...
+//You're Bald...
 /mob/living/simple_animal/hostile/abnormality/distortedform/proc/ChangeBald()//man roleplayers are going to hate this one
 	transform_cooldown = transform_cooldown_time_short + world.time
 	name = "You’re Bald..."
@@ -1483,18 +1483,13 @@
 			if(!ishuman(L))
 				continue
 			var/mob/living/carbon/human/H = L
+			do_bald(H)
 			if(!H.is_blind() && is_A_facing_B(H,src))
-				if(!HAS_TRAIT(H, TRAIT_BALD))
-					H.emote("scream")
-					H.Stun(20)
-					H.Paralyze(20)
-					H.Knockdown(200)
-					to_chat(H, span_notice("You feel awesome?"))
-					ADD_TRAIT(H, TRAIT_BALD, "ABNORMALITY_BALD")
-					H.hairstyle = "Bald"
-					H.update_hair()
-				H.adjust_blindness(2)
-				to_chat(L, span_userdanger("IT BURNS!!"))
+				H.emote("scream")
+				H.Stun(20)
+				H.Paralyze(20)
+				H.adjust_blindness(16)
+				to_chat(L, span_userdanger("MY EYES!!!"))
 				H.apply_damage(100, WHITE_DAMAGE, null, H.run_armor_check(null, WHITE_DAMAGE), spread_damage = TRUE)
 				if(H.sanity_lost) // They can't deal with being bald
 					H.dust()
@@ -1504,8 +1499,21 @@
 	src.set_light(0, 0, null, FALSE) //using all params takes care of the other procs.
 	can_act = TRUE
 
+/mob/living/simple_animal/hostile/abnormality/distortedform/proc/do_bald(mob/living/carbon/human/victim)
+	if(!HAS_TRAIT(victim, TRAIT_BALD))
+		ADD_TRAIT(victim, TRAIT_BALD, "ABNORMALITY_BALD")
+		victim.hairstyle = "Bald"
+		victim.update_hair()
+		victim.playsound_local(victim, 'sound/abnormalities/bald/bald_special.ogg', 50, FALSE)
+		victim.add_overlay(icon('ModularTegustation/Teguicons/tegu_effects.dmi', "bald_blast"))
+		addtimer(CALLBACK(victim, TYPE_PROC_REF(/atom, cut_overlay), \
+								icon('ModularTegustation/Teguicons/tegu_effects.dmi', "bald_blast")), 20)
+		to_chat(victim, span_notice("You feel awesome!"))
+		return TRUE
+	return FALSE
+
 /*
-	Long-ranged "Punishment" Transfromations
+	Long-ranged "Punishment" Transformations
 	The farther you are - the less damage it deals. Followed up by a Teleport
 */
 //Doomsday Calander

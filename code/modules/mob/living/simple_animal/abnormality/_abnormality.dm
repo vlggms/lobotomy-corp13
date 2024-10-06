@@ -236,8 +236,7 @@
 	if(!(status_flags & GODMODE))
 		to_chat(user, span_notice("Now isn't the time!"))
 		return
-	var/obj/item/chemical_extraction_attachment/attachment = locate() in datum_reference.console.contents
-	if(!attachment)
+	if(datum_reference.console.mechanical_upgrades["abnochem"] == 0)
 		to_chat(user, span_notice("This abnormality's cell is not properly equipped for substance extraction."))
 		return
 	if(world.time < chem_cooldown_timer)

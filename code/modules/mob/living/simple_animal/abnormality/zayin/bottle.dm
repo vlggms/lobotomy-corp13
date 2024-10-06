@@ -41,10 +41,12 @@
 	attack_verb_continuous = "begs"
 	attack_verb_simple = "beg"
 
-	var/cake = 5 //How many cake charges are there (4)
+	var/cake = 3 //How many cake charges are there (2)
 	var/speak_cooldown_time = 5 SECONDS
 	var/speak_damage = 8
 	var/eating = FALSE
+	var/scooped = FALSE // There can only be one eye scooper
+	var/cake_regen = FALSE
 	COOLDOWN_DECLARE(speak_damage_aura)
 
 	chem_type = /datum/reagent/abnormality/bottle
@@ -66,6 +68,7 @@
 		In spite of that, you're at peace and smiling. <br>\
 		Through your fading eyesight, you spy yourself through the other side of the containment door's window - frowning."
 
+// Final Observation
 /mob/living/simple_animal/hostile/abnormality/bottle/ObservationResult(mob/living/carbon/human/user, condition, answer) //special answer for cake result
 	if(answer == "Eat the cake")
 		observation_success_message = observation_success_message_2
@@ -73,45 +76,15 @@
 		observation_success_message = initial(observation_success_message)
 	return ..()
 
-/mob/living/simple_animal/hostile/abnormality/bottle/Life()
-	. = ..()
-	if(!.)
-		return
-	if(COOLDOWN_FINISHED(src, speak_damage_aura) && !eating)
-		COOLDOWN_START(src, speak_damage_aura, speak_cooldown_time)
-		if(!client)
-			say("Drink Me.")
-		for(var/mob/living/L in view(vision_range, src))
-			if(L == src)
-				continue
-			if(faction_check_mob(L, FALSE))
-				continue
-			L.deal_damage(speak_damage, BLACK_DAMAGE)
-		adjustBruteLoss(-speak_damage) // It falls further into desperation
-		if(speak_damage < 40)
-			speak_damage += 4
-
-/mob/living/simple_animal/hostile/abnormality/bottle/Move()
-	if(!eating)
-		return ..()
-	return FALSE
-
-/mob/living/simple_animal/hostile/abnormality/bottle/AttackingTarget(atom/attacked_target)
-	if(eating)
-		return
-	if(isliving(target))
-		var/mob/living/L = target
-		if(faction_check_mob(L))
-			L.visible_message(span_danger("[src] feeds [L]... [L] seems heartier!"), span_nicegreen("[src] feeds you, you feel heartier!"))
-			L.adjustBruteLoss(-speak_damage/2)
-			return
-	return ..()
-
+// Work Mechanics
 /mob/living/simple_animal/hostile/abnormality/bottle/AttemptWork(mob/living/carbon/human/user, work_type)
 	if(!cake)
 		if(work_type == "Dining")
 			return FALSE
-
+	if(work_type != "Dining" && work_type != "Drink")
+		if(datum_reference.console.meltdown)
+			cake_regen = TRUE
+		return TRUE
 	if(work_type == "Drink")
 		//it's just work speed
 		var/consume_speed = 2 SECONDS / (1 + ((get_attribute_level(user, TEMPERANCE_ATTRIBUTE) + datum_reference.understanding) / 100))
@@ -128,14 +101,32 @@
 
 	return TRUE
 
+/mob/living/simple_animal/hostile/abnormality/bottle/update_icon_state()
+	if(cake == 3)
+		icon_state = "bottle1"
+	else if (cake > 1) // Chowin down
+		icon_state = "bottle2"
+	else if (cake == 1) // This serves as the warning sprite to stop eating the freakin' cake, man!
+		icon_state = "bottle3"
+	else
+		icon_state = "bottle4"
+
+// Special protagonist spoon-related code
 /mob/living/simple_animal/hostile/abnormality/bottle/PostWorkEffect(mob/living/carbon/human/user, work_type, pe, work_time, canceled)
-	if(work_type != "Dining" || canceled)
+	if(canceled)
+		cake_regen = FALSE
+		return
+	if(work_type != "Dining")
+		if(cake_regen)
+			cake = 3
+			update_icon_state() // Cake is back because we  melted
+			cake_regen = FALSE
 		return
 	cake -= 1 //Eat some cake
 	if(cake > 0)
 		user.adjustBruteLoss(-500) // It heals you to full if you eat it
 		to_chat(user, span_nicegreen("You consume the cake. Delicious!"))
-		icon_state = "bottle2" //cake looks eaten
+		update_icon_state() //cake looks eaten
 		return
 
 	//Drowns you like Wellcheers does, so I mean the code checks out
@@ -143,7 +134,7 @@
 		new /obj/effect/temp_visual/water_waves(T)
 
 	playsound(get_turf(user), 'sound/abnormalities/bottle/bottledrown.ogg', 80, 0)
-	icon_state = "bottle3" //cake all gone
+	update_icon_state() //cake all gone
 
 	/**
 	 * "I get it now. There's no reason to have any emotions or a heart."
@@ -153,12 +144,15 @@
 	 * Keep in mind that this event can happen ONCE PER ROUND. The spoon is already jokingly called the protagonist weapon, so it can bend the rules a bit, right?
 	 */
 
-	new /obj/item/ego_weapon/eyeball(get_turf(user))
+	if(!scooped)
+		new /obj/item/ego_weapon/eyeball(get_turf(user)) // We can only ever spawn one eye scooper
+		scooped = TRUE
 
 	var/fortitude = get_attribute_level(user, FORTITUDE_ATTRIBUTE)
 	var/prudence = get_attribute_level(user, PRUDENCE_ATTRIBUTE)
 	var/temperance = get_attribute_level(user, TEMPERANCE_ATTRIBUTE)
 	var/justice = get_attribute_level(user, JUSTICE_ATTRIBUTE)
+
 	if(temperance >= (fortitude + prudence + justice) / 1.5) // If your temperance is at least twice your average stat, you aren't hurt, but lose temperance.
 		var/raw_temperance = get_raw_level(user, TEMPERANCE_ATTRIBUTE)
 		to_chat(user, span_userdanger("The room is filling with water... but you feel oddly unconcerned."))
@@ -167,6 +161,7 @@
 		var/stat_change = floor(raw_temperance - 20)
 		user.adjust_attribute_buff(JUSTICE_ATTRIBUTE, stat_change) // Gain benefit from what you lost.
 		addtimer(CALLBACK(src, PROC_REF(DecayProtagonistBuff), user, stat_change), 20 SECONDS) // Short grace period. 10s of this happens while you're asleep.
+
 	else
 		to_chat(user, span_userdanger("The room is filling with water! Are you going to drown?!"))
 		user.adjustBruteLoss(user.maxHealth - (fortitude / 2)) // Hurt bad, but never lethally.
@@ -192,6 +187,7 @@
 		buffed.adjust_attribute_level(JUSTICE_ATTRIBUTE, 1) // 10% chance for justice buff to become real justice as it decays.
 	addtimer(CALLBACK(src, PROC_REF(DecayProtagonistBuff), buffed, given_justice - 1), timing)
 
+// Pink Midnight Breach
 /mob/living/simple_animal/hostile/abnormality/bottle/BreachEffect(mob/living/carbon/human/user, breach_type)
 	if(breach_type == BREACH_PINK)
 		ADD_TRAIT(src, TRAIT_MOVE_FLYING, INNATE_TRAIT)
@@ -226,6 +222,41 @@
 			. -= H
 			continue
 
+/mob/living/simple_animal/hostile/abnormality/bottle/Move()
+	if(!eating)
+		return ..()
+	return FALSE
+
+/mob/living/simple_animal/hostile/abnormality/bottle/AttackingTarget(atom/attacked_target)
+	if(eating)
+		return
+	if(isliving(target))
+		var/mob/living/L = target
+		if(faction_check_mob(L))
+			L.visible_message(span_danger("[src] feeds [L]... [L] seems heartier!"), span_nicegreen("[src] feeds you, you feel heartier!"))
+			L.adjustBruteLoss(-speak_damage/2)
+			return
+	return ..()
+
+/mob/living/simple_animal/hostile/abnormality/bottle/Life()
+	. = ..()
+	if(!.)
+		return
+	if(COOLDOWN_FINISHED(src, speak_damage_aura) && !eating)
+		COOLDOWN_START(src, speak_damage_aura, speak_cooldown_time)
+		if(!client)
+			say("Drink Me.")
+		for(var/mob/living/L in view(vision_range, src))
+			if(L == src)
+				continue
+			if(faction_check_mob(L, FALSE))
+				continue
+			L.deal_damage(speak_damage, BLACK_DAMAGE)
+		adjustBruteLoss(-speak_damage) // It falls further into desperation
+		if(speak_damage < 40)
+			speak_damage += 4
+
+// Special Status Effect
 /datum/status_effect/stacking/tears
 	id = "tears"
 	stacks = 1

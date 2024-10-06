@@ -207,6 +207,9 @@
 		return ..()
 	if(!do_after(user, 0.5 SECONDS))
 		return
+	if(QDELETED(I)) // Should prevent weird runtimes and other weirdness
+		to_chat(user, span_notice("ERROR - Item marked for deletion. Please make a bug report if item does not disappear."))
+		return
 	RunGacha(I, user)
 
 /obj/structure/toolabnormality/wishwell/proc/RunGacha(obj/item/I, mob/living/carbon/human/user)

@@ -36,7 +36,7 @@
 	grouped_abnos = list(
 		/mob/living/simple_animal/hostile/abnormality/fairy_gentleman = 1.5,
 		/mob/living/simple_animal/hostile/abnormality/fairy_longlegs = 1.5,
-		// Fae Lantern = 1.5
+		/mob/living/simple_animal/hostile/abnormality/faelantern = 1.5,
 	)
 
 	chem_type = /datum/reagent/abnormality/fairy_festival

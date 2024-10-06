@@ -174,7 +174,9 @@
 		if(!living_pawn.Adjacent(target))
 			return
 		living_pawn.a_intent = INTENT_HELP //FREE HUGS!
+		living_pawn.drop_all_held_items()
 		attack(controller, target, delta_time)
+		target.drop_all_held_items()
 
 /datum/ai_behavior/insanity_chase_mob/finish_action(datum/ai_controller/controller, succeeded)
 	. = ..()

@@ -13,8 +13,8 @@
 	maxHealth = 500
 	health = 500
 	death_message = "falls to their knees as their lights slowly go out..."
-	melee_damage_lower = 8
-	melee_damage_upper = 10
+	melee_damage_lower = 5
+	melee_damage_upper = 7
 	mob_size = MOB_SIZE_HUGE
 	robust_searching = TRUE
 	stat_attack = HARD_CRIT
@@ -84,7 +84,7 @@
 /mob/living/simple_animal/hostile/clan/scout/AttackingTarget()
 	. = ..()
 	if (charge > 0)
-		charge -= 1
+		charge -= 2
 
 /mob/living/simple_animal/hostile/clan/scout/death(gibbed)
 	. = ..()
@@ -104,6 +104,7 @@
 	attack_verb_continuous = "punches"
 	attack_verb_simple = "punch"
 	health = 1200
+	maxHealth = 1200
 	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 0.6, WHITE_DAMAGE = 0.8, BLACK_DAMAGE = 1.2, PALE_DAMAGE = 1.5)
 	attack_sound = 'sound/weapons/purple_tear/blunt2.ogg'
 	silk_results = list(/obj/item/stack/sheet/silk/azure_simple = 2,

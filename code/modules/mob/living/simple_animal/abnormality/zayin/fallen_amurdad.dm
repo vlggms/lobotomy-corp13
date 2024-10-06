@@ -142,6 +142,9 @@
 /obj/machinery/hydroponics/soil/amurdad/adjustWeeds(adjustamt) //no weeds!
 	return
 
+/obj/machinery/hydroponics/soil/amurdad/pollinate(range) //Quality of Life for the initial harvest.
+	return
+
 /obj/machinery/hydroponics/soil/amurdad/attackby(obj/item/O, mob/user, params) //no manual planting
 	if(istype(O, /obj/item/seeds) && !istype(O, /obj/item/seeds/sample))
 		return
@@ -227,7 +230,7 @@
 	reagents_add = list (
 		/datum/reagent/consumable/sugar = 0.05,
 		/datum/reagent/consumable/nutriment = 0.07,
-		/datum/reagent/abnormality/wellcheers_zero = 0.07,
+		/datum/reagent/consumable/wellcheers_white = 0.03,
 	)
 	rarity = 30
 
@@ -297,7 +300,7 @@
 	reagents_add = list(
 		/datum/reagent/consumable/nutriment = 0.07,
 		/datum/reagent/consumable/sugar = 0.07,
-		/datum/reagent/consumable/wellcheers_red = 0.07,
+		/datum/reagent/consumable/wellcheers_red = 0.03,
 	)
 	rarity = 30
 	graft_gene = /datum/plant_gene/trait/plant_type/fungal_metabolism

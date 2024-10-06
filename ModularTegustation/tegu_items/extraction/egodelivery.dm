@@ -6,21 +6,32 @@
 	icon_state = "coffin_empty"
 	var/selected_level = ZAYIN_LEVEL
 	var/obj/stored_item = null
+	var/obj/structure/extraction_belt/linked_structure
+
+/obj/item/extraction/delivery/examine(mob/user)
+	. = ..()
+	if(linked_structure)
+		. += span_nicegreen("This tool is linked to an extraction arrival belt.")
+	else
+		. += span_red("This tool needs to be linked to an extraction arrival belt in order to perform E.G.O. returns.")
 
 /obj/item/extraction/delivery/tool_action(mob/user)
 	if(!stored_item)
 		ui_interact(user)
 		return
 	user.playsound_local(user, 'sound/machines/terminal_prompt.ogg', 50, FALSE)
-	switch(tgui_alert(user,"Where will you send this [stored_item.name]?","E.G.O. Delivery Prompt",list("Here","An Agent","Cancel")))
+	switch(tgui_alert(user,"Where will you send this [stored_item.name]?","E.G.O. Delivery Prompt",list("Here","An Agent","Arrival", "Cancel")))
 		if("Here")
-			user.playsound_local(user, 'sound/machines/terminal_prompt_confirm.ogg', 50, FALSE)
+			user.playsound_local(user, 'sound/weapons/emitter2.ogg', 25, FALSE)
 			new stored_item(get_turf(src))
 			var/datum/effect_system/spark_spread/sparks = new
 			sparks.set_up(5, 1, get_turf(src))
 			sparks.attach(stored_item)
 			sparks.start()
 			stored_item = null
+			if(linked_structure)
+				var/obj/structure/return_pad/THEPAD = new(get_turf(src))
+				THEPAD.linked_structure = linked_structure
 		if("An Agent")
 			user.playsound_local(user, 'sound/machines/terminal_prompt_confirm.ogg', 50, FALSE)
 			var/M = input(user,"To whom would you like to send the E.G.O.?","Select Someone") as null|anything in AllLivingAgents()
@@ -29,12 +40,27 @@
 				to_chat(user, span_warning("Nobody was specified."))
 				return
 			new stored_item(get_turf(M))
-			user.playsound_local(user, 'sound/machines/twobeep.ogg', 50, FALSE)
-			playsound(get_turf(M), 'sound/machines/twobeep.ogg', 50, FALSE)
+			user.playsound_local(user, 'sound/weapons/emitter2.ogg', 25, FALSE)
+			playsound(get_turf(M), 'sound/weapons/emitter2.ogg', 25, FALSE)
 			to_chat(user, span_notice("[stored_item.name] has been shipped to [M]!"))
 			to_chat(M, span_notice("[stored_item.name] has been shipped to your location by the Extraction Officer!"))
 			var/datum/effect_system/spark_spread/sparks = new
 			sparks.set_up(5, 1, get_turf(M))
+			sparks.attach(stored_item)
+			sparks.start()
+			stored_item = null
+			if(linked_structure)
+				var/obj/structure/return_pad/THEPAD = new(get_turf(M))
+				THEPAD.linked_structure = linked_structure
+		if("Arrival")
+			if(!linked_structure)
+				user.playsound_local(user, 'sound/machines/terminal_prompt_deny.ogg', 50, FALSE)
+				to_chat(user, span_warning("ERROR - E.G.O. ARRIVAL BELT UNLINKED"))
+				return
+			user.playsound_local(user, 'sound/weapons/emitter2.ogg', 25, FALSE)
+			new stored_item(get_turf(linked_structure))
+			to_chat(user, span_notice("[stored_item.name] has been shipped to the extraction belt!"))
+			var/datum/effect_system/spark_spread/sparks = new
 			sparks.attach(stored_item)
 			sparks.start()
 			stored_item = null
@@ -117,3 +143,14 @@
 		icon_state = "coffin_empty"
 		return
 	icon_state = "coffin"
+
+// Telepad-related code
+/obj/item/extraction/delivery/pre_attack(atom/A, mob/living/user, params)
+	. = ..()
+	if(!tool_checks(user))
+		return FALSE //You can't do any special interactions
+	if(istype(A, /obj/structure/extraction_belt))
+		linked_structure = A
+		to_chat(usr, span_nicegreen("Device link successful."))
+		return FALSE
+	return TRUE

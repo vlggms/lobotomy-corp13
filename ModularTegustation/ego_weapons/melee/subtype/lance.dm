@@ -40,28 +40,23 @@
 	if(!user)
 		return
 	current_holder = user
-	RaiseLance(user)
+	RaiseLance(current_holder)
 	RegisterSignal(current_holder, COMSIG_MOVABLE_BUMP, PROC_REF(UserBump), override = TRUE)
 	RegisterSignal(current_holder, COMSIG_MOVABLE_MOVED, PROC_REF(UserMoved))
 	if(!force_cap)
 		force_cap = (initial(force) * 2)
 
 //Destroy setup
-/obj/item/ego_weapon/lance/Destroy(mob/user)
-	if(!user)
-		return ..()
-	UnregisterSignal(current_holder, COMSIG_MOVABLE_MOVED)
-	UnregisterSignal(current_holder, COMSIG_MOVABLE_BUMP)
-	RaiseLance(user)
-	current_holder = null
+/obj/item/ego_weapon/lance/Destroy(force)
+	dropped(current_holder)
 	return ..()
 
 //Dropped setup
 /obj/item/ego_weapon/lance/dropped(mob/user)
 	. = ..()
-	if(!user)
+	if(!current_holder)
 		return
-	RaiseLance(user)
+	RaiseLance(current_holder)
 	UnregisterSignal(current_holder, COMSIG_MOVABLE_MOVED)
 	UnregisterSignal(current_holder, COMSIG_MOVABLE_BUMP)
 	current_holder = null
