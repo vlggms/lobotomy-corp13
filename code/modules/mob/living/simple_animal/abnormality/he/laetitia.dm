@@ -43,6 +43,8 @@
 
 	attack_action_types = list(/datum/action/cooldown/laetitia_gift, /datum/action/cooldown/laetitia_summon)
 
+	var/list/active_gifts = list()
+
 /datum/action/cooldown/laetitia_summon
 	name = "Call for Friends"
 	icon_icon = 'ModularTegustation/Teguicons/tegu_effects.dmi'
@@ -96,11 +98,23 @@
 		return FALSE
 	if(!istype(owner, /mob/living/simple_animal/hostile/abnormality/laetitia))
 		return FALSE
+	var/mob/living/simple_animal/hostile/abnormality/laetitia/L = owner
+	// var/total_power = 0
+	// for (var/G in L.active_gifts)
+	// 	total_power += G.power
+	// 	G.explode()
+
+	if (length(L.active_gifts) > 3)
+		to_chat(usr, span_warning("Too many gifts!"))
+		return
+
 	var/kind = tgui_alert(owner, "What kind of gift?", "Custom Speech", list("Good", "Bad"))
 	var/strength = text2num(tgui_alert(owner, "What is the strength of the gift?", "Custom Speech", list("1", "2", "3")))
 	if (strength == null)
 		strength = 2
 	var/obj/item/laetitia_gift/g = new /obj/item/laetitia_gift(owner.loc)
+	g.active_gifts = L.active_gifts
+	L.active_gifts += g
 	g.strength = strength
 	if (strength == 1)
 		g.color = "#F48FB1"
@@ -120,6 +134,11 @@
 	var/oneuse = TRUE
 	var/basepower = 25
 	var/strength = 1
+	var/list/active_gifts
+
+/obj/item/laetitia_gift/Crossed(atom/movable/AM)
+	. = ..()
+	explode(loc)
 
 /obj/item/laetitia_gift/attack_self(mob/user)
 	if(opening)
@@ -128,16 +147,22 @@
 	opening = TRUE
 	to_chat(user, "Opening the gift!")
 	if(do_after(user, 5 SECONDS, src))
-		playsound(get_turf(src), 'sound/abnormalities/laetitia/spider_born.ogg', 50, 1)
 		if (istype(user, /mob/living))
 			var/mob/living/L = user
-			L.apply_damage((basepower*strength), RED_DAMAGE, null, L.run_armor_check(null, RED_DAMAGE), FALSE, TRUE)
-		for(var/turf/T in range(2, user))
-			new /obj/effect/temp_visual/smash_effect(T)
-			user.HurtInTurf(T, list(), (basepower*strength), RED_DAMAGE, check_faction = FALSE, hurt_mechs = TRUE)
+			L.apply_damage((basepower * strength), RED_DAMAGE, null, L.run_armor_check(null, RED_DAMAGE), FALSE, TRUE)
+		explode(user)
 		to_chat(user, "You opened the gift!")
-		qdel(src)
 	opening = FALSE
+
+/obj/item/laetitia_gift/proc/explode(turf/TURF)
+	playsound(get_turf(src), 'sound/abnormalities/laetitia/spider_born.ogg', 50, 1)
+	var/mob/dummy = new(TURF)
+	for(var/turf/T in range(2, TURF))
+		new /obj/effect/temp_visual/smash_effect(T)
+		dummy.HurtInTurf(T, list(), (basepower*strength), RED_DAMAGE, check_faction = FALSE, hurt_mechs = TRUE)
+	qdel(dummy)
+	active_gifts -= src
+	qdel(src)
 
 
 /mob/living/simple_animal/hostile/abnormality/laetitia/NeutralEffect(mob/living/carbon/human/user, work_type, pe)
