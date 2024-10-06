@@ -41,14 +41,31 @@
 	observation_fail_message = "I'm glad! <br>I wish I could have seen their faces, I bet they were so surprised! <br>\
 		You look lonely too, I hope my present will make you laugh as well!"
 
-	attack_action_types = list(/datum/action/cooldown/laetitia_gift, /datum/action/cooldown/laetitia_summon)
+	attack_action_types = list(/datum/action/cooldown/laetitia_gift, /datum/action/cooldown/laetitia_summon, /datum/action/cooldown/laetitia_detonate)
 
 	var/list/active_gifts = list()
+	var/total_strength = 0
+
+/mob/living/simple_animal/hostile/abnormality/laetitia/Login()
+	. = ..()
+	if(!. || !client)
+		return FALSE
+	to_chat(src, "<h1>You are Laetitia, A Support Role Abnormality.</h1><br>\
+		<b>|Small Doll|: Your attacks deal VERY little white damage.<br>\
+		<br>\
+		|Gifts!|: You are able to create Gifts which can heal or damage targets nearby when they are stepped on.<br>\
+		You are able to have 10 gifts at a time, but creating gifts with more strength takes up more room.<br>\
+		You are also able to detonate them by using the |Prank| Ability.<br>\
+		<br>\
+		|Friends!|: Using your Call, You are able to summon 2 Allies to protect you.<br>\
+		Once they are summon, ghost players are given a chance to control them.<br>\
+		If no players choose to control them, they disappear after 30 seconds.</b>")
 
 /datum/action/cooldown/laetitia_summon
 	name = "Call for Friends"
 	icon_icon = 'ModularTegustation/Teguicons/tegu_effects.dmi'
-	button_icon_state = "prank_gift"
+	desc = "Summon some friends to protect you!"
+	button_icon_state = "friends"
 	check_flags = AB_CHECK_CONSCIOUS
 	transparent_when_unavailable = TRUE
 	cooldown_time = 40 SECONDS
@@ -87,10 +104,11 @@
 /datum/action/cooldown/laetitia_gift
 	name = "Gift"
 	icon_icon = 'ModularTegustation/Teguicons/tegu_effects.dmi'
+	desc = "Summon some gifts to prank your friends!"
 	button_icon_state = "prank_gift"
 	check_flags = AB_CHECK_CONSCIOUS
 	transparent_when_unavailable = TRUE
-	cooldown_time = 10 SECONDS
+	cooldown_time = 5 SECONDS
 	var/view_distance = 3
 
 /datum/action/cooldown/laetitia_gift/Trigger()
@@ -99,12 +117,11 @@
 	if(!istype(owner, /mob/living/simple_animal/hostile/abnormality/laetitia))
 		return FALSE
 	var/mob/living/simple_animal/hostile/abnormality/laetitia/L = owner
-	// var/total_power = 0
-	// for (var/G in L.active_gifts)
-	// 	total_power += G.power
-	// 	G.explode()
 
-	if (length(L.active_gifts) > 3)
+	L.total_strength = 0
+	for (var/obj/item/laetitia_gift/G in L.active_gifts)
+		L.total_strength += G.strength
+	if ((L.total_strength) >= 10)
 		to_chat(usr, span_warning("Too many gifts!"))
 		return
 
@@ -123,8 +140,30 @@
 		g.color = "#C2185B"
 		g.name = "big laetitia's gift"
 	if (kind == "Good")
-		g.strength *= -1
+		g.strength *= -0.2
+	for (var/obj/item/laetitia_gift/G in L.active_gifts)
+		L.total_strength += G.strength
+
 	StartCooldown()
+
+/datum/action/cooldown/laetitia_detonate
+	name = "Prank!"
+	icon_icon = 'ModularTegustation/Teguicons/tegu_effects.dmi'
+	desc = "Time for the Prank!"
+	button_icon_state = "prank_boom"
+	check_flags = AB_CHECK_CONSCIOUS
+	transparent_when_unavailable = TRUE
+	cooldown_time = 1 SECONDS
+
+/datum/action/cooldown/laetitia_detonate/Trigger()
+	if(!..())
+		return FALSE
+	if(!istype(owner, /mob/living/simple_animal/hostile/abnormality/laetitia))
+		return FALSE
+	var/mob/living/simple_animal/hostile/abnormality/laetitia/L = owner
+	for (var/obj/item/laetitia_gift/G in L.active_gifts)
+		G.explode(G.loc)
+
 
 /obj/item/laetitia_gift
 	name = "laetitia's gift"
@@ -132,7 +171,7 @@
 	icon_state = "prank_gift"
 	var/opening = FALSE
 	var/oneuse = TRUE
-	var/basepower = 25
+	var/basepower = 10
 	var/strength = 1
 	var/list/active_gifts
 
