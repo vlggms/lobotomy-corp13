@@ -135,7 +135,7 @@
 	T.Jitter(20)
 	T.set_confusion(max(10, T.get_confusion()))
 	T.stuttering = max(8, T.stuttering)
-	T.adjustStaminaLoss(force, TRUE, TRUE)
+	T.adjustStaminaLoss(force*2, TRUE, TRUE)
 
 	SEND_SIGNAL(T, COMSIG_LIVING_MINOR_SHOCK)
 
