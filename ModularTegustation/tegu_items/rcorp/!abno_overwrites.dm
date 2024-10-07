@@ -74,3 +74,11 @@
 	if(SSmaptype.maptype == "rcorp")
 		bullet_damage = 200
 	return ..()
+
+//Decreases Baba Yaga's landing time to make it a bit harder to dodge
+//To account for their leaping, deceases the max mobs to avoid enemy spam for no cost.
+/mob/living/simple_animal/hostile/abnormality/babayaga/Initialize()
+	if(IsCombatMap())
+		landing_time = 5
+		max_mobs = 5
+	return ..()

@@ -58,7 +58,7 @@
 		You are also able to detonate them by using the |Prank| Ability.<br>\
 		<br>\
 		|Friends!|: Using your Call, You are able to summon 2 Allies to protect you.<br>\
-		Once they are summon, ghost players are given a chance to control them.<br>\
+		Once they are summoned, ghost players are given a chance to control them.<br>\
 		If no players choose to control them, they disappear after 30 seconds.</b>")
 
 /datum/action/cooldown/laetitia_summon

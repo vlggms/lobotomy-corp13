@@ -48,8 +48,29 @@
 
 	var/jump_cooldown = 0
 	var/jump_cooldown_time = 35 SECONDS
+	var/landing_time = 10
+	var/max_mobs = 10
 	var/list/spawned_mobs = list()
 	attack_action_types = list(/datum/action/cooldown/babayaga_leap)
+
+/mob/living/simple_animal/hostile/abnormality/babayaga/Login()
+	. = ..()
+	if(!. || !client)
+		return FALSE
+	to_chat(src, "<h1>You are Baba Yaga, A Support Role Abnormality.</h1><br>\
+		<b>|Ice Giant|: You are unable to attack or move.<br>\
+		<br>\
+		|Mighty Leap|: Using your ability, You are able to leap into the air.<br>\
+		While you are in the air, you can move through walls and speak.<br>\
+		After 2 minutes, you will land but you can land earlier if you press your ability again.<br>\
+		<br>\
+		|Crushing Ice|: Once you use your ability again, you will land after 5 seconds.<br>\
+		Once you land, you deal a MASSIVE amount of RED damage to all humans bellow you.<br>\
+		You will also create some snow and ice around you, which have a chance a sliping humans.<br>\
+		<br>\
+		|Cold Prison|<br>\
+		Each time you land, You will create a few Ice Slaves who can be controled by ghosts.</b>\
+		If you already had some Ice Slaves, you will bring all of your Ice Slaves to your current location each time you land.</b>")
 
 //Work Procs
 // any work performed with level <4 Fort and Temperance lowers qliphoth
@@ -141,7 +162,7 @@
 	var/turf/target_turf = get_turf(target)
 	forceMove(target_turf) //look out, someone is rushing you!
 	new /obj/effect/temp_visual/giantwarning(target_turf)
-	SLEEP_CHECK_DEATH(10 SECONDS)
+	SLEEP_CHECK_DEATH(landing_time SECONDS)
 	animate(src, pixel_z = 0, alpha = 255, time = 10)
 	SLEEP_CHECK_DEATH(10)
 	density = TRUE
@@ -171,7 +192,7 @@
 
 /mob/living/simple_animal/hostile/abnormality/babayaga/proc/SpawnMobs()
 	for(var/turf/T in orange(1, src))
-		if(spawned_mobs.len > 10)
+		if(spawned_mobs.len > max_mobs)
 			for(var/mob/living/A in spawned_mobs) //if there are too many spawned mobs, thin out the numbers a bit
 				if(prob(30))
 					A.death()
@@ -279,14 +300,14 @@
 
 // Leap button action definition
 /datum/action/cooldown/babayaga_leap
-	name = "Leap into the Air"
-	desc = "Leap into the air and become incorporeal, allowing fast movement for 2 minutes."
-	icon_icon = 'ModularTegustation/Teguicons/tegu_effects.dmi'
-	button_icon_state = "friends"
+	name = "Leap"
+	desc = "Leap into the air and become untargetable, up for 2 minutes."
+	icon_icon = 'ModularTegustation/Teguicons/status_sprites.dmi'
+	button_icon_state = "freezing_noBG"
 	var/in_leap = FALSE
-	cooldown_time = 35 SECONDS
+	cooldown_time = 21 SECONDS
 	var/leap_timer
-	var/leap_time = 10 SECONDS //TODO
+	var/leap_time = 120 SECONDS
 
 /datum/action/cooldown/babayaga_leap/Trigger()
 	if(!..())
@@ -299,8 +320,9 @@
 		if (leap_timer)
 			deltimer(leap_timer)
 		B.incorporeal_move = FALSE
-		B.JumpAttack(B.loc)
+		in_leap = FALSE
 		StartCooldown()
+		B.JumpAttack(B.loc)
 	else
 		// change button icon
 		in_leap = TRUE
@@ -309,14 +331,15 @@
 
 /datum/action/cooldown/babayaga_leap/proc/EndLeap(mob/living/simple_animal/hostile/abnormality/babayaga/B)
 	B.incorporeal_move = FALSE
-	B.JumpAttack(B.loc)
+	in_leap = FALSE
 	StartCooldown()
+	B.JumpAttack(B.loc)
 
 // Procedure to start the leap
 /mob/living/simple_animal/hostile/abnormality/babayaga/proc/StartLeap()
 	//playsound(get_turf(src), 'sound/abnormalities/babayaga/leap_start.ogg', 100, FALSE)
 	visible_message(span_warning("[src] leaps into the air, turning incorporeal!"))
 	// animate
-	alpha = 0
+	animate(src, pixel_z = 128, alpha = 0, time = 10)
 	density = FALSE
 	incorporeal_move = TRUE // Assuming there is a variable for incorporeal state
