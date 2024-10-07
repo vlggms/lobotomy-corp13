@@ -26,6 +26,7 @@
 		/datum/ego_datum/armor/intentions,
 		/datum/ego_datum/weapon/laststop,
 	)
+	gift_type =  /datum/ego_gifts/good_intentions
 	abnormality_origin = ABNORMALITY_ORIGIN_ALTERED
 
 	observation_prompt = "The booking clerk who remains dauntingly quiet sells tickets for a train with no final destination. <br>\
