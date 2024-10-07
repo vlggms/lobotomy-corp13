@@ -181,3 +181,23 @@ GLOBAL_LIST_INIT(raidboss, list(/mob/living/simple_animal/hostile/distortion/shr
 
 //To do: Deshit this.
 
+/obj/effect/landmark/nobasic_incorp_move
+	name = "incorp barrier"
+	desc = "no basic incorp move"
+	icon = 'icons/effects/landmarks_static.dmi'
+	icon_state = "x2"
+
+/obj/effect/landmark/nobasic_incorp_move/Initialize()
+	..()
+	var/turf/T = get_turf(src)
+	T.turf_flags |= NO_BASIC_INCORP_MOVE
+	return INITIALIZE_HINT_LATELOAD
+
+/obj/effect/landmark/nobasic_incorp_move/Destroy()
+	var/turf/T = get_turf(src)
+	T.turf_flags &= ~NO_BASIC_INCORP_MOVE
+	. = ..()
+
+/obj/effect/landmark/nobasic_incorp_move/disappearing
+	name = "disappearing incorp barrier"
+	desc = "no basic incorp move"
