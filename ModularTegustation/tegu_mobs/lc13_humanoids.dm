@@ -236,7 +236,22 @@ Skittish, they prefer to move in groups and will run away if the enemies are in 
 	attack_verb_simple = "slice"
 	del_on_death = TRUE
 	var/can_act = TRUE
+	var/list/loot_weapon = list(
+	)
+	var/list/loot_armor = list(
+	)
 
+/mob/living/simple_animal/hostile/humanoid/fixer/drop_loot()
+	var/list/loot
+
+	if (prob(50))
+		loot = loot_armor
+	else
+		loot = loot_weapon
+
+	if(loot?.len)
+		for(var/i in loot)
+			new i(loc)
 
 /mob/living/simple_animal/hostile/humanoid/fixer/Move()
 	if(!can_act)
@@ -249,7 +264,7 @@ Skittish, they prefer to move in groups and will run away if the enemies are in 
 	return ..()
 
 /mob/living/simple_animal/hostile/humanoid/fixer/metal
-	name = "Metal Fixer"
+	name = "Memory Forger"
 	desc = "A dude covered in a full white cloak and always wear a white mask. He seems to be wearing a tactical vest."
 	icon_state = "metal_fixer"
 	icon_living = "metal_fixer"
@@ -268,6 +283,13 @@ Skittish, they prefer to move in groups and will run away if the enemies are in 
 	attack_verb_simple = "slice"
 	del_on_death = TRUE
 	ranged = TRUE
+	loot_weapon = list (
+		/obj/item/ego_weapon/shield/eria,
+		/obj/item/ego_weapon/city/echo/iria,
+	)
+	loot_armor = list (
+	/obj/item/clothing/suit/armor/ego_gear/city/echo/plated,
+	)
 	var/statue_type = /mob/living/simple_animal/hostile/metal_fixer_statue
 	var/shots_cooldown = 50
 	var/max_statues = 12
@@ -415,11 +437,21 @@ Skittish, they prefer to move in groups and will run away if the enemies are in 
 		//var/mob/living/simple_animal/hostile/humanoid/fixer/metal/M = target
 		qdel(src)
 		return BULLET_ACT_BLOCK
-	return ..()
+	var/mob/living/simple_animal/hostile/humanoid/fixer/metal/M = firer
+
+	if (istype(target, /mob))
+
+		var/mob/MOB = target
+		say("Target faction: " + jointext(MOB.faction, ", "))
+		if (MOB.faction_check_mob(M, FALSE))
+			say("Faction match")
+			return BULLET_ACT_BLOCK
+	. = ..()
+
 
 /mob/living/simple_animal/hostile/metal_fixer_statue
 	name = "Memory Statue"
-	desc = "A statue created by the Metal Fixer."
+	desc = "A statue created by the Memory Forger."
 	icon = 'ModularTegustation/Teguicons/tegumobs.dmi'
 	icon_state = "memory_statute"
 	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 0.5, WHITE_DAMAGE = 0, BLACK_DAMAGE = 2, PALE_DAMAGE = 2)
@@ -467,7 +499,7 @@ Skittish, they prefer to move in groups and will run away if the enemies are in 
 /mob/living/simple_animal/hostile/metal_fixer_statue/proc/heal_metal_fixer()
 	if(metal)
 		metal.adjustHealth(-heal_per_tick)
-		visible_message("<span class='notice'>The statue heals the Metal Fixer!</span>")
+		visible_message("<span class='notice'>The statue heals the Memory Forger!</span>")
 		playsound(src, 'sound/abnormalities/rosesign/rose_summon.ogg', 75, TRUE, 2)
 		icon_state = "memory_statute_heal" // Set the initial icon state to the rising animation
 		flick("memory_statute_heal", src) // Play the rising animation
@@ -482,7 +514,7 @@ Skittish, they prefer to move in groups and will run away if the enemies are in 
 	return FALSE
 
 /mob/living/simple_animal/hostile/humanoid/fixer/flame
-	name = "Flame Fixer"
+	name = "Sanguine Flame"
 	desc = "A lanky young man with fair skin, dark eyes, and an often overoptimistic expression. A heavy spear decorated with vibrant patterns on the head."
 	icon_state = "flame_fixer"
 	icon_living = "flame_fixer"
@@ -502,6 +534,12 @@ Skittish, they prefer to move in groups and will run away if the enemies are in 
 	ranged = TRUE
 	ranged_cooldown_time = 45
 	melee_reach = 2
+	loot_weapon = list (
+	/obj/item/ego_weapon/city/echo/sunstrike,
+	)
+	loot_armor = list (
+	/obj/item/clothing/suit/armor/ego_gear/city/echo/faux,
+	)
 	var/burn_stacks = 2
 	projectiletype = /obj/projectile/flame_fixer
 	var/damage_reflection = FALSE
@@ -556,7 +594,7 @@ Skittish, they prefer to move in groups and will run away if the enemies are in 
 					continue
 				new /obj/effect/temp_visual/mech_fire(T)
 				for(var/mob/living/L in T)
-					if(!faction_check_mob(L, FALSE) || locate(L) in hit_mob)
+					if(!faction_check_mob(L, FALSE) && !(locate(L) in hit_mob))
 						L.apply_damage(dash_damage, RED_DAMAGE, null, L.run_armor_check(null, RED_DAMAGE), spread_damage = TRUE)
 						LAZYADD(hit_mob, L)
 
