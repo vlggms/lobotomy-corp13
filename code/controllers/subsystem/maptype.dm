@@ -77,10 +77,3 @@ SUBSYSTEM_DEF(maptype)
 					GLOB.rcorp_objective = "payload_rcorp"
 				if(5)
 					GLOB.rcorp_objective = "payload_abno"
-			addtimer(CALLBACK(src, PROC_REF(clear_incorp_barriers)), 2 MINUTES)
-
-/datum/controller/subsystem/maptype/proc/clear_incorp_barriers()
-	for(var/obj/effect/landmark/nobasic_incorp_move/disappearing/L in GLOB.landmarks_list)
-		qdel(L)
-	for(var/mob/living/simple_animal/hostile/abnormality/A in GLOB.abnormality_mob_list)
-		to_chat(A, "Ghost barrier is broken!")
