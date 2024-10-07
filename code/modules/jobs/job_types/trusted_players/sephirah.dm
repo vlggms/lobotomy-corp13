@@ -320,8 +320,20 @@ GLOBAL_LIST_EMPTY(SephirahBullet)
 	var/mob/living/carbon/human/hooman = owner
 
 	switch(action) // maybe change labels?
+		if("Make announcement")
+			hooman.Announcement()
+
+		if("Complete quest")
+			hooman.QuestComplete()
+
 		if("Randomize abnormality")
 			hooman.RandomAbno()
+
+		if("Randomize selection")
+			hooman.RandomSelection()
+
+		if("Authorize execution bullets")
+			hooman.BulletAuth()
 
 		if("Slow abnormality arrival")
 			hooman.SlowGame()
@@ -340,3 +352,5 @@ GLOBAL_LIST_EMPTY(SephirahBullet)
 
 		if("Decrease abnormality per meltdown")
 			hooman.MeltDecrease()
+
+
