@@ -49,6 +49,7 @@
 	var/jump_cooldown = 0
 	var/jump_cooldown_time = 35 SECONDS
 	var/list/spawned_mobs = list()
+	attack_action_types = list(/datum/action/cooldown/babayaga_leap)
 
 //Work Procs
 // any work performed with level <4 Fort and Temperance lowers qliphoth
@@ -94,7 +95,7 @@
 	return FALSE
 
 /mob/living/simple_animal/hostile/abnormality/babayaga/Move()
-	return FALSE
+	return incorporeal_move
 
 /mob/living/simple_animal/hostile/abnormality/babayaga/death(gibbed)
 	for(var/mob/living/A in spawned_mobs)
@@ -274,3 +275,48 @@
 	icon_state = "babayaga"
 
 #undef STATUS_EFFECT_BABAYAGA
+
+
+// Leap button action definition
+/datum/action/cooldown/babayaga_leap
+	name = "Leap into the Air"
+	desc = "Leap into the air and become incorporeal, allowing fast movement for 2 minutes."
+	icon_icon = 'ModularTegustation/Teguicons/tegu_effects.dmi'
+	button_icon_state = "friends"
+	var/in_leap = FALSE
+	cooldown_time = 35 SECONDS
+	var/leap_timer
+	var/leap_time = 10 SECONDS //TODO
+
+/datum/action/cooldown/babayaga_leap/Trigger()
+	if(!..())
+		return FALSE
+	if(!istype(owner, /mob/living/simple_animal/hostile/abnormality/babayaga))
+		return FALSE
+
+	var/mob/living/simple_animal/hostile/abnormality/babayaga/B = owner
+	if (in_leap)
+		if (leap_timer)
+			deltimer(leap_timer)
+		B.incorporeal_move = FALSE
+		B.JumpAttack(B.loc)
+		StartCooldown()
+	else
+		// change button icon
+		in_leap = TRUE
+		B.StartLeap()
+		leap_timer = addtimer(CALLBACK(src, PROC_REF(EndLeap), B), leap_time, TIMER_STOPPABLE)
+
+/datum/action/cooldown/babayaga_leap/proc/EndLeap(mob/living/simple_animal/hostile/abnormality/babayaga/B)
+	B.incorporeal_move = FALSE
+	B.JumpAttack(B.loc)
+	StartCooldown()
+
+// Procedure to start the leap
+/mob/living/simple_animal/hostile/abnormality/babayaga/proc/StartLeap()
+	//playsound(get_turf(src), 'sound/abnormalities/babayaga/leap_start.ogg', 100, FALSE)
+	visible_message(span_warning("[src] leaps into the air, turning incorporeal!"))
+	// animate
+	alpha = 0
+	density = FALSE
+	incorporeal_move = TRUE // Assuming there is a variable for incorporeal state
