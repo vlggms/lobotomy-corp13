@@ -176,6 +176,10 @@
 /obj/structure/table/glass,
 /turf/open/floor/plasteel/dark,
 /area/city/outskirts)
+"pO" = (
+/obj/effect/landmark/nobasic_incorp_move,
+/turf/closed/indestructible/reinforced,
+/area/city/outskirts)
 "qs" = (
 /turf/open/space/basic,
 /area/city/outskirts)
@@ -212,6 +216,10 @@
 "ve" = (
 /obj/effect/landmark/abnospawn/easysupport,
 /turf/open/floor/plasteel/dark,
+/area/city/outskirts)
+"vM" = (
+/obj/effect/landmark/nobasic_incorp_move,
+/turf/closed/indestructible/rock,
 /area/city/outskirts)
 "we" = (
 /obj/machinery/vending/custom/unbreakable,
@@ -497,7 +505,6 @@
 	height = 5;
 	id = "epsilon_control";
 	name = "2F - Control";
-	roundstart_template = null;
 	width = 6
 	},
 /turf/open/floor/plasteel/elevatorshaft,
@@ -962,70 +969,70 @@ OY
 OY
 OY
 OY
-EA
-EA
-EA
-EA
-EA
-EA
-EA
-EA
-EA
-EA
-EA
-EA
-EA
-EA
-EA
-EA
-EA
-EA
-EA
-EA
-EA
-EA
-EA
-EA
-EA
-EA
-EA
-EA
-EA
-EA
-EA
-EA
-EA
-EA
-EA
-EA
-EA
-EA
-EA
-EA
-EA
-EA
-EA
-EA
-EA
-EA
-EA
-EA
-EA
-EA
-EA
-EA
-EA
-EA
-EA
-EA
-EA
-EA
-EA
-EA
-EA
-EA
-EA
-EA
+pO
+pO
+pO
+pO
+pO
+pO
+pO
+pO
+pO
+pO
+pO
+pO
+pO
+pO
+pO
+pO
+pO
+pO
+pO
+pO
+pO
+pO
+pO
+pO
+pO
+pO
+pO
+pO
+pO
+pO
+pO
+pO
+pO
+pO
+pO
+pO
+pO
+pO
+pO
+pO
+pO
+pO
+pO
+pO
+pO
+pO
+pO
+pO
+pO
+pO
+pO
+pO
+pO
+pO
+pO
+pO
+pO
+pO
+pO
+pO
+pO
+pO
+pO
+pO
 OY
 OY
 OY
@@ -1086,7 +1093,7 @@ OY
 OY
 OY
 OY
-EA
+pO
 NI
 NI
 NI
@@ -1210,7 +1217,7 @@ OY
 OY
 OY
 OY
-EA
+pO
 NI
 EA
 EA
@@ -1273,7 +1280,7 @@ EA
 EA
 EA
 NI
-EA
+pO
 OY
 OY
 OY
@@ -1334,7 +1341,7 @@ OY
 OY
 OY
 OY
-EA
+pO
 NI
 EA
 OY
@@ -1397,7 +1404,7 @@ OY
 OY
 EA
 NI
-EA
+pO
 OY
 OY
 OY
@@ -1458,7 +1465,7 @@ OY
 OY
 OY
 OY
-EA
+pO
 NI
 EA
 OY
@@ -1521,7 +1528,7 @@ OY
 OY
 EA
 NI
-EA
+pO
 OY
 OY
 OY
@@ -1582,7 +1589,7 @@ OY
 OY
 OY
 OY
-EA
+pO
 NI
 EA
 OY
@@ -1645,7 +1652,7 @@ OY
 OY
 EA
 NI
-EA
+pO
 OY
 OY
 OY
@@ -1706,7 +1713,7 @@ OY
 OY
 OY
 OY
-EA
+pO
 NI
 EA
 OY
@@ -1769,7 +1776,7 @@ OY
 OY
 EA
 NI
-EA
+pO
 OY
 OY
 OY
@@ -1830,7 +1837,7 @@ OY
 OY
 OY
 OY
-EA
+pO
 NI
 EA
 OY
@@ -1893,15 +1900,15 @@ OY
 OY
 EA
 NI
-EA
-OY
-EA
-EA
-EA
-EA
-EA
-EA
-EA
+pO
+vM
+pO
+pO
+pO
+pO
+pO
+pO
+pO
 OY
 OY
 "}
@@ -1978,6 +1985,9 @@ OY
 OY
 OY
 OY
+pO
+NI
+EA
 OY
 OY
 OY
@@ -2025,7 +2035,7 @@ eL
 eL
 eL
 eL
-EA
+pO
 OY
 OY
 "}
@@ -2042,24 +2052,6 @@ OY
 OY
 OY
 OY
-OY
-OY
-OY
-OY
-OY
-OY
-OY
-OY
-OY
-OY
-OY
-OY
-OY
-OY
-OY
-OY
-OY
-OY
 EA
 NI
 NI
@@ -2102,6 +2094,9 @@ OY
 OY
 OY
 OY
+pO
+NI
+EA
 OY
 OY
 OY
@@ -2149,7 +2144,7 @@ eL
 eL
 eL
 eL
-EA
+pO
 OY
 OY
 "}
@@ -2226,6 +2221,9 @@ OY
 OY
 OY
 OY
+pO
+NI
+EA
 OY
 OY
 OY
@@ -2273,7 +2271,7 @@ eL
 eL
 eL
 Ar
-EA
+pO
 OY
 OY
 "}
@@ -2326,7 +2324,7 @@ OY
 OY
 OY
 OY
-EA
+pO
 NI
 EA
 OY
@@ -2397,7 +2395,7 @@ eL
 eL
 eL
 eL
-EA
+pO
 OY
 OY
 "}
@@ -2450,7 +2448,7 @@ OY
 OY
 OY
 OY
-EA
+pO
 NI
 EA
 OY
@@ -2521,7 +2519,7 @@ eL
 eL
 eL
 eL
-EA
+pO
 OY
 OY
 "}
@@ -2574,7 +2572,7 @@ OY
 OY
 OY
 OY
-EA
+pO
 NI
 EA
 OY
@@ -2645,7 +2643,7 @@ cK
 cK
 Ls
 EA
-EA
+pO
 OY
 OY
 "}
@@ -2698,7 +2696,7 @@ OY
 OY
 OY
 OY
-EA
+pO
 NI
 EA
 OY
@@ -2769,7 +2767,7 @@ ie
 ie
 ie
 ie
-EA
+pO
 OY
 OY
 "}
@@ -2822,7 +2820,7 @@ OY
 OY
 OY
 OY
-EA
+pO
 NI
 EA
 OY
@@ -2893,9 +2891,9 @@ ie
 ie
 ie
 ie
-EA
-EA
-EA
+pO
+pO
+pO
 "}
 (20,1,1) = {"
 OY
@@ -2946,7 +2944,7 @@ OY
 OY
 OY
 OY
-EA
+pO
 NI
 EA
 OY
@@ -3165,7 +3163,7 @@ OY
 OY
 OY
 OY
-EA
+pO
 NI
 NI
 NI
@@ -3289,7 +3287,7 @@ OY
 OY
 OY
 OY
-EA
+pO
 NI
 EA
 EA
@@ -3383,7 +3381,7 @@ EA
 NI
 EA
 OY
-EA
+pO
 ie
 ie
 ie
@@ -3413,7 +3411,7 @@ OY
 OY
 OY
 OY
-EA
+pO
 NI
 EA
 OY
@@ -3507,7 +3505,7 @@ NI
 NI
 EA
 OY
-EA
+pO
 ie
 ie
 ie
@@ -3537,7 +3535,7 @@ OY
 OY
 OY
 OY
-EA
+pO
 NI
 EA
 OY
@@ -3631,15 +3629,15 @@ EA
 EA
 EA
 OY
-EA
-EA
-EA
-EA
-EA
-EA
-EA
-EA
-EA
+pO
+pO
+pO
+pO
+pO
+pO
+pO
+pO
+pO
 "}
 (26,1,1) = {"
 OY
@@ -3661,7 +3659,7 @@ OY
 OY
 OY
 OY
-EA
+pO
 NI
 EA
 OY
@@ -3741,7 +3739,7 @@ OY
 OY
 EA
 NI
-EA
+pO
 OY
 OY
 OY
@@ -3785,7 +3783,7 @@ OY
 OY
 OY
 OY
-EA
+pO
 NI
 EA
 OY
@@ -3865,7 +3863,7 @@ OY
 OY
 EA
 NI
-EA
+pO
 OY
 OY
 OY
@@ -3909,7 +3907,7 @@ OY
 OY
 OY
 OY
-EA
+pO
 NI
 EA
 OY
@@ -3989,7 +3987,7 @@ OY
 OY
 EA
 NI
-EA
+pO
 OY
 OY
 OY
@@ -4033,7 +4031,7 @@ OY
 OY
 OY
 OY
-EA
+pO
 NI
 EA
 OY
@@ -4113,7 +4111,7 @@ OY
 OY
 EA
 NI
-EA
+pO
 OY
 OY
 OY
@@ -4157,7 +4155,7 @@ OY
 OY
 OY
 OY
-EA
+pO
 NI
 EA
 OY
@@ -4237,7 +4235,7 @@ OY
 OY
 EA
 NI
-EA
+pO
 OY
 OY
 OY
@@ -4281,7 +4279,7 @@ OY
 OY
 OY
 OY
-EA
+pO
 NI
 EA
 OY
@@ -4361,7 +4359,7 @@ OY
 OY
 EA
 NI
-EA
+pO
 OY
 OY
 OY
@@ -4405,7 +4403,7 @@ OY
 OY
 OY
 OY
-EA
+pO
 NI
 EA
 OY
@@ -4485,7 +4483,7 @@ OY
 OY
 EA
 NI
-EA
+pO
 OY
 OY
 OY
@@ -4529,7 +4527,7 @@ OY
 OY
 OY
 OY
-EA
+pO
 NI
 EA
 OY
@@ -4609,7 +4607,7 @@ OY
 OY
 EA
 NI
-EA
+pO
 OY
 OY
 OY
@@ -4653,7 +4651,7 @@ OY
 OY
 OY
 OY
-EA
+pO
 NI
 EA
 OY
@@ -4733,7 +4731,7 @@ EA
 OY
 EA
 NI
-EA
+pO
 OY
 OY
 OY
@@ -4777,7 +4775,7 @@ OY
 OY
 OY
 OY
-EA
+pO
 NI
 EA
 OY
@@ -4857,7 +4855,7 @@ EA
 OY
 EA
 NI
-EA
+pO
 OY
 OY
 OY
@@ -4901,7 +4899,7 @@ OY
 OY
 OY
 OY
-EA
+pO
 NI
 EA
 OY
@@ -4981,7 +4979,7 @@ EA
 OY
 EA
 NI
-EA
+pO
 OY
 OY
 OY
@@ -5025,7 +5023,7 @@ OY
 OY
 OY
 OY
-EA
+pO
 NI
 EA
 OY
@@ -5105,7 +5103,7 @@ EA
 OY
 EA
 NI
-EA
+pO
 OY
 OY
 OY
@@ -5149,7 +5147,7 @@ OY
 OY
 OY
 OY
-EA
+pO
 NI
 EA
 OY
@@ -5229,7 +5227,7 @@ EA
 OY
 EA
 NI
-EA
+pO
 OY
 OY
 OY
@@ -5273,7 +5271,7 @@ OY
 OY
 OY
 OY
-EA
+pO
 NI
 EA
 OY
@@ -5353,7 +5351,7 @@ EA
 OY
 EA
 NI
-EA
+pO
 OY
 OY
 OY
@@ -5397,7 +5395,7 @@ OY
 OY
 OY
 OY
-EA
+pO
 NI
 EA
 OY
@@ -5477,7 +5475,7 @@ EA
 OY
 EA
 NI
-EA
+pO
 OY
 OY
 OY
@@ -5521,7 +5519,7 @@ OY
 OY
 OY
 OY
-EA
+pO
 NI
 EA
 OY
@@ -5601,7 +5599,7 @@ EA
 OY
 EA
 NI
-EA
+pO
 OY
 OY
 OY
@@ -5645,7 +5643,7 @@ OY
 OY
 OY
 OY
-EA
+pO
 NI
 EA
 OY
@@ -5725,7 +5723,7 @@ EA
 OY
 EA
 NI
-EA
+pO
 OY
 OY
 OY
@@ -5769,7 +5767,7 @@ OY
 OY
 OY
 OY
-EA
+pO
 NI
 EA
 OY
@@ -5849,7 +5847,7 @@ EA
 OY
 EA
 NI
-EA
+pO
 OY
 OY
 OY
@@ -5893,7 +5891,7 @@ OY
 OY
 OY
 OY
-EA
+pO
 NI
 EA
 EA
@@ -5973,7 +5971,7 @@ EA
 EA
 EA
 NI
-EA
+pO
 OY
 OY
 OY
@@ -6017,7 +6015,7 @@ OY
 OY
 OY
 OY
-EA
+pO
 NI
 NI
 NI
@@ -6097,7 +6095,7 @@ NI
 NI
 NI
 NI
-EA
+pO
 OY
 OY
 OY
@@ -6141,13 +6139,13 @@ OY
 OY
 OY
 OY
-EA
-EA
-EA
-EA
-EA
-EA
-EA
+pO
+pO
+pO
+pO
+pO
+pO
+pO
 hO
 NI
 NI
@@ -6205,11 +6203,11 @@ CM
 yy
 NI
 Uf
-EA
-OY
-OY
-OY
-EA
+pO
+vM
+vM
+vM
+pO
 NI
 PJ
 ut
@@ -6217,11 +6215,11 @@ nN
 VH
 CS
 NI
-EA
-EA
-EA
-EA
-EA
+pO
+pO
+pO
+pO
+pO
 OY
 OY
 OY
@@ -6271,7 +6269,7 @@ OY
 OY
 OY
 OY
-EA
+pO
 NV
 NI
 NI
@@ -6279,7 +6277,7 @@ NI
 NI
 NI
 Pw
-EA
+pO
 OY
 OY
 OY
@@ -6321,7 +6319,7 @@ OY
 OY
 OY
 OY
-EA
+pO
 rg
 NI
 Xn
@@ -6329,11 +6327,11 @@ dt
 sD
 NI
 px
-EA
+pO
 OY
 OY
 OY
-EA
+pO
 NI
 PJ
 VH
@@ -6341,7 +6339,7 @@ hv
 VH
 LT
 NI
-EA
+pO
 OY
 OY
 OY
@@ -6395,7 +6393,7 @@ OY
 OY
 OY
 OY
-EA
+pO
 NV
 NI
 NI
@@ -6403,7 +6401,7 @@ NI
 NI
 NI
 Ux
-EA
+pO
 OY
 OY
 OY
@@ -6445,7 +6443,7 @@ OY
 OY
 OY
 OY
-EA
+pO
 ZF
 NI
 NI
@@ -6453,11 +6451,11 @@ NI
 NI
 NI
 SK
-EA
+pO
 OY
 OY
 OY
-EA
+pO
 NI
 PJ
 VH
@@ -6465,7 +6463,7 @@ VH
 VH
 CS
 Bu
-EA
+pO
 OY
 OY
 OY
@@ -6519,7 +6517,7 @@ OY
 OY
 OY
 OY
-EA
+pO
 EA
 NI
 NI
@@ -6527,7 +6525,7 @@ NI
 NI
 NI
 EA
-EA
+pO
 OY
 OY
 OY
@@ -6569,7 +6567,7 @@ OY
 OY
 OY
 OY
-EA
+pO
 CL
 NI
 NI
@@ -6577,11 +6575,11 @@ NI
 NI
 NI
 Ky
-EA
+pO
 OY
 OY
 OY
-EA
+pO
 NI
 Se
 zz
@@ -6589,7 +6587,7 @@ Xa
 zz
 cS
 kO
-EA
+pO
 OY
 OY
 OY
