@@ -181,6 +181,17 @@
 	realboy.core_enabled = TRUE
 	return
 
+/mob/living/simple_animal/hostile/abnormality/pinocchio/Login()
+	. = ..()
+	if(!. || !client)
+		return FALSE
+	to_chat(src, "<h1>You are Pinocchio, A Combat Role Abnormality.</h1><br>\
+		<b>|Real Boy?|: You have the body of a human.<br>\
+		This means that you are able to use any of their gear like armor, tools and weapons.<br>\
+		However, most rhino mechs are normally DNA Locked by their owners, so you are unable to use them most of them time.<br>\
+		Small Tip: You can use the radios of the fallen humans to hear their plans!</b>")
+
+
 //Special item
 /obj/item/ego_weapon/marionette/abnormality
 	name = "liar's lyre"

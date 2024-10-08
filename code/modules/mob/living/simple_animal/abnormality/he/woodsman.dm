@@ -97,6 +97,19 @@
 	toggle_message = span_colossus("You will now attempt to fell all hearts in your path.")
 	button_icon_toggle_deactivated = "woodsman_toggle0"
 
+/mob/living/simple_animal/hostile/abnormality/woodsman/Login()
+	. = ..()
+	if(!. || !client)
+		return FALSE
+	to_chat(src, "<h1>You are Warm-Hearted Woodsman, A Combat Role Abnormality.</h1><br>\
+		<b>|Seeking Hearts...|: When you attack dead bodies, you will extract their heart.<br>\
+		Extracting their heart will cause you to heal and cause you to deal more damage with all of your attacks for short time.<br>\
+		<br>\
+		<b>|Chopping Down|: When you attack, if your flurry attack is off cooldown you will use it.<br>\
+		Your flurry attack is a 3x2 AoE in front of you, which deals RED damage, which will repeat 7 times in a row before end with an extra powerful final hit.<br>\
+		You are able to toggle your flurry attack on and off with your ability.</b>")
+
+
 /mob/living/simple_animal/hostile/abnormality/woodsman/Initialize()
 	. = ..()
 	soundloop = new(list(src), FALSE)
