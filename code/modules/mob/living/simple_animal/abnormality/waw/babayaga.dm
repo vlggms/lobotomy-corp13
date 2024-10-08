@@ -161,8 +161,10 @@
 	density = FALSE
 	var/turf/target_turf = get_turf(target)
 	forceMove(target_turf) //look out, someone is rushing you!
-	var/obj/effect/temp_visual/giantwarning/G = new /obj/effect/temp_visual/giantwarning(target_turf)
-	G.duration = landing_time SECONDS
+	if (landing_time < 10)
+		new /obj/effect/temp_visual/giantwarning/fast(target_turf)
+	else
+		new /obj/effect/temp_visual/giantwarning(target_turf)
 	SLEEP_CHECK_DEATH(landing_time SECONDS)
 	animate(src, pixel_z = 0, alpha = 255, time = 10)
 	SLEEP_CHECK_DEATH(10)
@@ -237,6 +239,10 @@
 	randomdir = FALSE
 	duration = 10 SECONDS
 	layer = POINT_LAYER	//We want this HIGH. SUPER HIGH. We want it so that you can absolutely, guaranteed, see exactly what hit you
+
+/obj/effect/temp_visual/giantwarning/fast
+	duration = 5 SECONDS
+
 
 /obj/effect/temp_visual/ice_spikes
 	name = "ice spikes"
