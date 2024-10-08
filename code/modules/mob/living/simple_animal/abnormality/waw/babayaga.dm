@@ -161,7 +161,8 @@
 	density = FALSE
 	var/turf/target_turf = get_turf(target)
 	forceMove(target_turf) //look out, someone is rushing you!
-	new /obj/effect/temp_visual/giantwarning(target_turf)
+	var/obj/effect/temp_visual/giantwarning/G = new /obj/effect/temp_visual/giantwarning(target_turf)
+	G.duration = landing_time SECONDS
 	SLEEP_CHECK_DEATH(landing_time SECONDS)
 	animate(src, pixel_z = 0, alpha = 255, time = 10)
 	SLEEP_CHECK_DEATH(10)
