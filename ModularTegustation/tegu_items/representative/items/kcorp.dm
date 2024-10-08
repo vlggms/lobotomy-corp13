@@ -108,8 +108,10 @@
 		var/mob/living/H = target
 		H.adjustStaminaLoss(rand(14, 18))
 		if(!defective)
-			to_chat(H, span_nicegreen("You feel your injuries painfully close!"))
 			H.adjustBruteLoss(-20)
+			to_chat(H, span_nicegreen("You feel your injuries painfully close!"))
+			if(prob(25))
+				H.emote("scream")
 	return ..()
 
 // For Asset Reclimation
