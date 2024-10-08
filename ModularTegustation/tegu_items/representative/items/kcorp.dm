@@ -106,9 +106,9 @@
 /mob/living/simple_animal/hostile/khealing/AttackingTarget(atom/attacked_target)
 	if(ishuman(target))
 		var/mob/living/H = target
-		to_chat(H, span_nicegreen("You feel your injuries painfully close!"))
 		H.adjustStaminaLoss(rand(14, 18))
 		if(!defective)
+			to_chat(H, span_nicegreen("You feel your injuries painfully close!"))
 			H.adjustBruteLoss(-20)
 	return ..()
 
