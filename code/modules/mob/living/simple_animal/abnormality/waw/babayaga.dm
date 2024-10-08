@@ -68,9 +68,8 @@
 		Once you land, you deal a MASSIVE amount of RED damage to all humans bellow you.<br>\
 		You will also create some snow and ice around you, which have a chance a sliping humans.<br>\
 		<br>\
-		|Cold Prison|<br>\
-		Each time you land, You will create a few Ice Slaves who can be controled by ghosts.</b>\
-		If you already had some Ice Slaves, you will bring all of your Ice Slaves to your current location each time you land.</b>")
+		|Cold Prison|: Each time you land, You will create a few Ice Slaves who can be controlled by ghosts.<br>\
+		If you already had some Ice Slaves, you will bring some of your Ice Slaves to your current location each time you land.</b>")
 
 //Work Procs
 // any work performed with level <4 Fort and Temperance lowers qliphoth
