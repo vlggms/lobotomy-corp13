@@ -193,6 +193,12 @@
 				SSticker.queued_players += usr
 				to_chat(usr, "<span class='notice'>You have been added to the queue to join the game. Your position in queue is [SSticker.queued_players.len].</span>")
 			return
+
+
+		if(GLOB.data_core.get_record_by_name(client.prefs.real_name))
+			alert(src, "This character name is already in use. Choose another.")
+			return
+
 		LateChoices()
 
 	if(href_list["manifest"])
