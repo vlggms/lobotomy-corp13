@@ -438,6 +438,15 @@
 	attack_verb_simple = list("impale", "joust")
 	gender = FEMALE
 
+/obj/item/toy/plush/don/attack_self(mob/user)
+	..()
+	icon_state = "don_yahoo"
+	addtimer(CALLBACK(src, PROC_REF(sprite_return)), 3 SECONDS)
+
+//So you can make her yahoo again
+/obj/item/toy/plush/don/proc/sprite_return(mob/user)
+	icon_state = "don"
+
 /obj/item/toy/plush/ryoshu
 	name = "ryoshu plushie"
 	desc = "A plushie depicting a artistic sinner."
@@ -558,6 +567,12 @@
 	desc = "A plushie depicting a K corp secretary, their devotion deserved recognition."
 	icon_state = "samjo"
 	gender = MALE
+
+/obj/item/toy/plush/zena
+	name = "zena plushie"
+	desc = "A plushie depicting an aloof arbiter."
+	icon_state = "zena"
+	gender = FEMALE
 
 /obj/item/toy/plush/blank
 	name = "plushie blank"
