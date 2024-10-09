@@ -17,15 +17,19 @@
 		/datum/action/cooldown/firstaid = 1,
 		/datum/action/cooldown/meditation = 1,
 		/datum/action/cooldown/hunkerdown = 1,
+
 		/datum/action/cooldown/shockwave = 2,
 		/datum/action/cooldown/butcher = 2,
 		/datum/action/cooldown/solarflare = 2,
 		/datum/action/cooldown/confusion = 2,
 		/datum/action/cooldown/lockpick = 2,
 		/datum/action/cooldown/lifesteal = 2,
+
 		/datum/action/innate/healthhud = 3,
 		/datum/action/innate/bulletproof = 3,
 		/datum/action/innate/battleready = 3,
+		/datum/action/innate/fleetfoot = 3,
+
 		/datum/action/cooldown/timestop = 4,
 		/datum/action/cooldown/reraise = 4,
 		/datum/action/cooldown/dismember = 4,
@@ -43,8 +47,16 @@
 		if (!(user?.mind?.assigned_role in list("Civilian")))
 			to_chat(user, span_notice("Only Civilians can use this book!"))
 			return FALSE
+
+		var/allowed_level1_skills = 3
 		for(var/datum/action/A in user.actions)
-			if (actions_levels[A.type] == level)
+			if (actions_levels[A.type] == level && level == 1)
+				allowed_level1_skills -= 1
+				if(allowed_level1_skills == 0)
+					to_chat(user, span_notice("You are only allowed 3 skills of this level!"))
+					return FALSE
+
+			if (actions_levels[A.type] == level && level != 1)
 				to_chat(user, span_notice("You already have a skill of this level!"))
 				return FALSE
 
