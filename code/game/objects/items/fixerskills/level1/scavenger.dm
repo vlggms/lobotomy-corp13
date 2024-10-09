@@ -26,9 +26,9 @@
 	addtimer(CALLBACK(human, TYPE_PROC_REF(/mob, remove_movespeed_modifier), /datum/movespeed_modifier/assault), 2 SECONDS, TIMER_UNIQUE | TIMER_OVERRIDE)
 
 	//drop a bit of smoke
-	var/datum/effect_system/smoke_spread/bad/smoke = new
-	smoke.set_up(4, src)
-	smoke.start()
-	qdel(smoke)
+	var/datum/effect_system/smoke_spread/S = new
+	S.set_up(4, get_turf(human))	//Make the smoke bigger
+	S.start()
+	qdel(src)
 	StartCooldown()
 

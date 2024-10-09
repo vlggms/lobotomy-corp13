@@ -40,8 +40,8 @@
 		if ((level != user_level && level != -1) )
 			to_chat(user, span_notice("Your level is [user_level]. This book need level [level]!"))
 			return FALSE
-		if (!(user?.mind?.assigned_role in list("Civilian", "Rat")))
-			to_chat(user, span_notice("Only Civilians and Rats can use this book!"))
+		if (!(user?.mind?.assigned_role in list("Civilian")))
+			to_chat(user, span_notice("Only Civilians can use this book!"))
 			return FALSE
 		for(var/datum/action/A in user.actions)
 			if (actions_levels[A.type] == level)
