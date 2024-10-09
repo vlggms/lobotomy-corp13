@@ -8,8 +8,8 @@
 	run_text = "The core suppression of Records department has begun. \n\
 			The abnormalities will switch positions every meltdown. \n\
 			All living creatures will teleport slightly at even intervals."
-	/// How many of abnormality cells will swap places on meltdown, by percent of current count
-	var/abno_swap_percentage = 1
+	/// How many of abnormality cells will swap places on meltdown, in percent
+	var/abno_swap_percentage = 10
 	/// How often teleportations happen
 	var/teleport_interval = 35 SECONDS
 	/// Minimum teleport distance for mobs
@@ -49,39 +49,43 @@
 	sound_to_playing_players('sound/effects/hokma_meltdown.ogg', 50)
 	// Swap shit, wreck havoc
 	var/list/abnos = SSlobotomy_corp.all_abnormality_datums.Copy()
-	var/max_swap = round(length(abnos) * abno_swap_percentage)
-	for(var/i = 1 to max_swap)
-		if(!LAZYLEN(abnos))
+	var/max_swap = floor(max(1, length(abnos) / abno_swap_percentage))
+	for(var/i in 1 to max_swap)
+		if(!length(abnos))
 			break
-		var/datum/abnormality/A1 = pick(abnos)
-		abnos -= A1
-		if(istype(A1.current) && !A1.current.IsContained())
-			i -= 1
-			continue
-		if(A1.working)
-			i -= 1
-			continue
-		if(!LAZYLEN(abnos))
-			break
-		var/datum/abnormality/A2 = pick(abnos)
-		abnos -= A2
-		if(istype(A2.current) && !A2.current.IsContained())
-			i -= 1
-			continue
-		if(A2.working)
-			i -= 1
-			continue
-		// SWAP!
-		A1.SwapPlaceWith(A2)
+		var/list/swap_list = list()
+		for(var/swapping_abno in 1 to 24)
+			if(!length(abnos))
+				break
 
-	// Upgrade the difficulty!
-	if(ordeal)
-		abno_swap_percentage = min(1, abno_swap_percentage + 0.2)
-		teleport_interval = max(5 SECONDS, teleport_interval - 10 SECONDS)
-		teleport_min_mob_count = max(0.8, teleport_min_mob_count + 0.15)
-		teleport_max_mob_count = max(1, teleport_max_mob_count + 0.2)
-		teleport_min_distance = min(10, teleport_min_distance + 1)
-		teleport_max_distance = min(15, teleport_max_distance + 2)
+			var/datum/abnormality/abno = pick_n_take(abnos)
+			if(istype(abno.current) && !abno.current.IsContained())
+				continue
+
+			if(abno.working)
+				continue
+
+			swap_list += abno
+			if(length(swap_list) == 2)
+				break
+
+		if(length(swap_list) != 2)
+			break
+
+		var/datum/abnormality/abno = swap_list[1]
+		// Swap the places of abnormalities, if everything is valid
+		abno.SwapPlaceWith(swap_list[2])
+
+	// Upgrade the difficulty if we hit an ordeal
+	if(!ordeal)
+		return
+
+	abno_swap_percentage = max(10, abno_swap_percentage + 20)
+	teleport_interval = max(5 SECONDS, teleport_interval - 10 SECONDS)
+	teleport_min_mob_count = max(0.8, teleport_min_mob_count + 0.15)
+	teleport_max_mob_count = max(1, teleport_max_mob_count + 0.2)
+	teleport_min_distance = min(10, teleport_min_distance + 1)
+	teleport_max_distance = min(15, teleport_max_distance + 2)
 
 // Show after-image of swapped abnos
 /datum/suppression/records/proc/OnAbnoSwap(datum/source, datum/abnormality/A1, datum/abnormality/A2)

@@ -9,6 +9,10 @@
 	var/qliphoth_meter_max = 0
 	/// Path of the mob it contains
 	var/mob/living/simple_animal/hostile/abnormality/abno_path
+	/// Reference to the door we own, only used for records swapping
+	var/obj/machinery/door/airlock/door
+	/// Reference to the camera we own, only used for records swapping
+	var/obj/machinery/camera/camera
 	/// Reference to current mob, if alive
 	var/mob/living/simple_animal/hostile/abnormality/current
 	/// Reference to respawn landmark
@@ -91,11 +95,12 @@
 		qdel(ED)
 	for(var/atom/A in connected_structures)
 		qdel(A)
-	QDEL_NULL(landmark)
+	door = null
+	camera = null
 	QDEL_NULL(current)
+	QDEL_NULL(landmark)
+	console = null
 	ego_datums = null
-	landmark = null
-	current = null
 	connected_structures = null
 	return ..()
 
@@ -353,63 +358,40 @@
 		return FALSE
 	if(working || target.working)
 		return FALSE
-	// A very silly method to get the objects in the cell
-	var/list/objs_src = view(7, landmark)
-	var/list/objs_target = view(7, target.landmark)
-	// Cursed code!
-	var/obj/machinery/containment_panel/P1 = locate() in objs_src
-	var/obj/machinery/containment_panel/P2 = locate() in objs_target
-	var/obj/machinery/door/airlock/vault/D1 = locate() in objs_src
-	var/obj/machinery/door/airlock/vault/D2 = locate() in objs_target
-	var/obj/machinery/camera/C1 = locate() in objs_src
-	var/obj/machinery/camera/C2 = locate() in objs_target
-	/* Swap everything and update panels & doors! */
-	// Landmark swap
-	var/obj/effect/landmark/abnormality_spawn/our_landmark = landmark
-	landmark = target.landmark
-	target.landmark = our_landmark
-	// Console swap
-	var/obj/machinery/computer/abnormality/our_computer = console
-	console = target.console
-	console.datum_reference = src
-	target.console = our_computer
-	target.console.datum_reference = target
-	// Door name swap
-	if(D1)
-		D1.name = "[target.name] containment zone"
-		D1.desc = "Containment zone of [target.name]. Threat level: [THREAT_TO_NAME[target.threat_level]]."
-	if(D2)
-		D2.name = "[name] containment zone"
-		D2.desc = "Containment zone of [name]. Threat level: [THREAT_TO_NAME[threat_level]]."
-	// Panel swap
-	if(P1)
-		P1.linked_console = target.console
-		target.console.LinkPanel(P1)
-		P1.console_status(target.console)
-		P1.name = "\proper [target.name]'s containment panel"
-	if(P2)
-		P2.linked_console = console
-		console.LinkPanel(P2)
-		P2.console_status(console)
-		P2.name = "\proper [name]'s containment panel"
-	// Camera tag swap
-	if(C1)
-		C1.c_tag = "Containment zone: [target.name]"
-	if(C2)
-		C2.c_tag = "Containment zone: [name]"
+
+	// Get every object thats relevant, and swap their places around
+	var/turf/swap_turf = door.drop_location()
+	door.forceMove(target.door.drop_location())
+	target.door.forceMove(swap_turf)
+
+	swap_turf = camera.drop_location()
+	camera.forceMove(target.camera.drop_location())
+	target.camera.forceMove(swap_turf)
+
+	swap_turf = console.drop_location()
+	console.forceMove(target.console.drop_location())
+	target.console.forceMove(swap_turf)
+
+	swap_turf = console.linked_panel.drop_location()
+	console.linked_panel.forceMove(target.console.linked_panel.drop_location())
+	target.console.linked_panel.forceMove(swap_turf)
+
+	var/turf/enemy_landmark_turf = target.landmark.drop_location()
+	swap_turf = landmark.drop_location()
+	landmark.forceMove(enemy_landmark_turf)
+	current.forceMove(enemy_landmark_turf)
+	target.landmark.forceMove(swap_turf)
+	target.current.forceMove(swap_turf)
+
 	// Move structures
 	for(var/atom/movable/A in connected_structures)
-		A.forceMove(get_turf(landmark))
+		A.forceMove(enemy_landmark_turf)
 		A.x += connected_structures[A][1]
 		A.y += connected_structures[A][2]
 	for(var/atom/movable/A in target.connected_structures)
-		A.forceMove(get_turf(target.landmark))
+		A.forceMove(swap_turf)
 		A.x += connected_structures[A][1]
 		A.y += connected_structures[A][2]
-	// And finally, move abnormalities around
-	if(current)
-		current.forceMove(get_turf(landmark))
-	if(target.current)
-		target.current.forceMove(get_turf(target.landmark))
+
 	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_ABNORMALITY_SWAP, src, target)
 	return TRUE
