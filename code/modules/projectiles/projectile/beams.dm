@@ -375,13 +375,11 @@
 	projectile_piercing = PASSMOB
 
 /obj/projectile/beam/laser/iff/on_hit(atom/target, blocked = FALSE)
-	if(!ishuman(target))
-		nodamage = FALSE
-	else
+	if(ishuman(target))
 		return
-	..()
-	if(!ishuman(target))
-		qdel(src)
+	nodamage = FALSE
+	. = ..()
+	qdel(src)
 
 /obj/projectile/beam/laser/iff/white
 	damage_type = WHITE_DAMAGE
