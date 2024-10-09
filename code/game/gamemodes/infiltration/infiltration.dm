@@ -1,4 +1,4 @@
-/datum/game_mode/traitor/infiltrator
+/datum/game_mode/management/traitor/infiltrator
 	name = "infiltration"
 	config_tag = "infiltration"
 	report_type = "infiltration"
@@ -13,7 +13,7 @@
 	<span class='danger'>Operatives</span>: Accomplish your objectives while staying undiscovered.\n\
 	<span class='notice'>Crew</span>: Do not let the operatives succeed!"
 
-/datum/game_mode/traitor/infiltrator/pre_setup()
+/datum/game_mode/management/traitor/infiltrator/pre_setup()
 	var/num_traitors = 1
 
 	var/tsc = CONFIG_GET(number/traitor_scaling_coeff)
@@ -42,7 +42,7 @@
 			GLOB.pre_setup_antags += antag
 		return TRUE
 
-/datum/game_mode/traitor/infiltrator/post_setup()
+/datum/game_mode/management/traitor/infiltrator/post_setup()
 	for(var/datum/mind/traitor in pre_traitors)
 		var/datum/antagonist/traitor/infiltrator/new_antag = new antag_datum()
 		traitor.add_antag_datum(new_antag)
@@ -103,13 +103,13 @@
 
 //Latejoin
 
-/datum/game_mode/traitor/infiltrator/add_latejoin_traitor(datum/mind/character) //Late joiners in Infiltration gamemode will become normal traitors.
+/datum/game_mode/management/traitor/infiltrator/add_latejoin_traitor(datum/mind/character) //Late joiners in Infiltration gamemode will become normal traitors.
 	var/datum/antagonist/traitor/new_antag = new /datum/antagonist/traitor()
 	character.add_antag_datum(new_antag)
 
 //CentCom Report
 
-/datum/game_mode/traitor/infiltrator/generate_report()
+/datum/game_mode/management/traitor/infiltrator/generate_report()
 	return "Recent events have proved that Syndicate is staging covert operations in your sector. \
 	While you still should expect any sort of traitorous operations from the inside, \
 	beware the possibility of enemy operatives infiltrating your station from the dark void of space \

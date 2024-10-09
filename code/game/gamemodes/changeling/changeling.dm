@@ -3,7 +3,7 @@ GLOBAL_LIST_INIT(slot2slot, list("head" = ITEM_SLOT_HEAD, "wear_mask" = ITEM_SLO
 GLOBAL_LIST_INIT(slot2type, list("head" = /obj/item/clothing/head/changeling, "wear_mask" = /obj/item/clothing/mask/changeling, "back" = /obj/item/changeling, "wear_suit" = /obj/item/clothing/suit/changeling, "w_uniform" = /obj/item/clothing/under/changeling, "shoes" = /obj/item/clothing/shoes/changeling, "belt" = /obj/item/changeling, "gloves" = /obj/item/clothing/gloves/changeling, "glasses" = /obj/item/clothing/glasses/changeling, "ears" = /obj/item/changeling, "wear_id" = /obj/item/changeling/id, "s_store" = /obj/item/changeling))
 
 
-/datum/game_mode/changeling
+/datum/game_mode/management/changeling
 	name = "changeling"
 	config_tag = "changeling"
 	report_type = "changeling"
@@ -24,7 +24,7 @@ GLOBAL_LIST_INIT(slot2type, list("head" = /obj/item/clothing/head/changeling, "w
 	var/const/changeling_amount = 4 //hard limit on changelings if scaling is turned off
 	var/list/changelings = list()
 
-/datum/game_mode/changeling/pre_setup()
+/datum/game_mode/management/changeling/pre_setup()
 
 	if(CONFIG_GET(flag/protect_roles_from_antagonist))
 		restricted_jobs += protected_jobs
@@ -55,7 +55,7 @@ GLOBAL_LIST_INIT(slot2type, list("head" = /obj/item/clothing/head/changeling, "w
 		setup_error = "Not enough changeling candidates"
 		return FALSE
 
-/datum/game_mode/changeling/post_setup()
+/datum/game_mode/management/changeling/post_setup()
 	for(var/datum/mind/changeling in changelings)
 		log_game("[key_name(changeling)] has been selected as a changeling")
 		var/datum/antagonist/changeling/new_antag = new()
@@ -63,7 +63,7 @@ GLOBAL_LIST_INIT(slot2type, list("head" = /obj/item/clothing/head/changeling, "w
 		GLOB.pre_setup_antags -= changeling
 	..()
 
-/datum/game_mode/changeling/make_antag_chance(mob/living/carbon/human/character) //Assigns changeling to latejoiners
+/datum/game_mode/management/changeling/make_antag_chance(mob/living/carbon/human/character) //Assigns changeling to latejoiners
 	var/csc = CONFIG_GET(number/changeling_scaling_coeff)
 	var/changelingcap = min(round(GLOB.joined_player_list.len / (csc * 2)) + 2, round(GLOB.joined_player_list.len / csc))
 	if(changelings.len >= changelingcap) //Caps number of latejoin antagonists
@@ -76,7 +76,7 @@ GLOBAL_LIST_INIT(slot2type, list("head" = /obj/item/clothing/head/changeling, "w
 						character.mind.make_Changeling()
 						changelings += character.mind
 
-/datum/game_mode/changeling/generate_report()
+/datum/game_mode/management/changeling/generate_report()
 	return "The Gorlex Marauders have announced the successful raid and destruction of Central Command containment ship #S-[rand(1111, 9999)]. This ship housed only a single prisoner - \
 			codenamed \"Thing\", and it was highly adaptive and extremely dangerous. We have reason to believe that the Thing has allied with the Syndicate, and you should note that likelihood \
 			of the Thing being sent to a station in this sector is highly likely. It may be in the guise of any crew member. Trust nobody - suspect everybody. Do not announce this to the crew, \

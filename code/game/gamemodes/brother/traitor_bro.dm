@@ -2,7 +2,7 @@
 	var/list/datum/mind/brothers = list()
 	var/list/datum/team/brother_team/brother_teams = list()
 
-/datum/game_mode/traitor/bros
+/datum/game_mode/management/traitor/bros
 	name = "traitor+brothers"
 	config_tag = "traitorbro"
 	restricted_jobs = list("Prisoner","AI", "Cyborg")
@@ -18,7 +18,7 @@
 	var/const/min_team_size = 2
 	traitors_required = FALSE //Only teams are possible
 
-/datum/game_mode/traitor/bros/pre_setup()
+/datum/game_mode/management/traitor/bros/pre_setup()
 	if(CONFIG_GET(flag/protect_roles_from_antagonist))
 		restricted_jobs += protected_jobs
 	if(CONFIG_GET(flag/protect_assistant_from_antagonist))
@@ -52,7 +52,7 @@
 				GLOB.pre_setup_antags += antag
 	return
 
-/datum/game_mode/traitor/bros/post_setup()
+/datum/game_mode/management/traitor/bros/post_setup()
 	for(var/datum/team/brother_team/team in pre_brother_teams)
 		team.pick_meeting_area()
 		team.forge_brother_objectives()
@@ -63,5 +63,5 @@
 	brother_teams += pre_brother_teams
 	return ..()
 
-/datum/game_mode/traitor/bros/generate_report()
+/datum/game_mode/management/traitor/bros/generate_report()
 	return "It's Syndicate recruiting season. Be alert for potential Syndicate infiltrators, but also watch out for disgruntled employees trying to defect. Unlike Nanotrasen, the Syndicate prides itself in teamwork and will only recruit pairs that share a brotherly trust."

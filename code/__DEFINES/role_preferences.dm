@@ -48,10 +48,10 @@
 //The gamemode specific ones are just so the gamemodes can query whether a player is old enough
 //(in game days played) to play that role
 GLOBAL_LIST_INIT(special_roles, list(
-	ROLE_TRAITOR = /datum/game_mode/traitor,
-	ROLE_BROTHER = /datum/game_mode/traitor/bros,
+	ROLE_TRAITOR = /datum/game_mode/management/traitor,
+	ROLE_BROTHER = /datum/game_mode/management/traitor/bros,
 	ROLE_OPERATIVE = /datum/game_mode/nuclear,
-	ROLE_CHANGELING = /datum/game_mode/changeling,
+	ROLE_CHANGELING = /datum/game_mode/management/changeling,
 	ROLE_WIZARD = /datum/game_mode/wizard,
 	ROLE_MALF,
 	ROLE_REV = /datum/game_mode/revolution,
@@ -65,8 +65,8 @@ GLOBAL_LIST_INIT(special_roles, list(
 	ROLE_MONKEY = /datum/game_mode/monkey,
 	ROLE_REVENANT,
 	ROLE_ABDUCTOR,
-	ROLE_INTERNAL_AFFAIRS = /datum/game_mode/traitor/internal_affairs,
-	ROLE_INFILTRATOR = /datum/game_mode/traitor/infiltrator, // Tegustation Infiltration edit
+	ROLE_INTERNAL_AFFAIRS = /datum/game_mode/management/traitor/internal_affairs,
+	ROLE_INFILTRATOR = /datum/game_mode/management/traitor/infiltrator, // Tegustation Infiltration edit
 	ROLE_SENTIENCE,
 	ROLE_FAMILIES = /datum/game_mode/gang,
 	ROLE_HERETIC = /datum/game_mode/heretics
