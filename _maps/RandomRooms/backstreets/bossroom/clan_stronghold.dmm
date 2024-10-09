@@ -49,7 +49,7 @@
 /obj/structure/railing{
 	dir = 4
 	},
-/turf/open/floor/circuit/telecomms,
+/turf/open/floor/mineral/diamond,
 /area/city/backstreets_room)
 "cC" = (
 /obj/effect/landmark/cratespawn/corpo,
@@ -142,7 +142,7 @@
 	dir = 4
 	},
 /mob/living/simple_animal/hostile/clan/drone,
-/turf/open/floor/circuit/telecomms,
+/turf/open/floor/mineral/diamond,
 /area/city/backstreets_room)
 "eR" = (
 /obj/effect/light_emitter{
@@ -163,7 +163,7 @@
 /obj/structure/railing{
 	dir = 8
 	},
-/turf/open/floor/circuit/telecomms,
+/turf/open/floor/mineral/diamond,
 /area/city/backstreets_room)
 "fN" = (
 /obj/effect/decal/cleanable/dirt/dust,
@@ -352,7 +352,7 @@
 /area/city/backstreets_room)
 "nF" = (
 /obj/structure/railing/corner,
-/turf/open/floor/circuit/telecomms,
+/turf/open/floor/mineral/diamond,
 /area/city/backstreets_room)
 "od" = (
 /obj/effect/turf_decal{
@@ -556,7 +556,7 @@
 "xt" = (
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/structure/railing,
-/turf/open/floor/circuit/telecomms,
+/turf/open/floor/mineral/diamond,
 /area/city/backstreets_room)
 "xF" = (
 /obj/effect/decal/cleanable/dirt/dust,
@@ -613,7 +613,7 @@
 	sensor_id = "ai";
 	mobtype = /mob/living/simple_animal/npc/tinkerer
 	},
-/turf/open/floor/circuit/telecomms,
+/turf/open/floor/mineral/diamond,
 /area/city/backstreets_room)
 "zX" = (
 /obj/effect/turf_decal/trimline/blue/filled/warning{
@@ -780,7 +780,7 @@
 /obj/structure/railing/corner{
 	dir = 1
 	},
-/turf/open/floor/circuit/telecomms,
+/turf/open/floor/mineral/diamond,
 /area/city/backstreets_room)
 "Ju" = (
 /obj/structure/railing{
@@ -835,7 +835,6 @@
 /obj/effect/turf_decal/siding/thinplating{
 	dir = 8
 	},
-/mob/living/simple_animal/hostile/clan/defender,
 /turf/open/floor/stone,
 /area/city/backstreets_room)
 "Ox" = (
@@ -930,13 +929,6 @@
 /obj/structure/railing,
 /turf/open/floor/carpet/black,
 /area/city/backstreets_room)
-"Ul" = (
-/obj/effect/turf_decal/siding/thinplating/corner{
-	dir = 4
-	},
-/mob/living/simple_animal/hostile/clan/scout,
-/turf/open/floor/stone,
-/area/city/backstreets_room)
 "Ur" = (
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/effect/turf_decal/siding/thinplating{
@@ -994,7 +986,7 @@
 /obj/structure/railing{
 	dir = 1
 	},
-/turf/open/floor/circuit/telecomms,
+/turf/open/floor/mineral/diamond,
 /area/city/backstreets_room)
 "WR" = (
 /obj/effect/turf_decal/siding/thinplating{
@@ -1015,7 +1007,7 @@
 /area/city/backstreets_room)
 "ZB" = (
 /obj/structure/statue/diamond/ai2,
-/turf/open/floor/circuit/telecomms,
+/turf/open/floor/mineral/diamond,
 /area/city/backstreets_room)
 "ZG" = (
 /obj/structure/chair/greyscale,
@@ -1085,7 +1077,7 @@ Ox
 xO
 oO
 Ur
-Ul
+oA
 mI
 dT
 dz
@@ -1273,7 +1265,7 @@ Wn
 xO
 sf
 SQ
-kG
+SQ
 Lc
 xO
 QP

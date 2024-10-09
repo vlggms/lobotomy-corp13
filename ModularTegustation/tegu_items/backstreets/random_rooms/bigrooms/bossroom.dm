@@ -12,7 +12,7 @@
 	centerspawner = FALSE
 	template_width = 20
 	template_height = 20
-	stock = 3
+	stock = 1
 	room_type = "backstreets_bossroom"
 
 /datum/map_template/random_room/backstreets/bossroom/gcorp

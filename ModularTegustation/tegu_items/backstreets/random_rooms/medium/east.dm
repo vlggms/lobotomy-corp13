@@ -55,9 +55,3 @@
     name = "Clan - Medium East A"
     room_id = "clan_mechs"
     mappath = "_maps/RandomRooms/backstreets/medium_east/clan_mechs.dmm"
-
-/datum/map_template/random_room/backstreets/medium_west/priest_room
-	name = "Redeemed Star - Medium East"
-	room_id = "priest_room"
-	mappath = "_maps/RandomRooms/backstreets/medium_east/priest_room.dmm"
-	stock = 1

@@ -54,7 +54,7 @@
 "i" = (
 /obj/machinery/light/dim,
 /turf/open/floor/plasteel/chapel{
-	dir = 4
+	dir = 1
 	},
 /area/city/backstreets_room)
 "j" = (
@@ -243,9 +243,9 @@ a
 a
 a
 g
-W
-k
-W
+a
+l
+a
 "}
 (2,1,1) = {"
 a
@@ -256,7 +256,7 @@ C
 r
 v
 Q
-i
+U
 a
 "}
 (3,1,1) = {"
@@ -292,7 +292,7 @@ e
 c
 o
 h
-U
+i
 a
 "}
 (6,1,1) = {"
@@ -303,7 +303,7 @@ a
 a
 g
 a
-a
-l
-a
+W
+k
+W
 "}

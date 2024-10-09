@@ -108,7 +108,6 @@
 /area/city/backstreets_room)
 "K" = (
 /obj/structure/chair/office,
-/mob/living/simple_animal/hostile/clan/scout,
 /turf/open/floor/plasteel/grimy,
 /area/city/backstreets_room)
 "L" = (
