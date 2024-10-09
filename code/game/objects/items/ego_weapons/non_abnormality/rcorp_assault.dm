@@ -83,6 +83,7 @@
 /obj/item/gun/energy/e_gun/rabbitdash/sniper
 	name = "R-Corporation X-12 Marksman"
 	desc = "An energy rifle sometimes used by Rcorp. Fires slower, and deals slightly more damage. Has a scope."
+	icon_state = "rabbitsniper"
 	fire_delay = 8
 	projectile_damage_multiplier = 1.2
 	zoom_amt = 5 //Long range, Slightly better range
@@ -97,3 +98,17 @@
 	ammo_type = list(
 		/obj/item/ammo_casing/energy/laser/red/beam,
 		)
+
+/obj/item/gun/energy/e_gun/rabbitdash/heavysniper
+	name = "R-Corporation X-21 Sniper"
+	desc = "A heavy energy rifle used by Rcorp sniper units. Fires slower, and deals significantly more damage. Has a scope and IFF capabilities."
+	icon_state = "rabbitheavysniper"
+	fire_delay = 15
+	zoomable = TRUE
+	zoom_amt = 10 //Long range, enough to see in front of you, but no tiles behind you.
+	zoom_out_amt = 5
+	projectile_damage_multiplier = 3
+	ammo_type = list(
+		/obj/item/ammo_casing/energy/laser/red/iff,
+		)
+
