@@ -26,6 +26,8 @@
 		/datum/ego_datum/armor/intentions,
 		/datum/ego_datum/weapon/laststop,
 	)
+	gift_type =  /datum/ego_gifts/good_intentions
+	gift_message = "When the time comes, the train will chug down the tracks and sound its mighty horn."
 	abnormality_origin = ABNORMALITY_ORIGIN_ALTERED
 
 	observation_prompt = "The booking clerk who remains dauntingly quiet sells tickets for a train with no final destination. <br>\
