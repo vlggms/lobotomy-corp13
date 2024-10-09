@@ -46,7 +46,7 @@
 
 /datum/action/innate/fleetfoot/Activate()
 	to_chat(owner, span_notice("You now move faster."))
-	button_icon_state = "battleready_on"
+	button_icon_state = "fleetfoot_on"
 	active = TRUE
 	var/mob/living/carbon/human/human = owner
 	human.add_movespeed_modifier(/datum/movespeed_modifier/assault)
@@ -54,7 +54,7 @@
 
 /datum/action/innate/fleetfoot/Deactivate()
 	to_chat(owner, span_notice("You now move slower."))
-	button_icon_state = "battleready_off"
+	button_icon_state = "fleetfoot_off"
 	active = FALSE
 	var/mob/living/carbon/human/human = owner
 	human.remove_movespeed_modifier(/datum/movespeed_modifier/assault)

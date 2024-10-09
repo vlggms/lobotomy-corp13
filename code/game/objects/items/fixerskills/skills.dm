@@ -41,19 +41,25 @@
 	if (ishuman(user))
 		var/mob/living/carbon/human/human = user
 		var/user_level = get_civilian_level(human)
+		var/allowed_level1_skills = 3
+
 		if ((level != user_level && level != -1) )
-			to_chat(user, span_notice("Your level is [user_level]. This book need level [level]!"))
-			return FALSE
+			if(user_level == 0 && level==1)	//Specific check for Grade 9s, throw these bastards a bone
+				to_chat(user, span_notice("Your are able to get 5 skills of this level."))
+				allowed_level1_skills = 5
+
+			else
+				to_chat(user, span_notice("Your level is [user_level]. This book need level [level]!"))
+				return FALSE
 		if (!(user?.mind?.assigned_role in list("Civilian")))
 			to_chat(user, span_notice("Only Civilians can use this book!"))
 			return FALSE
 
-		var/allowed_level1_skills = 3
 		for(var/datum/action/A in user.actions)
 			if (actions_levels[A.type] == level && level == 1)
 				allowed_level1_skills -= 1
 				if(allowed_level1_skills == 0)
-					to_chat(user, span_notice("You are only allowed 3 skills of this level!"))
+					to_chat(user, span_notice("You are out of skills for this level!"))
 					return FALSE
 
 			if (actions_levels[A.type] == level && level != 1)
