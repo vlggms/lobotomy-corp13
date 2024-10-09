@@ -148,8 +148,8 @@
 	use_power = NO_POWER_USE
 	var/active = FALSE
 	var/stored_money = 0
-	var/prosthetic_cost = 300
-	var/organic_cost = 1200
+	var/prosthetic_cost = 0
+	var/organic_cost = 800
 	var/obj/item/organ/brain/slotted_brain
 
 /obj/machinery/body_fabricator/attackby(obj/item/I, mob/user)
@@ -274,8 +274,15 @@
 	H.revive(full_heal = FALSE, admin_revive = FALSE)
 	H.emote("gasp")
 	H.Jitter(100)
-	ADD_TRAIT(H, TRAIT_COMBATFEAR_IMMUNE, JOB_TRAIT)
-	ADD_TRAIT(H, TRAIT_WORK_FORBIDDEN, JOB_TRAIT)
+
+	var/list/job_traits = list(TRAIT_WORK_FORBIDDEN, TRAIT_COMBATFEAR_IMMUNE, TRAIT_ATTRIBUTES_VISION, TRAIT_SANITYIMMUNE)
+	for(var/trait in slotted_brain.initial_traits)
+		if(trait in job_traits)
+			ADD_TRAIT(H, trait, JOB_TRAIT)
+	H.adjust_attribute_level(FORTITUDE_ATTRIBUTE, slotted_brain.stored_fortitude)
+	H.adjust_attribute_level(PRUDENCE_ATTRIBUTE, slotted_brain.stored_prudence)
+	H.adjust_attribute_level(TEMPERANCE_ATTRIBUTE, slotted_brain.stored_temperance)
+	H.adjust_attribute_level(JUSTICE_ATTRIBUTE, slotted_brain.stored_justice)
 
 	//YOU DIDNT PAY FOR PREMIUM SO WE ARE MAKING YOUR BODY WORSE
 	if(biotype == 2)
