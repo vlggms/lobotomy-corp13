@@ -86,6 +86,13 @@
 		"This is going to be fun!",
 	)
 
+/mob/living/simple_animal/hostile/abnormality/redblooded/Login()
+	. = ..()
+	if(!. || !client)
+		return FALSE
+	to_chat(src, "<h1>You are Red Blooded American, A Support Role Abnormality.</h1><br>\
+		<b>|Gun|: You have a fucking shotgun, It kills people. I have no idea why you are a support but I guess you are one.</b>")
+
 /mob/living/simple_animal/hostile/abnormality/redblooded/AttemptWork(mob/living/carbon/human/user, work_type)
 	work_damage_amount = 6 + bloodlust
 	if(work_type == ABNORMALITY_WORK_REPRESSION)

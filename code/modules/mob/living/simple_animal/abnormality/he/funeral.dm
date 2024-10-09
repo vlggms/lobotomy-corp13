@@ -92,6 +92,20 @@
 		observation_success_message = initial(observation_success_message)
 	return ..()
 
+/mob/living/simple_animal/hostile/abnormality/funeral/Login()
+	. = ..()
+	if(!. || !client)
+		return FALSE
+	to_chat(src, "<h1>You are Funeral of the Dead Butterflies, A Support Role Abnormality.</h1><br>\
+		<b>|Mercy|: Instead of a melee attack, you are able to click on far away targets to perform a ranged attack.<br>\
+		Your ranged attack will deal WHITE damage to targets after a short delay, and if it causes a target to panic it will instantly kill them.<br>\
+		<br>\
+		|Funeral|: When you attack, if your coffin attack is off cooldown you will use it.<br>\
+		Your coffin attack is a 5 sqr wide AoE which spreads out in front of you, and deals WHITE damage to targets within the AoE.<br>\
+		If your coffin causes someone to panic, it will instantly kill them.<br>\
+		You are able to toggle your coffin attack on and off with your ability.</b>")
+
+
 /mob/living/simple_animal/hostile/abnormality/funeral/AttackingTarget(atom/attacked_target)
 	return OpenFire()
 

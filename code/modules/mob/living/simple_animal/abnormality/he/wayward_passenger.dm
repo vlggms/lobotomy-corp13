@@ -100,6 +100,20 @@
 	chosen_message = span_colossus("You will now charge towards your target.")
 	chosen_attack_num = 2
 
+/mob/living/simple_animal/hostile/abnormality/wayward/Login()
+	. = ..()
+	if(!. || !client)
+		return FALSE
+	to_chat(src, "<h1>Wayward Passenger, A Support Role Abnormality.</h1><br>\
+		<b>|Warp|: After you select your “Teleport” ability, the next time you click on a tile will cause you to teleport to that tile.<br>\
+		Teleporting will stun you for a short while, but will leave behind a portal for the duration of your stun, which others can use to teleport with you.<br>\
+		Then the teleport will go on a short cooldown.<br>\
+		<br>\
+		|Dash|: After you select your “Dash” ability, the next time you click on a tile will cause you to rush in that direction after a short delay.<br>\
+		While you are rushing, you deal BLACK damage to humans in your way, and you are able to move over small obstacles like barricades.<br>\
+		<br>\
+		You are able to toggle between using your dash attack and teleport with your abilities.</b>")
+
 //*** Simple mob procs ***
 /mob/living/simple_animal/hostile/abnormality/wayward/death(gibbed)
 	playsound(src, 'sound/effects/limbus_death.ogg', 100, 1)
