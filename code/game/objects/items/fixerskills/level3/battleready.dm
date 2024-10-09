@@ -49,7 +49,7 @@
 	button_icon_state = "fleetfoot_on"
 	active = TRUE
 	var/mob/living/carbon/human/human = owner
-	human.add_movespeed_modifier(/datum/movespeed_modifier/assault)
+	human.add_movespeed_modifier(/datum/movespeed_modifier/fleetfoot)
 	UpdateButtonIcon()
 
 /datum/action/innate/fleetfoot/Deactivate()
@@ -57,5 +57,9 @@
 	button_icon_state = "fleetfoot_off"
 	active = FALSE
 	var/mob/living/carbon/human/human = owner
-	human.remove_movespeed_modifier(/datum/movespeed_modifier/assault)
+	human.remove_movespeed_modifier(/datum/movespeed_modifier/fleetfoot)
 	UpdateButtonIcon()
+
+/datum/movespeed_modifier/fleetfoot
+	variable = TRUE
+	multiplicative_slowdown = -0.1

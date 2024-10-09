@@ -11,7 +11,6 @@
 	button_icon_state = "smokedash"
 	name = "Smokedash"
 	cooldown_time = 300
-	var/healamount = 15
 
 /datum/action/cooldown/smokedash/Trigger()
 	if(!..())
@@ -29,6 +28,6 @@
 	var/datum/effect_system/smoke_spread/S = new
 	S.set_up(4, get_turf(human))	//Make the smoke bigger
 	S.start()
-	qdel(src)
+	qdel(S)
 	StartCooldown()
 
