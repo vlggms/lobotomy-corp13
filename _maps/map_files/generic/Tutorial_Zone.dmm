@@ -1014,7 +1014,7 @@
 	dir = 8
 	},
 /obj/structure/plaque/static_plaque{
-	desc = "In memorial of Yoon-Hoo 'Protagonist' Beach. An intern that lived until midnightwhile drugged up on porccubus stims. Died to a Pink Midnight Dreaming Current breach. A hero to us all.";
+	desc = "In memorial of Yoon-Hoo 'Protagonist' Beach. An intern that lived until midnight while drugged up on porccubus stims. Died to a Pink Midnight Dreaming Current breach. A hero to us all.";
 	name = "memorial plaque";
 	pixel_y = -32
 	},
