@@ -18,7 +18,7 @@
 //R-Corp cannot eat 180 white damage
 /mob/living/simple_animal/hostile/abnormality/alriune/Initialize()
 	if(IsCombatMap())
-		pulse_damage = 70
+		pulse_damage = 100
 	return ..()
 
 //Helper can't be stunned for a million fuckin years
