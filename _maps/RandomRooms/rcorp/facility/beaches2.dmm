@@ -53,6 +53,10 @@
 	},
 /turf/open/floor/plating,
 /area/city/outskirts)
+"kE" = (
+/obj/effect/landmark/abnospawn/rhinobuster,
+/turf/open/floor/plasteel/dark,
+/area/city/outskirts)
 "kI" = (
 /turf/closed/indestructible/fakedoor{
 	desc = "These things are thick. Doesn't look like they stopped anything important...";
@@ -621,7 +625,7 @@ vQ
 vQ
 vQ
 sY
-bN
+kE
 sY
 sY
 sY

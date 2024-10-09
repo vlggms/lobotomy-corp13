@@ -575,3 +575,14 @@
 	pierce_force_cost = 20
 	charge_speed_cap = 2
 	couch_cooldown_time = 3 SECONDS
+
+/obj/item/ego_weapon/denial
+	name = "denial"
+	desc = "Unregulated ingestion of Enkephalin may cause a wide range of unverified psychopathological symptoms."
+	icon_state = "denial"
+	force = 36
+	damtype = RED_DAMAGE
+	attack_speed = 1.5
+	attack_verb_continuous = list("smashes", "bludgeons", "crushes")
+	attack_verb_simple = list("smash", "bludgeon", "crush")
+	hitsound = 'sound/weapons/fixer/generic/club3.ogg'

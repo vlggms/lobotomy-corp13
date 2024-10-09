@@ -226,6 +226,10 @@
 	slowdown = 0
 	},
 /area/city/outskirts)
+"GX" = (
+/obj/effect/landmark/abnospawn/rhinobuster,
+/turf/open/floor/plasteel/dark,
+/area/city/outskirts)
 "HD" = (
 /turf/open/water/jungle{
 	name = "sewer water";
@@ -15759,11 +15763,11 @@ gS
 gS
 aN
 oS
-lA
+RC
 oS
 oS
 oS
-mR
+GX
 oS
 oS
 HD
@@ -16086,7 +16090,7 @@ gS
 aN
 lA
 oS
-oS
+lA
 oS
 mR
 oS

@@ -2344,6 +2344,10 @@
 /obj/machinery/camera/autoname,
 /turf/open/floor/plasteel/dark,
 /area/city/outskirts)
+"QP" = (
+/obj/effect/landmark/abnospawn/rhinobuster,
+/turf/open/floor/plating/asteroid,
+/area/city/outskirts)
 "QY" = (
 /obj/effect/turf_decal/siding/purple/corner{
 	dir = 8
@@ -14607,7 +14611,7 @@ Im
 Im
 Im
 Im
-cI
+QP
 Im
 Im
 Im

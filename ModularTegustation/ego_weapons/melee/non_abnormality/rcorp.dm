@@ -201,9 +201,9 @@
 	icon_state = "rabbitmachinegun"
 	projectile_damage_multiplier = 0.7
 	ammo_type = list(
-		/obj/item/ammo_casing/energy/laser/red,
-		/obj/item/ammo_casing/energy/laser/white,
-		/obj/item/ammo_casing/energy/laser/black
+		/obj/item/ammo_casing/energy/laser/red/iff,
+		/obj/item/ammo_casing/energy/laser/white/iff,
+		/obj/item/ammo_casing/energy/laser/black/iff
 		)
 
 /obj/item/ego_weapon/city/rabbit_rush
