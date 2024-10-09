@@ -9,6 +9,7 @@
 		/datum/action/cooldown/dash = 1,
 		/datum/action/cooldown/dash/back = 1,
 		/datum/action/cooldown/smokedash = 1,
+		/datum/action/cooldown/skulk = 1,
 		/datum/action/cooldown/assault = 1,
 		/datum/action/cooldown/retreat = 1,
 		/datum/action/cooldown/healing = 1,
@@ -35,6 +36,7 @@
 		/datum/action/cooldown/dismember = 4,
 		/datum/action/cooldown/warbanner = 4,
 		/datum/action/cooldown/warcry = 4,
+		/datum/action/cooldown/nuke = 4,
 	)
 
 /obj/item/book/granter/action/skill/on_reading_finished(mob/user)
