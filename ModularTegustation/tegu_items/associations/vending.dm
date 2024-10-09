@@ -216,64 +216,41 @@
 	icon_state = "robotics"
 	icon_deny = null
 	products = list(
+		//Healing shit
+		/obj/item/weldingtool = 100,
+		/obj/item/stack/cable_coil = 100,
 		/obj/item/stock_parts/cell/high = 100,
+
+		//Regular shit
 		/obj/item/bodypart/head/robot = 100,
-		/obj/item/bodypart/chest/robot = 100,
+		//obj/item/bodypart/chest/robot = 100,	//currently broken
 		/obj/item/bodypart/l_arm/robot = 100,
 		/obj/item/bodypart/r_arm/robot = 100,
 		/obj/item/bodypart/l_leg/robot = 100,
 		/obj/item/bodypart/r_leg/robot = 100,
-		/obj/item/weldingtool = 100,
-		/obj/item/stack/cable_coil = 100,
 		/obj/item/organ/stomach/cybernetic/tier2 = 100,
 		/obj/item/organ/heart/cybernetic/tier2 = 100,
 		/obj/item/organ/lungs/cybernetic/tier2 = 100,
 		/obj/item/organ/liver/cybernetic/tier2 = 100,
 		/obj/item/organ/eyes/robotic/glow = 100,
 		/obj/item/organ/ears/cybernetic = 100,
+		/obj/item/organ/cyberimp/arm/zippy = 100,
 	)
 
 	premium = list(
 		/obj/item/shears = 1,
+		/obj/item/bodypart/l_arm/robot/explosive = 100,
+		/obj/item/bodypart/r_arm/robot/explosive = 100,
+		/obj/item/organ/cyberimp/arm/mantis = 100,
+		/obj/item/organ/cyberimp/arm/mantis/black = 100,
+		/obj/item/organ/cyberimp/arm/chainsword = 100,
+		/obj/item/organ/cyberimp/arm/surgery = 100,
+		/obj/item/extra_arm = 100,
+		/obj/item/extra_arm/double = 100,
 	)
 
 	default_price = 300
-	extra_price = 500
+	extra_price = 700
 	input_display_header = "Prosthetic plus"
 
 
-
-//cityvending
-/obj/machinery/vending/prosthetic
-	name = "\improper Prosthetic plus vending"
-	desc = "A machine used to purchase new prosthetic limbs"
-	resistance_flags = INDESTRUCTIBLE | LAVA_PROOF | FIRE_PROOF | UNACIDABLE | ACID_PROOF | FREEZE_PROOF
-	product_slogans = "Looking good!"
-	product_ads = "You need it!"
-	icon_state = "robotics"
-	icon_deny = null
-	products = list(
-		/obj/item/stock_parts/cell/high = 100,
-		/obj/item/bodypart/head/robot = 100,
-		/obj/item/bodypart/chest/robot = 100,
-		/obj/item/bodypart/l_arm/robot = 100,
-		/obj/item/bodypart/r_arm/robot = 100,
-		/obj/item/bodypart/l_leg/robot = 100,
-		/obj/item/bodypart/r_leg/robot = 100,
-		/obj/item/weldingtool = 100,
-		/obj/item/stack/cable_coil = 100,
-		/obj/item/organ/stomach/cybernetic/tier2 = 100,
-		/obj/item/organ/heart/cybernetic/tier2 = 100,
-		/obj/item/organ/lungs/cybernetic/tier2 = 100,
-		/obj/item/organ/liver/cybernetic/tier2 = 100,
-		/obj/item/organ/eyes/robotic/glow = 100,
-		/obj/item/organ/ears/cybernetic = 100,
-	)
-
-	premium = list(
-		/obj/item/shears = 1,
-	)
-
-	default_price = 300
-	extra_price = 500
-	input_display_header = "Prosthetic plus"
