@@ -637,7 +637,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 	// LOBOTOMYCORPORATION ADDITION START
 	if(!SSlobotomy_corp.enable_possession)
 		to_chat(usr, span_userdanger("Abnormality possession is not enabled!"))
-		return
+		return FALSE
 
 	if(possession_cooldown >= world.time)
 		to_chat(src, span_userdanger("You are under a cooldown for possessing for [(possession_cooldown - world.time) / 10] more seconds!"))
