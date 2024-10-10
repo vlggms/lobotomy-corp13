@@ -75,7 +75,7 @@
 		if(loot)
 			new loot(get_turf(src))
 			visible_message(span_nicegreen("A [initial(loot.name)] came out of the ashes!"))
-			playsound(src, 'sound/effects/book_burn.ogg', 50, TRUE, TRUE)
+			playsound(src, 'sound/effects/burn.ogg', 50, TRUE, TRUE)
 		SStgui.close_uis(src)
 		qdel(src)
 		return
