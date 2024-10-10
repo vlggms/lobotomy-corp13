@@ -142,3 +142,4 @@
 /datum/ego_datum/armor/cord
 	item_path = /obj/item/clothing/suit/armor/ego_gear/zayin/cord
 	cost = 12
+

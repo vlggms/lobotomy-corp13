@@ -350,3 +350,60 @@
 
 /obj/item/ego_weapon/lance/wild_ride/get_clamped_volume()
 	return 40
+
+//Lods of Emone (Netz)
+
+/////////////////////////////////
+////FIXED BY KIRIE, THANK YOU////
+/////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////
+////14 TOTAL ERRORS, I DON'T UNDERSTAND WHERE THEY ARE OR HOW TO FIX THEM////
+/////////////////////////////////////////////////////////////////////////////
+
+/obj/item/ego_weapon/dosh
+	name = "Dosh"
+	desc = "Oi you! Shut your mouth and look at my wad!"
+	special = "Use this weapon in your hand with the corresponding armor for various effects depending on how filthy rich you are."
+	icon_state = "dosh_weapon"
+	worn_icon = "code/modules/mob/living/simple_animal/abnormality/_auxiliary_modes/joke/!icons/ego_worn.dmi"
+	icon = "code/modules/mob/living/simple_animal/abnormality/_auxiliary_modes/joke/!icons/ego_weapons.dmi"
+	force = 10
+	damtype = BLACK_DAMAGE
+	attack_verb_continuous = list("throws", "showers", "bribes")
+	attack_verb_simple = list("throw", "shower", "bribe") //these suck lmao
+	attribute_requirements = list(
+		FORTITUDE_ATTRIBUTE = 40,
+		PRUDENCE_ATTRIBUTE = 60,
+		TEMPERANCE_ATTRIBUTE = 80,
+		JUSTICE_ATTRIBUTE = 60,
+		)
+	var/users_money = 0
+
+	/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+/obj/item/ego_weapon/dosh/attack(mob/living/M, mob/living/user)
+	update_damage()
+	return ..()
+
+
+/obj/item/ego_weapon/dosh/equipped(mob/living/user, slot)
+	. = ..()
+	if(isliving(user)) ///////////////////////////////////////
+		var/datum/bank_account/account = user.get_bank_account()
+		users_money = account.account_balance
+
+/obj/item/ego_weapon/dosh/proc/update_damage()
+	if(users_money >= 1000000) //if someone spends the time to become a millionaire I say they deserve it
+		force = 5000000000000
+		damtype = PALE_DAMAGE
+
+	else if(users_money >= 1000)
+		force = 50
+
+	else if(users_money >= 500)
+		force = 30
+
+	else if(users_money >= 100)
+		force = 15
+	else
+		force = initial(force)
