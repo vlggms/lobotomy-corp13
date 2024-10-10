@@ -39,6 +39,18 @@
 		if(. > 0)
 			new /obj/effect/temp_visual/damage_effect/pale(get_turf(src))
 
+/mob/living/carbon/human/adjustToxLoss(amount, updating_health = TRUE, forced = FALSE)
+	. = ..()
+	if(. && !forced)
+		if(. > 0)
+			new /obj/effect/temp_visual/damage_effect/tox(get_turf(src))
+
+/mob/living/carbon/human/adjustFireLoss(amount, updating_health = TRUE, forced = FALSE, required_status)
+	. = ..()
+	if(. && !forced)
+		if(. > 0)
+			new /obj/effect/temp_visual/damage_effect/burn(get_turf(src))
+
 //
 
 /mob/living/carbon/human/proc/adjustSanityLoss(amount, forced = FALSE)
