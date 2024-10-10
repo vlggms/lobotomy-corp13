@@ -331,7 +331,7 @@
 
 /mob/living/carbon/human/death(gibbed)
 	var/obj/item/organ/brain/B = getorganslot(ORGAN_SLOT_BRAIN)
-	if(stat != DEAD && B) // make sure it does exist before adding the thingies
+	if(B) // make sure it does exist before adding the thingies
 		B.sync_stats(src)
 	. = ..()
 
