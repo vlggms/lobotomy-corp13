@@ -9,7 +9,6 @@
 /datum/proc/try_take_abnormality(mob/dead/observer/possessing_player, mob/abnormality)
 	if(!SSlobotomy_corp.enable_possession) // uhhhh, how did you even access this proc?
 		to_chat(usr, span_userdanger("Abnormality possession is not enabled!"))
-		message_admins(span_adminnotice("[possessing_player.key] has accessed the try_take_abnormality proc whilst possession is disabled."))
 		return
 
 	if(!possessing_player.ckey) // safety check
