@@ -7,7 +7,7 @@
 	veryrarechance = 5
 	lootlist =	list(
 		/obj/item/clothing/suit/armor/ego_gear/city/blade_lineage_salsu,
-		/obj/item/gun/ego_gun/city/thumb,
+		/obj/item/ego_weapon/ranged/city/thumb,
 		/obj/item/clothing/suit/armor/ego_gear/city/thumb,
 		/obj/item/clothing/suit/armor/ego_gear/city/index,
 	)
@@ -20,7 +20,7 @@
 		/obj/item/ego_weapon/city/awl,
 		/obj/item/ego_weapon/city/kurokumo,
 		/obj/item/ego_weapon/city/bladelineage,
-		/obj/item/gun/ego_gun/city/thumb/capo,
+		/obj/item/ego_weapon/ranged/city/thumb/capo,
 		/obj/item/ego_weapon/city/thumbmelee,
 	)
 
@@ -31,7 +31,7 @@
 		/obj/item/ego_weapon/city/index/proxy,
 		/obj/item/ego_weapon/city/index/proxy/spear,
 		/obj/item/ego_weapon/city/index/yan,
-		/obj/item/gun/ego_gun/city/thumb/sottocapo,
+		/obj/item/ego_weapon/ranged/city/thumb/sottocapo,
 		/obj/item/ego_weapon/city/thumbcane,
 	)
 

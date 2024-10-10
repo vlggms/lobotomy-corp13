@@ -77,7 +77,7 @@
 	for (var/obj/item/ego_weapon/Y in range(1, src))
 		pullable += Y
 
-	for (var/obj/item/gun/ego_gun/Z in range(1, src))
+	for (var/obj/item/ego_weapon/ranged/Z in range(1, src))
 		pullable += Z
 
 	if(!LAZYLEN(pullable))

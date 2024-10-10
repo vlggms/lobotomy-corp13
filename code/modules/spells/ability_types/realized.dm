@@ -1018,7 +1018,7 @@
 		return FALSE
 	if(!is_type_in_list(I, ego_list))
 		return FALSE
-	if(istype(I, /obj/item/ego_weapon) || istype(I, /obj/item/gun/ego_gun))
+	if(is_ego_melee_weapon(I))
 		if(I.force_multiplier < 1.2)
 			to_chat(user, span_notice("You must use a weapon with a damage multiplier of 20% or higher!"))
 			return FALSE
@@ -1046,7 +1046,7 @@
 				linked_structure = TRUE
 		if(!LAZYLEN(ego_list))
 			for(var/egoitem in linked_structure.alephitem)
-				if(ispath(egoitem, /obj/item/ego_weapon) || ispath(egoitem, /obj/item/gun/ego_gun))
+				if(ispath(egoitem, /obj/item/ego_weapon) || ispath(egoitem, /obj/item/ego_weapon/ranged))
 					ego_list += egoitem
 					continue
 		chosenEGO = pick(ego_list)
@@ -1059,8 +1059,8 @@
 			egoweapon.color = "#FFD700"
 			linkeditem = egoweapon
 
-		else if(ispath(ego, /obj/item/gun/ego_gun))
-			var/obj/item/gun/ego_gun/egogun = new ego(get_turf(user))
+		else if(ispath(ego, /obj/item/ego_weapon/ranged))
+			var/obj/item/ego_weapon/ranged/egogun = new ego(get_turf(user))
 			egogun.force_multiplier = 1.20
 			egogun.projectile_damage_multiplier = 1.20
 			egogun.name = "shimmering [egogun.name]"

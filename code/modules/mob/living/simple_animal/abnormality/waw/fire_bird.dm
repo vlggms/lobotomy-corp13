@@ -32,7 +32,7 @@
 	light_color = COLOR_LIGHT_ORANGE
 	light_range = 0
 	light_power = 0
-	loot = list(/obj/item/gun/ego_gun/feather)
+	loot = list(/obj/item/ego_weapon/ranged/feather)
 	ego_list = list(/datum/ego_datum/armor/feather)
 	gift_type = /datum/ego_gifts/feather
 	abnormality_origin = ABNORMALITY_ORIGIN_LOBOTOMY
@@ -129,7 +129,7 @@
 //Breach
 /mob/living/simple_animal/hostile/abnormality/fire_bird/BreachEffect(mob/living/carbon/human/user, breach_type)
 	. = ..()
-	loot = list(/obj/item/gun/ego_gun/feather)
+	loot = list(/obj/item/ego_weapon/ranged/feather)
 	icon_state = icon_living
 	light_range = 20
 	light_power = 20

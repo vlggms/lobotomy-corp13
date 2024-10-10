@@ -225,7 +225,7 @@
 /area/library_floors/floor_naturalsci)
 "Ch" = (
 /obj/item/toy/plush/qoh,
-/obj/item/gun/ego_gun/hatred{
+/obj/item/ego_weapon/ranged/hatred{
 	pixel_x = 9;
 	pixel_y = 5
 	},
