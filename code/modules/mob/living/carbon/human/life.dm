@@ -51,7 +51,8 @@
 	name = get_visible_name()
 
 	var/obj/item/organ/brain/B = getorganslot(ORGAN_SLOT_BRAIN)
-	B.sync_stats(src)
+	if(stat != DEAD && B)
+		B.sync_stats(src)
 
 	if(stat != DEAD)
 		return TRUE
