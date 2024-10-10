@@ -13,7 +13,7 @@ SUBSYSTEM_DEF(cityevents)
 	var/list/distortions_available = list()
 	var/helpful_events = list("chickens", "money", "tresmetal", "hppens", "sppens")
 	var/harmful_events = list("drones", "beaks", "shrimps", "lovetowneasy", "lovetownhard")
-	var/ordeal_events = list("sweepers", "scouts", "bots", "gbugs", "gcorporals")
+	var/ordeal_events = list("sweepers", "scouts", "bots", "gbugs")
 	var/neutral_events = list("swag")
 	var/boss_events = list("sweeper", "lovetown", "factory", "gcorp")
 	var/list/generated = list()	//Which ckeys have generated stats
@@ -53,7 +53,7 @@ SUBSYSTEM_DEF(cityevents)
 	total_events += pick(helpful_events)
 	total_events += pick(harmful_events)
 	total_events += pick(ordeal_events)
-//	total_events += pick(ordeal_events)
+	total_events += pick(ordeal_events)
 //	total_events += pick(ordeal_events)
 	total_events += pick(neutral_events)
 	total_events += pick(neutral_events)
@@ -84,8 +84,6 @@ SUBSYSTEM_DEF(cityevents)
 			spawnatlandmark(/mob/living/simple_animal/hostile/ordeal/green_bot, 10)
 		if("gbugs")
 			spawnatlandmark(/mob/living/simple_animal/hostile/ordeal/steel_dawn, 30)
-		if("gcorporals")
-			spawnatlandmark(/mob/living/simple_animal/hostile/ordeal/steel_dawn/steel_noon, 10)
 
 		//Harmful events
 		if("shrimps")
@@ -117,6 +115,8 @@ SUBSYSTEM_DEF(cityevents)
 		if("swag")
 			spawnitem(/obj/item/clothing/shoes/swagshoes, 2)	// Swag out, man
 	wavetime+=1
+	if(prob(50))
+		JobAddition()
 
 //Spawning Mobs, always spawns 3.
 /datum/controller/subsystem/cityevents/proc/spawnatlandmark(mob/living/L, chance)
@@ -136,6 +136,26 @@ SUBSYSTEM_DEF(cityevents)
 	for(var/J in itemdrops)
 		if(prob(chance))
 			new I (get_turf(J))
+
+//Add in random antags as time goes on.
+/datum/controller/subsystem/cityevents/proc/JobAddition()
+	var/jobpicked = rand(1,5)
+	for(var/datum/job/processing in SSjob.occupations)
+		if(jobpicked <= 2)
+			if(istype(processing, /datum/job/scavenger))
+				processing.total_positions +=1
+
+		if(jobpicked == 3)
+			if(istype(processing, /datum/job/associateroaming))
+				processing.total_positions +=1
+
+		if(jobpicked == 4)
+			if(istype(processing, /datum/job/salsu))
+				processing.total_positions += 1
+
+		if(jobpicked == 5)
+			if(istype(processing, /datum/job/butcher))
+				processing.total_positions += 1
 
 /datum/controller/subsystem/cityevents/proc/Boss()
 	minor_announce("Warning, large hostile detected. Suppression required.", "Local Activity Alert:", TRUE)
