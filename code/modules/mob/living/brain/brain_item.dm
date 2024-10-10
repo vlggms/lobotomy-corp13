@@ -40,12 +40,6 @@
 		/datum/brain_trauma/severe/narcolepsy
 		)
 
-	var/list/initial_traits = list()
-	var/stored_fortitude = 0
-	var/stored_prudence = 0
-	var/stored_temperance = 0
-	var/stored_justice = 0
-
 /obj/item/organ/brain/Insert(mob/living/carbon/C, special = 0,no_id_transfer = FALSE)
 	..()
 
@@ -431,10 +425,3 @@
 		qdel(X)
 		amount_cured++
 	return amount_cured
-
-/obj/item/organ/brain/proc/sync_stats(mob/living/carbon/human/H) //Syncs stuff for torso fabricator
-	stored_fortitude = get_raw_level(H, FORTITUDE_ATTRIBUTE)
-	stored_prudence = get_raw_level(H, PRUDENCE_ATTRIBUTE)
-	stored_temperance = get_raw_level(H, TEMPERANCE_ATTRIBUTE)
-	stored_justice = get_raw_level(H, JUSTICE_ATTRIBUTE)
-
