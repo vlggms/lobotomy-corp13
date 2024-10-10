@@ -378,7 +378,7 @@ SUBSYSTEM_DEF(lobotomy_corp)
 
 /datum/controller/subsystem/lobotomy_corp/proc/OnMobDeath(datum/source, mob/living/died, gibbed)
 	SIGNAL_HANDLER
-	if(!(SSmaptype.maptype in list("standard", "skeld", "fishing", "wonderlabs")))
+	if(!(SSmaptype.maptype in list("standard", "fishing", "wonderlabs")))
 		return FALSE
 	if(!ishuman(died))
 		return FALSE

@@ -250,11 +250,17 @@ SUBSYSTEM_DEF(ticker)
 		if(!(istype(mode, /datum/game_mode/combat)))
 			mode = new /datum/game_mode/combat
 	else
-		var/choosingmode = pick(/datum/game_mode/management/classic, 
-			//	/datum/game_mode/management/pure, 
-			//	/datum/game_mode/management/branch
-				)
-		mode = new choosingmode
+		if(SSmaptype.maptype == "skeld")
+			var/list/modelist = list(/datum/game_mode/management/traitor,
+				/datum/game_mode/management/changeling)
+			if(!(mode in modelist))
+				mode = new /datum/game_mode/management/traitor
+		else
+			var/choosingmode = pick(/datum/game_mode/management/classic,
+				//	/datum/game_mode/management/pure,
+				//	/datum/game_mode/management/branch
+					)
+			mode = new choosingmode
 
 	CHECK_TICK
 
