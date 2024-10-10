@@ -15,7 +15,7 @@ SUBSYSTEM_DEF(maptype)
 	var/list/clearmaps = list("rcorp", "city", "wcorp", "limbus_labs", "fixers")
 
 	//All the map tags that are combat maps and need abnos to breach immediately
-	var/list/combatmaps = list("rcorp", "wcorp", "limbus_labs", "fixers")
+	var/list/combatmaps = list("rcorp", "wcorp", "limbus_labs", "fixers", "enkephalin_rush")
 
 	//Ghosts should be possessbale at all times
 	var/list/autopossess = list("rcorp", "limbus_labs")
@@ -30,13 +30,14 @@ SUBSYSTEM_DEF(maptype)
 	var/list/spacemaps = list("skeld")
 
 	//This is for maps where crafting is enabled.
-	var/list/craftingmaps = list("skeld", "limbus_labs")
+	var/list/craftingmaps = list("skeld", "limbus_labs", "enkephalin_rush")
 
 	//Maps that give no fear. Everyone cannot work as is fear immune.
 	var/list/nofear = list("limbus_labs")
 
 	//What departments are we looking at
 	var/list/departments = list("Command","Security","Service")
+
 
 
 /datum/controller/subsystem/maptype/Initialize()
@@ -77,3 +78,5 @@ SUBSYSTEM_DEF(maptype)
 					GLOB.rcorp_objective = "payload_rcorp"
 				if(5)
 					GLOB.rcorp_objective = "payload_abno"
+		if("enkephalin_rush")
+			SSabnormality_queue.next_abno_spawn_time = INFINITY
