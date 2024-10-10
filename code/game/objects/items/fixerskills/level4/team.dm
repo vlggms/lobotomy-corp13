@@ -83,7 +83,7 @@
 		if (human == owner && !affect_self)
 			continue
 		human.add_movespeed_modifier(/datum/movespeed_modifier/retreat)
-		addtimer(CALLBACK(human, TYPE_PROC_REF(/mob, remove_movespeed_modifier), /datum/movespeed_modifier/retreat), 5 SECONDS, TIMER_UNIQUE | TIMER_OVERRIDE)
+		addtimer(CALLBACK(human, TYPE_PROC_REF(/mob, remove_movespeed_modifier), /datum/movespeed_modifier/warcry), 5 SECONDS, TIMER_UNIQUE | TIMER_OVERRIDE)
 		affected+=human
 
 	addtimer(CALLBACK(src, PROC_REF(Warcry),), 0.5 SECONDS, TIMER_UNIQUE | TIMER_OVERRIDE)
@@ -94,3 +94,8 @@
 		if(human == owner)
 			continue
 		human.say("YES SIR!")
+
+/datum/movespeed_modifier/warcry
+	variable = TRUE
+	multiplicative_slowdown = -0.3
+
