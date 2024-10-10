@@ -141,12 +141,20 @@
 /mob/living/simple_animal/hostile/abnormality/jangsan/proc/StatCheck(mob/living/carbon/human/user)
 	strong_counter = 0 //Counts how many stats are at or above 60 AKA level 3 or higher
 	weak_counter = 0 //Counts how many stats are below 40 AKA level 1
-	for(var/attribute in stats)
-		if(get_attribute_level(user, attribute)< 40)
-			weak_counter += 1
-		if(get_attribute_level(user, attribute)>= 60)
-			strong_counter += 1
-	return
+	if(SSmaptype.maptype == "rcorp") //Buff for Jangsan for the R-Corp mode
+		for(var/attribute in stats)
+			if(get_attribute_level(user, attribute)< 61)
+				weak_counter += 1
+			if(get_attribute_level(user, attribute)>= 60) //This doesnt matter for rca
+				strong_counter += 1
+		return
+	else
+		for(var/attribute in stats)
+			if(get_attribute_level(user, attribute)< 40)
+				weak_counter += 1
+			if(get_attribute_level(user, attribute)>= 60)
+				strong_counter += 1
+		return
 
 //Too weak and it kills you
 /mob/living/simple_animal/hostile/abnormality/jangsan/PostWorkEffect(mob/living/carbon/human/user, work_type, pe, work_time)
