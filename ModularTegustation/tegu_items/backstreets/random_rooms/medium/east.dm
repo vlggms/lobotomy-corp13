@@ -35,7 +35,7 @@
 	name = "Zwei Office - Medium East"
 	room_id = "zwei_office_mea"
 	mappath = "_maps/RandomRooms/backstreets/medium_east/zwei_office_mea.dmm"
-  
+
 /datum/map_template/random_room/backstreets/medium_east/church
     name = "Church - Medium East"
     room_id = "church"
@@ -50,4 +50,8 @@
     name = "Robot - Medium East A"
     room_id = "robot_mea"
     mappath = "_maps/RandomRooms/backstreets/medium_east/robot_mea.dmm"
-    
+
+/datum/map_template/random_room/backstreets/medium_east/clan_mechs
+    name = "Clan - Medium East A"
+    room_id = "clan_mechs"
+    mappath = "_maps/RandomRooms/backstreets/medium_east/clan_mechs.dmm"

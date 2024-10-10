@@ -50,6 +50,8 @@
 	room_id = "lab_ln"
 	mappath = "_maps/RandomRooms/backstreets/large_north/lab_ln.dmm"
 
-
-
-
+/datum/map_template/random_room/backstreets/large_north/electric_room
+	name = "Amber Knight - Large North"
+	room_id = "electric_room"
+	mappath = "_maps/RandomRooms/backstreets/large_north/electric_room.dmm"
+	stock = 1
