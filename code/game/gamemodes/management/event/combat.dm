@@ -157,4 +157,4 @@ GLOBAL_VAR_INIT(wcorp_enemy_faction, "") //decides which faction WCorp will be u
 	for(var/obj/effect/landmark/nobasic_incorp_move/disappearing/L in GLOB.landmarks_list)
 		qdel(L)
 	for(var/mob/living/simple_animal/hostile/abnormality/A in GLOB.abnormality_mob_list)
-		to_chat(A, "Ghost barrier is broken!")
+		to_chat(A, "Incorporeal barrier is broken!")

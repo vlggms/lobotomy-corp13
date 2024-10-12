@@ -344,7 +344,7 @@
 // Procedure to start the leap
 /mob/living/simple_animal/hostile/abnormality/babayaga/proc/StartLeap()
 	//playsound(get_turf(src), 'sound/abnormalities/babayaga/leap_start.ogg', 100, FALSE)
-	visible_message(span_warning("[src] leaps into the air, turning incorporeal!"))
+	visible_message(span_warning("[src] leaps into the air!"))
 	// animate
 	animate(src, pixel_z = 128, alpha = 0, time = 10)
 	density = FALSE

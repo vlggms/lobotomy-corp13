@@ -7,6 +7,8 @@
 	icon = 'ModularTegustation/Teguicons/64x48.dmi'
 	icon_state = "firstfold"
 	portrait = "contract"
+	health = 1000
+	maxHealth = 1000
 	threat_level = WAW_LEVEL
 	work_chances = list(
 		ABNORMALITY_WORK_INSTINCT = list(0, 0, 35, 45, 55),
@@ -17,6 +19,10 @@
 	pixel_x = -16
 	base_pixel_x = -16
 	start_qliphoth = 2
+	damage_coeff = list(BRUTE = 1.0, RED_DAMAGE = 1.8, WHITE_DAMAGE = 0.8, BLACK_DAMAGE = 1.3, PALE_DAMAGE = -1)
+	melee_damage_lower = 20
+	melee_damage_upper = 20
+	melee_damage_type = PALE_DAMAGE
 	work_damage_amount = 8
 	work_damage_type = PALE_DAMAGE	//Lawyers take your fucking soul
 
@@ -70,6 +76,16 @@
 		if (ispath(A, /obj/effect/proc_holder/spell))
 			var/obj/effect/proc_holder/spell/AS = new A(src)
 			AddSpell(AS)
+	if(IsCombatMap())
+		icon = 'ModularTegustation/Teguicons/32x32.dmi'
+		pixel_x = 0
+		base_pixel_x = 0
+
+/mob/living/simple_animal/hostile/abnormality/contract/BreachEffect(mob/living/carbon/human/user, breach_type)
+	. = ..()
+	icon = 'ModularTegustation/Teguicons/32x32.dmi'
+	pixel_x = 0
+	base_pixel_x = 0
 
 /mob/living/simple_animal/hostile/abnormality/contract/WorkChance(mob/living/carbon/human/user, chance, work_type)
 	. = chance
@@ -188,35 +204,32 @@
 
 
 /datum/action/spell_action/spell/contract
-	transparent_when_unavailable = FALSE
 
-
-/obj/effect/proc_holder/spell/pointed/contract/ruin
-	action_icon = 'icons/mob/actions/actions_xeno.dmi'
-	action_icon_state = "spell_default"
+/obj/effect/proc_holder/spell/pointed/contract
 	action_background_icon_state = "bg_alien"
-	base_action = /datum/action/spell_action/spell/contract
 
 /obj/effect/proc_holder/spell/pointed/contract/ruin
-	name = "Ruin"
-	desc = "Ruin desc"
+	name = "Contract of Ruin"
+	desc = "The Contract of Ruin, Increases the target's damage against objects for a few seconds."
 	panel = "Contract"
 	has_action = TRUE
-	action_icon_state = "alien_neurotoxin_0"
+	action_icon = 'icons/mob/actions/actions_abnormality.dmi'
+	action_icon_state = "contract"
 	clothes_req = FALSE
 	charge_max = 100
 	selection_type = "range"
-	active_msg = "Pick abno for the contract"
-
-/obj/effect/proc_holder/spell/pointed/contract/ruin/proc/RestoreDamage(mob/living/simple_animal/A)
-	if (A.stat != DEAD)
-		A.obj_damage -= 50
+	active_msg = "You prepare your Contract of Ruin..."
+	deactive_msg = "You put away your Contract of Ruin..."
+	base_action = /datum/action/spell_action/spell/contract
 
 /obj/effect/proc_holder/spell/pointed/contract/ruin/cast(list/targets, mob/user)
 	var/target = targets[1]
-	user.visible_message(span_danger("[user] Contract: Power"), span_alert("You targeted [target]"))
+	user.visible_message(span_danger("[user] uses the contract of Ruin."), span_alert("You targeted [target]"))
 	if (istype(target, /mob/living/simple_animal))
 		var/mob/living/simple_animal/A = target
 		A.obj_damage += 50
 		addtimer(CALLBACK(src, PROC_REF(RestoreDamage), A), 10 SECONDS)
 
+/obj/effect/proc_holder/spell/pointed/contract/ruin/proc/RestoreDamage(mob/living/simple_animal/A)
+	if (A.stat != DEAD)
+		A.obj_damage -= 50
