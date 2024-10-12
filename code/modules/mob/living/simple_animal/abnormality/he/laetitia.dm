@@ -73,6 +73,14 @@
 	var/delete_cooldown = 30 SECONDS
 	var/mob/living/simple_animal/hostile/gift/G1
 	var/mob/living/simple_animal/hostile/gift/G2
+	var/summoned_gift_maxHealth = 100
+	var/summoned_gift_damage_reduce = 10
+
+/datum/action/cooldown/laetitia_summon/proc/WeakenGift(mob/living/simple_animal/hostile/gift/G)
+	G.maxHealth = summoned_gift_maxHealth
+	G.melee_damage_lower -= summoned_gift_damage_reduce
+	G.melee_damage_upper -= summoned_gift_damage_reduce
+
 
 /datum/action/cooldown/laetitia_summon/Trigger()
 	if(!..())
@@ -82,10 +90,12 @@
 
 	StartCooldown()
 	G1 = new /mob/living/simple_animal/hostile/gift(owner.loc)
+	WeakenGift(G1)
 	G2 = new /mob/living/simple_animal/hostile/gift(owner.loc)
+	WeakenGift(G2)
 	delete_timer = addtimer(CALLBACK(src, PROC_REF(delete)), delete_cooldown, TIMER_STOPPABLE)
 	// send poll to all ghosts and wait
-	var/list/candidates = pollGhostCandidates("Laetitia is calling for help! Are you willing to protect her?", poll_time=100)
+	var/list/candidates = pollGhostCandidates("Laetitia is calling for help! Are you willing to protect her?", poll_time=100, ignore_category=POLL_IGNORE_LAE_GIFT)
 	if (LAZYLEN(candidates) > 0)
 		var/mob/dead/observer/C = pick(candidates)
 		G1.key = C.key
