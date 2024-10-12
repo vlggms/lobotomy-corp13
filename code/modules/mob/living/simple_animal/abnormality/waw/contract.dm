@@ -52,6 +52,7 @@
 	var/list/just_havers = list()
 	var/list/spawnables = list()
 	var/total_per_contract = 4
+	var/list/contract_abilities = list(/obj/effect/proc_holder/spell/pointed/contract/ruin)
 
 /mob/living/simple_animal/hostile/abnormality/contract/Initialize()
 	. = ..()
@@ -64,6 +65,11 @@
 
 		if((initial(abno.threat_level)) <= WAW_LEVEL)
 			spawnables += abno
+
+	for (var/A in contract_abilities)
+		if (ispath(A, /obj/effect/proc_holder/spell))
+			var/obj/effect/proc_holder/spell/AS = new A(src)
+			AddSpell(AS)
 
 /mob/living/simple_animal/hostile/abnormality/contract/WorkChance(mob/living/carbon/human/user, chance, work_type)
 	. = chance
@@ -179,3 +185,38 @@
 	. = ..()
 	datum_reference.qliphoth_change(-1)
 	return
+
+
+/datum/action/spell_action/spell/contract
+	transparent_when_unavailable = FALSE
+
+
+/obj/effect/proc_holder/spell/pointed/contract/ruin
+	action_icon = 'icons/mob/actions/actions_xeno.dmi'
+	action_icon_state = "spell_default"
+	action_background_icon_state = "bg_alien"
+	base_action = /datum/action/spell_action/spell/contract
+
+/obj/effect/proc_holder/spell/pointed/contract/ruin
+	name = "Ruin"
+	desc = "Ruin desc"
+	panel = "Contract"
+	has_action = TRUE
+	action_icon_state = "alien_neurotoxin_0"
+	clothes_req = FALSE
+	charge_max = 100
+	selection_type = "range"
+	active_msg = "Pick abno for the contract"
+
+/obj/effect/proc_holder/spell/pointed/contract/ruin/proc/RestoreDamage(mob/living/simple_animal/A)
+	if (A.stat != DEAD)
+		A.obj_damage -= 50
+
+/obj/effect/proc_holder/spell/pointed/contract/ruin/cast(list/targets, mob/user)
+	var/target = targets[1]
+	user.visible_message(span_danger("[user] Contract: Power"), span_alert("You targeted [target]"))
+	if (istype(target, /mob/living/simple_animal))
+		var/mob/living/simple_animal/A = target
+		A.obj_damage += 50
+		addtimer(CALLBACK(src, PROC_REF(RestoreDamage), A), 10 SECONDS)
+
