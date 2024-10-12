@@ -81,12 +81,6 @@
 		pixel_x = 0
 		base_pixel_x = 0
 
-/mob/living/simple_animal/hostile/abnormality/contract/BreachEffect(mob/living/carbon/human/user, breach_type)
-	. = ..()
-	icon = 'ModularTegustation/Teguicons/32x32.dmi'
-	pixel_x = 0
-	base_pixel_x = 0
-
 /mob/living/simple_animal/hostile/abnormality/contract/WorkChance(mob/living/carbon/human/user, chance, work_type)
 	. = chance
 	if(!(user in total_havers))
@@ -225,6 +219,32 @@
 /obj/effect/proc_holder/spell/pointed/contract/ruin/cast(list/targets, mob/user)
 	var/target = targets[1]
 	user.visible_message(span_danger("[user] uses the contract of Ruin."), span_alert("You targeted [target]"))
+	if (istype(target, /mob/living/simple_animal))
+		var/mob/living/simple_animal/A = target
+		A.obj_damage += 50
+		addtimer(CALLBACK(src, PROC_REF(RestoreDamage), A), 10 SECONDS)
+
+/obj/effect/proc_holder/spell/pointed/contract/ruin/proc/RestoreDamage(mob/living/simple_animal/A)
+	if (A.stat != DEAD)
+		A.obj_damage -= 50
+
+/obj/effect/proc_holder/spell/pointed/contract/stealth
+	name = "Contract of Stealth"
+	desc = "The Contract of Stealth, reduce the target's visibility for a few seconds."
+	panel = "Contract"
+	has_action = TRUE
+	action_icon = 'icons/mob/actions/actions_abnormality.dmi'
+	action_icon_state = "contract"
+	clothes_req = FALSE
+	charge_max = 100
+	selection_type = "range"
+	active_msg = "You prepare your Contract of Stealth..."
+	deactive_msg = "You put away your Contract of Stealth..."
+	base_action = /datum/action/spell_action/spell/contract
+
+/obj/effect/proc_holder/spell/pointed/contract/ruin/cast(list/targets, mob/user)
+	var/target = targets[1]
+	user.visible_message(span_danger("[user] uses the contract of Stealth."), span_alert("You targeted [target]"))
 	if (istype(target, /mob/living/simple_animal))
 		var/mob/living/simple_animal/A = target
 		A.obj_damage += 50
