@@ -91,10 +91,11 @@
 					finishing = FALSE
 					return
 				playsound(get_turf(src), 'sound/abnormalities/scarecrow/drink.ogg', 50, 1)
-				if(H.health < -120) //prevents infinite healing, corpse is too mangled
-					break
+				if (!IsCombatMap())
+					if(H.health < -120) //prevents infinite healing, corpse is too mangled
+						break
+					H.adjustBruteLoss(20)
 				adjustBruteLoss(-(maxHealth*healthmodifier))
-				H.adjustBruteLoss(20)
 				SLEEP_CHECK_DEATH(4)
 			if(!targets_from.Adjacent(H) || QDELETED(H))
 				finishing = FALSE

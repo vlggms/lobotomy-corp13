@@ -58,7 +58,12 @@
 	var/list/just_havers = list()
 	var/list/spawnables = list()
 	var/total_per_contract = 4
-	var/list/contract_abilities = list(/obj/effect/proc_holder/spell/pointed/contract/ruin)
+	var/list/contract_abilities = list(
+		/obj/effect/proc_holder/spell/pointed/contract/ruin,
+		/obj/effect/proc_holder/spell/pointed/contract/stealth,
+		/obj/effect/proc_holder/spell/pointed/contract/recall,
+		/obj/effect/proc_holder/spell/targeted/ethereal_jaunt/shift/ash/long,
+		)
 
 /mob/living/simple_animal/hostile/abnormality/contract/Initialize()
 	. = ..()
@@ -197,10 +202,46 @@
 	return
 
 
-/datum/action/spell_action/spell/contract
-
 /obj/effect/proc_holder/spell/pointed/contract
 	action_background_icon_state = "bg_alien"
+	var/contract_overlay_icon = 'icons/mob/actions/actions_abnormality.dmi'
+	var/contract_overlay_icon_state = "contract"
+	var/mutable_appearance/colored_overlay
+
+/obj/effect/proc_holder/spell/pointed/contract/cast(list/targets, mob/living/user, silent = FALSE)
+	if(!targets.len)
+		if(!silent)
+			to_chat(user, span_warning("No target found!"))
+		return FALSE
+	if(targets.len > 1)
+		if(!silent)
+			to_chat(user, span_warning("Too many targets!"))
+		return FALSE
+	if(!can_target(targets[1], user, silent))
+		return FALSE
+	return TRUE
+	
+/obj/effect/proc_holder/spell/pointed/contract/can_target(atom/target, mob/user, silent)
+	. = ..()
+	if(!.)
+		return FALSE
+	if(!istype(target, /mob/living/simple_animal))
+		if(!silent)
+			to_chat(user, span_warning("You can only contract living!"))
+		return FALSE
+
+
+/obj/effect/proc_holder/spell/pointed/contract/proc/AddOverlay(mob/living/simple_animal/A)
+	// add overlay
+	var/contractlayer = A.layer + 0.1
+	colored_overlay = mutable_appearance(contract_overlay_icon, contract_overlay_icon_state, contractlayer)
+	A.add_overlay(colored_overlay)
+	spawn(20)
+		RemoveOverlay(A)
+
+/obj/effect/proc_holder/spell/pointed/contract/proc/RemoveOverlay(mob/living/simple_animal/A)
+	if (colored_overlay != null)
+		A.cut_overlay(colored_overlay)
 
 /obj/effect/proc_holder/spell/pointed/contract/ruin
 	name = "Contract of Ruin"
@@ -214,7 +255,6 @@
 	selection_type = "range"
 	active_msg = "You prepare your Contract of Ruin..."
 	deactive_msg = "You put away your Contract of Ruin..."
-	base_action = /datum/action/spell_action/spell/contract
 
 /obj/effect/proc_holder/spell/pointed/contract/ruin/cast(list/targets, mob/user)
 	var/target = targets[1]
@@ -223,6 +263,8 @@
 		var/mob/living/simple_animal/A = target
 		A.obj_damage += 50
 		addtimer(CALLBACK(src, PROC_REF(RestoreDamage), A), 10 SECONDS)
+		AddOverlay(A)
+
 
 /obj/effect/proc_holder/spell/pointed/contract/ruin/proc/RestoreDamage(mob/living/simple_animal/A)
 	if (A.stat != DEAD)
@@ -240,16 +282,48 @@
 	selection_type = "range"
 	active_msg = "You prepare your Contract of Stealth..."
 	deactive_msg = "You put away your Contract of Stealth..."
-	base_action = /datum/action/spell_action/spell/contract
 
-/obj/effect/proc_holder/spell/pointed/contract/ruin/cast(list/targets, mob/user)
+/obj/effect/proc_holder/spell/pointed/contract/stealth/cast(list/targets, mob/user)
 	var/target = targets[1]
 	user.visible_message(span_danger("[user] uses the contract of Stealth."), span_alert("You targeted [target]"))
 	if (istype(target, /mob/living/simple_animal))
 		var/mob/living/simple_animal/A = target
-		A.obj_damage += 50
-		addtimer(CALLBACK(src, PROC_REF(RestoreDamage), A), 10 SECONDS)
+		var/old_alpha = A.alpha
+		var/old_density = A.density
+		A.alpha = 50
+		A.density = FALSE
+		addtimer(CALLBACK(src, PROC_REF(RestoreAlpha), A, old_alpha, old_density), 10 SECONDS)
 
-/obj/effect/proc_holder/spell/pointed/contract/ruin/proc/RestoreDamage(mob/living/simple_animal/A)
+/obj/effect/proc_holder/spell/pointed/contract/stealth/proc/RestoreAlpha(mob/living/simple_animal/A, old_alpha, old_density)
 	if (A.stat != DEAD)
-		A.obj_damage -= 50
+		A.alpha = old_alpha
+		A.density = old_density
+
+/obj/effect/proc_holder/spell/pointed/contract/recall
+	name = "Contract of Recall"
+	desc = "The Contract of Recall"
+	panel = "Contract"
+	has_action = TRUE
+	action_icon = 'icons/mob/actions/actions_abnormality.dmi'
+	action_icon_state = "contract"
+	clothes_req = FALSE
+	charge_max = 100
+	selection_type = "range"
+	active_msg = "You prepare your Contract of Recall..."
+	deactive_msg = "You put away your Contract of Recall..."
+	var/mob/living/simple_animal/marked_animal = null
+
+/obj/effect/proc_holder/spell/pointed/contract/recall/Click()
+	if (marked_animal != null)
+		// do recall
+		marked_animal.forceMove(action.owner.loc)
+		marked_animal = null
+	else
+		..()
+
+/obj/effect/proc_holder/spell/pointed/contract/recall/cast(list/targets, mob/user)
+	var/target = targets[1]
+	user.visible_message(span_danger("[user] uses the contract of Recall."), span_alert("You targeted [target]"))
+	if (istype(target, /mob/living/simple_animal))
+		marked_animal = target
+
