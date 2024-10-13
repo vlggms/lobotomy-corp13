@@ -51,7 +51,7 @@
 				allowed_level1_skills = 5
 
 			else
-				to_chat(user, span_notice("Your level is [user_level]. This book need level [level]!"))
+				to_chat(user, span_notice("Your level is [user_level]. This book needs level [level]!"))
 				return FALSE
 		if (!(user?.mind?.assigned_role in list("Civilian")))
 			to_chat(user, span_notice("Only Civilians can use this book!"))
