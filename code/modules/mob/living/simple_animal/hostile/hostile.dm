@@ -673,6 +673,9 @@
 	walk_to(src, target, minimum_distance, delay)
 
 /mob/living/simple_animal/hostile/proc/AttackingTarget(atom/attacked_target)
+	if(target == src)
+		to_chat(src, span_warning("You almost attack yourself, but then decide against it."))
+		return
 	SEND_SIGNAL(src, COMSIG_HOSTILE_ATTACKINGTARGET, target)
 	in_melee = TRUE
 	if(ismob(target))

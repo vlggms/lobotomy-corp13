@@ -62,7 +62,7 @@
 		/obj/effect/proc_holder/spell/pointed/contract/ruin,
 		/obj/effect/proc_holder/spell/pointed/contract/stealth,
 		/obj/effect/proc_holder/spell/pointed/contract/recall,
-		/obj/effect/proc_holder/spell/targeted/ethereal_jaunt/shift/ash/long,
+		/datum/action/cooldown/contracted_passage,
 		)
 
 /mob/living/simple_animal/hostile/abnormality/contract/Initialize()
@@ -220,7 +220,7 @@
 	if(!can_target(targets[1], user, silent))
 		return FALSE
 	return TRUE
-	
+
 /obj/effect/proc_holder/spell/pointed/contract/can_target(atom/target, mob/user, silent)
 	. = ..()
 	if(!.)
@@ -232,12 +232,11 @@
 
 
 /obj/effect/proc_holder/spell/pointed/contract/proc/AddOverlay(mob/living/simple_animal/A)
-	// add overlay
 	var/contractlayer = A.layer + 0.1
 	colored_overlay = mutable_appearance(contract_overlay_icon, contract_overlay_icon_state, contractlayer)
 	A.add_overlay(colored_overlay)
-	spawn(20)
-		RemoveOverlay(A)
+	// if (A.pixel_x != 0)
+	// 	colored_overlay.pixel_x = A.pixel_x * -1
 
 /obj/effect/proc_holder/spell/pointed/contract/proc/RemoveOverlay(mob/living/simple_animal/A)
 	if (colored_overlay != null)
@@ -264,7 +263,8 @@
 		A.obj_damage += 50
 		addtimer(CALLBACK(src, PROC_REF(RestoreDamage), A), 10 SECONDS)
 		AddOverlay(A)
-
+		spawn(20)
+		RemoveOverlay(A)
 
 /obj/effect/proc_holder/spell/pointed/contract/ruin/proc/RestoreDamage(mob/living/simple_animal/A)
 	if (A.stat != DEAD)
@@ -293,6 +293,9 @@
 		A.alpha = 50
 		A.density = FALSE
 		addtimer(CALLBACK(src, PROC_REF(RestoreAlpha), A, old_alpha, old_density), 10 SECONDS)
+		AddOverlay(A)
+		spawn(20)
+		RemoveOverlay(A)
 
 /obj/effect/proc_holder/spell/pointed/contract/stealth/proc/RestoreAlpha(mob/living/simple_animal/A, old_alpha, old_density)
 	if (A.stat != DEAD)
@@ -317,6 +320,8 @@
 	if (marked_animal != null)
 		// do recall
 		marked_animal.forceMove(action.owner.loc)
+		marked_animal.Stun(10)
+		RemoveOverlay(marked_animal)
 		marked_animal = null
 	else
 		..()
@@ -326,4 +331,64 @@
 	user.visible_message(span_danger("[user] uses the contract of Recall."), span_alert("You targeted [target]"))
 	if (istype(target, /mob/living/simple_animal))
 		marked_animal = target
+		AddOverlay(marked_animal)
 
+// /obj/effect/proc_holder/spell/targeted/ethereal_jaunt/shift/ash/contract
+// 	name = "Contracted Passage"
+// 	desc = "A short range spell allowing you to pass unimpeded through a few walls."
+// 	school = SCHOOL_FORBIDDEN
+// 	invocation = null
+// 	charge_max = 100
+// 	range = -1
+// 	action_icon = 'icons/mob/actions/actions_ecult.dmi'
+// 	action_icon_state = "ash_shift"
+// 	action_background_icon_state = "bg_alien"
+// 	jaunt_in_time = 13
+// 	jaunt_duration = 50
+// 	jaunt_in_type = /obj/effect/temp_visual/dir_setting/ash_shift
+// 	jaunt_out_type = /obj/effect/temp_visual/dir_setting/ash_shift/out
+
+/datum/action/cooldown/contracted_passage
+	name = "Contracted Passage"
+	desc = "A short range spell allowing you to pass unimpeded through a few walls"
+	icon_icon = 'icons/mob/actions/actions_ecult.dmi'
+	button_icon_state = "ash_shift"
+	background_icon_state = "bg_alien"
+	var/in_teleport = FALSE
+	cooldown_time = 60 SECONDS
+	var/teleport_timer
+	var/teleport_time = 10 SECONDS
+
+/datum/action/cooldown/contracted_passage/Trigger()
+	if(!..())
+		return FALSE
+	if(!istype(owner, /mob/living/simple_animal/hostile/abnormality/contract))
+		return FALSE
+
+	var/mob/living/simple_animal/hostile/abnormality/contract/C = owner
+	if (in_teleport)
+		if (teleport_timer)
+			deltimer(teleport_timer)
+		C.incorporeal_move = FALSE
+		in_teleport = FALSE
+		StartCooldown()
+		EndTeleport()
+	else
+		// change button icon
+		in_teleport = TRUE
+		C.StartTeleport()
+		teleport_timer = addtimer(CALLBACK(src, PROC_REF(EndTeleport), C), teleport_time, TIMER_STOPPABLE)
+
+/datum/action/cooldown/contracted_passage/proc/EndTeleport(mob/living/simple_animal/hostile/abnormality/contract/C)
+	C.incorporeal_move = FALSE
+	in_teleport = FALSE
+	animate(src, alpha = 255, time = 25)
+	StartCooldown()
+
+// Procedure to start the leap
+/mob/living/simple_animal/hostile/abnormality/contract/proc/StartTeleport()
+	visible_message(span_warning("[src] pops out of existence!"))
+	// animate
+	animate(src, alpha = 0, time = 10)
+	density = FALSE
+	incorporeal_move = TRUE // Assuming there is a variable for incorporeal state)
