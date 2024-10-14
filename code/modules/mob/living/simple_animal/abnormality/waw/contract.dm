@@ -1,6 +1,10 @@
 //Coded by me, Kirie Saito!
 
 //Remind me to give it contract features later.....
+
+#define STATUS_EFFECT_RUIN /datum/status_effect/ruin
+#define STATUS_EFFECT_STEALTH /datum/status_effect/stealth
+#define STATUS_EFFECT_RECALL /datum/status_effect/recall
 /mob/living/simple_animal/hostile/abnormality/contract
 	name = "A Contract, Signed"
 	desc = "A man with a flaming head sitting behind a desk."
@@ -22,6 +26,9 @@
 	damage_coeff = list(BRUTE = 1.0, RED_DAMAGE = 1.8, WHITE_DAMAGE = 0.8, BLACK_DAMAGE = 1.3, PALE_DAMAGE = -1)
 	melee_damage_lower = 20
 	melee_damage_upper = 20
+	attack_sound = 'sound/abnormalities/so_that_no_cry/curse_talisman.ogg'
+	attack_verb_continuous = "points at"
+	attack_verb_simple = "points at"
 	melee_damage_type = PALE_DAMAGE
 	work_damage_amount = 8
 	work_damage_type = PALE_DAMAGE	//Lawyers take your fucking soul
@@ -74,9 +81,11 @@
 	to_chat(src, "<h1>You are A Contract, Signed, A Support Role Abnormality.</h1><br>\
 		<b>|Contracts|: You have 3 Contracts which you can offer to your allies.<br>\
 		'Contract of Ruin': For the next 10 seconds, your target deals more damage to objects and mechs.<br>\
+		<br>\
 		'Contract of Stealth': For the next 15 seconds, your target becomes much harder to see and indirect projectiles no longer hit them.<br>\
+		<br>\
 		'Contract of Recall': After you mark a Target, the next time you use this contract you will bring them over to your location.<br>\
-		However, This will stun them for a brief second.<br>\
+		However, This will stun them for a brief second after you teleport them.<br>\
 		<br>\
 		|Contracted Gateway|: You are able to turn incorporeal for a few seconds.<br>\
 		You are still able to give out contracts while you are incorporeal.<br>\
@@ -102,6 +111,7 @@
 		icon = 'ModularTegustation/Teguicons/32x32.dmi'
 		pixel_x = 0
 		base_pixel_x = 0
+		desc = "A man with a flaming head"
 
 /mob/living/simple_animal/hostile/abnormality/contract/WorkChance(mob/living/carbon/human/user, chance, work_type)
 	. = chance
@@ -220,8 +230,8 @@
 
 /obj/effect/proc_holder/spell/pointed/contract
 	action_background_icon_state = "bg_alien"
-	var/contract_overlay_icon = 'icons/mob/actions/actions_abnormality.dmi'
-	var/contract_overlay_icon_state = "contract"
+	var/contract_overlay_icon = 'ModularTegustation/Teguicons/status_sprites.dmi'
+	var/contract_overlay_icon_state = "small_contract"
 	var/mutable_appearance/colored_overlay
 
 /obj/effect/proc_holder/spell/pointed/contract/cast(list/targets, mob/living/user, silent = FALSE)
@@ -251,8 +261,6 @@
 	var/contractlayer = A.layer + 0.1
 	colored_overlay = mutable_appearance(contract_overlay_icon, contract_overlay_icon_state, contractlayer)
 	A.add_overlay(colored_overlay)
-	// if (A.pixel_x != 0)
-	// 	colored_overlay.pixel_x = A.pixel_x * -1
 
 /obj/effect/proc_holder/spell/pointed/contract/proc/RemoveOverlay(mob/living/simple_animal/A)
 	if (colored_overlay != null)
@@ -264,7 +272,8 @@
 	panel = "Contract"
 	has_action = TRUE
 	action_icon = 'icons/mob/actions/actions_abnormality.dmi'
-	action_icon_state = "contract"
+	action_icon_state = "contract_ruin"
+	contract_overlay_icon_state = "small_contract_ruin"
 	clothes_req = FALSE
 	charge_max = 100
 	selection_type = "range"
@@ -279,6 +288,8 @@
 	if (istype(target, /mob/living/simple_animal))
 		var/mob/living/simple_animal/A = target
 		A.obj_damage += ruin_damage
+		playsound(A, 'sound/abnormalities/so_that_no_cry/curse_talisman.ogg', 100, 1)
+		A.apply_status_effect(STATUS_EFFECT_RUIN)
 		addtimer(CALLBACK(src, PROC_REF(RestoreDamage), A), ruin_duration SECONDS)
 		AddOverlay(A)
 		spawn(20)
@@ -294,14 +305,15 @@
 	panel = "Contract"
 	has_action = TRUE
 	action_icon = 'icons/mob/actions/actions_abnormality.dmi'
-	action_icon_state = "contract"
+	action_icon_state = "contract_stealth"
+	contract_overlay_icon_state = "small_contract_stealth"
 	clothes_req = FALSE
 	charge_max = 100
 	selection_type = "range"
 	active_msg = "You prepare your Contract of Stealth..."
 	deactive_msg = "You put away your Contract of Stealth..."
 	var/alpha_level = 50
-	var/stealth_duration = 10
+	var/stealth_duration = 15
 
 /obj/effect/proc_holder/spell/pointed/contract/stealth/cast(list/targets, mob/user)
 	var/target = targets[1]
@@ -312,6 +324,8 @@
 		var/old_density = A.density
 		A.alpha = alpha_level
 		A.density = FALSE
+		A.apply_status_effect(STATUS_EFFECT_STEALTH)
+		playsound(A, 'sound/abnormalities/so_that_no_cry/curse_talisman.ogg', 100, 1)
 		addtimer(CALLBACK(src, PROC_REF(RestoreAlpha), A, old_alpha, old_density), stealth_duration SECONDS)
 		AddOverlay(A)
 		spawn(20)
@@ -328,7 +342,8 @@
 	panel = "Contract"
 	has_action = TRUE
 	action_icon = 'icons/mob/actions/actions_abnormality.dmi'
-	action_icon_state = "contract"
+	action_icon_state = "contract_recall"
+	contract_overlay_icon_state = "small_contract_recall"
 	clothes_req = FALSE
 	charge_max = 100
 	selection_type = "range"
@@ -341,8 +356,10 @@
 	if (marked_animal != null)
 		// do recall
 		marked_animal.forceMove(action.owner.loc)
+		playsound(marked_animal.loc, 'sound/magic/ethereal_exit.ogg', 50, TRUE, -1)
 		marked_animal.Stun(target_stun_time)
 		RemoveOverlay(marked_animal)
+		marked_animal.remove_status_effect(STATUS_EFFECT_RECALL)
 		marked_animal = null
 	else
 		..()
@@ -353,6 +370,8 @@
 	if (istype(target, /mob/living/simple_animal))
 		marked_animal = target
 		AddOverlay(marked_animal)
+		marked_animal.apply_status_effect(STATUS_EFFECT_RECALL)
+		playsound(marked_animal, 'sound/abnormalities/so_that_no_cry/curse_talisman.ogg', 100, 1)
 
 /datum/action/cooldown/contracted_passage
 	name = "Contracted Passage"
@@ -375,10 +394,6 @@
 	if (in_teleport)
 		if (teleport_timer)
 			deltimer(teleport_timer)
-		C.incorporeal_move = FALSE
-		in_teleport = FALSE
-		C.density = TRUE
-		C.can_act = TRUE
 		StartCooldown()
 		EndTeleport(C)
 	else
@@ -388,6 +403,7 @@
 
 /datum/action/cooldown/contracted_passage/proc/EndTeleport(mob/living/simple_animal/hostile/abnormality/contract/C)
 	C.incorporeal_move = FALSE
+	playsound(C.loc, 'sound/magic/ethereal_exit.ogg', 50, TRUE, -1)
 	in_teleport = FALSE
 	C.density = TRUE
 	C.can_act = TRUE
@@ -401,14 +417,52 @@
 	density = FALSE
 	incorporeal_move = TRUE
 	can_act = FALSE
+	playsound(src, 'sound/magic/ethereal_enter.ogg', 50, TRUE, -1)
 
 
 //Todo: Make it so you are unable to attack while you are incorporeal. DONE
-//Make it so the Contract Overlay has an better looking sprite (Smaller)
+//Make it so the Contract Overlay has an better looking sprite (Smaller) DONE
 //Make it so the cooldown for Recall starts when you recall someone.area
 //Make it so recalling someone stuns them for a breif moment.
+
 /mob/living/simple_animal/hostile/abnormality/contract/AttackingTarget()
 	if (!can_act)  // dont attack if teleporting
 		return FALSE
 	else
 		. = ..()
+
+/datum/status_effect/ruin
+	id = "contract"
+	status_type = STATUS_EFFECT_UNIQUE
+	duration = 10 SECONDS
+	alert_type = /atom/movable/screen/alert/status_effect/ruin
+
+/atom/movable/screen/alert/status_effect/ruin
+	name = "Contract of Ruin"
+	desc = "You now deal more damage to objects and mechs!"
+	icon = 'ModularTegustation/Teguicons/status_sprites.dmi'
+	icon_state = "contract_ruin"
+
+/datum/status_effect/stealth
+	id = "contract"
+	status_type = STATUS_EFFECT_UNIQUE
+	duration = 15 SECONDS
+	alert_type = /atom/movable/screen/alert/status_effect/stealth
+
+/atom/movable/screen/alert/status_effect/stealth
+	name = "Contract of Stealth"
+	desc = "You are now much harder to see and indirect projectiles no longer hit you."
+	icon = 'ModularTegustation/Teguicons/status_sprites.dmi'
+	icon_state = "contract_stealth"
+
+/datum/status_effect/recall
+	id = "contract"
+	status_type = STATUS_EFFECT_UNIQUE
+	duration = 100000 SECONDS
+	alert_type = /atom/movable/screen/alert/status_effect/recall
+
+/atom/movable/screen/alert/status_effect/recall
+	name = "Contract of Recall"
+	desc = "A Contract, Signed is able to bring you over to their location at any moment."
+	icon = 'ModularTegustation/Teguicons/status_sprites.dmi'
+	icon_state = "contract_recall"

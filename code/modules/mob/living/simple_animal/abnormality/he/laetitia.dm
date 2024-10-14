@@ -18,6 +18,7 @@
 	work_damage_type = BLACK_DAMAGE
 	max_boxes = 16 // Accurate to base game
 	melee_damage_type = WHITE_DAMAGE
+	attack_sound = 'sound/weapons/slap.ogg'
 	melee_damage_lower = 1
 	melee_damage_upper = 5
 	attack_verb_continuous = "slaps"
