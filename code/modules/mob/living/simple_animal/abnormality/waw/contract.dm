@@ -228,11 +228,21 @@
 	datum_reference.qliphoth_change(-1)
 	return
 
+/datum/action/spell_action/spell/contract
+
+/datum/action/spell_action/spell/contract/IsAvailable()
+	if (istype(owner, /mob/living))
+		var/mob/living/L = owner
+		if (L.incorporeal_move)
+			return FALSE
+	. = ..()
+
 /obj/effect/proc_holder/spell/pointed/contract
 	action_background_icon_state = "bg_alien"
 	var/contract_overlay_icon = 'ModularTegustation/Teguicons/status_sprites.dmi'
 	var/contract_overlay_icon_state = "small_contract"
 	var/mutable_appearance/colored_overlay
+	base_action = /datum/action/spell_action/spell/contract
 
 /obj/effect/proc_holder/spell/pointed/contract/cast(list/targets, mob/living/user, silent = FALSE)
 	if(!targets.len)
@@ -345,7 +355,7 @@
 	action_icon_state = "contract_recall"
 	contract_overlay_icon_state = "small_contract_recall"
 	clothes_req = FALSE
-	charge_max = 100
+	charge_max = 10
 	selection_type = "range"
 	active_msg = "You prepare your Contract of Recall..."
 	deactive_msg = "You put away your Contract of Recall..."
@@ -355,13 +365,19 @@
 /obj/effect/proc_holder/spell/pointed/contract/recall/Click()
 	if (marked_animal != null)
 		// do recall
-		marked_animal.forceMove(action.owner.loc)
-		playsound(marked_animal.loc, 'sound/magic/ethereal_exit.ogg', 50, TRUE, -1)
-		marked_animal.Stun(target_stun_time)
-		RemoveOverlay(marked_animal)
-		marked_animal.remove_status_effect(STATUS_EFFECT_RECALL)
-		marked_animal = null
+		spawn(20)
+			marked_animal.forceMove(action.owner.loc)
+			playsound(marked_animal.loc, 'sound/magic/ethereal_exit.ogg', 50, TRUE, -1)
+			marked_animal.Stun(target_stun_time)
+			RemoveOverlay(marked_animal)
+			marked_animal.remove_status_effect(STATUS_EFFECT_RECALL)
+			marked_animal = null
+			charge_counter = 0
+			charge_max = 100
+			recharging = TRUE
+			action.UpdateButtonIcon()
 	else
+		charge_max = 10
 		..()
 
 /obj/effect/proc_holder/spell/pointed/contract/recall/cast(list/targets, mob/user)

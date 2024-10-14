@@ -231,15 +231,13 @@
 					last_counter_cooldown = world.time
 					StartReflecting()
 					return
-				return
-			if(2)
-				if(!can_act)
-					return
-				if(!ishuman(target))
-					return ..()
-				var/mob/living/carbon/human/H = target
-				Apply_Talisman(H)
-				return ..()
+	if(!can_act)
+		return
+	if(!ishuman(target))
+		return ..()
+	var/mob/living/carbon/human/H = target
+	Apply_Talisman(H)
+	return ..()
 
 /mob/living/simple_animal/hostile/abnormality/so_that_no_cry/proc/TryAttachTalisman(mob/living/carbon/human/H)
 	var/datum/status_effect/stacking/curse_talisman/G = H.has_status_effect(/datum/status_effect/stacking/curse_talisman)
