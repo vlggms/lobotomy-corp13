@@ -151,7 +151,7 @@
 		g.color = "#C2185B"
 		g.name = "big laetitia's gift"
 	if (kind == "Good")
-		g.strength *= -0.2
+		g.strength *= -0.5
 	for (var/obj/item/laetitia_gift/G in L.active_gifts)
 		L.total_strength += G.strength
 
@@ -182,7 +182,7 @@
 	icon_state = "prank_gift"
 	var/opening = FALSE
 	var/oneuse = TRUE
-	var/basepower = 10
+	var/basepower = 20
 	var/strength = 1
 	var/list/active_gifts
 

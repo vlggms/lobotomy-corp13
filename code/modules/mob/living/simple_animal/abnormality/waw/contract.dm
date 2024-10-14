@@ -399,8 +399,16 @@
 	visible_message(span_warning("[src] pops out of existence!"))
 	animate(src, alpha = 0, time = 10)
 	density = FALSE
-	incorporeal_move = TRUE // Assuming there is a variable for incorporeal state)
+	incorporeal_move = TRUE
 	can_act = FALSE
 
 
-//Todo: Make it so you are unable to attack while you are incorporeal.
+//Todo: Make it so you are unable to attack while you are incorporeal. DONE
+//Make it so the Contract Overlay has an better looking sprite (Smaller)
+//Make it so the cooldown for Recall starts when you recall someone.area
+//Make it so recalling someone stuns them for a breif moment.
+/mob/living/simple_animal/hostile/abnormality/contract/AttackingTarget()
+	if (!can_act)  // dont attack if teleporting
+		return FALSE
+	else
+		. = ..()
