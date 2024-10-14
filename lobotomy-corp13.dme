@@ -2446,6 +2446,7 @@
 #include "code\modules\jobs\job_types\labs\support\engineer.dm"
 #include "code\modules\jobs\job_types\labs\support\janitor.dm"
 #include "code\modules\jobs\job_types\mentor\trainingofficer.dm"
+#include "code\modules\jobs\job_types\miscmodes\lcb13.dm"
 #include "code\modules\jobs\job_types\rcorp\command.dm"
 #include "code\modules\jobs\job_types\rcorp\officer.dm"
 #include "code\modules\jobs\job_types\rcorp\rabbit.dm"
