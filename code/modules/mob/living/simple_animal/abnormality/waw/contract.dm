@@ -51,6 +51,8 @@
 		You walk out in a daze, unable to remember what the contract was about. <br>\
 		Perhaps you should have read the fine print."
 
+	attack_action_types = list(/datum/action/cooldown/contracted_passage)
+
 	var/list/total_havers = list()
 	var/list/fort_havers = list()
 	var/list/prud_havers = list()
@@ -62,8 +64,23 @@
 		/obj/effect/proc_holder/spell/pointed/contract/ruin,
 		/obj/effect/proc_holder/spell/pointed/contract/stealth,
 		/obj/effect/proc_holder/spell/pointed/contract/recall,
-		/datum/action/cooldown/contracted_passage,
 		)
+	var/can_act = TRUE
+
+/mob/living/simple_animal/hostile/abnormality/contract/Login()
+	. = ..()
+	if(!. || !client)
+		return FALSE
+	to_chat(src, "<h1>You are A Contract, Signed, A Support Role Abnormality.</h1><br>\
+		<b>|Contracts|: You have 3 Contracts which you can offer to your allies.<br>\
+		'Contract of Ruin': For the next 10 seconds, your target deals more damage to objects and mechs.<br>\
+		'Contract of Stealth': For the next 15 seconds, your target becomes much harder to see and indirect projectiles no longer hit them.<br>\
+		'Contract of Recall': After you mark a Target, the next time you use this contract you will bring them over to your location.<br>\
+		However, This will stun them for a brief second.<br>\
+		<br>\
+		|Contracted Gateway|: You are able to turn incorporeal for a few seconds.<br>\
+		You are still able to give out contracts while you are incorporeal.<br>\
+		You are able to exit your incorporeal form early by clicking your ability again.</b>")
 
 /mob/living/simple_animal/hostile/abnormality/contract/Initialize()
 	. = ..()
@@ -201,7 +218,6 @@
 	datum_reference.qliphoth_change(-1)
 	return
 
-
 /obj/effect/proc_holder/spell/pointed/contract
 	action_background_icon_state = "bg_alien"
 	var/contract_overlay_icon = 'icons/mob/actions/actions_abnormality.dmi'
@@ -254,21 +270,23 @@
 	selection_type = "range"
 	active_msg = "You prepare your Contract of Ruin..."
 	deactive_msg = "You put away your Contract of Ruin..."
+	var/ruin_damage = 50
+	var/ruin_duration = 10
 
 /obj/effect/proc_holder/spell/pointed/contract/ruin/cast(list/targets, mob/user)
 	var/target = targets[1]
 	user.visible_message(span_danger("[user] uses the contract of Ruin."), span_alert("You targeted [target]"))
 	if (istype(target, /mob/living/simple_animal))
 		var/mob/living/simple_animal/A = target
-		A.obj_damage += 50
-		addtimer(CALLBACK(src, PROC_REF(RestoreDamage), A), 10 SECONDS)
+		A.obj_damage += ruin_damage
+		addtimer(CALLBACK(src, PROC_REF(RestoreDamage), A), ruin_duration SECONDS)
 		AddOverlay(A)
 		spawn(20)
 		RemoveOverlay(A)
 
 /obj/effect/proc_holder/spell/pointed/contract/ruin/proc/RestoreDamage(mob/living/simple_animal/A)
 	if (A.stat != DEAD)
-		A.obj_damage -= 50
+		A.obj_damage -= ruin_damage
 
 /obj/effect/proc_holder/spell/pointed/contract/stealth
 	name = "Contract of Stealth"
@@ -282,6 +300,8 @@
 	selection_type = "range"
 	active_msg = "You prepare your Contract of Stealth..."
 	deactive_msg = "You put away your Contract of Stealth..."
+	var/alpha_level = 50
+	var/stealth_duration = 10
 
 /obj/effect/proc_holder/spell/pointed/contract/stealth/cast(list/targets, mob/user)
 	var/target = targets[1]
@@ -290,9 +310,9 @@
 		var/mob/living/simple_animal/A = target
 		var/old_alpha = A.alpha
 		var/old_density = A.density
-		A.alpha = 50
+		A.alpha = alpha_level
 		A.density = FALSE
-		addtimer(CALLBACK(src, PROC_REF(RestoreAlpha), A, old_alpha, old_density), 10 SECONDS)
+		addtimer(CALLBACK(src, PROC_REF(RestoreAlpha), A, old_alpha, old_density), stealth_duration SECONDS)
 		AddOverlay(A)
 		spawn(20)
 		RemoveOverlay(A)
@@ -304,7 +324,7 @@
 
 /obj/effect/proc_holder/spell/pointed/contract/recall
 	name = "Contract of Recall"
-	desc = "The Contract of Recall"
+	desc = "The Contract of Recall, lets you mark a target and then teleport them to your location."
 	panel = "Contract"
 	has_action = TRUE
 	action_icon = 'icons/mob/actions/actions_abnormality.dmi'
@@ -315,12 +335,13 @@
 	active_msg = "You prepare your Contract of Recall..."
 	deactive_msg = "You put away your Contract of Recall..."
 	var/mob/living/simple_animal/marked_animal = null
+	var/target_stun_time = 30
 
 /obj/effect/proc_holder/spell/pointed/contract/recall/Click()
 	if (marked_animal != null)
 		// do recall
 		marked_animal.forceMove(action.owner.loc)
-		marked_animal.Stun(10)
+		marked_animal.Stun(target_stun_time)
 		RemoveOverlay(marked_animal)
 		marked_animal = null
 	else
@@ -333,21 +354,6 @@
 		marked_animal = target
 		AddOverlay(marked_animal)
 
-// /obj/effect/proc_holder/spell/targeted/ethereal_jaunt/shift/ash/contract
-// 	name = "Contracted Passage"
-// 	desc = "A short range spell allowing you to pass unimpeded through a few walls."
-// 	school = SCHOOL_FORBIDDEN
-// 	invocation = null
-// 	charge_max = 100
-// 	range = -1
-// 	action_icon = 'icons/mob/actions/actions_ecult.dmi'
-// 	action_icon_state = "ash_shift"
-// 	action_background_icon_state = "bg_alien"
-// 	jaunt_in_time = 13
-// 	jaunt_duration = 50
-// 	jaunt_in_type = /obj/effect/temp_visual/dir_setting/ash_shift
-// 	jaunt_out_type = /obj/effect/temp_visual/dir_setting/ash_shift/out
-
 /datum/action/cooldown/contracted_passage
 	name = "Contracted Passage"
 	desc = "A short range spell allowing you to pass unimpeded through a few walls"
@@ -355,7 +361,7 @@
 	button_icon_state = "ash_shift"
 	background_icon_state = "bg_alien"
 	var/in_teleport = FALSE
-	cooldown_time = 60 SECONDS
+	cooldown_time = 30 SECONDS
 	var/teleport_timer
 	var/teleport_time = 10 SECONDS
 
@@ -371,10 +377,11 @@
 			deltimer(teleport_timer)
 		C.incorporeal_move = FALSE
 		in_teleport = FALSE
+		C.density = TRUE
+		C.can_act = TRUE
 		StartCooldown()
-		EndTeleport()
+		EndTeleport(C)
 	else
-		// change button icon
 		in_teleport = TRUE
 		C.StartTeleport()
 		teleport_timer = addtimer(CALLBACK(src, PROC_REF(EndTeleport), C), teleport_time, TIMER_STOPPABLE)
@@ -382,13 +389,18 @@
 /datum/action/cooldown/contracted_passage/proc/EndTeleport(mob/living/simple_animal/hostile/abnormality/contract/C)
 	C.incorporeal_move = FALSE
 	in_teleport = FALSE
-	animate(src, alpha = 255, time = 25)
+	C.density = TRUE
+	C.can_act = TRUE
 	StartCooldown()
+	animate(C, alpha = 255, time = 25)
 
-// Procedure to start the leap
+// Procedure to start the teleport
 /mob/living/simple_animal/hostile/abnormality/contract/proc/StartTeleport()
 	visible_message(span_warning("[src] pops out of existence!"))
-	// animate
 	animate(src, alpha = 0, time = 10)
 	density = FALSE
 	incorporeal_move = TRUE // Assuming there is a variable for incorporeal state)
+	can_act = FALSE
+
+
+//Todo: Make it so you are unable to attack while you are incorporeal.

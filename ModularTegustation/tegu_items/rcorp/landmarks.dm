@@ -22,6 +22,7 @@ GLOBAL_LIST_INIT(easysupport, list(
 	/mob/living/simple_animal/hostile/abnormality/der_freischutz,
 	/mob/living/simple_animal/hostile/abnormality/better_memories,
 	/mob/living/simple_animal/hostile/abnormality/laetitia,
+	/mob/living/simple_animal/hostile/abnormality/contract,
 ))
 
 GLOBAL_LIST_INIT(easytank, list(
