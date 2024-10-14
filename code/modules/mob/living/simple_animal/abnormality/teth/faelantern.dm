@@ -10,6 +10,7 @@
 	portrait = "faelantern"
 	maxHealth = 1200
 	health = 1200
+	blood_volume = 0
 	base_pixel_x = -16
 	pixel_x = -16
 	threat_level = TETH_LEVEL

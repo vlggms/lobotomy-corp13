@@ -7,6 +7,7 @@
 	portrait = "helper"
 	maxHealth = 1000
 	health = 1000
+	blood_volume = 0
 	rapid_melee = 4
 	ranged = TRUE
 	attack_verb_continuous = "slashes"
