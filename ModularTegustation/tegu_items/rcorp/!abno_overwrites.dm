@@ -82,3 +82,12 @@
 		landing_time = 5
 		max_mobs = 5
 	return ..()
+
+//Due to Redblooded's very low damage and health, which is normaly fitting for a Teth. That causes them to underperform in R-Corp since they don't have any utility.
+//For that reason his health is increased and let his ammo gimmick work by reducing his ranged cooldown.
+/mob/living/simple_animal/hostile/abnormality/redblooded/Initialize()
+	if(IsCombatMap())
+		ranged_cooldown_time = 0.5 SECONDS
+		maxHealth = 1200
+		health = 1200
+	return ..()
