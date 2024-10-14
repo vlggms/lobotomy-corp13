@@ -59,6 +59,36 @@
 	var/damage_taken = 0
 	var/damage_reflection = FALSE
 	var/talismans = 0
+	var/counter_cooldown = 30 SECONDS
+	var/last_counter_cooldown = 0
+
+	attack_action_types = list(/datum/action/innate/abnormality_attack/toggle/cry_counter)
+
+/datum/action/innate/abnormality_attack/toggle/cry_counter
+	name = "Toggle Damage Reflection"
+	button_icon_state = "counter0"
+	chosen_attack_num = 2
+	chosen_message = span_colossus("You won't reflect damage.")
+	button_icon_toggle_activated = "counter1"
+	toggle_attack_num = 1
+	toggle_message = span_colossus("You will now reflect damage when ready.")
+	button_icon_toggle_deactivated = "counter0"
+
+/mob/living/simple_animal/hostile/abnormality/so_that_no_cry/Login()
+	. = ..()
+	if(!. || !client)
+		return FALSE
+	to_chat(src, "<h1>You are So That No One Will Cry, A Tank Role Abnormality.</h1><br>\
+		<b>|Talismans|: When you attack, if your target was human they gain a Talisman.<br>\
+		For each Talisman a human has they deal slightly extra damage with melee weapons and become faster.<br>\
+		However, If they gain 6 Talismans they will transform into Curse Talismans.<br>\
+		Curse Talismans do the same thing as normal Talismans, but reversed.<br>\
+		<br>\
+		|Cursed Counter|: You have an ability to toggle between using your counter when it is off cooldown, or not using it.<br>\
+		When you start countering, you will become immune to all damage and will teleport to your attacker to deal the same amount of damage they would of done to you, to them for 10 seconds.<br>\
+		However, If a human with talismans tries to punch you while you are in this state, You will become stunned depanding on the amount of Talismans they had.<br>\
+		<br>\
+		WARNING: While your counter ability is on, You are unable to attack even when it is off cooldown. You will need to turn it off.</b>")
 
 //Work Mechanics
 /mob/living/simple_animal/hostile/abnormality/so_that_no_cry/proc/Apply_Talisman(mob/living/carbon/human/user)
@@ -194,13 +224,22 @@
 
 //Talisman Stuff
 /mob/living/simple_animal/hostile/abnormality/so_that_no_cry/AttackingTarget()
-	if(!can_act)
-		return
-	if(!ishuman(target))
-		return ..()
-	var/mob/living/carbon/human/H = target
-	Apply_Talisman(H)
-	return ..()
+	if(client)
+		switch(chosen_attack)
+			if(1)
+				if (last_counter_cooldown < world.time - counter_cooldown)
+					last_counter_cooldown = world.time
+					StartReflecting()
+					return
+				return
+			if(2)
+				if(!can_act)
+					return
+				if(!ishuman(target))
+					return ..()
+				var/mob/living/carbon/human/H = target
+				Apply_Talisman(H)
+				return ..()
 
 /mob/living/simple_animal/hostile/abnormality/so_that_no_cry/proc/TryAttachTalisman(mob/living/carbon/human/H)
 	var/datum/status_effect/stacking/curse_talisman/G = H.has_status_effect(/datum/status_effect/stacking/curse_talisman)
