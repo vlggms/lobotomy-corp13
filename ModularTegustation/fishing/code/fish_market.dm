@@ -193,22 +193,22 @@
 		new /datum/data/extraction_cargo("Shiny Fishing Hook ", 		/obj/item/fishing_component/hook/shiny,				1000) = 1,
 
 		//Fishing Skills (L1)
-		new /datum/data/extraction_cargo("Level 1 Skill: Scry ",				/obj/item/book/granter/action/skill/scry,				500) = 1,
-		new /datum/data/extraction_cargo("Level 1 Skill: Planet ", 				/obj/item/book/granter/action/skill/planet,				500) = 1,
-		new /datum/data/extraction_cargo("Level 1 Skill: Lunar Prayer ", 		/obj/item/book/granter/action/skill/prayer,				500) = 1,
-		new /datum/data/extraction_cargo("Level 1 Skill: Sacred Word ", 		/obj/item/book/granter/action/skill/sacredword,			500) = 1,
-		new /datum/data/extraction_cargo("Level 1 Skill: Detect Fish ", 		/obj/item/book/granter/action/skill/detect,				500) = 1,
+		new /datum/data/extraction_cargo("Level 1 Skill: Scry ",				/obj/item/book/granter/action/skill/scry,				200) = 1,
+		new /datum/data/extraction_cargo("Level 1 Skill: Planet ", 				/obj/item/book/granter/action/skill/planet,				200) = 1,
+		new /datum/data/extraction_cargo("Level 1 Skill: Lunar Prayer ", 		/obj/item/book/granter/action/skill/prayer,				200) = 1,
+		new /datum/data/extraction_cargo("Level 1 Skill: Sacred Word ", 		/obj/item/book/granter/action/skill/sacredword,			200) = 1,
+		new /datum/data/extraction_cargo("Level 1 Skill: Detect Fish ", 		/obj/item/book/granter/action/skill/detect,				200) = 1,
 
 		//Level 2
-		new /datum/data/extraction_cargo("Level 2 Skill: Smite the Heretics ",		/obj/item/book/granter/action/skill/smite,			1000) = 1,
-		new /datum/data/extraction_cargo("Level 2 Skill: Lunar Might ", 			/obj/item/book/granter/action/skill/might,			1000) = 1,
-		new /datum/data/extraction_cargo("Level 2 Skill: Awe the Weak ", 			/obj/item/book/granter/action/skill/awe,			1000) = 1,
-		new /datum/data/extraction_cargo("Level 2 Skill: Chakra Misalignment ", 	/obj/item/book/granter/action/skill/chakra,			1000) = 1,
+		new /datum/data/extraction_cargo("Level 2 Skill: Smite the Heretics ",		/obj/item/book/granter/action/skill/smite,			700) = 1,
+		new /datum/data/extraction_cargo("Level 2 Skill: Lunar Might ", 			/obj/item/book/granter/action/skill/might,			700) = 1,
+		new /datum/data/extraction_cargo("Level 2 Skill: Awe the Weak ", 			/obj/item/book/granter/action/skill/awe,			700) = 1,
+		new /datum/data/extraction_cargo("Level 2 Skill: Chakra Misalignment ", 	/obj/item/book/granter/action/skill/chakra,			700) = 1,
 
 		//Level 4
-		new /datum/data/extraction_cargo("Level 4 Skill: Alignment ",			/obj/item/book/granter/action/skill/alignment,			1500) = 1,
-		new /datum/data/extraction_cargo("Level 4 Skill: A Moment in Time ", 	/obj/item/book/granter/action/skill/planetstop,			1500) = 1,
-		new /datum/data/extraction_cargo("Level 4 Skill: Supernova ", 			/obj/item/book/granter/action/skill/supernova,			1500) = 1,
+		new /datum/data/extraction_cargo("Level 4 Skill: Alignment ",			/obj/item/book/granter/action/skill/alignment,			1200) = 1,
+		new /datum/data/extraction_cargo("Level 4 Skill: A Moment in Time ", 	/obj/item/book/granter/action/skill/planetstop,			1200) = 1,
+		new /datum/data/extraction_cargo("Level 4 Skill: Supernova ", 			/obj/item/book/granter/action/skill/supernova,			1200) = 1,
 
 		//fishing weapon mods
 		new /datum/data/extraction_cargo("Fishing Mod (R) ",	/obj/item/workshop_mod/fishing,						200) = 1,

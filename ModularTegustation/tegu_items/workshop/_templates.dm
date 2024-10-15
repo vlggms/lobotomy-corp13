@@ -92,7 +92,10 @@
 
 //This only is used for fishing weapons
 /obj/item/ego_weapon/template/proc/CheckHoroscope()
-	force = force/2
+	force = force*1.3
+
+	/*
+	maxforce =
 	//Then Check each planet. Planets with more phases contribute less per phase
 	var/mercurybuff = SSfishing.Mercury*0.75
 	var/venusbuff = SSfishing.Venus*0.66
@@ -105,4 +108,4 @@
 	var/moonbuff = SSfishing.moonphase*0.50
 
 	force += force*mercurybuff*venusbuff*marsbuff*jupiterbuff*saturnbuff*uranusbuff*neptunebuff*moonbuff
-	force = round(force, 0.1)
+	force = round(force, 0.1)*/
