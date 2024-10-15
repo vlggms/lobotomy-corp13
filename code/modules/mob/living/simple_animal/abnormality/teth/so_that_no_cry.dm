@@ -206,7 +206,8 @@
 	if(!can_act)
 		return
 	if(damage_taken > 400 && !damage_reflection)
-		StartReflecting()
+		if(!IsCombatMap())
+			StartReflecting()
 
 /mob/living/simple_animal/hostile/abnormality/so_that_no_cry/proc/StartReflecting()
 	can_act = FALSE

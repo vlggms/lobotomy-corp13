@@ -286,7 +286,7 @@
 	action_icon_state = "contract_ruin"
 	contract_overlay_icon_state = "small_contract_ruin"
 	clothes_req = FALSE
-	charge_max = 100
+	charge_max = 450
 	selection_type = "range"
 	active_msg = "You prepare your Contract of Ruin..."
 	deactive_msg = "You put away your Contract of Ruin..."
@@ -319,7 +319,7 @@
 	action_icon_state = "contract_stealth"
 	contract_overlay_icon_state = "small_contract_stealth"
 	clothes_req = FALSE
-	charge_max = 100
+	charge_max = 300
 	selection_type = "range"
 	active_msg = "You prepare your Contract of Stealth..."
 	deactive_msg = "You put away your Contract of Stealth..."
@@ -361,7 +361,7 @@
 	active_msg = "You prepare your Contract of Recall..."
 	deactive_msg = "You put away your Contract of Recall..."
 	var/mob/living/simple_animal/marked_animal = null
-	var/long_cooldown = 100
+	var/long_cooldown = 450
 	var/base_cooldown = 10
 	var/target_stun_time = 30
 	var/pulling_time = 30
@@ -402,7 +402,7 @@
 	button_icon_state = "ash_shift"
 	background_icon_state = "bg_alien"
 	var/in_teleport = FALSE
-	cooldown_time = 30 SECONDS
+	cooldown_time = 45 SECONDS
 	var/teleport_timer
 	var/teleport_time = 10 SECONDS
 
