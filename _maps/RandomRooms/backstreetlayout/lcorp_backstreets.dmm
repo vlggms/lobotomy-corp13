@@ -4762,7 +4762,7 @@
 "wP" = (
 /obj/effect/portal/permanent{
 	name = "control elevator";
-	id = control
+	id = "control"
 	},
 /turf/open/floor/plasteel/elevatorshaft,
 /area/city/backstreets_room{
@@ -8225,7 +8225,7 @@
 	},
 /obj/effect/portal/permanent{
 	name = "control elevator";
-	id = control
+	id = "control"
 	},
 /turf/open/floor/plasteel/elevatorshaft,
 /area/city/backstreets_room{
