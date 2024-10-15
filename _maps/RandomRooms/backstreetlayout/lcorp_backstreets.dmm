@@ -8,10 +8,6 @@
 /area/city/backstreets_room{
 	name = "Training Deparment?"
 	})
-"ac" = (
-/obj/item/attribute_increase/medium,
-/turf/open/floor/plating/ashplanet/rocky,
-/area/city/backstreets_alley)
 "ad" = (
 /obj/effect/turf_decal/siding/purple{
 	dir = 5
@@ -1842,7 +1838,10 @@
 "jk" = (
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/effect/decal/cleanable/dirt/dust,
-/mob/living/simple_animal/hostile/ordeal/centipede_corrosion,
+/mob/living/simple_animal/hostile/ordeal/centipede_corrosion{
+	maxHealth = 1000;
+	health = 1000
+	},
 /turf/open/floor/carpet/orange,
 /area/city/backstreets_room{
 	name = "Training Deparment?"
@@ -2279,6 +2278,10 @@
 	dir = 7
 	},
 /turf/open/floor/plating/asteroid/basalt,
+/area/city/backstreets_alley)
+"lr" = (
+/obj/item/attribute_increase/medium,
+/turf/open/floor/plating/ashplanet/rocky,
 /area/city/backstreets_alley)
 "lu" = (
 /obj/machinery/light/broken{
@@ -4284,6 +4287,10 @@
 /area/city/backstreets_room{
 	name = "Safety Deparment?"
 	})
+"uy" = (
+/obj/item/clothing/suit/armor/ego_gear/waw/lamp,
+/turf/open/floor/plating/ashplanet/rocky,
+/area/city/backstreets_alley)
 "uA" = (
 /obj/machinery/door/airlock/vault{
 	name = "Jangsan Tiger's containment unit"
@@ -4979,10 +4986,6 @@
 /area/city/backstreets_room{
 	name = "Info Deparment?"
 	})
-"yj" = (
-/obj/item/ego_weapon/lamp,
-/turf/open/floor/plating/ashplanet/rocky,
-/area/city/backstreets_alley)
 "yl" = (
 /obj/machinery/light/broken,
 /obj/structure/dresser,
@@ -5243,6 +5246,10 @@
 /area/city/backstreets_room{
 	name = "Control Deparment?"
 	})
+"zQ" = (
+/obj/item/ego_weapon/lamp,
+/turf/open/floor/plating/ashplanet/rocky,
+/area/city/backstreets_alley)
 "zU" = (
 /obj/effect/decal/cleanable/blood/tracks{
 	dir = 9
@@ -5403,7 +5410,10 @@
 	})
 "AD" = (
 /obj/effect/decal/cleanable/dirt/dust,
-/mob/living/simple_animal/hostile/ordeal/white_lake_corrosion,
+/mob/living/simple_animal/hostile/ordeal/white_lake_corrosion{
+	sweep_damage = 30;
+	health = 1500
+	},
 /turf/open/floor/carpet/green,
 /area/city/backstreets_room{
 	name = "Safety Deparment?"
@@ -10395,10 +10405,6 @@
 /area/city/backstreets_room{
 	name = "Training Deparment?"
 	})
-"ZR" = (
-/obj/item/clothing/suit/armor/ego_gear/waw/lamp,
-/turf/open/floor/plating/ashplanet/rocky,
-/area/city/backstreets_alley)
 "ZY" = (
 /obj/effect/turf_decal/siding/thinplating{
 	dir = 1
@@ -38367,7 +38373,7 @@ OP
 Ua
 WP
 WP
-ZR
+uy
 WP
 nu
 WP
@@ -38478,9 +38484,9 @@ OP
 OP
 OP
 Ca
-yj
-ac
-ac
+zQ
+lr
+lr
 Bn
 OP
 kI
