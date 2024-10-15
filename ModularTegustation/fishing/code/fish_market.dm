@@ -211,7 +211,7 @@
 		new /datum/data/extraction_cargo("Level 4 Skill: Supernova ", 			/obj/item/book/granter/action/skill/supernova,			1500) = 1,
 
 		//fishing weapon mods
-		new /datum/data/extraction_cargo("Fishing Mod (R) ",	/obj/item/workshop_mod/fishing,						1500) = 1,
-		new /datum/data/extraction_cargo("Fishing Mod (W) ", 	/obj/item/workshop_mod/fishing/white,				1500) = 1,
-		new /datum/data/extraction_cargo("Fishing Mod (B) ", 	/obj/item/workshop_mod/fishing/black,				1500) = 1,
+		new /datum/data/extraction_cargo("Fishing Mod (R) ",	/obj/item/workshop_mod/fishing,						200) = 1,
+		new /datum/data/extraction_cargo("Fishing Mod (W) ", 	/obj/item/workshop_mod/fishing/white,				200) = 1,
+		new /datum/data/extraction_cargo("Fishing Mod (B) ", 	/obj/item/workshop_mod/fishing/black,				200) = 1,
 		)

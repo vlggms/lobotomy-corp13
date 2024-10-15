@@ -30,7 +30,7 @@
 		this_fish_point*=2
 	if(SSfishing.Neptune==8)
 		this_fish_point*=2
-
+	qdel(I)
 	user.devotion+=this_fish_point
 	if(SSfishing.Neptune==8)
 		to_chat(user, span_notice("Neptune is in alignment. Devotion increased by [this_fish_point]. Your devotion to [user.god_aligned] is now [user.devotion]."))
