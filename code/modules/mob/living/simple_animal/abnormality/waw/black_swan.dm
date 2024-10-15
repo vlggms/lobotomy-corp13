@@ -60,7 +60,7 @@
 		One day, her skin covered in blisters and her mouth oozing with spittle and pus, she passed by a lake, seemingly untouched by the pollution of the City. <br>\
 		Though her eyesight was almost ruined by fog and affliction, she could see it clearly. <br>\
 		Upon that lake were six white swans and a singular black swan. Elijah..."
-	observation_choices = list("Observed the white swans", "Observed the black swan")
+	observation_choices = list("Observed the white swans", "Observe the black swan")
 	correct_choices = list("Observe the black swan")
 	observation_success_message = "The black swan watches forlornly as her family takes flight, she's willing to give up everything for her family. <br>\
 		Elijah embraces the near-finished nettle clothing wholeheartedly, soon..."
