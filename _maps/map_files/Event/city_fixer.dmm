@@ -1950,6 +1950,10 @@
 	},
 /turf/open/floor/facility,
 /area/city/shop)
+"Fg" = (
+/obj/machinery/fish_market,
+/turf/open/floor/plating/beach/sand,
+/area/city)
 "Fw" = (
 /obj/machinery/vending/cola,
 /turf/open/floor/plating/ashplanet/rocky,
@@ -2169,6 +2173,10 @@
 /obj/machinery/ntnet_relay,
 /turf/open/floor/circuit/telecomms/mainframe,
 /area/facility_hallway/north)
+"QV" = (
+/obj/structure/fishshrine,
+/turf/open/floor/plating/beach/sand,
+/area/city)
 "QZ" = (
 /obj/machinery/telecomms/server/presets/science,
 /obj/effect/turf_decal/bot,
@@ -2312,10 +2320,6 @@
 "WX" = (
 /turf/open/floor/facility/dark,
 /area/city/fixers)
-"Xd" = (
-/obj/structure/fishshrine,
-/turf/open/floor/plating/grass,
-/area/city)
 "Xf" = (
 /obj/structure/chair/office,
 /turf/open/floor/facility/white,
@@ -41101,7 +41105,7 @@ OT
 zr
 zr
 BX
-Xd
+BX
 BX
 BX
 TJ
@@ -44428,9 +44432,9 @@ XJ
 XJ
 XJ
 XJ
+QV
 XJ
-XJ
-XJ
+Fg
 XJ
 OT
 ze
