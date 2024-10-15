@@ -171,6 +171,9 @@
 		new /datum/data/extraction_cargo("Fishing Hat ",		 		/obj/item/clothing/head/beret/fishing_hat,			500) = 1,
 		new /datum/data/extraction_cargo("Aquarium Branch Office ",		/obj/item/aquarium_prop/lcorp,						500) = 1,
 
+		//fishing level ups
+		new /datum/data/extraction_cargo("N Corp Trainer ",				/obj/item/attribute_increase/fixer,					250) = 1,
+
 		//More nets
 		new /datum/data/extraction_cargo("Fishing Net ",					/obj/item/fishing_net,							300) = 1,
 		new /datum/data/extraction_cargo("Nylon Fishing Net ",				/obj/item/fishing_net/nylon,					700) = 1,
