@@ -76,7 +76,13 @@
 	outfit = /datum/outfit/job/agent;
 	name = "L-Corp Remnant";
 	short_desc = "You are an L-Corp Remnant, Some how survived the site burial. Now, You hear some rumble move apart... Will this be your chance to escape?";
-	id_job = Civilian
+	id_job = "Civilian"
+	},
+/obj/effect/mob_spawn/human/syndicate{
+	outfit = /datum/outfit/job/agent;
+	name = "L-Corp Remnant";
+	short_desc = "You are an L-Corp Remnant, Some how survived the site burial. Now, You hear some rumble move apart... Will this be your chance to escape?";
+	id_job = "Civilian"
 	},
 /turf/open/floor/facility/dark,
 /area/city/backstreets_room{
@@ -3469,7 +3475,13 @@
 	outfit = /datum/outfit/job/agent;
 	name = "L-Corp Remnant";
 	short_desc = "You are an L-Corp Remnant, Some how survived the site burial. Now, You hear some rumble move apart... Will this be your chance to escape?";
-	id_job = Civilian
+	id_job = "Civilian"
+	},
+/obj/effect/mob_spawn/human/syndicate{
+	outfit = /datum/outfit/job/agent;
+	name = "L-Corp Remnant";
+	short_desc = "You are an L-Corp Remnant, Some how survived the site burial. Now, You hear some rumble move apart... Will this be your chance to escape?";
+	id_job = "Civilian"
 	},
 /turf/open/floor/wood{
 	icon_state = "wood-broken"
@@ -5276,7 +5288,13 @@
 	outfit = /datum/outfit/job/agent;
 	name = "L-Corp Remnant";
 	short_desc = "You are an L-Corp Remnant, Some how survived the site burial. Now, You hear some rumble move apart... Will this be your chance to escape?";
-	id_job = Civilian
+	id_job = "Civilian"
+	},
+/obj/effect/mob_spawn/human/syndicate{
+	outfit = /datum/outfit/job/agent;
+	name = "L-Corp Remnant";
+	short_desc = "You are an L-Corp Remnant, Some how survived the site burial. Now, You hear some rumble move apart... Will this be your chance to escape?";
+	id_job = "Civilian"
 	},
 /turf/open/floor/noslip,
 /area/city/backstreets_room{
@@ -10343,7 +10361,13 @@
 	outfit = /datum/outfit/job/agent;
 	name = "L-Corp Remnant";
 	short_desc = "You are an L-Corp Remnant, Some how survived the site burial. Now, You hear some rumble move apart... Will this be your chance to escape?";
-	id_job = Civilian
+	id_job = "Civilian"
+	},
+/obj/effect/mob_spawn/human/syndicate{
+	outfit = /datum/outfit/job/agent;
+	name = "L-Corp Remnant";
+	short_desc = "You are an L-Corp Remnant, Some how survived the site burial. Now, You hear some rumble move apart... Will this be your chance to escape?";
+	id_job = "Civilian"
 	},
 /turf/open/floor/facility/dark,
 /area/city/backstreets_room{
