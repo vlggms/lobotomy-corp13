@@ -42,9 +42,9 @@
 	//do we override the default fishing speed? (should be used if you want to debug something or make a rod with unique speed)
 	var/speed_override = FALSE
 
-/obj/item/fishing_rod/examine(mob/user)
+/obj/item/fishing_rod/examine(mob/living/user)
 	. = ..()
-	. += span_notice("This rod has a modifier of +[ReturnRodPower()].")
+	. += span_notice("This rod has a modifier of +[ReturnRodPower(user)].")
 
 /obj/item/fishing_rod/attackby(obj/item/attacking_item, mob/user, params)
 	if(SlotCheck(attacking_item,ROD_SLOT_LINE))
@@ -122,7 +122,10 @@
 	if(user.mind)
 		FISHSKILLEXP(5)
 	if(loottable.len)
-		//Fishing successful
+		//Fishing successful, gain 0.1 devotion
+		user.devotion+=0.1
+		if(user.devotion>=5)
+			to_chat(user, span_notice("You fish and pray. and gain some devotion."))
 		FishLoot(pickweight(loottable), user, get_turf(fishing_spot))
 	else
 		to_chat(user, span_notice("The water remains still. You dont catch anything."))
@@ -130,7 +133,8 @@
 
 //Proc for returning loot table chances.
 /obj/item/fishing_rod/proc/ReturnLootTable(mob/living/wielder, turf/open/water/deep/water_turf)
-	var/fishing_power = ReturnRodPower()
+	var/fishing_power = ReturnRodPower(wielder)
+	fishing_power *= (SSfishing.moonphase-0.5)*0.5
 	return water_turf.ReturnChanceList(fishing_power)
 
 /*Tgstation uses signals and projectiles for their fishing rods
@@ -170,13 +174,30 @@
 	return TRUE
 
 //Unique Fish Retrieval
-/obj/item/fishing_rod/proc/FishLoot(obj/item/fished_thing, mob/living/user, turf/fish_land)
+/obj/item/fishing_rod/proc/FishLoot(obj/item/fished_thing, mob/living/carbon/human/user, turf/fish_land)
 	var/obj/item/potential_fishie = new fished_thing(get_turf(user))
 	if(istype(potential_fishie, /obj/item/food/fish))
 		var/obj/item/food/fish/fishie = potential_fishie
 		var/size_modifier = rand(1, 4) * 0.1
 		//Size modifier has to be a decimal in order to keep it from making massive fish.
+		//Gets bonuses if mercury is in alignment, and if you're aligned with the mercury god
+		if(SSfishing.Mercury == 2)
+			size_modifier*=1.3
+		if(user.god_aligned == FISHGOD_MERCURY)
+			size_modifier*=2
+
 		fishie.randomize_weight_and_size(size_modifier)
+		if(SSfishing.Mercury == 2)
+			to_chat(user, span_nicegreen("Lir smiles upon you!."))
+
+		if(user.god_aligned == FISHGOD_URANUS && prob(20))
+			to_chat(user, span_nicegreen("Abena Mansa smiles upon you! You caught some cash!"))
+			new /obj/item/stack/spacecash/c100(get_turf(user))
+
+		if(SSfishing.Saturn == 6)
+			to_chat(user, span_nicegreen("Saturn is in alignment. You feel like better for fishing."))
+			user.adjustSanityLoss(-5)
+
 		to_chat(user, span_nicegreen("You caught [fishie.name]."))
 		if(user.mind)
 			FISHSKILLEXP(10)
@@ -319,7 +340,7 @@
 	return TRUE
 
 	//Calculates fishing power
-/obj/item/fishing_rod/proc/ReturnRodPower()
+/obj/item/fishing_rod/proc/ReturnRodPower(mob/living/user)
 	. = rod_level
 	if(hook)
 		if(istype(hook,/obj/item/fishing_component/hook))
@@ -327,6 +348,9 @@
 	if(line)
 		if(istype(line,/obj/item/fishing_component/line))
 			. += line.fishing_value
+
+	if(user.god_aligned == FISHGOD_NEPTUNE)
+		. *=1.4
 
 
 //Upgraded Varient

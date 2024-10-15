@@ -38,16 +38,26 @@
 	if(contents.len > 0)
 		. += span_notice("[contents.len]/5 things are caught in the [src].")
 
-/obj/structure/destructible/fishing_net/AltClick(mob/user)
+/obj/structure/destructible/fishing_net/AltClick(mob/living/user)
 	. = ..()
 	if(!user.canUseTopic(src, BE_CLOSE))
 		return
-	EmptyNet(get_turf(user))
+	EmptyNet(get_turf(user), user)
 
-/obj/structure/destructible/fishing_net/proc/EmptyNet(turf/dropoff)
+/obj/structure/destructible/fishing_net/proc/EmptyNet(turf/dropoff, mob/living/user)
 	for(var/atom/movable/harvest in contents)
 		harvest.forceMove(dropoff)
 	new net_type(dropoff)
+	if(SSmaptype.maptype in SSmaptype.citymaps)
+		var/enemy_chance = 30
+		if(user.god_aligned == FISHGOD_VENUS)
+			enemy_chance/=2
+
+		if(SSfishing.Venus == 2)
+			enemy_chance/=2
+
+		if(prob(enemy_chance))
+			SpawnEnemy(dropoff, user)
 	qdel(src)
 
 /obj/structure/destructible/fishing_net/proc/CatchFish()
@@ -59,6 +69,20 @@
 	update_icon()
 	fishin_cooldown_delay = rand(0, 5) SECONDS
 	addtimer(CALLBACK(src, PROC_REF(CatchFish)), fishin_cooldown + fishin_cooldown_delay)
+
+/obj/structure/destructible/fishing_net/proc/SpawnEnemy(turf/dropoff, mob/user)
+	var/spawning = /mob/living/simple_animal/hostile/shrimp
+	if(prob(1) && SSfishing.Mars == 4)
+		spawning = /mob/living/simple_animal/hostile/distortion/shrimp_rambo/easy
+
+	if(prob(10))	//Super rares first
+		spawning = /mob/living/simple_animal/hostile/shrimp_soldier
+	if(prob(30))
+		spawning = pick(/mob/living/simple_animal/hostile/shrimp_rifleman, /mob/living/simple_animal/hostile/senior_shrimp)
+	else
+		spawning = /mob/living/simple_animal/hostile/shrimp
+
+	new spawning(dropoff)
 
 //Nylon net
 /obj/item/fishing_net/nylon
