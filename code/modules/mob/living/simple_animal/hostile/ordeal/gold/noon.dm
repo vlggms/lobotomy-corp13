@@ -298,7 +298,7 @@
 		return FALSE
 	. = ..()
 	if(.)
-		if(!istype(target, /mob/living/carbon/human))
+		if(!ishuman(target))
 			return
 		var/mob/living/carbon/human/TH = target
 		if(TH.health < 0 || TH.sanity_lost)
