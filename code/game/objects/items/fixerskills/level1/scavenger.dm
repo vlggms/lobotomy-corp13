@@ -42,7 +42,7 @@
 
 /datum/action/cooldown/skulk
 	icon_icon = 'icons/hud/screen_skills.dmi'
-	button_icon_state = "smkulk"
+	button_icon_state = "skulk"
 	name = "Skulk"
 	cooldown_time = 300
 

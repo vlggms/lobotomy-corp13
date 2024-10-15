@@ -17,9 +17,6 @@
 	//Compile people around you
 	for(var/mob/living/M in view(4, get_turf(src)))
 		if(M.god_aligned != M.god_aligned)
-			var/turf/lightning_source = get_step(get_step(target, NORTH), NORTH)
-			lightning_source.Beam(target, icon_state="lightning[rand(1,12)]", time = 5)
-
 			//Deal a fuckload of damage to athiests
 			if(M.god_aligned == FISHGOD_NONE)
 				var/damagedealing = clamp(user.devotion, 1, 50)

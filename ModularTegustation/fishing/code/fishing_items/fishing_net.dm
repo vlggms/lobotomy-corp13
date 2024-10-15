@@ -23,6 +23,7 @@
 	var/fishin_cooldown_delay = 1 SECONDS
 	var/fishin_power = 0.8
 	var/turf/open/water/deep/open_waters
+	var/enemy_chance = 15	//chance of getting enemies
 
 /obj/structure/destructible/fishing_net/Initialize()
 	. = ..()
@@ -49,15 +50,15 @@
 		harvest.forceMove(dropoff)
 	new net_type(dropoff)
 	if(SSmaptype.maptype in SSmaptype.citymaps)
-		var/enemy_chance = 30
 		if(user.god_aligned == FISHGOD_VENUS)
 			enemy_chance/=2
 
 		if(SSfishing.Venus == 2)
 			enemy_chance/=2
 
-		if(prob(enemy_chance))
-			SpawnEnemy(dropoff, user)
+		if(enemychance>5)	//gotta have more than 5%
+			if(prob(enemy_chance))
+				SpawnEnemy(dropoff, user)
 	qdel(src)
 
 /obj/structure/destructible/fishing_net/proc/CatchFish()
@@ -75,9 +76,9 @@
 	if(prob(1) && SSfishing.Mars == 4)
 		spawning = /mob/living/simple_animal/hostile/distortion/shrimp_rambo/easy
 
-	if(prob(10))	//Super rares first
+	if(prob(5))	//Super rares first
 		spawning = /mob/living/simple_animal/hostile/shrimp_soldier
-	if(prob(30))
+	if(prob(20))
 		spawning = pick(/mob/living/simple_animal/hostile/shrimp_rifleman, /mob/living/simple_animal/hostile/senior_shrimp)
 	else
 		spawning = /mob/living/simple_animal/hostile/shrimp
@@ -87,7 +88,7 @@
 //Nylon net
 /obj/item/fishing_net/nylon
 	name = "nylon fishing net"
-	desc = "This tool functions as a aquatic wall you can put down and just harvest the fish that get tangled in it. Nylon nets catch fish significantly faster."
+	desc = "This tool functions as a aquatic wall you can put down and just harvest the fish that get tangled in it. Nylon nets catch fish significantly faster, and catch less enemies."
 	icon = 'ModularTegustation/fishing/icons/fishing.dmi'
 	icon_state = "nylon_net"
 	w_class = WEIGHT_CLASS_HUGE
@@ -102,12 +103,13 @@
 	net_type = /obj/item/fishing_net/nylon
 	fishin_cooldown = 15 SECONDS
 	fishin_power = 0.7	//Slightly worse
+	enemy_chance = 10
 
 
 //Steel net
 /obj/item/fishing_net/steel
 	name = "steel fishing net"
-	desc = "This tool functions as a aquatic wall you can put down and just harvest the fish that get tangled in it. Steel nets are slightly slower, but catch better fish"
+	desc = "This tool functions as a aquatic wall you can put down and just harvest the fish that get tangled in it. Steel nets are slightly slower, but catch better fish and less enemies."
 	icon = 'ModularTegustation/fishing/icons/fishing.dmi'
 	icon_state = "steel_net"
 	w_class = WEIGHT_CLASS_HUGE
@@ -122,4 +124,5 @@
 	net_type = /obj/item/fishing_net/steel
 	fishin_cooldown = 30 SECONDS	//Slower.
 	fishin_power = 1.4
+	enemy_chance = 10
 
