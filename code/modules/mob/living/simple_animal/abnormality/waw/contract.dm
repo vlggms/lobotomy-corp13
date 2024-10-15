@@ -28,7 +28,7 @@
 	melee_damage_upper = 20
 	attack_sound = 'sound/abnormalities/so_that_no_cry/curse_talisman.ogg'
 	attack_verb_continuous = "points at"
-	attack_verb_simple = "points at"
+	attack_verb_simple = "point at"
 	melee_damage_type = PALE_DAMAGE
 	work_damage_amount = 8
 	work_damage_type = PALE_DAMAGE	//Lawyers take your fucking soul
@@ -85,10 +85,10 @@
 		'Contract of Stealth': For the next 15 seconds, your target becomes much harder to see and indirect projectiles no longer hit them.<br>\
 		<br>\
 		'Contract of Recall': After you mark a Target, the next time you use this contract you will bring them over to your location.<br>\
-		However, This will stun them for a brief second after you teleport them.<br>\
+		However, There is a small delay before you click the ability and pulling them over.<br>\
 		<br>\
 		|Contracted Gateway|: You are able to turn incorporeal for a few seconds.<br>\
-		You are still able to give out contracts while you are incorporeal.<br>\
+		You are unable to give out contracts while you are incorporeal.<br>\
 		You are able to exit your incorporeal form early by clicking your ability again.</b>")
 
 /mob/living/simple_animal/hostile/abnormality/contract/Initialize()
@@ -234,6 +234,7 @@
 	if (istype(owner, /mob/living))
 		var/mob/living/L = owner
 		if (L.incorporeal_move)
+			to_chat(L, span_warning("You can't use your contracts while incorporeal!"))
 			return FALSE
 	. = ..()
 
@@ -360,12 +361,17 @@
 	active_msg = "You prepare your Contract of Recall..."
 	deactive_msg = "You put away your Contract of Recall..."
 	var/mob/living/simple_animal/marked_animal = null
+	var/long_cooldown = 100
+	var/base_cooldown = 10
 	var/target_stun_time = 30
+	var/pulling_time = 30
 
 /obj/effect/proc_holder/spell/pointed/contract/recall/Click()
 	if (marked_animal != null)
 		// do recall
-		spawn(20)
+		playsound(marked_animal, 'sound/magic/ethereal_enter.ogg', 50, TRUE, -1)
+		to_chat(marked_animal, span_warning("You are about to be pulled over by A Contract, Signed!"))
+		spawn(pulling_time)
 			marked_animal.forceMove(action.owner.loc)
 			playsound(marked_animal.loc, 'sound/magic/ethereal_exit.ogg', 50, TRUE, -1)
 			marked_animal.Stun(target_stun_time)
@@ -373,11 +379,11 @@
 			marked_animal.remove_status_effect(STATUS_EFFECT_RECALL)
 			marked_animal = null
 			charge_counter = 0
-			charge_max = 100
+			charge_max = long_cooldown
 			recharging = TRUE
 			action.UpdateButtonIcon()
 	else
-		charge_max = 10
+		charge_max = base_cooldown
 		..()
 
 /obj/effect/proc_holder/spell/pointed/contract/recall/cast(list/targets, mob/user)

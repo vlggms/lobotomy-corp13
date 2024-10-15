@@ -142,8 +142,6 @@
 		Your spin attack is a 5x5 AoE centered around you, which deallals medium BLACK damage.<br>\
 		You are able to toggle your spin attack on and off with your ability.</b>")
 
-
-
 /mob/living/simple_animal/hostile/abnormality/blue_shepherd/Initialize()
 	. = ..()
 	if(IsCombatMap())

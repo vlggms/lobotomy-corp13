@@ -124,34 +124,35 @@
 
 //Attack procs
 /mob/living/simple_animal/hostile/abnormality/babayaga/proc/TryJump(atom/target)
-	if(jump_cooldown >= world.time)
-		return
-	jump_cooldown = world.time + jump_cooldown_time //We reset the cooldown later if there are no targets
-	SLEEP_CHECK_DEATH(0.1 SECONDS)
-	var/list/potentialmarked = list()
-	var/list/marked = list()
-	var/mob/living/carbon/human/Y
-	for(var/mob/living/carbon/human/L in GLOB.player_list)
-		if(faction_check_mob(L, FALSE) || L.stat >= HARD_CRIT || L.sanity_lost || z != L.z) // Dead or in hard crit, insane, or on a different Z level.
-			continue
-		potentialmarked += L
-	var/numbermarked = 1 + round(LAZYLEN(potentialmarked) / 5, 1) //1 + 1 in 5 potential players, to the nearest whole number
-	for(var/i = numbermarked, i>=1, i--)
-		if(potentialmarked.len <= 0)
-			break
-		Y = pick(potentialmarked)
-		potentialmarked -= Y
-		if(Y.stat == DEAD || Y.is_working)
-			continue
-		marked+=Y
-	if(marked.len <= 0) //Oh no, everyone's dead!
-		jump_cooldown = world.time
-		return
-	var/mob/living/carbon/human/final_target = pick(marked)
-	final_target.apply_status_effect(STATUS_EFFECT_BABAYAGA)
-	playsound(get_turf(final_target), 'sound/abnormalities/babayaga/warning.ogg', 30, FALSE)
-	SLEEP_CHECK_DEATH(5 SECONDS)
-	JumpAttack(final_target)
+	if(!IsCombatMap())
+		if(jump_cooldown >= world.time)
+			return
+		jump_cooldown = world.time + jump_cooldown_time //We reset the cooldown later if there are no targets
+		SLEEP_CHECK_DEATH(0.1 SECONDS)
+		var/list/potentialmarked = list()
+		var/list/marked = list()
+		var/mob/living/carbon/human/Y
+		for(var/mob/living/carbon/human/L in GLOB.player_list)
+			if(faction_check_mob(L, FALSE) || L.stat >= HARD_CRIT || L.sanity_lost || z != L.z) // Dead or in hard crit, insane, or on a different Z level.
+				continue
+			potentialmarked += L
+		var/numbermarked = 1 + round(LAZYLEN(potentialmarked) / 5, 1) //1 + 1 in 5 potential players, to the nearest whole number
+		for(var/i = numbermarked, i>=1, i--)
+			if(potentialmarked.len <= 0)
+				break
+			Y = pick(potentialmarked)
+			potentialmarked -= Y
+			if(Y.stat == DEAD || Y.is_working)
+				continue
+			marked+=Y
+		if(marked.len <= 0) //Oh no, everyone's dead!
+			jump_cooldown = world.time
+			return
+		var/mob/living/carbon/human/final_target = pick(marked)
+		final_target.apply_status_effect(STATUS_EFFECT_BABAYAGA)
+		playsound(get_turf(final_target), 'sound/abnormalities/babayaga/warning.ogg', 30, FALSE)
+		SLEEP_CHECK_DEATH(5 SECONDS)
+		JumpAttack(final_target)
 
 /mob/living/simple_animal/hostile/abnormality/babayaga/proc/JumpAttack(atom/target)
 	playsound(get_turf(src), 'sound/abnormalities/babayaga/charge.ogg', 100, 1)

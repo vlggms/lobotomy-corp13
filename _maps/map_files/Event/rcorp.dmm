@@ -30,6 +30,7 @@
 "cL" = (
 /obj/structure/table/reinforced,
 /obj/machinery/recharger,
+/obj/effect/landmark/nobasic_incorp_move,
 /turf/open/floor/pod/dark,
 /area/city/outskirts)
 "cW" = (
@@ -300,6 +301,12 @@
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/telecomms/bus/preset_four,
 /turf/open/floor/circuit/telecomms/mainframe,
+/area/city/outskirts)
+"ph" = (
+/obj/machinery/jukebox{
+	req_access = list()
+	},
+/turf/open/floor/pod/dark,
 /area/city/outskirts)
 "pi" = (
 /obj/structure/rack,
@@ -720,6 +727,7 @@
 	name = "raven team prep";
 	req_access_txt = "7"
 	},
+/obj/effect/landmark/nobasic_incorp_move,
 /turf/open/floor/pod,
 /area/city/outskirts)
 "Kh" = (
@@ -802,6 +810,7 @@
 /area/city/outskirts)
 "Oi" = (
 /obj/structure/table/reinforced,
+/obj/effect/landmark/nobasic_incorp_move,
 /turf/open/floor/pod/dark,
 /area/city/outskirts)
 "OA" = (
@@ -856,6 +865,7 @@
 	name = "Officer's meet";
 	req_access_txt = "19"
 	},
+/obj/effect/landmark/nobasic_incorp_move,
 /turf/open/floor/pod,
 /area/city/outskirts)
 "Qn" = (
@@ -918,6 +928,11 @@
 /obj/item/stack/sheet/mineral/sandbags/fifty,
 /obj/item/storage/box/barrier,
 /turf/open/floor/pod/dark,
+/area/city/outskirts)
+"Rl" = (
+/obj/structure/window/shuttle/survival_pod,
+/obj/effect/landmark/nobasic_incorp_move,
+/turf/open/floor/pod,
 /area/city/outskirts)
 "Rv" = (
 /obj/structure/chair/comfy,
@@ -5341,7 +5356,7 @@ PG
 PG
 PG
 PG
-Qd
+ph
 Ew
 FE
 YM
@@ -6556,12 +6571,12 @@ PG
 PG
 PG
 Kh
-aC
-sS
-sS
-sS
-sS
-aC
+jO
+Rl
+Rl
+Rl
+Rl
+jO
 PG
 PG
 PG
@@ -6743,27 +6758,27 @@ PG
 gP
 gP
 gP
-aC
-aC
-aC
-sS
-sS
-sS
-sS
-sS
-aC
-aC
+jO
+jO
+jO
+Rl
+Rl
+Rl
+Rl
+Rl
+jO
+jO
 PG
 PG
 PG
 PG
 tZ
-aC
+jO
 gM
 My
 Qd
 Im
-aC
+jO
 PG
 PG
 PG
@@ -6945,7 +6960,7 @@ FR
 gP
 gP
 gP
-aC
+jO
 Fu
 kr
 Qd
@@ -6954,18 +6969,18 @@ Qd
 Qd
 Qd
 ih
-aC
+jO
 PG
 PG
 PG
 PG
 hy
-aC
+jO
 gk
 Hk
 Hk
 Im
-aC
+jO
 PG
 PG
 PG
@@ -7147,7 +7162,7 @@ PG
 gP
 gP
 gP
-aC
+jO
 Kj
 Qd
 mR
@@ -7156,18 +7171,18 @@ cW
 cW
 RB
 xu
-aC
+jO
 PG
 PG
 PG
 PG
 Bs
-aC
+jO
 gM
 AS
 Hk
 Qd
-aC
+jO
 PG
 PG
 PG
@@ -7349,7 +7364,7 @@ PG
 gP
 gP
 gP
-aC
+jO
 Fu
 kr
 RB
@@ -7358,13 +7373,13 @@ xu
 xu
 RB
 Qd
-aC
+jO
 PG
 PG
 PG
 PG
 CQ
-aC
+jO
 Xg
 Hk
 Hk
@@ -7551,7 +7566,7 @@ PG
 gP
 gP
 gP
-aC
+jO
 Kj
 Qd
 Rv
@@ -7560,18 +7575,18 @@ xu
 wW
 kl
 Qd
-aC
+jO
 PG
 PG
 PG
 Gl
 PG
-aC
+jO
 gM
 AS
 Hk
 Qd
-sS
+Rl
 PG
 PG
 PG
@@ -7753,7 +7768,7 @@ PG
 gP
 gP
 gP
-aC
+jO
 mE
 kr
 RB
@@ -7768,12 +7783,12 @@ PG
 PG
 PG
 PG
-aC
+jO
 gk
 Hk
 Hk
 kG
-sS
+Rl
 PG
 PG
 Gl
@@ -7955,7 +7970,7 @@ FR
 gP
 gP
 gP
-aC
+jO
 Qd
 Qd
 Rv
@@ -7964,18 +7979,18 @@ xu
 wW
 kl
 Qd
-aC
+jO
 PG
 PG
 PG
 PG
 PG
-aC
+jO
 gM
 My
 Qd
 mH
-sS
+Rl
 PG
 kA
 kA
@@ -8157,7 +8172,7 @@ PG
 gP
 gP
 gP
-aC
+jO
 Qd
 Qd
 RB
@@ -8166,18 +8181,18 @@ wW
 xu
 RB
 Qd
-aC
+jO
 Oi
 Oi
 Oi
 cL
+jO
+jO
 aC
 aC
 aC
 aC
-aC
-aC
-aC
+jO
 kA
 kA
 oi
@@ -8359,7 +8374,7 @@ PG
 gP
 gP
 gP
-aC
+jO
 Ls
 Qd
 RB
@@ -8561,7 +8576,7 @@ PG
 gP
 gP
 gP
-aC
+jO
 yJ
 Cp
 Qd
@@ -8762,8 +8777,8 @@ PG
 gP
 gP
 gP
-aC
-aC
+jO
+jO
 aC
 aC
 aC
@@ -8964,7 +8979,7 @@ PG
 gP
 gP
 gP
-aC
+jO
 Et
 yz
 fC
@@ -9166,7 +9181,7 @@ gP
 gP
 kA
 kA
-aC
+jO
 RB
 RB
 mR
