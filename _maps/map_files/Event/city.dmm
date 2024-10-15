@@ -249,6 +249,10 @@
 /obj/structure/fluff/bus/passable,
 /turf/open/floor/carpet/black,
 /area/city/shop)
+"cM" = (
+/obj/structure/fishshrine,
+/turf/open/floor/plating/beach/sand,
+/area/city)
 "cP" = (
 /obj/effect/spawner/lootdrop/garbage_spawner,
 /obj/effect/decal/cleanable/cobweb/cobweb2,
@@ -36884,7 +36888,7 @@ Hm
 zr
 Nh
 Xr
-Xr
+cM
 Xr
 Xr
 Xr

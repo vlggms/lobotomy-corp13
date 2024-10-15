@@ -2305,6 +2305,10 @@
 "WX" = (
 /turf/open/floor/facility/dark,
 /area/city/fixers)
+"Xd" = (
+/obj/structure/fishshrine,
+/turf/open/floor/plating/grass,
+/area/city)
 "Xf" = (
 /obj/structure/chair/office,
 /turf/open/floor/facility/white,
@@ -41090,7 +41094,7 @@ OT
 zr
 zr
 BX
-BX
+Xd
 BX
 BX
 TJ
