@@ -361,14 +361,13 @@
 
 /mob/living/simple_animal/hostile/ordeal/silentgirl_corrosion/proc/TryTransform(mob/living/carbon/human/hooman)
 	if(stat >= DEAD)
-		return FALSE
+		return
 	if(vengeful || current_target)
-		return FALSE
+		return
 	if(istype(hooman))
 		hooman.apply_status_effect(/datum/status_effect/gold_guilty)
 	icon_state = "silent_girl_corrosion_angry"
 	playsound(src, 'sound/abnormalities/silentgirl/Guilt_Apply.ogg', 15, FALSE)
-	return TRUE
 
 /datum/status_effect/gold_guilty
 	id = "guilty"
