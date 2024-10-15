@@ -8379,7 +8379,6 @@
 /area/city/backstreets_alley)
 "PJ" = (
 /turf/closed/indestructible/reinforced{
-	color = #f1b5ff
 	},
 /area/city/backstreets_room{
 	name = "Info Deparment?"
