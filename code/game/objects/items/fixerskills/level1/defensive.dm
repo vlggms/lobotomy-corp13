@@ -75,6 +75,7 @@
 	human.physiology.black_mod /= 0.8
 	human.physiology.pale_mod /= 0.8
 	human.adjustBruteLoss(-30) //Heals you
+	new /obj/effect/temp_visual/heal(get_turf(owner), "#FF4444")
 
 
 //Meditation
@@ -112,4 +113,5 @@
 	human.physiology.black_mod /= 0.8
 	human.physiology.pale_mod /= 0.8
 	human.adjustSanityLoss(-30) //Heals you
+	new /obj/effect/temp_visual/heal(get_turf(owner), "#6E6EFF")
 
