@@ -21,6 +21,10 @@ SUBSYSTEM_DEF(fishing)
 
 /datum/controller/subsystem/fishing/Initialize()
 	..()
+	if(!(SSmaptype.maptype in SSmaptype.citymaps))
+		moonphase = 3	//3 should be average
+		return	//Don't start if it's not a city map.
+
 	//First set a moon phase
 	moonphase = rand(1, 4)
 
