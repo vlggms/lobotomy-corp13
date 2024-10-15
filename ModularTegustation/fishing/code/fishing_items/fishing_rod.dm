@@ -190,9 +190,9 @@
 		if(SSfishing.Mercury == 2)
 			to_chat(user, span_nicegreen("Lir smiles upon you!."))
 
-		if(user.god_aligned == FISHGOD_URANUS && prob(20))
+		if(user.god_aligned == FISHGOD_URANUS && prob(5))
 			to_chat(user, span_nicegreen("Abena Mansa smiles upon you! You caught some cash!"))
-			new /obj/item/stack/spacecash/c100(get_turf(user))
+			new /obj/item/stack/spacecash/c50(get_turf(user))
 
 		if(SSfishing.Saturn == 6)
 			to_chat(user, span_nicegreen("Saturn is in alignment. You feel like better for fishing."))

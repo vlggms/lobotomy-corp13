@@ -2268,6 +2268,15 @@
 /obj/structure/timelock,
 /turf/open/floor/plating/ashplanet/rocky,
 /area/city/backstreets_alley)
+"Uw" = (
+/obj/effect/light_emitter{
+	light_power = 4;
+	light_range = 25;
+	set_cap = 3;
+	set_luminosity = 24
+	},
+/turf/open/water/deep/saltwater,
+/area/city)
 "UQ" = (
 /obj/machinery/door/airlock/wood{
 	name = "workshop fixer access";
@@ -48033,7 +48042,7 @@ YC
 YC
 YC
 YC
-YC
+Uw
 YC
 YC
 YC
@@ -50589,7 +50598,7 @@ YC
 YC
 YC
 YC
-YC
+Uw
 YC
 YC
 YC
@@ -55230,7 +55239,7 @@ YC
 YC
 YC
 YC
-YC
+Uw
 YC
 YC
 YC

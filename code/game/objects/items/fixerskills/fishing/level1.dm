@@ -78,7 +78,7 @@
 	button_icon_state = "planet"
 	name = "planet"
 	cooldown_time = 6000
-	devotion_cost = 5
+	devotion_cost = 2
 
 /datum/action/cooldown/fishing/planet/FishEffect(mob/living/user)
 	to_chat(user, span_notice("You shift the movement of your aligned planet by 1."))
@@ -132,7 +132,7 @@
 	button_icon_state = "prayer"
 	name = "prayer"
 	cooldown_time = 300
-	devotion_cost = 5
+	devotion_cost = 3
 	var/healamount = 5
 
 /datum/action/cooldown/fishing/prayer/FishEffect(mob/living/user)

@@ -17,6 +17,7 @@
 	if (owner.stat == DEAD)
 		return FALSE
 	to_chat(H,"You expend [devotion_cost] devotion. Remaining Devotion: [H.devotion].")
+	H.devotion-=devotion_cost
 	StartCooldown()
 	FishEffect(H)
 

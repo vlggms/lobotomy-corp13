@@ -80,7 +80,7 @@
 	if(!display_names.len)
 		return
 	var/choice = input(user,"Which planet would you like to destroy?","Supernova") as null|anything in display_names
-	if(!choice || !user.canUseTopic(src, BE_CLOSE, FALSE, NO_TK))
+	if(!choice)
 		to_chat(user, span_notice("You stay your hand."))
 		return
 
