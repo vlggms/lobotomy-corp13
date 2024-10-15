@@ -401,7 +401,7 @@
 "bT" = (
 /obj/machinery/light{
 	dir = 1;
-	color = #03A9F4
+	color = "#03A9F4"
 	},
 /obj/machinery/vending/cola/shamblers,
 /obj/machinery/camera/autoname,
@@ -459,7 +459,7 @@
 "ce" = (
 /obj/machinery/light{
 	dir = 4;
-	color = #03A9F4
+	color = "#03A9F4"
 	},
 /turf/open/floor/carpet/green,
 /area/city/backstreets_room{
@@ -557,7 +557,7 @@
 "cK" = (
 /obj/machinery/light{
 	dir = 8;
-	color = #03A9F4
+	color = "#03A9F4"
 	},
 /turf/open/floor/carpet/orange,
 /area/city/backstreets_room{
@@ -1203,7 +1203,7 @@
 "gk" = (
 /obj/machinery/light{
 	dir = 8;
-	color = #03A9F4
+	color = "#03A9F4"
 	},
 /obj/item/trash/raisins,
 /turf/open/floor/carpet/green,
@@ -1898,7 +1898,7 @@
 "jF" = (
 /obj/machinery/light{
 	dir = 8;
-	color = #03A9F4
+	color = "#03A9F4"
 	},
 /obj/machinery/camera/autoname{
 	dir = 4
@@ -2279,10 +2279,6 @@
 	},
 /turf/open/floor/plating/asteroid/basalt,
 /area/city/backstreets_alley)
-"lr" = (
-/obj/item/attribute_increase/medium,
-/turf/open/floor/plating/ashplanet/rocky,
-/area/city/backstreets_alley)
 "lu" = (
 /obj/machinery/light/broken{
 	dir = 8
@@ -2377,7 +2373,7 @@
 "lR" = (
 /obj/machinery/light{
 	dir = 4;
-	color = #03A9F4
+	color = "#03A9F4"
 	},
 /obj/effect/decal/cleanable/dirt/dust,
 /turf/open/floor/facility/dark,
@@ -2476,7 +2472,7 @@
 	})
 "mn" = (
 /obj/machinery/light{
-	color = #03A9F4
+	color = "#03A9F4"
 	},
 /obj/machinery/camera/autoname{
 	dir = 1
@@ -2652,7 +2648,7 @@
 	})
 "nc" = (
 /obj/machinery/light{
-	color = #03A9F4
+	color = "#03A9F4"
 	},
 /obj/machinery/computer{
 	dir = 1
@@ -2776,7 +2772,7 @@
 "nU" = (
 /obj/machinery/light{
 	dir = 8;
-	color = #03A9F4
+	color = "#03A9F4"
 	},
 /obj/machinery/camera/autoname{
 	dir = 4
@@ -3393,7 +3389,7 @@
 "qw" = (
 /obj/machinery/light{
 	dir = 4;
-	color = #03A9F4
+	color = "#03A9F4"
 	},
 /obj/machinery/camera/autoname{
 	dir = 8
@@ -3499,7 +3495,7 @@
 	})
 "qU" = (
 /obj/machinery/light{
-	color = #03A9F4
+	color = "#03A9F4"
 	},
 /obj/machinery/computer{
 	dir = 1
@@ -3840,7 +3836,7 @@
 	})
 "sj" = (
 /obj/machinery/light{
-	color = #03A9F4
+	color = "#03A9F4"
 	},
 /obj/effect/portal/permanent{
 	name = "safety elevator";
@@ -4287,10 +4283,6 @@
 /area/city/backstreets_room{
 	name = "Safety Deparment?"
 	})
-"uy" = (
-/obj/item/clothing/suit/armor/ego_gear/waw/lamp,
-/turf/open/floor/plating/ashplanet/rocky,
-/area/city/backstreets_alley)
 "uA" = (
 /obj/machinery/door/airlock/vault{
 	name = "Jangsan Tiger's containment unit"
@@ -4502,7 +4494,7 @@
 	})
 "vC" = (
 /obj/machinery/light{
-	color = #03A9F4
+	color = "#03A9F4"
 	},
 /obj/machinery/camera/autoname{
 	dir = 1
@@ -4762,6 +4754,10 @@
 /area/city/backstreets_room{
 	name = "L-Corp Entrance"
 	})
+"wW" = (
+/obj/item/clothing/suit/armor/ego_gear/waw/lamp,
+/turf/open/floor/plating/ashplanet/rocky,
+/area/city/backstreets_alley)
 "wY" = (
 /obj/structure/chair/office,
 /obj/effect/decal/cleanable/dirt/dust,
@@ -4946,7 +4942,7 @@
 "xX" = (
 /obj/machinery/light{
 	dir = 8;
-	color = #03A9F4
+	color = "#03A9F4"
 	},
 /turf/open/floor/facility/dark,
 /area/city/backstreets_room{
@@ -5246,10 +5242,6 @@
 /area/city/backstreets_room{
 	name = "Control Deparment?"
 	})
-"zQ" = (
-/obj/item/ego_weapon/lamp,
-/turf/open/floor/plating/ashplanet/rocky,
-/area/city/backstreets_alley)
 "zU" = (
 /obj/effect/decal/cleanable/blood/tracks{
 	dir = 9
@@ -5740,6 +5732,10 @@
 /area/city/backstreets_room{
 	name = "Control Deparment?"
 	})
+"Ci" = (
+/obj/item/ego_weapon/lamp,
+/turf/open/floor/plating/ashplanet/rocky,
+/area/city/backstreets_alley)
 "Cl" = (
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/structure/closet,
@@ -5866,6 +5862,10 @@
 /area/city/backstreets_room{
 	name = "Control Deparment?"
 	})
+"CX" = (
+/obj/item/attribute_increase/medium,
+/turf/open/floor/plating/ashplanet/rocky,
+/area/city/backstreets_alley)
 "CY" = (
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/effect/amurdad_grass,
@@ -6401,7 +6401,7 @@
 "Fl" = (
 /obj/machinery/light{
 	dir = 8;
-	color = #03A9F4
+	color = "#03A9F4"
 	},
 /obj/machinery/camera/autoname{
 	dir = 4
@@ -7373,7 +7373,7 @@
 "Kn" = (
 /obj/machinery/light{
 	dir = 1;
-	color = #03A9F4
+	color = "#03A9F4"
 	},
 /obj/machinery/vending/coffee,
 /obj/machinery/camera/autoname,
@@ -8216,7 +8216,7 @@
 "OT" = (
 /obj/machinery/light{
 	dir = 1;
-	color = #03A9F4
+	color = "#03A9F4"
 	},
 /obj/effect/portal/permanent{
 	name = "control elevator";
@@ -8304,7 +8304,7 @@
 	})
 "Pu" = (
 /obj/machinery/light{
-	color = #03A9F4
+	color = "#03A9F4"
 	},
 /obj/effect/portal/permanent{
 	id = "training";
@@ -8435,7 +8435,7 @@
 "Qh" = (
 /obj/machinery/light{
 	dir = 4;
-	color = #03A9F4
+	color = "#03A9F4"
 	},
 /obj/machinery/camera/autoname{
 	dir = 8
@@ -8628,7 +8628,7 @@
 "QS" = (
 /obj/machinery/light{
 	dir = 1;
-	color = #03A9F4
+	color = "#03A9F4"
 	},
 /obj/structure/table,
 /obj/effect/decal/cleanable/dirt/dust,
@@ -8725,7 +8725,7 @@
 "Rs" = (
 /obj/machinery/light{
 	dir = 4;
-	color = #03A9F4
+	color = "#03A9F4"
 	},
 /turf/open/floor/carpet/orange,
 /area/city/backstreets_room{
@@ -8776,7 +8776,7 @@
 "RH" = (
 /obj/machinery/light{
 	dir = 4;
-	color = #03A9F4
+	color = "#03A9F4"
 	},
 /turf/open/floor/facility/dark,
 /area/city/backstreets_room{
@@ -9672,7 +9672,7 @@
 "Ws" = (
 /obj/machinery/light{
 	dir = 1;
-	color = #03A9F4
+	color = "#03A9F4"
 	},
 /obj/structure/table,
 /obj/item/crowbar,
@@ -38373,7 +38373,7 @@ OP
 Ua
 WP
 WP
-uy
+wW
 WP
 nu
 WP
@@ -38484,9 +38484,9 @@ OP
 OP
 OP
 Ca
-zQ
-lr
-lr
+Ci
+CX
+CX
 Bn
 OP
 kI
