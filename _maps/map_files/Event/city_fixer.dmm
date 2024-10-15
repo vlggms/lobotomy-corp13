@@ -626,12 +626,14 @@
 "kC" = (
 /obj/structure/table,
 /obj/item/reagent_containers/food/condiment/enzyme,
+/obj/item/reagent_containers/glass/beaker,
 /turf/open/floor/plasteel,
 /area/city/shop)
 "kG" = (
 /obj/structure/table,
 /obj/item/kitchen/knife,
 /obj/item/price_tagger,
+/obj/item/reagent_containers/glass/beaker,
 /turf/open/floor/plasteel,
 /area/city/shop)
 "kH" = (
@@ -1602,6 +1604,9 @@
 /area/city/shop)
 "yZ" = (
 /obj/structure/closet/crate/freezer/surplus_limbs,
+/obj/item/krevive,
+/obj/item/krevive,
+/obj/item/krevive,
 /turf/open/floor/plasteel/showroomfloor,
 /area/city/shop)
 "ze" = (
@@ -1644,6 +1649,9 @@
 /obj/item/vending_refill/drugs,
 /obj/item/vending_refill/drugs,
 /obj/item/vending_refill/drugs,
+/obj/item/storage/backpack/duffelbag/med/surgery{
+	pixel_y = 5
+	},
 /turf/open/floor/plasteel/showroomfloor,
 /area/city/shop)
 "zA" = (
@@ -1681,10 +1689,8 @@
 /turf/closed/indestructible/reinforced,
 /area/city/shop)
 "Aj" = (
-/obj/item/storage/backpack/duffelbag/med/surgery{
-	pixel_y = 5
-	},
 /obj/structure/table/greyscale,
+/obj/item/storage/backpack/duffelbag/med/upgradedsurgery,
 /turf/open/indestructible/white,
 /area/city/shop)
 "Ak" = (
@@ -2246,6 +2252,7 @@
 /turf/closed/indestructible/reinforced,
 /area/city/fixers)
 "Ut" = (
+/obj/structure/timelock,
 /turf/open/floor/plating/ashplanet/rocky,
 /area/city/backstreets_alley)
 "UQ" = (
@@ -41588,7 +41595,7 @@ Hm
 Hm
 Hm
 zr
-zr
+Hm
 zr
 TK
 zr
@@ -41845,7 +41852,7 @@ Hm
 Hm
 Hm
 zr
-XK
+Hm
 zr
 Hm
 Hm
@@ -42102,7 +42109,7 @@ Hm
 Hm
 Hm
 zr
-XK
+Hm
 zr
 zr
 Hm
@@ -42359,8 +42366,8 @@ Hm
 Hm
 Hm
 zr
-XK
-XK
+Hm
+zr
 zr
 Hm
 OT
@@ -42616,8 +42623,8 @@ Hm
 Hm
 Hm
 zr
-XK
-XK
+Hm
+zr
 zr
 Hm
 OT
@@ -42873,9 +42880,9 @@ Hm
 Hm
 Hm
 zr
-XK
-XK
-zr
+Hm
+Hm
+Hm
 Hm
 OT
 XR
@@ -43130,8 +43137,8 @@ Hm
 Hm
 Hm
 zr
-XK
-XK
+Hm
+zr
 zr
 Hm
 OT
@@ -43386,9 +43393,9 @@ Vd
 Hm
 Hm
 Hm
+sG
+Hm
 zr
-XK
-XK
 zr
 Hm
 OT

@@ -10,7 +10,7 @@
 	icon_icon = 'icons/hud/screen_skills.dmi'
 	button_icon_state = "butcher"
 	name = "Butcher"
-	cooldown_time = 100
+	cooldown_time = 20
 
 /datum/action/cooldown/butcher/Trigger()
 	if(!..())

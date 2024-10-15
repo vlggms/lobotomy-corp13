@@ -1313,6 +1313,9 @@
 /area/city)
 "pT" = (
 /obj/structure/closet/crate/freezer/surplus_limbs,
+/obj/item/krevive,
+/obj/item/krevive,
+/obj/item/krevive,
 /turf/open/floor/plasteel/showroomfloor,
 /area/city/shop)
 "pV" = (
@@ -1533,6 +1536,9 @@
 /obj/item/roller{
 	pixel_y = 12
 	},
+/obj/item/storage/backpack/duffelbag/med/surgery{
+	pixel_y = 5
+	},
 /turf/open/floor/plasteel/showroomfloor,
 /area/city/shop)
 "sj" = (
@@ -1651,10 +1657,8 @@
 /turf/open/floor/plasteel/showroomfloor,
 /area/city/shop)
 "tH" = (
-/obj/item/storage/backpack/duffelbag/med/surgery{
-	pixel_y = 5
-	},
 /obj/structure/table/greyscale,
+/obj/item/storage/backpack/duffelbag/med/upgradedsurgery,
 /turf/open/indestructible/white,
 /area/city/shop)
 "tI" = (
