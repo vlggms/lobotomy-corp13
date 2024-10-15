@@ -143,6 +143,14 @@
 /area/city/backstreets_room{
 	name = "Safety Deparment?"
 	})
+"aP" = (
+/obj/effect/turf_decal/bot_red,
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/mob_spawn/human/skeleton/alive,
+/turf/open/floor/facility/dark,
+/area/city/backstreets_room{
+	name = "Training Deparment?"
+	})
 "aQ" = (
 /obj/effect/turf_decal/siding/green{
 	dir = 10
@@ -945,6 +953,16 @@
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/item/refinedpe,
 /turf/open/floor/facility/halls,
+/area/city/backstreets_room{
+	name = "Safety Deparment?"
+	})
+"eF" = (
+/obj/effect/turf_decal/siding/green{
+	dir = 10
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/mob_spawn/human/skeleton/alive,
+/turf/open/floor/carpet/green,
 /area/city/backstreets_room{
 	name = "Safety Deparment?"
 	})
@@ -2964,9 +2982,11 @@
 	name = "Control Deparment?"
 	})
 "oL" = (
-/turf/open/space/basic,
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/mob_spawn/human/skeleton/alive,
+/turf/open/floor/facility/halls,
 /area/city/backstreets_room{
-	name = "Tunnels"
+	name = "Info Deparment?"
 	})
 "oN" = (
 /obj/effect/decal/cleanable/dirt/dust,
@@ -3156,6 +3176,7 @@
 	},
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/effect/decal/cleanable/vomit/old,
+/obj/effect/mob_spawn/human/skeleton/alive,
 /turf/open/floor/carpet/green,
 /area/city/backstreets_room{
 	name = "Safety Deparment?"
@@ -7011,6 +7032,7 @@
 	},
 /obj/effect/turf_decal/tile/brown,
 /obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/mob_spawn/human/skeleton/alive,
 /turf/open/floor/plasteel/white,
 /area/city/backstreets_room{
 	name = "Training Deparment?"
@@ -7562,6 +7584,13 @@
 /area/city/backstreets_room{
 	name = "Info Deparment?"
 	})
+"Lt" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/mob_spawn/human/skeleton/alive,
+/turf/open/floor/carpet/green,
+/area/city/backstreets_room{
+	name = "Safety Deparment?"
+	})
 "Ly" = (
 /obj/effect/turf_decal/siding/brown{
 	dir = 8
@@ -7838,6 +7867,7 @@
 	},
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/mob_spawn/human/skeleton/alive,
 /turf/open/floor/carpet/green,
 /area/city/backstreets_room{
 	name = "Safety Deparment?"
@@ -8378,10 +8408,11 @@
 /turf/open/floor/plating/dirt/jungle/dark,
 /area/city/backstreets_alley)
 "PJ" = (
-/turf/closed/indestructible/reinforced{
-	},
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/mob_spawn/human/skeleton/alive,
+/turf/open/floor/wood,
 /area/city/backstreets_room{
-	name = "Info Deparment?"
+	name = "Training Deparment?"
 	})
 "PK" = (
 /obj/machinery/light/broken{
@@ -8646,6 +8677,15 @@
 /turf/open/floor/facility/dark,
 /area/city/backstreets_room{
 	name = "Control Deparment?"
+	})
+"Rc" = (
+/obj/effect/turf_decal/bot_red,
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/decal/cleanable/food/plant_smudge,
+/obj/effect/mob_spawn/human/skeleton/alive,
+/turf/open/floor/facility/dark,
+/area/city/backstreets_room{
+	name = "Safety Deparment?"
 	})
 "Rd" = (
 /obj/machinery/light/broken,
@@ -9551,6 +9591,7 @@
 	},
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/effect/decal/remains/human,
+/obj/effect/mob_spawn/human/skeleton/alive,
 /turf/open/floor/carpet/orange,
 /area/city/backstreets_room{
 	name = "Training Deparment?"
@@ -10053,6 +10094,13 @@
 /area/city/backstreets_room{
 	name = "Safety Deparment?"
 	})
+"XZ" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/mob_spawn/human/skeleton/alive,
+/turf/open/floor/plasteel/showroomfloor,
+/area/city/backstreets_room{
+	name = "Info Deparment?"
+	})
 "Yb" = (
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/item/trash/candy,
@@ -10212,6 +10260,16 @@
 /turf/open/floor/facility/halls,
 /area/city/backstreets_room{
 	name = "Info Deparment?"
+	})
+"YJ" = (
+/obj/effect/turf_decal/siding/green{
+	dir = 6
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/mob_spawn/human/skeleton/alive,
+/turf/open/floor/carpet/green,
+/area/city/backstreets_room{
+	name = "Safety Deparment?"
 	})
 "YP" = (
 /obj/effect/spawner/room/backstreets/small_south,
@@ -10480,7 +10538,7 @@ kI
 kI
 kI
 kI
-oL
+kI
 zV
 zV
 zV
@@ -12577,7 +12635,7 @@ Vq
 kI
 Vq
 bn
-gL
+PJ
 gL
 nm
 GR
@@ -13816,7 +13874,7 @@ GR
 GR
 mC
 wg
-gL
+PJ
 ta
 mC
 GR
@@ -14916,7 +14974,7 @@ dX
 Vc
 rm
 KR
-kg
+aP
 Wk
 Rx
 Wk
@@ -32705,7 +32763,7 @@ Qk
 AU
 AU
 qr
-PJ
+AU
 AU
 AU
 AU
@@ -33094,7 +33152,7 @@ Jh
 aX
 FX
 Ts
-aQ
+eF
 QA
 OC
 QA
@@ -33600,7 +33658,7 @@ vi
 vi
 vi
 rv
-vi
+oL
 AU
 My
 bb
@@ -33655,7 +33713,7 @@ Ll
 QA
 Jh
 qX
-lU
+Rc
 Wm
 Nw
 oV
@@ -34239,7 +34297,7 @@ kI
 AU
 vi
 vi
-vi
+oL
 AU
 AU
 pt
@@ -34608,7 +34666,7 @@ SL
 gJ
 DJ
 su
-DJ
+XZ
 hk
 kI
 kI
@@ -35158,7 +35216,7 @@ AU
 lu
 IN
 BN
-vi
+oL
 wO
 AU
 kI
@@ -35462,7 +35520,7 @@ HN
 vJ
 lV
 ke
-vi
+oL
 AU
 RG
 wO
@@ -35660,7 +35718,7 @@ sn
 QA
 CZ
 jP
-IB
+YJ
 QA
 OC
 QA
@@ -37152,7 +37210,7 @@ vi
 hY
 Pn
 vi
-vi
+oL
 AU
 bf
 ww
@@ -37200,7 +37258,7 @@ kI
 jY
 gE
 xz
-oy
+Lt
 Rl
 QA
 OC
@@ -37906,7 +37964,7 @@ vi
 AU
 Um
 vi
-vi
+oL
 Pn
 Pn
 vi

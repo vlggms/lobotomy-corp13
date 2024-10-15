@@ -14,9 +14,6 @@
 /area/city/backstreets_room)
 "aE" = (
 /obj/effect/decal/cleanable/dirt/dust,
-/obj/effect/landmark/npc_reveal_sensor{
-	sensor_id = "ai"
-	},
 /obj/effect/turf_decal/trimline/blue/filled/warning{
 	dir = 8
 	},
@@ -28,7 +25,8 @@
 /area/city/backstreets_room)
 "bu" = (
 /obj/effect/landmark/npc_reveal_sensor{
-	sensor_id = "entering"
+	sensor_id = "entering";
+	cooldown_duration = 6000
 	},
 /turf/open/floor/stone,
 /area/city/backstreets_room)
@@ -66,7 +64,8 @@
 /area/city/backstreets_room)
 "dm" = (
 /obj/effect/landmark/npc_reveal_sensor{
-	sensor_id = "ai"
+	sensor_id = "ai";
+	cooldown_duration = 6000
 	},
 /turf/open/floor/stone,
 /area/city/backstreets_room)
@@ -219,6 +218,12 @@
 	dir = 5
 	},
 /obj/effect/landmark/cratespawn/corpo,
+/obj/effect/light_emitter{
+	light_power = 4;
+	light_range = 25;
+	set_cap = 3;
+	set_luminosity = 24
+	},
 /turf/open/floor/engine,
 /area/city/backstreets_room)
 "iX" = (
@@ -450,15 +455,6 @@
 /area/city/backstreets_room)
 "sf" = (
 /obj/effect/decal/cleanable/dirt/dust,
-/turf/open/floor/stone,
-/area/city/backstreets_room)
-"sq" = (
-/obj/effect/turf_decal/siding/thinplating{
-	dir = 4
-	},
-/obj/effect/landmark/npc_reveal_sensor{
-	sensor_id = "entering"
-	},
 /turf/open/floor/stone,
 /area/city/backstreets_room)
 "sO" = (
@@ -972,7 +968,8 @@
 "VZ" = (
 /obj/structure/mineral_door/iron,
 /obj/effect/landmark/npc_reveal_sensor{
-	sensor_id = "speech"
+	sensor_id = "speech";
+	cooldown_duration = 6000
 	},
 /turf/open/floor/stone,
 /area/city/backstreets_room)
@@ -1007,6 +1004,12 @@
 /area/city/backstreets_room)
 "ZB" = (
 /obj/structure/statue/diamond/ai2,
+/obj/effect/light_emitter{
+	light_power = 4;
+	light_range = 25;
+	set_cap = 3;
+	set_luminosity = 24
+	},
 /turf/open/floor/mineral/diamond,
 /area/city/backstreets_room)
 "ZG" = (
@@ -1258,7 +1261,7 @@ CH
 nA
 oN
 Cl
-sq
+Cl
 Wn
 "}
 (12,1,1) = {"
