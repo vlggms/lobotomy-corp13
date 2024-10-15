@@ -175,22 +175,22 @@
 		new /datum/data/extraction_cargo("N Corp Trainer ",				/obj/item/attribute_increase/fixer,					250) = 1,
 
 		//More nets
-		new /datum/data/extraction_cargo("Fishing Net ",					/obj/item/fishing_net,							300) = 1,
-		new /datum/data/extraction_cargo("Nylon Fishing Net ",				/obj/item/fishing_net/nylon,					700) = 1,
-		new /datum/data/extraction_cargo("Steel Fishing Net ",				/obj/item/fishing_net/steel,					700) = 1,
+		new /datum/data/extraction_cargo("Fishing Net ",					/obj/item/fishing_net,							100) = 1,
+		new /datum/data/extraction_cargo("Nylon Fishing Net ",				/obj/item/fishing_net/nylon,					300) = 1,
+		new /datum/data/extraction_cargo("Steel Fishing Net ",				/obj/item/fishing_net/steel,					300) = 1,
 
 		//Better rods
-		new /datum/data/extraction_cargo("Fibreglass Fishing Rod ",			/obj/item/fishing_rod/fiberglass,				700) = 1,
-		new /datum/data/extraction_cargo("Gold-plated Fishing Rod ",		/obj/item/fishing_rod/gold,						700) = 1,
-		new /datum/data/extraction_cargo("Titanium Fishing Rod ",			/obj/item/fishing_rod/titanium,					700) = 1,
+		new /datum/data/extraction_cargo("Fibreglass Fishing Rod ",			/obj/item/fishing_rod/fiberglass,				500) = 1,
+		new /datum/data/extraction_cargo("Gold-plated Fishing Rod ",		/obj/item/fishing_rod/gold,						500) = 1,
+		new /datum/data/extraction_cargo("Titanium Fishing Rod ",			/obj/item/fishing_rod/titanium,					500) = 1,
 
 		//Lines
-		new /datum/data/extraction_cargo("Woven Fishing Line ",			/obj/item/fishing_component/line/woven,				500) = 1,
-		new /datum/data/extraction_cargo("Reinforced Fishing Line ", 	/obj/item/fishing_component/line/reinforced,		700) = 1,
+		new /datum/data/extraction_cargo("Woven Fishing Line ",			/obj/item/fishing_component/line/woven,				300) = 1,
+		new /datum/data/extraction_cargo("Reinforced Fishing Line ", 	/obj/item/fishing_component/line/reinforced,		500) = 1,
 
 		//Hooks
-		new /datum/data/extraction_cargo("Weighted Fishing Hook ", 		/obj/item/fishing_component/hook/weighted,			500) = 1,
-		new /datum/data/extraction_cargo("Shiny Fishing Hook ", 		/obj/item/fishing_component/hook/shiny,				1000) = 1,
+		new /datum/data/extraction_cargo("Weighted Fishing Hook ", 		/obj/item/fishing_component/hook/weighted,			400) = 1,
+		new /datum/data/extraction_cargo("Shiny Fishing Hook ", 		/obj/item/fishing_component/hook/shiny,				700) = 1,
 
 		//Fishing Skills (L1)
 		new /datum/data/extraction_cargo("Level 1 Skill: Scry ",				/obj/item/book/granter/action/skill/scry,				200) = 1,
