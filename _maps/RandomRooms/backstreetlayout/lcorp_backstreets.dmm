@@ -8,6 +8,10 @@
 /area/city/backstreets_room{
 	name = "Training Deparment?"
 	})
+"ac" = (
+/obj/item/attribute_increase/medium,
+/turf/open/floor/plating/ashplanet/rocky,
+/area/city/backstreets_alley)
 "ad" = (
 /obj/effect/turf_decal/siding/purple{
 	dir = 5
@@ -374,7 +378,7 @@
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/effect/portal/permanent{
 	name = "info elevator";
-	id = safety
+	id = "info_safety"
 	},
 /turf/open/floor/plasteel/elevatorshaft,
 /area/city/backstreets_room{
@@ -696,7 +700,8 @@
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/machinery/monolith{
-	pixel_y = 8
+	pixel_y = 8;
+	anchored = 0
 	},
 /turf/open/floor/carpet/purple,
 /area/city/backstreets_room{
@@ -3836,7 +3841,7 @@
 	},
 /obj/effect/portal/permanent{
 	name = "safety elevator";
-	id = safety
+	id = "safety"
 	},
 /turf/open/floor/plasteel/elevatorshaft,
 /area/city/backstreets_room{
@@ -4273,7 +4278,7 @@
 "ux" = (
 /obj/effect/portal/permanent{
 	name = "safety elevator";
-	id = safety
+	id = "safety"
 	},
 /turf/open/floor/plasteel/elevatorshaft,
 /area/city/backstreets_room{
@@ -4670,7 +4675,10 @@
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/effect/decal/cleanable/oil/slippery,
 /obj/effect/decal/cleanable/blood/old,
-/mob/living/simple_animal/hostile/abnormality/apex_predator,
+/mob/living/simple_animal/hostile/abnormality/apex_predator{
+	backstab_damage = 50;
+	jump_damage = 40
+	},
 /turf/open/floor/facility/halls,
 /area/city/backstreets_room{
 	name = "Info Deparment?"
@@ -4971,6 +4979,10 @@
 /area/city/backstreets_room{
 	name = "Info Deparment?"
 	})
+"yj" = (
+/obj/item/ego_weapon/lamp,
+/turf/open/floor/plating/ashplanet/rocky,
+/area/city/backstreets_alley)
 "yl" = (
 /obj/machinery/light/broken,
 /obj/structure/dresser,
@@ -6822,7 +6834,7 @@
 "HK" = (
 /obj/effect/portal/permanent{
 	name = "info elevator";
-	id = training
+	id = "info_training"
 	},
 /turf/open/floor/plasteel/elevatorshaft,
 /area/city/backstreets_room{
@@ -7132,7 +7144,7 @@
 "Jt" = (
 /obj/effect/portal/permanent{
 	name = "info elevator";
-	id = training
+	id = "info_training"
 	},
 /turf/open/floor/plasteel/elevatorshaft,
 /area/city/backstreets_room{
@@ -8285,7 +8297,7 @@
 	color = #03A9F4
 	},
 /obj/effect/portal/permanent{
-	id = training;
+	id = "training";
 	name = "training elevator"
 	},
 /turf/open/floor/plasteel/elevatorshaft,
@@ -8403,7 +8415,7 @@
 	})
 "PZ" = (
 /obj/effect/portal/permanent{
-	id = training;
+	id = "training";
 	name = "training elevator"
 	},
 /turf/open/floor/plasteel/elevatorshaft,
@@ -9347,7 +9359,7 @@
 "UM" = (
 /obj/effect/portal/permanent{
 	name = "info elevator";
-	id = safety
+	id = "info_safety"
 	},
 /turf/open/floor/plasteel/elevatorshaft,
 /area/city/backstreets_room{
@@ -10383,6 +10395,10 @@
 /area/city/backstreets_room{
 	name = "Training Deparment?"
 	})
+"ZR" = (
+/obj/item/clothing/suit/armor/ego_gear/waw/lamp,
+/turf/open/floor/plating/ashplanet/rocky,
+/area/city/backstreets_alley)
 "ZY" = (
 /obj/effect/turf_decal/siding/thinplating{
 	dir = 1
@@ -38351,7 +38367,7 @@ OP
 Ua
 WP
 WP
-WP
+ZR
 WP
 nu
 WP
@@ -38462,9 +38478,9 @@ OP
 OP
 OP
 Ca
-WP
-WP
-WP
+yj
+ac
+ac
 Bn
 OP
 kI
