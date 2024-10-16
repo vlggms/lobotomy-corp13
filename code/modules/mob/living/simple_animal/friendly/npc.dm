@@ -12,6 +12,10 @@
 	turns_per_move = 1
 	maxHealth = 10000
 	health = 10000
+	move_resist = MOVE_FORCE_STRONG // They kept stealing my npcs
+	pull_force = MOVE_FORCE_STRONG
+	can_buckle_to = FALSE // Please. I beg you. Stop stealing my vending machines.
+	mob_size = MOB_SIZE_HUGE // No more lockers, Whitaker
 	density = TRUE
 	damage_coeff = list(BRUTE = 0, RED_DAMAGE = 0, WHITE_DAMAGE = 0, BLACK_DAMAGE = 0, PALE_DAMAGE = 0)
 	var/pulse_cooldown
