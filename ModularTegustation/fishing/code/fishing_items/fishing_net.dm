@@ -23,6 +23,7 @@
 	var/fishin_cooldown_delay = 1 SECONDS
 	var/fishin_power = 0.8
 	var/turf/open/water/deep/open_waters
+	var/enemy_chance = 15	//chance of getting enemies
 
 /obj/structure/destructible/fishing_net/Initialize()
 	. = ..()
@@ -38,16 +39,26 @@
 	if(contents.len > 0)
 		. += span_notice("[contents.len]/5 things are caught in the [src].")
 
-/obj/structure/destructible/fishing_net/AltClick(mob/user)
+/obj/structure/destructible/fishing_net/AltClick(mob/living/user)
 	. = ..()
 	if(!user.canUseTopic(src, BE_CLOSE))
 		return
-	EmptyNet(get_turf(user))
+	EmptyNet(get_turf(user), user)
 
-/obj/structure/destructible/fishing_net/proc/EmptyNet(turf/dropoff)
+/obj/structure/destructible/fishing_net/proc/EmptyNet(turf/dropoff, mob/living/user)
 	for(var/atom/movable/harvest in contents)
 		harvest.forceMove(dropoff)
 	new net_type(dropoff)
+	if(SSmaptype.maptype in SSmaptype.citymaps)
+		if(user.god_aligned == FISHGOD_VENUS)
+			enemy_chance/=2
+
+		if(SSfishing.Venus == 2)
+			enemy_chance/=2
+
+		if(enemychance>5)	//gotta have more than 5%
+			if(prob(enemy_chance))
+				SpawnEnemy(dropoff, user)
 	qdel(src)
 
 /obj/structure/destructible/fishing_net/proc/CatchFish()
@@ -60,10 +71,24 @@
 	fishin_cooldown_delay = rand(0, 5) SECONDS
 	addtimer(CALLBACK(src, PROC_REF(CatchFish)), fishin_cooldown + fishin_cooldown_delay)
 
+/obj/structure/destructible/fishing_net/proc/SpawnEnemy(turf/dropoff, mob/user)
+	var/spawning = /mob/living/simple_animal/hostile/shrimp
+	if(prob(1) && SSfishing.Mars == 4)
+		spawning = /mob/living/simple_animal/hostile/distortion/shrimp_rambo/easy
+
+	if(prob(5))	//Super rares first
+		spawning = /mob/living/simple_animal/hostile/shrimp_soldier
+	if(prob(20))
+		spawning = pick(/mob/living/simple_animal/hostile/shrimp_rifleman, /mob/living/simple_animal/hostile/senior_shrimp)
+	else
+		spawning = /mob/living/simple_animal/hostile/shrimp
+
+	new spawning(dropoff)
+
 //Nylon net
 /obj/item/fishing_net/nylon
 	name = "nylon fishing net"
-	desc = "This tool functions as a aquatic wall you can put down and just harvest the fish that get tangled in it. Nylon nets catch fish significantly faster."
+	desc = "This tool functions as a aquatic wall you can put down and just harvest the fish that get tangled in it. Nylon nets catch fish significantly faster, and catch less enemies."
 	icon = 'ModularTegustation/fishing/icons/fishing.dmi'
 	icon_state = "nylon_net"
 	w_class = WEIGHT_CLASS_HUGE
@@ -78,12 +103,13 @@
 	net_type = /obj/item/fishing_net/nylon
 	fishin_cooldown = 15 SECONDS
 	fishin_power = 0.7	//Slightly worse
+	enemy_chance = 10
 
 
 //Steel net
 /obj/item/fishing_net/steel
 	name = "steel fishing net"
-	desc = "This tool functions as a aquatic wall you can put down and just harvest the fish that get tangled in it. Steel nets are slightly slower, but catch better fish"
+	desc = "This tool functions as a aquatic wall you can put down and just harvest the fish that get tangled in it. Steel nets are slightly slower, but catch better fish and less enemies."
 	icon = 'ModularTegustation/fishing/icons/fishing.dmi'
 	icon_state = "steel_net"
 	w_class = WEIGHT_CLASS_HUGE
@@ -98,4 +124,5 @@
 	net_type = /obj/item/fishing_net/steel
 	fishin_cooldown = 30 SECONDS	//Slower.
 	fishin_power = 1.4
+	enemy_chance = 10
 
