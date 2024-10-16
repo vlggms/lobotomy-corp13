@@ -120,6 +120,14 @@
 		L.adjustBruteLoss(pulse_healing)
 		to_chat(L, span_nicegreen("Fairies come from [user] to heal your wounds."))
 
+/obj/item/ego_weapon/support/wingbeat/suicide_act(mob/living/carbon/user)
+	. = ..()
+	user.visible_message(span_suicide("[user] yells to the fairies around [user.p_them()] that [user.p_they()] won't spend time with the fairies anymore! It looks like [user.p_theyre()] trying to commit suicide!"))
+	playsound(user, 'sound/abnormalities/fairyfestival/fairy_festival_bite.ogg', 50, TRUE, -1)
+	user.unequip_everything()
+	user.dust()
+	return MANUAL_SUICIDE
+
 /obj/item/ego_weapon/change
 	name = "change"
 	desc = "A hammer made with the desire to change anything"
@@ -209,7 +217,7 @@
 	if(!ishuman(owner))
 		return
 	var/mob/living/carbon/human/H = owner
-	to_chat(H, span_nicegreen("A shield from [owner] increases your resistance to pale damage!"))
+	to_chat(H, span_nicegreen("A shield increases your resistance to pale damage!"))
 	H.physiology.pale_mod /= 1.1
 	return ..()
 
@@ -222,22 +230,22 @@
 	return ..()
 
 
-/obj/item/ego_weapon/melty_eyeball
-	name = "melty eyeball"
-	desc = "I felt like I was being dragged deeper into the swamp of gloom as the fight went on."
+/obj/item/ego_weapon/cavernous_wailing
+	name = "cavernous wailing"
+	desc = "Cry with me..."
 	special = "Attack a friendly human while wearing matching armor to heal their HP and SP by a small amount."
-	icon_state = "melty_eyeball"
+	icon_state = "cavernous_wailing"
 	force = 14
 	damtype = BLACK_DAMAGE
 	attack_verb_continuous = list("slams", "strikes", "smashes")
 	attack_verb_simple = list("slam", "strike", "smash")
 	hitsound = 'sound/abnormalities/blubbering_toad/attack.ogg'
 
-/obj/item/ego_weapon/melty_eyeball/attack(mob/living/M, mob/living/user)
+/obj/item/ego_weapon/cavernous_wailing/attack(mob/living/M, mob/living/user)
 	if(!ishuman(M) || M == user || !user.faction_check_mob(M) || (user.a_intent != INTENT_HELP))
 		..()
 		return
-	var/obj/item/clothing/suit/armor/ego_gear/zayin/melty_eyeball/C = user.get_item_by_slot(ITEM_SLOT_OCLOTHING)
+	var/obj/item/clothing/suit/armor/ego_gear/zayin/cavernous_wailing/C = user.get_item_by_slot(ITEM_SLOT_OCLOTHING)
 	if(!istype(C))
 		..()
 		return
@@ -323,4 +331,108 @@
 	attack_verb_continuous = list("smacks", "strikes", "beats")
 	attack_verb_simple = list("smack", "strike", "beat")
 
+/obj/item/ego_weapon/plastic
+	name = "plastic smile"
+	desc = "A mysterious worn-out tool used for operations."
+	special = "Attack a friendly human while wearing matching armor to buff their JUSTICE by the amount of damage you would have dealt."
+	icon_state = "plastic"
+	force = 14
+	damtype = BLACK_DAMAGE
+	attack_verb_continuous = list("smacks", "strikes", "beats")
+	attack_verb_simple = list("smack", "strike", "beat")
+	hitsound = 'sound/abnormalities/kqe/hitsound1.ogg'
 
+/obj/item/ego_weapon/plastic/attack(mob/living/M, mob/living/user)
+	if(!ishuman(M) || M == user || !user.faction_check_mob(M) || user.a_intent != INTENT_HELP)
+		..()
+		return
+	var/obj/item/clothing/suit/armor/ego_gear/tools/plastic/P = user.get_item_by_slot(ITEM_SLOT_OCLOTHING)
+	if(!istype(P))
+		..()
+		return
+	var/mob/living/carbon/human/HT = M
+	if(HT.has_status_effect(/datum/status_effect/you_happy_buff))
+		if(user.a_intent == INTENT_HELP)
+			return
+		..()
+		return
+	var/justice_mod = 1 + (get_modified_attribute_level(user, JUSTICE_ATTRIBUTE)/100)
+	HT.apply_status_effect(/datum/status_effect/you_happy_buff)
+	var/datum/status_effect/you_happy_buff/Y = HT.has_status_effect(/datum/status_effect/you_happy_buff)
+	Y.EnableBuff((force * justice_mod) * force_multiplier)
+	playsound(get_turf(user), 'sound/effects/light_flicker.ogg', 25, TRUE, -9)
+	HT.visible_message(span_nicegreen("[HT] had their justice buffed with [src] by [user]!"))
+	user.changeNext_move(CLICK_CD_MELEE * 5)
+
+/datum/status_effect/you_happy_buff
+	id = "you must be happy ego buff"
+	status_type = STATUS_EFFECT_UNIQUE
+	duration = 6 SECONDS
+	alert_type = null
+	var/buff_amount = 0
+
+/datum/status_effect/you_happy_buff/on_remove()
+	if(!ishuman(owner))
+		return
+	var/mob/living/carbon/human/H = owner
+	H.adjust_attribute_bonus(JUSTICE_ATTRIBUTE, -buff_amount)
+	return ..()
+
+/datum/status_effect/you_happy_buff/proc/EnableBuff(amount)
+	if(!ishuman(owner))
+		return
+	if(!amount)
+		return
+	buff_amount = amount
+	var/mob/living/carbon/human/H = owner
+	H.adjust_attribute_bonus(JUSTICE_ATTRIBUTE, amount)
+
+/*
+* Ironically this shield reveals to you all the dangerous
+* things around you.
+*/
+/obj/item/ego_weapon/shield/dead_dream
+	name = "dead dream"
+	desc = "The last thing Maria saw before entering the dream. She felt... safe."
+	special = "Upon deflecting a attack, glimpse the location of all nearby mobs for 1 seconds."
+	icon_state = "dead_dream"
+	damtype = WHITE_DAMAGE
+	var/glimpse_cooldown = 0
+	var/glimpse_cooldown_delay = 3 SECONDS
+
+/obj/item/ego_weapon/shield/dead_dream/attack_self(mob/user)
+	. = ..()
+	if(glimpse_cooldown < world.time)
+		Glimpse()
+
+//Experimental Feature, Most likely too costly for its own good.
+/obj/item/ego_weapon/shield/dead_dream/proc/Glimpse()
+	for(var/mob/living/carbon/human/H in view(6, get_turf(src)))
+		H.apply_status_effect(/datum/status_effect/display/glimpse_thermal)
+		to_chat(H, span_info("You glimpse into her dream."))
+	glimpse_cooldown = world.time + glimpse_cooldown_delay
+
+/obj/item/ego_weapon/prohibited
+	name = "PROHIBITED!!!"
+	desc = "You've pressed it numerous times and you still have something you want to know about it?"
+	special = "Attack an enemy while wearing matching armor to make them lose interest in you. Might also just make them angry."
+	icon_state = "touch"
+	force = 14
+	damtype = WHITE_DAMAGE
+	attack_verb_continuous = list("sprays", "hoses", "mists", "drizzles")
+	attack_verb_simple = list("spray", "hose", "mist", "drizzle")
+	hitsound = 'sound/effects/spray3.ogg'
+
+/obj/item/ego_weapon/prohibited/attack(mob/living/M, mob/living/user)
+	. = ..()
+	if(prob(75)) //75% chance of just not working at all - this ability has the potential to be OP
+		return
+	if(user.faction_check_mob(M) || (!istype(M, /mob/living/simple_animal/hostile)))
+		return
+	var/obj/item/clothing/suit/armor/ego_gear/tools/prohibited/P = user.get_item_by_slot(ITEM_SLOT_OCLOTHING)
+	if(!istype(P))
+		return
+	var/mob/living/simple_animal/hostile/T = M
+	if(T.target == user)
+		T.LoseTarget()
+		T.visible_message(span_nicegreen("[T] lost interest in [user]!"))

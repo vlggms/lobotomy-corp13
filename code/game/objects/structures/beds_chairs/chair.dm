@@ -116,10 +116,14 @@
 /obj/structure/chair/post_buckle_mob(mob/living/M)
 	. = ..()
 	handle_layer()
+	M.pixel_x += pixel_x // LOBOTOMYCORPORATION ADDITION -- BETTER CHAIRS FOR MAPPERS
+	M.pixel_y += pixel_y
 
-/obj/structure/chair/post_unbuckle_mob()
+/obj/structure/chair/post_unbuckle_mob(mob/living/M)
 	. = ..()
 	handle_layer()
+	M.pixel_x -= pixel_x // LOBOTOMYCORPORATION ADDITION -- BETTER CHAIRS FOR MAPPERS
+	M.pixel_y -= pixel_y
 
 /obj/structure/chair/setDir(newdir)
 	..()
@@ -492,10 +496,12 @@
 	origin_type = /obj/structure/chair/plastic
 
 /obj/item/chair/icequeen
-	name = "Ice Queen's Throne"
+	name = "Snow Queen's Throne"
 	desc = "An icey throne."
 	icon = 'ModularTegustation/Teguicons/160x160.dmi'
 	icon_state = "snowqueen_throne"
+	dir = 2
+	layer = HIGH_OBJ_LAYER
 	density = 1
 	anchored = 1
 	bound_height = 160

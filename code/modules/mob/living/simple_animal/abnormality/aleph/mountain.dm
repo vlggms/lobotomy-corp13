@@ -41,6 +41,19 @@
 	)
 	gift_type =  /datum/ego_gifts/smile
 	abnormality_origin = ABNORMALITY_ORIGIN_LOBOTOMY
+
+	secret_chance = TRUE // Kirie, why
+	secret_icon_state = "amog"
+	secret_gift = /datum/ego_gifts/amogus
+
+	observation_prompt = "It smells like death itself in its containment unit, the mound of rotted, half-purtefied flesh stares at you with its many faces. <br>\
+		Arms and legs bent at odd angles, entrails draped like lazy christmas decorations, innumerable limbs twisted and distorted into a sphere - all blanketed black with necrotic skin. <br>\
+		Yet the faces remain intact, pale from a lack of blood, but still as recognizable as they've always been. <br>They're smiling at you."
+	observation_choices = list("I recognize those faces", "I don't recognize them")
+	correct_choices = list("I recognize those faces")
+	observation_success_message = "From the mountain of bodies; the dead give their life to be something greater. <br>Why shouldn't they be smiling? <br>You should be smiling too."
+	observation_fail_message = "They're holding all the laughter of those who cannot be seen here. <br>The mounds begins to shamble, upon borrowed hands and feet, it has your scent now and it will never be satisfied."
+
 	/// Is user performing work hurt at the beginning?
 	var/agent_hurt = FALSE
 	var/death_counter = 0
@@ -62,9 +75,6 @@
 /mob/living/simple_animal/hostile/abnormality/mountain/Initialize()		//1 in 100 chance for amogus MOSB
 	. = ..()
 	RegisterSignal(SSdcs, COMSIG_GLOB_MOB_DEATH, PROC_REF(on_mob_death))
-	if(prob(1)) // Kirie, why
-		icon_state = "amog"
-		gift_type =  /datum/ego_gifts/amogus
 
 /mob/living/simple_animal/hostile/abnormality/mountain/Destroy()
 	UnregisterSignal(SSdcs, COMSIG_GLOB_MOB_DEATH)
@@ -222,15 +232,13 @@
 			base_pixel_x = -32
 			if(phase == 3)
 				icon_living = "mosb_breach2"
-				SpeedChange(1)
+				ChangeMoveToDelay(5)
 				patrol_cooldown_time = 30 SECONDS
 			if(phase == 2)
 				icon_living = "mosb_breach"
-				SpeedChange(2)
+				ChangeMoveToDelay(4)
 				patrol_cooldown_time = 20 SECONDS
 			icon_state = icon_living
-			update_simplemob_varspeed()
-		UpdateSpeed()
 		return
 	// Decrease stage
 	if(phase <= 1) // Death
@@ -244,17 +252,15 @@
 		icon = 'ModularTegustation/Teguicons/64x64.dmi'
 		pixel_x = -16
 		base_pixel_x = -16
-		SpeedChange(-2)
+		ChangeMoveToDelay(2)
 		patrol_cooldown_time = 10 SECONDS
 	if(phase == 2)
 		icon = 'ModularTegustation/Teguicons/96x96.dmi'
 		pixel_x = -32
 		base_pixel_x = -32
-		SpeedChange(-1)
+		ChangeMoveToDelay(4)
 		patrol_cooldown_time = 20 SECONDS
 	icon_state = icon_living
-	UpdateSpeed()
-	update_simplemob_varspeed()
 	return TRUE
 
 /* Special attacks */

@@ -3,6 +3,7 @@
 	name = "The Midnight of Pink"
 	flavor_name = "A Party Everlasting"
 	announce_text = "Let's have one big jambouree, a party everlasting."
+	end_announce_text = "And thus now, we party. Wonderous and everlasting."
 	level = 4
 	reward_percent = 0.25
 	announce_sound = 'sound/effects/ordeals/pink_start.ogg'

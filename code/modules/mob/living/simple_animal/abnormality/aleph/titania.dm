@@ -36,6 +36,12 @@
 	gift_type = /datum/ego_gifts/soulmate
 	abnormality_origin = ABNORMALITY_ORIGIN_WONDERLAB
 
+	observation_prompt = "Is that you Oberon? <br>My nemesis, my beloved devil. <br>Is it you, who applied the concotion of baneful herb to my eyes?"
+	observation_choices = list("I am the Oberon you seek", "I am not him", "Stay silent")
+	correct_choices = list("I am the Oberon you seek")
+	observation_success_message = "The abhorrent name of the one who stole my child. <br>By your death, I shall finally have my revenge."
+	observation_fail_message = "Ah... <br>A mere human, human, human. <br>Cease your fear, I shall rid you of your pains. <br>Be reborn as a flower."
+
 	var/fairy_spawn_number = 2
 	var/fairy_spawn_time = 5 SECONDS
 	var/fairy_spawn_limit = 70 // Oh boy, what can go wrong?
@@ -78,12 +84,18 @@
 	//Kills the weak immediately.
 	if(get_user_level(H) < 4 && (ishuman(H)))
 		say("I rid you of your pain, mere human.")
-		H.gib()
-		for(var/i=fairy_spawn_number*2, i>=1, i--)	//This counts down.
-			var/mob/living/simple_animal/hostile/fairyswarm/V = new(get_turf(target))
-			V.faction = faction
-			spawned_mobs+=V
-		return
+		//Double Check
+		if(H)
+			var/turf/fairy_spawn = get_turf(H)
+			//Just to be extra safe.
+			if(!fairy_spawn)
+				fairy_spawn = get_turf(src)
+			H.gib()
+			for(var/i=fairy_spawn_number*2, i>=1, i--)	//This counts down.
+				var/mob/living/simple_animal/hostile/fairyswarm/V = new(fairy_spawn)
+				V.faction = faction
+				spawned_mobs+=V
+			return
 
 	if(target == nemesis)	//Deals pale damage to Oberon, fuck you.
 		melee_damage_type = PALE_DAMAGE
@@ -96,10 +108,10 @@
 	. = ..()
 
 	if(H.stat == DEAD && target == nemesis)		//Does she slay Oberon personally? If so, get buffed.
-		SpeedChange(-1)
+		ChangeMoveToDelayBy(-1)
 		melee_damage_lower = 110
 		melee_damage_upper = 140
-		adjustBruteLoss(-maxHealth) // Round 2, baby
+		adjustBruteLoss(-maxHealth, forced = TRUE) // Round 2, baby
 
 		to_chat(src, span_userdanger("[nemesis], my beloved devil, I finally get my revenge."))
 		nemesis = null
@@ -198,7 +210,7 @@
 
 /mob/living/simple_animal/hostile/abnormality/titania/proc/Punishment(mob/living/sinner)
 	to_chat(sinner, span_userdanger("You are hurt due to breaking Fairy Law."))
-	sinner.apply_damage(law_damage, PALE_DAMAGE, null, sinner.run_armor_check(null, PALE_DAMAGE), spread_damage = TRUE)
+	sinner.deal_damage(law_damage, PALE_DAMAGE)
 	new /obj/effect/temp_visual/dir_setting/bloodsplatter(get_turf(sinner), pick(GLOB.alldirs))
 
 //Ranged stuff

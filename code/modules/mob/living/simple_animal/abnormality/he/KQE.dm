@@ -10,6 +10,7 @@
 	icon_state = "kqe"
 	icon_living = "kqe"
 	icon_dead = "kqe_egg"
+	core_icon = "kqe_egg"
 	portrait = "KQE"
 	del_on_death = FALSE
 	melee_damage_type = BLACK_DAMAGE
@@ -48,6 +49,26 @@
 		/mob/living/simple_animal/hostile/abnormality/nothing_there = 1.5,
 		/mob/living/simple_animal/hostile/abnormality/nobody_is = 1.5,
 	)
+
+	observation_prompt = "This dark place might be a factory. <br>\
+		A sharp mechanical noise zips through the air. <br>\
+		Illuminating eyes are fixed on you. <br>\
+		A robot slowly approaches. <br>\
+		It appears to be incomplete, as suggested by the bare wires protruding with each movement. <br>\
+		Is that leakage antifreeze, or blood? <br>\
+		While you were wondering, the terminal on its chest flashed to life. <br>\
+		Looks like you can write something."
+	observation_choices = list("Hello", "Goodbye")
+	correct_choices = list("Hello")
+	observation_success_message = "The robot lifts both arms with some struggle. <br>\
+		The terminal prints out its words: <br>\
+		<Welcome, Dear Guest. Have you enjoyed the town tour? \
+		We’d like you to have a souvenir. :-)> <br>\
+		A smile is displayed on the terminal, <br>\
+		but in the robot’s gestures, you feel a plea for help."
+	observation_fail_message = "The terminal’s light goes red, and warnings start to blare. <br>\
+		The robot shakes intensely as if in pain. <br>\
+		<Farewell. <br>Farewell, <br>FarewellFarewellFarewellFarewellFarewellFarewellFarewellFarewellFarewell>"
 
 	var/can_act = TRUE
 	var/grab_cooldown
@@ -107,7 +128,10 @@
 	if(!heart)
 		return Life()//PRANKED!
 	can_act = FALSE
+	icon = 'ModularTegustation/Teguicons/abno_cores/he.dmi'
 	icon_state = icon_dead
+	pixel_x = -16
+	base_pixel_x = -16
 	animate(src, alpha = 0, time = 10 SECONDS)
 	QDEL_IN(src, 10 SECONDS)
 	if(istype(heart, /mob/living/simple_animal/hostile/kqe_heart))
@@ -129,7 +153,7 @@
 /mob/living/simple_animal/hostile/abnormality/kqe/AttemptWork(mob/living/carbon/human/user, work_type)
 	if((work_type != "Write HELLO") && (work_type != "Write GOODBYE") && (work_type != "Write DUMBASS") && !question)
 		return TRUE
-	if(((work_type == "Write HELLO") || (work_type == "Write GOODBYE")) || (work_type == "Write DUMBASS") && !question)
+	if(((work_type == "Write HELLO") || (work_type == "Write GOODBYE") || (work_type == "Write DUMBASS")) && !question)
 		to_chat(user, span_notice("The terminal is blank."))
 		return FALSE
 	if((work_type != "Write HELLO") && (work_type != "Write GOODBYE") && (work_type != "Write DUMBASS") && question)
@@ -138,12 +162,15 @@
 	if(work_type == "Write HELLO")
 		if(!GiftUser(user, 18, 100))//always gives a gift
 			say("Then you may not have a souvenir! Please cooperate, or you may be punished according to Rule #A62GBFE1!")
-			datum_reference.qliphoth_change(-2)
+			work_penalty = TRUE
+			datum_reference.qliphoth_change(-1)
+			question = FALSE
+			work_count = 0
 			return FALSE
 		say("Have you enjoyed the town tour? We’d like you to have a souvenir. :-)")
 		to_chat(user, span_notice("A smile is displayed on the terminal, but the abnormality appears to be distressed."))
-		datum_reference.qliphoth_change(-1)
 		question = FALSE
+		datum_reference.max_boxes += 4
 		work_count = 0
 	if(work_type == "Write GOODBYE")
 		if(get_attribute_level(user, JUSTICE_ATTRIBUTE) < 60)//instant breach if below 3 justice
@@ -256,7 +283,7 @@
 	layer = POINT_LAYER//Sprite should always be visible
 
 /obj/effect/kqe_claw/Initialize()
-	..()
+	. = ..()
 	addtimer(CALLBACK(src, PROC_REF(GrabAttack)), 3 SECONDS)
 
 /obj/effect/kqe_claw/proc/GrabAttack()
@@ -267,7 +294,7 @@
 		M.ejectall()
 	for(var/mob/living/carbon/human/H in view(1, src))
 		grabbed = TRUE
-		H.apply_damage(boom_damage*1, BLACK_DAMAGE, null, H.run_armor_check(null, BLACK_DAMAGE), spread_damage = TRUE)
+		H.deal_damage(boom_damage, BLACK_DAMAGE)
 		H.forceMove(get_turf(src))//pulls them all to the target
 		GrabStun(H)
 	if(grabbed)

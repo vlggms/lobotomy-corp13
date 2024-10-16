@@ -48,6 +48,7 @@
 	icon_state = "tingtang_knife"
 	inhand_icon_state = "tingtang_knife"
 	force = 37
+	swingstyle = WEAPONSWING_LARGESWEEP
 	attack_speed = 1
 	hitsound = 'sound/weapons/fixer/generic/knife1.ogg'
 	attribute_requirements = list(

@@ -28,13 +28,23 @@
 	can_patrol = FALSE
 	abnormality_origin = ABNORMALITY_ORIGIN_LOBOTOMY
 
-/mob/living/simple_animal/hostile/abnormality/training_rabbit/Initialize()	//1 in 100 chance for bunny girl waifu
-	. = ..()
-	if(prob(1))
-		icon = 'ModularTegustation/Teguicons/64x64.dmi'
-		icon_state = "Bungal"
-		pixel_x = -16
-		gift_type =  /datum/ego_gifts/bunny
+	secret_chance = TRUE // people NEEDED a bunny girl waifu
+	secret_icon_file = 'ModularTegustation/Teguicons/64x64.dmi'
+	secret_icon_state = "Bungal"
+	secret_horizontal_offset = -16
+	secret_gift = /datum/ego_gifts/bunny
+
+	observation_prompt = "This is the training dummy that Lobotomy Corporation uses for training new agents. <br>\
+		But is that really all there is to it? <br>\
+		Looking closely, you find..."
+	observation_choices = list("A dead body?", "Nothing")
+	correct_choices = list("A dead body?")
+	observation_success_message = "The facial structure, the torso, arms and legs, not to mention the stench... <br>\
+		There's no doubt that this is just a dead body in a body bag, flipped upside-down. <br>\
+		In spite of all this, it provides a gift to you. It continues moving around as if it were alive. <br>\
+		So this is what they call an abnormality. <br>\
+		Are all abnormalities at Lobotomy Corporation this strange?"
+	observation_fail_message = "Your imagination must be going haywire due to the stress. <br>There's no way such an out-of-place thing could be there!"
 
 /mob/living/simple_animal/hostile/abnormality/training_rabbit/BreachEffect(mob/living/carbon/human/user, breach_type)
 	. = ..()

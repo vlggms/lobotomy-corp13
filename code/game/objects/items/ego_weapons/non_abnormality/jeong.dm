@@ -8,6 +8,7 @@
 	force = 30
 	attack_speed = 0.7
 	damtype = BLACK_DAMAGE
+	swingstyle = WEAPONSWING_LARGESWEEP
 
 	attack_verb_continuous = list("slices", "stabs")
 	attack_verb_simple = list("slice", "stab")

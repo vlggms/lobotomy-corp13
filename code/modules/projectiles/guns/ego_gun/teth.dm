@@ -9,9 +9,13 @@
 	icon_state = "match"
 	inhand_icon_state = "match"
 	special = "This weapon does AOE damage."
+	force = 23
+	attack_speed = 1.8
 	ammo_type = /obj/item/ammo_casing/caseless/ego_match
 	weapon_weight = WEAPON_HEAVY
-	fire_delay = 30
+	fire_delay = 15
+	shotsleft = 8
+	reloadtime = 2.2 SECONDS
 	fire_sound = 'sound/weapons/ego/cannon.ogg'
 
 /obj/item/gun/ego_gun/beak
@@ -20,9 +24,12 @@
 	the weapon has high firepower despite its small size."
 	icon_state = "beak"
 	inhand_icon_state = "beak"
+	force = 14
 	ammo_type = /obj/item/ammo_casing/caseless/ego_beak
-	weapon_weight = WEAPON_HEAVY
+	weapon_weight = WEAPON_MEDIUM
 	spread = 10
+	shotsleft = 30
+	reloadtime = 1.3 SECONDS
 	fire_sound = 'sound/weapons/gun/smg/mp7.ogg'
 	autofire = 0.14 SECONDS
 
@@ -31,9 +38,12 @@
 	desc = "A heavy revolver that fires at a surprisingly fast rate, and is deadly accurate."
 	icon_state = "beakmagnum"
 	inhand_icon_state = "beakmagnum"
+	force = 8
 	special = "This weapon has pinpoint accuracy when dual wielded."
 	ammo_type = /obj/item/ammo_casing/caseless/ego_beakmagnum
-	fire_delay = 20
+	fire_delay = 10
+	shotsleft = 7
+	reloadtime = 2.1 SECONDS
 	fire_sound = 'sound/weapons/gun/revolver/shot_alt.ogg'
 	vary_fire_sound = FALSE
 	fire_sound_volume = 70
@@ -45,9 +55,13 @@
 	icon_state = "noise"
 	inhand_icon_state = "noise"
 	special = "This weapon fires 5 pellets."
+	force = 14
+	damtype = WHITE_DAMAGE
 	ammo_type = /obj/item/ammo_casing/caseless/ego_noise
 	weapon_weight = WEAPON_HEAVY
-	fire_delay = 20
+	fire_delay = 10
+	shotsleft = 8
+	reloadtime = 1.6 SECONDS
 	fire_sound = 'sound/weapons/gun/shotgun/shot_auto.ogg'
 
 /obj/item/gun/ego_gun/pistol/solitude
@@ -55,8 +69,12 @@
 	desc = "A classic blue revolver, that gives you feelings of loneliness."
 	icon_state = "solitude"
 	inhand_icon_state = "solitude"
+	force = 8
+	damtype = WHITE_DAMAGE
 	ammo_type = /obj/item/ammo_casing/caseless/ego_solitude
-	fire_delay = 25
+	fire_delay = 10
+	shotsleft = 5
+	reloadtime = 2 SECONDS
 	fire_sound = 'sound/weapons/gun/revolver/shot_light.ogg'
 	vary_fire_sound = FALSE
 	fire_sound_volume = 70
@@ -67,9 +85,13 @@
 	When throbbing emotions surge up from time to time, it's best to simply cover the face."
 	icon_state = "shy"
 	inhand_icon_state = "shy"
+	force = 8
+	damtype = BLACK_DAMAGE
 	ammo_type = /obj/item/ammo_casing/caseless/ego_shy
 	fire_sound = 'sound/effects/meatslap.ogg'
 	vary_fire_sound = FALSE
+	shotsleft = 20
+	reloadtime = 1.2 SECONDS
 	autofire = 0.2 SECONDS
 
 /obj/item/gun/ego_gun/dream
@@ -77,20 +99,25 @@
 	desc = "And when the crying stops, dawn will break."
 	icon_state = "dream"
 	inhand_icon_state = "dream"
+	force = 14
+	damtype = WHITE_DAMAGE
 	ammo_type = /obj/item/ammo_casing/caseless/ego_dream
 	weapon_weight = WEAPON_HEAVY
 	fire_sound = "dreamy_gun"
-	autofire = 0.2 SECONDS
+	autofire = 0.25 SECONDS
 
 /obj/item/gun/ego_gun/page
 	name = "page"
 	desc = "The pain of creation! The pain! The pain!"
 	icon_state = "page"
 	inhand_icon_state = "page"
+	force = 14
+	damtype = BLACK_DAMAGE
 	ammo_type = /obj/item/ammo_casing/caseless/ego_page
 	weapon_weight = WEAPON_HEAVY
-	fire_delay = 10
-	damtype = BLACK_DAMAGE
+	fire_delay = 5
+	shotsleft = 10
+	reloadtime = 1.4 SECONDS
 	fire_sound = 'sound/weapons/gun/rifle/shot_alt.ogg'
 
 /obj/item/gun/ego_gun/snapshot
@@ -99,6 +126,8 @@
 	icon_state = "snapshot"
 	inhand_icon_state = "snapshot"
 	special = "This weapon fires a hitscan beam."
+	force = 14
+	damtype = WHITE_DAMAGE
 	ammo_type = /obj/item/ammo_casing/caseless/ego_snapshot
 	weapon_weight = WEAPON_HEAVY
 	fire_delay = 10
@@ -110,11 +139,12 @@
 	icon_state = "wishing_cairn"
 	inhand_icon_state = "wishing_cairn"
 	special = "This weapon has a combo system with a short range."
+	force = 14
+	damtype = BLACK_DAMAGE
 	ammo_type = /obj/item/ammo_casing/caseless/ego_wishing
 	weapon_weight = WEAPON_HEAVY
 	fire_delay = 3
 	burst_size = 2
-	damtype = BLACK_DAMAGE
 	fire_sound = 'sound/abnormalities/pagoda/throw.ogg'
 	var/ammo2 = /obj/item/ammo_casing/caseless/ego_wishing2
 
@@ -134,6 +164,7 @@
 	icon_state = "aspiration"
 	inhand_icon_state = "aspiration"
 	special = "This weapon fires a hitscan beam at the cost of health. \n Upon hitting an ally, this weapon heals the target,"
+	force = 14
 	ammo_type = /obj/item/ammo_casing/caseless/ego_aspiration
 	weapon_weight = WEAPON_HEAVY
 	autofire = 0.5 SECONDS
@@ -156,7 +187,24 @@
 	inhand_x_dimension = 64
 	inhand_y_dimension = 64
 	special = "This weapon fires 4 pellets."
+	force = 18
+	attack_speed = 1.3
 	ammo_type = /obj/item/ammo_casing/caseless/ego_patriot
 	weapon_weight = WEAPON_HEAVY
-	fire_delay = 25
+	fire_delay = 12
+	shotsleft = 8
+	reloadtime = 1.4 SECONDS
 	fire_sound = 'sound/weapons/gun/shotgun/shot.ogg'
+
+/obj/item/gun/ego_gun/luckdraw
+	name = "luck of the draw"
+	desc = "A seemingly infinite deck of bladed cards. How much are you willing to risk to win it big?"
+	icon_state = "luckdraw"
+	inhand_icon_state = "luckdraw"
+	lefthand_file = 'icons/mob/inhands/items_lefthand.dmi'
+	righthand_file = 'icons/mob/inhands/items_righthand.dmi'
+	special = "This weapon's projectiles move slowly and pierce enemies."
+	ammo_type = /obj/item/ammo_casing/caseless/ego_luckdraw
+	weapon_weight = WEAPON_HEAVY
+	autofire = 0.6 SECONDS
+	fire_sound = 'sound/items/handling/paper_pickup.ogg' //Mostly just using this for a lack of a better "card-flicking" noise

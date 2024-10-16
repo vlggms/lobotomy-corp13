@@ -38,6 +38,8 @@
 	egoist_attributes = 80
 	//Loot on death; distortions should be valuable targets in general.
 	loot = list(/obj/item/documents/ncorporation, /obj/item/documents/ncorporation) //Placeholder, we need more loot items
+	/// Prolonged exposure to a monolith will convert the distortion into an abnormality. When if null, they are unaffected by it.
+	monolith_abnormality = /mob/living/simple_animal/hostile/abnormality/norinori
 	//Custon unmanifest effect
 	unmanifest_effect = /obj/effect/gibspawner/human
 
@@ -98,5 +100,5 @@
 	melee_damage_lower = 30
 	melee_damage_upper = 45
 	rapid_melee = 3
-	move_to_delay = 2
+	ChangeMoveToDelay(2)
 	icon_state = "bunnyman_enraged"

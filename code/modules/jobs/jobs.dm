@@ -2,6 +2,8 @@ GLOBAL_LIST_INIT(command_positions, list(
 	"Manager",
 	"Extraction Officer",
 	"Records Officer",
+	"Control Officer",
+	"Training Officer",
 	"Disciplinary Officer",
 	"Sephirah",
 	"Department Head",
@@ -72,6 +74,7 @@ GLOBAL_LIST_INIT(science_positions, list(
 	"Association Section Director",
 	"Association Veteran",
 	"Association Fixer",
+	"Roaming Association Fixer",
 	"East Office Director",
 	"East Office Fixer",
 	"North Office Director",
@@ -93,10 +96,15 @@ GLOBAL_LIST_INIT(supply_positions, list(
 
 
 GLOBAL_LIST_INIT(service_positions, list(
+	"Clerk",
+	"Agent Support Clerk",
+	"Facility Support Clerk",
+
+
 	"Doctor",
 	"Nurse",
 	"Paramedic",
-	"Clerk",
+	"Medical Fixer Assistant",
 	"HHPP Chef",
 	"Civilian",
 	"Backstreets Butcher",
@@ -116,6 +124,7 @@ GLOBAL_LIST_INIT(service_positions, list(
 GLOBAL_LIST_INIT(security_positions, list(
 	"Department Head",
 	"Department Captain",
+	"Training Officer",
 
 	"Disciplinary Officer",
 	"Emergency Response Agent",
@@ -139,7 +148,8 @@ GLOBAL_LIST_INIT(security_positions, list(
 	//Fifth Pack
 	"R-Corp Rat",
 	"R-Corp Rooster",
-	"R-Corp Raccoon",
+	"R-Corp Raccoon Spy",
+	"R-Corp Raccoon Sniper",
 	"R-Corp Roadrunner",
 
 	//W-Corp agents
@@ -172,7 +182,6 @@ GLOBAL_LIST_INIT(security_positions, list(
 	"Kurokumo Hosa",
 	"Kurokumo Wakashu",
 
-
 	//LCB Labs
 	"High Security Commander",
 	"Low Security Commander",
@@ -181,6 +190,9 @@ GLOBAL_LIST_INIT(security_positions, list(
 	"Damage Mitigation Officer",
 	"Damage Exasperation Officer",
 	"Internal Police",
+
+	//Fixers
+	"Fixer",
 	))
 
 

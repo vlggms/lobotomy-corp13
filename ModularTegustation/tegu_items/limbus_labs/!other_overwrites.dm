@@ -24,19 +24,16 @@
 	if(SSmaptype.maptype == "limbus_labs")
 		max_damage = 50
 
-//Abnormalities have no name here. And we don't want nonsentient ones to breach
-/mob/living/simple_animal/hostile/abnormality/Initialize()
-	. = ..()
-	if(SSmaptype.maptype == "limbus_labs")
-		name = "Limbus Company Specimen"
-		faction = list("neutral")
-
 //To avoid other issues when possessed
 
 /mob/living/simple_animal/hostile/abnormality/Login()
 	. = ..()
 	if(SSmaptype.maptype == "limbus_labs")
-		faction = list("hostile")
+		if(client == /mob/living/simple_animal/hostile/abnormality/hatred_queen)
+			return
+		else
+			faction = list("hostile")
+
 
 /mob/living/simple_animal/hostile/abnormality/Logout()
 	. = ..()

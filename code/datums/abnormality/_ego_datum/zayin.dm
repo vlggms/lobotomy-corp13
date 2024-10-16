@@ -79,13 +79,13 @@
 	item_path = /obj/item/clothing/suit/armor/ego_gear/zayin/evening
 	cost = 12
 
-// Blubbering Toad - Melty Eyeball
-/datum/ego_datum/weapon/melty_eyeball
-	item_path = /obj/item/ego_weapon/melty_eyeball
+// Blubbering Toad - Cavernous Wailing
+/datum/ego_datum/weapon/cavernous_wailing
+	item_path = /obj/item/ego_weapon/cavernous_wailing
 	cost = 12
 
-/datum/ego_datum/armor/melty_eyeball
-	item_path = /obj/item/clothing/suit/armor/ego_gear/zayin/melty_eyeball
+/datum/ego_datum/armor/cavernous_wailing
+	item_path = /obj/item/clothing/suit/armor/ego_gear/zayin/cavernous_wailing
 	cost = 12
 
 // Fallen Amurdad - Nightshade
@@ -115,6 +115,15 @@
 	item_path = /obj/item/clothing/suit/armor/ego_gear/zayin/eclipse
 	cost = 12
 
+// Oracle of No Future
+/datum/ego_datum/weapon/dead_dream
+	item_path = /obj/item/ego_weapon/shield/dead_dream
+	cost = 12
+
+/datum/ego_datum/armor/dead_dream
+	item_path = /obj/item/clothing/suit/armor/ego_gear/zayin/dead_dream
+	cost = 12
+
 // Vending Machine and Oceanic Breeze - A Taste of the Ocean
 /datum/ego_datum/weapon/oceanic
 	item_path = /obj/item/gun/ego_gun/pistol/oceanic
@@ -122,4 +131,14 @@
 
 /datum/ego_datum/armor/oceanic
 	item_path = /obj/item/clothing/suit/armor/ego_gear/zayin/oceanic
+	cost = 12
+
+// Rope and Cord - Cord
+/*
+/datum/ego_datum/weapon/cord
+	item_path = /obj/item/ego_weapon/support/cord
+	cost = 12
+*/
+/datum/ego_datum/armor/cord
+	item_path = /obj/item/clothing/suit/armor/ego_gear/zayin/cord
 	cost = 12

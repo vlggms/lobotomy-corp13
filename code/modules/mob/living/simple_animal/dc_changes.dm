@@ -20,9 +20,9 @@
 /datum/dc_change/rend/pale // Unused atm
 	damage_type = PALE_DAMAGE
 
-/// 1.1x modifiers, used by Salvation
+/// 1.2x modifiers, used by Salvation
 /datum/dc_change/salvation
-	potency = 1.1
+	potency = 1.2
 	damage_type = list(RED_DAMAGE, WHITE_DAMAGE, BLACK_DAMAGE, PALE_DAMAGE)
 
 /// 1.5x Black modifier, used by Laughter
@@ -50,8 +50,19 @@
 /// x1.05 - x2 Red Modifier, inflicted by Naked Nest Realization
 /datum/dc_change/infested
 	potency = 1.05
+	damage_type = RED_DAMAGE
 
 /// x1.1 universal modifier, inflicted by Deep Scanner
 /datum/dc_change/scanned
+	potency = 1.1
+	damage_type = list(RED_DAMAGE, WHITE_DAMAGE, BLACK_DAMAGE, PALE_DAMAGE)
+
+/// x1,5 universal modifier, inflicted by Road Of Gold
+/datum/dc_change/gold_staggered
+	potency = 1.5
+	damage_type = list(RED_DAMAGE, WHITE_DAMAGE, BLACK_DAMAGE, PALE_DAMAGE)
+
+/// up to 2.16x damage, My Form Empties
+/datum/dc_change/karma
 	potency = 1.1
 	damage_type = list(RED_DAMAGE, WHITE_DAMAGE, BLACK_DAMAGE, PALE_DAMAGE)

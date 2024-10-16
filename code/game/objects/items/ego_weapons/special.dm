@@ -1,5 +1,14 @@
 //Abnormality rewards
 //Bottle of Tears
+/**
+ * Here's how it works. It scales with Fortitude.
+ * This is more balanced than it sounds.
+ * Think of it as if Fortitude adjusted base force.
+ * Once you get yourself to 80, an additional scaling factor begins to kick in that will let you keep up through the endgame.
+ * This scaling factor only applies if it's the only weapon in your inventory, however. Use it faithfully, and it can cut through even enemies immune to black.
+ * Why? Because well Catt has been stated to work on WAWs, which means that she's at least level 3-4.
+ * Why is she still using Eyeball Scooper from a Zayin? Maybe it scales with fortitude?
+ */
 /obj/item/ego_weapon/eyeball
 	name = "eyeball scooper"
 	desc = "Mind if I take them?"
@@ -15,6 +24,8 @@
 	)
 
 /obj/item/ego_weapon/eyeball/attack(mob/living/target, mob/living/carbon/human/user)
+	force = initial(force)
+	damtype = initial(damtype)
 	var/userfort = (get_attribute_level(user, FORTITUDE_ATTRIBUTE))
 	var/fortitude_mod = clamp((userfort - 40) / 2 + 2, 0, 50) // 2 at 40 fortitude, 12 at 60 fortitude, 22 at 80 fortitude, 32 at 100 fortitude
 	var/extra_mod = clamp((userfort - 80) * 1.3 + 2, 0, 28) // 2 at 80 fortitude, 28 at 100 fortitude
@@ -41,18 +52,10 @@
 			force *= 0.1
 			damtype = BRUTE //Armor-piercing
 	else
-		icon_state = "eyeball1"				//Cool sprite gone
+		icon_state = "eyeball1" //Cool sprite gone
 	if(ishuman(target))
-		force*=1.3						//I've seen Catt one shot someone, This is also only a detriment lol
-	..()
-	force = initial(force)
-	damtype = initial(damtype)
-
-	/*Here's how it works. It scales with Fortitude. This is more balanced than it sounds. Think of it as if Fortitude adjusted base force.
-	Once you get yourself to 80, an additional scaling factor begins to kick in that will let you keep up through the endgame.
-	This scaling factor only applies if it's the only weapon in your inventory, however. Use it faithfully, and it can cut through even enemies immune to black.
-	Why? Because well Catt has been stated to work on WAWs, which means that she's at least level 3-4.
-	Why is she still using Eyeball Scooper from a Zayin? Maybe it scales with fortitude?*/
+		force *= 1.3 //I've seen Catt one shot someone, This is also only a detriment lol
+	return ..()
 
 //Pile of Mail
 /obj/item/ego_weapon/mail_satchel
@@ -68,14 +71,14 @@
 	attribute_requirements = list(TEMPERANCE_ATTRIBUTE = 20) //pesky clerks!
 
 /obj/item/ego_weapon/mail_satchel/attack(atom/A, mob/living/user, proximity_flag, params)
+	force = initial(force)
 	var/usertemp = (get_attribute_level(user, TEMPERANCE_ATTRIBUTE))
 	var/temperance_mod = clamp((usertemp - 20) / 3 + 2, 0, 20)
 	force = 12 + temperance_mod
-	..()
-	force = initial(force)
-	damtype = initial(damtype)
 	if(prob(30))
 		new /obj/effect/temp_visual/maildecal(get_turf(A))
+
+	return ..()
 
 //Puss in Boots
 /obj/item/ego_weapon/lance/famiglia
@@ -88,6 +91,7 @@
 	inhand_y_dimension = 96
 	force = 33
 	reach = 2		//Has 2 Square Reach.
+	stuntime = 5	//Longer reach, gives you a short stun.
 	attack_speed = 1.8// really slow
 	damtype = RED_DAMAGE
 
@@ -140,7 +144,7 @@
 	var/ramping_damage = 0 //no maximum, will stack as long as people are attacking with it.
 
 /obj/item/ego_weapon/iron_maiden/Initialize()
-	..()
+	. = ..()
 	AddElement(/datum/element/update_icon_updates_onmob)
 
 /obj/item/ego_weapon/iron_maiden/proc/Multihit(mob/living/target, mob/living/user, attack_amount)
@@ -153,24 +157,26 @@
 				sleep(3)
 			if(3)
 				sleep(2)
-		target.apply_damage(force, damtype, null, target.run_armor_check(null, damtype), spread_damage = TRUE)
-		user.do_attack_animation(target)
-		playsound(loc, hitsound, 30, TRUE, extrarange = stealthy_audio ? SILENCED_SOUND_EXTRARANGE : -1, falloff_distance = 0)
-		playsound(loc, 'sound/abnormalities/we_can_change_anything/change_generate.ogg', get_clamped_volume(), FALSE, extrarange = stealthy_audio ? SILENCED_SOUND_EXTRARANGE : -1, falloff_distance = 0)
-		new /obj/effect/temp_visual/dir_setting/bloodsplatter(get_turf(target), pick(GLOB.alldirs))
+		if(target in view(reach,user))
+			playsound(loc, hitsound, get_clamped_volume(), TRUE, extrarange = stealthy_audio ? SILENCED_SOUND_EXTRARANGE : -1, falloff_distance = 0)
+			user.do_attack_animation(target)
+			target.attacked_by(src, user)
+			log_combat(user, target, pick(attack_verb_continuous), src.name, "(INTENT: [uppertext(user.a_intent)]) (DAMTYPE: [uppertext(damtype)])")
 
 /obj/item/ego_weapon/iron_maiden/melee_attack_chain(mob/living/user, atom/target, params)
 	..()
-	if (isliving(target))
-		if (ramping_speed < 20)
-			ramping_speed += 1
-		else
-			ramping_damage += 0.02
-			user.adjustBruteLoss(user.maxHealth*ramping_damage)
+	if(isliving(target))
+		new /obj/effect/temp_visual/dir_setting/bloodsplatter(get_turf(target), pick(GLOB.alldirs))
 
 /obj/item/ego_weapon/iron_maiden/attack(mob/living/target, mob/living/user)
 	if(!..())
 		return
+	if (ramping_speed < 20)
+		ramping_speed += 1
+	else
+		ramping_damage += 0.02
+		user.adjustBruteLoss(user.maxHealth*ramping_damage)
+		new /obj/effect/temp_visual/dir_setting/bloodsplatter(get_turf(user), pick(GLOB.alldirs))
 	playsound(loc, 'sound/abnormalities/we_can_change_anything/change_generate.ogg', get_clamped_volume(), FALSE, extrarange = stealthy_audio ? SILENCED_SOUND_EXTRARANGE : -1, falloff_distance = 0)
 	switch(ramping_speed)
 		if(5 to 10)

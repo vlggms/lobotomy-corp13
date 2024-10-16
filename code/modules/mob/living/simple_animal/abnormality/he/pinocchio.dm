@@ -32,6 +32,13 @@
 	gift_type = /datum/ego_gifts/marionette
 	abnormality_origin = ABNORMALITY_ORIGIN_RUINA
 
+	observation_prompt = "I've been watching people for as long as I've known them, it's not hard to imitate others. <br>\
+		Can I be a human if I mimic humans?"
+	observation_choices = list("You're human", "You will never be a human")
+	correct_choices = list("You will never be a human")
+	observation_success_message = "Can I... not become a human..? <br>You could've let me fool you, you're too cruel."
+	observation_fail_message = "Did I look just like a human? <br>I hope I fooled you, it's other people's fault for falling for my lies."
+
 	var/lying = FALSE
 	var/caught_lie = FALSE
 	var/mob/living/carbon/human/species/pinocchio/realboy = null
@@ -170,6 +177,10 @@
 		QDEL_IN(realboy, 15) //In theory we could do an egg transformation at this point but I have no sprite.
 	death()
 
+/mob/living/simple_animal/hostile/abnormality/pinocchio/CreateAbnoCore()//The simple mob created will leave a core behind when regular conditions are fulfilled ie. when this proc is called
+	realboy.core_enabled = TRUE
+	return
+
 //Special item
 /obj/item/ego_weapon/marionette/abnormality
 	name = "liar's lyre"
@@ -232,6 +243,12 @@
 	lines_type = /datum/ai_behavior/say_line/insanity_murder/puppet
 	continue_processing_when_client = FALSE //Prevents playable pinocchio from going around murdering everyone.
 
+/datum/ai_controller/insane/murder/puppet/CanTarget(atom/movable/thing)
+	. = ..()
+	var/mob/living/living_pawn = pawn
+	if(. && isliving(thing) && living_pawn.faction_check_mob(thing))
+		return FALSE
+
 /datum/status_effect/panicked_type/puppet
 	icon = null
 
@@ -247,19 +264,26 @@
 /mob/living/carbon/human/species/pinocchio //a real boy. Compatiable with being spawned by admins to boot! Can't panic outside of fear, though.
 	race = /datum/species/puppet
 	faction = list("hostile")
+	var/core_enabled = FALSE
 
 /mob/living/carbon/human/species/pinocchio/Initialize(mapload, cubespawned=FALSE, mob/spawner) //There is basically no documentation for bodyparts and hair, so this was the next best thing.
-	..()
+	. = ..()
 	var/strings = icon('icons/mob/mutant_bodyparts.dmi', "strings_pinnochio_ADJ")
 	src.add_overlay(strings)
 
 /mob/living/carbon/human/species/pinocchio/adjustBlackLoss(amount, updating_health = TRUE, forced = FALSE, white_healable = FALSE)
+	if(amount > 0 && !forced)
+		new /obj/effect/temp_visual/damage_effect/black(get_turf(src))
 	return adjustBruteLoss(amount, forced = forced) // Override, otherwise we'd end up taking damage twice.
 
 /mob/living/carbon/human/species/pinocchio/adjustWhiteLoss(amount, updating_health = TRUE, forced = FALSE, white_healable = FALSE)
+	if(amount > 0 && !forced)
+		new /obj/effect/temp_visual/damage_effect/white(get_turf(src))
 	return adjustBruteLoss(amount, forced = forced) // Override with the parent, sanity damage is now just brute damage
 
 /mob/living/carbon/human/species/pinocchio/adjustPaleLoss(amount, updating_health = TRUE, forced = FALSE)
+	if(amount > 0 && !forced)
+		new /obj/effect/temp_visual/damage_effect/pale(get_turf(src))
 	return adjustBruteLoss(amount, forced = forced) // No % pale damage
 
 /mob/living/carbon/human/species/pinocchio/canBeHandcuffed()
@@ -270,6 +294,20 @@
 		to_chat(src, span_userdanger("YOUR FOOLISHNESS IS IMPRESSIVE."))
 		return
 	. = ..()
+
+/mob/living/carbon/human/species/pinocchio/Destroy()
+	if(core_enabled)
+		CreateAbnoCore()
+	..()
+
+/mob/living/carbon/human/species/pinocchio/proc/CreateAbnoCore()//this is at the carbon level
+	var/obj/structure/abno_core/C = new(get_turf(src))
+	C.name = "Pinocchio Core"
+	C.desc = "The core of Pinocchio"
+	C.icon_state = ""//core icon goes here
+	C.contained_abno = /mob/living/simple_animal/hostile/abnormality/pinocchio//release()ing or extract()ing this core will spawn the abnormality, making it a valid core.
+	C.threat_level = 3
+	C.icon = 'ModularTegustation/Teguicons/abno_cores/he.dmi'
 
 /datum/species/puppet
 	name = "Puppet"

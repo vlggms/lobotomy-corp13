@@ -43,6 +43,12 @@
 		/mob/living/simple_animal/hostile/abnormality/pinocchio = 1.5
 	)
 
+	observation_prompt = "Last of all, road that is lost. <br>I will send you home. <br>The wizard grants you..."
+	observation_choices = list("The home cannot be reached", "The road home")
+	correct_choices = list("The home cannot be reached")
+	observation_success_message = "What are you fighting for so fiercely when you have nowhere to go back to?"
+	observation_fail_message = "Wear this pair of shoes and be on your way. To the hometown you miss so much."
+
 	///Stuff related to the house and its path
 	var/obj/road_house/house
 	var/list/house_path
@@ -64,9 +70,19 @@
 	///Agents with the "stay home" status effect, they will be driven insane when the home is reached.
 	var/list/agent_friends = list()
 
-/mob/living/simple_animal/hostile/abnormality/road_home/PostWorkEffect(mob/living/carbon/human/user, work_type, pe, work_time)
+// Modifiers for work chance
+/mob/living/simple_animal/hostile/abnormality/road_home/WorkChance(mob/living/carbon/human/user, chance, work_type)
+	var/newchance = chance
 	if(get_attribute_level(user, JUSTICE_ATTRIBUTE) >= 60) //Apparently the original road home is fortitude but I already made scaredy cat fort and I'm too stubborn to change it.
-		datum_reference.qliphoth_change(-1)
+		newchance = chance-20
+	return newchance
+
+/mob/living/simple_animal/hostile/abnormality/road_home/NeutralEffect(mob/living/carbon/human/user, work_type, pe)
+	. = ..()
+	if(get_attribute_level(user, JUSTICE_ATTRIBUTE) >= 60)
+		if(prob(40))
+			datum_reference.qliphoth_change(-1)
+	return
 
 /mob/living/simple_animal/hostile/abnormality/road_home/FailureEffect(mob/living/carbon/human/user, work_type, pe)
 	. = ..()
@@ -94,7 +110,7 @@
 	var/turf/user_turf = get_turf(attacker)
 	for(var/obj/effect/golden_road/GR in user_turf.contents)
 		retaliation = 3
-	attacker.apply_damage(retaliation, BLACK_DAMAGE, null, attacker.run_armor_check(null, BLACK_DAMAGE), spread_damage = TRUE)
+	attacker.deal_damage(retaliation, BLACK_DAMAGE)
 	to_chat(attacker, span_userdanger("[src] counter attacks!"))
 	if(attacker.has_status_effect(/datum/status_effect/stay_home) || !ishuman(attacker) || stat == DEAD)
 		return
@@ -145,7 +161,7 @@
 	for(var/mob/living/carbon/human/H in agent_friends)
 		H.remove_status_effect(/datum/status_effect/stay_home)
 	agent_friends = null
-	..()
+	return ..()
 
 ///Flips and gives everyone the stay home status effect.
 /mob/living/simple_animal/hostile/abnormality/road_home/proc/FlipAttack()
@@ -311,7 +327,7 @@
 
 	playsound(get_turf(src), 'sound/abnormalities/roadhome/House_HouseBoom.ogg', 100, FALSE, 8)
 	for(var/mob/living/L in orgin.contents)//Listen, if you're still standing in the one turf this thing is falling from, you deserve to die.
-		L.apply_damage((1000), RED_DAMAGE, null, L.run_armor_check(null, RED_DAMAGE))
+		L.deal_damage(1000, RED_DAMAGE)
 		if(L.health < 0)
 			L.gib()
 
@@ -321,7 +337,7 @@
 	for(var/mob/living/L in view(6, src))
 		if(!road_home_mob.faction_check_mob(L))
 			var/distance_decrease = get_dist(src, L) * 75
-			L.apply_damage((600 - distance_decrease), WHITE_DAMAGE, null, L.run_armor_check(null, WHITE_DAMAGE)) //white damage so they can join the road home..
+			L.deal_damage((600 - distance_decrease), WHITE_DAMAGE) //white damage so they can join the road home..
 			if(!ishuman(L))
 				continue
 			var/mob/living/carbon/human/H = L

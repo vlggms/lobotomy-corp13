@@ -148,7 +148,7 @@
 	to_chat(user, span_blueteamradio("We will shape this world together."), MESSAGE_TYPE_LOCALCHAT)
 	deltimer(vibration_timer)
 	var/hit_target = FALSE
-	for(var/mob/living/L in livinginrange(8, user))
+	for(var/mob/living/L in range(8, user))
 		if(L == src)
 			continue
 		if(faction_check(user.faction, L.faction))
@@ -187,7 +187,7 @@
 	var/turf/original_turf = get_turf(user)
 	var/list/to_hit = list()
 	var/hit_target = FALSE
-	for(var/mob/living/L in livinginrange(12, user))
+	for(var/mob/living/L in range(12, user))
 		if(L == src)
 			continue
 		if(faction_check(user.faction, L.faction))

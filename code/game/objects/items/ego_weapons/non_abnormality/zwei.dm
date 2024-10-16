@@ -10,6 +10,7 @@
 	force = 55
 	attack_speed = 2
 	damtype = RED_DAMAGE
+	swingstyle = WEAPONSWING_LARGESWEEP
 
 	hitsound = 'sound/weapons/bladeslice.ogg'
 	attack_verb_continuous = list("attacks", "slashes", "stabs", "slices", "tears", "lacerates", "rips", "dices", "cuts")
@@ -134,7 +135,7 @@
 	T.Jitter(20)
 	T.set_confusion(max(10, T.get_confusion()))
 	T.stuttering = max(8, T.stuttering)
-	T.adjustStaminaLoss(force, TRUE, TRUE)
+	T.adjustStaminaLoss(force*2, TRUE, TRUE)
 
 	SEND_SIGNAL(T, COMSIG_LIVING_MINOR_SHOCK)
 

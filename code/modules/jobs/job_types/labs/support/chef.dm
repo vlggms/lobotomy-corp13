@@ -19,6 +19,12 @@
 	job_important = "You are a limbus company chef. Make food for the staff; and grow plants in the back."
 	job_abbreviation = "CHF"
 
+/datum/job/lc_chef/after_spawn(mob/living/carbon/human/H, mob/M, latejoin = FALSE)
+	..()
+	H.set_attribute_limit(0)
+	ADD_TRAIT(H, TRAIT_COMBATFEAR_IMMUNE, JOB_TRAIT)
+	ADD_TRAIT(H, TRAIT_WORK_FORBIDDEN, JOB_TRAIT)
+
 /datum/outfit/job/lc_chef
 	name = "LC Chef"
 	jobtype = /datum/job/lc_chef

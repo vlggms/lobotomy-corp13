@@ -4,6 +4,7 @@
 	icon = 'ModularTegustation/Teguicons/48x48.dmi'
 	icon_state = "generalbee"
 	icon_living = "generalbee"
+	core_icon = "gbee_egg"
 	speak_emote = list("buzzes")
 	pixel_x = -8
 	base_pixel_x = -8
@@ -37,6 +38,20 @@
 		/mob/living/simple_animal/hostile/abnormality/queen_bee = 5,
 	)
 	//She has a Quad Artillery Cannon
+
+	observation_prompt = "I toil endlessly for the queen. <br>\
+		Break everything that threatens the hive. <br>\
+		Shoot anything that moves that isn't a bee. <br>\
+		Unquestioningly loyal, I follow my orders to the letter. <br>\
+		I even feel excited whenever I get a new order. <br>\
+		Why am I doing this all again?"
+	observation_choices = list("I fight to survive", "I fight out of loyalty")
+	correct_choices = list("I fight to survive","I fight out of loyalty")
+	observation_success_message = "Bees have a natural instinct to fight for their queen. <br>\
+		It is not something as complicated as human emotion. <br>\
+		Rather, it is a hormone produced by the queen. <br>\
+		I will die the moment I leave the queendom.<br>\
+		There is no other option but to remain unquestionably loyal."
 
 	var/fire_cooldown_time = 3 SECONDS	//She has 4 cannons, fires 4 times faster than the artillery bees
 	var/fire_cooldown
@@ -84,6 +99,8 @@
 	. = ..()
 	var/obj/effect/proc_holder/ability/aimed/artillery_shell/general/shell_ability = new
 	src.AddSpell(shell_ability)
+	var/datum/action/spell_action/ability/item/A = shell_ability.action
+	A.set_item = src //it wants an /obj/item though so its kinda bad but i dont really feel like figuring it out
 	sight_ability = new
 	sight_ability.Grant(src)
 	if(IsCombatMap())
@@ -489,11 +506,9 @@
 		if(faction_check(faction, L.faction, FALSE))
 			continue
 		if(SSmaptype.maptype == "limbus_labs")
-			L.apply_damage(boom_damage*0.25, RED_DAMAGE, null, L.run_armor_check(null, RED_DAMAGE), spread_damage = TRUE)
-			L.apply_damage(boom_damage*0.25, BLACK_DAMAGE, null, L.run_armor_check(null, BLACK_DAMAGE), spread_damage = TRUE)
+			L.deal_damage(boom_damage*0.5, list(RED_DAMAGE, BLACK_DAMAGE))
 		else
-			L.apply_damage(boom_damage*0.5, RED_DAMAGE, null, L.run_armor_check(null, RED_DAMAGE), spread_damage = TRUE)
-			L.apply_damage(boom_damage*0.5, BLACK_DAMAGE, null, L.run_armor_check(null, BLACK_DAMAGE), spread_damage = TRUE)
+			L.deal_damage(boom_damage, list(RED_DAMAGE, BLACK_DAMAGE))
 		if(L.health < 0)
 			L.gib()
 	new /obj/effect/temp_visual/explosion(get_turf(src))

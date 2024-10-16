@@ -11,7 +11,7 @@
 	button_icon_state = "healing"
 	name = "Healing"
 	cooldown_time = 300
-	var/healamount = 15
+	var/healamount = 20
 
 /datum/action/cooldown/healing/Trigger()
 	if(!..())
@@ -40,7 +40,7 @@
 	button_icon_state = "soothing"
 	name = "Soothing"
 	cooldown_time = 300
-	var/healamount = 15
+	var/healamount = 20
 
 /datum/action/cooldown/soothing/Trigger()
 	if(!..())
@@ -70,7 +70,7 @@
 	button_icon_state = "curing"
 	name = "Curing"
 	cooldown_time = 300
-	var/healamount = 5
+	var/healamount = 10
 
 /datum/action/cooldown/curing/Trigger()
 	if(!..())

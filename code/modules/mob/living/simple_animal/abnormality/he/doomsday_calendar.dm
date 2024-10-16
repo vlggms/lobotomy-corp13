@@ -7,6 +7,7 @@
 	icon_state = "doomsday_inert"
 	icon_living = "doomsday_inert"
 	icon_dead = "doomsday_egg"
+	core_icon = "doomsday_egg"
 	portrait = "doomsday"
 	light_color = COLOR_LIGHT_ORANGE
 	light_range = 0
@@ -42,6 +43,15 @@
 	gift_type =  /datum/ego_gifts/impending_day
 	gift_message = "Let the blood flow, the fire ignite, and the star fall."
 	abnormality_origin = ABNORMALITY_ORIGIN_LIMBUS
+
+	observation_prompt = "I'm standing before an altar on top of an impossibly long flight of stairs, the sky is crimson red and the heat from the air licks at my skin painfully. <br>The world is ending. <br>\
+		On the altar is a tied and bound man with a clay mask on his head, he squirms and is clearly crying but I cannot hear his words. <br>\
+		In my hand is a dagger. <br>I know what I have to do."
+	observation_choices = list("Plunge the dagger into his chest", "Cut his bindings")
+	correct_choices = list("Plunge the dagger into his chest")
+	observation_success_message = "I'm laying on an altar, a heavy clay mask is on my head, my arms and legs are tied with thick rope and the air is hot enough to scald my skin. <br>\
+		I see the priest through the pinholes of the mask and plead for him to spare me, before I feel cold metal plunge into my chest."
+	observation_fail_message = "I cut the man free and he thanks me profusely before he speeds down the stairs. <br>He won't make it. <br>I close my eyes and accept the end."
 
 	var/player_count
 	var/other_works_maximum
@@ -88,6 +98,7 @@
 /mob/living/simple_animal/hostile/abnormality/doomsday_calendar/death()
 	density = FALSE
 	playsound(src, 'sound/abnormalities/doomsdaycalendar/Doomsday_Dead.ogg', 100, 1)
+	icon = 'ModularTegustation/Teguicons/abno_cores/he.dmi'
 	for(var/mob/living/simple_animal/hostile/doomsday_doll/D in spawned_dolls) //delete the dolls when suppressed
 		D.death()
 		QDEL_IN(D, rand(1,5) SECONDS)
@@ -156,7 +167,7 @@
 
 /mob/living/simple_animal/hostile/abnormality/doomsday_calendar/Worktick(mob/living/carbon/human/user)
 	if(bonusRed) // If you have bonus red damage to apply...
-		user.apply_damage(bonusRed, RED_DAMAGE, null, user.run_armor_check(null, RED_DAMAGE), spread_damage = TRUE)
+		user.deal_damage(bonusRed, RED_DAMAGE)
 	return ..()
 
 /mob/living/simple_animal/hostile/abnormality/doomsday_calendar/OnQliphothChange(mob/living/carbon/human/user)//woodsman icon change
@@ -200,7 +211,7 @@
 
 /obj/effect/temp_visual/doomsday/Initialize()
 	add_overlay(mutable_appearance('icons/effects/effects.dmi', "empdisable", -ABOVE_OBJ_LAYER))
-	return..()
+	return ..()
 
 /mob/living/simple_animal/hostile/abnormality/doomsday_calendar/proc/CheckCountdown()//grabbed from TSO
 	if(world.time >= next_phase_time) // Next phase
@@ -252,7 +263,7 @@
 						A.datum_reference.qliphoth_change(-1)
 					if(faction_check_mob(H))
 						continue
-					H.apply_damage(aflame_damage, BLACK_DAMAGE, null, H.run_armor_check(null, BLACK_DAMAGE), spread_damage = TRUE)
+					H.deal_damage(aflame_damage, BLACK_DAMAGE)
 					if(H.stat >= SOFT_CRIT || H.health < 0)
 						H.fire_stacks += 1
 						H.IgniteMob()//unforunately this fire isn' blue.
@@ -263,7 +274,7 @@
 	for(var/mob/living/L in livinginview(10, src))
 		if(faction_check_mob(L))
 			continue
-		L.apply_damage(pulse_damage, RED_DAMAGE, null, L.run_armor_check(null, RED_DAMAGE), spread_damage = TRUE)
+		L.deal_damage(pulse_damage, RED_DAMAGE)
 
 /mob/living/simple_animal/hostile/abnormality/doomsday_calendar/proc/EnableFire()
 	if(current_phase_num <= 1)
@@ -305,7 +316,7 @@
 		is_fed = TRUE
 		adjustBruteLoss(100)
 		pulse_damage -= 1
-		playsound(get_turf(src),'sound/abnormalities/doomsdaycalendar/Limbus_Dead_Generic.ogg', 50, 1)
+		playsound(get_turf(src),'sound/effects/limbus_death.ogg', 50, 1)
 		AddModifier(/datum/dc_change/sacrificed)
 
 //***Simple Mobs***//

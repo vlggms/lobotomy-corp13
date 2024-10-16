@@ -44,12 +44,19 @@
 		/mob/living/simple_animal/hostile/abnormality/cleaner = 1.5,
 	)
 
+	observation_prompt = "Is fun to clean. I was..."
+	observation_choices = list("You are special")
+	correct_choices = list("You are special")
+	observation_success_message = "There were many friends who looked like me. <br>I was special. <br>\
+		My creator always said to me. <br>\"You have to be sent to her. You are special. <br>You can give them a very special present.\" <br>\
+		Numbers of tools, which were devoid of for my friends, were put into me. <br>When I was sent to a new home, I gave them a present."
+
 	var/charging = FALSE
 	var/dash_num = 50
 	var/dash_cooldown = 0
 	var/dash_cooldown_time = 8 SECONDS
 	var/list/been_hit = list() // Don't get hit twice.
-	var/stuntime = 5 SECONDS
+	var/stuntime = 3 SECONDS
 
 	//PLAYABLES ATTACKS
 	attack_action_types = list(/datum/action/innate/abnormality_attack/toggle/helper_dash_toggle)
@@ -118,7 +125,7 @@
 	if(dir_to_target in list(WEST, NORTHWEST, SOUTHWEST))
 		para = FALSE
 	been_hit = list()
-	SpinAnimation(1.8 SECONDS, 1, para)
+	SpinAnimation(1.3 SECONDS, 1, para)
 	addtimer(CALLBACK(src, PROC_REF(do_dash), dir_to_target, 0), 1.5 SECONDS)
 	playsound(src, 'sound/abnormalities/helper/rise.ogg', 100, 1)
 
@@ -167,7 +174,7 @@
 			var/damage = 60
 			if(!ishuman(L))
 				damage = 120
-			L.apply_damage(damage, melee_damage_type, null, L.run_armor_check(null, melee_damage_type), spread_damage = TRUE)
+			L.deal_damage(damage, melee_damage_type)
 			if(L.stat >= HARD_CRIT)
 				L.gib()
 				continue

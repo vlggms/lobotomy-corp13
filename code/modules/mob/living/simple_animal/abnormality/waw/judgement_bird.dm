@@ -4,6 +4,7 @@
 	icon = 'ModularTegustation/Teguicons/48x64.dmi'
 	icon_state = "judgement_bird"
 	icon_living = "judgement_bird"
+	core_icon = "jbird_egg"
 	portrait = "judgement_bird"
 	faction = list("hostile", "Apocalypse")
 	speak_emote = list("chirps")
@@ -47,6 +48,14 @@
 		/mob/living/simple_animal/hostile/abnormality/punishing_bird = 3,
 	)
 
+	observation_prompt = "\"Long Bird\" who lived in the forest didn't want to let creatures to be eaten by monsters. <br>\
+		His initial goal was pure, at least. <br>The forest began to be saturated by darkness. <br>His long vigil is saturated with memories and regrets."
+	observation_choices = list("Leave him be", "Console the bird")
+	correct_choices = list("Console the bird")
+	observation_success_message = "Long Bird put down his scales, that had been with him for a long time. <br>\
+		The long-lasting judgement finally ends. <br>Long Bird slowly realizes the secrets behind the monster, and he waits. <br>For the forest that he will never take back."
+	observation_fail_message = "Long Bird sees through you, even though he is blind. <br>He is weighing your sins."
+
 	var/judgement_cooldown = 10 SECONDS
 	var/judgement_cooldown_base = 10 SECONDS
 	var/judgement_damage = 45
@@ -88,13 +97,13 @@
 	playsound(get_turf(src), 'sound/abnormalities/judgementbird/pre_ability.ogg', 50, 0, 2)
 	SLEEP_CHECK_DEATH(2 SECONDS)
 	playsound(get_turf(src), 'sound/abnormalities/judgementbird/ability.ogg', 75, 0, 7)
-	for(var/mob/living/L in livinginrange(judgement_range, src))
+	for(var/mob/living/L in urange(judgement_range, src))
 		if(faction_check_mob(L, FALSE))
 			continue
 		if(L.stat == DEAD)
 			continue
 		new /obj/effect/temp_visual/judgement(get_turf(L))
-		L.apply_damage(judgement_damage, PALE_DAMAGE, null, L.run_armor_check(null, PALE_DAMAGE), spread_damage = TRUE)
+		L.deal_damage(judgement_damage, PALE_DAMAGE)
 
 		if(L.stat == DEAD)	//Gotta fucking check again in case it kills you. Real moment
 			if(!IsCombatMap())
@@ -174,6 +183,10 @@
 	ranged = 1
 	retreat_distance = 3
 	minimum_distance = 1
+
+/mob/living/simple_animal/hostile/nosferatu_mob/OpenFire(atom/A)
+	visible_message(span_danger("<b>[src]</b> taunts [A]!"))
+	ranged_cooldown = world.time + ranged_cooldown_time
 
 /mob/living/simple_animal/hostile/runawaybird/AttackingTarget()
 	. = ..()

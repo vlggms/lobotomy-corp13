@@ -95,10 +95,27 @@
 	inhand_icon_state = "kpistol"
 	lefthand_file = 'ModularTegustation/Teguicons/lc13_left.dmi'
 	righthand_file = 'ModularTegustation/Teguicons/lc13_right.dmi'
+	force = 8
 	ammo_type = /obj/item/ammo_casing/caseless/ego_kcorp
 	fire_delay = 5
+	shotsleft = 12
+	reloadtime = 0.8 SECONDS
 	fire_sound = 'sound/weapons/gun/pistol/shot.ogg'
 	fire_sound_volume = 70
+
+/obj/item/gun/ego_gun/pistol/kcorp/examine(mob/user)
+	. = ..()
+	if(user.mind)
+		if(user.mind.assigned_role in list("Disciplinary Officer", "Emergency Response Agent")) //These guys get a bonus to equipping gacha.
+			. += span_notice("Due to your abilities, you get a -20 reduction to stat requirements when equipping this weapon.")
+
+/obj/item/gun/ego_gun/pistol/kcorp/CanUseEgo(mob/living/user)
+	if(user.mind)
+		if(user.mind.assigned_role in list("Disciplinary Officer", "Emergency Response Agent")) //These guys get a bonus to equipping gacha.
+			equip_bonus = 20
+		else
+			equip_bonus = 0
+	. = ..()
 
 
 // Guns below
@@ -107,9 +124,12 @@
 	desc = "A lime green machinepistol used by Kcorp."
 	icon_state = "ksmg"
 	inhand_icon_state = "ksmg"
+	force = 17
 	fire_sound = 'sound/weapons/gun/smg/mp7.ogg'
 	autofire = 0.08 SECONDS
 	fire_delay = 1
+	shotsleft = 40
+	reloadtime = 1.2 SECONDS
 	attribute_requirements = list(
 							FORTITUDE_ATTRIBUTE = 80,
 							PRUDENCE_ATTRIBUTE = 60,
@@ -123,8 +143,11 @@
 	desc = "A short grenade launcher used by Kcorp."
 	icon_state = "kgrenade"
 	inhand_icon_state = "kgrenade"
+	force = 17
 	ammo_type = /obj/item/ammo_casing/caseless/ego_knade
-	fire_delay = 15
+	fire_delay = 7
+	shotsleft = 6
+	reloadtime = 1.8 SECONDS
 	fire_sound = 'sound/weapons/gun/general/grenade_launch.ogg'
 	fire_sound_volume = 70
 	attribute_requirements = list(

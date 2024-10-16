@@ -4,6 +4,7 @@
 	icon = 'ModularTegustation/Teguicons/48x48.dmi'
 	icon_state = "eris"
 	icon_living = "eris"
+	core_icon = "eris_egg"
 	portrait = "eris"
 	maxHealth = 1100
 	health = 1100
@@ -37,8 +38,24 @@
 	)
 	gift_type =  /datum/ego_gifts/coiling
 	abnormality_origin = ABNORMALITY_ORIGIN_ORIGINAL
-	var/girlboss_level = 0
 
+	observation_prompt = "I am seated at a banquet. <br>\
+		The tablecloth is of the finest red velvet, and seated across from me is the abnormality Eris.<br>\
+		\"Well, how is it?\" <br>The monster, disguised as a human asks me. <br>\
+		There is a sweet, revolting scent in the air. <br>\
+		Raw meat and organs are piled high on the serving plates, being attacked by the occasional fly. <br>The monster in front of me dines with knife and fork.<br>\
+		A human head is on prominent display on my plate.<br> It belongs to someone who was assigned to work on \"Eris\", not too long ago.<br>\
+		\"Not hungry? Perhaps you'd like to visit my boudoir?\"<br>\
+		Vile, disgusting. <br>I want to get out of here."
+	observation_choices = list("Accept her proposal", "Run")
+	correct_choices = list("Run")
+	observation_success_message = "I get up from the table, make an excuse, and bolt for the door as fast as I can. <br>\
+		Surprisingly, it's not locked. <br>I hear the imitation of a young woman's voice on my way out. <br>\
+	\"Come back soon, sweetie!\"<br> \"You're always invited to dinner, and i'll be sure to serve you one day!\""
+	observation_fail_message = "How bad can it be? <br>I follow Eris as she leads me into a room. <br>\
+		Hours later, Eris dines with another stranger. <br>My head is resting on that very same plate."
+
+	var/girlboss_level = 0
 
 //Okay, but here's the breach on death
 /mob/living/simple_animal/hostile/abnormality/eris/Initialize()
@@ -118,7 +135,7 @@
 
 	//Lose sanity
 	for(var/mob/living/carbon/human/H in view(10, get_turf(src)))
-		H.apply_damage(girlboss_level*10, WHITE_DAMAGE, null, H.run_armor_check(null, WHITE_DAMAGE), spread_damage = TRUE)
+		H.deal_damage(girlboss_level*10, WHITE_DAMAGE)
 
 	SLEEP_CHECK_DEATH(10)
 	manual_emote("wipes her mouth with a hankerchief")
@@ -176,14 +193,14 @@
 	if(!ishuman(Proj.firer))
 		return
 	var/mob/living/carbon/human/H = Proj.firer
-	H.apply_damage(40*(TOUGHER_TIMES(girlboss_level)), WHITE_DAMAGE, null, H.run_armor_check(null, WHITE_DAMAGE), spread_damage = TRUE)
+	H.deal_damage(40*(TOUGHER_TIMES(girlboss_level)), WHITE_DAMAGE)
 
 
 /mob/living/simple_animal/hostile/abnormality/eris/attacked_by(obj/item/I, mob/living/user)
 	..()
 	if(!user)
 		return
-	user.apply_damage(40*(TOUGHER_TIMES(girlboss_level)), WHITE_DAMAGE, null, user.run_armor_check(null, WHITE_DAMAGE), spread_damage = TRUE)
+	user.deal_damage(40*(TOUGHER_TIMES(girlboss_level)), WHITE_DAMAGE)
 
 
 //Okay, but here's the work effects

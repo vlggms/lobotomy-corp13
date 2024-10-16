@@ -34,6 +34,15 @@
 	light_color = "FFFFFFF"
 	light_power = 5
 	light_range = 2
+
+	observation_prompt = "She was so pale at the end, she looked more like a porcelain doll than the little girl I knew, \
+		laughing and smiling that bright colourful smile I loved so much. <br>I sat next to her bed, powerless to do anything."
+	observation_choices = list("Hold her hand")
+	correct_choices = list("Hold her hand")
+	observation_success_message = "Her skin was clammy and cool to the touch and not a trace of a pulse to be found, she passed the night before. <br>\
+		It didn't mean anything. <br>In the corner of the room, I saw the reaper bow his head in apology."
+
+
 	var/meltdown_cooldown //no spamming the meltdown effect
 	var/meltdown_cooldown_time = 15 SECONDS
 
@@ -84,7 +93,7 @@
 	if(QDELETED(user))
 		return
 	to_chat(user, span_userdanger("[src] stabs you!"))
-	user.apply_damage(3000, PALE_DAMAGE, null, user.run_armor_check(null, PALE_DAMAGE), spread_damage = TRUE)
+	user.deal_damage(3000, PALE_DAMAGE)
 	playsound(user, 'sound/weapons/fixer/generic/nail1.ogg', 100, FALSE, 4)
 	return
 
@@ -186,7 +195,7 @@
 			B.on = 1
 			B.break_light_tube()
 		for(var/mob/living/L in T)
-			L.apply_damage(10, PALE_DAMAGE, null, L.run_armor_check(null, PALE_DAMAGE), spread_damage = TRUE)
+			L.deal_damage(10, PALE_DAMAGE)
 			if(ishuman(L) && L.health < 0)
 				var/mob/living/carbon/human/H = L
 				H.Drain()

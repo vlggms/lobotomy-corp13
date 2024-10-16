@@ -46,6 +46,25 @@
 		/mob/living/simple_animal/hostile/abnormality/we_can_change_anything = 1.5,
 	)
 
+	observation_prompt = "I wipe everything. <br>\
+		Cleaning is enjoyable. <br>\
+		I like to be the same as others. <br>\
+		... <br>\
+		I am frankly troubled. <br>\
+		The model next to mine boasted that it has multiple parts that others don't. <br>\
+		Is that what makes one special? <br>\
+		Am I special the way I am?"
+	observation_choices = list("You are special", "You are not special")
+	correct_choices = list("You are not special")
+	observation_success_message = "\"Am I not special, not special, not special?\" <br>\
+		After giving a lagged reply, it suddenly began tearing off all the cleaning gadgets from its body and crashing into walls. <br>\
+		It rubbed its body on other objects while sparks flew off as if it was trying to attach things to it. <br>\
+		It only stopped after a while. <br>\
+		\"Maybe I wanted to be special.\""
+	observation_fail_message = "\"No. I am not special.\" <br>\
+		Disregarding the answer, it gives a stern reply. <br>\
+		\"I will keep living an ordinary life, the same as now, just as assigned to me.\""
+
 	var/bumpdamage = 10
 
 /mob/living/simple_animal/hostile/abnormality/cleaner/Move()
@@ -55,7 +74,7 @@
 		if(H.stat >= SOFT_CRIT)
 			continue
 		visible_message("[src] tosses [H] out of the way!")
-		H.apply_damage(bumpdamage, RED_DAMAGE, null, H.run_armor_check(null, RED_DAMAGE), spread_damage = TRUE)
+		H.deal_damage(bumpdamage, RED_DAMAGE)
 
 		var/rand_dir = pick(NORTH, SOUTH, EAST, WEST)
 		var/atom/throw_target = get_edge_target_turf(H, rand_dir)

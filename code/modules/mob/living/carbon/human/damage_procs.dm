@@ -2,17 +2,61 @@
 /mob/living/carbon/human/apply_damage(damage = 0,damagetype = BRUTE, def_zone = null, blocked = FALSE, forced = FALSE, spread_damage = FALSE, wound_bonus = 0, bare_wound_bonus = 0, sharpness = SHARP_NONE, white_healable = FALSE)
 	return dna.species.apply_damage(damage, damagetype, def_zone, blocked, src, forced, spread_damage, wound_bonus, bare_wound_bonus, sharpness, white_healable)
 
+
+
+//// Damage Effects
+/mob/living/carbon/human/adjustRedLoss(amount, updating_health = TRUE, forced = FALSE)
+	. = ..()
+	//Failsafe
+	if(. && !forced)
+		if(. > 0)
+			new /obj/effect/temp_visual/damage_effect/red(get_turf(src))
+
 /mob/living/carbon/human/adjustWhiteLoss(amount, updating_health = TRUE, forced = FALSE, white_healable = FALSE)
 	var/damage_amt = amount
 	if(sanity_lost && white_healable) // Heal sanity instead.
 		damage_amt *= -1
-	adjustSanityLoss(damage_amt)
+	if(damage_amt > 0 && !forced)
+		new /obj/effect/temp_visual/damage_effect/white(get_turf(src))
+	adjustSanityLoss(damage_amt, forced)
 	if(updating_health)
 		updatehealth()
 	return damage_amt
 
-/mob/living/carbon/human/proc/adjustSanityLoss(amount)
+/mob/living/carbon/human/adjustBlackLoss(amount, updating_health = TRUE, forced = FALSE, white_healable = FALSE)
+	var/damage_amt = amount
+	if(sanity_lost && white_healable) // Heal sanity instead.
+		damage_amt *= -1
+	if(amount > 0 && !forced)
+		new /obj/effect/temp_visual/damage_effect/black(get_turf(src))
+	adjustBruteLoss(amount, forced = forced)
+	adjustSanityLoss(damage_amt, forced = forced)
+	return damage_amt
+
+/mob/living/carbon/human/adjustPaleLoss(amount, updating_health = TRUE, forced = FALSE)
+	. = ..()
+	if(. && !forced)
+		if(. > 0)
+			new /obj/effect/temp_visual/damage_effect/pale(get_turf(src))
+
+/mob/living/carbon/human/adjustToxLoss(amount, updating_health = TRUE, forced = FALSE)
+	. = ..()
+	if(. && !forced)
+		if(. > 0)
+			new /obj/effect/temp_visual/damage_effect/tox(get_turf(src))
+
+/mob/living/carbon/human/adjustFireLoss(amount, updating_health = TRUE, forced = FALSE, required_status)
+	. = ..()
+	if(. && !forced)
+		if(. > 0)
+			new /obj/effect/temp_visual/damage_effect/burn(get_turf(src))
+
+//
+
+/mob/living/carbon/human/proc/adjustSanityLoss(amount, forced = FALSE)
 	if((status_flags & GODMODE) || !attributes || stat == DEAD)
+		return FALSE
+	if(!forced && amount < 0 && HAS_TRAIT(src, TRAIT_SANITY_HEALING_BLOCKED))
 		return FALSE
 	sanityloss = clamp(sanityloss + amount, 0, maxSanity)
 	if(HAS_TRAIT(src, TRAIT_SANITYIMMUNE))
@@ -57,7 +101,7 @@
 	playsound(loc, 'sound/effects/sanity_lost.ogg', 75, TRUE, -1)
 	var/warning_text = "[src] shakes for a moment..."
 	var/datum/status_effect/panicked_type/status_effect_type
-	if(SSmaptype.maptype == "city" && attribute == JUSTICE_ATTRIBUTE)
+	if(SSmaptype.maptype in SSmaptype.citymaps && attribute == JUSTICE_ATTRIBUTE)
 		attribute = TEMPERANCE_ATTRIBUTE // Justice panics default to temerance panics on city, no containment cells.
 	switch(attribute)
 		if(FORTITUDE_ATTRIBUTE)
@@ -70,7 +114,7 @@
 			status_effect_type = /datum/status_effect/panicked_type/suicide
 		if(TEMPERANCE_ATTRIBUTE)
 			ai_controller = /datum/ai_controller/insane/wander
-			warning_text = "[src] twitches for a moment, [p_their()] eyes looking for [SSmaptype.maptype == "city" ? "a way out" : "an exit"]."
+			warning_text = "[src] twitches for a moment, [p_their()] eyes looking for [SSmaptype.maptype in SSmaptype.citymaps ? "a way out" : "an exit"]."
 			status_effect_type = /datum/status_effect/panicked_type/wander
 		if(JUSTICE_ATTRIBUTE)
 			ai_controller = /datum/ai_controller/insane/release

@@ -23,6 +23,14 @@
 	gift_type = /datum/ego_gifts/thirteen
 	abnormality_origin = ABNORMALITY_ORIGIN_ARTBOOK
 
+	observation_prompt = "Time's wasting. <br>Time's running out... <br>They are nothing but meaningless tantrums. <br>\
+		The watch will not only take your lost time back, but also give you even more time."
+	observation_choices = list("Do not use the watch", "Use the watch")
+	correct_choices = list("Use the watch")
+	observation_success_message = "The price will follow to your decision. <br>It is designed this way."
+	observation_fail_message = "Actually, you have no right to refuse this gift. <br>\
+		Whether you want it or not, we all know that you have to take it."
+
 	var/meltdown_cooldown_time = 13 MINUTES
 	var/meltdown_cooldown
 	var/worldwide_damage = 70	//If you're unarmored, it obliterates you
@@ -37,7 +45,7 @@
 
 /mob/living/simple_animal/hostile/abnormality/silence/Destroy()
 	QDEL_NULL(soundloop)
-	..()
+	return ..()
 
 /mob/living/simple_animal/hostile/abnormality/silence/SuccessEffect(mob/living/carbon/human/user, work_type, pe)
 	. = ..()
@@ -72,7 +80,7 @@
 			continue
 
 		new /obj/effect/temp_visual/thirteen(get_turf(H))	//A visual effect if it hits
-		H.apply_damage(worldwide_damage, PALE_DAMAGE, null, H.run_armor_check(null, PALE_DAMAGE), spread_damage = TRUE)
+		H.deal_damage(worldwide_damage, PALE_DAMAGE)
 	addtimer(CALLBACK(src, PROC_REF(Reset)), reset_time)
 	return
 

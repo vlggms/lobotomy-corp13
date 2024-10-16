@@ -63,7 +63,7 @@
 	Name : Behavior Adjustment <br>
 	Risk Class: TETH <br>
 	- Stats regarding Justice will increase greatly when Behavior Adjustment is used. However, all stats regarding Prudence will drop at the same time. <br>
-	- If the employee’s SP hits 0 while Behavior Adjustment is used, they will instantly die."}
+	- If the employee’s SP hits 0 while Behavior Adjustment is active, they will tear their eyes out."}
 
 //Tree Sap
 /obj/item/paper/fluff/info/tool/treesap
@@ -82,9 +82,9 @@
 	Name : Heart of Aspiration<br>
 	Risk Class: TETH <br>
 	- Those who equip The Heart of Aspiration will benefit from increased HP and Justice. <br>
-	- Heart of aspiration slowly drained the sanity of the person using it during work. <br>
-	- When the person that equipped The Heart of Aspiration has their SP 20% or lower of their max SP, they went mad, <br>
-	- Should the person that equipped The Heart of Aspiration become insane, the person would become violent quickly."}
+	- Heart of aspiration slowly drained the health of the person using it if their HP drops below 50%. <br>
+	- When HP was reduced to 25% of the max HP, the previous effect became even more intense. <br>
+	- Should the person that equipped The Heart of Aspiration have low HP, they become immune to pain and benefit from a further increase in Justice."}
 
 //Bracelet
 /obj/item/paper/fluff/info/tool/bracelet
@@ -92,11 +92,10 @@
 	info = {"<h1><center>O-09-95</center></h1>	<br>
 	Name : Luminous Bracelet <br>
 	Risk Class: TETH <br>
-	- Stats regarding Fortitude will greatly increase while Luminous Bracelet is worn. <br>
+	- Physical sturdiness will greatly decrease while Luminous Bracelet is worn. <br>
 	- Luminous Bracelet continually recovers the wearer’s HP when it drops. <br>
 	- The wearer will die if any attempt to return Luminous Bracelet is made before they are fully healed. <br>
-	- If the wearer’s HP has not dropped after a certain period of time, then they will die from excessive regeneration. <br>
-	- If the wearer’s HP is too low, after a certain period of time, then they will die from tissue necrosis. "}
+	- If the bracelet is worn for too long, the user die from excessive regeneration."}
 
 //Loom
 /obj/item/paper/fluff/info/tool/fateloom
@@ -106,19 +105,19 @@
 	Risk Class: HE <br>
 	- Those who interact with T-09-142 are sewn together with red thread. <br>
 	- If the user’s HP drops below 50%, they will be healed. The user loses thread and experiences significant mental corrosion when this happens. <br>
-	- If the user’s HP drops below 50% when threads are too thin, they will collapse into pieces.
-	- The user can restore lost threads at the loom, sacrificing much of their own fortitude.<br> "}
+	- If the user’s HP drops below 50% when threads are too thin, they will collapse into pieces. <br>
+	- Lost threads repair over time.<br> "}
 
 //Dr. Jekyll's Formula
 /obj/item/paper/fluff/info/tool/dr_jekyll
 	name = "Dr. Jekyll's Tincture - F-09-148"
 	info = {"<h1><center>F-09-148</center></h1>	<br>
 	Name : Dr. Jekyll's Tincture<br>
-	Risk Class : HE	<br>
-	- The employee who uses the abnormality will experience no effects when mental fortitude is at normal levels. <br>
-	- If the user’s SP drops below 50%, they will experience a personality shift and hereby referred to as F-09-148-1.<br>
+	Risk Class : WAW	<br>
+	- The employee who uses the abnormality will experience a temporary loss of mental fortitude until the concoction is returned. <br>
+	- If the user drinks F-09-148, their SP drops below 50%, and they will experience a personality shift and hereby referred to as F-09-148-1.<br>
 	- F-09-148-1 was identical to the employee but with different attributes. F-09-148-01 became violent during every panic scenario recorded.<br>
-	- F-09-148-1 returned to normal when SP was raised to over 50%, but would regress back into F-09-148-1 if SP dropped again."}
+	- F-09-148-1 returned to normal when SP was raised to 100%, but would regress back into F-09-148-1 if F-09-148 was drunk again."}
 
 //All-Natural Snake Oil
 /obj/item/paper/fluff/info/tool/snake_oil
@@ -183,10 +182,10 @@
 	info = {"<h1><center>T-09-78</center></h1>	<br>
 	Name : Notes from a Crazed Researcher<br>
 	Risk Class : HE	<br>
-	- One’s observational skill will improve just by holding this item.	<br>
+	- One’s observational skill will improve just by holding this item, improving their ability to work with abnormalities.	<br>
 	- However, if it is returned without fulfilling the yearning for knowledge, the incompetent shall explode.	<br>
-	- When the yearning for knowledge is sated, the abnormality appears to return to containment.	<br>
-	- In addition, if the damage recieved while holding these notes exceeds the users maximum combined HP and SP, the user will explode. "}
+	- When the yearning for knowledge is sated, the abnormality is safe to return.	<br>
+	- If the damage recieved while holding these notes exceeds the users maximum combined HP and SP, the user will explode. "}
 
 //You Must Be Happy
 /obj/item/paper/fluff/info/tool/you_happy

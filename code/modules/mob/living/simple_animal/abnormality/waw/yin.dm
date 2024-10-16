@@ -44,6 +44,17 @@
 		/mob/living/simple_animal/hostile/abnormality/yang = 5, // TAKE THE FISH. DO IT
 	)
 
+	observation_prompt = "The Devil's Pendant was one half of a greater whole, but now they've been cleaved in half, forever wanting to reunite. <br>\
+		The pendant laid upon the podium before you, even being in the same room as it seemed to suck the life out of you and erodes your very essence."
+	observation_choices = list("Put it on", "Don't put it on")
+	correct_choices = list("Put it on")
+	observation_success_message = "The moment you put it on, your body is stricken with deepest agony, feeling like thorns racing through your body, puncturing flesh and mind alike but you endure. <br>\
+		It didn't mean to harm you, it's just the way it is. <br>\
+		If there is light and goodness in this world, shouldn't there be darkness and evil too? <br>\
+		The world is far more than brightness and warmth."
+	observation_fail_message = "It is darkness made manifest, made to encapsulate all the negativity in the world. <br>\
+		If you can't accept the darkness of the world, you're not ready to accept the darkness in you."
+
 	faction = list("neutral", "hostile") // Not fought by anything, typically. But...
 	var/faction_override = list("hostile") // The effects hit non-hostiles.
 
@@ -150,7 +161,7 @@
 		if(SSlobotomy_events.yang_downed)
 			death()
 			return
-	adjustBruteLoss(-maxHealth)
+	adjustBruteLoss(-maxHealth, forced = TRUE)
 	ChangeResistances(list(RED_DAMAGE = 0.5, WHITE_DAMAGE = 1.5, PALE_DAMAGE = 1))
 	SSlobotomy_events.yin_downed = FALSE
 	icon_state = icon_breach
@@ -381,7 +392,7 @@
 		for(var/mob/living/L in T)
 			if(faction_check(L.faction, src.faction))
 				continue
-			L.apply_damage(damage, BLACK_DAMAGE, null, L.run_armor_check(null, BLACK_DAMAGE), spread_damage = TRUE)
+			L.deal_damage(damage, BLACK_DAMAGE)
 		for(var/obj/vehicle/sealed/mecha/V in T)
 			V.take_damage(damage, BLACK_DAMAGE)
 		new /obj/effect/temp_visual/small_smoke/yin_smoke/long(T)

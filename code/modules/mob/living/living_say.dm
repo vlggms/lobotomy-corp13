@@ -176,7 +176,7 @@ GLOBAL_LIST_INIT(message_modes_stat_limits, list(
 		message_range = 1
 		log_talk(message, LOG_WHISPER)
 		if(stat == HARD_CRIT)
-			var/health_diff = round(-HEALTH_THRESHOLD_DEAD + health)
+			var/health_diff = round(-death_threshold + health)
 			// If we cut our message short, abruptly end it with a-..
 			var/message_len = length_char(message)
 			message = copytext_char(message, 1, health_diff) + "[message_len > health_diff ? "-.." : "..."]"

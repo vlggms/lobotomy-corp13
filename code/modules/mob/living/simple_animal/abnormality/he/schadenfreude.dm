@@ -38,16 +38,27 @@
 	gift_type =  /datum/ego_gifts/gaze
 	abnormality_origin = ABNORMALITY_ORIGIN_LOBOTOMY
 
+	observation_prompt = "You put on the blindfold and entered the containment unit. <br>You can feel the metal box's gaze through the thick fabric."
+	observation_choices = list("Take off the blindfold", "Feel for the wall")
+	correct_choices = list("Feel for the wall")
+	observation_success_message = "You turn to the wall and feel for it until you find your way back to the door. <br>\
+		The box can't ever be more than a box, it can only exist as something real in the gaze of others. <br>Perhaps you're more alike than you think."
+	observation_fail_message = "You remove the blindfold and wait a moment for your eyes to adjust to the light, your gaze meets the eye in the keyhole's. <br>\
+		The box comes to life with saws and blades, but all it is for - is to catch your attention."
+
 	var/seen	//Are you being looked at right now?
 	var/solo_punish	//Is an agent alone on the Z level, but not overall?
+	var/total_players
 
 //Sight Check
 /mob/living/simple_animal/hostile/abnormality/schadenfreude/Life()
 	. = ..()
 	//Make sure there actually are two players on the Z level
 	var/living_players
+	total_players = 0
 	solo_punish = FALSE
 	for(var/mob/living/carbon/human/H in GLOB.player_list)
+		total_players +=1
 		if(H.z == z && H.stat != DEAD)
 			living_players +=1
 		else if(H.stat != DEAD) //Someone else is alive, just not on the Z level. Probably a manager. Thus, someone else COULD see you...
@@ -93,11 +104,17 @@
 //Work stuff
 //Too many people looking? Reduce final work success rate to 0.
 /mob/living/simple_animal/hostile/abnormality/schadenfreude/ChanceWorktickOverride(mob/living/carbon/human/user, work_chance, init_work_chance, work_type)
-	if(seen && !solo_punish) //If you're only considered "seen" because the other living player(s) are all on another Z level, disregard it during work specifically.
+	if(seen && !solo_punish && total_players > 1) //If you're only considered "seen" because the other living player(s) are all on another Z level, or there are no other players online at the time, disregard it during work specifically.
 		to_chat(user, span_warning("You are injured by [src]!")) // Keeping it clear that the bad work is from being seen and not just luck.
 		new /obj/effect/temp_visual/dir_setting/bloodsplatter(get_turf(user), pick(GLOB.alldirs))
 		return 0
 	return init_work_chance
+
+//For when only one person is on the server. The person who works it takes 90 damage minimum per work.
+/mob/living/simple_animal/hostile/abnormality/schadenfreude/Worktick(mob/living/carbon/human/user)
+	. = ..()
+	if(total_players == 1)
+		user.apply_damage(5, RED_DAMAGE, null, user.run_armor_check(null, RED_DAMAGE), spread_damage = TRUE)
 
 /mob/living/simple_animal/hostile/abnormality/schadenfreude/BreachEffect(mob/living/carbon/human/user, breach_type)
 	. = ..()

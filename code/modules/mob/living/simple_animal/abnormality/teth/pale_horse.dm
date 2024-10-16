@@ -35,6 +35,19 @@
 	gift_type =  /datum/ego_gifts/revelation
 	gift_message = "He will wipe away every tear from their eyes, and death shall be evermore."
 
+	secret_chance = TRUE // peter, the horse is here
+	secret_icon_state = "palehorse_hungry"
+
+	observation_prompt = "Joseph came to you once, his face flush with excitement after the horse wept before him. He's \"Nothing There\"'s shell now. <br>\
+		Did the horse merely prognosticate his death or did it doom him? You're outside the containment unit now and your legs tremble, you've been ordered to work it today. <br>\
+		You..."
+	observation_choices = list("Enter the containment unit", "Pretend you didn't get the order")
+	correct_choices = list("Enter the containment unit")
+	observation_success_message = "You enter the containment unit and kneel before the horse. <br>\
+		It kneels next to you and a single tear drips from its eye onto your shoulder. You hold onto its head as you both weep. <br>\
+		Death is terrifying but at least you know something weeps for you."
+	observation_fail_message = "You pretend you didn't get the order and make to leave, your PDA flashes again, you've been assigned to \"Nothing There\" and this time, you're being escorted."
+
 	//teleport
 	var/can_act = TRUE
 	var/teleport_cooldown
@@ -55,13 +68,11 @@
 	if(user.health < (user.maxHealth * 0.5))
 		return
 	else
-		user.apply_damage(4, PALE_DAMAGE, null, user.run_armor_check(null, PALE_DAMAGE))
+		user.deal_damage(4, PALE_DAMAGE)
 
 /mob/living/simple_animal/hostile/abnormality/pale_horse/Initialize()
 	. = ..()
 	RegisterSignal(SSdcs, COMSIG_GLOB_MOB_DEATH, PROC_REF(OnMobDeath))
-	if(prob(1))
-		icon_state = "palehorse_hungry"
 
 /mob/living/simple_animal/hostile/abnormality/pale_horse/Destroy()
 	UnregisterSignal(SSdcs, COMSIG_GLOB_MOB_DEATH)
@@ -74,6 +85,8 @@
 	if(!ishuman(died))
 		return FALSE
 	if(!died.ckey)
+		return FALSE
+	if(died.z != z)
 		return FALSE
 	datum_reference.qliphoth_change(-1)
 	return TRUE
@@ -112,7 +125,7 @@
 		for(var/mob/living/H in T)
 			if(faction_check_mob(H))
 				continue
-			H.apply_damage(fog_damage, PALE_DAMAGE, null, H.run_armor_check(null, PALE_DAMAGE), spread_damage = TRUE)
+			H.deal_damage(fog_damage, PALE_DAMAGE)
 
 
 /mob/living/simple_animal/hostile/abnormality/pale_horse/Moved() //more damaging fog when moving
@@ -148,7 +161,7 @@
 	var/datum/effect_system/smoke_spread/S = new
 	S.set_up(7, get_turf(src))
 	S.start()
-	for(var/mob/living/simple_animal/hostile/abnormality/P in range(pulse_range, src))
+	for(var/mob/living/simple_animal/hostile/abnormality/P in urange(pulse_range, src))
 		if(!(P.IsContained()))
 			continue
 		P.datum_reference.qliphoth_change(-1)
@@ -157,7 +170,7 @@
 		for(var/mob/living/H in F)
 			if(faction_check_mob(H))
 				continue
-			H.apply_damage(ash_damage, PALE_DAMAGE, null, H.run_armor_check(null, PALE_DAMAGE), spread_damage = TRUE)
+			H.deal_damage(ash_damage, PALE_DAMAGE)
 			if(H.health < 0 && ishuman(H))
 				H.dust()
 	T.dust()
@@ -278,7 +291,7 @@
 	icon_state = "mortis"
 
 /datum/status_effect/mortis/tick()
-	owner.apply_damage(damage, PALE_DAMAGE, null, owner.run_armor_check(null, PALE_DAMAGE), spread_damage = TRUE)
+	owner.deal_damage(damage, PALE_DAMAGE)
 	if(owner.health < 0 && ishuman(owner))
 		owner.dust()
 

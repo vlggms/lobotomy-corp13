@@ -1,5 +1,5 @@
-#define STATUS_EFFECT_TEARS /datum/status_effect/tears
-#define STATUS_EFFECT_TEARS_LESS /datum/status_effect/tears/less
+#define STATUS_EFFECT_TEARS /datum/status_effect/stacking/tears
+#define STATUS_EFFECT_TEARS_LESS /datum/status_effect/stacking/tears/less
 /mob/living/simple_animal/hostile/abnormality/bottle
 	name = "Bottle of Tears"
 	desc = "A bottle filled with water with a cake on top"
@@ -12,10 +12,10 @@
 	damage_coeff = list(RED_DAMAGE = 1, WHITE_DAMAGE = 1.5, BLACK_DAMAGE = 0.5, PALE_DAMAGE = 2)
 	threat_level = ZAYIN_LEVEL
 	work_chances = list( //In the comic they work on it. They say you can do any work as long as you don't eat the cake
-		ABNORMALITY_WORK_INSTINCT = list(50, 40, 30, 30, 30),
-		ABNORMALITY_WORK_INSIGHT = list(50, 40, 30, 30, 30),
-		ABNORMALITY_WORK_ATTACHMENT = list(50, 40, 30, 30, 30),
-		ABNORMALITY_WORK_REPRESSION = list(50, 40, 30, 30, 30), //How the fuck do you beat up a cake?
+		ABNORMALITY_WORK_INSTINCT = list(60, 50, 40, 30, 30),
+		ABNORMALITY_WORK_INSIGHT = list(60, 50, 40, 30, 30),
+		ABNORMALITY_WORK_ATTACHMENT = list(60, 50, 40, 30, 30),
+		ABNORMALITY_WORK_REPRESSION = list(60, 50, 40, 30, 30), //How the fuck do you beat up a cake?
 		"Dining" = 100, //You can instead decide to eat the cake.
 		"Drink" = 100, //Or Drink the water
 	)
@@ -41,55 +41,50 @@
 	attack_verb_continuous = "begs"
 	attack_verb_simple = "beg"
 
-	var/cake = 5 //How many cake charges are there (4)
+	var/cake = 3 //How many cake charges are there (2)
 	var/speak_cooldown_time = 5 SECONDS
 	var/speak_damage = 8
 	var/eating = FALSE
+	var/scooped = FALSE // There can only be one eye scooper
+	var/cake_regen = FALSE
 	COOLDOWN_DECLARE(speak_damage_aura)
 
 	chem_type = /datum/reagent/abnormality/bottle
 	harvest_phrase = span_notice("You sweep up some crumbs from around %ABNO into %VESSEL.")
 	harvest_phrase_third = "%PERSON sweeps up crumbs from around %ABNO into %VESSEL."
 
-/mob/living/simple_animal/hostile/abnormality/bottle/Life()
-	. = ..()
-	if(!.)
-		return
-	if(COOLDOWN_FINISHED(src, speak_damage_aura) && !eating)
-		COOLDOWN_START(src, speak_damage_aura, speak_cooldown_time)
-		if(!client)
-			say("Drink Me.")
-		for(var/mob/living/L in view(vision_range, src))
-			if(L == src)
-				continue
-			if(faction_check_mob(L, FALSE))
-				continue
-			L.apply_damage(speak_damage, BLACK_DAMAGE, null, run_armor_check(null, WHITE_DAMAGE), spread_damage = TRUE)
-		adjustBruteLoss(-speak_damage) // It falls further into desperation
-		if(speak_damage < 40)
-			speak_damage += 4
+	observation_prompt = "It was all very well to say \"Drink me\" but wisdom told you not to do that in a hurry. <br>\
+		The bottle had no markings to denote whether it was poisonous but you could not be sure, it was almost certain to disagree with you, sooner or later..."
+	observation_choices = list("Drink the bottle", "Eat the cake", "Leave")
+	correct_choices = list("Leave", "Eat the cake")
+	observation_success_message = "Suspicious things are suspicious, common sense hasn't failed you yet."
+	observation_fail_message = "However this bottle was not marked as poisonous and you ventured a taste, \
+		and found it horrid, the brine clung to your tongue. <br>Who'd mark such a horrible thing for drinking?"
+	//Special answer for choice 2
+	var/observation_success_message_2 = "Abandon reason, that's how you survive in Wonderland. <br>\
+		You devour the cake by the handful, frosting and crumbs smear your hands, your face and the floor. <br>\
+		It's sweet and tart, with only the slightest hint of salt. <br>\
+		As you breach the final layer of cake, the top of the bottle cracks and a deluge of brine spills forth, filling the room faster than you could draw a breath. <br>\
+		In spite of that, you're at peace and smiling. <br>\
+		Through your fading eyesight, you spy yourself through the other side of the containment door's window - frowning."
 
-/mob/living/simple_animal/hostile/abnormality/bottle/Move()
-	if(!eating)
-		return ..()
-	return FALSE
-
-/mob/living/simple_animal/hostile/abnormality/bottle/AttackingTarget(atom/attacked_target)
-	if(eating)
-		return
-	if(isliving(target))
-		var/mob/living/L = target
-		if(faction_check_mob(L))
-			L.visible_message(span_danger("[src] feeds [L]... [L] seems heartier!"), span_nicegreen("[src] feeds you, you feel heartier!"))
-			L.adjustBruteLoss(-speak_damage/2)
-			return
+// Final Observation
+/mob/living/simple_animal/hostile/abnormality/bottle/ObservationResult(mob/living/carbon/human/user, condition, answer) //special answer for cake result
+	if(answer == "Eat the cake")
+		observation_success_message = observation_success_message_2
+	else
+		observation_success_message = initial(observation_success_message)
 	return ..()
 
+// Work Mechanics
 /mob/living/simple_animal/hostile/abnormality/bottle/AttemptWork(mob/living/carbon/human/user, work_type)
 	if(!cake)
 		if(work_type == "Dining")
 			return FALSE
-
+	if(work_type != "Dining" && work_type != "Drink")
+		if(datum_reference.console.meltdown)
+			cake_regen = TRUE
+		return TRUE
 	if(work_type == "Drink")
 		//it's just work speed
 		var/consume_speed = 2 SECONDS / (1 + ((get_attribute_level(user, TEMPERANCE_ATTRIBUTE) + datum_reference.understanding) / 100))
@@ -106,67 +101,93 @@
 
 	return TRUE
 
+/mob/living/simple_animal/hostile/abnormality/bottle/update_icon_state()
+	if(cake == 3)
+		icon_state = "bottle1"
+	else if (cake > 1) // Chowin down
+		icon_state = "bottle2"
+	else if (cake == 1) // This serves as the warning sprite to stop eating the freakin' cake, man!
+		icon_state = "bottle3"
+	else
+		icon_state = "bottle4"
+
+// Special protagonist spoon-related code
 /mob/living/simple_animal/hostile/abnormality/bottle/PostWorkEffect(mob/living/carbon/human/user, work_type, pe, work_time, canceled)
-	if(work_type == "Dining" && !canceled)
-		cake -= 1 //Eat some cake
-		if(cake > 0)
-			user.adjustBruteLoss(-500) // It heals you to full if you eat it
-			to_chat(user, span_nicegreen("You consume the cake. Delicious!"))
-			icon_state = "bottle2" //cake looks eaten
-		else
-			//Drowns you like Wellcheers does, so I mean the code checks out
-			for(var/turf/open/T in view(7, src))
-				new /obj/effect/temp_visual/water_waves(T)
-			playsound(get_turf(user), 'sound/abnormalities/bottle/bottledrown.ogg', 80, 0)
-			icon_state = "bottle3" //cake all gone
+	if(canceled)
+		cake_regen = FALSE
+		return
+	if(work_type != "Dining")
+		if(cake_regen)
+			cake = 3
+			update_icon_state() // Cake is back because we  melted
+			cake_regen = FALSE
+		return
+	cake -= 1 //Eat some cake
+	if(cake > 0)
+		user.adjustBruteLoss(-500) // It heals you to full if you eat it
+		to_chat(user, span_nicegreen("You consume the cake. Delicious!"))
+		update_icon_state() //cake looks eaten
+		return
 
-			/* "I get it now. There's no reason to have any emotions or a heart."
-			"Abandon reason and protect Catt! That's how you survive in this wonderland!"
-			Catt was a low level agent with temperance and fortitude. She sought to abandon that temperance in exchange for justice.
-			Thus, bottle will check for those. Overall low level, high temperance, high fortitude.
-			Keep in mind that this event can happen ONCE PER ROUND. The spoon is already jokingly called the protagonist weapon, so it can bend the rules a bit, right?*/
+	//Drowns you like Wellcheers does, so I mean the code checks out
+	for(var/turf/open/T in view(7, src))
+		new /obj/effect/temp_visual/water_waves(T)
 
-			new /obj/item/ego_weapon/eyeball(get_turf(user))
+	playsound(get_turf(user), 'sound/abnormalities/bottle/bottledrown.ogg', 80, 0)
+	update_icon_state() //cake all gone
 
-			var/fortitude = get_attribute_level(user, FORTITUDE_ATTRIBUTE)
-			var/prudence = get_attribute_level(user, PRUDENCE_ATTRIBUTE)
-			var/temperance = get_attribute_level(user, TEMPERANCE_ATTRIBUTE)
-			var/justice = get_attribute_level(user, JUSTICE_ATTRIBUTE)
-			var/goal_damage = 0
-			if(temperance >= (fortitude + prudence + justice) / 1.5) // If your temperance is at least twice your average stat, you aren't hurt, but lose temperance.
-				to_chat(user, span_userdanger("The room is filling with water... but you feel oddly unconcerned."))
-				user.adjust_attribute_level(TEMPERANCE_ATTRIBUTE, 20 - temperance)
-				// This is a PERMANENT stat change, VERY significant. But it can happen only once per round. You're The Protagonist, after all.
-				var/stat_change = 0
-				stat_change = temperance - 20
-				user.adjust_attribute_buff(JUSTICE_ATTRIBUTE, stat_change) // Gain benefit from what you lost.
-				addtimer(CALLBACK(src, PROC_REF(DecayProtagonistBuff), user, stat_change), 20 SECONDS) // Short grace period. 10s of this happens while you're asleep.
-			else
-				to_chat(user, span_userdanger("The room is filling with water! Are you going to drown?!"))
-				goal_damage = 99999 // DIE.
-				if(fortitude >= (prudence + justice)) // Like the temperance calculation, but high temperance doesn't actively hurt your odds.
-					goal_damage = 120 + fortitude // Hurt bad, but never lethally.
+	/**
+	 * "I get it now. There's no reason to have any emotions or a heart."
+	 * "Abandon reason and protect Catt! That's how you survive in this wonderland!"
+	 * Catt was a low level agent with temperance and fortitude. She sought to abandon that temperance in exchange for justice.
+	 * Thus, bottle will check for those. Overall low level, high temperance, high fortitude.
+	 * Keep in mind that this event can happen ONCE PER ROUND. The spoon is already jokingly called the protagonist weapon, so it can bend the rules a bit, right?
+	 */
 
-			user.AdjustSleeping(10 SECONDS)
-			user.adjustBruteLoss(goal_damage)
-			if(user.stat == DEAD)
-				animate(user, alpha = 0, time = 2 SECONDS)
-				QDEL_IN(user, 3.5 SECONDS)
-			else
-				user.adjustBruteLoss(-(goal_damage * 0.25)) // If you didn't die instantly, heal up some.
-	return
+	if(!scooped)
+		new /obj/item/ego_weapon/eyeball(get_turf(user)) // We can only ever spawn one eye scooper
+		scooped = TRUE
 
-/mob/living/simple_animal/hostile/abnormality/bottle/proc/DecayProtagonistBuff(mob/living/carbon/human/buffed, justice = 0)
+	var/fortitude = get_attribute_level(user, FORTITUDE_ATTRIBUTE)
+	var/prudence = get_attribute_level(user, PRUDENCE_ATTRIBUTE)
+	var/temperance = get_attribute_level(user, TEMPERANCE_ATTRIBUTE)
+	var/justice = get_attribute_level(user, JUSTICE_ATTRIBUTE)
+
+	if(temperance >= (fortitude + prudence + justice) / 1.5) // If your temperance is at least twice your average stat, you aren't hurt, but lose temperance.
+		var/raw_temperance = get_raw_level(user, TEMPERANCE_ATTRIBUTE)
+		to_chat(user, span_userdanger("The room is filling with water... but you feel oddly unconcerned."))
+		user.adjust_attribute_level(TEMPERANCE_ATTRIBUTE, 20 - floor(raw_temperance))
+		// This is a PERMANENT stat change, VERY significant. But it can happen only once per round. You're The Protagonist, after all.
+		var/stat_change = floor(raw_temperance - 20)
+		user.adjust_attribute_buff(JUSTICE_ATTRIBUTE, stat_change) // Gain benefit from what you lost.
+		addtimer(CALLBACK(src, PROC_REF(DecayProtagonistBuff), user, stat_change), 20 SECONDS) // Short grace period. 10s of this happens while you're asleep.
+
+	else
+		to_chat(user, span_userdanger("The room is filling with water! Are you going to drown?!"))
+		user.adjustBruteLoss(user.maxHealth - (fortitude / 2)) // Hurt bad, but never lethally.
+		if(fortitude < (prudence + justice)) // Like the temperance calculation, but high temperance doesn't actively hurt your odds.
+			user.adjustBruteLoss(999) // okay, now you've done it
+
+	user.AdjustSleeping(10 SECONDS)
+	if(user.stat == DEAD)
+		animate(user, alpha = 0, time = 2 SECONDS)
+		QDEL_IN(user, 3.5 SECONDS)
+		return
+
+	user.adjustBruteLoss(-((user.maxHealth - fortitude) * 0.25)) // If you didn't die instantly, heal up some.
+
+/mob/living/simple_animal/hostile/abnormality/bottle/proc/DecayProtagonistBuff(mob/living/carbon/human/buffed, given_justice = 0)
 	// Goes faster when the buff is higher, so you don't have an overwhelming buff for an overwhelming length of time.
-	if(justice <= 0 || !buffed)
+	if(!buffed || given_justice == 0)
 		return FALSE
-	var/factor = justice / 10
+	var/factor = given_justice / 10
 	var/timing = 10 + max(0, (100 - factor * factor))
 	buffed.adjust_attribute_buff(JUSTICE_ATTRIBUTE, -1)
 	if(prob(10))
 		buffed.adjust_attribute_level(JUSTICE_ATTRIBUTE, 1) // 10% chance for justice buff to become real justice as it decays.
-	addtimer(CALLBACK(src, PROC_REF(DecayProtagonistBuff), buffed, justice - 1), timing)
+	addtimer(CALLBACK(src, PROC_REF(DecayProtagonistBuff), buffed, given_justice - 1), timing)
 
+// Pink Midnight Breach
 /mob/living/simple_animal/hostile/abnormality/bottle/BreachEffect(mob/living/carbon/human/user, breach_type)
 	if(breach_type == BREACH_PINK)
 		ADD_TRAIT(src, TRAIT_MOVE_FLYING, INNATE_TRAIT)
@@ -191,7 +212,7 @@
 		M.apply_status_effect(STATUS_EFFECT_TEARS_LESS)
 	else
 		to_chat(M, span_notice("You decide against drinking from the bottle..."))
-		M.apply_damage(speak_damage, WHITE_DAMAGE, null, run_armor_check(null, WHITE_DAMAGE), spread_damage = TRUE)
+		M.deal_damage(speak_damage, WHITE_DAMAGE)
 	eating = FALSE
 
 /mob/living/simple_animal/hostile/abnormality/bottle/ListTargets()
@@ -201,10 +222,51 @@
 			. -= H
 			continue
 
-/datum/status_effect/tears
+/mob/living/simple_animal/hostile/abnormality/bottle/Move()
+	if(!eating)
+		return ..()
+	return FALSE
+
+/mob/living/simple_animal/hostile/abnormality/bottle/AttackingTarget(atom/attacked_target)
+	if(eating)
+		return
+	if(isliving(target))
+		var/mob/living/L = target
+		if(faction_check_mob(L))
+			L.visible_message(span_danger("[src] feeds [L]... [L] seems heartier!"), span_nicegreen("[src] feeds you, you feel heartier!"))
+			L.adjustBruteLoss(-speak_damage/2)
+			return
+	return ..()
+
+/mob/living/simple_animal/hostile/abnormality/bottle/Life()
+	. = ..()
+	if(!.)
+		return
+	if(COOLDOWN_FINISHED(src, speak_damage_aura) && !eating)
+		COOLDOWN_START(src, speak_damage_aura, speak_cooldown_time)
+		if(!client)
+			say("Drink Me.")
+		for(var/mob/living/L in view(vision_range, src))
+			if(L == src)
+				continue
+			if(faction_check_mob(L, FALSE))
+				continue
+			L.deal_damage(speak_damage, BLACK_DAMAGE)
+		adjustBruteLoss(-speak_damage) // It falls further into desperation
+		if(speak_damage < 40)
+			speak_damage += 4
+
+// Special Status Effect
+/datum/status_effect/stacking/tears
 	id = "tears"
-	status_type = STATUS_EFFECT_MULTIPLE	//You should be able to stack this, I hope
-	duration = 5 MINUTES
+	stacks = 1
+	max_stacks = INFINITY
+
+	// we use refresh as a signal that another stack should be added
+	status_type = STATUS_EFFECT_REFRESH
+	consumed_on_threshold = FALSE
+
+	tick_interval = 5 MINUTES
 	alert_type = /atom/movable/screen/alert/status_effect/tears
 	var/scaling = 20
 
@@ -214,30 +276,39 @@
 	icon = 'ModularTegustation/Teguicons/status_sprites.dmi'
 	icon_state = "tearful"
 
-/datum/status_effect/tears/on_apply()
+/datum/status_effect/stacking/tears/refresh()
+	add_stacks(stack_decay)
+
+/datum/status_effect/stacking/tears/fadeout_effect()
+	stack_decay_effect()
+
+/datum/status_effect/stacking/tears/add_stacks(stacks_added)
 	. = ..()
-	if(!ishuman(owner))
+	if(!ishuman(owner) || stacks_added < 0)
 		return
+
 	var/mob/living/carbon/human/status_holder = owner
+
 	to_chat(owner, span_danger("Something once important to you is gone now. You feel like crying."))
 	status_holder.adjust_attribute_buff(FORTITUDE_ATTRIBUTE, -scaling)
 	status_holder.adjust_attribute_buff(PRUDENCE_ATTRIBUTE, -scaling)
 	status_holder.adjust_attribute_buff(TEMPERANCE_ATTRIBUTE, -scaling)
 	status_holder.adjust_attribute_buff(JUSTICE_ATTRIBUTE, -scaling)
 
-/datum/status_effect/tears/on_remove()
-	. = ..()
+/datum/status_effect/stacking/tears/stack_decay_effect()
 	if(!ishuman(owner))
 		return
+
 	var/mob/living/carbon/human/status_holder = owner
+
 	to_chat(owner, span_nicegreen("You feel your strength return to you."))
 	status_holder.adjust_attribute_buff(FORTITUDE_ATTRIBUTE, scaling)
 	status_holder.adjust_attribute_buff(PRUDENCE_ATTRIBUTE, scaling)
 	status_holder.adjust_attribute_buff(TEMPERANCE_ATTRIBUTE, scaling)
 	status_holder.adjust_attribute_buff(JUSTICE_ATTRIBUTE, scaling)
 
-/datum/status_effect/tears/less
-	duration = 2 MINUTES
+/datum/status_effect/stacking/tears/less
+	tick_interval = 2 MINUTES
 	scaling = 10
 
 #undef STATUS_EFFECT_TEARS

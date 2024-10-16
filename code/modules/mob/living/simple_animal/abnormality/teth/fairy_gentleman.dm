@@ -3,6 +3,7 @@
 	desc = "A very wide humanoid with long arms made of green, dripping slime."
 	icon = 'ModularTegustation/Teguicons/96x64.dmi'
 	icon_state = "fairy_gentleman"
+	core_icon = "fairygentleman_egg"
 	portrait = "fairy_gentleman"
 	maxHealth = 900
 	health = 900
@@ -45,6 +46,13 @@
 		/mob/living/simple_animal/hostile/abnormality/fairy_longlegs = 1.5,
 		/mob/living/simple_animal/hostile/abnormality/faelantern = 1.5,
 	)
+
+	observation_prompt = "\"Care for a drink?\""
+	observation_choices = list("Yes", "No")
+	correct_choices = list("Yes")
+	observation_success_message = "\"Yer a good drinkin buddy as any!\""
+	observation_fail_message = "\"Pssh! you're no fun!\" <br>\
+		The fairy walks away, stumbling along the way."
 
 	var/can_act = TRUE
 	var/jump_cooldown = 0
@@ -197,7 +205,7 @@
 						jump_damage = 0
 					else
 						jump_damage = initial(jump_damage)
-				L.apply_damage(jump_damage, BLACK_DAMAGE, null, L.run_armor_check(null, WHITE_DAMAGE), spread_damage = TRUE)
+				L.deal_damage(jump_damage, BLACK_DAMAGE)
 				if(L.health < 0)
 					L.gib()
 		var/wait_time = 0.5 SECONDS

@@ -4,6 +4,7 @@
 	icon = 'ModularTegustation/Teguicons/64x64.dmi'
 	icon_state = "apex"
 	icon_living = "apex"
+	core_icon = "apex_egg"
 	portrait = "apex"
 	pixel_x = -16
 	base_pixel_x = -16
@@ -43,7 +44,20 @@
 		/datum/ego_datum/weapon/animalism,
 		/datum/ego_datum/armor/animalism,
 	)
-//	gift_type =  /datum/ego_gifts/animalism
+	gift_type =  /datum/ego_gifts/animalism
+
+	observation_prompt = "The crash test dummy stands at the corner of the room. <br>It swings its arms around with twitching, swaying motions. <br>\
+		You're not sure if it's even able to understand you. <br>Despite being shaped like a human, there's no face to relate to. <br>No eyes to look at. <br>\
+		Just the rough outline of a human. <br>\
+		Is there even anything you can say to it?"
+	observation_choices = list("Beat it up.", "Why?")
+	correct_choices = list("Why?")
+	observation_success_message = "The abnormality suddenly stops moving. <br>It doesn't quite know how to respond either. <br>\
+		It stares down at the floor as if to contemplate the question. <br>\
+		All it can offer is a shrug. <br>Perhaps there isn't an answer."
+	observation_fail_message = "There's nothing to say. <br>A crash test dummy's only purpose is to enable violence. <br>\
+		Violence for the sake of violence. <br>\
+		You smile as you pull out your baton."
 
 	var/revealed = TRUE
 	var/can_act = TRUE
@@ -57,6 +71,8 @@
 	var/jump_cooldown_time = 5 SECONDS
 	var/jump_damage = 60
 
+	var/recloak_time = 0
+	var/recloak_time_cooldown = 30 SECONDS
 
 
 /mob/living/simple_animal/hostile/abnormality/apex_predator/Move()
@@ -66,6 +82,10 @@
 		return FALSE
 	..()
 
+/mob/living/simple_animal/hostile/abnormality/apex_predator/Life()
+	. = ..()
+	if(. && !(status_flags & GODMODE) && revealed && recloak_time < world.time)
+		Cloak()
 
 /mob/living/simple_animal/hostile/abnormality/apex_predator/NeutralEffect(mob/living/carbon/human/user, work_type, pe)
 	. = ..()
@@ -111,7 +131,7 @@
 				var/mob/living/V = target
 				visible_message(span_danger("The [src] rips out [target]'s guts!"))
 				new /obj/effect/gibspawner/generic(get_turf(V))
-				V.apply_damage(backstab_damage, RED_DAMAGE, null, V.run_armor_check(null, RED_DAMAGE), spread_damage = TRUE)
+				V.deal_damage(backstab_damage, RED_DAMAGE)
 			//Backstab succeeds from any one of 3 tiles behind a mecha, backstab from directly behind gets boosted by mecha directional armor weakness
 			else if(ismecha(target))
 				var/relative_angle = abs(dir2angle(target.dir) - dir2angle(get_dir(target, src)))
@@ -152,6 +172,7 @@
 	density = FALSE
 
 /mob/living/simple_animal/hostile/abnormality/apex_predator/proc/Decloak()
+	recloak_time = world.time + recloak_time_cooldown
 	alpha = 255
 	revealed = TRUE
 	density = TRUE

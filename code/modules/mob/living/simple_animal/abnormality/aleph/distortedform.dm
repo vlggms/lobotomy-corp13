@@ -17,6 +17,7 @@
 	icon_state = "distortedform"
 	icon_living = "distortedform"
 	icon_dead = "distortedform_dead"
+	core_icon = "distortedform_dead"
 	portrait = "distortedform"
 	melee_damage_type = RED_DAMAGE
 	damage_coeff = list(RED_DAMAGE = 0.4, WHITE_DAMAGE = 0.4, BLACK_DAMAGE = 0.4, PALE_DAMAGE = 0.8)
@@ -28,7 +29,6 @@
 	base_pixel_x = -48
 	del_on_death = FALSE
 	death_message = "reverts into a tiny, disgusting fetus-like creature."
-	death_sound = 'sound/abnormalities/doomsdaycalendar/Limbus_Dead_Generic.ogg'
 	can_breach = TRUE
 	work_chances = list(
 		ABNORMALITY_WORK_INSTINCT = 25,
@@ -37,14 +37,35 @@
 		ABNORMALITY_WORK_REPRESSION = list(0, 0, 0, 50, 55),
 	)
 	start_qliphoth = 3
-	work_damage_amount = 4		//Work damage is later
-	work_damage_type = RED_DAMAGE
+	work_damage_amount = 16
+	work_damage_type = list(RED_DAMAGE, WHITE_DAMAGE, BLACK_DAMAGE, PALE_DAMAGE)
 
 	ego_list = list(
 		/datum/ego_datum/armor/distortion,
 	)
 	gift_type = /datum/ego_gifts/distortion
 	abnormality_origin = ABNORMALITY_ORIGIN_ARTBOOK
+
+	observation_prompt = "I find myself in a void, filled to the brim with monsters. <br>\
+		All sorts of indescribably horrible creatures surround me, passing by as if I were not there. <br>\
+		But the largest creature of all surrounds me entirely. <br>Every direction is covered in a undulating mass of flesh, blood, fur, and feathers. <br>\
+		I am always butchering monsters like these. <br>I tear them limb from limb.<br>\
+		Bringing death in brutal fashion. <br>Am I not a fitting piece of the scenery before me?"
+	observation_choices = list("I am a monster", "I am not a monster")
+	correct_choices = list("I am not a monster")
+	observation_success_message = "It is hard to live in the city. <br>\
+		To pretend to be a civilized human when living in this manner. <br>\
+		It is easy to give into the temptation of giving up all pretenses of humanity. <br>\
+		But I do it because it is hard. <br>\
+		... <br>\
+		I am not a monster. <br>\
+		I will never become a monster."
+	observation_fail_message = "\"Do you wish to be so?\" <br>\
+		\"Then it can be as you wish.\" <br>\
+		... <br>\
+		Her voice is like sunshine. <br>\
+		... <br>\
+		I am a monster. <br>"
 
 //Work vars
 	var/transform_timer
@@ -95,6 +116,7 @@
 		"Blubbering Toad",
 		"Bloodbath",
 		"Price of Silence",
+		"You're Bald...",
 	)
 	var/list/transform_list_longrange = list("Doomsday Calendar", "Blue Star", "Der Freischutz", "Apocalypse bird", "Siren")
 	var/list/transform_list_jump = list("Light", "Medium", "Heavy")
@@ -130,14 +152,6 @@
 	if(transformed) // distorted form jumpscare
 		UnTransform(TRUE)
 	return ..()
-
-/mob/living/simple_animal/hostile/abnormality/distortedform/WorktickFailure(mob/living/carbon/human/user)
-	var/list/damtypes = list(RED_DAMAGE,WHITE_DAMAGE, BLACK_DAMAGE, PALE_DAMAGE)
-	for(var/damagetype in damtypes) // take 4 of every damage type every failed tick
-		user.apply_damage(work_damage_amount, damagetype, null, user.run_armor_check(null, damagetype))
-	work_damage_type = pick(damtypes) //Displays a random work damage type every tick
-	WorkDamageEffect()
-	return
 
 /mob/living/simple_animal/hostile/abnormality/distortedform/SuccessEffect(mob/living/carbon/human/user, work_type, pe)
 	. = ..()
@@ -319,18 +333,20 @@
 		ChangeForm()
 	can_act = FALSE
 	icon_state = icon_dead
-	icon = 'ModularTegustation/Teguicons/32x32.dmi'
+	icon = 'ModularTegustation/Teguicons/abno_cores/aleph.dmi'
 	desc = "A gross, pathetic looking thing that was once a terrible monster."
-	pixel_x = 0
-	base_pixel_x = 0
+	pixel_x = -16
+	base_pixel_x = -16
 	pixel_y = 0
 	base_pixel_y = 0
 	density = FALSE
-	playsound(src, 'sound/abnormalities/doomsdaycalendar/Limbus_Dead_Generic.ogg', 60, 1)
+	playsound(src, 'sound/effects/limbus_death.ogg', 100, 1)
 	animate(src, transform = matrix()*0.6,time = 0)
 	for(var/mob/living/carbon/human/survivor in survivors)
 		if(survivor.stat == DEAD || !survivor.ckey)
 			continue
+		if(src.z == 6) //Test Range Z Level
+			return ..()
 		survivor.Apply_Gift(new /datum/ego_gifts/fervor)
 		survivor.playsound_local(get_turf(survivor), 'sound/weapons/black_silence/snap.ogg', 50)
 		to_chat(survivor, span_userdanger("The screams subside - you recieve a gift!"))
@@ -375,7 +391,7 @@
 		return
 	var/punishment = TRUE
 	var/transform_target
-	for(var/mob/living/L in livinginrange(15, src))
+	for(var/mob/living/L in urange(15, src))
 		if(L.z != z)
 			continue
 		if(faction_check_mob(L))
@@ -455,6 +471,8 @@
 			ChangeSiren()
 		if("Apocalypse bird")
 			ChangeApoc()
+		if("You're Bald...")
+			ChangeBald()
 		if("Jump")
 			ReadyJump()
 		if("Pause") // Unused for now
@@ -499,6 +517,7 @@
 	attack_sound = 'sound/abnormalities/distortedform/slam.ogg'
 	melee_damage_type = RED_DAMAGE
 	ChangeResistances(list(RED_DAMAGE = 0.4, WHITE_DAMAGE = 0.4, BLACK_DAMAGE = 0.4, PALE_DAMAGE = 0.8))
+	ChangeMoveToDelay(3)
 	melee_damage_lower = 55
 	melee_damage_upper = 65
 	rapid_melee = 1
@@ -526,24 +545,29 @@
 				continue
 			if(L.stat == DEAD)
 				continue
-			L.apply_damage(5, WHITE_DAMAGE, null, L.run_armor_check(null, WHITE_DAMAGE), spread_damage = TRUE)
+			L.deal_damage(5, WHITE_DAMAGE)
 
 /mob/living/simple_animal/hostile/abnormality/distortedform/proc/DFAttack()
 	if(!can_act)
 		return
 	var/list/target_list = list()
-	for(var/mob/living/L in livinginrange(10, src))
+	var/list/human_targets = list()
+	for(var/mob/living/L in urange(10, src))
 		if(L.z != z || (L.status_flags & GODMODE))
 			continue
 		if(faction_check_mob(L, FALSE))
 			continue
+		if(L.stat >= DEAD)
+			continue
 		target_list += L
+		if(ishuman(L))
+			human_targets += L
 
 	if(!target)
 		if(LAZYLEN(target_list))
 			target = pick(target_list)
-
-	if(!target || !ishuman(target) || QDELETED(target) || (target_list.len < 2) || prob(50))
+// We're checking for a lot of things here. Basically, this is a check to determine whether or not we use a mechanic that requires teamwork and/or coordination to solve.
+	if(!target || !ishuman(target) || QDELETED(target) || (human_targets.len < 2) || prob(50))
 		if(prob(50))
 			DFLine() //Safe in the middle, unsafe outside
 		else
@@ -666,12 +690,12 @@
 	for(var/turf/T in range(1, target))
 		new /obj/effect/temp_visual/mustardgas(T)
 	var/list/target_list = list()
-	for(var/mob/living/L in livinginrange(1, target))
+	for(var/mob/living/L in range(1, target))
 		if(L.z != z || (L.status_flags & GODMODE))
 			continue
 		if(faction_check_mob(L, FALSE))
 			continue
-		L.apply_damage(20, BLACK_DAMAGE, null, target.run_armor_check(null, BLACK_DAMAGE))
+		L.deal_damage(20, BLACK_DAMAGE)
 		if(target == L)
 			continue
 		target_list += L
@@ -679,7 +703,7 @@
 	if(LAZYLEN(target_list))
 		target_list += target
 		for(var/mob/living/L in target_list)
-			L.apply_damage(300, BLACK_DAMAGE, null, target.run_armor_check(null, BLACK_DAMAGE)) //You - you are probably going to die!
+			L.deal_damage(300, BLACK_DAMAGE) //You - you are probably going to die!
 			if(L.health < 0)
 				L.gib() //maybe someday we'll have a cool acid melting animation for this
 
@@ -721,7 +745,7 @@
 	playsound(target, 'sound/abnormalities/crying_children/sorrow_shot.ogg', 50, FALSE)
 	new /obj/effect/temp_visual/beam_in_giant(get_turf(target))
 	var/list/target_list = list()
-	for(var/mob/living/L in livinginrange(2, target))
+	for(var/mob/living/L in range(2, target))
 		if(L.z != z || (L.status_flags & GODMODE))
 			continue
 		if(faction_check_mob(L, FALSE))
@@ -735,7 +759,7 @@
 		var/total_damage = 30 //There will very rarely be over 2 people in the stack
 		var/new_damage = total_damage / (target_list.len)
 		for(var/mob/living/L in target_list)
-			L.apply_damage(new_damage, PALE_DAMAGE, null, target.run_armor_check(null, PALE_DAMAGE))
+			L.deal_damage(new_damage, PALE_DAMAGE)
 			if(L.health < 0)
 				if(ishuman(L))
 					var/mob/living/carbon/human/H = L
@@ -743,7 +767,7 @@
 				else
 					L.gib()
 	else
-		target.apply_damage(250, PALE_DAMAGE, null, target.run_armor_check(null, PALE_DAMAGE)) //You - you are probably going to die!
+		target.deal_damage(250, PALE_DAMAGE) //You - you are probably going to die!
 		if(target.health < 0)
 			target.dust()
 	can_act = TRUE
@@ -764,8 +788,7 @@
 	ChangeResistances(list(RED_DAMAGE = 0, WHITE_DAMAGE = 0.4, BLACK_DAMAGE = 0.4, PALE_DAMAGE = 0.8))
 	melee_damage_lower = 65
 	melee_damage_upper = 75
-	move_to_delay = 4.5
-	UpdateSpeed()
+	ChangeMoveToDelay(4.5)
 	can_move = TRUE
 	addtimer(CALLBACK(src, PROC_REF(Goodbye)), 30)
 	special_attack = PROC_REF(Hello)
@@ -838,8 +861,7 @@
 	attack_verb_continuous = "slashes"
 	attack_verb_simple = "slash"
 	rapid_melee = 4
-	move_to_delay = 2.5
-	UpdateSpeed()
+	ChangeMoveToDelay(2.5)
 	can_move = TRUE
 	can_attack = TRUE
 	special_attack = PROC_REF(Execute)
@@ -909,9 +931,9 @@
 /mob/living/simple_animal/hostile/abnormality/distortedform/proc/Finisher(mob/living/target)
 	to_chat(target, span_danger("[src] is trying to cut you in half!"))
 	if(!ishuman(target))
-		target.apply_damage(150, PALE_DAMAGE, null, target.run_armor_check(null, PALE_DAMAGE)) //bit more than usual DPS in pale damage
+		target.deal_damage(150, PALE_DAMAGE) //bit more than usual DPS in pale damage
 		return
-	target.apply_damage(500, RED_DAMAGE, null, target.run_armor_check(null, RED_DAMAGE)) //You are probably going to die!
+	target.deal_damage(500, RED_DAMAGE) //You are probably going to die!
 	if(target.health > 0)
 		return
 	var/mob/living/carbon/human/H = target
@@ -934,14 +956,14 @@
 	addtimer(CALLBACK(src, PROC_REF(CrumblingArmorAttack)), 20)
 
 /mob/living/simple_animal/hostile/abnormality/distortedform/proc/CrumblingArmorAttack()
-	for(var/mob/living/L in livinginrange(10, src))
+	for(var/mob/living/L in urange(10, src))
 		if(L.z != z || (L.status_flags & GODMODE))
 			continue
 		if(faction_check_mob(L, FALSE))
 			continue
 		if(!ishuman(L))
 			playsound(get_turf(L), 'sound/abnormalities/crumbling/attack.ogg', 50, FALSE)
-			L.apply_damage(50, PALE_DAMAGE, null, L.run_armor_check(null, PALE_DAMAGE), spread_damage = TRUE)
+			L.deal_damage(50, PALE_DAMAGE)
 			new /obj/effect/temp_visual/slice(get_turf(L))
 		else
 			var/mob/living/carbon/human/H = L
@@ -971,7 +993,7 @@
 /mob/living/simple_animal/hostile/abnormality/distortedform/proc/HammerOfLightAttack()
 	playsound(src, 'sound/abnormalities/crying_children/sorrow_shot.ogg', 50, FALSE, 7)
 	var/targetAmount = 0
-	for(var/mob/living/L in livinginrange(10, src))
+	for(var/mob/living/L in urange(10, src))
 		if(L.z != z || (L.status_flags & GODMODE))
 			continue
 		if(faction_check_mob(L, FALSE))
@@ -980,7 +1002,7 @@
 			++targetAmount
 			if(!ishuman(L))
 				new /obj/effect/temp_visual/beam_in(get_turf(L))
-				L.apply_damage(60, PALE_DAMAGE, null, L.run_armor_check(null, PALE_DAMAGE), spread_damage = TRUE)
+				L.deal_damage(60, PALE_DAMAGE)
 				if(L.health < 0)
 					L.gib()
 			else
@@ -1010,7 +1032,7 @@
 /obj/effect/lightbolt/proc/explode()
 	playsound(get_turf(src), 'sound/abnormalities/thunderbird/tbird_bolt.ogg', 50, FALSE, -3)
 	for(var/mob/living/carbon/human/H in view(1, src))
-		H.apply_damage(boom_damage, PALE_DAMAGE, null, H.run_armor_check(null, PALE_DAMAGE), spread_damage = TRUE)
+		H.deal_damage(boom_damage, PALE_DAMAGE)
 		if(H.health < 0)
 			H.dust()
 	new /obj/effect/temp_visual/beam_in(get_turf(src))
@@ -1040,7 +1062,7 @@
 	melee_damage_upper = 30
 	pixel_x = -8
 	base_pixel_x = -8
-	move_to_delay = 5
+	ChangeMoveToDelay(5)
 	can_move = TRUE
 	special_attack = PROC_REF(SpearAttack)
 	addtimer(CALLBACK(src, PROC_REF(ScytheAttack)), 30)
@@ -1060,7 +1082,7 @@
 				continue
 			if(faction_check_mob(L))
 				continue
-			L.apply_damage(150, PALE_DAMAGE, null, L.run_armor_check(null, PALE_DAMAGE), spread_damage = TRUE)
+			L.deal_damage(150, PALE_DAMAGE)
 			if(L.stat == DEAD)
 				for(var/i = 1 to 5) // Eventually turn this into a horizontal bisect. That would be cool.
 					new /obj/effect/temp_visual/dir_setting/bloodsplatter(get_turf(L), pick(GLOB.alldirs))
@@ -1192,7 +1214,7 @@
 	attack_sound = 'sound/abnormalities/blubbering_toad/attack.ogg'
 	attack_verb_continuous = "mauls"
 	attack_verb_simple = "maul"
-	UpdateSpeed()
+	ChangeMoveToDelay(3)
 	can_move = TRUE
 	special_attack = PROC_REF(ToadAttack)
 
@@ -1224,7 +1246,7 @@
 		for(var/mob/living/L in T)
 			if(faction_check_mob(L))
 				continue
-			L.apply_damage(50, BLACK_DAMAGE, null, L.run_armor_check(null, BLACK_DAMAGE), spread_damage = TRUE)
+			L.deal_damage(50, BLACK_DAMAGE)
 			if(ishuman(L))
 				var/mob/living/carbon/human/H = L
 				if(H.sanity_lost)
@@ -1249,7 +1271,7 @@
 				continue
 			if(faction_check_mob(L))
 				continue
-			L.apply_damage(30, BLACK_DAMAGE, null, L.run_armor_check(null, BLACK_DAMAGE), spread_damage = TRUE)
+			L.deal_damage(30, BLACK_DAMAGE)
 			new /obj/effect/temp_visual/dir_setting/bloodsplatter(get_turf(L), pick(GLOB.alldirs))
 			if(!L.anchored)
 				var/whack_speed = (prob(60) ? 1 : 4)
@@ -1271,14 +1293,13 @@
 	ChangeResistances(list(RED_DAMAGE = 0.3, WHITE_DAMAGE = 0.3, BLACK_DAMAGE = 0.5, PALE_DAMAGE = 0.8))
 	melee_damage_lower = 65
 	melee_damage_upper = 75
-	move_to_delay = 4.5
+	ChangeMoveToDelay(4.5)
 	melee_damage_type = WHITE_DAMAGE
 	pixel_x = -8
 	base_pixel_x = -8
 	attack_sound = 'sound/abnormalities/ichthys/slap.ogg'
 	attack_verb_continuous = "mauls"
 	attack_verb_simple = "maul"
-	UpdateSpeed()
 	can_move = TRUE
 	addtimer(CALLBACK(src, PROC_REF(BloodBathBeamPrep)), 30)
 	special_attack = PROC_REF(BloodBathSlam)
@@ -1349,7 +1370,7 @@
 					continue
 				already_hit += L
 				var/truedamage = ishuman(L) ? 25 : 20 //less damage dealt to nonhumans
-				L.apply_damage(truedamage, BLACK_DAMAGE, null, L.run_armor_check(null, BLACK_DAMAGE))
+				L.deal_damage(truedamage, BLACK_DAMAGE)
 		SLEEP_CHECK_DEATH(1.71)
 	QDEL_NULL(current_beam)
 	SLEEP_CHECK_DEATH(1 SECONDS) //Rest after laser beam
@@ -1433,8 +1454,66 @@
 	REMOVE_TRAIT(H, TRAIT_MUTE, TIMESTOP_TRAIT)
 	H.remove_atom_colour(TEMPORARY_COLOUR_PRIORITY)
 
+
+//You're Bald...
+/mob/living/simple_animal/hostile/abnormality/distortedform/proc/ChangeBald()//man roleplayers are going to hate this one
+	transform_cooldown = transform_cooldown_time_short + world.time
+	name = "You’re Bald..."
+	desc = "A helpful sphere, you think."
+	icon = 'ModularTegustation/Teguicons/tegumobs.dmi'
+	icon_state = "bald1"
+	icon_living = "bald1"
+	pixel_x = 0
+	base_pixel_x = 0
+	pixel_y = 0
+	base_pixel_y = 0
+	can_move = FALSE
+	can_attack = FALSE
+	can_act = FALSE //we stay transformed until the skill finishes firing
+	addtimer(CALLBACK(src, PROC_REF(BaldBlast), FALSE), 5)
+
+/mob/living/simple_animal/hostile/abnormality/distortedform/proc/BaldBlast(attack_chain)
+	if(!attack_chain)
+		icon_state = "bald3"
+		src.set_light(12, 12, "FFFFFF", TRUE)
+		playsound(get_turf(src), 'sound/abnormalities/sphinx/stone_ready.ogg', 50, 0, 5)
+	SLEEP_CHECK_DEATH(9)
+	if(attack_chain)
+		for(var/mob/living/L in viewers(12, src))
+			if(!ishuman(L))
+				continue
+			var/mob/living/carbon/human/H = L
+			do_bald(H)
+			if(!H.is_blind() && is_A_facing_B(H,src))
+				H.emote("scream")
+				H.Stun(20)
+				H.Paralyze(20)
+				H.adjust_blindness(16)
+				to_chat(L, span_userdanger("MY EYES!!!"))
+				H.apply_damage(100, WHITE_DAMAGE, null, H.run_armor_check(null, WHITE_DAMAGE), spread_damage = TRUE)
+				if(H.sanity_lost) // They can't deal with being bald
+					H.dust()
+	if(!attack_chain)
+		BaldBlast(TRUE)
+		return
+	src.set_light(0, 0, null, FALSE) //using all params takes care of the other procs.
+	can_act = TRUE
+
+/mob/living/simple_animal/hostile/abnormality/distortedform/proc/do_bald(mob/living/carbon/human/victim)
+	if(!HAS_TRAIT(victim, TRAIT_BALD))
+		ADD_TRAIT(victim, TRAIT_BALD, "ABNORMALITY_BALD")
+		victim.hairstyle = "Bald"
+		victim.update_hair()
+		victim.playsound_local(victim, 'sound/abnormalities/bald/bald_special.ogg', 50, FALSE)
+		victim.add_overlay(icon('ModularTegustation/Teguicons/tegu_effects.dmi', "bald_blast"))
+		addtimer(CALLBACK(victim, TYPE_PROC_REF(/atom, cut_overlay), \
+								icon('ModularTegustation/Teguicons/tegu_effects.dmi', "bald_blast")), 20)
+		to_chat(victim, span_notice("You feel awesome!"))
+		return TRUE
+	return FALSE
+
 /*
-	Long-ranged "Punishment" Transfromations
+	Long-ranged "Punishment" Transformations
 	The farther you are - the less damage it deals. Followed up by a Teleport
 */
 //Doomsday Calander
@@ -1473,7 +1552,7 @@
 	if(!(faction_check in L.faction))
 		playsound(L.loc, 'sound/abnormalities/doomsdaycalendar/Effect_Burn.ogg', 50 - attack_range, TRUE, -1)
 		var/dealt_damage = max(5, 75 - (attack_range))
-		L.apply_damage(dealt_damage, RED_DAMAGE, null, L.run_armor_check(null, RED_DAMAGE), spread_damage = TRUE)
+		L.deal_damage(dealt_damage, RED_DAMAGE)
 		if(ishuman(L) && dealt_damage > 25)
 			L.emote("scream")
 		to_chat(L, span_userdanger("IT BURNS!!"))
@@ -1503,7 +1582,7 @@
 			continue
 		if(faction_check_mob(L))
 			continue
-		L.apply_damage((75 - get_dist(src, L)), WHITE_DAMAGE, null, L.run_armor_check(null, WHITE_DAMAGE), spread_damage = TRUE)
+		L.deal_damage((75 - get_dist(src, L)), WHITE_DAMAGE)
 		flash_color(L, flash_color = COLOR_BLUE_LIGHT, flash_time = 70)
 		if(!ishuman(L))
 			continue
@@ -1610,7 +1689,6 @@
 				ABNO.datum_reference.qliphoth_change(-1)
 				continue
 
-
 //Apocalypse Bird
 /mob/living/simple_animal/hostile/abnormality/distortedform/proc/ChangeApoc()
 	transform_cooldown = transform_cooldown_time + world.time
@@ -1625,7 +1703,7 @@
 	can_move = FALSE
 	can_attack = FALSE
 	var/LongRange = TRUE //Check if there's anyone within 15 tiles when we transformed
-	for(var/mob/living/L in livinginrange(15, src))
+	for(var/mob/living/L in urange(15, src))
 		if(L.z != z)
 			continue
 		if(faction_check_mob(L))
@@ -1656,7 +1734,7 @@
 	for(var/mob/living/L in livinginview(8, src))
 		if(faction_check_mob(L))
 			continue
-		L.apply_damage((300 - (16 * get_dist(src, L))), BLACK_DAMAGE, null, L.run_armor_check(null, BLACK_DAMAGE), spread_damage = TRUE)
+		L.deal_damage((300 - (16 * get_dist(src, L))), BLACK_DAMAGE)
 	SLEEP_CHECK_DEATH(2 SECONDS)
 
 /mob/living/simple_animal/hostile/abnormality/distortedform/proc/ApocJudge()
@@ -1676,7 +1754,7 @@
 		if(L.stat == DEAD)
 			continue
 		new /obj/effect/temp_visual/judgement(get_turf(L))
-		L.apply_damage(max(5, 60 - get_dist(src, L)), PALE_DAMAGE, null, L.run_armor_check(null, PALE_DAMAGE), spread_damage = TRUE)
+		L.deal_damage(max(5, 60 - get_dist(src, L)), PALE_DAMAGE)
 	SLEEP_CHECK_DEATH(1 SECONDS)
 	icon_state = "apocalypse"
 	SLEEP_CHECK_DEATH(1 SECONDS)
@@ -1791,9 +1869,9 @@
 			continue
 		var/dist = get_dist(src, L)
 		if(ishuman(L)) //Different damage formulae for humans vs mobs
-			L.apply_damage(clamp((15 * (2 ** (8 - dist))), 15, 4000), RED_DAMAGE, null, L.run_armor_check(null, RED_DAMAGE)) //15-3840 damage scaling exponentially with distance
+			L.deal_damage(clamp((15 * (2 ** (8 - dist))), 15, 4000), RED_DAMAGE) //15-3840 damage scaling exponentially with distance
 		else
-			L.apply_damage(600 - ((dist > 2 ? dist : 0 )* 75), RED_DAMAGE, null, L.run_armor_check(null, RED_DAMAGE)) //0-600 damage scaling on distance, we don't want it oneshotting mobs
+			L.deal_damage(600 - ((dist > 2 ? dist : 0 )* 75), RED_DAMAGE) //0-600 damage scaling on distance, we don't want it oneshotting mobs
 		if(L.health < 0)
 			L.gib()
 

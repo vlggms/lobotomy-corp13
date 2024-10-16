@@ -25,6 +25,12 @@
 	gift_type = /datum/ego_gifts/fury
 	abnormality_origin = ABNORMALITY_ORIGIN_WONDERLAB
 
+	observation_prompt = "This abnormality has a notorious reputation for being particularly dry to work with. <br>It's hard to tell what it's thinking or what work it prefers. <br>\
+		What type of work will you attempt?"
+	observation_choices = list(ABNORMALITY_WORK_INSTINCT, ABNORMALITY_WORK_INSIGHT, ABNORMALITY_WORK_ATTACHMENT, ABNORMALITY_WORK_REPRESSION)
+	correct_choices = list(ABNORMALITY_WORK_INSTINCT) // Matches Red Queen's real preferred work. This default is set to stop warnings
+	observation_success_message = "You are granted an audience with the red queen. <br>Today, you were able to to satisfy her unpredictable whims"
+	observation_fail_message = "You narrowly dodge the card-guillotine coming for your neck, that was close, let's try something else."
 	var/liked
 
 /mob/living/simple_animal/hostile/abnormality/red_queen/Initialize(mapload)
@@ -33,12 +39,17 @@
 	//Pick it once so people can find out
 	liked = pick(ABNORMALITY_WORK_INSTINCT, ABNORMALITY_WORK_INSIGHT, ABNORMALITY_WORK_ATTACHMENT, ABNORMALITY_WORK_REPRESSION)
 
+/mob/living/simple_animal/hostile/abnormality/red_queen/PostSpawn()
+	. = ..()
+	correct_choices = list()
+	correct_choices += liked
+
 /mob/living/simple_animal/hostile/abnormality/red_queen/PostWorkEffect(mob/living/carbon/human/user, work_type, pe)
 	if(work_type != liked)
 		if(prob(20))
 			//The Red Queen is fickle, if you're unlucky, fuck you.
 			user.visible_message(span_warning("An invisible blade slices through [user]'s neck!"))
-			user.apply_damage(200, RED_DAMAGE, null, user.run_armor_check(null, RED_DAMAGE), spread_damage = TRUE)
+			user.deal_damage(200, RED_DAMAGE)
 			new /obj/effect/temp_visual/slice(get_turf(user))
 
 			//Fitting sound, I want something crunchy, and also very loud so everyone knows

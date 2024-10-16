@@ -53,6 +53,20 @@
 	gift_type =  /datum/ego_gifts/swan
 	gift_message = "You feel exhausted but if you work a little harder, things will work themselves out."
 	abnormality_origin = ABNORMALITY_ORIGIN_LOBOTOMY
+
+	observation_prompt = "Elijah loved her brothers. <br>\
+		She kept working even through the constant haze that enveloped all of the Wing's nest. <br>\
+		Whenever she thought of her brothers, she clutched her brooch a little tighter, if she just worked a little harder, finished the nettle clothing - they could live their lives freely. <br>\
+		One day, her skin covered in blisters and her mouth oozing with spittle and pus, she passed by a lake, seemingly untouched by the pollution of the City. <br>\
+		Though her eyesight was almost ruined by fog and affliction, she could see it clearly. <br>\
+		Upon that lake were six white swans and a singular black swan. Elijah..."
+	observation_choices = list("Observed the white swans", "Observed the black swan")
+	correct_choices = list("Observe the black swan")
+	observation_success_message = "The black swan watches forlornly as her family takes flight, she's willing to give up everything for her family. <br>\
+		Elijah embraces the near-finished nettle clothing wholeheartedly, soon..."
+	observation_fail_message = "The white swans were Elijah's favourite. <br>\
+		They spread their wings and took flight to the sky, high above the fog, leaving the black swan behind. Elijah clutched her brooch tighter, she only had to work a little harder..."
+
 	//family breach conditions
 	var/insane_humans = 0
 	var/dead_humans = 0
@@ -250,7 +264,7 @@
 				continue
 			if(L.stat == DEAD)
 				continue
-			L.apply_damage(70, WHITE_DAMAGE, null, L.run_armor_check(null, WHITE_DAMAGE), spread_damage = TRUE)
+			L.deal_damage(70, WHITE_DAMAGE)
 		playsound(get_turf(src), 'sound/abnormalities/blackswan/sis_roar.ogg', 30, 0, 4)
 	cut_overlay(visual_overlay)
 	can_act = TRUE

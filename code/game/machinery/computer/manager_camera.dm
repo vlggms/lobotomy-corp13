@@ -6,6 +6,8 @@
 #define MANAGER_BLACK_BULLET 5
 #define MANAGER_PALE_BULLET 6
 #define MANAGER_YELLOW_BULLET 7
+#define MANAGER_KILL_BULLET 8
+GLOBAL_VAR_INIT(execution_enabled, FALSE)
 
 /obj/machinery/computer/camera_advanced/manager
 	name = "managerial camera console"
@@ -81,6 +83,13 @@
 			"desc" = "Overload a abnormalities Qliphoth Control to reduce their movement speed.",
 			"icon_state" = "yellow",
 		),
+
+		MANAGER_KILL_BULLET = list(
+			"name" = KILL_BULLET,
+			"desc" = "These bullets disintegrate an employee, leaving only their items behind.",
+			"icon_state" = "kill",
+		),
+
 	)
 
 	/* Locked actions */
@@ -227,12 +236,42 @@
 			else
 				to_chat(owner, span_warning("WELFARE SAFETY SYSTEM ERROR: TARGET SHARES CORPORATE FACTION."))
 				return FALSE
+		if(MANAGER_KILL_BULLET)
+			if(Execute(owner, H))
+				return TRUE
+			return FALSE
 		else
 			to_chat(owner, span_warning("ERROR: BULLET INITIALIZATION FAILURE."))
 			return FALSE
 	playsound(get_turf(src), 'ModularTegustation/Tegusounds/weapons/guns/manager_bullet_fire.ogg', 10, 0, 3)
 	playsound(get_turf(H), 'ModularTegustation/Tegusounds/weapons/guns/manager_bullet_fire.ogg', 10, 0, 3)
 	return TRUE
+
+/obj/machinery/computer/camera_advanced/manager/proc/Execute(mob/living/owner, mob/living/carbon/human/H)
+	set waitfor = FALSE
+	if(!GLOB.execution_enabled) //Failsafe in case admins turn off the bullets due to a rampaging manager
+		to_chat(owner, span_warning("ERROR: BULLET INITIALIZATION FAILURE - AUTHORIZATION HAS BEEN REVOKED."))
+		return FALSE
+	if(owner.mind.assigned_role != "Manager") //You aren't the manager!
+		to_chat(owner, span_warning("ERROR: BULLET INITIALIZATION FAILURE - ONLY AUTHORIZED TO THE MANAGER."))
+		return FALSE
+	if(H.mind)
+		if(H.mind.assigned_role == "Sephirah" || H.mind.assigned_role == "Main Office Representative") //Too important to execute
+			to_chat(owner, span_warning("ERROR: BULLET INITIALIZATION FAILURE - TARGET ENTITY EXCEEDS USER AUTHORITY."))
+			return FALSE
+	switch(tgui_alert(owner,"Really kill [H]? Admins will be notified of this action and you will be responsible for the consequences.","Execution bullet ready to fire",list("Yes", "No"), 3 SECONDS))
+		if("Yes")
+			log_admin("[key_name(owner)] has fired an execution bullet at player [key_name(H)] who was playing as [H].")
+			playsound(get_turf(src), 'ModularTegustation/Tegusounds/weapons/guns/manager_bullet_fire.ogg', 10, 0, 3)
+			playsound(get_turf(H), 'ModularTegustation/Tegusounds/weapons/guns/manager_bullet_fire.ogg', 10, 0, 3)
+			H.unequip_everything()
+			new /obj/effect/temp_visual/execute_bullet(get_turf(H))
+			QDEL_IN(H, 1)
+			return TRUE
+		if("No")
+			to_chat(owner, span_nicegreen("You decide to allow [H] to live another day..."))
+			return FALSE
+	return FALSE //prevents bullet loss on indecisiveness
 
 /obj/machinery/computer/camera_advanced/manager/proc/ClickedAbno(mob/living/owner, mob/living/simple_animal/hostile/H)
 	if(!istype(H))
@@ -652,6 +691,7 @@
 #undef MANAGER_BLACK_BULLET
 #undef MANAGER_PALE_BULLET
 #undef MANAGER_YELLOW_BULLET
+#undef MANAGER_KILL_BULLET
 
 /obj/machinery/computer/camera_advanced/manager/representative
 	name = "representative camera console"

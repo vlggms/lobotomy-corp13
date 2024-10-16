@@ -39,7 +39,8 @@
 	egoist_outfit = /datum/outfit/job/civilian
 	//Loot on death; distortions should be valuable targets in general.
 	loot = list(/obj/item/documents/ncorporation)
-
+	/// Prolonged exposure to a monolith will convert the distortion into an abnormality. Black swan is the most strongly related to this guy, but I might make one for it later.
+	monolith_abnormality = /mob/living/simple_animal/hostile/abnormality/black_swan
 	var/can_act = TRUE
 
 //Proc that can be used for additional effects on unmanifest

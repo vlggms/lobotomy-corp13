@@ -3978,6 +3978,24 @@
 	},
 /turf/open/floor/plasteel/sepia,
 /area/facility_hallway/command)
+"vT" = (
+/obj/effect/turf_decal/tile/yellow{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/yellow{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/yellow{
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/yellow,
+/obj/machinery/light/cold/no_nightlight{
+	dir = 1
+	},
+/obj/machinery/camera/autoname,
+/obj/structure/extraction_belt,
+/turf/open/floor/plasteel/dark,
+/area/department_main/extraction)
 "vX" = (
 /obj/effect/turf_decal/siding/yellow,
 /turf/open/floor/carpet/stellar,
@@ -4295,6 +4313,9 @@
 	},
 /turf/open/floor/carpet/orange,
 /area/department_main/control)
+"xA" = (
+/turf/open/space/basic,
+/area/space)
 "xB" = (
 /obj/effect/turf_decal/tile/bar,
 /obj/effect/turf_decal/tile/bar{
@@ -28218,7 +28239,7 @@ jc
 jc
 jc
 jc
-TO
+vT
 ve
 ve
 dN
@@ -45426,9 +45447,9 @@ ml
 ml
 ml
 ml
-ml
-ml
-ml
+xA
+xA
+xA
 ml
 ml
 ml
@@ -45652,12 +45673,12 @@ ml
 ml
 ml
 ml
-ml
-ml
-ml
-ml
-ml
-ml
+xA
+xA
+xA
+xA
+xA
+xA
 ml
 ml
 ml
@@ -45878,13 +45899,13 @@ ml
 ml
 ml
 ml
+xA
+xA
 ml
 ml
-ml
-ml
-ml
-ml
-ml
+xA
+xA
+xA
 ml
 ml
 ml
@@ -46105,12 +46126,12 @@ ml
 ml
 ml
 ml
+xA
+xA
 ml
 ml
-ml
-ml
-ml
-ml
+xA
+xA
 ml
 ml
 ml
@@ -46332,13 +46353,13 @@ ml
 ml
 ml
 ml
+xA
+xA
 ml
 ml
-ml
-ml
-ml
-ml
-ml
+xA
+xA
+xA
 ml
 ml
 ml
@@ -46560,12 +46581,12 @@ ml
 ml
 ml
 ml
-ml
-ml
-ml
-ml
-ml
-ml
+xA
+xA
+xA
+xA
+xA
+xA
 ml
 ml
 ml

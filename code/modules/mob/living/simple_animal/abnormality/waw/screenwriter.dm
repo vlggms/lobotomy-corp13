@@ -39,6 +39,11 @@ Defeating the murderer also surpresses the abnormality.
 	gift_type = /datum/ego_gifts/scene
 	abnormality_origin = ABNORMALITY_ORIGIN_ARTBOOK //Technically it was in the beta but I dont want it showing it up in LC-only modes
 
+	observation_prompt = "The play started long ago. Here is the man who killed many. And you are holding a gun."
+	observation_choices = list("Shoot the man", "Wait and see", "Shoot someone else")
+	correct_choices = list("Shoot the man", "Wait and see", "Shoot someone else")
+	observation_success_message = "Whether you shoot or not, the play ends with tragedy." //TODO: multiple texts
+
 	pet_bonus = "shuffles" //saves a few lines of code by allowing funpet() to be called by attack_hand()
 	var/mob/living/simple_animal/hostile/actor/A
 	var/happy = FALSE
@@ -363,7 +368,7 @@ Defeating the murderer also surpresses the abnormality.
 		for(var/mob/living/carbon/human/H in view(7, human_pawn))
 			if(HAS_TRAIT(H, TRAIT_COMBATFEAR_IMMUNE))
 				continue
-			H.apply_damage(sanity_damage, WHITE_DAMAGE, null, H.run_armor_check(null, WHITE_DAMAGE))
+			H.deal_damage(sanity_damage, WHITE_DAMAGE)
 
 
 #undef STATUS_EFFECT_ACTOR

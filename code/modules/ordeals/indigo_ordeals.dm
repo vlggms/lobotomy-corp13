@@ -3,13 +3,18 @@
 	name = "The Dawn of Indigo"
 	flavor_name = "The Scouts"
 	announce_text = "They come searching for what they so desperately need."
+	end_announce_text = "And they search in the dark."
 	announce_sound = 'sound/effects/ordeals/indigo_start.ogg'
 	end_sound = 'sound/effects/ordeals/indigo_end.ogg'
 	reward_percent = 0.1
 	level = 1
 	spawn_places = 5
 	spawn_amount = 2
-	spawn_type = /mob/living/simple_animal/hostile/ordeal/indigo_dawn
+	spawn_type = list(
+		/mob/living/simple_animal/hostile/ordeal/indigo_dawn,
+		/mob/living/simple_animal/hostile/ordeal/indigo_dawn/invis,
+		/mob/living/simple_animal/hostile/ordeal/indigo_dawn/skirmisher,
+		)
 	place_player_multiplicator = 0.08
 	spawn_player_multiplicator = 0
 	color = "#3F00FF"
@@ -54,7 +59,8 @@
 /datum/ordeal/boss/indigo_midnight
 	name = "The Midnight of Indigo"
 	flavor_name = "Mother"
-	announce_text = "For the sake of our families in our village, we cannot stop."
+	announce_text = "Mother will give you all the assistance you need. We all could safely become a family thanks to her."
+	end_announce_text = "For the sake of our families in our village, we cannot stop."
 	announce_sound = 'sound/effects/ordeals/indigo_start.ogg'
 	end_sound = 'sound/effects/ordeals/indigo_end.ogg'
 	level = 4

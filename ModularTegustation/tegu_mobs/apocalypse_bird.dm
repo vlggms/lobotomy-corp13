@@ -20,6 +20,10 @@
 	melee_damage_upper = 85
 	pixel_x = -96
 	base_pixel_x = -96
+	offsets_pixel_x = list("south" = -96, "north" = -96, "west" = -96, "east" = -96)
+	occupied_tiles_left = 3
+	occupied_tiles_right = 3
+	occupied_tiles_up = 2
 	blood_volume = BLOOD_VOLUME_NORMAL
 	del_on_death = TRUE
 	death_message = "finally stops moving, falling to the ground."

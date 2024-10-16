@@ -9,6 +9,7 @@
 	icon_state = "siltcurrent"
 	icon_living = "siltcurrent"
 	icon_dead = "siltcurrent_egg"
+	core_icon = "siltcurrent_egg"
 	portrait = "siltcurrent"
 	death_message = "coalesces into a primordial egg."
 	del_on_death = FALSE
@@ -58,6 +59,24 @@
 		/mob/living/simple_animal/hostile/abnormality/dreaming_current = 2,//both are heavily related
 		/mob/living/simple_animal/hostile/abnormality/pisc_mermaid = 1.5//both are aquatic abormalities, do oxygen damage while breaching, have water turf in their chambers, and both of their themes are the inverse of the other.
 	)
+
+	observation_prompt = "\"Yes. The deep sea is a dark place. <br>\
+		But at the end of that dark path is a light. <br>\
+		Because there are things that shine in the dark there. <br>\
+		Let's go there. <br>And we'll shine brighter than anything in that dark place. <br>\
+		We were all abandoned, yes. <br>But we all had dreams, too. <br>Remember? <br>\
+		Well, let's make our dreams come true. <br>Let's sink together into the depths.\" <br>\
+		The dim fluorescent lights impaling the entity's back flicker."
+	observation_choices = list("Say that you will sink together", "Fix the entity's flickering fluorescent lights")
+	correct_choices = list("Fix the entity's flickering fluorescent lights")
+	observation_success_message = "\"I remember. <br>I've always wanted to run across a rolling field of grass under the warm sun. <br>\
+		To swim across the vast ocean that I've seen only through pictures. <br>\
+		That was my dream. <br>\
+		My only dream. <br>\
+		Now, if you ever recall a dream in which you wished to twinkle, even as a faint flicker...\""
+	observation_fail_message = "You still fear the dark, don't you? <br>\
+		I know that you will miss the surface, forever out of your reach once this fluorescent lamp dies. <br>\
+		So do return once you're ready.\""
 
 	var/stunned = FALSE
 	//Stuff relating to the dive attack
@@ -237,6 +256,9 @@
 		H.adjustOxyLoss(4, updating_health=TRUE, forced=TRUE)
 
 /mob/living/simple_animal/hostile/abnormality/siltcurrent/death()
+	icon = 'ModularTegustation/Teguicons/abno_cores/waw.dmi'
+	pixel_x = -16
+	base_pixel_x = -16
 	density = FALSE
 	animate(src, alpha = 0, time = 10 SECONDS)
 	QDEL_IN(src, 10 SECONDS)

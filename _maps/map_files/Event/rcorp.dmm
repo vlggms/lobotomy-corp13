@@ -18,6 +18,10 @@
 /obj/machinery/telecomms/server/presets/engineering,
 /turf/open/floor/circuit/telecomms/mainframe,
 /area/city/outskirts)
+"co" = (
+/obj/effect/landmark/abno_objectivespawn,
+/turf/open/floor/plating/asteroid,
+/area/city/outskirts)
 "cH" = (
 /obj/effect/turf_decal/bot,
 /obj/machinery/telecomms/relay/preset/telecomms,
@@ -5525,7 +5529,7 @@ PG
 PG
 PG
 PG
-PG
+co
 PG
 PG
 PG

@@ -35,11 +35,21 @@
 	gift_type =  /datum/ego_gifts/magicbullet
 	abnormality_origin = ABNORMALITY_ORIGIN_LOBOTOMY
 
+	observation_prompt = "Before you stands a man with an ornate rifle. <br>\
+		\"My bullets never miss, whatever I take aim at will have its head pierced true by the inevitability of my bullets. <br>\
+		If you have a target, you only need to make the payment.\""
+	observation_choices = list("Pay for his services", "Don't pay")
+	correct_choices = list("Pay for his services")
+	observation_success_message = "True to his word, the marksman racks a bullet into his rifle, takes aim and fires at your target, piercing their head, but it travels on. <br>\
+		Piercing the heads of others, forever."
+	observation_fail_message = "The man scowls. <br>\"Don't waste my time with such shaky conviction.\""
+
 	var/can_act = TRUE
 	var/bullet_cooldown
 	var/bullet_cooldown_time = 7 SECONDS
 	var/bullet_fire_delay = 1.5 SECONDS
 	var/bullet_max_range = 50
+	var/bullet_damage = 80
 
 	//PLAYABLES ATTACKS (action in this case)
 	attack_action_types = list(/datum/action/innate/abnormality_attack/toggle/der_freischutz_zoom)
@@ -55,8 +65,8 @@
 	var/zoom_amt = 10
 	var/original_sight
 
-/datum/action/innate/abnormality_attack/toggle/der_freischutz_zoom/New(Target)
-	..()
+/datum/action/innate/abnormality_attack/toggle/der_freischutz_zoom/Grant(mob/living/L)
+	. = ..()
 	original_sight = owner.sight
 
 /datum/action/innate/abnormality_attack/toggle/der_freischutz_zoom/Activate()
@@ -140,6 +150,7 @@
 	B.original = end_turf
 	B.preparePixelProjectile(end_turf, start_turf)
 	B.range = bullet_max_range
+	B.damage = bullet_damage
 	B.fire()
 	new /datum/beam(start_turf.Beam(end_turf, "magic_bullet_tracer", time = 3 SECONDS))
 	IconChange(firing = FALSE)
@@ -258,4 +269,3 @@
 			for(var/obj/effect/frei_magic/Port in portals)
 				Port.fade_out()
 	return
-

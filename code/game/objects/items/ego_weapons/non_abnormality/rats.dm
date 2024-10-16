@@ -13,8 +13,9 @@
 	name = "rat combat knife"
 	desc = "A combat knife sometimes found in the hands of rats. This one belonged to a rat who once had a dream of something bigger."
 	icon_state = "ratknife"
-	force = 10
+	force = 9
 	attack_speed = 0.5
+	swingstyle = WEAPONSWING_LARGESWEEP
 	attack_verb_continuous = list("slices", "slashes", "stabs")
 	attack_verb_simple = list("slice", "slash", "stab")
 	hitsound = 'sound/weapons/bladeslice.ogg'
@@ -34,7 +35,7 @@
 	desc = "It's a brick."
 	special = "Fits into an EGO belt."
 	icon_state = "ratbrick"
-	force = 5
+	force = 6
 	throwforce = 50
 	attack_speed = 0.8
 	attack_verb_continuous = list("bricks", "smashes", "shatters")
@@ -86,9 +87,11 @@
 		return TRUE
 
 /obj/item/gun/ego_gun/pistol/rats/afterattack(atom/target, mob/living/user, flag, params)
+	if(flag && (user.a_intent == INTENT_HARM || forced_melee)) // Don't want to take damage when just using melee
+		return ..()
 	if(prob(50))
 		to_chat(user,span_warning("You pinch your fingers in the weapon."))
 		user.apply_damage(10, RED_DAMAGE, null, user.run_armor_check(null, BLACK_DAMAGE))
 		return FALSE
-	..()
+	return ..()
 

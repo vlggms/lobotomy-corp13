@@ -72,10 +72,10 @@ Any attempt to code risk class armor will result in a 10 day Github ban.*/
 	icon_state = "evening"
 	armor = list(RED_DAMAGE = 0, WHITE_DAMAGE = 0, BLACK_DAMAGE = 0, PALE_DAMAGE = 10)
 
-/obj/item/clothing/suit/armor/ego_gear/zayin/melty_eyeball
-	name = "melty eyeball"
+/obj/item/clothing/suit/armor/ego_gear/zayin/cavernous_wailing
+	name = "cavernous wailing"
 	desc = "Doesn't it make you more gloomy than anything?"
-	icon_state = "melty_eyeball"
+	icon_state = "cavernous_wailing"
 	armor = list(RED_DAMAGE = 0, WHITE_DAMAGE = 0, BLACK_DAMAGE = 10, PALE_DAMAGE = 0)
 
 /obj/item/clothing/suit/armor/ego_gear/zayin/nightshade
@@ -108,5 +108,16 @@ Any attempt to code risk class armor will result in a 10 day Github ban.*/
 	icon_state = "oceanic"
 	armor = list(RED_DAMAGE = 10, WHITE_DAMAGE = 0, BLACK_DAMAGE = 0, PALE_DAMAGE = 0)
 
+/obj/item/clothing/suit/armor/ego_gear/zayin/dead_dream
+	name = "dead dream"
+	desc = "We garentee cryopreservation is as safe as can be. The future is just one dream away."
+	icon_state = "dead_dream"
+	armor = list(RED_DAMAGE = 0, WHITE_DAMAGE = 10, BLACK_DAMAGE = 0, PALE_DAMAGE = 0)
+
+/obj/item/clothing/suit/armor/ego_gear/zayin/cord
+	name = "cord"
+	desc = "A suit that resembles a sweater.."
+	icon_state = "cord"
+	armor = list(RED_DAMAGE = 0, WHITE_DAMAGE = 10, BLACK_DAMAGE = 0, PALE_DAMAGE = 0)
 
 

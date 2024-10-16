@@ -4,10 +4,13 @@
 	icon_state = "prank"
 	worn_icon_state = "prank"
 	inhand_icon_state = "prank"
+	force = 20
+	damtype = BLACK_DAMAGE
 	ammo_type = /obj/item/ammo_casing/caseless/ego_prank
 	weapon_weight = WEAPON_HEAVY
-	fire_delay = 10
-	damtype = BLACK_DAMAGE
+	fire_delay = 5
+	shotsleft = 10
+	reloadtime = 1.4 SECONDS
 	fire_sound = 'sound/weapons/gun/rifle/shot_alt.ogg'
 	attribute_requirements = list(
 							TEMPERANCE_ATTRIBUTE = 40
@@ -18,8 +21,11 @@
 	desc = "A magnum pistol featuring excellent burst firing potential."
 	icon_state = "gaze"
 	inhand_icon_state = "gaze"
+	force = 12
 	ammo_type = /obj/item/ammo_casing/caseless/ego_gaze
-	fire_delay = 20
+	fire_delay = 10
+	shotsleft = 8
+	reloadtime = 1.8 SECONDS
 	fire_sound = 'sound/weapons/gun/pistol/deagle.ogg'
 	vary_fire_sound = FALSE
 	weapon_weight = WEAPON_HEAVY
@@ -36,9 +42,11 @@
 	special = "Use in hand to turn on homing mode. This mode fires slower, but homes in on a random target within 15 metres.	\
 			WARNING: This feature is not accurate."
 	ammo_type =	/obj/item/ammo_casing/caseless/ego_galaxy
+	force = 20
+	damtype = BLACK_DAMAGE
 	fire_delay = 15
 	fire_sound = 'sound/magic/wand_teleport.ogg'
-	weapon_weight = WEAPON_HEAVY
+	weapon_weight = WEAPON_MEDIUM
 	fire_sound_volume = 70
 	attribute_requirements = list(
 							TEMPERANCE_ATTRIBUTE = 40
@@ -68,6 +76,8 @@
 	special = "This weapon will sometimes jam. \
 			Use this weapon in hand to unjam it. \
 			this weapon fires faster and in a bigger burst for 15 seconds after being unjammed."
+	force = 20
+	damtype = WHITE_DAMAGE
 	ammo_type = /obj/item/ammo_casing/caseless/ego_unrequited
 	fire_delay = 3
 	burst_size = 3
@@ -139,11 +149,17 @@
 	icon_state = "harmony"
 	inhand_icon_state = "harmony"
 	special = "This weapon fires bouncing, piercing shots."
+	force = 30
+	damtype = WHITE_DAMAGE
+	attack_speed = 1.8
 	ammo_type = /obj/item/ammo_casing/caseless/ego_harmony
 	fire_sound = 'sound/weapons/ego/harmony1.ogg'
 	vary_fire_sound = FALSE
 	weapon_weight = WEAPON_HEAVY
 	fire_sound_volume = 70
+	shotsleft = 18
+	reloadtime = 1.6 SECONDS
+
 	autofire = 0.35 SECONDS
 	attribute_requirements = list(
 							FORTITUDE_ATTRIBUTE = 40
@@ -154,9 +170,12 @@
 	desc = "It's an old wooden longrifle."
 	icon_state = "transmission"
 	inhand_icon_state = "transmission"
+	force = 20
 	ammo_type = /obj/item/ammo_casing/caseless/ego_transmission
 	weapon_weight = WEAPON_HEAVY
-	fire_delay = 10
+	fire_delay = 5
+	shotsleft = 10
+	reloadtime = 1.4 SECONDS
 	fire_sound = 'sound/weapons/gun/rifle/shot_alt.ogg'
 	attribute_requirements = list(
 							FORTITUDE_ATTRIBUTE = 40
@@ -167,9 +186,13 @@
 	desc = "Nothing beats the classics."
 	icon_state = "song"
 	inhand_icon_state = "song"
+	force = 20
+	damtype = WHITE_DAMAGE
 	ammo_type = /obj/item/ammo_casing/caseless/ego_song
 	fire_sound = 'sound/weapons/gun/pistol/shot_alt.ogg'
-	weapon_weight = WEAPON_HEAVY
+	weapon_weight = WEAPON_MEDIUM
+	shotsleft = 32
+	reloadtime = 1.6 SECONDS
 	spread = 8
 	autofire = 0.15 SECONDS
 	attribute_requirements = list(
@@ -182,8 +205,12 @@
 	icon_state = "songmini"
 	inhand_icon_state = "songmini"
 	special = "This weapon fires 3 pellets."
+	force = 12
+	damtype = WHITE_DAMAGE
 	ammo_type = /obj/item/ammo_casing/caseless/ego_songmini
 	fire_sound = 'sound/weapons/gun/revolver/shot_light.ogg'
+	shotsleft = 16
+	reloadtime = 2.1 SECONDS
 	spread = 8
 	autofire = 0.3 SECONDS
 	attribute_requirements = list(
@@ -195,6 +222,8 @@
 	desc = "Hair has grown on the crossbow as if to express that the woman’s dejection will never be forgotten."
 	icon_state = "screamingwedge"
 	inhand_icon_state = "screamingwedge"
+	force = 20
+	damtype = WHITE_DAMAGE
 	ammo_type = /obj/item/ammo_casing/caseless/ego_wedge
 	weapon_weight = WEAPON_HEAVY
 	fire_delay = 10
@@ -213,9 +242,12 @@
 	lefthand_file = 'icons/mob/inhands/weapons/guns_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/weapons/guns_righthand.dmi'
 	special = "This weapon fires dice that deal varying amounts of damage."
+	force = 12
 	ammo_type = /obj/item/ammo_casing/caseless/ego_swindle
 	weapon_weight = WEAPON_HEAVY
-	fire_delay = 10
+	fire_delay = 5
+	shotsleft = 12
+	reloadtime = 1.5 SECONDS
 	fire_sound = 'sound/weapons/gun/pistol/shot.ogg'
 	attribute_requirements = list(
 							FORTITUDE_ATTRIBUTE = 40
@@ -227,6 +259,8 @@
 	icon_state = "ringing"
 	inhand_icon_state = "ringing"
 	special = "This weapon can be used as a megaphone."
+	force = 20
+	damtype = BLACK_DAMAGE
 	ammo_type = /obj/item/ammo_casing/caseless/ego_ringing
 	weapon_weight = WEAPON_HEAVY
 	autofire = 0.15 SECONDS
@@ -264,12 +298,58 @@
 	icon_state = "syrinx"
 	inhand_icon_state = "syrinx"
 	special = "This weapon fires slow bullets with limited range."
+	force = 20
+	damtype = WHITE_DAMAGE
 	ammo_type = /obj/item/ammo_casing/caseless/ego_syrinx
-	weapon_weight = WEAPON_HEAVY
+	weapon_weight = WEAPON_MEDIUM
 	spread = 40
+	shotsleft = 40
+	reloadtime = 2 SECONDS
 	fire_sound = 'sound/weapons/ego/ecstasy.ogg'
 	autofire = 0.08 SECONDS
 	attribute_requirements = list(
 							PRUDENCE_ATTRIBUTE = 40
 	)
 
+
+/obj/item/gun/ego_gun/ardor_star
+	name = "ardor blossom star"
+	desc = "Though I can't guide you... I can offer a warm embrace."
+	icon_state = "ardor_star"
+	inhand_icon_state = "ardor_star"
+	force = 30
+	attack_speed = 1.8
+	ammo_type = /obj/item/ammo_casing/caseless/ego_ardor
+	weapon_weight = WEAPON_HEAVY
+	fire_sound = 'sound/weapons/gun/sniper/shot.ogg'
+	fire_delay = 10
+	shotsleft = 4
+	reloadtime = 2.1 SECONDS
+	attribute_requirements = list(
+							FORTITUDE_ATTRIBUTE = 40
+							)
+
+/obj/item/gun/ego_gun/pistol/deathdealer
+	name = "death dealer"
+	desc = "A gilded revolver which seems to defy all known laws of gun manufacturing... Feel lucky?"
+	icon_state = "deathdealer" //Placeholder sprite. Will need to comission/replace with proper sprites
+	inhand_icon_state = "deathdealer"
+	special = "This weapon changes its projectile each time it is reloaded. It cannot be reloaded without firing all six shots first."
+	ammo_type = /obj/item/ammo_casing/caseless/ego_gaze
+	weapon_weight = WEAPON_HEAVY
+	fire_delay = 8
+	shotsleft = 6
+	reloadtime = 1.3 SECONDS
+	fire_sound = 'sound/weapons/gun/revolver/shot_alt.ogg'
+	vary_fire_sound = FALSE
+	var/list/ammotypes = list(/obj/item/ammo_casing/caseless/ego_magicbullet,/obj/item/ammo_casing/caseless/ego_supershotgun,/obj/item/ammo_casing/caseless/ego_solemnlament,/obj/item/ammo_casing/caseless/ego_harmony,/obj/item/ammo_casing/caseless/ego_match,/obj/item/ammo_casing/caseless/ego_gaze)
+	//TODO: Make it so that the fire_sound manages to match the bullet, I.E. magic bullet shots use the magic bullet sound.
+	//NOTE: Dud round currently breaks the gun, causing it to no longer fire regardless of current ammo type. Will need help fixing this at some point, but for now the dud's removed from the list.
+	//If you feel like having a go at fixing it, the projectile's /obj/item/ammo_casing/caseless/ego_dud, under ZAYIN.
+
+/obj/item/gun/ego_gun/pistol/deathdealer/reload_ego(mob/user)
+	if(shotsleft!=0)
+		to_chat(user,span_warning("You cannot reload this gun without an empty cylinder!"))
+		return
+	ammo_type = pick(ammotypes)
+	..()

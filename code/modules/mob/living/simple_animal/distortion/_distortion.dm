@@ -38,6 +38,8 @@
 	var/list/ego_list = list()
 	/// Variable holding the egoist, for use in PostManifest()
 	var/mob/living/carbon/human/egoist = null
+	/// Variable determining whether or not a new egoist needs to be made. The following variables are irrelevant if this variable is true.
+	var/new_egoist = FALSE
 	/// Variable to determine starting stats of the egoist. You MUST have the minimum required to meet the E.G.O. stat requirement.
 	var/egoist_attributes = 0
 	/// Default visual effect for a successful unmanifest
@@ -46,6 +48,8 @@
 	var/list/egoist_names = list()
 	/// Specific outfit datum for the unmanifested to spawn with; civilian by default.
 	var/egoist_outfit = /datum/outfit/job/civilian
+	/// Prolonged exposure to a monolith will convert the distortion into an abnormality. When if null, they are unaffected by it.
+	var/monolith_abnormality
 
 /mob/living/simple_animal/hostile/distortion/Initialize(mapload)
 	. = ..()
@@ -135,27 +139,44 @@
 /mob/living/simple_animal/hostile/distortion/proc/Unmanifest()
 	if(QDELETED(src))
 		return
-	egoist = new (get_turf(src))
+	for(var/mob/living/carbon/human/person in src)
+		if(person)
+			egoist = person
+			REMOVE_TRAIT(person, TRAIT_NOBREATH, MAGIC_TRAIT) //Since they're free now they have to breathe again
+			REMOVE_TRAIT(person, TRAIT_COMBATFEAR_IMMUNE, MAGIC_TRAIT) //We don't want the player suffocating inside
+			break
+	if(!egoist)
+		egoist = new(get_turf(src))
+		new_egoist = TRUE
+		forceMove(egoist) //Hide the distortion inside of the spawned human in case of shinanigains
 	can_patrol = FALSE
 	patrol_reset()
 	density = FALSE
 	AIStatus = AI_OFF
 	ChangeResistances(list(BRUTE = 0, RED_DAMAGE = 0, WHITE_DAMAGE = 0, BLACK_DAMAGE = 0, PALE_DAMAGE = 0)) // Prevent death jank
-	forceMove(egoist) //Hide the distortion inside of the spawned human in case of shinanigains
 	if(unmanifest_effect)
 		new unmanifest_effect(get_turf(src))
-	var/newname
-	if(!LAZYLEN(egoist_names))
-		newname = random_unique_name(gender, attempts_to_find_unique_name=10)
-	else
-		newname = pick(egoist_names)
-	egoist.name = newname
-	egoist.real_name = newname
-	egoist.gender = gender
+	if(new_egoist)
+		var/newname
+		if(!LAZYLEN(egoist_names))
+			newname = random_unique_name(gender, attempts_to_find_unique_name=10)
+		else
+			newname = pick(egoist_names)
+		egoist.name = newname
+		egoist.real_name = newname
+		egoist.gender = gender
+		if(egoist_outfit)
+			egoist.equipOutfit(egoist_outfit)
 	if(egoist_attributes)
-		egoist.adjust_all_attribute_levels(egoist_attributes)
-	if(egoist_outfit)
-		egoist.equipOutfit(egoist_outfit)
+		if(new_egoist)
+			egoist.adjust_all_attribute_levels(egoist_attributes)
+		else
+			for(var/attribute in egoist.attributes)
+				var/datum/attribute/the_attribute = attribute
+				var/attribute_level = get_raw_level(egoist, the_attribute)
+				if(attribute_level >= egoist_attributes)
+					continue
+				egoist.adjust_attribute_level(the_attribute, egoist_attributes - attribute_level)
 	for(var/gear in ego_list)
 		if(ispath(gear, /obj/item/clothing/suit/armor/ego_gear))
 			var/suit_slot_item = egoist.get_item_by_slot(ITEM_SLOT_OCLOTHING)//Replace the old suit slot item with ego, if applicable
@@ -170,9 +191,15 @@
 
 	PostUnmanifest(egoist)
 	PollGhosts(egoist)
+	egoist.forceMove(get_turf(src))
+	qdel(src)
 	return
 
 /mob/living/simple_animal/hostile/distortion/proc/PollGhosts(mob/living/carbon/human/egoist)
+	if(!new_egoist || mind) //A player unmanifested somehow
+		egoist.key = key
+		mind.transfer_to(egoist)
+		return
 	var/list/mob/dead/observer/candidates = pollCandidatesForMob("Do you want to play as [egoist.real_name]?", ROLE_PAI, null, FALSE, 100, egoist)
 	if(LAZYLEN(candidates))
 		var/mob/dead/observer/C = pick(candidates)
@@ -180,11 +207,67 @@
 		if(C.mind)
 			C.mind.transfer_to(egoist)
 			egoist.mind.assigned_role = "Civilian"
-	qdel(src)
-	return
+			return
 
 /mob/living/simple_animal/hostile/distortion/proc/PostUnmanifest(mob/living/carbon/human/egoist)
 	return
+
+//Turn into a distortion
+/mob/proc/BecomeDistortion(mob/living/simple_animal/hostile/distortion/chosenmob = null, instant = FALSE, forced = FALSE)
+	var/mob/themob = null
+	var/list/message_list = list(
+		"Tell me. Why is it that you have given up?",
+		"So, what will you do now?",
+		"What do you think of yourself, [src.name]?",
+		"That's the shape of your heart and desire, isn't it?",
+	)
+	if(!chosenmob)
+		chosenmob = pick(subtypesof(/mob/living/simple_animal/hostile/distortion))
+	src.playsound_local(src, 'sound/abnormalities/silentgirl/Guilt_Apply.ogg', 15, FALSE)
+	if(!instant)
+		playsound(src, 'sound/distortions/distortion_bell.ogg', 50, FALSE)
+		for(var/i in 1 to 4)
+			if(src.client)
+				Distortionblurb(src.client, "[message_list[i]]")
+			SLEEP_CHECK_DEATH(80)
+			playsound(src, 'sound/distortions/distortion_bell.ogg', 50, FALSE)
+			if(stat >= UNCONSCIOUS) //YOU GOT KNOCKED TF OUT! YOUR ASS IS GRASS
+				return FALSE
+	themob = new chosenmob(get_turf(src))
+	if(client)
+		themob.key = key
+	if(!ishuman(src))
+		qdel(src)
+		return
+	var/mob/living/carbon/human/egoist = src
+	ADD_TRAIT(egoist, TRAIT_NOBREATH, MAGIC_TRAIT) //We don't want the player suffocating inside
+	ADD_TRAIT(egoist, TRAIT_COMBATFEAR_IMMUNE, MAGIC_TRAIT) //We don't want the player suffocating inside
+	if(egoist.sanity_lost) //If they panicked already we just top them off
+		egoist.adjustWhiteLoss(99999, updating_health = TRUE, forced = TRUE, white_healable = TRUE)
+	forceMove(themob)
+
+/mob/proc/Distortionblurb(client/C, text)
+	if(!C)
+		return
+	var/style = "font-family: 'Baskerville'; text-align: center; color: #DC143C; font-size:14pt;"
+	var/obj/effect/overlay/T = new()
+	T.alpha = 0
+	T.maptext_height = 120
+	T.maptext_width = 424
+	T.layer = FLOAT_LAYER
+	T.plane = HUD_PLANE
+	T.appearance_flags = APPEARANCE_UI_IGNORE_ALPHA
+	T.screen_loc = "Center-6,Center+3"
+	C.screen += T
+	animate(T, alpha = 255, time = 10)
+	var/display_text = text
+	T.maptext = "<br><span style=\"[style]\">[display_text]</span><br>"
+	addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(fade_blurb), C, T, 25), 40) //fade_blurb qdels the object
+
+/mob/living/simple_animal/hostile/distortion/BecomeDistortion(mob/living/simple_animal/hostile/distortion/chosenmob = null, instant = FALSE, forced = FALSE)
+	if(!forced)
+		return FALSE //Already a distortion
+	return ..()
 
 // Actions
 /datum/action/innate/distortion_attack

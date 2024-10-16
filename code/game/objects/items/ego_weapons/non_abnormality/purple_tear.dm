@@ -181,6 +181,7 @@
 	force = 90
 	attack_speed = 1
 	damtype = WHITE_DAMAGE //tbh white does not fit but also i don't think Iori should use pale, thats Blue Sicko's job
+	swingstyle = WEAPONSWING_THRUST
 
 	attack_verb_continuous = list("pierces", "stabs")
 	attack_verb_simple = list("pierce", "stab")
@@ -406,7 +407,7 @@
 	if(active || !CanUseEgo(user))
 		return FALSE
 	active = TRUE
-	for(var/mob/living/L in livinginrange(8, user))
+	for(var/mob/living/L in range(8, user))
 		if(L == src)
 			continue
 		if(faction_check(user.faction, L.faction))

@@ -27,6 +27,14 @@
 	gift_type = /datum/ego_gifts/heart
 	abnormality_origin = ABNORMALITY_ORIGIN_ALTERED
 
+	observation_prompt = "I've been praying for 7 days and 7 nights, my skin is taut from malnutrition, my eyes bloodshot from lack of sleep and my clothes soiled with my own filth. <br>\
+		Though my throat is so dry I cannot even maintain the chants I move my lips anyway. <br>\
+		Is anyone even listening? <br>Does my prayer reach Him? <br>All I ask for is a sign."
+	observation_choices = list("Stop praying", "Keep praying")
+	correct_choices = list("Stop praying")
+	observation_success_message = "No one is there, God does not reside here."
+	observation_fail_message = "If God truly loves us, he'll show us a sign."
+
 	var/work_count = 0
 	var/breach_count = 4	//when do you breach?
 	var/reset_time = 1 MINUTES
@@ -66,7 +74,7 @@
 	var/list/damtypes = list(RED_DAMAGE, WHITE_DAMAGE, BLACK_DAMAGE, PALE_DAMAGE)
 	var/damage = pick(damtypes)
 	work_damage_type = damage
-	user.apply_damage(damage_amount, damage, null, user.run_armor_check(null, damage)) // take 5 random damage each time
+	user.deal_damage(damage_amount, damage) // take 5 random damage each time
 	WorkDamageEffect()
 
 //Prevents red work damage effecs from appearing

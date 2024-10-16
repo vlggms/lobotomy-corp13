@@ -36,6 +36,21 @@
 	)
 	gift_type =  /datum/ego_gifts/christmas
 	abnormality_origin = ABNORMALITY_ORIGIN_LOBOTOMY
+	//Try not to make other observations this long - This is by PM though so, we have to use it. -Coxswain
+	observation_prompt = "I heard about a man who could give you anything you want once a year. <br>Good kids have a better chance of seeing him. <br>\
+		A man who carries giant sack on his back. <br>A man who can go anywhere in the world with his reindeer-pulled sled. <br>\
+		Alex got a present. <br>Even though he was a naughty kid. <br>It was unfair. <br>I could not accept it. <br>The next Christmas, I went to Alex's. <br>\
+		If that man comes only for Alex this time again, I will ask him why had he not come to me. <br>\
+		That night, when everyone was sleeping. <br>I waited for the man, sitting next to sleeping Alex. <br>\
+		Sometimes, for someone, an absurd fairy tale is a silver lining of hope. <br>When I met Santa, I imagined dismembering him. <br>... <br>\
+		In front of me is Santa. <br>My ideal. <br>People don't call it Santa. <br>Something is twitching inside of that sack. I......"
+	observation_choices = list("Opened the sack.", "Did not open the sack.")
+	correct_choices = list("Did not open the sack.")
+	observation_success_message = "Inside of the sack is a desire. <br>\
+		A hope that I've been waiting for since when I was very young. <br>I never opened the sack. <br>Did you wish come true?"
+	observation_fail_message = "There was something that I have been longing for my entire life. <br>\
+		Like Pandora's Box, it will never go back into the sack."
+
 	var/pulse_cooldown
 	var/pulse_cooldown_time = 1.8 SECONDS
 	var/pulse_damage = 20
@@ -71,6 +86,6 @@
 	for(var/mob/living/L in livinginview(8, src))
 		if(faction_check_mob(L))
 			continue
-		L.apply_damage(pulse_damage, WHITE_DAMAGE, null, L.run_armor_check(null, WHITE_DAMAGE), spread_damage = TRUE)
+		L.deal_damage(pulse_damage, WHITE_DAMAGE)
 		new /obj/effect/temp_visual/dir_setting/bloodsplatter(get_turf(L), pick(GLOB.alldirs))
 

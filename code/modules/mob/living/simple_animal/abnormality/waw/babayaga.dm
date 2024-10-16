@@ -35,6 +35,17 @@
 	)
 	gift_type =  /datum/ego_gifts/rimeshank
 
+	observation_prompt = "You're freezing to death, the chill bites deep, down to the marrow in your bones. <br>\
+		Through the blizzard, you spy lights leading your way. <br>They're contained in skulls of various creatures, human and animal. <br>\
+		Seeing little recourse, you follow them to a palace made of ice, surrounded by a fence made out of various bones. <br>\
+		The palace stands on the precipice of life and death. <br>You know this palace and who it belongs to. <br>\
+		A terrifying witch lives here."
+	observation_choices = list("Knock on the door", "Keep wandering the blizzard")
+	correct_choices = list("Knock on the door")
+	observation_success_message = "You can't keep shivering in the cold forever. <br>You knock on the door..."
+	observation_fail_message = "You keep wandering the blizzard, the cold continuing to sap your strength. <br>\
+		Eventually you collapse in the snow, your whole body frozen. <br>Ahh... <br>There's no more pain..."
+
 	var/jump_cooldown = 0
 	var/jump_cooldown_time = 35 SECONDS
 	var/list/spawned_mobs = list()
@@ -149,9 +160,9 @@
 			continue
 		var/dist = get_dist(src, L)
 		if(ishuman(L)) //Different damage formulae for humans vs mobs
-			L.apply_damage(clamp((15 * (2 ** (8 - dist))), 15, 4000), RED_DAMAGE, null, L.run_armor_check(null, RED_DAMAGE)) //15-3840 damage scaling exponentially with distance
+			L.deal_damage(clamp((15 * (2 ** (8 - dist))), 15, 4000), RED_DAMAGE) //15-3840 damage scaling exponentially with distance
 		else
-			L.apply_damage(600 - ((dist > 2 ? dist : 0 )* 75), RED_DAMAGE, null, L.run_armor_check(null, RED_DAMAGE)) //0-600 damage scaling on distance, we don't want it oneshotting mobs
+			L.deal_damage(600 - ((dist > 2 ? dist : 0 )* 75), RED_DAMAGE) //0-600 damage scaling on distance, we don't want it oneshotting mobs
 		if(L.health < 0)
 			L.gib()
 	SLEEP_CHECK_DEATH(5)

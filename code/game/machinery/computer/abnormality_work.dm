@@ -21,6 +21,17 @@
 	var/obj/machinery/containment_panel/linked_panel
 	/// Accumulated abnormality chemical.
 	var/chem_charges = 0
+	/// Extraction Officer Visual effect
+	var/obj/effect/vfx = null
+	/// Extraction Officer Work bonus/penalty
+	var/work_bonus = 0
+	/// Stored reference to Extraction Officer Tool
+	var/obj/item/extraction/key/EOTool = null
+	/// Console Upgrades
+	var/list/mechanical_upgrades = list(
+		"abnochem" = 0,
+		"workrate" = 0,
+		)
 
 /obj/machinery/computer/abnormality/Initialize()
 	. = ..()
@@ -61,6 +72,14 @@
 			if(MELTDOWN_BLACK)
 				melt_text = " of Lunacy. Failure to clear the meltdown will cause another abnormality to breach"
 		. += span_warning("The containment unit is currently affected by a Qliphoth Meltdown[melt_text]. Time left: [meltdown_time].")
+	//Show what upgrades you have. I dont have visuals for the upgrades yet so for now just exsamine tell them.
+	. += span_info("This console is augmented with the following upgrades:")
+	var/upgrade_list = ""
+	for(var/i in mechanical_upgrades)
+		if(mechanical_upgrades[i] == 0)
+			continue
+		upgrade_list += "[i]|"
+	. += upgrade_list
 
 /obj/machinery/computer/abnormality/ui_interact(mob/user)
 	. = ..()
@@ -77,11 +96,17 @@
 			dat += "<span style='color: [COLOR_MOSTLY_PURE_RED]'>Work on other abnormalities, I beg you...</span><br>"
 	if(datum_reference.understanding != 0)
 		dat += "<span style='color: [COLOR_BLUE_LIGHT]'>Current Understanding is: [round((datum_reference.understanding/datum_reference.max_understanding)*100, 0.01)]%, granting a [datum_reference.understanding]% Work Success and Speed bonus.</span><br>"
+		if(datum_reference.observation_ready)
+			dat += "<A href='byond://?src=[REF(src)];final_observation=1'>Final Observation ready</A> <br>"
+	switch(work_bonus)
+		if(EXTRACTION_KEY)
+			dat += "<span style='color: [COLOR_VERY_SOFT_YELLOW]'>Work Speed and Success Rates are being positively impacted by low Qliphoth deterrance levels.</span><br>"
+		if(EXTRACTION_LOCK)
+			dat += "<span style='color: [COLOR_MOSTLY_PURE_RED]'>Work Speed and Success Rates are being negatively impacted by high Qliphoth deterrance levels.</span><br>"
 	dat += "<br>"
 
 	//Abnormality portraits
-	var/list/paths = get_portrait_path()
-	for(var/pahs in paths)
+	for(var/pahs in GLOB.abnormality_portraits)
 		user << browse_rsc(pahs)
 	dat += {"<div style="float:right; width: 60%;">
 	<img src='[datum_reference.GetPortrait()].png' class="fit-picture" width="192" height="192">
@@ -98,7 +123,7 @@
 		var/datum/suppression/information/I = GetCoreSuppression(/datum/suppression/information)
 		if(!tutorial && istype(I))
 			work_display = Gibberish(work_display, TRUE, I.gibberish_value)
-		if(HAS_TRAIT(user, TRAIT_WORK_KNOWLEDGE))
+		if(HAS_TRAIT(user, TRAIT_WORK_KNOWLEDGE) || mechanical_upgrades["workrate"])
 			dat += "<A href='byond://?src=[REF(src)];do_work=[wt]'>[work_display] \[[datum_reference.get_work_chance(wt, user)]%\]</A> <br>"
 		else
 			dat += "<A href='byond://?src=[REF(src)];do_work=[wt]'>[work_display]</A> <br>"
@@ -133,6 +158,20 @@
 					to_chat(usr, span_warning("This operation is currently unavailable."))
 				return
 			start_work(usr, href_list["do_work"])
+		if(href_list["final_observation"])
+			if(HAS_TRAIT(usr, TRAIT_WORK_FORBIDDEN)) //gifts are only for agents
+				to_chat(usr, span_warning("You cannot perform this operation!"))
+				return
+			if(datum_reference.working)
+				to_chat(usr, span_warning("The console is currently being operated!"))
+				return
+			if(!istype(datum_reference.current) || (datum_reference.current.stat == DEAD))
+				to_chat(usr, span_warning("The Abnormality is currently in the process of revival!"))
+				return
+			if(!(datum_reference.current.status_flags & GODMODE))
+				to_chat(usr, span_warning("The Abnormality has breached containment!"))
+				return
+			datum_reference.current.FinalObservation(usr)
 
 	add_fingerprint(usr)
 	updateUsrDialog()
@@ -186,6 +225,11 @@
 	if(was_melting == MELTDOWN_CYAN)
 		work_chance -= 20
 	var/work_speed = 2 SECONDS / (1 + ((get_modified_attribute_level(user, TEMPERANCE_ATTRIBUTE) + datum_reference.understanding) / 100))
+	switch(work_bonus)
+		if(EXTRACTION_KEY)
+			work_speed *= 0.9 //10% faster work
+		if(EXTRACTION_LOCK)
+			work_speed *= 1.2 //20% slower work
 	work_speed /= user.physiology.work_speed_mod
 	var/success_boxes = 0
 	var/total_boxes = 0
@@ -272,8 +316,7 @@
 		datum_reference.work_complete(user, work_type, pe, work_speed*datum_reference.max_boxes, was_melting, canceled)
 		if(recorded) //neither rabbit nor tutorial calls this
 			SSlobotomy_corp.WorkComplete(pe, (meltdown_time <= 0))
-	var/obj/item/chemical_extraction_attachment/attachment = locate() in src.contents
-	if(attachment)
+	if(mechanical_upgrades["abnochem"])
 		chem_charges += 1
 	else
 		chem_charges = min(chem_charges + 0.2, 10)
@@ -321,6 +364,52 @@
 //Links to containment panel
 /obj/machinery/computer/abnormality/proc/LinkPanel(obj/machinery/panel)
 	linked_panel = panel
+
+//Applies or Removes Extraction Officer Key or Lock
+/obj/machinery/computer/abnormality/proc/ApplyEOTool(modifier = 0, removal = FALSE, obj/item/extraction/key/thetool = null)
+	if(removal && modifier == work_bonus)
+		if(vfx)
+			qdel(vfx)
+		work_bonus = 0
+		if(EOTool)
+			EOTool.Deactivate() //Visually turn off the tool
+			EOTool = null
+		return TRUE
+	if(!datum_reference.current)
+		return FALSE
+	var/abno_target = datum_reference.current
+	if(modifier == EXTRACTION_LOCK)
+		if(work_bonus != 0) //We can't apply a lock while something is already active
+			return FALSE
+		if(datum_reference.understanding < datum_reference.max_understanding) //Understanding is not capped - we can't punish players for overwork
+			return FALSE
+		work_bonus = EXTRACTION_LOCK
+		var/turf/target_turf = get_ranged_target_turf(abno_target, SOUTHWEST, 1)
+		vfx = new/obj/effect/extraction_effect(target_turf)
+		vfx.icon_state = "lock"
+		EOTool = thetool
+		return TRUE
+	if(modifier == EXTRACTION_KEY)
+		if(work_bonus != 0) //We can't apply a key while something is already active
+			return FALSE
+		if(datum_reference.understanding >= (datum_reference.max_understanding / 2)) //Understanding is over 50% - we can't keep giving them free bonuses
+			return FALSE
+		work_bonus = EXTRACTION_KEY
+		var/turf/target_turf = get_ranged_target_turf(abno_target, SOUTHWEST, 1)
+		vfx = new/obj/effect/extraction_effect(target_turf)
+		vfx.icon_state = "key"
+		EOTool = thetool //We store a reference to the key so we can visually turn it off at 50% understanding
+		return TRUE
+	return FALSE
+
+//Install a work console upgrade
+/obj/machinery/computer/abnormality/proc/InstallUpgrade(obj/upgrade_tech, upgrade_slot = "")
+	if(!upgrade_tech)
+		return
+	if(!upgrade_slot)
+		return
+	upgrade_tech.forceMove(src)
+	mechanical_upgrades[upgrade_slot] = upgrade_tech
 
 //special console just for training rabbit
 /obj/machinery/computer/abnormality/training_rabbit

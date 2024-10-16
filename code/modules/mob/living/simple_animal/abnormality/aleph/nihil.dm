@@ -34,6 +34,14 @@
 	ranged = TRUE
 	casingtype = /obj/item/ammo_casing/caseless/nihil_abnormality
 	projectilesound = 'sound/abnormalities/wrath_servant/hermit_magic.ogg'
+
+	observation_prompt = "I have no plans or destination. I'm too tired to fly. <br>With no one to guide me, and no path open to me. <br>It is my fate to play the fool. <br>\
+		Before I do, I turn to face the 4 Magical Girls. <br>Are they just like me, or am I just like them?"
+	observation_choices = list("They've become me", "I came to resemble them")
+	correct_choices = list("They've become me", "I came to resemble them")
+	observation_success_message = "It doesn't matter. <br>My choices do not matter. <br>\
+		Nothing matters. <br>We will repeat this song and dance until the end of time.<br> I can only laugh at this pointless endeavor."
+
 	var/can_act = TRUE
 	//Teleports
 	var/icon_inverted
@@ -132,7 +140,7 @@
 		new /obj/effect/temp_visual/eldritch_smoke(T)
 		for(var/mob/living/L in HurtInTurf(T, list(), damage_dealt, BLACK_DAMAGE, check_faction = TRUE, hurt_mechs = TRUE))
 			if(GirlCheck(L)) //EXTRA magical girl damage to kill them faster
-				L.apply_damage((2 * damage_dealt), BRUTE)
+				L.deal_damage((2 * damage_dealt), BRUTE)
 	SLEEP_CHECK_DEATH(8)
 	playsound(src, 'sound/abnormalities/wrath_servant/hermit_attack_hard.ogg', 25, FALSE, 15, falloff_distance = 5)
 	new /obj/effect/temp_visual/voidout(myturf)
@@ -140,7 +148,7 @@
 		for(var/mob/living/L in HurtInTurf(T, list(), (3 * damage_dealt), BLACK_DAMAGE, check_faction = TRUE, hurt_mechs = TRUE))
 			L.apply_void(3)
 			if(GirlCheck(L)) //EXTRA magical girl damage to kill them faster
-				L.apply_damage((3 * damage_dealt), BRUTE)
+				L.deal_damage((3 * damage_dealt), BRUTE)
 
 /mob/living/simple_animal/hostile/abnormality/nihil/proc/NukeAttack(forced) //Phase-change attack with a long cooldown
 	if(nuke_cooldown > world.time && !forced)
@@ -160,7 +168,7 @@
 			L.flicker(4)
 	for(var/turf/open/L in range(7, src))
 		new /obj/effect/temp_visual/cult/sparks(L)
-	for(var/turf/open/T in range(25, src))
+	for(var/turf/open/T in urange(25, src))
 		if(prob(50))
 			addtimer(CALLBACK(src, PROC_REF(NukeAttackEffectHelper),T), rand(0,40))
 	SLEEP_CHECK_DEATH(50)
@@ -174,11 +182,11 @@
 			continue
 		var/dist = get_dist(src, L)
 		var/damage_mod = (dist > 7 ? 5 : 20 )
-		L.apply_damage(clamp((damage_mod * (25 - dist)), 15, nuke_damage), BLACK_DAMAGE, null, L.run_armor_check(null, BLACK_DAMAGE)) //Between 500 and 15 damage, scaling down heavily past a distance of 7 tiles
+		L.deal_damage(clamp((damage_mod * (25 - dist)), 15, nuke_damage), BLACK_DAMAGE) //Between 500 and 15 damage, scaling down heavily past a distance of 7 tiles
 		flash_color(L, flash_color = COLOR_ALMOST_BLACK, flash_time = 70)
 		L.apply_void(damage_mod / 5) //inflict a void debuff
 		if(GirlCheck(L)) //This should kill them most of the time if they are too close
-			L.apply_damage((100 * damage_mod), BRUTE)
+			L.deal_damage((100 * damage_mod), BRUTE)
 	SLEEP_CHECK_DEATH(3)
 	animate(src, transform = init_transform, time = 5)
 	addtimer(CALLBACK(src, PROC_REF(NukeAttack)), 5 MINUTES)
@@ -195,7 +203,7 @@
 	if(!can_act && !forced)
 		return FALSE
 	var/list/teleport_potential = list()
-	for(var/mob/living/L in range(13, src)) //1st priority - anyone in about viewport distance
+	for(var/mob/living/L in urange(13, src)) //1st priority - anyone in about viewport distance
 		if(!faction_check_mob(L) && L.stat != DEAD && !(L.status_flags & GODMODE))
 			if(ishuman(L))
 				var/mob/living/carbon/human/H = L
@@ -219,7 +227,7 @@
 		teleport_potential += P
 	can_act = FALSE
 	LoseTarget()
-	for(var/mob/living/L in range(13, src)) //vfx
+	for(var/mob/living/L in urange(13, src)) //vfx
 		if(L.z == z && L.client)
 			shake_camera(L, 10, 1)
 	playsound(src, 'sound/abnormalities/hatredqueen/gun.ogg', 65, FALSE, 10)
@@ -268,7 +276,7 @@
 			TeleportIn() //Same effect
 		if("DESPAIR")
 			var/list/target_list = list()
-			for(var/mob/living/L in livinginrange(10, src))
+			for(var/mob/living/L in urange(10, src))
 				if(L.z != z || (L.status_flags & GODMODE))
 					continue
 				if(faction_check_mob(L, FALSE))

@@ -1,3 +1,4 @@
+
 /client/proc/cmd_admin_drop_everything(mob/M in GLOB.mob_list)
 	set category = null
 	set name = "Drop Everything"
@@ -1141,6 +1142,72 @@ Traitors and the like can also be revived with the previous role mostly intact.
 	message_admins("[key_name(usr)] has initiated [SSlobotomy_corp.core_suppression.name].")
 
 	SSblackbox.record_feedback("nested tally", "admin_core_suppression", 1, list("Initiated Core Suppression", "[SSlobotomy_corp.core_suppression.name]")) //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
+
+///Enables Fun Frying
+/client/proc/ConfigFood()
+	set category = "Admin.Fun"
+	set name = "Config Food"
+	if(!check_rights(R_ADMIN) || !check_rights(R_FUN))
+		return
+	. = (alert(src, "Deep Fried Everything?","Config Food","Yes","No")=="Yes")
+	if(.)
+		GLOB.deep_fried_everything = TRUE
+	else
+		GLOB.deep_fried_everything = FALSE
+	log_admin("[key_name(usr)] set GLOB.deep_fried_everything to [GLOB.deep_fried_everything].")
+	message_admins("[key_name(usr)] set GLOB.deep_fried_everything to [GLOB.deep_fried_everything].")
+	return
+
+///Enables execution bullets for the manager
+/client/proc/ExecutionBulletToggle()
+	set category = "Admin.Fun"
+	set name = "Toggle Execution Bullets"
+	var/soundtoplay
+	if(!check_rights(R_ADMIN) || !check_rights(R_FUN))
+		return
+	. = (alert(src, "Enable Execution Bullets for the manager?","Execution Toggle","Yes","No")=="Yes")
+	if(.)
+		if(!GLOB.execution_enabled) //there was a change
+			soundtoplay = 'sound/misc/airraid.ogg'
+		GLOB.execution_enabled = TRUE
+	else
+		if(GLOB.execution_enabled) //there was a change
+			soundtoplay = 'sound/misc/announce.ogg'
+		GLOB.execution_enabled = FALSE
+	if(soundtoplay) //There was a change, so we announce it. This is when clerks shit their pants.
+		priority_announce("Lobotomy Corporation has [(GLOB.execution_enabled?"authorized":"revoked authorization")] the use of execution bullets for the manager.", "Message from Lobotomy Corporation Headquarters", sound = soundtoplay)
+	log_admin("[key_name(usr)] has [(GLOB.execution_enabled?"enabled":"disabled")] execution bullets for the manager.")
+	message_admins("[key_name_admin(usr)] has [(GLOB.execution_enabled?"enabled":"disabled")] execution bullets for the manager.")
+
+/client/proc/distort_all()
+	set category = "Admin.Fun"
+	set name = "Distort All"
+	set desc = "Applies the effects of the distortion proc to every single mob."
+
+	if(!check_rights(R_ADMIN))
+		return
+
+	var/confirm = alert(src, "Please confirm you want distort all mobs? This will happen instantly.", "Confirm Distortion", "Yes", "No")
+	if(confirm != "Yes")
+		return
+
+	var/list/mobs = shuffle(GLOB.alive_mob_list.Copy()) // might change while iterating
+	var/who_did_it = key_name_admin(usr)
+
+	message_admins("[key_name_admin(usr)] started distorting all living mobs.")
+	log_admin("[key_name(usr)] distorted all living mobs.")
+	SSblackbox.record_feedback("tally", "admin_verb", 1, "Distort All")
+
+	for(var/mob/living/M in mobs)
+		CHECK_TICK
+		if(!M)
+			continue
+		M.BecomeDistortion(null, TRUE, TRUE)
+	for(var/mob/M in GLOB.player_list)
+		if(!isnewplayer(M))
+			if(M.client.prefs.toggles & SOUND_ANNOUNCEMENTS)
+				SEND_SOUND(M, sound('sound/distortions/distortion_bell.ogg'))
+	message_admins("Mass distortion started by [who_did_it] is complete.")
 
 /**
  * firing_squad is a proc for the :B:erforate smite to shoot each individual bullet at them, so that we can add actual delays without sleep() nonsense

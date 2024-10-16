@@ -207,6 +207,8 @@
 	/// List of datums and objects that will be deleted on death/destruction
 	var/list/created_objects = list()
 
+	var/datum/reusable_visual_pool/RVP
+
 /mob/living/simple_animal/hostile/ordeal/violet_midnight/Initialize()
 	. = ..()
 	ability_cooldown = world.time + rand(5 SECONDS, ability_cooldown_time)
@@ -215,6 +217,7 @@
 /mob/living/simple_animal/hostile/ordeal/violet_midnight/Destroy()
 	for(var/T in created_objects)
 		QDEL_NULL(T)
+	QDEL_NULL(RVP)
 	return ..()
 
 /mob/living/simple_animal/hostile/ordeal/violet_midnight/death()
@@ -290,6 +293,7 @@
 
 	var/attack_damage = 220 // Dealt once if hit
 	var/list/been_hit = list()
+	RVP = new(1865)
 
 /mob/living/simple_animal/hostile/ordeal/violet_midnight/red/Retaliation()
 	PerformAbility(src)
@@ -347,15 +351,15 @@
 
 /mob/living/simple_animal/hostile/ordeal/violet_midnight/red/proc/DoLineAttack(list/line)
 	for(var/turf/T in line)
-		for(var/turf/TT in range(3, T))
-			new /obj/effect/temp_visual/sparkles/red(TT)
-		for(var/mob/living/L in range(3, T))
-			if(L in been_hit)
-				continue
-			if(!CanAttack(L))
-				continue
-			been_hit += L
-			L.apply_damage(attack_damage, RED_DAMAGE, null, L.run_armor_check(null, RED_DAMAGE))
+		for(var/turf/TT in RANGE_TURFS(3, T))
+			RVP.NewSparkles(TT, color = COLOR_RED)
+			for(var/mob/living/L in TT)
+				if(L in been_hit)
+					continue
+				if(!CanAttack(L))
+					continue
+				been_hit += L
+				L.apply_damage(attack_damage, RED_DAMAGE, null, L.run_armor_check(null, RED_DAMAGE))
 		SLEEP_CHECK_DEATH(0.1)
 
 /mob/living/simple_animal/hostile/ordeal/violet_midnight/white
@@ -366,6 +370,7 @@
 
 	var/attack_damage = 150
 	var/list/been_hit = list()
+	RVP = new(1400)
 
 /mob/living/simple_animal/hostile/ordeal/violet_midnight/white/Retaliation()
 	PerformAbility(src)
@@ -429,18 +434,23 @@
 
 /mob/living/simple_animal/hostile/ordeal/violet_midnight/white/proc/DoLineAttack(list/line)
 	for(var/turf/T in line)
-		for(var/turf/TT in range(3, T))
-			if(locate(/obj/effect/temp_visual/small_smoke/second) in TT)
+		for(var/turf/TT in RANGE_TURFS(3, T))
+			var/skip = FALSE
+			for(var/obj/effect/reusable_visual/RV in TT)
+				if(RV.name == "smoke")
+					skip = TRUE
+					break
+			if(skip)
 				continue
-			new /obj/effect/temp_visual/sparkles(TT)
-			new /obj/effect/temp_visual/small_smoke/second(TT)
-		for(var/mob/living/L in range(2, T))
-			if(L in been_hit)
-				continue
-			if(!CanAttack(L))
-				continue
-			been_hit += L
-			L.apply_damage(attack_damage, WHITE_DAMAGE, null, L.run_armor_check(null, WHITE_DAMAGE))
+			RVP.NewSparkles(TT)
+			RVP.NewSmoke(TT)
+			for(var/mob/living/L in TT)
+				if(L in been_hit)
+					continue
+				if(!CanAttack(L))
+					continue
+				been_hit += L
+				L.apply_damage(attack_damage, WHITE_DAMAGE, null, L.run_armor_check(null, WHITE_DAMAGE))
 
 /mob/living/simple_animal/hostile/ordeal/violet_midnight/black
 	icon_state = "violet_midnightb"
@@ -450,6 +460,7 @@
 
 	var/attack_damage = 220
 	var/list/been_hit = list()
+	RVP = new(1000)
 
 /mob/living/simple_animal/hostile/ordeal/violet_midnight/black/Retaliation()
 	PerformAbility(src)
@@ -479,6 +490,8 @@
 	var/turf/T2 = get_turf_in_angle(angle2, T, 9)
 	var/obj/effect/violet_portal/black/P1 = new(T1)
 	var/obj/effect/violet_portal/black/P2 = new(T2)
+	created_objects += P1
+	created_objects += P2
 	P1.transform = turn(matrix(), angle1)
 	P2.transform = turn(matrix(), angle2)
 	var/datum/beam/B = T1.Beam(T2, "beam", time = (3.5 SECONDS))
@@ -503,18 +516,20 @@
 	animate(P2, alpha = 0, time = (1 SECONDS))
 	QDEL_IN(P1, (1 SECONDS))
 	QDEL_IN(P2, (1 SECONDS))
+	created_objects -= P1
+	created_objects -= P2
 
 /mob/living/simple_animal/hostile/ordeal/violet_midnight/black/proc/DoLineAttack(list/line)
 	for(var/turf/T in line)
-		for(var/turf/TT in range(2, T))
-			new /obj/effect/temp_visual/sparkles/purple(TT)
-		for(var/mob/living/L in range(2, T))
-			if(L in been_hit)
-				continue
-			if(!CanAttack(L))
-				continue
-			been_hit += L
-			L.apply_damage(attack_damage, BLACK_DAMAGE, null, L.run_armor_check(null, BLACK_DAMAGE))
+		for(var/turf/TT in RANGE_TURFS(2, T))
+			RVP.NewSparkles(TT, color = COLOR_PURPLE)
+			for(var/mob/living/L in TT)
+				if(L in been_hit)
+					continue
+				if(!CanAttack(L))
+					continue
+				been_hit += L
+				L.apply_damage(attack_damage, BLACK_DAMAGE, null, L.run_armor_check(null, BLACK_DAMAGE))
 		SLEEP_CHECK_DEATH(0.05)
 
 /obj/effect/black_portal
@@ -540,6 +555,7 @@
 	var/pulse_range = 5
 	/// How often it deals damage at the eye's location
 	var/pulse_delay = 1 SECONDS
+	RVP = new(121)
 
 /mob/living/simple_animal/hostile/ordeal/violet_midnight/pale/Initialize()
 	. = ..()
@@ -600,18 +616,29 @@
 		pulsating = FALSE
 		return
 	var/has_targets = FALSE
-	for(var/turf/T in range(pulse_range, eye))
-		new /obj/effect/temp_visual/pale_eye_attack(T)
-	for(var/mob/living/L in range(pulse_range, eye))
-		if(!CanAttack(L))
-			continue
-		L.apply_damage(pulse_damage, PALE_DAMAGE, null, L.run_armor_check(null, PALE_DAMAGE))
-		has_targets = TRUE
+	for(var/turf/T in RANGE_TURFS(pulse_range, eye))
+		RVP.NewPaleEyeAttack(T)
+		for(var/mob/living/L in T)
+			if(!CanAttack(L))
+				continue
+			L.apply_damage(pulse_damage, PALE_DAMAGE, null, L.run_armor_check(null, PALE_DAMAGE))
+			has_targets = TRUE
 	var/obj/effect/temp_visual/decoy/D = new /obj/effect/temp_visual/decoy(get_turf(eye), eye)
 	animate(D, alpha = 0, transform = matrix()*1.25, time = 4)
 	if(has_targets)
 		playsound(get_turf(eye), 'sound/effects/ordeals/violet/midnight_pale_attack.ogg', 75, TRUE, 8)
 	addtimer(CALLBACK(src, PROC_REF(Pulsate)), pulse_delay)
+
+/datum/reusable_visual_pool/proc/NewPaleEyeAttack(turf/location, duration = 5)
+	var/obj/effect/reusable_visual/RV = TakePoolElement()
+	RV.name = "pale particles"
+	RV.icon = 'icons/effects/effects.dmi'
+	RV.icon_state = "ion_fade_flight"
+	RV.dir = pick(GLOB.cardinals)
+	RV.loc = location
+	animate(RV, alpha = 0, time = duration)
+	DelayedReturn(RV, duration)
+	return RV
 
 /obj/effect/pale_eye
 	name = "pale eye"

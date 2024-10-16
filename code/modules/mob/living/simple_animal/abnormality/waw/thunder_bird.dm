@@ -5,6 +5,7 @@
 	icon_state = "thunderbird"
 	icon_living = "thunderbird"
 	icon_dead = "thunderbird_dead"
+	core_icon = "thunderbird_dead"
 	del_on_death = FALSE
 	speak_emote = list("intones")
 	gender = NEUTER
@@ -43,7 +44,6 @@
 	work_damage_amount = 10
 	work_damage_type = WHITE_DAMAGE
 
-	//change the E.G.O to "warring"
 	ego_list = list(
 		/datum/ego_datum/weapon/warring,
 		/datum/ego_datum/weapon/warring2,
@@ -52,6 +52,16 @@
 	gift_type =  /datum/ego_gifts/warring
 	gift_message = "The totem somehow dons a seemingly ridiculous hat on your head."
 	abnormality_origin = ABNORMALITY_ORIGIN_ORIGINAL
+
+	observation_prompt = "The totem sits atop a pile of gore and viscera. <br>\
+		Human scalps dangle motionlessly, strung to its wings. <br>\
+		Though the totem lies still, you feel compelled to answer it."
+	observation_choices = list("Speak", "Remain silent")
+	correct_choices = list("Remain silent")
+	observation_success_message = "The disgusting totem answered with silence. <br>\
+		The Thunderbird had been defeated long ago, its existence being its only privilege."
+	observation_fail_message = "Before you can utter a word, thunder booms within the cell. <br>\
+		The Thunderbird can be spoken to, but never reasoned with."
 
 /*---Combat---*/
 	//Melee stats
@@ -129,6 +139,7 @@
 /mob/living/simple_animal/hostile/abnormality/thunder_bird/death()
 	if(health > 0)
 		return
+	icon = 'ModularTegustation/Teguicons/abno_cores/waw.dmi'
 	density = FALSE
 	playsound(src, 'sound/abnormalities/thunderbird/tbird_charge.ogg', 100, 1)
 	animate(src, alpha = 0, time = 10 SECONDS)
@@ -145,7 +156,7 @@
 
 //delete the zombies on death
 /mob/living/simple_animal/hostile/abnormality/thunder_bird/Destroy()
-	..()
+	. = ..()
 	for(var/mob/living/simple_animal/hostile/thunder_zombie/Z in spawned_mobs)
 		QDEL_IN(Z, rand(3) SECONDS)
 		spawned_mobs -= Z
@@ -200,7 +211,7 @@
 			playsound(L, attack_sound, 75, 1)
 			var/turf/LT = get_turf(L)
 			new /obj/effect/temp_visual/kinetic_blast(LT)
-			L.apply_damage(100, BLACK_DAMAGE, null, L.run_armor_check(null, BLACK_DAMAGE), spread_damage = TRUE)
+			L.deal_damage(100, BLACK_DAMAGE)
 			if(ishuman(L))
 				var/mob/living/carbon/human/H = L
 				H.electrocute_act(1, src, flags = SHOCK_NOSTUN)
@@ -222,7 +233,7 @@
 	. = ..()
 	if(user.health > (user.maxHealth*0.8))
 		datum_reference.qliphoth_change(1)
-		user.apply_damage(45, BLACK_DAMAGE, null, user.run_armor_check(null, BLACK_DAMAGE), spread_damage = TRUE)
+		user.deal_damage(45, BLACK_DAMAGE)
 		playsound(src, 'sound/abnormalities/thunderbird/tbird_bolt.ogg', 50, TRUE)
 		say(pick(thunder_bird_lines))
 		user.electrocute_act(1, src, flags = SHOCK_NOSTUN)
@@ -260,7 +271,7 @@
 //thunderbolts
 /mob/living/simple_animal/hostile/abnormality/thunder_bird/proc/fireshell()
 	fire_cooldown = world.time + fire_cooldown_time
-	for(var/mob/living/carbon/human/L in livinginrange(fireball_range, src))
+	for(var/mob/living/carbon/human/L in range(fireball_range, src))
 		if(faction_check_mob(L, FALSE))
 			continue
 		if (targetAmount <= 2)
@@ -301,8 +312,6 @@
 	C.master = master
 	if(!QDELETED(H))
 		C.name = "[H.real_name]"//applies the target's name and adds the name to its description
-		C.icon_state = "human_thunderbolt"
-		C.icon_living = "human_thunderbolt"
 		C.desc = "What appears to be [H.real_name], only charred and screaming incoherently..."
 		C.gender = H.gender
 		H.gib()
@@ -313,7 +322,7 @@
 	playsound(get_turf(src), 'sound/abnormalities/thunderbird/tbird_bolt.ogg', 50, 0, 8)
 	var/list/turfs_to_check = view(1, src)
 	for(var/mob/living/carbon/human/H in turfs_to_check)
-		H.apply_damage(boom_damage, BLACK_DAMAGE, null, H.run_armor_check(null, BLACK_DAMAGE), spread_damage = TRUE)
+		H.deal_damage(boom_damage, BLACK_DAMAGE)
 		H.electrocute_act(1, src, flags = SHOCK_NOSTUN)
 		if(H.health < 0)
 			Convert(H)
@@ -328,12 +337,12 @@
 /*--Zombies!--*/
 //zombie mob
 /mob/living/simple_animal/hostile/thunder_zombie
-	name = "Human Thunderbolt"
+	name = "Thunderbird Worshipper"
 	desc = "What appears to be human, only charred and screaming incoherently..."
 	icon = 'ModularTegustation/Teguicons/32x32.dmi'
-	icon_state = "human_thunderbolt"
-	icon_living = "human_thunderbolt"
-	icon_dead = "human_thunderbolt_dead"
+	icon_state = "thunder_zombie"
+	icon_living = "thunder_zombie"
+	icon_dead = "thunder_zombie_dead"
 	speak_emote = list("groans", "moans", "howls", "screeches", "grunts")
 	gender = NEUTER
 	attack_verb_continuous = "attacks"
@@ -372,11 +381,11 @@
 
 /mob/living/simple_animal/hostile/thunder_zombie/Initialize()
 	. = ..()
+	if(IsCombatMap())
+		icon_state = "thunder_zombie2"
+		icon_living = "thunder_zombie2"
+		icon_dead = "thunder_zombie_dead2"
 	playsound(get_turf(src), 'sound/abnormalities/thunderbird/tbird_charge.ogg', 50, 1, 4)
-	base_pixel_x = rand(-6,6)
-	pixel_x = base_pixel_x
-	base_pixel_y = rand(-6,6)
-	pixel_y = base_pixel_y
 
 /mob/living/simple_animal/hostile/thunder_zombie/Life()
 	. = ..()
@@ -418,8 +427,6 @@
 			master.spawned_mobs += C
 			C.master = master
 		C.name = "[H.real_name]"//applies the target's name and adds the name to its description
-		C.icon_state = "human_thunderbolt"
-		C.icon_living = "human_thunderbolt"
 		C.desc = "What appears to be [H.real_name], only charred and screaming incoherently..."
 		C.gender = H.gender
 		C.faction = src.faction

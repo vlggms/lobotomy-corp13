@@ -481,7 +481,9 @@
 		/obj/item/gun/magic/wand/death/debug=1,\
 		/obj/item/debug/human_spawner=1,\
 		/obj/item/debug/omnitool=1,\
-		/obj/item/storage/box/stabilized=1
+		/obj/item/storage/box/stabilized=1,\
+		/obj/item/dosage_est=1,\
+		/obj/item/storage/box/lc_debugtools=1\
 		)
 
 /datum/outfit/admin/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)

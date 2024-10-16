@@ -35,6 +35,16 @@
 	)
 	gift_type =  /datum/ego_gifts/dream
 	abnormality_origin = ABNORMALITY_ORIGIN_LOBOTOMY
+
+	observation_prompt = "\"There's nothing wrong with dreams. <br>\
+		I go out and bring such sweet dreams to those who've only learned to stop dreaming, <br>\
+		I'm not to blame if their dreams are so entrancing they become hollow people in their waking lives, am I not? <br>\
+		Don't you want such sweet dreams too?\""
+	observation_choices = list("You're a demon", "Please, eat my dreams")
+	correct_choices = list("You're a demon")
+	observation_success_message = "\"Don't say such scary, complicated things. <br>I just gave them the enrapturing dreams they wanted. <br>They're destined to come back to me.\""
+	observation_fail_message = "It's alright, dreams are harmless but unnecessary things. <br>So, just close your eyes and show me your most delectable dream..."
+
 	var/punched = FALSE
 	var/pulse_damage = 50
 	var/ability_cooldown
@@ -77,7 +87,7 @@
 		return
 	icon = 'ModularTegustation/Teguicons/32x64.dmi'
 	punched = TRUE
-	SpeedChange(-2)
+	ChangeMoveToDelayBy(-2)
 	ability_cooldown_time = 8 SECONDS
 	ability_cooldown = 0
 	REMOVE_TRAIT(src, TRAIT_MOVE_FLYING, ROUNDSTART_TRAIT)
@@ -119,14 +129,14 @@
 
 /mob/living/simple_animal/hostile/abnormality/voiddream/proc/Shout()
 	playsound(get_turf(src), 'sound/abnormalities/voiddream/shout.ogg', 75, FALSE, 5)
-	for(var/mob/living/carbon/human/L in range(10, src))
+	for(var/mob/living/carbon/human/L in urange(10, src))
 		if(faction_check(src.faction, L.faction)) // I LOVE NESTING IF STATEMENTS
 			continue
 		if(L.has_status_effect(STATUS_EFFECT_SLEEPING))
 			L.SetSleeping(0)
 			L.adjustSanityLoss(1000) //Die.
 			continue
-		L.apply_damage(pulse_damage, WHITE_DAMAGE, null, L.run_armor_check(null, WHITE_DAMAGE), spread_damage = TRUE)
+		L.deal_damage(pulse_damage, WHITE_DAMAGE)
 	for(var/i = 1 to 5)
 		var/obj/effect/temp_visual/screech/S = new(get_turf(src))
 		S.pixel_y = 16

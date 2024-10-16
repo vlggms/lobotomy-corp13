@@ -14,7 +14,7 @@ Kirie*/
 	. = ..()
 	if(user.mind)
 		if(user.mind.assigned_role in list("Disciplinary Officer", "Emergency Response Agent")) //These guys get a bonus to equipping gacha.
-			. += span_notice("Due to your abilities, you get a +20 to your stats when equipping this weapon.")
+			. += span_notice("Due to your abilities, you get a -20 reduction to stat requirements when equipping this weapon.")
 
 /obj/item/ego_weapon/city/CanUseEgo(mob/living/user)
 	if(user.mind)
@@ -35,7 +35,7 @@ Kirie*/
 	. = ..()
 	if(user.mind)
 		if(user.mind.assigned_role in list("Disciplinary Officer", "Emergency Response Agent")) //These guys get a bonus to equipping gacha.
-			. += span_notice("Due to your abilities, you get a +20 to your stats when equipping this weapon.")
+			. += span_notice("Due to your abilities, you get a -20 reduction to stat requirements when equipping this weapon.")
 
 /obj/item/gun/ego_gun/city/CanUseEgo(mob/living/user)
 	if(user.mind)

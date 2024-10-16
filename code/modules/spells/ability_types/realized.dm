@@ -6,8 +6,8 @@
 	base_icon_state = "universe_song"
 	cooldown_time = 20 SECONDS
 
-	var/damage_amount = 25 // Amount of white damage dealt to enemies per "pulse".
-	var/damage_slowdown = 0.6 // Slowdown per pulse
+	var/damage_amount = 50 // Amount of white damage dealt to enemies per "pulse".
+	var/damage_slowdown = 0.7 // Slowdown per pulse
 	var/damage_count = 5 // How many times the damage and slowdown is applied
 	var/damage_range = 6
 
@@ -40,7 +40,7 @@
 
 /obj/effect/proc_holder/ability/shrimp
 	name = "Backup Shrimp"
-	desc = "Spawns 4 wellcheers corp liquidation officers for a period of time."
+	desc = "Spawns 6 wellcheers corp liquidation officers for a period of time."
 	action_icon_state = "shrimp0"
 	base_icon_state = "shrimp"
 	cooldown_time = 90 SECONDS
@@ -48,7 +48,7 @@
 
 
 /obj/effect/proc_holder/ability/shrimp/Perform(target, mob/user)
-	for(var/i = 1 to 4)
+	for(var/i = 1 to 6)
 		new /mob/living/simple_animal/hostile/shrimp_soldier/friendly/capitalism_shrimp(get_turf(user))
 	return ..()
 
@@ -66,7 +66,7 @@
 /obj/effect/proc_holder/ability/lamp/Perform(target, mob/user)
 	cooldown = world.time + (2 SECONDS)
 	if(!do_after(user, 1.5 SECONDS))
-		to_chat(user, "<span class='warning'>You must stand still to see!</span>")
+		to_chat(user, span_warning("You must stand still to see!"))
 		return
 	playsound(get_turf(user), 'sound/abnormalities/bigbird/hypnosis.ogg', 75, 0, 2)
 	for(var/mob/living/L in view(debuff_range, user))
@@ -78,7 +78,7 @@
 		if(ishostile(L))
 			var/mob/living/simple_animal/hostile/H = L
 			H.apply_status_effect(/datum/status_effect/salvation)
-			H.TemporarySpeedChange(H.move_to_delay*debuff_slowdown , 15 SECONDS) // Slow down_status_effect(/datum/status_effect/salvation)
+			H.TemporarySpeedChange(1 + debuff_slowdown , 15 SECONDS, TRUE) // Slow down_status_effect(/datum/status_effect/salvation)
 	return ..()
 
 /datum/status_effect/salvation
@@ -122,7 +122,7 @@
 	cooldown = world.time + (1.5 SECONDS)
 	playsound(get_turf(user), 'sound/abnormalities/nothingthere/goodbye_cast.ogg', 75, 0, 5)
 	if(!do_after(user, 1 SECONDS))
-		to_chat(user, "<span class='warning'>You must stand still to do the nothing there classic!</span>")
+		to_chat(user, span_warning("You must stand still to do the nothing there classic!"))
 		return
 	for(var/turf/T in view(2, user))
 		new /obj/effect/temp_visual/nt_goodbye(T)
@@ -145,18 +145,18 @@
 	base_icon_state = "screach"
 	cooldown_time = 20 SECONDS
 
-	var/damage_amount = 175 // Amount of black damage dealt to enemies. Humans receive half of it.
+	var/damage_amount = 200 // Amount of black damage dealt to enemies. Humans receive half of it.
 	var/damage_range = 7
 
 /obj/effect/proc_holder/ability/screach/Perform(target, mob/user)
 	cooldown = world.time + (2 SECONDS)
 	playsound(get_turf(user), 'sound/abnormalities/mountain/bite.ogg', 50, 0)
 	if(!do_after(user, 1.5 SECONDS))
-		to_chat(user, "<span class='warning'>You must stand still to screach!</span>")
+		to_chat(user, span_warning("You must stand still to screach!"))
 		return
 	var/mob/living/carbon/human/H = user
 	playsound(get_turf(user), 'sound/abnormalities/mountain/scream.ogg', 75, 0, 2)
-	visible_message("<span class='danger'>[H] screams wildly!</span>")
+	visible_message(span_danger("[H] screams wildly!"))
 	new /obj/effect/temp_visual/voidout(get_turf(H))
 	for(var/mob/living/L in view(damage_range, user))
 		if(user.faction_check_mob(L, FALSE))
@@ -214,7 +214,7 @@
 	var/obj/effect/temp_visual/judgement/still/J = new (get_turf(user))
 	animate(J, pixel_y = 24, time = 1.5 SECONDS)
 	if(!do_after(user, 1.5 SECONDS))
-		to_chat(user, "<span class='warning'>You must stand still to perform judgement!</span>")
+		to_chat(user, span_warning("You must stand still to perform judgement!"))
 		return
 	playsound(get_turf(user), 'sound/abnormalities/judgementbird/ability.ogg', 75, 0, 2)
 	for(var/mob/living/L in view(damage_range, user))
@@ -270,7 +270,7 @@
 	cooldown = world.time + (5 SECONDS)
 	playsound(get_turf(user), 'sound/abnormalities/scorchedgirl/pre_ability.ogg', 50, 0, 2)
 	if(!do_after(user, 1.5 SECONDS))
-		to_chat(user, "<span class='warning'>You must stand still to ignite the explosion!</span>")
+		to_chat(user, span_warning("You must stand still to ignite the explosion!"))
 		return
 	playsound(get_turf(user), 'sound/abnormalities/scorchedgirl/ability.ogg', 60, 0, 4)
 	var/obj/effect/temp_visual/human_fire/F = new(get_turf(user))
@@ -278,7 +278,7 @@
 	F.dir = user.dir
 	animate(F, alpha = 255, time = (2 SECONDS))
 	if(!do_after(user, 2.5 SECONDS))
-		to_chat(user, "<span class='warning'>You must stand still to finish the ability!</span>")
+		to_chat(user, span_warning("You must stand still to finish the ability!"))
 		animate(F, alpha = 0, time = 5)
 		return
 	animate(F, alpha = 0, time = 5)
@@ -300,12 +300,13 @@
 /* King of Greed - Gold Experience */
 /obj/effect/proc_holder/ability/road_of_gold
 	name = "The Road of Gold"
-	desc = "An ability that teleports you to the nearest non-visible threat."
+	desc = "An ability that teleports you to the nearest non-visible threat.If you use a Gold Rush weapon, you can significantly weaken the enemy for a few seconds."
 	action_icon_state = "gold0"
 	base_icon_state = "gold"
 	cooldown_time = 30 SECONDS
 
 	var/list/spawned_effects = list()
+	var/using_goldrush
 
 /obj/effect/proc_holder/ability/road_of_gold/Perform(mob/living/simple_animal/hostile/target, mob/user)
 	if(!istype(user))
@@ -330,13 +331,13 @@
 		dist = t_dist
 		target = H
 	if(!target)
-		to_chat(user, "<span class='notice'>You can't find anything else nearby!</span>")
+		to_chat(user, span_notice("You can't find anything else nearby!"))
 		return ..()
 	Circle(null, null, user)
 	var/pre_circle_dir = user.dir
-	to_chat(user, "<span class='warning'>You begin along the Road of Gold to your target!</span>")
+	to_chat(user, span_warning("You begin along the Road of Gold to your target!"))
 	if(!do_after(user, 15, src))
-		to_chat(user, "<span class='warning'>You abandon your path!</span>")
+		to_chat(user, span_warning("You abandon your path!"))
 		CleanUp()
 		return ..()
 	animate(user, alpha = 0, time = 5)
@@ -346,7 +347,7 @@
 	if(!istype(target_turf))
 		target_turf = pick(get_adjacent_open_turfs(target))
 	if(!target_turf)
-		to_chat(user, "<span class='warning'>No road leads to that target!?</span>")
+		to_chat(user, span_warning("No road leads to that target!?"))
 		CleanUp()
 		return ..()
 	var/obj/effect/qoh_sygil/kog/KS = Circle(target_turf, get_step(target_turf, pick(GLOB.cardinals)), null)
@@ -362,6 +363,8 @@
 		var/obj/item/held = user.get_active_held_item()
 		if(held)
 			held.attack(target, user)
+			if(held == /obj/item/ego_weapon/goldrush/nihil || held == /obj/item/ego_weapon/goldrush)
+				target.apply_status_effect(/datum/status_effect/GoldStaggered)
 	return ..()
 
 /obj/effect/proc_holder/ability/road_of_gold/proc/CleanUp()
@@ -406,6 +409,21 @@
 			KS.layer -= 0.1
 	KS.transform = M
 	return KS
+
+/datum/status_effect/GoldStaggered
+	status_type = STATUS_EFFECT_UNIQUE
+	duration = 5 SECONDS
+
+/datum/status_effect/GoldStaggered/on_apply()
+	. = ..()
+	var/mob/living/simple_animal/M = owner
+	M.AddModifier(/datum/dc_change/gold_staggered)
+
+/datum/status_effect/GoldStaggered/on_remove()
+	. = ..()
+	var/mob/living/simple_animal/M = owner
+	M.RemoveModifier(/datum/dc_change/gold_staggered)
+
 
 /* Servant of Wrath - Wounded Courage */
 /obj/effect/proc_holder/ability/justice_and_balance
@@ -500,6 +518,7 @@
 		return
 	if(stacks <= 0 && stacks_added < 0)
 		qdel(src)
+		return
 	var/mob/living/carbon/human/H = owner
 	H.adjust_attribute_buff(JUSTICE_ATTRIBUTE, stacks_added)
 	stacks += stacks_added
@@ -550,7 +569,7 @@
 	var/mob/living/carbon/human/H = owner
 	H.apply_status_effect(/datum/status_effect/pbird)
 	H.remove_status_effect(/datum/status_effect/punishment)
-	to_chat(H, "<span class='userdanger'>You strike back at the wrong doer!</span>")
+	to_chat(H, span_userdanger("You strike back at the wrong doer!"))
 	playsound(H, 'sound/abnormalities/apocalypse/beak.ogg', 100, FALSE, 12)
 	for(var/turf/T in view(2, H))
 		new /obj/effect/temp_visual/beakbite(T)
@@ -599,7 +618,7 @@
 
 /obj/effect/proc_holder/ability/petal_blizzard/Perform(target, mob/user)
 	var/mob/living/carbon/human/H = user
-	to_chat(H, "<span class='userdanger'>You feel frailer!</span>")
+	to_chat(H, span_userdanger("You feel frailer!"))
 	H.apply_status_effect(/datum/status_effect/bloomdebuff)
 	playsound(get_turf(user), 'sound/weapons/fixer/generic/sword3.ogg', 75, 0, 7)
 	for(var/turf/T in view(healing_range, user))
@@ -625,7 +644,7 @@
 
 /atom/movable/screen/alert/status_effect/bloomdebuff
 	name = "Blooming Sakura"
-	desc = "You Take Double Damage."
+	desc = "You Take 1.5x Damage."
 	icon = 'ModularTegustation/Teguicons/status_sprites.dmi'
 	icon_state = "marked_for_death"
 
@@ -633,10 +652,10 @@
 	. = ..()
 	if(ishuman(owner))
 		var/mob/living/carbon/human/L = owner
-		L.physiology.red_mod *= 2
-		L.physiology.white_mod *= 2
-		L.physiology.black_mod *= 2
-		L.physiology.pale_mod *= 2
+		L.physiology.red_mod *= 1.5
+		L.physiology.white_mod *= 1.5
+		L.physiology.black_mod *= 1.5
+		L.physiology.pale_mod *= 1.5
 
 /datum/status_effect/bloomdebuff/tick()
 	var/mob/living/carbon/human/Y = owner
@@ -652,11 +671,11 @@
 	. = ..()
 	if(ishuman(owner))
 		var/mob/living/carbon/human/L = owner
-		to_chat(L, "<span class='userdanger'>You feel normal!</span>")
-		L.physiology.red_mod /= 2
-		L.physiology.white_mod /= 2
-		L.physiology.black_mod /= 2
-		L.physiology.pale_mod /= 2
+		to_chat(L, span_userdanger("You feel normal!"))
+		L.physiology.red_mod /= 1.5
+		L.physiology.white_mod /= 1.5
+		L.physiology.black_mod /= 1.5
+		L.physiology.pale_mod /= 1.5
 
 /mob/living/simple_animal/hostile/farmwatch_plant//TODO: give it an effect with the corresponding suit.
 	name = "Tree of Desires"
@@ -728,7 +747,7 @@
 /mob/living/simple_animal/hostile/spicebush_plant/proc/HealPulse()
 	pulse_cooldown = world.time + pulse_cooldown_time
 	//playsound(src, 'sound/abnormalities/rudolta/throw.ogg', 50, FALSE, 4)//TODO: proper SFX goes here
-	for(var/mob/living/carbon/human/L in livinginrange(8, src))//livinginview(8, src))
+	for(var/mob/living/carbon/human/L in range(8, src))//livinginview(8, src))
 		if(L.stat == DEAD || L.is_working)
 			continue
 		L.adjustBruteLoss(-2)
@@ -743,7 +762,7 @@
 
 /obj/effect/proc_holder/ability/overheat/Perform(target, mob/user)
 	var/mob/living/carbon/human/H = user
-	to_chat(H, "<span class='userdanger'>Ashes to ashes!</span>")
+	to_chat(H, span_userdanger("Ashes to ashes!"))
 	H.apply_status_effect(/datum/status_effect/overheat)
 	return ..()
 
@@ -762,7 +781,7 @@
 /datum/status_effect/overheat/on_apply()
 	. = ..()
 	var/mob/living/carbon/human/H = owner
-	H.adjust_attribute_buff(JUSTICE_ATTRIBUTE, 30)
+	H.adjust_attribute_buff(JUSTICE_ATTRIBUTE, 40)
 	H.apply_lc_burn(50)
 	var/datum/status_effect/stacking/lc_burn/B = H.has_status_effect(/datum/status_effect/stacking/lc_burn)
 	B.safety = FALSE
@@ -770,7 +789,7 @@
 /datum/status_effect/overheat/on_remove()
 	. = ..()
 	var/mob/living/carbon/human/H = owner
-	H.adjust_attribute_buff(JUSTICE_ATTRIBUTE, -30)
+	H.adjust_attribute_buff(JUSTICE_ATTRIBUTE, -40)
 	H.remove_status_effect(STATUS_EFFECT_LCBURN)
 
 /* Yang - Duality */
@@ -788,7 +807,7 @@
 /obj/effect/proc_holder/ability/tranquility/Perform(target, mob/living/carbon/human/user)
 	cooldown = world.time + (1.5 SECONDS)
 	if(!do_after(user, 1 SECONDS))
-		to_chat(user, "<span class='warning'>You must stand still to explode!</span>")
+		to_chat(user, span_warning("You must stand still to explode!"))
 		return
 	new /obj/effect/temp_visual/explosion/fast(get_turf(user))
 	var/turf/orgin = get_turf(user)
@@ -874,6 +893,7 @@
 			if(H.is_working)
 				continue
 			var/datum/status_effect/galaxy_gift/new_gift = H.apply_status_effect(/datum/status_effect/galaxy_gift)
+			new_gift.caster = user
 			if(H == user)
 				new_gift.watch_death = TRUE
 			existing_gifted |= H
@@ -893,6 +913,7 @@
 	var/base_dmg_amt = 45
 	var/watch_death = FALSE
 	var/list/gifted
+	var/mob/living/carbon/human/caster
 
 /atom/movable/screen/alert/status_effect/galaxy_gift
 	name = "Parting Gift"
@@ -901,6 +922,7 @@
 	icon_state = "friendship"
 
 /datum/status_effect/galaxy_gift/tick()
+	. = ..()
 	if(!ishuman(owner))
 		qdel(src)
 		return
@@ -909,11 +931,13 @@
 	for(var/mob/living/carbon/human/H in gifted)
 		if(H == Y)
 			continue
+		if(H == caster)
+			continue
 		if(H.stat == DEAD || QDELETED(H))
 			gifted -= H
 			if(H) // If there's even anything left to remove
 				H.remove_status_effect(/datum/status_effect/galaxy_gift)
-	if(Y.stat == DEAD || QDELETED(Y))
+	if(caster.stat == DEAD || QDELETED(Y))
 		return watch_death ? Pop() : FALSE
 	var/heal_mult = LAZYLEN(gifted)
 	heal_mult = max(3, heal_mult)
@@ -927,7 +951,8 @@
 		H.remove_status_effect(/datum/status_effect/galaxy_gift)
 		new /obj/effect/temp_visual/pebblecrack(get_turf(H))
 		playsound(get_turf(H), "shatter", 50, TRUE)
-		to_chat(H, "<span class='userdanger'>Your pebble violently shatters!</span>")
+		to_chat(H, span_userdanger("Your pebble violently shatters!"))
+		caster = null
 	return
 
 /* Sleeping Beauty - Comatose */
@@ -977,15 +1002,39 @@
 /* Wishing Well - Broken Crown */
 /obj/effect/proc_holder/ability/brokencrown
 	name = "Broken Crown"
-	desc = "Extract a random empowered E.G.O. weapon."
+	desc = "Extract a random empowered E.G.O. weapon once, return it to the armor to try for a different weapon. The item will automatically be returned if the armor is taken off."
 	action_icon_state = "brokencrown0"
 	base_icon_state = "brokencrown"
-	cooldown_time = 30 MINUTES
+	cooldown_time = 5 MINUTES
 	var/obj/structure/toolabnormality/wishwell/linked_structure
 	var/list/ego_list = list()
 	var/obj/item/ego_weapon/chosenEGO
+	var/obj/item/linkeditem = null
+	var/ready = TRUE
 
-/obj/effect/proc_holder/ability/brokencrown/Perform(target, mob/living/carbon/human/user) //very bad code, does not work. Let me finish it!
+/obj/effect/proc_holder/ability/brokencrown/proc/Absorb(obj/item/I, mob/living/user)
+	if(!ego_list || ready)
+		to_chat(user, span_notice("You need to use this ability before you can recharge it!"))
+		return FALSE
+	if(!is_type_in_list(I, ego_list))
+		return FALSE
+	if(istype(I, /obj/item/ego_weapon) || istype(I, /obj/item/gun/ego_gun))
+		if(I.force_multiplier < 1.2)
+			to_chat(user, span_notice("You must use a weapon with a damage multiplier of 20% or higher!"))
+			return FALSE
+		Reload(I, user)
+		return TRUE
+	return FALSE
+
+/obj/effect/proc_holder/ability/brokencrown/proc/Reload(obj/item/I, mob/living/user)
+	to_chat(user, span_nicegreen("The ability has been recharged."))
+	ready = TRUE
+	qdel(I)
+
+/obj/effect/proc_holder/ability/brokencrown/Perform(target, mob/living/carbon/human/user)
+	if(!ready)
+		to_chat(user, span_notice("This ability has been spent and needs to be recharged."))
+		return
 	if(istype(user.get_item_by_slot(ITEM_SLOT_OCLOTHING), /obj/item/clothing/suit/armor/ego_gear/realization/brokencrown))
 		user.playsound_local(get_turf(user), "sound/abnormalities/bloodbath/Bloodbath_EyeOn.ogg", 25, 0)
 		if(!linked_structure)
@@ -996,7 +1045,7 @@
 				ego_list += /obj/item/ego_weapon/da_capo
 				linked_structure = TRUE
 		if(!LAZYLEN(ego_list))
-			for(var/egoitem in linked_structure.wawitem)
+			for(var/egoitem in linked_structure.alephitem)
 				if(ispath(egoitem, /obj/item/ego_weapon) || ispath(egoitem, /obj/item/gun/ego_gun))
 					ego_list += egoitem
 					continue
@@ -1004,29 +1053,40 @@
 		var/obj/item/ego = chosenEGO //Not sure if there is a better way to do this
 		if(ispath(ego, /obj/item/ego_weapon))
 			var/obj/item/ego_weapon/egoweapon = new ego(get_turf(user))
-			egoweapon.force_multiplier = 1.75
+			egoweapon.force_multiplier = 1.20
 			egoweapon.name = "shimmering [egoweapon.name]"
 			egoweapon.set_light(3, 6, "#D4FAF37")
 			egoweapon.color = "#FFD700"
+			linkeditem = egoweapon
 
 		else if(ispath(ego, /obj/item/gun/ego_gun))
 			var/obj/item/gun/ego_gun/egogun = new ego(get_turf(user))
-			egogun.projectile_damage_multiplier = 1.75
+			egogun.force_multiplier = 1.20
+			egogun.projectile_damage_multiplier = 1.20
 			egogun.name = "shimmering [egogun.name]"
 			egogun.set_light(3, 6, "#D4FAF37")
 			egogun.color = "#FFD700"
+			linkeditem = egogun
+		ready = FALSE
 		return ..()
+
+/obj/effect/proc_holder/ability/brokencrown/proc/Reabsorb()
+	if(linkeditem && !ready)
+		linkeditem.visible_message(span_userdanger("<font color='#CECA2B'>[linkeditem] glows brightly for a moment then... fades away without a trace.</font>"))
+		qdel(linkeditem)
+		ready = TRUE
+	return
 
 /* Opened Can of Wellcheers - Wellcheers */
 /obj/effect/proc_holder/ability/wellcheers
 	name = "Wellcheers Crew"
-	desc = "Call up 2 of your finest crewmates for a period of time."
+	desc = "Call up 3 of your finest crewmates for a period of time."
 	action_icon_state = "shrimp0"
 	base_icon_state = "shrimp"
 	cooldown_time = 90 SECONDS
 
 /obj/effect/proc_holder/ability/wellcheers/Perform(target, mob/user)
-	for(var/i = 1 to 2)
+	for(var/i = 1 to 3)
 		new /mob/living/simple_animal/hostile/shrimp/friendly(get_turf(user))
 	return ..()
 
@@ -1035,7 +1095,7 @@
 	health = 700
 	maxHealth = 700
 	desc = "Are those fists?"
-	melee_damage_lower = 35
+	melee_damage_lower = 40
 	melee_damage_upper = 45
 	icon_state = "wellcheers_ripped"
 	icon_living = "wellcheers_ripped"
@@ -1064,7 +1124,7 @@
 /obj/effect/proc_holder/ability/prayer/Perform(target, mob/living/carbon/human/user)
 	user.apply_status_effect(/datum/status_effect/flesh1)
 	cooldown = world.time + (15 SECONDS)
-	to_chat(user, "<span class='userdanger'>You start praying...</span>")
+	to_chat(user, span_userdanger("You start praying..."))
 	if(!do_after(user, 15 SECONDS))
 		user.remove_status_effect(/datum/status_effect/flesh1)
 		return
@@ -1073,8 +1133,10 @@
 			continue
 		if(H.stat == DEAD)
 			continue
+		if(H.z != user.z)
+			continue
 		playsound(H, 'sound/abnormalities/onesin/bless.ogg', 100, FALSE, 12)
-		to_chat(H, "<span class='nicegreen'>[user]'s prayer was heard!</span>")
+		to_chat(H, span_nicegreen("[user]'s prayer was heard!"))
 		H.adjustBruteLoss(-100)
 		H.adjustSanityLoss(-100)
 		H.apply_status_effect(/datum/status_effect/flesh2)
@@ -1086,33 +1148,30 @@
 	status_type = STATUS_EFFECT_UNIQUE
 	alert_type = /atom/movable/screen/alert/status_effect/flesh1
 	duration = 15 SECONDS
+	tick_interval = 3 SECONDS
 
 /atom/movable/screen/alert/status_effect/flesh1
 	name = "A prayer to god"
-	desc = "Decreases damage taken by 25%. \
-	Decreases justice by 80."
+	desc = "You take random damage while praying."
 	icon = 'ModularTegustation/Teguicons/status_sprites.dmi'
 	icon_state = "flesh"
 
 /datum/status_effect/flesh1/on_apply()
 	. = ..()
 	var/mob/living/carbon/human/H = owner
-	H.physiology.red_mod *= 0.75
-	H.physiology.white_mod *= 0.75
-	H.physiology.black_mod *= 0.75
-	H.physiology.pale_mod *= 0.75
 	ADD_TRAIT(H, TRAIT_IMMOBILIZED, type)
-	H.adjust_attribute_buff(JUSTICE_ATTRIBUTE, -80)
+
+/datum/status_effect/flesh1/tick()
+	. = ..()
+	var/mob/living/carbon/human/H = owner
+	var/list/damtypes = list(RED_DAMAGE, WHITE_DAMAGE, BLACK_DAMAGE, PALE_DAMAGE)
+	var/damage = pick(damtypes)
+	H.apply_damage(7, damage, null, H.run_armor_check(null, damage), spread_damage = TRUE)
 
 /datum/status_effect/flesh1/on_remove()
 	. = ..()
 	var/mob/living/carbon/human/H = owner
-	H.physiology.red_mod /= 0.75
-	H.physiology.white_mod /= 0.75
-	H.physiology.black_mod /= 0.75
-	H.physiology.pale_mod /= 0.75
 	REMOVE_TRAIT(H, TRAIT_IMMOBILIZED, type)
-	H.adjust_attribute_buff(JUSTICE_ATTRIBUTE, 80)
 
 /datum/status_effect/flesh2
 	id = "FLESH2"
@@ -1138,7 +1197,7 @@
 
 /obj/effect/proc_holder/ability/nest
 	name = "Worm spawn"
-	desc = "Spawns 9 worms that will seak out abormalities to infest in making them weaker to red damage."
+	desc = "Spawns 7 worms that will seak out abormalities to infest in making them weaker to red damage."
 	action_icon_state = "worm0"
 	base_icon_state = "worm"
 	cooldown_time = 30 SECONDS
@@ -1146,7 +1205,7 @@
 
 
 /obj/effect/proc_holder/ability/nest/Perform(target, mob/user)
-	for(var/i = 1 to 9)
+	for(var/i = 1 to 7)
 		playsound(get_turf(user), 'sound/misc/moist_impact.ogg', 30, 1)
 		var/landing
 		landing = locate(user.x + pick(-2,-1,0,1,2), user.y + pick(-2,-1,0,1,2), user.z)
@@ -1269,7 +1328,7 @@
 			continue
 		targets += L
 	if(!(LAZYLEN(targets)))
-		to_chat(user, "<span class='warning'>There are no enemies nearby!</span>")
+		to_chat(user, span_warning("There are no enemies nearby!"))
 		return
 
 	cooldown = world.time + (7 SECONDS)
@@ -1318,7 +1377,7 @@
 	user.orbit(DE, 0, 0, 0, 0, 0)
 
 	sleep(1)
-	target.apply_damage(80, RED_DAMAGE, null, target.run_armor_check(null, RED_DAMAGE))
+	target.apply_damage(100, RED_DAMAGE, null, target.run_armor_check(null, RED_DAMAGE))
 	new /obj/effect/temp_visual/rip_space_slash(get_turf(target))
 	new /obj/effect/temp_visual/ripped_space(get_turf(target))
 	playsound(user, 'sound/abnormalities/wayward_passenger/ripspace_hit.ogg', 75, 0)

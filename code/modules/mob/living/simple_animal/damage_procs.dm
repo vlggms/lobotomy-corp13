@@ -10,6 +10,8 @@
 /mob/living/simple_animal/proc/adjustHealth(amount, updating_health = TRUE, forced = FALSE)
 	. = FALSE
 	if(forced || !(status_flags & GODMODE))
+		if(!forced && amount < 0 && HAS_TRAIT(src, TRAIT_PHYSICAL_HEALING_BLOCKED))
+			amount = 0
 		bruteloss = round(clamp(bruteloss + amount, 0, maxHealth * 2), DAMAGE_PRECISION)
 		if(updating_health)
 			updatehealth()
@@ -29,7 +31,7 @@
 	if(forced)
 		. = adjustHealth(amount * CONFIG_GET(number/damage_multiplier), updating_health, forced)
 	else
-		. = adjustHealth(amount * damage_coeff.burn * CONFIG_GET(number/damage_multiplier), updating_health, forced)
+		. = adjustHealth(amount * damage_coeff.fire * CONFIG_GET(number/damage_multiplier), updating_health, forced)
 
 /mob/living/simple_animal/adjustOxyLoss(amount, updating_health = TRUE, forced = FALSE)
 	if(forced)

@@ -30,6 +30,11 @@
 /obj/item/managerbullet/proc/bulletshatter(mob/living/L) //apply effect slot
 	return
 
+/obj/item/managerbullet/suicide_act(mob/living/carbon/user)
+	. = ..()
+	user.visible_message(span_suicide("[user] holds the bullet in front of them, with the desire to shield themselves from oxygen! It looks like [user.p_theyre()] trying to commit suicide!"))
+	return OXYLOSS
+
 
 /datum/status_effect/interventionshield
 	id = "physical intervention shield"

@@ -1,60 +1,76 @@
 //Pistol
-/obj/item/gun/ego_gun/city/ammogun/limbuspistol
+/obj/item/gun/ego_gun/city/limbuspistol
 	name = "LCCB pistol"
 	desc = "A pistol often found in the hands of LCCB staff."
 	icon_state = "lccb_pistol"
 	inhand_icon_state = "lccb_pistol"
 	icon = 'icons/obj/limbus_weapons.dmi'
+	fire_sound = 'sound/weapons/gun/pistol/shot.ogg'
+	force = 8
+	attack_speed = 0.5
 	weapon_weight = WEAPON_LIGHT
+	ammo_type = /obj/item/ammo_casing/caseless/fullstop
 	shotsleft = 13
 	reloadtime = 1 SECONDS
 	fire_delay = 5
 
 //Auto Pistol
-/obj/item/gun/ego_gun/city/ammogun/limbusautopistol
+/obj/item/gun/ego_gun/city/limbusautopistol
 	name = "LCCB auto pistol"
 	desc = "A pistol often found in the hands of LCCB staff. This one is fully automatic"
 	icon_state = "lccb_burstpistol"
 	inhand_icon_state = "lccb_pistol"
 	icon = 'icons/obj/limbus_weapons.dmi'
+	force = 8
+	attack_speed = 0.5
+	fire_sound = 'sound/weapons/gun/pistol/shot.ogg'
 	weapon_weight = WEAPON_LIGHT
+	ammo_type = /obj/item/ammo_casing/caseless/fullstop
 	spread = 30
 	shotsleft = 13
 	reloadtime = 1.5 SECONDS
 	autofire = 0.12 SECONDS
 
 //Magnum
-/obj/item/gun/ego_gun/city/ammogun/limbusmagnum
+/obj/item/gun/ego_gun/city/limbusmagnum
 	name = "LCCB magnum"
 	desc = "A pistol often found in the hands of LCCB combat officers."
 	icon_state = "lccb_magnum"
 	inhand_icon_state = "lccb_magnum"
 	icon = 'icons/obj/limbus_weapons.dmi'
+	fire_sound = 'sound/weapons/gun/pistol/shot.ogg'
+	force = 8
+	attack_speed = 0.5
 	weapon_weight = WEAPON_HEAVY
+	ammo_type = /obj/item/ammo_casing/caseless/fullstop
 	projectile_damage_multiplier = 6 //60 damage per bullet
 	shotsleft = 6
 	reloadtime = 3 SECONDS
 	fire_delay = 12
 
 //SMG
-/obj/item/gun/ego_gun/city/ammogun/limbussmg
+/obj/item/gun/ego_gun/city/limbussmg
 	name = "LCCB submachine gun"
 	desc = "An SMG often found in the hands of LCCB staff. This one is fully automatic, but requires two hands."
 	icon_state = "lccb_smg"
 	inhand_icon_state = "lccb_smg"
 	icon = 'icons/obj/limbus_weapons.dmi'
+	force = 14
+	fire_sound = 'sound/weapons/gun/smg/mp7.ogg'
+	ammo_type = /obj/item/ammo_casing/caseless/fullstop
 	spread = 30
 	shotsleft = 30
 	reloadtime = 2.7 SECONDS
 	autofire = 0.12 SECONDS
 
 //Shottie
-/obj/item/gun/ego_gun/city/ammogun/limbusshottie
+/obj/item/gun/ego_gun/city/limbusshottie
 	name = "LCCB shotgun"
 	desc = "A shotgun found in the hands of LCCB staff. Has limited ammo and a long reload."
 	icon_state = "lccb_shotgun"
 	inhand_icon_state = "lccb_shotgun"
 	icon = 'icons/obj/limbus_weapons.dmi'
+	force = 14
 	ammo_type = /obj/item/ammo_casing/caseless/thumbshell //Does 8 shells at 5 damage, total 40
 	projectile_damage_multiplier = 0.5 //5 damage per bullet
 	fire_delay = 10
@@ -65,7 +81,7 @@
 	damtype = RED_DAMAGE
 
 
-/obj/item/gun/ego_gun/city/ammogun/limbusshottie/attack(mob/living/target, mob/living/user)
+/obj/item/gun/ego_gun/city/limbusshottie/attack(mob/living/target, mob/living/user)
 	. = ..()
 	user.changeNext_move(CLICK_CD_MELEE * 1.5)
 	if(!.)

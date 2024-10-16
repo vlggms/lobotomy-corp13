@@ -849,19 +849,6 @@
 	pixel_y = 0
 	pixel_x = -16
 
-/obj/effect/temp_visual/healing
-	icon_state = "healing"
-	layer = ABOVE_ALL_MOB_LAYER
-	duration = 8
-
-/obj/effect/temp_visual/healing/Initialize(mapload)
-	. = ..()
-	pixel_x = rand(-12, 12)
-	pixel_y = rand(-9, 0)
-
-/obj/effect/temp_visual/healing/no_dam
-	icon_state = "no_dam"
-
 /obj/effect/temp_visual/pale_eye_attack
 	name = "pale particles"
 	icon_state = "ion_fade_flight"
@@ -1030,6 +1017,16 @@
 	icon_state = "nobody_slash"
 	duration = 5
 
+/obj/effect/temp_visual/goatjo
+	name = "worldslash"
+	icon_state = "goatjo"
+	duration = 5
+
+/obj/effect/temp_visual/cleavesprite
+	name = "cleave"
+	icon_state = "cleavesprite"
+	duration = 5
+
 /obj/effect/temp_visual/holo_command
 	icon = 'ModularTegustation/Teguicons/lc13icons.dmi'
 	light_range = 1.5
@@ -1062,3 +1059,8 @@
 /obj/effect/temp_visual/holo_command/command_fight_b
 	icon_state = "Fight_this_wagie2"
 	light_color = COLOR_PALE_BLUE_GRAY
+
+/obj/effect/temp_visual/execute_bullet
+	icon = 'icons/obj/manager_bullets.dmi'
+	icon_state = "execution"
+	duration = 10

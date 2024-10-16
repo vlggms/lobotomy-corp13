@@ -156,6 +156,9 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	///What does the player think of TerraGov.
 	var/terragov_relation = RELATION_NEUTRAL
 
+	/// Preference about the user's prefered auxiliary console TGUI
+	var/auxiliary_console_tgui = TRUE
+
 /datum/preferences/New(client/C)
 	parent = C
 
@@ -919,6 +922,8 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 		for(var/datum/job/job in sortList(SSjob.occupations, GLOBAL_PROC_REF(cmp_job_display_asc)))
 			if(job.total_positions == 0 && job.spawn_positions == 0)	//Is the job unavailable
 				continue
+			if(job.mentor_only && !is_mentor_player(user.client))		//Don't show these.
+				continue
 			index += 1
 			if((index >= limit) || (job.title in splitJobs))
 				width += widthPerColumn
@@ -942,6 +947,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 			if(job.trusted_only && !is_trusted_player(user.client))
 				HTML += "<font color=black>[rank]</font></td><td><font color=black> \[ROLEPLAY\]</font></td></tr>"
 				continue
+
 			var/required_playtime_remaining = job.required_playtime_remaining(user.client)
 			if(required_playtime_remaining)
 				HTML += "<font color=red>[rank]</font></td><td><font color=red> \[ [get_exp_format(required_playtime_remaining)] as [job.get_exp_req_type()] \] </font></td></tr>"

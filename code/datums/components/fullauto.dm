@@ -117,6 +117,8 @@
 		return
 	if(get_dist(source.mob, _target) < 2) //Adjacent clicking.
 		return
+	if(source.mob.next_move > world.time) //Too busy doing something else to fire
+		return
 
 	if(isnull(location)) //Clicking on a screen object.
 		if(_target.plane != CLICKCATCHER_PLANE) //The clickcatcher is a special case. We want the click to trigger then, under it.
@@ -198,7 +200,7 @@
 
 /datum/component/automatic_fire/proc/on_mouse_drag(client/source, atom/src_object, atom/over_object, turf/src_location, turf/over_location, src_control, over_control, params)
 	SIGNAL_HANDLER
-	if(isnull(over_location)) //This happens when the mouse is over an inventory or screen object, or on entering deep darkness, for example.
+	if(isnull(over_location) || istype(over_object, /atom/movable/screen)) //This happens when the mouse is over an inventory or screen object, or on entering deep darkness, for example.
 		var/list/modifiers = params2list(params)
 		var/new_target = params2turf(modifiers["screen-loc"], get_turf(source.eye), source)
 		mouse_parameters = params

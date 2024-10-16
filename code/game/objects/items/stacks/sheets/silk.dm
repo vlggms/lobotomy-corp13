@@ -106,7 +106,7 @@
 /obj/item/stack/sheet/silk/indigo_elegant
 	name = "Elegant Indigo Silk"
 	desc = "Silk woven from a sweeper commander... Can be used to upgrade your armor. \n\
-		Looks like it is from the advanced variety of silk. \n\
+		Looks like it is from the elegant variety of silk. \n\
 		When attached to armor it increases BLACK resistance by 15 and decreases RED by 15."
 	added_armor = new(black = 15, red = -15)
 	merge_type = /obj/item/stack/sheet/silk/indigo_elegant
@@ -136,7 +136,7 @@
 /obj/item/stack/sheet/silk/green_elegant
 	name = "Elegant Green Silk"
 	desc = "Silk woven from a factory... Can be used to upgrade your armor. \n\
-		Looks like it is from the advanced variety of silk. \n\
+		Looks like it is from the elegant variety of silk. \n\
 		When attached to armor it increases RED resistance by 15 and decreases BLACK by 15."
 	added_armor = new(red = 15, black = -15)
 	merge_type = /obj/item/stack/sheet/silk/green_elegant
@@ -156,7 +156,7 @@
 /obj/item/stack/sheet/silk/steel_advanced
 	name = "Advanced Steel Silk"
 	desc = "Silk woven from a gene corp corporal... Can be used to upgrade your armor. \n\
-		Looks like it is from the simple variety of silk. \n\
+		Looks like it is from the advanced variety of silk. \n\
 		When attached to armor it increases RED resistance by 10 and decrease WHITE by 10."
 	added_armor = new(red = 10, white = -10)
 	merge_type = /obj/item/stack/sheet/silk/steel_advanced
@@ -176,12 +176,22 @@
 /obj/item/stack/sheet/silk/amber_advanced
 	name = "Advanced Amber Silk"
 	desc = "Silk woven from a, Wait... How did they get it? Can be used to upgrade your armor. \n\
-		Looks like it is from the simple variety of silk.\n\
+		Looks like it is from the advanced variety of silk.\n\
 		When attached to armor it decrease WHITE resistance by 10 and increases BLACK by 10."
 	added_armor = new(white = -10, black = 10)
 	merge_type = /obj/item/stack/sheet/silk/amber_advanced
 	icon = 'icons/obj/stack_objects.dmi'
 	icon_state = "advanced_amber_silk"
+
+/obj/item/stack/sheet/silk/amber_elegant
+	name = "Advanced Amber Silk"
+	desc = "Silk woven from a bigger carnivores worm... Only if those existed here,.. Can be used to upgrade your armor. \n\
+		Looks like it is from the elegant variety of silk.\n\
+		When attached to armor it decrease WHITE resistance by 15 and increases BLACK by 15."
+	added_armor = new(white = -15, black = 15)
+	merge_type = /obj/item/stack/sheet/silk/amber_advanced
+	icon = 'icons/obj/stack_objects.dmi'
+	icon_state = "elegant_amber_silk"
 
 /obj/item/stack/sheet/silk/human_simple
 	name = "Simple Human Silk"
@@ -222,4 +232,44 @@
 	merge_type = /obj/item/stack/sheet/silk/human_masterpiece
 	icon = 'icons/obj/stack_objects.dmi'
 	icon_state = "masterpiece_human_silk"
+
+/obj/item/stack/sheet/silk/azure_simple
+	name = "Simple Azure Silk"
+	desc = "Silk woven from a Resurgence Clan Scout... Can be used to upgrade your armor. \n\
+		Looks like it is from the simple variety of silk. \n\
+		When attached to armor it increases RED resistance by 2.5 and BLACK resistance by 2.5, But decreases WHITE by 5."
+	added_armor = new(red = 2.5, black = 2.5, white = -5)
+	merge_type = /obj/item/stack/sheet/silk/azure_simple
+	icon = 'icons/obj/stack_objects.dmi'
+	icon_state = "simple_azure_silk"
+
+/obj/item/stack/sheet/silk/azure_advanced
+	name = "Advanced Azure Silk"
+	desc = "Silk woven from a Resurgence Clan Defender... Can be used to upgrade your armor. \n\
+		Looks like it is from the advanced variety of silk.\n\
+		When attached to armor it increases RED resistance by 5 and BLACK resistance by 5, But decreases WHITE by 10."
+	added_armor = new(red = 5, black = 5, white = -10)
+	merge_type = /obj/item/stack/sheet/silk/azure_advanced
+	icon = 'icons/obj/stack_objects.dmi'
+	icon_state = "advanced_azure_silk"
+
+/obj/item/stack/sheet/silk/azure_elegant
+	name = "Elegant Azure Silk"
+	desc = "Silk woven from a Resurgence Clan... Can be used to upgrade your armor. \n\
+		Looks like it is from the elegant variety of silk.\n\
+		When attached to armor it increases RED resistance by 7.5 and BLACK resistance by 7.5, But decreases WHITE by 15."
+	added_armor = new(red = 7.5, black = 7.5, white = -15)
+	merge_type = /obj/item/stack/sheet/silk/azure_elegant
+	icon = 'icons/obj/stack_objects.dmi'
+	icon_state = "elegant_azure_silk"
+
+/obj/item/stack/sheet/silk/azure_masterpiece
+	name = "Masterpiece Azure Silk"
+	desc = "Silk woven from a Resurgence Clan... Can be used to upgrade your armor. \n\
+		Looks like it is from the masterpiece variety of silk. The best of the best.\n\
+		When attached to armor it increases RED resistance by 10 and BLACK resistance by 10, But decreases WHITE by 20."
+	added_armor = new(red = 10, black = 10, white = -20)
+	merge_type = /obj/item/stack/sheet/silk/azure_masterpiece
+	icon = 'icons/obj/stack_objects.dmi'
+	icon_state = "masterpiece_azure_silk"
 

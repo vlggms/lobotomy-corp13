@@ -300,3 +300,9 @@
 	icon_state = "pill8"
 	list_reagents = list(/datum/reagent/iron = 30)
 	rename_with_volume = TRUE
+
+/obj/item/reagent_containers/pill/shrimptoxin
+	name = "orange pill"
+	desc = "...What could this pill contain that S corp would send it to the facility?"
+	icon_state = "pill5"
+	list_reagents = list(/datum/reagent/mutationtoxin/shrimp = 5)

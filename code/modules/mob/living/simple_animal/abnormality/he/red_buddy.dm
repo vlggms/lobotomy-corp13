@@ -49,6 +49,17 @@
 		/mob/living/simple_animal/hostile/abnormality/blue_shepherd = 5,
 	)
 
+	observation_prompt = "You enter the containment unit and see a cartoonish-looking dog collapsed in the centre, shivering from pain and inflicted with terribly deep, red wounds. <br>\
+		\"My master wants a wolf...\" <br>It says breathlessly. <br>\"I'm waiting for my master, waiting, waiting... <br>I'm waiting for them...\""
+	observation_choices = list("Hug and console it", "Beat it within an inch of it's life")
+	correct_choices = list("Hug and console it")
+	observation_success_message = "You hold the wounded animal in your arms as it continues to shake. <br>\
+		\"I shook my split tail hard until flesh fell off it, I lied flat on the floor and begged... <br>My heart for my Master...\" <br>\
+		Finally it stops shivering and wounds stopped appearing on its body. <br>\"Left only red scars...\""
+	observation_fail_message = "You pull out your baton and hit the animal over and over again, kicking, spitting and cursing at it but it never reacts to any of your abuse beyond hastening its transformation. <br>\
+		The skinless dog now stands above you, neither wolf nor dog. <br>\"You can't stop a wolf with a touch gentler than my master's. <br>I'm a wolf, vile and vicious, belonging to my master.\" <br>\
+		The faux-wolf eats you in one bite."
+
 	///The blue smocked shepherd linked to red buddy
 	var/datum/abnormality/master
 	//the living shepherd it is currently fighting with
@@ -175,8 +186,7 @@
 		awoo_cooldown = 0 //resets the awoo cooldown too
 		melee_damage_lower = 60
 		melee_damage_upper = 80
-		SpeedChange(-1) //this doesn't matter as much as you'd think because he can't move before shepherd
-		UpdateSpeed()
+		ChangeMoveToDelayBy(-1) //this doesn't matter as much as you'd think because he can't move before shepherd
 		vision_range = 3
 		aggro_vision_range = 3 //red buddy should only move for things it can actually reach, in this case somewhat within shepherd's reach
 		can_patrol = FALSE //just in case
@@ -215,7 +225,7 @@
 			continue
 		if(L == awakened_master)
 			awakened_master.adjustHealth(150) //800 damage in total, takes approximatively 8 howls to take shepherd down
-		L.apply_damage(10, WHITE_DAMAGE, null, L.run_armor_check(null, WHITE_DAMAGE), spread_damage = TRUE)
+		L.deal_damage(10, WHITE_DAMAGE)
 		heard_awoo = TRUE
 	if(health >= 75 && heard_awoo && !abused)
 		adjustHealth(75)
@@ -244,7 +254,7 @@
 		awakened_master.melee_damage_lower = 10
 		awakened_master.melee_damage_upper = 15
 		awakened_master.slash_damage = 20
-		awakened_master.SpeedChange(-0.8) //we severely nerf shepherd's damage but make him way faster on buddy's death, it's last one tango.
+		awakened_master.ChangeMoveToDelayBy(-0.8) //we severely nerf shepherd's damage but make him way faster on buddy's death, it's last one tango.
 		awakened_master.say("A wolf. A wolf. Why won't you believe me? it's right there. IT WAS RIGHT THERE!")
 	awakened_master = null
 	density = FALSE

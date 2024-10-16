@@ -6,6 +6,11 @@
 	var/list/bastards = list()
 	var/list/breaching_bastards = list()
 
+	ego_list = list(
+		/datum/ego_datum/weapon/prohibited,
+		/datum/ego_datum/armor/prohibited,
+	)
+
 /obj/structure/toolabnormality/touch/examine(mob/user)
 	. = ..()
 	. += span_info("Pressing it while on help intent will breach all abnormalities instead of ending the shift.")
@@ -26,6 +31,9 @@
 		to_chat(M, span_userdanger("[uppertext(user.real_name)] WILL PUSH DON'T TOUCH ME[round_end ? "" : " TO BREACH ABNORMALITIES"]."))
 
 	if(round_end)
+		SSpersistence.rounds_since_button_pressed = ROUNDCOUNT_BUTTON_PRESSED
+		for(var/obj/structure/sign/button_counter/sign as anything in GLOB.map_button_counters)
+			sign.update_count(ROUNDCOUNT_BUTTON_PRESSED)
 		RoundEndEffect(user)
 	else
 		BreachEffect(user)

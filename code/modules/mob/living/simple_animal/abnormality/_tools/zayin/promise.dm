@@ -51,6 +51,7 @@
 	I.forceMove(src)
 	if(prob(successrate))
 		SuccessEffect()
+		I.force_multiplier += 0.1
 		I.projectile_damage_multiplier += 0.1
 		I.forceMove(get_turf(src))
 	else

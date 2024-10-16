@@ -463,7 +463,8 @@
 ///From post-can inject check of syringe after attack (mob/user)
 #define COMSIG_LIVING_TRY_SYRINGE "living_try_syringe"
 
-
+///from /mob/living/bullet_act() since it does not call /atom/bullet_act()
+#define COMSIG_LIVING_BULLET_ACT "living_bullet_act"
 ///Sent when bloodcrawl ends in mob/living/phasein(): (phasein_decal)
 #define COMSIG_LIVING_AFTERPHASEIN "living_phasein"
 
@@ -1043,6 +1044,10 @@
 #define COMSIG_ITEM_AFTERATTACK "item_afterattack"
 ///from base of obj/item/attack_qdeleted(): (atom/target, mob/user, params)
 #define COMSIG_ITEM_ATTACK_QDELETED "item_attack_qdeleted"
+///from base of obj/item/MiddleClickAction(): (atom/target, mob/living/user, params)
+#define COMSIG_ITEM_MIDDLE_CLICK_ACTION "item_middle_click_action"
+	///cancels middle click action
+	#define COMPONENT_CANCEL_MIDDLE_CLICK_ACTION (1<<0)
 ///from base of atom/attack_hand(): (mob/user)
 #define COMSIG_MOB_ATTACK_HAND "mob_attack_hand"
 ///from base of /obj/item/attack(): (mob/M, mob/user)

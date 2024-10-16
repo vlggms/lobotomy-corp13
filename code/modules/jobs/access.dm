@@ -374,11 +374,15 @@
 
 /proc/get_all_jobs()
 	return list("Clerk","Agent Intern", "Agent", "Senior Agent", "Veteran Agent", "Agent Lieutenant", "Agent Captain", "Department Captain", "Department Head", "Sephirah", "Records Officer", "Extraction Officer", "Manager", "Main Office Representative",
-		"Rabbit Team", "Rabbit Team Leader", "Disciplinary Officer", "Emergency Response Agent",
+		"Rabbit Team", "Rabbit Team Leader", "Disciplinary Officer", "Emergency Response Agent", "Training Officer",
 
 		//R Corp Assault
 		"Ground Commander",	"Lieutenant Commander",	"Operations Officer", "Rabbit Squad Captain", "Reindeer Squad Captain", "Rhino Squad Captain", "Raven Squad Captain",
 		"R-Corp Suppressive Rabbit","R-Corp Assault Rabbit", "R-Corp Medical Reindeer",	"R-Corp Berserker Reindeer","R-Corp Gunner Rhino","R-Corp Hammer Rhino","R-Corp Scout Raven","R-Corp Support Raven",
+
+		//5th Pack
+		"Assault Commander", "Base Commander", "Support Officer", "Rat Squad Leader", "Rooster Squad Leader", "Raccoon Squad Leader", "Roadrunner Squad Leader",
+		"R-Corp Rat", "R-Corp Rooster", "R-Corp Raccoon Spy", "R-Corp Raccoon Sniper", "R-Corp Roadrunner",
 
 		//LC Labs
 		"Chief Medical Officer", "Surgeon", "Nurse Practitioner", "Pharmacist", "Emergency Medical Technician", "Lead Researcher", "Senior Researcher", "Information Systems Tech",

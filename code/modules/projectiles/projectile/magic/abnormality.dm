@@ -202,27 +202,13 @@
 	desc = "A sharp-looking icicle"
 	icon_state = "ice_2"
 	damage_type = PALE_DAMAGE
-
 	damage = 35
-
-//slow, dodgable, and make it hard to see and talk
-/obj/projectile/fleshblob
-	name = "blood blob"
-	icon_state = "mini_leaper"
-	damage_type = RED_DAMAGE
-
-	damage = 30
-	spread = 15
-	eyeblur = 10
-	slur = 5
-	speed = 2.4
 
 /obj/projectile/actor
 	name = "bullet"
 	icon_state = "bullet"
 	desc = "causes a lot of pain"
 	damage_type = WHITE_DAMAGE
-
 	damage = 10
 
 /obj/projectile/actor/on_hit(target)
@@ -276,18 +262,6 @@
 	pixel_y = 16
 	hitsound = 'sound/abnormalities/redhood/attack_2.ogg'
 
-/obj/projectile/hunter_blade/on_hit(atom/target, blocked = FALSE, pierce_hit)
-	var/living = FALSE
-	if(!isliving(target))
-		return ..()
-	var/mob/living/attacked_mob = target
-	if(attacked_mob.stat != DEAD)
-		living = TRUE
-	..()
-	if(attacked_mob.stat == DEAD && living)
-		var/mob/living/simple_animal/hostile/abnormality/red_hood/red_owner
-		red_owner.ConfirmRangedKill(0.1)
-
 /obj/projectile/red_hollowpoint
 	name = "hollowpoint shell"
 	desc = "A bullet fired from a red-cloaked mercenary's ruthless weapon."
@@ -296,18 +270,6 @@
 	speed = 0.6
 	spread = 10
 	pixel_y = 30
-
-/obj/projectile/red_hollowpoint/on_hit(atom/target, blocked = FALSE, pierce_hit)
-	var/living = FALSE
-	if(!isliving(target))
-		return ..()
-	var/mob/living/attacked_mob = target
-	if(attacked_mob.stat != DEAD)
-		living = TRUE
-	..()
-	if(attacked_mob.stat == DEAD && living)
-		var/mob/living/simple_animal/hostile/abnormality/red_hood/red_owner
-		red_owner.ConfirmRangedKill(0.1)
 
 /obj/item/ammo_casing/caseless/nihil_abnormality
 	name = "dark energy casing"
@@ -331,3 +293,96 @@
 		return
 	var/mob/living/L = target
 	L.apply_void(1)
+
+/obj/projectile/lifestew_spit
+	name = "soup projectile"
+	desc = "Hot soup."
+	icon = 'icons/effects/effects.dmi'
+	icon_state = "extinguish"
+	hitsound = 'sound/abnormalities/ichthys/jump.ogg'
+	damage_type = BLACK_DAMAGE
+	damage = 4
+	spread = 60
+	slur = 3
+	eyeblur = 3
+	speed = 1.5 //VERY SLOW, to make it easier to dodge
+	var/random_sprite_list = list(
+	"fishbone",
+	"bone"
+	)
+
+/obj/projectile/lifestew_spit/Initialize()
+	. = ..()
+	speed += pick(0, 0.1, 0.2, 0.3) // Randomized speed
+	animate(src, transform = src.transform*pick(1.8, 2.4, 2.8, 3.2), time = rand(1,4))
+	var/chansu = rand(1,100)
+	switch(chansu)
+		if(1)
+			icon = 'icons/obj/projectiles.dmi'
+			icon_state = "wishing_rock"
+			hitsound = 'sound/weapons/smash.ogg'
+		if(2 to 20)
+			icon = 'icons/obj/food/soupsalad.dmi'
+			icon_state = "lifetime_stew_chunk"
+			hitsound = 'sound/effects/meatslap.ogg'
+		if(21 to 30)
+			icon = 'icons/obj/janitor.dmi'
+			icon_state = pick(random_sprite_list)
+			hitsound = 'sound/weapons/smash.ogg'
+		else
+			color = "#622F22"
+			return
+
+/obj/projectile/lifestew_spit/Range()
+	for(var/mob/living/L in range(1, get_turf(src)))
+		if(L.stat != DEAD && L != firer && !L.faction_check_mob(firer, FALSE))
+			return Bump(L)
+	..()
+
+//Last shot projectiles
+/obj/projectile/bonebullet
+	name = "bone round"
+	icon_state = "bonebullet"
+	damage_type = RED_DAMAGE
+	damage = 10 //rapid fire/shotgun fire
+	spread = 30
+	projectile_piercing = PASSMOB
+	nodamage = TRUE	//Damage is calculated later
+	var/list/safe_mobs = list(
+	/mob/living/simple_animal/hostile/abnormality/last_shot,
+	/mob/living/simple_animal/hostile/meatblob,
+	/mob/living/simple_animal/hostile/meatblob/gunner,
+	/mob/living/simple_animal/hostile/meatblob/gunner/shotgun,
+	/mob/living/simple_animal/hostile/meatblob/gunner/sniper,
+	)
+
+/obj/projectile/bonebullet/on_hit(atom/target, blocked = FALSE)
+	if(!is_type_in_list(target, safe_mobs))
+		nodamage = FALSE
+	else
+		return
+	. = ..()
+	if(nodamage)
+		return
+	qdel(src)
+
+/obj/projectile/bonebullet/bonebullet_piercing
+	name = "bone sniper round"
+	icon_state = "bonebullet_long"
+	damage = 100
+	speed = 0.4
+
+/obj/projectile/frost_splinter
+	name = "frost splinter"
+	desc = "A large shard of ice."
+	icon_state = "ice_2"
+	damage_type = RED_DAMAGE
+	damage = 40
+	speed = 3
+	alpha = 0
+	spread = 20
+
+/obj/projectile/frost_splinter/Initialize()
+	. = ..()
+	hitsound = "sound/weapons/ego/rapier[pick(1,2)].ogg"
+	animate(src, alpha = 255, time = 3)

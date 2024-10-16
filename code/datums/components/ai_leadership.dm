@@ -15,8 +15,6 @@
 	var/unique_team
 	//If followers will return to a base when disbanded
 	var/return_to_fob
-	//Datum that tracks all of the components
-	var/static/datum/collective_management/follower_tracker
 	//Allowed types of followers
 	var/list/possible_followers = list()
 	//This components current followers.
@@ -28,8 +26,6 @@
 	if(!isatom(parent))
 		return COMPONENT_INCOMPATIBLE
 
-	if(!follower_tracker)
-		follower_tracker = new /datum/collective_management()
 	var/atom/L = parent
 
 	return_to_fob = forwardbase
@@ -37,19 +33,19 @@
 	unit_amount = amount
 	possible_followers += allowed_types
 
-	follower_tracker.AddLeader(L)
+	SSmobcommander.AddLeader(L)
 	ScanLocation()
 	START_PROCESSING(SSdcs, src)
 
 /datum/component/ai_leadership/RegisterWithParent()
 	if(isliving(parent))
-		RegisterSignal(parent, COMSIG_LIVING_DEATH, PROC_REF(RemoveLeader))
+		RegisterSignal(parent, list(COMSIG_LIVING_DEATH, COMSIG_PARENT_QDELETING), PROC_REF(RemoveLeader))
 		if(ishostile(parent))
 			RegisterSignal(parent, COMSIG_PATROL_START, PROC_REF(HeadCount))
 
 /datum/component/ai_leadership/UnregisterFromParent()
 	if(isliving(parent))
-		UnregisterSignal(parent, COMSIG_LIVING_DEATH)
+		UnregisterSignal(parent, list(COMSIG_LIVING_DEATH, COMSIG_PARENT_QDELETING))
 		if(ishostile(parent))
 			UnregisterSignal(parent, COMSIG_PATROL_START)
 
@@ -57,7 +53,7 @@
 /datum/component/ai_leadership/proc/RemoveLeader()
 	SIGNAL_HANDLER
 
-	follower_tracker.RemoveLeader(parent, followers)
+	SSmobcommander.RemoveLeader(parent, followers)
 	STOP_PROCESSING(SSdcs, src)
 	qdel(src)
 
@@ -178,17 +174,17 @@
 //Register recruit with the system
 /datum/component/ai_leadership/proc/Recruit(mob/living/L)
 	followers += L
-	follower_tracker.RecruitFollower(L)
+	SSmobcommander.RecruitFollower(L)
 	FollowLeader(L)
 
 //Releases the recruit from our command
 /datum/component/ai_leadership/proc/Disband(mob/living/L)
 	followers -= L
-	follower_tracker.DismissFollower(L)
+	SSmobcommander.DismissFollower(L)
 
 //Is the recruit already recruited in the system?
 /datum/component/ai_leadership/proc/FollowerCheck(mob/living/recruit)
-	if(follower_tracker.FindRecruit(recruit))
+	if(SSmobcommander.FindRecruit(recruit))
 		return TRUE
 	return FALSE
 
@@ -243,59 +239,3 @@
 		if(istype(get_area(T), /area/department_main/command))
 			return T
 	return second_choice
-
-	/*-----------------------\
-	|	Group Mind Datum	 |
-	\-----------------------*/
-
-/datum/collective_management
-	var/list/leaders = list()
-	var/list/follower_list = list()
-
-//Called by component recruit
-/datum/collective_management/proc/RecruitFollower(follower)
-	if(!follower)
-		return FALSE
-	LAZYADD(follower_list, follower)
-	return TRUE
-
-//Called when a follower is removed from component and list.
-/datum/collective_management/proc/DismissFollower(follower)
-	if(!follower)
-		return FALSE
-	CheckLedger()
-	LAZYREMOVE(follower_list, follower)
-	return TRUE
-
-//Registers leader into the system
-/datum/collective_management/proc/AddLeader(leader)
-	if(LAZYFIND(leaders, leader))
-		return FALSE
-	CheckLedger()
-	LAZYADD(leaders, leader)
-	return TRUE
-
-//Removes leader from the ledger
-/datum/collective_management/proc/RemoveLeader(leader, followers)
-	CheckLedger()
-	LAZYREMOVE(leaders, leader)
-	for(var/minion in followers)
-		DismissFollower(minion)
-
-//Checks to find if recruit is already in the system
-/datum/collective_management/proc/FindRecruit(follower)
-	if(LAZYFIND(follower_list, follower))
-		return TRUE
-	return FALSE
-
-//Does technical fixes such as remove nulls and duplicates
-/datum/collective_management/proc/CheckLedger()
-	//Remove duplicates.
-	var/fixed_leader_list = uniqueList(leaders)
-	var/fixed_follower_list = uniqueList(follower_list)
-	//Replace list with a sorted fixed version.
-	leaders = sortNames(fixed_leader_list)
-	follower_list = sortNames(fixed_follower_list)
-	//Remove nulls.
-	listclearnulls(leaders)
-	listclearnulls(follower_list)

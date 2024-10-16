@@ -103,3 +103,13 @@
 	charge_max = 300
 	clothes_req = TRUE
 	cooldown_min = 100
+
+/obj/effect/proc_holder/spell/targeted/touch/arbiterpunch
+	name = "Gravity"
+	desc = "Tear your enemies limb from limb using the power of the gravity singularity."
+	hand_path = /obj/item/melee/touch_attack/arbiterpunch
+	school = SCHOOL_EVOCATION
+	charge_max = 300
+	clothes_req = FALSE
+	cooldown_min = 100
+	action_icon_state = "autotomy"

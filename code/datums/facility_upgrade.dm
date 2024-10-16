@@ -103,13 +103,21 @@
 /datum/facility_upgrade/bullet/yellow
 	name = YELLOW_BULLET
 
+/datum/facility_upgrade/bullet/kill
+	name = KILL_BULLET
+
+/datum/facility_upgrade/bullet/kill/CanUpgrade()
+	if(!GLOB.execution_enabled) //Failsafe in case admins turn off the bullets due to a rampaging manager
+		return FALSE
+	return ..()
+
 // Bullet upgrades
 /datum/facility_upgrade/bullet_count
 	name = UPGRADE_BULLET_COUNT
 	category = "Bullet Upgrades"
 	value = 4
 	max_value = 40
-	requires_one_of = list(HP_BULLET, SP_BULLET, RED_BULLET, WHITE_BULLET, BLACK_BULLET, PALE_BULLET, YELLOW_BULLET)
+	requires_one_of = list(HP_BULLET, SP_BULLET, RED_BULLET, WHITE_BULLET, BLACK_BULLET, PALE_BULLET, YELLOW_BULLET, KILL_BULLET)
 	/// The cost will not go further upwards from that point on
 	var/max_cost = 6
 
@@ -164,7 +172,7 @@
 /datum/facility_upgrade/agent_spawn_stats_bonus/Upgrade()
 	value = min(max_value, value + value_increase)
 	// Applies newly purchased bonus to all living agents
-	for(var/mob/living/carbon/human/H in AllLivingAgents())
+	for(var/mob/living/carbon/human/H in AllLivingAgents(TRUE))
 		H.adjust_all_attribute_levels(value_increase)
 		to_chat(H, span_notice("Facility upgrade increased your attributes by [value_increase] points!"))
 	. = ..()

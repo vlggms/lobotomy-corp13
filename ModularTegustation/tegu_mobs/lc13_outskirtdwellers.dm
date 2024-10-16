@@ -435,6 +435,7 @@
 	for (var/mob/living/L in viewers(flash_range,src)) //The actual flashing
 		if (!ishuman(L))
 			continue
+		L.flash_act()
 		L.Paralyze(5 SECONDS) //you better dodge it
 		var/obj/item/held = L.get_active_held_item()
 		L.dropItemToGround(held) //Drops everyone's weapons
@@ -792,13 +793,18 @@ Mobs that mostly focus on dealing RED damage, they are all a bit more frail than
 	var/lovewhip_damage = 100
 	var/damage_taken
 
+/mob/living/simple_animal/hostile/lovetown/abomination/Initialize(mapload)
+	. = ..()
+	if(SSmaptype.maptype in SSmaptype.citymaps)
+		guaranteed_butcher_results += list(/obj/item/head_trophy/flesh_head = 1)
+
 /mob/living/simple_animal/hostile/lovetown/abomination/proc/StageTransition()
 	icon_living = "lovetown_abomination2"
 	if(!countering && can_act)
 		icon_state = icon_living
 	current_stage = 2
 	//Speed changed from 6 to 4
-	SpeedChange(-counter_speed)
+	ChangeMoveToDelayBy(-counter_speed)
 	attack_delay = 1 SECONDS
 	counter_threshold = 300
 	playsound(get_turf(src), 'sound/creatures/lc13/lovetown/abomination_stagetransition.ogg', 75, 0, 3)

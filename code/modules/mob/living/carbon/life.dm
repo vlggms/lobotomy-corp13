@@ -160,7 +160,7 @@
 	var/safe_tox_max = 0.05
 	var/SA_para_min = 1
 	var/SA_sleep_min = 5
-	var/oxygen_used = 0
+	//var/oxygen_used = 0
 	var/breath_pressure = (breath.total_moles()*R_IDEAL_GAS_EQUATION*breath.temperature)/BREATH_VOLUME
 
 	var/list/breath_gases = breath.gases
@@ -178,7 +178,6 @@
 			var/ratio = 1 - O2_partialpressure/safe_oxy_min
 			adjustOxyLoss(min(5*ratio, 3))
 			failed_last_breath = TRUE
-			oxygen_used = breath_gases[/datum/gas/oxygen][MOLES]*ratio
 		else
 			adjustOxyLoss(3)
 			failed_last_breath = TRUE
@@ -188,11 +187,7 @@
 		failed_last_breath = FALSE
 		if(health >= crit_threshold)
 			adjustOxyLoss(-5)
-		oxygen_used = breath_gases[/datum/gas/oxygen][MOLES]
 		clear_alert("not_enough_oxy")
-
-	breath_gases[/datum/gas/oxygen][MOLES] -= oxygen_used
-	breath_gases[/datum/gas/carbon_dioxide][MOLES] += oxygen_used
 
 	//CARBON DIOXIDE
 	if(CO2_partialpressure > safe_co2_max)
@@ -296,8 +291,7 @@
 
 //Fourth and final link in a breath chain
 /mob/living/carbon/proc/handle_breath_temperature(datum/gas_mixture/breath)
-	// The air you breathe out should match your body temperature
-	breath.temperature = bodytemperature
+	return
 
 /mob/living/carbon/proc/get_breath_from_internal(volume_needed)
 	if(internal)
@@ -490,6 +484,8 @@ All effects don't start immediately, but rather get worse over time; the rate is
 		handle_hallucinations()
 
 	if(drunkenness)
+		var/obj/item/clothing/suit/armor/ego_gear/realization/stupor/Z = get_item_by_slot(ITEM_SLOT_OCLOTHING)
+		var/obj/item/organ/liver/L = getorganslot(ORGAN_SLOT_LIVER)
 		drunkenness = max(drunkenness - (drunkenness * 0.04) - 0.01, 0)
 		if(drunkenness >= 6)
 			if(prob(25))
@@ -521,41 +517,81 @@ All effects don't start immediately, but rather get worse over time; the rate is
 						SSresearch.science_tech.remove_point_list(list(TECHWEB_POINT_TYPE_GENERIC = BALLMER_POINTS))
 						say(pick_list_replacements(VISTA_FILE, "ballmer_windows_me_msg"), forced = "ballmer")
 
-		if(drunkenness >= 41)
-			if(prob(25))
-				add_confusion(2)
-			Dizzy(10)
+		if(istype(Z)) //Start of Realization adjustments to drunkenness
+			var/heal_modifier = clamp(round((drunkenness/5)-2), 1, 10)
+			if(ishuman(src))
+				var/mob/living/carbon/human/H = src
+				H.adjustBruteLoss(-heal_modifier)
+				H.adjustSanityLoss(-heal_modifier)
+			L.applyOrganDamage(-3)
+			if(drunkenness >= 61)
+				if(prob(25))
+					add_confusion(2)
+				Dizzy(10)
 
-		if(drunkenness >= 51)
-			if(prob(3))
-				add_confusion(15)
-				vomit() // vomiting clears toxloss, consider this a blessing
-			Dizzy(25)
+			if(drunkenness >= 71)
+				if(prob(3))
+					add_confusion(15)
+				Dizzy(25)
 
-		if(drunkenness >= 61)
-			if(prob(50))
+			if(drunkenness >= 81)
+				if(prob(50))
+					blur_eyes(5)
+
+			if(drunkenness >= 91)
 				blur_eyes(5)
 
-		if(drunkenness >= 71)
-			blur_eyes(5)
+			if(drunkenness >= 101)
+				adjustToxLoss(1)
+				if(prob(5) && !stat)
+					to_chat(src, span_warning("Maybe you should lie down for a bit..."))
 
-		if(drunkenness >= 81)
-			adjustToxLoss(1)
-			if(prob(5) && !stat)
-				to_chat(src, span_warning("Maybe you should lie down for a bit..."))
+			if(drunkenness >= 111)
+				adjustToxLoss(1)
+				adjustOrganLoss(ORGAN_SLOT_BRAIN, 0.4)
+				if(prob(20) && !stat)
+					if(SSshuttle.emergency.mode == SHUTTLE_DOCKED && is_station_level(z)) //QoL mainly
+						to_chat(src, span_warning("You're so tired... but you can't miss that shuttle..."))
+					else
+						to_chat(src, span_warning("Just a quick nap..."))
+						Sleeping(900)
 
-		if(drunkenness >= 91)
-			adjustToxLoss(1)
-			adjustOrganLoss(ORGAN_SLOT_BRAIN, 0.4)
-			if(prob(20) && !stat)
-				if(SSshuttle.emergency.mode == SHUTTLE_DOCKED && is_station_level(z)) //QoL mainly
-					to_chat(src, span_warning("You're so tired... but you can't miss that shuttle..."))
-				else
-					to_chat(src, span_warning("Just a quick nap..."))
-					Sleeping(900)
+		else
+			if(drunkenness >= 41)
+				if(prob(25))
+					add_confusion(2)
+				Dizzy(10)
 
-		if(drunkenness >= 101)
-			adjustToxLoss(2) //Let's be honest you shouldn't be alive by now
+			if(drunkenness >= 51)
+				if(prob(3))
+					add_confusion(15)
+					vomit() // vomiting clears toxloss, consider this a blessing
+				Dizzy(25)
+
+			if(drunkenness >= 61)
+				if(prob(50))
+					blur_eyes(5)
+
+			if(drunkenness >= 71)
+				blur_eyes(5)
+
+			if(drunkenness >= 81)
+				adjustToxLoss(1)
+				if(prob(5) && !stat)
+					to_chat(src, span_warning("Maybe you should lie down for a bit..."))
+
+			if(drunkenness >= 91)
+				adjustToxLoss(1)
+				adjustOrganLoss(ORGAN_SLOT_BRAIN, 0.4)
+				if(prob(20) && !stat)
+					if(SSshuttle.emergency.mode == SHUTTLE_DOCKED && is_station_level(z)) //QoL mainly
+						to_chat(src, span_warning("You're so tired... but you can't miss that shuttle..."))
+					else
+						to_chat(src, span_warning("Just a quick nap..."))
+						Sleeping(900)
+
+			if(drunkenness >= 101)
+				adjustToxLoss(2) //Let's be honest you shouldn't be alive by now
 
 /// Base carbon environment handler, adds natural stabilization
 /mob/living/carbon/handle_environment(datum/gas_mixture/environment)

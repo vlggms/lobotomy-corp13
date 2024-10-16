@@ -1028,7 +1028,7 @@
 	When you are done, Cryo and Respawn to join the game."
 	assignedrole = "Lobotomy Corporation Records Librarian"
 
-//Tutorial agent
+//Records Librarian
 /datum/outfit/librarian
 	name = "records librarian"
 
@@ -1040,6 +1040,34 @@
 	shoes = /obj/item/clothing/shoes/laceup
 
 	back = /obj/item/storage/backpack/satchel
+
+//Test Range Spawn
+/obj/effect/mob_spawn/human/testrange
+	uses = -1
+	death = FALSE
+	roundstart = FALSE
+	random = FALSE
+	name = "test range sleeper"
+	desc = "A humming sleeper with a silhouetted occupant inside. It's connected to a vast underground network storing countless people."
+	mob_name = "Test Range Agent"
+	icon = 'icons/obj/machines/sleeper.dmi'
+	icon_state = "sleeper"
+	outfit = /datum/outfit/testrange_agent
+	short_desc = "A place for players to try out EGO, and other equipment, as well as fight enemies for practice."
+	assignedrole = "Test Range Agent"
+
+/datum/outfit/testrange_agent
+	head = null
+	belt = null
+	ears = null
+	glasses = /obj/item/clothing/glasses/sunglasses
+	uniform = /obj/item/clothing/under/suit/lobotomy
+	suit = null
+	shoes = /obj/item/clothing/shoes/laceup
+	gloves = /obj/item/clothing/gloves/color/black
+	implants = list(/obj/item/organ/cyberimp/eyes/hud/security)
+
+	back = /obj/item/storage/backpack
 
 //Supplypod Mobspawner
 /obj/effect/mob_spawn/human/supplypod

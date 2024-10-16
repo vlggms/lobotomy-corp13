@@ -44,6 +44,35 @@
 	response_help_simple = "pet"
 	response_help_continuous = "pets"
 
+	ego_list = list(
+		/datum/ego_datum/weapon/cavernous_wailing,
+		/datum/ego_datum/armor/cavernous_wailing,
+	)
+	gift_type =  /datum/ego_gifts/melty_eyeball
+	gift_message = "The toad gave you an eyeball, maybe it was for lending an ear?"
+	abnormality_origin = ABNORMALITY_ORIGIN_LIMBUS
+
+	observation_prompt = "\"Croohoo, croohoo, croohoo.\" <br>\
+		A giant toad cries inside a cave. <br>\
+		Patches of dark blue resin cover the cave. <br>\
+		This resin is like gloom. <br>\
+		A sap of gloom, not quite like tears or sadness. <br>\
+		The toad holds this resin."
+	observation_choices = list("Mimic the cry", "Sit and wait")
+	correct_choices = list("Sit and wait")
+	observation_success_message = "An indeterminate amount of time passes. <br>\
+		As you waited for the toad to finish its cries, <br>\
+		it gazed into you, closing and opening its eyelids slowly. <br>\
+		With a quick, slick sound,a long blue tongue popped out towards you. <br>\
+		An eyeball belonging to the toad was on its tongue. <br>\
+		When you picked it up, it blinked its other eye at us before going on its way. <br>\
+		Was that its thanks for lending an ear?"
+	observation_fail_message = "\"Croohic, croohoo.\" <br>\
+		The toad’s cry is dull and heavy. <br>\
+		It doesn’t seem to have understood what it heard. <br>\
+		After crying like that a few more times, it hopped away from its spot. <br>\
+		All that’s left is the sticky blue resin."
+
 	//work
 	var/pulse_healing = 15
 	var/healing_pulse_amount = 0
@@ -59,14 +88,6 @@
 	var/transformed = FALSE
 	var/broken = FALSE
 	var/persistant = FALSE
-
-	ego_list = list(
-		/datum/ego_datum/weapon/melty_eyeball,
-		/datum/ego_datum/armor/melty_eyeball,
-	)
-	gift_type =  /datum/ego_gifts/melty_eyeball
-	gift_message = "The toad gave you an eyeball, maybe it was for lending an ear?"
-	abnormality_origin = ABNORMALITY_ORIGIN_LIMBUS
 
 //Work/Misc
 /mob/living/simple_animal/hostile/abnormality/blubbering_toad/PostSpawn()
@@ -140,7 +161,7 @@
 
 /mob/living/simple_animal/hostile/abnormality/blubbering_toad/death() //EGG! just kidding no egg....
 	density = FALSE
-	playsound(src, 'sound/abnormalities/doomsdaycalendar/Limbus_Dead_Generic.ogg', 40, 0, FALSE)
+	playsound(src, 'sound/effects/limbus_death.ogg', 40, 0, FALSE)
 	animate(src, alpha = 0, time = 5 SECONDS)
 	QDEL_IN(src, 5 SECONDS)
 	..()
@@ -171,7 +192,7 @@
 			if(T.density)
 				break
 			if(idiot in T)
-				idiot.apply_damage(tongue_damage, BLACK_DAMAGE, null, idiot.run_armor_check(null, BLACK_DAMAGE), spread_damage = TRUE)
+				idiot.deal_damage(tongue_damage, BLACK_DAMAGE)
 				new /obj/effect/temp_visual/dir_setting/bloodsplatter(get_turf(idiot), pick(GLOB.alldirs))
 				if(!idiot.anchored)
 					var/whack_speed = (prob(60) ? 1 : 4)
@@ -259,7 +280,7 @@
 			icon_state = icon_living
 			melee_damage_type = WHITE_DAMAGE
 			broken = TRUE
-			playsound(src, 'sound/abnormalities/doomsdaycalendar/Limbus_Dead_Generic.ogg', 40, 0, 1)
+			playsound(src, 'sound/effects/limbus_death.ogg', 40, 0, 1)
 		return
 	if(health < (maxHealth / 2)) //50% health or lower
 		var/state = pick("red", "white")
@@ -272,7 +293,7 @@
 		icon_living = "blubbering_[state]"
 		icon_tongue = "blubbering_tongue_[state]"
 		icon_state = icon_living
-		playsound(src, 'sound/abnormalities/doomsdaycalendar/Limbus_Dead_Generic.ogg', 40, 0, 1)
+		playsound(src, 'sound/effects/limbus_death.ogg', 40, 0, 1)
 
 /datum/status_effect/blue_resin
 	id = "blue resin"

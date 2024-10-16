@@ -5,6 +5,11 @@
 	max_buckled_mobs = 1
 	var/obj/structure/toolabnormality/shelter/linked_structure
 
+	ego_list = list(
+		/datum/ego_datum/weapon/isolation,
+		/datum/ego_datum/armor/isolation,
+	)
+
 /obj/structure/toolabnormality/shelter/proc/travel(mob/living/carbon/human/user)
 	if(!linked_structure)	//Here we do nothing, just set it up for the substypes
 		return
@@ -42,7 +47,7 @@
 
 /obj/structure/toolabnormality/shelter/proc/travel_check(mob/living/carbon/human/user)
 	icon_state = "shelter_in_opening"
-	if(!do_after(user, 30 SECONDS, user))
+	if(!do_after(user, 15 SECONDS, user))
 		to_chat(user, span_notice("You decide not to enter [src]."))
 		icon_state = "shelter_in"
 		return
@@ -79,8 +84,7 @@
 	if(!linked_structure)
 		linked_structure = locate(/obj/structure/toolabnormality/shelter/entrance) in world.contents
 	..()
-	user.Stun(15 SECONDS)
-	to_chat(user, span_userdanger("You are suddenly overcome with fear and hesitation! What horrors could be lurking out here?"))
+	user.Stun(3 SECONDS)
 
 // Shelter contents
 // Crate

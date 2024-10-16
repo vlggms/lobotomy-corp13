@@ -352,7 +352,6 @@ Remember to update _globalvars/traits.dm if you're adding/removing/renaming trai
 //positive quirks
 #define TRAIT_RESISTANT      	"resistant"
 #define TRAIT_SKILLED    	    "skilled"
-#define TRAIT_FLUFFY_TONGUE     "fluffy_tongue" // technically not positive, but it costs points
 //neutral quirks
 #define TRAIT_NERD          	"nerd"
 #define TRAIT_BRAWLER    	    "brawler"
@@ -374,6 +373,8 @@ Remember to update _globalvars/traits.dm if you're adding/removing/renaming trai
 #define TRAIT_HEALING          	"healing"    // used for the "no medipens" challenge
 #define TRAIT_GRAB_IMMUNE 		"grab_immune"// used to prevent grabs
 //lobotomy quirk traits end
+#define TRAIT_PHYSICAL_HEALING_BLOCKED "physical_healing_blocked"
+#define TRAIT_SANITY_HEALING_BLOCKED "sanity_healing_blocked"
 #define TRAIT_ALCOHOL_TOLERANCE	"alcohol_tolerance"
 #define TRAIT_AGEUSIA			"ageusia"
 #define TRAIT_HEAVY_SLEEPER		"heavy_sleeper"

@@ -1287,3 +1287,44 @@ GLOBAL_LIST_EMPTY(transformation_animation_objects)
 		filters -= filters[filter_index]
 	//else
 	//	filters = null
+
+/*
+ * Given an atom, it returns the average color of the atom's current icon
+ */
+/proc/GetAverageColor(atom/target)
+	var/icon/temp_icon = icon(target.icon, target.icon_state)
+	if(target.color)
+		temp_icon.Blend(target.color, ICON_MULTIPLY)
+	var/list/colors = list()
+	for(var/h = 1 to temp_icon.Height())
+		for(var/w = 1 to temp_icon.Width())
+			var/color_code = temp_icon.GetPixel(w, h)
+			if(isnull(color_code))
+				continue
+			colors += list(hex2rgb(color_code))
+	qdel(temp_icon)
+	if(colors.len == 0)
+		stack_trace("GetAverageColor called on [target] and got no colors. Is [target.icon] at state [target.icon_state] transparent?")
+		return
+	var/list/final_color_code = list(0, 0, 0)
+	var/total = 0
+	for(var/list/color_codes in colors)
+		var/too_dark = -2
+		var/too_bright = -2
+		for(var/color_value in color_codes)
+			if(color_value < 64)
+				too_dark++
+			if(color_value > 192)
+				too_bright++
+		if(too_dark > 0 || too_bright > 0)
+			continue
+		final_color_code[1] += color_codes[1]
+		final_color_code[2] += color_codes[2]
+		final_color_code[3] += color_codes[3]
+		total++
+	if(!total)
+		return
+	final_color_code[1] = FLOOR(final_color_code[1]/total, 1)
+	final_color_code[2] = FLOOR(final_color_code[2]/total, 1)
+	final_color_code[3] = FLOOR(final_color_code[3]/total, 1)
+	return "#[num2hex(final_color_code[1], 2)][num2hex(final_color_code[2], 2)][num2hex(final_color_code[3], 2)]"

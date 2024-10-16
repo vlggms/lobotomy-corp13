@@ -122,8 +122,8 @@
 	abno_code = "O-01-131"
 	abno_info = list(
 		"Injuries sustained when working on Lady Out of Space consisted of an equal amount of BLACK and WHITE damage.",
-		"When the work result was Neutral, the Qliphoth Counter decreased.",
-		"When the work result was Bad, the Qliphoth Counter decreased by 2.",
+		"When the work result was Neutral, the Qliphoth Counter decreased at a low probability.",
+		"When the work result was Bad, the Qliphoth Counter had two chances to decrease at a normal probaility.",
 		"When employees of Level 4 and lower completed their work, the Qliphoth Counter decreased. The Counter decreased again if the employee was Level 3 and lower.",
 		"When employees of Level 2 and lower attempted work, they were consumed by Lady Out of Space and the Qliphoth Counter decreased.")
 	abno_work_damage_type = "White & Black"
@@ -228,10 +228,22 @@
 		"When an employee whose Justice was lower than Level 4 completed the work, the Qliphoth Counter decreased.",
 		"When the work result was Bad, the Qliphoth Counter lowered.",
 		"An employee in the facility will be reflected upon the mirror on the face of Nobody Is.",
-		"When the selected employee completed work, they were assimilated into the abnormality.")
+		"When only one employee with the clearance to work on abnormalities was present in the facility, work damage increased.",
+		"Otherwise, when the selected employee completed work, they were assimilated into the abnormality.",)
 	abno_breach_damage_count = "Extreme" // Once it transforms its over
 	abno_resistances = list(
 		RED_DAMAGE = "Endured/Endured/Resistant",
 		WHITE_DAMAGE = "Endured/Endured/Resistant",
 		BLACK_DAMAGE = "Resistant/Immune/Immune",
 		PALE_DAMAGE = "Weak/Normal/Endured")
+
+// Black Sun
+/obj/item/paper/fluff/info/aleph/blacksun
+	abno_type = /mob/living/simple_animal/hostile/abnormality/black_sun
+	abno_code = "M-03-192"
+	abno_info = list(
+		"This abnormality will rise over the course of 12 minutes",
+		"The closer the sun is to the peak, the more PE was generated from M-03-192.",
+		"As time goes on, this abnormality boosts your stats significantly.",
+		"Working on the abnormality will cause it to set once more, and cause all of it's boosts to subside.",
+		)

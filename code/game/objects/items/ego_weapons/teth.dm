@@ -12,13 +12,15 @@
 	desc = "The spear often tries to lead the wielder into a long and endless realm of mind, \
 	but they must try to not be swayed by it."
 	icon_state = "fragment"
-	force = 22
+	force = 33
 	reach = 2		//Has 2 Square Reach.
+	stuntime = 5	//Longer reach, gives you a short stun.
 	attack_speed = 1.2
 	damtype = BLACK_DAMAGE
 	attack_verb_continuous = list("pokes", "jabs", "tears", "lacerates", "gores")
 	attack_verb_simple = list("poke", "jab", "tear", "lacerate", "gore")
 	hitsound = 'sound/weapons/ego/spear1.ogg'
+
 
 /obj/item/ego_weapon/horn
 	name = "horn"
@@ -72,8 +74,9 @@
 	desc = "The flesh cleanly cut by a sharp tool creates a grotesque pattern with the bloodstains on the suit."
 	special = "Use this weapon in hand to dodgeroll."
 	icon_state = "wrist"
-	force = 7
-	attack_speed = 0.3
+	force = 12
+	attack_speed = 0.5
+	swingstyle = WEAPONSWING_LARGESWEEP
 	damtype = WHITE_DAMAGE
 	hitsound = 'sound/weapons/fixer/generic/knife2.ogg'
 	var/dodgelanding
@@ -106,7 +109,7 @@
 	desc = "The flesh cleanly cut by a sharp tool creates a grotesque pattern with the bloodstains on the suit."
 	special = "Upon throwing, this weapon returns to the user."
 	icon_state = "blossoms"
-	force = 17
+	force = 19		//Slight damage boost due to it being from Cherry Tree
 	throwforce = 30
 	throw_speed = 1
 	throw_range = 7
@@ -130,13 +133,15 @@
 	force = 13
 	attack_speed = 0.5
 	damtype = RED_DAMAGE
+	swingstyle = WEAPONSWING_LARGESWEEP
 	hitsound = 'sound/weapons/slashmiss.ogg'
 
 /obj/item/ego_weapon/mini/trick
 	name = "hat trick"
 	desc = "Imagination is the only weapon in the war with reality."
 	icon_state = "trick"
-	force = 16
+	force = 15
+	swingstyle = WEAPONSWING_LARGESWEEP
 	throwforce = 35		//You can only hold 4 so go nuts.
 	throw_speed = 5
 	throw_range = 7
@@ -195,8 +200,9 @@
 	name = "magic bean"
 	desc = "We may never find out what lies at the top, but perhaps those who made it are doing well up there."
 	icon_state = "bean"
-	force = 20
+	force = 18
 	damtype = BLACK_DAMAGE
+	swingstyle = WEAPONSWING_LARGESWEEP
 	attack_verb_continuous = list("slices", "slashes", "stabs")
 	attack_verb_simple = list("slice", "slash", "stab")
 	hitsound = 'sound/weapons/fixer/generic/knife3.ogg'
@@ -351,7 +357,7 @@
 		res.traps -= src
 		res = null
 	creator = null
-	. = ..()
+	return ..()
 
 /obj/effect/temp_visual/lanterntrap/proc/burst_check()
 	for(var/mob/living/L in get_turf(src))
@@ -366,7 +372,7 @@
 /obj/effect/temp_visual/lanterntrap/proc/burst()
 	var/turf/T = get_turf(src)
 	playsound(T, 'sound/effects/ordeals/amber/midnight_out.ogg', 40,TRUE)
-	for(var/turf/open/T2 in range(range, src))
+	for(var/turf/open/T2 in RANGE_TURFS(range, src))
 		new /obj/effect/temp_visual/yellowsmoke(T2)
 		for(var/mob/living/L in creator.HurtInTurf(T2, list(), resonance_damage * damage_multiplier, BLACK_DAMAGE, check_faction = TRUE, hurt_mechs = TRUE))
 			to_chat(L, span_userdanger("[src] bites you!"))
@@ -374,8 +380,8 @@
 				creator.visible_message(span_danger("[creator] activates [src] on [L]!"),span_danger("You activate [src] on [L]!"), null, COMBAT_MESSAGE_RANGE, L)
 	if(mine_mode == LANTERN_MODE_REMOTE)//So that you can't just place one automatic mine and 5 manual ones around it
 		rupturing = TRUE
-		for(var/obj/effect/temp_visual/lanterntrap/field in range((range * 2) + 1, src))//Wierd formula that lets you spread out your mines for a big aoe.
-			if(field.mine_mode == mine_mode)//So that it can't trigger automatic mines by accident.
+		for(var/obj/effect/temp_visual/lanterntrap/field in orange((range * 2) + 1, src))//Wierd formula that lets you spread out your mines for a big aoe.
+			if(field.mine_mode == mine_mode && !field.rupturing)//So that it can't trigger automatic mines by accident.
 				field.burst()
 		qdel(src)
 	else
@@ -447,6 +453,7 @@
 	icon_state = "fourleaf_clover"
 	force = 12
 	attack_speed = 0.5
+	swingstyle = WEAPONSWING_LARGESWEEP
 	damtype = RED_DAMAGE
 	attack_verb_continuous = list("slices", "slashes", "stabs")
 	attack_verb_simple = list("slice", "slash", "stab")
@@ -489,7 +496,7 @@
 
 /obj/item/ego_weapon/zauberhorn/Initialize()
 	RegisterSignal(src, COMSIG_PROJECTILE_ON_HIT, PROC_REF(projectile_hit))
-	..()
+	return ..()
 
 /obj/item/ego_weapon/zauberhorn/afterattack(atom/target, mob/living/user, proximity_flag, clickparams)
 	if(!CanUseEgo(user))
@@ -541,6 +548,7 @@
 	inhand_y_dimension = 96
 	force = 22
 	reach = 2		//Has 2 Square Reach.
+	stuntime = 6	//Longer reach, gives you a short stun.
 	attack_speed = 1.8// really slow
 	damtype = WHITE_DAMAGE
 	attack_verb_continuous = list("bludgeons", "whacks")
@@ -567,3 +575,14 @@
 	pierce_force_cost = 20
 	charge_speed_cap = 2
 	couch_cooldown_time = 3 SECONDS
+
+/obj/item/ego_weapon/denial
+	name = "denial"
+	desc = "Unregulated ingestion of Enkephalin may cause a wide range of unverified psychopathological symptoms."
+	icon_state = "denial"
+	force = 36
+	damtype = RED_DAMAGE
+	attack_speed = 1.5
+	attack_verb_continuous = list("smashes", "bludgeons", "crushes")
+	attack_verb_simple = list("smash", "bludgeon", "crush")
+	hitsound = 'sound/weapons/fixer/generic/club3.ogg'

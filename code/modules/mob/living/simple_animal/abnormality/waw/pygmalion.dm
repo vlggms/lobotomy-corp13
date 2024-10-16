@@ -43,6 +43,13 @@
 	gift_type =  /datum/ego_gifts/bride
 	abnormality_origin = ABNORMALITY_ORIGIN_WONDERLAB
 
+	observation_prompt = "The King Pygmalion prayed earnestly to the Goddess Aphrodite, wishing for the marble statue he had made and fallen in love to come to life. <br>\
+		She answered his prayer, bringing Galatea to life and united them in matrinomy. <br>\
+		What is the real name of the abnormality before you?"
+	observation_choices = list("Galatea", "Pygmalion")
+	correct_choices = list("Galatea", "Pygmalion")
+	observation_success_message = "Perhaps they sculpted each other."
+
 	var/missing_prudence = 0
 	var/mob/living/carbon/human/sculptor = null
 	var/protect_cooldown_time = 30 SECONDS
@@ -202,7 +209,7 @@
 
 /mob/living/simple_animal/hostile/abnormality/pygmalion/proc/CounterAttack(mob/living/attacker)
 	if (attacker == sculptor)
-		attacker.apply_damage(retaliation, PALE_DAMAGE, null, attacker.run_armor_check(null, PALE_DAMAGE), spread_damage = TRUE)
+		attacker.deal_damage(retaliation, PALE_DAMAGE)
 		to_chat(attacker, span_userdanger("You feel your heart break!"))
 
 /datum/status_effect/sculptor

@@ -27,6 +27,16 @@
 
 	abnormality_origin = ABNORMALITY_ORIGIN_LOBOTOMY
 
+	observation_prompt = "The Enkephalin cure affected not only mind, but also body. <br>\
+		The problem is, the supply of cure became tremendously huge to control when we realized the problem. <br>\
+		One of problems, one of them was numbing. <br>People believed they could live happy life. <br>\
+		People believed they could buy sadness and sell happiness with money. <br>When the first suicide happened, we should have known that these beliefs had been shattered. <br>\
+		Many hands float in the bath. <br>Hands that wanted to grab something but could not. <br>You......"
+	observation_choices = list("Grabbed a hand", "Did not grab a hand")
+	correct_choices = list("Grabbed a hand")
+	observation_success_message = "I feel coldness and stiffness. <br>I know these hands. <br>These are the hands of people I once loved."
+	observation_fail_message = "You looked away. <br>This is not the first time you ignore them. <br>It will be the same afterwards."
+
 	var/hands = 0
 
 /mob/living/simple_animal/hostile/abnormality/bloodbath/PostWorkEffect(mob/living/carbon/human/user, work_type, pe, work_time)

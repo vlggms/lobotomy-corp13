@@ -33,6 +33,14 @@
 	pixel_y = -8
 	layer = OPEN_DOOR_LAYER
 
+	observation_prompt = "I was the weakest person in all the City, even the Rats looked down upon me. <br>\
+		'I would never amount to anything in life or in death', I thought until one day I recieved a curious offer, a pamphlet in my mail. <br>\
+		\"Have you become strong? Strong for your City? Become Strong! Strong for your City!\" The suspicious pamphlet had an address and I followed it, <br>\
+		I detested my weakness and I cared not if I lived or died, I'd take any chance to not be weak. <br>At the address was a most curious machine and an instruction to enter."
+	observation_choices = list("Enter the machine")
+	correct_choices = list("Enter the machine")
+	observation_success_message = "I did as instructed and entered; now I have become strong, strong for my City. <br>I love the City I live in."
+
 	var/penalize = FALSE
 	var/work_count = 0
 	var/question = FALSE
@@ -196,7 +204,7 @@
 	prosthetic.replace_limb(M)
 	manual_emote("makes a grinding noise.")
 	M.emote("scream")
-	M.apply_damage(50, BRUTE, null, 0, spread_damage = TRUE) // Bro your [X] just got chopped off, no armor's gonna resist that.
+	M.deal_damage(50, BRUTE) // Bro your [X] just got chopped off, no armor's gonna resist that.
 	to_chat(M, span_notice("Your [old_part.name] has been replaced!"))
 	qdel(old_part)
 	M.regenerate_icons()
@@ -253,11 +261,11 @@
 	melee_damage_lower = 3*gear
 	melee_damage_upper = 5*gear
 	//Reset the speed. First proc changes this only with 0.
-	SpeedChange(gear_speed)
+	ChangeMoveToDelayBy(gear_speed)
 	//Calculate speed change.
 	gear_speed = FLOOR(gear / 3, 1)
 	//CRANK UP THE SPEED.
-	SpeedChange(-gear_speed)
+	ChangeMoveToDelayBy(-gear_speed)
 	rapid_melee = gear > 7 ? 2 : 1
 
 /mob/living/simple_animal/hostile/grown_strong/Life()

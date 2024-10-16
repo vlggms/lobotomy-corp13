@@ -50,6 +50,10 @@
 	//Update our name based on whether our face is obscured/disfigured
 	name = get_visible_name()
 
+	var/obj/item/organ/brain/B = getorganslot(ORGAN_SLOT_BRAIN)
+	if(stat != DEAD && B)
+		B.sync_stats(src)
+
 	if(stat != DEAD)
 		return TRUE
 
@@ -65,11 +69,11 @@
 
 /mob/living/carbon/human/handle_mutations_and_radiation()
 	if(!dna || !dna.species.handle_mutations_and_radiation(src))
-		..()
+		return ..()
 
 /mob/living/carbon/human/breathe()
 	if(!dna.species.breathe(src))
-		..()
+		return ..()
 
 /mob/living/carbon/human/check_breath(datum/gas_mixture/breath)
 

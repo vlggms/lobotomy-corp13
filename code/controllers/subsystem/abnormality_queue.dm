@@ -33,16 +33,23 @@ SUBSYSTEM_DEF(abnormality_queue)
 	/// World time at which new abnormality will be spawned
 	var/next_abno_spawn = INFINITY
 	/// Wait time for next abno spawn; This time is further affected by amount of abnos in facility
-	var/next_abno_spawn_time = 4 MINUTES
+	var/next_abno_spawn_time = 6 MINUTES
 	/// Tracks if the current pick is forced
 	var/fucked_it_lets_rolled = FALSE
 	/// Due to Managers not passing the Litmus Test, divine approval is now necessary for red roll
 	var/hardcore_roll_enabled = FALSE
 
+	/// Contains all suppression agents, clears itself of agents that are without a body.
+	var/list/active_suppression_agents = list()
+	/// the % values of when we give the agents in active_suppression_agents +10 attributes
+	var/list/abnormality_milestones = list(0.15, 0.29, 0.44, 0.59, 0.69, 0.79, 1000000)
+	/// How far we currently are along the chain of milestones
+	var/current_milestone = 1
+
 /datum/controller/subsystem/abnormality_queue/Initialize(timeofday)
 	RegisterSignal(SSdcs, COMSIG_GLOB_ORDEAL_END, PROC_REF(OnOrdealEnd))
 	rooms_start = GLOB.abnormality_room_spawners.len
-	next_abno_spawn_time -= min(2, rooms_start * 0.05) MINUTES // 20 rooms will decrease wait time by 1 minute
+	next_abno_spawn_time -= min(2, rooms_start * 0.05) MINUTES // 20 rooms will decrease wait time by 1 Minute
 	..()
 
 /datum/controller/subsystem/abnormality_queue/fire()
@@ -51,7 +58,7 @@ SUBSYSTEM_DEF(abnormality_queue)
 
 /datum/controller/subsystem/abnormality_queue/proc/SpawnAbno()
 	// Earlier in the game, abnormalities will spawn faster and then slow down a bit
-	next_abno_spawn = world.time + next_abno_spawn_time + ((min(16, spawned_abnos) - 6) * 6) SECONDS
+	next_abno_spawn = world.time + next_abno_spawn_time + ((min(16, spawned_abnos) - 6) * 9) SECONDS
 
 	if(!LAZYLEN(GLOB.abnormality_room_spawners))
 		return
@@ -101,16 +108,30 @@ SUBSYSTEM_DEF(abnormality_queue)
 		PickAbno()
 
 /datum/controller/subsystem/abnormality_queue/proc/PostSpawn()
-	if(queued_abnormality)
-		if(possible_abnormalities[initial(queued_abnormality.threat_level)][queued_abnormality] <= 0)
-			stack_trace("Queued abnormality had no weight!?")
-		possible_abnormalities[initial(queued_abnormality.threat_level)] -= queued_abnormality
-		for(var/obj/machinery/computer/abnormality_queue/Q in GLOB.lobotomy_devices)
-			Q.audible_message("<span class='announce'>[initial(queued_abnormality.name)] has arrived at the facility!</span>")
-			playsound(get_turf(Q), 'sound/machines/dun_don_alert.ogg', 50, TRUE)
-			Q.updateUsrDialog()
-		queued_abnormality = null
-		spawned_abnos++
+	if(!queued_abnormality)
+		return
+
+	if(possible_abnormalities[initial(queued_abnormality.threat_level)][queued_abnormality] <= 0)
+		stack_trace("Queued abnormality had no weight!?")
+	possible_abnormalities[initial(queued_abnormality.threat_level)] -= queued_abnormality
+	for(var/obj/machinery/computer/abnormality_queue/Q in GLOB.lobotomy_devices)
+		Q.audible_message("<span class='announce'>[initial(queued_abnormality.name)] has arrived at the facility!</span>")
+		playsound(get_turf(Q), 'sound/machines/dun_don_alert.ogg', 50, TRUE)
+		Q.updateUsrDialog()
+	queued_abnormality = null
+	spawned_abnos++
+
+	if((spawned_abnos / rooms_start) < abnormality_milestones[current_milestone])
+		return
+
+	current_milestone += 1
+	for(var/mob/living/carbon/human/person as anything in active_suppression_agents)
+		if(!istype(person) || QDELETED(person)) // gibbed or cryo'd, we no longer care about them
+			active_suppression_agents -= person
+			continue
+
+		person.adjust_all_attribute_levels(10)
+		to_chat(person, span_notice("You feel stronger than before."))
 
 /datum/controller/subsystem/abnormality_queue/proc/PickAbno()
 	if(!LAZYLEN(available_levels))

@@ -26,17 +26,38 @@
 	gift_type = null
 	gift_chance = 100
 	abnormality_origin = ABNORMALITY_ORIGIN_LOBOTOMY
+
+	secret_chance = TRUE
+	secret_icon_state = "megalovania"
+
+	observation_prompt = "The armor that took away many people's lives is sitting in front of you. <br>You can put it on, if you wish."
+	observation_choices = list("Put it on", "Dont't put it on")
+	correct_choices = list("Put it on")
+	observation_success_message = "It seems like you were not pacifist. <br>You feel the armor's warm welcome."
+	observation_fail_message = "The armor waits for another reckless one."
+
 	var/buff_icon = 'ModularTegustation/Teguicons/tegu_effects.dmi'
 	var/user_armored
 	var/numbermarked
 	var/meltdown_cooldown //no spamming the meltdown effect
 	var/meltdown_cooldown_time = 30 SECONDS
+	var/armor_dispensed
 
-/mob/living/simple_animal/hostile/abnormality/crumbling_armor/Initialize(mapload)
+// Hacky code to make the final observation check for a gift type without actually having it as a gift type
+/mob/living/simple_animal/hostile/abnormality/crumbling_armor/FinalObservation(mob/living/carbon/human/user)
+	gift_type = /datum/ego_gifts/recklessCourage
+	..()
+	gift_type = null
+
+/mob/living/simple_animal/hostile/abnormality/crumbling_armor/ObservationResult(mob/living/carbon/human/user, condition)
 	. = ..()
-	// Megalovania?
-	if (prob(1))
-		icon_state = "megalovania"
+	if(condition)
+		var/datum/ego_gifts/recklessCourage/R = new
+		user.Apply_Gift(R)
+		if(!armor_dispensed) // You only get one of these. Ever.
+			new /obj/item/clothing/suit/armor/ego_gear/he/crumbling_armor(get_turf(user))
+			armor_dispensed = TRUE
+	datum_reference.observation_ready = FALSE
 
 /mob/living/simple_animal/hostile/abnormality/crumbling_armor/SuccessEffect(mob/living/carbon/human/user, work_type, pe)
 	. = ..()
@@ -204,7 +225,7 @@
 	if(!istype(holders_head))
 		return FALSE
 	playsound(get_turf(status_holder), 'sound/abnormalities/crumbling/attack.ogg', 50, FALSE)
-	status_holder.apply_damage(punishment_damage, PALE_DAMAGE, null, status_holder.run_armor_check(null, PALE_DAMAGE), spread_damage = TRUE)
+	status_holder.deal_damage(punishment_damage, PALE_DAMAGE)
 	if(status_holder.health < 0)
 		holders_head.dismember()
 	new /obj/effect/temp_visual/slice(get_turf(status_holder))

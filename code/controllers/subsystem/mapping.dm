@@ -132,6 +132,7 @@ SUBSYSTEM_DEF(mapping)
 
 	SSmapping.LoadGroup(errorList, "Manager", "map_files/generic", "Manager.dmm", default_traits = ZTRAITS_CENTCOM)
 	SSmapping.LoadGroup(errorList, "Abnormality", "map_files/generic", "Abnormality_Z.dmm", default_traits = ZTRAITS_CENTCOM)
+	SSmapping.LoadGroup(errorList, "Test Range", "map_files/generic", "Test_Range.dmm", default_traits = ZTRAITS_CENTCOM)
 
 #endif
 	// Add the transit level
@@ -208,7 +209,9 @@ Used by the AI doomsday and the self-destruct nuke.
 	turf_reservations = SSmapping.turf_reservations
 	used_turfs = SSmapping.used_turfs
 	holodeck_templates = SSmapping.holodeck_templates
-	random_room_templates = SSmapping.random_room_templates
+	transit = SSmapping.transit
+	areas_in_z = SSmapping.areas_in_z
+	random_room_templates = SSmapping.random_room_templates // LOBOTOMYCORPORATION ADDITION -- RANDOM ROOMS
 
 	config = SSmapping.config
 	next_map_config = SSmapping.next_map_config

@@ -112,6 +112,7 @@
 	icon_state = "da_capo"
 	force = 40 // It attacks very fast
 	attack_speed = 0.5
+	swingstyle = WEAPONSWING_LARGESWEEP
 	damtype = WHITE_DAMAGE
 	attack_verb_continuous = list("slashes", "slices", "rips", "cuts")
 	attack_verb_simple = list("slash", "slice", "rip", "cut")
@@ -164,8 +165,9 @@
 	righthand_file = 'icons/mob/inhands/64x64_righthand.dmi'
 	inhand_x_dimension = 64
 	inhand_y_dimension = 64
-	force = 70
+	force = 65
 	damtype = RED_DAMAGE
+	swingstyle = WEAPONSWING_LARGESWEEP
 	attack_verb_continuous = list("slashes", "slices", "rips", "cuts")
 	attack_verb_simple = list("slash", "slice", "rip", "cut")
 	hitsound = 'sound/abnormalities/nothingthere/attack.ogg'
@@ -175,6 +177,7 @@
 							TEMPERANCE_ATTRIBUTE = 80,
 							JUSTICE_ATTRIBUTE = 80
 							)
+
 
 /obj/item/ego_weapon/mimicry/attack(mob/living/target, mob/living/carbon/human/user)
 	if(!CanUseEgo(user))
@@ -201,6 +204,7 @@
 	icon_state = "twilight"
 	worn_icon_state = "twilight"
 	force = 35
+	swingstyle = WEAPONSWING_LARGESWEEP
 	damtype = RED_DAMAGE // It's all damage types, actually
 	attack_verb_continuous = list("slashes", "slices", "rips", "cuts")
 	attack_verb_simple = list("slash", "slice", "rip", "cut")
@@ -249,7 +253,7 @@
 	if(!finisher_on)
 		..()
 		return
-	if(do_after(user, 5, target))
+	if(do_after(user, 4, target))
 
 		target.visible_message(span_danger("[user] rears up and slams into [target]!"), \
 						span_userdanger("[user] punches you with everything you got!!"), vision_distance = COMBAT_MESSAGE_RANGE, ignored_mobs = user)
@@ -267,9 +271,6 @@
 		target.apply_damage(goldrush_damage, RED_DAMAGE, null, target.run_armor_check(null, RED_DAMAGE), spread_damage = TRUE)		//MASSIVE fuckoff punch
 
 		playsound(src, 'sound/weapons/fixer/generic/gen2.ogg', 50, TRUE)
-		var/atom/throw_target = get_edge_target_turf(target, user.dir)
-		if(!target.anchored)
-			target.throw_at(throw_target, 2, 4, user)		//Bigass knockback. You are punching someone with a glove of GOLD
 		goldrush_damage = initial(goldrush_damage)
 	else
 		to_chat(user, "<span class='spider'><b>Your attack was interrupted!</b></span>")
@@ -306,13 +307,20 @@
 /obj/item/ego_weapon/smile/attack(mob/living/target, mob/living/carbon/human/user)
 	if(!CanUseEgo(user))
 		return
-	..()
-	if((target.health<=target.maxHealth *0.1	|| target.stat == DEAD) && !(GODMODE in target.status_flags))	//Makes up for the lack of damage by automatically killing things under 10% HP
+	. = ..()
+	if((target.health <= target.maxHealth * 0.1 || target.stat == DEAD) && !(target.status_flags & GODMODE))	//Makes up for the lack of damage by automatically killing things under 10% HP
 		target.gib()
-		user.adjustBruteLoss(-user.maxHealth*0.15)	//Heal 15% HP. Moved here from the armor, because that's a nightmare to code
+		user.adjustBruteLoss(-user.maxHealth * 0.15)	//Heal 15% HP. Moved here from the armor, because that's a nightmare to code
 
 /obj/item/ego_weapon/smile/get_clamped_volume()
 	return 50
+
+/obj/item/ego_weapon/smile/suicide_act(mob/living/carbon/user)
+	. = ..()
+	user.visible_message(span_suicide("[user] holds \the [src] in front of [user.p_them()], and begins to swing [user.p_them()]self with it! It looks like [user.p_theyre()] trying to commit suicide!"))
+	playsound(user, 'sound/weapons/ego/hammer.ogg', 50, TRUE, -1)
+	user.gib()
+	return MANUAL_SUICIDE
 
 /obj/item/ego_weapon/blooming
 	name = "blooming"
@@ -321,6 +329,7 @@
 	icon_state = "rosered"
 	force = 80 //Less damage, can swap damage type
 	damtype = RED_DAMAGE
+	swingstyle = WEAPONSWING_LARGESWEEP
 	attack_verb_continuous = list("cuts", "slices")
 	attack_verb_simple = list("cuts", "slices")
 	hitsound = 'sound/weapons/ego/rapier2.ogg'
@@ -345,7 +354,7 @@
 			damtype = RED_DAMAGE
 			force = 80
 			icon_state = "rosered"
-	to_chat(user, span_notice("\[src] will now deal [force] [damtype] damage."))
+	to_chat(user, span_notice("[src] will now deal [force] [damtype] damage."))
 	playsound(src, 'sound/items/screwdriver2.ogg', 50, TRUE)
 
 /obj/item/ego_weapon/censored
@@ -357,6 +366,7 @@
 	worn_icon_state = "censored"
 	force = 70	//there's a focus on the ranged attack here.
 	damtype = BLACK_DAMAGE
+	swingstyle = WEAPONSWING_THRUST
 	attack_verb_continuous = list("attacks")
 	attack_verb_simple = list("attack")
 	hitsound = 'sound/weapons/ego/censored1.ogg'
@@ -429,6 +439,7 @@
 	special = "Hitting enemies will mark them. Hitting marked enemies will give different buffs depending on attack type."
 	icon_state = "soulmate"
 	force = 40
+	swingstyle = WEAPONSWING_LARGESWEEP
 	damtype = RED_DAMAGE
 	attack_speed = 0.8
 	attack_verb_continuous = list("cuts", "slices")
@@ -453,7 +464,7 @@
 
 /obj/item/ego_weapon/soulmate/Initialize()
 	RegisterSignal(src, COMSIG_PROJECTILE_ON_HIT, PROC_REF(projectile_hit))
-	..()
+	. = ..()
 	AddElement(/datum/element/update_icon_updates_onmob)
 
 /obj/item/ego_weapon/soulmate/attack(mob/living/target, mob/living/user)
@@ -538,6 +549,7 @@
 	icon_state = "space"
 	force = 50	//Half white, half black.
 	damtype = WHITE_DAMAGE
+	swingstyle = WEAPONSWING_LARGESWEEP
 	attack_verb_continuous = list("cuts", "attacks", "slashes")
 	attack_verb_simple = list("cut", "attack", "slash")
 	hitsound = 'sound/weapons/rapierhit.ogg'
@@ -550,7 +562,7 @@
 	var/canaoe
 
 /obj/item/ego_weapon/space/Initialize()
-	..()
+	. = ..()
 	AddElement(/datum/element/update_icon_updates_onmob)
 
 /obj/item/ego_weapon/space/attack_self(mob/living/carbon/user)
@@ -696,6 +708,12 @@
 	force = season_list[current_season][1]
 	attack_speed = season_list[current_season][2]
 	reach = season_list[current_season][3]
+	if(reach > 1)
+		stuntime = 5
+		swingstyle = WEAPONSWING_THRUST
+	else
+		stuntime = 0
+		swingstyle = WEAPONSWING_SMALLSWEEP
 	attack_verb_continuous = season_list[current_season][4]
 	attack_verb_simple = season_list[current_season][5]
 	hitsound = season_list[current_season][6]
@@ -948,164 +966,6 @@
 							JUSTICE_ATTRIBUTE = 80
 							)
 
-/obj/item/ego_weapon/shield/waxen
-	name = "Waxen Pinion"
-	desc = "A searing blade, setting the world ablaze to eradicate evil. \
-			Using this E.G.O will eventually reduce you to ashes."
-	special = "Activate again during block to perform Blazing Strike. This weapon becomes stronger the more burn stacks you have."
-	icon_state = "combust"
-	worn_icon = 'icons/obj/clothing/belt_overlays.dmi'
-	worn_icon_state = "combust"
-	force = 80 // Quite high with passive buffs, but deals pure damage to yourself
-	attack_speed = 0.8
-	damtype = RED_DAMAGE
-	attack_verb_continuous = list("slash", "stab", "scorch")
-	attack_verb_simple = list("slashes", "stabs", "scorches")
-	hitsound = 'sound/weapons/ego/burn_sword.ogg'
-	reductions = list(30, 30, 30, 30) // 120 with no corresponding armor
-	projectile_block_duration = 0.8 SECONDS
-	block_duration = 3 SECONDS
-	block_cooldown = 9 SECONDS
-	block_sound = 'sound/weapons/ego/burn_guard.ogg'
-	hit_message = "softened the blow by expelling some heat!"
-	attribute_requirements = list(
-							FORTITUDE_ATTRIBUTE = 100,
-							PRUDENCE_ATTRIBUTE = 80,
-							TEMPERANCE_ATTRIBUTE = 80,
-							JUSTICE_ATTRIBUTE = 80
-							)
-	var/special_attack = FALSE
-	var/special_damage = 100
-	var/special_cooldown
-	var/special_cooldown_time = 10 SECONDS
-	var/special_checks_faction = TRUE
-	var/burn_self = 2
-	var/burn_enemy = 2
-	var/burn_stack = 0
-
-/obj/item/ego_weapon/shield/waxen/proc/Check_Ego(mob/living/user)
-	var/mob/living/carbon/human/H = user
-	var/obj/item/clothing/suit/armor/ego_gear/aleph/waxen/C = H.get_item_by_slot(ITEM_SLOT_OCLOTHING)
-	var/obj/item/clothing/suit/armor/ego_gear/realization/desperation/D = H.get_item_by_slot(ITEM_SLOT_OCLOTHING)
-	if(istype(C) || istype(D))
-		reductions = list(30, 50, 40, 30) // 150 with waxen/desperation
-		projectile_block_message = "The heat from your wing melted the projectile!"
-		block_message = "You cover yourself with your wing!"
-		block_cooldown_message = "You streched your wing."
-		if(istype(C))
-			burn_self = 3
-			burn_enemy = 3
-		if(istype(D))
-			burn_self = 4
-			burn_enemy = 4
-	else
-		reductions = list(30, 30, 30, 30)
-		projectile_block_message ="You swat the projectile away!"
-		block_message = "You attempt to parry the attack!"
-		block_cooldown_message = "You rearm your blade."
-		burn_self = 2
-		burn_enemy = 2
-
-/obj/item/ego_weapon/shield/waxen/proc/Check_Burn(mob/living/user)
-	var/datum/status_effect/stacking/lc_burn/B = user.has_status_effect(/datum/status_effect/stacking/lc_burn)
-	if(B)
-		burn_stack = B.stacks
-	else
-		burn_stack = 0
-	force = (80 + round(burn_stack/2))
-	burn_enemy = burn_enemy + round(burn_stack/10)
-
-/obj/item/ego_weapon/shield/waxen/CanUseEgo(mob/living/user)
-	. = ..()
-	if(user.get_inactive_held_item())
-		to_chat(user, span_notice("You cannot use [src] with only one hand!"))
-		return FALSE
-
-/obj/item/ego_weapon/shield/waxen/attack_self(mob/user)
-	if(!CanUseEgo(user))
-		return
-	Check_Ego(user)
-	Check_Burn(user)
-
-	if (block && !special_attack && special_cooldown < world.time)
-		special_attack = TRUE
-		to_chat(user, span_notice("You prepare to perform a blazing strike."))
-	..()
-
-// Counter
-/obj/item/ego_weapon/shield/waxen/AnnounceBlock(mob/living/carbon/human/source, damage, damagetype, def_zone)
-	source.apply_lc_burn(2)
-	for(var/turf/T in view(1, source))
-		new /obj/effect/temp_visual/fire/fast(T)
-		for(var/mob/living/L in T)
-			if(L == source)
-				continue
-			if(special_checks_faction && source.faction_check_mob(L))
-				continue
-			L.apply_damage(20, RED_DAMAGE, null, L.run_armor_check(null, RED_DAMAGE), spread_damage = TRUE)
-			L.apply_lc_burn(2)
-	..()
-
-/obj/item/ego_weapon/shield/waxen/attack(mob/living/target, mob/living/carbon/human/user)
-	if(!CanUseEgo(user))
-		return
-	Check_Ego(user)
-	Check_Burn(user)
-	..()
-	user.apply_lc_burn(burn_self)
-	if(user != target)
-		target.apply_lc_burn(burn_enemy)
-
-// Blazing Strike
-/obj/item/ego_weapon/shield/waxen/afterattack(atom/A, mob/living/user, proximity_flag, params)
-	..()
-	if(!CanUseEgo(user))
-		return
-	if(!special_attack)
-		return
-
-	special_attack = FALSE
-	special_cooldown = world.time + special_cooldown_time
-
-	Check_Burn(user)
-	var/extra_damage = 10 // Extra damage each 10 stacks, maxed at 320
-	for(var/i = 0, i < round(burn_stack/10), i++)
-		extra_damage = extra_damage * 2
-
-	// Movement
-	var/list/been_hit = list()
-	var/turf/target_turf = get_turf(user)
-	var/list/line_turfs = list(target_turf)
-	for(var/turf/T in getline(user, get_ranged_target_turf_direct(user, A, 6)))
-		if(T.density)
-			break
-		for(var/obj/machinery/door/D in T.contents)
-			if(D.density)
-				addtimer(CALLBACK (D, TYPE_PROC_REF(/obj/machinery/door, open)))
-		target_turf = T
-		line_turfs += T
-	user.dir = get_dir(user, A)
-	user.forceMove(target_turf)
-	playsound(target_turf, 'sound/abnormalities/firebird/Firebird_Hit.ogg', 50, TRUE)
-
-	// Damage
-	for(var/turf/T in line_turfs)
-		for(var/turf/TF in view(1, T))
-			new /obj/effect/temp_visual/fire/fast(TF)
-			for(var/mob/living/L in TF)
-				if(special_checks_faction && user.faction_check_mob(L))
-					continue
-				if(L in been_hit || L == user)
-					continue
-				user.visible_message(span_boldwarning("[user] blazes through [L]!"))
-				L.apply_damage((special_damage + extra_damage), RED_DAMAGE, null, L.run_armor_check(null, RED_DAMAGE), spread_damage = TRUE)
-				been_hit += L
-
-	// Remove burn if it's safety is on
-	var/datum/status_effect/stacking/lc_burn/B = user.has_status_effect(/datum/status_effect/stacking/lc_burn)
-	if(B.safety)
-		user.remove_status_effect(STATUS_EFFECT_LCBURN)
-
 /obj/item/ego_weapon/mockery
 	name = "mockery"
 	desc = "...If I earned a name, will I get to receive love and hate from you? \
@@ -1218,28 +1078,6 @@
 	attack_verb_simple = weapon_list[form][5]
 	hitsound = weapon_list[form][6]
 
-/obj/item/ego_weapon/ultimate_christmas
-	name = "ultimate christmas"
-	desc = "The Santa's bag is very heavy, capable of carrying a gift for everyone in the world. This one is no exception."
-	icon_state = "ultimate_christmas"
-	lefthand_file = 'icons/mob/inhands/64x64_lefthand.dmi'
-	righthand_file = 'icons/mob/inhands/64x64_righthand.dmi'
-	inhand_x_dimension = 64
-	inhand_y_dimension = 64
-	force = 160
-	attack_speed = 1.6
-	damtype = RED_DAMAGE
-	knockback = KNOCKBACK_HEAVY
-	attack_verb_continuous = list("bashes", "clubs")
-	attack_verb_simple = list("bashes", "clubs")
-	hitsound = 'sound/abnormalities/rudolta_buff/onrush1.ogg'
-	attribute_requirements = list(
-							FORTITUDE_ATTRIBUTE = 120,
-							PRUDENCE_ATTRIBUTE = 80,
-							TEMPERANCE_ATTRIBUTE = 80,
-							JUSTICE_ATTRIBUTE = 80
-							)
-
 /obj/item/ego_weapon/oberon
 	name = "oberon"
 	desc = "Then yes, I am the Oberon you seek."
@@ -1344,10 +1182,10 @@
 			for(var/i = 1 to 2)
 				sleep(2)
 				if(target in view(reach,user))
-					target.send_item_attack_message(src, user,target)
-					target.apply_damage(multihit * force_multiplier, damtype, null, target.run_armor_check(null, damtype), spread_damage = TRUE)
-					user.do_attack_animation(target)
 					playsound(loc, hitsound, get_clamped_volume(), TRUE, extrarange = stealthy_audio ? SILENCED_SOUND_EXTRARANGE : -1, falloff_distance = 0)
+					user.do_attack_animation(target)
+					target.attacked_by(src, user)
+					log_combat(user, target, pick(attack_verb_continuous), src.name, "(INTENT: [uppertext(user.a_intent)]) (DAMTYPE: [uppertext(damtype)])")
 
 		if("hammer")
 			for(var/mob/living/L in view(2, target))
@@ -1367,7 +1205,7 @@
 	..()
 	switch(form)
 		if("whip")
-			if (isliving(target))
+			if(isliving(target))
 				user.changeNext_move(CLICK_CD_MELEE * build_up) // Starts a little fast, but....
 				if (build_up <= 0.1)
 					build_up = 0.8
@@ -1376,7 +1214,7 @@
 						to_chat(user,span_warning("The whip starts to thrash around uncontrollably!"))
 						Smash(user, target)
 				else
-					build_up -= 0.1
+					build_up -= (0.1/3)//sortof silly but its a way to fix each whip hit from increasing build up 3 times as it should.
 			else
 				user.changeNext_move(CLICK_CD_MELEE * 0.8)
 
@@ -1687,3 +1525,69 @@
 	damage = 25
 	damage_type = PALE_DAMAGE
 	hitsound = "sound/weapons/ego/gasharpoon_bullet_impact.ogg"
+
+/obj/item/ego_weapon/wield/darkcarnival
+	name = "dark carnival"
+	desc = "Get ready! I'm comin' to get ya!"
+	icon_state = "dark_carnival"
+	special = "This weapon deals RED damage when wielded and WHITE otherwise."
+	swingstyle = WEAPONSWING_LARGESWEEP
+	icon_state = "dark_carnival"
+	lefthand_file = 'icons/mob/inhands/64x64_lefthand.dmi'
+	righthand_file = 'icons/mob/inhands/64x64_righthand.dmi'
+	inhand_x_dimension = 64
+	inhand_y_dimension = 64
+	force = 90
+	damtype = WHITE_DAMAGE
+	wielded_attack_speed = 0.5
+	wielded_reach = 2
+	wielded_force = 52
+	attack_speed = 1.2
+	attack_verb_continuous = list("slashes", "slices", "rips", "cuts")
+	attack_verb_simple = list("slash", "slice", "rip", "cut")
+	hitsound = 'sound/abnormalities/clownsmiling/egoslash.ogg'
+	attribute_requirements = list(
+							FORTITUDE_ATTRIBUTE = 100,
+							PRUDENCE_ATTRIBUTE = 80,
+							TEMPERANCE_ATTRIBUTE = 80,
+							JUSTICE_ATTRIBUTE = 80
+							)
+
+	var/dash_cooldown
+	var/dash_cooldown_time = 4 SECONDS
+	var/dash_range = 6
+
+/obj/item/ego_weapon/wield/darkcarnival/OnWield(obj/item/source, mob/user)
+	damtype = RED_DAMAGE
+	hitsound = 'sound/abnormalities/clownsmiling/egostab.ogg'
+	icon_state = "dark_carnival_open"
+	stuntime = 3
+	swingstyle = WEAPONSWING_THRUST
+	return ..()
+
+/obj/item/ego_weapon/wield/darkcarnival/on_unwield(obj/item/source, mob/user)
+	damtype = WHITE_DAMAGE
+	hitsound = 'sound/abnormalities/clownsmiling/egoslash.ogg'
+	icon_state = "dark_carnival"
+	stuntime = 0
+	swingstyle = WEAPONSWING_LARGESWEEP
+	return ..()
+
+/obj/item/ego_weapon/wield/darkcarnival/afterattack(atom/A, mob/living/user, proximity_flag, params)
+	if(!CanUseEgo(user))
+		return
+	if(!isliving(A))
+		return
+	if(dash_cooldown > world.time)
+		to_chat(user, "<span class='warning'>Your dash is still recharging!")
+		return
+	if((get_dist(user, A) < 2) || (!(can_see(user, A, dash_range))))
+		return
+	..()
+	dash_cooldown = world.time + dash_cooldown_time
+	for(var/i in 2 to get_dist(user, A))
+		step_towards(user,A)
+	if((get_dist(user, A) < 2))
+		A.attackby(src,user)
+	playsound(src, 'sound/abnormalities/clownsmiling/jumpscare.ogg', 50, FALSE, 9)
+	to_chat(user, "<span class='warning'>You dash to [A]!")

@@ -295,7 +295,7 @@
 
 /obj/item/ego_weapon/the_claw/proc/TriSerum(mob/living/user) // from PT, which was from Blue reverb
 	var/list/targets = list()
-	for(var/mob/living/L in livinginrange(12, user))
+	for(var/mob/living/L in range(12, user))
 		if(L == src)
 			continue
 		if(faction_check(user.faction, L.faction))

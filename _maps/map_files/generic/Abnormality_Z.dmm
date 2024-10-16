@@ -3,6 +3,7 @@
 /obj/effect/turf_decal/weather/snow/corner{
 	dir = 5
 	},
+/obj/effect/areaflavor_snow,
 /turf/open/floor/plasteel/dark{
 	base_icon_state = "snow-ice";
 	icon = 'icons/turf/snow.dmi';
@@ -15,6 +16,7 @@
 /obj/effect/turf_decal/weather/snow/corner{
 	dir = 10
 	},
+/obj/effect/areaflavor_snow,
 /turf/open/floor/plasteel/dark{
 	base_icon_state = "snow-ice";
 	icon = 'icons/turf/snow.dmi';
@@ -34,6 +36,7 @@
 /obj/effect/turf_decal/weather/snow/corner{
 	dir = 6
 	},
+/obj/effect/areaflavor_snow,
 /turf/open/floor/plasteel/dark{
 	base_icon_state = "snow-ice";
 	icon = 'icons/turf/snow.dmi';
@@ -56,6 +59,7 @@
 /obj/structure/flora/icegrave{
 	pixel_y = 8
 	},
+/obj/effect/areaflavor_snow,
 /turf/open/floor/plasteel/dark{
 	base_icon_state = "snow-ice";
 	icon = 'icons/turf/snow.dmi';
@@ -69,6 +73,7 @@
 	density = 1;
 	dir = 1
 	},
+/obj/effect/areaflavor_snow,
 /turf/open/floor/plasteel/dark{
 	base_icon_state = "snow-ice";
 	icon = 'icons/turf/snow.dmi';
@@ -97,6 +102,7 @@
 	pixel_x = 1;
 	pixel_y = 7
 	},
+/obj/effect/areaflavor_snow,
 /turf/open/floor/plasteel/dark{
 	base_icon_state = "snow-ice";
 	icon = 'icons/turf/snow.dmi';
@@ -113,6 +119,7 @@
 /area/fishboat)
 "dm" = (
 /obj/structure/flora/icestalactite/small,
+/obj/effect/areaflavor_snow,
 /turf/open/floor/plasteel/dark{
 	base_icon_state = "snow-ice";
 	icon = 'icons/turf/snow.dmi';
@@ -125,6 +132,7 @@
 /obj/effect/turf_decal/weather/snow/corner{
 	dir = 4
 	},
+/obj/effect/areaflavor_snow,
 /turf/open/floor/plasteel/dark{
 	base_icon_state = "snow-ice";
 	icon = 'icons/turf/snow.dmi';
@@ -145,6 +153,7 @@
 	pixel_x = -11;
 	pixel_y = 8
 	},
+/obj/effect/areaflavor_snow,
 /turf/open/floor/plasteel/dark{
 	base_icon_state = "snow";
 	icon = 'icons/turf/snow.dmi';
@@ -154,10 +163,8 @@
 	},
 /area/snowqueen)
 "eq" = (
-/obj/item/chair/icequeen{
-	desc = "A giant throne of ice, who would be comfortable sitting in this? It's super cold!";
-	plane = 0
-	},
+/obj/structure/chair/snowqueen,
+/obj/effect/areaflavor_snow,
 /turf/open/floor/plasteel/dark{
 	base_icon_state = "snow";
 	icon = 'icons/turf/snow.dmi';
@@ -199,6 +206,7 @@
 	pixel_x = 36;
 	pixel_y = 8
 	},
+/obj/effect/areaflavor_snow,
 /turf/open/floor/plasteel/dark{
 	base_icon_state = "snow";
 	icon = 'icons/turf/snow.dmi';
@@ -211,12 +219,18 @@
 /obj/effect/turf_decal/weather/snow/corner{
 	dir = 8
 	},
+/obj/effect/areaflavor_snow,
 /turf/open/floor/plasteel/dark{
 	base_icon_state = "snow-ice";
 	icon = 'icons/turf/snow.dmi';
 	icon_state = "snow-ice";
 	initial_gas_mix = "o2=22;n2=82;TEMP=270.15";
 	name = "ice"
+	},
+/area/snowqueen)
+"fR" = (
+/turf/closed/mineral/snowmountain/cavern{
+	layer = 3.3
 	},
 /area/snowqueen)
 "gw" = (
@@ -234,6 +248,7 @@
 /area/fishboat)
 "iO" = (
 /obj/structure/flora/icestalagmite,
+/obj/effect/areaflavor_snow,
 /turf/open/floor/plasteel/dark{
 	base_icon_state = "snow";
 	icon = 'icons/turf/snow.dmi';
@@ -257,6 +272,7 @@
 /area/fishboat)
 "jp" = (
 /obj/effect/turf_decal/weather/snow/corner,
+/obj/effect/areaflavor_snow,
 /turf/open/floor/plasteel/dark{
 	base_icon_state = "snow-ice";
 	icon = 'icons/turf/snow.dmi';
@@ -289,6 +305,7 @@
 /obj/effect/turf_decal/weather/snow/corner{
 	dir = 1
 	},
+/obj/effect/areaflavor_snow,
 /turf/open/floor/plasteel/dark{
 	base_icon_state = "snow-ice";
 	icon = 'icons/turf/snow.dmi';
@@ -302,6 +319,7 @@
 	dir = 1
 	},
 /obj/effect/landmark/snowqueen_spawn,
+/obj/effect/areaflavor_snow,
 /turf/open/floor/plasteel/dark{
 	base_icon_state = "snow-ice";
 	icon = 'icons/turf/snow.dmi';
@@ -315,6 +333,7 @@
 	pixel_x = 16;
 	pixel_y = 7
 	},
+/obj/effect/areaflavor_snow,
 /turf/open/floor/plasteel/dark{
 	base_icon_state = "snow-ice";
 	icon = 'icons/turf/snow.dmi';
@@ -336,6 +355,7 @@
 	pixel_x = -9;
 	pixel_y = 10
 	},
+/obj/effect/areaflavor_snow,
 /turf/open/floor/plasteel/dark{
 	base_icon_state = "snow-ice";
 	icon = 'icons/turf/snow.dmi';
@@ -399,6 +419,7 @@
 	set_cap = 3;
 	set_luminosity = 50
 	},
+/obj/effect/areaflavor_snow,
 /turf/open/floor/plasteel/dark{
 	base_icon_state = "snow-ice";
 	icon = 'icons/turf/snow.dmi';
@@ -417,6 +438,7 @@
 	pixel_x = -12;
 	pixel_y = -4
 	},
+/obj/effect/areaflavor_snow,
 /turf/open/floor/plasteel/dark{
 	base_icon_state = "snow";
 	icon = 'icons/turf/snow.dmi';
@@ -435,6 +457,7 @@
 	set_cap = 3;
 	set_luminosity = 50
 	},
+/obj/effect/areaflavor_snow,
 /turf/open/floor/plasteel/dark{
 	base_icon_state = "snow-ice";
 	icon = 'icons/turf/snow.dmi';
@@ -461,6 +484,7 @@
 /obj/structure/flora/iceslab/alt{
 	pixel_y = 7
 	},
+/obj/effect/areaflavor_snow,
 /turf/open/floor/plasteel/dark{
 	base_icon_state = "snow-ice";
 	icon = 'icons/turf/snow.dmi';
@@ -474,6 +498,7 @@
 	pixel_x = -3;
 	pixel_y = 13
 	},
+/obj/effect/areaflavor_snow,
 /turf/open/floor/plasteel/dark{
 	base_icon_state = "snow";
 	icon = 'icons/turf/snow.dmi';
@@ -487,6 +512,7 @@
 	pixel_x = -3;
 	pixel_y = 29
 	},
+/obj/effect/areaflavor_snow,
 /turf/open/floor/plasteel/dark{
 	base_icon_state = "snow";
 	icon = 'icons/turf/snow.dmi';
@@ -500,6 +526,7 @@
 	dir = 8
 	},
 /obj/effect/landmark/snowqueen_victimspawn,
+/obj/effect/areaflavor_snow,
 /turf/open/floor/plasteel/dark{
 	base_icon_state = "snow-ice";
 	icon = 'icons/turf/snow.dmi';
@@ -513,6 +540,7 @@
 	pixel_x = 6;
 	pixel_y = -7
 	},
+/obj/effect/areaflavor_snow,
 /turf/open/floor/plasteel/dark{
 	base_icon_state = "snow-ice";
 	icon = 'icons/turf/snow.dmi';
@@ -526,6 +554,7 @@
 	pixel_x = -8;
 	pixel_y = 1
 	},
+/obj/effect/areaflavor_snow,
 /turf/open/floor/plasteel/dark{
 	base_icon_state = "snow-ice";
 	icon = 'icons/turf/snow.dmi';
@@ -539,6 +568,7 @@
 /area/shelter)
 "vf" = (
 /obj/effect/landmark/snowqueen_teleport,
+/obj/effect/areaflavor_snow,
 /turf/open/floor/plasteel/dark{
 	base_icon_state = "snow";
 	icon = 'icons/turf/snow.dmi';
@@ -552,6 +582,7 @@
 /obj/effect/radiojammer{
 	range = 14
 	},
+/obj/effect/areaflavor_snow,
 /turf/open/floor/plasteel/dark{
 	base_icon_state = "snow-ice";
 	icon = 'icons/turf/snow.dmi';
@@ -580,6 +611,7 @@
 	pixel_x = -7;
 	pixel_y = -4
 	},
+/obj/effect/areaflavor_snow,
 /turf/open/floor/plasteel/dark{
 	base_icon_state = "snow-ice";
 	icon = 'icons/turf/snow.dmi';
@@ -593,6 +625,7 @@
 	pixel_x = -19;
 	pixel_y = -12
 	},
+/obj/effect/areaflavor_snow,
 /turf/open/floor/plasteel/dark{
 	base_icon_state = "snow-ice";
 	icon = 'icons/turf/snow.dmi';
@@ -605,6 +638,7 @@
 /obj/effect/turf_decal/weather/snow/corner{
 	dir = 9
 	},
+/obj/effect/areaflavor_snow,
 /turf/open/floor/plasteel/dark{
 	base_icon_state = "snow-ice";
 	icon = 'icons/turf/snow.dmi';
@@ -619,6 +653,7 @@
 	pixel_x = 8;
 	pixel_y = -4
 	},
+/obj/effect/areaflavor_snow,
 /turf/open/floor/plasteel/dark{
 	base_icon_state = "snow-ice";
 	icon = 'icons/turf/snow.dmi';
@@ -634,6 +669,7 @@
 	set_cap = 3;
 	set_luminosity = 50
 	},
+/obj/effect/areaflavor_snow,
 /turf/open/floor/plasteel/dark{
 	base_icon_state = "snow";
 	icon = 'icons/turf/snow.dmi';
@@ -652,6 +688,7 @@
 	set_cap = 3;
 	set_luminosity = 50
 	},
+/obj/effect/areaflavor_snow,
 /turf/open/floor/plasteel/dark{
 	base_icon_state = "snow-ice";
 	icon = 'icons/turf/snow.dmi';
@@ -671,6 +708,7 @@
 /obj/structure/flora/iceshards{
 	pixel_y = 15
 	},
+/obj/effect/areaflavor_snow,
 /turf/open/floor/plasteel/dark{
 	base_icon_state = "snow";
 	icon = 'icons/turf/snow.dmi';
@@ -684,6 +722,7 @@
 	pixel_x = -9;
 	pixel_y = -6
 	},
+/obj/effect/areaflavor_snow,
 /turf/open/floor/plasteel/dark{
 	base_icon_state = "snow";
 	icon = 'icons/turf/snow.dmi';
@@ -702,6 +741,7 @@
 	pixel_x = -11;
 	pixel_y = -12
 	},
+/obj/effect/areaflavor_snow,
 /turf/open/floor/plasteel/dark{
 	base_icon_state = "snow-ice";
 	icon = 'icons/turf/snow.dmi';
@@ -715,6 +755,7 @@
 	pixel_x = 8;
 	pixel_y = -4
 	},
+/obj/effect/areaflavor_snow,
 /turf/open/floor/plasteel/dark{
 	base_icon_state = "snow";
 	icon = 'icons/turf/snow.dmi';
@@ -728,6 +769,7 @@
 	pixel_x = -11;
 	pixel_y = -12
 	},
+/obj/effect/areaflavor_snow,
 /turf/open/floor/plasteel/dark{
 	base_icon_state = "snow-ice";
 	icon = 'icons/turf/snow.dmi';
@@ -745,6 +787,7 @@
 	pixel_x = 6;
 	pixel_y = -8
 	},
+/obj/effect/areaflavor_snow,
 /turf/open/floor/plasteel/dark{
 	base_icon_state = "snow";
 	icon = 'icons/turf/snow.dmi';
@@ -765,6 +808,7 @@
 	pixel_x = -8;
 	pixel_y = -4
 	},
+/obj/effect/areaflavor_snow,
 /turf/open/floor/plasteel/dark{
 	base_icon_state = "snow";
 	icon = 'icons/turf/snow.dmi';
@@ -779,6 +823,7 @@
 /area/shelter)
 "CI" = (
 /obj/effect/turf_decal/weather/snow/corner,
+/obj/effect/areaflavor_snow,
 /turf/open/floor/plasteel/dark{
 	base_icon_state = "snow";
 	icon = 'icons/turf/snow.dmi';
@@ -808,6 +853,7 @@
 	pixel_x = 8;
 	pixel_y = -4
 	},
+/obj/effect/areaflavor_snow,
 /turf/open/floor/plasteel/dark{
 	base_icon_state = "snow-ice";
 	icon = 'icons/turf/snow.dmi';
@@ -824,6 +870,7 @@
 	pixel_x = 8;
 	pixel_y = -4
 	},
+/obj/effect/areaflavor_snow,
 /turf/open/floor/plasteel/dark{
 	base_icon_state = "snow-ice";
 	icon = 'icons/turf/snow.dmi';
@@ -862,6 +909,7 @@
 	pixel_x = -9;
 	pixel_y = -6
 	},
+/obj/effect/areaflavor_snow,
 /turf/open/floor/plasteel/dark{
 	base_icon_state = "snow-ice";
 	icon = 'icons/turf/snow.dmi';
@@ -879,6 +927,7 @@
 	pixel_x = -11;
 	pixel_y = -2
 	},
+/obj/effect/areaflavor_snow,
 /turf/open/floor/plasteel/dark{
 	base_icon_state = "snow-ice";
 	icon = 'icons/turf/snow.dmi';
@@ -895,6 +944,7 @@
 	pixel_x = 9;
 	pixel_y = -1
 	},
+/obj/effect/areaflavor_snow,
 /turf/open/floor/plasteel/dark{
 	base_icon_state = "snow-ice";
 	icon = 'icons/turf/snow.dmi';
@@ -951,6 +1001,7 @@
 /obj/structure/flora/rock/pile/icy{
 	pixel_x = -13
 	},
+/obj/effect/areaflavor_snow,
 /turf/open/floor/plasteel/dark{
 	base_icon_state = "snow-ice";
 	icon = 'icons/turf/snow.dmi';
@@ -967,6 +1018,7 @@
 /obj/structure/flora/rock/icy{
 	pixel_x = 18
 	},
+/obj/effect/areaflavor_snow,
 /turf/open/floor/plasteel/dark{
 	base_icon_state = "snow-ice";
 	icon = 'icons/turf/snow.dmi';
@@ -986,6 +1038,7 @@
 	pixel_x = -15;
 	pixel_y = -5
 	},
+/obj/effect/areaflavor_snow,
 /turf/open/floor/plasteel/dark{
 	base_icon_state = "snow";
 	icon = 'icons/turf/snow.dmi';
@@ -1009,6 +1062,7 @@
 /obj/structure/flora/icechunk{
 	pixel_y = -7
 	},
+/obj/effect/areaflavor_snow,
 /turf/open/floor/plasteel/dark{
 	base_icon_state = "snow";
 	icon = 'icons/turf/snow.dmi';
@@ -1027,6 +1081,7 @@
 	pixel_x = 12;
 	pixel_y = 11
 	},
+/obj/effect/areaflavor_snow,
 /turf/open/floor/plasteel/dark{
 	base_icon_state = "snow-ice";
 	icon = 'icons/turf/snow.dmi';
@@ -1041,6 +1096,7 @@
 	pixel_x = 17;
 	pixel_y = -8
 	},
+/obj/effect/areaflavor_snow,
 /turf/open/floor/plasteel/dark{
 	base_icon_state = "snow";
 	icon = 'icons/turf/snow.dmi';
@@ -1064,6 +1120,7 @@
 	pixel_x = -9;
 	pixel_y = -9
 	},
+/obj/effect/areaflavor_snow,
 /turf/open/floor/plasteel/dark{
 	base_icon_state = "snow";
 	icon = 'icons/turf/snow.dmi';
@@ -1097,6 +1154,7 @@
 	set_cap = 3;
 	set_luminosity = 50
 	},
+/obj/effect/areaflavor_snow,
 /turf/open/floor/plasteel/dark{
 	base_icon_state = "snow-ice";
 	icon = 'icons/turf/snow.dmi';
@@ -1164,6 +1222,7 @@
 	pixel_x = -4;
 	pixel_y = 14
 	},
+/obj/effect/areaflavor_snow,
 /turf/open/floor/plasteel/dark{
 	base_icon_state = "snow";
 	icon = 'icons/turf/snow.dmi';
@@ -1206,6 +1265,7 @@
 	pixel_x = -12;
 	pixel_y = -17
 	},
+/obj/effect/areaflavor_snow,
 /turf/open/floor/plasteel/dark{
 	base_icon_state = "snow";
 	icon = 'icons/turf/snow.dmi';
@@ -1228,6 +1288,7 @@
 /area/fishboat)
 "UF" = (
 /obj/structure/frozensword,
+/obj/effect/areaflavor_snow,
 /turf/open/floor/plasteel/dark{
 	base_icon_state = "snow-ice";
 	icon = 'icons/turf/snow.dmi';
@@ -1237,6 +1298,7 @@
 	},
 /area/snowqueen)
 "UO" = (
+/obj/effect/areaflavor_snow,
 /turf/open/floor/plasteel/dark{
 	base_icon_state = "snow-ice";
 	icon = 'icons/turf/snow.dmi';
@@ -1252,6 +1314,7 @@
 	set_cap = 3;
 	set_luminosity = 50
 	},
+/obj/effect/areaflavor_snow,
 /turf/open/floor/plasteel/dark{
 	base_icon_state = "snow-ice";
 	icon = 'icons/turf/snow.dmi';
@@ -1270,6 +1333,7 @@
 /area/fishboat)
 "VJ" = (
 /obj/structure/flora/icegrave,
+/obj/effect/areaflavor_snow,
 /turf/open/floor/plasteel/dark{
 	base_icon_state = "snow";
 	icon = 'icons/turf/snow.dmi';
@@ -1348,6 +1412,7 @@
 /area/fishboat)
 "Yw" = (
 /obj/structure/flora/icestalagmite/small,
+/obj/effect/areaflavor_snow,
 /turf/open/floor/plasteel/dark{
 	base_icon_state = "snow";
 	icon = 'icons/turf/snow.dmi';
@@ -1361,6 +1426,7 @@
 /obj/effect/radiojammer{
 	range = 6
 	},
+/obj/effect/areaflavor_snow,
 /turf/open/floor/plasteel/dark{
 	base_icon_state = "snow-ice";
 	icon = 'icons/turf/snow.dmi';
@@ -1383,6 +1449,7 @@
 /area/shelter)
 "YQ" = (
 /obj/effect/landmark/snowqueen_teleport,
+/obj/effect/areaflavor_snow,
 /turf/open/floor/plasteel/dark{
 	base_icon_state = "snow-ice";
 	icon = 'icons/turf/snow.dmi';
@@ -1397,6 +1464,7 @@
 	pixel_x = 9;
 	pixel_y = 6
 	},
+/obj/effect/areaflavor_snow,
 /turf/open/floor/plasteel/dark{
 	base_icon_state = "snow";
 	icon = 'icons/turf/snow.dmi';
@@ -1412,6 +1480,7 @@
 /turf/open/floor/wood,
 /area/fishboat)
 "ZI" = (
+/obj/effect/areaflavor_snow,
 /turf/open/floor/plasteel/dark{
 	base_icon_state = "snow";
 	icon = 'icons/turf/snow.dmi';
@@ -8077,8 +8146,8 @@ XL
 XL
 XL
 ZU
-ZU
-ZU
+fR
+fR
 ZI
 ZI
 eq
@@ -8179,7 +8248,7 @@ XL
 XL
 XL
 ZU
-ZU
+fR
 ZI
 ZI
 ZI
@@ -8281,7 +8350,7 @@ XL
 XL
 XL
 ZU
-ZU
+fR
 ZI
 ZI
 ZI
@@ -8383,7 +8452,7 @@ XL
 XL
 XL
 ZU
-ZU
+fR
 ZI
 ZI
 ZI
@@ -8485,8 +8554,8 @@ XL
 XL
 XL
 ZU
-ZU
-ZU
+fR
+fR
 ZI
 ZI
 fd

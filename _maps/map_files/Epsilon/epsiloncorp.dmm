@@ -216,7 +216,7 @@
 /obj/structure/window/reinforced/spawner{
 	resistance_flags = 115
 	},
-/turf/open/water/deep/saltwater{
+/turf/open/water/deep/freshwater{
 	icon_state = "darkbluewater1"
 	},
 /area/department_main/command)
@@ -469,159 +469,6 @@
 /turf/open/floor/plasteel/sepia,
 /area/facility_hallway/west)
 "bu" = (
-/obj/item/food/meat/slab,
-/obj/item/food/meat/slab,
-/obj/item/food/meat/slab,
-/obj/item/food/meat/slab,
-/obj/item/food/meat/slab,
-/obj/item/food/meat/slab,
-/obj/item/food/meat/slab,
-/obj/item/food/meat/slab,
-/obj/item/food/meat/slab,
-/obj/item/food/meat/slab,
-/obj/item/food/meat/slab,
-/obj/item/food/meat/slab,
-/obj/item/food/meat/slab,
-/obj/item/food/meat/slab,
-/obj/item/food/meat/slab,
-/obj/item/food/meat/slab,
-/obj/item/food/meat/slab,
-/obj/item/food/meat/slab,
-/obj/item/food/meat/slab/bear,
-/obj/item/food/meat/slab/bear,
-/obj/item/food/meat/slab/bear,
-/obj/item/food/meat/slab/bear,
-/obj/item/food/meat/slab/bear,
-/obj/item/food/meat/slab/bear,
-/obj/item/food/meat/slab/bear,
-/obj/item/food/meat/slab/bear,
-/obj/item/food/meat/slab/bear,
-/obj/item/food/meat/slab/bear,
-/obj/item/food/meat/slab/bear,
-/obj/item/food/meat/slab/bear,
-/obj/item/food/meat/slab/bear,
-/obj/item/food/meat/slab/bear,
-/obj/item/food/meat/slab/bear,
-/obj/item/food/meat/slab/chicken,
-/obj/item/food/meat/slab/chicken,
-/obj/item/food/meat/slab/chicken,
-/obj/item/food/meat/slab/chicken,
-/obj/item/food/meat/slab/chicken,
-/obj/item/food/meat/slab/chicken,
-/obj/item/food/meat/slab/chicken,
-/obj/item/food/meat/slab/chicken,
-/obj/item/food/meat/slab/chicken,
-/obj/item/food/meat/slab/chicken,
-/obj/item/food/meat/slab/chicken,
-/obj/item/food/meat/slab/chicken,
-/obj/item/food/meat/slab/chicken,
-/obj/item/food/meat/slab/chicken,
-/obj/item/food/meat/slab/chicken,
-/obj/item/food/meat/rawcrab,
-/obj/item/food/meat/rawcrab,
-/obj/item/food/meat/rawcrab,
-/obj/item/food/meat/rawcrab,
-/obj/item/food/meat/rawcrab,
-/obj/item/food/meat/rawcrab,
-/obj/item/food/meat/rawcrab,
-/obj/item/food/meat/rawcrab,
-/obj/item/food/meat/rawcrab,
-/obj/item/food/meat/rawcrab,
-/obj/item/food/meat/rawcrab,
-/obj/item/food/meat/rawcrab,
-/obj/item/food/meat/rawcrab,
-/obj/item/food/meat/rawcrab,
-/obj/item/food/meat/rawcrab,
-/obj/item/food/meat/slab/spider,
-/obj/item/food/meat/slab/spider,
-/obj/item/food/meat/slab/spider,
-/obj/item/food/meat/slab/spider,
-/obj/item/food/meat/slab/spider,
-/obj/item/food/meat/slab/spider,
-/obj/item/food/meat/slab/spider,
-/obj/item/food/meat/slab/spider,
-/obj/item/food/meat/slab/spider,
-/obj/item/food/meat/slab/spider,
-/obj/item/food/meat/slab/spider,
-/obj/item/food/meat/slab/spider,
-/obj/item/food/meat/slab/spider,
-/obj/item/food/meat/slab/spider,
-/obj/item/food/meat/slab/spider,
-/obj/item/food/meat/slab/spider,
-/obj/item/food/meat/slab/spider,
-/obj/item/food/meat/slab/spider,
-/obj/item/food/carpmeat,
-/obj/item/food/carpmeat,
-/obj/item/food/carpmeat,
-/obj/item/food/carpmeat,
-/obj/item/food/carpmeat,
-/obj/item/food/carpmeat,
-/obj/item/food/carpmeat,
-/obj/item/food/carpmeat,
-/obj/item/food/carpmeat,
-/obj/item/food/carpmeat,
-/obj/item/food/carpmeat,
-/obj/item/food/carpmeat,
-/obj/item/food/carpmeat,
-/obj/item/food/carpmeat,
-/obj/item/food/carpmeat,
-/obj/item/food/spiderleg,
-/obj/item/food/spiderleg,
-/obj/item/food/spiderleg,
-/obj/item/food/spiderleg,
-/obj/item/food/spiderleg,
-/obj/item/food/spiderleg,
-/obj/item/food/spiderleg,
-/obj/item/food/spiderleg,
-/obj/item/food/spiderleg,
-/obj/item/food/spiderleg,
-/obj/item/food/spiderleg,
-/obj/item/food/spiderleg,
-/obj/item/food/spidereggs,
-/obj/item/food/spidereggs,
-/obj/item/food/spidereggs,
-/obj/item/food/spidereggs,
-/obj/item/food/spidereggs,
-/obj/item/food/spidereggs,
-/obj/item/food/spidereggs,
-/obj/item/food/spidereggs,
-/obj/item/food/spidereggs,
-/obj/item/food/spidereggs,
-/obj/item/food/spidereggs,
-/obj/item/food/spidereggs,
-/obj/item/food/spidereggs,
-/obj/item/food/spidereggs,
-/obj/item/food/spidereggs,
-/obj/item/food/spidereggs,
-/obj/item/food/spidereggs,
-/obj/item/food/spidereggs,
-/obj/item/food/spidereggs,
-/obj/item/food/spidereggs,
-/obj/item/food/spidereggs,
-/obj/item/food/spidereggs,
-/obj/item/food/spidereggs,
-/obj/item/food/spidereggs,
-/obj/item/food/meat/slab/xeno,
-/obj/item/food/meat/slab/xeno,
-/obj/item/food/meat/slab/xeno,
-/obj/item/food/meat/slab/xeno,
-/obj/item/food/meat/slab/xeno,
-/obj/item/food/meat/slab/xeno,
-/obj/item/food/meat/slab/xeno,
-/obj/item/food/meat/slab/xeno,
-/obj/item/food/meat/slab/xeno,
-/obj/item/food/meat/slab/xeno,
-/obj/item/food/meat/slab/xeno,
-/obj/item/food/meat/slab/xeno,
-/obj/item/food/meat/slab/xeno,
-/obj/item/food/meat/slab/xeno,
-/obj/item/food/meat/slab/xeno,
-/obj/structure/closet/secure_closet/freezer/fridge/open{
-	anchored = 1;
-	density = 0;
-	pixel_y = 19;
-	storage_capacity = 1000
-	},
 /obj/effect/turf_decal/tile/blue{
 	color = "#5269e9";
 	dir = 4
@@ -642,6 +489,7 @@
 	pixel_x = 9;
 	pixel_y = 4
 	},
+/obj/structure/fishcooker/fishoven,
 /turf/open/floor/plasteel/sepia{
 	color = "#ccc8c0"
 	},
@@ -864,7 +712,6 @@
 /obj/effect/turf_decal/tile/red,
 /obj/structure/chair/office/light{
 	anchored = 1;
-	can_buckle = 0;
 	dir = 4;
 	pixel_x = -5;
 	pixel_y = 4
@@ -924,6 +771,25 @@
 	},
 /turf/open/floor/plasteel/sepia,
 /area/facility_hallway/control)
+"cr" = (
+/obj/effect/turf_decal/tile/blue{
+	color = "#5269e9";
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/blue{
+	color = "#5269e9";
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/neutral{
+	color = "#090807"
+	},
+/obj/effect/turf_decal/tile/neutral{
+	color = "#000000";
+	dir = 8
+	},
+/obj/structure/fishcooker/fishstove,
+/turf/open/floor/plasteel/sepia,
+/area/facility_hallway/welfare)
 "ct" = (
 /obj/effect/turf_decal/tile/yellow,
 /obj/effect/turf_decal/tile/yellow{
@@ -1227,7 +1093,6 @@
 "du" = (
 /obj/structure/chair/office{
 	anchored = 1;
-	can_buckle = 0;
 	dir = 8;
 	pixel_x = -6;
 	pixel_y = 4
@@ -1294,6 +1159,15 @@
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/plasteel/sepia,
 /area/facility_hallway/east)
+"dz" = (
+/obj/effect/turf_decal/tile/neutral{
+	dir = 4
+	},
+/obj/structure/sign/button_counter/directional/east,
+/turf/open/floor/plasteel/sepia{
+	color = "#ccc8c0"
+	},
+/area/facility_hallway/information)
 "dA" = (
 /obj/effect/turf_decal/tile/brown,
 /obj/effect/turf_decal/tile/brown{
@@ -1369,9 +1243,7 @@
 	alpha = 0;
 	mouse_opacity = 0
 	},
-/turf/open/water/deep/saltwater/safe{
-	environment = list(/obj/item/food/fish/salt_water/marine_shrimp = 1000, /obj/item/food/fish/salt_water/clownfish = 1000, /obj/item/food/fish/salt_water/greenchromis = 1000, /obj/item/food/fish/salt_water/firefish = 1000, /obj/item/food/fish/salt_water/cardinal = 400, /obj/item/food/fish/salt_water = 400, /obj/item/food/fish/salt_water/sheephead = 400, /obj/item/food/fish/salt_water/lanternfish = 200, /obj/item/stack/spacecash/c1 = 700, /obj/item/fishing_component/hook/bone = 700, /obj/item/stack/fish_points = 600, /obj/item/food/canned/beans = 600, /obj/item/food/canned/peaches = 600, /obj/item/clothing/head/beret/fishing_hat = 200, /obj/item/reagent_containers/food/drinks/bottle/wine/unlabeled = 100)
-	},
+/turf/open/water/deep/freshwater,
 /area/department_main/command)
 "dJ" = (
 /obj/effect/turf_decal/tile/purple{
@@ -1659,7 +1531,6 @@
 	dir = 1
 	},
 /obj/structure/chair/sofa/right{
-	can_buckle = 0;
 	dir = 4
 	},
 /turf/open/floor/plasteel/sepia{
@@ -1702,7 +1573,6 @@
 /area/facility_hallway/west)
 "eA" = (
 /obj/structure/chair/comfy/black{
-	can_buckle = 0;
 	dir = 1;
 	pixel_y = 7
 	},
@@ -1799,7 +1669,6 @@
 /area/facility_hallway/human)
 "eW" = (
 /obj/structure/chair/comfy/black{
-	can_buckle = 0;
 	dir = 4;
 	pixel_x = 5;
 	pixel_y = 4
@@ -1829,7 +1698,6 @@
 	dir = 8
 	},
 /obj/structure/chair/plastic{
-	can_buckle = 0;
 	dir = 8;
 	pixel_x = 12
 	},
@@ -2226,11 +2094,6 @@
 	color = "#5269e9";
 	dir = 8
 	},
-/obj/structure/table/reinforced,
-/obj/machinery/reagentgrinder{
-	desc = "Used to grind things up into raw materials and liquids.";
-	pixel_y = 10
-	},
 /turf/open/floor/plasteel/sepia{
 	color = "#ccc8c0"
 	},
@@ -2273,7 +2136,6 @@
 /obj/effect/turf_decal/tile/red,
 /obj/structure/chair/office/light{
 	anchored = 1;
-	can_buckle = 0;
 	dir = 4
 	},
 /turf/open/floor/plasteel/sepia,
@@ -2356,7 +2218,6 @@
 	},
 /obj/effect/turf_decal/stripes/line,
 /turf/open/water/deep/polluted{
-	environment = list(/obj/item/food/fish/salt_water/piscine_mermaid = 200, /obj/item/food/fish/fresh_water/mosb = 200, /obj/item/food/fish/fresh_water/ratfish = 50, /obj/item/food/tofu/prison = 1000, /obj/item/food/meat/slab/human/mutant/zombie = 1000, /obj/item/food/dough = 800, /obj/item/stack/spacecash/c1 = 700, /obj/item/food/breadslice/moldy = 300, /obj/item/food/canned/beans = 300, /obj/item/food/canned/peaches = 300, /obj/item/reagent_containers/food/drinks/bottle/small = 300, /obj/item/reagent_containers/food/drinks/bottle/wine/unlabeled = 300, /obj/item/stack/fish_points = 250, /obj/item/food/spiderling = 200, /obj/item/food/grown/harebell = 200, /obj/item/stack/sheet/mineral/wood = 200);
 	safe = 1
 	},
 /area/department_main/welfare)
@@ -2448,7 +2309,6 @@
 	dir = 4
 	},
 /obj/structure/chair/comfy/teal{
-	can_buckle = 0;
 	dir = 1;
 	pixel_y = 12
 	},
@@ -2474,7 +2334,6 @@
 /area/facility_hallway/west)
 "he" = (
 /turf/open/water/deep/saltwater/safe{
-	environment = list(/obj/item/food/fish/salt_water/marine_shrimp = 1000, /obj/item/food/fish/salt_water/clownfish = 1000, /obj/item/food/fish/salt_water/greenchromis = 1000, /obj/item/food/fish/salt_water/firefish = 1000, /obj/item/food/fish/salt_water/cardinal = 400, /obj/item/food/fish/salt_water = 400, /obj/item/food/fish/salt_water/sheephead = 400, /obj/item/food/fish/salt_water/lanternfish = 200, /obj/item/stack/spacecash/c1 = 700, /obj/item/fishing_component/hook/bone = 700, /obj/item/stack/fish_points = 600, /obj/item/food/canned/beans = 600, /obj/item/food/canned/peaches = 600, /obj/item/clothing/head/beret/fishing_hat = 200, /obj/item/reagent_containers/food/drinks/bottle/wine/unlabeled = 100);
 	icon_state = "water_turf1"
 	},
 /area/space)
@@ -2511,7 +2370,7 @@
 	alpha = 0;
 	mouse_opacity = 0
 	},
-/turf/open/water/deep/saltwater{
+/turf/open/water/deep/freshwater{
 	icon_state = "redwater2"
 	},
 /area/department_main/command)
@@ -2862,7 +2721,7 @@
 	alpha = 0;
 	mouse_opacity = 0
 	},
-/turf/open/water/deep/saltwater{
+/turf/open/water/deep/freshwater{
 	icon_state = "purplewater3"
 	},
 /area/department_main/command)
@@ -3216,7 +3075,6 @@
 	dir = 1
 	},
 /obj/structure/chair/sofa/left{
-	can_buckle = 0;
 	dir = 4
 	},
 /turf/open/floor/plasteel/sepia{
@@ -3411,9 +3269,7 @@
 	alpha = 0;
 	mouse_opacity = 0
 	},
-/turf/open/water/deep/saltwater/safe{
-	environment = list(/obj/item/food/fish/salt_water/marine_shrimp = 1000, /obj/item/food/fish/salt_water/clownfish = 1000, /obj/item/food/fish/salt_water/greenchromis = 1000, /obj/item/food/fish/salt_water/firefish = 1000, /obj/item/food/fish/salt_water/cardinal = 400, /obj/item/food/fish/salt_water = 400, /obj/item/food/fish/salt_water/sheephead = 400, /obj/item/food/fish/salt_water/lanternfish = 200, /obj/item/stack/spacecash/c1 = 700, /obj/item/fishing_component/hook/bone = 700, /obj/item/stack/fish_points = 600, /obj/item/food/canned/beans = 600, /obj/item/food/canned/peaches = 600, /obj/item/clothing/head/beret/fishing_hat = 200, /obj/item/reagent_containers/food/drinks/bottle/wine/unlabeled = 100)
-	},
+/turf/open/water/deep/freshwater,
 /area/department_main/command)
 "jN" = (
 /obj/effect/turf_decal/tile/yellow,
@@ -3502,9 +3358,7 @@
 	color = "#bf48b1";
 	dir = 8
 	},
-/obj/structure/chair/comfy/black{
-	can_buckle = 0
-	},
+/obj/structure/chair/comfy/black,
 /turf/open/floor/plasteel/sepia,
 /area/department_main/information)
 "jZ" = (
@@ -3705,7 +3559,6 @@
 "kz" = (
 /obj/structure/chair/office/light{
 	anchored = 1;
-	can_buckle = 0;
 	dir = 1
 	},
 /obj/effect/turf_decal/tile/red{
@@ -5158,7 +5011,7 @@
 	alpha = 0;
 	mouse_opacity = 0
 	},
-/turf/open/water/deep/saltwater{
+/turf/open/water/deep/freshwater{
 	icon_state = "darkbluewater1"
 	},
 /area/department_main/command)
@@ -5430,7 +5283,6 @@
 "qn" = (
 /obj/structure/chair/office{
 	anchored = 1;
-	can_buckle = 0;
 	dir = 8;
 	pixel_x = -6;
 	pixel_y = 4
@@ -5815,8 +5667,7 @@
 /area/department_main/training)
 "rd" = (
 /turf/open/water/deep/saltwater/safe{
-	color = "#f5f5f5";
-	environment = list(/obj/item/food/fish/salt_water/marine_shrimp = 1000, /obj/item/food/fish/salt_water/clownfish = 1000, /obj/item/food/fish/salt_water/greenchromis = 1000, /obj/item/food/fish/salt_water/firefish = 1000, /obj/item/food/fish/salt_water/cardinal = 400, /obj/item/food/fish/salt_water = 400, /obj/item/food/fish/salt_water/sheephead = 400, /obj/item/food/fish/salt_water/lanternfish = 200, /obj/item/stack/spacecash/c1 = 700, /obj/item/fishing_component/hook/bone = 700, /obj/item/stack/fish_points = 600, /obj/item/food/canned/beans = 600, /obj/item/food/canned/peaches = 600, /obj/item/clothing/head/beret/fishing_hat = 200, /obj/item/reagent_containers/food/drinks/bottle/wine/unlabeled = 100)
+	color = "#f5f5f5"
 	},
 /area/facility_hallway/central)
 "re" = (
@@ -5942,7 +5793,6 @@
 /area/facility_hallway/west)
 "rv" = (
 /obj/structure/chair/comfy{
-	can_buckle = 0;
 	dir = 1;
 	pixel_y = 8
 	},
@@ -6279,7 +6129,6 @@
 /area/facility_hallway/east)
 "sE" = (
 /turf/open/water/deep/saltwater/safe{
-	environment = list(/obj/item/food/fish/salt_water/marine_shrimp = 1000, /obj/item/food/fish/salt_water/clownfish = 1000, /obj/item/food/fish/salt_water/greenchromis = 1000, /obj/item/food/fish/salt_water/firefish = 1000, /obj/item/food/fish/salt_water/cardinal = 400, /obj/item/food/fish/salt_water = 400, /obj/item/food/fish/salt_water/sheephead = 400, /obj/item/food/fish/salt_water/lanternfish = 200, /obj/item/stack/spacecash/c1 = 700, /obj/item/fishing_component/hook/bone = 700, /obj/item/stack/fish_points = 600, /obj/item/food/canned/beans = 600, /obj/item/food/canned/peaches = 600, /obj/item/clothing/head/beret/fishing_hat = 200, /obj/item/reagent_containers/food/drinks/bottle/wine/unlabeled = 100);
 	icon_state = "water_turf1"
 	},
 /area/facility_hallway/central)
@@ -6872,6 +6721,8 @@
 	color = "#000000";
 	dir = 8
 	},
+/obj/structure/table/reinforced,
+/obj/structure/fishcooker,
 /turf/open/floor/plasteel/sepia,
 /area/facility_hallway/welfare)
 "uw" = (
@@ -7231,153 +7082,6 @@
 	},
 /area/department_main/training)
 "vB" = (
-/obj/item/food/meat/slab,
-/obj/item/food/meat/slab,
-/obj/item/food/meat/slab,
-/obj/item/food/meat/slab,
-/obj/item/food/meat/slab,
-/obj/item/food/meat/slab,
-/obj/item/food/meat/slab,
-/obj/item/food/meat/slab,
-/obj/item/food/meat/slab,
-/obj/item/food/meat/slab,
-/obj/item/food/meat/slab,
-/obj/item/food/meat/slab,
-/obj/item/food/meat/slab,
-/obj/item/food/meat/slab,
-/obj/item/food/meat/slab,
-/obj/item/food/meat/slab,
-/obj/item/food/meat/slab,
-/obj/item/food/meat/slab,
-/obj/item/food/meat/slab/bear,
-/obj/item/food/meat/slab/bear,
-/obj/item/food/meat/slab/bear,
-/obj/item/food/meat/slab/bear,
-/obj/item/food/meat/slab/bear,
-/obj/item/food/meat/slab/bear,
-/obj/item/food/meat/slab/bear,
-/obj/item/food/meat/slab/bear,
-/obj/item/food/meat/slab/bear,
-/obj/item/food/meat/slab/bear,
-/obj/item/food/meat/slab/bear,
-/obj/item/food/meat/slab/bear,
-/obj/item/food/meat/slab/bear,
-/obj/item/food/meat/slab/bear,
-/obj/item/food/meat/slab/bear,
-/obj/item/food/meat/slab/chicken,
-/obj/item/food/meat/slab/chicken,
-/obj/item/food/meat/slab/chicken,
-/obj/item/food/meat/slab/chicken,
-/obj/item/food/meat/slab/chicken,
-/obj/item/food/meat/slab/chicken,
-/obj/item/food/meat/slab/chicken,
-/obj/item/food/meat/slab/chicken,
-/obj/item/food/meat/slab/chicken,
-/obj/item/food/meat/slab/chicken,
-/obj/item/food/meat/slab/chicken,
-/obj/item/food/meat/slab/chicken,
-/obj/item/food/meat/slab/chicken,
-/obj/item/food/meat/slab/chicken,
-/obj/item/food/meat/slab/chicken,
-/obj/item/food/meat/rawcrab,
-/obj/item/food/meat/rawcrab,
-/obj/item/food/meat/rawcrab,
-/obj/item/food/meat/rawcrab,
-/obj/item/food/meat/rawcrab,
-/obj/item/food/meat/rawcrab,
-/obj/item/food/meat/rawcrab,
-/obj/item/food/meat/rawcrab,
-/obj/item/food/meat/rawcrab,
-/obj/item/food/meat/rawcrab,
-/obj/item/food/meat/rawcrab,
-/obj/item/food/meat/rawcrab,
-/obj/item/food/meat/rawcrab,
-/obj/item/food/meat/rawcrab,
-/obj/item/food/meat/rawcrab,
-/obj/item/food/meat/slab/spider,
-/obj/item/food/meat/slab/spider,
-/obj/item/food/meat/slab/spider,
-/obj/item/food/meat/slab/spider,
-/obj/item/food/meat/slab/spider,
-/obj/item/food/meat/slab/spider,
-/obj/item/food/meat/slab/spider,
-/obj/item/food/meat/slab/spider,
-/obj/item/food/meat/slab/spider,
-/obj/item/food/meat/slab/spider,
-/obj/item/food/meat/slab/spider,
-/obj/item/food/meat/slab/spider,
-/obj/item/food/meat/slab/spider,
-/obj/item/food/meat/slab/spider,
-/obj/item/food/meat/slab/spider,
-/obj/item/food/meat/slab/spider,
-/obj/item/food/meat/slab/spider,
-/obj/item/food/meat/slab/spider,
-/obj/item/food/carpmeat,
-/obj/item/food/carpmeat,
-/obj/item/food/carpmeat,
-/obj/item/food/carpmeat,
-/obj/item/food/carpmeat,
-/obj/item/food/carpmeat,
-/obj/item/food/carpmeat,
-/obj/item/food/carpmeat,
-/obj/item/food/carpmeat,
-/obj/item/food/carpmeat,
-/obj/item/food/carpmeat,
-/obj/item/food/carpmeat,
-/obj/item/food/carpmeat,
-/obj/item/food/carpmeat,
-/obj/item/food/carpmeat,
-/obj/item/food/spiderleg,
-/obj/item/food/spiderleg,
-/obj/item/food/spiderleg,
-/obj/item/food/spiderleg,
-/obj/item/food/spiderleg,
-/obj/item/food/spiderleg,
-/obj/item/food/spiderleg,
-/obj/item/food/spiderleg,
-/obj/item/food/spiderleg,
-/obj/item/food/spiderleg,
-/obj/item/food/spiderleg,
-/obj/item/food/spiderleg,
-/obj/item/food/spidereggs,
-/obj/item/food/spidereggs,
-/obj/item/food/spidereggs,
-/obj/item/food/spidereggs,
-/obj/item/food/spidereggs,
-/obj/item/food/spidereggs,
-/obj/item/food/spidereggs,
-/obj/item/food/spidereggs,
-/obj/item/food/spidereggs,
-/obj/item/food/spidereggs,
-/obj/item/food/spidereggs,
-/obj/item/food/spidereggs,
-/obj/item/food/spidereggs,
-/obj/item/food/spidereggs,
-/obj/item/food/spidereggs,
-/obj/item/food/spidereggs,
-/obj/item/food/spidereggs,
-/obj/item/food/spidereggs,
-/obj/item/food/spidereggs,
-/obj/item/food/spidereggs,
-/obj/item/food/spidereggs,
-/obj/item/food/spidereggs,
-/obj/item/food/spidereggs,
-/obj/item/food/spidereggs,
-/obj/item/food/meat/slab/xeno,
-/obj/item/food/meat/slab/xeno,
-/obj/item/food/meat/slab/xeno,
-/obj/item/food/meat/slab/xeno,
-/obj/item/food/meat/slab/xeno,
-/obj/item/food/meat/slab/xeno,
-/obj/item/food/meat/slab/xeno,
-/obj/item/food/meat/slab/xeno,
-/obj/item/food/meat/slab/xeno,
-/obj/item/food/meat/slab/xeno,
-/obj/item/food/meat/slab/xeno,
-/obj/item/food/meat/slab/xeno,
-/obj/item/food/meat/slab/xeno,
-/obj/item/food/meat/slab/xeno,
-/obj/item/food/meat/slab/xeno,
 /obj/effect/turf_decal/tile/bar{
 	dir = 1
 	},
@@ -7609,10 +7313,16 @@
 	},
 /turf/open/floor/plasteel/sepia,
 /area/facility_hallway/training)
+"wA" = (
+/obj/effect/turf_decal/tile/neutral,
+/obj/structure/sign/button_counter/directional/east,
+/turf/open/floor/plasteel/sepia{
+	color = "#ccc8c0"
+	},
+/area/facility_hallway/information)
 "wC" = (
 /obj/structure/chair/office{
 	anchored = 1;
-	can_buckle = 0;
 	dir = 4;
 	pixel_x = 6;
 	pixel_y = 4
@@ -8102,9 +7812,7 @@
 	},
 /area/facility_hallway/welfare)
 "yo" = (
-/obj/structure/chair/comfy/black{
-	can_buckle = 0
-	},
+/obj/structure/chair/comfy/black,
 /obj/effect/turf_decal/tile/purple{
 	color = "#bf48b1";
 	dir = 8
@@ -8300,7 +8008,6 @@
 "yO" = (
 /obj/structure/chair/office{
 	anchored = 1;
-	can_buckle = 0;
 	dir = 4;
 	pixel_x = 6;
 	pixel_y = 4
@@ -8981,35 +8688,6 @@
 	pixel_y = 19;
 	storage_capacity = 1000
 	},
-/obj/item/reagent_containers/food/condiment/flour,
-/obj/item/reagent_containers/food/condiment/flour,
-/obj/item/reagent_containers/food/condiment/flour,
-/obj/item/reagent_containers/food/condiment/flour,
-/obj/item/reagent_containers/food/condiment/flour,
-/obj/item/reagent_containers/food/condiment/flour,
-/obj/item/reagent_containers/food/condiment/rice,
-/obj/item/reagent_containers/food/condiment/rice,
-/obj/item/reagent_containers/food/condiment/rice,
-/obj/item/reagent_containers/food/condiment/flour,
-/obj/item/reagent_containers/food/condiment/flour,
-/obj/item/reagent_containers/food/condiment/flour,
-/obj/item/reagent_containers/food/condiment/flour,
-/obj/item/reagent_containers/food/condiment/flour,
-/obj/item/reagent_containers/food/condiment/flour,
-/obj/item/reagent_containers/food/condiment/flour,
-/obj/item/reagent_containers/food/condiment/flour,
-/obj/item/reagent_containers/food/condiment/flour,
-/obj/item/reagent_containers/food/condiment/flour,
-/obj/item/storage/fancy/egg_box,
-/obj/item/storage/fancy/egg_box,
-/obj/item/storage/fancy/egg_box,
-/obj/item/storage/fancy/egg_box,
-/obj/item/storage/fancy/egg_box,
-/obj/item/storage/fancy/egg_box,
-/obj/item/storage/fancy/egg_box,
-/obj/item/storage/fancy/egg_box,
-/obj/item/storage/fancy/egg_box,
-/obj/item/storage/fancy/egg_box,
 /obj/effect/turf_decal/tile/bar{
 	dir = 1
 	},
@@ -9336,7 +9014,6 @@
 	set_luminosity = 24
 	},
 /turf/open/water/deep/saltwater/safe{
-	environment = list(/obj/item/food/fish/salt_water/marine_shrimp = 1000, /obj/item/food/fish/salt_water/clownfish = 1000, /obj/item/food/fish/salt_water/greenchromis = 1000, /obj/item/food/fish/salt_water/firefish = 1000, /obj/item/food/fish/salt_water/cardinal = 400, /obj/item/food/fish/salt_water = 400, /obj/item/food/fish/salt_water/sheephead = 400, /obj/item/food/fish/salt_water/lanternfish = 200, /obj/item/stack/spacecash/c1 = 700, /obj/item/fishing_component/hook/bone = 700, /obj/item/stack/fish_points = 600, /obj/item/food/canned/beans = 600, /obj/item/food/canned/peaches = 600, /obj/item/clothing/head/beret/fishing_hat = 200, /obj/item/reagent_containers/food/drinks/bottle/wine/unlabeled = 100);
 	icon_state = "water_turf1"
 	},
 /area/facility_hallway/central)
@@ -9663,7 +9340,6 @@
 	icon_state = "LC29"
 	},
 /obj/structure/chair/comfy/black{
-	can_buckle = 0;
 	dir = 8;
 	pixel_x = -6;
 	pixel_y = 4
@@ -9721,7 +9397,6 @@
 "DG" = (
 /obj/structure/chair/office{
 	anchored = 1;
-	can_buckle = 0;
 	dir = 4;
 	pixel_x = 6;
 	pixel_y = 4
@@ -10061,9 +9736,7 @@
 	},
 /area/facility_hallway/central)
 "EA" = (
-/obj/structure/chair/comfy/black{
-	can_buckle = 0
-	},
+/obj/structure/chair/comfy/black,
 /obj/item/toy/plush/binah,
 /obj/effect/light_emitter{
 	light_power = 4;
@@ -10293,84 +9966,8 @@
 	},
 /area/facility_hallway/west)
 "Fk" = (
-/obj/effect/turf_decal/tile/blue{
-	color = "#5269e9";
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/blue{
-	color = "#5269e9"
-	},
-/obj/effect/turf_decal/stripes/red/line{
-	dir = 8
-	},
-/obj/effect/turf_decal/caution/red{
-	dir = 4
-	},
-/obj/item/fishing_rod,
-/obj/item/fishing_rod,
-/obj/item/fishing_rod,
-/obj/item/fishing_rod,
-/obj/item/fishing_rod,
-/obj/item/fishing_component/hook,
-/obj/item/fishing_component/hook,
-/obj/item/fishing_component/hook,
-/obj/item/fishing_component/hook,
-/obj/item/fishing_component/hook,
-/obj/item/fishing_component/hook/bone,
-/obj/item/fishing_component/hook/bone,
-/obj/item/fishing_component/hook/bone,
-/obj/item/fishing_component/hook/bone,
-/obj/item/fishing_component/hook/bone,
-/obj/item/fishing_component/hook/shiny,
-/obj/item/fishing_component/hook/shiny,
-/obj/item/fishing_component/hook/shiny,
-/obj/item/fishing_component/hook/shiny,
-/obj/item/fishing_component/hook/shiny,
-/obj/item/fishing_component/hook/weighted,
-/obj/item/fishing_component/hook/weighted,
-/obj/item/fishing_component/hook/weighted,
-/obj/item/fishing_component/hook/weighted,
-/obj/item/fishing_component/hook/weighted,
-/obj/item/fishing_component/line,
-/obj/item/fishing_component/line,
-/obj/item/fishing_component/line,
-/obj/item/fishing_component/line,
-/obj/item/fishing_component/line,
-/obj/item/fishing_component/line/reinforced,
-/obj/item/fishing_component/line/reinforced,
-/obj/item/fishing_component/line/reinforced,
-/obj/item/fishing_component/line/reinforced,
-/obj/item/fishing_component/line/reinforced,
-/obj/item/fishing_component/line/sinew,
-/obj/item/fishing_component/line/sinew,
-/obj/item/fishing_component/line/sinew,
-/obj/item/fishing_component/line/sinew,
-/obj/item/fishing_component/line/sinew,
-/obj/item/fishing_net,
-/obj/item/fishing_net,
-/obj/item/fishing_net,
-/obj/item/fishing_net,
-/obj/item/fishing_net,
-/obj/item/storage/box/fishing,
-/obj/item/storage/box/fishing,
-/obj/structure/closet{
-	anchored = 1;
-	density = 0;
-	name = "fisherman closet";
-	pixel_y = 19;
-	storage_capacity = 60
-	},
-/obj/structure/railing{
-	alpha = 0;
-	desc = "Indestructible railing created in a vain attempt of fool-proofing the wing's workplace.";
-	dir = 8;
-	mouse_opacity = 0;
-	name = "invisble wing-grade railing";
-	resistance_flags = 115
-	},
-/turf/open/floor/plasteel/sepia{
-	color = "#ccc8c0"
-	},
+/obj/machinery/fish_market,
+/turf/open/floor/carpet/blue,
 /area/department_main/welfare)
 "Fl" = (
 /obj/effect/turf_decal/tile/neutral{
@@ -10513,7 +10110,6 @@
 	pixel_y = 4
 	},
 /turf/open/water/deep/polluted{
-	environment = list(/obj/item/food/fish/salt_water/piscine_mermaid = 200, /obj/item/food/fish/fresh_water/mosb = 200, /obj/item/food/fish/fresh_water/ratfish = 50, /obj/item/food/tofu/prison = 1000, /obj/item/food/meat/slab/human/mutant/zombie = 1000, /obj/item/food/dough = 800, /obj/item/stack/spacecash/c1 = 700, /obj/item/food/breadslice/moldy = 300, /obj/item/food/canned/beans = 300, /obj/item/food/canned/peaches = 300, /obj/item/reagent_containers/food/drinks/bottle/small = 300, /obj/item/reagent_containers/food/drinks/bottle/wine/unlabeled = 300, /obj/item/stack/fish_points = 250, /obj/item/food/spiderling = 200, /obj/item/food/grown/harebell = 200, /obj/item/stack/sheet/mineral/wood = 200);
 	safe = 1
 	},
 /area/department_main/welfare)
@@ -11061,7 +10657,7 @@
 	alpha = 0;
 	mouse_opacity = 0
 	},
-/turf/open/water/deep/saltwater{
+/turf/open/water/deep/freshwater{
 	icon_state = "purplewater3"
 	},
 /area/department_main/command)
@@ -11108,7 +10704,6 @@
 "Hk" = (
 /obj/structure/chair/office{
 	anchored = 1;
-	can_buckle = 0;
 	dir = 8;
 	pixel_x = -6;
 	pixel_y = 4
@@ -11560,7 +11155,7 @@
 /obj/structure/window/reinforced/spawner{
 	resistance_flags = 115
 	},
-/turf/open/water/deep/saltwater{
+/turf/open/water/deep/freshwater{
 	icon_state = "redwater2"
 	},
 /area/department_main/command)
@@ -11585,7 +11180,6 @@
 	dir = 1
 	},
 /turf/open/water/deep/polluted{
-	environment = list(/obj/item/food/fish/salt_water/piscine_mermaid = 200, /obj/item/food/fish/fresh_water/mosb = 200, /obj/item/food/fish/fresh_water/ratfish = 50, /obj/item/food/tofu/prison = 1000, /obj/item/food/meat/slab/human/mutant/zombie = 1000, /obj/item/food/dough = 800, /obj/item/stack/spacecash/c1 = 700, /obj/item/food/breadslice/moldy = 300, /obj/item/food/canned/beans = 300, /obj/item/food/canned/peaches = 300, /obj/item/reagent_containers/food/drinks/bottle/small = 300, /obj/item/reagent_containers/food/drinks/bottle/wine/unlabeled = 300, /obj/item/stack/fish_points = 250, /obj/item/food/spiderling = 200, /obj/item/food/grown/harebell = 200, /obj/item/stack/sheet/mineral/wood = 200);
 	safe = 1
 	},
 /area/department_main/welfare)
@@ -11820,7 +11414,6 @@
 	dir = 4
 	},
 /obj/structure/chair/plastic{
-	can_buckle = 0;
 	dir = 8;
 	pixel_x = 12
 	},
@@ -11852,14 +11445,15 @@
 	color = "#5269e9";
 	dir = 8
 	},
-/obj/structure/table/reinforced,
-/obj/machinery/chem_dispenser/drinks/beer/fullupgrade{
-	dir = 4
-	},
 /obj/machinery/light{
 	dir = 8;
 	pixel_x = -9;
 	pixel_y = 4
+	},
+/obj/structure/table/reinforced,
+/obj/machinery/reagentgrinder{
+	desc = "Used to grind things up into raw materials and liquids.";
+	pixel_y = 10
 	},
 /turf/open/floor/plasteel/sepia{
 	color = "#ccc8c0"
@@ -11926,7 +11520,6 @@
 	pixel_y = 15
 	},
 /turf/open/water/deep/polluted{
-	environment = list(/obj/item/food/fish/salt_water/piscine_mermaid = 200, /obj/item/food/fish/fresh_water/mosb = 200, /obj/item/food/fish/fresh_water/ratfish = 50, /obj/item/food/tofu/prison = 1000, /obj/item/food/meat/slab/human/mutant/zombie = 1000, /obj/item/food/dough = 800, /obj/item/stack/spacecash/c1 = 700, /obj/item/food/breadslice/moldy = 300, /obj/item/food/canned/beans = 300, /obj/item/food/canned/peaches = 300, /obj/item/reagent_containers/food/drinks/bottle/small = 300, /obj/item/reagent_containers/food/drinks/bottle/wine/unlabeled = 300, /obj/item/stack/fish_points = 250, /obj/item/food/spiderling = 200, /obj/item/food/grown/harebell = 200, /obj/item/stack/sheet/mineral/wood = 200);
 	safe = 1
 	},
 /area/department_main/welfare)
@@ -11970,9 +11563,7 @@
 /obj/structure/window/reinforced/spawner{
 	resistance_flags = 115
 	},
-/turf/open/water/deep/saltwater/safe{
-	environment = list(/obj/item/food/fish/salt_water/marine_shrimp = 1000, /obj/item/food/fish/salt_water/clownfish = 1000, /obj/item/food/fish/salt_water/greenchromis = 1000, /obj/item/food/fish/salt_water/firefish = 1000, /obj/item/food/fish/salt_water/cardinal = 400, /obj/item/food/fish/salt_water = 400, /obj/item/food/fish/salt_water/sheephead = 400, /obj/item/food/fish/salt_water/lanternfish = 200, /obj/item/stack/spacecash/c1 = 700, /obj/item/fishing_component/hook/bone = 700, /obj/item/stack/fish_points = 600, /obj/item/food/canned/beans = 600, /obj/item/food/canned/peaches = 600, /obj/item/clothing/head/beret/fishing_hat = 200, /obj/item/reagent_containers/food/drinks/bottle/wine/unlabeled = 100)
-	},
+/turf/open/water/deep/freshwater,
 /area/department_main/command)
 "JO" = (
 /obj/effect/turf_decal/tile/neutral{
@@ -12288,7 +11879,6 @@
 	color = "#5269e9"
 	},
 /obj/structure/chair/comfy/teal{
-	can_buckle = 0;
 	pixel_y = 1
 	},
 /turf/open/floor/plasteel/sepia,
@@ -12453,7 +12043,6 @@
 	dir = 1
 	},
 /turf/open/water/deep/saltwater/safe{
-	environment = list(/obj/item/food/fish/salt_water/marine_shrimp = 1000, /obj/item/food/fish/salt_water/clownfish = 1000, /obj/item/food/fish/salt_water/greenchromis = 1000, /obj/item/food/fish/salt_water/firefish = 1000, /obj/item/food/fish/salt_water/cardinal = 400, /obj/item/food/fish/salt_water = 400, /obj/item/food/fish/salt_water/sheephead = 400, /obj/item/food/fish/salt_water/lanternfish = 200, /obj/item/stack/spacecash/c1 = 700, /obj/item/fishing_component/hook/bone = 700, /obj/item/stack/fish_points = 600, /obj/item/food/canned/beans = 600, /obj/item/food/canned/peaches = 600, /obj/item/clothing/head/beret/fishing_hat = 200, /obj/item/reagent_containers/food/drinks/bottle/wine/unlabeled = 100);
 	icon_state = "water_turf1"
 	},
 /area/department_main/welfare)
@@ -12522,7 +12111,7 @@
 /obj/structure/window/reinforced/spawner{
 	resistance_flags = 115
 	},
-/turf/open/water/deep/saltwater{
+/turf/open/water/deep/freshwater{
 	icon_state = "purplewater3"
 	},
 /area/department_main/command)
@@ -12847,41 +12436,6 @@
 /turf/open/floor/plasteel/sepia,
 /area/facility_hallway/east)
 "Mo" = (
-/obj/structure/closet/secure_closet/freezer/fridge/open{
-	anchored = 1;
-	density = 0;
-	pixel_y = 19;
-	storage_capacity = 1000
-	},
-/obj/item/reagent_containers/food/condiment/flour,
-/obj/item/reagent_containers/food/condiment/flour,
-/obj/item/reagent_containers/food/condiment/flour,
-/obj/item/reagent_containers/food/condiment/flour,
-/obj/item/reagent_containers/food/condiment/flour,
-/obj/item/reagent_containers/food/condiment/flour,
-/obj/item/reagent_containers/food/condiment/rice,
-/obj/item/reagent_containers/food/condiment/rice,
-/obj/item/reagent_containers/food/condiment/rice,
-/obj/item/reagent_containers/food/condiment/flour,
-/obj/item/reagent_containers/food/condiment/flour,
-/obj/item/reagent_containers/food/condiment/flour,
-/obj/item/reagent_containers/food/condiment/flour,
-/obj/item/reagent_containers/food/condiment/flour,
-/obj/item/reagent_containers/food/condiment/flour,
-/obj/item/reagent_containers/food/condiment/flour,
-/obj/item/reagent_containers/food/condiment/flour,
-/obj/item/reagent_containers/food/condiment/flour,
-/obj/item/reagent_containers/food/condiment/flour,
-/obj/item/storage/fancy/egg_box,
-/obj/item/storage/fancy/egg_box,
-/obj/item/storage/fancy/egg_box,
-/obj/item/storage/fancy/egg_box,
-/obj/item/storage/fancy/egg_box,
-/obj/item/storage/fancy/egg_box,
-/obj/item/storage/fancy/egg_box,
-/obj/item/storage/fancy/egg_box,
-/obj/item/storage/fancy/egg_box,
-/obj/item/storage/fancy/egg_box,
 /obj/effect/turf_decal/tile/blue{
 	color = "#5269e9";
 	dir = 1
@@ -12902,6 +12456,7 @@
 	pixel_x = -9;
 	pixel_y = 4
 	},
+/obj/structure/fishcooker/fishfrier,
 /turf/open/floor/plasteel/sepia{
 	color = "#ccc8c0"
 	},
@@ -12996,7 +12551,6 @@
 	dir = 1
 	},
 /obj/structure/chair/comfy/brown{
-	can_buckle = 0;
 	dir = 1;
 	pixel_y = 9
 	},
@@ -13104,9 +12658,7 @@
 /area/department_main/information)
 "MZ" = (
 /obj/effect/turf_decal/stripes/line,
-/turf/open/water/deep/saltwater/safe{
-	environment = list(/obj/item/food/fish/salt_water/marine_shrimp = 1000, /obj/item/food/fish/salt_water/clownfish = 1000, /obj/item/food/fish/salt_water/greenchromis = 1000, /obj/item/food/fish/salt_water/firefish = 1000, /obj/item/food/fish/salt_water/cardinal = 400, /obj/item/food/fish/salt_water = 400, /obj/item/food/fish/salt_water/sheephead = 400, /obj/item/food/fish/salt_water/lanternfish = 200, /obj/item/stack/spacecash/c1 = 700, /obj/item/fishing_component/hook/bone = 700, /obj/item/stack/fish_points = 600, /obj/item/food/canned/beans = 600, /obj/item/food/canned/peaches = 600, /obj/item/clothing/head/beret/fishing_hat = 200, /obj/item/reagent_containers/food/drinks/bottle/wine/unlabeled = 100)
-	},
+/turf/open/water/deep/saltwater/safe,
 /area/department_main/welfare)
 "Na" = (
 /obj/effect/turf_decal/tile/blue{
@@ -13238,7 +12790,6 @@
 "Nr" = (
 /obj/structure/chair/office{
 	anchored = 1;
-	can_buckle = 0;
 	dir = 8;
 	pixel_x = -6;
 	pixel_y = 4
@@ -13474,7 +13025,6 @@
 	},
 /obj/effect/turf_decal/stripes/line,
 /turf/open/water/deep/saltwater/safe{
-	environment = list(/obj/item/food/fish/salt_water/marine_shrimp = 1000, /obj/item/food/fish/salt_water/clownfish = 1000, /obj/item/food/fish/salt_water/greenchromis = 1000, /obj/item/food/fish/salt_water/firefish = 1000, /obj/item/food/fish/salt_water/cardinal = 400, /obj/item/food/fish/salt_water = 400, /obj/item/food/fish/salt_water/sheephead = 400, /obj/item/food/fish/salt_water/lanternfish = 200, /obj/item/stack/spacecash/c1 = 700, /obj/item/fishing_component/hook/bone = 700, /obj/item/stack/fish_points = 600, /obj/item/food/canned/beans = 600, /obj/item/food/canned/peaches = 600, /obj/item/clothing/head/beret/fishing_hat = 200, /obj/item/reagent_containers/food/drinks/bottle/wine/unlabeled = 100);
 	icon_state = "water_turf1"
 	},
 /area/department_main/welfare)
@@ -13643,8 +13193,7 @@
 	set_luminosity = 24
 	},
 /turf/open/water/deep/saltwater/safe{
-	color = "#f5f5f5";
-	environment = list(/obj/item/food/fish/salt_water/marine_shrimp = 1000, /obj/item/food/fish/salt_water/clownfish = 1000, /obj/item/food/fish/salt_water/greenchromis = 1000, /obj/item/food/fish/salt_water/firefish = 1000, /obj/item/food/fish/salt_water/cardinal = 400, /obj/item/food/fish/salt_water = 400, /obj/item/food/fish/salt_water/sheephead = 400, /obj/item/food/fish/salt_water/lanternfish = 200, /obj/item/stack/spacecash/c1 = 700, /obj/item/fishing_component/hook/bone = 700, /obj/item/stack/fish_points = 600, /obj/item/food/canned/beans = 600, /obj/item/food/canned/peaches = 600, /obj/item/clothing/head/beret/fishing_hat = 200, /obj/item/reagent_containers/food/drinks/bottle/wine/unlabeled = 100)
+	color = "#f5f5f5"
 	},
 /area/facility_hallway/central)
 "OQ" = (
@@ -14212,6 +13761,7 @@
 	name = "wing-grade railing";
 	resistance_flags = 115
 	},
+/obj/item/kitchen/knife/hunting,
 /turf/open/floor/plasteel/sepia{
 	color = "#ccc8c0"
 	},
@@ -14493,7 +14043,7 @@
 	color = "#5269e9";
 	dir = 4
 	},
-/obj/machinery/chem_master/condimaster,
+/obj/machinery/grill,
 /turf/open/floor/plasteel/sepia{
 	color = "#ccc8c0"
 	},
@@ -14728,7 +14278,6 @@
 	},
 /obj/structure/chair/office/light{
 	anchored = 1;
-	can_buckle = 0;
 	dir = 8;
 	pixel_x = 5;
 	pixel_y = 4
@@ -15063,7 +14612,7 @@
 	alpha = 0;
 	mouse_opacity = 0
 	},
-/turf/open/water/deep/saltwater{
+/turf/open/water/deep/freshwater{
 	icon_state = "redwater2"
 	},
 /area/department_main/command)
@@ -15108,7 +14657,6 @@
 	color = "#5269e9"
 	},
 /obj/structure/chair/comfy/teal{
-	can_buckle = 0;
 	pixel_y = 1
 	},
 /obj/item/toy/plush/chesed,
@@ -15190,9 +14738,7 @@
 /obj/effect/turf_decal/stripes/line{
 	dir = 1
 	},
-/turf/open/water/deep/saltwater/safe{
-	environment = list(/obj/item/food/fish/salt_water/marine_shrimp = 1000, /obj/item/food/fish/salt_water/clownfish = 1000, /obj/item/food/fish/salt_water/greenchromis = 1000, /obj/item/food/fish/salt_water/firefish = 1000, /obj/item/food/fish/salt_water/cardinal = 400, /obj/item/food/fish/salt_water = 400, /obj/item/food/fish/salt_water/sheephead = 400, /obj/item/food/fish/salt_water/lanternfish = 200, /obj/item/stack/spacecash/c1 = 700, /obj/item/fishing_component/hook/bone = 700, /obj/item/stack/fish_points = 600, /obj/item/food/canned/beans = 600, /obj/item/food/canned/peaches = 600, /obj/item/clothing/head/beret/fishing_hat = 200, /obj/item/reagent_containers/food/drinks/bottle/wine/unlabeled = 100)
-	},
+/turf/open/water/deep/saltwater/safe,
 /area/department_main/welfare)
 "Tw" = (
 /obj/effect/turf_decal/tile/neutral{
@@ -15335,8 +14881,7 @@
 /area/facility_hallway/east)
 "Uf" = (
 /turf/open/water/deep/saltwater/safe{
-	color = "#f5f5f5";
-	environment = list(/obj/item/food/fish/salt_water/marine_shrimp = 1000, /obj/item/food/fish/salt_water/clownfish = 1000, /obj/item/food/fish/salt_water/greenchromis = 1000, /obj/item/food/fish/salt_water/firefish = 1000, /obj/item/food/fish/salt_water/cardinal = 400, /obj/item/food/fish/salt_water = 400, /obj/item/food/fish/salt_water/sheephead = 400, /obj/item/food/fish/salt_water/lanternfish = 200, /obj/item/stack/spacecash/c1 = 700, /obj/item/fishing_component/hook/bone = 700, /obj/item/stack/fish_points = 600, /obj/item/food/canned/beans = 600, /obj/item/food/canned/peaches = 600, /obj/item/clothing/head/beret/fishing_hat = 200, /obj/item/reagent_containers/food/drinks/bottle/wine/unlabeled = 100)
+	color = "#f5f5f5"
 	},
 /area/space)
 "Ug" = (
@@ -16289,6 +15834,7 @@
 /obj/structure/sign/departments/extraction{
 	pixel_y = 32
 	},
+/obj/structure/extraction_belt,
 /turf/open/floor/plasteel/sepia{
 	color = "#ccc8c0"
 	},
@@ -16708,13 +16254,9 @@
 	color = "#5269e9";
 	dir = 8
 	},
-/obj/structure/table/reinforced,
 /obj/machinery/vending/boozeomat/all_access{
 	density = 0;
 	pixel_x = -32
-	},
-/obj/machinery/chem_dispenser/drinks{
-	dir = 4
 	},
 /turf/open/floor/plasteel/sepia{
 	color = "#ccc8c0"
@@ -16812,7 +16354,7 @@
 	alpha = 0;
 	mouse_opacity = 0
 	},
-/turf/open/water/deep/saltwater{
+/turf/open/water/deep/freshwater{
 	icon_state = "darkbluewater1"
 	},
 /area/department_main/command)
@@ -17137,7 +16679,6 @@
 "ZD" = (
 /obj/structure/chair/office{
 	anchored = 1;
-	can_buckle = 0;
 	dir = 4;
 	pixel_x = 6;
 	pixel_y = 4
@@ -51623,9 +51164,9 @@ kp
 mt
 yl
 pH
-Zt
+dz
 SL
-Fd
+wA
 eb
 kD
 pI
@@ -53898,7 +53439,7 @@ Sh
 lm
 Sh
 Km
-Fk
+eX
 eX
 eX
 Jk
@@ -54670,7 +54211,7 @@ ps
 TF
 DK
 TE
-cu
+Fk
 DK
 qb
 Km
@@ -55941,7 +55482,7 @@ nX
 nX
 uL
 gS
-uv
+cr
 VN
 Cn
 Qw

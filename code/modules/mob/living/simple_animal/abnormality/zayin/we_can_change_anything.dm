@@ -14,7 +14,7 @@
 		ABNORMALITY_WORK_INSIGHT = list(80, 85, 90, 95, 100),
 		ABNORMALITY_WORK_ATTACHMENT = list(80, 85, 90, 95, 100),
 		ABNORMALITY_WORK_REPRESSION = list(80, 85, 90, 95, 100),
-		"Enter machine" = 100, //"Go inside the torture machine, it'll be fun they said"
+		"Enter machine" = -500, // "Go inside the torture machine, it'll be fun they said"
 	)
 
 	charger = TRUE
@@ -44,6 +44,16 @@
 		/mob/living/simple_animal/hostile/abnormality/cleaner = 1.5,
 	)
 
+	observation_prompt = "Is your child a troublemaker who cries all the time? We can change that! <br>\
+		Don’t like how you look? Are you too fat? Too skinny? We can change that! <br>\
+		Is your house suffering from an outage because you don’t have the money to pay for the power bill? <br>\
+		We can change that!<br>\
+		It’s quite simple. Just open up the machine, step inside, and press the button to make it shut."
+	observation_choices = list("Enter the machine")
+	correct_choices = list("Enter the machine")
+	observation_success_message = "You step inside the machine, it's just as comfortable as advertised. <br>\
+		Now everything will be just fine."
+
 	var/grinding = FALSE
 	var/grind_duration = 5 SECONDS
 	var/grind_damage = 2 // Dealt 100 times
@@ -51,10 +61,10 @@
 	chem_type = /datum/reagent/abnormality/we_can_change_anything
 	harvest_phrase = span_notice("You scoop up some goo from the inner lip of %ABNO using %VESSEL.")
 	harvest_phrase_third = "%PERSON scoops up some goo from the inner lip of %ABNO with %VESSEL."
-	var/sacrifice = FALSE //are we doing "Enter machine" work?
-	var/ramping_speed = 20 //work speed for sacrifice work, gets subtracted from so we can have faster work ticks.
-	var/total_damage = 0 //stored so we can later convert it into PE
-	var/total_energy = 0 //after reaching 1000+, locks sacrifice out, if they try to
+	var/sacrifice = FALSE // are we doing "Enter machine" work?
+	var/ramping_speed = 20 // work speed for sacrifice work, gets subtracted from so we can have faster work ticks.
+	var/total_damage = 0 // stored so we can later convert it into PE
+	var/total_energy = 0 // after reaching 2000+, locks sacrifice out, if they try to
 
 /mob/living/simple_animal/hostile/abnormality/we_can_change_anything/proc/StoreWorker(mob/living/L) //Stores the worker inside
 	if(!L)
@@ -80,10 +90,10 @@
 /mob/living/simple_animal/hostile/abnormality/we_can_change_anything/AttemptWork(mob/living/carbon/human/user, work_type)
 	if(work_type != "Enter machine")
 		return TRUE
-	if(total_energy >= 1000) //Cant just spam the work
+	if(total_energy >= 2000) // Cant just spam the work
 		say("[total_energy] PE Boxes accumulated, processing energy, please stay on standby!")
 		return FALSE
-	if(!istype(datum_reference)) //Prevents a runtime
+	if(!istype(datum_reference)) // Prevents a runtime
 		return FALSE
 	StoreWorker(user) //Yoink.
 	datum_reference.max_boxes = 100 //much longer than a normal work.
@@ -92,16 +102,16 @@
 
 /mob/living/simple_animal/hostile/abnormality/we_can_change_anything/Worktick(mob/living/carbon/human/user)
 	if(!sacrifice)
-		user.apply_damage(5, RED_DAMAGE, null, user.run_armor_check(null, RED_DAMAGE)) // say goodbye to your kneecaps chucklenuts!
+		user.deal_damage(5, RED_DAMAGE) // say goodbye to your kneecaps chucklenuts!
 	else
 		do_shaky_animation(1)
-		playsound(get_turf(src), 'sound/abnormalities/we_can_change_anything/change_generate.ogg', 50, FALSE)
+		playsound(get_turf(src), 'sound/abnormalities/we_can_change_anything/change_generate.ogg', 30, FALSE)
 		switch(ramping_speed)
 			if(1 to 8)
 				ramping_speed -= 0.2
 			if(8 to 20)
 				ramping_speed -= 0.5
-		user.apply_damage(8, RED_DAMAGE, null, user.run_armor_check(null, RED_DAMAGE)) // say goodbye to a bit more than your kneecaps... (total damage is 800 RED).
+		user.deal_damage(8, RED_DAMAGE) // say goodbye to a bit more than your kneecaps... (total damage is 800 RED).
 		total_damage += 8
 
 /mob/living/simple_animal/hostile/abnormality/we_can_change_anything/SpeedWorktickOverride(mob/living/carbon/human/user, work_speed, init_work_speed, work_type)
@@ -115,18 +125,19 @@
 	else
 		playsound(src, 'sound/abnormalities/we_can_change_anything/change_gas.ogg', 50, TRUE)
 		sacrifice = FALSE
-		var/energy_generated = round(10 ** ( (total_damage/100) * 0.375) ) //exponential formula, caps out at 800 damage, generating 1000 PE.
+		var/energy_generated = round(10 ** ( (total_damage/100) * 0.375) ) // exponential formula, caps out at 800 damage, generating 1000 PE.
 
 		if(user.health <= 0)
 			qdel(user) //reduced to atoms
 			energy_generated += total_damage/8 //adds the normal work PE boxes, since those are normally lost on death
 		else
 			ReleaseWorker()
-		datum_reference.stored_boxes += energy_generated //only increases PE on the normal console, doesn't give any to the quota...
+		datum_reference.stored_boxes += energy_generated // adds PE to the console, only half actually counts towards the goal for balance reasons.
+		SSlobotomy_corp.AdjustGoalBoxes(floor(energy_generated * 0.5))
 		total_energy += energy_generated
 		say("[total_energy] PE Boxes accumulated!")
 
-		datum_reference.max_boxes = 10 //resets the max boxes for future works.
+		datum_reference.max_boxes = 10 // resets the max boxes for future works.
 		ramping_speed = 20
 		total_damage = 0
 	return
@@ -191,7 +202,7 @@
 			sound_cooldown = 0
 			playsound(src, 'sound/abnormalities/change/change_ding.ogg', 50)
 		for(var/mob/living/carbon/human/victim in get_turf(src))
-			victim.apply_damage(grind_damage, RED_DAMAGE, null, victim.run_armor_check(null, RED_DAMAGE), spread_damage = TRUE)
+			victim.deal_damage(grind_damage, RED_DAMAGE)
 			if(victim.health <= 0)
 				victim.gib()
 		stoplag(1)

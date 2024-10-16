@@ -459,3 +459,34 @@ Any attempt to code risk class armor will result in a 10 day Github ban.*/
 	attribute_requirements = list(
 							FORTITUDE_ATTRIBUTE = 80,
 							JUSTICE_ATTRIBUTE = 60)
+
+/obj/item/clothing/suit/armor/ego_gear/waw/holiday
+	name = "holiday"
+	desc = "A snazzy outfit for bringing Christmas cheer to all the boys and girls."
+	icon = 'code/modules/mob/living/simple_animal/abnormality/_auxiliary_modes/joke/!icons/ego_armor.dmi'  //Just stealing the ultimate christmas sprites
+	worn_icon = 'code/modules/mob/living/simple_animal/abnormality/_auxiliary_modes/joke/!icons/ego_worn.dmi'
+	icon_state = "ultimate_christmas"
+	armor = list(RED_DAMAGE = 60, WHITE_DAMAGE = 50, BLACK_DAMAGE = 10, PALE_DAMAGE = 20) // 140
+	attribute_requirements = list(
+							FORTITUDE_ATTRIBUTE = 80
+							)
+
+/obj/item/clothing/suit/armor/ego_gear/waw/sunyata
+	name = "ya sunyata tad rupam"
+	desc = "Karma shall find its way back to you, and rest atop your head."
+	icon_state = "sunyata"
+	armor = list(RED_DAMAGE = 50, WHITE_DAMAGE = 50, BLACK_DAMAGE = -10, PALE_DAMAGE = 50)//140
+	attribute_requirements = list(
+							PRUDENCE_ATTRIBUTE = 60,
+							TEMPERANCE_ATTRIBUTE = 60
+							)
+
+/obj/item/clothing/suit/armor/ego_gear/waw/effervescent
+	name = "effervescent corrosion"
+	desc = "Coalesce all your flaws and fears into something stronger."
+	icon_state = "shell"
+	armor = list(RED_DAMAGE = 50, WHITE_DAMAGE = 60, BLACK_DAMAGE = 20, PALE_DAMAGE = 10) // 140
+	attribute_requirements = list(
+							FORTITUDE_ATTRIBUTE = 60,
+							PRUDENCE_ATTRIBUTE = 60,
+							)

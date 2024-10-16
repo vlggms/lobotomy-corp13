@@ -1,3 +1,4 @@
+#define STATUS_EFFECT_MELTYLOVE /datum/status_effect/display/melting_love_blessing
 #define STATUS_EFFECT_SLIMED  /datum/status_effect/melty_slimed
 /mob/living/simple_animal/hostile/abnormality/melting_love
 	name = "Melting Love"
@@ -48,16 +49,18 @@
 	gift_type =  /datum/ego_gifts/adoration
 	abnormality_origin = ABNORMALITY_ORIGIN_LOBOTOMY
 
+	observation_prompt = "The slime craves affection, it covers the cell's floor, walls and celing. <br>\
+		It clings to your clothes, your mask and your skin as you enter. <br>At the centre of the cell, where the deluge conglomerates most, is the facismile of a girl. <br>\
+		She waves at you shyly. <br>You..."
+	observation_choices = list("Retreat from the slime", "Reach out to her")
+	correct_choices = list("Retreat from the slime")
+	observation_success_message = "You retreat from the cell in a hurry, the slime clinging to you turns acidic. If she won't find affection from you, she'll find it another way..."
+	observation_fail_message = "You reach out your hand and she does the same, your fingers entwine with the slimy appendage and she giggles. <br>\"Let's be together forever.\" <br>\
+		You pull your hand away, but it comes out with the slime. <br>You try to retreat, but you are already caught in her trap. <br>\"Don't betray me, okay?\" <br>Those are the last words you ever hear..."
+
 	var/mob/living/carbon/human/gifted_human = null
 	/// Amount of BLACK damage done to all enemies around main target on melee attack. Also includes original target
 	var/radius_damage = 30
-	var/sanityheal_cooldown = 15 SECONDS
-	var/sanityheal_cooldown_base = 15 SECONDS
-
-/mob/living/simple_animal/hostile/abnormality/melting_love/Life()
-	. = ..()
-	if(gifted_human)
-		sanityheal()
 
 /mob/living/simple_animal/hostile/abnormality/melting_love/death(gibbed)
 	density = FALSE
@@ -123,15 +126,18 @@
 /mob/living/simple_animal/hostile/abnormality/melting_love/proc/SlimeConvert(mob/living/carbon/human/H)
 	if(!istype(H))
 		return FALSE
+	if(H.has_status_effect(STATUS_EFFECT_MELTYLOVE))
+		//The status effect should explode them eventually. If not we have a bigger problem.
+		return FALSE
 	visible_message(span_danger("[src] glomps on \the [H] as another slime pawn appears!"))
 	new /mob/living/simple_animal/hostile/slime(get_turf(H))
-	H.gib()
+	H.gib(FALSE, TRUE, TRUE)
 	return TRUE
 
 /* Qliphoth things */
 /mob/living/simple_animal/hostile/abnormality/melting_love/SuccessEffect(mob/living/carbon/human/user, work_type, pe)
 	. = ..()
-	if(prob(33) && user == gifted_human)
+	if(prob(33) && user.has_status_effect(STATUS_EFFECT_MELTYLOVE))
 		datum_reference.qliphoth_change(1)
 	return
 
@@ -154,26 +160,13 @@
 	icon_dead = "melting_breach_dead"
 	pixel_x = -32
 	base_pixel_x = -32
+	offsets_pixel_x = list("south" = -32, "north" = -32, "west" = -32, "east" = -32)
+	SetOccupiedTiles(up = 1)
 	desc = "A pink hunched creature with long arms, there are also visible bones coming from insides of the slime."
 	if(istype(gifted_human))
-		to_chat(gifted_human, span_userdanger("You feel like you are about to burst !"))
-		gifted_human.emote("scream")
-		if(KillGifted())
-			UnregisterSignal(gifted_human, COMSIG_LIVING_DEATH)
-			UnregisterSignal(gifted_human, COMSIG_WORK_COMPLETED)
+		DissolveGifted(gifted_human)
 	else
 		Empower()
-
-/mob/living/simple_animal/hostile/abnormality/melting_love/proc/KillGifted()
-	var/mob/living/carbon/human/H = gifted_human
-	H.apply_damage(800, BLACK_DAMAGE, null, H.run_armor_check(null, BLACK_DAMAGE), spread_damage = TRUE)
-	if(!H || QDELETED(H))
-		return TRUE
-	if(H.stat == DEAD)
-		H.gib()
-		return TRUE
-	H.adjust_attribute_buff(TEMPERANCE_ATTRIBUTE, -30)
-	H.cut_overlay(mutable_appearance('icons/effects/32x64.dmi', "gift", -HALO_LAYER))
 
 /* Gift */
 /mob/living/simple_animal/hostile/abnormality/melting_love/PostWorkEffect(mob/living/carbon/human/user, work_type, pe)
@@ -181,39 +174,38 @@
 		return
 	if(!gifted_human && istype(user) && work_type != ABNORMALITY_WORK_REPRESSION && user.stat != DEAD && (status_flags & GODMODE))
 		gifted_human = user
-		RegisterSignal(user, COMSIG_LIVING_DEATH, PROC_REF(GiftedDeath))
-		RegisterSignal(user, COMSIG_WORK_COMPLETED, PROC_REF(GiftedAnger))
+		RegisterSignal(gifted_human, COMSIG_WORK_COMPLETED, PROC_REF(GiftedAnger))
+		user.apply_status_effect(STATUS_EFFECT_MELTYLOVE)
 		to_chat(user, span_nicegreen("You feel like you received a gift..."))
-		user.adjust_attribute_buff(TEMPERANCE_ATTRIBUTE, 30)
-		user.add_overlay(mutable_appearance('icons/effects/32x64.dmi', "gift", -HALO_LAYER))
 		playsound(get_turf(user), 'sound/abnormalities/meltinglove/gift.ogg', 50, 0, 2)
 		return
-	if(istype(user) && user == gifted_human)
+	if(istype(user) && user.has_status_effect(STATUS_EFFECT_MELTYLOVE))
 		to_chat(gifted_human, span_nicegreen("Melting Love was happy to see you!"))
 		gifted_human.adjustSanityLoss(rand(-25,-35))
 		return
 
-/mob/living/simple_animal/hostile/abnormality/melting_love/proc/GiftedDeath(datum/source, gibbed)
-	SIGNAL_HANDLER
-	SpawnBigSlime()
-	datum_reference.qliphoth_change(-9)
-	return TRUE
+/mob/living/simple_animal/hostile/abnormality/melting_love/WorkChance(mob/living/carbon/human/user, chance)
+	if(user.has_status_effect(STATUS_EFFECT_MELTYLOVE))
+		return chance + 10
+	return chance
+
+//Status effect will turn them into a slime if they died.
+/mob/living/simple_animal/hostile/abnormality/melting_love/proc/DissolveGifted(mob/living/carbon/C)
+	to_chat(C, span_userdanger("You feel like you are about to burst!"))
+	C.emote("scream")
+	C.deal_damage(800, BLACK_DAMAGE)
+	C.remove_status_effect(STATUS_EFFECT_MELTYLOVE)
+
+/mob/living/simple_animal/hostile/abnormality/melting_love/proc/UnregisterGiftedSignals(mob/living/carbon/human/user)
+	if(user)
+		UnregisterSignal(user, COMSIG_WORK_COMPLETED)
+		return TRUE
 
 /mob/living/simple_animal/hostile/abnormality/melting_love/proc/GiftedAnger(datum/source, datum/abnormality/datum_sent, mob/living/carbon/human/user, work_type)
 	SIGNAL_HANDLER
 	if(work_type == ABNORMALITY_WORK_REPRESSION)
 		to_chat(gifted_human, span_userdanger("[src] didn't like that!"))
 		datum_reference.qliphoth_change(-1)
-
-/mob/living/simple_animal/hostile/abnormality/melting_love/proc/sanityheal()
-	if(sanityheal_cooldown <= world.time)
-		gifted_human.adjustSanityLoss(-30)
-		sanityheal_cooldown = (world.time + sanityheal_cooldown_base)
-
-/mob/living/simple_animal/hostile/abnormality/melting_love/WorkChance(mob/living/carbon/human/user, chance)
-	if(user == gifted_human)
-		return chance + 10
-	return chance
 
 /* Checking if bigslime is dead or not and apply a damage buff if yes */
 /mob/living/simple_animal/hostile/abnormality/melting_love/proc/SlimeDeath(datum/source, gibbed)
@@ -227,20 +219,18 @@
 	return TRUE
 
 /mob/living/simple_animal/hostile/abnormality/melting_love/proc/Empower()
-	SpeedChange(-0.5)
+	ChangeMoveToDelayBy(-0.5)
 	melee_damage_lower = 80
 	melee_damage_upper = 85
 	projectiletype = /obj/projectile/melting_blob/enraged
-	adjustBruteLoss(-maxHealth)
+	adjustBruteLoss(-maxHealth, forced = TRUE)
 	desc += " It looks angry."
 
-/mob/living/simple_animal/hostile/abnormality/melting_love/proc/SpawnBigSlime()
-	var/turf/T = get_turf(gifted_human)
-	gifted_human.gib()
+/mob/living/simple_animal/hostile/abnormality/melting_love/proc/SpawnBigSlime(mob/living/simple_animal/hostile/slime/big/S)
 	gifted_human = null
-	var/mob/living/simple_animal/hostile/slime/big/S = new(T)
-	RegisterSignal(S, COMSIG_LIVING_DEATH, PROC_REF(SlimeDeath))
-
+	datum_reference.qliphoth_change(-9)
+	if(S)
+		RegisterSignal(S, COMSIG_LIVING_DEATH, PROC_REF(SlimeDeath))
 
 /* Slimes (HE) */
 /mob/living/simple_animal/hostile/slime
@@ -281,6 +271,11 @@
 	alpha = 25
 	animate(src, alpha = 255, transform = init_transform, time = 5)
 
+/mob/living/simple_animal/hostile/slime/death()
+	for(var/atom/movable/AM in src)
+		AM.forceMove(get_turf(src))
+	..()
+
 /mob/living/simple_animal/hostile/slime/CanAttack(atom/the_target)
 	if(isliving(the_target) && !ishuman(the_target))
 		var/mob/living/L = the_target
@@ -303,8 +298,13 @@
 		return FALSE
 	visible_message(span_danger("[src] glomps on \the [H] as another slime pawn appears!"))
 	new /mob/living/simple_animal/hostile/slime(get_turf(H))
-	H.gib()
+	H.gib(FALSE, TRUE, TRUE)
 	return TRUE
+
+//3 monsters including parasite tree sapling and naked nest use this proc i might make it part of the root in the future -IP
+/mob/living/simple_animal/hostile/slime/proc/NestedItems(mob/living/simple_animal/hostile/nest, obj/item/nested_item)
+	if(nested_item)
+		nested_item.forceMove(nest)
 
 /* Big Slimes (WAW) */
 /mob/living/simple_animal/hostile/slime/big
@@ -322,6 +322,66 @@
 	melee_damage_upper = 40
 	spawn_sound = 'sound/abnormalities/meltinglove/pawn_big_convert.ogg'
 	statuschance = 75
+
+/*
+* MELTY BLESSING
+* I want to say that this blessing is a
+* bit haphazardly stapled on by me. Half of the mechanics
+* are inside melty and the other half is in the status effect
+* unsure if this is good. -IP
+*/
+/datum/status_effect/display/melting_love_blessing
+	id = "melting_love_blessing"
+	status_type = STATUS_EFFECT_UNIQUE
+	duration = -1
+	tick_interval = 50
+	alert_type = null
+	on_remove_on_mob_delete = TRUE
+	display_name = "melty_love"
+	var/mob/living/simple_animal/hostile/abnormality/melting_love/connected_abno
+
+/datum/status_effect/display/melting_love_blessing/on_apply()
+	. = ..()
+	if(!ishuman(owner))
+		return
+	var/mob/living/carbon/human/status_holder = owner
+	status_holder.adjust_attribute_buff(TEMPERANCE_ATTRIBUTE, 30)
+	connected_abno = locate(/mob/living/simple_animal/hostile/abnormality/melting_love) in GLOB.abnormality_mob_list
+
+/datum/status_effect/display/melting_love_blessing/tick()
+	. = ..()
+	if(!ishuman(owner))
+		QDEL_IN(src, 5)
+		return
+	var/mob/living/carbon/human/status_holder = owner
+	status_holder.adjustSanityLoss(-10)
+	if(status_holder.stat == DEAD)
+		qdel(src)
+
+/datum/status_effect/display/melting_love_blessing/on_remove()
+	if(!ishuman(owner))
+		return ..()
+	if(!Dissolve(owner) && istype(owner) && connected_abno)
+		connected_abno.UnregisterGiftedSignals(owner)
+	return ..()
+
+/datum/status_effect/display/melting_love_blessing/proc/Dissolve(mob/living/carbon/human/H)
+	if(H)
+		H.adjust_attribute_buff(TEMPERANCE_ATTRIBUTE, -30)
+		if(H.stat == DEAD)
+			var/mob/living/simple_animal/hostile/slime/big/new_mob = new(owner.loc)
+			NestedItems(new_mob, H.get_item_by_slot(ITEM_SLOT_SUITSTORE))
+			NestedItems(new_mob, H.get_item_by_slot(ITEM_SLOT_BELT))
+			NestedItems(new_mob, H.get_item_by_slot(ITEM_SLOT_BACK))
+			NestedItems(new_mob, H.get_item_by_slot(ITEM_SLOT_OCLOTHING))
+			if(connected_abno)
+				connected_abno.SpawnBigSlime(new_mob)
+			H.gib(TRUE, TRUE, TRUE)
+			return new_mob
+
+/datum/status_effect/display/melting_love_blessing/proc/NestedItems(mob/living/simple_animal/hostile/nest, obj/item/nested_item)
+	if(nested_item)
+		nested_item.forceMove(nest)
 
 //Slime trails
 /obj/effect/decal/cleanable/melty_slime
@@ -391,6 +451,8 @@
 	if(is_type_in_list(AM, slime_types, FALSE))
 		return
 	var/mob/living/L = AM
+	if((("hostile" in L.faction) && (SSmaptype.maptype in SSmaptype.combatmaps)))
+		return
 	L.apply_status_effect(STATUS_EFFECT_SLIMED)
 
 /obj/effect/gibspawner/generic/silent/melty_slime
@@ -403,6 +465,7 @@
 	. = ..()
 	return
 
+//Attack Status Effect
 /datum/status_effect/melty_slimed
 	id = "melty_slimed"
 	status_type = STATUS_EFFECT_REFRESH
@@ -421,7 +484,7 @@
 	if(!isliving(owner))
 		return
 	var/mob/living/L = owner
-	L.apply_damage(10, BLACK_DAMAGE, null, L.run_armor_check(null, BLACK_DAMAGE), spread_damage = TRUE)
+	L.deal_damage(10, BLACK_DAMAGE)
 	owner.playsound_local(owner, 'sound/effects/wounds/sizzle2.ogg', 25, TRUE)
 	if(!ishuman(L))
 		return
@@ -444,3 +507,4 @@
 	variable = FALSE
 
 #undef STATUS_EFFECT_SLIMED
+#undef STATUS_EFFECT_MELTYLOVE

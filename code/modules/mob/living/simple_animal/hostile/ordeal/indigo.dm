@@ -1,54 +1,3 @@
-#define SWEEPER_TYPES /mob/living/simple_animal/hostile/ordeal/indigo_dawn || /mob/living/simple_animal/hostile/ordeal/indigo_noon || /mob/living/simple_animal/hostile/ordeal/indigo_dusk || /mob/living/simple_animal/hostile/ordeal/indigo_midnight
-
-/mob/living/simple_animal/hostile/ordeal/indigo_dawn
-	name = "unknown scout"
-	desc = "A tall humanoid with a walking cane. It's wearing indigo armor."
-	icon = 'ModularTegustation/Teguicons/32x48.dmi'
-	icon_state = "indigo_dawn"
-	icon_living = "indigo_dawn"
-	icon_dead = "indigo_dawn_dead"
-	faction = list("indigo_ordeal")
-	maxHealth = 110
-	health = 110
-	move_to_delay = 1.3	//Super fast, but squishy and weak.
-	stat_attack = DEAD
-	melee_damage_type = BLACK_DAMAGE
-	melee_damage_lower = 10
-	melee_damage_upper = 12
-	butcher_results = list(/obj/item/food/meat/slab/sweeper = 1)
-	guaranteed_butcher_results = list(/obj/item/food/meat/slab/sweeper = 1)
-	attack_verb_continuous = "stabs"
-	attack_verb_simple = "stab"
-	attack_sound = 'sound/effects/ordeals/indigo/stab_1.ogg'
-	damage_coeff = list(RED_DAMAGE = 1, WHITE_DAMAGE = 1.5, BLACK_DAMAGE = 0.5, PALE_DAMAGE = 0.8)
-	blood_volume = BLOOD_VOLUME_NORMAL
-	silk_results = list(/obj/item/stack/sheet/silk/indigo_simple = 1)
-
-/mob/living/simple_animal/hostile/ordeal/indigo_dawn/AttackingTarget()
-	. = ..()
-	if(. && isliving(target))
-		var/mob/living/L = target
-		if(L.stat != DEAD)
-			if(L.health <= HEALTH_THRESHOLD_DEAD && HAS_TRAIT(L, TRAIT_NODEATH))
-				devour(L)
-		else
-			devour(L)
-
-/mob/living/simple_animal/hostile/ordeal/indigo_dawn/proc/devour(mob/living/L)
-	if(!L)
-		return FALSE
-	if(SSmaptype.maptype == "city")
-		return FALSE
-	visible_message(
-		span_danger("[src] devours [L]!"),
-		span_userdanger("You feast on [L], restoring your health!"))
-	if(istype(L, SWEEPER_TYPES))
-		//Would have made it based on biotypes but that has its own issues.
-		adjustBruteLoss(-20)
-	else
-		adjustBruteLoss(-(maxHealth/2))
-	L.gib()
-	return TRUE
 
 /mob/living/simple_animal/hostile/ordeal/indigo_noon
 	name = "sweeper"
@@ -102,7 +51,7 @@
 /mob/living/simple_animal/hostile/ordeal/indigo_noon/proc/devour(mob/living/L)
 	if(!L)
 		return FALSE
-	if(SSmaptype.maptype == "city")
+	if(SSmaptype.maptype in SSmaptype.citymaps)
 		return FALSE
 	visible_message(
 		span_danger("[src] devours [L]!"),
@@ -171,6 +120,12 @@
 	melee_damage_lower = 42
 	melee_damage_upper = 55
 	damage_coeff = list(RED_DAMAGE = 0.7, WHITE_DAMAGE = 0.5, BLACK_DAMAGE = 1.5, PALE_DAMAGE = 0.7)
+	guaranteed_butcher_results = list(/obj/item/food/meat/slab/sweeper = 1)
+
+/mob/living/simple_animal/hostile/ordeal/indigo_dusk/white/Initialize(mapload)
+	. = ..()
+	if(SSmaptype.maptype in SSmaptype.citymaps)
+		guaranteed_butcher_results += list(/obj/item/head_trophy/indigo_head/white = 1)
 
 /mob/living/simple_animal/hostile/ordeal/indigo_dusk/white/CanAttack(atom/the_target)
 	if(ishuman(the_target))
@@ -188,6 +143,12 @@
 	melee_damage_lower = 42
 	melee_damage_upper = 55
 	damage_coeff = list(RED_DAMAGE = 0.7, WHITE_DAMAGE = 0.7, BLACK_DAMAGE = 0.5, PALE_DAMAGE = 1.5)
+	guaranteed_butcher_results = list(/obj/item/food/meat/slab/sweeper = 1)
+
+/mob/living/simple_animal/hostile/ordeal/indigo_dusk/black/Initialize(mapload)
+	. = ..()
+	if(SSmaptype.maptype in SSmaptype.citymaps)
+		guaranteed_butcher_results += list(/obj/item/head_trophy/indigo_head/black = 1)
 
 /mob/living/simple_animal/hostile/ordeal/indigo_dusk/red
 	name = "\proper Commander Jacques"
@@ -197,6 +158,13 @@
 	rapid_melee = 4
 	melee_damage_type = RED_DAMAGE
 	damage_coeff = list(RED_DAMAGE = 0.5, WHITE_DAMAGE = 1.5, BLACK_DAMAGE = 0.7, PALE_DAMAGE = 0.7)
+	guaranteed_butcher_results = list(/obj/item/food/meat/slab/sweeper = 1)
+
+/mob/living/simple_animal/hostile/ordeal/indigo_dusk/red/Initialize(mapload)
+	. = ..()
+	if(SSmaptype.maptype in SSmaptype.citymaps)
+		guaranteed_butcher_results += list(/obj/item/head_trophy/indigo_head = 1)
+
 
 /mob/living/simple_animal/hostile/ordeal/indigo_dusk/pale
 	name = "\proper Commander Silvina"
@@ -206,9 +174,15 @@
 	rapid_melee = 2
 	melee_damage_type = PALE_DAMAGE
 	damage_coeff = list(RED_DAMAGE = 1.5, WHITE_DAMAGE = 0.7, BLACK_DAMAGE = 0.7, PALE_DAMAGE = 0.5)
+	guaranteed_butcher_results = list(/obj/item/food/meat/slab/sweeper = 1)
+
+/mob/living/simple_animal/hostile/ordeal/indigo_dusk/pale/Initialize(mapload)
+	. = ..()
+	if(SSmaptype.maptype in SSmaptype.citymaps)
+		guaranteed_butcher_results += list(/obj/item/head_trophy/indigo_head/pale = 1)
 
 /mob/living/simple_animal/hostile/ordeal/indigo_dusk/Initialize(mapload)
-	..()
+	. = ..()
 	var/units_to_add = list(
 		/mob/living/simple_animal/hostile/ordeal/indigo_noon = 1,
 		)
@@ -276,6 +250,8 @@
 	move_resist = MOVE_FORCE_OVERPOWERING
 	simple_mob_flags = SILENCE_RANGED_MESSAGE
 	can_patrol = TRUE
+	occupied_tiles_up = 1
+	offsets_pixel_x = list("south" = -16, "north" = -16, "west" = -16, "east" = -16)
 
 	//How many people has she eaten
 	var/belly = 0
@@ -463,7 +439,7 @@
 
 	maxHealth = 4000
 	ChangeResistances(list(RED_DAMAGE = 0.4, WHITE_DAMAGE = 0.6, BLACK_DAMAGE = 0.25, PALE_DAMAGE = 0.8))
-	SpeedChange(phasespeedchange)
+	ChangeMoveToDelayBy(phasespeedchange)
 	rapid_melee +=1
 	melee_damage_lower -= 10
 	melee_damage_upper -= 10
@@ -481,7 +457,7 @@
 
 	maxHealth = 3000
 	ChangeResistances(list(RED_DAMAGE = 0.5, WHITE_DAMAGE = 0.8, BLACK_DAMAGE = 0.3, PALE_DAMAGE = 1))
-	SpeedChange(phasespeedchange)
+	ChangeMoveToDelayBy(phasespeedchange)
 	rapid_melee += 2
 	melee_damage_lower -= 15
 	melee_damage_upper -= 15
@@ -518,7 +494,6 @@
 		sleep(delay)
 	slamming = FALSE
 
-#undef SWEEPER_TYPES
 
 /obj/effect/sweeperspawn
 	name = "bloodpool"

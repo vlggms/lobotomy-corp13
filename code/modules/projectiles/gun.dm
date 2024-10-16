@@ -42,6 +42,7 @@
 	var/semicd = 0						//cooldown handler
 	var/weapon_weight = WEAPON_LIGHT
 	var/dual_wield_spread = 24			//additional spread when dual wielding
+	var/forced_melee = FALSE			//forced to melee attack. Currently only used for the ego_gun subtype
 
 	/// Just 'slightly' snowflakey way to modify projectile damage for projectiles fired from this gun.
 	var/projectile_damage_multiplier = 1
@@ -203,7 +204,7 @@
 	if(flag) //It's adjacent, is the user, or is on the user's person
 		if(target in user.contents) //can't shoot stuff inside us.
 			return
-		if(!ismob(target) || user.a_intent == INTENT_HARM) //melee attack
+		if(!ismob(target) || user.a_intent == INTENT_HARM || forced_melee) //melee attack
 			return
 		if(target == user && user.zone_selected != BODY_ZONE_PRECISE_MOUTH) //so we can't shoot ourselves (unless mouth selected)
 			return
@@ -249,7 +250,7 @@
 		for(var/obj/item/gun/G in H.held_items)
 			if(G == src || G.weapon_weight >= WEAPON_MEDIUM)
 				continue
-			else if(G.can_trigger_gun(user))
+			else if(G.can_trigger_gun(user) && G.can_shoot())
 				bonus_spread += dual_wield_spread
 				loop_counter++
 				addtimer(CALLBACK(G, TYPE_PROC_REF(/obj/item/gun, process_fire), target, user, TRUE, params, null, bonus_spread), loop_counter)
@@ -382,7 +383,7 @@
 	semicd = FALSE
 
 /obj/item/gun/attack(mob/M as mob, mob/user)
-	if(user.a_intent == INTENT_HARM) //Flogging
+	if(user.a_intent == INTENT_HARM || forced_melee) //Flogging
 		if(bayonet)
 			M.attackby(bayonet, user)
 			return

@@ -7,6 +7,7 @@
 	icon_state = "gold_inert"
 	icon_living = "gold_inert"
 	icon_dead = "gold_cracked"
+	core_icon = "false_egg"
 	portrait = "golden_apple"
 	var/list/golden_apple_lines = list(
 		"I didn't want to die.",
@@ -73,6 +74,16 @@
 	chem_type = /datum/reagent/abnormality/ambrosia
 	harvest_phrase = span_notice("You score %ABNO and it bleeds a golden syrup into %VESSEL.")
 	harvest_phrase_third = "%PERSON scores %ABNO, dripping a golden syrup into %VESSEL."
+
+	observation_prompt = "A giant, glistening golden apple stands before you. <br>\
+		Radiant, shining, and pure. <br>There is a tempting crack in it, what could possibly be inside?"
+	observation_choices = list("Slice it open", "Destroy it")
+	correct_choices = list("Destroy it")
+	observation_success_message = "You put the golden apple to the torch. <br>You hear a sickening pops and sizzling as the swarm of maggots inside begins to burn and scatter. <br>\
+		The mass of maggots falls apart in a hail of silent screams."
+	observation_fail_message = "You slice open the apple, and a tidal wave of disgusting maggots bursts out. <br>\
+		You are swept in the tide. <br>Your flesh is riddled with wounds as they slowly devour you."
+
 	var/is_maggot = FALSE
 	var/can_act = TRUE
 	var/victim_name
@@ -132,7 +143,7 @@
 		pulse_cooldown_time = 130 SECONDS//The duraction of the buff is 60 seconds; you can't build stacks at this rate.
 	maggot_attack = new /datum/action/innate/abnormality_attack/maggot_spread
 	maggot_attack2 = new /datum/action/innate/abnormality_attack/maggot_spread2
-	..()
+	return ..()
 
 /mob/living/simple_animal/hostile/abnormality/golden_apple/Life()
 	. = ..()
@@ -263,7 +274,7 @@
 	icon = 'ModularTegustation/Teguicons/96x48.dmi'
 	icon_state = "false_apple"
 	icon_living = "false_apple"
-	icon_dead = "false_egg"
+	icon_dead = "false_dead"
 	death_message = "is reduced to a primordial egg."
 	name = "False Apple"
 	desc = "The apple ruptured and a swarm of maggots crawled inside, metamorphosing into a hideous face."
@@ -281,7 +292,7 @@
 	melee_damage_type = BLACK_DAMAGE
 	fear_level = WAW_LEVEL
 	is_maggot = TRUE
-	SpeedChange(-1)
+	ChangeMoveToDelayBy(-1)
 
 /mob/living/simple_animal/hostile/abnormality/golden_apple/AttackingTarget()//regular attacks or AOE. Determines the outcome for both players and the AI behavior
 	if(!can_act)
@@ -291,6 +302,17 @@
 			if(isliving(target))
 				var/mob/living/hit = target
 				if((hit.stat == DEAD) ||!ishuman(hit))//if the target is dead or not human
+					return ..()
+				if(istype(target, /mob/living/carbon/human/species/pinocchio))
+					return ..()
+				pulse_count += 1
+			if(ismecha(target))
+				var/inhabited = FALSE
+				for(var/mob/living/L in target.contents)
+					if(L.stat == DEAD)
+						continue
+					inhabited = TRUE
+				if(!inhabited)
 					return ..()
 				pulse_count += 1
 		return ..()
@@ -330,7 +352,7 @@
 	victim_name = "Yuri"
 	maxHealth = 1500
 	BecomeRotten()
-	SpeedChange(-0.5)
+	ChangeMoveToDelayBy(-0.5)
 	ChangeResistances(list(RED_DAMAGE = 1, WHITE_DAMAGE = 1, BLACK_DAMAGE = 0.8, PALE_DAMAGE = 0.3))
 	if(H)
 		victim_name = H.real_name
@@ -484,7 +506,7 @@
 
 /datum/status_effect/stacking/maggots/tick()//change this to golden apple's life tick for less lag
 	var/mob/living/carbon/human/status_holder = owner
-	status_holder.apply_damage(stacks * 1, BLACK_DAMAGE, null, status_holder.run_armor_check(null, BLACK_DAMAGE))
+	status_holder.deal_damage(stacks, BLACK_DAMAGE)
 	if(status_holder.stat < HARD_CRIT)
 		return
 	var/obj/structure/spider/cocoon/casing = new(status_holder.loc)

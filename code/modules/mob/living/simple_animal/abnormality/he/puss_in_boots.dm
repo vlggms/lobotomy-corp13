@@ -40,6 +40,14 @@
 	gift_type =  /datum/ego_gifts/inheritance
 	abnormality_origin = "Artbook"
 
+	observation_prompt = "The miller, my old master, when he passed he left his mill, his donkey and myself to his three sons. <br>\
+		I was left to the youngest and the elders denied him any right to the mill. <br>I felt for the poor lad and so, I turned the young master into a Prince, <br>\
+		and one day a King. <br>I can do the same for you - Are you ready to claim your inheritance?"
+	observation_choices = list("Yes", "No")
+	correct_choices = list("Yes")
+	observation_success_message = "Excellent, by my paw you shall make a fine master, envy of all your peers!"
+	observation_fail_message = "Bah! When will someone worthy arrive?"
+
 	//Work/misc Vars
 	var/list/stats = list(
 		FORTITUDE_ATTRIBUTE,
@@ -279,10 +287,10 @@
 	icon_state = icon_aggro
 
 /mob/living/simple_animal/hostile/abnormality/puss_in_boots/proc/Finisher(mob/living/target) //This is super easy to avoid
-	target.apply_damage(50, PALE_DAMAGE, null, target.run_armor_check(null, RED_DAMAGE)) //50% of your health in red damage
+	target.apply_damage(50, PALE_DAMAGE, null, target.run_armor_check(null, RED_DAMAGE), spread_damage = TRUE) //50% of your health in red damage
 	to_chat(target, span_danger("[src] is trying to cut you in half!"))
 	if(!ishuman(target))
-		target.apply_damage(100, PALE_DAMAGE, null, target.run_armor_check(null, PALE_DAMAGE)) //bit more than usual DPS in pale damage
+		target.deal_damage(100, PALE_DAMAGE) //bit more than usual DPS in pale damage
 		return
 	if(target.health > 0)
 		return
@@ -305,7 +313,7 @@
 //Death/Defeat
 /mob/living/simple_animal/hostile/abnormality/puss_in_boots/death(gibbed)
 	if(health <= 0)
-		playsound(get_turf(src), 'sound/abnormalities/doomsdaycalendar/Limbus_Dead_Generic.ogg', 50, 0, 2)
+		playsound(get_turf(src), 'sound/effects/limbus_death.ogg', 50, 0, 2)
 	density = FALSE
 	animate(src, alpha = 0, time = 5 SECONDS)
 	QDEL_IN(src, 5 SECONDS)
@@ -365,19 +373,29 @@
 	return ..()
 
 /datum/status_effect/chosen/proc/StatUpdate(mob/living/carbon/human/user)
-	var/new_bonus = 0
-	if(world.time >= 75 MINUTES) // Full facility expected
-		new_bonus = 80
-	else if(world.time >= 60 MINUTES) // More than one ALEPH
-		new_bonus = 60
-	else if(world.time >= 45 MINUTES) // Wowzer, an ALEPH?
-		new_bonus = 50
-	else if(world.time >= 30 MINUTES) // Expecting WAW
-		new_bonus = 40
-	else if(world.time >= 15 MINUTES) // Usual time for HEs
-		new_bonus = 30
-	else
-		new_bonus = 20
+	var/new_bonus = 20
+	var/facility_full_percentage = 0
+	if(SSabnormality_queue.spawned_abnos) // dont divide by 0
+		facility_full_percentage = 100 * (SSabnormality_queue.spawned_abnos / SSabnormality_queue.rooms_start)
+	// how full the facility is, from 0 abnormalities out of 24 cells being 0% and 24/24 cells being 100%
+	switch(facility_full_percentage)
+		if(15 to 29) // Shouldn't be anything more than TETHs (4 Abnormalities)
+			new_bonus *= 1.5
+
+		if(29 to 44) // HEs (8 Abnormalities)
+			new_bonus *= 2
+
+		if(44 to 59) // A bit before WAWs (11 Abnormalities)
+			new_bonus *= 2.5
+
+		if(59 to 69) // WAWs around here (15 Abnormalities)
+			new_bonus *= 3
+
+		if(69 to 79) // ALEPHs starting to spawn (17 Abnormalities)
+			new_bonus *= 3.5
+
+		if(79 to 100) // ALEPHs around here (20 Abnormalities)
+			new_bonus *= 4
 	if(new_bonus <= attribute_bonus)
 		return
 	for(var/attribute in user.attributes)

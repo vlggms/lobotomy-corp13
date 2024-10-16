@@ -5,6 +5,7 @@
 	icon_state = "headless_ichthys"
 	icon_living = "headless_ichthys"
 	icon_dead = "headless_ichthys"
+	core_icon = "headless_ichthys"
 	portrait = "headless_icthys"
 	pixel_x = -16
 	base_pixel_x = -16
@@ -41,6 +42,16 @@
 	)
 	gift_type =  /datum/ego_gifts/fluid_sac
 	abnormality_origin = ABNORMALITY_ORIGIN_LIMBUS
+
+	observation_prompt = "Deep, deep, at the bottom of the sea, a creature lies, dreaming. <br>\
+		It seems to be holding on to a sack of fluid. <br>What will you do?"
+	observation_choices = list("Try and swim away", "Puncture the sack")
+	correct_choices = list("Try and swim away")
+	observation_success_message = "You swim upwards, hoping it doesn't notice you. <br>\
+		Surprisingly, after a few seconds you break the water's surface and make your escape. <br>You find a trinket in your pocket."
+	observation_fail_message = "You cannot get close enough, the water slows your movements. <br>\
+		The creature notices you, and prepares an attack. <br>It is impossible to evade, and you are torn to shreds."
+
 	var/can_act = TRUE
 	var/jump_cooldown = 0
 	var/jump_cooldown_time = 8 SECONDS
@@ -103,7 +114,7 @@
 			for(var/mob/living/L in T)
 				if(faction_check_mob(L))
 					continue
-				L.apply_damage(jump_damage, BLACK_DAMAGE, null, L.run_armor_check(null, BLACK_DAMAGE), spread_damage = TRUE)
+				L.deal_damage(jump_damage, BLACK_DAMAGE)
 				if(L.health < 0)
 					L.gib()
 			for(var/obj/vehicle/sealed/mecha/V in T)
@@ -163,7 +174,7 @@
 					continue
 				already_hit += L
 				var/truedamage = ishuman(L) ? beam_damage : beam_damage/2 //half damage dealt to nonhumans
-				L.apply_damage(truedamage, BLACK_DAMAGE, null, L.run_armor_check(null, BLACK_DAMAGE))
+				L.deal_damage(truedamage, BLACK_DAMAGE)
 			for(var/obj/vehicle/sealed/mecha/V in turfs_to_check)
 				if(V in already_hit)
 					continue
@@ -261,10 +272,10 @@
 	cannon_cooldown = world.time + cannon_cooldown_time //Can't fire it right away.
 
 /mob/living/simple_animal/hostile/abnormality/headless_ichthys/death(gibbed)
-	playsound(src, 'sound/abnormalities/doomsdaycalendar/Limbus_Dead_Generic.ogg', 60, 1)
+	playsound(src, 'sound/effects/limbus_death.ogg', 60, 1)
 	animate(src, transform = matrix()*0.6,time = 0)
 	icon_state = "headless_ichthys"
-	icon = 'ModularTegustation/Teguicons/64x64.dmi'
+	icon = 'ModularTegustation/Teguicons/abno_cores/he.dmi'
 	QDEL_NULL(current_beam)
 	update_icon_state()
 	density = FALSE

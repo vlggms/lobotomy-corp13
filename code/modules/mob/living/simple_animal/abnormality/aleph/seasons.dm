@@ -49,6 +49,19 @@
 	gift_type =  /datum/ego_gifts/seasons
 	abnormality_origin = ABNORMALITY_ORIGIN_ARTBOOK
 
+//Should be unique for each season, for now let's use Spring
+	observation_prompt = "I'm standing outside a forest I both have never seen before, yet know well. <br>There is no City, no civilization on the horizon, I am utterly alone. <br>\
+		Dauntlessly, I press into the forest, seeing no other path forward, and encounter a cute-looking, pink forest spirit. <br>\
+		The spirits of the forest are playful, but it's best not to offend them by forgetting to make an offering"
+	observation_choices = list("Make an offering", "Continue on")
+	correct_choices = list("Make an offering")
+	observation_success_message = "I ask the spirit to lead me to an altar to make my offering and it leads me off a beaten path... <br>\
+		It felt as though I had walked for miles and days, my clothes torn and skin pricked by brambles and thorns but finally we arrived. <br>\
+		Before me is a skull-headed pagan God hanging ominously over its altar, fear grips my heart as the pink spirit leads me to lay down on the altar..."
+	observation_fail_message = "I pass by the spirit and hear it giggle ominously... <br>\
+		... <br>\
+		In the end, I am never able to find a way out of the forest."
+
 	//Var Lists
 	var/list/season_stats = list(
 		"spring" = list(/datum/weather/thunderstorm, WHITE_DAMAGE, "Spring God", "Spring Deity, \"Caprice\" Panz","A bashful spirit cloaked in flower pedals.","A mischievous deity."),
@@ -418,7 +431,7 @@
 			if(L in hit_list || istype(L, type))
 				continue
 			hit_list += L
-			L.apply_damage(cone_attack_damage, melee_damage_type, null, L.run_armor_check(null, melee_damage_type), spread_damage = TRUE)
+			L.deal_damage(cone_attack_damage, melee_damage_type)
 			to_chat(L, span_userdanger("You have been hit by [src]'s breath attack!"))
 			if(ishuman(L))
 				Finisher(L)
@@ -443,7 +456,7 @@
 		for(var/mob/living/L in T)
 			if(faction_check_mob(L))
 				continue
-			L.apply_damage(slam_damage, melee_damage_type, null, L.run_armor_check(null, melee_damage_type), spread_damage = TRUE)
+			L.deal_damage(slam_damage, melee_damage_type)
 			if(ishuman(L))
 				Finisher(L)
 	SLEEP_CHECK_DEATH(3)
@@ -473,7 +486,7 @@
 	for(var/mob/living/L in T)
 		if(faction_check_mob(L))
 			continue
-		L.apply_damage(pulse_damage, melee_damage_type, null, L.run_armor_check(null, melee_damage_type), spread_damage = TRUE)
+		L.deal_damage(pulse_damage, melee_damage_type)
 
 /mob/living/simple_animal/hostile/abnormality/seasons/proc/Finisher(mob/living/carbon/human/H) //return TRUE to prevent attacking, as attacking causes runtimes if the target is gibbed.
 	if(current_season == "spring" && H.sanity_lost)
@@ -562,10 +575,7 @@
 		if(prob(10))
 			if(prob(66))
 				sleep(rand(1,5))
-			new /obj/effect/hotspot(T)
-			for(var/mob/living/M in T.contents)
-				M.adjust_fire_stacks(3)
-				M.IgniteMob()
+			new /obj/structure/turf_fire(T)
 
 /datum/weather/fog //Fall weather, causes nearsightedness.
 	name = "fog"
