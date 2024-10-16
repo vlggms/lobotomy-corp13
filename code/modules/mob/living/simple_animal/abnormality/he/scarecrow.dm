@@ -59,6 +59,14 @@
 	var/braineating = TRUE
 	var/healthmodifier = 0.05	// Can restore 30% of HP
 
+/mob/living/simple_animal/hostile/abnormality/scarecrow/Login()
+	. = ..()
+	if(!. || !client)
+		return FALSE
+	to_chat(src, "<h1>You are Scarecrow Searching for Wisdom, A Tank Role Abnormality.</h1><br>\
+		<b>|Seeking Wisdom|: When you attack corpses, You heal.<br>\
+		Unlike other abnormalities which use corpses, you are able to reuse the corpses you drain as many times as you would like.</b>")
+
 /mob/living/simple_animal/hostile/abnormality/scarecrow/CanAttack(atom/the_target)
 	if(finishing)
 		return FALSE
@@ -91,10 +99,11 @@
 					finishing = FALSE
 					return
 				playsound(get_turf(src), 'sound/abnormalities/scarecrow/drink.ogg', 50, 1)
-				if(H.health < -120) //prevents infinite healing, corpse is too mangled
-					break
+				if (!IsCombatMap())
+					if(H.health < -120) //prevents infinite healing, corpse is too mangled
+						break
+					H.adjustBruteLoss(20)
 				adjustBruteLoss(-(maxHealth*healthmodifier))
-				H.adjustBruteLoss(20)
 				SLEEP_CHECK_DEATH(4)
 			if(!targets_from.Adjacent(H) || QDELETED(H))
 				finishing = FALSE

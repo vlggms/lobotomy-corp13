@@ -97,6 +97,18 @@
 	toggle_message = span_colossus("You will now jump with your next attack when possible.")
 	button_icon_toggle_deactivated = "generic_toggle0"
 
+/mob/living/simple_animal/hostile/abnormality/fairy_gentleman/Login()
+	. = ..()
+	if(!. || !client)
+		return FALSE
+	to_chat(src, "<h1>You are Fairy Gentleman, A Combat Role Abnormality.</h1><br>\
+		<b>|Sloshing Body|: When you attack, if your “Leap” is off cooldown you will use it.<br>\
+		You can use “Leap” on far away targets by clicking on them.<br>\
+		Once you “Leap” on a target, You will jump to their location after a short delay and then deal RED damage to everyone next to you.<br>\
+		WARNING: If the target is drunk, avoid leaping on them. It will cause you to become dizzy from overdosing on their ethanol.<br>\
+		You are able to toggle your “Leap” attack on and off with your ability.</b>")
+
+
 //Work mechanics
 /mob/living/simple_animal/hostile/abnormality/fairy_gentleman/SuccessEffect(mob/living/carbon/human/user, work_type, pe)
 	. = ..()
