@@ -186,9 +186,9 @@
 
 /mob/living/simple_animal/hostile/ordeal/sin_gluttony/AttackingTarget()
 	. = ..()
-	if(. && isliving(target))
+	if(. && isliving(target) && SSmaptype.maptype != "limbus_labs")
 		var/mob/living/L = target
-		if(L.stat != DEAD && SSmaptype.maptype != "limbus_labs")
+		if(L.stat != DEAD)
 			if(L.health <= HEALTH_THRESHOLD_DEAD && HAS_TRAIT(L, TRAIT_NODEATH))
 				devour(L)
 		else
