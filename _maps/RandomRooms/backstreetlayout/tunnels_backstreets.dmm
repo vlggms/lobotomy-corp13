@@ -11,19 +11,19 @@
 /obj/effect/spawner/room/backstreets/small_south,
 /turf/closed/indestructible/reinforced,
 /area/city/backstreets_room)
-"fJ" = (
+"dz" = (
+/obj/item/stack/spacecash/c10,
+/turf/open/water/jungle,
+/area/city/backstreets_alley)
+"gv" = (
 /obj/effect/portal/permanent{
-	id = "cave_path_2";
+	id = "cave_path_1";
 	name = "cave pathway";
 	desc = "Strange Pathway...";
 	alpha = 100
 	},
 /turf/open/water/jungle,
 /area/city/backstreets_alley)
-"fR" = (
-/obj/structure/spacevine,
-/turf/closed/indestructible/rock,
-/area/space)
 "gT" = (
 /obj/structure/flora/rock/jungle,
 /turf/open/water/jungle,
@@ -65,6 +65,10 @@
 /obj/effect/landmark/backstreetspawn,
 /turf/open/floor/plating/asteroid/basalt,
 /area/city/backstreets_alley)
+"jg" = (
+/obj/structure/flora/rock/jungle,
+/turf/closed/indestructible/rock,
+/area/city/backstreets_alley)
 "kn" = (
 /turf/open/floor/plating/asteroid/basalt,
 /area/city/backstreets_alley)
@@ -76,6 +80,10 @@
 /obj/item/pickaxe/mini,
 /turf/open/floor/plasteel/rockvault,
 /area/city/backstreets_room)
+"kQ" = (
+/obj/structure/spacevine,
+/turf/closed/indestructible/rock,
+/area/space)
 "lh" = (
 /obj/effect/spawner/room/backstreets/connector,
 /turf/closed/indestructible/reinforced,
@@ -85,10 +93,6 @@
 /obj/item/paper/fluff/awaymissions/caves/safety_notice,
 /turf/open/floor/plasteel/rockvault,
 /area/city/backstreets_room)
-"nL" = (
-/obj/item/flashlight/lantern/syndicate,
-/turf/open/water/jungle,
-/area/city/backstreets_alley)
 "nQ" = (
 /obj/effect/spawner/room/backstreets/small_north,
 /turf/closed/indestructible/reinforced,
@@ -97,14 +101,18 @@
 /obj/effect/landmark/backstreetspawnwest,
 /turf/open/floor/plating/asteroid/basalt,
 /area/city/backstreets_alley)
-"qr" = (
-/obj/structure/lootcrate/money,
-/turf/open/water/jungle,
-/area/city/backstreets_alley)
 "qO" = (
 /obj/effect/landmark/backstreetspawnwest,
 /turf/open/floor/plating/dirt/jungle/dark,
 /area/city/backstreets_alley)
+"re" = (
+/obj/structure/table/reinforced,
+/obj/item/pickaxe/mini,
+/obj/item/pickaxe/mini,
+/obj/item/pickaxe/mini,
+/obj/item/pickaxe/mini,
+/turf/open/floor/plating/rust,
+/area/city/backstreets_room)
 "rx" = (
 /obj/structure/flora/rock/pile/largejungle,
 /turf/open/water/jungle,
@@ -112,11 +120,6 @@
 "sb" = (
 /obj/effect/spawner/room/backstreets/pointofinterest,
 /turf/closed/indestructible/reinforced,
-/area/city/backstreets_room)
-"sm" = (
-/obj/structure/flora/rock/jungle,
-/obj/structure/lootcrate/money,
-/turf/open/floor/plating/rust,
 /area/city/backstreets_room)
 "sp" = (
 /obj/effect/mob_spawn/human/skeleton/alive{
@@ -131,24 +134,47 @@
 /obj/item/pickaxe,
 /turf/open/water/jungle,
 /area/city/backstreets_alley)
-"tO" = (
+"tN" = (
 /obj/structure/flora/rock/jungle,
-/turf/closed/indestructible/rock,
+/obj/structure/lootcrate/money,
+/turf/open/water/jungle,
+/area/city/backstreets_alley)
+"uo" = (
+/obj/effect/portal/permanent{
+	id = "cave_path_2";
+	name = "cave pathway";
+	desc = "Strange Pathway...";
+	alpha = 100
+	},
+/turf/open/water/jungle,
 /area/city/backstreets_alley)
 "uX" = (
 /obj/item/stack/spacecash/c100,
 /obj/item/stack/spacecash/c100,
 /turf/open/floor/plating/ashplanet/wateryrock,
 /area/city/backstreets_alley)
+"vm" = (
+/turf/open/floor/plating/foam,
+/area/city/backstreets_room)
 "xk" = (
 /obj/structure/sign/warning/securearea,
 /turf/closed/indestructible/reinforced,
 /area/city/backstreets_alley)
-"yQ" = (
-/turf/open/floor/plating/foam,
+"yP" = (
+/obj/structure/lootcrate/money,
+/turf/open/water/jungle,
+/area/city/backstreets_alley)
+"zz" = (
+/obj/structure/flora/rock/jungle,
+/obj/structure/lootcrate/money,
+/turf/open/floor/plating/rust,
 /area/city/backstreets_room)
 "Ag" = (
 /obj/effect/mob_spawn/human/miner/explorer,
+/turf/open/water/jungle,
+/area/city/backstreets_alley)
+"Bm" = (
+/obj/item/flashlight/lantern/syndicate,
 /turf/open/water/jungle,
 /area/city/backstreets_alley)
 "BD" = (
@@ -185,10 +211,6 @@
 /obj/effect/spawner/room/backstreets/small_east,
 /turf/closed/indestructible/reinforced,
 /area/city/backstreets_room)
-"Em" = (
-/obj/structure/lootcrate/money,
-/turf/open/floor/plating/rust,
-/area/city/backstreets_room)
 "Es" = (
 /turf/closed/mineral/ash_rock,
 /area/city/backstreets_alley)
@@ -196,30 +218,25 @@
 /obj/effect/spawner/room/backstreets/small_west,
 /turf/closed/indestructible/reinforced,
 /area/city/backstreets_room)
-"FM" = (
-/obj/effect/portal/permanent{
-	id = "cave_path_1";
-	name = "cave pathway";
-	desc = "Strange Pathway...";
-	alpha = 100
-	},
-/turf/open/water/jungle,
-/area/city/backstreets_alley)
-"GZ" = (
+"GH" = (
 /obj/structure/table/reinforced,
 /obj/item/pickaxe/drill/diamonddrill,
 /obj/item/pickaxe/drill/diamonddrill,
 /turf/open/floor/plating/rust,
 /area/city/backstreets_room)
-"He" = (
-/obj/structure/flora/rock/jungle,
-/obj/structure/lootcrate/money,
-/turf/open/water/jungle,
-/area/city/backstreets_alley)
+"HU" = (
+/obj/structure/table/reinforced,
+/obj/item/pickaxe/drill/diamonddrill,
+/obj/item/pickaxe/drill/diamonddrill,
+/turf/open/floor/plating/foam,
+/area/city/backstreets_room)
 "Ig" = (
 /obj/structure/spacevine,
 /turf/closed/indestructible/rock,
 /area/city/backstreets_alley)
+"IG" = (
+/turf/open/floor/plating/rust,
+/area/city/backstreets_room)
 "Jh" = (
 /obj/effect/landmark/backstreetspawnwest,
 /turf/open/water/jungle,
@@ -241,15 +258,6 @@
 "Ln" = (
 /turf/open/floor/mineral/titanium/tiled,
 /area/city/backstreets_room)
-"LP" = (
-/obj/structure/table/reinforced,
-/obj/item/pickaxe/drill/diamonddrill,
-/obj/item/pickaxe/drill/diamonddrill,
-/obj/machinery/light{
-	dir = 4
-	},
-/turf/open/floor/plating/foam,
-/area/city/backstreets_room)
 "MW" = (
 /turf/closed/indestructible/reinforced,
 /area/city/backstreets_alley)
@@ -260,12 +268,6 @@
 "Oe" = (
 /obj/effect/spawner/room/backstreets/medium_south,
 /turf/closed/indestructible/reinforced,
-/area/city/backstreets_room)
-"OP" = (
-/obj/structure/table/reinforced,
-/obj/item/pickaxe/drill/diamonddrill,
-/obj/item/pickaxe/drill/diamonddrill,
-/turf/open/floor/plating/foam,
 /area/city/backstreets_room)
 "Pz" = (
 /obj/effect/spawner/room/backstreets/large_south,
@@ -282,27 +284,28 @@
 "RN" = (
 /turf/open/floor/plasteel/rockvault,
 /area/city/backstreets_room)
-"Sz" = (
-/obj/structure/table/reinforced,
-/obj/item/pickaxe/mini,
-/obj/item/pickaxe/mini,
-/obj/item/pickaxe/mini,
-/obj/item/pickaxe/mini,
-/turf/open/floor/plating/rust,
-/area/city/backstreets_room)
 "SI" = (
 /obj/item/statuebust,
 /obj/structure/statue/custom,
 /turf/open/floor/mineral/titanium/tiled,
 /area/city/backstreets_room)
-"TU" = (
-/obj/item/stack/spacecash/c10,
-/turf/open/water/jungle,
-/area/city/backstreets_alley)
+"Uw" = (
+/obj/structure/table/reinforced,
+/obj/item/pickaxe/drill/diamonddrill,
+/obj/item/pickaxe/drill/diamonddrill,
+/obj/machinery/light{
+	dir = 4
+	},
+/turf/open/floor/plating/foam,
+/area/city/backstreets_room)
 "Vd" = (
 /obj/structure/flora/rock,
 /turf/open/floor/plating/ashplanet/wateryrock,
 /area/city/backstreets_alley)
+"VA" = (
+/obj/structure/lootcrate/money,
+/turf/open/floor/plating/rust,
+/area/city/backstreets_room)
 "VL" = (
 /obj/item/stack/spacecash/c100,
 /turf/open/floor/plating/ashplanet/wateryrock,
@@ -319,9 +322,6 @@
 /obj/item/pickaxe/mini,
 /obj/machinery/light,
 /turf/open/floor/plasteel/rockvault,
-/area/city/backstreets_room)
-"Zx" = (
-/turf/open/floor/plating/rust,
 /area/city/backstreets_room)
 "ZH" = (
 /obj/effect/spawner/room/backstreets/medium_north,
@@ -490,7 +490,7 @@ hv
 hv
 hv
 BD
-fJ
+uo
 ij
 BD
 hv
@@ -606,7 +606,7 @@ ij
 BD
 BD
 BD
-qr
+yP
 ij
 ij
 ij
@@ -713,7 +713,7 @@ MW
 BD
 BD
 ij
-TU
+dz
 ij
 BD
 ij
@@ -835,7 +835,7 @@ BD
 BD
 ij
 sp
-nL
+Bm
 BD
 BD
 hv
@@ -1267,12 +1267,12 @@ it
 MW
 BD
 ij
-TU
+dz
 ij
 Es
 BD
 ij
-TU
+dz
 ij
 ij
 Es
@@ -1611,7 +1611,7 @@ CI
 CI
 EQ
 BD
-He
+tN
 gT
 BD
 BD
@@ -3105,10 +3105,10 @@ hv
 "}
 (26,1,1) = {"
 BD
-Em
-Zx
-yQ
-Sz
+VA
+IG
+vm
+re
 BD
 ij
 ij
@@ -3216,10 +3216,10 @@ hv
 "}
 (27,1,1) = {"
 BD
-Zx
-yQ
-yQ
-Sz
+IG
+vm
+vm
+re
 Ag
 tl
 ij
@@ -3327,12 +3327,12 @@ hv
 "}
 (28,1,1) = {"
 BD
-yQ
-Zx
-Zx
+vm
+IG
+IG
 ij
 sp
-nL
+Bm
 BD
 BD
 BD
@@ -3438,8 +3438,8 @@ hv
 "}
 (29,1,1) = {"
 BD
-GZ
-LP
+GH
+Uw
 ij
 ij
 ij
@@ -3664,7 +3664,7 @@ hv
 BD
 ij
 sp
-nL
+Bm
 ij
 Es
 ij
@@ -5104,7 +5104,7 @@ hv
 (44,1,1) = {"
 hv
 BD
-qr
+yP
 ij
 ij
 ij
@@ -5542,7 +5542,7 @@ Es
 Es
 ij
 ij
-He
+tN
 Ig
 "}
 (48,1,1) = {"
@@ -5875,7 +5875,7 @@ ij
 ij
 ij
 ij
-TU
+dz
 Ig
 "}
 (51,1,1) = {"
@@ -5890,7 +5890,7 @@ ij
 ij
 ij
 ij
-TU
+dz
 BD
 BD
 MW
@@ -6221,7 +6221,7 @@ ij
 ij
 Ig
 sp
-nL
+Bm
 ij
 ij
 gT
@@ -6539,7 +6539,7 @@ BD
 BD
 BD
 BD
-TU
+dz
 ij
 BD
 hv
@@ -6603,7 +6603,7 @@ Ig
 Ig
 ij
 ij
-TU
+dz
 ij
 BD
 BD
@@ -6664,7 +6664,7 @@ BD
 BD
 BD
 BD
-TU
+dz
 ij
 BD
 hv
@@ -6822,7 +6822,7 @@ hv
 hv
 Ig
 ij
-TU
+dz
 ij
 Ig
 ij
@@ -6880,7 +6880,7 @@ hv
 (60,1,1) = {"
 hv
 BD
-TU
+dz
 ij
 ij
 ij
@@ -7069,7 +7069,7 @@ CI
 CI
 hv
 BD
-TU
+dz
 ij
 ij
 ij
@@ -7203,7 +7203,7 @@ CI
 CI
 hv
 BD
-qr
+yP
 ij
 ij
 Ig
@@ -7271,7 +7271,7 @@ ij
 ij
 ij
 ij
-TU
+dz
 ij
 Ig
 hv
@@ -7514,7 +7514,7 @@ Ig
 ij
 ij
 Es
-qr
+yP
 BD
 hv
 hv
@@ -7547,7 +7547,7 @@ BD
 hv
 BD
 BD
-TU
+dz
 ij
 ij
 BD
@@ -8586,7 +8586,7 @@ ij
 ij
 ij
 sp
-nL
+Bm
 ij
 ij
 BD
@@ -8657,7 +8657,7 @@ hv
 hv
 hv
 BD
-TU
+dz
 ij
 Es
 Es
@@ -8768,7 +8768,7 @@ hv
 hv
 hv
 BD
-qr
+yP
 ij
 Es
 Es
@@ -9655,7 +9655,7 @@ hv
 (85,1,1) = {"
 BD
 BD
-TU
+dz
 ij
 ij
 BD
@@ -10017,7 +10017,7 @@ CI
 CI
 ij
 ij
-fR
+kQ
 hv
 hv
 hv
@@ -10128,9 +10128,9 @@ CI
 CI
 ij
 ij
-fR
-fR
-fR
+kQ
+kQ
+kQ
 hv
 hv
 hv
@@ -10212,7 +10212,7 @@ hv
 hv
 BD
 BD
-qr
+yP
 ij
 ij
 ij
@@ -10322,7 +10322,7 @@ hv
 hv
 hv
 BD
-TU
+dz
 ij
 ij
 ij
@@ -10462,9 +10462,9 @@ hv
 hv
 hv
 hv
-fR
-fR
-fR
+kQ
+kQ
+kQ
 ij
 ij
 hv
@@ -10575,7 +10575,7 @@ hv
 hv
 hv
 hv
-fR
+kQ
 ij
 ij
 hv
@@ -10686,7 +10686,7 @@ hv
 hv
 hv
 hv
-fR
+kQ
 ij
 ij
 hv
@@ -10797,7 +10797,7 @@ hv
 hv
 hv
 hv
-fR
+kQ
 ij
 ij
 hv
@@ -10823,7 +10823,7 @@ Es
 ij
 ij
 ij
-TU
+dz
 BD
 BD
 hv
@@ -11063,7 +11063,7 @@ hv
 BD
 Ig
 ij
-qr
+yP
 BD
 BD
 hv
@@ -11433,7 +11433,7 @@ hv
 hv
 BD
 BD
-TU
+dz
 ij
 BD
 BD
@@ -11598,7 +11598,7 @@ CI
 hv
 hv
 BD
-TU
+dz
 ij
 ij
 Ig
@@ -11824,7 +11824,7 @@ BD
 Es
 Es
 sp
-nL
+Bm
 ij
 ij
 BD
@@ -11954,7 +11954,7 @@ Ig
 Ig
 Ig
 Ig
-qr
+yP
 ij
 ij
 ij
@@ -12652,7 +12652,7 @@ hv
 (112,1,1) = {"
 hv
 BD
-TU
+dz
 ij
 ij
 BD
@@ -13213,7 +13213,7 @@ Es
 Es
 ij
 ij
-TU
+dz
 Ig
 BD
 BD
@@ -13643,7 +13643,7 @@ ij
 BD
 BD
 ij
-TU
+dz
 ij
 BD
 hv
@@ -13989,7 +13989,7 @@ gT
 ij
 ij
 Ig
-TU
+dz
 ij
 ij
 BD
@@ -14108,7 +14108,7 @@ BD
 BD
 BD
 Ig
-TU
+dz
 ij
 ij
 ij
@@ -14208,7 +14208,7 @@ hv
 hv
 hv
 BD
-qr
+yP
 ij
 ij
 ij
@@ -14762,7 +14762,7 @@ hv
 hv
 hv
 BD
-fJ
+uo
 BD
 BD
 BD
@@ -14858,7 +14858,7 @@ hv
 hv
 BD
 ij
-TU
+dz
 ij
 Ig
 hv
@@ -17038,8 +17038,8 @@ qo
 kn
 MW
 BD
-tO
-tO
+jg
+jg
 BD
 BD
 hv
@@ -17148,10 +17148,10 @@ kn
 kn
 kn
 MW
-sm
-Zx
-yQ
-Sz
+zz
+IG
+vm
+re
 BD
 Ig
 Ig
@@ -17259,10 +17259,10 @@ kn
 kn
 kn
 MW
-Zx
-yQ
-yQ
-Sz
+IG
+vm
+vm
+re
 ij
 ij
 Ig
@@ -17370,9 +17370,9 @@ kn
 kn
 kn
 MW
-yQ
-Zx
-Zx
+vm
+IG
+IG
 Ag
 ij
 ij
@@ -17481,11 +17481,11 @@ kn
 kn
 kn
 MW
-GZ
-LP
+GH
+Uw
 ij
 sp
-nL
+Bm
 ij
 ij
 ij
@@ -17638,7 +17638,7 @@ hv
 BD
 ij
 ij
-TU
+dz
 ij
 ij
 BD
@@ -18153,7 +18153,7 @@ qo
 kn
 MW
 BD
-qr
+yP
 ij
 Es
 BD
@@ -18431,10 +18431,10 @@ Es
 Es
 ij
 sp
-nL
+Bm
 Ig
 Ig
-TU
+dz
 ij
 ij
 BD
@@ -18519,10 +18519,10 @@ kn
 kn
 kn
 MW
-Zx
-Zx
-yQ
-Sz
+IG
+IG
+vm
+re
 BD
 BD
 ij
@@ -18630,10 +18630,10 @@ kn
 kn
 kn
 MW
-Zx
-yQ
-yQ
-Sz
+IG
+vm
+vm
+re
 BD
 ij
 Ag
@@ -18741,14 +18741,14 @@ kn
 kn
 kn
 MW
-yQ
-Zx
-Zx
+vm
+IG
+IG
 ij
 ij
 ij
 sp
-nL
+Bm
 BD
 BD
 hv
@@ -18756,10 +18756,10 @@ hv
 "}
 (167,1,1) = {"
 BD
-Em
-Zx
-yQ
-Sz
+VA
+IG
+vm
+re
 ij
 BD
 BD
@@ -18852,8 +18852,8 @@ kn
 kn
 kn
 MW
-GZ
-LP
+GH
+Uw
 Ag
 tl
 ij
@@ -18867,10 +18867,10 @@ hv
 "}
 (168,1,1) = {"
 BD
-Zx
-yQ
-yQ
-Sz
+IG
+vm
+vm
+re
 ij
 BD
 BD
@@ -18966,7 +18966,7 @@ MW
 BD
 BD
 sp
-nL
+Bm
 ij
 BD
 ij
@@ -18978,9 +18978,9 @@ hv
 "}
 (169,1,1) = {"
 BD
-yQ
-Zx
-Zx
+vm
+IG
+IG
 Ag
 tl
 ij
@@ -19048,7 +19048,7 @@ ij
 ij
 Es
 Es
-qr
+yP
 BD
 hv
 hv
@@ -19089,11 +19089,11 @@ hv
 "}
 (170,1,1) = {"
 BD
-GZ
-OP
+GH
+HU
 ij
 sp
-nL
+Bm
 ij
 BD
 BD
@@ -19318,7 +19318,7 @@ BD
 BD
 BD
 ij
-TU
+dz
 ij
 ij
 ij
@@ -19749,7 +19749,7 @@ ij
 ij
 BD
 BD
-FM
+gv
 BD
 hv
 "}
@@ -20205,7 +20205,7 @@ ij
 ij
 ij
 Ig
-TU
+dz
 ij
 ij
 BD
@@ -20872,7 +20872,7 @@ BD
 BD
 BD
 BD
-He
+tN
 Es
 ij
 ij
@@ -20970,7 +20970,7 @@ ij
 ij
 ij
 ij
-qr
+yP
 BD
 hv
 "}
@@ -21526,7 +21526,7 @@ Ig
 Ig
 ij
 ij
-TU
+dz
 BD
 "}
 (192,1,1) = {"
@@ -21637,7 +21637,7 @@ ij
 Ig
 ij
 ij
-TU
+dz
 BD
 "}
 (193,1,1) = {"
@@ -22311,7 +22311,7 @@ BD
 BD
 ij
 ij
-TU
+dz
 BD
 BD
 ij
@@ -23530,7 +23530,7 @@ BD
 (210,1,1) = {"
 BD
 BD
-TU
+dz
 ij
 ij
 ij
@@ -23741,12 +23741,12 @@ Ig
 Ig
 ij
 sp
-nL
+Bm
 ij
 ij
 ij
 ij
-TU
+dz
 BD
 "}
 (212,1,1) = {"
@@ -23857,7 +23857,7 @@ BD
 BD
 BD
 ij
-TU
+dz
 BD
 "}
 (213,1,1) = {"
@@ -25527,13 +25527,13 @@ hv
 "}
 (228,1,1) = {"
 BD
-qr
+yP
 ij
 ij
 ij
 ij
 ij
-TU
+dz
 BD
 BD
 BD
@@ -26417,7 +26417,7 @@ hv
 hv
 hv
 Ig
-TU
+dz
 ij
 ij
 ij
@@ -27303,7 +27303,7 @@ hv
 "}
 (244,1,1) = {"
 BD
-TU
+dz
 ij
 BD
 BD
@@ -28082,7 +28082,7 @@ hv
 hv
 BD
 ij
-FM
+gv
 BD
 hv
 hv
