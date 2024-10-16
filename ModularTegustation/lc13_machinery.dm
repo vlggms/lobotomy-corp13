@@ -321,6 +321,29 @@
 
 #undef ANIMATE_FABRICATOR_ACTIVE
 
+// here we add some vars to the brain to hold the attributes/traits of a mob
+/obj/item/organ/brain
+	var/list/initial_traits = list()
+	var/stored_fortitude = 0
+	var/stored_prudence = 0
+	var/stored_temperance = 0
+	var/stored_justice = 0
+
+/obj/item/organ/brain/Remove(mob/living/carbon/C, special = 0, no_id_transfer = FALSE)
+	if(C)
+		stored_fortitude = get_raw_level(C, FORTITUDE_ATTRIBUTE)
+		stored_prudence = get_raw_level(C, PRUDENCE_ATTRIBUTE)
+		stored_temperance = get_raw_level(C, TEMPERANCE_ATTRIBUTE)
+		stored_justice = get_raw_level(C, JUSTICE_ATTRIBUTE)
+	. = ..()
+
+/datum/job/after_spawn(mob/living/H, mob/M, latejoin = FALSE)
+	. = ..()
+	var/obj/item/organ/brain/B = H.getorganslot(ORGAN_SLOT_BRAIN)
+	if(B)
+		if(length(B.initial_traits) == 0)
+			B.initial_traits = H.status_traits
+
 /*---------------\
 |Body Preservation Unit|
 \---------------*/
