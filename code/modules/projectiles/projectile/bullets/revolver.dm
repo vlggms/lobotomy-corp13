@@ -8,7 +8,9 @@
 
 /obj/projectile/bullet/a50ae
 	name = ".50AE bullet"
-	damage = 60
+	damage = 70
+	paralyze = 300
+	knockdown = 80
 
 // .38 (Detective's Gun)
 
