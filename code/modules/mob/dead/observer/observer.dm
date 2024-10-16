@@ -3,10 +3,6 @@ GLOBAL_LIST_EMPTY(ghost_images_simple) //this is a list of all ghost images as t
 
 GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 
-GLOBAL_LIST_INIT(unpossessable_mobs, list( // LOBOTOMYCORPORATION ADDITION -- abnormality blacklist
-	/mob/living/simple_animal/hostile/abnormality/punishing_bird,
-))
-
 /mob/dead/observer
 	name = "ghost"
 	desc = "It's a g-g-g-g-ghooooost!" //jinkies!
@@ -638,27 +634,34 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 	set name = "Possess!"
 	set desc= "Take over the body of a mindless creature!"
 
+	// LOBOTOMYCORPORATION ADDITION START
+	if(!SSlobotomy_corp.enable_possession)
+		to_chat(usr, span_userdanger("Abnormality possession is not enabled!"))
+		return FALSE
+
+	if(possession_cooldown >= world.time)
+		to_chat(src, span_userdanger("You are under a cooldown for possessing for [(possession_cooldown - world.time) / 10] more seconds!"))
+		return FALSE
+	// LOBOTOMYCORPORATION ADDITION END
+
 	var/list/possessible = list()
 	for(var/mob/living/L in GLOB.alive_mob_list)
-		if(istype(L,/mob/living/carbon/human/dummy) || !get_turf(L)) //Haha no.
-			continue
 		// LOBOTOMYCORPORATION ADDITION START
-		if(!SSlobotomy_corp.enable_possession)
-			message_admins(span_adminnotice("[src.key] has accessed the mob/dead/observer/verb/possess() whilst abnormality possession is not enabled!"))
-			return
-		if(is_type_in_list(L, GLOB.unpossessable_mobs))
+		if(isabnormalitymob(L))
+			var/mob/living/simple_animal/hostile/abnormality/abnormality = L
+			if(abnormality.do_not_possess)
+				continue
+
+		if(istype(L, /mob/living/carbon/human/dummy) || !get_turf(L)) //Haha no.
 			continue
 		// LOBOTOMYCORPORATION ADDITION END
+
 		if(!(L in GLOB.player_list) && !L.mind)
 			possessible += L
 
 	var/mob/living/target = input("Your new life begins today!", "Possess Mob", null, null) as null|anything in sortNames(possessible)
 
 	if(!target)
-		return FALSE
-
-	if(possession_cooldown >= world.time)
-		to_chat(src, span_userdanger("You are under a cooldown for possessing for [(possession_cooldown - world.time) * 10] more seconds!"))
 		return FALSE
 
 	if(ismegafauna(target))
@@ -721,16 +724,14 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 		to_chat(usr, span_userdanger("Abnormality possession is not enabled!"))
 		return ..()
 
-	if(is_type_in_list(over, GLOB.unpossessable_mobs))
-		to_chat(usr, span_userdanger("This abnormality is blacklisted from being possessed!"))
-		return ..()
+	if(isabnormalitymob(over))
+		var/mob/living/simple_animal/hostile/abnormality/abnormality = over
+		if(abnormality.do_not_possess)
+			to_chat(usr, span_userdanger("This abnormality is blacklisted from being possessed!"))
+			return ..()
 
 	if(possession_cooldown >= world.time)
-		to_chat(src, span_userdanger("You are under a cooldown for possessing for [(possession_cooldown - world.time) * 10] more seconds!"))
-		return ..()
-
-	if(!isobserver(usr)) // safety check
-		to_chat(usr, span_userdanger("you are not an observer despite being an observer, silly. You cant possess abnormalities!"))
+		to_chat(src, span_userdanger("You are under a cooldown for possessing for [(possession_cooldown - world.time) / 10] more seconds!"))
 		return ..()
 
 	if(!usr.client) // who are we talking to again...? whatever
