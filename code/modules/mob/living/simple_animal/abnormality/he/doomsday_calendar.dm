@@ -92,7 +92,7 @@
 	if(!IsContained())//if it's breaching
 		CheckCountdown()
 		if((pulse_cooldown < world.time) && (is_firey == TRUE))
-			playsound(src, 'sound/abnormalities/doomsdaycalendar/Effect_Burn.ogg', 50, TRUE)
+			playsound(src, 'sound/effects/burn.ogg', 50, TRUE)
 			AoeBurn()
 
 /mob/living/simple_animal/hostile/abnormality/doomsday_calendar/death()

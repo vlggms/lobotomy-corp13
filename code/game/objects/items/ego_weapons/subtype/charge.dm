@@ -37,7 +37,7 @@
 /obj/item/ego_weapon/Initialize(mapload)
 	. = ..()
 	if(charge_cap < charge_cost)
-		charge_cap = charge_cost * 2 // lets not ruin the players expirience, shall we fellow coders?
+		charge_cap = charge_cost * 2 // lets not ruin the players experience, shall we fellow coders?
 		CRASH("[src] charge ability has an ability that costs more than its default charge cap!")
 
 /obj/item/ego_weapon/attack_self(mob/living/user)
