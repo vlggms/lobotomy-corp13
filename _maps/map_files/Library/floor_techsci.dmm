@@ -1,11 +1,11 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
 "aq" = (
 /obj/item/toy/plush/yesod,
-/obj/item/gun/ego_gun/pistol/solemnlament{
+/obj/item/ego_weapon/ranged/pistol/solemnlament{
 	pixel_x = -20;
 	pixel_y = 0
 	},
-/obj/item/gun/ego_gun/pistol/solemnvow{
+/obj/item/ego_weapon/ranged/pistol/solemnvow{
 	pixel_y = 0;
 	pixel_x = 18
 	},

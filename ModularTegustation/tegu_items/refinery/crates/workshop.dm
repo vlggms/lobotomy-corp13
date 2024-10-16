@@ -75,9 +75,9 @@
 		/obj/item/ego_weapon/city/dawn/sword,
 		/obj/item/ego_weapon/city/dawn/cello,
 		/obj/item/ego_weapon/city/wedge,
-		/obj/item/gun/ego_gun/city/fullstop/assault,
-		/obj/item/gun/ego_gun/city/fullstop/sniper,
-		/obj/item/gun/ego_gun/city/fullstop/pistol,
+		/obj/item/ego_weapon/ranged/city/fullstop/assault,
+		/obj/item/ego_weapon/ranged/city/fullstop/sniper,
+		/obj/item/ego_weapon/ranged/city/fullstop/pistol,
 	)
 
 	rareloot =	list(
@@ -92,7 +92,7 @@
 
 	veryrareloot =	list(
 		/obj/item/ego_weapon/city/dawn/zwei,
-		/obj/item/gun/ego_gun/city/fullstop/deagle,
+		/obj/item/ego_weapon/ranged/city/fullstop/deagle,
 		/obj/item/clothing/suit/armor/ego_gear/city/dawnleader,
 		/obj/item/clothing/suit/armor/ego_gear/city/wedgeleader,
 		/obj/item/clothing/suit/armor/ego_gear/city/fullstopleader,

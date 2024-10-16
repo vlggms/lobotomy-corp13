@@ -38,7 +38,7 @@
 /area/city/backstreets_room)
 "z" = (
 /obj/structure/rack,
-/obj/item/gun/ego_gun/clerk,
+/obj/item/ego_weapon/ranged/clerk,
 /turf/open/floor/plating/rust,
 /area/city/backstreets_room)
 "B" = (

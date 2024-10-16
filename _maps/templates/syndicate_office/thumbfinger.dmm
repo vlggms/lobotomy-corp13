@@ -295,8 +295,8 @@
 	},
 /obj/item/clothing/suit/armor/ego_gear/city/thumb,
 /obj/item/clothing/suit/armor/ego_gear/city/thumb,
-/obj/item/gun/ego_gun/city/thumb/weak,
-/obj/item/gun/ego_gun/city/thumb/weak,
+/obj/item/ego_weapon/ranged/city/thumb/weak,
+/obj/item/ego_weapon/ranged/city/thumb/weak,
 /obj/machinery/light{
 	dir = 4;
 	pixel_x = 9;
@@ -310,7 +310,7 @@
 	color = "#440000";
 	dir = 1
 	},
-/obj/item/gun/ego_gun/city/thumb/capo/weak,
+/obj/item/ego_weapon/ranged/city/thumb/capo/weak,
 /obj/item/clothing/suit/armor/ego_gear/city/thumb_capo,
 /obj/item/ego_weapon/city/thumbmelee/weak,
 /obj/item/grenade/frag,
@@ -705,8 +705,8 @@
 	},
 /obj/item/clothing/suit/armor/ego_gear/city/thumb,
 /obj/item/clothing/suit/armor/ego_gear/city/thumb,
-/obj/item/gun/ego_gun/city/thumb/weak,
-/obj/item/gun/ego_gun/city/thumb/weak,
+/obj/item/ego_weapon/ranged/city/thumb/weak,
+/obj/item/ego_weapon/ranged/city/thumb/weak,
 /obj/machinery/light{
 	dir = 4;
 	pixel_x = 9;
@@ -761,7 +761,7 @@
 "Sl" = (
 /obj/structure/closet/cabinet,
 /obj/item/ego_weapon/city/thumbcane/weak,
-/obj/item/gun/ego_gun/city/thumb/sottocapo/weak,
+/obj/item/ego_weapon/ranged/city/thumb/sottocapo/weak,
 /obj/item/clothing/suit/armor/ego_gear/city/thumb_sottocapo,
 /obj/structure/window/reinforced/tinted{
 	dir = 1
@@ -774,7 +774,7 @@
 	color = "#440000";
 	dir = 1
 	},
-/obj/item/gun/ego_gun/city/thumb/capo/weak,
+/obj/item/ego_weapon/ranged/city/thumb/capo/weak,
 /obj/item/clothing/suit/armor/ego_gear/city/thumb_capo,
 /obj/item/ego_weapon/city/thumbmelee/weak,
 /obj/item/grenade/frag,

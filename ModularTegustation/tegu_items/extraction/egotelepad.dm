@@ -17,7 +17,7 @@
 	return ..()
 
 /obj/structure/return_pad/attackby(obj/item/I, mob/user, params)
-	if(istype(I, /obj/item/clothing/suit/armor/ego_gear) || istype(I, /obj/item/gun/ego_gun/pistol) || istype(I, /obj/item/ego_weapon) || istype(I, /obj/item/gun/ego_gun))
+	if(istype(I, /obj/item/clothing/suit/armor/ego_gear) || is_ego_weapon(I))
 		TryTeleport(I)
 		return
 	return ..()

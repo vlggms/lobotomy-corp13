@@ -22,7 +22,7 @@
 /area/city/backstreets_room)
 "cL" = (
 /obj/structure/table/reinforced,
-/obj/item/gun/ego_gun/city/fullstop/assault,
+/obj/item/ego_weapon/ranged/city/fullstop/assault,
 /turf/open/floor/engine,
 /area/city/backstreets_room)
 "dN" = (
@@ -132,7 +132,7 @@
 /area/city/backstreets_room)
 "kW" = (
 /obj/structure/table/reinforced,
-/obj/item/gun/ego_gun/city/fullstop/deagle,
+/obj/item/ego_weapon/ranged/city/fullstop/deagle,
 /turf/open/floor/engine,
 /area/city/backstreets_room)
 "lB" = (
@@ -198,7 +198,7 @@
 /area/city/backstreets_room)
 "pC" = (
 /obj/structure/table/reinforced,
-/obj/item/gun/ego_gun/city/fullstop/sniper,
+/obj/item/ego_weapon/ranged/city/fullstop/sniper,
 /turf/open/floor/engine,
 /area/city/backstreets_room)
 "pP" = (
@@ -647,7 +647,7 @@
 /area/city/backstreets_room)
 "SS" = (
 /obj/structure/table/reinforced,
-/obj/item/gun/ego_gun/city/thumb/weak,
+/obj/item/ego_weapon/ranged/city/thumb/weak,
 /turf/open/floor/engine,
 /area/city/backstreets_room)
 "TM" = (
@@ -733,7 +733,7 @@
 /area/city/backstreets_room)
 "Ya" = (
 /obj/structure/table/reinforced,
-/obj/item/gun/ego_gun/city/fullstop/pistol,
+/obj/item/ego_weapon/ranged/city/fullstop/pistol,
 /turf/open/floor/engine,
 /area/city/backstreets_room)
 "YL" = (

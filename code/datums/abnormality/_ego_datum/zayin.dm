@@ -9,7 +9,7 @@
 
 // You are bald - Tough
 /datum/ego_datum/weapon/tough
-	item_path = /obj/item/gun/ego_gun/pistol/tough
+	item_path = /obj/item/ego_weapon/ranged/pistol/tough
 	cost = 12
 
 /datum/ego_datum/armor/tough
@@ -18,7 +18,7 @@
 
 // Wellcheers vending machine - Soda
 /datum/ego_datum/weapon/soda
-	item_path = /obj/item/gun/ego_gun/pistol/soda
+	item_path = /obj/item/ego_weapon/ranged/pistol/soda
 	cost = 12
 
 /datum/ego_datum/armor/soda
@@ -63,7 +63,7 @@
 
 // A Quiet Day - Nostalgia
 /datum/ego_datum/weapon/nostalgia
-	item_path = /obj/item/gun/ego_gun/pistol/nostalgia
+	item_path = /obj/item/ego_weapon/ranged/pistol/nostalgia
 	cost = 12
 
 /datum/ego_datum/armor/nostalgia
@@ -90,7 +90,7 @@
 
 // Fallen Amurdad - Nightshade
 /datum/ego_datum/weapon/nightshade
-	item_path = /obj/item/gun/ego_gun/pistol/nightshade
+	item_path = /obj/item/ego_weapon/ranged/pistol/nightshade
 	cost = 12
 
 /datum/ego_datum/armor/nightshade
@@ -126,7 +126,7 @@
 
 // Vending Machine and Oceanic Breeze - A Taste of the Ocean
 /datum/ego_datum/weapon/oceanic
-	item_path = /obj/item/gun/ego_gun/pistol/oceanic
+	item_path = /obj/item/ego_weapon/ranged/pistol/oceanic
 	cost = 12
 
 /datum/ego_datum/armor/oceanic

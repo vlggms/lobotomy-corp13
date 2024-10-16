@@ -138,4 +138,4 @@
 	head = /obj/item/clothing/head/soft/paramedic
 	suit =  /obj/item/clothing/suit/toggle/labcoat/paramedic
 	backpack_contents = list(/obj/item/pinpointer/crew=1)
-	l_hand = /obj/item/gun/ego_gun/pistol/kcorp
+	l_hand = /obj/item/ego_weapon/ranged/pistol/kcorp
