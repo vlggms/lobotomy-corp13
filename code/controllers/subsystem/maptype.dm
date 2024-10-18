@@ -12,16 +12,16 @@ SUBSYSTEM_DEF(maptype)
 	var/jobtype		//If a map RNGs which jobs are available, use this
 
 	//All the map tags that delete all jobs and replace them with others.
-	var/list/clearmaps = list("rcorp", "city", "wcorp", "limbus_labs", "fixers")
+	var/list/clearmaps = list("rcorp", "city", "wcorp", "limbus_labs", "fixers", "railway")
 
 	//All the map tags that are combat maps and need abnos to breach immediately
-	var/list/combatmaps = list("rcorp", "wcorp", "limbus_labs", "fixers")
+	var/list/combatmaps = list("rcorp", "wcorp", "limbus_labs", "fixers", "railway")
 
 	//Ghosts should be possessbale at all times
 	var/list/autopossess = list("rcorp", "limbus_labs")
 
 	//These end after a certain number of minutes.
-	var/list/autoend = list("rcorp", "wcorp", "limbus_labs", "fixers")
+	var/list/autoend = list("rcorp", "wcorp", "limbus_labs", "fixers", "railway")
 
 	//This map is city stuff
 	var/list/citymaps = list("wonderlabs", "city", "fixers")
@@ -33,7 +33,7 @@ SUBSYSTEM_DEF(maptype)
 	var/list/craftingmaps = list("skeld", "limbus_labs")
 
 	//Maps that give no fear. Everyone cannot work as is fear immune.
-	var/list/nofear = list("limbus_labs")
+	var/list/nofear = list("limbus_labs", "railway")
 
 	//What departments are we looking at
 	var/list/departments = list("Command","Security","Service")
@@ -48,7 +48,7 @@ SUBSYSTEM_DEF(maptype)
 			departments = list("Command", "Security", "Service", "Science")
 		if("limbus_labs")
 			departments = list("Command", "Security","Medical", "Science", "Service" )
-		if("rcorp", "wcorp")
+		if("rcorp", "wcorp", "railway")
 			departments = list("Command", "Security")
 
 	var/list/all_jobs = subtypesof(/datum/job)

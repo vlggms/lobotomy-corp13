@@ -50,6 +50,8 @@ GLOBAL_LIST_INIT(command_positions, list(
 	"Lead Researcher",
 	"High Security Commander",
 	"Low Security Commander",
+
+	"LCB Executive Manager",
 	))
 
 
@@ -190,6 +192,10 @@ GLOBAL_LIST_INIT(security_positions, list(
 	"Damage Mitigation Officer",
 	"Damage Exasperation Officer",
 	"Internal Police",
+
+	//Limbus
+	"LCB Assistant Manager",
+	"LCB Sinner",
 
 	//Fixers
 	"Fixer",
