@@ -21,6 +21,7 @@
 #define POLL_IGNORE_CONTRACTOR_SUPPORT "contractor_support"
 #define POLL_IGNORE_ACADEMY_WIZARD "academy_wizard"
 #define POLL_IGNORE_DEFECTIVECLONE "defective_clone"
+#define POLL_IGNORE_LAE_GIFT "laetitia_gift"
 
 GLOBAL_LIST_INIT(poll_ignore_desc, list(
 	POLL_IGNORE_SENTIENCE_POTION = "Sentience potion",
@@ -43,7 +44,8 @@ GLOBAL_LIST_INIT(poll_ignore_desc, list(
 	POLL_IGNORE_SPLITPERSONALITY = "Split Personality",
 	POLL_IGNORE_CONTRACTOR_SUPPORT = "Contractor Support Unit",
 	POLL_IGNORE_ACADEMY_WIZARD = "Academy Wizard Defender",
-	POLL_IGNORE_DEFECTIVECLONE = "Defective Clone"
+	POLL_IGNORE_DEFECTIVECLONE = "Defective Clone",
+	POLL_IGNORE_LAE_GIFT = "Laetitia Gift"
 ))
 GLOBAL_LIST_INIT(poll_ignore, init_poll_ignore())
 

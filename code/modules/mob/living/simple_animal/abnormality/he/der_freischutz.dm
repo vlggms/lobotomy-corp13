@@ -102,6 +102,20 @@
 	owner.client.view_size.zoomOut(zoom_out_amt, zoom_amt, new_dir)
 
 
+/mob/living/simple_animal/hostile/abnormality/der_freischutz/Login()
+	. = ..()
+	if(!. || !client)
+		return FALSE
+	to_chat(src, "<h1>You are Der Freischütz, A Support Role Abnormality.</h1><br>\
+		<b>|Devil’s Bullet|: Instead of a melee attack, you have ranged attack which fire a Magic Bullet.<br>\
+		The Magic Bullet is a projectile which deals MASSIVE BLACK damage and pierces through humans.<br>\
+		However, If this bullet hits an abnormality which is immune to bullets, It will not go through them. (I am looking at you, Jangsan Tiger and Warden) <br>\
+		WARNING: It may look like you can shoot through walls, But the bullet breaks upon hitting a wall.<br>\
+		<br>\
+		|Sniper Sights|: Once you use this ability, it will increase your field of view MASSIVELY in the direction you are currently looking.<br>\
+		Also, It will give you X-Ray vision, allowing you to see foes through walls.</b>")
+
+
 /mob/living/simple_animal/hostile/abnormality/der_freischutz/AttackingTarget(atom/attacked_target)
 	return OpenFire()
 
