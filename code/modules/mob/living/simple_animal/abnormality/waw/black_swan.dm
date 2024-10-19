@@ -125,6 +125,9 @@
 	RegisterSignal(SSdcs, COMSIG_GLOB_MOB_DEATH, PROC_REF(OnMobDeath)) // Hell
 	RegisterSignal(SSdcs, COMSIG_GLOB_HUMAN_INSANE, PROC_REF(OnHumanInsane))
 	RegisterSignal(SSdcs, COMSIG_GLOB_ABNORMALITY_BREACH, PROC_REF(OnAbnoBreach))
+	if(IsCombatMap())
+		icon_state = icon_aggro
+		desc = "A young woman with the body of a black swan. Her eyes dart around looking for something."
 
 /mob/living/simple_animal/hostile/abnormality/black_swan/PostSpawn()
 	. = ..()

@@ -65,7 +65,7 @@
 		After 2 minutes, you will land but you can land earlier if you press your ability again.<br>\
 		<br>\
 		|Crushing Ice|: Once you use your ability again, you will land after 5 seconds.<br>\
-		Once you land, you deal a MASSIVE amount of RED damage to all humans bellow you.<br>\
+		Once you land, you deal a MASSIVE amount of RED damage to all humans bellow you. It does not harm your allies.<br>\
 		You will also create some snow and ice around you, which have a chance a sliping humans.<br>\
 		<br>\
 		|Cold Prison|: Each time you land, You will create a few Ice Slaves who can be controlled by ghosts.<br>\
@@ -181,8 +181,12 @@
 			new /obj/effect/temp_visual/ice_spikes(T)
 
 	for(var/mob/living/L in view(8, src))
-		if(faction_check_mob(L, TRUE)) //so it doesn't kill its own minions
-			continue
+		if(!IsCombatMap())
+			if(faction_check_mob(L, TRUE)) //so it doesn't kill its own minions
+				continue
+		else
+			if(faction_check_mob(L, FALSE)) //so it doesn't kill its own allies
+				continue
 		var/dist = get_dist(src, L)
 		if(ishuman(L)) //Different damage formulae for humans vs mobs
 			L.deal_damage(clamp((15 * (2 ** (8 - dist))), 15, 4000), RED_DAMAGE) //15-3840 damage scaling exponentially with distance
