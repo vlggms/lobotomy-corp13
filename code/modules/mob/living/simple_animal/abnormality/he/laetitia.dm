@@ -69,9 +69,9 @@
 	button_icon_state = "friends"
 	check_flags = AB_CHECK_CONSCIOUS
 	transparent_when_unavailable = TRUE
-	cooldown_time = 40 SECONDS
+	cooldown_time = 60 SECONDS
 	var/delete_timer
-	var/delete_cooldown = 30 SECONDS
+	var/delete_cooldown = 120 SECONDS
 	var/mob/living/simple_animal/hostile/gift/G1
 	var/mob/living/simple_animal/hostile/gift/G2
 	var/summoned_gift_maxHealth = 200
@@ -108,9 +108,7 @@
 		candidates -= C
 
 /datum/action/cooldown/laetitia_summon/proc/delete()
-	if (!G1.ckey)
 		qdel(G1)
-	if (!G2.ckey)
 		qdel(G2)
 
 /datum/action/cooldown/laetitia_gift

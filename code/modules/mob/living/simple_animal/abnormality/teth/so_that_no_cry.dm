@@ -59,8 +59,9 @@
 	var/damage_taken = 0
 	var/damage_reflection = FALSE
 	var/talismans = 0
-	var/counter_cooldown = 30 SECONDS
+	var/counter_cooldown = 20 SECONDS
 	var/last_counter_cooldown = 0
+	var/max_talismans = 10
 
 	attack_action_types = list(/datum/action/innate/abnormality_attack/toggle/cry_counter)
 
@@ -86,9 +87,7 @@
 		<br>\
 		|Cursed Counter|: You have an ability to toggle between using your counter when it is off cooldown, or not using it.<br>\
 		When you start countering, you will become immune to all damage and will teleport to your attacker to deal the same amount of damage they would of done to you, to them for 10 seconds.<br>\
-		However, If a human with talismans tries to punch you while you are in this state, You will become stunned depanding on the amount of Talismans they had.<br>\
-		<br>\
-		WARNING: While your counter ability is on, You are unable to attack even when it is off cooldown. You will need to turn it off.</b>")
+		However, If a human with talismans tries to punch you while you are in this state, You will become stunned depanding on the amount of Talismans they had.</b>")
 
 //Work Mechanics
 /mob/living/simple_animal/hostile/abnormality/so_that_no_cry/proc/Apply_Talisman(mob/living/carbon/human/user)
@@ -254,12 +253,12 @@
 /mob/living/simple_animal/hostile/abnormality/so_that_no_cry/proc/AttachTalisman(mob/living/attacker)
 	visible_message(span_notice("A talisman is attached to [src]!"))
 	talismans += 1
-	if(talismans > 10)
+	if(talismans > max_talismans)
 		TalismanStun()
 		ChangeMoveToDelay(initial(move_to_delay))
 		return
 	new /obj/effect/temp_visual/talisman(get_turf(src))
-	ChangeMoveToDelay(3 + (talismans / 10))
+	ChangeMoveToDelay(3 + (talismans / max_talismans))
 
 /mob/living/simple_animal/hostile/abnormality/so_that_no_cry/proc/TalismanStun()
 	if(!can_act)

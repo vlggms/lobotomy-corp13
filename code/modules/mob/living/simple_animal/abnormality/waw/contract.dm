@@ -82,7 +82,8 @@
 		<b>|Contracts|: You have 3 Contracts which you can offer to your allies.<br>\
 		'Contract of Ruin': For the next 10 seconds, your target deals more damage to objects and mechs.<br>\
 		<br>\
-		'Contract of Stealth': For the next 15 seconds, your target becomes much harder to see and indirect projectiles no longer hit them.<br>\
+		'Contract of Stealth': For the next 15 seconds, your target becomes much harder to see.<br>\
+		And for the first 2 seconds, indirect projectiles no longer hit them.<br>\
 		<br>\
 		'Contract of Recall': After you mark a Target, the next time you use this contract you will bring them over to your location.<br>\
 		However, There is a small delay before you click the ability and pulling them over.<br>\
@@ -323,8 +324,9 @@
 	selection_type = "range"
 	active_msg = "You prepare your Contract of Stealth..."
 	deactive_msg = "You put away your Contract of Stealth..."
-	var/alpha_level = 50
+	var/alpha_level = 35
 	var/stealth_duration = 15
+	var/density_duration = 2
 
 /obj/effect/proc_holder/spell/pointed/contract/stealth/cast(list/targets, mob/user)
 	var/target = targets[1]
@@ -337,14 +339,18 @@
 		A.density = FALSE
 		A.apply_status_effect(STATUS_EFFECT_STEALTH)
 		playsound(A, 'sound/abnormalities/so_that_no_cry/curse_talisman.ogg', 100, 1)
-		addtimer(CALLBACK(src, PROC_REF(RestoreAlpha), A, old_alpha, old_density), stealth_duration SECONDS)
+		addtimer(CALLBACK(src, PROC_REF(RestoreAlpha), A, old_alpha), stealth_duration SECONDS)
+		addtimer(CALLBACK(src, PROC_REF(RestoreDensity), A, old_density), density_duration SECONDS)
 		AddOverlay(A)
 		spawn(20)
 		RemoveOverlay(A)
 
-/obj/effect/proc_holder/spell/pointed/contract/stealth/proc/RestoreAlpha(mob/living/simple_animal/A, old_alpha, old_density)
+/obj/effect/proc_holder/spell/pointed/contract/stealth/proc/RestoreAlpha(mob/living/simple_animal/A, old_alpha)
 	if (A.stat != DEAD)
 		A.alpha = old_alpha
+
+/obj/effect/proc_holder/spell/pointed/contract/stealth/proc/RestoreDensity(mob/living/simple_animal/A, old_density)
+	if (A.stat != DEAD)
 		A.density = old_density
 
 /obj/effect/proc_holder/spell/pointed/contract/recall
@@ -369,11 +375,12 @@
 /obj/effect/proc_holder/spell/pointed/contract/recall/Click()
 	if (marked_animal != null)
 		// do recall
-		playsound(marked_animal, 'sound/magic/ethereal_enter.ogg', 50, TRUE, -1)
+		playsound(marked_animal, 'sound/magic/ethereal_exit.ogg', 50, TRUE, -1)
+		playsound(src, 'sound/magic/ethereal_exit.ogg', 50, TRUE, -1)
 		to_chat(marked_animal, span_warning("You are about to be pulled over by A Contract, Signed!"))
 		spawn(pulling_time)
 			marked_animal.forceMove(action.owner.loc)
-			playsound(marked_animal.loc, 'sound/magic/ethereal_exit.ogg', 50, TRUE, -1)
+			playsound(marked_animal.loc, 'sound/magic/ethereal_enter.ogg', 50, TRUE, -1)
 			marked_animal.Stun(target_stun_time)
 			RemoveOverlay(marked_animal)
 			marked_animal.remove_status_effect(STATUS_EFFECT_RECALL)
