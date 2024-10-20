@@ -165,10 +165,6 @@
 /obj/structure/lootcrate/money,
 /turf/open/floor/plating/rust,
 /area/city/backstreets_room)
-"Ag" = (
-/obj/effect/mob_spawn/human/miner/explorer,
-/turf/open/water/jungle,
-/area/city/backstreets_alley)
 "Bm" = (
 /obj/item/flashlight/lantern/syndicate,
 /turf/open/water/jungle,
@@ -719,7 +715,7 @@ ij
 ij
 Es
 ij
-Ag
+ij
 tl
 BD
 hv
@@ -3216,7 +3212,7 @@ IG
 vm
 vm
 re
-Ag
+ij
 tl
 ij
 ij
@@ -3548,7 +3544,7 @@ BD
 BD
 BD
 BD
-Ag
+ij
 tl
 ij
 Es
@@ -6105,7 +6101,7 @@ BD
 ij
 ij
 ij
-Ag
+ij
 tl
 BD
 ij
@@ -8470,7 +8466,7 @@ ij
 ij
 ij
 ij
-Ag
+ij
 tl
 ij
 BD
@@ -11708,7 +11704,7 @@ BD
 BD
 BD
 ij
-Ag
+ij
 tl
 ij
 ij
@@ -17369,7 +17365,7 @@ MW
 vm
 IG
 IG
-Ag
+ij
 ij
 ij
 ij
@@ -18315,7 +18311,7 @@ BD
 BD
 Es
 ij
-Ag
+ij
 tl
 ij
 ij
@@ -18632,7 +18628,7 @@ vm
 re
 BD
 ij
-Ag
+ij
 tl
 BD
 hv
@@ -18850,7 +18846,7 @@ kn
 MW
 GH
 Uw
-Ag
+ij
 tl
 ij
 BD
@@ -18977,7 +18973,7 @@ BD
 vm
 IG
 IG
-Ag
+ij
 tl
 ij
 BD
@@ -23625,7 +23621,7 @@ ij
 ij
 ij
 ij
-Ag
+ij
 tl
 ij
 ij

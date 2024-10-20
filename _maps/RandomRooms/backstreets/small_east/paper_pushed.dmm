@@ -46,6 +46,7 @@
 /area/city/backstreets_room)
 "J" = (
 /obj/item/paperplane,
+/obj/item/documents,
 /turf/open/indestructible/paper,
 /area/city/backstreets_room)
 "K" = (

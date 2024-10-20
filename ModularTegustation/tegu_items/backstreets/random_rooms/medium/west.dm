@@ -47,7 +47,27 @@
 	mappath = "_maps/RandomRooms/backstreets/medium_west/clan_cages.dmm"
 
 /datum/map_template/random_room/backstreets/medium_west/priest_room
-	name = "Redeemed Star - Medium East"
+	name = "Redeemed Star - Medium West"
 	room_id = "priest_room"
 	mappath = "_maps/RandomRooms/backstreets/medium_west/priest_room.dmm"
 	stock = 1
+
+/datum/map_template/random_room/backstreets/medium_west/town_mwa
+	name = "Lovetown A - Medium West"
+	room_id = "town_mwa"
+	mappath = "_maps/RandomRooms/backstreets/medium_west/town_mwa.dmm"
+
+/datum/map_template/random_room/backstreets/medium_west/town_mwb
+	name = "Lovetown B - Medium West"
+	room_id = "town_mwb"
+	mappath = "_maps/RandomRooms/backstreets/medium_west/town_mwb.dmm"
+
+/datum/map_template/random_room/backstreets/medium_west/mini_beach
+	name = "Mini Beach - Medium West"
+	room_id = "mini_beach"
+	mappath = "_maps/RandomRooms/backstreets/medium_west/mini_beach.dmm"
+
+/datum/map_template/random_room/backstreets/medium_west/chicken_coop
+	name = "Chicken - Medium West"
+	room_id = "chicken_coop"
+	mappath = "_maps/RandomRooms/backstreets/medium_west/chicken_coop.dmm"

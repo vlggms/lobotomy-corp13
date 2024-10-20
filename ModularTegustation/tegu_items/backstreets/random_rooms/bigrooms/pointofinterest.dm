@@ -19,3 +19,8 @@
 	name = "Scorp Vault - Point of Interest"
 	room_id = "scorp_poi"
 	mappath = "_maps/RandomRooms/backstreets/pointofinterest/scorp_vault.dmm"
+
+/datum/map_template/random_room/backstreets/pointofinterest/love_train
+	name = "Love Train - Point of Interest"
+	room_id = "love_train"
+	mappath = "_maps/RandomRooms/backstreets/pointofinterest/love_train.dmm"
