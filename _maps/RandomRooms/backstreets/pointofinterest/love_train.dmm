@@ -155,11 +155,6 @@
 /obj/structure/meatfloor,
 /turf/open/floor/carpet/blue,
 /area/city/backstreets_room)
-"wh" = (
-/obj/item/ego_weapon/city/charge/wcorp/shield/spear,
-/obj/structure/meatfloor,
-/turf/open/floor/wood,
-/area/city/backstreets_room)
 "wu" = (
 /obj/effect/rune/wall,
 /turf/open/floor/wood,
@@ -309,10 +304,6 @@
 /obj/structure/flora/rock/pile,
 /turf/open/floor/plating/asteroid/basalt,
 /area/city/backstreets_room)
-"LN" = (
-/obj/item/ego_weapon/city/charge/wcorp/hammer,
-/turf/open/floor/wood,
-/area/city/backstreets_room)
 "MA" = (
 /turf/closed/mineral/ash_rock,
 /area/city/backstreets_room)
@@ -388,11 +379,6 @@
 /area/city/backstreets_room)
 "Wk" = (
 /obj/structure/lootcrate/money,
-/obj/structure/meatfloor,
-/turf/open/floor/plating/asteroid/basalt,
-/area/city/backstreets_room)
-"Za" = (
-/obj/item/ego_weapon/city/charge/wcorp,
 /obj/structure/meatfloor,
 /turf/open/floor/plating/asteroid/basalt,
 /area/city/backstreets_room)
@@ -741,7 +727,7 @@ mA
 Dd
 mA
 DB
-wh
+Dd
 dX
 Is
 Is
@@ -920,7 +906,7 @@ MA
 MA
 OW
 zZ
-Za
+Is
 Is
 Is
 Is
@@ -1085,7 +1071,7 @@ zZ
 zZ
 zZ
 dX
-LN
+mA
 mA
 mA
 Lw
