@@ -58,8 +58,9 @@
 	var/finishing = FALSE
 	var/braineating = TRUE
 	var/healthmodifier = 0.05	// Can restore 30% of HP
+	var/target_hit = FALSE
 
-	attack_action_types = list(/datum/action/cooldown/speed)
+	attack_action_types = list(/datum/action/cooldown/hungering)
 
 /mob/living/simple_animal/hostile/abnormality/scarecrow/Login()
 	. = ..()
@@ -67,7 +68,58 @@
 		return FALSE
 	to_chat(src, "<h1>You are Scarecrow Searching for Wisdom, A Tank Role Abnormality.</h1><br>\
 		<b>|Seeking Wisdom|: When you attack corpses, You heal.<br>\
-		Unlike other abnormalities which use corpses, you are able to reuse the corpses you drain as many times as you would like.</b>")
+		Unlike other abnormalities which use corpses, you are able to reuse the corpses you drain as many times as you would like.<br>\
+		|Hungering for Wisdom|: You have an ability to speed up and increase your melee damage for a short amount of time.<br>\
+		However, If you don't hit any humans during your rush, You will take 50 damage and become slowed for same duration.</b>")
+
+/datum/action/cooldown/hungering
+	name = "Hungering for Wisdom"
+	icon_icon = 'icons/mob/actions/actions_abnormality.dmi'
+	button_icon_state = "hungering"
+	desc = "Gain a short speed/damage boost to rush at your foes!"
+	cooldown_time = 200
+	var/speeded_up = 1.5
+	var/punishment_speed = 6
+	var/speed_duration = 40
+	var/min_dam_buff = 30
+	var/max_dam_buff = 35
+	var/min_dam_old
+	var/max_dam_old
+	var/old_speed
+
+/datum/action/cooldown/hungering/Trigger()
+	if(!..())
+		return FALSE
+	if (istype(owner, /mob/living/simple_animal/hostile/abnormality/scarecrow))
+		var/mob/living/simple_animal/hostile/abnormality/scarecrow/H = owner
+		old_speed = H.move_to_delay
+		H.move_to_delay = speeded_up
+		H.UpdateSpeed()
+		H.target_hit = FALSE
+		min_dam_old = H.melee_damage_lower
+		max_dam_old = H.melee_damage_upper
+		H.melee_damage_lower = min_dam_buff
+		H.melee_damage_upper = max_dam_buff
+		to_chat(H, span_nicegreen("YOU FEEL YOUR HUNGER FOR WISDOM!"))
+		addtimer(CALLBACK(src, PROC_REF(RestoreSpeed)), speed_duration)
+
+		StartCooldown()
+
+/datum/action/cooldown/hungering/proc/RestoreSpeed()
+	if (istype(owner, /mob/living/simple_animal/hostile/abnormality/scarecrow))
+		var/mob/living/simple_animal/hostile/abnormality/scarecrow/H = owner
+		H.melee_damage_lower = min_dam_old
+		H.melee_damage_upper = max_dam_old
+		if (H.target_hit)
+			H.move_to_delay = old_speed
+			to_chat(H, span_nicegreen("You were able to calm down..."))
+		else
+			H.move_to_delay = punishment_speed
+			H.deal_damage(100, WHITE_DAMAGE)
+			to_chat(H, span_danger("You are weakened for not gathering any wisdom..."))
+			H.target_hit = TRUE
+			addtimer(CALLBACK(src, PROC_REF(RestoreSpeed)), speed_duration)
+		H.UpdateSpeed()
 
 /mob/living/simple_animal/hostile/abnormality/scarecrow/CanAttack(atom/the_target)
 	if(finishing)
@@ -90,6 +142,7 @@
 	if(.)
 		if(!istype(target, /mob/living/carbon/human))
 			return
+		target_hit = TRUE
 		var/mob/living/carbon/human/H = target
 		if(H.health < 0 && stat != DEAD && !finishing && H.getorgan(/obj/item/organ/brain))
 			finishing = TRUE
@@ -140,30 +193,3 @@
 	icon_living = "scarecrow_breach"
 	icon_state = icon_living
 	GiveTarget(user)
-
-/datum/action/cooldown/speed
-	name = "Speed"
-	icon_icon = 'icons/mob/actions/actions_minor_antag.dmi'
-	button_icon_state = "Speed"
-	desc = ""
-	cooldown_time = 50
-	var/speeded_up = 1.5
-	var/old_speed
-
-
-/datum/action/cooldown/speed/Trigger()
-	if(!..())
-		return FALSE
-	if (istype(owner, /mob/living/simple_animal/hostile))
-		var/mob/living/simple_animal/hostile/H = owner
-		old_speed = H.move_to_delay
-		H.move_to_delay = speeded_up
-		H.UpdateSpeed()
-		addtimer(CALLBACK(src, PROC_REF(RestoreSpeed)), 25)
-		StartCooldown()
-
-/datum/action/cooldown/speed/proc/RestoreSpeed()
-	if (istype(owner, /mob/living/simple_animal/hostile))
-		var/mob/living/simple_animal/hostile/H = owner
-		H.move_to_delay = old_speed
-		H.UpdateSpeed()

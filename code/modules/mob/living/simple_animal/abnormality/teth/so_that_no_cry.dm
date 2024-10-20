@@ -80,7 +80,7 @@
 	if(!. || !client)
 		return FALSE
 	to_chat(src, "<h1>You are So That No One Will Cry, A Tank Role Abnormality.</h1><br>\
-		<b>|Talismans|: When you attack, if your target was human they gain a Talisman.<br>\
+		<b>|Talismans|: When you attack, if your target was human they gain 3 Talismans.<br>\
 		For each Talisman a human has they deal slightly extra damage with melee weapons and become faster.<br>\
 		However, If they gain 6 Talismans they will transform into Curse Talismans.<br>\
 		Curse Talismans do the same thing as normal Talismans, but reversed.<br>\

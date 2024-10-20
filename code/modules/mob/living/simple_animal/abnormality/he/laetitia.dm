@@ -55,12 +55,13 @@
 		<b>|Small Doll|: Your attacks deal VERY little white damage.<br>\
 		<br>\
 		|Gifts!|: You are able to create Gifts which can heal or damage targets nearby when they are stepped on.<br>\
+		The Gifts don't deal damage to your allies.<br>\
 		You are able to have 10 gifts at a time, but creating gifts with more strength takes up more room.<br>\
 		You are also able to detonate them by using the |Prank| Ability.<br>\
 		<br>\
 		|Friends!|: Using your Call, You are able to summon 2 Allies to protect you.<br>\
 		Once they are summoned, ghost players are given a chance to control them.<br>\
-		If no players choose to control them, they disappear after 30 seconds.</b>")
+		They disappear after 60 seconds.</b>")
 
 /datum/action/cooldown/laetitia_summon
 	name = "Call for Friends"
@@ -69,9 +70,9 @@
 	button_icon_state = "friends"
 	check_flags = AB_CHECK_CONSCIOUS
 	transparent_when_unavailable = TRUE
-	cooldown_time = 60 SECONDS
+	cooldown_time = 90 SECONDS
 	var/delete_timer
-	var/delete_cooldown = 120 SECONDS
+	var/delete_cooldown = 60 SECONDS
 	var/mob/living/simple_animal/hostile/gift/G1
 	var/mob/living/simple_animal/hostile/gift/G2
 	var/summoned_gift_maxHealth = 200
@@ -108,8 +109,8 @@
 		candidates -= C
 
 /datum/action/cooldown/laetitia_summon/proc/delete()
-		qdel(G1)
-		qdel(G2)
+	qdel(G1)
+	qdel(G2)
 
 /datum/action/cooldown/laetitia_gift
 	name = "Gift"
