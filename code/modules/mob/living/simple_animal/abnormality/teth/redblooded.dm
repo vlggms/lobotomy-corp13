@@ -191,3 +191,17 @@
 	damage_type = RED_DAMAGE
 
 	damage = 8
+
+/obj/item/ammo_casing/caseless/rcorp_true_patriot
+	name = "true patriot casing"
+	desc = "a true patriot casing"
+	projectile_type = /obj/projectile/rcorp_true_patriot
+	pellets = 6
+	variance = 25
+
+/obj/projectile/rcorp_true_patriot
+	name = "american pellet"
+	desc = "100% real, surplus military ammo."
+	damage_type = RED_DAMAGE
+
+	damage = 14

@@ -206,9 +206,10 @@
 /obj/item/laetitia_gift/proc/explode(turf/TURF)
 	playsound(get_turf(src), 'sound/abnormalities/laetitia/spider_born.ogg', 50, 1)
 	var/mob/dummy = new(TURF)
+	dummy.faction = list("hostile")
 	for(var/turf/T in range(2, TURF))
 		new /obj/effect/temp_visual/smash_effect(T)
-		dummy.HurtInTurf(T, list(), (basepower*strength), RED_DAMAGE, check_faction = FALSE, hurt_mechs = TRUE)
+		dummy.HurtInTurf(T, list(), (basepower*strength), RED_DAMAGE, check_faction = (strength > 0), hurt_mechs = TRUE)
 	qdel(dummy)
 	active_gifts -= src
 	qdel(src)

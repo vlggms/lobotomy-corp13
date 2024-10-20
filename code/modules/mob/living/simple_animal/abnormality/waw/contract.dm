@@ -74,6 +74,8 @@
 		)
 	var/can_act = TRUE
 
+	var/list/contracted_mobs = list()
+
 /mob/living/simple_animal/hostile/abnormality/contract/Login()
 	. = ..()
 	if(!. || !client)
@@ -229,6 +231,24 @@
 	datum_reference.qliphoth_change(-1)
 	return
 
+/mob/living/simple_animal/hostile/abnormality/contract/death(gibbed)
+	for(var/contracted_mob in contracted_mobs)
+		uncontract_mob(contracted_mob)
+	return ..()
+
+/mob/living/simple_animal/hostile/abnormality/contract/proc/contract_mob(mob/living/mob_contracted)
+	if(QDELETED(mob_contracted) || mob_contracted.stat == DEAD)
+		return FALSE
+	if(contracted_mobs[mob_contracted])
+		return FALSE
+	contracted_mobs += mob_contracted
+
+/mob/living/simple_animal/hostile/abnormality/contract/proc/uncontract_mob(mob/living/mob_contracted)
+	if(!contracted_mobs[mob_contracted])
+		return
+	contracted_mobs -= mob_contracted
+
+
 /datum/action/spell_action/spell/contract
 
 /datum/action/spell_action/spell/contract/IsAvailable()
@@ -245,6 +265,7 @@
 	var/contract_overlay_icon_state = "small_contract"
 	var/mutable_appearance/colored_overlay
 	base_action = /datum/action/spell_action/spell/contract
+	var/mob/living/simple_animal/contracted
 
 /obj/effect/proc_holder/spell/pointed/contract/cast(list/targets, mob/living/user, silent = FALSE)
 	if(!targets.len)
@@ -294,22 +315,30 @@
 	var/ruin_damage = 50
 	var/ruin_duration = 10
 
+
 /obj/effect/proc_holder/spell/pointed/contract/ruin/cast(list/targets, mob/user)
 	var/target = targets[1]
 	user.visible_message(span_danger("[user] uses the contract of Ruin."), span_alert("You targeted [target]"))
 	if (istype(target, /mob/living/simple_animal))
-		var/mob/living/simple_animal/A = target
-		A.obj_damage += ruin_damage
-		playsound(A, 'sound/abnormalities/so_that_no_cry/curse_talisman.ogg', 100, 1)
-		A.apply_status_effect(STATUS_EFFECT_RUIN)
-		addtimer(CALLBACK(src, PROC_REF(RestoreDamage), A), ruin_duration SECONDS)
-		AddOverlay(A)
+		contracted = target
+		contracted.obj_damage += ruin_damage
+		playsound(contracted, 'sound/abnormalities/so_that_no_cry/curse_talisman.ogg', 100, 1)
+		contracted.apply_status_effect(STATUS_EFFECT_RUIN)
+		addtimer(CALLBACK(src, PROC_REF(RestoreDamage), contracted), ruin_duration SECONDS)
+		AddOverlay(contracted)
 		spawn(20)
-		RemoveOverlay(A)
+		RemoveOverlay(contracted)
 
 /obj/effect/proc_holder/spell/pointed/contract/ruin/proc/RestoreDamage(mob/living/simple_animal/A)
 	if (A.stat != DEAD)
 		A.obj_damage -= ruin_damage
+	contracted = null
+
+/obj/effect/proc_holder/spell/pointed/contract/ruin/Destroy()
+	if (contracted)
+		RestoreDamage(contracted)
+	..()
+
 
 /obj/effect/proc_holder/spell/pointed/contract/stealth
 	name = "Contract of Stealth"
@@ -327,31 +356,41 @@
 	var/alpha_level = 35
 	var/stealth_duration = 15
 	var/density_duration = 2
+	var/old_alpha
+	var/old_density
 
 /obj/effect/proc_holder/spell/pointed/contract/stealth/cast(list/targets, mob/user)
 	var/target = targets[1]
 	user.visible_message(span_danger("[user] uses the contract of Stealth."), span_alert("You targeted [target]"))
 	if (istype(target, /mob/living/simple_animal))
-		var/mob/living/simple_animal/A = target
-		var/old_alpha = A.alpha
-		var/old_density = A.density
-		A.alpha = alpha_level
-		A.density = FALSE
-		A.apply_status_effect(STATUS_EFFECT_STEALTH)
-		playsound(A, 'sound/abnormalities/so_that_no_cry/curse_talisman.ogg', 100, 1)
-		addtimer(CALLBACK(src, PROC_REF(RestoreAlpha), A, old_alpha), stealth_duration SECONDS)
-		addtimer(CALLBACK(src, PROC_REF(RestoreDensity), A, old_density), density_duration SECONDS)
-		AddOverlay(A)
+		contracted = target
+		old_alpha = contracted.alpha
+		old_density = contracted.density
+		contracted.alpha = alpha_level
+		contracted.density = FALSE
+		contracted.apply_status_effect(STATUS_EFFECT_STEALTH)
+		playsound(contracted, 'sound/abnormalities/so_that_no_cry/curse_talisman.ogg', 100, 1)
+		addtimer(CALLBACK(src, PROC_REF(RestoreAlpha)), stealth_duration SECONDS)
+		addtimer(CALLBACK(src, PROC_REF(RestoreDensity)), density_duration SECONDS)
+		AddOverlay(contracted)
 		spawn(20)
-		RemoveOverlay(A)
+		RemoveOverlay(contracted)
 
-/obj/effect/proc_holder/spell/pointed/contract/stealth/proc/RestoreAlpha(mob/living/simple_animal/A, old_alpha)
-	if (A.stat != DEAD)
-		A.alpha = old_alpha
 
-/obj/effect/proc_holder/spell/pointed/contract/stealth/proc/RestoreDensity(mob/living/simple_animal/A, old_density)
-	if (A.stat != DEAD)
-		A.density = old_density
+/obj/effect/proc_holder/spell/pointed/contract/stealth/proc/RestoreAlpha()
+	if (contracted.stat != DEAD)
+		contracted.alpha = old_alpha
+	contracted = null
+
+/obj/effect/proc_holder/spell/pointed/contract/stealth/proc/RestoreDensity()
+	if (contracted.stat != DEAD)
+		contracted.density = old_density
+
+/obj/effect/proc_holder/spell/pointed/contract/stealth/Destroy()
+	if (contracted)
+		RestoreDensity(contracted)
+		RestoreAlpha(contracted)
+	..()
 
 /obj/effect/proc_holder/spell/pointed/contract/recall
 	name = "Contract of Recall"
@@ -366,25 +405,24 @@
 	selection_type = "range"
 	active_msg = "You prepare your Contract of Recall..."
 	deactive_msg = "You put away your Contract of Recall..."
-	var/mob/living/simple_animal/marked_animal = null
 	var/long_cooldown = 450
 	var/base_cooldown = 10
 	var/target_stun_time = 30
 	var/pulling_time = 30
 
 /obj/effect/proc_holder/spell/pointed/contract/recall/Click()
-	if (marked_animal != null)
+	if (contracted != null)
 		// do recall
-		playsound(marked_animal, 'sound/magic/ethereal_exit.ogg', 50, TRUE, -1)
+		playsound(contracted, 'sound/magic/ethereal_exit.ogg', 50, TRUE, -1)
 		playsound(src, 'sound/magic/ethereal_exit.ogg', 50, TRUE, -1)
-		to_chat(marked_animal, span_warning("You are about to be pulled over by A Contract, Signed!"))
+		to_chat(contracted, span_warning("You are about to be pulled over by A Contract, Signed!"))
 		spawn(pulling_time)
-			marked_animal.forceMove(action.owner.loc)
-			playsound(marked_animal.loc, 'sound/magic/ethereal_enter.ogg', 50, TRUE, -1)
-			marked_animal.Stun(target_stun_time)
-			RemoveOverlay(marked_animal)
-			marked_animal.remove_status_effect(STATUS_EFFECT_RECALL)
-			marked_animal = null
+			contracted.forceMove(action.owner.loc)
+			playsound(contracted.loc, 'sound/magic/ethereal_enter.ogg', 50, TRUE, -1)
+			contracted.Stun(target_stun_time)
+			RemoveOverlay(contracted)
+			contracted.remove_status_effect(STATUS_EFFECT_RECALL)
+			contracted = null
 			charge_counter = 0
 			charge_max = long_cooldown
 			recharging = TRUE
@@ -397,10 +435,16 @@
 	var/target = targets[1]
 	user.visible_message(span_danger("[user] uses the contract of Recall."), span_alert("You targeted [target]"))
 	if (istype(target, /mob/living/simple_animal))
-		marked_animal = target
-		AddOverlay(marked_animal)
-		marked_animal.apply_status_effect(STATUS_EFFECT_RECALL)
-		playsound(marked_animal, 'sound/abnormalities/so_that_no_cry/curse_talisman.ogg', 100, 1)
+		contracted = target
+		AddOverlay(contracted)
+		contracted.apply_status_effect(STATUS_EFFECT_RECALL)
+		playsound(contracted, 'sound/abnormalities/so_that_no_cry/curse_talisman.ogg', 100, 1)
+
+/obj/effect/proc_holder/spell/pointed/contract/recall/Destroy()
+	if (contracted)
+		RemoveOverlay(contracted)
+		contracted.remove_status_effect(STATUS_EFFECT_RECALL)
+	..()
 
 /datum/action/cooldown/contracted_passage
 	name = "Contracted Passage"

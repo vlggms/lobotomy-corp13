@@ -91,22 +91,26 @@
 
 //Work Mechanics
 /mob/living/simple_animal/hostile/abnormality/so_that_no_cry/proc/Apply_Talisman(mob/living/carbon/human/user)
-	var/datum/status_effect/stacking/curse_talisman/C = user.has_status_effect(/datum/status_effect/stacking/curse_talisman)
-	var/datum/status_effect/stacking/talisman/G = user.has_status_effect(/datum/status_effect/stacking/talisman)
 	playsound(src, 'sound/abnormalities/so_that_no_cry/talisman.ogg', 100, 1)
-	if (!C)//cant take talismans if cursed already
-		if(!G)//applying the buff for the first time (it lasts for four minutes)
-			new /obj/effect/temp_visual/talisman(get_turf(user))
-			user.apply_status_effect(STATUS_EFFECT_TALISMAN)
-			to_chat(user, span_nicegreen("A talisman quietly dettaches from the abnormality and sticks to you."))
-		else//if the employee already has the buff, add a stack and refresh
-			to_chat(user, span_nicegreen("Another talisman sticks to you."))
-			if (G.stacks == 5)
-				playsound(src, 'sound/abnormalities/so_that_no_cry/curse_talisman.ogg', 100, 1)
-			else
+	var/loop = 1
+	if (IsCombatMap())
+		loop = 3
+	for (var/i in 1 to loop)
+		var/datum/status_effect/stacking/curse_talisman/C = user.has_status_effect(/datum/status_effect/stacking/curse_talisman)
+		var/datum/status_effect/stacking/talisman/G = user.has_status_effect(/datum/status_effect/stacking/talisman)
+		if (!C)//cant take talismans if cursed already
+			if(!G)//applying the buff for the first time (it lasts for four minutes)
 				new /obj/effect/temp_visual/talisman(get_turf(user))
-			G.add_stacks(1)
-			G.refresh()
+				user.apply_status_effect(STATUS_EFFECT_TALISMAN)
+				to_chat(user, span_nicegreen("A talisman quietly dettaches from the abnormality and sticks to you."))
+			else//if the employee already has the buff, add a stack and refresh
+				to_chat(user, span_nicegreen("Another talisman sticks to you."))
+				if (G.stacks == 5)
+					playsound(src, 'sound/abnormalities/so_that_no_cry/curse_talisman.ogg', 100, 1)
+				else
+					new /obj/effect/temp_visual/talisman(get_turf(user))
+				G.add_stacks(1)
+				G.refresh()
 	return
 
 /mob/living/simple_animal/hostile/abnormality/so_that_no_cry/proc/Remove_Talisman(mob/living/carbon/human/user)

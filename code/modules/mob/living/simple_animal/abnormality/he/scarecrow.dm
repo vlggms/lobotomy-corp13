@@ -59,6 +59,8 @@
 	var/braineating = TRUE
 	var/healthmodifier = 0.05	// Can restore 30% of HP
 
+	attack_action_types = list(/datum/action/cooldown/speed)
+
 /mob/living/simple_animal/hostile/abnormality/scarecrow/Login()
 	. = ..()
 	if(!. || !client)
@@ -138,3 +140,30 @@
 	icon_living = "scarecrow_breach"
 	icon_state = icon_living
 	GiveTarget(user)
+
+/datum/action/cooldown/speed
+	name = "Speed"
+	icon_icon = 'icons/mob/actions/actions_minor_antag.dmi'
+	button_icon_state = "Speed"
+	desc = ""
+	cooldown_time = 50
+	var/speeded_up = 1.5
+	var/old_speed
+
+
+/datum/action/cooldown/speed/Trigger()
+	if(!..())
+		return FALSE
+	if (istype(owner, /mob/living/simple_animal/hostile))
+		var/mob/living/simple_animal/hostile/H = owner
+		old_speed = H.move_to_delay
+		H.move_to_delay = speeded_up
+		H.UpdateSpeed()
+		addtimer(CALLBACK(src, PROC_REF(RestoreSpeed)), 25)
+		StartCooldown()
+
+/datum/action/cooldown/speed/proc/RestoreSpeed()
+	if (istype(owner, /mob/living/simple_animal/hostile))
+		var/mob/living/simple_animal/hostile/H = owner
+		H.move_to_delay = old_speed
+		H.UpdateSpeed()

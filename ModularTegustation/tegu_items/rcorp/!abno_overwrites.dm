@@ -91,6 +91,7 @@
 		ranged_cooldown_time = 0.5 SECONDS
 		maxHealth = 1200
 		health = 1200
+		casingtype = /obj/item/ammo_casing/caseless/rcorp_true_patriot
 	return ..()
 
 //Make it so it is harder to stun So That No Cry, since they are inflicting more talisman.
