@@ -16,6 +16,7 @@
 	base_pixel_x = -32
 	pixel_y = -16
 	base_pixel_y = -16
+	is_flying_animal = TRUE
 	work_chances = list(
 		ABNORMALITY_WORK_INSTINCT = list(55, 55, 50, 50, 60),
 		ABNORMALITY_WORK_INSIGHT = list(30, 30, 25, 25, 35),

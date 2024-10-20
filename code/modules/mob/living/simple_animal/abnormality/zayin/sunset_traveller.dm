@@ -21,6 +21,7 @@
 	light_range = 1
 	light_power = 1
 	environment_smash = FALSE
+	is_flying_animal = TRUE
 
 	ego_list = list(
 		/datum/ego_datum/weapon/eclipse,
@@ -156,6 +157,7 @@
 	light_range = 5
 	light_power = 7
 	density = FALSE
+	is_flying_animal = TRUE
 
 /mob/living/simple_animal/hostile/scarlet_moths/Initialize()
 	. = ..()

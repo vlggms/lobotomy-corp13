@@ -118,6 +118,7 @@
 	melee_damage_upper = 18
 	rapid_melee = 2
 	obj_damage = 200
+	is_flying_animal = TRUE
 	robust_searching = TRUE
 	stat_attack = HARD_CRIT
 	del_on_death = TRUE

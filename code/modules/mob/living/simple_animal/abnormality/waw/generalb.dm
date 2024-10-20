@@ -270,6 +270,7 @@
 	robust_searching = TRUE
 	stat_attack = HARD_CRIT
 	del_on_death = TRUE
+	is_flying_animal = TRUE
 	death_sound = 'sound/abnormalities/bee/death.ogg'
 	attack_verb_continuous = "bites"
 	attack_verb_simple = "bite"
