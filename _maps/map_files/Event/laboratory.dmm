@@ -1174,7 +1174,6 @@
 /area/centcom)
 "eO" = (
 /obj/machinery/door/window,
-/obj/machinery/door/window,
 /obj/machinery/light{
 	dir = 8;
 	pixel_x = -9;
