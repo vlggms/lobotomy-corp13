@@ -190,5 +190,5 @@
 			M.set_lying_angle(360)
 
 			//Spawn salmon and toss it all over the place
-			var/obj/item/food/fish/fresh_water/salmon/S = new (M.loc)
+			new /obj/item/food/fish/fresh_water/salmon(M.loc)
 			M.gib()
