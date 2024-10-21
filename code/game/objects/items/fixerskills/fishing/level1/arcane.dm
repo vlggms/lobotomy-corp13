@@ -110,11 +110,11 @@
 	devotion_cost = 1
 
 /datum/action/cooldown/fishing/commune/FishEffect(mob/living/user)
-	if(M.god_aligned == FISHGOD_NONE)	//Athiests can't commune because they don't have a soul
-		to_chat(M, span_userdanger("YOU HAVE NO GOD."))
+	if(user.god_aligned == FISHGOD_NONE)	//Athiests can't commune because they don't have a soul
+		to_chat(user, span_userdanger("YOU HAVE NO GOD."))
 
 	var/input = stripped_input(user,"What do you want to send to others that follow your god?", ,"Commune")
 	message_admins("<span class='notice'>A fisherman ([user.ckey]) has used commune with the following message: [input].</span>")
-	for(var/mob/M in GLOB.player_list)
+	for(var/mob/living/M in GLOB.player_list)
 		if(M.god_aligned == user.god_aligned)
 			to_chat(M, span_userdanger("You have a message for you: [input]"))

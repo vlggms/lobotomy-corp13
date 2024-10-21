@@ -59,7 +59,7 @@
 	devotion_cost = 12
 
 /datum/action/cooldown/fishing/planetstop/FishEffect(mob/living/user)
-	to_chat(user, span_notice("You half the planets in their place, letting you bask in their glow a moment more."))
+	to_chat(user, span_notice("You halt the planets in their place, letting you bask in their glow a moment more."))
 	SSfishing.stopnext = TRUE
 	for(var/mob/M in GLOB.player_list)
 		to_chat(M, span_userdanger("The planets have stopped moving."))
@@ -121,8 +121,8 @@
 	cooldown_time = 18000
 	devotion_cost = 35
 
-/datum/action/cooldown/fishing/alignment2/FishEffect(mob/living/user
-	if(SSfishing.Mercury>0)	//I never remembered that you could reform planets technically with alignment
+/datum/action/cooldown/fishing/alignment2/FishEffect(mob/living/user)
+	if(SSfishing.Mercury>0)
 		SSfishing.Mercury=2
 
 	if(SSfishing.Venus>0)
