@@ -124,8 +124,8 @@
 	if(loottable.len)
 		//Fishing successful, gain 0.1 devotion
 		user.devotion+=0.1
-		if(user.devotion>=5)
-			to_chat(user, span_notice("You fish and pray. and gain some devotion."))
+		if(user.devotion>= 5 && (SSmaptype.maptype in SSmaptype.citymaps))
+			to_chat(user, span_notice("You fish, pray and gain some devotion."))
 		FishLoot(pickweight(loottable), user, get_turf(fishing_spot))
 	else
 		to_chat(user, span_notice("The water remains still. You dont catch anything."))
@@ -194,7 +194,7 @@
 			to_chat(user, span_nicegreen("Abena Mansa smiles upon you! You caught some cash!"))
 			new /obj/item/stack/spacecash/c50(get_turf(user))
 
-		if(SSfishing.Saturn == 6)
+		if(CheckPlanetAligned(FISHGOD_SATURN))
 			to_chat(user, span_nicegreen("Saturn is in alignment. You feel like better for fishing."))
 			user.adjustSanityLoss(-5)
 
@@ -349,8 +349,9 @@
 		if(istype(line,/obj/item/fishing_component/line))
 			. += line.fishing_value
 
-	if(user.god_aligned == FISHGOD_NEPTUNE)
-		. *=1.4
+	if(isliving(user))
+		if(user.god_aligned == FISHGOD_NEPTUNE)
+			. *=1.4
 
 
 //Upgraded Varient

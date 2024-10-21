@@ -109,7 +109,7 @@
 				user.god_aligned = FISHGOD_JUPITER
 
 		if("Kukulkan")
-			var/confirm = alert("Kukulkan is the Serpent Deity, and represents Saturn. Devoting yourself to Kukulkan will increase the healing you get from aquariums.", "God Choser", "Devote Yourself", "Take more time")
+			var/confirm = alert("Kukulkan is the Serpent Deity, and represents Saturn. Devoting yourself to Kukulkan will decrease the cost of all spells by 1 devotion.", "God Choser", "Devote Yourself", "Take more time")
 			if(confirm == "Devote Yourself")
 				user.god_aligned = FISHGOD_SATURN
 

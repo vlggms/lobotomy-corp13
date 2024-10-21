@@ -198,7 +198,10 @@
 			A bonus of your devotion/100,
 			which is doubled if your god is Kukulkan, the god related to saturn,
 			which gives you a bonus to all aquarium and fishshop mechanics*/
-			var/sanity_formula = fish_points* SSfishing.Saturn*0.38 * (user.devotion/100+1)
+			var/sanity_formula = fish_points * (user.devotion/100+1)
+			if(CheckPlanetAligned(FISHGOD_SATURN))
+				sanity_formula*=1.5
+
 			if(L.god_aligned == FISHGOD_SATURN)
 				sanity_formula*=2
 			L.adjustSanityLoss(sanity_formula)

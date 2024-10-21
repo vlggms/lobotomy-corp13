@@ -53,10 +53,10 @@
 		if(user.god_aligned == FISHGOD_VENUS)
 			enemy_chance/=2
 
-		if(SSfishing.Venus == 2)
+		if(CheckPlanetAligned(FISHGOD_VENUS))
 			enemy_chance/=2
 
-		if(enemychance>5)	//gotta have more than 5%
+		if(enemy_chance>5)	//gotta have more than 5%
 			if(prob(enemy_chance))
 				SpawnEnemy(dropoff, user)
 	qdel(src)

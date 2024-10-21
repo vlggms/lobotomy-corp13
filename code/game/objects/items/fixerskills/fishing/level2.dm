@@ -7,7 +7,6 @@
 	custom_premium_price = 1200
 
 /datum/action/cooldown/fishing/smite
-	icon_icon = 'icons/hud/screen_skills.dmi'
 	button_icon_state = "smite"
 	name = "smite"
 	cooldown_time = 300
@@ -20,15 +19,15 @@
 			//Deal a fuckload of damage to athiests
 			if(M.god_aligned == FISHGOD_NONE)
 				var/damagedealing = clamp(user.devotion, 1, 50)
-				M.deal_damage(damagedealing*2, WHITE_DAMAGE)	//KILL
+				M.apply_damage(damagedealing*2, WHITE_DAMAGE, null, M.run_armor_check(null, WHITE_DAMAGE), spread_damage = TRUE)	//KILL
 				if(ishuman(M))
 					to_chat(target, span_userdanger("The gods have punished you for your sins!"), confidential = TRUE)
 				return
 
 			//Deal some damage if they don't share the same god
-			if(M.god_aligned != M.god_aligned)
+			if(M.god_aligned != user.god_aligned)
 				var/damagedealing = clamp(user.devotion, 1, 50)
-				M.deal_damage(damagedealing, WHITE_DAMAGE)	//KILL
+				M.apply_damage(damagedealing, WHITE_DAMAGE, null, M.run_armor_check(null, WHITE_DAMAGE), spread_damage = TRUE)	//KILL
 				if(ishuman(M))
 					to_chat(target, span_userdanger("[user.god_aligned] has punished you for your sins!"), confidential = TRUE)
 
@@ -44,7 +43,6 @@
 	custom_premium_price = 1200
 
 /datum/action/cooldown/fishing/might
-	icon_icon = 'icons/hud/screen_skills.dmi'
 	button_icon_state = "might"
 	name = "might"
 	cooldown_time = 300
@@ -71,9 +69,8 @@
 	custom_premium_price = 1200
 
 /datum/action/cooldown/fishing/awe
-	icon_icon = 'icons/hud/screen_skills.dmi'
 	button_icon_state = "awe"
-	name = "awe"
+	name = "Awe"
 	cooldown_time = 300
 	devotion_cost = 8
 
@@ -84,7 +81,7 @@
 			continue
 		if(M.god_aligned == FISHGOD_NONE)
 			//Stun the non-believers.
-			to_chat(target, span_userdanger("You are in awe of [user]'s devotion to [user.god_aligned]!"), confidential = TRUE)
+			to_chat(M, span_userdanger("You are in awe of [user]'s devotion to [user.god_aligned]!"), confidential = TRUE)
 			M.Immobilize(15)
 	StartCooldown()
 
@@ -99,7 +96,6 @@
 	custom_premium_price = 1200
 
 /datum/action/cooldown/fishing/chakra
-	icon_icon = 'icons/hud/screen_skills.dmi'
 	button_icon_state = "chakra"
 	name = "chakra"
 	cooldown_time = 300
@@ -120,44 +116,44 @@
 					smite(M, user)
 
 			if(FISHGOD_VENUS)
-				if(SSfishing.Venus <0)	//If your planet is below 0, it was blown out of the sky, and you will die.
+				if(SSfishing.Venus <0)
 					obliterate(M)
 				if(SSfishing.Venus != 3)
 					smite(M, user)
 
 			if(FISHGOD_MARS)
-				if(SSfishing.Mars <0)	//If your planet is below 0, it was blown out of the sky, and you will die.
+				if(SSfishing.Mars <0)
 					obliterate(M)
 				if(SSfishing.Mars != 4)
 					smite(M, user)
 
 			if(FISHGOD_JUPITER)
-				if(SSfishing.Jupiter <0)	//If your planet is below 0, it was blown out of the sky, and you will die.
+				if(SSfishing.Jupiter <0)
 					obliterate(M)
 				if(SSfishing.Jupiter != 5)
 					smite(M, user)
 
 			if(FISHGOD_SATURN)
-				if(SSfishing.Saturn <0)	//If your planet is below 0, it was blown out of the sky, and you will die.
+				if(SSfishing.Saturn <0)
 					obliterate(M)
 				if(SSfishing.Saturn != 6)
 					smite(M, user)
 
 			if(FISHGOD_URANUS)
-				if(SSfishing.Uranus <0)	//If your planet is below 0, it was blown out of the sky, and you will die.
+				if(SSfishing.Uranus <0)
 					obliterate(M)
 				if(SSfishing.Uranus != 7)
 					smite(M, user)
 
 			if(FISHGOD_NEPTUNE)
-				if(SSfishing.Neptune <0)	//If your planet is below 0, it was blown out of the sky, and you will die.
+				if(SSfishing.Neptune <0)
 					obliterate(M)
 				if(SSfishing.Neptune != 8)
 					smite(M, user)
 
 
 /datum/action/cooldown/fishing/chakra/proc/smite(mob/living/carbon/asshole, mob/living/carbon/user)
-	asshole.deal_damage(user.devotion*SSfishing.moonphase*0.5, WHITE_DAMAGE)	//KILL
+	asshole.apply_damage(user.devotion*SSfishing.moonphase*0.5, WHITE_DAMAGE, null, asshole.run_armor_check(null, WHITE_DAMAGE), spread_damage = TRUE)	//KILL
 	if(ishuman(asshole))
 		to_chat(asshole, span_userdanger("You feel your chakra rend itself!"), confidential = TRUE)
 

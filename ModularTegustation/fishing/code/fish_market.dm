@@ -195,7 +195,9 @@
 		//Fishing Skills (L1)
 		new /datum/data/extraction_cargo("Level 1 Skill: Scry ",				/obj/item/book/granter/action/skill/scry,				200) = 1,
 		new /datum/data/extraction_cargo("Level 1 Skill: Planet ", 				/obj/item/book/granter/action/skill/planet,				200) = 1,
+		new /datum/data/extraction_cargo("Level 1 Skill: Lunar Motion ", 		/obj/item/book/granter/action/skill/moonmove,			200) = 1,
 		new /datum/data/extraction_cargo("Level 1 Skill: Lunar Prayer ", 		/obj/item/book/granter/action/skill/prayer,				200) = 1,
+		new /datum/data/extraction_cargo("Level 1 Skill: God's Love ", 			/obj/item/book/granter/action/skill/love,				200) = 1,
 		new /datum/data/extraction_cargo("Level 1 Skill: Sacred Word ", 		/obj/item/book/granter/action/skill/sacredword,			200) = 1,
 		new /datum/data/extraction_cargo("Level 1 Skill: Detect Fish ", 		/obj/item/book/granter/action/skill/detect,				200) = 1,
 

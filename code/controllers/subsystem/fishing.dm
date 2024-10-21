@@ -79,3 +79,36 @@ SUBSYSTEM_DEF(fishing)
 	Neptune+=1
 	if(Neptune == 9)
 		Neptune = 1
+
+
+/proc/CheckPlanetAligned(godcheck)
+	switch(godcheck)
+		if(FISHGOD_MERCURY)
+			if(SSfishing.Mercury == 2)
+				return TRUE
+
+		if(FISHGOD_VENUS)
+			if(SSfishing.Venus == 3)
+				return TRUE
+
+		if(FISHGOD_MARS)
+			if(SSfishing.Mars == 4)
+				return TRUE
+
+		if(FISHGOD_JUPITER)
+			if(SSfishing.Jupiter == 5)
+				return TRUE
+
+		if(FISHGOD_SATURN)
+			if(SSfishing.Saturn == 6)
+				return TRUE
+
+		if(FISHGOD_URANUS)
+			if(SSfishing.Uranus == 7)
+				return TRUE
+
+		if(FISHGOD_NEPTUNE)
+			if(SSfishing.Neptune == 8)
+				return TRUE
+
+	return FALSE

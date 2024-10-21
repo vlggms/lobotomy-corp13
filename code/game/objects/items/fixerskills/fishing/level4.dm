@@ -7,7 +7,6 @@
 	custom_premium_price = 2400
 
 /datum/action/cooldown/fishing/alignment
-	icon_icon = 'icons/hud/screen_skills.dmi'
 	button_icon_state = "alignment"
 	name = "alignment"
 	cooldown_time = 6000
@@ -17,25 +16,32 @@
 	to_chat(user, span_notice("You shift your deity's planet to align with earth."))
 	switch(user.god_aligned)
 		if(FISHGOD_MERCURY)
-			SSfishing.Mercury=2
+			if(SSfishing.Mercury>0)	//I never remembered that you could reform planets technically with alignment
+				SSfishing.Mercury=2
 
 		if(FISHGOD_VENUS)
-			SSfishing.Venus=3
+			if(SSfishing.Venus>0)
+				SSfishing.Venus=3
 
 		if(FISHGOD_MARS)
-			SSfishing.Mars=4
+			if(SSfishing.Mars>0)
+				SSfishing.Mars=4
 
 		if(FISHGOD_JUPITER)
-			SSfishing.Jupiter=5
+			if(SSfishing.Jupiter>0)
+				SSfishing.Jupiter=5
 
 		if(FISHGOD_SATURN)
-			SSfishing.Saturn=6
+			if(SSfishing.Saturn>0)
+				SSfishing.Saturn=6
 
 		if(FISHGOD_URANUS)
-			SSfishing.Uranus=7
+			if(SSfishing.Uranus>0)
+				SSfishing.Uranus=7
 
 		if(FISHGOD_NEPTUNE)
-			SSfishing.Neptune=8
+			if(SSfishing.Neptune>0)
+				SSfishing.Neptune=8
 
 
 //A Moment in Time
@@ -47,7 +53,6 @@
 	custom_premium_price = 2400
 
 /datum/action/cooldown/fishing/planetstop
-	icon_icon = 'icons/hud/screen_skills.dmi'
 	button_icon_state = "planetstop"
 	name = "planetstop"
 	cooldown_time = 18000
@@ -69,7 +74,6 @@
 	custom_premium_price = 2400
 
 /datum/action/cooldown/fishing/supernova
-	icon_icon = 'icons/hud/screen_skills.dmi'
 	button_icon_state = "supernova"
 	name = "supernova"
 	cooldown_time = 12000
@@ -102,4 +106,43 @@
 
 	for(var/mob/M in GLOB.player_list)
 		to_chat(M, span_userdanger("You look up in awe. [choice] has been blown from the sky."))
+
+//Alignment 2
+/obj/item/book/granter/action/skill/alignment2
+	granted_action = /datum/action/cooldown/fishing/alignment2
+	actionname = "Alignment II"
+	name = "Level 4 Skill: Alignment II"
+	level = 4
+	custom_premium_price = 2400
+
+/datum/action/cooldown/fishing/alignment2
+	button_icon_state = "alignment2"
+	name = "Alignment II"
+	cooldown_time = 18000
+	devotion_cost = 35
+
+/datum/action/cooldown/fishing/alignment2/FishEffect(mob/living/user
+	if(SSfishing.Mercury>0)	//I never remembered that you could reform planets technically with alignment
+		SSfishing.Mercury=2
+
+	if(SSfishing.Venus>0)
+		SSfishing.Venus=3
+
+	if(SSfishing.Mars>0)
+		SSfishing.Mars=4
+
+	if(SSfishing.Jupiter>0)
+		SSfishing.Jupiter=5
+
+	if(SSfishing.Saturn>0)
+		SSfishing.Saturn=6
+
+	if(SSfishing.Uranus>0)
+		SSfishing.Uranus=7
+
+	if(SSfishing.Neptune>0)
+		SSfishing.Neptune=8
+
+	for(var/mob/M in GLOB.player_list)
+		to_chat(M, span_userdanger("You look up in awe. The planets, they're all aligned!"))
 
