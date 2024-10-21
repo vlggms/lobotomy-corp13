@@ -24,6 +24,7 @@ GLOBAL_LIST_INIT(command_positions, list(
 
 	// R-corp Fourth Pack
 	"Ground Commander",
+	"Operations Commander",
 	"Lieutenant Commander",
 	"Operations Officer",
 	"Rabbit Squad Captain",
@@ -40,7 +41,16 @@ GLOBAL_LIST_INIT(command_positions, list(
 	"Raccoon Squad Leader",
 	"Roadrunner Squad Leader",
 
-	// W-corp stuff
+	//Rcorp Sixth Pack
+	"Operations Commander",
+	"Robin Team Captain",
+	"Robin Section Leader",
+	"Raven Team Captain",
+	"Rook Team Captain",
+	"Production Officer",
+
+
+	//Wcorp stuff
 	"W-Corp Representative",
 	"W-Corp L3 Squad Captain",
 
@@ -110,6 +120,13 @@ GLOBAL_LIST_INIT(service_positions, list(
 	// LCB Labs
 	"LC Chef",
 	"LC Janitor",
+
+
+	//R-Corp Sixth Pack
+	"Acquisitions Specialist",
+	"Production Specialist",
+	"R-Corp Raven MP",
+	"R-Corp Messenger Raven",
 	))
 
 
@@ -188,6 +205,14 @@ GLOBAL_LIST_INIT(r_corp_positions, list(
 	"R-Corp Raccoon Spy",
 	"R-Corp Raccoon Sniper",
 	"R-Corp Roadrunner",
+	
+	//Sixth Pack
+	"Robin Section Leader",
+	"Robin Squad Sergeant",
+	"Section A Robin",
+	"Section B Robin",
+	"Section C Robin",
+	"R-Corp Rook",
 ))
 
 GLOBAL_LIST_INIT(hana_positions, list(
