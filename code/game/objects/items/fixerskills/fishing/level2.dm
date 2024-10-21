@@ -8,7 +8,7 @@
 
 /datum/action/cooldown/fishing/smite
 	button_icon_state = "smite"
-	name = "smite"
+	name = "Smite the Heretics"
 	cooldown_time = 300
 	devotion_cost = 7
 
@@ -44,7 +44,7 @@
 
 /datum/action/cooldown/fishing/might
 	button_icon_state = "might"
-	name = "might"
+	name = "Lunar Might"
 	cooldown_time = 300
 	devotion_cost = 7
 	var/stat_hold = 0
@@ -70,7 +70,7 @@
 
 /datum/action/cooldown/fishing/awe
 	button_icon_state = "awe"
-	name = "Awe"
+	name = "Awe the Weak"
 	cooldown_time = 300
 	devotion_cost = 8
 
@@ -97,7 +97,7 @@
 
 /datum/action/cooldown/fishing/chakra
 	button_icon_state = "chakra"
-	name = "chakra"
+	name = "Chakra Misalignment"
 	cooldown_time = 300
 	devotion_cost = 12
 
@@ -162,3 +162,36 @@
 	new /obj/effect/temp_visual/human_horizontal_bisect(get_turf(H))
 	H.set_lying_angle(360) //gunk code I know, but it is the simplest way to override gib_animation() without touching other code. Also looks smoother.
 	H.gib()
+
+
+//Salmon Splitter
+//Explode someone into fish
+/obj/item/book/granter/action/skill/splitter
+	granted_action = /datum/action/cooldown/fishing/splitter
+	actionname = "Greater Fish - Vertical"
+	name = "Level 2 Skill: Greater Fish - Vertical"
+	level = 2
+	custom_premium_price = 1200
+
+/datum/action/cooldown/fishing/splitter
+	button_icon_state = "splitter"
+	name = "Greater Fish - Vertical"
+	cooldown_time = 100
+	devotion_cost = 7
+
+/datum/action/cooldown/fishing/splitter/FishEffect(mob/living/user)
+	//Compile people around you in crit
+	for(var/mob/living/M in view(2, get_turf(src)))
+		if(M == owner)
+			continue
+		if(M.stat >= SOFT_CRIT)
+			to_chat(M, span_userdanger("YOU'RE FIN-ISHED!"), confidential = TRUE)
+			new /obj/effect/temp_visual/human_horizontal_bisect(get_turf(M))
+			M.set_lying_angle(360)
+
+			//Spawn salmon and toss it all over the place
+			var/obj/item/food/fish/fresh_water/salmon/S = new (M.loc)
+			var/rand_dir = pick(NORTH, SOUTH, EAST, WEST)
+			var/atom/throw_target = get_edge_target_turf(S, rand_dir)
+			S.throw_at(throw_target, rand(1, 3), 18, S)
+			M.gib()

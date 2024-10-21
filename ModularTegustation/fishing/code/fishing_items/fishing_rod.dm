@@ -38,6 +38,8 @@
 	var/list/current_fishing_visuals = list()
 	//what base mod do you have?
 	var/speed_modifier = 1
+	//what bonus do you get from the moon? Normal rods get 0
+	var/lunar_modifier = 0
 
 	//do we override the default fishing speed? (should be used if you want to debug something or make a rod with unique speed)
 	var/speed_override = FALSE
@@ -45,6 +47,7 @@
 /obj/item/fishing_rod/examine(mob/living/user)
 	. = ..()
 	. += span_notice("This rod has a modifier of +[ReturnRodPower(user)].")
+	. += span_notice("This rod has a speed modifier of +[speed_modifier].")
 
 /obj/item/fishing_rod/attackby(obj/item/attacking_item, mob/user, params)
 	if(SlotCheck(attacking_item,ROD_SLOT_LINE))
@@ -353,8 +356,14 @@
 		if(user.god_aligned == FISHGOD_NEPTUNE)
 			. *=1.4
 
+	//Only a few rods will use this
+	if(lunar_modifier!=0)
+		. *=lunar_modifier*SSfishing.moonphase
 
-//Upgraded Varient
+
+
+//Upgraded Varients
+//All of these have benefits and drawbacks
 /obj/item/fishing_rod/fiberglass
 	name = "fibreglass fishing rod"
 	desc = "A tool used to dredge up aquatic entities. This rod is pretty reliable all things considered."
@@ -362,7 +371,6 @@
 	rod_level = 1		//Generally all round better.
 	speed_modifier = 1.2
 
-//Alternate Rods. These ones all cost fishing points.
 /obj/item/fishing_rod/gold
 	name = "golden fishing rod"
 	desc = "A tool used to dredge up aquatic entities. A beautiful, gold-encrusted rod. Expensive. Catches fish faster."
@@ -375,6 +383,12 @@
 	icon_state = "rod_titanium"
 	rod_level = 1.4
 
+/obj/item/fishing_rod/lunar
+	name = "lunar fishing rod"
+	desc = "A tool used to dredge up aquatic entities. A pink rod. Heaven knows how it got this color. It's unremarkable, but does get it's power from the full moon."
+	icon_state = "rod_gold"
+	lunar_modifier = 1
+
 //Gacha Rods. Obtained through gacha crates.
 /obj/item/fishing_rod/wellcheers
 	name = "Wellcheers fishing rod"
@@ -382,6 +396,8 @@
 	icon_state = "rod_wellcheer"
 	speed_modifier = 2
 	rod_level = 2
+
+
 #undef ROD_SLOT_LINE
 #undef ROD_SLOT_HOOK
 #undef FISHSKILLEXP

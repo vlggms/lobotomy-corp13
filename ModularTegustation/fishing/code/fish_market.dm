@@ -162,7 +162,7 @@
 /obj/machinery/fish_market/proc/check_city()
 	if(SSmaptype.maptype in SSmaptype.citymaps)
 		order_list = list(
-		new /datum/data/extraction_cargo("Discount Quality Suture ",	/obj/item/stack/medical/suture/emergency,			100) = 1,
+		new /datum/data/extraction_cargo("Discount Quality Suture ",	/obj/item/stack/medical/suture/emergency,			50) = 1,
 		new /datum/data/extraction_cargo("Fishin Starting Pack ",		/obj/item/storage/box/fishing,						200) = 1,
 		new /datum/data/extraction_cargo("Aquarium Rocks ",				/obj/item/aquarium_prop/rocks,						250) = 1,
 		new /datum/data/extraction_cargo("Aquarium Seaweed ",			/obj/item/aquarium_prop/seaweed,					250) = 1,
@@ -178,11 +178,14 @@
 		new /datum/data/extraction_cargo("Fishing Net ",					/obj/item/fishing_net,							100) = 1,
 		new /datum/data/extraction_cargo("Nylon Fishing Net ",				/obj/item/fishing_net/nylon,					300) = 1,
 		new /datum/data/extraction_cargo("Steel Fishing Net ",				/obj/item/fishing_net/steel,					300) = 1,
+		new /datum/data/extraction_cargo("Baited Fishing Net ",				/obj/item/fishing_net/baited,					300) = 1,
+		new /datum/data/extraction_cargo("High Capacity Fishing Net ",		/obj/item/fishing_net/hicap,					300) = 1,
 
 		//Better rods
 		new /datum/data/extraction_cargo("Fibreglass Fishing Rod ",			/obj/item/fishing_rod/fiberglass,				500) = 1,
 		new /datum/data/extraction_cargo("Gold-plated Fishing Rod ",		/obj/item/fishing_rod/gold,						500) = 1,
 		new /datum/data/extraction_cargo("Titanium Fishing Rod ",			/obj/item/fishing_rod/titanium,					500) = 1,
+		new /datum/data/extraction_cargo("Lunar Fishing Rod ",				/obj/item/fishing_rod/lunar,					500) = 1,
 
 		//Lines
 		new /datum/data/extraction_cargo("Woven Fishing Line ",			/obj/item/fishing_component/line/woven,				200) = 1,
@@ -194,18 +197,22 @@
 
 		//Fishing Skills (L1)
 		new /datum/data/extraction_cargo("Level 1 Skill: Scry ",				/obj/item/book/granter/action/skill/scry,				200) = 1,
+		new /datum/data/extraction_cargo("Level 1 Skill: Commune ",				/obj/item/book/granter/action/skill/commune,			200) = 1,
 		new /datum/data/extraction_cargo("Level 1 Skill: Planet ", 				/obj/item/book/granter/action/skill/planet,				200) = 1,
 		new /datum/data/extraction_cargo("Level 1 Skill: Lunar Motion ", 		/obj/item/book/granter/action/skill/moonmove,			200) = 1,
 		new /datum/data/extraction_cargo("Level 1 Skill: Lunar Prayer ", 		/obj/item/book/granter/action/skill/prayer,				200) = 1,
 		new /datum/data/extraction_cargo("Level 1 Skill: God's Love ", 			/obj/item/book/granter/action/skill/love,				200) = 1,
 		new /datum/data/extraction_cargo("Level 1 Skill: Sacred Word ", 		/obj/item/book/granter/action/skill/sacredword,			200) = 1,
 		new /datum/data/extraction_cargo("Level 1 Skill: Detect Fish ", 		/obj/item/book/granter/action/skill/detect,				200) = 1,
+		new /datum/data/extraction_cargo("Level 1 Skill: Fish Lockpick ", 		/obj/item/book/granter/action/skill/fishlockpick,		200) = 1,
+		new /datum/data/extraction_cargo("Level 1 Skill: Fish Telepathy ", 		/obj/item/book/granter/action/skill/fishtelepathy,		200) = 1,
 
 		//Level 2
 		new /datum/data/extraction_cargo("Level 2 Skill: Smite the Heretics ",		/obj/item/book/granter/action/skill/smite,			700) = 1,
 		new /datum/data/extraction_cargo("Level 2 Skill: Lunar Might ", 			/obj/item/book/granter/action/skill/might,			700) = 1,
 		new /datum/data/extraction_cargo("Level 2 Skill: Awe the Weak ", 			/obj/item/book/granter/action/skill/awe,			700) = 1,
 		new /datum/data/extraction_cargo("Level 2 Skill: Chakra Misalignment ", 	/obj/item/book/granter/action/skill/chakra,			700) = 1,
+		new /datum/data/extraction_cargo("Level 2 Skill: Greater Fish - Vertical ", /obj/item/book/granter/action/skill/splitter,			700) = 1,
 
 		//Level 4
 		new /datum/data/extraction_cargo("Level 4 Skill: Alignment ",			/obj/item/book/granter/action/skill/alignment,			1200) = 1,
