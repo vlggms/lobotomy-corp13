@@ -6,6 +6,8 @@
 	slot_flags = ITEM_SLOT_POCKETS
 	w_class = WEIGHT_CLASS_SMALL
 
+GLOBAL_LIST_EMPTY(possible_loot_jcorp)
+
 /obj/item/a_gift/jcorp
 	name = "J Corp Brand Lootbox"
 	desc = "What could be inside of this?"
@@ -19,8 +21,27 @@
 	icon_state = "jcorplootbox[rand(1,3)]"
 
 /obj/item/a_gift/jcorp/get_gift_type()
-	var/list/banned_items = subtypesof(/obj/item/lc_debug) + subtypesof(/obj/item/reagent_containers/glass/bottle) + subtypesof(/obj/item/uplink) + /obj/item/storage/box/lc_debugtools
-	if(!GLOB.possible_gifts.len)
+	var/list/banned_items = list(
+		/obj/item/storage/box/lc_debugtools,
+		/obj/item/storage/box/debugtools,
+		/obj/item/storage/box/material,
+		/obj/item/clothing/head/helmet/space/hardsuit/syndi/elite/admin,
+		/obj/item/card/id/debug,
+		/obj/item/water_turf_spawner,
+		/obj/item/ego_weapon/city/rats/truepipe
+	)
+	var/list/banned_subtypes = list(
+		/obj/item/lc_debug,
+		/obj/item/reagent_containers/glass/bottle,
+		/obj/item/uplink,
+		/obj/item/gun/magic/wand/death,
+		/obj/item/gun/magic/wand/resurrection,
+		/obj/item/construction/rcd,
+		/obj/item/dice/d20/fate,
+		/obj/item/clothing/mask/animal, //There are cursed variants for each type
+		/obj/item/defibrillator
+	)
+	if(!GLOB.possible_loot_jcorp.len)
 		var/list/gift_types_list = subtypesof(/obj/item)
 		for(var/V in gift_types_list)
 			var/obj/item/I = V
@@ -29,8 +50,11 @@
 				continue
 			if(I in banned_items)
 				gift_types_list -= V
-		GLOB.possible_gifts = gift_types_list
-	var/gift_type = pick(GLOB.possible_gifts)
+			for(var/S in banned_subtypes)
+				if(I in subtypesof(S))
+					gift_types_list -= V
+		GLOB.possible_loot_jcorp = gift_types_list
+	var/gift_type = pick(GLOB.possible_loot_jcorp)
 	return gift_type
 
 // Crit Sticker (Will Test and add once Critical Hits are in)
