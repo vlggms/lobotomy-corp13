@@ -191,7 +191,4 @@
 
 			//Spawn salmon and toss it all over the place
 			var/obj/item/food/fish/fresh_water/salmon/S = new (M.loc)
-			var/rand_dir = pick(NORTH, SOUTH, EAST, WEST)
-			var/atom/throw_target = get_edge_target_turf(S, rand_dir)
-			S.throw_at(throw_target, rand(1, 3), 18, S)
 			M.gib()
