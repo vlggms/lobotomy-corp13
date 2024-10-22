@@ -38,7 +38,6 @@
 	dir = 4;
 	pixel_y = 15;
 	pixel_x = -5;
-	can_buckle = 0
 	},
 /obj/structure/table/wood{
 	alpha = 0;
@@ -970,7 +969,6 @@
 "dL" = (
 /obj/structure/chair/office/light{
 	anchored = 1;
-	can_buckle = 0;
 	dir = 8;
 	pixel_y = 4;
 	pixel_x = -8
@@ -1173,7 +1171,6 @@
 /turf/open/floor/mineral/titanium/tiled/white,
 /area/centcom)
 "eO" = (
-/obj/machinery/door/window,
 /obj/machinery/door/window,
 /obj/machinery/light{
 	dir = 8;
@@ -2707,7 +2704,6 @@
 	},
 /obj/structure/chair/office/light{
 	anchored = 1;
-	can_buckle = 0;
 	dir = 8;
 	pixel_y = 4;
 	pixel_x = -6
@@ -2949,7 +2945,6 @@
 "me" = (
 /obj/structure/chair/office/light{
 	anchored = 1;
-	can_buckle = 0;
 	dir = 4;
 	pixel_x = 6;
 	pixel_y = 4
@@ -5168,7 +5163,6 @@
 "vs" = (
 /obj/structure/chair/office/light{
 	anchored = 1;
-	can_buckle = 0;
 	dir = 4;
 	pixel_x = 8;
 	pixel_y = 4
@@ -5432,7 +5426,6 @@
 "wy" = (
 /obj/structure/chair/office/light{
 	anchored = 1;
-	can_buckle = 0;
 	dir = 8;
 	pixel_y = 4;
 	pixel_x = -8
@@ -6202,8 +6195,7 @@
 /obj/structure/chair/comfy/teal{
 	dir = 8;
 	pixel_y = 5;
-	pixel_x = 5;
-	can_buckle = 0
+	pixel_x = 5
 	},
 /obj/structure/table/wood{
 	alpha = 0;
@@ -6530,7 +6522,6 @@
 "AN" = (
 /obj/structure/chair/office/light{
 	anchored = 1;
-	can_buckle = 0;
 	dir = 8;
 	pixel_y = 4;
 	pixel_x = -6
@@ -7225,17 +7216,14 @@
 "DD" = (
 /obj/structure/chair/plastic{
 	pixel_y = 12;
-	can_buckle = 0;
 	mouse_opacity = 0
 	},
 /obj/structure/chair/plastic{
 	pixel_y = 15;
-	can_buckle = 0;
 	mouse_opacity = 0
 	},
 /obj/structure/chair/plastic{
 	pixel_y = 18;
-	can_buckle = 0;
 	mouse_opacity = 0
 	},
 /obj/machinery/light{
@@ -8106,8 +8094,7 @@
 /obj/structure/chair/comfy/teal{
 	dir = 8;
 	pixel_y = 15;
-	pixel_x = 5;
-	can_buckle = 0
+	pixel_x = 5
 	},
 /obj/structure/table/wood{
 	alpha = 0;
@@ -9288,8 +9275,7 @@
 /obj/structure/chair/comfy/teal{
 	dir = 4;
 	pixel_y = 5;
-	pixel_x = -5;
-	can_buckle = 0
+	pixel_x = -5
 	},
 /obj/structure/table/wood{
 	alpha = 0;
@@ -9681,7 +9667,6 @@
 "Nh" = (
 /obj/structure/chair/office/light{
 	anchored = 1;
-	can_buckle = 0;
 	dir = 1
 	},
 /obj/effect/turf_decal/tile/purple{
@@ -10748,7 +10733,6 @@
 	},
 /obj/structure/chair/office/light{
 	anchored = 1;
-	can_buckle = 0;
 	dir = 4;
 	pixel_x = 6;
 	pixel_y = 4
@@ -11770,7 +11754,6 @@
 "Ve" = (
 /obj/structure/chair/office/light{
 	anchored = 1;
-	can_buckle = 0;
 	dir = 8;
 	pixel_y = 4;
 	pixel_x = -8
@@ -12477,7 +12460,6 @@
 "Yc" = (
 /obj/structure/chair/office/light{
 	anchored = 1;
-	can_buckle = 0;
 	dir = 4;
 	pixel_x = 8;
 	pixel_y = 4

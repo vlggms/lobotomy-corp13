@@ -713,6 +713,9 @@
 	if(!isanimal(M) || M.ckey) //only works on animals that aren't player controlled
 		to_chat(user, "<span class='warning'>[M] is already too intelligent for this to work!</span>")
 		return
+	if(!isabnormalitymob(M)) //only works on animals that aren't player controlled
+		to_chat(user, span_warning("The potion will have no effect on [M]!"))
+		return
 	if(M.stat)
 		to_chat(user, "<span class='warning'>[M] is dead!</span>")
 		return
@@ -770,7 +773,7 @@
 /obj/item/slimepotion/transference/afterattack(mob/living/M, mob/living/user, proximity)
 	if(!proximity)
 		return
-	if(prompted || !ismob(M))
+	if(prompted || !ismob(M) || isabnormalitymob(M))
 		return
 	if(!isanimal(M) || M.ckey) //much like sentience, these will not work on something that is already player controlled
 		to_chat(user, "<span class='warning'>[M] already has a higher consciousness!</span>")

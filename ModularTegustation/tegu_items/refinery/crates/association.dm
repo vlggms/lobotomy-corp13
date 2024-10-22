@@ -11,6 +11,7 @@
 		/obj/item/ego_weapon/city/zweihander/knife,
 		/obj/item/clothing/suit/armor/ego_gear/city/zwei,
 		/obj/item/clothing/suit/armor/ego_gear/city/zweiriot,
+		/obj/item/clothing/suit/armor/ego_gear/city/zweiwest,
 		/obj/item/ego_weapon/city/zweibaton,
 		/obj/item/ego_weapon/city/shi_assassin,
 		/obj/item/ego_weapon/city/shi_knife,
@@ -31,6 +32,7 @@
 	rareloot =	list(
 		/obj/item/ego_weapon/city/zweihander/vet,
 		/obj/item/clothing/suit/armor/ego_gear/city/zweivet,
+		/obj/item/clothing/suit/armor/ego_gear/city/zweiwestvet,
 		/obj/item/ego_weapon/city/shi_assassin/sakura,
 		/obj/item/ego_weapon/city/shi_assassin/serpent,
 		/obj/item/ego_weapon/city/shi_assassin/vet,
@@ -69,11 +71,14 @@
 		/obj/item/ego_weapon/city/zweihander/knife,
 		/obj/item/clothing/suit/armor/ego_gear/city/zwei,
 		/obj/item/clothing/suit/armor/ego_gear/city/zweiriot,
+		/obj/item/clothing/suit/armor/ego_gear/city/zweiwest,
 		/obj/item/ego_weapon/city/zweibaton,
 	)
 
 	rareloot =	list(
 		/obj/item/ego_weapon/city/zweihander/vet,
+		/obj/item/clothing/suit/armor/ego_gear/city/zweiwestvet,
+		/obj/item/clothing/suit/armor/ego_gear/city/zweiwestleader,
 		/obj/item/clothing/suit/armor/ego_gear/city/zweivet,
 		/obj/item/clothing/suit/armor/ego_gear/city/zweileader,
 	)

@@ -12,7 +12,7 @@
 	attack_verb_simple = list("attack", "slap", "whack")
 
 	///The brain's organ variables are significantly more different than the other organs, with half the decay rate for balance reasons, and twice the maxHealth
-	decay_factor = STANDARD_ORGAN_DECAY	* 0.5		//30 minutes of decaying to result in a fully damaged brain, since a fast decay rate would be unfun gameplay-wise
+	decay_factor = STANDARD_ORGAN_DECAY	* 0.25		//60 minutes of decaying to result in a fully damaged brain, since a fast decay rate would be unfun gameplay-wise
 
 	maxHealth = BRAIN_DAMAGE_DEATH
 	low_threshold = 45
@@ -39,12 +39,6 @@
 		/datum/brain_trauma/severe/paralysis/paraplegic,
 		/datum/brain_trauma/severe/narcolepsy
 		)
-
-	var/list/initial_traits = list()
-	var/stored_fortitude = 0
-	var/stored_prudence = 0
-	var/stored_temperance = 0
-	var/stored_justice = 0
 
 /obj/item/organ/brain/Insert(mob/living/carbon/C, special = 0,no_id_transfer = FALSE)
 	..()
@@ -353,13 +347,13 @@
 		if(TRAUMA_RESILIENCE_SURGERY)
 			max_traumas = TRAUMA_LIMIT_SURGERY
 		if(TRAUMA_RESILIENCE_WOUND)
-			max_traumas = TRAUMA_LIMIT_WOUND
+			max_traumas = TRAUMA_LIMIT_SURGERY
 		if(TRAUMA_RESILIENCE_LOBOTOMY)
-			max_traumas = TRAUMA_LIMIT_LOBOTOMY
+			max_traumas = TRAUMA_LIMIT_SURGERY
 		if(TRAUMA_RESILIENCE_MAGIC)
-			max_traumas = TRAUMA_LIMIT_MAGIC
+			max_traumas = TRAUMA_LIMIT_SURGERY
 		if(TRAUMA_RESILIENCE_ABSOLUTE)
-			max_traumas = TRAUMA_LIMIT_ABSOLUTE
+			max_traumas = TRAUMA_LIMIT_SURGERY
 
 	if(natural_gain && resilience_tier_count >= max_traumas)
 		return FALSE
@@ -431,10 +425,3 @@
 		qdel(X)
 		amount_cured++
 	return amount_cured
-
-/obj/item/organ/brain/proc/sync_stats(mob/living/carbon/human/H) //Syncs stuff for torso fabricator
-	stored_fortitude = get_raw_level(H, FORTITUDE_ATTRIBUTE)
-	stored_prudence = get_raw_level(H, PRUDENCE_ATTRIBUTE)
-	stored_temperance = get_raw_level(H, TEMPERANCE_ATTRIBUTE)
-	stored_justice = get_raw_level(H, JUSTICE_ATTRIBUTE)
-

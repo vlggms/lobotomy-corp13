@@ -292,6 +292,10 @@
 			return new /obj/effect/temp_visual/damage_effect/black(get_turf(src))
 		if(PALE_DAMAGE)
 			return new /obj/effect/temp_visual/damage_effect/pale(get_turf(src))
+		if(BURN)
+			return new /obj/effect/temp_visual/damage_effect/burn(get_turf(src))
+		if(TOX)
+			return new /obj/effect/temp_visual/damage_effect/tox(get_turf(src))
 
 /*Used in LC13 abnormality calculations.
 	Moved here so we can use it for all hostiles.

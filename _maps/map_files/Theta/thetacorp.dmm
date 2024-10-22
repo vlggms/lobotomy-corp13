@@ -1493,14 +1493,10 @@
 /area/facility_hallway/command)
 "eY" = (
 /obj/structure/filingcabinet/zayininfo{
-	density = 0;
 	pixel_x = -10
 	},
-/obj/structure/filingcabinet/tethinfo{
-	density = 0
-	},
+/obj/structure/filingcabinet/tethinfo,
 /obj/structure/filingcabinet/heinfo{
-	density = 0;
 	pixel_x = 10
 	},
 /turf/open/floor/facility/dark{
@@ -4603,12 +4599,10 @@
 /area/facility_hallway/training)
 "pJ" = (
 /obj/structure/filingcabinet/wawinfo{
-	density = 0;
 	pixel_x = -11
 	},
 /obj/structure/filingcabinet/alephinfo,
 /obj/structure/filingcabinet/toolinfo{
-	density = 0;
 	pixel_x = 10
 	},
 /turf/open/floor/facility/dark{
@@ -9227,14 +9221,6 @@
 	},
 /turf/open/floor/carpet/red,
 /area/department_main/control)
-"FQ" = (
-/obj/structure/chair/wood/wings{
-	dir = 4;
-	pixel_x = 5;
-	pixel_y = 4
-	},
-/turf/open/floor/plasteel/sepia,
-/area/department_main/training)
 "FS" = (
 /obj/structure/window/reinforced/fulltile{
 	armor = list("melee" = 30, "bullet" = 30, "laser" = 20, "energy" = 20, "bomb" = 10, "bio" = 100, "rad" = 100, "fire" = 80, "acid" = 70);
@@ -40838,7 +40824,7 @@ lA
 iG
 XD
 oj
-FQ
+CK
 Ft
 ZZ
 BT
