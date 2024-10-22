@@ -97,7 +97,7 @@
 	interaction_flags_atom = INTERACT_ATOM_ATTACK_HAND | INTERACT_ATOM_UI_INTERACT
 
 	var/machine_stat = NONE
-	var/use_power = IDLE_POWER_USE
+	var/use_power = NO_POWER_USE
 		//0 = dont run the auto
 		//1 = run auto, use idle
 		//2 = run auto, use active
@@ -308,13 +308,13 @@
 	update_icon()
 
 /obj/machinery/proc/auto_use_power()
-	if(!powered(power_channel))
+	return TRUE
+/*	if(!powered(power_channel))
 		return FALSE
 	if(use_power == 1)
 		use_power(idle_power_usage,power_channel)
 	else if(use_power >= 2)
-		use_power(active_power_usage,power_channel)
-	return TRUE
+		use_power(active_power_usage,power_channel)*/
 
 
 ///Called when we want to change the value of the `is_operational` variable. Boolean.
