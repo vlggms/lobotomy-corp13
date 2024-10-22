@@ -93,7 +93,7 @@
 /obj/item/clothing/suit/armor/ego_gear/city/zweiwestvet
 	name = "Zwei veteran knight armor "
 	desc = "Armor worn by zwei west association fixers. It slows you down slightly, but offers excellent defenses"
-	icon_state = "zweiwest_vet"
+	icon_state = "zweiwest_veteran"
 	slowdown = 0.4
 	neck = /obj/item/clothing/neck/ego_neck/zweiwest
 	armor = list(RED_DAMAGE = 60, WHITE_DAMAGE = 40, BLACK_DAMAGE = 40, PALE_DAMAGE = 30)
