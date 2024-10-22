@@ -8,8 +8,8 @@ SUBSYSTEM_DEF(machines)
 	var/list/powernets = list()
 
 /datum/controller/subsystem/machines/Initialize()
-	makepowernets()
-	fire()
+	//makepowernets()
+	//fire()
 	return ..()
 
 /datum/controller/subsystem/machines/proc/makepowernets()
