@@ -95,13 +95,11 @@
 	QDEL_IN(src, 10 SECONDS)
 
 /mob/living/simple_animal/hostile/abnormality/faelantern/PostWorkEffect(mob/living/carbon/human/user, work_type, pe, work_time, canceled)
-	if(work_type == ABNORMALITY_WORK_REPRESSION && get_modified_attribute_level(user, TEMPERANCE_ATTRIBUTE) > 40)
+	if(work_type == ABNORMALITY_WORK_REPRESSION && get_modified_attribute_level(user, TEMPERANCE_ATTRIBUTE) >= 40)
 		datum_reference.qliphoth_change(-1)
 		return
-	if(get_modified_attribute_level(user, TEMPERANCE_ATTRIBUTE) < 40)
+	if(work_type != ABNORMALITY_WORK_REPRESSION && get_modified_attribute_level(user, TEMPERANCE_ATTRIBUTE) < 40)
 		datum_reference.qliphoth_change(-1)
-		return
-	return
 
 /mob/living/simple_animal/hostile/abnormality/faelantern/FailureEffect(mob/living/carbon/human/user, work_type, pe)
 	. = ..()
