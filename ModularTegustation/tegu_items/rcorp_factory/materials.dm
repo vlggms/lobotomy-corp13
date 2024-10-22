@@ -4,6 +4,11 @@
 	icon = 'ModularTegustation/Teguicons/factory.dmi'
 	icon_state = "extract_pack"
 
+/obj/item/factoryitem/upgrade
+	name = "upgrade material"
+	desc = "An upgrade material."
+	icon_state = "upgrade"
+
 /obj/item/factoryitem/green
 	name = "green materials"
 	desc = "A green material."
