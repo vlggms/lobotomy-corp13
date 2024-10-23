@@ -19,7 +19,12 @@
 	var/list/finishedname = list()
 	var/list/finishedicon = list()
 
+	var/weapon_xp = 0
+	var/level_xp = 100
+
 /obj/item/ego_weapon/template/attack(mob/living/target, mob/living/carbon/human/user)
+	if(target.stat!= DEAD)
+		weapon_xp++
 	forceholder = force
 	if(!active)
 		to_chat(user, span_notice("This weapon is unfinished!"))
@@ -76,3 +81,40 @@
 		special_count += subject
 	else
 		special_count = subject
+
+/obj/item/ego_weapon/template/examine(mob/user)
+	. = ..()
+
+	if(level_xp==600)
+		. += "This weapon is fully upgraded!"
+		return
+
+
+	if(weapon_xp<level_xp)
+		. += "Weapon XP : [weapon_xp]/[level_xp]."
+	else
+		. += "Weapon XP : FULL! Bring to a workshop to reforge!"
+
+//Upgrade shit
+/obj/item/ego_weapon/template/attackby(obj/item/I, mob/living/user, params)
+	..()
+	if(istype(I, /obj/item/forginghammer))
+		if(!(locate(/obj/structure/table/anvil) in loc))
+			to_chat(user, span_warning("You need this to be on an anvil to work it."))
+			return
+
+		if(level_xp == 600)
+			to_chat(user, span_warning("This weapon cannot be upgraded."))
+			return
+
+		if(weapon_xp<level_xp)
+			to_chat(user, span_warning("This weapon does not have enough XP to level up yet."))
+			return
+
+		if(!do_after(user, 10 SECONDS))
+			return
+
+		weapon_xp = 0
+		level_xp +=100
+		force*=1.1
+
