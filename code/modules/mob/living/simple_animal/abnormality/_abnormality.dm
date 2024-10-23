@@ -96,6 +96,9 @@
 	var/core_icon = ""
 	var/core_enabled = TRUE
 
+	/// If an abnormality should not be possessed even if possessibles are enabled, mainly for admins.
+	var/do_not_possess = FALSE
+
 	// secret skin variables ahead
 
 	/// Toggles if the abnormality has a secret form and can spawn naturally

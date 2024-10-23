@@ -63,6 +63,8 @@
 	correct_choices = list("Little bird", "Punishing bird")
 	observation_success_message = "The small bird accepts whatever name you decide to give it. Its nature can never change now."
 
+	do_not_possess = TRUE
+
 	var/list/enemies = list()
 	var/list/pecking_targets = list()
 	var/list/already_punished = list()
