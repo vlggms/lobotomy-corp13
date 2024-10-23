@@ -109,6 +109,10 @@
 /obj/structure/itemselling,
 /turf/open/floor/plating/ashplanet/rocky,
 /area/city/backstreets_checkpoint)
+"bP" = (
+/obj/machinery/vending/prosthetic,
+/turf/open/indestructible/white,
+/area/city/shop)
 "bS" = (
 /obj/structure/table,
 /obj/effect/turf_decal/tile/red{
@@ -170,6 +174,17 @@
 /obj/structure/reagent_dispensers/water_cooler,
 /turf/open/floor/facility/white,
 /area/city/fixers)
+"cH" = (
+/obj/machinery/door/airlock/medical{
+	hackProof = 1;
+	integrity_failure = 0.1;
+	max_integrity = 1e+009;
+	name = "Secure medical room";
+	normal_integrity = 1e+009;
+	req_access_txt = "9"
+	},
+/turf/open/indestructible/white,
+/area/city/shop)
 "cJ" = (
 /obj/structure/fluff/beach_umbrella/cap,
 /turf/open/floor/plating/beach/sand,
@@ -279,6 +294,13 @@
 /obj/item/forginghammer,
 /obj/item/forginghammer,
 /turf/open/floor/facility/dark,
+/area/city/shop)
+"fk" = (
+/obj/machinery/light{
+	dir = 1
+	},
+/obj/structure/closet/crate/freezer/surplus_limbs,
+/turf/open/floor/plasteel/white,
 /area/city/shop)
 "fl" = (
 /obj/structure/rack,
@@ -573,6 +595,13 @@
 /obj/item/clothing/suit/apron,
 /turf/open/indestructible/white,
 /area/city/shop)
+"jN" = (
+/obj/structure/reagent_dispensers/fueltank/large,
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/indestructible/white,
+/area/city/shop)
 "jO" = (
 /turf/closed/indestructible/fakeglass,
 /area/city/house)
@@ -593,6 +622,9 @@
 "kk" = (
 /turf/closed/indestructible/reinforced,
 /area/city/backstreets_alley)
+"km" = (
+/turf/open/floor/plasteel/white,
+/area/city/shop)
 "kn" = (
 /obj/structure/table,
 /obj/item/seeds/onion,
@@ -705,6 +737,17 @@
 /obj/structure/table/wood,
 /turf/open/floor/facility/white,
 /area/city/fixers)
+"lF" = (
+/obj/machinery/door/airlock/medical{
+	hackProof = 1;
+	integrity_failure = 0.1;
+	max_integrity = 1e+009;
+	name = "Secure medical room";
+	normal_integrity = 1e+009;
+	req_access_txt = "9"
+	},
+/turf/open/floor/plasteel/white,
+/area/city/shop)
 "lW" = (
 /obj/structure/table/wood,
 /obj/item/hand_labeler_refill,
@@ -736,6 +779,12 @@
 	dir = 1
 	},
 /turf/open/floor/plasteel,
+/area/city/shop)
+"mv" = (
+/obj/machinery/door/poddoor/shutters/indestructible{
+	id = "outside"
+	},
+/turf/closed/indestructible/fakeglass,
 /area/city/shop)
 "my" = (
 /obj/machinery/door/airlock/grunge{
@@ -905,6 +954,10 @@
 /obj/effect/landmark/observer_start,
 /turf/open/floor/plating/beach/sand,
 /area/city)
+"pZ" = (
+/obj/structure/table/glass,
+/turf/open/indestructible/white,
+/area/city/shop)
 "qh" = (
 /obj/structure/chair{
 	dir = 4
@@ -1123,6 +1176,13 @@
 	dir = 1
 	},
 /obj/effect/turf_decal/siding/thinplating/light/end{
+	dir = 1
+	},
+/turf/open/indestructible/white,
+/area/city/shop)
+"ux" = (
+/obj/structure/rack,
+/obj/machinery/light{
 	dir = 1
 	},
 /turf/open/indestructible/white,
@@ -1542,6 +1602,10 @@
 /obj/machinery/computer/arcade/battle,
 /turf/open/floor/eighties,
 /area/city/fixers)
+"yh" = (
+/obj/structure/chair/office/light,
+/turf/open/floor/plasteel/white,
+/area/city/shop)
 "yp" = (
 /obj/machinery/computer/arcade/amputation,
 /obj/machinery/light/small{
@@ -1553,10 +1617,6 @@
 /obj/structure/fence,
 /turf/open/floor/plating/ashplanet/rocky,
 /area/city)
-"yr" = (
-/obj/effect/landmark/cityloot,
-/turf/open/floor/carpet/black,
-/area/city/house)
 "ys" = (
 /obj/structure/table/wood,
 /obj/item/flashlight/lamp,
@@ -1839,6 +1899,23 @@
 	},
 /turf/open/floor/wood,
 /area/city/shop)
+"BC" = (
+/obj/structure/table/glass,
+/obj/item/stack/cable_coil,
+/obj/item/stack/cable_coil{
+	pixel_x = 2;
+	pixel_y = -2
+	},
+/obj/item/stack/cable_coil{
+	pixel_x = 3;
+	pixel_y = 3
+	},
+/obj/item/stack/cable_coil{
+	pixel_x = -3;
+	pixel_y = 3
+	},
+/turf/open/indestructible/white,
+/area/city/shop)
 "BU" = (
 /obj/structure/fluff/beach_umbrella/engine,
 /turf/open/floor/plating/grass,
@@ -2045,6 +2122,11 @@
 /obj/item/reagent_containers/borghypo/borgshaker,
 /turf/open/floor/wood,
 /area/city/shop)
+"IX" = (
+/obj/structure/rack,
+/obj/item/weldingtool/experimental,
+/turf/open/indestructible/white,
+/area/city/shop)
 "JC" = (
 /obj/effect/turf_decal/bot,
 /obj/effect/decal/cleanable/dirt,
@@ -2069,6 +2151,12 @@
 /obj/item/food/meat/slab,
 /obj/item/food/meat/slab,
 /turf/open/floor/facility,
+/area/city/shop)
+"JV" = (
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/floor/plasteel/white,
 /area/city/shop)
 "KZ" = (
 /obj/machinery/telecomms/server/presets/medical,
@@ -2140,6 +2228,13 @@
 "Ot" = (
 /turf/closed/indestructible/reinforced,
 /area/city/backstreets_checkpoint)
+"OJ" = (
+/obj/item/storage/backpack/duffelbag/med/surgery{
+	pixel_y = 5
+	},
+/obj/structure/table/glass,
+/turf/open/indestructible/white,
+/area/city/shop)
 "OT" = (
 /turf/closed/indestructible/reinforced,
 /area/city/shop)
@@ -2158,6 +2253,15 @@
 "PI" = (
 /turf/closed/indestructible/fakeglass,
 /area/city/shop)
+"PZ" = (
+/obj/machinery/button/door{
+	id = "outside";
+	name = "prosthetics clinic shutters";
+	pixel_y = 26;
+	req_access_txt = "9"
+	},
+/turf/open/floor/plating/ashplanet/rocky,
+/area/city)
 "Qb" = (
 /obj/structure/closet/secure_closet/personal/cabinet,
 /obj/item/clothing/under/misc/pj/blue,
@@ -2207,6 +2311,10 @@
 	},
 /turf/open/floor/plating/ashplanet/rocky,
 /area/city/backstreets_checkpoint)
+"Sm" = (
+/obj/structure/rack,
+/turf/open/indestructible/white,
+/area/city/shop)
 "Su" = (
 /obj/effect/turf_decal/bot,
 /obj/machinery/telecomms/hub/preset,
@@ -2271,6 +2379,15 @@
 /obj/structure/curtain/cloth,
 /turf/closed/indestructible/fakeglass,
 /area/city/fixers)
+"Vw" = (
+/obj/machinery/door/airlock/public{
+	name = "prosthetic surgery clinic"
+	},
+/obj/machinery/door/poddoor/shutters/indestructible{
+	id = "outside"
+	},
+/turf/open/indestructible/white,
+/area/city/shop)
 "Vy" = (
 /obj/structure/fence{
 	dir = 4
@@ -2327,6 +2444,9 @@
 	name = "employee housing"
 	},
 /turf/open/floor/wood,
+/area/city/house)
+"XI" = (
+/turf/closed/indestructible/rock,
 /area/city/house)
 "XJ" = (
 /turf/open/floor/plating/beach/sand,
@@ -24360,12 +24480,12 @@ Oq
 Oq
 Oq
 Oq
-Oq
-Oq
-Oq
-Oq
-Oq
-Oq
+OT
+OT
+OT
+OT
+OT
+OT
 Oq
 Oq
 Oq
@@ -24617,12 +24737,12 @@ Oq
 Oq
 Oq
 Oq
-Oq
-Oq
-Oq
-Oq
-Oq
-Oq
+OT
+yT
+OJ
+BC
+pZ
+OT
 Oq
 Oq
 Oq
@@ -24870,16 +24990,16 @@ Oq
 Oq
 Oq
 Oq
-Oq
-Oq
-Oq
-Oq
-Oq
-Oq
-Oq
-Oq
-Oq
-Oq
+OT
+OT
+OT
+OT
+OT
+yX
+XR
+XR
+XR
+OT
 Oq
 Oq
 Oq
@@ -25125,18 +25245,18 @@ Oq
 Oq
 Oq
 Oq
-Oq
-Oq
-Oq
-Oq
-Oq
-Oq
-Oq
-Oq
-Oq
-Oq
-Oq
-Oq
+OT
+OT
+OT
+fk
+IX
+bP
+OT
+pZ
+XR
+XR
+XR
+OT
 Oq
 Oq
 Oq
@@ -25382,18 +25502,18 @@ Oq
 Oq
 Oq
 Oq
-Oq
-Oq
-Oq
-Oq
-Oq
-Oq
-Oq
-Oq
-Oq
-Oq
-Oq
-Oq
+OT
+jN
+lF
+km
+km
+km
+OT
+OT
+cH
+OT
+cH
+OT
 Oq
 Oq
 Oq
@@ -25639,18 +25759,18 @@ Oq
 Oq
 Oq
 Oq
-Oq
-Oq
-Oq
-Oq
-Oq
-Oq
-Oq
-Oq
-Oq
-Oq
-Oq
-Oq
+OT
+OT
+OT
+Sm
+XR
+km
+OT
+JV
+km
+pZ
+km
+OT
 Oq
 Oq
 Oq
@@ -25898,16 +26018,16 @@ Oq
 Oq
 Oq
 Oq
-Oq
-Oq
-Oq
-Oq
-Oq
-Oq
-Oq
-Oq
-Oq
-Oq
+OT
+Sm
+XR
+km
+cH
+km
+yh
+pZ
+km
+OT
 Oq
 Oq
 Oq
@@ -26155,15 +26275,15 @@ Oq
 Oq
 Oq
 Oq
-Oq
-Oq
-Oq
-Oq
-Oq
-Oq
-Oq
-Oq
-Oq
+OT
+ux
+XR
+km
+OT
+km
+km
+pZ
+km
 HA
 HA
 HA
@@ -26409,6 +26529,8 @@ Oq
 Oq
 Oq
 Oq
+XI
+XI
 Xi
 Xi
 Xi
@@ -26416,11 +26538,9 @@ Xi
 Xi
 Xi
 Xi
-Xi
-Xi
-Oq
-Oq
-Oq
+mv
+mv
+Vw
 HA
 Ua
 WX
@@ -26672,12 +26792,12 @@ Xi
 cS
 el
 VD
-yr
+Rh
 Rh
 Xi
-Xi
-Xi
-Xi
+PZ
+Hm
+Hm
 HA
 WX
 WX
