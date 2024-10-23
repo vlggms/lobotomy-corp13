@@ -107,7 +107,7 @@
 			to_chat(user, span_warning("This weapon cannot be upgraded."))
 			return
 
-		if(weapon_xp<level_xp)
+		if(weapon_xp < level_xp)
 			to_chat(user, span_warning("This weapon does not have enough XP to level up yet."))
 			return
 
