@@ -85,12 +85,12 @@
 /obj/item/ego_weapon/template/examine(mob/user)
 	. = ..()
 
-	if(level_xp==600)
+	if(level_xp == 600)
 		. += "This weapon is fully upgraded!"
 		return
 
 
-	if(weapon_xp<level_xp)
+	if(weapon_xp < level_xp)
 		. += "Weapon XP : [weapon_xp]/[level_xp]."
 	else
 		. += "Weapon XP : FULL! Bring to a workshop to reforge!"
@@ -115,6 +115,6 @@
 			return
 
 		weapon_xp = 0
-		level_xp +=100
-		force*=1.1
+		level_xp += 100
+		force *= 1.1
 
