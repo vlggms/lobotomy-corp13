@@ -7,7 +7,7 @@
 	itemnumber = 6
 	item = /obj/item/flashlight/flare
 
-/obj/structure/lowfactory/pcorp_Bread
+/obj/structure/lowfactory/pcorp_bread
 	name = "P-Corp Bread"
 	desc = "A machine used to bake food."
 	productiontime = 0.5 SECONDS
