@@ -52,6 +52,21 @@
     mappath = "_maps/RandomRooms/backstreets/small_north/snow_forest.dmm"
 
 /datum/map_template/random_room/backstreets/small_north/small_clan_hideout
-    name = "Clan Hideout - Small North"
+    name = "Clan Hideout - Small North A"
     room_id = "small_clan_hideout"
     mappath = "_maps/RandomRooms/backstreets/small_north/small_clan_hideout.dmm"
+
+/datum/map_template/random_room/backstreets/small_north/grey_parrizan
+    name = "Grey Parrizan - Small North A"
+    room_id = "grey_parrizan"
+    mappath = "_maps/RandomRooms/backstreets/small_north/grey_parrizan.dmm"
+
+/datum/map_template/random_room/backstreets/small_north/apartment_sna
+    name = "Apartment - Small North A"
+    room_id = "apartment_sna"
+    mappath = "_maps/RandomRooms/backstreets/small_north/apartment_sna.dmm"
+
+/datum/map_template/random_room/backstreets/small_north/bird_box
+    name = "Bird Box - Small North A"
+    room_id = "bird_box"
+    mappath = "_maps/RandomRooms/backstreets/small_north/bird_box.dmm"

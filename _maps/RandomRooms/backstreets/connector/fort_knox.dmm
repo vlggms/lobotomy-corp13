@@ -17,6 +17,7 @@
 	set_cap = 3;
 	set_luminosity = 24
 	},
+/obj/item/stack/spacecash/c200,
 /turf/open/floor/mineral/plastitanium/red,
 /area/city/backstreets_room)
 "d" = (
@@ -57,6 +58,7 @@
 	set_cap = 3;
 	set_luminosity = 24
 	},
+/obj/item/stack/spacecash/c200,
 /turf/open/floor/mineral/plastitanium/red,
 /area/city/backstreets_room)
 "i" = (
@@ -230,6 +232,7 @@
 	set_cap = 3;
 	set_luminosity = 24
 	},
+/obj/item/stack/spacecash/c200,
 /turf/open/floor/mineral/plastitanium/red,
 /area/city/backstreets_room)
 "I" = (
@@ -330,6 +333,7 @@
 	set_cap = 3;
 	set_luminosity = 24
 	},
+/obj/item/stack/spacecash/c200,
 /turf/open/floor/mineral/plastitanium/red,
 /area/city/backstreets_room)
 

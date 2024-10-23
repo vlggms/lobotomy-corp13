@@ -31,6 +31,16 @@
 	mappath = "_maps/RandomRooms/backstreets/connector/sweeper_ca.dmm"
 
 /datum/map_template/random_room/backstreets/connector/rat_cave
-    name = "Rat - Connector"
-    room_id = "rat_cave"
-    mappath = "_maps/RandomRooms/backstreets/connector/rat_cave.dmm"
+	name = "Rat - Connector"
+	room_id = "rat_cave"
+	mappath = "_maps/RandomRooms/backstreets/connector/rat_cave.dmm"
+
+/datum/map_template/random_room/backstreets/connector/fort_knox
+	name = "Fort - Connector"
+	room_id = "fort_knox"
+	mappath = "_maps/RandomRooms/backstreets/connector/fort_knox.dmm"
+
+/datum/map_template/random_room/backstreets/connector/choke_point
+	name = "Choke Point - Connector"
+	room_id = "choke_point"
+	mappath = "_maps/RandomRooms/backstreets/connector/choke_point.dmm"

@@ -18,6 +18,7 @@
 "t" = (
 /obj/structure/table/reinforced,
 /obj/item/documents,
+/obj/item/documents,
 /turf/open/floor/mineral/titanium/tiled/white,
 /area/city/backstreets_room)
 "x" = (

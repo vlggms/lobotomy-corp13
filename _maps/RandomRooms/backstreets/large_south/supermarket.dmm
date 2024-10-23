@@ -11,6 +11,11 @@
 /obj/item/stack/spacecash/c50,
 /turf/open/floor/plasteel/shuttle,
 /area/city/backstreets_room)
+"e" = (
+/obj/structure/lootcrate/money,
+/obj/structure/lootcrate/money,
+/turf/open/floor/plasteel/shuttle,
+/area/city/backstreets_room)
 "f" = (
 /obj/machinery/vending/autodrobe/all_access,
 /turf/open/floor/plasteel/shuttle,
@@ -109,6 +114,7 @@
 /area/city/backstreets_room)
 "Q" = (
 /obj/structure/lootcrate/tres,
+/obj/structure/lootcrate/money,
 /turf/open/floor/plasteel/shuttle,
 /area/city/backstreets_room)
 "U" = (
@@ -264,7 +270,7 @@ n
 b
 M
 l
-b
+m
 x
 b
 L
@@ -274,7 +280,7 @@ n
 Z
 x
 t
-m
+e
 x
 i
 L

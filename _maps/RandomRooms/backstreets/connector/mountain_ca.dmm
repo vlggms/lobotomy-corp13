@@ -68,6 +68,7 @@
 /obj/effect/decal/cleanable/blood/old{
 	pixel_y = -20
 	},
+/obj/structure/lootcrate/money,
 /turf/open/floor/plating/dirt/jungle/dark,
 /area/city/backstreets_room)
 "fH" = (
@@ -345,6 +346,10 @@
 	},
 /turf/open/floor/plating/dirt/jungle/dark,
 /area/city/backstreets_room)
+"CX" = (
+/obj/structure/lootcrate/money,
+/turf/open/floor/plating/dirt/jungle/dark,
+/area/city/backstreets_room)
 "Dr" = (
 /obj/effect/turf_decal/siding/wideplating{
 	dir = 8
@@ -539,6 +544,7 @@
 	dir = 8;
 	pixel_y = 19
 	},
+/obj/structure/lootcrate/money,
 /turf/open/floor/plating/dirt/jungle/dark,
 /area/city/backstreets_room)
 "TT" = (
@@ -642,7 +648,7 @@ XA
 "}
 (3,1,1) = {"
 dA
-Rd
+CX
 Rd
 Sc
 tV

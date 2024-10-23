@@ -23,6 +23,7 @@
 /area/city/backstreets_room)
 "X" = (
 /obj/item/stack/spacecash/c100,
+/obj/structure/lootcrate/money,
 /turf/open/floor/mineral/gold,
 /area/city/backstreets_room)
 

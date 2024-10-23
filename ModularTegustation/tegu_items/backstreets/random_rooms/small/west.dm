@@ -44,3 +44,19 @@
 	name = "Robot - Small West B"
 	room_id = "robot_swb"
 	mappath = "_maps/RandomRooms/backstreets/small_west/robot_swb.dmm"
+
+/datum/map_template/random_room/backstreets/small_west/fake_pit
+	name = "Fake Pit - Small West"
+	room_id = "fake_pit"
+	mappath = "_maps/RandomRooms/backstreets/small_west/fake_pit.dmm"
+	stock = 1
+
+/datum/map_template/random_room/backstreets/small_west/risk_rain_reference_robot
+	name = "Risk of Rain Reference - Small West"
+	room_id = "risk_rain_reference_robot"
+	mappath = "_maps/RandomRooms/backstreets/small_west/risk_rain_reference_robot.dmm"
+
+/datum/map_template/random_room/backstreets/small_west/booby_trapped
+	name = "Booby Trapped - Small West"
+	room_id = "booby_trapped"
+	mappath = "_maps/RandomRooms/backstreets/small_west/booby_trapped.dmm"

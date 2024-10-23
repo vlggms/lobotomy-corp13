@@ -20,7 +20,6 @@
 	room_id = "eyes_temple"
 	mappath = "_maps/RandomRooms/backstreets/medium_south/eyes_temple.dmm"
 
-
 /datum/map_template/random_room/backstreets/medium_south/seven_office_msa
 	name = "Seven Office - Medium South A"
 	room_id = "seven_office_msa"
@@ -32,12 +31,41 @@
 	mappath = "_maps/RandomRooms/backstreets/medium_south/bar_msa.dmm"
 
 /datum/map_template/random_room/backstreets/medium_south/rat_msa
-    name = "Rat - Medium South A"
-    room_id = "rat_msa"
-    mappath = "_maps/RandomRooms/backstreets/medium_south/rat_msa.dmm"
+	name = "Rat - Medium South A"
+	room_id = "rat_msa"
+	mappath = "_maps/RandomRooms/backstreets/medium_south/rat_msa.dmm"
 
 /datum/map_template/random_room/backstreets/medium_south/theatre
-    name = "Theatre - Medium South"
-    room_id = "theatre"
-    mappath = "_maps/RandomRooms/backstreets/medium_south/theatre.dmm"
+	name = "Theatre - Medium South"
+	room_id = "theatre"
+	mappath = "_maps/RandomRooms/backstreets/medium_south/theatre.dmm"
 
+/datum/map_template/random_room/backstreets/medium_south/clan_storage
+	name = "Clan - Medium South A"
+	room_id = "clan_storage"
+	mappath = "_maps/RandomRooms/backstreets/medium_south/clan_storage.dmm"
+
+/datum/map_template/random_room/backstreets/medium_south/town_msa
+	name = "Lovetown - Medium South A"
+	room_id = "town_msa"
+	mappath = "_maps/RandomRooms/backstreets/medium_south/town_msa.dmm"
+
+/datum/map_template/random_room/backstreets/medium_south/town_msa
+	name = "Lovetown - Medium South A"
+	room_id = "town_msa"
+	mappath = "_maps/RandomRooms/backstreets/medium_south/town_msa.dmm"
+
+/datum/map_template/random_room/backstreets/medium_south/mech_bay
+	name = "Mech Bay - Medium South A"
+	room_id = "mech_bay"
+	mappath = "_maps/RandomRooms/backstreets/medium_south/mech_bay.dmm"
+
+/datum/map_template/random_room/backstreets/medium_south/lcorp_ruin
+	name = "L Corp Ruin - Medium South A"
+	room_id = "lcorp_ruin"
+	mappath = "_maps/RandomRooms/backstreets/medium_south/lcorp_ruin.dmm"
+
+/datum/map_template/random_room/backstreets/medium_south/apartmentmsa
+	name = "Extra Appartment - Medium South A"
+	room_id = "apartmentmsa"
+	mappath = "_maps/RandomRooms/backstreets/medium_south/apartmentmsa.dmm"

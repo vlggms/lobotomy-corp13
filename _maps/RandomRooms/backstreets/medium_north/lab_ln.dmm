@@ -50,6 +50,10 @@
 /obj/machinery/modular_computer/console/preset/research,
 /turf/open/indestructible/white,
 /area/city/backstreets_room)
+"A" = (
+/obj/structure/lootcrate/money,
+/turf/open/indestructible/white,
+/area/city/backstreets_room)
 "E" = (
 /obj/machinery/light/warm,
 /turf/open/indestructible/white,
@@ -117,7 +121,7 @@ H
 m
 a
 k
-a
+A
 a
 g
 H
@@ -249,7 +253,7 @@ a
 n
 a
 a
-a
+A
 H
 "}
 (16,1,1) = {"

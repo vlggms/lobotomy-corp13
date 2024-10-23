@@ -67,7 +67,7 @@
 /area/city/backstreets_alley)
 "P" = (
 /obj/structure/closet/secure_closet/freezer/kitchen,
-/mob/living/simple_animal/hostile/ordeal/amber_bug/morsel,
+/mob/living/simple_animal/hostile/morsel,
 /obj/effect/turf_decal/weather/snow/corner{
 	dir = 8
 	},
@@ -82,7 +82,7 @@
 /area/city/backstreets_alley)
 "X" = (
 /obj/machinery/door/airlock/freezer,
-/turf/open/space/basic,
+/turf/open/floor/plasteel/freezer,
 /area/city/backstreets_alley)
 "Y" = (
 /obj/structure/closet/secure_closet/freezer/cream_pie,
