@@ -62,15 +62,54 @@ const ButtonPanel = (props, context) => {
     <Section title="Avaible actions">
       <Box mt="0.5em">
         <LabeledList>
+          <Collapsible title="Complete quest">
+            <LabeledList.Item
+              labelWrap
+              label="Reward the facility for completing a custom quest that you set out earlier this shift."
+              buttons={
+                <Button
+                  content={'Complete quest'}
+                  color={'green'}
+                  onClick={() => act('Complete quest')}
+                />
+              }
+            />
+          </Collapsible>
+          <Collapsible title="Make announcement">
+            <LabeledList.Item
+              labelWrap
+              label="Allows you to make a global announcement."
+              buttons={
+                <Button
+                  content={'Make announcement'}
+                  color={'green'}
+                  onClick={() => act('Make announcement')}
+                />
+              }
+            />
+          </Collapsible>
           <Collapsible title="Randomize abnormality">
             <LabeledList.Item
               labelWrap
-              label="Randomizes the current abnormality, only works if the abnormality has not yet been randomized at its current state"
+              label="Randomizes the current abnormality, only works if the abnormality has not yet been randomized at its current state. Gives the manager 1 LOB."
               buttons={
                 <Button
                   content={'Randomize abnormality'}
                   color={'green'}
                   onClick={() => act('Randomize abnormality')}
+                />
+              }
+            />
+          </Collapsible>
+          <Collapsible title="Randomize selection">
+            <LabeledList.Item
+              labelWrap
+              label="Randomizes the current abnormality selection. Gives the manager 1 LOB."
+              buttons={
+                <Button
+                  content={'RRandomize selection'}
+                  color={'green'}
+                  onClick={() => act('Randomize selection')}
                 />
               }
             />
@@ -159,6 +198,19 @@ const ButtonPanel = (props, context) => {
                   content={'Decrease abnormality per meltdown'}
                   color={'green'}
                   onClick={() => act('Decrease abnormality per meltdown')}
+                />
+              }
+            />
+          </Collapsible>
+          <Collapsible title="Authorize execution bullets">
+            <LabeledList.Item
+              labelWrap
+              label="Put your vote in to authorize execution bullets for the manager. 2 Sephirah have to agree for this to pass."
+              buttons={
+                <Button
+                  content={'Authorize execution bullets'}
+                  color={'red'}
+                  onClick={() => act('Authorize execution bullets')}
                 />
               }
             />
