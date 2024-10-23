@@ -436,3 +436,4 @@
 	if(T.target == user)
 		T.LoseTarget()
 		T.visible_message(span_nicegreen("[T] lost interest in [user]!"))
+
