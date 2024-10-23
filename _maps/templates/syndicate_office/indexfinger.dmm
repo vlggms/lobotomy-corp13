@@ -20,9 +20,9 @@
 	color = "#3234B9"
 	},
 /obj/structure/closet/crate{
-	pixel_y = 5;
 	anchored = 1;
-	opened = 1
+	opened = 1;
+	pixel_y = 5
 	},
 /obj/item/clothing/glasses/trickblindfold,
 /obj/item/food/canned/pcorp,
@@ -36,37 +36,37 @@
 /area/city/backstreets_room)
 "bL" = (
 /obj/structure/bed{
-	name = "bunk beds";
 	can_buckle = 0;
-	density = 1
+	density = 1;
+	name = "bunk beds"
 	},
 /obj/structure/bed{
-	pixel_y = 15;
-	layer = 2.95;
 	can_buckle = 0;
+	density = 1;
+	layer = 2.95;
 	name = "bunk beds";
-	density = 1
+	pixel_y = 15
 	},
 /obj/structure/ladder{
-	pixel_x = 4;
-	pixel_y = -5;
 	layer = 2.97;
-	mouse_opacity = 0
+	mouse_opacity = 0;
+	pixel_x = 4;
+	pixel_y = -5
 	},
 /obj/item/bedsheet/rainbow{
-	pixel_y = 15;
-	layer = 2.96;
 	anchored = 1;
+	desc = "Each proselyte's bedsheet are akin to .";
+	layer = 2.96;
 	name = "proselyte's bedsheet";
-	desc = "Each proselyte's bedsheet are akin to ."
+	pixel_y = 15
 	},
 /obj/item/bedsheet/rainbow{
-	layer = 2.94;
-	anchored = 1
+	anchored = 1;
+	layer = 2.94
 	},
 /turf/open/floor/mineral/titanium/white{
-	name = "floor";
-	color = "#3234B9"
+	color = "#3234B9";
+	name = "floor"
 	},
 /area/city/backstreets_room)
 "bV" = (
@@ -119,8 +119,8 @@
 /area/city/backstreets_room)
 "eK" = (
 /obj/machinery/door/airlock/silver{
-	req_access_txt = "150";
-	name = "messenger office"
+	name = "messenger office";
+	req_access_txt = "150"
 	},
 /turf/open/floor/mineral/titanium/white{
 	name = "floor"
@@ -154,33 +154,33 @@
 /area/city/backstreets_room)
 "gL" = (
 /obj/structure/bed{
-	name = "bunk beds";
 	can_buckle = 0;
-	density = 1
+	density = 1;
+	name = "bunk beds"
 	},
 /obj/structure/bed{
-	pixel_y = 15;
-	layer = 2.95;
 	can_buckle = 0;
+	density = 1;
+	layer = 2.95;
 	name = "bunk beds";
-	density = 1
+	pixel_y = 15
 	},
 /obj/structure/ladder{
-	pixel_x = 4;
-	pixel_y = -5;
 	layer = 2.97;
-	mouse_opacity = 0
+	mouse_opacity = 0;
+	pixel_x = 4;
+	pixel_y = -5
 	},
 /obj/item/bedsheet/rainbow{
-	layer = 2.94;
-	anchored = 1
-	},
-/obj/item/bedsheet/rainbow{
-	pixel_y = 15;
-	layer = 2.96;
 	anchored = 1;
+	layer = 2.94
+	},
+/obj/item/bedsheet/rainbow{
+	anchored = 1;
+	desc = "Each proselyte's bedsheet are akin to .";
+	layer = 2.96;
 	name = "proselyte's bedsheet";
-	desc = "Each proselyte's bedsheet are akin to ."
+	pixel_y = 15
 	},
 /obj/machinery/light{
 	dir = 8;
@@ -188,8 +188,8 @@
 	pixel_y = 4
 	},
 /turf/open/floor/mineral/titanium/white{
-	name = "floor";
-	color = "#3234B9"
+	color = "#3234B9";
+	name = "floor"
 	},
 /area/city/backstreets_room)
 "hf" = (
@@ -244,8 +244,8 @@
 /area/city/backstreets_room)
 "ks" = (
 /obj/machinery/door/airlock/silver{
-	req_access_txt = "151";
-	name = "messenger workplace"
+	name = "messenger workplace";
+	req_access_txt = "151"
 	},
 /obj/effect/turf_decal/tile/neutral{
 	dir = 4
@@ -410,8 +410,8 @@
 /area/city/backstreets_room)
 "oU" = (
 /obj/structure/bed/pod{
-	pixel_y = 13;
-	mouse_opacity = 0
+	mouse_opacity = 0;
+	pixel_y = 13
 	},
 /obj/item/bedsheet{
 	pixel_y = 13
@@ -637,8 +637,8 @@
 /obj/effect/turf_decal/tile/neutral,
 /obj/effect/turf_decal/tile/neutral,
 /obj/machinery/door/airlock/silver{
-	req_access_txt = "150";
-	name = "prescript distribution room"
+	name = "prescript distribution room";
+	req_access_txt = "150"
 	},
 /turf/open/floor/pod,
 /area/city/backstreets_room)
@@ -694,6 +694,7 @@
 	color = "#3234B9";
 	dir = 4
 	},
+/obj/item/scrying,
 /turf/open/floor/mineral/titanium/tiled/white,
 /area/city/backstreets_room)
 "CV" = (
@@ -832,21 +833,12 @@
 /obj/effect/turf_decal/tile/blue{
 	dir = 8
 	},
-/obj/structure/closet/crate{
-	pixel_y = 5;
-	anchored = 1;
-	opened = 1
-	},
-/obj/item/clothing/suit/armor/ego_gear/adjustable/index_proxy,
-/obj/item/clothing/suit/armor/ego_gear/adjustable/index_proxy,
-/obj/effect/spawner/lootdrop/proxy,
-/obj/effect/spawner/lootdrop/proxy,
 /turf/open/floor/mineral/titanium/blue,
 /area/city/backstreets_room)
 "HM" = (
 /obj/machinery/door/airlock/silver{
-	req_access_txt = "150";
-	name = "proselyte commune"
+	name = "proselyte commune";
+	req_access_txt = "150"
 	},
 /turf/open/floor/mineral/titanium/blue,
 /area/city/backstreets_room)
@@ -915,8 +907,8 @@
 /area/city/backstreets_room)
 "JJ" = (
 /obj/structure/chair/comfy/black{
-	dir = 4;
-	can_buckle = 0
+	can_buckle = 0;
+	dir = 4
 	},
 /obj/effect/turf_decal/tile/blue,
 /obj/effect/turf_decal/tile/blue{
@@ -953,9 +945,9 @@
 	dir = 8
 	},
 /obj/structure/closet/crate{
-	pixel_y = 5;
 	anchored = 1;
-	opened = 1
+	opened = 1;
+	pixel_y = 5
 	},
 /obj/item/clothing/suit/armor/ego_gear/adjustable/index_proxy,
 /obj/item/clothing/suit/armor/ego_gear/adjustable/index_proxy,
@@ -987,8 +979,8 @@
 /area/city/backstreets_room)
 "LU" = (
 /obj/machinery/door/airlock/silver{
-	req_access_txt = "151";
-	name = "proxy resting grounds"
+	name = "proxy resting grounds";
+	req_access_txt = "151"
 	},
 /turf/open/floor/mineral/titanium/blue,
 /area/city/backstreets_room)
@@ -1098,8 +1090,8 @@
 	dir = 4
 	},
 /obj/machinery/door/airlock/silver{
-	req_access_txt = "150";
-	name = "messenger office"
+	name = "messenger office";
+	req_access_txt = "150"
 	},
 /turf/open/floor/pod,
 /area/city/backstreets_room)
@@ -1167,9 +1159,9 @@
 	color = "#3234B9"
 	},
 /obj/structure/closet/crate{
-	pixel_y = 5;
 	anchored = 1;
-	opened = 1
+	opened = 1;
+	pixel_y = 5
 	},
 /obj/machinery/light{
 	dir = 8;
@@ -1211,8 +1203,8 @@
 /area/city/backstreets_room)
 "PP" = (
 /obj/machinery/door/airlock/silver{
-	req_access_txt = "151";
-	name = "messenger workplace"
+	name = "messenger workplace";
+	req_access_txt = "151"
 	},
 /turf/open/floor/mineral/titanium/white{
 	name = "floor"
@@ -1224,8 +1216,8 @@
 /area/city/backstreets_room)
 "RG" = (
 /obj/structure/bed/pod{
-	pixel_y = 13;
-	mouse_opacity = 0
+	mouse_opacity = 0;
+	pixel_y = 13
 	},
 /obj/item/bedsheet{
 	pixel_y = 13
@@ -1295,37 +1287,37 @@
 /area/city/backstreets_room)
 "Tw" = (
 /obj/structure/bed{
-	pixel_y = 15;
-	layer = 2.95;
 	can_buckle = 0;
+	density = 1;
+	layer = 2.95;
 	name = "bunk beds";
-	density = 1
+	pixel_y = 15
 	},
 /obj/structure/bed{
-	name = "bunk beds";
 	can_buckle = 0;
-	density = 1
+	density = 1;
+	name = "bunk beds"
 	},
 /obj/structure/ladder{
-	pixel_x = 4;
-	pixel_y = -5;
 	layer = 2.97;
-	mouse_opacity = 0
+	mouse_opacity = 0;
+	pixel_x = 4;
+	pixel_y = -5
 	},
 /obj/item/bedsheet/rainbow{
-	pixel_y = 15;
-	layer = 2.96;
 	anchored = 1;
+	desc = "Each proselyte's bedsheet are akin to .";
+	layer = 2.96;
 	name = "proselyte's bedsheet";
-	desc = "Each proselyte's bedsheet are akin to ."
+	pixel_y = 15
 	},
 /obj/item/bedsheet/rainbow{
-	layer = 2.94;
-	anchored = 1
+	anchored = 1;
+	layer = 2.94
 	},
 /turf/open/floor/mineral/titanium/white{
-	name = "floor";
-	color = "#3234B9"
+	color = "#3234B9";
+	name = "floor"
 	},
 /area/city/backstreets_room)
 "TD" = (
