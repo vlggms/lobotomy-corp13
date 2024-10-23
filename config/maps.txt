@@ -99,3 +99,6 @@ endmap
 
 map runtimestation
 endmap
+
+map city
+endmap
