@@ -54,6 +54,16 @@
 
 	var/finishing = FALSE
 
+/mob/living/simple_animal/hostile/abnormality/warden/Login()
+	. = ..()
+	if(!. || !client)
+		return FALSE
+	to_chat(src, "<h1>You are Warden, A Tank Role Abnormality.</h1><br>\
+		<b>|Soul Guard|: You are immune to all projectiles.<br>\
+		<br>\
+		|Soul Warden|: If you attack a corpse, you will dust it, heal and gain a stack of “Captured Soul”<br>\
+		For each stack of “Captured Soul”, you become faster and deal less melee damage.</b>")
+
 /mob/living/simple_animal/hostile/abnormality/warden/AttackingTarget()
 	. = ..()
 	if(.)

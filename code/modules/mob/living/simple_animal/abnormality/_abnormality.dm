@@ -126,6 +126,12 @@
 	var/observation_success_message = "Final Observation Success!"
 	var/observation_fail_message = "Final Observation Failed!"
 
+/mob/living/simple_animal/hostile/abnormality/Login()
+	. = ..()
+	if(!. || !client)
+		return FALSE
+	manual_emote("awakens...")
+
 /mob/living/simple_animal/hostile/abnormality/Initialize(mapload)
 	SHOULD_CALL_PARENT(TRUE)
 	. = ..()

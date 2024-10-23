@@ -103,6 +103,16 @@
 		owner.base_pixel_y = -16
 		active = 0
 
+/mob/living/simple_animal/hostile/abnormality/pisc_mermaid/Login()
+	. = ..()
+	if(!. || !client)
+		return FALSE
+	to_chat(src, "<h1>You are Piscine Mermaid, A Support Role Abnormality.</h1><br>\
+		<b>|Drown with Me…|: Passively, all humans within 10 tiles of you (Even if you can’t see them) will start drowning and will take oxygen damage over time. <br>\
+		Oxygen damage can’t be healed by normal means, instead it passively heals itself over time.<br>\
+		The oxygen damage goes through the rhino mech, harming their user directly.</b>")
+
+
 /mob/living/simple_animal/hostile/abnormality/pisc_mermaid/FailureEffect(mob/living/carbon/human/user, work_type, pe)
 	. = ..()
 	datum_reference.qliphoth_change(-1)
