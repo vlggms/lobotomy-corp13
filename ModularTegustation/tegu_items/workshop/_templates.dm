@@ -23,8 +23,8 @@
 	var/level_xp = 100
 
 /obj/item/ego_weapon/template/attack(mob/living/target, mob/living/carbon/human/user)
-	if(target.stat!= DEAD)
-		weapon_xp++
+	if(target.stat != DEAD)
+		weapon_xp ++
 	forceholder = force
 	if(!active)
 		to_chat(user, span_notice("This weapon is unfinished!"))
