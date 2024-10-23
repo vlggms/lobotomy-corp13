@@ -191,7 +191,7 @@
 			living_pawn.dropItemToGround(I, force = TRUE)
 			continue
 		var/obj/item/ego_weapon/EW = I
-		var/obj/item/gun/ego_gun/EG = I
+		var/obj/item/ego_weapon/ranged/EG = I
 		if(istype(EW) && !EW.CanUseEgo(living_pawn))
 			living_pawn.dropItemToGround(I, force = TRUE)
 			item_blacklist[I] = TRUE
@@ -223,7 +223,7 @@
 		if(GetEffectiveItemForce(I) < INSANE_MINIMUM_WEAPON_FORCE)
 			continue
 		var/obj/item/ego_weapon/EW = I
-		var/obj/item/gun/ego_gun/EG = I
+		var/obj/item/ego_weapon/ranged/EG = I
 		if(istype(EW) && !EW.CanUseEgo(living_pawn))
 			living_pawn.dropItemToGround(I, force = TRUE)
 			item_blacklist[I] = TRUE
@@ -235,7 +235,7 @@
 				continue
 			has_weapon = TRUE
 			sorted_insert(owned_weapons, I , GLOBAL_PROC_REF(ComparatorItemForceGreater))
-			var/obj/item/ammo_casing/casing = initial(EG.ammo_type)
+			var/obj/item/ammo_casing/casing = initial(EG.projectile_path)
 			var/obj/projectile/boolet = initial(casing.projectile_type)
 			if(initial(boolet.damage_type) != WHITE_DAMAGE)
 				has_non_white_weapon = TRUE
@@ -259,9 +259,9 @@
 	var/obj/item/selected_weapon = null
 	for(var/obj/item/I in owned_weapons)
 		if(need_non_white_weapon)
-			var/obj/item/gun/ego_gun/EG = I
+			var/obj/item/ego_weapon/ranged/EG = I
 			if(istype(EG))
-				var/obj/item/ammo_casing/casing = initial(EG.ammo_type)
+				var/obj/item/ammo_casing/casing = initial(EG.projectile_path)
 				var/obj/projectile/boolet = initial(casing.projectile_type)
 				if(initial(boolet.damage_type) != WHITE_DAMAGE)
 					selected_weapon = I
@@ -288,7 +288,7 @@
 		thing_to_target = target.loc
 	if(thing_to_target)
 		if(!controller.target_lost)
-			if(istype(selected_weapon, /obj/item/gun/ego_gun))
+			if(istype(selected_weapon, /obj/item/ego_weapon/ranged))
 				if(controller.melee_attack_timer_id)
 					deltimer(controller.melee_attack_timer_id)
 					controller.melee_attack_timer_id = null
@@ -397,7 +397,7 @@
 	if(living_pawn.next_move > world.time)
 		return
 
-	var/obj/item/gun/ego_gun/banger = living_pawn.held_items[1]
+	var/obj/item/ego_weapon/ranged/banger = living_pawn.held_items[1]
 
 	if(!istype(banger))
 		return

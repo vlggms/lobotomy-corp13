@@ -39,11 +39,11 @@ GLOBAL_LIST_EMPTY(ego_datums)
 /datum/ego_datum/weapon/New(datum/abnormality/DA)
 	. = ..()
 	if(!ispath(item_path, /obj/item/ego_weapon))
-		if(!ispath(item_path, /obj/item/gun/ego_gun))
+		if(!ispath(item_path, /obj/item/ego_weapon/ranged))
 			return
-		var/obj/item/gun/ego_gun/E = new item_path(src)
+		var/obj/item/ego_weapon/ranged/E = new item_path(src)
 		information["attribute_requirements"] = E.attribute_requirements.Copy()
-		information["attack_info"] = "Its bullets deal [E.chambered.BB.damage] [E.chambered.BB.damage_type] damage."
+		information["attack_info"] = "Its bullets deal [E.last_projectile_damage] [E.last_projectile_type] damage."
 		information["special"] = E.special
 		var/fire_delay = E.fire_delay
 		if(E.autofire)
@@ -94,7 +94,7 @@ GLOBAL_LIST_EMPTY(ego_datums)
 	if("special" in information)
 		dat += "[information["special"]]<br>"
 	dat += "Attack speed: [information["attack_speed"]].<br>"
-	if(ispath(item_path, /obj/item/gun/ego_gun))
+	if(ispath(item_path, /obj/item/ego_weapon/ranged))
 
 	else if(ispath(item_path, /obj/item/ego_weapon))
 		if(information["throwforce"] > 0)

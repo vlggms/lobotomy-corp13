@@ -53,7 +53,7 @@
 /area/city/backstreets_room)
 "e" = (
 /obj/structure/table/glass,
-/obj/item/gun/ego_gun/sodasmg,
+/obj/item/ego_weapon/ranged/sodasmg,
 /turf/open/floor/plasteel/vaporwave,
 /area/city/backstreets_room)
 "f" = (
@@ -161,7 +161,7 @@
 /area/city/backstreets_room)
 "A" = (
 /obj/structure/table/glass,
-/obj/item/gun/ego_gun/shrimp/assault,
+/obj/item/ego_weapon/ranged/shrimp/assault,
 /turf/open/floor/plasteel/vaporwave,
 /area/city/backstreets_room)
 "C" = (
@@ -226,7 +226,7 @@
 /area/city/backstreets_room)
 "N" = (
 /obj/structure/table/glass,
-/obj/item/gun/ego_gun/pistol/soda,
+/obj/item/ego_weapon/ranged/pistol/soda,
 /turf/open/floor/plasteel/vaporwave,
 /area/city/backstreets_room)
 "O" = (
@@ -259,7 +259,7 @@
 /area/city/backstreets_room)
 "R" = (
 /obj/structure/table/glass,
-/obj/item/gun/ego_gun/sodarifle,
+/obj/item/ego_weapon/ranged/sodarifle,
 /turf/open/floor/plasteel/vaporwave,
 /area/city/backstreets_room)
 "T" = (

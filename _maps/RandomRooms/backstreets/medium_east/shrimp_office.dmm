@@ -67,7 +67,7 @@
 /area/city/backstreets_room)
 "Y" = (
 /obj/structure/table/wood,
-/obj/item/gun/ego_gun/sodarifle,
+/obj/item/ego_weapon/ranged/sodarifle,
 /turf/open/floor/carpet/royalblack,
 /area/city/backstreets_room)
 

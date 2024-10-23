@@ -4,7 +4,7 @@
 
 // Wishing Well - Bucket
 /datum/ego_datum/weapon/bucket
-	item_path = /obj/item/gun/ego_gun/bucket
+	item_path = /obj/item/ego_weapon/ranged/bucket
 	cost = 12
 
 /datum/ego_datum/armor/bucket
@@ -39,7 +39,7 @@
 	cost = 20
 
 /datum/ego_datum/weapon/aspiration
-	item_path = /obj/item/gun/ego_gun/aspiration
+	item_path = /obj/item/ego_weapon/ranged/aspiration
 	cost = 20
 
 //////////
@@ -52,7 +52,7 @@
 	cost = 35
 
 /datum/ego_datum/weapon/swindle
-	item_path = /obj/item/gun/ego_gun/pistol/swindle
+	item_path = /obj/item/ego_weapon/ranged/pistol/swindle
 	cost = 35
 
 // Viva Voce - Ringing
@@ -61,7 +61,7 @@
 	cost = 35
 
 /datum/ego_datum/weapon/ringing
-	item_path = /obj/item/gun/ego_gun/ringing
+	item_path = /obj/item/ego_weapon/ranged/ringing
 	cost = 35
 
 // Theonite Slab - Divinity
