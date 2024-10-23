@@ -2319,6 +2319,7 @@
 	qdel(src)
 	return TRUE
 
+
 /obj/item/ego_weapon/contempt
 	name = "contempt, awe"
 	desc = "From the excavated brain, geysers of hatred and contempt erupt. It's as if those feelings were inside you all along."
@@ -2380,3 +2381,46 @@
 
 /obj/item/ego_weapon/contempt/get_clamped_volume()
 	return 25
+
+/obj/item/ego_weapon/vulnerability
+	name = "Vulnerability"
+	desc = "The snake leather used in this whip is hardened by the sun"
+	icon_state = "lindworm"
+	special = "This weapon lowers red and white damage resistance on hit."
+	force = 25
+	reach = 4		//Has 4 Square Reach.
+	attack_speed = 1.7	//but is slow and stuns you
+	stuntime = 5	//Longer reach, gives you a short stun.
+	damtype = RED_DAMAGE
+	attack_verb_continuous = list("whips", "lashes", "tears")
+	attack_verb_simple = list("whip", "lash", "tear")
+	hitsound = 'sound/weapons/whip.ogg'
+	attribute_requirements = list(
+							FORTITUDE_ATTRIBUTE = 40
+							)
+
+/obj/item/ego_weapon/vulnerability/attack(mob/living/target, mob/living/user)
+	..()
+	if(!CanUseEgo(user))
+		return
+	var/userjust = (get_modified_attribute_level(user, JUSTICE_ATTRIBUTE))
+	var/justicemod = 1 + userjust/100
+	var/damage = force * justicemod * force_multiplier
+	target.apply_damage(damage, WHITE_DAMAGE, null, target.run_armor_check(null, WHITE_DAMAGE), spread_damage = TRUE)
+
+	var/mob/living/M = target
+
+	//Double rend here
+	if(!ishuman(M) && !M.has_status_effect(/datum/status_effect/rend_white))
+		new /obj/effect/temp_visual/cult/sparks(get_turf(M))
+		M.apply_status_effect(/datum/status_effect/rend_white)
+
+	if(!ishuman(M) && !M.has_status_effect(/datum/status_effect/rend_red))
+		new /obj/effect/temp_visual/cult/sparks(get_turf(M))
+		M.apply_status_effect(/datum/status_effect/rend_red)
+
+
+/obj/item/ego_weapon/vulnerability/EgoAttackInfo(mob/user)
+	if(force_multiplier != 1)
+		return span_notice("It deals [round(force * force_multiplier)] of both red and white damage. (+ [(force_multiplier - 1) * 100]%)")
+	return span_notice("It deals [force] of both red and white damage.")
