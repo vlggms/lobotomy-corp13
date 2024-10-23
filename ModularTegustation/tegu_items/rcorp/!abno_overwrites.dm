@@ -53,6 +53,7 @@
 /mob/living/simple_animal/hostile/abnormality/porccubus/Initialize()
 	if(IsCombatMap())
 		ranged_cooldown_time = 3 SECONDS
+		is_flying_animal = FALSE
 	return ..()
 
 // Fairy gentleman gets a bump to his survival, damage, and a bigger ass.
