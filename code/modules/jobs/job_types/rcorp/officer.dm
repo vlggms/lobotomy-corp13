@@ -30,6 +30,11 @@
 /datum/job/juniorofficer/after_spawn(mob/living/carbon/human/H, mob/M)
 	. = ..()
 	ADD_TRAIT(H, TRAIT_COMBATFEAR_IMMUNE, JOB_TRAIT)
+	var/datum/action/G = new /datum/action/cooldown/warbanner/captain
+	G.Grant(H)
+
+	G = new /datum/action/cooldown/warcry/captain
+	G.Grant(H)
 
 /datum/outfit/job/officer
 	name = "Operations Officer"

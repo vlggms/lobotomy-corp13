@@ -50,6 +50,10 @@
 			pixel_x = -16
 			base_pixel_x = -16
 
+			//Moves at 1/3rd speed to give R-Corp a fighting chance; Abnos can play significantly more agressively
+			base_delay_amount = 28
+			minimum_delay_amount = 12
+
 /mob/payload/proc/GetPath()
 	if(!target)
 		switch(team)
