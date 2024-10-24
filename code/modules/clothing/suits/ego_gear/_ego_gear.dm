@@ -63,8 +63,8 @@
 /obj/item/clothing/suit/armor/ego_gear/pickup(mob/user)
 	. = ..()
 	if(!user.has_movespeed_modifier(/datum/movespeed_modifier/too_many_armors) && ishuman(user))
-		var/obj/item/clothing/suit/armor/equipped_armor = user.get_item_by_slot(ITEM_SLOT_OCLOTHING)
-		if(istype(equipped_armor, /obj/item/clothing/suit/armor/ego_gear))
+		var/obj/item/clothing/suit/armor/ego_gear/equipped_armor = user.get_item_by_slot(ITEM_SLOT_OCLOTHING)
+		if(istype(equipped_armor))
 			if((SSmaptype.maptype in SSmaptype.citymaps) || (SSmaptype.maptype in SSmaptype.combatmaps))
 				return
 			else
