@@ -1989,6 +1989,14 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	cost = 11
 	restricted_roles = list("Station Engineer")
 
+/datum/uplink_item/role_restricted/sleepyemais
+	name = "Shrimp Corp E.M.A.I.S."
+	desc = "A E.M.A.I.S. Shrimps use in their stealth missions. It looks exactly like an ordinary one. \
+	Instead of having Saly Acid, Mental Stabilizer, and Epipherine, it contains Chloral Hydrate, Mute Toxin, and Grape Wellcheers respectively."
+	item = /obj/item/reagent_containers/hypospray/emais/syndi
+	cost = 6
+	restricted_roles = list("Clerk", "Operations Officer", "Support Officer", "Agent Support Clerk", "Facility Support Clerk") //Same roles that can use it.
+
 // Pointless
 /datum/uplink_item/badass
 	category = "(Pointless) Badassery"
