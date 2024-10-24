@@ -1550,7 +1550,7 @@
 		return
 	been_hit += L
 	if(!(faction_check in L.faction))
-		playsound(L.loc, 'sound/abnormalities/doomsdaycalendar/Effect_Burn.ogg', 50 - attack_range, TRUE, -1)
+		playsound(L.loc, 'sound/effects/burn.ogg', 50 - attack_range, TRUE, -1)
 		var/dealt_damage = max(5, 75 - (attack_range))
 		L.deal_damage(dealt_damage, RED_DAMAGE)
 		if(ishuman(L) && dealt_damage > 25)

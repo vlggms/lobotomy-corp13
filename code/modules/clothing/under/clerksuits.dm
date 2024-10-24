@@ -126,8 +126,8 @@
 	icon_state = "kcorp"
 
 /obj/item/clothing/under/suit/lobotomy/pcorp
-	name = "p-corp officer uniform"
-	desc = "A plain black suit with a uranian blue tie. Used by P-corp staff."
+	name = "p-corp archivist uniform"
+	desc = "A plain black bodysuit with a white labcoat. Used by P-corp archivist staff."
 	icon_state = "pcorp"
 
 /obj/item/clothing/under/suit/lobotomy/ncorp
@@ -136,7 +136,7 @@
 	icon_state = "ncorp"
 
 /obj/item/clothing/under/suit/lobotomy/mcorp
-	name = "n-corp officer uniform"
+	name = "m-corp officer uniform"
 	desc = "A plain black suit with a magenta tie. Used by M-corp staff."
 	icon_state = "mcorp"
 

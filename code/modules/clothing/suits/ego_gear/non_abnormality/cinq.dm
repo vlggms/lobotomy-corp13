@@ -9,3 +9,14 @@
 	name = "cinq association cavalier hat"
 	desc = "A cavalier hat worn by members of the cinq association, it gives you the urge to d-d-d-duel"
 	icon_state = "cinq"
+
+/obj/item/clothing/head/ego_hat/cinqwest
+	name = "cinq knight hat"
+	desc = "A cavalier hat worn by members of the cinq association, it gives you the urge to d-d-d-duel"
+	icon_state = "cinqwest"
+
+/obj/item/clothing/neck/ego_neck/cinqwest
+	name = "cinq knight cape"
+	desc = "A cape worn by cinq west."
+	icon_state = "cinq"
+

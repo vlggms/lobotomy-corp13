@@ -128,7 +128,7 @@
 	damage_type = RED_DAMAGE
 
 /obj/projectile/ego_bullet/ego_luckdraw
-	name = "luck_of_the_draw"
+	name = "luck of the draw"
 	icon_state = "drawcard"
 	damage = 18
 	damage_type = WHITE_DAMAGE
