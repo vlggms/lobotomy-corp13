@@ -34,7 +34,7 @@ GLOBAL_LIST(mentor_players)
 		GLOB.mentor_players[ckey(line)] = TRUE //Associative so we can check it much faster
 
 /proc/is_mentor_player(client/user)
-	if(GLOB.mentor_players[user.ckey])
+	if(user.ckey in GLOB.mentor_players)
 		return TRUE
 	if(check_rights(R_ADMIN, FALSE))
 		return TRUE
