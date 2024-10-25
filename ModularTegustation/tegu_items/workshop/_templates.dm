@@ -149,4 +149,3 @@
 
 	force += force*mercurybuff*venusbuff*marsbuff*jupiterbuff*saturnbuff*uranusbuff*neptunebuff*moonbuff
 	force = round(force, 0.1)*/
-  
