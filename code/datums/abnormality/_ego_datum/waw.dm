@@ -500,3 +500,9 @@
 /datum/ego_datum/armor/effervescent
 	item_path = /obj/item/clothing/suit/armor/ego_gear/waw/effervescent
 	cost = 50
+
+// Hookah Caterpillar - Havana
+//Weapon is aleph
+/datum/ego_datum/armor/havana
+	item_path = /obj/item/clothing/suit/armor/ego_gear/waw/havana
+	cost = 50

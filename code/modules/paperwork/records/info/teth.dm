@@ -390,3 +390,11 @@
 		"When the Qliphoth Counter reached 0, the abnormality let out a yell that seems to damage the electricity of the nearest connected circuit.",
 		"Considering how the containment cells are designed, the nearest circuits seem to be the ciruitry for the facility's lighting.",
 		"The energy lost from an electric surge from this abnormality will be taken out of the quota.")
+
+//Tangle
+/obj/item/paper/fluff/info/teth/tangle
+	abno_type = /mob/living/simple_animal/hostile/abnormality/tangle
+	abno_code = "F-01-191"
+	abno_info = list(
+		"Tangle had a bad reaction when working on a random EMPLOYEE, and their Qliphoth Counter lowered.",
+		"Working large amounts of instinct works on tangle ended in it's Qliphoth Counter being lowered.",)

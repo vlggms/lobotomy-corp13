@@ -307,3 +307,25 @@
 
 	shotsleft = 6	//Based off a colt Single Action Navy
 	reloadtime = 0.8 SECONDS
+
+
+/obj/item/ego_weapon/ranged/havana
+	name = "havana"
+	desc = "Within it's simple design lies a lot of struggle"
+	icon_state = "havana"
+	inhand_icon_state = "havana"
+	force = 20
+	damtype = PALE_DAMAGE
+	projectile_path = /obj/projectile/ego_bullet/ego_hookah
+	weapon_weight = WEAPON_HEAVY
+	spread = 20
+	fire_sound = 'sound/effects/smoke.ogg'
+	autofire = 0.04 SECONDS
+	fire_sound_volume = 5
+	attribute_requirements = list(
+							FORTITUDE_ATTRIBUTE = 80,
+							PRUDENCE_ATTRIBUTE = 80,
+							TEMPERANCE_ATTRIBUTE = 80,
+							JUSTICE_ATTRIBUTE = 100
+	)
+	shotsleft = 200

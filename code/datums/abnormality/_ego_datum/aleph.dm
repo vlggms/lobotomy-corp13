@@ -202,3 +202,8 @@
 /datum/ego_datum/weapon/darkcarnival
 	item_path = /obj/item/ego_weapon/wield/darkcarnival
 	cost = 100 //This weapon is normally a result of fusion but is treated as ALEPH for certain purposes
+
+//Hookah Caterpillar - Havana
+/datum/ego_datum/weapon/havana
+	item_path = /obj/item/ego_weapon/ranged/havana
+	cost = 100

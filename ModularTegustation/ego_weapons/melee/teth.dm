@@ -586,3 +586,15 @@
 	attack_verb_continuous = list("smashes", "bludgeons", "crushes")
 	attack_verb_simple = list("smash", "bludgeon", "crush")
 	hitsound = 'sound/weapons/fixer/generic/club3.ogg'
+
+/obj/item/ego_weapon/rapunzel
+	name = "rapunzel"
+	desc = "Scissors long since lost to time. Packs a punch while being unwieldy."
+	icon_state = "rapunzel"
+	force = 32
+	stuntime = 5	//Mucho damage, bit more stun
+	damtype = BLACK_DAMAGE
+	attack_verb_continuous = list("pokes", "jabs", "tears", "lacerates", "gores")
+	attack_verb_simple = list("poke", "jab", "tear", "lacerate", "gore")
+	hitsound = 'sound/weapons/fixer/generic/knife2.ogg'
+
