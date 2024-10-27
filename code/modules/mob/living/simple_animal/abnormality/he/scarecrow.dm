@@ -58,7 +58,9 @@
 	var/finishing = FALSE
 	var/braineating = TRUE
 	var/healthmodifier = 0.05	// Can restore 30% of HP
+	var/attack_healthmodifier = 0.05
 	var/target_hit = FALSE
+	var/hunger = FALSE
 
 	attack_action_types = list(/datum/action/cooldown/hungering)
 
@@ -80,9 +82,10 @@
 	cooldown_time = 200
 	var/speeded_up = 1.5
 	var/punishment_speed = 6
-	var/speed_duration = 40
-	var/min_dam_buff = 30
-	var/max_dam_buff = 35
+	var/speed_duration = 60
+	var/weaken_duration = 30
+	var/min_dam_buff = 35
+	var/max_dam_buff = 40
 	var/min_dam_old
 	var/max_dam_old
 	var/old_speed
@@ -92,34 +95,48 @@
 		return FALSE
 	if (istype(owner, /mob/living/simple_animal/hostile/abnormality/scarecrow))
 		var/mob/living/simple_animal/hostile/abnormality/scarecrow/H = owner
-		old_speed = H.move_to_delay
-		H.move_to_delay = speeded_up
-		H.UpdateSpeed()
-		H.target_hit = FALSE
-		min_dam_old = H.melee_damage_lower
-		max_dam_old = H.melee_damage_upper
-		H.melee_damage_lower = min_dam_buff
-		H.melee_damage_upper = max_dam_buff
-		to_chat(H, span_nicegreen("YOU FEEL YOUR HUNGER FOR WISDOM!"))
-		addtimer(CALLBACK(src, PROC_REF(RestoreSpeed)), speed_duration)
+		if(H.hunger == TRUE)
+			to_chat(H, span_nicegreen("YOU ARE RUSHING RIGHT NOW!"))
+			return FALSE
+		else
+			old_speed = H.move_to_delay
+			H.move_to_delay = speeded_up
+			H.UpdateSpeed()
+			H.target_hit = FALSE
+			H.hunger = TRUE
+			min_dam_old = H.melee_damage_lower
+			max_dam_old = H.melee_damage_upper
+			H.melee_damage_lower = min_dam_buff
+			H.melee_damage_upper = max_dam_buff
+			to_chat(H, span_nicegreen("YOU FEEL YOUR HUNGER FOR WISDOM!"))
+			addtimer(CALLBACK(src, PROC_REF(Hunger)), speed_duration)
+			StartCooldown()
 
-		StartCooldown()
-
-/datum/action/cooldown/hungering/proc/RestoreSpeed()
+/datum/action/cooldown/hungering/proc/Hunger()
 	if (istype(owner, /mob/living/simple_animal/hostile/abnormality/scarecrow))
 		var/mob/living/simple_animal/hostile/abnormality/scarecrow/H = owner
-		H.melee_damage_lower = min_dam_old
-		H.melee_damage_upper = max_dam_old
 		if (H.target_hit)
-			H.move_to_delay = old_speed
-			to_chat(H, span_nicegreen("You were able to calm down..."))
+			addtimer(CALLBACK(src, PROC_REF(Hunger)), speed_duration)
+			H.target_hit = FALSE
+			to_chat(H, span_nicegreen("YOUR HUNGER DOES NOT END!"))
 		else
+			H.melee_damage_lower = min_dam_old
+			H.melee_damage_upper = max_dam_old
 			H.move_to_delay = punishment_speed
 			H.deal_damage(100, WHITE_DAMAGE)
 			to_chat(H, span_danger("You are weakened for not gathering any wisdom..."))
 			H.target_hit = TRUE
-			addtimer(CALLBACK(src, PROC_REF(RestoreSpeed)), speed_duration)
+			addtimer(CALLBACK(src, PROC_REF(RushEnd)), weaken_duration)
+			H.UpdateSpeed()
+
+/datum/action/cooldown/hungering/proc/RushEnd()
+	if (istype(owner, /mob/living/simple_animal/hostile/abnormality/scarecrow))
+		var/mob/living/simple_animal/hostile/abnormality/scarecrow/H = owner
+		H.move_to_delay = old_speed
+		to_chat(H, span_nicegreen("You calm down from your rush..."))
+		H.hunger = FALSE
 		H.UpdateSpeed()
+
 
 /mob/living/simple_animal/hostile/abnormality/scarecrow/CanAttack(atom/the_target)
 	if(finishing)
@@ -143,6 +160,9 @@
 		if(!istype(target, /mob/living/carbon/human))
 			return
 		target_hit = TRUE
+		if (hunger == TRUE)
+			adjustBruteLoss(-(maxHealth*attack_healthmodifier))
+			playsound(get_turf(src), 'sound/abnormalities/scarecrow/start_drink.ogg', 50, 1)
 		var/mob/living/carbon/human/H = target
 		if(H.health < 0 && stat != DEAD && !finishing && H.getorgan(/obj/item/organ/brain))
 			finishing = TRUE

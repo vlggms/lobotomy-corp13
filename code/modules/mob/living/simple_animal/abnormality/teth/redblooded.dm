@@ -204,4 +204,4 @@
 	desc = "100% real, surplus military ammo."
 	damage_type = RED_DAMAGE
 
-	damage = 14
+	damage = 18

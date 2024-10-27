@@ -11,8 +11,8 @@
 	speak_emote = list("intones")
 	pixel_x = -30
 	base_pixel_x = -30
-	melee_damage_lower = 40
-	melee_damage_upper = 50
+	melee_damage_lower = 0
+	melee_damage_upper = 0
 	melee_damage_type = RED_DAMAGE
 	stat_attack = HARD_CRIT
 	health = 2500
@@ -199,10 +199,11 @@
 
 /mob/living/simple_animal/hostile/abnormality/babayaga/proc/SpawnMobs()
 	for(var/turf/T in orange(1, src))
-		if(spawned_mobs.len > max_mobs)
-			for(var/mob/living/A in spawned_mobs) //if there are too many spawned mobs, thin out the numbers a bit
-				if(prob(30))
-					A.death()
+		if(!IsCombatMap())
+			if(spawned_mobs.len > max_mobs)
+				for(var/mob/living/A in spawned_mobs) //if there are too many spawned mobs, thin out the numbers a bit
+					if(prob(30))
+						A.death()
 		new /obj/effect/temp_visual/dir_setting/cult/phase
 		if(prob(30))
 			var/mob/living/simple_animal/hostile/yagaslave/Y = new(T)
