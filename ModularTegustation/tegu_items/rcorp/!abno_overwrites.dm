@@ -84,7 +84,7 @@
 		maxHealth = 7500
 		health = 7500
 		landing_time = 5
-		max_mobs = 40
+		max_mobs = 20
 	return
 
 //Due to Redblooded's very low damage and health, which is normaly fitting for a Teth. That causes them to underperform in R-Corp since they don't have any utility.

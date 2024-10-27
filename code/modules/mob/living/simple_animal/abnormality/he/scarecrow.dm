@@ -103,6 +103,8 @@
 			H.move_to_delay = speeded_up
 			H.UpdateSpeed()
 			H.target_hit = FALSE
+			H.color = "#ff5770"
+			H.manual_emote("starts rapidly twitching...")
 			H.hunger = TRUE
 			min_dam_old = H.melee_damage_lower
 			max_dam_old = H.melee_damage_upper
@@ -124,6 +126,8 @@
 			H.melee_damage_upper = max_dam_old
 			H.move_to_delay = punishment_speed
 			H.deal_damage(100, WHITE_DAMAGE)
+			H.color = null
+			H.manual_emote("starts slowing down...")
 			to_chat(H, span_danger("You are weakened for not gathering any wisdom..."))
 			H.target_hit = TRUE
 			addtimer(CALLBACK(src, PROC_REF(RushEnd)), weaken_duration)
