@@ -95,7 +95,7 @@
 	if(!. || !client)
 		return FALSE
 	to_chat(src, "<h1>You are Red Blooded American, A Support Role Abnormality.</h1><br>\
-		<b>|The American Way|: When you pick on a tile at least 2 sqrs away, You will consume 1 ammo to fire 6 pellets which deal 8 damage each.<br>\
+		<b>|The American Way|: When you pick on a tile at least 2 sqrs away, You will consume 1 ammo to fire 6 pellets which deal 18 damage each.<br>\
 		You passively reload 1 ammo every 2 seconds, but you can also reload 1 ammo by hitting humans or mechs.</b>")
 
 /mob/living/simple_animal/hostile/abnormality/redblooded/AttemptWork(mob/living/carbon/human/user, work_type)

@@ -188,6 +188,34 @@ GLOBAL_VAR_INIT(rcorp_payload, null)
 	icon_living = "executive"
 	health = 300	//Fragile so they protect you
 	maxHealth = 300
+	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 1, WHITE_DAMAGE = 1, BLACK_DAMAGE = 1, PALE_DAMAGE = 1)
+	var/max_protection = 1
+	var/base_resistance = 1
+	var/guarding_allies = 0
+	var/final_resistance = 1
+	var/total_ally_protection = 0
+	var/per_ally_protection = 0.2
+	var/view_check_time = 1 SECONDS
+	var/view_check
+
+/mob/living/simple_animal/hostile/shrimp_vip/Life()
+	. = ..()
+	if(!.) // Dead
+		return FALSE
+	if((view_check < world.time) && !(status_flags & GODMODE))
+		Protection()
+
+/mob/living/simple_animal/hostile/shrimp_vip/proc/Protection()
+	view_check = world.time + view_check_time
+	guarding_allies = 0
+	for(var/mob/living/simple_animal/hostile/A in livinginview(7, src))
+		if(faction_check_mob(A, FALSE))
+			guarding_allies += 1
+	guarding_allies * per_ally_protection = total_ally_protection
+	if (total_ally_protection > max_protection)
+		total_ally_protection = max_protection
+	base_resistance -= total_ally_protection = final_resistance
+	ChangeResistances(list(RED_DAMAGE = final_resistance, WHITE_DAMAGE = final_resistance, BLACK_DAMAGE = final_resistance, PALE_DAMAGE = final_resistance))
 
 
 /mob/living/simple_animal/hostile/shrimp_vip/death(gibbed)
