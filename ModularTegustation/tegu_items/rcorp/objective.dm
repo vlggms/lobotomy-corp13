@@ -207,15 +207,18 @@ GLOBAL_VAR_INIT(rcorp_payload, null)
 
 /mob/living/simple_animal/hostile/shrimp_vip/proc/Protection()
 	view_check = world.time + view_check_time
-	guarding_allies = 0
+	var/temp_guarding_allies = 0
 	for(var/mob/living/simple_animal/hostile/A in livinginview(7, src))
-		if(faction_check_mob(A, FALSE))
-			guarding_allies += 1
-	guarding_allies * per_ally_protection = total_ally_protection
-	if (total_ally_protection > max_protection)
-		total_ally_protection = max_protection
-	base_resistance -= total_ally_protection = final_resistance
-	ChangeResistances(list(RED_DAMAGE = final_resistance, WHITE_DAMAGE = final_resistance, BLACK_DAMAGE = final_resistance, PALE_DAMAGE = final_resistance))
+		if(src != A && faction_check_mob(A, FALSE))
+			temp_guarding_allies += 1
+	if (temp_guarding_allies != guarding_allies)
+		guarding_allies = temp_guarding_allies
+		total_ally_protection = guarding_allies * per_ally_protection
+		if (total_ally_protection > max_protection)
+			total_ally_protection = max_protection
+		final_resistance = base_resistance - total_ally_protection
+		visible_message(span_danger("New guardians count: " + num2text(temp_guarding_allies) + " Final res: " + num2text(final_resistance)))
+		ChangeResistances(list(RED_DAMAGE = final_resistance, WHITE_DAMAGE = final_resistance, BLACK_DAMAGE = final_resistance, PALE_DAMAGE = final_resistance))
 
 
 /mob/living/simple_animal/hostile/shrimp_vip/death(gibbed)
