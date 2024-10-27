@@ -198,6 +198,19 @@ GLOBAL_VAR_INIT(rcorp_payload, null)
 	var/view_check_time = 1 SECONDS
 	var/view_check
 
+	var/list/shrimp_abilities = list(
+		/obj/effect/proc_holder/spell/pointed/shrimp_airstrike,
+		)
+
+/mob/living/simple_animal/hostile/shrimp_vip/Initialize()
+	. = ..()
+
+	for (var/A in shrimp_abilities)
+		if (ispath(A, /obj/effect/proc_holder/spell))
+			var/obj/effect/proc_holder/spell/AS = new A(src)
+			AddSpell(AS)
+
+
 /mob/living/simple_animal/hostile/shrimp_vip/Life()
 	. = ..()
 	if(!.) // Dead
@@ -227,6 +240,49 @@ GLOBAL_VAR_INIT(rcorp_payload, null)
 		to_chat(M, span_userdanger("R-CORP MAJOR VICTORY."))
 	SSticker.force_ending = 1
 	..()
+
+/obj/effect/proc_holder/spell/pointed/shrimp_airstrike
+	name = "Airstrike"
+	desc = "shrimp_airstrike"
+	panel = "Shrimp"
+	has_action = TRUE
+	action_icon = 'icons/mob/actions/actions_abnormality.dmi'
+	action_icon_state = "contract_ruin"
+	clothes_req = FALSE
+	charge_max = 100
+	selection_type = "range"
+	active_msg = "You prepare your airstrike ..."
+	deactive_msg = "You put away your airstrike ..."
+
+/obj/structure/closet/supplypod/shrimpmissle
+	style = STYLE_MISSILE
+	effectMissile = TRUE
+	explosionSize = list(0,0,0,0)
+
+/obj/effect/proc_holder/spell/pointed/shrimp_airstrike/cast(list/targets, mob/user)
+	var/target = targets[1]
+	user.visible_message(span_danger("[user] uses the airstrike."), span_alert("You targeted [target]"))
+	addtimer(CALLBACK(src, PROC_REF(Airstrike), target), 1)
+
+/obj/effect/proc_holder/spell/pointed/shrimp_airstrike/proc/Airstrike(target)
+	var/turf/T = get_turf(target)
+	for (var/i in 1 to 5)
+		var/obj/structure/closet/supplypod/shrimpmissle/pod = new()
+		var/landingzone = locate(T.x + rand(-1,1), T.y + rand(-1,1), T.z)
+		if (landingzone)
+			new /obj/effect/pod_landingzone(landingzone, pod)
+		else
+			new /obj/effect/pod_landingzone(T, pod)
+
+		sleep(34)
+		var/mob/dummy = new(landingzone)
+		dummy.faction = list("hostile")
+		for(var/turf/AT in range(2, landingzone))
+			new /obj/effect/temp_visual/smash_effect(AT)
+			dummy.HurtInTurf(AT, list(), (100), RED_DAMAGE, check_faction = TRUE, hurt_mechs = TRUE)
+		qdel(dummy)
+		sleep(rand()*2)
+
 
 //Arbiter
 /obj/effect/mob_spawn/human/arbiter/rcorp
