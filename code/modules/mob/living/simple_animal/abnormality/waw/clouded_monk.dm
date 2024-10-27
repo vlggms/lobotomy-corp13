@@ -249,7 +249,7 @@
 	walk(src, 0) // cancel the movement
 	icon_state = icon_aggro
 
-	if (!bump && IsCombatMap())
+	if (!bump && SSmaptype.maptype == "rcorp")
 		var/turf/T = get_turf(src)
 		for(var/turf/TF in range(2, T))//Smash AOE visual
 			new /obj/effect/temp_visual/smash_effect(TF)
