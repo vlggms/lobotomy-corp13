@@ -98,7 +98,7 @@
 	SLEEP_CHECK_DEATH(2 SECONDS)
 	playsound(get_turf(src), 'sound/abnormalities/judgementbird/ability.ogg', 75, 0, 7)
 	if(SSmaptype.maptype == "rcorp")
-		for(var/mob/living/L in livinginrange(judgement_range, src))
+		for(var/mob/living/L in livinginrange(judgement_range, src)) //abomination made so jbird pierces rhinos solely in rcorp
 			if(faction_check_mob(L, FALSE))
 				continue
 			if(L.stat == DEAD)
