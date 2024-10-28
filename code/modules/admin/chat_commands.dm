@@ -11,7 +11,7 @@
 	var/status = "Admins: [allmins.len] (Active: [english_list(adm["present"])] AFK: [english_list(adm["afk"])] Stealth: [english_list(adm["stealth"])] Skipped: [english_list(adm["noflags"])]).\n"
 	var/round_time = world.time - SSticker.round_start_time
 	status += "Players: [GLOB.clients.len] (Active: [get_active_player_count(0,1,0)]). Mode: [SSticker.mode ? SSticker.mode.name : "Not started"]; Round Time: [round_time > MIDNIGHT_ROLLOVER ? "[round(round_time/MIDNIGHT_ROLLOVER)]:[gameTimestamp("hh:mm:ss", round_time)]" : gameTimestamp("hh:mm:ss", round_time)].\n"
-	if(!(SSmaptype.maptype) in SSmaptype.combatmaps)
+	if(!(SSmaptype.maptype in SSmaptype.combatmaps))
 		if(istype(SSlobotomy_corp.next_ordeal))
 			status += "Next ordeal will be __[SSlobotomy_corp.next_ordeal.name]__.\n"
 		if(istype(SSlobotomy_corp.core_suppression))
@@ -35,7 +35,7 @@
 		for(var/datum/ordeal/O in SSlobotomy_corp.current_ordeals)
 			ordeal_names += O.name
 		check += "[english_list(ordeal_names)] [length(ordeal_names) > 1 ? "are" : "is"] currently in the process.\n"
-	if(!(SSmaptype.maptype) in SSmaptype.combatmaps)
+	if(!(SSmaptype.maptype in SSmaptype.combatmaps))
 		if(istype(SSlobotomy_corp.next_ordeal)) // Let's tell people what ordeal type is next
 			check += "Next ordeal type will be __[SSlobotomy_corp.next_ordeal.ReturnSecretName()]__.\n"
 		if(istype(SSlobotomy_corp.core_suppression)) // Currently active core suppression
