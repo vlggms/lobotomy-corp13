@@ -157,6 +157,6 @@
 	corp = K_CORP_REP
 	required_research = /datum/data/lc13research/syringe
 
-/datum/data/lc13research/kguns/ResearchEffect(obj/structure/representative_console/caller)
+/datum/data/lc13research/kdrones/ResearchEffect(obj/structure/representative_console/caller)
 	ItemUnlock(caller.order_list, "K Corp Drone Spawner",	/obj/item/grenade/spawnergrenade/khealing, 600)
 	..()
