@@ -13,7 +13,7 @@
 
 /datum/action/cooldown/butcher
 	name = "Butcher"
-	desc = "Instantly butcher all dead opponents in a 5x5 range around you. If you are holding an object that can butcher more efficiently than your skill absorb it into the skill."
+	desc = "Instantly butcher all dead opponents in a 5x5 range around you. If you are holding an object that can butcher more efficiently than your skill, absorb the object into the skill."
 	icon_icon = 'icons/hud/screen_skills.dmi'
 	button_icon_state = "butcher"
 	cooldown_time = 2 SECONDS

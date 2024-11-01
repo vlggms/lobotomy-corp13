@@ -49,7 +49,7 @@
 	custom_premium_price = 600
 
 /datum/action/cooldown/firstaid
-	cooldown_time = 60 SECONDS
+	cooldown_time = 1 MINUTES
 	icon_icon = 'icons/hud/screen_skills.dmi'
 	button_icon_state = "firstaid"
 
@@ -88,7 +88,7 @@
 	custom_premium_price = 600
 
 /datum/action/cooldown/meditation
-	cooldown_time = 60 SECONDS
+	cooldown_time = 1 MINUTES
 	icon_icon = 'icons/hud/screen_skills.dmi'
 	button_icon_state = "meditation"
 
