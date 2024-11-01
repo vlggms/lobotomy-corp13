@@ -17,7 +17,6 @@
 	icon_icon = 'icons/hud/screen_skills.dmi'
 	button_icon_state = "butcher"
 	cooldown_time = 2 SECONDS
-	check_flags = AB_CHECK_CONSCIOUS
 	var/datum/component/butchering/butcher_component
 
 /datum/action/cooldown/butcher/New()

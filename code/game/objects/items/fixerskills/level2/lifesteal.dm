@@ -19,6 +19,7 @@
 	if(!.)
 		return FALSE
 	if(owner.stat > SOFT_CRIT)
+		to_chat(owner, span_userdanger("You are too weak to steal life from people around you..."))
 		return FALSE
 
 	var/mob/living/carbon/human/skilluser = owner
