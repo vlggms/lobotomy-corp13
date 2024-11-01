@@ -10,10 +10,11 @@
 	icon_icon = 'icons/hud/screen_skills.dmi'
 	button_icon_state = "butcher"
 	name = "Butcher"
-	cooldown_time = 20
+	cooldown_time = 2 SECONDS
 
 /datum/action/cooldown/butcher/Trigger()
-	if(!..())
+	. = ..()
+	if(!.)
 		return FALSE
 
 	if (owner.stat == DEAD)

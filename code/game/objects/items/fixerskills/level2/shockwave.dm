@@ -9,7 +9,7 @@
 	icon_icon = 'icons/hud/screen_skills.dmi'
 	name = "Shockwave"
 	button_icon_state = "shockwave"
-	cooldown_time = 150
+	cooldown_time = 15 SECONDS
 
 /datum/action/cooldown/shockwave/Trigger()
 	. = ..()

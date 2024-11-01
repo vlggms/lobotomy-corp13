@@ -10,11 +10,12 @@
 	icon_icon = 'icons/hud/screen_skills.dmi'
 	button_icon_state = "lifesteal"
 	name = "Lifesteal"
-	cooldown_time = 100
+	cooldown_time = 10 SECONDS
 	var/damageamount = 10
 
 /datum/action/cooldown/lifesteal/Trigger()
-	if(!..())
+	. = ..()
+	if(!.)
 		return FALSE
 
 	if (owner.stat == DEAD)

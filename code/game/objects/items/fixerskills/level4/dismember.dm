@@ -10,10 +10,11 @@
 	icon_icon = 'icons/hud/screen_skills.dmi'
 	button_icon_state = "dismember"
 	name = "Dismember"
-	cooldown_time = 6000
+	cooldown_time = 10 MINUTES
 
 /datum/action/cooldown/dismember/Trigger()
-	if(!..())
+	. = ..()
+	if(!.)
 		return FALSE
 
 	if (owner.stat == DEAD)

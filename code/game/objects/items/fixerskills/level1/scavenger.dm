@@ -10,10 +10,11 @@
 	icon_icon = 'icons/hud/screen_skills.dmi'
 	button_icon_state = "smokedash"
 	name = "Smokedash"
-	cooldown_time = 300
+	cooldown_time = 30 SECONDS
 
 /datum/action/cooldown/smokedash/Trigger()
-	if(!..())
+	. = ..()
+	if(!.)
 		return FALSE
 
 	if (owner.stat == DEAD)
@@ -44,10 +45,11 @@
 	icon_icon = 'icons/hud/screen_skills.dmi'
 	button_icon_state = "smkulk"
 	name = "Skulk"
-	cooldown_time = 300
+	cooldown_time = 30 SECONDS
 
 /datum/action/cooldown/skulk/Trigger()
-	if(!..())
+	. = ..()
+	if(!.)
 		return FALSE
 
 	if (owner.stat == DEAD)

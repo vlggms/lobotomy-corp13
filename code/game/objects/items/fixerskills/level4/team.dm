@@ -10,13 +10,14 @@
 	icon_icon = 'icons/hud/screen_skills.dmi'
 	button_icon_state = "warbanner"
 	name = "Warbanner"
-	cooldown_time = 1800
+	cooldown_time = 3 MINUTES
 	var/list/affected = list()
 	var/range = 2
 	var/affect_self = TRUE
 
 /datum/action/cooldown/warbanner/Trigger()
-	if(!..())
+	. = ..()
+	if(!.)
 		return FALSE
 
 	if (owner.stat == DEAD)
@@ -66,13 +67,14 @@
 	icon_icon = 'icons/hud/screen_skills.dmi'
 	button_icon_state = "warcry"
 	name = "Warcry"
-	cooldown_time = 1800
+	cooldown_time = 3 MINUTES
 	var/list/affected = list()
 	var/range = 2
 	var/affect_self = TRUE
 
 /datum/action/cooldown/warcry/Trigger()
-	if(!..())
+	. = ..()
+	if(!.)
 		return FALSE
 
 	if (owner.stat == DEAD)

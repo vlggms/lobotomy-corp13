@@ -10,14 +10,17 @@
 	icon_icon = 'icons/hud/screen_skills.dmi'
 	button_icon_state = "reraise"
 	name = "Re-Raise"
-	cooldown_time = 6000
+	cooldown_time = 10 MINUTES
 	var/healamount = 15
 
 /datum/action/cooldown/reraise/Trigger()
-	if(!..())
+	. = ..()
+	if(!.)
 		return FALSE
+
 	if(owner.stat != DEAD)
 		return FALSE
+
 	var/mob/living/carbon/human/human = owner
 	if(human.revive(full_heal = TRUE, admin_revive = TRUE))
 		human.grab_ghost(force = TRUE) // even suicides
