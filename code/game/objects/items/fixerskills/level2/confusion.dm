@@ -7,9 +7,9 @@
 	custom_premium_price = 1200
 
 /datum/action/cooldown/confusion
+	name = "Confusion"
 	icon_icon = 'icons/hud/screen_skills.dmi'
 	button_icon_state = "confusion"
-	name = "Confusion"
 	cooldown_time = 50 SECONDS
 
 /datum/action/cooldown/confusion/Trigger()

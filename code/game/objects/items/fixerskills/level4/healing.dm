@@ -7,11 +7,10 @@
 	custom_premium_price = 2400
 
 /datum/action/cooldown/reraise
+	name = "Re-Raise"
 	icon_icon = 'icons/hud/screen_skills.dmi'
 	button_icon_state = "reraise"
-	name = "Re-Raise"
 	cooldown_time = 10 MINUTES
-	var/healamount = 15
 
 /datum/action/cooldown/reraise/Trigger()
 	. = ..()

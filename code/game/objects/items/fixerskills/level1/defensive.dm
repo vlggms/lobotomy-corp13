@@ -7,9 +7,9 @@
 	custom_premium_price = 600
 
 /datum/action/cooldown/hunkerdown
-	cooldown_time = 30 SECONDS
 	icon_icon = 'icons/hud/screen_skills.dmi'
 	button_icon_state = "hunkerdown"
+	cooldown_time = 30 SECONDS
 
 
 /datum/action/cooldown/hunkerdown/Trigger()

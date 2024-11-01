@@ -7,9 +7,9 @@
 	custom_premium_price = 2400
 
 /datum/action/cooldown/dismember
+	name = "Dismember"
 	icon_icon = 'icons/hud/screen_skills.dmi'
 	button_icon_state = "dismember"
-	name = "Dismember"
 	cooldown_time = 10 MINUTES
 
 /datum/action/cooldown/dismember/Trigger()

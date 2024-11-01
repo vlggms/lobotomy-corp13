@@ -20,6 +20,6 @@
 		to_chat(owner, span_warning("Throwing everything away from you would be difficult in this state."))
 		return
 
-	owner.visible_message(span_userdanger("[owner] throws away everything around them!"), span_warning("You throw everything away from you!"))
 	goonchem_vortex(get_turf(owner), 1, 13)
+	owner.visible_message(span_userdanger("[owner] throws away everything around them!"), span_warning("You throw everything away from you!"))
 	StartCooldown()

@@ -58,9 +58,9 @@
 	if(our_strong_butchering >= their_weak_effectiveness)
 		return
 
-	to_chat(owner, span_nicegreen("You absorb [potential_knife] into the [name] ability, empowering its butchering effectiveness!"))
 	butcher_component.effectiveness = meat_machine.effectiveness
 	butcher_component.bonus_modifier = meat_machine.bonus_modifier
+	to_chat(owner, span_nicegreen("You absorb [potential_knife] into the [name] ability, empowering its butchering effectiveness!"))
 	qdel(potential_knife)
 
 	var/difference = floor((their_weak_effectiveness - our_strong_butchering) / 5)
