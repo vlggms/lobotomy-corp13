@@ -195,29 +195,29 @@
 	always_available = FALSE
 	category = CAT_CLOTHING
 
-//Voilet Converstions
-/datum/crafting_recipe/converted_voilet_silk_advanced
-	name = "Converted Advanced Voilet Silk"
-	result = /obj/item/stack/sheet/silk/voilet_advanced
-	reqs = list(/obj/item/stack/sheet/silk/voilet_simple = 4)
+//violet Converstions
+/datum/crafting_recipe/converted_violet_silk_advanced
+	name = "Converted Advanced violet Silk"
+	result = /obj/item/stack/sheet/silk/violet_advanced
+	reqs = list(/obj/item/stack/sheet/silk/violet_simple = 4)
 	tools = list(/obj/item/silkknife = 1)
 	time = 10
 	always_available = FALSE
 	category = CAT_CLOTHING
 
-/datum/crafting_recipe/converted_voilet_silk_elegant
-	name = "Converted Elegant Voilet Silk"
-	result = /obj/item/stack/sheet/silk/voilet_elegant
-	reqs = list(/obj/item/stack/sheet/silk/voilet_advanced = 4)
+/datum/crafting_recipe/converted_violet_silk_elegant
+	name = "Converted Elegant violet Silk"
+	result = /obj/item/stack/sheet/silk/violet_elegant
+	reqs = list(/obj/item/stack/sheet/silk/violet_advanced = 4)
 	tools = list(/obj/item/silkknife = 1)
 	time = 15
 	always_available = FALSE
 	category = CAT_CLOTHING
 
-/datum/crafting_recipe/converted_voilet_silk_masterpiece
-	name = "Converted Masterpiece Voilet Silk"
-	result = /obj/item/stack/sheet/silk/voilet_masterpiece
-	reqs = list(/obj/item/stack/sheet/silk/voilet_elegant = 4)
+/datum/crafting_recipe/converted_violet_silk_masterpiece
+	name = "Converted Masterpiece violet Silk"
+	result = /obj/item/stack/sheet/silk/violet_masterpiece
+	reqs = list(/obj/item/stack/sheet/silk/violet_elegant = 4)
 	tools = list(/obj/item/silkknife = 1)
 	time = 20
 	always_available = FALSE

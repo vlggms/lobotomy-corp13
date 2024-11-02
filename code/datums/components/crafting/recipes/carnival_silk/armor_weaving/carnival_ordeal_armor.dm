@@ -53,10 +53,10 @@
 /datum/crafting_recipe/ordeal_god_delusion
 	name = "God Delusion"
 	result = /obj/item/clothing/suit/armor/ego_gear/ordeal/god_delusion
-	reqs = list(/obj/item/stack/sheet/silk/voilet_simple = 12,
-				/obj/item/stack/sheet/silk/voilet_advanced = 6,
-				/obj/item/stack/sheet/silk/voilet_elegant = 2,
-				/obj/item/stack/sheet/silk/voilet_masterpiece = 1,
+	reqs = list(/obj/item/stack/sheet/silk/violet_simple = 12,
+				/obj/item/stack/sheet/silk/violet_advanced = 6,
+				/obj/item/stack/sheet/silk/violet_elegant = 2,
+				/obj/item/stack/sheet/silk/violet_masterpiece = 1,
 				/obj/item/stack/sheet/silk/human_masterpiece = 2)
 	tools = list(/obj/item/silkknife = 1)
 	time = 50
