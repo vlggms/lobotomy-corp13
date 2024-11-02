@@ -18,7 +18,7 @@
 
 /obj/item/clothing/suit/armor/attackby(obj/item/W, mob/user, params)
 	if(istype(W, /obj/item/stack/sheet/silk))
-		if(user?.mind?.assigned_role == ("Carnival" || "Workshop Attendant"))
+		if(user?.mind?.assigned_role == "Carnival" || user?.mind?.assigned_role == "Workshop Attendant")
 			var/datum/component/silkweave/silkweave = GetComponent(/datum/component/silkweave)
 			if(!silkweave)
 				silkweave = AddComponent(/datum/component/silkweave)

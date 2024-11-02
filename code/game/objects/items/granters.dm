@@ -535,7 +535,7 @@
 /obj/item/book/granter/crafting_recipe/carnival
 	var/carnival_only = TRUE
 /obj/item/book/granter/crafting_recipe/carnival/attack_self(mob/user)
-	if (carnival_only && user?.mind?.assigned_role != ("Carnival" || "Workshop Attendant")) // check role
+	if (carnival_only && !(user?.mind?.assigned_role == "Carnival" || user?.mind?.assigned_role == "Workshop Attendant")) // check role
 		to_chat(user, span_danger("Wow, This book seems so wacky! None of it makes sense, to you."))
 		return FALSE
 	. = ..()
