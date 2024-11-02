@@ -585,6 +585,7 @@
 #include "code\datums\components\crafting\recipes\carnival_silk\armor_weaving\carnival_index.dm"
 #include "code\datums\components\crafting\recipes\carnival_silk\armor_weaving\carnival_kurokumo.dm"
 #include "code\datums\components\crafting\recipes\carnival_silk\armor_weaving\carnival_n_corp.dm"
+#include "code\datums\components\crafting\recipes\carnival_silk\armor_weaving\carnival_ordeal_armor.dm"
 #include "code\datums\components\crafting\recipes\carnival_silk\armor_weaving\carnival_seven.dm"
 #include "code\datums\components\crafting\recipes\carnival_silk\armor_weaving\carnival_shi.dm"
 #include "code\datums\components\crafting\recipes\carnival_silk\armor_weaving\carnival_zwei.dm"
