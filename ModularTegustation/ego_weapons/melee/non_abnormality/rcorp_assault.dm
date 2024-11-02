@@ -105,11 +105,11 @@
 	desc = "A heavy energy rifle used by Rcorp sniper units. Fires slower, and deals significantly more damage. Has a scope and IFF capabilities."
 	icon_state = "rabbitheavysniper"
 	fire_delay = 15
-	zoomable = TRUE
-	zoom_amt = 10 //Long range, enough to see in front of you, but no tiles behind you.
-	zoom_out_amt = 5
 	projectile_damage_multiplier = 3
 	ammo_type = list(
 		/obj/item/ammo_casing/energy/laser/red/iff,
 		)
 
+/obj/item/gun/energy/e_gun/rabbitdash/heavysniper/Initialize(mapload)
+	. = ..()
+	AddComponent(/datum/component/scope, range_modifier = 2)
