@@ -713,7 +713,7 @@
 	if(!isanimal(M) || M.ckey) //only works on animals that aren't player controlled
 		to_chat(user, "<span class='warning'>[M] is already too intelligent for this to work!</span>")
 		return
-	if(!isabnormalitymob(M)) //only works on animals that aren't player controlled
+	if(isabnormalitymob(M)) //only works on animals that aren't player controlled
 		to_chat(user, span_warning("The potion will have no effect on [M]!"))
 		return
 	if(M.stat)
