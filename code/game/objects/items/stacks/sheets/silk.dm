@@ -219,7 +219,7 @@
 
 /obj/item/stack/sheet/silk/amber_advanced
 	name = "Advanced Amber Silk"
-	desc = "Silk woven from a, Wait... How did they get it? Can be used to upgrade your armor. \n\
+	desc = "Silk woven from a ??? Can be used to upgrade your armor. \n\
 		Looks like it is from the advanced variety of silk.\n\
 		When attached to armor it decrease WHITE resistance by 10 and increases BLACK by 10."
 	added_armor = new(white = -10, black = 10)
