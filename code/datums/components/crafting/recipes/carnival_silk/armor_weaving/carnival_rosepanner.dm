@@ -10,7 +10,7 @@
 	category = CAT_SILK
 
 /datum/crafting_recipe/rosespanner_assassin
-	name = "rosespanner fixer jacket"
+	name = "rosespanner fixer jacket (assasin)"
 	result = /obj/item/clothing/suit/armor/ego_gear/city/rosespanner/assassin
 	reqs = list(/obj/item/stack/sheet/silk/crimson_simple = 2,
 				/obj/item/stack/sheet/silk/amber_simple = 1,
