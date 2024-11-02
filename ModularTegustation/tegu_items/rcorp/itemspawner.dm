@@ -105,7 +105,7 @@
 	)
 
 /obj/effect/landmark/rhinocaptainspawner/Initialize()
-	..()
+	. = ..()
 	var/spawning = pick(possible_mecha)
 	if(prob(1))
 		spawning = /obj/vehicle/sealed/mecha/combat/tank/captain
