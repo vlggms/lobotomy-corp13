@@ -33,7 +33,7 @@
 	job_important = "You are alowed to enter the backstreets to hunt for silk. However, DO NOT LOOT THE WEAPONS, CASH OR ARMOR FROM THE BACKSTREETS! \
 			Your primary goal is to kill monsters in the backstreets and/or humans to weave silk so you can then sell it to the humans. \
 			You have a base on the left side of the nest. \
-			DO NOT LOOT THE WEAPONS, CASH OR ARMOR FROM THE BACKSTREETS!"
+			Once more just to make sure you don't forget, DO NOT LOOT THE WEAPONS, CASH OR ARMOR FROM THE BACKSTREETS!"
 	..()
 
 /datum/outfit/job/carnival

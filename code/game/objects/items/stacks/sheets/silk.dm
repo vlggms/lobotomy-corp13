@@ -12,7 +12,7 @@
 	var/turf/T = meat.drop_location()
 	if(ishuman(meat))
 		if(meat.client)
-			meat.visible_message(span_notice("[meat]'s soul resists your attempt to tailor them!"))
+			meat.visible_message(span_notice("[meat]'s soul resists the silkweaver!"))
 			return FALSE
 		var/mob/living/carbon/human/H = meat
 		var/total = get_attribute_level(H, FORTITUDE_ATTRIBUTE) + get_attribute_level(H, PRUDENCE_ATTRIBUTE) + get_attribute_level(H, TEMPERANCE_ATTRIBUTE) + get_attribute_level(H, JUSTICE_ATTRIBUTE)
@@ -70,7 +70,7 @@
 		a_silk.amount = amount
 
 /obj/item/silkknife
-	name = "Silkweaver"
+	name = "silkweaver"
 	desc = "Makes silk by butchering foes, Can't be used on humans with a soul."
 	icon_state = "silkweaver"
 	inhand_icon_state = "carnival_silkweaver"
