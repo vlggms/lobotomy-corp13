@@ -16,7 +16,7 @@
 	paycheck = 100
 
 	allow_bureaucratic_error = FALSE
-	maptype = list("wonderlabs", "city")
+	maptype = list("wonderlabs", "city", "fixers")
 	roundstart_attributes = list(
 								FORTITUDE_ATTRIBUTE = 80,
 								PRUDENCE_ATTRIBUTE = 80,
