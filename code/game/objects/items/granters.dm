@@ -651,6 +651,39 @@
 	icon_state = "zwei_west_book"
 	remarks = list("Make sure that you always have your weaving knife on you? I already knew that.", "Using sweepers as silk? That is brand new...", "Huh, it says here that 'Be careful around the fixer association...' ", "This book smells quite well, Like it was just made just for me!", "A rookie must have made this page, or they forgot to spell check it before printing...", "Wait, how will this turn a profit? I spent like 1000 ahn for this book!")
 
+/obj/item/book/granter/crafting_recipe/carnival/weaving_wedge
+	name = "Weaving Armor: Wedge Office Edition"
+	desc = "A weaving book that teaches you how to weave wedge office armor. Carnival approved!"
+	crafting_recipe_types = list(
+		/datum/crafting_recipe/wedge_male,
+		/datum/crafting_recipe/wedge_fem,
+		/datum/crafting_recipe/wedge_leader
+	)
+	icon_state = "wedge_book"
+	remarks = list("Make sure that you always have your weaving knife on you? I already knew that.", "Using sweepers as silk? That is brand new...", "Huh, it says here that 'Be careful around the fixer association...' ", "This book smells quite well, Like it was just made just for me!", "A rookie must have made this page, or they forgot to spell check it before printing...", "Wait, how will this turn a profit? I spent like 1000 ahn for this book!")
+
+/obj/item/book/granter/crafting_recipe/carnival/weaving_rosespanner
+	name = "Weaving Armor: Rosespanner Workshop Edition"
+	desc = "A weaving book that teaches you how to weave rosespanner workshop armor. Carnival approved!"
+	crafting_recipe_types = list(
+		/datum/crafting_recipe/rosespanner,
+		/datum/crafting_recipe/rosespanner_assassin,
+		/datum/crafting_recipe/rosespannerrep
+	)
+	icon_state = "rosespanner_book"
+	remarks = list("Make sure that you always have your weaving knife on you? I already knew that.", "Using sweepers as silk? That is brand new...", "Huh, it says here that 'Be careful around the fixer association...' ", "This book smells quite well, Like it was just made just for me!", "A rookie must have made this page, or they forgot to spell check it before printing...", "Wait, how will this turn a profit? I spent like 1000 ahn for this book!")
+
+
+/obj/item/book/granter/crafting_recipe/carnival/weaving_molar_boatworks
+	name = "Weaving Armor: Molar Boatworks Edition"
+	desc = "A weaving book that teaches you how to weave molar boatworks armor. Carnival approved!"
+	crafting_recipe_types = list(
+		/datum/crafting_recipe/boatworks,
+		/datum/crafting_recipe/boatworks_director,
+	)
+	icon_state = "boatworks_book"
+	remarks = list("Make sure that you always have your weaving knife on you? I already knew that.", "Using sweepers as silk? That is brand new...", "Huh, it says here that 'Be careful around the fixer association...' ", "This book smells quite well, Like it was just made just for me!", "A rookie must have made this page, or they forgot to spell check it before printing...", "Wait, how will this turn a profit? I spent like 1000 ahn for this book!")
+
 /obj/item/book/granter/crafting_recipe/carnival/weaving_j_corp_gangs
 	name = "Weaving Armor: J Corp Gangs Edition"
 	desc = "A weaving book that teaches you how to weave armor used by gangs in J-Corp. Carnival approved!"

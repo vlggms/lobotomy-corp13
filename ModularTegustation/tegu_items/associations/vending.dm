@@ -97,6 +97,9 @@
 		/obj/item/book/granter/crafting_recipe/carnival/weaving_ordeal = 1,
 		/obj/item/book/granter/crafting_recipe/carnival/weaving_zwei_west = 1,
 		/obj/item/book/granter/crafting_recipe/carnival/weaving_j_corp_gangs = 1,
+		/obj/item/book/granter/crafting_recipe/carnival/weaving_wedge = 1,
+		/obj/item/book/granter/crafting_recipe/carnival/weaving_molar_boatworks = 1,
+		/obj/item/book/granter/crafting_recipe/carnival/weaving_rosespanner = 1,
 	)
 
 	default_price = 100
