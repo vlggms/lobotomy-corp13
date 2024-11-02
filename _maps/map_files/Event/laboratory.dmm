@@ -92,9 +92,9 @@
 /obj/item/ego_weapon/shield/lccb,
 /obj/item/ego_weapon/shield/lccb,
 /obj/item/ego_weapon/shield/lccb,
-/obj/item/gun/ego_gun/city/limbuspistol,
-/obj/item/gun/ego_gun/city/limbuspistol,
-/obj/item/gun/ego_gun/city/limbuspistol,
+/obj/item/ego_weapon/ranged/city/limbuspistol,
+/obj/item/ego_weapon/ranged/city/limbuspistol,
+/obj/item/ego_weapon/ranged/city/limbuspistol,
 /turf/open/floor/mineral/plastitanium/red,
 /area/centcom)
 "ap" = (
@@ -112,7 +112,7 @@
 /obj/structure/rack,
 /obj/item/ego_weapon/city/lccb_bat,
 /obj/item/barrier_taperoll/police,
-/obj/item/gun/ego_gun/city/limbuspistol,
+/obj/item/ego_weapon/ranged/city/limbuspistol,
 /turf/open/floor/mineral/titanium/blue,
 /area/centcom)
 "aA" = (
@@ -303,7 +303,7 @@
 	pixel_y = 4
 	},
 /obj/structure/closet/cabinet,
-/obj/item/gun/ego_gun/city/limbusmagnum,
+/obj/item/ego_weapon/ranged/city/limbusmagnum,
 /turf/open/floor/carpet/cyan,
 /area/centcom)
 "bi" = (
@@ -2869,7 +2869,7 @@
 "lI" = (
 /obj/structure/rack,
 /obj/item/barrier_taperoll/police,
-/obj/item/gun/ego_gun/city/limbuspistol,
+/obj/item/ego_weapon/ranged/city/limbuspistol,
 /obj/item/ego_weapon/shield/lccb,
 /turf/open/floor/mineral/titanium/blue,
 /area/centcom)
@@ -3059,8 +3059,8 @@
 /obj/effect/turf_decal/stripes/red/line{
 	dir = 5
 	},
-/obj/item/gun/ego_gun/city/limbusshottie,
-/obj/item/gun/ego_gun/city/limbuspistol,
+/obj/item/ego_weapon/ranged/city/limbusshottie,
+/obj/item/ego_weapon/ranged/city/limbuspistol,
 /turf/open/floor/mineral/titanium/white{
 	color = "#791500"
 	},
@@ -3323,7 +3323,7 @@
 /turf/open/floor/plasteel/white,
 /area/centcom)
 "nI" = (
-/obj/item/gun/ego_gun/city/limbusmagnum,
+/obj/item/ego_weapon/ranged/city/limbusmagnum,
 /obj/structure/table/reinforced{
 	color = "#9cadc7"
 	},
@@ -3420,8 +3420,8 @@
 	dir = 1;
 	pixel_y = 19
 	},
-/obj/item/gun/ego_gun/city/limbussmg,
-/obj/item/gun/ego_gun/city/limbuspistol,
+/obj/item/ego_weapon/ranged/city/limbussmg,
+/obj/item/ego_weapon/ranged/city/limbuspistol,
 /turf/open/floor/mineral/titanium/white{
 	color = "#791500"
 	},
@@ -3472,7 +3472,7 @@
 	pixel_x = -9;
 	pixel_y = 4
 	},
-/obj/item/gun/ego_gun/city/limbusautopistol,
+/obj/item/ego_weapon/ranged/city/limbusautopistol,
 /turf/open/floor/carpet/royalblue,
 /area/centcom)
 "oj" = (
@@ -7021,8 +7021,8 @@
 	},
 /obj/item/ego_weapon/city/lccb_bat,
 /obj/item/ego_weapon/city/lccb_bat,
-/obj/item/gun/ego_gun/city/limbusshottie,
-/obj/item/gun/ego_gun/city/limbusshottie,
+/obj/item/ego_weapon/ranged/city/limbusshottie,
+/obj/item/ego_weapon/ranged/city/limbusshottie,
 /turf/open/floor/mineral/plastitanium/red,
 /area/centcom)
 "CP" = (
@@ -9396,7 +9396,7 @@
 "Me" = (
 /obj/structure/rack,
 /obj/item/barrier_taperoll/police,
-/obj/item/gun/ego_gun/city/limbusmagnum,
+/obj/item/ego_weapon/ranged/city/limbusmagnum,
 /turf/open/floor/mineral/titanium/yellow,
 /area/centcom)
 "Mg" = (
@@ -9799,8 +9799,8 @@
 	},
 /obj/item/clothing/suit/armor/ego_gear/limbus_labs,
 /obj/item/clothing/head/beret/sec/lccb,
-/obj/item/gun/ego_gun/city/limbussmg,
-/obj/item/gun/ego_gun/city/limbussmg,
+/obj/item/ego_weapon/ranged/city/limbussmg,
+/obj/item/ego_weapon/ranged/city/limbussmg,
 /turf/open/floor/mineral/titanium/blue,
 /area/centcom)
 "NF" = (
@@ -9955,7 +9955,7 @@
 /obj/item/stack/spacecash/c1000,
 /obj/item/stack/spacecash/c1000,
 /obj/item/stack/spacecash/c1000,
-/obj/item/gun/ego_gun/city/limbusmagnum,
+/obj/item/ego_weapon/ranged/city/limbusmagnum,
 /turf/open/floor/carpet/red,
 /area/centcom)
 "Ou" = (
@@ -10036,7 +10036,7 @@
 	name = "rd closet";
 	anchored = 1
 	},
-/obj/item/gun/ego_gun/city/limbusautopistol,
+/obj/item/ego_weapon/ranged/city/limbusautopistol,
 /turf/open/floor/carpet/green,
 /area/centcom)
 "OB" = (
@@ -10682,7 +10682,7 @@
 /obj/item/ego_weapon/shield/lccb,
 /obj/item/clothing/suit/armor/ego_gear/limbus_labs,
 /obj/item/clothing/head/beret/sec/lccb,
-/obj/item/gun/ego_gun/city/limbuspistol,
+/obj/item/ego_weapon/ranged/city/limbuspistol,
 /turf/open/floor/mineral/titanium/blue,
 /area/centcom)
 "Rl" = (
@@ -11842,7 +11842,7 @@
 	pixel_x = -9;
 	pixel_y = 4
 	},
-/obj/item/gun/ego_gun/city/limbuspistol,
+/obj/item/ego_weapon/ranged/city/limbuspistol,
 /turf/open/floor/mineral/titanium/blue,
 /area/centcom)
 "VC" = (
@@ -11968,7 +11968,7 @@
 	pixel_x = -9;
 	pixel_y = 4
 	},
-/obj/item/gun/ego_gun/city/limbusmagnum,
+/obj/item/ego_weapon/ranged/city/limbusmagnum,
 /obj/structure/sign/logo{
 	icon_state = "limbus_sign 0,0";
 	pixel_y = 32
@@ -12582,7 +12582,7 @@
 	pixel_x = 9;
 	pixel_y = 4
 	},
-/obj/item/gun/ego_gun/city/limbuspistol,
+/obj/item/ego_weapon/ranged/city/limbuspistol,
 /turf/open/floor/mineral/titanium/blue,
 /area/centcom)
 "YO" = (

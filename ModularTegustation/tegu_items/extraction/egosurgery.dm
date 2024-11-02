@@ -85,7 +85,7 @@
 			ToolComplete(user)
 			return
 
-	if(istype(A, /obj/item/ego_weapon))
+	if(is_ego_melee_weapon(A))
 		var/obj/item/ego_weapon/theweapon = A
 		if(theweapon.force_multiplier >= 1.10)
 			to_chat(user, span_warning("You can't modify this any further!"))
@@ -93,8 +93,8 @@
 		target_item = theweapon
 		ToolPrepare(user)
 
-	else if(istype(A, /obj/item/gun/ego_gun))
-		var/obj/item/gun/ego_gun/thegun = A
+	else if(is_ego_weapon(A))
+		var/obj/item/ego_weapon/ranged/thegun = A
 		if(thegun.projectile_damage_multiplier >= 1.10)
 			to_chat(user, span_warning("You can't modify this any further!"))
 			return
@@ -137,12 +137,12 @@
 /obj/item/extraction/upgrade_tool/proc/ToolComplete(user)
 	if(!target_item)
 		return
-	if(istype(target_item, /obj/item/ego_weapon))
+	if(is_ego_melee_weapon(target_item))
 		var/obj/item/ego_weapon/weapon = target_item
 		weapon.force_multiplier = min(weapon.force_multiplier + 0.05, 1.1) // Add 5% to the force multiplier
 
-	else if(istype(target_item, /obj/item/gun/ego_gun))
-		var/obj/item/gun/ego_gun/gun = target_item
+	else if(is_ego_weapon(target_item))
+		var/obj/item/ego_weapon/ranged/gun = target_item
 		var/old_multiplier = gun.force_multiplier
 		gun.force_multiplier = min(gun.force_multiplier + 0.05, 1.1)
 		var/difference = gun.force_multiplier - old_multiplier

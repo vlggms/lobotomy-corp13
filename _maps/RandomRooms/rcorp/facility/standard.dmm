@@ -1117,7 +1117,7 @@
 	dir = 10
 	},
 /obj/structure/rack,
-/obj/item/gun/ego_gun/clerk,
+/obj/item/ego_weapon/ranged/clerk,
 /turf/open/floor/plasteel/dark,
 /area/city/outskirts)
 "vS" = (
@@ -1881,7 +1881,7 @@
 	dir = 9
 	},
 /obj/structure/rack,
-/obj/item/gun/ego_gun/clerk,
+/obj/item/ego_weapon/ranged/clerk,
 /turf/open/floor/plasteel/dark,
 /area/city/outskirts)
 "Jl" = (

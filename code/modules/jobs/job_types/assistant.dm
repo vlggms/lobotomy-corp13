@@ -64,7 +64,7 @@ GLOBAL_LIST_EMPTY(spawned_clerks)
 
 	backpack_contents = list(
 		/obj/item/healthanalyzer,
-		/obj/item/gun/ego_gun/clerk,
+		/obj/item/ego_weapon/ranged/clerk,
 	)
 
 

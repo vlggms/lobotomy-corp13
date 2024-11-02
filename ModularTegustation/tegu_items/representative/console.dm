@@ -176,7 +176,7 @@
 				new /datum/data/extraction_cargo("K Corp Baton", /obj/item/ego_weapon/city/kcorp, 400, K_CORP_REP) = 1,
 				new /datum/data/extraction_cargo("K Corp Axe", /obj/item/ego_weapon/city/kcorp/axe, 400, K_CORP_REP) = 1,
 				new /datum/data/extraction_cargo("K Corp Shield", /obj/item/ego_weapon/shield/kcorp, 400, K_CORP_REP) = 1,
-				new /datum/data/extraction_cargo("K Corp Pistol", /obj/item/gun/ego_gun/pistol/kcorp, 400, K_CORP_REP) = 1,
+				new /datum/data/extraction_cargo("K Corp Pistol", /obj/item/ego_weapon/ranged/pistol/kcorp, 400, K_CORP_REP) = 1,
 			)
 
 		if("Main Office Representative")

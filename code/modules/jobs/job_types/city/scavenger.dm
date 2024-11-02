@@ -85,6 +85,6 @@ Scavenger
 		/obj/item/ego_weapon/city/rats/knife,
 		/obj/item/ego_weapon/city/rats/scalpel,
 		/obj/item/ego_weapon/city/rats/brick,
-		/obj/item/gun/ego_gun/pistol/rats,
+		/obj/item/ego_weapon/ranged/pistol/rats,
 		/obj/item/ego_weapon/city/rats/pipe)
 	..()

@@ -52,9 +52,9 @@
 	)
 
 	var/list/heitem = list(
-		/obj/item/gun/ego_gun/sodashotty,
-		/obj/item/gun/ego_gun/sodarifle,
-		/obj/item/gun/ego_gun/sodasmg,
+		/obj/item/ego_weapon/ranged/sodashotty,
+		/obj/item/ego_weapon/ranged/sodarifle,
+		/obj/item/ego_weapon/ranged/sodasmg,
 		/obj/item/clothing/suit/armor/ego_gear/he/lutemis,
 		/obj/item/grenade/spawnergrenade/shrimp,
 		/obj/item/clothing/neck/beads,
@@ -218,7 +218,7 @@
 		output = "MONEY"
 		to_chat(user, span_notice("You hear a plop as the holochip comes in contact with the water..."))
 		user.playsound_local(user, 'sound/items/coinflip.ogg', 80, TRUE)
-	else if(istype(I, /obj/item/clothing/suit/armor/ego_gear) || istype(I, /obj/item/gun/ego_gun/pistol) || istype(I, /obj/item/ego_weapon) || istype(I, /obj/item/gun/ego_gun) && !istype(I, /obj/item/gun/ego_gun/clerk))
+	else if(istype(I, /obj/item/clothing/suit/armor/ego_gear) || is_ego_weapon(I))
 		to_chat(user, span_notice("You hear the ego dissolve as it comes in contact with the water..."))
 		user.playsound_local(user, 'sound/effects/wounds/sizzle1.ogg', 40, TRUE)
 		if(locate(I) in tethitem)

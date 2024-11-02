@@ -562,7 +562,7 @@
 	base_build_path = /obj/machinery/smartfridge/extraction_storage/ego_weapon
 
 /obj/machinery/smartfridge/extraction_storage/ego_weapon/accept_check(obj/item/O)
-	if(istype(O, /obj/item/ego_weapon) || istype(O, /obj/item/gun/ego_gun))
+	if(is_ego_weapon(O))
 		return TRUE
 	else
 		return FALSE

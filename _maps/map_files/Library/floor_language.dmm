@@ -336,7 +336,7 @@
 /area/library_floors/floor_language)
 "LT" = (
 /obj/structure/table/reinforced,
-/obj/item/gun/ego_gun/city/thumb,
+/obj/item/ego_weapon/ranged/city/thumb,
 /turf/open/floor/mineral/plastitanium,
 /area/library_floors/floor_language)
 "Mp" = (

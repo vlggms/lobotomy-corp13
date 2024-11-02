@@ -274,11 +274,11 @@
 /obj/item/ammo_casing/caseless/nihil_abnormality
 	name = "dark energy casing"
 	desc = "A casing."
-	projectile_type = /obj/projectile/ego_bullet/nihil
+	projectile_type = /obj/projectile/ego_bullet/abno_nihil
 	pellets = 4
 	variance = 16
 
-/obj/projectile/ego_bullet/nihil
+/obj/projectile/ego_bullet/abno_nihil
 	name = "dark energy"
 	icon_state = "nihil"
 	desc = "Just looking at it seems to suck the life out of you..."
@@ -287,7 +287,7 @@
 	projectile_piercing = PASSMOB
 	hitsound = 'sound/abnormalities/nihil/filter.ogg'
 
-/obj/projectile/ego_bullet/nihil/on_hit(atom/target, blocked = FALSE, pierce_hit)
+/obj/projectile/ego_bullet/abno_nihil/on_hit(atom/target, blocked = FALSE, pierce_hit)
 	. = ..()
 	if(!isliving(target))
 		return
