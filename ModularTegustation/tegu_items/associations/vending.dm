@@ -71,7 +71,7 @@
 	name = "\improper Weaving Books/Tools"
 	desc = "A machine used to purchase new weaving recipes!"
 	resistance_flags = INDESTRUCTIBLE | LAVA_PROOF | FIRE_PROOF | UNACIDABLE | ACID_PROOF | FREEZE_PROOF
-	product_slogans = "Read up on all of the city gear!"
+	product_slogans = "Read up on all of the city armor!"
 	product_ads = "Can't go with out it!"
 	icon_state = "sec"
 	icon_deny = null
@@ -90,7 +90,10 @@
 		/obj/item/book/granter/crafting_recipe/weaving_zwei = 1,
 		/obj/item/book/granter/crafting_recipe/weaving_shi = 1,
 		/obj/item/book/granter/crafting_recipe/weaving_blade = 1,
-		/obj/item/book/granter/crafting_recipe/weaving_advancedsilk = 1,
+		/obj/item/book/granter/crafting_recipe/weaving_basic_converstion = 1,
+		/obj/item/book/granter/crafting_recipe/weaving_advanced_converstion = 1,
+		/obj/item/book/granter/crafting_recipe/human_replacements = 1,
+		/obj/item/book/granter/crafting_recipe/weaving_ordeal = 1,
 	)
 
 	default_price = 100

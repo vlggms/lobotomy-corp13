@@ -657,25 +657,62 @@
 	icon_state = "blade_lineage_book"
 	remarks = list("Make sure that you always have your weaving knife on you? I already knew that.", "Using sweepers as silk? That is brand new...", "Huh, it says here that 'Be careful around the fixer association...' ", "This book smells quite well, Like it was just made just for me!", "A rookie must have made this page, or they forgot to spell check it before printing...", "Wait, how will this turn a profit? I spent like 1000 ahn for this book!")
 
-/obj/item/book/granter/crafting_recipe/weaving_advancedsilk
-	name = "Weaving Armor: Conversation Edition"
-	desc = "A weaving book that teaches you how to weave one type of silk into another. Carnival approved!"
+/obj/item/book/granter/crafting_recipe/weaving_basic_converstion
+	name = "Weaving Armor: Basic Conversation Edition"
+	desc = "A weaving book that teaches you how to weave basic types of silk into another. Carnival approved!"
 	crafting_recipe_types = list(
 		/datum/crafting_recipe/converted_green_silk_advanced,
 		/datum/crafting_recipe/converted_green_silk_elegant,
+		/datum/crafting_recipe/converted_green_silk_masterpiece,
 		/datum/crafting_recipe/converted_indigo_silk_advanced,
 		/datum/crafting_recipe/converted_indigo_silk_elegant,
+		/datum/crafting_recipe/converted_indigo_silk_masterpiece,
 		/datum/crafting_recipe/converted_amber_silk_advanced,
+		/datum/crafting_recipe/converted_amber_silk_elegant,
+		/datum/crafting_recipe/converted_amber_silk_masterpiece,
 		/datum/crafting_recipe/converted_steel_silk_advanced,
-		/datum/crafting_recipe/steel_silk_transfer,
-		/datum/crafting_recipe/amber_silk_transfer,
+		/datum/crafting_recipe/converted_steel_silk_elegant,
+		/datum/crafting_recipe/converted_steel_silk_masterpiece,
 		/datum/crafting_recipe/converted_human_silk_advanced,
 		/datum/crafting_recipe/converted_human_silk_elegant,
+		/datum/crafting_recipe/converted_human_silk_masterpiece,
+		/datum/crafting_recipe/steel_silk_transfer,
+		/datum/crafting_recipe/amber_silk_transfer
+	)
+	icon_state = "basic_converstion_book"
+	remarks = list("Make sure that you always have your weaving knife on you? I already knew that.", "Using sweepers as silk? That is brand new...", "Huh, it says here that 'Be careful around the fixer association...' ", "This book smells quite well, Like it was just made just for me!", "A rookie must have made this page, or they forgot to spell check it before printing...", "Wait, how will this turn a profit? I spent like 1000 ahn for this book!")
+
+/obj/item/book/granter/crafting_recipe/weaving_advanced_converstion
+	name = "Weaving Armor: Advanced Conversation Edition"
+	desc = "A weaving book that teaches you how to weave advanced types of silk into another. Carnival approved!"
+	crafting_recipe_types = list(
+		/datum/crafting_recipe/converted_crimson_silk_advanced,
+		/datum/crafting_recipe/converted_crimson_silk_elegant,
+		/datum/crafting_recipe/converted_crimson_silk_masterpiece,
+		/datum/crafting_recipe/converted_voilet_silk_advanced,
+		/datum/crafting_recipe/converted_voilet_silk_elegant,
+		/datum/crafting_recipe/converted_voilet_silk_masterpiece,
+		/datum/crafting_recipe/converted_shrimple_silk_advanced,
+		/datum/crafting_recipe/converted_shrimple_silk_elegant,
+		/datum/crafting_recipe/converted_shrimple_silk_masterpiece,
 		/datum/crafting_recipe/converted_azure_silk_advanced,
 		/datum/crafting_recipe/converted_azure_silk_elegant,
-		/datum/crafting_recipe/converted_azure_silk_masterpiece
+		/datum/crafting_recipe/converted_azure_silk_masterpiece,
+		/datum/crafting_recipe/azure_silk_transfer,
+		/datum/crafting_recipe/crimson_silk_transfer,
+		/datum/crafting_recipe/violet_silk_transfer,
+		/datum/crafting_recipe/shrimple_silk_transfer
 	)
-	icon_state = "advanced_silkweaving_book"
+	icon_state = "advanced_converstion_book"
+	remarks = list("Make sure that you always have your weaving knife on you? I already knew that.", "Using sweepers as silk? That is brand new...", "Huh, it says here that 'Be careful around the fixer association...' ", "This book smells quite well, Like it was just made just for me!", "A rookie must have made this page, or they forgot to spell check it before printing...", "Wait, how will this turn a profit? I spent like 1000 ahn for this book!")
+
+/obj/item/book/granter/crafting_recipe/human_replacements
+	name = "Weaving Armor: Advanced Human Replacements"
+	desc = "A weaving book that teaches you how to make human silk out of normal silk! Carnival approved!"
+	crafting_recipe_types = list(
+		/datum/crafting_recipe/human_silk_transfer
+	)
+	icon_state = "human_replacements_book"
 	remarks = list("Make sure that you always have your weaving knife on you? I already knew that.", "Using sweepers as silk? That is brand new...", "Huh, it says here that 'Be careful around the fixer association...' ", "This book smells quite well, Like it was just made just for me!", "A rookie must have made this page, or they forgot to spell check it before printing...", "Wait, how will this turn a profit? I spent like 1000 ahn for this book!")
 
 /obj/item/book/granter/crafting_recipe/weaving_ordeal
