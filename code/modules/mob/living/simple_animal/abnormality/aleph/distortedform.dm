@@ -125,6 +125,7 @@
 	var/special_attack = null
 	var/special_attack_cooldown
 	var/list/been_hit = list()
+	var/list/time_stopped = list()
 
 /mob/living/simple_animal/hostile/abnormality/distortedform/Initialize()
 	. = ..()
@@ -354,6 +355,11 @@
 	QDEL_IN(src, 10 SECONDS)
 	new /obj/item/ego_weapon/shield/distortion(get_turf(src))
 	..()
+
+/mob/living/simple_animal/hostile/abnormality/distortedform/Destroy()
+	for(var/mob/living/L in time_stopped)
+		UnFreezeMob(L)
+	return ..()
 
 /mob/living/simple_animal/hostile/abnormality/distortedform/Move()
 	if(!can_move || !can_act)
@@ -1430,6 +1436,7 @@
 	target.add_overlay(icon('icons/effects/effects.dmi', "chronofield"))
 	addtimer(CALLBACK(target, TYPE_PROC_REF(/atom, cut_overlay), \
 							icon('icons/effects/effects.dmi', "chronofield")), 40)
+	time_stopped += target
 	addtimer(CALLBACK(src, PROC_REF(FreezeMob), target), 40)
 
 /mob/living/simple_animal/hostile/abnormality/distortedform/proc/FreezeMob(mob/living/H)
@@ -1453,6 +1460,7 @@
 	H.AdjustStun(-20, ignore_canstun = TRUE)
 	REMOVE_TRAIT(H, TRAIT_MUTE, TIMESTOP_TRAIT)
 	H.remove_atom_colour(TEMPORARY_COLOUR_PRIORITY)
+	time_stopped -= H
 
 
 //You're Bald...
@@ -1462,7 +1470,6 @@
 	desc = "A helpful sphere, you think."
 	icon = 'ModularTegustation/Teguicons/tegumobs.dmi'
 	icon_state = "bald1"
-	icon_living = "bald1"
 	pixel_x = 0
 	base_pixel_x = 0
 	pixel_y = 0
@@ -1550,7 +1557,7 @@
 		return
 	been_hit += L
 	if(!(faction_check in L.faction))
-		playsound(L.loc, 'sound/abnormalities/doomsdaycalendar/Effect_Burn.ogg', 50 - attack_range, TRUE, -1)
+		playsound(L.loc, 'sound/effects/burn.ogg', 50 - attack_range, TRUE, -1)
 		var/dealt_damage = max(5, 75 - (attack_range))
 		L.deal_damage(dealt_damage, RED_DAMAGE)
 		if(ishuman(L) && dealt_damage > 25)

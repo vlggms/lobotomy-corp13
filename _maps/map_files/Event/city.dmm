@@ -1309,6 +1309,9 @@
 /area/city)
 "pT" = (
 /obj/structure/closet/crate/freezer/surplus_limbs,
+/obj/item/krevive,
+/obj/item/krevive,
+/obj/item/krevive,
 /turf/open/floor/plasteel/showroomfloor,
 /area/city/shop)
 "pV" = (
@@ -1529,6 +1532,9 @@
 /obj/item/roller{
 	pixel_y = 12
 	},
+/obj/item/storage/backpack/duffelbag/med/surgery{
+	pixel_y = 5
+	},
 /turf/open/floor/plasteel/showroomfloor,
 /area/city/shop)
 "sj" = (
@@ -1647,10 +1653,8 @@
 /turf/open/floor/plasteel/showroomfloor,
 /area/city/shop)
 "tH" = (
-/obj/item/storage/backpack/duffelbag/med/surgery{
-	pixel_y = 5
-	},
 /obj/structure/table/greyscale,
+/obj/item/storage/backpack/duffelbag/med/upgradedsurgery,
 /turf/open/indestructible/white,
 /area/city/shop)
 "tI" = (
@@ -2057,6 +2061,20 @@
 	},
 /turf/open/indestructible/white,
 /area/city/shop)
+"wz" = (
+/obj/structure/rack,
+/obj/item/clothing/under/suit/charcoal,
+/obj/item/clothing/under/suit/charcoal,
+/obj/item/clothing/under/suit/charcoal,
+/obj/item/clothing/under/suit/charcoal,
+/obj/item/clothing/under/suit/charcoal,
+/obj/item/clothing/under/suit/charcoal,
+/obj/item/clothing/under/suit/charcoal,
+/obj/item/clothing/under/suit/charcoal,
+/obj/item/clothing/under/suit/charcoal,
+/obj/item/clothing/under/suit/charcoal,
+/turf/open/floor/facility,
+/area/city/shop)
 "wA" = (
 /obj/machinery/vending/cigarette,
 /turf/open/floor/facility,
@@ -2413,6 +2431,10 @@
 /obj/item/kitchen/spoon,
 /turf/open/floor/mineral/titanium,
 /area/city/house)
+"zm" = (
+/obj/machinery/body_preservation_unit,
+/turf/open/floor/facility,
+/area/city/shop)
 "zo" = (
 /obj/structure/table/wood/bar,
 /obj/machinery/chem_dispenser/drinks/fullupgrade{
@@ -3057,6 +3079,10 @@
 /obj/structure/table,
 /obj/item/reagent_containers/food/condiment/enzyme,
 /turf/open/floor/plasteel,
+/area/city/shop)
+"DV" = (
+/obj/machinery/body_fabricator,
+/turf/open/indestructible/white,
 /area/city/shop)
 "DX" = (
 /obj/structure/sink{
@@ -3903,6 +3929,94 @@
 /obj/item/bedsheet/rainbow,
 /obj/structure/bed/pod,
 /turf/open/floor/wood,
+/area/city/shop)
+"KC" = (
+/obj/structure/rack,
+/obj/item/clothing/shoes/sneakers/black{
+	pixel_y = -4
+	},
+/obj/item/clothing/shoes/sneakers/black{
+	pixel_y = -4
+	},
+/obj/item/clothing/shoes/sneakers/black{
+	pixel_y = -4
+	},
+/obj/item/clothing/shoes/sneakers/black{
+	pixel_y = -4
+	},
+/obj/item/clothing/shoes/sneakers/black{
+	pixel_y = -4
+	},
+/obj/item/clothing/shoes/sneakers/black{
+	pixel_y = -4
+	},
+/obj/item/clothing/shoes/sneakers/black{
+	pixel_y = -4
+	},
+/obj/item/clothing/shoes/sneakers/black{
+	pixel_y = -4
+	},
+/obj/item/clothing/shoes/sneakers/black{
+	pixel_y = -4
+	},
+/obj/item/clothing/shoes/sneakers/black{
+	pixel_y = -4
+	},
+/obj/item/clothing/shoes/sneakers/black{
+	pixel_y = -4
+	},
+/obj/item/clothing/shoes/sneakers/black{
+	pixel_y = -4
+	},
+/obj/item/clothing/shoes/sneakers/black{
+	pixel_y = -4
+	},
+/obj/item/clothing/shoes/sneakers/black{
+	pixel_y = -4
+	},
+/obj/item/storage/backpack{
+	pixel_y = 10
+	},
+/obj/item/storage/backpack{
+	pixel_y = 10
+	},
+/obj/item/storage/backpack{
+	pixel_y = 10
+	},
+/obj/item/storage/backpack{
+	pixel_y = 10
+	},
+/obj/item/storage/backpack{
+	pixel_y = 10
+	},
+/obj/item/storage/backpack{
+	pixel_y = 10
+	},
+/obj/item/storage/backpack{
+	pixel_y = 10
+	},
+/obj/item/storage/backpack{
+	pixel_y = 10
+	},
+/obj/item/storage/backpack{
+	pixel_y = 10
+	},
+/obj/item/storage/backpack{
+	pixel_y = 10
+	},
+/obj/item/storage/backpack{
+	pixel_y = 10
+	},
+/obj/item/storage/backpack{
+	pixel_y = 10
+	},
+/obj/item/storage/backpack{
+	pixel_y = 10
+	},
+/obj/item/storage/backpack{
+	pixel_y = 10
+	},
+/turf/open/floor/facility,
 /area/city/shop)
 "KG" = (
 /obj/effect/turf_decal/trimline/red/filled/line{
@@ -33900,7 +34014,7 @@ og
 HA
 tk
 Dj
-Dj
+zm
 Dj
 KK
 OT
@@ -34414,7 +34528,7 @@ Xf
 HA
 Qq
 Dj
-Dj
+wz
 Dj
 pc
 OT
@@ -34671,7 +34785,7 @@ Xf
 HA
 Zj
 Dj
-Dj
+KC
 Dj
 wA
 OT
@@ -48561,7 +48675,7 @@ We
 We
 We
 We
-We
+DV
 OT
 XZ
 HA

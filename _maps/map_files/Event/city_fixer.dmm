@@ -581,6 +581,10 @@
 /obj/item/modular_computer/laptop/preset/civilian,
 /turf/open/floor/facility/white,
 /area/city/fixers)
+"ka" = (
+/obj/machinery/body_fabricator,
+/turf/open/indestructible/white,
+/area/city/shop)
 "kf" = (
 /obj/structure/table/wood,
 /obj/item/modular_computer/laptop/preset/civilian,
@@ -622,12 +626,14 @@
 "kC" = (
 /obj/structure/table,
 /obj/item/reagent_containers/food/condiment/enzyme,
+/obj/item/reagent_containers/glass/beaker,
 /turf/open/floor/plasteel,
 /area/city/shop)
 "kG" = (
 /obj/structure/table,
 /obj/item/kitchen/knife,
 /obj/item/price_tagger,
+/obj/item/reagent_containers/glass/beaker,
 /turf/open/floor/plasteel,
 /area/city/shop)
 "kH" = (
@@ -869,6 +875,21 @@
 /obj/item/pen,
 /turf/open/floor/facility/white,
 /area/city/fixers)
+"pC" = (
+/obj/structure/rack,
+/obj/item/clothing/under/suit/charcoal,
+/obj/item/clothing/under/suit/charcoal,
+/obj/item/clothing/under/suit/charcoal,
+/obj/item/clothing/under/suit/charcoal,
+/obj/item/clothing/under/suit/charcoal,
+/obj/item/clothing/under/suit/charcoal,
+/obj/item/clothing/under/suit/charcoal,
+/obj/item/clothing/under/suit/charcoal,
+/obj/item/clothing/under/suit/charcoal,
+/obj/item/clothing/under/suit/charcoal,
+/obj/item/clothing/under/suit/charcoal,
+/turf/open/floor/facility,
+/area/city/shop)
 "pF" = (
 /obj/machinery/vending/fixer,
 /turf/open/floor/facility/white,
@@ -1435,6 +1456,88 @@
 /obj/effect/mapping_helpers/airlock/unres,
 /turf/open/indestructible/white,
 /area/city/shop)
+"xY" = (
+/obj/structure/rack,
+/obj/item/storage/backpack{
+	pixel_y = 10
+	},
+/obj/item/clothing/shoes/sneakers/black{
+	pixel_y = -4
+	},
+/obj/item/clothing/shoes/sneakers/black{
+	pixel_y = -4
+	},
+/obj/item/clothing/shoes/sneakers/black{
+	pixel_y = -4
+	},
+/obj/item/clothing/shoes/sneakers/black{
+	pixel_y = -4
+	},
+/obj/item/clothing/shoes/sneakers/black{
+	pixel_y = -4
+	},
+/obj/item/clothing/shoes/sneakers/black{
+	pixel_y = -4
+	},
+/obj/item/clothing/shoes/sneakers/black{
+	pixel_y = -4
+	},
+/obj/item/clothing/shoes/sneakers/black{
+	pixel_y = -4
+	},
+/obj/item/clothing/shoes/sneakers/black{
+	pixel_y = -4
+	},
+/obj/item/clothing/shoes/sneakers/black{
+	pixel_y = -4
+	},
+/obj/item/clothing/shoes/sneakers/black{
+	pixel_y = -4
+	},
+/obj/item/clothing/shoes/sneakers/black{
+	pixel_y = -4
+	},
+/obj/item/clothing/shoes/sneakers/black{
+	pixel_y = -4
+	},
+/obj/item/clothing/shoes/sneakers/black{
+	pixel_y = -4
+	},
+/obj/item/storage/backpack{
+	pixel_y = 10
+	},
+/obj/item/storage/backpack{
+	pixel_y = 10
+	},
+/obj/item/storage/backpack{
+	pixel_y = 10
+	},
+/obj/item/storage/backpack{
+	pixel_y = 10
+	},
+/obj/item/storage/backpack{
+	pixel_y = 10
+	},
+/obj/item/storage/backpack{
+	pixel_y = 10
+	},
+/obj/item/storage/backpack{
+	pixel_y = 10
+	},
+/obj/item/storage/backpack{
+	pixel_y = 10
+	},
+/obj/item/storage/backpack{
+	pixel_y = 10
+	},
+/obj/item/storage/backpack{
+	pixel_y = 10
+	},
+/obj/item/storage/backpack{
+	pixel_y = 10
+	},
+/turf/open/floor/facility,
+/area/city/shop)
 "yc" = (
 /obj/machinery/computer/arcade/battle,
 /turf/open/floor/eighties,
@@ -1501,6 +1604,9 @@
 /area/city/shop)
 "yZ" = (
 /obj/structure/closet/crate/freezer/surplus_limbs,
+/obj/item/krevive,
+/obj/item/krevive,
+/obj/item/krevive,
 /turf/open/floor/plasteel/showroomfloor,
 /area/city/shop)
 "ze" = (
@@ -1543,6 +1649,9 @@
 /obj/item/vending_refill/drugs,
 /obj/item/vending_refill/drugs,
 /obj/item/vending_refill/drugs,
+/obj/item/storage/backpack/duffelbag/med/surgery{
+	pixel_y = 5
+	},
 /turf/open/floor/plasteel/showroomfloor,
 /area/city/shop)
 "zA" = (
@@ -1580,10 +1689,8 @@
 /turf/closed/indestructible/reinforced,
 /area/city/shop)
 "Aj" = (
-/obj/item/storage/backpack/duffelbag/med/surgery{
-	pixel_y = 5
-	},
 /obj/structure/table/greyscale,
+/obj/item/storage/backpack/duffelbag/med/upgradedsurgery,
 /turf/open/indestructible/white,
 /area/city/shop)
 "Ak" = (
@@ -2145,6 +2252,7 @@
 /turf/closed/indestructible/reinforced,
 /area/city/fixers)
 "Ut" = (
+/obj/structure/timelock,
 /turf/open/floor/plating/ashplanet/rocky,
 /area/city/backstreets_alley)
 "UQ" = (
@@ -2268,6 +2376,10 @@
 "Zt" = (
 /turf/closed/indestructible/fakeglass,
 /area/city/fixers)
+"ZH" = (
+/obj/machinery/body_preservation_unit,
+/turf/open/floor/facility,
+/area/city/shop)
 "ZP" = (
 /obj/machinery/door/airlock/wood{
 	name = "Hana backstreet access";
@@ -36331,7 +36443,7 @@ kX
 OT
 AM
 Xt
-Xt
+ZH
 Xt
 ri
 OT
@@ -36845,7 +36957,7 @@ Cc
 OT
 nK
 Xt
-Xt
+pC
 Xt
 rq
 OT
@@ -37102,7 +37214,7 @@ Cc
 OT
 nR
 Xt
-Xt
+xY
 Xt
 IH
 OT
@@ -41479,7 +41591,7 @@ Hm
 Hm
 Hm
 zr
-zr
+Hm
 zr
 TK
 zr
@@ -41736,7 +41848,7 @@ Hm
 Hm
 Hm
 zr
-XK
+Hm
 zr
 Hm
 Hm
@@ -41993,12 +42105,12 @@ Hm
 Hm
 Hm
 zr
-XK
+Hm
 zr
 zr
 Hm
 OT
-XR
+ka
 XR
 vw
 XR
@@ -42250,8 +42362,8 @@ Hm
 Hm
 Hm
 zr
-XK
-XK
+Hm
+zr
 zr
 Hm
 OT
@@ -42507,8 +42619,8 @@ Hm
 Hm
 Hm
 zr
-XK
-XK
+Hm
+zr
 zr
 Hm
 OT
@@ -42764,9 +42876,9 @@ Hm
 Hm
 Hm
 zr
-XK
-XK
-zr
+Hm
+Hm
+Hm
 Hm
 OT
 XR
@@ -43021,8 +43133,8 @@ Hm
 Hm
 Hm
 zr
-XK
-XK
+Hm
+zr
 zr
 Hm
 OT
@@ -43277,9 +43389,9 @@ Vd
 Hm
 Hm
 Hm
+sG
+Hm
 zr
-XK
-XK
 zr
 Hm
 OT

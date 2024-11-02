@@ -115,7 +115,7 @@
 
 //Kurokumo
 /obj/item/ego_weapon/city/kurokumo/weak
-	force = 30
+	force = 52
 	attribute_requirements = list(
 		FORTITUDE_ATTRIBUTE = 60,
 		PRUDENCE_ATTRIBUTE = 60,

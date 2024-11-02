@@ -2152,6 +2152,10 @@
 "Au" = (
 /turf/open/floor/plating/ashplanet/rocky,
 /area/city/outskirts)
+"Aw" = (
+/obj/effect/landmark/abnospawn/rhinobuster,
+/turf/open/floor/plating/ashplanet/rocky,
+/area/city/outskirts)
 "Ax" = (
 /obj/structure/chair/comfy/black{
 	dir = 4
@@ -14504,7 +14508,7 @@ Vg
 Vg
 Vg
 Au
-vY
+Au
 Au
 Vg
 Vg
@@ -14663,12 +14667,12 @@ Au
 Au
 Au
 Au
-qJ
+Aw
 Au
 Au
 Au
 Au
-DB
+Au
 Au
 Au
 Au

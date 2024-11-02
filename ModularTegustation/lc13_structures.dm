@@ -76,6 +76,38 @@
 	base_pixel_y = -8
 	anchored = TRUE
 
+/*
+* Wave Spawners. Uses the monwave_spawners component.
+*/
+/obj/structure/den
+	name = "spawning_den"
+	desc = "subtype for dens you shouldnt be seeing this."
+	icon_state = "hole"
+	icon = 'icons/mob/nest.dmi'
+	max_integrity = 200
+	anchored = TRUE
+	density = FALSE
+	var/list/moblist = list()
+
+/obj/structure/den/tunnel/Initialize(mapload)
+	. = ..()
+	AddComponent(/datum/component/monwave_spawner, attack_target = get_turf(src), new_wave_order = moblist)
+
+/obj/structure/den/proc/changeTarget(thing)
+	var/turf/target_turf = get_turf(thing)
+	if(!target_turf)
+		return FALSE
+	var/datum/component/monwave_spawner/target_component = datum_components[/datum/component/monwave_spawner]
+	target_component.GeneratePath(target_turf)
+	return TRUE
+
+/obj/structure/den/tunnel
+	name = "tunnel entrance"
+	desc = "A entrance to a underground tunnel. It would only take a few whacks to cave it in."
+	icon_state = "hole"
+	icon = 'icons/mob/nest.dmi'
+	moblist = list(/mob/living/simple_animal/hostile/ordeal/indigo_noon = 3)
+
 /**
  * List of button counters
  * Required as persistence subsystem loads after the ones present at mapload, and to reset to 0 upon explosion.

@@ -65,6 +65,10 @@
 	},
 /turf/open/floor/plating/ashplanet/rocky,
 /area/city/outskirts)
+"ot" = (
+/obj/effect/landmark/abnospawn/rhinobuster,
+/turf/open/floor/plasteel/dark,
+/area/city/outskirts)
 "pm" = (
 /turf/open/floor/plasteel/stairs/medium,
 /area/city/outskirts)
@@ -614,7 +618,7 @@ vQ
 vQ
 vQ
 sY
-HE
+ot
 sY
 sY
 sY

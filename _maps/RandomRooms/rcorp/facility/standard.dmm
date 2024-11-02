@@ -2626,6 +2626,10 @@
 	},
 /turf/open/floor/carpet/purple,
 /area/city/outskirts)
+"Xb" = (
+/obj/effect/landmark/abnospawn/rhinobuster,
+/turf/open/floor/plating/asteroid,
+/area/city/outskirts)
 "Xg" = (
 /obj/structure/grille/broken,
 /obj/effect/turf_decal/sand/plating,
@@ -14593,7 +14597,7 @@ Im
 Im
 Im
 Im
-cI
+Xb
 Im
 Im
 Im

@@ -11,10 +11,11 @@
 	var/status = "Admins: [allmins.len] (Active: [english_list(adm["present"])] AFK: [english_list(adm["afk"])] Stealth: [english_list(adm["stealth"])] Skipped: [english_list(adm["noflags"])]).\n"
 	var/round_time = world.time - SSticker.round_start_time
 	status += "Players: [GLOB.clients.len] (Active: [get_active_player_count(0,1,0)]). Mode: [SSticker.mode ? SSticker.mode.name : "Not started"]; Round Time: [round_time > MIDNIGHT_ROLLOVER ? "[round(round_time/MIDNIGHT_ROLLOVER)]:[gameTimestamp("hh:mm:ss", round_time)]" : gameTimestamp("hh:mm:ss", round_time)].\n"
-	if(istype(SSlobotomy_corp.next_ordeal))
-		status += "Next ordeal will be __[SSlobotomy_corp.next_ordeal.name]__.\n"
-	if(istype(SSlobotomy_corp.core_suppression))
-		status += "[SSlobotomy_corp.core_suppression.name] is currently in the process.\n"
+	if(!(SSmaptype.maptype in SSmaptype.combatmaps))
+		if(istype(SSlobotomy_corp.next_ordeal))
+			status += "Next ordeal will be __[SSlobotomy_corp.next_ordeal.name]__.\n"
+		if(istype(SSlobotomy_corp.core_suppression))
+			status += "[SSlobotomy_corp.core_suppression.name] is currently in the process.\n"
 	return status
 
 /datum/tgs_chat_command/tgscheck
@@ -26,18 +27,19 @@
 	var/check = "[GLOB.round_id ? "Round #[GLOB.round_id]: " : ""][GLOB.clients.len] players on [SSmapping.config.map_name]; Alert level: [capitalize(get_security_level())].\n"
 	var/round_time = world.time - SSticker.round_start_time
 	check += "Gamemode: [GLOB.master_mode]; Round Time: [round_time > MIDNIGHT_ROLLOVER ? "[round(round_time/MIDNIGHT_ROLLOVER)]:[gameTimestamp("hh:mm:ss", round_time)]" : gameTimestamp("hh:mm:ss", round_time)].\n"
-	var/abno_count = SSlobotomy_corp.all_abnormality_datums.len
-	if(abno_count > 0)
-		check += "Abnormalit[abno_count > 1 ? "ies" : "y"] in the facility: __[abno_count]__.\n"
-	if(LAZYLEN(SSlobotomy_corp.current_ordeals))
-		var/list/ordeal_names = list()
-		for(var/datum/ordeal/O in SSlobotomy_corp.current_ordeals)
-			ordeal_names += O.name
-		check += "[english_list(ordeal_names)] [length(ordeal_names) > 1 ? "are" : "is"] currently in the process.\n"
-	if(istype(SSlobotomy_corp.next_ordeal)) // Let's tell people what ordeal type is next
-		check += "Next ordeal type will be __[SSlobotomy_corp.next_ordeal.ReturnSecretName()]__.\n"
-	if(istype(SSlobotomy_corp.core_suppression)) // Currently active core suppression
-		check += "**[SSlobotomy_corp.core_suppression.name]** is currently in the process.\n"
+	if(!(SSmaptype.maptype in SSmaptype.combatmaps))
+		var/abno_count = length(SSlobotomy_corp.all_abnormality_datums)
+		if(abno_count > 0)
+			check += "Abnormalit[abno_count > 1 ? "ies" : "y"] in the facility: __[abno_count]__.\n"
+		if(length(SSlobotomy_corp.current_ordeals))
+			var/list/ordeal_names = list()
+			for(var/datum/ordeal/O in SSlobotomy_corp.current_ordeals)
+				ordeal_names += O.name
+			check += "[english_list(ordeal_names)] [length(ordeal_names) > 1 ? "are" : "is"] currently in the process.\n"
+		if(istype(SSlobotomy_corp.next_ordeal)) // Let's tell people what ordeal type is next
+			check += "Next ordeal type will be __[SSlobotomy_corp.next_ordeal.ReturnSecretName()]__.\n"
+		if(istype(SSlobotomy_corp.core_suppression)) // Currently active core suppression
+			check += "**[SSlobotomy_corp.core_suppression.name]** is currently in the process.\n"
 	check += "Join the round: `byond://[server ? server : "[world.internet_address ? world.internet_address : world.address]:[world.port]"]`"
 	return check
 

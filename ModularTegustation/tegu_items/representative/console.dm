@@ -220,6 +220,8 @@
 			CustomizeOffice(null, null)
 			order_list = list(
 				new /datum/data/extraction_cargo("P Corp Canned Bread", /obj/item/food/canned/pcorp, 10, P_CORP_REP) = 1,
+				new /datum/data/extraction_cargo("P Corp Canned Burger", /obj/item/food/canned/pcorp_burger, 10, P_CORP_REP) = 1,
+				new /datum/data/extraction_cargo("P Corp Canned Ice Cream", /obj/item/food/canned/pcorp_icecream, 50, P_CORP_REP) = 1,	//More expensive cuz it heals you
 			)
 
 		if("J Corp Representative")

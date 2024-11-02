@@ -1459,6 +1459,8 @@
 	force = 13
 	attack_speed = 0.3
 	damtype = WHITE_DAMAGE
+	attack_verb_continuous = list("stabs", "attacks", "slashes")
+	attack_verb_simple = list("stab", "attack", "slash")
 	hitsound = 'sound/weapons/fixer/generic/knife4.ogg'
 	var/dodgelanding
 
