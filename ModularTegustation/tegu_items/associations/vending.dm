@@ -95,6 +95,8 @@
 		/obj/item/book/granter/crafting_recipe/carnival/weaving_advanced_converstion = 1,
 		/obj/item/book/granter/crafting_recipe/carnival/human_replacements = 1,
 		/obj/item/book/granter/crafting_recipe/carnival/weaving_ordeal = 1,
+		/obj/item/book/granter/crafting_recipe/carnival/weaving_zwei_west = 1,
+		/obj/item/book/granter/crafting_recipe/carnival/weaving_j_corp_gangs = 1,
 	)
 
 	default_price = 100

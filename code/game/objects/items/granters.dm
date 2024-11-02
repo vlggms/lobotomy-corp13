@@ -640,6 +640,34 @@
 	icon_state = "zwei_book"
 	remarks = list("Make sure that you always have your weaving knife on you? I already knew that.", "Using sweepers as silk? That is brand new...", "Huh, it says here that 'Be careful around the fixer association...' ", "This book smells quite well, Like it was just made just for me!", "A rookie must have made this page, or they forgot to spell check it before printing...", "Wait, how will this turn a profit? I spent like 1000 ahn for this book!")
 
+/obj/item/book/granter/crafting_recipe/carnival/weaving_zwei_west
+	name = "Weaving Armor: Zwei West Edition"
+	desc = "A weaving book that teaches you how to weave zwei west armor. Carnival approved!"
+	crafting_recipe_types = list(
+		/datum/crafting_recipe/zweiwest,
+		/datum/crafting_recipe/zweiwestvet,
+		/datum/crafting_recipe/zweiwestleader
+	)
+	icon_state = "zwei_west_book"
+	remarks = list("Make sure that you always have your weaving knife on you? I already knew that.", "Using sweepers as silk? That is brand new...", "Huh, it says here that 'Be careful around the fixer association...' ", "This book smells quite well, Like it was just made just for me!", "A rookie must have made this page, or they forgot to spell check it before printing...", "Wait, how will this turn a profit? I spent like 1000 ahn for this book!")
+
+/obj/item/book/granter/crafting_recipe/carnival/weaving_j_corp_gangs
+	name = "Weaving Armor: J Corp Gangs Edition"
+	desc = "A weaving book that teaches you how to weave armor used by gangs in J-Corp. Carnival approved!"
+	crafting_recipe_types = list(
+		/datum/crafting_recipe/ting_tang_red,
+		/datum/crafting_recipe/ting_tang_blue,
+		/datum/crafting_recipe/ting_tang_yellow,
+		/datum/crafting_recipe/ting_tang_boss,
+		/datum/crafting_recipe/mariachi_alegre,
+		/datum/crafting_recipe/mariachi_vivaz,
+		/datum/crafting_recipe/aida,
+		/datum/crafting_recipe/aida_boss
+	)
+	icon_state = "j_corp_gangs_book"
+	remarks = list("Make sure that you always have your weaving knife on you? I already knew that.", "Using sweepers as silk? That is brand new...", "Huh, it says here that 'Be careful around the fixer association...' ", "This book smells quite well, Like it was just made just for me!", "A rookie must have made this page, or they forgot to spell check it before printing...", "Wait, how will this turn a profit? I spent like 1000 ahn for this book!")
+
+
 /obj/item/book/granter/crafting_recipe/carnival/weaving_shi
 	name = "Weaving Armor: Shi Edition"
 	desc = "A weaving book that teaches you how to weave shi armor. Carnival approved!"
