@@ -76,24 +76,25 @@
 	icon_state = "sec"
 	icon_deny = null
 	products = list(
-		/obj/item/book/granter/crafting_recipe/weaving_armor = 5,
-		/obj/item/clothing/mask/carnival_mask = 10,
-		/obj/item/silkknife = 5,
+		/obj/item/book/granter/crafting_recipe/carnival/weaving_armor = 10,
+		/obj/item/clothing/mask/carnival_mask = 25,
+		/obj/item/silkknife = 10,
+		/obj/item/storage/bag/silk = 10,
 	)
 
 	premium = list(
-		/obj/item/book/granter/crafting_recipe/weaving_kurokumo = 1,
-		/obj/item/book/granter/crafting_recipe/weaving_seven = 1,
-		/obj/item/book/granter/crafting_recipe/weaving_ncorp = 1,
-		/obj/item/book/granter/crafting_recipe/weaving_liu = 1,
-		/obj/item/book/granter/crafting_recipe/weaving_index = 1,
-		/obj/item/book/granter/crafting_recipe/weaving_zwei = 1,
-		/obj/item/book/granter/crafting_recipe/weaving_shi = 1,
-		/obj/item/book/granter/crafting_recipe/weaving_blade = 1,
-		/obj/item/book/granter/crafting_recipe/weaving_basic_converstion = 1,
-		/obj/item/book/granter/crafting_recipe/weaving_advanced_converstion = 1,
-		/obj/item/book/granter/crafting_recipe/human_replacements = 1,
-		/obj/item/book/granter/crafting_recipe/weaving_ordeal = 1,
+		/obj/item/book/granter/crafting_recipe/carnival/weaving_kurokumo = 1,
+		/obj/item/book/granter/crafting_recipe/carnival/weaving_seven = 1,
+		/obj/item/book/granter/crafting_recipe/carnival/weaving_ncorp = 1,
+		/obj/item/book/granter/crafting_recipe/carnival/weaving_liu = 1,
+		/obj/item/book/granter/crafting_recipe/carnival/weaving_index = 1,
+		/obj/item/book/granter/crafting_recipe/carnival/weaving_zwei = 1,
+		/obj/item/book/granter/crafting_recipe/carnival/weaving_shi = 1,
+		/obj/item/book/granter/crafting_recipe/carnival/weaving_blade = 1,
+		/obj/item/book/granter/crafting_recipe/carnival/weaving_basic_converstion = 1,
+		/obj/item/book/granter/crafting_recipe/carnival/weaving_advanced_converstion = 1,
+		/obj/item/book/granter/crafting_recipe/carnival/human_replacements = 1,
+		/obj/item/book/granter/crafting_recipe/carnival/weaving_ordeal = 1,
 	)
 
 	default_price = 100
@@ -124,6 +125,7 @@
 		/obj/item/weldingtool/mini = 100,
 		/obj/item/reagent_containers/hypospray/medipen/mental = 100,
 		/obj/item/reagent_containers/hypospray/medipen/salacid = 100,
+		/obj/item/storage/bag/meat = 100,
 	)
 
 	premium = list(

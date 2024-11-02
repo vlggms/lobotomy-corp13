@@ -539,6 +539,7 @@ Mobs that mostly focus on dealing RED damage, they are all a bit more frail than
 	move_to_delay = 8 //very slow
 	ranged = TRUE
 	mob_spawn_amount = 0 //so we dont recursively spawn more
+	silk_results = list(/obj/item/stack/sheet/silk/human_simple = 1)
 
 	var/can_act = TRUE
 	var/scream_cooldown

@@ -532,7 +532,15 @@
 	to_chat(user, "<span class='warning'>The book turns to dust in your hands.</span>")
 	qdel(src)
 
-/obj/item/book/granter/crafting_recipe/weaving_armor
+/obj/item/book/granter/crafting_recipe/carnival
+	var/carnival_only = TRUE
+/obj/item/book/granter/crafting_recipe/carnival/attack_self(mob/user)
+	if (carnival_only && user?.mind?.assigned_role != "Carnival") // check role
+		to_chat(user, span_danger("Wow, This book seems so wacky! None of it makes sense, to you."))
+		return FALSE
+	. = ..()
+
+/obj/item/book/granter/crafting_recipe/carnival/weaving_armor
 	name = "Weaving Armor: Basic Edition"
 	desc = "A weaving tutorial book that teaches you how to weave new armors. Carnival approved, and a best seller in District 13!"
 	crafting_recipe_types = list(
@@ -554,7 +562,7 @@
 	icon_state = "book"
 	remarks = list("Make sure that you always have your weaving knife on you? I already knew that.", "Using sweepers as silk? That is brand new...", "Huh, it says here that 'Be careful around the fixer association...' ", "This book smells quite well, Like it was just made just for me!", "A rookie must have made this page, or they forgot to spell check it before printing...", "Wait, how will this turn a profit? I spent like 1000 ahn for this book!")
 
-/obj/item/book/granter/crafting_recipe/weaving_kurokumo
+/obj/item/book/granter/crafting_recipe/carnival/weaving_kurokumo
 	name = "Weaving Armor: Kurokumo Edition"
 	desc = "A weaving book that teaches you how to weave kurokumo armor. Carnival approved!"
 	crafting_recipe_types = list(
@@ -565,7 +573,7 @@
 	icon_state = "kurokumo_book"
 	remarks = list("Make sure that you always have your weaving knife on you? I already knew that.", "Using sweepers as silk? That is brand new...", "Huh, it says here that 'Be careful around the fixer association...' ", "This book smells quite well, Like it was just made just for me!", "A rookie must have made this page, or they forgot to spell check it before printing...", "Wait, how will this turn a profit? I spent like 1000 ahn for this book!")
 
-/obj/item/book/granter/crafting_recipe/weaving_seven
+/obj/item/book/granter/crafting_recipe/carnival/weaving_seven
 	name = "Weaving Armor: Seven Edition"
 	desc = "A weaving book that teaches you how to weave seven armor. Carnival approved!"
 	crafting_recipe_types = list(
@@ -578,7 +586,7 @@
 	icon_state = "seven_book"
 	remarks = list("Make sure that you always have your weaving knife on you? I already knew that.", "Using sweepers as silk? That is brand new...", "Huh, it says here that 'Be careful around the fixer association...' ", "This book smells quite well, Like it was just made just for me!", "A rookie must have made this page, or they forgot to spell check it before printing...", "Wait, how will this turn a profit? I spent like 1000 ahn for this book!")
 
-/obj/item/book/granter/crafting_recipe/weaving_ncorp
+/obj/item/book/granter/crafting_recipe/carnival/weaving_ncorp
 	name = "Weaving Armor: N-Corp Edition"
 	desc = "A weaving book that teaches you how to weave n-corp armor. Carnival approved!"
 	crafting_recipe_types = list(
@@ -593,7 +601,7 @@
 	icon_state = "n-corp_book"
 	remarks = list("Make sure that you always have your weaving knife on you? I already knew that.", "Using sweepers as silk? That is brand new...", "Huh, it says here that 'Be careful around the fixer association...' ", "This book smells quite well, Like it was just made just for me!", "A rookie must have made this page, or they forgot to spell check it before printing...", "Wait, how will this turn a profit? I spent like 1000 ahn for this book!")
 
-/obj/item/book/granter/crafting_recipe/weaving_liu
+/obj/item/book/granter/crafting_recipe/carnival/weaving_liu
 	name = "Weaving Armor: Liu Edition"
 	desc = "A weaving book that teaches you how to weave liu armor. Carnival approved!"
 	crafting_recipe_types = list(
@@ -608,7 +616,7 @@
 	icon_state = "liu_book"
 	remarks = list("Make sure that you always have your weaving knife on you? I already knew that.", "Using sweepers as silk? That is brand new...", "Huh, it says here that 'Be careful around the fixer association...' ", "This book smells quite well, Like it was just made just for me!", "A rookie must have made this page, or they forgot to spell check it before printing...", "Wait, how will this turn a profit? I spent like 1000 ahn for this book!")
 
-/obj/item/book/granter/crafting_recipe/weaving_index
+/obj/item/book/granter/crafting_recipe/carnival/weaving_index
 	name = "Weaving Armor: Index Edition"
 	desc = "A weaving book that teaches you how to weave index armor. Carnival approved!"
 	crafting_recipe_types = list(
@@ -619,7 +627,7 @@
 	icon_state = "index_book"
 	remarks = list("Make sure that you always have your weaving knife on you? I already knew that.", "Using sweepers as silk? That is brand new...", "Huh, it says here that 'Be careful around the fixer association...' ", "This book smells quite well, Like it was just made just for me!", "A rookie must have made this page, or they forgot to spell check it before printing...", "Wait, how will this turn a profit? I spent like 1000 ahn for this book!")
 
-/obj/item/book/granter/crafting_recipe/weaving_zwei
+/obj/item/book/granter/crafting_recipe/carnival/weaving_zwei
 	name = "Weaving Armor: Zwei Edition"
 	desc = "A weaving book that teaches you how to weave zwei armor. Carnival approved!"
 	crafting_recipe_types = list(
@@ -632,7 +640,7 @@
 	icon_state = "zwei_book"
 	remarks = list("Make sure that you always have your weaving knife on you? I already knew that.", "Using sweepers as silk? That is brand new...", "Huh, it says here that 'Be careful around the fixer association...' ", "This book smells quite well, Like it was just made just for me!", "A rookie must have made this page, or they forgot to spell check it before printing...", "Wait, how will this turn a profit? I spent like 1000 ahn for this book!")
 
-/obj/item/book/granter/crafting_recipe/weaving_shi
+/obj/item/book/granter/crafting_recipe/carnival/weaving_shi
 	name = "Weaving Armor: Shi Edition"
 	desc = "A weaving book that teaches you how to weave shi armor. Carnival approved!"
 	crafting_recipe_types = list(
@@ -646,7 +654,7 @@
 	icon_state = "shi_book"
 	remarks = list("Make sure that you always have your weaving knife on you? I already knew that.", "Using sweepers as silk? That is brand new...", "Huh, it says here that 'Be careful around the fixer association...' ", "This book smells quite well, Like it was just made just for me!", "A rookie must have made this page, or they forgot to spell check it before printing...", "Wait, how will this turn a profit? I spent like 1000 ahn for this book!")
 
-/obj/item/book/granter/crafting_recipe/weaving_blade
+/obj/item/book/granter/crafting_recipe/carnival/weaving_blade
 	name = "Weaving Armor: Blade Lineage Edition"
 	desc = "A weaving book that teaches you how to weave blade lineage armor. Carnival approved!"
 	crafting_recipe_types = list(
@@ -657,7 +665,7 @@
 	icon_state = "blade_lineage_book"
 	remarks = list("Make sure that you always have your weaving knife on you? I already knew that.", "Using sweepers as silk? That is brand new...", "Huh, it says here that 'Be careful around the fixer association...' ", "This book smells quite well, Like it was just made just for me!", "A rookie must have made this page, or they forgot to spell check it before printing...", "Wait, how will this turn a profit? I spent like 1000 ahn for this book!")
 
-/obj/item/book/granter/crafting_recipe/weaving_basic_converstion
+/obj/item/book/granter/crafting_recipe/carnival/weaving_basic_converstion
 	name = "Weaving Armor: Basic Conversation Edition"
 	desc = "A weaving book that teaches you how to weave basic types of silk into another. Carnival approved!"
 	crafting_recipe_types = list(
@@ -682,16 +690,16 @@
 	icon_state = "basic_converstion_book"
 	remarks = list("Make sure that you always have your weaving knife on you? I already knew that.", "Using sweepers as silk? That is brand new...", "Huh, it says here that 'Be careful around the fixer association...' ", "This book smells quite well, Like it was just made just for me!", "A rookie must have made this page, or they forgot to spell check it before printing...", "Wait, how will this turn a profit? I spent like 1000 ahn for this book!")
 
-/obj/item/book/granter/crafting_recipe/weaving_advanced_converstion
+/obj/item/book/granter/crafting_recipe/carnival/weaving_advanced_converstion
 	name = "Weaving Armor: Advanced Conversation Edition"
 	desc = "A weaving book that teaches you how to weave advanced types of silk into another. Carnival approved!"
 	crafting_recipe_types = list(
 		/datum/crafting_recipe/converted_crimson_silk_advanced,
 		/datum/crafting_recipe/converted_crimson_silk_elegant,
 		/datum/crafting_recipe/converted_crimson_silk_masterpiece,
-		/datum/crafting_recipe/converted_voilet_silk_advanced,
-		/datum/crafting_recipe/converted_voilet_silk_elegant,
-		/datum/crafting_recipe/converted_voilet_silk_masterpiece,
+		/datum/crafting_recipe/converted_violet_silk_advanced,
+		/datum/crafting_recipe/converted_violet_silk_elegant,
+		/datum/crafting_recipe/converted_violet_silk_masterpiece,
 		/datum/crafting_recipe/converted_shrimple_silk_advanced,
 		/datum/crafting_recipe/converted_shrimple_silk_elegant,
 		/datum/crafting_recipe/converted_shrimple_silk_masterpiece,
@@ -706,7 +714,7 @@
 	icon_state = "advanced_converstion_book"
 	remarks = list("Make sure that you always have your weaving knife on you? I already knew that.", "Using sweepers as silk? That is brand new...", "Huh, it says here that 'Be careful around the fixer association...' ", "This book smells quite well, Like it was just made just for me!", "A rookie must have made this page, or they forgot to spell check it before printing...", "Wait, how will this turn a profit? I spent like 1000 ahn for this book!")
 
-/obj/item/book/granter/crafting_recipe/human_replacements
+/obj/item/book/granter/crafting_recipe/carnival/human_replacements
 	name = "Weaving Armor: Advanced Human Replacements"
 	desc = "A weaving book that teaches you how to make human silk out of normal silk! Carnival approved!"
 	crafting_recipe_types = list(
@@ -715,7 +723,7 @@
 	icon_state = "human_replacements_book"
 	remarks = list("Make sure that you always have your weaving knife on you? I already knew that.", "Using sweepers as silk? That is brand new...", "Huh, it says here that 'Be careful around the fixer association...' ", "This book smells quite well, Like it was just made just for me!", "A rookie must have made this page, or they forgot to spell check it before printing...", "Wait, how will this turn a profit? I spent like 1000 ahn for this book!")
 
-/obj/item/book/granter/crafting_recipe/weaving_ordeal
+/obj/item/book/granter/crafting_recipe/carnival/weaving_ordeal
 	name = "Weaving Armor: Masterpiece Armor"
 	desc = "A weaving book that teaches you how to weave some of the best armor in the City... Carnival approved!"
 	crafting_recipe_types = list(

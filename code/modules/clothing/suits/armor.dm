@@ -18,10 +18,13 @@
 
 /obj/item/clothing/suit/armor/attackby(obj/item/W, mob/user, params)
 	if(istype(W, /obj/item/stack/sheet/silk))
-		var/datum/component/silkweave/silkweave = GetComponent(/datum/component/silkweave)
-		if(!silkweave)
-			silkweave = AddComponent(/datum/component/silkweave)
-		silkweave.apply_silk(W, user)
+		if(user?.mind?.assigned_role == "Carnival")
+			var/datum/component/silkweave/silkweave = GetComponent(/datum/component/silkweave)
+			if(!silkweave)
+				silkweave = AddComponent(/datum/component/silkweave)
+			silkweave.apply_silk(W, user)
+		else
+			to_chat(user, span_danger("You cannot use this silk, as you are not proficent with it."))
 	else
 		. = ..()
 

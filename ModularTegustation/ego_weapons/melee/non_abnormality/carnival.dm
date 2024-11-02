@@ -3,7 +3,7 @@
 	desc = "A spear that the Carnival uses to hunt down their prey."
 	icon_state = "carnival_spear"
 	inhand_icon_state = "carnival_spear"
-	special = "Deal double damage to mobs of the backstreets."
+	special = "Deal double damage to mobs of the backstreets, But deal half damage to humans."
 	force = 30
 	reach = 2
 	attack_speed = 1.2
@@ -32,6 +32,8 @@
 	if(target.stat == DEAD)
 		return
 	var/initial_force = force
+	if(target == /mob/living/carbon/human)
+		force *= 0.5
 	if(is_type_in_typecache(target, empowered_targets))
 		force *= 2
 	..()

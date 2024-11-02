@@ -11,6 +11,9 @@
 /datum/component/butchering/silkbutchering/ButcherEffects(mob/living/meat)
 	var/turf/T = meat.drop_location()
 	if(ishuman(meat))
+		if(meat.client)
+			meat.visible_message(span_notice("[meat]'s soul resists your attempt to tailor them!"))
+			return FALSE
 		var/mob/living/carbon/human/H = meat
 		var/total = get_attribute_level(H, FORTITUDE_ATTRIBUTE) + get_attribute_level(H, PRUDENCE_ATTRIBUTE) + get_attribute_level(H, TEMPERANCE_ATTRIBUTE) + get_attribute_level(H, JUSTICE_ATTRIBUTE)
 
@@ -42,12 +45,23 @@
 		CreateSilk(adv_silk, /obj/item/stack/sheet/silk/human_advanced, T)
 		CreateSilk(elegant_silk, /obj/item/stack/sheet/silk/human_elegant, T)
 		CreateSilk(master_silk, /obj/item/stack/sheet/silk/human_masterpiece, T)
+	else
+		for(var/S in meat.silk_results)
+			var/obj/item/stack/sheet/silk/a_silk = S
+			a_silk = new a_silk
+			a_silk.loc = T
+			a_silk.amount = meat.silk_results[S]
+		if(!meat.silk_results)
+			var/chosen_silk = rand(1,4)
+			if (chosen_silk == 1)
+				new /obj/item/stack/sheet/silk/indigo_simple(T)
+			else if (chosen_silk == 2)
+				new /obj/item/stack/sheet/silk/green_simple(T)
+			else if (chosen_silk == 3)
+				new /obj/item/stack/sheet/silk/amber_simple(T)
+			else
+				new /obj/item/stack/sheet/silk/steel_simple(T)
 
-	for(var/S in meat.silk_results)
-		var/obj/item/stack/sheet/silk/a_silk = S
-		a_silk = new a_silk
-		a_silk.loc = T
-		a_silk.amount = meat.silk_results[S]
 
 /datum/component/butchering/silkbutchering/proc/CreateSilk(amount, silk_type, T)
 	if (amount > 0)
@@ -57,7 +71,7 @@
 
 /obj/item/silkknife
 	name = "Silkweaver"
-	desc = "Makes silk by butchering foes"
+	desc = "Makes silk by butchering foes, Can't be used on humans with a soul."
 	icon_state = "silkweaver"
 	inhand_icon_state = "carnival_silkweaver"
 	slot_flags = ITEM_SLOT_BELT | ITEM_SLOT_BACK

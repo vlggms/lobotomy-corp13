@@ -21,8 +21,8 @@
 //Advanced Transfers
 /datum/crafting_recipe/azure_silk_transfer
 	name = "Violet/Crimson Silk to Azure Silk"
-	result = /obj/item/stack/sheet/silk/amber_simple = 2
-	reqs = list(/obj/item/stack/sheet/silk/crimson_advanced = 2, /obj/item/stack/sheet/silk/voilet_advanced = 2)
+	result = /obj/item/stack/sheet/silk/amber_simple
+	reqs = list(/obj/item/stack/sheet/silk/crimson_advanced = 2, /obj/item/stack/sheet/silk/violet_advanced = 2)
 	tools = list(/obj/item/silkknife = 1)
 	time = 5
 	always_available = FALSE
@@ -39,7 +39,7 @@
 
 /datum/crafting_recipe/violet_silk_transfer
 	name = "Amber Silk to Violet Silk"
-	result = /obj/item/stack/sheet/silk/voilet_simple
+	result = /obj/item/stack/sheet/silk/violet_simple
 	reqs = list(/obj/item/stack/sheet/silk/amber_simple = 2)
 	tools = list(/obj/item/silkknife = 1)
 	time = 5
@@ -58,7 +58,7 @@
 //Human Transfer
 /datum/crafting_recipe/human_silk_transfer
 	name = "Shrimple Silk to Human Silk"
-	result = /obj/item/stack/sheet/silk/human_simple = 2
+	result = /obj/item/stack/sheet/silk/human_simple
 	reqs = list(/obj/item/stack/sheet/silk/shrimple_advanced = 2)
 	tools = list(/obj/item/silkknife = 1)
 	time = 5
