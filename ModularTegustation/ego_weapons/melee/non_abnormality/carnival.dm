@@ -32,9 +32,13 @@
 	if(target.stat == DEAD)
 		return
 	var/initial_force = force
-	if(target == /mob/living/carbon/human)
-		force *= 0.5
 	if(is_type_in_typecache(target, empowered_targets))
 		force *= 2
 	..()
 	force = initial_force
+
+/obj/item/ego_weapon/city/carnival_spear/weak
+	name = "Worn-down Carnival Spear"
+	force = 10
+	attribute_requirements = list(
+	)
