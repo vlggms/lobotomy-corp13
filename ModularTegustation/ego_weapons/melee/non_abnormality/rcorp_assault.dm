@@ -85,9 +85,10 @@
 	desc = "An energy rifle sometimes used by Rcorp. Fires slower, and deals slightly more damage. Has a scope."
 	fire_delay = 8
 	projectile_damage_multiplier = 1.2
-	zoom_amt = 5 //Long range, Slightly better range
-	zoomable = TRUE
-	zoom_out_amt = 0
+
+/obj/item/gun/energy/e_gun/rabbitdash/sniper/Initialize(mapload)
+	. = ..()
+	AddComponent(/datum/component/scope)
 
 /obj/item/gun/energy/e_gun/rabbitdash/laser
 	name = "R-Corporation X-13 Beam Rifle"

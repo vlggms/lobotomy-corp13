@@ -76,12 +76,6 @@
 	var/flight_x_offset = 0
 	var/flight_y_offset = 0
 
-	//Zooming
-	var/zoomable = FALSE //whether the gun generates a Zoom action on creation
-	var/zoomed = FALSE //Zoom toggle
-	var/zoom_amt = 3 //Distance in TURFs to move the user's screen forward (the "zoom" effect)
-	var/zoom_out_amt = 0
-	var/datum/action/toggle_scope_zoom/azoom
 	var/pb_knockback = 0
 
 /obj/item/ego_weapon/ranged/pistol
@@ -96,7 +90,6 @@
 	. = ..()
 	if(pin)
 		pin = new pin(src)
-	build_zooming()
 	if(autofire)
 		AddComponent(/datum/component/automatic_fire, autofire)
 
@@ -105,8 +98,6 @@
 /obj/item/ego_weapon/ranged/Destroy()
 	if(isobj(pin)) //Can still be the initial path, then we skip
 		QDEL_NULL(pin)
-	if(azoom)
-		QDEL_NULL(azoom)
 	return ..()
 
 /obj/item/ego_weapon/ranged/handle_atom_del(atom/A)
@@ -198,23 +189,6 @@
 
 	is_reloading = FALSE
 
-/obj/item/ego_weapon/ranged/equipped(mob/living/user, slot)
-	. = ..()
-	if(zoomed && user.get_active_held_item() != src)
-		zoom(user, user.dir, FALSE) //we can only stay zoomed in if it's in our hands	//yeah and we only unzoom if we're actually zoomed using the gun!!
-
-/obj/item/ego_weapon/ranged/pickup(mob/user)
-	..()
-	if(azoom)
-		azoom.Grant(user)
-
-/obj/item/ego_weapon/ranged/dropped(mob/user)
-	. = ..()
-	if(azoom)
-		azoom.Remove(user)
-	if(zoomed)
-		zoom(user, user.dir)
-
 //called after the gun has successfully fired its chambered ammo.
 /obj/item/ego_weapon/ranged/proc/process_chamber()
 	if(reloadtime && shotsleft)
@@ -269,6 +243,8 @@
 	if(QDELETED(target))
 		return
 	if(firing_burst)
+		return
+	if(SEND_SIGNAL(src, COMSIG_GUN_TRY_FIRE, user, target, flag, params) & COMPONENT_CANCEL_GUN_FIRE)
 		return
 	if(flag) //It's adjacent, is the user, or is on the user's person
 		if(target in user.contents) //can't shoot stuff inside us.
@@ -482,42 +458,5 @@
 	if(pin)
 		qdel(pin)
 	pin = new /obj/item/firing_pin
-
-/////////////
-// ZOOMING //
-/////////////
-
-/obj/item/ego_weapon/ranged/proc/rotate(atom/thing, old_dir, new_dir)
-	SIGNAL_HANDLER
-
-	if(ismob(thing))
-		var/mob/lad = thing
-		lad.client.view_size.zoomOut(zoom_out_amt, zoom_amt, new_dir)
-
-/obj/item/ego_weapon/ranged/proc/zoom(mob/living/user, direc, forced_zoom)
-	if(!user || !user.client)
-		return
-
-	if(isnull(forced_zoom))
-		zoomed = !zoomed
-	else
-		zoomed = forced_zoom
-
-	if(zoomed)
-		RegisterSignal(user, COMSIG_ATOM_DIR_CHANGE, PROC_REF(rotate))
-		user.client.view_size.zoomOut(zoom_out_amt, zoom_amt, direc)
-	else
-		UnregisterSignal(user, COMSIG_ATOM_DIR_CHANGE)
-		user.client.view_size.zoomIn()
-	return zoomed
-
-//Proc, so that gun accessories/scopes/etc. can easily add zooming.
-/obj/item/ego_weapon/ranged/proc/build_zooming()
-	if(azoom)
-		return
-
-	if(zoomable)
-		azoom = new()
-		azoom.gun = src
 
 #undef DUALWIELD_PENALTY_EXTRA_MULTIPLIER
