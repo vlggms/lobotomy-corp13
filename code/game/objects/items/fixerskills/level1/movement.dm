@@ -17,11 +17,12 @@
 	icon_icon = 'icons/hud/screen_skills.dmi'
 	button_icon_state = "dash"
 	name = "Dash"
-	cooldown_time = 30
+	cooldown_time = 3 SECONDS
 	var/direction = 1
 
 /datum/action/cooldown/dash/Trigger()
-	if(!..())
+	. = ..()
+	if(!.)
 		return FALSE
 
 	if (owner.stat == DEAD)
@@ -45,9 +46,9 @@
 			return TRUE
 
 /datum/action/cooldown/dash/back
+	name = "Backstep"
 	icon_icon = 'icons/hud/screen_skills.dmi'
 	button_icon_state = "backstep"
-	name = "Backstep"
 	direction = -1
 
 //Assault
@@ -59,7 +60,7 @@
 	custom_premium_price = 600
 
 /datum/action/cooldown/assault
-	cooldown_time = 200
+	cooldown_time = 20 SECONDS
 	icon_icon = 'icons/hud/screen_skills.dmi'
 	button_icon_state = "assault"
 
@@ -87,10 +88,9 @@
 	custom_premium_price = 600
 
 /datum/action/cooldown/retreat
-	cooldown_time = 200
 	icon_icon = 'icons/hud/screen_skills.dmi'
 	button_icon_state = "retreat"
-
+	cooldown_time = 20 SECONDS
 
 /datum/action/cooldown/retreat/Trigger()
 	. = ..()

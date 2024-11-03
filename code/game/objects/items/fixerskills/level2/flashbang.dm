@@ -7,13 +7,14 @@
 	custom_premium_price = 1200
 
 /datum/action/cooldown/solarflare
+	name = "Solar Flare"
 	icon_icon = 'icons/hud/screen_skills.dmi'
 	button_icon_state = "solarflare"
-	name = "Solar Flare"
-	cooldown_time = 500
+	cooldown_time = 50 SECONDS
 
 /datum/action/cooldown/solarflare/Trigger()
-	if(!..())
+	. = ..()
+	if(!.)
 		return FALSE
 
 	if (owner.stat == DEAD)
