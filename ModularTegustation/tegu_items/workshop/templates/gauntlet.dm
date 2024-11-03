@@ -21,6 +21,9 @@
 	to_chat(target, span_userdanger("[user] punches you with everything they got!!"))
 	to_chat(user, span_danger("You throw your entire body into this punch!"))
 
+	if(specialmod)
+		specialmod.ActivateEffect(src, special_count, target, user)
+
 	//I gotta regrab  justice here
 	var/userjust = (get_modified_attribute_level(user, JUSTICE_ATTRIBUTE))
 	var/justicemod = 1 + userjust/100
@@ -31,9 +34,6 @@
 
 	if(target.stat != DEAD)
 		weapon_xp++
-
-	if(specialmod)
-		specialmod.ActivateEffect(src, special_count, target, user)
 
 	target.deal_damage(force, damtype) //MASSIVE fuckoff punch
 
