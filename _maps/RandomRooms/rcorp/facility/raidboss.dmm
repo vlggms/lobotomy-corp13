@@ -51,7 +51,15 @@
 "Fl" = (
 /turf/closed/indestructible/syndicate,
 /area/city/outskirts)
+"FT" = (
+/obj/effect/landmark/abnospawn/rhinobuster,
+/turf/open/floor/facility,
+/area/city/outskirts)
 "HD" = (
+/turf/open/floor/facility,
+/area/city/outskirts)
+"PA" = (
+/obj/effect/landmark/abnospawn/hardsupport,
 /turf/open/floor/facility,
 /area/city/outskirts)
 "Vg" = (
@@ -3754,11 +3762,11 @@ HD
 HD
 HD
 HD
-HD
+PA
 Vg
 Au
 HD
-HD
+PA
 HD
 HD
 aM
@@ -4245,7 +4253,7 @@ HD
 HD
 HD
 HD
-HD
+PA
 aM
 HD
 HD
@@ -4571,7 +4579,7 @@ HD
 HD
 HD
 HD
-HD
+FT
 aM
 HD
 HD

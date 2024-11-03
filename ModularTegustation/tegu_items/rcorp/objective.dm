@@ -197,6 +197,8 @@ GLOBAL_VAR_INIT(rcorp_payload, null)
 	var/per_ally_protection = 0.2
 	var/view_check_time = 1 SECONDS
 	var/view_check
+	var/barrier_count
+	var/max_barrier_count = 6
 
 	var/list/shrimp_abilities = list(
 		/obj/effect/proc_holder/spell/pointed/shrimp_airstrike,
@@ -292,7 +294,7 @@ GLOBAL_VAR_INIT(rcorp_payload, null)
 	action_icon = 'icons/mob/actions/actions_abnormality.dmi'
 	action_icon_state = "barricade"
 	clothes_req = FALSE
-	charge_max = 100
+	charge_max = 150
 	selection_type = "range"
 	active_msg = "You prepare your barricade call ..."
 	deactive_msg = "You put away your barricade call ..."
@@ -304,15 +306,29 @@ GLOBAL_VAR_INIT(rcorp_payload, null)
 		return
 	else
 		user.visible_message(span_danger("[user] calls in a barricade."), span_alert("You targeted [target]"))
-		addtimer(CALLBACK(src, PROC_REF(Airstrike), target), 1)
+		addtimer(CALLBACK(src, PROC_REF(Airstrike), target, user), 1)
 
-/obj/effect/proc_holder/spell/pointed/shrimp_barricade/proc/Airstrike(target)
-	var/turf/T = get_turf(target)
-	var/obj/structure/closet/supplypod/extractionpod/pod = new()
-	pod.explosionSize = list(0,0,0,0)
-	new /obj/structure/barricade/security(pod)
-	new /obj/effect/pod_landingzone(T, pod)
-	stoplag(2)
+/obj/effect/proc_holder/spell/pointed/shrimp_barricade/proc/Airstrike(target, user)
+	if(istype(user, /mob/living/simple_animal/hostile/shrimp_vip))
+		var/mob/living/simple_animal/hostile/shrimp_vip/shrimp = user
+		var/turf/T = get_turf(target)
+		var/obj/structure/closet/supplypod/extractionpod/pod = new()
+		pod.explosionSize = list(0,0,0,0)
+		if (shrimp.barrier_count < shrimp.max_barrier_count)
+			var/obj/structure/barricade/security/shrimp/barrier = new /obj/structure/barricade/security/shrimp(pod)
+			barrier.shrimp = shrimp
+			shrimp.barrier_count += 1
+		else
+			to_chat(shrimp, "You have created too many barriers, Break some!")
+		new /obj/effect/pod_landingzone(T, pod)
+		stoplag(2)
+
+/obj/structure/barricade/security/shrimp
+	var/mob/living/simple_animal/hostile/shrimp_vip/shrimp
+
+/obj/structure/barricade/security/shrimp/Destroy()
+	shrimp.barrier_count -= 1
+	. = ..()
 
 //Arbiter
 /obj/effect/mob_spawn/human/arbiter/rcorp

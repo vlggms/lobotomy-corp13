@@ -10,6 +10,10 @@
 	},
 /turf/open/floor/wood,
 /area/city/outskirts)
+"aj" = (
+/obj/effect/landmark/abnospawn/hardtank,
+/turf/open/floor/plating/ashplanet/rocky,
+/area/city/outskirts)
 "ap" = (
 /obj/structure/fireplace,
 /turf/open/floor/wood,
@@ -2479,10 +2483,7 @@
 /turf/open/floor/wood,
 /area/city/outskirts)
 "Ef" = (
-/obj/effect/turf_decal/siding/wood/corner{
-	dir = 1
-	},
-/obj/effect/landmark/zombiespawn,
+/obj/effect/landmark/abnospawn/hardcombat,
 /turf/open/floor/plating/ashplanet/rocky,
 /area/city/outskirts)
 "El" = (
@@ -3423,6 +3424,10 @@
 /obj/machinery/door/airlock/glass_large,
 /turf/open/floor/wood,
 /area/city/outskirts)
+"Qc" = (
+/obj/effect/landmark/abnospawn/rhinobuster,
+/turf/open/floor/plating/ashplanet/rocky,
+/area/city/outskirts)
 "Qi" = (
 /obj/structure/closet/crate/trashcart,
 /obj/item/bodypart/l_arm,
@@ -3703,6 +3708,10 @@
 "Td" = (
 /obj/structure/rack,
 /turf/open/floor/wood,
+/area/city/outskirts)
+"Tf" = (
+/obj/effect/landmark/abnospawn/hardsupport,
+/turf/open/floor/plating/ashplanet/rocky,
 /area/city/outskirts)
 "Tp" = (
 /obj/structure/mineral_door/wood,
@@ -8349,7 +8358,7 @@ YE
 Vg
 RL
 Vg
-Vq
+Au
 Vg
 Ul
 Vg
@@ -11275,7 +11284,7 @@ Au
 Au
 LH
 Ld
-Vq
+Au
 Au
 be
 sF
@@ -11460,7 +11469,7 @@ Au
 Au
 Au
 LH
-vY
+Ld
 Au
 sF
 Au
@@ -12918,7 +12927,7 @@ Au
 sF
 Au
 Ld
-Vq
+Au
 Au
 Au
 Au
@@ -14033,7 +14042,7 @@ WR
 GS
 Au
 Au
-Vq
+Au
 Vg
 Au
 Vg
@@ -14398,7 +14407,7 @@ WS
 WS
 WS
 Vg
-Vq
+Au
 Vg
 Rg
 Au
@@ -14719,6 +14728,7 @@ Au
 Au
 Au
 Au
+Qc
 Au
 Au
 Au
@@ -14727,8 +14737,7 @@ Au
 Au
 Au
 Au
-Vq
-Au
+Tf
 Au
 Au
 Au
@@ -14879,12 +14888,12 @@ WS
 Au
 Au
 En
+aj
 Au
 Au
 Au
 Au
-En
-Au
+Ef
 Au
 Au
 Au
@@ -15050,9 +15059,9 @@ Au
 Au
 Au
 Au
+Ef
 Au
-Au
-Au
+Tf
 Au
 Au
 Au
@@ -15513,7 +15522,7 @@ xO
 ST
 cO
 XE
-Ef
+Uc
 Ld
 Au
 Vg
@@ -16835,7 +16844,7 @@ Au
 Au
 Au
 Gi
-Vq
+Au
 Au
 Au
 Au
