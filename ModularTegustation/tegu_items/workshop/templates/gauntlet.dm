@@ -14,9 +14,6 @@
 		to_chat(user, span_notice("This weapon is unfinished!"))
 		return
 
-	if(specialmod)
-		specialmod.ActivateEffect(src, special_count, target, user)
-
 	if(!do_after(user, attack_speed * 5, target))
 		to_chat(user, "<span class='spider'><b>Your attack was interrupted!</b></span>")
 		return
@@ -34,6 +31,9 @@
 
 	if(target.stat != DEAD)
 		weapon_xp++
+
+	if(specialmod)
+		specialmod.ActivateEffect(src, special_count, target, user)
 
 	target.deal_damage(force, damtype) //MASSIVE fuckoff punch
 
