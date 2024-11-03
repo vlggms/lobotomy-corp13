@@ -115,7 +115,7 @@ GLOBAL_LIST_INIT(sephirah_names, list(
 
 		//Literally being griefed.
 		SSlobotomy_corp.lob_points += 1
-		minor_announce("Due to a lack of resources; a random abnormality has been chosen and LOB points have been deposited in your account. \
+		minor_announce("Due to a lack of resources; a random abnormality has been chosen and LOB point has been deposited in your account. \
 				Extraction Headquarters apologizes for the inconvenience", "Extraction Alert:", TRUE)
 		return
 
@@ -230,15 +230,15 @@ GLOBAL_LIST_EMPTY(SephirahBullet)
 /mob/living/carbon/human/proc/BulletAuth()
 	set name = "Authorize Execution Bullets"
 	set category = "Sephirah"
-	GLOB.SephirahBullet|= src.ckey
-	if(GLOB.SephirahBullet.len == 2)
+	GLOB.SephirahBullet |= src.ckey
+	if(length(GLOB.SephirahBullet) == 2)
 		minor_announce("The facility's manager has been deemed trustworthy of our new Execution Bullet pilot program. \
 			Execution bullets will be delivered immediately.", "Disciplinary Alert:", TRUE)
 		GLOB.execution_enabled = TRUE
 
 	else
 		to_chat(src, span_notice("Your superiors have been notified of your authorization. Reminder that execution bullets require authorization of 2 sephirah."))
-		message_admins("<span class='notice'>A sephirah ([src.ckey]) has given an authorization for execution bullets..</span>")
+		message_admins(span_notice("A sephirah ([src.ckey]) has given an authorization for execution bullets."))
 
 /mob/living/carbon/human/proc/Announcement()
 	set name = "Make Announcement"
