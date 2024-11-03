@@ -192,7 +192,19 @@
 				if(fish.status == FISH_ALIVE)
 					this_fish_point *= -1
 				fish_points += this_fish_point
-			L.adjustSanityLoss(fish_points)
+
+			/*Heal sanity healed based off the quality of the fish,
+			The alignment of Saturn,
+			A bonus of your devotion/100,
+			which is doubled if your god is Kukulkan, the god related to saturn,
+			which gives you a bonus to all aquarium and fishshop mechanics*/
+			var/sanity_formula = fish_points * (user.devotion/100+1)
+			if(CheckPlanetAligned(FISHGOD_SATURN))
+				sanity_formula*=1.5
+
+			if(L.god_aligned == FISHGOD_SATURN)
+				sanity_formula*=2
+			L.adjustSanityLoss(sanity_formula)
 
 /obj/structure/aquarium/ui_data(mob/user)
 	. = ..()
