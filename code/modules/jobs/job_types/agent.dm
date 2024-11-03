@@ -127,13 +127,16 @@
 	jobtype = /datum/job/agent
 
 	head = /obj/item/clothing/head/beret/tegu/lobotomy/agent
-	belt = /obj/item/pda/security
+	belt = /obj/item/storage/belt/ego
 	ears = /obj/item/radio/headset/alt
 	glasses = /obj/item/clothing/glasses/sunglasses
 	uniform = /obj/item/clothing/under/suit/lobotomy
 	shoes = /obj/item/clothing/shoes/laceup
 	gloves = /obj/item/clothing/gloves/color/black
 	implants = list(/obj/item/organ/cyberimp/eyes/hud/security)
+	l_pocket = /obj/item/pda/security
+
+	pda_slot = ITEM_SLOT_LPOCKET
 
 	backpack_contents = list(
 		/obj/item/melee/classic_baton,
