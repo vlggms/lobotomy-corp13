@@ -7,13 +7,14 @@
 	custom_premium_price = 600
 
 /datum/action/cooldown/smokedash
+	name = "Smokedash"
 	icon_icon = 'icons/hud/screen_skills.dmi'
 	button_icon_state = "smokedash"
-	name = "Smokedash"
-	cooldown_time = 300
+	cooldown_time = 30 SECONDS
 
 /datum/action/cooldown/smokedash/Trigger()
-	if(!..())
+	. = ..()
+	if(!.)
 		return FALSE
 
 	if (owner.stat == DEAD)
@@ -41,13 +42,14 @@
 	custom_premium_price = 600
 
 /datum/action/cooldown/skulk
+	name = "Skulk"
 	icon_icon = 'icons/hud/screen_skills.dmi'
 	button_icon_state = "skulk"
-	name = "Skulk"
-	cooldown_time = 300
+	cooldown_time = 30 SECONDS
 
 /datum/action/cooldown/skulk/Trigger()
-	if(!..())
+	. = ..()
+	if(!.)
 		return FALSE
 
 	if (owner.stat == DEAD)

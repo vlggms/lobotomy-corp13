@@ -86,7 +86,7 @@
 "Z" = (
 /obj/structure/closet/cabinet,
 /obj/item/ego_weapon/city/streetlight_bat,
-/obj/item/gun/ego_gun/clerk{
+/obj/item/ego_weapon/ranged/clerk{
 	desc = "A pistol that looks to be loaded with 9mm rounds. Fit and comforms to the Heads regulations.";
 	name = "9mm Pistol"
 	},

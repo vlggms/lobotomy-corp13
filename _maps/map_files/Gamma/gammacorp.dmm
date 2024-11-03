@@ -981,7 +981,7 @@
 /area/department_main/architecture)
 "hG" = (
 /obj/structure/rack,
-/obj/item/gun/ego_gun/clerk,
+/obj/item/ego_weapon/ranged/clerk,
 /turf/open/floor/carpet/royalblack,
 /area/department_main/extraction)
 "hK" = (
@@ -3429,7 +3429,7 @@
 	desc = "A board for mounting important items upon.";
 	name = "display board"
 	},
-/obj/item/gun/ego_gun/clerk{
+/obj/item/ego_weapon/ranged/clerk{
 	anchored = 1;
 	pixel_y = 2
 	},
@@ -4311,8 +4311,8 @@
 /area/facility_hallway/south)
 "Cu" = (
 /obj/structure/rack,
-/obj/item/gun/ego_gun/clerk,
-/obj/item/gun/ego_gun/clerk,
+/obj/item/ego_weapon/ranged/clerk,
+/obj/item/ego_weapon/ranged/clerk,
 /turf/open/floor/plasteel/dark,
 /area/department_main/discipline)
 "Cy" = (

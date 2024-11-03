@@ -470,11 +470,11 @@
 /area/library_floors/floor_history)
 "IZ" = (
 /obj/item/toy/plush/yesod,
-/obj/item/gun/ego_gun/pistol/solemnlament{
+/obj/item/ego_weapon/ranged/pistol/solemnlament{
 	pixel_y = -7;
 	pixel_x = -13
 	},
-/obj/item/gun/ego_gun/pistol/solemnvow{
+/obj/item/ego_weapon/ranged/pistol/solemnvow{
 	pixel_x = 18;
 	pixel_y = -7
 	},
@@ -651,7 +651,7 @@
 /area/library_floors/floor_history)
 "ZW" = (
 /obj/structure/table/wood,
-/obj/item/gun/ego_gun/city/thumb/weak,
+/obj/item/ego_weapon/ranged/city/thumb/weak,
 /obj/item/toy/plush/netzach,
 /obj/item/reagent_containers/food/drinks/beer{
 	pixel_x = -9
