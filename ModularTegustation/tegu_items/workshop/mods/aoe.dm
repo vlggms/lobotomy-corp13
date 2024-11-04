@@ -17,7 +17,7 @@
 		aoe_damage*=justicemod
 		if(L == user)
 			continue
-		L.apply_damage(aoe_damage, damtype, null, L.run_armor_check(null, damtype), spread_damage = TRUE)
+		L.deal_damage(aoe_damage, damagetype)
 		new /obj/effect/temp_visual/small_smoke/halfsecond(get_turf(L))
 
 /obj/item/workshop_mod/aoe/red

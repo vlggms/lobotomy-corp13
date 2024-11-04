@@ -14,9 +14,6 @@
 		to_chat(user, span_notice("This weapon is unfinished!"))
 		return
 
-	if(specialmod)
-		specialmod.ActivateEffect(src, special_count, target, user)
-
 	if(!do_after(user, attack_speed * 5, target))
 		to_chat(user, "<span class='spider'><b>Your attack was interrupted!</b></span>")
 		return
@@ -24,18 +21,25 @@
 	to_chat(target, span_userdanger("[user] punches you with everything they got!!"))
 	to_chat(user, span_danger("You throw your entire body into this punch!"))
 
-	var/punch_damage = force
+	if(specialmod)
+		specialmod.ActivateEffect(src, special_count, target, user)
+
 	//I gotta regrab  justice here
 	var/userjust = (get_modified_attribute_level(user, JUSTICE_ATTRIBUTE))
 	var/justicemod = 1 + userjust/100
-	punch_damage *= justicemod
+	force *= justicemod
 
 	if(ishuman(target))
-		punch_damage = 50
+		force = min(force, 50)
 
-	target.apply_damage(punch_damage, damtype, null, target.run_armor_check(null, damtype), spread_damage = TRUE)		//MASSIVE fuckoff punch
+	if(target.stat != DEAD)
+		weapon_xp++
+
+	target.deal_damage(force, damtype) //MASSIVE fuckoff punch
 
 	playsound(src, 'sound/weapons/resonator_blast.ogg', 50, TRUE)
 	var/atom/throw_target = get_edge_target_turf(target, user.dir)
 	if(target.anchored && !QDELETED(target))
 		target.throw_at(throw_target, 2, 4, user) //Bigass knockback.
+
+	force = true_force

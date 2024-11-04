@@ -13,27 +13,31 @@
 	var/finisheddesc = "A finished weapon."
 	var/aoe_range = 0
 	var/type_overriden = FALSE
-	var/forceholder	//holds the force for later
 	var/special_count //Various vars use this for various things
 	var/obj/item/workshop_mod/specialmod
 	var/list/finishedname = list()
 	var/list/finishedicon = list()
 
+	/// The true base force of the weapon including mods without modifiers
+	var/true_force = 0
+
 	var/weapon_xp = 0
 	var/level_xp = 100
 
+/obj/item/ego_weapon/template/Initialize(mob/living/target, mob/living/carbon/human/user)
+	true_force = force
+	return ..()
+
 /obj/item/ego_weapon/template/attack(mob/living/target, mob/living/carbon/human/user)
-	if(target.stat != DEAD)
-		weapon_xp ++
-	forceholder = force
 	if(!active)
 		to_chat(user, span_notice("This weapon is unfinished!"))
 		return
 	if(specialmod)
 		specialmod.ActivateEffect(src, special_count, target, user)
 	..()
-	if(forceholder != force)
-		force = forceholder
+	if(target.stat != DEAD)
+		weapon_xp++
+	force = true_force
 
 /obj/item/ego_weapon/template/attackby(obj/item/I, mob/living/user, params)
 	..()
@@ -56,6 +60,7 @@
 
 	//Modify these
 	force *= mod.forcemod
+	true_force *= mod.forcemod
 	attack_speed *= mod.attackspeedmod
 
 	if(!type_overriden)
@@ -86,7 +91,6 @@
 
 	if(istype(src, /obj/item/ego_weapon/template/fishing))
 		CheckHoroscope()
-	return
 
 /obj/item/ego_weapon/template/proc/AlterSpecial(subject, add_to = FALSE)
 	if(add_to)
@@ -129,10 +133,12 @@
 		weapon_xp = 0
 		level_xp += 100
 		force *= 1.1
+		true_force *= 1.1
 
 //This only is used for fishing weapons
 /obj/item/ego_weapon/template/proc/CheckHoroscope()
-	force = force*1.3
+	force *= 1.3
+	true_force *= 1.3
 
 	/*
 	maxforce =

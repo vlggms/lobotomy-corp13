@@ -19,4 +19,4 @@
 
 /obj/item/ego_weapon/template/chargeblade/ChargeAttack(mob/living/target, mob/living/user)
 	. = ..()
-	target.apply_damage(force, damtype, null, target.run_armor_check(null, damtype), spread_damage = TRUE)
+	target.deal_damage(force, damtype)

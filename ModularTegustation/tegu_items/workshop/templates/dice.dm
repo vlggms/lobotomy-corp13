@@ -10,6 +10,5 @@
 	finisheddesc = "A finished dice, ready for use."
 
 /obj/item/ego_weapon/template/dice/attack(mob/living/target, mob/living/user)
-	force = rand(forceholder*0.10, forceholder)
-	..()
-	force = initial(force)
+	force = rand(true_force*0.10, true_force)
+	return ..()
