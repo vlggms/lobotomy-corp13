@@ -62,6 +62,10 @@
 		if(user.god_aligned != planet.god)
 			planet_names += planet.name
 
+	if(!length(planet_names))
+		to_chat(user, span_warning("... There is nothing in the sky to detonate... your work is done."))
+		return
+
 	var/choice = input(user, "Which planet would you like to destroy?", "Supernova") as null|anything in planet_names
 	if(!choice)
 		to_chat(user, span_notice("You stay your hand."))
