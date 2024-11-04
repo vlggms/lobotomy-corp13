@@ -59,7 +59,8 @@
 /datum/action/cooldown/fishing/supernova/FishEffect(mob/living/user)
 	var/list/planet_names = list()
 	for(var/datum/planet/planet as anything in SSfishing.planets)
-		planet_names += planet.name
+		if(user.god_aligned != planet.god)
+			planet_names += planet.name
 
 	var/choice = input(user, "Which planet would you like to destroy?", "Supernova") as null|anything in planet_names
 	if(!choice)
