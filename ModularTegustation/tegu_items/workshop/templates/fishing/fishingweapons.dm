@@ -12,22 +12,23 @@
 	finisheddesc = "A finished harpoon, ready for use. Deals less damage to non-aquatic enemies."
 
 	//Update with aquatic enemies
-	var/list/aquatic_enemies = list(/mob/living/simple_animal/hostile/shrimp,
-			/mob/living/simple_animal/hostile/distortion/shrimp_rambo/easy,
-			/mob/living/simple_animal/hostile/shrimp_soldier,
-			/mob/living/simple_animal/hostile/shrimp_rifleman,
-			/mob/living/simple_animal/hostile/senior_shrimp,)
+	var/list/aquatic_enemies = list(
+		/mob/living/simple_animal/hostile/shrimp,
+		/mob/living/simple_animal/hostile/distortion/shrimp_rambo/easy,
+		/mob/living/simple_animal/hostile/shrimp_soldier,
+		/mob/living/simple_animal/hostile/shrimp_rifleman,
+		/mob/living/simple_animal/hostile/senior_shrimp,
+	)
 
 
 
 /obj/item/ego_weapon/template/fishing/attack(mob/living/target, mob/living/user)
-	var/finishedforce = force
 	var/storelive = FALSE
-	if(user.god_aligned == FISHGOD_MARS)
-		force*=1.3
-
 	if(!(target.status_flags & GODMODE) && target.stat != DEAD)
 		storelive = TRUE
+
+	if(user.god_aligned == FISHGOD_MARS)
+		force *= 1.3
 
 	if(SSfishing.IsAligned(/datum/planet/mars)) //Big-air bonus for mars being in alignment
 		force *= 1.3
@@ -43,8 +44,6 @@
 		if(SSfishing.IsAligned(/datum/planet/jupiter))
 			user.adjustBruteLoss(-user.maxHealth*0.05)	//Healing for your kill
 			new /obj/effect/temp_visual/heal(get_turf(user), "#FF4444")
-
-	force = finishedforce
 
 /obj/item/ego_weapon/template/fishing/spear
 	name = "fishing spear template"
