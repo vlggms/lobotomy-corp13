@@ -106,51 +106,21 @@
 	for(var/mob/living/M in view(4, get_turf(src)))
 		if(M == owner)
 			continue
+		if(M.god_aligned == initial(M.god_aligned))
+			continue
 
-			//Atheists have no chakra
-		switch(M.god_aligned)
-			if(FISHGOD_MERCURY)
-				if(SSfishing.Mercury <0)	//If your planet is below 0, it was blown out of the sky, and you will die.
-					obliterate(M)
-				if(SSfishing.Mercury != 2)
-					smite(M, user)
+		var/found_planet = FALSE
+		for(var/datum/planet/planet as anything in SSfishing.planets)
+			if(M.god_aligned != planet.god)
+				continue
 
-			if(FISHGOD_VENUS)
-				if(SSfishing.Venus <0)
-					obliterate(M)
-				if(SSfishing.Venus != 3)
-					smite(M, user)
+			found_planet = TRUE
+			if(planet.phase != 1)
+				smite(M, user)
+			break
 
-			if(FISHGOD_MARS)
-				if(SSfishing.Mars <0)
-					obliterate(M)
-				if(SSfishing.Mars != 4)
-					smite(M, user)
-
-			if(FISHGOD_JUPITER)
-				if(SSfishing.Jupiter <0)
-					obliterate(M)
-				if(SSfishing.Jupiter != 5)
-					smite(M, user)
-
-			if(FISHGOD_SATURN)
-				if(SSfishing.Saturn <0)
-					obliterate(M)
-				if(SSfishing.Saturn != 6)
-					smite(M, user)
-
-			if(FISHGOD_URANUS)
-				if(SSfishing.Uranus <0)
-					obliterate(M)
-				if(SSfishing.Uranus != 7)
-					smite(M, user)
-
-			if(FISHGOD_NEPTUNE)
-				if(SSfishing.Neptune <0)
-					obliterate(M)
-				if(SSfishing.Neptune != 8)
-					smite(M, user)
-
+		if(!found_planet) // their planet is dead, and so will they be
+			obliterate(M)
 
 /datum/action/cooldown/fishing/chakra/proc/smite(mob/living/carbon/asshole, mob/living/carbon/user)
 	asshole.apply_damage(user.devotion*SSfishing.moonphase*0.5, WHITE_DAMAGE, null, asshole.run_armor_check(null, WHITE_DAMAGE), spread_damage = TRUE)	//KILL

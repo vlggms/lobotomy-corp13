@@ -27,23 +27,22 @@
 		if(FISH_RARITY_GOOD_LUCK_FINDING_THIS)
 			this_fish_point = 0.8
 	if(sacrificing.status == FISH_ALIVE)
-		this_fish_point*=2
-	if(SSfishing.Neptune==8)
-		this_fish_point*=2
+		this_fish_point *= 2
+
+	var/neptune = SSfishing.IsAligned(/datum/planet/neptune)
+	if(neptune) //Big-air bonus for mars being in alignment
+		this_fish_point *= 2
+
 	qdel(I)
 	user.devotion+=this_fish_point
-	if(SSfishing.Neptune==8)
-		to_chat(user, span_notice("Neptune is in alignment. Devotion increased by [this_fish_point]. Your devotion to [user.god_aligned] is now [user.devotion]."))
-	else
-		to_chat(user, span_notice("Devotion increased by [this_fish_point]. Your devotion to [user.god_aligned] is now [user.devotion]."))
-
+	to_chat(user, span_notice("[neptune ? "Neptune is in alignment. " : ""]Devotion increased by [this_fish_point]. Your devotion to [user.god_aligned] is now [user.devotion]."))
 
 /obj/structure/fishshrine/attack_hand(mob/living/user)
 	..()
-	if(user.devotion>=1&& user.devotion<5)
+	if(user.devotion >= 1 && user.devotion < 5)
 		to_chat(user, span_notice("The gods look the other way."))
 		return
-	if(user.devotion>=5 && user.god_aligned == FISHGOD_NONE)
+	if(user.devotion >= 5 && user.god_aligned == FISHGOD_NONE)
 		pick_god(user)
 	if(user.god_aligned != FISHGOD_NONE)
 		display_info(user)
@@ -60,22 +59,9 @@
 		if(4)
 			to_chat(user, span_notice("The moon is Full."))
 
-	if(SSfishing.Mercury == 2)
-		to_chat(user, span_notice("Mercury is in alignment with earth."))
-	if(SSfishing.Venus == 3)
-		to_chat(user, span_notice("Venus is in alignment with earth."))
-	if(SSfishing.Mars == 4)
-		to_chat(user, span_notice("Mars is in alignment with earth."))
-	if(SSfishing.Jupiter == 5)
-		to_chat(user, span_notice("Jupiter is in alignment with earth."))
-	if(SSfishing.Saturn == 6)
-		to_chat(user, span_notice("Saturn is in alignment with earth."))
-	if(SSfishing.Uranus == 7)
-		to_chat(user, span_notice("Uranus is in alignment with earth."))
-	if(SSfishing.Neptune == 8)
-		to_chat(user, span_notice("Neptune is in alignment with earth."))
-
-
+	for(var/datum/planet/planet as anything in SSfishing.planets)
+		if(planet.phase == 1)
+			to_chat(user, span_notice("[planet.name] is in alignment with earth."))
 
 //Godpicking shit
 /obj/structure/fishshrine/proc/pick_god(mob/living/user)

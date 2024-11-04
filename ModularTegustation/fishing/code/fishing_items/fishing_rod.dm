@@ -184,14 +184,14 @@
 		var/size_modifier = rand(1, 4) * 0.1
 		//Size modifier has to be a decimal in order to keep it from making massive fish.
 		//Gets bonuses if mercury is in alignment, and if you're aligned with the mercury god
-		if(SSfishing.Mercury == 2)
-			size_modifier*=1.3
+		if(SSfishing.IsAligned(/datum/planet/mercury))
+			size_modifier *= 1.3
+			to_chat(user, span_nicegreen("[FISHGOD_MERCURY] smiles upon you!."))
+
 		if(user.god_aligned == FISHGOD_MERCURY)
 			size_modifier*=2
 
 		fishie.randomize_weight_and_size(size_modifier)
-		if(SSfishing.Mercury == 2)
-			to_chat(user, span_nicegreen("Lir smiles upon you!."))
 
 		if(user.god_aligned == FISHGOD_URANUS && prob(5))
 			to_chat(user, span_nicegreen("Abena Mansa smiles upon you! You caught some cash!"))

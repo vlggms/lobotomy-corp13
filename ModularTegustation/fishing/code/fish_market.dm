@@ -41,7 +41,8 @@
 
 /obj/machinery/fish_market/ui_interact(mob/user) //Unsure if this can stand on its own as a structure, later on we may fiddle with that to break out of computer variables. -IP
 	. = ..()
-	check_city()
+	if(SSmaptype.maptype in SSmaptype.citymaps)
+		update_stock()
 	if(isliving(user))
 		playsound(src, 'sound/machines/terminal_prompt_confirm.ogg', 50, FALSE)
 	var/dat
@@ -52,7 +53,6 @@
 	var/datum/browser/popup = new(user, "FishingVendor", "FishingVendor", 440, 640)
 	popup.set_content(dat)
 	popup.open()
-	return
 
 /obj/machinery/fish_market/Topic(href, href_list)
 	. = ..()
@@ -82,7 +82,7 @@
 			return TRUE
 
 /obj/machinery/fish_market/attackby(obj/item/I, mob/user, params)
-	if(SSfishing.Uranus == 7)
+	if(SSfishing.IsAligned(/datum/planet/uranus))
 		to_chat(usr, span_notice("Uranus is aligned with earth. All fish points are increaed by 1.5x"))
 	if(istype(I, /obj/item/stack/fish_points))
 		var/obj/item/stack/fish_points/more_points = I
@@ -143,8 +143,8 @@
 	var/fish_weight = (F.weight - F.average_weight) / F.average_weight
 	var/fish_size = (F.size - F.average_size) / F.average_size
 	var/fish_worth_mod = 1 + fish_weight + fish_size
-	if(SSfishing.Uranus == 7)
-		fish_worth_mod*=1.5	//Bonus if uranus is aligned
+	if(SSfishing.IsAligned(/datum/planet/uranus))
+		fish_worth_mod *= 1.5	//Bonus if uranus is aligned
 
 	/*Fish Value based on rarity 2 is
 		the worth of fish that are basic.*/
@@ -159,9 +159,9 @@
 	return round(fish_worth * fish_worth_mod)
 
 
-/obj/machinery/fish_market/proc/check_city()
-	if(SSmaptype.maptype in SSmaptype.citymaps)
-		order_list = list(
+/obj/machinery/fish_market/proc/update_stock()
+	QDEL_LIST(order_list)
+	order_list = list(
 		new /datum/data/extraction_cargo("Discount Quality Suture ",	/obj/item/stack/medical/suture/emergency,			50) = 1,
 		new /datum/data/extraction_cargo("Fishin Starting Pack ",		/obj/item/storage/box/fishing,						200) = 1,
 		new /datum/data/extraction_cargo("Aquarium Rocks ",				/obj/item/aquarium_prop/rocks,						250) = 1,
@@ -223,4 +223,4 @@
 		new /datum/data/extraction_cargo("Fishing Mod (R) ",	/obj/item/workshop_mod/fishing,						200) = 1,
 		new /datum/data/extraction_cargo("Fishing Mod (W) ", 	/obj/item/workshop_mod/fishing/white,				200) = 1,
 		new /datum/data/extraction_cargo("Fishing Mod (B) ", 	/obj/item/workshop_mod/fishing/black,				200) = 1,
-		)
+	)

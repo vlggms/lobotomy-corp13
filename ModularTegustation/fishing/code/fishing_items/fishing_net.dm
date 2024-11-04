@@ -74,7 +74,7 @@
 
 /obj/structure/destructible/fishing_net/proc/SpawnEnemy(turf/dropoff, mob/user)
 	var/spawning = /mob/living/simple_animal/hostile/shrimp
-	if(prob(1) && SSfishing.Mars == 4)
+	if(prob(1) && SSfishing.IsAligned(/datum/planet/mars))
 		spawning = /mob/living/simple_animal/hostile/distortion/shrimp_rambo/easy
 
 	if(prob(5))	//Super rares first

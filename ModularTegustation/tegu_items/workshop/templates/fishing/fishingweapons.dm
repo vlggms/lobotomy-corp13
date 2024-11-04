@@ -29,23 +29,22 @@
 	if(!(target.status_flags & GODMODE) && target.stat != DEAD)
 		storelive = TRUE
 
-	if(SSfishing.Mars == 4)	//Big-air bonus for mars being in alignment
-		force*=1.3
+	if(SSfishing.IsAligned(/datum/planet/mars)) //Big-air bonus for mars being in alignment
+		force *= 1.3
 
 	if(!(target.type in aquatic_enemies))
-		force*=0.7
+		force *= 0.7
 	..()
 	if(target.stat == DEAD && storelive)
 		if(user.god_aligned == FISHGOD_JUPITER)
 			user.adjustBruteLoss(-user.maxHealth*0.1)	//Healing for your kill
 			new /obj/effect/temp_visual/heal(get_turf(user), "#FF4444")
 
-		if(SSfishing.Jupiter == 5)
+		if(SSfishing.IsAligned(/datum/planet/jupiter))
 			user.adjustBruteLoss(-user.maxHealth*0.05)	//Healing for your kill
 			new /obj/effect/temp_visual/heal(get_turf(user), "#FF4444")
 
 	force = finishedforce
-
 
 /obj/item/ego_weapon/template/fishing/spear
 	name = "fishing spear template"
