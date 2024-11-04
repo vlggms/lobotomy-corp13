@@ -22,8 +22,8 @@
 
 //Rcorp couldn't kill the first one with 2 whole platoons
 /mob/living/simple_animal/hostile/distortion/shrimp_rambo/easy
-	maxHealth = 5000 //you asked for a star of the city
-	health = 5000
+	maxHealth = 4000 //you asked for a star of the city
+	health = 4000
 	melee_damage_lower = 35
 	melee_damage_upper = 50
 	rapid = 25

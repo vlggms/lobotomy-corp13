@@ -7,13 +7,14 @@
 	custom_premium_price = 1200
 
 /datum/action/cooldown/lockpick
+	name = "Lockpick"
 	icon_icon = 'icons/hud/screen_skills.dmi'
 	button_icon_state = "lockpick"
-	name = "Lockpick"
-	cooldown_time = 600
+	cooldown_time = 1 MINUTES
 
 /datum/action/cooldown/lockpick/Trigger()
-	if(!..())
+	. = ..()
+	if(!.)
 		return FALSE
 
 	if (owner.stat == DEAD)

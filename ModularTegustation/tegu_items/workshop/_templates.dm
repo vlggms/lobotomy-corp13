@@ -42,11 +42,20 @@
 /obj/item/ego_weapon/template/attackby(obj/item/I, mob/living/user, params)
 	..()
 	if(istype(I, /obj/item/workshop_mod) && !active)
-		InstallMod(I)
+		InstallMod(I , user)
 		return
 
 //Mod Installation Proc: Seperated from attackby so its easier to read and override.
-/obj/item/ego_weapon/template/proc/InstallMod(obj/item/workshop_mod/mod)
+/obj/item/ego_weapon/template/proc/InstallMod(obj/item/workshop_mod/mod, mob/living/carbon/human/user)
+	if(!istype(src, /obj/item/ego_weapon/template/fishing) && istype(mod, /obj/item/workshop_mod/fishing))
+		to_chat(user, span_notice("You can only use fishing mods with fishing weapons!"))
+		return
+
+	//TODO - Make one line
+	if(istype(src, /obj/item/ego_weapon/template/fishing) && !istype(mod, /obj/item/workshop_mod/fishing))
+		to_chat(user, span_notice("You can only use fishing mods with fishing weapons!"))
+		return
+
 	active = TRUE
 
 	//Modify these
@@ -79,7 +88,9 @@
 	specialmod = mod
 	//May have to change this later if the contents of the weapon can be accessed.
 	mod.forceMove(src)
-	return
+
+	if(istype(src, /obj/item/ego_weapon/template/fishing))
+		CheckHoroscope()
 
 /obj/item/ego_weapon/template/proc/AlterSpecial(subject, add_to = FALSE)
 	if(add_to)
@@ -123,3 +134,24 @@
 		level_xp += 100
 		force *= 1.1
 		true_force *= 1.1
+
+//This only is used for fishing weapons
+/obj/item/ego_weapon/template/proc/CheckHoroscope()
+	force *= 1.3
+	true_force *= 1.3
+
+	/*
+	maxforce =
+	//Then Check each planet. Planets with more phases contribute less per phase
+	var/mercurybuff = SSfishing.Mercury*0.75
+	var/venusbuff = SSfishing.Venus*0.66
+	var/marsbuff = SSfishing.Mars*0.50
+	var/jupiterbuff = SSfishing.Jupiter*0.42
+	var/saturnbuff = SSfishing.Saturn*0.38
+	var/uranusbuff = SSfishing.Uranus*0.32
+	var/neptunebuff = SSfishing.Neptune*0.29
+
+	var/moonbuff = SSfishing.moonphase*0.50
+
+	force += force*mercurybuff*venusbuff*marsbuff*jupiterbuff*saturnbuff*uranusbuff*neptunebuff*moonbuff
+	force = round(force, 0.1)*/

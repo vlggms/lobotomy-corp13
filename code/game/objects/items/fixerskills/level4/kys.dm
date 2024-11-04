@@ -7,13 +7,14 @@
 	custom_premium_price = 2400
 
 /datum/action/cooldown/nuke
+	name = "Nuke"
 	icon_icon = 'icons/hud/screen_skills.dmi'
 	button_icon_state = "nuke"
-	name = "Nuke"
-	cooldown_time = 12000
+	cooldown_time = 20 MINUTES
 
 /datum/action/cooldown/nuke/Trigger()
-	if(!..())
+	. = ..()
+	if(!.)
 		return FALSE
 
 	if (owner.stat == DEAD)
