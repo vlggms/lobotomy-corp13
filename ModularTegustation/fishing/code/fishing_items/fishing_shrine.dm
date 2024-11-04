@@ -65,49 +65,23 @@
 
 //Godpicking shit
 /obj/structure/fishshrine/proc/pick_god(mob/living/user)
-	var/list/display_names = list("Lir", "Tefnut", "Arnapkapfaaluk", "Susanoo" , "Kukulkan", "Abena Mansa", "Glaucus")
-	if(!display_names.len)
+	var/list/god_names = list()
+	for(var/datum/planet/planet as anything in SSfishing.planets)
+		god_names[planet.god] = planet.god_desc
+
+	for(var/god as anything in SSfishing.sleeping_gods)
+		god_names[god] = "Warning, [god]'s planet has been destroyed, this can negativelly affect you in several situations.\n[SSfishing.sleeping_gods[god]]"
+
+	if(!length(god_names))
 		return
-	var/choice = input(user,"Which god would you like to align yourself with?","Select a god") as null|anything in display_names
+
+	var/choice = input(user, "Which god would you like to align yourself with?", "Select a god") as null|anything in god_names
 	if(!choice || !user.canUseTopic(src, BE_CLOSE, FALSE, NO_TK))
 		to_chat(user, span_notice("You decide to stay a fish athiest for now."))
 		return
 
-	switch(choice)
-		if("Lir")
-			var/confirm = alert("Lir is the God of The Sea, and represents Mercury. Devoting yourself to Lir will give you better fortune with the sizes of fish.", "God Choser", "Devote Yourself", "Take more time")
-			if(confirm == "Devote Yourself")
-				user.god_aligned = FISHGOD_MERCURY
+	if(alert(god_names[choice], "God Choser", "Devote Yourself", "Take more time") != "Devote Yourself")
+		return
 
-		if("Tefnut")
-			var/confirm = alert("Tefnut is the Goddess of moisture, fertility and water, and represents Venus. Devoting yourself to Tefnut will make it less likely for enemies to spawn while catching with nets.", "God Choser", "Devote Yourself", "Take more time")
-			if(confirm == "Devote Yourself")
-				user.god_aligned = FISHGOD_VENUS
-
-		if("Arnapkapfaaluk")
-			var/confirm = alert("Arnapkapfaaluk is the Goddess of aquatic combat, and represents Mars. Devoting yourself to Arnapkapfaaluk will give you strength with fishing weapons.", "God Choser", "Devote Yourself", "Take more time")
-			if(confirm == "Devote Yourself")
-				user.god_aligned = FISHGOD_MARS
-
-		if("Susanoo")
-			var/confirm = alert("Susanoo is the God of harvest and storms, and represents Jupiter. Devoting yourself to Susanoo will make fishing weapons heal on kill.", "God Choser", "Devote Yourself", "Take more time")
-			if(confirm == "Devote Yourself")
-				user.god_aligned = FISHGOD_JUPITER
-
-		if("Kukulkan")
-			var/confirm = alert("Kukulkan is the Serpent Deity, and represents Saturn. Devoting yourself to Kukulkan will decrease the cost of all spells by 1 devotion.", "God Choser", "Devote Yourself", "Take more time")
-			if(confirm == "Devote Yourself")
-				user.god_aligned = FISHGOD_SATURN
-
-		if("Abena Mansa")
-			var/confirm = alert("Abena Mansa is a sea Goddess of gold, and represents Uranus. Devoting yourself to Abena Mansa will make fishing up ahn possible, scaling with your devotion.", "God Choser", "Devote Yourself", "Take more time")
-			if(confirm == "Devote Yourself")
-				user.god_aligned = FISHGOD_URANUS
-
-		if("Glaucus")
-			var/confirm = alert("Glaucus is the God of fishing, and represents Neptune. Devoting yourself to Glaucus will enhance all of your fishing skills.", "God Choser", "Devote Yourself", "Take more time")
-			if(confirm == "Devote Yourself")
-				user.god_aligned = FISHGOD_NEPTUNE
-
-
+	user.god_aligned = choice
 	to_chat(user, span_notice("You devote yourself to [user.god_aligned]."))
