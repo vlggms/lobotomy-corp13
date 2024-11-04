@@ -66,6 +66,12 @@
 /obj/structure/barricade/sandbags,
 /turf/open/floor/plating/asteroid/basalt,
 /area/city/backstreets_room)
+"iq" = (
+/obj/structure/meatfloor,
+/obj/structure/lootcrate/w_corp,
+/obj/structure/lootcrate/money,
+/turf/open/floor/wood,
+/area/city/backstreets_room)
 "iw" = (
 /obj/structure/lootcrate/money,
 /turf/open/floor/wood,
@@ -156,7 +162,7 @@
 /turf/open/floor/carpet/blue,
 /area/city/backstreets_room)
 "wh" = (
-/obj/item/ego_weapon/city/charge/wcorp/shield/spear,
+/obj/item/ego_weapon/city/wcorp/shield/spear,
 /obj/structure/meatfloor,
 /turf/open/floor/wood,
 /area/city/backstreets_room)
@@ -197,6 +203,11 @@
 /area/city/backstreets_room)
 "AX" = (
 /turf/open/floor/carpet/blue,
+/area/city/backstreets_room)
+"AY" = (
+/obj/structure/lootcrate/w_corp,
+/obj/structure/lootcrate/money,
+/turf/open/floor/wood,
 /area/city/backstreets_room)
 "Bb" = (
 /obj/structure/meatfloor,
@@ -266,6 +277,11 @@
 /obj/item/raw_anomaly_core/bluespace,
 /turf/open/floor/wood,
 /area/city/backstreets_room)
+"Ge" = (
+/obj/effect/gibspawner/human/bodypartless,
+/obj/effect/landmark/cratespawn/corpo,
+/turf/open/floor/wood,
+/area/city/backstreets_room)
 "Hb" = (
 /obj/effect/gibspawner/human/bodypartless,
 /turf/open/floor/wood{
@@ -310,7 +326,7 @@
 /turf/open/floor/plating/asteroid/basalt,
 /area/city/backstreets_room)
 "LN" = (
-/obj/item/ego_weapon/city/charge/wcorp/hammer,
+/obj/item/ego_weapon/city/wcorp/hammer,
 /turf/open/floor/wood,
 /area/city/backstreets_room)
 "MA" = (
@@ -328,6 +344,12 @@
 /mob/living/simple_animal/hostile/lovetown/stabber,
 /obj/effect/gibspawner/human/bodypartless,
 /turf/open/floor/plating/asteroid/basalt,
+/area/city/backstreets_room)
+"OB" = (
+/obj/structure/lootcrate/w_corp,
+/turf/open/floor/wood{
+	icon_state = "wood-broken7"
+	},
 /area/city/backstreets_room)
 "OW" = (
 /mob/living/simple_animal/hostile/lovetown/stabber,
@@ -392,7 +414,7 @@
 /turf/open/floor/plating/asteroid/basalt,
 /area/city/backstreets_room)
 "Za" = (
-/obj/item/ego_weapon/city/charge/wcorp,
+/obj/item/ego_weapon/city/wcorp,
 /obj/structure/meatfloor,
 /turf/open/floor/plating/asteroid/basalt,
 /area/city/backstreets_room)
@@ -442,13 +464,13 @@ MA
 MA
 MA
 MA
-zZ
+kz
 MA
 MA
 MA
 zZ
 JV
-zZ
+kz
 LC
 zZ
 MA
@@ -484,8 +506,8 @@ MA
 MA
 MA
 MA
-Dd
-Dd
+iq
+iq
 dX
 ZW
 Is
@@ -509,8 +531,8 @@ MA
 MA
 MA
 dX
-Lw
-Lw
+AY
+AY
 MA
 MA
 MA
@@ -669,7 +691,7 @@ zZ
 Pd
 Is
 dX
-mA
+Tw
 bk
 Dd
 RP
@@ -701,7 +723,7 @@ zZ
 zZ
 zZ
 dX
-mA
+Tw
 Dd
 Dd
 tF
@@ -733,7 +755,7 @@ zZ
 zZ
 zZ
 MA
-mA
+Tw
 Dd
 IP
 bC
@@ -755,7 +777,7 @@ zZ
 zZ
 "}
 (12,1,1) = {"
-zZ
+kz
 MA
 MA
 MA
@@ -837,7 +859,7 @@ Bd
 AX
 Dd
 mA
-mA
+Tw
 dX
 zZ
 Is
@@ -869,7 +891,7 @@ mA
 mA
 Dd
 DN
-mA
+Tw
 dX
 zZ
 zZ
@@ -957,7 +979,7 @@ NC
 zZ
 zZ
 dX
-eU
+OB
 SO
 mA
 mA
@@ -980,7 +1002,7 @@ zZ
 "}
 (19,1,1) = {"
 Ef
-zZ
+kz
 MA
 zZ
 zZ
@@ -989,7 +1011,7 @@ zZ
 kz
 zZ
 dX
-mA
+Lw
 mA
 mA
 sP
@@ -1088,7 +1110,7 @@ dX
 LN
 mA
 mA
-Lw
+AY
 FN
 Dd
 Dd
@@ -1121,10 +1143,10 @@ kc
 Tw
 mA
 fT
-Lw
+AY
 Dd
-mA
-mA
+Lw
+Lw
 MA
 dX
 zZ
@@ -1151,9 +1173,9 @@ zZ
 dX
 nO
 mA
-wG
-mA
-mA
+Ge
+Tw
+Tw
 Dd
 MA
 MA
@@ -1337,7 +1359,7 @@ MA
 zZ
 JV
 Ef
-zZ
+kz
 Dw
 MA
 MA

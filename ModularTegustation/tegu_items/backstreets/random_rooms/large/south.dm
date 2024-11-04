@@ -31,5 +31,12 @@
 	room_id = "robot_castle"
 	mappath = "_maps/RandomRooms/backstreets/large_south/robot_castle.dmm"
 
+/datum/map_template/random_room/backstreets/large_south/supermarket
+	name = "Supermarket - Large South"
+	room_id = "supermarket"
+	mappath = "_maps/RandomRooms/backstreets/large_south/supermarket.dmm"
 
-
+/datum/map_template/random_room/backstreets/large_south/gcorp_armory
+	name = "G Corp Armory - Large South"
+	room_id = "gcorp_armory"
+	mappath = "_maps/RandomRooms/backstreets/large_south/gcorp_armory.dmm"

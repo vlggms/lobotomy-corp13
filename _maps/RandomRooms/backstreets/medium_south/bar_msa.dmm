@@ -30,7 +30,7 @@
 /area/city/backstreets_alley)
 "i" = (
 /obj/structure/mineral_door/wood,
-/turf/open/space/basic,
+/turf/open/floor/wood,
 /area/city/backstreets_alley)
 "j" = (
 /obj/machinery/vending/cigarette{

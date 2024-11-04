@@ -45,11 +45,26 @@
 	stock = 3 //Scorp has a lot of these
 	weight = 4 //40% as common
 
+/datum/map_template/random_room/backstreets/large_north/kcorp_warehouse
+	name = "K-Corp warehouse"
+	room_id = "kcorp_warehouse"
+	mappath = "_maps/RandomRooms/backstreets/large_north/kcorp_warehouse.dmm"
+	stock = 1
+	weight = 4
+
 /datum/map_template/random_room/backstreets/large_north/lab_ln
 	name = "Laboratory - Large North"
 	room_id = "lab_ln"
 	mappath = "_maps/RandomRooms/backstreets/large_north/lab_ln.dmm"
 
+/datum/map_template/random_room/backstreets/large_north/electric_room
+	name = "Amber Knight - Large North"
+	room_id = "electric_room"
+	mappath = "_maps/RandomRooms/backstreets/large_north/electric_room.dmm"
+	stock = 1
 
-
-
+/datum/map_template/random_room/backstreets/large_north/town_lna
+	name = "Lovetown - Large North"
+	room_id = "town_lna"
+	mappath = "_maps/RandomRooms/backstreets/large_north/town_lna.dmm"
+	stock = 1
