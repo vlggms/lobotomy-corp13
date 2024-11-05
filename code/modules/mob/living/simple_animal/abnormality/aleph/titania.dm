@@ -226,9 +226,7 @@
 		Punishment(Proj.firer)
 
 	if(currentlaw == "ranged fairy")
-		var/mob/living/simple_animal/hostile/fairyswarm/V = new(get_turf(src))
-		V.faction = faction
-		spawned_mobs+=V
+		SpawnFairies(1)
 
 //Melee stuff
 /mob/living/simple_animal/hostile/abnormality/titania/attacked_by(obj/item/I, mob/living/user)
