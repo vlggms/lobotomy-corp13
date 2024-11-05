@@ -3,7 +3,7 @@
 	desc = "A spear that the Carnival uses to hunt down their prey."
 	icon_state = "carnival_spear"
 	inhand_icon_state = "carnival_spear"
-	special = "Deal double damage to mobs of the backstreets, But deal half damage to humans."
+	special = "Deal double damage to mobs of the backstreets."
 	force = 30
 	reach = 2
 	attack_speed = 1.2
