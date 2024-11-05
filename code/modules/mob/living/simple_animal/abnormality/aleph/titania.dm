@@ -85,7 +85,7 @@
 	if(get_user_level(H) < 4 && (ishuman(H)))
 		say("I rid you of your pain, mere human.")
 		//Double Check
-		spawnFairies(fairy_spawn_number*2, H, ignore_cap = TRUE)
+		SpawnFairies(fairy_spawn_number*2, H, ignore_cap = TRUE)
 		H.gib()
 
 	if(target == nemesis)	//Deals pale damage to Oberon, fuck you.
