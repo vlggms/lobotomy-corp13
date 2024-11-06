@@ -15,8 +15,8 @@
 	attack_sound = 'sound/abnormalities/nosferatu/attack.ogg'
 	attack_verb_continuous = "slices"
 	attack_verb_simple = "slice"
-	maxHealth = 1200
-	health = 1200
+	maxHealth = 1000
+	health = 1000
 	ranged = TRUE
 	var/leap_sound = 'sound/abnormalities/nosferatu/attack_special.ogg'
 	var/blood_feast = 400
@@ -62,7 +62,7 @@
 			wallcheck = get_step(src, enemy_direction)
 			if(!ClearSky(wallcheck))
 				break
-			//without this the attack happens instantly
+			sleep(0.25)//without this the attack happens instantly
 			forceMove(wallcheck)
 			playsound(wallcheck, 'sound/abnormalities/doomsdaycalendar/Lor_Slash_Generic.ogg', 20, 0, 4)
 			for(var/turf/T in orange(get_turf(src), 1))
@@ -78,16 +78,16 @@
 	blood_feast = 0
 	can_act = FALSE
 	SLEEP_CHECK_DEATH(0.25 SECONDS)
-	animate(src, alpha = 1,pixel_x = 0, pixel_z = 16, time = 0.1 SECONDS)
-	src.pixel_z = 16
+	animate(src, alpha = 1,pixel_x = 16, pixel_z = 0, time = 0.1 SECONDS)
+	src.pixel_x = 16
 	playsound(src, 'sound/abnormalities/ichthys/jump.ogg', 50, FALSE, 4)
 	var/turf/target_turf = get_turf(target)
 	SLEEP_CHECK_DEATH(1 SECONDS)
 	if(target_turf)
 		forceMove(target_turf) //look out, someone is rushing you!
 	playsound(src, leap_sound, 50, FALSE, 4)
-	animate(src, alpha = 255,pixel_x = 0, pixel_z = -16, time = 0.1 SECONDS)
-	src.pixel_z = 0
+	animate(src, alpha = 255,pixel_x = -16, pixel_z = 0, time = 0.1 SECONDS)
+	src.pixel_x = 0
 	SLEEP_CHECK_DEATH(0.1 SECONDS)
 	for(var/turf/T in view(1, src))
 		var/obj/effect/temp_visual/small_smoke/halfsecond/FX =  new(T)
@@ -154,6 +154,7 @@
 	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 0.6, WHITE_DAMAGE = 1.2, BLACK_DAMAGE = 0.8, PALE_DAMAGE = 1.5)
 	melee_damage_lower = 5
 	melee_damage_upper = 6
+	rapid_melee = 3
 	melee_damage_type = RED_DAMAGE
 	attack_sound = 'sound/effects/ordeals/brown/flea_attack.ogg'
 	attack_verb_continuous = "slashes"
@@ -163,7 +164,7 @@
 	var/self_damage = 20
 	var/self_damage_type = RED_DAMAGE
 	var/blood_drop_cooldown = 0
-	var/blood_drop_cooldown_time = 0.5
+	var/blood_drop_cooldown_time = 1
 
 /mob/living/simple_animal/hostile/humanoid/blood/bag/AttackingTarget(atom/attacked_target)
 	. = ..()
@@ -193,7 +194,6 @@
 	..()
 
 /mob/living/simple_animal/hostile/humanoid/blood/bag/proc/DeathExplosion()
-	new /obj/effect/temp_visual/explosion(get_turf(src))
 	playsound(loc, 'sound/effects/ordeals/crimson/dusk_dead.ogg', 60, TRUE)
 	for(var/mob/living/L in view(1, src))
 		L.deal_damage(10, RED_DAMAGE)
