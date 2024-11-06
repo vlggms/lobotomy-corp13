@@ -26,6 +26,8 @@
 	var/slash_damage = 25
 	var/drain_cooldown = 0
 	var/drain_cooldown_time = 50
+	var/bleed_stacks = 3
+	var/leap_bleed_stacks = 10
 
 
 /mob/living/simple_animal/hostile/humanoid/blood/fiend/proc/AdjustBloodFeast(amount)
@@ -95,6 +97,7 @@
 		for(var/mob/living/L in T)
 			if(faction_check_mob(L))
 				continue
+			L.apply_lc_bleed(leap_bleed_stacks)
 			L.deal_damage(leap_damage, RED_DAMAGE)
 		for(var/obj/vehicle/sealed/mecha/V in T)
 			V.take_damage(leap_damage, RED_DAMAGE)
@@ -128,7 +131,10 @@
 	if(blood_feast == max_blood_feast && !client)
 		Leap(target)
 		return
-	return ..()
+	. = ..()
+	if (istype(target, /mob/living))
+		var/mob/living/L = target
+		L.apply_lc_bleed(bleed_stacks)
 
 /mob/living/simple_animal/hostile/humanoid/blood/fiend/OpenFire()
 	if(!can_act)
@@ -165,9 +171,15 @@
 	var/self_damage_type = RED_DAMAGE
 	var/blood_drop_cooldown = 0
 	var/blood_drop_cooldown_time = 1
+	var/bleed_stacks = 1
+	var/explosion_damage = 10
+	var/explosion_bleed = 5
 
 /mob/living/simple_animal/hostile/humanoid/blood/bag/AttackingTarget(atom/attacked_target)
 	. = ..()
+	if (istype(target, /mob/living))
+		var/mob/living/L = target
+		L.apply_lc_bleed(bleed_stacks)
 	deal_damage(self_damage, self_damage_type)
 
 /mob/living/simple_animal/hostile/humanoid/blood/bag/adjustHealth(amount, updating_health = TRUE, forced = FALSE)
@@ -196,7 +208,8 @@
 /mob/living/simple_animal/hostile/humanoid/blood/bag/proc/DeathExplosion()
 	playsound(loc, 'sound/effects/ordeals/crimson/dusk_dead.ogg', 60, TRUE)
 	for(var/mob/living/L in view(1, src))
-		L.deal_damage(10, RED_DAMAGE)
+		L.deal_damage(explosion_damage, RED_DAMAGE)
+		L.apply_lc_bleed(explosion_bleed)
 	var/turf/origin = get_turf(src)
 	var/list/all_turfs = RANGE_TURFS(1, origin)
 	for(var/turf/T in shuffle(all_turfs))
