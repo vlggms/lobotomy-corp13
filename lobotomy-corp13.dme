@@ -4305,6 +4305,7 @@
 #include "ModularTegustation\tegu_mobs\apostle_antag.dm"
 #include "ModularTegustation\tegu_mobs\butcher.dm"
 #include "ModularTegustation\tegu_mobs\chaos_marine.dm"
+#include "ModularTegustation\tegu_mobs\lc13_blood_fiend.dm"
 #include "ModularTegustation\tegu_mobs\lc13_bongy.dm"
 #include "ModularTegustation\tegu_mobs\lc13_corrosions.dm"
 #include "ModularTegustation\tegu_mobs\lc13_humanoids.dm"
