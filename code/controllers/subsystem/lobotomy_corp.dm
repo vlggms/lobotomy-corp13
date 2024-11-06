@@ -371,6 +371,8 @@ SUBSYSTEM_DEF(lobotomy_corp)
 		return FALSE
 	if(!LAZYLEN(current_ordeals))
 		return FALSE
+	if(SSmaptype.maptype == "skeld")
+		return FALSE
 	var/agent_count = AvailableAgentCount()
 	if(agent_count > 0)
 		return FALSE
@@ -378,7 +380,7 @@ SUBSYSTEM_DEF(lobotomy_corp)
 
 /datum/controller/subsystem/lobotomy_corp/proc/OnMobDeath(datum/source, mob/living/died, gibbed)
 	SIGNAL_HANDLER
-	if(!(SSmaptype.maptype in list("standard", "fishing", "wonderlabs")))
+	if(!(SSmaptype.maptype in list("standard", "skeld", "fishing", "wonderlabs")))
 		return FALSE
 	if(!ishuman(died))
 		return FALSE
