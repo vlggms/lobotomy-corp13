@@ -5,9 +5,9 @@
 /mob/living/simple_animal/hostile/humanoid/blood/fiend
 	name = "bloodfiend"
 	desc = "Desc"
-	icon = 'ModularTegustation/Teguicons/tegumobs.dmi'
-	icon_state = "humanoid_hostile"
-	icon_living = "humanoid_hostile"
+	icon = 'ModularTegustation/Teguicons/blood_fiends_32x48.dmi'
+	icon_state = "Fashionista_Bloodfiend"
+	icon_living = "Fashionista_Bloodfiend"
 	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 0.4, WHITE_DAMAGE = 1, BLACK_DAMAGE = 0.6, PALE_DAMAGE = 1.3)
 	melee_damage_lower = 13
 	melee_damage_upper = 15
@@ -17,7 +17,6 @@
 	attack_verb_simple = "slice"
 	maxHealth = 1200
 	health = 1200
-	color = "#b52e19"
 	ranged = TRUE
 	var/leap_sound = 'sound/abnormalities/nosferatu/attack_special.ogg'
 	var/blood_feast = 400
@@ -148,10 +147,10 @@
 /mob/living/simple_animal/hostile/humanoid/blood/bag
 	name = "bloodbag"
 	desc = "Desc"
-	icon = 'ModularTegustation/Teguicons/tegumobs.dmi'
-	icon_state = "humanoid_hostile"
-	icon_living = "humanoid_hostile"
-	icon_dead = "humanoid_hostile"
+	icon = 'ModularTegustation/Teguicons/blood_fiends_32x32.dmi'
+	icon_state = "BloodBag"
+	icon_living = "BloodBag"
+	icon_dead = "BloodBag"
 	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 0.6, WHITE_DAMAGE = 1.2, BLACK_DAMAGE = 0.8, PALE_DAMAGE = 1.5)
 	melee_damage_lower = 5
 	melee_damage_upper = 6
