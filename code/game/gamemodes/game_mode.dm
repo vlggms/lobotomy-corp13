@@ -118,9 +118,40 @@
 
 	addtimer(CALLBACK(SSabnormality_queue, TYPE_PROC_REF(/datum/controller/subsystem/abnormality_queue, HandleStartingAbnormalities)), ABNORMALITY_DELAY)
 
+	if(SSmaptype.maptype == "skeld")
+		addtimer(CALLBACK(src, PROC_REF(SetSkeldAntags)), 3 MINUTES)
+
 	gamemode_ready = TRUE
 	return TRUE
 
+
+//Assigns antagonists in Skeld
+/datum/game_mode/proc/SetSkeldAntags()
+
+	var/list/innocent_roles = list("Agent Captain", "Sephirah", "Main Office Representative") //Roles to not be antags in Skeld
+	var/list/possible_antags = list()
+	for(var/mob/living/carbon/human/H in GLOB.player_list)
+		if(H.stat == DEAD)
+			continue
+		if(!H.client)
+			continue
+		if(!H.mind)
+			continue
+		if(!(ROLE_TRAITOR in H.client.prefs.be_special))
+		else
+			if(H.mind.assigned_role in innocent_roles)
+				continue
+			if(is_centcom_level(H.z))
+				continue
+			possible_antags += H
+
+		for(var/i = 1 to 3)
+			if(LAZYLEN(possible_antags > 0))
+				var/mob/M = pick(possible_antags)
+				possible_antags -= M
+				var/datum/antagonist/traitor/newTraitor = new
+				M.mind.add_antag_datum(newTraitor)
+		message_admins("Traitors have been assigned!")
 
 ///Handles late-join antag assignments
 /datum/game_mode/proc/make_antag_chance(mob/living/carbon/human/character)

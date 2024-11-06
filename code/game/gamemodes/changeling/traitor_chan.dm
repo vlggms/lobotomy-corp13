@@ -1,4 +1,4 @@
-/datum/game_mode/management/traitor/changeling
+/datum/game_mode/traitor/changeling
 	name = "traitor+changeling"
 	config_tag = "traitorchan"
 	report_type = "traitorchan"
@@ -16,7 +16,7 @@
 	var/list/changelings = list()
 	var/const/changeling_amount = 1 //hard limit on changelings if scaling is turned off
 
-/datum/game_mode/management/traitor/changeling/can_start()
+/datum/game_mode/traitor/changeling/can_start()
 	. = ..()
 	if(!.)
 		return
@@ -25,7 +25,7 @@
 		return FALSE
 	return TRUE
 
-/datum/game_mode/management/traitor/changeling/pre_setup()
+/datum/game_mode/traitor/changeling/pre_setup()
 	if(CONFIG_GET(flag/protect_roles_from_antagonist))
 		restricted_jobs += protected_jobs
 
@@ -60,13 +60,13 @@
 	else
 		return FALSE
 
-/datum/game_mode/management/traitor/changeling/post_setup()
+/datum/game_mode/traitor/changeling/post_setup()
 	for(var/datum/mind/changeling in changelings)
 		changeling.add_antag_datum(/datum/antagonist/changeling)
 		GLOB.pre_setup_antags -= changeling
 	return ..()
 
-/datum/game_mode/management/traitor/changeling/make_antag_chance(mob/living/carbon/human/character) //Assigns changeling to latejoiners
+/datum/game_mode/traitor/changeling/make_antag_chance(mob/living/carbon/human/character) //Assigns changeling to latejoiners
 	var/csc = CONFIG_GET(number/changeling_scaling_coeff)
 	var/changelingcap = min( round(GLOB.joined_player_list.len / (csc * 4)) + 2, round(GLOB.joined_player_list.len / (csc * 2)))
 	if(changelings.len >= changelingcap) //Caps number of latejoin antagonists
@@ -83,7 +83,7 @@
 		return
 	..()
 
-/datum/game_mode/management/traitor/changeling/generate_report()
+/datum/game_mode/traitor/changeling/generate_report()
 	return "The Syndicate has started some experimental research regarding humanoid shapeshifting.  There are rumors that this technology will be field tested on a Nanotrasen station \
 			for infiltration purposes.  Be advised that support personel may also be deployed to defend these shapeshifters. Trust nobody - suspect everybody. Do not announce this to the crew, \
 			as paranoia may spread and inhibit workplace efficiency."

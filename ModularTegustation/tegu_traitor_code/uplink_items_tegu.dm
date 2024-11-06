@@ -189,7 +189,7 @@
 	item = /obj/item/adv_mulligan
 	cost = 5
 	surplus = 18
-	include_modes = list(/datum/game_mode/management/traitor/infiltrator) //It's only for infiltrators, 'cuz of low-cost.
+	include_modes = list(/datum/game_mode/traitor/infiltrator) //It's only for infiltrators, 'cuz of low-cost.
 
 ////////////// INFILTRATION GAMEMODE ITEMS - END //////////////
 

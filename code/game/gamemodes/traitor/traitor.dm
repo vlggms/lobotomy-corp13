@@ -2,7 +2,7 @@
 	var/traitor_name = "traitor"
 	var/list/datum/mind/traitors = list()
 
-/datum/game_mode/management/traitor
+/datum/game_mode/traitor
 	name = "traitor"
 	config_tag = "traitor"
 	report_type = "traitor"
@@ -28,7 +28,7 @@
 	var/traitors_required = TRUE //Will allow no traitors
 
 
-/datum/game_mode/management/traitor/pre_setup()
+/datum/game_mode/traitor/pre_setup()
 
 	if(CONFIG_GET(flag/protect_roles_from_antagonist))
 		restricted_jobs += protected_jobs
@@ -65,7 +65,7 @@
 		return TRUE
 
 
-/datum/game_mode/management/traitor/post_setup()
+/datum/game_mode/traitor/post_setup()
 	for(var/datum/mind/traitor in pre_traitors)
 		var/datum/antagonist/traitor/new_antag = new antag_datum()
 		addtimer(CALLBACK(traitor, TYPE_PROC_REF(/datum/mind, add_antag_datum), new_antag), rand(10,100))
@@ -77,7 +77,7 @@
 	addtimer(VARSET_CALLBACK(src, gamemode_ready, TRUE), 101)
 	return TRUE
 
-/datum/game_mode/management/traitor/make_antag_chance(mob/living/carbon/human/character) //Assigns traitor to latejoiners
+/datum/game_mode/traitor/make_antag_chance(mob/living/carbon/human/character) //Assigns traitor to latejoiners
 	var/tsc = CONFIG_GET(number/traitor_scaling_coeff)
 	var/traitorcap = min(round(GLOB.joined_player_list.len / (tsc * 2)) + 2 + num_modifier, round(GLOB.joined_player_list.len / tsc) + num_modifier)
 	if((SSticker.mode.traitors.len + pre_traitors.len) >= traitorcap) //Upper cap for number of latejoin antagonists
@@ -89,10 +89,10 @@
 					if(!(character.job in restricted_jobs))
 						add_latejoin_traitor(character.mind)
 
-/datum/game_mode/management/traitor/proc/add_latejoin_traitor(datum/mind/character)
+/datum/game_mode/traitor/proc/add_latejoin_traitor(datum/mind/character)
 	var/datum/antagonist/traitor/new_antag = new antag_datum()
 	character.add_antag_datum(new_antag)
 
-/datum/game_mode/management/traitor/generate_report()
+/datum/game_mode/traitor/generate_report()
 	return "Although more specific threats are commonplace, you should always remain vigilant for Syndicate agents aboard your station. Syndicate communications have implied that many \
 		Nanotrasen employees are Syndicate agents with hidden memories that may be activated at a moment's notice, so it's possible that these agents might not even know their positions."

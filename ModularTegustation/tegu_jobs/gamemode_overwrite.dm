@@ -1,4 +1,4 @@
-/datum/game_mode/management/traitor/New()
+/datum/game_mode/traitor/New()
 	protected_jobs += "Deputy"
 	protected_jobs += "Head of Personnel"
 	. = ..()
@@ -13,7 +13,7 @@
 	protected_jobs += "Head of Personnel"
 	. = ..()
 
-/datum/game_mode/management/changeling/New()
+/datum/game_mode/changeling/New()
 	protected_jobs += "Deputy"
 	protected_jobs += "Head of Personnel"
 	. = ..()

@@ -3156,6 +3156,10 @@
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer2,
 /turf/open/floor/plasteel,
 /area/ruin/space/has_grav/ancientstation/betacorridor)
+"nJ" = (
+/obj/structure/closet/secure_closet/record,
+/turf/open/floor/carpet/black,
+/area/department_main/records)
 "nL" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/airalarm/all_access{
@@ -35195,7 +35199,7 @@ ZA
 ZA
 ZA
 tU
-ee
+nJ
 Ce
 Ce
 Ce
@@ -35451,8 +35455,8 @@ ZA
 ZA
 ZA
 ZA
-ZA
 tU
+ee
 EM
 AL
 Qc
@@ -35708,7 +35712,7 @@ ZA
 ZA
 ZA
 ZA
-ZA
+tU
 tU
 tU
 tU

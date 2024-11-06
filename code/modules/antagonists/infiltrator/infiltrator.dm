@@ -29,7 +29,7 @@
 	var/datum/component/uplink/U = owner.find_syndicate_uplink()
 	if (U)
 		U.telecrystals += extra_tc
-		U.set_gamemode(/datum/game_mode/management/traitor/infiltrator) //For gamemode-specific uplink stuff during dynamic rounds
+		U.set_gamemode(/datum/game_mode/traitor/infiltrator) //For gamemode-specific uplink stuff during dynamic rounds
 
 /datum/antagonist/traitor/infiltrator/proc/move_to_spawnpoint()
 	var/list/emergency_locs = list() //In case map doesn't contain landmarks for infils

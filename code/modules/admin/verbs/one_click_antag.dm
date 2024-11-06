@@ -47,7 +47,7 @@
 
 
 /datum/admins/proc/makeTraitors(maxCount = 3)
-	var/datum/game_mode/management/traitor/temp = new
+	var/datum/game_mode/traitor/temp = new
 
 	if(CONFIG_GET(flag/protect_roles_from_antagonist))
 		temp.restricted_jobs += temp.protected_jobs
@@ -80,7 +80,7 @@
 
 /datum/admins/proc/makeChangelings(maxCount = 3)
 
-	var/datum/game_mode/management/changeling/temp = new
+	var/datum/game_mode/changeling/temp = new
 	if(CONFIG_GET(flag/protect_roles_from_antagonist))
 		temp.restricted_jobs += temp.protected_jobs
 

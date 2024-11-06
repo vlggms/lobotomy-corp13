@@ -2,7 +2,7 @@
 	var/list/target_list = list()
 	var/list/late_joining_list = list()
 
-/datum/game_mode/management/traitor/internal_affairs
+/datum/game_mode/traitor/internal_affairs
 	name = "Internal Affairs"
 	config_tag = "internal_affairs"
 	report_type = "internal_affairs"
@@ -24,7 +24,7 @@
 
 
 
-/datum/game_mode/management/traitor/internal_affairs/post_setup()
+/datum/game_mode/traitor/internal_affairs/post_setup()
 	var/i = 0
 	for(var/datum/mind/traitor in pre_traitors)
 		i++
@@ -34,7 +34,7 @@
 	..()
 
 
-/datum/game_mode/management/traitor/internal_affairs/add_latejoin_traitor(datum/mind/character)
+/datum/game_mode/traitor/internal_affairs/add_latejoin_traitor(datum/mind/character)
 
 	check_potential_agents()
 
@@ -63,7 +63,7 @@
 		late_joining_list += character
 	return
 
-/datum/game_mode/management/traitor/internal_affairs/proc/check_potential_agents()
+/datum/game_mode/traitor/internal_affairs/proc/check_potential_agents()
 
 	for(var/M in late_joining_list)
 		if(istype(M, /datum/mind))
@@ -78,6 +78,6 @@
 		late_joining_list -= M
 
 
-/datum/game_mode/management/traitor/internal_affairs/generate_report()
+/datum/game_mode/traitor/internal_affairs/generate_report()
 	return "Nanotrasen denies any accusations of placing internal affairs agents onboard your station to eliminate inconvenient employees.  Any further accusations against CentCom for such \
 			actions will be met with a conversation with an official internal affairs agent."
