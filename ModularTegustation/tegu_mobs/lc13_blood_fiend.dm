@@ -165,6 +165,7 @@
 /mob/living/simple_animal/hostile/humanoid/blood/fiend/boss/Leap(mob/living/target)
 	if(!isliving(target) && !ismecha(target) || !can_act)
 		return
+	target.apply_status_effect(/datum/status_effect/bloodhold)
 	blood_feast = 0
 	can_act = FALSE
 	var/list/dirs_to_land = shuffle(list(NORTH, SOUTH, EAST, WEST, NORTHEAST, NORTHWEST, SOUTHEAST, SOUTHWEST))

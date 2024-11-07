@@ -1005,6 +1005,30 @@
 	owner.cut_overlay(statuseffectvisual)
 	return ..()
 
+#define MOB_QUARTERSPEED /datum/movespeed_modifier/bloodhold
+/datum/status_effect/bloodhold
+	id = "bloodhold"
+	duration = 8 SECONDS
+	alert_type = null
+	status_type = STATUS_EFFECT_REFRESH
+	var/statuseffectvisual
+
+/datum/status_effect/bloodhold/on_apply()
+	. = ..()
+	owner.add_movespeed_modifier(MOB_QUARTERSPEED)
+	to_chat(owner, "<span class='warning'>You are slowed down as your own blood resist your movement!</span>")
+	var/mutable_appearance/effectvisual = mutable_appearance('icons/obj/clockwork_objects.dmi', "hateful_manacles")
+	effectvisual.pixel_x = -owner.pixel_x
+	effectvisual.pixel_y = -owner.pixel_y
+	statuseffectvisual = effectvisual
+	owner.add_overlay(statuseffectvisual)
+
+/datum/status_effect/bloodhold/on_remove()
+	owner.remove_movespeed_modifier(MOB_QUARTERSPEED)
+
+	owner.cut_overlay(statuseffectvisual)
+	return ..()
+
 //update_stamina() is move_to_delay = (initial(move_to_delay) + (staminaloss * 0.06))
 // 100 stamina damage equals 6 additional move_to_delay. So 167*0.06 = 10.02
 
@@ -1191,6 +1215,11 @@
 		qdel(src)
 	to_chat(owner, "<span class='warning'>The your organs bleed due to your movement!!</span>")
 	owner.playsound_local(owner, 'sound/effects/wounds/crackandbleed.ogg', 25, TRUE)
+	if(stacks >= 10)
+		var/obj/effect/decal/cleanable/blood/B = locate() in get_turf(owner)
+		if(!B)
+			B = new /obj/effect/decal/cleanable/blood(get_turf(owner))
+			B.bloodiness = 100
 	if(ishuman(owner))
 		owner.adjustBruteLoss(max(0, stacks))
 	else
