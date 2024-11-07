@@ -727,7 +727,7 @@
 	remarks = list("Make sure that you always have your weaving knife on you? I already knew that.", "Using sweepers as silk? That is brand new...", "Huh, it says here that 'Be careful around the fixer association...' ", "This book smells quite well, Like it was just made just for me!", "A rookie must have made this page, or they forgot to spell check it before printing...", "Wait, how will this turn a profit? I spent like 1000 ahn for this book!")
 
 /obj/item/book/granter/crafting_recipe/carnival/weaving_basic_converstion
-	name = "Weaving Armor: Common Conversation Edition"
+	name = "Weaving Armor: Common Conversation/Transfers Edition"
 	desc = "A weaving book that teaches you how to weave common types of silk into another. Carnival approved!"
 	crafting_recipe_types = list(
 		/datum/crafting_recipe/converted_green_silk_advanced,
@@ -752,7 +752,7 @@
 	remarks = list("Make sure that you always have your weaving knife on you? I already knew that.", "Using sweepers as silk? That is brand new...", "Huh, it says here that 'Be careful around the fixer association...' ", "This book smells quite well, Like it was just made just for me!", "A rookie must have made this page, or they forgot to spell check it before printing...", "Wait, how will this turn a profit? I spent like 1000 ahn for this book!")
 
 /obj/item/book/granter/crafting_recipe/carnival/weaving_advanced_converstion
-	name = "Weaving Armor: Rare Conversation Edition"
+	name = "Weaving Armor: Rare Conversation/Transfers Edition"
 	desc = "A weaving book that teaches you how to weave rare types of silk into another. Carnival approved!"
 	crafting_recipe_types = list(
 		/datum/crafting_recipe/converted_crimson_silk_advanced,
