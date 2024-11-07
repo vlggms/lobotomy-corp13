@@ -28,7 +28,7 @@
 	var/drain_cooldown_time = 50
 	var/bleed_stacks = 3
 	var/leap_bleed_stacks = 10
-
+	var/boss = FALSE
 
 /mob/living/simple_animal/hostile/humanoid/blood/fiend/proc/AdjustBloodFeast(amount)
 	adjustBruteLoss(-amount/2)
@@ -79,10 +79,6 @@
 		return
 	blood_feast = 0
 	can_act = FALSE
-	SLEEP_CHECK_DEATH(0.25 SECONDS)
-	animate(src, alpha = 1,pixel_x = 16, pixel_z = 0, time = 0.1 SECONDS)
-	src.pixel_x = 16
-	playsound(src, 'sound/abnormalities/ichthys/jump.ogg', 50, FALSE, 4)
 	var/turf/target_turf = get_turf(target)
 	SLEEP_CHECK_DEATH(1 SECONDS)
 	if(target_turf)
@@ -148,6 +144,79 @@
 		return FALSE
 	Drain()
 	..()
+
+/mob/living/simple_animal/hostile/humanoid/blood/fiend/boss
+	name = "bloodfiendboss"
+	desc = "Desc"
+	icon = 'ModularTegustation/Teguicons/blood_fiends_32x48.dmi'
+	icon_state = "Fashionista_Bloodfiend"
+	icon_living = "Fashionista_Bloodfiend"
+	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 0.4, WHITE_DAMAGE = 1, BLACK_DAMAGE = 0.6, PALE_DAMAGE = 1.3)
+	melee_damage_lower = 13
+	melee_damage_upper = 15
+	melee_damage_type = RED_DAMAGE
+	attack_sound = 'sound/abnormalities/nosferatu/attack.ogg'
+	attack_verb_continuous = "slices"
+	attack_verb_simple = "slice"
+	maxHealth = 1000
+	health = 1000
+	ranged = TRUE
+
+/mob/living/simple_animal/hostile/humanoid/blood/fiend/boss/Leap(mob/living/target)
+	if(!isliving(target) && !ismecha(target) || !can_act)
+		return
+	blood_feast = 0
+	can_act = FALSE
+	var/list/dirs_to_land = shuffle(list(NORTH, SOUTH, EAST, WEST, NORTHEAST, NORTHWEST, SOUTHEAST, SOUTHWEST))
+	var/list/dir_overlays = list()
+	for (var/i in 1 to 3)
+		var/dir_to_land = dirs_to_land[i]
+		// add overlay
+		var/x
+		var/y
+		if (dir_to_land == NORTH)
+			x = 0
+			y = 32
+		else if (dir_to_land == SOUTH)
+			x = 0
+			y = -32
+		else if (dir_to_land == EAST)
+			x = 32
+			y = 0
+		else if (dir_to_land == SOUTH)
+			x = -32
+			y = 0
+		else if (dir_to_land == NORTHEAST)
+			x = 32
+			y = 32
+		else if (dir_to_land == NORTHWEST)
+			x = 32
+			y = -32
+		else if (dir_to_land == SOUTHEAST)
+			x = 32
+			y = -32
+		else
+			x = -32
+			y = -32
+		var/image/O = image(icon='ModularTegustation/Teguicons/tegu_effects.dmi',icon_state="target_field", pixel_x = x, pixel_y = y)
+		target.add_overlay(O)
+		dir_overlays.Add(O)
+		SLEEP_CHECK_DEATH(1 SECONDS)
+	for (var/i in 1 to 3)
+		SLEEP_CHECK_DEATH(0.25 SECONDS)
+		target.cut_overlay(dir_overlays[i])
+		animate(src, alpha = 1,pixel_x = 16, pixel_z = 0, time = 0.1 SECONDS)
+		src.pixel_x = 16
+		playsound(src, 'sound/abnormalities/ichthys/jump.ogg', 50, FALSE, 4)
+		var/turf/target_turf = get_step(get_turf(target), dirs_to_land[i])
+		if(target_turf)
+			forceMove(target_turf) //look out, someone is rushing you!
+		playsound(src, leap_sound, 50, FALSE, 4)
+		animate(src, alpha = 255,pixel_x = -16, pixel_z = 0, time = 0.1 SECONDS)
+		src.pixel_x = 0
+		SLEEP_CHECK_DEATH(0.5 SECONDS)
+		Dash(target)
+	can_act = TRUE
 
 
 /mob/living/simple_animal/hostile/humanoid/blood/bag
