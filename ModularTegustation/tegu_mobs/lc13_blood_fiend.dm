@@ -198,9 +198,10 @@
 		else
 			x = -32
 			y = -32
-		var/image/O = image(icon='ModularTegustation/Teguicons/tegu_effects.dmi',icon_state="target_field", pixel_x = x, pixel_y = y)
+		var/image/O = image(icon='icons/effects/cult_effects.dmi',icon_state="bloodsparkles", pixel_x = x, pixel_y = y)
 		target.add_overlay(O)
 		dir_overlays.Add(O)
+		playsound(target, 'ModularTegustation/Tegusounds/claw/eviscerate1.ogg', 100, 1)
 		SLEEP_CHECK_DEATH(1 SECONDS)
 	for (var/i in 1 to 3)
 		SLEEP_CHECK_DEATH(0.25 SECONDS)
@@ -214,7 +215,6 @@
 		playsound(src, leap_sound, 50, FALSE, 4)
 		animate(src, alpha = 255,pixel_x = -16, pixel_z = 0, time = 0.1 SECONDS)
 		src.pixel_x = 0
-		SLEEP_CHECK_DEATH(0.5 SECONDS)
 		Dash(target)
 	can_act = TRUE
 
