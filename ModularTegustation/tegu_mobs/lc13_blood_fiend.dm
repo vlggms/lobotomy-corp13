@@ -203,10 +203,14 @@
 		target.add_overlay(O)
 		dir_overlays.Add(O)
 		playsound(target, 'ModularTegustation/Tegusounds/claw/eviscerate1.ogg', 100, 1)
-		SLEEP_CHECK_DEATH(1 SECONDS)
+		if (stat != DEAD)
+			SLEEP(1 SECONDS)
+		else
+			break
 	for (var/i in 1 to 3)
-		SLEEP_CHECK_DEATH(0.25 SECONDS)
 		target.cut_overlay(dir_overlays[i])
+		if (stat == DEAD)
+			continue
 		animate(src, alpha = 1,pixel_x = 16, pixel_z = 0, time = 0.1 SECONDS)
 		src.pixel_x = 16
 		playsound(src, 'sound/abnormalities/ichthys/jump.ogg', 50, FALSE, 4)
@@ -217,7 +221,43 @@
 		animate(src, alpha = 255,pixel_x = -16, pixel_z = 0, time = 0.1 SECONDS)
 		src.pixel_x = 0
 		Dash(target)
+		SLEEP(0.25 SECONDS)
 	can_act = TRUE
+
+/mob/living/simple_animal/hostile/humanoid/blood/fiend/boss/Dash(target_turf)
+	target_turf = get_turf(target)
+	var/list/hit_mob = list()
+	do_shaky_animation(1)
+	var/dx = src.x - target.x
+	var/dy = src.y - target.y
+	var/turf/safe_turf = locate(target.x - dx, target.y - dy, target.z)
+	var/list/warning_overlays = list()
+	var/list/warning_turfs = list()
+	for(var/turf/T in view(target_turf, 2))
+		if (T == safe_turf)
+			continue;
+		// put marker
+		var/image/O = image(icon='icons/effects/cult_effects.dmi',icon_state="floorglow")
+		T.add_overlay(O)
+		warning_overlays.Add(O)
+		warning_turfs.Add(T)
+
+
+	SLEEP(25)
+	for (var/i in 1 to 24)
+		var/turf/T = warning_turfs[i]
+		T.cut_overlay(warning_overlays[i])
+
+	if (stat == DEAD)
+		return
+	playsound(target, 'sound/abnormalities/doomsdaycalendar/Lor_Slash_Generic.ogg', 20, 0, 4)
+	for(var/turf/T in view(target_turf, 2))
+		if (T == safe_turf)
+			continue;
+		var/obj/effect/temp_visual/slice/blood = new(T)
+		blood.color = "#b52e19"
+		hit_mob = HurtInTurf(T, hit_mob, slash_damage, RED_DAMAGE, null, TRUE, FALSE, TRUE, hurt_structure = TRUE)
+
 
 
 /mob/living/simple_animal/hostile/humanoid/blood/bag
