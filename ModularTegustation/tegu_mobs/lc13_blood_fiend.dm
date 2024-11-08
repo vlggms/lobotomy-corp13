@@ -204,7 +204,7 @@
 		dir_overlays.Add(O)
 		playsound(target, 'ModularTegustation/Tegusounds/claw/eviscerate1.ogg', 100, 1)
 		if (stat != DEAD)
-			SLEEP(1 SECONDS)
+			sleep(1 SECONDS)
 		else
 			break
 	for (var/i in 1 to 3)
@@ -221,7 +221,7 @@
 		animate(src, alpha = 255,pixel_x = -16, pixel_z = 0, time = 0.1 SECONDS)
 		src.pixel_x = 0
 		Dash(target)
-		SLEEP(0.25 SECONDS)
+		sleep(0.25 SECONDS)
 	can_act = TRUE
 
 /mob/living/simple_animal/hostile/humanoid/blood/fiend/boss/Dash(target_turf)
@@ -236,14 +236,14 @@
 	for(var/turf/T in view(target_turf, 2))
 		if (T == safe_turf)
 			continue;
-		// put marker
-		var/image/O = image(icon='icons/effects/cult_effects.dmi',icon_state="floorglow")
+		var/image/O = image(icon='icons/effects/eldritch.dmi',icon_state="cloud_swirl")
 		T.add_overlay(O)
 		warning_overlays.Add(O)
+		O.color = "#b52e19"
 		warning_turfs.Add(T)
 
 
-	SLEEP(25)
+	sleep(15)
 	for (var/i in 1 to 24)
 		var/turf/T = warning_turfs[i]
 		T.cut_overlay(warning_overlays[i])
