@@ -2,9 +2,11 @@
 /datum/crafting_recipe/blade_lineage_salsu
 	name = "Blade Lineage Salsu Robe"
 	result = /obj/item/clothing/suit/armor/ego_gear/city/blade_lineage_salsu
-	reqs = list(/obj/item/stack/sheet/silk/steel_simple = 3,
-				/obj/item/stack/sheet/silk/amber_advanced = 1,
-				/obj/item/stack/sheet/silk/human_simple = 1)
+	reqs = list(
+		/obj/item/stack/sheet/silk/steel_simple = 3,
+		/obj/item/stack/sheet/silk/amber_advanced = 1,
+		/obj/item/stack/sheet/silk/human_simple = 1,
+	)
 	tools = list(/obj/item/silkknife = 1)
 	time = 15
 	always_available = FALSE
