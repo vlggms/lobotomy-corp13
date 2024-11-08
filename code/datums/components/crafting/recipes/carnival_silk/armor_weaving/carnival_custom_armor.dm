@@ -47,9 +47,11 @@
 /datum/crafting_recipe/carnival_robes
 	name = "Carnival's Robes"
 	result = /obj/item/clothing/suit/armor/ego_gear/city/carnival_robes
-	reqs = list(/obj/item/stack/sheet/silk/indigo_advanced = 3,
-				/obj/item/stack/sheet/silk/green_advanced = 3,
-				/obj/item/stack/sheet/silk/human_advanced = 1)
+	reqs = list(
+		/obj/item/stack/sheet/silk/indigo_advanced = 3,
+		/obj/item/stack/sheet/silk/green_advanced = 3,
+		/obj/item/stack/sheet/silk/human_advanced = 1
+	)
 	tools = list(/obj/item/silkknife = 1)
 	time = 15
 	always_available = FALSE
