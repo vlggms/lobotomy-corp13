@@ -1008,7 +1008,7 @@
 #define MOB_QUARTERSPEED /datum/movespeed_modifier/bloodhold
 /datum/status_effect/bloodhold
 	id = "bloodhold"
-	duration = 12 SECONDS
+	duration = 10 SECONDS
 	alert_type = null
 	status_type = STATUS_EFFECT_REFRESH
 	var/statuseffectvisual

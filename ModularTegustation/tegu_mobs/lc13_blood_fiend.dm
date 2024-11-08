@@ -1,7 +1,6 @@
 /mob/living/simple_animal/hostile/humanoid/blood
 	faction = list("hostile")
 
-
 /mob/living/simple_animal/hostile/humanoid/blood/fiend
 	name = "bloodfiend"
 	desc = "Desc"
@@ -161,6 +160,7 @@
 	maxHealth = 1000
 	health = 1000
 	ranged = TRUE
+	var/cutter_bleed_stacks = 15
 
 /mob/living/simple_animal/hostile/humanoid/blood/fiend/boss/Leap(mob/living/target)
 	if(!isliving(target) && !ismecha(target) || !can_act)
@@ -236,10 +236,9 @@
 	for(var/turf/T in view(target_turf, 2))
 		if (T == safe_turf)
 			continue;
-		var/image/O = image(icon='icons/effects/eldritch.dmi',icon_state="cloud_swirl")
+		var/image/O = image(icon='icons/effects/eldritch.dmi',icon_state="blood_cloud_swirl")
 		T.add_overlay(O)
 		warning_overlays.Add(O)
-		O.color = "#b52e19"
 		warning_turfs.Add(T)
 
 
@@ -257,8 +256,7 @@
 		var/obj/effect/temp_visual/slice/blood = new(T)
 		blood.color = "#b52e19"
 		hit_mob = HurtInTurf(T, hit_mob, slash_damage, RED_DAMAGE, null, TRUE, FALSE, TRUE, hurt_structure = TRUE)
-
-
+		hit_mob.apply_lc_bleed(cutter_bleed_stacks)
 
 /mob/living/simple_animal/hostile/humanoid/blood/bag
 	name = "bloodbag"
@@ -280,7 +278,7 @@
 	var/self_damage = 20
 	var/self_damage_type = RED_DAMAGE
 	var/blood_drop_cooldown = 0
-	var/blood_drop_cooldown_time = 1
+	var/blood_drop_cooldown_time = 1.5
 	var/bleed_stacks = 1
 	var/explosion_damage = 10
 	var/explosion_bleed = 5
