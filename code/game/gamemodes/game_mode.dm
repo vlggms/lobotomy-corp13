@@ -130,12 +130,15 @@
 
 	var/list/innocent_roles = list("Agent Captain", "Sephirah", "Main Office Representative") //Roles to not be antags in Skeld
 	var/list/possible_antags = list()
+	var/list/charlie_names = list("a captain", "a security officer", "an engineer", "a scientist", "a doctor", "an assistant")
 	for(var/mob/living/carbon/human/H in GLOB.player_list)
 		if(H.stat == DEAD)
 			continue
 		if(!H.client)
 			continue
 		if(!H.mind)
+			continue
+		if(H.name in charlie_names)
 			continue
 		if(!(ROLE_TRAITOR in H.client.prefs.be_special))
 		else
