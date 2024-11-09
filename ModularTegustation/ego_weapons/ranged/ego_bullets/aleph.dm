@@ -117,5 +117,5 @@
 
 /obj/projectile/ego_bullet/arcadia
 	name = "arcadia"
-	damage = 120 // VERY high damage
+	damage = 140 // VERY high damage
 	damage_type = RED_DAMAGE
