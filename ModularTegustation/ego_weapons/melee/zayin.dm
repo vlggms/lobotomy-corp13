@@ -328,8 +328,9 @@
 	icon_state = "eclipse"
 	force = 14
 	damtype = WHITE_DAMAGE
-	attack_verb_continuous = list("smacks", "strikes", "beats")
-	attack_verb_simple = list("smack", "strike", "beat")
+	attack_verb_continuous = list("slices", "slashes", "stabs")
+	attack_verb_simple = list("slices", "slashes", "stabs")
+	hitsound = 'sound/weapons/bladeslice.ogg'
 
 /obj/item/ego_weapon/plastic
 	name = "plastic smile"
