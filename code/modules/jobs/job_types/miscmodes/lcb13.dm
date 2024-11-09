@@ -157,7 +157,8 @@ GLOBAL_LIST_INIT(sinner_weapons, list(
 	if (owner.stat == DEAD)
 		return FALSE
 
-	owner.adjustBruteLoss(10)
+	var/mob/living/carbon/human/H = owner
+		H.adjustBruteLoss(10)
 
 	for(var/mob/living/M in view(4, get_turf(src)))
 		if(M.stat > SOFT_CRIT && ishuman(M))
