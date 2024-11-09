@@ -65,6 +65,12 @@ GLOBAL_VAR_INIT(wcorp_enemy_faction, "") //decides which faction WCorp will be u
 				addtimer(CALLBACK(src, PROC_REF(endround)), 90 MINUTES)
 				to_chat(world, span_userdanger("This week will last 90 minutes."))
 
+			//Fixers
+			if("railway")
+				addtimer(CALLBACK(src, PROC_REF(roundendwarning)), 15 MINUTES)
+				addtimer(CALLBACK(src, PROC_REF(loseround)), 20 MINUTES)
+				to_chat(world, span_userdanger("This week will last 90 minutes."))
+
 
 			//W-Corp stuff
 			if("wcorp")
@@ -111,6 +117,8 @@ GLOBAL_VAR_INIT(wcorp_enemy_faction, "") //decides which faction WCorp will be u
 		if("fixers")
 			to_chat(world, span_userdanger("There are 10 minutes left in the week."))
 
+		if("railway")
+			to_chat(world, span_userdanger("There are 5 minutes left."))
 
 //Gamemode stuff
 /datum/game_mode/combat/proc/counterincrease()

@@ -62,6 +62,7 @@ GLOBAL_LIST_INIT(sinner_weapons, list(
 	belt = null
 	neck = /obj/item/clothing/neck/limbus_tie
 	l_pocket = /obj/item/flashlight/seclite
+	backpack_contents = list(/obj/item/storage/box/pcorp)
 
 
 //Assistant manager
@@ -72,6 +73,7 @@ GLOBAL_LIST_INIT(sinner_weapons, list(
 	selection_color = "#BB9999"
 	outfit = /datum/outfit/job/sinner/amanager
 	display_order = JOB_DISPLAY_ORDER_AGENT
+	trusted_only = TRUE	//So trusted players get a bit more of an edge in rolling for this gamemode.
 
 	job_important = "You are an LCB assistant manager. Follow the Executive Manager, and lead the Sinners into battle!"
 
@@ -89,6 +91,7 @@ GLOBAL_LIST_INIT(sinner_weapons, list(
 	jobtype = /datum/job/sinner/amanager
 	implants = list(/obj/item/organ/cyberimp/eyes/hud/medical)
 	ears = /obj/item/radio/headset/heads
+	head = /obj/item/clothing/head/hos/beret
 
 
 //Executive Manager
@@ -101,7 +104,7 @@ GLOBAL_LIST_INIT(sinner_weapons, list(
 	outfit = /datum/outfit/job/lcbmanager
 	access = list(ACCESS_COMMAND, ACCESS_MANAGER)
 	display_order = JOB_DISPLAY_ORDER_MANAGER
-	trusted_only = TRUE		//remove later
+	trusted_only = TRUE
 	maptype = "railway"
 
 	roundstart_attributes = list(
@@ -134,7 +137,7 @@ GLOBAL_LIST_INIT(sinner_weapons, list(
 	suit = /obj/item/clothing/suit/armor/ego_gear/limbus/durante/lcb
 	ears = /obj/item/radio/headset/heads
 	implants = list(/obj/item/organ/cyberimp/eyes/hud/medical)
-	l_pocket = /obj/item/gun/magic/wand/resurrection
+	backpack_contents = list(/obj/item/storage/box/pcorp)
 
 /obj/item/clothing/suit/armor/ego_gear/limbus/durante/lcb
 	attribute_requirements = list()
@@ -154,8 +157,10 @@ GLOBAL_LIST_INIT(sinner_weapons, list(
 	if (owner.stat == DEAD)
 		return FALSE
 
+	owner.adjustBruteLoss(10)
+
 	for(var/mob/living/M in view(4, get_turf(src)))
-		if(M.stat == DEAD && ishuman(M))
+		if(M.stat > SOFT_CRIT && ishuman(M))
 			if(M.revive(full_heal = TRUE, admin_revive = TRUE))
 				M.revive(full_heal = TRUE, admin_revive = TRUE)
 				M.grab_ghost(force = TRUE) // even suicides
