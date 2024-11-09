@@ -329,7 +329,7 @@
 	force = 14
 	damtype = WHITE_DAMAGE
 	attack_verb_continuous = list("slices", "slashes", "stabs")
-	attack_verb_simple = list("slices", "slashes", "stabs")
+	attack_verb_simple = list("slice", "slash", "stab")
 	hitsound = 'sound/weapons/bladeslice.ogg'
 
 /obj/item/ego_weapon/plastic
