@@ -1008,7 +1008,7 @@
 #define MOB_QUARTERSPEED /datum/movespeed_modifier/bloodhold
 /datum/status_effect/bloodhold
 	id = "bloodhold"
-	duration = 10 SECONDS
+	duration = 8 SECONDS
 	alert_type = null
 	status_type = STATUS_EFFECT_REFRESH
 	var/statuseffectvisual
@@ -1016,7 +1016,7 @@
 /datum/status_effect/bloodhold/on_apply()
 	. = ..()
 	owner.add_movespeed_modifier(MOB_QUARTERSPEED)
-	to_chat(owner, "<span class='warning'>You are slowed down as your own blood resist your movement!</span>")
+	to_chat(owner, "<span class='warning'>You are slowed down as your own blood resists your movement!</span>")
 	var/mutable_appearance/effectvisual = mutable_appearance('icons/obj/clockwork_objects.dmi', "hateful_manacles")
 	effectvisual.pixel_x = -owner.pixel_x
 	effectvisual.pixel_y = -owner.pixel_y
