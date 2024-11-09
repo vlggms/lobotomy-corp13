@@ -75,7 +75,7 @@ GLOBAL_LIST_INIT(sinner_weapons, list(
 
 	job_important = "You are an LCB assistant manager. Follow the Executive Manager, and lead the Sinners into battle!"
 
-/datum/job/sinner/amanager/after_spawn(mob/living/carbon/human/H, mob/M)
+/datum/job/sinner/amanager/after_spawn(mob/living/carbon/human/outfit_owner, mob/M)
 	..()
 	var/datum/action/G = new /datum/action/cooldown/warbanner/captain
 	G.Grant(outfit_owner)
@@ -117,13 +117,13 @@ GLOBAL_LIST_INIT(sinner_weapons, list(
 	..()
 	ADD_TRAIT(H, TRAIT_COMBATFEAR_IMMUNE, JOB_TRAIT)
 	var/datum/action/G = new /datum/action/cooldown/warbanner/captain
-	G.Grant(outfit_owner)
+	G.Grant(H)
 
 	G = new /datum/action/cooldown/warcry/captain
-	G.Grant(outfit_owner)
+	G.Grant(H)
 
 	G = new /datum/action/cooldown/danteh_revive
-	G.Grant(outfit_owner)
+	G.Grant(H)
 
 /datum/outfit/job/lcbmanager
 	name = "LCB Executive Manager"
