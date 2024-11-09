@@ -165,6 +165,11 @@
 	health = 1000
 	ranged = TRUE
 	var/cutter_bleed_stacks = 15
+	var/readyToSpawn75 = TRUE
+	var/timeToSpawn75
+	var/readyToSpawn25 = TRUE
+	var/timeToSpawn25
+	var/cooldownToSpawn = 10 SECONDS
 
 /mob/living/simple_animal/hostile/humanoid/blood/fiend/boss/Leap(mob/living/target)
 	if(!isliving(target) && !ismecha(target) || !can_act)
@@ -230,7 +235,7 @@
 
 /mob/living/simple_animal/hostile/humanoid/blood/fiend/boss/Dash(target_turf)
 	target_turf = get_turf(target)
-	var/list/hit_mob = list()
+
 	do_shaky_animation(1)
 	var/dx = src.x - target.x
 	var/dy = src.y - target.y
@@ -258,12 +263,46 @@
 	if (stat == DEAD)
 		return
 	playsound(target, 'sound/abnormalities/doomsdaycalendar/Lor_Slash_Generic.ogg', 20, 0, 4)
+	var/list/hit_list = list()
 	for(var/turf/T in view(target_turf, 2))
 		if (T == safe_turf)
 			continue;
 		var/obj/effect/temp_visual/slice/blood = new(T)
 		blood.color = "#b52e19"
-		hit_mob = HurtInTurf(T, hit_mob, slash_damage, RED_DAMAGE, null, TRUE, FALSE, TRUE, hurt_structure = TRUE)
+		hit_list = HurtInTurf(T, hit_list, slash_damage, RED_DAMAGE, null, TRUE, FALSE, TRUE, hurt_structure = TRUE)
+	for (var/hit in hit_list)
+		if (istype(hit, /mob/living))
+			var/mob/living/L = hit
+			L.apply_lc_bleed(cutter_bleed_stacks)
+
+/mob/living/simple_animal/hostile/humanoid/blood/fiend/boss/adjustHealth(amount, updating_health = TRUE, forced = FALSE)
+	if (health/maxHealth > 0.75)
+		readyToSpawn75 = TRUE
+	if (health/maxHealth > 0.25)
+		readyToSpawn25 = TRUE
+	. = ..()
+	if (health/maxHealth < 0.75 && readyToSpawn75 && world.time > timeToSpawn75)
+		// spawn
+		spawnbags()
+		readyToSpawn75 = FALSE
+		timeToSpawn75 = world.time + cooldownToSpawn
+	if (health/maxHealth < 0.25 && readyToSpawn25 && world.time > timeToSpawn25)
+		// spawn
+		spawnbags()
+		readyToSpawn25 = FALSE
+		timeToSpawn25 = world.time + cooldownToSpawn
+
+/mob/living/simple_animal/hostile/humanoid/blood/fiend/boss/proc/spawnbags()
+	var/list/turfs = shuffle(orange(1, src))
+	for(var/i in 1 to 3)
+		new /obj/effect/sweeperspawn/bagspawn(turfs[i])
+
+/obj/effect/sweeperspawn/bagspawn
+
+/obj/effect/sweeperspawn/bagspawn/spawnscout()
+	new /mob/living/simple_animal/hostile/humanoid/blood/bag(get_turf(src))
+	qdel(src)
+
 
 /mob/living/simple_animal/hostile/humanoid/blood/bag
 	name = "bloodbag"
