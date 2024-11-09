@@ -141,20 +141,22 @@
 		if(H.name in charlie_names)
 			continue
 		if(!(ROLE_TRAITOR in H.client.prefs.be_special))
+			continue
 		else
 			if(H.mind.assigned_role in innocent_roles)
 				continue
 			if(is_centcom_level(H.z))
 				continue
 			possible_antags += H
+			continue
 
-		for(var/i = 1 to 3)
-			if(LAZYLEN(possible_antags > 0))
-				var/mob/M = pick(possible_antags)
-				possible_antags -= M
-				var/datum/antagonist/traitor/newTraitor = new
-				M.mind.add_antag_datum(newTraitor)
-		message_admins("Traitors have been assigned!")
+	for(var/i = 1 to 3)
+		if(LAZYLEN(possible_antags) > 0)
+			var/mob/M = pick(possible_antags)
+			possible_antags -= M
+			var/datum/antagonist/traitor/newTraitor = new
+			M.mind.add_antag_datum(newTraitor)
+	message_admins("Traitors have been assigned!")
 
 ///Handles late-join antag assignments
 /datum/game_mode/proc/make_antag_chance(mob/living/carbon/human/character)
