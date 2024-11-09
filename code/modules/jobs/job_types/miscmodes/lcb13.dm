@@ -75,6 +75,15 @@ GLOBAL_LIST_INIT(sinner_weapons, list(
 
 	job_important = "You are an LCB assistant manager. Follow the Executive Manager, and lead the Sinners into battle!"
 
+/datum/job/sinner/amanager/after_spawn(mob/living/carbon/human/H, mob/M)
+	..()
+	var/datum/action/G = new /datum/action/cooldown/warbanner/captain
+	G.Grant(outfit_owner)
+
+	G = new /datum/action/cooldown/warcry/captain
+	G.Grant(outfit_owner)
+
+
 /datum/outfit/job/sinner/amanager
 	name = "LCB Assistant Manager"
 	jobtype = /datum/job/sinner/amanager
@@ -107,6 +116,14 @@ GLOBAL_LIST_INIT(sinner_weapons, list(
 /datum/job/exec_manager/after_spawn(mob/living/carbon/human/H, mob/M)
 	..()
 	ADD_TRAIT(H, TRAIT_COMBATFEAR_IMMUNE, JOB_TRAIT)
+	var/datum/action/G = new /datum/action/cooldown/warbanner/captain
+	G.Grant(outfit_owner)
+
+	G = new /datum/action/cooldown/warcry/captain
+	G.Grant(outfit_owner)
+
+	G = new /datum/action/cooldown/danteh_revive
+	G.Grant(outfit_owner)
 
 /datum/outfit/job/lcbmanager
 	name = "LCB Executive Manager"
@@ -126,9 +143,9 @@ GLOBAL_LIST_INIT(sinner_weapons, list(
 
 /datum/action/cooldown/danteh_revive
 	icon_icon = 'icons/hud/screen_skills.dmi'
-	button_icon_state = "butcher"
+	button_icon_state = "clockrevive"
 	name = "Clock Revival"
-	cooldown_time = 3000
+	cooldown_time = 300
 
 /datum/action/cooldown/danteh_revive/Trigger()
 	if(!..())
@@ -137,9 +154,11 @@ GLOBAL_LIST_INIT(sinner_weapons, list(
 	if (owner.stat == DEAD)
 		return FALSE
 
-	//Compile people around you
-	for(var/mob/living/M in view(2, get_turf(src)))
-		if(M.stat == DEAD && !ishuman(M))
-			M.gib()
+	for(var/mob/living/M in view(4, get_turf(src)))
+		if(M.stat == DEAD && ishuman(M))
+			if(M.revive(full_heal = TRUE, admin_revive = TRUE))
+				M.revive(full_heal = TRUE, admin_revive = TRUE)
+				M.grab_ghost(force = TRUE) // even suicides
+
 	StartCooldown()
 
