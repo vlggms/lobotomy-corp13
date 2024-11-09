@@ -78,6 +78,10 @@
 		return
 	blood_feast = 0
 	can_act = FALSE
+	SLEEP_CHECK_DEATH(0.25 SECONDS)
+	animate(src, alpha = 1,pixel_x = 16, pixel_z = 0, time = 0.1 SECONDS)
+	src.pixel_x = 16
+	playsound(src, 'sound/abnormalities/ichthys/jump.ogg', 50, FALSE, 4)
 	var/turf/target_turf = get_turf(target)
 	SLEEP_CHECK_DEATH(1 SECONDS)
 	if(target_turf)
@@ -235,6 +239,10 @@
 	var/list/warning_turfs = list()
 	for(var/turf/T in view(target_turf, 2))
 		if (T == safe_turf)
+			var/image/S = image(icon='icons/effects/eldritch.dmi',icon_state="cloud_swirl")
+			T.add_overlay(S)
+			warning_overlays.Add(S)
+			warning_turfs.Add(T)
 			continue;
 		var/image/O = image(icon='icons/effects/eldritch.dmi',icon_state="blood_cloud_swirl")
 		T.add_overlay(O)
@@ -243,7 +251,7 @@
 
 
 	sleep(15)
-	for (var/i in 1 to 24)
+	for (var/i in 1 to 25)
 		var/turf/T = warning_turfs[i]
 		T.cut_overlay(warning_overlays[i])
 
@@ -256,7 +264,6 @@
 		var/obj/effect/temp_visual/slice/blood = new(T)
 		blood.color = "#b52e19"
 		hit_mob = HurtInTurf(T, hit_mob, slash_damage, RED_DAMAGE, null, TRUE, FALSE, TRUE, hurt_structure = TRUE)
-		hit_mob.apply_lc_bleed(cutter_bleed_stacks)
 
 /mob/living/simple_animal/hostile/humanoid/blood/bag
 	name = "bloodbag"
@@ -278,7 +285,7 @@
 	var/self_damage = 20
 	var/self_damage_type = RED_DAMAGE
 	var/blood_drop_cooldown = 0
-	var/blood_drop_cooldown_time = 1.5
+	var/blood_drop_cooldown_time = 2
 	var/bleed_stacks = 1
 	var/explosion_damage = 10
 	var/explosion_bleed = 5
