@@ -9,8 +9,8 @@ GLOBAL_VAR_INIT(wcorp_boss_spawn, FALSE)
 	var/spawntype
 
 /obj/effect/landmark/wavespawn/Initialize()
-	..()
 	addtimer(CALLBACK(src, PROC_REF(tryspawn)), 3 MINUTES, TIMER_STOPPABLE)
+	return ..()
 
 //Wave increases.
 /obj/effect/landmark/wavespawn/proc/tryspawn()
@@ -245,12 +245,3 @@ GLOBAL_VAR_INIT(wcorp_boss_spawn, FALSE)
 	var/mob/living/simple_animal/hostile/H = new spawntype(get_turf(src))
 	H.can_patrol = TRUE
 	H.patrol_cooldown_time = 10 SECONDS
-	//If no one is alive, End round
-	for(var/mob/living/carbon/human/L in GLOB.player_list)
-		if(L.z != z)
-			continue
-		if(L.stat != DEAD)
-			return
-	SSticker.force_ending = 1
-	to_chat(world, span_userdanger("All W-Corp staff is dead! Round automatically ending."))
-
