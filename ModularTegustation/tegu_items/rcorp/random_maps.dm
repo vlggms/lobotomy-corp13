@@ -94,9 +94,9 @@
 	mappath = "_maps/RandomRooms/rcorp/facility/city.dmm"
 	weight = 10
 
-/datum/map_template/random_room/rcorp/xenos
-	name = "Rcorp - Xenos"
-	room_id = "rcorp_inside_xenos"
-	mappath = "_maps/RandomRooms/rcorp/facility/xenos.dmm"
+// /datum/map_template/random_room/rcorp/xenos
+// 	name = "Rcorp - Xenos"
+// 	room_id = "rcorp_inside_xenos"
+// 	mappath = "_maps/RandomRooms/rcorp/facility/xenos.dmm"
 //	weight = 10 			Currently instantly ends the round for reasons known only to god.
 
