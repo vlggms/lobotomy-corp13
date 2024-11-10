@@ -84,8 +84,7 @@
 	UpdateSpeed()
 	. = ..()
 	if(SSmaptype.maptype in SSmaptype.citymaps)
-		if(vision_range > 7)
-			vision_range = 8
+		vision_range = min(vision_range, 8)
 
 	if(!targets_from)
 		targets_from = src
