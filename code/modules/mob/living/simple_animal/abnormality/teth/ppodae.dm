@@ -48,6 +48,18 @@
 	var/smash_width = 1
 	var/can_act = TRUE
 
+/mob/living/simple_animal/hostile/abnormality/ppodae/Login()
+	. = ..()
+	if(!. || !client)
+		return FALSE
+	to_chat(src, "<h1>Ppodae, A Support Role Abnormality.</h1><br>\
+		<b>|What a Pup...|: You are the fastest and most fragile abnormality in the whole game.<br>\
+		<br>\
+		|Good Boy!|: Instead of a melee attack, you have a slam which stuns you for a second and causes a 3x2 AoE in front of you.<br>\
+		However, This means that you can’t break obstacles like barricades, so be careful of that.<br>\
+		If you attack a human who is knocked down, you are able to rip apart their limbs. This has no cooldown.<br>\
+		Can be used to immobilize targets who you would want to keep alive.<br></b>")
+
 /mob/living/simple_animal/hostile/abnormality/ppodae/Move()
 	if(!can_act)
 		return FALSE

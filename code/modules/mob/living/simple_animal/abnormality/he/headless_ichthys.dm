@@ -86,6 +86,22 @@
 	chosen_message = span_colossus("You will now fire a blood cannon.")
 	chosen_attack_num = 2
 
+/mob/living/simple_animal/hostile/abnormality/headless_ichthys/Login()
+	. = ..()
+	if(!. || !client)
+		return FALSE
+	to_chat(src, "<h1>You are Headless Ichthys, A Combat Role Abnormality.</h1><br>\
+		<b>|Pressing Sac|: When you attack, if your “Leap” is off cooldown you will use it.<br>\
+		You can use “Leap” on far away targets by clicking on them.<br>\
+		Once you “Leap” on a target, You will jump to their location after a short delay and then deal RED damage to everyone next to you.<br>\
+		You are able to toggle your “Leap” attack on and off with your ability.<br>\
+		<br>\
+		|Blood Cannon|: After you click your “Blood Cannon” Ability, You will fire a line of blood in the direction of your next attack, after a short delay.<br>\
+		Everyone who gets by Beam will take Massive BLACK damage per half second they are in the beam.<br>\
+		<br>\
+		|Desperate Fight|: After losing 70% of your health, you will enter an enraged state.<br>\
+		While you are enraged, you deal more melee damage and your “Leap” will have a much bigger AoE upon landing.</b>")
+
 // Attacks
 /mob/living/simple_animal/hostile/abnormality/headless_ichthys/proc/IchthysJump(mob/living/target)
 	if(!isliving(target) && !ismecha(target) || !can_act)

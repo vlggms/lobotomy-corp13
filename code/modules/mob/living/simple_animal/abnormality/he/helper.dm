@@ -71,7 +71,17 @@
 	toggle_message = span_colossus("You will now dash in that direction.")
 	button_icon_toggle_deactivated = "helper_toggle0"
 
-
+/mob/living/simple_animal/hostile/abnormality/helper/Login()
+	. = ..()
+	if(!. || !client)
+		return FALSE
+	to_chat(src, "<h1>You are All Round Helper, A Combat Role Abnormality.</h1><br>\
+		<b>|Cleaning Protocol|: When you attack, if your charge attack is off cooldown you will use it.<br>\
+		Once you start your spin attack, you will wind up for a few seconds. Then you will rush into the direction you attacked.<br>\
+		While you are rushing, all humans will take RED damage and you will be able to move over small obstacles like barricades or windows. (WARNING, RHINOS ARE NOT LOW OBSTACLES.)<br>\
+		Once you run into a wall while rushing, you will be stunned for 2 seconds and end your rush.<br>\
+		You are able to toggle your spin attack on and off with your ability.</b>")
+		
 /mob/living/simple_animal/hostile/abnormality/helper/AttackingTarget()
 	if(charging)
 		return
