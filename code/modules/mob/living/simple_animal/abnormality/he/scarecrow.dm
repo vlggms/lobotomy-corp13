@@ -78,7 +78,7 @@
 
 /datum/action/cooldown/hungering
 	name = "Hungering for Wisdom"
-	icon_icon = 'icons/mob/actions/actions_abnormality.dmi'
+	icon_icon = 'icons/mob/actions/actions_rcorp.dmi'
 	button_icon_state = "hungering"
 	desc = "Gain a short speed/damage boost to rush at your foes!"
 	cooldown_time = 300
