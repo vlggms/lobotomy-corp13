@@ -248,7 +248,7 @@ GLOBAL_VAR_INIT(rcorp_payload, null)
 	desc = "Call in your off field support to send in a airstrike on your foes!"
 	panel = "Shrimp"
 	has_action = TRUE
-	action_icon = 'icons/mob/actions/actions_abnormality.dmi'
+	action_icon = 'icons/mob/actions/actions_shrimp.dmi'
 	action_icon_state = "airstrike"
 	clothes_req = FALSE
 	charge_max = 600
@@ -291,7 +291,7 @@ GLOBAL_VAR_INIT(rcorp_payload, null)
 	desc = "Call in your off field support to send in a barricade!"
 	panel = "Shrimp"
 	has_action = TRUE
-	action_icon = 'icons/mob/actions/actions_abnormality.dmi'
+	action_icon = 'icons/mob/actions/actions_shrimp.dmi'
 	action_icon_state = "barricade"
 	clothes_req = FALSE
 	charge_max = 150
