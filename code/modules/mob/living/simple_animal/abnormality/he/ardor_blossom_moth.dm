@@ -100,7 +100,7 @@
 	icon_state = "turf_fire"
 	anchored = TRUE
 	density = FALSE
-	layer = TURF_LAYER
+	layer = TURF_LAYER + 0.4
 	plane = FLOOR_PLANE
 	base_icon_state = "turf_fire"
 

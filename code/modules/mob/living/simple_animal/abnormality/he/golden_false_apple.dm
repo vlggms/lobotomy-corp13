@@ -137,6 +137,22 @@
 	to_chat(owner, span_warning("You have [apple.pulse_count] charges remaining."))
 	return TRUE
 
+/mob/living/simple_animal/hostile/abnormality/golden_apple/Login()
+	. = ..()
+	if(!. || !client)
+		return FALSE
+	to_chat(src, "<h1>You are Golden Apple, A Tank Role Abnormality.</h1><br>\
+		<b>|Golden Sheen|: You have an ability to heal nearby allies with your “Golden Sheen” ability.<br>\
+		However, You need to build a resource called “Golden Sheen” in order to use it.<br>\
+		You gain 1 “Golden Sheen” when attacking living humans or rhinos and using the ability “Golden Sheen” costs 1 “Golden Sheen.”<br>\
+		<br>\
+		|False Form|: Once you are reduced to 0 HP, instead of dying you will enter your second phase if humans don’t use a knife on you.<br>\
+		If there is a human right next to you at the time you transform into your second phase, you will devour them and become empowered.<br>\
+		While in the second phase, you lose your ability to heal. In exchange your melee attacks become AoE and inflict “Maggots”<br>\
+		<br>\
+		|Maggots|: “Maggots” are able to be stacked and humans with “Maggots” will take black damage over time depending on the amount of “Maggot” they have.<br>\
+		If a human dies while they have maggots they will transform into a pile of maggots.</b>")
+
 //***Simple Mob Procs***
 /mob/living/simple_animal/hostile/abnormality/golden_apple/Initialize()
 	if(IsCombatMap())//Is it R corp assault? Hit 'em with the nerf bat!
