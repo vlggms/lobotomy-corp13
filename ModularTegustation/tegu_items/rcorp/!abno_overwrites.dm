@@ -75,6 +75,18 @@
 		bullet_damage = 200
 	return ..()
 
+//Due to Redblooded's very low damage and health, which is normaly fitting for a Teth. That causes them to underperform in R-Corp since they don't have any utility.
+//For that reason his health is increased and let his ammo gimmick work by reducing his ranged cooldown.
+/mob/living/simple_animal/hostile/abnormality/redblooded/Initialize()
+	if(SSmaptype.maptype == "rcorp")
+		ranged_cooldown_time = 0.5 SECONDS
+		maxHealth = 1200
+		health = 1200
+		melee_damage_lower = 15
+		melee_damage_upper = 20
+		casingtype = /obj/item/ammo_casing/caseless/rcorp_true_patriot
+	return ..()
+
 //Warden deals even less damage then more bodies they eat, and they take more damage from all attacks.
 //Warden currently slowballs far to quickly, so this nerf should give R-Corp a better chance at fighting back against them.
 /mob/living/simple_animal/hostile/abnormality/warden/Initialize()
