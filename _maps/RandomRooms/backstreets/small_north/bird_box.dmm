@@ -5,7 +5,7 @@
 /area/city/backstreets_room)
 "t" = (
 /obj/machinery/door/airlock/cult/friendly,
-/turf/open/space/basic,
+/turf/open/floor/plasteel/cult,
 /area/city/backstreets_room)
 "P" = (
 /turf/closed/wall/mineral/cult,

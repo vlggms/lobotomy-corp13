@@ -49,7 +49,7 @@
 /datum/crafting_recipe/shrimple_silk_transfer
 	name = "Amber/Steel Silk to Shrimple Silk"
 	result = /obj/item/stack/sheet/silk/shrimple_simple
-	reqs = list(/obj/item/stack/sheet/silk/amber_simple, /obj/item/stack/sheet/silk/steel_simple)
+	reqs = list(/obj/item/stack/sheet/silk/amber_simple = 1, /obj/item/stack/sheet/silk/steel_simple = 1)
 	tools = list(/obj/item/silkknife = 1)
 	time = 5
 	always_available = FALSE
