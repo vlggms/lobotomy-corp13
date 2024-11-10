@@ -194,7 +194,7 @@ GLOBAL_VAR_INIT(rcorp_payload, null)
 	var/guarding_allies = 0
 	var/final_resistance = 1
 	var/total_ally_protection = 0
-	var/per_ally_protection = 0.2
+	var/per_ally_protection = 0.25
 	var/view_check_time = 1 SECONDS
 	var/view_check
 	var/barrier_count
@@ -245,7 +245,7 @@ GLOBAL_VAR_INIT(rcorp_payload, null)
 
 /obj/effect/proc_holder/spell/pointed/shrimp_airstrike
 	name = "Airstrike Call"
-	desc = "shrimp_airstrike"
+	desc = "Call in your off field support to send in a airstrike on your foes!"
 	panel = "Shrimp"
 	has_action = TRUE
 	action_icon = 'icons/mob/actions/actions_abnormality.dmi'
@@ -288,7 +288,7 @@ GLOBAL_VAR_INIT(rcorp_payload, null)
 
 /obj/effect/proc_holder/spell/pointed/shrimp_barricade
 	name = "Barricade Call"
-	desc = "shrimp_barricade"
+	desc = "Call in your off field support to send in a barricade!"
 	panel = "Shrimp"
 	has_action = TRUE
 	action_icon = 'icons/mob/actions/actions_abnormality.dmi'
