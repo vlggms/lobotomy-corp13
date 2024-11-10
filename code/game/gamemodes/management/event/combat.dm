@@ -92,7 +92,6 @@ GLOBAL_VAR_INIT(wcorp_enemy_faction, "") //decides which faction WCorp will be u
 			return
 
 	if(SSticker.force_ending == TRUE) // they lost another way before we could do it, how rude.
-		message_admins("round already ended!")
 		return
 
 	SSticker.force_ending = TRUE
