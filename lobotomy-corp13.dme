@@ -4183,6 +4183,7 @@
 #include "ModularTegustation\tegu_items\prosthetics\zippyarm.dm"
 #include "ModularTegustation\tegu_items\rcorp\!abno_overwrites.dm"
 #include "ModularTegustation\tegu_items\rcorp\basecode.dm"
+#include "ModularTegustation\tegu_items\rcorp\button.dm"
 #include "ModularTegustation\tegu_items\rcorp\gadgets.dm"
 #include "ModularTegustation\tegu_items\rcorp\itemspawner.dm"
 #include "ModularTegustation\tegu_items\rcorp\landmarks.dm"
