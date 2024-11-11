@@ -74,3 +74,10 @@
 	if(SSmaptype.maptype == "rcorp")
 		bullet_damage = 200
 	return ..()
+
+//Warden deals even less damage then more bodies they eat, and they take more damage from all attacks.
+//Warden currently slowballs far to quickly, so this nerf should give R-Corp a better chance at fighting back against them.
+/mob/living/simple_animal/hostile/abnormality/warden/Initialize()
+	if(IsCombatMap())
+		damage_down = 10
+	return ..()
