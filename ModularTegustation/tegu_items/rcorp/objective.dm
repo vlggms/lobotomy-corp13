@@ -199,6 +199,8 @@ GLOBAL_VAR_INIT(rcorp_payload, null)
 	var/view_check
 	var/barrier_count
 	var/max_barrier_count = 6
+	var/sniper
+	var/warning
 
 	var/list/shrimp_abilities = list(
 		/obj/effect/proc_holder/spell/pointed/shrimp_airstrike,
@@ -233,8 +235,27 @@ GLOBAL_VAR_INIT(rcorp_payload, null)
 		if (total_ally_protection > max_protection)
 			total_ally_protection = max_protection
 		final_resistance = base_resistance - total_ally_protection
-		to_chat(span_danger("Allies in Sight: " + num2text(temp_guarding_allies) + " Current Resistance: " + num2text(final_resistance)))
+		to_chat(src, span_danger("Allies in Sight: " + num2text(temp_guarding_allies) + " Current Resistance: " + num2text(final_resistance)))
 		ChangeResistances(list(RED_DAMAGE = final_resistance, WHITE_DAMAGE = final_resistance, BLACK_DAMAGE = final_resistance, PALE_DAMAGE = final_resistance))
+	if (guarding_allies <= 2)
+		if (!sniper)
+			sniper = addtimer(CALLBACK(src, PROC_REF(SniperShoot)), 10 SECONDS, TIMER_STOPPABLE)
+		if (!warning)
+			warning = addtimer(CALLBACK(src, PROC_REF(SniperWarning)), 5 SECONDS, TIMER_STOPPABLE)
+	if (guarding_allies >= 3)
+		if (sniper)
+			deltimer(sniper)
+		if (warning)
+			deltimer(warning)
+
+/mob/living/simple_animal/hostile/shrimp_vip/proc/SniperShoot()
+	to_chat(src, span_userdanger("You are hit by a sniper bullet from an unknown shooter..."))
+	deal_damage(300, RED_DAMAGE)
+	playsound_local(src, 'sound/weapons/gun/sniper/shot.ogg', 75)
+
+/mob/living/simple_animal/hostile/shrimp_vip/proc/SniperWarning()
+	to_chat(src, span_userdanger("You feel a shiver down your spine... Someone is aiming towards you, Get back to your allies to be safer!"))
+	playsound_local(src, 'sound/weapons/gun/sniper/rack.ogg', 75)
 
 /mob/living/simple_animal/hostile/shrimp_vip/death(gibbed)
 	for(var/mob/M in GLOB.player_list)
