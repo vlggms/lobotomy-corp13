@@ -8,6 +8,9 @@
 		device = A
 	..()
 
+/obj/machinery/button/door/indestructible/rcorp/Destroy()
+	qdel(device)
+	. = ..()
 
 /obj/item/assembly/control/rcorp
 	name = "rcorp door controller"
@@ -21,7 +24,7 @@
 	if (P)
 		count++
 	for(var/mob/living/simple_animal/hostile/abnormality/A in GLOB.abnormality_mob_list)
-		if((A.type in (GLOB.easysupport)) || (A.type in (GLOB.easycombat)) || (A.type in (GLOB.easytank)))
+		if (A.rcorp_team == "easy")
 			count++
 		if (count > 2)
 			break

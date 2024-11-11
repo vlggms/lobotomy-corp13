@@ -131,6 +131,9 @@
 	var/observation_success_message = "Final Observation Success!"
 	var/observation_fail_message = "Final Observation Failed!"
 
+	// rcorp stuff
+	var/rcorp_team
+
 /mob/living/simple_animal/hostile/abnormality/Initialize(mapload)
 	SHOULD_CALL_PARENT(TRUE)
 	. = ..()
