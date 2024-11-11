@@ -64,7 +64,7 @@ SUBSYSTEM_DEF(traumas)
 		)),
 		"anime" = typecacheof(list(/mob/living/simple_animal/hostile/guardian, /mob/living/simple_animal/hostile/abnormality/sukuna)),
 		"insects" = typecacheof(list(/mob/living/simple_animal/hostile/cockroach, /mob/living/simple_animal/hostile/poison/bees, /mob/living/simple_animal/hostile/ordeal/steel_dawn,
-		/mob/living/simple_animal/hostile/ordeal/steel_dusk, /mob/living/simple_animal/hostile/ordeal/amber_bug, /mob/living/simple_animal/hostile/ordeal/amber_dusk, /mob/living/simple_animal/hostile/ordeal/amber_midnight
+			/mob/living/simple_animal/hostile/ordeal/steel_dusk, /mob/living/simple_animal/hostile/ordeal/amber_bug, /mob/living/simple_animal/hostile/ordeal/amber_dusk, /mob/living/simple_animal/hostile/ordeal/amber_midnight
 		))
 	)
 
