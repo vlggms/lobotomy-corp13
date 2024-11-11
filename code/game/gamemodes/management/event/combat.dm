@@ -159,7 +159,7 @@ GLOBAL_VAR_INIT(wcorp_enemy_faction, "") //decides which faction WCorp will be u
 	minor_announce("[announcement_type]" , "R-Corp Intelligence Office")
 
 /datum/game_mode/combat/proc/rcorp_opendoor()
-	minor_announce("Section 1 doors are open")
+	minor_announce("Facility doors are locked open." , "R-Corp Intelligence Office")
 	for(var/obj/machinery/door/poddoor/M in GLOB.machines)
 		if (M.id == "inside")
 			M.open()

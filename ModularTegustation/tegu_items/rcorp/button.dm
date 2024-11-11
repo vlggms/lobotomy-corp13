@@ -21,7 +21,7 @@
 	if (P)
 		count++
 	for(var/mob/living/simple_animal/hostile/abnormality/A in GLOB.abnormality_mob_list)
-		if(A.type in easysupport || A.type in easycombat || A.type in easytank)
+		if((A.type in (GLOB.easysupport)) || (A.type in (GLOB.easycombat)) || (A.type in (GLOB.easytank)))
 			count++
 		if (count > 2)
 			break
