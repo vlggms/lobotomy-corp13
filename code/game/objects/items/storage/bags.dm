@@ -510,7 +510,7 @@
 	icon_state = "silk_satchel"
 	resistance_flags = FLAMMABLE
 
-/obj/item/storage/bag/plants/ComponentInitialize()
+/obj/item/storage/bag/silk/ComponentInitialize()
 	. = ..()
 	var/datum/component/storage/STR = GetComponent(/datum/component/storage)
 	STR.max_w_class = WEIGHT_CLASS_NORMAL
@@ -530,7 +530,7 @@
 	icon_state = "meat_satchel"
 	resistance_flags = FLAMMABLE
 
-/obj/item/storage/bag/plants/ComponentInitialize()
+/obj/item/storage/bag/meat/ComponentInitialize()
 	. = ..()
 	var/datum/component/storage/STR = GetComponent(/datum/component/storage)
 	STR.max_w_class = WEIGHT_CLASS_NORMAL
