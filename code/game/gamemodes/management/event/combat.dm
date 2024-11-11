@@ -52,7 +52,7 @@ GLOBAL_VAR_INIT(wcorp_enemy_faction, "") //decides which faction WCorp will be u
 						addtimer(CALLBACK(src, PROC_REF(drawround)), 40 MINUTES)
 						to_chat(world, span_userdanger("Round will end in a draw after 40 minutes."))
 				addtimer(CALLBACK(src, PROC_REF(rcorp_announce)), 3 MINUTES)
-				addtimer(CALLBACK(src, PROC_REF(rcorp_opendoor)), 1 MINUTES)
+				addtimer(CALLBACK(src, PROC_REF(rcorp_opendoor)), 30 SECONDS)
 				RegisterSignal(SSdcs, COMSIG_GLOB_MOB_DEATH, PROC_REF(CheckLiving))
 
 			//Limbus Labs
@@ -158,12 +158,17 @@ GLOBAL_VAR_INIT(wcorp_enemy_faction, "") //decides which faction WCorp will be u
 	minor_announce("[announcement_type]" , "R-Corp Intelligence Office")
 
 /datum/game_mode/combat/proc/rcorp_opendoor()
+	for(var/obj/machinery/button/door/indestructible/rcorp/M in GLOB.machines)
+		qdel(M)
 	minor_announce("Facility doors are locked open." , "R-Corp Intelligence Office")
 	for(var/obj/machinery/door/poddoor/M in GLOB.machines)
 		if (M.id == "inside")
-			M.open()
-	for(var/obj/machinery/button/door/indestructible/rcorp/M in GLOB.machines)
-		qdel(M)
+			addtimer(CALLBACK(src, PROC_REF(OpenDoor), M), 0 MINUTES)
+
+/datum/game_mode/combat/proc/OpenDoor(door)
+	var/obj/machinery/door/poddoor/D = door
+	D.open()
+
 
 /datum/game_mode/combat/proc/StartPayload()
 	if(!GLOB.rcorp_payload)
