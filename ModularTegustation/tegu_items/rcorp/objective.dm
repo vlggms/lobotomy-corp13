@@ -201,7 +201,9 @@ GLOBAL_VAR_INIT(rcorp_payload, null)
 	var/max_barrier_count = 6
 	var/sniper
 	var/warning
-	var/danger
+	var/danger = FALSE
+	var/sniper_time = 0.5
+	var/warning_time = 0.25
 
 	var/list/shrimp_abilities = list(
 		/obj/effect/proc_holder/spell/pointed/shrimp_airstrike,
@@ -221,7 +223,7 @@ GLOBAL_VAR_INIT(rcorp_payload, null)
 	. = ..()
 	if(!.) // Dead
 		return FALSE
-	if((view_check < world.time) && !(status_flags & GODMODE))
+	if((view_check < world.time) && !(status_flags & GODMODE) && (client))
 		Protection()
 
 /mob/living/simple_animal/hostile/shrimp_vip/proc/Protection()
@@ -240,9 +242,9 @@ GLOBAL_VAR_INIT(rcorp_payload, null)
 		ChangeResistances(list(RED_DAMAGE = final_resistance, WHITE_DAMAGE = final_resistance, BLACK_DAMAGE = final_resistance, PALE_DAMAGE = final_resistance))
 	if (guarding_allies <= 2)
 		if (!sniper)
-			sniper = addtimer(CALLBACK(src, PROC_REF(SniperShoot)), 60 SECONDS, TIMER_STOPPABLE)
+			sniper = addtimer(CALLBACK(src, PROC_REF(SniperShoot)), sniper_time MINUTES, TIMER_STOPPABLE)
 		if (!warning)
-			warning = addtimer(CALLBACK(src, PROC_REF(SniperWarning)), 30 SECONDS, TIMER_STOPPABLE)
+			warning = addtimer(CALLBACK(src, PROC_REF(SniperWarning)), warning_time MINUTES, TIMER_STOPPABLE)
 	if (guarding_allies >= 3)
 		if (sniper)
 			deltimer(sniper)
