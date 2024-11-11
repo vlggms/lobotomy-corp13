@@ -106,6 +106,10 @@
 	extra_price = 1000
 	input_display_header = "Weaving Books/Tools"
 
+/obj/machinery/vending/weaving/cheap
+	default_price = 50
+	extra_price = 200
+
 //cityvending
 /obj/machinery/vending/fixer
 	name = "\improper Fixer Equipment vending"

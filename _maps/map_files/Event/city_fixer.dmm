@@ -2470,6 +2470,13 @@
 /obj/item/food/meat/slab,
 /turf/open/floor/facility,
 /area/city/shop)
+"JW" = (
+/obj/effect/turf_decal/trimline/red/filled/line{
+	dir = 1
+	},
+/obj/machinery/vending/weaving/cheap,
+/turf/open/floor/facility/dark,
+/area/city/shop)
 "KH" = (
 /obj/structure/fishcooker/fishoven,
 /turf/open/floor/wood,
@@ -37936,7 +37943,7 @@ Oq
 Oq
 Oq
 OT
-Qr
+JW
 Rz
 An
 KW
