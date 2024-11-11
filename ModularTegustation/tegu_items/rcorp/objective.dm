@@ -201,6 +201,7 @@ GLOBAL_VAR_INIT(rcorp_payload, null)
 	var/max_barrier_count = 6
 	var/sniper
 	var/warning
+	var/danger
 
 	var/list/shrimp_abilities = list(
 		/obj/effect/proc_holder/spell/pointed/shrimp_airstrike,
@@ -226,7 +227,7 @@ GLOBAL_VAR_INIT(rcorp_payload, null)
 /mob/living/simple_animal/hostile/shrimp_vip/proc/Protection()
 	view_check = world.time + view_check_time
 	var/temp_guarding_allies = 0
-	for(var/mob/living/simple_animal/hostile/A in livinginview(5, src))
+	for(var/mob/living/simple_animal/hostile/A in livinginview(7, src))
 		if(src != A && faction_check_mob(A, FALSE))
 			temp_guarding_allies += 1
 	if (temp_guarding_allies != guarding_allies)
@@ -239,23 +240,31 @@ GLOBAL_VAR_INIT(rcorp_payload, null)
 		ChangeResistances(list(RED_DAMAGE = final_resistance, WHITE_DAMAGE = final_resistance, BLACK_DAMAGE = final_resistance, PALE_DAMAGE = final_resistance))
 	if (guarding_allies <= 2)
 		if (!sniper)
-			sniper = addtimer(CALLBACK(src, PROC_REF(SniperShoot)), 10 SECONDS, TIMER_STOPPABLE)
+			sniper = addtimer(CALLBACK(src, PROC_REF(SniperShoot)), 60 SECONDS, TIMER_STOPPABLE)
 		if (!warning)
-			warning = addtimer(CALLBACK(src, PROC_REF(SniperWarning)), 5 SECONDS, TIMER_STOPPABLE)
+			warning = addtimer(CALLBACK(src, PROC_REF(SniperWarning)), 30 SECONDS, TIMER_STOPPABLE)
 	if (guarding_allies >= 3)
 		if (sniper)
 			deltimer(sniper)
+			sniper = null
 		if (warning)
 			deltimer(warning)
+			warning = null
+			if (danger == TRUE)
+				to_chat(src, span_nicegreen("You start to feel safer... Looks like that shooter can't get a good shot on you."))
+				danger = FALSE
 
 /mob/living/simple_animal/hostile/shrimp_vip/proc/SniperShoot()
 	to_chat(src, span_userdanger("You are hit by a sniper bullet from an unknown shooter..."))
 	deal_damage(300, RED_DAMAGE)
 	playsound_local(src, 'sound/weapons/gun/sniper/shot.ogg', 75)
+	sniper = null
 
 /mob/living/simple_animal/hostile/shrimp_vip/proc/SniperWarning()
 	to_chat(src, span_userdanger("You feel a shiver down your spine... Someone is aiming towards you, Get back to your allies to be safer!"))
 	playsound_local(src, 'sound/weapons/gun/sniper/rack.ogg', 75)
+	danger = TRUE
+	warning = null
 
 /mob/living/simple_animal/hostile/shrimp_vip/death(gibbed)
 	for(var/mob/M in GLOB.player_list)
