@@ -5,9 +5,7 @@
 /turf/open/floor/plasteel/dark,
 /area/city/outskirts)
 "aQ" = (
-/obj/machinery/button/door/indestructible{
-	id = "inside"
-	},
+/obj/machinery/button/door/indestructible/rcorp,
 /obj/effect/landmark/nobasic_incorp_move/disappearing,
 /turf/closed/indestructible/syndicate,
 /area/city/outskirts)

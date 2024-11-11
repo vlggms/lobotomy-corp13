@@ -67,9 +67,7 @@
 /turf/open/floor/facility,
 /area/city/outskirts)
 "VG" = (
-/obj/machinery/button/door/indestructible{
-	id = "inside"
-	},
+/obj/machinery/button/door/indestructible/rcorp,
 /obj/effect/landmark/nobasic_incorp_move/disappearing,
 /turf/closed/indestructible/syndicate,
 /area/city/outskirts)
