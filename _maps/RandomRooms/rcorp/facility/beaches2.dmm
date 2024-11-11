@@ -110,9 +110,7 @@
 /turf/open/floor/plating/ashplanet/rocky,
 /area/city/outskirts)
 "xK" = (
-/obj/machinery/button/door/indestructible{
-	id = "inside"
-	},
+/obj/machinery/button/door/indestructible/rcorp,
 /turf/closed/indestructible/syndicate,
 /area/city/outskirts)
 "xM" = (
