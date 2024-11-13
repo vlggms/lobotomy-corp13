@@ -36,9 +36,11 @@
 			C.name = "\proper [C.linked_console.datum_reference.name]'s containment panel"
 			break
 	for(var/obj/machinery/door/airlock/AR in allObjects)
+		abno_datum.door = AR
 		AR.name = "[abno_datum.name] containment zone"
 		AR.desc = "Containment zone of [abno_datum.name]. Threat level: [THREAT_TO_NAME[abno_datum.threat_level]]."
 	for(var/obj/machinery/camera/ACM in allObjects)
+		abno_datum.camera = ACM
 		ACM.c_tag = "Containment zone: [abno_datum.name]"
 	SSabnormality_queue.PostSpawn()
 	SSlobotomy_corp.NewAbnormality(abno_datum)

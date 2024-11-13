@@ -177,6 +177,9 @@
 			Y.registered_name = H.name
 			Y.update_label()
 
+	var/obj/item/organ/brain/B = H.getorganslot(ORGAN_SLOT_BRAIN)
+	if(LAZYLEN(B.initial_traits) == 0)
+		B.initial_traits = H.status_traits
 
 /datum/job/proc/announce(mob/living/carbon/human/H)
 	if(head_announce)

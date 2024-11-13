@@ -44,6 +44,9 @@
 	var/list/peccetulum = list(
 		/mob/living/simple_animal/hostile/ordeal/sin_gloom,
 		/mob/living/simple_animal/hostile/ordeal/sin_gluttony,
+		/mob/living/simple_animal/hostile/ordeal/sin_pride,
+		/mob/living/simple_animal/hostile/ordeal/sin_lust,
+		/mob/living/simple_animal/hostile/ordeal/sin_wrath
 	)
 
 	message_admins("<span class='notice'>Asset Protection ([src.ckey]) has spawned Peccetulum.</span>")

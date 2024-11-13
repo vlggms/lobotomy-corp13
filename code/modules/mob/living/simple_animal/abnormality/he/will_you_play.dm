@@ -82,11 +82,13 @@
 		say("I don't play with folks who don't trust me.")
 	else
 		say("Hmph, a draw. You got lucky this time.")
+	IncreaseStats(user, 1, FALSE)
 
 //Player wins RPS, loses an arm tho
 /mob/living/simple_animal/hostile/abnormality/willyouplay/proc/Win(mob/living/carbon/human/user, work_type)
 	say("You lose.")
 	user.deal_damage(80, RED_DAMAGE)
+	IncreaseStats(user, 1, FALSE)
 
 	//Less than 80 fort and you lose an arm
 	if(get_attribute_level(user, FORTITUDE_ATTRIBUTE) <= 60)
@@ -99,7 +101,6 @@
 			return
 
 /mob/living/simple_animal/hostile/abnormality/willyouplay/proc/Lose(mob/living/carbon/human/user, work_type)
-	var/list/attribute_list = list(FORTITUDE_ATTRIBUTE, PRUDENCE_ATTRIBUTE, TEMPERANCE_ATTRIBUTE, JUSTICE_ATTRIBUTE)
 	var/statgain
 	if(user == last_worked)
 		statgain = -2
@@ -108,20 +109,20 @@
 		statgain += 4
 		SLEEP_CHECK_DEATH(20)
 		say("You win. Scissors are only useful when cloth's around")
-		for(var/A in attribute_list)
-			var/processing = get_attribute_level(user, A)
-			if(processing > 80)
-				return
-			user.adjust_attribute_level(A, statgain)
+		IncreaseStats(user, statgain, TRUE)
 
 
 	else	//Big Air bonus for picking the funny rare one
 		statgain += 7
 		say("You win, now get outta here.")
-		for(var/A in attribute_list)
-			var/processing = get_attribute_level(user, A)
-			if(processing > 80)
-				return
-			user.adjust_attribute_level(A, statgain)
+		IncreaseStats(user, statgain, TRUE)
 
-
+/mob/living/simple_animal/hostile/abnormality/willyouplay/proc/IncreaseStats(mob/living/carbon/human/user, statgain, check_melt = FALSE)
+	var/list/attribute_list = list(FORTITUDE_ATTRIBUTE, PRUDENCE_ATTRIBUTE, TEMPERANCE_ATTRIBUTE, JUSTICE_ATTRIBUTE)
+	for(var/A in attribute_list)
+		var/processing = get_raw_level(user, A)
+		if(processing > 80)
+			if(check_melt == TRUE && datum_reference.console.meltdown)
+				user.adjust_attribute_level(A, 1)
+			continue
+		user.adjust_attribute_level(A, statgain)

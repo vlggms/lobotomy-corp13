@@ -32,11 +32,15 @@
 	},
 /turf/open/floor/plating/dirt/jungle/dark,
 /area/city/backstreets_room)
+"h" = (
+/obj/structure/lootcrate/money,
+/turf/open/floor/plating/dirt/jungle/dark,
+/area/city/backstreets_room)
 "i" = (
 /obj/effect/decal/cleanable/blood/tracks{
 	dir = 8
 	},
-/obj/item/gun/ego_gun/clerk,
+/obj/item/ego_weapon/ranged/clerk,
 /turf/open/floor/plating/dirt/jungle/dark,
 /area/city/backstreets_room)
 "n" = (
@@ -82,6 +86,11 @@
 /obj/effect/decal/cleanable/blood/footprints{
 	dir = 3
 	},
+/turf/open/floor/plating/dirt/jungle/dark,
+/area/city/backstreets_room)
+"y" = (
+/obj/effect/decal/cleanable/blood/splatter,
+/obj/structure/lootcrate/money,
 /turf/open/floor/plating/dirt/jungle/dark,
 /area/city/backstreets_room)
 "A" = (
@@ -135,6 +144,11 @@
 	pixel_x = -5;
 	pixel_y = 17
 	},
+/turf/open/floor/plating/dirt/jungle/dark,
+/area/city/backstreets_room)
+"N" = (
+/obj/effect/decal/cleanable/blood/gibs/up,
+/obj/structure/lootcrate/money,
 /turf/open/floor/plating/dirt/jungle/dark,
 /area/city/backstreets_room)
 "O" = (
@@ -271,7 +285,7 @@ b
 "}
 (5,1,1) = {"
 Q
-V
+y
 S
 I
 I
@@ -288,7 +302,7 @@ Q
 "}
 (6,1,1) = {"
 Q
-S
+h
 S
 X
 x
@@ -334,7 +348,7 @@ S
 Y
 S
 S
-S
+h
 Q
 "}
 (9,1,1) = {"
@@ -351,7 +365,7 @@ S
 X
 S
 c
-A
+N
 Q
 "}
 (10,1,1) = {"

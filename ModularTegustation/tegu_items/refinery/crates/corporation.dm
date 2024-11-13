@@ -51,15 +51,15 @@
 		/obj/item/ego_weapon/city/kcorp,
 		/obj/item/ego_weapon/shield/kcorp,
 		/obj/item/ego_weapon/city/kcorp/axe,
-		/obj/item/gun/ego_gun/pistol/kcorp,
+		/obj/item/ego_weapon/ranged/pistol/kcorp,
 		/obj/item/storage/box/kcorp_armor,
 	)
 
 	veryrareloot =	list(
 		/obj/item/ego_weapon/city/kcorp/spear,
 		/obj/item/ego_weapon/city/kcorp/dspear,
-		/obj/item/gun/ego_gun/pistol/kcorp/smg,
-		/obj/item/gun/ego_gun/pistol/kcorp/nade,
+		/obj/item/ego_weapon/ranged/pistol/kcorp/smg,
+		/obj/item/ego_weapon/ranged/pistol/kcorp/nade,
 		/obj/item/clothing/suit/armor/ego_gear/city/kcorp_l3,
 		/obj/item/toy/plush/bongy,
 	)
@@ -156,14 +156,14 @@
 		/obj/item/reagent_containers/food/drinks/soda_cans/wellcheers_red,
 		/obj/item/reagent_containers/food/drinks/soda_cans/wellcheers_white,
 		/obj/item/reagent_containers/food/drinks/soda_cans/wellcheers_purple,
-		/obj/item/gun/ego_gun/sodashotty,
-		/obj/item/gun/ego_gun/sodarifle,
-		/obj/item/gun/ego_gun/sodasmg,
-		/obj/item/gun/ego_gun/shrimp/assault,
+		/obj/item/ego_weapon/ranged/sodashotty,
+		/obj/item/ego_weapon/ranged/sodarifle,
+		/obj/item/ego_weapon/ranged/sodasmg,
+		/obj/item/ego_weapon/ranged/shrimp/assault,
 	)
 
 	rareloot =	list(
-		/obj/item/gun/ego_gun/shrimp/minigun,
+		/obj/item/ego_weapon/ranged/shrimp/minigun,
 		/obj/item/grenade/spawnergrenade/shrimp,
 		/obj/item/trait_injector/shrimp_injector,
 	)

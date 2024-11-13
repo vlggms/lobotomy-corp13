@@ -525,6 +525,13 @@
 	justice_bonus = 1
 	slot = HAND_1
 
+/datum/ego_gifts/denial
+	name = "Denial"
+	icon_state = "denial"
+	justice_bonus = 3
+	slot = HELMET
+
+
 /**
  * HE EGO Gifts
  */
@@ -1263,6 +1270,15 @@
 	temperance_bonus = 1
 	justice_bonus = 2
 	slot = HAND_1
+
+/datum/ego_gifts/good_intentions
+	name = "Good Intentions" //no stat bonuses but a minor boost to all works
+	icon_state = "good_intentions"
+	instinct_mod = 3
+	insight_mod = 3
+	attachment_mod = 3
+	repression_mod = 3
+	slot = HAT
 
 /**
  * ALEPH EGO Gifts

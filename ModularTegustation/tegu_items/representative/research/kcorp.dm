@@ -132,8 +132,8 @@
 	required_research = /datum/data/lc13research/kweapons
 
 /datum/data/lc13research/kguns/ResearchEffect(obj/structure/representative_console/caller)
-	ItemUnlock(caller.order_list, "K Corp Machinepistole",	/obj/item/gun/ego_gun/pistol/kcorp/smg, 600)
-	ItemUnlock(caller.order_list, "K Corp Light Grenade Launcher",	/obj/item/gun/ego_gun/pistol/kcorp/nade, 600)
+	ItemUnlock(caller.order_list, "K Corp Machinepistole",	/obj/item/ego_weapon/ranged/pistol/kcorp/smg, 600)
+	ItemUnlock(caller.order_list, "K Corp Light Grenade Launcher",	/obj/item/ego_weapon/ranged/pistol/kcorp/nade, 600)
 	..()
 
 /datum/data/lc13research/karmor1
@@ -157,6 +157,6 @@
 	corp = K_CORP_REP
 	required_research = /datum/data/lc13research/syringe
 
-/datum/data/lc13research/kguns/ResearchEffect(obj/structure/representative_console/caller)
+/datum/data/lc13research/kdrones/ResearchEffect(obj/structure/representative_console/caller)
 	ItemUnlock(caller.order_list, "K Corp Drone Spawner",	/obj/item/grenade/spawnergrenade/khealing, 600)
 	..()

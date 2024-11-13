@@ -148,7 +148,8 @@ GLOBAL_LIST_INIT(security_positions, list(
 	//Fifth Pack
 	"R-Corp Rat",
 	"R-Corp Rooster",
-	"R-Corp Raccoon",
+	"R-Corp Raccoon Spy",
+	"R-Corp Raccoon Sniper",
 	"R-Corp Roadrunner",
 
 	//W-Corp agents

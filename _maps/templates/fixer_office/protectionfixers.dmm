@@ -188,6 +188,7 @@
 /obj/item/grenade/smokebomb,
 /obj/item/disk/nuclear/rcorp,
 /obj/structure/closet/cabinet,
+/obj/structure/window/reinforced/spawner/east,
 /turf/open/floor/pod/dark,
 /area/city/fixers)
 "A" = (
@@ -283,10 +284,6 @@
 	},
 /obj/item/kirbyplants{
 	pixel_y = 17
-	},
-/obj/structure/window/reinforced/spawner/east{
-	resistance_flags = 115;
-	pixel_y = -32
 	},
 /turf/open/floor/pod/dark,
 /area/city/fixers)

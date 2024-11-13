@@ -11,7 +11,7 @@
 /obj/effect/turf_decal/stripes/line{
 	dir = 8
 	},
-/turf/open/floor/plasteel/dark,
+/turf/closed/indestructible/reinforced,
 /area/city/outskirts)
 "cS" = (
 /obj/effect/turf_decal/siding/red{
@@ -112,7 +112,7 @@
 /obj/structure/sign/departments/info{
 	pixel_y = -32
 	},
-/turf/open/floor/plasteel/dark,
+/turf/closed/indestructible/reinforced,
 /area/city/outskirts)
 "ju" = (
 /obj/effect/turf_decal/siding/purple{
@@ -185,10 +185,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/city/outskirts)
-"rW" = (
-/obj/structure/barricade/sandbags,
-/turf/open/floor/plasteel/dark,
-/area/city/outskirts)
 "sC" = (
 /obj/effect/landmark/abnospawn/easycombat,
 /turf/open/floor/plasteel/dark,
@@ -207,14 +203,7 @@
 /obj/structure/sign/departments/info{
 	pixel_y = 32
 	},
-/obj/machinery/computer/shuttle/mining{
-	dir = 4;
-	max_integrity = 350000;
-	name = "elevator console";
-	possible_destinations = "epsilon_info";
-	shuttleId = "epsilon"
-	},
-/turf/open/floor/plasteel/dark,
+/turf/closed/indestructible/reinforced,
 /area/city/outskirts)
 "ut" = (
 /obj/effect/landmark/abnospawn/easysupport,
@@ -238,18 +227,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/city/outskirts)
-"xy" = (
-/obj/effect/turf_decal/stripes/line{
-	dir = 8
-	},
-/obj/machinery/computer/shuttle/mining{
-	dir = 4;
-	name = "elevator console";
-	possible_destinations = "epsilon_command";
-	shuttleId = "epsilon"
-	},
-/turf/open/floor/plasteel/dark,
-/area/city/outskirts)
 "xF" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 8
@@ -257,14 +234,7 @@
 /obj/structure/sign/departments/control{
 	pixel_y = 32
 	},
-/obj/machinery/computer/shuttle/mining{
-	dir = 4;
-	max_integrity = 350000;
-	name = "elevator console";
-	possible_destinations = "epsilon_control";
-	shuttleId = "epsilon"
-	},
-/turf/open/floor/plasteel/dark,
+/turf/closed/indestructible/reinforced,
 /area/city/outskirts)
 "yy" = (
 /obj/effect/turf_decal/siding/purple,
@@ -274,13 +244,6 @@
 /obj/effect/turf_decal/siding/purple,
 /obj/structure/chair/comfy/black{
 	dir = 8
-	},
-/turf/open/floor/plasteel/dark,
-/area/city/outskirts)
-"zv" = (
-/obj/effect/turf_decal/siding/purple,
-/obj/machinery/computer/abnormality_archive{
-	dir = 4
 	},
 /turf/open/floor/plasteel/dark,
 /area/city/outskirts)
@@ -328,15 +291,6 @@
 "CS" = (
 /obj/effect/turf_decal/siding/red,
 /turf/open/floor/carpet,
-/area/city/outskirts)
-"Du" = (
-/obj/effect/turf_decal/stripes/line{
-	dir = 8
-	},
-/obj/structure/sign/departments/discipline{
-	pixel_y = -32
-	},
-/turf/open/floor/plasteel/dark,
 /area/city/outskirts)
 "DZ" = (
 /obj/effect/turf_decal/siding/purple,
@@ -392,7 +346,7 @@
 /obj/structure/sign/departments/command{
 	pixel_y = -32
 	},
-/turf/open/floor/plasteel/dark,
+/turf/closed/indestructible/reinforced,
 /area/city/outskirts)
 "LT" = (
 /obj/effect/turf_decal/siding/red,
@@ -491,14 +445,7 @@
 /obj/structure/sign/departments/discipline{
 	pixel_y = 32
 	},
-/obj/machinery/computer/shuttle/mining{
-	dir = 4;
-	max_integrity = 350000;
-	name = "elevator console";
-	possible_destinations = "epsilon_discipline";
-	shuttleId = "epsilon"
-	},
-/turf/open/floor/plasteel/dark,
+/turf/closed/indestructible/reinforced,
 /area/city/outskirts)
 "Uf" = (
 /obj/effect/turf_decal/siding/purple,
@@ -512,7 +459,7 @@
 /obj/structure/sign/departments/control{
 	pixel_y = -32
 	},
-/turf/open/floor/plasteel/dark,
+/turf/closed/indestructible/reinforced,
 /area/city/outskirts)
 "Ux" = (
 /obj/structure/closet/crate,
@@ -1166,13 +1113,6 @@ NI
 NI
 NI
 NI
-rW
-rW
-rW
-rW
-rW
-rW
-rW
 NI
 NI
 NI
@@ -1190,17 +1130,24 @@ NI
 NI
 NI
 NI
-rW
-rW
-rW
-rW
-rW
-rW
-rW
-rW
-rW
-rW
-rW
+NI
+NI
+NI
+NI
+NI
+NI
+NI
+NI
+NI
+NI
+NI
+NI
+NI
+NI
+NI
+NI
+NI
+NI
 NI
 EA
 OY
@@ -1276,6 +1223,7 @@ EA
 EA
 EA
 EA
+NI
 EA
 EA
 EA
@@ -1307,8 +1255,7 @@ EA
 EA
 EA
 EA
-EA
-EA
+NI
 EA
 EA
 EA
@@ -1399,6 +1346,9 @@ OY
 OY
 OY
 OY
+EA
+NI
+EA
 OY
 OY
 OY
@@ -1428,12 +1378,9 @@ OY
 OY
 OY
 OY
-OY
-OY
-OY
-OY
-OY
-OY
+EA
+NI
+EA
 OY
 OY
 OY
@@ -1523,6 +1470,9 @@ OY
 OY
 OY
 OY
+EA
+NI
+EA
 OY
 OY
 OY
@@ -1552,12 +1502,9 @@ OY
 OY
 OY
 OY
-OY
-OY
-OY
-OY
-OY
-OY
+EA
+NI
+EA
 OY
 OY
 OY
@@ -1647,6 +1594,9 @@ OY
 OY
 OY
 OY
+EA
+NI
+EA
 OY
 OY
 OY
@@ -1676,12 +1626,9 @@ OY
 OY
 OY
 OY
-OY
-OY
-OY
-OY
-OY
-OY
+EA
+NI
+EA
 OY
 OY
 OY
@@ -1771,6 +1718,9 @@ OY
 OY
 OY
 OY
+EA
+NI
+EA
 OY
 OY
 OY
@@ -1800,12 +1750,9 @@ OY
 OY
 OY
 OY
-OY
-OY
-OY
-OY
-OY
-OY
+EA
+NI
+EA
 OY
 OY
 OY
@@ -1895,6 +1842,9 @@ OY
 OY
 OY
 OY
+EA
+NI
+EA
 OY
 OY
 OY
@@ -1924,12 +1874,9 @@ OY
 OY
 OY
 OY
-OY
-OY
-OY
-OY
-OY
-OY
+EA
+NI
+EA
 OY
 OY
 OY
@@ -1989,15 +1936,27 @@ OY
 OY
 OY
 OY
-OY
-OY
-OY
-OY
-OY
-OY
-OY
-OY
-OY
+EA
+EA
+EA
+EA
+EA
+EA
+EA
+EA
+EA
+EA
+EA
+EA
+EA
+EA
+EA
+EA
+EA
+EA
+EA
+NI
+EA
 OY
 OY
 OY
@@ -2039,21 +1998,9 @@ OY
 OY
 OY
 OY
-OY
-OY
-OY
-OY
-OY
-OY
-OY
-OY
-OY
-OY
-OY
-OY
-OY
-OY
-OY
+EA
+NI
+EA
 OY
 OY
 OY
@@ -2113,15 +2060,27 @@ OY
 OY
 OY
 OY
-OY
-OY
-OY
-OY
-OY
-OY
-OY
-OY
-OY
+EA
+NI
+NI
+NI
+NI
+NI
+NI
+NI
+NI
+NI
+NI
+NI
+NI
+NI
+NI
+NI
+NI
+NI
+NI
+NI
+EA
 OY
 OY
 OY
@@ -2163,21 +2122,9 @@ OY
 OY
 OY
 OY
-OY
-OY
-OY
-OY
-OY
-OY
-OY
-OY
-OY
-OY
-OY
-OY
-OY
-OY
-OY
+EA
+NI
+EA
 OY
 OY
 OY
@@ -2237,15 +2184,27 @@ OY
 OY
 OY
 OY
-OY
-OY
-OY
-OY
-OY
-OY
-OY
-OY
-OY
+EA
+NI
+EA
+EA
+EA
+EA
+EA
+EA
+EA
+EA
+EA
+EA
+EA
+EA
+EA
+EA
+EA
+EA
+EA
+NI
+EA
 OY
 OY
 OY
@@ -2287,21 +2246,9 @@ OY
 OY
 OY
 OY
-OY
-OY
-OY
-OY
-OY
-OY
-OY
-OY
-OY
-OY
-OY
-OY
-OY
-OY
-OY
+EA
+NI
+EA
 OY
 OY
 OY
@@ -2361,6 +2308,8 @@ OY
 OY
 OY
 OY
+EA
+NI
 OY
 OY
 OY
@@ -2370,6 +2319,16 @@ OY
 OY
 OY
 OY
+OY
+OY
+OY
+OY
+OY
+OY
+OY
+EA
+NI
+EA
 OY
 OY
 OY
@@ -2411,21 +2370,9 @@ OY
 OY
 OY
 OY
-OY
-OY
-OY
-OY
-OY
-OY
-OY
-OY
-OY
-OY
-OY
-OY
-OY
-OY
-OY
+EA
+NI
+EA
 OY
 OY
 OY
@@ -2441,7 +2388,7 @@ OY
 OY
 OY
 EA
-rW
+NI
 EA
 OY
 EA
@@ -2485,6 +2432,8 @@ OY
 OY
 OY
 OY
+EA
+NI
 OY
 OY
 OY
@@ -2494,6 +2443,16 @@ OY
 OY
 OY
 OY
+OY
+OY
+OY
+OY
+OY
+OY
+OY
+EA
+NI
+EA
 OY
 OY
 OY
@@ -2535,21 +2494,9 @@ OY
 OY
 OY
 OY
-OY
-OY
-OY
-OY
-OY
-OY
-OY
-OY
-OY
-OY
-OY
-OY
-OY
-OY
-OY
+EA
+NI
+EA
 OY
 OY
 OY
@@ -2565,7 +2512,7 @@ OY
 OY
 OY
 EA
-rW
+NI
 EA
 OY
 EA
@@ -2609,8 +2556,8 @@ OY
 OY
 OY
 OY
-OY
-OY
+EA
+NI
 OY
 OY
 OY
@@ -2640,6 +2587,7 @@ EA
 EA
 EA
 EA
+NI
 EA
 EA
 EA
@@ -2671,8 +2619,7 @@ EA
 EA
 EA
 EA
-EA
-EA
+NI
 EA
 EA
 EA
@@ -2689,12 +2636,12 @@ OY
 OY
 OY
 EA
-rW
+NI
 EA
 OY
 EA
 EA
-xy
+cK
 cK
 Ls
 EA
@@ -2733,8 +2680,8 @@ OY
 OY
 OY
 OY
-OY
-OY
+EA
+NI
 OY
 OY
 OY
@@ -2766,12 +2713,12 @@ NI
 NI
 NI
 NI
-rW
-rW
-rW
-rW
-rW
-rW
+NI
+NI
+NI
+NI
+NI
+NI
 NI
 NI
 NI
@@ -2813,7 +2760,7 @@ OY
 OY
 OY
 EA
-rW
+NI
 EA
 OY
 EA
@@ -2857,8 +2804,8 @@ OY
 OY
 OY
 OY
-OY
-OY
+EA
+NI
 OY
 OY
 OY
@@ -2911,7 +2858,7 @@ EA
 EA
 EA
 EA
-EA
+NI
 EA
 EA
 EA
@@ -2937,7 +2884,7 @@ OY
 OY
 OY
 EA
-rW
+NI
 EA
 OY
 EA
@@ -2981,8 +2928,8 @@ OY
 OY
 OY
 OY
-OY
-OY
+EA
+NI
 OY
 OY
 OY
@@ -3034,9 +2981,9 @@ OY
 OY
 OY
 OY
-OY
-OY
-OY
+EA
+NI
+EA
 OY
 OY
 OY
@@ -3061,7 +3008,7 @@ OY
 OY
 OY
 EA
-rW
+NI
 EA
 EA
 EA
@@ -3106,7 +3053,7 @@ EA
 EA
 EA
 EA
-EA
+NI
 EA
 EA
 EA
@@ -3158,9 +3105,9 @@ OY
 OY
 OY
 OY
-OY
-OY
-OY
+EA
+NI
+EA
 OY
 OY
 OY
@@ -3185,9 +3132,9 @@ OY
 OY
 OY
 EA
-rW
-rW
-rW
+NI
+NI
+NI
 JC
 ie
 ie
@@ -3282,9 +3229,9 @@ OY
 OY
 OY
 OY
-OY
-OY
-OY
+EA
+NI
+EA
 OY
 OY
 OY
@@ -3309,7 +3256,7 @@ OY
 OY
 OY
 EA
-EA
+NI
 EA
 EA
 EA
@@ -3406,20 +3353,6 @@ OY
 OY
 OY
 OY
-OY
-OY
-OY
-OY
-OY
-OY
-OY
-OY
-OY
-OY
-OY
-OY
-OY
-OY
 EA
 NI
 EA
@@ -3434,7 +3367,21 @@ OY
 OY
 OY
 OY
-OY
+EA
+NI
+EA
+EA
+EA
+EA
+EA
+EA
+EA
+EA
+EA
+EA
+EA
+NI
+EA
 OY
 EA
 ie
@@ -3530,20 +3477,6 @@ OY
 OY
 OY
 OY
-OY
-OY
-OY
-OY
-OY
-OY
-OY
-OY
-OY
-OY
-OY
-OY
-OY
-OY
 EA
 NI
 EA
@@ -3558,7 +3491,21 @@ OY
 OY
 OY
 OY
-OY
+EA
+NI
+NI
+NI
+NI
+NI
+NI
+NI
+NI
+NI
+NI
+NI
+NI
+NI
+EA
 OY
 EA
 ie
@@ -3654,20 +3601,6 @@ OY
 OY
 OY
 OY
-OY
-OY
-OY
-OY
-OY
-OY
-OY
-OY
-OY
-OY
-OY
-OY
-OY
-OY
 EA
 NI
 EA
@@ -3682,7 +3615,21 @@ OY
 OY
 OY
 OY
-OY
+EA
+NI
+EA
+EA
+EA
+EA
+EA
+EA
+EA
+EA
+EA
+EA
+EA
+EA
+EA
 OY
 EA
 EA
@@ -3778,9 +3725,9 @@ OY
 OY
 OY
 OY
-OY
-OY
-OY
+EA
+NI
+EA
 OY
 OY
 OY
@@ -3902,9 +3849,9 @@ OY
 OY
 OY
 OY
-OY
-OY
-OY
+EA
+NI
+EA
 OY
 OY
 OY
@@ -4026,9 +3973,9 @@ OY
 OY
 OY
 OY
-OY
-OY
-OY
+EA
+NI
+EA
 OY
 OY
 OY
@@ -4150,9 +4097,9 @@ OY
 OY
 OY
 OY
-OY
-OY
-OY
+EA
+NI
+EA
 OY
 OY
 OY
@@ -4274,9 +4221,9 @@ OY
 OY
 OY
 OY
-OY
-OY
-OY
+EA
+NI
+EA
 OY
 OY
 OY
@@ -4398,9 +4345,9 @@ OY
 OY
 OY
 OY
-OY
-OY
-OY
+EA
+NI
+EA
 OY
 OY
 OY
@@ -4482,7 +4429,7 @@ OY
 OY
 OY
 EA
-rW
+NI
 EA
 OY
 OY
@@ -4522,9 +4469,9 @@ OY
 OY
 OY
 OY
-OY
-OY
-OY
+EA
+NI
+EA
 OY
 OY
 OY
@@ -4606,7 +4553,7 @@ OY
 OY
 OY
 EA
-rW
+NI
 EA
 OY
 OY
@@ -4646,9 +4593,9 @@ EA
 EA
 EA
 OY
-OY
-OY
-OY
+EA
+NI
+EA
 OY
 OY
 EA
@@ -4730,7 +4677,7 @@ OY
 OY
 OY
 EA
-rW
+NI
 EA
 OY
 OY
@@ -4771,8 +4718,8 @@ eL
 eL
 EA
 EA
-OY
-OY
+NI
+EA
 OY
 EA
 EA
@@ -4854,7 +4801,7 @@ OY
 OY
 OY
 EA
-rW
+NI
 EA
 OY
 OY
@@ -4895,8 +4842,8 @@ eL
 eL
 eL
 EA
-OY
-OY
+NI
+EA
 OY
 EA
 eL
@@ -4978,7 +4925,7 @@ OY
 OY
 OY
 EA
-rW
+NI
 EA
 OY
 OY
@@ -5019,8 +4966,8 @@ eL
 eL
 eL
 EA
-OY
-OY
+NI
+EA
 OY
 EA
 eL
@@ -5102,7 +5049,7 @@ OY
 OY
 OY
 EA
-rW
+NI
 EA
 OY
 OY
@@ -5143,8 +5090,8 @@ eL
 ed
 eL
 EA
-OY
-OY
+NI
+EA
 OY
 EA
 eL
@@ -5226,7 +5173,7 @@ OY
 OY
 OY
 EA
-rW
+NI
 EA
 OY
 OY
@@ -5267,8 +5214,8 @@ eL
 eL
 eL
 EA
-OY
-OY
+NI
+EA
 OY
 EA
 eL
@@ -5337,7 +5284,7 @@ EA
 EA
 TA
 cK
-Du
+cK
 EA
 EA
 EA
@@ -5391,8 +5338,8 @@ eL
 eL
 eL
 EA
-OY
-OY
+NI
+EA
 OY
 EA
 eL
@@ -5465,14 +5412,14 @@ NI
 NI
 RD
 EA
-OY
-OY
-OY
-OY
-OY
-OY
-OY
-OY
+EA
+EA
+EA
+EA
+EA
+EA
+EA
+EA
 EA
 NI
 EA
@@ -5515,8 +5462,8 @@ it
 EA
 EA
 EA
-OY
-OY
+NI
+EA
 OY
 EA
 EA
@@ -5588,16 +5535,16 @@ NI
 gY
 NI
 NI
-EA
-OY
-OY
-OY
-OY
-OY
-OY
-OY
-OY
-EA
+NI
+NI
+NI
+NI
+NI
+NI
+NI
+NI
+NI
+NI
 NI
 EA
 OY
@@ -5639,8 +5586,8 @@ lA
 lA
 of
 EA
-OY
-OY
+NI
+EA
 OY
 EA
 NI
@@ -5713,14 +5660,14 @@ NI
 NI
 gk
 EA
-OY
-OY
-OY
-OY
-OY
-OY
-OY
-OY
+EA
+EA
+EA
+EA
+EA
+EA
+EA
+EA
 EA
 NI
 EA
@@ -5763,9 +5710,9 @@ NI
 NI
 DZ
 EA
-OY
-OY
-OY
+NI
+EA
+EA
 EA
 NI
 PJ
@@ -5887,10 +5834,10 @@ nn
 NI
 bN
 EA
-OY
-OY
-OY
-EA
+NI
+NI
+NI
+NI
 NI
 PJ
 VH
@@ -5978,8 +5925,8 @@ EA
 EA
 NI
 EA
-EA
-EA
+OY
+OY
 EA
 NI
 EA
@@ -6009,11 +5956,11 @@ VW
 CM
 yy
 NI
-zv
+NI
+NI
+NI
 EA
-OY
-OY
-OY
+EA
 EA
 NI
 PJ
@@ -6101,6 +6048,10 @@ NI
 NI
 NI
 NI
+EA
+OY
+OY
+EA
 NI
 NI
 NI
@@ -6111,12 +6062,8 @@ NI
 NI
 NI
 NI
-rW
-rW
-rW
-rW
-rW
-rW
+NI
+NI
 NI
 NI
 NI
@@ -6135,8 +6082,8 @@ yy
 NI
 zb
 EA
-OY
-OY
+EA
+EA
 OY
 EA
 NI
@@ -6226,8 +6173,8 @@ EA
 EA
 EA
 EA
-EA
-EA
+OY
+OY
 EA
 EA
 EA

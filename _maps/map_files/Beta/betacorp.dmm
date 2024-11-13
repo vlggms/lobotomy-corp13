@@ -1271,18 +1271,6 @@
 /obj/machinery/aug_manipulator,
 /turf/open/floor/carpet/purple,
 /area/department_main/information)
-"gO" = (
-/obj/effect/turf_decal/siding/yellow{
-	dir = 8
-	},
-/obj/structure/curtain/cloth/fancy{
-	pixel_x = -32
-	},
-/obj/machinery/light{
-	dir = 8
-	},
-/turf/open/floor/plasteel,
-/area/facility_hallway/north)
 "gR" = (
 /obj/effect/turf_decal/bot,
 /obj/machinery/telecomms/hub/preset,
@@ -1900,9 +1888,6 @@
 "jV" = (
 /obj/effect/turf_decal/siding/yellow{
 	dir = 8
-	},
-/obj/structure/curtain/cloth/fancy{
-	pixel_x = -32
 	},
 /obj/machinery/camera/autoname{
 	dir = 5
@@ -4829,6 +4814,7 @@
 /area/department_main/welfare)
 "xg" = (
 /obj/effect/spawner/abnormality_room,
+/obj/structure/curtain/cloth/fancy,
 /turf/closed/indestructible/reinforced,
 /area/facility_hallway/south)
 "xl" = (
@@ -5753,18 +5739,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/department_main/information)
-"BH" = (
-/obj/effect/turf_decal/siding/yellow{
-	dir = 4
-	},
-/obj/structure/curtain/cloth/fancy{
-	pixel_x = 32
-	},
-/obj/machinery/light{
-	dir = 4
-	},
-/turf/open/floor/plasteel,
-/area/facility_hallway/south)
 "BM" = (
 /obj/effect/spawner/structure/window/reinforced,
 /turf/open/floor/plating,
@@ -5860,15 +5834,6 @@
 /obj/structure/toolabnormality/clock,
 /turf/open/floor/plasteel/dark,
 /area/facility_hallway/information)
-"Cl" = (
-/obj/structure/curtain/cloth/fancy{
-	pixel_x = -32
-	},
-/obj/effect/turf_decal/siding/yellow{
-	dir = 8
-	},
-/turf/open/floor/plasteel,
-/area/facility_hallway/south)
 "Cn" = (
 /obj/machinery/newscaster{
 	pixel_x = 32
@@ -5893,7 +5858,7 @@
 	desc = "A board for mounting important items upon.";
 	name = "display board"
 	},
-/obj/item/gun/ego_gun/clerk{
+/obj/item/ego_weapon/ranged/clerk{
 	anchored = 1;
 	pixel_y = 2
 	},
@@ -6057,9 +6022,6 @@
 "DB" = (
 /obj/effect/turf_decal/siding/yellow{
 	dir = 4
-	},
-/obj/structure/curtain/cloth/fancy{
-	pixel_x = 32
 	},
 /obj/machinery/camera/autoname{
 	dir = 9
@@ -6768,9 +6730,6 @@
 /obj/effect/turf_decal/siding/yellow{
 	dir = 9
 	},
-/obj/structure/curtain/cloth/fancy{
-	pixel_x = -32
-	},
 /obj/structure/sign/departments/command{
 	pixel_y = 32
 	},
@@ -6829,18 +6788,6 @@
 /obj/machinery/navbeacon/wayfinding/trainingdepartment,
 /turf/open/floor/plasteel,
 /area/department_main/training)
-"HB" = (
-/obj/effect/turf_decal/siding/yellow{
-	dir = 4
-	},
-/obj/structure/curtain/cloth/fancy{
-	pixel_x = 32
-	},
-/obj/machinery/light{
-	dir = 4
-	},
-/turf/open/floor/plasteel,
-/area/facility_hallway/north)
 "HC" = (
 /turf/closed/indestructible/fakeglass,
 /area/department_main/command)
@@ -7456,12 +7403,6 @@
 /obj/machinery/telecomms/receiver/preset_right,
 /turf/open/floor/circuit/telecomms/mainframe,
 /area/department_main/information)
-"Kw" = (
-/obj/machinery/smartfridge/organ{
-	pixel_x = -32
-	},
-/turf/open/floor/plasteel/white,
-/area/department_main/safety)
 "Kx" = (
 /obj/effect/spawner/abnormality_room,
 /turf/closed/indestructible/reinforced,
@@ -7838,15 +7779,6 @@
 /obj/structure/toolabnormality/wishwell,
 /turf/open/floor/plasteel/dark,
 /area/facility_hallway/discipline)
-"MD" = (
-/obj/effect/turf_decal/siding/yellow{
-	dir = 8
-	},
-/obj/structure/curtain/cloth/fancy{
-	pixel_x = -32
-	},
-/turf/open/floor/plasteel,
-/area/facility_hallway/north)
 "ME" = (
 /obj/structure/table/reinforced,
 /obj/item/storage/box/handcuffs,
@@ -7983,11 +7915,9 @@
 /turf/open/floor/wood,
 /area/department_main/command)
 "Nn" = (
-/obj/machinery/smartfridge/organ{
-	pixel_x = 32
-	},
-/turf/open/floor/plasteel/white,
-/area/department_main/safety)
+/obj/structure/curtain/cloth/fancy,
+/turf/closed/indestructible/reinforced,
+/area/facility_hallway/south)
 "No" = (
 /obj/effect/spawner/randomsnackvend,
 /turf/open/floor/plasteel/dark,
@@ -8475,15 +8405,6 @@
 /obj/item/pen/fourcolor,
 /turf/open/floor/carpet/orange,
 /area/department_main/training)
-"PL" = (
-/obj/effect/turf_decal/siding/yellow{
-	dir = 4
-	},
-/obj/structure/curtain/cloth/fancy{
-	pixel_x = 32
-	},
-/turf/open/floor/plasteel,
-/area/facility_hallway/north)
 "PM" = (
 /obj/machinery/smartfridge/extraction_storage/ego_weapon,
 /turf/closed/indestructible/reinforced,
@@ -8705,7 +8626,7 @@
 	desc = "A board for mounting important items upon.";
 	name = "display board"
 	},
-/obj/item/gun/ego_gun/clerk{
+/obj/item/ego_weapon/ranged/clerk{
 	anchored = 1;
 	pixel_y = 2
 	},
@@ -8922,9 +8843,6 @@
 /obj/effect/turf_decal/siding/yellow{
 	dir = 10
 	},
-/obj/structure/curtain/cloth/fancy{
-	pixel_x = -32
-	},
 /obj/machinery/light{
 	dir = 8
 	},
@@ -8953,9 +8871,6 @@
 /obj/effect/turf_decal/siding/yellow{
 	dir = 6
 	},
-/obj/structure/curtain/cloth/fancy{
-	pixel_x = 32
-	},
 /obj/machinery/light{
 	dir = 4
 	},
@@ -8971,9 +8886,6 @@
 "Sp" = (
 /obj/effect/turf_decal/siding/yellow{
 	dir = 10
-	},
-/obj/structure/curtain/cloth/fancy{
-	pixel_x = -32
 	},
 /obj/structure/sign/departments/command{
 	pixel_y = -32
@@ -9067,9 +8979,6 @@
 "SZ" = (
 /obj/effect/turf_decal/siding/yellow{
 	dir = 6
-	},
-/obj/structure/curtain/cloth/fancy{
-	pixel_x = 32
 	},
 /obj/structure/sign/departments/command{
 	pixel_y = -32
@@ -9261,18 +9170,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/facility_hallway/welfare)
-"Ub" = (
-/obj/effect/turf_decal/siding/yellow{
-	dir = 8
-	},
-/obj/structure/curtain/cloth/fancy{
-	pixel_x = -32
-	},
-/obj/machinery/light{
-	dir = 8
-	},
-/turf/open/floor/plasteel,
-/area/facility_hallway/south)
 "Uc" = (
 /obj/effect/turf_decal/siding/yellow{
 	dir = 4
@@ -9608,12 +9505,10 @@
 /area/department_main/discipline)
 "Vu" = (
 /obj/structure/table/wood/fancy/blue,
-/obj/item/instrument/violin{
-	anchored = 1
-	},
 /obj/effect/turf_decal/siding/yellow/corner{
 	dir = 4
 	},
+/obj/item/instrument/violin,
 /turf/open/floor/wood,
 /area/department_main/command)
 "Vv" = (
@@ -9766,9 +9661,6 @@
 "Ww" = (
 /obj/effect/turf_decal/siding/yellow{
 	dir = 4
-	},
-/obj/structure/curtain/cloth/fancy{
-	pixel_x = 32
 	},
 /obj/machinery/camera/autoname{
 	dir = 9
@@ -10131,9 +10023,6 @@
 /obj/effect/turf_decal/siding/yellow{
 	dir = 5
 	},
-/obj/structure/curtain/cloth/fancy{
-	pixel_x = 32
-	},
 /obj/structure/sign/departments/command{
 	pixel_y = 32
 	},
@@ -10163,9 +10052,6 @@
 "Yg" = (
 /obj/effect/turf_decal/siding/yellow{
 	dir = 9
-	},
-/obj/structure/curtain/cloth/fancy{
-	pixel_x = -32
 	},
 /obj/machinery/light{
 	dir = 8
@@ -10218,9 +10104,6 @@
 /obj/effect/turf_decal/siding/yellow{
 	dir = 5
 	},
-/obj/structure/curtain/cloth/fancy{
-	pixel_x = 32
-	},
 /obj/machinery/light{
 	dir = 4
 	},
@@ -10230,28 +10113,18 @@
 /turf/open/floor/plating,
 /area/facility_hallway/information)
 "Yu" = (
-/obj/effect/turf_decal/siding/yellow{
-	dir = 8
-	},
-/obj/structure/curtain/cloth/fancy{
-	pixel_x = -32
-	},
-/turf/open/floor/plasteel,
-/area/facility_hallway/south)
+/obj/machinery/smartfridge/organ,
+/turf/closed/indestructible/reinforced,
+/area/department_main/safety)
 "Yv" = (
 /obj/structure/chair/office/light,
 /obj/item/toy/plush/malkuth,
 /turf/open/floor/plasteel/dark,
 /area/department_main/control)
 "Yx" = (
-/obj/effect/turf_decal/siding/yellow{
-	dir = 4
-	},
-/obj/structure/curtain/cloth/fancy{
-	pixel_x = 32
-	},
-/turf/open/floor/plasteel,
-/area/facility_hallway/south)
+/obj/structure/curtain/cloth/fancy,
+/turf/closed/indestructible/reinforced,
+/area/facility_hallway/north)
 "Yy" = (
 /obj/structure/table/wood/fancy/green,
 /obj/item/encryptionkey/headset_safety,
@@ -10531,9 +10404,6 @@
 "ZK" = (
 /obj/effect/turf_decal/siding/yellow{
 	dir = 8
-	},
-/obj/structure/curtain/cloth/fancy{
-	pixel_x = -32
 	},
 /obj/machinery/camera/autoname{
 	dir = 5
@@ -40729,7 +40599,7 @@ JB
 JB
 an
 qQ
-Nn
+cu
 cu
 dv
 cu
@@ -40757,15 +40627,15 @@ Rc
 LP
 kK
 Nq
-Rc
-Rc
+Yx
+Yx
 nB
 xL
 Kd
-Rc
-Rc
-Rc
-Rc
+Yx
+Yx
+Yx
+Yx
 Rc
 AI
 YB
@@ -40785,18 +40655,18 @@ hC
 WZ
 AI
 hl
-hl
-hl
-hl
-hl
+Nn
+Nn
+Nn
+Nn
 BM
 je
 BM
-hl
-hl
-hl
-hl
-hl
+Nn
+Nn
+Nn
+Nn
+Nn
 Mj
 tQ
 tp
@@ -40986,7 +40856,7 @@ an
 an
 an
 an
-an
+Yu
 an
 an
 eG
@@ -41014,16 +40884,16 @@ Mg
 ao
 cs
 hE
-gO
-MD
+OU
+zi
 yZ
 mY
 rj
 jV
-MD
-MD
+zi
+zi
 Sb
-Rc
+Yx
 AI
 rO
 Bk
@@ -41041,19 +40911,19 @@ Bk
 ax
 lv
 AI
-hl
+Nn
 Yg
-Yu
-Yu
+EL
+EL
 ZK
 FE
 EL
 EL
-Cl
-Yu
-Yu
-Ub
-Yu
+EL
+EL
+EL
+FE
+EL
 ip
 tQ
 tp
@@ -42014,7 +41884,7 @@ an
 an
 an
 an
-an
+Yu
 an
 an
 fy
@@ -42042,16 +41912,16 @@ Mg
 hz
 kK
 ki
-HB
+Pm
 DB
 wT
 yL
 Pm
-PL
-PL
-PL
+yL
+yL
+yL
 Sl
-Rc
+Yx
 AI
 MP
 Bk
@@ -42069,19 +41939,19 @@ Bk
 ax
 tT
 AI
-hl
+Nn
 Yp
-Yx
-Yx
-Yx
+ab
+ab
+ab
 Gi
 ab
 ab
 Ww
-Yx
-Yx
-BH
-Yx
+ab
+ab
+Gi
+ab
 Yo
 bA
 Qs
@@ -42271,7 +42141,7 @@ JB
 JB
 an
 qQ
-Kw
+cu
 cu
 dv
 cu
@@ -42299,15 +42169,15 @@ Rc
 LP
 kK
 Nq
-Rc
-Rc
+Yx
+Yx
 nB
 xL
 Kd
-Rc
-Rc
-Rc
-Rc
+Yx
+Yx
+Yx
+Yx
 Rc
 AI
 AD
@@ -42327,17 +42197,17 @@ VO
 qH
 AI
 hl
-hl
-hl
-hl
-hl
+Nn
+Nn
+Nn
+Nn
 BM
 je
 BM
-hl
-hl
-hl
-hl
+Nn
+Nn
+Nn
+Nn
 xg
 NN
 bA

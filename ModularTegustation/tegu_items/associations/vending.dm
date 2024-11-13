@@ -116,7 +116,7 @@
 		/obj/item/ego_weapon/city/fixergreatsword = 20,
 		/obj/item/ego_weapon/city/fixerhammer = 20,
 		/obj/item/ego_weapon/city/zweibaton/protection = 20,
-		/obj/item/fishing_rod = 20,
+		/obj/item/storage/box/fishing = 20,
 		/obj/item/kitchen/knife/combat/survival = 100,
 		/obj/item/weldingtool/mini = 100,
 		/obj/item/reagent_containers/hypospray/medipen/mental = 100,
@@ -132,6 +132,7 @@
 		/obj/item/book/granter/action/skill/assault = 100,
 		/obj/item/book/granter/action/skill/retreat = 100,
 		/obj/item/book/granter/action/skill/smokedash = 100,
+		/obj/item/book/granter/action/skill/skulk = 100,
 		/obj/item/book/granter/action/skill/healing = 100,
 		/obj/item/book/granter/action/skill/soothing = 100,
 		/obj/item/book/granter/action/skill/curing = 100,
@@ -149,12 +150,14 @@
 		/obj/item/book/granter/action/skill/healthhud = 100,
 		/obj/item/book/granter/action/skill/bulletproof = 100,
 		/obj/item/book/granter/action/skill/battleready = 100,
+		/obj/item/book/granter/action/skill/fleetfoot = 100,
 		//Level 4
 		/obj/item/book/granter/action/skill/timestop = 100,
 		/obj/item/book/granter/action/skill/reraise = 100,
 		/obj/item/book/granter/action/skill/dismember = 100,
 		/obj/item/book/granter/action/skill/warbanner = 100,
 		/obj/item/book/granter/action/skill/warcry = 100,
+		/obj/item/book/granter/action/skill/nuke = 100,
 	)
 
 	default_price = 300

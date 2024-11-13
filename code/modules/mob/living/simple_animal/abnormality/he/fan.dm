@@ -52,7 +52,7 @@
 		if("Set it to 2")
 			observation_fail_message = observation_fail_message_3
 		else
-			observation_fail_message = initial(observation_fail_message)
+			observation_fail_message = initial(observation_success_message)
 	return ..()
 
 /mob/living/simple_animal/hostile/abnormality/fan/examine(mob/user)
@@ -182,7 +182,7 @@
 	if(stacks <= 10)
 		return
 	owner.deal_damage((stacks / 5), RED_DAMAGE)
-	owner.playsound_local(owner, 'sound/effects/book_burn.ogg', 25, TRUE)
+	owner.playsound_local(owner, 'sound/effects/burn.ogg', 25, TRUE)
 
 /datum/status_effect/stacking/fanhot/on_remove()
 	. = ..()

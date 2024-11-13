@@ -12,7 +12,7 @@
 	attack_verb_simple = list("attack", "slap", "whack")
 
 	///The brain's organ variables are significantly more different than the other organs, with half the decay rate for balance reasons, and twice the maxHealth
-	decay_factor = STANDARD_ORGAN_DECAY	* 0.5		//30 minutes of decaying to result in a fully damaged brain, since a fast decay rate would be unfun gameplay-wise
+	decay_factor = STANDARD_ORGAN_DECAY	* 0.25		//60 minutes of decaying to result in a fully damaged brain, since a fast decay rate would be unfun gameplay-wise
 
 	maxHealth = BRAIN_DAMAGE_DEATH
 	low_threshold = 45
@@ -347,13 +347,13 @@
 		if(TRAUMA_RESILIENCE_SURGERY)
 			max_traumas = TRAUMA_LIMIT_SURGERY
 		if(TRAUMA_RESILIENCE_WOUND)
-			max_traumas = TRAUMA_LIMIT_WOUND
+			max_traumas = TRAUMA_LIMIT_SURGERY
 		if(TRAUMA_RESILIENCE_LOBOTOMY)
-			max_traumas = TRAUMA_LIMIT_LOBOTOMY
+			max_traumas = TRAUMA_LIMIT_SURGERY
 		if(TRAUMA_RESILIENCE_MAGIC)
-			max_traumas = TRAUMA_LIMIT_MAGIC
+			max_traumas = TRAUMA_LIMIT_SURGERY
 		if(TRAUMA_RESILIENCE_ABSOLUTE)
-			max_traumas = TRAUMA_LIMIT_ABSOLUTE
+			max_traumas = TRAUMA_LIMIT_SURGERY
 
 	if(natural_gain && resilience_tier_count >= max_traumas)
 		return FALSE

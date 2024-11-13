@@ -380,3 +380,13 @@
 		"When Agent Jamie tried to coinflip a second time prior to working, T-01-72 refused.",
 		"When Gambling work was performed, T-01-72 and the agent engaged in a game of Russian Roulette.",
 		"If the agent survived the game of Russian Roulette, they were awarded with an unique E.G.O. Weapon.")
+
+//Forsaken Employee
+/obj/item/paper/fluff/info/teth/forsaken_employee
+	abno_type = /mob/living/simple_animal/hostile/abnormality/forsaken_employee
+	abno_code = "T-01-201" //We can change the number once we figure out the proper code
+	abno_info = list(
+		"When the work result was Bad, the Qliphoth Counter lowered.",
+		"When the Qliphoth Counter reached 0, the abnormality let out a yell that seems to damage the electricity of the nearest connected circuit.",
+		"Considering how the containment cells are designed, the nearest circuits seem to be the ciruitry for the facility's lighting.",
+		"The energy lost from an electric surge from this abnormality will be taken out of the quota.")

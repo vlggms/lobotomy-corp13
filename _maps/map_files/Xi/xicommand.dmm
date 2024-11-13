@@ -1778,7 +1778,7 @@
 /area/city/backstreets_room)
 "et" = (
 /obj/structure/table/glass,
-/obj/item/gun/ego_gun/pistol/soda,
+/obj/item/ego_weapon/ranged/pistol/soda,
 /turf/open/floor/plasteel/vaporwave,
 /area/city/backstreets_room)
 "eu" = (
@@ -2124,7 +2124,7 @@
 /obj/effect/decal/cleanable/blood/tracks{
 	dir = 8
 	},
-/obj/item/gun/ego_gun/clerk,
+/obj/item/ego_weapon/ranged/clerk,
 /turf/open/floor/plating/dirt/jungle/dark,
 /area/city/backstreets_room)
 "fp" = (
@@ -5893,7 +5893,7 @@
 /area/facility_hallway/command)
 "pj" = (
 /obj/structure/table/glass,
-/obj/item/gun/ego_gun/sodasmg,
+/obj/item/ego_weapon/ranged/sodasmg,
 /turf/open/floor/plasteel/vaporwave,
 /area/city/backstreets_room)
 "pk" = (
@@ -12259,7 +12259,7 @@
 "EG" = (
 /obj/structure/closet/cabinet,
 /obj/item/ego_weapon/city/streetlight_bat,
-/obj/item/gun/ego_gun/clerk{
+/obj/item/ego_weapon/ranged/clerk{
 	desc = "A pistol that looks to be loaded with 9mm rounds. Fit and comforms to the Heads regulations.";
 	name = "9mm Pistol"
 	},
@@ -13412,7 +13412,7 @@
 /area/city/backstreets_checkpoint)
 "Ht" = (
 /obj/structure/table/glass,
-/obj/item/gun/ego_gun/sodarifle,
+/obj/item/ego_weapon/ranged/sodarifle,
 /turf/open/floor/plasteel/vaporwave,
 /area/city/backstreets_room)
 "Hu" = (
@@ -15647,7 +15647,7 @@
 /obj/structure/filingcabinet{
 	pixel_x = 10
 	},
-/obj/item/gun/ego_gun/clerk{
+/obj/item/ego_weapon/ranged/clerk{
 	desc = "A pistol that looks to be loaded with 9mm rounds. Fit and comforms to the Heads regulations.";
 	name = "9mm Pistol";
 	pixel_y = 10
@@ -18490,7 +18490,7 @@
 	dir = 3
 	},
 /obj/structure/closet/crate/large,
-/obj/item/gun/ego_gun/pistol/kcorp/nade,
+/obj/item/ego_weapon/ranged/pistol/kcorp/nade,
 /obj/item/ego_weapon/shield/kcorp,
 /turf/open/floor/engine,
 /area/city/backstreets_room)
@@ -20011,7 +20011,7 @@
 /area/city)
 "Yt" = (
 /obj/structure/closet/cabinet,
-/obj/item/gun/ego_gun/pistol/kcorp,
+/obj/item/ego_weapon/ranged/pistol/kcorp,
 /obj/item/ego_weapon/city/kcorp,
 /turf/open/floor/wood,
 /area/city/backstreets_room)
@@ -20388,7 +20388,7 @@
 /area/facility_hallway/command)
 "Zt" = (
 /obj/structure/table/glass,
-/obj/item/gun/ego_gun/shrimp/assault,
+/obj/item/ego_weapon/ranged/shrimp/assault,
 /turf/open/floor/plasteel/vaporwave,
 /area/city/backstreets_room)
 "Zu" = (

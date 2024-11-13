@@ -203,7 +203,7 @@
 "K" = (
 /obj/structure/closet/crate/large,
 /obj/item/ego_weapon/shield/kcorp,
-/obj/item/gun/ego_gun/pistol/kcorp/nade,
+/obj/item/ego_weapon/ranged/pistol/kcorp/nade,
 /turf/open/floor/engine,
 /area/city/backstreets_room)
 "L" = (

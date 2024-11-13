@@ -35,3 +35,12 @@
     room_id = "rat_sea"
     mappath = "_maps/RandomRooms/backstreets/small_east/rat_sea.dmm"
 
+/datum/map_template/random_room/backstreets/small_east/dragon_statue
+    name = "Dragon - Small East A"
+    room_id = "dragon_statue"
+    mappath = "_maps/RandomRooms/backstreets/small_east/dragon_statue.dmm"
+
+/datum/map_template/random_room/backstreets/small_east/paper_pushed
+    name = "Paper - Small East A"
+    room_id = "paper_pushed"
+    mappath = "_maps/RandomRooms/backstreets/small_east/paper_pushed.dmm"

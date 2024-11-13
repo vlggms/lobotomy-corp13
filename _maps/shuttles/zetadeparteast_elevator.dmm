@@ -83,7 +83,6 @@
 "L" = (
 /obj/structure/chair/comfy/shuttle{
 	dir = 4;
-	can_buckle = 0;
 	desc = "A comfortable, secure seat.";
 	name = "metalic seat"
 	},

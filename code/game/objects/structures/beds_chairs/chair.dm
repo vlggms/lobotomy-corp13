@@ -116,14 +116,10 @@
 /obj/structure/chair/post_buckle_mob(mob/living/M)
 	. = ..()
 	handle_layer()
-	M.pixel_x += pixel_x // LOBOTOMYCORPORATION ADDITION -- BETTER CHAIRS FOR MAPPERS
-	M.pixel_y += pixel_y
 
 /obj/structure/chair/post_unbuckle_mob(mob/living/M)
 	. = ..()
 	handle_layer()
-	M.pixel_x -= pixel_x // LOBOTOMYCORPORATION ADDITION -- BETTER CHAIRS FOR MAPPERS
-	M.pixel_y -= pixel_y
 
 /obj/structure/chair/setDir(newdir)
 	..()

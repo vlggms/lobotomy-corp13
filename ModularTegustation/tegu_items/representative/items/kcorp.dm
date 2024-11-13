@@ -81,21 +81,19 @@
 	icon_state = "khealing"
 	icon_living = "khealing"
 	faction = list("kcorp")
-	health = 500	//They're here to help
+	health = 500
 	maxHealth = 500
-	melee_damage_type = STAMINA
 	damage_coeff = list(RED_DAMAGE = 0.4, WHITE_DAMAGE = 0.7, BLACK_DAMAGE = 1.2, PALE_DAMAGE = 1)
-	melee_damage_lower = 14
-	melee_damage_upper = 18
 	robust_searching = TRUE
 	stat_attack = HARD_CRIT
 	del_on_death = TRUE
-	attack_verb_continuous = "jabs"
-	attack_verb_simple = "jabs"
-	attack_sound = 'sound/weapons/bite.ogg'
+	friendly_verb_continuous = "jabs"
+	friendly_verb_simple = "jab"
 	can_patrol = TRUE
 	is_flying_animal = TRUE
 
+	/// If TRUE, will not heal people.
+	var/defective = FALSE
 
 /mob/living/simple_animal/hostile/khealing/CanAttack(atom/the_target)
 	if(!ishuman(the_target))
@@ -106,12 +104,15 @@
 	return FALSE
 
 /mob/living/simple_animal/hostile/khealing/AttackingTarget(atom/attacked_target)
-	..()
-	if(!ishuman(attacked_target))
-		return
-	var/mob/living/H = attacked_target
-	H.adjustBruteLoss(-20)
-
+	if(ishuman(target))
+		var/mob/living/H = target
+		H.adjustStaminaLoss(rand(14, 18))
+		if(!defective)
+			H.adjustBruteLoss(-20)
+			to_chat(H, span_nicegreen("You feel your injuries painfully close!"))
+			if(prob(25))
+				H.emote("scream")
+	return ..()
 
 // For Asset Reclimation
 /obj/item/grenade/spawnergrenade/khealing
