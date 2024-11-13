@@ -166,7 +166,7 @@
 /obj/effect/mob_spawn/human/supplypod/r_corp/zwei_call
 	name = "Zwei teleport zone"
 	desc = "A authorized zone for teleporting in zwei fixers."
-	short_desc = "You are part of the Zwei Association, stick together and assist the people of htis station."
+	short_desc = "You are part of the Zwei Association, stick together and assist the people of this station."
 	flavour_text = "You've been paid to assist L-Corp today. Be their shield"
 	mob_name = "Zwei Fixer"
 	outfit = /datum/outfit/zwei_shield
