@@ -162,7 +162,7 @@
 	tools = list(/obj/item/silkknife = 1)
 	time = 10
 	always_available = FALSE
-	category = CAT_CLOTHING
+	category = CAT_SILK
 	subcategory = CAT_CONVERSION
 
 /datum/crafting_recipe/converted_azure_silk_elegant
@@ -172,7 +172,7 @@
 	tools = list(/obj/item/silkknife = 1)
 	time = 15
 	always_available = FALSE
-	category = CAT_CLOTHING
+	category = CAT_SILK
 	subcategory = CAT_CONVERSION
 
 /datum/crafting_recipe/converted_azure_silk_masterpiece
