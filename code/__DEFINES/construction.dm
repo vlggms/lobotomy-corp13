@@ -92,7 +92,7 @@
 #define CAT_SPAGHETTI	"Spaghettis"
 #define CAT_UNUSUAL "Unusual"
 #define CAT_DRINK "Drinks"
-#define CAT_SILK "Silkcrafting"
+#define CAT_SILK "Silk Crafting"
 #define CAT_ARMOR "Silk Armor"
 #define CAT_CONVERSION "Silk Conversion"
 #define CAT_TRANSFER "Silk Transfer"

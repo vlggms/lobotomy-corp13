@@ -11,6 +11,7 @@
 	time = 15
 	always_available = FALSE
 	category = CAT_SILK
+	subcategory = CAT_ARMOR
 
 /datum/crafting_recipe/kurokumo_jacket
 	name = "Kurokumo Enforcer Dress Shirt"
@@ -24,6 +25,7 @@
 	time = 15
 	always_available = FALSE
 	category = CAT_SILK
+	subcategory = CAT_ARMOR
 
 /datum/crafting_recipe/kurokumo_captain
 	name = "Kurokumo Captain Kimono"
@@ -37,3 +39,4 @@
 	time = 15
 	always_available = FALSE
 	category = CAT_SILK
+	subcategory = CAT_ARMOR

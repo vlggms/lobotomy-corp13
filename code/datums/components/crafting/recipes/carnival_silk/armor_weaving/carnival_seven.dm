@@ -11,6 +11,7 @@
 	time = 15
 	always_available = FALSE
 	category = CAT_SILK
+	subcategory = CAT_ARMOR
 
 /datum/crafting_recipe/seven_recon
 	name = "Seven Association recon armor"
@@ -24,6 +25,7 @@
 	time = 15
 	always_available = FALSE
 	category = CAT_SILK
+	subcategory = CAT_ARMOR
 
 /datum/crafting_recipe/seven_vet
 	name = "Seven Association veteran armor"
@@ -38,6 +40,7 @@
 	time = 15
 	always_available = FALSE
 	category = CAT_SILK
+	subcategory = CAT_ARMOR
 
 /datum/crafting_recipe/seven_vet_intel
 	name = "Seven Association recon armor"
@@ -52,6 +55,7 @@
 	time = 15
 	always_available = FALSE
 	category = CAT_SILK
+	subcategory = CAT_ARMOR
 
 /datum/crafting_recipe/seven_dir
 	name = "Seven Association recon armor"
@@ -65,3 +69,4 @@
 	time = 15
 	always_available = FALSE
 	category = CAT_SILK
+	subcategory = CAT_ARMOR

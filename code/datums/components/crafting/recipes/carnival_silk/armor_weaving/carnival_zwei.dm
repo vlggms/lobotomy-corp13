@@ -11,6 +11,7 @@
 	time = 15
 	always_available = FALSE
 	category = CAT_SILK
+	subcategory = CAT_ARMOR
 
 /datum/crafting_recipe/zwei_junior
 	name = "Zwei Association junior armor"
@@ -25,6 +26,7 @@
 	time = 10
 	always_available = FALSE
 	category = CAT_SILK
+	subcategory = CAT_ARMOR
 
 /datum/crafting_recipe/zwei_riot
 	name = "Zwei Association riot armor"
@@ -38,6 +40,7 @@
 	time = 10
 	always_available = FALSE
 	category = CAT_SILK
+	subcategory = CAT_ARMOR
 
 /datum/crafting_recipe/zwei_vet
 	name = "Zwei Association veteran armor"
@@ -51,6 +54,7 @@
 	time = 15
 	always_available = FALSE
 	category = CAT_SILK
+	subcategory = CAT_ARMOR
 
 /datum/crafting_recipe/zwei_dir
 	name = "Zwei Association director armor"
@@ -64,3 +68,4 @@
 	time = 15
 	always_available = FALSE
 	category = CAT_SILK
+	subcategory = CAT_ARMOR

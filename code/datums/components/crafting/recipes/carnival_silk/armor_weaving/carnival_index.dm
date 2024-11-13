@@ -11,6 +11,7 @@
 	time = 15
 	always_available = FALSE
 	category = CAT_SILK
+	subcategory = CAT_ARMOR
 
 /datum/crafting_recipe/index_proxy
 	name = "Index Proxy Armor"
@@ -24,6 +25,7 @@
 	time = 15
 	always_available = FALSE
 	category = CAT_SILK
+	subcategory = CAT_ARMOR
 
 /datum/crafting_recipe/index_mess
 	name = "Index Messenger Armor"
@@ -37,3 +39,4 @@
 	time = 15
 	always_available = FALSE
 	category = CAT_SILK
+	subcategory = CAT_ARMOR

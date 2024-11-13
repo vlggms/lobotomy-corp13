@@ -12,6 +12,7 @@
 	time = 50
 	always_available = FALSE
 	category = CAT_SILK
+	subcategory = CAT_ARMOR
 
 /datum/crafting_recipe/ordeal_painful_purpose
 	name = "Painful purpose"
@@ -27,6 +28,7 @@
 	time = 50
 	always_available = FALSE
 	category = CAT_SILK
+	subcategory = CAT_ARMOR
 
 /datum/crafting_recipe/ordeal_eternal_feast
 	name = "Eternal Feast"
@@ -42,6 +44,7 @@
 	time = 50
 	always_available = FALSE
 	category = CAT_SILK
+	subcategory = CAT_ARMOR
 
 /datum/crafting_recipe/ordeal_meaningless_march
 	name = "Meaningless March"
@@ -57,6 +60,7 @@
 	time = 50
 	always_available = FALSE
 	category = CAT_SILK
+	subcategory = CAT_ARMOR
 
 /datum/crafting_recipe/ordeal_god_delusion
 	name = "God Delusion"
@@ -72,3 +76,4 @@
 	time = 50
 	always_available = FALSE
 	category = CAT_SILK
+	subcategory = CAT_ARMOR

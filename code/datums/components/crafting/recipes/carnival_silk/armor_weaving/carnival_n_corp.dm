@@ -10,6 +10,7 @@
 	time = 15
 	always_available = FALSE
 	category = CAT_SILK
+	subcategory = CAT_ARMOR
 
 /datum/crafting_recipe/ncorp_vet
 	name = "Decorated Nagel und Hammer armor"
@@ -23,6 +24,7 @@
 	time = 15
 	always_available = FALSE
 	category = CAT_SILK
+	subcategory = CAT_ARMOR
 
 /datum/crafting_recipe/ncorp_grosshammmer
 	name = "Nagel und Hammer Grosshammer armor"
@@ -36,6 +38,7 @@
 	time = 15
 	always_available = FALSE
 	category = CAT_SILK
+	subcategory = CAT_ARMOR
 
 /datum/crafting_recipe/ncorpcommander
 	name = "R�stung der auserw�hlten Frau Gottes"
@@ -49,6 +52,7 @@
 	time = 15
 	always_available = FALSE
 	category = CAT_SILK
+	subcategory = CAT_ARMOR
 
 /datum/crafting_recipe/ncorp_white_mark
 	name = "Ncorp White mark"
@@ -58,6 +62,7 @@
 	time = 10
 	always_available = FALSE
 	category = CAT_SILK
+	subcategory = CAT_ARMOR
 
 /datum/crafting_recipe/ncorp_black_mark
 	name = "Ncorp Black mark"
@@ -67,6 +72,7 @@
 	time = 10
 	always_available = FALSE
 	category = CAT_SILK
+	subcategory = CAT_ARMOR
 
 /datum/crafting_recipe/ncorp_pale_mark
 	name = "Ncorp Pale mark"
@@ -76,4 +82,5 @@
 	time = 10
 	always_available = FALSE
 	category = CAT_SILK
+	subcategory = CAT_ARMOR
 

@@ -8,6 +8,7 @@
 	time = 10
 	always_available = FALSE
 	category = CAT_SILK
+	subcategory = CAT_CONVERSION
 
 /datum/crafting_recipe/converted_green_silk_elegant
 	name = "Converted Elegant Green Silk"
@@ -17,6 +18,7 @@
 	time = 10
 	always_available = FALSE
 	category = CAT_SILK
+	subcategory = CAT_CONVERSION
 
 /datum/crafting_recipe/converted_green_silk_masterpiece
 	name = "Converted Masterpiece Green Silk"
@@ -26,6 +28,7 @@
 	time = 10
 	always_available = FALSE
 	category = CAT_SILK
+	subcategory = CAT_CONVERSION
 
 //Indigo Converstions
 /datum/crafting_recipe/converted_indigo_silk_advanced
@@ -36,6 +39,7 @@
 	time = 10
 	always_available = FALSE
 	category = CAT_SILK
+	subcategory = CAT_CONVERSION
 
 /datum/crafting_recipe/converted_indigo_silk_elegant
 	name = "Converted Elegant Indigo Silk"
@@ -45,6 +49,7 @@
 	time = 10
 	always_available = FALSE
 	category = CAT_SILK
+	subcategory = CAT_CONVERSION
 
 /datum/crafting_recipe/converted_indigo_silk_masterpiece
 	name = "Converted Masterpiece Indigo Silk"
@@ -54,6 +59,7 @@
 	time = 10
 	always_available = FALSE
 	category = CAT_SILK
+	subcategory = CAT_CONVERSION
 
 //Amber Converstions
 /datum/crafting_recipe/converted_amber_silk_advanced
@@ -64,6 +70,7 @@
 	time = 10
 	always_available = FALSE
 	category = CAT_SILK
+	subcategory = CAT_CONVERSION
 
 /datum/crafting_recipe/converted_amber_silk_elegant
 	name = "Converted Elegant Amber Silk"
@@ -73,6 +80,7 @@
 	time = 10
 	always_available = FALSE
 	category = CAT_SILK
+	subcategory = CAT_CONVERSION
 
 /datum/crafting_recipe/converted_amber_silk_masterpiece
 	name = "Converted Masterpiece Amber Silk"
@@ -82,6 +90,7 @@
 	time = 10
 	always_available = FALSE
 	category = CAT_SILK
+	subcategory = CAT_CONVERSION
 
 //Steel Converstions
 /datum/crafting_recipe/converted_steel_silk_advanced
@@ -92,6 +101,7 @@
 	time = 10
 	always_available = FALSE
 	category = CAT_SILK
+	subcategory = CAT_CONVERSION
 
 /datum/crafting_recipe/converted_steel_silk_elegant
 	name = "Converted Elegant Steel Silk"
@@ -101,6 +111,7 @@
 	time = 10
 	always_available = FALSE
 	category = CAT_SILK
+	subcategory = CAT_CONVERSION
 
 /datum/crafting_recipe/converted_steel_silk_masterpiece
 	name = "Converted Masterpiece Steel Silk"
@@ -110,34 +121,38 @@
 	time = 10
 	always_available = FALSE
 	category = CAT_SILK
+	subcategory = CAT_CONVERSION
 
 //Human Converstions
 /datum/crafting_recipe/converted_human_silk_advanced
 	name = "Converted Advanced Human Silk"
 	result = /obj/item/stack/sheet/silk/human_advanced
-	reqs = list(/obj/item/stack/sheet/silk/human_simple = 4)
+	reqs = list(/obj/item/stack/sheet/silk/human_simple = 2)
 	tools = list(/obj/item/silkknife = 1)
 	time = 10
 	always_available = FALSE
 	category = CAT_SILK
+	subcategory = CAT_CONVERSION
 
 /datum/crafting_recipe/converted_human_silk_elegant
 	name = "Converted Elegant Human Silk"
 	result = /obj/item/stack/sheet/silk/human_elegant
-	reqs = list(/obj/item/stack/sheet/silk/human_advanced = 4)
+	reqs = list(/obj/item/stack/sheet/silk/human_advanced = 2)
 	tools = list(/obj/item/silkknife = 1)
 	time = 10
 	always_available = FALSE
 	category = CAT_SILK
+	subcategory = CAT_CONVERSION
 
 /datum/crafting_recipe/converted_human_silk_masterpiece
 	name = "Converted Masterpiece Human Silk"
 	result = /obj/item/stack/sheet/silk/human_masterpiece
-	reqs = list(/obj/item/stack/sheet/silk/human_elegant = 4)
+	reqs = list(/obj/item/stack/sheet/silk/human_elegant = 2)
 	tools = list(/obj/item/silkknife = 1)
 	time = 10
 	always_available = FALSE
 	category = CAT_SILK
+	subcategory = CAT_CONVERSION
 
 //Azure Converstions
 /datum/crafting_recipe/converted_azure_silk_advanced
@@ -148,6 +163,7 @@
 	time = 10
 	always_available = FALSE
 	category = CAT_CLOTHING
+	subcategory = CAT_CONVERSION
 
 /datum/crafting_recipe/converted_azure_silk_elegant
 	name = "Converted Elegant Azure Silk"
@@ -157,6 +173,7 @@
 	time = 15
 	always_available = FALSE
 	category = CAT_CLOTHING
+	subcategory = CAT_CONVERSION
 
 /datum/crafting_recipe/converted_azure_silk_masterpiece
 	name = "Converted Masterpiece Azure Silk"
@@ -166,6 +183,7 @@
 	time = 20
 	always_available = FALSE
 	category = CAT_SILK
+	subcategory = CAT_CONVERSION
 
 //Crimson Converstions
 /datum/crafting_recipe/converted_crimson_silk_advanced
@@ -176,6 +194,7 @@
 	time = 10
 	always_available = FALSE
 	category = CAT_SILK
+	subcategory = CAT_CONVERSION
 
 /datum/crafting_recipe/converted_crimson_silk_elegant
 	name = "Converted Elegant Crimson Silk"
@@ -185,6 +204,7 @@
 	time = 15
 	always_available = FALSE
 	category = CAT_SILK
+	subcategory = CAT_CONVERSION
 
 /datum/crafting_recipe/converted_crimson_silk_masterpiece
 	name = "Converted Masterpiece crimson Silk"
@@ -194,10 +214,11 @@
 	time = 20
 	always_available = FALSE
 	category = CAT_SILK
+	subcategory = CAT_CONVERSION
 
-//violet Converstions
+//Violet Converstions
 /datum/crafting_recipe/converted_violet_silk_advanced
-	name = "Converted Advanced violet Silk"
+	name = "Converted Advanced Violet Silk"
 	result = /obj/item/stack/sheet/silk/violet_advanced
 	reqs = list(/obj/item/stack/sheet/silk/violet_simple = 4)
 	tools = list(/obj/item/silkknife = 1)
@@ -207,7 +228,7 @@
 	subcategory = CAT_CONVERSION
 
 /datum/crafting_recipe/converted_violet_silk_elegant
-	name = "Converted Elegant violet Silk"
+	name = "Converted Elegant Violet Silk"
 	result = /obj/item/stack/sheet/silk/violet_elegant
 	reqs = list(/obj/item/stack/sheet/silk/violet_advanced = 4)
 	tools = list(/obj/item/silkknife = 1)
@@ -217,7 +238,7 @@
 	subcategory = CAT_CONVERSION
 
 /datum/crafting_recipe/converted_violet_silk_masterpiece
-	name = "Converted Masterpiece violet Silk"
+	name = "Converted Masterpiece Violet Silk"
 	result = /obj/item/stack/sheet/silk/violet_masterpiece
 	reqs = list(/obj/item/stack/sheet/silk/violet_elegant = 4)
 	tools = list(/obj/item/silkknife = 1)

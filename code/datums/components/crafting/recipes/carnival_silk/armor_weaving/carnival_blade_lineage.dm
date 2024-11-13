@@ -11,6 +11,7 @@
 	time = 15
 	always_available = FALSE
 	category = CAT_SILK
+	subcategory = CAT_ARMOR
 
 /datum/crafting_recipe/blade_lineage_cutthroat
 	name = "Blade Lineage Cutthroat"
@@ -24,6 +25,7 @@
 	time = 15
 	always_available = FALSE
 	category = CAT_SILK
+	subcategory = CAT_ARMOR
 
 /datum/crafting_recipe/blade_lineage_admin
 	name = "Blade Lineage Admin"
@@ -37,3 +39,4 @@
 	time = 15
 	always_available = FALSE
 	category = CAT_SILK
+	subcategory = CAT_ARMOR

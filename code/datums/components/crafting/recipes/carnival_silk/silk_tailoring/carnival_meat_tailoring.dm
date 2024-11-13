@@ -7,6 +7,7 @@
 	time = 5
 	always_available = FALSE
 	category = CAT_SILK
+	subcategory = CAT_TRANSFER
 
 /datum/crafting_recipe/steel_silk_simple
 	name = "Simple Steel Silk"
@@ -16,6 +17,7 @@
 	time = 5
 	always_available = FALSE
 	category = CAT_SILK
+	subcategory = CAT_TRANSFER
 
 /datum/crafting_recipe/indigo_silk_simple
 	name = "Simple Indigo Silk"
@@ -25,6 +27,7 @@
 	time = 5
 	always_available = FALSE
 	category = CAT_SILK
+	subcategory = CAT_TRANSFER
 
 /datum/crafting_recipe/green_silk_simple
 	name = "Simple Green Silk"
@@ -34,6 +37,7 @@
 	time = 5
 	always_available = FALSE
 	category = CAT_SILK
+	subcategory = CAT_TRANSFER
 
 /datum/crafting_recipe/crimson_silk_simple
 	name = "Simple Crimson Silk"
@@ -43,6 +47,7 @@
 	time = 5
 	always_available = FALSE
 	category = CAT_SILK
+	subcategory = CAT_TRANSFER
 
 /datum/crafting_recipe/violet_silk_simple
 	name = "Simple Violet Silk"
@@ -52,6 +57,7 @@
 	time = 5
 	always_available = FALSE
 	category = CAT_SILK
+	subcategory = CAT_TRANSFER
 
 /datum/crafting_recipe/indigo_silk_advanced
 	name = "Advanced Indigo Silk"
@@ -61,6 +67,7 @@
 	time = 5
 	always_available = FALSE
 	category = CAT_SILK
+	subcategory = CAT_TRANSFER
 
 /datum/crafting_recipe/green_silk_advanced
 	name = "Advanced Green Silk"
@@ -70,3 +77,4 @@
 	time = 5
 	always_available = FALSE
 	category = CAT_SILK
+	subcategory = CAT_TRANSFER

@@ -7,6 +7,7 @@
 	time = 15
 	always_available = FALSE
 	category = CAT_SILK
+	subcategory = CAT_ARMOR
 
 /datum/crafting_recipe/green_armor
 	name = "Doubting Suit"
@@ -16,6 +17,7 @@
 	time = 15
 	always_available = FALSE
 	category = CAT_SILK
+	subcategory = CAT_ARMOR
 
 /datum/crafting_recipe/amber_armor
 	name = "Hunger Suit"
@@ -25,6 +27,7 @@
 	time = 15
 	always_available = FALSE
 	category = CAT_SILK
+	subcategory = CAT_ARMOR
 
 /datum/crafting_recipe/steel_armor
 	name = "Soldier's Uniform"
@@ -34,6 +37,7 @@
 	time = 15
 	always_available = FALSE
 	category = CAT_SILK
+	subcategory = CAT_ARMOR
 
 /datum/crafting_recipe/azure_armor
 	name = "Reforged Suit"
@@ -43,6 +47,7 @@
 	time = 15
 	always_available = FALSE
 	category = CAT_CLOTHING
+	subcategory = CAT_ARMOR
 
 /datum/crafting_recipe/carnival_robes
 	name = "Carnival's Robes"
@@ -56,3 +61,4 @@
 	time = 15
 	always_available = FALSE
 	category = CAT_SILK
+	subcategory = CAT_ARMOR

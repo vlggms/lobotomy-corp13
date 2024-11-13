@@ -10,6 +10,7 @@
 	time = 15
 	always_available = FALSE
 	category = CAT_SILK
+	subcategory = CAT_ARMOR
 
 /datum/crafting_recipe/ting_tang_blue
 	name = "Blue ting tang shirt"
@@ -22,6 +23,7 @@
 	time = 15
 	always_available = FALSE
 	category = CAT_SILK
+	subcategory = CAT_ARMOR
 
 /datum/crafting_recipe/ting_tang_yellow
 	name = "Yellow ting tang shirt"
@@ -34,6 +36,7 @@
 	time = 15
 	always_available = FALSE
 	category = CAT_SILK
+	subcategory = CAT_ARMOR
 
 /datum/crafting_recipe/ting_tang_boss
 	name = "boss ting tang shirt"
@@ -48,6 +51,7 @@
 	time = 15
 	always_available = FALSE
 	category = CAT_SILK
+	subcategory = CAT_ARMOR
 
 //Mariachi Recipes
 /datum/crafting_recipe/mariachi_alegre
@@ -61,6 +65,7 @@
 	time = 15
 	always_available = FALSE
 	category = CAT_SILK
+	subcategory = CAT_ARMOR
 
 /datum/crafting_recipe/mariachi_vivaz
 	name = "los mariachis poncho (vivaz)"
@@ -73,6 +78,7 @@
 	time = 15
 	always_available = FALSE
 	category = CAT_SILK
+	subcategory = CAT_ARMOR
 
 /datum/crafting_recipe/aida
 	name = "los mariachis armor"
@@ -87,6 +93,7 @@
 	time = 15
 	always_available = FALSE
 	category = CAT_SILK
+	subcategory = CAT_ARMOR
 
 /datum/crafting_recipe/aida_boss
 	name = "los mariachis armor (unlocked)"
@@ -100,3 +107,4 @@
 	time = 15
 	always_available = FALSE
 	category = CAT_SILK
+	subcategory = CAT_ARMOR

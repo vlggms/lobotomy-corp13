@@ -10,6 +10,7 @@
 	time = 15
 	always_available = FALSE
 	category = CAT_SILK
+	subcategory = CAT_ARMOR
 
 /datum/crafting_recipe/rosespanner_assassin
 	name = "rosespanner fixer jacket (assasin)"
@@ -23,6 +24,7 @@
 	time = 15
 	always_available = FALSE
 	category = CAT_SILK
+	subcategory = CAT_ARMOR
 
 /datum/crafting_recipe/rosespannerrep
 	name = "rosespanner representative jacket"
@@ -36,3 +38,4 @@
 	time = 15
 	always_available = FALSE
 	category = CAT_SILK
+	subcategory = CAT_ARMOR

@@ -11,6 +11,7 @@
 	time = 15
 	always_available = FALSE
 	category = CAT_SILK
+	subcategory = CAT_ARMOR
 
 /datum/crafting_recipe/liu_jacket
 	name = "Liu Association combat jacket"
@@ -24,6 +25,7 @@
 	time = 15
 	always_available = FALSE
 	category = CAT_SILK
+	subcategory = CAT_ARMOR
 
 /datum/crafting_recipe/liu_coat
 	name = "Liu Association combat coat"
@@ -37,6 +39,7 @@
 	time = 15
 	always_available = FALSE
 	category = CAT_SILK
+	subcategory = CAT_ARMOR
 
 /datum/crafting_recipe/liu_combat_coat
 	name = "Liu Association section 2 combat coat"
@@ -50,6 +53,7 @@
 	time = 15
 	always_available = FALSE
 	category = CAT_SILK
+	subcategory = CAT_ARMOR
 
 /datum/crafting_recipe/liu_combat_jacket
 	name = "Liu Association veteran combat jacket"
@@ -63,6 +67,7 @@
 	time = 15
 	always_available = FALSE
 	category = CAT_SILK
+	subcategory = CAT_ARMOR
 
 /datum/crafting_recipe/liu_heavy_coat
 	name = "Liu Association heavy combat coat"
@@ -75,6 +80,7 @@
 	time = 15
 	always_available = FALSE
 	category = CAT_SILK
+	subcategory = CAT_ARMOR
 
 /datum/crafting_recipe/liu_officer_coat
 	name = "Liu Association officer coat"
@@ -87,4 +93,5 @@
 	time = 15
 	always_available = FALSE
 	category = CAT_SILK
+	subcategory = CAT_ARMOR
 
