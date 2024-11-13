@@ -32,3 +32,18 @@
 	vend.extended_inventory = hacked
 
 	return INITIALIZE_HINT_QDEL
+
+/obj/effect/spawner/weaving_vending
+	icon = 'icons/obj/vending.dmi'
+	icon_state = "random_cola"
+	name = "spawn silk vending machine"
+	desc = "Automagically transforms into a silk vending machine if the map is CF"
+
+
+/obj/effect/spawner/weaving_vending/Initialize(mapload)
+	..()
+
+	if (SSmaptype.maptype == "fixers")
+		new /obj/machinery/vending/weaving/cheap(loc)
+
+	return INITIALIZE_HINT_QDEL
