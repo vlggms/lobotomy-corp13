@@ -290,4 +290,4 @@
 	name = "25 refined uranium bars."
 	targetitem = /obj/item/stack/sheet/mineral/uranium
 	difficulty = 10
-/*
+*/
