@@ -101,6 +101,16 @@
 /obj/structure/mineral_door/wood,
 /turf/open/indestructible/hoteltile,
 /area/city/house)
+"bA" = (
+/obj/effect/turf_decal/trimline/red/filled/line{
+	dir = 1
+	},
+/obj/structure/closet/crate,
+/obj/item/book/granter/crafting_recipe/carnival/human_replacements,
+/obj/item/book/granter/crafting_recipe/carnival/weaving_advanced_converstion,
+/obj/item/book/granter/crafting_recipe/carnival/weaving_basic_converstion,
+/turf/open/floor/facility/dark,
+/area/city/shop)
 "bB" = (
 /obj/item/bedsheet/dorms,
 /obj/structure/bed,
@@ -2400,9 +2410,10 @@
 	dir = 1
 	},
 /obj/structure/closet/crate,
-/obj/item/book/granter/crafting_recipe/carnival/human_replacements,
-/obj/item/book/granter/crafting_recipe/carnival/weaving_advanced_converstion,
-/obj/item/book/granter/crafting_recipe/carnival/weaving_basic_converstion,
+/obj/item/stack/sheet/silk/human_simple,
+/obj/item/stack/sheet/silk/human_simple,
+/obj/item/stack/sheet/silk/human_simple,
+/obj/item/stack/sheet/silk/human_simple,
 /turf/open/floor/facility/dark,
 /area/city/shop)
 "Ig" = (
@@ -2784,17 +2795,6 @@
 "WX" = (
 /turf/open/floor/facility/dark,
 /area/city/fixers)
-"Xc" = (
-/obj/effect/turf_decal/trimline/red/filled/line{
-	dir = 1
-	},
-/obj/structure/closet/crate,
-/obj/item/stack/sheet/silk/human_simple,
-/obj/item/stack/sheet/silk/human_simple,
-/obj/item/stack/sheet/silk/human_simple,
-/obj/item/stack/sheet/silk/human_simple,
-/turf/open/floor/facility/dark,
-/area/city/shop)
 "Xf" = (
 /obj/structure/chair/office,
 /turf/open/floor/facility/white,
@@ -3002,8 +3002,8 @@ XK
 XK
 XK
 XK
+XK
 VZ
-Oq
 Oq
 Oq
 Oq
@@ -37186,7 +37186,7 @@ Oq
 Oq
 Oq
 OT
-Xc
+HX
 Rz
 pJ
 yW
@@ -37443,7 +37443,7 @@ Oq
 Oq
 Oq
 OT
-HX
+bA
 An
 Rz
 uM
@@ -38726,7 +38726,7 @@ Oq
 Oq
 Oq
 Oq
-kk
+Oq
 kk
 kk
 kk
@@ -38983,7 +38983,7 @@ Oq
 Oq
 Oq
 Oq
-fe
+Oq
 fe
 fe
 fe
@@ -39240,7 +39240,7 @@ Oq
 Oq
 Oq
 Oq
-fe
+Oq
 fe
 fe
 fe
@@ -39497,7 +39497,7 @@ Oq
 Oq
 Oq
 Oq
-fe
+Oq
 fe
 fe
 fe
@@ -39754,7 +39754,7 @@ Oq
 Oq
 Oq
 Oq
-kk
+Oq
 kk
 kk
 kk
