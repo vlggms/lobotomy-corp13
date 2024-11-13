@@ -101,16 +101,6 @@
 /obj/structure/mineral_door/wood,
 /turf/open/indestructible/hoteltile,
 /area/city/house)
-"bA" = (
-/obj/effect/turf_decal/trimline/red/filled/line{
-	dir = 1
-	},
-/obj/structure/closet/crate,
-/obj/item/book/granter/crafting_recipe/carnival/human_replacements,
-/obj/item/book/granter/crafting_recipe/carnival/weaving_advanced_converstion,
-/obj/item/book/granter/crafting_recipe/carnival/weaving_basic_converstion,
-/turf/open/floor/facility/dark,
-/area/city/shop)
 "bB" = (
 /obj/item/bedsheet/dorms,
 /obj/structure/bed,
@@ -2410,10 +2400,9 @@
 	dir = 1
 	},
 /obj/structure/closet/crate,
-/obj/item/stack/sheet/silk/human_simple,
-/obj/item/stack/sheet/silk/human_simple,
-/obj/item/stack/sheet/silk/human_simple,
-/obj/item/stack/sheet/silk/human_simple,
+/obj/item/book/granter/crafting_recipe/carnival/human_replacements,
+/obj/item/book/granter/crafting_recipe/carnival/weaving_advanced_converstion,
+/obj/item/book/granter/crafting_recipe/carnival/weaving_basic_converstion,
 /turf/open/floor/facility/dark,
 /area/city/shop)
 "Ig" = (
@@ -2617,10 +2606,14 @@
 /turf/open/floor/wood,
 /area/city/house)
 "Qr" = (
-/obj/machinery/vending/weaving,
 /obj/effect/turf_decal/trimline/red/filled/line{
 	dir = 1
 	},
+/obj/structure/closet/crate,
+/obj/item/stack/sheet/silk/human_simple,
+/obj/item/stack/sheet/silk/human_simple,
+/obj/item/stack/sheet/silk/human_simple,
+/obj/item/stack/sheet/silk/human_simple,
 /turf/open/floor/facility/dark,
 /area/city/shop)
 "QB" = (
@@ -33335,10 +33328,10 @@ Oq
 Oq
 Oq
 Oq
-OT
-OT
-OT
-OT
+Oq
+Oq
+Oq
+Oq
 OT
 OT
 OT
@@ -33592,10 +33585,10 @@ Oq
 Oq
 Oq
 Oq
-OT
-fF
-Gt
-sM
+Oq
+Oq
+Oq
+Oq
 OT
 EG
 Xt
@@ -33849,10 +33842,10 @@ Oq
 Oq
 Oq
 Oq
-OT
-si
-Rz
-yW
+Oq
+Oq
+Oq
+Oq
 OT
 ce
 Xt
@@ -34106,10 +34099,10 @@ Oq
 Oq
 Oq
 Oq
-OT
-Qr
-Rz
-KW
+Oq
+Oq
+Oq
+Oq
 OT
 JO
 Xt
@@ -34363,10 +34356,10 @@ Oq
 Oq
 Oq
 Oq
-OT
-dV
-pJ
-up
+Oq
+Oq
+Oq
+Oq
 OT
 by
 Xt
@@ -34620,10 +34613,10 @@ Oq
 Oq
 Oq
 Oq
-OT
-ux
-ng
-uU
+Oq
+Oq
+Oq
+Oq
 OT
 OT
 OT
@@ -37186,7 +37179,7 @@ Oq
 Oq
 Oq
 OT
-HX
+Qr
 Rz
 pJ
 yW
@@ -37443,7 +37436,7 @@ Oq
 Oq
 Oq
 OT
-bA
+HX
 An
 Rz
 uM
