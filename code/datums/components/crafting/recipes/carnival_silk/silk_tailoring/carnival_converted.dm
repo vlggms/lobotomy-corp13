@@ -165,7 +165,7 @@
 	tools = list(/obj/item/silkknife = 1)
 	time = 20
 	always_available = FALSE
-	category = CAT_CLOTHING
+	category = CAT_SILK
 
 //Crimson Converstions
 /datum/crafting_recipe/converted_crimson_silk_advanced
@@ -175,7 +175,7 @@
 	tools = list(/obj/item/silkknife = 1)
 	time = 10
 	always_available = FALSE
-	category = CAT_CLOTHING
+	category = CAT_SILK
 
 /datum/crafting_recipe/converted_crimson_silk_elegant
 	name = "Converted Elegant Crimson Silk"
@@ -184,7 +184,7 @@
 	tools = list(/obj/item/silkknife = 1)
 	time = 15
 	always_available = FALSE
-	category = CAT_CLOTHING
+	category = CAT_SILK
 
 /datum/crafting_recipe/converted_crimson_silk_masterpiece
 	name = "Converted Masterpiece crimson Silk"
@@ -193,7 +193,7 @@
 	tools = list(/obj/item/silkknife = 1)
 	time = 20
 	always_available = FALSE
-	category = CAT_CLOTHING
+	category = CAT_SILK
 
 //violet Converstions
 /datum/crafting_recipe/converted_violet_silk_advanced
@@ -203,7 +203,8 @@
 	tools = list(/obj/item/silkknife = 1)
 	time = 10
 	always_available = FALSE
-	category = CAT_CLOTHING
+	category = CAT_SILK
+	subcategory = CAT_CONVERSION
 
 /datum/crafting_recipe/converted_violet_silk_elegant
 	name = "Converted Elegant violet Silk"
@@ -212,7 +213,8 @@
 	tools = list(/obj/item/silkknife = 1)
 	time = 15
 	always_available = FALSE
-	category = CAT_CLOTHING
+	category = CAT_SILK
+	subcategory = CAT_CONVERSION
 
 /datum/crafting_recipe/converted_violet_silk_masterpiece
 	name = "Converted Masterpiece violet Silk"
@@ -221,7 +223,8 @@
 	tools = list(/obj/item/silkknife = 1)
 	time = 20
 	always_available = FALSE
-	category = CAT_CLOTHING
+	category = CAT_SILK
+	subcategory = CAT_CONVERSION
 
 //Shrimple Converstions
 /datum/crafting_recipe/converted_shrimple_silk_advanced
@@ -231,7 +234,8 @@
 	tools = list(/obj/item/silkknife = 1)
 	time = 10
 	always_available = FALSE
-	category = CAT_CLOTHING
+	category = CAT_SILK
+	subcategory = CAT_CONVERSION
 
 /datum/crafting_recipe/converted_shrimple_silk_elegant
 	name = "Converted Elegant Shrimple Silk"
@@ -240,7 +244,8 @@
 	tools = list(/obj/item/silkknife = 1)
 	time = 15
 	always_available = FALSE
-	category = CAT_CLOTHING
+	category = CAT_SILK
+	subcategory = CAT_CONVERSION
 
 /datum/crafting_recipe/converted_shrimple_silk_masterpiece
 	name = "Converted Masterpiece Shrimple Silk"
@@ -249,4 +254,5 @@
 	tools = list(/obj/item/silkknife = 1)
 	time = 20
 	always_available = FALSE
-	category = CAT_CLOTHING
+	category = CAT_SILK
+	subcategory = CAT_CONVERSION

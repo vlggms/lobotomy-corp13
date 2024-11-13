@@ -38,7 +38,11 @@
 		),
 		CAT_DRINK = CAT_NONE,
 		CAT_ROBOT = CAT_NONE,
-		CAT_SILK = CAT_NONE,
+		CAT_SILK = list(
+			CAT_ARMOR,
+			CAT_CONVERSION,
+			CAT_TRANSFER,
+		)
 	)
 
 	var/cur_category = CAT_NONE
