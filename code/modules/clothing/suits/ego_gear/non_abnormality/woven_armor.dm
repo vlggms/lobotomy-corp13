@@ -28,4 +28,4 @@
 		It increases your movement speed by 20%."
 	icon_state = "azure_armor"
 	slowdown = -0.2
-	armor = list(RED_DAMAGE = -10, WHITE_DAMAGE = 20, BLACK_DAMAGE = -10, PALE_DAMAGE = 0)
+	armor = list(RED_DAMAGE = 10, WHITE_DAMAGE = -20, BLACK_DAMAGE = 10, PALE_DAMAGE = 0)

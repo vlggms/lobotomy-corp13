@@ -542,7 +542,14 @@
 
 /obj/item/book/granter/crafting_recipe/carnival/weaving_armor
 	name = "Weaving Armor: Basic Edition"
-	desc = "A weaving tutorial book that teaches you how to weave new armors. Carnival approved, and a best seller in District 13!"
+	desc = "A weaving tutorial book that teaches you how to weave new armors. Carnival approved, and a best seller in District 13!<br>\
+	On the back, it says that reading this book will teach how to make: <br>\
+	-Sweeper Suit: RED = 20%, WHITE = 10%, BLACK = 20%, PALE = 10%<br>\
+	-Doubting Suit: RED = 40%, WHITE = 20%, BLACK = -10%, PALE = 10%<br>\
+	-Hunger Suit: RED = -10%, WHITE = 20%, BLACK = 40%, PALE = 10%<br>\
+	-Soldier's Uniform: RED = 30%, WHITE = 0%, BLACK = 30%, PALE = 0%<br>\
+	-Reforged Suit: RED = 10%, WHITE = -20%, BLACK = 10%, PALE = 0%, Makes you 20% faster.<br>\
+	-Carnival Robes: RED = 40%, WHITE = 40%, BLACK = 60%, PALE = 0%"
 	crafting_recipe_types = list(
 		/datum/crafting_recipe/indigo_armor,
 		/datum/crafting_recipe/green_armor,
@@ -564,7 +571,11 @@
 
 /obj/item/book/granter/crafting_recipe/carnival/weaving_kurokumo
 	name = "Weaving Armor: Kurokumo Edition"
-	desc = "A weaving book that teaches you how to weave kurokumo armor. Carnival approved!"
+	desc = "A weaving book that teaches you how to weave kurokumo armor. Carnival approved!<br>\
+	On the back, it says that reading this book will teach how to make: <br>\
+	-Kurokumo Wakashu Dress Jacket: RED = 20%, WHITE = 20%, BLACK = 20%, PALE = 20%, Makes you 20% faster.<br>\
+	-Kurokumo Enforcer Dress Shirt: RED = 30%, WHITE = 30%, BLACK = 30%, PALE = 30%, Makes you 30% faster.<br>\
+	-Kurokumo Captain Kimono: RED = 30%, WHITE = 30%, BLACK = 30%, PALE = 20%, Makes you 50% faster."
 	crafting_recipe_types = list(
 		/datum/crafting_recipe/kurokumo,
 		/datum/crafting_recipe/kurokumo_jacket,
@@ -575,7 +586,14 @@
 
 /obj/item/book/granter/crafting_recipe/carnival/weaving_seven
 	name = "Weaving Armor: Seven Edition"
-	desc = "A weaving book that teaches you how to weave seven armor. Carnival approved!"
+	desc = "A weaving book that teaches you how to weave seven armor. Carnival approved!<br>\
+	On the back, it says that reading this book will teach how to make: <br>\
+	-Seven Association armor: RED = 20%, WHITE = 20%, BLACK = 40%, PALE = 0%<br>\
+	-Seven Association recon armor: RED = 0%, WHITE = 0%, BLACK = 30%, PALE = 0%, Makes you 50% faster.<br>\
+	-Seven Association veteran armor: RED = 30%, WHITE = 30%, BLACK = 50%, PALE = 20%.<br>\
+	-Seven Association intelligence armor: RED = 30%, WHITE = 30%, BLACK = 50%, PALE = 20%.<br>\
+	-Seven Association director armor: RED = 40%, WHITE = 40%, BLACK = 70%, PALE = 20%."
+
 	crafting_recipe_types = list(
 		/datum/crafting_recipe/seven,
 		/datum/crafting_recipe/seven_recon,
@@ -588,7 +606,12 @@
 
 /obj/item/book/granter/crafting_recipe/carnival/weaving_ncorp
 	name = "Weaving Armor: N-Corp Edition"
-	desc = "A weaving book that teaches you how to weave n-corp armor. Carnival approved!"
+	desc = "A weaving book that teaches you how to weave n-corp armor. Carnival approved.<br>\
+	On the back, it says that reading this book will teach how to make: <br>\
+	-Nagel und Hammer armor: RED = 40%, WHITE = 20%, BLACK = 20%, PALE = 50%<br>\
+	-Decorated Nagel und Hammer armor:  RED = 50%, WHITE = 30%, BLACK = 40%, PALE = 60%<br>\
+	-Nagel und Hammer Grosshammer armor: RED = 90%, WHITE = 70%, BLACK = 70%, PALE = 80%, Makes you 100% slower.<br>\
+	-Rüstung der auserwählten Frau Gottes: RED = 60%, WHITE = 50%, BLACK = 60%, PALE = 70%."
 	crafting_recipe_types = list(
 		/datum/crafting_recipe/ncorp,
 		/datum/crafting_recipe/ncorp_vet,
@@ -603,7 +626,14 @@
 
 /obj/item/book/granter/crafting_recipe/carnival/weaving_liu
 	name = "Weaving Armor: Liu Edition"
-	desc = "A weaving book that teaches you how to weave liu armor. Carnival approved!"
+	desc = "A weaving book that teaches you how to weave liu armor. Carnival approved!<br>\
+	On the back, it says that reading this book will teach how to make: <br>\
+	-Liu Association combat suit: RED = 20%, WHITE = 40%, BLACK = 20%, PALE = 0%<br>\
+	-Liu Association combat jacket: RED = 20%, WHITE = 40%, BLACK = 20%, PALE = 0%<br>\
+	-Liu Association combat coat (Vet):  RED = 30%, WHITE = 50%, BLACK = 30%, PALE = 20%<br>\
+	-Liu Association section 2 combat coat (Vet): RED = 30%, WHITE = 50%, BLACK = 30%, PALE = 20%<br>\
+	-Liu Association veteran combat jacket: RED = 30%, WHITE = 50%, BLACK = 30%, PALE = 20%<br>\
+	-Liu Association heavy combat coat: RED = 40%, WHITE = 70%, BLACK = 40%, PALE = 20%."
 	crafting_recipe_types = list(
 		/datum/crafting_recipe/liu_suit,
 		/datum/crafting_recipe/liu_jacket,
@@ -618,7 +648,11 @@
 
 /obj/item/book/granter/crafting_recipe/carnival/weaving_index
 	name = "Weaving Armor: Index Edition"
-	desc = "A weaving book that teaches you how to weave index armor. Carnival approved!"
+	desc = "A weaving book that teaches you how to weave index armor. Carnival approved!<br>\
+	On the back, it says that reading this book will teach how to make: <br>\
+	-Index proselyte armor: RED = 20%, WHITE = 20%, BLACK = 20%, PALE = 30%<br>\
+	-Index proxy armor: RED = 30%, WHITE = 30%, BLACK = 30%, PALE = 40%<br>\
+	-Index messenger armor:  RED = 50%, WHITE = 50%, BLACK = 50%, PALE = 60%"
 	crafting_recipe_types = list(
 		/datum/crafting_recipe/index_proselyte,
 		/datum/crafting_recipe/index_proxy,
@@ -629,7 +663,13 @@
 
 /obj/item/book/granter/crafting_recipe/carnival/weaving_zwei
 	name = "Weaving Armor: Zwei Edition"
-	desc = "A weaving book that teaches you how to weave zwei armor. Carnival approved!"
+	desc = "A weaving book that teaches you how to weave zwei armor. Carnival approved!<br>\
+	On the back, it says that reading this book will teach how to make: <br>\
+	-Zwei Association casual jacket: RED = 30%, WHITE = 0%, BLACK = 0%, PALE = 0%<br>\
+	-Zwei Association armor: RED = 40%, WHITE = 20%, BLACK = 20%, PALE = 0%<br>\
+	-Zwei Association riot armor: RED = 70%, WHITE = 40%, BLACK = 40%, PALE = 20%, Makes you 70% slower.<br>\
+	-Zwei Association veteran armor: RED = 50%, WHITE = 30%, BLACK = 30%, PALE = 20%<br>\
+	-Zwei Association director armor: RED = 70%, WHITE = 40%, BLACK = 40%, PALE = 20%"
 	crafting_recipe_types = list(
 		/datum/crafting_recipe/zwei,
 		/datum/crafting_recipe/zwei_junior,
@@ -642,7 +682,11 @@
 
 /obj/item/book/granter/crafting_recipe/carnival/weaving_zwei_west
 	name = "Weaving Armor: Zwei West Edition"
-	desc = "A weaving book that teaches you how to weave zwei west armor. Carnival approved!"
+	desc = "A weaving book that teaches you how to weave zwei west armor. Carnival approved!<br>\
+	On the back, it says that reading this book will teach how to make: <br>\
+	-Zwei knight armor: RED = 50%, WHITE = 30%, BLACK = 30%, PALE = 10%, Makes you 40% slower.<br>\
+	-Zwei veteran knight armor: RED = 60%, WHITE = 40%, BLACK = 40%, PALE = 30%, Makes you 40% slower.<br>\
+	-Zwei knight director armor: RED = 70%, WHITE = 50%, BLACK = 50%, PALE = 40%, Makes you 40% slower."
 	crafting_recipe_types = list(
 		/datum/crafting_recipe/zweiwest,
 		/datum/crafting_recipe/zweiwestvet,
@@ -653,7 +697,11 @@
 
 /obj/item/book/granter/crafting_recipe/carnival/weaving_wedge
 	name = "Weaving Armor: Wedge Office Edition"
-	desc = "A weaving book that teaches you how to weave wedge office armor. Carnival approved!"
+	desc = "A weaving book that teaches you how to weave wedge office armor. Carnival approved!<br>\
+	On the back, it says that reading this book will teach how to make: <br>\
+	-Wedge office dress: RED = 10%, WHITE = 10%, BLACK = 40%, PALE = 0%<br>\
+	-Wedge office jacket: RED = 10%, WHITE = 10%, BLACK = 40%, PALE = 0%<br>\
+	-Wedge office leader jacket: RED = 20%, WHITE = 20%, BLACK = 50%, PALE = 20%."
 	crafting_recipe_types = list(
 		/datum/crafting_recipe/wedge_male,
 		/datum/crafting_recipe/wedge_fem,
@@ -664,7 +712,11 @@
 
 /obj/item/book/granter/crafting_recipe/carnival/weaving_rosespanner
 	name = "Weaving Armor: Rosespanner Workshop Edition"
-	desc = "A weaving book that teaches you how to weave rosespanner workshop armor. Carnival approved!"
+	desc = "A weaving book that teaches you how to weave rosespanner workshop armor. Carnival approved!<br>\
+	On the back, it says that reading this book will teach how to make: <br>\
+	-Rosespanner fixer jacket: RED = 20%, WHITE = 30%, BLACK = 20%, PALE = 20%<br>\
+	-Rosespanner assassin jacket: RED = 20%, WHITE = 30%, BLACK = 20%, PALE = 20%<br>\
+	-Rosespanner representative jacket: RED = 30%, WHITE = 40%, BLACK = 30%, PALE = 30%."
 	crafting_recipe_types = list(
 		/datum/crafting_recipe/rosespanner,
 		/datum/crafting_recipe/rosespanner_assassin,
@@ -676,7 +728,10 @@
 
 /obj/item/book/granter/crafting_recipe/carnival/weaving_molar_boatworks
 	name = "Weaving Armor: Molar Boatworks Edition"
-	desc = "A weaving book that teaches you how to weave molar boatworks armor. Carnival approved!"
+	desc = "A weaving book that teaches you how to weave molar boatworks armor. Carnival approved!<br>\
+	On the back, it says that reading this book will teach how to make: <br>\
+	-Molar boatworks jacket: RED = 40%, WHITE = 10%, BLACK = 10%, PALE = 0%<br>\
+	-Molar boatworks director wetsuit: RED = 50%, WHITE = 20%, BLACK = 20%, PALE = 20%."
 	crafting_recipe_types = list(
 		/datum/crafting_recipe/boatworks,
 		/datum/crafting_recipe/boatworks_director,
@@ -686,7 +741,16 @@
 
 /obj/item/book/granter/crafting_recipe/carnival/weaving_j_corp_gangs
 	name = "Weaving Armor: J Corp Gangs Edition"
-	desc = "A weaving book that teaches you how to weave armor used by gangs in J-Corp. Carnival approved!"
+	desc = "A weaving book that teaches you how to weave armor used by gangs in J-Corp. Carnival approved!<br>\
+	On the back, it says that reading this book will teach how to make: <br>\
+	-Red ting tang shirt: RED = 10%, WHITE = 30%, BLACK = -10%, PALE = -10%<br>\
+	-Yellow ting tang shirt: RED = 10%, WHITE = 30%, BLACK = -10%, PALE = -10%<br>\
+	-Blue ting tang shirt: RED = 10%, WHITE = 30%, BLACK = -10%, PALE = -10%<br>\
+	-Green ting tang shirt: RED = 20%, WHITE = 40%, BLACK = 20%, PALE = 10%<br>\
+	-Los mariachis poncho (alegre): RED = 20%, WHITE = 20%, BLACK = -10%, PALE = -10%<br>\
+	-Los mariachis poncho (vivaz): RED = 20%, WHITE = 20%, BLACK = -10%, PALE = -10%<br>\
+	-Los mariachis armor: RED = 30%, WHITE = 30%, BLACK = 10%, PALE = 20%<br>\
+	-Los mariachis armor (Unlocked): RED = 40%, WHITE = 40%, BLACK = 20%, PALE = 30%."
 	crafting_recipe_types = list(
 		/datum/crafting_recipe/ting_tang_red,
 		/datum/crafting_recipe/ting_tang_blue,
@@ -703,7 +767,14 @@
 
 /obj/item/book/granter/crafting_recipe/carnival/weaving_shi
 	name = "Weaving Armor: Shi Edition"
-	desc = "A weaving book that teaches you how to weave shi armor. Carnival approved!"
+	desc = "A weaving book that teaches you how to weave shi armor. Carnival approved!<br>\
+	On the back, it says that reading this book will teach how to make: <br>\
+	-Shi association jacket: RED = 20%, WHITE = 10%, BLACK = 10%, PALE = 20%, Makes you 20% faster.<br>\
+	-Shi association veteran jacket: RED = 30%, WHITE = 20%, BLACK = 20%, PALE = 30%, Makes you 20% faster.<br>\
+	-Shi association director jacket: RED = 50%, WHITE = 20%, BLACK = 20%, PALE = 50%, Makes you 20% faster<br>\
+	-Shi association combat suit: RED = 20%, WHITE = 0%, BLACK = 0%, PALE = 10%, Makes you 40% faster.<br>\
+	-Shi association veteran jacket: RED = 30%, WHITE = 0%, BLACK = 0%, PALE = 20%, Makes you 40% faster.<br>\
+	-Shi association director jacket: RED = 40%, WHITE = 20%, BLACK = 20%, PALE = 30%, Makes you 40% faster."
 	crafting_recipe_types = list(
 		/datum/crafting_recipe/shi_2,
 		/datum/crafting_recipe/shi_5,
@@ -717,7 +788,11 @@
 
 /obj/item/book/granter/crafting_recipe/carnival/weaving_blade
 	name = "Weaving Armor: Blade Lineage Edition"
-	desc = "A weaving book that teaches you how to weave blade lineage armor. Carnival approved!"
+	desc = "A weaving book that teaches you how to weave blade lineage armor. Carnival approved!<br>\
+	On the back, it says that reading this book will teach how to make: <br>\
+	-Blade lineage salsu robe: RED = 0%, WHITE = 0%, BLACK = 0%, PALE = 0%, Makes you 25% faster.<br>\
+	-Blade lineage cutthroat robe: RED = 0%, WHITE = 0%, BLACK = 0%, PALE = 0%, Makes you 40% faster.<br>\
+	-Blade lineage admin robe: RED = 0%, WHITE = 0%, BLACK = 0%, PALE = 0%, Makes you 60% faster."
 	crafting_recipe_types = list(
 		/datum/crafting_recipe/blade_lineage_salsu,
 		/datum/crafting_recipe/blade_lineage_cutthroat,
