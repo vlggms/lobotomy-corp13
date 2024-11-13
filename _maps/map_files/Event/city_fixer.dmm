@@ -2400,6 +2400,9 @@
 	dir = 1
 	},
 /obj/structure/closet/crate,
+/obj/item/book/granter/crafting_recipe/carnival/human_replacements,
+/obj/item/book/granter/crafting_recipe/carnival/weaving_advanced_converstion,
+/obj/item/book/granter/crafting_recipe/carnival/weaving_basic_converstion,
 /turf/open/floor/facility/dark,
 /area/city/shop)
 "Ig" = (
@@ -2781,6 +2784,17 @@
 "WX" = (
 /turf/open/floor/facility/dark,
 /area/city/fixers)
+"Xc" = (
+/obj/effect/turf_decal/trimline/red/filled/line{
+	dir = 1
+	},
+/obj/structure/closet/crate,
+/obj/item/stack/sheet/silk/human_simple,
+/obj/item/stack/sheet/silk/human_simple,
+/obj/item/stack/sheet/silk/human_simple,
+/obj/item/stack/sheet/silk/human_simple,
+/turf/open/floor/facility/dark,
+/area/city/shop)
 "Xf" = (
 /obj/structure/chair/office,
 /turf/open/floor/facility/white,
@@ -37172,7 +37186,7 @@ Oq
 Oq
 Oq
 OT
-HX
+Xc
 Rz
 pJ
 yW
