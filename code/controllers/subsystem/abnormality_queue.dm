@@ -47,10 +47,14 @@ SUBSYSTEM_DEF(abnormality_queue)
 	var/current_milestone = 1
 
 /datum/controller/subsystem/abnormality_queue/Initialize(timeofday)
+	rooms_start = length(GLOB.abnormality_room_spawners)
+	if(!rooms_start)
+		flags |= SS_NO_FIRE
+		return ..() // Sleepy time
+
 	RegisterSignal(SSdcs, COMSIG_GLOB_ORDEAL_END, PROC_REF(OnOrdealEnd))
-	rooms_start = GLOB.abnormality_room_spawners.len
 	next_abno_spawn_time -= min(2, rooms_start * 0.05) MINUTES // 20 rooms will decrease wait time by 1 Minute
-	..()
+	return ..()
 
 /datum/controller/subsystem/abnormality_queue/fire()
 	if(world.time >= next_abno_spawn)
@@ -170,7 +174,7 @@ SUBSYSTEM_DEF(abnormality_queue)
 	return TRUE
 
 /datum/controller/subsystem/abnormality_queue/proc/HandleStartingAbnormalities()
-	var/player_count = GLOB.clients.len
+	var/player_count = length(GLOB.clients)
 	var/i
 	for(i=1 to round(clamp(player_count, 5, 30) / 5))
 		sleep(15 SECONDS) // Allows manager to select abnormalities if he is fast enough.
