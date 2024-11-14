@@ -77,6 +77,16 @@
 		/datum/action/innate/abnormality_attack/kog_teleport,
 	)
 
+/mob/living/simple_animal/hostile/abnormality/greed_king/Login()
+	. = ..()
+	to_chat(src, "<h1>You are King of Greed, A Tank Role Abnormality.</h1><br>\
+		<b>|Gilded Cage|: Your size is 3 by 3 tiles wide, however you can still fit in 1 by 1 areas.<br>\
+		<br>\
+		|Endless Hunger|: When you click on a tile outside your melee range, you will start charging into the direction you clicked.<br>\
+		There is a 1.5 second delay before you start charging, once you start charging into a direction you will constantly move in one direction.<br>\
+		If human gets within your melee range while charging, you will instantly gib them. If a abnormality appears in your path, you will deal damage to them.<br>\
+		Your charge ends after you move into a wall, or any dense object. (RHINOS/OTHER ABNORMALITIES WILL STOP YOUR CHARGE)</b>")
+
 /datum/action/innate/abnormality_attack/kog_dash
 	name = "Ravenous Charge"
 	button_icon_state = "kog_charge"
