@@ -37,15 +37,18 @@ SUBSYSTEM_DEF(traumas)
 		"insects"			 = construct_phobia_regex("insects"),
 	)
 
-	phobia_mobs = list("spiders"  = typecacheof(list(/mob/living/simple_animal/hostile/poison/giant_spider)),
+	phobia_mobs = list("spiders"  = typecacheof(list(/mob/living/simple_animal/hostile/poison/giant_spider, /mob/living/simple_animal/hostile/abnormality/spider)),
 		"security" = typecacheof(list(/mob/living/simple_animal/bot/secbot)),
+		"clowns" = typecacheof(list(/mob/living/simple_animal/hostile/abnormality/clown, /mob/living/simple_animal/hostile/ordeal/crimson_clown, /mob/living/simple_animal/hostile/ordeal/crimson_noon)),
 		"lizards"  = typecacheof(list(/mob/living/simple_animal/hostile/lizard)),
-		"skeletons" = typecacheof(list(/mob/living/simple_animal/hostile/skeleton)),
-		"snakes"   = typecacheof(list(/mob/living/simple_animal/hostile/retaliate/poison/snake)),
+		"skeletons" = typecacheof(list(/mob/living/simple_animal/hostile/skeleton, /mob/living/simple_animal/hostile/abnormality/wild_ride)),
+		"snakes"   = typecacheof(list(/mob/living/simple_animal/hostile/retaliate/poison/snake, /mob/living/simple_animal/hostile/ordeal/snake_corrosion)),
 		"robots"   = typecacheof(list(/mob/living/silicon/robot, /mob/living/silicon/ai,
-			/mob/living/simple_animal/drone, /mob/living/simple_animal/bot, /mob/living/simple_animal/hostile/swarmer,
+			/mob/living/simple_animal/drone, /mob/living/simple_animal/bot, /mob/living/simple_animal/hostile/swarmer, /mob/living/simple_animal/hostile/abnormality/helper,
+			/mob/living/simple_animal/hostile/abnormality/cleaner, /mob/living/simple_animal/hostile/ordeal/green_bot, /mob/living/simple_animal/hostile/ordeal/green_bot_big
 		)),
 		"doctors"   = typecacheof(list(/mob/living/simple_animal/bot/medbot)),
+		"authority" = typecacheof(list(/mob/living/simple_animal/hostile/megafauna/claw, /mob/living/simple_animal/hostile/megafauna/arbiter)),
 		"the supernatural"   = typecacheof(list(/mob/living/simple_animal/hostile/construct,
 			/mob/living/simple_animal/revenant, /mob/living/simple_animal/shade
 		)),
@@ -55,10 +58,14 @@ SUBSYSTEM_DEF(traumas)
 		)),
 		"birds" = typecacheof(list(
 			/mob/living/simple_animal/parrot, /mob/living/simple_animal/chick, /mob/living/simple_animal/chicken,
-			/mob/living/simple_animal/pet/penguin,
+			/mob/living/simple_animal/pet/penguin, /mob/living/simple_animal/hostile/abnormality/punishing_bird, /mob/living/simple_animal/hostile/abnormality/big_bird,
+			/mob/living/simple_animal/hostile/abnormality/judgement_bird, /mob/living/simple_animal/hostile/abnormality/fire_bird, /mob/living/simple_animal/hostile/abnormality/thunder_bird,
+			/mob/living/simple_animal/hostile/megafauna/apocalypse_bird, /mob/living/simple_animal/hostile/runawaybird
 		)),
-		"anime" = typecacheof(list(/mob/living/simple_animal/hostile/guardian)),
-		"insects" = typecacheof(list(/mob/living/simple_animal/hostile/cockroach, /mob/living/simple_animal/hostile/poison/bees))
+		"anime" = typecacheof(list(/mob/living/simple_animal/hostile/guardian, /mob/living/simple_animal/hostile/abnormality/sukuna, /mob/living/simple_animal/hostile/abnormality/hatred_queen)),
+		"insects" = typecacheof(list(/mob/living/simple_animal/hostile/cockroach, /mob/living/simple_animal/hostile/poison/bees, /mob/living/simple_animal/hostile/ordeal/steel_dawn,
+			/mob/living/simple_animal/hostile/ordeal/steel_dusk, /mob/living/simple_animal/hostile/ordeal/amber_bug, /mob/living/simple_animal/hostile/ordeal/amber_dusk, /mob/living/simple_animal/hostile/ordeal/amber_midnight
+		))
 	)
 
 	phobia_objs = list("snakes" = typecacheof(list(/obj/item/rod_of_asclepius, /obj/item/toy/plush/snakeplushie)),
@@ -106,7 +113,7 @@ SUBSYSTEM_DEF(traumas)
 		)),
 
 		"robots"   = typecacheof(list(/obj/machinery/computer/upload, /obj/item/ai_module, /obj/machinery/recharge_station,
-			/obj/item/aicard, /obj/structure/swarmer_beacon
+			/obj/item/aicard, /obj/structure/swarmer_beacon, /obj/item/toy/plush/angela
 		)),
 
 		"doctors"   = typecacheof(list(/obj/item/clothing/under/rank/medical,
@@ -153,7 +160,7 @@ SUBSYSTEM_DEF(traumas)
 			/obj/item/clothing/suit/chickensuit, /obj/item/clothing/head/chicken,
 			/obj/item/clothing/suit/toggle/owlwings, /obj/item/clothing/under/costume/owl, /obj/item/clothing/mask/gas/owl_mask,
 			/obj/item/clothing/under/costume/griffin, /obj/item/clothing/shoes/griffin, /obj/item/clothing/head/griffin,
-			/obj/item/clothing/head/helmet/space/freedom, /obj/item/clothing/suit/space/freedom,
+			/obj/item/clothing/head/helmet/space/freedom, /obj/item/clothing/suit/space/freedom, /obj/item/toy/plush/bigbird
 		)),
 
 		"anime" = typecacheof(list(/obj/item/clothing/under/costume/schoolgirl, /obj/item/katana, /obj/item/food/sashimi, /obj/item/food/chawanmushi,
@@ -165,10 +172,10 @@ SUBSYSTEM_DEF(traumas)
 			/obj/item/clothing/suit/chickensuit, /obj/item/clothing/head/chicken,
 			/obj/item/clothing/suit/toggle/owlwings, /obj/item/clothing/under/costume/owl, /obj/item/clothing/mask/gas/owl_mask,
 			/obj/item/clothing/under/costume/griffin, /obj/item/clothing/shoes/griffin, /obj/item/clothing/head/griffin,
-			/obj/item/clothing/head/helmet/space/freedom, /obj/item/clothing/suit/space/freedom
+			/obj/item/clothing/head/helmet/space/freedom, /obj/item/clothing/suit/space/freedom, /obj/item/toy/plush/bigbird
 		)),
 
-	"insects" = typecacheof(list(/obj/item/toy/plush/moth, /obj/item/toy/plush/beeplushie, /obj/item/clothing/mask/animal/rat/bee, /obj/item/clothing/suit/hooded/bee_costume, /obj/structure/beebox)),
+	"insects" = typecacheof(list(/obj/item/toy/plush/moth, /obj/item/toy/plush/beeplushie, /obj/item/clothing/mask/animal/rat/bee, /obj/item/clothing/suit/hooded/bee_costume, /obj/structure/beebox, /obj/item/toy/plush/gregor)),
 
 	"anime" = typecacheof(list(/obj/item/clothing/under/costume/schoolgirl, /obj/item/katana, /obj/item/food/sashimi, /obj/item/food/chawanmushi,
 		/obj/item/reagent_containers/food/drinks/bottle/sake, /obj/item/throwing_star, /obj/item/clothing/head/kitty/genuine, /obj/item/clothing/suit/space/space_ninja,
