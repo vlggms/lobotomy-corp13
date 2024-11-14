@@ -30,7 +30,7 @@
 		this_fish_point *= 2
 
 	var/neptune = SSfishing.IsAligned(/datum/planet/neptune)
-	if(neptune) //Big-air bonus for mars being in alignment
+	if(neptune) //If neptune is aligned, double your points
 		this_fish_point *= 2
 
 	qdel(I)
