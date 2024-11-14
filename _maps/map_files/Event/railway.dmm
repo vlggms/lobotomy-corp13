@@ -17,10 +17,6 @@
 	},
 /turf/open/floor/wood,
 /area/city/outskirts)
-"d" = (
-/obj/effect/landmark/abnospawn/easytank,
-/turf/open/floor/pod,
-/area/city/outskirts)
 "e" = (
 /obj/effect/landmark/portal_exit{
 	id = "railway3"
@@ -28,7 +24,7 @@
 /turf/open/floor/wood,
 /area/city/outskirts)
 "f" = (
-/obj/effect/landmark/abnospawn/hardtank,
+/obj/effect/landmark/abnospawn/railway3,
 /turf/open/floor/pod,
 /area/city/outskirts)
 "g" = (
@@ -42,7 +38,7 @@
 /turf/open/floor/pod,
 /area/city/outskirts)
 "i" = (
-/obj/effect/landmark/abnospawn/hardcombat,
+/obj/effect/landmark/abnospawn/railway2,
 /turf/open/floor/pod,
 /area/city/outskirts)
 "j" = (
@@ -190,10 +186,6 @@
 	},
 /turf/open/floor/pod,
 /area/city/outskirts)
-"I" = (
-/obj/effect/landmark/abnospawn/easysupport,
-/turf/open/floor/pod,
-/area/city/outskirts)
 "J" = (
 /turf/open/floor/carpet/blue,
 /area/city/outskirts)
@@ -201,7 +193,7 @@
 /turf/open/floor/carpet/green,
 /area/city/outskirts)
 "L" = (
-/obj/effect/landmark/abnospawn/easycombat,
+/obj/effect/landmark/abnospawn/railway1,
 /turf/open/floor/pod,
 /area/city/outskirts)
 "M" = (
@@ -217,10 +209,6 @@
 /turf/closed/indestructible/reinforced,
 /area/city/outskirts)
 "P" = (
-/turf/open/floor/pod,
-/area/city/outskirts)
-"Q" = (
-/obj/effect/landmark/abnospawn/hardsupport,
 /turf/open/floor/pod,
 /area/city/outskirts)
 "R" = (
@@ -15615,7 +15603,7 @@ J
 J
 J
 W
-I
+L
 J
 J
 J
@@ -28932,7 +28920,7 @@ N
 N
 N
 q
-d
+L
 N
 N
 N
@@ -46844,7 +46832,7 @@ G
 G
 G
 r
-Q
+i
 G
 G
 G
