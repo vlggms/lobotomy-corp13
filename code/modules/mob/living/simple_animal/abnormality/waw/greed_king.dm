@@ -172,8 +172,33 @@
 		if(1)
 			var/dir_to_target = get_cardinal_dir(get_turf(src), get_turf(target))
 			can_act = FALSE
+			// do particle effect
+			if (IsCombatMap())
+				addtimer(CALLBACK(src, PROC_REF(warning_effect), get_turf(src), dir_to_target, 0, target), 0 SECONDS)
+				SLEEP_CHECK_DEATH(15)
 			charge(dir_to_target, 0, target)
 	return
+
+/obj/effect/temp_visual/cult/sparks/greed
+	duration = 4
+
+/mob/living/simple_animal/hostile/abnormality/greed_king/proc/warning_effect(turf, move_dir, times_ran, target)
+	var/stop_warning = FALSE
+	if(times_ran >= dash_num)
+		stop_warning = TRUE
+	var/turf/T = get_step(turf, move_dir)
+	if(!T)
+		stop_warning = TRUE
+		return
+	if(T.density)
+		stop_warning = TRUE
+	for(var/obj/machinery/door/D in T.contents)
+		if(D.density)
+			stop_warning = TRUE
+	for(var/turf/open/R in range(1, T))
+		new /obj/effect/temp_visual/cult/sparks/greed(R)
+	if (!stop_warning)
+		addtimer(CALLBACK(src, PROC_REF(warning_effect), T, move_dir, (times_ran + 1)), 1)
 
 /mob/living/simple_animal/hostile/abnormality/greed_king/proc/charge(move_dir, times_ran, target)
 	setDir(move_dir)

@@ -21,7 +21,7 @@
 /obj/item/ego_weapon/city/rabbit_blade/Initialize()
 	if(SSmaptype.maptype == "rcorp")
 		rcorp_buff = 20
-		force =+ rcorp_buff
+		force += rcorp_buff
 	return ..()
 
 /obj/item/ego_weapon/city/rabbit_blade/attack_self(mob/living/user)
@@ -30,13 +30,13 @@
 			damtype = WHITE_DAMAGE
 		if(WHITE_DAMAGE)
 			damtype = BLACK_DAMAGE
-			force = 30 += rcorp_buff
+			force = rcorp_buff + 30
 		if(BLACK_DAMAGE)
 			damtype = PALE_DAMAGE
-			force = 25 += rcorp_buff
+			force = rcorp_buff + 25
 		if(PALE_DAMAGE)
 			damtype = RED_DAMAGE
-			force = 35 += rcorp_buff
+			force = rcorp_buff + 35
 	to_chat(user, span_notice("\The [src] will now deal [damtype] damage."))
 	playsound(src, 'sound/items/screwdriver2.ogg', 50, TRUE)
 
@@ -240,7 +240,7 @@
 /obj/item/ego_weapon/city/rabbit_rush/Initialize()
 	if(SSmaptype.maptype == "rcorp")
 		rcorp_buff = 20
-		force =+ rcorp_buff
+		force += rcorp_buff
 	return ..()
 
 /obj/item/ego_weapon/city/rabbit_rush/attack_self(mob/user)
