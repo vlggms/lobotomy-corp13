@@ -41,9 +41,10 @@ GLOBAL_LIST_INIT(sinner_weapons, list(
 	//Pick uniform, Suit and Weapon, and remove weapon from the global list.
 //	var/uniform = pick(/obj/item/clothing/under/limbus/shirt, /obj/item/clothing/under/limbus/prison)
 	var/suit = pick(/obj/item/clothing/suit/armor/ego_gear/limbus/limbus_coat, /obj/item/clothing/suit/armor/ego_gear/limbus/limbus_coat_short)
-	if(!LAZYLEN(GLOB.sinner_weapons))
+	if(!length(GLOB.sinner_weapons))
 		to_chat(M, span_colossus("This gamemode does not support more than 13 players due to gamemode instability! If you are seeing this message, contact the development team. This is not a bug!"))
 		H.dust()
+		return
 
 	var/weapon = pick(GLOB.sinner_weapons)
 	GLOB.sinner_weapons -= weapon
