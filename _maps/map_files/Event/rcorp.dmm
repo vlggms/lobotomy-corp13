@@ -18,6 +18,31 @@
 /obj/machinery/telecomms/server/presets/engineering,
 /turf/open/floor/circuit/telecomms/mainframe,
 /area/city/outskirts)
+"cj" = (
+/obj/structure/closet/crate{
+	name = "rcorp explosives";
+	color = "#d67200"
+	},
+/obj/item/grenade/r_corp/pale,
+/obj/item/grenade/r_corp/pale,
+/obj/item/grenade/r_corp/pale,
+/obj/item/grenade/r_corp/pale,
+/obj/item/grenade/r_corp/pale,
+/obj/item/grenade/r_corp/black,
+/obj/item/grenade/r_corp/black,
+/obj/item/grenade/r_corp/black,
+/obj/item/grenade/r_corp/black,
+/obj/item/grenade/r_corp/black,
+/obj/item/grenade/r_corp/black,
+/obj/item/grenade/r_corp/black,
+/obj/item/grenade/r_corp/black,
+/obj/effect/turf_decal/box/red,
+/obj/item/grenade/r_corp/black,
+/obj/item/grenade/r_corp/black,
+/obj/item/grenade/r_corp/pale,
+/obj/item/grenade/r_corp/pale,
+/turf/open/floor/pod/dark,
+/area/city/outskirts)
 "co" = (
 /obj/effect/landmark/abno_objectivespawn,
 /turf/open/floor/plating/asteroid,
@@ -258,26 +283,6 @@
 	},
 /turf/open/floor/pod,
 /area/city/outskirts)
-"np" = (
-/obj/structure/closet/crate{
-	name = "rcorp explosives";
-	color = "#d67200"
-	},
-/obj/item/grenade/r_corp/pale,
-/obj/item/grenade/r_corp/pale,
-/obj/item/grenade/r_corp/pale,
-/obj/item/grenade/r_corp/pale,
-/obj/item/grenade/r_corp/pale,
-/obj/item/grenade/r_corp/black,
-/obj/item/grenade/r_corp/black,
-/obj/item/grenade/r_corp/black,
-/obj/item/grenade/r_corp/black,
-/obj/item/grenade/r_corp/black,
-/obj/item/grenade/r_corp/black,
-/obj/item/grenade/r_corp/black,
-/obj/item/grenade/r_corp/black,
-/turf/open/floor/pod/dark,
-/area/city/outskirts)
 "nL" = (
 /obj/structure/closet/secure_closet{
 	icon_state = "lcdr";
@@ -292,6 +297,38 @@
 /obj/item/ego_weapon/city/zweihander/knife/lcdr,
 /obj/item/clothing/suit/armor/ego_gear/rcorp_officer,
 /turf/open/floor/pod,
+/area/city/outskirts)
+"nV" = (
+/obj/structure/closet/crate{
+	name = "rcorp explosives";
+	color = "#d67200"
+	},
+/obj/item/grenade/r_corp,
+/obj/item/grenade/r_corp,
+/obj/item/grenade/r_corp,
+/obj/item/grenade/r_corp,
+/obj/item/grenade/r_corp,
+/obj/item/grenade/r_corp,
+/obj/item/grenade/r_corp,
+/obj/item/grenade/r_corp,
+/obj/item/grenade/r_corp/white,
+/obj/item/grenade/r_corp/white,
+/obj/item/grenade/r_corp/white,
+/obj/item/grenade/r_corp/white,
+/obj/item/grenade/r_corp/white,
+/obj/item/grenade/r_corp/white,
+/obj/item/grenade/r_corp/white,
+/obj/item/grenade/r_corp/white,
+/obj/effect/turf_decal/box/red,
+/obj/item/grenade/r_corp/white,
+/obj/item/grenade/r_corp/white,
+/obj/item/grenade/r_corp/white,
+/obj/item/grenade/r_corp/white,
+/obj/item/grenade/r_corp,
+/obj/item/grenade/r_corp,
+/obj/item/grenade/r_corp,
+/obj/item/grenade/r_corp,
+/turf/open/floor/pod/dark,
 /area/city/outskirts)
 "oi" = (
 /turf/closed/indestructible/rock,
@@ -330,29 +367,6 @@
 /obj/machinery/telecomms/broadcaster/preset_left,
 /obj/effect/turf_decal/bot,
 /turf/open/floor/circuit/telecomms/mainframe,
-/area/city/outskirts)
-"ss" = (
-/obj/structure/closet/crate{
-	name = "rcorp explosives";
-	color = "#d67200"
-	},
-/obj/item/grenade/r_corp,
-/obj/item/grenade/r_corp,
-/obj/item/grenade/r_corp,
-/obj/item/grenade/r_corp,
-/obj/item/grenade/r_corp,
-/obj/item/grenade/r_corp,
-/obj/item/grenade/r_corp,
-/obj/item/grenade/r_corp,
-/obj/item/grenade/r_corp/white,
-/obj/item/grenade/r_corp/white,
-/obj/item/grenade/r_corp/white,
-/obj/item/grenade/r_corp/white,
-/obj/item/grenade/r_corp/white,
-/obj/item/grenade/r_corp/white,
-/obj/item/grenade/r_corp/white,
-/obj/item/grenade/r_corp/white,
-/turf/open/floor/pod/dark,
 /area/city/outskirts)
 "su" = (
 /obj/structure/rack,
@@ -798,6 +812,12 @@
 "Lv" = (
 /obj/machinery/telecomms/server/presets/common,
 /turf/open/floor/circuit/telecomms/mainframe,
+/area/city/outskirts)
+"LX" = (
+/obj/effect/turf_decal/caution/red{
+	dir = 8
+	},
+/turf/open/floor/pod/light,
 /area/city/outskirts)
 "Mk" = (
 /obj/effect/turf_decal/sand,
@@ -8807,9 +8827,9 @@ aC
 aC
 aC
 UE
+LX
 Hk
-Hk
-Hk
+LX
 pi
 aC
 QY
@@ -9009,9 +9029,9 @@ fC
 RY
 aC
 UE
-ss
+nV
 Qd
-np
+cj
 oj
 aC
 aC
