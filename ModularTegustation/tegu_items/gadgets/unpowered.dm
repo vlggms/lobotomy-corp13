@@ -598,11 +598,11 @@
 	if(!istype(user) || !(user?.mind?.assigned_role in GLOB.service_positions))
 		to_chat(user, span_notice("The Gadget's light flashes red. You aren't a clerk. Check the label before use."))
 		return
-	new /mob/living/simple_animal/hostile/clerkbot(get_turf(user))
+	var/mob/living/simple_animal/hostile/clerkbot/bot = new(get_turf(user))
+	forceMove(bot)
 	to_chat(user, span_nicegreen("The Gadget turns warm and sparks."))
-	qdel(src)
 
-	//Clerkbot spawned by the Clerkbot Spawner
+/// Clerkbot spawned by the Clerkbot Spawner
 /mob/living/simple_animal/hostile/clerkbot
 	name = "A Well Rounded Clerkbot"
 	desc = "Trusted and loyal best friend."
@@ -633,11 +633,12 @@
 	speech_span = SPAN_ROBOT
 
 /mob/living/simple_animal/hostile/clerkbot/Initialize()
-	..()
-	QDEL_IN(src, (120 SECONDS))
 	if(prob(50))
 		icon_state = "clerkbot1"
 		icon_living = "clerkbot1"
+
+	QDEL_IN(src, (120 SECONDS))
+	return ..()
 
 /mob/living/simple_animal/hostile/clerkbot/Login()
 	. = ..()
@@ -646,12 +647,12 @@
 	to_chat(src, "<b>WARNING:THIS CREATURE IS TEMPORARY AND WILL DELETE ITSELF AFTER A GIVEN TIME!</b>")
 
 /mob/living/simple_animal/hostile/clerkbot/Destroy()
-	new /obj/item/clerkbot_gadget(get_turf(src))
+	for(var/obj/item as anything in contents)
+		item.forceMove(get_turf(src))
 	return ..()
 
 /mob/living/simple_animal/hostile/clerkbot/spawn_gibs()
 	new /obj/effect/gibspawner/robot(drop_location(), src)
-
 
 /// Info Page Printer (Does not print info sheets)
 
