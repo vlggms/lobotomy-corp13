@@ -271,22 +271,22 @@
 	)
 
 /mob/living/simple_animal/hostile/ordeal/KHz_corrosion/Initialize()
-	..()
 	var/list/old_speaklist = speak.Copy()
 	speak = list()
-	for(var/i in old_speaklist)
-		for(var/ii in list("A","E","I","O","U","R","S","T"))//All vowels, and the 3 most common consonants
-			i = replacetextEx(i,ii,pick("@","!","$","%","#"))
-		speak.Add(i)
+	for(var/phrase as anything in old_speaklist)
+		for(var/vowel in list("A","E","I","O","U","R","S","T"))//All vowels, and the 3 most common consonants
+			phrase = replacetextEx(phrase, vowel, pick("@","!","$","%","#"))
+		speak.Add(phrase)
+
+	return ..()
 
 /mob/living/simple_animal/hostile/ordeal/KHz_corrosion/Life()
 	. = ..()
-	if(health <= 0)
+	if(!.) // we're dead, lets not speak
 		return
 	if(effect_cooldown <= world.time)
 		whisper("[pick(speak)]")
 		playsound(get_turf(src), "[pick(damage_sounds)]", 25, FALSE)
-		return
 
 /mob/living/simple_animal/hostile/ordeal/KHz_corrosion/say(message, bubble_type, list/spans = list(), sanitize = TRUE, datum/language/language = null, ignore_spam = FALSE, forced = null)
 	..()
