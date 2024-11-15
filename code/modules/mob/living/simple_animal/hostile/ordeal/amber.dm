@@ -157,6 +157,7 @@
 /mob/living/simple_animal/hostile/ordeal/amber_bug/spawned/Destroy()
 	if(bug_mommy)
 		bug_mommy.spawned_mobs -= src
+	bug_mommy = null
 	return ..()
 
 // Amber dusk
@@ -329,6 +330,7 @@
 /mob/living/simple_animal/hostile/ordeal/amber_dusk/spawned/Destroy()
 	if(bug_daddy)
 		bug_daddy.spawned_mobs -= src
+	bug_daddy = null
 	return ..()
 
 /mob/living/simple_animal/hostile/ordeal/amber_dusk/spawned/death(gibbed)
