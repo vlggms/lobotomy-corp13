@@ -244,7 +244,7 @@ GLOBAL_LIST_EMPTY(apostles)
 		for(var/mob/living/L in view(7,src))
 			if(L.stat || !L.client)
 				continue
-			L.client.give_award(/datum/award/achievement/boss/white_night, L)
+			L.client.give_award(/datum/award/achievement/lc13/white_night, L)
 
 /* Apostles */
 
