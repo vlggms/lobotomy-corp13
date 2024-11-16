@@ -156,7 +156,8 @@ GLOBAL_LIST_INIT(sinner_weapons, list(
 	cooldown_time = 300
 
 /datum/action/cooldown/danteh_revive/Trigger()
-	if(!..())
+	. = ..()
+	if(!.)
 		return FALSE
 
 	if (owner.stat == DEAD)
