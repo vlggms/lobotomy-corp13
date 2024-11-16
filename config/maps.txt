@@ -82,6 +82,9 @@ endmap
 map rcorp_test
 endmap
 
+map rcorp_factory
+endmap
+
 map wcorp
 endmap
 

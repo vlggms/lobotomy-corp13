@@ -29,3 +29,9 @@
 	bcost = 1
 	pcost = 1
 	item = /obj/item/powered_gadget/vitals_projector
+
+/obj/structure/midfactory/midweapon
+	name = "Mid-tier Weapons factory"
+	desc = "A machine used to craft items."
+	pcost = 2
+	item = /obj/effect/landmark/rcorp_midweapon

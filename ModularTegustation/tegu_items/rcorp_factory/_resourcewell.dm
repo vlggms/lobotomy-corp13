@@ -1,6 +1,6 @@
 /obj/structure/resourcepoint
 	name = "green resource point"
-	desc = "A machine that when used, spits out green resources."
+	desc = "A machine that when hit with a wrench, spits out green resources."
 	icon = 'ModularTegustation/Teguicons/factory.dmi'
 	icon_state = "resource_green"
 	anchored = TRUE
@@ -8,6 +8,13 @@
 	resistance_flags = INDESTRUCTIBLE
 	var/obj/item = /obj/item/factoryitem/green	//What item you spawn
 	var/active = 0	//What level you have
+	var/difficulty = 0	//Difficulty of enemies spawned
+
+
+/obj/structure/resourcepoint/Initialize()
+	..()
+	addtimer(CALLBACK(src, PROC_REF(spawn_enemy)), 30 SECONDS)
+
 
 /obj/structure/resourcepoint/attackby(obj/item/I, mob/living/user, params)
 	. = ..()
@@ -23,8 +30,53 @@
 		return
 	if(prob(20) && active<=6)	//To do: make this less random.
 		active+=1
+
+	var/halt_active = TRUE		//We're going to stop shit by default
+	for(var/mob/living/carbon/human/H in range(8, get_turf(src)))
+		halt_active = FALSE
+		break
+
+	if(halt_active)
+		active = 0
+		return
+
 	addtimer(CALLBACK(src, PROC_REF(spit_item)), 600/active)
 	new item(src.loc)
+
+/obj/structure/resourcepoint/proc/spawn_enemy()
+	for(var/mob/M in range(8, get_turf(src)))
+		return
+	var/mob_counter = 0
+	for(var/mob/living/simple_animal/hostile/H in GLOB.mob_list)
+		mob_counter++
+	if(mob_counter >50)
+		return
+	var/mob/living/simple_animal/hostile/to_spawn
+
+	switch(difficulty)
+		if(1 to 4)
+			to_spawn = pick(
+				/mob/living/simple_animal/hostile/ordeal/indigo_dawn,
+				/mob/living/simple_animal/hostile/ordeal/indigo_dawn/invis,
+				/mob/living/simple_animal/hostile/ordeal/indigo_dawn/skirmisher,)
+		if(5 to 8)
+			to_spawn = /mob/living/simple_animal/hostile/ordeal/indigo_noon
+
+		if(9 to INFINITY)
+			if(prob(50))
+				to_spawn = /mob/living/simple_animal/hostile/ordeal/indigo_noon
+
+			else
+				to_spawn = pick(
+					/mob/living/simple_animal/hostile/ordeal/indigo_dusk/red,
+					/mob/living/simple_animal/hostile/ordeal/indigo_dusk/white,
+					/mob/living/simple_animal/hostile/ordeal/indigo_dusk/black,
+					/mob/living/simple_animal/hostile/ordeal/indigo_dusk/pale,)
+
+	if(prob(10))
+		difficulty++
+	new to_spawn(get_turf(src))
+
 
 /obj/structure/resourcepoint/red
 	name = "red resource point"

@@ -93,9 +93,9 @@
 	if(!unlocked)
 		. += "This machine requires an upgrade chip to be used."
 	if(bcost)
-		. += "This machine requires [bcost]/[bmaterial] green materials to be used."
+		. += "This machine requires [bcost]/[bmaterial] blue materials to be used."
 	if(pcost)
-		. += "This machine requires [pcost]/[pmaterial] red materials to be used."
+		. += "This machine requires [pcost]/[pmaterial] purple materials to be used."
 	if(item)
 		. += "This machine will produce [itemnumber] [item.name] when the materials are given."
 
@@ -159,9 +159,9 @@
 	if(!unlocked)
 		. += "This machine requires an upgrade chip to be used."
 	if(ocost)
-		. += "This machine requires [ocost]/[omaterial] green materials to be used."
+		. += "This machine requires [ocost]/[omaterial] orange materials to be used."
 	if(scost)
-		. += "This machine requires [scost]/[smaterial] red materials to be used."
+		. += "This machine requires [scost]/[smaterial] silver materials to be used."
 	if(item)
 		. += "This machine will produce [itemnumber] [item.name] when the materials are given."
 

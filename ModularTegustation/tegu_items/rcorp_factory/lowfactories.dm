@@ -50,3 +50,9 @@
 	rcost = 1
 	itemnumber = 2
 	item = /obj/item/storage/First_aid_l1
+
+/obj/structure/lowfactory/lowweapon
+	name = "Low-tier Weapons factory"
+	desc = "A machine used to craft items."
+	rcost = 2
+	item = /obj/effect/landmark/rcorp_lowweapon
