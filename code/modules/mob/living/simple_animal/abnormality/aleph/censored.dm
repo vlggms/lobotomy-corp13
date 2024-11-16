@@ -276,7 +276,7 @@
 	del_on_death = TRUE
 	density = FALSE
 	var/list/breach_affected = list()
-	var/recoved_sanity = 0.4
+	var/recoved_sanity = 0.2
 
 /mob/living/simple_animal/hostile/mini_censored/Initialize()
 	. = ..()

@@ -184,8 +184,9 @@
 			can_act = FALSE
 			// do particle effect
 			if (IsCombatMap())
-				addtimer(CALLBACK(src, PROC_REF(warning_effect), get_turf(src), dir_to_target, 0, target), 0 SECONDS)
+				manual_emote("starts shaking...")
 				SLEEP_CHECK_DEATH(15)
+				addtimer(CALLBACK(src, PROC_REF(warning_effect), get_turf(src), dir_to_target, 0, target), 0 SECONDS)
 			charge(dir_to_target, 0, target)
 	return
 
