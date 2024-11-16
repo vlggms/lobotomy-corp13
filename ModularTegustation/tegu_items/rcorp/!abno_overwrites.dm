@@ -86,7 +86,7 @@
 //For that reason, I am reducing the cooldown for that ranged attack and lowering it's damage by around 50%, so they can at least try to apply it more often.
 /mob/living/simple_animal/hostile/abnormality/censored/Initialize()
 	if(SSmaptype.maptype == "rcorp")
-		ability_damage = 75
+		ability_damage = 120
 		ability_cooldown_time = 6 SECONDS
 	return ..()
 
