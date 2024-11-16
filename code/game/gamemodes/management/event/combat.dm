@@ -70,7 +70,7 @@ GLOBAL_VAR_INIT(wcorp_enemy_faction, "") //decides which faction WCorp will be u
 				addtimer(CALLBACK(src, PROC_REF(roundendwarning)), 15 MINUTES)
 				addtimer(CALLBACK(src, PROC_REF(loseround)), 20 MINUTES)
 				to_chat(world, span_userdanger("This week will last 90 minutes."))
-
+				RegisterSignal(SSdcs, COMSIG_GLOB_MOB_DEATH, PROC_REF(CheckLiving))
 
 			//W-Corp stuff
 			if("wcorp")
