@@ -13,7 +13,6 @@ GLOBAL_LIST_INIT(railway2, list(
 	/mob/living/simple_animal/hostile/abnormality/judgement_bird,
 	/mob/living/simple_animal/hostile/abnormality/yin,
 	/mob/living/simple_animal/hostile/abnormality/ebony_queen,
-	/mob/living/simple_animal/hostile/abnormality/thunder_bird,
 	/mob/living/simple_animal/hostile/abnormality/clouded_monk,
 	/mob/living/simple_animal/hostile/abnormality/red_hood,
 	/mob/living/simple_animal/hostile/abnormality/despair_knight,
