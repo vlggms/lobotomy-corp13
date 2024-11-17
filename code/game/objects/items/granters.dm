@@ -548,7 +548,7 @@
 	-Sweeper Suit: RED = 20%, WHITE = 10%, BLACK = 20%, PALE = 10%<br>\
 	-Doubting Suit: RED = 40%, WHITE = 20%, BLACK = -10%, PALE = 10%<br>\
 	-Hunger Suit: RED = -10%, WHITE = 20%, BLACK = 40%, PALE = 10%<br>\
-	-Soldier's Uniform: RED = 30%, WHITE = 0%, BLACK = 30%, PALE = 0%<br>\
+	-Soldier's Uniform: RED = 20%, WHITE = -20%, BLACK = 20%, PALE = 40%<br>\
 	-Reforged Suit: RED = 10%, WHITE = -20%, BLACK = 10%, PALE = 0%, Makes you 20% faster.<br>\
 	-Carnival Robes: RED = 40%, WHITE = 40%, BLACK = 60%, PALE = 0%"
 	pages_to_mastery = 0
