@@ -46,7 +46,7 @@
 	tools = list(/obj/item/silkknife = 1)
 	time = 15
 	always_available = FALSE
-	category = CAT_CLOTHING
+	category = CAT_SILK
 	subcategory = CAT_ARMOR
 
 /datum/crafting_recipe/carnival_robes

@@ -533,6 +533,7 @@
 	qdel(src)
 
 /obj/item/book/granter/crafting_recipe/carnival
+	pages_to_mastery = 1
 	var/carnival_only = TRUE
 /obj/item/book/granter/crafting_recipe/carnival/attack_self(mob/user)
 	if (carnival_only && !(user?.mind?.assigned_role == "Carnival" || user?.mind?.assigned_role == "Workshop Attendant")) // check role
@@ -550,6 +551,7 @@
 	-Soldier's Uniform: RED = 30%, WHITE = 0%, BLACK = 30%, PALE = 0%<br>\
 	-Reforged Suit: RED = 10%, WHITE = -20%, BLACK = 10%, PALE = 0%, Makes you 20% faster.<br>\
 	-Carnival Robes: RED = 40%, WHITE = 40%, BLACK = 60%, PALE = 0%"
+	pages_to_mastery = 0
 	crafting_recipe_types = list(
 		/datum/crafting_recipe/indigo_armor,
 		/datum/crafting_recipe/green_armor,
@@ -804,6 +806,7 @@
 /obj/item/book/granter/crafting_recipe/carnival/weaving_basic_converstion
 	name = "Weaving Armor: Common Conversation/Transfers Edition"
 	desc = "A weaving book that teaches you how to weave common types of silk into another. Carnival approved!"
+	pages_to_mastery = 0
 	crafting_recipe_types = list(
 		/datum/crafting_recipe/converted_green_silk_advanced,
 		/datum/crafting_recipe/converted_green_silk_elegant,
@@ -821,7 +824,9 @@
 		/datum/crafting_recipe/converted_human_silk_elegant,
 		/datum/crafting_recipe/converted_human_silk_masterpiece,
 		/datum/crafting_recipe/steel_silk_transfer,
-		/datum/crafting_recipe/amber_silk_transfer
+		/datum/crafting_recipe/amber_silk_transfer,
+		/datum/crafting_recipe/steel_silk_de_transfer,
+		/datum/crafting_recipe/amber_silk_de_transfer
 	)
 	icon_state = "basic_converstion_book"
 	remarks = list("Make sure that you always have your weaving knife on you? I already knew that.", "Using sweepers as silk? That is brand new...", "Huh, it says here that 'Be careful around the fixer association...' ", "This book smells quite well, Like it was just made just for me!", "A rookie must have made this page, or they forgot to spell check it before printing...", "Wait, how will this turn a profit? I spent like 1000 ahn for this book!")
@@ -829,6 +834,7 @@
 /obj/item/book/granter/crafting_recipe/carnival/weaving_advanced_converstion
 	name = "Weaving Armor: Rare Conversation/Transfers Edition"
 	desc = "A weaving book that teaches you how to weave rare types of silk into another. Carnival approved!"
+	pages_to_mastery = 0
 	crafting_recipe_types = list(
 		/datum/crafting_recipe/converted_crimson_silk_advanced,
 		/datum/crafting_recipe/converted_crimson_silk_elegant,
@@ -845,7 +851,9 @@
 		/datum/crafting_recipe/azure_silk_transfer,
 		/datum/crafting_recipe/crimson_silk_transfer,
 		/datum/crafting_recipe/violet_silk_transfer,
-		/datum/crafting_recipe/shrimple_silk_transfer
+		/datum/crafting_recipe/shrimple_silk_transfer,
+		/datum/crafting_recipe/shrimple_silk_de_transfer_amber,
+		/datum/crafting_recipe/shrimple_silk_de_transfer_steel
 	)
 	icon_state = "advanced_converstion_book"
 	remarks = list("Make sure that you always have your weaving knife on you? I already knew that.", "Using sweepers as silk? That is brand new...", "Huh, it says here that 'Be careful around the fixer association...' ", "This book smells quite well, Like it was just made just for me!", "A rookie must have made this page, or they forgot to spell check it before printing...", "Wait, how will this turn a profit? I spent like 1000 ahn for this book!")
@@ -853,6 +861,7 @@
 /obj/item/book/granter/crafting_recipe/carnival/human_replacements
 	name = "Weaving Armor: Advanced Human Replacements"
 	desc = "A weaving book that teaches you how to make human silk out of normal silk! Carnival approved!"
+	pages_to_mastery = 0
 	crafting_recipe_types = list(
 		/datum/crafting_recipe/human_silk_transfer
 	)
@@ -862,6 +871,7 @@
 /obj/item/book/granter/crafting_recipe/carnival/weaving_ordeal
 	name = "Weaving Armor: Masterpiece Armor"
 	desc = "A weaving book that teaches you how to weave some of the best armor in the City... Carnival approved!"
+	pages_to_mastery = 3
 	crafting_recipe_types = list(
 		/datum/crafting_recipe/ordeal_familial_strength,
 		/datum/crafting_recipe/ordeal_painful_purpose,

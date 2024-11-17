@@ -172,6 +172,7 @@
 	icon = 'ModularTegustation/Teguicons/32x32.dmi'
 	icon_state = "wellcheers"
 	icon_living = "wellcheers"
+	icon_dead = "wellcheers_dead"
 	faction = list("shrimp")
 	health = 400
 	maxHealth = 400
@@ -186,6 +187,12 @@
 	attack_verb_simple = "punches"
 	attack_sound = 'sound/weapons/bite.ogg'
 	speak_emote = list("burbles")
+	silk_results = list(/obj/item/stack/sheet/silk/shrimple_simple = 4)
+
+/mob/living/simple_animal/hostile/shrimp/Initialize()
+	. = ..()
+	if(SSmaptype.maptype == "fixers" || SSmaptype.maptype == "city")
+		del_on_death = FALSE
 
 //You can put these guys about to guard an area.
 /mob/living/simple_animal/hostile/shrimp_soldier
@@ -194,6 +201,7 @@
 	icon = 'ModularTegustation/Teguicons/32x32.dmi'
 	icon_state = "wellcheers_bad"
 	icon_living = "wellcheers_bad"
+	icon_dead = "wellcheers_bad_dead"
 	faction = list("shrimp")
 	health = 500	//They're here to help
 	maxHealth = 500
@@ -213,11 +221,18 @@
 	minimum_distance = 3
 	casingtype = /obj/item/ammo_casing/caseless/ego_shrimpsoldier
 	projectilesound = 'sound/weapons/gun/pistol/shot_alt.ogg'
+	silk_results = list(/obj/item/stack/sheet/silk/shrimple_simple = 8, /obj/item/stack/sheet/silk/shrimple_advanced = 4)
+
+/mob/living/simple_animal/hostile/shrimp_soldier/Initialize()
+	. = ..()
+	if(SSmaptype.maptype == "fixers" || SSmaptype.maptype == "city")
+		del_on_death = FALSE
 
 /mob/living/simple_animal/hostile/shrimp_soldier/friendly
 	name = "wellcheers corp assault officer"
 	icon_state = "wellcheers_soldier"
 	icon_living = "wellcheers_soldier"
+	icon_dead = "wellcheers_soldier_dead"
 	faction = list("neutral", "shrimp")
 
 /obj/item/grenade/spawnergrenade/shrimp
