@@ -23,7 +23,6 @@ SUBSYSTEM_DEF(fishing)
 	for(var/datum/planet/big_rock as anything in planet_datums) //then set planets and random alignments
 		big_rock = new big_rock()
 		big_rock.phase = rand(1, big_rock.orbit_time)
-		big_rock.linked_subsystem = src
 		planets += big_rock
 
 	addtimer(CALLBACK(src, PROC_REF(Moveplanets)), 7 MINUTES)
@@ -83,15 +82,11 @@ SUBSYSTEM_DEF(fishing)
 	var/god = FISHGOD_NONE
 	/// A general description of what the god's buffs are, showed in the altar
 	var/god_desc = "oh my god!"
-	/// The subsystem we are linked to, for cleanup purposes
-	var/datum/controller/subsystem/fishing/linked_subsystem = null
 
 /datum/planet/Destroy(force, ...)
 	if(god != FISHGOD_NONE)
-		linked_subsystem.sleeping_gods[god] = god_desc
-	if(linked_subsystem)
-		linked_subsystem.planets -= src
-		linked_subsystem = null
+		SSfishing.sleeping_gods[god] = god_desc
+	SSfishing.planets -= src
 	return ..()
 
 /// God is Lir. Buffs the minimum and maximum size of fish.

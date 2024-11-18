@@ -211,7 +211,7 @@
 			part.dismember()
 			QDEL_NULL(part)
 			new /obj/effect/gibspawner/generic/silent(get_turf(C))
-		if(C.bodyparts.len <= 1)
+		if(length(C.bodyparts) <= 1)
 			C.gib()
 			return
 	return
