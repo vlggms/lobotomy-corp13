@@ -36,7 +36,7 @@
 	if(slot_flags & slot) // Equipped to right slot, not just in hands
 		if(!CanUseEgo(H))
 			return FALSE
-		if(equip_slowdown > 0)
+		if(equip_slowdown > 0 && (M == equipper || !equipper))
 			if(!do_after(H, equip_slowdown, target = H))
 				return FALSE
 	return ..()
