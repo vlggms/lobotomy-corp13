@@ -4724,6 +4724,8 @@
 	dir = 8
 	},
 /obj/item/ego_weapon/city/carnival_spear,
+/obj/item/paper/fluff/silk_guide,
+/obj/item/paper/fluff/silk_guide,
 /turf/open/floor/facility/dark,
 /area/city/backstreets_room)
 "TS" = (

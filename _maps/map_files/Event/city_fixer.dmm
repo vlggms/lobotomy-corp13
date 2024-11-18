@@ -1392,6 +1392,8 @@
 /obj/effect/turf_decal/trimline/red/filled/line,
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/structure/table/reinforced,
+/obj/item/paper/fluff/silk_guide,
+/obj/item/paper/fluff/silk_guide,
 /turf/open/floor/facility/dark,
 /area/city/shop)
 "uO" = (
