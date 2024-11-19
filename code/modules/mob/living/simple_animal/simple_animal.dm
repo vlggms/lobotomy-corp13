@@ -242,6 +242,9 @@
 	if(SSmaptype.maptype in SSmaptype.citymaps)
 		if(city_faction)
 			faction += "hostile"
+	//LC13 Check. If it's the rcorp factory gamemode, they all gain a faction
+	if(SSmaptype.maptype == "rcorp_factory")
+		faction += "enemy"
 	if(occupied_tiles_down > 0 || occupied_tiles_up > 0 || occupied_tiles_left > 0 || occupied_tiles_right > 0)
 		occupied_tiles_left_current = occupied_tiles_left
 		occupied_tiles_right_current = occupied_tiles_right

@@ -25,7 +25,7 @@
 	desc = "A machine used to craft items."
 	icon_state = "highfactory"
 	scost = 2
-	item = /obj/effect/landmark/rcorp_highweapon
+	item = /obj/effect/landmark/rcorp/highweapon
 
 /obj/structure/rcorp_factory/rhino
 	name = "Superlight Rhino factory"
