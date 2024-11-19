@@ -288,7 +288,10 @@
 		if(!silent)
 			to_chat(user, span_warning("You can only contract living!"))
 		return FALSE
-
+	if(istype(target, /mob/living/simple_animal/hostile/shrimp_vip))
+		if(!silent)
+			to_chat(user, span_warning("Their soul is far to expensive to buy!"))
+		return FALSE
 
 /obj/effect/proc_holder/spell/pointed/contract/proc/AddOverlay(mob/living/simple_animal/A)
 	var/contractlayer = A.layer + 0.1
