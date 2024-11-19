@@ -177,3 +177,39 @@
 		/datum/reagent/toxin/mindbreaker = 5,
 		/datum/reagent/toxin/pallidwaste = 15,//this is defined in toxin_reagents.dm
 	)
+
+/obj/item/food/fish/salt_water/fishmael
+	name = "Fishmael"
+	desc = "If you please, call me Fishmael."
+	icon_state = "fishmael"
+	show_in_catalog = FALSE
+	random_case_rarity = FISH_RARITY_RARE
+	fillet_type = /obj/item/food/freshfish/white
+	sprite_width = 8
+	sprite_height = 8
+	average_size = 30
+	average_weight = 500
+
+/obj/item/food/fish/salt_water/seabunny
+	name = "Sea Bunny"
+	desc = "This creature resembles a small white bunny. They are incredibly toxic however."
+	icon_state = "seabunny"
+	show_in_catalog = FALSE
+	random_case_rarity = FISH_RARITY_RARE
+	fillet_type = /obj/item/food/freshfish/fugu
+	sprite_width = 8
+	sprite_height = 8
+	average_size = 30
+	average_weight = 300
+
+/obj/item/food/fish/salt_water/searabbit
+	name = "Sea Rabbit"
+	desc = "This creature resembles a small R-Corp Rabbit. They aren't incredibly toxic...however."
+	icon_state = "searabbit"
+	show_in_catalog = FALSE
+	random_case_rarity = FISH_RARITY_RARE
+	fillet_type = /obj/item/food/freshfish/slime
+	sprite_width = 8
+	sprite_height = 8
+	average_size = 30
+	average_weight = 300
