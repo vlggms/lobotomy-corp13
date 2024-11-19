@@ -108,6 +108,25 @@
 	icon = 'icons/mob/nest.dmi'
 	moblist = list(/mob/living/simple_animal/hostile/ordeal/indigo_noon = 3)
 
+/obj/structure/graffiti_cognito
+	name = "graffiti"
+	desc = "strange graffiti. You can almost make out what it says."
+	icon = 'ModularTegustation/Teguicons/wall_markings.dmi'
+	icon_state = "gibberish"
+	anchored = TRUE
+	var/datum/status_effect/inflicted_effect = /datum/status_effect/display/dyscrasone_withdrawl
+
+/obj/structure/graffiti_cognito/Initialize()
+	. = ..()
+	for(var/obj/structure/graffiti_cognito/graffiti in view(1, get_turf(src)))
+		if(graffiti != src)
+			qdel(src)
+			break
+
+/obj/structure/graffiti_cognito/ComponentInitialize()
+	. = ..()
+	AddComponent(/datum/component/cognitohazard_visual, _cognitohazard_visual_effect=inflicted_effect, obvious=TRUE)
+
 /**
  * List of button counters
  * Required as persistence subsystem loads after the ones present at mapload, and to reset to 0 upon explosion.
