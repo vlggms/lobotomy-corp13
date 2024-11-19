@@ -74,3 +74,25 @@
 	if(SSmaptype.maptype == "rcorp")
 		bullet_damage = 200
 	return ..()
+
+//Warden deals even less damage then more bodies they eat, and they take more damage from all attacks.
+//Warden currently slowballs far to quickly, so this nerf should give R-Corp a better chance at fighting back against them.
+/mob/living/simple_animal/hostile/abnormality/warden/Initialize()
+	if(IsCombatMap())
+		damage_down = 10
+	return ..()
+
+//Censored no longer applies his statues effect passivly, Now he needs to hit his ranged attack to apply it.
+//For that reason, I am reducing the cooldown for that ranged attack and lowering it's damage by around 50%, so they can at least try to apply it more often.
+/mob/living/simple_animal/hostile/abnormality/censored/Initialize()
+	if(SSmaptype.maptype == "rcorp")
+		ability_damage = 120
+		ability_cooldown_time = 6 SECONDS
+	return ..()
+
+//Nothing There passive healing will only start when they are under 50% health. But, I am increasing that healing by 50%.
+/mob/living/simple_animal/hostile/abnormality/nothing_there/Initialize()
+	if(SSmaptype.maptype == "rcorp")
+		heal_percent_per_second = 0.01275
+		r_corp_regen_start = 0.5
+	return ..()

@@ -58,17 +58,33 @@
 	var/ability_cooldown
 	var/ability_cooldown_time = 10 SECONDS
 
+/mob/living/simple_animal/hostile/abnormality/censored/Login()
+	. = ..()
+	to_chat(src, "<h1>You are CENSORED, A Tank Role Abnormality.</h1><br>\
+		<b>|'CENSORED, CENSORED'|: When you click on a tile outside your melee range, you will trigger your ranged attack.<br>\
+		When you trigger your ranged attack, there will be a short delay before you will send out a 'CENSORED' towards your target tile.<br>\
+		Anyone who is hit by your 'CENSORED' will take BLACK damage and will gain the statues effect 'Overwhelming Fear'<br>\
+		If you don't want to trigger you ranged attack when clicking on a tile, you can hold SHIFT while clicking on a tile to disable it.<br>\
+		<br>\
+		|Overwhelming Fear|: Humans with this statues effect will have their sanity quickly reduce to 30%, And this statues effect lasts for 20 seconds.<br>\
+		<br>\
+		|'...CENSORED?'|: When you attack a dead human, you will convert them into a mini 'CENSORED'.<br>\
+		Each time you convert a human into a mini 'CENSORED' you heal 10% of your max HP.<br>\
+		However, Once a mini 'CENSORED' is killed, all humans around them heal 40% of their SP.</b>")
+
+
 /mob/living/simple_animal/hostile/abnormality/censored/Life()
 	. = ..()
 	if(!.)
 		return
 	// Apply and refresh status effect to all humans nearby
-	for(var/mob/living/carbon/human/H in view(7, src))
-		if(H.stat == DEAD)
-			continue
-		if(faction_check_mob(H))
-			continue
-		H.apply_status_effect(STATUS_EFFECT_OVERWHELMING_FEAR)
+	if(SSmaptype.maptype != "rcorp")
+		for(var/mob/living/carbon/human/H in view(7, src))
+			if(H.stat == DEAD)
+				continue
+			if(faction_check_mob(H))
+				continue
+			H.apply_status_effect(STATUS_EFFECT_OVERWHELMING_FEAR)
 
 /mob/living/simple_animal/hostile/abnormality/censored/FearEffectText(mob/affected_mob, level = 0)
 	level = num2text(clamp(level, 3, 5))
@@ -183,6 +199,7 @@
 	for(var/turf/TT in turf_list)
 		for(var/mob/living/L in HurtInTurf(TT, list(), ability_damage, BLACK_DAMAGE, null, TRUE, FALSE, TRUE, hurt_structure = TRUE))
 			new /obj/effect/temp_visual/dir_setting/bloodsplatter(get_turf(L), pick(GLOB.alldirs))
+			L.apply_status_effect(STATUS_EFFECT_OVERWHELMING_FEAR)
 	can_act = TRUE
 
 /* Work */
@@ -259,6 +276,7 @@
 	del_on_death = TRUE
 	density = FALSE
 	var/list/breach_affected = list()
+	var/recoved_sanity = 0.2
 
 /mob/living/simple_animal/hostile/mini_censored/Initialize()
 	. = ..()
@@ -297,6 +315,18 @@
 			continue
 		to_chat(H, span_warning("Damn, it's scary."))
 	return
+
+/mob/living/simple_animal/hostile/mini_censored/death(gibbed)
+	if(SSmaptype.maptype == "rcorp")
+		for(var/mob/living/carbon/human/H in view(5, src))
+			if(H.stat == DEAD)
+				continue
+			if(faction_check_mob(H))
+				continue
+			H.adjustSanityLoss(-(H.getMaxSanity() * recoved_sanity))
+			playsound(H, 'sound/abnormalities/voiddream/skill.ogg', 40, TRUE, 2)
+			to_chat(H, span_nicegreen("Good... It is now dead."))
+	return ..()
 
 // Status effect applied by CENSORED
 /datum/status_effect/overwhelming_fear

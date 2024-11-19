@@ -62,6 +62,23 @@
 	/// Amount of BLACK damage done to all enemies around main target on melee attack. Also includes original target
 	var/radius_damage = 30
 
+/mob/living/simple_animal/hostile/abnormality/melting_love/Login()
+	. = ..()
+	to_chat(src, "<h1>You are Melting Love, A Tank Role Abnormality.</h1><br>\
+		<b>|Absorbing Slime|: RED damage heals you instead of damaging you, The same thing applies to your slime pawns.<br>\
+		<br>\
+		|Sticky Slime|: Some of your abilities will inflict 'SLIMED' on the target.\
+		Targets with 'SLIMED' will take BLACK damage over time and will become slowed down for it's duration.<br>\
+		<br>\
+		|Melting Slime|: As you move around, you will leave behind 'Melting Slime' on the turfs you cross. If any non-slime crosses this 'Melting Slime', They will be inflicted with 'SLIMED'.<br>\
+		<br>\
+		|Spreading Love...|: When you attack a dead body, you will convert it into a 'Slime Pawn.' Slime pawns exist for a short amount of time and detonate upon their death.\
+		When they detonate, they will deal BLACK damage to nearby humans and spread 'Melting Slime' around them.\
+		Also, If you attack your own 'Slime Pawn', You will devor them and heal 20% of your HP.<br>\
+		<br>\
+		|Stay Together...|: When you click on a tile outside your melee range, You will fire a slime projectile towards that tile. The projectile will inflict the target with 'SLIMED' and deal BLACK damage.\
+		If the projectile hits a dead body, it will convert it into a slime pawn.</b>")
+
 /mob/living/simple_animal/hostile/abnormality/melting_love/death(gibbed)
 	density = FALSE
 	animate(src, alpha = 0, time = (5 SECONDS))
@@ -262,6 +279,10 @@
 	del_on_death = TRUE
 	var/spawn_sound = 'sound/abnormalities/meltinglove/pawn_convert.ogg'
 	var/statuschance = 25
+	var/death_damage = 20
+	var/death_slime_range = 1
+	var/decay_damage = 20
+	var/decay_timer = 4
 
 /mob/living/simple_animal/hostile/slime/Initialize()
 	. = ..()
@@ -270,10 +291,22 @@
 	transform *= 0.1
 	alpha = 25
 	animate(src, alpha = 255, transform = init_transform, time = 5)
+	if(SSmaptype.maptype == "rcorp")
+		addtimer(CALLBACK(src, PROC_REF(decay)), decay_timer SECONDS, TIMER_STOPPABLE)
+
+/mob/living/simple_animal/hostile/slime/proc/decay()
+	to_chat(src, span_userdanger("You feel yourself falling apart..."))
+	src.deal_damage(decay_damage, BLACK_DAMAGE)
+	addtimer(CALLBACK(src, PROC_REF(decay)), decay_timer SECONDS, TIMER_STOPPABLE)
 
 /mob/living/simple_animal/hostile/slime/death()
 	for(var/atom/movable/AM in src)
 		AM.forceMove(get_turf(src))
+	if(SSmaptype.maptype == "rcorp")
+		for(var/turf/open/R in range(death_slime_range, src))
+			new /obj/effect/decal/cleanable/melty_slime(R)
+		for(var/mob/living/L in view(death_slime_range, src))
+			L.apply_damage(death_damage, BLACK_DAMAGE, null, L.run_armor_check(null, BLACK_DAMAGE))
 	..()
 
 /mob/living/simple_animal/hostile/slime/CanAttack(atom/the_target)
