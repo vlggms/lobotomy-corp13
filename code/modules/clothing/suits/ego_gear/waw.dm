@@ -490,3 +490,12 @@ Any attempt to code risk class armor will result in a 10 day Github ban.*/
 							FORTITUDE_ATTRIBUTE = 60,
 							PRUDENCE_ATTRIBUTE = 60,
 							)
+
+/obj/item/clothing/suit/armor/ego_gear/waw/havana
+	name = "havana"
+	desc = "Sit down, relax and take a deep breath."
+	icon_state = "havana"
+	armor = list(RED_DAMAGE = 30, WHITE_DAMAGE = 20, BLACK_DAMAGE = 30, PALE_DAMAGE = 60) // 140
+	attribute_requirements = list(
+							JUSTICE_ATTRIBUTE = 80
+							)

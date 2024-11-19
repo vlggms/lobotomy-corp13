@@ -556,3 +556,16 @@
 	)
 	abno_breach_damage_type = "White"
 	abno_breach_damage_count = "Extreme"
+
+//Hookah Caterpillar
+/obj/item/paper/fluff/info/waw/caterpillar
+	abno_type = /mob/living/simple_animal/hostile/abnormality/caterpillar
+	abno_code = "F-02-190"
+	abno_info = list(
+		"Working on F-02-190 on a work type other than repression will increase work damage and PE gained until next breach.",
+		"When Work damage and PE generated increased, so did the danger to the employee.",
+		"Eventually, works other than repression on F-02-190 will lower it's Qliphoth Counter.",
+
+	)
+	abno_breach_damage_type = "Pale"
+	abno_breach_damage_count = "Very High"
