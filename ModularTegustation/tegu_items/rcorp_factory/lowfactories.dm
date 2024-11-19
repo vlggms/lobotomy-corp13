@@ -55,16 +55,16 @@
 	name = "Low-tier Weapons factory"
 	desc = "A machine used to craft items."
 	rcost = 2
-	item = /obj/effect/landmark/rcorp_lowweapon
+	item = /obj/effect/landmark/rcorp
 
 /obj/structure/rcorp_factory/pistols
 	name = "Pistols factory"
 	desc = "A machine used to craft items."
 	rcost = 2
-	item = /obj/effect/landmark/rcorp_pistol
+	item = /obj/effect/landmark/rcorp/pistol
 
 /obj/structure/rcorp_factory/melee
 	name = "Low-tier Melee factory"
 	desc = "A machine used to craft items."
 	rcost = 2
-	item = /obj/effect/landmark/rcorp_meleeweapons
+	item = /obj/effect/landmark/rcorp/melee
