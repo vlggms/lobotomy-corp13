@@ -348,3 +348,11 @@
 /datum/ego_datum/armor/denial
 	item_path = /obj/item/clothing/suit/armor/ego_gear/teth/denial
 	cost = 20
+
+/datum/ego_datum/weapon/clayman
+	item_path = /obj/item/ego_weapon/mini/clayman
+	cost = 20
+
+/datum/ego_datum/armor/clayman
+	item_path = /obj/item/clothing/suit/armor/ego_gear/teth/clayman
+	cost = 20

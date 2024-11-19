@@ -262,3 +262,9 @@ Any attempt to code risk class armor will result in a 10 day Github ban.*/
 	desc = "When you have no means of escape, you must forge your own path."
 	icon_state = "tangle"
 	armor = list(RED_DAMAGE = 0, WHITE_DAMAGE = 20, BLACK_DAMAGE = 0, PALE_DAMAGE = 0)
+
+/obj/item/clothing/suit/armor/ego_gear/teth/clayman
+	name = "Creative Freedom"
+	desc = "Make yourself a canvas and your creativity can't be limited."
+	icon_state = "creativefreedom"
+	armor = list(RED_DAMAGE = 10, WHITE_DAMAGE = 10, BLACK_DAMAGE = -10, PALE_DAMAGE = 10)
