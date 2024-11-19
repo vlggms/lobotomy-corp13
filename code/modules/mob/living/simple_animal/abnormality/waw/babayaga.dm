@@ -204,10 +204,16 @@
 				for(var/mob/living/A in spawned_mobs) //if there are too many spawned mobs, thin out the numbers a bit
 					if(prob(30))
 						A.death()
-		new /obj/effect/temp_visual/dir_setting/cult/phase
-		if(prob(30))
-			var/mob/living/simple_animal/hostile/yagaslave/Y = new(T)
-			spawned_mobs+=Y
+			new /obj/effect/temp_visual/dir_setting/cult/phase
+			if(prob(30))
+				var/mob/living/simple_animal/hostile/yagaslave/Y = new(T)
+				spawned_mobs+=Y
+		else
+			if(spawned_mobs.len < max_mobs)
+				new /obj/effect/temp_visual/dir_setting/cult/phase
+				if(prob(30))
+					var/mob/living/simple_animal/hostile/yagaslave/Y = new(T)
+					spawned_mobs+=Y
 	return
 
 // Misc Objects and effects
