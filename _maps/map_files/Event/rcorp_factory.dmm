@@ -326,6 +326,13 @@
 /obj/structure/rcorp_factory/hightractiontiles,
 /turf/open/floor/facility/halls,
 /area/city/outskirts)
+"mw" = (
+/obj/structure/rcorp_factory/grenade,
+/obj/machinery/conveyor/auto{
+	dir = 8
+	},
+/turf/open/floor/facility/halls,
+/area/city/outskirts)
 "my" = (
 /obj/machinery/telecomms/broadcaster/preset_right,
 /obj/effect/turf_decal/bot,
@@ -775,6 +782,10 @@
 /obj/structure/table/greyscale,
 /turf/open/floor/pod/light,
 /area/city/outskirts)
+"CS" = (
+/obj/structure/limitedresourcepoint/silver,
+/turf/open/floor/plating/asteroid/basalt,
+/area/city/outskirts)
 "CX" = (
 /turf/open/water,
 /area/city/outskirts)
@@ -980,15 +991,15 @@
 /obj/structure/rack,
 /turf/open/floor/pod/light,
 /area/city/outskirts)
-"KG" = (
-/obj/structure/spacevine,
-/turf/open/floor/plating/ashplanet/rocky,
-/area/city/outskirts)
 "Ll" = (
 /turf/open/floor/wood,
 /area/city/outskirts)
 "LB" = (
 /turf/open/space/basic,
+/area/city/outskirts)
+"LE" = (
+/mob/living/simple_animal/hostile/ordeal/green_dusk,
+/turf/open/floor/plating/asteroid/basalt,
 /area/city/outskirts)
 "LZ" = (
 /obj/machinery/door/airlock/survival_pod{
@@ -1289,6 +1300,10 @@
 	dir = 4
 	},
 /turf/open/floor/pod/light,
+/area/city/outskirts)
+"Uy" = (
+/obj/structure/limitedresourcepoint/orange,
+/turf/open/floor/plating/asteroid/basalt,
 /area/city/outskirts)
 "Vm" = (
 /obj/effect/turf_decal/bot,
@@ -11071,7 +11086,7 @@ nB
 Pj
 eg
 Tl
-wL
+mw
 wL
 nB
 nB
@@ -37025,9 +37040,9 @@ zA
 zA
 zA
 zA
-KG
-KG
-KG
+zA
+zA
+zA
 zA
 zA
 CX
@@ -37804,7 +37819,7 @@ mk
 mk
 mk
 mk
-mk
+LE
 mk
 mk
 Nm
@@ -40874,7 +40889,7 @@ Nm
 mk
 mk
 mk
-mk
+CS
 mk
 mk
 Nm
@@ -43449,7 +43464,7 @@ nn
 CE
 mk
 mk
-mk
+LE
 mk
 mk
 Nm
@@ -46528,7 +46543,7 @@ Nm
 mk
 mk
 mk
-mk
+Uy
 mk
 mk
 mk
@@ -52189,7 +52204,7 @@ Nm
 Nm
 Nm
 mk
-mk
+LE
 mk
 Nm
 gs

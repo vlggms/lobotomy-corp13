@@ -40,7 +40,15 @@
 	desc = "A machine used to craft items."
 	icon_state = "midfactory"
 	bcost = 2
-	item = /obj/effect/landmark/rcorp_midweapon
+	item = /obj/effect/landmark/rcorp/midweapon
+
+/obj/structure/rcorp_factory/grenade
+	name = "Grenades factory"
+	desc = "A machine used to craft items."
+	icon_state = "midfactory"
+	bcost = 2
+	itemnumber = 5
+	item = /obj/effect/landmark/rcorp/grenade
 
 /obj/structure/rcorp_factory/melee2
 	name = "Multiphase Blade factory"
