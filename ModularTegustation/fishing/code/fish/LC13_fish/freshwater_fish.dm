@@ -120,7 +120,7 @@
 		/datum/reagent/consumable/nutriment/vile_fluid = 6,
 	)
 
-/obj/item/food/fish/fresh_water/unidentified-fish-object
+/obj/item/food/fish/fresh_water/unidentifiedfishobject
 	name = "Unidentified Fish Object"
 	desc = "What the Fuck."
 	icon_state = "unidentified-fish-object"
