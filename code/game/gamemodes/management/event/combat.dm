@@ -54,6 +54,7 @@ GLOBAL_VAR_INIT(wcorp_enemy_faction, "") //decides which faction WCorp will be u
 				addtimer(CALLBACK(src, PROC_REF(rcorp_announce)), 3 MINUTES)
 				addtimer(CALLBACK(src, PROC_REF(rcorp_opendoor)), 10 MINUTES)
 				RegisterSignal(SSdcs, COMSIG_GLOB_MOB_DEATH, PROC_REF(CheckLiving))
+				addtimer(CALLBACK(src, PROC_REF(rcorp_opendoor)), 10 MINUTES)
 
 			//Limbus Labs
 			if("limbus_labs")
