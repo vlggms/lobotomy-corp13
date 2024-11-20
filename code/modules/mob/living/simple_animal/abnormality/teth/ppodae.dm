@@ -47,6 +47,68 @@
 	var/smash_length = 2
 	var/smash_width = 1
 	var/can_act = TRUE
+	var/buff_form = TRUE
+	//Buff Form stuff
+	var/buff_resist_red = 0.5
+	var/buff_resist_white = 0.5
+	var/buff_resist_black = 0.5
+	var/buff_resist_pale = 1
+	var/buff_speed = 2
+	var/can_slam = TRUE
+	//Cute Form stuff
+	var/cute_resist_red = 1.5
+	var/cute_resist_white = 0.8
+	var/cute_resist_black = 1
+	var/cute_resist_pale = 2
+	var/cute_speed = 1
+
+	attack_action_types = list(/datum/action/cooldown/ppodae_transform)
+
+/datum/action/cooldown/ppodae_transform
+	name = "Transform!"
+	icon_icon = 'icons/mob/actions/actions_abnormality.dmi'
+	button_icon_state = "nosferatu"
+	check_flags = AB_CHECK_CONSCIOUS
+	transparent_when_unavailable = TRUE
+	cooldown_time = 5 SECONDS
+
+/datum/action/cooldown/ppodae_transform/Trigger()
+	if(!..())
+		return FALSE
+	if(!istype(owner, /mob/living/simple_animal/hostile/abnormality/ppodae))
+		return FALSE
+	var/mob/living/simple_animal/hostile/abnormality/ppodae/ppodae = owner
+	if(ppodae.IsContained()) // No more using cooldowns while contained
+		return FALSE
+	StartCooldown()
+	if(ppodae.buff_form)
+		ppodae.buff_form = FALSE
+		ppodae.UpdateForm()
+	else
+		ppodae.buff_form = TRUE
+		ppodae.UpdateForm()
+	return TRUE
+
+/mob/living/simple_animal/hostile/abnormality/ppodae/proc/UpdateForm()
+	if(buff_form)
+		ChangeResistances(list(RED_DAMAGE = buff_resist_red, WHITE_DAMAGE = buff_resist_white, BLACK_DAMAGE = buff_resist_black, PALE_DAMAGE = buff_resist_pale))
+		move_to_delay = buff_speed
+		icon_state = "ppodae_active"
+		can_slam = TRUE
+		density = TRUE
+		UpdateSpeed()
+	else
+		ChangeResistances(list(RED_DAMAGE = cute_resist_red, WHITE_DAMAGE = cute_resist_white, BLACK_DAMAGE = cute_resist_black, PALE_DAMAGE = cute_resist_pale))
+		move_to_delay = cute_speed
+		icon_state = "ppodae"
+		can_slam = FALSE
+		density = FALSE
+		var/datum/effect_system/smoke_spread/smoke = new
+		smoke.set_up(1, src)
+		smoke.start()
+		qdel(smoke) //And deleted again. Sad really.
+		UpdateSpeed()
+	playsound(get_turf(src), 'sound/abnormalities/scaredycat/cateleport.ogg', 50, 0, 5)
 
 /mob/living/simple_animal/hostile/abnormality/ppodae/Move()
 	if(!can_act)
@@ -72,7 +134,15 @@
 			bp.forceMove(get_turf(datum_reference.landmark)) // Teleports limb to containment
 			QDEL_NULL(src)
 			// Taken from eldritch_demons.dm
-	return Smash(target)
+	if(IsCombatMap())
+		if(can_slam)
+			return Smash(target)
+		else if(isvehicle(target))
+			var/obj/vehicle/V = target
+			var/turf/target_turf = get_turf(V)
+			forceMove(target_turf)
+	else
+		return Smash(target)
 
 //AoE attack taken from woodsman
 /mob/living/simple_animal/hostile/abnormality/ppodae/proc/Smash(target)
@@ -165,7 +235,7 @@
 	var/smash_damage = rand(smash_damage_low, smash_damage_high)
 	for(var/turf/T in area_of_effect)
 		new /obj/effect/temp_visual/smash_effect(T)
-		HurtInTurf(T, list(), smash_damage, RED_DAMAGE, check_faction = TRUE, hurt_mechs = TRUE)
+		HurtInTurf(T, list(), smash_damage, RED_DAMAGE, check_faction = TRUE, hurt_mechs = TRUE, hurt_structure = TRUE)
 	playsound(get_turf(src), 'sound/abnormalities/ppodae/bark.wav', 100, 0, 5)
 	playsound(get_turf(src), 'sound/abnormalities/ppodae/attack.wav', 50, 0, 5)
 	SLEEP_CHECK_DEATH(0.5 SECONDS)
@@ -185,3 +255,5 @@
 	. = ..()
 	icon_state = "ppodae_active"
 	GiveTarget(user)
+	if(IsCombatMap())
+		UpdateForm()
