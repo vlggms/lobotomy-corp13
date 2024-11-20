@@ -59,8 +59,11 @@
 	var/teleport_cooldown_time = 5 MINUTES
 	var/teleport_cooldown
 	var/damage_taken = FALSE
+	var/leap_recharge_time = 3 SECONDS
 	var/leap_charges = 3
 	var/max_leap_charges = 3
+	var/timer_added = FALSE
+	var/in_charging = FALSE
 
 	//PLAYABLE ATTACKS
 	attack_action_types = list(/datum/action/innate/abnormality_attack/toggle/porccubus_dash_toggle)
@@ -190,7 +193,7 @@
 /mob/living/simple_animal/hostile/abnormality/porccubus/proc/DashChecker(atom/target)
 	var/dist = get_dist(target, src)
 	if(IsCombatMap())
-		if(dist > 2 && leap_charges > 0)
+		if(dist > 2 && leap_charges > 0 && !in_charging)
 			PorcDash(target)
 	else
 		if(dist > 2 && ranged_cooldown < world.time)
@@ -204,6 +207,7 @@
 	// else
 	// 	if(dist > 2 && ranged_cooldown < world.time)
 	// 		ranged_cooldown = world.time + ranged_cooldown_time
+	in_charging = TRUE
 	var/list/dash_line = getline(src, target)
 	for(var/turf/line_turf in dash_line) //checks if there's a valid path between the turf and the friend
 		if(line_turf.is_blocked_turf(exclude_mobs = TRUE))
@@ -214,6 +218,10 @@
 	ranged_cooldown = world.time + ranged_cooldown_time
 	if(IsCombatMap())
 		leap_charges -= 1
+		if(!timer_added)
+			addtimer(CALLBACK(src, PROC_REF(AddCharge)), leap_recharge_time)
+			timer_added = TRUE
+	in_charging = FALSE
 
 /mob/living/simple_animal/hostile/abnormality/porccubus/AttackingTarget()
 	var/mob/living/carbon/human/H
@@ -231,6 +239,15 @@
 		DrugOverdose(H, H.ckey, nirvana)
 		LoseTarget()
 		H.faction += "porccubus" //that guy's already fucked, even if they can kill porccubus safely now, porccubus has done its job of being a cunt
+
+/mob/living/simple_animal/hostile/abnormality/porccubus/proc/AddCharge()
+	if(leap_charges < max_leap_charges)
+		leap_charges++
+		to_chat(src, "<span class='notice'> You now have [leap_charges]/[max_leap_charges] charges.</span>")
+		timer_added = FALSE
+		if(leap_charges < max_leap_charges)
+			addtimer(CALLBACK(src, PROC_REF(AddCharge)), leap_recharge_time)
+			timer_added = TRUE
 
 //Drug Item
 //this is only obtainable if someone else dies from the addiction, but it's the only way to get drugged without working on porccubus
