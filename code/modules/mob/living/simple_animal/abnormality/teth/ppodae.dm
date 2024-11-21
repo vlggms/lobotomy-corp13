@@ -49,10 +49,10 @@
 	var/can_act = TRUE
 	var/buff_form = TRUE
 	//Buff Form stuff
-	var/buff_resist_red = 0.5
-	var/buff_resist_white = 0.5
-	var/buff_resist_black = 0.5
-	var/buff_resist_pale = 1
+	var/buff_resist_red = 0.25
+	var/buff_resist_white = 0.25
+	var/buff_resist_black = 0.25
+	var/buff_resist_pale = 0.5
 	var/buff_speed = 2
 	var/can_slam = TRUE
 	//Cute Form stuff
@@ -61,13 +61,28 @@
 	var/cute_resist_black = 1
 	var/cute_resist_pale = 2
 	var/cute_speed = 1
-
+	//Other Stuff
+	var/limb_heal = 0.2
 	attack_action_types = list(/datum/action/cooldown/ppodae_transform)
+
+/mob/living/simple_animal/hostile/abnormality/ppodae/Login()
+	. = ..()
+	if(!. || !client)
+		return FALSE
+	to_chat(src, "<h1>You are Ppodae, A Support/Combat Role Abnormality.</h1><br>\
+		<b>|How adorable!|: You are able to switch between a 'Cute' and 'Buff' form. \
+		Switching between forms has a 5 second cooldown and each time you switch forms you create smoke which lasts for 9 seconds.<br>\
+		<br>\
+		|Cute!|: While you are in your 'Cute' form, you have a MASSIVE speed boost, lose density, (Immune to indirect projectiles and can move though mobs), and if you try to melee attack mechs, you will move under them.<br>\
+		<br>\
+		|Strong!|: While you are in your 'Buff' form, you take 75% less damage from all attacks and you prefrom a 3x3 AoE attack when you try to melee attack, (Really good at breaking down Structures)<br>\
+		<br>\
+		|He's just Playing|: When you melee attack a unconscious or dead human body, you are able to tear off a limb, which heals you 10% of your max HP. (You can do this 4 time per body)</b>")
 
 /datum/action/cooldown/ppodae_transform
 	name = "Transform!"
 	icon_icon = 'icons/mob/actions/actions_abnormality.dmi'
-	button_icon_state = "nosferatu"
+	button_icon_state = "ppodae_transform"
 	check_flags = AB_CHECK_CONSCIOUS
 	transparent_when_unavailable = TRUE
 	cooldown_time = 5 SECONDS
@@ -96,18 +111,17 @@
 		icon_state = "ppodae_active"
 		can_slam = TRUE
 		density = TRUE
-		UpdateSpeed()
 	else
 		ChangeResistances(list(RED_DAMAGE = cute_resist_red, WHITE_DAMAGE = cute_resist_white, BLACK_DAMAGE = cute_resist_black, PALE_DAMAGE = cute_resist_pale))
 		move_to_delay = cute_speed
 		icon_state = "ppodae"
 		can_slam = FALSE
 		density = FALSE
-		var/datum/effect_system/smoke_spread/smoke = new
-		smoke.set_up(1, src)
-		smoke.start()
-		qdel(smoke) //And deleted again. Sad really.
-		UpdateSpeed()
+	var/datum/effect_system/smoke_spread/smoke = new
+	smoke.set_up(1, src)
+	smoke.start()
+	qdel(smoke)
+	UpdateSpeed()
 	playsound(get_turf(src), 'sound/abnormalities/scaredycat/cateleport.ogg', 50, 0, 5)
 
 /mob/living/simple_animal/hostile/abnormality/ppodae/Move()
@@ -131,6 +145,8 @@
 		if(length(parts))
 			var/obj/item/bodypart/bp = pick(parts)
 			bp.dismember()
+			if(IsCombatMap())
+				adjustHealth(-(maxHealth * limb_heal))
 			bp.forceMove(get_turf(datum_reference.landmark)) // Teleports limb to containment
 			QDEL_NULL(src)
 			// Taken from eldritch_demons.dm
@@ -141,6 +157,7 @@
 			var/obj/vehicle/V = target
 			var/turf/target_turf = get_turf(V)
 			forceMove(target_turf)
+			manual_emote("crawls under [V]!")
 	else
 		return Smash(target)
 

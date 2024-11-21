@@ -87,6 +87,12 @@
 		casingtype = /obj/item/ammo_casing/caseless/rcorp_true_patriot
 	return ..()
 
+/mob/living/simple_animal/hostile/abnormality/ppodae/Initialize()
+	if(IsCombatMap())
+		smash_damage_low = 32
+		smash_damage_high = 40
+	return ..()
+
 //Warden deals even less damage then more bodies they eat, and they take more damage from all attacks.
 //Warden currently slowballs far to quickly, so this nerf should give R-Corp a better chance at fighting back against them.
 /mob/living/simple_animal/hostile/abnormality/warden/Initialize()

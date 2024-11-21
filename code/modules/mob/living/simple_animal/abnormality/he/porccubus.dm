@@ -64,20 +64,20 @@
 	var/max_leap_charges = 3
 	var/timer_added = FALSE
 	var/in_charging = FALSE
+	attack_action_types = list(/datum/action/innate/abnormality_attack/toggle/porccubus_dash_toggle)
 
 /mob/living/simple_animal/hostile/abnormality/porccubus/Login()
 	. = ..()
 	if(!. || !client)
 		return FALSE
 	to_chat(src, "<h1>You are Porccubus, A Tank Role Abnormality.</h1><br>\
-		<b>|Fluttering|: You are immune to all projectiles. However you are unable to move.<br>\
-		However, If you click on a tile that is at least 3 tiles away from you. You will spend a leap charge to dash to that tile.\
+		<b>|Fluttering|: You are immune to all projectiles. However you are unable to move. \
+		However, If you click on a tile that is at least 3 tiles away from you. You will spend a leap charge to dash to that tile. \
 		You regain a leap charge every 3 seconds, and you can hold a max of 3 at a time.<br>\
 		<br>\
-		|Happiness|: Your melee attack has a range of 2 tiles.<br>\</b>")
+		|Happiness|: Your melee attack has a range of 2 tiles.</b>")
 
 	//PLAYABLE ATTACKS
-	attack_action_types = list(/datum/action/innate/abnormality_attack/toggle/porccubus_dash_toggle)
 
 /datum/action/innate/abnormality_attack/toggle/porccubus_dash_toggle
 	name = "Toggle Dash"
