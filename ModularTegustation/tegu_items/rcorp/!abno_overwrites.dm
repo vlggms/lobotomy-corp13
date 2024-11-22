@@ -25,6 +25,12 @@
 /mob/living/simple_animal/hostile/abnormality/helper/Initialize()
 	if(IsCombatMap())
 		stuntime = 2 SECONDS
+		dash_num = 250
+		dash_damage = 20
+		dash_speed = 0.75
+		dash_attack_volune = 25
+		dash_move_min_volune = 10
+		dash_move_max_volune = 20
 	return ..()
 
 //Frag needs a little damage buff
