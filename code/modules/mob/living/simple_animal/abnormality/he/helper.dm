@@ -218,7 +218,8 @@
 		to_chat(V.occupants, span_userdanger("[src] pierces your mech with their spinning blades!"))
 		playsound(V, attack_sound, 75, 1)
 		V.take_damage(60, melee_damage_type, attack_dir = get_dir(V, src))
-		been_hit += V
+		if (!IsCombatMap())
+			been_hit += V
 	addtimer(CALLBACK(src, PROC_REF(do_dash), (times_ran + 1)), 1)
 
 /* Work effects */
