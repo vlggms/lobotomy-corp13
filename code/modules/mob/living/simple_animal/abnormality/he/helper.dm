@@ -68,6 +68,7 @@
 	var/dash_cooldown_time = 8 SECONDS
 	var/list/been_hit = list() // Don't get hit twice.
 	var/stuntime = 3 SECONDS
+	var/dir_to_target
 
 	//PLAYABLES ATTACKS
 	attack_action_types = list(/datum/action/innate/abnormality_attack/toggle/helper_dash_toggle)
@@ -98,8 +99,10 @@
 		return
 	return ..()
 
-/mob/living/simple_animal/hostile/abnormality/helper/Move()
+/mob/living/simple_animal/hostile/abnormality/helper/Move(turf/newloc, direction, step_x, step_y)
 	if(charging)
+		if(IsCombatMap())
+			dir_to_target = direction
 		return FALSE
 	return ..()
 
@@ -112,8 +115,8 @@
 
 	if(dash_cooldown <= world.time)
 		var/chance_to_dash = 25
-		var/dir_to_target = get_dir(get_turf(src), get_turf(target))
-		if(dir_to_target in list(NORTH, SOUTH, WEST, EAST))
+		var/dir_to_tar = get_dir(get_turf(src), get_turf(target))
+		if(dir_to_tar in list(NORTH, SOUTH, WEST, EAST))
 			chance_to_dash = 100
 		if(prob(chance_to_dash))
 			helper_dash(target)
@@ -148,20 +151,20 @@
 	update_icon()
 	dash_cooldown = world.time + dash_cooldown_time
 	charging = TRUE
-	var/dir_to_target = get_dir(get_turf(src), get_turf(target))
+	dir_to_target = get_dir(get_turf(src), get_turf(target))
 	var/para = TRUE
 	if(dir_to_target in list(WEST, NORTHWEST, SOUTHWEST))
 		para = FALSE
 	been_hit = list()
 	SpinAnimation(1.3 SECONDS, 1, para)
-	addtimer(CALLBACK(src, PROC_REF(do_dash), dir_to_target, 0), 1.5 SECONDS)
+	addtimer(CALLBACK(src, PROC_REF(do_dash), 0), 1.5 SECONDS)
 	playsound(src, 'sound/abnormalities/helper/rise.ogg', 100, 1)
 
-/mob/living/simple_animal/hostile/abnormality/helper/proc/do_dash(move_dir, times_ran)
+/mob/living/simple_animal/hostile/abnormality/helper/proc/do_dash(times_ran)
 	var/stop_charge = FALSE
 	if(times_ran >= dash_num)
 		stop_charge = TRUE
-	var/turf/T = get_step(get_turf(src), move_dir)
+	var/turf/T = get_step(get_turf(src), dir_to_target)
 	if(!T)
 		charging = FALSE
 		return
@@ -185,14 +188,14 @@
 		return
 	forceMove(T)
 	var/para = TRUE
-	if(move_dir in list(WEST, NORTHWEST, SOUTHWEST))
+	if(dir_to_target in list(WEST, NORTHWEST, SOUTHWEST))
 		para = FALSE
 	SpinAnimation(3, 1, para)
 	playsound(src, "sound/abnormalities/helper/move0[pick(1,2,3)].ogg", rand(50, 70), 1)
 	var/list/hit_turfs = range(1, T)
 	for(var/mob/living/L in hit_turfs)
 		if(!faction_check_mob(L))
-			if(L in been_hit)
+			if((L in been_hit))
 				continue
 			visible_message(span_boldwarning("[src] runs through [L]!"))
 			to_chat(L, span_userdanger("[src] pierces you with their spinning blades!"))
@@ -206,7 +209,8 @@
 			if(L.stat >= HARD_CRIT)
 				L.gib()
 				continue
-			been_hit += L
+			if (!IsCombatMap())
+				been_hit += L
 	for(var/obj/vehicle/sealed/mecha/V in hit_turfs)
 		if(V in been_hit)
 			continue
@@ -215,7 +219,7 @@
 		playsound(V, attack_sound, 75, 1)
 		V.take_damage(60, melee_damage_type, attack_dir = get_dir(V, src))
 		been_hit += V
-	addtimer(CALLBACK(src, PROC_REF(do_dash), move_dir, (times_ran + 1)), 1)
+	addtimer(CALLBACK(src, PROC_REF(do_dash), (times_ran + 1)), 1)
 
 /* Work effects */
 /mob/living/simple_animal/hostile/abnormality/helper/NeutralEffect(mob/living/carbon/human/user, work_type, pe)
