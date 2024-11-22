@@ -69,6 +69,11 @@
 	var/list/been_hit = list() // Don't get hit twice.
 	var/stuntime = 3 SECONDS
 	var/dir_to_target
+	var/dash_damage = 60
+	var/dash_speed = 1
+	var/dash_attack_volune = 75
+	var/dash_move_max_volune = 70
+	var/dash_move_min_volune = 50
 
 	//PLAYABLES ATTACKS
 	attack_action_types = list(/datum/action/innate/abnormality_attack/toggle/helper_dash_toggle)
@@ -191,7 +196,7 @@
 	if(dir_to_target in list(WEST, NORTHWEST, SOUTHWEST))
 		para = FALSE
 	SpinAnimation(3, 1, para)
-	playsound(src, "sound/abnormalities/helper/move0[pick(1,2,3)].ogg", rand(50, 70), 1)
+	playsound(src, "sound/abnormalities/helper/move0[pick(1,2,3)].ogg", rand(dash_move_min_volune, dash_move_max_volune), 1)
 	var/list/hit_turfs = range(1, T)
 	for(var/mob/living/L in hit_turfs)
 		if(!faction_check_mob(L))
@@ -199,13 +204,14 @@
 				continue
 			visible_message(span_boldwarning("[src] runs through [L]!"))
 			to_chat(L, span_userdanger("[src] pierces you with their spinning blades!"))
-			playsound(L, attack_sound, 75, 1)
+			playsound(L, attack_sound, dash_attack_volune, 1)
 			var/turf/LT = get_turf(L)
 			new /obj/effect/temp_visual/kinetic_blast(LT)
-			var/damage = 60
 			if(!ishuman(L))
-				damage = 120
-			L.deal_damage(damage, melee_damage_type)
+				dash_damage = dash_damage * 2
+			L.deal_damage(dash_damage, melee_damage_type)
+			if(!ishuman(L))
+				dash_damage = dash_damage / 2
 			if(L.stat >= HARD_CRIT)
 				L.gib()
 				continue
@@ -216,11 +222,11 @@
 			continue
 		visible_message(span_boldwarning("[src] runs through [V]!"))
 		to_chat(V.occupants, span_userdanger("[src] pierces your mech with their spinning blades!"))
-		playsound(V, attack_sound, 75, 1)
-		V.take_damage(60, melee_damage_type, attack_dir = get_dir(V, src))
+		playsound(V, attack_sound, dash_attack_volune, 1)
+		V.take_damage(dash_damage, melee_damage_type, attack_dir = get_dir(V, src))
 		if (!IsCombatMap())
 			been_hit += V
-	addtimer(CALLBACK(src, PROC_REF(do_dash), (times_ran + 1)), 1)
+	addtimer(CALLBACK(src, PROC_REF(do_dash), (times_ran + 1)), dash_speed)
 
 /* Work effects */
 /mob/living/simple_animal/hostile/abnormality/helper/NeutralEffect(mob/living/carbon/human/user, work_type, pe)
