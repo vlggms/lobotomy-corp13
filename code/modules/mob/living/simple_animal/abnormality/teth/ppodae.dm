@@ -35,6 +35,7 @@
 	)
 	gift_type =  /datum/ego_gifts/cute
 	abnormality_origin = ABNORMALITY_ORIGIN_LOBOTOMY
+	attack_action_types = list(/datum/action/cooldown/ppodae_transform)
 
 	observation_prompt = "Before me stands a creature, eagerly awaiting its next meal. The creature is..."
 	observation_choices = list("A puppy", "A monster")
@@ -63,7 +64,7 @@
 	var/cute_speed = 1
 	//Other Stuff
 	var/limb_heal = 0.2
-	attack_action_types = list(/datum/action/cooldown/ppodae_transform)
+
 
 /mob/living/simple_animal/hostile/abnormality/ppodae/Login()
 	. = ..()
