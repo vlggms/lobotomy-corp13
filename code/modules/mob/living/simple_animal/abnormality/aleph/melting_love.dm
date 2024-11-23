@@ -297,7 +297,8 @@
 /mob/living/simple_animal/hostile/slime/proc/decay()
 	to_chat(src, span_userdanger("You feel yourself falling apart..."))
 	src.deal_damage(decay_damage, BLACK_DAMAGE)
-	addtimer(CALLBACK(src, PROC_REF(decay)), decay_timer SECONDS, TIMER_STOPPABLE)
+	if (stat != DEAD)
+		addtimer(CALLBACK(src, PROC_REF(decay)), decay_timer SECONDS, TIMER_STOPPABLE)
 
 /mob/living/simple_animal/hostile/slime/death()
 	for(var/atom/movable/AM in src)
@@ -306,8 +307,9 @@
 		for(var/turf/open/R in range(death_slime_range, src))
 			new /obj/effect/decal/cleanable/melty_slime(R)
 		for(var/mob/living/L in view(death_slime_range, src))
-			L.apply_damage(death_damage, BLACK_DAMAGE, null, L.run_armor_check(null, BLACK_DAMAGE))
-	..()
+			if(L.stat != DEAD && !istype(L, /mob/living/simple_animal/hostile/slime))
+				L.apply_damage(death_damage, BLACK_DAMAGE, null, L.run_armor_check(null, BLACK_DAMAGE))
+	return ..()
 
 /mob/living/simple_animal/hostile/slime/CanAttack(atom/the_target)
 	if(isliving(the_target) && !ishuman(the_target))
