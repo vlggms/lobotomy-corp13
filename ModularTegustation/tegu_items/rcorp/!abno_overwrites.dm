@@ -113,7 +113,7 @@
 
 /mob/living/simple_animal/hostile/abnormality/clown/Initialize()
 	if(IsCombatMap())
-		ranged_cooldown_time = 0.25 SECONDS
+		ranged_cooldown_time = 0.5 SECONDS
 		projectiletype = /obj/projectile/clown_throw_rcorp
 		finishing_small_damage = 12
 		finishing_big_damage = 80
