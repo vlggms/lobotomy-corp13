@@ -52,6 +52,7 @@
 		Numbers of tools, which were devoid of for my friends, were put into me. <br>When I was sent to a new home, I gave them a present."
 
 	var/charging = FALSE
+	var/clogged_blades = FALSE
 	var/dash_num = 50
 	var/dash_cooldown = 0
 	var/dash_cooldown_time = 8 SECONDS
@@ -89,7 +90,10 @@
 /mob/living/simple_animal/hostile/abnormality/helper/Move(turf/newloc, direction, step_x, step_y)
 	if(charging)
 		if(IsCombatMap())
-			dir_to_target = direction
+			if(!clogged_blades)
+				dir_to_target = direction
+			else
+				to_chat(src, span_userdanger("Your spinning blades are clogged with blood!"))
 		return FALSE
 	return ..()
 
@@ -189,6 +193,11 @@
 				continue
 			if (!IsCombatMap())
 				been_hit += L
+			else if(!clogged_blades)
+				to_chat(src, span_userdanger("Your spinning blades are now clogged with blood!"))
+				clogged_blades = TRUE
+				color = "#f5413b"
+				addtimer(CALLBACK(src, PROC_REF(clogged_blades)), 1 SECONDS)
 	for(var/obj/vehicle/sealed/mecha/V in hit_turfs)
 		if(V in been_hit)
 			continue
@@ -199,6 +208,10 @@
 		if (!IsCombatMap())
 			been_hit += V
 	addtimer(CALLBACK(src, PROC_REF(do_dash), (times_ran + 1)), dash_speed)
+
+/mob/living/simple_animal/hostile/abnormality/helper/proc/clogged_blades()
+	clogged_blades = FALSE
+	color = null
 
 /* Work effects */
 /mob/living/simple_animal/hostile/abnormality/helper/NeutralEffect(mob/living/carbon/human/user, work_type, pe)
