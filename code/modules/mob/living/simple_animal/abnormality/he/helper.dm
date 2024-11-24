@@ -215,6 +215,7 @@
 			if(!ishuman(L))
 				dash_damage = dash_damage * 2
 			L.deal_damage(dash_damage, melee_damage_type)
+			L.apply_lc_bleed(5)
 			if(!ishuman(L))
 				dash_damage = dash_damage / 2
 			if(L.stat >= HARD_CRIT)
