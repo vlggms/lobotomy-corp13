@@ -191,6 +191,8 @@
 	for(var/mob/living/L in view(5, src))
 		if(!faction_check_mob(L))
 			L.deal_damage(25, RED_DAMAGE)
+			if(IsCombatMap())
+				L.apply_lc_bleed(30)
 	new /obj/effect/particle_effect/foam(get_turf(src))
 	gib()
 

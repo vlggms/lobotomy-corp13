@@ -159,6 +159,7 @@
 	if(ishuman(target))
 		nodamage = FALSE
 		var/mob/living/carbon/human/H = target
+		H.apply_lc_bleed(8)
 		H.add_movespeed_modifier(/datum/movespeed_modifier/clowned)
 		addtimer(CALLBACK(H, TYPE_PROC_REF(/mob, remove_movespeed_modifier), /datum/movespeed_modifier/clowned), 2 SECONDS, TIMER_UNIQUE | TIMER_OVERRIDE)
 		..()
