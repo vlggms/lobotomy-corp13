@@ -102,3 +102,19 @@
 		heal_percent_per_second = 0.01275
 		r_corp_regen_start = 0.5
 	return ..()
+
+/mob/living/simple_animal/hostile/abnormality/yin/Initialize()
+	if(IsCombatMap())
+		pulse_cooldown = 8 SECONDS
+		move_to_delay = 5
+		UpdateSpeed()
+		ranged = TRUE
+	return ..()
+
+/mob/living/simple_animal/hostile/abnormality/clown/Initialize()
+	if(IsCombatMap())
+		ranged_cooldown_time = 0.25 SECONDS
+		projectiletype = /obj/projectile/clown_throw_rcorp
+		finishing_small_damage = 12
+		finishing_big_damage = 80
+	return ..()
