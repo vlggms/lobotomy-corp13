@@ -79,6 +79,17 @@
 	var/list/spawned_mobs = list()
 	var/initial_mobs_spawned
 
+/mob/living/simple_animal/hostile/abnormality/drifting_fox/Login()
+	. = ..()
+	to_chat(src, "<h1>You are Drifting Fox, A Combat Role Abnormality.</h1><br>\
+		<b>|Tattored Shelter|: After losing 10% of your health, you will start spawning Worn Umbrellas around you. \
+		Worn Umbrellas will teleport to you if you move too far away from them. \
+		Also, You will gain a slight speed boost for each Umbrella you have alive.<br>\
+		<br>\
+		|Worn Umbrellas|: Worn Umbrellas will passively attack humans that they can see by firing a 3x3 AoE on their targets. \
+		If the target gets hit by the AoE, They will gain a debuff which causes them to take more BLACK damage from all sources. \
+		However, if the umbrellas are broken you will lose 5% for each umbrella broken.<br></b>")
+
 /mob/living/simple_animal/hostile/abnormality/drifting_fox/funpet(mob/petter)
 	pet += petter
 	return ..()
