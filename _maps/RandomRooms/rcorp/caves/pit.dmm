@@ -3,7 +3,9 @@
 /turf/closed/indestructible/rock,
 /area/city/outskirts)
 "b" = (
-/obj/structure/lattice/catwalk,
+/obj/structure/lattice/catwalk{
+	resistance_flags = 115
+	},
 /obj/structure/railing{
 	dir = 1;
 	resistance_flags = 115
@@ -11,7 +13,9 @@
 /turf/open/floor/fakepit,
 /area/city/outskirts)
 "c" = (
-/obj/structure/lattice/catwalk,
+/obj/structure/lattice/catwalk{
+	resistance_flags = 115
+	},
 /obj/structure/railing/corner{
 	dir = 8
 	},
@@ -25,7 +29,9 @@
 /turf/open/floor/plating/asteroid,
 /area/city/outskirts)
 "e" = (
-/obj/structure/lattice/catwalk,
+/obj/structure/lattice/catwalk{
+	resistance_flags = 115
+	},
 /obj/structure/railing/corner{
 	dir = 8;
 	name = "wing-grade railing"
@@ -55,7 +61,9 @@
 /turf/open/floor/plating/asteroid,
 /area/city/outskirts)
 "k" = (
-/obj/structure/lattice/catwalk,
+/obj/structure/lattice/catwalk{
+	resistance_flags = 115
+	},
 /obj/structure/railing{
 	dir = 8;
 	resistance_flags = 115
@@ -67,7 +75,9 @@
 /turf/open/floor/plating/asteroid,
 /area/city/outskirts)
 "o" = (
-/obj/structure/lattice/catwalk,
+/obj/structure/lattice/catwalk{
+	resistance_flags = 115
+	},
 /obj/structure/railing/corner,
 /turf/open/floor/fakepit,
 /area/city/outskirts)
@@ -116,8 +126,12 @@
 /turf/open/floor/plating/asteroid,
 /area/city/outskirts)
 "z" = (
-/obj/structure/lattice/catwalk,
-/obj/structure/lattice/catwalk,
+/obj/structure/lattice/catwalk{
+	resistance_flags = 115
+	},
+/obj/structure/lattice/catwalk{
+	resistance_flags = 115
+	},
 /turf/open/floor/fakepit,
 /area/city/outskirts)
 "C" = (
@@ -142,11 +156,15 @@
 /turf/open/floor/plating/asteroid,
 /area/city/outskirts)
 "H" = (
-/obj/structure/lattice/catwalk,
+/obj/structure/lattice/catwalk{
+	resistance_flags = 115
+	},
 /turf/open/floor/fakepit,
 /area/city/outskirts)
 "I" = (
-/obj/structure/lattice/catwalk,
+/obj/structure/lattice/catwalk{
+	resistance_flags = 115
+	},
 /obj/structure/railing/corner{
 	dir = 1;
 	name = "wing-grade railing"
@@ -157,7 +175,9 @@
 /turf/open/chasm,
 /area/city/outskirts)
 "L" = (
-/obj/structure/lattice/catwalk,
+/obj/structure/lattice/catwalk{
+	resistance_flags = 115
+	},
 /obj/structure/railing{
 	dir = 9;
 	resistance_flags = 115
@@ -165,14 +185,18 @@
 /turf/open/floor/fakepit,
 /area/city/outskirts)
 "O" = (
-/obj/structure/lattice/catwalk,
+/obj/structure/lattice/catwalk{
+	resistance_flags = 115
+	},
 /obj/structure/railing/corner{
 	dir = 1
 	},
 /turf/open/floor/fakepit,
 /area/city/outskirts)
 "Q" = (
-/obj/structure/lattice/catwalk,
+/obj/structure/lattice/catwalk{
+	resistance_flags = 115
+	},
 /obj/structure/railing{
 	dir = 4;
 	resistance_flags = 115
@@ -184,7 +208,9 @@
 /turf/open/chasm,
 /area/city/outskirts)
 "T" = (
-/obj/structure/lattice/catwalk,
+/obj/structure/lattice/catwalk{
+	resistance_flags = 115
+	},
 /obj/structure/railing{
 	resistance_flags = 115
 	},
@@ -195,7 +221,9 @@
 /turf/closed/indestructible/rock,
 /area/city/outskirts)
 "V" = (
-/obj/structure/lattice/catwalk,
+/obj/structure/lattice/catwalk{
+	resistance_flags = 115
+	},
 /obj/structure/railing/corner{
 	dir = 4;
 	name = "wing-grade railing"
@@ -203,7 +231,9 @@
 /turf/open/floor/fakepit,
 /area/city/outskirts)
 "X" = (
-/obj/structure/lattice/catwalk,
+/obj/structure/lattice/catwalk{
+	resistance_flags = 115
+	},
 /obj/structure/railing{
 	dir = 6;
 	resistance_flags = 115
@@ -211,7 +241,9 @@
 /turf/open/floor/fakepit,
 /area/city/outskirts)
 "Y" = (
-/obj/structure/lattice/catwalk,
+/obj/structure/lattice/catwalk{
+	resistance_flags = 115
+	},
 /obj/structure/railing/corner{
 	dir = 4
 	},
