@@ -76,6 +76,7 @@
 	var/dash_attack_volune = 75
 	var/dash_move_max_volune = 70
 	var/dash_move_min_volune = 50
+	var/dash_attack_cooldown = 20
 
 	//PLAYABLES ATTACKS
 	attack_action_types = list(/datum/action/innate/abnormality_attack/toggle/helper_dash_toggle)
@@ -217,8 +218,12 @@
 	var/list/hit_turfs = range(1, T)
 	for(var/mob/living/L in hit_turfs)
 		if(!faction_check_mob(L))
-			if((L in been_hit))
-				continue
+			if(L in been_hit)
+				if (IsCombatMap())
+					if (world.time - been_hit[L] < dash_attack_cooldown)
+						continue
+				else
+					continue
 			visible_message(span_boldwarning("[src] runs through [L]!"))
 			to_chat(L, span_userdanger("[src] pierces you with their spinning blades!"))
 			playsound(L, attack_sound, dash_attack_volune, 1)
@@ -233,22 +238,25 @@
 			if(L.stat >= HARD_CRIT)
 				L.gib()
 				continue
-			if (!IsCombatMap())
-				been_hit += L
-			else if(!clogged_blades)
+			//been_hit += L
+			been_hit[L] = world.time
+			if(!clogged_blades)
 				to_chat(src, span_userdanger("Your spinning blades are now clogged with blood!"))
 				clogged_blades = TRUE
 				color = "#f5413b"
 				addtimer(CALLBACK(src, PROC_REF(clogged_blades)), clogged_blades_time SECONDS)
 	for(var/obj/vehicle/sealed/mecha/V in hit_turfs)
 		if(V in been_hit)
-			continue
+			if (IsCombatMap())
+				if (world.time - been_hit[V] < dash_attack_cooldown)
+					continue
+			else
+				continue
 		visible_message(span_boldwarning("[src] runs through [V]!"))
 		to_chat(V.occupants, span_userdanger("[src] pierces your mech with their spinning blades!"))
 		playsound(V, attack_sound, dash_attack_volune, 1)
 		V.take_damage(dash_damage, melee_damage_type, attack_dir = get_dir(V, src))
-		if (!IsCombatMap())
-			been_hit += V
+		been_hit[V] = world.time
 	addtimer(CALLBACK(src, PROC_REF(do_dash), (times_ran + 1)), dash_speed)
 
 /mob/living/simple_animal/hostile/abnormality/helper/proc/clogged_blades()

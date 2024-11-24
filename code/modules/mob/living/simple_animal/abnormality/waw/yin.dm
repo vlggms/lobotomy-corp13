@@ -202,7 +202,7 @@
 	. = ..()
 	datum_reference.qliphoth_change(-1, user)
 
-/mob/living/simple_animal/hostile/abnormality/yin/proc/PulseOrLaser()
+/mob/living/simple_animal/hostile/abnormality/yin/proc/PulseOrLaser(user)
 	if(!IsCombatMap())
 		FireLaser(user)
 	else
@@ -212,15 +212,15 @@
 
 /mob/living/simple_animal/hostile/abnormality/yin/attacked_by(obj/item/I, mob/living/user)
 	. = ..()
-	PulseOrLaser()
+	PulseOrLaser(user)
 
 /mob/living/simple_animal/hostile/abnormality/yin/attack_hand(mob/living/carbon/human/M)
 	. = ..()
-	PulseOrLaser()
+	PulseOrLaser(M)
 
 /mob/living/simple_animal/hostile/abnormality/yin/attack_animal(mob/living/simple_animal/M)
 	. = ..()
-	PulseOrLaser()
+	PulseOrLaser(M)
 
 /mob/living/simple_animal/hostile/abnormality/yin/OpenFire()
 	FireLaser(target)
@@ -233,7 +233,7 @@
 		return .
 	if(!isliving(P.firer) && !ismecha(P.firer))
 		return .
-	PulseOrLaser()
+	PulseOrLaser(P.firer)
 
 /mob/living/simple_animal/hostile/abnormality/yin/AttackingTarget(atom/attacked_target)
 	return FALSE
