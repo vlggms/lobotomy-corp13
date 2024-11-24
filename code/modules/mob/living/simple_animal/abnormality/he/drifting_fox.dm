@@ -136,6 +136,7 @@
 			newmob.GoToFox()
 			newmob.ranged_cooldown_time = rand(20,80)
 			move_to_delay = clamp(move_to_delay - 1, 3, 7) //Speed up
+			UpdateSpeed()
 
 /mob/living/simple_animal/hostile/abnormality/drifting_fox/proc/UmbrellaLoop()
 	listclearnulls(spawned_mobs)
