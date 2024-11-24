@@ -72,6 +72,7 @@
 	var/dir_to_target
 	var/dash_damage = 60
 	var/dash_speed = 1
+	var/clogged_blades_time = 1
 	var/dash_attack_volune = 75
 	var/dash_move_max_volune = 70
 	var/dash_move_min_volune = 50
@@ -225,7 +226,7 @@
 				to_chat(src, span_userdanger("Your spinning blades are now clogged with blood!"))
 				clogged_blades = TRUE
 				color = "#f5413b"
-				addtimer(CALLBACK(src, PROC_REF(clogged_blades)), 1 SECONDS)
+				addtimer(CALLBACK(src, PROC_REF(clogged_blades)), clogged_blades_time SECONDS)
 	for(var/obj/vehicle/sealed/mecha/V in hit_turfs)
 		if(V in been_hit)
 			continue

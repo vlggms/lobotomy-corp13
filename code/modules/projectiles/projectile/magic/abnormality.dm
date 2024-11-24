@@ -142,6 +142,32 @@
 	variable = TRUE
 	multiplicative_slowdown = 1.5
 
+/obj/projectile/clown_throw_rcorp
+	name = "blade"
+	desc = "A blade thrown maliciously"
+	icon_state = "clown"
+	damage_type = RED_DAMAGE
+	nodamage = TRUE
+	damage = 5
+	projectile_piercing = PASSMOB
+
+/obj/projectile/clown_throw_rcorp/Initialize()
+	. = ..()
+	SpinAnimation()
+
+/obj/projectile/clown_throw_rcorp/on_hit(atom/target, blocked = FALSE)
+	if(ishuman(target))
+		nodamage = FALSE
+		var/mob/living/carbon/human/H = target
+		H.add_movespeed_modifier(/datum/movespeed_modifier/clowned)
+		addtimer(CALLBACK(H, TYPE_PROC_REF(/mob, remove_movespeed_modifier), /datum/movespeed_modifier/clowned), 2 SECONDS, TIMER_UNIQUE | TIMER_OVERRIDE)
+		..()
+	else
+		return
+	..()
+	if(ishuman(target))
+		qdel(src)
+
 /obj/projectile/bride_bolts
 	name = "mind bolts"
 	desc = "A magic white bolt, enchanted to protect or to avenge the sculptor."

@@ -76,6 +76,8 @@
 	del_on_death = FALSE //for explosions
 	var/finishing = FALSE
 	var/step = FALSE
+	var/finishing_small_damage = 5
+	var/finishing_big_damage = 30
 
 //A clown isn't a clown without his shoes
 /mob/living/simple_animal/hostile/abnormality/clown/BreachEffect(mob/living/carbon/human/user, breach_type)
@@ -126,7 +128,7 @@
 					return
 				TH.attack_animal(src)
 				for(var/mob/living/carbon/human/H in ohearers(7, get_turf(src)))
-					H.deal_damage(5, WHITE_DAMAGE)
+					H.deal_damage(finishing_small_damage, WHITE_DAMAGE)
 				SLEEP_CHECK_DEATH(2)
 			if(!targets_from.Adjacent(TH) || QDELETED(TH))
 				finishing = FALSE
@@ -134,7 +136,7 @@
 			playsound(get_turf(src), 'sound/abnormalities/clownsmiling/final_stab.ogg', 50, 1)
 			TH.gib()
 			for(var/mob/living/carbon/human/H in ohearers(7, get_turf(src)))
-				H.deal_damage(30, WHITE_DAMAGE)
+				H.deal_damage(finishing_big_damage, WHITE_DAMAGE)
 
 /mob/living/simple_animal/hostile/abnormality/clown/MoveToTarget(list/possible_targets)
 	if(ranged_cooldown <= world.time)
