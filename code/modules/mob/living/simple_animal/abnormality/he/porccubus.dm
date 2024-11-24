@@ -59,7 +59,7 @@
 	var/teleport_cooldown_time = 5 MINUTES
 	var/teleport_cooldown
 	var/damage_taken = FALSE
-	var/leap_recharge_time = 3 SECONDS
+	var/leap_recharge_time = 2 SECONDS
 	var/leap_charges = 3
 	var/max_leap_charges = 3
 	var/timer_added = FALSE
