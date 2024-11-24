@@ -121,26 +121,28 @@
 	return ..()
 
 /mob/living/simple_animal/hostile/abnormality/yin/Moved(atom/OldLoc, Dir, override = TRUE)
-	if(!COOLDOWN_FINISHED(src, pulse) || SSlobotomy_events.yin_downed)
-		return ..()
-	var/turfs_to_check = view(2, src)
-	for(var/mob/living/L in turfs_to_check)
-		if(L == src)
-			continue
-		if(L.status_flags & GODMODE)
-			continue
-		if(faction_check(L.faction, faction_override))
-			continue
-		if(L.stat >= DEAD)
-			continue
-		COOLDOWN_START(src, pulse, pulse_cooldown)
-		INVOKE_ASYNC(src, PROC_REF(Pulse))
-		return ..()
-	for(var/obj/vehicle/sealed/mecha/M in turfs_to_check)
-		if(!M.occupants || length(M.occupants) == 0)
-			continue
-		COOLDOWN_START(src, pulse, pulse_cooldown)
-		INVOKE_ASYNC(src, PROC_REF(Pulse))
+	if(!IsCombatMap())
+		if(!COOLDOWN_FINISHED(src, pulse) || SSlobotomy_events.yin_downed)
+			return ..()
+		var/turfs_to_check = view(2, src)
+		for(var/mob/living/L in turfs_to_check)
+			if(L == src)
+				continue
+			if(L.status_flags & GODMODE)
+				continue
+			if(faction_check(L.faction, faction_override))
+				continue
+			if(L.stat >= DEAD)
+				continue
+			COOLDOWN_START(src, pulse, pulse_cooldown)
+			INVOKE_ASYNC(src, PROC_REF(Pulse))
+			return ..()
+		for(var/obj/vehicle/sealed/mecha/M in turfs_to_check)
+			if(!M.occupants || length(M.occupants) == 0)
+				continue
+			COOLDOWN_START(src, pulse, pulse_cooldown)
+			INVOKE_ASYNC(src, PROC_REF(Pulse))
+			return ..()
 		return ..()
 	return ..()
 
@@ -196,17 +198,36 @@
 
 /mob/living/simple_animal/hostile/abnormality/yin/attacked_by(obj/item/I, mob/living/user)
 	. = ..()
-	FireLaser(user)
+	if(!IsCombatMap())
+		FireLaser(user)
+	else
+		if(COOLDOWN_FINISHED(src, pulse) || SSlobotomy_events.yin_downed)
+			COOLDOWN_START(src, pulse, pulse_cooldown)
+			INVOKE_ASYNC(src, PROC_REF(Pulse))
 	return
 
 /mob/living/simple_animal/hostile/abnormality/yin/attack_hand(mob/living/carbon/human/M)
 	. = ..()
-	FireLaser(M)
+	if(!IsCombatMap())
+		FireLaser(M)
+	else
+		if(COOLDOWN_FINISHED(src, pulse) || SSlobotomy_events.yin_downed)
+			COOLDOWN_START(src, pulse, pulse_cooldown)
+			INVOKE_ASYNC(src, PROC_REF(Pulse))
 	return
 
 /mob/living/simple_animal/hostile/abnormality/yin/attack_animal(mob/living/simple_animal/M)
 	. = ..()
-	FireLaser(M)
+	if(!IsCombatMap())
+		FireLaser(M)
+	else
+		if(COOLDOWN_FINISHED(src, pulse) || SSlobotomy_events.yin_downed)
+			COOLDOWN_START(src, pulse, pulse_cooldown)
+			INVOKE_ASYNC(src, PROC_REF(Pulse))
+	return
+
+/mob/living/simple_animal/hostile/abnormality/yin/OpenFire()
+	FireLaser(target)
 	return
 
 /mob/living/simple_animal/hostile/abnormality/yin/bullet_act(obj/projectile/P, def_zone, piercing_hit = FALSE)
@@ -217,7 +238,12 @@
 		return .
 	if(!isliving(P.firer) && !ismecha(P.firer))
 		return .
-	FireLaser(P.firer)
+	if(!IsCombatMap())
+		FireLaser(P.firer)
+	else
+		if(COOLDOWN_FINISHED(src, pulse) || SSlobotomy_events.yin_downed)
+			COOLDOWN_START(src, pulse, pulse_cooldown)
+			INVOKE_ASYNC(src, PROC_REF(Pulse))
 	return .
 
 /mob/living/simple_animal/hostile/abnormality/yin/AttackingTarget(atom/attacked_target)
