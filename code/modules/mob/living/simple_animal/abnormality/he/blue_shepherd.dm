@@ -513,3 +513,24 @@
 	if(abno.name == "Reddened Buddy")
 		buddy = abno
 		UnregisterSignal(SSdcs, COMSIG_GLOB_ABNORMALITY_SPAWN)
+
+/mob/living/simple_animal/hostile/abnormality/blue_shepherd/proc/TriggerDodge()
+	for(var/datum/action/cooldown/dodge/A in actions)
+		A.Trigger()
+
+#define COMSIG_KB_MOB_BLUE_SHEPHERD_DODGE "keybinding_mob_blue_shepherd_dodge"
+
+/datum/keybinding/mob/blue_shepherd_dodge
+	hotkey_keys = list("Space") // PAGEUP
+	name = "blue_shepherd_dodge"
+	full_name = "Blue Shepherd Dodge"
+	description = "Blue Shepherd Dodge"
+	keybind_signal = COMSIG_KB_MOB_BLUE_SHEPHERD_DODGE
+
+/datum/keybinding/mob/blue_shepherd_dodge/down(client/user)
+	. = ..()
+	if(.)
+		return
+	var/mob/living/simple_animal/hostile/abnormality/blue_shepherd/M = user.mob
+	M.TriggerDodge()
+	return TRUE
