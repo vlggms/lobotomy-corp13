@@ -121,8 +121,114 @@
 		"And when that 'buddy' fully realises the situation it's in, it becomes a wolf. That's when it can get my attention and care, what a dummy.",
 	)
 
+	var/sidesteping = FALSE
+	var/countering = FALSE
+	var/counter_damage = 20
 	//PLAYABLES ATTACKS
-	attack_action_types = list(/datum/action/innate/abnormality_attack/toggle/sheperd_spin_toggle)
+	attack_action_types = list(/datum/action/innate/abnormality_attack/toggle/sheperd_spin_toggle, /datum/action/cooldown/dodge, /datum/action/cooldown/counter)
+
+/datum/action/cooldown/dodge
+	name = "Dodge"
+	icon_icon = 'ModularTegustation/Teguicons/teguicons.dmi'
+	button_icon_state = "ruina_evade"
+	desc = "Gain a short speed boost dodge your foes!"
+	cooldown_time = 30
+	var/speeded_up = 2
+	var/restspeed = 4
+	var/speed_duration = 10
+	var/weaken_duration = 15
+	var/old_speed
+
+/datum/action/cooldown/dodge/Trigger()
+	if(!..())
+		return FALSE
+	if (istype(owner, /mob/living/simple_animal/hostile/abnormality/blue_shepherd))
+		var/mob/living/simple_animal/hostile/abnormality/blue_shepherd/H = owner
+		old_speed = H.move_to_delay
+		H.move_to_delay = speeded_up
+		H.UpdateSpeed()
+		H.sidesteping = TRUE
+		H.density = FALSE
+		addtimer(CALLBACK(src, PROC_REF(slowdown)), speed_duration)
+		StartCooldown()
+
+/mob/living/simple_animal/hostile/abnormality/blue_shepherd/Moved()
+	. = ..()
+	if (sidesteping)
+		MoveVFX()
+
+/mob/living/simple_animal/hostile/abnormality/blue_shepherd/proc/MoveVFX()
+	set waitfor = FALSE
+	var/obj/viscon_filtereffect/distortedform_trail/trail = new(src.loc,themob = src, waittime = 5)
+	trail.vis_contents += src
+	trail.filters += filter(type="drop_shadow", x=0, y=0, size=3, offset=2, color=rgb(0, 250, 229))
+	trail.filters += filter(type = "blur", size = 3)
+	animate(trail, alpha=120)
+	animate(alpha = 0, time = 10)
+
+/datum/action/cooldown/dodge/proc/slowdown()
+	if (istype(owner, /mob/living/simple_animal/hostile/abnormality/blue_shepherd))
+		var/mob/living/simple_animal/hostile/abnormality/blue_shepherd/H = owner
+		H.move_to_delay = restspeed
+		H.density = TRUE
+		H.sidesteping = FALSE
+		addtimer(CALLBACK(src, PROC_REF(recover)), weaken_duration)
+		H.UpdateSpeed()
+
+/datum/action/cooldown/dodge/proc/recover()
+	if (istype(owner, /mob/living/simple_animal/hostile/abnormality/blue_shepherd))
+		var/mob/living/simple_animal/hostile/abnormality/blue_shepherd/H = owner
+		H.move_to_delay = old_speed
+		H.UpdateSpeed()
+
+/datum/action/cooldown/counter
+	name = "Counter"
+	icon_icon = 'ModularTegustation/Teguicons/teguicons.dmi'
+	button_icon_state = "hollowpoint_ability"
+	desc = "Predict an attack, to deal damage to your foes!"
+	cooldown_time = 100
+	var/countering_duration = 10
+
+/datum/action/cooldown/counter/Trigger()
+	if(!..())
+		return FALSE
+	if (istype(owner, /mob/living/simple_animal/hostile/abnormality/blue_shepherd))
+		var/mob/living/simple_animal/hostile/abnormality/blue_shepherd/H = owner
+		H.countering = TRUE
+		H.slashing = TRUE
+		H.manual_emote("raises their blade...")
+		H.color = "#26a2d4"
+		playsound(H, 'sound/items/unsheath.ogg', 75, FALSE, 4)
+		addtimer(CALLBACK(src, PROC_REF(endcounter)), countering_duration)
+		StartCooldown()
+
+/mob/living/simple_animal/hostile/abnormality/blue_shepherd/attacked_by(obj/item/I, mob/living/user)
+	. = ..()
+	if (countering)
+		counter()
+
+/mob/living/simple_animal/hostile/abnormality/blue_shepherd/bullet_act(obj/projectile/P, def_zone, piercing_hit = FALSE)
+	. = ..()
+	if (countering)
+		counter()
+
+/mob/living/simple_animal/hostile/abnormality/blue_shepherd/proc/counter()
+	var/list/been_hit = list()
+	say(pick(combat_lines))
+	playsound(src, 'sound/weapons/fixer/generic/finisher2.ogg', 75, TRUE, 2)
+	for(var/turf/T in range(2, src))
+		new /obj/effect/temp_visual/smash_effect(T)
+		been_hit = HurtInTurf(T, been_hit, counter_damage, BLACK_DAMAGE, check_faction = TRUE, hurt_mechs = TRUE, mech_damage = 15)
+		for(var/mob/living/carbon/human/H in T)
+			H.Knockdown(20)
+	countering = FALSE
+
+/datum/action/cooldown/counter/proc/endcounter()
+	if (istype(owner, /mob/living/simple_animal/hostile/abnormality/blue_shepherd))
+		var/mob/living/simple_animal/hostile/abnormality/blue_shepherd/H = owner
+		H.countering = FALSE
+		H.slashing = FALSE
+		H.color = null
 
 /datum/action/innate/abnormality_attack/toggle/sheperd_spin_toggle
 	name = "Toggle Spinning Slash"
