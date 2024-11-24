@@ -148,7 +148,7 @@
 	icon_state = "clown"
 	damage_type = RED_DAMAGE
 	nodamage = TRUE
-	damage = 5
+	damage = 0
 	projectile_piercing = PASSMOB
 
 /obj/projectile/clown_throw_rcorp/Initialize()
@@ -157,6 +157,7 @@
 
 /obj/projectile/clown_throw_rcorp/on_hit(atom/target, blocked = FALSE)
 	if(ishuman(target))
+		damage = 10
 		nodamage = FALSE
 		var/mob/living/carbon/human/H = target
 		H.apply_lc_bleed(8)
@@ -164,6 +165,7 @@
 		addtimer(CALLBACK(H, TYPE_PROC_REF(/mob, remove_movespeed_modifier), /datum/movespeed_modifier/clowned), 2 SECONDS, TIMER_UNIQUE | TIMER_OVERRIDE)
 		..()
 	else
+		to_chat(target, "The [src] flies right passed you!")
 		return
 	..()
 	if(ishuman(target))
