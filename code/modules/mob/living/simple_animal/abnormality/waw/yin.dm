@@ -151,7 +151,6 @@
 			COOLDOWN_START(src, pulse, pulse_cooldown)
 			INVOKE_ASYNC(src, PROC_REF(Pulse))
 			return ..()
-		return ..()
 	return ..()
 
 /mob/living/simple_animal/hostile/abnormality/yin/death(gibbed)
@@ -192,7 +191,6 @@
 				continue
 			AD.qliphoth_change(-1, user)
 			break
-	return
 
 /mob/living/simple_animal/hostile/abnormality/yin/BreachEffect(mob/living/carbon/human/user, breach_type)
 	. = ..()
@@ -202,41 +200,29 @@
 /mob/living/simple_animal/hostile/abnormality/yin/FailureEffect(mob/living/carbon/human/user, work_type, pe)
 	. = ..()
 	datum_reference.qliphoth_change(-1, user)
-	return
 
-/mob/living/simple_animal/hostile/abnormality/yin/attacked_by(obj/item/I, mob/living/user)
-	. = ..()
+/mob/living/simple_animal/hostile/abnormality/yin/proc/PulseOrLaser()
 	if(!IsCombatMap())
 		FireLaser(user)
 	else
 		if(COOLDOWN_FINISHED(src, pulse) || SSlobotomy_events.yin_downed)
 			COOLDOWN_START(src, pulse, pulse_cooldown)
 			INVOKE_ASYNC(src, PROC_REF(Pulse))
-	return
+
+/mob/living/simple_animal/hostile/abnormality/yin/attacked_by(obj/item/I, mob/living/user)
+	. = ..()
+	PulseOrLaser()
 
 /mob/living/simple_animal/hostile/abnormality/yin/attack_hand(mob/living/carbon/human/M)
 	. = ..()
-	if(!IsCombatMap())
-		FireLaser(M)
-	else
-		if(COOLDOWN_FINISHED(src, pulse) || SSlobotomy_events.yin_downed)
-			COOLDOWN_START(src, pulse, pulse_cooldown)
-			INVOKE_ASYNC(src, PROC_REF(Pulse))
-	return
+	PulseOrLaser()
 
 /mob/living/simple_animal/hostile/abnormality/yin/attack_animal(mob/living/simple_animal/M)
 	. = ..()
-	if(!IsCombatMap())
-		FireLaser(M)
-	else
-		if(COOLDOWN_FINISHED(src, pulse) || SSlobotomy_events.yin_downed)
-			COOLDOWN_START(src, pulse, pulse_cooldown)
-			INVOKE_ASYNC(src, PROC_REF(Pulse))
-	return
+	PulseOrLaser()
 
 /mob/living/simple_animal/hostile/abnormality/yin/OpenFire()
 	FireLaser(target)
-	return
 
 /mob/living/simple_animal/hostile/abnormality/yin/bullet_act(obj/projectile/P, def_zone, piercing_hit = FALSE)
 	apply_damage(P.damage, P.damage_type)
@@ -246,13 +232,7 @@
 		return .
 	if(!isliving(P.firer) && !ismecha(P.firer))
 		return .
-	if(!IsCombatMap())
-		FireLaser(P.firer)
-	else
-		if(COOLDOWN_FINISHED(src, pulse) || SSlobotomy_events.yin_downed)
-			COOLDOWN_START(src, pulse, pulse_cooldown)
-			INVOKE_ASYNC(src, PROC_REF(Pulse))
-	return .
+	PulseOrLaser()
 
 /mob/living/simple_animal/hostile/abnormality/yin/AttackingTarget(atom/attacked_target)
 	return FALSE
@@ -267,7 +247,6 @@
 			hit = HurtInTurf(OT, hit, pulse_damage, BLACK_DAMAGE, null, TRUE, faction_override, TRUE)
 			new /obj/effect/temp_visual/small_smoke/yin_smoke/short(OT)
 		sleep(3)
-	return
 
 /mob/living/simple_animal/hostile/abnormality/yin/proc/FireLaser(mob/target)
 	if(busy || !COOLDOWN_FINISHED(src, beam) || SSlobotomy_events.yin_downed)
@@ -337,7 +316,6 @@
 		M.Turn(angle-90)
 		DP.transform = M
 		MoveDragon(DP, temp_path)
-	return
 
 /mob/living/simple_animal/hostile/abnormality/yin/proc/MoveDragon(obj/effect/yinyang_dragon/DP, list/path = list())
 	set waitfor = FALSE
@@ -349,7 +327,6 @@
 		DragonFlip(DP)
 		sleep(1)
 	qdel(DP)
-	return
 
 /mob/living/simple_animal/hostile/abnormality/yin/proc/DragonFlip(obj/effect/yinyang_dragon/DP)
 	for(var/obj/machinery/computer/abnormality/AC in range(2, DP))
@@ -399,7 +376,7 @@
 	. = ..()
 	for(var/atom/at in src)
 		qdel(at)
-	return
+
 /obj/effect/yinyang_dragon/dragon_head
 	icon_state = "dragon_head"
 

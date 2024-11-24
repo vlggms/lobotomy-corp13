@@ -156,20 +156,18 @@
 	SpinAnimation()
 
 /obj/projectile/clown_throw_rcorp/on_hit(atom/target, blocked = FALSE)
-	if(ishuman(target))
-		damage = 10
-		nodamage = FALSE
-		var/mob/living/carbon/human/H = target
-		H.apply_lc_bleed(8)
-		H.add_movespeed_modifier(/datum/movespeed_modifier/clowned)
-		addtimer(CALLBACK(H, TYPE_PROC_REF(/mob, remove_movespeed_modifier), /datum/movespeed_modifier/clowned), 2 SECONDS, TIMER_UNIQUE | TIMER_OVERRIDE)
-		..()
-	else
+	if(!ishuman(target))
 		to_chat(target, "The [src] flies right passed you!")
 		return
+
+	damage = 10
+	nodamage = FALSE
+	var/mob/living/carbon/human/H = target
+	H.apply_lc_bleed(8)
+	H.add_movespeed_modifier(/datum/movespeed_modifier/clowned)
+	addtimer(CALLBACK(H, TYPE_PROC_REF(/mob, remove_movespeed_modifier), /datum/movespeed_modifier/clowned), 2 SECONDS, TIMER_UNIQUE | TIMER_OVERRIDE)
 	..()
-	if(ishuman(target))
-		qdel(src)
+	qdel(src)
 
 /obj/projectile/bride_bolts
 	name = "mind bolts"
