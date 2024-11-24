@@ -63,7 +63,7 @@
 	var/cute_resist_pale = 2
 	var/cute_speed = 1
 	//Other Stuff
-	var/limb_heal = 0.2
+	var/limb_heal = 0.1
 
 
 /mob/living/simple_animal/hostile/abnormality/ppodae/Login()
@@ -74,7 +74,7 @@
 		<b>|How adorable!|: You are able to switch between a 'Cute' and 'Buff' form. \
 		Switching between forms has a 5 second cooldown and each time you switch forms you create smoke which lasts for 9 seconds.<br>\
 		<br>\
-		|Cute!|: While you are in your 'Cute' form, you have a MASSIVE speed boost, lose density, (Immune to indirect projectiles and can move though mobs), and if you try to melee attack mechs, you will move under them.<br>\
+		|Cute!|: While you are in your 'Cute' form, you have a MASSIVE speed boost and if you try to melee attack mechs or living mobs, you will crawl under them.<br>\
 		<br>\
 		|Strong!|: While you are in your 'Buff' form, you take 75% less damage from all attacks and you prefrom a 3x3 AoE attack when you try to melee attack, (Really good at breaking down Structures)<br>\
 		<br>\
@@ -111,13 +111,11 @@
 		move_to_delay = buff_speed
 		icon_state = "ppodae_active"
 		can_slam = TRUE
-		density = TRUE
 	else
 		ChangeResistances(list(RED_DAMAGE = cute_resist_red, WHITE_DAMAGE = cute_resist_white, BLACK_DAMAGE = cute_resist_black, PALE_DAMAGE = cute_resist_pale))
 		move_to_delay = cute_speed
 		icon_state = "ppodae"
 		can_slam = FALSE
-		density = FALSE
 	var/datum/effect_system/smoke_spread/smoke = new
 	smoke.set_up(1, src)
 	smoke.start()
@@ -134,22 +132,15 @@
 	if(!can_act)
 		return FALSE
 	var/mob/living/carbon/L = target
-	if(iscarbon(target) && (L.health < 0 || L.stat == DEAD))
-		if(HAS_TRAIT(L, TRAIT_NODISMEMBER))
+	if(IsCombatMap())
+		if(iscarbon(target) && (L.stat == DEAD))
+			LimbSteal(L)
 			return
-		var/list/parts = list()
-		for(var/X in L.bodyparts)
-			var/obj/item/bodypart/bp = X
-			if(bp.body_part != HEAD && bp.body_part != CHEST)
-				if(bp.dismemberable)
-					parts += bp
-		if(length(parts))
-			var/obj/item/bodypart/bp = pick(parts)
-			bp.dismember()
-			if(IsCombatMap())
-				adjustHealth(-(maxHealth * limb_heal))
-			bp.forceMove(get_turf(datum_reference.landmark)) // Teleports limb to containment
-			QDEL_NULL(src)
+	else
+		if(iscarbon(target) && (L.health < 0 || L.stat == DEAD))
+			LimbSteal(L)
+			return
+
 			// Taken from eldritch_demons.dm
 	if(IsCombatMap())
 		if(can_slam)
@@ -159,8 +150,30 @@
 			var/turf/target_turf = get_turf(V)
 			forceMove(target_turf)
 			manual_emote("crawls under [V]!")
+		else if (istype(target, /mob/living))
+			if (target != src)
+				var/turf/target_turf = get_turf(target)
+				forceMove(target_turf)
+				manual_emote("crawls under [target]!")
 	else
 		return Smash(target)
+
+/mob/living/simple_animal/hostile/abnormality/ppodae/proc/LimbSteal(var/mob/living/carbon/L)
+	if(HAS_TRAIT(L, TRAIT_NODISMEMBER))
+		return
+	var/list/parts = list()
+	for(var/X in L.bodyparts)
+		var/obj/item/bodypart/bp = X
+		if(bp.body_part != HEAD && bp.body_part != CHEST)
+			if(bp.dismemberable)
+				parts += bp
+	if(length(parts))
+		var/obj/item/bodypart/bp = pick(parts)
+		bp.dismember()
+		if(IsCombatMap())
+			adjustHealth(-(maxHealth * limb_heal))
+		bp.forceMove(get_turf(datum_reference.landmark)) // Teleports limb to containment
+		QDEL_NULL(src)
 
 //AoE attack taken from woodsman
 /mob/living/simple_animal/hostile/abnormality/ppodae/proc/Smash(target)
