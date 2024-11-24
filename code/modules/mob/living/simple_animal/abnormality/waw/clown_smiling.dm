@@ -60,6 +60,19 @@
 	gift_message = "Life isn't scary when you don't fear death."
 	abnormality_origin = ABNORMALITY_ORIGIN_ARTBOOK
 
+/mob/living/simple_animal/hostile/abnormality/clown/Login()
+	. = ..()
+	to_chat(src, "<h1>You are Clown Smiling at Me, A Combat Role Abnormality.</h1><br>\
+		<b>|Dark Carnival|: When you click on a tile which is outside your melee range, you will throw a knife towards that tile. Your knife will deal no damage to abnormalities, and will pass through them. \
+		If you hit a human with this knife, you will deal RED damage to them, slow them down massively and inflict 8 'Bleed'.<br>\
+		<br>\
+		|Jovial Cutting|: When you attack a dead human, you will start rapidly gutting them, which will deal WHITE damage to all humans watching. \
+		A few seconds after gutting that human, you will gib them.<br>\
+		<br>\
+		|Bleed|: When a target with bleed moves, they will take True damage equal to the stack, then it reduces by half.<br>\
+		<br>\
+		|A Show’s End|: Once you reach 0 HP, you will explode which deal great RED damage to nearby humans, inflict 30 'Bleed' and leave behind a few trails of lube, which can slip humans who cross them.</b>")
+
 //TODO : resprite
 	observation_prompt = "One of the containment cells at Lobotomy Corporation houses a clown. <br>\
 		Some people are afraid of clowns, but I don't mind them at all. <br>\

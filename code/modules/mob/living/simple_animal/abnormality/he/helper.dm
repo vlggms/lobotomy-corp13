@@ -87,6 +87,17 @@
 	secret_vertical_offset = 0
 	secret_icon_dead = "reddit_dead"
 
+/mob/living/simple_animal/hostile/abnormality/helper/Login()
+	. = ..()
+	to_chat(src, "<h1>You are All Round Helper, A Combat Role Abnormality.</h1><br>\
+		<b>|Cleaning Protocol|: When you attack, if your charge attack is off cooldown you will use it. \
+		Once you start your spin attack, you will wind up for a few seconds. Then you will rush into the direction you attacked. \
+		While you are rushing, all humans will take RED damage, inflict 5 'Bleed' and you will be able to move over small obstacles like barricades or windows. \
+		Once you run into a wall while rushing, you will be stunned for 2 seconds and end your rush.<br>\
+		<br>\
+		|Cleaning Mk2|: While you are rushing, you are able change directions. However, After you hit a human while rushing, you will be unable to change directions for 1 second. \
+		You are able to toggle your spin attack on and off with your ability.</b>")
+
 /datum/action/innate/abnormality_attack/toggle/helper_dash_toggle
 	name = "Toggle Dash"
 	button_icon_state = "helper_toggle0"
