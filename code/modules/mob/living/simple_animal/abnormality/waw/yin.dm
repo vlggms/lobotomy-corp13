@@ -89,6 +89,15 @@
 	)
 	var/dragon_spawned = FALSE
 
+/mob/living/simple_animal/hostile/abnormality/yin/Login()
+	. = ..()
+	to_chat(src, "<h1>You are Yin, A Tank Role Abnormality.</h1><br>\
+		<b>|Ruination|: When you click on a tile which is not right next to you, you will fire a laser towards that tile. \
+		The laser deal BLACK damage, and has a 10 second cooldown.<br>\
+		<br>\
+		|Decay|: Each time you take damage, if your pulse is off cooldown. You will send out a pulse around you, which deals BLACK damage to all humans. \
+		The Pulse has a cooldown of 8 seconds.</b>")
+
 /mob/living/simple_animal/hostile/abnormality/yin/New(loc, ...)
 	. = ..()
 	if(YangCheck())
