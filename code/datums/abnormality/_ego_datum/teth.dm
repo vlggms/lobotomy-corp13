@@ -326,6 +326,15 @@
 	item_path = /obj/item/ego_weapon/sanitizer
 	cost = 20
 
+//Kikimora Kiki_Mora
+/datum/ego_datum/weapon/kikimora
+	item_path = /obj/item/ego_weapon/kikimora
+	cost = 20
+
+/datum/ego_datum/armor/kikimora
+	item_path = /obj/item/clothing/suit/armor/ego_gear/teth/kikimora
+	cost = 20
+
 // Faelantern - Midwinter Nightmare
 /datum/ego_datum/armor/faelantern
 	item_path = /obj/item/clothing/suit/armor/ego_gear/teth/faelantern

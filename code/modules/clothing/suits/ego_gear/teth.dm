@@ -245,6 +245,12 @@ Any attempt to code risk class armor will result in a 10 day Github ban.*/
 	icon_state = "faelantern"
 	armor = list(RED_DAMAGE = 20, WHITE_DAMAGE = 30, BLACK_DAMAGE = -30, PALE_DAMAGE = 0) // 20
 
+/obj/item/clothing/suit/armor/ego_gear/teth/kikimora
+	name = "kiki mora"
+	desc = "A dress spun by unusual hands. Rough but resistant to stains."
+	icon_state = "kikimora"
+	armor = list(RED_DAMAGE = 10, WHITE_DAMAGE = -10, BLACK_DAMAGE = 30, PALE_DAMAGE = -10)
+
 /obj/item/clothing/suit/armor/ego_gear/teth/luckdraw
 	name = "luck of the draw"
 	desc = "How many have lost it all to a simple game of chance?"
