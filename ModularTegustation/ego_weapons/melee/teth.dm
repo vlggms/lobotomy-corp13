@@ -576,6 +576,17 @@
 	charge_speed_cap = 2
 	couch_cooldown_time = 3 SECONDS
 
+/obj/item/ego_weapon/kikimora
+	name = "kiki mora"
+	desc = "Many would speak her name."
+	icon_state = "kikimora"
+	force = 35
+	attack_speed = 1.6
+	damtype = RED_DAMAGE
+	attack_verb_continuous = list("beats", "smacks")
+	attack_verb_simple = list("beat", "smack")
+	hitsound = 'sound/weapons/fixer/generic/gen1.ogg'
+
 /obj/item/ego_weapon/denial
 	name = "denial"
 	desc = "Unregulated ingestion of Enkephalin may cause a wide range of unverified psychopathological symptoms."
