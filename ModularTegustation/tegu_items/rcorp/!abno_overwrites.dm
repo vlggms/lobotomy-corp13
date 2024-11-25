@@ -26,7 +26,7 @@
 	if(IsCombatMap())
 		stuntime = 2 SECONDS
 		dash_num = 250
-		dash_damage = 20
+		dash_damage = 60
 		dash_speed = 0.75
 		dash_attack_volune = 25
 		dash_move_min_volune = 10

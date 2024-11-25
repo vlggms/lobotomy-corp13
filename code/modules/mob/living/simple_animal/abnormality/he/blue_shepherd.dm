@@ -213,7 +213,7 @@
 	if (istype(owner, /mob/living/simple_animal/hostile/abnormality/blue_shepherd))
 		var/mob/living/simple_animal/hostile/abnormality/blue_shepherd/H = owner
 		if(H.no_counter)
-			to_chat(src, "You are curretnly dodging!")
+			to_chat(H, "You are curretnly dodging!")
 			return FALSE
 		else
 			H.ChangeResistances(list(RED_DAMAGE = 0, WHITE_DAMAGE = 0, BLACK_DAMAGE = 0, PALE_DAMAGE = 0))
