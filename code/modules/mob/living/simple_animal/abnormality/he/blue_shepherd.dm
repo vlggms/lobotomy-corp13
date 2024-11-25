@@ -120,12 +120,28 @@
 		"That red thing? they miss the love, the cuddles, the happiness of that moment dearly.",
 		"And when that 'buddy' fully realises the situation it's in, it becomes a wolf. That's when it can get my attention and care, what a dummy.",
 	)
-
+	var/no_counter = FALSE
 	var/sidesteping = FALSE
 	var/countering = FALSE
 	var/counter_damage = 20
 	//PLAYABLES ATTACKS
 	attack_action_types = list(/datum/action/innate/abnormality_attack/toggle/sheperd_spin_toggle, /datum/action/cooldown/dodge, /datum/action/cooldown/counter)
+
+/mob/living/simple_animal/hostile/abnormality/blue_shepherd/Login()
+	. = ..()
+	to_chat(src, "<h1>You are Blue Shepherd, A Combat Role Abnormality.</h1><br>\
+		<b>|Slayer|: When you attack, if your spin attack is off cooldown you will use it. \
+		Your spin attack is a 5x5 AoE centered around you, which deals medium BLACK damage. \
+		You are able to toggle your spin attack on and off with your ability.<br>\
+		<br>\
+		|Sidestep|: You are able to trigger your 'Dodge' ability using the button on the top left of your screen, \
+		Or you cam use a hotkey. (Which is Spacebar by default). When you trigger your 'Dodge' ability you will gain a speed boost and lose density (Bullet will pass through you.) for 1 second. \
+		Once the speed boost ends, you will be slowed down for 1.5 seconds.<br>\
+		<br>\
+		|Counter|: You are able to trigger your 'Counter' ability using the button on the top left of your screen, \
+		Or you cam use a hotkey. (Which is E by default). When you trigger your 'Counter' ability, If you take damage within the next second you will trigger a 5x5 AoE which deals BLACK damage. \
+		Also, Anyone hit by this AoE will knockdown all humans who are hit by it.\
+		</b>")
 
 /datum/action/cooldown/dodge
 	name = "Dodge"
@@ -149,6 +165,7 @@
 		H.UpdateSpeed()
 		H.sidesteping = TRUE
 		H.density = FALSE
+		H.no_counter = TRUE
 		addtimer(CALLBACK(src, PROC_REF(slowdown)), speed_duration)
 		StartCooldown()
 
@@ -179,6 +196,7 @@
 	if (istype(owner, /mob/living/simple_animal/hostile/abnormality/blue_shepherd))
 		var/mob/living/simple_animal/hostile/abnormality/blue_shepherd/H = owner
 		H.move_to_delay = old_speed
+		H.no_counter = FALSE
 		H.UpdateSpeed()
 
 /datum/action/cooldown/counter
@@ -194,13 +212,17 @@
 		return FALSE
 	if (istype(owner, /mob/living/simple_animal/hostile/abnormality/blue_shepherd))
 		var/mob/living/simple_animal/hostile/abnormality/blue_shepherd/H = owner
-		H.countering = TRUE
-		H.slashing = TRUE
-		H.manual_emote("raises their blade...")
-		H.color = "#26a2d4"
-		playsound(H, 'sound/items/unsheath.ogg', 75, FALSE, 4)
-		addtimer(CALLBACK(src, PROC_REF(endcounter)), countering_duration)
-		StartCooldown()
+		if(H.no_counter)
+			to_chat(src, "You are curretnly dodging!")
+			return FALSE
+		else
+			H.countering = TRUE
+			H.slashing = TRUE
+			H.manual_emote("raises their blade...")
+			H.color = "#26a2d4"
+			playsound(H, 'sound/items/unsheath.ogg', 75, FALSE, 4)
+			addtimer(CALLBACK(src, PROC_REF(endcounter)), countering_duration)
+			StartCooldown()
 
 /mob/living/simple_animal/hostile/abnormality/blue_shepherd/attacked_by(obj/item/I, mob/living/user)
 	. = ..()
@@ -518,7 +540,12 @@
 	for(var/datum/action/cooldown/dodge/A in actions)
 		A.Trigger()
 
+/mob/living/simple_animal/hostile/abnormality/blue_shepherd/proc/TriggerCounter()
+	for(var/datum/action/cooldown/counter/A in actions)
+		A.Trigger()
+
 #define COMSIG_KB_MOB_BLUE_SHEPHERD_DODGE "keybinding_mob_blue_shepherd_dodge"
+#define COMSIG_KB_MOB_BLUE_SHEPHERD_COUNTER "keybinding_mob_blue_shepherd_counter"
 
 /datum/keybinding/mob/blue_shepherd_dodge
 	hotkey_keys = list("Space") // PAGEUP
@@ -533,4 +560,19 @@
 		return
 	var/mob/living/simple_animal/hostile/abnormality/blue_shepherd/M = user.mob
 	M.TriggerDodge()
+	return TRUE
+
+/datum/keybinding/mob/blue_shepherd_counter
+	hotkey_keys = list("E") // PAGEUP
+	name = "keybinding_mob_blue_shepherd_counter"
+	full_name = "Blue Shepherd Counter"
+	description = "Blue Shepherd Counter"
+	keybind_signal = COMSIG_KB_MOB_BLUE_SHEPHERD_COUNTER
+
+/datum/keybinding/mob/blue_shepherd_counter/down(client/user)
+	. = ..()
+	if(.)
+		return
+	var/mob/living/simple_animal/hostile/abnormality/blue_shepherd/M = user.mob
+	M.TriggerCounter()
 	return TRUE
