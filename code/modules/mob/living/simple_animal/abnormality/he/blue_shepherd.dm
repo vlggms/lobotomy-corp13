@@ -216,6 +216,7 @@
 			to_chat(src, "You are curretnly dodging!")
 			return FALSE
 		else
+			H.ChangeResistances(list(RED_DAMAGE = 0, WHITE_DAMAGE = 0, BLACK_DAMAGE = 0, PALE_DAMAGE = 0))
 			H.countering = TRUE
 			H.slashing = TRUE
 			H.manual_emote("raises their blade...")
@@ -251,6 +252,7 @@
 		H.countering = FALSE
 		H.slashing = FALSE
 		H.color = null
+		H.ChangeResistances(list(RED_DAMAGE = 0.6, WHITE_DAMAGE = 1, BLACK_DAMAGE = 0.8, PALE_DAMAGE = 1.5))
 
 /datum/action/innate/abnormality_attack/toggle/sheperd_spin_toggle
 	name = "Toggle Spinning Slash"
