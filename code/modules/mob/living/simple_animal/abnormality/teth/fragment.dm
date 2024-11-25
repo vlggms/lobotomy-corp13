@@ -60,6 +60,13 @@
 	//PLAYABLES ACTIONS
 	attack_action_types = list(/datum/action/cooldown/fragment_song)
 
+/mob/living/simple_animal/hostile/abnormality/blue_shepherd/Login()
+	. = ..()
+	to_chat(src, "<h1>You are Fragment of the Universe, A Combat Role Abnormality.</h1><br>\
+		<b>|Echoes of the Stars|: You are able to trigger your “Song” ability using the button on your screen or a hotkey (Spacebar by Default).<br>\
+		While you are using your “Song” all humans that you see will start taking WHITE damage over time.<br>\
+		This attack goes through the Rhinos mechs, which can cause the user to panic within the mech and become completely helpless.</b>")
+
 /datum/action/cooldown/fragment_song
 	name = "Sing"
 	icon_icon = 'icons/mob/actions/actions_abnormality.dmi'
@@ -189,3 +196,24 @@
 	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 
 #undef FRAGMENT_SONG_COOLDOWN
+
+/mob/living/simple_animal/hostile/abnormality/fragment/proc/TriggerSong()
+	for(var/datum/action/cooldown/fragment_song/A in actions)
+		A.Trigger()
+
+#define COMSIG_KB_MOB_FRAGMENT_SONG "keybinding_mob_fragment_song"
+
+/datum/keybinding/mob/fragment_song
+	hotkey_keys = list("Space")
+	name = "fragment_song"
+	full_name = "Fragment Song"
+	description = "Fragment Song"
+	keybind_signal = COMSIG_KB_MOB_FRAGMENT_SONG
+
+/datum/keybinding/mob/fragment_song/down(client/user)
+	. = ..()
+	if(.)
+		return
+	var/mob/living/simple_animal/hostile/abnormality/fragment/M = user.mob
+	M.TriggerSong()
+	return TRUE
