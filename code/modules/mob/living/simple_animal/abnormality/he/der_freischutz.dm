@@ -51,6 +51,7 @@
 	var/bullet_fire_delay = 1.5 SECONDS
 	var/bullet_max_range = 50
 	var/bullet_damage = 80
+	var/static/list/portals = list()
 
 	//PLAYABLES ATTACKS (action in this case)
 	attack_action_types = list(/datum/action/innate/abnormality_attack/toggle/der_freischutz_zoom)
@@ -272,3 +273,41 @@
 			for(var/obj/effect/frei_magic/Port in portals)
 				Port.fade_out()
 	return
+
+/mob/living/simple_animal/hostile/der_freis_portal
+	name = "magic portal"
+	desc = "A strange blue portal... You feel like you are being watched though it."
+	icon = 'icons/effects/effects.dmi'
+	icon_state = "freicircle2"
+	icon_living = "freicircle2"
+	maxHealth = 1000
+	health = 1000
+	can_patrol = FALSE
+	wander = 0
+	damage_coeff = list(RED_DAMAGE = 1, WHITE_DAMAGE = 1, BLACK_DAMAGE = 1, PALE_DAMAGE = 1)
+	ranged = TRUE
+	ranged_cooldown_time = 1 SECONDS
+	obj_damage = 0
+	del_on_death = TRUE
+	alpha = 0
+	environment_smash = ENVIRONMENT_SMASH_NONE
+	death_message = "fades away..."
+	var/mob/living/simple_animal/hostile/abnormality/der_freischutz/connected_abno
+
+/mob/living/simple_animal/hostile/der_freis_portal/Initialize()
+	. = ..()
+	animate(src, alpha = 255, time = 6)
+	playsound(get_turf(src), 'sound/abnormalities/freischutz/portal.ogg', 100, 0, 10)
+	connected_abno = locate(/mob/living/simple_animal/hostile/abnormality/der_freischutz) in GLOB.abnormality_mob_list
+	if(connected_abno)
+		connected_abno.portals += src
+
+/mob/living/simple_animal/hostile/der_freis_portal/death()
+	if(connected_abno)
+		connected_abno.portals -= src
+
+/mob/living/simple_animal/hostile/der_freis_portal/Move()
+	return FALSE
+
+/mob/living/simple_animal/hostile/der_freis_portal/AttackingTarget(atom/attacked_target)
+	return OpenFire()
