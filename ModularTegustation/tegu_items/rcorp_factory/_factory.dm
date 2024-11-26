@@ -43,9 +43,13 @@
 	if(rcost)
 		. += span_notice("This machine requires [rcost]/[rmaterial] red materials to be used.")
 	if(bcost)
-		. += "This machine requires [bcost]/[bmaterial] blue materials to be used."
+		. += span_notice("This machine requires [bcost]/[bmaterial] blue materials to be used.")
 	if(pcost)
-		. += "This machine requires [pcost]/[pmaterial] purple materials to be used."
+		. += span_notice("This machine requires [pcost]/[pmaterial] purple materials to be used.")
+	if(scost)
+		. += span_notice("This machine requires [scost]/[smaterial] blue materials to be used.")
+	if(ocost)
+		. += span_notice("This machine requires [ocost]/[omaterial] purple materials to be used.")
 	if(item)
 		. += span_notice("This machine will produce [itemnumber] [item.name] when the materials are given.")
 	. += span_notice("This machine will take a maximum of [max] of each material that pass over it. Use a wrench to change this.")
