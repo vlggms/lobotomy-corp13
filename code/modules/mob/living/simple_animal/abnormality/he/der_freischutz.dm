@@ -292,6 +292,12 @@
 	alpha = 0
 	environment_smash = ENVIRONMENT_SMASH_NONE
 	death_message = "fades away..."
+	var/bullet_cooldown
+	var/bullet_cooldown_time = 7 SECONDS
+	var/bullet_fire_delay = 1 SECONDS
+	var/bullet_max_range = 50
+	var/bullet_damage = 80
+
 	var/mob/living/simple_animal/hostile/abnormality/der_freischutz/connected_abno
 
 /mob/living/simple_animal/hostile/der_freis_portal/Initialize()
@@ -310,4 +316,41 @@
 	return FALSE
 
 /mob/living/simple_animal/hostile/der_freis_portal/AttackingTarget(atom/attacked_target)
-	return OpenFire()
+	if(client)
+		return OpenFire()
+
+/mob/living/simple_animal/hostile/der_freis_portal/OpenFire()
+	if(client)
+		if(bullet_cooldown <= world.time)
+			PrepareFireBullet(target)
+
+/mob/living/simple_animal/hostile/der_freis_portal/proc/PrepareFireBullet(atom/target)
+	bullet_cooldown = world.time + bullet_cooldown_time
+	var/turf/beam_start = get_turf(src)
+	var/turf/target_turf = get_ranged_target_turf_direct(src, target, bullet_max_range, 0)
+	var/turf/beam_end = target_turf
+	var/list/turfs_to_check = getline(beam_start, target_turf)
+	playsound(beam_start, 'sound/abnormalities/freischutz/prepare.ogg', 35, 0, 20)
+	face_atom(target)
+	for(var/turf/T in turfs_to_check)
+		if(T.density)
+			beam_end = T
+			break
+	new /datum/beam(beam_start.Beam(beam_end, "magic_bullet", time = bullet_fire_delay))
+	SLEEP_CHECK_DEATH(bullet_fire_delay)
+	FireBullet(target, beam_start, beam_end)
+
+/mob/living/simple_animal/hostile/der_freis_portal/proc/FireBullet(atom/target, turf/start_turf, turf/end_turf)
+	playsound(start_turf, 'sound/abnormalities/freischutz/shoot.ogg', 35, 0, 20)
+	var/obj/projectile/ego_bullet/ego_magicbullet/B = new(start_turf) //80 BLACK damage.
+	B.starting = start_turf
+	B.firer = src
+	B.fired_from = start_turf
+	B.yo = end_turf.y - start_turf.y
+	B.xo = end_turf.x - start_turf.x
+	B.original = end_turf
+	B.preparePixelProjectile(end_turf, start_turf)
+	B.range = bullet_max_range
+	B.damage = bullet_damage
+	B.fire()
+	new /datum/beam(start_turf.Beam(end_turf, "magic_bullet_tracer", time = 3 SECONDS))
