@@ -4,6 +4,7 @@
 	icon = 'ModularTegustation/Teguicons/48x64.dmi'
 	icon_state = "judgement_bird"
 	icon_living = "judgement_bird"
+	icon_dead = "judgement_bird_dead"
 	core_icon = "jbird_egg"
 	portrait = "judgement_bird"
 	faction = list("hostile", "Apocalypse")
@@ -11,6 +12,7 @@
 
 	pixel_x = -8
 	base_pixel_x = -8
+	del_on_death = FALSE
 
 	ranged = TRUE
 	minimum_distance = 6
@@ -154,6 +156,8 @@
 /mob/living/simple_animal/hostile/abnormality/judgement_bird/death(gibbed)
 	for(var/mob/living/V in birdlist)
 		V.death()
+	animate(src, alpha = 0, time = 10 SECONDS)
+	QDEL_IN(src, 10 SECONDS)
 	..()
 
 //Runaway birds - Mini Simple Smile, 2 spawned after Jbird kills a player, and 2 on spawn.

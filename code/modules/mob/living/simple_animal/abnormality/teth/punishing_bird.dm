@@ -6,6 +6,7 @@
 	icon_living = "pbird_breach"
 	icon_dead = "pbird_dead"
 	portrait = "punishing_bird"
+	del_on_death = FALSE
 	turns_per_move = 2
 	response_help_continuous = "brushes aside"
 	response_help_simple = "brush aside"
@@ -206,6 +207,11 @@
 			TransformBack()
 		return
 	return ..()
+
+/mob/living/simple_animal/hostile/abnormality/punishing_bird/death(gibbed)
+	animate(src, alpha = 0, time = 10 SECONDS)
+	QDEL_IN(src, 10 SECONDS)
+	..()
 
 /mob/living/simple_animal/hostile/abnormality/punishing_bird/Found(atom/A)
 	if(isliving(A))
