@@ -176,7 +176,7 @@
 
 /obj/item/ego_weapon/city/rabbit/pale
 	name = "R-1P R-Corp Blade"
-	desc = "A small blade used by R-corp. This one deals only pale damage. \
+	desc = "A small blade used by R-corp. This one deals only black damage. \
 				After the commercial and operational failure of the R-1B Rabbit blade, plans for this weapon were found in the designer's desk. \
 				Rather than toss the design, Ravens were sent to silence the designer. This weapon was put into production shortly after, \
 				in an attempt to both recoup costs, and create a breakthrough in pale damage technology. This weapon's technology was later used \
