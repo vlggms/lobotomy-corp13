@@ -54,7 +54,33 @@
 	var/static/list/portals = list()
 
 	//PLAYABLES ATTACKS (action in this case)
-	attack_action_types = list(/datum/action/innate/abnormality_attack/toggle/der_freischutz_zoom)
+	attack_action_types = list(/datum/action/innate/abnormality_attack/toggle/der_freischutz_zoom, /datum/action/cooldown/switch_portals, /datum/action/cooldown/remove_portal)
+
+/datum/action/cooldown/switch_portals
+	name = "Portal View"
+	icon_icon = 'icons/effects/effects.dmi'
+	button_icon_state = "freicircle2"
+	desc = "Cycle through your currently active portals, to fire through them."
+	cooldown_time = 10
+
+/datum/action/cooldown/switch_portals/Trigger()
+	if(!..())
+		return FALSE
+	if (istype(owner, /mob/living/simple_animal/hostile/abnormality/der_freischutz))
+		return
+
+/datum/action/cooldown/remove_portal
+	name = "Removing Portal"
+	icon_icon = 'icons/effects/effects.dmi'
+	button_icon_state = "freicircle1"
+	desc = "Remove the current portal you are currently viewing through."
+	cooldown_time = 10
+
+/datum/action/cooldown/remove_portal/Trigger()
+	if(!..())
+		return FALSE
+	if (istype(owner, /mob/living/simple_animal/hostile/abnormality/der_freischutz))
+		return
 
 /datum/action/innate/abnormality_attack/toggle/der_freischutz_zoom
 	name = "Toggle Sniper Sight"
