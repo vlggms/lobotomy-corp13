@@ -51,10 +51,15 @@
 	var/bullet_fire_delay = 1.5 SECONDS
 	var/bullet_max_range = 50
 	var/bullet_damage = 80
-	var/static/list/portals = list()
+	var/list/portals = list()
+	var/zoomed = FALSE
+	var/max_portals = 3
+	var/current_portal_index = 0
 
 	//PLAYABLES ATTACKS (action in this case)
-	attack_action_types = list(/datum/action/innate/abnormality_attack/toggle/der_freischutz_zoom, /datum/action/cooldown/switch_portals, /datum/action/cooldown/remove_portal)
+	attack_action_types = list(/datum/action/innate/abnormality_attack/toggle/der_freischutz_zoom,
+		/datum/action/cooldown/switch_portals,
+		/datum/action/cooldown/remove_portal)
 
 /datum/action/cooldown/switch_portals
 	name = "Portal View"
@@ -62,12 +67,30 @@
 	button_icon_state = "freicircle2"
 	desc = "Cycle through your currently active portals, to fire through them."
 	cooldown_time = 10
+	var/original_sight
+
+/datum/action/cooldown/switch_portals/Grant(mob/living/L)
+	. = ..()
+	original_sight = owner.sight
 
 /datum/action/cooldown/switch_portals/Trigger()
 	if(!..())
 		return FALSE
-	if (istype(owner, /mob/living/simple_animal/hostile/abnormality/der_freischutz))
+	if (!istype(owner, /mob/living/simple_animal/hostile/abnormality/der_freischutz))
 		return
+	var/mob/living/simple_animal/hostile/abnormality/der_freischutz/F = owner
+	if(F.zoomed)
+		return
+	F.current_portal_index = (F.current_portal_index + 1) % (F.portals.len + 1)
+	if (F.current_portal_index == 0)
+		F.client.eye = F
+		F.sight = original_sight
+	else
+		F.client.eye = F.portals[F.current_portal_index]
+		F.sight |= SEE_TURFS | SEE_MOBS | SEE_THRU
+		F.regenerate_icons()
+
+
 
 /datum/action/cooldown/remove_portal
 	name = "Removing Portal"
@@ -79,8 +102,15 @@
 /datum/action/cooldown/remove_portal/Trigger()
 	if(!..())
 		return FALSE
-	if (istype(owner, /mob/living/simple_animal/hostile/abnormality/der_freischutz))
+	if (!istype(owner, /mob/living/simple_animal/hostile/abnormality/der_freischutz))
 		return
+	var/mob/living/simple_animal/hostile/abnormality/der_freischutz/F = owner
+	var/P = F.portals[F.current_portal_index]
+	F.portals.Remove(P)
+	qdel(P)
+	F.client.eye = F
+	F.current_portal_index = 0
+
 
 /datum/action/innate/abnormality_attack/toggle/der_freischutz_zoom
 	name = "Toggle Sniper Sight"
@@ -97,11 +127,17 @@
 	. = ..()
 	original_sight = owner.sight
 
+/datum/action/innate/abnormality_attack/toggle/der_freischutz_zoom/proc/ToggleZoom()
+	if (istype(owner, /mob/living/simple_animal/hostile/abnormality/der_freischutz))
+		var/mob/living/simple_animal/hostile/abnormality/der_freischutz/F = owner
+		F.zoomed = !F.zoomed
+
 /datum/action/innate/abnormality_attack/toggle/der_freischutz_zoom/Activate()
 	ActivateSignals()
 	owner.sight |= SEE_TURFS | SEE_MOBS | SEE_THRU
 	owner.regenerate_icons()
 	owner.client.view_size.zoomOut(zoom_out_amt, zoom_amt, owner.dir)
+	ToggleZoom()
 	return ..()
 
 /datum/action/innate/abnormality_attack/toggle/der_freischutz_zoom/proc/ActivateSignals()
@@ -115,6 +151,7 @@
 	owner.sight = original_sight
 	owner.regenerate_icons()
 	owner.client.view_size.zoomIn()
+	ToggleZoom()
 	return ..()
 
 /datum/action/innate/abnormality_attack/toggle/der_freischutz_zoom/proc/DeactivateSignals()
@@ -138,8 +175,26 @@
 /mob/living/simple_animal/hostile/abnormality/der_freischutz/OpenFire()
 	if(!can_act)
 		return
-	if(bullet_cooldown <= world.time)
-		PrepareFireBullet(target)
+	var/turf/T = get_turf(target)
+	var/area/A = get_area(T)
+	if (zoomed)
+		if (portals.len >= max_portals)
+			to_chat(src, "Too many portals already!")
+		else if (T.density == 1)
+			to_chat(src, "Cannot place the portal there. Its to dense!")
+		else if (istype(A, /area/city/outskirts/rcorp_base))
+			to_chat(src, "Cannot place the portal inside the enemy base!")
+		else
+			var/mob/living/simple_animal/hostile/der_freis_portal/P = new /mob/living/simple_animal/hostile/der_freis_portal(T)
+			portals.Add(P)
+			P.connected_abno = src
+			return
+	if (current_portal_index > 0)
+		var/mob/living/simple_animal/hostile/der_freis_portal/P = portals[current_portal_index]
+		P.OpenFire(target)
+	else
+		if(bullet_cooldown <= world.time)
+			PrepareFireBullet(target)
 
 /mob/living/simple_animal/hostile/abnormality/der_freischutz/proc/IconChange(firing)
 	if(firing)
@@ -318,6 +373,7 @@
 	alpha = 0
 	environment_smash = ENVIRONMENT_SMASH_NONE
 	death_message = "fades away..."
+	AIStatus = AI_OFF
 	var/bullet_cooldown
 	var/bullet_cooldown_time = 7 SECONDS
 	var/bullet_fire_delay = 1 SECONDS
@@ -330,25 +386,21 @@
 	. = ..()
 	animate(src, alpha = 255, time = 6)
 	playsound(get_turf(src), 'sound/abnormalities/freischutz/portal.ogg', 100, 0, 10)
-	connected_abno = locate(/mob/living/simple_animal/hostile/abnormality/der_freischutz) in GLOB.abnormality_mob_list
-	if(connected_abno)
-		connected_abno.portals += src
 
 /mob/living/simple_animal/hostile/der_freis_portal/death()
 	if(connected_abno)
 		connected_abno.portals -= src
+	..()
 
 /mob/living/simple_animal/hostile/der_freis_portal/Move()
 	return FALSE
 
 /mob/living/simple_animal/hostile/der_freis_portal/AttackingTarget(atom/attacked_target)
-	if(client)
-		return OpenFire()
+	return OpenFire(attacked_target)
 
-/mob/living/simple_animal/hostile/der_freis_portal/OpenFire()
-	if(client)
-		if(bullet_cooldown <= world.time)
-			PrepareFireBullet(target)
+/mob/living/simple_animal/hostile/der_freis_portal/OpenFire(atom/target)
+	if(bullet_cooldown <= world.time)
+		PrepareFireBullet(target)
 
 /mob/living/simple_animal/hostile/der_freis_portal/proc/PrepareFireBullet(atom/target)
 	bullet_cooldown = world.time + bullet_cooldown_time
