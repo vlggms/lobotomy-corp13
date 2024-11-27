@@ -140,6 +140,8 @@
 		icon_state = "hatred_psycho"
 		threat_level = TETH_LEVEL
 		faction = "netrual"
+		if(HAS_TRAIT_FROM(src, TRAIT_MOVE_FLYING, ROUNDSTART_TRAIT))
+			REMOVE_TRAIT(src, TRAIT_MOVE_FLYING, ROUNDSTART_TRAIT)
 		if(!wand)
 			var/turf/wand_turf = get_ranged_target_turf(src, WEST, 1)
 			wand = new(wand_turf)
@@ -153,6 +155,7 @@
 			friendly = TRUE
 			threat_level = TETH_LEVEL
 			faction = "neutral"
+			ADD_TRAIT(src, TRAIT_MOVE_FLYING, ROUNDSTART_TRAIT)
 		if(hysteria_choice == "Hostile")
 			addtimer(CALLBACK(src, PROC_REF(HostileTransform)), 10 SECONDS)
 		hysteric_ability = 0
@@ -665,6 +668,8 @@
 	if(stat == DEAD)
 		return
 	visible_message(span_bolddanger("[src] transforms!")) //Begin Hostile breach
+	if(HAS_TRAIT_FROM(src, TRAIT_MOVE_FLYING, ROUNDSTART_TRAIT))
+		REMOVE_TRAIT(src, TRAIT_MOVE_FLYING, ROUNDSTART_TRAIT)
 	adjustBruteLoss(-maxHealth, forced = TRUE)
 	friendly = FALSE
 	can_act = TRUE
@@ -691,6 +696,7 @@
 	death_counter = 0
 	if(friendly)
 		friendly = TRUE
+		ADD_TRAIT(src, TRAIT_MOVE_FLYING, ROUNDSTART_TRAIT)
 		fear_level = TETH_LEVEL
 		beam_cooldown = world.time + beam_cooldown_time //no immediate beam
 		addtimer(CALLBACK(src, PROC_REF(TryTeleport)), 5)
