@@ -83,7 +83,9 @@ GLOBAL_PROTECT(admin_verbs_admin)
 	/client/proc/SpawnAbno,
 	/client/proc/ClearAbno,
 	/client/proc/FullUnderstandAbno,
-	/client/proc/BreachAbno
+	/client/proc/BreachAbno,
+	// Event stuff
+	/client/proc/admin_ai_move_to_coordinate,
 	)
 GLOBAL_LIST_INIT(admin_verbs_ban, list(/client/proc/unban_panel, /client/proc/ban_panel, /client/proc/stickybanpanel))
 GLOBAL_PROTECT(admin_verbs_ban)
