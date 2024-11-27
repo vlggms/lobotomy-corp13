@@ -55,6 +55,8 @@
 	var/zoomed = FALSE
 	var/max_portals = 3
 	var/current_portal_index = 0
+	var/portal_cooldown
+	var/portal_cooldown_time = 5 SECONDS
 
 	//PLAYABLES ATTACKS (action in this case)
 	attack_action_types = list(/datum/action/innate/abnormality_attack/toggle/der_freischutz_zoom,
@@ -81,13 +83,15 @@
 	var/mob/living/simple_animal/hostile/abnormality/der_freischutz/F = owner
 	if(F.zoomed)
 		return
+	//F.portals[F.current_portal_index].stop_orbit(src)
 	F.current_portal_index = (F.current_portal_index + 1) % (F.portals.len + 1)
 	if (F.current_portal_index == 0)
 		F.client.eye = F
 		F.sight = original_sight
 	else
 		F.client.eye = F.portals[F.current_portal_index]
-		F.sight |= SEE_TURFS | SEE_MOBS | SEE_THRU
+		//F.portals[F.current_portal_index].orbit(src)
+		F.sight |= SEE_TURFS | SEE_MOBS | SEE_THRU | SEE_OBJS
 		F.regenerate_icons()
 
 
@@ -133,12 +137,20 @@
 		F.zoomed = !F.zoomed
 
 /datum/action/innate/abnormality_attack/toggle/der_freischutz_zoom/Activate()
-	ActivateSignals()
-	owner.sight |= SEE_TURFS | SEE_MOBS | SEE_THRU
-	owner.regenerate_icons()
-	owner.client.view_size.zoomOut(zoom_out_amt, zoom_amt, owner.dir)
-	ToggleZoom()
-	return ..()
+	if (istype(owner, /mob/living/simple_animal/hostile/abnormality/der_freischutz))
+		var/mob/living/simple_animal/hostile/abnormality/der_freischutz/F = owner
+		if (F.current_portal_index == 0)
+			ActivateSignals()
+			F.sight |= SEE_TURFS | SEE_MOBS | SEE_THRU
+			F.regenerate_icons()
+			F.client.view_size.zoomOut(zoom_out_amt, zoom_amt, owner.dir)
+			ToggleZoom()
+			return ..()
+		else
+			to_chat(F, "You are currently looking though a portal!")
+			return FALSE
+	else
+		return FALSE
 
 /datum/action/innate/abnormality_attack/toggle/der_freischutz_zoom/proc/ActivateSignals()
 	SIGNAL_HANDLER
@@ -184,7 +196,8 @@
 			to_chat(src, "Cannot place the portal there. Its to dense!")
 		else if (istype(A, /area/city/outskirts/rcorp_base))
 			to_chat(src, "Cannot place the portal inside the enemy base!")
-		else
+		else if(portal_cooldown <= world.time)
+			portal_cooldown = world.time + portal_cooldown_time
 			var/mob/living/simple_animal/hostile/der_freis_portal/P = new /mob/living/simple_animal/hostile/der_freis_portal(T)
 			portals.Add(P)
 			P.connected_abno = src
@@ -371,12 +384,13 @@
 	obj_damage = 0
 	del_on_death = TRUE
 	alpha = 0
+	density = FALSE
 	environment_smash = ENVIRONMENT_SMASH_NONE
 	death_message = "fades away..."
 	AIStatus = AI_OFF
 	var/bullet_cooldown
 	var/bullet_cooldown_time = 7 SECONDS
-	var/bullet_fire_delay = 1 SECONDS
+	var/bullet_fire_delay = 1.5 SECONDS
 	var/bullet_max_range = 50
 	var/bullet_damage = 80
 
