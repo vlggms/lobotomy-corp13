@@ -545,4 +545,3 @@
 /mob/living/simple_animal/hostile/abnormality/blue_shepherd/proc/TriggerCounter()
 	for(var/datum/action/cooldown/counter/A in actions)
 		A.Trigger()
-
