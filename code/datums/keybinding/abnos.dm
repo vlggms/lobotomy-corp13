@@ -56,7 +56,7 @@
 /datum/keybinding/abno/der_freischutz_portal_remove
 	hotkey_keys = list("E") // PAGEUP
 	name = "der_freischutz_portal_remove"
-	full_name = "Der Freischutz Portal View"
+	full_name = "Der Freischutz Portal Remove"
 	description = "Der Freischutz Portal Remove"
 	keybind_signal = COMSIG_KB_MOB_DER_FREISCHUTZ_PORTAL_REMOVE
 
