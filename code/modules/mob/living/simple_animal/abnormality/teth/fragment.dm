@@ -197,23 +197,8 @@
 
 #undef FRAGMENT_SONG_COOLDOWN
 
+
 /mob/living/simple_animal/hostile/abnormality/fragment/proc/TriggerSong()
 	for(var/datum/action/cooldown/fragment_song/A in actions)
 		A.Trigger()
 
-#define COMSIG_KB_MOB_FRAGMENT_SONG "keybinding_mob_fragment_song"
-
-/datum/keybinding/mob/fragment_song
-	hotkey_keys = list("Space")
-	name = "fragment_song"
-	full_name = "Fragment Song"
-	description = "Fragment Song"
-	keybind_signal = COMSIG_KB_MOB_FRAGMENT_SONG
-
-/datum/keybinding/mob/fragment_song/down(client/user)
-	. = ..()
-	if(.)
-		return
-	var/mob/living/simple_animal/hostile/abnormality/fragment/M = user.mob
-	M.TriggerSong()
-	return TRUE

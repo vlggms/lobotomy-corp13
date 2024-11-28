@@ -485,35 +485,3 @@
 	for(var/datum/action/cooldown/remove_portal/A in actions)
 		A.Trigger()
 
-#define COMSIG_KB_MOB_DER_FREISCHUTZ_PORTAL_VIEW "keybinding_mob_der_freischutz_portal_view"
-#define COMSIG_KB_MOB_DER_FREISCHUTZ_PORTAL_REMOVE "keybinding_mob_der_freischutz_portal_remove"
-
-/datum/keybinding/mob/der_freischutz_portal_view
-	hotkey_keys = list("Space") // PAGEUP
-	name = "der_freischutz_portal_view"
-	full_name = "Der Freischutz Portal View"
-	description = "Der Freischutz Portal View"
-	keybind_signal = COMSIG_KB_MOB_DER_FREISCHUTZ_PORTAL_VIEW
-
-/datum/keybinding/mob/der_freischutz_portal_view/down(client/user)
-	. = ..()
-	if(.)
-		return
-	var/mob/living/simple_animal/hostile/abnormality/der_freischutz/M = user.mob
-	M.TriggerPortalView()
-	return TRUE
-
-/datum/keybinding/mob/der_freischutz_portal_remove
-	hotkey_keys = list("E") // PAGEUP
-	name = "der_freischutz_portal_remove"
-	full_name = "Der Freischutz Portal View"
-	description = "Der Freischutz Portal Remove"
-	keybind_signal = COMSIG_KB_MOB_DER_FREISCHUTZ_PORTAL_REMOVE
-
-/datum/keybinding/mob/der_freischutz_portal_remove/down(client/user)
-	. = ..()
-	if(.)
-		return
-	var/mob/living/simple_animal/hostile/abnormality/der_freischutz/M = user.mob
-	M.TriggerPortalRemove()
-	return TRUE
