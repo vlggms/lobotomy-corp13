@@ -59,6 +59,7 @@
 					/obj/item/reagent_containers/glass/bottle/multiver = 2,
 					/obj/item/reagent_containers/glass/bottle/syriniver = 2,
 					/obj/item/reagent_containers/glass/bottle/epinephrine = 3,
+					/obj/item/reagent_containers/hypospray/medipen/salbutamol = 10, // LOBOTOMYCORPORATION ADDITION
 					/obj/item/reagent_containers/glass/bottle/morphine = 4,
 					/obj/item/reagent_containers/glass/bottle/potass_iodide = 1,
 					/obj/item/reagent_containers/glass/bottle/salglu_solution = 3,

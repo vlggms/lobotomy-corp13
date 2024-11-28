@@ -826,7 +826,7 @@
 		to_chat(user, "<span class='warning'>You fail to harvest anything useful!</span>")
 	else
 		to_chat(user, "<span class='notice'>You harvest [myseed.getYield()] items from the [myseed.plantname].</span>")
-	if(!myseed.get_gene(/datum/plant_gene/trait/repeated_harvest))
+	if(!myseed.get_gene(/datum/plant_gene/trait/repeated_harvest) || istype(src, /obj/machinery/hydroponics/soil/amurdad))
 		qdel(myseed)
 		myseed = null
 		dead = FALSE

@@ -4,6 +4,7 @@
 	icon = 'ModularTegustation/Teguicons/64x64.dmi'
 	icon_state = "apex"
 	icon_living = "apex"
+	core_icon = "apex_egg"
 	portrait = "apex"
 	pixel_x = -16
 	base_pixel_x = -16
@@ -45,18 +46,18 @@
 	)
 	gift_type =  /datum/ego_gifts/animalism
 
-	observation_prompt = "The crash test dummy stands at the corner of the room. It swings its arms around with twitching, swaying motions. \
-You're not sure if it's even able to understand you. Despite being shaped like a human, There's no face to relate to. No eyes to look at. \
-Just the rough outline of a human. \
-Is there even anything you can say to it?"
+	observation_prompt = "The crash test dummy stands at the corner of the room. <br>It swings its arms around with twitching, swaying motions. <br>\
+		You're not sure if it's even able to understand you. <br>Despite being shaped like a human, there's no face to relate to. <br>No eyes to look at. <br>\
+		Just the rough outline of a human. <br>\
+		Is there even anything you can say to it?"
 	observation_choices = list("Beat it up.", "Why?")
 	correct_choices = list("Why?")
-	observation_success_message = "The abnormality suddenly stops moving. It doesn't quite know how to respond either. \
-It stares down at the floor as if to contemplate the question. \
-All it can offer is a shrug. Perhaps there isn't an answer."
-	observation_fail_message = "There's nothing to say. A crash test dummy's only purpose is to enable violence. \
-Violence for the sake of violence. \
-You smile as you pull out your baton."
+	observation_success_message = "The abnormality suddenly stops moving. <br>It doesn't quite know how to respond either. <br>\
+		It stares down at the floor as if to contemplate the question. <br>\
+		All it can offer is a shrug. <br>Perhaps there isn't an answer."
+	observation_fail_message = "There's nothing to say. <br>A crash test dummy's only purpose is to enable violence. <br>\
+		Violence for the sake of violence. <br>\
+		You smile as you pull out your baton."
 
 	var/revealed = TRUE
 	var/can_act = TRUE

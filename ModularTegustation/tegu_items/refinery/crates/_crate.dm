@@ -29,11 +29,23 @@
 	var/veryrarechance
 	var/cosmeticloot = list()
 	var/cosmeticchance = 0 //These do not count on the total odds of a crate
+	var/repmodifier = 0
+	var/crate_multiplier = 2
 
 /obj/structure/lootcrate/Initialize()
 	. = ..()
 	if(SSmaptype.maptype in SSmaptype.citymaps)	//Also can't drag it out to open it. Open it on spot, bitch
 		anchored = TRUE
+	for(var/upgradecheck in GLOB.jcorp_upgrades)
+		switch(upgradecheck)
+			if("Gacha Chance 4")
+				repmodifier += 3
+			if("Gacha Chance 3")
+				repmodifier += 3
+			if("Gacha Chance 2")
+				repmodifier += 2
+			if("Gacha Chance 1")
+				repmodifier += 2
 
 /obj/structure/lootcrate/attackby(obj/item/I, mob/living/user, params)
 	. = ..()
@@ -41,6 +53,10 @@
 	var/cloot
 	if(I.tool_behaviour != TOOL_CROWBAR)
 		return
+
+	rarechance += repmodifier
+	if(veryrarechance)
+		veryrarechance += (repmodifier/crate_multiplier)
 
 	if(SSmaptype.maptype in SSmaptype.citymaps)	//Fuckers shouldn't loot like this
 		if(!do_after(user, 7 SECONDS, src))

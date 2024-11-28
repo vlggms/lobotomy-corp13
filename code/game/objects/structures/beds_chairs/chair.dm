@@ -117,7 +117,7 @@
 	. = ..()
 	handle_layer()
 
-/obj/structure/chair/post_unbuckle_mob()
+/obj/structure/chair/post_unbuckle_mob(mob/living/M)
 	. = ..()
 	handle_layer()
 

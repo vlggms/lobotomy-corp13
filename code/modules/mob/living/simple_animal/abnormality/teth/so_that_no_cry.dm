@@ -40,6 +40,20 @@
 	gift_type = /datum/ego_gifts/red_sheet
 	abnormality_origin = ABNORMALITY_ORIGIN_LIMBUS
 
+	observation_prompt = "You hear the quiet creaking of wood. <br>\
+		In this cramped cell, the wooden doll stands. <br>\
+		Are the talismans here to fulfill a wish? <br>\
+		Does this wooden doll wish for anything?"
+	observation_choices = list("Remove the doll's talismans", "Do nothing")
+	correct_choices = list("Remove the doll's talismans")
+	observation_success_message = "After you removed them, the doll knelt. <br>\
+		Is it begging you not to take it,<br>\
+		or is it a gesture of gratitude?<br>\
+		You won’t know for now."
+	observation_fail_message = "Nothing happened. <br>\
+		The doll would simply stand there, producing small noises. <br>\
+		It now ignores you, as if disappointed."
+
 	var/can_act = TRUE
 	/// When this reaches 400 - begins reflecting damage
 	var/damage_taken = 0

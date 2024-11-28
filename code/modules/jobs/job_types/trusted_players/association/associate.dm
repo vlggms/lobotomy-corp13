@@ -9,7 +9,6 @@
 	total_positions = 0
 	spawn_positions = 0
 	display_order = JOB_DISPLAY_ORDER_ASSOCIATION
-	trusted_only = TRUE
 	access = list(ACCESS_NETWORK)
 	minimal_access = list(ACCESS_NETWORK)
 	paycheck = 700

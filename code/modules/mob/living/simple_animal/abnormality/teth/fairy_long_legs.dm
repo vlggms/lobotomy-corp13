@@ -44,18 +44,33 @@
 		/mob/living/simple_animal/hostile/abnormality/faelantern = 1.5,
 	)
 
-	var/finishing = FALSE //cant move/attack when it's TRUE
-	var/work_count = 0
-	var/raining = FALSE
-	var/ignored = 0 //stores the agent's choice: 0 - disabled/1- refused cover
-
 	ego_list = list(
 		/datum/ego_datum/weapon/fourleaf_clover,
 		/datum/ego_datum/armor/fourleaf_clover,
 	)
 	gift_type =  /datum/ego_gifts/fourleaf_clover
 
+	observation_prompt = "Come on, why don'cha stay under the umbrella with me? <br>\
+		Just for old times sake?"
+	observation_choices = list("Yes", "No")
+	correct_choices = list("No")
+	observation_success_message = "You'd think that you'd have learned your lesson by now. <br>\
+		You leave the cell, having narrowly dodged the imminent attack. <br>\
+		This guy will always be a crook."
+	observation_fail_message = "Ouch! <br>\
+		The moment you get in striking range of fairy long legs, you are attacked. <br>\
+		\"Heh. You really think you could be one of us, pal?\" <br>\
+		\"You aint part of the family, chump.\" <br>\
+		You walk away, and bandage the bleeding wound."
+
+	var/finishing = FALSE //cant move/attack when it's TRUE
+	var/work_count = 0
+	var/raining = FALSE
+	var/ignored = 0 //stores the agent's choice: 0 - disabled/1- refused cover
+
+
 /mob/living/simple_animal/hostile/abnormality/fairy_longlegs/death(gibbed)
+	icon = 'ModularTegustation/Teguicons/abno_cores/teth.dmi'
 	density = FALSE
 	animate(src, alpha = 0, time = 10 SECONDS)
 	QDEL_IN(src, 10 SECONDS)
@@ -96,6 +111,7 @@
 	if((work_type == "Take cover") && raining) //Uh oh, you goofed up
 		to_chat(user, span_danger("You decide to take cover under the fairy's clover."))
 		work_count = 0
+		raining = FALSE
 		Execute(user)
 		return FALSE
 	if((work_type != "Take cover") && raining)
@@ -121,6 +137,7 @@
 		datum_reference.qliphoth_change(-2)
 
 /mob/living/simple_animal/hostile/abnormality/fairy_longlegs/proc/Execute(mob/living/carbon/human/user)
+	raining = FALSE
 	user.Stun(3 SECONDS)
 	step_towards(user, src)
 	sleep(0.5 SECONDS)
@@ -131,10 +148,13 @@
 	if(QDELETED(user))
 		return
 	user.visible_message(span_warning("You feel a stinging pain in your chest, is that...blood?!"))
-	playsound(get_turf(src), 'sound/abnormalities/fairy_longlegs/attack.ogg', 50, 1)
+	icon_state = "fairy_longlegs_healing"
+	playsound(get_turf(src), 'sound/abnormalities/fairy_longlegs/heal.ogg', 50, 1)
 	user.deal_damage(100, RED_DAMAGE)
 	for(var/obj/effect/rainy_effect/rain in range(3, src))
 		rain.End(FALSE)
+	sleep(1.5 SECONDS)
+	icon_state = "fairy_longlegs"
 
 //Breach Stuff
 /mob/living/simple_animal/hostile/abnormality/fairy_longlegs/AttackingTarget()

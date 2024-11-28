@@ -7,7 +7,7 @@ Keep things balanced if they aren't going to be admin only.  - Coxswain
 
 // Rise of The Riblin - Mcrib
 /datum/ego_datum/weapon/mcrib
-	item_path = /obj/item/gun/ego_gun/pistol/mcrib
+	item_path = /obj/item/ego_weapon/ranged/pistol/mcrib
 	cost = 12
 
 /datum/ego_datum/armor/mcrib

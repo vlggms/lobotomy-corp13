@@ -44,6 +44,16 @@
 	gift_type = /datum/ego_gifts/pleasure
 	abnormality_origin = ABNORMALITY_ORIGIN_LOBOTOMY
 
+	observation_prompt = "The red flower waits expectantly for you as you enter the containment unit, \
+		studying your movements it leans down towards you and bares its thorns to you."
+	observation_choices = list("Touch the thorns", "Just observe")
+	correct_choices = list("Just observe")
+	observation_success_message = "The flower pulls back when it realises you make no effort to try and touch it. <br>\
+		You study it and it studies you back, it only ever wanted to make people happy the only way it knew how. <br>\
+		You turn to leave, resolving to chase after happiness with your own power."
+	observation_fail_message = "The thorns prick your hands and you feel an indescribable rush of pleasure. <br>\
+		Poppy flowers like this one have ruined many lives and now it's ruined yours, but for now - you're happy."
+
 	//the agent that started work on porccubus
 	var/agent_ckey
 	var/teleport_cooldown_time = 5 MINUTES

@@ -18,6 +18,31 @@
 /obj/machinery/telecomms/server/presets/engineering,
 /turf/open/floor/circuit/telecomms/mainframe,
 /area/city/outskirts)
+"cj" = (
+/obj/structure/closet/crate{
+	name = "rcorp explosives";
+	color = "#d67200"
+	},
+/obj/item/grenade/r_corp/pale,
+/obj/item/grenade/r_corp/pale,
+/obj/item/grenade/r_corp/pale,
+/obj/item/grenade/r_corp/pale,
+/obj/item/grenade/r_corp/pale,
+/obj/item/grenade/r_corp/black,
+/obj/item/grenade/r_corp/black,
+/obj/item/grenade/r_corp/black,
+/obj/item/grenade/r_corp/black,
+/obj/item/grenade/r_corp/black,
+/obj/item/grenade/r_corp/black,
+/obj/item/grenade/r_corp/black,
+/obj/item/grenade/r_corp/black,
+/obj/effect/turf_decal/box/red,
+/obj/item/grenade/r_corp/black,
+/obj/item/grenade/r_corp/black,
+/obj/item/grenade/r_corp/pale,
+/obj/item/grenade/r_corp/pale,
+/turf/open/floor/pod/dark,
+/area/city/outskirts)
 "co" = (
 /obj/effect/landmark/abno_objectivespawn,
 /turf/open/floor/plating/asteroid,
@@ -272,6 +297,38 @@
 /obj/item/ego_weapon/city/zweihander/knife/lcdr,
 /obj/item/clothing/suit/armor/ego_gear/rcorp_officer,
 /turf/open/floor/pod,
+/area/city/outskirts)
+"nV" = (
+/obj/structure/closet/crate{
+	name = "rcorp explosives";
+	color = "#d67200"
+	},
+/obj/item/grenade/r_corp,
+/obj/item/grenade/r_corp,
+/obj/item/grenade/r_corp,
+/obj/item/grenade/r_corp,
+/obj/item/grenade/r_corp,
+/obj/item/grenade/r_corp,
+/obj/item/grenade/r_corp,
+/obj/item/grenade/r_corp,
+/obj/item/grenade/r_corp/white,
+/obj/item/grenade/r_corp/white,
+/obj/item/grenade/r_corp/white,
+/obj/item/grenade/r_corp/white,
+/obj/item/grenade/r_corp/white,
+/obj/item/grenade/r_corp/white,
+/obj/item/grenade/r_corp/white,
+/obj/item/grenade/r_corp/white,
+/obj/effect/turf_decal/box/red,
+/obj/item/grenade/r_corp/white,
+/obj/item/grenade/r_corp/white,
+/obj/item/grenade/r_corp/white,
+/obj/item/grenade/r_corp/white,
+/obj/item/grenade/r_corp,
+/obj/item/grenade/r_corp,
+/obj/item/grenade/r_corp,
+/obj/item/grenade/r_corp,
+/turf/open/floor/pod/dark,
 /area/city/outskirts)
 "oi" = (
 /turf/closed/indestructible/rock,
@@ -643,12 +700,7 @@
 	color = "#CC5500";
 	dir = 8
 	},
-/obj/vehicle/sealed/mecha/combat/rhino{
-	dir = 1;
-	max_integrity = 2000;
-	movedelay = 2;
-	name = "\improper Captain's Rhinoceros Unit"
-	},
+/obj/effect/landmark/rhinocaptainspawner,
 /turf/open/floor/pod/dark,
 /area/city/outskirts)
 "GU" = (
@@ -688,8 +740,6 @@
 "IV" = (
 /obj/structure/table/abductor,
 /obj/item/clothing/under/suit/lobotomy/rabbit,
-/obj/item/ego_weapon/city/rabbit_blade/raven,
-/obj/item/weldingtool/experimental,
 /turf/open/floor/pod/dark,
 /area/city/outskirts)
 "Jc" = (
@@ -755,6 +805,12 @@
 "Lv" = (
 /obj/machinery/telecomms/server/presets/common,
 /turf/open/floor/circuit/telecomms/mainframe,
+/area/city/outskirts)
+"LX" = (
+/obj/effect/turf_decal/caution/red{
+	dir = 8
+	},
+/turf/open/floor/pod/light,
 /area/city/outskirts)
 "Mk" = (
 /obj/effect/turf_decal/sand,
@@ -1078,8 +1134,6 @@
 /obj/item/clothing/head/beret/tegu/captain{
 	armor = list()
 	},
-/obj/item/gun/energy/e_gun/rabbitdash/small,
-/obj/item/weldingtool/experimental,
 /turf/open/floor/pod,
 /area/city/outskirts)
 "ZA" = (
@@ -8764,9 +8818,9 @@ aC
 aC
 aC
 UE
+LX
 Hk
-Hk
-Hk
+LX
 pi
 aC
 QY
@@ -8966,9 +9020,9 @@ fC
 RY
 aC
 UE
+nV
 Qd
-Qd
-Qd
+cj
 oj
 aC
 aC

@@ -16,7 +16,7 @@
 	ranged = TRUE
 	maxHealth = 1800
 	health = 1800
-	damage_coeff = list(RED_DAMAGE = 0.3, WHITE_DAMAGE = 1.5, BLACK_DAMAGE = 0.7, PALE_DAMAGE = 1.5)
+	damage_coeff = list(RED_DAMAGE = 0.3, WHITE_DAMAGE = 1.2, BLACK_DAMAGE = 0.7, PALE_DAMAGE = 1.5)
 
 	move_to_delay = 6
 	is_flying_animal = TRUE
@@ -57,6 +57,16 @@
 		/mob/living/simple_animal/hostile/abnormality/greed_king = 2,
 		/mob/living/simple_animal/hostile/abnormality/nihil = 1.5,
 	)
+
+	observation_prompt = "I made a mistake, I put my trust in someone I shouldn't have and my world paid the price for my indiscretion. <br>\
+		Was I wrong to call them friend? <br>Were they really my friend, all along?"
+	observation_choices = list("You were wrong", "It wasn't wrong")
+	correct_choices = list("It wasn't wrong")
+	observation_success_message = "If that's the case, then why did balance, why did justice, fail me? <br>\
+		Why did my world burn if I truly did not make a mistake? <br>It still hurts, but, if you're right then maybe I can put my trust in you..."
+	observation_fail_message = "It was the most precious relationship to me... <br>\
+		That's why I lost; I fell to my beloved companion... <br>\
+		I should have killed them when I had the chance! <br>Sinners!! <br>Embodiments of evil..!"
 
 	var/friendly = TRUE
 	var/list/friend_ship = list()
@@ -151,7 +161,7 @@
 	if(IsContained() || !can_act)
 		return
 	if(stunned && COOLDOWN_FINISHED(src, stun))
-		for(var/mob/living/L in range(10, src))
+		for(var/mob/living/L in urange(10, src))
 			if(L.z != z)
 				continue
 			if(istype(L, /mob/living/simple_animal/hostile/azure_hermit) || istype(L, /mob/living/simple_animal/hostile/azure_stave))
@@ -329,6 +339,8 @@
 
 /mob/living/simple_animal/hostile/abnormality/wrath_servant/BreachEffect(mob/living/carbon/human/user, breach_type)
 	. = TRUE
+	if(!(status_flags & GODMODE))
+		return FALSE
 	if(!datum_reference)
 		friendly = FALSE
 	if(nihil_present) //nihil is here and we must fight them!
@@ -394,16 +406,20 @@
 	say("EMBODIMENTS OF EVIL!!!")
 	desc = "A large red monster with white bandages hanging from it. Its flesh oozes a bubble acid."
 	can_act = TRUE
-	GiveTarget(user)
 	if(!datum_reference)
 		can_patrol = TRUE
 		return
+	var/turf/target_turf
 	for(var/turf/dep in GLOB.department_centers)
-		if(get_dist(src, dep) < 30)
+		if(!target_turf)
+			target_turf = dep
 			continue
-		new /mob/living/simple_animal/hostile/azure_hermit(dep)
-		playsound(dep, 'sound/abnormalities/wrath_servant/hermit_magic.ogg', 60, FALSE, 10)
-		break
+		if(get_dist(src, dep) < get_dist(src, target_turf))
+			continue
+		target_turf = dep
+	new /mob/living/simple_animal/hostile/azure_hermit(target_turf)
+	playsound(target_turf, 'sound/abnormalities/wrath_servant/hermit_magic.ogg', 60, FALSE, 10)
+	patrol_to(get_closest_atom(/turf, GLOB.xeno_spawn, src))
 
 /mob/living/simple_animal/hostile/abnormality/wrath_servant/proc/Dash()
 	visible_message(span_warning("[src] sprints toward [target]!"), span_notice("You quickly dash!"), span_notice("You hear heavy footsteps speed up."))
@@ -657,6 +673,8 @@
 	health = 1500
 	damage_coeff = list(RED_DAMAGE = 0.5, WHITE_DAMAGE = 1.5, BLACK_DAMAGE = 0.8, PALE_DAMAGE = 1.2)
 
+	alpha = 0
+
 	a_intent = INTENT_HARM
 	move_resist = MOVE_FORCE_STRONG
 	move_to_delay = 5
@@ -665,8 +683,8 @@
 	ranged = TRUE
 	ranged_cooldown = 15 SECONDS
 
-	melee_damage_lower = 20
-	melee_damage_upper = 30
+	melee_damage_lower = 25
+	melee_damage_upper = 40
 	rapid_melee = 2
 	melee_damage_type = WHITE_DAMAGE
 	attack_sound = 'sound/abnormalities/wrath_servant/hermit_attack.ogg'
@@ -681,6 +699,7 @@
 /mob/living/simple_animal/hostile/azure_hermit/Initialize()
 	. = ..()
 	COOLDOWN_START(src, conjure, conjure_cooldown)
+	animate(src, 10, alpha = 255)
 
 /mob/living/simple_animal/hostile/azure_hermit/Found(atom/A)
 	if(!istype(A, /mob/living/simple_animal/hostile/abnormality/wrath_servant))
@@ -785,13 +804,13 @@
 	show_area |= view(4, src)
 	for(var/turf/sT in show_area)
 		new /obj/effect/temp_visual/cult/sparks(sT)
-	SLEEP_CHECK_DEATH(1.5 SECONDS)
+	SLEEP_CHECK_DEATH(1.25 SECONDS)
 	playsound(src, 'sound/abnormalities/wrath_servant/hermit_magic.ogg', 75, FALSE, 10)
-	for(var/mob/living/L in view(4, src))
+	for(var/mob/living/L in show_area)
 		if(faction_check_mob(L))
 			continue
 		new /obj/effect/temp_visual/small_smoke/halfsecond(get_turf(L))
-		L.deal_damage(40, WHITE_DAMAGE)
+		L.deal_damage(60, WHITE_DAMAGE)
 	can_act = TRUE
 	return
 

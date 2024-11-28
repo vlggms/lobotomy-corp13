@@ -532,9 +532,40 @@
 	abno_code = "F-01-57"
 	abno_info = list(
 		"Requesting F-01-57 to suppress escaping Abnormalities or manifested Ordeals is a very useful resource. However, making such a request is not free.",
-		"When F-01-57 was denied the killing blow to a requested suppression, it did not show an extreme emotional response, but begin attacking indiscriminately.",
+		"Requesting to suppress an abnormality will cost more PE depending on the abnormality's risk level. For other targets, F-01-57 will charge more as the day progresses.",
+		"F-01-57 did not attack employees during a quest, and returned to containment after the suppression was completed.",
 		"The Qliphoth Counter decreased every time an Abnormality escaped. However, it did not respond similarly to the escape of O-02-56.",
 		"The abnormality had particularly strong reactions when encountering F-01-117 (Blue-Smocked Shepherd), F-02-127 (Reddened Buddy), and especially F-02-58 (Big and will be Bad Wolf).",
-		"When the above occurred, F-01-57 entered a state of apparent heightened emotion, attacking more rapidly, dealing and taking more damage, and ignoring other targets.",
+		"When the above occurred, F-01-57 entered a state of apparent heightened emotion, attacking more rapidly, dealing and taking more damage, and tracking the encountered abnormality.",
 		"When F-01-57 was denied a killing blow to F-02-58, the abnormality went on a rampage."
 	)
+
+//My Form Empties
+/obj/item/paper/fluff/info/waw/my_form_empties
+	abno_type =  /mob/living/simple_animal/hostile/abnormality/my_form_empties
+	abno_code = "M-04-199"//M-04-04-04 in limbus company
+	abno_info = list(
+		"When Qliphoth Counter was 2, My Form Empties chanted sutras in its cell, restoring the SP of nearby employees.",
+		"When Qliphoth Counter lowered to 1, My Form Empties entered a state of Anatman (Non-Self), raising work success rate.",
+		"When the employee had a good result during a state of Anatman, Qliphoth Counter lowered.",
+		"When the employee had a neutral result during a state of Anatman, Qliphoth Counter rose. Otherwise, it lowered at a low probability.",
+		"When the work result was bad, Qliphoth Counter decreased.",
+		"When My Form Empties escaped, a few hostile entities dubbed M-04-199-1 followed it.",
+		"When My Form Empties escaped, all agents were affected by Karma, increasing damage taken.",
+		"Karma was transferred when the agent with karma attacked other entities, excluding M-04-199."
+	)
+	abno_breach_damage_type = "White"
+	abno_breach_damage_count = "Extreme"
+
+//Hookah Caterpillar
+/obj/item/paper/fluff/info/waw/caterpillar
+	abno_type = /mob/living/simple_animal/hostile/abnormality/caterpillar
+	abno_code = "F-02-190"
+	abno_info = list(
+		"Working on F-02-190 on a work type other than repression will increase work damage and PE gained until next breach.",
+		"When Work damage and PE generated increased, so did the danger to the employee.",
+		"Eventually, works other than repression on F-02-190 will lower it's Qliphoth Counter.",
+
+	)
+	abno_breach_damage_type = "Pale"
+	abno_breach_damage_count = "Very High"

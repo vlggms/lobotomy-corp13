@@ -36,7 +36,7 @@
 /mob/living/simple_animal/hostile/ordeal/indigo_dawn/proc/devour(mob/living/L)
 	if(!L)
 		return FALSE
-	if(SSmaptype.maptype == "city")
+	if(SSmaptype.maptype in SSmaptype.citymaps)
 		return FALSE
 	visible_message(
 		span_danger("[src] devours [L]!"),
@@ -58,3 +58,7 @@
 	ranged = 1
 	retreat_distance = 3
 	minimum_distance = 1
+
+/mob/living/simple_animal/hostile/ordeal/indigo_dawn/OpenFire(atom/A)
+	visible_message(span_danger("<b>[src]</b> menacingly stares at [A]!"))
+	ranged_cooldown = world.time + ranged_cooldown_time

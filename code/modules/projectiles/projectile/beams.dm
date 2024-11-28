@@ -366,3 +366,35 @@
 	tracer_type = /obj/effect/projectile/tracer/laser/nobody
 	muzzle_type = /obj/effect/projectile/tracer/laser/nobody
 	impact_type = /obj/effect/projectile/impact/laser/nobody
+
+
+/obj/projectile/beam/laser/iff
+	damage_type = RED_DAMAGE
+	light_color = COLOR_RED
+	nodamage = TRUE	//Damage is calculated later
+	projectile_piercing = PASSMOB
+
+/obj/projectile/beam/laser/iff/on_hit(atom/target, blocked = FALSE)
+	if(ishuman(target))
+		return
+	nodamage = FALSE
+	. = ..()
+	qdel(src)
+
+/obj/projectile/beam/laser/iff/white
+	damage_type = WHITE_DAMAGE
+	light_color = COLOR_WHITE
+	icon_state = "whitelaser"
+	impact_effect_type = /obj/effect/temp_visual/impact_effect/white_laser
+
+/obj/projectile/beam/laser/iff/black
+	damage_type = BLACK_DAMAGE
+	light_color = COLOR_PURPLE
+	icon_state = "purplelaser"
+	impact_effect_type = /obj/effect/temp_visual/impact_effect/purple_laser
+
+/obj/projectile/beam/laser/iff/pale
+	damage_type = PALE_DAMAGE
+	light_color = COLOR_PALE_BLUE_GRAY
+	icon_state = "omnilaser"
+	impact_effect_type = /obj/effect/temp_visual/impact_effect/blue_laser

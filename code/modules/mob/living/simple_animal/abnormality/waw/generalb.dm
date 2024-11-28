@@ -39,6 +39,20 @@
 	)
 	//She has a Quad Artillery Cannon
 
+	observation_prompt = "I toil endlessly for the queen. <br>\
+		Break everything that threatens the hive. <br>\
+		Shoot anything that moves that isn't a bee. <br>\
+		Unquestioningly loyal, I follow my orders to the letter. <br>\
+		I even feel excited whenever I get a new order. <br>\
+		Why am I doing this all again?"
+	observation_choices = list("I fight to survive", "I fight out of loyalty")
+	correct_choices = list("I fight to survive","I fight out of loyalty")
+	observation_success_message = "Bees have a natural instinct to fight for their queen. <br>\
+		It is not something as complicated as human emotion. <br>\
+		Rather, it is a hormone produced by the queen. <br>\
+		I will die the moment I leave the queendom.<br>\
+		There is no other option but to remain unquestionably loyal."
+
 	var/fire_cooldown_time = 3 SECONDS	//She has 4 cannons, fires 4 times faster than the artillery bees
 	var/fire_cooldown
 	var/fireball_range = 30

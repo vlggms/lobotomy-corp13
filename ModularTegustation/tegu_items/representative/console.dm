@@ -7,6 +7,7 @@
 #define W_CORP_REP "W corp"
 #define N_CORP_REP "N corp"
 #define P_CORP_REP "P corp"
+#define J_CORP_REP "J corp"
 #define IS_MONIES istype(I, /obj/item/holochip)
 #define IS_REFINED_PE istype(I, /obj/item/refinedpe)
 #define IS_RAW_PE istype(I, /obj/item/rawpe)
@@ -175,7 +176,7 @@
 				new /datum/data/extraction_cargo("K Corp Baton", /obj/item/ego_weapon/city/kcorp, 400, K_CORP_REP) = 1,
 				new /datum/data/extraction_cargo("K Corp Axe", /obj/item/ego_weapon/city/kcorp/axe, 400, K_CORP_REP) = 1,
 				new /datum/data/extraction_cargo("K Corp Shield", /obj/item/ego_weapon/shield/kcorp, 400, K_CORP_REP) = 1,
-				new /datum/data/extraction_cargo("K Corp Pistol", /obj/item/gun/ego_gun/pistol/kcorp, 400, K_CORP_REP) = 1,
+				new /datum/data/extraction_cargo("K Corp Pistol", /obj/item/ego_weapon/ranged/pistol/kcorp, 400, K_CORP_REP) = 1,
 			)
 
 		if("Main Office Representative")
@@ -219,7 +220,17 @@
 			CustomizeOffice(null, null)
 			order_list = list(
 				new /datum/data/extraction_cargo("P Corp Canned Bread", /obj/item/food/canned/pcorp, 10, P_CORP_REP) = 1,
+				new /datum/data/extraction_cargo("P Corp Canned Burger", /obj/item/food/canned/pcorp_burger, 10, P_CORP_REP) = 1,
+				new /datum/data/extraction_cargo("P Corp Canned Ice Cream", /obj/item/food/canned/pcorp_icecream, 50, P_CORP_REP) = 1,	//More expensive cuz it heals you
 			)
+
+		if("J Corp Representative")
+			our_corporation = J_CORP_REP
+			CustomizeOffice(null, /obj/structure/pe_sales/jcorp)
+			order_list = list(
+				new /datum/data/extraction_cargo("J Corp Casino Token", /obj/item/casinotoken, 200, J_CORP_REP) = 1,
+			)
+
 
 		else
 			to_chat(usr, span_warning("ASSIGNMENT ERROR."))

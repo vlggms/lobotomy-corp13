@@ -1,6 +1,7 @@
 /obj/machinery/vending/hana
 	name = "\improper Hana vending"
 	desc = "A machine used to start your own office!."
+	resistance_flags = INDESTRUCTIBLE | LAVA_PROOF | FIRE_PROOF | UNACIDABLE | ACID_PROOF | FREEZE_PROOF
 	product_slogans = "Start your career today!"
 	product_ads = "The best in the business!"
 	icon_state = "generic" //Placeholder
@@ -69,6 +70,7 @@
 /obj/machinery/vending/weaving
 	name = "\improper Weaving Books/Tools"
 	desc = "A machine used to purchase new weaving recipes!"
+	resistance_flags = INDESTRUCTIBLE | LAVA_PROOF | FIRE_PROOF | UNACIDABLE | ACID_PROOF | FREEZE_PROOF
 	product_slogans = "Read up on all of the city gear!"
 	product_ads = "Can't go with out it!"
 	icon_state = "sec"
@@ -99,6 +101,7 @@
 /obj/machinery/vending/fixer
 	name = "\improper Fixer Equipment vending"
 	desc = "A machine used by fixers to get equipment"
+	resistance_flags = INDESTRUCTIBLE | LAVA_PROOF | FIRE_PROOF | UNACIDABLE | ACID_PROOF | FREEZE_PROOF
 	product_slogans = "What's a fixer without gear?"
 	product_ads = "You need it!"
 	icon_state = "robotics"
@@ -113,7 +116,7 @@
 		/obj/item/ego_weapon/city/fixergreatsword = 20,
 		/obj/item/ego_weapon/city/fixerhammer = 20,
 		/obj/item/ego_weapon/city/zweibaton/protection = 20,
-		/obj/item/fishing_rod = 20,
+		/obj/item/storage/box/fishing = 20,
 		/obj/item/kitchen/knife/combat/survival = 100,
 		/obj/item/weldingtool/mini = 100,
 		/obj/item/reagent_containers/hypospray/medipen/mental = 100,
@@ -129,6 +132,7 @@
 		/obj/item/book/granter/action/skill/assault = 100,
 		/obj/item/book/granter/action/skill/retreat = 100,
 		/obj/item/book/granter/action/skill/smokedash = 100,
+		/obj/item/book/granter/action/skill/skulk = 100,
 		/obj/item/book/granter/action/skill/healing = 100,
 		/obj/item/book/granter/action/skill/soothing = 100,
 		/obj/item/book/granter/action/skill/curing = 100,
@@ -146,12 +150,14 @@
 		/obj/item/book/granter/action/skill/healthhud = 100,
 		/obj/item/book/granter/action/skill/bulletproof = 100,
 		/obj/item/book/granter/action/skill/battleready = 100,
+		/obj/item/book/granter/action/skill/fleetfoot = 100,
 		//Level 4
 		/obj/item/book/granter/action/skill/timestop = 100,
 		/obj/item/book/granter/action/skill/reraise = 100,
 		/obj/item/book/granter/action/skill/dismember = 100,
 		/obj/item/book/granter/action/skill/warbanner = 100,
 		/obj/item/book/granter/action/skill/warcry = 100,
+		/obj/item/book/granter/action/skill/nuke = 100,
 	)
 
 	default_price = 300
@@ -191,6 +197,7 @@
 /obj/machinery/vending/prosthetic
 	name = "\improper Prosthetic plus vending"
 	desc = "A machine used to purchase new prosthetic limbs"
+	resistance_flags = INDESTRUCTIBLE | LAVA_PROOF | FIRE_PROOF | UNACIDABLE | ACID_PROOF | FREEZE_PROOF
 	product_slogans = "Looking good!"
 	product_ads = "You need it!"
 	icon_state = "robotics"
@@ -227,6 +234,7 @@
 /obj/machinery/vending/prosthetic
 	name = "\improper Prosthetic plus vending"
 	desc = "A machine used to purchase new prosthetic limbs"
+	resistance_flags = INDESTRUCTIBLE | LAVA_PROOF | FIRE_PROOF | UNACIDABLE | ACID_PROOF | FREEZE_PROOF
 	product_slogans = "Looking good!"
 	product_ads = "You need it!"
 	icon_state = "robotics"

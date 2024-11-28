@@ -43,7 +43,8 @@ It has now been over four months. Now we get her for real. -Coxswain
 	faction = list("redhood") // I'LL FUCKIN FIGHT YOU TOO, MATE
 	can_breach = TRUE
 	start_qliphoth = 3
-
+	density = FALSE // Prevents red from getting stuck unable to reach her target
+	status_flags = MUST_HIT_PROJECTILE // Allows projectiles to hit even though she's not dense.
 	ego_list = list(
 		/datum/ego_datum/weapon/crimson,
 		/datum/ego_datum/weapon/crimson/gun,
@@ -51,6 +52,16 @@ It has now been over four months. Now we get her for real. -Coxswain
 		)
 	gift_type = /datum/ego_gifts/crimson
 	abnormality_origin = ABNORMALITY_ORIGIN_LOBOTOMY
+
+	observation_prompt = "(The chamber is empty, except the Little Red Riding Hooded Mercenary, and her axe and gun. She seems exhausted) <br>\
+		Am I really alive? <br>What if I'm a ghost that doesn't even know it's dead? <br>\
+		The only thing I love in my life is the death of the wolf."
+	observation_choices = list("Exit the room", "Mourn for her memories")
+	correct_choices = list("Mourn for her memories")
+	observation_success_message = "I will swing my axe again tomorrow, still driven by hatred like I have been forever. <br>\
+		But tonight, I think I can sleep peacefully."
+	observation_fail_message = "Knock on my door whenever you need my service. <br>\
+		This is my struggle."
 
 	/*
 	Red's targeting logic
@@ -88,10 +99,8 @@ It has now been over four months. Now we get her for real. -Coxswain
 		WAW_LEVEL = 400,
 		ALEPH_LEVEL = 500
 	) // PE cost to hunt abnos, one per tier.
-	var/default_request_cost = 400 // PE cost to hunt anything not considered an abno, like an ordeal.
+	var/default_request_cost = 100 // PE cost to hunt anything not considered an abno, like an ordeal. Scales up with ordeals.
 	var/out_on_request = FALSE // Is she hunting something on request, or...?
-	var/found_target = FALSE
-	var/kill_confirmed = TRUE
 	var/retarget_lockout // Timer variable to keep red from instantly re-targeting something she reacts to the death of.
 
 	var/hunt_track_timer = 0
@@ -115,6 +124,7 @@ It has now been over four months. Now we get her for real. -Coxswain
 	var/throw_amount = 3 // How many blades to throw at once
 	var/throw_cone = 25 // Total firing angle of all red's projectiles.
 	var/throw_damage = 40 // Damage of each thrown blade
+	var/leaving = FALSE
 
 	var/list/wolf_encounter_lines = list( // Encountering Big and Will Be Bad Wolf
 		"Found you, you bastard!",
@@ -181,6 +191,24 @@ It has now been over four months. Now we get her for real. -Coxswain
 	addtimer(CALLBACK(A, TYPE_PROC_REF(/mob/living/simple_animal/hostile/abnormality/red_hood, AttemptEvade)), 1)
 	to_chat(A, chosen_message)
 
+/mob/living/simple_animal/hostile/abnormality/red_hood/proc/HunterTracking(mob/living/hunted_target, turf/last_closest, attempts = 3)
+	if(!client || !hunted_target || !hunted_target.stat)
+		to_chat(src, span_notice("You don't have a target..."))
+		if(out_on_request && red_rage < 3)
+			ContractComplete()
+		return
+	if(hunt_track_timer > world.time)
+		to_chat(src, span_notice("You need another moment..."))
+		return
+	to_chat(src, span_notice("You can sense where [hunted_target] is."))
+	hunt_track_timer = world.time + hunt_track_cooldown
+	var/turf/start_turf = get_turf(src)
+	var/turf/last_turf = get_ranged_target_turf_direct(start_turf, hunted_target, 5)
+	var/list/navline = getline(start_turf, last_turf)
+	for(var/turf/T in navline)
+		new /obj/effect/temp_visual/cult/turf/floor(T)
+	return
+
 /mob/living/simple_animal/hostile/abnormality/red_hood/proc/AttemptEvade()
 	if((world.time < evade_timer) || evading_attack)
 		if(client)
@@ -215,10 +243,11 @@ It has now been over four months. Now we get her for real. -Coxswain
 	return
 
 /mob/living/simple_animal/hostile/abnormality/red_hood/proc/RageUpdate(rage_change) // Always call this after changing red_rage manually, or call it to change red_rage
+	if(red_rage >= 3) //Never back down after enraging
+		return
 	if(rage_change)
 		red_rage = rage_change
-	if(red_rage > 0)
-		ChangeResistances(list(RED_DAMAGE = 0.3, WHITE_DAMAGE = 0.6, BLACK_DAMAGE = 0.3, PALE_DAMAGE = 1.5)) // She takes... very little damage.
+	if(red_rage > 0) //Normal rage
 		speed = 0
 		rapid_melee = 3
 		gun_cooldown = 3 SECONDS
@@ -230,9 +259,11 @@ It has now been over four months. Now we get her for real. -Coxswain
 		set_light(1, 8, COLOR_VIVID_RED)
 		set_light_on(TRUE)
 		update_light()
+		if(red_rage == 3)
+			ChangeResistances(list(RED_DAMAGE = 0.3, WHITE_DAMAGE = 0.6, BLACK_DAMAGE = 0.3, PALE_DAMAGE = 1.5)) // She takes... very little damage.
 		return
 
-	ChangeResistances(list(RED_DAMAGE = 0.6, WHITE_DAMAGE = 1.2, BLACK_DAMAGE = 0.6, PALE_DAMAGE = 1.5)) // She takes... very little damage.
+	ChangeResistances(list(RED_DAMAGE = 0.6, WHITE_DAMAGE = 1.2, BLACK_DAMAGE = 0.6, PALE_DAMAGE = 1.5)) // She takes normal damage now
 	speed = initial(speed)
 	rapid_melee = initial(rapid_melee)
 	gun_cooldown = initial(gun_cooldown)
@@ -354,13 +385,7 @@ It has now been over four months. Now we get her for real. -Coxswain
 
 /mob/living/simple_animal/hostile/abnormality/red_hood/AttemptWork(mob/living/carbon/human/user, work_type)
 	if(work_type != "Request")
-		return TRUE
-	if(SSlobotomy_corp.available_box < tiered_request_costs[ALEPH_LEVEL])
-		if(client)
-			to_chat(user, span_notice("Not enough personal PE to make a request."))
-		else
-			say("You can't afford my services.")
-		return FALSE
+		return ..()
 	RequestTarget(user)
 	return
 
@@ -398,16 +423,42 @@ It has now been over four months. Now we get her for real. -Coxswain
 
 	priority_target = hunted
 	out_on_request = TRUE
+	fear_level = TETH_LEVEL
+	var/current_cost = default_request_cost //We start out at 100 and then start adding additional fees
 
-	if(istype(hunted, /mob/living/simple_animal/hostile/abnormality))
+	if(istype(hunted, /mob/living/simple_animal/hostile/abnormality)) //If its an abnormality we add 100 PE for every risk level
 		var/mob/living/simple_animal/hostile/abnormality/abno = hunted
-		SSlobotomy_corp.available_box -= tiered_request_costs[abno.threat_level]
-	else
-		SSlobotomy_corp.available_box -= default_request_cost
+		current_cost = tiered_request_costs[abno.threat_level]
+	else //If its not an abnormality we just grab the current ordeal level and use that as a cost. Red costs more to use later in the round. We can change this if one day every simple mob gets a risk level.
+		if(SSlobotomy_corp.next_ordeal_level > 2) //next_ordeal_level is 2 at roundstart
+			current_cost = (clamp(100 + 100 * (SSlobotomy_corp.next_ordeal_level - 2), 100, 500)) //The math is weird on this - next_ordeal_level is the ordeal AFTER the one about to spawn, so 2 higher.
+
+	if(SSlobotomy_corp.available_box < current_cost)
+		if(client)
+			to_chat(user, span_notice("Not enough personal PE to make a request."))
+		else
+			say("Tch. You can't afford my services.")
+		return FALSE
+	SSlobotomy_corp.available_box -= current_cost //Subtract the total from station PE
 
 	if(client)
 		to_chat(src, span_notice("You've been contracted to hunt [priority_target.name]."))
 	else
+		if(istype(priority_target, /mob/living/simple_animal/hostile/abnormality/big_wolf))
+			manual_emote("'s grip on her weapon tightens.")
+			SLEEP_CHECK_DEATH(10)
+			say("Is he really here? You don't know how long I have been waiting for this.")
+			SLEEP_CHECK_DEATH(20)
+			say("Leave me to handle that dreadful, cunning bastard.")
+			SLEEP_CHECK_DEATH(20)
+			say("I'll hang his head over my bed.")
+			SLEEP_CHECK_DEATH(20)
+			say("Only then can I get up in the morning without having a nightmare.")
+			SLEEP_CHECK_DEATH(20)
+			target_priority = 4
+			BreachEffect()
+			RageUpdate(2) //She enrages instantly to go wolf hunting
+			return
 		if(istype(priority_target, /mob/living/simple_animal/hostile/abnormality/red_buddy))
 			manual_emote("'s eye widens slightly.")
 			SLEEP_CHECK_DEATH(10)
@@ -431,7 +482,16 @@ It has now been over four months. Now we get her for real. -Coxswain
 			BreachEffect()
 			return
 		else
+			manual_emote(" shrugs.")
+			SLEEP_CHECK_DEATH(10)
+			say("Alright, looks like you're good for it.")
+			SLEEP_CHECK_DEATH(40)
+			manual_emote("chuckles.")
+			SLEEP_CHECK_DEATH(6)
+			say("A deal's a deal.")
+			SLEEP_CHECK_DEATH(34)
 			target_priority = 2
+			BreachEffect()
 
 /mob/living/simple_animal/hostile/abnormality/red_hood/proc/OnAbnoBreach(datum/source, mob/living/simple_animal/hostile/abnormality/abno)
 	SIGNAL_HANDLER
@@ -460,171 +520,34 @@ It has now been over four months. Now we get her for real. -Coxswain
 			to_chat(src, span_notice("You have a target to hunt."))
 		else
 			manual_emote("adopts a fighting stance, eye gleaming with intent.")
-			HunterTracking(priority_target)
 	else
 		if(client)
 			to_chat(src, span_warning("You've gotta get out of here!"))
 		else
 			manual_emote("grips her weapons, looking around wildly.")
 
-/*
-Red's ability to track a target at a distance. Should only be used for priority targets.
-Runs about once every ten seconds if Red hasn't located the target.
-Finds the nearest point of interest (xeno spawn or department center) and sets it as the patrol destination. Simple as that.
-Also a toned down version
-*/
-
-/mob/living/simple_animal/hostile/abnormality/red_hood/proc/HunterTracking(mob/living/hunted_target, turf/last_closest, attempts = 3)
-	if(!hunted_target || !hunted_target.stat)
-		if(client)
-			to_chat(src, span_notice("You don't have a target..."))
-		target_priority = 0
-		priority_target = null
-		out_on_request = FALSE
-		return FALSE // Hunted target has disappeared, reset priority. What's that? You were out on request? Yeah, sorry.
-	if(found_target)
-		if(client)
-			to_chat(src, span_notice("You've already found [hunted_target]!"))
-		return FALSE // Found something
-	if(client)
-		if(hunt_track_timer > world.time)
-			to_chat(src, span_notice("You need another moment..."))
-			return FALSE
-		to_chat(src, span_notice("You can sense where [hunted_target] is."))
-		hunt_track_timer = world.time + hunt_track_cooldown
-		var/turf/start_turf = get_turf(src)
-		var/turf/last_turf = get_ranged_target_turf_direct(start_turf, hunted_target, 5)
-		var/list/navline = getline(start_turf, last_turf)
-		for(var/turf/T in navline)
-			new /obj/effect/temp_visual/cult/turf/floor(T)
-		return FALSE
-	if(attempts == 0)
-		patrol_to(get_turf(hunted_target))
-		addtimer(CALLBACK(src, PROC_REF(HunterTracking), hunted_target, get_turf(hunted_target), attempts), fuzzy_tracking_cooldown)
-		return TRUE
-	var/list/points_of_interest = GLOB.department_centers + GLOB.xeno_spawn
-	var/lowest_dist = 999
-	var/turf/closest
-	for(var/turf/T in points_of_interest)
-		if(T == last_closest) // Don't patrol to the same spot twice.
-			continue
-		var/current_dist = get_dist(T, get_turf(hunted_target))
-		if(current_dist < lowest_dist)
-			lowest_dist = current_dist
-			closest = T
-	if(!closest)
-		return FALSE // Where the fuck even ARE you?
-	patrol_to(closest)
-	attempts -= 1
-	addtimer(CALLBACK(src, PROC_REF(HunterTracking), hunted_target, closest, attempts), fuzzy_tracking_cooldown)
-	return TRUE
-
-/mob/living/simple_animal/hostile/abnormality/red_hood/FindTarget(list/possible_targets, HasTargetsList = 0)
+/mob/living/simple_animal/hostile/abnormality/red_hood/FindTarget(list/possible_targets, HasTargetsList = 0) //How we aggro the wolf if there is one
 	. = list()
 	if(!HasTargetsList)
 		possible_targets = ListTargets()
 	// These are our priority targets. If any are within our actual targets list, we pick the highest priority one, update our priority level if necessary, and attack it.
 	var/mob/living/simple_animal/hostile/abnormality/red_buddy/found_buddy = locate() in possible_targets
-	var/mob/living/found_priority
-	if(priority_target in possible_targets)
-		found_priority = priority_target
 	var/mob/living/simple_animal/hostile/abnormality/blue_shepherd/found_blue = locate() in possible_targets
-
+	var/mob/living/simple_animal/hostile/abnormality/big_wolf/found_wolf = locate() in possible_targets
+	if(found_wolf) //Top priority at all times
+		UpdatePriority(4, found_wolf)
+		RageUpdate(2) //She enrages instantly to go wolf hunting
 	if(found_buddy && target_priority < 4)
-		GiveTarget(found_buddy)
 		UpdatePriority(3, found_buddy)
-		return(found_buddy)
-	if(found_priority && target_priority < 3)
-		GiveTarget(found_priority)
-		return(found_priority)
 	if(found_blue && target_priority < 2)
 		GiveTarget(found_blue)
 		UpdatePriority(1, found_blue)
-		return(found_blue)
-
-	if(target_priority) // If we have a priority target already, regular targeting shouldn't happen.
-		return FALSE
 	return ..()
 
-/mob/living/simple_animal/hostile/abnormality/red_hood/LoseTarget()
+/mob/living/simple_animal/hostile/abnormality/red_hood/ValueTarget(atom/target_thing) //Naturally value priority targets over others
 	..()
-	if(target_priority) // We were hunting them and we lost them!
-		if(priority_target.stat == DEAD || !priority_target) // They DIED!!
-			switch(target_priority)
-				if(1) // Blue
-					if(out_on_request)
-						if(client)
-							to_chat(src, span_notice("Your job here is done! Returning to cell in 10 seconds."))
-							addtimer(CALLBACK(src, PROC_REF(ReturnToCell)), 10 SECONDS)
-						else
-							QDEL_IN(src, 3 SECONDS)
-					else
-						ResetPriority()
-				if(2) // Requested target
-					if(kill_confirmed)
-						if(client)
-							to_chat(src, span_notice("You killed the requested target! Returning to cell in 10 seconds."))
-							addtimer(CALLBACK(src, PROC_REF(ReturnToCell)), 10 SECONDS)
-						else
-							QDEL_IN(src, 3 SECONDS)
-					else
-						ResetPriority()
-				if(3) // Buddy
-					if(client)
-						to_chat(src, span_notice("That wasn't a wolf..."))
-					var/mob/living/simple_animal/hostile/abnormality/blue_shepherd/found_blue = locate() in GLOB.mob_living_list
-					if(found_blue)
-						if(found_blue.IsContained())
-							found_blue.datum_reference.qliphoth_change(4)
-							if(found_blue.client)
-								to_chat(found_blue, span_notice("You feel like someone just walked over your grave."))
-							if(out_on_request)
-								if(client)
-									to_chat(src, span_notice("That's all you can do... Returning to cell in 10 seconds."))
-									addtimer(CALLBACK(src, PROC_REF(ReturnToCell)), 10 SECONDS)
-								else
-									QDEL_IN(src, 3 SECONDS)
-							else
-								if(client)
-									to_chat(src, span_notice("Suddenly, you're not in the best mood."))
-								ResetPriority()
-						else
-							if(client)
-								to_chat(src, span_notice("You're going to kill the bastard."))
-							ResetPriority()
-							UpdatePriority(1, found_blue)
-							if(CanAttack(found_blue))
-								GiveTarget(found_blue)
-							else
-								HunterTracking(found_blue)
-					else
-						if(out_on_request)
-							if(client)
-								to_chat(src, span_notice("That's all you can do... Returning to cell in 10 seconds."))
-								addtimer(CALLBACK(src, PROC_REF(ReturnToCell)), 10 SECONDS)
-							else
-								QDEL_IN(src, 3 SECONDS)
-						else
-							if(client)
-								to_chat(src, span_notice("Suddenly, you're not in the best mood."))
-							ResetPriority()
-		else // They didn't die, we just lost sight of them!
-			HunterTracking(priority_target)
-	return
-
-/mob/living/simple_animal/hostile/abnormality/red_hood/AttackingTarget(atom/attacked_target)
-	if(special_attacking)
-		return FALSE
-	var/living = FALSE
-	if(!istype(attacked_target, /mob/living))
-		return ..()
-	var/mob/living/attacked_mob = attacked_target
-	kill_confirmed = FALSE
-	if(attacked_mob.stat != DEAD)
-		living = TRUE
-	. = ..()
-	if(attacked_mob.stat == DEAD && living)
-		kill_confirmed = TRUE
+	if(target_thing == priority_target)
+		. += 60
 
 /mob/living/simple_animal/hostile/abnormality/red_hood/proc/UpdatePriority(target_id = 0, mob/living/new_priority)
 	if(target_id > target_priority)
@@ -634,22 +557,20 @@ Also a toned down version
 		target_priority = target_id
 	return
 
-/mob/living/simple_animal/hostile/abnormality/red_hood/proc/ResetPriority()
-	priority_target = null
-	target_priority = 0
-	return
-
 /mob/living/simple_animal/hostile/abnormality/red_hood/Move()
 	if(special_attacking)
 		return FALSE
 	return ..()
 
 /mob/living/simple_animal/hostile/abnormality/red_hood/attacked_by(obj/item/I, mob/living/user)
-	if(LAZYLEN(patrol_path) && CanAttack(user)) // Basically, it will retaliate while patrolling without stopping or chasing after them
+	if(LAZYLEN(patrol_path) && out_on_request ) // Basically, it will retaliate while patrolling without stopping or chasing after them
+		say(pick(blue_evade_lines))
 		user.attack_animal(src)
 	return ..()
 
 /mob/living/simple_animal/hostile/abnormality/red_hood/OpenFire()
+	if(!CanAttack(target)) //Openfire doesn't actually check for this normally
+		return FALSE
 	if(special_attacking || evading_attack)
 		return FALSE
 	if(client)
@@ -668,28 +589,61 @@ Also a toned down version
 		BladeThrow(target)
 	return
 
-/mob/living/simple_animal/hostile/abnormality/red_hood/proc/ConfirmRangedKill(length)
-	kill_confirmed = TRUE
-	LoseTarget()
-	addtimer(CALLBACK(src, PROC_REF(EndRangedConfirm)), length)
-	return
+/mob/living/simple_animal/hostile/abnormality/red_hood/CanAttack(atom/the_target)
+	if(out_on_request && red_rage < 3) //On patrol and not indiscriminately raging
+		if(ishuman(the_target)) //We don't attack the people who hired us, duh.
+			return FALSE
+	return ..()
 
-/mob/living/simple_animal/hostile/abnormality/red_hood/proc/EndRangedConfirm()
-	kill_confirmed = FALSE
-	return
+/mob/living/simple_animal/hostile/abnormality/red_hood/Life()
+	. = ..()
+	if(!.) // Dead
+		return FALSE
+	if(!out_on_request && target_priority != 4) //Didn't get hired and not fighting the wolf
+		return
+	if(!priority_target) //For some reason we never got one
+		ContractComplete()
+		return
+	if(QDELETED(priority_target) || priority_target.stat == DEAD || priority_target.z != z) //Target is dead or vanished or off-z
+		ContractComplete()
+		return
 
-/mob/living/simple_animal/hostile/abnormality/red_hood/proc/ReturnToCell(turf/return_point)
-	if(!return_point)
-		return_point = get_turf(datum_reference.landmark)
-	out_on_request = FALSE
-	ResetPriority()
+/mob/living/simple_animal/hostile/abnormality/red_hood/patrol_select() //Path right to our target
+	if(out_on_request || priority_target)
+		if(!priority_target) //For some reason we never got one
+			return ..()
+		SEND_SIGNAL(src, COMSIG_PATROL_START, src, get_turf(priority_target))
+		SEND_GLOBAL_SIGNAL(src, COMSIG_GLOB_PATROL_START, src, get_turf(priority_target))
+		patrol_path = get_path_to(src, get_turf(priority_target), TYPE_PROC_REF(/turf, Distance_cardinal), 0, 200)
+		return
+	return ..()
+
+/mob/living/simple_animal/hostile/abnormality/red_hood/proc/ContractComplete()
+	if(leaving)
+		return
+	leaving = TRUE
+	if(target_priority == 4)
+		var/kill_confirmed = FALSE
+		for(var/mob/living/simple_animal/hostile/abnormality/big_wolf/the_target in view(src, 10))
+			if(the_target.stat != DEAD)
+				return
+			kill_confirmed = TRUE //Wolf died in our view
+		if(!kill_confirmed) //Somehow we completed the contract but the wolf was too far away. Likely died off-screen
+			say(pick(denied_kill_lines))
+			RageUpdate(3)
+			fear_level = WAW_LEVEL
+			return
+	if(target_priority < 4)
+		say("Work's done. Time to go home.")
+	else
+		say("Finally, the nightmare is over...")
+		for(var/mob/living/carbon/human/survivor in urange(10, src))
+			if(survivor.stat == DEAD || !survivor.ckey)
+				continue
+			survivor.Apply_Gift(new /datum/ego_gifts/sheep)
+			survivor.playsound_local(get_turf(survivor), 'sound/weapons/black_silence/snap.ogg', 50)
+			to_chat(survivor, span_userdanger("The hooded mercenary thanks you - you recieve a gift!"))
+	ChangeResistances(list(BRUIT = 0, RED_DAMAGE = 0, WHITE_DAMAGE = 0, BLACK_DAMAGE = 0, PALE_DAMAGE = 0))
+	AIStatus = AI_OFF
 	animate(src, alpha = 0, time = 10)
-	addtimer(CALLBACK(src, PROC_REF(FinishReturn), return_point), 10)
-
-/mob/living/simple_animal/hostile/abnormality/red_hood/proc/FinishReturn(turf/return_point)
-	forceMove(return_point)
-	health = maxHealth
-	RageUpdate(0)
-	priority_target = null
-	target_priority = 0 // resetting these here too just in case
-	dir = EAST
+	QDEL_IN(src,10)

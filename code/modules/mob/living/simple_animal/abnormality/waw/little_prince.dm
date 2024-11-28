@@ -24,16 +24,16 @@
 	gift_type = /datum/ego_gifts/spore
 	abnormality_origin = ABNORMALITY_ORIGIN_LOBOTOMY
 
-	observation_prompt = "We can see things that others cannot. \
-I have come across 15 billion light years to meet you. \
-However, a butterfly can only fly as high in the sky as the sun warms. \
-It does not know that it will crumble before it can reach the stars. It fell from the sky and crushed into the ground."
+	observation_prompt = "We can see things that others cannot. <br>\
+		I have come across 15 billion light years to meet you. <br>\
+		However, a butterfly can only fly as high in the sky as the sun warms. <br>\
+		It does not know that it will crumble before it can reach the stars. <br>It fell from the sky and crushed into the ground."
 	observation_choices = list("Do nothing", "Become its friend")
 	correct_choices = list("Become its friend")
-	observation_success_message = "My voice can reach you unlike others. \
-Come to me, step by step. You will reach the stars if those steps continue."
-	observation_fail_message = "Many who tried to reach me got lost.\
-Perhaps, we are standing on parallel lines. Perhaps, we were looking at something that can never be reached."
+	observation_success_message = "My voice can reach you unlike others. <br>\
+		Come to me, step by step. <br>You will reach the stars if those steps continue."
+	observation_fail_message = "Many who tried to reach me got lost. <br>\
+		Perhaps, we are standing on parallel lines. <br>Perhaps, we were looking at something that can never be reached."
 
 	var/insight_count = 0
 	var/non_insight_count = 0
@@ -60,9 +60,14 @@ Perhaps, we are standing on parallel lines. Perhaps, we were looking at somethin
 
 /mob/living/simple_animal/hostile/abnormality/little_prince/proc/Hypno(mob/living/carbon/human/user)
 	if (!(user.sanity_lost))
-		to_chat(user, span_userdanger("You see mushrooms growing all over your body!"))
 		playsound(get_turf(user), 'sound/abnormalities/littleprince/Prince_Active.ogg', 50, 0, 2)
-		user.adjustSanityLoss(500)
+		user.deal_damage(user.maxSanity, WHITE_DAMAGE)
+		if (!(user.sanity_lost))
+			//Check Sanity twice to make sure you're actually insane
+			twice -= user
+			to_chat(user, span_userdanger("You see mushrooms growing all over your body, and you tear them off!"))
+			return
+	to_chat(user, span_userdanger("You see mushrooms growing all over your body!"))
 	user.add_overlay(mutable_appearance('ModularTegustation/Teguicons/tegu_effects32x48.dmi', "spore_hypno", -HALO_LAYER))
 	QDEL_NULL(user.ai_controller)
 	user.ai_controller = /datum/ai_controller/insane/hypno

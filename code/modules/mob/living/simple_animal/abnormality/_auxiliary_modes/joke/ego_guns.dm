@@ -1,19 +1,20 @@
 //Zayin
 //The Mcrib
-/obj/item/gun/ego_gun/pistol/mcrib
+/obj/item/ego_weapon/ranged/pistol/mcrib
 	name = "mcrib"
 	desc = "Try a mcrib at your nearest McDonalds!"
 	special = "Use this weapon in your hand when wearing matching armor to create food for people nearby."
 	icon = 'code/modules/mob/living/simple_animal/abnormality/_auxiliary_modes/joke/!icons/ego_weapons.dmi'
 	icon_state = "mcrib"
-	ammo_type = /obj/item/ammo_casing/caseless/ego_mcrib
+	force = 6
+	projectile_path = /obj/projectile/ego_bullet/ego_mcrib
 	burst_size = 1
 	fire_delay = 10
 	fire_sound = 'sound/effects/meatslap.ogg'
 	var/ability_cooldown_time = 60 SECONDS
 	var/ability_cooldown
 
-/obj/item/gun/ego_gun/pistol/mcrib/attack_self(mob/user)
+/obj/item/ego_weapon/ranged/pistol/mcrib/attack_self(mob/user)
 	if(!ishuman(user))
 		return
 	var/mob/living/carbon/human/H = user
@@ -29,7 +30,7 @@
 	SpawnItem(user)
 	ability_cooldown = world.time + ability_cooldown_time
 
-/obj/item/gun/ego_gun/pistol/mcrib/proc/SpawnItem(mob/user)
+/obj/item/ego_weapon/ranged/pistol/mcrib/proc/SpawnItem(mob/user)
 	var/foodoption = /obj/item/food/mcrib
 	for(var/mob/living/carbon/human/L in livinginview(5, user))
 		if((!ishuman(L)) || L.stat == DEAD || L == user)
@@ -37,11 +38,6 @@
 		to_chat(L, "<span class='warning'>Is that... authentic Kansas City Barbecue sauce I smell? [user] gives you a snack!</span>")
 		new foodoption(get_turf(L))
 	new foodoption(get_turf(user))
-
-/obj/item/ammo_casing/caseless/ego_mcrib
-	name = "mcrib casing"
-	desc = "A mcrib casing."
-	projectile_type = /obj/projectile/ego_bullet/ego_mcrib
 
 /obj/projectile/ego_bullet/ego_mcrib
 	name = "mcrib"

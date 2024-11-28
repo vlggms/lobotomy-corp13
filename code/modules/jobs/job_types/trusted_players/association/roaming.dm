@@ -6,14 +6,14 @@
 	faction = "Station"
 	supervisors = "hana association"
 	selection_color = "#e09660"
-	total_positions = 1
-	spawn_positions = 1
-	display_order = JOB_DISPLAY_ORDER_ASSOCIATION
+	total_positions = 0
+	spawn_positions = 0
+	display_order = JOB_DISPLAY_ORDER_FIXER
 	trusted_only = TRUE
 	access = list(ACCESS_NETWORK)
 	minimal_access = list(ACCESS_NETWORK)
 	paycheck = 700
-	maptype = list("fixers")
+	maptype = list("fixers", "city")
 
 
 	//They actually need this for their weapons
@@ -28,8 +28,8 @@
 		You are a fixer that recently blew into town to assist the local offices in their endeavors."
 
 	var/list/associations = list("zwei","shi5", "liu5", "seven")
-	var/list/uncommon_associations = list("shi2", "cinq", "liu2")
-	var/list/rare_associations = list("hana", "liu1")
+	var/list/uncommon_associations = list("shi2", "cinq", "liu1")
+	var/list/rare_associations = list("hana", "liu2")
 
 /datum/job/associateroaming/after_spawn(mob/living/carbon/human/H, mob/M)
 	//Not fear immune you're basically some goober
@@ -70,16 +70,16 @@
 			weapon = /obj/item/ego_weapon/city/cinq
 
 		if("liu1")
-			armor = /obj/item/ego_weapon/city/liu/fire/fist
-			weapon = /obj/item/clothing/suit/armor/ego_gear/city/liu
+			armor = /obj/item/clothing/suit/armor/ego_gear/city/liu
+			weapon = /obj/item/ego_weapon/city/liu/fire/fist
 
 		if("liu2")
 			armor = /obj/item/clothing/suit/armor/ego_gear/city/liuvet/section2
 			weapon = /obj/item/ego_weapon/city/liu/fire/spear
 
 		if("liu5")
-			armor = /obj/item/ego_weapon/city/liu/fist
-			weapon = /obj/item/clothing/suit/armor/ego_gear/city/liu/section5
+			armor = /obj/item/clothing/suit/armor/ego_gear/city/liu/section5
+			weapon = /obj/item/ego_weapon/city/liu/fist
 
 		if("seven")
 			armor = /obj/item/clothing/suit/armor/ego_gear/city/seven

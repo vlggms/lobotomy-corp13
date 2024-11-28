@@ -2,7 +2,7 @@
 	name = "Blood Refinery"
 	desc = "A machine used by the Extraction Officer to give all but 1 of their HP for a chance at a PE box."
 	icon_state = "dominator-red"
-	extraction_cost = 100
+	extraction_cost = 75
 
 /obj/structure/altrefiner/blood/attack_hand(mob/living/carbon/M)
 	if(M.health <= 20)

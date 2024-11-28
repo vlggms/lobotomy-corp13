@@ -63,6 +63,8 @@
 	correct_choices = list("Little bird", "Punishing bird")
 	observation_success_message = "The small bird accepts whatever name you decide to give it. Its nature can never change now."
 
+	do_not_possess = TRUE
+
 	var/list/enemies = list()
 	var/list/pecking_targets = list()
 	var/list/already_punished = list()
@@ -86,6 +88,8 @@
 
 /mob/living/simple_animal/hostile/abnormality/punishing_bird/proc/TransformRed()
 	visible_message(span_danger("\The [src] turns its insides out as a giant bloody beak appears!"))
+	flick("pbird_transition", src)
+	AdjustStun(12, ignore_canstun = TRUE)
 	icon_state = "pbird_red"
 	icon_living = "pbird_red"
 	attack_verb_continuous = "eviscerates"

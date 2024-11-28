@@ -40,6 +40,22 @@
 	gift_message = "The fairy extends an olive branch towards you."
 
 	abnormality_origin = ABNORMALITY_ORIGIN_LIMBUS
+
+	observation_prompt = "In the middle of a quiet and peaceful forest, a delicate tree branch is placed. <br>\
+		A small fairy with a green glow sits atop it. <br>\
+		Saying no words, the fairy waves at you, inviting you to come over and take a break. <br>\
+		It looked like it was smiling, and it might have been dancing."
+	observation_choices = list("Take a momentary break", "Move on without resting", "Take a break where you're standing")
+	correct_choices = list("Move on without resting")
+	observation_success_message = "This is no time to be careless and stop here. <br>\
+		Tree branches came at you to halt you from leaving, but you narrowly dodged them. <br>\
+		You knew the real meaning of the fairy's gesture: <br>\
+		\"There's no such thing as a free gift\"."
+	observation_fail_message = "The fairy's smile stretches into an eerie grin. You shouldn't have trusted its appearance and now you'll have to pay the price."
+	//Extra wrong answer
+	var/observation_fail_message_2 = "You ignore the beckoning fairy and take a short break where you stand. <br>\
+		As you gather yourself to continue on the journey, you realize that several branches had grown in the premises, trapping you in."
+
 	var/can_act = FALSE
 	var/break_threshold = 450
 	var/broken = FALSE
@@ -51,6 +67,13 @@
 	var/stab_cooldown
 	var/stab_cooldown_time = 30
 	var/lured_list = list()
+
+/mob/living/simple_animal/hostile/abnormality/faelantern/ObservationResult(mob/living/carbon/human/user, condition, answer) //special answer
+	if(answer == "Take a break where you're standing")
+		observation_fail_message = observation_fail_message_2
+	else
+		observation_fail_message = initial(observation_fail_message)
+	return ..()
 
 /mob/living/simple_animal/hostile/abnormality/faelantern/AttackingTarget(atom/attacked_target)
 	return OpenFire()
@@ -66,18 +89,17 @@
 	for(var/mob/living/carbon/human/H in lured_list)
 		EndEnchant(H)
 	icon_state = icon_dead
-	playsound(src, 'sound/abnormalities/doomsdaycalendar/Limbus_Dead_Generic.ogg', 100, 1)
+	playsound(src, 'sound/effects/limbus_death.ogg', 100, 1)
+	icon = 'ModularTegustation/Teguicons/abno_cores/teth.dmi'
 	animate(src, alpha = 0, time = 10 SECONDS)
 	QDEL_IN(src, 10 SECONDS)
 
 /mob/living/simple_animal/hostile/abnormality/faelantern/PostWorkEffect(mob/living/carbon/human/user, work_type, pe, work_time, canceled)
-	if(work_type == ABNORMALITY_WORK_REPRESSION && get_modified_attribute_level(user, TEMPERANCE_ATTRIBUTE) > 40)
+	if(work_type == ABNORMALITY_WORK_REPRESSION && get_modified_attribute_level(user, TEMPERANCE_ATTRIBUTE) >= 40)
 		datum_reference.qliphoth_change(-1)
 		return
-	if(get_modified_attribute_level(user, TEMPERANCE_ATTRIBUTE) < 40)
+	if(work_type != ABNORMALITY_WORK_REPRESSION && get_modified_attribute_level(user, TEMPERANCE_ATTRIBUTE) < 40)
 		datum_reference.qliphoth_change(-1)
-		return
-	return
 
 /mob/living/simple_animal/hostile/abnormality/faelantern/FailureEffect(mob/living/carbon/human/user, work_type, pe)
 	. = ..()
@@ -118,7 +140,7 @@
 			return
 	if(health < (maxHealth / 2) && !broken) //50% health or lower
 		broken = TRUE
-		playsound(src, 'sound/abnormalities/doomsdaycalendar/Limbus_Dead_Generic.ogg', 40, 0, 1)
+		playsound(src, 'sound/effects/limbus_death.ogg', 40, 0, 1)
 		BreachDig(TRUE)
 
 /mob/living/simple_animal/hostile/abnormality/faelantern/proc/BreachDig(broken = FALSE)

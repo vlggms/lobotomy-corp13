@@ -1348,7 +1348,6 @@
 /area/facility_hallway/welfare)
 "dp" = (
 /obj/structure/chair/comfy{
-	can_buckle = 0;
 	dir = 1;
 	pixel_y = 12
 	},
@@ -1849,7 +1848,6 @@
 /area/facility_hallway/command)
 "eu" = (
 /obj/structure/chair/comfy/brown{
-	can_buckle = 0;
 	dir = 8;
 	pixel_x = -5;
 	pixel_y = 4
@@ -2023,6 +2021,10 @@
 /obj/machinery/door/airlock/glass,
 /turf/open/floor/facility/halls,
 /area/facility_hallway/discipline)
+"eO" = (
+/obj/structure/window/paperframe,
+/turf/open/floor/plating,
+/area/facility_hallway/control)
 "eP" = (
 /obj/effect/turf_decal/tile/neutral{
 	color = "#f8f8f8";
@@ -2671,7 +2673,6 @@
 	dir = 1
 	},
 /obj/structure/chair/comfy{
-	can_buckle = 0;
 	dir = 8;
 	pixel_x = -6;
 	pixel_y = 4
@@ -3113,7 +3114,6 @@
 	},
 /obj/effect/turf_decal/tile/red,
 /obj/structure/chair/comfy{
-	can_buckle = 0;
 	pixel_y = 3
 	},
 /obj/item/toy/plush/malkuth,
@@ -3325,7 +3325,6 @@
 	color = "#006400"
 	},
 /obj/structure/chair/comfy/lime{
-	can_buckle = 0;
 	dir = 4;
 	pixel_x = 5;
 	pixel_y = 4
@@ -3788,7 +3787,6 @@
 	dir = 8
 	},
 /obj/structure/chair/comfy/lime{
-	can_buckle = 0;
 	dir = 8;
 	pixel_x = -5;
 	pixel_y = 4
@@ -4480,7 +4478,6 @@
 /area/department_main/records)
 "ki" = (
 /obj/structure/chair/comfy/brown{
-	can_buckle = 0;
 	dir = 4;
 	pixel_x = 5;
 	pixel_y = 4
@@ -4566,7 +4563,6 @@
 /area/facility_hallway/information)
 "ky" = (
 /obj/structure/chair/comfy{
-	can_buckle = 0;
 	pixel_y = 3
 	},
 /obj/effect/turf_decal/tile/red{
@@ -5034,7 +5030,6 @@
 	dir = 1
 	},
 /obj/structure/chair/comfy{
-	can_buckle = 0;
 	dir = 1;
 	pixel_y = 12
 	},
@@ -6614,9 +6609,7 @@
 /obj/effect/turf_decal/tile/green{
 	color = "#006400"
 	},
-/obj/structure/chair/comfy/lime{
-	can_buckle = 0
-	},
+/obj/structure/chair/comfy/lime,
 /obj/item/toy/plush/netzach,
 /turf/open/floor/plasteel/sepia,
 /area/department_main/safety)
@@ -7489,7 +7482,6 @@
 /area/department_main/safety)
 "rm" = (
 /obj/structure/chair/comfy/brown{
-	can_buckle = 0;
 	dir = 8;
 	pixel_x = -5;
 	pixel_y = 4
@@ -7709,7 +7701,6 @@
 /area/department_main/control)
 "rJ" = (
 /obj/structure/chair/comfy{
-	can_buckle = 0;
 	dir = 1;
 	pixel_y = 12
 	},
@@ -8657,7 +8648,6 @@
 /area/department_main/training)
 "tF" = (
 /obj/structure/chair/comfy/teal{
-	can_buckle = 0;
 	pixel_y = 1
 	},
 /obj/effect/turf_decal/tile/blue{
@@ -10020,7 +10010,6 @@
 /area/facility_hallway/discipline)
 "xj" = (
 /obj/structure/chair/comfy/teal{
-	can_buckle = 0;
 	dir = 1;
 	pixel_y = 12
 	},
@@ -10610,7 +10599,6 @@
 /area/facility_hallway/command)
 "yF" = (
 /obj/structure/chair/comfy/brown{
-	can_buckle = 0;
 	dir = 1;
 	pixel_y = 9
 	},
@@ -10760,6 +10748,10 @@
 	},
 /turf/open/floor/plasteel/sepia,
 /area/facility_hallway/training)
+"yQ" = (
+/obj/machinery/smartfridge/extraction_storage/ego_weapon,
+/turf/open/floor/plating,
+/area/facility_hallway/control)
 "yU" = (
 /obj/effect/turf_decal/tile/neutral{
 	color = "#000000";
@@ -13022,9 +13014,7 @@
 /turf/open/floor/plating,
 /area/department_main/records)
 "DR" = (
-/obj/structure/chair/comfy/black{
-	can_buckle = 0
-	},
+/obj/structure/chair/comfy/black,
 /obj/effect/light_emitter{
 	light_power = 4;
 	light_range = 10;
@@ -13285,7 +13275,6 @@
 "Eu" = (
 /obj/structure/chair/office{
 	anchored = 1;
-	can_buckle = 0;
 	dir = 1;
 	pixel_y = 5
 	},
@@ -13726,9 +13715,7 @@
 	color = "#f8f8f8";
 	dir = 8
 	},
-/obj/structure/chair/comfy/lime{
-	can_buckle = 0
-	},
+/obj/structure/chair/comfy/lime,
 /obj/effect/turf_decal/tile/green{
 	color = "#539b11"
 	},
@@ -15033,7 +15020,6 @@
 /area/department_main/information)
 "IG" = (
 /obj/structure/chair/comfy/teal{
-	can_buckle = 0;
 	pixel_y = 1
 	},
 /obj/effect/turf_decal/tile/blue{
@@ -15743,7 +15729,6 @@
 	dir = 8
 	},
 /obj/structure/chair/comfy{
-	can_buckle = 0;
 	pixel_y = 3
 	},
 /turf/open/floor/plasteel/sepia,
@@ -16564,7 +16549,6 @@
 /area/department_main/safety)
 "Me" = (
 /obj/structure/chair/comfy/brown{
-	can_buckle = 0;
 	dir = 1;
 	pixel_y = 9
 	},
@@ -16683,6 +16667,17 @@
 	color = "#ccc8c0"
 	},
 /area/facility_hallway/safety)
+"Mq" = (
+/obj/structure/railing{
+	desc = "Indestructible railing created in a vain attempt of fool-proofing the wing's workplace.";
+	name = "wing-grade railing";
+	resistance_flags = 115
+	},
+/obj/structure/extraction_belt,
+/turf/open/floor/plasteel/sepia{
+	color = "#ccc8c0"
+	},
+/area/department_main/extraction)
 "Mt" = (
 /obj/machinery/regenerator/safety,
 /turf/open/floor/carpet/green,
@@ -17271,7 +17266,6 @@
 /area/facility_hallway/safety)
 "NQ" = (
 /obj/structure/chair/comfy/lime{
-	can_buckle = 0;
 	dir = 1;
 	pixel_y = 11
 	},
@@ -17285,6 +17279,14 @@
 	},
 /turf/open/floor/plasteel/sepia,
 /area/department_main/safety)
+"NS" = (
+/obj/machinery/smartfridge/extraction_storage/ego_weapon,
+/turf/closed/indestructible/reinforced{
+	desc = "A huge chunk of wing-grade metal used in various L corporation facilities. Effectively impervious to conventional methods of destruction.";
+	name = "facility wall";
+	opacity = 0
+	},
+/area/department_main/extraction)
 "NT" = (
 /obj/structure/table/wood,
 /obj/machinery/microwave{
@@ -17763,9 +17765,7 @@
 	set_cap = 3;
 	set_luminosity = 10
 	},
-/obj/structure/chair/comfy/black{
-	can_buckle = 0
-	},
+/obj/structure/chair/comfy/black,
 /obj/item/toy/plush/binah,
 /turf/open/floor/carpet/royalblack,
 /area/department_main/extraction)
@@ -18157,7 +18157,6 @@
 	dir = 4
 	},
 /obj/structure/chair/comfy{
-	can_buckle = 0;
 	dir = 4;
 	pixel_x = 6;
 	pixel_y = 4
@@ -18570,7 +18569,6 @@
 /area/facility_hallway/information)
 "Ra" = (
 /obj/structure/chair/comfy/brown{
-	can_buckle = 0;
 	dir = 4;
 	pixel_x = 5;
 	pixel_y = 4
@@ -18631,7 +18629,6 @@
 /area/department_main/welfare)
 "Rl" = (
 /obj/structure/chair/comfy/brown{
-	can_buckle = 0;
 	dir = 8;
 	pixel_x = -5;
 	pixel_y = 4
@@ -22217,7 +22214,6 @@
 	dir = 4
 	},
 /obj/structure/chair/comfy/lime{
-	can_buckle = 0;
 	dir = 1;
 	pixel_y = 11
 	},
@@ -52678,7 +52674,7 @@ lF
 fN
 mA
 mA
-mA
+yQ
 fN
 Vi
 Dp
@@ -55519,7 +55515,7 @@ Tp
 cP
 Df
 zr
-cq
+Mq
 vm
 zS
 xf
@@ -56033,7 +56029,7 @@ Tp
 ZC
 XQ
 xk
-Ay
+NS
 LC
 fF
 RG
@@ -57818,7 +57814,7 @@ lF
 fN
 mA
 mA
-mA
+eO
 fN
 Vi
 Zd

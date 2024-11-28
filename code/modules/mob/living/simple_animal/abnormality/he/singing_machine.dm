@@ -37,8 +37,8 @@ Finally, an abnormality that DOESN'T have to do any fancy movement shit. It's a 
 	buckle_lying = TRUE
 	max_boxes = 16
 
-	observation_prompt = "You know that people die every time this machine sings. \
-Or perhaps this machine sings when people die. Though it has spilled blood of countless people, the song put you in a rapturous mood."
+	observation_prompt = "You know that people die every time this machine sings. <br>\
+		Or perhaps this machine sings when people die. <br>Though it has spilled blood of countless people, the song put you in a rapturous mood."
 	observation_choices = list("Listen to the music", "Turn off the machine")
 	correct_choices = list("Turn off the machine")
 	observation_success_message = "You turned the machine off. Silence fills the air."

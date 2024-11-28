@@ -43,6 +43,12 @@
 		/mob/living/simple_animal/hostile/abnormality/pinocchio = 1.5
 	)
 
+	observation_prompt = "Last of all, road that is lost. <br>I will send you home. <br>The wizard grants you..."
+	observation_choices = list("The home cannot be reached", "The road home")
+	correct_choices = list("The home cannot be reached")
+	observation_success_message = "What are you fighting for so fiercely when you have nowhere to go back to?"
+	observation_fail_message = "Wear this pair of shoes and be on your way. To the hometown you miss so much."
+
 	///Stuff related to the house and its path
 	var/obj/road_house/house
 	var/list/house_path
@@ -64,9 +70,19 @@
 	///Agents with the "stay home" status effect, they will be driven insane when the home is reached.
 	var/list/agent_friends = list()
 
-/mob/living/simple_animal/hostile/abnormality/road_home/PostWorkEffect(mob/living/carbon/human/user, work_type, pe, work_time)
+// Modifiers for work chance
+/mob/living/simple_animal/hostile/abnormality/road_home/WorkChance(mob/living/carbon/human/user, chance, work_type)
+	var/newchance = chance
 	if(get_attribute_level(user, JUSTICE_ATTRIBUTE) >= 60) //Apparently the original road home is fortitude but I already made scaredy cat fort and I'm too stubborn to change it.
-		datum_reference.qliphoth_change(-1)
+		newchance = chance-20
+	return newchance
+
+/mob/living/simple_animal/hostile/abnormality/road_home/NeutralEffect(mob/living/carbon/human/user, work_type, pe)
+	. = ..()
+	if(get_attribute_level(user, JUSTICE_ATTRIBUTE) >= 60)
+		if(prob(40))
+			datum_reference.qliphoth_change(-1)
+	return
 
 /mob/living/simple_animal/hostile/abnormality/road_home/FailureEffect(mob/living/carbon/human/user, work_type, pe)
 	. = ..()

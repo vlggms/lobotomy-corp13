@@ -747,7 +747,7 @@
 /mob/living/simple_animal/hostile/spicebush_plant/proc/HealPulse()
 	pulse_cooldown = world.time + pulse_cooldown_time
 	//playsound(src, 'sound/abnormalities/rudolta/throw.ogg', 50, FALSE, 4)//TODO: proper SFX goes here
-	for(var/mob/living/carbon/human/L in livinginrange(8, src))//livinginview(8, src))
+	for(var/mob/living/carbon/human/L in range(8, src))//livinginview(8, src))
 		if(L.stat == DEAD || L.is_working)
 			continue
 		L.adjustBruteLoss(-2)
@@ -1018,16 +1018,8 @@
 		return FALSE
 	if(!is_type_in_list(I, ego_list))
 		return FALSE
-	if(istype(I, /obj/item/ego_weapon))
-		var/obj/item/ego_weapon/egoweapon = I
-		if(egoweapon.force_multiplier < 1.2)
-			to_chat(user, span_notice("You must use a weapon with a damage multiplier of 20% or higher!"))
-			return FALSE
-		Reload(I, user)
-		return TRUE
-	if(istype(I, /obj/item/gun/ego_gun))
-		var/obj/item/gun/ego_gun/egogun = I
-		if(egogun.projectile_damage_multiplier < 1.2)
+	if(is_ego_melee_weapon(I))
+		if(I.force_multiplier < 1.2)
 			to_chat(user, span_notice("You must use a weapon with a damage multiplier of 20% or higher!"))
 			return FALSE
 		Reload(I, user)
@@ -1054,7 +1046,7 @@
 				linked_structure = TRUE
 		if(!LAZYLEN(ego_list))
 			for(var/egoitem in linked_structure.alephitem)
-				if(ispath(egoitem, /obj/item/ego_weapon) || ispath(egoitem, /obj/item/gun/ego_gun))
+				if(ispath(egoitem, /obj/item/ego_weapon) || ispath(egoitem, /obj/item/ego_weapon/ranged))
 					ego_list += egoitem
 					continue
 		chosenEGO = pick(ego_list)
@@ -1067,8 +1059,9 @@
 			egoweapon.color = "#FFD700"
 			linkeditem = egoweapon
 
-		else if(ispath(ego, /obj/item/gun/ego_gun))
-			var/obj/item/gun/ego_gun/egogun = new ego(get_turf(user))
+		else if(ispath(ego, /obj/item/ego_weapon/ranged))
+			var/obj/item/ego_weapon/ranged/egogun = new ego(get_turf(user))
+			egogun.force_multiplier = 1.20
 			egogun.projectile_damage_multiplier = 1.20
 			egogun.name = "shimmering [egogun.name]"
 			egogun.set_light(3, 6, "#D4FAF37")

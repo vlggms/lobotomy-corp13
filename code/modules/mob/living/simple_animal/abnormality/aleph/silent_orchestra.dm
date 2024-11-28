@@ -19,6 +19,7 @@
 	)
 	work_damage_amount = 16
 	work_damage_type = WHITE_DAMAGE
+	good_hater = TRUE
 	can_patrol = FALSE
 
 	wander = FALSE
@@ -34,13 +35,13 @@
 	gift_type =  /datum/ego_gifts/dacapo
 	abnormality_origin = ABNORMALITY_ORIGIN_LOBOTOMY
 
-	observation_prompt = "I was the conductor of Lobotomy Corporation, I put my everything into it. \
-Now, I conduct the song of apocalypse to make everything right. As if he is about to start the performance, he stretches his arm. \
-The conductor, who thought he is the freest soul, was not free at all. The performance ended. I......."
+	observation_prompt = "I was the conductor of Lobotomy Corporation, I put my everything into it. <br>\
+		Now, I conduct the song of apocalypse to make everything right. <br>As if he is about to start the performance, he stretches his arm. <br>\
+		The conductor, who thought he is the freest soul, was not free at all. <br>The performance ended. <br>I......."
 	observation_choices = list("Gave an applause.", "Did not give applause.")
 	correct_choices = list("Did not give applause.")
-	observation_success_message = "I am not worthy to give an applause yet. The music replays. Angelos, my movement."
-	observation_fail_message = "The performance never ends. And Da Capo."
+	observation_success_message = "I am not worthy to give an applause yet. <br>The music replays. <br>Angelos, my movement."
+	observation_fail_message = "The performance never ends. <br>And Da Capo."
 
 	/// Range of the damage
 	var/symphony_range = 20

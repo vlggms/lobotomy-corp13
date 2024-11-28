@@ -16,7 +16,7 @@
 		for(var/obj/item/storage/spare_space in search_area)
 			search_area |= spare_space.contents
 		for(var/obj/item/I in search_area)
-			if(istype(I, /obj/item/clothing/suit/armor/ego_gear) || istype(I, /obj/item/gun/ego_gun/pistol) || istype(I, /obj/item/ego_weapon) || istype(I, /obj/item/gun/ego_gun) && !istype(I, /obj/item/gun/ego_gun/clerk))
+			if(istype(I, /obj/item/clothing/suit/armor/ego_gear) || is_ego_weapon(I))
 				lor.lootbox += I.type
 		body = "[user.job] from Lobotomy Corporation"
 		user.death()
@@ -44,9 +44,9 @@
 		for(var/I in lor.lootbox)
 			if(ispath(I, /obj/item/clothing/suit/armor/ego_gear))
 				lor.info += "- Ego Armor: "
-			if(ispath(I, /obj/item/gun/ego_gun))
+			if(is_ego_ranged_weapon(I))
 				lor.info += "- Ego Gun: "
-			if(ispath(I, /obj/item/ego_weapon))
+			if(is_ego_melee_weapon(I))
 				lor.info += "- Ego Weapon: "
 			var/obj/item/loot = I
 			lor.info += "[initial(loot.name)]<br>"
@@ -75,7 +75,7 @@
 		if(loot)
 			new loot(get_turf(src))
 			visible_message(span_nicegreen("A [initial(loot.name)] came out of the ashes!"))
-			playsound(src, 'sound/effects/book_burn.ogg', 50, TRUE, TRUE)
+			playsound(src, 'sound/effects/burn.ogg', 50, TRUE, TRUE)
 		SStgui.close_uis(src)
 		qdel(src)
 		return

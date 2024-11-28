@@ -525,6 +525,13 @@
 	justice_bonus = 1
 	slot = HAND_1
 
+/datum/ego_gifts/denial
+	name = "Denial"
+	icon_state = "denial"
+	justice_bonus = 3
+	slot = HELMET
+
+
 /**
  * HE EGO Gifts
  */
@@ -551,6 +558,12 @@
 	fortitude_bonus = -4
 	prudence_bonus = 8
 	slot = HAT
+
+/datum/ego_gifts/coiling
+	name = "Coiling"
+	icon_state = "coiling"
+	fortitude_bonus = 5
+	slot = MOUTH_2
 
 /datum/ego_gifts/courage_cat //crumbling armor also has an ego gift called courage so the name has to be slightly different
 	name = "Courage"
@@ -580,12 +593,19 @@
 	temperance_bonus = 2
 	slot = MOUTH_2
 
-/datum/ego_gifts/frost
+/datum/ego_gifts/frostsplinter
 	name = "Those who know the Cruelty of Winter and the Aroma of Roses"
-	icon_state = "frost"
+	icon_state = "frostsplinter"
 	fortitude_bonus = 6
 	prudence_bonus = 6
 	slot = CHEEK
+
+/datum/ego_gifts/frostcrown
+	name = "The Winters Kiss"
+	icon_state = "frostcrown"
+	fortitude_bonus = 2
+	prudence_bonus = 2
+	slot = HAT
 
 /datum/ego_gifts/fury
 	name = "Blind Fury"
@@ -633,6 +653,13 @@
 	insight_mod = 3
 	slot = EYE
 
+/datum/ego_gifts/aedd
+	name = "AEDD"
+	icon_state = "grinder"
+	temperance_bonus = -2
+	justice_bonus = 5
+	slot = CHEEK
+
 /datum/ego_gifts/morii
 	name = "Morii"
 	icon_state = "morii"
@@ -645,13 +672,6 @@
 	icon_state = "harmony"
 	fortitude_bonus = 8
 	prudence_bonus = -4
-	slot = CHEEK
-
-/datum/ego_gifts/frost_splinter
-	name = "Cruelty of Winter and Aroma of Roses"
-	icon_state = "frost_splinter"
-	fortitude_bonus = 6
-	prudence_bonus = 6
 	slot = CHEEK
 
 /datum/ego_gifts/harvest
@@ -977,11 +997,6 @@
 	justice_bonus = 2
 	slot = FACE
 
-/datum/ego_gifts/coiling
-	name = "Coiling"
-	icon_state = "coiling"
-	fortitude_bonus = 5
-	slot = MOUTH_2
 
 /datum/ego_gifts/correctional
 	name = "Correctional"
@@ -1247,6 +1262,24 @@
 	justice_bonus = 6
 	slot = EYE
 
+/datum/ego_gifts/sunyata
+	name = "Bloody Gadget"
+	icon_state = "sunyata"
+	fortitude_bonus = 1
+	prudence_bonus = 2
+	temperance_bonus = 1
+	justice_bonus = 2
+	slot = HAND_1
+
+/datum/ego_gifts/good_intentions
+	name = "Good Intentions" //no stat bonuses but a minor boost to all works
+	icon_state = "good_intentions"
+	instinct_mod = 3
+	insight_mod = 3
+	attachment_mod = 3
+	repression_mod = 3
+	slot = HAT
+
 /**
  * ALEPH EGO Gifts
  */
@@ -1401,6 +1434,13 @@
  * Event EGO Gifts
  */
 
+/datum/ego_gifts/sheep
+	name = "Sheeps Clothing"
+	icon_state = "sheep"
+	fortitude_bonus = 9
+	justice_bonus = -3
+	slot = HAT
+
 /datum/ego_gifts/blessing
 	name = "Blessing"
 	desc = "Provides the user with 20% resistance to PALE damage."
@@ -1501,3 +1541,10 @@
 	if(!damage)
 		return
 	owner.adjustBruteLoss(-damage*0.75)
+
+/datum/ego_gifts/luckdraw
+	name = "Luck of the Draw"
+	icon_state = "luckdraw"
+	temperance_bonus = -1
+	justice_bonus = 3
+	slot = HAT

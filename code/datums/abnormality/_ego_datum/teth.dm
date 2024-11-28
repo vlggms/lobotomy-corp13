@@ -10,12 +10,12 @@
 // Punishing bird - Beak & Beak MK2
 /datum/ego_datum/weapon/beak
 	item_category = "Weapon (SMG)"
-	item_path = /obj/item/gun/ego_gun/beak
+	item_path = /obj/item/ego_weapon/ranged/beak
 	cost = 20
 
 /datum/ego_datum/weapon/beakmagnum
 	item_category = "Weapon (Pistol)"
-	item_path = /obj/item/gun/ego_gun/pistol/beakmagnum
+	item_path = /obj/item/ego_weapon/ranged/pistol/beakmagnum
 	cost = 20
 
 /datum/ego_datum/armor/beak
@@ -24,7 +24,7 @@
 
 // Scorched girl - Fourth match flame
 /datum/ego_datum/weapon/match
-	item_path = /obj/item/gun/ego_gun/match
+	item_path = /obj/item/ego_weapon/ranged/match
 	cost = 25
 
 /datum/ego_datum/armor/match
@@ -74,14 +74,14 @@
 
 // 1.76 MHz - Noise
 /datum/ego_datum/weapon/noise
-	item_path = /obj/item/gun/ego_gun/noise
+	item_path = /obj/item/ego_weapon/ranged/noise
 	cost = 20
 
 /datum/ego_datum/armor/noise
 	item_path = /obj/item/clothing/suit/armor/ego_gear/teth/noise
 	cost = 20
 
-//Bloodbath - Wrist Cutter
+// Bloodbath - Wrist Cutter
 /datum/ego_datum/weapon/wrist
 	item_path = /obj/item/ego_weapon/mini/wrist
 	cost = 20
@@ -92,7 +92,7 @@
 
 // Old Lady - Solitude
 /datum/ego_datum/weapon/solitude
-	item_path = /obj/item/gun/ego_gun/pistol/solitude
+	item_path = /obj/item/ego_weapon/ranged/pistol/solitude
 	cost = 20
 
 /datum/ego_datum/armor/solitude
@@ -119,14 +119,14 @@
 
 // Today's Shy Look - Today's Expression
 /datum/ego_datum/weapon/shy
-	item_path = /obj/item/gun/ego_gun/pistol/shy
+	item_path = /obj/item/ego_weapon/ranged/pistol/shy
 	cost = 20
 
 /datum/ego_datum/armor/shy
 	item_path = /obj/item/clothing/suit/armor/ego_gear/teth/shy
 	cost = 20
 
-//Grave of Cherry Blossoms - Blossom
+// Grave of Cherry Blossoms - Blossom
 /datum/ego_datum/weapon/blossom
 	item_path = /obj/item/ego_weapon/mini/blossom
 	cost = 20
@@ -135,7 +135,7 @@
 	item_path = /obj/item/clothing/suit/armor/ego_gear/teth/blossoms
 	cost = 20
 
-//Gone with a Simple Smile - Hat Trick
+// Gone with a Simple Smile - Hat Trick
 /datum/ego_datum/weapon/trick
 	item_path = /obj/item/ego_weapon/mini/trick
 	cost = 20
@@ -144,7 +144,7 @@
 	item_path = /obj/item/clothing/suit/armor/ego_gear/teth/trick
 	cost = 20
 
-//Penitent Girl - Sorrow
+// Penitent Girl - Sorrow
 /datum/ego_datum/weapon/sorrow
 	item_path = /obj/item/ego_weapon/sorrow
 	cost = 20
@@ -153,7 +153,7 @@
 	item_path = /obj/item/clothing/suit/armor/ego_gear/teth/sorrow
 	cost = 20
 
-//Drowned Sisters - Sorority
+// Drowned Sisters - Sorority
 /datum/ego_datum/weapon/sorority
 	item_path = /obj/item/ego_weapon/sorority
 	cost = 20
@@ -162,16 +162,16 @@
 	item_path = /obj/item/clothing/suit/armor/ego_gear/teth/sorority
 	cost = 20
 
-//Void Dream - Engulfing Dream
+// Void Dream - Engulfing Dream
 /datum/ego_datum/weapon/dream
-	item_path = /obj/item/gun/ego_gun/dream
+	item_path = /obj/item/ego_weapon/ranged/dream
 	cost = 20
 
 /datum/ego_datum/armor/dream
 	item_path = /obj/item/clothing/suit/armor/ego_gear/teth/dream
 	cost = 20
 
-//Beanstalk without Jack - Magic Bean
+// Beanstalk without Jack - Magic Bean
 /datum/ego_datum/armor/bean
 	item_path = /obj/item/clothing/suit/armor/ego_gear/teth/bean
 	cost = 20
@@ -181,7 +181,7 @@
 	item_path = /obj/item/ego_weapon/mini/bean
 	cost = 20
 
-//Pale Horse - Revelation
+// Pale Horse - Revelation
 /datum/ego_datum/armor/revelation
 	item_path = /obj/item/clothing/suit/armor/ego_gear/teth/revelation
 	cost = 20
@@ -195,7 +195,7 @@
 	item_path = /obj/item/ego_weapon/hearth
 	cost = 20
 
-//Meat Lantern - Lantern
+// Meat Lantern - Lantern
 /datum/ego_datum/armor/lantern
 	item_path = /obj/item/clothing/suit/armor/ego_gear/teth/lantern
 	cost = 20
@@ -204,7 +204,7 @@
 	item_path = /obj/item/ego_weapon/lantern
 	cost = 20
 
-//Cinderella's pumpkin - carriage
+// Cinderella's pumpkin - carriage
 /datum/ego_datum/armor/curfew
 	item_path = /obj/item/clothing/suit/armor/ego_gear/teth/curfew
 	cost = 20
@@ -213,48 +213,48 @@
 	item_path = /obj/item/ego_weapon/lance/curfew
 	cost = 20
 
-//Lady facing the Wall - Wedge
+// Lady facing the Wall - Wedge
 /datum/ego_datum/armor/wedge
 	item_path = /obj/item/clothing/suit/armor/ego_gear/teth/wedge
 	cost = 20
 
-//Book Without Pictures or Dialogue - Page
+// Book Without Pictures or Dialogue - Page
 /datum/ego_datum/armor/page
 	item_path = /obj/item/clothing/suit/armor/ego_gear/teth/page
 	cost = 20
 
 /datum/ego_datum/weapon/page
-	item_path = /obj/item/gun/ego_gun/page
+	item_path = /obj/item/ego_weapon/ranged/page
 	cost = 20
 
-//Tangle - Rapunzel
-/* /datum/ego_datum/armor/rapunzel
+// Tangle - Rapunzel
+/datum/ego_datum/armor/rapunzel
 	item_path = /obj/item/clothing/suit/armor/ego_gear/teth/rapunzel
 	cost = 20
 
 /datum/ego_datum/weapon/rapunzel
-	item_path = /obj/item/gun/ego_gun/rapunzel
-	cost = 20 */
+	item_path = /obj/item/ego_weapon/rapunzel
+	cost = 20
 
-//Someone's Portrait - Snapshot
+// Someone's Portrait - Snapshot
 /datum/ego_datum/armor/snapshot
 	item_path = /obj/item/clothing/suit/armor/ego_gear/teth/snapshot
 	cost = 20
 
 /datum/ego_datum/weapon/snapshot
-	item_path = /obj/item/gun/ego_gun/snapshot
+	item_path = /obj/item/ego_weapon/ranged/snapshot
 	cost = 20
 
-//Pagoda Veneration - Wishing Cairn
+// Pagoda Veneration - Wishing Cairn
 /datum/ego_datum/armor/wishing_cairn
 	item_path = /obj/item/clothing/suit/armor/ego_gear/teth/wishing_cairn
 	cost = 20
 
 /datum/ego_datum/weapon/wishing_cairn
-	item_path = /obj/item/gun/ego_gun/wishing_cairn
+	item_path = /obj/item/ego_weapon/ranged/wishing_cairn
 	cost = 20
 
-//Fairy Gentleman - Sloshing
+// Fairy Gentleman - Sloshing
 /datum/ego_datum/armor/sloshing
 	item_path = /obj/item/clothing/suit/armor/ego_gear/teth/sloshing
 	cost = 20
@@ -263,7 +263,7 @@
 	item_path = /obj/item/ego_weapon/sloshing
 	cost = 20
 
-//So That No One Will Cry - Red Sheet
+// So That No One Will Cry - Red Sheet
 /datum/ego_datum/armor/red_sheet
 	item_path = /obj/item/clothing/suit/armor/ego_gear/teth/red_sheet
 	cost = 20
@@ -272,7 +272,7 @@
 	item_path = /obj/item/ego_weapon/red_sheet
 	cost = 20
 
-//Brazen Bull - Capote
+// Brazen Bull - Capote
 /datum/ego_datum/armor/capote
 	item_path = /obj/item/clothing/suit/armor/ego_gear/teth/capote
 	cost = 20
@@ -281,7 +281,7 @@
 	item_path = /obj/item/ego_weapon/shield/capote
 	cost = 20
 
-//Fairy-Long-Legs - Four-Leaf Clover
+// Fairy-Long-Legs - Four-Leaf Clover
 /datum/ego_datum/armor/fourleaf_clover
 	item_path = /obj/item/clothing/suit/armor/ego_gear/teth/fourleaf_clover
 	cost = 20
@@ -290,16 +290,16 @@
 	item_path = /obj/item/ego_weapon/mini/fourleaf_clover
 	cost = 20
 
-//Red Blooded American - Patriot
+// Red Blooded American - Patriot
 /datum/ego_datum/armor/patriot
 	item_path = /obj/item/clothing/suit/armor/ego_gear/teth/patriot
 	cost = 20
 
 /datum/ego_datum/weapon/patriot
-	item_path = /obj/item/gun/ego_gun/patriot
+	item_path = /obj/item/ego_weapon/ranged/patriot
 	cost = 20
 
-//Spirit of Falada - Zauberhorn
+// Spirit of Falada - Zauberhorn
 /datum/ego_datum/armor/zauberhorn
 	item_path = /obj/item/clothing/suit/armor/ego_gear/teth/zauberhorn
 	cost = 20
@@ -308,7 +308,7 @@
 	item_path = /obj/item/ego_weapon/zauberhorn
 	cost = 20
 
-//Skin Prophecy - Visions of Future Past
+// Skin Prophecy - Visions of Future Past
 /datum/ego_datum/armor/visions
 	item_path = /obj/item/clothing/suit/armor/ego_gear/teth/visions
 	cost = 20
@@ -317,7 +317,7 @@
 	item_path = /obj/item/ego_weapon/lance/visions
 	cost = 20
 
-//All-Around Cleaner - Sanitizer
+// All-Around Cleaner - Sanitizer
 /datum/ego_datum/armor/sanitizer
 	item_path = /obj/item/clothing/suit/armor/ego_gear/teth/sanitizer
 	cost = 20
@@ -326,7 +326,25 @@
 	item_path = /obj/item/ego_weapon/sanitizer
 	cost = 20
 
-//Faelantern - Midwinter Nightmare
+// Faelantern - Midwinter Nightmare
 /datum/ego_datum/armor/faelantern
 	item_path = /obj/item/clothing/suit/armor/ego_gear/teth/faelantern
+	cost = 20
+
+//Dealer of the Damned - Luck of the Draw
+/datum/ego_datum/weapon/luckdraw
+	item_path = /obj/item/ego_weapon/ranged/luckdraw
+	cost = 20
+
+/datum/ego_datum/armor/luckdraw
+	item_path = /obj/item/clothing/suit/armor/ego_gear/teth/luckdraw
+	cost = 20
+
+//Forsaken Employee - Denial
+/datum/ego_datum/weapon/denial
+	item_path = /obj/item/ego_weapon/denial
+	cost = 20
+
+/datum/ego_datum/armor/denial
+	item_path = /obj/item/clothing/suit/armor/ego_gear/teth/denial
 	cost = 20

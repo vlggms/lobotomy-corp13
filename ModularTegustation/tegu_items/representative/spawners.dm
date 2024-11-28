@@ -52,6 +52,53 @@
 	..()
 	new_spawn.adjust_attribute_level(JUSTICE_ATTRIBUTE, 60)
 
+/obj/effect/mob_spawn/human/supplypod/r_corp/roadrunner_call
+	name = "roadrunner teleport zone"
+	desc = "A authorized zone for teleporting in roadrunners."
+	mob_name = "Suppressive Roadrunner"
+	outfit = /datum/outfit/job/roadrunner/ert
+	assignedrole = "SGT"
+	spawn_level = 70
+	uses = 4 //Just 130 so I think they need less uses
+
+/obj/effect/mob_spawn/human/supplypod/r_corp/roadrunner_call/special(mob/living/carbon/human/new_spawn)
+	..()
+	new_spawn.adjust_attribute_level(JUSTICE_ATTRIBUTE, 130)
+
+/obj/effect/mob_spawn/human/supplypod/r_corp/rooster_call
+	name = "rooster teleport zone"
+	desc = "A authorized zone for teleporting in roosters."
+	mob_name = "Gunner Rooster"
+	outfit = /datum/outfit/job/rooster/ert
+	assignedrole = "SGT"
+	spawn_level = 60
+
+/obj/effect/mob_spawn/human/supplypod/r_corp/rooster_call/special(mob/living/carbon/human/new_spawn)
+	..()
+	new_spawn.adjust_attribute_level(FORTITUDE_ATTRIBUTE, 100)
+	new_spawn.adjust_attribute_level(PRUDENCE_ATTRIBUTE, 100)
+
+/obj/effect/mob_spawn/human/supplypod/r_corp/berserker_call
+	name = "berserker reindeer teleport zone"
+	desc = "A authorized zone for teleporting in reindeers."
+	mob_name = "Berserker Reindeer"
+	outfit = /datum/outfit/job/reindeer/berserker/ert
+	assignedrole = "SGT"
+	spawn_level = 60
+
+/obj/effect/mob_spawn/human/supplypod/r_corp/scoutraven_call
+	name = "raven teleport zone"
+	desc = "A authorized zone for teleporting in ravens."
+	mob_name = "Scout Raven"
+	outfit = /datum/outfit/job/raven/ert
+	assignedrole = "SPC"
+	spawn_level = 40
+	uses = 3
+
+/obj/effect/mob_spawn/human/supplypod/r_corp/scoutraven_call/special(mob/living/carbon/human/new_spawn)
+	..()
+	new_spawn.adjust_attribute_level(JUSTICE_ATTRIBUTE, 60)
+
 //Rhino Mobspawner
 /obj/effect/mob_spawn/human/supplypod/r_corp/rhino_call
 	name = "rhino teleport zone"
@@ -119,7 +166,7 @@
 /obj/effect/mob_spawn/human/supplypod/r_corp/zwei_call
 	name = "Zwei teleport zone"
 	desc = "A authorized zone for teleporting in zwei fixers."
-	short_desc = "You are part of the Zwei Association, stick together and assist the people of htis station."
+	short_desc = "You are part of the Zwei Association, stick together and assist the people of this station."
 	flavour_text = "You've been paid to assist L-Corp today. Be their shield"
 	mob_name = "Zwei Fixer"
 	outfit = /datum/outfit/zwei_shield

@@ -17,7 +17,7 @@
 	window_name = "Automatic Station Cleaner v1.4"
 	pass_flags = PASSMOB | PASSFLAPS
 	path_image_color = "#993299"
-	auto_patrol = TRUE // Let's get going, naturally!
+	auto_patrol = FALSE // Let's get going, naturally!
 	path_hud = null // No patrol visual. Literally all that was required.
 
 	var/blood = 1

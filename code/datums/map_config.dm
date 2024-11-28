@@ -5,7 +5,7 @@
 
 /datum/map_config
 	// Metadata
-	var/config_filename = "_maps/metastation.json"
+	var/config_filename = "_maps/alphacorp.json"
 	var/defaulted = TRUE  // set to FALSE by LoadConfig() succeeding
 	// Config from maps.txt
 	var/config_max_users = 0
@@ -14,16 +14,16 @@
 	var/votable = FALSE
 
 	// Config actually from the JSON - should default to Meta
-	var/map_name = "Meta Station"
-	var/map_path = "map_files/MetaStation"
-	var/map_file = "MetaStation.dmm"
+	var/map_name = "Facility A-098 ALPHA"
+	var/map_path = "map_files/Alpha"
+	var/map_file = "alphacorp.dmm"
 
 	var/traits = null
-	var/space_ruin_levels = 7
-	var/space_empty_levels = 1
+	var/space_ruin_levels = 0
+	var/space_empty_levels = 0
 
-	var/minetype = "lavaland"
-	var/faction = "Lcorp"
+	var/minetype = "none"
+	var/faction = "Station"
 
 	var/allow_custom_shuttles = TRUE
 	var/shuttles = list(

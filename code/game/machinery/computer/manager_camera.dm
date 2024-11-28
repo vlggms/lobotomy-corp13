@@ -259,6 +259,9 @@ GLOBAL_VAR_INIT(execution_enabled, FALSE)
 		if(H.mind.assigned_role == "Sephirah" || H.mind.assigned_role == "Main Office Representative") //Too important to execute
 			to_chat(owner, span_warning("ERROR: BULLET INITIALIZATION FAILURE - TARGET ENTITY EXCEEDS USER AUTHORITY."))
 			return FALSE
+	if(SSmaptype.maptype == "skeld")
+		to_chat(owner, span_warning("ERROR: BULLET INITIALIZATION FAILURE - MALFUNCTION IN EXECUTION BULLET ACTIVATION."))
+		return FALSE
 	switch(tgui_alert(owner,"Really kill [H]? Admins will be notified of this action and you will be responsible for the consequences.","Execution bullet ready to fire",list("Yes", "No"), 3 SECONDS))
 		if("Yes")
 			log_admin("[key_name(owner)] has fired an execution bullet at player [key_name(H)] who was playing as [H].")

@@ -431,7 +431,7 @@
 		/obj/item/food/cake/birthday=1)
 
 /datum/outfit/job/raven/ert
-	name = "R-Corp Scout Raven"
+	name = "Raven Team"
 	jobtype = /datum/job/raven
 
 	ears = /obj/item/radio/headset/headset_cent/alt
@@ -443,11 +443,26 @@
 	head = /obj/item/clothing/head/rabbit_helmet/raven/grunt
 	suit = /obj/item/clothing/suit/armor/ego_gear/rabbit/raven
 	belt = /obj/item/ego_weapon/city/rabbit_blade/raven
-	r_pocket = /obj/item/pinpointer/nuke/rcorp
+	r_pocket = /obj/item/reagent_containers/hypospray/medipen/salacid
 	backpack_contents = list(
 		/obj/item/grenade/smokebomb = 1)
 
 /datum/outfit/job/raven/ert/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
+	if(visualsOnly)
+		return
+
+	var/obj/item/implant/sanity_death/L = new/obj/item/implant/sanity_death(H)
+	L.implant(H, null, 1)
+	H.faction |= "rabbit"
+	..()
+
+/datum/outfit/job/reindeer/berserker/ert
+	name = "Reindeer team"
+
+	ears = /obj/item/radio/headset/headset_cent/alt
+	r_pocket = /obj/item/reagent_containers/hypospray/medipen/mental
+
+/datum/outfit/job/reindeer/berserker/ert/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
 	if(visualsOnly)
 		return
 
@@ -537,6 +552,36 @@
 		)
 
 /datum/outfit/centcom/ert/security/rhino/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
+	if(visualsOnly)
+		return
+
+	var/obj/item/implant/sanity_death/L = new/obj/item/implant/sanity_death(H)
+	L.implant(H, null, 1)
+	H.faction |= "rabbit"
+	..()
+
+/datum/outfit/job/roadrunner/ert
+	name = "Roadrunner Team"
+
+	ears = /obj/item/radio/headset/headset_cent/alt
+	r_pocket = /obj/item/reagent_containers/hypospray/medipen/salacid
+
+/datum/outfit/job/roadrunner/ert/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
+	if(visualsOnly)
+		return
+
+	var/obj/item/implant/sanity_death/L = new/obj/item/implant/sanity_death(H)
+	L.implant(H, null, 1)
+	H.faction |= "rabbit"
+	..()
+
+/datum/outfit/job/rooster/ert
+	name = "Rooster Team"
+
+	ears = /obj/item/radio/headset/headset_cent/alt
+	r_pocket = /obj/item/reagent_containers/hypospray/medipen/salacid
+
+/datum/outfit/job/rooster/ert/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
 	if(visualsOnly)
 		return
 

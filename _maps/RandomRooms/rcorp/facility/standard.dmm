@@ -1117,7 +1117,7 @@
 	dir = 10
 	},
 /obj/structure/rack,
-/obj/item/gun/ego_gun/clerk,
+/obj/item/ego_weapon/ranged/clerk,
 /turf/open/floor/plasteel/dark,
 /area/city/outskirts)
 "vS" = (
@@ -1881,7 +1881,7 @@
 	dir = 9
 	},
 /obj/structure/rack,
-/obj/item/gun/ego_gun/clerk,
+/obj/item/ego_weapon/ranged/clerk,
 /turf/open/floor/plasteel/dark,
 /area/city/outskirts)
 "Jl" = (
@@ -2625,6 +2625,10 @@
 	dir = 1
 	},
 /turf/open/floor/carpet/purple,
+/area/city/outskirts)
+"Xb" = (
+/obj/effect/landmark/abnospawn/rhinobuster,
+/turf/open/floor/plating/asteroid,
 /area/city/outskirts)
 "Xg" = (
 /obj/structure/grille/broken,
@@ -14593,7 +14597,7 @@ Im
 Im
 Im
 Im
-cI
+Xb
 Im
 Im
 Im

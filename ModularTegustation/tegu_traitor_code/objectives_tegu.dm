@@ -1,3 +1,4 @@
+/*
 /datum/objective_item/steal/iandog
 	name = "Ian, the Head of Personnel's pet corgi, alive."
 	targetitem = /obj/item/pet_carrier
@@ -59,6 +60,7 @@
 	targetitem = /obj/item/clothing/mask/facehugger/lamarr
 	difficulty = 40
 	excludefromjob = list("Research Director")
+*/
 
 /datum/objective/escape/escape_with_identity/infiltrator/New() //For infiltrators, so they get mulligan
 	var/list/spec_equipment = list()

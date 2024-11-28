@@ -27,6 +27,8 @@
 	egoist_outfit = /datum/outfit/job/civilian
 	egoist_attributes = 80
 	loot = list(/obj/item/documents/ncorporation, /obj/item/documents/ncorporation) //Placeholder, we need more loot items
+	/// Prolonged exposure to a monolith will convert the distortion into an abnormality. Need to confirm one with the lantern office people
+	monolith_abnormality = /mob/living/simple_animal/hostile/abnormality/big_bird
 	unmanifest_effect = /obj/effect/gibspawner/human
 	light_color = COLOR_YELLOW
 	light_range = 5

@@ -27,6 +27,8 @@
 	var/can_run = TRUE
 	/// World.time when ordeal started
 	var/start_time
+	/// Achivement for Surviving the Ordeal
+	var/ordeal_achievement
 
 /datum/ordeal/New()
 	..()
@@ -56,6 +58,15 @@
 	SSlobotomy_corp.AdjustAvailableBoxes(total_reward)
 	SSlobotomy_corp.current_ordeals -= src
 	SSlobotomy_corp.ordeal_stats += 5
+	for(var/mob/living/carbon/human/person as anything in SSabnormality_queue.active_suppression_agents)
+		if(!istype(person) || QDELETED(person)) // gibbed or cryo'd, we no longer care about them
+			SSabnormality_queue.active_suppression_agents -= person
+			continue
+
+		person.adjust_all_attribute_levels(5)
+		to_chat(person, span_notice("You feel stronger than before."))
+	//Gives a medal to survivors.
+	RewardSurvivors()
 	SSlobotomy_corp.AddLobPoints(level * 0.5, "Ordeal Reward")
 	if(end_sound)
 		for(var/mob/player in GLOB.player_list)
@@ -84,7 +95,7 @@
 /datum/ordeal/proc/OnMobDeath(mob/living/deadMob)
 	ordeal_mobs.Remove(deadMob)
 	ordeal_mobs = removeNullsFromList(ordeal_mobs)
-	if(!ordeal_mobs.len)
+	if(!length(ordeal_mobs))
 		End()
 	return
 
@@ -128,6 +139,32 @@
 	T.maptext = "<span style=\"[style1]\">[name]</span><br><span style=\"[style2]\">[flavor_name]</span><br><span style=\"[style3]\">[display_text]</span>"
 	addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(fade_blurb), C, T, fade_time), duration) //fade_blurb qdels the object
 	addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(fade_blurb), C, BG, fade_time), duration)
+
+/datum/ordeal/proc/RewardSurvivors()
+	if(!SSachievements.achievements_enabled || !ordeal_achievement)
+		return
+	for(var/client/C in GLOB.clients)
+		if(C)
+			RewardIndividual(C)
+
+/datum/ordeal/proc/RewardIndividual(client/player_client)
+	if(!ishuman(player_client.mob))
+		return FALSE
+	var/mob/living/carbon/human/human_mob = player_client.mob
+	if(human_mob.stat == DEAD)
+		return FALSE
+	//Managers and Rabbits do not get this achivement.
+	var/list/valid_roles = list(
+		"Clerk",
+		"Agent Captain",
+		"Agent",
+		"Agent Intern",
+		"Extraction Officer",
+		"Records Officer",
+		"Training Officer",
+		)
+	if(human_mob.mind.assigned_role in valid_roles)
+		player_client.give_award(ordeal_achievement, human_mob)
 
 //Black background for blurb
 /obj/effect/overlay/ordeal

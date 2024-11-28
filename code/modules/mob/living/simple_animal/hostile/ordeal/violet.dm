@@ -36,7 +36,7 @@
 			return A
 
 /mob/living/simple_animal/hostile/ordeal/violet_fruit/ListTargets()
-	if(!enemies.len)
+	if(!length(enemies))
 		return list()
 	var/list/see = ..()
 	see &= enemies // Remove all entries that aren't in enemies
@@ -631,13 +631,13 @@
 
 /datum/reusable_visual_pool/proc/NewPaleEyeAttack(turf/location, duration = 5)
 	var/obj/effect/reusable_visual/RV = TakePoolElement()
-	SET_RV_RETURN_TIMER(RV, duration)
 	RV.name = "pale particles"
 	RV.icon = 'icons/effects/effects.dmi'
 	RV.icon_state = "ion_fade_flight"
 	RV.dir = pick(GLOB.cardinals)
 	RV.loc = location
 	animate(RV, alpha = 0, time = duration)
+	DelayedReturn(RV, duration)
 	return RV
 
 /obj/effect/pale_eye

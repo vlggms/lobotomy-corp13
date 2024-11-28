@@ -4,6 +4,7 @@
 	icon = 'ModularTegustation/Teguicons/32x48.dmi'
 	icon_state = "american_idle"
 	icon_living = "american_idle"
+	core_icon = "american"
 	portrait = "red_blooded_american"
 	var/icon_furious = "american_idle_injured"
 	del_on_death = TRUE
@@ -47,18 +48,18 @@
 	gift_message = "Protect and serve."
 	abnormality_origin = ABNORMALITY_ORIGIN_ORIGINAL
 
-	observation_prompt = "\"I was a good soldier, you know.\" \
-\"Blowing freakshits away with my shotgun. Talking with my brothers in arms.\" \
-\"That's all I ever needed. All I ever wanted. Even now, I fight for the glory of my country.\" \
-\"Do you have anything, anyone, to serve and protect?\""
+	observation_prompt = "\"I was a good soldier, you know.\" <br>\
+		\"Blowing freakshits away with my shotgun. <br>Talking with my brothers in arms.\" <br>\
+		\"That's all I ever needed. <br>All I ever wanted. <br>Even now, I fight for the glory of my country.\" <br>\
+		\"Do you have anything, anyone, to serve and protect?\""
 	observation_choices = list("I don't.", "I do.")
 	correct_choices = list("I do.")
-	observation_success_message = "\"Heh.\" \
-\"We might not be on the same side but I can respect that.\" \
-\"Go on then, freak. Show me that you can protect what matters to you.\""
-	observation_fail_message = "\"Feh. Then what's the point of living, huh?\" \
-\"Without a flag to protect, without a goal to achieve...\" \
-\"Are you any better than an animal? Get out of my sight.\""
+	observation_success_message = "\"Heh.\" <br>\
+		\"We might not be on the same side but I can respect that.\" <br>\
+		\"Go on then, freak. <br>Show me that you can protect what matters to you.\""
+	observation_fail_message = "\"Feh. <br>Then what's the point of living, huh?\" <br>\
+		\"Without a flag to protect, without a goal to achieve...\" <br>\
+		\"Are you any better than an animal? <br>Get out of my sight.\""
 
 	var/bloodlust = 0 //more you do repression, more damage it deals. decreases on other works.
 	var/list/fighting_quotes = list(

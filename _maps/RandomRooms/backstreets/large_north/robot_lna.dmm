@@ -120,7 +120,7 @@
 	dir = 3
 	},
 /obj/structure/closet/crate/large,
-/obj/item/gun/ego_gun/pistol/kcorp/nade,
+/obj/item/ego_weapon/ranged/pistol/kcorp/nade,
 /obj/item/ego_weapon/shield/kcorp,
 /turf/open/floor/engine,
 /area/city/backstreets_room)

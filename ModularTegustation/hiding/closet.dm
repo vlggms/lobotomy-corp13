@@ -16,7 +16,7 @@
 		return ..()
 
 	for(var/mob/living/person in src)
-		for(var/turf/open/floor/funky_turf in range(2, drop_location()))
+		for(var/turf/open/funky_turf in range(2, drop_location()))
 			funky_turf.noise = initial(funky_turf.noise)
 			funky_turf.possible_hiding_players -= person
 
@@ -40,7 +40,7 @@
 		if(!istype(object, /mob/living))
 			continue
 		var/mob/living/beast = object
-		var/turf/open/floor/corpse_dirt = get_turf(src)
+		var/turf/open/corpse_dirt = get_turf(src)
 		for(var/person as anything in corpse_dirt.possible_hiding_players)
 			if(beast != person)
 				continue
@@ -77,7 +77,7 @@
  */
 /obj/structure/closet/proc/toggle_breathing(opened = TRUE)
 	if(!opened)
-		for(var/turf/open/floor/funky_turf in range(2, drop_location()))
+		for(var/turf/open/funky_turf in range(2, drop_location()))
 			if(show_breathing)
 				funky_turf.color = rgb(255, 255, 0)
 
@@ -91,7 +91,7 @@
 		return
 
 	// the closet is being opened, we need to remove the mobs and noise values from the lists
-	for(var/turf/open/floor/funky_turf in range(2, drop_location()))
+	for(var/turf/open/funky_turf in range(2, drop_location()))
 		if(show_breathing)
 			funky_turf.color = initial(funky_turf.color)
 

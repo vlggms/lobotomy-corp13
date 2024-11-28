@@ -30,10 +30,10 @@
 	secret_chance = TRUE
 	secret_icon_state = "megalovania"
 
-	observation_prompt = "The armor that took away many people's lives is sitting in front of you. You can put it on, if you wish."
+	observation_prompt = "The armor that took away many people's lives is sitting in front of you. <br>You can put it on, if you wish."
 	observation_choices = list("Put it on", "Dont't put it on")
 	correct_choices = list("Put it on")
-	observation_success_message = "It seems like you were not pacifist. You feel the armor's warm welcome."
+	observation_success_message = "It seems like you were not pacifist. <br>You feel the armor's warm welcome."
 	observation_fail_message = "The armor waits for another reckless one."
 
 	var/buff_icon = 'ModularTegustation/Teguicons/tegu_effects.dmi'
@@ -41,11 +41,23 @@
 	var/numbermarked
 	var/meltdown_cooldown //no spamming the meltdown effect
 	var/meltdown_cooldown_time = 30 SECONDS
+	var/armor_dispensed
+
+// Hacky code to make the final observation check for a gift type without actually having it as a gift type
+/mob/living/simple_animal/hostile/abnormality/crumbling_armor/FinalObservation(mob/living/carbon/human/user)
+	gift_type = /datum/ego_gifts/recklessCourage
+	..()
+	gift_type = null
 
 /mob/living/simple_animal/hostile/abnormality/crumbling_armor/ObservationResult(mob/living/carbon/human/user, condition)
 	. = ..()
 	if(condition)
-		new /obj/item/ego_weapon/shield/daredevil(get_turf(user)) //TODO : Replace this with a special wearable "crumbling armor"
+		var/datum/ego_gifts/recklessCourage/R = new
+		user.Apply_Gift(R)
+		if(!armor_dispensed) // You only get one of these. Ever.
+			new /obj/item/clothing/suit/armor/ego_gear/he/crumbling_armor(get_turf(user))
+			armor_dispensed = TRUE
+	datum_reference.observation_ready = FALSE
 
 /mob/living/simple_animal/hostile/abnormality/crumbling_armor/SuccessEffect(mob/living/carbon/human/user, work_type, pe)
 	. = ..()

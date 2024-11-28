@@ -8,9 +8,9 @@
 	/// Mob ref = Current attribute debuff
 	var/list/affected_mobs = list()
 	// Starting attribute debuff
-	var/attribute_debuff_count_starting = -10
+	var/attribute_debuff_count_starting = -5
 	// How much your attributes are debuffed after each ordeal
-	var/attribute_debuff_count = -10
+	var/attribute_debuff_count = -5
 	// Used for new arrivals
 	var/current_debuff_amount
 

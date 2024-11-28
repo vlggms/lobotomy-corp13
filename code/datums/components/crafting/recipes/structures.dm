@@ -8,6 +8,13 @@
 	result = /obj/structure/bonfire
 	category = CAT_STRUCT
 
+/datum/crafting_recipe/mannequin
+	name = "Mannequin"
+	result = /obj/structure/mannequin
+	reqs = list(/obj/item/stack/sheet/mineral/wood = 10)
+	time = 50
+	category = CAT_STRUCT
+
 /datum/crafting_recipe/blackcarpet
 	name = "Black Carpet"
 	reqs = list(/obj/item/stack/tile/carpet = 50, /obj/item/toy/crayon/black = 1)

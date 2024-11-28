@@ -271,22 +271,6 @@
 	alpha = 255
 	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 
-/obj/effect/temp_visual/floor_cracks
-	icon = 'ModularTegustation/Teguicons/tegu_effects.dmi'
-	icon_state = "cracks_dark"
-	duration = 30
-	layer = ABOVE_MOB_LAYER
-
-/obj/effect/temp_visual/ice_spike
-	icon = 'ModularTegustation/Teguicons/32x48.dmi'
-	icon_state = "ice_spike1"
-	duration = 5
-	layer = ABOVE_MOB_LAYER
-
-/obj/effect/temp_visual/ice_spike/Initialize()
-	. = ..()
-	icon_state = pick("ice_spike1", "ice_spike2", "ice_spike3")
-
 /obj/effect/areaflavor_snow
 	icon = 'icons/effects/weather_effects.dmi'
 	icon_state = "snowfall_calm"

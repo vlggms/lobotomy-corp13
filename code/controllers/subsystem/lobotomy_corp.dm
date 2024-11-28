@@ -48,7 +48,7 @@ SUBSYSTEM_DEF(lobotomy_corp)
 	// What ordeal level is being rolled for
 	var/next_ordeal_level = 1
 	// Minimum time for each ordeal level to occur. If requirement is not met - normal meltdown will occur
-	var/list/ordeal_timelock = list(10 MINUTES, 25 MINUTES, 45 MINUTES, 60 MINUTES, 0, 0, 0, 0, 0)
+	var/list/ordeal_timelock = list(20 MINUTES, 40 MINUTES, 60 MINUTES, 90 MINUTES, 0, 0, 0, 0, 0)
 	// Datum of the chosen ordeal. It's stored so manager can know what's about to happen
 	var/datum/ordeal/next_ordeal = null
 	/// List of currently running ordeals
@@ -101,7 +101,10 @@ SUBSYSTEM_DEF(lobotomy_corp)
 	var/auto_restart_in_progress = FALSE
 
 /datum/controller/subsystem/lobotomy_corp/Initialize(timeofday)
-	. = ..()
+	if(SSmaptype.maptype in SSmaptype.combatmaps) // sleep
+		flags |= SS_NO_FIRE
+		return ..()
+
 	RegisterSignal(SSdcs, COMSIG_GLOB_MOB_DEATH, PROC_REF(OnMobDeath))
 	addtimer(CALLBACK(src, PROC_REF(SetGoal)), 5 MINUTES)
 	addtimer(CALLBACK(src, PROC_REF(InitializeOrdeals)), 60 SECONDS)
@@ -109,8 +112,10 @@ SUBSYSTEM_DEF(lobotomy_corp)
 	for(var/F in subtypesof(/datum/facility_upgrade))
 		upgrades += new F
 
+	return ..()
+
 /datum/controller/subsystem/lobotomy_corp/proc/SetGoal()
-	var/player_mod = GLOB.clients.len * 0.15
+	var/player_mod = length(GLOB.player_list) * 0.2
 	box_goal = clamp(round(7500 * player_mod), 3000, 36000)
 	return TRUE
 
@@ -256,9 +261,13 @@ SUBSYSTEM_DEF(lobotomy_corp)
 	if((TETH_LEVEL in qliphoth_meltdown_affected) && ROUNDTIME >= 60 MINUTES)
 		qliphoth_meltdown_affected -= TETH_LEVEL
 	qliphoth_meter = 0
-	var/abno_amount = all_abnormality_datums.len
+	var/abno_amount = length(all_abnormality_datums)
 	var/player_count = AvailableAgentCount()
-	qliphoth_max = round((player_count > 1 ? 4 : 3) + player_count*1.5 + GLOB.Sephirahordealspeed) // Some extra help on non solo rounds
+	var/total_count = AvailableAgentCount(suppressioncount = TRUE)
+	var/suppression_modifier = 1
+	if(player_count != total_count)
+		suppression_modifier = 1.3
+	qliphoth_max = round((player_count > 1 ? 4 : 3) + player_count*1.5*suppression_modifier + GLOB.Sephirahordealspeed) // Some extra help on non solo rounds
 	qliphoth_state += 1
 	for(var/datum/abnormality/A in all_abnormality_datums)
 		if(istype(A.current))
@@ -312,10 +321,10 @@ SUBSYSTEM_DEF(lobotomy_corp)
 		meltdown_occured += computer
 	if(LAZYLEN(meltdown_occured))
 		var/text_info = ""
-		for(var/y = 1 to meltdown_occured.len)
+		for(var/y = 1 to length(meltdown_occured))
 			var/obj/machinery/computer/abnormality/computer = meltdown_occured[y]
 			text_info += computer.datum_reference.name
-			if(y != meltdown_occured.len)
+			if(y != length(meltdown_occured))
 				text_info += ", "
 		text_info += "."
 		// Announce next ordeal
@@ -366,6 +375,8 @@ SUBSYSTEM_DEF(lobotomy_corp)
 	if(length(GLOB.clients) <= 30)
 		return FALSE
 	if(!LAZYLEN(current_ordeals))
+		return FALSE
+	if(SSmaptype.maptype == "skeld")
 		return FALSE
 	var/agent_count = AvailableAgentCount()
 	if(agent_count > 0)

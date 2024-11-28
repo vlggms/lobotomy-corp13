@@ -1,6 +1,6 @@
-//Warden - Correctional
+// Warden - Correctional
 /datum/ego_datum/weapon/correctional
-	item_path = /obj/item/gun/ego_gun/correctional
+	item_path = /obj/item/ego_weapon/ranged/correctional
 	cost = 50
 
 /datum/ego_datum/armor/correctional
@@ -10,7 +10,7 @@
 // Queen bee - Hornet
 /datum/ego_datum/weapon/hornet
 	item_category = "Weapon (Rifle)"
-	item_path = /obj/item/gun/ego_gun/hornet
+	item_path = /obj/item/ego_weapon/ranged/hornet
 	cost = 50
 
 /datum/ego_datum/weapon/tattered_kingdom
@@ -42,7 +42,7 @@
 
 // Queen of hatred - In the name of love and hate
 /datum/ego_datum/weapon/hatred
-	item_path = /obj/item/gun/ego_gun/hatred
+	item_path = /obj/item/ego_weapon/ranged/hatred
 	cost = 50
 
 /datum/ego_datum/armor/hatred
@@ -57,12 +57,12 @@
 // Der Freischutz - Magic Bullet & Magic Pistol
 /datum/ego_datum/weapon/magicbullet
 	item_category = "Weapon (Rifle)"
-	item_path = /obj/item/gun/ego_gun/magicbullet
+	item_path = /obj/item/ego_weapon/ranged/magicbullet
 	cost = 50
 
 /datum/ego_datum/weapon/magicpistol
 	item_category = "Weapon (Hand Cannon)"
-	item_path = /obj/item/gun/ego_gun/pistol/magic_pistol
+	item_path = /obj/item/ego_weapon/ranged/pistol/magic_pistol
 	cost = 50
 
 // Blue Smocked Shepard - Oppression
@@ -83,26 +83,26 @@
 	item_path = /obj/item/clothing/suit/armor/ego_gear/waw/totalitarianism
 	cost = 50
 
-//Funeral of the Dead Butterflies - Solemn Vow and Solemn Lament
+// Funeral of the Dead Butterflies - Solemn Vow and Solemn Lament
 /datum/ego_datum/weapon/solemnvow
 	item_category = "Weapon (Black Pistol)"
-	item_path = /obj/item/gun/ego_gun/pistol/solemnvow
+	item_path = /obj/item/ego_weapon/ranged/pistol/solemnvow
 	cost = 35
 
 /datum/ego_datum/weapon/solemnlament
 	item_category = "Weapon (White Pistol)"
-	item_path = /obj/item/gun/ego_gun/pistol/solemnlament
+	item_path = /obj/item/ego_weapon/ranged/pistol/solemnlament
 	cost = 35
 
 // General Bee - Loyalty & Praetorian
 /datum/ego_datum/weapon/loyalty
 	item_category = "Weapon (Rifle)"
-	item_path = /obj/item/gun/ego_gun/loyalty
+	item_path = /obj/item/ego_weapon/ranged/loyalty
 	cost = 50
 
 /datum/ego_datum/weapon/praetorian
 	item_category = "Weapon (Pistol)"
-	item_path = /obj/item/gun/ego_gun/pistol/praetorian
+	item_path = /obj/item/ego_weapon/ranged/pistol/praetorian
 	cost = 50
 
 /datum/ego_datum/armor/loyalty
@@ -120,7 +120,7 @@
 	cost = 50
 
 /datum/ego_datum/weapon/executive
-	item_path = /obj/item/gun/ego_gun/pistol/executive
+	item_path = /obj/item/ego_weapon/ranged/pistol/executive
 	cost = 50
 
 // Price Of Silence - Dead Silence
@@ -138,10 +138,10 @@
 	cost = 50
 
 /datum/ego_datum/weapon/ecstasy
-	item_path = /obj/item/gun/ego_gun/ecstasy
+	item_path = /obj/item/ego_weapon/ranged/ecstasy
 	cost = 50
 
-//Snow Whites Apple - Green_Stem
+// Snow Whites Apple - Green_Stem
 /datum/ego_datum/armor/stem
 	item_path = /obj/item/clothing/suit/armor/ego_gear/waw/stem
 	cost = 50
@@ -157,12 +157,12 @@
 
 /datum/ego_datum/weapon/intentions
 	item_category = "Weapon (SMG)"
-	item_path = /obj/item/gun/ego_gun/intentions
+	item_path = /obj/item/ego_weapon/ranged/intentions
 	cost = 50
 
 /datum/ego_datum/weapon/laststop
 	item_category = "Weapon (Hand Cannon)"
-	item_path = /obj/item/gun/ego_gun/pistol/laststop
+	item_path = /obj/item/ego_weapon/ranged/pistol/laststop
 	cost = 50
 
 // Alriune - Aroma
@@ -171,7 +171,7 @@
 	cost = 50
 
 /datum/ego_datum/weapon/aroma
-	item_path = /obj/item/gun/ego_gun/aroma
+	item_path = /obj/item/ego_weapon/ranged/aroma
 	cost = 50
 
 // Yang - Assonance
@@ -180,12 +180,12 @@
 	cost = 50
 
 /datum/ego_datum/weapon/assonance
-	item_path = /obj/item/gun/ego_gun/assonance
+	item_path = /obj/item/ego_weapon/ranged/assonance
 	cost = 50
 
 // Naked Nest - Exuviae
 /datum/ego_datum/weapon/exuviae
-	item_path = /obj/item/gun/ego_gun/exuviae
+	item_path = /obj/item/ego_weapon/ranged/exuviae
 	cost = 50
 
 /datum/ego_datum/armor/exuviae
@@ -224,7 +224,7 @@
 
 /datum/ego_datum/weapon/warring
 	item_category = "Weapon (Bow)"
-	item_path = /obj/item/gun/ego_gun/warring
+	item_path = /obj/item/ego_weapon/ranged/warring
 	cost = 50
 
 /datum/ego_datum/weapon/warring2
@@ -245,7 +245,7 @@
 	item_path = /obj/item/ego_weapon/mini/malice
 	cost = 50
 
-//Dream of a Black Swan - Black Swan
+// Dream of a Black Swan - Black Swan
 /datum/ego_datum/weapon/swan
 	item_path = /obj/item/ego_weapon/shield/swan
 	cost = 50
@@ -266,7 +266,7 @@
 
 /datum/ego_datum/weapon/banquet
 	item_category = "Weapon (Cannon)"
-	item_path = /obj/item/gun/ego_gun/banquet
+	item_path = /obj/item/ego_weapon/ranged/banquet
 	cost = 50
 
 // Sphinx - Pharaoh
@@ -297,7 +297,6 @@
 	cost = 50
 
 // Servant of Wrath - Blind Rage
-
 /datum/ego_datum/weapon/blind_rage
 	item_path = /obj/item/ego_weapon/blind_rage
 	cost = 50
@@ -307,7 +306,7 @@
 	cost = 50
 
 /datum/ego_datum/weapon/blind_gun
-	item_path = /obj/item/gun/ego_gun/blind_rage
+	item_path = /obj/item/ego_weapon/ranged/blind_rage
 	cost = 50 // Unused, available from the well.
 
 // Flesh Idol - Bleeding Heart
@@ -346,7 +345,7 @@
 	item_path = /obj/item/ego_weapon/amrita
 	cost = 50
 
-//Yin - Discord
+// Yin - Discord
 /datum/ego_datum/armor/discord
 	item_path = /obj/item/clothing/suit/armor/ego_gear/waw/discord
 	cost = 50
@@ -355,7 +354,7 @@
 	item_path = /obj/item/ego_weapon/discord
 	cost = 50
 
-//Little Red Riding Hood Mercenary - Crimson Scar & Crimson Claw
+// Little Red Riding Hood Mercenary - Crimson Scar & Crimson Claw
 /datum/ego_datum/armor/crimson
 	item_path = /obj/item/clothing/suit/armor/ego_gear/waw/crimson
 	cost = 50
@@ -367,10 +366,10 @@
 
 /datum/ego_datum/weapon/crimson/gun
 	item_category = "Weapon (Hand Cannon)"
-	item_path = /obj/item/gun/ego_gun/pistol/crimson
+	item_path = /obj/item/ego_weapon/ranged/pistol/crimson
 	cost = 50
 
-//My Sweet Orange Tree - Innocence
+// My Sweet Orange Tree - Innocence
 /datum/ego_datum/armor/innocence
 	item_path = /obj/item/clothing/suit/armor/ego_gear/waw/innocence
 	cost = 50
@@ -382,10 +381,10 @@
 
 /datum/ego_datum/weapon/innocence/gun
 	item_category = "Weapon (Pistol)"
-	item_path = /obj/item/gun/ego_gun/pistol/innocence
+	item_path = /obj/item/ego_weapon/ranged/pistol/innocence
 	cost = 50
 
-//Baba Yaga - Rimeshank
+// Baba Yaga - Rimeshank
 /datum/ego_datum/armor/rimeshank
 	item_path = /obj/item/clothing/suit/armor/ego_gear/waw/rimeshank
 	cost = 50
@@ -400,12 +399,12 @@
 	cost = 50
 
 /datum/ego_datum/weapon/hypocrisy
-	item_path = /obj/item/gun/ego_gun/hypocrisy
+	item_path = /obj/item/ego_weapon/ranged/hypocrisy
 	cost = 50
 
 // Pygmalion - My own Bride
 /datum/ego_datum/weapon/my_own_bride
-	item_path = /obj/item/gun/ego_gun/my_own_bride
+	item_path = /obj/item/ego_weapon/ranged/my_own_bride
 	cost = 50
 
 /datum/ego_datum/armor/my_own_bride
@@ -430,7 +429,7 @@
 	item_path = /obj/item/ego_weapon/psychic
 	cost = 50
 
-//Missed Reaper - Grasp
+// Missed Reaper - Grasp
 /datum/ego_datum/weapon/grasp
 	item_path = /obj/item/ego_weapon/grasp
 	cost = 50
@@ -444,7 +443,7 @@
 	item_path = /obj/item/ego_weapon/cobalt
 	cost = 50
 
-//Poor Screenwriter's Note - Scenario
+// Poor Screenwriter's Note - Scenario
 /datum/ego_datum/armor/scene
 	item_path = /obj/item/clothing/suit/armor/ego_gear/waw/scene
 	cost = 50
@@ -453,7 +452,7 @@
 	item_path = /obj/item/ego_weapon/scene
 	cost = 50
 
-//Sign of Roses - Garden Of Thorns
+// Sign of Roses - Garden Of Thorns
 /datum/ego_datum/armor/rosa
 	item_path = /obj/item/clothing/suit/armor/ego_gear/waw/rosa
 	cost = 50
@@ -462,7 +461,7 @@
 	item_path = /obj/item/ego_weapon/rosa
 	cost = 50
 
-//Dream-Devouring Siltcurrent - Blind Obsession/Abyssal-Route
+// Dream-Devouring Siltcurrent - Blind Obsession/Abyssal-Route
 /datum/ego_datum/armor/blind_obsession
 	item_path = /obj/item/clothing/suit/armor/ego_gear/waw/blind_obsession
 	cost = 50
@@ -475,3 +474,35 @@
 	item_path = /obj/item/ego_weapon/abyssal_route
 	cost = 50
 
+// Sandolph - Holiday
+/datum/ego_datum/weapon/holiday
+	item_path = /obj/item/ego_weapon/holiday
+	cost = 50
+
+/datum/ego_datum/armor/holiday
+	item_path = /obj/item/clothing/suit/armor/ego_gear/waw/holiday
+	cost = 50
+
+//My Form Empties- Ya Sunyata Tad Rupam
+/datum/ego_datum/armor/sunyata
+	item_path = /obj/item/clothing/suit/armor/ego_gear/waw/sunyata
+	cost = 50
+
+/datum/ego_datum/weapon/sunyata
+	item_path = /obj/item/ego_weapon/sunyata
+	cost = 50
+
+// Ambling Pearl - Effervescent Corrosion
+/datum/ego_datum/weapon/effervescent
+	item_path = /obj/item/ego_weapon/effervescent
+	cost = 50
+
+/datum/ego_datum/armor/effervescent
+	item_path = /obj/item/clothing/suit/armor/ego_gear/waw/effervescent
+	cost = 50
+
+// Hookah Caterpillar - Havana
+//Weapon is aleph
+/datum/ego_datum/armor/havana
+	item_path = /obj/item/clothing/suit/armor/ego_gear/waw/havana
+	cost = 50

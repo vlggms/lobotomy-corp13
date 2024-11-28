@@ -45,7 +45,6 @@
 /area/shuttle/mining)
 "g" = (
 /obj/structure/chair/comfy/shuttle{
-	can_buckle = 0;
 	desc = "A comfortable, secure seat.";
 	name = "metalic seat";
 	pixel_y = 6
@@ -55,7 +54,6 @@
 "h" = (
 /obj/structure/chair/comfy/shuttle{
 	dir = 1;
-	can_buckle = 0;
 	desc = "A comfortable, secure seat.";
 	name = "metalic seat";
 	pixel_y = 1
@@ -90,7 +88,6 @@
 "n" = (
 /obj/structure/chair/comfy/shuttle{
 	dir = 1;
-	can_buckle = 0;
 	desc = "A comfortable, secure seat.";
 	name = "metalic seat";
 	pixel_y = 1
@@ -125,7 +122,6 @@
 /area/shuttle/mining)
 "s" = (
 /obj/structure/chair/comfy/shuttle{
-	can_buckle = 0;
 	desc = "A comfortable, secure seat.";
 	name = "metalic seat";
 	pixel_y = 6
@@ -149,7 +145,6 @@
 /area/shuttle/mining)
 "v" = (
 /obj/structure/chair/comfy/shuttle{
-	can_buckle = 0;
 	desc = "A comfortable, secure seat.";
 	name = "metalic seat";
 	pixel_y = 6
@@ -175,7 +170,6 @@
 /area/shuttle/mining)
 "x" = (
 /obj/structure/chair/comfy/shuttle{
-	can_buckle = 0;
 	desc = "A comfortable, secure seat.";
 	name = "metalic seat";
 	pixel_y = 6
@@ -197,7 +191,6 @@
 /area/shuttle/mining)
 "z" = (
 /obj/structure/chair/comfy/shuttle{
-	can_buckle = 0;
 	desc = "A comfortable, secure seat.";
 	name = "metalic seat";
 	pixel_y = 6
@@ -207,7 +200,6 @@
 "A" = (
 /obj/structure/chair/comfy/shuttle{
 	dir = 1;
-	can_buckle = 0;
 	desc = "A comfortable, secure seat.";
 	name = "metalic seat";
 	pixel_y = 1
@@ -259,7 +251,6 @@
 "G" = (
 /obj/structure/chair/comfy/shuttle{
 	dir = 1;
-	can_buckle = 0;
 	desc = "A comfortable, secure seat.";
 	name = "metalic seat";
 	pixel_y = 1
@@ -291,7 +282,6 @@
 "L" = (
 /obj/structure/chair/comfy/shuttle{
 	dir = 1;
-	can_buckle = 0;
 	desc = "A comfortable, secure seat.";
 	name = "metalic seat";
 	pixel_y = 1
@@ -309,7 +299,6 @@
 "R" = (
 /obj/structure/chair/comfy/shuttle{
 	dir = 1;
-	can_buckle = 0;
 	desc = "A comfortable, secure seat.";
 	name = "metalic seat";
 	pixel_y = 1
@@ -349,7 +338,6 @@
 /area/shuttle/mining)
 "X" = (
 /obj/structure/chair/comfy/shuttle{
-	can_buckle = 0;
 	desc = "A comfortable, secure seat.";
 	name = "metalic seat";
 	pixel_y = 6

@@ -2,6 +2,7 @@ GLOBAL_LIST_INIT(command_positions, list(
 	"Manager",
 	"Extraction Officer",
 	"Records Officer",
+	"Control Officer",
 	"Training Officer",
 	"Disciplinary Officer",
 	"Sephirah",
@@ -95,11 +96,15 @@ GLOBAL_LIST_INIT(supply_positions, list(
 
 
 GLOBAL_LIST_INIT(service_positions, list(
+	"Clerk",
+	"Agent Support Clerk",
+	"Facility Support Clerk",
+
+
 	"Doctor",
 	"Nurse",
 	"Paramedic",
 	"Medical Fixer Assistant",
-	"Clerk",
 	"HHPP Chef",
 	"Civilian",
 	"Backstreets Butcher",
@@ -143,7 +148,8 @@ GLOBAL_LIST_INIT(security_positions, list(
 	//Fifth Pack
 	"R-Corp Rat",
 	"R-Corp Rooster",
-	"R-Corp Raccoon",
+	"R-Corp Raccoon Spy",
+	"R-Corp Raccoon Sniper",
 	"R-Corp Roadrunner",
 
 	//W-Corp agents
@@ -162,6 +168,7 @@ GLOBAL_LIST_INIT(security_positions, list(
 	"Blade Lineage Cutthroat",
 	"Blade Lineage Salsu",
 	"Blade Lineage Ronin",
+	"Blade Lineage Roaming Salsu",
 
 	"Grand Inquisitor",
 	"N Corp Grosshammer",

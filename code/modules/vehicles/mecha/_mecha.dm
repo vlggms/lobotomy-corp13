@@ -44,6 +44,8 @@
 	var/overload_step_energy_drain_min = 100
 	///chance to deflect the incoming projectiles, hits, or lesser the effect of ex_act.
 	var/deflect_chance = 10
+	///deflect but has reduced chance against specific ranged
+	var/dodge_chance = 0
 	///Modifiers for directional armor
 	var/list/facing_modifiers = list(MECHA_FRONT_ARMOUR = 0.66, MECHA_FRONT_DIAGONAL_ARMOUR = 0.8, MECHA_SIDE_ARMOUR = 1, MECHA_BACK_DIAGONAL_ARMOUR = 1.5, MECHA_BACK_ARMOUR = 2)
 	///if we cant use our equipment(such as due to EMP)
@@ -1121,11 +1123,11 @@
 		if(suit)
 			H.dropItemToGround(suit, TRUE)
 			to_chat(H, span_interface("You remove your armor to put on the exosuit"))
-		H.physiology.red_mod *= 1 - clamp(armor[RED_DAMAGE], 0, 99) / 100
-		H.physiology.white_mod *= 1 - clamp(armor[WHITE_DAMAGE], 0, 99) / 100
-		H.physiology.black_mod *= 1 - clamp(armor[BLACK_DAMAGE], 0, 99) / 100
-		H.physiology.pale_mod *= 1 - clamp(armor[PALE_DAMAGE], 0, 99) / 100
-		H.physiology.burn_mod *= 1 - clamp(armor[BURN], 0, 99) / 100
+		H.physiology.red_mod *= 1 - clamp(armor.red, 0, 99) / 100
+		H.physiology.white_mod *= 1 - clamp(armor.white, 0, 99) / 100
+		H.physiology.black_mod *= 1 - clamp(armor.black, 0, 99) / 100
+		H.physiology.pale_mod *= 1 - clamp(armor.pale, 0, 99) / 100
+		H.physiology.burn_mod *= 1 - clamp(armor.fire, 0, 99) / 100
 
 /obj/vehicle/sealed/mecha/remove_occupant(mob/M)
 	if(!(M in occupants))
@@ -1144,11 +1146,11 @@
 	update_icon()
 	if(ishuman(M))
 		var/mob/living/carbon/human/H = M
-		H.physiology.red_mod /= 1 - clamp(armor[RED_DAMAGE], 0, 99) / 100
-		H.physiology.white_mod /= 1 - clamp(armor[WHITE_DAMAGE], 0, 99) / 100
-		H.physiology.black_mod /= 1 - clamp(armor[BLACK_DAMAGE], 0, 99) / 100
-		H.physiology.pale_mod /= 1 - clamp(armor[PALE_DAMAGE], 0, 99) / 100
-		H.physiology.burn_mod /= 1 - clamp(armor[BURN], 0, 99) / 100
+		H.physiology.red_mod /= 1 - clamp(armor.red, 0, 99) / 100
+		H.physiology.white_mod /= 1 - clamp(armor.white, 0, 99) / 100
+		H.physiology.black_mod /= 1 - clamp(armor.black, 0, 99) / 100
+		H.physiology.pale_mod /= 1 - clamp(armor.pale, 0, 99) / 100
+		H.physiology.burn_mod /= 1 - clamp(armor.fire, 0, 99) / 100
 
 /////////////////////////
 ////// Access stuff /////

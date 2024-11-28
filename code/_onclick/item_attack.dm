@@ -12,7 +12,7 @@
 		return TRUE
 	if(pre_attack(target, user, params))
 		return TRUE
-	if(target.attackby(src,user, params))
+	if(Sweep(target, user, params))
 		return TRUE
 	if(QDELETED(src) || QDELETED(target))
 		attack_qdeleted(target, user, TRUE, params)
@@ -63,6 +63,147 @@
 		return TRUE
 	user.changeNext_move(CLICK_CD_MELEE)
 	return I.attack(src, user)
+
+/obj/item/proc/Sweep(atom/target, mob/living/carbon/human/user, params)
+	if(!istype(user) || user.a_intent != INTENT_HARM || swingstyle == WEAPONSWING_NONE || get_turf(target) == get_turf(user))
+		return target.attackby(src, user, params)
+
+	if(!isturf(target) && !ismob(target))
+		return target.attackby(src, user, params)
+
+	user.changeNext_move(CLICK_CD_MELEE * 0.75) // Room for those who miss
+
+	var/list/hit_turfs = list()
+
+	if(swingstyle >= WEAPONSWING_THRUST)
+		hit_turfs = get_thrust_turfs(target, user)
+	else
+		hit_turfs = get_sweep_turfs(target, user)
+
+	var/list/potential_targets = list()
+
+	for(var/turf/T in hit_turfs)
+		for(var/mob/M in T)
+			potential_targets |= M
+
+	potential_targets -= user
+
+	var/mob/to_smack = GetTarget(user, potential_targets, target)
+
+	if(!to_smack)
+		SweepMiss(target, user)
+		return TRUE
+
+	var/old_animation = run_item_attack_animation
+	run_item_attack_animation = FALSE
+	. = to_smack.attackby(src, user, params)
+	run_item_attack_animation = old_animation
+
+	log_combat(user, target, "swung at", src.name, " and hit [to_smack]")
+	add_fingerprint(user)
+	return
+
+/obj/item/proc/SweepMiss(atom/target, mob/living/carbon/human/user)
+	user.visible_message(span_danger("[user] [swingstyle > WEAPONSWING_LARGESWEEP ? "thrusts" : "swings"] at [target]!"),\
+		span_danger("You [swingstyle > WEAPONSWING_LARGESWEEP ? "thrust" : "swing"] at [target]!"), null, COMBAT_MESSAGE_RANGE, user)
+	playsound(src, 'sound/weapons/thudswoosh.ogg', 60, TRUE)
+	user.do_attack_animation(target, used_item = src, no_effect = TRUE)
+
+/obj/item/proc/GetTarget(mob/user, list/potential_targets = list(), atom/clicked)
+	if(ismob(clicked))
+		. = clicked
+
+	for(var/mob/living/simple_animal/hostile/H in potential_targets) // Hostile List
+		if(.)
+			break
+		if(H.status_flags & GODMODE)
+			continue
+		if(user.faction_check_mob(H))
+			continue
+		if(H.stat == DEAD)
+			continue
+		. = H
+		break
+
+	for(var/mob/living/L in potential_targets) // Standing List
+		if(.)
+			break
+		if(L.resting)
+			continue
+		if(L.stat == DEAD)
+			continue
+		. = L
+		break
+
+	for(var/mob/living/L in potential_targets) // Laying Down List
+		if(.)
+			break
+		. = L
+		break
+
+	return
+
+/obj/item/proc/get_sweep_turfs(atom/target, mob/user)
+	var/target_turf = get_step_towards(user, target)
+	// Icon Setup
+	var/swipe_icon = "swipe_"
+	if(user.active_hand_index % 2 == 0)
+		swipe_icon += "r"
+	else
+		swipe_icon += "l"
+
+	if(swingstyle == WEAPONSWING_LARGESWEEP)
+		swipe_icon += "_large"
+		var/start = WEST
+		var/end = EAST
+
+		switch(get_dir(user, target))
+			if(NORTH)
+				start = EAST
+				end = WEST
+			if(SOUTH)
+				start = WEST
+				end = EAST
+			if(EAST)
+				start = SOUTH
+				end = NORTH
+			if(WEST)
+				start = NORTH
+				end = SOUTH
+			if(NORTHEAST)
+				start = SOUTH
+				end = WEST
+			if(NORTHWEST)
+				start = EAST
+				end = SOUTH
+			if(SOUTHEAST)
+				start = WEST
+				end = NORTH
+			if(SOUTHWEST)
+				start = NORTH
+				end = EAST
+
+		if((user.get_held_index_of_item(src) % 2) - 1) // What hand we're in determines the check order of our swing
+			var/temp = start
+			start = end
+			end = temp
+
+		. = list(get_step(target_turf, start), target_turf, get_step(target_turf, end))
+	else
+		. = list(target_turf)
+
+	new /obj/effect/temp_visual/swipe(get_step(user, SOUTHWEST), get_dir(user, target), swingcolor ? swingcolor : COLOR_GRAY, swipe_icon)
+
+	return
+
+/obj/item/proc/get_thrust_turfs(atom/target, mob/user)
+	. = getline(get_step_towards(user, target), target)
+	for(var/turf/T in .)
+		var/obj/effect/temp_visual/thrust/TT = new(T, swingcolor ? swingcolor : COLOR_GRAY)
+		var/matrix/M = matrix(TT.transform)
+		M.Turn(Get_Angle(user, target)-90)
+		TT.transform = M
+	return
 
 /**
  * Called from [/mob/living/proc/attackby]
@@ -137,9 +278,7 @@
 	if(I.force)
 		var/justice_mod = 1 + (get_modified_attribute_level(user, JUSTICE_ATTRIBUTE)/100)
 		var/damage = I.force * justice_mod
-		if(istype(I, /obj/item/ego_weapon))
-			var/obj/item/ego_weapon/theweapon = I
-			damage *= theweapon.force_multiplier
+		damage *= I.force_multiplier
 		apply_damage(damage, I.damtype, white_healable = TRUE)
 		if(I.damtype in list(RED_DAMAGE, BLACK_DAMAGE, PALE_DAMAGE))
 			if(prob(33))
@@ -162,9 +301,7 @@
 		log_combat(user, src, "attacked", I)
 		var/justice_mod = 1 + (get_modified_attribute_level(user, JUSTICE_ATTRIBUTE)/100)
 		var/damage = I.force * justice_mod
-		if(istype(I, /obj/item/ego_weapon))
-			var/obj/item/ego_weapon/theweapon = I
-			damage *= theweapon.force_multiplier
+		damage *= I.force_multiplier
 		take_damage(damage, I.damtype, attack_dir = get_dir(src, user))
 		return TRUE
 
@@ -213,3 +350,29 @@
 		"<span class='userdanger'>[attack_message_victim]</span>", null, COMBAT_MESSAGE_RANGE, user)
 	to_chat(user, "<span class='danger'>[attack_message_attacker]</span>")
 	return 1
+
+/obj/effect/temp_visual/swipe
+	icon = 'ModularTegustation/Teguicons/96x96.dmi'
+	duration = 4
+	randomdir = FALSE
+	alpha = 200
+
+/obj/effect/temp_visual/swipe/New(loc, ...)
+	. = ..()
+	setDir(args[2])
+	if(args[3])
+		color = args[3]
+	flick(args[4], src) // if this isn't used, it synchronizes all swipe animations.
+
+/obj/effect/temp_visual/thrust
+	icon = 'ModularTegustation/Teguicons/64x32.dmi'
+	duration = 4
+	randomdir = FALSE
+	pixel_x = -16
+	alpha = 200
+
+/obj/effect/temp_visual/thrust/New(loc, ...)
+	. = ..()
+	if(args[2])
+		color = args[2]
+	flick("thrust", src)

@@ -29,12 +29,21 @@
 	work_damage_type = WHITE_DAMAGE
 
 	ego_list = list(
+		/datum/ego_datum/weapon/morii,
 		/datum/ego_datum/armor/morii,
-		/datum/ego_datum/weapon/morii
 	)
 	gift_type = /datum/ego_gifts/morii
 	//Abnormality Jam Submission
 	abnormality_origin = ABNORMALITY_ORIGIN_ORIGINAL
+
+	observation_prompt = "In the pile around the abnormality, you find a old card. <br>You almost forgot about them. <br>\
+		A pink light grows and you feel a tug on your memory."
+	observation_choices = list("Let go", "Hold on")
+	correct_choices = list("Let go")
+	observation_success_message = "You let go of the memory forever. <br>You look forward to the day you can make a memory like that again."
+	observation_fail_message = "You pull the letter back from the pink light inside the abnormality's gate. <br>\
+		The memory becomes more and more vivid as if its happening now... <br>when you finally break free you cannot recall what you fought so hard for."
+
 	var/minions = 0
 
 /mob/living/simple_animal/hostile/abnormality/better_memories/Login()
@@ -50,10 +59,9 @@
 
 // Those with low temperance will find a memory in the pile.
 /mob/living/simple_animal/hostile/abnormality/better_memories/PostWorkEffect(mob/living/carbon/human/user, work_type, pe, work_time)
-	if(get_attribute_level(user, TEMPERANCE_ATTRIBUTE) <= 60)
+	if(get_attribute_level(user, TEMPERANCE_ATTRIBUTE) < 60)
 		datum_reference.qliphoth_change(-1)
 		user.apply_status_effect(MEMORY_DEBUFF)
-	return
 
 // Better memories can have 3 seperate minions who will terroize the facility. Code modified from luna.dm
 /mob/living/simple_animal/hostile/abnormality/better_memories/ZeroQliphoth(mob/living/carbon/human/user)
