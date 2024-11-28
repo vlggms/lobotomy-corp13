@@ -88,11 +88,11 @@
 	mappath = "_maps/RandomRooms/rcorp/facility/raidboss.dmm"
 	weight = 10
 
-/datum/map_template/random_room/rcorp/zombies
-	name = "Rcorp - City"
-	room_id = "rcorp_inside_city"
-	mappath = "_maps/RandomRooms/rcorp/facility/city.dmm"
-	weight = 10
+// /datum/map_template/random_room/rcorp/zombies
+// 	name = "Rcorp - City"
+// 	room_id = "rcorp_inside_city"
+// 	mappath = "_maps/RandomRooms/rcorp/facility/city.dmm"
+// 	weight = 10
 
 // /datum/map_template/random_room/rcorp/xenos
 // 	name = "Rcorp - Xenos"
