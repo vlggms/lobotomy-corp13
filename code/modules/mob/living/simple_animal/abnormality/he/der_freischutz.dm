@@ -63,6 +63,22 @@
 		/datum/action/cooldown/switch_portals,
 		/datum/action/cooldown/remove_portal)
 
+/mob/living/simple_animal/hostile/abnormality/der_freischutz/Login()
+	. = ..()
+	to_chat(src, "<h1>You are Der Freischutz, A Combat Role Abnormality.</h1><br>\
+		<b>|Magic Bullet|: When you attack while not scoped in, there will be a 1.5 second delay before you fire a Magic Bullet. \
+		The Magic Bullet deals BLACK damage and pieces through mobs. After firing a Magic Bullet, there is a 7 second cooldown between you can fire another one.<br>\
+		<br>\
+		|Devil's Contract|: Using the Sniper Sights ability on the top left of your screen you are able to increase your view range, see through walls and gain the ability to place down 'Magic Portals' \
+		There is a 10 second cooldown between placing down portals, you can have a max of 3 portals and you can't place them in R-Corp's base or on dense terrain. \
+		If you can't place down a portal, you will fire your Magic Bullet instead.<br>\
+		<br>\
+		|Devil's Sights|: You are able view through your portals using your 'Portal View' button on the top left of your screen, \
+		Or you can use a hotkey. (Which is Space by default). When you use that ability, You will be able to toggle your view between the portals you have created. \
+		While viewing through a portal, you will be able to cause them to fire towards any target you click on. They deal 25% less damage then your normal bullet, but each portal has their own cooldown between firing. \
+		Also, you are able to destroy your own portals while viewing though them using your 'Removing Portal' ability, Or you can use a hotkey. (Which is E by default).\
+		</b>")
+
 /datum/action/cooldown/switch_portals
 	name = "Portal View"
 	icon_icon = 'icons/effects/effects.dmi'
@@ -398,7 +414,7 @@
 	var/bullet_cooldown_time = 7 SECONDS
 	var/bullet_fire_delay = 1.5 SECONDS
 	var/bullet_max_range = 50
-	var/bullet_damage = 80
+	var/bullet_damage = 150
 
 	var/mob/living/simple_animal/hostile/abnormality/der_freischutz/connected_abno
 	var/datum/component/orbiter/self_orbiter
@@ -459,3 +475,45 @@
 
 /mob/living/simple_animal/hostile/der_freis_portal/proc/StopSpin()
 	icon_state = icon_living
+
+
+/mob/living/simple_animal/hostile/abnormality/der_freischutz/proc/TriggerPortalView()
+	for(var/datum/action/cooldown/switch_portals/A in actions)
+		A.Trigger()
+
+/mob/living/simple_animal/hostile/abnormality/der_freischutz/proc/TriggerPortalRemove()
+	for(var/datum/action/cooldown/remove_portal/A in actions)
+		A.Trigger()
+
+#define COMSIG_KB_MOB_DER_FREISCHUTZ_PORTAL_VIEW "keybinding_mob_der_freischutz_portal_view"
+#define COMSIG_KB_MOB_DER_FREISCHUTZ_PORTAL_REMOVE "keybinding_mob_der_freischutz_portal_remove"
+
+/datum/keybinding/mob/der_freischutz_portal_view
+	hotkey_keys = list("Space") // PAGEUP
+	name = "der_freischutz_portal_view"
+	full_name = "Der Freischutz Portal View"
+	description = "Der Freischutz Portal View"
+	keybind_signal = COMSIG_KB_MOB_DER_FREISCHUTZ_PORTAL_VIEW
+
+/datum/keybinding/mob/der_freischutz_portal_view/down(client/user)
+	. = ..()
+	if(.)
+		return
+	var/mob/living/simple_animal/hostile/abnormality/der_freischutz/M = user.mob
+	M.TriggerPortalView()
+	return TRUE
+
+/datum/keybinding/mob/der_freischutz_portal_remove
+	hotkey_keys = list("E") // PAGEUP
+	name = "der_freischutz_portal_remove"
+	full_name = "Der Freischutz Portal View"
+	description = "Der Freischutz Portal Remove"
+	keybind_signal = COMSIG_KB_MOB_DER_FREISCHUTZ_PORTAL_REMOVE
+
+/datum/keybinding/mob/der_freischutz_portal_remove/down(client/user)
+	. = ..()
+	if(.)
+		return
+	var/mob/living/simple_animal/hostile/abnormality/der_freischutz/M = user.mob
+	M.TriggerPortalRemove()
+	return TRUE

@@ -135,11 +135,11 @@
 		You are able to toggle your spin attack on and off with your ability.<br>\
 		<br>\
 		|Sidestep|: You are able to trigger your 'Dodge' ability using the button on the top left of your screen, \
-		Or you cam use a hotkey. (Which is Spacebar by default). When you trigger your 'Dodge' ability you will gain a speed boost and lose density (Bullet will pass through you.) for 1 second. \
+		Or you can use a hotkey. (Which is Spacebar by default). When you trigger your 'Dodge' ability you will gain a speed boost and lose density (Bullet will pass through you.) for 1 second. \
 		Once the speed boost ends, you will be slowed down for 1.5 seconds.<br>\
 		<br>\
 		|Counter|: You are able to trigger your 'Counter' ability using the button on the top left of your screen, \
-		Or you cam use a hotkey. (Which is E by default). When you trigger your 'Counter' ability, If you take damage within the next second you will trigger a 5x5 AoE which deals BLACK damage. \
+		Or you can use a hotkey. (Which is E by default). When you trigger your 'Counter' ability, If you take damage within the next second you will trigger a 5x5 AoE which deals BLACK damage. \
 		Also, Anyone hit by this AoE will knockdown all humans who are hit by it.\
 		</b>")
 
@@ -566,7 +566,7 @@
 
 /datum/keybinding/mob/blue_shepherd_counter
 	hotkey_keys = list("E") // PAGEUP
-	name = "keybinding_mob_blue_shepherd_counter"
+	name = "mob_blue_shepherd_counter"
 	full_name = "Blue Shepherd Counter"
 	description = "Blue Shepherd Counter"
 	keybind_signal = COMSIG_KB_MOB_BLUE_SHEPHERD_COUNTER
