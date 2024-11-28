@@ -270,8 +270,8 @@ Skittish, they prefer to move in groups and will run away if the enemies are in 
 	icon_living = "metal_fixer"
 	icon_dead = "metal_fixer"
 	var/icon_attacking = "metal_fixer_weapon"
-	maxHealth = 1500
-	health = 1500
+	maxHealth = 2000
+	health = 2000
 	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 0.6, WHITE_DAMAGE = 1, BLACK_DAMAGE = 0.4, PALE_DAMAGE = 1.3)
 	move_to_delay = 5
 	melee_damage_lower = 12
@@ -358,7 +358,9 @@ Skittish, they prefer to move in groups and will run away if the enemies are in 
 		adjustHealth(self_damage_statue)
 		var/mutable_appearance/colored_overlay = mutable_appearance(icon, "small_stagger", layer + 0.1)
 		add_overlay(colored_overlay)
+		ChangeResistances(list(RED_DAMAGE = 1.2, WHITE_DAMAGE = 2, BLACK_DAMAGE = 0.8, PALE_DAMAGE = 2.6))
 		SLEEP_CHECK_DEATH(stun_duration)
+		ChangeResistances(list(RED_DAMAGE = 0.6, WHITE_DAMAGE = 1, BLACK_DAMAGE = 0.4, PALE_DAMAGE = 1.3))
 		cut_overlays()
 	can_act = TRUE
 
@@ -411,7 +413,7 @@ Skittish, they prefer to move in groups and will run away if the enemies are in 
 
 	adjustHealth(-(P.damage/4))
 	playsound(src, 'sound/abnormalities/voiddream/skill.ogg', 50, TRUE, 2)
-	visible_message(span_warning("[P]  contacts with [src] and heals them!"))
+	visible_message(span_warning("[P] contacts with [src] and heals them!"))
 	DamageEffect(P.damage_type)
 
 /obj/projectile/metal_fixer
@@ -520,7 +522,7 @@ Skittish, they prefer to move in groups and will run away if the enemies are in 
 	icon_living = "flame_fixer"
 	icon_dead = "flame_fixer"
 	maxHealth = 2500
-	health = 1500
+	health = 2500
 	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 0.4, WHITE_DAMAGE = 0.6, BLACK_DAMAGE = 1, PALE_DAMAGE = 1.3)
 	move_to_delay = 4
 	melee_damage_lower = 20
@@ -533,7 +535,6 @@ Skittish, they prefer to move in groups and will run away if the enemies are in 
 	del_on_death = TRUE
 	ranged = TRUE
 	ranged_cooldown_time = 45
-	melee_reach = 2
 	loot_weapon = list (
 	/obj/item/ego_weapon/city/echo/sunstrike,
 	)
@@ -562,6 +563,7 @@ Skittish, they prefer to move in groups and will run away if the enemies are in 
 	// repeat 3 times with 1 sec delay between each
 	// unstun
 	if (world.time > last_dash + dash_cooldown)
+		got_hit = FALSE
 		last_dash = world.time
 		can_act = FALSE
 		say("Dissatisfaction.")
@@ -629,23 +631,25 @@ Skittish, they prefer to move in groups and will run away if the enemies are in 
 	// counter has random cooldown 15-40 sec
 	if (!can_act)
 		return
-	TripleDash()
 
 	if (world.time > last_counter + counter_cooldown)
 		last_counter = world.time
+		got_hit = FALSE
 		can_act = FALSE
 		icon_state = "flame_fixer_counter_start"
 		say("Debilitation.")
 		SLEEP_CHECK_DEATH(10)
-		damage_reflection = TRUE
-		icon_state = "flame_fixer_counter"
-		counter_timer = addtimer(CALLBACK(src, PROC_REF(EndCounter)), counter_duration, TIMER_STOPPABLE)
+		if (!got_hit)
+			damage_reflection = TRUE
+			icon_state = "flame_fixer_counter"
+			counter_timer = addtimer(CALLBACK(src, PROC_REF(EndCounter)), counter_duration, TIMER_STOPPABLE)
 		return
 
 	. = ..()
 	if (istype(target, /mob/living))
 		var/mob/living/L = target
 		L.apply_lc_burn(burn_stacks)
+	TripleDash()
 
 /mob/living/simple_animal/hostile/humanoid/fixer/flame/proc/EndCounter()
 	if (damage_reflection)
@@ -657,8 +661,6 @@ Skittish, they prefer to move in groups and will run away if the enemies are in 
 		icon_state = initial(icon_state)
 		last_counter = world.time
 		counter_cooldown = rand(100, 250)
-
-
 
 /mob/living/simple_animal/hostile/humanoid/fixer/flame/bullet_act(obj/projectile/Proj, def_zone, piercing_hit = FALSE)
 	..()
@@ -725,7 +727,9 @@ Skittish, they prefer to move in groups and will run away if the enemies are in 
 		F.say("Derealization...")
 		var/mutable_appearance/colored_overlay = mutable_appearance(F.icon, "small_stagger", F.layer + 0.1)
 		F.add_overlay(colored_overlay)
+		F.ChangeResistances(list(RED_DAMAGE = 0.8, WHITE_DAMAGE = 1.2, BLACK_DAMAGE = 2, PALE_DAMAGE = 2.6))
 		sleep(stun_duration)
+		F.ChangeResistances(list(RED_DAMAGE = 0.4, WHITE_DAMAGE = 0.6, BLACK_DAMAGE = 1, PALE_DAMAGE = 1.3))
 		F.cut_overlays()
 		F.can_act = TRUE
 		return BULLET_ACT_BLOCK
