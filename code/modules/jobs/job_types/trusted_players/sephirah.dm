@@ -232,9 +232,13 @@ GLOBAL_LIST_EMPTY(SephirahBullet)
 	set category = "Sephirah"
 	GLOB.SephirahBullet |= src.ckey
 	if(length(GLOB.SephirahBullet) == 2)
-		minor_announce("The facility's manager has been deemed trustworthy of our new Execution Bullet pilot program. \
-			Execution bullets will be delivered immediately.", "Disciplinary Alert:", TRUE)
-		GLOB.execution_enabled = TRUE
+		if(SSmaptype.maptype == "skeld")
+			minor_announce("There has been an error in the authorizing of our new Execution Bullet pilot program. \
+				Execution Bullets won't be able to be delivered to this facility.", "Control Alert:", TRUE)
+		else
+			minor_announce("The facility's manager has been deemed trustworthy of our new Execution Bullet pilot program. \
+				Execution bullets will be delivered immediately.", "Disciplinary Alert:", TRUE)
+			GLOB.execution_enabled = TRUE
 
 	else
 		to_chat(src, span_notice("Your superiors have been notified of your authorization. Reminder that execution bullets require authorization of 2 sephirah."))
