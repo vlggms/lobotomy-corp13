@@ -550,6 +550,10 @@ Skittish, they prefer to move in groups and will run away if the enemies are in 
 	var/counter_cooldown = 30
 	var/last_voice_line = 0
 	var/voice_line_cooldown = 250
+	var/counter_timer
+	var/counter_duration = 4 SECONDS
+	var/got_hit = FALSE
+
 
 /mob/living/simple_animal/hostile/humanoid/fixer/flame/proc/TripleDash()
 	// if dash is off cooldown stun until the end of dashes and say quote
@@ -568,9 +572,13 @@ Skittish, they prefer to move in groups and will run away if the enemies are in 
 		Dash(target)
 		icon_state = initial(icon_state)
 		last_dash = world.time
-		can_act = TRUE
+		if (!got_hit)
+			can_act = TRUE
+		got_hit = FALSE
 
 /mob/living/simple_animal/hostile/humanoid/fixer/flame/proc/Dash(dash_target)
+	if (got_hit)
+		return
 	if (!dash_target)
 		return
 	var/turf/target_turf = get_turf(dash_target)
@@ -631,18 +639,26 @@ Skittish, they prefer to move in groups and will run away if the enemies are in 
 		SLEEP_CHECK_DEATH(10)
 		damage_reflection = TRUE
 		icon_state = "flame_fixer_counter"
-		SLEEP_CHECK_DEATH(40)
-		damage_reflection = FALSE
-		can_act = TRUE
-		icon_state = initial(icon_state)
-		last_counter = world.time
-		counter_cooldown = rand(100, 250)
+		counter_timer = addtimer(CALLBACK(src, PROC_REF(EndCounter)), counter_duration, TIMER_STOPPABLE)
 		return
 
 	. = ..()
 	if (istype(target, /mob/living))
 		var/mob/living/L = target
 		L.apply_lc_burn(burn_stacks)
+
+/mob/living/simple_animal/hostile/humanoid/fixer/flame/proc/EndCounter()
+	if (damage_reflection)
+		//delete timer
+		if (counter_timer !=0)
+			deltimer(counter_timer)
+		damage_reflection = FALSE
+		can_act = TRUE
+		icon_state = initial(icon_state)
+		last_counter = world.time
+		counter_cooldown = rand(100, 250)
+
+
 
 /mob/living/simple_animal/hostile/humanoid/fixer/flame/bullet_act(obj/projectile/Proj, def_zone, piercing_hit = FALSE)
 	..()
@@ -702,6 +718,8 @@ Skittish, they prefer to move in groups and will run away if the enemies are in 
 		L.apply_lc_burn(burn_stacks)
 	if(firer==target)
 		var/mob/living/simple_animal/hostile/humanoid/fixer/flame/F = target
+		F.EndCounter()
+		F.got_hit = TRUE
 		qdel(src)
 		F.can_act = FALSE
 		F.say("Derealization...")
