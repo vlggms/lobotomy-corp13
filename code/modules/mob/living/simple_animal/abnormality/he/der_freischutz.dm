@@ -124,6 +124,11 @@
 	button_icon_state = "freicircle1"
 	desc = "Remove the current portal you are currently viewing through."
 	cooldown_time = 10
+	var/original_sight
+
+/datum/action/cooldown/remove_portal/Grant(mob/living/L)
+	. = ..()
+	original_sight = owner.sight
 
 /datum/action/cooldown/remove_portal/Trigger()
 	if(!..())
@@ -132,6 +137,7 @@
 		return
 	var/mob/living/simple_animal/hostile/abnormality/der_freischutz/F = owner
 	F.RemovePortal()
+	F.sight = original_sight
 
 /datum/action/innate/abnormality_attack/toggle/der_freischutz_zoom
 	name = "Toggle Sniper Sight"
