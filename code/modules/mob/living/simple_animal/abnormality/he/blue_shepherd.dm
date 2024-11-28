@@ -546,35 +546,3 @@
 	for(var/datum/action/cooldown/counter/A in actions)
 		A.Trigger()
 
-#define COMSIG_KB_MOB_BLUE_SHEPHERD_DODGE "keybinding_mob_blue_shepherd_dodge"
-#define COMSIG_KB_MOB_BLUE_SHEPHERD_COUNTER "keybinding_mob_blue_shepherd_counter"
-
-/datum/keybinding/mob/blue_shepherd_dodge
-	hotkey_keys = list("Space") // PAGEUP
-	name = "blue_shepherd_dodge"
-	full_name = "Blue Shepherd Dodge"
-	description = "Blue Shepherd Dodge"
-	keybind_signal = COMSIG_KB_MOB_BLUE_SHEPHERD_DODGE
-
-/datum/keybinding/mob/blue_shepherd_dodge/down(client/user)
-	. = ..()
-	if(.)
-		return
-	var/mob/living/simple_animal/hostile/abnormality/blue_shepherd/M = user.mob
-	M.TriggerDodge()
-	return TRUE
-
-/datum/keybinding/mob/blue_shepherd_counter
-	hotkey_keys = list("E") // PAGEUP
-	name = "mob_blue_shepherd_counter"
-	full_name = "Blue Shepherd Counter"
-	description = "Blue Shepherd Counter"
-	keybind_signal = COMSIG_KB_MOB_BLUE_SHEPHERD_COUNTER
-
-/datum/keybinding/mob/blue_shepherd_counter/down(client/user)
-	. = ..()
-	if(.)
-		return
-	var/mob/living/simple_animal/hostile/abnormality/blue_shepherd/M = user.mob
-	M.TriggerCounter()
-	return TRUE
