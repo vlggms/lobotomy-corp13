@@ -161,4 +161,4 @@
 
 /datum/movespeed_modifier/too_many_armors
 	variable = TRUE
-	multiplicative_slowdown = 3.3 //Roughly 1/3 speed for holding too many armors
+	multiplicative_slowdown = 1.5 //Roughly 1/3 speed for holding too many armors
