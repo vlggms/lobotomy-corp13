@@ -83,16 +83,21 @@
 	var/mob/living/simple_animal/hostile/abnormality/der_freischutz/F = owner
 	if(F.zoomed)
 		return
-	//F.portals[F.current_portal_index].stop_orbit(src)
+
+	if(F.current_portal_index != 0)
+		var/mob/living/simple_animal/hostile/der_freis_portal/P = F.portals[F.current_portal_index]
+		P.StopSpin()
+
 	F.current_portal_index = (F.current_portal_index + 1) % (F.portals.len + 1)
 	if (F.current_portal_index == 0)
 		F.client.eye = F
 		F.sight = original_sight
 	else
 		F.client.eye = F.portals[F.current_portal_index]
-		//F.portals[F.current_portal_index].orbit(src)
 		F.sight |= SEE_TURFS | SEE_MOBS | SEE_THRU | SEE_OBJS
 		F.regenerate_icons()
+		var/mob/living/simple_animal/hostile/der_freis_portal/P = F.portals[F.current_portal_index]
+		P.StartSpin()
 
 
 
@@ -372,8 +377,9 @@
 	name = "magic portal"
 	desc = "A strange blue portal... You feel like you are being watched though it."
 	icon = 'icons/effects/effects.dmi'
-	icon_state = "freicircle2"
-	icon_living = "freicircle2"
+	icon_state = "freicircle3"
+	icon_living = "freicircle3"
+	var/icon_selected = "freicircle2"
 	maxHealth = 1000
 	health = 1000
 	can_patrol = FALSE
@@ -395,6 +401,7 @@
 	var/bullet_damage = 80
 
 	var/mob/living/simple_animal/hostile/abnormality/der_freischutz/connected_abno
+	var/datum/component/orbiter/self_orbiter
 
 /mob/living/simple_animal/hostile/der_freis_portal/Initialize()
 	. = ..()
@@ -446,3 +453,9 @@
 	B.damage = bullet_damage
 	B.fire()
 	new /datum/beam(start_turf.Beam(end_turf, "magic_bullet_tracer", time = 3 SECONDS))
+
+/mob/living/simple_animal/hostile/der_freis_portal/proc/StartSpin()
+	icon_state = icon_selected
+
+/mob/living/simple_animal/hostile/der_freis_portal/proc/StopSpin()
+	icon_state = icon_living
