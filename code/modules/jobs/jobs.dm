@@ -22,6 +22,7 @@ GLOBAL_LIST_INIT(command_positions, list(
 
 	//Rcorp Fourth Pack
 	"Ground Commander",
+	"Operations Commander",
 	"Lieutenant Commander",
 	"Operations Officer",
 	"Rabbit Squad Captain",
@@ -37,6 +38,14 @@ GLOBAL_LIST_INIT(command_positions, list(
 	"Rooster Squad Leader",
 	"Raccoon Squad Leader",
 	"Roadrunner Squad Leader",
+
+	//Rcorp Sixth Pack
+	"Operations Commander",
+	"Robin Team Captain",
+	"Robin Section Leader",
+	"Raven Team Captain",
+	"Rook Team Captain",
+	"Production Officer",
 
 
 	//Wcorp stuff
@@ -118,6 +127,13 @@ GLOBAL_LIST_INIT(service_positions, list(
 	"Containment Engineer",
 	"LC Chef",
 	"LC Janitor",
+
+
+	//R-Corp Sixth Pack
+	"Acquisitions Specialist",
+	"Production Specialist",
+	"R-Corp Raven MP",
+	"R-Corp Messenger Raven",
 	))
 
 
@@ -151,6 +167,14 @@ GLOBAL_LIST_INIT(security_positions, list(
 	"R-Corp Raccoon Spy",
 	"R-Corp Raccoon Sniper",
 	"R-Corp Roadrunner",
+
+	//Sixth Pack
+	"Robin Section Leader",
+	"Robin Squad Sergeant",
+	"Section A Robin",
+	"Section B Robin",
+	"Section C Robin",
+	"R-Corp Rook",
 
 	//W-Corp agents
 	"W-Corp L2 Type A Lieutenant",

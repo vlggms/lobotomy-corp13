@@ -12,16 +12,16 @@ SUBSYSTEM_DEF(maptype)
 	var/jobtype		//If a map RNGs which jobs are available, use this
 
 	//All the map tags that delete all jobs and replace them with others.
-	var/list/clearmaps = list("rcorp", "city", "wcorp", "limbus_labs", "fixers")
+	var/list/clearmaps = list("rcorp", "city", "wcorp", "limbus_labs", "fixers", "rcorp_factory")
 
 	//All the map tags that are combat maps and need abnos to breach immediately
-	var/list/combatmaps = list("rcorp", "wcorp", "limbus_labs", "fixers")
+	var/list/combatmaps = list("rcorp", "rcorp_factory", "wcorp", "limbus_labs", "fixers")
 
 	//Ghosts should be possessbale at all times
 	var/list/autopossess = list("rcorp", "limbus_labs")
 
 	//These end after a certain number of minutes.
-	var/list/autoend = list("rcorp", "wcorp", "limbus_labs", "fixers")
+	var/list/autoend = list("rcorp", "rcorp_factory", "wcorp", "limbus_labs", "fixers")
 
 	//This map is city stuff
 	var/list/citymaps = list("wonderlabs", "city", "fixers")

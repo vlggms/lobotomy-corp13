@@ -4,7 +4,7 @@
 	icon_state = "r_corp"
 	var/explosion_damage_type = RED_DAMAGE
 	var/explosion_damage = 300
-	var/explosion_range = 2
+	var/explosion_range = 3
 
 /obj/item/grenade/r_corp/detonate(mob/living/lanced_by)
 	. = ..()
@@ -12,9 +12,9 @@
 	new /obj/effect/temp_visual/explosion(get_turf(src))
 	playsound(loc, 'sound/effects/ordeals/steel/gcorp_boom.ogg', 75, TRUE)
 	for(var/mob/living/simple_animal/H in view(explosion_range, src))
-		H.apply_damage(explosion_damage, explosion_damage_type, null, H.run_armor_check(null, RED_DAMAGE))
+		H.apply_damage(explosion_damage, explosion_damage_type, null, H.run_armor_check(null, explosion_damage_type))
 	for(var/mob/living/carbon/C in view(explosion_range, src))
-		C.apply_damage(explosion_damage * 0.1, explosion_damage_type, null, C.run_armor_check(null, RED_DAMAGE))
+		C.apply_damage(explosion_damage * 0.1, explosion_damage_type, null, C.run_armor_check(null, explosion_damage_type))
 	qdel(src)
 
 /obj/item/grenade/r_corp/white
