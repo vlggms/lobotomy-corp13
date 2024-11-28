@@ -8,7 +8,7 @@
 	movedelay = 3
 	dir_in = 1 //Facing North.
 	max_integrity = 1000
-	armor = list(RED_DAMAGE = 40, WHITE_DAMAGE = 40, BLACK_DAMAGE = 40, PALE_DAMAGE = 40, BOMB = 100, BIO = 100, RAD = 100, FIRE = 100, ACID = 100)
+	armor = list(RED_DAMAGE = 40, WHITE_DAMAGE = 40, BLACK_DAMAGE = 40, PALE_DAMAGE = 40, BOMB = 100, BIO = 100, RAD = 100, FIRE = 100, ACID = 0)
 	max_temperature = 30000
 	force = 40
 	wreckage = /obj/structure/mecha_wreckage/durand
@@ -47,7 +47,7 @@
 	movedelay = 3
 	dir_in = 1 //Facing North.
 	max_integrity = 1000
-	armor = list(RED_DAMAGE = 40, WHITE_DAMAGE = 40, BLACK_DAMAGE = 40, PALE_DAMAGE = 40, BOMB = 100, BIO = 100, RAD = 100, FIRE = 100, ACID = 100)
+	armor = list(RED_DAMAGE = 40, WHITE_DAMAGE = 40, BLACK_DAMAGE = 40, PALE_DAMAGE = 40, BOMB = 100, BIO = 100, RAD = 100, FIRE = 100, ACID = 0)
 	max_temperature = 30000
 	force = 40
 	wreckage = /obj/structure/mecha_wreckage/durand
@@ -85,7 +85,7 @@
 	movedelay = 3
 	dir_in = 1 //Facing North.
 	max_integrity = 1000
-	armor = list(RED_DAMAGE = 40, WHITE_DAMAGE = 40, BLACK_DAMAGE = 40, PALE_DAMAGE = 40, BOMB = 100, BIO = 100, RAD = 100, FIRE = 100, ACID = 100)
+	armor = list(RED_DAMAGE = 40, WHITE_DAMAGE = 40, BLACK_DAMAGE = 40, PALE_DAMAGE = 40, BOMB = 100, BIO = 100, RAD = 100, FIRE = 100, ACID = 0)
 	max_temperature = 30000
 	force = 40
 	wreckage = /obj/structure/mecha_wreckage/durand
@@ -111,7 +111,7 @@
 		return
 	cell = new /obj/item/stock_parts/cell/infinite(src)
 
-//Rifle Rhino
+//Light Rhino
 /obj/vehicle/sealed/mecha/combat/rhinorifle
 	name = "\improper Rhinoceros Light Unit"
 	desc = "A combat exosuit utilized by the R Corp. Originally developed for the Rhino team, it was loaned to the Rabbit team for extra cleaning."
@@ -122,11 +122,12 @@
 	movedelay = 2
 	dir_in = 1 //Facing North.
 	max_integrity = 1000
-	armor = list(RED_DAMAGE = 40, WHITE_DAMAGE = 40, BLACK_DAMAGE = 40, PALE_DAMAGE = 40, BOMB = 100, BIO = 100, RAD = 100, FIRE = 100, ACID = 100)
+	armor = list(RED_DAMAGE = 40, WHITE_DAMAGE = 40, BLACK_DAMAGE = 40, PALE_DAMAGE = 40, BOMB = 100, BIO = 100, RAD = 100, FIRE = 100, ACID = 0)
 	max_temperature = 30000
 	force = 40
 	wreckage = /obj/structure/mecha_wreckage/durand
 	deflect_chance = 0
+	dodge_chance = 10
 
 //WEAPONS
 /obj/vehicle/sealed/mecha/combat/rhinorifle/Initialize()
@@ -148,7 +149,6 @@
 		return
 	cell = new /obj/item/stock_parts/cell/infinite(src)
 
-
 //The Melee rhino
 /obj/vehicle/sealed/mecha/combat/rhinomelee
 	desc = "A combat exosuit utilized by the R Corp. Originally developed for the Rhino team, it was loaned to the Rabbit team for extra cleaning."
@@ -160,7 +160,7 @@
 	movedelay = 3
 	dir_in = 1 //Facing North.
 	max_integrity = 1500
-	armor = list(RED_DAMAGE = 40, WHITE_DAMAGE = 40, BLACK_DAMAGE = 40, PALE_DAMAGE = 40, BOMB = 100, BIO = 100, RAD = 100, FIRE = 100, ACID = 100)
+	armor = list(RED_DAMAGE = 40, WHITE_DAMAGE = 40, BLACK_DAMAGE = 40, PALE_DAMAGE = 40, BOMB = 100, BIO = 100, RAD = 100, FIRE = 100, ACID = 0)
 	max_temperature = 30000
 	force = 60
 	wreckage = /obj/structure/mecha_wreckage/durand
@@ -182,4 +182,27 @@
 		cell = C
 		return
 	cell = new /obj/item/stock_parts/cell/infinite(src)
+
+//The Captains Rhino
+/obj/vehicle/sealed/mecha/combat/rhino/captain
+	name = "\improper Captain's Heavy Rhinoceros Unit"
+	movedelay = 2
+	max_integrity = 2000
+	operation_req_access = list(ACCESS_CENT_GENERAL, ACCESS_COMMAND)
+	internals_req_access = list(ACCESS_CENT_GENERAL, ACCESS_COMMAND)
+
+//The Captains Melee Rhino
+/obj/vehicle/sealed/mecha/combat/rhinomelee/captain
+	name = "\improper Captains's Melee Rhinoceros Unit"
+	movedelay = 2
+	max_integrity = 2500
+	operation_req_access = list(ACCESS_CENT_GENERAL, ACCESS_COMMAND)
+	internals_req_access = list(ACCESS_CENT_GENERAL, ACCESS_COMMAND)
+
+//WEAPONS
+/obj/vehicle/sealed/mecha/combat/rhinomelee/captain/Initialize()
+	. = ..()
+	var/obj/item/mecha_parts/mecha_equipment/ME = new /obj/item/mecha_parts/mecha_equipment/hammer/rhinospear(src)
+	ME.attach(src)
+	max_ammo()
 

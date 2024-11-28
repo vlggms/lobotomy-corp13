@@ -700,12 +700,7 @@
 	color = "#CC5500";
 	dir = 8
 	},
-/obj/vehicle/sealed/mecha/combat/rhino{
-	dir = 1;
-	max_integrity = 2000;
-	movedelay = 2;
-	name = "\improper Captain's Rhinoceros Unit"
-	},
+/obj/effect/landmark/rhinocaptainspawner,
 /turf/open/floor/pod/dark,
 /area/city/outskirts)
 "GU" = (
@@ -745,8 +740,6 @@
 "IV" = (
 /obj/structure/table/abductor,
 /obj/item/clothing/under/suit/lobotomy/rabbit,
-/obj/item/ego_weapon/city/rabbit_blade/raven,
-/obj/item/weldingtool/experimental,
 /turf/open/floor/pod/dark,
 /area/city/outskirts)
 "Jc" = (
@@ -1141,8 +1134,6 @@
 /obj/item/clothing/head/beret/tegu/captain{
 	armor = list()
 	},
-/obj/item/gun/energy/e_gun/rabbitdash/small,
-/obj/item/weldingtool/experimental,
 /turf/open/floor/pod,
 /area/city/outskirts)
 "ZA" = (
