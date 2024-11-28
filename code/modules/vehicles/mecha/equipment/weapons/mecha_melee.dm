@@ -28,7 +28,7 @@
 	damtype = BLACK_DAMAGE
 
 /obj/item/mecha_parts/mecha_equipment/hammer/rhinospear
-	name = "Rhino Hammer (White)"
+	name = "Rhino Spear (White)"
 	desc = "Equipment for stabbing and thrusting. Does White damage"
 	icon = 'ModularTegustation/Teguicons/workshop.dmi'
 	icon_state = "hammertemplate"
