@@ -185,8 +185,8 @@
 	for(var/obj/item/ego_weapon/ranged/pistol/solemnlament/Lament in user.held_items)
 		projectile_damage_multiplier = 1.5
 		break
+	. = ..()
 	projectile_damage_multiplier = 1
-	return ..()
 
 
 /obj/item/ego_weapon/ranged/loyalty
