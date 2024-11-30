@@ -188,7 +188,7 @@
 	for(var/mob/living/L in view(5, src))
 		if(!faction_check_mob(L))
 			L.deal_damage(25, RED_DAMAGE)
-	new /obj/effect/particle_effect/foam in get_turf(src)
+	new /obj/effect/particle_effect/foam(get_turf(src))
 	gib()
 
 //Clown picture-related code
