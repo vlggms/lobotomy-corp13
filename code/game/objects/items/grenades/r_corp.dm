@@ -3,7 +3,7 @@
 	desc = "An anti-abnormality grenade, this weapon excels at damaging abnormality using the tech from L-Corp. It deals 90% less damage to humans."
 	icon_state = "r_corp"
 	var/explosion_damage_type = RED_DAMAGE
-	var/explosion_damage = 300
+	var/explosion_damage = 200
 	var/explosion_range = 2
 
 /obj/item/grenade/r_corp/detonate(mob/living/lanced_by)
@@ -32,4 +32,4 @@
 	name = "r-corp pale grenade"
 	icon_state = "r_corp_pale"
 	explosion_damage_type = PALE_DAMAGE
-	explosion_damage = 250
+	explosion_damage = 150
