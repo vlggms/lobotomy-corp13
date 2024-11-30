@@ -150,24 +150,36 @@
 	nodamage = TRUE
 	damage = 0
 	projectile_piercing = PASSMOB
+	ricochets_max = 2
+	ricochet_chance = 100
+	ricochet_decay_chance = 1
+	ricochet_decay_damage = 2 //Double damage after each bounce
+	ricochet_auto_aim_range = 3
+	ricochet_incidence_leeway = 0
 
 /obj/projectile/clown_throw_rcorp/Initialize()
 	. = ..()
 	SpinAnimation()
 
+/obj/projectile/clown_throw_rcorp/check_ricochet_flag(atom/A)
+	if(istype(A, /turf/closed))
+		return TRUE
+	return FALSE
+
 /obj/projectile/clown_throw_rcorp/on_hit(atom/target, blocked = FALSE)
-	if(!ishuman(target))
+	if(ishuman(target))
+		damage = 10
+		nodamage = FALSE
+		var/mob/living/carbon/human/H = target
+		H.apply_lc_bleed(8)
+		H.add_movespeed_modifier(/datum/movespeed_modifier/clowned)
+		addtimer(CALLBACK(H, TYPE_PROC_REF(/mob, remove_movespeed_modifier), /datum/movespeed_modifier/clowned), 2 SECONDS, TIMER_UNIQUE | TIMER_OVERRIDE)
+		qdel(src)
+
+	if(istype(target, /mob/living))
 		to_chat(target, "The [src] flies right passed you!")
 		return
-
-	damage = 10
-	nodamage = FALSE
-	var/mob/living/carbon/human/H = target
-	H.apply_lc_bleed(8)
-	H.add_movespeed_modifier(/datum/movespeed_modifier/clowned)
-	addtimer(CALLBACK(H, TYPE_PROC_REF(/mob, remove_movespeed_modifier), /datum/movespeed_modifier/clowned), 2 SECONDS, TIMER_UNIQUE | TIMER_OVERRIDE)
 	..()
-	qdel(src)
 
 /obj/projectile/bride_bolts
 	name = "mind bolts"

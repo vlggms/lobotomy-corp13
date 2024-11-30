@@ -83,7 +83,8 @@
 	. = ..()
 	to_chat(src, "<h1>You are Clown Smiling at Me, A Combat Role Abnormality.</h1><br>\
 		<b>|Dark Carnival|: When you click on a tile which is outside your melee range, you will throw a knife towards that tile. Your knife will deal no damage to abnormalities, and will pass through them. \
-		If you hit a human with this knife, you will deal RED damage to them, slow them down massively and inflict 8 'Bleed'.<br>\
+		If you hit a human with this knife, you will deal RED damage to them, slow them down massively and inflict 8 'Bleed'. \
+		Also, You blades are able to bounch against walls! Each time they bounch against a wall, their damage will be doubled!<br>\
 		<br>\
 		|Jovial Cutting|: When you attack a dead human, you will start rapidly gutting them, which will deal WHITE damage to all humans watching. \
 		A few seconds after gutting that human, you will gib them.<br>\
