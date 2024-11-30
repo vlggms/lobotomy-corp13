@@ -204,6 +204,7 @@ GLOBAL_VAR_INIT(rcorp_payload, null)
 	var/danger = FALSE
 	var/sniper_time = 0.5
 	var/warning_time = 0.25
+	var/sniper_safe = 1
 
 	var/list/shrimp_abilities = list(
 		/obj/effect/proc_holder/spell/pointed/shrimp_airstrike,
@@ -240,12 +241,12 @@ GLOBAL_VAR_INIT(rcorp_payload, null)
 		final_resistance = base_resistance - total_ally_protection
 		to_chat(src, span_danger("Allies in Sight: " + num2text(temp_guarding_allies) + " Current Resistance: " + num2text(final_resistance)))
 		ChangeResistances(list(RED_DAMAGE = final_resistance, WHITE_DAMAGE = final_resistance, BLACK_DAMAGE = final_resistance, PALE_DAMAGE = final_resistance))
-	if (guarding_allies <= 2)
+	if (guarding_allies <= sniper_safe)
 		if (!sniper)
 			sniper = addtimer(CALLBACK(src, PROC_REF(SniperShoot)), sniper_time MINUTES, TIMER_STOPPABLE)
 		if (!warning)
 			warning = addtimer(CALLBACK(src, PROC_REF(SniperWarning)), warning_time MINUTES, TIMER_STOPPABLE)
-	if (guarding_allies >= 3)
+	if (guarding_allies >= (sniper_safe + 1))
 		if (sniper)
 			deltimer(sniper)
 			sniper = null
@@ -253,11 +254,11 @@ GLOBAL_VAR_INIT(rcorp_payload, null)
 			deltimer(warning)
 			warning = null
 			if (danger == TRUE)
-				to_chat(src, span_nicegreen("You start to feel safer... Looks like that shooter can't get a good shot on you."))
+				to_chat(src, span_nicegreen("You start to feel safer... Looks like that sniper can't get a good shot on you."))
 				danger = FALSE
 
 /mob/living/simple_animal/hostile/shrimp_vip/proc/SniperShoot()
-	to_chat(src, span_userdanger("You are hit by a sniper bullet from an unknown shooter..."))
+	to_chat(src, span_userdanger("You are hit by a sniper bullet from an unknown sniper..."))
 	deal_damage(300, RED_DAMAGE)
 	playsound_local(src, 'sound/weapons/gun/sniper/shot.ogg', 75)
 	sniper = null
@@ -326,7 +327,7 @@ GLOBAL_VAR_INIT(rcorp_payload, null)
 	action_icon = 'icons/mob/actions/actions_shrimp.dmi'
 	action_icon_state = "barricade"
 	clothes_req = FALSE
-	charge_max = 150
+	charge_max = 100
 	selection_type = "range"
 	active_msg = "You prepare your barricade call ..."
 	deactive_msg = "You put away your barricade call ..."
