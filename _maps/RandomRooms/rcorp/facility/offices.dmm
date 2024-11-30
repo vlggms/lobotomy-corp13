@@ -438,6 +438,10 @@
 	},
 /turf/open/floor/wood,
 /area/city/outskirts)
+"TO" = (
+/obj/machinery/button/door/indestructible/rcorp,
+/turf/closed/indestructible/rock,
+/area/city/outskirts)
 "TX" = (
 /obj/effect/turf_decal/siding/purple,
 /turf/open/floor/plasteel,
@@ -5341,7 +5345,7 @@ WS
 WS
 WS
 WS
-WS
+TO
 WS
 WS
 WS

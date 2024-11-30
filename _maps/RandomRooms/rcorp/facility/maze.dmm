@@ -250,9 +250,7 @@
 	},
 /area/city/outskirts)
 "HH" = (
-/obj/machinery/button/door/indestructible{
-	id = "inside"
-	},
+/obj/machinery/button/door/indestructible/rcorp,
 /obj/effect/landmark/nobasic_incorp_move,
 /turf/closed/indestructible/syndicate,
 /area/city/outskirts)
@@ -382,6 +380,10 @@
 	density = 1;
 	desc = "A deep pit."
 	},
+/area/city/outskirts)
+"WE" = (
+/obj/machinery/button/door/indestructible/rcorp,
+/turf/closed/indestructible/rock,
 /area/city/outskirts)
 "WS" = (
 /turf/closed/indestructible/rock,
@@ -3940,7 +3942,7 @@ WS
 WS
 WS
 WS
-WS
+WE
 WS
 WS
 WS

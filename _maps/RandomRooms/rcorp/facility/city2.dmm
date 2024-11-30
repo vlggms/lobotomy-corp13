@@ -725,6 +725,10 @@
 	},
 /turf/open/floor/carpet/black,
 /area/city/outskirts)
+"jz" = (
+/obj/machinery/button/door/indestructible/rcorp,
+/turf/closed/indestructible/rock,
+/area/city/outskirts)
 "jE" = (
 /obj/machinery/vending/hydronutrients,
 /turf/open/indestructible/white,
@@ -3291,9 +3295,7 @@
 /turf/open/floor/plasteel,
 /area/city/outskirts)
 "OL" = (
-/obj/machinery/button/door/indestructible{
-	id = "inside"
-	},
+/obj/machinery/button/door/indestructible/rcorp,
 /obj/effect/landmark/nobasic_incorp_move/disappearing,
 /turf/closed/indestructible/syndicate,
 /area/city/outskirts)
@@ -7075,7 +7077,7 @@ WS
 WS
 WS
 WS
-WS
+jz
 WS
 WS
 WS

@@ -247,9 +247,7 @@
 /turf/open/water,
 /area/city/outskirts)
 "Sw" = (
-/obj/machinery/button/door/indestructible{
-	id = "inside"
-	},
+/obj/machinery/button/door/indestructible/rcorp,
 /obj/effect/landmark/nobasic_incorp_move/disappearing,
 /turf/closed/indestructible/syndicate,
 /area/city/outskirts)
@@ -269,6 +267,10 @@
 "Ui" = (
 /obj/item/reagent_containers/food/drinks/soda_cans/wellcheers_red,
 /turf/open/floor/plating/ashplanet/rocky,
+/area/city/outskirts)
+"Vu" = (
+/obj/machinery/button/door/indestructible/rcorp,
+/turf/closed/indestructible/rock,
 /area/city/outskirts)
 "WU" = (
 /obj/structure/grille/broken,
@@ -2200,7 +2202,7 @@ Tf
 Tf
 Tf
 Tf
-Tf
+Vu
 Tf
 Tf
 Tf

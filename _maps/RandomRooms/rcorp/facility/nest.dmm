@@ -2053,9 +2053,7 @@
 /turf/open/floor/wood,
 /area/city/outskirts)
 "NX" = (
-/obj/machinery/button/door/indestructible{
-	id = "inside"
-	},
+/obj/machinery/button/door/indestructible/rcorp,
 /obj/effect/landmark/nobasic_incorp_move,
 /turf/closed/indestructible/syndicate,
 /area/city/outskirts)
@@ -2527,6 +2525,10 @@
 	dir = 6
 	},
 /turf/open/floor/carpet/red,
+/area/city/outskirts)
+"WL" = (
+/obj/machinery/button/door/indestructible/rcorp,
+/turf/open/floor/plating/ashplanet,
 /area/city/outskirts)
 "WO" = (
 /obj/structure/chair/wood{
@@ -7117,7 +7119,7 @@ yy
 yy
 lx
 hD
-mI
+WL
 mI
 Ts
 uh

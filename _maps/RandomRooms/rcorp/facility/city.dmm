@@ -3655,6 +3655,10 @@
 /obj/effect/decal/cleanable/blood/old,
 /turf/open/floor/plasteel/kitchen_coldroom,
 /area/city/outskirts)
+"SH" = (
+/obj/machinery/button/door/indestructible/rcorp,
+/turf/closed/indestructible/rock,
+/area/city/outskirts)
 "SI" = (
 /mob/living/simple_animal/mouse,
 /turf/open/floor/plating/ashplanet/rocky,
@@ -3685,9 +3689,7 @@
 /turf/open/floor/wood,
 /area/city/outskirts)
 "SS" = (
-/obj/machinery/button/door/indestructible{
-	id = "inside"
-	},
+/obj/machinery/button/door/indestructible/rcorp,
 /obj/effect/landmark/nobasic_incorp_move/disappearing,
 /turf/closed/indestructible/syndicate,
 /area/city/outskirts)
@@ -6606,7 +6608,7 @@ WS
 WS
 WS
 WS
-WS
+SH
 WS
 WS
 WS

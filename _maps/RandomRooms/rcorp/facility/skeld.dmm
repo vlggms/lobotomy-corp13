@@ -1045,6 +1045,10 @@
 /obj/item/radio,
 /turf/open/floor/wood,
 /area/city/outskirts)
+"Ap" = (
+/obj/machinery/button/door/indestructible/rcorp,
+/turf/closed/indestructible/rock,
+/area/city/outskirts)
 "Ar" = (
 /obj/machinery/light{
 	dir = 8
@@ -8125,7 +8129,7 @@ Lh
 Lh
 Lh
 Yb
-Tf
+Ap
 Tf
 Tf
 Tf

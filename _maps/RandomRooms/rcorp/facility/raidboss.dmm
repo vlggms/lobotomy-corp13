@@ -18,6 +18,10 @@
 /obj/effect/landmark/nobasic_incorp_move,
 /turf/closed/indestructible/syndicate,
 /area/city/outskirts)
+"kl" = (
+/obj/machinery/button/door/indestructible/rcorp,
+/turf/closed/indestructible/rock,
+/area/city/outskirts)
 "oS" = (
 /turf/open/floor/plasteel/dark,
 /area/city/outskirts)
@@ -5574,7 +5578,7 @@ WS
 WS
 WS
 WS
-WS
+kl
 WS
 WS
 WS

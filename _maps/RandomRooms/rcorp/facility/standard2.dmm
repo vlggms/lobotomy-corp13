@@ -10,9 +10,7 @@
 /turf/closed/indestructible/syndicate,
 /area/city/outskirts)
 "aS" = (
-/obj/machinery/button/door/indestructible{
-	id = "inside"
-	},
+/obj/machinery/button/door/indestructible/rcorp,
 /obj/effect/landmark/nobasic_incorp_move,
 /turf/closed/indestructible/syndicate,
 /area/city/outskirts)
@@ -1131,7 +1129,6 @@
 	dir = 10
 	},
 /obj/structure/rack,
-/obj/item/gun/ego_gun/clerk,
 /turf/open/floor/plasteel/dark,
 /area/city/outskirts)
 "vS" = (
@@ -1908,7 +1905,6 @@
 	dir = 9
 	},
 /obj/structure/rack,
-/obj/item/gun/ego_gun/clerk,
 /turf/open/floor/plasteel/dark,
 /area/city/outskirts)
 "Jl" = (
