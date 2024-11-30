@@ -52,6 +52,8 @@
 //Porccubus gets a much shorter dash cooldown to better maneuver itself with how big of a commitment dashing is.
 /mob/living/simple_animal/hostile/abnormality/porccubus/Initialize()
 	if(IsCombatMap())
+		maxHealth = 3000
+		health = 3000
 		ranged_cooldown_time = 0.5 SECONDS
 	return ..()
 
