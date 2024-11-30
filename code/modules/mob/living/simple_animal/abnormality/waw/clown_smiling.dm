@@ -75,6 +75,21 @@
 	del_on_death = FALSE //for explosions
 	var/finishing = FALSE
 	var/step = FALSE
+	var/finishing_small_damage = 5
+	var/finishing_big_damage = 30
+
+/mob/living/simple_animal/hostile/abnormality/clown/Login()
+	. = ..()
+	to_chat(src, "<h1>You are Clown Smiling at Me, A Combat Role Abnormality.</h1><br>\
+		<b>|Dark Carnival|: When you click on a tile which is outside your melee range, you will throw a knife towards that tile. Your knife will deal no damage to abnormalities, and will pass through them. \
+		If you hit a human with this knife, you will deal RED damage to them, slow them down massively and inflict 8 'Bleed'.<br>\
+		<br>\
+		|Jovial Cutting|: When you attack a dead human, you will start rapidly gutting them, which will deal WHITE damage to all humans watching. \
+		A few seconds after gutting that human, you will gib them.<br>\
+		<br>\
+		|Bleed|: When a target with bleed moves, they will take True damage equal to the stack, then it reduces by half.<br>\
+		<br>\
+		|A Show’s End|: Once you reach 0 HP, you will explode which deal great RED damage to nearby humans, inflict 30 'Bleed' and leave behind a few trails of lube, which can slip humans who cross them.</b>")
 
 //A clown isn't a clown without his shoes
 /mob/living/simple_animal/hostile/abnormality/clown/BreachEffect(mob/living/carbon/human/user, breach_type)
@@ -125,7 +140,7 @@
 					return
 				TH.attack_animal(src)
 				for(var/mob/living/carbon/human/H in view(7, get_turf(src)))
-					H.deal_damage(5, WHITE_DAMAGE)
+					H.deal_damage(finishing_small_damage, WHITE_DAMAGE)
 				SLEEP_CHECK_DEATH(2)
 			if(!targets_from.Adjacent(TH) || QDELETED(TH))
 				finishing = FALSE
@@ -133,7 +148,7 @@
 			playsound(get_turf(src), 'sound/abnormalities/clownsmiling/final_stab.ogg', 50, 1)
 			TH.gib()
 			for(var/mob/living/carbon/human/H in view(7, get_turf(src)))
-				H.deal_damage(30, WHITE_DAMAGE)
+				H.deal_damage(finishing_big_damage, WHITE_DAMAGE)
 
 /mob/living/simple_animal/hostile/abnormality/clown/MoveToTarget(list/possible_targets)
 	if(ranged_cooldown <= world.time)
@@ -188,6 +203,8 @@
 	for(var/mob/living/L in view(5, src))
 		if(!faction_check_mob(L))
 			L.deal_damage(25, RED_DAMAGE)
+			if(IsCombatMap())
+				L.apply_lc_bleed(30)
 	new /obj/effect/particle_effect/foam(get_turf(src))
 	gib()
 
