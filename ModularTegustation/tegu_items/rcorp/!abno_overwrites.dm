@@ -83,6 +83,24 @@
 		bullet_damage = 200
 	return ..()
 
+//Decreases Baba Yaga's landing time to make it a bit harder to dodge, making her a bit more tanky since they have no way of defending themselves.
+//To account for their leaping, deceases the max mobs to avoid enemy spam for no cost.
+/mob/living/simple_animal/hostile/abnormality/babayaga/Initialize()
+	..()
+	if(IsCombatMap())
+		ChangeResistances(list(RED_DAMAGE = 0.8, WHITE_DAMAGE = 0.4, BLACK_DAMAGE = 0.6, PALE_DAMAGE = 0.6))
+		maxHealth = 5000
+		health = 5000
+		landing_time = 5
+		max_mobs = 6
+	return
+
+//Make it so it is harder to stun So That No Cry, since they are inflicting more talisman.
+/mob/living/simple_animal/hostile/abnormality/so_that_no_cry/Initialize()
+	if(IsCombatMap())
+		max_talismans = 20
+	return ..()
+
 //Due to Redblooded's very low damage and health, which is normaly fitting for a Teth. That causes them to underperform in R-Corp since they don't have any utility.
 //For that reason his health is increased and let his ammo gimmick work by reducing his ranged cooldown.
 /mob/living/simple_animal/hostile/abnormality/redblooded/Initialize()

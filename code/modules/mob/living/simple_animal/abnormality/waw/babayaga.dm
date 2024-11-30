@@ -11,8 +11,8 @@
 	speak_emote = list("intones")
 	pixel_x = -30
 	base_pixel_x = -30
-	melee_damage_lower = 40
-	melee_damage_upper = 50
+	melee_damage_lower = 0
+	melee_damage_upper = 0
 	melee_damage_type = RED_DAMAGE
 	stat_attack = HARD_CRIT
 	health = 2500
@@ -48,7 +48,28 @@
 
 	var/jump_cooldown = 0
 	var/jump_cooldown_time = 35 SECONDS
+	var/landing_time = 10
+	var/max_mobs = 10
 	var/list/spawned_mobs = list()
+	attack_action_types = list(/datum/action/cooldown/babayaga_leap)
+
+/mob/living/simple_animal/hostile/abnormality/babayaga/Login()
+	. = ..()
+	if(!. || !client)
+		return FALSE
+	to_chat(src, "<h1>You are Baba Yaga, A Support Role Abnormality.</h1><br>\
+		<b>|Ice Giant|: You are unable to attack or move.<br>\
+		<br>\
+		|Mighty Leap|: Using your ability, You are able to leap into the air.<br>\
+		While you are in the air, you can move through walls and speak.<br>\
+		After 2 minutes, you will land but you can land earlier if you press your ability again.<br>\
+		<br>\
+		|Crushing Ice|: Once you use your ability again, you will land after 5 seconds.<br>\
+		Once you land, you deal a MASSIVE amount of RED damage to all humans bellow you. It does not harm your allies.<br>\
+		You will also create some snow and ice around you, which have a chance a sliping humans.<br>\
+		<br>\
+		|Cold Prison|: Each time you land, You will create a few Ice Slaves who can be controlled by ghosts.<br>\
+		If you already had some Ice Slaves, you will bring some of your Ice Slaves to your current location each time you land.</b>")
 
 //Work Procs
 // any work performed with level <4 Fort and Temperance lowers qliphoth
@@ -94,7 +115,7 @@
 	return FALSE
 
 /mob/living/simple_animal/hostile/abnormality/babayaga/Move()
-	return FALSE
+	return incorporeal_move
 
 /mob/living/simple_animal/hostile/abnormality/babayaga/death(gibbed)
 	for(var/mob/living/A in spawned_mobs)
@@ -103,34 +124,35 @@
 
 //Attack procs
 /mob/living/simple_animal/hostile/abnormality/babayaga/proc/TryJump(atom/target)
-	if(jump_cooldown >= world.time)
-		return
-	jump_cooldown = world.time + jump_cooldown_time //We reset the cooldown later if there are no targets
-	SLEEP_CHECK_DEATH(0.1 SECONDS)
-	var/list/potentialmarked = list()
-	var/list/marked = list()
-	var/mob/living/carbon/human/Y
-	for(var/mob/living/carbon/human/L in GLOB.player_list)
-		if(faction_check_mob(L, FALSE) || L.stat >= HARD_CRIT || L.sanity_lost || z != L.z) // Dead or in hard crit, insane, or on a different Z level.
-			continue
-		potentialmarked += L
-	var/numbermarked = 1 + round(LAZYLEN(potentialmarked) / 5, 1) //1 + 1 in 5 potential players, to the nearest whole number
-	for(var/i = numbermarked, i>=1, i--)
-		if(potentialmarked.len <= 0)
-			break
-		Y = pick(potentialmarked)
-		potentialmarked -= Y
-		if(Y.stat == DEAD || Y.is_working)
-			continue
-		marked+=Y
-	if(marked.len <= 0) //Oh no, everyone's dead!
-		jump_cooldown = world.time
-		return
-	var/mob/living/carbon/human/final_target = pick(marked)
-	final_target.apply_status_effect(STATUS_EFFECT_BABAYAGA)
-	playsound(get_turf(final_target), 'sound/abnormalities/babayaga/warning.ogg', 30, FALSE)
-	SLEEP_CHECK_DEATH(5 SECONDS)
-	JumpAttack(final_target)
+	if(!IsCombatMap())
+		if(jump_cooldown >= world.time)
+			return
+		jump_cooldown = world.time + jump_cooldown_time //We reset the cooldown later if there are no targets
+		SLEEP_CHECK_DEATH(0.1 SECONDS)
+		var/list/potentialmarked = list()
+		var/list/marked = list()
+		var/mob/living/carbon/human/Y
+		for(var/mob/living/carbon/human/L in GLOB.player_list)
+			if(faction_check_mob(L, FALSE) || L.stat >= HARD_CRIT || L.sanity_lost || z != L.z) // Dead or in hard crit, insane, or on a different Z level.
+				continue
+			potentialmarked += L
+		var/numbermarked = 1 + round(LAZYLEN(potentialmarked) / 5, 1) //1 + 1 in 5 potential players, to the nearest whole number
+		for(var/i = numbermarked, i>=1, i--)
+			if(potentialmarked.len <= 0)
+				break
+			Y = pick(potentialmarked)
+			potentialmarked -= Y
+			if(Y.stat == DEAD || Y.is_working)
+				continue
+			marked+=Y
+		if(marked.len <= 0) //Oh no, everyone's dead!
+			jump_cooldown = world.time
+			return
+		var/mob/living/carbon/human/final_target = pick(marked)
+		final_target.apply_status_effect(STATUS_EFFECT_BABAYAGA)
+		playsound(get_turf(final_target), 'sound/abnormalities/babayaga/warning.ogg', 30, FALSE)
+		SLEEP_CHECK_DEATH(5 SECONDS)
+		JumpAttack(final_target)
 
 /mob/living/simple_animal/hostile/abnormality/babayaga/proc/JumpAttack(atom/target)
 	playsound(get_turf(src), 'sound/abnormalities/babayaga/charge.ogg', 100, 1)
@@ -139,8 +161,11 @@
 	density = FALSE
 	var/turf/target_turf = get_turf(target)
 	forceMove(target_turf) //look out, someone is rushing you!
-	new /obj/effect/temp_visual/giantwarning(target_turf)
-	SLEEP_CHECK_DEATH(10 SECONDS)
+	if (landing_time < 10)
+		new /obj/effect/temp_visual/giantwarning/fast(target_turf)
+	else
+		new /obj/effect/temp_visual/giantwarning(target_turf)
+	SLEEP_CHECK_DEATH(landing_time SECONDS)
 	animate(src, pixel_z = 0, alpha = 255, time = 10)
 	SLEEP_CHECK_DEATH(10)
 	density = TRUE
@@ -156,8 +181,12 @@
 			new /obj/effect/temp_visual/ice_spikes(T)
 
 	for(var/mob/living/L in view(8, src))
-		if(faction_check_mob(L, TRUE)) //so it doesn't kill its own minions
-			continue
+		if(!IsCombatMap())
+			if(faction_check_mob(L, TRUE)) //so it doesn't kill its own minions
+				continue
+		else
+			if(faction_check_mob(L, FALSE)) //so it doesn't kill its own allies
+				continue
 		var/dist = get_dist(src, L)
 		if(ishuman(L)) //Different damage formulae for humans vs mobs
 			L.deal_damage(clamp((15 * (2 ** (8 - dist))), 15, 4000), RED_DAMAGE) //15-3840 damage scaling exponentially with distance
@@ -170,14 +199,21 @@
 
 /mob/living/simple_animal/hostile/abnormality/babayaga/proc/SpawnMobs()
 	for(var/turf/T in orange(1, src))
-		if(spawned_mobs.len > 10)
-			for(var/mob/living/A in spawned_mobs) //if there are too many spawned mobs, thin out the numbers a bit
+		if(!IsCombatMap())
+			if(spawned_mobs.len > max_mobs)
+				for(var/mob/living/A in spawned_mobs) //if there are too many spawned mobs, thin out the numbers a bit
+					if(prob(30))
+						A.death()
+			new /obj/effect/temp_visual/dir_setting/cult/phase
+			if(prob(30))
+				var/mob/living/simple_animal/hostile/yagaslave/Y = new(T)
+				spawned_mobs+=Y
+		else
+			if(spawned_mobs.len < max_mobs)
+				new /obj/effect/temp_visual/dir_setting/cult/phase
 				if(prob(30))
-					A.death()
-		new /obj/effect/temp_visual/dir_setting/cult/phase
-		if(prob(30))
-			var/mob/living/simple_animal/hostile/yagaslave/Y = new(T)
-			spawned_mobs+=Y
+					var/mob/living/simple_animal/hostile/yagaslave/Y = new(T)
+					spawned_mobs+=Y
 	return
 
 // Misc Objects and effects
@@ -214,6 +250,10 @@
 	randomdir = FALSE
 	duration = 10 SECONDS
 	layer = POINT_LAYER	//We want this HIGH. SUPER HIGH. We want it so that you can absolutely, guaranteed, see exactly what hit you
+
+/obj/effect/temp_visual/giantwarning/fast
+	duration = 5 SECONDS
+
 
 /obj/effect/temp_visual/ice_spikes
 	name = "ice spikes"
@@ -274,3 +314,50 @@
 	icon_state = "babayaga"
 
 #undef STATUS_EFFECT_BABAYAGA
+
+
+// Leap button action definition
+/datum/action/cooldown/babayaga_leap
+	name = "Leap"
+	desc = "Leap into the air and become untargetable, up for 2 minutes."
+	icon_icon = 'ModularTegustation/Teguicons/status_sprites.dmi'
+	button_icon_state = "freezing_noBG"
+	var/in_leap = FALSE
+	cooldown_time = 21 SECONDS
+	var/leap_timer
+	var/leap_time = 120 SECONDS
+
+/datum/action/cooldown/babayaga_leap/Trigger()
+	if(!..())
+		return FALSE
+	if(!istype(owner, /mob/living/simple_animal/hostile/abnormality/babayaga))
+		return FALSE
+
+	var/mob/living/simple_animal/hostile/abnormality/babayaga/B = owner
+	if (in_leap)
+		if (leap_timer)
+			deltimer(leap_timer)
+		B.incorporeal_move = FALSE
+		in_leap = FALSE
+		StartCooldown()
+		B.JumpAttack(B.loc)
+	else
+		// change button icon
+		in_leap = TRUE
+		B.StartLeap()
+		leap_timer = addtimer(CALLBACK(src, PROC_REF(EndLeap), B), leap_time, TIMER_STOPPABLE)
+
+/datum/action/cooldown/babayaga_leap/proc/EndLeap(mob/living/simple_animal/hostile/abnormality/babayaga/B)
+	B.incorporeal_move = FALSE
+	in_leap = FALSE
+	StartCooldown()
+	B.JumpAttack(B.loc)
+
+// Procedure to start the leap
+/mob/living/simple_animal/hostile/abnormality/babayaga/proc/StartLeap()
+	//playsound(get_turf(src), 'sound/abnormalities/babayaga/leap_start.ogg', 100, FALSE)
+	visible_message(span_warning("[src] leaps into the air!"))
+	// animate
+	animate(src, pixel_z = 128, alpha = 0, time = 10)
+	density = FALSE
+	incorporeal_move = TRUE // Assuming there is a variable for incorporeal state
