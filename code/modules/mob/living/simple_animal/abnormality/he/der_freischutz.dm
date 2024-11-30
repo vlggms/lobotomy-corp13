@@ -117,6 +117,7 @@
 
 
 
+
 /datum/action/cooldown/remove_portal
 	name = "Removing Portal"
 	icon_icon = 'icons/effects/effects.dmi'
@@ -130,12 +131,7 @@
 	if (!istype(owner, /mob/living/simple_animal/hostile/abnormality/der_freischutz))
 		return
 	var/mob/living/simple_animal/hostile/abnormality/der_freischutz/F = owner
-	var/P = F.portals[F.current_portal_index]
-	F.portals.Remove(P)
-	qdel(P)
-	F.client.eye = F
-	F.current_portal_index = 0
-
+	F.RemovePortal()
 
 /datum/action/innate/abnormality_attack/toggle/der_freischutz_zoom
 	name = "Toggle Sniper Sight"
@@ -200,6 +196,21 @@
 	owner.client.view_size.zoomOut(zoom_out_amt, zoom_amt, new_dir)
 
 
+/mob/living/simple_animal/hostile/abnormality/der_freischutz/proc/RemovePortal(portal)
+	var/P = portal
+	if (!portal)
+		P = portals[current_portal_index]
+	portals.Remove(P)
+	if (client.eye == P)
+		client.eye = src
+		current_portal_index = 0
+	else
+		if (istype(client.eye, /mob/living/simple_animal/hostile/der_freis_portal))
+			var/mob/living/simple_animal/hostile/der_freis_portal/P2 = client.eye
+			current_portal_index = portals.Find(P2)
+	qdel(P)
+
+
 /mob/living/simple_animal/hostile/abnormality/der_freischutz/AttackingTarget(atom/attacked_target)
 	if(!target)
 		GiveTarget(attacked_target)
@@ -218,6 +229,9 @@
 		else if (istype(A, /area/city/outskirts/rcorp_base))
 			to_chat(src, "Cannot place the portal inside the enemy base!")
 		else if(portal_cooldown <= world.time)
+			for(var/mob/living/simple_animal/hostile/der_freis_portal/P in T)
+				to_chat(src, "Cannot place the portal on top of another")
+				return
 			portal_cooldown = world.time + portal_cooldown_time
 			var/mob/living/simple_animal/hostile/der_freis_portal/P = new /mob/living/simple_animal/hostile/der_freis_portal(T)
 			portals.Add(P)
@@ -425,8 +439,7 @@
 	playsound(get_turf(src), 'sound/abnormalities/freischutz/portal.ogg', 100, 0, 10)
 
 /mob/living/simple_animal/hostile/der_freis_portal/death()
-	if(connected_abno)
-		connected_abno.portals -= src
+	connected_abno.RemovePortal(src)
 	..()
 
 /mob/living/simple_animal/hostile/der_freis_portal/Move()
