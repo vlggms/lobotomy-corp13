@@ -79,7 +79,7 @@
 
 		if(darts_smoked<8)
 			work_damage_amount+=2
-			max_boxes+=2
+			datum_reference.max_boxes+=2
 
 		if(darts_smoked>=3)
 			var/datum/effect_system/smoke_spread/pale/S = new

@@ -914,6 +914,33 @@ GLOBAL_LIST_EMPTY(possible_items_special)
 				stolen_count++
 	return stolen_count >= 5
 
+/datum/objective/breach
+	name = "breach abnormalities"
+	var/abnos_breached = 0
+	martyr_compatible = TRUE
+
+/datum/objective/breach/New()
+	RegisterSignal(SSdcs, COMSIG_GLOB_ABNORMALITY_BREACH, PROC_REF(OnAbnoBreach))
+	..()
+
+/datum/objective/breach/proc/gen_amount_goal(lowbound = 15, highbound = 25)
+	target_amount = rand(lowbound, highbound)
+	update_explanation_text()
+	return target_amount
+
+/datum/objective/breach/update_explanation_text()
+	. = ..()
+	explanation_text = "Allow abnormalities to breach [target_amount] times this shift!"
+
+/datum/objective/breach/proc/OnAbnoBreach()
+	abnos_breached += 1
+
+/datum/objective/breach/check_completion()
+	if(abnos_breached >= target_amount)
+		return TRUE
+	else
+		return FALSE
+
 //Created by admin tools
 /datum/objective/custom
 	name = "custom"
@@ -944,6 +971,7 @@ GLOBAL_LIST_EMPTY(possible_items_special)
 		/datum/objective/nuclear,
 		/datum/objective/capture,
 		/datum/objective/absorb,
+		/datum/objective/breach,
 		/datum/objective/custom
 	),/proc/cmp_typepaths_asc)
 

@@ -84,7 +84,7 @@
 	shoes = /obj/item/clothing/shoes/combat
 	gloves = /obj/item/clothing/gloves/color/black
 	implants = list(/obj/item/organ/cyberimp/eyes/hud/security)
-	belt = null
+	belt = /obj/item/storage/belt/rhino/full
 
 /datum/outfit/job/rhino/melee
 	name = "R-Corp Hammer Rhino"
@@ -97,4 +97,4 @@
 	jobtype = /datum/job/rcorp_captain/rhino
 	glasses = /obj/item/clothing/glasses/hud/diagnostic/sunglasses
 	ears = /obj/item/radio/headset/heads/headset_discipline
-
+	belt = /obj/item/storage/belt/rhino/captain

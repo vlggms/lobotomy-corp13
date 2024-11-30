@@ -41,3 +41,47 @@
 	new /obj/item/clerkbot_gadget(src)
 	new /obj/item/powered_gadget/vitals_projector(src)
 	new /obj/item/powered_gadget/handheld_taser(src)
+
+//So rhino can repair their shit and keep their weapons
+/obj/item/storage/belt/rhino
+	name = "rhino toolbelt"
+	desc = "Holds emergency repair tools"
+	icon_state = "security"
+	inhand_icon_state = "security"
+	worn_icon_state = "security"
+	drop_sound = 'sound/items/handling/toolbelt_drop.ogg'
+	pickup_sound =  'sound/items/handling/toolbelt_pickup.ogg'
+
+/obj/item/storage/belt/rhino/ComponentInitialize()
+	. = ..()
+	var/datum/component/storage/STR = GetComponent(/datum/component/storage)
+	STR.max_w_class = WEIGHT_CLASS_BULKY
+	STR.max_combined_w_class = 15
+	STR.max_items = 6
+	STR.set_holdable(list(
+		/obj/item/crowbar,
+		/obj/item/screwdriver,
+		/obj/item/wrench,
+		/obj/item/weldingtool/experimental,
+		/obj/item/stack/cable_coil,
+		/obj/item/ego_weapon/city/rabbit_blade/raven,
+		/obj/item/gun/energy/e_gun/rabbitdash/small,
+		))
+
+//For the rhino small fries
+/obj/item/storage/belt/rhino/full/PopulateContents()
+	new /obj/item/crowbar(src)
+	new /obj/item/screwdriver(src)
+	new /obj/item/wrench(src)
+	new /obj/item/weldingtool/experimental(src)
+	new /obj/item/stack/cable_coil(src)
+	new /obj/item/ego_weapon/city/rabbit_blade/raven(src)
+
+//For the captain himself
+/obj/item/storage/belt/rhino/captain/PopulateContents()
+	new /obj/item/crowbar(src)
+	new /obj/item/screwdriver(src)
+	new /obj/item/wrench(src)
+	new /obj/item/weldingtool/experimental(src)
+	new /obj/item/stack/cable_coil(src)
+	new /obj/item/gun/energy/e_gun/rabbitdash/small(src)

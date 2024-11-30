@@ -159,6 +159,7 @@
 	energy_drain = 50
 	range = 0
 	var/deflect_coeff = 1.15
+	var/dodge_coeff = 1.15
 	var/damage_coeff = 0.8
 	selectable = FALSE
 

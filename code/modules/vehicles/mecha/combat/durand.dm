@@ -3,13 +3,13 @@
 	name = "\improper Rhinoceros Unit MK2"
 	icon_state = "durand"
 	base_icon_state = "durand"
-	operation_req_access = list(ACCESS_CENT_GENERAL)
-	internals_req_access = list(ACCESS_CENT_GENERAL)
+	operation_req_access = list(ACCESS_CENT_GENERAL, ACCESS_COMMAND)
+	internals_req_access = list(ACCESS_CENT_GENERAL, ACCESS_COMMAND)
 	movedelay = 6
 	dir_in = 1 //Facing North.
 	max_integrity = 1000
 	deflect_chance = 20
-	armor = list(RED_DAMAGE = 70, WHITE_DAMAGE = 70, BLACK_DAMAGE = 70, PALE_DAMAGE = 10, BOMB = 100, BIO = 100, RAD = 100, FIRE = 100, ACID = 100)
+	armor = list(RED_DAMAGE = 50, WHITE_DAMAGE = 50, BLACK_DAMAGE = 50, PALE_DAMAGE = 10, BOMB = 100, BIO = 100, RAD = 100, FIRE = 100, ACID = 0)
 	max_temperature = 30000
 	force = 40
 	wreckage = /obj/structure/mecha_wreckage/durand

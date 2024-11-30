@@ -74,7 +74,7 @@
 		<br>\
 		|Spreading Love...|: When you attack a dead body, you will convert it into a 'Slime Pawn.' Slime pawns exist for a short amount of time and detonate upon their death.\
 		When they detonate, they will deal BLACK damage to nearby humans and spread 'Melting Slime' around them.\
-		Also, If you attack your own 'Slime Pawn', You will devor them and heal 20% of your HP.<br>\
+		Also, If you attack your own 'Slime Pawn', You will devour them and heal 20% of your HP.<br>\
 		<br>\
 		|Stay Together...|: When you click on a tile outside your melee range, You will fire a slime projectile towards that tile. The projectile will inflict the target with 'SLIMED' and deal BLACK damage.\
 		If the projectile hits a dead body, it will convert it into a slime pawn.</b>")
@@ -284,6 +284,14 @@
 	var/decay_damage = 20
 	var/decay_timer = 4
 
+/mob/living/simple_animal/hostile/slime/Login()
+	. = ..()
+	to_chat(src, "<h1>You are a Slime Pawn, A Melting Love minion.</h1><br>\
+		<b>|Combust...|: You take 20 BLACK damage every 4 Seconds, Which means you have 40 seconds to live, unless someone attacks you with RED damage. \
+		Once you die, you will explode and place down 'Slime' in a 3x3 area around you, and deal 20 BLACK damage to all foes near you.<br>\
+		<br>\
+		|Mother?|: Melting Love is able to attack you to devour you and heal 20% of her HP.</b>")
+
 /mob/living/simple_animal/hostile/slime/Initialize()
 	. = ..()
 	playsound(get_turf(src), spawn_sound, 50, 1)
@@ -297,7 +305,8 @@
 /mob/living/simple_animal/hostile/slime/proc/decay()
 	to_chat(src, span_userdanger("You feel yourself falling apart..."))
 	src.deal_damage(decay_damage, BLACK_DAMAGE)
-	addtimer(CALLBACK(src, PROC_REF(decay)), decay_timer SECONDS, TIMER_STOPPABLE)
+	if (stat != DEAD)
+		addtimer(CALLBACK(src, PROC_REF(decay)), decay_timer SECONDS, TIMER_STOPPABLE)
 
 /mob/living/simple_animal/hostile/slime/death()
 	for(var/atom/movable/AM in src)
@@ -306,8 +315,9 @@
 		for(var/turf/open/R in range(death_slime_range, src))
 			new /obj/effect/decal/cleanable/melty_slime(R)
 		for(var/mob/living/L in view(death_slime_range, src))
-			L.apply_damage(death_damage, BLACK_DAMAGE, null, L.run_armor_check(null, BLACK_DAMAGE))
-	..()
+			if(L.stat != DEAD && !istype(L, /mob/living/simple_animal/hostile/slime))
+				L.apply_damage(death_damage, BLACK_DAMAGE, null, L.run_armor_check(null, BLACK_DAMAGE))
+	return ..()
 
 /mob/living/simple_animal/hostile/slime/CanAttack(atom/the_target)
 	if(isliving(the_target) && !ishuman(the_target))

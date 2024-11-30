@@ -27,6 +27,20 @@
 	mech_flags = EXOSUIT_MODULE_COMBAT
 	damtype = BLACK_DAMAGE
 
+/obj/item/mecha_parts/mecha_equipment/hammer/rhinospear
+	name = "Rhino Spear (White)"
+	desc = "Equipment for stabbing and thrusting. Does White damage"
+	icon = 'ModularTegustation/Teguicons/workshop.dmi'
+	icon_state = "hammertemplate"
+	color = "#ffffff"
+	equip_cooldown = 15
+	energy_drain = 10
+	force = 200
+	harmful = TRUE
+	range = MECHA_MELEE
+	mech_flags = EXOSUIT_MODULE_COMBAT
+	damtype = WHITE_DAMAGE
+
 
 /obj/item/mecha_parts/mecha_equipment/hammer/action(mob/source, atom/target, params)
 	// Check if we can even use the equipment to begin with.

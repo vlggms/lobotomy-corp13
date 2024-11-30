@@ -224,7 +224,8 @@
 	for(var/mob/living/carbon/human/survivor in survivors)
 		if(survivor.stat == DEAD || !survivor.ckey)
 			continue
-		if(src.z == 6) //Test Range Z Level
+		var/area_check = get_area(src)
+		if(istype(area_check, /area/test_range))
 			return ..()
 		survivor.Apply_Gift(new /datum/ego_gifts/sukuna)
 		survivor.playsound_local(get_turf(survivor), 'sound/weapons/black_silence/snap.ogg', 50)

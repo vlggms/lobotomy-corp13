@@ -44,6 +44,8 @@
 	var/overload_step_energy_drain_min = 100
 	///chance to deflect the incoming projectiles, hits, or lesser the effect of ex_act.
 	var/deflect_chance = 10
+	///deflect but has reduced chance against specific ranged
+	var/dodge_chance = 0
 	///Modifiers for directional armor
 	var/list/facing_modifiers = list(MECHA_FRONT_ARMOUR = 0.66, MECHA_FRONT_DIAGONAL_ARMOUR = 0.8, MECHA_SIDE_ARMOUR = 1, MECHA_BACK_DIAGONAL_ARMOUR = 1.5, MECHA_BACK_ARMOUR = 2)
 	///if we cant use our equipment(such as due to EMP)
