@@ -191,7 +191,6 @@
 //Okay, but here's the math
 /mob/living/simple_animal/hostile/abnormality/eris/proc/healpulse()
 	for(var/mob/living/H in view(10, get_turf(src)))
-		can_heal = TRUE
 		if(H.stat >= SOFT_CRIT)
 			continue
 		//Shamelessly fucking stolen from risk of rain's teddy bear. Maxes out at 20.
