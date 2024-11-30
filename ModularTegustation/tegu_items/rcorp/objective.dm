@@ -186,9 +186,87 @@ GLOBAL_VAR_INIT(rcorp_payload, null)
 	icon = 'ModularTegustation/Teguicons/32x32.dmi'
 	icon_state = "executive"
 	icon_living = "executive"
-	health = 300	//Fragile so they protect you
-	maxHealth = 300
+	health = 1000	//Fragile so they protect you
+	maxHealth = 1000
+	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 1, WHITE_DAMAGE = 1, BLACK_DAMAGE = 1, PALE_DAMAGE = 1)
+	var/max_protection = 1
+	var/base_resistance = 1
+	var/guarding_allies = 0
+	var/final_resistance = 1
+	var/total_ally_protection = 0
+	var/per_ally_protection = 0.25
+	var/view_check_time = 1 SECONDS
+	var/view_check
+	var/barrier_count
+	var/max_barrier_count = 6
+	var/sniper
+	var/warning
+	var/danger = FALSE
+	var/sniper_time = 0.5
+	var/warning_time = 0.25
 
+	var/list/shrimp_abilities = list(
+		/obj/effect/proc_holder/spell/pointed/shrimp_airstrike,
+		/obj/effect/proc_holder/spell/pointed/shrimp_barricade,
+		)
+
+/mob/living/simple_animal/hostile/shrimp_vip/Initialize()
+	. = ..()
+
+	for (var/A in shrimp_abilities)
+		if (ispath(A, /obj/effect/proc_holder/spell))
+			var/obj/effect/proc_holder/spell/AS = new A(src)
+			AddSpell(AS)
+
+
+/mob/living/simple_animal/hostile/shrimp_vip/Life()
+	. = ..()
+	if(!.) // Dead
+		return FALSE
+	if((view_check < world.time) && !(status_flags & GODMODE) && (client))
+		Protection()
+
+/mob/living/simple_animal/hostile/shrimp_vip/proc/Protection()
+	view_check = world.time + view_check_time
+	var/temp_guarding_allies = 0
+	for(var/mob/living/simple_animal/hostile/A in livinginview(7, src))
+		if(src != A && faction_check_mob(A, FALSE))
+			temp_guarding_allies += 1
+	if (temp_guarding_allies != guarding_allies)
+		guarding_allies = temp_guarding_allies
+		total_ally_protection = guarding_allies * per_ally_protection
+		if (total_ally_protection > max_protection)
+			total_ally_protection = max_protection
+		final_resistance = base_resistance - total_ally_protection
+		to_chat(src, span_danger("Allies in Sight: " + num2text(temp_guarding_allies) + " Current Resistance: " + num2text(final_resistance)))
+		ChangeResistances(list(RED_DAMAGE = final_resistance, WHITE_DAMAGE = final_resistance, BLACK_DAMAGE = final_resistance, PALE_DAMAGE = final_resistance))
+	if (guarding_allies <= 2)
+		if (!sniper)
+			sniper = addtimer(CALLBACK(src, PROC_REF(SniperShoot)), sniper_time MINUTES, TIMER_STOPPABLE)
+		if (!warning)
+			warning = addtimer(CALLBACK(src, PROC_REF(SniperWarning)), warning_time MINUTES, TIMER_STOPPABLE)
+	if (guarding_allies >= 3)
+		if (sniper)
+			deltimer(sniper)
+			sniper = null
+		if (warning)
+			deltimer(warning)
+			warning = null
+			if (danger == TRUE)
+				to_chat(src, span_nicegreen("You start to feel safer... Looks like that shooter can't get a good shot on you."))
+				danger = FALSE
+
+/mob/living/simple_animal/hostile/shrimp_vip/proc/SniperShoot()
+	to_chat(src, span_userdanger("You are hit by a sniper bullet from an unknown shooter..."))
+	deal_damage(300, RED_DAMAGE)
+	playsound_local(src, 'sound/weapons/gun/sniper/shot.ogg', 75)
+	sniper = null
+
+/mob/living/simple_animal/hostile/shrimp_vip/proc/SniperWarning()
+	to_chat(src, span_userdanger("You feel a shiver down your spine... Someone is aiming towards you, Get back to your allies to be safer!"))
+	playsound_local(src, 'sound/weapons/gun/sniper/rack.ogg', 75)
+	danger = TRUE
+	warning = null
 
 /mob/living/simple_animal/hostile/shrimp_vip/death(gibbed)
 	for(var/mob/M in GLOB.player_list)
@@ -196,6 +274,93 @@ GLOBAL_VAR_INIT(rcorp_payload, null)
 		to_chat(M, span_userdanger("R-CORP MAJOR VICTORY."))
 	SSticker.force_ending = 1
 	..()
+
+/obj/effect/proc_holder/spell/pointed/shrimp_airstrike
+	name = "Airstrike Call"
+	desc = "Call in your off field support to send in a airstrike on your foes!"
+	panel = "Shrimp"
+	has_action = TRUE
+	action_icon = 'icons/mob/actions/actions_shrimp.dmi'
+	action_icon_state = "airstrike"
+	clothes_req = FALSE
+	charge_max = 600
+	selection_type = "range"
+	active_msg = "You prepare your airstrike call..."
+	deactive_msg = "You put away your airstrike call..."
+
+/obj/structure/closet/supplypod/shrimpmissle
+	style = STYLE_RED_MISSILE
+	effectMissile = TRUE
+	explosionSize = list(0,0,0,0)
+
+/obj/effect/proc_holder/spell/pointed/shrimp_airstrike/cast(list/targets, mob/user)
+	var/target = targets[1]
+	user.visible_message(span_danger("[user] called an airstrike."), span_alert("You targeted [target]"))
+	addtimer(CALLBACK(src, PROC_REF(Airstrike), target), 1)
+
+/obj/effect/proc_holder/spell/pointed/shrimp_airstrike/proc/Airstrike(target)
+	var/turf/T = get_turf(target)
+	for (var/i in 1 to 5)
+		var/obj/structure/closet/supplypod/shrimpmissle/pod = new()
+		var/landingzone = locate(T.x + rand(-1,1), T.y + rand(-1,1), T.z)
+		if (landingzone)
+			new /obj/effect/pod_landingzone(landingzone, pod)
+		else
+			new /obj/effect/pod_landingzone(T, pod)
+		var/mob/dummy = new(landingzone)
+		dummy.faction = list("hostile")
+		dummy.visible_message("<span class='danger'>A MISSILE IS FALLING NEAR YOUR LOCATION!</span>")
+		sleep(34)
+		for(var/turf/AT in range(2, landingzone))
+			new /obj/effect/temp_visual/smash_effect(AT)
+			dummy.HurtInTurf(AT, list(), (200), RED_DAMAGE, check_faction = TRUE, hurt_mechs = TRUE)
+		playsound(dummy, 'sound/effects/explosion2.ogg', 50, TRUE)
+		qdel(dummy)
+		sleep(rand()*2)
+
+/obj/effect/proc_holder/spell/pointed/shrimp_barricade
+	name = "Barricade Call"
+	desc = "Call in your off field support to send in a barricade!"
+	panel = "Shrimp"
+	has_action = TRUE
+	action_icon = 'icons/mob/actions/actions_shrimp.dmi'
+	action_icon_state = "barricade"
+	clothes_req = FALSE
+	charge_max = 150
+	selection_type = "range"
+	active_msg = "You prepare your barricade call ..."
+	deactive_msg = "You put away your barricade call ..."
+
+/obj/effect/proc_holder/spell/pointed/shrimp_barricade/cast(list/targets, mob/user)
+	var/target = targets[1]
+	if (istype(target, /obj/structure/barricade/security))
+		to_chat(user, span_warning("There is a barricade there already!"))
+		return
+	else
+		user.visible_message(span_danger("[user] calls in a barricade."), span_alert("You targeted [target]"))
+		addtimer(CALLBACK(src, PROC_REF(Airstrike), target, user), 1)
+
+/obj/effect/proc_holder/spell/pointed/shrimp_barricade/proc/Airstrike(target, user)
+	if(istype(user, /mob/living/simple_animal/hostile/shrimp_vip))
+		var/mob/living/simple_animal/hostile/shrimp_vip/shrimp = user
+		var/turf/T = get_turf(target)
+		var/obj/structure/closet/supplypod/extractionpod/pod = new()
+		pod.explosionSize = list(0,0,0,0)
+		if (shrimp.barrier_count < shrimp.max_barrier_count)
+			var/obj/structure/barricade/security/shrimp/barrier = new /obj/structure/barricade/security/shrimp(pod)
+			barrier.shrimp = shrimp
+			shrimp.barrier_count += 1
+		else
+			to_chat(shrimp, "You have created too many barriers, Break some!")
+		new /obj/effect/pod_landingzone(T, pod)
+		stoplag(2)
+
+/obj/structure/barricade/security/shrimp
+	var/mob/living/simple_animal/hostile/shrimp_vip/shrimp
+
+/obj/structure/barricade/security/shrimp/Destroy()
+	shrimp.barrier_count -= 1
+	. = ..()
 
 //Arbiter
 /obj/effect/mob_spawn/human/arbiter/rcorp
