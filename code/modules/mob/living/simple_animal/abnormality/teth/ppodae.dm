@@ -158,7 +158,7 @@
 	else
 		return Smash(target)
 
-/mob/living/simple_animal/hostile/abnormality/ppodae/proc/LimbSteal(var/mob/living/carbon/L)
+/mob/living/simple_animal/hostile/abnormality/ppodae/proc/LimbSteal(mob/living/carbon/L)
 	if(HAS_TRAIT(L, TRAIT_NODISMEMBER))
 		return
 	var/list/parts = list()
