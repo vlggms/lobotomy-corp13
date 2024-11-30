@@ -89,16 +89,6 @@
 	toggle_message = span_colossus("You will now dash to your target when possible.")
 	button_icon_toggle_deactivated = "porccubus_toggle0"
 
-/mob/living/simple_animal/hostile/abnormality/porccubus/Login()
-	. = ..()
-	if(!. || !client)
-		return FALSE
-	to_chat(src, "<h1>You are Porccubus, A Tank Role Abnormality.</h1><br>\
-		<b>|Fluttering|: You are immune to all projectiles. However you are unable to move.<br>\
-		However, If you click on a tile that is at least 3 tiles away from you. You will dash to that tile.<br>\
-		<br>\
-		|Happiness|: Your melee attack has a range of 2 tiles.</b>")
-
 //Work Code
 /mob/living/simple_animal/hostile/abnormality/porccubus/AttemptWork(mob/living/carbon/human/user, work_type)
 	. = ..()

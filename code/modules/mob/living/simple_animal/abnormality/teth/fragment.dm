@@ -85,15 +85,6 @@
 	fragment.song()
 	return TRUE
 
-/mob/living/simple_animal/hostile/abnormality/fragment/Login()
-	. = ..()
-	if(!. || !client)
-		return FALSE
-	to_chat(src, "<h1>You are Fragment of the Universe, A Combat Role Abnormality.</h1><br>\
-		<b>|Echoes of the Stars|: When you use your “Sing” ability, you will start your “Song” attack.<br>\
-		While you are using your “Song” all humans that you see will start taking WHITE damage over time.<br>\
-		This attack goes through the Rhinos mechs, which can cause the user to panic within the mech and become completely helpless.<br></b>")
-
 /mob/living/simple_animal/hostile/abnormality/fragment/Destroy()
 	QDEL_NULL(legs)
 	if(!particle_note)
