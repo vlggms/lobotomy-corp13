@@ -284,6 +284,7 @@
 	pixel_y = 10
 	},
 /obj/effect/turf_decal/trimline/yellow/filled/line,
+/obj/effect/turf_decal/trimline/yellow/filled/line,
 /turf/open/floor/plating/ashplanet,
 /area/city/outskirts)
 "fe" = (
@@ -928,9 +929,7 @@
 /turf/open/floor/plating,
 /area/city/outskirts)
 "rQ" = (
-/obj/machinery/button/door/indestructible{
-	id = "inside"
-	},
+/obj/machinery/button/door/indestructible/rcorp,
 /obj/effect/landmark/nobasic_incorp_move/disappearing,
 /turf/closed/indestructible/syndicate,
 /area/city/outskirts)
