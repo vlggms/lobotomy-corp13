@@ -75,7 +75,7 @@
 	name = "Reindeer Antlers"
 	result = /obj/item/clothing/head/hardhat/reindeer
 	reqs = list(/obj/item/stack/sheet/cotton/cloth = 1,
-    			/obj/item/light/bulb = 1)
+				/obj/item/light/bulb = 1)
 	time = 10
 	category = CAT_CLOTHING
 
