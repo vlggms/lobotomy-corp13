@@ -130,10 +130,10 @@
 
 //Despawns any idle monsters who lost the wave.
 /datum/component/monwave_spawner/proc/CleanupAssault()
-	var/area/where_we_go = get_area(assault_target)
 	for(var/mob/living/simple_animal/hostile/H in last_wave)
-		if(get_area(H) != where_we_go && !H.target)
-			H.dust()
+		if(!H.target)
+			H.dust(FALSE)
+	return last_wave.len
 
 //Generates a path for the Mob Commander
 /datum/component/monwave_spawner/proc/GeneratePath(turf_to_go)
@@ -155,7 +155,7 @@
 	var/list/our_path = list()
 
 /obj/effect/wave_commander/proc/DoPath(list/assault_path)
-	our_path = assault_path
+	our_path = assault_path.Copy()
 	if(our_path.len <= 0)
 		RemoveCommander()
 		return FALSE
