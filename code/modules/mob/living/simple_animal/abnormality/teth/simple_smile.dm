@@ -62,7 +62,14 @@
 
 	var/lucky_counter
 
-
+/mob/living/simple_animal/hostile/abnormality/smile/Login()
+	. = ..()
+	if(!. || !client)
+		return FALSE
+	to_chat(src, "<h1>You are Gone with a Simple Smile, A Combat Role Abnormality.</h1><br>\
+		<b>|Thief|: When you attack, your target will be knocked down for a few seconds.<br>\
+		If they held anything in their hands, you will steal it from them and start dragging it.<br>\
+		While you are dragging a weapon/tool, your speed will be decreased.</b>")
 
 /mob/living/simple_animal/hostile/abnormality/smile/AttackingTarget()
 	. = ..()

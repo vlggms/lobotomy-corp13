@@ -52,6 +52,8 @@ GLOBAL_VAR_INIT(wcorp_enemy_faction, "") //decides which faction WCorp will be u
 						addtimer(CALLBACK(src, PROC_REF(drawround)), 40 MINUTES)
 						to_chat(world, span_userdanger("Round will end in a draw after 40 minutes."))
 				addtimer(CALLBACK(src, PROC_REF(rcorp_announce)), 3 MINUTES)
+				addtimer(CALLBACK(src, PROC_REF(rcorp_opendoor)), 10 MINUTES)
+				addtimer(CALLBACK(src, PROC_REF(ClearIncorpBarriers)), 10 MINUTES)
 				RegisterSignal(SSdcs, COMSIG_GLOB_MOB_DEATH, PROC_REF(CheckLiving))
 
 			//Limbus Labs
@@ -156,6 +158,19 @@ GLOBAL_VAR_INIT(wcorp_enemy_faction, "") //decides which faction WCorp will be u
 			announcement_type = "Intelligence has located a dangerous specimen moving towards your location. Prevent it from escaping at all costs."
 	minor_announce("[announcement_type]" , "R-Corp Intelligence Office")
 
+/datum/game_mode/combat/proc/rcorp_opendoor()
+	for(var/obj/machinery/button/door/indestructible/rcorp/M in GLOB.machines)
+		qdel(M)
+	minor_announce("Facility doors are locked open." , "R-Corp Intelligence Office")
+	for(var/obj/machinery/door/poddoor/M in GLOB.machines)
+		if (M.id == "inside")
+			addtimer(CALLBACK(src, PROC_REF(OpenDoor), M), 0 MINUTES)
+
+/datum/game_mode/combat/proc/OpenDoor(door)
+	var/obj/machinery/door/poddoor/D = door
+	D.open()
+
+
 /datum/game_mode/combat/proc/StartPayload()
 	if(!GLOB.rcorp_payload)
 		CRASH("No payload somehow")
@@ -168,3 +183,10 @@ GLOBAL_VAR_INIT(wcorp_enemy_faction, "") //decides which faction WCorp will be u
 		CRASH("No payload somehow, possibly no landmark")
 	P.start_delay = delay
 	P.GetPath()
+
+
+/datum/game_mode/combat/proc/ClearIncorpBarriers()
+	for(var/obj/effect/landmark/nobasic_incorp_move/disappearing/L in GLOB.landmarks_list)
+		qdel(L)
+	for(var/mob/living/simple_animal/hostile/abnormality/A in GLOB.abnormality_mob_list)
+		to_chat(A, "Incorporeal barrier is broken!")

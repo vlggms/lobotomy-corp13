@@ -59,25 +59,58 @@
 	var/damage_taken = 0
 	var/damage_reflection = FALSE
 	var/talismans = 0
+	var/counter_cooldown = 20 SECONDS
+	var/last_counter_cooldown = 0
+	var/max_talismans = 10
+
+	attack_action_types = list(/datum/action/innate/abnormality_attack/toggle/cry_counter)
+
+/datum/action/innate/abnormality_attack/toggle/cry_counter
+	name = "Toggle Damage Reflection"
+	button_icon_state = "counter0"
+	chosen_attack_num = 2
+	chosen_message = span_colossus("You won't reflect damage.")
+	button_icon_toggle_activated = "counter1"
+	toggle_attack_num = 1
+	toggle_message = span_colossus("You will now reflect damage when ready.")
+	button_icon_toggle_deactivated = "counter0"
+
+/mob/living/simple_animal/hostile/abnormality/so_that_no_cry/Login()
+	. = ..()
+	if(!. || !client)
+		return FALSE
+	to_chat(src, "<h1>You are So That No One Will Cry, A Tank Role Abnormality.</h1><br>\
+		<b>|Talismans|: When you attack, if your target was human they gain 3 Talismans.<br>\
+		For each Talisman a human has they deal slightly extra damage with melee weapons and become faster.<br>\
+		However, If they gain 6 Talismans they will transform into Curse Talismans.<br>\
+		Curse Talismans do the same thing as normal Talismans, but reversed.<br>\
+		<br>\
+		|Cursed Counter|: You have an ability to toggle between using your counter when it is off cooldown, or not using it.<br>\
+		When you start countering, you will become immune to all damage and will teleport to your attacker to deal the same amount of damage they would of done to you, to them for 10 seconds.<br>\
+		However, If a human with talismans tries to punch you while you are in this state, You will become stunned depanding on the amount of Talismans they had.</b>")
 
 //Work Mechanics
 /mob/living/simple_animal/hostile/abnormality/so_that_no_cry/proc/Apply_Talisman(mob/living/carbon/human/user)
-	var/datum/status_effect/stacking/curse_talisman/C = user.has_status_effect(/datum/status_effect/stacking/curse_talisman)
-	var/datum/status_effect/stacking/talisman/G = user.has_status_effect(/datum/status_effect/stacking/talisman)
 	playsound(src, 'sound/abnormalities/so_that_no_cry/talisman.ogg', 100, 1)
-	if (!C)//cant take talismans if cursed already
-		if(!G)//applying the buff for the first time (it lasts for four minutes)
-			new /obj/effect/temp_visual/talisman(get_turf(user))
-			user.apply_status_effect(STATUS_EFFECT_TALISMAN)
-			to_chat(user, span_nicegreen("A talisman quietly dettaches from the abnormality and sticks to you."))
-		else//if the employee already has the buff, add a stack and refresh
-			to_chat(user, span_nicegreen("Another talisman sticks to you."))
-			if (G.stacks == 5)
-				playsound(src, 'sound/abnormalities/so_that_no_cry/curse_talisman.ogg', 100, 1)
-			else
+	var/loop = 1
+	if (IsCombatMap())
+		loop = 3
+	for (var/i in 1 to loop)
+		var/datum/status_effect/stacking/curse_talisman/C = user.has_status_effect(/datum/status_effect/stacking/curse_talisman)
+		var/datum/status_effect/stacking/talisman/G = user.has_status_effect(/datum/status_effect/stacking/talisman)
+		if (!C)//cant take talismans if cursed already
+			if(!G)//applying the buff for the first time (it lasts for four minutes)
 				new /obj/effect/temp_visual/talisman(get_turf(user))
-			G.add_stacks(1)
-			G.refresh()
+				user.apply_status_effect(STATUS_EFFECT_TALISMAN)
+				to_chat(user, span_nicegreen("A talisman quietly dettaches from the abnormality and sticks to you."))
+			else//if the employee already has the buff, add a stack and refresh
+				to_chat(user, span_nicegreen("Another talisman sticks to you."))
+				if (G.stacks == 5)
+					playsound(src, 'sound/abnormalities/so_that_no_cry/curse_talisman.ogg', 100, 1)
+				else
+					new /obj/effect/temp_visual/talisman(get_turf(user))
+				G.add_stacks(1)
+				G.refresh()
 	return
 
 /mob/living/simple_animal/hostile/abnormality/so_that_no_cry/proc/Remove_Talisman(mob/living/carbon/human/user)
@@ -176,7 +209,8 @@
 	if(!can_act)
 		return
 	if(damage_taken > 400 && !damage_reflection)
-		StartReflecting()
+		if(!IsCombatMap())
+			StartReflecting()
 
 /mob/living/simple_animal/hostile/abnormality/so_that_no_cry/proc/StartReflecting()
 	can_act = FALSE
@@ -194,6 +228,13 @@
 
 //Talisman Stuff
 /mob/living/simple_animal/hostile/abnormality/so_that_no_cry/AttackingTarget()
+	if(client)
+		switch(chosen_attack)
+			if(1)
+				if (last_counter_cooldown < world.time - counter_cooldown)
+					last_counter_cooldown = world.time
+					StartReflecting()
+					return
 	if(!can_act)
 		return
 	if(!ishuman(target))
@@ -216,12 +257,12 @@
 /mob/living/simple_animal/hostile/abnormality/so_that_no_cry/proc/AttachTalisman(mob/living/attacker)
 	visible_message(span_notice("A talisman is attached to [src]!"))
 	talismans += 1
-	if(talismans > 10)
+	if(talismans > max_talismans)
 		TalismanStun()
 		ChangeMoveToDelay(initial(move_to_delay))
 		return
 	new /obj/effect/temp_visual/talisman(get_turf(src))
-	ChangeMoveToDelay(3 + (talismans / 10))
+	ChangeMoveToDelay(3 + (talismans / max_talismans))
 
 /mob/living/simple_animal/hostile/abnormality/so_that_no_cry/proc/TalismanStun()
 	if(!can_act)
