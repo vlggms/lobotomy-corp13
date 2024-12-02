@@ -218,9 +218,6 @@
 
 	return ..()
 
-/obj/item/ego_weapon/Destroy()
-	return ..()
-
 /obj/item/ego_weapon/MiddleClickAction(atom/target, mob/living/user)
 	. = ..()
 	if(. || !CanUseEgo(user))
