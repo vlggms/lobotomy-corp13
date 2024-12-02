@@ -37,7 +37,6 @@
 		say("You again? Fine. We'll play again.")
 	else
 		say("I'll go fer scissors. How 'bout you?")
-	last_worked = user
 	return TRUE
 
 
@@ -126,3 +125,4 @@
 				user.adjust_attribute_level(A, 1)
 			continue
 		user.adjust_attribute_level(A, statgain)
+	last_worked = user
