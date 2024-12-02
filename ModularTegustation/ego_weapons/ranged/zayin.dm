@@ -101,12 +101,12 @@
 	if(istype(S))
 		var/shrimpcount
 		while(shrimpcount < 2)
-			new /mob/living/simple_animal/hostile/shrimp/friendly(get_turf(user))
+			new /mob/living/simple_animal/hostile/shrimp/grieving(get_turf(user))
 			shrimpcount += 1
 	user.playsound_local(get_turf(user), 'sound/abnormalities/wellcheers/shrimptaps.ogg', 50, 0)
 
 //friendly spawned shrimp
-/mob/living/simple_animal/hostile/shrimp/friendly
+/mob/living/simple_animal/hostile/shrimp/grieving
 	name = "wellcheers obituary serviceman"
 	desc = "A shrimp that appears to be grieving. A moment of silence, please."
 	icon_state = "wellcheers_funeral"
