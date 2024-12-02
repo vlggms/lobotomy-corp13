@@ -75,12 +75,12 @@
 	fire_sound_volume = 70
 	var/shrimp_chosen
 
-/obj/item/ego_weapon/ranged/pickup(mob/user)
+/obj/item/ego_weapon/ranged/pistol/soda/pickup(mob/user)
 	. = ..()
 	shrimp_chosen = user
 	RegisterSignal(shrimp_chosen, COMSIG_LIVING_DEATH, PROC_REF(ShrimpFuneral))
 
-/obj/item/ego_weapon/ranged/dropped(mob/user)
+/obj/item/ego_weapon/ranged/pistol/soda/dropped(mob/user)
 	. = ..()
 	UnregisterSignal(shrimp_chosen, COMSIG_LIVING_DEATH)
 	shrimp_chosen = null
