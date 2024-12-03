@@ -107,7 +107,10 @@
 	desc = "A entrance to a underground tunnel. It would only take a few whacks to cave it in."
 	icon_state = "hole"
 	icon = 'icons/mob/nest.dmi'
-	moblist = list(/mob/living/simple_animal/hostile/ordeal/indigo_noon = 3)
+	moblist = list(
+		/mob/living/simple_animal/hostile/ordeal/steel_dawn = 3,
+		/mob/living/simple_animal/hostile/ordeal/steel_dawn/steel_noon/flying = 1,
+	)
 
 /**
  * List of button counters
