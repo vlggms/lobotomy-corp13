@@ -4,7 +4,7 @@
 	/// Fullscreen object we use for tracking the shots.
 	var/atom/movable/screen/fullscreen/scope/tracker
 
-/datum/component/scope/Initialize(range_modifier)
+/datum/component/scope/Initialize(range_modifier = 1)
 //	if(!isgun(parent)) LOBOTOMYCORPORATION EDIT OLD
 	if(!isgun(parent) && !is_ego_ranged_weapon(parent)) // LOBOTOMYCORPORATION EDIT NEW
 		return COMPONENT_INCOMPATIBLE
