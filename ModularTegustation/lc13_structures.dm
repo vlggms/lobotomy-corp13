@@ -110,7 +110,7 @@
 	moblist = list(
 		/mob/living/simple_animal/hostile/ordeal/steel_dawn = 3,
 		/mob/living/simple_animal/hostile/ordeal/steel_dawn/steel_noon/flying = 1,
-		)
+	)
 
 /**
  * List of button counters

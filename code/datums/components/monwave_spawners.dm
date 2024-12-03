@@ -163,7 +163,7 @@
 	return TRUE
 
 /obj/effect/wave_commander/proc/MoveInPath(dest)
-	if(!dest || !our_path || length(our_path)) //A-star failed or a path/destination was not set.
+	if(!dest || !our_path || !length(our_path)) //A-star failed or a path/destination was not set.
 		RemoveCommander()
 		return FALSE
 	dest = get_turf(dest) //We must always compare turfs, so get the turf of the dest var if dest was originally something else.
