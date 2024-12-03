@@ -33,7 +33,7 @@ Skittish, they prefer to move in groups and will run away if the enemies are in 
 	desc = "One of the many inhabitants of the backstreets, extremely weak and skittish."
 	icon_state = "rat"
 	icon_living = "rat"
-	icon_dead = "rat"
+	icon_dead = "rat_dead"
 	maxHealth = 100
 	health = 100
 	move_to_delay = 4
@@ -45,6 +45,8 @@ Skittish, they prefer to move in groups and will run away if the enemies are in 
 	attack_verb_simple = "slice"
 	del_on_death = TRUE
 	retreat_distance = 0
+	butcher_results = list(/obj/item/food/meat/slab/human = 1)
+	silk_results = list(/obj/item/stack/sheet/silk/human_simple = 1)
 	var/retreat_distance_default = 0
 
 /mob/living/simple_animal/hostile/humanoid/rat/GiveTarget(new_target)
@@ -66,13 +68,18 @@ Skittish, they prefer to move in groups and will run away if the enemies are in 
 	retreat_distance = retreat_distance_default
 	. = ..()
 
+/mob/living/simple_animal/hostile/humanoid/rat/Initialize()
+	. = ..()
+	if(SSmaptype.maptype == "fixers" || SSmaptype.maptype == "city")
+		del_on_death = FALSE
+
 //Knife - The leader, has a pathetically weak dash, attacks fast
 /mob/living/simple_animal/hostile/humanoid/rat/knife
 	name = "leader rat"
 	desc = "One of the many inhabitants of the backstreets, this one seems stronger than most rats, not like that's a hard feat."
 	icon_state = "rat_knife"
 	icon_living = "rat_knife"
-	icon_dead = "rat_knife"
+	icon_dead = "rat_knife_dead"
 	maxHealth = 250
 	health = 250
 	move_to_delay = 3
@@ -135,7 +142,7 @@ Skittish, they prefer to move in groups and will run away if the enemies are in 
 	desc = "One of the many inhabitants of the backstreets, armed with an odd pipe."
 	icon_state = "rat_pipe"
 	icon_living = "rat_pipe"
-	icon_dead = "rat_pipe"
+	icon_dead = "rat_pipe_dead"
 	melee_damage_lower = 20
 	melee_damage_upper = 25
 	rapid_melee = 1
@@ -157,7 +164,7 @@ Skittish, they prefer to move in groups and will run away if the enemies are in 
 	desc = "One of the many inhabitants of the backstreets, they seem like they're barely holding on to their weapon."
 	icon_state = "rat_hammer"
 	icon_living = "rat_hammer"
-	icon_dead = "rat_hammer"
+	icon_dead = "rat_hammer_dead"
 	maxHealth = 150
 	health = 150
 	move_to_delay = 5
@@ -183,7 +190,7 @@ Skittish, they prefer to move in groups and will run away if the enemies are in 
 	desc = "One of the many inhabitants of the backstreets, this one is armed with a shoddy gun!"
 	icon_state = "rat_zippy"
 	icon_living = "rat_zippy"
-	icon_dead = "rat_zippy"
+	icon_dead = "rat_zippy_dead"
 	maxHealth = 80
 	health = 80
 	move_to_delay = 5

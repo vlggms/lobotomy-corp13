@@ -36,3 +36,8 @@
 		force *= 2
 	..()
 	force = initial_force
+
+/obj/item/ego_weapon/city/carnival_spear/weak
+	name = "Worn-down Carnival Spear"
+	force = 22
+	attribute_requirements = list()

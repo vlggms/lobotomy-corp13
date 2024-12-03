@@ -4,6 +4,12 @@
 /obj/effect/turf_decal{
 	dir = 3
 	},
+/obj/item/stack/spacecash/c200,
+/obj/item/stack/spacecash/c200,
+/obj/item/stack/sheet/silk/green_advanced,
+/obj/item/stack/sheet/silk/green_advanced,
+/obj/item/stack/sheet/silk/green_advanced,
+/obj/item/stack/sheet/silk/green_advanced,
 /turf/open/floor/engine,
 /area/city/backstreets_room)
 "bC" = (
@@ -11,13 +17,15 @@
 /obj/effect/turf_decal{
 	dir = 4
 	},
+/obj/item/stack/spacecash/c100,
+/obj/item/stack/spacecash/c100,
 /turf/open/floor/engine,
 /area/city/backstreets_room)
 "co" = (
-/obj/structure/closet/crate/large,
 /obj/effect/turf_decal{
 	dir = 3
 	},
+/obj/structure/tutorialbox,
 /turf/open/floor/engine,
 /area/city/backstreets_room)
 "cL" = (
@@ -146,6 +154,16 @@
 /obj/item/clipboard,
 /turf/open/floor/engine,
 /area/city/backstreets_room)
+"mr" = (
+/obj/machinery/door/airlock/centcom{
+	desc = "A bit too sturdy...";
+	max_integrity = 10000;
+	name = "Strange Airlock";
+	normal_integrity = 100000;
+	req_access_txt = "19"
+	},
+/turf/open/floor/plasteel/dark,
+/area/city/backstreets_room)
 "mA" = (
 /obj/structure/fence{
 	dir = 4
@@ -164,6 +182,17 @@
 /obj/effect/turf_decal{
 	dir = 9
 	},
+/turf/open/floor/engine,
+/area/city/backstreets_room)
+"nT" = (
+/obj/structure/table/reinforced,
+/obj/item/stack/sheet/silk/green_elegant,
+/obj/item/stack/sheet/silk/green_advanced,
+/obj/item/stack/sheet/silk/green_advanced,
+/obj/item/stack/sheet/silk/green_advanced,
+/obj/item/stack/spacecash/c100,
+/obj/item/stack/spacecash/c100,
+/obj/item/stack/spacecash/c100,
 /turf/open/floor/engine,
 /area/city/backstreets_room)
 "nU" = (
@@ -226,6 +255,17 @@
 	dir = 1
 	},
 /turf/open/floor/carpet/green,
+/area/city/backstreets_room)
+"rL" = (
+/obj/structure/table/reinforced,
+/obj/item/stack/sheet/silk/green_elegant,
+/obj/item/stack/sheet/silk/green_advanced,
+/obj/item/stack/sheet/silk/green_advanced,
+/obj/item/stack/sheet/silk/green_advanced,
+/obj/item/stack/spacecash/c100,
+/obj/item/stack/spacecash/c100,
+/obj/item/stack/spacecash/c200,
+/turf/open/floor/engine,
 /area/city/backstreets_room)
 "sP" = (
 /obj/structure/fence/corner{
@@ -451,6 +491,11 @@
 /area/city/backstreets_room)
 "GH" = (
 /obj/structure/closet/crate/large,
+/obj/item/stack/spacecash/c100,
+/obj/item/stack/spacecash/c100,
+/obj/item/stack/spacecash/c100,
+/obj/item/stack/spacecash/c100,
+/obj/item/stack/sheet/silk/green_elegant,
 /turf/open/floor/engine,
 /area/city/backstreets_room)
 "GO" = (
@@ -557,7 +602,15 @@
 /turf/open/floor/plasteel/checker,
 /area/city/backstreets_room)
 "NX" = (
-/obj/structure/tutorialbox,
+/obj/structure/closet/crate/large,
+/obj/item/stack/sheet/silk/green_simple,
+/obj/item/stack/sheet/silk/green_simple,
+/obj/item/stack/sheet/silk/green_simple,
+/obj/item/stack/sheet/silk/green_simple,
+/obj/item/stack/sheet/silk/green_simple,
+/obj/item/stack/sheet/silk/green_simple,
+/obj/item/stack/sheet/silk/green_simple,
+/obj/item/stack/sheet/silk/green_simple,
 /turf/open/floor/engine,
 /area/city/backstreets_room)
 "Or" = (
@@ -579,6 +632,8 @@
 	name = "dead potted plant";
 	pixel_y = 10
 	},
+/obj/item/stack/sheet/silk/green_masterpiece,
+/obj/item/stack/spacecash/c200,
 /turf/open/floor/engine,
 /area/city/backstreets_room)
 "Pm" = (
@@ -638,6 +693,16 @@
 	dir = 6
 	},
 /turf/open/floor/plasteel/dark,
+/area/city/backstreets_room)
+"RI" = (
+/obj/machinery/door/airlock/centcom{
+	desc = "A bit too sturdy...";
+	max_integrity = 10000;
+	name = "Strange Airlock";
+	normal_integrity = 100000;
+	req_access_txt = "19"
+	},
+/turf/open/floor/engine,
 /area/city/backstreets_room)
 "SJ" = (
 /obj/structure/chair/sofa/left{
@@ -906,9 +971,9 @@ wu
 hi
 hi
 zZ
-YL
+rL
 Pf
-YL
+nT
 zZ
 QC
 wF
@@ -970,9 +1035,9 @@ wu
 hi
 Ih
 zZ
-Zw
-Zw
-Zw
+zZ
+RI
+zZ
 zZ
 HA
 HA
@@ -1274,7 +1339,7 @@ Hw
 zZ
 GH
 ba
-lB
+zZ
 lB
 lB
 lB
@@ -1306,7 +1371,7 @@ Xo
 zZ
 NX
 co
-lB
+zZ
 lB
 lB
 lB
@@ -1338,7 +1403,7 @@ Hw
 zZ
 bC
 xt
-lB
+zZ
 lB
 lB
 lB
@@ -1368,9 +1433,9 @@ lB
 lB
 Hw
 zZ
-lB
-lB
-lB
+mr
+zZ
+zZ
 lB
 lB
 lB

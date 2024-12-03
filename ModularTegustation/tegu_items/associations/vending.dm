@@ -71,31 +71,44 @@
 	name = "\improper Weaving Books/Tools"
 	desc = "A machine used to purchase new weaving recipes!"
 	resistance_flags = INDESTRUCTIBLE | LAVA_PROOF | FIRE_PROOF | UNACIDABLE | ACID_PROOF | FREEZE_PROOF
-	product_slogans = "Read up on all of the city gear!"
+	product_slogans = "Read up on all of the city armor!"
 	product_ads = "Can't go with out it!"
 	icon_state = "sec"
 	icon_deny = null
 	products = list(
-		/obj/item/book/granter/crafting_recipe/weaving_armor = 5,
-		/obj/item/clothing/mask/carnival_mask = 10,
-		/obj/item/silkknife = 5,
+		/obj/item/book/granter/crafting_recipe/carnival/weaving_armor = 10,
+		/obj/item/clothing/mask/carnival_mask = 25,
+		/obj/item/silkknife = 10,
+		/obj/item/storage/bag/silk = 10,
 	)
 
 	premium = list(
-		/obj/item/book/granter/crafting_recipe/weaving_kurokumo = 1,
-		/obj/item/book/granter/crafting_recipe/weaving_seven = 1,
-		/obj/item/book/granter/crafting_recipe/weaving_ncorp = 1,
-		/obj/item/book/granter/crafting_recipe/weaving_liu = 1,
-		/obj/item/book/granter/crafting_recipe/weaving_index = 1,
-		/obj/item/book/granter/crafting_recipe/weaving_zwei = 1,
-		/obj/item/book/granter/crafting_recipe/weaving_shi = 1,
-		/obj/item/book/granter/crafting_recipe/weaving_blade = 1,
-		/obj/item/book/granter/crafting_recipe/weaving_advancedsilk = 1,
+		/obj/item/book/granter/crafting_recipe/carnival/weaving_kurokumo = 1,
+		/obj/item/book/granter/crafting_recipe/carnival/weaving_seven = 1,
+		/obj/item/book/granter/crafting_recipe/carnival/weaving_ncorp = 1,
+		/obj/item/book/granter/crafting_recipe/carnival/weaving_liu = 1,
+		/obj/item/book/granter/crafting_recipe/carnival/weaving_index = 1,
+		/obj/item/book/granter/crafting_recipe/carnival/weaving_zwei = 1,
+		/obj/item/book/granter/crafting_recipe/carnival/weaving_shi = 1,
+		/obj/item/book/granter/crafting_recipe/carnival/weaving_blade = 1,
+		/obj/item/book/granter/crafting_recipe/carnival/weaving_basic_converstion = 1,
+		/obj/item/book/granter/crafting_recipe/carnival/weaving_advanced_converstion = 1,
+		/obj/item/book/granter/crafting_recipe/carnival/human_replacements = 1,
+		/obj/item/book/granter/crafting_recipe/carnival/weaving_ordeal = 1,
+		/obj/item/book/granter/crafting_recipe/carnival/weaving_zwei_west = 1,
+		/obj/item/book/granter/crafting_recipe/carnival/weaving_j_corp_gangs = 1,
+		/obj/item/book/granter/crafting_recipe/carnival/weaving_wedge = 1,
+		/obj/item/book/granter/crafting_recipe/carnival/weaving_molar_boatworks = 1,
+		/obj/item/book/granter/crafting_recipe/carnival/weaving_rosespanner = 1,
 	)
 
 	default_price = 100
 	extra_price = 1000
 	input_display_header = "Weaving Books/Tools"
+
+/obj/machinery/vending/weaving/cheap
+	default_price = 50
+	extra_price = 200
 
 //cityvending
 /obj/machinery/vending/fixer
@@ -120,7 +133,7 @@
 		/obj/item/kitchen/knife/combat/survival = 100,
 		/obj/item/weldingtool/mini = 100,
 		/obj/item/reagent_containers/hypospray/medipen/mental = 100,
-		/obj/item/reagent_containers/hypospray/medipen/salacid = 100,
+		/obj/item/reagent_containers/hypospray/medipen/salacid = 100
 	)
 
 	premium = list(

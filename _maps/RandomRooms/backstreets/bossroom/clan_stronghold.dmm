@@ -38,8 +38,6 @@
 "bF" = (
 /obj/structure/closet/crate/large,
 /obj/item/clothing/suit/armor/ego_gear/limbus/ego/minos,
-/obj/item/gun/ego_gun/city/limbussmg,
-/obj/item/gun/ego_gun/city/limbussmg,
 /obj/effect/decal/cleanable/dirt/dust,
 /turf/open/floor/engine,
 /area/city/backstreets_room)
@@ -252,6 +250,14 @@
 	dir = 1
 	},
 /obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/closet/crate/large,
+/obj/item/stack/spacecash/c100,
+/obj/item/stack/spacecash/c100,
+/obj/item/stack/spacecash/c100,
+/obj/item/stack/spacecash/c100,
+/obj/item/stack/spacecash/c100,
+/obj/item/stack/spacecash/c200,
+/obj/item/stack/spacecash/c200,
 /turf/open/floor/engine,
 /area/city/backstreets_room)
 "jn" = (
@@ -584,8 +590,6 @@
 /obj/item/clothing/suit/armor/ego_gear/limbus/durante,
 /obj/item/clothing/neck/limbus_tie,
 /obj/item/clothing/accessory/limbusvest,
-/obj/item/gun/ego_gun/city/limbusshottie,
-/obj/item/gun/ego_gun/city/limbusshottie,
 /turf/open/floor/engine,
 /area/city/backstreets_room)
 "za" = (
@@ -700,6 +704,8 @@
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/item/tape/resurgence/first,
+/obj/item/stack/sheet/silk/azure_advanced,
+/obj/item/stack/sheet/silk/azure_advanced,
 /turf/open/floor/engine,
 /area/city/backstreets_room)
 "Dy" = (
@@ -713,6 +719,18 @@
 	dir = 9
 	},
 /turf/open/floor/stone,
+/area/city/backstreets_room)
+"DW" = (
+/obj/effect/turf_decal{
+	dir = 1
+	},
+/obj/structure/closet/crate/large,
+/obj/item/stack/spacecash/c200,
+/obj/item/stack/spacecash/c200,
+/obj/item/stack/spacecash/c200,
+/obj/item/stack/spacecash/c200,
+/obj/item/stack/spacecash/c1000,
+/turf/open/floor/engine,
 /area/city/backstreets_room)
 "ED" = (
 /obj/structure/mineral_door/iron,
@@ -794,7 +812,6 @@
 	dir = 3
 	},
 /obj/structure/closet/crate/large,
-/obj/item/gun/ego_gun/pistol/kcorp/nade,
 /obj/item/ego_weapon/shield/kcorp,
 /obj/effect/decal/cleanable/dirt/dust,
 /turf/open/floor/engine,
@@ -834,8 +851,14 @@
 /turf/open/floor/stone,
 /area/city/backstreets_room)
 "Ox" = (
-/obj/structure/falsewall/iron,
 /obj/effect/decal/cleanable/dirt/dust,
+/obj/machinery/door/airlock/centcom{
+	desc = "A bit too sturdy...";
+	max_integrity = 10000;
+	name = "Strange Airlock";
+	normal_integrity = 100000;
+	req_access_txt = "19"
+	},
 /turf/open/floor/engine,
 /area/city/backstreets_room)
 "ON" = (
@@ -966,10 +989,16 @@
 /turf/open/floor/carpet/black,
 /area/city/backstreets_room)
 "VZ" = (
-/obj/structure/mineral_door/iron,
 /obj/effect/landmark/npc_reveal_sensor{
 	sensor_id = "speech";
 	cooldown_duration = 6000
+	},
+/obj/machinery/door/airlock/centcom{
+	desc = "A bit too sturdy...";
+	max_integrity = 10000;
+	name = "Strange Airlock";
+	normal_integrity = 100000;
+	req_access_txt = "19"
 	},
 /turf/open/floor/stone,
 /area/city/backstreets_room)
@@ -1068,7 +1097,7 @@ xO
 "}
 (3,1,1) = {"
 xO
-od
+DW
 sd
 xO
 mI

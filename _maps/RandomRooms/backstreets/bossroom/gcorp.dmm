@@ -1,4 +1,46 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"aL" = (
+/obj/effect/turf_decal{
+	dir = 5
+	},
+/obj/structure/closet/crate/wooden,
+/obj/item/stack/sheet/silk/steel_advanced,
+/obj/item/stack/sheet/silk/steel_advanced,
+/obj/item/stack/sheet/silk/steel_advanced,
+/obj/item/stack/sheet/silk/steel_advanced,
+/obj/item/stack/sheet/silk/steel_advanced,
+/obj/item/stack/sheet/silk/steel_advanced,
+/obj/item/stack/sheet/silk/steel_advanced,
+/turf/open/floor/engine,
+/area/city/backstreets_room)
+"aT" = (
+/obj/effect/turf_decal{
+	dir = 3
+	},
+/obj/effect/turf_decal/stripes/corner{
+	dir = 4
+	},
+/turf/open/floor/engine,
+/area/city/backstreets_room)
+"be" = (
+/obj/effect/turf_decal{
+	dir = 1
+	},
+/obj/structure/closet/crate/wooden,
+/obj/item/stack/sheet/silk/steel_simple,
+/obj/item/stack/sheet/silk/steel_simple,
+/obj/item/stack/sheet/silk/steel_simple,
+/obj/item/stack/sheet/silk/steel_simple,
+/obj/item/stack/sheet/silk/steel_simple,
+/obj/item/stack/sheet/silk/steel_simple,
+/obj/item/stack/sheet/silk/steel_simple,
+/obj/item/stack/sheet/silk/steel_simple,
+/obj/item/stack/sheet/silk/steel_simple,
+/obj/item/stack/sheet/silk/steel_simple,
+/obj/item/stack/sheet/silk/steel_simple,
+/obj/item/stack/sheet/silk/steel_advanced,
+/turf/open/floor/engine,
+/area/city/backstreets_room)
 "ej" = (
 /obj/structure/lootcrate/money,
 /turf/open/floor/plasteel/dark,
@@ -11,13 +53,43 @@
 /obj/item/workshop_mod/sapping/pale,
 /turf/open/floor/plasteel/dark,
 /area/city/backstreets_room)
+"lb" = (
+/obj/effect/turf_decal/stripes/end{
+	dir = 4
+	},
+/obj/structure/closet/crate/large,
+/obj/item/stack/spacecash/c100,
+/obj/item/stack/spacecash/c100,
+/obj/item/stack/spacecash/c200,
+/obj/item/stack/spacecash/c200,
+/obj/item/stack/spacecash/c200,
+/turf/open/floor/engine,
+/area/city/backstreets_room)
 "oq" = (
 /obj/item/workshop_mod/curing/pale,
 /turf/open/floor/plasteel/dark,
 /area/city/backstreets_room)
+"pJ" = (
+/obj/effect/turf_decal/stripes/end{
+	dir = 1
+	},
+/obj/structure/closet/crate/large,
+/obj/item/stack/spacecash/c100,
+/obj/item/stack/spacecash/c100,
+/obj/item/stack/spacecash/c100,
+/obj/item/stack/spacecash/c100,
+/obj/item/stack/spacecash/c100,
+/turf/open/floor/engine,
+/area/city/backstreets_room)
 "vv" = (
 /mob/living/simple_animal/hostile/ordeal/steel_dawn/steel_noon,
 /turf/open/floor/plasteel/dark,
+/area/city/backstreets_room)
+"zz" = (
+/obj/effect/turf_decal{
+	dir = 10
+	},
+/turf/open/floor/engine,
 /area/city/backstreets_room)
 "An" = (
 /turf/closed/indestructible/reinforced,
@@ -26,6 +98,16 @@
 /obj/structure/rack,
 /obj/structure/lootcrate/money,
 /turf/open/floor/plasteel/dark,
+/area/city/backstreets_room)
+"Dq" = (
+/obj/machinery/door/airlock/centcom{
+	desc = "A bit too sturdy...";
+	max_integrity = 10000;
+	name = "Strange Airlock";
+	normal_integrity = 100000;
+	req_access_txt = "19"
+	},
+/turf/open/floor/engine,
 /area/city/backstreets_room)
 "Dt" = (
 /obj/item/workshop_mod/throwforce/pale,
@@ -39,6 +121,20 @@
 /mob/living/simple_animal/hostile/ordeal/steel_dawn/steel_noon/flying,
 /turf/open/floor/plasteel/dark,
 /area/city/backstreets_room)
+"FQ" = (
+/obj/effect/turf_decal{
+	dir = 4
+	},
+/obj/effect/turf_decal{
+	dir = 8
+	},
+/obj/structure/closet/crate/large,
+/obj/item/stack/spacecash/c100,
+/obj/item/stack/spacecash/c100,
+/obj/item/stack/spacecash/c100,
+/obj/item/stack/spacecash/c1000,
+/turf/open/floor/engine,
+/area/city/backstreets_room)
 "Gl" = (
 /obj/effect/gibspawner/generic,
 /turf/open/floor/plasteel/dark,
@@ -47,6 +143,15 @@
 /obj/item/workshop_mod/sharp/pale,
 /turf/open/floor/plasteel/dark,
 /area/city/backstreets_room)
+"IJ" = (
+/obj/effect/turf_decal{
+	dir = 8
+	},
+/obj/effect/turf_decal/stripes/corner{
+	dir = 4
+	},
+/turf/open/floor/engine,
+/area/city/backstreets_room)
 "LC" = (
 /obj/item/workshop_mod/healing/pale,
 /turf/open/floor/plasteel/dark,
@@ -54,9 +159,30 @@
 "NK" = (
 /turf/open/floor/plasteel/airless/dark,
 /area/city/backstreets_room)
+"OS" = (
+/obj/effect/turf_decal{
+	dir = 3
+	},
+/obj/effect/turf_decal{
+	dir = 1
+	},
+/obj/structure/closet/crate/large,
+/obj/item/stack/spacecash/c100,
+/obj/item/stack/spacecash/c100,
+/obj/item/stack/spacecash/c200,
+/obj/item/stack/spacecash/c200,
+/obj/item/stack/spacecash/c200,
+/turf/open/floor/engine,
+/area/city/backstreets_room)
 "PU" = (
 /obj/item/workshop_mod/aoe/large/pale,
 /turf/open/floor/plasteel/dark,
+/area/city/backstreets_room)
+"RT" = (
+/obj/effect/turf_decal{
+	dir = 3
+	},
+/turf/open/floor/engine,
 /area/city/backstreets_room)
 "SY" = (
 /mob/living/simple_animal/hostile/ordeal/steel_dawn,
@@ -214,11 +340,11 @@ ZT
 ZT
 An
 An
-ZT
-ZT
-Gl
-ZT
-ZT
+An
+An
+Dq
+An
+An
 ZT
 ZT
 ZT
@@ -236,11 +362,11 @@ ZT
 ZT
 An
 An
-ZT
-ZT
-ZT
-ZT
-ZT
+pJ
+FQ
+IJ
+zz
+An
 ZT
 ZT
 ZT
@@ -260,9 +386,9 @@ An
 An
 An
 An
-ZT
-ZT
-ZT
+be
+RT
+An
 ZT
 ZT
 ZT
@@ -282,9 +408,9 @@ An
 ej
 oq
 An
-NK
-NK
-ZT
+aL
+aT
+An
 ZT
 ZT
 ZT
@@ -305,8 +431,8 @@ ZT
 An
 An
 An
-NK
-NK
+OS
+An
 ZT
 ZT
 ZT
@@ -327,7 +453,7 @@ ZT
 An
 Td
 An
-NK
+lb
 An
 ZT
 ZT
