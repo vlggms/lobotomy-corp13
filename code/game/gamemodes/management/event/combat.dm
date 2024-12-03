@@ -52,6 +52,7 @@ GLOBAL_VAR_INIT(wcorp_enemy_faction, "") //decides which faction WCorp will be u
 						addtimer(CALLBACK(src, PROC_REF(drawround)), 40 MINUTES)
 						to_chat(world, span_userdanger("Round will end in a draw after 40 minutes."))
 				addtimer(CALLBACK(src, PROC_REF(rcorp_announce)), 3 MINUTES)
+				RegisterSignal(SSdcs, COMSIG_GLOB_MOB_DEATH, PROC_REF(CheckLiving))
 
 			//Limbus Labs
 			if("limbus_labs")
@@ -82,25 +83,42 @@ GLOBAL_VAR_INIT(wcorp_enemy_faction, "") //decides which faction WCorp will be u
 					if(4)
 						GLOB.wcorp_enemy_faction = "shrimp"
 
+				RegisterSignal(SSdcs, COMSIG_GLOB_MOB_DEATH, PROC_REF(CheckLiving))
+
+/// Automatically ends the shift if no humanoid players are alive
+/datum/game_mode/combat/proc/CheckLiving()
+	for(var/mob/living/carbon/human/hooman in GLOB.human_list)
+		if(hooman.stat != DEAD && hooman.ckey)
+			return
+
+	if(SSticker.force_ending == TRUE) // they lost another way before we could do it, how rude.
+		return
+
+	SSticker.force_ending = TRUE
+	if(SSmaptype.maptype == "wcorp")
+		to_chat(world, span_userdanger("All W-Corp staff is dead! Round automatically ending."))
+	else
+		to_chat(world, span_userdanger("Every player has perished. Abnormalities have won."))
+
 //Win cons
 /datum/game_mode/combat/proc/loseround()
-	SSticker.force_ending = 1
+	SSticker.force_ending = TRUE
 	to_chat(world, span_userdanger("Players have taken too long! Round automatically ending."))
 
 /datum/game_mode/combat/proc/winround()
-	SSticker.force_ending = 1
+	SSticker.force_ending = TRUE
 	to_chat(world, span_userdanger("Players have survived! Round automatically ending."))
 
 /datum/game_mode/combat/proc/drawround()
-	SSticker.force_ending = 1
+	SSticker.force_ending = TRUE
 	to_chat(world, span_userdanger("Players have taken too long! Round ending in a Draw."))
 
 /datum/game_mode/combat/proc/endround()
-	SSticker.force_ending = 1
+	SSticker.force_ending = TRUE
 	to_chat(world, span_userdanger("Shift has ended."))
 
 /datum/game_mode/combat/proc/endroundRcorp(text)
-	SSticker.force_ending = 1
+	SSticker.force_ending = TRUE
 	to_chat(world, span_userdanger(text))
 
 /datum/game_mode/combat/proc/roundendwarning()

@@ -20,6 +20,17 @@
 	<br>Please stay safe,
 	<br>-Love, <i>Your Dearest</i>"}
 
+/obj/item/paper/fluff/joey/letter
+	name = "letter from coworker"
+	info = {"Dearest Joey,
+	<br>It is truly remarkable with how you are able to stay collected even during the most dangerous situations.
+	<br>Especially after the last breach... So many have fallen to that Predator, Even more would of fallen if you did not step in.
+	<br>Thanks to your bravery, I am sure there are many agents who would love to thank you if they got the chance to see you. Especially my brother Roy, If it was not for you stepping in and taking such a heavy blow for them.
+	<br>So, Do you think you would like to meet up after your recovery? so I could thank you in person? I heard that HamHamPangPang is holding a special event!
+	<br>
+	<br>Get better soon!,
+	<br>-Love, <i>Your coworker, Marisa</i>"}
+
 
 ////////////	Job guides n' fluff
 

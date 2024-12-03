@@ -312,14 +312,6 @@
 	var/mob/living/L = target
 	L.apply_status_effect(/datum/status_effect/wrath_burning)
 
-/obj/projectile/ego_bullet/ego_hookah
-	name = "lethargy"
-	icon_state = "smoke"
-	damage = 2
-	damage_type = PALE_DAMAGE
-	speed = 2
-	range = 6
-
 /obj/projectile/ego_bullet/ego_innocence
 	name = "innocence"
 	icon_state = "energy"

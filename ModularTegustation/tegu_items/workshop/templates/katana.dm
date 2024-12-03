@@ -15,25 +15,24 @@
 	var/ready = TRUE
 
 /obj/item/ego_weapon/template/katana/attack_self(mob/living/carbon/human/user)
-	..()
+	. = ..()
 	if(!CanUseEgo(user))
 		return
 
 	if(!ready)
 		return
 	ready = FALSE
-	user.Immobilize(attack_speed*attack_speed*10)
+	user.Immobilize(attack_speed * attack_speed * 10)
 	to_chat(user, span_userdanger("From moonlight."))
-	force*=2
-	addtimer(CALLBACK(src, PROC_REF(Return), user), attack_speed*attack_speed*30)
+	force *= 2
+	addtimer(CALLBACK(src, PROC_REF(Return), user), attack_speed * attack_speed * 30)
 
 /obj/item/ego_weapon/template/katana/attack(mob/living/target, mob/living/carbon/human/user)
-	..()
-	if(force != initial(force))
+	if(force != true_force)
 		to_chat(user, span_userdanger("Over the sea."))
-		force = initial(force)
+	return ..()
 
 /obj/item/ego_weapon/template/katana/proc/Return(mob/living/carbon/human/user)
-	force = initial(force)
+	force = true_force
 	ready = TRUE
 	to_chat(user, span_notice("Your blade is ready."))

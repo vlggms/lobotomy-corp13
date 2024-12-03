@@ -38,13 +38,16 @@
 	var/list/current_fishing_visuals = list()
 	//what base mod do you have?
 	var/speed_modifier = 1
+	//what bonus do you get from the moon? Normal rods get 0
+	var/lunar_modifier = 0
 
 	//do we override the default fishing speed? (should be used if you want to debug something or make a rod with unique speed)
 	var/speed_override = FALSE
 
-/obj/item/fishing_rod/examine(mob/user)
+/obj/item/fishing_rod/examine(mob/living/user)
 	. = ..()
-	. += span_notice("This rod has a modifier of +[ReturnRodPower()].")
+	. += span_notice("This rod has a modifier of +[ReturnRodPower(user)].")
+	. += span_notice("This rod has a speed modifier of +[speed_modifier].")
 
 /obj/item/fishing_rod/attackby(obj/item/attacking_item, mob/user, params)
 	if(SlotCheck(attacking_item,ROD_SLOT_LINE))
@@ -122,7 +125,10 @@
 	if(user.mind)
 		FISHSKILLEXP(5)
 	if(loottable.len)
-		//Fishing successful
+		//Fishing successful, gain 0.1 devotion
+		user.devotion+=0.1
+		if(user.devotion>= 5 && (SSmaptype.maptype in SSmaptype.citymaps))
+			to_chat(user, span_notice("You fish, pray and gain some devotion."))
 		FishLoot(pickweight(loottable), user, get_turf(fishing_spot))
 	else
 		to_chat(user, span_notice("The water remains still. You dont catch anything."))
@@ -130,7 +136,8 @@
 
 //Proc for returning loot table chances.
 /obj/item/fishing_rod/proc/ReturnLootTable(mob/living/wielder, turf/open/water/deep/water_turf)
-	var/fishing_power = ReturnRodPower()
+	var/fishing_power = ReturnRodPower(wielder)
+	fishing_power *= (SSfishing.moonphase-0.5)*0.5
 	return water_turf.ReturnChanceList(fishing_power)
 
 /*Tgstation uses signals and projectiles for their fishing rods
@@ -170,13 +177,30 @@
 	return TRUE
 
 //Unique Fish Retrieval
-/obj/item/fishing_rod/proc/FishLoot(obj/item/fished_thing, mob/living/user, turf/fish_land)
+/obj/item/fishing_rod/proc/FishLoot(obj/item/fished_thing, mob/living/carbon/human/user, turf/fish_land)
 	var/obj/item/potential_fishie = new fished_thing(get_turf(user))
 	if(istype(potential_fishie, /obj/item/food/fish))
 		var/obj/item/food/fish/fishie = potential_fishie
 		var/size_modifier = rand(1, 4) * 0.1
 		//Size modifier has to be a decimal in order to keep it from making massive fish.
+		//Gets bonuses if mercury is in alignment, and if you're aligned with the mercury god
+		if(SSfishing.IsAligned(/datum/planet/mercury))
+			size_modifier *= 1.3
+			to_chat(user, span_nicegreen("[FISHGOD_MERCURY] smiles upon you!."))
+
+		if(user.god_aligned == FISHGOD_MERCURY)
+			size_modifier*=2
+
 		fishie.randomize_weight_and_size(size_modifier)
+
+		if(user.god_aligned == FISHGOD_URANUS && prob(5))
+			to_chat(user, span_nicegreen("Abena Mansa smiles upon you! You caught some cash!"))
+			new /obj/item/stack/spacecash/c50(get_turf(user))
+
+		if(CheckPlanetAligned(FISHGOD_SATURN))
+			to_chat(user, span_nicegreen("Saturn is in alignment. You feel like better for fishing."))
+			user.adjustSanityLoss(-5)
+
 		to_chat(user, span_nicegreen("You caught [fishie.name]."))
 		if(user.mind)
 			FISHSKILLEXP(10)
@@ -319,7 +343,7 @@
 	return TRUE
 
 	//Calculates fishing power
-/obj/item/fishing_rod/proc/ReturnRodPower()
+/obj/item/fishing_rod/proc/ReturnRodPower(mob/living/user)
 	. = rod_level
 	if(hook)
 		if(istype(hook,/obj/item/fishing_component/hook))
@@ -328,8 +352,18 @@
 		if(istype(line,/obj/item/fishing_component/line))
 			. += line.fishing_value
 
+	if(isliving(user))
+		if(user.god_aligned == FISHGOD_NEPTUNE)
+			. *=1.4
 
-//Upgraded Varient
+	//Only a few rods will use this
+	if(lunar_modifier!=0)
+		. *=lunar_modifier*SSfishing.moonphase
+
+
+
+//Upgraded Varients
+//All of these have benefits and drawbacks
 /obj/item/fishing_rod/fiberglass
 	name = "fibreglass fishing rod"
 	desc = "A tool used to dredge up aquatic entities. This rod is pretty reliable all things considered."
@@ -337,7 +371,6 @@
 	rod_level = 1		//Generally all round better.
 	speed_modifier = 1.2
 
-//Alternate Rods. These ones all cost fishing points.
 /obj/item/fishing_rod/gold
 	name = "golden fishing rod"
 	desc = "A tool used to dredge up aquatic entities. A beautiful, gold-encrusted rod. Expensive. Catches fish faster."
@@ -350,6 +383,12 @@
 	icon_state = "rod_titanium"
 	rod_level = 1.4
 
+/obj/item/fishing_rod/lunar
+	name = "lunar fishing rod"
+	desc = "A tool used to dredge up aquatic entities. A pink rod. Heaven knows how it got this color. It's unremarkable, but does get it's power from the full moon."
+	icon_state = "rod_gold"
+	lunar_modifier = 1
+
 //Gacha Rods. Obtained through gacha crates.
 /obj/item/fishing_rod/wellcheers
 	name = "Wellcheers fishing rod"
@@ -357,6 +396,8 @@
 	icon_state = "rod_wellcheer"
 	speed_modifier = 2
 	rod_level = 2
+
+
 #undef ROD_SLOT_LINE
 #undef ROD_SLOT_HOOK
 #undef FISHSKILLEXP

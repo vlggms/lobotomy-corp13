@@ -185,8 +185,8 @@
 	for(var/obj/item/ego_weapon/ranged/pistol/solemnlament/Lament in user.held_items)
 		projectile_damage_multiplier = 1.5
 		break
+	. = ..()
 	projectile_damage_multiplier = 1
-	return ..()
 
 
 /obj/item/ego_weapon/ranged/loyalty
@@ -593,25 +593,6 @@
 							FORTITUDE_ATTRIBUTE = 80
 	)
 
-/obj/item/ego_weapon/ranged/hookah //TODO: Seems like lots of these are placeholder. remind me to finish this weapon if you are reading this.
-	name = "lethargy"
-	desc = "Courtesy of the 16th Ego rifleman's brigade."
-	icon_state = "loyalty"
-	inhand_icon_state = "loyalty"
-	force = 20
-	damtype = PALE_DAMAGE
-	projectile_path = /obj/projectile/ego_bullet/ego_hookah
-	weapon_weight = WEAPON_HEAVY
-	spread = 20
-	special = "This weapon fires 750 rounds per minute. \
-		This weapon has IFF capabilities.\
-		Use in hand to turn off IFF."
-	fire_sound = 'sound/effects/smoke.ogg'
-	autofire = 0.04 SECONDS
-	fire_sound_volume = 5
-	attribute_requirements = list(
-							JUSTICE_ATTRIBUTE = 80
-	)
 
 /obj/item/ego_weapon/ranged/pistol/innocence
 	name = "childhood memories"

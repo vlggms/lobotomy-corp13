@@ -36,7 +36,7 @@
 			return A
 
 /mob/living/simple_animal/hostile/ordeal/violet_fruit/ListTargets()
-	if(!enemies.len)
+	if(!length(enemies))
 		return list()
 	var/list/see = ..()
 	see &= enemies // Remove all entries that aren't in enemies

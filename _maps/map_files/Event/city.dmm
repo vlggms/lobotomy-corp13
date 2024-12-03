@@ -249,6 +249,10 @@
 /obj/structure/fluff/bus/passable,
 /turf/open/floor/carpet/black,
 /area/city/shop)
+"cM" = (
+/obj/structure/fishshrine,
+/turf/open/floor/plating/beach/sand,
+/area/city)
 "cP" = (
 /obj/effect/spawner/lootdrop/garbage_spawner,
 /obj/effect/decal/cleanable/cobweb/cobweb2,
@@ -3014,7 +3018,7 @@
 /area/city/shop)
 "Dl" = (
 /obj/machinery/light,
-/obj/structure/itemselling,
+/obj/machinery/fish_market,
 /turf/open/floor/facility,
 /area/city/shop)
 "Dq" = (
@@ -36888,7 +36892,7 @@ Hm
 zr
 Nh
 Xr
-Xr
+cM
 Xr
 Xr
 Xr

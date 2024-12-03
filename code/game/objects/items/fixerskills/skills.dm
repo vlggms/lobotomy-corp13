@@ -37,6 +37,28 @@
 		/datum/action/cooldown/warbanner = 4,
 		/datum/action/cooldown/warcry = 4,
 		/datum/action/cooldown/nuke = 4,
+
+		//These are all fishing skills
+		/datum/action/cooldown/fishing/detect = 1,
+		/datum/action/cooldown/fishing/scry = 1,
+		/datum/action/cooldown/fishing/planet = 1,
+		/datum/action/cooldown/fishing/planet2 = 1,
+		/datum/action/cooldown/fishing/prayer = 1,
+		/datum/action/cooldown/fishing/sacredword = 1,
+		/datum/action/cooldown/fishing/love = 1,
+		/datum/action/cooldown/fishing/moonmove = 1,
+		/datum/action/cooldown/fishing/commune = 1,
+		/datum/action/cooldown/fishing/fishlockpick = 1,
+		/datum/action/cooldown/fishing/fishtelepathy = 1,
+
+		/datum/action/cooldown/fishing/smite = 2,
+		/datum/action/cooldown/fishing/might = 2,
+		/datum/action/cooldown/fishing/awe = 2,
+		/datum/action/cooldown/fishing/chakra = 2,
+
+		/datum/action/cooldown/fishing/supernova = 4,
+		/datum/action/cooldown/fishing/alignment = 4,
+		/datum/action/cooldown/fishing/planetstop = 4,
 	)
 
 /obj/item/book/granter/action/skill/on_reading_finished(mob/user)
@@ -67,6 +89,7 @@
 			if (actions_levels[A.type] == level && level != 1)
 				to_chat(user, span_notice("You already have a skill of this level!"))
 				return FALSE
+
 
 		to_chat(user,span_warning("[src] suddenly vanishes!"))
 		qdel(src)

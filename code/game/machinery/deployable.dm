@@ -85,7 +85,7 @@
 	icon = 'icons/obj/smooth_structures/sandbags.dmi'
 	icon_state = "sandbags-0"
 	base_icon_state = "sandbags"
-	max_integrity = 280
+	max_integrity = 500
 	proj_pass_rate = 20
 	pass_flags_self = LETPASSTHROW
 	bar_material = SAND

@@ -40,7 +40,7 @@
 //		add_verb(outfit_owner, /client/proc/hanaslayquest)
 	if(SSmaptype.maptype == "fixers")
 		for(var/datum/job/processing in SSjob.occupations)
-			if(istype(processing, /datum/job/associateroaming) && processing.total_positions<7)	//Can have a max of 7 of these
+			if(istype(processing, /datum/job/associateroaming) && processing.total_positions<6)	//Can have a max of 6 of these
 				processing.total_positions +=2
 
 	. = ..()

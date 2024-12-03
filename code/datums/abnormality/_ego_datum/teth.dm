@@ -228,13 +228,13 @@
 	cost = 20
 
 // Tangle - Rapunzel
-/* /datum/ego_datum/armor/rapunzel
+/datum/ego_datum/armor/rapunzel
 	item_path = /obj/item/clothing/suit/armor/ego_gear/teth/rapunzel
 	cost = 20
 
 /datum/ego_datum/weapon/rapunzel
-	item_path = /obj/item/ego_weapon/ranged/rapunzel
-	cost = 20 */
+	item_path = /obj/item/ego_weapon/rapunzel
+	cost = 20
 
 // Someone's Portrait - Snapshot
 /datum/ego_datum/armor/snapshot

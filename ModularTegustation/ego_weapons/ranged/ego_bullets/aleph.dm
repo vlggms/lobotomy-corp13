@@ -117,5 +117,13 @@
 
 /obj/projectile/ego_bullet/arcadia
 	name = "arcadia"
-	damage = 120 // VERY high damage
+	damage = 140 // VERY high damage
 	damage_type = RED_DAMAGE
+
+/obj/projectile/ego_bullet/ego_hookah
+	name = "havana"
+	icon_state = "smoke"
+	damage = 6
+	damage_type = PALE_DAMAGE
+	speed = 2
+	range = 6

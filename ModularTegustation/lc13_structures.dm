@@ -13,6 +13,7 @@
 	var/last_expand = 0 //last world.time this weed expanded
 	var/expand_cooldown = 1.5 SECONDS
 	var/can_expand = TRUE
+	var/bypass_density = FALSE
 	var/static/list/blacklisted_turfs
 
 /obj/structure/spreading/Initialize()
@@ -42,7 +43,7 @@
 	for(var/turf/T in spread_turfs)
 		var/obj/machinery/M = locate(/obj/machinery) in T
 		if(M)
-			if(M.density)
+			if(M.density && !bypass_density)
 				continue
 		var/obj/structure/spreading/S = locate(/obj/structure/spreading) in T
 		if(S)
@@ -106,7 +107,10 @@
 	desc = "A entrance to a underground tunnel. It would only take a few whacks to cave it in."
 	icon_state = "hole"
 	icon = 'icons/mob/nest.dmi'
-	moblist = list(/mob/living/simple_animal/hostile/ordeal/indigo_noon = 3)
+	moblist = list(
+		/mob/living/simple_animal/hostile/ordeal/steel_dawn = 3,
+		/mob/living/simple_animal/hostile/ordeal/steel_dawn/steel_noon/flying = 1,
+	)
 
 /**
  * List of button counters

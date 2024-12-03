@@ -2028,25 +2028,86 @@
 							FORTITUDE_ATTRIBUTE = 40
 							)
 
-/obj/item/ego_weapon/telepole//FIXME: actually make it do stuff
+/obj/item/ego_weapon/telepole
 	name = "telepole"
 	desc = "A hairy wooden longsword that's covered in barbed wire. It crackles with arcs of electricity."
-	special = "Activating the weapon in your hand allows you to dash, grazing nearby targets with BLACK damage."
+	charge_effect = "allows you to dash, grazing nearby targets with BLACK damage."
 	icon_state = "telepole"
-	lefthand_file = 'icons/mob/inhands/64x64_lefthand.dmi'
-	righthand_file = 'icons/mob/inhands/64x64_righthand.dmi'
 	force = 25
 	damtype = BLACK_DAMAGE
-	attack_verb_continuous = list("slashes", "stabs")
-	attack_verb_simple = list("slash", "stab")
+	attack_verb_continuous = list("slashes", "stabs", "sears", "zaps")
+	attack_verb_simple = list("slash", "stab", "sear", "zap")
+	hitsound = 'sound/abnormalities/alleywaywatchdog/telepole_1.ogg'
 	attribute_requirements = list(
 							FORTITUDE_ATTRIBUTE = 40
 							)
 	charge = TRUE
+	ability_type = ABILITY_UNIQUE
+	charge_cost = 4
+	var/leap_range = 5
+	var/leap_count = 0
+	var/list/hit_turfs = list()
 
-/obj/item/ego_weapon/telepole/ChargeAttack(mob/living/target, mob/living/user)
-	..()
-	//do the thing
+/obj/item/ego_weapon/telepole/afterattack(atom/target, mob/living/user, proximity_flag, clickparams)
+	if(!CanUseEgo(user))
+		return
+	if(!currently_charging)
+		return
+	var/dir_to_target = get_dir(get_turf(user), get_turf(target))
+	if(CheckPath(user, dir_to_target))
+		to_chat(user,span_notice("You need more room to do that!"))
+		return
+	hit_turfs = list()
+	leap_count = 0
+	Leap(user, dir_to_target, leap_range)
+	playsound(src, 'sound/abnormalities/alleywaywatchdog/telepole_2.ogg', 100, 1)
+	currently_charging = FALSE
+
+/obj/item/ego_weapon/telepole/proc/Leap(mob/living/user, dir = SOUTH, leap_range)//doesn't work
+	user.forceMove(get_step(get_turf(user), dir))
+	var/end_leap = FALSE
+	leap_count += 1
+	if(leap_count >= leap_range)
+		end_leap = TRUE
+	if(CheckPath(user, dir))
+		end_leap = TRUE
+	for(var/turf/T in orange(1, user))
+		hit_turfs |= T
+	if(end_leap)
+		playsound(src, 'sound/abnormalities/alleywaywatchdog/telepole_3.ogg', 100, 1)
+		for(var/turf/T in hit_turfs) // Once again mostly jacked from harvest, but modified to work with hit_turfs instead of an on-the-spot orange
+			new /obj/effect/temp_visual/smash_effect(T)
+			for(var/mob/living/L in T.contents)
+				var/aoe = force
+				var/userjust = (get_modified_attribute_level(user, JUSTICE_ATTRIBUTE))
+				var/justicemod = 1 + userjust/100
+				aoe*=justicemod
+				aoe*=force_multiplier
+				if(L == user)
+					continue
+				if(ishuman(L))
+					var/mob/living/carbon/human/H = L
+					if(!H.sanity_lost)
+						continue
+				L.apply_damage(aoe, BLACK_DAMAGE, null, L.run_armor_check(null, BLACK_DAMAGE), spread_damage = TRUE)
+				L.visible_message(span_danger("[user] sears [L] with the [src]!"))
+		return
+	addtimer(CALLBACK(src, PROC_REF(Leap), user, dir, leap_range), 0.1)
+
+/obj/item/ego_weapon/telepole/proc/CheckPath(mob/living/user, dir = SOUTH)
+	var/list/immediate_path = list()
+	immediate_path |= get_step(get_turf(user), dir)
+	immediate_path |= get_step(immediate_path[1], dir)
+	var/fail_charge = FALSE
+	for(var/turf/T in immediate_path)
+		if(T.density)
+			fail_charge = TRUE
+		for(var/obj/machinery/door/D in T.contents)
+			if(D.density)
+				fail_charge = TRUE
+		for(var/obj/structure/window/W in T.contents)
+			fail_charge = TRUE
+	return fail_charge
 
 /obj/item/ego_weapon/hexnail
 	name = "hex nail"

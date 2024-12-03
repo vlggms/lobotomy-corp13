@@ -75,6 +75,8 @@
 
 	var/last_heal_time = 0
 	var/heal_percent_per_second = 0.0085
+	var/regen_on = TRUE
+	var/r_corp_regen_start = 1
 
 	var/datum/looping_sound/nothingthere_ambience/soundloop
 	var/datum/looping_sound/nothingthere_heartbeat/heartbeat
@@ -227,10 +229,15 @@
 					GiveTarget(speaker)
 				say(line)
 		if((last_heal_time + 1 SECONDS) < world.time) // One Second between heals guaranteed
-			var/heal_amount = ((world.time - last_heal_time)/10)*heal_percent_per_second*maxHealth
-			if(health <= maxHealth*0.3)
-				heal_amount *= 2
-			adjustBruteLoss(-heal_amount)
+			if(SSmaptype.maptype == "rcorp")
+				regen_on = TRUE
+				if(health > maxHealth * r_corp_regen_start)
+					regen_on = FALSE
+			if(regen_on == TRUE)
+				var/heal_amount = ((world.time - last_heal_time)/10)*heal_percent_per_second*maxHealth
+				if(health <= maxHealth*0.3)
+					heal_amount *= 2
+				adjustBruteLoss(-heal_amount)
 			last_heal_time = world.time
 		if(next_transform && (world.time > next_transform))
 			next_stage()

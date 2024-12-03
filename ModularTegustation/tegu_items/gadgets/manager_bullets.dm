@@ -32,8 +32,15 @@
 
 /obj/item/managerbullet/suicide_act(mob/living/carbon/user)
 	. = ..()
-	user.visible_message(span_suicide("[user] holds the bullet in front of them, with the desire to shield themselves from oxygen! It looks like [user.p_theyre()] trying to commit suicide!"))
-	return OXYLOSS
+	user.visible_message(span_suicide("[user] holds the bullet in front of them, and sets the bullet's setting to 'Execute'! It looks like [user.p_theyre()] trying to commit suicide!"))
+	if(ishuman(user))
+		var/mob/living/carbon/human/H = user
+		H.unequip_everything()
+		H.Stun(10)
+	playsound(get_turf(user), 'ModularTegustation/Tegusounds/weapons/guns/manager_bullet_fire.ogg', 10, 0, 3)
+	new /obj/effect/temp_visual/execute_bullet(get_turf(user))
+	QDEL_IN(user, 1)
+	return MANUAL_SUICIDE
 
 
 /datum/status_effect/interventionshield

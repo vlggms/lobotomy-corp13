@@ -58,12 +58,19 @@
 /obj/structure/mineral_door/wood,
 /turf/open/floor/grass,
 /area/city/backstreets_room)
+"M" = (
+/obj/structure/flora/ausbushes/lavendergrass,
+/obj/structure/flora/ausbushes/sparsegrass,
+/obj/item/stack/spacecash/c100,
+/turf/open/floor/grass/fairy,
+/area/city/backstreets_room)
 "P" = (
 /turf/open/floor/grass,
 /area/city/backstreets_room)
 "Q" = (
 /mob/living/simple_animal/chicken,
 /obj/structure/flora/ausbushes/lavendergrass,
+/obj/item/stack/spacecash/c100,
 /turf/open/floor/grass,
 /area/city/backstreets_room)
 "T" = (
@@ -131,7 +138,7 @@ j
 s
 r
 s
-i
+M
 P
 x
 "}

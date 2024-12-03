@@ -6,17 +6,20 @@
 	custom_premium_price = 1200
 
 /datum/action/cooldown/shockwave
-	icon_icon = 'icons/hud/screen_skills.dmi'
 	name = "Shockwave"
+	desc = "Throw everything in a 13 meter radious away from you."
+	icon_icon = 'icons/hud/screen_skills.dmi'
 	button_icon_state = "shockwave"
-	cooldown_time = 150
+	cooldown_time = 15 SECONDS
 
 /datum/action/cooldown/shockwave/Trigger()
 	. = ..()
 	if(!.)
-		return FALSE
+		return
+	if(owner.stat != CONSCIOUS)
+		to_chat(owner, span_warning("Throwing everything away from you would be difficult in this state."))
+		return
 
-	if (owner.stat)
-		return FALSE
-	goonchem_vortex(get_turf(src), 1, 13)
+	goonchem_vortex(get_turf(owner), 1, 13)
+	owner.visible_message(span_userdanger("[owner] throws away everything around them!"), span_warning("You throw everything away from you!"))
 	StartCooldown()

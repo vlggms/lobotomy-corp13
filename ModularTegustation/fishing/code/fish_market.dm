@@ -29,18 +29,20 @@
 		new /datum/data/extraction_cargo("Titanium Fishing Rod ",			/obj/item/fishing_rod/titanium,					700) = 1,
 
 		//Lines
-		new /datum/data/extraction_cargo("Sinew Fishing Line ",			/obj/item/fishing_component/line/sinew,				250) = 1,
 		new /datum/data/extraction_cargo("Woven Fishing Line ",			/obj/item/fishing_component/line/woven,				500) = 1,
 		new /datum/data/extraction_cargo("Reinforced Fishing Line ", 	/obj/item/fishing_component/line/reinforced,		700) = 1,
 
 		//Hooks
-		new /datum/data/extraction_cargo("Bone Fishing Hook ",			/obj/item/fishing_component/hook/bone,				250) = 1,
 		new /datum/data/extraction_cargo("Weighted Fishing Hook ", 		/obj/item/fishing_component/hook/weighted,			500) = 1,
 		new /datum/data/extraction_cargo("Shiny Fishing Hook ", 		/obj/item/fishing_component/hook/shiny,				1000) = 1,
+
 	)
+
 
 /obj/machinery/fish_market/ui_interact(mob/user) //Unsure if this can stand on its own as a structure, later on we may fiddle with that to break out of computer variables. -IP
 	. = ..()
+	if(SSmaptype.maptype in SSmaptype.citymaps)
+		update_stock()
 	if(isliving(user))
 		playsound(src, 'sound/machines/terminal_prompt_confirm.ogg', 50, FALSE)
 	var/dat
@@ -51,7 +53,6 @@
 	var/datum/browser/popup = new(user, "FishingVendor", "FishingVendor", 440, 640)
 	popup.set_content(dat)
 	popup.open()
-	return
 
 /obj/machinery/fish_market/Topic(href, href_list)
 	. = ..()
@@ -81,6 +82,8 @@
 			return TRUE
 
 /obj/machinery/fish_market/attackby(obj/item/I, mob/user, params)
+	if(SSfishing.IsAligned(/datum/planet/uranus))
+		to_chat(usr, span_notice("Uranus is aligned with earth. All fish points are increaed by 1.5x"))
 	if(istype(I, /obj/item/stack/fish_points))
 		var/obj/item/stack/fish_points/more_points = I
 		AdjustPoints(more_points.amount)
@@ -140,6 +143,8 @@
 	var/fish_weight = (F.weight - F.average_weight) / F.average_weight
 	var/fish_size = (F.size - F.average_size) / F.average_size
 	var/fish_worth_mod = 1 + fish_weight + fish_size
+	if(SSfishing.IsAligned(/datum/planet/uranus))
+		fish_worth_mod *= 1.5	//Bonus if uranus is aligned
 
 	/*Fish Value based on rarity 2 is
 		the worth of fish that are basic.*/
@@ -152,3 +157,70 @@
 		if((FISH_RARITY_VERY_RARE + 1) to FISH_RARITY_RARE)
 			fish_worth = 10
 	return round(fish_worth * fish_worth_mod)
+
+
+/obj/machinery/fish_market/proc/update_stock()
+	QDEL_LIST(order_list)
+	order_list = list(
+		new /datum/data/extraction_cargo("Discount Quality Suture ",	/obj/item/stack/medical/suture/emergency,			50) = 1,
+		new /datum/data/extraction_cargo("Fishin Starting Pack ",		/obj/item/storage/box/fishing,						200) = 1,
+		new /datum/data/extraction_cargo("Aquarium Rocks ",				/obj/item/aquarium_prop/rocks,						250) = 1,
+		new /datum/data/extraction_cargo("Aquarium Seaweed ",			/obj/item/aquarium_prop/seaweed,					250) = 1,
+		new /datum/data/extraction_cargo("Water Sprayer Backpack ",		/obj/item/watertank,								400) = 1,
+		new /datum/data/extraction_cargo("Dock Worker Lantern ",		/obj/item/flashlight/lantern,						400) = 1,
+		new /datum/data/extraction_cargo("Fishing Hat ",		 		/obj/item/clothing/head/beret/fishing_hat,			500) = 1,
+		new /datum/data/extraction_cargo("Aquarium Branch Office ",		/obj/item/aquarium_prop/lcorp,						500) = 1,
+
+		//fishing level ups
+		new /datum/data/extraction_cargo("N Corp Trainer ",				/obj/item/attribute_increase/fixer,					100) = 1,
+
+		//More nets
+		new /datum/data/extraction_cargo("Fishing Net ",					/obj/item/fishing_net,							100) = 1,
+		new /datum/data/extraction_cargo("Nylon Fishing Net ",				/obj/item/fishing_net/nylon,					300) = 1,
+		new /datum/data/extraction_cargo("Steel Fishing Net ",				/obj/item/fishing_net/steel,					300) = 1,
+		new /datum/data/extraction_cargo("Baited Fishing Net ",				/obj/item/fishing_net/baited,					300) = 1,
+		new /datum/data/extraction_cargo("High Capacity Fishing Net ",		/obj/item/fishing_net/hicap,					300) = 1,
+
+		//Better rods
+		new /datum/data/extraction_cargo("Fibreglass Fishing Rod ",			/obj/item/fishing_rod/fiberglass,				500) = 1,
+		new /datum/data/extraction_cargo("Gold-plated Fishing Rod ",		/obj/item/fishing_rod/gold,						500) = 1,
+		new /datum/data/extraction_cargo("Titanium Fishing Rod ",			/obj/item/fishing_rod/titanium,					500) = 1,
+		new /datum/data/extraction_cargo("Lunar Fishing Rod ",				/obj/item/fishing_rod/lunar,					500) = 1,
+
+		//Lines
+		new /datum/data/extraction_cargo("Woven Fishing Line ",			/obj/item/fishing_component/line/woven,				200) = 1,
+		new /datum/data/extraction_cargo("Reinforced Fishing Line ", 	/obj/item/fishing_component/line/reinforced,		500) = 1,
+
+		//Hooks
+		new /datum/data/extraction_cargo("Weighted Fishing Hook ", 		/obj/item/fishing_component/hook/weighted,			400) = 1,
+		new /datum/data/extraction_cargo("Shiny Fishing Hook ", 		/obj/item/fishing_component/hook/shiny,				700) = 1,
+
+		//Fishing Skills (L1)
+		new /datum/data/extraction_cargo("Level 1 Skill: Scry ",				/obj/item/book/granter/action/skill/scry,				200) = 1,
+		new /datum/data/extraction_cargo("Level 1 Skill: Commune ",				/obj/item/book/granter/action/skill/commune,			200) = 1,
+		new /datum/data/extraction_cargo("Level 1 Skill: Planet ", 				/obj/item/book/granter/action/skill/planet,				200) = 1,
+		new /datum/data/extraction_cargo("Level 1 Skill: Lunar Motion ", 		/obj/item/book/granter/action/skill/moonmove,			200) = 1,
+		new /datum/data/extraction_cargo("Level 1 Skill: Lunar Prayer ", 		/obj/item/book/granter/action/skill/prayer,				200) = 1,
+		new /datum/data/extraction_cargo("Level 1 Skill: God's Love ", 			/obj/item/book/granter/action/skill/love,				200) = 1,
+		new /datum/data/extraction_cargo("Level 1 Skill: Sacred Word ", 		/obj/item/book/granter/action/skill/sacredword,			200) = 1,
+		new /datum/data/extraction_cargo("Level 1 Skill: Detect Fish ", 		/obj/item/book/granter/action/skill/detect,				200) = 1,
+		new /datum/data/extraction_cargo("Level 1 Skill: Fish Lockpick ", 		/obj/item/book/granter/action/skill/fishlockpick,		200) = 1,
+		new /datum/data/extraction_cargo("Level 1 Skill: Fish Telepathy ", 		/obj/item/book/granter/action/skill/fishtelepathy,		200) = 1,
+
+		//Level 2
+		new /datum/data/extraction_cargo("Level 2 Skill: Smite the Heretics ",		/obj/item/book/granter/action/skill/smite,			700) = 1,
+		new /datum/data/extraction_cargo("Level 2 Skill: Lunar Might ", 			/obj/item/book/granter/action/skill/might,			700) = 1,
+		new /datum/data/extraction_cargo("Level 2 Skill: Awe the Weak ", 			/obj/item/book/granter/action/skill/awe,			700) = 1,
+		new /datum/data/extraction_cargo("Level 2 Skill: Chakra Misalignment ", 	/obj/item/book/granter/action/skill/chakra,			700) = 1,
+		new /datum/data/extraction_cargo("Level 2 Skill: Greater Fish - Vertical ", /obj/item/book/granter/action/skill/splitter,			700) = 1,
+
+		//Level 4
+		new /datum/data/extraction_cargo("Level 4 Skill: Alignment ",			/obj/item/book/granter/action/skill/alignment,			1200) = 1,
+		new /datum/data/extraction_cargo("Level 4 Skill: A Moment in Time ", 	/obj/item/book/granter/action/skill/planetstop,			1200) = 1,
+		new /datum/data/extraction_cargo("Level 4 Skill: Supernova ", 			/obj/item/book/granter/action/skill/supernova,			1200) = 1,
+
+		//fishing weapon mods
+		new /datum/data/extraction_cargo("Fishing Mod (R) ",	/obj/item/workshop_mod/fishing,						200) = 1,
+		new /datum/data/extraction_cargo("Fishing Mod (W) ", 	/obj/item/workshop_mod/fishing/white,				200) = 1,
+		new /datum/data/extraction_cargo("Fishing Mod (B) ", 	/obj/item/workshop_mod/fishing/black,				200) = 1,
+	)
