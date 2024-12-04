@@ -654,6 +654,9 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 
 		if(istype(L, /mob/living/carbon/human/dummy) || !get_turf(L)) //Haha no.
 			continue
+
+		if(istype(L, /mob/living/simple_animal/hostile/der_freis_portal) || !get_turf(L)) //We don't want portals to be stolen...
+			continue
 		// LOBOTOMYCORPORATION ADDITION END
 
 		if(!(L in GLOB.player_list) && !L.mind)
