@@ -67,4 +67,4 @@
 	color = COLOR_DARK_LIME
 	bosstype = /mob/living/simple_animal/hostile/ordeal/green_midnight
 	bossspawnloc = /area/department_main/command
-	ordeal_achievement = /datum/award/achievement/boss/greenmidnight
+	ordeal_achievement = /datum/award/achievement/lc13/greenmidnight

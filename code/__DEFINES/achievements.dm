@@ -31,7 +31,6 @@
 #define MEDAL_RUST_ASCENSION "Rust"
 #define MEDAL_VOID_ASCENSION "Void"
 #define MEDAL_TOOLBOX_SOUL "Toolsoul"
-//#define MEDAL_CHEM_TUT "Beginner Chemist"
 #define MEDAL_HOT_DAMN "Hot Damn!"
 
 //LC13 Achievements

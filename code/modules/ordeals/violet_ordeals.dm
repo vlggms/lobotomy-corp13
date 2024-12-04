@@ -51,7 +51,7 @@
 	level = 4
 	reward_percent = 0.25
 	color = "#B642F5"
-	ordeal_achievement = /datum/award/achievement/boss/violetmidnight
+	ordeal_achievement = /datum/award/achievement/lc13/violetmidnight
 
 /datum/ordeal/violet_midnight/Run()
 	..()
