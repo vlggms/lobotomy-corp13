@@ -3,7 +3,7 @@
 	name = "Queen of Hatred"
 	desc = "An abnormality resembling pale-skinned girl in a rather bizzare outfit. \
 	Right behind her is what you presume to be a magic wand."
-	icon = 'ModularTegustation/Teguicons/32x48.dmi'
+	icon = 'ModularTegustation/Teguicons/32x32.dmi'
 	icon_state = "hatred"
 	icon_living = "hatred"
 	var/icon_crazy = "hatred_psycho"
@@ -12,7 +12,6 @@
 	core_icon = "hatred_egg"
 	portrait = "hatred_queen"
 	faction = list("neutral")
-	is_flying_animal = TRUE
 	abnormality_origin = ABNORMALITY_ORIGIN_LOBOTOMY
 
 	ranged = TRUE
@@ -71,6 +70,7 @@
 		... <br>\
 		Why is still so peaceful..?"
 
+	var/obj/effect/qoh_wand/wand
 	var/chance_modifier = 1
 	var/death_counter = 0
 	/// Reduce qliphoth if not enough people have died for too long
@@ -136,20 +136,26 @@
 
 /mob/living/simple_animal/hostile/abnormality/hatred_queen/proc/hysteria_change()
 	if(hysteric_ability == 0)
-		icon = 'ModularTegustation/Teguicons/32x48.dmi'
+		icon = 'ModularTegustation/Teguicons/32x32.dmi'
 		icon_state = "hatred_psycho"
 		threat_level = TETH_LEVEL
 		faction = "netrual"
+		if(HAS_TRAIT_FROM(src, TRAIT_MOVE_FLYING, ROUNDSTART_TRAIT))
+			REMOVE_TRAIT(src, TRAIT_MOVE_FLYING, ROUNDSTART_TRAIT)
+		if(!wand)
+			var/turf/wand_turf = get_ranged_target_turf(src, WEST, 1)
+			wand = new(wand_turf)
 		hysteric_ability = 1
 		return
 	if(hysteric_ability == 1)
 		var/hysteria_choice = alert(src, "Do you want to change into your friendly or hostile form?", "Choose Form", "Friendly", "Hostile")
 		if(hysteria_choice == "Friendly")
-			icon = 'ModularTegustation/Teguicons/32x48.dmi'
+			icon = 'ModularTegustation/Teguicons/32x32.dmi'
 			icon_state = "hatred"
 			friendly = TRUE
 			threat_level = TETH_LEVEL
 			faction = "neutral"
+			ADD_TRAIT(src, TRAIT_MOVE_FLYING, ROUNDSTART_TRAIT)
 		if(hysteria_choice == "Hostile")
 			addtimer(CALLBACK(src, PROC_REF(HostileTransform)), 10 SECONDS)
 		hysteric_ability = 0
@@ -184,9 +190,11 @@
 	. = ..()
 	beamloop = new(list(src), FALSE)
 	RegisterSignal(SSdcs, COMSIG_GLOB_MOB_DEATH, PROC_REF(on_mob_death))
-	var/icon/I = icon('ModularTegustation/Teguicons/64x48.dmi',icon_living) //create inverted colors icon
+	var/icon/I = icon('ModularTegustation/Teguicons/96x64.dmi',icon_living) //create inverted colors icon
 	I.MapColors(-1,0,0, 0,-1,0, 0,0,-1, 1,1,1)
 	icon_inverted = I
+	var/turf/wand_turf = get_ranged_target_turf(src, WEST, 1)
+	wand = new(wand_turf)
 
 /mob/living/simple_animal/hostile/abnormality/hatred_queen/death(gibbed)
 	for(var/obj/effect/qoh_sygil/QS in spawned_effects)
@@ -212,6 +220,8 @@
 	UnregisterSignal(SSdcs, COMSIG_GLOB_MOB_DEATH)
 	if(friendly)
 		src.say("I swore I would protect everyone to the end…")
+	if(wand)
+		qdel(wand)
 	..()
 	animate(src, alpha = 0, time = 10 SECONDS)
 	QDEL_IN(src, 10 SECONDS)
@@ -219,6 +229,8 @@
 /mob/living/simple_animal/hostile/abnormality/hatred_queen/Move()
 	if(!can_act)
 		return FALSE
+	if(friendly)
+		wand.forceMove(get_turf(src)) //That way it will be behind her like in the game.
 	return ..()
 
 /mob/living/simple_animal/hostile/abnormality/hatred_queen/AttackingTarget()
@@ -227,6 +239,9 @@
 /mob/living/simple_animal/hostile/abnormality/hatred_queen/OpenFire()
 	if(!can_act || IsContained())
 		return
+
+	if(friendly)
+		wand.Move(get_step(src, src.dir))
 
 	if(client)
 		switch(chosen_attack)
@@ -376,6 +391,8 @@
 		return FALSE
 	if(!target)
 		return FALSE
+	if(friendly)
+		wand.forceMove(get_turf(src))
 	var/turf/target_turf = get_turf(target)
 	face_atom(target_turf)
 	var/my_dir = dir
@@ -446,6 +463,7 @@
 		hit_line = getline(my_turf, TT) //old hit_line is discarded with hit_line which respects walls
 	if(friendly)
 		addtimer(CALLBACK(src, TYPE_PROC_REF(/atom/movable, say), "ARCANA SLAVE!"))
+		icon_state = "hatredbeats"
 	else
 		accumulated_beam_damage = 150
 	for(var/h = 1 to beam_maximum_ticks)
@@ -509,6 +527,8 @@
 	beam_cooldown = world.time + beam_cooldown_time
 	if(!friendly) //forced teleport after hostile beaming
 		TryTeleport(TRUE)
+	else
+		icon_state = "hatred"
 
 /mob/living/simple_animal/hostile/abnormality/hatred_queen/proc/TryTeleport(forced = FALSE)
 	if(SSmaptype.maptype == "limbus_labs")
@@ -565,9 +585,11 @@
 	new /obj/effect/temp_visual/guardian/phase/out(teleport_target)
 	if(!friendly)
 		TeleportExplode()
+	else
+		wand.forceMove(get_step(src, src.dir))
 	SLEEP_CHECK_DEATH(4)
 	if(!friendly && (text2path(icon) == text2path(icon_inverted))) //revert back
-		icon = 'ModularTegustation/Teguicons/64x48.dmi'
+		icon = 'ModularTegustation/Teguicons/96x64.dmi'
 	can_act = TRUE
 	teleport_cooldown = world.time + teleport_cooldown_time
 
@@ -606,13 +628,11 @@
 	icon_state = icon_crazy
 	chance_modifier = 0.8
 	work_damage_amount *= 2
-	REMOVE_TRAIT(src, TRAIT_MOVE_FLYING, ROUNDSTART_TRAIT)
 
 /mob/living/simple_animal/hostile/abnormality/hatred_queen/proc/GoNormal()
 	icon_state = icon_living
 	chance_modifier = 1
 	work_damage_amount = initial(work_damage_amount)
-	ADD_TRAIT(src, TRAIT_MOVE_FLYING, ROUNDSTART_TRAIT)
 
 /mob/living/simple_animal/hostile/abnormality/hatred_queen/proc/GoHysteric(retries = 0)
 	if(!friendly || !breach_max_death || nihil_present)
@@ -648,14 +668,15 @@
 	if(stat == DEAD)
 		return
 	visible_message(span_bolddanger("[src] transforms!")) //Begin Hostile breach
-	REMOVE_TRAIT(src, TRAIT_MOVE_FLYING, ROUNDSTART_TRAIT)
+	if(HAS_TRAIT_FROM(src, TRAIT_MOVE_FLYING, ROUNDSTART_TRAIT))
+		REMOVE_TRAIT(src, TRAIT_MOVE_FLYING, ROUNDSTART_TRAIT)
 	adjustBruteLoss(-maxHealth, forced = TRUE)
 	friendly = FALSE
 	can_act = TRUE
-	icon = 'ModularTegustation/Teguicons/64x48.dmi'
+	icon = 'ModularTegustation/Teguicons/96x64.dmi'
 	icon_state = icon_living
-	base_pixel_x = -16
-	pixel_x = -16
+	base_pixel_x = -32
+	pixel_x = -32
 	faction = list("hatredqueen") // Kill everyone
 	fear_level = WAW_LEVEL //fear her
 	beam_startup = 1.5 SECONDS //WAW level beam
@@ -663,6 +684,8 @@
 	teleport_cooldown_time = 10 SECONDS
 	retreat_distance = null //this is annoying
 	beam_cooldown = world.time + beam_cooldown_time
+	if(wand)
+		qdel(wand)
 	addtimer(CALLBACK(src, PROC_REF(TryTeleport), TRUE), 5)
 
 /mob/living/simple_animal/hostile/abnormality/hatred_queen/ZeroQliphoth(mob/living/carbon/human/user)
@@ -673,6 +696,7 @@
 	death_counter = 0
 	if(friendly)
 		friendly = TRUE
+		ADD_TRAIT(src, TRAIT_MOVE_FLYING, ROUNDSTART_TRAIT)
 		fear_level = TETH_LEVEL
 		beam_cooldown = world.time + beam_cooldown_time //no immediate beam
 		addtimer(CALLBACK(src, PROC_REF(TryTeleport)), 5)
@@ -716,7 +740,7 @@
 /mob/living/simple_animal/hostile/abnormality/hatred_queen/proc/NihilIconUpdate()
 	name = "Magical Girl of Love"
 	desc = "A real magical girl!"
-	icon = 'ModularTegustation/Teguicons/32x48.dmi'
+	icon = 'ModularTegustation/Teguicons/32x32.dmi'
 	icon_state = "hatred"
 	pixel_x = 0
 	base_pixel_x = 0
@@ -730,18 +754,18 @@
 	if(!isturf(loc))
 		MoveStatue()
 	AIStatus = AI_OFF
-	icon = 'ModularTegustation/Teguicons/64x48.dmi'
+	icon = 'ModularTegustation/Teguicons/96x64.dmi'
 	icon_state = "hatred"
-	pixel_x = -16
-	base_pixel_x = -16
+	pixel_x = -24
+	base_pixel_x = -24
 	var/obj/structure/statue/petrified/magicalgirl/S = new(loc, src, statue_timer)
 	S.name = "Petrified Hate"
 	ADD_TRAIT(src, TRAIT_NOBLEED, MAGIC_TRAIT)
 	SLEEP_CHECK_DEATH(1)
 	S.icon = src.icon
 	S.icon_state = src.icon_state
-	S.pixel_x = -8
-	S.base_pixel_x = -8
+	S.pixel_x = -12
+	S.base_pixel_x = -12
 	var/newcolor = list(rgb(77,77,77), rgb(150,150,150), rgb(28,28,28), rgb(0,0,0))
 	S.add_atom_colour(newcolor, FIXED_COLOUR_PRIORITY)
 	stat = DEAD
@@ -766,8 +790,17 @@
 	if(nihil_present)
 		death()
 		return FALSE
+	if(!wand)
+		return ..()
+	qdel(wand)
 	return ..()
 
+//Wand Code
+/obj/effect/qoh_wand
+	name = "Magical Wand"
+	desc = "A magical wand that is flying in the air from it's wings. It doesn't seem to leave the side of the Queen of Hatred."
+	icon = 'ModularTegustation/Teguicons/32x32.dmi'
+	icon_state = "qoh_wand"
 
 //LCL stuff
 /mob/living/simple_animal/hostile/abnormality/hatred_queen/Login()

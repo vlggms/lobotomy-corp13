@@ -21,6 +21,7 @@
 	ranged = TRUE
 	pixel_x = -8
 	base_pixel_x = -8
+	del_on_death = FALSE
 	stat_attack = HARD_CRIT
 	can_breach = TRUE
 	threat_level = ALEPH_LEVEL
@@ -244,6 +245,11 @@
 		if(current_stage == 2) // Egg
 			var/obj/effect/temp_visual/decoy/D = new /obj/effect/temp_visual/decoy(get_turf(src), src)
 			animate(D, alpha = 0, transform = matrix()*1.2, time = 7)
+
+/mob/living/simple_animal/hostile/abnormality/nothing_there/death(gibbed)
+	animate(src, alpha = 0, time = 10 SECONDS)
+	QDEL_IN(src, 10 SECONDS)
+	..()
 
 /mob/living/simple_animal/hostile/abnormality/nothing_there/Hear(message, atom/movable/speaker, datum/language/message_language, raw_message, radio_freq, list/spans, list/message_mods)
 	. = ..()
