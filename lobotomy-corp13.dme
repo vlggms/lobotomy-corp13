@@ -2867,6 +2867,7 @@
 #include "code\modules\mob\living\simple_animal\abnormality\teth\book.dm"
 #include "code\modules\mob\living\simple_animal\abnormality\teth\cherry_blossoms.dm"
 #include "code\modules\mob\living\simple_animal\abnormality\teth\cinderella.dm"
+#include "code\modules\mob\living\simple_animal\abnormality\teth\clayman.dm"
 #include "code\modules\mob\living\simple_animal\abnormality\teth\cleaner.dm"
 #include "code\modules\mob\living\simple_animal\abnormality\teth\crumbling_armor.dm"
 #include "code\modules\mob\living\simple_animal\abnormality\teth\dealerdamned.dm"
