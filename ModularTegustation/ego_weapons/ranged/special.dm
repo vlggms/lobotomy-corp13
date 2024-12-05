@@ -7,7 +7,6 @@
 	projectile_path = /obj/projectile/ego_bullet/ego_soda/rifle
 	weapon_weight = WEAPON_HEAVY
 	fire_delay = 3
-	spread = 18
 	fire_sound = 'sound/weapons/gun/rifle/shot.ogg'
 
 /obj/item/ego_weapon/ranged/sodashotty
@@ -34,7 +33,6 @@
 	projectile_path = /obj/projectile/ego_bullet/ego_soda
 	weapon_weight = WEAPON_HEAVY
 	spread = 8
-	spread = 32
 	fire_sound = 'sound/weapons/gun/smg/shot.ogg'
 	autofire = 0.15 SECONDS
 

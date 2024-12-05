@@ -15,7 +15,6 @@
 	weapon_weight = WEAPON_HEAVY
 	fire_delay = 15
 	shotsleft = 8
-	spread = 18	//It's a rocket launcher so it should be accurate
 	reloadtime = 2.2 SECONDS
 	fire_sound = 'sound/weapons/ego/cannon.ogg'
 
@@ -28,7 +27,7 @@
 	force = 14
 	projectile_path = /obj/projectile/ego_bullet/ego_beak
 	weapon_weight = WEAPON_MEDIUM
-	spread = 32
+	spread = 10
 	shotsleft = 30
 	reloadtime = 1.3 SECONDS
 	fire_sound = 'sound/weapons/gun/smg/mp7.ogg'
@@ -48,8 +47,7 @@
 	fire_sound = 'sound/weapons/gun/revolver/shot_alt.ogg'
 	vary_fire_sound = FALSE
 	fire_sound_volume = 70
-	dual_wield_spread = -20
-	spread = 18
+	dual_wield_spread = 0
 
 /obj/item/ego_weapon/ranged/noise
 	name = "noise"
@@ -82,7 +80,6 @@
 	fire_sound = 'sound/weapons/gun/revolver/shot_light.ogg'
 	vary_fire_sound = FALSE
 	fire_sound_volume = 70
-	spread = 18
 
 /obj/item/ego_weapon/ranged/pistol/shy
 	name = "todays expression"
@@ -98,7 +95,6 @@
 	shotsleft = 20
 	reloadtime = 1.2 SECONDS
 	autofire = 0.2 SECONDS
-	spread = 27	//little bit of a break
 
 /obj/item/ego_weapon/ranged/dream
 	name = "engulfing dream"
@@ -111,7 +107,6 @@
 	weapon_weight = WEAPON_HEAVY
 	fire_sound = "dreamy_gun"
 	autofire = 0.25 SECONDS
-	spread = 32
 
 /obj/item/ego_weapon/ranged/page
 	name = "page"
@@ -124,7 +119,6 @@
 	weapon_weight = WEAPON_HEAVY
 	fire_delay = 5
 	shotsleft = 10
-	spread = 18
 	reloadtime = 1.4 SECONDS
 	fire_sound = 'sound/weapons/gun/rifle/shot_alt.ogg'
 
@@ -139,7 +133,6 @@
 	projectile_path = /obj/projectile/beam/snapshot
 	weapon_weight = WEAPON_HEAVY
 	fire_delay = 10
-	spread = 18
 	fire_sound = 'sound/weapons/sonic_jackhammer.ogg'
 
 /obj/item/ego_weapon/ranged/wishing_cairn
@@ -155,7 +148,6 @@
 	fire_delay = 3
 	burst_size = 2
 	fire_sound = 'sound/abnormalities/pagoda/throw.ogg'
-	spread = 26		//I guess throwing is inaccurate?
 	var/ammo2 = /obj/projectile/ego_bullet/ego_wishing2
 
 /obj/item/ego_weapon/ranged/wishing_cairn/proc/Ammo_Change()
@@ -177,7 +169,6 @@
 	projectile_path = /obj/projectile/ego_bullet/ego_aspiration
 	weapon_weight = WEAPON_HEAVY
 	autofire = 0.5 SECONDS
-	spread = 18
 	fire_sound = 'sound/abnormalities/fragment/attack.ogg'
 
 /obj/item/ego_weapon/ranged/aspiration/before_firing(atom/target,mob/user)
@@ -218,5 +209,4 @@
 	projectile_path = /obj/projectile/ego_bullet/ego_luckdraw
 	weapon_weight = WEAPON_HEAVY
 	autofire = 0.6 SECONDS
-	spread = 32
 	fire_sound = 'sound/items/handling/paper_pickup.ogg' //Mostly just using this for a lack of a better "card-flicking" noise

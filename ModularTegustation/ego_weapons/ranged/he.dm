@@ -10,7 +10,6 @@
 	weapon_weight = WEAPON_HEAVY
 	fire_delay = 5
 	shotsleft = 10
-	spread = 18
 	reloadtime = 1.4 SECONDS
 	fire_sound = 'sound/weapons/gun/rifle/shot_alt.ogg'
 	attribute_requirements = list(
@@ -31,7 +30,6 @@
 	vary_fire_sound = FALSE
 	weapon_weight = WEAPON_HEAVY
 	fire_sound_volume = 70
-	spread = 32	//It's really heavy
 	attribute_requirements = list(
 							FORTITUDE_ATTRIBUTE = 40
 							)
@@ -50,7 +48,6 @@
 	fire_sound = 'sound/magic/wand_teleport.ogg'
 	weapon_weight = WEAPON_MEDIUM
 	fire_sound_volume = 70
-	spread = 22
 	attribute_requirements = list(
 							TEMPERANCE_ATTRIBUTE = 40
 							)
@@ -88,7 +85,6 @@
 	vary_fire_sound = FALSE
 	weapon_weight = WEAPON_HEAVY
 	fire_sound_volume = 70
-	spread = 27
 	attribute_requirements = list(
 							TEMPERANCE_ATTRIBUTE = 40
 							)
@@ -163,7 +159,6 @@
 	fire_sound_volume = 70
 	shotsleft = 18
 	reloadtime = 1.6 SECONDS
-	spread = 18	//I'm not evil.
 
 	autofire = 0.35 SECONDS
 	attribute_requirements = list(
@@ -180,7 +175,6 @@
 	weapon_weight = WEAPON_HEAVY
 	fire_delay = 5
 	shotsleft = 10
-	spread = 18
 	reloadtime = 1.4 SECONDS
 	fire_sound = 'sound/weapons/gun/rifle/shot_alt.ogg'
 	attribute_requirements = list(
@@ -199,7 +193,7 @@
 	weapon_weight = WEAPON_MEDIUM
 	shotsleft = 32
 	reloadtime = 1.6 SECONDS
-	spread = 32
+	spread = 8
 	autofire = 0.15 SECONDS
 	attribute_requirements = list(
 							PRUDENCE_ATTRIBUTE = 40
@@ -231,7 +225,6 @@
 	icon_state = "screamingwedge"
 	inhand_icon_state = "screamingwedge"
 	force = 20
-	spread = 15
 	damtype = WHITE_DAMAGE
 	projectile_path = /obj/projectile/ego_bullet/ego_wedge
 	weapon_weight = WEAPON_HEAVY
@@ -256,7 +249,6 @@
 	weapon_weight = WEAPON_HEAVY
 	fire_delay = 5
 	shotsleft = 12
-	spread = 32
 	reloadtime = 1.5 SECONDS
 	fire_sound = 'sound/weapons/gun/pistol/shot.ogg'
 	attribute_requirements = list(
@@ -335,7 +327,6 @@
 	fire_delay = 10
 	shotsleft = 4
 	reloadtime = 2.1 SECONDS
-	spread = 18
 	attribute_requirements = list(
 							FORTITUDE_ATTRIBUTE = 40
 							)
@@ -351,7 +342,6 @@
 	fire_delay = 8
 	shotsleft = 6
 	reloadtime = 1.3 SECONDS
-	spread = 24
 	fire_sound = 'sound/weapons/gun/revolver/shot_alt.ogg'
 	vary_fire_sound = FALSE
 	var/list/ammotypes = list(

@@ -65,10 +65,10 @@
 	var/fire_delay = 0					//rate of fire for burst firing and semi auto
 	var/firing_burst = 0				//Prevent the weapon from firing again while already firing
 	var/semicd = 0						//cooldown handler
-	var/dual_wield_spread = 10			//additional spread when dual wielding
+	var/dual_wield_spread = 24			//additional spread when dual wielding
 	var/forced_melee = FALSE			//forced to melee attack. Currently only used for the ego_gun subtype
 
-	var/spread = 32						//Spread induced by the gun itself.
+	var/spread = 0						//Spread induced by the gun itself.
 	var/randomspread = 1				//Set to 0 for shotguns. This is used for weapons that don't fire all their bullets at once.
 
 	var/ammo_x_offset = 0 //used for positioning ammo count overlay on sprite
@@ -94,8 +94,6 @@
 
 /obj/item/ego_weapon/ranged/Initialize()
 	. = ..()
-	if(pellets!=1)
-		randomspread = 0
 	if(pin)
 		pin = new pin(src)
 	build_zooming()
@@ -136,19 +134,6 @@
 				. += span_notice("This weapon has a slow reload.")
 			if(2.51 to INFINITY)
 				. += span_notice("This weapon has an extremely slow reload.")
-
-	switch(spread && pellets == 1)
-		if(0 to 20)
-			. += span_notice("This weapon is extremely accurate.")		//Generally marksman rifles.
-		if(21 to 30)
-			. += span_notice("This weapon is accurate.")				//Autorifles, Pistols.
-		if(31 to 35)
-			. += span_notice("This weapon is somewhat inaccurate.")		//SMGs
-		else
-			. += span_notice("This weapon is inaccurate.")				//Usually for special cases
-
-	if(pellets!=1)
-		. += span_notice("This weapon fires [pellets] pellets.")
 
 	switch(weapon_weight)
 		if(WEAPON_HEAVY)
@@ -332,8 +317,6 @@
 	if(weapon_weight == WEAPON_HEAVY && (user.get_inactive_held_item() || !other_hand))
 		to_chat(user, span_warning("You need two hands to fire [src]!"))
 		return
-
-
 	//DUAL (or more!) WIELDING
 	var/bonus_spread = 0
 	var/loop_counter = 0
@@ -346,14 +329,6 @@
 				bonus_spread += dual_wield_spread
 				loop_counter++
 				addtimer(CALLBACK(G, TYPE_PROC_REF(/obj/item/ego_weapon/ranged, process_fire), target, user, TRUE, params, null, bonus_spread), loop_counter)
-
-	//Get a small scatter increase for doubling with melee and gun. I am directly nerfing MY playstyle here.
-	if(user.get_inactive_held_item())
-		bonus_spread += spread*0.2
-
-	//And get a bonus to scatter up to about 40% less when you're at maximum prudence. Clerks get a scatter increase
-	var/scatter_reduction = min((get_attribute_level(user, PRUDENCE_ATTRIBUTE)-20)/110, 1)
-	bonus_spread -= scatter_reduction*0.7
 
 	return process_fire(target, user, TRUE, params, null, bonus_spread)
 

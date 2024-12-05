@@ -15,6 +15,7 @@
 
 	projectile_path = /obj/projectile/ego_bullet/star
 	weapon_weight = WEAPON_HEAVY
+	spread = 5
 
 	autofire = 0.25 SECONDS
 	shotsleft = 333
@@ -57,7 +58,6 @@
 
 	force = 56
 	damtype = BLACK_DAMAGE
-	spread = 30
 
 	projectile_path = /obj/projectile/ego_bullet/adoration
 	weapon_weight = WEAPON_HEAVY
@@ -189,7 +189,6 @@
 	weapon_weight = WEAPON_HEAVY
 	fire_sound = 'sound/abnormalities/armyinblack/pink.ogg'
 	fire_delay = 9
-	spread = 5	//small amount
 	zoomable = TRUE
 	zoom_amt = 10
 	zoom_out_amt = 13
@@ -265,7 +264,7 @@
 	force = 56
 	projectile_path = /obj/projectile/ego_bullet/arcadia
 	weapon_weight = WEAPON_HEAVY
-	spread = 18
+	spread = 5
 	recoil = 1.5
 	fire_sound = 'sound/weapons/gun/rifle/shot_atelier.ogg'
 	vary_fire_sound = TRUE
@@ -304,7 +303,6 @@
 	recoil = 2
 	fire_sound_volume = 30
 	fire_delay = 12
-	spread = 32
 
 
 	shotsleft = 6	//Based off a colt Single Action Navy
@@ -320,6 +318,7 @@
 	damtype = PALE_DAMAGE
 	projectile_path = /obj/projectile/ego_bullet/ego_hookah
 	weapon_weight = WEAPON_HEAVY
+	spread = 20
 	fire_sound = 'sound/effects/smoke.ogg'
 	autofire = 0.04 SECONDS
 	fire_sound_volume = 5
