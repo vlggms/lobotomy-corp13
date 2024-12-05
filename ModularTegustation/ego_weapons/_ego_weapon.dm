@@ -71,10 +71,13 @@
 		user.changeNext_move(CLICK_CD_MELEE * attack_speed)
 	return TRUE
 
-/obj/item/ego_weapon/attack(mob/living/M, mob/living/user)
+/obj/item/ego_weapon/attack(mob/living/M, mob/living/carbon/human/user)
 	. = ..()
 	if(stuntime)
-		user.Immobilize(stuntime)
+		//You can remove a small amount of stuntime, about 30%, based off your fortitude
+		var/usedstun = stuntime*0.7 + min(get_attribute_level(user, FORTITUDE_ATTRIBUTE)/130, 1)*0.3		//This should help people hate spears and big weapons less.
+
+		user.Immobilize(usedstun)
 		//Visual stuff to give you better feedback
 		new /obj/effect/temp_visual/weapon_stun(get_turf(user))
 		new /obj/effect/temp_visual/dir_setting/bloodsplatter(get_turf(M), pick(GLOB.alldirs))

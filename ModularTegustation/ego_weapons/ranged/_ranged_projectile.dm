@@ -20,6 +20,7 @@
 		projectile.def_zone = user.zone_selected
 	projectile.suppressed = quiet
 
+	projectile.damage += projectile.damage*get_attribute_level(user, JUSTICE_ATTRIBUTE)/130*0.20		//Guns get a 20% bonus from justice
 	projectile.damage *= projectile_damage_multiplier
 	if(temporary_damage_multiplier)
 		projectile.damage *= temporary_damage_multiplier

@@ -12,6 +12,7 @@
 	fire_sound = 'sound/weapons/gun/pistol/shot.ogg'
 	vary_fire_sound = FALSE
 	fire_sound_volume = 70
+	spread = 22
 	var/pulse_cooldown
 	var/pulse_cooldown_time = 60 SECONDS
 	var/blast_delay = 3 SECONDS
@@ -69,6 +70,7 @@
 	burst_size = 1
 	fire_delay = 5
 	shotsleft = 12
+	spread = 22
 	reloadtime = 0.8 SECONDS
 	fire_sound = 'sound/weapons/gun/pistol/shot.ogg'
 	vary_fire_sound = FALSE
@@ -117,6 +119,7 @@
 	vary_fire_sound = FALSE
 	fire_sound_volume = 70
 	fire_delay = 12
+	spread = 24
 
 	var/pulse_startup
 	var/pulse_startup_time = 10 SECONDS
@@ -172,6 +175,7 @@
 	projectile_path = /obj/projectile/ego_bullet/ego_nightshade
 	burst_size = 1
 	fire_delay = 10
+	spread = 12
 	fire_sound = 'sound/weapons/bowfire.ogg'
 	vary_fire_sound = FALSE
 	fire_sound_volume = 50
@@ -262,6 +266,7 @@
 	projectile_path = /obj/projectile/ego_bullet/ego_oceanic
 	burst_size = 1
 	fire_delay = 5
+	spread = 24
 	shotsleft = 7
 	reloadtime = 1.2 SECONDS
 	fire_sound = 'sound/weapons/gun/pistol/shot.ogg'

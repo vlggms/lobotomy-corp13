@@ -12,7 +12,7 @@
 	var/alert_icon = "regen_alert"
 
 	/// How many HP and SP we restore on each process tick
-	var/regeneration_amount = 3
+	var/regeneration_amount = 1.5
 	/// Pre-declared variable
 	var/modified = FALSE // Whether or not the regenerator is currently undergoing modified action
 	var/hp_bonus = 0
@@ -70,9 +70,11 @@
 			continue
 		if(H.health < 0 && !critical_heal)
 			continue
-		H.adjustBruteLoss(-H.maxHealth * ((regen_amt+hp_bonus)/100))
-		H.adjustFireLoss(-H.maxHealth * ((regen_amt+hp_bonus)/1000))	//Heals at 1/10th speed. Supposed to be slower healing than brute and sanity
-		H.adjustSanityLoss(-H.maxSanity * ((regen_amt+sp_bonus)/100))
+		var/prudence_healing = get_attribute_level(H, PRUDENCE_ATTRIBUTE)/50 		//Give bonus healing based off your prudence. At about 75 prudence you have 5 healing
+		prudence_healing += regen_amt
+		H.adjustBruteLoss(-H.maxHealth * ((prudence_healing+hp_bonus)/100))
+		H.adjustFireLoss(-H.maxHealth * ((prudence_healing+hp_bonus)/1000))	//Heals at 1/10th speed. Supposed to be slower healing than brute and sanity
+		H.adjustSanityLoss(-H.maxSanity * ((prudence_healing+sp_bonus)/100))
 	if(icon_state != "regen" && !Threat)
 		icon_state = initial(icon_state)
 
@@ -81,7 +83,7 @@
 	if(burst_cooldown)
 		. += span_warning("[src] is currently offline!")
 		return
-	. += span_info("[src] restores [regeneration_amount+hp_bonus]% HP and [regeneration_amount+sp_bonus]% SP every 2 seconds.")
+	. += span_info("[src] restores [regeneration_amount+hp_bonus]% HP and [regeneration_amount+sp_bonus]% SP every 2 seconds. This is increased by how much prudence the person being healed has.")
 
 /obj/machinery/regenerator/proc/ProduceIcon(Icon_Color, Type) //Used to be called ProduceGas but due to me using it for a button i had to change it. ProduceGas was a cooler name. -IP
 	var/mutable_appearance/colored_overlay = mutable_appearance(icon, Type)

@@ -34,6 +34,7 @@
 	fire_delay = 2
 	shotsleft = 10
 	reloadtime = 1.4 SECONDS
+	spread = 18
 	attribute_requirements = list(
 							FORTITUDE_ATTRIBUTE = 80
 							)
@@ -52,6 +53,7 @@
 	weapon_weight = WEAPON_HEAVY
 	fire_delay = 15
 	fire_sound = 'sound/abnormalities/hatredqueen/attack.ogg'
+	spread = 23//Made it about as accurate as an autorifle
 
 	attribute_requirements = list(
 							FORTITUDE_ATTRIBUTE = 60,
@@ -87,6 +89,7 @@
 	projectile_path = /obj/projectile/ego_bullet/ego_magicbullet
 	weapon_weight = WEAPON_HEAVY
 	fire_delay = 30	//Put on the armor, jackass.
+	spread = 10//okay this should be very accurate
 	shotsleft = 7
 	reloadtime = 2.1 SECONDS
 	fire_sound = 'sound/abnormalities/freischutz/shoot.ogg'
@@ -123,6 +126,7 @@
 	inhand_icon_state = "solemnlament"
 	special = "Firing both solemn lament and solemn vow at the same time will increase damage by 1.5x"
 	force = 17
+	spread = 22
 	damtype = WHITE_DAMAGE
 	projectile_path = /obj/projectile/ego_bullet/ego_solemnlament
 	fire_delay = 5
@@ -160,6 +164,7 @@
 	inhand_icon_state = "solemnvow"
 	special = "Firing both solemn lament and solemn vow at the same time will increase damage by 1.5x"
 	force = 17
+	spread = 22
 	damtype = BLACK_DAMAGE
 	projectile_path = /obj/projectile/ego_bullet/ego_solemnvow
 	fire_delay = 5
@@ -213,13 +218,14 @@
 	desc = "A pistol painted in black with a gold finish. Whenever this EGO is used, a faint scent of fillet mignon wafts through the air."
 	icon_state = "executive"
 	inhand_icon_state = "executive"
-	special = "This gun scales with justice."
+	special = "This gun scales significantly more with justice."
 	force = 12
 	damtype = PALE_DAMAGE
 	burst_size = 1
 	fire_delay = 5
 	shotsleft = 10
 	reloadtime = 0.7 SECONDS
+	spread = 22
 	fire_sound = 'sound/weapons/gun/pistol/shot.ogg'
 	vary_fire_sound = FALSE
 	fire_sound_volume = 70
@@ -232,6 +238,7 @@
 	if(!ishuman(user))
 		return ..()
 
+	//Fuck it, Double justice bonus
 	var/userjust = get_attribute_level(user, JUSTICE_ATTRIBUTE)
 	var/justicemod = 1 + userjust/100
 	temporary_damage_multiplier = justicemod
@@ -284,6 +291,7 @@
 	inhand_icon_state = "executive"
 	special = "This weapon fires IFF bullets."
 	force = 28
+	spread = 32
 	projectile_path = /obj/projectile/ego_bullet/ego_praetorian
 	fire_sound = 'sound/weapons/gun/pistol/tp17.ogg'
 	autofire = 0.12 SECONDS
@@ -308,6 +316,7 @@
 	shotsleft = 7
 	reloadtime = 1.2 SECONDS
 	fire_sound = 'sound/abnormalities/freischutz/shoot.ogg'
+	spread = 10
 	attribute_requirements = list(
 							TEMPERANCE_ATTRIBUTE = 80
 							)
@@ -336,6 +345,7 @@
 	force = 17
 	projectile_path = /obj/projectile/ego_bullet/ego_laststop
 	weapon_weight = WEAPON_HEAVY
+	spread = 12	//okay YOU can be extremely accurate
 	fire_delay = 5
 	shotsleft = 2
 	reloadtime = 10 SECONDS
@@ -352,7 +362,7 @@
 	force = 17
 	projectile_path = /obj/projectile/ego_bullet/ego_intention
 	weapon_weight = WEAPON_MEDIUM
-	spread = 40
+	spread = 32
 	fire_sound = 'sound/weapons/gun/smg/mp7.ogg'
 	autofire = 0.07 SECONDS
 	shotsleft = 50
@@ -368,6 +378,7 @@
 	icon_state = "aroma"
 	inhand_icon_state = "aroma"
 	force = 28
+	spread = 18
 	damtype = WHITE_DAMAGE
 	projectile_path = /obj/projectile/ego_bullet/ego_aroma
 	weapon_weight = WEAPON_HEAVY
@@ -385,6 +396,7 @@
 	inhand_icon_state = "assonance"
 	special = "This weapon fires a hitscan beam. \nUpon hitting an enemy, this weapon heals a nearby Discord weapon user."
 	force = 28
+	spread = 18
 	damtype = WHITE_DAMAGE
 	projectile_path = /obj/projectile/beam/assonance
 	weapon_weight = WEAPON_HEAVY
@@ -407,6 +419,7 @@
 	weapon_weight = WEAPON_HEAVY
 	special = "This weapon is highly effective in melee."
 	force = 42
+	spread = 18
 	damtype = WHITE_DAMAGE
 	fire_delay = 12
 	attribute_requirements = list(
@@ -426,6 +439,7 @@
 	special = "Upon hit the targets RED vulnerability is increased by 0.2."
 	damtype = RED_DAMAGE
 	fire_delay = 30 //5 less than the Rend Armor status effect
+	spread = 18		//It's a launcher weapon
 	fire_sound = 'sound/misc/moist_impact.ogg'
 	attribute_requirements = list(
 							FORTITUDE_ATTRIBUTE = 60,
@@ -440,6 +454,7 @@
 	inhand_icon_state = "warring"
 	special = "This weapon can unleash a special attack by loading a second arrow."
 	force = 28
+	spread = 22		//Cool weapon, give it less scatter
 	damtype = BLACK_DAMAGE
 	projectile_path = /obj/projectile/ego_bullet/ego_warring
 	weapon_weight = WEAPON_HEAVY
@@ -522,6 +537,7 @@
 	fire_delay = 13
 	shotsleft = 7
 	reloadtime = 1.6 SECONDS
+	spread = 18
 	fire_sound = 'sound/weapons/ego/cannon.ogg'
 	attribute_requirements = list(
 							FORTITUDE_ATTRIBUTE = 60,
@@ -585,6 +601,7 @@
 	damtype = WHITE_DAMAGE
 	projectile_path = /obj/projectile/ego_bullet/ego_bride
 	weapon_weight = WEAPON_HEAVY
+	spread = 18
 	fire_delay = 5
 	shotsleft = 10
 	reloadtime = 1.4 SECONDS
@@ -600,6 +617,7 @@
 	icon_state = "innocence_gun"
 	inhand_icon_state = "innocence_gun"
 	force = 17
+	spread = 24
 	damtype = WHITE_DAMAGE
 	projectile_path = /obj/projectile/ego_bullet/ego_innocence
 	fire_sound = 'sound/abnormalities/orangetree/ding.ogg'
@@ -621,6 +639,7 @@
 	special = "Use this weapon in hand to place a trap that inflicts \
 		50 RED damage and alerts the user of the area it was triggered."
 	force = 28
+	spread = 18
 	damtype = WHITE_DAMAGE
 	projectile_path = /obj/projectile/ego_bullet/ego_hypocrisy
 	weapon_weight = WEAPON_HEAVY
