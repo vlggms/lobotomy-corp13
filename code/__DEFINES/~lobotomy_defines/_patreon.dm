@@ -1,0 +1,17 @@
+#define NO_RANK "None"
+#define UNSUBBED "UNSUBBED"
+#define AGENT_RANK "AGENT"
+#define SENIOR_AGENT_RANK "SENIORAGENT"
+#define CAPTAIN_RANK "CAPTAIN"
+
+// im lazy -Cupa
+GLOBAL_LIST_INIT(patreon_ranks, list(
+	"None",
+	"UNSUBBED",
+	"AGENT",
+	"SENIORAGENT",
+	"CAPTAIN"))
+
+#define ACCESS_AGENT_RANK 1
+#define ACCESS_SENIOR_AGENT_RANK 2
+#define ACCESS_CAPTAIN_RANK 3
