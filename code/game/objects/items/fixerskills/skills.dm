@@ -75,7 +75,7 @@
 			else
 				to_chat(user, span_notice("Your level is [user_level]. This book needs level [level]!"))
 				return FALSE
-		if (!(user?.mind?.assigned_role in list("Civilian")))
+		if (!(user?.mind?.assigned_role in list("Civilian", "Office Director", "Office Fixer")))
 			to_chat(user, span_notice("Only Civilians can use this book!"))
 			return FALSE
 
