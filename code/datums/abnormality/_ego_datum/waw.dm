@@ -506,3 +506,13 @@
 /datum/ego_datum/armor/havana
 	item_path = /obj/item/clothing/suit/armor/ego_gear/waw/havana
 	cost = 50
+
+// Lindworm - Vulnerability
+/datum/ego_datum/weapon/vulnerability
+	item_path = /obj/item/ego_weapon/vulnerability
+	cost = 50
+
+/datum/ego_datum/armor/vulnerability
+	item_path = /obj/item/clothing/suit/armor/ego_gear/waw/vulnerability
+	cost = 50
+
