@@ -21,7 +21,7 @@ GLOBAL_LIST_EMPTY(threearmed_fucks)
 	user.change_number_of_hands(limbs+1)
 	GLOB.threearmed_fucks += user
 	user.visible_message(span_alert("[user] presses a button on [src], and you hear a short mechanical noise."), span_alert("You feel a sharp sting as [src] plunges into your body."))
-	to_chat(user, "Your extra arm whirrs with life"))
+	to_chat(user, span_notice("Your extra arm whirrs with life"))
 	playsound(get_turf(user), 'sound/weapons/circsawhit.ogg', 50, TRUE)
 	user.add_movespeed_modifier(/datum/movespeed_modifier/armimplant)
 	if(uses >= 1)
