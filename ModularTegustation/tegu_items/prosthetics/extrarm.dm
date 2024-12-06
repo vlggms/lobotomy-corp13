@@ -32,7 +32,7 @@
 		return
 	user.change_number_of_hands(limbs+1)
 	user.visible_message(span_notice("[user] presses a button on [src], and you hear a short mechanical noise."), span_notice("You feel a sharp sting as [src] plunges into your body."))
-	to_chat(user, "Your mechandrites whirr with life")
+	to_chat(user, span_notice("Your mechandrites whirr with life"))
 	playsound(get_turf(user), 'sound/weapons/circsawhit.ogg', 50, TRUE)
 	if(uses == 1)
 		uses--
