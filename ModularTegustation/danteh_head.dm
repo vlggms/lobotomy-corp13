@@ -105,11 +105,18 @@ GLOBAL_VAR_INIT(hatspawned, FALSE)//So two of these cannot be created
 /datum/action/cooldown/dantehrevive/Trigger()
 	if(isdead(owner))
 		return
-	for(var/mob/living/carbon/human/H in range(10, get_turf(src)))
-		if(H in GLOB.attunedsinners)
-			H.revive(full_heal = TRUE, admin_revive = TRUE)
-			H.grab_ghost(force = TRUE) // even suicides
-			to_chat(H, span_notice("You rise with a start, you're alive!!!"))
+	if(SSmaptype.maptype in SSmaptype.citymaps)
+		for(var/mob/living/carbon/human/H in range(7, get_turf(src)))
+			if(H in GLOB.attunedsinners)
+				H.revive(full_heal = TRUE, admin_revive = TRUE)
+				H.grab_ghost(force = TRUE) // even suicides
+				to_chat(H, span_notice("You rise with a start, you're alive!!!"))
+	else
+		for(var/mob/living/carbon/human/H in range(7, get_turf(src)))
+			if(H in GLOB.attunedsinners)
+				H.adjustSanityLoss(-40)	//Healing for those around.
+				H.adjustBruteLoss(-40)
+				new /obj/effect/temp_visual/heal(get_turf(H), "#E2ED4A")
 
 	var/mob/living/carbon/human/M = owner
 
