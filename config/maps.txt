@@ -91,6 +91,9 @@ endmap
 map lclabs
 endmap
 
+map railway
+endmap
+
 map skeld
 endmap
 

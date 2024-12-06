@@ -11,6 +11,9 @@
 	if(stat != DEAD)
 		death(TRUE)
 
+	if(SSmaptype.maptype == "railway")
+		return	//Don't gib sinners here.
+
 	if(!prev_lying)
 		gib_animation()
 
