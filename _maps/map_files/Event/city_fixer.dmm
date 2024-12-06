@@ -3,6 +3,44 @@
 /obj/machinery/vending/coffee,
 /turf/open/floor/plating/ashplanet/rocky,
 /area/city)
+"ac" = (
+/obj/effect/turf_decal/trimline/red/filled/line{
+	dir = 1
+	},
+/obj/structure/closet/crate,
+/obj/item/storage/box/papersack{
+	pixel_x = -6
+	},
+/obj/item/storage/box/papersack{
+	pixel_x = -6
+	},
+/obj/item/storage/box/papersack{
+	pixel_x = -6
+	},
+/obj/item/storage/box/papersack{
+	pixel_x = -6
+	},
+/obj/item/storage/box/papersack{
+	pixel_x = -6
+	},
+/obj/item/storage/box/papersack{
+	pixel_x = -6
+	},
+/obj/item/storage/box/papersack{
+	pixel_x = -6
+	},
+/obj/item/storage/box/papersack{
+	pixel_x = -6
+	},
+/obj/item/storage/box/papersack{
+	pixel_x = -6
+	},
+/obj/item/storage/box/papersack{
+	pixel_x = -6
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/facility/dark,
+/area/city/shop)
 "ar" = (
 /obj/machinery/vending/cigarette,
 /turf/open/floor/plating/ashplanet/rocky,
@@ -40,32 +78,17 @@
 	},
 /turf/open/floor/carpet/black,
 /area/city/house)
+"aO" = (
+/obj/structure/fishshrine{
+	anchored = 1
+	},
+/turf/open/floor/plating/grass,
+/area/city)
 "aV" = (
 /obj/structure/table/wood,
 /obj/item/flashlight/lamp,
 /turf/open/floor/carpet/black,
 /area/city/house)
-"bd" = (
-/obj/structure/rack,
-/obj/item/tresmetal,
-/obj/item/tresmetal,
-/obj/item/tresmetal,
-/obj/effect/turf_decal/siding/thinplating/dark,
-/obj/effect/turf_decal/siding/thinplating/dark{
-	dir = 1
-	},
-/turf/open/floor/facility/dark,
-/area/city/shop)
-"be" = (
-/obj/structure/rack,
-/obj/effect/turf_decal/siding/thinplating/dark,
-/obj/effect/turf_decal/siding/thinplating/dark{
-	dir = 1
-	},
-/obj/item/toy/crayon/spraycan/infinite,
-/obj/item/toy/crayon/spraycan/infinite,
-/turf/open/floor/facility/dark,
-/area/city/shop)
 "bp" = (
 /obj/machinery/telecomms/server/presets/command{
 	name = "Command Server"
@@ -73,13 +96,6 @@
 /obj/effect/turf_decal/bot,
 /turf/open/floor/circuit/telecomms/mainframe,
 /area/facility_hallway/north)
-"bv" = (
-/obj/structure/closet/crate/bin,
-/obj/effect/turf_decal/siding/wideplating/dark{
-	dir = 1
-	},
-/turf/open/floor/facility/dark,
-/area/city/shop)
 "by" = (
 /obj/item/reagent_containers/food/condiment/flour,
 /obj/item/reagent_containers/food/condiment/flour,
@@ -106,20 +122,6 @@
 /obj/structure/bed,
 /turf/open/floor/carpet/black,
 /area/city/house)
-"bF" = (
-/obj/structure/rack,
-/obj/effect/turf_decal/siding/thinplating/dark/end{
-	dir = 4
-	},
-/obj/item/paper_bin,
-/turf/open/floor/facility/dark,
-/area/city/shop)
-"bH" = (
-/obj/effect/turf_decal/siding/thinplating/dark{
-	dir = 4
-	},
-/turf/open/floor/facility/dark,
-/area/city/shop)
 "bM" = (
 /obj/structure/itemselling,
 /turf/open/floor/plating/ashplanet/rocky,
@@ -142,6 +144,10 @@
 /obj/structure/potential,
 /turf/open/floor/plating/ashplanet/rocky,
 /area/city/backstreets_checkpoint)
+"bX" = (
+/obj/structure/fluff/beach_umbrella/security,
+/turf/open/floor/plating/beach/sand,
+/area/city)
 "ce" = (
 /obj/structure/closet/secure_closet/freezer/fridge/open,
 /turf/open/floor/facility,
@@ -150,10 +156,13 @@
 /obj/effect/spawner/structure/window/reinforced,
 /turf/open/floor/plating/airless,
 /area/city/fixers)
-"cm" = (
-/mob/living/simple_animal/hostile/shrimp,
-/turf/open/floor/plating/beach/sand,
-/area/city)
+"cl" = (
+/obj/machinery/light{
+	dir = 1
+	},
+/obj/structure/closet/crate/freezer/surplus_limbs,
+/turf/open/floor/plasteel/white,
+/area/city/shop)
 "cq" = (
 /obj/structure/table,
 /obj/machinery/button/door/indestructible{
@@ -193,10 +202,6 @@
 /obj/structure/fluff/beach_umbrella/cap,
 /turf/open/floor/plating/beach/sand,
 /area/city)
-"cS" = (
-/obj/structure/chair/wood,
-/turf/open/floor/carpet/black,
-/area/city/house)
 "cX" = (
 /obj/structure/table/reinforced,
 /turf/open/indestructible/hoteltile,
@@ -205,10 +210,13 @@
 /obj/machinery/griddle,
 /turf/open/indestructible/hoteltile,
 /area/city/house)
-"dl" = (
-/obj/machinery/fish_market,
-/turf/open/floor/wood,
-/area/city)
+"do" = (
+/obj/effect/turf_decal/siding/wideplating/dark{
+	dir = 1
+	},
+/obj/effect/turf_decal/loading_area/red,
+/turf/open/floor/facility/dark,
+/area/city/shop)
 "dp" = (
 /obj/machinery/light{
 	dir = 1
@@ -225,37 +233,12 @@
 /obj/item/clothing/under/pants/blackjeans,
 /turf/open/floor/carpet/black,
 /area/city/house)
-"dP" = (
-/obj/effect/turf_decal/siding/thinplating/dark{
-	dir = 6
-	},
-/turf/open/floor/facility/dark,
-/area/city/shop)
 "dS" = (
 /obj/structure/chair/plastic{
 	dir = 4
 	},
 /turf/open/floor/plating/ashplanet/rocky,
 /area/city/backstreets_checkpoint)
-"dU" = (
-/obj/effect/turf_decal/siding/wideplating/dark,
-/turf/open/floor/facility/dark,
-/area/city/shop)
-"dV" = (
-/obj/effect/turf_decal/trimline/red/filled/line{
-	dir = 1
-	},
-/obj/structure/closet/crate,
-/obj/item/clothing/mask/carnival_mask,
-/obj/item/clothing/mask/carnival_mask,
-/obj/item/clothing/mask/carnival_mask,
-/obj/item/clothing/mask/carnival_mask,
-/turf/open/floor/facility/dark,
-/area/city/shop)
-"ec" = (
-/obj/effect/turf_decal/trimline/red/filled/line,
-/turf/open/floor/facility/dark,
-/area/city/shop)
 "ed" = (
 /obj/structure/table/reinforced,
 /obj/machinery/door/window/eastleft,
@@ -265,15 +248,6 @@
 "ef" = (
 /turf/closed/indestructible/reinforced,
 /area/facility_hallway/north)
-"el" = (
-/obj/structure/table/wood,
-/obj/item/candle{
-	pixel_x = -9;
-	pixel_y = 3
-	},
-/obj/item/modular_computer/laptop/preset/fixer,
-/turf/open/floor/carpet/black,
-/area/city/house)
 "ep" = (
 /obj/structure/sink/kitchen{
 	dir = 1;
@@ -281,9 +255,24 @@
 	},
 /turf/open/indestructible/hoteltile,
 /area/city/house)
+"eE" = (
+/obj/effect/turf_decal/trimline/red/filled/line{
+	dir = 4
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/facility/dark,
+/area/city/shop)
 "eG" = (
 /obj/machinery/biogenerator,
 /turf/open/indestructible/white,
+/area/city/shop)
+"eL" = (
+/obj/structure/rack,
+/obj/effect/turf_decal/siding/thinplating/dark/end{
+	dir = 4
+	},
+/obj/item/paper_bin,
+/turf/open/floor/facility/dark,
 /area/city/shop)
 "eM" = (
 /obj/structure/closet/cabinet,
@@ -307,82 +296,12 @@
 /obj/structure/mineral_door/wood,
 /turf/open/floor/carpet/black,
 /area/city/house)
-"fe" = (
-/turf/open/floor/plating/ashplanet/rocky,
-/area/city/backstreets_alley)
-"fl" = (
-/obj/structure/table/anvil,
-/obj/effect/turf_decal/siding/wideplating/dark{
-	dir = 1
-	},
-/turf/open/floor/facility/dark,
-/area/city/shop)
-"fp" = (
-/obj/machinery/button/door/indestructible{
-	id = "extraction";
-	name = "Office Access Shutters";
-	pixel_x = -22;
-	pixel_y = 3
-	},
-/obj/effect/turf_decal/siding/wideplating/dark{
-	dir = 10
-	},
-/turf/open/floor/facility/dark,
-/area/city/shop)
-"ft" = (
-/obj/effect/turf_decal/siding/thinplating/dark{
-	dir = 8
-	},
-/turf/open/floor/facility/dark,
-/area/city/shop)
 "fw" = (
 /obj/structure/table/reinforced,
 /obj/machinery/door/window/eastright,
 /obj/machinery/door/window/westleft,
 /turf/open/floor/facility,
 /area/city/fixers)
-"fF" = (
-/obj/effect/turf_decal/trimline/red/filled/line{
-	dir = 9
-	},
-/obj/structure/closet/crate,
-/obj/item/stack/sheet/silk/amber_simple,
-/obj/item/stack/sheet/silk/amber_simple,
-/obj/item/stack/sheet/silk/amber_simple,
-/obj/item/stack/sheet/silk/amber_simple,
-/obj/item/stack/sheet/silk/amber_simple,
-/obj/item/stack/sheet/silk/amber_simple,
-/obj/item/stack/sheet/silk/amber_simple,
-/obj/item/stack/sheet/silk/amber_simple,
-/obj/item/stack/sheet/silk/steel_simple,
-/obj/item/stack/sheet/silk/steel_simple,
-/obj/item/stack/sheet/silk/steel_simple,
-/obj/item/stack/sheet/silk/steel_simple,
-/obj/item/stack/sheet/silk/steel_simple,
-/obj/item/stack/sheet/silk/steel_simple,
-/obj/item/stack/sheet/silk/steel_simple,
-/obj/item/stack/sheet/silk/steel_simple,
-/obj/item/stack/sheet/silk/green_simple,
-/obj/item/stack/sheet/silk/green_simple,
-/obj/item/stack/sheet/silk/green_simple,
-/obj/item/stack/sheet/silk/green_simple,
-/obj/item/stack/sheet/silk/green_simple,
-/obj/item/stack/sheet/silk/green_simple,
-/obj/item/stack/sheet/silk/green_simple,
-/obj/item/stack/sheet/silk/green_simple,
-/obj/item/stack/sheet/silk/indigo_simple,
-/obj/item/stack/sheet/silk/indigo_simple,
-/obj/item/stack/sheet/silk/indigo_simple,
-/obj/item/stack/sheet/silk/indigo_simple,
-/obj/item/stack/sheet/silk/indigo_simple,
-/obj/item/stack/sheet/silk/indigo_simple,
-/obj/item/stack/sheet/silk/indigo_simple,
-/obj/item/stack/sheet/silk/indigo_simple,
-/obj/machinery/light{
-	dir = 1
-	},
-/turf/open/floor/facility/dark,
-/area/city/shop)
 "fI" = (
 /obj/structure/chair/plastic{
 	dir = 4
@@ -393,6 +312,15 @@
 /obj/structure/fluff/beach_umbrella/engine,
 /turf/open/floor/plating/beach/sand,
 /area/city)
+"fL" = (
+/obj/structure/chair/office{
+	dir = 4
+	},
+/obj/effect/turf_decal/siding/wideplating/dark{
+	dir = 4
+	},
+/turf/open/floor/facility/dark,
+/area/city/shop)
 "fM" = (
 /obj/machinery/hydroponics,
 /obj/machinery/light{
@@ -425,11 +353,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/city/shop)
-"fW" = (
-/obj/structure/table/reinforced,
-/obj/structure/fishcooker/fishfrier,
-/turf/open/floor/wood,
-/area/city)
 "fZ" = (
 /obj/machinery/griddle,
 /obj/effect/turf_decal/tile/red{
@@ -455,6 +378,23 @@
 "gx" = (
 /obj/machinery/seed_extractor,
 /turf/open/indestructible/white,
+/area/city/shop)
+"gz" = (
+/obj/effect/turf_decal/trimline/red/filled/line{
+	dir = 5
+	},
+/obj/structure/closet/crate,
+/obj/item/silkknife,
+/obj/item/silkknife,
+/obj/item/silkknife,
+/obj/item/silkknife,
+/obj/item/silkknife,
+/obj/item/silkknife,
+/obj/effect/decal/cleanable/cobweb/cobweb2,
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/floor/facility/dark,
 /area/city/shop)
 "gF" = (
 /obj/machinery/computer/communications{
@@ -618,6 +558,10 @@
 /obj/machinery/cryopod,
 /turf/open/floor/facility/dark,
 /area/city/shop)
+"iP" = (
+/obj/machinery/vending/prosthetic,
+/turf/open/indestructible/white,
+/area/city/shop)
 "iU" = (
 /obj/effect/turf_decal/tile/red{
 	dir = 8
@@ -627,6 +571,12 @@
 	},
 /turf/open/floor/plasteel,
 /area/city/shop)
+"iV" = (
+/obj/structure/chair/wood{
+	dir = 1
+	},
+/turf/open/floor/carpet/black,
+/area/city)
 "iX" = (
 /obj/effect/turf_decal/tile/red,
 /obj/effect/turf_decal/tile/red{
@@ -634,27 +584,29 @@
 	},
 /turf/open/floor/plasteel,
 /area/city/shop)
-"jH" = (
+"jn" = (
 /obj/effect/turf_decal/siding/wideplating/dark{
 	dir = 8
 	},
-/obj/effect/turf_decal/loading_area{
-	dir = 4
-	},
 /turf/open/floor/facility/dark,
 /area/city/shop)
-"jI" = (
+"jp" = (
 /obj/structure/rack,
-/obj/item/price_tagger,
-/obj/machinery/light{
-	dir = 1
-	},
-/obj/effect/turf_decal/siding/thinplating/dark,
 /obj/effect/turf_decal/siding/thinplating/dark{
 	dir = 5
 	},
+/obj/effect/turf_decal/siding/thinplating/dark,
 /turf/open/floor/facility/dark,
 /area/city/shop)
+"jx" = (
+/obj/structure/table/wood,
+/obj/item/candle{
+	pixel_x = -9;
+	pixel_y = 3
+	},
+/obj/item/modular_computer/laptop/preset/fixer,
+/turf/open/floor/carpet/black,
+/area/city)
 "jJ" = (
 /obj/structure/rack{
 	pixel_x = -1
@@ -682,6 +634,17 @@
 /obj/item/clothing/suit/apron,
 /turf/open/indestructible/white,
 /area/city/shop)
+"jN" = (
+/obj/structure/rack,
+/obj/effect/turf_decal/siding/thinplating/dark,
+/obj/effect/turf_decal/siding/thinplating/dark{
+	dir = 1
+	},
+/obj/item/hand_labeler,
+/obj/item/hand_labeler_refill,
+/obj/item/hand_labeler_refill,
+/turf/open/floor/facility/dark,
+/area/city/shop)
 "jO" = (
 /turf/closed/indestructible/fakeglass,
 /area/city/house)
@@ -699,17 +662,6 @@
 /obj/item/modular_computer/laptop/preset/civilian,
 /turf/open/floor/wood,
 /area/city/house)
-"ki" = (
-/obj/structure/rack,
-/obj/item/workshop_mod/regular/white,
-/obj/effect/turf_decal/siding/thinplating/dark{
-	dir = 1
-	},
-/obj/effect/turf_decal/siding/thinplating/dark{
-	dir = 10
-	},
-/turf/open/floor/facility/dark,
-/area/city/shop)
 "kk" = (
 /turf/closed/indestructible/reinforced,
 /area/city/backstreets_alley)
@@ -749,6 +701,23 @@
 /obj/item/reagent_containers/glass/beaker,
 /turf/open/floor/plasteel,
 /area/city/shop)
+"kE" = (
+/obj/structure/rack,
+/obj/item/clothing/under/rank/cargo/miner{
+	name = "Workshop's jumpsuit"
+	},
+/obj/item/clothing/under/rank/cargo/miner{
+	name = "Workshop's jumpsuit"
+	},
+/obj/item/clothing/under/rank/cargo/miner{
+	name = "Workshop's jumpsuit"
+	},
+/obj/effect/turf_decal/siding/thinplating/dark{
+	dir = 1
+	},
+/obj/effect/turf_decal/siding/thinplating/dark,
+/turf/open/floor/facility/dark,
+/area/city/shop)
 "kG" = (
 /obj/structure/table,
 /obj/item/kitchen/knife,
@@ -771,6 +740,10 @@
 "kJ" = (
 /obj/item/price_tagger,
 /turf/open/indestructible/white,
+/area/city/shop)
+"kL" = (
+/obj/effect/turf_decal/trimline/red/filled/line,
+/turf/open/floor/facility/dark,
 /area/city/shop)
 "kQ" = (
 /obj/structure/table/reinforced,
@@ -804,6 +777,13 @@
 /obj/machinery/vending/cigarette/beach,
 /turf/open/floor/plating/ashplanet/rocky,
 /area/city/backstreets_checkpoint)
+"lk" = (
+/obj/effect/turf_decal/trimline/red/filled/line{
+	dir = 1
+	},
+/obj/machinery/vending/weaving/cheap,
+/turf/open/floor/facility/dark,
+/area/city/shop)
 "ll" = (
 /obj/machinery/light,
 /turf/open/floor/wood{
@@ -816,6 +796,25 @@
 	},
 /turf/open/floor/wood,
 /area/city/shop)
+"lt" = (
+/obj/structure/rack,
+/obj/item/workshop_mod/regular/white,
+/obj/effect/turf_decal/siding/thinplating/dark{
+	dir = 1
+	},
+/obj/effect/turf_decal/siding/thinplating/dark{
+	dir = 10
+	},
+/turf/open/floor/facility/dark,
+/area/city/shop)
+"lu" = (
+/obj/structure/chair/office/light,
+/turf/open/floor/plasteel/white,
+/area/city/shop)
+"ly" = (
+/obj/item/book/granter/action/skill/alignment2,
+/turf/open/floor/plating/beach/sand,
+/area/city)
 "lD" = (
 /obj/item/folder,
 /obj/item/folder,
@@ -843,10 +842,25 @@
 /obj/machinery/telecomms/bus/preset_two,
 /turf/open/floor/circuit/telecomms/mainframe,
 /area/facility_hallway/north)
+"mh" = (
+/obj/effect/decal/cleanable/blood/drip{
+	pixel_x = 12;
+	pixel_y = 12
+	},
+/obj/effect/decal/cleanable/blood/drip,
+/turf/open/floor/facility/dark,
+/area/city/shop)
 "mi" = (
 /obj/structure/bonfire/dense,
 /turf/open/floor/plating/beach/sand,
 /area/city)
+"mp" = (
+/obj/effect/turf_decal/trimline/red/filled/line{
+	dir = 8
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/facility/dark,
+/area/city/shop)
 "mr" = (
 /obj/effect/turf_decal/tile/red,
 /obj/effect/turf_decal/tile/red{
@@ -864,6 +878,23 @@
 	},
 /turf/open/floor/plasteel,
 /area/city/shop)
+"mJ" = (
+/obj/structure/rack,
+/obj/structure/lootcrate/tres,
+/obj/structure/lootcrate/tres,
+/obj/structure/lootcrate/tres,
+/obj/structure/lootcrate/tres,
+/obj/structure/lootcrate/tres,
+/obj/item/crowbar/red,
+/obj/machinery/light{
+	dir = 1
+	},
+/obj/effect/turf_decal/siding/thinplating/dark,
+/obj/effect/turf_decal/siding/thinplating/dark{
+	dir = 9
+	},
+/turf/open/floor/facility/dark,
+/area/city/shop)
 "mV" = (
 /obj/machinery/vending/hydronutrients,
 /turf/open/indestructible/white,
@@ -873,13 +904,9 @@
 /obj/item/potential_tester,
 /turf/open/floor/facility/white,
 /area/city/fixers)
-"ng" = (
-/obj/effect/turf_decal/trimline/red/filled/line{
-	dir = 4
-	},
-/obj/effect/decal/cleanable/dirt/dust,
-/turf/open/floor/facility/dark,
-/area/city/shop)
+"nj" = (
+/turf/open/floor/plating/ashplanet/rocky,
+/area/city/backstreets_alley)
 "nl" = (
 /obj/machinery/light{
 	dir = 1
@@ -921,22 +948,16 @@
 /obj/machinery/light,
 /turf/open/indestructible/white,
 /area/city/shop)
+"nH" = (
+/obj/structure/forge,
+/obj/effect/turf_decal/siding/wideplating/dark{
+	dir = 1
+	},
+/turf/open/floor/facility/dark,
+/area/city/shop)
 "nK" = (
 /obj/machinery/vending/city,
 /turf/open/floor/facility,
-/area/city/shop)
-"nO" = (
-/obj/item/storage/secure/safe{
-	pixel_x = -22
-	},
-/obj/structure/table,
-/obj/machinery/light{
-	dir = 1
-	},
-/obj/effect/turf_decal/siding/wideplating/dark{
-	dir = 9
-	},
-/turf/open/floor/facility/dark,
 /area/city/shop)
 "nQ" = (
 /obj/machinery/door/airlock/grunge{
@@ -948,6 +969,9 @@
 "nR" = (
 /obj/structure/itemselling,
 /turf/open/floor/facility,
+/area/city/shop)
+"nU" = (
+/turf/open/floor/plasteel/white,
 /area/city/shop)
 "oc" = (
 /obj/machinery/light{
@@ -977,6 +1001,19 @@
 "ow" = (
 /obj/machinery/door/airlock/glass_large{
 	name = "Long-Term Sleep Centre"
+	},
+/turf/open/floor/facility/dark,
+/area/city/shop)
+"oM" = (
+/obj/item/storage/secure/safe{
+	pixel_x = -22
+	},
+/obj/structure/table,
+/obj/machinery/light{
+	dir = 1
+	},
+/obj/effect/turf_decal/siding/wideplating/dark{
+	dir = 9
 	},
 /turf/open/floor/facility/dark,
 /area/city/shop)
@@ -1034,14 +1071,6 @@
 /obj/machinery/vending/fixer,
 /turf/open/floor/facility/white,
 /area/city/fixers)
-"pJ" = (
-/obj/effect/decal/cleanable/blood/drip{
-	pixel_x = 12;
-	pixel_y = 12
-	},
-/obj/effect/decal/cleanable/blood/drip,
-/turf/open/floor/facility/dark,
-/area/city/shop)
 "pQ" = (
 /obj/machinery/door/airlock/wood{
 	name = "general store"
@@ -1071,6 +1100,12 @@
 	dir = 8
 	},
 /turf/open/floor/wood,
+/area/city/shop)
+"qB" = (
+/obj/effect/turf_decal/siding/wideplating/dark{
+	dir = 4
+	},
+/turf/open/floor/facility/dark,
 /area/city/shop)
 "qF" = (
 /obj/structure/itemselling,
@@ -1134,50 +1169,8 @@
 /obj/machinery/telecomms/relay/preset/telecomms,
 /turf/open/floor/circuit/telecomms/mainframe,
 /area/facility_hallway/north)
-"si" = (
-/obj/effect/turf_decal/trimline/red/filled/line{
-	dir = 1
-	},
-/obj/structure/closet/crate,
-/obj/item/storage/box/papersack{
-	pixel_x = -6
-	},
-/obj/item/storage/box/papersack{
-	pixel_x = -6
-	},
-/obj/item/storage/box/papersack{
-	pixel_x = -6
-	},
-/obj/item/storage/box/papersack{
-	pixel_x = -6
-	},
-/obj/item/storage/box/papersack{
-	pixel_x = -6
-	},
-/obj/item/storage/box/papersack{
-	pixel_x = -6
-	},
-/obj/item/storage/box/papersack{
-	pixel_x = -6
-	},
-/obj/item/storage/box/papersack{
-	pixel_x = -6
-	},
-/obj/item/storage/box/papersack{
-	pixel_x = -6
-	},
-/obj/item/storage/box/papersack{
-	pixel_x = -6
-	},
-/obj/effect/decal/cleanable/dirt/dust,
-/turf/open/floor/facility/dark,
-/area/city/shop)
 "sj" = (
 /obj/structure/fluff/beach_umbrella/syndi,
-/turf/open/floor/plating/beach/sand,
-/area/city)
-"sl" = (
-/obj/item/book/granter/action/skill/planet2,
 /turf/open/floor/plating/beach/sand,
 /area/city)
 "sm" = (
@@ -1185,6 +1178,16 @@
 /obj/machinery/telecomms/receiver/preset_left,
 /turf/open/floor/circuit/telecomms/mainframe,
 /area/facility_hallway/north)
+"sr" = (
+/obj/effect/turf_decal/trimline/red/filled/line{
+	dir = 1
+	},
+/obj/structure/closet/crate,
+/obj/item/book/granter/crafting_recipe/carnival/human_replacements,
+/obj/item/book/granter/crafting_recipe/carnival/weaving_advanced_converstion,
+/obj/item/book/granter/crafting_recipe/carnival/weaving_basic_converstion,
+/turf/open/floor/facility/dark,
+/area/city/shop)
 "sz" = (
 /obj/effect/landmark/cityspawner,
 /turf/open/floor/plating/ashplanet/rocky,
@@ -1210,24 +1213,18 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/city)
-"sM" = (
-/obj/effect/turf_decal/trimline/red/filled/line{
-	dir = 10
+"tb" = (
+/obj/structure/chair/wood,
+/obj{
+	name = "---Merge conflict marker---"
 	},
-/obj/structure/table/reinforced,
-/obj/item/ego_weapon/city/carnival_spear/weak,
-/obj/item/ego_weapon/city/carnival_spear/weak{
-	pixel_x = 8
+/obj/machinery/button/door{
+	id = "outside";
+	name = "prosthetics clinic shutters";
+	pixel_y = 26;
+	req_access_txt = "9"
 	},
-/obj/item/ego_weapon/city/carnival_spear/weak{
-	pixel_x = 16
-	},
-/turf/open/floor/facility/dark,
-/area/city/shop)
-"ta" = (
-/obj/effect/turf_decal/weather/sand,
-/obj/structure/fishcooker/fishstove,
-/turf/open/floor/wood,
+/turf/open/floor/carpet/black,
 /area/city)
 "td" = (
 /obj/effect/turf_decal/stripes/line,
@@ -1240,13 +1237,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/city)
-"tp" = (
-/obj/effect/turf_decal/siding/wideplating/dark{
-	dir = 1
-	},
-/obj/effect/turf_decal/loading_area/red,
-/turf/open/floor/facility/dark,
-/area/city/shop)
 "tt" = (
 /obj/docking_port/stationary{
 	dheight = 10;
@@ -1280,6 +1270,12 @@
 "tM" = (
 /obj/structure/chair/plastic,
 /turf/open/indestructible/white,
+/area/city/shop)
+"tO" = (
+/obj/effect/turf_decal/siding/thinplating/dark{
+	dir = 6
+	},
+/turf/open/floor/facility/dark,
 /area/city/shop)
 "tQ" = (
 /obj/structure/extinguisher_cabinet{
@@ -1324,24 +1320,9 @@
 	},
 /turf/open/indestructible/white,
 /area/city/shop)
-"up" = (
-/obj/effect/turf_decal/trimline/red/filled/line,
-/obj/structure/closet/crate,
-/obj/item/book/granter/crafting_recipe/carnival/weaving_armor,
-/obj/item/book/granter/crafting_recipe/carnival/weaving_armor,
-/turf/open/floor/facility/dark,
-/area/city/shop)
 "us" = (
 /turf/open/floor/plating/ashplanet/rocky,
 /area/city/backstreets_checkpoint)
-"ut" = (
-/obj/structure/rack,
-/obj/effect/turf_decal/siding/thinplating/dark{
-	dir = 5
-	},
-/obj/effect/turf_decal/siding/thinplating/dark,
-/turf/open/floor/facility/dark,
-/area/city/shop)
 "uu" = (
 /obj/effect/turf_decal/tile/blue{
 	dir = 8
@@ -1358,23 +1339,6 @@
 	},
 /turf/open/indestructible/white,
 /area/city/shop)
-"ux" = (
-/obj/effect/turf_decal/trimline/red/filled/line{
-	dir = 5
-	},
-/obj/structure/closet/crate,
-/obj/item/silkknife,
-/obj/item/silkknife,
-/obj/item/silkknife,
-/obj/item/silkknife,
-/obj/item/silkknife,
-/obj/item/silkknife,
-/obj/effect/decal/cleanable/cobweb/cobweb2,
-/obj/machinery/light{
-	dir = 1
-	},
-/turf/open/floor/facility/dark,
-/area/city/shop)
 "uz" = (
 /obj/structure/table/glass,
 /obj/item/storage/box/medipens,
@@ -1387,14 +1351,6 @@
 	dir = 1
 	},
 /turf/open/floor/wood,
-/area/city/shop)
-"uM" = (
-/obj/effect/turf_decal/trimline/red/filled/line,
-/obj/effect/decal/cleanable/dirt/dust,
-/obj/structure/table/reinforced,
-/obj/item/paper/fluff/silk_guide,
-/obj/item/paper/fluff/silk_guide,
-/turf/open/floor/facility/dark,
 /area/city/shop)
 "uO" = (
 /obj/structure/filingcabinet/medical,
@@ -1419,37 +1375,6 @@
 	},
 /obj/item/clothing/neck/stethoscope,
 /turf/open/floor/plasteel/showroomfloor,
-/area/city/shop)
-"uT" = (
-/obj/effect/light_emitter{
-	light_power = 4;
-	light_range = 25;
-	set_cap = 3;
-	set_luminosity = 24
-	},
-/turf/open/water/deep/saltwater,
-/area/city)
-"uU" = (
-/obj/effect/turf_decal/trimline/red/filled/line{
-	dir = 6
-	},
-/obj/structure/closet/crate,
-/obj/item/storage/bag/silk,
-/obj/item/storage/bag/silk,
-/obj/item/storage/bag/silk,
-/obj/item/storage/bag/silk,
-/turf/open/floor/facility/dark,
-/area/city/shop)
-"uZ" = (
-/obj/structure/rack,
-/obj/effect/turf_decal/siding/thinplating/dark/end{
-	dir = 8
-	},
-/obj/item/pen/blue,
-/obj/item/pen/charcoal,
-/obj/item/pen/fountain,
-/obj/item/pen/fourcolor,
-/turf/open/floor/facility/dark,
 /area/city/shop)
 "vc" = (
 /obj/machinery/door/airlock/public,
@@ -1531,17 +1456,6 @@
 	},
 /turf/open/indestructible/white,
 /area/city/shop)
-"vA" = (
-/obj/structure/rack,
-/obj/item/forginghammer,
-/obj/item/forginghammer,
-/obj/item/forginghammer,
-/obj/effect/turf_decal/siding/thinplating/dark{
-	dir = 1
-	},
-/obj/effect/turf_decal/siding/thinplating/dark,
-/turf/open/floor/facility/dark,
-/area/city/shop)
 "vD" = (
 /obj/machinery/computer/med_data{
 	dir = 4
@@ -1565,10 +1479,21 @@
 /obj/item/storage/firstaid/emergency,
 /turf/open/indestructible/white,
 /area/city/shop)
+"wp" = (
+/obj/structure/rack,
+/turf/open/indestructible/white,
+/area/city/shop)
 "wr" = (
 /obj/structure/chair/stool,
 /turf/open/floor/eighties,
 /area/city/fixers)
+"ws" = (
+/obj/structure/table/anvil,
+/obj/effect/turf_decal/siding/wideplating/dark{
+	dir = 1
+	},
+/turf/open/floor/facility/dark,
+/area/city/shop)
 "wt" = (
 /obj/machinery/vending/medical,
 /obj/machinery/light{
@@ -1638,6 +1563,11 @@
 	},
 /turf/open/indestructible/white,
 /area/city/shop)
+"xb" = (
+/obj/effect/turf_decal/weather/sand,
+/obj/structure/fishcooker/fishstove,
+/turf/open/floor/wood,
+/area/city)
 "xe" = (
 /obj/structure/table/greyscale,
 /obj/item/folder/white{
@@ -1732,6 +1662,10 @@
 /obj/effect/mapping_helpers/airlock/unres,
 /turf/open/indestructible/white,
 /area/city/shop)
+"xX" = (
+/obj/effect/turf_decal/siding/wideplating/dark/end,
+/turf/open/floor/facility/dark,
+/area/city/shop)
 "xY" = (
 /obj/structure/rack,
 /obj/item/storage/backpack{
@@ -1814,6 +1748,12 @@
 	},
 /turf/open/floor/facility,
 /area/city/shop)
+"xZ" = (
+/obj/effect/turf_decal/siding/thinplating/dark{
+	dir = 8
+	},
+/turf/open/floor/facility/dark,
+/area/city/shop)
 "yc" = (
 /obj/machinery/computer/arcade/battle,
 /turf/open/floor/eighties,
@@ -1842,19 +1782,23 @@
 /obj/structure/curtain,
 /turf/open/indestructible/white,
 /area/city/shop)
+"yy" = (
+/obj/structure/rack,
+/obj/effect/turf_decal/siding/thinplating/dark/end{
+	dir = 8
+	},
+/obj/item/pen/blue,
+/obj/item/pen/charcoal,
+/obj/item/pen/fountain,
+/obj/item/pen/fourcolor,
+/turf/open/floor/facility/dark,
+/area/city/shop)
 "yE" = (
 /obj/effect/spawner/structure/window/reinforced,
 /obj/machinery/door/poddoor/shutters/window/preopen{
 	id = "extraction"
 	},
 /turf/open/floor/plating/airless,
-/area/city/shop)
-"yI" = (
-/obj/machinery/vending/forge,
-/obj/effect/turf_decal/siding/wideplating/dark{
-	dir = 1
-	},
-/turf/open/floor/facility/dark,
 /area/city/shop)
 "yJ" = (
 /obj/structure/table/greyscale,
@@ -1868,30 +1812,11 @@
 /obj/machinery/telecomms/bus/preset_four,
 /turf/open/floor/circuit/telecomms/mainframe,
 /area/facility_hallway/north)
-"yL" = (
-/obj/effect/turf_decal/trimline/red/filled/line{
-	dir = 8
-	},
-/turf/open/floor/facility/dark,
-/area/city/shop)
 "yT" = (
 /obj/machinery/computer/operating{
 	dir = 4
 	},
 /turf/open/indestructible/white,
-/area/city/shop)
-"yW" = (
-/obj/effect/turf_decal/trimline/red/filled/line,
-/obj/structure/table/reinforced,
-/obj/item/storage/box/bodybags{
-	pixel_x = -5;
-	pixel_y = -4
-	},
-/obj/item/storage/firstaid{
-	pixel_x = 9;
-	pixel_y = -7
-	},
-/turf/open/floor/facility/dark,
 /area/city/shop)
 "yX" = (
 /obj/structure/table/optable,
@@ -1960,11 +1885,39 @@
 /obj/effect/landmark/cityloot,
 /turf/open/floor/plating/ashplanet/rocky,
 /area/city)
+"zH" = (
+/obj/effect/turf_decal/trimline/red/filled/line{
+	dir = 1
+	},
+/obj/structure/closet/crate,
+/obj/item/clothing/mask/carnival_mask,
+/obj/item/clothing/mask/carnival_mask,
+/obj/item/clothing/mask/carnival_mask,
+/obj/item/clothing/mask/carnival_mask,
+/turf/open/floor/facility/dark,
+/area/city/shop)
+"zK" = (
+/obj/machinery/vending/forge,
+/obj/effect/turf_decal/siding/wideplating/dark{
+	dir = 1
+	},
+/turf/open/floor/facility/dark,
+/area/city/shop)
 "zN" = (
 /obj/effect/turf_decal/bot,
 /obj/machinery/telecomms/processor/preset_two,
 /turf/open/floor/circuit/telecomms/mainframe,
 /area/facility_hallway/north)
+"zQ" = (
+/obj/structure/rack,
+/obj/item/weldingtool/experimental,
+/turf/open/indestructible/white,
+/area/city/shop)
+"zR" = (
+/obj/effect/turf_decal/trimline/red/filled/line,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/facility/dark,
+/area/city/shop)
 "zS" = (
 /obj/effect/light_emitter{
 	light_power = 4;
@@ -1985,17 +1938,6 @@
 "Ad" = (
 /obj/structure/closet,
 /turf/open/indestructible/white,
-/area/city/shop)
-"Af" = (
-/obj/structure/rack,
-/obj/effect/turf_decal/siding/thinplating/dark,
-/obj/effect/turf_decal/siding/thinplating/dark{
-	dir = 1
-	},
-/obj/item/hand_labeler,
-/obj/item/hand_labeler_refill,
-/obj/item/hand_labeler_refill,
-/turf/open/floor/facility/dark,
 /area/city/shop)
 "Ag" = (
 /obj/machinery/smartfridge/organ,
@@ -2022,10 +1964,6 @@
 /obj/machinery/light,
 /obj/structure/table/greyscale,
 /turf/open/indestructible/white,
-/area/city/shop)
-"An" = (
-/obj/effect/decal/cleanable/dirt/dust,
-/turf/open/floor/facility/dark,
 /area/city/shop)
 "Aq" = (
 /obj/structure/table,
@@ -2078,6 +2016,10 @@
 	pixel_y = 7
 	},
 /turf/open/floor/wood,
+/area/city/shop)
+"AF" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/facility/dark,
 /area/city/shop)
 "AH" = (
 /obj/machinery/roulette,
@@ -2152,6 +2094,18 @@
 	},
 /turf/open/floor/wood,
 /area/city/shop)
+"BB" = (
+/obj/machinery/button/door/indestructible{
+	id = "extraction";
+	name = "Office Access Shutters";
+	pixel_x = -22;
+	pixel_y = 3
+	},
+/obj/effect/turf_decal/siding/wideplating/dark{
+	dir = 10
+	},
+/turf/open/floor/facility/dark,
+/area/city/shop)
 "BU" = (
 /obj/structure/fluff/beach_umbrella/engine,
 /turf/open/floor/plating/grass,
@@ -2189,10 +2143,6 @@
 	},
 /turf/open/water/deep/freshwater,
 /area/city)
-"Cr" = (
-/obj/structure/fluff/beach_umbrella/security,
-/turf/open/floor/plating/beach/sand,
-/area/city)
 "Cz" = (
 /obj/machinery/door/airlock/medical{
 	name = "Operating Room";
@@ -2206,43 +2156,47 @@
 	},
 /turf/open/floor/facility/white,
 /area/city/fixers)
-"CV" = (
-/obj/structure/rack,
-/obj/item/clothing/under/rank/cargo/miner{
-	name = "Workshop's jumpsuit"
-	},
-/obj/item/clothing/under/rank/cargo/miner{
-	name = "Workshop's jumpsuit"
-	},
-/obj/item/clothing/under/rank/cargo/miner{
-	name = "Workshop's jumpsuit"
-	},
-/obj/effect/turf_decal/siding/thinplating/dark{
+"CL" = (
+/obj/effect/turf_decal/trimline/red/filled/line{
 	dir = 1
 	},
-/obj/effect/turf_decal/siding/thinplating/dark,
+/obj/structure/closet/crate,
+/obj/item/stack/sheet/silk/human_simple,
+/obj/item/stack/sheet/silk/human_simple,
+/obj/item/stack/sheet/silk/human_simple,
+/obj/item/stack/sheet/silk/human_simple,
 /turf/open/floor/facility/dark,
 /area/city/shop)
 "CX" = (
 /obj/machinery/light/small,
 /turf/open/floor/facility/dark,
 /area/city/fixers)
-"Dt" = (
+"Do" = (
+/obj/machinery/door/airlock/public{
+	name = "prosthetic surgery clinic"
+	},
+/obj/machinery/door/poddoor/shutters/indestructible{
+	id = "outside"
+	},
+/turf/closed/indestructible/reinforced,
+/area/city/house)
+"Dq" = (
 /obj/structure/rack,
-/obj/structure/lootcrate/tres,
-/obj/structure/lootcrate/tres,
-/obj/structure/lootcrate/tres,
-/obj/structure/lootcrate/tres,
-/obj/structure/lootcrate/tres,
-/obj/item/crowbar/red,
+/obj/item/price_tagger,
 /obj/machinery/light{
 	dir = 1
 	},
 /obj/effect/turf_decal/siding/thinplating/dark,
 /obj/effect/turf_decal/siding/thinplating/dark{
-	dir = 9
+	dir = 5
 	},
 /turf/open/floor/facility/dark,
+/area/city/shop)
+"Du" = (
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/floor/plasteel/white,
 /area/city/shop)
 "Dy" = (
 /obj/structure/table/reinforced,
@@ -2258,22 +2212,6 @@
 /obj/effect/landmark/fixerbase,
 /turf/open/floor/facility/dark,
 /area/city/fixers)
-"Eh" = (
-/obj/effect/turf_decal/siding/wideplating/dark/end,
-/turf/open/floor/facility/dark,
-/area/city/shop)
-"Ek" = (
-/obj/structure/table,
-/obj/item/paper_bin,
-/obj/item/pen,
-/obj/machinery/light{
-	dir = 1
-	},
-/obj/effect/turf_decal/siding/wideplating/dark{
-	dir = 5
-	},
-/turf/open/floor/facility/dark,
-/area/city/shop)
 "El" = (
 /obj/item/bedsheet/dorms,
 /obj/structure/bed,
@@ -2311,41 +2249,81 @@
 	},
 /turf/open/floor/facility,
 /area/city/shop)
+"Fg" = (
+/obj/structure/table/reinforced,
+/obj/structure/fishcooker/fishfrier,
+/turf/open/floor/wood,
+/area/city)
+"Fl" = (
+/turf/open/floor/wood,
+/area/city)
 "Fw" = (
 /obj/machinery/vending/cola,
 /turf/open/floor/plating/ashplanet/rocky,
 /area/city)
+"Fy" = (
+/obj/effect/turf_decal/trimline/red/filled/line,
+/obj/structure/closet/crate,
+/obj/item/book/granter/crafting_recipe/carnival/weaving_armor,
+/obj/item/book/granter/crafting_recipe/carnival/weaving_armor,
+/turf/open/floor/facility/dark,
+/area/city/shop)
 "FC" = (
 /obj/effect/turf_decal/tile/red{
 	dir = 4
 	},
 /turf/open/floor/plasteel,
 /area/city/shop)
+"FP" = (
+/obj/structure/table/glass,
+/obj/item/stack/cable_coil,
+/obj/item/stack/cable_coil{
+	pixel_x = 2;
+	pixel_y = -2
+	},
+/obj/item/stack/cable_coil{
+	pixel_x = 3;
+	pixel_y = 3
+	},
+/obj/item/stack/cable_coil{
+	pixel_x = -3;
+	pixel_y = 3
+	},
+/turf/open/indestructible/white,
+/area/city/shop)
 "FY" = (
 /obj/machinery/telecomms/message_server/preset,
 /turf/open/floor/circuit/telecomms/mainframe,
 /area/facility_hallway/north)
-"FZ" = (
-/obj/structure/rack,
-/obj/item/workshop_mod/regular/red,
-/obj/effect/turf_decal/siding/thinplating/dark,
-/obj/effect/turf_decal/siding/thinplating/dark{
-	dir = 1
+"Gn" = (
+/obj/machinery/door/airlock/medical{
+	hackProof = 1;
+	integrity_failure = 0.1;
+	max_integrity = 1e+009;
+	name = "Secure medical room";
+	normal_integrity = 1e+009;
+	req_access_txt = "9"
+	},
+/turf/open/floor/plasteel/white,
+/area/city/shop)
+"Gp" = (
+/obj/effect/turf_decal/trimline/red/filled/line{
+	dir = 10
+	},
+/obj/structure/table/reinforced,
+/obj/item/ego_weapon/city/carnival_spear/weak,
+/obj/item/ego_weapon/city/carnival_spear/weak{
+	pixel_x = 8
+	},
+/obj/item/ego_weapon/city/carnival_spear/weak{
+	pixel_x = 16
 	},
 /turf/open/floor/facility/dark,
 /area/city/shop)
-"Gm" = (
-/obj/effect/turf_decal/weather/sand{
-	dir = 5
-	},
-/obj/structure/table/reinforced,
-/turf/open/floor/wood,
-/area/city)
-"Gt" = (
+"Gr" = (
 /obj/effect/turf_decal/trimline/red/filled/line{
 	dir = 8
 	},
-/obj/effect/decal/cleanable/dirt/dust,
 /turf/open/floor/facility/dark,
 /area/city/shop)
 "GE" = (
@@ -2367,22 +2345,39 @@
 /obj/effect/turf_decal/bot,
 /turf/open/floor/circuit/telecomms/mainframe,
 /area/facility_hallway/north)
+"GW" = (
+/obj/structure/reagent_dispensers/fueltank/large,
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/indestructible/white,
+/area/city/shop)
 "Hh" = (
 /obj/structure/fluff/beach_umbrella,
 /turf/open/floor/plating/beach/sand,
 /area/city)
-"Hj" = (
-/obj/structure/chair/office{
-	dir = 4
-	},
-/obj/effect/turf_decal/siding/wideplating/dark{
-	dir = 4
-	},
-/turf/open/floor/facility/dark,
-/area/city/shop)
 "Hm" = (
 /turf/open/floor/plating/ashplanet/rocky,
 /area/city)
+"Hn" = (
+/obj/effect/turf_decal/trimline/red/filled/line{
+	dir = 6
+	},
+/obj/structure/closet/crate,
+/obj/item/storage/bag/silk,
+/obj/item/storage/bag/silk,
+/obj/item/storage/bag/silk,
+/obj/item/storage/bag/silk,
+/turf/open/floor/facility/dark,
+/area/city/shop)
+"Hu" = (
+/obj/effect/turf_decal/trimline/red/filled/line,
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/table/reinforced,
+/obj/item/paper/fluff/silk_guide,
+/obj/item/paper/fluff/silk_guide,
+/turf/open/floor/facility/dark,
+/area/city/shop)
 "HA" = (
 /turf/closed/indestructible/reinforced,
 /area/city/fixers)
@@ -2390,32 +2385,6 @@
 /obj/machinery/telecomms/server/presets/common,
 /turf/open/floor/circuit/telecomms/mainframe,
 /area/facility_hallway/north)
-"HR" = (
-/obj/effect/turf_decal/weather/sand{
-	dir = 4
-	},
-/obj/structure/table/reinforced,
-/turf/open/floor/wood,
-/area/city)
-"HX" = (
-/obj/effect/turf_decal/trimline/red/filled/line{
-	dir = 1
-	},
-/obj/structure/closet/crate,
-/obj/item/book/granter/crafting_recipe/carnival/human_replacements,
-/obj/item/book/granter/crafting_recipe/carnival/weaving_advanced_converstion,
-/obj/item/book/granter/crafting_recipe/carnival/weaving_basic_converstion,
-/turf/open/floor/facility/dark,
-/area/city/shop)
-"Ig" = (
-/obj/structure/rack,
-/obj/item/workshop_mod/regular/black,
-/obj/effect/turf_decal/siding/thinplating/dark,
-/obj/effect/turf_decal/siding/thinplating/dark{
-	dir = 1
-	},
-/turf/open/floor/facility/dark,
-/area/city/shop)
 "Iq" = (
 /obj/machinery/vending/dinnerware,
 /obj/effect/turf_decal/tile/red{
@@ -2430,6 +2399,10 @@
 	},
 /turf/open/floor/plasteel,
 /area/city/shop)
+"IF" = (
+/obj/item/book/granter/action/skill/planet2,
+/turf/open/floor/plating/beach/sand,
+/area/city)
 "IG" = (
 /obj/machinery/door/airlock/wood{
 	name = "workshop fixer access";
@@ -2441,6 +2414,48 @@
 /obj/machinery/vending/cigarette,
 /turf/open/floor/facility,
 /area/city/shop)
+"IL" = (
+/obj/effect/turf_decal/trimline/red/filled/line{
+	dir = 9
+	},
+/obj/structure/closet/crate,
+/obj/item/stack/sheet/silk/amber_simple,
+/obj/item/stack/sheet/silk/amber_simple,
+/obj/item/stack/sheet/silk/amber_simple,
+/obj/item/stack/sheet/silk/amber_simple,
+/obj/item/stack/sheet/silk/amber_simple,
+/obj/item/stack/sheet/silk/amber_simple,
+/obj/item/stack/sheet/silk/amber_simple,
+/obj/item/stack/sheet/silk/amber_simple,
+/obj/item/stack/sheet/silk/steel_simple,
+/obj/item/stack/sheet/silk/steel_simple,
+/obj/item/stack/sheet/silk/steel_simple,
+/obj/item/stack/sheet/silk/steel_simple,
+/obj/item/stack/sheet/silk/steel_simple,
+/obj/item/stack/sheet/silk/steel_simple,
+/obj/item/stack/sheet/silk/steel_simple,
+/obj/item/stack/sheet/silk/steel_simple,
+/obj/item/stack/sheet/silk/green_simple,
+/obj/item/stack/sheet/silk/green_simple,
+/obj/item/stack/sheet/silk/green_simple,
+/obj/item/stack/sheet/silk/green_simple,
+/obj/item/stack/sheet/silk/green_simple,
+/obj/item/stack/sheet/silk/green_simple,
+/obj/item/stack/sheet/silk/green_simple,
+/obj/item/stack/sheet/silk/green_simple,
+/obj/item/stack/sheet/silk/indigo_simple,
+/obj/item/stack/sheet/silk/indigo_simple,
+/obj/item/stack/sheet/silk/indigo_simple,
+/obj/item/stack/sheet/silk/indigo_simple,
+/obj/item/stack/sheet/silk/indigo_simple,
+/obj/item/stack/sheet/silk/indigo_simple,
+/obj/item/stack/sheet/silk/indigo_simple,
+/obj/item/stack/sheet/silk/indigo_simple,
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/floor/facility/dark,
+/area/city/shop)
 "IN" = (
 /obj/structure/bookcase/random,
 /turf/open/floor/wood,
@@ -2450,6 +2465,10 @@
 /obj/item/reagent_containers/borghypo/borgshaker,
 /turf/open/floor/wood,
 /area/city/shop)
+"Je" = (
+/mob/living/simple_animal/hostile/shrimp_soldier,
+/turf/open/floor/plating/beach/sand,
+/area/city)
 "JC" = (
 /obj/effect/turf_decal/bot,
 /obj/effect/decal/cleanable/dirt,
@@ -2475,35 +2494,27 @@
 /obj/item/food/meat/slab,
 /turf/open/floor/facility,
 /area/city/shop)
-"JW" = (
-/obj/effect/turf_decal/trimline/red/filled/line{
-	dir = 1
+"KL" = (
+/obj/effect/turf_decal/weather/sand{
+	dir = 4
 	},
-/obj/machinery/vending/weaving/cheap,
-/turf/open/floor/facility/dark,
-/area/city/shop)
-"KH" = (
-/obj/structure/fishcooker/fishoven,
+/obj/structure/table/reinforced,
 /turf/open/floor/wood,
 /area/city)
-"KW" = (
-/obj/effect/turf_decal/trimline/red/filled/line,
-/obj/effect/decal/cleanable/dirt/dust,
-/turf/open/floor/facility/dark,
-/area/city/shop)
 "KZ" = (
 /obj/machinery/telecomms/server/presets/medical,
 /turf/open/floor/circuit/telecomms/mainframe,
 /area/facility_hallway/north)
-"LD" = (
-/obj/effect/turf_decal/weather/sand{
-	dir = 1
-	},
+"LS" = (
+/obj/structure/fishcooker/fishoven,
 /turf/open/floor/wood,
 /area/city)
-"LL" = (
-/obj/effect/turf_decal/siding/wideplating/dark{
-	dir = 8
+"MP" = (
+/obj/structure/rack,
+/obj/item/workshop_mod/regular/red,
+/obj/effect/turf_decal/siding/thinplating/dark,
+/obj/effect/turf_decal/siding/thinplating/dark{
+	dir = 1
 	},
 /turf/open/floor/facility/dark,
 /area/city/shop)
@@ -2538,10 +2549,26 @@
 	},
 /turf/open/floor/wood,
 /area/city/shop)
-"NB" = (
-/obj/item/book/granter/action/skill/alignment2,
-/turf/open/floor/plating/beach/sand,
+"Nr" = (
+/obj/structure/closet/crate/bin,
+/obj/effect/turf_decal/siding/wideplating/dark{
+	dir = 1
+	},
+/turf/open/floor/facility/dark,
+/area/city/shop)
+"NA" = (
+/obj/effect/turf_decal/weather/sand{
+	dir = 5
+	},
+/obj/structure/table/reinforced,
+/turf/open/floor/wood,
 /area/city)
+"NE" = (
+/obj/effect/turf_decal/siding/thinplating/dark{
+	dir = 4
+	},
+/turf/open/floor/facility/dark,
+/area/city/shop)
 "NG" = (
 /obj/structure/table,
 /turf/open/floor/wood,
@@ -2550,6 +2577,10 @@
 /obj/item/toy/seashell,
 /turf/open/floor/plating/beach/sand,
 /area/city)
+"On" = (
+/obj/effect/turf_decal/siding/wideplating/dark,
+/turf/open/floor/facility/dark,
+/area/city/shop)
 "Oo" = (
 /obj/structure/chair{
 	dir = 8
@@ -2573,19 +2604,22 @@
 "Ot" = (
 /turf/closed/indestructible/reinforced,
 /area/city/backstreets_checkpoint)
+"Ow" = (
+/obj/machinery/door/poddoor/shutters/indestructible{
+	id = "outside"
+	},
+/turf/closed/indestructible/reinforced,
+/area/city/house)
 "OT" = (
 /turf/closed/indestructible/reinforced,
 /area/city/shop)
-"OV" = (
-/obj/effect/turf_decal/siding/wideplating/dark{
-	dir = 4
+"OX" = (
+/obj/structure/rack,
+/obj/machinery/light{
+	dir = 1
 	},
-/turf/open/floor/facility/dark,
+/turf/open/indestructible/white,
 /area/city/shop)
-"Pa" = (
-/mob/living/simple_animal/hostile/shrimp_soldier,
-/turf/open/floor/plating/beach/sand,
-/area/city)
 "Pd" = (
 /obj/machinery/vending/custom/unbreakable,
 /turf/open/floor/plasteel,
@@ -2598,37 +2632,64 @@
 	},
 /turf/open/floor/plasteel,
 /area/city/shop)
+"Pr" = (
+/obj/structure/rack,
+/obj/item/stack/spacecash/c1000,
+/obj/item/stack/spacecash/c1000,
+/obj/effect/turf_decal/siding/thinplating/dark{
+	dir = 1
+	},
+/obj/effect/turf_decal/siding/thinplating/dark,
+/turf/open/floor/facility/dark,
+/area/city/shop)
 "PI" = (
 /turf/closed/indestructible/fakeglass,
 /area/city/shop)
+"PR" = (
+/mob/living/simple_animal/hostile/shrimp,
+/turf/open/floor/plating/beach/sand,
+/area/city)
 "Qb" = (
 /obj/structure/closet/secure_closet/personal/cabinet,
 /obj/item/clothing/under/misc/pj/blue,
 /obj/item/clothing/under/suit/blacktwopiece,
 /turf/open/floor/wood,
 /area/city/house)
-"Qr" = (
-/obj/effect/turf_decal/trimline/red/filled/line{
+"QD" = (
+/obj/machinery/door/airlock/medical{
+	hackProof = 1;
+	integrity_failure = 0.1;
+	max_integrity = 1e+009;
+	name = "Secure medical room";
+	normal_integrity = 1e+009;
+	req_access_txt = "9"
+	},
+/turf/open/indestructible/white,
+/area/city/shop)
+"QF" = (
+/obj/structure/rack,
+/obj/item/tresmetal,
+/obj/item/tresmetal,
+/obj/item/tresmetal,
+/obj/effect/turf_decal/siding/thinplating/dark,
+/obj/effect/turf_decal/siding/thinplating/dark{
 	dir = 1
 	},
-/obj/structure/closet/crate,
-/obj/item/stack/sheet/silk/human_simple,
-/obj/item/stack/sheet/silk/human_simple,
-/obj/item/stack/sheet/silk/human_simple,
-/obj/item/stack/sheet/silk/human_simple,
 /turf/open/floor/facility/dark,
 /area/city/shop)
-"QB" = (
-/obj/structure/fishshrine{
-	anchored = 1
-	},
-/turf/open/floor/plating/grass,
-/area/city)
 "QL" = (
 /obj/effect/turf_decal/bot,
 /obj/machinery/ntnet_relay,
 /turf/open/floor/circuit/telecomms/mainframe,
 /area/facility_hallway/north)
+"QN" = (
+/obj/structure/table/glass,
+/turf/open/indestructible/white,
+/area/city/shop)
+"QV" = (
+/obj/machinery/fish_market,
+/turf/open/floor/wood,
+/area/city)
 "QZ" = (
 /obj/machinery/telecomms/server/presets/science,
 /obj/effect/turf_decal/bot,
@@ -2637,37 +2698,16 @@
 "Rh" = (
 /turf/open/floor/carpet/black,
 /area/city/house)
-"Rj" = (
-/obj/effect/turf_decal/weather/sand,
-/turf/open/floor/wood,
-/area/city)
-"Rp" = (
+"Rv" = (
 /obj/effect/turf_decal/siding/wideplating/dark{
-	dir = 4
-	},
-/obj/effect/turf_decal/siding/wideplating/dark/corner{
 	dir = 8
+	},
+/obj/effect/turf_decal/loading_area{
+	dir = 4
 	},
 /turf/open/floor/facility/dark,
 /area/city/shop)
 "Rz" = (
-/turf/open/floor/facility/dark,
-/area/city/shop)
-"RK" = (
-/obj/structure/forge,
-/obj/effect/turf_decal/siding/wideplating/dark{
-	dir = 1
-	},
-/turf/open/floor/facility/dark,
-/area/city/shop)
-"RM" = (
-/obj/structure/rack,
-/obj/item/stack/spacecash/c1000,
-/obj/item/stack/spacecash/c1000,
-/obj/effect/turf_decal/siding/thinplating/dark{
-	dir = 1
-	},
-/obj/effect/turf_decal/siding/thinplating/dark,
 /turf/open/floor/facility/dark,
 /area/city/shop)
 "Sc" = (
@@ -2682,12 +2722,40 @@
 /obj/machinery/telecomms/hub/preset,
 /turf/open/floor/circuit/telecomms/mainframe,
 /area/facility_hallway/north)
+"Sx" = (
+/obj/structure/rack,
+/obj/item/workshop_mod/regular/black,
+/obj/effect/turf_decal/siding/thinplating/dark,
+/obj/effect/turf_decal/siding/thinplating/dark{
+	dir = 1
+	},
+/turf/open/floor/facility/dark,
+/area/city/shop)
+"SA" = (
+/obj/effect/turf_decal/weather/sand{
+	dir = 6
+	},
+/obj/structure/table/reinforced,
+/obj/structure/sushimat,
+/turf/open/floor/wood,
+/area/city)
 "Tl" = (
 /turf/open/floor/plasteel,
 /area/city/shop)
 "Tm" = (
 /turf/open/floor/facility/white,
 /area/city/fixers)
+"TB" = (
+/obj/structure/rack,
+/obj/item/forginghammer,
+/obj/item/forginghammer,
+/obj/item/forginghammer,
+/obj/effect/turf_decal/siding/thinplating/dark{
+	dir = 1
+	},
+/obj/effect/turf_decal/siding/thinplating/dark,
+/turf/open/floor/facility/dark,
+/area/city/shop)
 "TC" = (
 /obj/effect/turf_decal/bot,
 /obj/machinery/telecomms/processor/preset_four,
@@ -2707,6 +2775,18 @@
 	},
 /turf/open/floor/plating/ashplanet/rocky,
 /area/city)
+"TW" = (
+/obj/structure/table,
+/obj/item/paper_bin,
+/obj/item/pen,
+/obj/machinery/light{
+	dir = 1
+	},
+/obj/effect/turf_decal/siding/wideplating/dark{
+	dir = 5
+	},
+/turf/open/floor/facility/dark,
+/area/city/shop)
 "TX" = (
 /obj/machinery/door/airlock/glass_large,
 /turf/open/floor/wood,
@@ -2725,6 +2805,35 @@
 /obj/structure/timelock,
 /turf/open/floor/plating/ashplanet/rocky,
 /area/city/backstreets_alley)
+"Uw" = (
+/obj/effect/light_emitter{
+	light_power = 4;
+	light_range = 25;
+	set_cap = 3;
+	set_luminosity = 24
+	},
+/turf/open/water/deep/saltwater,
+/area/city)
+"UG" = (
+/obj/item/storage/backpack/duffelbag/med/surgery{
+	pixel_y = 5
+	},
+/obj/structure/table/glass,
+/turf/open/indestructible/white,
+/area/city/shop)
+"UL" = (
+/obj/effect/turf_decal/trimline/red/filled/line,
+/obj/structure/table/reinforced,
+/obj/item/storage/box/bodybags{
+	pixel_x = -5;
+	pixel_y = -4
+	},
+/obj/item/storage/firstaid{
+	pixel_x = 9;
+	pixel_y = -7
+	},
+/turf/open/floor/facility/dark,
+/area/city/shop)
 "UQ" = (
 /obj/machinery/door/airlock/wood{
 	name = "workshop fixer access";
@@ -2741,30 +2850,41 @@
 /obj/structure/curtain/cloth,
 /turf/closed/indestructible/fakeglass,
 /area/city/fixers)
+"Vw" = (
+/obj/effect/turf_decal/siding/wideplating/dark{
+	dir = 4
+	},
+/obj/effect/turf_decal/siding/wideplating/dark/corner{
+	dir = 8
+	},
+/turf/open/floor/facility/dark,
+/area/city/shop)
 "Vy" = (
 /obj/structure/fence{
 	dir = 4
 	},
 /turf/open/floor/plating/ashplanet/rocky,
 /area/city)
-"VD" = (
-/obj/structure/chair/wood{
+"VP" = (
+/obj/effect/turf_decal/weather/sand{
 	dir = 1
 	},
-/turf/open/floor/carpet/black,
-/area/city/house)
-"VQ" = (
-/obj/effect/turf_decal/weather/sand{
-	dir = 6
-	},
-/obj/structure/table/reinforced,
-/obj/structure/sushimat,
 /turf/open/floor/wood,
 /area/city)
 "VZ" = (
 /obj/effect/spawner/room/backstreet_template,
 /turf/closed/indestructible/rock,
 /area/space)
+"Wd" = (
+/obj/structure/rack,
+/obj/effect/turf_decal/siding/thinplating/dark,
+/obj/effect/turf_decal/siding/thinplating/dark{
+	dir = 1
+	},
+/obj/item/toy/crayon/spraycan/infinite,
+/obj/item/toy/crayon/spraycan/infinite,
+/turf/open/floor/facility/dark,
+/area/city/shop)
 "Wv" = (
 /obj/structure/sign/painting/library{
 	pixel_y = -32
@@ -2812,15 +2932,6 @@
 "XK" = (
 /turf/open/space/basic,
 /area/space)
-"XM" = (
-/obj/structure/rack,
-/obj/item/melee/baseball_bat,
-/obj/effect/turf_decal/siding/thinplating/dark{
-	dir = 1
-	},
-/obj/effect/turf_decal/siding/thinplating/dark,
-/turf/open/floor/facility/dark,
-/area/city/shop)
 "XR" = (
 /turf/open/indestructible/white,
 /area/city/shop)
@@ -2857,7 +2968,8 @@
 "Zc" = (
 /turf/open/water/deep/polluted,
 /area/city)
-"Zr" = (
+"Zh" = (
+/obj/effect/turf_decal/weather/sand,
 /turf/open/floor/wood,
 /area/city)
 "Zs" = (
@@ -2866,6 +2978,15 @@
 "Zt" = (
 /turf/closed/indestructible/fakeglass,
 /area/city/fixers)
+"ZC" = (
+/obj/structure/rack,
+/obj/item/melee/baseball_bat,
+/obj/effect/turf_decal/siding/thinplating/dark{
+	dir = 1
+	},
+/obj/effect/turf_decal/siding/thinplating/dark,
+/turf/open/floor/facility/dark,
+/area/city/shop)
 "ZH" = (
 /obj/machinery/body_preservation_unit,
 /turf/open/floor/facility,
@@ -24850,12 +24971,12 @@ Oq
 Oq
 Oq
 Oq
-Oq
-Oq
-Oq
-Oq
-Oq
-Oq
+OT
+OT
+OT
+OT
+OT
+OT
 Oq
 Oq
 Oq
@@ -25107,12 +25228,12 @@ Oq
 Oq
 Oq
 Oq
-Oq
-Oq
-Oq
-Oq
-Oq
-Oq
+OT
+yT
+UG
+FP
+QN
+OT
 Oq
 Oq
 Oq
@@ -25360,16 +25481,16 @@ Oq
 Oq
 Oq
 Oq
-Oq
-Oq
-Oq
-Oq
-Oq
-Oq
-Oq
-Oq
-Oq
-Oq
+OT
+OT
+OT
+OT
+OT
+yX
+XR
+XR
+XR
+OT
 Oq
 Oq
 Oq
@@ -25615,18 +25736,18 @@ Oq
 Oq
 Oq
 Oq
-Oq
-Oq
-Oq
-Oq
-Oq
-Oq
-Oq
-Oq
-Oq
-Oq
-Oq
-Oq
+OT
+OT
+OT
+cl
+zQ
+iP
+OT
+QN
+XR
+XR
+XR
+OT
 Oq
 Oq
 Oq
@@ -25872,18 +25993,18 @@ Oq
 Oq
 Oq
 Oq
-Oq
-Oq
-Oq
-Oq
-Oq
-Oq
-Oq
-Oq
-Oq
-Oq
-Oq
-Oq
+OT
+GW
+Gn
+nU
+nU
+nU
+OT
+OT
+QD
+OT
+QD
+OT
 Oq
 Oq
 Oq
@@ -26129,18 +26250,18 @@ Oq
 Oq
 Oq
 Oq
-Oq
-Oq
-Oq
-Oq
-Oq
-Oq
-Oq
-Oq
-Oq
-Oq
-Oq
-Oq
+OT
+OT
+OT
+wp
+XR
+nU
+OT
+Du
+nU
+QN
+nU
+OT
 Oq
 Oq
 Oq
@@ -26388,16 +26509,16 @@ Oq
 Oq
 Oq
 Oq
-Oq
-Oq
-Oq
-Oq
-Oq
-Oq
-Oq
-Oq
-Oq
-Oq
+OT
+wp
+XR
+nU
+QD
+nU
+lu
+QN
+nU
+OT
 Oq
 Oq
 Oq
@@ -26645,15 +26766,15 @@ Oq
 Oq
 Oq
 Oq
-Oq
-Oq
-Oq
-Oq
-Oq
-Oq
-Oq
-Oq
-Oq
+OT
+OX
+XR
+nU
+OT
+nU
+nU
+QN
+nU
 Oq
 Oq
 Xi
@@ -26908,9 +27029,9 @@ Oq
 Xi
 Xi
 Xi
-Xi
-Xi
-Xi
+Ow
+Ow
+Do
 Xi
 Xi
 Xi
@@ -27165,9 +27286,9 @@ Oq
 Xi
 at
 Xi
-cS
-el
-VD
+tb
+jx
+iV
 yr
 Rh
 Xi
@@ -35128,11 +35249,11 @@ Oq
 Oq
 Oq
 OT
-Dt
-ft
-ft
-ft
-ki
+mJ
+xZ
+xZ
+xZ
+lt
 OT
 Wx
 XR
@@ -35385,11 +35506,11 @@ Oq
 Oq
 Oq
 OT
-CV
+kE
 Rz
-uZ
+yy
 Rz
-Ig
+Sx
 OT
 Wx
 XR
@@ -35642,11 +35763,11 @@ Oq
 Oq
 Oq
 OT
-vA
+TB
 Rz
-be
+Wd
 Rz
-FZ
+MP
 OT
 Wx
 XR
@@ -35899,11 +36020,11 @@ Oq
 Oq
 Oq
 OT
-XM
+ZC
 Rz
-Af
+jN
 Rz
-bd
+QF
 OT
 Wx
 XR
@@ -36156,11 +36277,11 @@ Oq
 Oq
 Oq
 OT
-RM
+Pr
 Rz
-bF
+eL
 Rz
-ut
+jp
 OT
 gb
 XR
@@ -36413,11 +36534,11 @@ Oq
 Oq
 Oq
 OT
-jI
-bH
-bH
-bH
-dP
+Dq
+NE
+NE
+NE
+tO
 OT
 gx
 jJ
@@ -36924,15 +37045,15 @@ Oq
 Oq
 Oq
 OT
-fF
-yL
-Gt
-sM
+IL
+Gr
+mp
+Gp
 OT
-nO
-LL
-jH
-fp
+oM
+jn
+Rv
+BB
 gS
 Cc
 kX
@@ -37181,15 +37302,15 @@ Oq
 Oq
 Oq
 OT
-Qr
+CL
 Rz
-pJ
-yW
+mh
+UL
 OT
-RK
+nH
 Rz
 Rz
-dU
+On
 gS
 Cc
 lf
@@ -37438,15 +37559,15 @@ Oq
 Oq
 Oq
 OT
-HX
-An
+sr
+AF
 Rz
-uM
+Hu
 OT
-fl
+ws
 Rz
 Rz
-dU
+On
 he
 Cc
 Cc
@@ -37695,15 +37816,15 @@ Oq
 Oq
 Oq
 OT
-si
+ac
 Rz
 Rz
-ec
+kL
 OT
-bv
+Nr
 Rz
 Rz
-dU
+On
 hh
 Cc
 Cc
@@ -37952,15 +38073,15 @@ Oq
 Oq
 Oq
 OT
-JW
+lk
 Rz
-An
-KW
+AF
+zR
 IG
-tp
+do
 Rz
 Rz
-dU
+On
 UQ
 Cc
 ll
@@ -38209,15 +38330,15 @@ Oq
 Oq
 Oq
 OT
-dV
-pJ
+zH
+mh
 Rz
-up
+Fy
 OT
-yI
+zK
 Rz
 Rz
-dU
+On
 OT
 OT
 lr
@@ -38466,16 +38587,16 @@ Oq
 Oq
 Oq
 OT
-ux
-ng
-ng
-uU
+gz
+eE
+eE
+Hn
 OT
-Ek
-OV
-Hj
-Rp
-Eh
+TW
+qB
+fL
+Vw
+xX
 OT
 us
 us
@@ -38979,11 +39100,11 @@ Oq
 Oq
 Oq
 Oq
-fe
-fe
-fe
-fe
-fe
+nj
+nj
+nj
+nj
+nj
 Ut
 GE
 us
@@ -39236,11 +39357,11 @@ Oq
 Oq
 Oq
 Oq
-fe
-fe
-fe
-fe
-fe
+nj
+nj
+nj
+nj
+nj
 Ut
 GE
 us
@@ -39493,11 +39614,11 @@ Oq
 Oq
 Oq
 Oq
-fe
-fe
-fe
-fe
-fe
+nj
+nj
+nj
+nj
+nj
 Ut
 GE
 im
@@ -39794,7 +39915,7 @@ OT
 OT
 OT
 OT
-QB
+aO
 BX
 BX
 TJ
@@ -44919,11 +45040,11 @@ XJ
 XJ
 XJ
 XJ
-LD
-dl
-KH
-fW
-ta
+VP
+QV
+LS
+Fg
+xb
 OT
 ze
 zz
@@ -45176,11 +45297,11 @@ XJ
 XJ
 XJ
 XJ
-LD
-Zr
-Zr
-Zr
-Rj
+VP
+Fl
+Fl
+Fl
+Zh
 OT
 OT
 OT
@@ -45433,11 +45554,11 @@ XJ
 XJ
 XJ
 XJ
-Gm
-HR
-HR
-HR
-VQ
+NA
+KL
+KL
+KL
+SA
 XJ
 Yt
 XJ
@@ -46198,7 +46319,7 @@ XJ
 XJ
 Ol
 XJ
-Cr
+bX
 XJ
 XJ
 XJ
@@ -48516,7 +48637,7 @@ YC
 YC
 YC
 YC
-uT
+Uw
 YC
 YC
 YC
@@ -51072,7 +51193,7 @@ YC
 YC
 YC
 YC
-uT
+Uw
 YC
 YC
 YC
@@ -52364,7 +52485,7 @@ XJ
 XJ
 XJ
 XJ
-cm
+PR
 XJ
 XJ
 YC
@@ -52399,9 +52520,9 @@ Zc
 Zc
 XJ
 XJ
-Pa
+Je
 XJ
-Pa
+Je
 XJ
 Zc
 Zc
@@ -52618,7 +52739,7 @@ YC
 XJ
 XJ
 Ol
-cm
+PR
 XJ
 mi
 XJ
@@ -52653,7 +52774,7 @@ Zc
 Zc
 Zc
 XJ
-Pa
+Je
 AO
 XJ
 AO
@@ -52876,7 +52997,7 @@ XJ
 XJ
 XJ
 XJ
-cm
+PR
 XJ
 XJ
 XJ
@@ -52913,8 +53034,8 @@ XJ
 XJ
 XJ
 XJ
-NB
-Pa
+ly
+Je
 XJ
 XJ
 XJ
@@ -53169,7 +53290,7 @@ Zc
 XJ
 XJ
 AO
-Pa
+Je
 XJ
 AO
 XJ
@@ -53389,10 +53510,10 @@ YC
 XJ
 XJ
 XJ
-cm
+PR
 Ol
-sl
-cm
+IF
+PR
 XJ
 XJ
 YC
@@ -55713,7 +55834,7 @@ YC
 YC
 YC
 YC
-uT
+Uw
 YC
 YC
 YC

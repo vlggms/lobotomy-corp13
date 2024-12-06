@@ -105,6 +105,7 @@ GLOBAL_LIST_INIT(service_positions, list(
 	"Nurse",
 	"Paramedic",
 	"Medical Fixer Assistant",
+	"Proshetics Surgeon",
 	"HHPP Chef",
 	"Civilian",
 	"Backstreets Butcher",
