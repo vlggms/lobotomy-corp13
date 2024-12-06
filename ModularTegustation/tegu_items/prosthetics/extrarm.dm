@@ -24,7 +24,7 @@
 
 /obj/item/mechandrites/attack_self(mob/user)
 	if(!uses)
-		to_chat(user, span_notice("[src] has already been used. The tools are dull and won't reactivate.")
+		to_chat(user, span_notice("[src] has already been used. The tools are dull and won't reactivate."))
 		return
 	var/limbs = user.held_items.len
 	if(limbs >= 4)
