@@ -24,7 +24,7 @@ GLOBAL_LIST_EMPTY(threearmed_fucks)
 	to_chat(user, "Your extra arm whirrs with life")
 	playsound(get_turf(user), 'sound/weapons/circsawhit.ogg', 50, TRUE)
 	user.add_movespeed_modifier(/datum/movespeed_modifier/armimplant)
-	if(uses == 1)
+	if(uses >= 1)
 		uses--
 	if(!uses)
 		desc = "[initial(desc)] Looks like it's been used up."
@@ -64,7 +64,7 @@ GLOBAL_LIST_EMPTY(threearmed_fucks)
 	to_chat(user, "Your extra arm whirrs with life")
 	playsound(get_turf(user), 'sound/weapons/circsawhit.ogg', 50, TRUE)
 	user.add_movespeed_modifier(/datum/movespeed_modifier/doublearmimplant)
-	if(uses == 1)
+	if(uses >= 1)
 		uses--
 	if(!uses)
 		desc = "[initial(desc)] Looks like it's been used up."
