@@ -501,7 +501,7 @@ Any attempt to code risk class armor will result in a 10 day Github ban.*/
 
 /obj/item/clothing/suit/armor/ego_gear/waw/vulnerability
 	name = "vulnerability"
-	desc = "Only be becoming weaker can you become stronger."
+	desc = "Only by becoming weaker can you become stronger."
 	icon_state = "lindworm"
 	armor = list(RED_DAMAGE = 50, WHITE_DAMAGE = 20, BLACK_DAMAGE = 20, PALE_DAMAGE = 20) // 140
 	attribute_requirements = list(
