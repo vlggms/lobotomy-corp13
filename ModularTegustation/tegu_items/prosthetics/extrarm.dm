@@ -28,7 +28,7 @@
 		return
 	var/limbs = user.held_items.len
 	if(limbs >= 4)
-		to_chat(user, span_alert("You already have an extra arm.")
+		to_chat(user, span_alert("You already have an extra arm."))
 		return
 	user.change_number_of_hands(limbs+1)
 	user.visible_message(span_notice("[user] presses a button on [src], and you hear a short mechanical noise."), span_notice("You feel a sharp sting as [src] plunges into your body."))
