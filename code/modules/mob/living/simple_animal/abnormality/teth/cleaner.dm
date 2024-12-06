@@ -14,6 +14,7 @@
 	stat_attack = HARD_CRIT
 	melee_damage_lower = 11
 	melee_damage_upper = 12
+	is_flying_animal = TRUE
 	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 0.7, WHITE_DAMAGE = 1, BLACK_DAMAGE = 2, PALE_DAMAGE = 2)
 	speak_emote = list("states")
 	vision_range = 14
