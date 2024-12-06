@@ -63,7 +63,8 @@ GLOBAL_VAR_INIT(rcorp_factorymax, 70)
 			to_spawn = pick(
 				/mob/living/simple_animal/hostile/ordeal/indigo_dawn,
 				/mob/living/simple_animal/hostile/ordeal/indigo_dawn/invis,
-				/mob/living/simple_animal/hostile/ordeal/indigo_dawn/skirmisher,)
+				/mob/living/simple_animal/hostile/ordeal/indigo_dawn/skirmisher,
+			)
 		if(5 to 8)
 			to_spawn = /mob/living/simple_animal/hostile/ordeal/indigo_noon
 
