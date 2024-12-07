@@ -185,9 +185,7 @@
 /turf/open/floor/plasteel,
 /area/city/outskirts)
 "Ml" = (
-/obj/machinery/button/door/indestructible{
-	id = "inside"
-	},
+/obj/machinery/button/door/indestructible/rcorp,
 /turf/closed/indestructible/syndicate,
 /area/city/outskirts)
 "Mq" = (

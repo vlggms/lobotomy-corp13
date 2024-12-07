@@ -283,9 +283,7 @@
 	dir = 4;
 	pixel_y = 10
 	},
-/obj/effect/turf_decal/trimline/yellow/filled/line{
-	dir = 2
-	},
+/obj/effect/turf_decal/trimline/yellow/filled/line,
 /turf/open/floor/plating/ashplanet,
 /area/city/outskirts)
 "fe" = (
@@ -338,15 +336,6 @@
 "gE" = (
 /obj/effect/landmark/abnospawn/hardcombat,
 /turf/open/floor/mineral/plastitanium,
-/area/city/outskirts)
-"gJ" = (
-/obj/effect/turf_decal/trimline/yellow/filled/line{
-	dir = 2
-	},
-/obj/effect/decal/cleanable/blood/footprints{
-	dir = 4
-	},
-/turf/open/floor/plating/ashplanet,
 /area/city/outskirts)
 "gT" = (
 /obj/structure/grille/broken,
@@ -935,9 +924,7 @@
 /turf/open/floor/plating,
 /area/city/outskirts)
 "rQ" = (
-/obj/machinery/button/door/indestructible{
-	id = "inside"
-	},
+/obj/machinery/button/door/indestructible/rcorp,
 /turf/closed/indestructible/syndicate,
 /area/city/outskirts)
 "rV" = (
@@ -1362,9 +1349,7 @@
 /turf/open/floor/carpet/green,
 /area/city/outskirts)
 "zt" = (
-/obj/effect/turf_decal/trimline/red/filled/line{
-	dir = 2
-	},
+/obj/effect/turf_decal/trimline/red/filled/line,
 /turf/open/floor/plasteel/dark,
 /area/city/outskirts)
 "zA" = (
@@ -1815,12 +1800,6 @@
 	dir = 9
 	},
 /turf/open/floor/plasteel/dark,
-/area/city/outskirts)
-"Jj" = (
-/obj/effect/turf_decal/trimline/yellow/filled/line{
-	dir = 2
-	},
-/turf/open/floor/plating/ashplanet,
 /area/city/outskirts)
 "Jl" = (
 /obj/effect/decal/cleanable/blood/gibs/body,
@@ -2654,9 +2633,7 @@
 /turf/open/floor/plasteel/dark,
 /area/city/outskirts)
 "YJ" = (
-/obj/effect/turf_decal/trimline/red/filled/line{
-	dir = 2
-	},
+/obj/effect/turf_decal/trimline/red/filled/line,
 /obj/effect/decal/cleanable/blood/gibs/core,
 /turf/open/floor/plasteel/dark,
 /area/city/outskirts)
@@ -2956,7 +2933,7 @@ lo
 mI
 mI
 mI
-Jj
+Ts
 uh
 mI
 mI
@@ -3119,7 +3096,7 @@ lx
 mI
 mI
 hD
-Jj
+Ts
 uh
 mI
 mI
@@ -3282,7 +3259,7 @@ lx
 mI
 mI
 mI
-Jj
+Ts
 uh
 hD
 mI
@@ -3445,7 +3422,7 @@ lx
 mI
 mI
 mI
-Jj
+Ts
 uh
 mI
 mI
@@ -3608,7 +3585,7 @@ lx
 hD
 mI
 mI
-Jj
+Ts
 uh
 mI
 mI
@@ -3771,7 +3748,7 @@ lx
 mI
 mI
 mI
-Jj
+Ts
 uh
 mI
 mI
@@ -3934,7 +3911,7 @@ ZL
 mI
 mI
 mI
-Jj
+Ts
 uh
 mI
 mI
@@ -4097,7 +4074,7 @@ lx
 mI
 mI
 hD
-Jj
+Ts
 uh
 mI
 mI
@@ -4912,7 +4889,7 @@ lx
 mI
 mI
 mI
-gJ
+al
 eF
 Jb
 Jb
@@ -5458,7 +5435,7 @@ mI
 mI
 mI
 mI
-Jj
+Ts
 uh
 mI
 mI
@@ -5621,7 +5598,7 @@ mI
 mI
 YS
 mI
-Jj
+Ts
 uh
 mI
 mI
@@ -11921,7 +11898,7 @@ lx
 hD
 wh
 mI
-Jj
+Ts
 uh
 mI
 mI
@@ -12084,7 +12061,7 @@ jh
 mI
 mI
 mI
-Jj
+Ts
 uh
 mI
 mI
@@ -12162,7 +12139,7 @@ YS
 mI
 mI
 mI
-Jj
+Ts
 uh
 mI
 ks
@@ -12247,7 +12224,7 @@ mI
 mI
 mI
 hD
-Jj
+Ts
 uh
 Br
 mI
@@ -12325,7 +12302,7 @@ mI
 mI
 mI
 wh
-Jj
+Ts
 uh
 mI
 mI
@@ -12410,7 +12387,7 @@ mI
 mI
 mI
 mI
-Jj
+Ts
 uh
 mI
 mI
@@ -12488,7 +12465,7 @@ mI
 mI
 YS
 mI
-Jj
+Ts
 uh
 mI
 mI
@@ -12573,7 +12550,7 @@ mI
 mI
 mI
 mI
-Jj
+Ts
 eF
 Jb
 Jb
@@ -17194,7 +17171,7 @@ mI
 mI
 mI
 mI
-Jj
+Ts
 uh
 mI
 mI
@@ -17357,7 +17334,7 @@ mI
 ks
 mI
 mI
-Jj
+Ts
 uh
 mI
 mI
@@ -17520,7 +17497,7 @@ mI
 mI
 mI
 mI
-Jj
+Ts
 uh
 mI
 mI
