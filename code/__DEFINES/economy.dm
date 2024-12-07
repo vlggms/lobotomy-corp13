@@ -1,12 +1,12 @@
-#define STARTING_PAYCHECKS 7
+#define STARTING_PAYCHECKS 1
 
 //Experimental change: These are subject to tweaking based on the /tg/ economy overhaul.
 //Current design direction: Higher paying jobs are vastly outnumbered by lower paying jobs, so anything above medium hurts inflation, common jobs help inflation
 #define PAYCHECK_RESOURCE 0 //Temp fix for making vendors dispense things for free? Couldn't find anything in the code, plus someone's already working on economy, so...
-#define PAYCHECK_PRISONER 25
-#define PAYCHECK_ASSISTANT 50
-#define PAYCHECK_MINIMAL 55
-#define PAYCHECK_EASY 60
+#define PAYCHECK_PRISONER 1
+#define PAYCHECK_ASSISTANT 20
+#define PAYCHECK_MINIMAL 25
+#define PAYCHECK_EASY 50
 #define PAYCHECK_MEDIUM 75
 #define PAYCHECK_HARD 100
 #define PAYCHECK_COMMAND 200
