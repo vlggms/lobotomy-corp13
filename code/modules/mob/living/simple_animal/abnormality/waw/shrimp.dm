@@ -222,6 +222,8 @@
 	retreat_distance = 2
 	minimum_distance = 3
 	casingtype = /obj/item/ammo_casing/caseless/ego_shrimpsoldier
+	butcher_results = list(/obj/item/stack/spacecash/c50)
+	guaranteed_butcher_results = list(/obj/item/stack/spacecash/c20 = 1, /obj/item/stack/spacecash/c1 = 5)
 	projectilesound = 'sound/weapons/gun/pistol/shot_alt.ogg'
 	butcher_results = list(/obj/item/stack/spacecash/c50 = 1)
 	guaranteed_butcher_results = list(/obj/item/stack/spacecash/c20 = 1, /obj/item/stack/spacecash/c1 = 5)
