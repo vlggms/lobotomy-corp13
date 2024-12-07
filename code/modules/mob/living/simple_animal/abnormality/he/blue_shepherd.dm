@@ -133,7 +133,15 @@
 	toggle_message = span_colossus("You will now execute a spinning slash when ready.")
 	button_icon_toggle_deactivated = "sheperd_toggle0"
 
-
+/mob/living/simple_animal/hostile/abnormality/blue_shepherd/Login()
+	. = ..()
+	if(!. || !client)
+		return FALSE
+	to_chat(src, "<h1>You are Blue Shepherd, A Combat Role Abnormality.</h1><br>\
+		<b>|Slayer|: When you attack, if your spin attack is off cooldown you will use it.<br>\
+		Your spin attack is a 5x5 AoE centered around you, which deals medium BLACK damage.<br>\
+		You are able to toggle your spin attack on and off with your ability.</b>")
+		
 /mob/living/simple_animal/hostile/abnormality/blue_shepherd/Initialize()
 	. = ..()
 	if(IsCombatMap())

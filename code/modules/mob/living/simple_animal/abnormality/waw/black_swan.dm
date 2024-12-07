@@ -109,12 +109,25 @@
 	StartCooldown()
 	return TRUE
 
+/mob/living/simple_animal/hostile/abnormality/black_swan/Login()
+	. = ..()
+	if(!. || !client)
+		return FALSE
+	to_chat(src, "<h1>You are Black Swan, A Tank Role Abnormality.</h1><br>\
+		<b>|Feathered Umbrella|: You have the ability to open your umbrella for 8 seconds.<br>\
+		While your umbrella is open, you will reflect all bullets which are fired towards the direction you are facing.<br>\
+		|Wailing...|: After you lose 50% of your health, You will gain access to a new ability called “Wail”.<br>\
+		If you attack while you have access to “Wail” and it’s off cooldown, you will start charging up an AoE.<br>\
+		Once you finish charging, you will deal WHITE damage to all targets that you see.</b>")
 
 /mob/living/simple_animal/hostile/abnormality/black_swan/Initialize()
 	. = ..()
 	RegisterSignal(SSdcs, COMSIG_GLOB_MOB_DEATH, PROC_REF(OnMobDeath)) // Hell
 	RegisterSignal(SSdcs, COMSIG_GLOB_HUMAN_INSANE, PROC_REF(OnHumanInsane))
 	RegisterSignal(SSdcs, COMSIG_GLOB_ABNORMALITY_BREACH, PROC_REF(OnAbnoBreach))
+	if(IsCombatMap())
+		icon_state = icon_aggro
+		desc = "A young woman with the body of a black swan. Her eyes dart around looking for something."
 
 /mob/living/simple_animal/hostile/abnormality/black_swan/PostSpawn()
 	. = ..()
