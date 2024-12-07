@@ -16,7 +16,7 @@ Civilian
 	display_order = JOB_DISPLAY_ORDER_CIVILIAN
 	allow_bureaucratic_error = FALSE
 	maptype = list("city", "fixers")
-	paycheck = 170
+	paycheck = 250
 	var/static/list/possible_books = null
 
 /datum/job/civilian/equip(mob/living/carbon/human/H, visualsOnly = FALSE, announce = TRUE, latejoin = FALSE, datum/outfit/outfit_override = null, client/preference_source)
