@@ -59,6 +59,12 @@
 	if(account_balance < 0)
 		account_balance = 0
 
+/**
+ * Returns TRUE if a bank account has more than or equal to the amount, amt.
+ * Otherwise returns false.
+ * Arguments:
+ * * amount - the quantity of credits that will be reconciled with the account balance.
+ */
 /datum/bank_account/proc/has_money(amt)
 	return account_balance >= amt
 
@@ -77,19 +83,30 @@
 		return TRUE
 	return FALSE
 
-/datum/bank_account/proc/payday(amt_of_paychecks, free = FALSE)
+/**
+ * This proc handles passive income gain for players, using their job's paycheck value.
+ * Funds are taken from the parent department account to hand out to players. This can result in payment brown-outs if too many people are in one department.
+ * Arguments:
+ * * amount_of_paychecks - literally the number of salaries, 1 for issuing one salary, 5 for issuing five salaries.
+ * * free - issuance of free funds, if TRUE then takes funds from the void, if FALSE (default) tries to send from the department's account.
+ */
+/datum/bank_account/proc/payday(amount_of_paychecks = 1, free = FALSE)
 	if(!account_job)
 		return
-	var/money_to_transfer = round(account_job.paycheck * payday_modifier * amt_of_paychecks)
+	var/money_to_transfer = round(account_job.paycheck * payday_modifier * amount_of_paychecks)
+	if(!money_to_transfer)
+		return FALSE
 	if(free)
 		adjust_money(money_to_transfer)
 		SSblackbox.record_feedback("amount", "free_income", money_to_transfer)
 		SSeconomy.station_target += money_to_transfer
 		log_econ("[money_to_transfer] ahn were given to [src.account_holder]'s account from income.")
+		bank_card_talk("Payday processed, account now holds [account_balance] ahn.")
+		return TRUE
 	else
-		var/datum/bank_account/D = SSeconomy.get_dep_account(account_job.paycheck_department)
-		if(D)
-			if(!transfer_money(D, money_to_transfer))
+		var/datum/bank_account/department_account = SSeconomy.get_dep_account(account_job.paycheck_department)
+		if(department_account)
+			if(!transfer_money(department_account, money_to_transfer))
 				bank_card_talk("ERROR: Payday aborted, departmental funds insufficient.")
 				return FALSE
 			else
@@ -98,6 +115,13 @@
 	bank_card_talk("ERROR: Payday aborted, unable to contact departmental account.")
 	return FALSE
 
+/**
+ * This sends a local chat message to the owner of a bank account, on all ID cards registered to the bank_account.
+ * If not held, sends out a message to all nearby players.
+ * Arguments:
+ * * message - text that will be sent to listeners after the id card icon
+ * * force - if TRUE ignore checks on client and client prefernces.
+ */
 /datum/bank_account/proc/bank_card_talk(message, force)
 	if(!message || !bank_cards.len)
 		return
