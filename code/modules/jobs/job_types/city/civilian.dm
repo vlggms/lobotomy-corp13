@@ -16,7 +16,7 @@ Civilian
 
 	allow_bureaucratic_error = FALSE
 	maptype = list("city", "fixers")
-	paycheck = 170
+	paycheck = 250
 
 
 /datum/job/civilian/equip(mob/living/carbon/human/H, visualsOnly = FALSE, announce = TRUE, latejoin = FALSE, datum/outfit/outfit_override = null, client/preference_source)
