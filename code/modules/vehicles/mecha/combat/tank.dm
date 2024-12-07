@@ -1,11 +1,11 @@
 /obj/vehicle/sealed/mecha/combat/tank
 	desc = "What did you expect?."
-	name = "\improper R Corp Tank"
+	name = "\improper R Corp tank"
 	icon = 'icons/mecha/mecha_96x96.dmi'
 	icon_state = "five_stars"
 	base_icon_state = "five_stars"
-	operation_req_access = list(ACCESS_CENT_GENERAL)
-	internals_req_access = list(ACCESS_CENT_GENERAL)
+	operation_req_access = list()//ACCESS_CENT_GENERAL
+	internals_req_access = list()
 	movedelay = 2
 	dir_in = 1 //Facing North.
 	max_integrity = 1000
@@ -44,15 +44,3 @@
 	initialize_passenger_action_type(/datum/action/vehicle/sealed/mecha/mech_cycle_equip)
 	initialize_passenger_action_type(/datum/action/vehicle/sealed/mecha/mech_toggle_lights)
 	initialize_passenger_action_type(/datum/action/vehicle/sealed/mecha/mech_view_stats)
-
-/obj/vehicle/sealed/mecha/combat/tank/captain
-	desc = "What did you expect?."
-	name = "\improper R Corp Main Battle Tank"
-	icon = 'icons/mecha/mecha_96x96.dmi'
-	icon_state = "five_stars"
-	base_icon_state = "five_stars"
-	operation_req_access = list(ACCESS_CENT_GENERAL, ACCESS_COMMAND)
-	internals_req_access = list(ACCESS_CENT_GENERAL, ACCESS_COMMAND)
-	movedelay = 1
-	dir_in = 1 //Facing North.
-	max_integrity = 2000
