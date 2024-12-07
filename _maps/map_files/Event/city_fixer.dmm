@@ -576,7 +576,7 @@
 	dir = 1
 	},
 /turf/open/floor/carpet/black,
-/area/city)
+/area/city/house)
 "iX" = (
 /obj/effect/turf_decal/tile/red,
 /obj/effect/turf_decal/tile/red{
@@ -606,7 +606,7 @@
 	},
 /obj/item/modular_computer/laptop/preset/fixer,
 /turf/open/floor/carpet/black,
-/area/city)
+/area/city/house)
 "jJ" = (
 /obj/structure/rack{
 	pixel_x = -1
@@ -1107,6 +1107,12 @@
 	},
 /turf/open/floor/facility/dark,
 /area/city/shop)
+"qD" = (
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/floor/plating/ashplanet/rocky,
+/area/city)
 "qF" = (
 /obj/structure/itemselling,
 /turf/open/floor/facility/white,
@@ -1215,17 +1221,8 @@
 /area/city)
 "tb" = (
 /obj/structure/chair/wood,
-/obj{
-	name = "---Merge conflict marker---"
-	},
-/obj/machinery/button/door{
-	id = "outside";
-	name = "prosthetics clinic shutters";
-	pixel_y = 26;
-	req_access_txt = "9"
-	},
 /turf/open/floor/carpet/black,
-/area/city)
+/area/city/house)
 "td" = (
 /obj/effect/turf_decal/stripes/line,
 /turf/open/floor/plasteel/dark,
@@ -2172,14 +2169,11 @@
 /turf/open/floor/facility/dark,
 /area/city/fixers)
 "Do" = (
-/obj/machinery/door/airlock/public{
-	name = "prosthetic surgery clinic"
-	},
 /obj/machinery/door/poddoor/shutters/indestructible{
 	id = "outside"
 	},
-/turf/closed/indestructible/reinforced,
-/area/city/house)
+/turf/closed/indestructible/fakeglass,
+/area/city/shop)
 "Dq" = (
 /obj/structure/rack,
 /obj/item/price_tagger,
@@ -2193,8 +2187,11 @@
 /turf/open/floor/facility/dark,
 /area/city/shop)
 "Du" = (
-/obj/machinery/light{
-	dir = 1
+/obj/machinery/door/airlock/public{
+	name = "prosthetic surgery clinic"
+	},
+/obj/machinery/door/poddoor/shutters/indestructible{
+	id = "outside"
 	},
 /turf/open/floor/plasteel/white,
 /area/city/shop)
@@ -2605,11 +2602,9 @@
 /turf/closed/indestructible/reinforced,
 /area/city/backstreets_checkpoint)
 "Ow" = (
-/obj/machinery/door/poddoor/shutters/indestructible{
-	id = "outside"
-	},
-/turf/closed/indestructible/reinforced,
-/area/city/house)
+/obj/machinery/light,
+/turf/open/floor/plating/ashplanet/rocky,
+/area/city)
 "OT" = (
 /turf/closed/indestructible/reinforced,
 /area/city/shop)
@@ -2850,6 +2845,18 @@
 /obj/structure/curtain/cloth,
 /turf/closed/indestructible/fakeglass,
 /area/city/fixers)
+"Vg" = (
+/obj/machinery/light{
+	dir = 1
+	},
+/obj/machinery/button/door{
+	id = "outside";
+	name = "prosthetics clinic shutters";
+	pixel_y = 26;
+	req_access_txt = "9"
+	},
+/turf/open/floor/plasteel/white,
+/area/city/shop)
 "Vw" = (
 /obj/effect/turf_decal/siding/wideplating/dark{
 	dir = 4
@@ -24463,12 +24470,12 @@ Oq
 Oq
 Oq
 Oq
-Oq
-Oq
-Oq
-Oq
-Oq
-Oq
+OT
+OT
+OT
+OT
+OT
+OT
 Oq
 Oq
 Oq
@@ -24720,12 +24727,12 @@ Oq
 Oq
 Oq
 Oq
-Oq
-Oq
-Oq
-Oq
-Oq
-Oq
+OT
+yT
+UG
+FP
+QN
+OT
 Oq
 Oq
 Oq
@@ -24971,18 +24978,18 @@ Oq
 Oq
 Oq
 Oq
+Oq
+Oq
 OT
 OT
 OT
 OT
 OT
+yX
+XR
+XR
+XR
 OT
-Oq
-Oq
-Oq
-Oq
-Oq
-Oq
 Oq
 Oq
 Oq
@@ -25229,17 +25236,17 @@ Oq
 Oq
 Oq
 OT
-yT
-UG
-FP
-QN
 OT
-Oq
-Oq
-Oq
-Oq
-Oq
-Oq
+OT
+cl
+zQ
+iP
+OT
+QN
+XR
+XR
+XR
+OT
 Oq
 Oq
 Oq
@@ -25481,22 +25488,22 @@ Oq
 Oq
 Oq
 Oq
-OT
-OT
-OT
-OT
-OT
-yX
-XR
-XR
-XR
-OT
 Oq
 Oq
 Oq
 Oq
-Oq
-Oq
+OT
+GW
+Gn
+nU
+nU
+nU
+OT
+OT
+QD
+OT
+QD
+OT
 Oq
 Oq
 Oq
@@ -25736,24 +25743,24 @@ Oq
 Oq
 Oq
 Oq
+Oq
+Oq
+Oq
+Oq
+Oq
+Oq
 OT
 OT
 OT
-cl
-zQ
-iP
+wp
+XR
+nU
 OT
+Vg
+nU
 QN
-XR
-XR
-XR
+nU
 OT
-Oq
-Oq
-Oq
-Oq
-Oq
-Oq
 Oq
 Oq
 Oq
@@ -25993,24 +26000,24 @@ Oq
 Oq
 Oq
 Oq
+Oq
+Oq
+Oq
+Oq
+Oq
+Oq
+Oq
+Oq
 OT
-GW
-Gn
+wp
+XR
 nU
-nU
-nU
-OT
-OT
 QD
+nU
+lu
+QN
+nU
 OT
-QD
-OT
-Oq
-Oq
-Oq
-Oq
-Oq
-Oq
 Oq
 Oq
 Oq
@@ -26250,24 +26257,24 @@ Oq
 Oq
 Oq
 Oq
+Oq
+Oq
+Oq
+Oq
+Oq
+Oq
+Oq
+Oq
 OT
-OT
-OT
-wp
+OX
 XR
 nU
 OT
-Du
+nU
 nU
 QN
 nU
 OT
-Oq
-Oq
-Oq
-Oq
-Oq
-Oq
 Oq
 Oq
 Oq
@@ -26509,22 +26516,22 @@ Oq
 Oq
 Oq
 Oq
+Oq
+Oq
+Oq
+Oq
+Oq
+Oq
 OT
-wp
-XR
-nU
-QD
-nU
-lu
-QN
-nU
 OT
-Oq
-Oq
-Oq
-Oq
-Oq
-Oq
+OT
+OT
+OT
+OT
+Do
+Do
+Du
+OT
 Oq
 Oq
 Oq
@@ -26766,21 +26773,21 @@ Oq
 Oq
 Oq
 Oq
-OT
-OX
-XR
-nU
-OT
-nU
-nU
-QN
-nU
 Oq
 Oq
+Oq
+Oq
+Oq
+Oq
+Oq
+Oq
+Oq
+Oq
+Oq
 Xi
-Xi
-Xi
-Xi
+qD
+Hm
+Ow
 HA
 HA
 HA
@@ -27029,9 +27036,9 @@ Oq
 Xi
 Xi
 Xi
-Ow
-Ow
-Do
+Xi
+Xi
+Xi
 Xi
 Xi
 Xi
