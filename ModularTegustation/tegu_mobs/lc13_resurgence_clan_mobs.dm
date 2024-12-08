@@ -28,7 +28,7 @@
 	butcher_results = list(/obj/item/food/meat/slab/robot = 1, /obj/item/food/meat/slab/sweeper = 1)
 	guaranteed_butcher_results = list(/obj/item/food/meat/slab/robot = 2, /obj/item/food/meat/slab/sweeper = 1)
 	silk_results = list(/obj/item/stack/sheet/silk/azure_simple = 1)
-	var/charge = 0
+	var/charge = 5
 	var/max_charge = 10
 	var/clan_charge_cooldown = 2 SECONDS
 	var/last_charge_update = 0
@@ -283,7 +283,6 @@
 	icon_state = "clan_drone"
 	icon_living = "clan_drone"
 	icon_dead = "clan_drone_dead"
-	faction = list("resurgence_clan", "hostile")
 	emote_hear = list("creaks.", "emits the sound of grinding gears.")
 	maxHealth = 1000
 	health = 1000
@@ -312,6 +311,7 @@
 	var/overheal_cooldown
 	var/overheal_cooldown_time = 50
 	var/update_beam_timer
+	var/healing_amount = 15
 
 
 /mob/living/simple_animal/hostile/clan/drone/Initialize()
@@ -428,7 +428,7 @@
 /mob/living/simple_animal/hostile/clan/drone/proc/on_beam_tick(mob/living/target)
 	if(target.health != target.maxHealth )
 		new /obj/effect/temp_visual/heal(get_turf(target), "#E02D2D")
-	target.adjustBruteLoss(-5)
+	target.adjustBruteLoss(-healing_amount)
 	target.adjustFireLoss(-4)
 	target.adjustToxLoss(-1)
 	target.adjustOxyLoss(-1)
@@ -437,3 +437,15 @@
 		if (C.charge < C.max_charge)
 			C.GainCharge()
 	return
+
+/mob/living/simple_animal/hostile/clan/drone/reforged
+	name = "Reforged Drone"
+	desc = "A drone hovering above the ground... It appears to have 'Resurgence Clan' scratched out on their back..."
+	maxHealth = 500
+	health = 500
+	healing_amount = 5
+	heal_per_charge = 10
+
+/mob/living/simple_animal/hostile/clan/drone/reforged/Initialize()
+	. = ..()
+	faction = list("neutral")
