@@ -441,6 +441,8 @@
 /mob/living/simple_animal/hostile/clan/drone/reforged
 	name = "Reforged Drone"
 	desc = "A drone hovering above the ground... It appears to have 'Resurgence Clan' scratched out on their back..."
+	icon_state = "clan_drone_reforged"
+	icon_living = "clan_drone_reforged"
 	maxHealth = 500
 	health = 500
 	healing_amount = 5
