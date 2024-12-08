@@ -150,3 +150,22 @@
 /obj/machinery/regenerator/tutorial/Initialize()
 	. = ..()
 	GLOB.lobotomy_devices -= src
+
+/obj/broken_regenerator
+	name = "broken regenerator"
+	desc = "A machine that could slowly restore the health and sanity of employees in the area. It needs some serious repairs."
+	icon = 'ModularTegustation/Teguicons/32x32.dmi'
+	icon_state = "regen_broken"
+	density = TRUE
+	resistance_flags = INDESTRUCTIBLE
+	layer = ABOVE_OBJ_LAYER //So people dont stand ontop of it when above it
+
+/obj/broken_regenerator/examine(mob/user)
+	. = ..()
+	. += span_notice("A Regenerator Augmentation Kit from Safety could be used to fix this.")
+
+/obj/broken_regenerator/attackby(obj/item/O, mob/user, params)
+	if(istype(O, /obj/item/safety_kit))
+		qdel(O)
+		new /obj/machinery/regenerator(get_turf(src))
+		qdel(src)

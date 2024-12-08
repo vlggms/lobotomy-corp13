@@ -18,6 +18,7 @@
 	usesound = list('sound/effects/picaxe1.ogg', 'sound/effects/picaxe2.ogg', 'sound/effects/picaxe3.ogg')
 	attack_verb_continuous = list("hits", "pierces", "slices", "attacks")
 	attack_verb_simple = list("hit", "pierce", "slice", "attack")
+	custom_price = 25
 
 /obj/item/pickaxe/suicide_act(mob/living/user)
 	user.visible_message(span_suicide("[user] begins digging into [user.p_their()] chest! It looks like [user.p_theyre()] trying to commit suicide!"))
@@ -33,6 +34,7 @@
 	attack_verb_simple = list("ineffectively hit")
 	force = 1
 	throwforce = 1
+	custom_price = 1
 
 /obj/item/pickaxe/mini
 	name = "compact pickaxe"
@@ -44,6 +46,7 @@
 	slot_flags = ITEM_SLOT_BELT
 	w_class = WEIGHT_CLASS_NORMAL
 	custom_materials = list(/datum/material/iron=1000)
+	custom_price = 100
 
 /obj/item/pickaxe/silver
 	name = "silver-plated pickaxe"
@@ -53,6 +56,7 @@
 	toolspeed = 0.5 //mines faster than a normal pickaxe, bought from mining vendor
 	desc = "A silver-plated pickaxe that mines slightly faster than standard-issue."
 	force = 17
+	custom_price = 650
 
 /obj/item/pickaxe/diamond
 	name = "diamond-tipped pickaxe"
@@ -62,6 +66,7 @@
 	toolspeed = 0.3
 	desc = "A pickaxe with a diamond pick head. Extremely robust at cracking rock walls and digging up dirt."
 	force = 19
+	custom_price = 1000
 
 /obj/item/pickaxe/drill
 	name = "mining drill"
@@ -73,6 +78,7 @@
 	usesound = 'sound/weapons/drill.ogg'
 	hitsound = 'sound/weapons/drill.ogg'
 	desc = "An electric mining drill for the especially scrawny."
+	custom_price = 500
 
 /obj/item/pickaxe/drill/cyborg
 	name = "cyborg mining drill"
@@ -88,6 +94,7 @@
 	icon_state = "diamonddrill"
 	toolspeed = 0.2
 	desc = "Yours is the drill that will pierce the heavens!"
+	custom_price = 2500
 
 /obj/item/pickaxe/drill/cyborg/diamond //This is the BORG version!
 	name = "diamond-tipped cyborg mining drill" //To inherit the NODROP_1 flag, and easier to change borg specific drill mechanics.
@@ -103,6 +110,7 @@
 	usesound = 'sound/weapons/sonic_jackhammer.ogg'
 	hitsound = 'sound/weapons/sonic_jackhammer.ogg'
 	desc = "Cracks rocks with sonic blasts."
+	custom_price = 5000
 
 /obj/item/pickaxe/improvised
 	name = "improvised pickaxe"
