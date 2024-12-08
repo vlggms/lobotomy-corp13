@@ -185,3 +185,4 @@
 	fishin_cooldown = 45 SECONDS //Much Slower
 	fishin_power = 1
 	enemy_chance = 95
+	capacity = 1
