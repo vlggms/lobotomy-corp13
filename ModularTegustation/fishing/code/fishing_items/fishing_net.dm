@@ -144,7 +144,7 @@
 	icon_state_fished = "trawling_net_bait_full"
 	debris = list(/obj/item/fishing_net/baited = 1)
 	net_type = /obj/item/fishing_net/baited
-	fishin_cooldown = 15 SECONDS	//Slower.
+	fishin_cooldown = 15 SECONDS
 	fishin_power = 1.4
 	enemy_chance = 30
 
@@ -165,3 +165,24 @@
 	debris = list(/obj/item/fishing_net/hicap = 1)
 	net_type = /obj/item/fishing_net/hicap
 	capacity = 10
+
+//Shrimp Bait net
+/obj/item/fishing_net/big_bait
+	name = "big baited fishing net"
+	desc = "Big Baited nets are much slower the normal nets, however they have a near guaranteed chance at catching hostile lifeforms"
+	icon = 'ModularTegustation/fishing/icons/fishing.dmi'
+	icon_state = "shrimp_net"
+	w_class = WEIGHT_CLASS_HUGE
+	deploy_type = /obj/structure/destructible/fishing_net/big_bait
+
+/obj/structure/destructible/fishing_net/big_bait
+	name = "big baited fishing net"
+	desc = "A wall of twine and wires that traps fish. Alt click to harvest."
+	icon_state = "trawling_shrimp_net"
+	icon_state_fished = "trawling_shrimp_net_full"
+	debris = list(/obj/item/fishing_net/big_bait = 1)
+	net_type = /obj/item/fishing_net/big_bait
+	fishin_cooldown = 45 SECONDS //Much Slower
+	fishin_power = 1
+	enemy_chance = 95
+	capacity = 1
