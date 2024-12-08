@@ -45,7 +45,7 @@ Skittish, they prefer to move in groups and will run away if the enemies are in 
 	attack_verb_simple = "slice"
 	del_on_death = TRUE
 	retreat_distance = 0
-	butcher_results = list(/obj/item/food/meat/slab/human = 1)
+	butcher_results = list(/obj/item/food/meat/slab/human = 1, /obj/item/stack/spacecash/c10 = 1)
 	silk_results = list(/obj/item/stack/sheet/silk/human_simple = 1)
 	var/retreat_distance_default = 0
 
