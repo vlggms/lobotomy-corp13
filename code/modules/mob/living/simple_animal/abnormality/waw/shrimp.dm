@@ -189,8 +189,6 @@
 	attack_verb_simple = "punches"
 	attack_sound = 'sound/weapons/bite.ogg'
 	speak_emote = list("burbles")
-	butcher_results = list(/obj/item/stack/spacecash/c50 = 1)
-	guaranteed_butcher_results = list(/obj/item/stack/spacecash/c10 = 1)
 	silk_results = list(/obj/item/stack/sheet/silk/shrimple_simple = 4)
 
 /mob/living/simple_animal/hostile/shrimp/Initialize()
@@ -224,8 +222,6 @@
 	retreat_distance = 2
 	minimum_distance = 3
 	casingtype = /obj/item/ammo_casing/caseless/ego_shrimpsoldier
-	butcher_results = list(/obj/item/stack/spacecash/c50 = 1)
-	guaranteed_butcher_results = list(/obj/item/stack/spacecash/c20 = 1, /obj/item/stack/spacecash/c1 = 5)
 	projectilesound = 'sound/weapons/gun/pistol/shot_alt.ogg'
 	butcher_results = list(/obj/item/stack/spacecash/c50 = 1)
 	guaranteed_butcher_results = list(/obj/item/stack/spacecash/c20 = 1, /obj/item/stack/spacecash/c1 = 5)
