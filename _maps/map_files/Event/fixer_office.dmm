@@ -16,10 +16,6 @@
 /obj/structure/rack,
 /turf/open/floor/wood,
 /area/city/house)
-"ay" = (
-/obj/structure/chair/comfy/black,
-/turf/open/floor/wood,
-/area/city/house)
 "aB" = (
 /obj/structure/table/wood,
 /obj/item/flashlight/lamp/green,
@@ -721,9 +717,6 @@
 	},
 /turf/open/floor/facility,
 /area/city)
-"kk" = (
-/turf/closed/indestructible/reinforced,
-/area/city/backstreets_alley)
 "kv" = (
 /obj/machinery/vending/city,
 /turf/open/floor/facility,
@@ -881,12 +874,30 @@
 /turf/open/indestructible/white,
 /area/city/house)
 "us" = (
+/obj/machinery/button/door/indestructible{
+	id = "outskirtslockdown";
+	name = "Outskirts Lockdown Button";
+	pixel_x = 32
+	},
 /turf/open/floor/wood,
-/area/city/backstreets_checkpoint)
+/area/city/house)
 "uY" = (
 /obj/structure/fishcooker/fishoven,
 /turf/open/floor/wood,
 /area/city)
+"vK" = (
+/obj/effect/turf_decal/tile/red{
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/red{
+	dir = 1
+	},
+/obj/structure/sink{
+	dir = 4;
+	pixel_x = -15
+	},
+/turf/open/floor/plasteel,
+/area/city/house)
 "vR" = (
 /obj/machinery/telecomms/relay/preset/telecomms,
 /obj/structure/emergency_shield,
@@ -939,6 +950,15 @@
 /obj/structure/table/reinforced,
 /turf/open/floor/facility/dark,
 /area/city/house)
+"Cj" = (
+/obj/machinery/light{
+	dir = 1
+	},
+/obj/effect/turf_decal/siding/thinplating/dark/corner{
+	dir = 1
+	},
+/turf/open/floor/wood,
+/area/city/house)
 "Dy" = (
 /obj/effect/spawner/structure/window/reinforced,
 /turf/open/floor/plating/airless,
@@ -953,7 +973,7 @@
 	name = "Outskirts Lockdown Door"
 	},
 /turf/open/floor/wood,
-/area/city/backstreets_checkpoint)
+/area/city/house)
 "GS" = (
 /obj/machinery/telecomms/server/presets/supply,
 /obj/effect/turf_decal/bot,
@@ -1022,9 +1042,6 @@
 "Oq" = (
 /turf/closed/indestructible/rock,
 /area/space)
-"Ot" = (
-/turf/closed/indestructible/reinforced,
-/area/city/backstreets_checkpoint)
 "Pd" = (
 /turf/open/floor/plating/grass,
 /area/city)
@@ -1063,6 +1080,12 @@
 /obj/effect/turf_decal/bot,
 /turf/open/floor/circuit/telecomms/mainframe,
 /area/facility_hallway/north)
+"TI" = (
+/obj/effect/turf_decal/siding/thinplating/dark{
+	dir = 1
+	},
+/turf/open/floor/wood,
+/area/city/house)
 "Ud" = (
 /obj/structure/closet/crate,
 /turf/open/floor/wood,
@@ -1070,7 +1093,7 @@
 "Ut" = (
 /obj/structure/timelock,
 /turf/open/floor/wood,
-/area/city/backstreets_alley)
+/area/city/house)
 "UC" = (
 /obj/item/toy/seashell,
 /turf/open/floor/plating/beach/sand,
@@ -22403,12 +22426,12 @@ Oq
 Oq
 Oq
 Oq
-ef
-ef
-ef
-ef
-ef
-ef
+Oq
+Oq
+Oq
+Oq
+Oq
+Oq
 Oq
 Oq
 Oq
@@ -22660,12 +22683,12 @@ Oq
 Oq
 Oq
 Oq
-ef
-KZ
-FY
-ef
-ef
-ef
+Oq
+Oq
+Oq
+Oq
+Oq
+Oq
 Oq
 Oq
 Oq
@@ -22917,12 +22940,12 @@ Oq
 Oq
 Oq
 Oq
-ef
-zN
-JC
-mg
-QZ
-ef
+Oq
+Oq
+Oq
+Oq
+Oq
+Oq
 Oq
 Oq
 Oq
@@ -23174,12 +23197,12 @@ Oq
 Oq
 Oq
 Oq
-ef
-Su
-sm
-cy
-gg
-ef
+Oq
+Oq
+Oq
+Oq
+Oq
+Oq
 Oq
 Oq
 Oq
@@ -23431,12 +23454,12 @@ Oq
 Oq
 Oq
 Oq
-ef
-TC
-hR
-hm
-GS
-ef
+Oq
+Oq
+Oq
+Oq
+Oq
+Oq
 Oq
 Oq
 Oq
@@ -23688,12 +23711,12 @@ Oq
 Oq
 Oq
 Oq
-ef
-sc
-sD
-yK
-Yf
-ef
+Oq
+Oq
+Oq
+Oq
+Oq
+Oq
 Oq
 Oq
 Oq
@@ -23945,12 +23968,12 @@ Oq
 Oq
 Oq
 Oq
-ef
-Ww
-QL
-TE
-bp
-ef
+Oq
+Oq
+Oq
+Oq
+Oq
+Oq
 Oq
 Oq
 Oq
@@ -24202,12 +24225,12 @@ Oq
 Oq
 Oq
 Oq
-ef
-HG
-hb
-ef
-vR
-ef
+Oq
+Oq
+Oq
+Oq
+Oq
+Oq
 Oq
 Oq
 Oq
@@ -24459,12 +24482,12 @@ Oq
 Oq
 Oq
 Oq
-ef
-ef
-ef
-ef
-ef
-ef
+Oq
+Oq
+Oq
+Oq
+Oq
+Oq
 Oq
 Oq
 Oq
@@ -34152,7 +34175,7 @@ Oq
 Oq
 ZY
 ep
-IQ
+vK
 IQ
 IQ
 iy
@@ -35693,7 +35716,7 @@ bi
 UQ
 UQ
 Cc
-Pt
+TI
 Pt
 jl
 jl
@@ -35950,7 +35973,7 @@ yS
 UQ
 UQ
 Cc
-Pt
+TI
 Pt
 Xt
 Xt
@@ -36207,7 +36230,7 @@ bk
 UQ
 UQ
 Cc
-Pt
+TI
 Pt
 Pt
 Pt
@@ -36464,7 +36487,7 @@ bv
 UQ
 UQ
 Cc
-Pt
+TI
 Pt
 Pt
 Pt
@@ -36721,7 +36744,7 @@ by
 UQ
 UQ
 UQ
-Pt
+TI
 Pt
 Pt
 hX
@@ -36970,15 +36993,15 @@ Oq
 Oq
 Oq
 Oq
-kk
-Ot
-Ot
+ZY
+ZY
+ZY
 ZY
 Dy
 Dy
 Dy
 ZY
-ap
+Cj
 Pt
 Pt
 lk
@@ -37229,7 +37252,7 @@ Oq
 Oq
 Ut
 GE
-us
+Pt
 Pt
 bB
 lk
@@ -37486,7 +37509,7 @@ Oq
 Oq
 Ut
 GE
-us
+Pt
 Pt
 Pt
 Pt
@@ -37998,9 +38021,9 @@ Oq
 Oq
 Oq
 Oq
-kk
-Ot
-Ot
+ZY
+ZY
+ZY
 ZY
 bF
 cc
@@ -39540,7 +39563,7 @@ Oq
 Oq
 Oq
 Oq
-ZY
+Oq
 ZY
 ZY
 ZY
@@ -39797,9 +39820,9 @@ Oq
 Oq
 Oq
 Oq
+Oq
 ZY
-ap
-ay
+xe
 aB
 ZY
 cl
@@ -40054,8 +40077,8 @@ Oq
 Oq
 Oq
 Oq
+Oq
 ZY
-Pt
 Pt
 aE
 ZY
@@ -40311,8 +40334,8 @@ Oq
 Oq
 Oq
 Oq
+Oq
 ZY
-Pt
 Pt
 aH
 ZY
@@ -40568,9 +40591,9 @@ Oq
 Oq
 Oq
 Oq
+Oq
 ZY
 ap
-Pt
 Pt
 bO
 Tm
@@ -41601,7 +41624,7 @@ ax
 Pt
 ax
 ZY
-ax
+at
 Pt
 BC
 Pt
@@ -41858,7 +41881,7 @@ at
 Pt
 Pt
 bS
-ap
+Pt
 Pt
 BC
 fZ
@@ -44704,12 +44727,12 @@ Oq
 Oq
 Oq
 Oq
-Oq
-Oq
-Oq
-Oq
-Oq
-Oq
+ef
+ef
+ef
+ef
+ef
+ef
 Oq
 Oq
 Oq
@@ -44961,12 +44984,12 @@ Oq
 Oq
 Oq
 Oq
-Oq
-Oq
-Oq
-Oq
-Oq
-Oq
+ef
+KZ
+FY
+ef
+ef
+ef
 Oq
 Oq
 Oq
@@ -45218,12 +45241,12 @@ Oq
 Oq
 Oq
 Oq
-Oq
-Oq
-Oq
-Oq
-Oq
-Oq
+ef
+zN
+JC
+mg
+QZ
+ef
 Oq
 Oq
 Oq
@@ -45475,12 +45498,12 @@ Oq
 Oq
 Oq
 Oq
-Oq
-Oq
-Oq
-Oq
-Oq
-Oq
+ef
+Su
+sm
+cy
+gg
+ef
 Oq
 Oq
 Oq
@@ -45732,12 +45755,12 @@ Oq
 Oq
 Oq
 Oq
-Oq
-Oq
-Oq
-Oq
-Oq
-Oq
+ef
+TC
+hR
+hm
+GS
+ef
 Oq
 Oq
 Oq
@@ -45989,12 +46012,12 @@ Oq
 Oq
 Oq
 Oq
-Oq
-Oq
-Oq
-Oq
-Oq
-Oq
+ef
+sc
+sD
+yK
+Yf
+ef
 Oq
 Oq
 Oq
@@ -46246,12 +46269,12 @@ Oq
 Oq
 Oq
 Oq
-Oq
-Oq
-Oq
-Oq
-Oq
-Oq
+ef
+Ww
+QL
+TE
+bp
+ef
 Oq
 Oq
 Oq
@@ -46503,12 +46526,12 @@ Oq
 Oq
 Oq
 Oq
-Oq
-Oq
-Oq
-Oq
-Oq
-Oq
+ef
+HG
+hb
+ef
+vR
+ef
 Oq
 Oq
 Oq
@@ -46760,12 +46783,12 @@ Oq
 Oq
 Oq
 Oq
-Oq
-Oq
-Oq
-Oq
-Oq
-Oq
+ef
+ef
+ef
+ef
+ef
+ef
 Oq
 Oq
 Oq
