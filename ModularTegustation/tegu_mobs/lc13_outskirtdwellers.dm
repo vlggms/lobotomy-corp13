@@ -43,7 +43,7 @@
 	butcher_results = list(/obj/item/food/meat/slab/worm = 1)
 	guaranteed_butcher_results = list(/obj/item/food/meat/slab/worm = 1)
 	silk_results = list(/obj/item/stack/sheet/silk/amber_simple = 1)
-	food_type = list(/obj/effect/decal/cleanable/blood/gibs/, /obj/item/organ, /obj/item/bodypart/head, /obj/item/bodypart/r_arm, /obj/item/bodypart/l_arm, /obj/item/bodypart/l_leg, /obj/item/bodypart/r_leg)
+	wanted_objects = list(/obj/effect/decal/cleanable/blood/gibs, /obj/item/organ, /obj/item/bodypart/head, /obj/item/bodypart/r_arm, /obj/item/bodypart/l_arm, /obj/item/bodypart/l_leg, /obj/item/bodypart/r_leg)
 	var/current_size = RESIZE_DEFAULT_SIZE
 
 /mob/living/simple_animal/hostile/morsel/examine(mob/user)
@@ -54,7 +54,7 @@
 
 /mob/living/simple_animal/hostile/morsel/AttackingTarget()
 	retreat_distance = 0
-	if(is_type_in_typecache(target,food_type)) //we eats
+	if(is_type_in_typecache(target,wanted_objects)) //we eats
 		qdel(target)
 		buffed = (buffed + 1)
 		if(buffed >= 10)
@@ -106,7 +106,7 @@
 			SLEEP_CHECK_DEATH(2)
 
 /mob/living/simple_animal/hostile/morsel/attackby(obj/item/O, mob/user, params)
-	if(!is_type_in_list(O, food_type))
+	if(!is_type_in_list(O, wanted_objects))
 		return ..()
 	if(stat == DEAD)
 		to_chat(user, span_warning("[src] is dead!"))
@@ -127,7 +127,7 @@
 
 /mob/living/simple_animal/hostile/morsel/CanAttack(atom/the_target)
 	if(isobj(the_target))
-		if(is_type_in_typecache(the_target, food_type))
+		if(is_type_in_typecache(the_target, wanted_objects))
 			return TRUE
 	return ..()
 
