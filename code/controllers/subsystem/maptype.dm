@@ -12,19 +12,19 @@ SUBSYSTEM_DEF(maptype)
 	var/jobtype		//If a map RNGs which jobs are available, use this
 
 	//All the map tags that delete all jobs and replace them with others.
-	var/list/clearmaps = list("rcorp", "city", "wcorp", "limbus_labs", "fixers")
+	var/list/clearmaps = list("rcorp", "city", "wcorp", "limbus_labs", "fixers", "office")
 
 	//All the map tags that are combat maps and need abnos to breach immediately
-	var/list/combatmaps = list("rcorp", "wcorp", "limbus_labs", "fixers")
+	var/list/combatmaps = list("rcorp", "wcorp", "limbus_labs", "fixers", "office")
 
 	//Ghosts should be possessbale at all times
 	var/list/autopossess = list("rcorp", "limbus_labs")
 
 	//These end after a certain number of minutes.
-	var/list/autoend = list("rcorp", "wcorp", "limbus_labs", "fixers")
+	var/list/autoend = list("rcorp", "wcorp", "limbus_labs", "fixers", "office")
 
 	//This map is city stuff
-	var/list/citymaps = list("wonderlabs", "city", "fixers")
+	var/list/citymaps = list("wonderlabs", "city", "fixers", "office")
 
 	//This is for maps that incorporate space
 	var/list/spacemaps = list("skeld")
@@ -44,7 +44,7 @@ SUBSYSTEM_DEF(maptype)
 
 	//Badda Bing Badda Da. This makes the latejoin menu cleaner
 	switch(SSmaptype.maptype)
-		if("wonderlabs", "city", "fixers")
+		if("wonderlabs", "city", "fixers", "office")
 			departments = list("Command", "Security", "Service", "Science")
 		if("limbus_labs")
 			departments = list("Command", "Security","Medical", "Science", "Service" )
