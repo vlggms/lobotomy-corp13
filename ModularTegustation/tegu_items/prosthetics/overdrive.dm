@@ -11,16 +11,17 @@
 /obj/item/organ/cyberimp/arm/overdrive/Extend(obj/item/item)
 	..()
 	//little bit of stam loss
-	owner.adjustToxLoss(owner.maxHealth*0.1, TRUE, TRUE)
+	owner.adjustToxLoss(owner.maxHealth*0.25, TRUE, TRUE)
 
 	owner.add_movespeed_modifier(/datum/movespeed_modifier/overdrive)
+	addtimer(CALLBACK(src, PROC_REF(Retract)), 10 SECONDS)
 
 /datum/movespeed_modifier/overdrive
 	variable = TRUE
-	multiplicative_slowdown = -0.2
+	multiplicative_slowdown = -0.5
 
 /obj/item/organ/cyberimp/arm/overdrive/Retract()
-	owner.adjustToxLoss(owner.maxHealth*0.1, TRUE, TRUE)
+	..()
 	owner.remove_movespeed_modifier(/datum/movespeed_modifier/overdrive)
 
 
