@@ -86,7 +86,7 @@ Civilian
 			return
 
 		var/book_path = pick(possible_books[player_level])
-		var/obj/item/book/granter/action/skill/random_book = new book_path
+		var/obj/item/book/granter/action/skill/random_book = new book_path()
 		H.equip_to_slot_or_del(random_book, ITEM_SLOT_BACKPACK, TRUE)
 
 /datum/outfit/job/civilian
