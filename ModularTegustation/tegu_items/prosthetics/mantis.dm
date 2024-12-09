@@ -1,6 +1,6 @@
 /obj/item/organ/cyberimp/arm/mantis
 	name = "Mantis blade implants"
-	desc = "Mantis blades designed by some sicko in district."
+	desc = "Mantis blades designed by some sicko in district 6."
 	contents = newlist(/obj/item/ego_weapon/city/mantis)
 	syndicate_implant = TRUE
 
@@ -38,7 +38,7 @@
 
 /obj/item/organ/cyberimp/arm/mantis/black
 	name = "Mantis blade (B) implants"
-	desc = "Mantis blades designed by some sicko in district."
+	desc = "Mantis blades designed by some sicko in district 6."
 	contents = newlist(/obj/item/ego_weapon/city/mantis/black)
 	syndicate_implant = TRUE
 
