@@ -77,11 +77,11 @@ Civilian
 	. = ..()
 	if(prob(50))
 		if(!possible_books) // Since possible_books is a static var, we dont know if its generated or not. If its not then generate it
-			possible_books = list(list(), list(), list(), list())
+			possible_books = list(list(), list(), list(), list(), list())
 			for(var/obj/item/book/granter/action/skill/book as anything in subtypesof(/obj/item/book/granter/action/skill))
-				possible_books[book.level] += book
+				possible_books[book.level + 1] += book // we add 1 here to account for level 0 fixers, they get the first index
 
-		var/player_level = get_civilian_level(H)
+		var/player_level = get_civilian_level(H) + 1
 		if(!length(possible_books[player_level]))
 			return
 
