@@ -800,16 +800,15 @@
 	if(!can_act || (status_flags & GODMODE))
 		return
 	can_act = FALSE
-	var/list/show_area = list()
-	show_area |= view(4, src)
-	for(var/turf/sT in show_area)
+	for(var/turf/open/sT in view(4, src))
 		new /obj/effect/temp_visual/cult/sparks(sT)
 	SLEEP_CHECK_DEATH(1.25 SECONDS)
 	playsound(src, 'sound/abnormalities/wrath_servant/hermit_magic.ogg', 75, FALSE, 10)
-	for(var/mob/living/L in show_area)
+	for(var/turf/open/sT in view(4, src))
+		new /obj/effect/temp_visual/small_smoke/halfsecond(sT)
+	for(var/mob/living/L in livinginview(4, src))
 		if(faction_check_mob(L))
 			continue
-		new /obj/effect/temp_visual/small_smoke/halfsecond(get_turf(L))
 		L.deal_damage(60, WHITE_DAMAGE)
 	can_act = TRUE
 	return
