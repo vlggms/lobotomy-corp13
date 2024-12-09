@@ -79,7 +79,7 @@
 	if(!.)
 		return FALSE
 
-	if (owner.stat == DEAD)
+	if(owner.stat == DEAD)
 		return FALSE
 
 	for(var/mob/living/carbon/human/H in view(2, get_turf(src)))

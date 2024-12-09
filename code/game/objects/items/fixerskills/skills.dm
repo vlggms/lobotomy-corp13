@@ -5,7 +5,7 @@
 	var/mob/living/carbon/human/user
 
 	//To do: Refactor.
-	var/list/datum/action/actions_levels = list(
+	var/static/list/datum/action/actions_levels = list(
 		/datum/action/cooldown/dash = 1,
 		/datum/action/cooldown/dash/back = 1,
 		/datum/action/cooldown/smokedash = 1,
