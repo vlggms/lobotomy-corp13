@@ -191,7 +191,13 @@
 	is_reloading = TRUE
 	to_chat(user,span_notice("You start loading a new magazine."))
 	playsound(src, 'sound/weapons/gun/general/slide_lock_1.ogg', 50, TRUE)
-	if(do_after(user, reloadtime, src)) //gotta reload
+
+	//Get a bonus of up to 40% reload speed to fortitude
+	var/passreload = clamp((get_attribute_level(user, FORTITUDE_ATTRIBUTE)-20)/110, 0.01, 1)
+
+	passreload = reloadtime - reloadtime*passreload*0.4
+
+	if(do_after(user, passreload, src)) //gotta reload
 		playsound(src, 'sound/weapons/gun/general/bolt_rack.ogg', 50, TRUE)
 		shotsleft = initial(shotsleft)
 		forced_melee = FALSE //no longer forced to resort to melee
