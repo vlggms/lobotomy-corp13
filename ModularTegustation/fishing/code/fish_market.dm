@@ -177,6 +177,7 @@
 
 		//More nets
 		new /datum/data/extraction_cargo("Fishing Net ",					/obj/item/fishing_net,							100) = 1,
+		new /datum/data/extraction_cargo("Big Baited Fishing Net ",			/obj/item/fishing_net/big_bait,					200) = 1,
 		new /datum/data/extraction_cargo("Nylon Fishing Net ",				/obj/item/fishing_net/nylon,					300) = 1,
 		new /datum/data/extraction_cargo("Steel Fishing Net ",				/obj/item/fishing_net/steel,					300) = 1,
 		new /datum/data/extraction_cargo("Baited Fishing Net ",				/obj/item/fishing_net/baited,					300) = 1,
