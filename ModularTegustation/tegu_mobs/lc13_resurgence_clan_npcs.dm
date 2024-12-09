@@ -30,10 +30,10 @@
 	var/question1 = "1"
 	var/question2 = "2"
 	var/question3 = "3"
-	var/list/answers1 = list("Hello", "This is a test.", "Emote: Emote", "Move: NORTH", "Goodbye", "Delay: 20", "Icon: priest_wings_open")
-	var/list/answers2 = list("Hello", "This is a test.", "Emote: Emote", "Move: NORTH", "Goodbye", "Delay: 20", "Icon: priest_wings_open")
-	var/list/answers3 = list("Hello", "This is a test.", "Emote: Emote", "Move: NORTH", "Goodbye", "Delay: 20", "Icon: priest_wings_open")
-	var/default_delay = 15
+	var/list/answers1 = list("Hello, 1", "This is a test.", "Emote: Emote", "Move: NORTH", "Goodbye", "Delay: 20")
+	var/list/answers2 = list("Hello, 2", "This is a test.", "Emote: Emote", "Move: NORTH", "Goodbye", "Delay: 20")
+	var/list/answers3 = list("Hello, 3", "This is a test.", "Emote: Emote", "Move: NORTH", "Goodbye", "Delay: 20")
+	var/default_delay = 30
 
 /mob/living/simple_animal/hostile/clan_npc/examine(mob/user)
 	. = ..()
