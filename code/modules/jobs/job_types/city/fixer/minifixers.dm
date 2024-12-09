@@ -67,6 +67,7 @@
 	access = list(ACCESS_XENOBIOLOGY)
 	minimal_access = list(ACCESS_XENOBIOLOGY)
 	maptype = "office"
+	paycheck = 170
 
 	roundstart_attributes = list(
 								FORTITUDE_ATTRIBUTE = 20,
