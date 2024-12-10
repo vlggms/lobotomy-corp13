@@ -4,7 +4,7 @@
     icon_state = "goat"
     density = TRUE
 
-    var/greeting = "Hello there, traveler!"
+    var/greeting = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
 
 // Called to supply dynamic data to the UI.
 /mob/living/simple_animal/ui_npc/ui_data(mob/user)
@@ -45,6 +45,12 @@
 	if(!ui)
 		ui = new(user, src, "SpeakingNpc")
 		ui.open()
+
+/mob/living/simple_animal/ui_npc/attack_hand(mob/living/carbon/user)
+	. = ..()
+	if(!user || !user.client)
+		return
+	ui_interact(user)
 
 /mob/living/simple_animal/ui_npc/attackby(obj/item/O, mob/user, params)
 	. = ..()

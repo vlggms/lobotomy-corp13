@@ -1,15 +1,16 @@
 import { useBackend } from "../backend";
 import { Box, Button, LabeledList, Section } from "../components";
 import { Window } from "../layouts";
+import { TypingScroller } from "../components";
 
 export const SpeakingNpc = (props, context) => {
   const { act, data } = useBackend(context);
-  const { title, text } = data;
+  const { title = "", text = "" } = data || {};
   return (
     <Window title={title}>
       <Window.Content>
         <Section>
-          <Box style={{ whiteSpace: "pre-wrap" }}>{text}</Box>
+          <TypingScroller text={text} speed={100} />
           <LabeledList>
             <LabeledList.Item label="Actions">
               <Button onClick={() => act("talk")}>Talk</Button>
