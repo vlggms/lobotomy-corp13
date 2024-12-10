@@ -62,6 +62,7 @@
 	. = ..()
 	if(SSmaptype.maptype == "fixers" || SSmaptype.maptype == "city")
 		del_on_death = FALSE
+
 /mob/living/simple_animal/hostile/senior_shrimp/ComponentInitialize()
 	. = ..()
 	AddComponent(/datum/component/knockback, 3, FALSE, FALSE)
