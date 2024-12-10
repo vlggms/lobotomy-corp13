@@ -30,13 +30,13 @@
 	guaranteed_butcher_results = list(/obj/item/food/meat/slab/robot = 1)
 	silk_results = list(/obj/item/stack/sheet/silk/azure_simple = 1)
 	var/question1 = "Who are you?"
-	var/question2 = "2"
-	var/question3 = "3"
-	var/list/answers1 = list("O-oh... I a-am [clan_name].", "Curre-ently, I-I and my fe-ellow cla-an memebers", "Emote: Emote", "Move: NORTH", "Goodbye", "Delay: 20")
-	var/list/answers2 = list("Hello, 2", "This is a test.", "Emote: Emote", "Move: NORTH", "Goodbye", "Delay: 20")
-	var/list/answers3 = list("Hello, 3", "This is a test.", "Emote: Emote", "Move: NORTH", "Goodbye", "Delay: 20")
+	var/question2 = "Why are you here?"
+	var/question3 = "What is this faction?"
+	var/list/answers1 = list("O-oh... I a-am [clan_name].", "A ci-itizen of the resu-urgence clan...", "For no-ow, I am ju-ust o-off duty.")
+	var/list/answers2 = list("Curre-ently, I-I and my fe-ellow cla-an members are sco-outing this area...", "The Hi-istorian wants use to study hu-umans.", "And thi-is is the closest we co-ould get to them...", "So-o we are wa-aiting here until further orders.")
+	var/list/answers3 = list("The-e clan is just one of ma-any villages in the O-outskirts...", "All of the me-embers of the clan are ma-achines...", "Like me...", "Delay: 20", "One day, We-e dream to be hu-uman...", "Just li-ike you, We ju-ust need to learn mo-ore...")
 	var/default_delay = 30
-	var/clan_name = "Elliot"
+	var/clan_name = "James"
 
 /mob/living/simple_animal/hostile/clan_npc/examine(mob/user)
 	. = ..()
