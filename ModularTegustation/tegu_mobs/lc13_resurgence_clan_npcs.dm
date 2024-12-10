@@ -11,8 +11,10 @@
 	response_disarm_continuous = "gently pushes aside"
 	response_disarm_simple = "gently push aside"
 	environment_smash = FALSE
+	a_intent = INTENT_HARM
 	mob_biotypes = MOB_ROBOTIC
 	move_resist = MOVE_FORCE_STRONG
+	pull_force = MOVE_FORCE_STRONG
 	can_buckle_to = FALSE
 	gender = NEUTER
 	speech_span = SPAN_ROBOT
@@ -24,7 +26,7 @@
 	death_message = "falls to their knees as their lights slowly go out..."
 	melee_damage_lower = 0
 	melee_damage_upper = 4
-	mob_size = MOB_SIZE_LARGE
+	mob_size = MOB_SIZE_HUGE
 	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 0.8, WHITE_DAMAGE = 1.3, BLACK_DAMAGE = 2, PALE_DAMAGE = 1)
 	butcher_results = list(/obj/item/food/meat/slab/robot = 3)
 	guaranteed_butcher_results = list(/obj/item/food/meat/slab/robot = 1)

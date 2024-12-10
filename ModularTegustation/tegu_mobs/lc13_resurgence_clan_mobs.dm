@@ -15,6 +15,7 @@
 	death_message = "falls to their knees as their lights slowly go out..."
 	melee_damage_lower = 5
 	melee_damage_upper = 7
+	a_intent = INTENT_HARM
 	mob_size = MOB_SIZE_HUGE
 	robust_searching = TRUE
 	stat_attack = HARD_CRIT
