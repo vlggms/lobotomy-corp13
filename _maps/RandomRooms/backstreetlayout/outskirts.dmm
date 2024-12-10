@@ -56,9 +56,32 @@
 	},
 /turf/open/floor/wood,
 /area/city/backstreets_alley)
+"eq" = (
+/obj/effect/turf_decal/siding/blue/corner{
+	dir = 8
+	},
+/obj/effect/turf_decal/siding/blue/corner,
+/turf/open/floor/carpet/royalblack,
+/area/city/backstreets_alley)
+"fb" = (
+/obj/effect/turf_decal/siding/blue,
+/turf/open/floor/carpet/royalblack,
+/area/city/backstreets_alley)
 "fc" = (
 /obj/structure/lootcrate/syndicate,
 /turf/open/floor/plating/ashplanet/rocky,
+/area/city/backstreets_alley)
+"fj" = (
+/obj/structure/riser/wood{
+	dir = 4
+	},
+/turf/open/floor/carpet/royalblack,
+/area/city/backstreets_alley)
+"fL" = (
+/obj/structure/displaycase/forsale,
+/obj/structure/table/wood/fancy/royalblue,
+/obj/effect/turf_decal/siding/blue,
+/turf/open/floor/carpet/royalblack,
 /area/city/backstreets_alley)
 "fR" = (
 /obj/structure/lootcrate/money,
@@ -88,7 +111,17 @@
 /obj/structure/chair/wood{
 	dir = 1
 	},
+/mob/living/simple_animal/hostile/clan_npc/info,
 /turf/open/floor/plating/ironsand,
+/area/city/backstreets_alley)
+"jf" = (
+/obj/effect/turf_decal/siding/blue{
+	dir = 4
+	},
+/obj/structure/sign/poster/official/safety_report{
+	pixel_x = 32
+	},
+/turf/open/floor/carpet/royalblack,
 /area/city/backstreets_alley)
 "jt" = (
 /obj/structure/flora/rock/pile,
@@ -105,6 +138,13 @@
 "lx" = (
 /obj/structure/flora/junglebush/c,
 /turf/open/floor/plating/dirt/jungle/wasteland,
+/area/city/backstreets_alley)
+"lB" = (
+/obj/structure/chair/sofa/corp/right,
+/obj/effect/turf_decal/siding/blue{
+	dir = 1
+	},
+/turf/open/floor/carpet/royalblack,
 /area/city/backstreets_alley)
 "mz" = (
 /obj/structure/chair/wood,
@@ -137,6 +177,10 @@
 /mob/living/simple_animal/hostile/clan_npc,
 /turf/open/floor/plating/ironsand,
 /area/city/backstreets_alley)
+"oQ" = (
+/obj/structure/sign/poster/official/work_for_a_future,
+/turf/closed/indestructible/wood,
+/area/city/backstreets_alley)
 "oS" = (
 /obj/effect/turf_decal/siding/wood{
 	dir = 9
@@ -154,6 +198,15 @@
 	},
 /turf/open/floor/plating/ironsand,
 /area/city/backstreets_alley)
+"pm" = (
+/obj/structure/riser/wood{
+	dir = 4
+	},
+/obj/effect/turf_decal/siding/blue{
+	dir = 8
+	},
+/turf/open/floor/carpet/royalblack,
+/area/city/backstreets_alley)
 "pv" = (
 /obj/effect/decal/cleanable/blood/tracks{
 	dir = 9
@@ -163,6 +216,11 @@
 "pJ" = (
 /obj/effect/decal/cleanable/blood/splatter/over_window,
 /turf/closed/indestructible/rock,
+/area/city/backstreets_alley)
+"pO" = (
+/obj/structure/mineral_door/wood,
+/obj/effect/turf_decal/siding/blue/end,
+/turf/open/floor/carpet/royalblack,
 /area/city/backstreets_alley)
 "pR" = (
 /turf/open/floor/plating/ironsand,
@@ -232,6 +290,14 @@
 	},
 /turf/open/floor/plating/ironsand,
 /area/city/backstreets_alley)
+"uW" = (
+/obj/structure/displaycase/forsale,
+/obj/structure/table/wood/fancy/royalblue,
+/obj/effect/turf_decal/siding/blue{
+	dir = 6
+	},
+/turf/open/floor/carpet/royalblack,
+/area/city/backstreets_alley)
 "vh" = (
 /obj/effect/spawner/room/backstreets/medium_south,
 /turf/closed/indestructible/reinforced,
@@ -270,6 +336,12 @@
 /area/city/backstreets_alley)
 "xf" = (
 /turf/closed/mineral/ash_rock,
+/area/city/backstreets_alley)
+"yv" = (
+/obj/effect/turf_decal/siding/blue{
+	dir = 1
+	},
+/turf/open/floor/carpet/royalblack,
 /area/city/backstreets_alley)
 "yL" = (
 /obj/effect/spawner/room/backstreets/pointofinterest,
@@ -315,6 +387,15 @@
 	dir = 1
 	},
 /turf/open/floor/plating/ashplanet/rocky,
+/area/city/backstreets_alley)
+"BT" = (
+/obj/effect/turf_decal/siding/blue{
+	dir = 10
+	},
+/obj/structure/sign/poster/official/smile{
+	pixel_x = -32
+	},
+/turf/open/floor/carpet/royalblack,
 /area/city/backstreets_alley)
 "Cq" = (
 /obj/effect/decal/cleanable/blood/splatter,
@@ -369,8 +450,23 @@
 /turf/open/floor/plating/ashplanet/wateryrock,
 /area/city/backstreets_alley)
 "Ke" = (
+/obj/structure/chair/sofa/corp/left,
+/obj/effect/turf_decal/siding/blue{
+	dir = 5
+	},
+/turf/open/floor/carpet/royalblack,
+/area/city/backstreets_alley)
+"KK" = (
 /obj/structure/lootcrate/workshopallas,
-/turf/open/floor/wood,
+/obj/structure/lootcrate/workshopallas,
+/obj/structure/lootcrate/workshopallas,
+/obj/structure/lootcrate/workshopallas,
+/obj/structure/lootcrate/workshopallas,
+/obj/effect/turf_decal/siding/blue{
+	dir = 9
+	},
+/obj/structure/lootcrate/workshopallas,
+/turf/open/floor/carpet/royalblack,
 /area/city/backstreets_alley)
 "Li" = (
 /obj/structure/flora/rock/pile,
@@ -379,6 +475,14 @@
 "Lo" = (
 /obj/structure/flora/ash/garden/waste,
 /turf/open/floor/plating/ironsand,
+/area/city/backstreets_alley)
+"Lw" = (
+/obj/machinery/door/window/brigdoor/eastleft,
+/mob/living/simple_animal/hostile/clan_npc/info/trader,
+/obj/effect/turf_decal/siding/blue{
+	dir = 1
+	},
+/turf/open/floor/carpet/royalblack,
 /area/city/backstreets_alley)
 "LI" = (
 /turf/closed/indestructible/wood,
@@ -420,8 +524,12 @@
 /turf/open/floor/plating/ironsand,
 /area/city/backstreets_alley)
 "OJ" = (
-/obj/structure/flora/junglebush/large,
-/turf/closed/indestructible/rock,
+/obj/structure/sign/departments/cargo{
+	desc = "A sign labelling an area where shop is.";
+	name = "\improper Shop sign";
+	pixel_y = 32
+	},
+/turf/open/floor/plating/ironsand,
 /area/city/backstreets_alley)
 "OV" = (
 /obj/effect/decal/cleanable/blood/tracks{
@@ -484,6 +592,9 @@
 "Tb" = (
 /obj/effect/turf_decal/raven/seven,
 /turf/open/water/jungle,
+/area/city/backstreets_alley)
+"Up" = (
+/turf/open/floor/carpet/royalblack,
 /area/city/backstreets_alley)
 "Ut" = (
 /obj/structure/bonfire/prelit,
@@ -11105,7 +11216,7 @@ em
 em
 em
 em
-OJ
+Jc
 qb
 pR
 pR
@@ -12873,7 +12984,7 @@ pR
 pR
 pR
 Jc
-em
+Jc
 em
 em
 em
@@ -13329,7 +13440,7 @@ MQ
 pR
 pR
 LI
-Ke
+Ih
 Ih
 bl
 sQ
@@ -13428,7 +13539,7 @@ pR
 pR
 pR
 Jc
-em
+Jc
 em
 em
 Jc
@@ -13877,11 +13988,11 @@ em
 em
 Jc
 LI
-sQ
-sQ
-sQ
+KK
+pm
+BT
 LI
-pR
+OJ
 pR
 pR
 pR
@@ -13988,9 +14099,9 @@ em
 em
 Jc
 LI
-bl
-bl
-bl
+Lw
+fj
+fb
 LI
 CG
 pR
@@ -14099,15 +14210,15 @@ em
 em
 Jc
 LI
-Ih
-Ih
-Ih
-Aa
+yv
+Up
+eq
+pO
 pR
 pR
 pR
 qD
-Ke
+Ih
 dF
 ol
 LI
@@ -14210,9 +14321,9 @@ em
 em
 Jc
 LI
-Ih
-dF
-ol
+lB
+Up
+fL
 qD
 pR
 pR
@@ -14320,10 +14431,10 @@ em
 em
 em
 Jc
-LI
+oQ
 Ke
-dF
-ol
+jf
+uW
 qD
 pR
 pR
@@ -15057,8 +15168,8 @@ pR
 pR
 pR
 pR
-pR
-pR
+ku
+ku
 Jc
 em
 em
@@ -15166,9 +15277,9 @@ pR
 pR
 pR
 pR
+ku
 pR
-pR
-pR
+ku
 pR
 Jc
 em
@@ -15280,7 +15391,7 @@ pR
 pR
 pR
 pR
-pR
+ku
 Jc
 em
 em
@@ -15325,7 +15436,7 @@ CG
 pR
 pR
 LI
-Ke
+Ih
 Ih
 Ih
 Ih
@@ -15388,10 +15499,10 @@ pR
 pR
 pR
 pR
-pR
-pR
-pR
-pR
+ku
+ku
+ku
+ku
 Jc
 em
 em
@@ -15436,7 +15547,7 @@ tO
 pR
 pR
 LI
-Ke
+Ih
 Ih
 bl
 bl
@@ -15498,11 +15609,11 @@ Jc
 Jc
 Jc
 Jc
+ku
 pR
 pR
-pR
-pR
-pR
+ku
+ku
 Jc
 em
 em
@@ -15610,10 +15721,10 @@ em
 em
 Jc
 pR
+ku
 pR
-pR
-pR
-pR
+ku
+ku
 Jc
 em
 em
@@ -15720,11 +15831,11 @@ em
 em
 em
 Jc
+ku
 pR
-pR
-pR
-pR
-pR
+ku
+ku
+ku
 Jc
 em
 em
@@ -15833,9 +15944,9 @@ em
 Jc
 co
 pR
-pR
-pR
-pR
+ku
+ku
+ku
 Jc
 em
 em
@@ -15943,10 +16054,10 @@ em
 em
 Jc
 pR
-pR
-pR
-pR
-pR
+ku
+ku
+ku
+ku
 Jc
 em
 em
@@ -16053,11 +16164,11 @@ em
 em
 em
 Jc
-pR
-pR
-pR
-pR
-pR
+ku
+ku
+ku
+ku
+ku
 Jc
 pa
 pa
@@ -16164,25 +16275,25 @@ em
 em
 em
 Jc
-pR
-pR
-pR
-pR
-pR
-pR
-pR
-pR
-pR
+ku
+ku
+ku
+ku
+ku
+ku
+ku
+ku
+ku
 nZ
 nZ
-pR
-pR
-pR
-pR
-pR
-pR
-pR
-pR
+ku
+ku
+ku
+ku
+ku
+ku
+ku
+ku
 nZ
 nZ
 nZ
@@ -16275,22 +16386,22 @@ em
 em
 em
 Jc
-pR
-pR
-pR
-pR
-pR
-pR
-pR
-pR
-pR
-pR
+ku
+ku
+ku
+ku
+ku
+ku
+ku
+ku
+ku
+ku
 nZ
 nZ
-pR
-pR
-pR
-pR
+ku
+ku
+ku
+ku
 nZ
 nZ
 nZ
@@ -16387,20 +16498,20 @@ em
 em
 Jc
 pR
-pR
-pR
-pR
-pR
-pR
-pR
-pR
-pR
-pR
-pR
-pR
-pR
-pR
-pR
+ku
+ku
+ku
+ku
+ku
+ku
+ku
+ku
+ku
+ku
+ku
+ku
+ku
+ku
 nZ
 nZ
 nZ
@@ -16498,10 +16609,10 @@ em
 em
 Jc
 pR
-pR
-pR
-pR
-pR
+ku
+ku
+ku
+ku
 Jc
 pa
 pa
@@ -16608,11 +16719,11 @@ Jc
 Jc
 Jc
 Jc
+ku
 pR
-pR
-pR
-pR
-pR
+ku
+ku
+ku
 Jc
 em
 em
@@ -16719,11 +16830,11 @@ pR
 pR
 pR
 pR
+ku
 pR
-pR
-pR
-pR
-pR
+ku
+ku
+ku
 Jc
 em
 em
@@ -16829,12 +16940,12 @@ pR
 pR
 pR
 pR
-pR
+ku
 pR
 pR
 CG
-pR
-pR
+ku
+ku
 Jc
 em
 em
@@ -16942,10 +17053,10 @@ pR
 pR
 pR
 pR
+ku
+ku
 pR
-pR
-pR
-pR
+ku
 Jc
 em
 em
@@ -17055,8 +17166,8 @@ pR
 pR
 pR
 pR
-pR
-pR
+ku
+ku
 Jc
 em
 em
@@ -17165,7 +17276,7 @@ pR
 pR
 pR
 pR
-pR
+ku
 pR
 qb
 Jc
@@ -17388,7 +17499,7 @@ Os
 pR
 pR
 pR
-pR
+ku
 pR
 Jc
 em
