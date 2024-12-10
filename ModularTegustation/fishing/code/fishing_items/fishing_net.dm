@@ -23,7 +23,7 @@
 	var/fishin_cooldown_delay = 1 SECONDS
 	var/fishin_power = 0.8
 	var/turf/open/water/deep/open_waters
-	var/enemy_chance = 15	//chance of getting enemies
+	var/enemy_chance = 15 //chance of getting enemies
 	var/capacity = 5
 
 /obj/structure/destructible/fishing_net/Initialize()
@@ -57,7 +57,7 @@
 		if(CheckPlanetAligned(FISHGOD_VENUS))
 			enemy_chance/=2
 
-		if(enemy_chance>5)	//gotta have more than 5%
+		if(enemy_chance>5) //gotta have more than 5%
 			if(prob(enemy_chance))
 				SpawnEnemy(dropoff, user)
 	qdel(src)
@@ -77,7 +77,7 @@
 	if(prob(1) && SSfishing.IsAligned(/datum/planet/mars))
 		spawning = /mob/living/simple_animal/hostile/distortion/shrimp_rambo/easy
 
-	if(prob(5))	//Super rares first
+	if(prob(5)) //Super rares first
 		spawning = /mob/living/simple_animal/hostile/shrimp_soldier
 	if(prob(20))
 		spawning = pick(/mob/living/simple_animal/hostile/shrimp_rifleman, /mob/living/simple_animal/hostile/senior_shrimp)
@@ -103,7 +103,7 @@
 	debris = list(/obj/item/fishing_net/nylon = 1)
 	net_type = /obj/item/fishing_net/nylon
 	fishin_cooldown = 15 SECONDS
-	fishin_power = 0.7	//Slightly worse
+	fishin_power = 0.7 //Slightly worse
 	enemy_chance = 10
 
 
@@ -123,7 +123,7 @@
 	icon_state_fished = "trawling_net_steel_full"
 	debris = list(/obj/item/fishing_net/steel = 1)
 	net_type = /obj/item/fishing_net/steel
-	fishin_cooldown = 30 SECONDS	//Slower.
+	fishin_cooldown = 30 SECONDS //Slower.
 	fishin_power = 1.4
 	enemy_chance = 10
 

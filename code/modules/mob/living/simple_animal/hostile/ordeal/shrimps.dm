@@ -4,6 +4,7 @@
 	icon = 'ModularTegustation/Teguicons/32x32.dmi'
 	icon_state = "wellcheers_bad"
 	icon_living = "wellcheers_bad"
+	icon_dead = "wellcheers_bad_dead"
 	faction = list("shrimp")
 	health = 500	//They're here to help
 	maxHealth = 500
@@ -23,6 +24,13 @@
 	minimum_distance = 3
 	casingtype = /obj/item/ammo_casing/caseless/ego_shrimprifle
 	projectilesound = 'sound/weapons/gun/pistol/shot_alt.ogg'
+	butcher_results = list(/obj/item/stack/spacecash/c100 = 1)
+	silk_results = list(/obj/item/stack/sheet/silk/shrimple_simple = 10, /obj/item/stack/sheet/silk/shrimple_advanced = 5)
+
+/mob/living/simple_animal/hostile/shrimp_rifleman/Initialize()
+	. = ..()
+	if(SSmaptype.maptype == "fixers" || SSmaptype.maptype == "city")
+		del_on_death = FALSE
 
 	//extra buff shrimp i guess
 /mob/living/simple_animal/hostile/senior_shrimp
@@ -31,6 +39,7 @@
 	icon = 'ModularTegustation/Teguicons/32x32.dmi'
 	icon_state = "wellcheers_ripped"
 	icon_living = "wellcheers_ripped"
+	icon_dead = "wellcheers_ripped_dead"
 	faction = list("shrimp")
 	health = 1337
 	maxHealth = 1337
@@ -46,7 +55,13 @@
 	attack_verb_simple = "bashes"
 	attack_sound = 'sound/effects/meteorimpact.ogg'
 	speak_emote = list("burbles")
+	butcher_results = list(/obj/item/stack/spacecash/c100 = 1, /obj/item/stack/spacecash/c50 = 1)
+	silk_results = list(/obj/item/stack/sheet/silk/shrimple_simple = 12, /obj/item/stack/sheet/silk/shrimple_advanced = 6)
 
+/mob/living/simple_animal/hostile/senior_shrimp/Initialize()
+	. = ..()
+	if(SSmaptype.maptype == "fixers" || SSmaptype.maptype == "city")
+		del_on_death = FALSE
 /mob/living/simple_animal/hostile/senior_shrimp/ComponentInitialize()
 	. = ..()
 	AddComponent(/datum/component/knockback, 3, FALSE, FALSE)

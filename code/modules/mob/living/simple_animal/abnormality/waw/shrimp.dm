@@ -187,6 +187,8 @@
 	attack_verb_simple = "punches"
 	attack_sound = 'sound/weapons/bite.ogg'
 	speak_emote = list("burbles")
+	butcher_results = list(/obj/item/stack/spacecash/c50 = 1)
+	guaranteed_butcher_results = list(/obj/item/stack/spacecash/c10 = 1)
 	silk_results = list(/obj/item/stack/sheet/silk/shrimple_simple = 4)
 
 /mob/living/simple_animal/hostile/shrimp/Initialize()
