@@ -27,6 +27,10 @@
 /obj/structure/chair/wood,
 /turf/open/floor/plating/ironsand,
 /area/city/backstreets_alley)
+"cB" = (
+/mob/living/simple_animal/hostile/clan_npc,
+/turf/open/floor/plating/ironsand,
+/area/city/backstreets_alley)
 "dd" = (
 /obj/effect/spawner/room/backstreets/small_west,
 /turf/closed/indestructible/reinforced,
@@ -102,6 +106,11 @@
 /obj/structure/flora/junglebush/c,
 /turf/open/floor/plating/dirt/jungle/wasteland,
 /area/city/backstreets_alley)
+"mz" = (
+/obj/structure/chair/wood,
+/mob/living/simple_animal/hostile/clan_npc,
+/turf/open/floor/wood,
+/area/city/backstreets_alley)
 "nZ" = (
 /turf/open/floor/plating/ashplanet/rocky,
 /area/city/backstreets_alley)
@@ -125,6 +134,7 @@
 /obj/structure/chair/wood{
 	dir = 8
 	},
+/mob/living/simple_animal/hostile/clan_npc,
 /turf/open/floor/plating/ironsand,
 /area/city/backstreets_alley)
 "oS" = (
@@ -190,6 +200,13 @@
 /obj/structure/chair/wood,
 /turf/open/floor/plating/ironsand,
 /area/city/backstreets_alley)
+"rU" = (
+/obj/structure/chair/wood{
+	dir = 1
+	},
+/mob/living/simple_animal/hostile/clan_npc,
+/turf/open/floor/wood,
+/area/city/backstreets_alley)
 "sg" = (
 /obj/effect/decal/cleanable/blood/splatter,
 /turf/closed/mineral/ash_rock,
@@ -232,6 +249,7 @@
 /obj/structure/chair/wood{
 	dir = 4
 	},
+/mob/living/simple_animal/hostile/clan_npc,
 /turf/open/floor/plating/ironsand,
 /area/city/backstreets_alley)
 "wO" = (
@@ -13526,7 +13544,7 @@ em
 em
 Jc
 Jc
-pR
+cB
 pR
 pR
 pR
@@ -14201,7 +14219,7 @@ pR
 pR
 qD
 Ih
-dF
+mz
 ol
 LI
 Jc
@@ -15530,7 +15548,7 @@ uy
 pR
 LI
 ol
-eo
+rU
 bl
 sQ
 LI
