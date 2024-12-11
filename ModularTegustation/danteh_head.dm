@@ -4,8 +4,8 @@ GLOBAL_VAR_INIT(hatspawned, FALSE)//So two of these cannot be created
 /obj/item/clothing/head/helmet/danteh
 	name = "Burning Clock"
 	desc = "A helmet of some sort resembling a burning clock."
-	icon_state = "helmet"
-	inhand_icon_state = "helmet"
+	icon_state = "dantehead"
+	inhand_icon_state = "dantehead"
 	flags_inv = HIDEHAIR|HIDEMASK|HIDEEARS|HIDEEYES|HIDEFACE|HIDEHAIR|HIDEFACIALHAIR|HIDESNOUT
 
 /obj/item/clothing/head/helmet/danteh/Initialize()
@@ -30,8 +30,9 @@ GLOBAL_VAR_INIT(hatspawned, FALSE)//So two of these cannot be created
 	var/datum/action/G = new /datum/action/cooldown/dantehadd
 	G.Grant(user)
 
-	G = new /datum/action/cooldown/dantehrevive
-	G.Grant(user)
+	if(SSmaptype.maptype in SSmaptype.citymaps)
+		G = new /datum/action/cooldown/dantehrevive
+		G.Grant(user)
 
 
 /obj/item/clothing/head/helmet/danteh/dropped(mob/living/carbon/human/user)
