@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <base href="../../../" />
+    <link rel="stylesheet" href="dmdoc.css" />
+    <title>&#x2F;obj&#x2F;item&#x2F;ego_weapon&#x2F;ranged - &#x2F;tg&#x2F; Station 13</title>
+</head>
+<body>
+<header>
+    <a href="index.html">&#x2F;tg&#x2F; Station 13</a> -
+    <a href="index.html#modules">Modules</a> -
+    <a href="index.html#types">Types</a>
+ &mdash; <a href="obj/item/ego_weapon/ranged.html#var">Var Details</a> - <a href="obj/item/ego_weapon/ranged.html#proc">Proc Details</a></header>
+<main>
+<h1>ranged <aside>/<a href="obj.html">obj</a>/<a href="obj/item.html">item</a>/<a href="obj/item/ego_weapon.html">ego_weapon</a>/<a href="obj/item/ego_weapon/ranged.html">ranged</a></aside>
+        
+    
+            <a href="https://github.com/vlggms/lobotomy-corp13/blob/6459d47be85f809850d78ac90ec93cfdd6d62132/ModularTegustation/ego_weapons/ranged/_ranged.dm#L3">
+        <img src="git.png" width="16" height="16" title="ModularTegustation&#x2F;ego_weapons&#x2F;ranged&#x2F;_ranged.dm 3"/></a></h1>
+
+<table class="summary" cellspacing="0"><tr><td colspan="2"><h2>Vars</h2></td></tr>
+            <tr><th><a href="obj/item/ego_weapon/ranged.html#var/autofire">autofire</a></th><td>If set, the gun will allow you to hold your mouse instead of clicking it to fire.
+In Rounds per decisecond</td></tr>
+            <tr><th><a href="obj/item/ego_weapon/ranged.html#var/clumsy_check">clumsy_check</a></th><td>Should clumsy people shoot themselfes at a chance with it? Usually unused</td></tr>
+            <tr><th><a href="obj/item/ego_weapon/ranged.html#var/is_reloading">is_reloading</a></th><td>Are we currently reloading?</td></tr>
+            <tr><th><a href="obj/item/ego_weapon/ranged.html#var/last_projectile_damage">last_projectile_damage</a></th><td>Vars used for when you examine a gun</td></tr>
+            <tr><th><a href="obj/item/ego_weapon/ranged.html#var/lethal">lethal</a></th><td>Controls if pacifists can use the gun or not. Should be TRUE unless you are doing something funky</td></tr>
+            <tr><th><a href="obj/item/ego_weapon/ranged.html#var/projectile_damage_multiplier">projectile_damage_multiplier</a></th><td>Just 'slightly' snowflakey way to modify projectile damage for projectiles fired from this gun.</td></tr>
+            <tr><th><a href="obj/item/ego_weapon/ranged.html#var/projectile_path">projectile_path</a></th><td>The current projectile we are shooting</td></tr>
+            <tr><th><a href="obj/item/ego_weapon/ranged.html#var/reloadtime">reloadtime</a></th><td>How long it takes to reload this weapon, if blank it wont need to be reloaded</td></tr>
+            <tr><th><a href="obj/item/ego_weapon/ranged.html#var/shotsleft">shotsleft</a></th><td>/ Reload/Ammo mechanics
+The amount of shots we hold.</td></tr>
+            <tr><th><a href="obj/item/ego_weapon/ranged.html#var/vary_fire_sound">vary_fire_sound</a></th><td>Sound controls</td></tr>
+            <tr><th><a href="obj/item/ego_weapon/ranged.html#var/weapon_weight">weapon_weight</a></th><td>If the weapon allows dual-weilding/can be used in 1 hand/needs 2 hands</td></tr><tr><td colspan="2"><h2>Procs</h2></td></tr>
+            <tr><th><a href="obj/item/ego_weapon/ranged.html#proc/before_firing">before_firing</a></th><td>Happens before projectile creation</td></tr>
+            <tr><th><a href="obj/item/ego_weapon/ranged.html#proc/update_projectile_examine">update_projectile_examine</a></th><td>Updates the damage/type of projectiles inside of the gun</td></tr></table>
+    <h2 id="var">Var Details</h2><h3 id="var/autofire"><aside class="declaration">var </aside>autofire
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/vlggms/lobotomy-corp13/blob/6459d47be85f809850d78ac90ec93cfdd6d62132/ModularTegustation/ego_weapons/ranged/_ranged.dm#L39">
+        <img src="git.png" width="16" height="16" title="ModularTegustation&#x2F;ego_weapons&#x2F;ranged&#x2F;_ranged.dm 39"/></a></h3>
+        <p>If set, the gun will allow you to hold your mouse instead of clicking it to fire.
+In Rounds per decisecond</p><h3 id="var/clumsy_check"><aside class="declaration">var </aside>clumsy_check
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/vlggms/lobotomy-corp13/blob/6459d47be85f809850d78ac90ec93cfdd6d62132/ModularTegustation/ego_weapons/ranged/_ranged.dm#L56">
+        <img src="git.png" width="16" height="16" title="ModularTegustation&#x2F;ego_weapons&#x2F;ranged&#x2F;_ranged.dm 56"/></a></h3>
+        <p>Should clumsy people shoot themselfes at a chance with it? Usually unused</p><h3 id="var/is_reloading"><aside class="declaration">var </aside>is_reloading
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/vlggms/lobotomy-corp13/blob/6459d47be85f809850d78ac90ec93cfdd6d62132/ModularTegustation/ego_weapons/ranged/_ranged.dm#L47">
+        <img src="git.png" width="16" height="16" title="ModularTegustation&#x2F;ego_weapons&#x2F;ranged&#x2F;_ranged.dm 47"/></a></h3>
+        <p>Are we currently reloading?</p><h3 id="var/last_projectile_damage"><aside class="declaration">var </aside>last_projectile_damage
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/vlggms/lobotomy-corp13/blob/6459d47be85f809850d78ac90ec93cfdd6d62132/ModularTegustation/ego_weapons/ranged/_ranged.dm#L50">
+        <img src="git.png" width="16" height="16" title="ModularTegustation&#x2F;ego_weapons&#x2F;ranged&#x2F;_ranged.dm 50"/></a></h3>
+        <p>Vars used for when you examine a gun</p><h3 id="var/lethal"><aside class="declaration">var </aside>lethal
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/vlggms/lobotomy-corp13/blob/6459d47be85f809850d78ac90ec93cfdd6d62132/ModularTegustation/ego_weapons/ranged/_ranged.dm#L54">
+        <img src="git.png" width="16" height="16" title="ModularTegustation&#x2F;ego_weapons&#x2F;ranged&#x2F;_ranged.dm 54"/></a></h3>
+        <p>Controls if pacifists can use the gun or not. Should be TRUE unless you are doing something funky</p><h3 id="var/projectile_damage_multiplier"><aside class="declaration">var </aside>projectile_damage_multiplier
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/vlggms/lobotomy-corp13/blob/6459d47be85f809850d78ac90ec93cfdd6d62132/ModularTegustation/ego_weapons/ranged/_ranged.dm#L33">
+        <img src="git.png" width="16" height="16" title="ModularTegustation&#x2F;ego_weapons&#x2F;ranged&#x2F;_ranged.dm 33"/></a></h3>
+        <p>Just 'slightly' snowflakey way to modify projectile damage for projectiles fired from this gun.</p><h3 id="var/projectile_path"><aside class="declaration">var </aside>projectile_path
+            <aside>&ndash; /<a href="obj.html">obj</a>/<a href="obj/projectile.html">projectile</a></aside>
+        
+    
+            <a href="https://github.com/vlggms/lobotomy-corp13/blob/6459d47be85f809850d78ac90ec93cfdd6d62132/ModularTegustation/ego_weapons/ranged/_ranged.dm#L30">
+        <img src="git.png" width="16" height="16" title="ModularTegustation&#x2F;ego_weapons&#x2F;ranged&#x2F;_ranged.dm 30"/></a></h3>
+        <p>The current projectile we are shooting</p><h3 id="var/reloadtime"><aside class="declaration">var </aside>reloadtime
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/vlggms/lobotomy-corp13/blob/6459d47be85f809850d78ac90ec93cfdd6d62132/ModularTegustation/ego_weapons/ranged/_ranged.dm#L45">
+        <img src="git.png" width="16" height="16" title="ModularTegustation&#x2F;ego_weapons&#x2F;ranged&#x2F;_ranged.dm 45"/></a></h3>
+        <p>How long it takes to reload this weapon, if blank it wont need to be reloaded</p><h3 id="var/shotsleft"><aside class="declaration">var </aside>shotsleft
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/vlggms/lobotomy-corp13/blob/6459d47be85f809850d78ac90ec93cfdd6d62132/ModularTegustation/ego_weapons/ranged/_ranged.dm#L43">
+        <img src="git.png" width="16" height="16" title="ModularTegustation&#x2F;ego_weapons&#x2F;ranged&#x2F;_ranged.dm 43"/></a></h3>
+        <p>/ Reload/Ammo mechanics
+The amount of shots we hold.</p><h3 id="var/vary_fire_sound"><aside class="declaration">var </aside>vary_fire_sound
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/vlggms/lobotomy-corp13/blob/6459d47be85f809850d78ac90ec93cfdd6d62132/ModularTegustation/ego_weapons/ranged/_ranged.dm#L59">
+        <img src="git.png" width="16" height="16" title="ModularTegustation&#x2F;ego_weapons&#x2F;ranged&#x2F;_ranged.dm 59"/></a></h3>
+        <p>Sound controls</p><h3 id="var/weapon_weight"><aside class="declaration">var </aside>weapon_weight
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/vlggms/lobotomy-corp13/blob/6459d47be85f809850d78ac90ec93cfdd6d62132/ModularTegustation/ego_weapons/ranged/_ranged.dm#L35">
+        <img src="git.png" width="16" height="16" title="ModularTegustation&#x2F;ego_weapons&#x2F;ranged&#x2F;_ranged.dm 35"/></a></h3>
+        <p>If the weapon allows dual-weilding/can be used in 1 hand/needs 2 hands</p><h2 id="proc">Proc Details</h2><h3 id="proc/before_firing"><aside class="declaration">proc </aside>before_firing<aside>(/<a href="atom.html">atom</a>/target, /<a href="mob.html">mob</a>/user) 
+        
+    
+            <a href="https://github.com/vlggms/lobotomy-corp13/blob/6459d47be85f809850d78ac90ec93cfdd6d62132/ModularTegustation/ego_weapons/ranged/_ranged.dm#L241">
+        <img src="git.png" width="16" height="16" title="ModularTegustation&#x2F;ego_weapons&#x2F;ranged&#x2F;_ranged.dm 241"/></a></aside>
+        </h3>
+        <p>Happens before projectile creation</p><h3 id="proc/update_projectile_examine"><aside class="declaration">proc </aside>update_projectile_examine<aside>() 
+        
+    
+            <a href="https://github.com/vlggms/lobotomy-corp13/blob/6459d47be85f809850d78ac90ec93cfdd6d62132/ModularTegustation/ego_weapons/ranged/_ranged.dm#L176">
+        <img src="git.png" width="16" height="16" title="ModularTegustation&#x2F;ego_weapons&#x2F;ranged&#x2F;_ranged.dm 176"/></a></aside>
+        </h3>
+        <p>Updates the damage/type of projectiles inside of the gun</p></main>
+<footer>
+    lobotomy-corp13.dme
+    <a href="https://github.com/vlggms/lobotomy-corp13/tree/6459d47be85f809850d78ac90ec93cfdd6d62132">6459d47</a>
+        (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/crates/dmdoc/README.md">dmdoc 1.8.0</a></footer>
+</body>
+</html>
