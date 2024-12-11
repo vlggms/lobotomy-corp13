@@ -1351,3 +1351,31 @@ Traitors and the like can also be revived with the previous role mostly intact.
 					if(!source)
 						return
 			REMOVE_TRAIT(D,chosen_trait,source)
+
+/client/proc/admin_ai_move_to_coordinate()
+	set category = "Admin.Events"
+	set name = "Call Mob to Coordinate"
+	set desc = "Calls a mob to a specific coordinate."
+
+	if(!check_rights(R_ADMIN))
+		return
+
+	var/look_range = input(usr, "Which mobs to select", "Selection Range", 1) as null|num
+	if(isnull(look_range)) return
+	look_range = floor(look_range)
+	if(look_range <= 0) return
+
+	var/x = input(usr, "X coordinate", "X", 1) as null|num
+	var/y = input(usr, "Y coordinate", "Y", 1) as null|num
+
+	if(isnull(x)) return
+	if(isnull(y)) return
+	x = floor(x)
+	y = floor(y)
+	if(x <= 0) return
+	if(y <= 0) return
+
+	var/z = usr.z
+
+	for(var/mob/living/simple_animal/hostile/L in view(look_range, usr))
+		L.patrol_to(locate(x,y,z))
