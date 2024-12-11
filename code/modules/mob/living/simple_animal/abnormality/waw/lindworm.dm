@@ -21,7 +21,7 @@
 	attack_verb_simple = "gore"
 	can_breach = TRUE
 	threat_level = WAW_LEVEL
-	start_qliphoth = 2
+	start_qliphoth = 4
 	work_chances = list(
 		ABNORMALITY_WORK_INSTINCT = 60,
 		ABNORMALITY_WORK_INSIGHT = 60,
@@ -44,6 +44,30 @@
 	var/mob/living/carbon/human/white_weak
 	var/mob/living/carbon/human/black_weak
 	var/mob/living/carbon/human/pale_weak
+
+
+
+/mob/living/simple_animal/hostile/abnormality/lindworm/Initialize()
+	. = ..()
+	RegisterSignal(SSdcs, COMSIG_GLOB_MOB_DEATH, PROC_REF(on_mob_death)) // Hell
+
+/mob/living/simple_animal/hostile/abnormality/lindworm/Destroy()
+	if(!layers_left)
+		UnregisterSignal(SSdcs, COMSIG_GLOB_MOB_DEATH)
+	return ..()
+
+/mob/living/simple_animal/hostile/abnormality/lindworm/proc/on_mob_death(datum/source, mob/living/died, gibbed)
+	SIGNAL_HANDLER
+	if(!IsContained()) // If it's breaching right now
+		return FALSE
+	if(!ishuman(died))
+		return FALSE
+	if(died.z != z)
+		return FALSE
+	if(!died.mind)
+		return FALSE
+	datum_reference.qliphoth_change(-1) // One death reduces it
+	return TRUE
 
 /mob/living/simple_animal/hostile/abnormality/lindworm/death(gibbed)
 	for(var/turf/open/T in view(5, src))
