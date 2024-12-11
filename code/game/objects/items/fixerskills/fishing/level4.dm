@@ -9,7 +9,7 @@
 /datum/action/cooldown/fishing/alignment
 	button_icon_state = "alignment"
 	name = "alignment"
-	cooldown_time = 6000
+	cooldown_time = 10 MINUTES
 	devotion_cost = 15
 
 /datum/action/cooldown/fishing/alignment/FishEffect(mob/living/user)
@@ -32,7 +32,7 @@
 /datum/action/cooldown/fishing/planetstop
 	button_icon_state = "planetstop"
 	name = "planetstop"
-	cooldown_time = 18000
+	cooldown_time = 30 MINUTES
 	devotion_cost = 12
 
 /datum/action/cooldown/fishing/planetstop/FishEffect(mob/living/user)
@@ -53,7 +53,7 @@
 /datum/action/cooldown/fishing/supernova
 	button_icon_state = "supernova"
 	name = "supernova"
-	cooldown_time = 12000
+	cooldown_time = 20 MINUTES
 	devotion_cost = 25
 
 /datum/action/cooldown/fishing/supernova/FishEffect(mob/living/user)
@@ -98,7 +98,7 @@
 /datum/action/cooldown/fishing/alignment2
 	button_icon_state = "alignment2"
 	name = "Alignment II"
-	cooldown_time = 18000
+	cooldown_time = 30 MINUTES
 	devotion_cost = 35
 
 /datum/action/cooldown/fishing/alignment2/FishEffect(mob/living/user)

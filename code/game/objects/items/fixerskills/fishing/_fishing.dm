@@ -1,19 +1,20 @@
 /datum/action/cooldown/fishing
-	icon_icon = 'icons/hud/screen_fishing.dmi'
-	button_icon_state = "sacredword"
 	name = "Sacred Word"
-	cooldown_time = 300
+	button_icon_state = "sacredword"
+	icon_icon = 'icons/hud/screen_fishing.dmi'
+	cooldown_time = 30 SECONDS
 	var/devotion_cost = 0
 
 /datum/action/cooldown/fishing/Trigger()
-	if(!..())
+	. = ..()
+	if(!.)
 		return FALSE
 
 	var/mob/living/carbon/human/H = owner
 	var/required_devotion = devotion_cost
 
 	if(H.god_aligned == FISHGOD_SATURN)
-		required_devotion -= 1	//Get one less cost on these spells
+		required_devotion--	//Get one less cost on these spells
 
 	if(H.devotion < required_devotion)
 		to_chat(H, span_warning("You do not have enough devotion for this spell!"))

@@ -10,7 +10,7 @@
 /datum/action/cooldown/fishing/detect
 	button_icon_state = "detect"
 	name = "Detect Fish"
-	cooldown_time = 300
+	cooldown_time = 30 SECONDS
 	devotion_cost = 1
 
 /datum/action/cooldown/fishing/detect/FishEffect(mob/living/user)
@@ -36,7 +36,7 @@
 /datum/action/cooldown/fishing/fishlockpick
 	button_icon_state = "fishlockpick"
 	name = "Fish Lockpick"
-	cooldown_time = 300
+	cooldown_time = 30 SECONDS
 	devotion_cost = 1
 
 /datum/action/cooldown/fishing/fishlockpick/FishEffect(mob/living/user)
@@ -55,7 +55,7 @@
 /datum/action/cooldown/fishing/fishtelepathy
 	button_icon_state = "fishtelepathy"
 	name = "Fish Telepathy"
-	cooldown_time = 400
+	cooldown_time = 40 SECONDS
 	devotion_cost = 1
 
 /datum/action/cooldown/fishing/fishtelepathy/FishEffect(mob/living/user)
@@ -72,5 +72,5 @@
 /datum/action/cooldown/fishing/fishtelepathy/proc/Recall(mob/living/carbon/human/user)
 	to_chat(user, span_notice("The fish have crucial news for you:"))
 	to_chat(user, span_notice("Glub."))
-	user.devotion+=2
+	user.devotion += 2
 

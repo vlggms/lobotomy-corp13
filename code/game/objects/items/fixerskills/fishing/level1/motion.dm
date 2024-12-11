@@ -9,7 +9,7 @@
 /datum/action/cooldown/fishing/planet
 	button_icon_state = "planet"
 	name = "Planet"
-	cooldown_time = 6000
+	cooldown_time = 10 MINUTES
 	devotion_cost = 2
 
 /datum/action/cooldown/fishing/planet/FishEffect(mob/living/user)
@@ -34,7 +34,7 @@
 /datum/action/cooldown/fishing/moonmove
 	button_icon_state = "moonmove"
 	name = "Lunar Motion"
-	cooldown_time = 6000
+	cooldown_time = 10 MINUTES
 	devotion_cost = 3
 
 /datum/action/cooldown/fishing/moonmove/FishEffect(mob/living/user)
@@ -55,7 +55,7 @@
 /datum/action/cooldown/fishing/planet2
 	button_icon_state = "planet2"
 	name = "Planet II"
-	cooldown_time = 6000
+	cooldown_time = 10 MINUTES
 	devotion_cost = 4
 
 /datum/action/cooldown/fishing/planet2/FishEffect(mob/living/user)
