@@ -63,7 +63,7 @@
 
 /obj/item/attribute_increase/fixer/attack_self(mob/living/carbon/human/user)
 	//only civilians can use this.
-	if(user?.mind?.assigned_role in usable_roles)
+	if(!(user?.mind?.assigned_role in usable_roles))
 		to_chat(user, span_danger("You cannot use this item, as you must not belong to an association."))
 		return
 
