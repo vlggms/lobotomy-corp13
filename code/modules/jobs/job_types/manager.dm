@@ -55,4 +55,10 @@
 	shoes = /obj/item/clothing/shoes/laceup
 	r_pocket = /obj/item/modular_computer/tablet/preset/advanced/command
 
-	backpack_contents = list(/obj/item/station_charter)
+	backpack_contents = list(/obj/item/station_charter,
+		/obj/item/gun/ballistic/automatic/pistol/deagle/manager,
+		/obj/item/ammo_box/magazine/m50,)
+
+/obj/item/gun/ballistic/automatic/pistol/deagle/manager
+	name = "\improper Manager's Desert Eagle"
+	desc = "Written on the side is ''For Shitters only. Misuse of this will result in your permanent termination''"
