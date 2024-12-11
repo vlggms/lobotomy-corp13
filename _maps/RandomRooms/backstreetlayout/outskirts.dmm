@@ -28,7 +28,11 @@
 /turf/open/floor/plating/ironsand,
 /area/city/backstreets_alley)
 "cB" = (
-/mob/living/simple_animal/hostile/clan_npc,
+/obj/item/flashlight/lantern{
+	on = 1;
+	pixel_y = 32;
+	anchored = 1
+	},
 /turf/open/floor/plating/ironsand,
 /area/city/backstreets_alley)
 "dd" = (
@@ -53,6 +57,11 @@
 "eo" = (
 /obj/structure/chair/wood{
 	dir = 1
+	},
+/obj/item/flashlight/lantern{
+	on = 1;
+	pixel_x = 32;
+	anchored = 1
 	},
 /turf/open/floor/wood,
 /area/city/backstreets_alley)
@@ -83,9 +92,27 @@
 /obj/effect/turf_decal/siding/blue,
 /turf/open/floor/carpet/royalblack,
 /area/city/backstreets_alley)
+"fM" = (
+/obj/structure/flora/rock/pile,
+/obj/item/flashlight/lantern{
+	on = 1;
+	pixel_y = 32;
+	anchored = 1
+	},
+/turf/open/floor/plating/ironsand,
+/area/city/backstreets_alley)
 "fR" = (
 /obj/structure/lootcrate/money,
 /turf/open/floor/plating/ashplanet/wateryrock,
+/area/city/backstreets_alley)
+"gy" = (
+/obj/structure/flora/rock/pile/largejungle,
+/obj/item/flashlight/lantern{
+	on = 1;
+	pixel_y = 32;
+	anchored = 1
+	},
+/turf/open/water/jungle,
 /area/city/backstreets_alley)
 "gA" = (
 /obj/structure/flora/rock,
@@ -111,7 +138,10 @@
 /obj/structure/chair/wood{
 	dir = 1
 	},
-/mob/living/simple_animal/hostile/clan_npc/info,
+/mob/living/simple_animal/hostile/clan_npc/info{
+	icon_living = "clan_citzen_2";
+	icon_state = "clan_citzen_2"
+	},
 /turf/open/floor/plating/ironsand,
 /area/city/backstreets_alley)
 "jf" = (
@@ -122,6 +152,14 @@
 	pixel_x = 32
 	},
 /turf/open/floor/carpet/royalblack,
+/area/city/backstreets_alley)
+"jn" = (
+/obj/item/flashlight/lantern{
+	on = 1;
+	pixel_y = 32;
+	anchored = 1
+	},
+/turf/open/water/jungle,
 /area/city/backstreets_alley)
 "jt" = (
 /obj/structure/flora/rock/pile,
@@ -148,7 +186,25 @@
 /area/city/backstreets_alley)
 "mz" = (
 /obj/structure/chair/wood,
-/mob/living/simple_animal/hostile/clan_npc,
+/mob/living/simple_animal/hostile/clan_npc{
+	icon_living = "clan_citzen_5";
+	icon_state = "clan_citzen_5"
+	},
+/turf/open/floor/wood,
+/area/city/backstreets_alley)
+"ng" = (
+/obj/structure/chair/wood{
+	dir = 1
+	},
+/mob/living/simple_animal/hostile/clan_npc{
+	icon_living = "clan_citzen_5";
+	icon_state = "clan_citzen_5"
+	},
+/obj/item/flashlight/lantern{
+	on = 1;
+	pixel_x = 32;
+	anchored = 1
+	},
 /turf/open/floor/wood,
 /area/city/backstreets_alley)
 "nZ" = (
@@ -174,7 +230,6 @@
 /obj/structure/chair/wood{
 	dir = 8
 	},
-/mob/living/simple_animal/hostile/clan_npc,
 /turf/open/floor/plating/ironsand,
 /area/city/backstreets_alley)
 "oQ" = (
@@ -186,6 +241,10 @@
 	dir = 9
 	},
 /obj/structure/chair/wood,
+/mob/living/simple_animal/hostile/clan_npc{
+	icon_living = "clan_citzen_5";
+	icon_state = "clan_citzen_5"
+	},
 /turf/open/floor/plating/ironsand,
 /area/city/backstreets_alley)
 "pa" = (
@@ -256,13 +315,20 @@
 	dir = 5
 	},
 /obj/structure/chair/wood,
+/mob/living/simple_animal/hostile/clan_npc{
+	icon_living = "clan_citzen_5";
+	icon_state = "clan_citzen_5"
+	},
 /turf/open/floor/plating/ironsand,
 /area/city/backstreets_alley)
 "rU" = (
 /obj/structure/chair/wood{
 	dir = 1
 	},
-/mob/living/simple_animal/hostile/clan_npc,
+/mob/living/simple_animal/hostile/clan_npc/info{
+	icon_living = "clan_citzen_1";
+	icon_state = "clan_citzen_1"
+	},
 /turf/open/floor/wood,
 /area/city/backstreets_alley)
 "sg" = (
@@ -281,6 +347,10 @@
 "tO" = (
 /obj/effect/turf_decal/weather/dirt{
 	dir = 4
+	},
+/mob/living/simple_animal/hostile/clan_npc/info{
+	icon_living = "clan_citzen_4";
+	icon_state = "clan_citzen_4"
 	},
 /turf/open/floor/plating/ironsand,
 /area/city/backstreets_alley)
@@ -315,7 +385,6 @@
 /obj/structure/chair/wood{
 	dir = 4
 	},
-/mob/living/simple_animal/hostile/clan_npc,
 /turf/open/floor/plating/ironsand,
 /area/city/backstreets_alley)
 "wO" = (
@@ -336,6 +405,14 @@
 /area/city/backstreets_alley)
 "xf" = (
 /turf/closed/mineral/ash_rock,
+/area/city/backstreets_alley)
+"xq" = (
+/obj/item/flashlight/lantern{
+	on = 1;
+	pixel_x = -32;
+	anchored = 1
+	},
+/turf/open/floor/plating/ironsand,
 /area/city/backstreets_alley)
 "yv" = (
 /obj/effect/turf_decal/siding/blue{
@@ -435,6 +512,14 @@
 /obj/structure/flora/ausbushes/fullgrass,
 /turf/open/floor/plating/dirt/jungle/wasteland,
 /area/city/backstreets_alley)
+"GY" = (
+/obj/item/flashlight/lantern{
+	on = 1;
+	pixel_x = 32;
+	anchored = 1
+	},
+/turf/open/floor/plating/ironsand,
+/area/city/backstreets_alley)
 "Ih" = (
 /turf/open/floor/wood,
 /area/city/backstreets_alley)
@@ -454,6 +539,15 @@
 /obj/effect/turf_decal/siding/blue{
 	dir = 5
 	},
+/mob/living/simple_animal/hostile/clan_npc/info{
+	icon_living = "clan_citzen_3";
+	icon_state = "clan_citzen_3"
+	},
+/obj/item/flashlight/lantern{
+	on = 1;
+	pixel_x = 32;
+	anchored = 1
+	},
 /turf/open/floor/carpet/royalblack,
 /area/city/backstreets_alley)
 "KK" = (
@@ -466,6 +560,11 @@
 	dir = 9
 	},
 /obj/structure/lootcrate/workshopallas,
+/obj/item/flashlight/lantern{
+	on = 1;
+	pixel_y = 32;
+	anchored = 1
+	},
 /turf/open/floor/carpet/royalblack,
 /area/city/backstreets_alley)
 "Li" = (
@@ -478,7 +577,13 @@
 /area/city/backstreets_alley)
 "Lw" = (
 /obj/machinery/door/window/brigdoor/eastleft,
-/mob/living/simple_animal/hostile/clan_npc/info/trader,
+/mob/living/simple_animal/hostile/clan_npc/info/trader{
+	icon_state = "clan_citzen_trader";
+	icon_living = "clan_citzen_trader";
+	answers1 = list("Well, You may call me Ronan.","Currently, I am running this humble shop for passerbys like you!");
+	question2 = "What are you buying?";
+	answers2 = list("As of now...", "I am willing to buy robotic components.", "You know those weird bots which are running around, guns or spears for hands?", "I heard that their parts are quite useful.", "Also, The outskirts would be better off without them.")
+	},
 /obj/effect/turf_decal/siding/blue{
 	dir = 1
 	},
@@ -541,6 +646,11 @@
 /obj/structure/flora/rock/pile,
 /obj/effect/turf_decal/weather/dirt{
 	dir = 1
+	},
+/obj/item/flashlight/lantern{
+	on = 1;
+	pixel_y = 32;
+	anchored = 1
 	},
 /turf/open/floor/plating/ironsand,
 /area/city/backstreets_alley)
@@ -13208,7 +13318,7 @@ pR
 pR
 OH
 co
-pR
+xq
 pR
 pR
 Li
@@ -13319,13 +13429,13 @@ CG
 pR
 OH
 pR
-pR
+GY
 pR
 pR
 pR
 CJ
 Jc
-Qu
+gy
 MQ
 CJ
 LI
@@ -13663,7 +13773,7 @@ pR
 pR
 qD
 ol
-eo
+ng
 bl
 sQ
 LI
@@ -13995,7 +14105,7 @@ LI
 OJ
 pR
 pR
-pR
+GY
 pR
 pR
 Li
@@ -14219,7 +14329,7 @@ pR
 pR
 qD
 Ih
-dF
+mz
 ol
 LI
 Jc
@@ -14330,7 +14440,7 @@ pR
 pR
 qD
 Ih
-mz
+dF
 ol
 LI
 Jc
@@ -14547,7 +14657,7 @@ LI
 LI
 LI
 LI
-pR
+cB
 pR
 pR
 LI
@@ -14876,14 +14986,14 @@ em
 em
 em
 Jc
-Li
+fM
 cq
 pR
 Ut
 pR
 pj
 pR
-pR
+xq
 pR
 pR
 Bf
@@ -15330,7 +15440,7 @@ Aa
 qD
 qD
 LI
-rh
+jn
 rh
 Jc
 Jc
