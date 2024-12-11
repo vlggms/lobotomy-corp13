@@ -5,8 +5,8 @@
 "c" = (
 /obj/structure/railing{
 	dir = 10;
-	name = "invincible railing";
-	max_integrity = 1e+007
+	max_integrity = 1e+007;
+	name = "invincible railing"
 	},
 /mob/living/simple_animal/hostile/ordeal/green_bot_big{
 	name = "gun bot"
@@ -46,8 +46,8 @@
 "h" = (
 /obj/structure/railing{
 	dir = 9;
-	name = "invincible railing";
-	max_integrity = 1e+007
+	max_integrity = 1e+007;
+	name = "invincible railing"
 	},
 /mob/living/simple_animal/hostile/ordeal/green_bot_big{
 	name = "gun bot"
@@ -69,10 +69,10 @@
 /turf/open/floor/mineral/plastitanium,
 /area/city/backstreets_room)
 "j" = (
+/obj/structure/lootcrate/money,
 /obj/structure/railing{
 	dir = 5
 	},
-/obj/item/raw_anomaly_core/flux,
 /turf/open/floor/mineral/plastitanium/red,
 /area/city/backstreets_room)
 "k" = (
@@ -116,22 +116,22 @@
 "r" = (
 /obj/structure/railing{
 	dir = 8;
-	name = "invincible railing";
-	max_integrity = 1e+007
+	max_integrity = 1e+007;
+	name = "invincible railing"
 	},
 /obj/structure/railing{
 	dir = 1;
-	name = "invincible railing";
-	max_integrity = 1e+007
+	max_integrity = 1e+007;
+	name = "invincible railing"
 	},
 /obj/structure/railing{
 	dir = 4;
-	name = "invincible railing";
-	max_integrity = 1e+007
+	max_integrity = 1e+007;
+	name = "invincible railing"
 	},
 /obj/structure/railing{
-	name = "invincible railing";
-	max_integrity = 1e+007
+	max_integrity = 1e+007;
+	name = "invincible railing"
 	},
 /mob/living/simple_animal/hostile/ordeal/green_bot_big{
 	name = "gun bot"
@@ -220,8 +220,8 @@
 "H" = (
 /obj/structure/railing{
 	dir = 5;
-	name = "invincible railing";
-	max_integrity = 1e+007
+	max_integrity = 1e+007;
+	name = "invincible railing"
 	},
 /mob/living/simple_animal/hostile/ordeal/green_bot_big{
 	name = "gun bot"
@@ -274,10 +274,10 @@
 /turf/open/floor/mineral/plastitanium,
 /area/city/backstreets_room)
 "O" = (
+/obj/structure/lootcrate/money,
 /obj/structure/railing{
 	dir = 8
 	},
-/obj/item/raw_anomaly_core/pyro,
 /turf/open/floor/mineral/plastitanium/red,
 /area/city/backstreets_room)
 "Q" = (
@@ -321,8 +321,8 @@
 "Z" = (
 /obj/structure/railing{
 	dir = 6;
-	name = "invincible railing";
-	max_integrity = 1e+007
+	max_integrity = 1e+007;
+	name = "invincible railing"
 	},
 /mob/living/simple_animal/hostile/ordeal/green_bot_big{
 	name = "gun bot"

@@ -36,24 +36,24 @@
 	mappath = "_maps/RandomRooms/backstreets/medium_east/zwei_office_mea.dmm"
 
 /datum/map_template/random_room/backstreets/medium_east/church
-    name = "Church - Medium East"
-    room_id = "church"
-    mappath = "_maps/RandomRooms/backstreets/medium_east/church.dmm"
+	name = "Church - Medium East"
+	room_id = "church"
+	mappath = "_maps/RandomRooms/backstreets/medium_east/church.dmm"
 
 /datum/map_template/random_room/backstreets/medium_east/roach_mafia
-    name = "Roach Mafia - Medium East"
-    room_id = "roach_mafia"
-    mappath = "_maps/RandomRooms/backstreets/medium_east/roach_mafia.dmm"
+	name = "Roach Mafia - Medium East"
+	room_id = "roach_mafia"
+	mappath = "_maps/RandomRooms/backstreets/medium_east/roach_mafia.dmm"
 
 /datum/map_template/random_room/backstreets/medium_east/robot_mea
-    name = "Robot - Medium East A"
-    room_id = "robot_mea"
-    mappath = "_maps/RandomRooms/backstreets/medium_east/robot_mea.dmm"
+	name = "Robot - Medium East A"
+	room_id = "robot_mea"
+	mappath = "_maps/RandomRooms/backstreets/medium_east/robot_mea.dmm"
 
 /datum/map_template/random_room/backstreets/medium_east/clan_mechs
-    name = "Clan - Medium East A"
-    room_id = "clan_mechs"
-    mappath = "_maps/RandomRooms/backstreets/medium_east/clan_mechs.dmm"
+	name = "Clan - Medium East A"
+	room_id = "clan_mechs"
+	mappath = "_maps/RandomRooms/backstreets/medium_east/clan_mechs.dmm"
 
 /datum/map_template/random_room/backstreets/medium_east/worm_cave
     name = "Worm Cave - Medium East A"
@@ -64,3 +64,9 @@
     name = "Shrimp Office - Medium East A"
     room_id = "shrimp_office"
     mappath = "_maps/RandomRooms/backstreets/medium_east/shrimp_office.dmm"
+
+/datum/map_template/random_room/backstreets/medium_east/prosthetics
+	name = "Prosthetics Clinic - Medium East"
+	room_id = "pros_clinic_me"
+	mappath = "_maps/RandomRooms/backstreets/medium_east/prosthetics_me.dmm"
+	stock = 1 // Only one, but it's common

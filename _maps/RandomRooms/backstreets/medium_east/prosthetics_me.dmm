@@ -1,0 +1,186 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"a" = (
+/obj/structure/chair{
+	dir = 4
+	},
+/turf/open/floor/wood,
+/area/city/backstreets_room)
+"e" = (
+/obj/structure/rack,
+/obj/item/organ/eyes/robotic/thermals,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/facility/white,
+/area/city/backstreets_room)
+"g" = (
+/obj/structure/table/glass,
+/obj/item/storage/firstaid/ancient,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/wood,
+/area/city/backstreets_room)
+"i" = (
+/obj/structure/table/glass,
+/obj/item/kitchen/knife/shiv,
+/obj/item/crowbar/large{
+	pixel_x = -5;
+	pixel_y = 2
+	},
+/obj/item/wirecutters,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/wood,
+/area/city/backstreets_room)
+"s" = (
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/wood,
+/area/city/backstreets_room)
+"x" = (
+/turf/closed/indestructible/reinforced,
+/area/city/backstreets_room)
+"y" = (
+/obj/structure/bed/maint,
+/obj/machinery/light/small{
+	dir = 4
+	},
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/wood,
+/area/city/backstreets_room)
+"B" = (
+/obj/structure/rack,
+/obj/item/organ/stomach/cybernetic/tier2,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/facility/white,
+/area/city/backstreets_room)
+"E" = (
+/obj/structure/lootcrate/money,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/facility/white,
+/area/city/backstreets_room)
+"F" = (
+/obj/structure/rack,
+/obj/item/stack/spacecash/c100,
+/turf/open/floor/facility/white,
+/area/city/backstreets_room)
+"G" = (
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/facility/white,
+/area/city/backstreets_room)
+"H" = (
+/obj/structure/mineral_door/wood,
+/turf/open/floor/wood,
+/area/city/backstreets_room)
+"K" = (
+/obj/structure/rack,
+/obj/item/stack/spacecash/c100,
+/obj/item/organ/cyberimp/chest/reviver,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/facility/white,
+/area/city/backstreets_room)
+"N" = (
+/turf/open/floor/facility/white,
+/area/city/backstreets_room)
+"O" = (
+/obj/structure/rack,
+/obj/item/organ/cyberimp/arm/medibeam,
+/turf/open/floor/facility/white,
+/area/city/backstreets_room)
+"P" = (
+/turf/closed/indestructible/fakeglass,
+/area/city/backstreets_room)
+"Q" = (
+/obj/structure/chair{
+	dir = 4
+	},
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/wood,
+/area/city/backstreets_room)
+"V" = (
+/obj/structure/rack,
+/obj/item/organ/lungs/cybernetic/tier3,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/facility/white,
+/area/city/backstreets_room)
+"W" = (
+/turf/open/floor/wood,
+/area/city/backstreets_room)
+"Y" = (
+/obj/machinery/door/airlock/centcom{
+	desc = "A bit too sturdy...";
+	max_integrity = 10000;
+	name = "Prosthetics Storage";
+	normal_integrity = 100000;
+	req_access_txt = "189"
+	},
+/turf/open/floor/facility/white,
+/area/city/backstreets_room)
+
+(1,1,1) = {"
+x
+x
+H
+x
+x
+x
+x
+x
+x
+x
+"}
+(2,1,1) = {"
+x
+a
+s
+Q
+a
+P
+E
+G
+e
+x
+"}
+(3,1,1) = {"
+x
+s
+s
+s
+s
+Y
+N
+G
+O
+x
+"}
+(4,1,1) = {"
+x
+W
+s
+s
+s
+P
+K
+N
+V
+x
+"}
+(5,1,1) = {"
+x
+g
+y
+i
+s
+P
+B
+N
+F
+x
+"}
+(6,1,1) = {"
+x
+x
+x
+x
+x
+x
+x
+x
+x
+x
+"}
