@@ -96,13 +96,18 @@
 	name = "Trader Citzen?"
 	question1 = "Who are you?"
 	question2 = "Why are you here?"
-	question3 = "What is this faction?"
+	question3 = "What are you selling?"
 	answers1 = list("O-oh... I a-am James.", "A ci-itizen of the resu-urgence clan...", "For no-ow, I am ju-ust o-off duty.")
 	answers2 = list("Curre-ently, I-I and my fe-ellow cla-an members are sco-outing this area...", "The Hi-istorian wants use to study hu-umans.", "And thi-is is the closest we co-ould get to them...", "So-o we are wa-aiting here until further orders.")
-	answers3 = list("The-e clan is just one of ma-any villages in the O-outskirts...", "All of the me-embers of the clan are ma-achines...", "Like me...", "Delay: 20", "One day, We-e dream to be hu-uman...", "Just li-ike you, We ju-ust need to learn mo-ore...")
+	answers3 = list("Sure!", "I got some good things in store today...")
 	default_delay = 30
+	var/trading = FALSE
 	var/successful_sale = FALSE
-	var/selling_say = "Good Deal!"
+	var/buying_say = "Good Deal!"
+	var/selling_say = "Sold!"
+	var/poor_say = "Aw... Looks like you still need "
+	var/selling_end = "Got it, We are always open if you need anything!"
+	var/sold
 	var/list/level_1 = list(
 		/obj/item/rawpe,
 		/obj/item/food/meat/slab/robot,
@@ -123,6 +128,42 @@
 /mob/living/simple_animal/hostile/clan_npc/info/trader/Initialize()
 	. = ..()
 	SetSellables()
+
+/mob/living/simple_animal/hostile/clan_npc/info/trader/attack_hand(mob/living/carbon/M)
+	if(!stat && M.a_intent == INTENT_HELP && !client)
+		if (!trading)
+			var/robot_ask = alert("ask them", "[src] is listening to you.", "[question1]", "[question2]", "[question3]", "Cancel")
+			if(robot_ask == "[question1]")
+				M.say("[question1]")
+				SLEEP_CHECK_DEATH(default_delay)
+				Speech(answers1)
+				return
+			if(robot_ask == "[question2]")
+				SLEEP_CHECK_DEATH(default_delay)
+				M.say("[question2]")
+				Speech(answers2)
+				return
+			if(robot_ask == "[question3]")
+				M.say("[question3]")
+				SLEEP_CHECK_DEATH(default_delay)
+				trading = TRUE
+				Speech(answers3)
+				return
+			return
+		else
+			var/robot_ask = alert("ask them", "[src] is offering to you.", "Item 1 (50 ahn)", "Item 2 (200 ahn)", "I am done buying.", "Cancel")
+			if(robot_ask == "Item 1 (50 ahn)")
+				SellingItem(/obj/item/reagent_containers/hypospray/medipen/salacid, 50, M)
+				return
+			if(robot_ask == "Item 2 (200 ahn)")
+				SellingItem(/obj/item/reagent_containers/hypospray/medipen/mental, 200, M)
+				return
+			if(robot_ask == "I am done buying.")
+				say(selling_end)
+				trading = FALSE
+				return
+
+	return ..()
 
 /mob/living/simple_animal/hostile/clan_npc/info/trader/proc/SetSellables()
 	var/list/temp = list()
@@ -160,12 +201,12 @@
 				to_chat(user, span_notice("You show [src] your [S]..."))
 				playsound(O, "rustle", 50, TRUE, -5)
 				if (successful_sale == TRUE)
-					say(selling_say)
+					say(buying_say)
 					successful_sale = FALSE
 				return TRUE
 			ManageSales(O, user)
 			if (successful_sale == TRUE)
-				say(selling_say)
+				say(buying_say)
 				successful_sale = FALSE
 			return
 
@@ -186,3 +227,15 @@
 		qdel(O)
 		successful_sale = TRUE
 	return TRUE
+
+/mob/living/simple_animal/hostile/clan_npc/info/trader/proc/SellingItem(obj/item/O, var/price, mob/living/carbon/M)
+	var/sold_item = O
+	var/obj/item/holochip/C = M.is_holding_item_of_type(/obj/item/holochip)
+	if(C && istype(C))
+		var/credits = C.get_item_credit_value()
+		var/amount = C.spend(price)
+		if (amount > 0)
+			new sold_item (get_turf(M))
+			say(selling_say)
+		else
+			say(poor_say + "[(price - credits)] more ahn...")
