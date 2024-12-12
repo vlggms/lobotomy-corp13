@@ -36,9 +36,9 @@ export const SpeakingNpc = (props, context) => {
                   <Button
                     key={action.key}
                     onClick={() => act(action.key)}
-                    fontSize="16px"
-                    width="200px"
-                    height="40px"
+                    fontSize="14px"
+                    width="150px"
+                    height="30px"
                     mb={1}
                   >
                     {action.text}
