@@ -1,46 +1,46 @@
 /mob/living/simple_animal/ui_npc
-	name = "Talking Creature"
+	name = "The Goat"
 	icon = 'icons/mob/animal.dmi'
 	icon_state = "goat"
 	density = TRUE
 	var/portrait_folder = "icons/UI_Icons/NPC_Portraits/"
-	var/portrait = "bill.png"
-	var/soundfile =  'sound/creatures/lc13/talking.ogg'
+	var/portrait = "the-goat.png"
+	var/soundfile =  'sound/creatures/lc13/goat_bleating.ogg'
 	var/datum/ui_npc/scene_manager/scene_manager = new()
 	var/start_scene_id = "intro"
 	var/list/scenes = list(
 			"intro" = list(
-				"text" = "Intro scene 1. Hello stranger!",
+				"text" = "Intro scene 1. “Baa” (Who are you, mortal who crosses thy path?!!)",
 				"actions" = list(
 					"hi" = list(
-						"Text" = "Hi! How are you?",
+						"Text" = "“Hi! How are you?”",
 						"next_scene" = "hru",
 						"min_rep" = 20,
 						"proc" = ""),
 					"bye" = list(
-						"Text" = "Bye!",
+						"Text" = "“Bye!”",
 						"next_scene" = "bye",
 						"min_rep" = 20,
 						"proc" = ""),
 					)
 				),
 			"hru" = list(
-				"text" = "Intro scene 2. I'm doing great! How about you?",
+				"text" = "Intro scene 2. “Baa... BAA!! Baa?” (Well, I guess today is okay... BUT IT COULD BE BETTER! Anyways, How is your day?)",
 				"actions" = list(
 					"good" = list(
-						"Text" = "Good!",
+						"Text" = "“Good!”",
 						"next_scene" = "intro",
 						"min_rep" = 20,
 						"proc" = ""),
 					"bad" = list(
-						"Text" = "Bad!",
+						"Text" = "“Bad!”",
 						"next_scene" = "intro",
 						"min_rep" = 20,
 						"proc" = ""),
 					)
 				),
 			"bye" = list(
-				"text" = "Intro scene 3. Sorry to see you go!",
+				"text" = "Intro scene 3. “Baa” (Understood, Have a good day.)",
 				"actions" = list(),
 			)
 		)
