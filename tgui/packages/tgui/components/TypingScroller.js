@@ -5,20 +5,25 @@ export class TypingScroller extends Component {
     super(props);
     this.containerEl = null;
     this.interval = null;
-    this.state = {
-      displayed: '',
-    };
+    this.state = { displayed: '' };
   }
 
   componentDidMount() {
-    const { text, speed = 100 } = this.props;
+    const { text, speed = 100, onTypingStart, onTypingEnd } = this.props;
     let i = 0;
+    if (text && text.length > 0 && onTypingStart) {
+      onTypingStart();
+    }
+
     this.interval = setInterval(() => {
       if (i < text.length) {
         this.setState(prevState => ({ displayed: prevState.displayed + text[i] }));
         i++;
       } else {
         clearInterval(this.interval);
+        if (onTypingEnd) {
+          onTypingEnd();
+        }
       }
     }, speed);
   }
@@ -37,7 +42,12 @@ export class TypingScroller extends Component {
     return (
       <div
         ref={el => this.containerEl = el}
-        style={{ height: "100px", overflow: "auto", border: "1px solid #ccc" }}
+        style={{
+          height: "192px",
+          overflow: "auto",
+          border: "1px solid #ccc",
+          width: "100%"
+        }}
       >
         {this.state.displayed}
       </div>
