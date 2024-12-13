@@ -35,6 +35,8 @@ GLOBAL_LIST_EMPTY(marked_players)
 	butcher_results = list(/obj/item/food/meat/slab/robot = 3)
 	guaranteed_butcher_results = list(/obj/item/food/meat/slab/robot = 1)
 	silk_results = list(/obj/item/stack/sheet/silk/azure_simple = 1)
+	var/attacked_line = "Wha-at are you do-oing... GE-ET AWAY!"
+	var/mark_once_attacked = TRUE
 
 /mob/living/simple_animal/hostile/clan_npc/CanAttack(atom/the_target)
 	if (the_target in GLOB.marked_players)
@@ -43,9 +45,11 @@ GLOBAL_LIST_EMPTY(marked_players)
 
 /mob/living/simple_animal/hostile/clan_npc/bullet_act(obj/projectile/P)
 	. = ..()
-	if(P.firer && get_dist(src, P.firer) <= aggro_vision_range)
-		if (!(P.firer in GLOB.marked_players ))
-			GLOB.marked_players += P.firer
+	if(mark_once_attacked)
+		if(P.firer && get_dist(src, P.firer) <= aggro_vision_range)
+			if (!(P.firer in GLOB.marked_players ))
+				GLOB.marked_players += P.firer
+				say(attacked_line)
 
 /mob/living/simple_animal/hostile/clan_npc/attack_hand(mob/living/carbon/M)
 	if(!stat && M.a_intent == INTENT_HELP && !client)
@@ -53,8 +57,10 @@ GLOBAL_LIST_EMPTY(marked_players)
 
 /mob/living/simple_animal/hostile/clan_npc/attackby(obj/item/O, mob/user, params)
 	. = ..()
-	if (!(user in GLOB.marked_players ))
-		GLOB.marked_players += user
+	if(mark_once_attacked)
+		if (!(user in GLOB.marked_players ))
+			GLOB.marked_players += user
+			say(attacked_line)
 
 
 
@@ -68,6 +74,9 @@ GLOBAL_LIST_EMPTY(marked_players)
 	var/list/answers3 = list("The-e clan is just one of ma-any villages in the O-outskirts...", "All of the me-embers of the clan are ma-achines...", "Like me...", "Delay: 20", "One day, We-e dream to be hu-uman...", "Just li-ike you, We ju-ust need to learn mo-ore...")
 	var/default_delay = 30
 	var/speaking = FALSE
+	var/greeting_cooldown = 20 SECONDS
+	var/last_greeting_cooldown = 0
+	var/greeting_line = "Oh! He-ello Huma-an!"
 
 /mob/living/simple_animal/hostile/clan_npc/info/examine(mob/user)
 	. = ..()
@@ -78,6 +87,9 @@ GLOBAL_LIST_EMPTY(marked_players)
 
 /mob/living/simple_animal/hostile/clan_npc/info/attack_hand(mob/living/carbon/M)
 	if(!stat && M.a_intent == INTENT_HELP && !client && CanTalk())
+		if (last_greeting_cooldown < world.time - greeting_cooldown)
+			say(greeting_line)
+			last_greeting_cooldown = world.time
 		speaking = TRUE
 		var/robot_ask = alert("ask them", "[src] is listening to you.", "[question1]", "[question2]", "[question3]", "Cancel")
 		if(robot_ask == "[question1]")
@@ -161,6 +173,9 @@ GLOBAL_LIST_EMPTY(marked_players)
 /mob/living/simple_animal/hostile/clan_npc/info/trader/attack_hand(mob/living/carbon/M)
 	if(!stat && M.a_intent == INTENT_HELP && !client)
 		if (!trading)
+			if (last_greeting_cooldown < world.time - greeting_cooldown)
+				say(greeting_line)
+				last_greeting_cooldown = world.time
 			var/robot_ask
 			if (can_sell)
 				robot_ask = alert("ask them", "[src] is listening to you.", "[question1]", "[question2]", "[selling_question]", "Cancel")

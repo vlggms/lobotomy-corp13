@@ -38,7 +38,9 @@
 
 //Talking Stuff
 	var/can_protect = FALSE
+	var/wants_to_talk = FALSE
 
+	var/greeting_line = "... Are you looking for something? ..."
 	var/question1 = "Who are you?"
 	var/question2 = "Why are you here?"
 	var/question3 = "What is this faction?"
@@ -46,7 +48,10 @@
 	var/list/answers2 = list("Curre-ently, I-I and my fe-ellow cla-an members are sco-outing this area...", "The Hi-istorian wants use to study hu-umans.", "And thi-is is the closest we co-ould get to them...", "So-o we are wa-aiting here until further orders.")
 	var/list/answers3 = list("The-e clan is just one of ma-any villages in the O-outskirts...", "All of the me-embers of the clan are ma-achines...", "Like me...", "Delay: 20", "One day, We-e dream to be hu-uman...", "Just li-ike you, We ju-ust need to learn mo-ore...")
 	var/default_delay = 30
+	var/greeting_cooldown = 20 SECONDS
+	var/last_greeting_cooldown = 0
 	var/speaking = FALSE
+	var/attacked_line = "Oh-h... You messe-ed up now..."
 
 //Normal Clan Stuff
 /mob/living/simple_animal/hostile/clan/spawn_gibs()
@@ -82,23 +87,28 @@
 	if((P.firer && get_dist(src, P.firer) <= aggro_vision_range) && can_protect)
 		if (!(P.firer in GLOB.marked_players))
 			GLOB.marked_players += P.firer
+			say(attacked_line)
 
 /mob/living/simple_animal/hostile/clan/attackby(obj/item/O, mob/user, params)
 	. = ..()
 	if (!(user in GLOB.marked_players) && can_protect)
 		GLOB.marked_players += user
+		say(attacked_line)
 
 //Npc Stuff
 /mob/living/simple_animal/hostile/clan/examine(mob/user)
 	. = ..()
-	if(can_protect)
+	if(can_protect && wants_to_talk)
 		. += span_notice("You are able to speak to [src] when clicking on them with your bare hands!")
 
 /mob/living/simple_animal/hostile/clan/proc/CanTalk()
 	return !target && !speaking
 
 /mob/living/simple_animal/hostile/clan/attack_hand(mob/living/carbon/M)
-	if(!stat && M.a_intent == INTENT_HELP && !client && CanTalk() && can_protect)
+	if(!stat && M.a_intent == INTENT_HELP && !client && CanTalk() && can_protect && wants_to_talk)
+		if (last_greeting_cooldown < world.time - greeting_cooldown)
+			say(greeting_line)
+			last_greeting_cooldown = world.time
 		speaking = TRUE
 		var/robot_ask = alert("ask them", "[src] is listening to you.", "[question1]", "[question2]", "[question3]", "Cancel")
 		if(robot_ask == "[question1]")
@@ -115,6 +125,8 @@
 			Speech(answers3)
 		speaking = FALSE
 		return
+	else
+		manual_emote("looks away, avoiding [M]'s gaze...")
 	return ..()
 
 /mob/living/simple_animal/hostile/clan/proc/Speech(speech)
