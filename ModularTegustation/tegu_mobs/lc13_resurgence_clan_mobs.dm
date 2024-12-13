@@ -17,9 +17,11 @@
 	melee_damage_upper = 7
 	a_intent = INTENT_HARM
 	mob_size = MOB_SIZE_HUGE
+	move_resist = MOVE_FORCE_STRONG
+	pull_force = MOVE_FORCE_STRONG
+	can_buckle_to = FALSE
 	robust_searching = TRUE
 	stat_attack = HARD_CRIT
-	a_intent = INTENT_HARM
 	see_in_dark = 7
 	vision_range = 12
 	aggro_vision_range = 20
@@ -33,8 +35,20 @@
 	var/max_charge = 10
 	var/clan_charge_cooldown = 2 SECONDS
 	var/last_charge_update = 0
+
+//Talking Stuff
 	var/can_protect = FALSE
 
+	var/question1 = "Who are you?"
+	var/question2 = "Why are you here?"
+	var/question3 = "What is this faction?"
+	var/list/answers1 = list("O-oh... I a-am James.", "A ci-itizen of the resu-urgence clan...", "For no-ow, I am ju-ust o-off duty.")
+	var/list/answers2 = list("Curre-ently, I-I and my fe-ellow cla-an members are sco-outing this area...", "The Hi-istorian wants use to study hu-umans.", "And thi-is is the closest we co-ould get to them...", "So-o we are wa-aiting here until further orders.")
+	var/list/answers3 = list("The-e clan is just one of ma-any villages in the O-outskirts...", "All of the me-embers of the clan are ma-achines...", "Like me...", "Delay: 20", "One day, We-e dream to be hu-uman...", "Just li-ike you, We ju-ust need to learn mo-ore...")
+	var/default_delay = 30
+	var/speaking = FALSE
+
+//Normal Clan Stuff
 /mob/living/simple_animal/hostile/clan/spawn_gibs()
 	new /obj/effect/gibspawner/scrap_metal(drop_location(), src)
 
@@ -57,25 +71,65 @@
 		last_charge_update = world.time
 		GainCharge()
 
+//Guard Stuff
 /mob/living/simple_animal/hostile/clan/CanAttack(atom/the_target)
-	if (the_target in GLOB.marked_players && can_protect)
+	if ((the_target in GLOB.marked_players) && can_protect)
 		return TRUE
 	. = ..()
 
 /mob/living/simple_animal/hostile/clan/bullet_act(obj/projectile/P)
 	. = ..()
 	if((P.firer && get_dist(src, P.firer) <= aggro_vision_range) && can_protect)
-		if (!(P.firer in GLOB.marked_players ))
+		if (!(P.firer in GLOB.marked_players))
 			GLOB.marked_players += P.firer
 
 /mob/living/simple_animal/hostile/clan/attackby(obj/item/O, mob/user, params)
 	. = ..()
-	if (!(user in GLOB.marked_players ) && can_protect)
+	if (!(user in GLOB.marked_players) && can_protect)
 		GLOB.marked_players += user
 
-/mob/living/simple_animal/hostile/clan/scout/protector
-	can_protect = TRUE
+//Npc Stuff
+/mob/living/simple_animal/hostile/clan/examine(mob/user)
+	. = ..()
+	if(can_protect)
+		. += span_notice("You are able to speak to [src] when clicking on them with your bare hands!")
 
+/mob/living/simple_animal/hostile/clan/proc/CanTalk()
+	return !target && !speaking
+
+/mob/living/simple_animal/hostile/clan/attack_hand(mob/living/carbon/M)
+	if(!stat && M.a_intent == INTENT_HELP && !client && CanTalk() && can_protect)
+		speaking = TRUE
+		var/robot_ask = alert("ask them", "[src] is listening to you.", "[question1]", "[question2]", "[question3]", "Cancel")
+		if(robot_ask == "[question1]")
+			M.say("[question1]")
+			SLEEP_CHECK_DEATH(default_delay)
+			Speech(answers1)
+		else if(robot_ask == "[question2]")
+			M.say("[question2]")
+			SLEEP_CHECK_DEATH(default_delay)
+			Speech(answers2)
+		else if(robot_ask == "[question3]")
+			M.say("[question3]")
+			SLEEP_CHECK_DEATH(default_delay)
+			Speech(answers3)
+		speaking = FALSE
+		return
+	return ..()
+
+/mob/living/simple_animal/hostile/clan/proc/Speech(speech)
+	for (var/S in speech)
+		if (findtext(S, "Emote: ") == 1)
+			manual_emote(copytext(S, 8, length(S) + 1))
+		else if (findtext(S, "Move: ") == 1)
+			step(src, text2dir(copytext(S, 7, length(S) + 1)))
+		else if (findtext(S, "Icon: ") == 1)
+			icon_state = copytext(S, 7, length(S) + 1)
+		else if (findtext(S, "Delay: ") == 1)
+			SLEEP_CHECK_DEATH(text2num(copytext(S, 8, length(S) + 1)))
+		else
+			say(S)
+		SLEEP_CHECK_DEATH(default_delay)
 
 //Clan Member: Scout
 /mob/living/simple_animal/hostile/clan/scout
@@ -195,15 +249,27 @@
 
 
 /mob/living/simple_animal/hostile/clan/defender/proc/ApplyLock(mob/living/L)
-	if(!faction_check_mob(L, FALSE))
-		// apply status effect
-		var/datum/status_effect/locked/S = L.has_status_effect(/datum/status_effect/locked)
-		if(!S)
-			S = L.apply_status_effect(/datum/status_effect/locked)
-		if (!S.list_of_defenders.Find(src))
-			S.list_of_defenders += src
-			locked_list += L
-		// keep a list of everyone locked
+	if(!can_protect)
+		if(!faction_check_mob(L, FALSE))
+			// apply status effect
+			var/datum/status_effect/locked/S = L.has_status_effect(/datum/status_effect/locked)
+			if(!S)
+				S = L.apply_status_effect(/datum/status_effect/locked)
+			if (!S.list_of_defenders.Find(src))
+				S.list_of_defenders += src
+				locked_list += L
+			// keep a list of everyone locked
+	else
+		if(!faction_check_mob(L, TRUE))
+			// apply status effect
+			var/datum/status_effect/locked/S = L.has_status_effect(/datum/status_effect/locked)
+			if(!S)
+				S = L.apply_status_effect(/datum/status_effect/locked)
+			if (!S.list_of_defenders.Find(src))
+				S.list_of_defenders += src
+				locked_list += L
+			// keep a list of everyone locked
+
 
 /mob/living/simple_animal/hostile/clan/defender/ChargeUpdated()
 	if (charge >= max_charge)
