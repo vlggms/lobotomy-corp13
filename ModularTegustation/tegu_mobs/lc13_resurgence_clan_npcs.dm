@@ -1,3 +1,5 @@
+GLOBAL_LIST_EMPTY(marked_players)
+
 /mob/living/simple_animal/hostile/clan_npc
 	name = "Quiet Citzen?"
 	desc = "A humanoid looking machine... It appears to have 'Resurgence Clan' etched on their back..."
@@ -20,10 +22,13 @@
 	speech_span = SPAN_ROBOT
 	emote_hear = list("creaks.", "emits the sound of grinding gears.")
 	speak_chance = 1
-	a_intent = "help"
 	maxHealth = 300
 	health = 300
 	death_message = "falls to their knees as their lights slowly go out..."
+	ranged = TRUE
+	retreat_distance = 10
+	minimum_distance = 10
+	vision_range = 7
 	melee_damage_lower = 0
 	melee_damage_upper = 4
 	mob_size = MOB_SIZE_HUGE
@@ -32,15 +37,27 @@
 	guaranteed_butcher_results = list(/obj/item/food/meat/slab/robot = 1)
 	silk_results = list(/obj/item/stack/sheet/silk/azure_simple = 1)
 
-/mob/living/simple_animal/hostile/clan_npc/AttackingTarget()
-	return
-
 /mob/living/simple_animal/hostile/clan_npc/CanAttack(atom/the_target)
-	return
+	if (the_target in GLOB.marked_players)
+		return TRUE
+	. = ..()
+
+/mob/living/simple_animal/hostile/clan_npc/bullet_act(obj/projectile/P)
+	. = ..()
+	if(P.firer && get_dist(src, P.firer) <= aggro_vision_range)
+		if (!(P.firer in GLOB.marked_players ))
+			GLOB.marked_players += P.firer
 
 /mob/living/simple_animal/hostile/clan_npc/attack_hand(mob/living/carbon/M)
 	if(!stat && M.a_intent == INTENT_HELP && !client)
 		manual_emote("looks away, avoiding [M]'s gaze...")
+
+/mob/living/simple_animal/hostile/clan_npc/attackby(obj/item/O, mob/user, params)
+	. = ..()
+	if (!(user in GLOB.marked_players ))
+		GLOB.marked_players += user
+
+
 
 /mob/living/simple_animal/hostile/clan_npc/info
 	name = "Talkative Citzen?"
@@ -51,29 +68,32 @@
 	var/list/answers2 = list("Curre-ently, I-I and my fe-ellow cla-an members are sco-outing this area...", "The Hi-istorian wants use to study hu-umans.", "And thi-is is the closest we co-ould get to them...", "So-o we are wa-aiting here until further orders.")
 	var/list/answers3 = list("The-e clan is just one of ma-any villages in the O-outskirts...", "All of the me-embers of the clan are ma-achines...", "Like me...", "Delay: 20", "One day, We-e dream to be hu-uman...", "Just li-ike you, We ju-ust need to learn mo-ore...")
 	var/default_delay = 30
+	var/speaking = FALSE
 
 /mob/living/simple_animal/hostile/clan_npc/info/examine(mob/user)
 	. = ..()
 	. += span_notice("You are able to speak to [src] when clicking on them with your bare hands!")
 
+/mob/living/simple_animal/hostile/clan_npc/info/proc/CanTalk()
+	return !target && !speaking
+
 /mob/living/simple_animal/hostile/clan_npc/info/attack_hand(mob/living/carbon/M)
-	if(!stat && M.a_intent == INTENT_HELP && !client)
+	if(!stat && M.a_intent == INTENT_HELP && !client && CanTalk())
+		speaking = TRUE
 		var/robot_ask = alert("ask them", "[src] is listening to you.", "[question1]", "[question2]", "[question3]", "Cancel")
 		if(robot_ask == "[question1]")
 			M.say("[question1]")
 			SLEEP_CHECK_DEATH(default_delay)
 			Speech(answers1)
-			return
-		if(robot_ask == "[question2]")
-			SLEEP_CHECK_DEATH(default_delay)
+		else if(robot_ask == "[question2]")
 			M.say("[question2]")
+			SLEEP_CHECK_DEATH(default_delay)
 			Speech(answers2)
-			return
-		if(robot_ask == "[question3]")
+		else if(robot_ask == "[question3]")
 			M.say("[question3]")
 			SLEEP_CHECK_DEATH(default_delay)
 			Speech(answers3)
-			return
+		speaking = FALSE
 		return
 	return ..()
 
@@ -209,6 +229,7 @@
 				say(buying_say)
 				successful_sale = FALSE
 			return
+	. = ..()
 
 /mob/living/simple_animal/hostile/clan_npc/info/trader/proc/ManageSales(obj/item/O, mob/living/user)
 	var/spawntype
