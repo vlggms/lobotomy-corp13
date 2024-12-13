@@ -21,7 +21,6 @@ GLOBAL_LIST_EMPTY(marked_players)
 	gender = NEUTER
 	speech_span = SPAN_ROBOT
 	emote_hear = list("creaks.", "emits the sound of grinding gears.")
-	speak_chance = 1
 	maxHealth = 300
 	health = 300
 	death_message = "falls to their knees as their lights slowly go out..."
@@ -114,20 +113,30 @@ GLOBAL_LIST_EMPTY(marked_players)
 
 /mob/living/simple_animal/hostile/clan_npc/info/trader
 	name = "Trader Citzen?"
-	question1 = "Who are you?"
-	question2 = "Why are you here?"
-	question3 = "What are you selling?"
-	answers1 = list("O-oh... I a-am James.", "A ci-itizen of the resu-urgence clan...", "For no-ow, I am ju-ust o-off duty.")
-	answers2 = list("Curre-ently, I-I and my fe-ellow cla-an members are sco-outing this area...", "The Hi-istorian wants use to study hu-umans.", "And thi-is is the closest we co-ould get to them...", "So-o we are wa-aiting here until further orders.")
-	answers3 = list("Sure!", "I got some good things in store today...")
-	default_delay = 30
+
+	//Vars that should not be edited
 	var/trading = FALSE
 	var/successful_sale = FALSE
+
+	//Vars that effect the traders dialogue
+	var/selling_question = "What are you selling?"
+	var/selling_answer = list("Sure!", "I got some good things in store today...")
+
 	var/buying_say = "Good Deal!"
-	var/selling_say = "Sold!"
+
+	var/sold_say = "Sold!"
 	var/poor_say = "Aw... Looks like you still need "
 	var/selling_end = "Got it, We are always open if you need anything!"
-	var/sold
+
+	//Vars that effect what the trader is selling
+	var/can_sell = TRUE
+	var/selling_item_1 = /obj/item/reagent_containers/hypospray/medipen/salacid
+	var/cost_1 = 50
+	var/selling_item_2 = /obj/item/reagent_containers/hypospray/medipen/mental
+	var/cost_2 = 200
+
+	//Vars that effect what the traders is buying
+	var/can_buy = TRUE
 	var/list/level_1 = list(
 		/obj/item/rawpe,
 		/obj/item/food/meat/slab/robot,
@@ -152,37 +161,46 @@ GLOBAL_LIST_EMPTY(marked_players)
 /mob/living/simple_animal/hostile/clan_npc/info/trader/attack_hand(mob/living/carbon/M)
 	if(!stat && M.a_intent == INTENT_HELP && !client)
 		if (!trading)
-			var/robot_ask = alert("ask them", "[src] is listening to you.", "[question1]", "[question2]", "[question3]", "Cancel")
+			var/robot_ask
+			if (can_sell)
+				robot_ask = alert("ask them", "[src] is listening to you.", "[question1]", "[question2]", "[selling_question]", "Cancel")
+			else
+				robot_ask = alert("ask them", "[src] is listening to you.", "[question1]", "[question2]", "[question3]", "Cancel")
+
 			if(robot_ask == "[question1]")
 				M.say("[question1]")
 				SLEEP_CHECK_DEATH(default_delay)
 				Speech(answers1)
 				return
 			if(robot_ask == "[question2]")
-				SLEEP_CHECK_DEATH(default_delay)
 				M.say("[question2]")
+				SLEEP_CHECK_DEATH(default_delay)
 				Speech(answers2)
 				return
 			if(robot_ask == "[question3]")
 				M.say("[question3]")
 				SLEEP_CHECK_DEATH(default_delay)
-				trading = TRUE
 				Speech(answers3)
+				return
+			if(robot_ask == "[selling_question]")
+				M.say("[selling_question]")
+				SLEEP_CHECK_DEATH(default_delay)
+				trading = TRUE
+				Speech(selling_answer)
 				return
 			return
 		else
 			var/robot_ask = alert("ask them", "[src] is offering to you.", "Item 1 (50 ahn)", "Item 2 (200 ahn)", "I am done buying.", "Cancel")
 			if(robot_ask == "Item 1 (50 ahn)")
-				SellingItem(/obj/item/reagent_containers/hypospray/medipen/salacid, 50, M)
+				SellingItem(selling_item_1, cost_1, M)
 				return
 			if(robot_ask == "Item 2 (200 ahn)")
-				SellingItem(/obj/item/reagent_containers/hypospray/medipen/mental, 200, M)
+				SellingItem(selling_item_2, cost_2, M)
 				return
 			if(robot_ask == "I am done buying.")
 				say(selling_end)
 				trading = FALSE
 				return
-
 	return ..()
 
 /mob/living/simple_animal/hostile/clan_npc/info/trader/proc/SetSellables()
@@ -213,7 +231,7 @@ GLOBAL_LIST_EMPTY(marked_players)
 		to_chat(user, span_warning("[src] is dead!"))
 		return
 	else
-		if(user.a_intent == INTENT_HELP)
+		if(user.a_intent == INTENT_HELP && can_buy)
 			if(istype(O, /obj/item/storage)) // Code for storage dumping
 				var/obj/item/storage/S = O
 				for(var/obj/item/IT in S)
@@ -257,6 +275,6 @@ GLOBAL_LIST_EMPTY(marked_players)
 		var/amount = C.spend(price)
 		if (amount > 0)
 			new sold_item (get_turf(M))
-			say(selling_say)
+			say(sold_say)
 		else
 			say(poor_say + "[(price - credits)] more ahn...")
