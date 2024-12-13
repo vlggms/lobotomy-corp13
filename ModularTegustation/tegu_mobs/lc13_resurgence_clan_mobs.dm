@@ -33,6 +33,7 @@
 	var/max_charge = 10
 	var/clan_charge_cooldown = 2 SECONDS
 	var/last_charge_update = 0
+	var/can_protect = FALSE
 
 /mob/living/simple_animal/hostile/clan/spawn_gibs()
 	new /obj/effect/gibspawner/scrap_metal(drop_location(), src)
@@ -55,6 +56,26 @@
 	if (last_charge_update < world.time - clan_charge_cooldown)
 		last_charge_update = world.time
 		GainCharge()
+
+/mob/living/simple_animal/hostile/clan/CanAttack(atom/the_target)
+	if (the_target in GLOB.marked_players && can_protect)
+		return TRUE
+	. = ..()
+
+/mob/living/simple_animal/hostile/clan/bullet_act(obj/projectile/P)
+	. = ..()
+	if((P.firer && get_dist(src, P.firer) <= aggro_vision_range) && can_protect)
+		if (!(P.firer in GLOB.marked_players ))
+			GLOB.marked_players += P.firer
+
+/mob/living/simple_animal/hostile/clan/attackby(obj/item/O, mob/user, params)
+	. = ..()
+	if (!(user in GLOB.marked_players ) && can_protect)
+		GLOB.marked_players += user
+
+/mob/living/simple_animal/hostile/clan/scout/protector
+	can_protect = TRUE
+
 
 //Clan Member: Scout
 /mob/living/simple_animal/hostile/clan/scout
