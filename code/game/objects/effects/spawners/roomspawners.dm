@@ -4,39 +4,31 @@
 	icon = 'icons/effects/landmarks_static.dmi'
 	icon_state = "random_room"
 	dir = NORTH
-	var/datum/map_template/random_room/template
 	var/room_width = 0
 	var/room_height = 0
 	var/room_type = "maintenance" // Used so we can place landmarks in ruins and such.
 
 /obj/effect/spawner/room/Initialize()
-	..()/*
+	..()
 	return INITIALIZE_HINT_LATELOAD
 
-/obj/effect/spawner/room/LateInitialize()*/
+/obj/effect/spawner/room/LateInitialize()
 	var/list/possibletemplates = list()
 	var/datum/map_template/random_room/cantidate = null
 	shuffle_inplace(SSmapping.random_room_templates)
 	for(var/ID in SSmapping.random_room_templates)
 		cantidate = SSmapping.random_room_templates[ID]
-		if(istype(cantidate, /datum/map_template/random_room) && (room_height == cantidate.template_height) && (room_width == cantidate.template_width) && (room_type == cantidate.room_type))
-			if(!cantidate.spawned)
-				possibletemplates[cantidate] = cantidate.weight
-		cantidate = null
-	if(possibletemplates.len)
-		template = pickweight(possibletemplates)
-		template.stock --
+		if(room_height != cantidate.template_height || room_width != cantidate.template_width || room_type != cantidate.room_type || cantidate.spawned)
+			cantidate = null
+			continue
+		possibletemplates[cantidate] = cantidate.weight
+	if(length(possibletemplates))
+		var/datum/map_template/random_room/template = pickweight(possibletemplates)
+		template.stock--
 		template.weight = (template.weight / 2)
 		if(template.stock <= 0)
 			template.spawned = TRUE
-		addtimer(CALLBACK(src, TYPE_PROC_REF(/obj/effect/spawner/room, LateSpawn)), 600)
-	else
-		template = null
-	if(!template)
-		qdel(src)
-
-/obj/effect/spawner/room/proc/LateSpawn()
-	template.load(get_turf(src), centered = template.centerspawner)
+		template.load(get_turf(src), centered = template.centerspawner)
 	qdel(src)
 
 /* Spawner landmarks */

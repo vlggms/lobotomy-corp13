@@ -81,8 +81,8 @@
 	},
 /area/city/backstreets_room)
 "n" = (
-/turf/closed/indestructible/rock,
-/area/city/backstreets_room)
+/turf/template_noop,
+/area/template_noop)
 "p" = (
 /obj/effect/turf_decal/weather/dirt{
 	dir = 1

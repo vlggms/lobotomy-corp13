@@ -257,6 +257,9 @@
 	},
 /turf/open/floor/plating/dirt/jungle/dark,
 /area/city/backstreets_room)
+"sU" = (
+/turf/template_noop,
+/area/template_noop)
 "tk" = (
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/effect/decal/cleanable/dirt/dust,
@@ -613,8 +616,8 @@
 /area/city/backstreets_room)
 
 (1,1,1) = {"
-XA
-XA
+sU
+dA
 dA
 dA
 dA
@@ -625,12 +628,12 @@ VO
 dA
 dA
 dA
-XA
-XA
-XA
+sU
+sU
+sU
 "}
 (2,1,1) = {"
-XA
+dA
 dA
 fB
 zf
@@ -642,9 +645,9 @@ hV
 yf
 dA
 dA
-XA
-XA
-XA
+dA
+sU
+sU
 "}
 (3,1,1) = {"
 dA
@@ -660,8 +663,8 @@ XV
 Rd
 yo
 dA
-XA
-XA
+dA
+sU
 "}
 (4,1,1) = {"
 dA
@@ -678,7 +681,7 @@ XV
 Rd
 gN
 dA
-XA
+sU
 "}
 (5,1,1) = {"
 dA
@@ -695,7 +698,7 @@ XV
 Rd
 XV
 dA
-XA
+sU
 "}
 (6,1,1) = {"
 dA
@@ -712,10 +715,10 @@ XV
 XV
 VL
 dA
-XA
+sU
 "}
 (7,1,1) = {"
-XA
+dA
 dA
 Qf
 XV
@@ -729,10 +732,10 @@ Rd
 XV
 nw
 eM
-XA
+dA
 "}
 (8,1,1) = {"
-XA
+sU
 dA
 XV
 mV
@@ -749,7 +752,7 @@ Tt
 dA
 "}
 (9,1,1) = {"
-XA
+sU
 dA
 XV
 kv
@@ -766,7 +769,7 @@ ih
 eM
 "}
 (10,1,1) = {"
-XA
+sU
 dA
 yf
 sv
@@ -783,8 +786,8 @@ LV
 dA
 "}
 (11,1,1) = {"
-XA
-XA
+sU
+dA
 dA
 Bo
 XV
@@ -800,9 +803,9 @@ mr
 dA
 "}
 (12,1,1) = {"
-XA
-XA
-XA
+sU
+sU
+dA
 dA
 XV
 mr
@@ -814,12 +817,12 @@ Rd
 Rd
 MH
 dA
-XA
+dA
 "}
 (13,1,1) = {"
-XA
-XA
-XA
+sU
+sU
+sU
 dA
 dA
 eM
@@ -830,6 +833,6 @@ dA
 dA
 dA
 dA
-XA
-XA
+dA
+sU
 "}

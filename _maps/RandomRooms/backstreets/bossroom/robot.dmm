@@ -97,8 +97,8 @@
 /turf/open/floor/engine,
 /area/city/backstreets_room)
 "PH" = (
-/turf/closed/indestructible/rock,
-/area/city/backstreets_room)
+/turf/template_noop,
+/area/template_noop)
 "Rh" = (
 /obj/effect/turf_decal{
 	dir = 8

@@ -55,9 +55,6 @@
 					if(directions.len)
 						gib.streak(directions, mapload)
 
-	return INITIALIZE_HINT_QDEL
-
-
 /obj/effect/gibspawner/generic
 	gibtypes = list(/obj/effect/decal/cleanable/blood/gibs, /obj/effect/decal/cleanable/blood/gibs, /obj/effect/decal/cleanable/blood/gibs/core)
 	gibamounts = list(2, 2, 1)

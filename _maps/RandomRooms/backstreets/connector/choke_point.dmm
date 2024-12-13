@@ -9,6 +9,9 @@
 	},
 /turf/open/floor/plating/asteroid/basalt,
 /area/city/backstreets_room)
+"g" = (
+/turf/template_noop,
+/area/template_noop)
 "h" = (
 /obj/item/folder/documents,
 /obj/effect/spawner/structure/window/plasma/reinforced/plastitanium,
@@ -28,8 +31,8 @@
 /turf/closed/indestructible/reinforced,
 /area/city/backstreets_room)
 "o" = (
-/turf/open/space/basic,
-/area/city/backstreets_room)
+/turf/open/floor/plating/asteroid/basalt,
+/area/template_noop)
 "p" = (
 /obj/structure/sign/poster/official/cohiba_robusto_ad,
 /turf/closed/indestructible/reinforced,
@@ -94,10 +97,10 @@ a
 Q
 a
 a
-a
-a
-a
-a
+g
+g
+g
+g
 a
 "}
 (3,1,1) = {"
@@ -110,11 +113,11 @@ a
 F
 W
 a
-a
-a
-a
-a
-a
+g
+g
+g
+g
+g
 a
 "}
 (4,1,1) = {"
@@ -127,11 +130,11 @@ o
 a
 Q
 a
-a
-a
-a
-a
-a
+g
+g
+g
+g
+g
 a
 "}
 (5,1,1) = {"
@@ -145,9 +148,9 @@ a
 Q
 a
 a
-a
-a
-a
+g
+g
+g
 a
 a
 "}
@@ -205,69 +208,69 @@ Q
 (9,1,1) = {"
 a
 a
-a
-a
-a
+g
+g
+g
 a
 a
 Q
 a
 a
-a
-a
-a
+g
+g
+g
 a
 a
 "}
 (10,1,1) = {"
 a
-a
-a
-a
-a
-a
+g
+g
+g
+g
+g
 a
 W
 m
-a
-a
-a
-a
-a
+g
+g
+g
+g
+g
 a
 "}
 (11,1,1) = {"
 a
-a
-a
-a
-a
-a
+g
+g
+g
+g
+g
 a
 W
 a
-a
-a
-a
-a
-a
+g
+g
+g
+g
+g
 a
 "}
 (12,1,1) = {"
 a
-a
-a
-a
-a
+g
+g
+g
+g
 a
 a
 Q
 a
 a
-a
-a
-a
-a
+g
+g
+g
+g
 a
 "}
 (13,1,1) = {"

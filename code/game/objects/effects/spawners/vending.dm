@@ -7,14 +7,11 @@
 	var/hacked = FALSE
 
 /obj/effect/spawner/randomsnackvend/Initialize(mapload)
-	..()
+	. = ..()
 
 	var/random_vendor = pick(subtypesof(/obj/machinery/vending/snack))
 	var/obj/machinery/vending/snack/vend = new random_vendor(loc)
 	vend.extended_inventory = hacked
-
-	return INITIALIZE_HINT_QDEL
-
 
 /obj/effect/spawner/randomcolavend
 	icon = 'icons/obj/vending.dmi'
@@ -25,13 +22,11 @@
 	var/hacked = FALSE
 
 /obj/effect/spawner/randomcolavend/Initialize(mapload)
-	..()
+	. = ..()
 
 	var/random_vendor = pick(subtypesof(/obj/machinery/vending/cola))
 	var/obj/machinery/vending/cola/vend = new random_vendor(loc)
 	vend.extended_inventory = hacked
-
-	return INITIALIZE_HINT_QDEL
 
 /obj/effect/spawner/weaving_vending
 	icon = 'icons/obj/vending.dmi'
@@ -41,9 +36,7 @@
 
 
 /obj/effect/spawner/weaving_vending/Initialize(mapload)
-	..()
+	. = ..()
 
-	if (SSmaptype.maptype == "fixers")
+	if(SSmaptype.maptype == "fixers")
 		new /obj/machinery/vending/weaving/cheap(loc)
-
-	return INITIALIZE_HINT_QDEL

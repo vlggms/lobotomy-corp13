@@ -5,7 +5,7 @@
 	desc = "Automagically transforms into a random arcade machine. If you see this while in a shift, please create a bug report."
 
 /obj/effect/spawner/randomarcade/Initialize(mapload)
-	..()
+	. = ..()
 
 	var/static/list/gameodds = list(
 		/obj/item/circuitboard/computer/arcade/battle = 49,
@@ -20,6 +20,3 @@
 
 	var/obj/arcade = new new_build_path(loc)
 	arcade.setDir(dir)
-
-	// And request a qdel.
-	return INITIALIZE_HINT_QDEL
