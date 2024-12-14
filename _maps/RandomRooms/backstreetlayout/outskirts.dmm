@@ -199,11 +199,11 @@
 	icon_living = "clan_citzen_2";
 	icon_state = "clan_citzen_2";
 	dir = 1;
-	greeting_line = "Howdy Pal, I have not seen your kind in a while!";
-	answers1 = list("Well Partner, Friends call me James", "You can say I am a... Hunter if you could tell.", "I explore around the ruins with my pal, finding monsters to take apart.", "After all, The Weaver does need material to make such outfits");
+	greeting_line = "Howdy Pa-al, I have no-ot seen your kind in a whi-ile!";
+	answers1 = list("Well Pa-artner, Friends ca-all me James", "You can sa-ay I am a... Hunte-er if you could te-ell.", "I explore arou-und the rui-ins with my pal Ronan, finding monste-ers to take apa-art.", "After a-all, The Weaver does nee-ed material to make such o-outfits");
 	question2 = "What are wearing?";
-	answers2 = list("It is nice, Is it not?", "Emote: points at their boots", "The great Weaver was able to make them them for me.", "And I do say, They really fit the 'Hunter' look I have seem often.");
-	answers3 = list("If you are asking about this faction...", "The Clan is just one of ma-any villages in the O-outskirts...","All of the me-embers of the clan are ma-achines...","Like me...","Delay: 20","But we are clo-ose to being hu-uman!","We ju-ust need to stu-udy mo-ore, then we can learn what it means to be Hu-uman...")
+	answers2 = list("It i-is nice, Is it no-ot?", "Emote: points at thei-ir boots", "The great Weave-er was able to make the-em them for me.", "And I do sa-ay, They really fit the 'Hunter' look I have see-em often.");
+	answers3 = list("If you-u are asking abo-out this faction...", "The Cla-an is just one of ma-any villages in the O-outskirts...","All of the me-embers of the clan are ma-achines...","Li-ike me...","Delay: 20","But we are clo-ose to being hu-uman!","We ju-ust need to stu-udy mo-ore, then we can learn what it means to be Hu-uman...")
 	},
 /turf/open/floor/plating/ironsand,
 /area/city/backstreets_alley)
@@ -467,12 +467,12 @@
 	level_1 = null;
 	level_3 = null;
 	question3 = "What are you collecting?";
-	answers3 = list("O-oh!, I am ga-athering books...", "Spe-ecify book from the ci-ity.", "They shou-uld be called 'Skill Books?'", "If you find any, even if they have already been read, I am willing to buy them from you.");
+	answers3 = list("Oh!, I am gathering books...", "Specify book from the city.", "They should be called 'Skill Books?'", "If you find any, even if they have already been read, I am willing to buy them from you.");
 	dir = 4;
 	greeting_line = "Oh my! Greetings human!";
 	question2 = "How did all of you get here?";
-	answers1 = list("We-ell, You may ca-all me Lorenzo", "I am one of the Historian's scholars.", "Just examining and studying the city...");
-	answers2 = list("Tha-at is thanks to o-our Elders", "The-ey... The Tinkerer found a wa-ay to teleport an outpost great di-istances.", "So the other Elders are currently using thi-is tech to send us clo-oser to the Ci-ity.")
+	answers1 = list("Well, You may call me Lorenzo", "I am one of the Historian's scholars.", "Just examining and studying the city...");
+	answers2 = list("That is thanks to our Elders", "They... The Tinkerer found a way to teleport an outpost great distances.", "So the other Elders are currently using this tech to send us closer to the City.")
 	},
 /turf/open/floor/plating/ironsand,
 /area/city/backstreets_alley)
@@ -678,7 +678,8 @@
 	question2 = "Why are you not attacking me?";
 	question3 = "Why do you sound so strange?";
 	answers1 = list("Emote: sighs", "I am Dion, One of the Defenders at this outpost.", "Just standing around here, making sure everyone is safe.");
-	answers2 = list("Oh, You are one of the new humans around here...", "Talk with our Comander, They should be to the right of me.", They will be able to explain some things...)
+	answers2 = list("Oh, You are one of the new humans around here...", "Talk with our Comander, They should be to the right of me.", They will be able to explain some things...);
+	answers3 = list("Oh we-ell, I guess you can sa-ay that I am not there yet...", "It ta-akes a whi-ile to get a upgraded vo-oice box, so o-only the closest followers of o-our Elders get them.", "Hopefu-uly that time wi-ill come one day. But fo-or now I just nee-ed to work for i-it.")
 	},
 /turf/open/floor/plating/ironsand,
 /area/city/backstreets_alley)
@@ -749,10 +750,14 @@
 /mob/living/simple_animal/hostile/clan_npc/info/trader{
 	icon_state = "clan_citzen_trader";
 	icon_living = "clan_citzen_trader";
-	answers1 = list("Well, You may call me Ronan.","Currently, I am running this humble shop for passerbys like you!");
+	answers1 = list("Well, Yo-ou may call me Ronan.","Currently, I am ru-unning this humble sho-op for passerbys li-ike you!");
 	question2 = "What are you buying?";
-	answers2 = list("As of now...", "I am willing to buy robotic components.", "You know those weird bots which are running around, guns or spears for hands?", "I heard that their parts are quite useful.", "Also, The outskirts would be better off without them.");
-	greeting_line = "Hm... Welcome customer."
+	answers2 = list("A-as of now...", "I am willi-ing to buy robotic components.", "You kno-ow those weird bo-ots which are ru-unning around, guns or spe-ears for hands?", "I heard tha-at their parts are quite u-useful.", "Also, The outskirts wo-ould be better off without the-em.");
+	greeting_line = "Hm... We-elcome cu-ustomer.";
+	selling_answer = list("Su-ure!","I got so-ome good thi-ings in store to-oday...");
+	buying_say = "Go-ood Deal!";
+	poor_say = "Aw... Looks li-ike you still need ";
+	sold_say = "So-old!"
 	},
 /obj/effect/turf_decal/siding/blue{
 	dir = 1
