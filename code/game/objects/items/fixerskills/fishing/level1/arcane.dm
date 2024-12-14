@@ -1,4 +1,3 @@
-//Scry
 /obj/item/book/granter/action/skill/scry
 	name = "Level 1 Skill: Scry"
 	actionname = "Scry"
@@ -28,7 +27,6 @@
 		if(planet.phase == 1)
 			to_chat(user, span_notice("[planet.name] is in alignment with earth."))
 
-//Sacred Word
 /obj/item/book/granter/action/skill/sacredword
 	name = "Level 1 Skill: Sacred Word"
 	actionname = "Sacred Word"
@@ -57,7 +55,6 @@
 
 	to_chat(user, span_danger("... but silence is the only listener.")) // Your planet is done broke
 
-//Commune
 /obj/item/book/granter/action/skill/commune
 	name = "Level 1 Skill: Commune"
 	actionname = "Commune"

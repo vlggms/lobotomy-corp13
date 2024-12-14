@@ -8,8 +8,8 @@
 	custom_premium_price = 600
 
 /datum/action/cooldown/fishing/prayer
-	button_icon_state = "lunar"
 	name = "Lunar Prayer"
+	button_icon_state = "lunar"
 	cooldown_time = 30 SECONDS
 	devotion_cost = 3
 
@@ -33,8 +33,8 @@
 	custom_premium_price = 600
 
 /datum/action/cooldown/fishing/love
-	button_icon_state = "love"
 	name = "God's Love"
+	button_icon_state = "love"
 	cooldown_time = 30 SECONDS
 	devotion_cost = 3
 	var/healamount = 1

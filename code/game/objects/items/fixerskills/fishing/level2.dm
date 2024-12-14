@@ -1,19 +1,17 @@
-//Smite the Heretic
 /obj/item/book/granter/action/skill/smite
-	granted_action = /datum/action/cooldown/fishing/smite
-	actionname = "Smite the Heretics"
 	name = "Level 2 Skill: Smite the Heretics"
+	actionname = "Smite the Heretics"
+	granted_action = /datum/action/cooldown/fishing/smite
 	level = 2
 	custom_premium_price = 1200
 
 /datum/action/cooldown/fishing/smite
-	button_icon_state = "smite"
 	name = "Smite the Heretics"
+	button_icon_state = "smite"
 	cooldown_time = 30 SECONDS
 	devotion_cost = 7
 
 /datum/action/cooldown/fishing/smite/FishEffect(mob/living/user)
-	//Compile people around you
 	for(var/mob/living/sinner in view(4, get_turf(src)))
 		if(user.god_aligned == sinner.god_aligned)
 			continue
@@ -28,17 +26,16 @@
 		else
 			to_chat(sinner, span_userdanger("The gods have punished you for your sins using [user] as a conduit!"))
 
-//Lunar Might
 /obj/item/book/granter/action/skill/might
-	granted_action = /datum/action/cooldown/fishing/might
-	actionname = "Lunar Might"
 	name = "Level 2 Skill: Lunar Might"
+	actionname = "Lunar Might"
+	granted_action = /datum/action/cooldown/fishing/might
 	level = 2
 	custom_premium_price = 1200
 
 /datum/action/cooldown/fishing/might
-	button_icon_state = "might"
 	name = "Lunar Might"
+	button_icon_state = "might"
 	cooldown_time = 30 SECONDS
 	devotion_cost = 7
 	var/stat_hold = 0
@@ -53,49 +50,45 @@
 	var/mob/living/carbon/human/H = owner
 	H.adjust_attribute_bonus(JUSTICE_ATTRIBUTE, -stat_hold)
 
-//Awe the Weak
 /obj/item/book/granter/action/skill/awe
-	granted_action = /datum/action/cooldown/fishing/awe
-	actionname = "Awe the Weak"
 	name = "Level 2 Skill: Awe the Weak"
+	actionname = "Awe the Weak"
+	granted_action = /datum/action/cooldown/fishing/awe
 	level = 2
 	custom_premium_price = 1200
 
 /datum/action/cooldown/fishing/awe
-	button_icon_state = "awe"
 	name = "Awe the Weak"
+	button_icon_state = "awe"
 	cooldown_time = 30 SECONDS
 	devotion_cost = 8
 
 /datum/action/cooldown/fishing/awe/FishEffect(mob/living/user)
-	//Compile people around you
 	for(var/mob/living/M in view(5, get_turf(src)))
 		if(M == owner)
 			continue
-		if(M.god_aligned == FISHGOD_NONE)
-			//Stun the non-believers.
+		if(M.god_aligned == FISHGOD_NONE) // Stun the non-believers.
 			to_chat(M, span_userdanger("You are in awe of [user]'s devotion to [user.god_aligned]!"), confidential = TRUE)
 			M.Immobilize(1.5 SECONDS)
+
 	StartCooldown()
 
-//Chakra Misalignment
 /obj/item/book/granter/action/skill/chakra
-	granted_action = /datum/action/cooldown/fishing/chakra
-	actionname = "Chakra Misalignment"
 	name = "Level 2 Skill: Chakra Misalignment"
+	actionname = "Chakra Misalignment"
+	granted_action = /datum/action/cooldown/fishing/chakra
 	level = 2
 	custom_premium_price = 1200
 
 /datum/action/cooldown/fishing/chakra
-	button_icon_state = "chakra"
 	name = "Chakra Misalignment"
+	button_icon_state = "chakra"
 	cooldown_time = 30 SECONDS
 	devotion_cost = 12
 
 /datum/action/cooldown/fishing/chakra/FishEffect(mob/living/user)
-	//Compile people around you
-	for(var/mob/living/M in view(4, get_turf(src)))
-		if(M == owner)
+	for(var/mob/living/victim in view(4, get_turf(user)))
+		if(victim == owner)
 			continue
 		if(M.god_aligned == FISHGOD_NONE)
 			continue
@@ -118,22 +111,21 @@
 /datum/action/cooldown/fishing/chakra/proc/obliterate(mob/living/carbon/H)
 	to_chat(H, span_userdanger("YOUR CHAKRA IS SPLITTING YOUR BODY!"), confidential = TRUE)
 	new /obj/effect/temp_visual/human_horizontal_bisect(get_turf(H))
-	H.set_lying_angle(NORTH) //gunk code I know, but it is the simplest way to override gib_animation() without touching other code. Also looks smoother.
+	H.set_lying_angle(NORTH) // gunk code I know, but it is the simplest way to override gib_animation() without touching other code. Also looks smoother.
 	H.gib()
 
-
-//Salmon Splitter
-//Explode someone into fish
+/// Salmon Splitter
+/// Explode someone dead into fish
 /obj/item/book/granter/action/skill/splitter
-	granted_action = /datum/action/cooldown/fishing/splitter
-	actionname = "Greater Fish - Vertical"
 	name = "Level 2 Skill: Greater Fish - Vertical"
+	actionname = "Greater Fish - Vertical"
+	granted_action = /datum/action/cooldown/fishing/splitter
 	level = 2
 	custom_premium_price = 1200
 
 /datum/action/cooldown/fishing/splitter
-	button_icon_state = "splitter"
 	name = "Greater Fish - Vertical"
+	button_icon_state = "splitter"
 	cooldown_time = 10 SECONDS
 	devotion_cost = 7
 
