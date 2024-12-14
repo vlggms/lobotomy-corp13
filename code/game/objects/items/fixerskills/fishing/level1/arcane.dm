@@ -75,7 +75,7 @@
 	if(user.god_aligned == FISHGOD_NONE) // Athiests can't commune because they don't have a soul
 		to_chat(user, span_userdanger("YOU HAVE NO GOD."))
 
-	var/input = stripped_input(user,"What do you want to send to others that follow your god?", ,"Commune")
+	var/input = stripped_input(user, "What do you want to send to others that follow your god?", "Fish communion", "Commune")
 	message_admins("A fisherman ([user.ckey]) has used commune with the following message: [input].")
 	for(var/mob/living/M in GLOB.player_list)
 		if(M.god_aligned == user.god_aligned)

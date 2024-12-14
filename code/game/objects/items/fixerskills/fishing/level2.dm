@@ -14,22 +14,19 @@
 
 /datum/action/cooldown/fishing/smite/FishEffect(mob/living/user)
 	//Compile people around you
-	for(var/mob/living/M in view(4, get_turf(src)))
-		if(M.god_aligned != M.god_aligned)
-			//Deal a fuckload of damage to athiests
-			if(M.god_aligned == initial(M.god_aligned))
-				var/damagedealing = clamp(user.devotion, 1, 50)
-				M.apply_damage(damagedealing * 2, WHITE_DAMAGE, null, M.run_armor_check(null, WHITE_DAMAGE), spread_damage = TRUE)	//KILL
-				if(ishuman(M))
-					to_chat(target, span_userdanger("The gods have punished you for your sins!"), confidential = TRUE)
-				return
+	for(var/mob/living/sinner in view(4, get_turf(src)))
+		if(user.god_aligned == sinner.god_aligned)
+			continue
 
-			//Deal some damage if they don't share the same god
-			if(M.god_aligned != user.god_aligned)
-				var/damagedealing = clamp(user.devotion, 1, 50)
-				M.apply_damage(damagedealing, WHITE_DAMAGE, null, M.run_armor_check(null, WHITE_DAMAGE), spread_damage = TRUE)	//KILL
-				if(ishuman(M))
-					to_chat(target, span_userdanger("[user.god_aligned] has punished you for your sins!"), confidential = TRUE)
+		var/damage = clamp(user.devotion, 1, 50)
+		if(sinner.god_aligned == FISHGOD_NONE) //Deal a fuckload of damage to athiests
+			damage *= 2
+
+		sinner.deal_damage(damage, WHITE_DAMAGE) //KILL
+		if(ishuman(user))
+			to_chat(sinner, span_userdanger("[user.god_aligned] has punished you for your sins using [user] as a conduit!"))
+		else
+			to_chat(sinner, span_userdanger("The gods have punished you for your sins using [user] as a conduit!"))
 
 //Lunar Might
 /obj/item/book/granter/action/skill/might
@@ -100,7 +97,7 @@
 	for(var/mob/living/M in view(4, get_turf(src)))
 		if(M == owner)
 			continue
-		if(M.god_aligned == initial(M.god_aligned))
+		if(M.god_aligned == FISHGOD_NONE)
 			continue
 
 		for(var/datum/planet/planet as anything in SSfishing.planets)
