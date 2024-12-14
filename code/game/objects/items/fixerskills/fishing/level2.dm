@@ -64,12 +64,12 @@
 	devotion_cost = 8
 
 /datum/action/cooldown/fishing/awe/FishEffect(mob/living/user)
-	for(var/mob/living/M in view(5, get_turf(src)))
-		if(M == owner)
+	for(var/mob/living/victim in view(5, get_turf(src)))
+		if(victim == owner)
 			continue
-		if(M.god_aligned == FISHGOD_NONE) // Stun the non-believers.
-			to_chat(M, span_userdanger("You are in awe of [user]'s devotion to [user.god_aligned]!"), confidential = TRUE)
-			M.Immobilize(1.5 SECONDS)
+		if(victim.god_aligned == FISHGOD_NONE) // Stun the non-believers.
+			to_chat(victim, span_userdanger("You are in awe of [user]'s devotion to [user.god_aligned]!"), confidential = TRUE)
+			victim.Immobilize(1.5 SECONDS)
 
 	StartCooldown()
 
@@ -90,15 +90,15 @@
 	for(var/mob/living/victim in view(4, get_turf(user)))
 		if(victim == owner)
 			continue
-		if(M.god_aligned == FISHGOD_NONE)
+		if(victim.god_aligned == FISHGOD_NONE)
 			continue
 
 		for(var/datum/planet/planet as anything in SSfishing.planets)
-			if(M.god_aligned != planet.god)
+			if(victim.god_aligned != planet.god)
 				continue
 
 			if(planet.phase != 1)
-				smite(M, user)
+				smite(victim, user)
 			return
 
 		obliterate(M) // their planet is dead, and so will they be
@@ -131,14 +131,14 @@
 
 /datum/action/cooldown/fishing/splitter/FishEffect(mob/living/user)
 	//Compile people around you in crit
-	for(var/mob/living/M in view(2, get_turf(src)))
-		if(M == owner)
+	for(var/mob/living/future_fish in view(2, get_turf(src)))
+		if(future_fish == owner)
 			continue
-		if(M.stat >= SOFT_CRIT)
-			to_chat(M, span_userdanger("YOU'RE FIN-ISHED!"), confidential = TRUE)
-			new /obj/effect/temp_visual/human_horizontal_bisect(get_turf(M))
-			M.set_lying_angle(NORTH)
+		if(future_fish.stat >= SOFT_CRIT)
+			to_chat(future_fish, span_userdanger("YOU'RE FIN-ISHED!"), confidential = TRUE)
+			new /obj/effect/temp_visual/human_horizontal_bisect(get_turf(future_fish))
+			future_fish.set_lying_angle(NORTH)
 
 			// Fesh
-			new /obj/item/food/fish/fresh_water/salmon(get_turf(M))
-			M.gib()
+			new /obj/item/food/fish/fresh_water/salmon(get_turf(future_fish))
+			future_fish.gib()
