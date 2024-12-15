@@ -35,6 +35,7 @@
 	var/max_charge = 10
 	var/clan_charge_cooldown = 2 SECONDS
 	var/last_charge_update = 0
+	var/teleport_away = FALSE
 
 //Talking Stuff
 	var/can_protect = FALSE
@@ -75,6 +76,13 @@
 	if (last_charge_update < world.time - clan_charge_cooldown)
 		last_charge_update = world.time
 		GainCharge()
+
+/mob/living/simple_animal/hostile/clan/death(gibbed)
+	. = ..()
+	if (teleport_away)
+		playsound(src, 'sound/effects/ordeals/white/pale_teleport_out.ogg', 25, TRUE)
+		new /obj/effect/temp_visual/beam_out(get_turf(src))
+		qdel(src)
 
 //Guard Stuff
 /mob/living/simple_animal/hostile/clan/CanAttack(atom/the_target)
@@ -573,18 +581,21 @@
 	attack_verb_simple = "drill"
 	health = 1500
 	maxHealth = 1500
-	obj_damage = 50
+	obj_damage = 40
 	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 0.6, WHITE_DAMAGE = 0.8, BLACK_DAMAGE = 1.2, PALE_DAMAGE = 1.5)
 	attack_sound = 'sound/weapons/drill.ogg'
 	silk_results = list(/obj/item/stack/sheet/silk/azure_simple = 2,
 						/obj/item/stack/sheet/silk/azure_advanced = 1)
 	guaranteed_butcher_results = list(/obj/item/food/meat/slab/robot = 3, /obj/item/food/meat/slab/sweeper = 2)
-	melee_damage_lower = 15
-	melee_damage_upper = 20
-	var/normal_attack_speed = 1
-	var/max_attack_speed = 3
+	melee_damage_lower = 5
+	melee_damage_upper = 8
+	charge = 10
+	max_charge = 20
+	clan_charge_cooldown = 1 SECONDS
+	var/normal_attack_speed = 2
+	var/max_attack_speed = 6
 	var/demolish_damage = 30
-	var/demolish_obj_damage = 250
+	var/demolish_obj_damage = 600
 
 
 /mob/living/simple_animal/hostile/clan/demolisher/ChargeUpdated()
@@ -592,19 +603,57 @@
 
 /mob/living/simple_animal/hostile/clan/demolisher/AttackingTarget()
 	. = ..()
-	if (charge > 9 && (isliving(target) || istype(target, /obj)))
+	if (charge == max_charge && (isliving(target) || istype(target, /obj)))
 		say("Co-mmen-cing Pr-otoco-l: De-emoli-ish")
 		demolish(target)
 
-/mob/living/simple_animal/hostile/clan/demolisher/proc/demolish()
-	if(isliving(target))
-		var/mob/living/T = target
+/mob/living/simple_animal/hostile/clan/demolisher/DestroyObjectsInDirection(direction)
+	var/turf/T = get_step(targets_from, direction)
+	if(QDELETED(T))
+		return
+	if(T.Adjacent(targets_from))
+		if(CanSmashTurfs(T))
+			T.attack_animal(src)
+			return
+	for(var/obj/O in T.contents)
+		if(!O.Adjacent(targets_from))
+			continue
+		if(IsSmashable(O))
+			O.attack_animal(src)
+			if (charge == max_charge)
+				say("Co-mmen-cing Pr-otoco-l: De-emoli-ish")
+				demolish(O)
+			return
+
+/mob/living/simple_animal/hostile/clan/demolisher/proc/demolish(atom/fool)
+	if(isliving(fool))
+		var/mob/living/T = fool
 		T.deal_damage(demolish_damage, RED_DAMAGE)
-	if(istype(target, /obj))
-		var/obj/O = target
-		O.attack_generic(src, demolish_obj_damage)
-	playsound(loc, 'sound/effects/explosion2.ogg', 60, TRUE)
-	new /obj/effect/temp_visual/explosion(get_turf(src))
-	for(var/turf/T in range(1, target))
+	if(istype(fool, /obj))
+		var/obj/O = fool
+		if(IsSmashable(O))
+			O.take_damage(demolish_obj_damage)
+	playsound(fool, 'sound/effects/explosion2.ogg', 60, TRUE)
+	new /obj/effect/temp_visual/explosion(get_turf(fool))
+	for(var/turf/T in range(1, fool))
 		HurtInTurf(T, list(), (demolish_damage), RED_DAMAGE, check_faction = TRUE, hurt_mechs = TRUE, hurt_structure = TRUE)
+		for(var/obj/S in T)
+			if(IsSmashable(S))
+				S.take_damage(demolish_obj_damage*0.8)
+	for(var/turf/T in range(3, fool))
+		for(var/mob/living/L in T)
+			shake_camera(L, 5, 5)
 	charge = 0
+	rapid_melee = normal_attack_speed
+
+/obj/effect/temp_visual/beam_out
+	name = "teleport beam"
+	desc = "A beam of light"
+	icon = 'icons/effects/96x96.dmi'
+	icon_state = "beamout"
+	pixel_x = -32
+	base_pixel_x = -32
+	color = "#FF5050"
+	randomdir = FALSE
+	duration = 4.2
+	layer = POINT_LAYER
