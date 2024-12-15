@@ -300,7 +300,7 @@
 	if (icon_state == "defender_locked_down_normal")
 		icon_state = "defender_normal"
 	else
-		icon_state == "defender"
+		icon_state = "defender"
 
 	density = TRUE
 	// clear tiles
@@ -559,3 +559,52 @@
 /mob/living/simple_animal/hostile/clan/drone/reforged/Initialize()
 	. = ..()
 	faction = list("neutral")
+
+/mob/living/simple_animal/hostile/clan/demolisher
+	name = "Demolisher"
+	desc = "A humanoid looking machine with two drills... It appears to have 'Resurgence Clan' etched on their back..."
+	icon = 'ModularTegustation/Teguicons/resurgence_48x48.dmi'
+	icon_state = "demolisher"
+	icon_living = "demolisher"
+	icon_dead = "demolisher_dead"
+	pixel_x = -8
+	base_pixel_x = -8
+	attack_verb_continuous = "drills"
+	attack_verb_simple = "drill"
+	health = 1500
+	maxHealth = 1500
+	obj_damage = 50
+	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 0.6, WHITE_DAMAGE = 0.8, BLACK_DAMAGE = 1.2, PALE_DAMAGE = 1.5)
+	attack_sound = 'sound/weapons/drill.ogg'
+	silk_results = list(/obj/item/stack/sheet/silk/azure_simple = 2,
+						/obj/item/stack/sheet/silk/azure_advanced = 1)
+	guaranteed_butcher_results = list(/obj/item/food/meat/slab/robot = 3, /obj/item/food/meat/slab/sweeper = 2)
+	melee_damage_lower = 15
+	melee_damage_upper = 20
+	var/normal_attack_speed = 1
+	var/max_attack_speed = 3
+	var/demolish_damage = 30
+	var/demolish_obj_damage = 250
+
+
+/mob/living/simple_animal/hostile/clan/demolisher/ChargeUpdated()
+	rapid_melee = normal_attack_speed + (max_attack_speed - normal_attack_speed) * charge / max_charge
+
+/mob/living/simple_animal/hostile/clan/demolisher/AttackingTarget()
+	. = ..()
+	if (charge > 9 && (isliving(target) || istype(target, /obj)))
+		say("Co-mmen-cing Pr-otoco-l: De-emoli-ish")
+		demolish(target)
+
+/mob/living/simple_animal/hostile/clan/demolisher/proc/demolish()
+	if(isliving(target))
+		var/mob/living/T = target
+		T.deal_damage(demolish_damage, RED_DAMAGE)
+	if(istype(target, /obj))
+		var/obj/O = target
+		O.attack_generic(src, demolish_obj_damage)
+	playsound(loc, 'sound/effects/explosion2.ogg', 60, TRUE)
+	new /obj/effect/temp_visual/explosion(get_turf(src))
+	for(var/turf/T in range(1, target))
+		HurtInTurf(T, list(), (demolish_damage), RED_DAMAGE, check_faction = TRUE, hurt_mechs = TRUE, hurt_structure = TRUE)
+	charge = 0
