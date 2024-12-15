@@ -1,6 +1,9 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
 "aH" = (
-/mob/living/simple_animal/hostile/clan/drone,
+/mob/living/simple_animal/hostile/clan/drone{
+	icon_living = "clan_drone_normal";
+	icon_state = "clan_drone_normal"
+	},
 /turf/open/floor/plating/ironsand,
 /area/city/backstreets_alley)
 "aU" = (
@@ -55,7 +58,9 @@
 /mob/living/simple_animal/hostile/clan/scout{
 	faction = list("resurgence_clan","hostile", neutral);
 	can_protect = 1;
-	dir = 1
+	dir = 1;
+	icon_state = "clan_scout_normal";
+	icon_living = "clan_scout_normal"
 	},
 /obj/structure/fluff/paper,
 /turf/open/floor/wood,
@@ -126,7 +131,9 @@
 /mob/living/simple_animal/hostile/clan/scout{
 	faction = list("resurgence_clan","hostile", neutral);
 	can_protect = 1;
-	dir = 8
+	dir = 8;
+	icon_state = "clan_scout_normal";
+	icon_living = "clan_scout_normal"
 	},
 /turf/open/floor/plating/ironsand,
 /area/city/backstreets_alley)
@@ -289,7 +296,9 @@
 /mob/living/simple_animal/hostile/clan/scout{
 	faction = list("resurgence_clan","hostile", neutral);
 	can_protect = 1;
-	dir = 8
+	dir = 8;
+	icon_living = "clan_scout_normal";
+	icon_state = "clan_scout_normal"
 	},
 /turf/open/floor/plating/ironsand,
 /area/city/backstreets_alley)
@@ -353,7 +362,9 @@
 	},
 /mob/living/simple_animal/hostile/clan/defender{
 	can_protect = 1;
-	faction = list("resurgence_clan","hostile", "neutral")
+	faction = list("resurgence_clan","hostile", "neutral");
+	icon_living = "defender_normal";
+	icon_state = "defender_normal"
 	},
 /turf/open/floor/carpet/royalblack,
 /area/city/backstreets_alley)
@@ -436,7 +447,9 @@
 /mob/living/simple_animal/hostile/clan/scout{
 	faction = list("resurgence_clan","hostile", neutral);
 	can_protect = 1;
-	dir = 8
+	dir = 8;
+	icon_state = "clan_scout_normal";
+	icon_living = "clan_scout_normal"
 	},
 /turf/open/floor/plating/ironsand,
 /area/city/backstreets_alley)
@@ -531,7 +544,9 @@
 /mob/living/simple_animal/hostile/clan/scout{
 	faction = list("resurgence_clan","hostile", neutral);
 	can_protect = 1;
-	dir = 4
+	dir = 4;
+	icon_living = "clan_scout_normal";
+	icon_state = "clan_scout_normal"
 	},
 /turf/open/floor/plating/ironsand,
 /area/city/backstreets_alley)
@@ -679,7 +694,9 @@
 	question3 = "Why do you sound so strange?";
 	answers1 = list("Emote: sighs", "I am Dion, One of the Defenders at this outpost.", "Just standing around here, making sure everyone is safe.");
 	answers2 = list("Oh, You are one of the new humans around here...", "Talk with our Comander, They should be to the right of me.", They will be able to explain some things...);
-	answers3 = list("Oh we-ell, I guess you can sa-ay that I am not there yet...", "It ta-akes a whi-ile to get a upgraded vo-oice box, so o-only the closest followers of o-our Elders get them.", "Hopefu-uly that time wi-ill come one day. But fo-or now I just nee-ed to work for i-it.")
+	answers3 = list("Oh we-ell, I guess you can sa-ay that I am not there yet...", "It ta-akes a whi-ile to get a upgraded vo-oice box, so o-only the closest followers of o-our Elders get them.", "Hopefu-uly that time wi-ill come one day. But fo-or now I just nee-ed to work for i-it.");
+	icon_living = "defender_normal";
+	icon_state = "defender_normal"
 	},
 /turf/open/floor/plating/ironsand,
 /area/city/backstreets_alley)
@@ -692,7 +709,9 @@
 "Jp" = (
 /mob/living/simple_animal/hostile/clan/scout{
 	faction = list("resurgence_clan","hostile", neutral);
-	can_protect = 1
+	can_protect = 1;
+	icon_living = "clan_scout_normal";
+	icon_state = "clan_scout_normal"
 	},
 /turf/open/floor/plating/ironsand,
 /area/city/backstreets_alley)
@@ -733,7 +752,9 @@
 /mob/living/simple_animal/hostile/clan/defender{
 	can_protect = 1;
 	faction = list("resurgence_clan","hostile", "neutral");
-	dir = 1
+	dir = 1;
+	icon_living = "defender_normal";
+	icon_state = "defender_normal"
 	},
 /turf/open/floor/plating/ironsand,
 /area/city/backstreets_alley)
@@ -841,7 +862,9 @@
 "QJ" = (
 /mob/living/simple_animal/hostile/clan/scout{
 	faction = list("resurgence_clan","hostile", neutral);
-	can_protect = 1
+	can_protect = 1;
+	icon_state = "clan_scout_normal";
+	icon_living = "clan_scout_normal"
 	},
 /obj/structure/fluff/paper/stack{
 	dir = 8
@@ -877,7 +900,9 @@
 /mob/living/simple_animal/hostile/clan/scout{
 	faction = list("resurgence_clan","hostile", neutral);
 	can_protect = 1;
-	dir = 4
+	dir = 4;
+	icon_living = "clan_scout_normal";
+	icon_state = "clan_scout_normal"
 	},
 /turf/open/floor/plating/ironsand,
 /area/city/backstreets_alley)
