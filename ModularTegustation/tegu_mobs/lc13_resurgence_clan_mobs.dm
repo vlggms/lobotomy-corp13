@@ -236,7 +236,10 @@
 /mob/living/simple_animal/hostile/clan/defender/proc/Lock()
 	stunned = TRUE
 	density = FALSE
-	icon_state = "defender_locked_down"
+	if (icon_living == "defender_normal")
+		icon_state = "defender_locked_down_normal"
+	else
+		icon_state = "defender_locked_down"
 	say("Co-mmen-cing Pr-otoco-l: Lo-ckdo-wn")
 	// create tiles
 	for(var/turf/T in view(2, src))
@@ -294,7 +297,11 @@
 	if (stat == DEAD)
 		return
 
-	icon_state = "defender"
+	if (icon_state == "defender_locked_down_normal")
+		icon_state = "defender_normal"
+	else
+		icon_state == "defender"
+
 	density = TRUE
 	// clear tiles
 	for(var/obj/effect/defender_field/DF in locked_tiles_list)
@@ -388,8 +395,9 @@
 	health = 1000
 	is_flying_animal = TRUE
 	death_message = "falls down as their lights slowly go out..."
-	melee_damage_lower = 10
-	melee_damage_upper = 12
+	melee_damage_lower = 0
+	melee_damage_upper = 0
+	obj_damage = 0
 	melee_damage_type = BLACK_DAMAGE
 	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 0.8, WHITE_DAMAGE = 1.2, BLACK_DAMAGE = 1.5, PALE_DAMAGE = 2)
 	attack_sound = 'sound/weapons/emitter2.ogg'
