@@ -140,7 +140,7 @@ const ButtonPanel = (props, context) => {
               />
             }
           />
-      </Collapsible>
+        </Collapsible>
         <Collapsible title="Manipulate Work per Meltdown ratio">
           <LabeledList.Item>
             <ProgressBar
