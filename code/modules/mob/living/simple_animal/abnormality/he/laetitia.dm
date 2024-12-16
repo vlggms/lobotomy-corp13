@@ -42,6 +42,10 @@
 		You look lonely too, I hope my present will make you laugh as well!"
 
 	attack_action_types = list(/datum/action/cooldown/laetitia_gift, /datum/action/cooldown/laetitia_summon)
+	var/breaching = FALSE
+	var/summon_cooldown
+	var/summon_cooldown_time = 60 SECONDS
+	var/summon_list = list()
 
 /datum/action/cooldown/laetitia_summon
 	name = "Call for Friends"
@@ -49,7 +53,7 @@
 	button_icon_state = "prank_gift"
 	check_flags = AB_CHECK_CONSCIOUS
 	transparent_when_unavailable = TRUE
-	cooldown_time = 40 SECONDS
+	cooldown_time = 60 SECONDS
 	var/delete_timer
 	var/delete_cooldown = 30 SECONDS
 	var/mob/living/simple_animal/hostile/gift/G1
@@ -139,6 +143,13 @@
 		qdel(src)
 	opening = FALSE
 
+/mob/living/simple_animal/hostile/abnormality/laetitia/Life()
+	. = ..()
+	if(!breaching)
+		return
+	if((summon_cooldown < world.time) && !(status_flags & GODMODE))
+		SummonAdds()
+		return
 
 /mob/living/simple_animal/hostile/abnormality/laetitia/NeutralEffect(mob/living/carbon/human/user, work_type, pe)
 	. = ..()
@@ -167,6 +178,19 @@
 	if(P && prob(70)) //70% to trigger explosion
 		P.TriggerPrank()
 	return
+
+/mob/living/simple_animal/hostile/abnormality/laetitia/BreachEffect(mob/living/carbon/human/user, breach_type)
+	if(breach_type == BREACH_MINING)
+		breaching = TRUE
+	return ..()
+
+/mob/living/simple_animal/hostile/abnormality/laetitia/proc/SummonAdds()//Mining breach summon
+	summon_cooldown = world.time + summon_cooldown_time
+	if(LAZYLEN(summon_list) > 9)//this list is not subtracted when minions are killed. Limited to 10 per breach
+		return
+	var/turf/target_turf = get_turf(src)
+	var/mob/living/simple_animal/hostile/gift/new_mob = new(target_turf)
+	summon_list += new_mob
 
 //Her friend
 /mob/living/simple_animal/hostile/gift
