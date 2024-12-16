@@ -5,8 +5,9 @@
 	icon_state = "you_strong_pause"
 	icon_living = "you_strong_pause"
 	portrait = "grown_strong"
-	maxHealth = 200
-	health = 200
+	maxHealth = 2000
+	health = 2000
+	damage_coeff = list(RED_DAMAGE = 1, WHITE_DAMAGE = 1.5, BLACK_DAMAGE = 1.5, PALE_DAMAGE = 0)
 	threat_level = HE_LEVEL
 	start_qliphoth = 3
 	work_chances = list(
@@ -67,6 +68,12 @@
 	soundloop = new(list(src), FALSE)
 	soundloop.volume = 75
 	soundloop.extra_range = 0
+
+/mob/living/simple_animal/hostile/abnormality/you_strong/Move()
+	return FALSE
+
+/mob/living/simple_animal/hostile/abnormality/you_strong/CanAttack(atom/the_target)
+	return FALSE
 
 /mob/living/simple_animal/hostile/abnormality/you_strong/WorkComplete(mob/living/carbon/human/user, work_type, pe, work_time, canceled)
 	. = ..()
@@ -130,6 +137,20 @@
 		new /mob/living/simple_animal/hostile/grown_strong(get_step(src, EAST))
 	SLEEP_CHECK_DEATH(6)
 	icon_state = "you_strong_pause"
+
+/mob/living/simple_animal/hostile/abnormality/you_strong/BreachEffect(mob/living/carbon/human/user, breach_type)
+	if(breach_type == BREACH_MINING)
+		SummonAdds()
+		addtimer(CALLBACK(src, PROC_REF(SummonAdds)), 20 SECONDS)
+	return ..()
+
+/mob/living/simple_animal/hostile/abnormality/you_strong/proc/SummonAdds()
+	var/mob/living/simple_animal/hostile/ordeal/pink_midnight/pink = locate() in GLOB.mob_living_list
+	for(var/i = 1 to 2)
+		var/turf/target_turf = get_turf(pink ? pink : src)
+		var/mob/living/simple_animal/hostile/grown_strong/new_mob = new(target_turf)
+		if(pink)
+			new_mob.faction += "pink_midnight"
 
 /mob/living/simple_animal/hostile/abnormality/you_strong/attacked_by(obj/item/I, mob/living/user)
 	if(!(I.type in taken_parts))

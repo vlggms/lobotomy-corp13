@@ -147,8 +147,17 @@
 
 //Meltdown
 /mob/living/simple_animal/hostile/abnormality/contract/ZeroQliphoth(mob/living/carbon/human/user)
+	Summon()
+	datum_reference.qliphoth_change(2)
+
+/mob/living/simple_animal/hostile/abnormality/contract/BreachEffect(mob/living/carbon/human/user, breach_type)//causes a runtime
+	if(breach_type == BREACH_MINING)
+		Summon()
+		addtimer(CALLBACK(src, PROC_REF(Summon)), 30 SECONDS)
+
+/mob/living/simple_animal/hostile/abnormality/contract/proc/Summon(mob/living/carbon/human/user)
 	// Don't need to lazylen this. If this is empty there is a SERIOUS PROBLEM.
-	var/mob/living/simple_animal/hostile/abnormality/spawning =	pick(spawnables)
+	var/mob/living/simple_animal/hostile/abnormality/spawning = pick(spawnables)
 	var/mob/living/simple_animal/hostile/abnormality/spawned = new spawning(get_turf(src))
 	spawned.BreachEffect()
 	spawned.color = "#000000"	//Make it black to look cool
@@ -156,7 +165,6 @@
 	spawned.desc = "What is that thing?"
 	spawned.faction = list("hostile")
 	spawned.core_enabled = FALSE
-	datum_reference.qliphoth_change(2)
 
 /* Work effects */
 /mob/living/simple_animal/hostile/abnormality/contract/SuccessEffect(mob/living/carbon/human/user, work_type, pe)
@@ -166,7 +174,6 @@
 /mob/living/simple_animal/hostile/abnormality/contract/PostWorkEffect(mob/living/carbon/human/user, work_type, pe, work_time)
 	work_damage_amount = initial(work_damage_amount)
 	return
-
 
 /mob/living/simple_animal/hostile/abnormality/contract/NeutralEffect(mob/living/carbon/human/user, work_type, pe)
 	. = ..()

@@ -231,7 +231,7 @@
 	datum_reference.qliphoth_change(-1)
 
 /mob/living/simple_animal/hostile/abnormality/nobody_is/BreachEffect(mob/living/carbon/human/user, breach_type)
-	if(!(status_flags & GODMODE)) // Already breaching
+	if(current_stage > 1)
 		return
 	if(reflect_timer)
 		deltimer(reflect_timer)
@@ -240,6 +240,8 @@
 		return
 	CheckMirrorIcon() //Clear overlays
 	next_stage()
+	if(breach_type == BREACH_MINING)
+		return
 	// Teleport us somewhere where nobody will see us at first
 	var/list/priority_list = list()
 	for(var/turf/T in GLOB.xeno_spawn)
