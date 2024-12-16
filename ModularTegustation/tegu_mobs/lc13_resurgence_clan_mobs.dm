@@ -596,16 +596,25 @@
 	var/max_attack_speed = 6
 	var/demolish_damage = 30
 	var/demolish_obj_damage = 600
+	search_objects = 3
+	search_objects_regain_time = 5
+	wanted_objects = list(/obj/structure)
+	var/shield = FALSE
+	var/shield_counter = 0
+	var/shield_time
+	var/max_shield_counter = 10
 
 
 /mob/living/simple_animal/hostile/clan/demolisher/ChargeUpdated()
 	rapid_melee = normal_attack_speed + (max_attack_speed - normal_attack_speed) * charge / max_charge
 
 /mob/living/simple_animal/hostile/clan/demolisher/AttackingTarget()
-	. = ..()
-	if (charge == max_charge && (isliving(target) || istype(target, /obj)))
+	if (charge >= max_charge && (isliving(target) || istype(target, /obj)))
 		say("Co-mmen-cing Pr-otoco-l: De-emoli-ish")
 		demolish(target)
+	. = ..()
+	if (!target)
+		FindTarget()
 
 /mob/living/simple_animal/hostile/clan/demolisher/DestroyObjectsInDirection(direction)
 	var/turf/T = get_step(targets_from, direction)
@@ -619,27 +628,78 @@
 		if(!O.Adjacent(targets_from))
 			continue
 		if(IsSmashable(O))
-			O.attack_animal(src)
-			if (charge == max_charge)
+			if (charge >= max_charge)
 				say("Co-mmen-cing Pr-otoco-l: De-emoli-ish")
 				demolish(O)
+			O.attack_animal(src)
 			return
 
+/mob/living/simple_animal/hostile/clan/demolisher/proc/CheckListForWanted(listObjects)
+	var/found = FALSE
+	for(var/obj/O in listObjects)
+		if (O.type in wanted_objects)
+			found = TRUE
+			break
+	return found
+
+
+/mob/living/simple_animal/hostile/clan/demolisher/ListTargets()
+	var/list/objectsInView = oview(vision_range, targets_from)
+	var/list/hearersInView = hearers(vision_range, targets_from) - src //Remove self, so we don't suicide
+	var/static/hostile_machines = typecacheof(list(/obj/machinery/porta_turret, /obj/vehicle/sealed/mecha))
+	for(var/HM in typecache_filter_list(range(vision_range, targets_from), hostile_machines))
+		if(can_see(targets_from, HM, vision_range))
+			hearersInView += HM
+
+	if(!search_objects)
+		if (CheckListForWanted(objectsInView))
+			search_objects = 3
+			return objectsInView
+		return hearersInView
+	else
+		if (!CheckListForWanted(objectsInView))
+			search_objects = 0
+			return hearersInView
+		return objectsInView
+
+/mob/living/simple_animal/hostile/clan/demolisher/Life()
+	if (shield && shield_time > world.time + 5)
+		shield = FALSE
+
+
+/mob/living/simple_animal/hostile/clan/demolisher/adjustHealth(amount, updating_health = TRUE, forced = FALSE)
+	..()
+	if (shield)
+		shield_counter += 1
+		if (shield_counter > max_shield_counter && charge > 0)
+			shield_counter = 0
+			charge--
+
+		var/obj/effect/temp_visual/shock_shield/AT = new /obj/effect/temp_visual/shock_shield(loc, src)
+		var/random_x = rand(-16, 16)
+		AT.pixel_x += random_x
+
+		var/random_y = rand(5, 32)
+		AT.pixel_y += random_y
+	else
+		shield = TRUE
+		shield_time = world.time
+
 /mob/living/simple_animal/hostile/clan/demolisher/proc/demolish(atom/fool)
+	playsound(fool, 'sound/effects/explosion2.ogg', 60, TRUE)
+	new /obj/effect/temp_visual/explosion(get_turf(fool))
 	if(isliving(fool))
 		var/mob/living/T = fool
 		T.deal_damage(demolish_damage, RED_DAMAGE)
 	if(istype(fool, /obj))
 		var/obj/O = fool
 		if(IsSmashable(O))
-			O.take_damage(demolish_obj_damage)
-	playsound(fool, 'sound/effects/explosion2.ogg', 60, TRUE)
-	new /obj/effect/temp_visual/explosion(get_turf(fool))
+			O.take_damage(demolish_obj_damage, RED_DAMAGE)
 	for(var/turf/T in range(1, fool))
 		HurtInTurf(T, list(), (demolish_damage), RED_DAMAGE, check_faction = TRUE, hurt_mechs = TRUE, hurt_structure = TRUE)
 		for(var/obj/S in T)
 			if(IsSmashable(S))
-				S.take_damage(demolish_obj_damage*0.8)
+				S.take_damage(demolish_obj_damage*0.8, RED_DAMAGE)
 	for(var/turf/T in range(3, fool))
 		for(var/mob/living/L in T)
 			shake_camera(L, 5, 5)
