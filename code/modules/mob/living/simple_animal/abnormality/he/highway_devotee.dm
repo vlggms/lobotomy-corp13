@@ -90,8 +90,9 @@
 
 /mob/living/simple_animal/hostile/abnormality/highway_devotee/BreachEffect(mob/living/carbon/human/user, breach_type)
 	. = ..()
-	var/turf/T = pick(GLOB.xeno_spawn)
-	forceMove(T)
+	if(breach_type != BREACH_MINING)
+		var/turf/T = pick(GLOB.xeno_spawn)
+		forceMove(T)
 	addtimer(CALLBACK(src, PROC_REF(KillYourself)), 3 MINUTES)
 	dir = pick(list(NORTH, SOUTH, WEST, EAST))
 	for(var/turf/open/U in range(2, src))

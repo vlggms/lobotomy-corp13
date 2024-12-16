@@ -116,8 +116,15 @@
 
 //Attack or approach it directly and it attacks you!
 /mob/living/simple_animal/hostile/abnormality/blubbering_toad/BreachEffect(mob/living/user, breach_type = BREACH_NORMAL)
-	if(breach_type == BREACH_PINK)
+	if(breach_type == BREACH_PINK || breach_type == BREACH_MINING)
 		persistant = TRUE
+	if(breach_type == BREACH_MINING)//nerfed to a ZAYIN statline since this is something you'll typically fight roundstart
+		name = "Weakened [name]"
+		maxHealth = 400
+		melee_damage_lower = 9
+		melee_damage_upper = 15
+		tongue_damage = 10
+		broken = TRUE
 	SetIdiot(user)
 	return ..()
 
