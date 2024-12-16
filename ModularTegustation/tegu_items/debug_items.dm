@@ -206,7 +206,8 @@
  */
 /obj/item/lc_debug/sephirah_action_granter
 	name = "debug sephirah action granter"
-	desc = "A strange wooden sign with the words\"THE ROBITS GRIFF ME!!!\" inscribed upon it"
+	desc = "A strange wooden sign with the words \"THE ROBITS GRIFF ME!!!\" inscribed upon it"
+	icon = 'icons/obj/items_and_weapons.dmi'
 	icon_state = "picket"
 
 /obj/item/lc_debug/sephirah_action_granter/examine(mob/user)

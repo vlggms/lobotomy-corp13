@@ -29,6 +29,8 @@ SUBSYSTEM_DEF(abnormality_queue)
 	var/rooms_start = 0
 	/// Amount of times PostSpawn() proc has been called. Kept separate from times_fired because admins love to call fire() manually
 	var/spawned_abnos = 0
+	/// When an abnormality spawns, the time it spawned is here. Purelly used for sephirahs TGUI console
+	var/previous_abno_spawn = 0
 	// I am using this all because default subsystem waiting and next_fire is done in a very... interesting way.
 	/// World time at which new abnormality will be spawned
 	var/next_abno_spawn = INFINITY
@@ -62,9 +64,10 @@ SUBSYSTEM_DEF(abnormality_queue)
 
 /datum/controller/subsystem/abnormality_queue/proc/SpawnAbno()
 	// Earlier in the game, abnormalities will spawn faster and then slow down a bit
+	previous_abno_spawn = world.time
 	next_abno_spawn = world.time + next_abno_spawn_time + ((min(16, spawned_abnos) - 6) * 9) SECONDS
 
-	if(!LAZYLEN(GLOB.abnormality_room_spawners))
+	if(!length(GLOB.abnormality_room_spawners))
 		return
 
 	var/obj/effect/spawner/abnormality_room/choice = pick(GLOB.abnormality_room_spawners)
@@ -108,7 +111,7 @@ SUBSYSTEM_DEF(abnormality_queue)
 		available_levels = list(TETH_LEVEL)
 
 	// Roll the abnos from available levels
-	if(!ispath(queued_abnormality) && LAZYLEN(possible_abnormalities))
+	if(!ispath(queued_abnormality) && length(possible_abnormalities))
 		PickAbno()
 
 /datum/controller/subsystem/abnormality_queue/proc/PostSpawn()
@@ -138,15 +141,15 @@ SUBSYSTEM_DEF(abnormality_queue)
 		to_chat(person, span_notice("You feel stronger than before."))
 
 /datum/controller/subsystem/abnormality_queue/proc/PickAbno()
-	if(!LAZYLEN(available_levels))
+	if(!length(available_levels))
 		return FALSE
 	/// List of threat levels that we will pick
 	var/list/picking_levels = list()
 	for(var/threat in available_levels)
-		if(!LAZYLEN(possible_abnormalities[threat]))
+		if(!length(possible_abnormalities[threat]))
 			continue
 		picking_levels |= threat
-	if(!LAZYLEN(picking_levels))
+	if(!length(picking_levels))
 		return FALSE
 
 	// There we select the abnormalities
@@ -154,7 +157,7 @@ SUBSYSTEM_DEF(abnormality_queue)
 	var/pick_count = GetFacilityUpgradeValue(UPGRADE_ABNO_QUEUE_COUNT)
 	var/list/picked_levs = list()
 	for(var/i = 1 to pick_count)
-		if(!LAZYLEN(possible_abnormalities))
+		if(!length(possible_abnormalities))
 			break
 		var/lev = pick(picking_levels)
 		// If we have more options to fill and we have multiple available levels - force them in.
@@ -164,11 +167,11 @@ SUBSYSTEM_DEF(abnormality_queue)
 			// And pick again
 			lev = pick(picking_levels)
 		picked_levs |= lev
-		if(!LAZYLEN(possible_abnormalities[lev] - picking_abnormalities))
+		if(!length(possible_abnormalities[lev] - picking_abnormalities))
 			continue
 		var/chosen_abno = PickWeightRealNumber(possible_abnormalities[lev] - picking_abnormalities)
 		picking_abnormalities += chosen_abno
-	if(!LAZYLEN(picking_abnormalities))
+	if(!length(picking_abnormalities))
 		return FALSE
 	queued_abnormality = pick(picking_abnormalities)
 	return TRUE
@@ -198,7 +201,7 @@ SUBSYSTEM_DEF(abnormality_queue)
 	var/list/picking_abno = list()
 
 	for(var/level in available_levels)
-		if(!LAZYLEN(possible_abnormalities[level]))
+		if(!length(possible_abnormalities[level]))
 			continue
 		picking_abno |= possible_abnormalities[level]
 
