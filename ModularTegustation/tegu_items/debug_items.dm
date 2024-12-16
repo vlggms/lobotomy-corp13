@@ -374,3 +374,26 @@
 	say("Restarting...")
 	SLEEP_CHECK_DEATH(10)
 	DeepsCheckStart()
+
+//breach tester
+/obj/item/lc_debug/breachtester//for testing many abnormalities very quickly
+	name = "Breach tester"
+	desc = "For testing use only, DO NOT DISTRIBUTE! Breach types can be checked under _DEFINES/abnormalities.dm"
+	icon = 'icons/obj/items_and_weapons.dmi'
+	icon_state = "nanoimplant"
+	var/breach_type = BREACH_NORMAL
+	var/list/breach_list = list(
+			BREACH_NORMAL, BREACH_PINK, BREACH_MINING,
+	)
+
+/obj/item/lc_debug/breachtester/attack_self(mob/user)
+	breach_type = input(user, "Which breach will you test?") as null|anything in breach_list
+
+/obj/item/lc_debug/breachtester/attack(mob/living/simple_animal/hostile/abnormality/target, mob/living/carbon/human/user)
+	if(!isabnormalitymob(target))
+		to_chat(user, span_warning("\"[target]\" isn't an Abnormality."))
+		return
+	target.BreachEffect(user, breach_type)
+	to_chat(user, span_nicegreen("You triggered a [breach_type] breach!"))
+
+
