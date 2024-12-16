@@ -581,8 +581,7 @@
 	attack_verb_simple = "drill"
 	health = 1500
 	maxHealth = 1500
-	obj_damage = 40
-	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 0.6, WHITE_DAMAGE = 0.8, BLACK_DAMAGE = 1.2, PALE_DAMAGE = 1.5)
+	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 1, WHITE_DAMAGE = 1.2, BLACK_DAMAGE = 1.4, PALE_DAMAGE = 1.6)
 	attack_sound = 'sound/weapons/drill.ogg'
 	silk_results = list(/obj/item/stack/sheet/silk/azure_simple = 2,
 						/obj/item/stack/sheet/silk/azure_advanced = 1)
@@ -599,11 +598,11 @@
 	search_objects = 3
 	search_objects_regain_time = 5
 	wanted_objects = list(/obj/structure)
+	teleport_away = TRUE
 	var/shield = FALSE
 	var/shield_counter = 0
-	var/shield_time
-	var/max_shield_counter = 10
-
+	var/shield_time = 0
+	var/max_shield_counter = 15
 
 /mob/living/simple_animal/hostile/clan/demolisher/ChargeUpdated()
 	rapid_melee = normal_attack_speed + (max_attack_speed - normal_attack_speed) * charge / max_charge
@@ -663,15 +662,16 @@
 		return objectsInView
 
 /mob/living/simple_animal/hostile/clan/demolisher/Life()
-	if (shield && shield_time > world.time + 5)
+	. = ..()
+	if (shield && (shield_time < world.time - 5))
 		shield = FALSE
-
+		ChangeResistances(list(RED_DAMAGE = 1, WHITE_DAMAGE = 1.2, BLACK_DAMAGE = 1.4, PALE_DAMAGE = 1.6))
 
 /mob/living/simple_animal/hostile/clan/demolisher/adjustHealth(amount, updating_health = TRUE, forced = FALSE)
 	..()
 	if (shield)
 		shield_counter += 1
-		if (shield_counter > max_shield_counter && charge > 0)
+		if (shield_counter > max_shield_counter && charge > 1)
 			shield_counter = 0
 			charge--
 
@@ -682,8 +682,10 @@
 		var/random_y = rand(5, 32)
 		AT.pixel_y += random_y
 	else
-		shield = TRUE
-		shield_time = world.time
+		if(charge >= 4)
+			shield = TRUE
+			ChangeResistances(list(RED_DAMAGE = 0.2, WHITE_DAMAGE = 0.3, BLACK_DAMAGE = 0.3, PALE_DAMAGE = 0.5))
+			shield_time = world.time
 
 /mob/living/simple_animal/hostile/clan/demolisher/proc/demolish(atom/fool)
 	playsound(fool, 'sound/effects/explosion2.ogg', 60, TRUE)
@@ -702,9 +704,44 @@
 				S.take_damage(demolish_obj_damage*0.8, RED_DAMAGE)
 	for(var/turf/T in range(3, fool))
 		for(var/mob/living/L in T)
+			L.Knockdown(20)
 			shake_camera(L, 5, 5)
 	charge = 0
 	rapid_melee = normal_attack_speed
+
+/mob/living/simple_animal/hostile/clan/demolisher/death(gibbed)
+	new /obj/structure/demolisher_bomb(T)
+	. = ..()
+
+/obj/structure/demolisher_bomb
+	name = "Resurgence Clan Bomb"
+	icon = 'ModularTegustation/Teguicons/resurgence_48x48.dmi'
+	icon_state = "demolisher_bomb"
+	max_integrity = 500
+	pixel_x = -8
+	base_pixel_x = -8
+	density = FALSE
+	layer = BELOW_OBJ_LAYER
+	armor = list(RED_DAMAGE = 50, WHITE_DAMAGE = 100, BLACK_DAMAGE = 25, PALE_DAMAGE = 100)
+	var/detonate_time = 50
+	var/detonate_damage = 200
+
+/obj/structure/demolisher_bomb/Initialize()
+	. = ..()
+	addtimer(CALLBACK(src, PROC_REF(detonate)), detonate_time)
+
+/obj/structure/demolisher_bomb/process()
+	playsound(loc, 'sound/items/timer.ogg', 35, 3, 3)
+
+/obj/structure/demolisher_bomb/proc/detonate()
+	var/mob/living/carbon/human/dummy/D = new /mob/living/carbon/human/dummy(get_turf(src))
+	new /obj/effect/temp_visual/explosion/fast(get_turf(src))
+	playsound(src, 'sound/effects/explosion1.ogg', 75, TRUE)
+	for(var/turf/T in range(5, D))
+		D.HurtInTurf(T, list(), (detonate_damage), RED_DAMAGE, check_faction = FALSE, hurt_mechs = TRUE)
+	explosion(loc, 0, 0, 1)
+	qdel(D)
+	qdel(src)
 
 /obj/effect/temp_visual/beam_out
 	name = "teleport beam"
