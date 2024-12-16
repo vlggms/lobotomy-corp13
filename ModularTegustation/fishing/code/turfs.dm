@@ -331,9 +331,6 @@
 		/obj/item/food/fish/emulsijack = 5,
 	)
 
-/turf/open/water/deep/polluted/ObjSink(atom/movable/sinkin_thing)
-	return TRUE
-
 /* Change this later so that it is not a subtype since the variable is in the deep type.
 	Safe subtype isnt nessesary since it pre sets safe to TRUE when we can just set it to
 	true individually.-IP*/
@@ -342,14 +339,18 @@
  * Safe turfs, they wont sink you when you enter them
  */
 
+/turf/open/water/deep/saltwater
+	density = FALSE
+
 /turf/open/water/deep/saltwater/safe/IsSafe()
 	return TRUE
 
 /turf/open/water/deep/obsessing_water
-	safe = TRUE
 	name = "Obsessing water"
 	desc = "A strange black and teal water."
 	icon_state = "obsessing_water"
+	safe = TRUE
+	density = FALSE
 	loot_level1 = list(
 		/obj/item/stack/sheet/mineral/wood = 30,
 		/obj/item/food/grown/harebell = 35,
