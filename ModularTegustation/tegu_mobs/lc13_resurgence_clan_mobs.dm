@@ -710,7 +710,8 @@
 	rapid_melee = normal_attack_speed
 
 /mob/living/simple_animal/hostile/clan/demolisher/death(gibbed)
-	new /obj/structure/demolisher_bomb(T)
+	var/obj/structure/demolisher_bomb/b = new /obj/structure/demolisher_bomb(loc)
+	b.faction = faction
 	. = ..()
 
 /obj/structure/demolisher_bomb
@@ -723,23 +724,57 @@
 	density = FALSE
 	layer = BELOW_OBJ_LAYER
 	armor = list(RED_DAMAGE = 50, WHITE_DAMAGE = 100, BLACK_DAMAGE = 25, PALE_DAMAGE = 100)
-	var/detonate_time = 50
-	var/detonate_damage = 200
+	var/detonate_time = 120
+	var/beep_time = 10
+	var/beep_counter = 0
+	var/detonate_max_damage = 4000
+	var/detonate_min_damage = 15
+	var/detonate_object_max_damage = 4000
+	var/detonate_object_min_damage = 400
+	var/list/faction = list("hostile")
 
 /obj/structure/demolisher_bomb/Initialize()
 	. = ..()
 	addtimer(CALLBACK(src, PROC_REF(detonate)), detonate_time)
+	addtimer(CALLBACK(src, PROC_REF(beep)), beep_time)
 
-/obj/structure/demolisher_bomb/process()
-	playsound(loc, 'sound/items/timer.ogg', 35, 3, 3)
+/obj/structure/demolisher_bomb/proc/beep()
+	playsound(loc, 'sound/items/timer.ogg', 40, 3, 3)
+	if (beep_counter == 0)
+		say("T-10 Seconds before detonation...")
+	else if (beep_counter == 5)
+		say("T-5 Seconds before detonation...")
+	else if (beep_counter == 7)
+		say("3...")
+	else if (beep_counter == 8)
+		say("2...")
+	else if (beep_counter == 9)
+		say("1...")
+	else if (beep_counter == 10)
+		say("Goodbye, ;)")
+
+	beep_counter++
+	addtimer(CALLBACK(src, PROC_REF(beep)), beep_time)
 
 /obj/structure/demolisher_bomb/proc/detonate()
 	var/mob/living/carbon/human/dummy/D = new /mob/living/carbon/human/dummy(get_turf(src))
+	D.faction = faction
 	new /obj/effect/temp_visual/explosion/fast(get_turf(src))
 	playsound(src, 'sound/effects/explosion1.ogg', 75, TRUE)
-	for(var/turf/T in range(5, D))
-		D.HurtInTurf(T, list(), (detonate_damage), RED_DAMAGE, check_faction = FALSE, hurt_mechs = TRUE)
+	for(var/mob/living/L in view(8, src))
+		if(D.faction_check_mob(L, FALSE))
+			continue
+		var/dist = get_dist(D, L)
+		if(ishuman(L)) //Different damage formulae for humans vs mobs
+			L.deal_damage(clamp((15 * (2 ** (8 - dist))), detonate_min_damage, detonate_max_damage), RED_DAMAGE) //15-3840 damage scaling exponentially with distance
+		else
+			L.deal_damage(600 - ((dist > 2 ? dist : 0 )* 75), RED_DAMAGE) //0-600 damage scaling on distance, we don't want it oneshotting mobs
+		for(var/turf/T in view(8, src))
+			for(var/obj/S in T)
+				S.take_damage(clamp((15 * (2 ** (8 - dist))), detonate_object_min_damage, detonate_object_max_damage), RED_DAMAGE)
 	explosion(loc, 0, 0, 1)
+	for(var/mob/M in GLOB.player_list)
+		M.playsound_local(M, 'sound/effects/explosion_distant.ogg', 40, FALSE)
 	qdel(D)
 	qdel(src)
 
