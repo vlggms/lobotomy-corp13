@@ -437,21 +437,38 @@
 /mob/living/simple_animal/hostile/clan/drone/ChargeUpdated()
 	var/chargelayer = layer + 0.1
 	var/charge_icon
-	if(charge > 19)
-		cut_overlays()
-		charge_icon = "clan_drone_100%"
-	else if(charge > 15)
-		cut_overlays()
-		charge_icon = "clan_drone_75%"
-	else if(charge > 10)
-		cut_overlays()
-		charge_icon = "clan_drone_50%"
-	else if(charge > 5)
-		cut_overlays()
-		charge_icon = "clan_drone_25%"
+	if (icon_state != clan_drone_normal)
+		if(charge > 19)
+			cut_overlays()
+			charge_icon = "clan_drone_100%"
+		else if(charge > 15)
+			cut_overlays()
+			charge_icon = "clan_drone_75%"
+		else if(charge > 10)
+			cut_overlays()
+			charge_icon = "clan_drone_50%"
+		else if(charge > 5)
+			cut_overlays()
+			charge_icon = "clan_drone_25%"
+		else
+			cut_overlays()
+			return
 	else
-		cut_overlays()
-		return
+		if(charge > 19)
+			cut_overlays()
+			charge_icon = "clan_drone_100%_normal"
+		else if(charge > 15)
+			cut_overlays()
+			charge_icon = "clan_drone_75%_normal"
+		else if(charge > 10)
+			cut_overlays()
+			charge_icon = "clan_drone_50%_normal"
+		else if(charge > 5)
+			cut_overlays()
+			charge_icon = "clan_drone_25%_normal"
+		else
+			cut_overlays()
+			return
 	var/mutable_appearance/colored_overlay = mutable_appearance(icon, charge_icon, chargelayer)
 	add_overlay(colored_overlay)
 
@@ -717,6 +734,7 @@
 /obj/structure/demolisher_bomb
 	name = "Resurgence Clan Bomb"
 	icon = 'ModularTegustation/Teguicons/resurgence_48x48.dmi'
+	desc = "There is a sign that says, 'If you can read this, You are in range.'"
 	icon_state = "demolisher_bomb"
 	max_integrity = 500
 	pixel_x = -8
@@ -773,8 +791,6 @@
 			for(var/obj/S in T)
 				S.take_damage(clamp((15 * (2 ** (8 - dist))), detonate_object_min_damage, detonate_object_max_damage), RED_DAMAGE)
 	explosion(loc, 0, 0, 1)
-	for(var/mob/M in GLOB.player_list)
-		M.playsound_local(M, 'sound/effects/explosion_distant.ogg', 40, FALSE)
 	qdel(D)
 	qdel(src)
 
