@@ -695,15 +695,17 @@
 		target and they suddenly or are currently something
 		we dont attack.*/
 	if(QDELETED(target))
-		if(approaching_target)
-			/* Approaching target means we are currently moving menacingly
-				towards something. Otherwise we are just moving and if we
-				are investigating a location we dont want to be told to stand still. */
-			LoseTarget()
-		return FALSE
+		if(!FindTarget(possible_targets, TRUE))
+			if(approaching_target)
+				/* Approaching target means we are currently moving menacingly
+					towards something. Otherwise we are just moving and if we
+					are investigating a location we dont want to be told to stand still. */
+				LoseTarget()
+			return FALSE
 	if(!CanAttack(target))
-		LoseTarget()
-		return FALSE
+		if(!FindTarget(possible_targets, TRUE))
+			LoseTarget()
+			return FALSE
 	// The target we currently have is in our view and we must decide if we move towards it more.
 	if(target in possible_targets)
 		var/turf/T = get_turf(src)
