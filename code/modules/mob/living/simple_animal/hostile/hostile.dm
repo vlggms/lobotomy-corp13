@@ -112,7 +112,7 @@
 		return
 	if(client)
 		return
-	if(lose_patience_timeout && patience_last_interaction + lose_patience_timeout < world.time)
+	if(lose_patience_timeout && !QDELETED(target) && AIStatus == AI_ON && patience_last_interaction + lose_patience_timeout < world.time)
 		LosePatience()
 	if(!can_patrol)
 		return
