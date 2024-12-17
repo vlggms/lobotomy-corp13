@@ -8,7 +8,7 @@
 	var/list/loot_table
 
 /obj/effect/spawner/scatter/Initialize()
-	..()
+	. = ..()
 	if(!length(loot_table))
 		return INITIALIZE_HINT_QDEL
 
@@ -29,8 +29,6 @@
 			spawned_thing = pickweight(spawned_thing)
 		new spawned_thing(pick_n_take(candidate_locations))
 		loot_spawned++
-
-	return INITIALIZE_HINT_QDEL
 
 ///This spawner will scatter garbage around a dirty site.
 /obj/effect/spawner/scatter/grime

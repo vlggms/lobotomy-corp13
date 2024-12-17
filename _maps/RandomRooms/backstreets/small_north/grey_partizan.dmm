@@ -5,8 +5,8 @@
 /turf/open/floor/wood,
 /area/city/backstreets_room)
 "k" = (
-/turf/closed/indestructible/rock,
-/area/space)
+/turf/template_noop,
+/area/template_noop)
 "q" = (
 /obj/structure/table/greyscale,
 /obj/item/stack/spacecash/c1000,
