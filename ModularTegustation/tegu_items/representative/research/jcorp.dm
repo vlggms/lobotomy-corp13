@@ -48,15 +48,29 @@ GLOBAL_LIST_EMPTY(jcorp_upgrades)
 	. = ..()
 	GLOB.jcorp_upgrades += "Gacha Chance 4"
 
-/datum/data/lc13research/well_gacha
-	research_name = "Wishing Well Output Rates"
-	research_desc = "According to some information L corp has told us, this well seems to rely tends to be unpredictable, and open to chance, so we can lock some of the bad outcomes from occuring as often."
+//Abnormality Mechanic Luck
+
+/datum/data/lc13research/abno_mechanic_luck
+	research_name = "Contained Abnormality Luck Upgrade"
+	research_desc = "L Corp has asked us about possibly helping agents get a better chance with some abnormalities, from not getting spiked drinks, to games or Russian Roulette. With some PE, we can make their requests possible."
+	cost = LOW_RESEARCH_PRICE
+	corp = J_CORP_REP
+
+/datum/data/lc13research/abno_mechanic_luck/ResearchEffect(obj/structure/representative_console/requester)
+	. = ..()
+	GLOB.jcorp_upgrades += "Abno Luck"
+
+/datum/data/lc13research/tool_abno_gacha
+	research_name = "Tool Abnormality Luck Upgrade"
+	research_desc = "According to some information L corp has told us, some of their 'Tool Abnormalities' tends to be unpredictable, and open to chance, so we can lock some of the bad outcomes from occuring as often."
 	cost = AVERAGE_RESEARCH_PRICE
 	corp = J_CORP_REP
 
-/datum/data/lc13research/well_gacha/ResearchEffect(obj/structure/representative_console/requester)
+/datum/data/lc13research/tool_abno_gacha/ResearchEffect(obj/structure/representative_console/requester)
 	. = ..()
-	GLOB.jcorp_upgrades += "Well Gacha"
+	GLOB.jcorp_upgrades += "Tool Gacha"
+
+//Lootboxes
 
 /datum/data/lc13research/lootbox
 	research_name = "Repeatable: J Corp Brand Lootboxes"

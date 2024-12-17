@@ -228,7 +228,7 @@
 			our_corporation = J_CORP_REP
 			CustomizeOffice(null, /obj/structure/pe_sales/jcorp)
 			order_list = list(
-				new /datum/data/extraction_cargo("J Corp Casino Token", /obj/item/casinotoken, 200, J_CORP_REP) = 1,
+				new /datum/data/extraction_cargo("J Corp Casino Token", /obj/item/stack/casinotoken, 200, J_CORP_REP) = 1,
 			)
 
 

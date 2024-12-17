@@ -231,7 +231,7 @@
 			output = "ALEPH"
 		else
 			output = "ZAYIN" //If an EGO is not in the lists for whatever reason it will default to zayin
-	else if(istype(I, /obj/item/casinotoken))
+	else if(istype(I, /obj/item/stack/casinotoken))
 		output = "TETH"
 		to_chat(user, span_notice("You hear a plop as the token comes in contact with the water..."))
 		user.playsound_local(user, 'sound/items/coinflip.ogg', 80, TRUE)
@@ -249,7 +249,7 @@
 	qdel(I)
 	var/gacha = rand(1,100)
 	for(var/upgradecheck in GLOB.jcorp_upgrades)
-		if(upgradecheck == "Well Gacha")
+		if(upgradecheck == "Tool Gacha")
 			gacha = min(gacha+5,100)
 	switch(output)
 		if("MONEY")

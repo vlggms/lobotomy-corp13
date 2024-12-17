@@ -1,4 +1,4 @@
-/obj/item/casinotoken
+/obj/item/stack/casinotoken
 	name = "J-Corp Casino Token"
 	desc = "You won't get much use of it in this facility. But maybe the wishing well might see this as a more fitting sacrifice?"
 	icon = 'icons/obj/economy.dmi'
@@ -26,21 +26,47 @@ GLOBAL_LIST_EMPTY(possible_loot_jcorp)
 		/obj/item/storage/box/debugtools,
 		/obj/item/storage/box/material,
 		/obj/item/clothing/head/helmet/space/hardsuit/syndi/elite/admin,
+		/obj/item/clothing/suit/space/hardsuit/syndi/elite/admin,
 		/obj/item/card/id/debug,
 		/obj/item/water_turf_spawner,
-		/obj/item/ego_weapon/city/rats/truepipe
+		/obj/item/ego_weapon/city/rats/truepipe,
+		/obj/item/storage/belt/grenade,
+		/obj/item/storage/belt/wands/full,
+		/obj/item/melee/cultblade/dagger,
+		/obj/item/grenade,
+		/obj/item/gun/ballistic/revolver/grenadelauncher,
+		/obj/item/gun/ballistic/automatic/gyropistol,
+		/obj/item/gun/ballistic/rocketlauncher,
+		/obj/item/gun/grenadelauncher,
+		/obj/item/pda,
+		/obj/item/necromantic_stone,
+		/obj/item/gun/energy/decloner,
+		/obj/item/melee/baton/cattleprod/teleprod,
 	)
 	var/list/banned_subtypes = list(
 		/obj/item/lc_debug,
 		/obj/item/reagent_containers/glass/bottle,
 		/obj/item/uplink,
-		/obj/item/gun/magic/wand/death,
-		/obj/item/gun/magic/wand/resurrection,
+		/obj/item/gun/magic/wand,
 		/obj/item/construction/rcd,
 		/obj/item/dice/d20/fate,
 		/obj/item/clothing/mask/animal, //There are cursed variants for each type
-		/obj/item/defibrillator
+		/obj/item/defibrillator,
+		/obj/item/grenade,
+		/obj/item/gun/ballistic/revolver/grenadelauncher,
+		/obj/item/storage/box/syndicate,
+		/obj/item/clothing/head/hooded,
 	)
+	var/list/safe_items = list(
+		/obj/item/grenade/firecracker,
+		/obj/item/grenade/barrier,
+		/obj/item/grenade/spawnergrenade/shrimp
+	)
+	var/list/safe_subtypes = list(
+		/obj/item/grenade/r_corp,
+		/obj/item/grenade/spawnergrenade/shrimp,
+	)
+
 	if(!GLOB.possible_loot_jcorp.len)
 		var/list/gift_types_list = subtypesof(/obj/item)
 		for(var/V in gift_types_list)
@@ -48,11 +74,17 @@ GLOBAL_LIST_EMPTY(possible_loot_jcorp)
 			if((!initial(I.icon_state)) || (!initial(I.inhand_icon_state)) || (initial(I.item_flags) & ABSTRACT))
 				gift_types_list -= V
 				continue
+			if(I in safe_items)
+				continue
 			if(I in banned_items)
 				gift_types_list -= V
 			for(var/S in banned_subtypes)
 				if(I in subtypesof(S))
 					gift_types_list -= V
+		for(var/safetype in safe_subtypes)
+			for(var/I in safetype)
+				if(!(I in gift_types_list))
+					gift_types_list += I
 		GLOB.possible_loot_jcorp = gift_types_list
 	var/gift_type = pick(GLOB.possible_loot_jcorp)
 	return gift_type
