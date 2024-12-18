@@ -34,10 +34,10 @@
 	//Don't spawn these goobers without a director.
 	for(var/datum/job/processing in SSjob.occupations)
 		if(istype(processing, /datum/job/proxy))
-			processing.total_positions = 2
+			processing.total_positions = 1
 
 		if(istype(processing, /datum/job/proselyte))
-			processing.total_positions = 6
+			processing.total_positions = 2
 	. = ..()
 
 
