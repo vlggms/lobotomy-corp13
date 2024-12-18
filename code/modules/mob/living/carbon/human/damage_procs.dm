@@ -6,18 +6,17 @@
 
 //// Damage Effects
 /mob/living/carbon/human/adjustRedLoss(amount, updating_health = TRUE, forced = FALSE)
+	if(stat != DEAD)
+		DamageEffect(amount, RED_DAMAGE)
 	. = ..()
-	//Failsafe
-	if(. && !forced)
-		if(. > 0)
-			new /obj/effect/temp_visual/damage_effect/red(get_turf(src))
+
 
 /mob/living/carbon/human/adjustWhiteLoss(amount, updating_health = TRUE, forced = FALSE, white_healable = FALSE)
 	var/damage_amt = amount
 	if(sanity_lost && white_healable) // Heal sanity instead.
 		damage_amt *= -1
-	if(damage_amt > 0 && !forced)
-		new /obj/effect/temp_visual/damage_effect/white(get_turf(src))
+	if(stat != DEAD)
+		DamageEffect(damage_amt, WHITE_DAMAGE)
 	adjustSanityLoss(damage_amt, forced)
 	if(updating_health)
 		updatehealth()
@@ -27,29 +26,26 @@
 	var/damage_amt = amount
 	if(sanity_lost && white_healable) // Heal sanity instead.
 		damage_amt *= -1
-	if(amount > 0 && !forced)
-		new /obj/effect/temp_visual/damage_effect/black(get_turf(src))
+	if(stat != DEAD)
+		DamageEffect(amount, BLACK_DAMAGE)
 	adjustBruteLoss(amount, forced = forced)
 	adjustSanityLoss(damage_amt, forced = forced)
 	return damage_amt
 
 /mob/living/carbon/human/adjustPaleLoss(amount, updating_health = TRUE, forced = FALSE)
+	if(stat != DEAD)
+		DamageEffect(amount, PALE_DAMAGE)
 	. = ..()
-	if(. && !forced)
-		if(. > 0)
-			new /obj/effect/temp_visual/damage_effect/pale(get_turf(src))
 
 /mob/living/carbon/human/adjustToxLoss(amount, updating_health = TRUE, forced = FALSE)
+	if(stat != DEAD)
+		DamageEffect(amount, TOX)
 	. = ..()
-	if(. && !forced)
-		if(. > 0)
-			new /obj/effect/temp_visual/damage_effect/tox(get_turf(src))
 
 /mob/living/carbon/human/adjustFireLoss(amount, updating_health = TRUE, forced = FALSE, required_status)
+	if(stat != DEAD)
+		DamageEffect(amount, BURN)
 	. = ..()
-	if(. && !forced)
-		if(. > 0)
-			new /obj/effect/temp_visual/damage_effect/burn(get_turf(src))
 
 //
 
