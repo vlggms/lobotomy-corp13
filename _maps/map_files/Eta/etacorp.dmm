@@ -336,6 +336,7 @@
 	desc = "Even in death, a clerk does their job."
 	},
 /obj/machinery/navbeacon/wayfinding/trainingdepartment,
+/obj/machinery/holopad,
 /turf/open/floor/mineral/titanium/purple{
 	color = "#ffa500";
 	name = "floor"
@@ -695,6 +696,7 @@
 	set_luminosity = 24
 	},
 /obj/machinery/navbeacon/wayfinding/controldepartment,
+/obj/machinery/holopad,
 /turf/open/floor/mineral/titanium/yellow{
 	name = "floor"
 	},
@@ -2701,6 +2703,7 @@
 	},
 /obj/machinery/light/floor,
 /obj/structure/disposalpipe/segment,
+/obj/machinery/holopad,
 /turf/open/floor/facility/dark,
 /area/department_main/command)
 "mK" = (
@@ -6647,6 +6650,7 @@
 	},
 /obj/machinery/navbeacon/wayfinding/informationdepartment,
 /obj/structure/disposalpipe/junction/yjunction,
+/obj/machinery/holopad,
 /turf/open/floor/mineral/titanium/purple{
 	name = "floor"
 	},
@@ -10010,6 +10014,7 @@
 	desc = "Even in death, a clerk does their job."
 	},
 /obj/machinery/navbeacon/wayfinding/safetydepartment,
+/obj/machinery/holopad,
 /turf/open/floor/mineral/titanium/purple{
 	color = "#7FFF00";
 	name = "floor"

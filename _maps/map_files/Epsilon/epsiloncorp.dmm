@@ -1886,6 +1886,7 @@
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
+/obj/machinery/holopad,
 /turf/open/floor/bronze,
 /area/department_main/command)
 "fL" = (
@@ -8858,6 +8859,7 @@
 	},
 /obj/machinery/navbeacon/wayfinding/welfaredepartment,
 /mob/living/simple_animal/bot/cleanbot,
+/obj/machinery/holopad,
 /turf/open/floor/plasteel/sepia{
 	color = "#ccc8c0"
 	},
@@ -10261,6 +10263,7 @@
 	},
 /obj/machinery/navbeacon/wayfinding/controldepartment,
 /mob/living/simple_animal/bot/cleanbot,
+/obj/machinery/holopad,
 /turf/open/floor/plasteel/sepia{
 	color = "#ccc8c0"
 	},
@@ -10766,6 +10769,7 @@
 	icon_state = "LC2"
 	},
 /obj/structure/disposalpipe/segment,
+/obj/machinery/holopad,
 /turf/open/floor/plasteel/sepia{
 	color = "#ccc8c0"
 	},
@@ -11888,6 +11892,7 @@
 	icon_state = "LC2"
 	},
 /obj/structure/disposalpipe/segment,
+/obj/machinery/holopad,
 /turf/open/floor/plasteel/sepia{
 	color = "#ccc8c0"
 	},
