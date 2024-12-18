@@ -248,16 +248,6 @@ a.updated {
 	src.add_fingerprint(usr)
 	src.updateUsrDialog()
 
-/obj/machinery/computer/stockexchange/attackby(obj/I, mob/user, params)
-	if(istype(I, /obj/item/holochip))
-		var/obj/item/holochip/H = I
-		var/ahn_amount = H.get_item_credit_value()
-		H.spend(ahn_amount)
-		AdjustMonies(ahn_amount)
-		return
-	else
-		return ..()
-
 /obj/machinery/computer/stockexchange/proc/sell_some_shares(datum/stock/S, mob/user)
 	if (!user || !S)
 		return
@@ -265,7 +255,7 @@ a.updated {
 	if (!li)
 		to_chat(user, span_danger("No active account on the console!"))
 		return
-	var/b = credits
+	var/b = SSshuttle.points
 	var/avail = S.shareholders[logged_in]
 	if (!avail)
 		to_chat(user, span_danger("This account does not own any shares of [S.name]!"))
@@ -280,7 +270,7 @@ a.updated {
 		return
 	if (li != logged_in)
 		return
-	b = credits
+	b = SSshuttle.points
 	if (!isnum(b))
 		to_chat(user, span_danger("No active account on the console!"))
 		return
