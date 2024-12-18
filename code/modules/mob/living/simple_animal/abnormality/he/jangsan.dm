@@ -256,9 +256,9 @@
 		return FALSE
 	return ..()
 
-/mob/living/simple_animal/hostile/abnormality/jangsan/AttackingTarget()
+/mob/living/simple_animal/hostile/abnormality/jangsan/AttackingTarget(atom/attacked_target)
 	if(bite_cooldown < world.time)
-		KillCheck(target)
+		KillCheck(attacked_target)
 	icon_state = icon_aggro
 	return ..()
 

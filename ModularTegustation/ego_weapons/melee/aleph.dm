@@ -750,6 +750,10 @@
 
 	attacking = TRUE //ALWAYS blocking ranged attacks
 
+/obj/item/ego_weapon/shield/distortion/Initialize()
+	. = ..()
+	aggro_on_block *= 4
+
 /obj/item/ego_weapon/shield/distortion/EgoAttackInfo(mob/user)
 	return span_notice("It deals [force * 4] red, white, black and pale damage combined.")
 

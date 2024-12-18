@@ -348,8 +348,8 @@
 			return ConeAttack(target)
 		if((slam_cooldown <= world.time) && prob(35))
 			return Slam()
-	if(ishuman(target))
-		if(Finisher(target))
+	if(ishuman(attacked_target))
+		if(Finisher(attacked_target))
 			return
 	return ..()
 

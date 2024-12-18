@@ -53,15 +53,38 @@
 		But, they seem despondent. <br>One looks at me says simply; \"In here, you're with us. Forever.\""
 
 	var/finishing = FALSE
+	var/captured_souls = 0
 
-/mob/living/simple_animal/hostile/abnormality/warden/AttackingTarget()
+	var/resistance_decrease = 0.5
+
+	var/base_red_resistance = 0.7
+	var/base_white_resistance = 1.2
+	var/base_black_resistance = 0.4
+	var/base_pale_resistance = 1.5
+
+	var/new_red_resistance = 0.7
+	var/new_white_resistance = 1.2
+	var/new_black_resistance = 0.4
+	var/new_pale_resistance = 1.5
+
+	var/damage_down = 5
+
+/mob/living/simple_animal/hostile/abnormality/warden/Login()
+	. = ..()
+	to_chat(src, "<h1>You are Warden, A Tank Role Abnormality.</h1><br>\
+		<b>|Soul Guard|: You are immune to all projectiles.<br>\
+		<br>\
+		|Soul Warden|: If you attack a corpse, you will dust it, heal and gain a stack of “Captured Soul”<br>\
+		For each stack of “Captured Soul”, you become faster, deal 10 less melee damage and take 50% more damage.</b>")
+
+/mob/living/simple_animal/hostile/abnormality/warden/AttackingTarget(atom/attacked_target)
 	. = ..()
 	if(.)
 		if(finishing)
 			return FALSE
-		if(!istype(target, /mob/living/carbon/human))
+		if(!istype(attacked_target, /mob/living/carbon/human))
 			return
-		var/mob/living/carbon/human/H = target
+		var/mob/living/carbon/human/H = attacked_target
 
 		if(H.health < 0)
 

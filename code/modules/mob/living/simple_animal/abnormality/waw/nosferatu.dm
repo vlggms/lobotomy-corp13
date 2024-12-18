@@ -188,15 +188,15 @@
 		Banquet()
 		return
 
-/mob/living/simple_animal/hostile/abnormality/nosferatu/AttackingTarget() //Combo for double attacks
-	if(!ishuman(target))
+/mob/living/simple_animal/hostile/abnormality/nosferatu/AttackingTarget(atom/attacked_target) //Combo for double attacks
+	if(!ishuman(attacked_target))
 		return ..()
-	var/mob/living/carbon/human/H = target
+	var/mob/living/carbon/human/H = attacked_target
 	if(bloodlust <= 0)
 		bloodlust = bloodlust_cooldown
 		H.deal_damage(45, BLACK_DAMAGE)
 		playsound(get_turf(src), 'sound/abnormalities/nosferatu/bat_attack.ogg', 50, 1)
-		to_chat(target, span_danger("The [src] attacks you savagely!"))
+		to_chat(attacked_target, span_danger("The [src] attacks you savagely!"))
 		AdjustThirst(40)
 	else
 		bloodlust -= 1
@@ -267,8 +267,8 @@
 	retreat_distance = 3
 	minimum_distance = 1
 
-/mob/living/simple_animal/hostile/nosferatu_mob/AttackingTarget() //they spawn blood on hit
-	if(ishuman(target))
+/mob/living/simple_animal/hostile/nosferatu_mob/AttackingTarget(atom/attacked_target) //they spawn blood on hit
+	if(ishuman(attacked_target))
 		var/obj/effect/decal/cleanable/blood/B = locate() in get_turf(src)
 		if(!B)
 			B = new /obj/effect/decal/cleanable/blood(get_turf(src))

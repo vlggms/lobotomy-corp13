@@ -1,6 +1,57 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
 "fU" = (
-/turf/open/space/basic,
+/turf/open/floor/wood,
+/area/city/outskirts)
+"rM" = (
+/obj/structure/chair/stool,
+/turf/open/floor/wood,
+/area/city/outskirts)
+"se" = (
+/obj/effect/decal/cleanable/blood/tracks{
+	dir = 8
+	},
+/turf/open/floor/wood,
+/area/city/outskirts)
+"vy" = (
+/obj/effect/decal/cleanable/blood/gibs/body,
+/obj/effect/decal/cleanable/blood/tracks,
+/turf/open/floor/wood,
+/area/city/outskirts)
+"wB" = (
+/obj/effect/decal/cleanable/blood/tracks{
+	dir = 9
+	},
+/turf/open/floor/wood,
+/area/city/outskirts)
+"BY" = (
+/obj/structure/table/wood,
+/turf/open/floor/wood,
+/area/city/outskirts)
+"Pc" = (
+/obj/effect/decal/cleanable/blood/tracks,
+/turf/open/floor/wood,
+/area/city/outskirts)
+"QR" = (
+/obj/structure/table/wood,
+/obj/item/flashlight/lamp,
+/turf/open/floor/wood,
+/area/city/outskirts)
+"Rf" = (
+/obj/effect/decal/cleanable/blood/tracks{
+	dir = 8
+	},
+/obj/effect/decal/cleanable/blood/gibs/down,
+/turf/open/floor/wood,
+/area/city/outskirts)
+"Ro" = (
+/obj/structure/bookcase/random,
+/turf/open/floor/wood,
+/area/city/outskirts)
+"VI" = (
+/obj/structure/chair/comfy/black{
+	dir = 1
+	},
+/turf/open/floor/wood,
 /area/city/outskirts)
 "Xn" = (
 /turf/closed/wall/mineral/plastitanium,
@@ -22,13 +73,13 @@ Xn
 (2,1,1) = {"
 Xn
 fU
+Ro
+Ro
+Ro
 fU
-fU
-fU
-fU
-fU
-fU
-fU
+Ro
+Ro
+Ro
 fU
 Xn
 "}
@@ -48,9 +99,9 @@ Xn
 (4,1,1) = {"
 Xn
 fU
-fU
-fU
-fU
+Pc
+vy
+Pc
 fU
 fU
 fU
@@ -61,13 +112,13 @@ Xn
 (5,1,1) = {"
 Xn
 fU
+Ro
+Ro
+Ro
 fU
-fU
-fU
-fU
-fU
-fU
-fU
+Ro
+Ro
+Ro
 fU
 Xn
 "}
@@ -77,10 +128,10 @@ fU
 fU
 fU
 fU
-fU
-fU
-fU
-fU
+wB
+Pc
+Pc
+Pc
 fU
 Xn
 "}
@@ -90,7 +141,7 @@ fU
 fU
 fU
 fU
-fU
+se
 fU
 fU
 fU
@@ -100,13 +151,13 @@ Xn
 (8,1,1) = {"
 Xn
 fU
-fU
-fU
-fU
-fU
-fU
-fU
-fU
+Ro
+Ro
+Ro
+Rf
+Ro
+Ro
+Ro
 fU
 Xn
 "}
@@ -120,58 +171,58 @@ fU
 fU
 fU
 fU
-fU
+VI
 Xn
 "}
 (10,1,1) = {"
 Xn
+rM
+BY
+BY
+rM
 fU
 fU
 fU
 fU
-fU
-fU
-fU
-fU
-fU
+QR
 Xn
 "}
 (11,1,1) = {"
 Xn
+rM
+BY
+BY
+rM
 fU
 fU
 fU
 fU
-fU
-fU
-fU
-fU
-fU
+VI
 Xn
 "}
 (12,1,1) = {"
 Xn
+rM
+BY
+BY
+rM
 fU
 fU
 fU
 fU
-fU
-fU
-fU
-fU
-Xn
+QR
 Xn
 "}
 (13,1,1) = {"
 Xn
-Xn
-Xn
 fU
 fU
 fU
 fU
 fU
 fU
-Xn
+fU
+fU
+VI
 Xn
 "}

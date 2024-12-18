@@ -369,9 +369,9 @@
 	cut_overlay(visual_overlay)
 	can_act = TRUE
 
-/mob/living/simple_animal/hostile/abnormality/big_wolf/AttackingTarget()
-	if(istype(target, /mob/living/simple_animal/hostile/abnormality/red_hood)) //Red takes triple damage from the wolf, becauser her resistances are high
-		var/mob/living/simple_animal/hostile/abnormality/red_hood/mercenary = target
+/mob/living/simple_animal/hostile/abnormality/big_wolf/AttackingTarget(atom/attacked_target)
+	if(istype(attacked_target, /mob/living/simple_animal/hostile/abnormality/red_hood)) //Red takes triple damage from the wolf, becauser her resistances are high
+		var/mob/living/simple_animal/hostile/abnormality/red_hood/mercenary = attacked_target
 		var/bonus_damage_dealt = 2 * (rand(melee_damage_lower,melee_damage_upper))
 		mercenary.deal_damage(bonus_damage_dealt, RED_DAMAGE)
 	return ..()

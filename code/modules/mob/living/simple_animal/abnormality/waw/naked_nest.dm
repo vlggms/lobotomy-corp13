@@ -187,14 +187,14 @@
 		origin_nest = home_naked_nest
 	AddComponent(/datum/component/swarming)
 
-/mob/living/simple_animal/hostile/naked_nest_serpent/AttackingTarget()
-	if(iscarbon(target))
-		var/mob/living/carbon/human/C = target
+/mob/living/simple_animal/hostile/naked_nest_serpent/AttackingTarget(atom/attacked_target)
+	if(iscarbon(attacked_target))
+		var/mob/living/carbon/human/C = attacked_target
 		if(C.stat != DEAD && !C.NAKED_NESTED && a_intent == "harm")
 			EnterHost(C)
 			return
-	if(istype(target, /mob/living/simple_animal/hostile/abnormality/naked_nest))
-		var/mob/living/simple_animal/hostile/abnormality/naked_nest/nest = target
+	if(istype(attacked_target, /mob/living/simple_animal/hostile/abnormality/naked_nest))
+		var/mob/living/simple_animal/hostile/abnormality/naked_nest/nest = attacked_target
 		nest.RecoverSerpent(src)
 	return ..()
 

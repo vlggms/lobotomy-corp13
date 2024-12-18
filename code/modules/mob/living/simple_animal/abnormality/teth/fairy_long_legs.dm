@@ -157,10 +157,10 @@
 	icon_state = "fairy_longlegs"
 
 //Breach Stuff
-/mob/living/simple_animal/hostile/abnormality/fairy_longlegs/AttackingTarget()
+/mob/living/simple_animal/hostile/abnormality/fairy_longlegs/AttackingTarget(atom/attacked_target)
 	if(finishing)
 		return FALSE
-	if(!istype(target, /mob/living/carbon/human))
+	if(!istype(attacked_target, /mob/living/carbon/human))
 		return ..()
 	finishing = TRUE
 	icon_state = "fairy_longlegs_healing"

@@ -64,10 +64,10 @@
 
 
 
-/mob/living/simple_animal/hostile/abnormality/smile/AttackingTarget()
+/mob/living/simple_animal/hostile/abnormality/smile/AttackingTarget(atom/attacked_target)
 	. = ..()
-	if(ishuman(target))
-		var/mob/living/carbon/human/L = target
+	if(ishuman(attacked_target))
+		var/mob/living/carbon/human/L = attacked_target
 		L.Knockdown(20)
 		var/obj/item/held = L.get_active_held_item()
 		L.dropItemToGround(held) //Drop weapon

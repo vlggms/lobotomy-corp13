@@ -120,16 +120,16 @@
 			return TRUE
 	return FALSE
 
-/mob/living/simple_animal/hostile/abnormality/mountain/AttackingTarget()
+/mob/living/simple_animal/hostile/abnormality/mountain/AttackingTarget(atom/attacked_target)
 	if(finishing)
 		return FALSE
 	if(phase >= 2)
 		if(prob(35) && OpenFire())
 			return
 	. = ..()
-	if(. && isliving(target))
-		var/mob/living/L = target
-		if(isliving(target) && (L.health < 0 || L.stat == DEAD))
+	if(. && isliving(attacked_target))
+		var/mob/living/L = attacked_target
+		if(isliving(attacked_target) && (L.health < 0 || L.stat == DEAD))
 			finishing = TRUE
 			if(phase == 3)
 				icon_state = "mosb_bite2"

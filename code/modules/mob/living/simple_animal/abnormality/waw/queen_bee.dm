@@ -135,11 +135,11 @@
 	alpha = 25
 	animate(src, alpha = 255, transform = init_transform, time = 5)
 
-/mob/living/simple_animal/hostile/worker_bee/AttackingTarget()
+/mob/living/simple_animal/hostile/worker_bee/AttackingTarget(atom/attacked_target)
 	. = ..()
-	if(!ishuman(target))
+	if(!ishuman(attacked_target))
 		return
-	var/mob/living/carbon/human/H = target
+	var/mob/living/carbon/human/H = attacked_target
 	if(H.health <= 0)
 		var/turf/T = get_turf(H)
 		visible_message(span_danger("[src] bites hard on \the [H] as another bee appears!"))
