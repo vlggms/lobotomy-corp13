@@ -68,3 +68,9 @@
 	mappath = "_maps/RandomRooms/backstreets/medium_north/lab_ln.dmm"
 	stock = 1
 	weight = 2 //1/5th as common
+
+/datum/map_template/random_room/backstreets/medium_north/casino_mn
+	name = "Casino - Medium North"
+	room_id = "casino_mn"
+	mappath = "_maps/RandomRooms/backstreets/medium_north/casino_mn.dmm"
+	stock = 1 // Only one, but it's common
