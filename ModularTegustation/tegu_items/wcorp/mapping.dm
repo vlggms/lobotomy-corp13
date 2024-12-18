@@ -74,3 +74,21 @@
 	room_id = "wcorp_kitchen"
 	mappath = "_maps/RandomRooms/wcorp/kitchen.dmm"
 	weight = 5
+
+/datum/map_template/random_room/wcorp/stage
+	name = "Wcorp - Stage"
+	room_id = "wcorp_stage"
+	mappath = "_maps/RandomRooms/wcorp/stage.dmm"
+	weight = 5
+
+/datum/map_template/random_room/wcorp/storage1
+	name = "Wcorp - Storage 1"
+	room_id = "wcorp_storage1"
+	mappath = "_maps/RandomRooms/wcorp/storage1.dmm"
+	weight = 5
+
+/datum/map_template/random_room/wcorp/zoo
+	name = "Wcorp - Zoo"
+	room_id = "wcorp_zoo"
+	mappath = "_maps/RandomRooms/wcorp/zoo.dmm"
+	weight = 5
