@@ -437,7 +437,7 @@
 /mob/living/simple_animal/hostile/clan/drone/ChargeUpdated()
 	var/chargelayer = layer + 0.1
 	var/charge_icon
-	if (icon_state != clan_drone_normal)
+	if (icon_state != "clan_drone_normal")
 		if(charge > 19)
 			cut_overlays()
 			charge_icon = "clan_drone_100%"
