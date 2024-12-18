@@ -257,18 +257,18 @@
 		return
 	if(prob(5))
 		if(friendly)
-			new /obj/effect/gibspawner/generic/silent/wrath_acid(get_turf(target))
+			new /obj/effect/gibspawner/generic/silent/wrath_acid(get_turf(attacked_target))
 		else
-			new /obj/effect/gibspawner/generic/silent/wrath_acid/bad(get_turf(target))
+			new /obj/effect/gibspawner/generic/silent/wrath_acid/bad(get_turf(attacked_target))
 	. = ..()
 	attack_sound = pick('sound/abnormalities/wrath_servant/small_smash1.ogg','sound/abnormalities/wrath_servant/small_smash2.ogg')
-	if(!isliving(target) || (get_dist(target, src) > 1))
+	if(!isliving(attacked_target) || (get_dist(attacked_target, src) > 1))
 		return
-	var/mob/living/L = target
+	var/mob/living/L = attacked_target
 	L.deal_damage(rand(10, 15), BLACK_DAMAGE)
-	if(!istype(target, /mob/living/simple_animal/hostile/azure_hermit))
+	if(!istype(attacked_target, /mob/living/simple_animal/hostile/azure_hermit))
 		return
-	var/mob/living/simple_animal/hostile/azure_hermit/AZ = target
+	var/mob/living/simple_animal/hostile/azure_hermit/AZ = attacked_target
 	if(AZ.health > 120)
 		return
 	PerformEnding(AZ)
@@ -727,8 +727,8 @@
 /mob/living/simple_animal/hostile/azure_hermit/AttackingTarget(atom/attacked_target)
 	if(!can_act || (status_flags & GODMODE))
 		return
-	if(istype(target, /mob/living/simple_animal/hostile/abnormality/wrath_servant))
-		var/mob/living/simple_animal/hostile/abnormality/wrath_servant/SW = target
+	if(istype(attacked_target, /mob/living/simple_animal/hostile/abnormality/wrath_servant))
+		var/mob/living/simple_animal/hostile/abnormality/wrath_servant/SW = attacked_target
 		if(SW.stunned)
 			return
 		if(SW.health > 400)
@@ -757,8 +757,8 @@
 			SW.icon_state = "wrath_staff_stun"
 			SW.desc = "A large red monster with white bandages hanging from it. Its flesh oozes a bubble acid. A wooden staff is impaled in its chest, it can't seem to move!"
 		return
-	if(ishuman(target))
-		var/mob/living/carbon/human/H = target
+	if(ishuman(attacked_target))
+		var/mob/living/carbon/human/H = attacked_target
 		if(get_user_level(H) < 3)
 			say("Pardon me.")
 			var/turf/TT = get_turf(H)

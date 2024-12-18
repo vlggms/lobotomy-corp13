@@ -77,10 +77,10 @@
 	return ..()
 
 //Attacking code
-/mob/living/simple_animal/hostile/abnormality/titania/AttackingTarget()
+/mob/living/simple_animal/hostile/abnormality/titania/AttackingTarget(atom/attacked_target)
 	if(fused)
 		return FALSE
-	var/mob/living/carbon/human/H = target
+	var/mob/living/carbon/human/H = attacked_target
 	//Kills the weak immediately.
 	if(get_user_level(H) < 4 && (ishuman(H)))
 		say("I rid you of your pain, mere human.")

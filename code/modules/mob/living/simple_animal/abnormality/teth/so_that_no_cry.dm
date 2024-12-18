@@ -193,12 +193,12 @@
 	can_act = TRUE
 
 //Talisman Stuff
-/mob/living/simple_animal/hostile/abnormality/so_that_no_cry/AttackingTarget()
+/mob/living/simple_animal/hostile/abnormality/so_that_no_cry/AttackingTarget(atom/attacked_target)
 	if(!can_act)
 		return
-	if(!ishuman(target))
+	if(!ishuman(attacked_target))
 		return ..()
-	var/mob/living/carbon/human/H = target
+	var/mob/living/carbon/human/H = attacked_target
 	Apply_Talisman(H)
 	return ..()
 

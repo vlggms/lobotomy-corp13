@@ -262,24 +262,24 @@
 		Combusting_Courage()
 	return
 
-/mob/living/simple_animal/hostile/abnormality/crying_children/AttackingTarget()
+/mob/living/simple_animal/hostile/abnormality/crying_children/AttackingTarget(atom/attacked_target)
 	if(!can_act)
 		return FALSE
 	if(!client)
 		if(desperate && (courage_cooldown <= world.time) && prob(30))
 			return Combusting_Courage()
 		if(sorrow_cooldown <= world.time && prob(25))
-			return Wounds_Of_Sorrow(target)
+			return Wounds_Of_Sorrow(attacked_target)
 
 	if(prob(35))
-		return Bygone_Illusion(target)
+		return Bygone_Illusion(attacked_target)
 
 	// Distorted Illusion
 	can_act = FALSE
 	icon_state = "[icon_phase]_salvador"
 	. = ..()
-	if(isliving(target))
-		var/mob/living/L = target
+	if(isliving(attacked_target))
+		var/mob/living/L = attacked_target
 		L.apply_lc_burn(5*burn_mod)
 	SLEEP_CHECK_DEATH(10)
 	icon_state = "[icon_phase]_idle"
@@ -508,7 +508,7 @@
 			if(!target)
 				target = H
 		if(target in view(1, src))
-			AttackingTarget()
+			AttackingTarget(target)
 		tagged = TRUE
 
 // Unseeing

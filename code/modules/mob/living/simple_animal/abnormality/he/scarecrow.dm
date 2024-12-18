@@ -75,12 +75,12 @@
 	QDEL_IN(src, 10 SECONDS)
 	..()
 
-/mob/living/simple_animal/hostile/abnormality/scarecrow/AttackingTarget()
+/mob/living/simple_animal/hostile/abnormality/scarecrow/AttackingTarget(atom/attacked_target)
 	. = ..()
 	if(.)
-		if(!istype(target, /mob/living/carbon/human))
+		if(!istype(attacked_target, /mob/living/carbon/human))
 			return
-		var/mob/living/carbon/human/H = target
+		var/mob/living/carbon/human/H = attacked_target
 		if(H.health < 0 && stat != DEAD && !finishing && H.getorgan(/obj/item/organ/brain))
 			finishing = TRUE
 			H.Stun(10 SECONDS)

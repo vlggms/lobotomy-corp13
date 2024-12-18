@@ -128,11 +128,11 @@
 			return FALSE
 	return ..()
 
-/mob/living/simple_animal/hostile/abnormality/big_bird/AttackingTarget()
-	if(ishuman(target))
+/mob/living/simple_animal/hostile/abnormality/big_bird/AttackingTarget(atom/attacked_target)
+	if(ishuman(attacked_target))
 		if(bite_cooldown > world.time)
 			return FALSE
-		var/mob/living/carbon/human/H = target
+		var/mob/living/carbon/human/H = attacked_target
 		var/obj/item/bodypart/head/head = H.get_bodypart("head")
 		if(QDELETED(head))
 			return

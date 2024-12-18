@@ -116,15 +116,15 @@
 			return FALSE
 	return ..()
 
-/mob/living/simple_animal/hostile/abnormality/censored/AttackingTarget()
+/mob/living/simple_animal/hostile/abnormality/censored/AttackingTarget(atom/attacked_target)
 	. = ..()
 	if(!can_act)
 		return
 
-	if(!ishuman(target))
+	if(!ishuman(attacked_target))
 		return
 
-	var/mob/living/carbon/human/H = target
+	var/mob/living/carbon/human/H = attacked_target
 	if(H.stat >= SOFT_CRIT || H.health < 0)
 		return Convert(H)
 

@@ -159,9 +159,9 @@
 
 //pink midnight code
 
-/mob/living/simple_animal/hostile/abnormality/sleeping/AttackingTarget()
+/mob/living/simple_animal/hostile/abnormality/sleeping/AttackingTarget(atom/attacked_target)
 	if(grab_cooldown < world.time)
-		buckle_mob(target)
+		buckle_mob(attacked_target)
 		grab_cooldown = world.time + grab_cooldown_time
 	return ..()
 

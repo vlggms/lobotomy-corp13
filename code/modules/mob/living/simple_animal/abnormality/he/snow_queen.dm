@@ -204,14 +204,14 @@
 		return TRUE
 	return ..()
 
-/mob/living/simple_animal/hostile/abnormality/snow_queen/AttackingTarget()
+/mob/living/simple_animal/hostile/abnormality/snow_queen/AttackingTarget(atom/attacked_target)
 	if(!can_act)
 		return FALSE
 	if(client)
 		return ..()
 	//Destroy them. They lost the duel.
-	if(ishuman(target))
-		var/mob/living/carbon/human/H = target
+	if(ishuman(attacked_target))
+		var/mob/living/carbon/human/H = attacked_target
 		if(H.stat == DEAD && (H == storybook_hero || H == frozen_employee))
 			H.dust(TRUE, FALSE)
 			return FALSE
@@ -224,7 +224,7 @@
 				can_act = TRUE
 				return
 			can_act = TRUE
-		Slash(target, wide = pick(TRUE, FALSE))
+		Slash(attacked_target, wide = pick(TRUE, FALSE))
 		return
 	//Dont do normal attacks if in the arena.
 	if(!arena_attacks)

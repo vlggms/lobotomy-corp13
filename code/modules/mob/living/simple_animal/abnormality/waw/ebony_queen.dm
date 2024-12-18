@@ -205,15 +205,15 @@
 		OpenFire()
 		return
 
-	if(target) // You'd think this should be "attacked_target" but no this shit still uses target I hate it.
-		if(ismecha(target))
+	if(attacked_target) // You'd think this should be "attacked_target" but no this shit still uses target I hate it.
+		if(ismecha(attacked_target))
 			if(burst_cooldown <= world.time && prob(50))
 				thornBurst()
 			else
 				OpenFire()
 			return
-		else if(isliving(target))
-			var/mob/living/L = target
+		else if(isliving(attacked_target))
+			var/mob/living/L = attacked_target
 			if(L.stat != DEAD)
 				if(burst_cooldown <= world.time && prob(50))
 					thornBurst()

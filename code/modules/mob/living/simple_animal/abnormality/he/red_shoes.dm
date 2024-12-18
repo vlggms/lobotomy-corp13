@@ -223,11 +223,11 @@
 		if(S.stat != DEAD && !S.target && !S.client && faction_check_mob(S))//cannibalized from steel ordeals
 			S.Goto(src,S.move_to_delay,1)
 
-/mob/living/simple_animal/hostile/abnormality/red_shoes/AttackingTarget()
+/mob/living/simple_animal/hostile/abnormality/red_shoes/AttackingTarget(atom/attacked_target)
 	. = ..()
-	if(!ishuman(target))
+	if(!ishuman(attacked_target))
 		return
-	var/mob/living/carbon/human/H = target
+	var/mob/living/carbon/human/H = attacked_target
 	if(H.stat >= SOFT_CRIT || H.health < 0)
 		ChopFeet(H)
 
@@ -392,11 +392,11 @@
 	move_to_delay = 3
 	var/steppy = 0
 
-/mob/living/simple_animal/hostile/red_shoe/AttackingTarget()
+/mob/living/simple_animal/hostile/red_shoe/AttackingTarget(atom/attacked_target)
 	. = ..()
-	if(!ishuman(target))
+	if(!ishuman(attacked_target))
 		return
-	var/mob/living/carbon/human/H = target
+	var/mob/living/carbon/human/H = attacked_target
 	if(H.stat >= SOFT_CRIT || H.health < 0)
 		ChopFeet(H)
 

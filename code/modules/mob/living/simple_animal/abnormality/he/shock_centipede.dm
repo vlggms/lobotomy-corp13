@@ -234,13 +234,13 @@
 		AT.pixel_y += random_y
 		return 0
 
-/mob/living/simple_animal/hostile/abnormality/shock_centipede/AttackingTarget()
+/mob/living/simple_animal/hostile/abnormality/shock_centipede/AttackingTarget(atom/attacked_target)
 	if (shield > 0 || !can_act)  // dont attack if coiled or stunned
 		return FALSE
 	if(!client)
 		TryCoil()
 		if(tail_attack_cooldown < world.time)
-			var/turf/target_turf = get_turf(target)
+			var/turf/target_turf = get_turf(attacked_target)
 			for(var/i = 1 to tailattack_range - 2)
 				target_turf = get_step(target_turf, get_dir(get_turf(src), target_turf))
 			TailAttack(target_turf)
