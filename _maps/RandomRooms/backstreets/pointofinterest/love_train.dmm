@@ -252,6 +252,7 @@
 /obj/item/stack/spacecash/c200,
 /obj/item/stack/spacecash/c200,
 /obj/item/stack/spacecash/c200,
+/obj/item/attribute_increase/fixer,
 /turf/open/floor/engine,
 /area/city/backstreets_room)
 "AX" = (
@@ -463,6 +464,7 @@
 /obj/item/stack/spacecash/c100,
 /obj/item/stack/spacecash/c100,
 /obj/item/stack/spacecash/c100,
+/obj/item/attribute_increase/fixer,
 /turf/open/floor/engine,
 /area/city/backstreets_room)
 "Tw" = (
