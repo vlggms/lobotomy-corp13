@@ -252,6 +252,7 @@
 /obj/item/stack/spacecash/c200,
 /obj/item/stack/spacecash/c200,
 /obj/item/stack/spacecash/c200,
+/obj/item/attribute_increase/fixer,
 /turf/open/floor/engine,
 /area/city/backstreets_room)
 "AX" = (
@@ -463,6 +464,7 @@
 /obj/item/stack/spacecash/c100,
 /obj/item/stack/spacecash/c100,
 /obj/item/stack/spacecash/c100,
+/obj/item/attribute_increase/fixer,
 /turf/open/floor/engine,
 /area/city/backstreets_room)
 "Tw" = (
@@ -1144,9 +1146,9 @@ BV
 mA
 Hb
 dX
-zZ
-Is
-Is
+kM
+dX
+dX
 zZ
 zZ
 zZ
@@ -1176,8 +1178,8 @@ Dd
 mA
 mA
 dX
-kM
-dX
+Dz
+ag
 dX
 ZW
 zZ
@@ -1208,8 +1210,8 @@ Dd
 mA
 Lw
 dX
-Dz
-ag
+gX
+Hc
 dX
 Is
 Is
@@ -1240,8 +1242,8 @@ Lw
 Lw
 MA
 dX
-gX
-Hc
+Tf
+AQ
 dX
 zZ
 Bb
@@ -1272,8 +1274,8 @@ MA
 MA
 MA
 dX
-Tf
-AQ
+dX
+dX
 dX
 zZ
 MA
@@ -1304,10 +1306,10 @@ MA
 MA
 MA
 dX
-dX
-dX
-dX
-MA
+zZ
+zZ
+zZ
+zZ
 MA
 zZ
 zZ
@@ -1337,7 +1339,7 @@ MA
 MA
 dX
 zZ
-zZ
+MA
 MA
 MA
 MA
@@ -1369,7 +1371,7 @@ MA
 MA
 dX
 zZ
-zZ
+MA
 MA
 MA
 zZ
