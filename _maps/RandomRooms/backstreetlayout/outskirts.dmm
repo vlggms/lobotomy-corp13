@@ -658,6 +658,13 @@
 	},
 /turf/open/floor/plating/ashplanet/rocky,
 /area/city/backstreets_alley)
+"DZ" = (
+/obj/structure/plaque/static_plaque{
+	name = "folk office plaque";
+	desc = "A plaque which mentions some sort of 'Folk Office', Something about them giving them some strange speech about being yourself, even if other order you to be something else..."
+	},
+/turf/closed/indestructible/wood,
+/area/city/backstreets_alley)
 "Eg" = (
 /obj/effect/spawner/room/backstreets/small_north,
 /turf/closed/indestructible/reinforced,
@@ -806,6 +813,13 @@
 /obj/effect/spawner/room/backstreets/small_east,
 /turf/closed/indestructible/reinforced,
 /area/city/backstreets_room)
+"Oj" = (
+/obj/structure/plaque/static_plaque{
+	name = "echo office plaque";
+	desc = "A plaque which mentions some sort of 'Echo Office', Something about them freeing them from a 'Tinkerer'"
+	},
+/turf/closed/indestructible/wood,
+/area/city/backstreets_alley)
 "Ol" = (
 /obj/structure/curtain/cloth,
 /obj/structure/fluff/paper,
@@ -13557,7 +13571,7 @@ pR
 pR
 LI
 LI
-LI
+DZ
 LI
 LI
 LI
@@ -14557,7 +14571,7 @@ qD
 mp
 mz
 ol
-LI
+Oj
 Jc
 Jc
 MQ
