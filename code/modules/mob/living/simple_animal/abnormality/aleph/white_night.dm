@@ -284,6 +284,7 @@ GLOBAL_LIST_EMPTY(apostles)
 	can_buckle_to = FALSE
 	mob_size = MOB_SIZE_HUGE
 	blood_volume = BLOOD_VOLUME_NORMAL
+	is_flying_animal = TRUE
 	can_patrol = TRUE // You have legs, use them.
 	var/can_act = TRUE
 	var/death_counter = 0

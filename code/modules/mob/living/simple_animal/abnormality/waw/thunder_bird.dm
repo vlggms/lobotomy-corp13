@@ -7,6 +7,7 @@
 	icon_dead = "thunderbird_dead"
 	core_icon = "thunderbird_dead"
 	del_on_death = FALSE
+	is_flying_animal = TRUE
 	speak_emote = list("intones")
 	gender = NEUTER
 	var/list/thunder_bird_lines = list(
