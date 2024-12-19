@@ -168,6 +168,20 @@
 		P.TriggerPrank()
 	return
 
+/mob/living/simple_animal/hostile/abnormality/laetitia/BreachEffect(mob/living/carbon/human/user, breach_type)
+	if(breach_type == BREACH_MINING)
+		SummonAdds()
+		addtimer(CALLBACK(src, PROC_REF(SummonAdds)), 20 SECONDS)
+	return ..()
+
+/mob/living/simple_animal/hostile/abnormality/laetitia/proc/SummonAdds()
+	var/mob/living/simple_animal/hostile/ordeal/pink_midnight/pink = locate() in GLOB.mob_living_list
+	for(var/i = 1 to 2)
+		var/turf/target_turf = get_turf(pink ? pink : src)
+		var/mob/living/simple_animal/hostile/gift/new_mob = new(target_turf)
+		if(pink)
+			new_mob.faction += "pink_midnight"
+
 //Her friend
 /mob/living/simple_animal/hostile/gift
 	name = "Little Witch's Friend"

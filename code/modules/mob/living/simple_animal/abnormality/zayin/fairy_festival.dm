@@ -7,6 +7,10 @@
 	portrait = "fairy_festival"
 	maxHealth = 83
 	health = 83
+	damage_coeff = list(RED_DAMAGE = 1, WHITE_DAMAGE = 1.2, BLACK_DAMAGE = 1.3, PALE_DAMAGE = 2)
+	melee_damage_lower = 8
+	melee_damage_upper = 15
+	attack_sound = 'sound/abnormalities/fairyfestival/fairyqueen_hit.ogg'
 	is_flying_animal = TRUE
 	threat_level = ZAYIN_LEVEL
 	work_chances = list(
@@ -118,6 +122,13 @@
 	if(breach_type == BREACH_PINK)
 		SummonGuys()
 		addtimer(CALLBACK(src, PROC_REF(SummonGuys)), 20 SECONDS)
+	if(breach_type == BREACH_MINING)
+		icon = 'ModularTegustation/Teguicons/96x48.dmi'
+		icon_state = "fairy_queen"
+		pixel_x = -32
+		maxHealth = 500
+		playsound(get_turf(src), "sound/abnormalities/seasons/fall_change.ogg", 100, FALSE)
+		playsound(get_turf(src), "sound/abnormalities/fairyfestival/fairyqueen_growl.ogg", 100, FALSE)
 	return ..()
 
 /mob/living/simple_animal/hostile/abnormality/fairy_festival/proc/SummonGuys()
