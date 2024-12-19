@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <base href="../" />
+    <link rel="stylesheet" href="dmdoc.css" />
+    <title>&#x2F;datum&#x2F;adventure_layout - &#x2F;tg&#x2F; Station 13</title>
+</head>
+<body>
+<header>
+    <a href="index.html">&#x2F;tg&#x2F; Station 13</a> -
+    <a href="index.html#modules">Modules</a> -
+    <a href="index.html#types">Types</a>
+ &mdash; <a href="datum/adventure_layout.html#var">Var Details</a> - <a href="datum/adventure_layout.html#proc">Proc Details</a></header>
+<main>
+<h1>adventure_layout <aside>/<a href="datum.html">datum</a>/<a href="datum/adventure_layout.html">adventure_layout</a></aside>
+        
+    
+            <a href="https://github.com/vlggms/lobotomy-corp13/blob/787499dc3559f943435d1fd3a66e3f235267b0f1/ModularTegustation/lc13_obj/_adventure_console/adventure_layout.dm#L13">
+        <img src="git.png" width="16" height="16" title="ModularTegustation&#x2F;lc13_obj&#x2F;_adventure_console&#x2F;adventure_layout.dm 13"/></a></h1>
+
+<p>TEXT BASED ADVENTURES
+Adventures that are mostly predefined paths.
+This was difficult to finalize since i havent made a text based adventure before.
+Special defines such as button macros are in the code/_DEFINES/~lobotomy_defines.dm</p>
+<p>The way i made this system is unusual to say the least. Its a stand alone datum that
+is vaguely connected to the console that created it. While this does make the program
+portable it also makes it so that when the console is destroyed there is just a datum
+floating around in the code. Unsure how bad this is. -IP</p><table class="summary" cellspacing="0"><tr><td colspan="2"><h2>Vars</h2></td></tr>
+            <tr><th><a href="datum/adventure_layout.html#var/debug_menu">debug_menu</a></th><td>If debug menu comes up.</td></tr>
+            <tr><th><a href="datum/adventure_layout.html#var/display_mode">display_mode</a></th><td>What we are currently displaying.</td></tr>
+            <tr><th><a href="datum/adventure_layout.html#var/enemy_coin">enemy_coin</a></th><td>Coins rewarded after defeating the enemy</td></tr>
+            <tr><th><a href="datum/adventure_layout.html#var/enemy_damage">enemy_damage</a></th><td>Enemy damage dice</td></tr>
+            <tr><th><a href="datum/adventure_layout.html#var/enemy_desc">enemy_desc</a></th><td>Enemy flavor text. Currently this is the way we register that a enemy currently exists and it is cleared after battle.</td></tr>
+            <tr><th><a href="datum/adventure_layout.html#var/enemy_descriptions">enemy_descriptions</a></th><td>One day maybe we will have proper enemies but for now this will suffice. -IP</td></tr>
+            <tr><th><a href="datum/adventure_layout.html#var/enemy_integrity">enemy_integrity</a></th><td>Enemy's current health</td></tr>
+            <tr><th><a href="datum/adventure_layout.html#var/event_data">event_data</a></th><td>Currently Selected Event</td></tr>
+            <tr><th><a href="datum/adventure_layout.html#var/event_options">event_options</a></th><td>Events we can choose from.</td></tr>
+            <tr><th><a href="datum/adventure_layout.html#var/events">events</a></th><td>list of all events.</td></tr>
+            <tr><th><a href="datum/adventure_layout.html#var/last_logged_time">last_logged_time</a></th><td>Variable for when they last logged in. Used in StatCatchup()</td></tr>
+            <tr><th><a href="datum/adventure_layout.html#var/paths_to_tread">paths_to_tread</a></th><td>Used in the adventure mechanics. Generated paths will be put here until they are walked.</td></tr>
+            <tr><th><a href="datum/adventure_layout.html#var/program_progress">program_progress</a></th><td>Event progress so that your not stuck with nothing but null events.</td></tr>
+            <tr><th><a href="datum/adventure_layout.html#var/temp_text">temp_text</a></th><td>Temp text for occasional informative text on the UI.</td></tr>
+            <tr><th><a href="datum/adventure_layout.html#var/travel_mode">travel_mode</a></th><td>What is currently happening while traveling.</td></tr>
+            <tr><th><a href="datum/adventure_layout.html#var/virtual_coins">virtual_coins</a></th><td>Coins for flipping.</td></tr>
+            <tr><th><a href="datum/adventure_layout.html#var/virtual_damage">virtual_damage</a></th><td>Damage in battle senarios. Based on dice values.</td></tr>
+            <tr><th><a href="datum/adventure_layout.html#var/virtual_integrity">virtual_integrity</a></th><td>Current players health</td></tr>
+            <tr><th><a href="datum/adventure_layout.html#var/virtual_stats">virtual_stats</a></th><td>Used in event chances.</td></tr><tr><td colspan="2"><h2>Procs</h2></td></tr>
+            <tr><th><a href="datum/adventure_layout.html#proc/Adventure">Adventure</a></th><td>This proc is called by the adventure datum in order to build the UI.
+Its like a hub where all other general things are called.</td></tr>
+            <tr><th><a href="datum/adventure_layout.html#proc/GenerateEnemy">GenerateEnemy</a></th><td>Enemy Generation for Battle Mode
+Currently not very great, terrible even, but i just need to get this up and running.</td></tr>
+            <tr><th><a href="datum/adventure_layout.html#proc/GeneratePaths">GeneratePaths</a></th><td>Ill just leave it at this until i can get it working.
+10/5 = 2, 14/5 = 2
+-IP</td></tr></table>
+    <h2 id="var">Var Details</h2><h3 id="var/debug_menu"><aside class="declaration">var </aside>debug_menu
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/vlggms/lobotomy-corp13/blob/787499dc3559f943435d1fd3a66e3f235267b0f1/ModularTegustation/lc13_obj/_adventure_console/adventure_layout.dm#L29">
+        <img src="git.png" width="16" height="16" title="ModularTegustation&#x2F;lc13_obj&#x2F;_adventure_console&#x2F;adventure_layout.dm 29"/></a></h3>
+        <p>If debug menu comes up.</p><h3 id="var/display_mode"><aside class="declaration">var </aside>display_mode
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/vlggms/lobotomy-corp13/blob/787499dc3559f943435d1fd3a66e3f235267b0f1/ModularTegustation/lc13_obj/_adventure_console/adventure_layout.dm#L25">
+        <img src="git.png" width="16" height="16" title="ModularTegustation&#x2F;lc13_obj&#x2F;_adventure_console&#x2F;adventure_layout.dm 25"/></a></h3>
+        <p>What we are currently displaying.</p><h3 id="var/enemy_coin"><aside class="declaration">var </aside>enemy_coin
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/vlggms/lobotomy-corp13/blob/787499dc3559f943435d1fd3a66e3f235267b0f1/ModularTegustation/lc13_obj/_adventure_console/adventure_layout.dm#L59">
+        <img src="git.png" width="16" height="16" title="ModularTegustation&#x2F;lc13_obj&#x2F;_adventure_console&#x2F;adventure_layout.dm 59"/></a></h3>
+        <p>Coins rewarded after defeating the enemy</p><h3 id="var/enemy_damage"><aside class="declaration">var </aside>enemy_damage
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/vlggms/lobotomy-corp13/blob/787499dc3559f943435d1fd3a66e3f235267b0f1/ModularTegustation/lc13_obj/_adventure_console/adventure_layout.dm#L57">
+        <img src="git.png" width="16" height="16" title="ModularTegustation&#x2F;lc13_obj&#x2F;_adventure_console&#x2F;adventure_layout.dm 57"/></a></h3>
+        <p>Enemy damage dice</p><h3 id="var/enemy_desc"><aside class="declaration">var </aside>enemy_desc
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/vlggms/lobotomy-corp13/blob/787499dc3559f943435d1fd3a66e3f235267b0f1/ModularTegustation/lc13_obj/_adventure_console/adventure_layout.dm#L55">
+        <img src="git.png" width="16" height="16" title="ModularTegustation&#x2F;lc13_obj&#x2F;_adventure_console&#x2F;adventure_layout.dm 55"/></a></h3>
+        <p>Enemy flavor text. Currently this is the way we register that a enemy currently exists and it is cleared after battle.</p><h3 id="var/enemy_descriptions"><aside class="declaration">var </aside>enemy_descriptions
+            <aside>&ndash; /list</aside>
+        
+    
+            <a href="https://github.com/vlggms/lobotomy-corp13/blob/787499dc3559f943435d1fd3a66e3f235267b0f1/ModularTegustation/lc13_obj/_adventure_console/adventure_layout.dm#L61">
+        <img src="git.png" width="16" height="16" title="ModularTegustation&#x2F;lc13_obj&#x2F;_adventure_console&#x2F;adventure_layout.dm 61"/></a></h3>
+        <p>One day maybe we will have proper enemies but for now this will suffice. -IP</p><h3 id="var/enemy_integrity"><aside class="declaration">var </aside>enemy_integrity
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/vlggms/lobotomy-corp13/blob/787499dc3559f943435d1fd3a66e3f235267b0f1/ModularTegustation/lc13_obj/_adventure_console/adventure_layout.dm#L53">
+        <img src="git.png" width="16" height="16" title="ModularTegustation&#x2F;lc13_obj&#x2F;_adventure_console&#x2F;adventure_layout.dm 53"/></a></h3>
+        <p>Enemy's current health</p><h3 id="var/event_data"><aside class="declaration">var </aside>event_data
+            <aside>&ndash; /<a href="datum.html">datum</a>/<a href="datum/adventure_event.html">adventure_event</a></aside>
+        
+    
+            <a href="https://github.com/vlggms/lobotomy-corp13/blob/787499dc3559f943435d1fd3a66e3f235267b0f1/ModularTegustation/lc13_obj/_adventure_console/adventure_layout.dm#L33">
+        <img src="git.png" width="16" height="16" title="ModularTegustation&#x2F;lc13_obj&#x2F;_adventure_console&#x2F;adventure_layout.dm 33"/></a></h3>
+        <p>Currently Selected Event</p><h3 id="var/event_options"><aside class="declaration">var </aside>event_options
+            <aside>&ndash; /list</aside>
+        
+    
+            <a href="https://github.com/vlggms/lobotomy-corp13/blob/787499dc3559f943435d1fd3a66e3f235267b0f1/ModularTegustation/lc13_obj/_adventure_console/adventure_layout.dm#L47">
+        <img src="git.png" width="16" height="16" title="ModularTegustation&#x2F;lc13_obj&#x2F;_adventure_console&#x2F;adventure_layout.dm 47"/></a></h3>
+        <p>Events we can choose from.</p><h3 id="var/events"><aside class="declaration">var </aside>events
+            <aside>&ndash; /static/list</aside>
+        
+    
+            <a href="https://github.com/vlggms/lobotomy-corp13/blob/787499dc3559f943435d1fd3a66e3f235267b0f1/ModularTegustation/lc13_obj/_adventure_console/adventure_layout.dm#L49">
+        <img src="git.png" width="16" height="16" title="ModularTegustation&#x2F;lc13_obj&#x2F;_adventure_console&#x2F;adventure_layout.dm 49"/></a></h3>
+        <p>list of all events.</p><h3 id="var/last_logged_time"><aside class="declaration">var </aside>last_logged_time
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/vlggms/lobotomy-corp13/blob/787499dc3559f943435d1fd3a66e3f235267b0f1/ModularTegustation/lc13_obj/_adventure_console/adventure_layout.dm#L23">
+        <img src="git.png" width="16" height="16" title="ModularTegustation&#x2F;lc13_obj&#x2F;_adventure_console&#x2F;adventure_layout.dm 23"/></a></h3>
+        <p>Variable for when they last logged in. Used in StatCatchup()</p><h3 id="var/paths_to_tread"><aside class="declaration">var </aside>paths_to_tread
+            <aside>&ndash; /list</aside>
+        
+    
+            <a href="https://github.com/vlggms/lobotomy-corp13/blob/787499dc3559f943435d1fd3a66e3f235267b0f1/ModularTegustation/lc13_obj/_adventure_console/adventure_layout.dm#L45">
+        <img src="git.png" width="16" height="16" title="ModularTegustation&#x2F;lc13_obj&#x2F;_adventure_console&#x2F;adventure_layout.dm 45"/></a></h3>
+        <p>Used in the adventure mechanics. Generated paths will be put here until they are walked.</p><h3 id="var/program_progress"><aside class="declaration">var </aside>program_progress
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/vlggms/lobotomy-corp13/blob/787499dc3559f943435d1fd3a66e3f235267b0f1/ModularTegustation/lc13_obj/_adventure_console/adventure_layout.dm#L19">
+        <img src="git.png" width="16" height="16" title="ModularTegustation&#x2F;lc13_obj&#x2F;_adventure_console&#x2F;adventure_layout.dm 19"/></a></h3>
+        <p>Event progress so that your not stuck with nothing but null events.</p><h3 id="var/temp_text"><aside class="declaration">var </aside>temp_text
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/vlggms/lobotomy-corp13/blob/787499dc3559f943435d1fd3a66e3f235267b0f1/ModularTegustation/lc13_obj/_adventure_console/adventure_layout.dm#L31">
+        <img src="git.png" width="16" height="16" title="ModularTegustation&#x2F;lc13_obj&#x2F;_adventure_console&#x2F;adventure_layout.dm 31"/></a></h3>
+        <p>Temp text for occasional informative text on the UI.</p><h3 id="var/travel_mode"><aside class="declaration">var </aside>travel_mode
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/vlggms/lobotomy-corp13/blob/787499dc3559f943435d1fd3a66e3f235267b0f1/ModularTegustation/lc13_obj/_adventure_console/adventure_layout.dm#L27">
+        <img src="git.png" width="16" height="16" title="ModularTegustation&#x2F;lc13_obj&#x2F;_adventure_console&#x2F;adventure_layout.dm 27"/></a></h3>
+        <p>What is currently happening while traveling.</p><h3 id="var/virtual_coins"><aside class="declaration">var </aside>virtual_coins
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/vlggms/lobotomy-corp13/blob/787499dc3559f943435d1fd3a66e3f235267b0f1/ModularTegustation/lc13_obj/_adventure_console/adventure_layout.dm#L17">
+        <img src="git.png" width="16" height="16" title="ModularTegustation&#x2F;lc13_obj&#x2F;_adventure_console&#x2F;adventure_layout.dm 17"/></a></h3>
+        <p>Coins for flipping.</p><h3 id="var/virtual_damage"><aside class="declaration">var </aside>virtual_damage
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/vlggms/lobotomy-corp13/blob/787499dc3559f943435d1fd3a66e3f235267b0f1/ModularTegustation/lc13_obj/_adventure_console/adventure_layout.dm#L21">
+        <img src="git.png" width="16" height="16" title="ModularTegustation&#x2F;lc13_obj&#x2F;_adventure_console&#x2F;adventure_layout.dm 21"/></a></h3>
+        <p>Damage in battle senarios. Based on dice values.</p><h3 id="var/virtual_integrity"><aside class="declaration">var </aside>virtual_integrity
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/vlggms/lobotomy-corp13/blob/787499dc3559f943435d1fd3a66e3f235267b0f1/ModularTegustation/lc13_obj/_adventure_console/adventure_layout.dm#L15">
+        <img src="git.png" width="16" height="16" title="ModularTegustation&#x2F;lc13_obj&#x2F;_adventure_console&#x2F;adventure_layout.dm 15"/></a></h3>
+        <p>Current players health</p><h3 id="var/virtual_stats"><aside class="declaration">var </aside>virtual_stats
+            <aside>&ndash; /list</aside>
+        
+    
+            <a href="https://github.com/vlggms/lobotomy-corp13/blob/787499dc3559f943435d1fd3a66e3f235267b0f1/ModularTegustation/lc13_obj/_adventure_console/adventure_layout.dm#L35">
+        <img src="git.png" width="16" height="16" title="ModularTegustation&#x2F;lc13_obj&#x2F;_adventure_console&#x2F;adventure_layout.dm 35"/></a></h3>
+        <p>Used in event chances.</p><h2 id="proc">Proc Details</h2><h3 id="proc/Adventure"><aside class="declaration">proc </aside>Adventure<aside>(/<a href="obj.html">obj</a>/<a href="obj/machinery.html">machinery</a>/caller, /<a href="mob.html">mob</a>/<a href="mob/living.html">living</a>/<a href="mob/living/carbon.html">carbon</a>/<a href="mob/living/carbon/human.html">human</a>/H) 
+        
+    
+            <a href="https://github.com/vlggms/lobotomy-corp13/blob/787499dc3559f943435d1fd3a66e3f235267b0f1/ModularTegustation/lc13_obj/_adventure_console/adventure_layout.dm#L109">
+        <img src="git.png" width="16" height="16" title="ModularTegustation&#x2F;lc13_obj&#x2F;_adventure_console&#x2F;adventure_layout.dm 109"/></a></aside>
+        </h3>
+        <p>This proc is called by the adventure datum in order to build the UI.
+Its like a hub where all other general things are called.</p><h3 id="proc/GenerateEnemy"><aside class="declaration">proc </aside>GenerateEnemy<aside>() 
+        
+    
+            <a href="https://github.com/vlggms/lobotomy-corp13/blob/787499dc3559f943435d1fd3a66e3f235267b0f1/ModularTegustation/lc13_obj/_adventure_console/adventure_layout.dm#L252">
+        <img src="git.png" width="16" height="16" title="ModularTegustation&#x2F;lc13_obj&#x2F;_adventure_console&#x2F;adventure_layout.dm 252"/></a></aside>
+        </h3>
+        <p>Enemy Generation for Battle Mode
+Currently not very great, terrible even, but i just need to get this up and running.</p><h3 id="proc/GeneratePaths"><aside class="declaration">proc </aside>GeneratePaths<aside>(max_paths) 
+        
+    
+            <a href="https://github.com/vlggms/lobotomy-corp13/blob/787499dc3559f943435d1fd3a66e3f235267b0f1/ModularTegustation/lc13_obj/_adventure_console/adventure_layout.dm#L271">
+        <img src="git.png" width="16" height="16" title="ModularTegustation&#x2F;lc13_obj&#x2F;_adventure_console&#x2F;adventure_layout.dm 271"/></a></aside>
+        </h3>
+        <p>Ill just leave it at this until i can get it working.
+10/5 = 2, 14/5 = 2
+-IP</p></main>
+<footer>
+    lobotomy-corp13.dme
+    <a href="https://github.com/vlggms/lobotomy-corp13/tree/787499dc3559f943435d1fd3a66e3f235267b0f1">787499d</a>
+        (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/crates/dmdoc/README.md">dmdoc 1.8.0</a></footer>
+</body>
+</html>
