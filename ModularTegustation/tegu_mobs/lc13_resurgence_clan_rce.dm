@@ -1,3 +1,6 @@
+/mob/living/simple_animal/hostile/clan
+	var/teleport_away = FALSE
+
 /mob/living/simple_animal/hostile/clan/death(gibbed)
 	. = ..()
 	if (teleport_away)
