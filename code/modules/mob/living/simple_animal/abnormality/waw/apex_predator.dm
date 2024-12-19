@@ -74,6 +74,18 @@
 	var/recloak_time = 0
 	var/recloak_time_cooldown = 30 SECONDS
 
+/mob/living/simple_animal/hostile/abnormality/apex_predator/Login()
+	. = ..()
+	if(!. || !client)
+		return FALSE
+	to_chat(src, "<h1>You are Apex Predator, A Support Role Abnormality.</h1><br>\
+		<b>|Cloaker|: While you are out of combat, you will enter a Cloaked state.<br>\
+		While you are Cloaked, You become difficult to see and the next time you attack someone, you will attempt to backstab them, after a small delay.<br>\
+		If your target is facing away from you when you backstab them, they take extra damage.<br>\
+		<br>\
+		|Leap|: When you click on a tile outside your melee range, and your leap is of cooldown, you will jump at them.<br>\
+		Once you land at tile, you will do 3x3 AoE centered around you which deals RED damage.<br>\
+		Small Tip: While you are not cloaked, you can use your leap as a good escape tool!</b><br>")
 
 /mob/living/simple_animal/hostile/abnormality/apex_predator/Move()
 	if(notransform)
