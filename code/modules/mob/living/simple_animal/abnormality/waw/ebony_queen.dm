@@ -12,6 +12,7 @@
 	health = 2000
 	pixel_x = -16
 	base_pixel_x = -16
+	blood_volume = 0
 	melee_damage_type = BLACK_DAMAGE
 	melee_damage_lower = 35
 	melee_damage_upper = 45

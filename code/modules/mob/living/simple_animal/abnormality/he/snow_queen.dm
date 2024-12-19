@@ -20,6 +20,7 @@
 	mob_biotypes = MOB_MINERAL
 	maxHealth = 1500
 	health = 1500
+	blood_volume = 0
 	move_to_delay = 5
 	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 1.1, WHITE_DAMAGE = 0.8, BLACK_DAMAGE = 0.8, PALE_DAMAGE = 0.8) //ASK SOMEONE GOOD AT BALANCING ABOUT THIS -IP
 	base_pixel_x = -16
@@ -238,6 +239,12 @@
 	density = FALSE
 	animate(src, alpha = 0, time = 10 SECONDS)
 	QDEL_IN(src, 10 SECONDS)
+	return ..()
+
+//Prevents gibbing during the duel.
+/mob/living/simple_animal/hostile/abnormality/snow_queen/gib()
+	if(arena_attacks)
+		return FALSE
 	return ..()
 
 //This is here so that people can see the death animation before snow queen is defeated.
