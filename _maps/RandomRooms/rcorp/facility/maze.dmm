@@ -291,9 +291,7 @@
 /turf/open/floor/plasteel/dark,
 /area/city/outskirts)
 "Oo" = (
-/obj/machinery/button/door/indestructible{
-	id = "inside"
-	},
+/obj/machinery/button/door/indestructible/rcorp,
 /turf/closed/indestructible/syndicate,
 /area/city/outskirts)
 "Op" = (
