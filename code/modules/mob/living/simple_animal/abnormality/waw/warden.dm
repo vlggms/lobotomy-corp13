@@ -53,7 +53,6 @@
 		But, they seem despondent. <br>One looks at me says simply; \"In here, you're with us. Forever.\""
 
 	var/finishing = FALSE
-
 	var/captured_souls = 0
 
 	var/resistance_decrease = 0.5
@@ -98,23 +97,11 @@
 			H.dust()
 
 			// it gets faster.
-
-			if(IsCombatMap())
-				captured_souls++
-				new_red_resistance = (base_red_resistance + resistance_decrease * captured_souls)
-				new_white_resistance = (base_white_resistance + resistance_decrease * captured_souls)
-				new_black_resistance = (base_black_resistance + resistance_decrease * captured_souls)
-				new_pale_resistance = (base_pale_resistance + resistance_decrease * captured_souls)
-				ChangeResistances(list(RED_DAMAGE = new_red_resistance, WHITE_DAMAGE = new_white_resistance, BLACK_DAMAGE = new_black_resistance, PALE_DAMAGE = new_pale_resistance))
-				to_chat(src, span_warning("As you capture a soul, you feel that you are growing more... Fragile."))
-
 			if(move_to_delay>1)
 				ChangeMoveToDelayBy(0.75, TRUE)
 				if(melee_damage_lower > 30)
-					melee_damage_lower -= damage_down
-				if(IsCombatMap())
-					if(melee_damage_upper > 30)
-						melee_damage_upper -= damage_down
+					melee_damage_lower -=5
+
 			adjustBruteLoss(-(maxHealth*0.2)) // Heals 20% HP, fuck you that's why. Still not as bad as judgement or big bird
 
 			finishing = FALSE
