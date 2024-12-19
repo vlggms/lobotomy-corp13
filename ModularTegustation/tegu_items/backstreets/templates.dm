@@ -9,7 +9,6 @@
 	name = "Regular Template"
 	room_id = "template_a"
 	mappath = "_maps/RandomRooms/backstreetlayout/standard.dmm"
-	centerspawner = FALSE
 	template_width = 254
 	template_height = 109
 	room_type = "backstreets_template"

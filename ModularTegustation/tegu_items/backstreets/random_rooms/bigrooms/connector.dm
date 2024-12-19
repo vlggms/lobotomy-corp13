@@ -1,15 +1,15 @@
 /obj/effect/spawner/room/backstreets/connector
 	name = "connector backstreets spawner"
+	icon = 'ModularTegustation/Teguicons/room_spawners/13x15.dmi'
+	icon_state = ""
 	room_width = 13
 	room_height = 15
 	room_type = "backstreets_connector"
-
 
 /datum/map_template/random_room/backstreets/connector
 	name = "Courtyard - Connector"
 	room_id = "courtyard"
 	mappath = "_maps/RandomRooms/backstreets/connector/courtyard.dmm"
-	centerspawner = FALSE
 	template_width = 13
 	template_height = 15
 	stock = 2
