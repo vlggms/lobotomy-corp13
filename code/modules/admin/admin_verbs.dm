@@ -79,6 +79,7 @@ GLOBAL_PROTECT(admin_verbs_admin)
 	/client/proc/toggleadminhelpsound,
 	/client/proc/respawn_character,
 	/datum/admins/proc/open_borgopanel,
+	/client/proc/change_patreon_rank,
 	//LC13 Testing
 	/client/proc/SpawnAbno,
 	/client/proc/ClearAbno,
