@@ -50,6 +50,8 @@ GLOBAL_LIST_INIT(command_positions, list(
 	"Lead Researcher",
 	"High Security Commander",
 	"Low Security Commander",
+
+	"Office Director",
 	))
 
 
@@ -195,6 +197,7 @@ GLOBAL_LIST_INIT(security_positions, list(
 
 	//Fixers
 	"Fixer",
+	"Office Fixer",
 	))
 
 
