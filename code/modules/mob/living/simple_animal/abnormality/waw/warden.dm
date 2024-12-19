@@ -152,4 +152,5 @@
 
 /mob/living/simple_animal/hostile/abnormality/warden/bullet_act(obj/projectile/P)
 	visible_message(span_userdanger("[src] is unfazed by \the [P]!"))
+	new /obj/effect/temp_visual/healing/no_dam(get_turf(src))
 	P.Destroy()
