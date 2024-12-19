@@ -24,6 +24,7 @@
 	base_pixel_x = -16
 	pixel_y = -8
 	base_pixel_y = -8
+	is_flying_animal = TRUE
 
 	ego_list = list(
 		/datum/ego_datum/weapon/blooming,
