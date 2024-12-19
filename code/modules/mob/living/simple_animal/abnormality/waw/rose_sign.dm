@@ -204,7 +204,8 @@
 		work_roses -= R
 		qdel(R)
 	var/turf/T = pick(GLOB.department_centers)
-	forceMove(T)
+	if(breach_type != BREACH_MINING)//TODO: create attacking roses for this breach type
+		forceMove(T)
 
 /mob/living/simple_animal/hostile/abnormality/rose_sign/proc/PickTargets()//this is called by life()
 	rose_cooldown = world.time + rose_cooldown_time
@@ -374,7 +375,7 @@
 	maxHealth = 500
 	health = 500
 	damage_coeff = list(RED_DAMAGE = 0.5, WHITE_DAMAGE = 0.5, BLACK_DAMAGE = 0.5, PALE_DAMAGE = 0.5)
-	del_on_death = FALSE
+	del_on_death = TRUE
 	var/flower_damage_type
 	var/mob/living/simple_animal/hostile/abnormality/rose_sign/master
 	var/mob/living/status_target
@@ -401,7 +402,7 @@
 /mob/living/simple_animal/hostile/rose_summoned/CanAttack(atom/the_target)
 	return FALSE
 
-/mob/living/simple_animal/hostile/rose_summoned/death()
+/mob/living/simple_animal/hostile/rose_summoned/Destroy()
 	if(!killed || !status_target)
 		return ..()
 	if(flower_damage_type && master)
@@ -409,9 +410,6 @@
 		master.ChangeResistance(flower_damage_type, (master.damage_coeff.getCoeff(flower_damage_type) + 0.3), update = TRUE)
 	if(status_target.has_status_effect(/datum/status_effect/stacking/crownthorns))
 		status_target.remove_status_effect(STATUS_EFFECT_THORNS)
-	density = FALSE
-	animate(src, alpha = 0, time = 10 SECONDS)
-	QDEL_IN(src, 10 SECONDS)
 	..()
 
 //***Work-Based Roses***//
