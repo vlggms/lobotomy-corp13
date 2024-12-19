@@ -1,0 +1,1568 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"ap" = (
+/obj/structure/sign/picture_frame/showroom,
+/turf/closed/indestructible/reinforced,
+/area/city/backstreets_room)
+"az" = (
+/obj/structure/table/reinforced,
+/obj/item/paper/fluff,
+/turf/open/floor/plasteel/dark,
+/area/city/backstreets_room)
+"aA" = (
+/obj/structure/table,
+/obj/item/food/watermelonslice,
+/turf/open/floor/plasteel/dark,
+/area/city/backstreets_room)
+"aP" = (
+/obj/effect/decal/cleanable/glass,
+/turf/open/floor/plating/dirt/jungle/dark,
+/area/city/backstreets_room)
+"ba" = (
+/obj/effect/turf_decal/tile/yellow,
+/obj/effect/turf_decal/tile/yellow{
+	dir = 1
+	},
+/turf/open/floor/plasteel/dark,
+/area/city/backstreets_room)
+"bC" = (
+/obj/effect/spawner/mobspawner/shrimp_melee,
+/obj/effect/turf_decal/trimline/brown/filled/arrow_ccw{
+	dir = 8
+	},
+/turf/open/floor/plasteel/dark,
+/area/city/backstreets_room)
+"bU" = (
+/obj/structure/flora/ausbushes/sparsegrass,
+/turf/open/floor/plating/dirt/jungle/dark,
+/area/city/backstreets_room)
+"bZ" = (
+/obj/effect/turf_decal/siding/brown{
+	dir = 4
+	},
+/obj/structure/lootcrate/s_corp,
+/turf/open/floor/plasteel/vaporwave,
+/area/city/backstreets_room)
+"cd" = (
+/obj/structure/sign/poster/contraband/eat{
+	pixel_y = -32
+	},
+/turf/open/floor/plasteel/dark,
+/area/city/backstreets_room)
+"co" = (
+/obj/structure/flora/rock/pile,
+/turf/open/floor/plating/dirt/jungle/dark,
+/area/city/backstreets_room)
+"cN" = (
+/obj/effect/turf_decal/sand,
+/obj/effect/spawner/mobspawner/shrimp_ranged{
+	max_spawns = 1;
+	radius = 0
+	},
+/turf/open/floor/plasteel/vaporwave,
+/area/city/backstreets_room)
+"dm" = (
+/obj/effect/turf_decal/weather/dirt{
+	dir = 8
+	},
+/turf/open/floor/plasteel/dark,
+/area/city/backstreets_room)
+"dD" = (
+/obj/effect/turf_decal/delivery,
+/turf/open/floor/plasteel/vaporwave,
+/area/city/backstreets_room)
+"ew" = (
+/obj/effect/spawner/mobspawner/shrimp_ranged{
+	max_spawns = 4
+	},
+/obj/effect/turf_decal/tile/yellow,
+/obj/effect/turf_decal/tile/yellow{
+	dir = 1
+	},
+/turf/open/floor/plasteel/dark,
+/area/city/backstreets_room)
+"eB" = (
+/obj/effect/spawner/mobspawner/shrimp_melee,
+/obj/effect/turf_decal/loading_area{
+	dir = 4
+	},
+/turf/open/floor/plasteel/dark,
+/area/city/backstreets_room)
+"ft" = (
+/obj/effect/turf_decal/delivery,
+/obj/effect/turf_decal/trimline/brown/arrow_ccw,
+/turf/open/floor/plasteel/vaporwave,
+/area/city/backstreets_room)
+"fx" = (
+/obj/effect/turf_decal/siding/yellow{
+	dir = 5
+	},
+/obj/structure/filingcabinet,
+/obj/structure/filingcabinet{
+	pixel_x = -9
+	},
+/obj/structure/filingcabinet{
+	pixel_x = 10
+	},
+/turf/open/floor/plasteel/vaporwave,
+/area/city/backstreets_room)
+"fy" = (
+/obj/effect/turf_decal/siding/yellow,
+/turf/open/floor/plasteel/vaporwave,
+/area/city/backstreets_room)
+"fO" = (
+/obj/structure/table,
+/obj/item/food/cherrycupcake,
+/turf/open/floor/plasteel/dark,
+/area/city/backstreets_room)
+"gq" = (
+/obj/structure/chair/office{
+	dir = 8
+	},
+/turf/open/floor/plasteel/vaporwave,
+/area/city/backstreets_room)
+"hi" = (
+/turf/open/floor/plating/dirt/jungle/dark,
+/area/city/backstreets_room)
+"iq" = (
+/obj/effect/turf_decal/siding/brown{
+	dir = 4
+	},
+/turf/open/floor/plasteel/vaporwave,
+/area/city/backstreets_room)
+"iu" = (
+/obj/effect/turf_decal/caution/stand_clear,
+/turf/closed/indestructible/reinforced,
+/area/city/backstreets_room)
+"iy" = (
+/obj/structure/lootcrate/s_corp,
+/obj/effect/turf_decal/loading_area{
+	dir = 4
+	},
+/turf/open/floor/plasteel/dark,
+/area/city/backstreets_room)
+"iB" = (
+/obj/machinery/door/airlock/grunge,
+/turf/open/floor/plasteel/dark,
+/area/city/backstreets_room)
+"jh" = (
+/obj/structure/table/wood/fancy/green,
+/obj/effect/turf_decal/siding/yellow{
+	dir = 8
+	},
+/obj/item/modular_computer/laptop/preset/civilian{
+	desc = "A laptop belonging to a robotic director. It's contents appear to be insubstantial to you.";
+	name = "Stoff's Laptop"
+	},
+/turf/open/floor/plasteel/vaporwave,
+/area/city/backstreets_room)
+"ji" = (
+/obj/effect/spawner/mobspawner/shrimp_melee,
+/turf/open/floor/plasteel/dark,
+/area/city/backstreets_room)
+"kc" = (
+/obj/structure/fence/corner{
+	dir = 3
+	},
+/turf/open/floor/plating/dirt/jungle/dark,
+/area/city/backstreets_room)
+"kf" = (
+/obj/structure/showcase/machinery/tv,
+/turf/open/floor/plasteel/dark,
+/area/city/backstreets_room)
+"kx" = (
+/obj/effect/spawner/mobspawner/shrimp_ranged{
+	max_spawns = 4
+	},
+/turf/open/floor/plasteel/dark,
+/area/city/backstreets_room)
+"kW" = (
+/obj/structure/fence/corner,
+/turf/open/floor/plating/dirt/jungle/dark,
+/area/city/backstreets_room)
+"lB" = (
+/turf/open/floor/plasteel/dark,
+/area/city/backstreets_room)
+"lI" = (
+/obj/structure/sign/poster/lobotomycorp/wellcheers{
+	pixel_x = -32
+	},
+/turf/open/floor/plasteel/dark,
+/area/city/backstreets_room)
+"lZ" = (
+/obj/structure/chair/comfy/teal{
+	dir = 8
+	},
+/turf/open/floor/plasteel/dark,
+/area/city/backstreets_room)
+"mn" = (
+/obj/structure/table/reinforced,
+/obj/effect/turf_decal{
+	dir = 8
+	},
+/obj/item/clipboard,
+/obj/item/paper/fluff,
+/turf/open/floor/plasteel/dark,
+/area/city/backstreets_room)
+"mA" = (
+/obj/structure/fence{
+	dir = 4
+	},
+/obj/structure/fence{
+	dir = 4
+	},
+/turf/open/floor/plating/dirt/jungle/dark,
+/area/city/backstreets_room)
+"mH" = (
+/obj/structure/flora/ash/garden/waste,
+/turf/open/floor/plating/dirt/jungle/dark,
+/area/city/backstreets_room)
+"np" = (
+/obj/effect/turf_decal/weather/dirt{
+	dir = 10
+	},
+/turf/open/floor/plasteel/dark,
+/area/city/backstreets_room)
+"nU" = (
+/obj/effect/turf_decal/weather/dirt{
+	dir = 6
+	},
+/turf/open/floor/plasteel/dark,
+/area/city/backstreets_room)
+"oZ" = (
+/obj/structure/closet/crate/wooden,
+/obj/item/aquarium_kit,
+/obj/item/aquarium_prop/lcorp,
+/turf/open/floor/plasteel/dark,
+/area/city/backstreets_room)
+"pO" = (
+/obj/effect/turf_decal/trimline/brown/filled/arrow_cw{
+	dir = 4
+	},
+/obj/structure/sign/poster/lobotomycorp/wellcheers{
+	pixel_x = 32
+	},
+/turf/open/floor/plasteel/dark,
+/area/city/backstreets_room)
+"qn" = (
+/obj/machinery/door/window/brigdoor/westleft,
+/obj/effect/turf_decal/siding/yellow{
+	dir = 10
+	},
+/turf/open/floor/plasteel/vaporwave,
+/area/city/backstreets_room)
+"sP" = (
+/obj/structure/fence/corner{
+	dir = 10
+	},
+/turf/open/floor/plating/dirt/jungle/dark,
+/area/city/backstreets_room)
+"tF" = (
+/obj/effect/turf_decal/caution/stand_clear/red,
+/turf/closed/indestructible/reinforced,
+/area/city/backstreets_room)
+"us" = (
+/obj/structure/table/wood/fancy/green,
+/obj/effect/turf_decal/siding/yellow{
+	dir = 9
+	},
+/obj/item/paper_bin{
+	pixel_y = 5
+	},
+/turf/open/floor/plasteel/vaporwave,
+/area/city/backstreets_room)
+"uV" = (
+/obj/effect/decal/cleanable/garbage,
+/turf/open/floor/plating/dirt/jungle/dark,
+/area/city/backstreets_room)
+"vo" = (
+/obj/machinery/door/airlock/survival_pod,
+/turf/open/floor/plasteel/dark,
+/area/city/backstreets_room)
+"vH" = (
+/obj/structure/sign/poster/lobotomycorp/wellcheers,
+/turf/closed/indestructible/reinforced,
+/area/city/backstreets_room)
+"vK" = (
+/obj/structure/table,
+/obj/item/paper/crumpled/fluff,
+/turf/open/floor/plasteel/dark,
+/area/city/backstreets_room)
+"wa" = (
+/obj/structure/chair/stool,
+/turf/open/floor/plasteel/dark,
+/area/city/backstreets_room)
+"we" = (
+/obj/item/reagent_containers/food/drinks/sillycup/smallcarton,
+/obj/structure/table,
+/turf/open/floor/plasteel/dark,
+/area/city/backstreets_room)
+"wu" = (
+/obj/structure/fence{
+	dir = 4
+	},
+/turf/open/floor/plating/dirt/jungle/dark,
+/area/city/backstreets_room)
+"wG" = (
+/obj/structure/fence/corner{
+	dir = 4
+	},
+/turf/open/floor/plating/dirt/jungle/dark,
+/area/city/backstreets_room)
+"xv" = (
+/obj/item/paper/crumpled/bloody/fluff,
+/obj/effect/turf_decal/weather/dirt{
+	dir = 4
+	},
+/turf/open/floor/plasteel/dark,
+/area/city/backstreets_room)
+"zZ" = (
+/turf/closed/indestructible/reinforced,
+/area/city/backstreets_room)
+"Av" = (
+/obj/effect/turf_decal/siding/wideplating/light{
+	dir = 8
+	},
+/obj/effect/turf_decal{
+	dir = 8
+	},
+/turf/open/floor/plasteel/dark,
+/area/city/backstreets_room)
+"Bw" = (
+/obj/effect/spawner/mobspawner/shrimp_melee{
+	max_spawns = 3
+	},
+/turf/open/floor/plasteel/dark,
+/area/city/backstreets_room)
+"CM" = (
+/obj/structure/table/reinforced,
+/obj/item/reagent_containers/food/drinks/waterbottle/empty,
+/turf/open/floor/plasteel/dark,
+/area/city/backstreets_room)
+"CX" = (
+/obj/structure/closet/crate/bin,
+/obj/item/stack/spacecash/c100,
+/obj/item/reagent_containers/food/drinks/waterbottle/empty,
+/turf/open/floor/plasteel/dark,
+/area/city/backstreets_room)
+"DW" = (
+/obj/structure/table,
+/turf/open/floor/plasteel/dark,
+/area/city/backstreets_room)
+"DZ" = (
+/obj/effect/decal/cleanable/confetti,
+/turf/open/floor/plasteel/dark,
+/area/city/backstreets_room)
+"Ea" = (
+/obj/effect/turf_decal/weather/dirt{
+	dir = 4
+	},
+/turf/open/floor/plasteel/dark,
+/area/city/backstreets_room)
+"Ek" = (
+/obj/effect/decal/cleanable/generic,
+/turf/open/floor/plasteel/dark,
+/area/city/backstreets_room)
+"Fi" = (
+/obj/effect/turf_decal/sand,
+/turf/open/floor/plasteel/vaporwave,
+/area/city/backstreets_room)
+"GY" = (
+/obj/effect/turf_decal/delivery,
+/turf/open/floor/plasteel/dark,
+/area/city/backstreets_room)
+"Hb" = (
+/obj/structure/fence/corner{
+	dir = 8
+	},
+/turf/open/floor/plating/dirt/jungle/dark,
+/area/city/backstreets_room)
+"Hf" = (
+/obj/structure/fence/cut,
+/turf/open/floor/plating/dirt/jungle/dark,
+/area/city/backstreets_room)
+"Iw" = (
+/obj/effect/turf_decal/siding/yellow,
+/obj/structure/sign/poster/lobotomycorp/wellcheers{
+	pixel_y = -32
+	},
+/turf/open/floor/plasteel/vaporwave,
+/area/city/backstreets_room)
+"Jp" = (
+/obj/structure/table/reinforced,
+/obj/effect/turf_decal{
+	dir = 8
+	},
+/obj/item/food/toastedsandwich,
+/obj/item/stack/spacecash/c100,
+/turf/open/floor/plasteel/dark,
+/area/city/backstreets_room)
+"Kc" = (
+/obj/structure/sign/poster/lobotomycorp/wellcheers{
+	pixel_y = -32
+	},
+/turf/open/floor/plasteel/dark,
+/area/city/backstreets_room)
+"KF" = (
+/obj/machinery/door/airlock/survival_pod,
+/turf/open/floor/engine,
+/area/city/backstreets_room)
+"KV" = (
+/obj/effect/spawner/mobspawner/shrimp_melee{
+	max_spawns = 3
+	},
+/turf/open/floor/plasteel/vaporwave,
+/area/city/backstreets_room)
+"Ls" = (
+/obj/effect/spawner/mobspawner/shrimp_ranged{
+	max_spawns = 4
+	},
+/turf/open/floor/plasteel/vaporwave,
+/area/city/backstreets_room)
+"LR" = (
+/obj/structure/table/reinforced,
+/obj/effect/turf_decal{
+	dir = 8
+	},
+/turf/open/floor/plasteel/dark,
+/area/city/backstreets_room)
+"Mg" = (
+/obj/structure/reagent_dispensers/water_cooler,
+/turf/open/floor/plasteel/dark,
+/area/city/backstreets_room)
+"ME" = (
+/obj/effect/turf_decal/siding/yellow{
+	dir = 1
+	},
+/turf/open/floor/plasteel/vaporwave,
+/area/city/backstreets_room)
+"Nq" = (
+/obj/effect/turf_decal/sand,
+/obj/effect/turf_decal/siding/brown/corner,
+/turf/open/floor/plasteel/vaporwave,
+/area/city/backstreets_room)
+"NW" = (
+/obj/structure/lootcrate/s_corp,
+/obj/effect/turf_decal/delivery,
+/turf/open/floor/plasteel/dark,
+/area/city/backstreets_room)
+"Pb" = (
+/obj/structure/sign/poster/lobotomycorp/wellcheers{
+	pixel_y = 32
+	},
+/turf/open/floor/plasteel/vaporwave,
+/area/city/backstreets_room)
+"Pf" = (
+/obj/structure/table/reinforced,
+/obj/item/kirbyplants/dead{
+	desc = "A sad, dead plant";
+	name = "dead potted plant";
+	pixel_y = 10
+	},
+/turf/open/floor/plasteel/vaporwave,
+/area/city/backstreets_room)
+"Py" = (
+/obj/effect/turf_decal/trimline/brown/filled/arrow_cw{
+	dir = 4
+	},
+/turf/open/floor/plasteel/dark,
+/area/city/backstreets_room)
+"PC" = (
+/obj/item/stack/spacecash/c100,
+/obj/item/stack/spacecash/c100,
+/obj/item/stack/spacecash/c100,
+/obj/effect/turf_decal/delivery,
+/turf/open/floor/plasteel/dark,
+/area/city/backstreets_room)
+"Qy" = (
+/obj/effect/turf_decal/siding/brown,
+/turf/open/floor/plasteel/vaporwave,
+/area/city/backstreets_room)
+"QS" = (
+/obj/effect/decal/cleanable/plastic,
+/turf/open/floor/plasteel/vaporwave,
+/area/city/backstreets_room)
+"QV" = (
+/obj/effect/turf_decal/trimline/brown/filled/arrow_ccw{
+	dir = 8
+	},
+/turf/open/floor/plasteel/dark,
+/area/city/backstreets_room)
+"Rk" = (
+/obj/effect/turf_decal/delivery,
+/obj/vehicle/ridden/simple_boat{
+	name = "shipping boat";
+	desc = "A deceptively small boat used for hauling cargo on water. It looks like at max it can hold one crate. May require an oar to be installed into it for sailing."
+	},
+/turf/open/floor/plasteel/vaporwave,
+/area/city/backstreets_room)
+"Se" = (
+/obj/structure/noticeboard{
+	pixel_y = 32
+	},
+/turf/open/floor/plasteel/dark,
+/area/city/backstreets_room)
+"Su" = (
+/obj/machinery/door/poddoor/shutters/indestructible{
+	id = "armoryinnerinterest"
+	},
+/turf/open/floor/plasteel/dark,
+/area/city/backstreets_room)
+"SS" = (
+/obj/structure/table/reinforced,
+/turf/open/floor/plasteel/dark,
+/area/city/backstreets_room)
+"TJ" = (
+/obj/effect/decal/cleanable/food/tomato_smudge,
+/turf/open/floor/plasteel/dark,
+/area/city/backstreets_room)
+"TM" = (
+/obj/effect/turf_decal/siding/yellow{
+	dir = 4
+	},
+/obj/machinery/modular_computer/console{
+	desc = "A corporate computer for private communications between persons of interest. This one appears to have its memory reset, however.";
+	dir = 8;
+	name = "communications console"
+	},
+/obj/machinery/button/door/indestructible{
+	id = "armoryinnerinterest";
+	name = "Shipping Shutters Button";
+	pixel_x = 28
+	},
+/turf/open/floor/plasteel/vaporwave,
+/area/city/backstreets_room)
+"TN" = (
+/obj/effect/turf_decal/siding/yellow{
+	dir = 6
+	},
+/obj/structure/table/wood/fancy/green,
+/obj/item/documents/photocopy{
+	desc = "A messy stack of corporate documents pertaining to the inventory of illegal weaponry. The Head would have a field day with this one.";
+	name = "Corporate Documents"
+	},
+/turf/open/floor/plasteel/vaporwave,
+/area/city/backstreets_room)
+"TX" = (
+/obj/structure/filingcabinet,
+/obj/structure/filingcabinet{
+	pixel_x = 10
+	},
+/obj/structure/filingcabinet{
+	pixel_x = -9
+	},
+/turf/open/floor/engine,
+/area/city/backstreets_room)
+"UX" = (
+/obj/effect/turf_decal/loading_area{
+	dir = 4
+	},
+/obj/structure/sign/poster/lobotomycorp/wellcheers{
+	pixel_y = 32
+	},
+/turf/open/floor/plasteel/dark,
+/area/city/backstreets_room)
+"UY" = (
+/obj/effect/spawner/mobspawner/shrimp_ranged{
+	max_spawns = 1;
+	radius = 0
+	},
+/turf/open/floor/plasteel/dark,
+/area/city/backstreets_room)
+"Wl" = (
+/obj/effect/turf_decal/loading_area{
+	dir = 4
+	},
+/turf/open/floor/plasteel/dark,
+/area/city/backstreets_room)
+"Wu" = (
+/obj/item/paper/crumpled/muddy/fluff,
+/turf/open/floor/plasteel/dark,
+/area/city/backstreets_room)
+"Ya" = (
+/obj/structure/lootcrate/s_corp,
+/turf/open/floor/plasteel/dark,
+/area/city/backstreets_room)
+"Yn" = (
+/obj/structure/filingcabinet{
+	pixel_x = 10
+	},
+/obj/structure/filingcabinet,
+/obj/structure/filingcabinet{
+	pixel_x = -9
+	},
+/turf/open/floor/plasteel/dark,
+/area/city/backstreets_room)
+"YL" = (
+/obj/structure/table/reinforced,
+/obj/item/stack/spacecash/c100,
+/turf/open/floor/plasteel/vaporwave,
+/area/city/backstreets_room)
+"ZS" = (
+/turf/open/floor/plasteel/vaporwave,
+/area/city/backstreets_room)
+"ZW" = (
+/obj/effect/turf_decal/delivery,
+/obj/effect/decal/cleanable/plastic,
+/turf/open/floor/plasteel/vaporwave,
+/area/city/backstreets_room)
+
+(1,1,1) = {"
+Hb
+Hf
+Hf
+Hf
+Hf
+Hf
+Hf
+Hf
+Hf
+Hf
+Hf
+Hf
+Hf
+Hf
+Hf
+Hf
+Hf
+Hf
+Hf
+Hf
+Hf
+Hf
+Hf
+Hf
+Hf
+Hf
+Hf
+Hf
+Hf
+sP
+"}
+(2,1,1) = {"
+wu
+hi
+hi
+hi
+hi
+hi
+hi
+bU
+hi
+hi
+hi
+hi
+hi
+hi
+hi
+hi
+hi
+hi
+bU
+hi
+hi
+hi
+hi
+hi
+co
+hi
+hi
+hi
+hi
+wu
+"}
+(3,1,1) = {"
+wu
+hi
+hi
+hi
+hi
+hi
+hi
+hi
+hi
+hi
+hi
+hi
+hi
+co
+hi
+hi
+hi
+hi
+hi
+hi
+hi
+hi
+hi
+hi
+hi
+hi
+hi
+hi
+bU
+wu
+"}
+(4,1,1) = {"
+wu
+hi
+hi
+zZ
+zZ
+zZ
+zZ
+zZ
+zZ
+zZ
+zZ
+zZ
+zZ
+zZ
+zZ
+zZ
+zZ
+zZ
+zZ
+zZ
+zZ
+zZ
+zZ
+zZ
+zZ
+zZ
+zZ
+hi
+hi
+wu
+"}
+(5,1,1) = {"
+wu
+hi
+hi
+zZ
+YL
+Pf
+YL
+zZ
+zZ
+zZ
+zZ
+zZ
+vH
+lB
+lB
+lI
+lI
+lB
+lB
+zZ
+Mg
+lB
+lI
+Ya
+oZ
+kf
+zZ
+hi
+hi
+wu
+"}
+(6,1,1) = {"
+wu
+hi
+hi
+zZ
+ZS
+ZS
+ZS
+vH
+zZ
+Yn
+Yn
+zZ
+zZ
+lB
+lB
+lB
+lB
+lB
+lB
+lB
+lB
+lB
+lB
+lB
+lB
+lZ
+zZ
+hi
+hi
+wu
+"}
+(7,1,1) = {"
+wu
+hi
+hi
+zZ
+ZS
+Ls
+ZS
+zZ
+TX
+ba
+ba
+TX
+zZ
+lB
+lB
+lB
+lB
+lB
+lB
+lB
+lB
+Bw
+lB
+lB
+DZ
+lB
+zZ
+hi
+hi
+wu
+"}
+(8,1,1) = {"
+wu
+hi
+bU
+zZ
+Pb
+ZS
+ZS
+KF
+ba
+ew
+ba
+TX
+zZ
+lB
+lB
+lB
+lB
+Ya
+lB
+zZ
+lB
+lB
+lB
+lB
+lB
+lB
+zZ
+hi
+hi
+wu
+"}
+(9,1,1) = {"
+wu
+hi
+hi
+zZ
+ZS
+ZS
+ZS
+zZ
+TX
+ba
+ba
+TX
+vH
+lB
+Ya
+lB
+lB
+lB
+lB
+vH
+lB
+wa
+DW
+aA
+wa
+lB
+zZ
+hi
+co
+wu
+"}
+(10,1,1) = {"
+wu
+hi
+hi
+zZ
+ZS
+ZS
+ZS
+vH
+TX
+ba
+ba
+TX
+zZ
+lB
+lB
+lB
+lB
+Wu
+lB
+zZ
+Ek
+wa
+we
+DW
+wa
+Kc
+zZ
+hi
+hi
+wu
+"}
+(11,1,1) = {"
+mA
+hi
+hi
+zZ
+us
+jh
+qn
+zZ
+TX
+ba
+ba
+TX
+zZ
+lB
+lB
+lB
+Ya
+lB
+lB
+zZ
+lB
+wa
+DW
+vK
+wa
+lB
+zZ
+hi
+hi
+wu
+"}
+(12,1,1) = {"
+wu
+hi
+hi
+zZ
+ME
+gq
+Iw
+zZ
+TX
+ba
+ba
+ba
+vo
+lB
+lB
+lB
+ji
+lB
+lB
+vH
+lB
+lB
+lB
+lB
+ji
+CX
+zZ
+hi
+hi
+wu
+"}
+(13,1,1) = {"
+wu
+co
+hi
+zZ
+ME
+ZS
+fy
+zZ
+LR
+mn
+Jp
+Av
+zZ
+lB
+lB
+lB
+lB
+lB
+lB
+zZ
+lB
+wa
+vK
+DW
+wa
+Kc
+zZ
+hi
+hi
+wu
+"}
+(14,1,1) = {"
+wu
+hi
+co
+zZ
+fx
+TM
+TN
+zZ
+lB
+UY
+lB
+lB
+zZ
+Se
+Ya
+lB
+lB
+lB
+lB
+zZ
+lB
+wa
+fO
+we
+wa
+lB
+zZ
+hi
+hi
+wu
+"}
+(15,1,1) = {"
+wu
+hi
+hi
+zZ
+vH
+zZ
+ap
+zZ
+Ya
+Ya
+Ya
+Ya
+vH
+lB
+lB
+lB
+lB
+lB
+lB
+vH
+lB
+wa
+DW
+DW
+wa
+cd
+zZ
+mH
+hi
+wu
+"}
+(16,1,1) = {"
+wu
+hi
+hi
+zZ
+zZ
+zZ
+zZ
+zZ
+Ya
+Ya
+Ya
+Ya
+zZ
+lB
+lB
+lB
+lB
+lB
+lB
+zZ
+DZ
+lB
+Ya
+lB
+lB
+lB
+zZ
+hi
+hi
+wu
+"}
+(17,1,1) = {"
+wu
+hi
+hi
+zZ
+zZ
+zZ
+zZ
+zZ
+vH
+vH
+vH
+vH
+zZ
+lB
+lB
+lB
+lB
+lB
+lB
+zZ
+lB
+lB
+lB
+lB
+lB
+lB
+zZ
+hi
+hi
+wu
+"}
+(18,1,1) = {"
+wu
+hi
+hi
+zZ
+zZ
+vH
+vH
+zZ
+zZ
+vH
+vH
+zZ
+zZ
+az
+SS
+CM
+lB
+lB
+SS
+zZ
+lB
+lB
+lB
+lB
+TJ
+lB
+zZ
+hi
+aP
+wu
+"}
+(19,1,1) = {"
+wu
+mH
+hi
+zZ
+NW
+NW
+NW
+NW
+NW
+NW
+NW
+NW
+NW
+lB
+kx
+lB
+lB
+lB
+zZ
+zZ
+vH
+iB
+iB
+vH
+zZ
+zZ
+zZ
+hi
+hi
+wu
+"}
+(20,1,1) = {"
+wu
+hi
+hi
+zZ
+NW
+NW
+NW
+NW
+NW
+NW
+NW
+PC
+GY
+lB
+lB
+lB
+lB
+lB
+zZ
+ZS
+ZS
+ZS
+ZS
+ZS
+ZS
+ZS
+zZ
+aP
+hi
+kW
+"}
+(21,1,1) = {"
+wu
+hi
+hi
+zZ
+NW
+NW
+GY
+NW
+NW
+NW
+GY
+GY
+GY
+Ya
+lB
+lB
+lB
+lB
+vH
+ZS
+cN
+ZS
+QS
+KV
+ZS
+Fi
+iB
+dm
+dm
+np
+"}
+(22,1,1) = {"
+wu
+hi
+hi
+zZ
+UX
+Wl
+iy
+Wl
+Wl
+Wl
+Wl
+eB
+Wl
+lB
+lB
+lB
+lB
+lB
+zZ
+ZS
+ZS
+ZS
+ZS
+ZS
+Fi
+ZS
+iB
+Ea
+xv
+nU
+"}
+(23,1,1) = {"
+wG
+hi
+hi
+tF
+lB
+Ya
+lB
+Ya
+lB
+Ya
+lB
+lB
+lB
+lB
+lB
+lB
+lB
+lB
+tF
+ZS
+ZS
+ZS
+Nq
+iq
+bZ
+bZ
+iu
+uV
+hi
+sP
+"}
+(24,1,1) = {"
+hi
+hi
+hi
+Su
+QV
+QV
+QV
+QV
+QV
+QV
+QV
+QV
+QV
+QV
+bC
+QV
+QV
+QV
+Su
+Fi
+ZS
+ZS
+Qy
+dD
+dD
+dD
+zZ
+hi
+hi
+wu
+"}
+(25,1,1) = {"
+hi
+hi
+hi
+Su
+lB
+lB
+lB
+lB
+lB
+lB
+lB
+lB
+lB
+lB
+lB
+lB
+lB
+lB
+Su
+ZS
+ZS
+Fi
+Qy
+ZW
+Rk
+dD
+zZ
+hi
+hi
+wu
+"}
+(26,1,1) = {"
+hi
+hi
+hi
+Su
+Py
+Py
+pO
+Py
+pO
+Py
+pO
+Py
+pO
+Py
+pO
+Py
+Py
+Py
+Su
+ZS
+ZS
+ZS
+Qy
+dD
+ft
+dD
+zZ
+hi
+hi
+wu
+"}
+(27,1,1) = {"
+sP
+hi
+hi
+zZ
+zZ
+zZ
+zZ
+zZ
+zZ
+zZ
+zZ
+zZ
+zZ
+zZ
+zZ
+zZ
+zZ
+zZ
+zZ
+zZ
+zZ
+zZ
+zZ
+zZ
+zZ
+zZ
+zZ
+hi
+mH
+wu
+"}
+(28,1,1) = {"
+wu
+hi
+hi
+hi
+hi
+hi
+co
+hi
+hi
+hi
+bU
+hi
+hi
+hi
+hi
+hi
+hi
+hi
+hi
+hi
+co
+hi
+hi
+hi
+hi
+hi
+hi
+hi
+hi
+wu
+"}
+(29,1,1) = {"
+wu
+hi
+mH
+hi
+hi
+hi
+hi
+co
+hi
+hi
+hi
+hi
+hi
+hi
+hi
+hi
+hi
+hi
+co
+hi
+hi
+hi
+bU
+hi
+hi
+hi
+hi
+hi
+hi
+wu
+"}
+(30,1,1) = {"
+wG
+Hf
+Hf
+Hf
+Hf
+Hf
+Hf
+Hf
+Hf
+Hf
+Hf
+Hf
+Hf
+Hf
+Hf
+Hf
+Hf
+Hf
+Hf
+Hf
+Hf
+Hf
+Hf
+Hf
+Hf
+Hf
+Hf
+Hf
+Hf
+kc
+"}
