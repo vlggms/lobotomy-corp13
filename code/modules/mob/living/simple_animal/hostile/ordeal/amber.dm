@@ -368,6 +368,7 @@
 	occupied_tiles_up = 2
 	offsets_pixel_x = list("south" = -96, "north" = -96, "west" = -96, "east" = -96)
 	offsets_pixel_y = list("south" = -16, "north" = -16, "west" = -16, "east" = -16)
+	damage_effect_scale = 1.5
 
 	blood_volume = BLOOD_VOLUME_NORMAL
 	death_sound = 'sound/effects/ordeals/amber/midnight_dead.ogg'
