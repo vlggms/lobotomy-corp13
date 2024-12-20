@@ -125,6 +125,6 @@
 	detectable_entity = /mob/living/simple_animal/hostile/ordeal
 
 /obj/item/powered_gadget/detector_gadget/ordeal/Initialize()
-	..()
 	if(prob(2))
 		name = "R-corp Peen Sense Rangefinder"
+	return ..()
