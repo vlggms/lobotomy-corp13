@@ -1141,6 +1141,12 @@
 /obj/item/powered_gadget/detector_gadget/abnormality,
 /turf/open/floor/carpet/orange,
 /area/city/backstreets_room)
+"ho" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/decal/cleanable/garbage,
+/obj/effect/mob_spawn/human/skeleton/alive,
+/turf/open/floor/facility/halls,
+/area/city/backstreets_room)
 "hp" = (
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/structure/cable/layer1,
@@ -32705,8 +32711,8 @@ JE
 lu
 IN
 BN
-oL
-rb
+GR
+ho
 JE
 kI
 kI

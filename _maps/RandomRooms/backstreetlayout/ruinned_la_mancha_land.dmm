@@ -142,6 +142,9 @@
 /obj/structure/mineral_door/iron,
 /turf/open/floor/plasteel/dark,
 /area/city/backstreets_alley)
+"dA" = (
+/turf/open/indestructible/necropolis/air,
+/area/city/backstreets_alley)
 "dI" = (
 /obj/structure/fluff/paper/stack,
 /obj/structure/table/wood/fancy/black,
@@ -696,6 +699,11 @@
 "ur" = (
 /obj/effect/decal/cleanable/dirt/dust,
 /turf/open/floor/carpet/black,
+/area/city/backstreets_alley)
+"uu" = (
+/obj/structure/necropolis_arch,
+/obj/structure/necropolis_gate/legion_gate,
+/turf/open/indestructible/necropolis/air,
 /area/city/backstreets_alley)
 "uz" = (
 /obj/structure/curtain,
@@ -1335,7 +1343,16 @@
 "MI" = (
 /obj/effect/portal/permanent{
 	color = "#990012";
-	name = "Welcome to La Macha Land..."
+	name = "Welcome to La Macha Land...";
+	id = "bloodfiends"
+	},
+/turf/open/indestructible/necropolis/air,
+/area/city/backstreets_alley)
+"MW" = (
+/obj/effect/portal/permanent{
+	color = "#990012";
+	name = "Welcome to La Macha Land...";
+	id = "bloodfiends"
 	},
 /turf/open/floor/wood{
 	color = "#990012"
@@ -9832,8 +9849,8 @@ Fn
 Uj
 YG
 YG
-aU
-aU
+vm
+vm
 aU
 aU
 aU
@@ -9944,8 +9961,8 @@ DC
 DC
 DC
 DC
-aU
-aU
+vm
+vm
 aU
 jn
 jn
@@ -10103,7 +10120,7 @@ jn
 jn
 jn
 jn
-jn
+MW
 jn
 aU
 SJ
@@ -10215,7 +10232,7 @@ jn
 jn
 jn
 jn
-MI
+jn
 aU
 SJ
 SJ
@@ -10277,8 +10294,8 @@ DC
 DC
 DC
 DC
-aU
-aU
+vm
+vm
 aU
 jn
 jn
@@ -10387,8 +10404,8 @@ YG
 YG
 YG
 YG
-aU
-aU
+vm
+vm
 aU
 aU
 aU
@@ -17321,11 +17338,11 @@ re
 re
 aU
 aU
-Vj
-Vj
-Vj
-Vj
-Vj
+aU
+aU
+aU
+aU
+aU
 Vj
 Vj
 Vj
@@ -17432,11 +17449,11 @@ re
 re
 re
 aU
-Vj
-jn
-Rj
-Rj
-Rj
+aU
+dA
+dA
+dA
+aU
 Rj
 Rj
 Rj
@@ -17543,11 +17560,11 @@ re
 re
 re
 aU
-Vj
+aU
 MI
-jn
-jn
-Rj
+dA
+dA
+uu
 Rj
 Rj
 Lq
@@ -17654,11 +17671,11 @@ re
 re
 re
 aU
-Vj
-jn
-jn
-Rj
-Rj
+aU
+dA
+dA
+dA
+aU
 Lq
 Lq
 Lq
@@ -17765,10 +17782,10 @@ re
 re
 re
 aU
-Vj
-Vj
-Vj
-Vj
+aU
+aU
+aU
+aU
 Vj
 Vj
 Vj
@@ -20408,7 +20425,7 @@ UG
 UG
 UG
 UG
-UG
+ay
 ay
 ay
 ay
@@ -20519,7 +20536,7 @@ UG
 UG
 UG
 UG
-UG
+ay
 UG
 tJ
 tJ
@@ -20630,7 +20647,7 @@ UG
 UG
 UG
 UG
-UG
+ay
 UG
 UG
 tJ
@@ -20741,7 +20758,7 @@ UG
 UG
 UG
 UG
-UG
+ay
 ay
 ay
 ay

@@ -28,13 +28,13 @@
 	room_id = "tunnels_backstreets"
 	mappath = "_maps/RandomRooms/backstreetlayout/tunnels_backstreets.dmm"
 
-/datum/map_template/random_room/backstreet_template/lcorp_ruin
-	name = "L-Corp Ruin Template"
-	room_id = "lcorp_ruin"
+/datum/map_template/random_room/backstreet_template/abandoned_lcorp
+	name = "Abandoned L-Corp Template"
+	room_id = "abandoned_lcorp"
 	mappath = "_maps/RandomRooms/backstreetlayout/lcorp_backstreets.dmm"
-	weight = 10000
 
 /datum/map_template/random_room/backstreet_template/la_mancha_land
 	name = "La Mancha Land Template"
 	room_id = "la_mancha_land_backstreets"
-	mappath = "_maps/RandomRooms/backstreetlayout/ruined_la_mancha_land.dmm"
+	mappath = "_maps/RandomRooms/backstreetlayout/ruinned_la_mancha_land.dmm"
+	weight = 10000
