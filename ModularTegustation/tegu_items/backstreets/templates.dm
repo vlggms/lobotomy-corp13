@@ -32,3 +32,8 @@
 	name = "L-Corp Ruin Template"
 	room_id = "lcorp_ruin"
 	mappath = "_maps/RandomRooms/backstreetlayout/lcorp_backstreets.dmm"
+
+/datum/map_template/random_room/backstreet_template/la_mancha_land
+	name = "La Mancha Land Template"
+	room_id = "la_mancha_land_backstreets"
+	mappath = "_maps/RandomRooms/backstreetlayout/ruined_la_mancha_land.dmm"
