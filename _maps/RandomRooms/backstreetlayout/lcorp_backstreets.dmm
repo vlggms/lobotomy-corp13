@@ -183,7 +183,6 @@
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/effect/decal/cleanable/insectguts,
-/mob/living/simple_animal/hostile/ordeal/indigo_dawn/invis,
 /turf/open/floor/carpet/purple,
 /area/city/backstreets_room)
 "ba" = (
@@ -497,7 +496,12 @@
 	dir = 8
 	},
 /obj/effect/decal/cleanable/dirt/dust,
-/mob/living/simple_animal/hostile/red_shoe,
+/mob/living/simple_animal/hostile/red_shoe{
+	melee_damage_lower = 18;
+	melee_damage_upper = 18;
+	health = 400;
+	maxHealth = 400
+	},
 /turf/open/floor/carpet/purple,
 /area/city/backstreets_room)
 "dq" = (
@@ -855,8 +859,8 @@
 /area/city/backstreets_room)
 "fx" = (
 /obj/effect/decal/cleanable/dirt/dust,
-/obj/effect/portal/permanent/one_way/one_use{
-	id = "exit_4"
+/obj/effect/portal/permanent/one_way{
+	id = "exit_2"
 	},
 /turf/open/floor/facility/halls,
 /area/city/backstreets_room)
@@ -1124,7 +1128,10 @@
 	dir = 8
 	},
 /obj/effect/decal/cleanable/dirt/dust,
-/mob/living/simple_animal/hostile/yagaslave,
+/mob/living/simple_animal/hostile/yagaslave{
+	melee_damage_lower = 10;
+	melee_damage_upper = 12
+	},
 /turf/open/floor/carpet/purple,
 /area/city/backstreets_room)
 "hn" = (
@@ -1244,7 +1251,10 @@
 	dir = 4
 	},
 /obj/effect/decal/cleanable/dirt/dust,
-/mob/living/simple_animal/hostile/yagaslave,
+/mob/living/simple_animal/hostile/yagaslave{
+	melee_damage_lower = 10;
+	melee_damage_upper = 12
+	},
 /turf/open/floor/facility/halls,
 /area/city/backstreets_room)
 "ib" = (
@@ -1279,6 +1289,8 @@
 	},
 /obj/item/clothing/suit/armor/ego_gear/teth/bean,
 /obj/item/clothing/suit/armor/ego_gear/teth/bean,
+/obj/item/reagent_containers/hypospray/medipen/salacid,
+/obj/item/reagent_containers/hypospray/medipen/salacid,
 /turf/open/floor/carpet/orange,
 /area/city/backstreets_room)
 "ii" = (
@@ -2541,7 +2553,10 @@
 /obj/effect/turf_decal/siding/purple,
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/effect/decal/cleanable/dirt/dust,
-/mob/living/simple_animal/hostile/yagaslave,
+/mob/living/simple_animal/hostile/yagaslave{
+	melee_damage_lower = 10;
+	melee_damage_upper = 12
+	},
 /turf/open/floor/facility/halls,
 /area/city/backstreets_room)
 "qj" = (
@@ -2583,7 +2598,11 @@
 "qt" = (
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/effect/turf_decal/bot_red,
-/mob/living/simple_animal/hostile/abnormality/bottle,
+/mob/living/simple_animal/hostile/abnormality/bottle{
+	maxHealth = 400;
+	health = 400;
+	speak_damage = 4
+	},
 /turf/open/floor/facility/dark,
 /area/city/backstreets_room)
 "qu" = (
@@ -2634,6 +2653,8 @@
 /obj/item/refiner_filter/blue,
 /obj/item/refiner_filter/blue,
 /obj/effect/decal/cleanable/dirt/dust,
+/obj/item/reagent_containers/hypospray/medipen/salacid,
+/obj/item/reagent_containers/hypospray/medipen/salacid,
 /turf/open/floor/facility/halls,
 /area/city/backstreets_room)
 "qK" = (
@@ -2792,7 +2813,10 @@
 	dir = 4
 	},
 /obj/effect/decal/cleanable/dirt/dust,
-/mob/living/simple_animal/hostile/ordeal/beanstalk_corrosion,
+/mob/living/simple_animal/hostile/ordeal/beanstalk_corrosion{
+	health = 110;
+	maxHealth = 110
+	},
 /turf/open/floor/facility/halls,
 /area/city/backstreets_room)
 "rv" = (
@@ -2804,13 +2828,11 @@
 /turf/open/floor/facility/halls,
 /area/city/backstreets_room)
 "rx" = (
-/obj/machinery/light/broken{
-	dir = 1
-	},
 /obj/effect/decal/cleanable/dirt/dust,
-/mob/living/simple_animal/hostile/ordeal/indigo_dawn/invis,
-/turf/open/floor/facility/halls,
-/area/city/backstreets_room)
+/obj/item/coin/gold,
+/obj/item/reagent_containers/hypospray/medipen/mental,
+/turf/open/floor/plating/dirt,
+/area/city/backstreets_alley)
 "rz" = (
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/structure/rack,
@@ -2883,6 +2905,8 @@
 	info = "<p>Subject T-01-118-W or General Bee appears like a humanoid shaped bee wearing a blue military cap. Looking across this abnormality you can see it has a noticeable number of wounds like broken wings, legs, a missing eye and many others.</p> <p>It appears that T-01-118-W is related to T-04-50-W from the main branch. Agents sometimes report how T-01-118-W starts talks about T-04-50-W and how it will eventually break out of here and return to them.</p> <p>Across the day if T-01-118-W in high spirits they will start chanting a set of commands into a radio in their hand. This will cause a small set of pods to drop off around the facility containing 10 ft tall bees wearing simple armor.</p> <p>For that reason, It is recommended for all agents who work with T-01-118-W to never show any signs of weakness or give them any hope of being able to get out of here.</p> <hr> <p><em>Yet another day I am trapped on enemy territory… However, It does seem like they are losing members! I am also noticing how there are now cracks forming around the walls. That could lead to a good sign of them…</em></p> <p><em>Okay, I know just grasping for straws, I am constantly asking for help from her everyday… Yet I am getting less and less troops to try to save me… I can’t be forgotten that easily, Right? I was her pride and joy, The hope for the army to keep moving forward.</em></p> <p><em>I am looking at the time passing… It has been 2 weeks since they have sent anyone. Did something happen? Are they, Giving up? No, It can’t be… I am the key part of their system, It’s not like they can replace me. I- I am a General of Squad Alpha, The most powerful sector… No, I just need to focus on keeping myself calm. Then they will come eventually and save me.</em></p> <p><em>Months… It has been Months since anyone came… What did they- No, What did I do, Which is causing them to forget? I am calling them at exactly 4:00pm as always, Yet there is no one to answer… How is the queen doing? How is she forgetting me… I was her- Maybe I was that replaceable… No, I can’t be! After all, She did call m- She called all of the bees like that.</em></p> <p><em>A Year… Why am I writing… That is the point in writing such logs… I am a worthless, useless bee to the queen… She must be having a wonderful time, Living her life to the fullest. What about all of the ones who did come to save me… What was the point in them coming here? Nothing ever changed due to their arrival… Lives thrown away to recover a bee which is worthless the queen…</em></p> <hr> <p>Project Diminish Light: Success</p>";
 	name = "T-01-118-W Info"
 	},
+/obj/item/reagent_containers/hypospray/medipen/salacid,
+/obj/item/reagent_containers/hypospray/medipen/mental,
 /turf/open/floor/plasteel/white,
 /area/city/backstreets_room)
 "rV" = (
@@ -3294,6 +3318,8 @@
 /obj/structure/table/glass,
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/structure/lootcrate/l_corp,
+/obj/item/reagent_containers/hypospray/medipen/salacid,
+/obj/item/reagent_containers/hypospray/medipen/salacid,
 /turf/open/floor/facility/halls,
 /area/city/backstreets_room)
 "uJ" = (
@@ -3574,13 +3600,10 @@
 /turf/open/floor/facility/dark,
 /area/city/backstreets_room)
 "ww" = (
-/obj/effect/turf_decal/siding/purple{
-	dir = 5
-	},
 /obj/effect/decal/cleanable/dirt/dust,
-/mob/living/simple_animal/hostile/ordeal/indigo_dawn/invis,
-/turf/open/floor/carpet/purple,
-/area/city/backstreets_room)
+/obj/item/reagent_containers/hypospray/medipen/mental,
+/turf/open/floor/plating/dirt,
+/area/city/backstreets_alley)
 "wy" = (
 /obj/machinery/computer/abnormality{
 	dir = 1
@@ -3616,8 +3639,8 @@
 /area/city/backstreets_room)
 "wR" = (
 /obj/effect/decal/cleanable/dirt/dust,
-/obj/effect/portal/permanent/one_way/one_use{
-	id = "exit_3"
+/obj/effect/portal/permanent/one_way{
+	id = "exit_4"
 	},
 /turf/open/floor/facility/halls,
 /area/city/backstreets_room)
@@ -3909,11 +3932,13 @@
 /turf/open/floor/facility/halls,
 /area/city/backstreets_room)
 "zh" = (
-/obj/structure/rack,
 /obj/effect/decal/cleanable/dirt/dust,
-/obj/item/gun/ego_gun/loyalty,
-/turf/open/floor/facility/halls,
-/area/city/backstreets_room)
+/obj/item/reagent_containers/hypospray/medipen/mental,
+/obj/item/reagent_containers/hypospray/medipen/mental,
+/obj/item/reagent_containers/hypospray/medipen/mental,
+/obj/item/reagent_containers/hypospray/medipen/mental,
+/turf/open/floor/plating/dirt,
+/area/city/backstreets_alley)
 "zk" = (
 /obj/effect/turf_decal/siding/purple{
 	dir = 1
@@ -4099,8 +4124,9 @@
 "AD" = (
 /obj/effect/decal/cleanable/dirt/dust,
 /mob/living/simple_animal/hostile/ordeal/white_lake_corrosion{
-	sweep_damage = 30;
-	health = 1500
+	sweep_damage = 15;
+	health = 1000;
+	maxHealth = 1000
 	},
 /turf/open/floor/carpet/green,
 /area/city/backstreets_room)
@@ -4281,7 +4307,12 @@
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/effect/decal/cleanable/blood/old,
 /obj/item/trash/waffles,
-/mob/living/simple_animal/hostile/red_shoe,
+/mob/living/simple_animal/hostile/red_shoe{
+	melee_damage_lower = 18;
+	melee_damage_upper = 18;
+	health = 400;
+	maxHealth = 400
+	},
 /turf/open/floor/carpet/purple,
 /area/city/backstreets_room)
 "BP" = (
@@ -4372,7 +4403,10 @@
 "Cy" = (
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/effect/decal/cleanable/insectguts,
-/mob/living/simple_animal/hostile/ordeal/beanstalk_corrosion,
+/mob/living/simple_animal/hostile/ordeal/beanstalk_corrosion{
+	health = 110;
+	maxHealth = 110
+	},
 /turf/open/floor/plating,
 /area/city/backstreets_room)
 "CC" = (
@@ -4500,7 +4534,10 @@
 	dir = 8
 	},
 /obj/effect/decal/cleanable/dirt/dust,
-/mob/living/simple_animal/hostile/ordeal/beanstalk_corrosion,
+/mob/living/simple_animal/hostile/ordeal/beanstalk_corrosion{
+	health = 110;
+	maxHealth = 110
+	},
 /turf/open/floor/facility/halls,
 /area/city/backstreets_room)
 "DA" = (
@@ -4556,6 +4593,8 @@
 /obj/item/refiner_filter/yellow,
 /obj/item/refiner_filter/yellow,
 /obj/effect/decal/cleanable/dirt/dust,
+/obj/item/reagent_containers/hypospray/medipen/mental,
+/obj/item/reagent_containers/hypospray/medipen/mental,
 /turf/open/floor/facility/halls,
 /area/city/backstreets_room)
 "DO" = (
@@ -4809,7 +4848,6 @@
 	},
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/effect/decal/cleanable/dirt/dust,
-/mob/living/simple_animal/hostile/ordeal/indigo_dawn/invis,
 /turf/open/floor/carpet/purple,
 /area/city/backstreets_room)
 "Fj" = (
@@ -5219,7 +5257,10 @@
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/item/trash/popcorn,
-/mob/living/simple_animal/hostile/yagaslave,
+/mob/living/simple_animal/hostile/yagaslave{
+	melee_damage_lower = 10;
+	melee_damage_upper = 12
+	},
 /turf/open/floor/facility/halls,
 /area/city/backstreets_room)
 "HX" = (
@@ -5251,9 +5292,10 @@
 /area/city/backstreets_room)
 "If" = (
 /obj/effect/decal/cleanable/dirt/dust,
-/mob/living/simple_animal/hostile/ordeal/indigo_dawn/invis,
-/turf/open/floor/facility/halls,
-/area/city/backstreets_room)
+/obj/item/coin/gold,
+/obj/item/reagent_containers/hypospray/medipen/salacid,
+/turf/open/floor/plating/dirt,
+/area/city/backstreets_alley)
 "Ii" = (
 /turf/open/floor/carpet/red,
 /area/city/backstreets_room)
@@ -5339,6 +5381,8 @@
 	},
 /obj/structure/table/glass,
 /obj/effect/decal/cleanable/dirt/dust,
+/obj/item/reagent_containers/hypospray/medipen/mental,
+/obj/item/reagent_containers/hypospray/medipen/mental,
 /turf/open/floor/facility/halls,
 /area/city/backstreets_room)
 "IS" = (
@@ -5928,7 +5972,7 @@
 /area/city/backstreets_room)
 "MM" = (
 /obj/effect/decal/cleanable/dirt/dust,
-/obj/effect/portal/permanent/one_way/one_use{
+/obj/effect/portal/permanent/one_way{
 	id = "exit_1"
 	},
 /turf/open/floor/facility/halls,
@@ -6387,7 +6431,12 @@
 /area/city/backstreets_room)
 "PW" = (
 /obj/effect/decal/cleanable/dirt/dust,
-/mob/living/simple_animal/hostile/red_shoe,
+/mob/living/simple_animal/hostile/red_shoe{
+	melee_damage_lower = 18;
+	melee_damage_upper = 18;
+	health = 400;
+	maxHealth = 400
+	},
 /turf/open/floor/facility/halls,
 /area/city/backstreets_room)
 "PZ" = (
@@ -6609,6 +6658,7 @@
 /obj/effect/decal/cleanable/insectguts,
 /obj/item/coin/gold,
 /obj/item/coin/gold,
+/obj/item/reagent_containers/hypospray/medipen/salacid,
 /turf/open/floor/plating/dirt,
 /area/city/backstreets_alley)
 "Rp" = (
@@ -6647,7 +6697,12 @@
 /area/city/backstreets_room)
 "Rv" = (
 /obj/effect/decal/cleanable/dirt/dust,
-/mob/living/simple_animal/hostile/red_shoe,
+/mob/living/simple_animal/hostile/red_shoe{
+	melee_damage_lower = 18;
+	melee_damage_upper = 18;
+	health = 400;
+	maxHealth = 400
+	},
 /turf/open/floor/carpet/purple,
 /area/city/backstreets_room)
 "Rx" = (
@@ -6697,7 +6752,10 @@
 "RR" = (
 /obj/effect/turf_decal/siding/purple,
 /obj/effect/decal/cleanable/dirt/dust,
-/mob/living/simple_animal/hostile/yagaslave,
+/mob/living/simple_animal/hostile/yagaslave{
+	melee_damage_lower = 10;
+	melee_damage_upper = 12
+	},
 /turf/open/floor/carpet/purple,
 /area/city/backstreets_room)
 "RT" = (
@@ -6713,8 +6771,8 @@
 /area/city/backstreets_room)
 "RY" = (
 /obj/effect/decal/cleanable/dirt/dust,
-/obj/effect/portal/permanent/one_way/one_use{
-	id = "exit_2"
+/obj/effect/portal/permanent/one_way{
+	id = "exit_3"
 	},
 /turf/open/floor/facility/halls,
 /area/city/backstreets_room)
@@ -6797,14 +6855,17 @@
 /turf/open/floor/plasteel/elevatorshaft,
 /area/city/backstreets_room)
 "SP" = (
-/obj/effect/turf_decal/siding/purple,
 /obj/effect/decal/cleanable/dirt/dust,
-/mob/living/simple_animal/hostile/ordeal/indigo_dawn/invis,
-/turf/open/floor/carpet/purple,
-/area/city/backstreets_room)
+/obj/item/reagent_containers/hypospray/medipen/salacid,
+/turf/open/floor/plating/dirt,
+/area/city/backstreets_alley)
 "SR" = (
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/structure/table/glass,
+/obj/item/reagent_containers/hypospray/medipen/mental,
+/obj/item/reagent_containers/hypospray/medipen/mental,
+/obj/item/reagent_containers/hypospray/medipen/salacid,
+/obj/item/reagent_containers/hypospray/medipen/salacid,
 /turf/open/floor/plasteel/white,
 /area/city/backstreets_room)
 "ST" = (
@@ -6853,7 +6914,10 @@
 "Ti" = (
 /obj/structure/cable,
 /obj/effect/decal/cleanable/dirt/dust,
-/mob/living/simple_animal/hostile/ordeal/beanstalk_corrosion,
+/mob/living/simple_animal/hostile/ordeal/beanstalk_corrosion{
+	health = 110;
+	maxHealth = 110
+	},
 /turf/open/floor/plating,
 /area/city/backstreets_room)
 "Tj" = (
@@ -7123,6 +7187,8 @@
 /obj/item/storage/toolbox/electrical,
 /obj/structure/cable,
 /obj/effect/decal/cleanable/dirt/dust,
+/obj/item/reagent_containers/hypospray/medipen/mental,
+/obj/item/reagent_containers/hypospray/medipen/mental,
 /turf/open/floor/plating,
 /area/city/backstreets_room)
 "UR" = (
@@ -7660,8 +7726,8 @@
 /area/city/backstreets_room)
 "Yn" = (
 /obj/structure/rack,
-/obj/item/gun/ego_gun/pistol/oceanic,
-/obj/item/gun/ego_gun/pistol/oceanic,
+/obj/item/ego_weapon/ranged/pistol/oceanic,
+/obj/item/ego_weapon/ranged/pistol/oceanic,
 /turf/open/floor/facility/halls,
 /area/city/backstreets_room)
 "Yr" = (
@@ -7728,10 +7794,8 @@
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/structure/rack,
-/obj/item/gun/ego_gun/pistol/nightshade,
-/obj/item/gun/ego_gun/pistol/nightshade,
-/obj/item/gun/ego_gun/pistol/nightshade,
-/obj/item/gun/ego_gun/pistol/nightshade,
+/obj/item/ego_weapon/ranged/pistol/nightshade,
+/obj/item/ego_weapon/ranged/pistol/nightshade,
 /turf/open/floor/facility/halls,
 /area/city/backstreets_room)
 "YG" = (
@@ -8197,7 +8261,7 @@ Ox
 Ox
 Ox
 Ox
-Ox
+zh
 pB
 OP
 kI
@@ -8307,7 +8371,7 @@ YR
 YR
 YR
 Ox
-Ox
+SP
 Ox
 Ox
 OP
@@ -8419,7 +8483,7 @@ OP
 OP
 OP
 Ox
-Ox
+ww
 Ox
 YR
 YR
@@ -8530,7 +8594,7 @@ xd
 OP
 OP
 YR
-Ox
+SP
 Ox
 Yc
 YR
@@ -8642,7 +8706,7 @@ OP
 OP
 YR
 Ox
-Ox
+ww
 Ox
 YR
 OP
@@ -8754,7 +8818,7 @@ OP
 YR
 YR
 Ox
-Ox
+SP
 yv
 OP
 kI
@@ -12300,7 +12364,7 @@ JE
 YR
 YR
 Se
-sm
+If
 Rm
 OP
 kI
@@ -12409,7 +12473,7 @@ fB
 kq
 BP
 Ox
-sm
+rx
 dq
 sZ
 Yc
@@ -12515,12 +12579,12 @@ qq
 Rx
 qq
 nl
-zh
+zx
 GR
 Vh
 BP
 QQ
-sm
+rx
 sm
 Yc
 YR
@@ -30406,7 +30470,7 @@ GR
 GR
 GR
 GR
-If
+GR
 GR
 GR
 GR
@@ -30626,7 +30690,7 @@ JE
 JE
 JE
 JE
-rx
+vk
 GR
 cm
 JE
@@ -31167,7 +31231,7 @@ WX
 ct
 EE
 yB
-SP
+sO
 GR
 Zh
 GR
@@ -34638,7 +34702,7 @@ GR
 oL
 JE
 bf
-ww
+vJ
 VC
 Ew
 Yd
@@ -35177,7 +35241,7 @@ GR
 GR
 GR
 GR
-If
+GR
 GR
 GR
 ne
@@ -35401,7 +35465,7 @@ GR
 GR
 GR
 GR
-If
+GR
 GR
 GR
 GR
