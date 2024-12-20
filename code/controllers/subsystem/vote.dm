@@ -182,7 +182,7 @@ SUBSYSTEM_DEF(vote)
 	else
 		voted += usr.ckey
 	choice_by_ckey[usr.ckey] = vote
-	if(usr.client.patreon.fetch_rank(usr.ckey)>=2)	//Patreons get double mapvote
+	if(usr.client.patreon.has_access(SENIOR_AGENT_RANK))	//Patreons get double mapvote
 		choices[choices[vote]]++
 	choices[choices[vote]]++
 	return vote
