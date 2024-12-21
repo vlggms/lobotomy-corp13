@@ -122,9 +122,6 @@
 	},
 /turf/open/floor/facility/dark,
 /area/facility_hallway/manager)
-"cw" = (
-/turf/closed/indestructible/reinforced,
-/area/space)
 "cH" = (
 /obj/effect/turf_decal/siding/white/corner,
 /turf/open/floor/carpet/black,
@@ -333,7 +330,7 @@
 /obj/item/clipboard,
 /obj/item/pen/fourcolor,
 /turf/open/floor/wood,
-/area/space)
+/area/department_main/manager)
 "fW" = (
 /obj/machinery/computer/crew{
 	dir = 1
@@ -401,7 +398,7 @@
 	pixel_y = 2
 	},
 /turf/open/floor/wood,
-/area/space)
+/area/department_main/manager)
 "hj" = (
 /obj/machinery/computer/crew{
 	dir = 8
@@ -512,7 +509,7 @@
 	dir = 4
 	},
 /turf/open/floor/wood,
-/area/space)
+/area/department_main/manager)
 "ix" = (
 /obj/structure/railing{
 	dir = 6
@@ -779,13 +776,13 @@
 	dir = 1
 	},
 /turf/open/floor/wood,
-/area/space)
+/area/department_main/manager)
 "mx" = (
 /obj/machinery/computer/abnormality_archive{
 	dir = 8
 	},
 /turf/open/floor/wood,
-/area/space)
+/area/department_main/manager)
 "my" = (
 /obj/machinery/door/window/brigdoor/southright,
 /obj/effect/turf_decal/siding/green{
@@ -1341,7 +1338,7 @@
 /area/facility_hallway/manager)
 "ug" = (
 /turf/closed/indestructible/fakeglass,
-/area/space)
+/area/department_main/manager)
 "ui" = (
 /obj/effect/turf_decal/siding/white{
 	dir = 4
@@ -1650,7 +1647,7 @@
 	dir = 1
 	},
 /turf/open/floor/wood,
-/area/space)
+/area/department_main/manager)
 "yD" = (
 /obj/effect/turf_decal/tile{
 	color = "#111111";
@@ -1913,7 +1910,7 @@
 /obj/structure/table/wood/fancy/green,
 /obj/item/reagent_containers/hypospray/medipen,
 /turf/open/floor/wood,
-/area/space)
+/area/department_main/manager)
 "Cn" = (
 /obj/structure/rack,
 /obj/item/toy/plush/sow,
@@ -2200,7 +2197,7 @@
 	dir = 1
 	},
 /turf/open/floor/wood,
-/area/space)
+/area/department_main/manager)
 "Ht" = (
 /obj/machinery/door/poddoor/preopen{
 	id = "managerlockdown";
@@ -2262,14 +2259,14 @@
 "HY" = (
 /obj/machinery/computer/camera_advanced/manager/sephirah,
 /turf/open/floor/wood,
-/area/space)
+/area/department_main/manager)
 "HZ" = (
 /turf/closed/indestructible/fakeglass,
 /area/facility_hallway/manager)
 "If" = (
 /obj/machinery/computer/crew,
 /turf/open/floor/wood,
-/area/space)
+/area/department_main/manager)
 "Ik" = (
 /obj/structure/chair/sofa/corp/left{
 	dir = 8
@@ -2594,7 +2591,7 @@
 	pixel_y = 5
 	},
 /turf/open/floor/wood,
-/area/space)
+/area/department_main/manager)
 "Ou" = (
 /obj/effect/turf_decal/siding/wood/corner{
 	dir = 4
@@ -3164,9 +3161,6 @@
 	},
 /turf/open/floor/facility/dark,
 /area/facility_hallway/manager)
-"Ya" = (
-/turf/open/floor/wood,
-/area/space)
 "Yc" = (
 /obj/structure/chair/comfy/black{
 	dir = 1
@@ -7252,10 +7246,10 @@ XL
 XL
 XL
 XL
-cw
-cw
-cw
-cw
+Qf
+Qf
+Qf
+Qf
 Qf
 Qf
 tc
@@ -7353,11 +7347,11 @@ XL
 XL
 XL
 XL
-cw
-cw
+Qf
+Qf
 Cl
 it
-cw
+Qf
 Qf
 XP
 mQ
@@ -7455,10 +7449,10 @@ XL
 XL
 XL
 XL
-cw
+Qf
 HY
 Hj
-Ya
+Vw
 Qf
 Qf
 Zw
@@ -7557,10 +7551,10 @@ XL
 XL
 XL
 XL
-cw
+Qf
 If
-Ya
-Ya
+Vw
+Vw
 ug
 dj
 gc
@@ -7659,10 +7653,10 @@ XL
 XL
 XL
 XL
-cw
+Qf
 Oo
-Ya
-Ya
+Vw
+Vw
 ug
 dt
 hD
@@ -7761,10 +7755,10 @@ XL
 XL
 XL
 XL
-cw
+Qf
 HY
 yA
-Ya
+Vw
 ug
 dL
 ka
@@ -7863,10 +7857,10 @@ XL
 XL
 XL
 XL
-cw
+Qf
 If
-Ya
-Ya
+Vw
+Vw
 ug
 dQ
 lc
@@ -7965,10 +7959,10 @@ XL
 XL
 XL
 XL
-cw
+Qf
 gX
-Ya
-Ya
+Vw
+Vw
 ug
 fJ
 lE
@@ -8067,10 +8061,10 @@ XL
 XL
 XL
 XL
-cw
+Qf
 HY
 mu
-Ya
+Vw
 Qf
 Qf
 lW
@@ -8169,11 +8163,11 @@ XL
 XL
 XL
 XL
-cw
+Qf
 If
-Ya
-Ya
-Ya
+Vw
+Vw
+Vw
 uL
 va
 Qt
@@ -8271,11 +8265,11 @@ XL
 XL
 XL
 XL
-cw
-cw
+Qf
+Qf
 fU
 mx
-Ya
+Vw
 Qf
 Qf
 rz
@@ -8374,11 +8368,11 @@ XL
 XL
 XL
 XL
-cw
-cw
-cw
-cw
-cw
+Qf
+Qf
+Qf
+Qf
+Qf
 Qf
 Qf
 Qf
