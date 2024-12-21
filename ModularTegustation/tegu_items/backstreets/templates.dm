@@ -22,6 +22,7 @@
 	name = "Large Template"
 	room_id = "template_large"
 	mappath = "_maps/RandomRooms/backstreetlayout/dungeon_backstreets.dmm"
+	weight = 40
 
 /datum/map_template/random_room/backstreet_template/tunnels
 	name = "Tunnels Template"
@@ -32,8 +33,10 @@
 	name = "Abandoned L-Corp Template"
 	room_id = "abandoned_lcorp"
 	mappath = "_maps/RandomRooms/backstreetlayout/lcorp_backstreets.dmm"
+	weight = 40
 
 /datum/map_template/random_room/backstreet_template/la_mancha_land
 	name = "La Mancha Land Template"
 	room_id = "la_mancha_land_backstreets"
 	mappath = "_maps/RandomRooms/backstreetlayout/ruinned_la_mancha_land.dmm"
+	weight = 40
