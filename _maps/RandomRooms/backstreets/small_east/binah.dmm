@@ -1,0 +1,70 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"a" = (
+/turf/closed/indestructible/reinforced,
+/area/city/backstreets_room)
+"k" = (
+/obj/item/toy/plush/binah,
+/obj/structure/table/bronze,
+/obj/item/reagent_containers/food/drinks/mug/tea{
+	pixel_x = -9;
+	pixel_y = -2
+	},
+/turf/open/floor/plating/dirt,
+/area/city/backstreets_room)
+"n" = (
+/obj/structure/bonfire/prelit,
+/turf/open/floor/plating/dirt,
+/area/city/backstreets_room)
+"J" = (
+/obj/effect/gibspawner/human/bodypartless,
+/turf/open/floor/plating/dirt,
+/area/city/backstreets_room)
+"X" = (
+/turf/open/floor/plating/dirt,
+/area/city/backstreets_room)
+
+(1,1,1) = {"
+a
+X
+X
+X
+X
+X
+a
+"}
+(2,1,1) = {"
+a
+X
+X
+J
+X
+J
+a
+"}
+(3,1,1) = {"
+a
+J
+X
+k
+X
+X
+a
+"}
+(4,1,1) = {"
+a
+n
+J
+X
+J
+n
+a
+"}
+(5,1,1) = {"
+a
+a
+a
+a
+a
+a
+a
+"}

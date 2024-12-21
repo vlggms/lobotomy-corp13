@@ -44,3 +44,36 @@
     name = "Paper - Small East A"
     room_id = "paper_pushed"
     mappath = "_maps/RandomRooms/backstreets/small_east/paper_pushed.dmm"
+
+/datum/map_template/random_room/backstreets/small_east/limbus_sea
+    name = "Limbus - Small East A"
+    room_id = "limbus_sea"
+    mappath = "_maps/RandomRooms/backstreets/small_east/limbus_sea.dmm"
+
+/datum/map_template/random_room/backstreets/small_east/limbus_seb
+    name = "Limbus - Small East B"
+    room_id = "limbus_seb"
+    mappath = "_maps/RandomRooms/backstreets/small_east/limbus_seb.dmm"
+
+/datum/map_template/random_room/backstreets/small_east/shrimp_research
+    name = "Shrimp Research - Small East"
+    room_id = "oceanic_se"
+    mappath = "_maps/RandomRooms/backstreets/small_east/oceanic_se.dmm"
+
+/datum/map_template/random_room/backstreets/small_east/cigarettes_se
+    name = "500 Cigarettes - Small East"
+    room_id = "cigarettes_se"
+    mappath = "_maps/RandomRooms/backstreets/small_east/cigarettes_se.dmm"
+	stock = 1
+
+/datum/map_template/random_room/backstreets/small_east/binah
+    name = "Binah - Small East"
+    room_id = "binah_se"
+    mappath = "_maps/RandomRooms/backstreets/small_east/binah.dmm"
+	stock = 1
+
+/datum/map_template/random_room/backstreets/small_east/ukulele
+    name = "Ukulele - Small East"
+    room_id = "ukulele"
+    mappath = "_maps/RandomRooms/backstreets/small_east/ukulele.dmm"
+	weight = 2

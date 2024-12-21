@@ -31,9 +31,14 @@
 	mappath = "_maps/RandomRooms/backstreets/medium_east/kcorp_storage.dmm"
 
 /datum/map_template/random_room/backstreets/medium_east/zwei_office_mea
-	name = "Zwei Office - Medium East"
+	name = "Zwei Office - Medium East A"
 	room_id = "zwei_office_mea"
 	mappath = "_maps/RandomRooms/backstreets/medium_east/zwei_office_mea.dmm"
+
+/datum/map_template/random_room/backstreets/medium_east/zwei_office_meb
+	name = "Zwei Office - Medium East B"
+	room_id = "zwei_office_meb"
+	mappath = "_maps/RandomRooms/backstreets/medium_east/zwei_office_meb.dmm"
 
 /datum/map_template/random_room/backstreets/medium_east/church
 	name = "Church - Medium East"
@@ -69,4 +74,10 @@
 	name = "Prosthetics Clinic - Medium East"
 	room_id = "pros_clinic_me"
 	mappath = "_maps/RandomRooms/backstreets/medium_east/prosthetics_me.dmm"
+	stock = 1 // Only one, but it's common
+
+/datum/map_template/random_room/backstreets/medium_east/workshop
+	name = "Workshop - Medium East"
+	room_id = "workshop_me"
+	mappath = "_maps/RandomRooms/backstreets/medium_east/workshop_me.dmm"
 	stock = 1 // Only one, but it's common

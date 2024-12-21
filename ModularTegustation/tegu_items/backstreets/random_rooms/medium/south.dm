@@ -50,11 +50,6 @@
 	room_id = "town_msa"
 	mappath = "_maps/RandomRooms/backstreets/medium_south/town_msa.dmm"
 
-/datum/map_template/random_room/backstreets/medium_south/town_msa
-	name = "Lovetown - Medium South A"
-	room_id = "town_msa"
-	mappath = "_maps/RandomRooms/backstreets/medium_south/town_msa.dmm"
-
 /datum/map_template/random_room/backstreets/medium_south/mech_bay
 	name = "Mech Bay - Medium South A"
 	room_id = "mech_bay"

@@ -44,3 +44,20 @@
 	name = "Choke Point - Connector"
 	room_id = "choke_point"
 	mappath = "_maps/RandomRooms/backstreets/connector/choke_point.dmm"
+
+/datum/map_template/random_room/backstreets/connector/apartments
+	name = "Apartments - Connector"
+	room_id = "apartments_ca"
+	mappath = "_maps/RandomRooms/backstreets/connector/apartments_ca.dmm"
+
+/datum/map_template/random_room/backstreets/connector/toughshit
+	name = "Tough Shit - Connector
+	room_id = "toughshit"
+	mappath = "_maps/RandomRooms/backstreets/connector/toughshit.dmm"
+	weight = 3	//1/3rd as common, Joke template
+
+/datum/map_template/random_room/backstreets/connector/water
+	name = "Water - Connector"
+	room_id = "water_ca"
+	mappath = "_maps/RandomRooms/backstreets/connector/water_ca.dmm"
+	weight = 3	//1/3rd as common, Joke template

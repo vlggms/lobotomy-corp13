@@ -55,8 +55,14 @@
 	name = "Risk of Rain Reference - Small West"
 	room_id = "risk_rain_reference_robot"
 	mappath = "_maps/RandomRooms/backstreets/small_west/risk_rain_reference_robot.dmm"
+	weight = 2	//Reference rooms are rare.
 
 /datum/map_template/random_room/backstreets/small_west/booby_trapped
 	name = "Booby Trapped - Small West"
 	room_id = "booby_trapped"
 	mappath = "_maps/RandomRooms/backstreets/small_west/booby_trapped.dmm"
+
+/datum/map_template/random_room/backstreets/small_west/runaway_bird
+	name = "Runaway Birds - Small West"
+	room_id = "runaway_bird"
+	mappath = "_maps/RandomRooms/backstreets/small_west/runaway_bird.dmm"
