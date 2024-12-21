@@ -245,8 +245,8 @@
 	projectiletype = /obj/projectile/beam/water_jet
 	projectilesound = 'sound/effects/ordeals/brown/flea_attack.ogg'
 
-/mob/living/simple_animal/hostile/ordeal/sin_gloom/MeleeAction()
-	if(health <= maxHealth*0.5 && stat != DEAD)
+/mob/living/simple_animal/hostile/ordeal/sin_gloom/AttackingTarget(atom/attacked_target)
+	if(health <= maxHealth * 0.5 && stat != DEAD)
 		walk_to(src, 0)
 		animate(src, transform = matrix()*1.8, time = 15)
 		addtimer(CALLBACK(src, PROC_REF(DeathExplosion)), 15)
