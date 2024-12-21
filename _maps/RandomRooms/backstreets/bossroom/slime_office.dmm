@@ -349,7 +349,7 @@
 /area/city/backstreets_room)
 "kD" = (
 /mob/living/simple_animal/slime/pet{
-	color = #32a852
+	color = "#32a852"
 	},
 /obj/effect/turf_decal/siding/green{
 	color = "#006400";
@@ -460,7 +460,7 @@
 /area/city/backstreets_room)
 "mE" = (
 /obj/machinery/light{
-	color = #32a852
+	color = "#32a852"
 	},
 /obj/effect/turf_decal/siding/green{
 	color = "#006400";
@@ -479,7 +479,7 @@
 /area/city/backstreets_room)
 "nd" = (
 /mob/living/simple_animal/slime/pet{
-	color = #32a852
+	color = "#32a852"
 	},
 /obj/effect/turf_decal/siding/green{
 	dir = 1;
@@ -509,7 +509,7 @@
 "ol" = (
 /obj/machinery/light{
 	dir = 1;
-	color = #32a852
+	color = "#32a852"
 	},
 /mob/living/simple_animal/hostile/ordeal/steel_dusk,
 /turf/open/floor/carpet/green,
@@ -591,7 +591,7 @@
 	dir = 1
 	},
 /obj/machinery/light{
-	color = #32a852
+	color = "#32a852"
 	},
 /turf/open/floor/plasteel/shuttle{
 	color = "#42f545"
@@ -643,7 +643,7 @@
 "sH" = (
 /obj/effect/turf_decal/siding/purple,
 /mob/living/simple_animal/slime/pet{
-	color = #32a852
+	color = "#32a852"
 	},
 /turf/open/floor/plasteel/shuttle{
 	color = "#42f545"
@@ -654,7 +654,7 @@
 	pixel_x = 32
 	},
 /mob/living/simple_animal/slime/pet{
-	color = #32a852
+	color = "#32a852"
 	},
 /obj/effect/turf_decal/siding/green{
 	color = "#006400";
@@ -760,7 +760,7 @@
 /area/city/backstreets_room)
 "wF" = (
 /obj/machinery/light{
-	color = #32a852
+	color = "#32a852"
 	},
 /obj/effect/turf_decal/siding/purple{
 	dir = 8
@@ -822,7 +822,7 @@
 /area/city/backstreets_room)
 "xQ" = (
 /obj/machinery/light{
-	color = #32a852
+	color = "#32a852"
 	},
 /obj/effect/turf_decal/siding/green{
 	color = "#006400"
@@ -986,7 +986,7 @@
 /area/city/backstreets_room)
 "BJ" = (
 /obj/machinery/light{
-	color = #32a852
+	color = "#32a852"
 	},
 /obj/structure/table/reinforced,
 /obj/item/storage/box/monkeycubes,
@@ -1006,7 +1006,7 @@
 /area/city/backstreets_room)
 "BW" = (
 /obj/machinery/light{
-	color = #32a852
+	color = "#32a852"
 	},
 /obj/structure/table/reinforced,
 /obj/item/storage/bag/chemistry,
@@ -1150,7 +1150,7 @@
 "Fw" = (
 /obj/structure/sign/departments/xenobio,
 /turf/closed/indestructible/reinforced{
-	color = #42f545
+	color = "#42f545"
 	},
 /area/city/backstreets_room)
 "FI" = (
@@ -1511,7 +1511,7 @@
 /area/city/backstreets_room)
 "Ry" = (
 /mob/living/simple_animal/slime/pet{
-	color = #32a852
+	color = "#32a852"
 	},
 /turf/open/floor/plasteel/shuttle{
 	color = "#42f545"
