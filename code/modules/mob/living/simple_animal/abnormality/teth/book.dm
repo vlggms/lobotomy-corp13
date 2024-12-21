@@ -103,6 +103,9 @@
 		if((initial(abno.threat_level)) <= TETH_LEVEL)
 			nasties += abno
 
+/mob/living/simple_animal/hostile/abnormality/book/Move()
+	return FALSE
+
 /mob/living/simple_animal/hostile/abnormality/book/proc/RipPages()
 	var/mob/living/simple_animal/newspawn
 	if(wordcount >= 3)
@@ -151,3 +154,11 @@
 		sleep(0.5 SECONDS)
 		newspawn = pick(nasties)
 		SpawnMob(newspawn)
+
+/mob/living/simple_animal/hostile/abnormality/book/BreachEffect(mob/living/carbon/human/user, breach_type)
+	if(breach_type == BREACH_MINING)
+		var/newspawn = pick(nasties)
+		SpawnMob(newspawn)
+		newspawn = pick(nasties)
+		addtimer(CALLBACK(src, PROC_REF(SpawnMob), newspawn), 10 SECONDS)
+	return ..()
