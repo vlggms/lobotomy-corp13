@@ -77,7 +77,7 @@
 								"Will %company_name% grow on %industrial% wasteland? Owners of %product_name% may decide", \
 								"%company_name% looking to reap profits off the %industrial% sector with %product_name%")
 
-/datum/industry/agriculture/generateProductName(var/company_name)
+/datum/industry/agriculture/generateProductName(company_name)
 	var/list/products = list("water tank", "cattle prod", "scythe", "plough", "sickle", "cultivator", "loy", "spade", "hoe", "daisy grubber", "cotton gin")
 	var/list/prefix = list("[company_name]'s ", "the [company_name] ", "the fully automatic ", "the full-duplex ", "the semi-automatic ", "the drone-mounted ", "the industry-leading ", "the world-class ")
 	var/list/suffix = list(" of farming", " multiplex", " +[rand(1,15)]", " [consonant()][rand(1000, 9999)]", " hybrid", " maximus", " extreme")
