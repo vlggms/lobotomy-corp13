@@ -265,6 +265,7 @@
 
 /mob/living/simple_animal/hostile/death(gibbed)
 	target_memory.Cut()
+	attack_is_on_cooldown = FALSE
 	LoseTarget()
 	..(gibbed)
 
@@ -466,7 +467,7 @@
 
 /* Essentially is the middle part of FindTarget
 	but returns only a list without giving a target.*/
-/mob/living/simple_animal/hostile/proc/PossibleThreats(max_range = vision_range)
+/mob/living/simple_animal/hostile/proc/PossibleThreats(max_range = vision_range, consider_attack_condition = FALSE)
 	. = list()
 	for(var/pos_targ in ListTargets(max_range))
 		var/atom/A = pos_targ
@@ -474,8 +475,9 @@
 			. = list(A)
 			break
 		if(CanAttack(A))
-			. += A
-			continue
+			if(!consider_attack_condition || AttackCondition(A))
+				. += A
+				continue
 
 /* Returning True on this proc means
 	that only this target is listed and
@@ -717,20 +719,31 @@
 		should_gain_patience = TRUE
 	else
 		in_melee = FALSE
-		var/list/targets_in_range = PossibleThreats(melee_reach)
+		var/list/targets_in_range = PossibleThreats(melee_reach, TRUE)
 		if(targets_in_range.len > 0)
 			//attack random thing in the list
 			attacked_target = pick(targets_in_range)
 
 	if(attacked_target)
+		//we have a target
+		if(!AttackCondition(attacked_target))
+			//not allowed to attack it
+			face_atom(attacked_target)
+			attack_is_on_cooldown = FALSE
+			if(delayed_attack_instances < 1)
+				DelayedTryAttack(attack_cooldown)
+			return
+		//attack it
 		attack_is_on_cooldown = TRUE
 		AttackingTarget(attacked_target)
+		//some AttackingTarget overloads sleep so this is needed
 		if(QDELETED(src) || stat != CONSCIOUS)
 			return
 		ResetAttackCooldown(attack_cooldown)
 		if(should_gain_patience)
 			GainPatience()
 	else
+		//nothing to attack try attack later
 		attack_is_on_cooldown = FALSE
 		if(delayed_attack_instances < 1)
 			DelayedTryAttack(attack_cooldown)
@@ -827,9 +840,16 @@
 		approaching_target = FALSE
 	walk_to(src, target, minimum_distance, delay)
 
+//Extra way to prevent attacking based on custom conditions, also used by ai to filter out secondary targets.
+//While CanTarget is more of a way to tell friend from foe, AttackCondition is about checking whether an attack can physically land.
+/mob/living/simple_animal/hostile/proc/AttackCondition(atom/attack_target)
+	return TRUE
+
 /mob/living/simple_animal/hostile/proc/AttackingTarget(atom/attacked_target)
 	if(!attacked_target)
 		attacked_target = target
+	if(!AttackCondition(attacked_target))
+		return
 	if(old_rapid_melee != rapid_melee)
 		attack_cooldown = SSnpcpool.wait / rapid_melee
 		old_rapid_melee = rapid_melee
