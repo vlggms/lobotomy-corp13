@@ -250,6 +250,9 @@
 	},
 /turf/open/floor/wood,
 /area/facility_hallway/manager)
+"eD" = (
+/turf/open/floor/carpet/orange,
+/area/department_main/manager)
 "eE" = (
 /obj/structure/chair/comfy/brown{
 	dir = 8
@@ -329,7 +332,7 @@
 /obj/structure/table/wood,
 /obj/item/clipboard,
 /obj/item/pen/fourcolor,
-/turf/open/floor/wood,
+/turf/open/floor/carpet/royalblack,
 /area/department_main/manager)
 "fW" = (
 /obj/machinery/computer/crew{
@@ -397,7 +400,7 @@
 	pixel_x = 7;
 	pixel_y = 2
 	},
-/turf/open/floor/wood,
+/turf/open/floor/carpet/royalblack,
 /area/department_main/manager)
 "hj" = (
 /obj/machinery/computer/crew{
@@ -572,6 +575,10 @@
 /obj/structure/reagent_dispensers/water_cooler,
 /turf/open/floor/facility/dark,
 /area/facility_hallway/manager)
+"jL" = (
+/obj/machinery/computer/camera_advanced/manager/sephirah,
+/turf/open/floor/carpet/orange,
+/area/department_main/manager)
 "jZ" = (
 /obj/effect/turf_decal/siding/white{
 	dir = 8
@@ -775,7 +782,7 @@
 /obj/structure/chair/comfy/black{
 	dir = 1
 	},
-/turf/open/floor/wood,
+/turf/open/floor/carpet/royalblack,
 /area/department_main/manager)
 "mx" = (
 /obj/machinery/computer/abnormality_archive{
@@ -1025,6 +1032,10 @@
 /obj/effect/turf_decal/siding/white,
 /turf/open/floor/carpet/black,
 /area/facility_hallway/manager)
+"qe" = (
+/obj/machinery/computer/crew,
+/turf/open/floor/carpet/orange,
+/area/department_main/manager)
 "qj" = (
 /obj/machinery/status_display{
 	pixel_y = -32
@@ -1156,6 +1167,10 @@
 	pixel_y = 10
 	},
 /turf/open/floor/plasteel/dark,
+/area/department_main/manager)
+"rF" = (
+/obj/machinery/computer/crew,
+/turf/open/floor/carpet/royalblack,
 /area/department_main/manager)
 "rH" = (
 /obj/effect/turf_decal/siding/wood/corner{
@@ -1337,6 +1352,10 @@
 /turf/open/floor/plasteel/dark,
 /area/facility_hallway/manager)
 "ug" = (
+/obj/machinery/door/poddoor{
+	id = sephirah;
+	name = "cic blast door"
+	},
 /turf/closed/indestructible/fakeglass,
 /area/department_main/manager)
 "ui" = (
@@ -1547,6 +1566,14 @@
 	},
 /turf/open/floor/carpet/red,
 /area/facility_hallway/manager)
+"xg" = (
+/obj/machinery/button/door/indestructible{
+	id = "sephirah";
+	name = "Sephirah CIC opening";
+	pixel_y = -25
+	},
+/turf/open/floor/wood,
+/area/department_main/manager)
 "xq" = (
 /obj/machinery/vending/lobotomyuniform,
 /obj/machinery/light,
@@ -1646,7 +1673,7 @@
 /obj/structure/chair/comfy/brown{
 	dir = 1
 	},
-/turf/open/floor/wood,
+/turf/open/floor/carpet/orange,
 /area/department_main/manager)
 "yD" = (
 /obj/effect/turf_decal/tile{
@@ -1909,7 +1936,7 @@
 "Cl" = (
 /obj/structure/table/wood/fancy/green,
 /obj/item/reagent_containers/hypospray/medipen,
-/turf/open/floor/wood,
+/turf/open/floor/carpet/green,
 /area/department_main/manager)
 "Cn" = (
 /obj/structure/rack,
@@ -2154,6 +2181,9 @@
 	},
 /turf/open/floor/carpet/orange,
 /area/facility_hallway/manager)
+"Gw" = (
+/turf/open/floor/carpet/green,
+/area/department_main/manager)
 "Gy" = (
 /obj/effect/turf_decal/siding/wood,
 /turf/open/floor/wood,
@@ -2196,7 +2226,7 @@
 /obj/structure/chair/comfy/beige{
 	dir = 1
 	},
-/turf/open/floor/wood,
+/turf/open/floor/carpet/green,
 /area/department_main/manager)
 "Ht" = (
 /obj/machinery/door/poddoor/preopen{
@@ -2258,14 +2288,14 @@
 /area/facility_hallway/manager)
 "HY" = (
 /obj/machinery/computer/camera_advanced/manager/sephirah,
-/turf/open/floor/wood,
+/turf/open/floor/carpet/green,
 /area/department_main/manager)
 "HZ" = (
 /turf/closed/indestructible/fakeglass,
 /area/facility_hallway/manager)
 "If" = (
 /obj/machinery/computer/crew,
-/turf/open/floor/wood,
+/turf/open/floor/carpet/green,
 /area/department_main/manager)
 "Ik" = (
 /obj/structure/chair/sofa/corp/left{
@@ -2590,7 +2620,7 @@
 	pixel_x = -3;
 	pixel_y = 5
 	},
-/turf/open/floor/wood,
+/turf/open/floor/carpet/orange,
 /area/department_main/manager)
 "Ou" = (
 /obj/effect/turf_decal/siding/wood/corner{
@@ -3161,6 +3191,10 @@
 	},
 /turf/open/floor/facility/dark,
 /area/facility_hallway/manager)
+"Ya" = (
+/obj/machinery/computer/camera_advanced/manager/sephirah,
+/turf/open/floor/carpet/royalblack,
+/area/department_main/manager)
 "Yc" = (
 /obj/structure/chair/comfy/black{
 	dir = 1
@@ -7553,7 +7587,7 @@ XL
 XL
 Qf
 If
-Vw
+Gw
 Vw
 ug
 dj
@@ -7655,7 +7689,7 @@ XL
 XL
 Qf
 Oo
-Vw
+eD
 Vw
 ug
 dt
@@ -7756,7 +7790,7 @@ XL
 XL
 XL
 Qf
-HY
+jL
 yA
 Vw
 ug
@@ -7858,8 +7892,8 @@ XL
 XL
 XL
 Qf
-If
-Vw
+qe
+eD
 Vw
 ug
 dQ
@@ -7961,7 +7995,7 @@ XL
 XL
 Qf
 gX
-Vw
+or
 Vw
 ug
 fJ
@@ -8062,9 +8096,9 @@ XL
 XL
 XL
 Qf
-HY
+Ya
 mu
-Vw
+xg
 Qf
 Qf
 lW
@@ -8164,8 +8198,8 @@ XL
 XL
 XL
 Qf
-If
-Vw
+rF
+or
 Vw
 Vw
 uL
