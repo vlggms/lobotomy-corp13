@@ -31,6 +31,16 @@
 "aU" = (
 /turf/closed/indestructible/necropolis,
 /area/city/backstreets_alley)
+"aW" = (
+/obj/item/flashlight/lantern{
+	on = 1;
+	color = "#cb3dff";
+	anchored = 1
+	},
+/turf/open/floor/stone{
+	color = "#e29eff"
+	},
+/area/city/backstreets_alley)
 "aX" = (
 /obj/effect/decal/cleanable/dirt/dust,
 /turf/open/floor/plasteel/sepia{
@@ -106,13 +116,6 @@
 /mob/living/simple_animal/hostile/ordeal/steel_dawn/steel_noon/flying,
 /turf/open/floor/material,
 /area/city/backstreets_alley)
-"cn" = (
-/obj/item/flashlight/lantern{
-	on = 1;
-	anchored = 1
-	},
-/turf/closed/wall/mineral/iron,
-/area/city/backstreets_alley)
 "cv" = (
 /turf/open/floor/plasteel/sepia{
 	color = "#da82ff"
@@ -124,7 +127,7 @@
 	id = "area2";
 	name = "Area 2 Lockdown Button";
 	pixel_y = 7;
-	req_access_txt = "20"
+	req_access_txt = null
 	},
 /turf/open/floor/carpet/red,
 /area/city/backstreets_alley)
@@ -149,16 +152,6 @@
 /obj/structure/mineral_door/iron,
 /turf/open/floor/plasteel/dark,
 /area/city/backstreets_alley)
-"dh" = (
-/obj/item/flashlight/lantern{
-	on = 1;
-	color = "#ff3d40";
-	anchored = 1
-	},
-/turf/open/floor/wood{
-	color = "#990012"
-	},
-/area/city/backstreets_alley)
 "dA" = (
 /turf/open/indestructible/necropolis/air,
 /area/city/backstreets_alley)
@@ -166,16 +159,6 @@
 /obj/structure/fluff/paper/stack,
 /obj/structure/table/wood/fancy/black,
 /turf/open/floor/plasteel/chapel,
-/area/city/backstreets_alley)
-"dN" = (
-/obj/item/flashlight/lantern{
-	on = 1;
-	color = "#cb3dff";
-	anchored = 1
-	},
-/turf/open/floor/stone{
-	color = "#e29eff"
-	},
 /area/city/backstreets_alley)
 "ef" = (
 /obj/machinery/door/poddoor{
@@ -213,13 +196,6 @@
 	},
 /turf/open/floor/mineral/plastitanium/red,
 /area/city/backstreets_alley)
-"eT" = (
-/obj/item/flashlight/lantern{
-	on = 1;
-	anchored = 1
-	},
-/turf/open/floor/stone,
-/area/city/backstreets_alley)
 "fs" = (
 /obj/effect/decal/cleanable/blood/tracks{
 	dir = 8
@@ -238,13 +214,13 @@
 	color = "#e29eff"
 	},
 /area/city/backstreets_alley)
-"gd" = (
+"fW" = (
 /obj/item/flashlight/lantern{
 	on = 1;
 	color = "#ff3d40";
 	anchored = 1
 	},
-/turf/closed/indestructible/necropolis,
+/turf/open/indestructible/necropolis/air,
 /area/city/backstreets_alley)
 "gh" = (
 /obj/structure/curtain/bounty,
@@ -468,16 +444,6 @@
 	color = "#da82ff"
 	},
 /area/city/backstreets_alley)
-"lM" = (
-/obj/item/flashlight/lantern{
-	on = 1;
-	color = "#ff3d40";
-	anchored = 1
-	},
-/turf/open/floor/stone{
-	color = "#f06979"
-	},
-/area/city/backstreets_alley)
 "mb" = (
 /obj/effect/decal/cleanable/blood,
 /mob/living/simple_animal/hostile/ordeal/indigo_dawn/skirmisher,
@@ -496,6 +462,14 @@
 "ml" = (
 /mob/living/simple_animal/hostile/ordeal/steel_dawn/steel_noon,
 /turf/open/floor/plasteel/dark,
+/area/city/backstreets_alley)
+"mv" = (
+/obj/item/flashlight/lantern{
+	on = 1;
+	color = "#ff3d40";
+	anchored = 1
+	},
+/turf/closed/indestructible/necropolis,
 /area/city/backstreets_alley)
 "mw" = (
 /obj/structure/flora/ash/fern,
@@ -670,6 +644,16 @@
 "rM" = (
 /obj/effect/spawner/room/backstreets/large_south,
 /turf/closed/wall/mineral/iron,
+/area/city/backstreets_alley)
+"rN" = (
+/obj/item/flashlight/lantern{
+	on = 1;
+	color = "#ff3d40";
+	anchored = 1
+	},
+/turf/open/floor/stone{
+	color = "#f06979"
+	},
 /area/city/backstreets_alley)
 "rQ" = (
 /obj/effect/spawner/randomsnackvend,
@@ -930,6 +914,13 @@
 /obj/effect/landmark/backstreetspawneast,
 /turf/open/floor/stone,
 /area/city/backstreets_alley)
+"zn" = (
+/obj/item/flashlight/lantern{
+	on = 1;
+	anchored = 1
+	},
+/turf/closed/wall/mineral/iron,
+/area/city/backstreets_alley)
 "zv" = (
 /obj/effect/decal/cleanable/dirt/dust,
 /turf/open/floor/plasteel/sepia,
@@ -1145,17 +1136,19 @@
 	dir = 8
 	},
 /area/city/backstreets_alley)
-"Fm" = (
-/obj/item/flashlight/lantern{
-	on = 1;
-	color = "#ff3d40";
-	anchored = 1
-	},
-/turf/open/indestructible/necropolis/air,
-/area/city/backstreets_alley)
 "Fn" = (
 /obj/structure/headpike,
 /turf/open/floor/stone,
+/area/city/backstreets_alley)
+"FB" = (
+/obj/item/flashlight/lantern{
+	on = 1;
+	color = "#cb3dff";
+	anchored = 1
+	},
+/turf/open/floor/plating/ashplanet/ash{
+	color = "#da82ff"
+	},
 /area/city/backstreets_alley)
 "FE" = (
 /obj/effect/spawner/room/backstreets/small_north,
@@ -1187,6 +1180,16 @@
 	},
 /turf/open/floor/stone{
 	color = "#e29eff"
+	},
+/area/city/backstreets_alley)
+"Gm" = (
+/obj/item/flashlight/lantern{
+	on = 1;
+	color = "#ff3d40";
+	anchored = 1
+	},
+/turf/open/floor/wood{
+	color = "#990012"
 	},
 /area/city/backstreets_alley)
 "Gp" = (
@@ -1344,6 +1347,13 @@
 	color = "#c963ff"
 	},
 /area/city/backstreets_alley)
+"Ll" = (
+/obj/item/flashlight/lantern{
+	on = 1;
+	anchored = 1
+	},
+/turf/open/floor/stone,
+/area/city/backstreets_alley)
 "Lp" = (
 /obj/effect/gibspawner/human/bodypartless,
 /turf/open/floor/carpet/red,
@@ -1499,16 +1509,6 @@
 	},
 /turf/open/floor/stone{
 	color = "#f06979"
-	},
-/area/city/backstreets_alley)
-"Pg" = (
-/obj/item/flashlight/lantern{
-	on = 1;
-	color = "#cb3dff";
-	anchored = 1
-	},
-/turf/open/floor/plating/ashplanet/ash{
-	color = "#da82ff"
 	},
 /area/city/backstreets_alley)
 "Ph" = (
@@ -1673,7 +1673,7 @@
 	id = "area3";
 	name = "Area 3 Lockdown Button";
 	pixel_y = 7;
-	req_access_txt = "20"
+	req_access_txt = null
 	},
 /turf/open/floor/plasteel/chapel{
 	dir = 4
@@ -2855,7 +2855,7 @@ Tg
 Tg
 IU
 Tg
-gd
+mv
 jn
 jn
 jn
@@ -3077,7 +3077,7 @@ Tg
 Tg
 WW
 Tg
-gd
+mv
 jn
 jn
 jn
@@ -3714,9 +3714,9 @@ aU
 aU
 aU
 aU
-gd
+mv
 LB
-gd
+mv
 aU
 aU
 aU
@@ -3725,9 +3725,9 @@ aU
 AW
 aU
 aU
-gd
+mv
 LB
-gd
+mv
 aU
 aU
 aU
@@ -4470,7 +4470,7 @@ ur
 ur
 cN
 vm
-eT
+Ll
 DC
 DC
 DC
@@ -4692,7 +4692,7 @@ cN
 cN
 cN
 vm
-eT
+Ll
 DC
 DC
 DC
@@ -5343,7 +5343,7 @@ DC
 DC
 DC
 DC
-eT
+Ll
 vm
 cN
 cN
@@ -5565,7 +5565,7 @@ DC
 DC
 DC
 DC
-eT
+Ll
 vm
 cN
 cN
@@ -9963,11 +9963,11 @@ re
 re
 re
 re
-lM
+rN
 re
 re
 re
-lM
+rN
 aU
 aU
 aU
@@ -10030,11 +10030,11 @@ DC
 DC
 DC
 DC
-eT
+Ll
 vm
 vm
 aU
-dh
+Gm
 jn
 jn
 jn
@@ -10363,11 +10363,11 @@ DC
 DC
 DC
 DC
-eT
+Ll
 vm
 vm
 aU
-dh
+Gm
 jn
 jn
 jn
@@ -10407,11 +10407,11 @@ jn
 sb
 re
 re
-lM
+rN
 re
 re
 re
-lM
+rN
 aU
 aU
 aU
@@ -17520,7 +17520,7 @@ re
 re
 aU
 aU
-Fm
+fW
 dA
 dA
 dA
@@ -17742,7 +17742,7 @@ re
 re
 aU
 aU
-Fm
+fW
 dA
 dA
 dA
@@ -18331,10 +18331,10 @@ vm
 vm
 vm
 vm
-cn
+zn
 DC
 DC
-cn
+zn
 vm
 vm
 vm
@@ -18886,10 +18886,10 @@ ay
 UG
 UG
 ay
-Pg
+FB
 tJ
 tJ
-Pg
+FB
 ay
 UG
 UG
@@ -26681,7 +26681,7 @@ tJ
 tJ
 tJ
 tJ
-dN
+aW
 aU
 aU
 tJ
@@ -27014,7 +27014,7 @@ tJ
 tJ
 tJ
 tJ
-dN
+aW
 aU
 aU
 tJ
