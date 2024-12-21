@@ -106,6 +106,13 @@
 /mob/living/simple_animal/hostile/ordeal/steel_dawn/steel_noon/flying,
 /turf/open/floor/material,
 /area/city/backstreets_alley)
+"cn" = (
+/obj/item/flashlight/lantern{
+	on = 1;
+	anchored = 1
+	},
+/turf/closed/wall/mineral/iron,
+/area/city/backstreets_alley)
 "cv" = (
 /turf/open/floor/plasteel/sepia{
 	color = "#da82ff"
@@ -142,6 +149,16 @@
 /obj/structure/mineral_door/iron,
 /turf/open/floor/plasteel/dark,
 /area/city/backstreets_alley)
+"dh" = (
+/obj/item/flashlight/lantern{
+	on = 1;
+	color = "#ff3d40";
+	anchored = 1
+	},
+/turf/open/floor/wood{
+	color = "#990012"
+	},
+/area/city/backstreets_alley)
 "dA" = (
 /turf/open/indestructible/necropolis/air,
 /area/city/backstreets_alley)
@@ -149,6 +166,16 @@
 /obj/structure/fluff/paper/stack,
 /obj/structure/table/wood/fancy/black,
 /turf/open/floor/plasteel/chapel,
+/area/city/backstreets_alley)
+"dN" = (
+/obj/item/flashlight/lantern{
+	on = 1;
+	color = "#cb3dff";
+	anchored = 1
+	},
+/turf/open/floor/stone{
+	color = "#e29eff"
+	},
 /area/city/backstreets_alley)
 "ef" = (
 /obj/machinery/door/poddoor{
@@ -186,6 +213,13 @@
 	},
 /turf/open/floor/mineral/plastitanium/red,
 /area/city/backstreets_alley)
+"eT" = (
+/obj/item/flashlight/lantern{
+	on = 1;
+	anchored = 1
+	},
+/turf/open/floor/stone,
+/area/city/backstreets_alley)
 "fs" = (
 /obj/effect/decal/cleanable/blood/tracks{
 	dir = 8
@@ -203,6 +237,14 @@
 /turf/open/floor/plasteel/showroomfloor{
 	color = "#e29eff"
 	},
+/area/city/backstreets_alley)
+"gd" = (
+/obj/item/flashlight/lantern{
+	on = 1;
+	color = "#ff3d40";
+	anchored = 1
+	},
+/turf/closed/indestructible/necropolis,
 /area/city/backstreets_alley)
 "gh" = (
 /obj/structure/curtain/bounty,
@@ -424,6 +466,16 @@
 /obj/effect/mine/explosive,
 /turf/open/floor/plating/ashplanet/ash{
 	color = "#da82ff"
+	},
+/area/city/backstreets_alley)
+"lM" = (
+/obj/item/flashlight/lantern{
+	on = 1;
+	color = "#ff3d40";
+	anchored = 1
+	},
+/turf/open/floor/stone{
+	color = "#f06979"
 	},
 /area/city/backstreets_alley)
 "mb" = (
@@ -1093,6 +1145,14 @@
 	dir = 8
 	},
 /area/city/backstreets_alley)
+"Fm" = (
+/obj/item/flashlight/lantern{
+	on = 1;
+	color = "#ff3d40";
+	anchored = 1
+	},
+/turf/open/indestructible/necropolis/air,
+/area/city/backstreets_alley)
 "Fn" = (
 /obj/structure/headpike,
 /turf/open/floor/stone,
@@ -1439,6 +1499,16 @@
 	},
 /turf/open/floor/stone{
 	color = "#f06979"
+	},
+/area/city/backstreets_alley)
+"Pg" = (
+/obj/item/flashlight/lantern{
+	on = 1;
+	color = "#cb3dff";
+	anchored = 1
+	},
+/turf/open/floor/plating/ashplanet/ash{
+	color = "#da82ff"
 	},
 /area/city/backstreets_alley)
 "Ph" = (
@@ -2785,7 +2855,7 @@ Tg
 Tg
 IU
 Tg
-aU
+gd
 jn
 jn
 jn
@@ -3007,7 +3077,7 @@ Tg
 Tg
 WW
 Tg
-aU
+gd
 jn
 jn
 jn
@@ -3644,9 +3714,9 @@ aU
 aU
 aU
 aU
-aU
+gd
 LB
-aU
+gd
 aU
 aU
 aU
@@ -3655,9 +3725,9 @@ aU
 AW
 aU
 aU
-aU
+gd
 LB
-aU
+gd
 aU
 aU
 aU
@@ -4400,7 +4470,7 @@ ur
 ur
 cN
 vm
-DC
+eT
 DC
 DC
 DC
@@ -4622,7 +4692,7 @@ cN
 cN
 cN
 vm
-DC
+eT
 DC
 DC
 DC
@@ -5273,7 +5343,7 @@ DC
 DC
 DC
 DC
-DC
+eT
 vm
 cN
 cN
@@ -5495,7 +5565,7 @@ DC
 DC
 DC
 DC
-DC
+eT
 vm
 cN
 cN
@@ -9893,13 +9963,13 @@ re
 re
 re
 re
+lM
 re
 re
 re
-re
-re
-re
-re
+lM
+aU
+aU
 aU
 SJ
 SJ
@@ -9960,11 +10030,11 @@ DC
 DC
 DC
 DC
-DC
+eT
 vm
 vm
 aU
-jn
+dh
 jn
 jn
 jn
@@ -10010,7 +10080,7 @@ jn
 jn
 jn
 jn
-jn
+aU
 aU
 SJ
 SJ
@@ -10120,8 +10190,8 @@ jn
 jn
 jn
 jn
-MW
 jn
+MW
 aU
 SJ
 SJ
@@ -10232,7 +10302,7 @@ jn
 jn
 jn
 jn
-jn
+aU
 aU
 SJ
 SJ
@@ -10293,10 +10363,11 @@ DC
 DC
 DC
 DC
-DC
+eT
 vm
 vm
 aU
+dh
 jn
 jn
 jn
@@ -10333,17 +10404,16 @@ jn
 jn
 jn
 jn
-jn
-jn
-jn
-jn
-jn
-jn
-jn
-jn
-jn
-jn
-jn
+sb
+re
+re
+lM
+re
+re
+re
+lM
+aU
+aU
 aU
 SJ
 SJ
@@ -10445,7 +10515,6 @@ jn
 jn
 jn
 jn
-sb
 re
 re
 re
@@ -10453,8 +10522,9 @@ re
 re
 re
 re
-re
-re
+aU
+aU
+aU
 aU
 SJ
 SJ
@@ -17343,7 +17413,7 @@ aU
 aU
 aU
 aU
-Vj
+aU
 Vj
 Vj
 Vj
@@ -17450,11 +17520,11 @@ re
 re
 aU
 aU
+Fm
 dA
 dA
 dA
 aU
-Rj
 Rj
 Rj
 Lq
@@ -17564,8 +17634,8 @@ aU
 MI
 dA
 dA
+dA
 uu
-Rj
 Rj
 Lq
 Lq
@@ -17672,11 +17742,11 @@ re
 re
 aU
 aU
+Fm
 dA
 dA
 dA
 aU
-Lq
 Lq
 Lq
 Lq
@@ -17786,7 +17856,7 @@ aU
 aU
 aU
 aU
-Vj
+aU
 Vj
 Vj
 Vj
@@ -18261,10 +18331,10 @@ vm
 vm
 vm
 vm
-vm
+cn
 DC
 DC
-vm
+cn
 vm
 vm
 vm
@@ -18816,10 +18886,10 @@ ay
 UG
 UG
 ay
-UG
+Pg
 tJ
 tJ
-UG
+Pg
 ay
 UG
 UG
@@ -26611,7 +26681,7 @@ tJ
 tJ
 tJ
 tJ
-tJ
+dN
 aU
 aU
 tJ
@@ -26944,7 +27014,7 @@ tJ
 tJ
 tJ
 tJ
-tJ
+dN
 aU
 aU
 tJ
