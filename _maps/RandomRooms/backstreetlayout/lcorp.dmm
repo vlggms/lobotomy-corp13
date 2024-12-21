@@ -128,7 +128,7 @@
 /area/city/backstreets_room)
 "cH" = (
 /obj/structure/barricade/slime{
-	color = #32a852
+	color = "#32a852"
 	},
 /obj/effect/decal/cleanable/dirt/dust,
 /turf/open/floor/plasteel/shuttle{
@@ -803,7 +803,7 @@
 /area/city/backstreets_room)
 "qh" = (
 /obj/structure/barricade/slime{
-	color = #32a852
+	color = "#32a852"
 	},
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/structure/industrial_lift,
@@ -1194,7 +1194,7 @@
 /area/city/backstreets_room)
 "wR" = (
 /obj/structure/barricade/slime{
-	color = #32a852
+	color = "#32a852"
 	},
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/structure/industrial_lift,
@@ -2009,7 +2009,7 @@
 /area/city/backstreets_room)
 "MN" = (
 /obj/structure/barricade/slime{
-	color = #32a852
+	color = "#32a852"
 	},
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/structure/industrial_lift,
@@ -2494,7 +2494,7 @@
 /area/centcom/supplypod)
 "Vk" = (
 /obj/structure/barricade/slime{
-	color = #32a852
+	color = "#32a852"
 	},
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/structure/industrial_lift,
@@ -2545,7 +2545,7 @@
 /area/city/backstreets_room)
 "VL" = (
 /obj/structure/barricade/slime{
-	color = #32a852
+	color = "#32a852"
 	},
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/effect/decal/cleanable/xenoblood,
@@ -2647,7 +2647,7 @@
 /area/centcom/supplypod)
 "Xu" = (
 /obj/structure/barricade/slime{
-	color = #32a852
+	color = "#32a852"
 	},
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/structure/industrial_lift,

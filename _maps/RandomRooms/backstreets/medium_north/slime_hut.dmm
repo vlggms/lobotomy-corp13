@@ -20,7 +20,7 @@
 /area/city/backstreets_room)
 "g" = (
 /obj/structure/barricade/slime{
-	color = #32a852
+	color = "#32a852"
 	},
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/effect/decal/cleanable/xenoblood,
@@ -30,7 +30,7 @@
 /area/city/backstreets_room)
 "k" = (
 /obj/structure/barricade/slime{
-	color = #32a852
+	color = "#32a852"
 	},
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/structure/industrial_lift,
@@ -63,7 +63,7 @@
 /area/city/backstreets_room)
 "s" = (
 /obj/structure/barricade/slime{
-	color = #32a852
+	color = "#32a852"
 	},
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/structure/industrial_lift,
@@ -89,7 +89,7 @@
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/effect/decal/cleanable/xenoblood/xsplatter,
 /obj/structure/barricade/slime{
-	color = #32a852
+	color = "#32a852"
 	},
 /turf/open/floor/plasteel/shuttle{
 	color = "#42f545"
@@ -132,7 +132,7 @@
 /area/city/backstreets_room)
 "M" = (
 /obj/structure/barricade/slime{
-	color = #32a852
+	color = "#32a852"
 	},
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/structure/industrial_lift,
@@ -146,7 +146,7 @@
 /area/city/backstreets_room)
 "O" = (
 /obj/structure/barricade/slime{
-	color = #32a852
+	color = "#32a852"
 	},
 /obj/effect/decal/cleanable/dirt/dust,
 /turf/open/floor/plasteel/shuttle{
@@ -172,7 +172,7 @@
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/structure/industrial_lift,
 /obj/structure/barricade/slime{
-	color = #32a852
+	color = "#32a852"
 	},
 /turf/open/floor/plasteel/shuttle{
 	color = "#42f545"
