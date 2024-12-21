@@ -1,10 +1,3 @@
-
-/proc/consonant()
-	return pick("B","C","D","F","G","H","J","K","L","M","N","P","Q","R","S","T","V","W","X","Y","Z")
-
-/proc/vowel()
-	return pick("A", "E", "I", "O", "U")
-
 /proc/ucfirst(S)
 	return "[uppertext(ascii2text(text2ascii(S, 1)))][copytext(S, 2)]"
 
@@ -18,7 +11,7 @@
 GLOBAL_LIST_EMPTY(FrozenAccounts)
 
 /proc/list_frozen()
-	for (var/A in GLOB.FrozenAccounts)
+	for(var/A in GLOB.FrozenAccounts)
 		to_chat(usr, "[A]: [length(GLOB.FrozenAccounts[A])] borrows")
 
 /datum/article
@@ -95,9 +88,9 @@ GLOBAL_LIST_EMPTY(FrozenAccounts)
 /datum/article/proc/generateAuthorName()
 	switch(rand(1,3))
 		if (1)
-			return "[consonant()]. [pick(GLOB.last_names)]"
+			return "[CONSONANTS]. [pick(GLOB.last_names)]"
 		if (2)
-			return "[prob(50) ? pick(GLOB.first_names_male) : pick(GLOB.first_names_female)] [consonant()].[prob(50) ? "[consonant()]. " : null] [pick(GLOB.last_names)]"
+			return "[prob(50) ? pick(GLOB.first_names_male) : pick(GLOB.first_names_female)] [CONSONANTS].[prob(50) ? "[CONSONANTS]. " : null] [pick(GLOB.last_names)]"
 		if (3)
 			return "[prob(50) ? pick(GLOB.first_names_male) : pick(GLOB.first_names_female)] \"[prob(50) ? pick(GLOB.first_names_male) : pick(GLOB.first_names_female)]\" [pick(GLOB.last_names)]"
 
@@ -105,7 +98,7 @@ GLOBAL_LIST_EMPTY(FrozenAccounts)
 	var/ticksc = round(ticks/100)
 	ticksc = ticksc % 100000
 	var/ticksp = "[ticksc]"
-	while (length(ticksp) < 5)
+	for(var/cycle = 1 to 5)
 		ticksp = "0[ticksp]"
 	spacetime = "[ticksp][time2text(world.realtime, "MM")][time2text(world.realtime, "DD")][text2num(time2text(world.realtime, "YYYY"))+540]"
 

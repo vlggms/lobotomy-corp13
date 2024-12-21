@@ -71,7 +71,7 @@
 		switch (rand(1,6))
 			if(1)
 				if(sname == "" || sname == "FAG") // honestly it's a 0.6% chance per round this happens - or once in 166 rounds - so i'm accounting for it before someone yells at me
-					sname = "[consonant()][vowel()][consonant()]"
+					sname = "[CONSONANTS][VOWELS][CONSONANTS]"
 			if (2)
 				sname = "[pick(tech_prefix)][pick(tech_short)][prob(20) ? " " + pick(company) : null]"
 			if (3 to 4)

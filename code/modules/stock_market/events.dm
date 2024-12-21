@@ -156,7 +156,7 @@
 	current_desc = ""
 	female = prob(50)
 	if (prob(50))
-		position = "C[prob(20) ? vowel() : consonant()]O"
+		position = "C[prob(20) ? VOWELS : CONSONANTS]O"
 	else
 		position = ucfirsts(company.industry.detokenize("Lead %industrial% Engineer"))
 	offenses = ""
