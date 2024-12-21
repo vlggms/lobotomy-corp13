@@ -1,0 +1,366 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"a" = (
+/obj/structure/table/wood,
+/obj/item/storage/firstaid/revival,
+/turf/open/floor/wood,
+/area/city/backstreets_room)
+"e" = (
+/obj/structure/chair/comfy/black{
+	dir = 8
+	},
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/wood,
+/area/city/backstreets_room)
+"g" = (
+/obj/effect/decal/cleanable/dirt,
+/mob/living/simple_animal/hostile/humanoid/rat/zippy,
+/turf/open/floor/wood,
+/area/city/backstreets_room)
+"h" = (
+/obj/effect/decal/cleanable/dirt,
+/mob/living/simple_animal/hostile/humanoid/rat,
+/turf/open/floor/wood,
+/area/city/backstreets_room)
+"i" = (
+/obj/machinery/dna_scannernew,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/wood,
+/area/city/backstreets_room)
+"j" = (
+/obj/effect/decal/cleanable/dirt,
+/mob/living/simple_animal/hostile/humanoid/rat/pipe,
+/turf/open/floor/wood,
+/area/city/backstreets_room)
+"m" = (
+/obj/structure/table/wood,
+/obj/item/dnainjector/glow,
+/obj/item/dnainjector/lasereyesmut{
+	pixel_x = 4;
+	pixel_y = 5
+	},
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/wood,
+/area/city/backstreets_room)
+"n" = (
+/obj/structure/mineral_door/wood,
+/turf/open/floor/wood,
+/area/city/backstreets_room)
+"o" = (
+/obj/item/kirbyplants/random,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/wood,
+/area/city/backstreets_room)
+"q" = (
+/obj/structure/closet/cabinet,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/wood,
+/area/city/backstreets_room)
+"r" = (
+/obj/structure/dresser,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/wood,
+/area/city/backstreets_room)
+"s" = (
+/obj/effect/decal/cleanable/dirt,
+/mob/living/simple_animal/hostile/humanoid/rat/knife,
+/turf/open/floor/wood,
+/area/city/backstreets_room)
+"w" = (
+/obj/item/kirbyplants/random,
+/turf/open/floor/carpet/donk,
+/area/city/backstreets_room)
+"x" = (
+/obj/structure/table/wood,
+/obj/item/storage/firstaid/regular,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/wood,
+/area/city/backstreets_room)
+"y" = (
+/obj/machinery/computer/cloning,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/wood,
+/area/city/backstreets_room)
+"z" = (
+/obj/structure/chair/sofa/corp/left,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/carpet/donk,
+/area/city/backstreets_room)
+"B" = (
+/obj/structure/table/wood,
+/obj/item/candle,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/wood,
+/area/city/backstreets_room)
+"C" = (
+/obj/structure/chair/comfy/black{
+	dir = 8
+	},
+/turf/open/floor/wood,
+/area/city/backstreets_room)
+"D" = (
+/obj/machinery/griddle,
+/turf/open/floor/wood,
+/area/city/backstreets_room)
+"E" = (
+/obj/structure/table/wood,
+/turf/open/floor/wood,
+/area/city/backstreets_room)
+"F" = (
+/obj/structure/dresser,
+/turf/open/floor/wood,
+/area/city/backstreets_room)
+"G" = (
+/turf/open/floor/wood,
+/area/city/backstreets_room)
+"H" = (
+/obj/structure/bed/pod,
+/obj/item/bedsheet/ce,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/wood,
+/area/city/backstreets_room)
+"I" = (
+/obj/effect/decal/cleanable/dirt,
+/mob/living/simple_animal/hostile/humanoid/rat,
+/turf/open/floor/carpet/donk,
+/area/city/backstreets_room)
+"J" = (
+/mob/living/simple_animal/hostile/humanoid/rat/hammer,
+/turf/open/floor/wood,
+/area/city/backstreets_room)
+"K" = (
+/obj/machinery/door/airlock/centcom{
+	desc = "A bit too sturdy...";
+	max_integrity = 10000;
+	name = "Strange Airlock";
+	normal_integrity = 100000;
+	req_access_txt = "19"
+	},
+/turf/open/floor/plasteel/shuttle{
+	name = "floor"
+	},
+/area/city/backstreets_room)
+"L" = (
+/turf/closed/indestructible/reinforced,
+/area/city/backstreets_room)
+"M" = (
+/obj/structure/table/wood,
+/obj/item/candle{
+	pixel_y = 9
+	},
+/obj/effect/decal/cleanable/dirt,
+/obj/item/stack/spacecash/c100,
+/turf/open/floor/wood,
+/area/city/backstreets_room)
+"N" = (
+/obj/structure/table/wood,
+/obj/item/phone,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/wood,
+/area/city/backstreets_room)
+"O" = (
+/obj/structure/chair/sofa/corp/right,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/carpet/donk,
+/area/city/backstreets_room)
+"Q" = (
+/obj/structure/chair/comfy/black{
+	dir = 4
+	},
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/wood,
+/area/city/backstreets_room)
+"R" = (
+/obj/structure/chair/sofa/corp,
+/turf/open/floor/carpet/donk,
+/area/city/backstreets_room)
+"S" = (
+/obj/structure/closet/secure_closet/freezer/fridge/open,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/wood,
+/area/city/backstreets_room)
+"U" = (
+/obj/structure/bed/maint,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/wood,
+/area/city/backstreets_room)
+"V" = (
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/carpet/donk,
+/area/city/backstreets_room)
+"X" = (
+/obj/item/reagent_containers/glass/bucket,
+/obj/item/mop,
+/obj/structure/sink{
+	pixel_y = 19
+	},
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/facility/white,
+/area/city/backstreets_room)
+"Y" = (
+/turf/open/floor/carpet/donk,
+/area/city/backstreets_room)
+"Z" = (
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/wood,
+/area/city/backstreets_room)
+
+(1,1,1) = {"
+L
+L
+L
+L
+L
+L
+L
+L
+"}
+(2,1,1) = {"
+L
+a
+Z
+Q
+L
+x
+Z
+L
+"}
+(3,1,1) = {"
+L
+y
+Z
+B
+L
+q
+g
+n
+"}
+(4,1,1) = {"
+L
+i
+Z
+C
+L
+F
+U
+L
+"}
+(5,1,1) = {"
+L
+m
+Z
+L
+L
+L
+L
+L
+"}
+(6,1,1) = {"
+L
+L
+K
+L
+D
+S
+M
+L
+"}
+(7,1,1) = {"
+L
+E
+Z
+n
+Z
+s
+e
+L
+"}
+(8,1,1) = {"
+L
+o
+h
+L
+r
+G
+H
+L
+"}
+(9,1,1) = {"
+L
+G
+Z
+L
+L
+L
+L
+L
+"}
+(10,1,1) = {"
+L
+Z
+Z
+Z
+N
+L
+X
+L
+"}
+(11,1,1) = {"
+L
+o
+Z
+J
+Z
+L
+n
+L
+"}
+(12,1,1) = {"
+L
+L
+n
+L
+V
+V
+Y
+L
+"}
+(13,1,1) = {"
+L
+x
+G
+L
+O
+V
+I
+L
+"}
+(14,1,1) = {"
+L
+q
+j
+L
+R
+Y
+V
+n
+"}
+(15,1,1) = {"
+L
+F
+U
+L
+z
+V
+w
+L
+"}
+(16,1,1) = {"
+L
+L
+L
+L
+L
+L
+L
+L
+"}

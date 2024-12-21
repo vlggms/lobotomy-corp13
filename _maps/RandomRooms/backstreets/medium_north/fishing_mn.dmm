@@ -1,0 +1,120 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"a" = (
+/turf/open/floor/facility/halls,
+/area/city/backstreets_room)
+"j" = (
+/obj/structure/lattice/catwalk,
+/obj/item/fishing_rod/gold,
+/turf/open/water/deep/polluted,
+/area/city/backstreets_room)
+"u" = (
+/obj/structure/lattice/catwalk,
+/obj/item/fishing_net/hicap,
+/turf/open/water/deep/polluted,
+/area/city/backstreets_room)
+"x" = (
+/turf/open/water/deep/polluted,
+/area/city/backstreets_room)
+"z" = (
+/obj/structure/lattice/catwalk,
+/mob/living/simple_animal/hostile/shrimp,
+/turf/open/water/deep/polluted,
+/area/city/backstreets_room)
+"B" = (
+/obj/structure/lattice/catwalk,
+/turf/open/water/deep/polluted,
+/area/city/backstreets_room)
+"I" = (
+/obj/structure/lattice/catwalk,
+/obj/structure/lootcrate/money,
+/turf/open/water/deep/polluted,
+/area/city/backstreets_room)
+"P" = (
+/obj/structure/lattice/catwalk,
+/obj/item/fishing_net/steel,
+/turf/open/water/deep/polluted,
+/area/city/backstreets_room)
+"Q" = (
+/turf/closed/indestructible/reinforced,
+/area/city/backstreets_room)
+
+(1,1,1) = {"
+Q
+Q
+Q
+Q
+Q
+Q
+"}
+(2,1,1) = {"
+Q
+B
+z
+I
+I
+Q
+"}
+(3,1,1) = {"
+Q
+j
+x
+x
+x
+Q
+"}
+(4,1,1) = {"
+Q
+B
+B
+B
+P
+Q
+"}
+(5,1,1) = {"
+Q
+x
+x
+x
+B
+Q
+"}
+(6,1,1) = {"
+Q
+x
+x
+x
+B
+Q
+"}
+(7,1,1) = {"
+Q
+z
+u
+B
+B
+Q
+"}
+(8,1,1) = {"
+Q
+B
+x
+x
+x
+Q
+"}
+(9,1,1) = {"
+Q
+B
+B
+B
+B
+a
+"}
+(10,1,1) = {"
+Q
+Q
+Q
+Q
+Q
+Q
+"}
