@@ -1,3 +1,11 @@
+/*
+* This inconsequential code is for generating products to invest in.
+* Each time a company tries to improve its stock value with a product
+* the product is themed based on the companies industry.
+* /datum/industry/agriculture will be farming themed while
+* /datum/industry/health will be drug themed.
+*/
+
 /datum/industry
 	var/name = "Industry"
 	var/list/tokens = list()
