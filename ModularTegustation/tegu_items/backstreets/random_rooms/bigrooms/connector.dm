@@ -51,7 +51,7 @@
 	mappath = "_maps/RandomRooms/backstreets/connector/apartments_ca.dmm"
 
 /datum/map_template/random_room/backstreets/connector/toughshit
-	name = "Tough Shit - Connector
+	name = "Tough Shit - Connector"
 	room_id = "toughshit"
 	mappath = "_maps/RandomRooms/backstreets/connector/toughshit.dmm"
 	weight = 3	//1/3rd as common, Joke template
