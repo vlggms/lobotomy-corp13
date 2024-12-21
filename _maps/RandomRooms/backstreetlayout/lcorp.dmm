@@ -365,7 +365,7 @@
 /area/city/backstreets_room)
 "jc" = (
 /obj/structure/fluff/iced_abductor,
-/turf/open/floor/plating/ice,
+/turf/open/floor/plating/asteroid/snow/ice,
 /area/city/backstreets_room)
 "jd" = (
 /obj/structure/mineral_door/wood,
@@ -762,7 +762,7 @@
 /area/city/backstreets_room)
 "pd" = (
 /obj/structure/flora/icestalagmite,
-/turf/open/floor/plating/ice,
+/turf/open/floor/plating/asteroid/snow/ice,
 /area/city/backstreets_room)
 "pi" = (
 /obj/effect/decal/cleanable/dirt/dust,
@@ -863,7 +863,7 @@
 /turf/open/floor/grass/snow/safe,
 /area/city/backstreets_room)
 "rs" = (
-/turf/open/floor/plating/ice,
+/turf/open/floor/plating/asteroid/snow/ice,
 /area/city/backstreets_room)
 "rF" = (
 /obj/effect/forcefield/cult/permanent,
@@ -2595,7 +2595,7 @@
 /area/city/backstreets_alley)
 "WI" = (
 /obj/structure/flora/icechunk/alt,
-/turf/open/floor/plating/ice,
+/turf/open/floor/plating/asteroid/snow/ice,
 /area/city/backstreets_room)
 "WS" = (
 /obj/structure/flora/rock/pile,
