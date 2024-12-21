@@ -102,11 +102,11 @@
 				company.bankrupt = 1
 				for (var/X in company.shareholders)
 					var/amt = company.shareholders[X]
-					GLOB.stockExchange.balanceLog(X, -amt * company.current_value)
+					SSeconomy.balanceLog(X, -amt * company.current_value)
 				company.shareholders = list()
 				company.current_value = 0
 				company.borrow_brokers = list()
-				GLOB.stockExchange.generateStocks(1)
+				SSeconomy.generateStocks(1)
 
 			var/bailout = (effect > 0 && prob(80)) || (effect < 0 && prob(20))
 			current_title = "[company.name] [bailout ? "bailed out" : "on a painful rebound"]"
@@ -129,7 +129,7 @@
 	A.subtitle = "Investors panic, bailout pending"
 	if (prob(15))
 		A.opinion = rand(-1, 1)
-	var/article = "Another one might bite the dust: [company.current_trend > 0 ? "despite their positive trend" : "in line with their failing model"], [company.name] files for bankruptcy citing [pick(bankrupt_reason)]. The director of %country% has been asked to bail the company out, "
+	var/article = "Another one might bite the dust: [company.current_trend > 0 ? "despite their positive trend" : "in line with their failing model"], [company.name] files for bankruptcy citing [pick(bankrupt_reason)]. The director of District [rand(4,24)] has been asked to bail the company out, "
 	if (!A.opinion)
 		article += "but no answer has been given by the administration to date. Our tip to stay safe is: %sell%"
 	else if (A.opinion > 0)

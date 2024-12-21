@@ -186,10 +186,10 @@
 		if (world.time > borrow.grace_expires)
 			modifyAccount(borrow.borrower, -max(current_value * borrow.share_debt, 0), 1)
 			borrows -= borrow
-			if (borrow.borrower in GLOB.FrozenAccounts)
-				GLOB.FrozenAccounts[borrow.borrower] -= borrow
-				if (length(GLOB.FrozenAccounts[borrow.borrower]) == 0)
-					GLOB.FrozenAccounts -= borrow.borrower
+			if (borrow.borrower in SSeconomy.frozen_accounts)
+				SSeconomy.frozen_accounts[borrow.borrower] -= borrow
+				if (length(SSeconomy.frozen_accounts[borrow.borrower]) == 0)
+					SSeconomy.frozen_accounts -= borrow.borrower
 			qdel(borrow)
 		else if (world.time > borrow.lease_expires)
 			if (borrow.borrower in shareholders)
@@ -197,10 +197,10 @@
 				if (amt > borrow.share_debt)
 					shareholders[borrow.borrower] -= borrow.share_debt
 					borrows -= borrow
-					if (borrow.borrower in GLOB.FrozenAccounts)
-						GLOB.FrozenAccounts[borrow.borrower] -= borrow
-					if (length(GLOB.FrozenAccounts[borrow.borrower]) == 0)
-						GLOB.FrozenAccounts -= borrow.borrower
+					if (borrow.borrower in SSeconomy.frozen_accounts)
+						SSeconomy.frozen_accounts[borrow.borrower] -= borrow
+					if (length(SSeconomy.frozen_accounts[borrow.borrower]) == 0)
+						SSeconomy.frozen_accounts -= borrow.borrower
 					qdel(borrow)
 				else
 					shareholders -= borrow.borrower
@@ -225,9 +225,9 @@
 /datum/stock/proc/generateBrokers()
 	if (borrow_brokers.len > 2)
 		return
-	if (!GLOB.stockExchange.stockBrokers.len)
-		GLOB.stockExchange.generateBrokers()
-	var/broker = pick(GLOB.stockExchange.stockBrokers)
+	if (!SSeconomy.stock_brokers.len)
+		SSeconomy.generateBrokers()
+	var/broker = pick(SSeconomy.stock_brokers)
 	var/datum/borrow/B = new
 	B.broker = broker
 	B.stock = src
@@ -244,7 +244,7 @@
 		if (by < 0 && SSshuttle.points + by < 0 && !force)
 			return 0
 		SSshuttle.points += by
-		GLOB.stockExchange.balanceLog(whose, by)
+		SSeconomy.balanceLog(whose, by)
 		return 1
 	return 0
 
@@ -267,10 +267,10 @@
 	borrows += B
 	B.borrower = who
 	B.grace_expires = B.lease_expires + B.grace_time
-	if (!(who in GLOB.FrozenAccounts))
-		GLOB.FrozenAccounts[who] = list(B)
+	if (!(who in SSeconomy.frozen_accounts))
+		SSeconomy.frozen_accounts[who] = list(B)
 	else
-		GLOB.FrozenAccounts[who] += B
+		SSeconomy.frozen_accounts[who] += B
 	return 1
 
 /datum/stock/proc/buyShares(who, howmany)
@@ -306,3 +306,47 @@
 
 /datum/stock/proc/displayValues(mob/user)
 	user << browse(plotBarGraph(values, "[name] share value per share"), "window=stock_[name];size=450x450")
+
+/datum/stock/proc/plotBarGraph(list/points, base_text, width=400, height=400)
+	var/output = "<table style='border:1px solid black; border-collapse: collapse; width: [width]px; height: [height]px'>"
+	if (points.len && height > 20 && width > 20)
+		var/min = points[1]
+		var/max = points[1]
+		for (var/v in points)
+			if (v < min)
+				min = v
+			if (v > max)
+				max = v
+		var/cells = (height - 20) / 20
+		if (cells > round(cells))
+			cells = round(cells) + 1
+		var/diff = max - min
+		var/ost = diff / cells
+		if (min > 0)
+			min = max(min - ost, 0)
+		diff = max - min
+		ost = diff / cells
+		var/cval = max
+		var/cwid = width / (points.len + 1)
+		for (var/y = cells, y > 0, y--)
+			if (y == cells)
+				output += "<tr>"
+			else
+				output += "<tr style='border:none; border-top:1px solid #00ff00; height: 20px'>"
+			for (var/x = 0, x <= points.len, x++)
+				if (x == 0)
+					output += "<td style='border:none; height: 20px; width: [cwid]px; font-size:10px; color:#00ff00; background:black; text-align:right; vertical-align:bottom'>[round(cval - ost)]</td>"
+				else
+					var/v = points[x]
+					if (v >= cval)
+						output += "<td style='border:none; height: 20px; width: [cwid]px; background:#0000ff'>&nbsp;</td>"
+					else
+						output += "<td style='border:none; height: 20px; width: [cwid]px; background:black'>&nbsp;</td>"
+			output += "</tr>"
+			cval -= ost
+		output += "<tr><td style='font-size:10px; height: 20px; width: 100%; background:black; color:green; text-align:center' colspan='[points.len + 1]'>[base_text]</td></tr>"
+	else
+		output += "<tr><td style='width:[width]px; height:[height]px; background: black'></td></tr>"
+		output += "<tr><td style='font-size:10px; background:black; color:green; text-align:center'>[base_text]</td></tr>"
+
+	return "[output]</table>"

@@ -1,3 +1,7 @@
+/*
+* This is the code that generates the articles
+* that tell you that your stock has plummeted.
+*/
 /proc/ucfirst(S)
 	return "[uppertext(ascii2text(text2ascii(S, 1)))][copytext(S, 2)]"
 
@@ -7,12 +11,6 @@
 	for (var/P in L)
 		M += ucfirst(P)
 	return jointext(M, " ")
-
-GLOBAL_LIST_EMPTY(FrozenAccounts)
-
-/proc/list_frozen()
-	for(var/A in GLOB.FrozenAccounts)
-		to_chat(usr, "[A]: [length(GLOB.FrozenAccounts[A])] borrows")
 
 /datum/article
 	var/headline = "Something big is happening"
@@ -29,7 +27,6 @@ GLOBAL_LIST_EMPTY(FrozenAccounts)
 		"buy" = list("buy!", "buy, buy, buy!", "get in now!", "ride the share value to the stars!"), \
 		"company" = list("company", "conglomerate", "enterprise", "venture"), \
 		"complete" = list("complete", "total", "absolute", "incredible"), \
-		"country" = LC_DISTRICT_LIST, \
 		"development" = list("development", "unfolding of events", "turn of events", "new shit"), \
 		"dip" = list("dip", "fall", "plunge", "decrease"), \
 		"excited" = list("excited", "euphoric", "exhilarated", "thrilled", "stimulated"), \
@@ -56,7 +53,7 @@ GLOBAL_LIST_EMPTY(FrozenAccounts)
 
 /datum/article/New()
 	..()
-	if ((outlets.len && !prob(100 / (outlets.len + 1))) || !outlets.len)
+	if((outlets.len && !prob(100 / (outlets.len + 1))) || !outlets.len)
 		var/ON = generateOutletName()
 		if (!(ON in outlets))
 			outlets[ON] = list()
@@ -65,7 +62,7 @@ GLOBAL_LIST_EMPTY(FrozenAccounts)
 		outlet = pick(outlets)
 
 	var/list/authors = outlets[outlet]
-	if ((authors.len && !prob(100 / (authors.len + 1))) || !authors.len)
+	if((authors.len && !prob(100 / (authors.len + 1))) || !authors.len)
 		var/AN = generateAuthorName()
 		outlets[outlet] += AN
 		author = AN
@@ -75,13 +72,12 @@ GLOBAL_LIST_EMPTY(FrozenAccounts)
 	ticks = world.time
 
 /datum/article/proc/generateOutletName()
-	var/list/locations = LC_DISTRICT_LIST
 	var/list/nouns = list("Post", "Herald", "Sun", "Tribune", "Mail", "Times", "Journal", "Report")
 	var/list/timely = list("Daily", "Hourly", "Weekly", "Biweekly", "Monthly", "Yearly")
 
 	switch(rand(1,2))
 		if (1)
-			return "The [pick(locations)] [pick(nouns)]"
+			return "The District [rand(4,24)] [pick(nouns)]"
 		if (2)
 			return "The [pick(timely)] [pick(nouns)]"
 
@@ -98,7 +94,7 @@ GLOBAL_LIST_EMPTY(FrozenAccounts)
 	var/ticksc = round(ticks/100)
 	ticksc = ticksc % 100000
 	var/ticksp = "[ticksc]"
-	for(var/cycle = 1 to 5)
+	for(var/cycle = 0 to 4)
 		ticksp = "0[ticksp]"
 	spacetime = "[ticksp][time2text(world.realtime, "MM")][time2text(world.realtime, "DD")][text2num(time2text(world.realtime, "YYYY"))+540]"
 
