@@ -192,6 +192,7 @@
 	should_projectile_blockers_change_orientation = TRUE
 	occupied_tiles_up = 1
 	offsets_pixel_x = list("south" = -16, "north" = -16, "west" = 0, "east" = -32)
+	offsets_pixel_y = list("south" = 9, "north" = -20, "west" = 0, "east" = 0)
 
 	/// This cooldown responds for both the burrowing and spawning in the dawns
 	var/burrow_cooldown
@@ -226,9 +227,24 @@
 
 /mob/living/simple_animal/hostile/ordeal/amber_dusk/Initialize()
 	. = ..()
+	setDir(WEST)
 	soundloop = new(list(src), TRUE)
 	if(LAZYLEN(butcher_results))
 		addtimer(CALLBACK(src, PROC_REF(BurrowOut), get_turf(src)))
+
+/mob/living/simple_animal/hostile/ordeal/amber_dusk/OnDirChange(atom/thing, dir, newdir)
+	. = ..()
+	if(stat == DEAD)
+		return
+	var/static/matrix/add_vertical_transform = matrix(0.8, 1.4, MATRIX_SCALE)
+	var/static/south_north = SOUTH | NORTH
+	var/static/east_west = EAST | WEST
+	var/combined = dir | newdir
+	if((combined & south_north) && (combined & east_west))
+		if(newdir & south_north)
+			transform = add_vertical_transform
+		else
+			transform = matrix()
 
 /mob/living/simple_animal/hostile/ordeal/amber_dusk/Destroy()
 	QDEL_NULL(soundloop)
@@ -249,6 +265,8 @@
 	if(LAZYLEN(butcher_results))
 		alpha = 255
 	offsets_pixel_x = list("south" = -16, "north" = -16, "west" = -16, "east" = -16)
+	offsets_pixel_y = list("south" = 0, "north" = 0, "west" = 0, "east" = 0)
+	transform = matrix()
 	soundloop.stop()
 	for(var/mob/living/simple_animal/hostile/ordeal/amber_bug/bug in spawned_mobs)
 		bug.can_burrow_solo = TRUE
@@ -257,6 +275,8 @@
 /mob/living/simple_animal/hostile/ordeal/amber_dusk/revive(full_heal, admin_revive)
 	. = ..()
 	offsets_pixel_x = list("south" = -16, "north" = -16, "west" = 0, "east" = -32)
+	offsets_pixel_y = list("south" = 9, "north" = -20, "west" = 0, "east" = 0)
+	density = TRUE
 
 /mob/living/simple_animal/hostile/ordeal/amber_dusk/proc/AttemptBirth()
 	var/max_spawn = clamp(length(GLOB.clients) * 2, 4, 8)
@@ -368,6 +388,7 @@
 	occupied_tiles_up = 2
 	offsets_pixel_x = list("south" = -96, "north" = -96, "west" = -96, "east" = -96)
 	offsets_pixel_y = list("south" = -16, "north" = -16, "west" = -16, "east" = -16)
+	damage_effect_scale = 1.25
 
 	blood_volume = BLOOD_VOLUME_NORMAL
 	death_sound = 'sound/effects/ordeals/amber/midnight_dead.ogg'
