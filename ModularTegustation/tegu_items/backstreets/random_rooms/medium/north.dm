@@ -75,3 +75,8 @@
 	room_id = "casino_mn"
 	mappath = "_maps/RandomRooms/backstreets/medium_north/casino_mn.dmm"
 	stock = 1 // Only one, but it's common
+
+/datum/map_template/random_room/backstreets/medium_north/slime_hut
+	name = "Slime Hut - Medium North A"
+	room_id = "slime_hut"
+	mappath = "_maps/RandomRooms/backstreets/medium_north/slime_hut.dmm"

@@ -37,4 +37,3 @@
 	name = "La Mancha Land Template"
 	room_id = "la_mancha_land_backstreets"
 	mappath = "_maps/RandomRooms/backstreetlayout/ruinned_la_mancha_land.dmm"
-	weight = 10000
