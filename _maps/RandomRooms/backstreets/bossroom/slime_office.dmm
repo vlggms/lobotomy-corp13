@@ -1451,7 +1451,7 @@
 "PL" = (
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/machinery/light{
-	color = #32a852;
+	color = "#32a852";
 	dir = 8
 	},
 /obj/effect/decal/cleanable/cobweb,
