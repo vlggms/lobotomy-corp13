@@ -184,7 +184,7 @@
 /area/city/backstreets_alley)
 "jw" = (
 /obj/effect/portal/permanent/one_way{
-	id = "exit";
+	id = "path_15";
 	icon_state = "wooden_tv_broken";
 	desc = "An unwavering tv that will never fade.";
 	name = "broken tv?"
@@ -836,7 +836,7 @@
 /area/city/backstreets_alley)
 "Sx" = (
 /obj/effect/portal/permanent/one_way{
-	id = "exit";
+	id = "path_15";
 	icon_state = "wooden_tv_broken";
 	desc = "An unwavering tv that will never fade.";
 	name = "broken tv?"
