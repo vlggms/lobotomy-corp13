@@ -156,7 +156,7 @@
 	current_desc = ""
 	female = prob(50)
 	if (prob(50))
-		position = "C[prob(20) ? vowel() : consonant()]O"
+		position = "C[prob(20) ? VOWELS : CONSONANTS]O"
 	else
 		position = ucfirsts(company.industry.detokenize("Lead %industrial% Engineer"))
 	offenses = ""
@@ -166,7 +166,7 @@
 						"dereliction of duty", "spacecraft piracy", "music piracy", "tabletop game piracy", "software piracy", "escaping from space prison", "seniornapping", "clownnapping", "corginapping", "catnapping",
 						"sleeping on the job", "terrorism", "counterterrorism", "drug distribution", "insubordination", "jaywalking", "owning a computer", "owning a cellphone", "owning a PDA", "owning a pAI", "adultery",
 						"committing an unnatural act with another person", "corrupting public morals", "skateboarding without a license", "shitcurity", "erotic roleplay", "accidentally strangling a prostitute")
-	while (prob(60) && O.len > 2)
+	if(prob(60) && O.len > 2)
 		var/offense = pick(O)
 		O -= offense
 		offense = "[prob(20) ? "attempted " : (prob(20) ? "being accessory to " : null)][offense][prob(5) ? " of the [pick("first", "second", "third", "fourth", "fifth", "sixth")] degree" : null]"

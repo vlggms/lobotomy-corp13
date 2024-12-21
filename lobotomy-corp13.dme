@@ -139,6 +139,7 @@
 #include "code\__DEFINES\storage.dm"
 #include "code\__DEFINES\subsystems.dm"
 #include "code\__DEFINES\TeguDefines.dm"
+#include "code\__DEFINES\text.dm"
 #include "code\__DEFINES\tgs.config.dm"
 #include "code\__DEFINES\tgs.dm"
 #include "code\__DEFINES\tgui.dm"
