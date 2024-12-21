@@ -156,10 +156,21 @@
 /obj/item/food/fish/fresh_water/boxin_man
 	name = "Boxin Man"
 	desc = "I'm boxin' here!"
-	icon_state = "walkin_man"
+	icon_state = "boxin_man"
 	random_case_rarity = FISH_RARITY_VERY_RARE
 	fillet_type = /obj/item/food/freshfish/white
 	sprite_width = 8
 	sprite_height = 8
 	average_size = 50
 	average_weight = 5600
+
+/obj/item/food/fish/fresh_water/weever_blue_album
+	name = "Weever Blue Album"
+	desc = "Only in Dreams!"
+	icon_state = "weever_blue_album"
+	random_case_rarity = FISH_RARITY_VERY_RARE
+	fillet_type = /obj/item/food/freshfish/slime
+	sprite_width = 8
+	sprite_height = 8
+	average_size = 50
+	average_weight = 10000
