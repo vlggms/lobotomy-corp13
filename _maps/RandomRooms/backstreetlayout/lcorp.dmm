@@ -365,10 +365,7 @@
 /area/city/backstreets_room)
 "jc" = (
 /obj/structure/fluff/iced_abductor,
-/turf/open/floor/grass/snow/safe{
-	color = "#a3fff9";
-	name = "ice"
-	},
+/turf/open/floor/plating/ice,
 /area/city/backstreets_room)
 "jd" = (
 /obj/structure/mineral_door/wood,
@@ -765,10 +762,7 @@
 /area/city/backstreets_room)
 "pd" = (
 /obj/structure/flora/icestalagmite,
-/turf/open/floor/grass/snow/safe{
-	color = "#a3fff9";
-	name = "ice"
-	},
+/turf/open/floor/plating/ice,
 /area/city/backstreets_room)
 "pi" = (
 /obj/effect/decal/cleanable/dirt/dust,
@@ -869,10 +863,7 @@
 /turf/open/floor/grass/snow/safe,
 /area/city/backstreets_room)
 "rs" = (
-/turf/open/floor/grass/snow/safe{
-	color = "#a3fff9";
-	name = "ice"
-	},
+/turf/open/floor/plating/ice,
 /area/city/backstreets_room)
 "rF" = (
 /obj/effect/forcefield/cult/permanent,
@@ -894,7 +885,7 @@
 /area/city/backstreets_room)
 "rS" = (
 /obj/effect/portal/permanent{
-	id = chillc;
+	id = "chillc";
 	name = "chill room"
 	},
 /turf/open/floor/facility/dark,
@@ -1026,7 +1017,7 @@
 /area/centcom/supplypod)
 "tH" = (
 /obj/effect/portal/permanent{
-	id = chilld;
+	id = "chilld";
 	name = "chill room"
 	},
 /turf/open/floor/facility/dark,
@@ -1118,7 +1109,7 @@
 /area/city/backstreets_room)
 "vF" = (
 /obj/effect/portal/permanent{
-	id = chillb;
+	id = "chillb";
 	name = "chill room";
 	alpha = 10
 	},
@@ -1323,7 +1314,7 @@
 /area/city/backstreets_room)
 "zk" = (
 /obj/effect/portal/permanent{
-	id = chillb;
+	id = "chillb";
 	name = "chill room"
 	},
 /turf/open/floor/facility/dark,
@@ -1589,7 +1580,7 @@
 /area/city/backstreets_room)
 "Df" = (
 /obj/effect/portal/permanent{
-	id = chilla;
+	id = "chilla";
 	name = "chill room"
 	},
 /turf/open/floor/facility/dark,
@@ -1938,7 +1929,7 @@
 /obj/structure/lootcrate/workshopallas,
 /obj/structure/spider/stickyweb/genetic,
 /obj/effect/portal/permanent{
-	id = chilld;
+	id = "chilld";
 	name = "chill room";
 	alpha = 10
 	},
@@ -2122,7 +2113,7 @@
 /area/city/backstreets_room)
 "NR" = (
 /obj/effect/portal/permanent{
-	id = chilla;
+	id = "chilla";
 	name = "chill room";
 	alpha = 10
 	},
@@ -2526,7 +2517,7 @@
 /area/centcom/supplypod)
 "Vs" = (
 /obj/effect/portal/permanent{
-	id = chillc;
+	id = "chillc";
 	name = "chill room";
 	alpha = 10
 	},
@@ -2604,10 +2595,7 @@
 /area/city/backstreets_alley)
 "WI" = (
 /obj/structure/flora/icechunk/alt,
-/turf/open/floor/grass/snow/safe{
-	color = "#a3fff9";
-	name = "ice"
-	},
+/turf/open/floor/plating/ice,
 /area/city/backstreets_room)
 "WS" = (
 /obj/structure/flora/rock/pile,
