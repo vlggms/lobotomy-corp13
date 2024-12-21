@@ -64,16 +64,16 @@
     name = "500 Cigarettes - Small East"
     room_id = "cigarettes_se"
     mappath = "_maps/RandomRooms/backstreets/small_east/cigarettes_se.dmm"
-	stock = 1
+    stock = 1
 
 /datum/map_template/random_room/backstreets/small_east/binah
     name = "Binah - Small East"
     room_id = "binah_se"
     mappath = "_maps/RandomRooms/backstreets/small_east/binah.dmm"
-	stock = 1
+    stock = 1
 
 /datum/map_template/random_room/backstreets/small_east/ukulele
     name = "Ukulele - Small East"
     room_id = "ukulele"
     mappath = "_maps/RandomRooms/backstreets/small_east/ukulele.dmm"
-	weight = 2
+    weight = 2
