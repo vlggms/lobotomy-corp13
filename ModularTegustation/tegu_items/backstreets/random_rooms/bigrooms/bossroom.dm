@@ -39,3 +39,8 @@
 	name = "Metal - Bossroom"
 	room_id = "metal_fixer"
 	mappath = "_maps/RandomRooms/backstreets/bossroom/metal_fixer.dmm"
+
+/datum/map_template/random_room/backstreets/bossroom/slime_office
+	name = "Slime Office - Bossroom"
+	room_id = "slime_office"
+	mappath = "_maps/RandomRooms/backstreets/bossroom/slime_office.dmm"
