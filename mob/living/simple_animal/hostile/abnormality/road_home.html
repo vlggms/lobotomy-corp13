@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <base href="../../../../../" />
+    <link rel="stylesheet" href="dmdoc.css" />
+    <title>&#x2F;mob&#x2F;living&#x2F;simple_animal&#x2F;hostile&#x2F;abnormality&#x2F;road_home - &#x2F;tg&#x2F; Station 13</title>
+</head>
+<body>
+<header>
+    <a href="index.html">&#x2F;tg&#x2F; Station 13</a> -
+    <a href="index.html#modules">Modules</a> -
+    <a href="index.html#types">Types</a>
+ &mdash; <a href="mob/living/simple_animal/hostile/abnormality/road_home.html#var">Var Details</a> - <a href="mob/living/simple_animal/hostile/abnormality/road_home.html#proc">Proc Details</a></header>
+<main>
+<h1>road_home <aside>/<a href="mob.html">mob</a>/<a href="mob/living.html">living</a>/<a href="mob/living/simple_animal.html">simple_animal</a>/<a href="mob/living/simple_animal/hostile.html">hostile</a>/<a href="mob/living/simple_animal/hostile/abnormality.html">abnormality</a>/<a href="mob/living/simple_animal/hostile/abnormality/road_home.html">road_home</a></aside>
+        
+    
+            <a href="https://github.com/vlggms/lobotomy-corp13/blob/145662faae3f692d022693326528f8fe571f6f07/code/modules/mob/living/simple_animal/abnormality/he/road_home.dm#L1">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;simple_animal&#x2F;abnormality&#x2F;he&#x2F;road_home.dm 1"/></a></h1>
+
+<table class="summary" cellspacing="0"><tr><td colspan="2"><h2>Vars</h2></td></tr>
+            <tr><th><a href="mob/living/simple_animal/hostile/abnormality/road_home.html#var/agent_friends">agent_friends</a></th><td>Agents with the &quot;stay home&quot; status effect, they will be driven insane when the home is reached.</td></tr>
+            <tr><th><a href="mob/living/simple_animal/hostile/abnormality/road_home.html#var/house">house</a></th><td>Stuff related to the house and its path</td></tr>
+            <tr><th><a href="mob/living/simple_animal/hostile/abnormality/road_home.html#var/preferred_abno_list">preferred_abno_list</a></th><td>If those abnos are available, she will make a path towards them instead. (isn't used for anything right now)</td></tr><tr><td colspan="2"><h2>Procs</h2></td></tr>
+            <tr><th><a href="mob/living/simple_animal/hostile/abnormality/road_home.html#proc/CheckAndDestroy">CheckAndDestroy</a></th><td>If road home fails to advance, destroy everything in front of her so she can't be infinitely blocked.
+This includes bolted doors, barriers or built walls (even indestructible ones)
+This does NOT include dense mobs or doors that can be opened.</td></tr>
+            <tr><th><a href="mob/living/simple_animal/hostile/abnormality/road_home.html#proc/Destroy">Destroy</a></th><td>She never stops spinning, even in containment.</td></tr>
+            <tr><th><a href="mob/living/simple_animal/hostile/abnormality/road_home.html#proc/FlipAttack">FlipAttack</a></th><td>Flips and gives everyone the stay home status effect.</td></tr>
+            <tr><th><a href="mob/living/simple_animal/hostile/abnormality/road_home.html#proc/NewHouse">NewHouse</a></th><td>Kickstarts the &quot;going home&quot; pattern. Teleports both the road home and the house to different tiles so she can move to the house again.</td></tr></table>
+    <h2 id="var">Var Details</h2><h3 id="var/agent_friends"><aside class="declaration">var </aside>agent_friends
+            <aside>&ndash; /list</aside>
+        
+    
+            <a href="https://github.com/vlggms/lobotomy-corp13/blob/145662faae3f692d022693326528f8fe571f6f07/code/modules/mob/living/simple_animal/abnormality/he/road_home.dm#L71">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;simple_animal&#x2F;abnormality&#x2F;he&#x2F;road_home.dm 71"/></a></h3>
+        <p>Agents with the &quot;stay home&quot; status effect, they will be driven insane when the home is reached.</p><h3 id="var/house"><aside class="declaration">var </aside>house
+            <aside>&ndash; /<a href="obj.html">obj</a>/road_house</aside>
+        
+    
+            <a href="https://github.com/vlggms/lobotomy-corp13/blob/145662faae3f692d022693326528f8fe571f6f07/code/modules/mob/living/simple_animal/abnormality/he/road_home.dm#L53">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;simple_animal&#x2F;abnormality&#x2F;he&#x2F;road_home.dm 53"/></a></h3>
+        <p>Stuff related to the house and its path</p><h3 id="var/preferred_abno_list"><aside class="declaration">var </aside>preferred_abno_list
+            <aside>&ndash; /list</aside>
+        
+    
+            <a href="https://github.com/vlggms/lobotomy-corp13/blob/145662faae3f692d022693326528f8fe571f6f07/code/modules/mob/living/simple_animal/abnormality/he/road_home.dm#L61">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;simple_animal&#x2F;abnormality&#x2F;he&#x2F;road_home.dm 61"/></a></h3>
+        <p>If those abnos are available, she will make a path towards them instead. (isn't used for anything right now)</p><h2 id="proc">Proc Details</h2><h3 id="proc/CheckAndDestroy"><aside class="declaration">proc </aside>CheckAndDestroy<aside>(/<a href="obj.html">obj</a>/effect/golden_road/GR) 
+        
+    
+            <a href="https://github.com/vlggms/lobotomy-corp13/blob/145662faae3f692d022693326528f8fe571f6f07/code/modules/mob/living/simple_animal/abnormality/he/road_home.dm#L224">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;simple_animal&#x2F;abnormality&#x2F;he&#x2F;road_home.dm 224"/></a></aside>
+        </h3>
+        <p>If road home fails to advance, destroy everything in front of her so she can't be infinitely blocked.
+This includes bolted doors, barriers or built walls (even indestructible ones)
+This does NOT include dense mobs or doors that can be opened.</p><h3 id="proc/Destroy"><aside class="parent"><a title="/mob" href="mob.html#proc/Destroy">&uarr;</a></aside>Destroy<aside>(gibbed) 
+        
+    
+            <a href="https://github.com/vlggms/lobotomy-corp13/blob/145662faae3f692d022693326528f8fe571f6f07/code/modules/mob/living/simple_animal/abnormality/he/road_home.dm#L156">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;simple_animal&#x2F;abnormality&#x2F;he&#x2F;road_home.dm 156"/></a></aside>
+        </h3>
+        <p>She never stops spinning, even in containment.</p><h3 id="proc/FlipAttack"><aside class="declaration">proc </aside>FlipAttack<aside>() 
+        
+    
+            <a href="https://github.com/vlggms/lobotomy-corp13/blob/145662faae3f692d022693326528f8fe571f6f07/code/modules/mob/living/simple_animal/abnormality/he/road_home.dm#L167">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;simple_animal&#x2F;abnormality&#x2F;he&#x2F;road_home.dm 167"/></a></aside>
+        </h3>
+        <p>Flips and gives everyone the stay home status effect.</p><h3 id="proc/NewHouse"><aside class="declaration">proc </aside>NewHouse<aside>() 
+        
+    
+            <a href="https://github.com/vlggms/lobotomy-corp13/blob/145662faae3f692d022693326528f8fe571f6f07/code/modules/mob/living/simple_animal/abnormality/he/road_home.dm#L245">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;simple_animal&#x2F;abnormality&#x2F;he&#x2F;road_home.dm 245"/></a></aside>
+        </h3>
+        <p>Kickstarts the &quot;going home&quot; pattern. Teleports both the road home and the house to different tiles so she can move to the house again.</p></main>
+<footer>
+    lobotomy-corp13.dme
+    <a href="https://github.com/vlggms/lobotomy-corp13/tree/145662faae3f692d022693326528f8fe571f6f07">145662f</a>
+        (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/crates/dmdoc/README.md">dmdoc 1.8.0</a></footer>
+</body>
+</html>
