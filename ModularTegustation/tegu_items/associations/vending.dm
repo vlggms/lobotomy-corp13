@@ -235,16 +235,22 @@
 		/obj/item/organ/eyes/robotic/glow = 100,
 		/obj/item/organ/ears/cybernetic = 100,
 		/obj/item/organ/cyberimp/arm/zippy = 100,
+		/obj/item/organ/cyberimp/arm/fixertools = 100,
 	)
 
 	premium = list(
 		/obj/item/shears = 1,
 		/obj/item/bodypart/l_arm/robot/explosive = 100,
 		/obj/item/bodypart/r_arm/robot/explosive = 100,
+		//obj/item/bodypart/l_arm/robot/timestop = 100,
+		//obj/item/bodypart/r_arm/robot/timestop = 100,
 		/obj/item/organ/cyberimp/arm/mantis = 100,
 		/obj/item/organ/cyberimp/arm/mantis/black = 100,
 		/obj/item/organ/cyberimp/arm/chainsword = 100,
+		/obj/item/organ/cyberimp/arm/briefcase = 100,
 		/obj/item/organ/cyberimp/arm/surgery = 100,
+		/obj/item/organ/cyberimp/arm/overdrive = 100,
+		/obj/item/organ/cyberimp/arm/observation = 100,
 		/obj/item/extra_arm = 100,
 		/obj/item/extra_arm/double = 100,
 	)
