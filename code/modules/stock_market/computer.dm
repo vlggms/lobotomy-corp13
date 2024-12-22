@@ -12,6 +12,7 @@
 	interaction_flags_atom = INTERACT_ATOM_REQUIRES_DEXTERITY | INTERACT_ATOM_UI_INTERACT | INTERACT_ATOM_ATTACK_HAND | INTERACT_ATOM_REQUIRES_ANCHORED
 
 	light_color = LIGHT_COLOR_GREEN
+	var/list/logs = list()
 
 /obj/machinery/computer/stockexchange/Initialize()
 	. = ..()
@@ -193,8 +194,9 @@ a.updated {
 	if (!S.sellShares(logged_in, amt))
 		to_chat(user, "<span class='danger'>Could not complete transaction.</span>")
 		return
-	to_chat(user, "<span class='notice'>Sold [amt] shares of [S.name] at [S.current_value] a share for [total] ahn.</span>")
-	SSeconomy.add_log(/datum/stock_log/sell, user.name, S.name, amt, S.current_value, total)
+	var/feedback = "<span class='notice'>Sold [amt] shares of [S.name] at [S.current_value] a share for [total] ahn.</span>"
+	to_chat(user, feedback)
+	logs += feedback
 
 /obj/machinery/computer/stockexchange/proc/buy_some_shares(datum/stock/S, mob/user)
 	if (!user || !S)
@@ -228,15 +230,9 @@ a.updated {
 		return
 
 	var/total = amt * S.current_value
-	to_chat(user, "<span class='notice'>Bought [amt] shares of [S.name] at [S.current_value] a share for [total] ahn.</span>")
-	SSeconomy.add_log(/datum/stock_log/buy, user.name, S.name, amt, S.current_value,  total)
-
-/obj/machinery/computer/stockexchange/proc/do_borrowing_deal(datum/borrow/B, mob/user)
-	if (B.stock.borrow(B, logged_in))
-		to_chat(user, "<span class='notice'>You successfully borrowed [B.share_amount] shares. Deposit: [B.deposit].</span>")
-		SSeconomy.add_log(/datum/stock_log/borrow, user.name, B.stock.name, B.share_amount, B.deposit)
-	else
-		to_chat(user, "<span class='danger'>Could not complete transaction. Check your account balance.</span>")
+	var/feedback = "<span class='notice'>Bought [amt] shares of [S.name] at [S.current_value] a share for [total] ahn.</span>"
+	to_chat(user, feedback)
+	logs += feedback
 
 /obj/machinery/computer/stockexchange/Topic(href, href_list)
 	if (..())
@@ -265,17 +261,8 @@ a.updated {
 
 	if (href_list["show_logs"])
 		var/dat = "<html><head><title>Stock Transaction Logs</title></head><body><h2>Stock Transaction Logs</h2><div><a href='?src=[REF(src)];show_logs=1'>Refresh</a></div><br>"
-		for(var/D in SSeconomy.logs)
-			var/datum/stock_log/L = D
-			if(istype(L, /datum/stock_log/buy))
-				dat += "[L.time] | <b>[L.user_name]</b> bought <b>[L.stocks]</b> stocks at [L.shareprice] a share for <b>[L.money]</b> total ahn in <b>[L.company_name]</b>.<br>"
-				continue
-			if(istype(L, /datum/stock_log/sell))
-				dat += "[L.time] | <b>[L.user_name]</b> sold <b>[L.stocks]</b> stocks at [L.shareprice] a share for <b>[L.money]</b> total ahn from <b>[L.company_name]</b>.<br>"
-				continue
-			if(istype(L, /datum/stock_log/borrow))
-				dat += "[L.time] | <b>[L.user_name]</b> borrowed <b>[L.stocks]</b> stocks with a deposit of <b>[L.money]</b> ahn in <b>[L.company_name]</b>.<br>"
-				continue
+		for(var/D in logs)
+			dat += "[D]<br>"
 		var/datum/browser/popup = new(usr, "stock_logs", "Stock Transaction Logs", 600, 400)
 		popup.set_content(dat)
 		popup.open()
@@ -308,7 +295,7 @@ a.updated {
 		popup.open()
 
 	if (href_list["cycleview"])
-		if(vmode = TRUE)
+		if(vmode == TRUE)
 			vmode = 0
 		else
 			vmode = 1

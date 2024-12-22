@@ -45,9 +45,6 @@ SUBSYSTEM_DEF(economy)
 	var/list/balances = list()
 	var/list/last_read = list()
 	var/list/stock_brokers = list()
-	var/list/logs
-	var/list/frozen_accounts = list()
-
 
 /datum/controller/subsystem/economy/Initialize(timeofday)
 	var/budget_to_hand_out = round(budget_pool / department_accounts.len)
@@ -128,10 +125,6 @@ SUBSYSTEM_DEF(economy)
 	return inflation_value
 
 //STOCK MARKET PROCS
-/datum/controller/subsystem/economy/proc/list_frozen()
-	for(var/A in frozen_accounts)
-		to_chat(usr, "[A]: [length(frozen_accounts[A])] borrows")
-
 /datum/controller/subsystem/economy/proc/balanceLog(whose, net)
 	if (!(whose in balances))
 		balances[whose] = net
@@ -190,7 +183,7 @@ SUBSYSTEM_DEF(economy)
 		switch (rand(1,6))
 			if(1)
 				if(sname == "" || sname == "FAG") // honestly it's a 0.6% chance per round this happens - or once in 166 rounds - so i'm accounting for it before someone yells at me
-					sname = "[CONSONANTS][VOWELS][CONSONANTS]"
+					sname = "[pick(CONSONANTS)][pick(VOWELS)]E"
 			if (2)
 				sname = "[pick(tech_prefix)][pick(tech_short)][prob(20) ? " " + pick(company) : null]"
 			if (3 to 4)
@@ -226,13 +219,3 @@ SUBSYSTEM_DEF(economy)
 		S.generateEvents()
 		stocks += S
 		last_read[S] = list()
-
-/datum/controller/subsystem/economy/proc/add_log(log_type, user, company_name, stocks, shareprice, money)
-	var/datum/stock_log/L = new log_type
-	L.user_name = user
-	L.company_name = company_name
-	L.stocks = stocks
-	L.shareprice = shareprice
-	L.money = money
-	L.time = time2text(world.timeofday, "hh:mm")
-	logs += L

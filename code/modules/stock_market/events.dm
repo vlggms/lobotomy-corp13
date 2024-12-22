@@ -120,7 +120,10 @@
 
 /datum/stockEvent/bankruptcy/proc/generateBankruptcyArticle()
 	var/datum/article/A = new
-	var/list/bankrupt_reason = list("investor pessimism", "failure of product lines", "economic recession", "overblown inflation", "overblown deflation", "collapsed pyramid schemes", "a Ponzi scheme", "economic terrorism", "extreme hedonism", "unfavourable economic climate", "rampant government corruption", "divine conspiracy", "some total bullshit", "volatile plans")
+	var/list/bankrupt_reason = list("investor pessimism", "failure of product lines", "economic recession", "overblown inflation", "overblown deflation",
+		"collapsed pyramid schemes", "a Ponzi scheme", "economic terrorism", "extreme hedonism", "unfavourable economic climate", "rampant government corruption",
+		"divine conspiracy", "some total bullshit", "volatile plans"
+		)
 	A.about = company
 	A.headline = pick(	"[company.name] filing for bankruptcy", \
 						"[company.name] unable to pay, investors run", \
@@ -129,7 +132,8 @@
 	A.subtitle = "Investors panic, bailout pending"
 	if (prob(15))
 		A.opinion = rand(-1, 1)
-	var/article = "Another one might bite the dust: [company.current_trend > 0 ? "despite their positive trend" : "in line with their failing model"], [company.name] files for bankruptcy citing [pick(bankrupt_reason)]. The director of District [rand(4,24)] has been asked to bail the company out, "
+	var/article = "Another one might bite the dust: [company.current_trend > 0 ? "despite their positive trend" : "in line with their failing model"], [company.name] \
+		files for bankruptcy citing [pick(bankrupt_reason)]. The director of District [rand(4,24)] has been asked to bail the company out, "
 	if (!A.opinion)
 		article += "but no answer has been given by the administration to date. Our tip to stay safe is: %sell%"
 	else if (A.opinion > 0)
@@ -156,17 +160,20 @@
 	current_desc = ""
 	female = prob(50)
 	if (prob(50))
-		position = "C[prob(20) ? VOWELS : CONSONANTS]O"
+		position = "C[prob(20) ? pick(VOWELS) : pick(CONSONANTS)]O"
 	else
 		position = ucfirsts(company.industry.detokenize("Lead %industrial% Engineer"))
 	offenses = ""
 	var/list/O = list("corruption", "murder", "grand theft", "assault", "battery", "drug possession", "burglary", "theft", "grand sabotage", "bribery",
 						"disorderly conduct", "treason", "sedition", "shoplifting", "tax evasion", "tax fraud", "insurance fraud", "perjury", "kidnapping", "manslaughter", "vandalism", "forgery", "extortion", "embezzlement",
 						"public indecency", "public intoxication", "trespassing", "loitering", "littering", "vigilantism", "squatting", "panhandling", "arson", "spacepodjacking", "shuttlejacking", "carjacking", "singularityjacking",
-						"dereliction of duty", "spacecraft piracy", "music piracy", "tabletop game piracy", "software piracy", "escaping from space prison", "seniornapping", "clownnapping", "corginapping", "catnapping",
+						"dereliction of duty", "spacecraft piracy", "music piracy", "tabletop game piracy", "software piracy", "seniornapping", "clownnapping", "corginapping", "catnapping",
 						"sleeping on the job", "terrorism", "counterterrorism", "drug distribution", "insubordination", "jaywalking", "owning a computer", "owning a cellphone", "owning a PDA", "owning a pAI", "adultery",
-						"committing an unnatural act with another person", "corrupting public morals", "skateboarding without a license", "shitcurity", "erotic roleplay", "accidentally strangling a prostitute")
-	if(prob(60) && O.len > 2)
+						"committing an unnatural act with another person", "corrupting public morals", "skateboarding without a license", "shitcurity", "erotic roleplay", "accidentally strangling a prostitute",
+						"gnome conspiracy", "Artificial Intelligence Ethics Amendment violation", "cloning", "full restoration necromancy", "owning a gun that can damage property",
+						"smuggling of sentient non-humans into the city", "erasure of a VIP", "imperfect erasure of a crime from reality", "deicide", "being an ass",
+						"conspiracy", "lycanthropy", "distortion cultivation", "cognitohazard breach", "soul stealing", "prosthetic ownership", "district taboo violation")
+	if(prob(60))
 		var/offense = pick(O)
 		O -= offense
 		offense = "[prob(20) ? "attempted " : (prob(20) ? "being accessory to " : null)][offense][prob(5) ? " of the [pick("first", "second", "third", "fourth", "fifth", "sixth")] degree" : null]"
@@ -217,7 +224,9 @@
 	A.subtitle = "[A.author] reporting directly from the courtroom"
 	if (prob(15))
 		A.opinion = rand(-1, 1)
-	var/article = "[pick("Security", "Law enforcement")] forces issued a statement that [tname], the [position] of [company.name], the %famous% %industrial% %company% was arrested %this_time%. The trial has been scheduled and the statement reports that the arrested individual is being charged with [offenses]. "
+	var/article = "[pick("Security", "Law enforcement")] forces issued a statement that [tname], the [position] of [company.name], \
+		the %famous% %industrial% %company% was arrested %this_time%. The trial has been scheduled and the statement reports that \
+		the arrested individual is being charged with [offenses]. "
 	if (!A.opinion)
 		article += "While we cannot predict the outcome of this trial, our tip to stay safe is: %sell%"
 	else if (A.opinion > 0)

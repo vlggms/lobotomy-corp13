@@ -3707,7 +3707,6 @@
 #include "code\modules\stock_market\computer.dm"
 #include "code\modules\stock_market\events.dm"
 #include "code\modules\stock_market\industries.dm"
-#include "code\modules\stock_market\logs.dm"
 #include "code\modules\stock_market\stocks.dm"
 #include "code\modules\suppressions\_core_suppression.dm"
 #include "code\modules\suppressions\command.dm"

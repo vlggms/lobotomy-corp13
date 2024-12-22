@@ -84,9 +84,9 @@
 /datum/article/proc/generateAuthorName()
 	switch(rand(1,3))
 		if (1)
-			return "[CONSONANTS]. [pick(GLOB.last_names)]"
+			return "[pick(CONSONANTS)]. [pick(GLOB.last_names)]"
 		if (2)
-			return "[prob(50) ? pick(GLOB.first_names_male) : pick(GLOB.first_names_female)] [CONSONANTS].[prob(50) ? "[CONSONANTS]. " : null] [pick(GLOB.last_names)]"
+			return "[prob(50) ? pick(GLOB.first_names_male) : pick(GLOB.first_names_female)] [pick(CONSONANTS)].[prob(50) ? "[pick(CONSONANTS)]. " : null] [pick(GLOB.last_names)]"
 		if (3)
 			return "[prob(50) ? pick(GLOB.first_names_male) : pick(GLOB.first_names_female)] \"[prob(50) ? pick(GLOB.first_names_male) : pick(GLOB.first_names_female)]\" [pick(GLOB.last_names)]"
 
