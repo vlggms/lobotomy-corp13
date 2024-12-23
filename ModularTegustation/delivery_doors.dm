@@ -18,8 +18,8 @@
 /obj/structure/delivery_door/attackby(obj/item/I, mob/user)
 	var/ordered_item = locate(I) in item_order
 	if(ordered_item)
+		Reward(user, I, item_order[ordered_item])
 		item_order -= ordered_item
-		Reward(user, I, 30 + rand(-1,20))
 		return
 	if(istype(I, /obj/item/delivery_parcel))
 		// Deliver the item.
@@ -38,12 +38,13 @@
 	return TRUE
 
 // Order items that are not safety sealed.
-/obj/structure/delivery_door/proc/OrderItems(origin, obj/item/T = /obj/item/food/pizza/margherita)
+/obj/structure/delivery_door/proc/OrderItems(origin, obj/item/T = /obj/item/food/pizza/margherita, delivery_payment = 30)
 	if(!isturf(origin) && !isatom(origin))
 		return FALSE
-	item_order = list(T)
+	item_order += T
+	item_order[T] = delivery_payment
 	var/obj/item/paper/P = new (get_turf(origin))
-	P.setText("<center><b>[address] orders a [initial(T.name)].</b></center>")
+	P.setText("<br><br><center><b>[address] orders a [initial(T.name)] for [delivery_payment] Ahn.</b></center>")
 	return TRUE
 
 // Pay the pizzaman
@@ -79,8 +80,16 @@
 	icon_state = "pinpointer_syndicate"
 	custom_price = PAYCHECK_MEDIUM * 4
 	custom_premium_price = PAYCHECK_MEDIUM * 6
+	var/coords
 
-/obj/item/pinpointer/cordnate/attack_self(mob/living/user)
+/obj/item/pinpointer/coordinate/examine(mob/user)
+	. = ..()
+	if(!active || !target)
+		return
+	if(coords)
+		. += coords
+
+/obj/item/pinpointer/coordinate/attack_self(mob/living/user)
 	if(active)
 		toggle_on()
 		user.visible_message(span_notice("[user] deactivates [user.p_their()] pinpointer."), span_notice("You deactivate your pinpointer."))
@@ -92,5 +101,6 @@
 		return
 
 	target = locate(target_x, target_y, user.z)
+	coords = "X:[target_x]|Y:[target_y]"
 	toggle_on()
 	user.visible_message(span_notice("[user] activates [user.p_their()] pinpointer."), span_notice("You activate your pinpointer."))
