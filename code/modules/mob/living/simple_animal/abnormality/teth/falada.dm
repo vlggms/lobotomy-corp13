@@ -69,6 +69,11 @@
 	datum_reference.qliphoth_change(1)
 	return
 
+/mob/living/simple_animal/hostile/abnormality/falada/BreachEffect(mob/living/carbon/human/user, breach_type)
+	if(breach_type == BREACH_MINING)
+		pissed()
+		qdel(src)
+
 /mob/living/simple_animal/hostile/abnormality/falada/WorkChance(mob/living/carbon/human/user, chance)
 	if(happy)
 		chance+=30
