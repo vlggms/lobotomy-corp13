@@ -41,7 +41,7 @@
 		"They've become me" = list(TRUE, "It doesn't matter. <br>My choices do not matter. <br>\
 			Nothing matters. <br>We will repeat this song and dance until the end of time.<br> I can only laugh at this pointless endeavor."),
 		"I came to resemble them" = list(TRUE, "It doesn't matter. <br>My choices do not matter. <br>\
-			Nothing matters. <br>We will repeat this song and dance until the end of time.<br> I can only laugh at this pointless endeavor."),,
+			Nothing matters. <br>We will repeat this song and dance until the end of time.<br> I can only laugh at this pointless endeavor."),
 	)
 
 	var/can_act = TRUE
