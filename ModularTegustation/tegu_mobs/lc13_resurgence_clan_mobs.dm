@@ -254,9 +254,6 @@
 /mob/living/simple_animal/hostile/clan/defender/death(gibbed)
 	charge = 0
 	var/turf/T = get_turf(src)
-	if (prob(25))
-		new /obj/item/tape/resurgence/first(T)
-
 	if (stunned == TRUE)
 		Unlock()
 
@@ -596,3 +593,44 @@
 /mob/living/simple_animal/hostile/clan/drone/reforged/Initialize()
 	. = ..()
 	faction = list("neutral")
+
+/mob/living/simple_animal/hostile/clan/drone/reforged/attack_hand(mob/living/carbon/M)
+	if(!stat && M.a_intent == INTENT_HELP && !client && CanTalk())
+		speaking = TRUE
+		var/robot_ask = alert("ask them", "[src] is listening to you.", "Act normal.", "Heal me.", "Stay here.", "Cancel")
+		if(robot_ask == "Act normal.")
+			M.say("Act normal.")
+			change_targets = TRUE
+			stand_still = FALSE
+		else if(robot_ask == "Heal me.")
+			M.say("Heal me.")
+			change_targets = FALSE
+		else if(robot_ask == "Stay here.")
+			M.say("Stay here.")
+			stand_still = TRUE
+		speaking = FALSE
+		return
+	else
+		manual_emote("looks away, avoiding [M]'s gaze...")
+	return ..()
+
+/mob/living/simple_animal/hostile/clan/drone/reforged/Move()
+	if (stand_still)
+		return FALSE
+	return ..()
+
+/mob/living/simple_animal/hostile/clan/drone/reforged/update_beam()
+	var/mob/living/potential_target
+	var/potential_health_missing = 0.01
+	for(var/mob/living/L in view(searching_range, src))
+		if(L != src && faction_check_mob(L, FALSE) && L.stat != DEAD)
+			var/missing = (L.maxHealth - L.health)/L.maxHealth
+			if (missing > potential_health_missing)
+				potential_target = L
+				potential_health_missing = missing
+
+	if (potential_target && target && potential_target != target)
+		remove_beam()
+		target = potential_target
+		if(ai_controller)
+			ai_controller.current_movement_target = target
