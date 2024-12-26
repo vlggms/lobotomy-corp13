@@ -253,7 +253,6 @@
 
 /mob/living/simple_animal/hostile/clan/defender/death(gibbed)
 	charge = 0
-	var/turf/T = get_turf(src)
 	if (stunned == TRUE)
 		Unlock()
 
@@ -421,7 +420,7 @@
 
 /mob/living/simple_animal/hostile/clan/drone/Initialize()
 	. = ..()
-	update_beam_timer = addtimer(CALLBACK(src, .proc/update_beam), 5 SECONDS, TIMER_LOOP | TIMER_STOPPABLE)
+	update_beam_timer = addtimer(CALLBACK(src, PROC_REF(update_beam)), 5 SECONDS, TIMER_LOOP | TIMER_STOPPABLE)
 
 /mob/living/simple_animal/hostile/clan/drone/ChargeUpdated()
 	var/chargelayer = layer + 0.1
@@ -587,24 +586,26 @@
 	health = 500
 	healing_amount = 5
 	heal_per_charge = 10
-	var/change_targets = TRUE
 	var/stand_still = FALSE
+	var/mob/living/carbon/locked_target
 
 /mob/living/simple_animal/hostile/clan/drone/reforged/Initialize()
 	. = ..()
 	faction = list("neutral")
+	// deltimer(update_beam_timer)
+	// update_beam_timer = addtimer(CALLBACK(src, ./update_beam), 5 SECONDS, TIMER_LOOP | TIMER_STOPPABLE)
 
 /mob/living/simple_animal/hostile/clan/drone/reforged/attack_hand(mob/living/carbon/M)
-	if(!stat && M.a_intent == INTENT_HELP && !client && CanTalk())
+	if(!stat && M.a_intent == INTENT_HELP && !client)
 		speaking = TRUE
 		var/robot_ask = alert("ask them", "[src] is listening to you.", "Act normal.", "Heal me.", "Stay here.", "Cancel")
 		if(robot_ask == "Act normal.")
 			M.say("Act normal.")
-			change_targets = TRUE
+			locked_target = null
 			stand_still = FALSE
 		else if(robot_ask == "Heal me.")
 			M.say("Heal me.")
-			change_targets = FALSE
+			locked_target = M
 		else if(robot_ask == "Stay here.")
 			M.say("Stay here.")
 			stand_still = TRUE
@@ -621,13 +622,17 @@
 
 /mob/living/simple_animal/hostile/clan/drone/reforged/update_beam()
 	var/mob/living/potential_target
-	var/potential_health_missing = 0.01
-	for(var/mob/living/L in view(searching_range, src))
-		if(L != src && faction_check_mob(L, FALSE) && L.stat != DEAD)
-			var/missing = (L.maxHealth - L.health)/L.maxHealth
-			if (missing > potential_health_missing)
-				potential_target = L
-				potential_health_missing = missing
+	var/visible = (locked_target in view(searching_range, src))
+	if (visible)
+		potential_target = locked_target
+	else
+		var/potential_health_missing = 0.01
+		for(var/mob/living/L in view(searching_range, src))
+			if(L != src && faction_check_mob(L, FALSE) && L.stat != DEAD)
+				var/missing = (L.maxHealth - L.health)/L.maxHealth
+				if (missing > potential_health_missing)
+					potential_target = L
+					potential_health_missing = missing
 
 	if (potential_target && target && potential_target != target)
 		remove_beam()
