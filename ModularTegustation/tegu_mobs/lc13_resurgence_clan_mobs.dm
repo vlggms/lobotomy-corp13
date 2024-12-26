@@ -592,8 +592,6 @@
 /mob/living/simple_animal/hostile/clan/drone/reforged/Initialize()
 	. = ..()
 	faction = list("neutral")
-	// deltimer(update_beam_timer)
-	// update_beam_timer = addtimer(CALLBACK(src, ./update_beam), 5 SECONDS, TIMER_LOOP | TIMER_STOPPABLE)
 
 /mob/living/simple_animal/hostile/clan/drone/reforged/attack_hand(mob/living/carbon/M)
 	if(!stat && M.a_intent == INTENT_HELP && !client)

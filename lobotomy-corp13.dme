@@ -4180,6 +4180,7 @@
 #include "ModularTegustation\tegu_items\prosthetics\explosivearm.dm"
 #include "ModularTegustation\tegu_items\prosthetics\extra_arm_implant.dm"
 #include "ModularTegustation\tegu_items\prosthetics\mantis.dm"
+#include "ModularTegustation\tegu_items\prosthetics\resurgence_core.dm"
 #include "ModularTegustation\tegu_items\prosthetics\zippyarm.dm"
 #include "ModularTegustation\tegu_items\rcorp\!abno_overwrites.dm"
 #include "ModularTegustation\tegu_items\rcorp\basecode.dm"
