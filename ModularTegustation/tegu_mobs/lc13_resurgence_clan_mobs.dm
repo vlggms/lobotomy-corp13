@@ -28,7 +28,7 @@
 	melee_damage_type = RED_DAMAGE
 	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 0.8, WHITE_DAMAGE = 1.2, BLACK_DAMAGE = 1.5, PALE_DAMAGE = 2)
 	attack_sound = 'sound/weapons/purple_tear/stab2.ogg'
-	butcher_results = list(/obj/item/food/meat/slab/robot = 1, /obj/item/food/meat/slab/sweeper = 1)
+	butcher_results = list(/obj/item/raw_anomaly_core/bluespace = 1)
 	guaranteed_butcher_results = list(/obj/item/food/meat/slab/robot = 2, /obj/item/food/meat/slab/sweeper = 1)
 	silk_results = list(/obj/item/stack/sheet/silk/azure_simple = 1)
 	var/charge = 5
@@ -563,6 +563,24 @@
 			C.GainCharge()
 	return
 
+/obj/item/book/granter/crafting_recipe/clan_drone
+	name = "Tinkerer's Blueprints: Reforged Drone"
+	desc = "A book that teaches you how to create your own drones, which are able to heal you!"
+	pages_to_mastery = 3
+	crafting_recipe_types = list(
+		/datum/crafting_recipe/drone_reforged
+	)
+	icon_state = "clan_book"
+	remarks = list("Wow, Do they really need to yap about how much they hate humans?", "Oh? So that is what I can use these cores for...", "Huh, it says here that 'They are infact fixed, they don't break walls anymore.'", "Oh dear... How dusty is this book?", "Yes... Yes? Do I really need to know what types of hats I could place on them?", "I wonder how effective this drone will be...")
+
+/datum/crafting_recipe/drone_reforged
+	name = "Reforged, Resurgence Clan Drone"
+	result = /mob/living/simple_animal/hostile/clan/drone/reforged
+	reqs = list(/obj/item/raw_anomaly_core/bluespace = 1, /obj/item/food/meat/slab/robot = 5)
+	time = 50
+	category = CAT_ROBOT
+	always_available = FALSE
+
 /mob/living/simple_animal/hostile/clan/drone/reforged
 	name = "Reforged Drone"
 	desc = "A drone hovering above the ground... It appears to have 'Resurgence Clan' scratched out on their back..."
@@ -572,6 +590,8 @@
 	health = 500
 	healing_amount = 5
 	heal_per_charge = 10
+	var/change_targets = TRUE
+	var/stand_still = FALSE
 
 /mob/living/simple_animal/hostile/clan/drone/reforged/Initialize()
 	. = ..()
