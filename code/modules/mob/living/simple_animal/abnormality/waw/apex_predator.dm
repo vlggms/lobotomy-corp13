@@ -50,14 +50,14 @@
 		You're not sure if it's even able to understand you. <br>Despite being shaped like a human, there's no face to relate to. <br>No eyes to look at. <br>\
 		Just the rough outline of a human. <br>\
 		Is there even anything you can say to it?"
-	observation_choices = list("Beat it up.", "Why?")
-	correct_choices = list("Why?")
-	observation_success_message = "The abnormality suddenly stops moving. <br>It doesn't quite know how to respond either. <br>\
-		It stares down at the floor as if to contemplate the question. <br>\
-		All it can offer is a shrug. <br>Perhaps there isn't an answer."
-	observation_fail_message = "There's nothing to say. <br>A crash test dummy's only purpose is to enable violence. <br>\
-		Violence for the sake of violence. <br>\
-		You smile as you pull out your baton."
+	observation_choices = list(
+		"Why?" = list(TRUE, "The abnormality suddenly stops moving. <br>It doesn't quite know how to respond either. <br>\
+			It stares down at the floor as if to contemplate the question. <br>\
+			All it can offer is a shrug. <br>Perhaps there isn't an answer."),
+		"Beat it up" = list(FALSE, "There's nothing to say. <br>A crash test dummy's only purpose is to enable violence. <br>\
+			Violence for the sake of violence. <br>\
+			You smile as you pull out your baton."),
+	)
 
 	var/revealed = TRUE
 	var/can_act = TRUE

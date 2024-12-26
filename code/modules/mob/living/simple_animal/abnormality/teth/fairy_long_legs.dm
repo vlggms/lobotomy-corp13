@@ -52,16 +52,16 @@
 
 	observation_prompt = "Come on, why don'cha stay under the umbrella with me? <br>\
 		Just for old times sake?"
-	observation_choices = list("Yes", "No")
-	correct_choices = list("No")
-	observation_success_message = "You'd think that you'd have learned your lesson by now. <br>\
-		You leave the cell, having narrowly dodged the imminent attack. <br>\
-		This guy will always be a crook."
-	observation_fail_message = "Ouch! <br>\
-		The moment you get in striking range of fairy long legs, you are attacked. <br>\
-		\"Heh. You really think you could be one of us, pal?\" <br>\
-		\"You aint part of the family, chump.\" <br>\
-		You walk away, and bandage the bleeding wound."
+	observation_choices = list(
+		"No" = list(TRUE, "You'd think that you'd have learned your lesson by now. <br>\
+			You leave the cell, having narrowly dodged the imminent attack. <br>\
+			This guy will always be a crook."),
+		"Yes" = list(FALSE, "Ouch! <br>\
+			The moment you get in striking range of fairy long legs, you are attacked. <br>\
+			\"Heh. You really think you could be one of us, pal?\" <br>\
+			\"You aint part of the family, chump.\" <br>\
+			You walk away, and bandage the bleeding wound."),
+	)
 
 	var/finishing = FALSE //cant move/attack when it's TRUE
 	var/work_count = 0

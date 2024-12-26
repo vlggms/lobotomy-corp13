@@ -48,13 +48,13 @@
 	observation_prompt = "A group of employees worship this abnormality, despite the fact nothing can be sacred in this place. <br>\
 		You recall how you pulled away one employee away from it in the past, even as she screamed and wailed that you were keeping her chained to this world. <br>You thought you were saving her. <br>\
 		You can hear a distant howl emanating from the centre of the blue-coloured heart. <br>It's the sound of stars. <br>They're welcoming you, asking you to join them as a star."
-	observation_choices = list("Be pulled in", "Hold yourself tight")
-	correct_choices = list("Be pulled in")
-	observation_success_message = "You don't hesitate as you approach the centre of the void. <br>Sensation in your hands and legs are the first things to go, creeping up your body until you couldn't feel anything physical at all. <br>\
-		Despite how scary it should have been, you feel at peace, <br>this isn't an end it's a new beginning - You're a martyr. <br>\
-		Let's meet everyone again, as stars."
-	observation_fail_message = "You wrapped your arms around yourself and shut your eyes, turning your senses inward until the temptation passes and the sounds become distant howls again. <br>\
-		You opened your eyes and looked again at the heart. <br>It remains in the air, floating towards a new beginning."
+	observation_choices = list(
+		"Be pulled in" = list(TRUE, "You don't hesitate as you approach the centre of the void. <br>Sensation in your hands and legs are the first things to go, creeping up your body until you couldn't feel anything physical at all. <br>\
+			Despite how scary it should have been, you feel at peace, <br>this isn't an end it's a new beginning - You're a martyr. <br>\
+			Let's meet everyone again, as stars."),
+		"Hold yourself tight" = list(FALSE, "You wrapped your arms around yourself and shut your eyes, turning your senses inward until the temptation passes and the sounds become distant howls again. <br>\
+			You opened your eyes and looked again at the heart. <br>It remains in the air, floating towards a new beginning."),
+	)
 
 	var/pulse_cooldown
 	var/pulse_cooldown_time = 12 SECONDS

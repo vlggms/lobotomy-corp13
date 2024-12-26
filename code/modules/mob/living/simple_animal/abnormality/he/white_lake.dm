@@ -34,13 +34,13 @@
 	observation_prompt = "The feathered lady dances in the centre of the containment unit to a tempo that exists only in her world, it's elegant and precise. <br>\
 		\"This domain, my lunar palace, it's mine birdcage gilded with fine gold. <br>Whatever I wish, it is brought for me and all that is expected of me is to dance. <br>\
 		Even if I possessed the fortitude to bend these bars and free myself, I would not - what good comes from change? <br>Fortitude won't avail anyone, wouldn't you agree?\""
-	observation_choices = list("Agree", "Disagree")
-	correct_choices = list("Agree")
-	observation_success_message = "\"Hmm, you'll make for a cute decoration in mine sanctum, bear my circlet and come to your Princess' aid, won't you? <br>\
-		Protect her from witches seeking to bully this poor Lake.\" <br>\
-		She dances towards you, placing the circlet upon your head. \"Sully your hands so mine stay clean and beautiful.\" She turns away, returning to her dance."
-	observation_fail_message = "\"I don't find heroes cute at all. <br>Leave me to my dancing butcher, before you tarnish my pure-white feathers with your blood-soaked hands.\" <br>\
-		The ballerina turns away from you and continues her dance, ignoring you."
+	observation_choices = list(
+		"Agree" = list(TRUE, "\"Hmm, you'll make for a cute decoration in mine sanctum, bear my circlet and come to your Princess' aid, won't you? <br>\
+			Protect her from witches seeking to bully this poor Lake.\" <br>\
+			She dances towards you, placing the circlet upon your head. \"Sully your hands so mine stay clean and beautiful.\" She turns away, returning to her dance."),
+		"Disagree" = list(FALSE, "\"I don't find heroes cute at all. <br>Leave me to my dancing butcher, before you tarnish my pure-white feathers with your blood-soaked hands.\" <br>\
+			The ballerina turns away from you and continues her dance, ignoring you."),
+	)
 
 /mob/living/simple_animal/hostile/abnormality/whitelake/WorkChance(mob/living/carbon/human/user, chance)
 	if(get_attribute_level(user, FORTITUDE_ATTRIBUTE) >= 60)

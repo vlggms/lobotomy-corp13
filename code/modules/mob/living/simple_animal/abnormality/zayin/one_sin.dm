@@ -24,7 +24,7 @@
 		/datum/ego_datum/armor/penitence
 	)
 	max_boxes = 10
-	gift_type =  /datum/ego_gifts/penitence
+	gift_type = /datum/ego_gifts/penitence
 	gift_message = "From this day forth, you shall never forget his words."
 	abnormality_origin = ABNORMALITY_ORIGIN_LOBOTOMY
 
@@ -38,12 +38,12 @@
 
 	observation_prompt = "It has great power. It is savior that will judge you, and executioner that will put you in your demise. <br>\
 		In its eyes, you find... <br>(Technically, it has no eyes, so in its pitch-black holes you find...)"
-	observation_choices = list("You find yourself.", "Nothing.")
-	correct_choices = list("Nothing.")
-	observation_success_message = "Darkness. <br>\
-		Nothing is there. Have you found the answers you were looking for?"
-	observation_fail_message = "You are found. <br>\
-		You have great power. <br>You willingly lift the axe for the greater good."
+	observation_choices = list(
+		"Nothing" = list(TRUE, "Darkness. <br>\
+			Nothing is there. Have you found the answers you were looking for?"),
+		"You find yourself" = list(FALSE, "You are found. <br>\
+			You have great power. <br>You willingly lift the axe for the greater good."),
+	)
 
 	var/halo_status = "onesin_halo_normal" //used for changing the halo overlays
 
@@ -57,7 +57,7 @@
 	. += "onesin" //by the nine this is too cursed
 
 /mob/living/simple_animal/hostile/abnormality/onesin/WorkChance(mob/living/carbon/human/user, chance)
-	if(istype(user.ego_gift_list[HAT], /datum/ego_gifts/penitence))
+	if(istype(user.ego_gift_list[HAT], gift_type))
 		return chance + 10
 	return chance
 

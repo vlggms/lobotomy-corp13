@@ -39,10 +39,10 @@ Finally, an abnormality that DOESN'T have to do any fancy movement shit. It's a 
 
 	observation_prompt = "You know that people die every time this machine sings. <br>\
 		Or perhaps this machine sings when people die. <br>Though it has spilled blood of countless people, the song put you in a rapturous mood."
-	observation_choices = list("Listen to the music", "Turn off the machine")
-	correct_choices = list("Turn off the machine")
-	observation_success_message = "You turned the machine off. Silence fills the air."
-	observation_fail_message = "Aah. The music gives you sense of warm coziness and relaxation."
+	observation_choices = list(
+		"Turn off the machine" = list(TRUE, "You turned the machine off. Silence fills the air."),
+		"Listen to the music" = list(FALSE, "Aah. The music gives you sense of warm coziness and relaxation."),
+	)
 
 	var/cleanliness = "clean"
 	var/statChecked = 0

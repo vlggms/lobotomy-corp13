@@ -60,12 +60,12 @@
 	observation_prompt = "(You see a wolf with patchy fur) <br>\
 		I like it here. <br>At least it's better than where I used to live. <br>There are no pigs or chickens, but I don't have to be Big Bad Wolf, at least. <br>\
 		You didn't immediately kick me out, so I will tell you my name. <br>My name is..."
-	observation_choices = list("Forget the name", "Remember the name")
-	correct_choices = list("Remember the name")
-	observation_success_message = "It's no use to remember it. <br>Nobody cares about my name. <br>\
-		(Even though the wolf said such a thing, it seems happy.)"
-	observation_fail_message = "You better watch out. <br>I can eat you with one bite if I want to. <br>\
-		(The wolf seems unhappy)"
+	observation_choices = list(
+		"Remember the name" = list(TRUE, "It's no use to remember it. <br>Nobody cares about my name. <br>\
+			(Even though the wolf said such a thing, it seems happy.)"),
+		"Forget the name" = list(FALSE, "You better watch out. <br>I can eat you with one bite if I want to. <br>\
+			(The wolf seems unhappy)"),
+	)
 
 	var/can_act = TRUE
 	//For when the wolf becomes incorporal and flees.

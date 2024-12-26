@@ -60,9 +60,10 @@
 	)
 
 	observation_prompt = "A bird stares at you. What is the name of this bird?"
-	observation_choices = list("Little bird", "Punishing bird")
-	correct_choices = list("Little bird", "Punishing bird")
-	observation_success_message = "The small bird accepts whatever name you decide to give it. Its nature can never change now."
+	observation_choices = list(
+		"Little bird" = list(TRUE, "The small bird accepts whatever name you decide to give it. Its nature can never change now."),
+		"Punishing bird" = list(TRUE, "The small bird accepts whatever name you decide to give it. Its nature can never change now."),
+	)
 
 	do_not_possess = TRUE
 

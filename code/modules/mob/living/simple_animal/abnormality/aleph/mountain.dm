@@ -49,10 +49,10 @@
 	observation_prompt = "It smells like death itself in its containment unit, the mound of rotted, half-purtefied flesh stares at you with its many faces. <br>\
 		Arms and legs bent at odd angles, entrails draped like lazy christmas decorations, innumerable limbs twisted and distorted into a sphere - all blanketed black with necrotic skin. <br>\
 		Yet the faces remain intact, pale from a lack of blood, but still as recognizable as they've always been. <br>They're smiling at you."
-	observation_choices = list("I recognize those faces", "I don't recognize them")
-	correct_choices = list("I recognize those faces")
-	observation_success_message = "From the mountain of bodies; the dead give their life to be something greater. <br>Why shouldn't they be smiling? <br>You should be smiling too."
-	observation_fail_message = "They're holding all the laughter of those who cannot be seen here. <br>The mounds begins to shamble, upon borrowed hands and feet, it has your scent now and it will never be satisfied."
+	observation_choices = list(
+		"I recognize those faces" = list(TRUE, "From the mountain of bodies; the dead give their life to be something greater. <br>Why shouldn't they be smiling? <br>You should be smiling too."),
+		"I don't recognize them" = list(FALSE, "They're holding all the laughter of those who cannot be seen here. <br>The mounds begins to shamble, upon borrowed hands and feet, it has your scent now and it will never be satisfied."),
+	)
 
 	/// Is user performing work hurt at the beginning?
 	var/agent_hurt = FALSE

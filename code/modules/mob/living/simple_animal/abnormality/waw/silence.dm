@@ -25,11 +25,11 @@
 
 	observation_prompt = "Time's wasting. <br>Time's running out... <br>They are nothing but meaningless tantrums. <br>\
 		The watch will not only take your lost time back, but also give you even more time."
-	observation_choices = list("Do not use the watch", "Use the watch")
-	correct_choices = list("Use the watch")
-	observation_success_message = "The price will follow to your decision. <br>It is designed this way."
-	observation_fail_message = "Actually, you have no right to refuse this gift. <br>\
-		Whether you want it or not, we all know that you have to take it."
+	observation_choices = list(
+		"Use the watch" = list(TRUE, "The price will follow to your decision. <br>It is designed this way."),
+		"Do not use the watch" = list(FALSE, "Actually, you have no right to refuse this gift. <br>\
+			Whether you want it or not, we all know that you have to take it."),
+	)
 
 	var/meltdown_cooldown_time = 13 MINUTES
 	var/meltdown_cooldown
