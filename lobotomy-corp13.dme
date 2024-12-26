@@ -4198,6 +4198,7 @@
 #include "ModularTegustation\tegu_items\prosthetics\scrying.dm"
 #include "ModularTegustation\tegu_items\prosthetics\storage.dm"
 #include "ModularTegustation\tegu_items\prosthetics\timestop.dm"
+#include "ModularTegustation\tegu_items\prosthetics\resurgence_core.dm"
 #include "ModularTegustation\tegu_items\prosthetics\zippyarm.dm"
 #include "ModularTegustation\tegu_items\rcorp\!abno_overwrites.dm"
 #include "ModularTegustation\tegu_items\rcorp\basecode.dm"
