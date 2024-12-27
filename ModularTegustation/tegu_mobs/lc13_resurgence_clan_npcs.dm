@@ -143,8 +143,10 @@ GLOBAL_LIST_EMPTY(marked_players)
 	//Vars that effect what the trader is selling
 	var/can_sell = TRUE
 	var/selling_item_1 = /obj/item/reagent_containers/hypospray/medipen/salacid
+	var/selling_item_1_name = "HP Pen"
 	var/cost_1 = 50
 	var/selling_item_2 = /obj/item/reagent_containers/hypospray/medipen/mental
+	var/selling_item_2_name = "SP Pen"
 	var/cost_2 = 200
 
 	//Vars that effect what the traders is buying
@@ -205,11 +207,11 @@ GLOBAL_LIST_EMPTY(marked_players)
 				return
 			return
 		else
-			var/robot_ask = alert("ask them", "[src] is offering to you.", "Item 1 (50 ahn)", "Item 2 (200 ahn)", "I am done buying.", "Cancel")
-			if(robot_ask == "Item 1 (50 ahn)")
+			var/robot_ask = alert("ask them", "[src] is offering to you.", "[selling_item_1_name]", "[selling_item_2_name]", "I am done buying.", "Cancel")
+			if(robot_ask == "[selling_item_1_name]")
 				SellingItem(selling_item_1, cost_1, M)
 				return
-			if(robot_ask == "Item 2 (200 ahn)")
+			if(robot_ask == "[selling_item_2_name]")
 				SellingItem(selling_item_2, cost_2, M)
 				return
 			if(robot_ask == "I am done buying.")

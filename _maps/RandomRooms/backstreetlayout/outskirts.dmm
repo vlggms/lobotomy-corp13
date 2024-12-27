@@ -785,7 +785,13 @@
 	selling_answer = list("Su-ure!","I got so-ome good thi-ings in store to-oday...");
 	buying_say = "Go-ood Deal!";
 	poor_say = "Aw... Looks li-ike you still need ";
-	sold_say = "So-old!"
+	sold_say = "So-old!";
+	selling_item_1 = /obj/item/book/granter/crafting_recipe/clan_drone;
+	selling_item_1_name = "Tinkerer's Blueprints: Reforged Drone (250 ahn)";
+	selling_item_2_name = "Resurgence Clan Augment: Echo Step (1000 ahn)";
+	selling_item_2 = /obj/item/organ/cyberimp/chest/resurgence_core;
+	cost_1 = 250;
+	cost_2 = 1000
 	},
 /obj/effect/turf_decal/siding/blue{
 	dir = 1
