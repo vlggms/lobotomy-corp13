@@ -5,18 +5,22 @@
 	icon_state = "clan_drone_normal"
 	},
 /turf/open/floor/plating/ironsand,
-/area/city/backstreets_alley)
+/area/city/backstreets_room/resurgence_village)
 "aU" = (
 /obj/structure/curtain/cloth,
 /obj/structure/fluff/paper/stack{
 	dir = 8
 	},
 /turf/open/floor/wood,
-/area/city/backstreets_alley)
+/area/city/backstreets_room/resurgence_village)
 "bl" = (
 /obj/structure/curtain/cloth,
 /turf/open/floor/wood,
-/area/city/backstreets_alley)
+/area/city/backstreets_room/resurgence_village)
+"bt" = (
+/obj/structure/flora/junglebush/c,
+/turf/open/floor/plating/ironsand,
+/area/city/backstreets_room/resurgence_village)
 "bH" = (
 /obj/effect/spawner/room/backstreets/large_north,
 /turf/closed/indestructible/reinforced,
@@ -31,7 +35,7 @@
 	},
 /obj/structure/chair/wood,
 /turf/open/floor/plating/ironsand,
-/area/city/backstreets_alley)
+/area/city/backstreets_room/resurgence_village)
 "cB" = (
 /obj/structure/chair/sofa/corp/left,
 /obj/effect/turf_decal/siding/blue{
@@ -53,7 +57,7 @@
 	anchored = 1
 	},
 /turf/open/floor/carpet/royalblack,
-/area/city/backstreets_alley)
+/area/city/backstreets_room/resurgence_village)
 "cC" = (
 /mob/living/simple_animal/hostile/clan/scout{
 	faction = list("resurgence_clan","hostile", neutral);
@@ -64,7 +68,7 @@
 	},
 /obj/structure/fluff/paper,
 /turf/open/floor/wood,
-/area/city/backstreets_alley)
+/area/city/backstreets_room/resurgence_village)
 "dd" = (
 /obj/effect/spawner/room/backstreets/small_west,
 /turf/closed/indestructible/reinforced,
@@ -76,11 +80,11 @@
 "dl" = (
 /obj/effect/turf_decal/siding/wood/corner,
 /turf/open/floor/plating/ironsand,
-/area/city/backstreets_alley)
+/area/city/backstreets_room/resurgence_village)
 "dF" = (
 /obj/structure/chair/wood,
 /turf/open/floor/wood,
-/area/city/backstreets_alley)
+/area/city/backstreets_room/resurgence_village)
 "dR" = (
 /obj/structure/flora/rock/pile/largejungle,
 /obj/item/flashlight/lantern{
@@ -89,7 +93,7 @@
 	anchored = 1
 	},
 /turf/open/water/jungle,
-/area/city/backstreets_alley)
+/area/city/backstreets_room/resurgence_village)
 "em" = (
 /turf/closed/indestructible/rock,
 /area/space)
@@ -103,18 +107,18 @@
 	anchored = 1
 	},
 /turf/open/floor/wood,
-/area/city/backstreets_alley)
+/area/city/backstreets_room/resurgence_village)
 "eq" = (
 /obj/effect/turf_decal/siding/blue/corner{
 	dir = 8
 	},
 /obj/effect/turf_decal/siding/blue/corner,
 /turf/open/floor/carpet/royalblack,
-/area/city/backstreets_alley)
+/area/city/backstreets_room/resurgence_village)
 "fb" = (
 /obj/effect/turf_decal/siding/blue,
 /turf/open/floor/carpet/royalblack,
-/area/city/backstreets_alley)
+/area/city/backstreets_room/resurgence_village)
 "fc" = (
 /obj/structure/lootcrate/syndicate,
 /turf/open/floor/plating/ashplanet/rocky,
@@ -124,7 +128,7 @@
 	dir = 4
 	},
 /turf/open/floor/carpet/royalblack,
-/area/city/backstreets_alley)
+/area/city/backstreets_room/resurgence_village)
 "fE" = (
 /obj/structure/flora/ausbushes/fullgrass,
 /obj/effect/turf_decal/raven/one,
@@ -136,13 +140,13 @@
 	icon_living = "clan_scout_normal"
 	},
 /turf/open/floor/plating/ironsand,
-/area/city/backstreets_alley)
+/area/city/backstreets_room/resurgence_village)
 "fL" = (
 /obj/structure/displaycase/forsale,
 /obj/structure/table/wood/fancy/royalblue,
 /obj/effect/turf_decal/siding/blue,
 /turf/open/floor/carpet/royalblack,
-/area/city/backstreets_alley)
+/area/city/backstreets_room/resurgence_village)
 "fM" = (
 /obj/structure/flora/rock/pile,
 /obj/item/flashlight/lantern{
@@ -151,7 +155,7 @@
 	anchored = 1
 	},
 /turf/open/floor/plating/ironsand,
-/area/city/backstreets_alley)
+/area/city/backstreets_room/resurgence_village)
 "fR" = (
 /obj/structure/lootcrate/money,
 /turf/open/floor/plating/ashplanet/wateryrock,
@@ -171,7 +175,7 @@
 /obj/item/tape/resurgence/new_library,
 /obj/structure/fluff/paper,
 /turf/open/floor/wood,
-/area/city/backstreets_alley)
+/area/city/backstreets_room/resurgence_village)
 "gA" = (
 /obj/structure/flora/rock,
 /turf/open/floor/plating/ashplanet/rocky,
@@ -181,13 +185,13 @@
 	dir = 1
 	},
 /turf/open/floor/plating/ironsand,
-/area/city/backstreets_alley)
+/area/city/backstreets_room/resurgence_village)
 "hw" = (
 /obj/structure/sign/departments/security{
 	pixel_x = 32
 	},
 /turf/open/floor/plating/ironsand,
-/area/city/backstreets_alley)
+/area/city/backstreets_room/resurgence_village)
 "hI" = (
 /obj/structure/flora/ash/garden/waste,
 /turf/open/floor/plating/dirt/jungle/wasteland,
@@ -213,7 +217,7 @@
 	answers3 = list("If you-u are asking abo-out this faction...", "The Cla-an is just one of ma-any villages in the O-outskirts...","All of the me-embers of the clan are ma-achines...","Li-ike me...","Delay: 20","But we are clo-ose to being hu-uman!","We ju-ust need to stu-udy mo-ore, then we can learn what it means to be Hu-uman...")
 	},
 /turf/open/floor/plating/ironsand,
-/area/city/backstreets_alley)
+/area/city/backstreets_room/resurgence_village)
 "jf" = (
 /obj/effect/turf_decal/siding/blue{
 	dir = 4
@@ -222,7 +226,7 @@
 	pixel_x = 32
 	},
 /turf/open/floor/carpet/royalblack,
-/area/city/backstreets_alley)
+/area/city/backstreets_room/resurgence_village)
 "jn" = (
 /obj/item/flashlight/lantern{
 	on = 1;
@@ -230,7 +234,7 @@
 	anchored = 1
 	},
 /turf/open/water/jungle,
-/area/city/backstreets_alley)
+/area/city/backstreets_room/resurgence_village)
 "jt" = (
 /obj/structure/flora/rock/pile,
 /obj/structure/flora/rock,
@@ -252,7 +256,7 @@
 	dir = 8
 	},
 /turf/open/floor/wood,
-/area/city/backstreets_alley)
+/area/city/backstreets_room/resurgence_village)
 "mp" = (
 /obj/item/flashlight/lantern{
 	on = 1;
@@ -260,7 +264,7 @@
 	anchored = 1
 	},
 /turf/open/floor/wood,
-/area/city/backstreets_alley)
+/area/city/backstreets_room/resurgence_village)
 "mz" = (
 /obj/structure/chair/wood,
 /mob/living/simple_animal/hostile/clan_npc{
@@ -268,13 +272,13 @@
 	icon_state = "clan_citzen_5"
 	},
 /turf/open/floor/wood,
-/area/city/backstreets_alley)
+/area/city/backstreets_room/resurgence_village)
 "nf" = (
 /obj/structure/table/wood,
 /obj/item/paper_bin,
 /obj/item/pen,
 /turf/open/floor/wood,
-/area/city/backstreets_alley)
+/area/city/backstreets_room/resurgence_village)
 "ng" = (
 /obj/item/flashlight/lantern{
 	on = 1;
@@ -282,7 +286,7 @@
 	anchored = 1
 	},
 /turf/open/floor/plating/ironsand,
-/area/city/backstreets_alley)
+/area/city/backstreets_room/resurgence_village)
 "nZ" = (
 /turf/open/floor/plating/ashplanet/rocky,
 /area/city/backstreets_alley)
@@ -301,11 +305,11 @@
 	icon_state = "clan_scout_normal"
 	},
 /turf/open/floor/plating/ironsand,
-/area/city/backstreets_alley)
+/area/city/backstreets_room/resurgence_village)
 "ol" = (
 /obj/structure/table/wood,
 /turf/open/floor/wood,
-/area/city/backstreets_alley)
+/area/city/backstreets_room/resurgence_village)
 "oC" = (
 /obj/effect/turf_decal/siding/wood{
 	dir = 5
@@ -314,11 +318,11 @@
 	dir = 8
 	},
 /turf/open/floor/plating/ironsand,
-/area/city/backstreets_alley)
+/area/city/backstreets_room/resurgence_village)
 "oQ" = (
 /obj/structure/sign/poster/official/work_for_a_future,
 /turf/closed/indestructible/wood,
-/area/city/backstreets_alley)
+/area/city/backstreets_room/resurgence_village)
 "oS" = (
 /obj/effect/turf_decal/siding/wood{
 	dir = 9
@@ -329,7 +333,7 @@
 	icon_state = "clan_citzen_5"
 	},
 /turf/open/floor/plating/ironsand,
-/area/city/backstreets_alley)
+/area/city/backstreets_room/resurgence_village)
 "pa" = (
 /turf/closed/indestructible/reinforced,
 /area/city/backstreets_alley)
@@ -339,7 +343,7 @@
 	dir = 1
 	},
 /turf/open/floor/plating/ironsand,
-/area/city/backstreets_alley)
+/area/city/backstreets_room/resurgence_village)
 "pm" = (
 /obj/structure/riser/wood{
 	dir = 4
@@ -348,7 +352,7 @@
 	dir = 8
 	},
 /turf/open/floor/carpet/royalblack,
-/area/city/backstreets_alley)
+/area/city/backstreets_room/resurgence_village)
 "pv" = (
 /obj/effect/decal/cleanable/blood/tracks{
 	dir = 9
@@ -367,7 +371,7 @@
 	icon_state = "defender_normal"
 	},
 /turf/open/floor/carpet/royalblack,
-/area/city/backstreets_alley)
+/area/city/backstreets_room/resurgence_village)
 "pJ" = (
 /obj/effect/decal/cleanable/blood/splatter/over_window,
 /turf/closed/indestructible/rock,
@@ -376,7 +380,7 @@
 /obj/structure/mineral_door/wood,
 /obj/effect/turf_decal/siding/blue/end,
 /turf/open/floor/carpet/royalblack,
-/area/city/backstreets_alley)
+/area/city/backstreets_room/resurgence_village)
 "pR" = (
 /turf/open/floor/plating/ironsand,
 /area/city/backstreets_alley)
@@ -393,7 +397,7 @@
 "qD" = (
 /obj/structure/curtain/cloth,
 /turf/closed/indestructible/fakeglass,
-/area/city/backstreets_alley)
+/area/city/backstreets_room/resurgence_village)
 "rb" = (
 /obj/effect/turf_decal/siding/wood{
 	dir = 4
@@ -402,10 +406,10 @@
 	dir = 8
 	},
 /turf/open/floor/plating/ironsand,
-/area/city/backstreets_alley)
+/area/city/backstreets_room/resurgence_village)
 "rh" = (
 /turf/open/water/jungle,
-/area/city/backstreets_alley)
+/area/city/backstreets_room/resurgence_village)
 "rl" = (
 /obj/effect/turf_decal/siding/wood{
 	dir = 5
@@ -416,7 +420,7 @@
 	icon_state = "clan_citzen_5"
 	},
 /turf/open/floor/plating/ironsand,
-/area/city/backstreets_alley)
+/area/city/backstreets_room/resurgence_village)
 "rU" = (
 /obj/structure/chair/wood{
 	dir = 1
@@ -433,7 +437,7 @@
 	answers1 = list("You may call me Comander Julian", "The one assigned by the Historian to lead this outpost.", "Currently waiting for the Historian to report back to us with our next orders.")
 	},
 /turf/open/floor/wood,
-/area/city/backstreets_alley)
+/area/city/backstreets_room/resurgence_village)
 "sg" = (
 /obj/effect/decal/cleanable/blood/splatter,
 /turf/closed/mineral/ash_rock,
@@ -441,7 +445,7 @@
 "sh" = (
 /obj/structure/fluff/paper,
 /turf/open/floor/wood,
-/area/city/backstreets_alley)
+/area/city/backstreets_room/resurgence_village)
 "sH" = (
 /obj/structure/flora/rock/pile,
 /mob/living/simple_animal/hostile/clan/scout{
@@ -452,18 +456,18 @@
 	icon_living = "clan_scout_normal"
 	},
 /turf/open/floor/plating/ironsand,
-/area/city/backstreets_alley)
+/area/city/backstreets_room/resurgence_village)
 "sO" = (
 /obj/structure/fluff/paper/stack{
 	dir = 4
 	},
 /turf/open/floor/wood,
-/area/city/backstreets_alley)
+/area/city/backstreets_room/resurgence_village)
 "sQ" = (
 /obj/structure/bed/pod,
 /obj/item/bedsheet/brown,
 /turf/open/floor/wood,
-/area/city/backstreets_alley)
+/area/city/backstreets_room/resurgence_village)
 "tB" = (
 /obj/effect/mob_spawn/human/corpse,
 /turf/open/floor/plating/ashplanet/wateryrock,
@@ -488,7 +492,7 @@
 	answers2 = list("That is thanks to our Elders", "They... The Tinkerer found a way to teleport an outpost great distances.", "So the other Elders are currently using this tech to send us closer to the City.")
 	},
 /turf/open/floor/plating/ironsand,
-/area/city/backstreets_alley)
+/area/city/backstreets_room/resurgence_village)
 "tP" = (
 /obj/structure/sign/poster/contraband/borg_fancy_2,
 /turf/closed/indestructible/rock,
@@ -498,7 +502,7 @@
 	dir = 1
 	},
 /turf/open/floor/plating/ironsand,
-/area/city/backstreets_alley)
+/area/city/backstreets_room/resurgence_village)
 "uW" = (
 /obj/structure/displaycase/forsale,
 /obj/structure/table/wood/fancy/royalblue,
@@ -506,7 +510,7 @@
 	dir = 6
 	},
 /turf/open/floor/carpet/royalblack,
-/area/city/backstreets_alley)
+/area/city/backstreets_room/resurgence_village)
 "vh" = (
 /obj/effect/spawner/room/backstreets/medium_south,
 /turf/closed/indestructible/reinforced,
@@ -533,7 +537,7 @@
 	anchored = 1
 	},
 /turf/open/floor/carpet/royalblack,
-/area/city/backstreets_alley)
+/area/city/backstreets_room/resurgence_village)
 "wk" = (
 /obj/effect/turf_decal/siding/wood{
 	dir = 10
@@ -549,7 +553,7 @@
 	icon_state = "clan_scout_normal"
 	},
 /turf/open/floor/plating/ironsand,
-/area/city/backstreets_alley)
+/area/city/backstreets_room/resurgence_village)
 "wO" = (
 /obj/effect/decal/cleanable/blood/tracks{
 	dir = 8
@@ -576,13 +580,13 @@
 	anchored = 1
 	},
 /turf/open/floor/plating/ironsand,
-/area/city/backstreets_alley)
+/area/city/backstreets_room/resurgence_village)
 "yv" = (
 /obj/effect/turf_decal/siding/blue{
 	dir = 1
 	},
 /turf/open/floor/carpet/royalblack,
-/area/city/backstreets_alley)
+/area/city/backstreets_room/resurgence_village)
 "yL" = (
 /obj/effect/spawner/room/backstreets/pointofinterest,
 /turf/closed/indestructible/reinforced,
@@ -602,11 +606,11 @@
 	pixel_y = -3
 	},
 /turf/open/floor/plating/dirt/jungle/wasteland,
-/area/city/backstreets_alley)
+/area/city/backstreets_room/resurgence_village)
 "Aa" = (
 /obj/structure/mineral_door/wood,
 /turf/open/floor/wood,
-/area/city/backstreets_alley)
+/area/city/backstreets_room/resurgence_village)
 "Ah" = (
 /obj/effect/spawner/room/backstreets/small_south,
 /turf/closed/indestructible/reinforced,
@@ -621,13 +625,17 @@
 	pixel_y = -3
 	},
 /turf/open/floor/plating/ironsand,
-/area/city/backstreets_alley)
+/area/city/backstreets_room/resurgence_village)
 "BM" = (
 /obj/effect/decal/cleanable/blood/tracks{
 	dir = 1
 	},
 /turf/open/floor/plating/ashplanet/rocky,
 /area/city/backstreets_alley)
+"BR" = (
+/obj/structure/flora/rock/pile/largejungle,
+/turf/open/water/jungle,
+/area/city/backstreets_room/resurgence_village)
 "BT" = (
 /obj/effect/turf_decal/siding/blue{
 	dir = 10
@@ -636,7 +644,7 @@
 	pixel_x = -32
 	},
 /turf/open/floor/carpet/royalblack,
-/area/city/backstreets_alley)
+/area/city/backstreets_room/resurgence_village)
 "Cq" = (
 /obj/effect/decal/cleanable/blood/splatter,
 /turf/open/floor/plating/ashplanet/rocky,
@@ -648,7 +656,7 @@
 "CJ" = (
 /obj/effect/turf_decal/raven/nine,
 /turf/open/floor/plating/ironsand,
-/area/city/backstreets_alley)
+/area/city/backstreets_room/resurgence_village)
 "Da" = (
 /mob/living/simple_animal/hostile/faithless{
 	maxHealth = 250;
@@ -664,7 +672,7 @@
 	desc = "A plaque which mentions some sort of 'Folk Office', Something about them giving them some strange speech about being yourself, even if other order you to be something else..."
 	},
 /turf/closed/indestructible/wood,
-/area/city/backstreets_alley)
+/area/city/backstreets_room/resurgence_village)
 "Eg" = (
 /obj/effect/spawner/room/backstreets/small_north,
 /turf/closed/indestructible/reinforced,
@@ -677,7 +685,7 @@
 	dir = 1
 	},
 /turf/open/floor/plating/ironsand,
-/area/city/backstreets_alley)
+/area/city/backstreets_room/resurgence_village)
 "GE" = (
 /obj/structure/flora/ausbushes/fullgrass,
 /turf/open/floor/plating/dirt/jungle/wasteland,
@@ -689,7 +697,7 @@
 	anchored = 1
 	},
 /turf/open/floor/plating/ironsand,
-/area/city/backstreets_alley)
+/area/city/backstreets_room/resurgence_village)
 "HY" = (
 /obj/structure/flora/rock/pile,
 /mob/living/simple_animal/hostile/clan/defender{
@@ -699,17 +707,24 @@
 	wants_to_talk = 1;
 	question2 = "Why are you not attacking me?";
 	question3 = "Why do you sound so strange?";
-	answers1 = list("Emote: sighs", "I am Dion, One of the Defenders at this outpost.", "Just standing around here, making sure everyone is safe.");
-	answers2 = list("Oh, You are one of the new humans around here...", "Talk with our Comander, They should be to the right of me.", They will be able to explain some things...);
+	answers1 = list("Emote: sighs", "I am Dion, O-one of the Defenders a-at this outpost.", "Just sta-anding around he-ere, making sure everyone is sa-afe.");
+	answers2 = list("Oh, Yo-ou are o-one of the ne-ew humans around here...", "Talk wi-ith our Comander, They shou-uld be to the ri-ight of me.", They will be a-able to e-explain some things...);
 	answers3 = list("Oh we-ell, I guess you can sa-ay that I am not there yet...", "It ta-akes a whi-ile to get a upgraded vo-oice box, so o-only the closest followers of o-our Elders get them.", "Hopefu-uly that time wi-ill come one day. But fo-or now I just nee-ed to work for i-it.");
 	icon_living = "defender_normal";
 	icon_state = "defender_normal"
 	},
 /turf/open/floor/plating/ironsand,
-/area/city/backstreets_alley)
+/area/city/backstreets_room/resurgence_village)
 "Ih" = (
 /turf/open/floor/wood,
-/area/city/backstreets_alley)
+/area/city/backstreets_room/resurgence_village)
+"Io" = (
+/turf/closed/indestructible/rock,
+/area/city/backstreets_room/resurgence_village)
+"Iq" = (
+/obj/structure/flora/ausbushes/fullgrass,
+/turf/open/floor/plating/ironsand,
+/area/city/backstreets_room/resurgence_village)
 "Jc" = (
 /turf/closed/indestructible/rock,
 /area/city/backstreets_alley)
@@ -721,16 +736,17 @@
 	icon_state = "clan_scout_normal"
 	},
 /turf/open/floor/plating/ironsand,
-/area/city/backstreets_alley)
+/area/city/backstreets_room/resurgence_village)
 "JA" = (
 /obj/effect/turf_decal/raven/nine,
 /mob/living/simple_animal/hostile/clan/scout{
 	faction = list("resurgence_clan","hostile", neutral);
 	can_protect = 1;
-	dir = 4
+	dir = 4;
+	icon_living = "clan_scout_normal"
 	},
 /turf/open/floor/plating/ironsand,
-/area/city/backstreets_alley)
+/area/city/backstreets_room/resurgence_village)
 "JN" = (
 /obj/structure/flora/rock/jungle,
 /turf/open/floor/plating/dirt/jungle/wasteland,
@@ -754,7 +770,7 @@
 	anchored = 1
 	},
 /turf/open/floor/wood,
-/area/city/backstreets_alley)
+/area/city/backstreets_room/resurgence_village)
 "KK" = (
 /mob/living/simple_animal/hostile/clan/defender{
 	can_protect = 1;
@@ -764,11 +780,11 @@
 	icon_state = "defender_normal"
 	},
 /turf/open/floor/plating/ironsand,
-/area/city/backstreets_alley)
+/area/city/backstreets_room/resurgence_village)
 "Li" = (
 /obj/structure/flora/rock/pile,
 /turf/open/floor/plating/ironsand,
-/area/city/backstreets_alley)
+/area/city/backstreets_room/resurgence_village)
 "Lo" = (
 /obj/structure/flora/ash/garden/waste,
 /turf/open/floor/plating/ironsand,
@@ -782,7 +798,7 @@
 	question2 = "What are you buying?";
 	answers2 = list("A-as of now...", "I am willi-ing to buy robotic components.", "You kno-ow those weird bo-ots which are ru-unning around, guns or spe-ears for hands?", "I heard tha-at their parts are quite u-useful.", "Also, The outskirts wo-ould be better off without the-em.");
 	greeting_line = "Hm... We-elcome cu-ustomer.";
-	selling_answer = list("Su-ure!","I got so-ome good thi-ings in store to-oday...");
+	selling_answer = list("Su-ure!","I got so-ome good thi-ings in store to-oday...", "Just ho-old some cash in yo-our ID, and I will te-ell you if you have enough.");
 	buying_say = "Go-ood Deal!";
 	poor_say = "Aw... Looks li-ike you still need ";
 	sold_say = "So-old!";
@@ -791,22 +807,23 @@
 	selling_item_2_name = "Resurgence Clan Augment: Echo Step (1000 ahn)";
 	selling_item_2 = /obj/item/organ/cyberimp/chest/resurgence_core;
 	cost_1 = 250;
-	cost_2 = 1000
+	cost_2 = 1000;
+	selling_end = "Go-ot it, We-e are always o-open if you need a-anything!"
 	},
 /obj/effect/turf_decal/siding/blue{
 	dir = 1
 	},
 /turf/open/floor/carpet/royalblack,
-/area/city/backstreets_alley)
+/area/city/backstreets_room/resurgence_village)
 "LI" = (
 /turf/closed/indestructible/wood,
-/area/city/backstreets_alley)
+/area/city/backstreets_room/resurgence_village)
 "MK" = (
 /obj/effect/turf_decal/siding/wood/corner{
 	dir = 8
 	},
 /turf/open/floor/plating/ironsand,
-/area/city/backstreets_alley)
+/area/city/backstreets_room/resurgence_village)
 "MQ" = (
 /obj/structure/flora/rock/jungle,
 /turf/open/floor/plating/ironsand,
@@ -825,12 +842,12 @@
 	desc = "A plaque which mentions some sort of 'Echo Office', Something about them freeing them from a 'Tinkerer'"
 	},
 /turf/closed/indestructible/wood,
-/area/city/backstreets_alley)
+/area/city/backstreets_room/resurgence_village)
 "Ol" = (
 /obj/structure/curtain/cloth,
 /obj/structure/fluff/paper,
 /turf/open/floor/wood,
-/area/city/backstreets_alley)
+/area/city/backstreets_room/resurgence_village)
 "Os" = (
 /turf/closed/indestructible/reinforced,
 /area/city/backstreets_room)
@@ -856,13 +873,20 @@
 	pixel_y = 32
 	},
 /turf/open/floor/plating/ironsand,
-/area/city/backstreets_alley)
+/area/city/backstreets_room/resurgence_village)
 "OV" = (
 /obj/effect/decal/cleanable/blood/tracks{
 	dir = 10
 	},
 /turf/open/floor/plating/ashplanet/rocky,
 /area/city/backstreets_alley)
+"PY" = (
+/obj/structure/flora/rock/jungle,
+/turf/open/floor/plating/ironsand,
+/area/city/backstreets_room/resurgence_village)
+"Qh" = (
+/turf/open/floor/plating/ironsand,
+/area/city/backstreets_room/resurgence_village)
 "Qj" = (
 /obj/structure/flora/rock/pile,
 /obj/effect/turf_decal/weather/dirt{
@@ -874,7 +898,7 @@
 	anchored = 1
 	},
 /turf/open/floor/plating/ironsand,
-/area/city/backstreets_alley)
+/area/city/backstreets_room/resurgence_village)
 "Qu" = (
 /obj/structure/flora/rock/pile/largejungle,
 /turf/open/water/jungle,
@@ -890,7 +914,7 @@
 	dir = 8
 	},
 /turf/open/floor/wood,
-/area/city/backstreets_alley)
+/area/city/backstreets_room/resurgence_village)
 "QW" = (
 /obj/structure/closet/crate/wooden,
 /obj/item/stock_parts/cell/high,
@@ -900,7 +924,7 @@
 /obj/item/stock_parts/cell/high,
 /obj/item/stack/rods/ten,
 /turf/open/floor/plating/ironsand,
-/area/city/backstreets_alley)
+/area/city/backstreets_room/resurgence_village)
 "Rv" = (
 /obj/effect/turf_decal/siding/wood{
 	dir = 8
@@ -909,7 +933,7 @@
 	dir = 4
 	},
 /turf/open/floor/plating/ironsand,
-/area/city/backstreets_alley)
+/area/city/backstreets_room/resurgence_village)
 "Rx" = (
 /obj/effect/turf_decal/siding/wood{
 	dir = 9
@@ -925,7 +949,7 @@
 	icon_state = "clan_scout_normal"
 	},
 /turf/open/floor/plating/ironsand,
-/area/city/backstreets_alley)
+/area/city/backstreets_room/resurgence_village)
 "Rz" = (
 /obj/effect/spawner/room/backstreets/medium_west,
 /turf/closed/indestructible/reinforced,
@@ -942,14 +966,14 @@
 "Tb" = (
 /obj/effect/turf_decal/raven/seven,
 /turf/open/water/jungle,
-/area/city/backstreets_alley)
+/area/city/backstreets_room/resurgence_village)
 "Up" = (
 /turf/open/floor/carpet/royalblack,
-/area/city/backstreets_alley)
+/area/city/backstreets_room/resurgence_village)
 "Ut" = (
 /obj/structure/bonfire/prelit,
 /turf/open/floor/plating/ironsand,
-/area/city/backstreets_alley)
+/area/city/backstreets_room/resurgence_village)
 "Vo" = (
 /obj/effect/spawner/room/backstreets/bossroom,
 /turf/closed/indestructible/reinforced,
@@ -971,7 +995,7 @@
 	dir = 4
 	},
 /turf/open/floor/plating/ironsand,
-/area/city/backstreets_alley)
+/area/city/backstreets_room/resurgence_village)
 "WZ" = (
 /obj/structure/flora/rock/pile,
 /obj/structure/lootcrate/syndicate,
@@ -13231,13 +13255,13 @@ Jc
 em
 em
 em
-Jc
-Jc
-Jc
-Jc
-Jc
-Jc
-Jc
+Io
+Io
+Io
+Io
+Io
+Io
+Io
 em
 em
 em
@@ -13341,19 +13365,19 @@ pR
 Jc
 Jc
 em
-Jc
-Jc
-pR
+Io
+Io
+Qh
 xq
-pR
-pR
+Qh
+Qh
 HY
-Jc
-Jc
-Jc
-Jc
-Jc
-Jc
+Io
+Io
+Io
+Io
+Io
+Io
 em
 em
 em
@@ -13452,25 +13476,25 @@ pR
 gd
 tP
 Jc
-Jc
-pR
-pR
-pR
-pR
-pR
-pR
+Io
+Qh
+Qh
+Qh
+Qh
+Qh
+Qh
 CJ
-Jc
+Io
 dR
-MQ
+PY
 JA
-Jc
-Jc
-Jc
-Jc
-Jc
-Jc
-Jc
+Io
+Io
+Io
+Io
+Io
+Io
+Io
 em
 em
 em
@@ -13564,24 +13588,24 @@ pR
 OH
 co
 xq
-pR
-pR
-MQ
-pR
-pR
-pR
+Qh
+Qh
+PY
+Qh
+Qh
+Qh
 aH
-pR
-pR
-pR
-pR
+Qh
+Qh
+Qh
+Qh
 LI
 LI
 DZ
 LI
 LI
 LI
-Jc
+Io
 em
 em
 em
@@ -13675,24 +13699,24 @@ pR
 OH
 pR
 GY
-pR
-pR
-pR
-pR
-pR
-pR
-pR
-pR
-pR
-pR
-pR
+Qh
+Qh
+Qh
+Qh
+Qh
+Qh
+Qh
+Qh
+Qh
+Qh
+Qh
 LI
 Ih
 Ih
 bl
 sQ
 LI
-Jc
+Io
 em
 em
 em
@@ -13785,25 +13809,25 @@ pR
 Yt
 jX
 Jc
-Jc
-pR
-pR
-pR
-pR
-pR
-MQ
-pR
-pR
-pR
-pR
-pR
+Io
+Qh
+Qh
+Qh
+Qh
+Qh
+PY
+Qh
+Qh
+Qh
+Qh
+Qh
 Aa
 Ih
 Ih
 bl
 sQ
 LI
-Jc
+Io
 em
 em
 em
@@ -13896,25 +13920,25 @@ pR
 Jc
 Jc
 em
-Jc
+Io
 fE
-pR
-pR
-pR
-pR
-pR
-pR
-pR
-MQ
-pR
-pR
+Qh
+Qh
+Qh
+Qh
+Qh
+Qh
+Qh
+PY
+Qh
+Qh
 qD
 ol
 Ke
 bl
 sQ
 LI
-Jc
+Io
 em
 em
 em
@@ -14007,25 +14031,25 @@ pR
 Jc
 em
 em
-Jc
-Jc
+Io
+Io
 ng
-pR
-pR
-pR
-pR
-pR
-pR
-pR
-pR
-pR
+Qh
+Qh
+Qh
+Qh
+Qh
+Qh
+Qh
+Qh
+Qh
 LI
 qD
 LI
 LI
 LI
 LI
-Jc
+Io
 em
 em
 em
@@ -14118,25 +14142,25 @@ pR
 Jc
 em
 em
-Jc
-Jc
+Io
+Io
 sH
-pR
-pR
-co
-pR
-pR
-pR
-pR
-pR
-pR
-pR
-pR
-Jc
-Jc
-Jc
-Jc
-Jc
+Qh
+Qh
+bt
+Qh
+Qh
+Qh
+Qh
+Qh
+Qh
+Qh
+Qh
+Io
+Io
+Io
+Io
+Io
 em
 em
 em
@@ -14229,22 +14253,22 @@ pR
 Jc
 em
 em
-Jc
+Io
 LI
 LI
 LI
 LI
 LI
 ng
-pR
-pR
-pR
-pR
-pR
-CG
-pR
-pR
-Jc
+Qh
+Qh
+Qh
+Qh
+Qh
+Iq
+Qh
+Qh
+Io
 em
 em
 em
@@ -14340,23 +14364,23 @@ pR
 Jc
 em
 em
-Jc
+Io
 LI
 wa
 pm
 BT
 LI
 OJ
-pR
-pR
-pR
-pR
+Qh
+Qh
+Qh
+Qh
 GY
-pR
-pR
+Qh
+Qh
 Li
-Jc
-Jc
+Io
+em
 em
 em
 em
@@ -14451,23 +14475,23 @@ pR
 Jc
 em
 em
-Jc
+Io
 LI
 Lw
 fj
 fb
 LI
-CG
-pR
-pR
-pR
+Iq
+Qh
+Qh
+Qh
 KK
 LI
 LI
 LI
 LI
 LI
-Jc
+em
 Jc
 Jc
 Jc
@@ -14562,17 +14586,17 @@ pR
 Jc
 em
 em
-Jc
+Io
 LI
 yv
 Up
 eq
 pO
-pR
-pR
-pR
-pR
-pR
+Qh
+Qh
+Qh
+Qh
+Qh
 qD
 mp
 mz
@@ -14673,17 +14697,17 @@ pR
 Jc
 em
 em
-Jc
+Io
 LI
 py
 Up
 fL
 qD
-pR
-pR
-pR
-pR
-pR
+Qh
+Qh
+Qh
+Qh
+Qh
 qD
 Ih
 dF
@@ -14784,17 +14808,17 @@ qb
 Jc
 em
 em
-Jc
+Io
 oQ
 cB
 jf
 uW
 qD
-pR
-pR
-pR
-pR
-pR
+Qh
+Qh
+Qh
+Qh
+Qh
 Aa
 Ih
 Ih
@@ -14895,17 +14919,17 @@ pR
 Jc
 em
 em
-Jc
+Io
 LI
 LI
 LI
 LI
 LI
 ng
-pR
+Qh
 aH
-pR
-pR
+Qh
+Qh
 LI
 bl
 bl
@@ -15006,17 +15030,17 @@ pR
 Jc
 em
 em
-Jc
-Jc
-Jc
-pR
-pR
+Io
+Io
+Io
+Qh
+Qh
 Rx
 Rv
 wk
-pR
-pR
-pR
+Qh
+Qh
+Qh
 LI
 sQ
 sQ
@@ -15119,15 +15143,15 @@ em
 em
 em
 em
-Jc
+Io
 QW
 oS
 gU
-pR
+Qh
 MK
 Fp
-pR
-pR
+Qh
+Qh
 LI
 LI
 LI
@@ -15230,20 +15254,20 @@ em
 em
 em
 em
-Jc
+Io
 fM
 cq
-pR
+Qh
 Ut
-pR
+Qh
 pj
-pR
-pR
+Qh
+Qh
 xq
-pR
-pR
+Qh
+Qh
 Bf
-Jc
+Io
 Jc
 ku
 ku
@@ -15341,20 +15365,20 @@ em
 em
 em
 em
-Jc
-Jc
+Io
+Io
 rl
 Wq
-pR
+Qh
 dl
 iU
-pR
-pR
-pR
-pR
-pR
-co
-Jc
+Qh
+Qh
+Qh
+Qh
+Qh
+bt
+Io
 Jc
 ku
 ku
@@ -15453,19 +15477,19 @@ Os
 Os
 Os
 vh
-Jc
-pR
+Io
+Qh
 oC
 rb
 oa
-pR
-pR
-pR
-pR
-pR
-pR
-Jc
-Jc
+Qh
+Qh
+Qh
+Qh
+Qh
+Qh
+Io
+Io
 Jc
 ku
 ku
@@ -15564,19 +15588,19 @@ Os
 Os
 Os
 Os
-Jc
+Io
 Jp
-pR
-pR
-pR
+Qh
+Qh
+Qh
 hw
-pR
-pR
-pR
-CG
+Qh
+Qh
+Qh
+Iq
 rh
-Jc
-Jc
+Io
+Io
 Jc
 ku
 ku
@@ -15675,10 +15699,10 @@ Os
 Os
 Os
 Os
-Jc
-co
-pR
-pR
+Io
+bt
+Qh
+Qh
 LI
 LI
 Aa
@@ -15687,7 +15711,7 @@ qD
 LI
 jn
 rh
-Jc
+Io
 Jc
 ku
 ku
@@ -15786,10 +15810,10 @@ Os
 Os
 Os
 Os
-Jc
-CG
-pR
-pR
+Io
+Iq
+Qh
+Qh
 LI
 QJ
 sh
@@ -15798,7 +15822,7 @@ cC
 LI
 rh
 rh
-Jc
+Io
 Jc
 ku
 ku
@@ -15897,10 +15921,10 @@ Os
 Os
 Os
 Os
-Jc
+Io
 tO
-pR
-pR
+Qh
+Qh
 LI
 sO
 lB
@@ -15909,7 +15933,7 @@ bl
 LI
 rh
 rh
-Jc
+Io
 Jc
 ku
 ku
@@ -16008,10 +16032,10 @@ Os
 Os
 Os
 Os
-Jc
+Io
 yU
 uy
-pR
+Qh
 LI
 nf
 rU
@@ -16020,7 +16044,7 @@ sQ
 LI
 rh
 Tb
-Jc
+Io
 Jc
 ku
 ku
@@ -16119,10 +16143,10 @@ Os
 Os
 Os
 Os
-Jc
-Jc
+Io
+Io
 Qj
-MQ
+PY
 LI
 gy
 eo
@@ -16130,8 +16154,8 @@ aU
 sQ
 LI
 Tb
-Jc
-Jc
+Io
+Io
 Jc
 ku
 ku
@@ -16231,17 +16255,17 @@ Os
 Os
 Os
 em
-Jc
-Jc
-Qu
+Io
+Io
+BR
 LI
 LI
 LI
 LI
 LI
 LI
-Jc
-Jc
+Io
+Io
 em
 Jc
 ku
@@ -16343,15 +16367,15 @@ Os
 Os
 em
 em
-Jc
-Jc
-Jc
-Jc
-Jc
-Jc
-Jc
-Jc
-Jc
+Io
+Io
+Io
+Io
+Io
+Io
+Io
+Io
+Io
 em
 em
 Jc

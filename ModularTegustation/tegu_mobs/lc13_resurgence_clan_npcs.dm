@@ -173,7 +173,8 @@ GLOBAL_LIST_EMPTY(marked_players)
 	SetSellables()
 
 /mob/living/simple_animal/hostile/clan_npc/info/trader/attack_hand(mob/living/carbon/M)
-	if(!stat && M.a_intent == INTENT_HELP && !client)
+	if(!stat && M.a_intent == INTENT_HELP && !client && CanTalk())
+		speaking = TRUE
 		if (!trading)
 			if (last_greeting_cooldown < world.time - greeting_cooldown)
 				say(greeting_line)
@@ -188,36 +189,32 @@ GLOBAL_LIST_EMPTY(marked_players)
 				M.say("[question1]")
 				SLEEP_CHECK_DEATH(default_delay)
 				Speech(answers1)
-				return
 			if(robot_ask == "[question2]")
 				M.say("[question2]")
 				SLEEP_CHECK_DEATH(default_delay)
 				Speech(answers2)
-				return
 			if(robot_ask == "[question3]")
 				M.say("[question3]")
 				SLEEP_CHECK_DEATH(default_delay)
 				Speech(answers3)
-				return
 			if(robot_ask == "[selling_question]")
 				M.say("[selling_question]")
 				SLEEP_CHECK_DEATH(default_delay)
 				trading = TRUE
 				Speech(selling_answer)
-				return
+			speaking = FALSE
 			return
 		else
+			speaking = TRUE
 			var/robot_ask = alert("ask them", "[src] is offering to you.", "[selling_item_1_name]", "[selling_item_2_name]", "I am done buying.", "Cancel")
 			if(robot_ask == "[selling_item_1_name]")
 				SellingItem(selling_item_1, cost_1, M)
-				return
 			if(robot_ask == "[selling_item_2_name]")
 				SellingItem(selling_item_2, cost_2, M)
-				return
 			if(robot_ask == "I am done buying.")
 				say(selling_end)
 				trading = FALSE
-				return
+			speaking = FALSE
 	return ..()
 
 /mob/living/simple_animal/hostile/clan_npc/info/trader/proc/SetSellables()

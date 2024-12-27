@@ -47,7 +47,7 @@
 	var/list/answers1 = list("O-oh... I a-am James.", "A ci-itizen of the resu-urgence clan...", "For no-ow, I am ju-ust o-off duty.")
 	var/list/answers2 = list("Curre-ently, I-I and my fe-ellow cla-an members are sco-outing this area...", "The Hi-istorian wants use to study hu-umans.", "And thi-is is the closest we co-ould get to them...", "So-o we are wa-aiting here until further orders.")
 	var/list/answers3 = list("The-e clan is just one of ma-any villages in the O-outskirts...", "All of the me-embers of the clan are ma-achines...", "Like me...", "Delay: 20", "One day, We-e dream to be hu-uman...", "Just li-ike you, We ju-ust need to learn mo-ore...")
-	var/default_delay = 30
+	var/default_delay = 45
 	var/greeting_cooldown = 20 SECONDS
 	var/last_greeting_cooldown = 0
 	var/speaking = FALSE
@@ -105,26 +105,29 @@
 	return !target && !speaking
 
 /mob/living/simple_animal/hostile/clan/attack_hand(mob/living/carbon/M)
-	if(!stat && M.a_intent == INTENT_HELP && !client && CanTalk() && can_protect && wants_to_talk)
-		if (last_greeting_cooldown < world.time - greeting_cooldown)
-			say(greeting_line)
-			last_greeting_cooldown = world.time
-		speaking = TRUE
-		var/robot_ask = alert("ask them", "[src] is listening to you.", "[question1]", "[question2]", "[question3]", "Cancel")
-		if(robot_ask == "[question1]")
-			M.say("[question1]")
-			SLEEP_CHECK_DEATH(default_delay)
-			Speech(answers1)
-		else if(robot_ask == "[question2]")
-			M.say("[question2]")
-			SLEEP_CHECK_DEATH(default_delay)
-			Speech(answers2)
-		else if(robot_ask == "[question3]")
-			M.say("[question3]")
-			SLEEP_CHECK_DEATH(default_delay)
-			Speech(answers3)
-		speaking = FALSE
-		return
+	if(wants_to_talk)
+		if(!stat && M.a_intent == INTENT_HELP && !client && can_protect && CanTalk())
+			if (last_greeting_cooldown < world.time - greeting_cooldown)
+				say(greeting_line)
+				last_greeting_cooldown = world.time
+			speaking = TRUE
+			var/robot_ask = alert("ask them", "[src] is listening to you.", "[question1]", "[question2]", "[question3]", "Cancel")
+			if(robot_ask == "[question1]")
+				M.say("[question1]")
+				SLEEP_CHECK_DEATH(default_delay)
+				Speech(answers1)
+			else if(robot_ask == "[question2]")
+				M.say("[question2]")
+				SLEEP_CHECK_DEATH(default_delay)
+				Speech(answers2)
+			else if(robot_ask == "[question3]")
+				M.say("[question3]")
+				SLEEP_CHECK_DEATH(default_delay)
+				Speech(answers3)
+			speaking = FALSE
+			return
+		else
+			return
 	else
 		manual_emote("looks away, avoiding [M]'s gaze...")
 	return ..()
