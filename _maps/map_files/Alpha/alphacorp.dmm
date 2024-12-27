@@ -2227,7 +2227,8 @@
 /area/department_main/safety)
 "qv" = (
 /obj/machinery/door/airlock/highsecurity{
-	name = "Records Office Secure Area"
+	name = "Records Office Secure Area";
+	hackProof = 1
 	},
 /turf/open/floor/carpet/black,
 /area/department_main/records)
@@ -2642,7 +2643,8 @@
 /area/department_main/training)
 "tO" = (
 /obj/machinery/door/airlock/highsecurity{
-	name = "Records Office"
+	name = "Records Office";
+	hackProof = 1
 	},
 /obj/structure/fans/tiny,
 /turf/open/floor/plasteel/elevatorshaft,
@@ -5031,7 +5033,9 @@
 "Ne" = (
 /obj/structure/fans/tiny,
 /obj/effect/decal/cleanable/dirt,
-/obj/machinery/door/airlock/hatch,
+/obj/machinery/door/airlock/hatch{
+	hackProof = 1
+	},
 /turf/open/floor/plasteel/elevatorshaft,
 /area/department_main/training)
 "Nf" = (
