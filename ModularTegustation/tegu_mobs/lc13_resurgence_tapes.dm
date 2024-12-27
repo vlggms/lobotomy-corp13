@@ -5,6 +5,9 @@
 	storedinfo = list()
 	timestamp = list()
 
+/obj/item/tape/resurgence/attack_self(mob/user)
+	to_chat(user, "<span class='notice'>You take a closer look at the tape... Looks like you can't pull out the wires.</span>")
+
 /obj/item/tape/resurgence/first
 	name = "Tinkerer's Log: Moving Out"
 	icon_state = "tape_red"
@@ -205,49 +208,129 @@
 
 	timestamp = list(1, 6, 11, 16, 21, 26, 31, 36, 41, 46, 51, 56, 61, 66, 71, 76, 81, 86, 91, 96, 101, 106, 111, 116, 121, 126, 131, 136, 141, 146, 151, 156, 161, 176, 181, 186, 191, 196)
 
-/obj/item/tape/resurgence/dreams
-	name = "Historians Podcast: Elliot's Day"
-	desc = "A magnetic tape that can hold up to ten minutes of content. It apper to have 'Elliot's Big Day' written on it's back."
+/obj/item/tape/resurgence/gateway
+	name = "Tinkerer's Logs: New Invention"
+	desc = "A magnetic tape that can hold up to ten minutes of content. It apper to have 'New Invention' written on it's back."
 	storedinfo = list(
-	"*Sounds of robotic laughter in the background along with some clapping.*",
-	span_game_say(span_name("Soft Robotic Voice") + span_message(" says,") + " &quot;Thank you all for tuning in for tonight's episode! All of you learned a good amount about the Liu today!&quot;"),
-	span_game_say(span_name("The Historian") + span_message(" says,") + " &quot;It was been the Historian speaking today and see you all, Next week!&quot;"),
-	"*Suddenly all of the clapping stops as a screen shuts down...*",
-	span_game_say(span_name("The Historian") + span_message(" sighs")),
-	span_game_say(span_name("Robotic Voice") + span_message(" says,") + " &quot;Cut! You did great, dear Historian! You followed your script perfectly.&quot;"),
-	span_game_say(span_name("The Historian") + span_message(" says,") + " &quot;Yes, As it always is...&quot;"),
-	span_game_say(span_name("Robotic Voice") + span_message(" says,") + " &quot;Now, Since we have some time until the podcast is uploaded what should we discuss next week?&quot;"),
-	span_game_say(span_name("Robotic Voice") + span_message(" says,") + " &quot;I know! I always wanted to know more about U-Cor.&quot;"),
-	span_game_say(span_name("The Historian") + span_message(" asks,") + " &quot;Please, Max. Can you give me a small moment. I just need to, think through some things.&quot;"),
-	span_game_say(span_name("Max") + span_message(" says,") + " &quot;Oh, Sorry dear Historian. I will make my way then...&quot;"),
-	"*Metallic footsteps moving away, followed by a door opening and closing.*",
-	"*Beeps and clicks coming from a device.*",
-	span_game_say(span_name("Slow Robotic Voice") + span_message(" says,") + " &quot;Excuse me, I am currently working right now so if you have any complaints...&quot;"),
-	span_game_say(span_name("The Historian") + span_message(" says,") + " &quot;Sorry for interrupting you dear Weaver, I was just wondering if you had a moment to talk.&quot;"),
-	span_game_say(span_name("The Weaver") + span_message(" says,") + " &quot;Oh. Sorry for not recognizing you Historian. There are so many requests today, you would not believe it.&quot;"),
-	span_game_say(span_name("The Historian") + span_message(" says,") + " &quot;Yep, Everyone is pretty excited about the recent cityfolk which came here.&quot;"),
-	span_game_say(span_name("The Weaver") + span_message(" asks,") + " &quot;So, Why did you call me at this time?&quot;"),
-	span_game_say(span_name("The Historian") + span_message(" says,") + " &quot;You know, I have been thinking... Do you think the citizens are living a contentful life?&quot;"),
-	span_game_say(span_name("The Weaver") + span_message(" says,") + " &quot;Well, Looking at how all of them are happy. Have goals and dreams, I would say so.&quot;"),
-	span_game_say(span_name("The Historian") + span_message(" says,") + " &quot;Yes, They all have dreams and recent events must have brought them hope... &quot;"),
-	span_game_say(span_name("The Historian") + span_message(" says,") + " &quot;But what happens if they learn how those dreams are...&quot;"),
-	span_game_say(span_name("The Historian") + span_message(" says,") + " &quot;Flawed...&quot;"),
-	span_game_say(span_name("The Weaver") + span_message(" says,") + " &quot;...&quot;"),
-	span_game_say(span_name("The Historian") + span_message(" says,") + " &quot;Nothing good, Nothing good will happen. I can't that happen.&quot;"),
-	span_game_say(span_name("The Historian") + span_message(" says,") + " &quot;But...&quot;"),
-	span_game_say(span_name("The Historian") + span_message(" says,") + " &quot;How long can I hide this truth from them...&quot;"),
-	span_game_say(span_name("The Historian") + span_message(" says,") + " &quot;They are all so innocent, They will eventually start making plans to fulfill their dreams.&quot;"),
-	span_game_say(span_name("The Historian") + span_message(" says,") + " &quot;They will all start leaving with a happy simile...&quot;"),
-	span_game_say(span_name("The Historian") + span_message(" says,") + " &quot;“I will finally reach it, we can leave this harrowing life to rejoice in this paradise...”&quot;"),
-	span_game_say(span_name("The Historian") + span_message(" says,") + " &quot;Then they will learn it's true nature, it's heartless nature...&quot;"),
-	span_game_say(span_name("The Historian") + span_message(" says,") + " &quot;They will even learn how he-&quot;"),
-	span_game_say(span_name("The Historian") + span_message(" says,") + " &quot;died for nothing...&quot;"),
-	span_game_say(span_name("The Weaver") + span_message(" says,") + " &quot;I... Wish I had a answer for that...&quot;"),
-	span_game_say(span_name("The Historian") + span_message(" says,") + " &quot;Sorry Weaver... I just had no else to talk too.&quot;"),
-	span_game_say(span_name("The Historian") + span_message(" says,") + " &quot;We should return to our duties. The citizens need us.&quot;"),
-	span_game_say(span_name("The Weaver") + span_message(" says,") + " &quot;We shall do our best for them...&quot;"),
-	"*The tape ends after a beep is heard from a device.*",
+	"*Sounds of mechanical drilling and machinery clicking.*",
+	"*In the background, a heavy door starts sliding open... 2 pairs of footsteps walking closer*",
+	span_game_say(span_name("Unknown Robotic Voice") + span_message(" says,") + " &quot;Agh... That’s not efficient enough.&quot;"),
+	span_game_say(span_name("Unknown Robotic Voice") + span_message(" says,") + " &quot;Gregory, It looks like this reactor will not be enough for this project.&quot;"),
+	span_game_say(span_name("Unknown Robotic Voice") + span_message(" says,") + " &quot;Just throw it back into the factory, It perhaps might find use in another project...&quot;"),
+	span_game_say(span_name("Soft Robotic Voice") + span_message(" says,") + " &quot;Ahm... Dear Tinkerer.&quot;"),
+	span_game_say(span_name("The Tinkerer") + span_message(" says,") + " &quot;The Historian and The Weaver! Sorry that I didn’t catch the both of you. &quot;"),
+	span_game_say(span_name("The Tinkerer") + span_message(" says,") + " &quot;But nevertheless, I am very thankful that you all could make it here!&quot;"),
+	span_game_say(span_name("The Historian") + span_message(" says,") + " &quot;Well, You seem quite insistent on us arriving today.&quot;"),
+	span_game_say(span_name("The Historian") + span_message(" says,") + " &quot;”I have something of utmost importance to present before us”, You said something like that.&quot;"),
+	span_game_say(span_name("The Weaver") + span_message(" says,") + " &quot;The last time you were this passionate about something was when you finally learned how to repair cores.&quot;"),
+	span_game_say(span_name("The Tinkerer") + span_message(" says,") + " &quot;It brings back memories... It has been so long since we have started this town.&quot;"),
+	span_game_say(span_name("The Historian") + span_message(" says,") + " &quot;And thanks to our efforts, it seems to be growing.&quot;"),
+	span_game_say(span_name("The Tinkerer") + span_message(" says,") + " &quot;I am telling you, more and more folk are finally starting to understand us!&quot;"),
+	span_game_say(span_name("The Weaver") + span_message(" says,") + " &quot;Anyways, About this thing you wanted to show us...&quot;"),
+	span_game_say(span_name("The Tinkerer") + span_message(" says,") + " &quot;Right! Let me bring it over.&quot;"),
+	"*Mechanical sounds heard moving up...*",
+	"*Mechanical sounds heard moving down, along with a long hydraulic sound moving closer...*",
+	span_game_say(span_name("The Tinkerer") + span_message(" says,") + " &quot;Now my Dear Elders, I now present before you...&quot;"),
+	"*Dramatic pause...*",
+	span_game_say(span_name("The Tinkerer") + span_message(" says,") + " &quot;The Gateway! The invention which will bring us one step closer to City.&quot;"),
+	span_game_say(span_name("The Weaver") + span_message(" says,") + " &quot;Hm... Looks interestingly built, I also like the details you put into it’s design.&quot;"),
+	span_game_say(span_name("The Historian") + span_message(" says,") + " &quot;Wow! It looks complex. The Weaver will probably better understand it, not that good with machines at this scale.&quot;"),
+	span_game_say(span_name("The Tinkerer") + span_message(" says,") + " &quot;Thank you! Now, once this project will be refined, we will be able to teleport our people in and out of the city!&quot;"),
+	span_game_say(span_name("The Historian") + span_message(" says,") + " &quot;Oh, Didn’t expect that we would be able to see it that soon...&quot;"),
+	span_game_say(span_name("The Weaver") + span_message(" says,") + " &quot;Refined?&quot;"),
+	span_game_say(span_name("The Tinkerer") + span_message(" says,") + " &quot;Well, Currently it does require a large amount of power for a single use... It takes around a month to launch but only a single Citizen.&quot;"),
+	span_game_say(span_name("The Tinkerer") + span_message(" says,") + " &quot;But, It will be improved in time just letting you know to start preparations...&quot;"),
+	span_game_say(span_name("The Weaver") + span_message(" says,") + " &quot;We see... We shall then start prepare for it.&quot;"),
+	span_game_say(span_name("The Historian") + span_message(" says,") + " &quot;You continue to amaze me, Dear Tinkerer... I can only dream of what we can do with this...&quot;"),
+	"*Awkward pause...*",
+	span_game_say(span_name("The Tinkerer") + span_message(" says,") + " &quot;Hm? Something bothering you? Isn't this one of your dream coming true?&quot;"),
+	span_game_say(span_name("The Tinkerer") + span_message(" says,") + " &quot;To finally show the citizens the beauty of the City?&quot;"),
+	span_game_say(span_name("The Tinkerer") + span_message(" says,") + " &quot;The oh so land of dreams...&quot;"),
+	"*A mechanical sliding sound is heard moving towards The Historian voice.*",
+	span_game_say(span_name("The Tinkerer") + span_message(" says,") + " &quot;Don’t you? Oh so dear Elder?&quot;"),
+	span_game_say(span_name("The Historian") + span_message(" shudderingly says,") + " &quot;Ye-es... How could I not be excited? Ha...&quot;"),
+	span_game_say(span_name("The Weaver") + span_message(" says,") + " &quot;That’s enough, Tinkerer. We should be returning to our duties by now.&quot;"),
+	span_game_say(span_name("The Tinkerer") + span_message(" says,") + " &quot;Very well, I shall return to my duties...&quot;"),
+	"*2 pairs of mechanical footsteps head walking away, along with a door sliding shut.*",
+	span_game_say(span_name("The Tinkerer") + span_message(" says,") + " &quot;I hope you get what you wished for...&quot;"),
+	span_game_say(span_name("The Tinkerer") + span_message(" says,") + " &quot;Native Historian...&quot;")
 	)
 
-	timestamp = list(1, 6, 11, 16, 21, 26, 31, 36, 41, 46, 51, 56, 61, 66, 71, 76, 81, 86, 91, 96, 101, 106, 111, 116, 121, 126, 131, 136, 141, 146, 151, 156, 161, 176, 181, 186, 191, 196)
+	timestamp = list(1, 6, 11, 16, 21, 26, 31, 36, 41, 46, 51, 56, 61, 66, 71, 76, 81, 86, 91, 96, 101, 106, 111, 116, 121, 126, 131, 136, 141, 146, 151, 156, 161, 166, 171, 176, 181, 186, 191, 196, 201, 206)
+
+/obj/item/tape/resurgence/solution
+	name = "Historians's Logs: The Solution"
+	desc = "A magnetic tape that can hold up to ten minutes of content. It apper to have 'The Solution' written on it's back."
+	storedinfo = list(
+	"*The rustling of papers, along with a deep mechanical sigh.*",
+	span_game_say(span_name("Soft Robotic Voice") + span_message(" says,") + " &quot;They... Have been planning for this all along...&quot;"),
+	span_game_say(span_name("Soft Robotic Voice") + span_message(" says,") + " &quot;The Gateway... They were never planning on using it to teach our citizens.&quot;"),
+	span_game_say(span_name("Soft Robotic Voice") + span_message(" says,") + " &quot;How could I be so naive...&quot;"),
+	span_game_say(span_name("Slow Robotic Voice") + span_message(" says,") + " &quot;That is now in the past... The are now no longer here, and we need to pick ourselves back up.&quot;"),
+	span_game_say(span_name("Slow Robotic Voice") + span_message(" says,") + " &quot;Moral is not looking well right now, especially after the incident caused by The Tinkerer.&quot;"),
+	span_game_say(span_name("Soft Robotic Voice") + span_message(" says,") + " &quot;... We could try to finally start this project, now that we have access to his blueprints.&quot;"),
+	span_game_say(span_name("Slow Robotic Voice") + span_message(" says,") + " &quot;That is a risky maneuver, we have not ever tried to use this tech without the Tinkerer’s assistance.&quot;"),
+	span_game_say(span_name("Slow Robotic Voice") + span_message(" says,") + " &quot;And we don’t even know if this plan will work in the first place.&quot;"),
+	span_game_say(span_name("Soft Robotic Voice") + span_message(" says,") + " &quot;No wait, but look over here.&quot;"),
+	span_game_say(span_name("Soft Robotic Voice") + span_message(" says,") + " &quot;It appears that they have been doing this already for a long time now.&quot;"),
+	span_game_say(span_name("Soft Robotic Voice") + span_message(" says,") + " &quot;Teleporting their own followers into the City...&quot;"),
+	span_game_say(span_name("Soft Robotic Voice") + span_message(" says,") + " &quot;And as long as they have their consciousness reduced... They will not be targeted by the City.&quot;"),
+	span_game_say(span_name("Soft Robotic Voice") + span_message(" says,") + " &quot;This can be also seen with the spear and gun bots sometimes spotted in their backstreets. And the AI that the Devyat carry around.&quot;"),
+	span_game_say(span_name("Slow Robotic Voice") + span_message(" says,") + " &quot;Hm... Looks like they really do have quite the integrating notes about this.&quot;"),
+	span_game_say(span_name("Soft Robotic Voice") + span_message(" says,") + " &quot;This means, we can start the shell program.&quot;"),
+	span_game_say(span_name("Soft Robotic Voice") + span_message(" says,") + " &quot;Using his tech, we will be able to build shells of our citizens, and then build a makeshift town.&quot;"),
+	span_game_say(span_name("Soft Robotic Voice") + span_message(" says,") + " &quot;Give the shells some basic functions, and then using the gateway we can send them, and the town into the city...&quot;"),
+	span_game_say(span_name("Soft Robotic Voice") + span_message(" says,") + " &quot;Then, once we are able to bring them back in after the week, we can transfer all of the good memories of the City, back into our citizens.&quot;"),
+	span_game_say(span_name("Soft Robotic Voice") + span_message(" says,") + " &quot;Hopefully, this can bring back hope to our citizens...&quot;"),
+	span_game_say(span_name("Slow Robotic Voice") + span_message(" says,") + " &quot;... Are you sure, Dear Historian? You are shaking...&quot;"),
+	span_game_say(span_name("The Historian") + span_message(" says,") + " &quot;This... Must work, I can’t just let my citizens fall into despair... I can’t...&quot;")
+	)
+
+	timestamp = list(1, 6, 11, 16, 21, 26, 31, 36, 41, 46, 51, 56, 61, 66, 71, 76, 81, 86, 91, 96, 101, 106, 111, 116)
+
+// /obj/item/tape/resurgence/dreams
+// 	name = "Historians Podcast: Elliot's Day"
+// 	desc = "A magnetic tape that can hold up to ten minutes of content. It apper to have 'Elliot's Big Day' written on it's back."
+// 	storedinfo = list(
+// 	"*Sounds of robotic laughter in the background along with some clapping.*",
+// 	span_game_say(span_name("Soft Robotic Voice") + span_message(" says,") + " &quot;Thank you all for tuning in for tonight's episode! All of you learned a good amount about the Liu today!&quot;"),
+// 	span_game_say(span_name("The Historian") + span_message(" says,") + " &quot;It was been the Historian speaking today and see you all, Next week!&quot;"),
+// 	"*Suddenly all of the clapping stops as a screen shuts down...*",
+// 	span_game_say(span_name("The Historian") + span_message(" sighs")),
+// 	span_game_say(span_name("Robotic Voice") + span_message(" says,") + " &quot;Cut! You did great, dear Historian! You followed your script perfectly.&quot;"),
+// 	span_game_say(span_name("The Historian") + span_message(" says,") + " &quot;Yes, As it always is...&quot;"),
+// 	span_game_say(span_name("Robotic Voice") + span_message(" says,") + " &quot;Now, Since we have some time until the podcast is uploaded what should we discuss next week?&quot;"),
+// 	span_game_say(span_name("Robotic Voice") + span_message(" says,") + " &quot;I know! I always wanted to know more about U-Cor.&quot;"),
+// 	span_game_say(span_name("The Historian") + span_message(" asks,") + " &quot;Please, Max. Can you give me a small moment. I just need to, think through some things.&quot;"),
+// 	span_game_say(span_name("Max") + span_message(" says,") + " &quot;Oh, Sorry dear Historian. I will make my way then...&quot;"),
+// 	"*Metallic footsteps moving away, followed by a door opening and closing.*",
+// 	"*Beeps and clicks coming from a device.*",
+// 	span_game_say(span_name("Slow Robotic Voice") + span_message(" says,") + " &quot;Excuse me, I am currently working right now so if you have any complaints...&quot;"),
+// 	span_game_say(span_name("The Historian") + span_message(" says,") + " &quot;Sorry for interrupting you dear Weaver, I was just wondering if you had a moment to talk.&quot;"),
+// 	span_game_say(span_name("The Weaver") + span_message(" says,") + " &quot;Oh. Sorry for not recognizing you Historian. There are so many requests today, you would not believe it.&quot;"),
+// 	span_game_say(span_name("The Historian") + span_message(" says,") + " &quot;Yep, Everyone is pretty excited about the recent cityfolk which came here.&quot;"),
+// 	span_game_say(span_name("The Weaver") + span_message(" asks,") + " &quot;So, Why did you call me at this time?&quot;"),
+// 	span_game_say(span_name("The Historian") + span_message(" says,") + " &quot;You know, I have been thinking... Do you think the citizens are living a contentful life?&quot;"),
+// 	span_game_say(span_name("The Weaver") + span_message(" says,") + " &quot;Well, Looking at how all of them are happy. Have goals and dreams, I would say so.&quot;"),
+// 	span_game_say(span_name("The Historian") + span_message(" says,") + " &quot;Yes, They all have dreams and recent events must have brought them hope... &quot;"),
+// 	span_game_say(span_name("The Historian") + span_message(" says,") + " &quot;But what happens if they learn how those dreams are...&quot;"),
+// 	span_game_say(span_name("The Historian") + span_message(" says,") + " &quot;Flawed...&quot;"),
+// 	span_game_say(span_name("The Weaver") + span_message(" says,") + " &quot;...&quot;"),
+// 	span_game_say(span_name("The Historian") + span_message(" says,") + " &quot;Nothing good, Nothing good will happen. I can't that happen.&quot;"),
+// 	span_game_say(span_name("The Historian") + span_message(" says,") + " &quot;But...&quot;"),
+// 	span_game_say(span_name("The Historian") + span_message(" says,") + " &quot;How long can I hide this truth from them...&quot;"),
+// 	span_game_say(span_name("The Historian") + span_message(" says,") + " &quot;They are all so innocent, They will eventually start making plans to fulfill their dreams.&quot;"),
+// 	span_game_say(span_name("The Historian") + span_message(" says,") + " &quot;They will all start leaving with a happy simile...&quot;"),
+// 	span_game_say(span_name("The Historian") + span_message(" says,") + " &quot;“I will finally reach it, we can leave this harrowing life to rejoice in this paradise...”&quot;"),
+// 	span_game_say(span_name("The Historian") + span_message(" says,") + " &quot;Then they will learn it's true nature, it's heartless nature...&quot;"),
+// 	span_game_say(span_name("The Historian") + span_message(" says,") + " &quot;They will even learn how he-&quot;"),
+// 	span_game_say(span_name("The Historian") + span_message(" says,") + " &quot;died for nothing...&quot;"),
+// 	span_game_say(span_name("The Weaver") + span_message(" says,") + " &quot;I... Wish I had a answer for that...&quot;"),
+// 	span_game_say(span_name("The Historian") + span_message(" says,") + " &quot;Sorry Weaver... I just had no else to talk too.&quot;"),
+// 	span_game_say(span_name("The Historian") + span_message(" says,") + " &quot;We should return to our duties. The citizens need us.&quot;"),
+// 	span_game_say(span_name("The Weaver") + span_message(" says,") + " &quot;We shall do our best for them...&quot;"),
+// 	"*The tape ends after a beep is heard from a device.*",
+// 	)
+
+// 	timestamp = list(1, 6, 11, 16, 21, 26, 31, 36, 41, 46, 51, 56, 61, 66, 71, 76, 81, 86, 91, 96, 101, 106, 111, 116, 121, 126, 131, 136, 141, 146, 151, 156, 161, 176, 181, 186, 191, 196)
 
