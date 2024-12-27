@@ -14,9 +14,8 @@ GLOBAL_VAR_INIT(rcorp_factorymax, 70)
 
 
 /obj/structure/resourcepoint/Initialize()
-	..()
 	addtimer(CALLBACK(src, PROC_REF(spawn_enemy)), 20 SECONDS)
-
+	return ..()
 
 /obj/structure/resourcepoint/attackby(obj/item/I, mob/living/user, params)
 	. = ..()
