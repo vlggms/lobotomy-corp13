@@ -1093,3 +1093,8 @@
 // Ordeal signals
 // When the ordeal ends; (/datum/ordeal)
 #define COMSIG_GLOB_ORDEAL_END "!ordeal_end"
+
+
+// Crate signals
+#define COMSIG_CRATE_LOOTING_STARTED "looting_started"
+#define COMSIG_CRATE_LOOTING_ENDED "looting_ended"
