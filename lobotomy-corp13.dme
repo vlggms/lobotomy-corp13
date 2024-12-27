@@ -1110,6 +1110,7 @@
 #include "code\game\objects\effects\spawners\traps.dm"
 #include "code\game\objects\effects\spawners\vaultspawner.dm"
 #include "code\game\objects\effects\spawners\vending.dm"
+#include "code\game\objects\effects\spawners\village_spawner.dm"
 #include "code\game\objects\effects\spawners\xeno_egg_delivery.dm"
 #include "code\game\objects\effects\temporary_visuals\cult.dm"
 #include "code\game\objects\effects\temporary_visuals\effect_indicators.dm"
