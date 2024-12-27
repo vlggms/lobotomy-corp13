@@ -3283,6 +3283,16 @@
 	},
 /turf/open/floor/plating,
 /area/facility_hallway/training)
+"yi" = (
+/obj/machinery/door/airlock/highsecurity{
+	name = "Training Department";
+	hackProof = 1
+	},
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/turf/open/floor/facility/halls,
+/area/department_main/training)
 "yk" = (
 /obj/effect/turf_decal/delivery,
 /obj/machinery/light/cold/no_nightlight{
@@ -5842,7 +5852,8 @@
 /area/department_main/command)
 "RF" = (
 /obj/machinery/door/airlock/highsecurity{
-	name = "Records Office Secure Area"
+	name = "Records Office Secure Area";
+	hackProof = 1
 	},
 /turf/open/floor/facility/halls,
 /area/department_main/training)
@@ -44341,7 +44352,7 @@ kO
 kO
 kO
 kO
-Rh
+yi
 kO
 kO
 kO

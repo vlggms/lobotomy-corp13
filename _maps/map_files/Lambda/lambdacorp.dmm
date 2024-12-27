@@ -1902,7 +1902,8 @@
 /area/facility_hallway/control)
 "ja" = (
 /obj/machinery/door/airlock/glass{
-	icon = 'icons/obj/doors/airlocks/station/science.dmi'
+	icon = 'icons/obj/doors/airlocks/station/science.dmi';
+	hackProof = 1
 	},
 /turf/open/floor/facility/halls,
 /area/department_main/records)
@@ -5221,7 +5222,8 @@
 /area/department_main/information)
 "zi" = (
 /obj/machinery/door/airlock/highsecurity{
-	name = "Records Office Secure Area"
+	name = "Records Office Secure Area";
+	hackProof = 1
 	},
 /turf/open/floor/facility/halls,
 /area/department_main/records)
