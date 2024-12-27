@@ -517,6 +517,9 @@
 	else
 		return FALSE
 
+/mob/living/simple_animal/hostile/clan/drone/CanAttack(atom/the_target)
+	. = ..()
+
 /mob/living/simple_animal/hostile/clan/drone/proc/try_to_heal()
 	if (target && can_see(src, target, healing_range) && !current_beam )
 		create_beam(target)

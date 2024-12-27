@@ -268,7 +268,9 @@
 /turf/closed/mineral/ash_rock,
 /area/city/backstreets_room)
 "Bd" = (
-/mob/living/simple_animal/hostile/lovetown/abomination,
+/mob/living/simple_animal/hostile/lovetown/abomination{
+	return_to_origin = 1
+	},
 /turf/open/floor/carpet/blue,
 /area/city/backstreets_room)
 "BJ" = (
