@@ -32,7 +32,9 @@
 	uniform = /obj/item/clothing/under/suit/lobotomy
 	shoes = /obj/item/clothing/shoes/laceup
 
-	backpack_contents = list()
+	backpack_contents = list(
+		/obj/item/storage/box/rxglasses/spyglasskit,
+	)
 
 /// Alternate corps you can pick
 /datum/job/representative
