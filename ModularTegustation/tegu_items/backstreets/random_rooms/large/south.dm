@@ -1,15 +1,16 @@
 /obj/effect/spawner/room/backstreets/large_south
 	name = "large south backstreets spawner"
+	icon = 'ModularTegustation/Teguicons/room_spawners/16x8.dmi'
+	icon_state = ""
+	dir = SOUTH
 	room_width = 16
 	room_height = 8
 	room_type = "backstreets_large_south"
-
 
 /datum/map_template/random_room/backstreets/large_south
 	name = "Apartment - Large south A"
 	room_id = "apartment_lsa"
 	mappath = "_maps/RandomRooms/backstreets/large_south/apartment_lsa.dmm"
-	centerspawner = FALSE
 	template_width = 16
 	template_height = 8
 	stock = 3

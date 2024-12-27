@@ -2263,6 +2263,16 @@
 	name = "Outskirt"
 	},
 /area/space)
+"lX" = (
+/obj/machinery/door/airlock/highsecurity{
+	name = "Records Office Secure Area";
+	hackProof = 1
+	},
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/turf/open/floor/facility/halls,
+/area/facility_hallway/information)
 "lZ" = (
 /turf/closed/indestructible/reinforced{
 	desc = "A huge chunk of wing-grade metal used in various L corporation facilities. Effectively impervious to conventional methods of destruction.";
@@ -5566,6 +5576,18 @@
 	slowdown = -0.3
 	},
 /area/department_main/command)
+"Ab" = (
+/obj/machinery/door/airlock{
+	icon = 'icons/obj/doors/airlocks/station/science.dmi';
+	max_integrity = 500;
+	name = "Information Department";
+	hackProof = 1
+	},
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/turf/open/floor/facility/halls,
+/area/facility_hallway/information)
 "Ac" = (
 /turf/open/floor/plasteel/freezer,
 /area/facility_hallway/control)
@@ -45416,7 +45438,7 @@ cA
 cA
 Cx
 PB
-uq
+Ab
 PB
 cA
 cA
@@ -50295,7 +50317,7 @@ PH
 PH
 nO
 gF
-eL
+lX
 nO
 nO
 SK

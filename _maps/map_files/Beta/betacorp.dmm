@@ -547,7 +547,8 @@
 /area/department_main/command)
 "da" = (
 /obj/machinery/door/airlock/highsecurity{
-	name = "Records Office"
+	name = "Records Office";
+	hackProof = 1
 	},
 /turf/open/floor/plasteel/dark,
 /area/department_main/records)
@@ -4600,7 +4601,8 @@
 /area/facility_hallway/discipline)
 "vZ" = (
 /obj/machinery/door/airlock/highsecurity{
-	name = "Records Office Secure Area"
+	name = "Records Office Secure Area";
+	hackProof = 1
 	},
 /turf/open/floor/carpet/black,
 /area/department_main/records)

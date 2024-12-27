@@ -1,15 +1,16 @@
 /obj/effect/spawner/room/backstreets/small_east
 	name = "small east backstreets spawner"
+	icon = 'ModularTegustation/Teguicons/room_spawners/7x7.dmi'
+	icon_state = ""
+	dir = EAST
 	room_width = 5
 	room_height = 7
 	room_type = "backstreets_small_east"
-
 
 /datum/map_template/random_room/backstreets/small_east
 	name = "Garbage Bins"
 	room_id = "garbage_se"
 	mappath = "_maps/RandomRooms/backstreets/small_east/garbage.dmm"
-	centerspawner = FALSE
 	template_width = 5
 	template_height = 7
 	stock = 3
