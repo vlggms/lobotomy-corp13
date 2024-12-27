@@ -51,12 +51,15 @@ GLOBAL_LIST_EMPTY(marked_players)
 /mob/living/simple_animal/hostile/clan_npc/proc/on_seeing_looting_ended(datum/source, mob/living/user, obj/crate)
 	SIGNAL_HANDLER
 	if (check_visible(user, crate))
-		addtimer(CALLBACK(src, PROC_REF(Talk)), 0)
+		addtimer(CALLBACK(src, PROC_REF(Theif_Talk)), 0)
 		if (!(user in GLOB.marked_players ))
 			GLOB.marked_players += user
 
 /mob/living/simple_animal/hostile/clan_npc/proc/Talk()
-	say("Thief!")
+	say("Um... What are you doing?")
+
+/mob/living/simple_animal/hostile/clan_npc/proc/Theif_Talk()
+	say("Guards! We got a theif here!")
 
 /mob/living/simple_animal/hostile/clan_npc/proc/check_visible(mob/living/user, obj/crate)
 	var/user_visible = (user in view(vision_range, src))
@@ -248,7 +251,8 @@ GLOBAL_LIST_EMPTY(marked_players)
 				say(selling_end)
 				trading = FALSE
 			speaking = FALSE
-	return ..()
+			return
+	return
 
 /mob/living/simple_animal/hostile/clan_npc/info/trader/proc/SetSellables()
 	var/list/temp = list()
