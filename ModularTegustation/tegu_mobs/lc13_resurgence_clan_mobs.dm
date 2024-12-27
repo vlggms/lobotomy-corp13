@@ -79,7 +79,11 @@
 //Guard Stuff
 /mob/living/simple_animal/hostile/clan/CanAttack(atom/the_target)
 	if ((the_target in GLOB.marked_players) && can_protect)
-		return TRUE
+		if (istype(the_target, /mob/living))
+			var/mob/living/L = the_target
+			if (L.stat == DEAD)
+				return FALSE
+			return TRUE
 	. = ..()
 
 /mob/living/simple_animal/hostile/clan/bullet_act(obj/projectile/P)
