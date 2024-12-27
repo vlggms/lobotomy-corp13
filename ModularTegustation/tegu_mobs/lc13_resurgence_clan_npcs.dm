@@ -38,8 +38,43 @@ GLOBAL_LIST_EMPTY(marked_players)
 	var/attacked_line = "Wha-at are you do-oing... GE-ET AWAY!"
 	var/mark_once_attacked = TRUE
 
+/mob/living/simple_animal/hostile/clan_npc/Initialize()
+	. = ..()
+	RegisterSignal(SSdcs, COMSIG_CRATE_LOOTING_STARTED, PROC_REF(on_seeing_looting_started))
+	RegisterSignal(SSdcs, COMSIG_CRATE_LOOTING_ENDED, PROC_REF(on_seeing_looting_ended))
+
+/mob/living/simple_animal/hostile/clan_npc/proc/on_seeing_looting_started(datum/source, mob/living/user, obj/crate)
+	SIGNAL_HANDLER
+	if (check_visible(user, crate))
+		addtimer(CALLBACK(src, PROC_REF(Talk)), 0)
+
+/mob/living/simple_animal/hostile/clan_npc/proc/on_seeing_looting_ended(datum/source, mob/living/user, obj/crate)
+	SIGNAL_HANDLER
+	if (check_visible(user, crate))
+		addtimer(CALLBACK(src, PROC_REF(Talk)), 0)
+		if (!(user in GLOB.marked_players ))
+			GLOB.marked_players += user
+
+/mob/living/simple_animal/hostile/clan_npc/proc/Talk()
+	say("Thief!")
+
+/mob/living/simple_animal/hostile/clan_npc/proc/check_visible(mob/living/user, obj/crate)
+	var/user_visible = (user in view(vision_range, src))
+	var/crate_visible = (crate in view(vision_range, src))
+	return user_visible && crate_visible
+
+/mob/living/simple_animal/hostile/clan_npc/Destroy()
+	UnregisterSignal(SSdcs, COMSIG_CRATE_LOOTING_STARTED)
+	UnregisterSignal(SSdcs, COMSIG_CRATE_LOOTING_ENDED)
+	return ..()
+
+
 /mob/living/simple_animal/hostile/clan_npc/CanAttack(atom/the_target)
 	if (the_target in GLOB.marked_players)
+		if (istype(the_target, /mob/living))
+			var/mob/living/L = the_target
+			if (L.stat == DEAD)
+				return FALSE
 		return TRUE
 	. = ..()
 
@@ -61,8 +96,6 @@ GLOBAL_LIST_EMPTY(marked_players)
 		if (!(user in GLOB.marked_players ))
 			GLOB.marked_players += user
 			say(attacked_line)
-
-
 
 /mob/living/simple_animal/hostile/clan_npc/info
 	name = "Talkative Citzen?"

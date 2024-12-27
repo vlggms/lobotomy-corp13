@@ -549,6 +549,13 @@
 	remove_beam()
 	deltimer(update_beam_timer)
 
+/mob/living/simple_animal/hostile/clan/drone/Destroy()
+	. = ..()
+	cut_overlays()
+	remove_beam()
+	deltimer(update_beam_timer)
+
+
 /mob/living/simple_animal/hostile/clan/drone/proc/on_beam_tick(mob/living/target)
 	if(target.health != target.maxHealth )
 		new /obj/effect/temp_visual/heal(get_turf(target), "#E02D2D")
