@@ -1,6 +1,14 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
-"aH" = (
+"ax" = (
 /obj/effect/landmark/backstreetspawneast,
+/turf/open/floor/plating/ironsand,
+/area/city/backstreets_alley)
+"aH" = (
+/obj/effect/landmark/backstreetspawn,
+/turf/open/floor/plating/ironsand,
+/area/city/backstreets_alley)
+"aJ" = (
+/obj/effect/landmark/backstreetspawn,
 /turf/open/floor/plating/dirt/jungle/wasteland,
 /area/city/backstreets_alley)
 "aU" = (
@@ -55,7 +63,7 @@
 /area/city/backstreets_room/resurgence_village)
 "cC" = (
 /mob/living/simple_animal/hostile/clan/scout{
-	faction = list("resurgence_clan","hostile", neutral);
+	faction = list("resurgence_clan","hostile", "neutral");
 	can_protect = 1;
 	dir = 1;
 	icon_state = "clan_scout_normal";
@@ -132,19 +140,11 @@
 	},
 /turf/open/floor/carpet/royalblack,
 /area/city/backstreets_room/resurgence_village)
-"fs" = (
-/obj/item/flashlight/lantern{
-	on = 1;
-	pixel_y = 16;
-	anchored = 1
-	},
-/turf/open/floor/wood,
-/area/city/backstreets_room/resurgence_village)
 "fE" = (
 /obj/structure/flora/ausbushes/fullgrass,
 /obj/effect/turf_decal/raven/one,
 /mob/living/simple_animal/hostile/clan/scout{
-	faction = list("resurgence_clan","hostile", neutral);
+	faction = list("resurgence_clan","hostile", "neutral");
 	can_protect = 1;
 	dir = 8;
 	icon_state = "clan_scout_normal";
@@ -204,22 +204,19 @@
 	},
 /turf/open/floor/plating/ironsand,
 /area/city/backstreets_room/resurgence_village)
-"hi" = (
-/obj/effect/landmark/backstreetspawneast,
-/turf/open/floor/plating/ironsand,
-/area/city/backstreets_alley)
 "hw" = (
 /obj/structure/sign/departments/security{
 	pixel_x = 32
 	},
 /turf/open/floor/plating/ironsand,
 /area/city/backstreets_room/resurgence_village)
-"hB" = (
-/obj/effect/landmark/backstreetspawn,
-/turf/open/floor/plating/ironsand,
-/area/city/backstreets_alley)
 "hI" = (
 /obj/structure/flora/ash/garden/waste,
+/turf/open/floor/plating/dirt/jungle/wasteland,
+/area/city/backstreets_alley)
+"ij" = (
+/obj/structure/flora/ausbushes/fullgrass,
+/obj/effect/landmark/backstreetspawnwest,
 /turf/open/floor/plating/dirt/jungle/wasteland,
 /area/city/backstreets_alley)
 "iD" = (
@@ -306,6 +303,10 @@
 	},
 /turf/open/floor/wood,
 /area/city/backstreets_room/resurgence_village)
+"nd" = (
+/obj/effect/landmark/backstreetspawnwest,
+/turf/open/floor/plating/dirt/jungle/wasteland,
+/area/city/backstreets_alley)
 "nf" = (
 /obj/structure/table/wood,
 /obj/item/paper_bin,
@@ -331,7 +332,7 @@
 	dir = 8
 	},
 /mob/living/simple_animal/hostile/clan/scout{
-	faction = list("resurgence_clan","hostile", neutral);
+	faction = list("resurgence_clan","hostile", "neutral");
 	can_protect = 1;
 	dir = 8;
 	icon_living = "clan_scout_normal";
@@ -418,15 +419,6 @@
 /obj/effect/decal/cleanable/blood/splatter/over_window,
 /turf/closed/indestructible/rock,
 /area/city/backstreets_alley)
-"pK" = (
-/obj/structure/flora/ausbushes/fullgrass,
-/obj/item/flashlight/lantern{
-	on = 1;
-	pixel_y = 16;
-	anchored = 1
-	},
-/turf/open/floor/plating/ironsand,
-/area/city/backstreets_room/resurgence_village)
 "pO" = (
 /obj/structure/mineral_door/wood,
 /obj/effect/turf_decal/siding/blue/end,
@@ -503,7 +495,7 @@
 /area/city/backstreets_room/resurgence_village)
 "sH" = (
 /mob/living/simple_animal/hostile/clan/scout{
-	faction = list("resurgence_clan","hostile", neutral);
+	faction = list("resurgence_clan","hostile", "neutral");
 	can_protect = 1;
 	dir = 8;
 	icon_state = "clan_scout_normal";
@@ -618,7 +610,7 @@
 	dir = 4
 	},
 /mob/living/simple_animal/hostile/clan/scout{
-	faction = list("resurgence_clan","hostile", neutral);
+	faction = list("resurgence_clan","hostile", "neutral");
 	can_protect = 1;
 	dir = 4;
 	icon_living = "clan_scout_normal";
@@ -681,19 +673,10 @@
 	},
 /turf/open/floor/plating/dirt/jungle/wasteland,
 /area/city/backstreets_room/resurgence_village)
-"zb" = (
-/obj/effect/landmark/backstreetspawnwest,
-/turf/open/floor/plating/dirt/jungle/wasteland,
-/area/city/backstreets_alley)
 "Aa" = (
 /obj/structure/mineral_door/wood,
 /turf/open/floor/wood,
 /area/city/backstreets_room/resurgence_village)
-"Ab" = (
-/obj/structure/flora/ausbushes/fullgrass,
-/obj/effect/landmark/backstreetspawnwest,
-/turf/open/floor/plating/dirt/jungle/wasteland,
-/area/city/backstreets_alley)
 "Ah" = (
 /obj/effect/spawner/room/backstreets/small_south,
 /turf/closed/indestructible/reinforced,
@@ -759,15 +742,6 @@
 /obj/effect/spawner/room/backstreets/small_north,
 /turf/closed/indestructible/reinforced,
 /area/city/backstreets_room)
-"Eh" = (
-/obj/structure/flora/ausbushes/fullgrass,
-/obj/effect/landmark/backstreetspawneast,
-/turf/open/floor/plating/ironsand,
-/area/city/backstreets_alley)
-"Ew" = (
-/obj/effect/landmark/backstreetspawnwest,
-/turf/open/floor/plating/ironsand,
-/area/city/backstreets_alley)
 "Fp" = (
 /obj/effect/turf_decal/siding/wood{
 	dir = 10
@@ -815,7 +789,7 @@
 /area/city/backstreets_alley)
 "Jp" = (
 /mob/living/simple_animal/hostile/clan/scout{
-	faction = list("resurgence_clan","hostile", neutral);
+	faction = list("resurgence_clan","hostile", "neutral");
 	can_protect = 1;
 	icon_living = "clan_scout_normal";
 	icon_state = "clan_scout_normal";
@@ -827,7 +801,7 @@
 "JA" = (
 /obj/effect/turf_decal/raven/nine,
 /mob/living/simple_animal/hostile/clan/scout{
-	faction = list("resurgence_clan","hostile", neutral);
+	faction = list("resurgence_clan","hostile", "neutral");
 	can_protect = 1;
 	dir = 4;
 	icon_living = "clan_scout_normal";
@@ -925,6 +899,11 @@
 "LI" = (
 /turf/closed/indestructible/wood,
 /area/city/backstreets_room/resurgence_village)
+"LL" = (
+/obj/structure/flora/ausbushes/fullgrass,
+/obj/effect/landmark/backstreetspawneast,
+/turf/open/floor/plating/ironsand,
+/area/city/backstreets_alley)
 "LT" = (
 /mob/living/simple_animal/hostile/clan/drone/village,
 /turf/open/floor/plating/ironsand,
@@ -939,6 +918,10 @@
 /obj/structure/flora/rock/jungle,
 /turf/open/floor/plating/ironsand,
 /area/city/backstreets_alley)
+"MV" = (
+/obj/effect/landmark/backstreetspawnwest,
+/turf/open/floor/plating/ironsand,
+/area/city/backstreets_alley)
 "NC" = (
 /obj/effect/spawner/room/backstreets/large_south,
 /turf/closed/indestructible/reinforced,
@@ -947,10 +930,6 @@
 /obj/effect/spawner/room/backstreets/small_east,
 /turf/closed/indestructible/reinforced,
 /area/city/backstreets_room)
-"NS" = (
-/obj/effect/landmark/backstreetspawn,
-/turf/open/floor/plating/dirt/jungle/wasteland,
-/area/city/backstreets_alley)
 "Oj" = (
 /obj/structure/plaque/static_plaque{
 	name = "echo office plaque";
@@ -995,6 +974,10 @@
 	},
 /turf/open/floor/plating/ashplanet/rocky,
 /area/city/backstreets_alley)
+"Pp" = (
+/obj/effect/landmark/backstreetspawneast,
+/turf/open/floor/plating/dirt/jungle/wasteland,
+/area/city/backstreets_alley)
 "Qj" = (
 /obj/structure/flora/rock/pile,
 /obj/effect/turf_decal/weather/dirt{
@@ -1013,7 +996,7 @@
 /area/city/backstreets_alley)
 "QJ" = (
 /mob/living/simple_animal/hostile/clan/scout{
-	faction = list("resurgence_clan","hostile", neutral);
+	faction = list("resurgence_clan","hostile", "neutral");
 	can_protect = 1;
 	icon_state = "clan_scout_normal";
 	icon_living = "clan_scout_normal";
@@ -1063,7 +1046,7 @@
 	dir = 4
 	},
 /mob/living/simple_animal/hostile/clan/scout{
-	faction = list("resurgence_clan","hostile", neutral);
+	faction = list("resurgence_clan","hostile", "neutral");
 	can_protect = 1;
 	dir = 4;
 	icon_living = "clan_scout_normal";
@@ -1103,11 +1086,6 @@
 /obj/structure/flora/junglebush/c,
 /turf/open/floor/plating/ironsand,
 /area/city/backstreets_room/resurgence_village)
-"Ua" = (
-/obj/structure/flora/ausbushes/fullgrass,
-/obj/effect/landmark/backstreetspawn,
-/turf/open/floor/plating/ironsand,
-/area/city/backstreets_alley)
 "Up" = (
 /turf/open/floor/carpet/royalblack,
 /area/city/backstreets_room/resurgence_village)
@@ -1131,6 +1109,15 @@
 	},
 /turf/open/floor/plating/ashplanet/wateryrock,
 /area/city/backstreets_alley)
+"Wh" = (
+/obj/structure/flora/ausbushes/fullgrass,
+/obj/item/flashlight/lantern{
+	on = 1;
+	pixel_y = 16;
+	anchored = 1
+	},
+/turf/open/floor/plating/ironsand,
+/area/city/backstreets_room/resurgence_village)
 "Wq" = (
 /obj/effect/turf_decal/siding/wood/corner{
 	dir = 4
@@ -1151,6 +1138,14 @@
 /obj/effect/spawner/room/backstreets/medium_east,
 /turf/closed/indestructible/reinforced,
 /area/city/backstreets_room)
+"XY" = (
+/obj/item/flashlight/lantern{
+	on = 1;
+	pixel_y = 16;
+	anchored = 1
+	},
+/turf/open/floor/wood,
+/area/city/backstreets_room/resurgence_village)
 "Yt" = (
 /obj/effect/turf_decal/raven/seven,
 /obj/item/flashlight/lantern{
@@ -1167,6 +1162,11 @@
 "Zq" = (
 /obj/structure/flora/junglebush/large,
 /turf/open/floor/plating/dirt/jungle/wasteland,
+/area/city/backstreets_alley)
+"Zz" = (
+/obj/structure/flora/ausbushes/fullgrass,
+/obj/effect/landmark/backstreetspawn,
+/turf/open/floor/plating/ironsand,
 /area/city/backstreets_alley)
 
 (1,1,1) = {"
@@ -2178,7 +2178,7 @@ Jc
 Qu
 JN
 ku
-zb
+nd
 ku
 ku
 ku
@@ -2206,7 +2206,7 @@ ku
 ku
 ku
 ku
-Ab
+ij
 ku
 ku
 ku
@@ -2303,7 +2303,7 @@ ku
 ku
 ku
 ku
-zb
+nd
 ku
 ku
 ku
@@ -2994,7 +2994,7 @@ Jc
 ku
 ku
 ku
-zb
+nd
 ku
 Os
 Os
@@ -3398,7 +3398,7 @@ em
 Jc
 ku
 ku
-zb
+nd
 ku
 ku
 Os
@@ -3468,7 +3468,7 @@ ku
 pR
 ku
 pR
-Ew
+MV
 ku
 pR
 pR
@@ -3482,7 +3482,7 @@ pR
 pR
 pR
 pR
-Ew
+MV
 pR
 pR
 MQ
@@ -3670,7 +3670,7 @@ ku
 ku
 ku
 ku
-zb
+nd
 ku
 ku
 ku
@@ -4372,7 +4372,7 @@ Os
 Os
 pR
 pR
-Ew
+MV
 pR
 pR
 Jc
@@ -4619,7 +4619,7 @@ em
 Jc
 ku
 ku
-zb
+nd
 ku
 ku
 Jc
@@ -5212,7 +5212,7 @@ Os
 Os
 ku
 pR
-Ew
+MV
 ku
 ku
 Jc
@@ -5507,7 +5507,7 @@ em
 Jc
 Qu
 JN
-zb
+nd
 ku
 ku
 Jc
@@ -5594,7 +5594,7 @@ Os
 pR
 pR
 pR
-Ew
+MV
 pR
 Jc
 em
@@ -5972,7 +5972,7 @@ pR
 pR
 pR
 pR
-Ew
+MV
 pR
 pR
 pR
@@ -6326,7 +6326,7 @@ Os
 Os
 bH
 pR
-Ew
+MV
 pR
 pR
 pR
@@ -6467,7 +6467,7 @@ em
 Jc
 pR
 pR
-Ew
+MV
 pR
 pR
 pR
@@ -6954,7 +6954,7 @@ ku
 ku
 GE
 ku
-zb
+nd
 ku
 ku
 ku
@@ -7189,7 +7189,7 @@ ku
 ku
 ku
 ku
-Ew
+MV
 pR
 Jc
 em
@@ -8520,7 +8520,7 @@ Os
 Os
 qb
 pR
-hB
+aH
 pR
 pR
 Jc
@@ -8881,7 +8881,7 @@ pR
 pR
 pR
 pR
-hB
+aH
 pR
 pR
 pR
@@ -9021,7 +9021,7 @@ pR
 pR
 pR
 pR
-hB
+aH
 pR
 pR
 pR
@@ -9119,7 +9119,7 @@ pR
 pR
 pR
 pR
-hB
+aH
 pR
 pR
 pR
@@ -9315,7 +9315,7 @@ Jc
 co
 pR
 pR
-hB
+aH
 pR
 pR
 pR
@@ -9581,7 +9581,7 @@ Os
 Os
 pR
 pR
-hB
+aH
 pR
 pR
 pJ
@@ -9741,7 +9741,7 @@ em
 Jc
 MQ
 pR
-hB
+aH
 pR
 pR
 Jc
@@ -9869,7 +9869,7 @@ em
 Jc
 qb
 pR
-hB
+aH
 pR
 pR
 Jc
@@ -10758,7 +10758,7 @@ Jc
 pR
 pR
 pR
-hB
+aH
 pR
 pR
 pR
@@ -10991,7 +10991,7 @@ pR
 pR
 pR
 pR
-hB
+aH
 pR
 Jc
 em
@@ -11073,7 +11073,7 @@ pR
 pR
 pR
 pR
-hB
+aH
 pR
 pR
 Jc
@@ -11171,7 +11171,7 @@ pR
 pR
 pR
 pR
-hB
+aH
 pR
 pR
 pR
@@ -11234,7 +11234,7 @@ MQ
 pR
 pR
 pR
-Ua
+Zz
 pR
 pR
 pR
@@ -12452,7 +12452,7 @@ pR
 pR
 pR
 pR
-hB
+aH
 pR
 pR
 Os
@@ -12530,7 +12530,7 @@ pR
 pR
 pR
 pR
-hB
+aH
 pR
 pR
 pR
@@ -12612,7 +12612,7 @@ em
 Jc
 pR
 pR
-hB
+aH
 MQ
 Qu
 Jc
@@ -12740,7 +12740,7 @@ Qu
 MQ
 pR
 CG
-hB
+aH
 pR
 pR
 pR
@@ -13674,7 +13674,7 @@ Os
 pR
 pR
 pR
-Ua
+Zz
 pR
 pR
 pR
@@ -13765,7 +13765,7 @@ em
 Jc
 pR
 pR
-hB
+aH
 pR
 pR
 Jc
@@ -13800,7 +13800,7 @@ pR
 pR
 pR
 pR
-hB
+aH
 pR
 pR
 Jc
@@ -13852,7 +13852,7 @@ Cc
 Cc
 Cc
 LI
-fs
+XY
 Ih
 bl
 sQ
@@ -15083,7 +15083,7 @@ ku
 ku
 ku
 ku
-hB
+aH
 pR
 pR
 pR
@@ -15542,7 +15542,7 @@ Jc
 pR
 pR
 pR
-hB
+aH
 pR
 pR
 pR
@@ -15797,7 +15797,7 @@ pR
 pR
 pR
 pR
-NS
+aJ
 pR
 ku
 pR
@@ -15831,7 +15831,7 @@ em
 Jc
 pR
 CG
-hB
+aH
 pR
 pR
 Os
@@ -15952,7 +15952,7 @@ Os
 Os
 Os
 kM
-pK
+Wh
 Cc
 LT
 LI
@@ -16894,7 +16894,7 @@ em
 Jc
 pR
 pR
-hB
+aH
 pR
 pR
 Jc
@@ -16946,7 +16946,7 @@ ku
 ku
 ku
 ku
-NS
+aJ
 ku
 ku
 ku
@@ -17187,7 +17187,7 @@ ku
 ku
 ku
 ku
-NS
+aJ
 ku
 ku
 ku
@@ -17907,7 +17907,7 @@ Os
 XS
 pR
 pR
-hB
+aH
 pR
 pR
 Jc
@@ -17956,7 +17956,7 @@ ku
 ku
 ku
 ku
-NS
+aJ
 ku
 ku
 ku
@@ -17996,7 +17996,7 @@ Os
 Os
 pR
 pR
-hB
+aH
 pR
 pR
 Jc
@@ -19947,7 +19947,7 @@ Os
 Os
 pR
 pR
-hi
+ax
 pR
 pR
 Jc
@@ -20076,7 +20076,7 @@ Qu
 JN
 ku
 ku
-hB
+aH
 pR
 pR
 pR
@@ -20105,7 +20105,7 @@ em
 Jc
 qb
 pR
-hi
+ax
 pR
 pR
 Jc
@@ -20306,7 +20306,7 @@ Jc
 Jc
 pR
 pR
-hi
+ax
 pR
 pR
 Jc
@@ -20792,7 +20792,7 @@ Jc
 Jc
 qb
 pR
-hi
+ax
 pR
 pR
 pR
@@ -20835,7 +20835,7 @@ pR
 pR
 CG
 pR
-hi
+ax
 pR
 pR
 pR
@@ -20970,7 +20970,7 @@ CG
 pR
 pR
 pR
-hi
+ax
 pR
 pR
 pR
@@ -21094,7 +21094,7 @@ pR
 pR
 pR
 pR
-hi
+ax
 pR
 pR
 pR
@@ -21108,7 +21108,7 @@ pR
 pR
 pR
 pR
-Eh
+LL
 pR
 pR
 pR
@@ -21184,7 +21184,7 @@ Os
 yL
 pR
 pR
-hi
+ax
 pR
 pR
 pR
@@ -21850,7 +21850,7 @@ Os
 Os
 pR
 pR
-hi
+ax
 pR
 pR
 Jc
@@ -22095,7 +22095,7 @@ em
 Jc
 pR
 pR
-hi
+ax
 pR
 pR
 Jc
@@ -22737,7 +22737,7 @@ Os
 Os
 Os
 pR
-hi
+ax
 pR
 pR
 pR
@@ -23564,7 +23564,7 @@ Os
 Os
 pR
 pR
-hi
+ax
 pR
 pR
 Jc
@@ -24514,7 +24514,7 @@ pR
 pR
 pR
 pR
-hi
+ax
 pR
 pR
 pR
@@ -24524,7 +24524,7 @@ pR
 pR
 pR
 pR
-hi
+ax
 pR
 pR
 pR
@@ -24607,7 +24607,7 @@ ku
 ku
 ku
 ku
-aH
+Pp
 ku
 ku
 ku
@@ -24729,7 +24729,7 @@ ku
 ku
 ku
 ku
-hi
+ax
 ku
 pR
 pR
@@ -25526,7 +25526,7 @@ Jc
 pR
 pR
 pR
-hi
+ax
 pR
 Jc
 em
@@ -25605,7 +25605,7 @@ em
 em
 Jc
 ku
-aH
+Pp
 ku
 JN
 Qu
@@ -26099,7 +26099,7 @@ pR
 pR
 pR
 pR
-hi
+ax
 CG
 pR
 pR
@@ -26229,7 +26229,7 @@ ku
 ku
 ku
 ku
-aH
+Pp
 ku
 Jc
 em
@@ -27012,7 +27012,7 @@ ku
 ku
 ku
 ku
-aH
+Pp
 ku
 ku
 GE
@@ -28021,7 +28021,7 @@ em
 Jc
 ku
 ku
-aH
+Pp
 ku
 ku
 Jc
@@ -28714,7 +28714,7 @@ em
 Jc
 ku
 GE
-aH
+Pp
 ku
 ku
 ku
@@ -28839,7 +28839,7 @@ ku
 ku
 ku
 ku
-aH
+Pp
 ku
 ku
 ku
@@ -28865,7 +28865,7 @@ ku
 ku
 ku
 ku
-aH
+Pp
 ku
 ku
 ku
@@ -28965,7 +28965,7 @@ ku
 ku
 ku
 ku
-aH
+Pp
 ku
 ku
 ku
@@ -28986,7 +28986,7 @@ ku
 ku
 ku
 GE
-aH
+Pp
 ku
 ku
 ku
@@ -29005,7 +29005,7 @@ ku
 ku
 ku
 ku
-aH
+Pp
 ku
 ku
 ku
