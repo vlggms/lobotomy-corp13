@@ -1,13 +1,4 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
-"ar" = (
-/obj/structure/flora/ausbushes/fullgrass,
-/obj/item/flashlight/lantern{
-	on = 1;
-	pixel_y = 16;
-	anchored = 1
-	},
-/turf/open/floor/plating/ironsand,
-/area/city/backstreets_room/resurgence_village)
 "aH" = (
 /obj/effect/landmark/backstreetspawneast,
 /turf/open/floor/plating/dirt/jungle/wasteland,
@@ -27,6 +18,15 @@
 /obj/effect/spawner/room/backstreets/large_north,
 /turf/closed/indestructible/reinforced,
 /area/city/backstreets_room)
+"bU" = (
+/obj/structure/flora/ausbushes/fullgrass,
+/obj/item/flashlight/lantern{
+	on = 1;
+	pixel_y = 16;
+	anchored = 1
+	},
+/turf/open/floor/plating/ironsand,
+/area/city/backstreets_room/resurgence_village)
 "co" = (
 /obj/structure/flora/junglebush/c,
 /turf/open/floor/plating/ironsand,
@@ -96,7 +96,7 @@
 	question2 = "How did you gather these tapes?";
 	answers2 = list("I-I found them in thi-is room...", "They look-ed cool, so I-I took them.", "And looks like I-I was ri-ight, as you might wa-ant to buy the-em!");
 	greeting_line = "Hm... We-elcome cu-ustomer.";
-	selling_answer = list("Su-ure!","Here are the ta-ape that I have fo-or sale!", "Just ho-old some cash in yo-our ID, and I will te-ell you if you have enough.");
+	selling_answer = list("Su-ure!","Here are the ta-apes that I have fo-or sale!", "Just ho-old some cash in yo-our ID, and I will te-ell you if you have enough.");
 	buying_say = "Go-ood Deal!";
 	poor_say = "Aw... Looks li-ike you still need ";
 	sold_say = "So-old!";
@@ -121,10 +121,6 @@
 	},
 /turf/open/water/jungle,
 /area/city/backstreets_room/resurgence_village)
-"ej" = (
-/obj/effect/landmark/backstreetspawn,
-/turf/open/floor/plating/dirt/jungle/wasteland,
-/area/city/backstreets_alley)
 "em" = (
 /turf/closed/indestructible/rock,
 /area/space)
@@ -213,6 +209,11 @@
 	},
 /turf/open/floor/plating/ironsand,
 /area/city/backstreets_alley)
+"gs" = (
+/obj/structure/flora/ausbushes/fullgrass,
+/obj/effect/landmark/backstreetspawneast,
+/turf/open/floor/plating/ironsand,
+/area/city/backstreets_alley)
 "gy" = (
 /obj/structure/table/wood,
 /obj/item/taperecorder/empty,
@@ -242,6 +243,11 @@
 /area/city/backstreets_alley)
 "iD" = (
 /turf/open/floor/plating/ashplanet/wateryrock,
+/area/city/backstreets_alley)
+"iM" = (
+/obj/structure/flora/ausbushes/fullgrass,
+/obj/effect/landmark/backstreetspawn,
+/turf/open/floor/plating/ironsand,
 /area/city/backstreets_alley)
 "iU" = (
 /obj/effect/turf_decal/siding/wood{
@@ -467,10 +473,6 @@
 	},
 /turf/open/floor/plating/ironsand,
 /area/city/backstreets_room/resurgence_village)
-"rg" = (
-/obj/effect/landmark/backstreetspawn,
-/turf/open/floor/plating/ironsand,
-/area/city/backstreets_alley)
 "rh" = (
 /turf/open/water/jungle,
 /area/city/backstreets_room/resurgence_village)
@@ -514,15 +516,6 @@
 /obj/structure/fluff/paper,
 /turf/open/floor/wood,
 /area/city/backstreets_room/resurgence_village)
-"sB" = (
-/obj/effect/landmark/backstreetspawneast,
-/turf/open/floor/plating/ironsand,
-/area/city/backstreets_alley)
-"sC" = (
-/obj/structure/flora/ausbushes/fullgrass,
-/obj/effect/landmark/backstreetspawnwest,
-/turf/open/floor/plating/dirt/jungle/wasteland,
-/area/city/backstreets_alley)
 "sH" = (
 /mob/living/simple_animal/hostile/clan/scout{
 	faction = list("resurgence_clan","hostile", "neutral");
@@ -669,6 +662,10 @@
 "xf" = (
 /turf/closed/mineral/ash_rock,
 /area/city/backstreets_alley)
+"xn" = (
+/obj/effect/landmark/backstreetspawneast,
+/turf/open/floor/plating/ironsand,
+/area/city/backstreets_alley)
 "xq" = (
 /obj/item/flashlight/lantern{
 	on = 1;
@@ -703,11 +700,6 @@
 	},
 /turf/open/floor/plating/dirt/jungle/wasteland,
 /area/city/backstreets_room/resurgence_village)
-"zg" = (
-/obj/structure/flora/ausbushes/fullgrass,
-/obj/effect/landmark/backstreetspawneast,
-/turf/open/floor/plating/ironsand,
-/area/city/backstreets_alley)
 "Aa" = (
 /obj/structure/mineral_door/wood,
 /turf/open/floor/wood,
@@ -786,23 +778,10 @@
 	},
 /turf/open/floor/plating/ironsand,
 /area/city/backstreets_room/resurgence_village)
-"Gu" = (
-/obj/structure/flora/ausbushes/fullgrass,
-/obj/effect/landmark/backstreetspawn,
-/turf/open/floor/plating/ironsand,
-/area/city/backstreets_alley)
 "GE" = (
 /obj/structure/flora/ausbushes/fullgrass,
 /turf/open/floor/plating/dirt/jungle/wasteland,
 /area/city/backstreets_alley)
-"GV" = (
-/obj/item/flashlight/lantern{
-	on = 1;
-	pixel_y = 16;
-	anchored = 1
-	},
-/turf/open/floor/wood,
-/area/city/backstreets_room/resurgence_village)
 "GY" = (
 /obj/item/flashlight/lantern{
 	on = 1;
@@ -820,7 +799,7 @@
 	question2 = "Why are you not attacking me?";
 	question3 = "Why do you sound so strange?";
 	answers1 = list("Emote: sighs", "I am Dion, O-one of the Defenders a-at this outpost.", "Just sta-anding around he-ere, making sure everyone is sa-afe.");
-	answers2 = list("Oh, Yo-ou are o-one of the ne-ew humans around here...", "Talk wi-ith our Comander, They shou-uld be to the ri-ight of me.", "They will be a-able to e-explain some things...");
+	answers2 = list("Oh, Yo-ou are o-one of the ne-ew humans around here...", "Talk wi-ith our Comander, They shou-uld be to the ri-ight of me.", They will be a-able to e-explain some things...);
 	answers3 = list("Oh we-ell, I guess you can sa-ay that I am not there yet...", "It ta-akes a whi-ile to get a upgraded vo-oice box, so o-only the closest followers of o-our Elders get them.", "Hopefu-uly that time wi-ill come one day. But fo-or now I just nee-ed to work for i-it.");
 	icon_living = "defender_normal";
 	icon_state = "defender_normal";
@@ -834,6 +813,10 @@
 /area/city/backstreets_room/resurgence_village)
 "Jc" = (
 /turf/closed/indestructible/rock,
+/area/city/backstreets_alley)
+"Jf" = (
+/obj/effect/landmark/backstreetspawnwest,
+/turf/open/floor/plating/ironsand,
 /area/city/backstreets_alley)
 "Jp" = (
 /mob/living/simple_animal/hostile/clan/scout{
@@ -933,7 +916,10 @@
 	cost_2 = 1000;
 	selling_end = "Go-ot it, We-e are always o-open if you need a-anything!";
 	return_to_origin = 1;
-	city_faction = 0
+	city_faction = 0;
+	level_1 = list(/obj/item/food/meat/slab/robot);
+	level_2 = list();
+	level_3 = list(/obj/item/raw_anomaly_core)
 	},
 /obj/effect/turf_decal/siding/wood{
 	color = "#2e1f0e";
@@ -961,10 +947,19 @@
 /obj/structure/flora/rock/jungle,
 /turf/open/floor/plating/ironsand,
 /area/city/backstreets_alley)
+"Nc" = (
+/obj/effect/landmark/backstreetspawnwest,
+/turf/open/floor/plating/dirt/jungle/wasteland,
+/area/city/backstreets_alley)
 "NC" = (
 /obj/effect/spawner/room/backstreets/large_south,
 /turf/closed/indestructible/reinforced,
 /area/city/backstreets_room)
+"NE" = (
+/obj/structure/flora/ausbushes/fullgrass,
+/obj/effect/landmark/backstreetspawnwest,
+/turf/open/floor/plating/dirt/jungle/wasteland,
+/area/city/backstreets_alley)
 "NJ" = (
 /obj/effect/spawner/room/backstreets/small_east,
 /turf/closed/indestructible/reinforced,
@@ -1012,6 +1007,10 @@
 	dir = 10
 	},
 /turf/open/floor/plating/ashplanet/rocky,
+/area/city/backstreets_alley)
+"PW" = (
+/obj/effect/landmark/backstreetspawn,
+/turf/open/floor/plating/dirt/jungle/wasteland,
 /area/city/backstreets_alley)
 "Qj" = (
 /obj/structure/flora/rock/pile,
@@ -1064,6 +1063,14 @@
 /obj/item/stack/rods/ten,
 /turf/open/floor/plating/ironsand,
 /area/city/backstreets_room/resurgence_village)
+"Rd" = (
+/obj/item/flashlight/lantern{
+	on = 1;
+	pixel_y = 16;
+	anchored = 1
+	},
+/turf/open/floor/wood,
+/area/city/backstreets_room/resurgence_village)
 "Rv" = (
 /obj/effect/turf_decal/siding/wood{
 	dir = 8
@@ -1100,6 +1107,10 @@
 /obj/structure/lootcrate/syndicate,
 /turf/open/floor/plating/ashplanet/rocky,
 /area/city/backstreets_alley)
+"Sa" = (
+/obj/effect/landmark/backstreetspawn,
+/turf/open/floor/plating/ironsand,
+/area/city/backstreets_alley)
 "Si" = (
 /obj/effect/spawner/room/backstreets/connector,
 /turf/closed/indestructible/reinforced,
@@ -1113,10 +1124,6 @@
 /obj/effect/landmark/cratespawn,
 /turf/open/floor/wood,
 /area/city/backstreets_room/resurgence_village)
-"Ss" = (
-/obj/effect/landmark/backstreetspawnwest,
-/turf/open/floor/plating/ironsand,
-/area/city/backstreets_alley)
 "Tb" = (
 /obj/effect/turf_decal/raven/seven,
 /turf/open/water/jungle,
@@ -1168,10 +1175,6 @@
 /obj/effect/spawner/room/backstreets/medium_east,
 /turf/closed/indestructible/reinforced,
 /area/city/backstreets_room)
-"XY" = (
-/obj/effect/landmark/backstreetspawnwest,
-/turf/open/floor/plating/dirt/jungle/wasteland,
-/area/city/backstreets_alley)
 "Yt" = (
 /obj/effect/turf_decal/raven/seven,
 /obj/item/flashlight/lantern{
@@ -2199,7 +2202,7 @@ Jc
 Qu
 JN
 ku
-XY
+Nc
 ku
 ku
 ku
@@ -2227,7 +2230,7 @@ ku
 ku
 ku
 ku
-sC
+NE
 ku
 ku
 ku
@@ -2324,7 +2327,7 @@ ku
 ku
 ku
 ku
-XY
+Nc
 ku
 ku
 ku
@@ -3015,7 +3018,7 @@ Jc
 ku
 ku
 ku
-XY
+Nc
 ku
 Os
 Os
@@ -3419,7 +3422,7 @@ em
 Jc
 ku
 ku
-XY
+Nc
 ku
 ku
 Os
@@ -3489,7 +3492,7 @@ ku
 pR
 ku
 pR
-Ss
+Jf
 ku
 pR
 pR
@@ -3503,7 +3506,7 @@ pR
 pR
 pR
 pR
-Ss
+Jf
 pR
 pR
 MQ
@@ -3691,7 +3694,7 @@ ku
 ku
 ku
 ku
-XY
+Nc
 ku
 ku
 ku
@@ -4393,7 +4396,7 @@ Os
 Os
 pR
 pR
-Ss
+Jf
 pR
 pR
 Jc
@@ -4640,7 +4643,7 @@ em
 Jc
 ku
 ku
-XY
+Nc
 ku
 ku
 Jc
@@ -5233,7 +5236,7 @@ Os
 Os
 ku
 pR
-Ss
+Jf
 ku
 ku
 Jc
@@ -5528,7 +5531,7 @@ em
 Jc
 Qu
 JN
-XY
+Nc
 ku
 ku
 Jc
@@ -5615,7 +5618,7 @@ Os
 pR
 pR
 pR
-Ss
+Jf
 pR
 Jc
 em
@@ -5993,7 +5996,7 @@ pR
 pR
 pR
 pR
-Ss
+Jf
 pR
 pR
 pR
@@ -6347,7 +6350,7 @@ Os
 Os
 bH
 pR
-Ss
+Jf
 pR
 pR
 pR
@@ -6488,7 +6491,7 @@ em
 Jc
 pR
 pR
-Ss
+Jf
 pR
 pR
 pR
@@ -6975,7 +6978,7 @@ ku
 ku
 GE
 ku
-XY
+Nc
 ku
 ku
 ku
@@ -7210,7 +7213,7 @@ ku
 ku
 ku
 ku
-Ss
+Jf
 pR
 Jc
 em
@@ -8541,7 +8544,7 @@ Os
 Os
 qb
 pR
-rg
+Sa
 pR
 pR
 Jc
@@ -8902,7 +8905,7 @@ pR
 pR
 pR
 pR
-rg
+Sa
 pR
 pR
 pR
@@ -9042,7 +9045,7 @@ pR
 pR
 pR
 pR
-rg
+Sa
 pR
 pR
 pR
@@ -9140,7 +9143,7 @@ pR
 pR
 pR
 pR
-rg
+Sa
 pR
 pR
 pR
@@ -9336,7 +9339,7 @@ Jc
 co
 pR
 pR
-rg
+Sa
 pR
 pR
 pR
@@ -9602,7 +9605,7 @@ Os
 Os
 pR
 pR
-rg
+Sa
 pR
 pR
 pJ
@@ -9762,7 +9765,7 @@ em
 Jc
 MQ
 pR
-rg
+Sa
 pR
 pR
 Jc
@@ -9890,7 +9893,7 @@ em
 Jc
 qb
 pR
-rg
+Sa
 pR
 pR
 Jc
@@ -10779,7 +10782,7 @@ Jc
 pR
 pR
 pR
-rg
+Sa
 pR
 pR
 pR
@@ -11012,7 +11015,7 @@ pR
 pR
 pR
 pR
-rg
+Sa
 pR
 Jc
 em
@@ -11094,7 +11097,7 @@ pR
 pR
 pR
 pR
-rg
+Sa
 pR
 pR
 Jc
@@ -11192,7 +11195,7 @@ pR
 pR
 pR
 pR
-rg
+Sa
 pR
 pR
 pR
@@ -11255,7 +11258,7 @@ MQ
 pR
 pR
 pR
-Gu
+iM
 pR
 pR
 pR
@@ -12473,7 +12476,7 @@ pR
 pR
 pR
 pR
-rg
+Sa
 pR
 pR
 Os
@@ -12551,7 +12554,7 @@ pR
 pR
 pR
 pR
-rg
+Sa
 pR
 pR
 pR
@@ -12633,7 +12636,7 @@ em
 Jc
 pR
 pR
-rg
+Sa
 MQ
 Qu
 Jc
@@ -12761,7 +12764,7 @@ Qu
 MQ
 pR
 CG
-rg
+Sa
 pR
 pR
 pR
@@ -13695,7 +13698,7 @@ Os
 pR
 pR
 pR
-Gu
+iM
 pR
 pR
 pR
@@ -13786,7 +13789,7 @@ em
 Jc
 pR
 pR
-rg
+Sa
 pR
 pR
 Jc
@@ -13821,7 +13824,7 @@ pR
 pR
 pR
 pR
-rg
+Sa
 pR
 pR
 Jc
@@ -13873,7 +13876,7 @@ Cc
 Cc
 Cc
 LI
-GV
+Rd
 Ih
 bl
 sQ
@@ -15104,7 +15107,7 @@ ku
 ku
 ku
 ku
-rg
+Sa
 pR
 pR
 pR
@@ -15563,7 +15566,7 @@ Jc
 pR
 pR
 pR
-rg
+Sa
 pR
 pR
 pR
@@ -15818,7 +15821,7 @@ pR
 pR
 pR
 pR
-ej
+PW
 pR
 ku
 pR
@@ -15852,7 +15855,7 @@ em
 Jc
 pR
 CG
-rg
+Sa
 pR
 pR
 Os
@@ -15973,7 +15976,7 @@ Os
 Os
 Os
 kM
-ar
+bU
 Cc
 LT
 LI
@@ -16915,7 +16918,7 @@ em
 Jc
 pR
 pR
-rg
+Sa
 pR
 pR
 Jc
@@ -16967,7 +16970,7 @@ ku
 ku
 ku
 ku
-ej
+PW
 ku
 ku
 ku
@@ -17208,7 +17211,7 @@ ku
 ku
 ku
 ku
-ej
+PW
 ku
 ku
 ku
@@ -17928,7 +17931,7 @@ Os
 XS
 pR
 pR
-rg
+Sa
 pR
 pR
 Jc
@@ -17977,7 +17980,7 @@ ku
 ku
 ku
 ku
-ej
+PW
 ku
 ku
 ku
@@ -18017,7 +18020,7 @@ Os
 Os
 pR
 pR
-rg
+Sa
 pR
 pR
 Jc
@@ -19968,7 +19971,7 @@ Os
 Os
 pR
 pR
-sB
+xn
 pR
 pR
 Jc
@@ -20097,7 +20100,7 @@ Qu
 JN
 ku
 ku
-rg
+Sa
 pR
 pR
 pR
@@ -20126,7 +20129,7 @@ em
 Jc
 qb
 pR
-sB
+xn
 pR
 pR
 Jc
@@ -20327,7 +20330,7 @@ Jc
 Jc
 pR
 pR
-sB
+xn
 pR
 pR
 Jc
@@ -20813,7 +20816,7 @@ Jc
 Jc
 qb
 pR
-sB
+xn
 pR
 pR
 pR
@@ -20856,7 +20859,7 @@ pR
 pR
 CG
 pR
-sB
+xn
 pR
 pR
 pR
@@ -20991,7 +20994,7 @@ CG
 pR
 pR
 pR
-sB
+xn
 pR
 pR
 pR
@@ -21115,7 +21118,7 @@ pR
 pR
 pR
 pR
-sB
+xn
 pR
 pR
 pR
@@ -21129,7 +21132,7 @@ pR
 pR
 pR
 pR
-zg
+gs
 pR
 pR
 pR
@@ -21205,7 +21208,7 @@ Os
 yL
 pR
 pR
-sB
+xn
 pR
 pR
 pR
@@ -21871,7 +21874,7 @@ Os
 Os
 pR
 pR
-sB
+xn
 pR
 pR
 Jc
@@ -22116,7 +22119,7 @@ em
 Jc
 pR
 pR
-sB
+xn
 pR
 pR
 Jc
@@ -22758,7 +22761,7 @@ Os
 Os
 Os
 pR
-sB
+xn
 pR
 pR
 pR
@@ -23585,7 +23588,7 @@ Os
 Os
 pR
 pR
-sB
+xn
 pR
 pR
 Jc
@@ -24535,7 +24538,7 @@ pR
 pR
 pR
 pR
-sB
+xn
 pR
 pR
 pR
@@ -24545,7 +24548,7 @@ pR
 pR
 pR
 pR
-sB
+xn
 pR
 pR
 pR
@@ -24750,7 +24753,7 @@ ku
 ku
 ku
 ku
-sB
+xn
 ku
 pR
 pR
@@ -25547,7 +25550,7 @@ Jc
 pR
 pR
 pR
-sB
+xn
 pR
 Jc
 em
@@ -26120,7 +26123,7 @@ pR
 pR
 pR
 pR
-sB
+xn
 CG
 pR
 pR
