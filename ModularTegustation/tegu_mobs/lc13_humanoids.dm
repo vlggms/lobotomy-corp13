@@ -45,7 +45,7 @@ Skittish, they prefer to move in groups and will run away if the enemies are in 
 	attack_verb_simple = "slice"
 	del_on_death = TRUE
 	retreat_distance = 0
-	butcher_results = list(/obj/item/food/meat/slab/human = 1)
+	butcher_results = list(/obj/item/food/meat/slab/human = 1, /obj/item/stack/spacecash/c10 = 1)
 	silk_results = list(/obj/item/stack/sheet/silk/human_simple = 1)
 	var/retreat_distance_default = 0
 
@@ -70,7 +70,7 @@ Skittish, they prefer to move in groups and will run away if the enemies are in 
 
 /mob/living/simple_animal/hostile/humanoid/rat/Initialize()
 	. = ..()
-	if(SSmaptype.maptype == "fixers" || SSmaptype.maptype == "city")
+	if(SSmaptype.maptype in SSmaptype.citymaps)
 		del_on_death = FALSE
 
 //Knife - The leader, has a pathetically weak dash, attacks fast
