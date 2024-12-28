@@ -176,6 +176,7 @@ GLOBAL_LIST_EMPTY(marked_players)
 	var/sold_say = "Sold!"
 	var/poor_say = "Aw... Looks like you still need "
 	var/selling_end = "Got it, We are always open if you need anything!"
+	var/no_cash = "Oh... Yo-ou are holding no cash..."
 
 	//Vars that effect what the trader is selling
 	var/can_sell = TRUE
@@ -322,12 +323,16 @@ GLOBAL_LIST_EMPTY(marked_players)
 
 /mob/living/simple_animal/hostile/clan_npc/info/trader/proc/SellingItem(obj/item/O, var/price, mob/living/carbon/M)
 	var/sold_item = O
-	var/obj/item/holochip/C = M.is_holding_item_of_type(/obj/item/holochip)
-	if(C && istype(C))
-		var/credits = C.get_item_credit_value()
-		var/amount = C.spend(price)
-		if (amount > 0)
-			new sold_item (get_turf(M))
-			say(sold_say)
-		else
-			say(poor_say + "[(price - credits)] more ahn...")
+	var/held_cash = M.is_holding_item_of_type(/obj/item/holochip)
+	if(held_cash)
+		var/obj/item/holochip/C = held_cash
+		if(C && istype(C))
+			var/credits = C.get_item_credit_value()
+			var/amount = C.spend(price)
+			if (amount > 0)
+				new sold_item (get_turf(M))
+				say(sold_say)
+			else
+				say(poor_say + "[(price - credits)] more ahn...")
+	else
+		say(no_cash)
