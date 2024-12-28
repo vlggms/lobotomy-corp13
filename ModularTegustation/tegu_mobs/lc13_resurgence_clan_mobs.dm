@@ -110,6 +110,7 @@
 
 /mob/living/simple_animal/hostile/clan/attack_hand(mob/living/carbon/M)
 	if(wants_to_talk)
+		dir = get_dir(src, M)
 		if(!stat && M.a_intent == INTENT_HELP && !client && can_protect && CanTalk())
 			if (last_greeting_cooldown < world.time - greeting_cooldown)
 				say(greeting_line)
@@ -414,6 +415,7 @@
 	retreat_distance = 1
 	minimum_distance = 2
 	move_to_delay = 2
+	attacked_line = "WA-ARNING, THRE-EAT DETECTE-ED!!!"
 	var/overheal_threshold = 0.2
 	var/heal_per_charge = 25
 	var/healing_range = 6
@@ -575,6 +577,16 @@
 		if (C.charge < C.max_charge)
 			C.GainCharge()
 	return
+
+/mob/living/simple_animal/hostile/clan/drone/village
+	icon_state = "clan_drone_normal"
+	icon_living = "clan_drone_normal"
+	can_protect = TRUE
+	return_to_origin = TRUE
+
+/mob/living/simple_animal/hostile/clan/drone/village/Initialize()
+	. = ..()
+	faction = list("resurgence_clan")
 
 /obj/item/book/granter/crafting_recipe/clan_drone
 	name = "Tinkerer's Blueprints: Reforged Drone"

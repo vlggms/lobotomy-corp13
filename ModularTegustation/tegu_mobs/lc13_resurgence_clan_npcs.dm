@@ -123,6 +123,7 @@ GLOBAL_LIST_EMPTY(marked_players)
 
 /mob/living/simple_animal/hostile/clan_npc/info/attack_hand(mob/living/carbon/M)
 	if(!stat && M.a_intent == INTENT_HELP && !client && CanTalk())
+		dir = get_dir(src, M)
 		if (last_greeting_cooldown < world.time - greeting_cooldown)
 			say(greeting_line)
 			last_greeting_cooldown = world.time
@@ -210,6 +211,7 @@ GLOBAL_LIST_EMPTY(marked_players)
 
 /mob/living/simple_animal/hostile/clan_npc/info/trader/attack_hand(mob/living/carbon/M)
 	if(!stat && M.a_intent == INTENT_HELP && !client && CanTalk())
+		dir = get_dir(src, M)
 		speaking = TRUE
 		if (!trading)
 			if (last_greeting_cooldown < world.time - greeting_cooldown)

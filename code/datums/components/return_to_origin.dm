@@ -19,6 +19,7 @@
 	// patrol back
 	if (!parent_hostile.target)
 		if (get_turf(parent_hostile) != origin)
-				parent_hostile.patrol_to(origin)
+			parent_hostile.patrol_to(origin)
 		else
 			parent_hostile.dir = original_dir
+	addtimer(CALLBACK(src, PROC_REF(ParentLostTarget)), 50)
