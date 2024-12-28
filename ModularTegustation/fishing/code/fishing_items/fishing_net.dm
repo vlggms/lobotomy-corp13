@@ -144,7 +144,7 @@
 	icon_state_fished = "trawling_net_bait_full"
 	debris = list(/obj/item/fishing_net/baited = 1)
 	net_type = /obj/item/fishing_net/baited
-	fishin_cooldown = 15 SECONDS	//Slower.
+	fishin_cooldown = 15 SECONDS
 	fishin_power = 1.4
 	enemy_chance = 30
 
