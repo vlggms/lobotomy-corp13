@@ -97,9 +97,15 @@ GLOBAL_LIST_EMPTY(marked_players)
 /mob/living/simple_animal/hostile/clan_npc/attackby(obj/item/O, mob/user, params)
 	. = ..()
 	if(mark_once_attacked)
-		if (!(user in GLOB.marked_players ))
-			GLOB.marked_players += user
-			say(attacked_line)
+		if(ishuman(user))
+			if (O.force > 0)
+				if (!(user in GLOB.marked_players ))
+					GLOB.marked_players += user
+					say(attacked_line)
+		else
+			if (!(user in GLOB.marked_players ))
+				GLOB.marked_players += user
+				say(attacked_line)
 
 /mob/living/simple_animal/hostile/clan_npc/info
 	name = "Talkative Citzen?"
@@ -111,7 +117,7 @@ GLOBAL_LIST_EMPTY(marked_players)
 	var/list/answers3 = list("The-e clan is just one of ma-any villages in the O-outskirts...", "All of the me-embers of the clan are ma-achines...", "Like me...", "Delay: 20", "One day, We-e dream to be hu-uman...", "Just li-ike you, We ju-ust need to learn mo-ore...")
 	var/default_delay = 30
 	var/speaking = FALSE
-	var/greeting_cooldown = 20 SECONDS
+	var/greeting_cooldown = 45 SECONDS
 	var/last_greeting_cooldown = 0
 	var/greeting_line = "Oh! He-ello Huma-an!"
 
@@ -294,11 +300,13 @@ GLOBAL_LIST_EMPTY(marked_players)
 				to_chat(user, span_notice("You show [src] your [S]..."))
 				playsound(O, "rustle", 50, TRUE, -5)
 				if (successful_sale == TRUE)
+					playsound(get_turf(src), 'sound/effects/cashregister.ogg', 35, 3, 3)
 					say(buying_say)
 					successful_sale = FALSE
 				return TRUE
 			ManageSales(O, user)
 			if (successful_sale == TRUE)
+				playsound(get_turf(src), 'sound/effects/cashregister.ogg', 35, 3, 3)
 				say(buying_say)
 				successful_sale = FALSE
 			return
@@ -333,6 +341,7 @@ GLOBAL_LIST_EMPTY(marked_players)
 			if (amount > 0)
 				new sold_item (get_turf(M))
 				say(sold_say)
+				playsound(get_turf(src), 'sound/effects/cashregister.ogg', 35, 3, 3)
 			else
 				say(poor_say + "[(price - credits)] more ahn...")
 	else

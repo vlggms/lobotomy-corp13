@@ -95,9 +95,16 @@
 
 /mob/living/simple_animal/hostile/clan/attackby(obj/item/O, mob/user, params)
 	. = ..()
-	if (!(user in GLOB.marked_players) && can_protect)
-		GLOB.marked_players += user
-		say(attacked_line)
+	if (can_protect)
+		if(ishuman(user))
+			if (O.force > 0)
+				if (!(user in GLOB.marked_players ))
+					GLOB.marked_players += user
+					say(attacked_line)
+		else
+			if (!(user in GLOB.marked_players ))
+				GLOB.marked_players += user
+				say(attacked_line)
 
 //Npc Stuff
 /mob/living/simple_animal/hostile/clan/examine(mob/user)
