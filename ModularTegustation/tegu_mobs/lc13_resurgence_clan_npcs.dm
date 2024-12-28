@@ -37,6 +37,7 @@ GLOBAL_LIST_EMPTY(marked_players)
 	silk_results = list(/obj/item/stack/sheet/silk/azure_simple = 1)
 	var/attacked_line = "Wha-at are you do-oing... GE-ET AWAY!"
 	var/mark_once_attacked = TRUE
+	density = FALSE
 
 /mob/living/simple_animal/hostile/clan_npc/Initialize()
 	. = ..()
