@@ -557,6 +557,27 @@
 /area/city/backstreets_room/resurgence_village)
 "Iq" = (
 /obj/structure/chair/wood,
+/mob/living/simple_animal/hostile/clan_npc/info/trader{
+	icon_state = "clan_citzen_3";
+	icon_living = "clan_citzen_3";
+	answers1 = list("Well, Yo-ou may call me Lavan.","Right now I am just resting he-ere, but I do have some tapes fo-or sale!");
+	question2 = "How did you gather these tapes?";
+	answers2 = list("I-I found them in thi-is room...", "They look-ed cool, so I-I took them.", "And looks like I-I was ri-ight, as you might wa-ant to buy the-em!");
+	greeting_line = "Hm... We-elcome cu-ustomer.";
+	selling_answer = list("Su-ure!","Here are the ta-ape that I have fo-or sale!", "Just ho-old some cash in yo-our ID, and I will te-ell you if you have enough.");
+	buying_say = "Go-ood Deal!";
+	poor_say = "Aw... Looks li-ike you still need ";
+	sold_say = "So-old!";
+	selling_item_1 = /obj/item/tape/resurgence/gateway;
+	selling_item_1_name = "Tinkerer's Logs: New Invention (200 ahn)";
+	selling_item_2_name = "Historians Podcast: Backstage Records (200 ahn)";
+	selling_item_2 = /obj/item/tape/resurgence/backstage;
+	cost_1 = 200;
+	selling_end = "Go-ot it, I-if you need a-anything, I will be-e right here!";
+	return_to_origin = 1;
+	city_faction = 0;
+	can_buy = 0
+	},
 /turf/open/floor/wood,
 /area/city/backstreets_room/resurgence_village)
 "IB" = (
@@ -797,7 +818,7 @@
 	question2 = "Why are you not attacking me?";
 	question3 = "Why do you sound so strange?";
 	answers1 = list("Emote: sighs", "I am Dion, O-one of the Defenders a-at this outpost.", "Just sta-anding around he-ere, making sure everyone is sa-afe.");
-	answers2 = list("Oh, Yo-ou are o-one of the ne-ew humans around here...", "Talk wi-ith our Comander, They shou-uld be to the ri-ight of me.", "They will be a-able to e-explain some things...");
+	answers2 = list("Oh, Yo-ou are o-one of the ne-ew humans around here...", "Talk wi-ith our Comander, They shou-uld be to the ri-ight of me.", They will be a-able to e-explain some things...);
 	answers3 = list("Oh we-ell, I guess you can sa-ay that I am not there yet...", "It ta-akes a whi-ile to get a upgraded vo-oice box, so o-only the closest followers of o-our Elders get them.", "Hopefu-uly that time wi-ill come one day. But fo-or now I just nee-ed to work for i-it.");
 	icon_living = "defender_normal";
 	icon_state = "defender_normal";
