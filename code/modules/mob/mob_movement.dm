@@ -191,8 +191,11 @@
 	var/mob/living/L = mob
 	switch(L.incorporeal_move)
 		if(INCORPOREAL_MOVE_BASIC)
-			var/T = get_step(L,direct)
+			var/turf/T = get_step(L,direct)
 			if(T)
+				if(T.turf_flags & NO_BASIC_INCORP_MOVE)
+					to_chat(L, span_warning("Can't move there."))
+					return
 				L.forceMove(T)
 			L.setDir(direct)
 		if(INCORPOREAL_MOVE_SHADOW)
