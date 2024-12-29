@@ -113,6 +113,8 @@
 	var/secret_icon_state
 	/// An icon state assigned when an abnormality is alive
 	var/secret_icon_living
+	// An icon state assigned when an abnormality gets suppressed in its secret form
+	var/secret_icon_dead
 	/// An icon file assigned to the abnormality in its secret form, usually should not be needed to change
 	var/secret_icon_file
 
@@ -189,6 +191,9 @@
 
 	if(secret_vertical_offset)
 		base_pixel_y = secret_vertical_offset
+
+	if(secret_icon_dead)
+		icon_dead = secret_icon_dead
 
 /mob/living/simple_animal/hostile/abnormality/Destroy()
 	SHOULD_CALL_PARENT(TRUE)
@@ -494,6 +499,8 @@
 	toggle_ai(AI_ON) // Run.
 	status_flags &= ~GODMODE
 	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_ABNORMALITY_BREACH, src)
+	if(istype(datum_reference))
+		deadchat_broadcast(" has breached containment.", "<b>[src.name]</b>", src, get_turf(src))
 	FearEffect()
 	return TRUE
 

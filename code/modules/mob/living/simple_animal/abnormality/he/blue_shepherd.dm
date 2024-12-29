@@ -205,12 +205,12 @@
 		hired = FALSE
 	return ..()
 
-/mob/living/simple_animal/hostile/abnormality/blue_shepherd/AttackingTarget()
+/mob/living/simple_animal/hostile/abnormality/blue_shepherd/AttackingTarget(atom/attacked_target)
 	. = ..()
 	if(client)
 		switch(chosen_attack)
 			if(1)
-				if(isliving(target))
+				if(isliving(attacked_target))
 					slash_current-=1
 				return OpenFire()
 			if(2)
@@ -224,7 +224,7 @@
 		slashing = TRUE
 		slash()
 	if(awakened_buddy)
-		awakened_buddy.GiveTarget(target)
+		awakened_buddy.GiveTarget(attacked_target)
 
 /mob/living/simple_animal/hostile/abnormality/blue_shepherd/OpenFire()
 	if(slash_current == 0)

@@ -94,6 +94,13 @@
 	},
 /turf/open/floor/plasteel/cult,
 /area/city/backstreets_room)
+"rS" = (
+/obj/structure/closet/crate/large,
+/obj/item/stack/spacecash/c200,
+/obj/item/stack/spacecash/c100,
+/obj/item/stack/spacecash/c100,
+/turf/open/floor/plasteel/cult,
+/area/city/backstreets_room)
 "us" = (
 /obj/structure/chair/pew/right{
 	dir = 1
@@ -212,7 +219,37 @@
 /turf/open/floor/plasteel/cult,
 /area/city/backstreets_room)
 "EQ" = (
-/obj/machinery/door/airlock/cult/friendly,
+/obj/machinery/door/airlock/cult/friendly{
+	max_integrity = 100000;
+	normal_integrity = 100000;
+	desc = "A bit too sturdy...";
+	name = "strange cult airlock";
+	req_access_txt = "19"
+	},
+/turf/open/floor/plasteel/cult,
+/area/city/backstreets_room)
+"ER" = (
+/obj/structure/closet/crate/large,
+/obj/item/stack/sheet/silk/indigo_simple,
+/obj/item/stack/sheet/silk/indigo_simple,
+/obj/item/stack/sheet/silk/indigo_simple,
+/obj/item/stack/sheet/silk/indigo_simple,
+/obj/item/stack/sheet/silk/indigo_simple,
+/obj/item/stack/sheet/silk/indigo_simple,
+/obj/item/stack/sheet/silk/indigo_simple,
+/obj/item/stack/sheet/silk/indigo_simple,
+/obj/item/stack/sheet/silk/indigo_simple,
+/obj/item/stack/sheet/silk/indigo_advanced,
+/obj/item/stack/sheet/silk/indigo_advanced,
+/obj/item/stack/sheet/silk/indigo_advanced,
+/obj/item/stack/sheet/silk/indigo_advanced,
+/obj/item/stack/sheet/silk/indigo_advanced,
+/obj/item/stack/sheet/silk/indigo_simple,
+/obj/item/stack/sheet/silk/indigo_simple,
+/obj/item/stack/sheet/silk/indigo_simple,
+/obj/item/stack/sheet/silk/indigo_simple,
+/obj/item/stack/sheet/silk/indigo_simple,
+/obj/item/stack/sheet/silk/indigo_simple,
 /turf/open/floor/plasteel/cult,
 /area/city/backstreets_room)
 "EW" = (
@@ -399,6 +436,18 @@
 	},
 /turf/open/floor/carpet/black,
 /area/city/backstreets_room)
+"SJ" = (
+/obj/structure/closet/crate/large,
+/obj/item/stack/spacecash/c200,
+/obj/item/stack/spacecash/c200,
+/obj/item/stack/spacecash/c200,
+/obj/item/stack/spacecash/c200,
+/obj/item/stack/spacecash/c200,
+/obj/item/stack/spacecash/c200,
+/obj/item/stack/spacecash/c100,
+/obj/item/stack/spacecash/c100,
+/turf/open/floor/plasteel/cult,
+/area/city/backstreets_room)
 "SY" = (
 /obj/effect/turf_decal/siding/thinplating/dark{
 	dir = 10
@@ -444,6 +493,16 @@
 /obj/structure/table/wood/fancy/black,
 /obj/effect/spawner/lootdrop/gloves,
 /turf/open/indestructible/necropolis/air,
+/area/city/backstreets_room)
+"VX" = (
+/obj/structure/closet/crate/large,
+/obj/item/stack/spacecash/c200,
+/obj/item/stack/spacecash/c200,
+/obj/item/stack/spacecash/c200,
+/obj/item/stack/spacecash/c200,
+/obj/item/stack/spacecash/c100,
+/obj/item/stack/spacecash/c100,
+/turf/open/floor/plasteel/cult,
 /area/city/backstreets_room)
 "Wh" = (
 /obj/structure/sacrificealtar,
@@ -562,8 +621,8 @@ EP
 EP
 EP
 An
-EP
-EP
+SJ
+VX
 An
 "}
 (4,1,1) = {"
@@ -606,8 +665,8 @@ Qj
 EP
 wd
 An
-EP
-EP
+ER
+rS
 An
 "}
 (6,1,1) = {"

@@ -109,12 +109,12 @@
 			return FALSE
 	return ..()
 
-/mob/living/simple_animal/hostile/abnormality/clown/AttackingTarget()
+/mob/living/simple_animal/hostile/abnormality/clown/AttackingTarget(atom/attacked_target)
 	. = ..()
 	if(.)
-		if(!ishuman(target))
+		if(!ishuman(attacked_target))
 			return
-		var/mob/living/carbon/human/TH = target
+		var/mob/living/carbon/human/TH = attacked_target
 		if(TH.health < 0)
 			finishing = TRUE
 			TH.Stun(4 SECONDS)
@@ -188,7 +188,7 @@
 	for(var/mob/living/L in view(5, src))
 		if(!faction_check_mob(L))
 			L.deal_damage(25, RED_DAMAGE)
-	new /obj/effect/particle_effect/foam in get_turf(src)
+	new /obj/effect/particle_effect/foam(get_turf(src))
 	gib()
 
 //Clown picture-related code

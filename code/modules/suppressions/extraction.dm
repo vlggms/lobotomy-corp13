@@ -176,8 +176,8 @@
 
 /* Combat */
 
-/mob/living/simple_animal/hostile/megafauna/arbiter/AttackingTarget()
-	return OpenFire(target)
+/mob/living/simple_animal/hostile/megafauna/arbiter/AttackingTarget(atom/attacked_target)
+	return OpenFire(attacked_target)
 
 /mob/living/simple_animal/hostile/megafauna/arbiter/OpenFire(target)
 	if(charging)

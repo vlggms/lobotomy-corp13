@@ -159,11 +159,11 @@
 	density = TRUE
 	mouse_opacity = MOUSE_OPACITY_ICON
 
-/mob/living/simple_animal/hostile/abnormality/basilisoup/AttackingTarget()
+/mob/living/simple_animal/hostile/abnormality/basilisoup/AttackingTarget(atom/attacked_target)
 	if(!can_act)
 		return
-	if(ishuman(target))
-		var/mob/living/carbon/human/H = target
+	if(ishuman(attacked_target))
+		var/mob/living/carbon/human/H = attacked_target
 		if(H.nutrition >= NUTRITION_LEVEL_FAT)
 			playsound(get_turf(src), 'sound/abnormalities/bigbird/bite.ogg', 50, 1, 2)
 			H.gib()

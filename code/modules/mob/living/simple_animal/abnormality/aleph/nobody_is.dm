@@ -625,8 +625,8 @@
 			for(var/i = 1 to 3)
 				target_turf = get_step(target_turf, get_dir(get_turf(src), target_turf))
 			return WhipAttack(target_turf)
-	if(isliving(target))
-		var/mob/living/L = target
+	if(isliving(attacked_target))
+		var/mob/living/L = attacked_target
 		if(L.health <= 0)
 			if(ishuman(L))
 				var/mob/living/carbon/human/H = L

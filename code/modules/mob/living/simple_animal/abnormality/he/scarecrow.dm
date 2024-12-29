@@ -163,10 +163,10 @@
 	QDEL_IN(src, 10 SECONDS)
 	..()
 
-/mob/living/simple_animal/hostile/abnormality/scarecrow/AttackingTarget()
+/mob/living/simple_animal/hostile/abnormality/scarecrow/AttackingTarget(atom/attacked_target)
 	. = ..()
 	if(.)
-		if(!istype(target, /mob/living/carbon/human))
+		if(!istype(attacked_target, /mob/living/carbon/human))
 			return
 		target_hit = TRUE
 		if (hunger == TRUE)

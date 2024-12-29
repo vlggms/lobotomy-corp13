@@ -49,8 +49,9 @@
 
 /obj/machinery/computer/testrangespawner/attack_hand(mob/living/user)
 	. = ..()
+	var/arena_z = z + 3
 	var/mob/living/simple_animal/hostile/abnormality/chosen_abno = tgui_input_list(user,"Choose which Abnormality to fight.","Select Abnormality", whitelist)
-	var/turf/location = locate(13,14,6) //Might not be the best way to set it up right now but it works.
+	var/turf/location = locate(13,14,arena_z) //Might not be the best way to set it up right now but it works.
 	if(chosen_abno)
 		var/mob/living/simple_animal/hostile/abnormality/abnospawned = new chosen_abno(location)
 		abnospawned.core_enabled = FALSE

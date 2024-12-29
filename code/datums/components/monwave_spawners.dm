@@ -54,7 +54,7 @@
 	if(!parent || !assault_target)
 		qdel(src)
 		return
-	if(last_wave.len && world.time >= resume_cooldown)
+	if(length(last_wave) && world.time >= resume_cooldown)
 		CleanupAssault()
 		resume_cooldown = world.time + (1 MINUTES)
 		return
@@ -72,9 +72,9 @@
 //If the wave_composition is empty then it will send the wave out to their assault destination while the new wave is generated.
 //If the last wave is still alive the second wave will remain where they are.
 /datum/component/monwave_spawner/proc/GenerateWave()
-	if(!wave_composition.len)
+	if(!length(wave_composition))
 		if(assault_target)
-			if(assault_pace != SEND_TILL_MAX && last_wave.len)
+			if(assault_pace != SEND_TILL_MAX && length(last_wave))
 				return FALSE
 			return StartAssault(assault_target)
 		return FALSE
@@ -130,10 +130,10 @@
 
 //Despawns any idle monsters who lost the wave.
 /datum/component/monwave_spawner/proc/CleanupAssault()
-	var/area/where_we_go = get_area(assault_target)
 	for(var/mob/living/simple_animal/hostile/H in last_wave)
-		if(get_area(H) != where_we_go && !H.target)
-			H.dust()
+		if(!H.target)
+			H.dust(FALSE)
+	return length(last_wave)
 
 //Generates a path for the Mob Commander
 /datum/component/monwave_spawner/proc/GeneratePath(turf_to_go)
@@ -155,19 +155,19 @@
 	var/list/our_path = list()
 
 /obj/effect/wave_commander/proc/DoPath(list/assault_path)
-	our_path = assault_path
-	if(our_path.len <= 0)
+	our_path = assault_path.Copy()
+	if(length(our_path) <= 0)
 		RemoveCommander()
 		return FALSE
-	MoveInPath(our_path[our_path.len])
+	MoveInPath(our_path[length(our_path)])
 	return TRUE
 
 /obj/effect/wave_commander/proc/MoveInPath(dest)
-	if(!dest || !our_path || !our_path.len) //A-star failed or a path/destination was not set.
+	if(!dest || !our_path || !length(our_path)) //A-star failed or a path/destination was not set.
 		RemoveCommander()
 		return FALSE
 	dest = get_turf(dest) //We must always compare turfs, so get the turf of the dest var if dest was originally something else.
-	var/turf/last_node = get_turf(our_path[our_path.len]) //This is the turf at the end of the path, it should be equal to dest.
+	var/turf/last_node = get_turf(our_path[length(our_path)]) //This is the turf at the end of the path, it should be equal to dest.
 	if(get_turf(src) == dest) //We have arrived, no need to move again.
 		return TRUE
 	else if(dest != last_node) //The path should lead us to our given destination. If this is not true, we must stop.
@@ -181,20 +181,20 @@
 	return TRUE
 
 /obj/effect/wave_commander/proc/StepInPath(dest)
-	if(!our_path || !our_path.len)
+	if(!our_path || !length(our_path))
 		RemoveCommander()
 		return FALSE
-	if(our_path.len > 1)
+	if(length(our_path) > 1)
 		step_towards(src, our_path[1])
 		if(get_turf(src) == our_path[1]) //Successful move
-			if(!our_path || !our_path.len)
+			if(!our_path || !length(our_path))
 				return
 			our_path.Cut(1, 2)
 			move_tries = 0
 		else
 			move_tries++
 			return FALSE
-	else if(our_path.len == 1)
+	else if(length(our_path) == 1)
 		RemoveCommander()
 	return TRUE
 

@@ -92,7 +92,10 @@
 #define CAT_SPAGHETTI	"Spaghettis"
 #define CAT_UNUSUAL "Unusual"
 #define CAT_DRINK "Drinks"
-#define CAT_SILK "Silkcrafting"
+#define CAT_SILK "Silk Crafting"
+#define CAT_ARMOR "Silk Armor"
+#define CAT_CONVERSION "Silk Conversion"
+#define CAT_TRANSFER "Silk Transfer"
 
 // these aren't even used as bitflags so who even knows why they are treated like them
 #define RCD_FLOORWALL (1<<0)

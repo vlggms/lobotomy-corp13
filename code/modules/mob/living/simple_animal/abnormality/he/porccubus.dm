@@ -234,10 +234,10 @@
 			timer_added = TRUE
 	in_charging = FALSE
 
-/mob/living/simple_animal/hostile/abnormality/porccubus/AttackingTarget()
+/mob/living/simple_animal/hostile/abnormality/porccubus/AttackingTarget(atom/attacked_target)
 	var/mob/living/carbon/human/H
-	if(ishuman(target))
-		H = target
+	if(ishuman(attacked_target))
+		H = attacked_target
 	. = ..()
 	if(.)
 		if(!H)

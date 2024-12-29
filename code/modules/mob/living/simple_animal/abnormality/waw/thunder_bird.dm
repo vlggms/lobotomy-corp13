@@ -369,13 +369,13 @@
 	var/mob/living/simple_animal/hostile/abnormality/thunder_bird/master
 
 //Zombie conversion from zombie kills
-/mob/living/simple_animal/hostile/thunder_zombie/AttackingTarget()
+/mob/living/simple_animal/hostile/thunder_zombie/AttackingTarget(atom/attacked_target)
 	. = ..()
 	if(!can_act)
 		return
-	if(!ishuman(target))
+	if(!ishuman(attacked_target))
 		return
-	var/mob/living/carbon/human/H = target
+	var/mob/living/carbon/human/H = attacked_target
 	if(H.stat >= SOFT_CRIT || H.health < 0)
 		Convert(H)
 

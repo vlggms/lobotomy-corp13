@@ -136,11 +136,11 @@
 	for(var/turf/T in view(1, target_turf))
 		new /obj/effect/temp_visual/palefog(T)
 
-/mob/living/simple_animal/hostile/abnormality/pale_horse/AttackingTarget()
+/mob/living/simple_animal/hostile/abnormality/pale_horse/AttackingTarget(atom/attacked_target)
 	. = ..()
-	if(!ishuman(target))
+	if(!ishuman(attacked_target))
 		return FALSE
-	var/mob/living/carbon/human/T = target
+	var/mob/living/carbon/human/T = attacked_target
 	if(T.health > 0)
 		var/datum/status_effect/mortis/M = T.has_status_effect(/datum/status_effect/mortis)
 		if(!M)

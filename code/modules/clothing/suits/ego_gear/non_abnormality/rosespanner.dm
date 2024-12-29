@@ -1,5 +1,5 @@
 /obj/item/clothing/suit/armor/ego_gear/city/rosespannerrep
-	name = "rosespanner representative jacket"
+	name = "Rosespanner representative jacket"
 	desc = "A lightly armored coat used by the representative of the rosespanner workshop."
 	icon_state = "rosespanner_rep"
 	armor = list(RED_DAMAGE = 30, WHITE_DAMAGE = 40, BLACK_DAMAGE = 30, PALE_DAMAGE = 30)

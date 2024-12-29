@@ -232,9 +232,13 @@ GLOBAL_LIST_EMPTY(SephirahBullet)
 	set category = "Sephirah"
 	GLOB.SephirahBullet |= src.ckey
 	if(length(GLOB.SephirahBullet) == 2)
-		minor_announce("The facility's manager has been deemed trustworthy of our new Execution Bullet pilot program. \
-			Execution bullets will be delivered immediately.", "Disciplinary Alert:", TRUE)
-		GLOB.execution_enabled = TRUE
+		if(SSmaptype.maptype == "skeld")
+			minor_announce("There has been an error in the authorizing of our new Execution Bullet pilot program. \
+				Execution Bullets won't be able to be delivered to this facility.", "Control Alert:", TRUE)
+		else
+			minor_announce("The facility's manager has been deemed trustworthy of our new Execution Bullet pilot program. \
+				Execution bullets will be delivered immediately.", "Disciplinary Alert:", TRUE)
+			GLOB.execution_enabled = TRUE
 
 	else
 		to_chat(src, span_notice("Your superiors have been notified of your authorization. Reminder that execution bullets require authorization of 2 sephirah."))
@@ -294,19 +298,17 @@ GLOBAL_LIST_EMPTY(SephirahBullet)
 	var/mob/living/simple_animal/hostile/abnormality/queued_abno = SSabnormality_queue.queued_abnormality
 	data["queued_abno"] = initial(queued_abno.name)
 
-	/* Scrapped due to difficulty -- to be implemented
 	// START OF ARRIVAL INFORMATION
 	var/safe_abnormality_delay
-	if(SSabnormality_queue.next_abno_spawn != INFINITY) // happens when starting abnormalities are being selected, or things break
-		safe_abnormality_delay = SSabnormality_queue.next_abno_spawn
+	if(SSabnormality_queue.next_abno_spawn != INFINITY) // Happens when starting abnormalities are being selected, or things break
+		safe_abnormality_delay = floor(SSabnormality_queue.next_abno_spawn)
 	else
-		safe_abnormality_delay = ABNORMALITY_DELAY
+		safe_abnormality_delay = ABNORMALITY_DELAY + SSticker.round_start_time
 
-	data["current_arrival"] = safe_abnormality_delay
-	data["next_arrival"] = safe_abnormality_delay + SSabnormality_queue.next_abno_spawn_time + ((min(16, (SSabnormality_queue.spawned_abnos + 1)) - 6) * 6) SECONDS
-	data["progress_component"] = (world.time - ABNORMALITY_DELAY) / safe_abnormality_delay
+	data["previous_arrival_time"] = floor(SSabnormality_queue.previous_abno_spawn ? SSabnormality_queue.previous_abno_spawn : ROUNDTIME)
+	data["current_arrival_time"] = floor(world.time)
+	data["next_arrival_time"] = safe_abnormality_delay + 5 SECONDS // The seconds are because the subsystem fires every 10 seconds
 	// END OF ARRIVAL INFORMATION
-	*/
 
 	return data
 

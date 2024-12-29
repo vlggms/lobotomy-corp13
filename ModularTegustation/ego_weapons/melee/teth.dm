@@ -592,9 +592,29 @@
 	desc = "Scissors long since lost to time. Packs a punch while being unwieldy."
 	icon_state = "rapunzel"
 	force = 32
-	stuntime = 5	//Mucho damage, bit more stun
+	stuntime = 5	//Mucho damage, bit of stun in exchange
 	damtype = BLACK_DAMAGE
 	attack_verb_continuous = list("pokes", "jabs", "tears", "lacerates", "gores")
 	attack_verb_simple = list("poke", "jab", "tear", "lacerate", "gore")
 	hitsound = 'sound/weapons/fixer/generic/knife2.ogg'
+
+/obj/item/ego_weapon/mini/clayman
+	name = "Creative Freedom"
+	desc = "Clay and flesh are both mediums for expression."
+	icon_state = "creativefreedom"
+	special = "This weapon slows after hit on windup."
+	force = 14
+	damtype = PALE_DAMAGE
+	hitsound = 'sound/weapons/bladeslice.ogg'
+
+/obj/item/ego_weapon/mini/clayman/attack(mob/living/target, mob/living/user)
+	if(!CanUseEgo(user))
+		return
+	..()
+	if(do_after(user, 7, src))
+		target.apply_status_effect(/datum/status_effect/qliphothoverload)
+	else
+		to_chat(user, "<span class= 'spider'><b>Your attack was interrupted!</b></span>")
+		return
+
 

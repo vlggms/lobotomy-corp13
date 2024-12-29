@@ -244,7 +244,7 @@ GLOBAL_LIST_EMPTY(apostles)
 		for(var/mob/living/L in view(7,src))
 			if(L.stat || !L.client)
 				continue
-			L.client.give_award(/datum/award/achievement/boss/white_night, L)
+			L.client.give_award(/datum/award/achievement/lc13/white_night, L)
 
 /* Apostles */
 
@@ -310,16 +310,16 @@ GLOBAL_LIST_EMPTY(apostles)
 		return FALSE
 	return ..()
 
-/mob/living/simple_animal/hostile/apostle/AttackingTarget()
+/mob/living/simple_animal/hostile/apostle/AttackingTarget(atom/attacked_target)
 	if(!can_act)
 		return
 
-	if(isliving(target))
-		var/mob/living/L = target
+	if(isliving(attacked_target))
+		var/mob/living/L = attacked_target
 		if(faction_check_mob(L))
 			return
 	. = ..()
-	if(. && isliving(target))
+	if(. && isliving(attacked_target))
 		if(!client && ranged && ranged_cooldown <= world.time)
 			OpenFire()
 

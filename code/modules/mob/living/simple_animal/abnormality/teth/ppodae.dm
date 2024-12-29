@@ -128,7 +128,7 @@
 		return FALSE
 	return ..()
 
-/mob/living/simple_animal/hostile/abnormality/ppodae/AttackingTarget()
+/mob/living/simple_animal/hostile/abnormality/ppodae/AttackingTarget(atom/attacked_target)
 	if(!can_act)
 		return FALSE
 	var/mob/living/carbon/L = target

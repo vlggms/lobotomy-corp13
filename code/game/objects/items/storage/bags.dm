@@ -499,3 +499,43 @@
 /obj/item/storage/bag/harpoon_quiver/PopulateContents()
 	for(var/i in 1 to 40)
 		new /obj/item/ammo_casing/caseless/harpoon(src)
+
+// -----------------------------
+//           Silk Bag
+// -----------------------------
+
+/obj/item/storage/bag/silk
+	name = "silk bag"
+	icon = 'icons/obj/mining.dmi'
+	icon_state = "silk_satchel"
+	resistance_flags = FLAMMABLE
+
+/obj/item/storage/bag/silk/ComponentInitialize()
+	. = ..()
+	var/datum/component/storage/STR = GetComponent(/datum/component/storage)
+	STR.max_w_class = WEIGHT_CLASS_NORMAL
+	STR.max_combined_w_class = 100
+	STR.max_items = 100
+	STR.set_holdable(list(
+		/obj/item/stack/sheet/silk,
+		))
+
+// -----------------------------
+//           Meat Bag
+// -----------------------------
+
+/obj/item/storage/bag/meat
+	name = "meat bag"
+	icon = 'icons/obj/mining.dmi'
+	icon_state = "meat_satchel"
+	resistance_flags = FLAMMABLE
+
+/obj/item/storage/bag/meat/ComponentInitialize()
+	. = ..()
+	var/datum/component/storage/STR = GetComponent(/datum/component/storage)
+	STR.max_w_class = WEIGHT_CLASS_NORMAL
+	STR.max_combined_w_class = 70
+	STR.max_items = 70
+	STR.set_holdable(list(
+		/obj/item/food/meat/slab,
+		))

@@ -20,42 +20,6 @@
 	database_id = MEDAL_TIMEWASTE
 	icon = "timewaste"
 
-//LC13 achivements
-/*
-* Possible Achivements
-/datum/award/achievement/misc/dayfifty
-	name = "Tree of Light"
-	desc = "You witnessed the fruits of your labor."
-	database_id = MEDAL_DAYFIFTY
-	icon = "dayfifty"
-
-/datum/award/achievement/misc/fullgifts
-	name = "Part of Many"
-	desc = "Have a Ego Gift in every slot, wings and special do not count."
-	database_id = MEDAL_FULLGIFTS
-	icon = "fullgifts"
-*/
-/datum/award/achievement/misc/lcorpworld
-	name = "Job Well Done"
-	desc = "One of your characters survived a full shift as a L corp employee."
-	database_id = MEDAL_LCORPWORLD
-	icon = "lcorp"
-
-/datum/award/achievement/misc/scorpworld
-	name = "A Shrimple Arrangement"
-	desc = "One of your characters lived to be recruited by S corp."
-	database_id = MEDAL_SCORPWORLD
-	icon = "shrimp"
-
-//You cant really be in the room when apocabird dies so it might be better to check for this.
-/datum/award/achievement/misc/twilight
-	name = "Step into the Black Forest"
-	desc = "End the shift forever marked by the the monster of the Black Forest."
-	database_id = MEDAL_TWILIGHT
-	icon = "twilight"
-
-////////////////////
-
 /datum/award/achievement/misc/feat_of_strength
 	name = "Feat of Strength"
 	desc = "If the rod is immovable, is it passing you or are you passing it?"

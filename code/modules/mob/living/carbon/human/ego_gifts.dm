@@ -653,6 +653,15 @@
 	insight_mod = 3
 	slot = EYE
 
+/datum/ego_gifts/reddit
+	name = "Reddit"
+	desc = "Thanks for the gold, kind stranger!"
+	prudence_bonus = 12
+	temperance_bonus = -4
+	justice_bonus = -4
+	insight_mod = 4
+	slot = HEAD
+
 /datum/ego_gifts/aedd
 	name = "AEDD"
 	icon_state = "grinder"

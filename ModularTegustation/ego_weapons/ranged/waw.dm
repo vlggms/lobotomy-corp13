@@ -185,8 +185,8 @@
 	for(var/obj/item/ego_weapon/ranged/pistol/solemnlament/Lament in user.held_items)
 		projectile_damage_multiplier = 1.5
 		break
+	. = ..()
 	projectile_damage_multiplier = 1
-	return ..()
 
 
 /obj/item/ego_weapon/ranged/loyalty
@@ -487,7 +487,7 @@
 			fire_sound = 'sound/weapons/bowfire.ogg'
 			icon_state = "warring_drawn"
 		if(1)
-			if(do_after(user, 1, src, IGNORE_USER_LOC_CHANGE))
+			if(!do_after(user, 1, src, IGNORE_USER_LOC_CHANGE))
 				return
 			if(drawn != 1 || charge_amount < charge_cost)
 				return

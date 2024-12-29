@@ -310,12 +310,12 @@ Defeating the murderer also surpresses the abnormality.
 	if(LAZYLEN(priority))
 		return pick(priority)
 
-/mob/living/simple_animal/hostile/actor/AttackingTarget()
+/mob/living/simple_animal/hostile/actor/AttackingTarget(atom/attacked_target)
 	. = ..()
-	if(!ishuman(target))
+	if(!ishuman(attacked_target))
 		return
 
-	var/mob/living/carbon/human/H = target
+	var/mob/living/carbon/human/H = attacked_target
 	if(!H.sanity_lost)
 		return
 

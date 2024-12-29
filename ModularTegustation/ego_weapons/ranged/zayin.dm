@@ -75,38 +75,31 @@
 	fire_sound_volume = 70
 	var/shrimp_chosen
 
-/obj/item/ego_weapon/ranged/pistol/soda/equipped(mob/living/carbon/human/user, slot)
+/obj/item/ego_weapon/ranged/pistol/soda/pickup(mob/user)
 	. = ..()
-	if(!user)
-		return
 	shrimp_chosen = user
 	RegisterSignal(shrimp_chosen, COMSIG_LIVING_DEATH, PROC_REF(ShrimpFuneral))
 
 /obj/item/ego_weapon/ranged/pistol/soda/dropped(mob/user)
 	. = ..()
-	if(!user)
-		return
 	UnregisterSignal(shrimp_chosen, COMSIG_LIVING_DEATH)
 	shrimp_chosen = null
 
 /obj/item/ego_weapon/ranged/pistol/soda/Destroy(mob/user)
-	if(!user)
-		return ..()
-	UnregisterSignal(shrimp_chosen, COMSIG_LIVING_DEATH)
+	if(shrimp_chosen)
+		UnregisterSignal(shrimp_chosen, COMSIG_LIVING_DEATH)
 	shrimp_chosen = null
 	return ..()
 
 /obj/item/ego_weapon/ranged/pistol/soda/proc/ShrimpFuneral(mob/user)
 	var/obj/item/clothing/suit/armor/ego_gear/zayin/soda/S = user.get_item_by_slot(ITEM_SLOT_OCLOTHING)
 	if(istype(S))
-		var/shrimpcount
-		while(shrimpcount < 2)
-			new /mob/living/simple_animal/hostile/shrimp/friendly(get_turf(user))
-			shrimpcount += 1
-	user.playsound_local(get_turf(user), 'sound/abnormalities/wellcheers/shrimptaps.ogg', 50, 0)
+		user.playsound_local(get_turf(user), 'sound/abnormalities/wellcheers/shrimptaps.ogg', 50, 0)
+		for(var/i in 1 to 2)
+			new /mob/living/simple_animal/hostile/shrimp/grieving(get_turf(user))
 
 //friendly spawned shrimp
-/mob/living/simple_animal/hostile/shrimp/friendly
+/mob/living/simple_animal/hostile/shrimp/grieving
 	name = "wellcheers obituary serviceman"
 	desc = "A shrimp that appears to be grieving. A moment of silence, please."
 	icon_state = "wellcheers_funeral"

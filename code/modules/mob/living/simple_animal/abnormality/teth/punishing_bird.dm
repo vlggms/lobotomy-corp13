@@ -6,6 +6,7 @@
 	icon_living = "pbird_breach"
 	icon_dead = "pbird_dead"
 	portrait = "punishing_bird"
+	del_on_death = FALSE
 	turns_per_move = 2
 	response_help_continuous = "brushes aside"
 	response_help_simple = "brush aside"
@@ -165,8 +166,8 @@
 			var/mob/living/carbon/le_target = pick(potential_mobs)
 			pecking_targets |= le_target
 
-/mob/living/simple_animal/hostile/abnormality/punishing_bird/AttackingTarget()
-	if(ishuman(target) && bird_angry)
+/mob/living/simple_animal/hostile/abnormality/punishing_bird/AttackingTarget(atom/attacked_target)
+	if(ishuman(attacked_target) && bird_angry)
 		melee_damage_lower = angry_damage_human
 		melee_damage_upper = angry_damage_human
 
@@ -178,8 +179,8 @@
 		melee_damage_lower = 1
 		melee_damage_upper = 2
 
-	if(isliving(target))
-		var/mob/living/L = target
+	if(isliving(attacked_target))
+		var/mob/living/L = attacked_target
 		if(!(L in enemies) && obj_damage > 0) // The target didn't attack us and we've transformed
 			to_chat(src, span_warning("You can't punish innocent people!"))
 			return
@@ -206,6 +207,11 @@
 			TransformBack()
 		return
 	return ..()
+
+/mob/living/simple_animal/hostile/abnormality/punishing_bird/death(gibbed)
+	animate(src, alpha = 0, time = 10 SECONDS)
+	QDEL_IN(src, 10 SECONDS)
+	..()
 
 /mob/living/simple_animal/hostile/abnormality/punishing_bird/Found(atom/A)
 	if(isliving(A))

@@ -1,10 +1,17 @@
 /mob/living/simple_animal/hostile/abnormality/helper
 	name = "All-Around Helper"
 	desc = "A tiny robot with helpful intentions."
-	icon = 'ModularTegustation/Teguicons/tegumobs.dmi'
+	icon = 'ModularTegustation/Teguicons/64x64.dmi'
 	icon_state = "helper"
 	icon_living = "helper"
 	portrait = "helper"
+	icon_dead = "helper_dead"
+	pixel_x = -16
+	base_pixel_x = -16
+	pixel_y = -16
+	base_pixel_y = -16
+	del_on_death = FALSE
+	death_message = "falls to the ground, deactivating."
 	maxHealth = 1000
 	health = 1000
 	rapid_melee = 4
@@ -36,6 +43,7 @@
 		/datum/ego_datum/armor/grinder,
 	)
 	gift_type =  /datum/ego_gifts/grinder
+	secret_gift = /datum/ego_gifts/reddit
 	gift_message = "Contamination scan complete. Initiating cleaning protocol."
 	abnormality_origin = ABNORMALITY_ORIGIN_LOBOTOMY
 
@@ -60,6 +68,13 @@
 
 	//PLAYABLES ATTACKS
 	attack_action_types = list(/datum/action/innate/abnormality_attack/toggle/helper_dash_toggle)
+
+	//Secret Sprite
+	secret_chance = TRUE
+	secret_icon_living = "reddit"
+	secret_icon_state = "reddit"
+	secret_vertical_offset = 0
+	secret_icon_dead = "reddit_dead"
 
 /datum/action/innate/abnormality_attack/toggle/helper_dash_toggle
 	name = "Toggle Dash"
@@ -102,17 +117,27 @@
 
 /mob/living/simple_animal/hostile/abnormality/helper/update_icon_state()
 	if(status_flags & GODMODE)
-		icon = initial(icon)
-		pixel_x = initial(pixel_x)
-		base_pixel_x = initial(base_pixel_x)
-		pixel_y = initial(pixel_y)
-		base_pixel_y = initial(base_pixel_y)
+		if(secret_abnormality)
+			icon_living = secret_icon_living
+			icon_state = secret_icon_state
+			base_pixel_y = 0
+		else
+			icon_living = initial(icon_state)
+			icon_state = initial(icon_state)
+
 	else
-		icon = 'ModularTegustation/Teguicons/64x64.dmi'
-		pixel_x = -16
-		base_pixel_x = -16
-		pixel_y = -16
-		base_pixel_y = -16
+		if(secret_abnormality)
+			icon_living = "reddit_breach"
+			icon_state = icon_living
+			base_pixel_y = -16
+		else
+			icon_living = "helper_breach"
+			icon_state = icon_living
+
+/mob/living/simple_animal/hostile/abnormality/helper/death(gibbed)
+	animate(src, alpha = 0, time = 10 SECONDS)
+	QDEL_IN(src, 10 SECONDS)
+	..()
 
 /mob/living/simple_animal/hostile/abnormality/helper/proc/helper_dash(target)
 	if(charging || dash_cooldown > world.time)

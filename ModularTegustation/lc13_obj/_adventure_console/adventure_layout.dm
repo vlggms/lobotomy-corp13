@@ -84,6 +84,10 @@
 		new /datum/data/extraction_cargo("CAT",	/mob/living/simple_animal/pet/cat,			50) = 1,
 		new /datum/data/extraction_cargo("CAK",	/mob/living/simple_animal/pet/cat/cak,		100) = 1,
 		new /datum/data/extraction_cargo("SNAKE", /mob/living/simple_animal/hostile/retaliate/poison/snake,	100) = 1,
+
+		//Actual Shit
+		new /datum/data/extraction_cargo("SOME AHN",				/obj/item/stack/spacecash/c500,		10) = 1,
+		new /datum/data/extraction_cargo("POSITIVE ENKEPHALIN",		/obj/item/rawpe,					20) = 1,
 	)
 
 /datum/adventure_layout/New(set_debug_menu = FALSE)

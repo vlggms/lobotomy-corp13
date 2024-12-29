@@ -398,3 +398,14 @@
 	abno_info = list(
 		"Tangle had a bad reaction when working on a random EMPLOYEE, and their Qliphoth Counter lowered.",
 		"Working large amounts of instinct works on tangle ended in it's Qliphoth Counter being lowered.",)
+	
+//Generic Brand Modelling Clay
+/obj/item/paper/fluff/info/teth/clayman
+	abno_type = /mob/living/simple_animal/hostile/abnormality/clayman
+	abno_code = "O-04-204"
+	abno_info = list(
+		"Employees who worked on O-04-204 reported no meaningful difference between work types.",
+		"During work and breaches, the damage type dealt seemed to vary from hit to hit.",
+		"When the work result was Bad, the Qliphoth Counter lowered."
+	)
+
