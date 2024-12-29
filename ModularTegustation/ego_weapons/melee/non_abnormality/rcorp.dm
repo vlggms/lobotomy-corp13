@@ -200,13 +200,13 @@
 
 /obj/item/gun/energy/e_gun/rabbit/minigun/Initialize()
 	. = ..()
-	AddComponent(/datum/component/automatic_fire, 0.1 SECONDS)
+	AddComponent(/datum/component/automatic_fire, 0.05 SECONDS)
 
 /obj/item/gun/energy/e_gun/rabbit/minigun/tricolor
 	name = "R-Corporation R-3500 Minigun"
 	desc = "An energy machinegun that is extremely heavy, and fires bullets extremely quickly."
 	icon_state = "rabbitmachinegun"
-	projectile_damage_multiplier = 0.5
+	projectile_damage_multiplier = 0.7
 	ammo_type = list(
 		/obj/item/ammo_casing/energy/laser/red/iff,
 		/obj/item/ammo_casing/energy/laser/white/iff,
