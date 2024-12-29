@@ -580,5 +580,5 @@
 		"As employees assaulted F-02-194, it lost more layers of armor. It was unable to be defeated until all the layers of armor were destroyed.",
 
 	)
-	abno_breach_damage_type = "Pale"
-	abno_breach_damage_count = "Very High"
+	abno_breach_damage_type = "Red/White"
+	abno_breach_damage_count = "High"
