@@ -14,7 +14,6 @@
 /turf/open/floor/plasteel/cult,
 /area/city/backstreets_room)
 "U" = (
-/mob/living/simple_animal/hostile/ordeal/bigBirdEye,
 /obj/effect/landmark/cratespawn,
 /turf/open/floor/plasteel/cult,
 /area/city/backstreets_room)
@@ -28,7 +27,7 @@ P
 "}
 (2,1,1) = {"
 P
-U
+a
 a
 R
 P

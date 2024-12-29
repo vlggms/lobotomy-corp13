@@ -1,0 +1,562 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"a" = (
+/obj/structure/chair/wood,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/wood,
+/area/city/backstreets_room)
+"b" = (
+/obj/effect/decal/cleanable/dirt,
+/mob/living/simple_animal/hostile/bongy_hostile,
+/turf/open/floor/wood,
+/area/city/backstreets_room)
+"c" = (
+/obj/structure/table/wood,
+/obj/item/food/fries{
+	pixel_x = -6
+	},
+/obj/item/food/fried_chicken{
+	pixel_x = 6
+	},
+/turf/open/floor/wood,
+/area/city/backstreets_room)
+"d" = (
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/facility/white,
+/area/city/backstreets_room)
+"e" = (
+/turf/open/floor/facility,
+/area/city/backstreets_room)
+"f" = (
+/obj/structure/table/wood,
+/obj/item/food/burger/chicken{
+	pixel_x = -6;
+	pixel_y = 3
+	},
+/obj/item/food/burger/chicken{
+	pixel_x = 4;
+	pixel_y = -3
+	},
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/wood,
+/area/city/backstreets_room)
+"g" = (
+/obj/machinery/door/airlock/wood,
+/turf/open/floor/wood,
+/area/city/backstreets_room)
+"h" = (
+/obj/machinery/griddle,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/facility/white,
+/area/city/backstreets_room)
+"i" = (
+/obj/machinery/deepfryer,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/facility/white,
+/area/city/backstreets_room)
+"j" = (
+/obj/machinery/vending/cola,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/wood,
+/area/city/backstreets_room)
+"k" = (
+/obj/effect/decal/cleanable/food/flour,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/facility,
+/area/city/backstreets_room)
+"l" = (
+/obj/structure/table,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/facility/white,
+/area/city/backstreets_room)
+"m" = (
+/obj/structure/table,
+/obj/item/reagent_containers/glass/bowl,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/facility/white,
+/area/city/backstreets_room)
+"n" = (
+/obj/effect/spawner/structure/window,
+/turf/open/floor/plating,
+/area/city/backstreets_room)
+"o" = (
+/obj/structure/table,
+/obj/item/reagent_containers/food/condiment/flour,
+/obj/item/reagent_containers/food/condiment/flour,
+/obj/item/reagent_containers/food/condiment/flour,
+/obj/item/reagent_containers/food/condiment/flour,
+/obj/item/reagent_containers/food/condiment/flour,
+/obj/item/reagent_containers/food/condiment/flour,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/facility/white,
+/area/city/backstreets_room)
+"p" = (
+/obj/structure/lootcrate/money,
+/turf/open/floor/facility/white,
+/area/city/backstreets_room)
+"q" = (
+/obj/effect/landmark/cratespawn,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/facility/white,
+/area/city/backstreets_room)
+"r" = (
+/turf/open/floor/wood,
+/area/city/backstreets_room)
+"s" = (
+/obj/structure/table,
+/obj/machinery/microwave,
+/turf/open/floor/facility/white,
+/area/city/backstreets_room)
+"t" = (
+/mob/living/simple_animal/hostile/distortion/papa_bongy,
+/obj/effect/decal/cleanable/blood/tracks,
+/turf/open/floor/facility,
+/area/city/backstreets_room)
+"u" = (
+/obj/structure/sink/kitchen{
+	dir = 4;
+	pixel_x = -10
+	},
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/facility/white,
+/area/city/backstreets_room)
+"v" = (
+/obj/machinery/deepfryer,
+/turf/open/floor/facility/white,
+/area/city/backstreets_room)
+"w" = (
+/obj/structure/table/wood,
+/obj/item/food/fried_chicken{
+	pixel_x = 6
+	},
+/obj/item/food/fries{
+	pixel_x = -4
+	},
+/obj/effect/decal/cleanable/dirt,
+/obj/item/reagent_containers/food/condiment/saltshaker{
+	pixel_x = -8;
+	pixel_y = 11
+	},
+/obj/item/reagent_containers/food/condiment/peppermill{
+	pixel_x = -2;
+	pixel_y = 11
+	},
+/turf/open/floor/wood,
+/area/city/backstreets_room)
+"x" = (
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/facility,
+/area/city/backstreets_room)
+"y" = (
+/obj/effect/decal/cleanable/blood/tracks{
+	dir = 8
+	},
+/turf/open/floor/facility,
+/area/city/backstreets_room)
+"z" = (
+/obj/structure/chair/wood{
+	dir = 1
+	},
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/wood,
+/area/city/backstreets_room)
+"A" = (
+/obj/structure/table,
+/obj/item/food/patty/chicken{
+	pixel_x = -4;
+	pixel_y = -4
+	},
+/obj/item/food/patty/chicken{
+	pixel_x = -3;
+	pixel_y = 1
+	},
+/obj/item/food/patty/chicken{
+	pixel_x = 3;
+	pixel_y = -7
+	},
+/turf/open/floor/facility/white,
+/area/city/backstreets_room)
+"B" = (
+/obj/machinery/processor,
+/turf/open/floor/facility/white,
+/area/city/backstreets_room)
+"C" = (
+/obj/structure/table,
+/obj/item/food/fried_chicken{
+	pixel_x = 6;
+	pixel_y = 4
+	},
+/obj/item/food/burger/chicken{
+	pixel_x = -6;
+	pixel_y = 3
+	},
+/obj/item/food/fried_chicken{
+	pixel_x = 1;
+	pixel_y = -7
+	},
+/turf/open/floor/facility/white,
+/area/city/backstreets_room)
+"D" = (
+/obj/structure/table/wood,
+/obj/item/food/fries{
+	pixel_x = -5
+	},
+/obj/item/food/burger/chicken{
+	pixel_x = 4
+	},
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/wood,
+/area/city/backstreets_room)
+"E" = (
+/obj/structure/table,
+/obj/item/kitchen/rollingpin,
+/turf/open/floor/facility/white,
+/area/city/backstreets_room)
+"G" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/blood/tracks{
+	dir = 8
+	},
+/turf/open/floor/facility,
+/area/city/backstreets_room)
+"H" = (
+/turf/open/floor/facility/white,
+/area/city/backstreets_room)
+"I" = (
+/obj/structure/table,
+/obj/item/food/patty/chicken{
+	pixel_x = 3;
+	pixel_y = -7
+	},
+/obj/item/food/patty/chicken{
+	pixel_x = 5;
+	pixel_y = 4
+	},
+/obj/item/food/patty/chicken{
+	pixel_x = -4;
+	pixel_y = -4
+	},
+/turf/open/floor/facility/white,
+/area/city/backstreets_room)
+"J" = (
+/obj/structure/table,
+/obj/item/food/bun{
+	pixel_x = -5;
+	pixel_y = 3
+	},
+/obj/item/food/bun{
+	pixel_x = 5;
+	pixel_y = 5
+	},
+/obj/item/food/bun,
+/turf/open/floor/facility/white,
+/area/city/backstreets_room)
+"K" = (
+/obj/structure/table,
+/obj/item/food/raw_patty/chicken,
+/obj/item/food/raw_patty/chicken{
+	pixel_x = -4;
+	pixel_y = -3
+	},
+/obj/item/food/raw_patty/chicken{
+	pixel_x = 7;
+	pixel_y = 5
+	},
+/turf/open/floor/facility/white,
+/area/city/backstreets_room)
+"L" = (
+/turf/closed/indestructible/reinforced,
+/area/city/backstreets_room)
+"M" = (
+/obj/structure/chair/wood,
+/turf/open/floor/wood,
+/area/city/backstreets_room)
+"N" = (
+/obj/effect/decal/cleanable/blood/gibs/down,
+/obj/effect/decal/cleanable/blood/tracks{
+	dir = 8
+	},
+/turf/open/floor/facility,
+/area/city/backstreets_room)
+"O" = (
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/wood,
+/area/city/backstreets_room)
+"P" = (
+/obj/structure/chair/wood{
+	dir = 8
+	},
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/wood,
+/area/city/backstreets_room)
+"Q" = (
+/obj/effect/landmark/cratespawn,
+/turf/open/floor/facility/white,
+/area/city/backstreets_room)
+"R" = (
+/obj/structure/chair/wood{
+	dir = 4
+	},
+/turf/open/floor/wood,
+/area/city/backstreets_room)
+"S" = (
+/obj/structure/table,
+/obj/item/food/patty/chicken{
+	pixel_x = -3;
+	pixel_y = 1
+	},
+/obj/item/food/patty/chicken{
+	pixel_x = 5;
+	pixel_y = 4
+	},
+/obj/item/food/patty/chicken{
+	pixel_x = 3;
+	pixel_y = -7
+	},
+/obj/item/food/patty/chicken{
+	pixel_x = -4;
+	pixel_y = -4
+	},
+/turf/open/floor/facility/white,
+/area/city/backstreets_room)
+"T" = (
+/obj/structure/table,
+/obj/item/food/grown/potato,
+/obj/item/food/grown/potato,
+/obj/item/food/grown/potato,
+/obj/item/food/grown/potato,
+/obj/item/food/grown/potato,
+/turf/open/floor/facility/white,
+/area/city/backstreets_room)
+"U" = (
+/obj/effect/decal/cleanable/blood/tracks{
+	dir = 5
+	},
+/turf/open/floor/facility,
+/area/city/backstreets_room)
+"V" = (
+/obj/structure/table,
+/obj/item/food/meat/slab/chicken{
+	pixel_x = 4;
+	pixel_y = 2
+	},
+/obj/item/food/meat/slab/chicken{
+	pixel_x = 6;
+	pixel_y = -4
+	},
+/obj/item/food/meat/slab/chicken{
+	pixel_x = -4;
+	pixel_y = 1
+	},
+/turf/open/floor/facility/white,
+/area/city/backstreets_room)
+"W" = (
+/obj/structure/table,
+/obj/item/food/meat/slab/chicken{
+	pixel_x = 6;
+	pixel_y = -4
+	},
+/obj/item/food/meat/slab/chicken{
+	pixel_x = -4;
+	pixel_y = 1
+	},
+/obj/item/food/meat/slab/chicken{
+	pixel_x = 4;
+	pixel_y = 2
+	},
+/turf/open/floor/facility/white,
+/area/city/backstreets_room)
+"X" = (
+/obj/structure/table,
+/obj/item/food/fried_chicken{
+	pixel_x = 6;
+	pixel_y = 5
+	},
+/obj/item/food/fried_chicken{
+	pixel_x = -2
+	},
+/obj/item/food/fried_chicken{
+	pixel_x = 6
+	},
+/obj/item/food/fries{
+	pixel_x = -3;
+	pixel_y = 2
+	},
+/turf/open/floor/facility/white,
+/area/city/backstreets_room)
+"Z" = (
+/obj/structure/table,
+/obj/item/food/meat/slab/chicken{
+	pixel_x = -1;
+	pixel_y = 5
+	},
+/obj/item/food/meat/slab/chicken{
+	pixel_x = 6;
+	pixel_y = -4
+	},
+/obj/item/food/meat/slab/chicken{
+	pixel_x = -4;
+	pixel_y = 1
+	},
+/turf/open/floor/facility/white,
+/area/city/backstreets_room)
+
+(1,1,1) = {"
+L
+L
+L
+L
+L
+L
+L
+L
+"}
+(2,1,1) = {"
+n
+a
+D
+z
+r
+r
+R
+L
+"}
+(3,1,1) = {"
+n
+a
+w
+z
+r
+b
+f
+L
+"}
+(4,1,1) = {"
+g
+O
+O
+O
+r
+O
+P
+L
+"}
+(5,1,1) = {"
+n
+r
+b
+O
+r
+O
+O
+L
+"}
+(6,1,1) = {"
+n
+M
+c
+z
+O
+O
+j
+L
+"}
+(7,1,1) = {"
+L
+L
+L
+L
+g
+L
+L
+L
+"}
+(8,1,1) = {"
+L
+h
+d
+u
+H
+C
+X
+L
+"}
+(9,1,1) = {"
+L
+i
+G
+x
+e
+x
+d
+L
+"}
+(10,1,1) = {"
+L
+v
+N
+A
+I
+x
+q
+L
+"}
+(11,1,1) = {"
+L
+v
+y
+S
+J
+e
+Q
+L
+"}
+(12,1,1) = {"
+L
+v
+y
+T
+E
+k
+l
+L
+"}
+(13,1,1) = {"
+L
+V
+y
+B
+K
+x
+o
+L
+"}
+(14,1,1) = {"
+L
+Z
+U
+t
+e
+k
+m
+L
+"}
+(15,1,1) = {"
+L
+W
+Q
+p
+p
+Q
+s
+L
+"}
+(16,1,1) = {"
+L
+L
+L
+L
+L
+L
+L
+L
+"}

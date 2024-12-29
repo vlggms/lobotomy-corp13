@@ -83,10 +83,13 @@
 	head = /obj/item/clothing/head/rabbit_helmet/rat
 	suit = /obj/item/clothing/suit/armor/ego_gear/rabbit/rat
 	belt = /obj/item/ego_weapon/city/rabbit_blade
-	suit_store = /obj/item/gun/energy/e_gun/rabbitdash/small
+	suit_store = /obj/item/gun/energy/e_gun/rabbitdash/shotgun
 	l_pocket = /obj/item/flashlight/seclite
 	r_pocket = /obj/item/pinpointer/nuke/rcorp
 	backpack_contents = list(
+		/obj/item/grenade/r_corp,
+		/obj/item/grenade/r_corp/black,
+		/obj/item/grenade/r_corp/white,
 		/obj/item/storage/firstaid/revival = 1)
 
 
