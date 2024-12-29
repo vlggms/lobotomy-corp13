@@ -87,7 +87,6 @@
 			else
 				wrong_grade_info()
 				return FALSE
-
 		if (!(user?.mind?.assigned_role in list("Civilian")))
 			to_chat(user, span_notice("Only Civilians can use this book!"))
 			return FALSE
