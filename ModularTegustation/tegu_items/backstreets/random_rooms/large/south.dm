@@ -41,3 +41,9 @@
 	name = "G Corp Armory - Large South"
 	room_id = "gcorp_armory"
 	mappath = "_maps/RandomRooms/backstreets/large_south/gcorp_armory.dmm"
+
+/datum/map_template/random_room/backstreets/large_south/gcorp_armory
+	name = "Papa Bongy's Chicken - Large South"
+	room_id = "bongy"
+	mappath = "_maps/RandomRooms/backstreets/large_south/bongy.dmm"
+	stock = 1	//There can only be one papa bongy's chicken

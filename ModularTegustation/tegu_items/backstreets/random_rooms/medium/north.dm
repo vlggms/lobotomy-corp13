@@ -63,19 +63,17 @@
 	room_id = "gmanager_house"
 	mappath = "_maps/RandomRooms/backstreets/medium_north/gmanager_house.dmm"
 
-/datum/map_template/random_room/backstreets/medium_north/lab_ln
-	name = "Strange Lab - Medium North A"
-	room_id = "lab_ln"
-	mappath = "_maps/RandomRooms/backstreets/medium_north/lab_ln.dmm"
-	stock = 1
-	weight = 2 //1/5th as common
-
 /datum/map_template/random_room/backstreets/medium_north/casino_mn
 	name = "Casino - Medium North"
 	room_id = "casino_mn"
 	mappath = "_maps/RandomRooms/backstreets/medium_north/casino_mn.dmm"
 	stock = 1 // Only one, but it's common
 
+/datum/map_template/random_room/backstreets/medium_north/shrimp_gym
+	name = "Shrimp Gym - Medium North"
+	room_id = "shrimp_gym"
+	mappath = "_maps/RandomRooms/backstreets/medium_north/shrimp_gym.dmm"
+  
 /datum/map_template/random_room/backstreets/medium_north/slime_hut
 	name = "Slime Hut - Medium North A"
 	room_id = "slime_hut"

@@ -16,7 +16,7 @@
 	stock = 3
 	room_type = "backstreets_large_north"
 
-/datum/map_template/random_room/backstreets/large_north/medicallna
+/datum/map_template/random_room/backstreets/large_north/medical_lna
 	name = "Medical - Large North A"
 	room_id = "medical_lna"
 	mappath = "_maps/RandomRooms/backstreets/large_north/medical_lna.dmm"
@@ -32,6 +32,11 @@
 	name = "Robots - Large North A"
 	room_id = "robot_lna"
 	mappath = "_maps/RandomRooms/backstreets/large_north/robot_lna.dmm"
+
+/datum/map_template/random_room/backstreets/large_north/robot_lnb
+	name = "Robots - Large North B"
+	room_id = "robot_lnb"
+	mappath = "_maps/RandomRooms/backstreets/large_north/robot_lnb.dmm"
 
 /datum/map_template/random_room/backstreets/large_north/scorp
 	name = "S-Corp Real Base of Operations"
@@ -57,6 +62,7 @@
 	name = "Laboratory - Large North"
 	room_id = "lab_ln"
 	mappath = "_maps/RandomRooms/backstreets/large_north/lab_ln.dmm"
+	weight = 3
 
 /datum/map_template/random_room/backstreets/large_north/electric_room
 	name = "Amber Knight - Large North"
@@ -69,3 +75,19 @@
 	room_id = "town_lna"
 	mappath = "_maps/RandomRooms/backstreets/large_north/town_lna.dmm"
 	stock = 1
+
+/datum/map_template/random_room/backstreets/large_north/apartment_lnb
+	name = "Apartments - Large North B"
+	room_id = "apartment_lnb"
+	mappath = "_maps/RandomRooms/backstreets/large_north/apartment_lnb.dmm"
+
+/datum/map_template/random_room/backstreets/large_north/limbus_lna
+	name = "Limbus - Large North A"
+	room_id = "limbus_lna"
+	mappath = "_maps/RandomRooms/backstreets/large_north/limbus_lna.dmm"
+
+/datum/map_template/random_room/backstreets/large_north/blade_lineage
+	name = "Blade Lineage - Large North"
+	room_id = "blade_lineage_ln"
+	mappath = "_maps/RandomRooms/backstreets/large_north/blade_lineage_ln.dmm"
+

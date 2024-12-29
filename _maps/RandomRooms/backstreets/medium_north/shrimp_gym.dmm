@@ -1,0 +1,267 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"a" = (
+/obj/machinery/door/airlock/wood,
+/turf/open/floor/facility/dark,
+/area/city/backstreets_room)
+"b" = (
+/obj/structure/railing/corner{
+	dir = 4
+	},
+/obj/machinery/light/floor,
+/turf/open/floor/facility/dark,
+/area/city/backstreets_room)
+"c" = (
+/obj/item/stack/spacecash/c50{
+	pixel_x = -3;
+	pixel_y = 5
+	},
+/obj/item/stack/spacecash/c50{
+	pixel_x = -4;
+	pixel_y = -4
+	},
+/obj/item/stack/spacecash/c50{
+	pixel_x = 6;
+	pixel_y = 8
+	},
+/obj/effect/decal/cleanable/blood/tracks{
+	dir = 8
+	},
+/turf/open/floor/facility/white,
+/area/city/backstreets_room)
+"d" = (
+/obj/structure/railing/corner,
+/obj/machinery/light/floor,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/facility/dark,
+/area/city/backstreets_room)
+"k" = (
+/obj/item/stack/spacecash/c50{
+	pixel_x = 6;
+	pixel_y = 8
+	},
+/obj/item/stack/spacecash/c50{
+	pixel_x = 6;
+	pixel_y = -3
+	},
+/obj/item/stack/spacecash/c50{
+	pixel_x = -4;
+	pixel_y = -4
+	},
+/turf/open/floor/facility/white,
+/area/city/backstreets_room)
+"l" = (
+/obj/structure/railing,
+/turf/open/floor/facility/dark,
+/area/city/backstreets_room)
+"m" = (
+/obj/structure/railing/corner{
+	dir = 1
+	},
+/obj/machinery/light/floor,
+/obj/item/ego_weapon/city/rats/knife,
+/turf/open/floor/facility/dark,
+/area/city/backstreets_room)
+"o" = (
+/obj/effect/decal/cleanable/blood/tracks{
+	dir = 5
+	},
+/turf/open/floor/facility/dark,
+/area/city/backstreets_room)
+"q" = (
+/obj/structure/rack,
+/turf/open/floor/facility/dark,
+/area/city/backstreets_room)
+"r" = (
+/obj/structure/punching_bag,
+/turf/open/floor/facility/dark,
+/area/city/backstreets_room)
+"s" = (
+/obj/structure/railing/corner{
+	dir = 8
+	},
+/obj/machinery/light/floor,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/facility/dark,
+/area/city/backstreets_room)
+"t" = (
+/mob/living/simple_animal/hostile/senior_shrimp,
+/obj/item/stack/spacecash/c50{
+	pixel_x = -4;
+	pixel_y = -4
+	},
+/obj/item/stack/spacecash/c50{
+	pixel_x = 6;
+	pixel_y = 8
+	},
+/obj/item/stack/spacecash/c50{
+	pixel_x = -3;
+	pixel_y = 5
+	},
+/turf/open/floor/facility/white,
+/area/city/backstreets_room)
+"x" = (
+/mob/living/simple_animal/hostile/senior_shrimp,
+/obj/item/stack/spacecash/c50{
+	pixel_x = 6;
+	pixel_y = -3
+	},
+/obj/item/stack/spacecash/c50{
+	pixel_x = -3;
+	pixel_y = 5
+	},
+/turf/open/floor/facility/white,
+/area/city/backstreets_room)
+"z" = (
+/obj/structure/railing{
+	dir = 4
+	},
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/facility/dark,
+/area/city/backstreets_room)
+"B" = (
+/obj/structure/punching_bag,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/facility/dark,
+/area/city/backstreets_room)
+"C" = (
+/obj/structure/closet/boxinggloves,
+/turf/open/floor/facility/dark,
+/area/city/backstreets_room)
+"D" = (
+/obj/structure/closet/boxinggloves,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/facility/dark,
+/area/city/backstreets_room)
+"F" = (
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/facility/dark,
+/area/city/backstreets_room)
+"G" = (
+/mob/living/simple_animal/hostile/shrimp,
+/turf/open/floor/facility/dark,
+/area/city/backstreets_room)
+"H" = (
+/obj/structure/railing{
+	dir = 1
+	},
+/turf/open/floor/facility/dark,
+/area/city/backstreets_room)
+"K" = (
+/obj/structure/railing{
+	dir = 4
+	},
+/turf/open/floor/facility/dark,
+/area/city/backstreets_room)
+"O" = (
+/obj/effect/decal/cleanable/blood/splatter,
+/obj/effect/decal/cleanable/blood/tracks,
+/obj/effect/decal/cleanable/blood/gibs/core,
+/obj/effect/decal/cleanable/blood/gibs/torso{
+	pixel_y = -12
+	},
+/turf/open/floor/facility/dark,
+/area/city/backstreets_room)
+"Q" = (
+/turf/closed/indestructible/reinforced,
+/area/city/backstreets_room)
+"T" = (
+/mob/living/simple_animal/hostile/shrimp,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/facility/dark,
+/area/city/backstreets_room)
+"Y" = (
+/obj/structure/railing{
+	dir = 8
+	},
+/obj/effect/decal/cleanable/blood/tracks{
+	dir = 8
+	},
+/turf/open/floor/facility/dark,
+/area/city/backstreets_room)
+"Z" = (
+/obj/structure/railing{
+	dir = 8
+	},
+/turf/open/floor/facility/dark,
+/area/city/backstreets_room)
+
+(1,1,1) = {"
+Q
+Q
+Q
+Q
+Q
+Q
+"}
+(2,1,1) = {"
+Q
+B
+B
+B
+r
+Q
+"}
+(3,1,1) = {"
+Q
+G
+F
+T
+F
+a
+"}
+(4,1,1) = {"
+Q
+d
+z
+K
+b
+Q
+"}
+(5,1,1) = {"
+Q
+l
+x
+k
+H
+Q
+"}
+(6,1,1) = {"
+Q
+l
+c
+t
+H
+Q
+"}
+(7,1,1) = {"
+Q
+s
+Y
+Z
+m
+Q
+"}
+(8,1,1) = {"
+Q
+F
+o
+O
+F
+a
+"}
+(9,1,1) = {"
+Q
+C
+D
+q
+q
+Q
+"}
+(10,1,1) = {"
+Q
+Q
+Q
+Q
+Q
+Q
+"}

@@ -31,7 +31,6 @@
 	room_id = "coffee_break"
 	mappath = "_maps/RandomRooms/backstreets/small_north/coffee_break.dmm"
 
-
 /datum/map_template/random_room/backstreets/small_north/kcorp_stash_sna
 	name = "KCorp Stash - Small North A"
 	room_id = "kcorp_stash_sna"
@@ -57,17 +56,17 @@
     room_id = "small_clan_hideout"
     mappath = "_maps/RandomRooms/backstreets/small_north/small_clan_hideout.dmm"
 
-/datum/map_template/random_room/backstreets/small_north/grey_parrizan
-    name = "Grey Parrizan - Small North A"
-    room_id = "grey_parrizan"
-    mappath = "_maps/RandomRooms/backstreets/small_north/grey_parrizan.dmm"
-
-/datum/map_template/random_room/backstreets/small_north/apartment_sna
-    name = "Apartment - Small North A"
+/datum/map_template/random_room/backstreets/small_north/apartment_snb
+    name = "Apartment - Small North B"
     room_id = "apartment_sna"
-    mappath = "_maps/RandomRooms/backstreets/small_north/apartment_sna.dmm"
+    mappath = "_maps/RandomRooms/backstreets/small_north/apartment_snb.dmm"
 
 /datum/map_template/random_room/backstreets/small_north/bird_box
-    name = "Bird Box - Small North A"
+    name = "Bird Box - Small North"
     room_id = "bird_box"
     mappath = "_maps/RandomRooms/backstreets/small_north/bird_box.dmm"
+
+/datum/map_template/random_room/backstreets/small_north/wellcheers_interrogation
+    name = "Wellcheers Interrogation - Small North"
+    room_id = "wellcheers_interrogation"
+    mappath = "_maps/RandomRooms/backstreets/small_north/wellcheers_interrogation.dmm"

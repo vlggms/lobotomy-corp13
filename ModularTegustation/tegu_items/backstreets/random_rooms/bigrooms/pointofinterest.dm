@@ -22,5 +22,15 @@
 
 /datum/map_template/random_room/backstreets/pointofinterest/love_train
 	name = "Love Train - Point of Interest"
-	room_id = "love_train"
+	room_id = "love_train_poi"
 	mappath = "_maps/RandomRooms/backstreets/pointofinterest/love_train.dmm"
+
+/datum/map_template/random_room/backstreets/pointofinterest/lcorp
+	name = "L-Corp - Point of Interest"
+	room_id = "lcorp_poi"
+	mappath = "_maps/RandomRooms/backstreets/pointofinterest/lcorp.dmm"
+
+/datum/map_template/random_room/backstreets/pointofinterest/inquisition
+	name = "Inquisition - Point of Interest"
+	room_id = "n_corp_poi"
+	mappath = "_maps/RandomRooms/backstreets/pointofinterest/n_corp.dmm"
