@@ -29,7 +29,7 @@
 	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 0.8, WHITE_DAMAGE = 1.2, BLACK_DAMAGE = 1.5, PALE_DAMAGE = 2)
 	attack_sound = 'sound/weapons/purple_tear/stab2.ogg'
 	butcher_results = list(/obj/item/raw_anomaly_core/bluespace = 1)
-	guaranteed_butcher_results = list(/obj/item/food/meat/slab/robot = 2, /obj/item/food/meat/slab/sweeper = 1)
+	guaranteed_butcher_results = list(/obj/item/food/meat/slab/robot = 2)
 	silk_results = list(/obj/item/stack/sheet/silk/azure_simple = 1)
 	var/charge = 5
 	var/max_charge = 10
@@ -221,7 +221,7 @@
 	attack_sound = 'sound/weapons/purple_tear/blunt2.ogg'
 	silk_results = list(/obj/item/stack/sheet/silk/azure_simple = 2,
 						/obj/item/stack/sheet/silk/azure_advanced = 1)
-	guaranteed_butcher_results = list(/obj/item/food/meat/slab/robot = 3, /obj/item/food/meat/slab/sweeper = 2)
+	guaranteed_butcher_results = list(/obj/item/food/meat/slab/robot = 3)
 	melee_damage_lower = 20
 	melee_damage_upper = 25
 
@@ -414,7 +414,7 @@
 	attack_sound = 'sound/weapons/emitter2.ogg'
 	silk_results = list(/obj/item/stack/sheet/silk/azure_simple = 2,
 						/obj/item/stack/sheet/silk/azure_advanced = 1)
-	guaranteed_butcher_results = list(/obj/item/food/meat/slab/robot = 3, /obj/item/food/meat/slab/sweeper = 2)
+	guaranteed_butcher_results = list(/obj/item/food/meat/slab/robot = 3)
 	charge = 10
 	max_charge = 20
 	clan_charge_cooldown = 1 SECONDS
