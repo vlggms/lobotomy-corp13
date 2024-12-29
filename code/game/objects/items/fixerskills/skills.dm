@@ -85,14 +85,7 @@
 				allowed_level1_skills = 5
 
 			else
-				if(level==1)
-					to_chat(user, span_notice("You are Grade [max(10-grade, 1)]. Only Grade 9 and 8 Fixers are able to read this book!"))
-				else if(level == 2)
-					to_chat(user, span_notice("You are Grade [max(10-grade, 1)]. Only Grade 7 and 6 Fixers are able to read this book!"))
-				else if(level == 3)
-					to_chat(user, span_notice("You are Grade [max(10-grade, 1)]. Only Grade 5 Fixers are able to read this book!"))
-				else if(level == 4)
-					to_chat(user, span_notice("You are Grade [max(10-grade, 1)]. Only Grade 4 Fixers are able to read this book!"))
+				wrong_grade_info()
 				return FALSE
 
 		if (!(user?.mind?.assigned_role in list("Civilian")))
@@ -115,3 +108,12 @@
 		qdel(src)
 	..()
 
+/obj/item/book/granter/action/skill/proc/wrong_grade_info()
+	if(level==1)
+		to_chat(user, span_notice("You are Grade [max(10-grade, 1)]. Only Grade 9 and 8 Fixers are able to read this book!"))
+	else if(level == 2)
+		to_chat(user, span_notice("You are Grade [max(10-grade, 1)]. Only Grade 7 and 6 Fixers are able to read this book!"))
+	else if(level == 3)
+		to_chat(user, span_notice("You are Grade [max(10-grade, 1)]. Only Grade 5 Fixers are able to read this book!"))
+	else if(level == 4)
+		to_chat(user, span_notice("You are Grade [max(10-grade, 1)]. Only Grade 4 Fixers are able to read this book!"))
