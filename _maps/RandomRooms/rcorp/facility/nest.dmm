@@ -338,13 +338,8 @@
 /turf/open/floor/mineral/plastitanium,
 /area/city/outskirts)
 "gJ" = (
-/obj/effect/turf_decal/trimline/yellow/filled/line{
-	dir = 2
-	},
-/obj/effect/decal/cleanable/blood/footprints{
-	dir = 4
-	},
-/turf/open/floor/plating/ashplanet,
+/obj/effect/landmark/nobasic_incorp_move,
+/turf/closed/indestructible/rock,
 /area/city/outskirts)
 "gT" = (
 /obj/structure/grille/broken,
@@ -1820,6 +1815,10 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/city/outskirts)
+"Jj" = (
+/obj/effect/landmark/nobasic_incorp_move,
+/turf/closed/indestructible/syndicate,
+/area/city/outskirts)
 "Jl" = (
 /obj/effect/decal/cleanable/blood/gibs/body,
 /obj/effect/decal/cleanable/blood/tracks,
@@ -2053,9 +2052,7 @@
 /turf/open/floor/wood,
 /area/city/outskirts)
 "NX" = (
-/obj/machinery/button/door/indestructible{
-	id = "inside"
-	},
+/obj/machinery/button/door/indestructible/rcorp,
 /obj/effect/landmark/nobasic_incorp_move,
 /turf/closed/indestructible/syndicate,
 /area/city/outskirts)

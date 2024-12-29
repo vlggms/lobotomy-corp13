@@ -55,6 +55,10 @@
 /obj/effect/landmark/abnospawn/rhinobuster,
 /turf/open/floor/facility,
 /area/city/outskirts)
+"Go" = (
+/obj/machinery/button/door/indestructible/rcorp,
+/turf/closed/indestructible/syndicate,
+/area/city/outskirts)
 "HD" = (
 /turf/open/floor/facility,
 /area/city/outskirts)
@@ -121,7 +125,7 @@ aN
 aN
 aN
 aN
-Fl
+Go
 Fl
 pz
 pz
