@@ -85,7 +85,7 @@
 				allowed_level1_skills = 5
 
 			else
-				wrong_grade_info()
+				wrong_grade_info(grade)
 				return FALSE
 		if (!(user?.mind?.assigned_role in list("Civilian")))
 			to_chat(user, span_notice("Only Civilians can use this book!"))
@@ -107,7 +107,7 @@
 		qdel(src)
 	..()
 
-/obj/item/book/granter/action/skill/proc/wrong_grade_info()
+/obj/item/book/granter/action/skill/proc/wrong_grade_info(grade)
 	if(level==1)
 		to_chat(user, span_notice("You are Grade [max(10-grade, 1)]. Only Grade 9 and 8 Fixers are able to read this book!"))
 	else if(level == 2)
