@@ -2083,6 +2083,7 @@
 #include "code\modules\clothing\suits\ego_gear\zayin.dm"
 #include "code\modules\clothing\suits\ego_gear\non_abnormality\_cityarmor.dm"
 #include "code\modules\clothing\suits\ego_gear\non_abnormality\bladelineage.dm"
+#include "code\modules\clothing\suits\ego_gear\non_abnormality\bloodfiend.dm"
 #include "code\modules\clothing\suits\ego_gear\non_abnormality\carnival.dm"
 #include "code\modules\clothing\suits\ego_gear\non_abnormality\cinq.dm"
 #include "code\modules\clothing\suits\ego_gear\non_abnormality\color.dm"

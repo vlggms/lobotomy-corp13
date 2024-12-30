@@ -18,6 +18,9 @@
 	maxHealth = 1000
 	health = 1000
 	ranged = TRUE
+	butcher_results = list(/obj/item/food/meat/slab/crimson = 1)
+	guaranteed_butcher_results = list(/obj/item/food/meat/slab/crimson = 2)
+	silk_results = list(/obj/item/stack/sheet/silk/crimson_simple = 2, /obj/item/stack/sheet/silk/crimson_advanced = 1)
 	var/leap_sound = 'sound/abnormalities/nosferatu/attack_special.ogg'
 	var/blood_feast = 400
 	var/max_blood_feast = 400
@@ -28,7 +31,6 @@
 	var/drain_cooldown_time = 50
 	var/bleed_stacks = 3
 	var/leap_bleed_stacks = 10
-	var/boss = FALSE
 
 /mob/living/simple_animal/hostile/humanoid/blood/fiend/proc/AdjustBloodFeast(amount)
 	adjustBruteLoss(-amount/2)
@@ -166,9 +168,8 @@
 	maxHealth = 1000
 	health = 1000
 	ranged = TRUE
-	butcher_results = list(/obj/item/food/meat/slab/crimson = 1)
-	guaranteed_butcher_results = list(/obj/item/food/meat/slab/crimson = 1)
-	silk_results = list(/obj/item/stack/sheet/silk/crimson_simple = 1)
+	guaranteed_butcher_results = list(/obj/item/food/meat/slab/crimson = 3)
+	silk_results = list(/obj/item/stack/sheet/silk/crimson_simple = 4, /obj/item/stack/sheet/silk/crimson_advanced = 2, /obj/item/stack/sheet/silk/crimson_elegant = 1)
 	var/cutter_bleed_stacks = 15
 	var/readyToSpawn75 = TRUE
 	var/timeToSpawn75
