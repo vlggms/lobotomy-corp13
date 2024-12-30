@@ -3,10 +3,11 @@
 
 /mob/living/simple_animal/hostile/humanoid/blood/fiend
 	name = "bloodfiend"
-	desc = "Desc"
-	icon = 'ModularTegustation/Teguicons/blood_fiends_32x48.dmi'
-	icon_state = "Fashionista_Bloodfiend"
-	icon_living = "Fashionista_Bloodfiend"
+	desc = "A humanoid wearing a bloody dress and a bird mask."
+	icon = 'ModularTegustation/Teguicons/blood_fiends_32x32.dmi'
+	icon_state = "bloodfiend"
+	icon_living = "bloodfiend"
+	icon_dead = "bloodfiend_dead"
 	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 0.4, WHITE_DAMAGE = 1, BLACK_DAMAGE = 0.6, PALE_DAMAGE = 1.3)
 	melee_damage_lower = 13
 	melee_damage_upper = 15
@@ -151,9 +152,10 @@
 /mob/living/simple_animal/hostile/humanoid/blood/fiend/boss
 	name = "bloodfiendboss"
 	desc = "Desc"
-	icon = 'ModularTegustation/Teguicons/blood_fiends_32x48.dmi'
-	icon_state = "Fashionista_Bloodfiend"
-	icon_living = "Fashionista_Bloodfiend"
+	icon = 'ModularTegustation/Teguicons/blood_fiends_32x32.dmi'
+	icon_state = "bloodfiend"
+	icon_living = "bloodfiend"
+	icon_dead = "bloodfiend_dead"
 	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 0.4, WHITE_DAMAGE = 1, BLACK_DAMAGE = 0.6, PALE_DAMAGE = 1.3)
 	melee_damage_lower = 13
 	melee_damage_upper = 15
@@ -164,6 +166,9 @@
 	maxHealth = 1000
 	health = 1000
 	ranged = TRUE
+	butcher_results = list(/obj/item/food/meat/slab/crimson = 1)
+	guaranteed_butcher_results = list(/obj/item/food/meat/slab/crimson = 1)
+	silk_results = list(/obj/item/stack/sheet/silk/crimson_simple = 1)
 	var/cutter_bleed_stacks = 15
 	var/readyToSpawn75 = TRUE
 	var/timeToSpawn75
@@ -308,9 +313,9 @@
 	name = "bloodbag"
 	desc = "Desc"
 	icon = 'ModularTegustation/Teguicons/blood_fiends_32x32.dmi'
-	icon_state = "BloodBag"
-	icon_living = "BloodBag"
-	icon_dead = "BloodBag"
+	icon_state = "bloodbag"
+	icon_living = "bloodbag"
+	icon_dead = "bloodbag_dead"
 	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 0.6, WHITE_DAMAGE = 1.2, BLACK_DAMAGE = 0.8, PALE_DAMAGE = 1.5)
 	melee_damage_lower = 5
 	melee_damage_upper = 6
@@ -321,6 +326,9 @@
 	attack_verb_simple = "slash"
 	maxHealth = 260
 	health = 260
+	butcher_results = list(/obj/item/food/meat/slab/crimson = 1)
+	guaranteed_butcher_results = list(/obj/item/food/meat/slab/crimson = 1)
+	silk_results = list(/obj/item/stack/sheet/silk/crimson_simple = 1)
 	var/self_damage = 20
 	var/self_damage_type = RED_DAMAGE
 	var/blood_drop_cooldown = 0
