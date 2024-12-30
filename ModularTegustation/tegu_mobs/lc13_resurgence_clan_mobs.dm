@@ -236,6 +236,10 @@
 	if (!stunned)
 		. = ..()
 
+/mob/living/simple_animal/hostile/clan/defender/ComponentInitialize()
+	. = ..()
+	AddComponent(/datum/component/knockback, 2, FALSE, FALSE)
+
 /mob/living/simple_animal/hostile/clan/defender/AttackingTarget(atom/attacked_target)
 	if (stunned)  // dont attack if coiled or stunned
 		return FALSE
@@ -256,7 +260,7 @@
 	else
 		icon_state = "defender_locked_down"
 	say("Co-mmen-cing Pr-otoco-l: Lo-ckdo-wn")
-	// create tiles
+	ChangeResistances(list(RED_DAMAGE = 0.4, WHITE_DAMAGE = 0.4, BLACK_DAMAGE = 0.4, PALE_DAMAGE = 1))
 	for(var/turf/T in view(2, src))
 		var/obj/effect/defender_field/DF = new(T)
 		locked_tiles_list += DF
@@ -313,6 +317,7 @@
 	else
 		icon_state = "defender"
 
+	ChangeResistances(list(RED_DAMAGE = 0.6, WHITE_DAMAGE = 0.8, BLACK_DAMAGE = 1.2, PALE_DAMAGE = 1.5))
 	density = TRUE
 	// clear tiles
 	for(var/obj/effect/defender_field/DF in locked_tiles_list)
@@ -351,6 +356,10 @@
 	if (isliving(AM))
 		var/mob/living/L = AM
 		defender.ApplyLock(L)
+		if(ishuman(L))
+			var/mob/living/carbon/human/H = L
+			H.apply_damage(10, BLACK_DAMAGE, null, H.run_armor_check(null, BLACK_DAMAGE), spread_damage = TRUE)
+			to_chat(H, span_warning("You get shocked by the electic fields"))
 
 /datum/status_effect/locked
 	id = "locked"
