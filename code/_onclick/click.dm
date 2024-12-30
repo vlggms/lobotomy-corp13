@@ -145,9 +145,12 @@
 	if(CanReach(A,W))
 		if(W)
 			var/atom/target_thing = A
-			if((isturf(A) || iseffect(A)) && W.force > 10)
+			if(a_intent != INTENT_HARM && (isturf(A) || iseffect(A)) && W.force > 10)
 				var/turf/T = get_turf(A)
 				for(var/mob/living/L in T)
+					if(istype(L, /mob/living/simple_animal/projectile_blocker_dummy))
+						var/mob/living/simple_animal/projectile_blocker_dummy/pbd = L
+						L = pbd.parent
 					if(L.invisibility > see_invisible)
 						continue
 					if(L.stat != DEAD)

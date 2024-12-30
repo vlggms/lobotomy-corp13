@@ -83,6 +83,8 @@
 	/// How willing a mob is to switch targets. More resistance means more aggro is required
 	var/target_switch_resistance
 
+	var/damage_effect_scale = 1
+
 /mob/living/simple_animal/hostile/Initialize()
 	/*Update Speed overrides set speed and sets it
 		to the equivilent of move_to_delay. Basically
@@ -201,7 +203,6 @@
 		//register the attacker in our memory.
 		if(P.firer)
 			RegisterAggroValue(P.firer, P.damage, P.damage_type)
-	DamageEffect(P.damage, P.damage_type)
 	return ..()
 
 /mob/living/simple_animal/hostile/attack_animal(mob/living/simple_animal/M, damage)
@@ -280,42 +281,93 @@
 /*-------------------\
 |Damage Visual Effect|
 \-------------------*/
+/mob/living/proc/DamageEffect(damage, damtype)
+	if(damage > 0)
+		switch(damtype)
+			if(RED_DAMAGE)
+				return new /obj/effect/temp_visual/damage_effect/red(get_turf(src))
+			if(WHITE_DAMAGE)
+				return new /obj/effect/temp_visual/damage_effect/white(get_turf(src))
+			if(BLACK_DAMAGE)
+				return new /obj/effect/temp_visual/damage_effect/black(get_turf(src))
+			if(PALE_DAMAGE)
+				return new /obj/effect/temp_visual/damage_effect/pale(get_turf(src))
+			if(BURN)
+				return new /obj/effect/temp_visual/damage_effect/burn(get_turf(src))
+			if(TOX)
+				return new /obj/effect/temp_visual/damage_effect/tox(get_turf(src))
+			else
+				return null
 
-/mob/living/simple_animal/hostile/attack_threshold_check(damage, damagetype = BRUTE, armorcheck = MELEE, actuallydamage = TRUE)
-	//This used to also check actually damage but turns out melee weapons in item_attack.dm dont call actually damage.
-	if(stat != DEAD && (damagetype in list(RED_DAMAGE, WHITE_DAMAGE, BLACK_DAMAGE, PALE_DAMAGE)))
-		//To simplify things, if you bash a abnormality with a wrench it wont show any effect. --uhh it will though
-		DamageEffect(damagetype)
-	return ..()
-
-/mob/living/simple_animal/hostile/proc/DamageEffect(damtype)
-	//Code stolen from attack_threshold_check() in animal_defense.dm
-	var/damage_modifier
-	if(islist(damage_coeff))
-		damage_modifier = damage_coeff[damtype]
-	else
-		damage_modifier = damage_coeff.getCoeff(damtype)
-
-	if(damage_modifier == 0)
-		//Visual Effect for immunity.
-		return new /obj/effect/temp_visual/healing/no_dam(get_turf(src))
-	if(damage_modifier < 0)
-		//Visual Effect for healing.
-		return new /obj/effect/temp_visual/healing(get_turf(src))
-
+/mob/living/simple_animal/hostile/DamageEffect(damage, damtype)
+	var/obj/effect/dam_effect = null
+	if(!damage)
+		dam_effect = new /obj/effect/temp_visual/healing/no_dam(get_turf(src))
+		if(damage_effect_scale != 1)
+			dam_effect.transform *= damage_effect_scale
+		return dam_effect
+	if(damage < 0)
+		dam_effect = new /obj/effect/temp_visual/healing(get_turf(src))
+		if(damage_effect_scale != 1)
+			dam_effect.transform *= damage_effect_scale
+		return dam_effect
 	switch(damtype)
 		if(RED_DAMAGE)
-			return new /obj/effect/temp_visual/damage_effect/red(get_turf(src))
+			dam_effect = new /obj/effect/temp_visual/damage_effect/red(get_turf(src))
 		if(WHITE_DAMAGE)
-			return new /obj/effect/temp_visual/damage_effect/white(get_turf(src))
+			dam_effect = new /obj/effect/temp_visual/damage_effect/white(get_turf(src))
 		if(BLACK_DAMAGE)
-			return new /obj/effect/temp_visual/damage_effect/black(get_turf(src))
+			dam_effect = new /obj/effect/temp_visual/damage_effect/black(get_turf(src))
 		if(PALE_DAMAGE)
-			return new /obj/effect/temp_visual/damage_effect/pale(get_turf(src))
+			dam_effect = new /obj/effect/temp_visual/damage_effect/pale(get_turf(src))
 		if(BURN)
-			return new /obj/effect/temp_visual/damage_effect/burn(get_turf(src))
+			dam_effect = new /obj/effect/temp_visual/damage_effect/burn(get_turf(src))
 		if(TOX)
-			return new /obj/effect/temp_visual/damage_effect/tox(get_turf(src))
+			dam_effect = new /obj/effect/temp_visual/damage_effect/tox(get_turf(src))
+		else
+			return null
+	if(damage_effect_scale != 1)
+		dam_effect.transform *= damage_effect_scale
+	if(length(projectile_blockers) > 0)
+		dam_effect.pixel_x += rand(-occupied_tiles_left_current * 32, occupied_tiles_right_current * 32)
+		dam_effect.pixel_y += rand(-occupied_tiles_down_current * 32, occupied_tiles_up_current * 32)
+	return dam_effect
+
+/mob/living/simple_animal/hostile/adjustRedLoss(amount, updating_health, forced)
+	var/was_alive = stat != DEAD
+	. = ..()
+	if(was_alive)
+		DamageEffect(., RED_DAMAGE)
+
+/mob/living/simple_animal/hostile/adjustWhiteLoss(amount, updating_health, forced, white_healable)
+	var/was_alive = stat != DEAD
+	. = ..()
+	if(was_alive)
+		DamageEffect(., WHITE_DAMAGE)
+
+/mob/living/simple_animal/hostile/adjustBlackLoss(amount, updating_health, forced, white_healable)
+	var/was_alive = stat != DEAD
+	. = ..()
+	if(was_alive)
+		DamageEffect(., BLACK_DAMAGE)
+
+/mob/living/simple_animal/hostile/adjustPaleLoss(amount, updating_health, forced)
+	var/was_alive = stat != DEAD
+	. = ..()
+	if(was_alive)
+		DamageEffect(., PALE_DAMAGE)
+
+/mob/living/simple_animal/hostile/adjustFireLoss(amount, updating_health, forced)
+	var/was_alive = stat != DEAD
+	. = ..()
+	if(was_alive)
+		DamageEffect(., BURN)
+
+/mob/living/simple_animal/hostile/adjustToxLoss(amount, updating_health, forced)
+	var/was_alive = stat != DEAD
+	. = ..()
+	if(was_alive)
+		DamageEffect(., TOX)
 
 /*Used in LC13 abnormality calculations.
 	Moved here so we can use it for all hostiles.

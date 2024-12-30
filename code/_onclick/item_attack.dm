@@ -84,6 +84,9 @@
 
 	for(var/turf/T in hit_turfs)
 		for(var/mob/M in T)
+			if(istype(M, /mob/living/simple_animal/projectile_blocker_dummy))
+				var/mob/living/simple_animal/projectile_blocker_dummy/pbd = M
+				M = pbd.parent
 			potential_targets |= M
 
 	potential_targets -= user

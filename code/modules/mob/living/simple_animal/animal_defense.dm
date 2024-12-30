@@ -141,6 +141,7 @@
 
 	if(temp_damage >= 0 && temp_damage <= force_threshold)
 		visible_message(span_warning("[src] looks unharmed!"))
+		DamageEffect(0, damagetype)
 		return FALSE
 
 	if(actuallydamage)
