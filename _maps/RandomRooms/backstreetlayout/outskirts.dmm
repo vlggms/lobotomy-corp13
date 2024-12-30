@@ -150,6 +150,37 @@
 /obj/structure/lootcrate/syndicate,
 /turf/open/floor/plating/ashplanet/rocky,
 /area/city/backstreets_alley)
+"fg" = (
+/obj/structure/chair/plastic{
+	dir = 4
+	},
+/mob/living/simple_animal/hostile/clan_npc/info/trader{
+	icon_state = "clan_citzen_6";
+	icon_living = "clan_citzen_6";
+	answers1 = list("...","Ca-all me Herring.", "I am but an old fi-sher who rests here...", "Once I fi-ished in the gre-eat lake...", "No-ow I fi-ish in simple ponds.");
+	question2 = "What are you buying?";
+	answers2 = list("Hm...", "Bri-ing me so-ome fresh wa-ater fish", "I-it has been a long time si-ince I have seen some...");
+	greeting_line = "Hm... We-elcome cu-ustomer.";
+	selling_answer = list("I o-only have a fe-ew tools to spare...","Bu-ut you ma-ay ta-ake a look...", "Just ho-old some cash in yo-our ID, and I will te-ell you if you have enough.");
+	buying_say = "Ni-ice catch...";
+	poor_say = "Lo-ooks li-ike you still need ";
+	sold_say = "Ve-ery well, Ta-ake it.";
+	selling_item_1 = /obj/item/fishing_component/line/clan;
+	selling_item_1_name = "Resurgence Clan Fishing Line Reel (600 ahn)";
+	selling_item_2_name = "Resurgence Clan Fishing Net (800 ahn)";
+	selling_item_2 = /obj/item/fishing_net/resurgence;
+	cost_1 = 600;
+	cost_2 = 800;
+	selling_end = "Ve-ery well...";
+	return_to_origin = 1;
+	city_faction = 0;
+	level_1 = list(/obj/item/food/fish/fresh_water);
+	level_2 = list();
+	level_3 = list();
+	dir = 4
+	},
+/turf/open/floor/plating/ironsand,
+/area/city/backstreets_room/resurgence_village)
 "fj" = (
 /obj/structure/riser/wood{
 	dir = 4
@@ -225,6 +256,12 @@
 /obj/structure/flora/rock,
 /turf/open/floor/plating/ashplanet/rocky,
 /area/city/backstreets_alley)
+"gI" = (
+/obj/structure/chair/plastic{
+	dir = 4
+	},
+/turf/open/floor/plating/ironsand,
+/area/city/backstreets_room/resurgence_village)
 "gU" = (
 /obj/effect/turf_decal/siding/wood/corner{
 	dir = 1
@@ -285,7 +322,7 @@
 	pixel_y = 16;
 	anchored = 1
 	},
-/turf/open/water/jungle,
+/turf/open/water/deep/saltwater,
 /area/city/backstreets_room/resurgence_village)
 "jt" = (
 /obj/structure/flora/rock/pile,
@@ -311,6 +348,13 @@
 	dir = 8
 	},
 /turf/open/floor/wood,
+/area/city/backstreets_room/resurgence_village)
+"lN" = (
+/obj/structure/flora/ausbushes/fullgrass,
+/obj/structure/fishshrine{
+	anchored = 1
+	},
+/turf/open/floor/plating/ironsand,
 /area/city/backstreets_room/resurgence_village)
 "mp" = (
 /obj/item/flashlight/lantern{
@@ -474,7 +518,7 @@
 /turf/open/floor/plating/ironsand,
 /area/city/backstreets_room/resurgence_village)
 "rh" = (
-/turf/open/water/jungle,
+/turf/open/water/deep/saltwater,
 /area/city/backstreets_room/resurgence_village)
 "rl" = (
 /obj/effect/turf_decal/siding/wood{
@@ -690,12 +734,12 @@
 /turf/open/floor/plating/ashplanet/rocky,
 /area/city/backstreets_alley)
 "yU" = (
-/obj/structure/water_source/puddle{
-	icon = 'ModularTegustation/Teguicons/toolabnormalities.dmi';
+/obj/structure/water_source{
+	desc = "A well constructed of stone and wood. From where does it draw water?";
 	icon_state = "wishwell";
 	name = "well";
-	desc = "A well constructed of stone and wood. From where does it draw water?";
 	density = 1;
+	icon = 'ModularTegustation/Teguicons/toolabnormalities.dmi';
 	pixel_y = -3
 	},
 /turf/open/floor/plating/dirt/jungle/wasteland,
@@ -709,12 +753,12 @@
 /turf/closed/indestructible/reinforced,
 /area/city/backstreets_room)
 "Bf" = (
-/obj/structure/water_source/puddle{
-	icon = 'ModularTegustation/Teguicons/toolabnormalities.dmi';
+/obj/structure/water_source{
+	desc = "A well constructed of stone and wood. From where does it draw water?";
 	icon_state = "wishwell";
 	name = "well";
-	desc = "A well constructed of stone and wood. From where does it draw water?";
 	density = 1;
+	icon = 'ModularTegustation/Teguicons/toolabnormalities.dmi';
 	pixel_y = -3
 	},
 /turf/open/floor/plating/ironsand,
@@ -1124,9 +1168,14 @@
 /obj/effect/landmark/cratespawn,
 /turf/open/floor/wood,
 /area/city/backstreets_room/resurgence_village)
+"SQ" = (
+/obj/structure/flora/junglebush/c,
+/obj/machinery/fish_market,
+/turf/open/floor/plating/ironsand,
+/area/city/backstreets_room/resurgence_village)
 "Tb" = (
 /obj/effect/turf_decal/raven/seven,
-/turf/open/water/jungle,
+/turf/open/water/deep/saltwater,
 /area/city/backstreets_room/resurgence_village)
 "TO" = (
 /obj/structure/flora/junglebush/c,
@@ -15542,7 +15591,7 @@ Cc
 Cc
 Cc
 Cc
-TO
+SQ
 kM
 Jc
 ku
@@ -15651,8 +15700,8 @@ Cc
 Cc
 Cc
 Cc
-Cc
-Cc
+gI
+fg
 kM
 kM
 Jc
@@ -15762,7 +15811,7 @@ hw
 Cc
 Cc
 Cc
-KZ
+lN
 rh
 kM
 kM

@@ -4197,6 +4197,7 @@
 #include "ModularTegustation\tegu_items\prosthetics\fixertools.dm"
 #include "ModularTegustation\tegu_items\prosthetics\mantis.dm"
 #include "ModularTegustation\tegu_items\prosthetics\overdrive.dm"
+#include "ModularTegustation\tegu_items\prosthetics\resurgence_core.dm"
 #include "ModularTegustation\tegu_items\prosthetics\scrying.dm"
 #include "ModularTegustation\tegu_items\prosthetics\storage.dm"
 #include "ModularTegustation\tegu_items\prosthetics\timestop.dm"
