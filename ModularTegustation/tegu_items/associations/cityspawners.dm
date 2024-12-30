@@ -77,6 +77,7 @@ GLOBAL_VAR_INIT(city_east_enemies, FALSE)
 		"gcorp",
 		"sweeper",
 		"bots",
+		"bloodfiends",
 	)
 
 /obj/effect/landmark/backstreetspawn/Initialize()
@@ -99,6 +100,14 @@ GLOBAL_VAR_INIT(city_east_enemies, FALSE)
 			spawning = /mob/living/simple_animal/hostile/ordeal/green_bot
 			if(prob(30))
 				spawning = /mob/living/simple_animal/hostile/ordeal/green_bot_big
+
+		if("bloodfiends")
+			spawning = /mob/living/simple_animal/hostile/humanoid/blood/bag
+			if(prob(30))
+				if(prob(15))
+					spawning = /mob/living/simple_animal/hostile/humanoid/blood/fiend/boss
+				else
+					spawning = /mob/living/simple_animal/hostile/humanoid/blood/fiend
 	new spawning(get_turf(src))
 
 
@@ -111,6 +120,7 @@ GLOBAL_VAR_INIT(city_east_enemies, FALSE)
 		"gcorp",
 		"sweeper",
 		"bots",
+		"bloodfiends",
 	)
 
 /obj/effect/landmark/backstreetspawnwest/Initialize()
@@ -134,6 +144,13 @@ GLOBAL_VAR_INIT(city_east_enemies, FALSE)
 			spawning = /mob/living/simple_animal/hostile/ordeal/green_bot
 			if(prob(30))
 				spawning = /mob/living/simple_animal/hostile/ordeal/green_bot_big
+		if("bloodfiends")
+			spawning = /mob/living/simple_animal/hostile/humanoid/blood/bag
+			if(prob(30))
+				if(prob(15))
+					spawning = /mob/living/simple_animal/hostile/humanoid/blood/fiend/boss
+				else
+					spawning = /mob/living/simple_animal/hostile/humanoid/blood/fiend
 	new spawning(get_turf(src))
 
 
@@ -144,6 +161,7 @@ GLOBAL_VAR_INIT(city_east_enemies, FALSE)
 		"gcorp",
 		"sweeper",
 		"bots",
+		"bloodfiends",
 	)
 
 /obj/effect/landmark/backstreetspawneast/Initialize()
@@ -166,5 +184,12 @@ GLOBAL_VAR_INIT(city_east_enemies, FALSE)
 			spawning = /mob/living/simple_animal/hostile/ordeal/green_bot
 			if(prob(30))
 				spawning = /mob/living/simple_animal/hostile/ordeal/green_bot_big
-	new spawning(get_turf(src))
 
+		if("bloodfiends")
+			spawning = /mob/living/simple_animal/hostile/humanoid/blood/bag
+			if(prob(30))
+				if(prob(15))
+					spawning = /mob/living/simple_animal/hostile/humanoid/blood/fiend/boss
+				else
+					spawning = /mob/living/simple_animal/hostile/humanoid/blood/fiend
+	new spawning(get_turf(src))
