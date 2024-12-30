@@ -8,15 +8,15 @@
 	icon_state = "bloodfiend"
 	icon_living = "bloodfiend"
 	icon_dead = "bloodfiend_dead"
-	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 0.4, WHITE_DAMAGE = 1, BLACK_DAMAGE = 0.6, PALE_DAMAGE = 1.3)
+	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 1.2, WHITE_DAMAGE = 0.8, BLACK_DAMAGE = 0.6, PALE_DAMAGE = 1.3)
 	melee_damage_lower = 13
 	melee_damage_upper = 15
 	melee_damage_type = RED_DAMAGE
 	attack_sound = 'sound/abnormalities/nosferatu/attack.ogg'
 	attack_verb_continuous = "slices"
 	attack_verb_simple = "slice"
-	maxHealth = 1000
-	health = 1000
+	maxHealth = 800
+	health = 800
 	ranged = TRUE
 	butcher_results = list(/obj/item/food/meat/slab/crimson = 1)
 	guaranteed_butcher_results = list(/obj/item/food/meat/slab/crimson = 2)
@@ -158,17 +158,17 @@
 	icon_state = "bloodfiend"
 	icon_living = "bloodfiend"
 	icon_dead = "bloodfiend_dead"
-	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 0.4, WHITE_DAMAGE = 1, BLACK_DAMAGE = 0.6, PALE_DAMAGE = 1.3)
+	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 1, WHITE_DAMAGE = 0.6, BLACK_DAMAGE = 0.4, PALE_DAMAGE = 1.5)
 	melee_damage_lower = 13
 	melee_damage_upper = 15
 	melee_damage_type = RED_DAMAGE
 	attack_sound = 'sound/abnormalities/nosferatu/attack.ogg'
 	attack_verb_continuous = "slices"
 	attack_verb_simple = "slice"
-	maxHealth = 1000
-	health = 1000
+	maxHealth = 1200
+	health = 1200
 	ranged = TRUE
-	guaranteed_butcher_results = list(/obj/item/food/meat/slab/crimson = 3)
+	guaranteed_butcher_results = list(/obj/item/food/meat/slab/crimson = 3, /obj/item/stack/spacecash/c1000 = 1)
 	silk_results = list(/obj/item/stack/sheet/silk/crimson_simple = 4, /obj/item/stack/sheet/silk/crimson_advanced = 2, /obj/item/stack/sheet/silk/crimson_elegant = 1)
 	var/cutter_bleed_stacks = 15
 	var/readyToSpawn75 = TRUE
@@ -176,18 +176,24 @@
 	var/readyToSpawn25 = TRUE
 	var/timeToSpawn25
 	var/cooldownToSpawn = 10 SECONDS
+	var/cutter_hit = FALSE
+	var/stun_duration = 3 SECONDS
+	var/mob/living/blood_target
 
 /mob/living/simple_animal/hostile/humanoid/blood/fiend/boss/Leap(mob/living/target)
 	if(!isliving(target) && !ismecha(target) || !can_act)
 		return
-	target.apply_status_effect(/datum/status_effect/bloodhold)
+	cutter_hit = FALSE
+	ChangeResistances(list(RED_DAMAGE = 0.3, WHITE_DAMAGE = 0.3, BLACK_DAMAGE = 0.3, PALE_DAMAGE = 0.3))
+	blood_target = target
+	blood_target.apply_status_effect(/datum/status_effect/bloodhold)
+	blood_target.faction += "city"
 	blood_feast = 0
 	can_act = FALSE
 	var/list/dirs_to_land = shuffle(list(NORTH, SOUTH, EAST, WEST, NORTHEAST, NORTHWEST, SOUTHEAST, SOUTHWEST))
 	var/list/dir_overlays = list()
 	for (var/i in 1 to 3)
 		var/dir_to_land = dirs_to_land[i]
-		// add overlay
 		var/x
 		var/y
 		if (dir_to_land == NORTH)
@@ -215,37 +221,46 @@
 			x = -32
 			y = -32
 		var/image/O = image(icon='icons/effects/cult_effects.dmi',icon_state="bloodsparkles", pixel_x = x, pixel_y = y)
-		target.add_overlay(O)
+		blood_target.add_overlay(O)
 		dir_overlays.Add(O)
-		playsound(target, 'ModularTegustation/Tegusounds/claw/eviscerate1.ogg', 100, 1)
+		playsound(blood_target, 'ModularTegustation/Tegusounds/claw/eviscerate1.ogg', 100, 1)
 		if (stat != DEAD)
 			sleep(1 SECONDS)
 		else
 			break
 	for (var/i in 1 to 3)
-		target.cut_overlay(dir_overlays[i])
+		blood_target.cut_overlay(dir_overlays[i])
 		if (stat == DEAD)
+			blood_target.faction -= "city"
 			continue
 		animate(src, alpha = 1,pixel_x = 16, pixel_z = 0, time = 0.1 SECONDS)
 		src.pixel_x = 16
 		playsound(src, 'sound/abnormalities/ichthys/jump.ogg', 50, FALSE, 4)
-		var/turf/target_turf = get_step(get_turf(target), dirs_to_land[i])
+		var/turf/target_turf = get_step(get_turf(blood_target), dirs_to_land[i])
 		if(target_turf)
 			forceMove(target_turf) //look out, someone is rushing you!
 		playsound(src, leap_sound, 50, FALSE, 4)
 		animate(src, alpha = 255,pixel_x = -16, pixel_z = 0, time = 0.1 SECONDS)
 		src.pixel_x = 0
-		Dash(target)
+		Dash(blood_target)
 		sleep(0.25 SECONDS)
+	blood_target.faction -= "city"
+	if (!cutter_hit)
+		var/mutable_appearance/colored_overlay = mutable_appearance(icon, "small_stagger", layer + 0.1)
+		add_overlay(colored_overlay)
+		ChangeResistances(list(RED_DAMAGE = 2, WHITE_DAMAGE = 1.2, BLACK_DAMAGE = 1, PALE_DAMAGE = 3))
+		sleep(stun_duration)
+		cut_overlays()
+	ChangeResistances(list(RED_DAMAGE = 1, WHITE_DAMAGE = 0.6, BLACK_DAMAGE = 0.4, PALE_DAMAGE = 1.5))
 	can_act = TRUE
 
 /mob/living/simple_animal/hostile/humanoid/blood/fiend/boss/Dash(target_turf)
-	target_turf = get_turf(target)
+	target_turf = get_turf(blood_target)
 
 	do_shaky_animation(1)
-	var/dx = src.x - target.x
-	var/dy = src.y - target.y
-	var/turf/safe_turf = locate(target.x - dx, target.y - dy, target.z)
+	var/dx = src.x - blood_target.x
+	var/dy = src.y - blood_target.y
+	var/turf/safe_turf = locate(blood_target.x - dx, blood_target.y - dy, blood_target.z)
 	var/list/warning_overlays = list()
 	var/list/warning_turfs = list()
 	for(var/turf/T in view(target_turf, 2))
@@ -268,17 +283,18 @@
 
 	if (stat == DEAD)
 		return
-	playsound(target, 'sound/abnormalities/doomsdaycalendar/Lor_Slash_Generic.ogg', 20, 0, 4)
+	playsound(blood_target, 'sound/abnormalities/doomsdaycalendar/Lor_Slash_Generic.ogg', 20, 0, 4)
 	var/list/hit_list = list()
-	for(var/turf/T in view(target_turf, 2))
+	for(var/turf/T in range(target_turf, 2))
 		if (T == safe_turf)
 			continue;
 		var/obj/effect/temp_visual/slice/blood = new(T)
 		blood.color = "#b52e19"
-		hit_list = HurtInTurf(T, hit_list, slash_damage, RED_DAMAGE, null, TRUE, FALSE, TRUE, hurt_structure = TRUE)
+		hit_list = HurtInTurf(T, hit_list, slash_damage, RED_DAMAGE, null, TRUE, TRUE, TRUE, hurt_structure = TRUE)
 	for (var/hit in hit_list)
 		if (istype(hit, /mob/living))
 			var/mob/living/L = hit
+			cutter_hit = TRUE
 			L.apply_lc_bleed(cutter_bleed_stacks)
 
 /mob/living/simple_animal/hostile/humanoid/blood/fiend/boss/adjustHealth(amount, updating_health = TRUE, forced = FALSE)
@@ -300,7 +316,7 @@
 
 /mob/living/simple_animal/hostile/humanoid/blood/fiend/boss/proc/spawnbags()
 	var/list/turfs = shuffle(orange(1, src))
-	for(var/i in 1 to 3)
+	for(var/i in 1 to 2)
 		new /obj/effect/sweeperspawn/bagspawn(turfs[i])
 
 /obj/effect/sweeperspawn/bagspawn
@@ -317,7 +333,7 @@
 	icon_state = "bloodbag"
 	icon_living = "bloodbag"
 	icon_dead = "bloodbag_dead"
-	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 0.6, WHITE_DAMAGE = 1.2, BLACK_DAMAGE = 0.8, PALE_DAMAGE = 1.5)
+	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 1.4, WHITE_DAMAGE = 1, BLACK_DAMAGE = 0.8, PALE_DAMAGE = 1.5)
 	melee_damage_lower = 5
 	melee_damage_upper = 6
 	rapid_melee = 3
@@ -325,15 +341,15 @@
 	attack_sound = 'sound/effects/ordeals/brown/flea_attack.ogg'
 	attack_verb_continuous = "slashes"
 	attack_verb_simple = "slash"
-	maxHealth = 260
-	health = 260
+	maxHealth = 500
+	health = 500
 	butcher_results = list(/obj/item/food/meat/slab/crimson = 1)
 	guaranteed_butcher_results = list(/obj/item/food/meat/slab/crimson = 1)
 	silk_results = list(/obj/item/stack/sheet/silk/crimson_simple = 1)
-	var/self_damage = 20
+	var/self_damage = 10
 	var/self_damage_type = RED_DAMAGE
 	var/blood_drop_cooldown = 0
-	var/blood_drop_cooldown_time = 2
+	var/blood_drop_cooldown_time = 2 SECONDS
 	var/bleed_stacks = 1
 	var/explosion_damage = 10
 	var/explosion_bleed = 5
@@ -365,6 +381,8 @@
 	walk_to(src, 0)
 	animate(src, transform = matrix()*1.8, color = "#FF0000", time = 15)
 	addtimer(CALLBACK(src, PROC_REF(DeathExplosion)), 15)
+	new /obj/item/food/meat/slab/crimson (get_turf(src))
+	new /obj/item/food/meat/slab/crimson (get_turf(src))
 	QDEL_IN(src, 15)
 	..()
 
