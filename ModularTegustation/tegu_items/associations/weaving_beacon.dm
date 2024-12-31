@@ -2,6 +2,7 @@
 	name = "weaver's beacon"
 	desc = "A beacon weavers use to summon their gear."
 	var/useable_outside_office = FALSE
+	custom_price = PAYCHECK_RESOURCE
 
 /obj/item/choice_beacon/weaving/attack_self(mob/user)
 	if(useable_outside_office)
@@ -41,6 +42,8 @@
 	new /obj/item/storage/bag/silk/filled (get_turf(src))
 	new /obj/item/book/granter/crafting_recipe/carnival/human_replacements (get_turf(src))
 	new /obj/item/book/granter/crafting_recipe/carnival/weaving_basic_converstion (get_turf(src))
+	new /obj/item/paper/fluff/silk_guide (get_turf(src))
+	new /obj/item/paper/fluff/silk_guide (get_turf(src))
 	qdel(src)
 
 /obj/item/storage/bag/silk/filled

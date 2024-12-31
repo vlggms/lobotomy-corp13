@@ -120,6 +120,7 @@
 	icon_state = "robotics"
 	icon_deny = null
 	products = list(
+		/obj/item/choice_beacon/weaving = 1,
 		/obj/item/flashlight/seclite = 100,
 		/obj/item/attribute_increase/fixer = 1500,
 		/obj/item/radio/headset = 200,
