@@ -236,10 +236,6 @@
 	if (!stunned)
 		. = ..()
 
-/mob/living/simple_animal/hostile/clan/defender/ComponentInitialize()
-	. = ..()
-	AddComponent(/datum/component/knockback, 2, FALSE, FALSE)
-
 /mob/living/simple_animal/hostile/clan/defender/AttackingTarget(atom/attacked_target)
 	if (stunned)  // dont attack if coiled or stunned
 		return FALSE
@@ -631,6 +627,7 @@
 	health = 500
 	healing_amount = 5
 	heal_per_charge = 10
+	clan_charge_cooldown = 4 SECONDS
 	var/stand_still = FALSE
 	var/mob/living/carbon/locked_target
 

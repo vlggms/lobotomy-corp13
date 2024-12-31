@@ -18,6 +18,14 @@
 /obj/effect/spawner/room/backstreets/large_north,
 /turf/closed/indestructible/reinforced,
 /area/city/backstreets_room)
+"bP" = (
+/obj/item/gps/mining{
+	anchored = 1;
+	gpstag = "Robotic Signal";
+	alpha = 10
+	},
+/turf/open/floor/plating/ironsand,
+/area/city/backstreets_room/resurgence_village)
 "bU" = (
 /obj/structure/flora/ausbushes/fullgrass,
 /obj/item/flashlight/lantern{
@@ -48,12 +56,13 @@
 	icon_state = "clan_citzen_3";
 	question3 = "What is this mask you are wearing?";
 	question2 = "Why are you waiting here?";
-	answers1 = list("Well, You may ca-all me Paul!","I am a-a collector of so-orts...","So, I colle-ect tech from the outski-irts with my bro-ther Lavan.", "And we store the-em here!");
+	answers1 = list("Well, You may ca-all me Paul!","I am a-a collector of so-orts...","So, I colle-ect tech from the outski-irts.", "And I store the-em here!");
 	answers2 = list("Well, Right no-ow I am a break", "I was a-able to ma-ake a good ha-aul today", "I think I deserve one.");
 	answers3 = list("Oh? Thi-is silly thing?", "Emote: taps their mask", "Fou-und it in the ruins.", "Loo-oked cool, and it he-elps me see i-in the dark.", "So tha-at is why I a-am keeping it.");
 	greeting_line = "Oh! Ni-ice meeting you hu-uman!";
 	return_to_origin = 1;
-	city_faction = 0
+	city_faction = 0;
+	faction = list("neutral", "village")
 	},
 /obj/item/flashlight/lantern{
 	on = 1;
@@ -64,7 +73,7 @@
 /area/city/backstreets_room/resurgence_village)
 "cC" = (
 /mob/living/simple_animal/hostile/clan/scout{
-	faction = list("resurgence_clan","hostile", "neutral");
+	faction = list("neutral", "village");
 	can_protect = 1;
 	dir = 1;
 	icon_state = "clan_scout_normal";
@@ -95,8 +104,8 @@
 	answers1 = list("Well, Yo-ou may call me Lavan.","Right now I am just resting he-ere, but I do have some tapes fo-or sale!");
 	question2 = "How did you gather these tapes?";
 	answers2 = list("I-I found them in thi-is room...", "They look-ed cool, so I-I took them.", "And looks like I-I was ri-ight, as you might wa-ant to buy the-em!");
-	greeting_line = "Hm... We-elcome cu-ustomer.";
-	selling_answer = list("Su-ure!","Here are the ta-apes that I have fo-or sale!", "Just ho-old some holochips from yo-our ID, and I will te-ell you if you have enough.");
+	greeting_line = "Hello-o human!";
+	selling_answer = list("Le-et take a lookse...","Here are the ta-apes that I have fo-or sale!", "Just ho-old some holochips from yo-our ID, and I will te-ell you if you have enough.");
 	buying_say = "Go-ood Deal!";
 	poor_say = "Aw... Looks li-ike you still need ";
 	sold_say = "So-old!";
@@ -108,7 +117,8 @@
 	selling_end = "Go-ot it, I-if you need a-anything, I will be-e right here!";
 	return_to_origin = 1;
 	city_faction = 0;
-	can_buy = 0
+	can_buy = 0;
+	faction = list("neutral", "village")
 	},
 /turf/open/floor/wood,
 /area/city/backstreets_room/resurgence_village)
@@ -177,7 +187,8 @@
 	level_1 = list(/obj/item/food/fish/siltcurrent, /obj/item/food/fish/fresh_water/mosb, /obj/item/food/fish/fresh_water/yin, /obj/item/food/fish/fresh_water/yang, /obj/item/food/fish/salt_water/fishmael, /obj/item/food/fish/salt_water/piscine_mermaid, /obj/item/food/fish/salt_water/tuna_pallid);
 	level_2 = list();
 	level_3 = list();
-	dir = 4
+	dir = 4;
+	faction = list("neutral", "village")
 	},
 /turf/open/floor/plating/ironsand,
 /area/city/backstreets_room/resurgence_village)
@@ -197,7 +208,7 @@
 /obj/structure/flora/ausbushes/fullgrass,
 /obj/effect/turf_decal/raven/one,
 /mob/living/simple_animal/hostile/clan/scout{
-	faction = list("resurgence_clan","hostile", "neutral");
+	faction = list("neutral", "village");
 	can_protect = 1;
 	dir = 8;
 	icon_state = "clan_scout_normal";
@@ -205,6 +216,7 @@
 	return_to_origin = 1;
 	city_faction = 0
 	},
+/obj/effect/turf_decal/box/red,
 /turf/open/floor/plating/ironsand,
 /area/city/backstreets_room/resurgence_village)
 "fL" = (
@@ -303,7 +315,8 @@
 	answers2 = list("It i-is nice, Is it no-ot?", "Emote: points at thei-ir boots", "The great Weave-er was able to make the-em them for me.", "And I do sa-ay, They really fit the 'Hunter' look I have see-em often.");
 	answers3 = list("If you-u are asking abo-out this faction...", "The Cla-an is just one of ma-any villages in the O-outskirts...","All of the me-embers of the clan are ma-achines...","Li-ike me...","Delay: 20","But we are clo-ose to being hu-uman!","We ju-ust need to stu-udy mo-ore, then we can learn what it means to be Hu-uman...");
 	return_to_origin = 1;
-	city_faction = 0
+	city_faction = 0;
+	faction = list("neutral", "village")
 	},
 /turf/open/floor/plating/ironsand,
 /area/city/backstreets_room/resurgence_village)
@@ -370,7 +383,8 @@
 	icon_living = "clan_citzen_5";
 	icon_state = "clan_citzen_5";
 	return_to_origin = 1;
-	city_faction = 0
+	city_faction = 0;
+	faction = list("neutral", "village")
 	},
 /turf/open/floor/wood,
 /area/city/backstreets_room/resurgence_village)
@@ -399,7 +413,7 @@
 	dir = 8
 	},
 /mob/living/simple_animal/hostile/clan/scout{
-	faction = list("resurgence_clan","hostile", "neutral");
+	faction = list("neutral", "village");
 	can_protect = 1;
 	dir = 8;
 	icon_living = "clan_scout_normal";
@@ -436,7 +450,8 @@
 	icon_living = "clan_citzen_5";
 	icon_state = "clan_citzen_5";
 	return_to_origin = 1;
-	city_faction = 0
+	city_faction = 0;
+	faction = list("neutral", "village")
 	},
 /turf/open/floor/plating/ironsand,
 /area/city/backstreets_room/resurgence_village)
@@ -475,7 +490,7 @@
 	},
 /mob/living/simple_animal/hostile/clan/defender{
 	can_protect = 1;
-	faction = list("resurgence_clan","hostile", "neutral");
+	faction = list("neutral", "village");
 	icon_living = "defender_normal";
 	icon_state = "defender_normal";
 	return_to_origin = 1;
@@ -530,7 +545,8 @@
 	icon_living = "clan_citzen_5";
 	icon_state = "clan_citzen_5";
 	return_to_origin = 1;
-	city_faction = 0
+	city_faction = 0;
+	faction = list("neutral", "village")
 	},
 /turf/open/floor/plating/ironsand,
 /area/city/backstreets_room/resurgence_village)
@@ -546,10 +562,11 @@
 	question2 = "Why are you not attacking me?";
 	question3 = "Who are your leaders?";
 	answers2 = list("Oh, You must have gotten the wrong idea.", "This clan was never about killing or hunting humans.", "It is just that one of our Elders has gone a bit rogue.", "Tinkerer is their name, They have quite a strange hatred for the city...", "However the Weaver and the Historian remain sane.", "Still leading this dream of ours.");
-	answers3 = list("Do you mean the Elder?","We used to have 3 of them.","The Tinkerer, The Historian and The Weaver","However, Tinkerer is a bit of a mess right now, They they have left.","The Historian is currently incharge of leading expeditions like these.", "While the Weaver is staying back at our village, Keeping watch over us and protecting us.");
+	answers3 = list("Do you mean the Elders?","We used to have 3 of them.","The Tinkerer, The Historian and The Weaver","However, Tinkerer is a bit of a mess right now, They they have left.","The Historian is currently incharge of leading expeditions like these.", "While the Weaver is staying back at our village, Keeping watch over us and protecting us.");
 	answers1 = list("You may call me Comander Julian", "The one assigned by the Historian to lead this outpost.", "Currently waiting for the Historian to report back to us with our next orders.");
 	return_to_origin = 1;
-	city_faction = 0
+	city_faction = 0;
+	faction = list("neutral", "village")
 	},
 /turf/open/floor/wood,
 /area/city/backstreets_room/resurgence_village)
@@ -563,7 +580,7 @@
 /area/city/backstreets_room/resurgence_village)
 "sH" = (
 /mob/living/simple_animal/hostile/clan/scout{
-	faction = list("resurgence_clan","hostile", "neutral");
+	faction = list("neutral", "village");
 	can_protect = 1;
 	dir = 8;
 	icon_state = "clan_scout_normal";
@@ -571,6 +588,7 @@
 	return_to_origin = 1;
 	city_faction = 0
 	},
+/obj/effect/turf_decal/box/red,
 /turf/open/floor/plating/ironsand,
 /area/city/backstreets_room/resurgence_village)
 "sO" = (
@@ -615,7 +633,8 @@
 	answers1 = list("Well, You may call me Lorenzo", "I am one of the Historian's scholars.", "Just examining and studying the city...");
 	answers2 = list("That is thanks to our Elders", "They... The Tinkerer found a way to teleport an outpost great distances.", "So the other Elders are currently using this tech to send us closer to the City.");
 	return_to_origin = 1;
-	city_faction = 0
+	city_faction = 0;
+	faction = list("neutral", "village")
 	},
 /turf/open/floor/plating/ironsand,
 /area/city/backstreets_room/resurgence_village)
@@ -637,6 +656,14 @@
 	},
 /turf/open/floor/carpet/royalblack,
 /area/city/backstreets_room/resurgence_village)
+"uY" = (
+/obj/item/gps/mining{
+	anchored = 1;
+	gpstag = "Faithless Signal";
+	alpha = 10
+	},
+/turf/open/floor/plating/ashplanet/rocky,
+/area/city/backstreets_alley)
 "vh" = (
 /obj/effect/spawner/room/backstreets/medium_south,
 /turf/closed/indestructible/reinforced,
@@ -678,7 +705,7 @@
 	dir = 4
 	},
 /mob/living/simple_animal/hostile/clan/scout{
-	faction = list("resurgence_clan","hostile", "neutral");
+	faction = list("neutral", "village");
 	can_protect = 1;
 	dir = 4;
 	icon_living = "clan_scout_normal";
@@ -744,14 +771,6 @@
 	pixel_y = -3
 	},
 /turf/open/floor/plating/dirt/jungle/wasteland,
-/area/city/backstreets_room/resurgence_village)
-"zo" = (
-/obj/item/gps/mining{
-	anchored = 1;
-	gpstag = "Robotic Signal";
-	alpha = 10
-	},
-/turf/open/floor/plating/ironsand,
 /area/city/backstreets_room/resurgence_village)
 "Aa" = (
 /obj/structure/mineral_door/wood,
@@ -835,14 +854,6 @@
 /obj/structure/flora/ausbushes/fullgrass,
 /turf/open/floor/plating/dirt/jungle/wasteland,
 /area/city/backstreets_alley)
-"GU" = (
-/obj/item/gps/mining{
-	anchored = 1;
-	gpstag = "Faithless Signal";
-	alpha = 10
-	},
-/turf/open/floor/plating/ashplanet/rocky,
-/area/city/backstreets_alley)
 "GY" = (
 /obj/item/flashlight/lantern{
 	on = 1;
@@ -854,7 +865,7 @@
 "HY" = (
 /mob/living/simple_animal/hostile/clan/defender{
 	can_protect = 1;
-	faction = list("resurgence_clan","hostile", "neutral");
+	faction = list("neutral", "village");
 	dir = 1;
 	wants_to_talk = 1;
 	question2 = "Why are you not attacking me?";
@@ -867,6 +878,7 @@
 	return_to_origin = 1;
 	city_faction = 0
 	},
+/obj/effect/turf_decal/box/red,
 /turf/open/floor/plating/ironsand,
 /area/city/backstreets_room/resurgence_village)
 "Ih" = (
@@ -879,9 +891,15 @@
 /obj/effect/landmark/backstreetspawnwest,
 /turf/open/floor/plating/ironsand,
 /area/city/backstreets_alley)
+"Jg" = (
+/mob/living/simple_animal/hostile/clan/drone/village{
+	faction = list("village")
+	},
+/turf/open/floor/plating/ironsand,
+/area/city/backstreets_room/resurgence_village)
 "Jp" = (
 /mob/living/simple_animal/hostile/clan/scout{
-	faction = list("resurgence_clan","hostile", "neutral");
+	faction = list("neutral", "village");
 	can_protect = 1;
 	icon_living = "clan_scout_normal";
 	icon_state = "clan_scout_normal";
@@ -893,7 +911,7 @@
 "JA" = (
 /obj/effect/turf_decal/raven/nine,
 /mob/living/simple_animal/hostile/clan/scout{
-	faction = list("resurgence_clan","hostile", "neutral");
+	faction = list("neutral");
 	can_protect = 1;
 	dir = 4;
 	icon_living = "clan_scout_normal";
@@ -920,7 +938,8 @@
 	icon_state = "clan_citzen_5";
 	dir = 1;
 	return_to_origin = 1;
-	city_faction = 0
+	city_faction = 0;
+	faction = list("neutral", "village")
 	},
 /obj/item/flashlight/lantern{
 	on = 1;
@@ -932,7 +951,7 @@
 "KK" = (
 /mob/living/simple_animal/hostile/clan/defender{
 	can_protect = 1;
-	faction = list("resurgence_clan","hostile", "neutral");
+	faction = list("neutral", "village");
 	dir = 1;
 	icon_living = "defender_normal";
 	icon_state = "defender_normal";
@@ -980,7 +999,8 @@
 	city_faction = 0;
 	level_1 = list(/obj/item/food/meat/slab/robot);
 	level_2 = list();
-	level_3 = list(/obj/item/raw_anomaly_core)
+	level_3 = list(/obj/item/raw_anomaly_core);
+	faction = list("neutral", "village")
 	},
 /obj/effect/turf_decal/siding/wood{
 	color = "#2e1f0e";
@@ -995,7 +1015,10 @@
 /turf/closed/indestructible/wood,
 /area/city/backstreets_room/resurgence_village)
 "LT" = (
-/mob/living/simple_animal/hostile/clan/drone/village,
+/mob/living/simple_animal/hostile/clan/drone/village{
+	city_faction = 0;
+	faction = list("village")
+	},
 /turf/open/floor/plating/ironsand,
 /area/city/backstreets_room/resurgence_village)
 "MK" = (
@@ -1091,7 +1114,7 @@
 /area/city/backstreets_alley)
 "QJ" = (
 /mob/living/simple_animal/hostile/clan/scout{
-	faction = list("resurgence_clan","hostile", "neutral");
+	faction = list("neutral", "village");
 	can_protect = 1;
 	icon_state = "clan_scout_normal";
 	icon_living = "clan_scout_normal";
@@ -1149,7 +1172,7 @@
 	dir = 4
 	},
 /mob/living/simple_animal/hostile/clan/scout{
-	faction = list("resurgence_clan","hostile", "neutral");
+	faction = list("neutral", "village");
 	can_protect = 1;
 	dir = 4;
 	icon_living = "clan_scout_normal";
@@ -8011,7 +8034,7 @@ nZ
 nZ
 nZ
 Cq
-GU
+uY
 nZ
 nZ
 Cq
@@ -14714,7 +14737,7 @@ fb
 LI
 KZ
 Cc
-zo
+bP
 Cc
 KK
 LI
@@ -16044,7 +16067,7 @@ Os
 kM
 bU
 Cc
-LT
+Jg
 LI
 QJ
 sh
