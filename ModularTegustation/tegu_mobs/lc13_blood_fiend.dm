@@ -18,7 +18,7 @@
 	maxHealth = 800
 	health = 800
 	ranged = TRUE
-	butcher_results = list(/obj/item/food/meat/slab/crimson = 1)
+	butcher_results = list(/obj/item/food/meat/slab/crimson = 1, /obj/item/clothing/suit/armor/ego_gear/city/masquerade_cloak = 1)
 	guaranteed_butcher_results = list(/obj/item/food/meat/slab/crimson = 3)
 	silk_results = list(/obj/item/stack/sheet/silk/crimson_simple = 2, /obj/item/stack/sheet/silk/crimson_advanced = 1)
 	var/leap_sound = 'sound/abnormalities/nosferatu/attack_special.ogg'
@@ -168,7 +168,7 @@
 	maxHealth = 1200
 	health = 1200
 	ranged = TRUE
-	guaranteed_butcher_results = list(/obj/item/food/meat/slab/crimson = 6, /obj/item/stack/spacecash/c1000 = 1)
+	guaranteed_butcher_results = list(/obj/item/food/meat/slab/crimson = 5, /obj/item/stack/spacecash/c1000 = 1)
 	silk_results = list(/obj/item/stack/sheet/silk/crimson_simple = 4, /obj/item/stack/sheet/silk/crimson_advanced = 2, /obj/item/stack/sheet/silk/crimson_elegant = 1)
 	slash_damage = 20
 	blood_feast = 500
@@ -182,10 +182,13 @@
 	var/cutter_hit = FALSE
 	var/stun_duration = 3 SECONDS
 	var/mob/living/blood_target
+	var/summon_cost = 25
+	var/slashing = FALSE
 
 /mob/living/simple_animal/hostile/humanoid/blood/fiend/boss/Leap(mob/living/target)
 	if(!isliving(target) && !ismecha(target) || !can_act)
 		return
+	slashing = TRUE
 	cutter_hit = FALSE
 	say("Hardblood Arts 5...")
 	ChangeResistances(list(RED_DAMAGE = 0.3, WHITE_DAMAGE = 0.3, BLACK_DAMAGE = 0.3, PALE_DAMAGE = 0.3))
@@ -263,6 +266,7 @@
 		manual_emote("rises back up...")
 		cut_overlays()
 	ChangeResistances(list(RED_DAMAGE = 1, WHITE_DAMAGE = 0.6, BLACK_DAMAGE = 0.4, PALE_DAMAGE = 1.5))
+	slashing = FALSE
 	can_act = TRUE
 
 /mob/living/simple_animal/hostile/humanoid/blood/fiend/boss/Dash(target_turf)
@@ -272,6 +276,8 @@
 	var/dx = src.x - blood_target.x
 	var/dy = src.y - blood_target.y
 	var/turf/safe_turf = locate(blood_target.x - dx, blood_target.y - dy, blood_target.z)
+	if (safe_turf.density)
+		safe_turf = locate(blood_target.x, blood_target.y, blood_target.z)
 	var/list/warning_overlays = list()
 	var/list/warning_turfs = list()
 	for(var/turf/T in view(target_turf, 2))
@@ -314,27 +320,29 @@
 	if (health/maxHealth > 0.25)
 		readyToSpawn25 = TRUE
 	. = ..()
-	if (health/maxHealth < 0.75 && readyToSpawn75 && world.time > timeToSpawn75)
-		// spawn
-		spawnbags()
-		readyToSpawn75 = FALSE
-		timeToSpawn75 = world.time + cooldownToSpawn
-		can_act = FALSE
-		sleep(20)
-		can_act = TRUE
-	if (health/maxHealth < 0.25 && readyToSpawn25 && world.time > timeToSpawn25)
-		// spawn
-		spawnbags()
-		readyToSpawn25 = FALSE
-		timeToSpawn25 = world.time + cooldownToSpawn
-		can_act = FALSE
-		sleep(20)
-		can_act = TRUE
+	if(!slashing)
+		if (health/maxHealth < 0.75 && readyToSpawn75 && world.time > timeToSpawn75)
+			// spawn
+			spawnbags()
+			readyToSpawn75 = FALSE
+			timeToSpawn75 = world.time + cooldownToSpawn
+			can_act = FALSE
+			sleep(20)
+			can_act = TRUE
+		if (health/maxHealth < 0.25 && readyToSpawn25 && world.time > timeToSpawn25)
+			// spawn
+			spawnbags()
+			readyToSpawn25 = FALSE
+			timeToSpawn25 = world.time + cooldownToSpawn
+			can_act = FALSE
+			sleep(20)
+			can_act = TRUE
 
 /mob/living/simple_animal/hostile/humanoid/blood/fiend/boss/proc/spawnbags()
 	say("Rise... Bloodbags...")
 	var/list/turfs = shuffle(orange(1, src))
 	for(var/i in 1 to 2)
+		blood_feast -= summon_cost
 		new /obj/effect/sweeperspawn/bagspawn(turfs[i])
 
 /obj/effect/sweeperspawn/bagspawn
@@ -342,7 +350,6 @@
 /obj/effect/sweeperspawn/bagspawn/spawnscout()
 	new /mob/living/simple_animal/hostile/humanoid/blood/bag(get_turf(src))
 	qdel(src)
-
 
 /mob/living/simple_animal/hostile/humanoid/blood/bag
 	name = "bloodbag"
