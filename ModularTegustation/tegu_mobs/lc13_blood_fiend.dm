@@ -19,21 +19,21 @@
 	health = 800
 	ranged = TRUE
 	butcher_results = list(/obj/item/food/meat/slab/crimson = 1)
-	guaranteed_butcher_results = list(/obj/item/food/meat/slab/crimson = 2)
+	guaranteed_butcher_results = list(/obj/item/food/meat/slab/crimson = 3)
 	silk_results = list(/obj/item/stack/sheet/silk/crimson_simple = 2, /obj/item/stack/sheet/silk/crimson_advanced = 1)
 	var/leap_sound = 'sound/abnormalities/nosferatu/attack_special.ogg'
-	var/blood_feast = 400
-	var/max_blood_feast = 400
+	var/blood_feast = 300
+	var/max_blood_feast = 500
 	var/can_act = TRUE
-	var/leap_damage = 50
+	var/leap_damage = 30
 	var/slash_damage = 25
 	var/drain_cooldown = 0
 	var/drain_cooldown_time = 50
 	var/bleed_stacks = 3
-	var/leap_bleed_stacks = 10
+	var/leap_bleed_stacks = 5
 
 /mob/living/simple_animal/hostile/humanoid/blood/fiend/proc/AdjustBloodFeast(amount)
-	adjustBruteLoss(-amount/2)
+	adjustBruteLoss(-amount/4)
 	blood_feast += amount
 	if (blood_feast > max_blood_feast)
 		blood_feast = max_blood_feast
@@ -152,8 +152,8 @@
 	..()
 
 /mob/living/simple_animal/hostile/humanoid/blood/fiend/boss
-	name = "bloodfiendboss"
-	desc = "Desc"
+	name = "royal bloodfiend"
+	desc = "A humanoid wearing a bloody dress and a bird mask..."
 	icon = 'ModularTegustation/Teguicons/blood_fiends_32x32.dmi'
 	icon_state = "bloodfiend"
 	icon_living = "bloodfiend"
@@ -168,14 +168,17 @@
 	maxHealth = 1200
 	health = 1200
 	ranged = TRUE
-	guaranteed_butcher_results = list(/obj/item/food/meat/slab/crimson = 3, /obj/item/stack/spacecash/c1000 = 1)
+	guaranteed_butcher_results = list(/obj/item/food/meat/slab/crimson = 6, /obj/item/stack/spacecash/c1000 = 1)
 	silk_results = list(/obj/item/stack/sheet/silk/crimson_simple = 4, /obj/item/stack/sheet/silk/crimson_advanced = 2, /obj/item/stack/sheet/silk/crimson_elegant = 1)
+	slash_damage = 20
+	blood_feast = 500
+	max_blood_feast = 750
 	var/cutter_bleed_stacks = 15
 	var/readyToSpawn75 = TRUE
 	var/timeToSpawn75
 	var/readyToSpawn25 = TRUE
 	var/timeToSpawn25
-	var/cooldownToSpawn = 10 SECONDS
+	var/cooldownToSpawn = 30 SECONDS
 	var/cutter_hit = FALSE
 	var/stun_duration = 3 SECONDS
 	var/mob/living/blood_target
@@ -184,6 +187,7 @@
 	if(!isliving(target) && !ismecha(target) || !can_act)
 		return
 	cutter_hit = FALSE
+	say("Hardblood Arts 5...")
 	ChangeResistances(list(RED_DAMAGE = 0.3, WHITE_DAMAGE = 0.3, BLACK_DAMAGE = 0.3, PALE_DAMAGE = 0.3))
 	blood_target = target
 	blood_target.apply_status_effect(/datum/status_effect/bloodhold)
@@ -228,6 +232,7 @@
 			sleep(1 SECONDS)
 		else
 			break
+	say("Blood Snare!!!")
 	for (var/i in 1 to 3)
 		blood_target.cut_overlay(dir_overlays[i])
 		if (stat == DEAD)
@@ -242,14 +247,20 @@
 		playsound(src, leap_sound, 50, FALSE, 4)
 		animate(src, alpha = 255,pixel_x = -16, pixel_z = 0, time = 0.1 SECONDS)
 		src.pixel_x = 0
+		if (i == 2)
+			say("Just...")
+		if (i == 3)
+			say("ROT AWAY!!!")
 		Dash(blood_target)
 		sleep(0.25 SECONDS)
 	blood_target.faction -= "city"
 	if (!cutter_hit)
 		var/mutable_appearance/colored_overlay = mutable_appearance(icon, "small_stagger", layer + 0.1)
 		add_overlay(colored_overlay)
+		manual_emote("kneels on the floor...")
 		ChangeResistances(list(RED_DAMAGE = 2, WHITE_DAMAGE = 1.2, BLACK_DAMAGE = 1, PALE_DAMAGE = 3))
 		sleep(stun_duration)
+		manual_emote("rises back up...")
 		cut_overlays()
 	ChangeResistances(list(RED_DAMAGE = 1, WHITE_DAMAGE = 0.6, BLACK_DAMAGE = 0.4, PALE_DAMAGE = 1.5))
 	can_act = TRUE
@@ -308,13 +319,20 @@
 		spawnbags()
 		readyToSpawn75 = FALSE
 		timeToSpawn75 = world.time + cooldownToSpawn
+		can_act = FALSE
+		sleep(20)
+		can_act = TRUE
 	if (health/maxHealth < 0.25 && readyToSpawn25 && world.time > timeToSpawn25)
 		// spawn
 		spawnbags()
 		readyToSpawn25 = FALSE
 		timeToSpawn25 = world.time + cooldownToSpawn
+		can_act = FALSE
+		sleep(20)
+		can_act = TRUE
 
 /mob/living/simple_animal/hostile/humanoid/blood/fiend/boss/proc/spawnbags()
+	say("Rise... Bloodbags...")
 	var/list/turfs = shuffle(orange(1, src))
 	for(var/i in 1 to 2)
 		new /obj/effect/sweeperspawn/bagspawn(turfs[i])
@@ -328,7 +346,7 @@
 
 /mob/living/simple_animal/hostile/humanoid/blood/bag
 	name = "bloodbag"
-	desc = "Desc"
+	desc = "A blood bag created by some bloodfiends."
 	icon = 'ModularTegustation/Teguicons/blood_fiends_32x32.dmi'
 	icon_state = "bloodbag"
 	icon_living = "bloodbag"
