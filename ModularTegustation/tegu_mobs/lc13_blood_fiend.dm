@@ -277,7 +277,7 @@
 
 
 	sleep(15)
-	for (var/i in 1 to 25)
+	for (var/i in 1 to warning_turfs.len)
 		var/turf/T = warning_turfs[i]
 		T.cut_overlay(warning_overlays[i])
 
