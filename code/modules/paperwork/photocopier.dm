@@ -61,9 +61,10 @@
 	var/list/data = list()
 	data["has_item"] = !copier_empty()
 	data["num_copies"] = num_copies
-	
+
 	try
-		var/list/blanks = json_decode(file2text("config/blanks.json"))
+		// var/list/blanks = json_decode(file2text("config/blanks.json")) LOBOTOMYCORPORATION EDIT OLD
+		var/list/blanks = (SSmaptype.maptype in SSmaptype.citymaps) ? json_decode(file2text("config/blanks_city.json")) : json_decode(file2text("config/blanks.json")) // LOBOTOMYCORPORATION EDIT NEW
 		if (blanks != null)
 			data["blanks"] = blanks
 			data["category"] = category
@@ -72,7 +73,7 @@
 			data["forms_exist"] = FALSE
 	catch()
 		data["forms_exist"] = FALSE
-	
+
 	if(photo_copy)
 		data["is_photo"] = TRUE
 		data["color_mode"] = color_mode

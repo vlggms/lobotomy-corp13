@@ -44,7 +44,7 @@
 	},
 	{
 		"code": "NT-CMD-JT",
-		"category": "Command Department", 
+		"category": "Command Department",
 		"name": "Job termination",
 		"info": [
 			"<h1 style=\"text-align: center; color: steelblue;\">Job Termination</h1>",
@@ -84,7 +84,7 @@
 	},
 	{
 		"code": "NT-CMD-JR",
-		"category": "Command Department", 
+		"category": "Command Department",
 		"name": "Job reassignment",
 		"info": [
 			"<h1 style=\"text-align: center; color: steelblue;\">Job Reassignment</h1>",
@@ -123,7 +123,7 @@
 	},
 	{
 		"code": "NT-CMD-C",
-		"category": "Command Department", 
+		"category": "Command Department",
 		"name": "Complaint form",
 		"info": [
 			"<h1 style=\"text-align: center; color: steelblue;\">Complaint form</h1>",
@@ -159,7 +159,7 @@
 	},
 	{
 		"code": "NT-CMD-O",
-		"category": "Command Department", 
+		"category": "Command Department",
 		"name": "Order form",
 		"info": [
 			"<h1 style=\"text-align: center; color: steelblue;\">Order form</h1>",
@@ -200,7 +200,7 @@
 	},
 	{
 		"code": "NT-CMD-PH",
-		"category": "Command Department", 
+		"category": "Command Department",
 		"name": "Permit to perform hazardous work",
 		"info": [
 			"<h1 style=\"text-align: center; color: steelblue;\">Permit to perform hazardous work</h1>",
@@ -229,7 +229,7 @@
 	},
 	{
 		"code": "NT-SCR-W",
-		"category": "Security Department", 
+		"category": "Security Department",
 		"name": "Warrant",
 		"info": [
 			"<h1 style=\"text-align: center; color: red;\">Warrant</h1>",
@@ -255,7 +255,7 @@
 	},
 	{
 		"code": "NT-SCR-SW",
-		"category": "Security Department", 
+		"category": "Security Department",
 		"name": "Search warrant",
 		"info": [
 			"<h1 style=\"text-align: center; color: red;\">Search Warrant</h1>",
@@ -281,7 +281,7 @@
 	},
 	{
 		"code": "NT-SCR-IR",
-		"category": "Security Department", 
+		"category": "Security Department",
 		"name": "Interrogation Report",
 		"info": [
 			"<h1 style=\"text-align: center; color: red;\">Interrogation Report</h1>",
@@ -326,7 +326,7 @@
 	},
 	{
 		"code": "NT-SCR-SR",
-		"category": "Security Department", 
+		"category": "Security Department",
 		"name": "Security Report",
 		"info": [
 			"<h1 style=\"text-align: center; color: red;\">Security Report</h1>",
@@ -364,7 +364,7 @@
 	},
 	{
 		"code": "NT-SCR-EO",
-		"category": "Security Department", 
+		"category": "Security Department",
 		"name": "Execution order",
 		"info": [
 			"<h1 style=\"text-align: center; color: red;\">Execution order</h1>",
@@ -396,7 +396,7 @@
 	},
 	{
 		"code": "NT-SCR-PP",
-		"category": "Security Department", 
+		"category": "Security Department",
 		"name": "Permission to possess",
 		"info": [
 			"<h1 style=\"text-align: center; color: red;\">Permission to possess</h1>",
@@ -433,7 +433,7 @@
 	},
 	{
 		"code": "NT-ENG-PW",
-		"category": "Engineering Department", 
+		"category": "Engineering Department",
 		"name": "Permission to perform non-standard work",
 		"info": [
 			"<h1 style=\"text-align: center; color: orange;\">Permission to perform non-standard work</h1>",
@@ -474,7 +474,7 @@
 	},
 	{
 		"code": "NT-ENG-PE",
-		"category": "Engineering Department", 
+		"category": "Engineering Department",
 		"name": "Permit for the issuance of engineering equipment",
 		"info": [
 			"<h1 style=\"text-align: center; color: orange;\">Permit for the issuance of engineering equipment</h1>",
@@ -519,7 +519,7 @@
 	},
 	{
 		"code": "NT-RSH-PR",
-		"category": "Research Department", 
+		"category": "Research Department",
 		"name": "Permission to perform non-standard research",
 		"info": [
 			"<h1 style=\"text-align: center; color: blueviolet;\">Permission to perform non-standard research</h1>",
@@ -560,7 +560,7 @@
 	},
 	{
 		"code": "NT-RSH-PE",
-		"category": "Research Department", 
+		"category": "Research Department",
 		"name": "Permit for the issuance of research equipment",
 		"info": [
 			"<h1 style=\"text-align: center; color: blueviolet;\">Permit for the issuance of research equipment</h1>",
@@ -605,7 +605,7 @@
 	},
 	{
 		"code": "NT-MDC-MP",
-		"category": "Medical Department", 
+		"category": "Medical Department",
 		"name": "Medical prescription",
 		"info": [
 			"<h1 style=\"text-align: center; color: deepskyblue;\">Medical Prescription</h1>",
@@ -642,7 +642,7 @@
 	},
 	{
 		"code": "NT-MDC-AR",
-		"category": "Medical Department", 
+		"category": "Medical Department",
 		"name": "Autopsy report",
 		"info": [
 			"<h1 style=\"text-align: center; color: deepskyblue;\">Autopsy Report</h1>",
@@ -676,7 +676,7 @@
 	},
 	{
 		"code": "NT-MDC-DC",
-		"category": "Medical Department", 
+		"category": "Medical Department",
 		"name": "Death Certificate",
 		"info": [
 			"<h1 style=\"text-align: center; color: deepskyblue;\">Death Certificate</h1>",
@@ -707,7 +707,7 @@
 	},
 	{
 		"code": "NT-SPL-PO",
-		"category": "Supply Department", 
+		"category": "Supply Department",
 		"name": "Permission to execute a non-standard order",
 		"info": [
 			"<h1 style=\"text-align: center; color: darkgoldenrod;\">Permission to execute a non-standard order</h1>",
@@ -752,7 +752,7 @@
 	},
 	{
 		"code": "NT-LB",
-		"category": "Other", 
+		"category": "Other",
 		"name": "Lunch bill",
 		"info": [
 			"<h1 style=\"text-align: center; color: green;\">Lunch Bill</h1>",
@@ -784,7 +784,7 @@
 	},
 	{
 		"code": "NT-PS",
-		"category": "Other", 
+		"category": "Other",
 		"name": "Provision of paid services",
 		"info": [
 			"<h1 style=\"text-align: center; color: green;\">Provision of paid services</h1>",
