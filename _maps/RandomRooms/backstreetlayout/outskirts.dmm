@@ -96,7 +96,7 @@
 	question2 = "How did you gather these tapes?";
 	answers2 = list("I-I found them in thi-is room...", "They look-ed cool, so I-I took them.", "And looks like I-I was ri-ight, as you might wa-ant to buy the-em!");
 	greeting_line = "Hm... We-elcome cu-ustomer.";
-	selling_answer = list("Su-ure!","Here are the ta-apes that I have fo-or sale!", "Just ho-old some cash in yo-our ID, and I will te-ell you if you have enough.");
+	selling_answer = list("Su-ure!","Here are the ta-apes that I have fo-or sale!", "Just ho-old some holochips from yo-our ID, and I will te-ell you if you have enough.");
 	buying_say = "Go-ood Deal!";
 	poor_say = "Aw... Looks li-ike you still need ";
 	sold_say = "So-old!";
@@ -160,8 +160,8 @@
 	answers1 = list("...","Ca-all me Herring.", "I am but an old fi-sher who rests here...", "Once I fi-ished in the gre-eat lake...", "No-ow I fi-ish in simple ponds.");
 	question2 = "What are you buying?";
 	answers2 = list("Hm...", "Bri-ing me so-ome fish of stra-ange origins", "I-it has been a long time si-ince I have seen some...");
-	greeting_line = "Hm... We-elcome cu-ustomer.";
-	selling_answer = list("I o-only have a fe-ew tools to spare...","Bu-ut you ma-ay ta-ake a look...", "Just ho-old some cash in yo-our ID, and I will te-ell you if you have enough.");
+	greeting_line = "Greetings...";
+	selling_answer = list("I o-only have a fe-ew tools to spare...","Bu-ut you ma-ay ta-ake a look...", "Just ho-old some holochips from yo-our ID, and I will te-ell you if you have enough.");
 	buying_say = "Ni-ice catch...";
 	poor_say = "Lo-ooks li-ike you still need ";
 	sold_say = "Ve-ery well, Ta-ake it.";
@@ -948,7 +948,7 @@
 	question2 = "What are you buying?";
 	answers2 = list("A-as of now...", "I am willi-ing to buy robotic components.", "You kno-ow those weird bo-ots which are ru-unning around, guns or spe-ears for hands?", "I heard tha-at their parts are quite u-useful.", "Also, The outskirts wo-ould be better off without the-em.");
 	greeting_line = "Hm... We-elcome cu-ustomer.";
-	selling_answer = list("Su-ure!","I got so-ome good thi-ings in store to-oday...", "Just ho-old some cash in yo-our ID, and I will te-ell you if you have enough.");
+	selling_answer = list("Le-et me take a lo-ook...","I got so-ome good thi-ings in store to-oday...", "Just ho-old some holochips from yo-our ID, and I will te-ell you if you have enough.");
 	buying_say = "Go-ood Deal!";
 	poor_say = "Aw... Looks li-ike you still need ";
 	sold_say = "So-old!";
