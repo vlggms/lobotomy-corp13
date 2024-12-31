@@ -100,9 +100,6 @@
 				current_title = "[company.name]: Complete crash"
 				current_desc = "The company had gone bankrupt, was not bailed out and could not recover. No further stock trade will take place. All shares in the company are effectively worthless."
 				company.bankrupt = 1
-				for (var/X in company.shareholders)
-					var/amt = company.shareholders[X]
-					SSstockmarket.balanceLog(X, -amt * company.current_value)
 				company.shareholders = list()
 				company.current_value = 0
 				company.borrow_brokers = list()

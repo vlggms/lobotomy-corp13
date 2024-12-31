@@ -172,43 +172,42 @@
 	current_value *= 2
 	last_unification = world.time
 
-/datum/stock/proc/modifyAccount(whose, by, force=0)
-	if (SSshuttle.points)
-		if (by < 0 && SSshuttle.points + by < 0 && !force)
+/datum/stock/proc/modifyAccount(obj/machinery/computer/stockexchange/stonker, by, force=0)
+	if (stonker.credits)
+		if (by < 0 && stonker.credits + by < 0 && !force)
 			return 0
-		SSshuttle.points += by
-		SSstockmarket.balanceLog(whose, by)
+		stonker.credits += by
 		return 1
 	return 0
 
-/datum/stock/proc/buyShares(who, howmany)
+/datum/stock/proc/buyShares(obj/machinery/computer/stockexchange/stonker, howmany)
 	if (howmany <= 0)
 		return
 	howmany = round(howmany)
 	var/loss = howmany * current_value
 	if (available_shares < howmany)
 		return 0
-	if (modifyAccount(who, -loss))
+	if (modifyAccount(stonker, -loss))
 		supplyDrop(howmany)
-		if (!(who in shareholders))
-			shareholders[who] = howmany
+		if (!(stonker in shareholders))
+			shareholders[stonker] = howmany
 		else
-			shareholders[who] += howmany
+			shareholders[stonker] += howmany
 		return 1
 	return 0
 
-/datum/stock/proc/sellShares(whose, howmany)
+/datum/stock/proc/sellShares(obj/machinery/computer/stockexchange/stonker, howmany)
 	if (howmany < 0)
 		return
 	howmany = round(howmany)
 	var/gain = howmany * current_value
-	if (shareholders[whose] < howmany)
+	if (shareholders[stonker] < howmany)
 		return 0
-	if (modifyAccount(whose, gain))
+	if (modifyAccount(stonker, gain))
 		supplyGrowth(howmany)
-		shareholders[whose] -= howmany
-		if (shareholders[whose] <= 0)
-			shareholders -= whose
+		shareholders[stonker] -= howmany
+		if (shareholders[stonker] <= 0)
+			shareholders -= stonker
 		return 1
 	return 0
 
