@@ -2,7 +2,7 @@
 	name = "weaver's beacon"
 	desc = "A beacon weavers use to summon their gear."
 	var/useable_outside_office = FALSE
-	custom_price = PAYCHECK_RESOURCE
+	custom_price = PAYCHECK_ASSISTANT
 
 /obj/item/choice_beacon/weaving/attack_self(mob/user)
 	if(useable_outside_office)
