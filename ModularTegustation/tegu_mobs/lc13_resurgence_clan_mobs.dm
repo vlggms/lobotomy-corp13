@@ -598,7 +598,7 @@
 
 /mob/living/simple_animal/hostile/clan/drone/village/Initialize()
 	. = ..()
-	faction = list("resurgence_clan")
+	faction = list("village")
 
 /obj/item/book/granter/crafting_recipe/clan_drone
 	name = "Tinkerer's Blueprints: Reforged Drone"
