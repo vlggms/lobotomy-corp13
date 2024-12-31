@@ -4146,6 +4146,7 @@
 #include "ModularTegustation\tegu_items\associations\machines.dm"
 #include "ModularTegustation\tegu_items\associations\syndicateoffice.dm"
 #include "ModularTegustation\tegu_items\associations\vending.dm"
+#include "ModularTegustation\tegu_items\associations\weaving_beacon.dm"
 #include "ModularTegustation\tegu_items\backstreets\templates.dm"
 #include "ModularTegustation\tegu_items\backstreets\random_rooms\bigrooms\bossroom.dm"
 #include "ModularTegustation\tegu_items\backstreets\random_rooms\bigrooms\connector.dm"
