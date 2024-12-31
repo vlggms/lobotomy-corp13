@@ -44,5 +44,5 @@
 	name = "resurgence clan fishing line reel"
 	desc = "Essential for fishing in the outskirts."
 	icon_state = "clan"
-	fishing_value = 0.4
+	fishing_value = 0.6
 	line_color = "#057A71"
