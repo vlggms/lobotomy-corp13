@@ -83,7 +83,7 @@
 
 /obj/machinery/fish_market/attackby(obj/item/I, mob/user, params)
 	if(SSfishing.IsAligned(/datum/planet/uranus))
-		to_chat(usr, span_notice("Uranus is aligned with earth. All fish points are increaed by 1.5x"))
+		to_chat(user, span_notice("Uranus is aligned with earth. All fish point output increased by 1.5x"))
 	if(istype(I, /obj/item/stack/fish_points))
 		var/obj/item/stack/fish_points/more_points = I
 		AdjustPoints(more_points.amount)
