@@ -311,7 +311,7 @@
 	icon_living = "clan_citzen_6";
 	answers1 = list("...","Ca-all me Herring.", "I am but an old fi-sher who rests here...", "Once I fi-ished in the gre-eat lake...", "No-ow I fi-ish in simple ponds.");
 	question2 = "What are you buying?";
-	answers2 = list("Hm...", "Bri-ing me so-ome fresh wa-ater fish", "I-it has been a long time si-ince I have seen some...");
+	answers2 = list("Hm...", "Bri-ing me so-ome fish of stra-ange origins", "I-it has been a long time si-ince I have seen some...");
 	greeting_line = "Hm... We-elcome cu-ustomer.";
 	selling_answer = list("I o-only have a fe-ew tools to spare...","Bu-ut you ma-ay ta-ake a look...", "Just ho-old some cash in yo-our ID, and I will te-ell you if you have enough.");
 	buying_say = "Ni-ice catch...";
@@ -326,7 +326,7 @@
 	selling_end = "Ve-ery well...";
 	return_to_origin = 1;
 	city_faction = 0;
-	level_1 = list(/obj/item/food/fish/fresh_water);
+	level_1 = list(/obj/item/food/fish/siltcurrent, /obj/item/food/fish/fresh_water/mosb, /obj/item/food/fish/fresh_water/yin, /obj/item/food/fish/fresh_water/yang, /obj/item/food/fish/salt_water/fishmael, /obj/item/food/fish/salt_water/piscine_mermaid, /obj/item/food/fish/salt_water/tuna_pallid);
 	level_2 = list();
 	level_3 = list();
 	dir = 4
