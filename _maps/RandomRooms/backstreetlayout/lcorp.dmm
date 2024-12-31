@@ -2313,6 +2313,11 @@
 "RI" = (
 /obj/structure/necropolis_arch,
 /obj/structure/necropolis_gate,
+/obj/item/gps/mining{
+	anchored = 1;
+	gpstag = "Fearsome Signal";
+	alpha = 10
+	},
 /turf/open/indestructible/necropolis/air,
 /area/city/backstreets_room)
 "RK" = (

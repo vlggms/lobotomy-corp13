@@ -743,6 +743,14 @@
 	},
 /turf/open/water/deep/saltwater,
 /area/city/backstreets_room/resurgence_village)
+"OI" = (
+/obj/item/gps/mining{
+	anchored = 1;
+	gpstag = "Robotic Signal";
+	alpha = 10
+	},
+/turf/open/floor/plating/ironsand,
+/area/city/backstreets_room/resurgence_village)
 "OR" = (
 /turf/open/floor/grass/fakebasalt,
 /area/city/backstreets_room/resurgence_village)
@@ -1252,7 +1260,7 @@ Wx
 Li
 dS
 mU
-mU
+OI
 mU
 Jw
 Li

@@ -106,6 +106,14 @@
 /obj/effect/landmark/backstreetspawnwest,
 /turf/open/floor/plating/rust,
 /area/city/backstreets_room)
+"fu" = (
+/obj/item/gps/mining{
+	anchored = 1;
+	gpstag = "Glitchy Signal";
+	alpha = 10
+	},
+/turf/open/floor/plating/dirt/jungle/dark,
+/area/city/backstreets_alley)
 "gh" = (
 /obj/machinery/light,
 /obj/effect/decal/cleanable/dirt/dust,
@@ -681,6 +689,14 @@
 	},
 /turf/open/floor/plating/rust,
 /area/city/backstreets_room)
+"Ki" = (
+/obj/item/gps/mining{
+	anchored = 1;
+	gpstag = "Glitchy Signal";
+	alpha = 10
+	},
+/turf/open/floor/plating/asteroid/basalt,
+/area/city/backstreets_alley)
 "Kj" = (
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/effect/portal/permanent{
@@ -3602,7 +3618,7 @@ Xj
 Xj
 ZK
 Xj
-Xj
+Ki
 Sx
 aq
 Uc
@@ -5787,7 +5803,7 @@ Xj
 Xj
 Xj
 yv
-Xj
+Ki
 Sx
 iW
 UZ
@@ -8739,7 +8755,7 @@ UZ
 UZ
 UZ
 iW
-LM
+fu
 LM
 Yt
 Yt
@@ -9131,7 +9147,7 @@ iW
 iW
 iW
 Sx
-Xj
+Ki
 yv
 Xj
 Xj
@@ -21426,7 +21442,7 @@ Xj
 Xj
 Xj
 yv
-Xj
+Ki
 Sx
 iW
 XV
@@ -26304,7 +26320,7 @@ UZ
 iW
 Xj
 Xj
-Xj
+Ki
 Xj
 Xj
 iW
