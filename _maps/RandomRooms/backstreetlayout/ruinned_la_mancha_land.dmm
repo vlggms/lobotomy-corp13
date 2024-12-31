@@ -991,6 +991,16 @@
 	color = "#990012"
 	},
 /area/city/backstreets_alley)
+"Av" = (
+/obj/item/gps/mining{
+	anchored = 1;
+	gpstag = "Button 2 Signal";
+	alpha = 10
+	},
+/turf/open/floor/plasteel/chapel{
+	dir = 1
+	},
+/area/city/backstreets_alley)
 "AF" = (
 /turf/open/floor/material,
 /area/city/backstreets_alley)
@@ -1649,6 +1659,11 @@
 /area/city/backstreets_alley)
 "TK" = (
 /mob/living/simple_animal/hostile/ordeal/indigo_dusk/red,
+/obj/item/gps/mining{
+	anchored = 1;
+	gpstag = "Button 1 Signal";
+	alpha = 10
+	},
 /turf/open/floor/mineral/plastitanium/red,
 /area/city/backstreets_alley)
 "TX" = (
@@ -3473,7 +3488,7 @@ jr
 vP
 gE
 Fc
-gE
+Av
 Yr
 rw
 Yr

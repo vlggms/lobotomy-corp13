@@ -142,6 +142,14 @@
 /obj/effect/turf_decal/siding/blue/corner,
 /turf/open/floor/carpet/royalblack,
 /area/city/backstreets_room/resurgence_village)
+"eu" = (
+/obj/item/gps/mining{
+	anchored = 1;
+	gpstag = "Faithless Signal";
+	alpha = 10
+	},
+/turf/open/floor/plating/ashplanet/rocky,
+/area/city/backstreets_alley)
 "fb" = (
 /obj/effect/turf_decal/siding/blue,
 /turf/open/floor/carpet/royalblack,
@@ -715,6 +723,14 @@
 	on = 1;
 	pixel_x = -16;
 	anchored = 1
+	},
+/turf/open/floor/plating/ironsand,
+/area/city/backstreets_room/resurgence_village)
+"xF" = (
+/obj/item/gps/mining{
+	anchored = 1;
+	gpstag = "Robotic Signal";
+	alpha = 10
 	},
 /turf/open/floor/plating/ironsand,
 /area/city/backstreets_room/resurgence_village)
@@ -7994,7 +8010,7 @@ nZ
 nZ
 nZ
 Cq
-nZ
+eu
 nZ
 nZ
 Cq
@@ -14697,7 +14713,7 @@ fb
 LI
 KZ
 Cc
-Cc
+xF
 Cc
 KK
 LI

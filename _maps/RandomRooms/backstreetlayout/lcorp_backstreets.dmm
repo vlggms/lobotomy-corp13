@@ -6722,6 +6722,15 @@
 /obj/effect/decal/cleanable/dirt/dust,
 /turf/open/floor/facility/dark,
 /area/city/backstreets_room)
+"RD" = (
+/obj/effect/decal/cleanable/blood/tracks,
+/obj/item/gps/mining{
+	anchored = 1;
+	gpstag = "Darkness Signal";
+	alpha = 10
+	},
+/turf/open/floor/plating/ashplanet/wateryrock,
+/area/city/backstreets_alley)
 "RG" = (
 /obj/machinery/light/broken{
 	dir = 4
@@ -7962,6 +7971,14 @@
 /obj/effect/decal/cleanable/blood/tracks,
 /turf/open/floor/plating/ashplanet/rocky,
 /area/city/backstreets_alley)
+"ZM" = (
+/obj/item/gps/mining{
+	anchored = 1;
+	gpstag = "L-Corp Signal";
+	alpha = 10
+	},
+/turf/open/floor/plasteel/elevatorshaft,
+/area/city/backstreets_room)
 "ZO" = (
 /obj/structure/flora/rock/pile,
 /obj/effect/decal/cleanable/dirt/dust,
@@ -32182,7 +32199,7 @@ ne
 LR
 JC
 pN
-pN
+ZM
 wP
 Ei
 kI
@@ -32949,7 +32966,7 @@ OP
 zU
 qu
 qu
-qu
+RD
 rQ
 ZL
 WP

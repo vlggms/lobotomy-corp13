@@ -43,6 +43,11 @@
 /mob/living/simple_animal/hostile/humanoid/fixer/metal{
 	return_to_origin = 1
 	},
+/obj/item/gps/mining{
+	anchored = 1;
+	gpstag = "Metal Signal";
+	alpha = 10
+	},
 /turf/open/floor/plating/ashplanet/ash,
 /area/city/backstreets_room)
 "i" = (
