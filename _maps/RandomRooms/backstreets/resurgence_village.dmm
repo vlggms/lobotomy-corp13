@@ -51,6 +51,7 @@
 /area/city/backstreets_room/resurgence_village)
 "fd" = (
 /obj/structure/table/wood,
+/obj/item/food/grown/cannabis,
 /turf/open/floor/wood,
 /area/city/backstreets_room/resurgence_village)
 "fP" = (
@@ -722,6 +723,14 @@
 	},
 /turf/open/floor/grass/fakebasalt,
 /area/city/backstreets_alley)
+"Mt" = (
+/obj/item/gps/mining{
+	anchored = 1;
+	gpstag = "Robotic Signal";
+	alpha = 10
+	},
+/turf/open/floor/plating/ironsand,
+/area/city/backstreets_room/resurgence_village)
 "MO" = (
 /obj/structure/plaque/static_plaque{
 	name = "folk office plaque";
@@ -742,14 +751,6 @@
 	anchored = 1
 	},
 /turf/open/water/deep/saltwater,
-/area/city/backstreets_room/resurgence_village)
-"OI" = (
-/obj/item/gps/mining{
-	anchored = 1;
-	gpstag = "Robotic Signal";
-	alpha = 10
-	},
-/turf/open/floor/plating/ironsand,
 /area/city/backstreets_room/resurgence_village)
 "OR" = (
 /turf/open/floor/grass/fakebasalt,
@@ -1260,7 +1261,7 @@ Wx
 Li
 dS
 mU
-OI
+Mt
 mU
 Jw
 Li

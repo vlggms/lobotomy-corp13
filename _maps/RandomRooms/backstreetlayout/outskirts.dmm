@@ -142,14 +142,6 @@
 /obj/effect/turf_decal/siding/blue/corner,
 /turf/open/floor/carpet/royalblack,
 /area/city/backstreets_room/resurgence_village)
-"eu" = (
-/obj/item/gps/mining{
-	anchored = 1;
-	gpstag = "Faithless Signal";
-	alpha = 10
-	},
-/turf/open/floor/plating/ashplanet/rocky,
-/area/city/backstreets_alley)
 "fb" = (
 /obj/effect/turf_decal/siding/blue,
 /turf/open/floor/carpet/royalblack,
@@ -419,6 +411,7 @@
 /area/city/backstreets_room/resurgence_village)
 "ol" = (
 /obj/structure/table/wood,
+/obj/item/food/grown/cannabis,
 /turf/open/floor/wood,
 /area/city/backstreets_room/resurgence_village)
 "oC" = (
@@ -726,14 +719,6 @@
 	},
 /turf/open/floor/plating/ironsand,
 /area/city/backstreets_room/resurgence_village)
-"xF" = (
-/obj/item/gps/mining{
-	anchored = 1;
-	gpstag = "Robotic Signal";
-	alpha = 10
-	},
-/turf/open/floor/plating/ironsand,
-/area/city/backstreets_room/resurgence_village)
 "yv" = (
 /obj/effect/turf_decal/siding/blue{
 	dir = 1
@@ -759,6 +744,14 @@
 	pixel_y = -3
 	},
 /turf/open/floor/plating/dirt/jungle/wasteland,
+/area/city/backstreets_room/resurgence_village)
+"zo" = (
+/obj/item/gps/mining{
+	anchored = 1;
+	gpstag = "Robotic Signal";
+	alpha = 10
+	},
+/turf/open/floor/plating/ironsand,
 /area/city/backstreets_room/resurgence_village)
 "Aa" = (
 /obj/structure/mineral_door/wood,
@@ -841,6 +834,14 @@
 "GE" = (
 /obj/structure/flora/ausbushes/fullgrass,
 /turf/open/floor/plating/dirt/jungle/wasteland,
+/area/city/backstreets_alley)
+"GU" = (
+/obj/item/gps/mining{
+	anchored = 1;
+	gpstag = "Faithless Signal";
+	alpha = 10
+	},
+/turf/open/floor/plating/ashplanet/rocky,
 /area/city/backstreets_alley)
 "GY" = (
 /obj/item/flashlight/lantern{
@@ -8010,7 +8011,7 @@ nZ
 nZ
 nZ
 Cq
-eu
+GU
 nZ
 nZ
 Cq
@@ -14713,7 +14714,7 @@ fb
 LI
 KZ
 Cc
-xF
+zo
 Cc
 KK
 LI
