@@ -4145,6 +4145,7 @@
 #include "ModularTegustation\tegu_items\associations\items.dm"
 #include "ModularTegustation\tegu_items\associations\machines.dm"
 #include "ModularTegustation\tegu_items\associations\syndicateoffice.dm"
+#include "ModularTegustation\tegu_items\associations\tame_beacon.dm"
 #include "ModularTegustation\tegu_items\associations\vending.dm"
 #include "ModularTegustation\tegu_items\associations\weaving_beacon.dm"
 #include "ModularTegustation\tegu_items\backstreets\templates.dm"
