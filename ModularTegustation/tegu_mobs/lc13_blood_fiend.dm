@@ -332,7 +332,9 @@
 			readyToSpawn75 = FALSE
 			timeToSpawn75 = world.time + cooldownToSpawn
 			can_act = FALSE
+			ChangeResistances(list(RED_DAMAGE = 0.3, WHITE_DAMAGE = 0.3, BLACK_DAMAGE = 0.3, PALE_DAMAGE = 0.3))
 			sleep(20)
+			ChangeResistances(list(RED_DAMAGE = 1, WHITE_DAMAGE = 0.6, BLACK_DAMAGE = 0.4, PALE_DAMAGE = 1.5))
 			can_act = TRUE
 		if (health/maxHealth < 0.25 && readyToSpawn25 && world.time > timeToSpawn25)
 			// spawn
@@ -340,7 +342,9 @@
 			readyToSpawn25 = FALSE
 			timeToSpawn25 = world.time + cooldownToSpawn
 			can_act = FALSE
+			ChangeResistances(list(RED_DAMAGE = 0.3, WHITE_DAMAGE = 0.3, BLACK_DAMAGE = 0.3, PALE_DAMAGE = 0.3))
 			sleep(20)
+			ChangeResistances(list(RED_DAMAGE = 1, WHITE_DAMAGE = 0.6, BLACK_DAMAGE = 0.4, PALE_DAMAGE = 1.5))
 			can_act = TRUE
 
 /mob/living/simple_animal/hostile/humanoid/blood/fiend/boss/proc/spawnbags()
