@@ -9,14 +9,14 @@
 	icon_living = "bloodfiend"
 	icon_dead = "bloodfiend_dead"
 	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 1.2, WHITE_DAMAGE = 0.8, BLACK_DAMAGE = 0.6, PALE_DAMAGE = 1.3)
-	melee_damage_lower = 13
-	melee_damage_upper = 15
+	melee_damage_lower = 8
+	melee_damage_upper = 10
 	melee_damage_type = RED_DAMAGE
 	attack_sound = 'sound/abnormalities/nosferatu/attack.ogg'
 	attack_verb_continuous = "slices"
 	attack_verb_simple = "slice"
-	maxHealth = 800
-	health = 800
+	maxHealth = 600
+	health = 600
 	ranged = TRUE
 	butcher_results = list(/obj/item/food/meat/slab/crimson = 1, /obj/item/clothing/suit/armor/ego_gear/city/masquerade_cloak = 1)
 	guaranteed_butcher_results = list(/obj/item/food/meat/slab/crimson = 3)
@@ -29,7 +29,7 @@
 	var/slash_damage = 25
 	var/drain_cooldown = 0
 	var/drain_cooldown_time = 50
-	var/bleed_stacks = 3
+	var/bleed_stacks = 2
 	var/leap_bleed_stacks = 5
 
 /mob/living/simple_animal/hostile/humanoid/blood/fiend/proc/AdjustBloodFeast(amount)
@@ -159,14 +159,14 @@
 	icon_living = "bloodfiend"
 	icon_dead = "bloodfiend_dead"
 	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 1, WHITE_DAMAGE = 0.6, BLACK_DAMAGE = 0.4, PALE_DAMAGE = 1.5)
-	melee_damage_lower = 13
-	melee_damage_upper = 15
+	melee_damage_lower = 7
+	melee_damage_upper = 8
 	melee_damage_type = RED_DAMAGE
 	attack_sound = 'sound/abnormalities/nosferatu/attack.ogg'
 	attack_verb_continuous = "slices"
 	attack_verb_simple = "slice"
-	maxHealth = 1200
-	health = 1200
+	maxHealth = 1000
+	health = 1000
 	ranged = TRUE
 	guaranteed_butcher_results = list(/obj/item/food/meat/slab/crimson = 5, /obj/item/stack/spacecash/c1000 = 1)
 	silk_results = list(/obj/item/stack/sheet/silk/crimson_simple = 4, /obj/item/stack/sheet/silk/crimson_advanced = 2, /obj/item/stack/sheet/silk/crimson_elegant = 1)
@@ -359,15 +359,15 @@
 	icon_living = "bloodbag"
 	icon_dead = "bloodbag_dead"
 	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 1.4, WHITE_DAMAGE = 1, BLACK_DAMAGE = 0.8, PALE_DAMAGE = 1.5)
-	melee_damage_lower = 5
-	melee_damage_upper = 6
+	melee_damage_lower = 2
+	melee_damage_upper = 3
 	rapid_melee = 3
 	melee_damage_type = RED_DAMAGE
 	attack_sound = 'sound/effects/ordeals/brown/flea_attack.ogg'
 	attack_verb_continuous = "slashes"
 	attack_verb_simple = "slash"
-	maxHealth = 500
-	health = 500
+	maxHealth = 350
+	health = 350
 	butcher_results = list(/obj/item/food/meat/slab/crimson = 1)
 	guaranteed_butcher_results = list(/obj/item/food/meat/slab/crimson = 1)
 	silk_results = list(/obj/item/stack/sheet/silk/crimson_simple = 1)
