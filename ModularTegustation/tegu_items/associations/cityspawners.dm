@@ -116,7 +116,7 @@ GLOBAL_VAR_INIT(city_east_enemies, FALSE)
 
 	new spawning(get_turf(src))
 	if (spawning == "worms")
-	new /mob/living/simple_animal/hostile/ordeal/amber_bug (get_turf(spawning))
+		new /mob/living/simple_animal/hostile/ordeal/amber_bug (get_turf(spawning))
 
 
 
@@ -166,7 +166,7 @@ GLOBAL_VAR_INIT(city_east_enemies, FALSE)
 
 	new spawning(get_turf(src))
 	if (spawning == "worms")
-	new /mob/living/simple_animal/hostile/ordeal/amber_bug (get_turf(spawning))
+		new /mob/living/simple_animal/hostile/ordeal/amber_bug (get_turf(spawning))
 
 
 /obj/effect/landmark/backstreetspawneast
@@ -215,4 +215,4 @@ GLOBAL_VAR_INIT(city_east_enemies, FALSE)
 
 	new spawning(get_turf(src))
 	if (spawning == "worms")
-	new /mob/living/simple_animal/hostile/ordeal/amber_bug (get_turf(spawning))
+		new /mob/living/simple_animal/hostile/ordeal/amber_bug (get_turf(spawning))
