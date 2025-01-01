@@ -115,10 +115,8 @@ GLOBAL_VAR_INIT(city_east_enemies, FALSE)
 				spawning = /mob/living/simple_animal/hostile/ordeal/amber_dusk
 
 	new spawning(get_turf(src))
-	if (spawning == "worms")
-		new /mob/living/simple_animal/hostile/ordeal/amber_bug (get_turf(spawning))
-
-
+	if (GLOB.city_center_enemies == "worms")
+		new /mob/living/simple_animal/hostile/ordeal/amber_bug (get_turf(src))
 
 /obj/effect/landmark/backstreetspawnwest
 	name = "cityspawn landmark"
@@ -165,8 +163,8 @@ GLOBAL_VAR_INIT(city_east_enemies, FALSE)
 				spawning = /mob/living/simple_animal/hostile/ordeal/amber_dusk
 
 	new spawning(get_turf(src))
-	if (spawning == "worms")
-		new /mob/living/simple_animal/hostile/ordeal/amber_bug (get_turf(spawning))
+	if (GLOB.city_west_enemies == "worms")
+		new /mob/living/simple_animal/hostile/ordeal/amber_bug (get_turf(src))
 
 
 /obj/effect/landmark/backstreetspawneast
@@ -214,5 +212,5 @@ GLOBAL_VAR_INIT(city_east_enemies, FALSE)
 				spawning = /mob/living/simple_animal/hostile/ordeal/amber_dusk
 
 	new spawning(get_turf(src))
-	if (spawning == "worms")
-		new /mob/living/simple_animal/hostile/ordeal/amber_bug (get_turf(spawning))
+	if (GLOB.city_east_enemies == "worms")
+		new /mob/living/simple_animal/hostile/ordeal/amber_bug (get_turf(src))
