@@ -221,7 +221,9 @@
 /area/city/backstreets_alley)
 "eF" = (
 /obj/effect/landmark/backstreetspawnwest,
-/turf/open/floor/plating/dirt/jungle/dark,
+/turf/open/floor/plating/dirt/jungle/dark{
+	slowdown = 0
+	},
 /area/city/backstreets_alley)
 "eK" = (
 /obj/structure/table/reinforced,
@@ -235,7 +237,9 @@
 /area/city/backstreets_room)
 "eY" = (
 /obj/effect/landmark/backstreetspawneast,
-/turf/open/floor/plating/dirt/jungle/dark,
+/turf/open/floor/plating/dirt/jungle/dark{
+	slowdown = 0
+	},
 /area/city/backstreets_alley)
 "fi" = (
 /obj/structure/sign/poster/contraband/steppy,
@@ -1963,7 +1967,9 @@
 /turf/open/floor/bluespace,
 /area/centcom/supplypod)
 "LM" = (
-/turf/open/floor/plating/dirt/jungle/dark,
+/turf/open/floor/plating/dirt/jungle/dark{
+	slowdown = 0
+	},
 /area/city/backstreets_alley)
 "LT" = (
 /obj/effect/turf_decal/bot,

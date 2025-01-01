@@ -1,7 +1,9 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
 "aH" = (
 /obj/effect/landmark/backstreetspawneast,
-/turf/open/floor/plating/dirt/jungle/wasteland,
+/turf/open/floor/plating/dirt/jungle/wasteland{
+	slowdown = 0
+	},
 /area/city/backstreets_alley)
 "aU" = (
 /obj/structure/curtain/cloth,
@@ -18,14 +20,6 @@
 /obj/effect/spawner/room/backstreets/large_north,
 /turf/closed/indestructible/reinforced,
 /area/city/backstreets_room)
-"bP" = (
-/obj/item/gps/mining{
-	anchored = 1;
-	gpstag = "Robotic Signal";
-	alpha = 10
-	},
-/turf/open/floor/plating/ironsand,
-/area/city/backstreets_room/resurgence_village)
 "bU" = (
 /obj/structure/flora/ausbushes/fullgrass,
 /obj/item/flashlight/lantern{
@@ -288,7 +282,9 @@
 /area/city/backstreets_room/resurgence_village)
 "hI" = (
 /obj/structure/flora/ash/garden/waste,
-/turf/open/floor/plating/dirt/jungle/wasteland,
+/turf/open/floor/plating/dirt/jungle/wasteland{
+	slowdown = 0
+	},
 /area/city/backstreets_alley)
 "iD" = (
 /turf/open/floor/plating/ashplanet/wateryrock,
@@ -347,14 +343,18 @@
 /turf/closed/indestructible/rock,
 /area/city/backstreets_alley)
 "ku" = (
-/turf/open/floor/plating/dirt/jungle/wasteland,
+/turf/open/floor/plating/dirt/jungle/wasteland{
+	slowdown = 0
+	},
 /area/city/backstreets_alley)
 "kM" = (
 /turf/closed/indestructible/rock,
 /area/city/backstreets_room/resurgence_village)
 "lx" = (
 /obj/structure/flora/junglebush/c,
-/turf/open/floor/plating/dirt/jungle/wasteland,
+/turf/open/floor/plating/dirt/jungle/wasteland{
+	slowdown = 0
+	},
 /area/city/backstreets_alley)
 "lB" = (
 /obj/structure/fluff/paper/stack{
@@ -602,6 +602,13 @@
 /obj/item/bedsheet/brown,
 /turf/open/floor/wood,
 /area/city/backstreets_room/resurgence_village)
+"tj" = (
+/mob/living/simple_animal/hostile/clan/drone/village{
+	city_faction = 0;
+	faction = list("village")
+	},
+/turf/open/floor/plating/ironsand,
+/area/city/backstreets_room/resurgence_village)
 "tB" = (
 /obj/effect/mob_spawn/human/corpse,
 /turf/open/floor/plating/ashplanet/wateryrock,
@@ -642,6 +649,14 @@
 /obj/structure/sign/poster/contraband/borg_fancy_2,
 /turf/closed/indestructible/rock,
 /area/city/backstreets_alley)
+"uv" = (
+/obj/item/gps/mining{
+	anchored = 1;
+	gpstag = "Robotic Signal";
+	alpha = 10
+	},
+/turf/open/floor/plating/ironsand,
+/area/city/backstreets_room/resurgence_village)
 "uy" = (
 /obj/effect/turf_decal/weather/dirt{
 	dir = 1
@@ -656,14 +671,6 @@
 	},
 /turf/open/floor/carpet/royalblack,
 /area/city/backstreets_room/resurgence_village)
-"uY" = (
-/obj/item/gps/mining{
-	anchored = 1;
-	gpstag = "Faithless Signal";
-	alpha = 10
-	},
-/turf/open/floor/plating/ashplanet/rocky,
-/area/city/backstreets_alley)
 "vh" = (
 /obj/effect/spawner/room/backstreets/medium_south,
 /turf/closed/indestructible/reinforced,
@@ -770,7 +777,9 @@
 	icon = 'ModularTegustation/Teguicons/toolabnormalities.dmi';
 	pixel_y = -3
 	},
-/turf/open/floor/plating/dirt/jungle/wasteland,
+/turf/open/floor/plating/dirt/jungle/wasteland{
+	slowdown = 0
+	},
 /area/city/backstreets_room/resurgence_village)
 "Aa" = (
 /obj/structure/mineral_door/wood,
@@ -852,7 +861,9 @@
 /area/city/backstreets_room/resurgence_village)
 "GE" = (
 /obj/structure/flora/ausbushes/fullgrass,
-/turf/open/floor/plating/dirt/jungle/wasteland,
+/turf/open/floor/plating/dirt/jungle/wasteland{
+	slowdown = 0
+	},
 /area/city/backstreets_alley)
 "GY" = (
 /obj/item/flashlight/lantern{
@@ -891,12 +902,6 @@
 /obj/effect/landmark/backstreetspawnwest,
 /turf/open/floor/plating/ironsand,
 /area/city/backstreets_alley)
-"Jg" = (
-/mob/living/simple_animal/hostile/clan/drone/village{
-	faction = list("village")
-	},
-/turf/open/floor/plating/ironsand,
-/area/city/backstreets_room/resurgence_village)
 "Jp" = (
 /mob/living/simple_animal/hostile/clan/scout{
 	faction = list("neutral", "village");
@@ -911,7 +916,7 @@
 "JA" = (
 /obj/effect/turf_decal/raven/nine,
 /mob/living/simple_animal/hostile/clan/scout{
-	faction = list("neutral");
+	faction = list("neutral", "village");
 	can_protect = 1;
 	dir = 4;
 	icon_living = "clan_scout_normal";
@@ -923,7 +928,9 @@
 /area/city/backstreets_room/resurgence_village)
 "JN" = (
 /obj/structure/flora/rock/jungle,
-/turf/open/floor/plating/dirt/jungle/wasteland,
+/turf/open/floor/plating/dirt/jungle/wasteland{
+	slowdown = 0
+	},
 /area/city/backstreets_alley)
 "JO" = (
 /obj/structure/lootcrate/syndicate,
@@ -1016,7 +1023,6 @@
 /area/city/backstreets_room/resurgence_village)
 "LT" = (
 /mob/living/simple_animal/hostile/clan/drone/village{
-	city_faction = 0;
 	faction = list("village")
 	},
 /turf/open/floor/plating/ironsand,
@@ -1033,7 +1039,9 @@
 /area/city/backstreets_alley)
 "Nc" = (
 /obj/effect/landmark/backstreetspawnwest,
-/turf/open/floor/plating/dirt/jungle/wasteland,
+/turf/open/floor/plating/dirt/jungle/wasteland{
+	slowdown = 0
+	},
 /area/city/backstreets_alley)
 "NC" = (
 /obj/effect/spawner/room/backstreets/large_south,
@@ -1042,7 +1050,9 @@
 "NE" = (
 /obj/structure/flora/ausbushes/fullgrass,
 /obj/effect/landmark/backstreetspawnwest,
-/turf/open/floor/plating/dirt/jungle/wasteland,
+/turf/open/floor/plating/dirt/jungle/wasteland{
+	slowdown = 0
+	},
 /area/city/backstreets_alley)
 "NJ" = (
 /obj/effect/spawner/room/backstreets/small_east,
@@ -1094,7 +1104,9 @@
 /area/city/backstreets_alley)
 "PW" = (
 /obj/effect/landmark/backstreetspawn,
-/turf/open/floor/plating/dirt/jungle/wasteland,
+/turf/open/floor/plating/dirt/jungle/wasteland{
+	slowdown = 0
+	},
 /area/city/backstreets_alley)
 "Qj" = (
 /obj/structure/flora/rock/pile,
@@ -1228,6 +1240,14 @@
 /obj/structure/bonfire/prelit,
 /turf/open/floor/plating/ironsand,
 /area/city/backstreets_room/resurgence_village)
+"UB" = (
+/obj/item/gps/mining{
+	anchored = 1;
+	gpstag = "Faithless Signal";
+	alpha = 10
+	},
+/turf/open/floor/plating/ashplanet/rocky,
+/area/city/backstreets_alley)
 "Vo" = (
 /obj/effect/spawner/room/backstreets/bossroom,
 /turf/closed/indestructible/reinforced,
@@ -1279,7 +1299,9 @@
 /area/city/backstreets_alley)
 "Zq" = (
 /obj/structure/flora/junglebush/large,
-/turf/open/floor/plating/dirt/jungle/wasteland,
+/turf/open/floor/plating/dirt/jungle/wasteland{
+	slowdown = 0
+	},
 /area/city/backstreets_alley)
 
 (1,1,1) = {"
@@ -8034,7 +8056,7 @@ nZ
 nZ
 nZ
 Cq
-uY
+UB
 nZ
 nZ
 Cq
@@ -13848,7 +13870,7 @@ vZ
 Cc
 Cc
 Cc
-LT
+tj
 Cc
 Cc
 Cc
@@ -14737,7 +14759,7 @@ fb
 LI
 KZ
 Cc
-bP
+uv
 Cc
 KK
 LI
@@ -15181,7 +15203,7 @@ LI
 LI
 ng
 Cc
-LT
+tj
 Cc
 Cc
 LI
@@ -16067,7 +16089,7 @@ Os
 kM
 bU
 Cc
-Jg
+LT
 LI
 QJ
 sh

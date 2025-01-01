@@ -21,11 +21,15 @@
 /turf/closed/indestructible/reinforced,
 /area/city/backstreets_room)
 "i" = (
-/turf/open/floor/plating/dirt/jungle/dark,
+/turf/open/floor/plating/dirt/jungle/dark{
+	slowdown = 0
+	},
 /area/city/backstreets_alley)
 "k" = (
 /obj/effect/landmark/backstreetspawneast,
-/turf/open/floor/plating/dirt/jungle/dark,
+/turf/open/floor/plating/dirt/jungle/dark{
+	slowdown = 0
+	},
 /area/city/backstreets_alley)
 "m" = (
 /obj/effect/landmark/distortion,
@@ -33,7 +37,9 @@
 /area/city/backstreets_alley)
 "r" = (
 /obj/effect/landmark/backstreetspawnwest,
-/turf/open/floor/plating/dirt/jungle/dark,
+/turf/open/floor/plating/dirt/jungle/dark{
+	slowdown = 0
+	},
 /area/city/backstreets_alley)
 "u" = (
 /obj/effect/landmark/backstreetspawneast,
@@ -82,7 +88,9 @@
 /area/city/backstreets_room)
 "P" = (
 /obj/effect/landmark/distortion,
-/turf/open/floor/plating/dirt/jungle/dark,
+/turf/open/floor/plating/dirt/jungle/dark{
+	slowdown = 0
+	},
 /area/city/backstreets_alley)
 "Q" = (
 /obj/effect/spawner/room/backstreets/large_south,
@@ -94,7 +102,9 @@
 /area/city/backstreets_room)
 "T" = (
 /obj/effect/landmark/backstreetspawn,
-/turf/open/floor/plating/dirt/jungle/dark,
+/turf/open/floor/plating/dirt/jungle/dark{
+	slowdown = 0
+	},
 /area/city/backstreets_alley)
 "U" = (
 /turf/open/floor/plating/ashplanet/rocky,
