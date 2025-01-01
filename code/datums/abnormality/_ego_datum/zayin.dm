@@ -7,11 +7,6 @@
 	item_path = /obj/item/clothing/suit/armor/ego_gear/zayin/penitence
 	cost = 12
 
-// You are bald - Tough
-/datum/ego_datum/weapon/tough
-	item_path = /obj/item/ego_weapon/ranged/pistol/tough
-	cost = 12
-
 /datum/ego_datum/armor/tough
 	item_path = /obj/item/clothing/suit/armor/ego_gear/zayin/tough
 	cost = 12
