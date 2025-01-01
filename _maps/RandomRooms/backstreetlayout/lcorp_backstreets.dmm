@@ -768,6 +768,14 @@
 /obj/effect/decal/cleanable/oil/slippery,
 /turf/open/floor/facility/halls,
 /area/city/backstreets_room)
+"eO" = (
+/obj/item/gps/mining{
+	anchored = 1;
+	gpstag = "L-Corp Signal";
+	alpha = 10
+	},
+/turf/open/floor/plasteel/elevatorshaft,
+/area/city/backstreets_room)
 "eX" = (
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/effect/amurdad_grass,
@@ -800,6 +808,15 @@
 /obj/effect/decal/cleanable/dirt/dust,
 /turf/open/floor/facility/halls,
 /area/city/backstreets_room)
+"fh" = (
+/obj/effect/turf_decal/weather/dirt{
+	dir = 8
+	},
+/obj/effect/turf_decal/weather/dirt{
+	dir = 5
+	},
+/turf/open/floor/plating/asteroid/basalt,
+/area/city/backstreets_alley)
 "fi" = (
 /obj/effect/turf_decal/siding/brown{
 	dir = 6
@@ -1418,7 +1435,9 @@
 /turf/open/floor/carpet/orange,
 /area/city/backstreets_room)
 "iY" = (
-/turf/open/floor/plating/dirt/jungle/dark,
+/turf/open/floor/plating/dirt/jungle/dark{
+	slowdown = 0
+	},
 /area/city/backstreets_alley)
 "iZ" = (
 /obj/structure/rack,
@@ -1498,6 +1517,15 @@
 /obj/effect/decal/cleanable/dirt/dust,
 /turf/open/floor/facility/halls,
 /area/city/backstreets_room)
+"jv" = (
+/obj/effect/decal/cleanable/blood/tracks,
+/obj/item/gps/mining{
+	anchored = 1;
+	gpstag = "Darkness Signal";
+	alpha = 10
+	},
+/turf/open/floor/plating/ashplanet/wateryrock,
+/area/city/backstreets_alley)
 "jy" = (
 /obj/machinery/light/broken{
 	dir = 1
@@ -3259,7 +3287,9 @@
 /obj/structure/fence/corner{
 	dir = 10
 	},
-/turf/open/floor/plating/dirt/jungle/dark,
+/turf/open/floor/plating/dirt/jungle/dark{
+	slowdown = 0
+	},
 /area/city/backstreets_alley)
 "up" = (
 /obj/effect/turf_decal/siding/purple{
@@ -4342,6 +4372,13 @@
 /obj/structure/flora/rock,
 /turf/open/floor/plating/ashplanet/rocky,
 /area/city/backstreets_alley)
+"Cb" = (
+/obj/effect/turf_decal/weather/dirt{
+	dir = 8
+	},
+/obj/effect/turf_decal/weather/dirt,
+/turf/open/floor/plating/asteroid/basalt,
+/area/city/backstreets_alley)
 "Cc" = (
 /obj/machinery/door/airlock/vault{
 	name = "Pale Horse's containment unit"
@@ -4430,7 +4467,9 @@
 /obj/machinery/door/poddoor/shutters/indestructible{
 	name = "Malfunctioning Backstreets Shutters"
 	},
-/turf/open/floor/plating/dirt/jungle/dark,
+/turf/open/floor/plating/dirt/jungle/dark{
+	slowdown = 0
+	},
 /area/city/backstreets_alley)
 "CE" = (
 /obj/effect/turf_decal/weather/dirt{
@@ -4467,6 +4506,13 @@
 /obj/structure/chair/office,
 /turf/open/floor/carpet/red,
 /area/city/backstreets_room)
+"CU" = (
+/obj/effect/turf_decal/weather/dirt{
+	dir = 4
+	},
+/obj/effect/turf_decal/weather/dirt,
+/turf/open/floor/plating/asteroid/basalt,
+/area/city/backstreets_alley)
 "CV" = (
 /turf/open/floor/facility/halls,
 /area/city/backstreets_room)
@@ -5156,7 +5202,9 @@
 /area/city/backstreets_alley)
 "Hh" = (
 /obj/effect/landmark/backstreetspawneast,
-/turf/open/floor/plating/dirt/jungle/dark,
+/turf/open/floor/plating/dirt/jungle/dark{
+	slowdown = 0
+	},
 /area/city/backstreets_alley)
 "Hi" = (
 /obj/machinery/light/broken{
@@ -6052,7 +6100,9 @@
 /area/city/backstreets_room)
 "Nq" = (
 /obj/effect/landmark/backstreetspawnwest,
-/turf/open/floor/plating/dirt/jungle/dark,
+/turf/open/floor/plating/dirt/jungle/dark{
+	slowdown = 0
+	},
 /area/city/backstreets_alley)
 "Ns" = (
 /obj/effect/turf_decal/tile/brown,
@@ -6375,7 +6425,9 @@
 /area/city/backstreets_room)
 "Pz" = (
 /obj/effect/landmark/backstreetspawn,
-/turf/open/floor/plating/dirt/jungle/dark,
+/turf/open/floor/plating/dirt/jungle/dark{
+	slowdown = 0
+	},
 /area/city/backstreets_alley)
 "PG" = (
 /obj/machinery/light/broken{
@@ -6401,7 +6453,9 @@
 /obj/structure/fence{
 	dir = 4
 	},
-/turf/open/floor/plating/dirt/jungle/dark,
+/turf/open/floor/plating/dirt/jungle/dark{
+	slowdown = 0
+	},
 /area/city/backstreets_alley)
 "PJ" = (
 /obj/effect/decal/cleanable/dirt/dust,
@@ -6722,15 +6776,6 @@
 /obj/effect/decal/cleanable/dirt/dust,
 /turf/open/floor/facility/dark,
 /area/city/backstreets_room)
-"RD" = (
-/obj/effect/decal/cleanable/blood/tracks,
-/obj/item/gps/mining{
-	anchored = 1;
-	gpstag = "Darkness Signal";
-	alpha = 10
-	},
-/turf/open/floor/plating/ashplanet/wateryrock,
-/area/city/backstreets_alley)
 "RG" = (
 /obj/machinery/light/broken{
 	dir = 4
@@ -7687,7 +7732,9 @@
 	dir = 4
 	},
 /obj/effect/turf_decal/weather/dirt,
-/turf/open/floor/plating/dirt/jungle/dark,
+/turf/open/floor/plating/dirt/jungle/dark{
+	slowdown = 0
+	},
 /area/city/backstreets_alley)
 "XY" = (
 /obj/machinery/light/broken{
@@ -7971,14 +8018,6 @@
 /obj/effect/decal/cleanable/blood/tracks,
 /turf/open/floor/plating/ashplanet/rocky,
 /area/city/backstreets_alley)
-"ZM" = (
-/obj/item/gps/mining{
-	anchored = 1;
-	gpstag = "L-Corp Signal";
-	alpha = 10
-	},
-/turf/open/floor/plasteel/elevatorshaft,
-/area/city/backstreets_room)
 "ZO" = (
 /obj/structure/flora/rock/pile,
 /obj/effect/decal/cleanable/dirt/dust,
@@ -13512,7 +13551,7 @@ kI
 kI
 kI
 Ux
-bt
+XA
 bt
 bt
 bt
@@ -13623,7 +13662,7 @@ kI
 kI
 kI
 Ux
-bF
+js
 bF
 bF
 bF
@@ -13734,7 +13773,7 @@ kI
 kI
 kI
 Ux
-bF
+js
 bF
 bF
 CE
@@ -13845,7 +13884,7 @@ Ux
 Ux
 Ux
 Ux
-bF
+js
 bF
 bF
 Ux
@@ -14289,7 +14328,7 @@ JE
 JE
 JE
 zs
-bF
+js
 bF
 bF
 Ux
@@ -14400,7 +14439,7 @@ JE
 JE
 JE
 JE
-bF
+js
 bF
 bF
 Ux
@@ -14511,7 +14550,7 @@ JE
 JE
 JE
 JE
-bF
+js
 bF
 bF
 JE
@@ -14622,7 +14661,7 @@ JE
 JE
 JE
 JE
-bF
+js
 bF
 bF
 JE
@@ -14733,7 +14772,7 @@ JE
 JE
 JE
 JE
-bF
+js
 bF
 bF
 JE
@@ -14844,7 +14883,7 @@ JE
 JE
 JE
 JE
-bF
+js
 bF
 bF
 JE
@@ -14955,7 +14994,7 @@ kI
 kI
 kI
 Ux
-bF
+js
 bF
 bF
 JE
@@ -15066,7 +15105,7 @@ kI
 kI
 kI
 Ux
-bF
+js
 bF
 bF
 JE
@@ -15177,7 +15216,7 @@ kI
 kI
 kI
 Ux
-bF
+js
 bF
 bF
 JE
@@ -15288,7 +15327,7 @@ kI
 kI
 kI
 Ux
-bF
+js
 bF
 bF
 JE
@@ -15399,7 +15438,7 @@ kI
 kI
 kI
 Ux
-bF
+js
 bF
 bF
 JE
@@ -15510,7 +15549,7 @@ kI
 kI
 kI
 Ux
-bF
+js
 bF
 bF
 JE
@@ -15621,7 +15660,7 @@ kI
 kI
 kI
 Ux
-bF
+js
 bF
 bF
 JE
@@ -15732,7 +15771,7 @@ kI
 kI
 kI
 Ux
-bF
+js
 bF
 bF
 JE
@@ -15843,7 +15882,7 @@ kI
 kI
 kI
 Ux
-bF
+js
 bF
 bF
 JE
@@ -15954,7 +15993,7 @@ kI
 kI
 kI
 Ux
-bF
+js
 bF
 bF
 JE
@@ -16065,7 +16104,7 @@ kI
 kI
 kI
 Ux
-bF
+js
 bF
 bF
 JE
@@ -26590,9 +26629,9 @@ CE
 CE
 CE
 gy
-CE
-CE
-CE
+bF
+bF
+bF
 CE
 CE
 CE
@@ -26869,9 +26908,9 @@ JE
 JE
 JE
 JE
-bF
-bF
-bF
+bt
+bt
+bt
 Ux
 kI
 kI
@@ -27268,11 +27307,11 @@ kI
 kI
 kI
 kI
-kI
-kI
-kI
-kI
-kI
+Ux
+js
+bF
+oE
+Ux
 kI
 kI
 kI
@@ -27379,11 +27418,11 @@ kI
 kI
 kI
 kI
-kI
-kI
-kI
-kI
-kI
+Ux
+js
+bF
+oE
+Ux
 kI
 kI
 kI
@@ -27490,11 +27529,11 @@ kI
 kI
 kI
 kI
-kI
-kI
-kI
-kI
-kI
+Ux
+js
+bF
+oE
+Ux
 kI
 kI
 kI
@@ -27601,11 +27640,11 @@ kI
 kI
 kI
 kI
-kI
-kI
-kI
-kI
-kI
+Ux
+js
+bF
+oE
+Ux
 kI
 kI
 kI
@@ -27712,11 +27751,11 @@ kI
 kI
 kI
 kI
-kI
-kI
-kI
-kI
-kI
+Ux
+js
+bF
+oE
+Ux
 kI
 kI
 kI
@@ -27823,11 +27862,11 @@ kI
 kI
 kI
 kI
-kI
-kI
-kI
-kI
-kI
+Ux
+js
+bF
+oE
+Ux
 kI
 kI
 kI
@@ -27934,11 +27973,11 @@ kI
 kI
 kI
 kI
-kI
-kI
-kI
-kI
-kI
+Ux
+js
+bF
+oE
+Ux
 kI
 kI
 kI
@@ -28045,11 +28084,11 @@ kI
 kI
 kI
 kI
-kI
-kI
-kI
-kI
-kI
+Ux
+js
+bF
+oE
+Ux
 kI
 kI
 kI
@@ -28156,11 +28195,11 @@ kI
 kI
 kI
 kI
-kI
-kI
-kI
-kI
-kI
+Ux
+js
+bF
+oE
+Ux
 kI
 kI
 kI
@@ -28267,11 +28306,11 @@ kI
 kI
 kI
 kI
-kI
-kI
-kI
-kI
-kI
+Ux
+js
+bF
+oE
+Ux
 kI
 kI
 kI
@@ -28379,9 +28418,9 @@ Ux
 Ux
 Ux
 Ux
-Ux
-Ux
-Ux
+js
+bF
+oE
 Ux
 Ux
 Ux
@@ -28455,6 +28494,7 @@ kI
 Ux
 iY
 iY
+fh
 bt
 bt
 bt
@@ -28476,6 +28516,9 @@ bt
 bt
 bt
 bt
+bF
+bF
+bF
 bt
 bt
 bt
@@ -28486,6 +28529,9 @@ bt
 bt
 bt
 bt
+bF
+bF
+bF
 bt
 bt
 bt
@@ -28494,14 +28540,7 @@ bt
 bt
 bt
 bt
-bt
-bt
-bt
-bt
-bt
-bt
-bt
-bt
+Cb
 iY
 iY
 Ux
@@ -28567,6 +28606,7 @@ Ux
 iY
 iY
 Nq
+js
 bF
 bF
 bF
@@ -28611,8 +28651,7 @@ bF
 bF
 bF
 bF
-bF
-bF
+oE
 iY
 iY
 Ux
@@ -28678,6 +28717,7 @@ Ux
 Nq
 iY
 iY
+TQ
 CE
 CE
 CE
@@ -28722,8 +28762,7 @@ CE
 CE
 CE
 CE
-CE
-CE
+CU
 iY
 iY
 iY
@@ -28738,7 +28777,7 @@ iY
 iY
 iY
 iY
-bF
+js
 bF
 bF
 bF
@@ -28849,7 +28888,7 @@ iY
 iY
 iY
 iY
-bF
+js
 bF
 bF
 bF
@@ -28960,7 +28999,7 @@ JE
 pG
 iY
 iY
-bF
+js
 bF
 bF
 bF
@@ -32199,7 +32238,7 @@ ne
 LR
 JC
 pN
-ZM
+eO
 wP
 Ei
 kI
@@ -32966,7 +33005,7 @@ OP
 zU
 qu
 qu
-RD
+jv
 rQ
 ZL
 WP

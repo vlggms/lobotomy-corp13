@@ -12,7 +12,9 @@
 /obj/machinery/door/poddoor/shutters/indestructible{
 	name = "Malfunctioning Backstreets Shutters"
 	},
-/turf/open/floor/plating/dirt/jungle/dark,
+/turf/open/floor/plating/dirt/jungle/dark{
+	slowdown = 0
+	},
 /area/city/backstreets_alley)
 "az" = (
 /obj/machinery/light{
@@ -72,7 +74,9 @@
 /obj/structure/fence{
 	dir = 4
 	},
-/turf/open/floor/plating/dirt/jungle/dark,
+/turf/open/floor/plating/dirt/jungle/dark{
+	slowdown = 0
+	},
 /area/city/backstreets_alley)
 "dW" = (
 /obj/effect/turf_decal/weather/dirt{
@@ -106,14 +110,6 @@
 /obj/effect/landmark/backstreetspawnwest,
 /turf/open/floor/plating/rust,
 /area/city/backstreets_room)
-"fu" = (
-/obj/item/gps/mining{
-	anchored = 1;
-	gpstag = "Glitchy Signal";
-	alpha = 10
-	},
-/turf/open/floor/plating/dirt/jungle/dark,
-/area/city/backstreets_alley)
 "gh" = (
 /obj/machinery/light,
 /obj/effect/decal/cleanable/dirt/dust,
@@ -197,7 +193,9 @@
 	desc = "An unwavering tv that will never fade.";
 	name = "broken tv?"
 	},
-/turf/open/floor/plating/dirt/jungle/dark,
+/turf/open/floor/plating/dirt/jungle/dark{
+	slowdown = 0
+	},
 /area/city/backstreets_alley)
 "jU" = (
 /obj/machinery/door/poddoor/shutters/indestructible{
@@ -277,7 +275,9 @@
 "nE" = (
 /obj/item/stack/sheet/mineral/wood,
 /obj/effect/landmark/backstreetspawneast,
-/turf/open/floor/plating/dirt/jungle/dark,
+/turf/open/floor/plating/dirt/jungle/dark{
+	slowdown = 0
+	},
 /area/city/backstreets_alley)
 "oF" = (
 /obj/effect/turf_decal/weather/dirt{
@@ -292,7 +292,9 @@
 /obj/structure/fence/corner{
 	dir = 10
 	},
-/turf/open/floor/plating/dirt/jungle/dark,
+/turf/open/floor/plating/dirt/jungle/dark{
+	slowdown = 0
+	},
 /area/city/backstreets_alley)
 "po" = (
 /obj/effect/turf_decal/weather/dirt{
@@ -333,7 +335,9 @@
 /area/city/backstreets_alley)
 "qY" = (
 /obj/item/emptysandbag,
-/turf/open/floor/plating/dirt/jungle/dark,
+/turf/open/floor/plating/dirt/jungle/dark{
+	slowdown = 0
+	},
 /area/city/backstreets_alley)
 "rp" = (
 /obj/effect/turf_decal/weather/dirt{
@@ -468,7 +472,9 @@
 /area/city/backstreets_alley)
 "wv" = (
 /obj/item/stack/sheet/mineral/wood,
-/turf/open/floor/plating/dirt/jungle/dark,
+/turf/open/floor/plating/dirt/jungle/dark{
+	slowdown = 0
+	},
 /area/city/backstreets_alley)
 "wJ" = (
 /obj/effect/turf_decal/weather/dirt,
@@ -502,7 +508,9 @@
 /area/city/backstreets_room)
 "xr" = (
 /obj/effect/landmark/backstreetspawnwest,
-/turf/open/floor/plating/dirt/jungle/dark,
+/turf/open/floor/plating/dirt/jungle/dark{
+	slowdown = 0
+	},
 /area/city/backstreets_alley)
 "xC" = (
 /obj/effect/turf_decal/weather/dirt{
@@ -566,12 +574,22 @@
 /mob/living/simple_animal/hostile/retaliate/ghost,
 /turf/open/floor/plating,
 /area/city/backstreets_room)
+"Cr" = (
+/obj/item/gps/mining{
+	anchored = 1;
+	gpstag = "Glitchy Signal";
+	alpha = 10
+	},
+/turf/open/floor/plating/asteroid/basalt,
+/area/city/backstreets_alley)
 "CD" = (
 /obj/structure/fence{
 	dir = 4
 	},
 /obj/effect/turf_decal/weather/dirt,
-/turf/open/floor/plating/dirt/jungle/dark,
+/turf/open/floor/plating/dirt/jungle/dark{
+	slowdown = 0
+	},
 /area/city/backstreets_alley)
 "CE" = (
 /obj/structure/barricade/sandbags,
@@ -689,14 +707,6 @@
 	},
 /turf/open/floor/plating/rust,
 /area/city/backstreets_room)
-"Ki" = (
-/obj/item/gps/mining{
-	anchored = 1;
-	gpstag = "Glitchy Signal";
-	alpha = 10
-	},
-/turf/open/floor/plating/asteroid/basalt,
-/area/city/backstreets_alley)
 "Kj" = (
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/effect/portal/permanent{
@@ -742,7 +752,9 @@
 /turf/open/floor/plating/rust,
 /area/city/backstreets_room)
 "LM" = (
-/turf/open/floor/plating/dirt/jungle/dark,
+/turf/open/floor/plating/dirt/jungle/dark{
+	slowdown = 0
+	},
 /area/city/backstreets_alley)
 "Ml" = (
 /obj/effect/turf_decal/weather/dirt{
@@ -790,7 +802,9 @@
 /area/city/backstreets_room)
 "Pp" = (
 /obj/effect/landmark/backstreetspawn,
-/turf/open/floor/plating/dirt/jungle/dark,
+/turf/open/floor/plating/dirt/jungle/dark{
+	slowdown = 0
+	},
 /area/city/backstreets_alley)
 "Qb" = (
 /obj/effect/portal/permanent{
@@ -826,13 +840,25 @@
 	},
 /turf/open/floor/plating/rust,
 /area/city/backstreets_room)
+"QO" = (
+/obj/item/gps/mining{
+	anchored = 1;
+	gpstag = "Glitchy Signal";
+	alpha = 10
+	},
+/turf/open/floor/plating/dirt/jungle/dark{
+	slowdown = 0
+	},
+/area/city/backstreets_alley)
 "RJ" = (
 /obj/effect/spawner/room/backstreets/small_west,
 /turf/closed/indestructible/reinforced,
 /area/city/backstreets_room)
 "RK" = (
 /obj/effect/landmark/backstreetspawneast,
-/turf/open/floor/plating/dirt/jungle/dark,
+/turf/open/floor/plating/dirt/jungle/dark{
+	slowdown = 0
+	},
 /area/city/backstreets_alley)
 "RU" = (
 /obj/effect/decal/cleanable/dirt/dust,
@@ -872,7 +898,9 @@
 "Uc" = (
 /obj/structure/barricade/wooden,
 /obj/structure/barricade/wooden/crude,
-/turf/open/floor/plating/dirt/jungle/dark,
+/turf/open/floor/plating/dirt/jungle/dark{
+	slowdown = 0
+	},
 /area/city/backstreets_alley)
 "Ud" = (
 /obj/effect/turf_decal/weather/dirt{
@@ -3618,7 +3646,7 @@ Xj
 Xj
 ZK
 Xj
-Ki
+Cr
 Sx
 aq
 Uc
@@ -5803,7 +5831,7 @@ Xj
 Xj
 Xj
 yv
-Ki
+Cr
 Sx
 iW
 UZ
@@ -8755,7 +8783,7 @@ UZ
 UZ
 UZ
 iW
-fu
+QO
 LM
 Yt
 Yt
@@ -9147,7 +9175,7 @@ iW
 iW
 iW
 Sx
-Ki
+Cr
 yv
 Xj
 Xj
@@ -21442,7 +21470,7 @@ Xj
 Xj
 Xj
 yv
-Ki
+Cr
 Sx
 iW
 XV
@@ -26320,7 +26348,7 @@ UZ
 iW
 Xj
 Xj
-Ki
+Cr
 Xj
 Xj
 iW

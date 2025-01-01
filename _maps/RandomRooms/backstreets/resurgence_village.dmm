@@ -54,14 +54,6 @@
 /obj/item/food/grown/cannabis,
 /turf/open/floor/wood,
 /area/city/backstreets_room/resurgence_village)
-"fz" = (
-/obj/item/gps/mining{
-	anchored = 1;
-	gpstag = "Robotic Signal";
-	alpha = 10
-	},
-/turf/open/floor/plating/ironsand,
-/area/city/backstreets_room/resurgence_village)
 "fP" = (
 /obj/structure/chair/wood{
 	dir = 1
@@ -122,12 +114,6 @@
 /area/city/backstreets_room/resurgence_village)
 "kL" = (
 /turf/closed/indestructible/rock,
-/area/city/backstreets_room/resurgence_village)
-"ll" = (
-/mob/living/simple_animal/hostile/clan/drone/village{
-	faction = list("village")
-	},
-/turf/open/floor/plating/ironsand,
 /area/city/backstreets_room/resurgence_village)
 "ly" = (
 /obj/structure/riser/wood{
@@ -209,7 +195,7 @@
 "qp" = (
 /obj/effect/turf_decal/raven/nine,
 /mob/living/simple_animal/hostile/clan/scout{
-	faction = list("neutral");
+	faction = list("neutral", "village");
 	can_protect = 1;
 	dir = 4;
 	icon_living = "clan_scout_normal";
@@ -234,6 +220,14 @@
 	},
 /obj/structure/chair/wood{
 	dir = 1
+	},
+/turf/open/floor/plating/ironsand,
+/area/city/backstreets_room/resurgence_village)
+"ra" = (
+/obj/item/gps/mining{
+	anchored = 1;
+	gpstag = "Robotic Signal";
+	alpha = 10
 	},
 /turf/open/floor/plating/ironsand,
 /area/city/backstreets_room/resurgence_village)
@@ -365,6 +359,12 @@
 	dir = 8
 	},
 /turf/open/floor/wood,
+/area/city/backstreets_room/resurgence_village)
+"vC" = (
+/mob/living/simple_animal/hostile/clan/drone/village{
+	faction = list("village")
+	},
+/turf/open/floor/plating/ironsand,
 /area/city/backstreets_room/resurgence_village)
 "wD" = (
 /obj/effect/turf_decal/raven/seven,
@@ -1279,7 +1279,7 @@ Wx
 Li
 dS
 mU
-fz
+ra
 mU
 Jw
 Li
@@ -1565,7 +1565,7 @@ of
 kL
 qM
 mU
-ll
+vC
 Li
 vk
 QJ

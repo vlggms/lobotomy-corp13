@@ -43,7 +43,9 @@
 /turf/open/water/jungle,
 /area/city/backstreets_alley)
 "it" = (
-/turf/open/floor/plating/dirt/jungle/dark,
+/turf/open/floor/plating/dirt/jungle/dark{
+	slowdown = 0
+	},
 /area/city/backstreets_alley)
 "iz" = (
 /obj/structure/table/reinforced,
@@ -99,7 +101,9 @@
 /area/city/backstreets_alley)
 "qO" = (
 /obj/effect/landmark/backstreetspawnwest,
-/turf/open/floor/plating/dirt/jungle/dark,
+/turf/open/floor/plating/dirt/jungle/dark{
+	slowdown = 0
+	},
 /area/city/backstreets_alley)
 "re" = (
 /obj/structure/table/reinforced,
@@ -113,6 +117,14 @@
 /obj/structure/flora/rock/pile/largejungle,
 /turf/open/water/jungle,
 /area/city/backstreets_alley)
+"rU" = (
+/obj/item/gps/mining{
+	anchored = 1;
+	gpstag = "Mining Signal";
+	alpha = 10
+	},
+/turf/open/floor/mineral/titanium/tiled,
+/area/city/backstreets_room)
 "sb" = (
 /obj/effect/spawner/room/backstreets/pointofinterest,
 /turf/closed/indestructible/reinforced,
@@ -151,14 +163,6 @@
 /area/city/backstreets_alley)
 "vm" = (
 /turf/open/floor/plating/foam,
-/area/city/backstreets_room)
-"wR" = (
-/obj/item/gps/mining{
-	anchored = 1;
-	gpstag = "Mining Signal";
-	alpha = 10
-	},
-/turf/open/floor/mineral/titanium/tiled,
 /area/city/backstreets_room)
 "xk" = (
 /obj/structure/sign/warning/securearea,
@@ -205,7 +209,9 @@
 /area/city/backstreets_alley)
 "DT" = (
 /obj/effect/landmark/backstreetspawn,
-/turf/open/floor/plating/dirt/jungle/dark,
+/turf/open/floor/plating/dirt/jungle/dark{
+	slowdown = 0
+	},
 /area/city/backstreets_alley)
 "Eh" = (
 /obj/effect/spawner/room/backstreets/small_east,
@@ -279,7 +285,9 @@
 /area/city/backstreets_alley)
 "QD" = (
 /obj/effect/landmark/backstreetspawneast,
-/turf/open/floor/plating/dirt/jungle/dark,
+/turf/open/floor/plating/dirt/jungle/dark{
+	slowdown = 0
+	},
 /area/city/backstreets_alley)
 "RN" = (
 /turf/open/floor/plasteel/rockvault,
@@ -2834,7 +2842,7 @@ hv
 CI
 RN
 RN
-wR
+rU
 ne
 CI
 kn
@@ -27672,7 +27680,7 @@ kn
 hZ
 RN
 RN
-wR
+rU
 ne
 CI
 hv
