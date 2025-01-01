@@ -131,9 +131,11 @@
 	<br>\
 	<i>In total, there are 4 levels of skills you can learn. And depending on your grade you will be able to learn some skills, or become unable to learn others.</i><br>\
 	<br>\
-	Grade 9 and 8 Fixers will be able to learn level 1 Skills, Which are your main abilities for surviving in the backstreets ranging from healing and movement. You are also able to learn 5 of them.<br>\
+	Grade 9 Fixers will be able to learn level 1 Skills, Which are your main abilities for surviving in the backstreets ranging from healing and movement. You are also able to learn 5 of them at this level.<br>\
 	<br>\
-	Grade 7 and 6 Fixers will be able to learn level 2 Skills, Which are your main utility, making gathering and looting easier. You are also able to learn 3 of them. At this point and all higher grades, you will also be unable to learn skills of a lower level. So be cautious of over leveling.<br>\
+	Grade 8 Fixers are also able to learn level 1 Skills, but they are only able to learn 3 level 1 Skills. However, if they already knew 5 level 1 skills they will keep those skills.<br>\
+	<br>\
+	Grade 7 and 6 Fixers will be able to learn level 2 Skills, Which are your main utility, making gathering and looting easier. At this point and all higher grades, you will also be unable to learn skills of a lower level. So be cautious of over leveling.<br>\
 	<br>\
 	Grade 5 Fixers will be able to learn level 3 Skill, Which are your passives, you are able too toggle them on and off to gain benefits and downsides while they are active. You are only able to learn one of this skill.<br>\
 	<br>\
