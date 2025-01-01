@@ -13,6 +13,7 @@
 	custom_materials = list(/datum/material/iron=60, /datum/material/glass=30)
 	force = 2
 	throwforce = 0
+	custom_price = PAYCHECK_ASSISTANT
 	var/recording = FALSE
 	var/playing = FALSE
 	var/playsleepseconds = 0
@@ -298,6 +299,7 @@
 	var/list/storedinfo = list()
 	var/list/timestamp = list()
 	var/ruined = FALSE
+	custom_price = PAYCHECK_ASSISTANT
 
 /obj/item/tape/fire_act(exposed_temperature, exposed_volume)
 	ruin()
