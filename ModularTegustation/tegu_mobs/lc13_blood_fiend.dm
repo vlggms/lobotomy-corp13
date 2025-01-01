@@ -15,17 +15,17 @@
 	attack_sound = 'sound/abnormalities/nosferatu/attack.ogg'
 	attack_verb_continuous = "slices"
 	attack_verb_simple = "slice"
-	maxHealth = 600
-	health = 600
+	maxHealth = 1000
+	health = 1000
 	ranged = TRUE
-	butcher_results = list(/obj/item/food/meat/slab/crimson = 1, /obj/item/clothing/suit/armor/ego_gear/city/masquerade_cloak = 1)
+	butcher_results = list(/obj/item/food/meat/slab/crimson = 1)
 	guaranteed_butcher_results = list(/obj/item/food/meat/slab/crimson = 3)
 	silk_results = list(/obj/item/stack/sheet/silk/crimson_simple = 2, /obj/item/stack/sheet/silk/crimson_advanced = 1)
 	var/leap_sound = 'sound/abnormalities/nosferatu/attack_special.ogg'
-	var/blood_feast = 300
+	var/blood_feast = 450
 	var/max_blood_feast = 500
 	var/can_act = TRUE
-	var/leap_damage = 30
+	var/leap_damage = 50
 	var/slash_damage = 25
 	var/drain_cooldown = 0
 	var/drain_cooldown_time = 50
@@ -37,6 +37,11 @@
 	blood_feast += amount
 	if (blood_feast > max_blood_feast)
 		blood_feast = max_blood_feast
+
+/mob/living/simple_animal/hostile/humanoid/blood/fiend/death(gibbed)
+	if(prob(30))
+		new /obj/item/clothing/suit/armor/ego_gear/city/masquerade_cloak (get_turf(src))
+	. = ..()
 
 /mob/living/simple_animal/hostile/humanoid/blood/fiend/proc/Drain()
 	var/turf/T = get_turf(src)
@@ -165,13 +170,13 @@
 	attack_sound = 'sound/abnormalities/nosferatu/attack.ogg'
 	attack_verb_continuous = "slices"
 	attack_verb_simple = "slice"
-	maxHealth = 1000
-	health = 1000
+	maxHealth = 2300
+	health = 2300
 	ranged = TRUE
 	guaranteed_butcher_results = list(/obj/item/food/meat/slab/crimson = 5, /obj/item/stack/spacecash/c1000 = 1)
 	silk_results = list(/obj/item/stack/sheet/silk/crimson_simple = 4, /obj/item/stack/sheet/silk/crimson_advanced = 2, /obj/item/stack/sheet/silk/crimson_elegant = 1)
-	slash_damage = 20
-	blood_feast = 500
+	slash_damage = 50
+	blood_feast = 700
 	max_blood_feast = 750
 	var/cutter_bleed_stacks = 15
 	var/readyToSpawn75 = TRUE
@@ -366,8 +371,8 @@
 	attack_sound = 'sound/effects/ordeals/brown/flea_attack.ogg'
 	attack_verb_continuous = "slashes"
 	attack_verb_simple = "slash"
-	maxHealth = 350
-	health = 350
+	maxHealth = 500
+	health = 500
 	butcher_results = list(/obj/item/food/meat/slab/crimson = 1)
 	guaranteed_butcher_results = list(/obj/item/food/meat/slab/crimson = 1)
 	silk_results = list(/obj/item/stack/sheet/silk/crimson_simple = 1)
