@@ -15,6 +15,7 @@
 		/obj/item/food/meat/slab/worm,
 		/obj/item/food/meat/slab/robot,
 		/obj/item/food/meat/slab/human/mutant/moth,
+		/obj/item/food/meat/slab/crimson,
 		/obj/item/rawpe,
 		/obj/item/reagent_containers/food/drinks/bottle/wine/unlabeled,
 	)

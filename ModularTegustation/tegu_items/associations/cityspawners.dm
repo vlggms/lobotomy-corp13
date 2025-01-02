@@ -77,6 +77,7 @@ GLOBAL_VAR_INIT(city_east_enemies, FALSE)
 		"gcorp",
 		"sweeper",
 		"bots",
+		"worms",
 	)
 
 /obj/effect/landmark/backstreetspawn/Initialize()
@@ -99,10 +100,15 @@ GLOBAL_VAR_INIT(city_east_enemies, FALSE)
 			spawning = /mob/living/simple_animal/hostile/ordeal/green_bot
 			if(prob(30))
 				spawning = /mob/living/simple_animal/hostile/ordeal/green_bot_big
+
+		if("worms")
+			spawning = /mob/living/simple_animal/hostile/ordeal/amber_bug
+			if(prob(30))
+				spawning = /mob/living/simple_animal/hostile/ordeal/amber_dusk
+
 	new spawning(get_turf(src))
-
-
-
+	if (GLOB.city_center_enemies == "worms")
+		new /mob/living/simple_animal/hostile/ordeal/amber_bug (get_turf(src))
 
 /obj/effect/landmark/backstreetspawnwest
 	name = "cityspawn landmark"
@@ -111,6 +117,7 @@ GLOBAL_VAR_INIT(city_east_enemies, FALSE)
 		"gcorp",
 		"sweeper",
 		"bots",
+		"worms",
 	)
 
 /obj/effect/landmark/backstreetspawnwest/Initialize()
@@ -134,7 +141,15 @@ GLOBAL_VAR_INIT(city_east_enemies, FALSE)
 			spawning = /mob/living/simple_animal/hostile/ordeal/green_bot
 			if(prob(30))
 				spawning = /mob/living/simple_animal/hostile/ordeal/green_bot_big
+
+		if("worms")
+			spawning = /mob/living/simple_animal/hostile/ordeal/amber_bug
+			if(prob(30))
+				spawning = /mob/living/simple_animal/hostile/ordeal/amber_dusk
+
 	new spawning(get_turf(src))
+	if (GLOB.city_west_enemies == "worms")
+		new /mob/living/simple_animal/hostile/ordeal/amber_bug (get_turf(src))
 
 
 /obj/effect/landmark/backstreetspawneast
@@ -144,6 +159,7 @@ GLOBAL_VAR_INIT(city_east_enemies, FALSE)
 		"gcorp",
 		"sweeper",
 		"bots",
+		"worms",
 	)
 
 /obj/effect/landmark/backstreetspawneast/Initialize()
@@ -166,5 +182,12 @@ GLOBAL_VAR_INIT(city_east_enemies, FALSE)
 			spawning = /mob/living/simple_animal/hostile/ordeal/green_bot
 			if(prob(30))
 				spawning = /mob/living/simple_animal/hostile/ordeal/green_bot_big
-	new spawning(get_turf(src))
 
+		if("worms")
+			spawning = /mob/living/simple_animal/hostile/ordeal/amber_bug
+			if(prob(30))
+				spawning = /mob/living/simple_animal/hostile/ordeal/amber_dusk
+
+	new spawning(get_turf(src))
+	if (GLOB.city_east_enemies == "worms")
+		new /mob/living/simple_animal/hostile/ordeal/amber_bug (get_turf(src))
