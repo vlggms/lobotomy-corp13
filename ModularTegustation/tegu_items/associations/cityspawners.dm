@@ -77,7 +77,6 @@ GLOBAL_VAR_INIT(city_east_enemies, FALSE)
 		"gcorp",
 		"sweeper",
 		"bots",
-		"bloodfiends",
 		"worms",
 	)
 
@@ -102,13 +101,6 @@ GLOBAL_VAR_INIT(city_east_enemies, FALSE)
 			if(prob(30))
 				spawning = /mob/living/simple_animal/hostile/ordeal/green_bot_big
 
-		if("bloodfiends")
-			spawning = /mob/living/simple_animal/hostile/humanoid/blood/bag
-			if(prob(30))
-				if(prob(15))
-					spawning = /mob/living/simple_animal/hostile/humanoid/blood/fiend/boss
-				else
-					spawning = /mob/living/simple_animal/hostile/humanoid/blood/fiend
 		if("worms")
 			spawning = /mob/living/simple_animal/hostile/ordeal/amber_bug
 			if(prob(30))
@@ -125,7 +117,6 @@ GLOBAL_VAR_INIT(city_east_enemies, FALSE)
 		"gcorp",
 		"sweeper",
 		"bots",
-		"bloodfiends",
 		"worms",
 	)
 
@@ -150,13 +141,7 @@ GLOBAL_VAR_INIT(city_east_enemies, FALSE)
 			spawning = /mob/living/simple_animal/hostile/ordeal/green_bot
 			if(prob(30))
 				spawning = /mob/living/simple_animal/hostile/ordeal/green_bot_big
-		if("bloodfiends")
-			spawning = /mob/living/simple_animal/hostile/humanoid/blood/bag
-			if(prob(30))
-				if(prob(15))
-					spawning = /mob/living/simple_animal/hostile/humanoid/blood/fiend/boss
-				else
-					spawning = /mob/living/simple_animal/hostile/humanoid/blood/fiend
+
 		if("worms")
 			spawning = /mob/living/simple_animal/hostile/ordeal/amber_bug
 			if(prob(30))
@@ -174,7 +159,6 @@ GLOBAL_VAR_INIT(city_east_enemies, FALSE)
 		"gcorp",
 		"sweeper",
 		"bots",
-		"bloodfiends",
 		"worms",
 	)
 
@@ -199,13 +183,6 @@ GLOBAL_VAR_INIT(city_east_enemies, FALSE)
 			if(prob(30))
 				spawning = /mob/living/simple_animal/hostile/ordeal/green_bot_big
 
-		if("bloodfiends")
-			spawning = /mob/living/simple_animal/hostile/humanoid/blood/bag
-			if(prob(30))
-				if(prob(15))
-					spawning = /mob/living/simple_animal/hostile/humanoid/blood/fiend/boss
-				else
-					spawning = /mob/living/simple_animal/hostile/humanoid/blood/fiend
 		if("worms")
 			spawning = /mob/living/simple_animal/hostile/ordeal/amber_bug
 			if(prob(30))
