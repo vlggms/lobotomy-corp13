@@ -7,8 +7,8 @@
 /mob/living/simple_animal/hostile/ordeal/amber_dusk/Initialize()
 	. = ..()
 	if(SSmaptype.maptype in SSmaptype.citymaps)
-		melee_damage_lower = 70
-		melee_damage_upper = 82 // If you get hit by them it's a major skill issue
-		maxHealth = 1200
-		health = 1200
+		melee_damage_lower = 45
+		melee_damage_upper = 55
+		maxHealth = 800
+		health = 800
 		can_burrow = FALSE
