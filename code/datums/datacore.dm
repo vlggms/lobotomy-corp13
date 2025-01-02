@@ -155,6 +155,7 @@
 		"Hana",
 		"Association",
 		"Syndicate",
+		"Fixers"
 		// LOBOTOMYCORPORATION ADDITION END
 	)
 	var/list/departments = list(
@@ -171,7 +172,8 @@
 		"R Corp" = GLOB.r_corp_positions,
 		"Hana" = GLOB.hana_positions,
 		"Association" = GLOB.association_positions,
-		"Syndicate" = GLOB.syndicate_positions,
+		"Syndicate" = GLOB.city_antagonist_positions,
+		"Fixers" = GLOB.fixer_positions,
 		// LOBOTOMYCORPORATION ADDITION END
 	)
 	var/list/heads = GLOB.command_positions + list("Quartermaster")

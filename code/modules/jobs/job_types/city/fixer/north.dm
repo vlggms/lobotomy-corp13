@@ -15,7 +15,7 @@
 	trusted_only = TRUE
 	access = list(ACCESS_XENOBIOLOGY, ACCESS_RC_ANNOUNCE)
 	minimal_access = list(ACCESS_XENOBIOLOGY, ACCESS_RC_ANNOUNCE)
-	departments = DEPARTMENT_COMMAND | DEPARTMENT_SECURITY
+	departments = DEPARTMENT_COMMAND | DEPARTMENT_FIXERS
 	maptype = list("city-small", "wonderlabs")
 
 	job_attribute_limit = 80
@@ -67,7 +67,7 @@
 	display_order = JOB_DISPLAY_ORDER_FIXER
 	access = list(ACCESS_XENOBIOLOGY)
 	minimal_access = list(ACCESS_XENOBIOLOGY)
-	departments = DEPARTMENT_SECURITY
+	departments = DEPARTMENT_FIXERS
 	maptype = "wonderlabs"
 
 	job_attribute_limit = 60

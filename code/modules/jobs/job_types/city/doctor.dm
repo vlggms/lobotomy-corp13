@@ -127,7 +127,7 @@
 	exp_requirements = 180
 
 	display_order = JOB_DISPLAY_ORDER_MEDICALASSIST
-	departments = DEPARTMENT_MEDICAL | DEPARTMENT_SECURITY
+	departments = DEPARTMENT_MEDICAL | DEPARTMENT_FIXERS
 	maptype = list("wonderlabs", "city", "fixers")
 	job_important = "You are an a medical fixer. Your job is to explore the backstreets to grab dead fixers to bring back to the clinic."
 

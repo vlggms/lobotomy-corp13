@@ -24,6 +24,7 @@
 		"Hana" = list("exceptions" = list(), "open" = 0),
 		"Association" = list("exceptions" = list(), "open" = 0),
 		"Syndicate" = list("exceptions" = list(), "open" = 0),
+		"Fixers" = list("exceptions" = list(), "open" = 0),
 		// LOBOTOMYCORPORATION ADDITION END
 		"Command" = list("exceptions" = list(), "open" = 0),
 		"Security" = list("exceptions" = list(), "open" = 0),
@@ -41,7 +42,8 @@
 		list("flag" = DEPARTMENT_R_CORP, "name" = "R Corp"),
 		list("flag" = DEPARTMENT_HANA, "name" = "Hana"),
 		list("flag" = DEPARTMENT_ASSOCIATION, "name" = "Association"),
-		list("flag" = DEPARTMENT_SYNDICATE, "name" = "Syndicate"),
+		list("flag" = DEPARTMENT_CITY_ANTAGONIST, "name" = "Syndicate"),
+		list("flag" = DEPARTMENT_FIXERS, "name" = "Fixers"),
 		// LOBOTOMYCORPORATION ADDITION END
 		list("flag" = DEPARTMENT_COMMAND, "name" = "Command"),
 		list("flag" = DEPARTMENT_SECURITY, "name" = "Security"),

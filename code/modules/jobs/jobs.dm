@@ -153,7 +153,8 @@ GLOBAL_LIST_INIT(position_categories, list(
 	"R Corp" = list("jobs" = r_corp_positions, "color" = "#f2711c"),
 	"Hana" = list("jobs" = hana_positions, "color" = "#ffffff"),
 	"Association" = list("jobs" = association_positions, "color" = "#5baa27"),
-	"Syndicate" = list("jobs" = syndicate_positions, "color" = "#db2828"),
+	"Syndicate" = list("jobs" = city_antagonist_positions, "color" = "#db2828"),
+	"Fixers" = list("jobs" = fixer_positions, "color" = "#767676"),
 	// LOBOTOMYCORPORATION ADDITION END
 	EXP_TYPE_COMMAND = list("jobs" = command_positions, "color" = "#ccccff"),
 	EXP_TYPE_ENGINEERING = list("jobs" = engineering_positions, "color" = "#ffeeaa"),
@@ -169,7 +170,7 @@ GLOBAL_LIST_INIT(exp_jobsmap, list(
 // LOBOTOMYCORPORATION EDIT START
 //	EXP_TYPE_CREW = list("titles" = command_positions | engineering_positions | medical_positions | science_positions | supply_positions | security_positions | service_positions | list("AI","Cyborg")), // crew positions
 //	EXP_TYPE_COMMAND = list("titles" = command_positions),
-	EXP_TYPE_CREW = list("titles" = command_positions | engineering_positions | medical_positions | science_positions | supply_positions | security_positions | service_positions | w_corp_positions | r_corp_positions | hana_positions | association_positions | syndicate_positions | list("AI","Cyborg")), // crew positions
+	EXP_TYPE_CREW = list("titles" = command_positions | engineering_positions | medical_positions | science_positions | supply_positions | security_positions | service_positions | w_corp_positions | r_corp_positions | hana_positions | association_positions | city_antagonist_positions | list("AI","Cyborg")), // crew positions
 	EXP_TYPE_COMMAND = list("titles" = command_positions | hana_positions),
 // LOBOTOMYCORPORATION EDIT END
 	EXP_TYPE_ENGINEERING = list("titles" = engineering_positions),
@@ -177,7 +178,7 @@ GLOBAL_LIST_INIT(exp_jobsmap, list(
 	EXP_TYPE_SCIENCE = list("titles" = science_positions),
 	EXP_TYPE_SUPPLY = list("titles" = supply_positions),
 //	EXP_TYPE_SECURITY = list("titles" = security_positions), // LOBOTOMYCORPORATION EDIT OLD
-	EXP_TYPE_SECURITY = list("titles" = security_positions | syndicate_positions | association_positions | w_corp_positions | r_corp_positions), // LOBOTOMYCORPORATION EDIT NEW
+	EXP_TYPE_SECURITY = list("titles" = security_positions | city_antagonist_positions | association_positions | w_corp_positions | r_corp_positions | fixer_positions), // LOBOTOMYCORPORATION EDIT NEW
 	EXP_TYPE_SILICON = list("titles" = list("AI","Cyborg")),
 	EXP_TYPE_SERVICE = list("titles" = service_positions)
 ))

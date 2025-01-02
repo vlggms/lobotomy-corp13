@@ -2,7 +2,8 @@
 #define DEPARTMENT_R_CORP (1<<11)
 #define DEPARTMENT_HANA (1<<12)
 #define DEPARTMENT_ASSOCIATION (1<<13)
-#define DEPARTMENT_SYNDICATE (1<<13)
+#define DEPARTMENT_CITY_ANTAGONIST (1<<13)
+#define DEPARTMENT_FIXERS (1<<14)
 
 GLOBAL_LIST_INIT(w_corp_positions, list(
 	"W-Corp Representative",
@@ -57,6 +58,13 @@ GLOBAL_LIST_INIT(hana_positions, list(
 	"Hana Intern",
 ))
 
+GLOBAL_LIST_INIT(fixer_positions, list(
+	"Association Section Director",
+	"Association Veteran",
+	"Association Fixer",
+	"Roaming Association Fixer",
+))
+
 GLOBAL_LIST_INIT(association_positions, list(
 	"Association Section Director",
 	"Association Veteran",
@@ -64,7 +72,7 @@ GLOBAL_LIST_INIT(association_positions, list(
 	"Roaming Association Fixer",
 ))
 
-GLOBAL_LIST_INIT(syndicate_positions, list(
+GLOBAL_LIST_INIT(city_antagonist_positions, list(
 	"Index Messenger",
 	"Index Proxy",
 	"Index Proselyte",

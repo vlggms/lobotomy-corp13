@@ -12,7 +12,7 @@
 	trusted_only = TRUE
 	access = list(ACCESS_SYNDICATE, ACCESS_SYNDICATE_LEADER)
 	minimal_access = list(ACCESS_SYNDICATE, ACCESS_SYNDICATE_LEADER)
-	departments = DEPARTMENT_SYNDICATE
+	departments = DEPARTMENT_CITY_ANTAGONIST
 	paycheck = 700
 	maptype = list("city")
 	job_important = "You are not apart of Kurokumo Clan. \

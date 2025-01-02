@@ -12,7 +12,7 @@
 	trusted_only = TRUE
 	access = list(ACCESS_NETWORK)
 	minimal_access = list(ACCESS_NETWORK)
-	departments = DEPARTMENT_HANA
+	departments = DEPARTMENT_HANA | DEPARTMENT_FIXERS
 	paycheck = 700
 	maptype = list("fixers", "city")
 
