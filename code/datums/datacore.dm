@@ -186,6 +186,21 @@
 			if((rank in jobs) || (true_rank in jobs)) //Tegu edit - alt job titles
 				if(!manifest_out[department])
 					manifest_out[department] = list()
+				// LOBOTOMYCORPORATION ADDITION START
+				var/duplicate_found = FALSE
+				for(var/list/data as anything in manifest_out[department])
+					if(findtext(data["name"], name) && rank == data["rank"])
+						duplicate_found = TRUE
+						if(length(data) == 2)
+							data["count"] = 1
+						data["count"]++
+						data["name"] = "x[data["count"]] [name]"
+					continue
+
+				if(duplicate_found)
+					has_department = TRUE
+					continue
+				// LOBOTOMYCORPORATION ADDITION END
 				// Append to beginning of list if captain or department head
 				if (rank == "Captain" || (department != "Command" && (rank in heads)))
 					manifest_out[department] = list(list(
