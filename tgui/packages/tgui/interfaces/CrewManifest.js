@@ -3,7 +3,46 @@ import { useBackend } from "../backend";
 import { Icon, Section, Table, Tooltip } from "../components";
 import { Window } from "../layouts";
 
+// LOBOTOMYCORPORATION ADDITION START
+const highcommandjobs = [
+  "W-Corp L3 Squad Captain",
+  "Ground Commander",
+  "Assault Commander",
+  "Hana Administrator",
+  "Association Section Director",
+  "Index Messenger",
+  "Blade Lineage Cutthroat",
+  "Grand Inquisitor",
+  "Thumb Sottocapo",
+  "Kurokumo Kashira",
+];
+// LOBOTOMYCORPORATION ADDITION END
+
 const commandJobs = [
+// LOBOTOMYCORPORATION ADDITION START
+  "Hana Representative",
+  "Index Proxy",
+  "Blade Lineage Salsu",
+  "N Corp Grosshammer",
+  "Thumb Capo",
+  "Kurokumo Hosa",
+
+  "W-Corp L2 Type A Lieutenant",
+
+  "Lieutenant Commander",
+  "Operations Officer",
+  "Rabbit Squad Captain",
+  "Reindeer Squad Captain",
+  "Rhino Squad Captain",
+  "Raven Squad Captain",
+
+  "Base Commander",
+  "Support Officer",
+  "Rat Squad Leader",
+  "Rooster Squad Leader",
+  "Raccoon Squad Leader",
+  "Roadrunner Squad Leader",
+// LOBOTOMYCORPORATION ADDITION END
   "Head of Personnel",
   "Head of Security",
   "Chief Engineer",
@@ -61,6 +100,20 @@ export const CrewManifest = (props, context) => {
                         />
                       </Icon>
                     )}
+                    {highcommandjobs.includes(crewMember.rank) && ( // LOBOTOMYCORPORATION ADDITION START
+                      <Icon
+                        className={classes([
+                          "CrewManifest__Icon",
+                          "CrewManifest__Icon--Command",
+                        ])}
+                        name="star"
+                      >
+                        <Tooltip
+                          content="Key member of command"
+                          position="bottom"
+                        />
+                      </Icon>
+                    )/* LOBOTOMYCORPORATION ADDITION END (akward comment aint it) */}
                     {commandJobs.includes(crewMember.rank) && (
                       <Icon
                         className={classes([

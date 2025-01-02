@@ -15,6 +15,7 @@ GLOBAL_LIST_INIT(w_corp_positions, list(
 ))
 
 GLOBAL_LIST_INIT(r_corp_positions, list(
+	// 4th Pack Command
 	"Ground Commander",
 	"Lieutenant Commander",
 	"Operations Officer",
@@ -23,7 +24,16 @@ GLOBAL_LIST_INIT(r_corp_positions, list(
 	"Rhino Squad Captain",
 	"Raven Squad Captain",
 
-	// R-Corp Fourth Pack
+	// 5th Pack Command
+	"Assault Commander",
+	"Base Commander",
+	"Support Officer",
+	"Rat Squad Leader",
+	"Rooster Squad Leader",
+	"Raccoon Squad Leader",
+	"Roadrunner Squad Leader",
+
+	// 4th Pack troops
 	"R-Corp Suppressive Rabbit",
 	"R-Corp Assault Rabbit",
 	"R-Corp Medical Reindeer",
@@ -33,7 +43,7 @@ GLOBAL_LIST_INIT(r_corp_positions, list(
 	"R-Corp Scout Raven",
 	"R-Corp Support Raven",
 
-	// Fifth Pack
+	// 5th Pack troops
 	"R-Corp Rat",
 	"R-Corp Rooster",
 	"R-Corp Raccoon Spy",

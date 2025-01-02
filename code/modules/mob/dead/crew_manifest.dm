@@ -18,6 +18,13 @@
 
 /datum/crew_manifest/ui_data(mob/user)
 	var/list/positions = list(
+		// LOBOTOMYCORPORATION ADDITION START
+		"W Corp" = list("exceptions" = list(), "open" = 0),
+		"R Corp" = list("exceptions" = list(), "open" = 0),
+		"Hana" = list("exceptions" = list(), "open" = 0),
+		"Association" = list("exceptions" = list(), "open" = 0),
+		"Syndicate" = list("exceptions" = list(), "open" = 0),
+		// LOBOTOMYCORPORATION ADDITION END
 		"Command" = list("exceptions" = list(), "open" = 0),
 		"Security" = list("exceptions" = list(), "open" = 0),
 		"Engineering" = list("exceptions" = list(), "open" = 0),
@@ -29,6 +36,13 @@
 		"Silicon" = list("exceptions" = list(), "open" = 0)
 	)
 	var/list/departments = list(
+		// LOBOTOMYCORPORATION ADDITION START
+		list("flag" = DEPARTMENT_W_CORP, "name" = "W Corp"),
+		list("flag" = DEPARTMENT_R_CORP, "name" = "R Corp"),
+		list("flag" = DEPARTMENT_HANA, "name" = "Hana"),
+		list("flag" = DEPARTMENT_ASSOCIATION, "name" = "Association"),
+		list("flag" = DEPARTMENT_SYNDICATE, "name" = "Syndicate"),
+		// LOBOTOMYCORPORATION ADDITION END
 		list("flag" = DEPARTMENT_COMMAND, "name" = "Command"),
 		list("flag" = DEPARTMENT_SECURITY, "name" = "Security"),
 		list("flag" = DEPARTMENT_ENGINEERING, "name" = "Engineering"),
@@ -37,13 +51,6 @@
 		list("flag" = DEPARTMENT_CARGO, "name" = "Supply"),
 		list("flag" = DEPARTMENT_SERVICE, "name" = "Service"),
 		list("flag" = DEPARTMENT_SILICON, "name" = "Silicon"),
-		// LOBOTOMYCORPORATION ADDITION START
-		list("flag" = DEPARTMENT_W_CORP, "name" = "W Corp"),
-		list("flag" = DEPARTMENT_R_CORP, "name" = "R Corp"),
-		list("flag" = DEPARTMENT_HANA, "name" = "Hana"),
-		list("flag" = DEPARTMENT_ASSOCIATION, "name" = "Association"),
-		list("flag" = DEPARTMENT_SYNDICATE, "name" = "Syndicate"),
-		// LOBOTOMYCORPORATION ADDITION END
 	)
 
 	for(var/job in SSjob.occupations)
