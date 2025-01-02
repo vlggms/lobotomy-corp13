@@ -59,10 +59,18 @@ GLOBAL_LIST_INIT(hana_positions, list(
 ))
 
 GLOBAL_LIST_INIT(fixer_positions, list(
+	"East Office Director",
+	"East Office Fixer",
+	"North Office Director",
+	"North Office Fixer",
+
 	"Association Section Director",
 	"Association Veteran",
 	"Association Fixer",
 	"Roaming Association Fixer",
+
+	"Medical Fixer Assistant",
+	"Fixer",
 ))
 
 GLOBAL_LIST_INIT(association_positions, list(

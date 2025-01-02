@@ -124,11 +124,6 @@ GLOBAL_LIST_INIT(security_positions, list(
 	"Agent",
 	"Agent Intern",
 
-	"East Office Director",
-	"East Office Fixer",
-	"North Office Director",
-	"North Office Fixer",
-
 	// LCB Labs
 	"High Security Commander",
 	"Low Security Commander",
@@ -137,9 +132,6 @@ GLOBAL_LIST_INIT(security_positions, list(
 	"Damage Mitigation Officer",
 	"Damage Exasperation Officer",
 	"Internal Police",
-
-	// Fixers
-	"Fixer",
 	))
 
 
