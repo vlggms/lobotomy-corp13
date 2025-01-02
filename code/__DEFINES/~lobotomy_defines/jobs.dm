@@ -71,6 +71,7 @@ GLOBAL_LIST_INIT(fixer_positions, list(
 
 	"Medical Fixer Assistant",
 	"Fixer",
+	"Rat", // most fitting, somehow
 ))
 
 GLOBAL_LIST_INIT(association_positions, list(

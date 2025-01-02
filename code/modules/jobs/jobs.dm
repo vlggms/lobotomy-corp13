@@ -102,7 +102,6 @@ GLOBAL_LIST_INIT(service_positions, list(
 	"Workshop Attendant",
 	"Main Office Representative",
 	"Fishhook Office Fixer",
-	"Rat",
 
 	// LCB Labs
 	"LC Chef",
