@@ -42,7 +42,7 @@ const commandJobs = [
   "Rooster Squad Leader",
   "Raccoon Squad Leader",
   "Roadrunner Squad Leader",
-// LOBOTOMYCORPORATION ADDITION END
+  // LOBOTOMYCORPORATION ADDITION END
   "Head of Personnel",
   "Head of Security",
   "Chief Engineer",
@@ -100,7 +100,8 @@ export const CrewManifest = (props, context) => {
                         />
                       </Icon>
                     )}
-                    {highcommandjobs.includes(crewMember.rank) && ( // LOBOTOMYCORPORATION ADDITION START
+                    {/* LOBOTOMYCORPORATION ADDITION START */}
+                    {highcommandjobs.includes(crewMember.rank) && (
                       <Icon
                         className={classes([
                           "CrewManifest__Icon",
@@ -113,7 +114,8 @@ export const CrewManifest = (props, context) => {
                           position="bottom"
                         />
                       </Icon>
-                    )/* LOBOTOMYCORPORATION ADDITION END (akward comment aint it) */}
+                    )}
+                    {/* LOBOTOMYCORPORATION ADDITION END */}
                     {commandJobs.includes(crewMember.rank) && (
                       <Icon
                         className={classes([
