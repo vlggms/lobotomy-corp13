@@ -52,7 +52,7 @@
 		if("Set it to 2")
 			observation_fail_message = observation_fail_message_3
 		else
-			observation_fail_message = initial(observation_success_message)
+			observation_success_message = initial(observation_success_message)
 	return ..()
 
 /mob/living/simple_animal/hostile/abnormality/fan/examine(mob/user)
