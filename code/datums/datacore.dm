@@ -155,7 +155,7 @@
 		"Hana",
 		"Association",
 		"Syndicate",
-		"Fixers"
+		"Fixers",
 		// LOBOTOMYCORPORATION ADDITION END
 	)
 	var/list/departments = list(
