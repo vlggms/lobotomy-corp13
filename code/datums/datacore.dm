@@ -148,7 +148,14 @@
 		"Science",
 		"Supply",
 		"Service",
-		"Silicon"
+		"Silicon",
+		// LOBOTOMYCORPORATION ADDITION START
+		"W Corp",
+		"R Corp",
+		"Hana",
+		"Association",
+		"Syndicate",
+		// LOBOTOMYCORPORATION ADDITION END
 	)
 	var/list/departments = list(
 		"Command" = GLOB.command_positions,
@@ -158,7 +165,14 @@
 		"Science" = GLOB.science_positions,
 		"Supply" = GLOB.supply_positions,
 		"Service" = GLOB.service_positions,
-		"Silicon" = GLOB.nonhuman_positions
+		"Silicon" = GLOB.nonhuman_positions,
+		// LOBOTOMYCORPORATION ADDITION START
+		"W Corp" = GLOB.w_corp_positions,
+		"R Corp" = GLOB.r_corp_positions,
+		"Hana" = GLOB.hana_positions,
+		"Association" = GLOB.association_positions,
+		"Syndicate" = GLOB.syndicate_positions,
+		// LOBOTOMYCORPORATION ADDITION END
 	)
 	for(var/datum/data/record/t in GLOB.data_core.general)
 		var/name = t.fields["name"]

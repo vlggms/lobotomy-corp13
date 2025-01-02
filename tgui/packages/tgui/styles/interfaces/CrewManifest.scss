@@ -8,7 +8,14 @@ $department_map: (
   'Science': colors.$purple,
   'Supply': colors.$brown,
   'Service': colors.$green,
-  'Silicon': colors.$pink
+  'Silicon': colors.$pink,
+  // LOBOTOMYCORPORATION ADDITION START
+  'W Corp': colors.$teal,
+  'R Corp': colors.$orange,
+  'Hana': colors.$white,
+  'Association': colors.$good,
+  'Syndicate': colors.$bad,
+  // LOBOTOMYCORPORATION ADDITION END
 );
 
 .CrewManifest {

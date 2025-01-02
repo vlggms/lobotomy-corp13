@@ -35,7 +35,14 @@
 		list("flag" = DEPARTMENT_SCIENCE, "name" = "Science"),
 		list("flag" = DEPARTMENT_CARGO, "name" = "Supply"),
 		list("flag" = DEPARTMENT_SERVICE, "name" = "Service"),
-		list("flag" = DEPARTMENT_SILICON, "name" = "Silicon")
+		list("flag" = DEPARTMENT_SILICON, "name" = "Silicon"),
+		// LOBOTOMYCORPORATION ADDITION START
+		list("flag" = DEPARTMENT_W_CORP, "name" = "W Corp"),
+		list("flag" = DEPARTMENT_R_CORP, "name" = "R Corp"),
+		list("flag" = DEPARTMENT_HANA, "name" = "Hana"),
+		list("flag" = DEPARTMENT_ASSOCIATION, "name" = "Association"),
+		list("flag" = DEPARTMENT_SYNDICATE, "name" = "Syndicate"),
+		// LOBOTOMYCORPORATION ADDITION END
 	)
 
 	for(var/job in SSjob.occupations)
