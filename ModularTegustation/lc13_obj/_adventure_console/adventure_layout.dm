@@ -1,4 +1,5 @@
 /**
+ * ADVENTURE CONSOLE V1.1
  * TEXT BASED ADVENTURES
  * Adventures that are mostly predefined paths.
  * This was difficult to finalize since i havent made a text based adventure before.
@@ -89,7 +90,30 @@
 		new /datum/data/extraction_cargo("SOME AHN",				/obj/item/stack/spacecash/c500,		10) = 1,
 		new /datum/data/extraction_cargo("POSITIVE ENKEPHALIN",		/obj/item/rawpe,					20) = 1,
 	)
+	var/list/exchange_upgrade_list = list(
+		//DICE
+		new /datum/data/adventure_upgrade("COMBAT DICE UPGRADE 1-8","1d8",		1, "DICE") = 1,
+		new /datum/data/adventure_upgrade("COMBAT DICE UPGRADE 2-12","2d6",		3, "DICE") = 1,
+		//Health
+		new /datum/data/adventure_upgrade("RESTORE 7 HEALTH		",	7,			1, "HP") = 1,
+	)
 
+	/*-----------------\
+	|Stat Upgrade Datum|
+	\-----------------*/
+/datum/data/adventure_upgrade
+	var/stuff_name = "ERROR"
+	var/stat_value = 0
+	var/cost = 0
+	var/trade_type = "HP"
+
+/datum/data/adventure_upgrade/New(name, stat_amt, cost, trading_type)
+	src.stuff_name = name
+	src.stat_value = stat_amt
+	src.cost = cost
+	src.trade_type = trading_type
+
+//---
 /datum/adventure_layout/New(set_debug_menu = FALSE)
 	. = ..()
 	if(!events.len)
@@ -196,7 +220,11 @@
 				PHYSICAL_MERCHANDISE<br>"
 			//Code taken from fish_market.dm
 			for(var/datum/data/extraction_cargo/A in exchange_shop_list)
-				. += " <A href='byond://?src=[REF(interfacer)];purchase=[REF(A)]'>[A.equipment_name]([A.cost] Points)</A><br>"
+				. += " <A href='byond://?src=[REF(interfacer)];purchase=[REF(A)]'>[A.equipment_name]([A.cost] Coins)</A><br>"
+			. += "<tt>--------------------| </tt><br> \
+				STAT UPGRADES<br>"
+			for(var/datum/data/adventure_upgrade/U in exchange_upgrade_list)
+				. += " <A href='byond://?src=[REF(interfacer)];upgrade=[REF(U)]'>[U.stuff_name]([U.cost] Coins)</A><br>"
 			. += "<tt>--------------------| </tt><br>"
 
 /datum/adventure_layout/proc/TravelUI(obj/machinery/call_machine)
@@ -377,6 +405,11 @@
 	/*-----------------------\
 	|Numerical Variable Edits|
 	\-----------------------*/
+/datum/adventure_layout/proc/ChangeDice(dice)
+	if(!istext(dice))
+		return FALSE
+	virtual_damage = dice
+	return dice
 
 /datum/adventure_layout/proc/AdjustCoins(num)
 	virtual_coins += round(num)
@@ -390,6 +423,21 @@
 // This may be too many adjustment procs.
 /datum/adventure_layout/proc/AdjustProgress(num)
 	program_progress += num
+
+// Easy proc for buying stats. Possibly redundant and should be two seperate procs.
+/datum/adventure_layout/proc/BuyStats(cost = 0, value, type)
+	if(!value || !type)
+		return FALSE
+	switch(type)
+		if("HP")
+			if(virtual_integrity >= 100)
+				return FALSE
+			AdjustHP(value)
+		if("DICE")
+			if(virtual_damage == value)
+				return FALSE
+			ChangeDice(value)
+	AdjustCoins(cost)
 
 	/*---------\
 	|Misc Procs|
