@@ -156,7 +156,7 @@
 	if(href_list["purchase"])
 		var/datum/data/extraction_cargo/product_datum = locate(href_list["purchase"]) in adventure_data.exchange_shop_list //The href_list returns the individual number code and only works if we have it in the first column. -IP
 		if(!product_datum)
-			to_chat(usr, span_warning("ERROR."))
+			to_chat(usr, span_warning("ERROR PRODUCT MISS"))
 			return FALSE
 		if(adventure_data.virtual_coins < product_datum.cost)
 			to_chat(usr, span_warning("ERROR: INSUFFICENT CURRENCY."))
@@ -164,6 +164,22 @@
 			return FALSE
 		new product_datum.equipment_path(get_turf(src))
 		adventure_data.AdjustCoins(-1 * product_datum.cost)
+		playsound(get_turf(src), 'sound/machines/terminal_prompt_confirm.ogg', 50, TRUE)
+		updateUsrDialog()
+		return TRUE
+
+	//Exchange Shop for exchanging coins for stats
+	if(href_list["upgrade"])
+		var/datum/data/adventure_upgrade/product_datum = locate(href_list["upgrade"]) in adventure_data.exchange_upgrade_list
+		if(!product_datum)
+			to_chat(usr, span_warning("ERROR UPGRADE MISS"))
+			return FALSE
+		if(adventure_data.virtual_coins < product_datum.cost)
+			to_chat(usr, span_warning("ERROR: INSUFFICENT CURRENCY."))
+			playsound(get_turf(src), 'sound/machines/terminal_prompt_deny.ogg', 50, TRUE)
+			return FALSE
+
+		adventure_data.BuyStats(-1 * product_datum.cost, product_datum.stat_value, product_datum.trade_type)
 		playsound(get_turf(src), 'sound/machines/terminal_prompt_confirm.ogg', 50, TRUE)
 		updateUsrDialog()
 		return TRUE
