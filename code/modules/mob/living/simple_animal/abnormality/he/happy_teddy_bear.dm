@@ -35,11 +35,11 @@
 
 	observation_prompt = "Here lies a piece of rubbish, a teddy bear. <br>Its wool sticks out here and there. <br>\
 		The amount of dust piled up on it tells how long this teddy has been abandoned. <br>One of the buttons, which are eyes, is hanging loose."
-	observation_choices = list("Leave it alone", "Take the button off")
-	correct_choices = list("Take the button off")
-	observation_success_message = "You took the button off. <br>It was disturbing for some reason. <br>The button is old and rotten and makes you uncomfortable. <br>\
-		You replace the button with one off your suit with great care. <br>While the teddy looks awkward because of the mismatching buttons, it adds to its charm."
-	observation_fail_message = "You don't know what to do with it so you just left it alone. <br>The teddy sits there without any movement."
+	observation_choices = list(
+		"Take the button off" = list(TRUE, "You took the button off. <br>It was disturbing for some reason. <br>The button is old and rotten and makes you uncomfortable. <br>\
+			You replace the button with one off your suit with great care. <br>While the teddy looks awkward because of the mismatching buttons, it adds to its charm."),
+		"Leave it alone" = list(FALSE, "You don't know what to do with it so you just left it alone. <br>The teddy sits there without any movement."),
+	)
 
 	/// if the same person works on Happy Teddy Bear twice in a row, the person will die unless certain requirements are met.
 	var/last_worker = null

@@ -33,15 +33,15 @@
 	observation_prompt = "You enter the containment unit as respectfully as you can, the woman by the piano does not acknowledge your presence, merely clutching her cane tighter. <br>\
 		\"Begin.\" She commands, her lips a tight thin line. <br>It's the first time she's ever spoken. <br>\
 		The piano waits for you expectantly."
-	observation_choices = list("Begin a performance", "Refuse")
-	correct_choices = list("Begin a performance")
-	observation_success_message = "You begin to play, there is no sheet music to guide you, you play the performance that you were always meant to play. <br>\
-		It's haunting and beautiful, <br>terrifying yet entrancing. <br>\
-		With every key press, your body feels heavier and heavier and with every step upon the shrunken heads for pedals, your mind grows slower and more sluggish. <br>\
-		By the end of the performance, you're slumped over the keyboard with hardly the strength or wherewithal to move. <br>\
-		Above the piano, through your fading vision, you can swear you see the moon. <br>\
-		And you despair."
-	observation_fail_message = "She gives no indication of being disappointed. <br>Perhaps if you played, you might understand the truth behind yourself as she did."
+	observation_choices = list(
+		"Begin a performance" = list(TRUE, "You begin to play, there is no sheet music to guide you, you play the performance that you were always meant to play. <br>\
+			It's haunting and beautiful, <br>terrifying yet entrancing. <br>\
+			With every key press, your body feels heavier and heavier and with every step upon the shrunken heads for pedals, your mind grows slower and more sluggish. <br>\
+			By the end of the performance, you're slumped over the keyboard with hardly the strength or wherewithal to move. <br>\
+			Above the piano, through your fading vision, you can swear you see the moon. <br>\
+			And you despair."),
+		"Refuse" = list(FALSE, "She gives no indication of being disappointed. <br>Perhaps if you played, you might understand the truth behind yourself as she did."),
+	)
 
 	var/performance = FALSE
 	var/performance_length = 60 SECONDS

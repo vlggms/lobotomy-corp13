@@ -39,14 +39,14 @@
 	abnormality_origin = ABNORMALITY_ORIGIN_LOBOTOMY
 
 	observation_prompt = "You put on the blindfold and entered the containment unit. <br>You can feel the metal box's gaze through the thick fabric."
-	observation_choices = list("Take off the blindfold", "Feel for the wall")
-	correct_choices = list("Feel for the wall")
-	observation_success_message = "You turn to the wall and feel for it until you find your way back to the door. <br>\
-		The box can't ever be more than a box, it can only exist as something real in the gaze of others. <br>Perhaps you're more alike than you think."
-	observation_fail_message = "You remove the blindfold and wait a moment for your eyes to adjust to the light, your gaze meets the eye in the keyhole's. <br>\
-		The box comes to life with saws and blades, but all it is for - is to catch your attention."
+	observation_choices = list(
+		"Feel for the wall" = list(TRUE, "You turn to the wall and feel for it until you find your way back to the door. <br>\
+			The box can't ever be more than a box, it can only exist as something real in the gaze of others. <br>Perhaps you're more alike than you think."),
+		"Take off the blindfold" = list(FALSE, "You remove the blindfold and wait a moment for your eyes to adjust to the light, your gaze meets the eye in the keyhole's. <br>\
+			The box comes to life with saws and blades, but all it is for - is to catch your attention."),
+	)
 
-	var/seen	//Are you being looked at right now?
+	var/seen //Are you being looked at right now?
 	var/solo_punish	//Is an agent alone on the Z level, but not overall?
 	var/total_players
 

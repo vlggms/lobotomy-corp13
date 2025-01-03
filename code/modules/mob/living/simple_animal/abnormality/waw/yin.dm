@@ -46,14 +46,14 @@
 
 	observation_prompt = "The Devil's Pendant was one half of a greater whole, but now they've been cleaved in half, forever wanting to reunite. <br>\
 		The pendant laid upon the podium before you, even being in the same room as it seemed to suck the life out of you and erodes your very essence."
-	observation_choices = list("Put it on", "Don't put it on")
-	correct_choices = list("Put it on")
-	observation_success_message = "The moment you put it on, your body is stricken with deepest agony, feeling like thorns racing through your body, puncturing flesh and mind alike but you endure. <br>\
-		It didn't mean to harm you, it's just the way it is. <br>\
-		If there is light and goodness in this world, shouldn't there be darkness and evil too? <br>\
-		The world is far more than brightness and warmth."
-	observation_fail_message = "It is darkness made manifest, made to encapsulate all the negativity in the world. <br>\
-		If you can't accept the darkness of the world, you're not ready to accept the darkness in you."
+	observation_choices = list(
+		"Put it on" = list(TRUE, "The moment you put it on, your body is stricken with deepest agony, feeling like thorns racing through your body, puncturing flesh and mind alike but you endure. <br>\
+			It didn't mean to harm you, it's just the way it is. <br>\
+			If there is light and goodness in this world, shouldn't there be darkness and evil too? <br>\
+			The world is far more than brightness and warmth."),
+		"Don't put it on" = list(FALSE, "It is darkness made manifest, made to encapsulate all the negativity in the world. <br>\
+			If you can't accept the darkness of the world, you're not ready to accept the darkness in you."),
+	)
 
 	faction = list("neutral", "hostile") // Not fought by anything, typically. But...
 	var/faction_override = list("hostile") // The effects hit non-hostiles.

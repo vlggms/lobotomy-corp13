@@ -44,10 +44,10 @@
 	abnormality_origin = ABNORMALITY_ORIGIN_LIMBUS
 
 	observation_prompt = "In front of me is a brass soup cauldron with a wooden ladle, I look inside the pot and see only water and a singular stone, boiling over an open fire."
-	observation_choices = list("Taste the soup", "Knock it over")
-	correct_choices = list("Taste the soup")
-	observation_success_message = "I take the ladle and sip the contents, the taste is indescribably good. It truly is magic."
-	observation_fail_message = "The contents put out the flames as the pot tumbles the floor, water and a singular stone coat the floor. Soup from a stone? Ridiculous."
+	observation_choices = list(
+		"Taste the soup" = list(TRUE, "I take the ladle and sip the contents, the taste is indescribably good. It truly is magic."),
+		"Knock it over" = list(FALSE, "The contents put out the flames as the pot tumbles the floor, water and a singular stone coat the floor. Soup from a stone? Ridiculous."),
+	)
 
 	var/spit_cooldown
 	var/spit_cooldown_time = 12 SECONDS

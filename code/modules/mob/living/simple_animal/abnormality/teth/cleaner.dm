@@ -54,16 +54,16 @@
 		The model next to mine boasted that it has multiple parts that others don't. <br>\
 		Is that what makes one special? <br>\
 		Am I special the way I am?"
-	observation_choices = list("You are special", "You are not special")
-	correct_choices = list("You are not special")
-	observation_success_message = "\"Am I not special, not special, not special?\" <br>\
-		After giving a lagged reply, it suddenly began tearing off all the cleaning gadgets from its body and crashing into walls. <br>\
-		It rubbed its body on other objects while sparks flew off as if it was trying to attach things to it. <br>\
-		It only stopped after a while. <br>\
-		\"Maybe I wanted to be special.\""
-	observation_fail_message = "\"No. I am not special.\" <br>\
-		Disregarding the answer, it gives a stern reply. <br>\
-		\"I will keep living an ordinary life, the same as now, just as assigned to me.\""
+	observation_choices = list(
+		"You are not special" = list(TRUE, "\"Am I not special, not special, not special?\" <br>\
+			After giving a lagged reply, it suddenly began tearing off all the cleaning gadgets from its body and crashing into walls. <br>\
+			It rubbed its body on other objects while sparks flew off as if it was trying to attach things to it. <br>\
+			It only stopped after a while. <br>\
+			\"Maybe I wanted to be special.\""),
+		"You are special" = list(FALSE, "\"No. I am not special.\" <br>\
+			Disregarding the answer, it gives a stern reply. <br>\
+			\"I will keep living an ordinary life, the same as now, just as assigned to me.\""),
+	)
 
 	var/bumpdamage = 10
 

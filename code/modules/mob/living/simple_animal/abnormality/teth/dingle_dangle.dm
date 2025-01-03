@@ -29,11 +29,14 @@
 	abnormality_origin = ABNORMALITY_ORIGIN_WONDERLAB
 
 	observation_prompt = "You pass by the containment cell and, in the corner of your eye, spy your comrades dangling from ribbons, furiously scratching at their necks in choked agony."
-	observation_choices = list("Save them", "Do not save them")
-	correct_choices = list("Save them", "Do not save them")
-	observation_success_message = "Regardless of your resolution, you find yourself before the tree anyway as one of its ribbons wrap around your neck. <br>\
-		\"Let's dangle together, let your sorrows, your pain dangle, let's all dangle down...\" <br>It whispers into your mind. <br>\
-		Your comrades were never here, the life passes from your body painlessly. <br> None of this is real."
+	observation_choices = list(
+		"Save them" = list(TRUE, "Regardless of your resolution, you find yourself before the tree anyway as one of its ribbons wrap around your neck. <br>\
+			\"Let's dangle together, let your sorrows, your pain dangle, let's all dangle down...\" <br>It whispers into your mind. <br>\
+			Your comrades were never here, the life passes from your body painlessly. <br> None of this is real."),
+		"Do not save them" = list(TRUE, "Regardless of your resolution, you find yourself before the tree anyway as one of its ribbons wrap around your neck. <br>\
+			\"Let's dangle together, let your sorrows, your pain dangle, let's all dangle down...\" <br>It whispers into your mind. <br>\
+			Your comrades were never here, the life passes from your body painlessly. <br> None of this is real."),
+	)
 
 //Introduction to our hallucinations. This is a global hallucination, but it's all it really does.
 /mob/living/simple_animal/hostile/abnormality/dingledangle/ZeroQliphoth(mob/living/carbon/human/user)

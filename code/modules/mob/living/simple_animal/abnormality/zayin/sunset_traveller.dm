@@ -37,16 +37,16 @@
 	observation_prompt = "\"Look at those butterflies! Aren’t they just beautiful? <br>And gander at that sunset, too! Really makes you want to go for a stroll.\" <br>\
 		\"Why don’t you stop for a moment and take a breather here?\" <br>\
 		Something yellow gestures warmly at you."
-	observation_choices = list("Take a break", "Ignore it and leave")
-	correct_choices = list("Take a break")
-	observation_success_message = "\"Wasn’t it tiring coming all the way here? Really, check out those butterflies. <br>\
-		Just watching them will warm your heart.\" <br>\
-		You looked at the butterflies as the voice suggested. They indeed fill the heart with a certain warmth. <br>\
-		\"Looks like some of them want to tag along!\" <br>\
-		A kaleidoscope of butterflies started following you, even after you left that scenic spot."
-	observation_fail_message = "\"You must be very busy then!\" <br> It made the same gesture as when it first greeted you. <br>\
-		Perhaps it was waving goodbye all along. <br>\
-		\"Another time, I suppose!\""
+	observation_choices = list(
+		"Take a break" = list(TRUE, "\"Wasn’t it tiring coming all the way here? Really, check out those butterflies. <br>\
+			Just watching them will warm your heart.\" <br>\
+			You looked at the butterflies as the voice suggested. They indeed fill the heart with a certain warmth. <br>\
+			\"Looks like some of them want to tag along!\" <br>\
+			A kaleidoscope of butterflies started following you, even after you left that scenic spot."),
+		"Ignore it and leave" = list(FALSE, "\"You must be very busy then!\" <br> It made the same gesture as when it first greeted you. <br>\
+			Perhaps it was waving goodbye all along. <br>\
+			\"Another time, I suppose!\""),
+	)
 
 	light_color = COLOR_ORANGE
 	light_range = 5

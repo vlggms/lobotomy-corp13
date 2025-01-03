@@ -66,11 +66,11 @@
 		When I first met this thing, I started to understand how those people feel. <br>\
 		Right now, during my attachment work, it started its usual clown performance. <br>\
 		Things are looking good so far. <br>Out of its pocket, the clown pulls out..."
-	observation_choices = list("It's just a tool" ,"Run")
-	correct_choices = list("Run")
-	observation_success_message = "I bolted out of containment unit as fast as I could. <br>\
-		I could hear giggling as I left. <br>But that was more than just a cruel prank."
-	observation_fail_message = "I thought it was a tool. <br>Just for that moment."
+	observation_choices = list(
+		"Run" = list(TRUE, "I bolted out of containment unit as fast as I could. <br>\
+		I could hear giggling as I left. <br>But that was more than just a cruel prank."),
+		"It's just a tool" = list(FALSE, "I thought it was a tool. <br>Just for that moment."),
+	)
 
 	del_on_death = FALSE //for explosions
 	var/finishing = FALSE

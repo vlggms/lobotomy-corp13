@@ -42,12 +42,12 @@
 
 	observation_prompt = "\"Natureless creatures roam the night, you should find shelter.\" <br>\
 		The watchman beckons you over. <br>You..."
-	observation_choices = list("Approach", "Run away")
-	correct_choices = list("Approach")
-	observation_success_message = "Good. <br>It's not safe to roam the woods at night.<br>\
-		Come now, I will guide you home."
-	observation_fail_message = "You don't get far before you start hearing howling and shrieking. <br>\
-		Numerous talons, claws, and fangs bite into you all at once. <br>Now you will know why you fear the night."
+	observation_choices = list(
+		"Approach" = list(TRUE, "Good. <br>It's not safe to roam the woods at night.<br>\
+			Come now, I will guide you home."),
+		"Run away" = list(FALSE, "You don't get far before you start hearing howling and shrieking. <br>\
+			Numerous talons, claws, and fangs bite into you all at once. <br>Now you will know why you fear the night."),
+	)
 
 	// Speech Lines
 	speak_chance = 4

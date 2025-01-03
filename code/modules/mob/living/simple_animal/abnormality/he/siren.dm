@@ -32,14 +32,13 @@
 		When she passed he would play this song all the time until the vinyl began to warp. <br>One day, I visited him after a long time and the song wasn't playing. <br>\
 		\"It's not the same song,\" he'd whisper chin resting over his clenched hands, gripped together until they were as white as his knuckles. <br>\
 		\"Why isn't the same song?\""
-	observation_choices = list("Put the song on again", "Throw it away")
-	correct_choices = list("Put the song on again")
-	observation_success_message = "The record began to play, the slow warped song filled the air. <br>\
-		\"It's just not the same without her here...\""
-	observation_fail_message = "You throw the old record into the trash, the well-used viny shattering. <br>\
-		\"NO! HOW CAN I REMEMBER HER NOW?\" Your grandfather wails, coming at you with fury in his eyes before stopping. <br>\
-		\"...Who were you again?\""
-
+	observation_choices = list(
+		"Put the song on again" = list(TRUE, "The record began to play, the slow warped song filled the air. <br>\
+			\"It's just not the same without her here...\""),
+		"Throw it away" = list(FALSE, "You throw the old record into the trash, the well-used viny shattering. <br>\
+			\"NO! HOW CAN I REMEMBER HER NOW?\" Your grandfather wails, coming at you with fury in his eyes before stopping. <br>\
+			\"...Who were you again?\""),
+	)
 
 //meltdown effects
 	var/meltdown_cooldown_time = 144 SECONDS

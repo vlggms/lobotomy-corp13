@@ -38,10 +38,12 @@
 		The shrimp offers you a champagne glass full of... Something. <br>\
 		It looks and smells like wellcheers grape soda. It's soda. <br>\
 		You can even see the can's label torn off and stuck on the side. <br>Will you drink it?"
-	observation_choices = list("Drink the soda","Refuse")
-	correct_choices = list("Drink the soda","Refuse")
-	observation_success_message = "Before you can make a choice, two gigantic and heavily armed shrimp guards bust in through the door. <br>\
-		They hold you down and force you to drink the soda, and you fall asleep... <br>... <br>Somewhere in the distance, you hear seagulls."
+	observation_choices = list(
+		"Drink the soda" = list(TRUE, "Before you can make a choice, two gigantic and heavily armed shrimp guards bust in through the door. <br>\
+			They hold you down and force you to drink the soda, and you fall asleep... <br>... <br>Somewhere in the distance, you hear seagulls."),
+		"Refuse" = list(TRUE, "Before you can make a choice, two gigantic and heavily armed shrimp guards bust in through the door. <br>\
+			They hold you down and force you to drink the soda, and you fall asleep... <br>... <br>Somewhere in the distance, you hear seagulls."),
+	)
 
 	var/liked
 	var/happy = TRUE

@@ -61,14 +61,14 @@
 
 	observation_prompt = "The Angel's Pendant was one half of a greater whole, but now they've been cleaved in half, forever wanting to reunite. <br>\
 		The pendant laid upon the podium before you, even being in the same room as it seemed to fortify your body and soul."
-	observation_choices = list("Put it on", "Don't put it on")
-	correct_choices = list("Put it on")
-	observation_success_message = "The moment you put it on, you feel a radiance emanate out and mend pain you didn't even know was there. <br>\
-		It doesn't intend to heal you, it's just the way it is. <br>\
-		If there is darkness and evil in this world, shouldn't there be light and good too? <br>\
-		The world is far more than darkness and cold."
-	observation_fail_message = "It is all that is bright given form, made to gather all the positivity in the world. <br>\
-		If you can't accept the goodness in yourself, you're not ready to accept the goodness of the world."
+	observation_choices = list(
+		"Put it on" = list(TRUE, "The moment you put it on, you feel a radiance emanate out and mend pain you didn't even know was there. <br>\
+			It doesn't intend to heal you, it's just the way it is. <br>\
+			If there is darkness and evil in this world, shouldn't there be light and good too? <br>\
+			The world is far more than darkness and cold."),
+		"Don't put it on" = list(FALSE, "It is all that is bright given form, made to gather all the positivity in the world. <br>\
+			If you can't accept the goodness in yourself, you're not ready to accept the goodness of the world."),
+	)
 
 	var/explosion_damage = 150
 	var/explosion_timer = 7 SECONDS

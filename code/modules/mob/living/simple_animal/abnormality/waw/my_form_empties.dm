@@ -41,15 +41,15 @@
 	abnormality_origin = ABNORMALITY_ORIGIN_LIMBUS
 
 	observation_prompt = "A bell occasionally tolls in the room. <br>\
-It's a heavy, subduing sound. You're unable to recognize its words. <br>\
-But, you feel that whatever it is, is not a joyous thing."
-	observation_choices = list("Listen closer.", "Repeat the mantras.")
-	correct_choices = list("Listen closer.")
-	observation_success_message = "You close your eyes and focus on the sound. What is is saying? <br>\
-	This thing is uttering thoughts. Empty oneself by verbalizing one's thoughts. <br>\
-	Expel everything within so that nothing remains."
-	observation_fail_message = "The statue won't move, no matter what happens around it. <br>\
-	Though the tone of its mantra remains consistent, you knew its chants are imbued with a curse."
+		It's a heavy, subduing sound. You're unable to recognize its words. <br>\
+		But, you feel that whatever it is, is not a joyous thing."
+	observation_choices = list(
+		"Listen closer" = list(TRUE, "You close your eyes and focus on the sound. What is is saying? <br>\
+			This thing is uttering thoughts. Empty oneself by verbalizing one's thoughts. <br>\
+			Expel everything within so that nothing remains."),
+		"Repeat the mantras" = list(FALSE, "The statue won't move, no matter what happens around it. <br>\
+			Though the tone of its mantra remains consistent, you knew its chants are imbued with a curse.")
+	)
 
 	var/anatman_state = FALSE
 	var/praying = FALSE

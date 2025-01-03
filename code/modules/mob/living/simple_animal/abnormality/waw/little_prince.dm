@@ -28,12 +28,12 @@
 		I have come across 15 billion light years to meet you. <br>\
 		However, a butterfly can only fly as high in the sky as the sun warms. <br>\
 		It does not know that it will crumble before it can reach the stars. <br>It fell from the sky and crushed into the ground."
-	observation_choices = list("Do nothing", "Become its friend")
-	correct_choices = list("Become its friend")
-	observation_success_message = "My voice can reach you unlike others. <br>\
-		Come to me, step by step. <br>You will reach the stars if those steps continue."
-	observation_fail_message = "Many who tried to reach me got lost. <br>\
-		Perhaps, we are standing on parallel lines. <br>Perhaps, we were looking at something that can never be reached."
+	observation_choices = list(
+		"Become its friend" = list(TRUE, "My voice can reach you unlike others. <br>\
+			Come to me, step by step. <br>You will reach the stars if those steps continue."),
+		"Do nothing" = list(FALSE, "Many who tried to reach me got lost. <br>\
+			Perhaps, we are standing on parallel lines. <br>Perhaps, we were looking at something that can never be reached."),
+	)
 
 	var/insight_count = 0
 	var/non_insight_count = 0

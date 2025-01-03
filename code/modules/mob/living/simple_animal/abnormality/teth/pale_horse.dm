@@ -41,12 +41,12 @@
 	observation_prompt = "Joseph came to you once, his face flush with excitement after the horse wept before him. He's \"Nothing There\"'s shell now. <br>\
 		Did the horse merely prognosticate his death or did it doom him? You're outside the containment unit now and your legs tremble, you've been ordered to work it today. <br>\
 		You..."
-	observation_choices = list("Enter the containment unit", "Pretend you didn't get the order")
-	correct_choices = list("Enter the containment unit")
-	observation_success_message = "You enter the containment unit and kneel before the horse. <br>\
-		It kneels next to you and a single tear drips from its eye onto your shoulder. You hold onto its head as you both weep. <br>\
-		Death is terrifying but at least you know something weeps for you."
-	observation_fail_message = "You pretend you didn't get the order and make to leave, your PDA flashes again, you've been assigned to \"Nothing There\" and this time, you're being escorted."
+	observation_choices = list(
+		"Enter the containment unit" = list(TRUE, "You enter the containment unit and kneel before the horse. <br>\
+			It kneels next to you and a single tear drips from its eye onto your shoulder. You hold onto its head as you both weep. <br>\
+			Death is terrifying but at least you know something weeps for you."),
+		"Pretend you didn't get the order" = list(FALSE, "You pretend you didn't get the order and make to leave, your PDA flashes again, you've been assigned to \"Nothing There\" and this time, you're being escorted."),
+	)
 
 	//teleport
 	var/can_act = TRUE

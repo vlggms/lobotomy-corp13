@@ -39,18 +39,18 @@
 	observation_prompt = "What does this signboard say? <br>\
 		It hangs itself on a tree, trying to make its content known. <br>\
 		Its desperation is almost pitiable."
-	observation_choices = list("Pick a rose", "Unravel the brambles")
-	correct_choices = list("Pick a rose")
-	observation_success_message = "You pick a rose out of it. <br>\
-		With closer examination, you notice <br>\
-		that it has an intestinal texture. <br>\
-		What is a flower-shaped organ for?"
-	observation_fail_message = "As you try to untangle the vines, <br>\
-		sallow bits of flesh fall off. <br>\
-		The thorny brambles you thought were a source of constricting pain <br>\
-		ironically had been keeping the body together. <br>\
-		The body writhes as its flesh falls apart. <br>\
-		Blossoms of flowers sprawled on the ground substitute its screams."
+	observation_choices = list(
+		"Pick a rose" = list(TRUE, "You pick a rose out of it. <br>\
+			With closer examination, you notice <br>\
+			that it has an intestinal texture. <br>\
+			What is a flower-shaped organ for?"),
+		"Unravel the brambles" = list(FALSE, "As you try to untangle the vines, <br>\
+			sallow bits of flesh fall off. <br>\
+			The thorny brambles you thought were a source of constricting pain <br>\
+			ironically had been keeping the body together. <br>\
+			The body writhes as its flesh falls apart. <br>\
+			Blossoms of flowers sprawled on the ground substitute its screams."),
+	)
 
 	var/list/work_roses = list()
 	var/list/work_damages = list()

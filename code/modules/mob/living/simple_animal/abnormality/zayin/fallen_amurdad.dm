@@ -27,10 +27,10 @@
 
 	observation_prompt = "The sweet stench of rot and decay hit you before you noticed the source was the bleeding person covered in plants. <br>\
 		His lips gape open and close like a fish's and what little strength he has in his limbs, he uses to beckons you closer..."
-	observation_choices = list("Get closer and listen", "Leave")
-	correct_choices = list("Get closer and listen")
-	observation_success_message = "You bend down and lend your ear to his mouth... <br>You hear the words you've been waiting your whole life to hear."
-	observation_fail_message = "The man clearly needs help, you rush to find a medic."
+	observation_choices = list(
+		"Get closer and listen" = list(TRUE, "You bend down and lend your ear to his mouth... <br>You hear the words you've been waiting your whole life to hear."),
+		"Leave" = list(FALSE, "The man clearly needs help, you rush to find a medic."),
+	)
 
 	var/seed_list = list(
 		/obj/item/seeds/grass/fairy,

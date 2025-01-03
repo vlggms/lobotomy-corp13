@@ -49,10 +49,10 @@
 	)
 
 	observation_prompt = "Poor stuffing of straw. <br>I'll give you the wisdom to ponder over anything. <br>The wizard grants you..."
-	observation_choices = list("A silk sack of sawdust", "Wisdom")
-	correct_choices = list("A silk sack of sawdust")
-	observation_success_message = "Do you think jabbering away with your oh-so smart mouth is all that matters?"
-	observation_fail_message = "Come closer. <br>I’ll help you forget all of your woes and worries."
+	observation_choices = list(
+		"A silk sack of sawdust" = list(TRUE, "Do you think jabbering away with your oh-so smart mouth is all that matters?"),
+		"Wisdom" = list(FALSE, "Come closer. <br>I’ll help you forget all of your woes and worries."),
+	)
 
 	/// Can't move/attack when it's TRUE
 	var/finishing = FALSE

@@ -55,11 +55,11 @@
 	observation_prompt = "Got nothing better to do than to watch me? Anyway, while I'm lazing around... <br>\
 		The wolf is coming down the hill. <br>I'm the only one who can stop it, if you let me out I'll save you from the Wolf. <br>\
 		So, how about it?"
-	observation_choices = list("Release him", "You're a liar")
-	correct_choices = list("You're a liar")
-	observation_success_message = "Hmph. Sad ain't it? It only waits for me, I'm free to abandon it all I wish. <br>\
-		Lifeless things like that mutt and I don't deserve love but it'll wait for me all the same. <br>Does anyone wait for you?"
-	observation_fail_message = "Good choice, don't worry about the rest - I won't hurt them, pinky swear."
+	observation_choices = list(
+		"You're a liar" = list(TRUE, "Hmph. Sad ain't it? It only waits for me, I'm free to abandon it all I wish. <br>\
+			Lifeless things like that mutt and I don't deserve love but it'll wait for me all the same. <br>Does anyone wait for you?"),
+		"Release him" = list(FALSE, "Good choice, don't worry about the rest - I won't hurt them, pinky swear."),
+	)
 
 	var/death_counter //He won't go off a timer, he'll go off deaths. Takes 8 for him.
 	var/slash_current = 4

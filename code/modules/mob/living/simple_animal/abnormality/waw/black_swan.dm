@@ -60,12 +60,12 @@
 		One day, her skin covered in blisters and her mouth oozing with spittle and pus, she passed by a lake, seemingly untouched by the pollution of the City. <br>\
 		Though her eyesight was almost ruined by fog and affliction, she could see it clearly. <br>\
 		Upon that lake were six white swans and a singular black swan. Elijah..."
-	observation_choices = list("Observed the white swans", "Observed the black swan")
-	correct_choices = list("Observed the black swan")
-	observation_success_message = "The black swan watches forlornly as her family takes flight, she's willing to give up everything for her family. <br>\
-		Elijah embraces the near-finished nettle clothing wholeheartedly, soon..."
-	observation_fail_message = "The white swans were Elijah's favourite. <br>\
-		They spread their wings and took flight to the sky, high above the fog, leaving the black swan behind. Elijah clutched her brooch tighter, she only had to work a little harder..."
+	observation_choices = list(
+		"Observed the black swan" = list(TRUE, "The black swan watches forlornly as her family takes flight, she's willing to give up everything for her family. <br>\
+			Elijah embraces the near-finished nettle clothing wholeheartedly, soon..."),
+		"Observed the white swans" = list(FALSE, "The white swans were Elijah's favourite. <br>\
+			They spread their wings and took flight to the sky, high above the fog, leaving the black swan behind. Elijah clutched her brooch tighter, she only had to work a little harder..."),
+	)
 
 	//family breach conditions
 	var/insane_humans = 0

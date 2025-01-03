@@ -32,10 +32,10 @@
 
 	observation_prompt = "You awaken to a building flooded with stimulation; guests mingle and drink as slot machines whirr and blare their tunes, drowning out the mourning of those who have lost it all. <br>\
 	Amidst all this, you find yourself sat in front of a poker table, already in the middle of a game. The Dealer turns to you, eagerly awaiting your next move."
-	observation_choices = list("Call", "Fold")
-	correct_choices = list("Call")
-	observation_success_message = "You call, confident your hand is enough to win. However, you lose, beat by none other than a Royal Flush. Despite this loss, you continue to play, confident your luck will eventually turn around..."
-	observation_fail_message = "You fold, wishing to cling to what little remains of your wealth. Despite lacking any facial features, you can feel the Dealer's disappointment..."
+	observation_choices = list(
+		"Call" = list(TRUE, "You call, confident your hand is enough to win. However, you lose, beat by none other than a Royal Flush. Despite this loss, you continue to play, confident your luck will eventually turn around..."),
+		"Fold" = list(FALSE, "You fold, wishing to cling to what little remains of your wealth. Despite lacking any facial features, you can feel the Dealer's disappointment..."),
+	)
 
 //Coinflip V1; Expect Jank
 /mob/living/simple_animal/hostile/abnormality/dealerdamned/funpet(mob/petter)

@@ -30,10 +30,10 @@
 	observation_prompt = "You remember an employee was obsessed with this abnormality. <br>\"\
 		If you reach the top, you'll find what you've been looking for!\", He'd tell every employee. <br>\
 		One day he did climb the beanstalk, and never came back down. <br>Perhaps he's doing okay up there."
-	observation_choices = list("Climb the beanstalk", "Chop it down")
-	correct_choices = list("Chop it down") //TODO: Make this event a bit special
-	observation_success_message = "If something's too big to understand, it's too big to be allowed to exist. The axe bites into the stem..."
-	observation_fail_message = "You begin to climb the beanstalk, but no matter how much you climb there's always more stalk. You peer at the clouds, squinting your eyes, but still can't see anyone..."
+	observation_choices = list( //TODO: Make this event a bit special
+		"Chop it down" = list(TRUE, "If something's too big to understand, it's too big to be allowed to exist. The axe bites into the stem..."),
+		"Climb the beanstalk" = list(FALSE, "You begin to climb the beanstalk, but no matter how much you climb there's always more stalk. You peer at the clouds, squinting your eyes, but still can't see anyone..."),
+	)
 
 	var/climbing = FALSE
 

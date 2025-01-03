@@ -39,11 +39,11 @@
 	abnormality_origin = ABNORMALITY_ORIGIN_LOBOTOMY
 
 	observation_prompt = "It started singing. You..."
-	observation_choices = list("Listen to it", "Plug your ears")
-	correct_choices = list("Listen to it")
-	observation_success_message = "You silently listen to it. \
-		The universe lingers in your ears. You see the song. Glamorously, it approaches you."
-	observation_fail_message = "You are not prepared yet. The song stopped when you plugged the ears."
+	observation_choices = list(
+		"Listen to it" = list(TRUE, "You silently listen to it. \
+			The universe lingers in your ears. You see the song. Glamorously, it approaches you."),
+		"Plug your ears" = list(FALSE, "You are not prepared yet. The song stopped when you plugged the ears."),
+	)
 
 	var/song_cooldown
 	var/song_cooldown_time = 10 SECONDS

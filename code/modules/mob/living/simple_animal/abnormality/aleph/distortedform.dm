@@ -51,21 +51,21 @@
 		But the largest creature of all surrounds me entirely. <br>Every direction is covered in a undulating mass of flesh, blood, fur, and feathers. <br>\
 		I am always butchering monsters like these. <br>I tear them limb from limb.<br>\
 		Bringing death in brutal fashion. <br>Am I not a fitting piece of the scenery before me?"
-	observation_choices = list("I am a monster", "I am not a monster")
-	correct_choices = list("I am not a monster")
-	observation_success_message = "It is hard to live in the city. <br>\
-		To pretend to be a civilized human when living in this manner. <br>\
-		It is easy to give into the temptation of giving up all pretenses of humanity. <br>\
-		But I do it because it is hard. <br>\
-		... <br>\
-		I am not a monster. <br>\
-		I will never become a monster."
-	observation_fail_message = "\"Do you wish to be so?\" <br>\
-		\"Then it can be as you wish.\" <br>\
-		... <br>\
-		Her voice is like sunshine. <br>\
-		... <br>\
-		I am a monster. <br>"
+	observation_choices = list(
+		"I am not a monster" = list(TRUE, "It is hard to live in the city. <br>\
+			To pretend to be a civilized human when living in this manner. <br>\
+			It is easy to give into the temptation of giving up all pretenses of humanity. <br>\
+			But I do it because it is hard. <br>\
+			... <br>\
+			I am not a monster. <br>\
+			I will never become a monster."),
+		"I am a monster" = list(FALSE, "\"Do you wish to be so?\" <br>\
+			\"Then it can be as you wish.\" <br>\
+			... <br>\
+			Her voice is like sunshine. <br>\
+			... <br>\
+			I am a monster. <br>"),
+	)
 
 //Work vars
 	var/transform_timer

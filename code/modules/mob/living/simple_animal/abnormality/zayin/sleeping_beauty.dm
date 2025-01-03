@@ -39,11 +39,10 @@
 	harvest_phrase_third = "%PERSON jostles %ABNO, then captures the resulting clouds with %VESSEL."
 
 	observation_prompt = "The couch looks inviting, softer and plusher than anything you've ever known. <br>You've been working for so long, it couldn't hurt to take a break?"
-	observation_choices = list("Lie down", "Get back to work")
-	correct_choices = list("Get back to work")
-	observation_success_message = "You shake your head. You'll have time to rest when you're dead."
-	observation_fail_message = "You lay your head down into your soft and comfy pillow. You can always try again tomorrow."
-
+	observation_choices = list(
+		"Get back to work" = list(TRUE, "You shake your head. You'll have time to rest when you're dead."),
+		"Lie down" = list(FALSE, "You lay your head down into your soft and comfy pillow. You can always try again tomorrow."),
+	)
 
 	var/grab_cooldown
 	var/grab_cooldown_time = 20 SECONDS

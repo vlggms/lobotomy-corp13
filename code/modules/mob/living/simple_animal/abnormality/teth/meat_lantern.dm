@@ -39,10 +39,10 @@
 
 	observation_prompt = "It's always the same, dull colours in the facility. Grey walls, grey floors, grey ceilings, even the people were grey. <br>\
 		Every day was grey until, one day, you saw the a small, beautifully green flower growing and glowing from the ground."
-	observation_choices = list("Approach the flower", "Call for security")
-	correct_choices = list("Approach the flower")
-	observation_success_message = "It's the most beautiful thing you've ever seen, you brush your hand against it and the petals tickle your hand. You feel a tremor beneath and..."
-	observation_fail_message = "Something so beautiful had no right to exist in the City. You called for security and left in a hurry back to your grey workplace."
+	observation_choices = list(
+		"Approach the flower" = list(TRUE, "It's the most beautiful thing you've ever seen, you brush your hand against it and the petals tickle your hand. You feel a tremor beneath and..."),
+		"Call for security" = list(FALSE, "Something so beautiful had no right to exist in the City. You called for security and left in a hurry back to your grey workplace."),
+	)
 
 	var/can_act = TRUE
 	var/detect_range = 1

@@ -30,12 +30,12 @@
 		Because I don't like to listen to stories. Bugs were buzzing around here and there. \
 		Something slimy popped as I set my foot on it. I found her. Every hole on her face was swarming bugs. \
 		I don't want to stay here. I want to get out. It's damp, nasty, and awful. I can't stand it anymore."
-	observation_choices = list("Get out", "Stay")
-	correct_choices = list("Stay")
-	observation_success_message = "I stayed, bearing the unpleasantness. \
-		She was so talkative before. In the end, loneliness was the only listener. \
-		She called me, with her finger. I am now ready to listen to her story."
-	observation_fail_message = "I turned around to get out of this place. Once again, I bit lips in self-hatred while escaping."
+	observation_choices = list(
+		"Stay" = list(TRUE, "I stayed, bearing the unpleasantness. \
+			She was so talkative before. In the end, loneliness was the only listener. \
+			She called me, with her finger. I am now ready to listen to her story."),
+		"Get out" = list(FALSE, "I turned around to get out of this place. Once again, I bit lips in self-hatred while escaping."),
+	)
 
 	var/meltdown_cooldown_time = 120 SECONDS
 	var/meltdown_cooldown

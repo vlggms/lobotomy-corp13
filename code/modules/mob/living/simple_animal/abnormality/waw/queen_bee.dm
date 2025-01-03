@@ -35,29 +35,21 @@
 	)
 
 	observation_prompt = "There was one summer so hot and unpleasant. <br>Bees were busily flying around the beehive. <br>\
-		They live for the only one queen. <br>\'Are they happy? Living only to work\' I asked myself. <br>Then someone answered."
-	observation_choices = list("They work to survive", "They work out of loyalty")
-	correct_choices = list("They work to survive", "They work out of loyalty")
-	observation_success_message = "They have no other option but to obey. <br>\
-		For they know that the moment they leave the queendom, only death awaits them. <br>\
-		It is years later that I found out that their unshakable loyalty is because of special pheromone which only queen can produce. <br>\
-		Everything started when I began to study that pheromone."
-	//Special answer for choice 2. Yes, the same text is used multiple times intentionally. This is from legacy LC.
-	var/observation_success_message_2 = "Loyalty that bees possess is a natural instinct. <br>\
-		If we find a way to control that instinct, <br>\
-		Things will change. <br>\
-		It is years later that I found out that their unshakable loyalty is because of special pheromone which only queen can produce. <br>\
-		Everything started when I began to study that pheromone."
+		They live for the only one queen. <br>'Are they happy? Living only to work' I asked myself. <br>Then someone answered."
+	observation_choices = list(
+		"They work to survive" = list(TRUE, "They have no other option but to obey. <br>\
+			For they know that the moment they leave the queendom, only death awaits them. <br>\
+			It is years later that I found out that their unshakable loyalty is because of special pheromone which only queen can produce. <br>\
+			Everything started when I began to study that pheromone."),
+		"They work out of loyalty" = list(TRUE, "Loyalty that bees possess is a natural instinct. <br>\
+			If we find a way to control that instinct, <br>\
+			Things will change. <br>\
+			It is years later that I found out that their unshakable loyalty is because of special pheromone which only queen can produce. <br>\
+			Everything started when I began to study that pheromone."),
+	)
 
 	var/datum/looping_sound/queenbee/soundloop
 	var/breached_others = FALSE
-
-/mob/living/simple_animal/hostile/abnormality/queen_bee/ObservationResult(mob/living/carbon/human/user, condition, answer) //special answer
-	if(answer == "They work out of loyalty")
-		observation_success_message = observation_success_message_2
-	else
-		observation_success_message = initial(observation_success_message)
-	return ..()
 
 /mob/living/simple_animal/hostile/abnormality/queen_bee/Initialize()
 	. = ..()

@@ -38,11 +38,11 @@
 	observation_prompt = "Before you stands a man with an ornate rifle. <br>\
 		\"My bullets never miss, whatever I take aim at will have its head pierced true by the inevitability of my bullets. <br>\
 		If you have a target, you only need to make the payment.\""
-	observation_choices = list("Pay for his services", "Don't pay")
-	correct_choices = list("Pay for his services")
-	observation_success_message = "True to his word, the marksman racks a bullet into his rifle, takes aim and fires at your target, piercing their head, but it travels on. <br>\
-		Piercing the heads of others, forever."
-	observation_fail_message = "The man scowls. <br>\"Don't waste my time with such shaky conviction.\""
+	observation_choices = list(
+		"Pay for his services" = list(TRUE, "True to his word, the marksman racks a bullet into his rifle, takes aim and fires at your target, piercing their head, but it travels on. <br>\
+			Piercing the heads of others, forever."),
+		"Don't pay" = list(FALSE, "The man scowls. <br>\"Don't waste my time with such shaky conviction.\""),
+	)
 
 	var/can_act = TRUE
 	var/bullet_cooldown

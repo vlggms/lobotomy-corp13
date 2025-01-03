@@ -55,11 +55,11 @@ GLOBAL_LIST_EMPTY(army)
 
 	observation_prompt = "\"We're here to help sir, to keep the hearts of humans a clean pink, we're willing to dirty our own. We won't overlook a single speck of black.\" <br>\
 		The soldier in pink makes a salute. <br>You..."
-	observation_choices = list("Don't salute", "Salute him back")
-	correct_choices = list("Don't salute")
-	observation_success_message = "The soldier frowns. <br>\"As expected. <br>You're only human, a clean heart is only ever temporary for you. <br>Yours is rife with sin. <br>Ours are...\" <br>\
-		The soldier falls silent, as if in deep thought."
-	observation_fail_message = "The soldier in pink smiles. <br>\"Glad to have you on board Sir, with our help, there will be no more black hearts.\""
+	observation_choices = list(
+		"Don't salute" = list(TRUE, "The soldier frowns. <br>\"As expected. <br>You're only human, a clean heart is only ever temporary for you. <br>\
+			Yours is rife with sin. <br>Ours are...\" <br>The soldier falls silent, as if in deep thought."),
+		"Salute him back" = list(FALSE, "The soldier in pink smiles. <br>\"Glad to have you on board Sir, with our help, there will be no more black hearts.\""),
+	)
 
 	//Unique variables
 	var/death_counter = 0

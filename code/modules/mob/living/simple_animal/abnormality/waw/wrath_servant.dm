@@ -60,13 +60,13 @@
 
 	observation_prompt = "I made a mistake, I put my trust in someone I shouldn't have and my world paid the price for my indiscretion. <br>\
 		Was I wrong to call them friend? <br>Were they really my friend, all along?"
-	observation_choices = list("You were wrong", "It wasn't wrong")
-	correct_choices = list("It wasn't wrong")
-	observation_success_message = "If that's the case, then why did balance, why did justice, fail me? <br>\
-		Why did my world burn if I truly did not make a mistake? <br>It still hurts, but, if you're right then maybe I can put my trust in you..."
-	observation_fail_message = "It was the most precious relationship to me... <br>\
-		That's why I lost; I fell to my beloved companion... <br>\
-		I should have killed them when I had the chance! <br>Sinners!! <br>Embodiments of evil..!"
+	observation_choices = list(
+		"It wasn't wrong" = list(TRUE, "If that's the case, then why did balance, why did justice, fail me? <br>\
+			Why did my world burn if I truly did not make a mistake? <br>It still hurts, but, if you're right then maybe I can put my trust in you..."),
+		"You were wrong" = list(FALSE, "It was the most precious relationship to me... <br>\
+			That's why I lost; I fell to my beloved companion... <br>\
+			I should have killed them when I had the chance! <br>Sinners!! <br>Embodiments of evil..!"),
+	)
 
 	var/friendly = TRUE
 	var/list/friend_ship = list()

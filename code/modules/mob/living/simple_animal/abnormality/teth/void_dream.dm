@@ -40,10 +40,10 @@
 		I go out and bring such sweet dreams to those who've only learned to stop dreaming, <br>\
 		I'm not to blame if their dreams are so entrancing they become hollow people in their waking lives, am I not? <br>\
 		Don't you want such sweet dreams too?\""
-	observation_choices = list("You're a demon", "Please, eat my dreams")
-	correct_choices = list("You're a demon")
-	observation_success_message = "\"Don't say such scary, complicated things. <br>I just gave them the enrapturing dreams they wanted. <br>They're destined to come back to me.\""
-	observation_fail_message = "It's alright, dreams are harmless but unnecessary things. <br>So, just close your eyes and show me your most delectable dream..."
+	observation_choices = list(
+		"You're a demon" = list(TRUE, "\"Don't say such scary, complicated things. <br>I just gave them the enrapturing dreams they wanted. <br>They're destined to come back to me.\""),
+		"Please, eat my dreams" = list(FALSE, "It's alright, dreams are harmless but unnecessary things. <br>So, just close your eyes and show me your most delectable dream..."),
+	)
 
 	var/punched = FALSE
 	var/pulse_damage = 50

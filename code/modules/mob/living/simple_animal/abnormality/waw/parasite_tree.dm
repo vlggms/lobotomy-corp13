@@ -41,31 +41,23 @@
 		At the heart of the minituare forest you see a lush green tree with heavy, ripened fruit and a peaceful-looking face upon its trunk. <br>\
 		\"Hello, have you come here to recieve my blessing, too?\" <br>\
 		The voice on the wind (there is no wind) spoke, carrying a sweet, flowery scent asked. \"I just want to help you all, could you bring your friends to me as well?\" "
-	observation_choices = list("Accept the blessing and do as it asks", "Accept the blessing and refuse", "Refuse the blessing")
-	correct_choices = list("Accept the blessing and refuse")
-	observation_success_message = "\"You're a bad child, I don't need someone like you.\" <br>\
-		Blessings should be given earnestly, not treated as an obligation. <br>You leave the chamber, pleased with yourself."
-	observation_fail_message = "\"If you say you've never had need of anyone's blessing, then that's a lie.\" The tree said, frowning deeply. <br>\
-		\"... if you don't need my blessing then you're a bad person. <br>\
-		There's nothing for you here, leave.\" <br>\
-		You leave the verdant containment unit behind, the tree waits for someone else to fall into its snare."
-	//Extra wrong answers
-	var/observation_fail_message_2 = "You venture out and find some of your most trusting colleagues. <br>\
-		\"Come with me, I have something wonderous to show you all\", you tell them as you bring them to stand before the tree, that same calm visage etched into its trunk. <br>\
-		\"You're a good child, aren't you? Thank you for bringing these children to me.\" <br>\
-		It says as you all stare rapturously at the bulbs about to flower. \"Let me gift you with something...\" <br>\
-		I feel something sprout from my body..."
+	observation_choices = list(
+		"Accept the blessing and refuse" = list(TRUE, "\"You're a bad child, I don't need someone like you.\" <br>\
+			Blessings should be given earnestly, not treated as an obligation. <br>You leave the chamber, pleased with yourself."),
+		"Refuse the blessing" = list(FALSE, "\"If you say you've never had need of anyone's blessing, then that's a lie.\" The tree said, frowning deeply. <br>\
+			\"... if you don't need my blessing then you're a bad person. <br>\
+			There's nothing for you here, leave.\" <br>\
+			You leave the verdant containment unit behind, the tree waits for someone else to fall into its snare."),
+		"Accept the blessing and do as it asks" = list(FALSE, "You venture out and find some of your most trusting colleagues. <br>\
+			\"Come with me, I have something wonderous to show you all\", you tell them as you bring them to stand before the tree, that same calm visage etched into its trunk. <br>\
+			\"You're a good child, aren't you? Thank you for bringing these children to me.\" <br>\
+			It says as you all stare rapturously at the bulbs about to flower. \"Let me gift you with something...\" <br>\
+			I feel something sprout from my body..."),
+	)
 
 	var/origin_cooldown = 0 //null when compared to numbers is a eldritch concept so world.time cannot be more or less.
 	var/static/list/blessed = list() //keeps track of status effected individuals
 	var/static/list/minions = list() //keeps track of minions if suppressed forcefully
-
-/mob/living/simple_animal/hostile/abnormality/parasite_tree/ObservationResult(mob/living/carbon/human/user, condition, answer) //special answer
-	if(answer == "Accept the blessing and do as it asks")
-		observation_fail_message = observation_fail_message_2
-	else
-		observation_fail_message = initial(observation_fail_message)
-	return ..()
 
 /mob/living/simple_animal/hostile/abnormality/parasite_tree/Initialize()
 	. = ..()

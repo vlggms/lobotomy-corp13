@@ -37,32 +37,21 @@
 
 	observation_prompt = "What touched this place cannot be quantified or understood by human science. <br>It was just a color out of space. <br>\
 		It exists on the border of our waking minds, where darkness and light are one, and time and space do not intersect. <br>She has a message, from another place, another time."
-	observation_choices = list("Hear the past", "Hear the present", "Hear the future")
-	correct_choices = list("Hear the past", "Hear the present", "Hear the future")
-	observation_success_message = "What I learned and saw during those two hideous days and nights, it is better not to tell."
-	//Extra correct answers
-	var/observation_success_message_2 = "A thousand years compressed into a day, a countably infinite number of people work, die and live in its corridors; <br>\
-		the line between them and the monsters they keep gets blurrier and blurrier. <br>\
-		A seed is about to sprout..."
-	var/observation_success_message_3 = "The Library is what the Bookhunters call it, a mystical place of life and death. <br>\
-		Should you conquer its trials, they say, you can find the book that will grant the answers to whatever it is you seek. <br>\
-		Black feathers and regret..."
+	observation_choices = list(
+		"Hear the past" = list(TRUE, "What I learned and saw during those two hideous days and nights, it is better not to tell."),
+		"Hear the present" = list(TRUE, "A thousand years compressed into a day, a countably infinite number of people work, die and live in its corridors; <br>\
+			the line between them and the monsters they keep gets blurrier and blurrier. <br>\
+			A seed is about to sprout..."),
+		"Hear the future" = list(TRUE, "The Library is what the Bookhunters call it, a mystical place of life and death. <br>\
+			Should you conquer its trials, they say, you can find the book that will grant the answers to whatever it is you seek. <br>\
+			Black feathers and regret..."),
+	)
 
 	var/explosion_timer = 2 SECONDS
 	var/explosion_state = 3
 	var/explosion_damage = 100
 	var/can_act = TRUE
 	var/negative_range = 10
-
-/mob/living/simple_animal/hostile/abnormality/space_lady/ObservationResult(mob/living/carbon/human/user, condition, answer) //special answers
-	switch(answer)
-		if("Hear the present")
-			observation_success_message = observation_success_message_2
-		if("Hear the future")
-			observation_success_message = observation_success_message_3
-		else
-			observation_success_message = initial(observation_success_message)
-	return ..()
 
 //She can't move or attack.
 /mob/living/simple_animal/hostile/abnormality/space_lady/Move()

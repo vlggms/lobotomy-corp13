@@ -67,16 +67,16 @@
 		We were all abandoned, yes. <br>But we all had dreams, too. <br>Remember? <br>\
 		Well, let's make our dreams come true. <br>Let's sink together into the depths.\" <br>\
 		The dim fluorescent lights impaling the entity's back flicker."
-	observation_choices = list("Say that you will sink together", "Fix the entity's flickering fluorescent lights")
-	correct_choices = list("Fix the entity's flickering fluorescent lights")
-	observation_success_message = "\"I remember. <br>I've always wanted to run across a rolling field of grass under the warm sun. <br>\
-		To swim across the vast ocean that I've seen only through pictures. <br>\
-		That was my dream. <br>\
-		My only dream. <br>\
-		Now, if you ever recall a dream in which you wished to twinkle, even as a faint flicker...\""
-	observation_fail_message = "You still fear the dark, don't you? <br>\
-		I know that you will miss the surface, forever out of your reach once this fluorescent lamp dies. <br>\
-		So do return once you're ready.\""
+	observation_choices = list(
+		"Fix the entity's flickering fluorescent lights" = list(TRUE, "\"I remember. <br>I've always wanted to run across a rolling field of grass under the warm sun. <br>\
+			To swim across the vast ocean that I've seen only through pictures. <br>\
+			That was my dream. <br>\
+			My only dream. <br>\
+			Now, if you ever recall a dream in which you wished to twinkle, even as a faint flicker...\""),
+		"Say that you will sink together" = list(FALSE, "You still fear the dark, don't you? <br>\
+			I know that you will miss the surface, forever out of your reach once this fluorescent lamp dies. <br>\
+			So do return once you're ready.\""),
+	)
 
 	var/stunned = FALSE
 	//Stuff relating to the dive attack

@@ -46,9 +46,10 @@
 	observation_prompt = "The King Pygmalion prayed earnestly to the Goddess Aphrodite, wishing for the marble statue he had made and fallen in love to come to life. <br>\
 		She answered his prayer, bringing Galatea to life and united them in matrinomy. <br>\
 		What is the real name of the abnormality before you?"
-	observation_choices = list("Galatea", "Pygmalion")
-	correct_choices = list("Galatea", "Pygmalion")
-	observation_success_message = "Perhaps they sculpted each other."
+	observation_choices = list(
+		"Galatea" = list(TRUE, "Perhaps they sculpted each other."),
+		"Pygmalion" = list(TRUE, "Perhaps they sculpted each other."),
+	)
 
 	var/missing_prudence = 0
 	var/mob/living/carbon/human/sculptor = null

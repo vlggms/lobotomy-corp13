@@ -38,14 +38,13 @@
 		(You sit and wait.) <br>\
 		Do you not need me anymore? Did I not take you to the happiest night of your life? <br>\
 		(You sit and...)"
-	observation_choices = list("Remember that night", "Wait")
-	correct_choices = list("Remember that night")
-	observation_success_message = "Yes, it was the happiest night of both our lives... <br>\
-		(The colour returns to your flesh and your wheels begin to mend.) <br>\
-		Let's go back to that wonderous, magical night..."
-	observation_fail_message = "She still may have need of me, I'll wait until I'm called. <br>\
-		(Your flesh turns grey, no one will need such a horrid looking carriage.)"
-
+	observation_choices = list(
+		"Remember that night" = list(TRUE, "Yes, it was the happiest night of both our lives... <br>\
+			(The colour returns to your flesh and your wheels begin to mend.) <br>\
+			Let's go back to that wonderous, magical night..."),
+		"Wait" = list(FALSE, "She still may have need of me, I'll wait until I'm called. <br>\
+			(Your flesh turns grey, no one will need such a horrid looking carriage.)"),
+	)
 
 	var/freshness = 0
 	//Breach stuff
