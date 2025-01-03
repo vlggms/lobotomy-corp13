@@ -431,7 +431,7 @@
 	var/overheal_threshold = 0.2
 	var/heal_per_charge = 25
 	var/healing_range = 6
-	var/searching_range = 10
+	var/searching_range = 6
 	var/datum/beam/current_beam
 	var/overheal_cooldown
 	var/overheal_cooldown_time = 50
@@ -613,7 +613,7 @@
 /datum/crafting_recipe/drone_reforged
 	name = "Reforged, Resurgence Clan Drone"
 	result = /mob/living/simple_animal/hostile/clan/drone/reforged
-	reqs = list(/obj/item/raw_anomaly_core/bluespace = 1, /obj/item/food/meat/slab/robot = 5)
+	reqs = list(/obj/item/raw_anomaly_core/bluespace = 1, /obj/item/food/meat/slab/robot = 10)
 	time = 50
 	category = CAT_ROBOT
 	always_available = FALSE
@@ -627,6 +627,7 @@
 	health = 500
 	healing_amount = 5
 	heal_per_charge = 10
+	retreat_distance = null
 	clan_charge_cooldown = 4 SECONDS
 	var/stand_still = FALSE
 	var/mob/living/carbon/locked_target
