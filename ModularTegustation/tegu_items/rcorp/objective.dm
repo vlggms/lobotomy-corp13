@@ -239,15 +239,15 @@ GLOBAL_VAR_INIT(rcorp_payload, null)
 	resistance_flags &= ~INDESTRUCTIBLE
 
 /obj/structure/rcorpcomms/deconstruct(disassembled = TRUE)
-	for(var/mob/M in GLOB.player_list)
-		to_chat(M, span_userdanger("RCORP'S COMMUNICATIONS HAVE BEEN DESTROYED."))
-		switch(GLOB.rcorp_wincondition)
-			if(0)
-				to_chat(M, span_userdanger("ABNORMALITY MAJOR VICTORY."))
-			if(1)
-				to_chat(M, span_userdanger("ABNORMALITY SUPREME VICTORY."))
-			if(2)
-				to_chat(M, span_userdanger("ABNORMALITY MINOR VICTORY."))
-	SSticker.force_ending = 1
-	..()
-
+	if(!SSticker.force_ending)
+		for(var/mob/M in GLOB.player_list)
+			to_chat(M, span_userdanger("RCORP'S COMMUNICATIONS HAVE BEEN DESTROYED."))
+			switch(GLOB.rcorp_wincondition)
+				if(0)
+					to_chat(M, span_userdanger("ABNORMALITY MAJOR VICTORY."))
+				if(1)
+					to_chat(M, span_userdanger("ABNORMALITY SUPREME VICTORY."))
+				if(2)
+					to_chat(M, span_userdanger("ABNORMALITY MINOR VICTORY."))
+		SSticker.force_ending = 1
+	return ..()

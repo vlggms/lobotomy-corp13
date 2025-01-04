@@ -89,7 +89,7 @@ GLOBAL_VAR_INIT(wcorp_enemy_faction, "") //decides which faction WCorp will be u
 /// Automatically ends the shift if no humanoid players are alive
 /datum/game_mode/combat/proc/CheckLiving()
 	for(var/mob/living/carbon/human/hooman in GLOB.human_list)
-		if(hooman.stat != DEAD && hooman.ckey)
+		if(hooman.stat != DEAD && hooman.ckey && !istype(hooman, /mob/living/carbon/human/species/pinocchio))
 			return
 
 	if(SSticker.force_ending == TRUE) // they lost another way before we could do it, how rude.
@@ -134,7 +134,7 @@ GLOBAL_VAR_INIT(wcorp_enemy_faction, "") //decides which faction WCorp will be u
 //Gamemode stuff
 /datum/game_mode/combat/proc/counterincrease()
 	addtimer(CALLBACK(src, PROC_REF(counterincrease)), 1 MINUTES)
-	GLOB.combat_counter+=1
+	GLOB.combat_counter++
 	if(SSmaptype.maptype == "wcorp")
 		for(var/mob/living/carbon/human/H in GLOB.human_list)
 			if(H.stat == DEAD)
