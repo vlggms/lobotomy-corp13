@@ -10,6 +10,7 @@ Backstreets Butcher
 	selection_color = "#555555"
 	access = list(ACCESS_GENETICS)
 	minimal_access = list(ACCESS_GENETICS)
+	departments = DEPARTMENT_SERVICE // They can provide you a service, before you're eaten
 	outfit = /datum/outfit/job/butcher
 	display_order = JOB_DISPLAY_ORDER_ANTAG
 	exp_requirements = 300

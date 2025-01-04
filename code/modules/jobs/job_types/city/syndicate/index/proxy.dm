@@ -12,6 +12,7 @@
 	trusted_only = TRUE
 	access = list(ACCESS_SYNDICATE, ACCESS_SYNDICATE_LEADER)
 	minimal_access = list(ACCESS_SYNDICATE, ACCESS_SYNDICATE_LEADER)
+	departments = DEPARTMENT_CITY_ANTAGONIST
 	paycheck = 200
 	maptype = list("city")
 	job_important = "You are a veteran in the Index syndicate. You are not inherently hostile. \

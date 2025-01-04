@@ -36,7 +36,7 @@ SUBSYSTEM_DEF(maptype)
 	var/list/nofear = list("limbus_labs")
 
 	//What departments are we looking at
-	var/list/departments = list("Command","Security","Service")
+	var/list/departments = list("Command", "Security", "Service")
 
 
 /datum/controller/subsystem/maptype/Initialize()
@@ -44,12 +44,18 @@ SUBSYSTEM_DEF(maptype)
 
 	//Badda Bing Badda Da. This makes the latejoin menu cleaner
 	switch(SSmaptype.maptype)
-		if("wonderlabs", "city", "fixers")
-			departments = list("Command", "Security", "Service", "Science")
+		if("wonderlabs")
+			departments = list("Command", "Fixers", "Security", "Service")
+		if("city")
+			departments = list("Command", "Hana", "Association", "Syndicate", "Fixers", "Medical", "Security", "Service")
+		if("fixers")
+			departments = list("Command", "Hana", "Association", "Fixers", "Medical", "Service")
 		if("limbus_labs")
-			departments = list("Command", "Security","Medical", "Science", "Service" )
-		if("rcorp", "wcorp")
-			departments = list("Command", "Security")
+			departments = list("Command", "Security", "Medical", "Science", "Engineering", "Service" )
+		if("rcorp")
+			departments = list("Command", "R Corp", "Medical")
+		if("wcorp")
+			departments = list("Command", "W Corp")
 
 	var/list/all_jobs = subtypesof(/datum/job)
 	if(!all_jobs.len)

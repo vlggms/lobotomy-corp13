@@ -11,6 +11,7 @@
 	display_order = JOB_DISPLAY_ORDER_ASSOCIATION
 	access = list(ACCESS_NETWORK)
 	minimal_access = list(ACCESS_NETWORK)
+	departments = DEPARTMENT_ASSOCIATION | DEPARTMENT_FIXERS
 	paycheck = 700
 	maptype = list("wonderlabs", "city")
 

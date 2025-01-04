@@ -10,6 +10,7 @@
 
 	access = list()
 	minimal_access = list()
+	departments = DEPARTMENT_SERVICE
 
 	job_attribute_limit = 0
 

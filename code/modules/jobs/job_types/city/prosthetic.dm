@@ -9,6 +9,7 @@
 
 	access = list(ACCESS_GENETICS)
 	minimal_access = list(ACCESS_GENETICS)
+	departments = DEPARTMENT_MEDICAL | DEPARTMENT_SERVICE
 	paycheck = 700	//You need a lot of money
 	paycheck_department = ACCOUNT_MED
 

@@ -148,7 +148,15 @@
 		"Science",
 		"Supply",
 		"Service",
-		"Silicon"
+		"Silicon",
+		// LOBOTOMYCORPORATION ADDITION START
+		"W Corp",
+		"R Corp",
+		"Hana",
+		"Association",
+		"Syndicate",
+		"Fixers",
+		// LOBOTOMYCORPORATION ADDITION END
 	)
 	var/list/departments = list(
 		"Command" = GLOB.command_positions,
@@ -158,8 +166,18 @@
 		"Science" = GLOB.science_positions,
 		"Supply" = GLOB.supply_positions,
 		"Service" = GLOB.service_positions,
-		"Silicon" = GLOB.nonhuman_positions
+		"Silicon" = GLOB.nonhuman_positions,
+		// LOBOTOMYCORPORATION ADDITION START
+		"W Corp" = GLOB.w_corp_positions,
+		"R Corp" = GLOB.r_corp_positions,
+		"Hana" = GLOB.hana_positions,
+		"Association" = GLOB.association_positions,
+		"Syndicate" = GLOB.city_antagonist_positions,
+		"Fixers" = GLOB.fixer_positions,
+		// LOBOTOMYCORPORATION ADDITION END
 	)
+	var/list/heads = GLOB.command_positions + list("Quartermaster")
+
 	for(var/datum/data/record/t in GLOB.data_core.general)
 		var/name = t.fields["name"]
 		var/rank = t.fields["rank"]
@@ -170,12 +188,33 @@
 			if((rank in jobs) || (true_rank in jobs)) //Tegu edit - alt job titles
 				if(!manifest_out[department])
 					manifest_out[department] = list()
-				manifest_out[department] += list(list(
-					"name" = name,
-					"rank" = rank
-				))
+				// LOBOTOMYCORPORATION ADDITION START
+				var/duplicate_found = FALSE
+				for(var/list/data as anything in manifest_out[department])
+					if(findtext(data["name"], name) && rank == data["rank"])
+						duplicate_found = TRUE
+						if(length(data) == 2)
+							data["count"] = 1
+						data["count"]++
+						data["name"] = "x[data["count"]] [name]"
+					continue
+
+				if(duplicate_found)
+					has_department = TRUE
+					continue
+				// LOBOTOMYCORPORATION ADDITION END
+				// Append to beginning of list if captain or department head
+				if (rank == "Captain" || (department != "Command" && (rank in heads)))
+					manifest_out[department] = list(list(
+						"name" = name,
+						"rank" = rank
+					)) + manifest_out[department]
+				else
+					manifest_out[department] += list(list(
+						"name" = name,
+						"rank" = rank
+					))
 				has_department = TRUE
-				break
 		if(!has_department)
 			if(!manifest_out["Misc"])
 				manifest_out["Misc"] = list()

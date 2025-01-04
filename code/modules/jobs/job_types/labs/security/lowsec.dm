@@ -9,6 +9,7 @@
 	selection_color = "#6571a6"
 	access = list(ACCESS_SECURITY)			//See /datum/job/assistant/get_access()
 	minimal_access = list(ACCESS_SECURITY)	//See /datum/job/assistant/get_access()
+	departments = DEPARTMENT_SECURITY
 
 	outfit = /datum/outfit/job/low_sec_officer
 	display_order = 8.5
@@ -60,6 +61,7 @@
 	selection_color = "#444d75"
 	access = list(ACCESS_SECURITY, ACCESS_COMMAND)			//See /datum/job/assistant/get_access()
 	minimal_access = list(ACCESS_SECURITY, ACCESS_COMMAND)	//See /datum/job/assistant/get_access()
+	departments = DEPARTMENT_COMMAND | DEPARTMENT_SECURITY
 
 	outfit = /datum/outfit/job/low_sec_commander
 	display_order = 8

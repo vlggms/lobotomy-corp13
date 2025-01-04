@@ -10,6 +10,7 @@
 
 	access = list(ACCESS_RND, ACCESS_COMMAND)
 	minimal_access = list(ACCESS_RND, ACCESS_COMMAND)
+	departments = DEPARTMENT_SCIENCE
 
 	job_attribute_limit = 0
 

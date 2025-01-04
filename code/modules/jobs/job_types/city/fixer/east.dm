@@ -15,6 +15,7 @@
 	trusted_only = TRUE
 	access = list(ACCESS_MINING_STATION, ACCESS_RC_ANNOUNCE) // East office is 54
 	minimal_access = list(ACCESS_MINING_STATION, ACCESS_RC_ANNOUNCE)
+	departments = DEPARTMENT_COMMAND | DEPARTMENT_FIXERS
 	maptype = list("city-small", "wonderlabs")
 
 	job_attribute_limit = 80
@@ -66,6 +67,7 @@
 	display_order = JOB_DISPLAY_ORDER_FIXER
 	access = list(ACCESS_MINING_STATION)
 	minimal_access = list(ACCESS_MINING_STATION)
+	departments = DEPARTMENT_FIXERS
 	maptype = "wonderlabs"
 
 	job_attribute_limit = 60

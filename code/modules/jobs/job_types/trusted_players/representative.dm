@@ -12,6 +12,7 @@
 	trusted_only = TRUE
 	access = list(ACCESS_PHARMACY, ACCESS_COMMAND) // I want to use the number 69.
 	minimal_access = list(ACCESS_PHARMACY, ACCESS_COMMAND)
+	departments = DEPARTMENT_COMMAND
 	mapexclude = list("wonderlabs", "mini")
 
 	job_abbreviation = "REP"

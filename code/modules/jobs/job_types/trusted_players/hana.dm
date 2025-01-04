@@ -12,6 +12,7 @@
 	trusted_only = TRUE
 	access = list(ACCESS_NETWORK, ACCESS_COMMAND, ACCESS_MANAGER, ACCESS_CHANGE_IDS)
 	minimal_access = list(ACCESS_NETWORK, ACCESS_COMMAND, ACCESS_MANAGER, ACCESS_CHANGE_IDS)
+	departments = DEPARTMENT_HANA
 	paycheck = 0
 	maptype = list("city", "fixers")
 	job_important = "You are the city's administrator, and have a small sort of power over the local association. \
@@ -69,6 +70,7 @@
 	total_positions = 1
 	spawn_positions = 1
 	display_order = JOB_DISPLAY_ORDER_MANAGER
+	departments = DEPARTMENT_COMMAND | DEPARTMENT_HANA
 	paycheck = 0
 
 

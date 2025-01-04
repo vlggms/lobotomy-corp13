@@ -10,10 +10,10 @@ Civilian
 	selection_color = "#dddddd"
 	access = list(ACCESS_LAWYER)
 	minimal_access = list(ACCESS_LAWYER)
+	departments = DEPARTMENT_SERVICE
 	outfit = /datum/outfit/job/civilian
 	antag_rep = 7
 	display_order = JOB_DISPLAY_ORDER_CIVILIAN
-
 	allow_bureaucratic_error = FALSE
 	maptype = list("city", "fixers")
 	paycheck = 170

@@ -13,6 +13,7 @@
 
 	access = list(ACCESS_MEDICAL, ACCESS_PHARMACY)
 	minimal_access = list(ACCESS_MEDICAL, ACCESS_PHARMACY)
+	departments = DEPARTMENT_MEDICAL
 
 	job_attribute_limit = 0
 

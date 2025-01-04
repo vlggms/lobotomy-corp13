@@ -16,9 +16,9 @@ GLOBAL_LIST_INIT(l2csquads, list("Axe", "Buckler", "Cleaver", "Axe", "Buckler", 
 	outfit = /datum/outfit/job/wcorpl2
 	display_order = 4.5
 
-
 	access = list() //add accesses as necessary
 	minimal_access = list()
+	departments = DEPARTMENT_W_CORP
 
 	roundstart_attributes = list(
 		FORTITUDE_ATTRIBUTE = 80,

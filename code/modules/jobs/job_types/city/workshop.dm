@@ -8,8 +8,9 @@ Workshop employee
 	spawn_positions = 2
 	supervisors = "no one but god."
 	selection_color = "#dddddd"
-	access = list(ACCESS_ENGINE, ACCESS_ENGINE_EQUIP)		//10
+	access = list(ACCESS_ENGINE, ACCESS_ENGINE_EQUIP)
 	minimal_access = list(ACCESS_ENGINE, ACCESS_ENGINE_EQUIP)
+	departments = DEPARTMENT_SERVICE
 	outfit = /datum/outfit/job/workshop
 	antag_rep = 7
 	display_order = JOB_DISPLAY_ORDER_CIVILIAN

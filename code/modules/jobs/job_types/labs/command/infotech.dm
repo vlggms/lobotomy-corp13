@@ -10,6 +10,7 @@
 
 	access = list(ACCESS_RND, ACCESS_NETWORK)
 	minimal_access = list(ACCESS_RND, ACCESS_NETWORK)
+	departments = DEPARTMENT_SCIENCE
 
 	job_attribute_limit = 0
 
