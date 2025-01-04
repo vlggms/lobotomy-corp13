@@ -568,6 +568,7 @@
 
 // /mob/living/simple_animal/hostile signals
 #define COMSIG_HOSTILE_ATTACKINGTARGET "hostile_attackingtarget"
+#define COMSIG_HOSTILE_LOSTTARGET "hostile_losttarget"
 	#define COMPONENT_HOSTILE_NO_ATTACK (1<<0)
 /// a hostile has started their patrol (datum/source, mob/living/simple_animal/hostile/mover, turf/target_location)
 #define COMSIG_GLOB_PATROL_START "!patrol_start"
@@ -1093,3 +1094,8 @@
 // Ordeal signals
 // When the ordeal ends; (/datum/ordeal)
 #define COMSIG_GLOB_ORDEAL_END "!ordeal_end"
+
+
+// Crate signals
+#define COMSIG_CRATE_LOOTING_STARTED "looting_started"
+#define COMSIG_CRATE_LOOTING_ENDED "looting_ended"
