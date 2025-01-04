@@ -1353,7 +1353,7 @@
 /area/facility_hallway/manager)
 "ug" = (
 /obj/machinery/door/poddoor{
-	id = sephirah;
+	id = "sephirah";
 	name = "cic blast door"
 	},
 /turf/closed/indestructible/fakeglass,
