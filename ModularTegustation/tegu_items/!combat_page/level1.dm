@@ -1,36 +1,34 @@
 /obj/item/combat_page/level1
-
-//Kcorp drones
-/obj/item/combat_page/level1/drones
-	name = "page of small observation"
-	desc = "A page that contains combat with some K-Corp drones"
-	reward_items = list(/obj/item/ksyringe)
-	reward_pe = 100
+	name = "combat page L1"
+	desc = "A page that contains a level 1 combat page"
+	reward_pe = 150
 	spawn_enemies = list(/mob/living/simple_animal/hostile/kcorp/drone)
 	spawn_type = "random"
 	spawn_number = 2
+	var/list/combat_weights = list(
+		"KDrones" = 10,
+		"lovetown1" = 10,
+		"rat1" = 10,
+		)
 
-//Easy Lovetown
-/obj/item/combat_page/level1/lovetown1
-	name = "page of new flesh"
-	desc = "A page that contains combat with new flesh."
-	reward_pe = 120
-	spawn_enemies = list(/mob/living/simple_animal/hostile/lovetown/slasher,
-			/mob/living/simple_animal/hostile/lovetown/stabber)
-	spawn_type = "random"
-	spawn_number = 10
+/obj/item/combat_page/level1/Initialize()
+	..()
+	var/chosen = pickweight(combat_weights)
+	switch(chosen)
+		if("KDrones")
+			spawn_number = 2
+			spawn_enemies = list(/mob/living/simple_animal/hostile/kcorp/drone)
 
-//Rats
-/obj/item/combat_page/level1/rat
-	name = "page of rats"
-	desc = "A page that contains combat with a small amount of rats."
-	reward_items = list(/obj/structure/lootcrate/backstreets)
-	reward_pe = 100
-	spawn_enemies = list(
-			/mob/living/simple_animal/hostile/humanoid/rat/knife,
-			/mob/living/simple_animal/hostile/humanoid/rat,
-			/mob/living/simple_animal/hostile/humanoid/rat/pipe,
-			/mob/living/simple_animal/hostile/humanoid/rat/hammer,
-			/mob/living/simple_animal/hostile/humanoid/rat/zippy)
-	spawn_type = "random"
-	spawn_number = 6
+		if("lovetown1")
+			spawn_number = 10
+			spawn_enemies = list(/mob/living/simple_animal/hostile/lovetown/slasher,
+				/mob/living/simple_animal/hostile/lovetown/stabber)
+
+		if("rat1")
+			spawn_number = 6
+			spawn_enemies = list(
+					/mob/living/simple_animal/hostile/humanoid/rat/knife,
+					/mob/living/simple_animal/hostile/humanoid/rat,
+					/mob/living/simple_animal/hostile/humanoid/rat/pipe,
+					/mob/living/simple_animal/hostile/humanoid/rat/hammer,
+					/mob/living/simple_animal/hostile/humanoid/rat/zippy)
