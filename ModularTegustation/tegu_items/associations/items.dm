@@ -59,10 +59,11 @@
 	icon = 'ModularTegustation/Teguicons/teguitems.dmi'
 	icon_state = "tcorp_syringe"
 	amount = 1
+	var/list/usable_roles = list("Civilian", "Office Director", "Office Fixer")
 
 /obj/item/attribute_increase/fixer/attack_self(mob/living/carbon/human/user)
 	//only civilians can use this.
-	if(user?.mind?.assigned_role != "Civilian")
+	if(!(user?.mind?.assigned_role in usable_roles))
 		to_chat(user, span_danger("You cannot use this item, as you must not belong to an association."))
 		return
 
