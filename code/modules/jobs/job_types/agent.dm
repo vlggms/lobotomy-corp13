@@ -83,24 +83,29 @@
 	if(SSabnormality_queue.spawned_abnos) // dont divide by 0
 		facility_full_percentage = 100 * (SSabnormality_queue.spawned_abnos / SSabnormality_queue.rooms_start)
 	// how full the facility is, from 0 abnormalities out of 24 cells being 0% and 24/24 cells being 100%
-	switch(facility_full_percentage)
-		if(15 to 29) // Shouldn't be anything more than TETHs (4 Abnormalities)
-			set_attribute *= 1.5
 
-		if(29 to 44) // HEs (8 Abnormalities)
-			set_attribute *= 2
+	if(SSmaptype.chosen_trait == "Abno Blitz")	//blitz needs you with higher stats
+		set_attribute *= 4
 
-		if(44 to 59) // A bit before WAWs (11 Abnormalities)
-			set_attribute *= 2.5
+	else
+		switch(facility_full_percentage)
+			if(15 to 29) // Shouldn't be anything more than TETHs (4 Abnormalities)
+				set_attribute *= 1.5
 
-		if(59 to 69) // WAWs around here (15 Abnormalities)
-			set_attribute *= 3
+			if(29 to 44) // HEs (8 Abnormalities)
+				set_attribute *= 2
 
-		if(69 to 79) // ALEPHs starting to spawn (17 Abnormalities)
-			set_attribute *= 3.5
+			if(44 to 59) // A bit before WAWs (11 Abnormalities)
+				set_attribute *= 2.5
 
-		if(79 to 100) // ALEPHs around here (20 Abnormalities)
-			set_attribute *= 4
+			if(59 to 69) // WAWs around here (15 Abnormalities)
+				set_attribute *= 3
+
+			if(69 to 79) // ALEPHs starting to spawn (17 Abnormalities)
+				set_attribute *= 3.5
+
+			if(79 to 100) // ALEPHs around here (20 Abnormalities)
+				set_attribute *= 4
 
 	set_attribute += GetFacilityUpgradeValue(UPGRADE_AGENT_STATS)
 
@@ -120,8 +125,8 @@
 		if(istype(processing, /datum/job/suppression/captain))
 			processing.total_positions = 1
 
-	return ..()
 
+	return ..()
 
 /datum/outfit/job/agent
 	name = "Agent"
@@ -135,6 +140,7 @@
 	shoes = /obj/item/clothing/shoes/laceup
 	gloves = /obj/item/clothing/gloves/color/black
 	implants = list(/obj/item/organ/cyberimp/eyes/hud/security)
+	l_hand = /obj/item/class_chooser
 
 	backpack_contents = list(
 		/obj/item/melee/classic_baton,
@@ -165,6 +171,7 @@
 	name = "Agent Intern"
 	jobtype = /datum/job/agent/intern
 	head = null
+	l_hand = null
 
 	backpack_contents = list(
 		/obj/item/melee/classic_baton,

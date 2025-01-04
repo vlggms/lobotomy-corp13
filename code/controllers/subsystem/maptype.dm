@@ -14,6 +14,24 @@ SUBSYSTEM_DEF(maptype)
 	//All the map tags that delete all jobs and replace them with others.
 	var/list/clearmaps = list("rcorp", "city", "wcorp", "limbus_labs", "fixers", "office")
 
+	//LC13 Maps
+	var/list/lc_maps = list("standard", "fishing")
+
+	//LC13 Gamemode Traits
+	var/list/lc_trait = list(
+						"No Trait" = 5,				//5 for No Trait
+						"MOBA Agents" = 10, 		//Agents pick a MOBA class
+						"Critical Hits" = 10,		//EGO can Critical hit.
+						"Abno Blitz" = 5,			//The game is significantly Faster, starts after noon.
+						"Selection Mishap" = 5,		//The abno selection is randomized
+
+						//Joke stuff is below, should all be low
+						"Working Clerks" = 3,		//For the joke
+						"Joke Abnormalities" = 1,	// Okay it's funny
+						)
+
+	var/chosen_trait = "No Trait"
+
 	//All the map tags that are combat maps and need abnos to breach immediately
 	var/list/combatmaps = list("rcorp", "wcorp", "limbus_labs", "fixers", "office")
 
@@ -41,6 +59,8 @@ SUBSYSTEM_DEF(maptype)
 
 /datum/controller/subsystem/maptype/Initialize()
 	..()
+	if(SSmaptype.maptype in SSmaptype.lc_maps)
+		chosen_trait = pickweight(lc_trait)
 
 	//Badda Bing Badda Da. This makes the latejoin menu cleaner
 	switch(SSmaptype.maptype)

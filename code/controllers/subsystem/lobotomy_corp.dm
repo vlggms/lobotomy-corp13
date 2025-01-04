@@ -117,6 +117,10 @@ SUBSYSTEM_DEF(lobotomy_corp)
 /datum/controller/subsystem/lobotomy_corp/proc/SetGoal()
 	var/player_mod = length(GLOB.player_list) * 0.2
 	box_goal = clamp(round(7500 * player_mod), 3000, 36000)
+
+	//Here's the anouncement for the trait.
+	priority_announce("This shift is a ''[SSmaptype.chosen_trait]'' Shift. All staff is to be advised..", \
+					"HQ Control", sound = 'sound/machines/dun_don_alert.ogg')
 	return TRUE
 
 /datum/controller/subsystem/lobotomy_corp/proc/InitializeOrdeals()
@@ -127,11 +131,18 @@ SUBSYSTEM_DEF(lobotomy_corp)
 			qdel(O)
 			continue
 		all_ordeals[O.level] += O
+
+	if(SSmaptype.chosen_trait == "Abno Blitz")
+		next_ordeal_level = 3
 	RollOrdeal()
 	return TRUE
 
 // Called when any normal midnight ends
 /datum/controller/subsystem/lobotomy_corp/proc/PickPotentialSuppressions(announce = FALSE, extra_core = FALSE)
+	if(SSmaptype.chosen_trait == "Abno Blitz")
+		priority_announce("This shift is a 'Blitz' Shift. Cores have been disabled.", \
+						"Core Suppression", sound = 'sound/machines/dun_don_alert.ogg')
+		return
 	if(istype(core_suppression))
 		return
 	var/obj/machinery/computer/abnormality_auxiliary/aux_cons = locate() in GLOB.lobotomy_devices
