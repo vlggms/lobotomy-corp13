@@ -64,7 +64,7 @@ GLOBAL_VAR_INIT(combat_points, 0)
 				L.can_patrol = TRUE
 				L.faction = "hostile"
 		if("random")
-			var/mob/living/L = pick(spawn_enemies)
+			var/mob/living/simple_animal/hostile/L = pick(spawn_enemies)
 			new L(current_spawn)
 			L.can_patrol = TRUE
 			L.faction = "hostile"
