@@ -250,4 +250,8 @@ GLOBAL_VAR_INIT(rcorp_payload, null)
 				if(2)
 					to_chat(M, span_userdanger("ABNORMALITY MINOR VICTORY."))
 		SSticker.force_ending = 1
+	else
+		var/turf/turf = get_turf(src)
+		new /obj/effect/decal/cleanable/confetti(turf)
+		playsound(turf, 'sound/misc/sadtrombone.ogg', 100)
 	return ..()
