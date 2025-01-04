@@ -16,7 +16,7 @@
 		)
 
 /obj/item/combat_page/level2/Initialize()
-	..()
+	. = ..()
 	var/chosen = pickweight(combat_weights)
 	switch(chosen)
 		if("bongy")

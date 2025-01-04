@@ -13,7 +13,7 @@
 		)
 
 /obj/item/combat_page/level3/Initialize()
-	..()
+	. = ..()
 	var/chosen = pickweight(combat_weights)
 	switch(chosen)
 		if("tomerry")
