@@ -459,6 +459,11 @@
 "fM" = (
 /obj/machinery/light,
 /obj/structure/table/wood,
+/obj/item/folder,
+/obj/item/folder,
+/obj/item/folder,
+/obj/item/folder,
+/obj/item/folder,
 /turf/open/floor/facility/white,
 /area/city/fixers)
 "fP" = (
@@ -1019,12 +1024,28 @@
 /turf/open/floor/plating/beach/sand,
 /area/city)
 "mV" = (
-/obj/item/folder,
-/obj/item/folder,
-/obj/item/folder,
-/obj/item/folder,
-/obj/item/folder,
 /obj/structure/table/wood,
+/obj/item/toner/large{
+	pixel_x = 2;
+	pixel_y = -8
+	},
+/obj/item/toner/large{
+	pixel_y = -4;
+	pixel_x = 1
+	},
+/obj/item/toner/large,
+/obj/item/toner/large{
+	pixel_y = 4;
+	pixel_x = -1
+	},
+/obj/item/toner/large{
+	pixel_y = 8;
+	pixel_x = -2
+	},
+/obj/item/toner/large{
+	pixel_y = 12;
+	pixel_x = -3
+	},
 /turf/open/floor/facility/white,
 /area/city/fixers)
 "mW" = (
