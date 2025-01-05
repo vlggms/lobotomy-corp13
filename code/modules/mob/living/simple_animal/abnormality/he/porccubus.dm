@@ -224,7 +224,7 @@
 		if(line_turf.is_blocked_turf(exclude_mobs = TRUE))
 			break
 		forceMove(line_turf)
-		SLEEP_CHECK_DEATH(0.8)
+		SLEEP_CHECK_DEATH(1)
 	playsound(src, 'sound/abnormalities/porccubus/porccu_giggle.ogg', 10, FALSE, 4) // This thing is absurdly loud
 	ranged_cooldown = world.time + ranged_cooldown_time
 	if(IsCombatMap())

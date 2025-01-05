@@ -50,9 +50,9 @@
 	var/can_act = TRUE
 	var/buff_form = TRUE
 	//Buff Form stuff
-	var/buff_resist_red = 0.25
-	var/buff_resist_white = 0.25
-	var/buff_resist_black = 0.25
+	var/buff_resist_red = 0.5
+	var/buff_resist_white = 0.5
+	var/buff_resist_black = 0.5
 	var/buff_resist_pale = 0.5
 	var/buff_speed = 2
 	var/can_slam = TRUE
@@ -76,7 +76,7 @@
 		<br>\
 		|Cute!|: While you are in your 'Cute' form, you have a MASSIVE speed boost and if you try to melee attack mechs or living mobs, you will crawl under them.<br>\
 		<br>\
-		|Strong!|: While you are in your 'Buff' form, you take 75% less damage from all attacks and you prefrom a 3x3 AoE attack when you try to melee attack, (Really good at breaking down Structures)<br>\
+		|Strong!|: While you are in your 'Buff' form, you take 50% less damage from all attacks and you prefrom a 3x3 AoE attack when you try to melee attack, (Really good at breaking down Structures)<br>\
 		<br>\
 		|He's just Playing|: When you melee attack a unconscious or dead human body, you are able to tear off a limb, which heals you 10% of your max HP. (You can do this 4 time per body)</b>")
 
