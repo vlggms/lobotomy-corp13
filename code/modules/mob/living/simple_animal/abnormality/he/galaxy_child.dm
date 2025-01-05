@@ -251,7 +251,7 @@
 		return FALSE
 
 	var/friend_names = ""
-	for(var/mob/past_friend as anything in galaxy_friends)
+	for(var/mob/past_friend as anything in galaxy_owner.galaxy_friends)
 		friend_names = "[past_friend], [friend_names]"
 
 	to_chat(galaxy_owner, span_userdanger("[friend_names].. They were never true friends..."))
