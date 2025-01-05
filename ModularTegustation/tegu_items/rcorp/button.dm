@@ -15,7 +15,7 @@
 /obj/item/assembly/control/rcorp
 	name = "rcorp door controller"
 
-/obj/item/assembly/control/activate()
+/obj/item/assembly/control/rcorp/activate()
 	if(cooldown)
 		return
 	// check abnos
