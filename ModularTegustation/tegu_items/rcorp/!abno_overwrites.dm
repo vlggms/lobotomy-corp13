@@ -120,5 +120,5 @@
 /mob/living/simple_animal/hostile/abnormality/greed_king/Initialize()
 	if(IsCombatMap())
 		initial_charge_damage = 200
-		growing_charge_damage = 50
+		growing_charge_damage = 80
 	return ..()

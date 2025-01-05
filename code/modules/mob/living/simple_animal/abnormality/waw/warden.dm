@@ -56,7 +56,7 @@
 
 	var/captured_souls = 0
 
-	var/resistance_decrease = 0.5
+	var/resistance_decrease = 0.2
 
 	var/base_red_resistance = 0.7
 	var/base_white_resistance = 1.2
