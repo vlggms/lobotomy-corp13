@@ -10,7 +10,7 @@
 
 /obj/machinery/button/door/indestructible/rcorp/Destroy()
 	qdel(device)
-	. = ..()
+	return ..()
 
 /obj/item/assembly/control/rcorp
 	name = "rcorp door controller"
