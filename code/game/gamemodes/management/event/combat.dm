@@ -52,8 +52,12 @@ GLOBAL_VAR_INIT(wcorp_enemy_faction, "") //decides which faction WCorp will be u
 						addtimer(CALLBACK(src, PROC_REF(drawround)), 40 MINUTES)
 						to_chat(world, span_userdanger("Round will end in a draw after 40 minutes."))
 				addtimer(CALLBACK(src, PROC_REF(rcorp_announce)), 3 MINUTES)
-				addtimer(CALLBACK(src, PROC_REF(ClearIncorpBarriers)), 6 MINUTES)
-				addtimer(CALLBACK(src, PROC_REF(rcorp_opendoor)), 10 MINUTES)
+				addtimer(CALLBACK(src, PROC_REF(ClearIncorpBarriers)), 10 MINUTES)
+				minor_announce("WARNING, The facility gates will open in T-15 Minutes." , "R-Corp Intelligence Office")
+				addtimer(CALLBACK(src, PROC_REF(rcorp_opendoor)), 15 MINUTES)
+				addtimer(CALLBACK(src, PROC_REF(facility_warning_1)), 5 MINUTES)
+				addtimer(CALLBACK(src, PROC_REF(facility_warning_2)), 10 MINUTES)
+				addtimer(CALLBACK(src, PROC_REF(facility_warning_3)), 14 MINUTES)
 				RegisterSignal(SSdcs, COMSIG_GLOB_MOB_DEATH, PROC_REF(CheckLiving))
 
 			//Limbus Labs
@@ -157,6 +161,7 @@ GLOBAL_VAR_INIT(wcorp_enemy_faction, "") //decides which faction WCorp will be u
 		if("payload_abno")
 			announcement_type = "Intelligence has located a dangerous specimen moving towards your location. Prevent it from escaping at all costs."
 	minor_announce("[announcement_type]" , "R-Corp Intelligence Office")
+	minor_announce("WARNING, The facility gates will open in T-12 Minutes." , "R-Corp Intelligence Office")
 
 /datum/game_mode/combat/proc/rcorp_opendoor()
 	for(var/obj/machinery/button/door/indestructible/rcorp/M in GLOB.machines)
@@ -165,6 +170,15 @@ GLOBAL_VAR_INIT(wcorp_enemy_faction, "") //decides which faction WCorp will be u
 	for(var/obj/machinery/door/poddoor/M in GLOB.machines)
 		if (M.id == "inside")
 			addtimer(CALLBACK(src, PROC_REF(OpenDoor), M), 0 MINUTES)
+
+/datum/game_mode/combat/proc/facility_warning_1()
+	minor_announce("WARNING, The facility gates will open in T-10 Minutes." , "R-Corp Intelligence Office")
+
+/datum/game_mode/combat/proc/facility_warning_2()
+	minor_announce("WARNING, The facility gates will open in T-5 Minutes, Please start moving into the facility." , "R-Corp Intelligence Office")
+
+/datum/game_mode/combat/proc/facility_warning_3()
+	minor_announce("WARNING, The facility gates will open in T-1 Minute, Please be ready for enemies of a higher threat level." , "R-Corp Intelligence Office")
 
 /datum/game_mode/combat/proc/OpenDoor(door)
 	var/obj/machinery/door/poddoor/D = door
