@@ -198,9 +198,7 @@
 		if(istype(W, /obj/item/ego_weapon))
 			var/obj/item/ego_weapon/EW = W
 			if(!EW.CanUseEgo(src))
-				to_chat(user, span_notice("You try attaching \the [W] to \the [src]... but it falls off!"))
-				user.dropItemToGround(EW)
-				EW.forceMove(get_turf(src))
+				to_chat(user, span_notice("You try attaching \the [W] to \the [src]... but it refuses to stay on!"))
 				return FALSE
 		to_chat(user, span_notice("You start attaching \the [W] to \the [src]..."))
 		if(do_after(user, 25, target = src))

@@ -1,8 +1,3 @@
-/obj/projectile/ego_bullet/ego_tough
-	name = "9mm tough bullet"
-	damage = 12 // Being bald is the optimal gameplay choice!
-	damage_type = WHITE_DAMAGE
-
 /obj/projectile/ego_bullet/ego_soda
 	name = "9mm soda bullet"
 	damage = 11
@@ -57,3 +52,4 @@
 	name = "oceanic"
 	damage = 11		//Worse than tough lol
 	damage_type = WHITE_DAMAGE
+

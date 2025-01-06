@@ -44,11 +44,11 @@
 	mappath = "_maps/RandomRooms/rcorp/caves/hallway.dmm"
 	weight = 5
 
-/datum/map_template/random_room/rcorp_caves/elevator
-	name = "R-Corp Caves - Elevator"
-	room_id = "rcorp_caves_elevator"
-	mappath = "_maps/RandomRooms/rcorp/caves/elevator.dmm"
-	weight = 2 //Meme template, less common
+// /datum/map_template/random_room/rcorp_caves/elevator
+// 	name = "R-Corp Caves - Elevator"
+// 	room_id = "rcorp_caves_elevator"
+// 	mappath = "_maps/RandomRooms/rcorp/caves/elevator.dmm"
+// 	weight = 2 //Meme template, less common
 
 /datum/map_template/random_room/rcorp_caves/river
 	name = "R-Corp Caves - River"

@@ -1,6 +1,6 @@
 /datum/adventure_event/ambling_pearl
 	name = "Mirror Shard:Ambling Pearl"
-	desc = null
+	desc = "THE SMELL OF ROT"
 	adventure_cords = list(
 		"The barren mudflat reeks of salt and rot.<br>\
 		What little jade-colored seawater is left there<br>\

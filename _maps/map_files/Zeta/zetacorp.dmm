@@ -494,7 +494,8 @@
 /area/department_main/information)
 "bH" = (
 /obj/machinery/door/airlock/glass{
-	icon = 'icons/obj/doors/airlocks/station/science.dmi'
+	icon = 'icons/obj/doors/airlocks/station/science.dmi';
+	hackProof = 1
 	},
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -3922,7 +3923,8 @@
 /area/facility_hallway/east)
 "lg" = (
 /obj/machinery/door/airlock/highsecurity{
-	name = "Records Office Secure Area"
+	name = "Records Office Secure Area";
+	hackProof = 1
 	},
 /turf/open/floor/facility/halls,
 /area/facility_hallway/information)
@@ -10951,7 +10953,8 @@
 /obj/machinery/door/airlock{
 	icon = 'icons/obj/doors/airlocks/station/science.dmi';
 	max_integrity = 500;
-	name = "Information Department"
+	name = "Information Department";
+	hackProof = 1
 	},
 /obj/structure/disposalpipe/segment{
 	dir = 4

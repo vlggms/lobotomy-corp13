@@ -356,3 +356,9 @@
 /datum/ego_datum/armor/clayman
 	item_path = /obj/item/clothing/suit/armor/ego_gear/teth/clayman
 	cost = 20
+
+// You are bald - Tough
+/datum/ego_datum/weapon/tough
+	item_path = /obj/item/ego_weapon/ranged/pistol/tough
+	cost = 20
+
