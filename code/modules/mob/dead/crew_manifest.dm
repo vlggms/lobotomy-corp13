@@ -56,6 +56,8 @@
 		list("flag" = DEPARTMENT_SILICON, "name" = "Silicon"),
 	)
 
+// LOBOTOMYCORPORATION EDIT OLD START
+/*
 	for(var/job in SSjob.occupations)
 		// Check if there are additional open positions or if there is no limit
 		if ((job["total_positions"] > 0 && job["total_positions"] > job["current_positions"]) || (job["total_positions"] == -1))
@@ -69,6 +71,22 @@
 					else
 						// Add open positions to current department
 						positions[department["name"]]["open"] += (job["total_positions"] - job["current_positions"])
+*/
+// LOBOTOMYCORPORATION EDIT OLD END
+// LOBOTOMYCORPORATION EDIT NEW START
+	for(var/datum/job/job in SSjob.occupations)
+		if((job.total_positions > 0 && job.total_positions > job.current_positions) || (job.total_positions == -1))
+			for(var/department in departments)
+				// Check if the job is part of a department using its flag
+				// Will return true for Research Director if the department is Science or Command, for example
+				if(job.departments & department["flag"])
+					if(job.total_positions == -1)
+						// Add job to list of exceptions, meaning it does not have a position limit
+						positions[department["name"]]["exceptions"] += list(job.title)
+					else
+						// Add open positions to current department
+						positions[department["name"]]["open"] += (job.total_positions - job.current_positions)
+// LOBOTOMYCORPORATION EDIT NEW END
 
 	return list(
 		"manifest" = GLOB.data_core.get_manifest(),
