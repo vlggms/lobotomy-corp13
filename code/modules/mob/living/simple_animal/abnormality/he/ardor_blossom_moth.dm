@@ -9,6 +9,7 @@
 	portrait = "blossom_moth"
 	maxHealth = 1200
 	health = 1200
+	blood_volume = 0
 	ranged = TRUE
 	attack_verb_continuous = "sears"
 	attack_verb_simple = "sear"
@@ -87,6 +88,8 @@
 				qdel(floor_fire)
 		new /obj/structure/turf_fire(T)
 
+/mob/living/simple_animal/hostile/abnormality/ardor_moth/spawn_gibs()
+	return new /obj/effect/decal/cleanable/ash(drop_location(), src)
 
 // Turf Fire
 /obj/structure/turf_fire

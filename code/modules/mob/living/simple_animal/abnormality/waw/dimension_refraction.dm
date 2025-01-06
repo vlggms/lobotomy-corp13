@@ -13,6 +13,7 @@
 
 	maxHealth = 1200
 	health = 1200
+	blood_volume = 0
 	density = FALSE
 	damage_coeff = list(RED_DAMAGE = 0, WHITE_DAMAGE = 1.5, BLACK_DAMAGE = 0.8, PALE_DAMAGE = 1)
 	stat_attack = HARD_CRIT
