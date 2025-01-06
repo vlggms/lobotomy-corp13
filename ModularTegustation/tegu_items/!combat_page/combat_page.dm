@@ -60,12 +60,12 @@ GLOBAL_VAR_INIT(combat_points, 0)
 	switch(spawn_type)
 		if("all")
 			for(var/mob/living/simple_animal/hostile/L in spawn_enemies)
-				new L(current_spawn)
-				//L.can_patrol = TRUE
+				L = new L(current_spawn)
+				L.can_patrol = TRUE
 				L.faction = "hostile"
 		if("random")
 			var/mob/living/simple_animal/hostile/L = pick(spawn_enemies)
-			new L(current_spawn)
+			L = new L(current_spawn)
 			//L.can_patrol = TRUE
 			L.faction = "hostile"
 	spawn_number -= 1
