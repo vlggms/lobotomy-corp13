@@ -451,9 +451,7 @@ Skittish, they prefer to move in groups and will run away if the enemies are in 
 	if (istype(target, /mob))
 
 		var/mob/MOB = target
-		say("Target faction: " + jointext(MOB.faction, ", "))
 		if (MOB.faction_check_mob(M, FALSE))
-			say("Faction match")
 			return BULLET_ACT_BLOCK
 	. = ..()
 
