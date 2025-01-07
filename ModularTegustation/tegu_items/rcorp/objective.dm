@@ -209,6 +209,7 @@ GLOBAL_VAR_INIT(rcorp_payload, null)
 	var/list/shrimp_abilities = list(
 		/obj/effect/proc_holder/spell/pointed/shrimp_airstrike,
 		/obj/effect/proc_holder/spell/pointed/shrimp_barricade,
+		/obj/effect/proc_holder/spell/pointed/shrimp_heal,
 		)
 
 /mob/living/simple_animal/hostile/shrimp_vip/Initialize()
@@ -362,6 +363,33 @@ GLOBAL_VAR_INIT(rcorp_payload, null)
 /obj/structure/barricade/security/shrimp/Destroy()
 	shrimp.barrier_count -= 1
 	. = ..()
+
+/obj/effect/proc_holder/spell/pointed/shrimp_heal
+	name = "Shrimp Reinforce"
+	desc = "Reinforce one of your allies by having your off field support shot them with a HP bullet!"
+	panel = "Shrimp"
+	has_action = TRUE
+	action_icon = 'icons/mob/actions/actions_shrimp.dmi'
+	action_icon_state = "barricade"
+	clothes_req = FALSE
+	charge_max = 100
+	selection_type = "range"
+	active_msg = "You prepare your reinforce call ..."
+	deactive_msg = "You put away your reinforce call ..."
+
+/obj/effect/proc_holder/spell/pointed/shrimp_heal/cast(list/targets, mob/user)
+	var/target = targets[1]
+	if (istype(target, /mob/living/simple_animal/hostile/shrimp_vip))
+		to_chat(user, span_warning("You can't target yourself!"))
+		return
+	else
+		if (istype(target, /mob/living/simple_animal))
+			var/mob/living/simple_animal/S
+			S.adjustBruteLoss(-healamount)
+			user.visible_message(span_danger("[user] calls in a HP bullet on [target]."), span_alert("You targeted [target]"))
+			new /obj/effect/temp_visual/heal(get_turf(S), "#FF4444")
+		else
+			to_chat(user, span_warning("You can't target a non-simple animal!"))
 
 //Arbiter
 /obj/effect/mob_spawn/human/arbiter/rcorp
