@@ -35,6 +35,31 @@
 							JUSTICE_ATTRIBUTE = 80
 							)
 
+/obj/item/clothing/suit/armor/ego_gear/city/echo/stars/Initialize()
+	. = ..()
+	var/obj/effect/proc_holder/ability/AS = new realized_ability
+	var/datum/action/spell_action/ability/item/A = AS.action
+	A.SetItem(src)
+
+/obj/effect/proc_holder/ability/fated_encounters
+	name = "Fated Encounters"
+	desc = "An ability that allows its user to become incredibly defensive and drawning in aggro of all hostiles, at the cost of SP and movement speed."
+	action_icon_state = "universe_song0"
+	base_icon_state = "universe_song"
+	cooldown_time = 20 SECONDS
+
+	var/damage_amount = 50 // Amount of white damage dealt to enemies per "pulse".
+	var/damage_slowdown = 0.7 // Slowdown per pulse
+	var/damage_count = 5 // How many times the damage and slowdown is applied
+	var/damage_range = 6
+
+/obj/effect/proc_holder/ability/fated_encounters/Perform(target, mob/user)
+	playsound(get_turf(user), 'sound/abnormalities/fragment/sing.ogg', 50, 0, 4)
+	Pulse(user)
+	for(var/i = 1 to damage_count - 1)
+		addtimer(CALLBACK(src, PROC_REF(Pulse), user), i*3)
+	return ..()
+
 /obj/item/clothing/suit/armor/ego_gear/city/echo/plated
 	name = "Plated Outer Cover"
 	desc = "An echo of a past Memory... A painful one at that."
