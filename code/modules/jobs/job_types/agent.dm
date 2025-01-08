@@ -119,6 +119,7 @@
 		if(istype(processing, /datum/job/suppression/captain))
 			processing.total_positions = 1
 
+	return ..()
 
 /datum/outfit/job/agent
 	name = "Agent"
