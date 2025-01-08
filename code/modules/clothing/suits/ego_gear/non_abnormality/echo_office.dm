@@ -37,28 +37,38 @@
 
 /obj/item/clothing/suit/armor/ego_gear/city/echo/stars/Initialize()
 	. = ..()
-	var/obj/effect/proc_holder/ability/AS = new realized_ability
+	var/obj/effect/proc_holder/ability/AS = new /obj/effect/proc_holder/ability/fated_encounters
 	var/datum/action/spell_action/ability/item/A = AS.action
 	A.SetItem(src)
 
 /obj/effect/proc_holder/ability/fated_encounters
 	name = "Fated Encounters"
-	desc = "An ability that allows its user to become incredibly defensive and drawning in aggro of all hostiles, at the cost of SP and movement speed."
-	action_icon_state = "universe_song0"
-	base_icon_state = "universe_song"
-	cooldown_time = 20 SECONDS
-
-	var/damage_amount = 50 // Amount of white damage dealt to enemies per "pulse".
-	var/damage_slowdown = 0.7 // Slowdown per pulse
-	var/damage_count = 5 // How many times the damage and slowdown is applied
-	var/damage_range = 6
+	desc = "An ability that allows its user to become incredibly defensive and drawning in aggro of all hostiles, at the cost of SP."
+	action_icon = 'icons/mob/actions/actions_items.dmi'
+	action_icon_state = "flight"
+	base_icon_state = "flight"
+	cooldown_time = 60 SECONDS
 
 /obj/effect/proc_holder/ability/fated_encounters/Perform(target, mob/user)
-	playsound(get_turf(user), 'sound/abnormalities/fragment/sing.ogg', 50, 0, 4)
-	Pulse(user)
-	for(var/i = 1 to damage_count - 1)
-		addtimer(CALLBACK(src, PROC_REF(Pulse), user), i*3)
+	playsound(get_turf(user), 'sound/abnormalities/onesin/bless.ogg', 50, 0, 4)
+	if (ishuman(user))
+		var/mob/living/carbon/human/wielder = user
+		wielder.Stun(12, TRUE, TRUE)
+		new /obj/effect/temp_visual/onesin_blessing (get_turf(wielder))
+		var/obj/item/clothing/suit/armor/ego_gear/city/echo/stars/S = wielder.get_item_by_slot(ITEM_SLOT_OCLOTHING)
+		wielder.adjustSanityLoss(wielder.maxSanity*0.25)
+		S.armor = new(red = 90, white = 90, black = 90, pale = 90)
+		for(var/mob/living/simple_animal/hostile/H in view(4, wielder))
+			if(!H.faction_check_mob(wielder))
+				H.GiveTarget(wielder)
+				new /obj/effect/temp_visual/galaxy_aura (get_turf(H))
+		addtimer(CALLBACK(src, PROC_REF(ResetArmor), S), 100)
 	return ..()
+
+/obj/effect/proc_holder/ability/fated_encounters/proc/ResetArmor(var/obj/item/clothing/suit/armor/ego_gear/A)
+	A.armor = new(red = 40, white = 40, black = 20, pale = 60)
+	playsound(get_turf(A), 'sound/abnormalities/onesin/bless.ogg', 50, 0, 4)
+	new /obj/effect/temp_visual/onesin_blessing (get_turf(A))
 
 /obj/item/clothing/suit/armor/ego_gear/city/echo/plated
 	name = "Plated Outer Cover"
@@ -76,7 +86,8 @@
 /obj/item/clothing/head/ego_hat/plated
 	name = "Plated Hood"
 	desc = "An echo of a past Memory... A painful one at that."
-	flags_inv = HIDEFACIALHAIR | HIDEFACE | HIDEHAIR
+	flags_inv = HIDEHAIR|HIDEMASK|HIDEEARS|HIDEHAIR|HIDEFACIALHAIR
+	flags_cover = HEADCOVERSEYES|HEADCOVERSMOUTH
 	icon_state = "plated"
 
 /obj/item/clothing/suit/armor/ego_gear/city/echo/faux
