@@ -46,6 +46,10 @@
 /obj/item/paper_bin,
 /turf/open/floor/carpet/purple,
 /area/city/backstreets_room)
+"z" = (
+/obj/structure/sign/warning/backstreets_3,
+/turf/closed/indestructible/reinforced,
+/area/city/backstreets_room)
 "B" = (
 /obj/structure/chair/wood,
 /turf/open/floor/carpet/purple,
@@ -137,7 +141,7 @@ B
 x
 f
 k
-Q
+z
 "}
 (9,1,1) = {"
 Q
@@ -153,5 +157,5 @@ Q
 Q
 Q
 Q
-Q
+z
 "}

@@ -31,13 +31,16 @@
 /obj/effect/spawner/lootdrop/cigbutt,
 /turf/open/floor/wood,
 /area/city/backstreets_room)
+"n" = (
+/obj/structure/sign/warning/backstreets_2,
+/turf/closed/indestructible/reinforced,
+/area/city/backstreets_room)
 "t" = (
 /obj/item/trash/can/food/peaches/maint,
 /turf/open/floor/wood,
 /area/city/backstreets_room)
 "u" = (
 /obj/structure/table/anvil,
-/obj/item/reagent_containers/food/drinks/soda_cans/oceanwave/spacedrugs,
 /turf/open/floor/wood,
 /area/city/backstreets_room)
 "w" = (
@@ -151,7 +154,7 @@ f
 l
 c
 c
-Q
+n
 "}
 (9,1,1) = {"
 Q
@@ -167,5 +170,5 @@ Q
 Q
 Q
 Q
-Q
+n
 "}

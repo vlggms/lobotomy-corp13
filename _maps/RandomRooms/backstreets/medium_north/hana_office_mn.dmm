@@ -43,6 +43,10 @@
 /obj/structure/table/reinforced,
 /turf/open/floor/facility/white,
 /area/city/backstreets_room)
+"y" = (
+/obj/structure/sign/warning/backstreets_3,
+/turf/closed/wall/mineral/plastitanium/nosmooth,
+/area/city/backstreets_room)
 "B" = (
 /mob/living/simple_animal/hostile/ordeal/green_bot_big,
 /turf/open/floor/facility/white,
@@ -120,7 +124,7 @@ s
 x
 t
 B
-c
+y
 "}
 (5,1,1) = {"
 Q
@@ -144,7 +148,7 @@ P
 x
 B
 k
-c
+y
 "}
 (8,1,1) = {"
 Q

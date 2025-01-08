@@ -19,6 +19,10 @@
 /obj/structure/grille,
 /turf/open/floor/plasteel/dark,
 /area/city/backstreets_room)
+"j" = (
+/obj/structure/sign/warning/backstreets_1,
+/turf/closed/indestructible/reinforced,
+/area/city/backstreets_room)
 "k" = (
 /obj/structure/rack,
 /turf/open/floor/plasteel/dark,
@@ -71,9 +75,9 @@
 a
 a
 a
-a
+j
 X
-a
+j
 a
 "}
 (2,1,1) = {"

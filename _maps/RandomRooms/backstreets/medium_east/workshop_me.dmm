@@ -55,6 +55,10 @@
 "x" = (
 /turf/closed/indestructible/reinforced,
 /area/city/backstreets_room)
+"A" = (
+/obj/structure/sign/warning/backstreets_1,
+/turf/closed/indestructible/reinforced,
+/area/city/backstreets_room)
 "D" = (
 /obj/effect/decal/cleanable/dirt/dust,
 /mob/living/simple_animal/hostile/humanoid/rat/hammer,
@@ -101,10 +105,10 @@ x
 x
 x
 x
-x
+A
 H
 H
-x
+A
 "}
 (2,1,1) = {"
 x

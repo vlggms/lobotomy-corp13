@@ -96,6 +96,10 @@
 	dir = 4
 	},
 /area/city/backstreets_room)
+"E" = (
+/obj/structure/sign/warning/backstreets_1,
+/turf/closed/indestructible/reinforced,
+/area/city/backstreets_room)
 "H" = (
 /obj/structure/mineral_door/iron,
 /turf/open/floor/plasteel/dark,
@@ -158,9 +162,9 @@ x
 x
 x
 x
-x
+E
 H
-x
+E
 "}
 (2,1,1) = {"
 x

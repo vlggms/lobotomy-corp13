@@ -10,6 +10,10 @@
 "x" = (
 /turf/open/floor/wood,
 /area/city/backstreets_room)
+"z" = (
+/obj/structure/sign/warning/backstreets_2,
+/turf/closed/indestructible/wood,
+/area/city/backstreets_room)
 "J" = (
 /mob/living/simple_animal/hostile/runawaybird,
 /turf/open/floor/wood,
@@ -69,9 +73,9 @@ X
 (5,1,1) = {"
 X
 X
-X
+z
 n
-X
+z
 X
 X
 "}

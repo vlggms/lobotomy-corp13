@@ -85,6 +85,10 @@
 "x" = (
 /turf/open/floor/wood,
 /area/city/backstreets_room)
+"y" = (
+/obj/structure/sign/warning/backstreets_1,
+/turf/closed/indestructible/reinforced,
+/area/city/backstreets_room)
 "B" = (
 /obj/effect/decal/cleanable/blood/tracks,
 /turf/open/floor/wood{
@@ -194,7 +198,7 @@ r
 Q
 "}
 (5,1,1) = {"
-Q
+y
 V
 x
 k
@@ -210,7 +214,7 @@ m
 Q
 "}
 (7,1,1) = {"
-Q
+y
 f
 x
 F

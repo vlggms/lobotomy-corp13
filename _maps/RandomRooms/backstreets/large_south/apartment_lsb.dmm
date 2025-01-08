@@ -20,6 +20,7 @@
 /obj/item/shard,
 /obj/item/stack/sheet/silk,
 /obj/item/weaponcrafting/silkstring,
+/obj/effect/spawner/structure/window,
 /turf/open/floor/plating,
 /area/city/backstreets_room)
 "cX" = (
@@ -56,6 +57,10 @@
 	dir = 7
 	},
 /turf/open/floor/carpet/black,
+/area/city/backstreets_room)
+"hj" = (
+/obj/structure/sign/warning/backstreets_2,
+/turf/closed/indestructible/reinforced,
 /area/city/backstreets_room)
 "hx" = (
 /obj/effect/turf_decal/weather/dirt{
@@ -202,6 +207,7 @@
 /area/city/backstreets_room)
 "CK" = (
 /obj/item/stack/sheet/mineral/wood,
+/obj/structure/mineral_door/wood,
 /turf/open/floor/wood,
 /area/city/backstreets_room)
 "CM" = (
@@ -393,7 +399,7 @@ hQ
 zv
 "}
 (3,1,1) = {"
-zv
+hj
 bS
 YJ
 jR
@@ -413,7 +419,7 @@ IG
 zv
 "}
 (5,1,1) = {"
-zv
+hj
 dh
 dR
 iL
@@ -473,7 +479,7 @@ zv
 zv
 "}
 (11,1,1) = {"
-zv
+hj
 WL
 Cx
 QG
@@ -513,7 +519,7 @@ cf
 zv
 "}
 (15,1,1) = {"
-zv
+hj
 Lg
 Cx
 QG

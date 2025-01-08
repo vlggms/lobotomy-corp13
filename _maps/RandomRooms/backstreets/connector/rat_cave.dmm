@@ -2,6 +2,10 @@
 "a" = (
 /turf/closed/indestructible/reinforced,
 /area/city/backstreets_room)
+"c" = (
+/obj/structure/mineral_door/iron,
+/turf/open/floor/plating/asteroid/basalt,
+/area/city/backstreets_room)
 "e" = (
 /turf/closed/mineral/ash_rock,
 /area/city/backstreets_room)
@@ -38,6 +42,10 @@
 /obj/item/trash/can/food/peaches,
 /turf/open/floor/plating/asteroid/basalt,
 /area/city/backstreets_room)
+"C" = (
+/obj/structure/sign/warning/backstreets_1,
+/turf/closed/indestructible/reinforced,
+/area/city/backstreets_room)
 "D" = (
 /turf/open/floor/plating/asteroid/basalt,
 /area/city/backstreets_room)
@@ -60,7 +68,6 @@
 /area/city/backstreets_room)
 "K" = (
 /obj/structure/bed/maint,
-/obj/item/reagent_containers/food/drinks/soda_cans/oceanwave/spacedrugs,
 /turf/open/floor/plating/asteroid/basalt,
 /area/city/backstreets_room)
 "Q" = (
@@ -88,9 +95,9 @@ e
 e
 a
 a
-D
-D
-D
+C
+c
+C
 a
 a
 a
@@ -167,7 +174,7 @@ e
 a
 "}
 (6,1,1) = {"
-D
+C
 D
 D
 h
@@ -181,10 +188,10 @@ D
 D
 D
 D
-D
+C
 "}
 (7,1,1) = {"
-D
+c
 D
 D
 e
@@ -198,10 +205,10 @@ D
 D
 y
 D
-D
+c
 "}
 (8,1,1) = {"
-D
+e
 e
 e
 e
@@ -215,7 +222,7 @@ D
 D
 D
 D
-D
+C
 "}
 (9,1,1) = {"
 e
@@ -292,9 +299,9 @@ a
 e
 e
 e
-Q
-D
-D
+e
+c
+C
 a
 a
 a

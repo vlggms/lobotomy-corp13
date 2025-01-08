@@ -95,10 +95,7 @@
 /obj/effect/turf_decal/siding/wood{
 	dir = 7
 	},
-/mob/living/simple_animal/hostile/humanoid/fixer/flame{
-	name = "Sanguine Flame";
-	health = 2500
-	},
+/mob/living/simple_animal/hostile/humanoid/fixer/flame,
 /turf/open/floor/wood,
 /area/city/backstreets_room)
 "pV" = (
@@ -307,6 +304,11 @@
 /obj/effect/decal/cleanable/dirt/dust,
 /turf/open/floor/plating/beach/sand,
 /area/city/backstreets_room)
+"IP" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/mineral_door/wood,
+/turf/open/floor/carpet/red,
+/area/city/backstreets_room)
 "Ki" = (
 /obj/structure/table/wood/fancy/red,
 /obj/effect/decal/cleanable/dirt/dust,
@@ -330,6 +332,10 @@
 	name = "carnivorous worm"
 	},
 /turf/open/floor/holofloor/carpet,
+/area/city/backstreets_room)
+"Lp" = (
+/obj/structure/sign/warning/backstreets_4,
+/turf/closed/indestructible/wood,
 /area/city/backstreets_room)
 "LY" = (
 /obj/effect/decal/cleanable/dirt/dust,
@@ -708,7 +714,7 @@ fZ
 TB
 LY
 KZ
-KZ
+Lp
 "}
 (10,1,1) = {"
 Eo
@@ -730,7 +736,7 @@ rO
 PJ
 Zt
 PJ
-PJ
+IP
 "}
 (11,1,1) = {"
 Eo
@@ -752,7 +758,7 @@ rO
 PJ
 Zt
 PJ
-PJ
+IP
 "}
 (12,1,1) = {"
 Eo
@@ -774,7 +780,7 @@ Gc
 Pn
 qG
 KZ
-KZ
+Lp
 "}
 (13,1,1) = {"
 Eo

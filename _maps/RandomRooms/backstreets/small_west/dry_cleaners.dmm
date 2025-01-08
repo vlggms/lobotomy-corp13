@@ -7,6 +7,10 @@
 /obj/effect/decal/cleanable/dirt/dust,
 /turf/open/floor/plasteel/white,
 /area/city/backstreets_room)
+"d" = (
+/obj/structure/sign/warning/backstreets_3,
+/turf/closed/indestructible/reinforced,
+/area/city/backstreets_room)
 "v" = (
 /obj/machinery/washing_machine,
 /turf/open/floor/plasteel/white,
@@ -84,8 +88,8 @@ a
 a
 a
 a
-a
+d
 X
-a
+d
 a
 "}

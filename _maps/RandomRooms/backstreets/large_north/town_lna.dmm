@@ -1,4 +1,8 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"av" = (
+/obj/structure/sign/warning/backstreets_3,
+/turf/closed/indestructible/reinforced,
+/area/city/backstreets_room)
 "bk" = (
 /obj/structure/meatfloor,
 /mob/living/simple_animal/hostile/lovetown,
@@ -246,6 +250,11 @@
 /obj/effect/decal/cleanable/blood/drip,
 /turf/open/floor/plating/rust,
 /area/city/backstreets_room)
+"EF" = (
+/obj/effect/rune/manifest,
+/obj/structure/sign/warning/backstreets_3,
+/turf/closed/indestructible/reinforced,
+/area/city/backstreets_room)
 "FA" = (
 /obj/structure/meatfloor,
 /obj/item/food/meat/slab/monkey,
@@ -426,7 +435,7 @@ Eu
 lB
 hG
 br
-Vw
+EF
 "}
 (8,1,1) = {"
 ta
@@ -456,7 +465,7 @@ Ol
 wr
 Ks
 cA
-ta
+av
 "}
 (11,1,1) = {"
 ta

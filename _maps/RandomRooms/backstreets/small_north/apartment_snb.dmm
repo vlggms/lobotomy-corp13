@@ -9,6 +9,10 @@
 	},
 /turf/open/floor/wood,
 /area/city/backstreets_room)
+"o" = (
+/obj/structure/sign/warning/backstreets_2,
+/turf/closed/indestructible/reinforced,
+/area/city/backstreets_room)
 "t" = (
 /obj/structure/closet/cabinet,
 /turf/open/floor/wood,
@@ -77,7 +81,7 @@ U
 t
 M
 K
-U
+o
 "}
 (3,1,1) = {"
 U
@@ -91,7 +95,7 @@ U
 U
 U
 U
-U
+o
 "}
 (5,1,1) = {"
 U
@@ -105,7 +109,7 @@ U
 O
 j
 A
-U
+o
 "}
 (7,1,1) = {"
 U

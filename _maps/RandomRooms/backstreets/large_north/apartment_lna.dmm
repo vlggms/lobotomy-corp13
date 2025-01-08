@@ -226,6 +226,10 @@
 "L" = (
 /turf/closed/indestructible/reinforced,
 /area/city/backstreets_room)
+"M" = (
+/obj/structure/sign/warning/backstreets_2,
+/turf/closed/indestructible/reinforced,
+/area/city/backstreets_room)
 "N" = (
 /obj/structure/mineral_door/wood,
 /turf/open/indestructible/hoteltile,
@@ -431,7 +435,7 @@ p
 b
 b
 A
-L
+M
 "}
 (11,1,1) = {"
 L
@@ -451,7 +455,7 @@ L
 A
 k
 b
-L
+M
 "}
 (13,1,1) = {"
 L

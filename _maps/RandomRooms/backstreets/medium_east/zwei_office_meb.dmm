@@ -46,6 +46,10 @@
 "x" = (
 /turf/closed/indestructible/reinforced,
 /area/city/backstreets_room)
+"z" = (
+/obj/structure/sign/warning/backstreets_2,
+/turf/closed/indestructible/reinforced,
+/area/city/backstreets_room)
 "A" = (
 /obj/structure/table/wood,
 /turf/open/floor/carpet/blue,
@@ -128,10 +132,10 @@ x
 x
 x
 x
-x
+z
 H
 H
-x
+z
 "}
 (2,1,1) = {"
 x

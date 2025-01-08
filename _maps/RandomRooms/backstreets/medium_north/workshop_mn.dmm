@@ -44,6 +44,10 @@
 "B" = (
 /turf/open/floor/plasteel/dark,
 /area/city/backstreets_room)
+"D" = (
+/obj/structure/sign/warning/backstreets_3,
+/turf/closed/indestructible/reinforced,
+/area/city/backstreets_room)
 "L" = (
 /obj/structure/forge,
 /turf/open/floor/plasteel/dark,
@@ -106,7 +110,7 @@ T
 U
 B
 t
-Q
+D
 "}
 (5,1,1) = {"
 Q
@@ -130,7 +134,7 @@ Q
 Q
 Q
 B
-Q
+D
 "}
 (8,1,1) = {"
 Q

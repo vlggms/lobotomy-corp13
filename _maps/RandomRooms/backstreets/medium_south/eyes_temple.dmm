@@ -20,6 +20,10 @@
 /mob/living/simple_animal/hostile/ordeal/bigBirdEye,
 /turf/open/floor/plasteel/cult,
 /area/city/backstreets_room)
+"x" = (
+/obj/structure/sign/warning/backstreets_2,
+/turf/closed/wall/mineral/cult,
+/area/city/backstreets_room)
 "z" = (
 /obj/effect/decal/cleanable/blood,
 /obj/effect/decal/cleanable/dirt/dust,
@@ -67,6 +71,10 @@
 "Q" = (
 /turf/closed/indestructible/reinforced,
 /area/city/backstreets_room)
+"V" = (
+/obj/structure/sign/warning/backstreets_2,
+/turf/closed/indestructible/reinforced,
+/area/city/backstreets_room)
 "X" = (
 /obj/effect/decal/cleanable/dirt/dust,
 /turf/open/floor/plasteel/cult,
@@ -76,7 +84,7 @@
 /area/city/backstreets_room)
 
 (1,1,1) = {"
-Y
+x
 Y
 Y
 Y
@@ -92,7 +100,7 @@ E
 Y
 "}
 (3,1,1) = {"
-Q
+V
 K
 Y
 Y

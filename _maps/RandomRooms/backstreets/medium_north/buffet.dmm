@@ -25,6 +25,10 @@
 /obj/item/food/crab_rangoon,
 /turf/open/floor/carpet/royalblack,
 /area/city/backstreets_room)
+"o" = (
+/obj/structure/sign/warning/backstreets_2,
+/turf/closed/indestructible/reinforced,
+/area/city/backstreets_room)
 "p" = (
 /obj/structure/table/wood/fancy/red,
 /obj/item/food/burger/bigbite,
@@ -137,7 +141,7 @@ E
 M
 Y
 U
-Q
+o
 "}
 (3,1,1) = {"
 Q
@@ -153,7 +157,7 @@ O
 U
 D
 x
-Q
+o
 "}
 (5,1,1) = {"
 Q
@@ -177,7 +181,7 @@ H
 U
 N
 U
-Q
+o
 "}
 (8,1,1) = {"
 Q
@@ -193,7 +197,7 @@ z
 j
 r
 x
-Q
+o
 "}
 (10,1,1) = {"
 Q
