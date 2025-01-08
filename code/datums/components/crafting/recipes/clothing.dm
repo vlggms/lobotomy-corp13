@@ -64,6 +64,21 @@
 	time = 45
 	category = CAT_CLOTHING
 
+/datum/crafting_recipe/santahat
+	name = "Santa Hat"
+	result = /obj/item/clothing/head/santa
+	reqs = list(/obj/item/stack/sheet/cotton/cloth = 4)
+	time = 10
+	category = CAT_CLOTHING
+
+/datum/crafting_recipe/reindeerhat
+	name = "Reindeer Antlers"
+	result = /obj/item/clothing/head/hardhat/reindeer
+	reqs = list(/obj/item/stack/sheet/cotton/cloth = 1,
+				/obj/item/light/bulb = 1)
+	time = 10
+	category = CAT_CLOTHING
+
 /////DURATHREAD
 /datum/crafting_recipe/durathread_vest
 	name = "Durathread Vest"
