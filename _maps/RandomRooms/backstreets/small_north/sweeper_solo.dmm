@@ -47,6 +47,8 @@
 /obj/structure/grille/broken,
 /obj/item/shard,
 /obj/effect/decal/cleanable/dirt,
+/obj/effect/spawner/structure/window/reinforced/indestructable,
+/obj/structure/sign/warning/backstreets_2,
 /turf/open/floor/plasteel/shuttle,
 /area/city/backstreets_room)
 "q" = (
@@ -78,6 +80,10 @@
 	},
 /turf/open/floor/plasteel/shuttle,
 /area/city/backstreets_room)
+"E" = (
+/obj/machinery/door/airlock/alarmlock,
+/turf/open/floor/plasteel/shuttle,
+/area/city/backstreets_room)
 "J" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/blood/gibs/torso,
@@ -103,6 +109,8 @@
 /obj/item/shard,
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/blood/tracks,
+/obj/effect/spawner/structure/window/reinforced/indestructable,
+/obj/structure/sign/warning/backstreets_2,
 /turf/open/floor/plasteel/shuttle,
 /area/city/backstreets_room)
 "R" = (
@@ -143,7 +151,7 @@ U
 d
 f
 W
-W
+E
 "}
 (5,1,1) = {"
 U

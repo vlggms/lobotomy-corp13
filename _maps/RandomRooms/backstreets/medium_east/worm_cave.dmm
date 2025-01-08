@@ -54,6 +54,10 @@
 /obj/structure/flora/rock,
 /turf/open/floor/plating/asteroid/basalt,
 /area/city/backstreets_room)
+"Q" = (
+/obj/structure/sign/warning/backstreets_2,
+/turf/closed/indestructible/reinforced,
+/area/city/backstreets_room)
 "Y" = (
 /turf/open/floor/plating/asteroid/basalt,
 /area/city/backstreets_room)
@@ -66,9 +70,9 @@ x
 H
 x
 a
-x
+Q
 E
-x
+Q
 "}
 (2,1,1) = {"
 x

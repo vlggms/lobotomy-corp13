@@ -43,6 +43,10 @@
 /obj/machinery/bsa/back,
 /turf/open/floor/plating,
 /area/city/backstreets_room)
+"G" = (
+/obj/structure/sign/warning/backstreets_3,
+/turf/closed/indestructible/reinforced,
+/area/city/backstreets_room)
 "J" = (
 /obj/structure/table,
 /obj/item/documents,
@@ -202,7 +206,7 @@ O
 L
 "}
 (14,1,1) = {"
-L
+G
 L
 L
 L
@@ -222,7 +226,7 @@ O
 L
 "}
 (16,1,1) = {"
-L
+G
 L
 L
 L

@@ -119,6 +119,13 @@
 	},
 /turf/open/floor/carpet/green,
 /area/city/backstreets_room)
+"G" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/sign/warning/backstreets_1,
+/turf/closed/indestructible/reinforced{
+	color = "#42f545"
+	},
+/area/city/backstreets_room)
 "J" = (
 /turf/closed/indestructible/reinforced{
 	color = "#42f545"
@@ -236,7 +243,7 @@ s
 L
 O
 U
-u
+G
 "}
 (5,1,1) = {"
 J
@@ -260,7 +267,7 @@ s
 n
 L
 s
-u
+G
 "}
 (8,1,1) = {"
 J

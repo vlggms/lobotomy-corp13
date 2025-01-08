@@ -6,6 +6,10 @@
 /obj/structure/spider/stickyweb,
 /turf/open/floor/wood,
 /area/city/backstreets_room)
+"h" = (
+/obj/structure/sign/warning/backstreets_3,
+/turf/closed/indestructible/reinforced,
+/area/city/backstreets_room)
 "j" = (
 /obj/structure/spider/stickyweb,
 /mob/living/simple_animal/hostile/ordeal/steel_dawn/steel_noon/flying,
@@ -65,7 +69,7 @@ U
 a
 t
 K
-U
+h
 "}
 (3,1,1) = {"
 U
@@ -93,7 +97,7 @@ U
 O
 j
 R
-U
+h
 "}
 (7,1,1) = {"
 U

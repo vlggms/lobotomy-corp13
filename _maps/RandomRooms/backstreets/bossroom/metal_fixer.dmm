@@ -81,6 +81,10 @@
 	},
 /turf/open/floor/stone,
 /area/city/backstreets_room)
+"o" = (
+/obj/structure/sign/warning/backstreets_4,
+/turf/closed/wall/mineral/iron,
+/area/city/backstreets_room)
 "p" = (
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/effect/turf_decal/siding/wideplating/dark/corner{
@@ -125,6 +129,11 @@
 	dir = 8
 	},
 /turf/open/floor/stone,
+/area/city/backstreets_room)
+"z" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/mineral_door/iron,
+/turf/open/floor/carpet/royalblack,
 /area/city/backstreets_room)
 "A" = (
 /obj/effect/decal/cleanable/dirt/dust,
@@ -484,7 +493,7 @@ P
 H
 g
 b
-b
+o
 "}
 (10,1,1) = {"
 r
@@ -506,7 +515,7 @@ V
 A
 V
 V
-V
+z
 "}
 (11,1,1) = {"
 r
@@ -528,7 +537,7 @@ V
 A
 V
 V
-V
+z
 "}
 (12,1,1) = {"
 r
@@ -550,7 +559,7 @@ I
 K
 g
 b
-b
+o
 "}
 (13,1,1) = {"
 T

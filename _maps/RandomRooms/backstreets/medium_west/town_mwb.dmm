@@ -37,12 +37,23 @@
 /obj/structure/lootcrate/money,
 /turf/open/indestructible/necropolis/air,
 /area/city/backstreets_room)
+"D" = (
+/obj/structure/sign/warning/backstreets_3,
+/turf/closed/indestructible/necropolis,
+/area/city/backstreets_room)
 "H" = (
 /obj/structure/meatfloor,
 /turf/closed/indestructible/necropolis,
 /area/city/backstreets_room)
 "P" = (
 /obj/structure/meatfloor,
+/turf/open/indestructible/necropolis/air,
+/area/city/backstreets_room)
+"U" = (
+/obj/structure/meatfloor,
+/obj/machinery/door/airlock/cult/unruned/friendly{
+	resistance_flags = 64
+	},
 /turf/open/indestructible/necropolis/air,
 /area/city/backstreets_room)
 "Y" = (
@@ -107,8 +118,8 @@ p
 P
 P
 d
-P
-l
+U
+D
 l
 "}
 (6,1,1) = {"
@@ -118,7 +129,7 @@ H
 l
 H
 H
-l
+D
 P
 z
 l

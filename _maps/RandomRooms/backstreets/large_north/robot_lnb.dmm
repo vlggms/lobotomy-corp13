@@ -7,7 +7,9 @@
 /turf/open/floor/plating,
 /area/city/backstreets_room)
 "k" = (
-/obj/structure/fence/door,
+/obj/structure/fence/door{
+	resistance_flags = 64
+	},
 /turf/open/floor/plating/rust,
 /area/city/backstreets_room)
 "n" = (
@@ -22,6 +24,10 @@
 "t" = (
 /obj/effect/decal/cleanable/robot_debris,
 /turf/open/floor/plating,
+/area/city/backstreets_room)
+"u" = (
+/obj/structure/sign/warning/backstreets_3,
+/turf/closed/indestructible/reinforced,
 /area/city/backstreets_room)
 "x" = (
 /obj/effect/landmark/cratespawn/corpo,
@@ -75,9 +81,15 @@
 /obj/structure/lootcrate/tres,
 /turf/open/floor/plating/rust,
 /area/city/backstreets_room)
+"U" = (
+/obj/structure/lootcrate/money,
+/obj/structure/lootcrate/money,
+/turf/open/floor/plating,
+/area/city/backstreets_room)
 "Y" = (
 /obj/structure/fence{
-	dir = 8
+	dir = 8;
+	resistance_flags = 64
 	},
 /turf/open/floor/plating/rust,
 /area/city/backstreets_room)
@@ -90,7 +102,7 @@ L
 L
 L
 L
-L
+u
 "}
 (2,1,1) = {"
 L
@@ -114,8 +126,8 @@ O
 "}
 (4,1,1) = {"
 L
-a
-a
+b
+U
 N
 D
 n
@@ -125,7 +137,7 @@ O
 (5,1,1) = {"
 L
 r
-b
+D
 n
 n
 n
@@ -140,7 +152,7 @@ L
 L
 L
 L
-L
+u
 "}
 (7,1,1) = {"
 L
@@ -174,7 +186,7 @@ O
 "}
 (10,1,1) = {"
 L
-b
+U
 S
 a
 a
@@ -190,7 +202,7 @@ L
 L
 L
 L
-L
+u
 "}
 (12,1,1) = {"
 L
@@ -240,5 +252,5 @@ L
 L
 L
 L
-L
+u
 "}

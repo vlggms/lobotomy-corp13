@@ -7,6 +7,11 @@
 	},
 /turf/open/floor/plating/rust,
 /area/city/backstreets_room)
+"b" = (
+/obj/effect/decal/cleanable/blood/tracks,
+/obj/structure/sign/warning/backstreets_3,
+/turf/closed/indestructible/necropolis,
+/area/city/backstreets_room)
 "d" = (
 /obj/effect/decal/cleanable/blood/gibs/core,
 /turf/open/floor/plating/rust,
@@ -29,6 +34,9 @@
 "j" = (
 /obj/effect/decal/cleanable/blood/gibs/old,
 /obj/effect/decal/cleanable/blood/tracks,
+/obj/machinery/door/airlock/cult/unruned/friendly{
+	resistance_flags = 64
+	},
 /turf/open/floor/plating/asteroid/basalt,
 /area/city/backstreets_room)
 "l" = (
@@ -104,7 +112,7 @@
 /area/city/backstreets_room)
 "H" = (
 /obj/effect/decal/cleanable/blood/tracks,
-/turf/open/floor/plating/asteroid/basalt,
+/turf/closed/indestructible/necropolis,
 /area/city/backstreets_room)
 "I" = (
 /mob/living/simple_animal/hostile/lovetown/slasher,
@@ -118,7 +126,7 @@
 /obj/effect/decal/cleanable/blood/tracks{
 	dir = 5
 	},
-/turf/open/floor/plating/asteroid/basalt,
+/turf/closed/indestructible/necropolis,
 /area/city/backstreets_room)
 "M" = (
 /obj/effect/decal/cleanable/blood/footprints,
@@ -154,7 +162,7 @@
 /area/city/backstreets_room)
 "S" = (
 /obj/effect/decal/cleanable/blood/gibs/core,
-/turf/open/floor/plating/asteroid/basalt,
+/turf/closed/indestructible/necropolis,
 /area/city/backstreets_room)
 "U" = (
 /obj/structure/lootcrate/money,
@@ -169,6 +177,9 @@
 /obj/structure/meatfloor,
 /obj/effect/decal/cleanable/blood/tracks,
 /turf/open/floor/plating/rust,
+/area/city/backstreets_room)
+"Z" = (
+/turf/closed/indestructible/necropolis,
 /area/city/backstreets_room)
 
 (1,1,1) = {"
@@ -208,7 +219,7 @@ U
 x
 "}
 (4,1,1) = {"
-x
+Z
 X
 v
 o
@@ -220,7 +231,7 @@ M
 x
 "}
 (5,1,1) = {"
-x
+Z
 R
 e
 N
@@ -229,17 +240,17 @@ n
 f
 e
 o
-x
+Z
 "}
 (6,1,1) = {"
-x
+Z
 S
 J
-H
+b
 j
+b
 H
 H
 H
-H
-x
+Z
 "}

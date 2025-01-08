@@ -48,6 +48,10 @@
 /obj/structure/flora/ausbushes/grassybush,
 /turf/open/floor/grass/fairy,
 /area/city/backstreets_room)
+"N" = (
+/obj/structure/sign/warning/backstreets_3,
+/turf/closed/indestructible/reinforced,
+/area/city/backstreets_room)
 "Q" = (
 /turf/closed/indestructible/reinforced,
 /area/city/backstreets_room)
@@ -96,7 +100,7 @@ x
 Y
 t
 c
-Q
+N
 "}
 (5,1,1) = {"
 Q
@@ -120,7 +124,7 @@ t
 t
 t
 t
-Q
+N
 "}
 (8,1,1) = {"
 Q

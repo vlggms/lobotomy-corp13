@@ -119,6 +119,10 @@
 /obj/structure/fermenting_barrel,
 /turf/open/floor/carpet/royalblack,
 /area/city/backstreets_room)
+"O" = (
+/obj/structure/sign/warning/backstreets_1,
+/turf/closed/indestructible/reinforced,
+/area/city/backstreets_room)
 "Q" = (
 /turf/closed/indestructible/reinforced,
 /area/city/backstreets_room)
@@ -169,7 +173,7 @@ V
 Q
 "}
 (4,1,1) = {"
-Q
+O
 q
 F
 r
@@ -193,7 +197,7 @@ S
 Q
 "}
 (7,1,1) = {"
-Q
+O
 c
 C
 B

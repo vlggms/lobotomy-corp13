@@ -2,6 +2,12 @@
 "a" = (
 /turf/closed/indestructible/reinforced,
 /area/city/backstreets_room)
+"e" = (
+/obj/effect/spawner/structure/window,
+/obj/structure/barricade/wooden/crude,
+/obj/structure/sign/warning/backstreets_1,
+/turf/open/floor/wood,
+/area/city/backstreets_room)
 "s" = (
 /obj/structure/mineral_door/wood,
 /turf/open/floor/wood,
@@ -39,9 +45,9 @@
 (1,1,1) = {"
 a
 X
-X
+e
 s
-X
+e
 X
 a
 "}

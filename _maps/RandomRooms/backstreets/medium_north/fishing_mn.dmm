@@ -1,11 +1,16 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
 "a" = (
+/obj/machinery/door/airlock/vault,
 /turf/open/floor/facility/halls,
 /area/city/backstreets_room)
 "j" = (
 /obj/structure/lattice/catwalk,
 /obj/item/fishing_rod/gold,
 /turf/open/water/deep/polluted,
+/area/city/backstreets_room)
+"o" = (
+/obj/structure/sign/warning/backstreets_1,
+/turf/closed/indestructible/reinforced,
 /area/city/backstreets_room)
 "u" = (
 /obj/structure/lattice/catwalk,
@@ -100,7 +105,7 @@ B
 x
 x
 x
-Q
+o
 "}
 (9,1,1) = {"
 Q
@@ -116,5 +121,5 @@ Q
 Q
 Q
 Q
-Q
+o
 "}

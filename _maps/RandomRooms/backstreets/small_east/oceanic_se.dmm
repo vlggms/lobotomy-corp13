@@ -44,6 +44,10 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/facility/dark,
 /area/city/backstreets_room)
+"D" = (
+/obj/structure/sign/warning/backstreets_2,
+/turf/closed/indestructible/reinforced,
+/area/city/backstreets_room)
 "J" = (
 /obj/structure/table/reinforced,
 /obj/item/reagent_containers/glass/bottle,
@@ -93,9 +97,9 @@ a
 a
 a
 a
-a
+D
 X
-a
+D
 "}
 (2,1,1) = {"
 a

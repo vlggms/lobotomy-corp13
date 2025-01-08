@@ -39,6 +39,10 @@
 "U" = (
 /turf/closed/indestructible/reinforced,
 /area/city/backstreets_room)
+"Z" = (
+/obj/structure/sign/warning/backstreets_3,
+/turf/closed/indestructible/reinforced,
+/area/city/backstreets_room)
 
 (1,1,1) = {"
 U
@@ -55,7 +59,7 @@ a
 U
 "}
 (3,1,1) = {"
-U
+Z
 t
 t
 x
@@ -69,7 +73,7 @@ t
 U
 "}
 (5,1,1) = {"
-U
+Z
 t
 t
 x

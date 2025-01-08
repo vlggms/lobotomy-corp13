@@ -2,10 +2,17 @@
 "a" = (
 /turf/open/floor/carpet/royalblack,
 /area/city/backstreets_room)
+"q" = (
+/turf/closed/indestructible/fakeglass,
+/area/city/backstreets_room)
 "t" = (
 /obj/structure/table/wood/fancy/black,
 /obj/item/stack/spacecash/c200,
 /turf/open/floor/carpet/royalblack,
+/area/city/backstreets_room)
+"u" = (
+/obj/structure/sign/warning/backstreets_2,
+/turf/closed/indestructible/reinforced,
 /area/city/backstreets_room)
 "x" = (
 /obj/structure/table/wood/fancy/black,
@@ -20,12 +27,14 @@
 /turf/open/floor/carpet/royalblack,
 /area/city/backstreets_room)
 "N" = (
-/obj/machinery/door/airlock/public/glass,
+/obj/machinery/door/airlock/public/glass{
+	resistance_flags = 64
+	},
 /turf/open/floor/plating/asteroid/basalt,
 /area/city/backstreets_room)
 "P" = (
-/obj/effect/spawner/structure/window,
-/turf/open/floor/plating/asteroid/basalt,
+/obj/structure/sign/warning/backstreets_2,
+/turf/closed/indestructible/fakeglass,
 /area/city/backstreets_room)
 "R" = (
 /obj/item/candle/infinite{
@@ -52,21 +61,21 @@ U
 U
 "}
 (2,1,1) = {"
-P
+q
 a
 a
 t
 U
 "}
 (3,1,1) = {"
-P
+q
 R
 S
 R
 U
 "}
 (4,1,1) = {"
-P
+q
 a
 x
 a
@@ -87,7 +96,7 @@ a
 U
 "}
 (7,1,1) = {"
-U
+u
 U
 U
 U

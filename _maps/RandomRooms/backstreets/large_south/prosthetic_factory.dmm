@@ -315,6 +315,10 @@
 "R" = (
 /turf/open/floor/holofloor/dark,
 /area/city/backstreets_room)
+"S" = (
+/obj/structure/sign/warning/backstreets_2,
+/turf/closed/indestructible/reinforced,
+/area/city/backstreets_room)
 "T" = (
 /mob/living/simple_animal/hostile/ordeal/green_bot{
 	name = "guard bot"
@@ -464,7 +468,7 @@ L
 L
 "}
 (12,1,1) = {"
-L
+S
 i
 y
 R
@@ -494,7 +498,7 @@ X
 L
 "}
 (15,1,1) = {"
-L
+S
 y
 T
 R
