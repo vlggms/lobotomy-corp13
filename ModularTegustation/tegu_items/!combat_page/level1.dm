@@ -1,7 +1,7 @@
 /obj/item/combat_page/level1
 	name = "combat page L1"
 	desc = "A page that contains a level 1 combat page"
-	reward_pe = 150
+	reward_pe = 500
 	spawn_enemies = list(/mob/living/simple_animal/hostile/kcorp/drone)
 	spawn_type = "random"
 	spawn_number = 2

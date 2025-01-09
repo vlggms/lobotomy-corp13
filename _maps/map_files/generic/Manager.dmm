@@ -1687,7 +1687,7 @@
 /turf/open/floor/carpet/black,
 /area/facility_hallway/manager)
 "yO" = (
-/obj/machinery/computer/extraction_cargo{
+/obj/machinery/computer/extraction_cargo/discipline{
 	dir = 4
 	},
 /turf/open/floor/carpet/red,

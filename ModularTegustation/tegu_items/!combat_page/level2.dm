@@ -2,7 +2,7 @@
 	combat_level = 2
 	name = "combat page L2"
 	desc = "A page that contains a level 2 combat page"
-	reward_pe = 600
+	reward_pe = 1200
 	spawn_enemies = list(/mob/living/simple_animal/hostile/kcorp/drone)
 	spawn_type = "random"
 	spawn_number = 1
