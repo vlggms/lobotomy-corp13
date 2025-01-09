@@ -895,7 +895,7 @@ All effects don't start immediately, but rather get worse over time; the rate is
 	if(ishuman(M)) //Barefoot causes the imbiber to quickly regenerate brute trauma if they're not wearing shoes.
 		var/mob/living/carbon/human/H = M
 		if(!H.shoes)
-			H.adjustBruteLoss(-3, 0)
+			H.adjustBruteLoss(0, 0)
 			. = 1
 	return ..() || .
 
@@ -1957,7 +1957,7 @@ All effects don't start immediately, but rather get worse over time; the rate is
 	generate_data_info(data)
 
 /datum/reagent/consumable/ethanol/fruit_wine/proc/generate_data_info(list/data)
-	var/const/minimum_percent = 0.15 
+	var/const/minimum_percent = 0.15
 	var/const/notable_percent = minimum_percent * 2
 	var/list/primary_tastes = list()
 	var/list/secondary_tastes = list()
