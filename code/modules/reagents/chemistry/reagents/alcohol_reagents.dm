@@ -891,13 +891,15 @@ All effects don't start immediately, but rather get worse over time; the rate is
 	glass_name = "Barefoot"
 	glass_desc = "Barefoot and pregnant."
 
+/* LOBOTOMYCORPORATION REMOVAL
 /datum/reagent/consumable/ethanol/barefoot/on_mob_life(mob/living/carbon/M)
 	if(ishuman(M)) //Barefoot causes the imbiber to quickly regenerate brute trauma if they're not wearing shoes.
 		var/mob/living/carbon/human/H = M
 		if(!H.shoes)
-			H.adjustBruteLoss(0, 0)
+			H.adjustBruteLoss(-3, 0)
 			. = 1
 	return ..() || .
+*/
 
 /datum/reagent/consumable/ethanol/snowwhite
 	name = "Snow White"
