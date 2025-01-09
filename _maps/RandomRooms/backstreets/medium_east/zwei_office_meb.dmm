@@ -47,7 +47,6 @@
 /turf/closed/indestructible/reinforced,
 /area/city/backstreets_room)
 "z" = (
-/obj/structure/sign/warning/backstreets_2,
 /turf/closed/indestructible/reinforced,
 /area/city/backstreets_room)
 "A" = (

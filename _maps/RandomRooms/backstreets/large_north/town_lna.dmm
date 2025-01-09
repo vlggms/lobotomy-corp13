@@ -1,6 +1,5 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
 "av" = (
-/obj/structure/sign/warning/backstreets_3,
 /turf/closed/indestructible/reinforced,
 /area/city/backstreets_room)
 "bk" = (
@@ -252,7 +251,6 @@
 /area/city/backstreets_room)
 "EF" = (
 /obj/effect/rune/manifest,
-/obj/structure/sign/warning/backstreets_3,
 /turf/closed/indestructible/reinforced,
 /area/city/backstreets_room)
 "FA" = (

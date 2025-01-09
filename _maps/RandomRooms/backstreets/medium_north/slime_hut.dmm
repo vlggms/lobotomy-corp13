@@ -121,7 +121,6 @@
 /area/city/backstreets_room)
 "G" = (
 /obj/effect/decal/cleanable/dirt/dust,
-/obj/structure/sign/warning/backstreets_1,
 /turf/closed/indestructible/reinforced{
 	color = "#42f545"
 	},

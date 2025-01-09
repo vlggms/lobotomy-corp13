@@ -140,7 +140,6 @@
 /area/city/backstreets_room)
 "jL" = (
 /obj/effect/decal/cleanable/dirt/dust,
-/obj/structure/sign/warning/backstreets_2,
 /turf/closed/indestructible/reinforced,
 /area/city/backstreets_room)
 "kv" = (
@@ -234,7 +233,6 @@
 	pixel_x = -3;
 	pixel_y = -8
 	},
-/obj/structure/sign/warning/backstreets_2,
 /turf/closed/indestructible/reinforced,
 /area/city/backstreets_room)
 "rP" = (
@@ -307,7 +305,6 @@
 /turf/open/floor/plating/dirt/jungle/dark,
 /area/city/backstreets_room)
 "yd" = (
-/obj/structure/sign/warning/backstreets_2,
 /turf/closed/indestructible/reinforced,
 /area/city/backstreets_room)
 "yf" = (
@@ -590,7 +587,6 @@
 "VN" = (
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/effect/decal/cleanable/dirt/dust,
-/obj/structure/sign/warning/backstreets_2,
 /turf/closed/indestructible/reinforced,
 /area/city/backstreets_room)
 "VO" = (

@@ -17,7 +17,6 @@
 /turf/open/indestructible/paper,
 /area/city/backstreets_room)
 "q" = (
-/obj/structure/sign/warning/backstreets_3,
 /turf/closed/indestructible/paper,
 /area/city/backstreets_room)
 "t" = (

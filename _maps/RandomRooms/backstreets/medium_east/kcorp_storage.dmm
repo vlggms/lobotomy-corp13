@@ -58,7 +58,6 @@
 /turf/open/floor/carpet/green,
 /area/city/backstreets_room)
 "w" = (
-/obj/structure/sign/warning/backstreets_1,
 /turf/closed/indestructible/reinforced,
 /area/city/backstreets_room)
 "x" = (

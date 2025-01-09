@@ -9,7 +9,6 @@
 /area/city/backstreets_room)
 "b" = (
 /obj/effect/decal/cleanable/blood/tracks,
-/obj/structure/sign/warning/backstreets_3,
 /turf/closed/indestructible/necropolis,
 /area/city/backstreets_room)
 "d" = (

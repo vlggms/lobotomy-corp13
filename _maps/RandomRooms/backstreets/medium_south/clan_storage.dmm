@@ -120,7 +120,6 @@
 /turf/open/floor/sepia,
 /area/city/backstreets_room)
 "K" = (
-/obj/structure/sign/warning/backstreets_3,
 /turf/closed/indestructible/reinforced,
 /area/city/backstreets_room)
 "L" = (

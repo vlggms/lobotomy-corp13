@@ -9,7 +9,6 @@
 /turf/open/water/deep/polluted,
 /area/city/backstreets_room)
 "o" = (
-/obj/structure/sign/warning/backstreets_1,
 /turf/closed/indestructible/reinforced,
 /area/city/backstreets_room)
 "u" = (

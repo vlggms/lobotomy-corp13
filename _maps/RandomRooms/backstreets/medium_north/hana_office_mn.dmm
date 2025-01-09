@@ -44,7 +44,6 @@
 /turf/open/floor/facility/white,
 /area/city/backstreets_room)
 "y" = (
-/obj/structure/sign/warning/backstreets_3,
 /turf/closed/wall/mineral/plastitanium/nosmooth,
 /area/city/backstreets_room)
 "B" = (

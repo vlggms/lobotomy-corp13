@@ -4,7 +4,6 @@
 /area/city/backstreets_alley)
 "m" = (
 /obj/machinery/light/red,
-/obj/structure/sign/warning/backstreets_3,
 /turf/closed/indestructible/reinforced,
 /area/city/backstreets_alley)
 "t" = (
@@ -21,7 +20,6 @@
 /turf/open/floor/carpet/stellar,
 /area/city/backstreets_alley)
 "J" = (
-/obj/structure/sign/warning/backstreets_3,
 /turf/closed/indestructible/reinforced,
 /area/city/backstreets_alley)
 "M" = (

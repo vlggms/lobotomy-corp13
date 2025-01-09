@@ -7,7 +7,6 @@
 /turf/open/floor/wood,
 /area/city/backstreets_room)
 "h" = (
-/obj/structure/sign/warning/backstreets_3,
 /turf/closed/indestructible/reinforced,
 /area/city/backstreets_room)
 "j" = (

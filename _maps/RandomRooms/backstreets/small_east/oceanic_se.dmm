@@ -45,7 +45,6 @@
 /turf/open/floor/facility/dark,
 /area/city/backstreets_room)
 "D" = (
-/obj/structure/sign/warning/backstreets_2,
 /turf/closed/indestructible/reinforced,
 /area/city/backstreets_room)
 "J" = (

@@ -135,7 +135,6 @@
 /turf/open/floor/plating/dirt/jungle/wasteland,
 /area/city/backstreets_room)
 "K" = (
-/obj/structure/sign/warning/backstreets_2,
 /turf/closed/indestructible/reinforced,
 /area/city/backstreets_room)
 "L" = (

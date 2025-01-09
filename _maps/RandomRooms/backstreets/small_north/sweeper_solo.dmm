@@ -48,7 +48,6 @@
 /obj/item/shard,
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/spawner/structure/window/reinforced/indestructable,
-/obj/structure/sign/warning/backstreets_2,
 /turf/open/floor/plasteel/shuttle,
 /area/city/backstreets_room)
 "q" = (
@@ -110,7 +109,6 @@
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/blood/tracks,
 /obj/effect/spawner/structure/window/reinforced/indestructable,
-/obj/structure/sign/warning/backstreets_2,
 /turf/open/floor/plasteel/shuttle,
 /area/city/backstreets_room)
 "R" = (

@@ -47,7 +47,6 @@
 /turf/open/floor/mineral/titanium/tiled/white,
 /area/city/backstreets_room)
 "N" = (
-/obj/structure/sign/warning/backstreets_3,
 /turf/closed/indestructible/reinforced,
 /area/city/backstreets_room)
 "P" = (

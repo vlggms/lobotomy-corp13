@@ -130,7 +130,6 @@
 	pixel_x = -9;
 	pixel_y = -3
 	},
-/obj/structure/sign/warning/backstreets_3,
 /turf/closed/indestructible/reinforced,
 /area/city/backstreets_room)
 "ig" = (
@@ -571,7 +570,6 @@
 	pixel_x = 23;
 	pixel_y = -3
 	},
-/obj/structure/sign/warning/backstreets_3,
 /turf/closed/indestructible/reinforced,
 /area/city/backstreets_room)
 "JU" = (
