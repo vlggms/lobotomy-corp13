@@ -114,7 +114,6 @@
 /turf/open/floor/wood,
 /area/city/backstreets_room)
 "GD" = (
-/obj/structure/sign/warning/backstreets_2,
 /turf/closed/indestructible/reinforced,
 /area/city/backstreets_room)
 "HL" = (

@@ -21,7 +21,6 @@
 /turf/open/floor/plasteel/sepia,
 /area/city/backstreets_room)
 "m" = (
-/obj/structure/sign/warning/backstreets_1,
 /turf/closed/indestructible/reinforced,
 /area/city/backstreets_room)
 "n" = (

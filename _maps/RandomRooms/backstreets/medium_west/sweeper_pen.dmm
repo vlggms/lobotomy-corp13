@@ -67,7 +67,6 @@
 /obj/structure/fence/end{
 	resistance_flags = 64
 	},
-/obj/structure/sign/warning/backstreets_3,
 /turf/open/floor/plating/dirt/jungle/dark,
 /area/city/backstreets_room)
 "v" = (
@@ -96,7 +95,6 @@
 	dir = 7;
 	resistance_flags = 64
 	},
-/obj/structure/sign/warning/backstreets_3,
 /turf/open/floor/plating/dirt/jungle/dark,
 /area/city/backstreets_room)
 "C" = (
@@ -158,7 +156,6 @@
 	dir = 4;
 	resistance_flags = 64
 	},
-/obj/structure/sign/warning/backstreets_3,
 /turf/open/floor/plating/dirt/jungle/dark,
 /area/city/backstreets_room)
 "Y" = (

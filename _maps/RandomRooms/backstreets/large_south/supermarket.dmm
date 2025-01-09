@@ -54,7 +54,6 @@
 /turf/open/floor/plasteel/shuttle,
 /area/city/backstreets_room)
 "r" = (
-/obj/structure/sign/warning/backstreets_3,
 /turf/closed/indestructible/fakeglass,
 /area/city/backstreets_room)
 "t" = (

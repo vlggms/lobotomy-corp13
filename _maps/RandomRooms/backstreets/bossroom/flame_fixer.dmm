@@ -341,7 +341,6 @@
 /turf/open/floor/holofloor/carpet,
 /area/city/backstreets_room)
 "Lp" = (
-/obj/structure/sign/warning/backstreets_4,
 /turf/closed/indestructible/wood,
 /area/city/backstreets_room)
 "LY" = (

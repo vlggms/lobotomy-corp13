@@ -85,7 +85,6 @@
 	pixel_x = 16;
 	pixel_y = -3
 	},
-/obj/structure/sign/warning/backstreets_3,
 /turf/closed/indestructible/reinforced,
 /area/city/backstreets_room)
 "o" = (
@@ -94,7 +93,6 @@
 	pixel_x = -9;
 	pixel_y = -3
 	},
-/obj/structure/sign/warning/backstreets_3,
 /turf/closed/indestructible/reinforced,
 /area/city/backstreets_room)
 "p" = (

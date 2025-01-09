@@ -26,7 +26,6 @@
 /turf/open/floor/carpet/royalblack,
 /area/city/backstreets_room)
 "o" = (
-/obj/structure/sign/warning/backstreets_2,
 /turf/closed/indestructible/reinforced,
 /area/city/backstreets_room)
 "p" = (

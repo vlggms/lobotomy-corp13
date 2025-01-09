@@ -435,7 +435,6 @@
 /turf/open/floor/plasteel/cult,
 /area/city/backstreets_room)
 "Qz" = (
-/obj/structure/sign/warning/backstreets_4,
 /turf/closed/indestructible/reinforced,
 /area/city/backstreets_room)
 "Rb" = (

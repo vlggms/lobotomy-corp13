@@ -34,7 +34,6 @@
 /turf/open/floor/carpet/blue,
 /area/city/backstreets_room)
 "D" = (
-/obj/structure/sign/warning/backstreets_3,
 /turf/closed/indestructible/reinforced,
 /area/city/backstreets_room)
 "H" = (

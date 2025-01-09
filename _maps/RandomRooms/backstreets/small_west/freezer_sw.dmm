@@ -60,7 +60,6 @@
 /obj/effect/turf_decal/weather/snow/corner{
 	dir = 4
 	},
-/obj/structure/sign/warning/backstreets_2,
 /turf/closed/indestructible/reinforced,
 /area/city/backstreets_alley)
 "J" = (

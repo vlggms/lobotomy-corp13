@@ -20,7 +20,6 @@
 /turf/open/floor/wood,
 /area/city/backstreets_room)
 "g" = (
-/obj/structure/sign/warning/backstreets_2,
 /turf/closed/indestructible/rock,
 /area/city/backstreets_room)
 "j" = (
@@ -99,7 +98,6 @@
 /turf/open/floor/wood,
 /area/city/backstreets_room)
 "F" = (
-/obj/structure/sign/warning/backstreets_2,
 /turf/closed/indestructible/reinforced,
 /area/city/backstreets_room)
 "G" = (

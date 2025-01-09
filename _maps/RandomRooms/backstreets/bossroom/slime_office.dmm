@@ -1600,7 +1600,6 @@
 /turf/open/floor/carpet/green,
 /area/city/backstreets_room)
 "SS" = (
-/obj/structure/sign/warning/backstreets_4,
 /turf/closed/indestructible/reinforced{
 	color = "#42f545"
 	},

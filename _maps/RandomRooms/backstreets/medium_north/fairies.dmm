@@ -49,7 +49,6 @@
 /turf/open/floor/grass/fairy,
 /area/city/backstreets_room)
 "N" = (
-/obj/structure/sign/warning/backstreets_3,
 /turf/closed/indestructible/reinforced,
 /area/city/backstreets_room)
 "Q" = (

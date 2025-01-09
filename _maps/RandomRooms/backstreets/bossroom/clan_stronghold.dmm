@@ -648,7 +648,6 @@
 /turf/open/floor/carpet/black,
 /area/city/backstreets_room)
 "Am" = (
-/obj/structure/sign/warning/backstreets_4,
 /turf/closed/wall/mineral/iron,
 /area/city/backstreets_room)
 "Az" = (

@@ -49,7 +49,6 @@
 /turf/open/floor/carpet/purple,
 /area/city/backstreets_room)
 "s" = (
-/obj/structure/sign/warning/backstreets_4,
 /turf/closed/indestructible/reinforced,
 /area/city/backstreets_room)
 "t" = (

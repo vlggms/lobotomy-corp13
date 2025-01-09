@@ -82,7 +82,6 @@
 /turf/open/floor/stone,
 /area/city/backstreets_room)
 "o" = (
-/obj/structure/sign/warning/backstreets_4,
 /turf/closed/wall/mineral/iron,
 /area/city/backstreets_room)
 "p" = (

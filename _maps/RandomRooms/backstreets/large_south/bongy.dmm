@@ -213,7 +213,6 @@
 /area/city/backstreets_room)
 "F" = (
 /obj/effect/spawner/structure/window,
-/obj/structure/sign/warning/backstreets_2,
 /turf/open/floor/plating,
 /area/city/backstreets_room)
 "G" = (

@@ -7,7 +7,6 @@
 /turf/open/floor/plating/asteroid/basalt,
 /area/city/backstreets_room)
 "l" = (
-/obj/structure/sign/warning/backstreets_3,
 /turf/closed/indestructible/wood,
 /area/city/backstreets_room)
 "t" = (

@@ -11,7 +11,6 @@
 /turf/open/floor/carpet/royalblack,
 /area/city/backstreets_room)
 "u" = (
-/obj/structure/sign/warning/backstreets_2,
 /turf/closed/indestructible/reinforced,
 /area/city/backstreets_room)
 "x" = (
@@ -33,7 +32,6 @@
 /turf/open/floor/plating/asteroid/basalt,
 /area/city/backstreets_room)
 "P" = (
-/obj/structure/sign/warning/backstreets_2,
 /turf/closed/indestructible/fakeglass,
 /area/city/backstreets_room)
 "R" = (

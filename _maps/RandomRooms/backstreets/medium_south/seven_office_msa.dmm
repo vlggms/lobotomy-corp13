@@ -45,7 +45,6 @@
 /turf/open/floor/carpet/green,
 /area/city/backstreets_room)
 "y" = (
-/obj/structure/sign/warning/backstreets_3,
 /turf/closed/indestructible/fakeglass,
 /area/city/backstreets_room)
 "z" = (

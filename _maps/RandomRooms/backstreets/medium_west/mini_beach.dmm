@@ -19,7 +19,6 @@
 /turf/open/floor/plating/asteroid/basalt,
 /area/city/backstreets_room)
 "H" = (
-/obj/structure/sign/warning/backstreets_3,
 /turf/closed/indestructible/reinforced,
 /area/city/backstreets_room)
 "P" = (
