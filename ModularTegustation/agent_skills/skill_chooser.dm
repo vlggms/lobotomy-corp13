@@ -35,9 +35,7 @@
 			)
 
 	for(var/i in 1 to 3)		//You should only get to pick 1-3 of these.
-		var/random_add = pick(classes)
-		available_classes += random_add
-		classes -= random_add
+		available_classes += pick_n_take(classes)
 
 	qdel(src)//Delete it here so you can't re-roll your class.
 
