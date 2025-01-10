@@ -1,3 +1,8 @@
+/mob/living/simple_animal/hostile/ordeal/steel_dawn/Initialize()
+	. = ..()
+	if(SSmaptype.maptype in SSmaptype.citymaps)
+		guaranteed_butcher_results += list(/obj/item/food/meat/slab/human/mutant/moth = 1)
+
 /mob/living/simple_animal/hostile/ordeal/steel_dawn/steel_noon/Initialize()
 	. = ..()
 	if(SSmaptype.maptype in SSmaptype.citymaps)
@@ -18,7 +23,7 @@
 	if(SSmaptype.maptype in SSmaptype.citymaps)
 		melee_damage_lower = 45
 		melee_damage_upper = 50
-		maxHealth = 800
-		health = 800
+		maxHealth = 700
+		health = 700
 		can_burrow = FALSE
 		attack_cooldown = 100

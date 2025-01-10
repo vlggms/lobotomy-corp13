@@ -25,9 +25,9 @@
 		/obj/item/head_trophy,
 		/obj/item/tape/resurgence,
 		/obj/item/refinedpe,
+		/obj/item/raw_anomaly_core,
 	)
 	var/list/level_3 = list(
-		/obj/item/raw_anomaly_core,
 		/obj/item/documents,
 		/obj/item/folder/syndicate,
 		/obj/item/folder/documents,
