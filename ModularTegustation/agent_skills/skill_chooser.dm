@@ -26,6 +26,7 @@
 			"Defensive",
 			"Healing",
 			"Ranged",
+			"Skirmisher",
 			)
 
 	var/list/available_classes = list(
@@ -76,6 +77,18 @@
 			var/datum/action/G = new /datum/action/cooldown/agent_smokedash
 			G.Grant(user)
 			G = new /datum/action/cooldown/autoloader
+			G.Grant(user)
+
+		if("Skirmisher")
+			to_chat(user, span_greenannounce("You have chosen the Skirmisher Agent class. In exchange for 15 lower HP and SP, you get 3 skills to increase movement speed."))
+			user.adjust_attribute_bonus(FORTITUDE_ATTRIBUTE, -15)
+			user.adjust_attribute_bonus(PRUDENCE_ATTRIBUTE, -15)
+
+			var/datum/action/G = new /datum/action/cooldown/dash/agent
+			G.Grant(user)
+			G = new /datum/action/cooldown/blitz
+			G.Grant(user)
+			G = new /datum/action/cooldown/assault_agent
 			G.Grant(user)
 
 	return ..()
