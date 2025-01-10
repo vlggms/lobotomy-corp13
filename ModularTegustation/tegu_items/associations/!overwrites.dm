@@ -12,3 +12,13 @@
 		rapid = 10
 		rapid_fire_delay = 3
 		projectiletype = /obj/projectile/bullet/c9x19mm/greenbot/city
+
+/mob/living/simple_animal/hostile/ordeal/amber_dusk/Initialize()
+	. = ..()
+	if(SSmaptype.maptype in SSmaptype.citymaps)
+		melee_damage_lower = 45
+		melee_damage_upper = 50
+		maxHealth = 800
+		health = 800
+		can_burrow = FALSE
+		attack_cooldown = 100
