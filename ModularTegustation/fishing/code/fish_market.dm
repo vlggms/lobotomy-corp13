@@ -103,14 +103,15 @@
 		var/obj/item/storage/bag/fish/bag = I
 		var/fish_value = 0
 		for(var/item in bag.contents)
+			if(istype(item, /obj/item/stack/fish_points))
+				continue
+
 			if(istype(item, /obj/item/fishing_component/hook/bone))
 				fish_value += 5
 
 			if(istype(item, /obj/item/food/fish))
 				fish_value += ValueFish(item)
 
-			else
-				continue
 			qdel(item)
 
 		AdjustPoints(fish_value)
