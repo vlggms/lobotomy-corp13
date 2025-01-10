@@ -203,8 +203,6 @@
 	var/burrowing = FALSE
 	/// List of currently spawned dawns, so we don't create too many
 	var/list/spawned_mobs = list()
-	//If they can burrow or not.
-	var/can_burrow = TRUE
 
 	var/datum/looping_sound/amberdusk/soundloop
 
@@ -260,10 +258,9 @@
 	. = ..()
 	if(!.) // Dead
 		return FALSE
-	if(can_burrow)
-		if(!burrowing && world.time > burrow_cooldown)
-			AttemptBirth()
-			BurrowIn()
+	if(!burrowing && world.time > burrow_cooldown)
+		AttemptBirth()
+		BurrowIn()
 
 /mob/living/simple_animal/hostile/ordeal/amber_dusk/death(gibbed)
 	if(LAZYLEN(butcher_results))
