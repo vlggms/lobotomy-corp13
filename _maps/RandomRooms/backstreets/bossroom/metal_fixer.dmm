@@ -40,7 +40,11 @@
 /area/city/backstreets_room)
 "h" = (
 /obj/effect/decal/cleanable/dirt/dust,
-/mob/living/simple_animal/hostile/humanoid/fixer/metal,
+/mob/living/simple_animal/hostile/humanoid/fixer/metal{
+	name = "Memory Forger";
+	health = 2000;
+	maxHealth = 2000
+	},
 /turf/open/floor/plating/ashplanet/ash,
 /area/city/backstreets_room)
 "i" = (
@@ -73,9 +77,6 @@
 	anchored = 1
 	},
 /turf/open/floor/stone,
-/area/city/backstreets_room)
-"o" = (
-/turf/closed/wall/mineral/iron,
 /area/city/backstreets_room)
 "p" = (
 /obj/effect/decal/cleanable/dirt/dust,
@@ -121,11 +122,6 @@
 	dir = 8
 	},
 /turf/open/floor/stone,
-/area/city/backstreets_room)
-"z" = (
-/obj/effect/decal/cleanable/dirt/dust,
-/obj/structure/mineral_door/iron,
-/turf/open/floor/carpet/royalblack,
 /area/city/backstreets_room)
 "A" = (
 /obj/effect/decal/cleanable/dirt/dust,
@@ -485,7 +481,7 @@ P
 H
 g
 b
-o
+b
 "}
 (10,1,1) = {"
 r
@@ -507,7 +503,7 @@ V
 A
 V
 V
-z
+V
 "}
 (11,1,1) = {"
 r
@@ -529,7 +525,7 @@ V
 A
 V
 V
-z
+V
 "}
 (12,1,1) = {"
 r
@@ -551,7 +547,7 @@ I
 K
 g
 b
-o
+b
 "}
 (13,1,1) = {"
 T
