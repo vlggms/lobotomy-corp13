@@ -15,7 +15,7 @@
 	if (ishuman(owner))
 		var/mob/living/carbon/human/human = owner
 		human.adjustSanityLoss(10)
-		human.add_movespeed_modifier(/datum/movespeed_modifier/retreat_agent)
+		human.add_movespeed_modifier(/datum/movespeed_modifier/blitz)
 		addtimer(CALLBACK(human, TYPE_PROC_REF(/mob, remove_movespeed_modifier), /datum/movespeed_modifier/blitz), 5 SECONDS, TIMER_UNIQUE | TIMER_OVERRIDE)
 		human.physiology.red_mod *= 1.3
 		human.physiology.white_mod *= 1.3
