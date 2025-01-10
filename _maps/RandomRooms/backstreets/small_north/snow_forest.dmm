@@ -16,10 +16,7 @@
 /mob/living/simple_animal/hostile/runawaybird{
 	name = "crow"
 	},
-/turf/open/floor/grass/snow/safe,
-/area/city/backstreets_room)
-"D" = (
-/turf/closed/indestructible/wood,
+/turf/open/floor/plating/asteroid/basalt,
 /area/city/backstreets_room)
 "J" = (
 /obj/item/food/sundae/jbird,
@@ -47,9 +44,9 @@
 (1,1,1) = {"
 U
 U
-D
-D
-D
+l
+l
+l
 "}
 (2,1,1) = {"
 U
@@ -77,19 +74,19 @@ U
 t
 P
 x
-D
+l
 "}
 (6,1,1) = {"
 U
 t
 a
 R
-D
+l
 "}
 (7,1,1) = {"
 U
 U
-D
-D
-D
+l
+l
+l
 "}
