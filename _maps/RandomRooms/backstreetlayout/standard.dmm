@@ -354,13 +354,6 @@
 /obj/effect/turf_decal/weather/dirt,
 /turf/open/floor/plating/asteroid/basalt,
 /area/city/backstreets_alley)
-"sh" = (
-/obj/effect/turf_decal/weather/dirt{
-	dir = 4
-	},
-/obj/effect/landmark/backstreetspawnwest,
-/turf/open/floor/plating/asteroid/basalt,
-/area/city/backstreets_alley)
 "si" = (
 /obj/effect/portal/permanent{
 	icon_state = "wooden_tv_broken";
@@ -541,13 +534,6 @@
 /obj/structure/table/wood/fancy,
 /turf/open/floor/plating/rust,
 /area/city/backstreets_room)
-"zD" = (
-/obj/effect/turf_decal/weather/dirt{
-	dir = 4
-	},
-/obj/effect/landmark/backstreetspawn,
-/turf/open/floor/plating/asteroid/basalt,
-/area/city/backstreets_alley)
 "Ag" = (
 /obj/structure/spider/stickyweb/genetic,
 /obj/effect/decal/cleanable/cobweb,
@@ -617,13 +603,6 @@
 /obj/effect/landmark/cratespawn/corpo,
 /turf/open/floor/plating/rust,
 /area/city/backstreets_room)
-"EH" = (
-/obj/effect/turf_decal/weather/dirt{
-	dir = 4
-	},
-/obj/effect/landmark/backstreetspawnwest,
-/turf/open/floor/plating/asteroid/basalt,
-/area/city/backstreets_checkpoint)
 "Fg" = (
 /obj/effect/turf_decal/weather/dirt{
 	dir = 4
@@ -638,13 +617,6 @@
 /obj/structure/table/wood/fancy,
 /turf/open/floor/plating/rust,
 /area/city/backstreets_room)
-"Gu" = (
-/obj/effect/turf_decal/weather/dirt{
-	dir = 8
-	},
-/obj/effect/landmark/backstreetspawnwest,
-/turf/open/floor/plating/asteroid/basalt,
-/area/city/backstreets_alley)
 "GL" = (
 /obj/effect/portal/permanent{
 	icon_state = "wooden_tv_broken";
@@ -867,13 +839,6 @@
 	},
 /turf/open/floor/carpet/red,
 /area/city/backstreets_room)
-"Sc" = (
-/obj/effect/turf_decal/weather/dirt{
-	dir = 8
-	},
-/obj/effect/landmark/backstreetspawn,
-/turf/open/floor/plating/asteroid/basalt,
-/area/city/backstreets_alley)
 "St" = (
 /obj/effect/turf_decal/weather/dirt{
 	dir = 8
@@ -3536,7 +3501,7 @@ St
 St
 St
 St
-Gu
+mb
 aq
 Uc
 Uc
@@ -3758,7 +3723,7 @@ Xj
 Xj
 Im
 mb
-sh
+mb
 aq
 Uc
 Uc
@@ -4598,7 +4563,7 @@ oP
 oP
 oP
 oP
-Ol
+oP
 oP
 oP
 xC
@@ -4735,7 +4700,7 @@ oF
 oF
 oF
 kO
-xr
+LM
 LM
 LM
 Yt
@@ -5043,7 +5008,7 @@ Fg
 Fg
 Fg
 Fg
-EH
+Fg
 Fg
 vC
 Va
@@ -5179,7 +5144,7 @@ UZ
 UZ
 UZ
 iW
-xr
+LM
 LM
 LM
 Yt
@@ -7938,7 +7903,7 @@ UZ
 UZ
 UZ
 iW
-ZK
+Xj
 Xj
 Xj
 iW
@@ -8403,14 +8368,14 @@ LM
 LM
 LM
 LM
-xr
 LM
 LM
 LM
 LM
 LM
 LM
-xr
+LM
+LM
 LM
 LM
 LM
@@ -8865,7 +8830,7 @@ Yt
 Kg
 LM
 LM
-xr
+LM
 iW
 UZ
 UZ
@@ -9006,7 +8971,7 @@ UZ
 UZ
 iW
 LM
-LM
+Pp
 Yt
 Yt
 Yt
@@ -9372,7 +9337,7 @@ UZ
 iW
 XV
 Xj
-ZK
+Xj
 Xj
 Xj
 Xj
@@ -9561,7 +9526,7 @@ UZ
 UZ
 iW
 LM
-Pp
+LM
 Yt
 Yt
 Yt
@@ -9753,7 +9718,7 @@ Yt
 Yt
 LM
 LM
-xr
+LM
 iW
 UZ
 UZ
@@ -10370,7 +10335,7 @@ UZ
 UZ
 iW
 XV
-ZK
+Xj
 se
 iW
 UZ
@@ -10565,7 +10530,7 @@ LM
 LM
 LM
 LM
-Pp
+LM
 LM
 iW
 UZ
@@ -10860,7 +10825,7 @@ LM
 LM
 LM
 LM
-xr
+LM
 LM
 LM
 LM
@@ -10888,7 +10853,7 @@ Yt
 Yt
 Yt
 LM
-Pp
+LM
 iW
 UZ
 UZ
@@ -11299,7 +11264,7 @@ UZ
 UZ
 iW
 LM
-xr
+LM
 iW
 UZ
 UZ
@@ -11344,7 +11309,7 @@ UZ
 iW
 XV
 Xj
-ux
+se
 LM
 LM
 LM
@@ -11358,7 +11323,7 @@ LM
 LM
 LM
 LM
-Pp
+LM
 LM
 LM
 LM
@@ -11775,7 +11740,7 @@ Yt
 Yt
 Yt
 Yt
-Pp
+LM
 LM
 iW
 UZ
@@ -11944,7 +11909,6 @@ UZ
 UZ
 UZ
 iW
-xr
 LM
 LM
 LM
@@ -11955,7 +11919,8 @@ LM
 LM
 LM
 LM
-xr
+LM
+LM
 LM
 LM
 LM
@@ -12009,7 +11974,7 @@ UZ
 UZ
 iW
 XV
-Eb
+Xj
 se
 iW
 UZ
@@ -12067,14 +12032,14 @@ iW
 iW
 iW
 LM
-xr
+LM
 iW
 iW
 iW
 iW
 iW
 iW
-xr
+LM
 Xj
 iW
 iW
@@ -13282,7 +13247,7 @@ St
 St
 St
 St
-Sc
+St
 St
 St
 St
@@ -13715,7 +13680,7 @@ UZ
 UZ
 UZ
 iW
-Pp
+LM
 LM
 iW
 UZ
@@ -14341,7 +14306,7 @@ UZ
 iW
 XV
 Xj
-ux
+se
 iW
 UZ
 UZ
@@ -14606,9 +14571,9 @@ iW
 LM
 LM
 LM
-Pp
 LM
-Pp
+LM
+LM
 LM
 LM
 LM
@@ -15130,7 +15095,7 @@ St
 St
 St
 St
-Sc
+St
 St
 St
 lG
@@ -15216,7 +15181,7 @@ UZ
 UZ
 UZ
 iW
-Pp
+LM
 LM
 LM
 LM
@@ -15812,7 +15777,7 @@ UZ
 UZ
 UZ
 iW
-rp
+XV
 Xj
 se
 iW
@@ -16271,7 +16236,7 @@ UZ
 UZ
 iW
 LM
-Pp
+LM
 iW
 UZ
 iW
@@ -16600,7 +16565,7 @@ iW
 LM
 LM
 LM
-Pp
+LM
 LM
 LM
 LM
@@ -16929,7 +16894,7 @@ iW
 UZ
 UZ
 iW
-Pp
+LM
 LM
 iW
 UZ
@@ -17133,7 +17098,7 @@ Yt
 Yt
 Yt
 LM
-Pp
+LM
 Yt
 Yt
 Yt
@@ -17256,7 +17221,7 @@ UZ
 UZ
 iW
 XV
-Eb
+Xj
 se
 iW
 UZ
@@ -17344,7 +17309,7 @@ LM
 LM
 LM
 LM
-Pp
+LM
 LM
 LM
 LM
@@ -17558,7 +17523,7 @@ Yt
 Yt
 Yt
 Yt
-rp
+XV
 Xj
 se
 iW
@@ -17719,7 +17684,7 @@ St
 St
 St
 St
-Sc
+Xj
 St
 St
 St
@@ -17941,7 +17906,7 @@ Im
 Im
 Im
 Im
-zD
+Xj
 Im
 Im
 Im
@@ -18366,7 +18331,7 @@ UZ
 UZ
 iW
 XV
-Eb
+Xj
 se
 iW
 UZ
@@ -18456,7 +18421,7 @@ UZ
 UZ
 iW
 LM
-RK
+LM
 iW
 UZ
 UZ
@@ -18887,7 +18852,7 @@ LM
 LM
 LM
 LM
-RK
+LM
 LM
 LM
 XV
@@ -19010,7 +18975,7 @@ UZ
 UZ
 UZ
 jv
-LM
+RK
 LM
 iW
 UZ
@@ -19121,7 +19086,7 @@ UZ
 UZ
 UZ
 iW
-RK
+LM
 LM
 iW
 UZ
@@ -19385,7 +19350,7 @@ St
 St
 St
 St
-kK
+St
 St
 St
 St
@@ -19449,7 +19414,7 @@ XV
 Xj
 Xj
 Xj
-Zo
+Xj
 Xj
 Xj
 Xj
@@ -19572,39 +19537,39 @@ Im
 Im
 Im
 Im
-dW
-Im
-Im
-Im
-Im
-Im
-Im
-Im
-Yt
-Yt
-Yt
-Yt
-Yt
-Yt
-Yt
-Yt
-Yt
-Yt
-Yt
-Yt
-Yt
-Yt
-Yt
-Im
-Im
-Im
-Im
-Im
 Im
 Im
 Im
 Im
 dW
+Im
+Im
+Im
+Yt
+Yt
+Yt
+Yt
+Yt
+Yt
+Yt
+Yt
+Yt
+Yt
+Yt
+Yt
+Yt
+Yt
+Yt
+Im
+Im
+Im
+Im
+Im
+Im
+Im
+Im
+Im
+Im
 Im
 Im
 Im
@@ -19629,7 +19594,7 @@ Im
 LM
 LM
 LM
-RK
+LM
 LM
 LM
 LM
@@ -19742,7 +19707,7 @@ iW
 iW
 iW
 LM
-RK
+LM
 LM
 iW
 UZ
@@ -20298,7 +20263,7 @@ UZ
 iW
 LM
 LM
-RK
+LM
 Yt
 Yt
 Yt
@@ -20326,7 +20291,7 @@ UZ
 UZ
 UZ
 iW
-RK
+LM
 LM
 iW
 UZ
@@ -20498,7 +20463,7 @@ Yt
 Yt
 UZ
 iW
-RK
+LM
 LM
 iW
 UZ
@@ -20852,7 +20817,7 @@ UZ
 UZ
 iW
 LM
-RK
+LM
 LM
 Yt
 Yt
@@ -21003,7 +20968,7 @@ LM
 LM
 LM
 LM
-RK
+LM
 LM
 LM
 LM
@@ -21408,7 +21373,7 @@ UZ
 iW
 RK
 LM
-RK
+LM
 Yt
 Yt
 Yt
@@ -21518,7 +21483,7 @@ UZ
 UZ
 iW
 LM
-RK
+LM
 LM
 Yt
 Yt
@@ -21696,7 +21661,7 @@ Xj
 Xj
 iW
 Vu
-Zo
+Xj
 se
 iW
 UZ
@@ -21843,7 +21808,7 @@ LM
 LM
 LM
 LM
-RK
+LM
 iW
 UZ
 UZ
@@ -22184,7 +22149,7 @@ UZ
 UZ
 iW
 LM
-RK
+LM
 LM
 iW
 UZ
@@ -22229,7 +22194,7 @@ UZ
 UZ
 iW
 LM
-RK
+LM
 iW
 UZ
 UZ
@@ -22407,7 +22372,7 @@ UZ
 iW
 LM
 LM
-RK
+LM
 iW
 UZ
 UZ
@@ -22557,19 +22522,6 @@ iW
 LM
 LM
 LM
-LM
-LM
-LM
-LM
-LM
-LM
-LM
-LM
-LM
-LM
-LM
-LM
-LM
 RK
 LM
 LM
@@ -22580,7 +22532,20 @@ LM
 LM
 LM
 LM
-RK
+LM
+LM
+LM
+LM
+LM
+LM
+LM
+LM
+LM
+LM
+LM
+LM
+LM
+LM
 LM
 LM
 XV
@@ -22671,7 +22636,7 @@ LM
 LM
 LM
 LM
-RK
+LM
 LM
 LM
 LM
@@ -23061,7 +23026,7 @@ iW
 iW
 iW
 iW
-RK
+LM
 LM
 iW
 iW
@@ -23361,7 +23326,6 @@ UZ
 UZ
 iW
 Ik
-dW
 Im
 Im
 Im
@@ -23373,7 +23337,8 @@ Im
 Im
 Im
 Im
-dW
+Im
+Im
 Im
 Im
 Xj
@@ -24334,7 +24299,7 @@ Yt
 Yt
 Yt
 LM
-RK
+LM
 iW
 UZ
 UZ
@@ -25333,7 +25298,7 @@ Yt
 Yt
 Yt
 LM
-LM
+RK
 iW
 iW
 iW
@@ -25898,7 +25863,7 @@ UZ
 UZ
 iW
 LM
-RK
+LM
 iW
 iW
 iW
@@ -27805,7 +27770,7 @@ Yt
 LM
 LM
 LM
-RK
+LM
 LM
 LM
 LM
@@ -28229,7 +28194,7 @@ UZ
 UZ
 iW
 LM
-RK
+LM
 iW
 iW
 iW
@@ -28457,7 +28422,7 @@ LM
 LM
 LM
 LM
-RK
+LM
 LM
 LM
 LM

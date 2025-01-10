@@ -403,13 +403,6 @@
 	},
 /turf/open/floor/facility/halls,
 /area/city/backstreets_room)
-"cB" = (
-/obj/effect/turf_decal/weather/dirt{
-	dir = 8
-	},
-/obj/effect/landmark/backstreetspawneast,
-/turf/open/floor/plating/asteroid/basalt,
-/area/city/backstreets_alley)
 "cI" = (
 /obj/machinery/light/broken{
 	dir = 8
@@ -4415,12 +4408,8 @@
 /turf/open/floor/carpet/red,
 /area/city/backstreets_room)
 "Cm" = (
-/obj/effect/turf_decal/weather/dirt{
-	dir = 4
-	},
-/obj/effect/landmark/backstreetspawnwest,
-/turf/open/floor/plating/asteroid/basalt,
-/area/city/backstreets_alley)
+/turf/closed/indestructible/reinforced,
+/area/space)
 "Cn" = (
 /obj/effect/landmark/backstreetspawneast,
 /turf/open/floor/plating/asteroid/basalt,
@@ -5838,13 +5827,6 @@
 	},
 /turf/open/floor/facility/halls,
 /area/city/backstreets_room)
-"Lz" = (
-/obj/effect/turf_decal/weather/dirt{
-	dir = 4
-	},
-/obj/effect/landmark/backstreetspawn,
-/turf/open/floor/plating/asteroid/basalt,
-/area/city/backstreets_alley)
 "LB" = (
 /obj/effect/turf_decal/siding/purple{
 	dir = 4
@@ -9938,7 +9920,7 @@ JE
 Ux
 iY
 Pz
-GG
+bF
 Ux
 kI
 "}
@@ -11797,9 +11779,9 @@ JE
 JE
 JE
 hK
-CE
-Cm
-CE
+bF
+bF
+bF
 CE
 CE
 CE
@@ -13014,11 +12996,11 @@ kI
 Ux
 bF
 bF
-bF
-bF
-bF
-bF
 qv
+bF
+bF
+bF
+bF
 bF
 bF
 bF
@@ -13150,7 +13132,7 @@ bF
 CE
 bF
 bF
-qv
+bF
 bF
 Ux
 Ux
@@ -16428,7 +16410,7 @@ kI
 Ux
 js
 bF
-qv
+bF
 bF
 bF
 bF
@@ -16809,7 +16791,7 @@ JE
 JE
 iY
 iY
-Nq
+iY
 Ux
 kI
 kI
@@ -17114,7 +17096,7 @@ JE
 JE
 JE
 js
-qv
+bF
 oE
 Ux
 kI
@@ -17140,7 +17122,7 @@ JE
 JE
 JE
 JE
-Nq
+iY
 iY
 iY
 Ux
@@ -17170,7 +17152,7 @@ kI
 kI
 kI
 kI
-Ux
+OP
 iY
 iY
 JE
@@ -17281,7 +17263,7 @@ kI
 kI
 kI
 kI
-Ux
+OP
 iY
 iY
 JE
@@ -17387,7 +17369,7 @@ kI
 kI
 kI
 kI
-Ux
+kI
 Ux
 Ux
 Ux
@@ -17498,11 +17480,11 @@ kI
 kI
 kI
 kI
+kI
 Ux
 iY
 iY
 iY
-Pz
 iY
 iY
 iY
@@ -17609,6 +17591,7 @@ kI
 kI
 kI
 kI
+kI
 Ux
 iY
 iY
@@ -17621,7 +17604,6 @@ iY
 iY
 iY
 iY
-Pz
 iY
 Ux
 kI
@@ -17714,6 +17696,7 @@ kI
 "}
 (88,1,1) = {"
 kI
+pq
 JE
 JE
 JE
@@ -17723,7 +17706,6 @@ JE
 OA
 iY
 iY
-Ux
 Ux
 Ux
 Ux
@@ -17825,6 +17807,7 @@ kI
 "}
 (89,1,1) = {"
 kI
+pq
 JE
 JE
 JE
@@ -17834,8 +17817,7 @@ JE
 JE
 iY
 iY
-Ux
-kI
+Cm
 kI
 kI
 kI
@@ -17936,6 +17918,7 @@ kI
 "}
 (90,1,1) = {"
 kI
+pq
 JE
 JE
 JE
@@ -17945,8 +17928,7 @@ JE
 JE
 iY
 Pz
-Ux
-kI
+Cm
 kI
 kI
 kI
@@ -18047,6 +18029,7 @@ kI
 "}
 (91,1,1) = {"
 kI
+pq
 JE
 JE
 JE
@@ -18056,8 +18039,7 @@ JE
 JE
 iY
 iY
-Ux
-kI
+Cm
 kI
 kI
 kI
@@ -18158,6 +18140,7 @@ kI
 "}
 (92,1,1) = {"
 kI
+pq
 JE
 JE
 JE
@@ -18167,8 +18150,7 @@ JE
 JE
 iY
 iY
-Ux
-kI
+Cm
 kI
 kI
 JE
@@ -18186,7 +18168,7 @@ iY
 iY
 iY
 iY
-Pz
+iY
 iY
 iY
 iY
@@ -18269,6 +18251,7 @@ kI
 "}
 (93,1,1) = {"
 kI
+pq
 JE
 JE
 JE
@@ -18278,8 +18261,7 @@ JE
 JE
 iY
 iY
-Ux
-kI
+Cm
 kI
 kI
 JE
@@ -18380,6 +18362,7 @@ kI
 "}
 (94,1,1) = {"
 kI
+pq
 JE
 JE
 JE
@@ -18389,8 +18372,7 @@ JE
 JE
 iY
 iY
-Ux
-kI
+Cm
 kI
 kI
 JE
@@ -18400,7 +18382,7 @@ JE
 JE
 js
 bF
-Re
+oE
 iY
 iY
 iY
@@ -18491,6 +18473,7 @@ kI
 "}
 (95,1,1) = {"
 kI
+pq
 JE
 JE
 JE
@@ -18500,8 +18483,7 @@ JE
 JE
 iY
 iY
-Ux
-kI
+Cm
 kI
 kI
 JE
@@ -18602,6 +18584,7 @@ kI
 "}
 (96,1,1) = {"
 kI
+pq
 JE
 JE
 JE
@@ -18611,8 +18594,7 @@ JE
 JE
 iY
 iY
-Ux
-kI
+Cm
 kI
 kI
 JE
@@ -18621,7 +18603,7 @@ JE
 JE
 JE
 js
-bF
+GG
 oE
 Ux
 kI
@@ -18686,7 +18668,7 @@ kI
 kI
 kI
 Ux
-Nq
+iY
 bF
 JE
 JE
@@ -18713,6 +18695,7 @@ dP
 "}
 (97,1,1) = {"
 kI
+pq
 JE
 JE
 JE
@@ -18722,8 +18705,7 @@ JE
 JE
 iY
 iY
-Ux
-kI
+Cm
 kI
 kI
 JE
@@ -18824,6 +18806,7 @@ JE
 "}
 (98,1,1) = {"
 kI
+pq
 JE
 JE
 JE
@@ -18831,10 +18814,9 @@ JE
 JE
 JE
 JE
-Pz
 iY
-Ux
-kI
+iY
+Cm
 kI
 kI
 JE
@@ -18891,7 +18873,7 @@ kI
 Ux
 iY
 iY
-Nq
+iY
 iY
 iY
 iY
@@ -18935,6 +18917,7 @@ JE
 "}
 (99,1,1) = {"
 kI
+pq
 JE
 JE
 JE
@@ -18944,8 +18927,7 @@ JE
 JE
 iY
 iY
-Ux
-kI
+Cm
 kI
 kI
 kI
@@ -19000,7 +18982,6 @@ kI
 kI
 kI
 Ux
-Nq
 iY
 iY
 iY
@@ -19011,7 +18992,8 @@ iY
 iY
 iY
 iY
-Nq
+iY
+iY
 iY
 iY
 iY
@@ -19046,6 +19028,7 @@ JE
 "}
 (100,1,1) = {"
 kI
+pq
 JE
 JE
 JE
@@ -19055,8 +19038,7 @@ JE
 JE
 iY
 iY
-Ux
-kI
+Cm
 kI
 kI
 kI
@@ -19065,7 +19047,7 @@ kI
 kI
 Ux
 js
-GG
+bF
 oE
 Ux
 kI
@@ -19123,7 +19105,7 @@ Ux
 Ux
 Ux
 iY
-Nq
+iY
 Ux
 Ux
 Ux
@@ -19157,6 +19139,7 @@ JE
 "}
 (101,1,1) = {"
 kI
+pq
 JE
 JE
 JE
@@ -19166,8 +19149,7 @@ JE
 JE
 iY
 iY
-Ux
-kI
+Cm
 kI
 kI
 kI
@@ -19268,6 +19250,7 @@ JE
 "}
 (102,1,1) = {"
 kI
+pq
 JE
 JE
 JE
@@ -19277,8 +19260,7 @@ JE
 JE
 iY
 iY
-Ux
-kI
+Cm
 kI
 kI
 kI
@@ -19379,6 +19361,7 @@ JE
 "}
 (103,1,1) = {"
 kI
+pq
 JE
 JE
 JE
@@ -19388,8 +19371,7 @@ JE
 JE
 iY
 iY
-Ux
-kI
+Cm
 kI
 kI
 JE
@@ -19496,11 +19478,11 @@ kI
 kI
 kI
 kI
-Ux
-iY
-iY
-Ux
 kI
+Ux
+iY
+iY
+Cm
 kI
 kI
 JE
@@ -19607,11 +19589,11 @@ kI
 kI
 kI
 kI
-Ux
-iY
-iY
-Ux
 kI
+Ux
+iY
+iY
+Cm
 kI
 kI
 JE
@@ -19718,11 +19700,11 @@ kI
 kI
 kI
 kI
-Ux
-iY
-iY
-Ux
 kI
+Ux
+iY
+iY
+Cm
 kI
 kI
 JE
@@ -19829,11 +19811,11 @@ kI
 kI
 kI
 kI
-Ux
-iY
-iY
-Ux
 kI
+Ux
+iY
+iY
+Cm
 kI
 kI
 JE
@@ -19940,11 +19922,11 @@ kI
 kI
 kI
 kI
-Ux
-iY
-iY
-Ux
 kI
+Ux
+iY
+iY
+Cm
 kI
 kI
 JE
@@ -20051,11 +20033,11 @@ kI
 kI
 kI
 kI
-Ux
-iY
-iY
-Ux
 kI
+Ux
+iY
+iY
+Cm
 kI
 kI
 JE
@@ -20162,11 +20144,11 @@ kI
 kI
 kI
 kI
-Ux
-iY
-iY
-Ux
 kI
+Ux
+iY
+iY
+Cm
 kI
 kI
 kI
@@ -20273,11 +20255,11 @@ kI
 kI
 kI
 kI
-Ux
-iY
-iY
-Ux
 kI
+Ux
+iY
+iY
+Cm
 kI
 kI
 kI
@@ -20338,7 +20320,7 @@ bt
 bt
 bt
 bt
-KD
+bt
 bt
 bt
 bt
@@ -20384,6 +20366,7 @@ kI
 kI
 kI
 kI
+kI
 Ux
 iY
 iY
@@ -20392,7 +20375,6 @@ JE
 JE
 JE
 YP
-kI
 kI
 kI
 Ux
@@ -20495,6 +20477,7 @@ kI
 kI
 kI
 kI
+kI
 Ux
 iY
 iY
@@ -20503,7 +20486,6 @@ JE
 JE
 JE
 JE
-kI
 kI
 kI
 Ux
@@ -20606,6 +20588,7 @@ kI
 kI
 kI
 kI
+kI
 Ux
 iY
 Pz
@@ -20614,7 +20597,6 @@ JE
 JE
 JE
 JE
-kI
 kI
 kI
 Ux
@@ -20717,6 +20699,7 @@ kI
 kI
 kI
 kI
+kI
 Ux
 iY
 iY
@@ -20725,7 +20708,6 @@ JE
 JE
 JE
 JE
-kI
 kI
 kI
 Ux
@@ -20771,7 +20753,7 @@ kI
 kI
 kI
 Ux
-Pz
+iY
 iY
 Ux
 kI
@@ -20828,6 +20810,7 @@ kI
 kI
 kI
 kI
+kI
 Ux
 iY
 iY
@@ -20836,7 +20819,6 @@ JE
 JE
 JE
 JE
-kI
 kI
 kI
 Ux
@@ -20939,6 +20921,7 @@ kI
 kI
 kI
 kI
+kI
 Ux
 iY
 iY
@@ -20947,7 +20930,6 @@ JE
 JE
 JE
 JE
-kI
 kI
 kI
 Ux
@@ -21050,6 +21032,7 @@ kI
 kI
 kI
 kI
+kI
 Ux
 iY
 iY
@@ -21058,7 +21041,6 @@ JE
 JE
 JE
 JE
-kI
 kI
 kI
 Ux
@@ -21161,11 +21143,11 @@ kI
 kI
 kI
 kI
-Ux
-iY
-iY
-Ux
 kI
+Ux
+iY
+iY
+Cm
 kI
 kI
 kI
@@ -21272,11 +21254,11 @@ kI
 kI
 kI
 kI
-Ux
-iY
-iY
-Ux
 kI
+Ux
+iY
+iY
+Cm
 kI
 kI
 kI
@@ -21379,6 +21361,7 @@ JE
 kI
 kI
 kI
+kI
 JE
 JE
 JE
@@ -21386,8 +21369,7 @@ JE
 hK
 iY
 iY
-Ux
-kI
+Cm
 kI
 kI
 kI
@@ -21397,7 +21379,7 @@ kI
 Ux
 js
 bF
-Re
+oE
 Ux
 kI
 kI
@@ -21490,15 +21472,15 @@ JE
 kI
 kI
 kI
-JE
-JE
-JE
-JE
-JE
-iY
-iY
-Ux
 kI
+JE
+JE
+JE
+JE
+JE
+iY
+iY
+Cm
 kI
 kI
 kI
@@ -21601,15 +21583,15 @@ JE
 kI
 kI
 kI
-JE
-JE
-JE
-JE
-JE
-iY
-iY
-Ux
 kI
+JE
+JE
+JE
+JE
+JE
+iY
+iY
+Cm
 kI
 JE
 JE
@@ -21662,9 +21644,9 @@ Ux
 iY
 iY
 iY
-Pz
 iY
-Pz
+iY
+iY
 iY
 iY
 iY
@@ -21712,15 +21694,15 @@ JE
 kI
 kI
 kI
-JE
-JE
-JE
-JE
-JE
-iY
-iY
-Ux
 kI
+JE
+JE
+JE
+JE
+JE
+iY
+iY
+Cm
 kI
 JE
 JE
@@ -21823,15 +21805,15 @@ JE
 kI
 kI
 kI
-JE
-JE
-JE
-JE
-JE
-iY
-iY
-Ux
 kI
+JE
+JE
+JE
+JE
+JE
+iY
+iY
+Cm
 kI
 JE
 JE
@@ -21934,15 +21916,15 @@ kI
 kI
 kI
 kI
-JE
-JE
-JE
-JE
-JE
-iY
-iY
-Ux
 kI
+JE
+JE
+JE
+JE
+JE
+iY
+iY
+Cm
 kI
 JE
 JE
@@ -22045,15 +22027,15 @@ kI
 kI
 kI
 kI
-JE
-JE
-JE
-JE
-JE
-iY
-iY
-Ux
 kI
+JE
+JE
+JE
+JE
+JE
+iY
+iY
+Cm
 kI
 JE
 JE
@@ -22160,10 +22142,10 @@ kI
 kI
 kI
 kI
+kI
 Ux
 iY
 iY
-Ux
 Ux
 Ux
 JE
@@ -22271,8 +22253,8 @@ kI
 kI
 kI
 kI
+kI
 Ux
-Pz
 iY
 iY
 iY
@@ -22382,8 +22364,8 @@ kI
 kI
 kI
 kI
+kI
 Ux
-iY
 iY
 iY
 iY
@@ -22493,7 +22475,7 @@ kI
 kI
 kI
 kI
-Ux
+kI
 Ux
 Ux
 Ux
@@ -22856,7 +22838,7 @@ kI
 kI
 kI
 Ux
-Pz
+iY
 iY
 Ux
 kI
@@ -23300,7 +23282,7 @@ kI
 kI
 kI
 rr
-iY
+Pz
 iY
 JE
 JE
@@ -23327,7 +23309,7 @@ JE
 JE
 JE
 iY
-Pz
+iY
 Ux
 kI
 Ux
@@ -23656,7 +23638,7 @@ Ux
 iY
 iY
 iY
-Pz
+iY
 iY
 iY
 iY
@@ -23985,7 +23967,7 @@ Ux
 kI
 kI
 Ux
-Pz
+iY
 iY
 Ux
 kI
@@ -24189,7 +24171,7 @@ JE
 JE
 JE
 iY
-Pz
+iY
 JE
 JE
 JE
@@ -24312,7 +24294,7 @@ kI
 kI
 Ux
 js
-GG
+bF
 oE
 Ux
 kI
@@ -24400,7 +24382,7 @@ iY
 iY
 iY
 iY
-Pz
+iY
 iY
 iY
 iY
@@ -24614,7 +24596,7 @@ JE
 JE
 JE
 JE
-qo
+Dr
 bF
 oE
 Ux
@@ -24775,7 +24757,7 @@ bt
 bt
 bt
 bt
-KD
+bt
 bt
 bt
 bt
@@ -24856,7 +24838,7 @@ Ux
 bF
 bF
 bF
-bt
+bF
 bt
 bt
 bt
@@ -24997,7 +24979,7 @@ CE
 CE
 CE
 CE
-Lz
+CE
 CE
 CE
 CE
@@ -25940,10 +25922,10 @@ kI
 Ux
 CD
 iY
-iY
-iY
-iY
 Hh
+iY
+iY
+iY
 iY
 iY
 js
@@ -26051,7 +26033,7 @@ kI
 Ux
 CD
 iY
-Hh
+iY
 iY
 iY
 iY
@@ -26176,7 +26158,7 @@ JE
 JE
 JE
 JE
-Hh
+iY
 iY
 iY
 Ux
@@ -26441,7 +26423,7 @@ bt
 bt
 bt
 bt
-cB
+bt
 bt
 bt
 bt
@@ -26543,7 +26525,7 @@ JE
 bF
 bF
 bF
-Cn
+bF
 bF
 bF
 bF
@@ -26628,7 +26610,7 @@ CE
 CE
 CE
 CE
-gy
+CE
 bF
 bF
 bF
@@ -26685,7 +26667,7 @@ CE
 iY
 iY
 iY
-Hh
+iY
 iY
 iY
 iY
@@ -26798,7 +26780,7 @@ JE
 JE
 zs
 iY
-Hh
+iY
 iY
 Ux
 kI
@@ -27382,7 +27364,7 @@ kI
 kI
 kI
 Ux
-Hh
+iY
 iY
 JE
 JE
@@ -27554,7 +27536,7 @@ JE
 JE
 kI
 Ux
-Hh
+iY
 iY
 JE
 JE
@@ -27826,7 +27808,7 @@ kI
 kI
 kI
 Ux
-iY
+Hh
 iY
 Ux
 kI
@@ -28605,14 +28587,14 @@ kI
 Ux
 iY
 iY
-Nq
+iY
 js
 bF
 bF
 bF
 bF
 bF
-bF
+qv
 bF
 bF
 bF
@@ -28714,7 +28696,7 @@ kI
 kI
 kI
 Ux
-Nq
+iY
 iY
 iY
 TQ
@@ -28893,7 +28875,7 @@ bF
 bF
 bF
 bF
-Cn
+bF
 bF
 bF
 bF
@@ -30583,7 +30565,7 @@ bF
 bF
 bF
 bF
-Cn
+bF
 bF
 Ux
 kI
@@ -31120,7 +31102,7 @@ kI
 kI
 kI
 Ux
-wG
+WP
 WP
 wG
 Ux
@@ -34007,7 +33989,7 @@ OP
 kI
 Ux
 WP
-wG
+WP
 WP
 Ux
 kI
@@ -34903,13 +34885,13 @@ WP
 WP
 WP
 WP
-WP
-WP
-WP
-WP
-WP
-WP
 wG
+WP
+WP
+WP
+WP
+WP
+WP
 WP
 WP
 Ux

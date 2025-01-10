@@ -246,11 +246,6 @@
 	},
 /turf/open/floor/plating/ironsand,
 /area/city/backstreets_alley)
-"gs" = (
-/obj/structure/flora/ausbushes/fullgrass,
-/obj/effect/landmark/backstreetspawneast,
-/turf/open/floor/plating/ironsand,
-/area/city/backstreets_alley)
 "gy" = (
 /obj/structure/table/wood,
 /obj/item/taperecorder/empty,
@@ -288,11 +283,6 @@
 /area/city/backstreets_alley)
 "iD" = (
 /turf/open/floor/plating/ashplanet/wateryrock,
-/area/city/backstreets_alley)
-"iM" = (
-/obj/structure/flora/ausbushes/fullgrass,
-/obj/effect/landmark/backstreetspawn,
-/turf/open/floor/plating/ironsand,
 /area/city/backstreets_alley)
 "iU" = (
 /obj/effect/turf_decal/siding/wood{
@@ -3533,7 +3523,7 @@ em
 Jc
 ku
 ku
-Nc
+ku
 ku
 ku
 Os
@@ -3603,7 +3593,7 @@ ku
 pR
 ku
 pR
-Jf
+pR
 ku
 pR
 pR
@@ -4507,7 +4497,7 @@ Os
 Os
 pR
 pR
-Jf
+pR
 pR
 pR
 Jc
@@ -5642,7 +5632,7 @@ em
 Jc
 Qu
 JN
-Nc
+ku
 ku
 ku
 Jc
@@ -6461,7 +6451,7 @@ Os
 Os
 bH
 pR
-Jf
+pR
 pR
 pR
 pR
@@ -7324,7 +7314,7 @@ ku
 ku
 ku
 ku
-Jf
+pR
 pR
 Jc
 em
@@ -7905,7 +7895,7 @@ Os
 Os
 pR
 pR
-pR
+Jf
 pR
 pR
 Jc
@@ -9450,7 +9440,7 @@ Jc
 co
 pR
 pR
-Sa
+pR
 pR
 pR
 pR
@@ -9716,7 +9706,7 @@ Os
 Os
 pR
 pR
-Sa
+pR
 pR
 pR
 pJ
@@ -10004,7 +9994,7 @@ em
 Jc
 qb
 pR
-Sa
+pR
 pR
 pR
 Jc
@@ -11048,7 +11038,7 @@ Os
 Os
 CG
 pR
-pR
+Sa
 pR
 pR
 Jc
@@ -11126,7 +11116,7 @@ pR
 pR
 pR
 pR
-Sa
+pR
 pR
 Jc
 em
@@ -11306,7 +11296,7 @@ pR
 pR
 pR
 pR
-Sa
+pR
 pR
 pR
 pR
@@ -11369,7 +11359,7 @@ MQ
 pR
 pR
 pR
-iM
+pR
 pR
 pR
 pR
@@ -12587,7 +12577,7 @@ pR
 pR
 pR
 pR
-Sa
+pR
 pR
 pR
 Os
@@ -12665,7 +12655,7 @@ pR
 pR
 pR
 pR
-Sa
+pR
 pR
 pR
 pR
@@ -13809,7 +13799,7 @@ Os
 pR
 pR
 pR
-iM
+pR
 pR
 pR
 pR
@@ -13900,7 +13890,7 @@ em
 Jc
 pR
 pR
-Sa
+pR
 pR
 pR
 Jc
@@ -13935,7 +13925,7 @@ pR
 pR
 pR
 pR
-Sa
+pR
 pR
 pR
 Jc
@@ -15677,7 +15667,7 @@ Jc
 pR
 pR
 pR
-Sa
+pR
 pR
 pR
 pR
@@ -15932,7 +15922,7 @@ pR
 pR
 pR
 pR
-PW
+ku
 pR
 ku
 pR
@@ -17029,7 +17019,7 @@ em
 Jc
 pR
 pR
-Sa
+pR
 pR
 pR
 Jc
@@ -17322,7 +17312,7 @@ ku
 ku
 ku
 ku
-PW
+ku
 ku
 ku
 ku
@@ -18042,7 +18032,7 @@ Os
 XS
 pR
 pR
-Sa
+pR
 pR
 pR
 Jc
@@ -18131,7 +18121,7 @@ Os
 Os
 pR
 pR
-Sa
+pR
 pR
 pR
 Jc
@@ -20211,7 +20201,7 @@ Qu
 JN
 ku
 ku
-Sa
+pR
 pR
 pR
 pR
@@ -20240,7 +20230,7 @@ em
 Jc
 qb
 pR
-xn
+pR
 pR
 pR
 Jc
@@ -20927,7 +20917,7 @@ Jc
 Jc
 qb
 pR
-xn
+pR
 pR
 pR
 pR
@@ -20970,7 +20960,7 @@ pR
 pR
 CG
 pR
-xn
+pR
 pR
 pR
 pR
@@ -21105,7 +21095,7 @@ CG
 pR
 pR
 pR
-xn
+pR
 pR
 pR
 pR
@@ -21229,7 +21219,6 @@ pR
 pR
 pR
 pR
-xn
 pR
 pR
 pR
@@ -21243,7 +21232,8 @@ pR
 pR
 pR
 pR
-gs
+pR
+pR
 pR
 pR
 pR
@@ -21319,7 +21309,7 @@ Os
 yL
 pR
 pR
-xn
+pR
 pR
 pR
 pR
@@ -22230,7 +22220,7 @@ em
 Jc
 pR
 pR
-xn
+pR
 pR
 pR
 Jc
@@ -22872,7 +22862,7 @@ Os
 Os
 Os
 pR
-xn
+pR
 pR
 pR
 pR
@@ -23699,7 +23689,7 @@ Os
 Os
 pR
 pR
-xn
+pR
 pR
 pR
 Jc
@@ -24649,7 +24639,7 @@ pR
 pR
 pR
 pR
-xn
+pR
 pR
 pR
 pR
@@ -24864,7 +24854,7 @@ ku
 ku
 ku
 ku
-xn
+pR
 ku
 pR
 pR
@@ -25661,7 +25651,7 @@ Jc
 pR
 pR
 pR
-xn
+pR
 pR
 Jc
 em
@@ -25740,7 +25730,7 @@ em
 em
 Jc
 ku
-aH
+ku
 ku
 JN
 Qu
@@ -27147,7 +27137,7 @@ ku
 ku
 ku
 ku
-aH
+ku
 ku
 ku
 GE
@@ -29000,7 +28990,7 @@ ku
 ku
 ku
 ku
-aH
+ku
 ku
 ku
 ku
