@@ -167,3 +167,4 @@ GLOBAL_VAR_INIT(city_east_enemies, FALSE)
 			if(prob(30))
 				spawning = /mob/living/simple_animal/hostile/ordeal/green_bot_big
 	new spawning(get_turf(src))
+
