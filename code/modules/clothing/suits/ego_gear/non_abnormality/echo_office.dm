@@ -65,7 +65,7 @@
 		addtimer(CALLBACK(src, PROC_REF(ResetArmor), S), 100)
 	return ..()
 
-/obj/effect/proc_holder/ability/fated_encounters/proc/ResetArmor(var/obj/item/clothing/suit/armor/ego_gear/A)
+/obj/effect/proc_holder/ability/fated_encounters/proc/ResetArmor(obj/item/clothing/suit/armor/ego_gear/A)
 	A.armor = new(red = 40, white = 40, black = 20, pale = 60)
 	playsound(get_turf(A), 'sound/abnormalities/onesin/bless.ogg', 50, 0, 4)
 	new /obj/effect/temp_visual/onesin_blessing (get_turf(A))
