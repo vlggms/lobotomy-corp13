@@ -311,11 +311,6 @@
 /obj/effect/decal/cleanable/dirt/dust,
 /turf/open/floor/plating/beach/sand,
 /area/city/backstreets_room)
-"IP" = (
-/obj/effect/decal/cleanable/dirt/dust,
-/obj/structure/mineral_door/wood,
-/turf/open/floor/carpet/red,
-/area/city/backstreets_room)
 "Ki" = (
 /obj/structure/table/wood/fancy/red,
 /obj/effect/decal/cleanable/dirt/dust,
@@ -339,9 +334,6 @@
 	name = "carnivorous worm"
 	},
 /turf/open/floor/holofloor/carpet,
-/area/city/backstreets_room)
-"Lp" = (
-/turf/closed/indestructible/wood,
 /area/city/backstreets_room)
 "LY" = (
 /obj/effect/decal/cleanable/dirt/dust,
@@ -720,7 +712,7 @@ fZ
 TB
 LY
 KZ
-Lp
+KZ
 "}
 (10,1,1) = {"
 Eo
@@ -742,7 +734,7 @@ rO
 PJ
 Zt
 PJ
-IP
+PJ
 "}
 (11,1,1) = {"
 Eo
@@ -764,7 +756,7 @@ rO
 PJ
 Zt
 PJ
-IP
+PJ
 "}
 (12,1,1) = {"
 Eo
@@ -786,7 +778,7 @@ Gc
 Pn
 qG
 KZ
-Lp
+KZ
 "}
 (13,1,1) = {"
 Eo
