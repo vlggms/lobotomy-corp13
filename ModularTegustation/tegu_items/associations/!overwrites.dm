@@ -28,3 +28,22 @@
 		health = 700
 		can_burrow = FALSE
 		attack_cooldown = 100
+
+/mob/living/simple_animal/hostile/ordeal/dog_corrosion/Initialize()
+	. = ..()
+	if(SSmaptype.maptype in SSmaptype.citymaps)
+		gibbing = FALSE
+		maxHealth = 1500
+		health = 1500
+
+/mob/living/simple_animal/hostile/ordeal/snake_corrosion/Initialize()
+	. = ..()
+	if(SSmaptype.maptype in SSmaptype.citymaps)
+		maxHealth = 2000
+		health = 2000
+
+/mob/living/simple_animal/hostile/ordeal/snake_corrosion/strong/Initialize()
+	. = ..()
+	if(SSmaptype.maptype in SSmaptype.citymaps)
+		maxHealth = 3000
+		health = 3000
