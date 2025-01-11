@@ -17,6 +17,7 @@
 		rapid = 10
 		rapid_fire_delay = 3
 		projectiletype = /obj/projectile/bullet/c9x19mm/greenbot/city
+		firing_cooldown = 2.4
 
 /mob/living/simple_animal/hostile/ordeal/amber_dusk/Initialize()
 	. = ..()

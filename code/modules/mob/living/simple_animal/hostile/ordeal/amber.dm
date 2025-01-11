@@ -183,6 +183,7 @@
 	base_pixel_x = -16
 	butcher_results = list(/obj/item/food/meat/slab/worm = 3)
 	guaranteed_butcher_results = list(/obj/item/food/meat/slab/worm = 2)
+	silk_results = list(/obj/item/stack/sheet/silk/amber_simple = 2, /obj/item/stack/sheet/silk/amber_advanced = 1)
 	attack_verb_continuous = "eviscerates"
 	attack_verb_simple = "eviscerate"
 	attack_sound = 'sound/effects/ordeals/amber/dusk_attack.ogg'
