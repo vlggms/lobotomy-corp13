@@ -729,8 +729,9 @@
 /mob/living/simple_animal/hostile/faithless{
 	maxHealth = 250;
 	health = 250;
-	melee_damage_upper = 20;
-	damage_coeff = list("brute" = 1, "red" = 0.5, "white" = 0, "black" = 1.5, "pale" = 2)
+	damage_coeff = list("brute" = 1, "red" = 0.5, "white" = 0, "black" = 1.5, "pale" = 2);
+	silk_results = list(/obj/item/stack/sheet/silk/violet_simple = 2, /obj/item/stack/sheet/silk/violet_advanced = 1);
+	melee_damage_lower = 10
 	},
 /turf/open/floor/plating/ashplanet/rocky,
 /area/city/backstreets_alley)
@@ -834,8 +835,9 @@
 /mob/living/simple_animal/hostile/faithless{
 	maxHealth = 250;
 	health = 250;
-	melee_damage_upper = 20;
-	damage_coeff = list("brute" = 1, "red" = 0.5, "white" = 0, "black" = 1.5, "pale" = 2)
+	damage_coeff = list("brute" = 1, "red" = 0.5, "white" = 0, "black" = 1.5, "pale" = 2);
+	silk_results = list(/obj/item/stack/sheet/silk/violet_simple = 2, /obj/item/stack/sheet/silk/violet_advanced = 1);
+	melee_damage_lower = 10
 	},
 /turf/open/floor/plating/ashplanet/rocky,
 /area/city/backstreets_alley)
