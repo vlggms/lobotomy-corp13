@@ -1,5 +1,5 @@
 /**
-  *Both Ruina and Lobotomy Corporation have the fairies as something that’s predatory, but they show it in two different ways.
+  *Both Ruina and Lobotomy Corporation have the fairies as something thatâ€™s predatory, but they show it in two different ways.
   *In their first appearance, they attempt to eat people if they think that it endangers their food supply, and in their second they are all under the rule of a Fairy queen who eats them to sate her hunger.
   *I wanted to include both these aspects, while also keeping some of the innocence they use to attract agents as prey.
   */
@@ -11,7 +11,7 @@
     "You enter a forest grove, ripe with dew and the scents of spring. <br>\
     Small lights flit between the trees, hiding amongst the greenery as they observe you.<br>\
 	Slowy they come closer their tiny round forms coming into focus. Beating their small wings, they rush around you investigating this new intruder. <br>\
-	Eventually one brave little one approaches you, hugging you it’s plump face grins up at you.<br>\
+	Eventually one brave little one approaches you, hugging you itâ€™s plump face grins up at you.<br>\
 	After the first, the others follow hovering around you as they poke and prod, seemingly curious about what you are.<br>\
 	Amid the commotion, one larger than the rest grabs onto you trying to tug you deeper into the grove.",
 
@@ -20,7 +20,7 @@
    "Ability Challenge",
 
    "Something shifts in the darkness, looking around you see it rise out of the undergrowth.<br>\
-   It’s gaunt, it's limbs practically skeletal, but still unmistakably a massive fairy.<br>\
+   It's gaunt, it's limbs practically skeletal, but still unmistakably a massive fairy.<br>\
    Its eyes fixate on the thing the fairy brought to it and you can feel its hungering gaze bore into you.<br>\
    Drool slowly drips from its mouth as it stares down at it's next meal.<br>\
    Thinking quickly, you grab the fairy that led you here and a few others presenting them to the beast.<br>\
@@ -35,9 +35,9 @@
 	Pain erupts in your limbs as it's teeth rip into you, panicing you tear away running away from the grove.",
 
   "After a few minutes it stops, letting go of you and disappearing into the woods.<br>\
-  The others don’t care, instead continuing to surround you as they find more and more of interest.<br>\
+  The others donâ€™t care, instead continuing to surround you as they find more and more of interest.<br>\
   Eventually either wandering away, or hunkering down around you.<br>\
-  With nothing left to find you turn and leave the grove, feeling strangely refreshed though it feels like something’s watching you.",
+  With nothing left to find you turn and leave the grove, feeling strangely refreshed though it feels like somethingâ€™s watching you.",
 
   "With a smack the fairy turns into a green stain on your hand. The others freeze.<br>\
   Suddenly their gentle airs are gone, their lips peel back showing sharpened teeth.<br>\
