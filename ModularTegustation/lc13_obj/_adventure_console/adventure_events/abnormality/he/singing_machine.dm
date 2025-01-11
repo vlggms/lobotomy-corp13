@@ -6,25 +6,25 @@
     "A sharp smell of iron and violence fills the room as you enter.<br>\
 		Inside, is a large boxy machine with a person slumped against it.<br>\
 		Each of their limbs has been ripped to shreds, with small fleshy gibs hanging from the machine.<br>\
-		\“You there!\” Turning towards you.<br>\
-    \“Throw yourself into the Machine! I need to hear it one more time!\”",
+		\â€œYou there!\â€ Turning towards you.<br>\
+    \â€œThrow yourself into the Machine! I need to hear it one more time!\â€",
 
     "Putting yourself into the machine seems a bit extreme.<br>\
     However, if the sound it makes is that good you might have to listen.<br>\
     Against your better judgement you open the machine slipping a finger inside trying to keep it above the gnashing teeth.<br>\
     Slowly you inch closer, until it grabs you, yanking you towards the machine.<br>\
     Before you can stop yourself your arm is dragged into the depths, a new tune bursting forth amidst your screams.<br>\
-    It is the most beautiful thing you’ve heard.
+    It is the most beautiful thing youâ€™ve heard.
 
     "Ability Challenge",
 
     "In a single fluid motion you pick up the person and toss them into the machine.<br>\
-    Their cry isn’t one of fear, but exaltation thanking you for feeding them into the machine.<br>\
+    Their cry isnâ€™t one of fear, but exaltation thanking you for feeding them into the machine.<br>\
     As their body falls into the mesh of teeth and gears music begins to play.<br>\
-    It’s a sound so lovely you understand the mperson's cheers.",
+    Itâ€™s a sound so lovely you understand the mperson's cheers.",
 
     "Reaching down you try to pick the person up, but they smack you away cutting your arm with a shard of bone.<br>\
-    \“Stay away! If you aren’t going to give me music, then leave!\”<br>\
+    \â€œStay away! If you arenâ€™t going to give me music, then leave!\â€<br>\
     Sighing, you try again to pick them up, this time succeeding.<br>\
     However when you try to throw them they thrash around, falling out of your grasp.<br>\
     And knocking your arm into the machine.<br>\
@@ -32,7 +32,7 @@
     But the music it makes transcends beauty.",
 
     "Deciding you want nothing to do with any of this you turn to leave.<br>\
-	  \“Wait! Where are you going?\” The person cries reaching out with it’s jagged stump. \“Don’t you want to listen to ecstasy?\”<br>\
+	  \â€œWait! Where are you going?\â€ The person cries reaching out with itâ€™s jagged stump. \â€œDonâ€™t you want to listen to ecstasy?\â€<br>\
 	  You simply leave them there to rot.",
    )
 
