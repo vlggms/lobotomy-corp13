@@ -502,3 +502,13 @@ Any attempt to code risk class armor will result in a 10 day Github ban.*/
 	attribute_requirements = list(
 							JUSTICE_ATTRIBUTE = 40
 							)
+
+
+/obj/item/clothing/suit/armor/ego_gear/he/squeak
+	name = "squeaky toy"
+	desc = "A set of armor that appears to be made of rubber; turning."
+	icon_state = "hex_nail"
+	armor = list(RED_DAMAGE = -20, WHITE_DAMAGE = 50, BLACK_DAMAGE = 20, PALE_DAMAGE = 20) // 70
+	attribute_requirements = list(
+							PRUDENCE_ATTRIBUTE = 40
+							)
