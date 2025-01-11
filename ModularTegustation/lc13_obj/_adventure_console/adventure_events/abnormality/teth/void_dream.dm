@@ -1,6 +1,6 @@
 /**
   *Void Dream is fairly straight forward.
-  *Itís about dreams and the desire to give up on the waking world
+  *It‚Äôs about dreams and the desire to give up on the waking world
   *and instead live in a place where things are more pleasant
   *either generally or for things more specifically. -ML
   */
@@ -12,7 +12,7 @@
     "The cold darkness of the void embraces you and the creature before you.<br>\
 	  Its wool is white, illuminated by the light of countless stars.<br>\
 	  From the mass of wool two eyes peak at you, it's head tucked away elsewhere.<br>\
-	  Brushing your hand against it you feel at ease, like itís inviting you to join it's slumber.<br>\
+	  Brushing your hand against it you feel at ease, like it‚Äôs inviting you to join it's slumber.<br>\
     You feel drowsy, and some other feeling.<br>\
     Like a part of your heart is fading into the past.<br>\
     Maybe, you could take a moment to rest your eyes?",
@@ -21,11 +21,11 @@
 
     "The floating ball of fluff and wool is warm and oh so comfortable.<br>\
     It doesn't take long to drift off to sleep,and when you do you dream.<br>\
-    Youíre taken back to a time youíd almost forgotten.<br>\
-    Thereís someone else there, together you walk, you talk, and you laugh.<br>\
-    It feels so deeply nostalgic, but you canít remember why.<br>\
-    ìHey, [          ]î<br>\
-    You stop. That isnít right, they had a name.<br>\
+    You‚Äôre taken back to a time you‚Äôd almost forgotten.<br>\
+    There‚Äôs someone else there, together you walk, you talk, and you laugh.<br>\
+    It feels so deeply nostalgic, but you can‚Äôt remember why.<br>\
+    ‚ÄúHey, [          ]‚Äù<br>\
+    You stop. That isn‚Äôt right, they had a name.<br>\
     You wake with start, sleep blurring your thoughts as they mix together.<br>\
     Wondering why you're here you look around, and seeing nothing but a ball of void, leave.<br>\
     It feels like you left something important behind",
@@ -35,11 +35,11 @@
 	  Then everything begins to fade away, and you wake up with a start.<br>\
 	  Turning around you see its eyes watching you and a thin tongue reaching out from a beak to lick you.<br>\
 	  It slowly tastes you and you feel your memories of the dream slowly fade.<br>\
-	  No, you canít let it take them. Those are your memories, and you have to keep it that way.<br>\
+	  No, you can‚Äôt let it take them. Those are your memories, and you have to keep it that way.<br>\
 	  Turning you flee, and it drifts back to sleep.",
 
-    "No, now isnít the time for rest.<br>\
-    Sleep is inviting, but this is still an abnormality and you shouldnít trust it.<br>\
+    "No, now isn‚Äôt the time for rest.<br>\
+    Sleep is inviting, but this is still an abnormality and you shouldn‚Äôt trust it.<br>\
     Turning away you leave it to sleep.",
    )
 /datum/adventure_event/void_dream/EventChoiceFormat(obj/machinery/M, mob/living/carbon/human/H)
