@@ -38,6 +38,14 @@
 	dir = 1
 	},
 /obj/structure/chair/wood,
+/mob/living/simple_animal/hostile/clan/scout{
+	faction = list("neutral", "village");
+	can_protect = 1;
+	icon_living = "clan_scout_normal";
+	icon_state = "clan_scout_normal";
+	return_to_origin = 1;
+	city_faction = 0
+	},
 /turf/open/floor/plating/ironsand,
 /area/city/backstreets_room/resurgence_village)
 "cB" = (
@@ -484,7 +492,9 @@
 	icon_living = "defender_normal";
 	icon_state = "defender_normal";
 	return_to_origin = 1;
-	city_faction = 0
+	city_faction = 0;
+	maxHealth = 2400;
+	health = 2400
 	},
 /turf/open/floor/carpet/royalblack,
 /area/city/backstreets_room/resurgence_village)
@@ -877,7 +887,9 @@
 	icon_living = "defender_normal";
 	icon_state = "defender_normal";
 	return_to_origin = 1;
-	city_faction = 0
+	city_faction = 0;
+	health = 2400;
+	maxHealth = 2400
 	},
 /obj/effect/turf_decal/box/red,
 /turf/open/floor/plating/ironsand,
@@ -953,7 +965,9 @@
 	icon_living = "defender_normal";
 	icon_state = "defender_normal";
 	return_to_origin = 1;
-	city_faction = 0
+	city_faction = 0;
+	health = 2400;
+	maxHealth = 2400
 	},
 /turf/open/floor/plating/ironsand,
 /area/city/backstreets_room/resurgence_village)
@@ -1163,6 +1177,15 @@
 	},
 /obj/structure/chair/wood{
 	dir = 4
+	},
+/mob/living/simple_animal/hostile/clan/scout{
+	faction = list("neutral", "village");
+	can_protect = 1;
+	dir = 4;
+	icon_living = "clan_scout_normal";
+	icon_state = "clan_scout_normal";
+	return_to_origin = 1;
+	city_faction = 0
 	},
 /turf/open/floor/plating/ironsand,
 /area/city/backstreets_room/resurgence_village)
@@ -14308,7 +14331,7 @@ Cc
 Cc
 Cc
 Cc
-Cc
+KK
 LI
 qD
 LI
@@ -14411,8 +14434,8 @@ em
 kM
 kM
 sH
-Cc
-Cc
+sH
+sH
 TO
 Cc
 Cc
@@ -15417,7 +15440,7 @@ Cc
 MK
 Fp
 Cc
-Cc
+KK
 LI
 LI
 LI

@@ -28,6 +28,7 @@ GLOBAL_LIST_EMPTY(marked_players)
 	retreat_distance = 10
 	minimum_distance = 10
 	vision_range = 7
+	ranged_message = null
 	melee_damage_lower = 0
 	melee_damage_upper = 4
 	mob_size = MOB_SIZE_HUGE
@@ -46,12 +47,12 @@ GLOBAL_LIST_EMPTY(marked_players)
 
 /mob/living/simple_animal/hostile/clan_npc/proc/on_seeing_looting_started(datum/source, mob/living/user, obj/crate)
 	SIGNAL_HANDLER
-	if (check_visible(user, crate))
+	if (check_visible(user, crate) && stat != DEAD)
 		addtimer(CALLBACK(src, PROC_REF(Talk)), 0)
 
 /mob/living/simple_animal/hostile/clan_npc/proc/on_seeing_looting_ended(datum/source, mob/living/user, obj/crate)
 	SIGNAL_HANDLER
-	if (check_visible(user, crate))
+	if (check_visible(user, crate) && stat != DEAD)
 		addtimer(CALLBACK(src, PROC_REF(Theif_Talk)), 0)
 		if (!(user in GLOB.marked_players ))
 			GLOB.marked_players += user
