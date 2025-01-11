@@ -19,7 +19,7 @@
 		The hallway outside the containment unit is devoid of anything.<br>\
 		Returning to the chambers you strangely find the food in a closet inside the containment unit.<br>\
 		Clearly someone had the good idea to alter the unit to make it more hospitable!<br>\
-		There’s a few bones from a sekeleton for the good boy to chew on as well, you take some with as a treat.<br>\
+		Thereâ€™s a few bones from a sekeleton for the good boy to chew on as well, you take some with as a treat.<br>\
 		He looks so cute chowing down! It warms your soul to see him so happy.",
 
 		"How could something this photogenic possibly exist?<br>\
@@ -28,16 +28,16 @@
 		As quickly as you take them you share them with others, deluging the net with Ppodae.<br>\
 		Comments roll in, all of them in love with this most wonderous cutie.",
 
-		"This little cutie can’t be left like this!<br>\
-		He’s so lonely and needs attention.<br>\
-		Thankfully you’re able to find a bone in a closet that shouldn’t be there for him to fetch!<br>\
+		"This little cutie canâ€™t be left like this!<br>\
+		Heâ€™s so lonely and needs attention.<br>\
+		Thankfully youâ€™re able to find a bone in a closet that shouldnâ€™t be there for him to fetch!<br>\
 		You toss it a couple of times, each time he takes it back showing off just how powerful his adorable body is!<br>\
-		Wait, why’s he growing larger?",
+		Wait, whyâ€™s he growing larger?",
 
-		"Surely the managers didn’t make a mistake and put an actual dog in containment.<br>\
+		"Surely the managers didnâ€™t make a mistake and put an actual dog in containment.<br>\
 		After searching around you find the management notes in the workstation.<br>\
 		Sure enough this is an abnormality, with a very long list of deaths it caused.<br>\
-		Maybe playing with it isn’t the best idea…",
+		Maybe playing with it isnâ€™t the best ideaâ€¦",
 	)
 
 /datum/adventure_event/ppodae/EventChoiceFormat(obj/machinery/M, mob/living/carbon/human/H)
