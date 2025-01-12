@@ -2319,3 +2319,64 @@
 	qdel(src)
 	return TRUE
 
+/obj/item/ego_weapon/contempt
+	name = "contempt, awe"
+	desc = "From the excavated brain, geysers of hatred and contempt erupt. It's as if those feelings were inside you all along."
+	icon_state = "contempt"
+	force = 50
+	reach = 2
+	stuntime = 5
+	throwforce = 80
+	throw_speed = 5
+	throw_range = 7
+	damtype = BLACK_DAMAGE
+	attack_verb_continuous = list("pokes", "jabs", "tears", "lacerates", "gores")
+	attack_verb_simple = list("poke", "jab", "tear", "lacerate", "gore")
+	hitsound = 'sound/abnormalities/spiral_contempt/spiral_hit.ogg'
+	attribute_requirements = list(
+							FORTITUDE_ATTRIBUTE = 80
+							)
+	var/list/targets = list()
+	var/ranged_damage = 70
+	var/mode = FALSE
+	var/toggle_cooldown
+	var/toggle_cooldown_time = 1 SECONDS
+
+/obj/item/ego_weapon/contempt/attack(mob/living/M, mob/living/user)
+	if(!CanUseEgo(user))
+		return
+
+	if(!mode)
+		if(!(M in targets))
+			targets+= M
+	if(mode)
+		if(M in targets)
+			playsound(M, 'sound/abnormalities/spiral_contempt/spiral_bleed.ogg', 100, FALSE, 4)
+			M.apply_damage(ranged_damage, BLACK_DAMAGE, null, M.run_armor_check(null, BLACK_DAMAGE), spread_damage = TRUE)
+			new /obj/effect/temp_visual/contempt_blood(get_turf(M))
+			targets -= M
+	..()
+	hitsound = initial(hitsound)
+
+/obj/item/ego_weapon/contempt/attack_self(mob/user)
+	if(!CanUseEgo(user))
+		return
+	if(toggle_cooldown > world.time)//spam prevention
+		return
+	toggle_cooldown = world.time + toggle_cooldown_time
+	if(mode)
+		mode = FALSE
+		to_chat(user,span_warning("Your [src] now drips with blood."))
+		targets = list()
+		playsound(src, 'sound/abnormalities/spiral_contempt/spiral_grow.ogg', 20, FALSE)
+		return
+
+	if(!mode)
+		mode = TRUE
+		to_chat(user,span_warning("Your [src] now menances with spikes of gold."))
+		playsound(src, 'sound/abnormalities/spiral_contempt/spiral_whine.ogg', 20, FALSE)
+		return
+
+
+/obj/item/ego_weapon/contempt/get_clamped_volume()
+	return 25
