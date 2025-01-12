@@ -114,3 +114,12 @@
 	icon_state = "mail"
 	layer = BELOW_MOB_LAYER
 	duration = 10 SECONDS
+
+/obj/effect/temp_visual/contempt_blood
+	name = "contemptful blood"
+	desc = "An indicator of bleeding damage"
+	icon = 'icons/effects/effects.dmi'
+	icon_state = "bloodfall"
+	randomdir = FALSE
+	duration = 2 SECONDS
+	layer = POINT_LAYER
