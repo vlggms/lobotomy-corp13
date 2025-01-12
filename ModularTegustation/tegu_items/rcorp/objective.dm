@@ -220,6 +220,21 @@ GLOBAL_VAR_INIT(rcorp_payload, null)
 			var/obj/effect/proc_holder/spell/AS = new A(src)
 			AddSpell(AS)
 
+/mob/living/simple_animal/hostile/shrimp_vip/Login()
+	. = ..()
+	to_chat(src, "<h1>You are Shimp VIP, A Objective Role Abnormality.</h1><br>\
+		<b>|Supportive Barrier|: For each ally you are able to see, you take 25% less damage. For a max of 90% less damage from all attacks.<br>\
+		<br>\
+		|Sniper Target|: There is an R-Corp Sniper who is aiming at you. As long as you are able to see 2 allies, they will not be able to fire at you.<br>\
+		<br>\
+		|Airstrike Call|: After you click on your 'Airstrike' ability, The next turf you click on will call in a Airstrike on that location.<br>\
+		There is a 3 second delay before a missile hits the ground, and they deal 200 RED damage in a 5x5 AoE when they land. In total you will fire 5 missiles.<br>\
+		<br>\
+		|Barricade Call|: After you click on your 'Barricade' ability, The next turf you click on will call in a Barricade to that location.<br>\
+		You are able to have 6 barricades up at once, but you can still send down the pod to block damage.<br>\
+		<br>\
+		|Healing Call|: After you click on your 'Healing' ability, The next target you click on will have a HP bullet fired at them.<br>\
+		Your HP bullets are not able to target yourself, and you are able to miss them if you don't click on an ally.</b>")
 
 /mob/living/simple_animal/hostile/shrimp_vip/Life()
 	. = ..()
@@ -240,7 +255,6 @@ GLOBAL_VAR_INIT(rcorp_payload, null)
 		if (total_ally_protection > max_protection)
 			total_ally_protection = max_protection
 		final_resistance = base_resistance - total_ally_protection
-		to_chat(src, span_danger("Allies in Sight: " + num2text(temp_guarding_allies) + " Current Resistance: " + num2text(final_resistance)))
 		ChangeResistances(list(RED_DAMAGE = final_resistance, WHITE_DAMAGE = final_resistance, BLACK_DAMAGE = final_resistance, PALE_DAMAGE = final_resistance))
 	if (guarding_allies <= sniper_safe)
 		if (!sniper)
