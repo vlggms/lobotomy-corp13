@@ -9,9 +9,9 @@
 		"As you enter the room it opens up, its ceiling so high that it disappears into a single point.<br>\
 		The only thing in it is a pile of glistening grains of sand, piled so high that it disappears into the ceiling.<br>\
 		\"Welcome!\" a voice shouts. At first you see nothing, and then a figure begins to form itself from the sand.<br>\
-		It slowly rises. \"Isn’t it wondrous? My collection?\" It grins, waving around at the empty room.<br>\
+		It slowly rises. \"Isnâ€™t it wondrous? My collection?\" It grins, waving around at the empty room.<br>\
 		\"Feel free to indulge yourself in its splendor!\"<br>\
-		When you don’t immediately begin applauding it backs away, confused.<br>\
+		When you donâ€™t immediately begin applauding it backs away, confused.<br>\
 		In a flash it builds a few effigies of itself, each of them clapping until they collapse.",
 
 		"You decide to humor the thing, telling it how impresive all the sand is.",
@@ -25,7 +25,7 @@
 		As you leave you notice the sand solidifying into nuggets of gold in your hand.",
 
 		"\"Wait,\" The figure cries rushing to try and grab you. \"Where are you going?\"<br>\
-		As soon as its foot leaves the pile it’s body crumbles into sand.<br>\
+		As soon as its foot leaves the pile itâ€™s body crumbles into sand.<br>\
 		You simply leave. Behind you it continues to whine, demanding you come back.",
 	)
 
