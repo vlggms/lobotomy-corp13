@@ -503,7 +503,7 @@ Any attempt to code risk class armor will result in a 10 day Github ban.*/
 	name = "vulnerability"
 	desc = "Only by becoming weaker can you become stronger."
 	icon_state = "lindworm"
-	armor = list(RED_DAMAGE = 50, WHITE_DAMAGE = 20, BLACK_DAMAGE = 20, PALE_DAMAGE = 20) // 140
+	armor = list(RED_DAMAGE = 50, WHITE_DAMAGE = 50, BLACK_DAMAGE = 20, PALE_DAMAGE = 20) // 140
 	attribute_requirements = list(
 							FORTITUDE_ATTRIBUTE = 60,
 							PRUDENCE_ATTRIBUTE = 60,
