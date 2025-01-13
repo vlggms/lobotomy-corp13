@@ -42,7 +42,7 @@
 		return
 
 /mob/living/simple_animal/hostile/humanoid/blood/fiend/death(gibbed)
-	if(prob(30))
+	if(prob(20))
 		new /obj/item/clothing/suit/armor/ego_gear/city/masquerade_cloak (get_turf(src))
 	. = ..()
 
@@ -447,6 +447,8 @@
 	addtimer(CALLBACK(src, PROC_REF(DeathExplosion)), 15)
 	new /obj/item/food/meat/slab/crimson (get_turf(src))
 	new /obj/item/food/meat/slab/crimson (get_turf(src))
+	if(prob(10))
+		new /obj/item/clothing/suit/armor/ego_gear/city/masquerade_cloak/masquerade_coat (get_turf(src))
 	QDEL_IN(src, 15)
 	..()
 
