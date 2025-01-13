@@ -27,7 +27,7 @@ GLOBAL_LIST_EMPTY(marked_players)
 	ranged = TRUE
 	retreat_distance = 10
 	minimum_distance = 10
-	vision_range = 7
+	vision_range = 3
 	ranged_message = null
 	melee_damage_lower = 0
 	melee_damage_upper = 4
