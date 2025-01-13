@@ -84,8 +84,70 @@
 	// Looping Sound for max ramping
 	var/datum/looping_sound/woodsman/soundloop
 
+	// chain stuff
+	var/mob/living/carbon/human/chained_target = null
+	var/chain_pull_count = 0
+	var/active_pull_timer
+	var/NORMAL_PULL_DISTANCE = 1
+	var/HEAVY_PULL_DISTANCE = 2
+	var/NORMAL_PULL_DELAY = 100 // 0.75 seconds in deciseconds
+	var/HEAVY_PULL_DELAY = 150 // 1 second in deciseconds
+
+	// Chain beam
+	var/datum/beam/chain_beam
+
 	//PLAYABLES ATTACKS
 	attack_action_types = list(/datum/action/innate/abnormality_attack/toggle/woodsman_flurry_toggle)
+
+
+/datum/action/spell_action/spell/axe_throw/IsAvailable()
+	if (istype(owner, /mob/living/simple_animal/hostile/abnormality/woodsman))
+		var/mob/living/simple_animal/hostile/abnormality/woodsman/W = owner
+		if (W.chained_target)
+			return FALSE
+	. = ..()
+
+
+/obj/effect/proc_holder/spell/pointed/axe_throw
+	name = "Axe throw"
+	desc = "Axe throw"
+	panel = "Contract"
+	has_action = TRUE
+	action_icon = 'icons/mob/actions/actions_abnormality.dmi'
+	action_icon_state = "contract_ruin"
+	clothes_req = FALSE
+	charge_max = 150
+	selection_type = "range"
+	active_msg = "You prepare your Contract of Ruin..."
+	deactive_msg = "You put away your Contract of Ruin..."
+	base_action = /datum/action/spell_action/spell/axe_throw
+
+
+/obj/effect/proc_holder/spell/pointed/axe_throw/cast(list/targets, mob/user)
+	var/target = targets[1]
+
+	if (istype(user, /mob/living/simple_animal/hostile/abnormality/woodsman))
+		var/mob/living/simple_animal/hostile/abnormality/woodsman/W = user
+		if (W.chained_target)
+			return FALSE
+
+	var/obj/projectile/chainedaxe/P = new(get_turf(user))
+	P.firer = user
+	P.preparePixelProjectile(target, user)
+	P.fire()
+
+/obj/projectile/chainedaxe
+	name = "chained axe"
+	icon_state = "hunter_blade_animated"
+	damage = 1
+
+/obj/projectile/chainedaxe/on_hit(atom/target, blocked = FALSE)
+	. = ..()
+	if(istype(target, /mob/living/carbon/human))
+		var/mob/living/carbon/human/H = target
+		var/mob/living/simple_animal/hostile/abnormality/woodsman/W = firer
+		if(istype(W) && get_dist(get_turf(target), get_turf(firer)) < 12)
+			W.begin_chain_pull(H)
 
 /datum/action/innate/abnormality_attack/toggle/woodsman_flurry_toggle
 	name = "Toggle Deforestation"
@@ -108,10 +170,130 @@
 		initial_flurry_delay = flurry_delay
 		initial_flurry_pause = flurry_pause
 		initial_move_to_delay = move_to_delay
+		var/obj/effect/proc_holder/spell/pointed/axe_throw/AS = new /obj/effect/proc_holder/spell/pointed/axe_throw(src)
+		AddSpell(AS)
 
 /mob/living/simple_animal/hostile/abnormality/woodsman/Destroy()
 	QDEL_NULL(soundloop)
 	return ..()
+
+/mob/living/simple_animal/hostile/abnormality/woodsman/proc/begin_chain_pull(mob/living/carbon/human/target)
+	chained_target = target
+	chain_pull_count = 0
+	var/datum/status_effect/chained/C = chained_target.has_status_effect(/datum/status_effect/chained)
+	if(!C)
+		C = chained_target.apply_status_effect(/datum/status_effect/chained)
+		C.W = src
+
+	update_chain_visuals()
+	pull_loop()
+
+
+/mob/living/simple_animal/hostile/abnormality/woodsman/proc/pull_loop()
+	if(!chained_target || !can_see(src, chained_target, 14))
+		release_target()
+		return
+
+	var/current_dist = get_dist(get_turf(chained_target), get_turf(src))
+	if (current_dist < 2)
+		chained_target.Knockdown(3 SECONDS)
+		release_target()
+		return
+
+	chain_pull_count++
+
+	var/pull_distance = NORMAL_PULL_DISTANCE
+	if (chain_pull_count % 3 == 0)
+		pull_distance = HEAVY_PULL_DISTANCE
+
+	var/delay = NORMAL_PULL_DELAY
+	if (chain_pull_count % 3 == 2)
+		delay = HEAVY_PULL_DELAY
+
+	pull_target(pull_distance)
+	update_chain_visuals()
+
+	active_pull_timer = addtimer(CALLBACK(src, PROC_REF(pull_loop)), delay, TIMER_STOPPABLE)
+
+
+/mob/living/simple_animal/hostile/abnormality/woodsman/proc/pull_target(distance)
+	if(!chained_target)
+		return
+	if (chained_target.stat == DEAD)
+		release_target()
+
+	var/turf/T = get_turf(src)
+	var/turf/target_turf = get_turf(chained_target)
+
+	// Calculate throw speed based on distance
+	var/throw_speed = 2
+	if(distance >= HEAVY_PULL_DISTANCE)
+		throw_speed = 3
+
+	// Throw the target towards the woodsman
+	chained_target.throw_at(T, distance, throw_speed, src)
+	playsound(target_turf, 'sound/weapons/batonextend.ogg', 50, TRUE)
+
+/mob/living/simple_animal/hostile/abnormality/woodsman/proc/update_chain_visuals()
+	if(!chained_target)
+		if(chain_beam)
+			QDEL_NULL(chain_beam)
+		return
+
+	if(!chain_beam)
+		chain_beam = Beam(chained_target, icon_state="chain")
+	// Beam datum will handle updating the visuals automatically when either end moves
+
+/mob/living/simple_animal/hostile/abnormality/woodsman/proc/release_target()
+	if(!chained_target)
+		return
+
+	chained_target.remove_status_effect(/datum/status_effect/chained)
+	chained_target = null
+	chain_pull_count = 0
+	update_chain_visuals()
+	deltimer(active_pull_timer)
+
+// Status effect for chained targets
+/datum/status_effect/chained
+	id = "chained"
+	status_type = STATUS_EFFECT_UNIQUE
+	alert_type = /atom/movable/screen/alert/status_effect/chained
+	var/mob/living/simple_animal/hostile/abnormality/woodsman/W
+	var/view_range = 7
+
+/atom/movable/screen/alert/status_effect/chained
+	name = "Chained"
+	desc = "You've been caught by the woodsman's chain!"
+	icon = 'ModularTegustation/Teguicons/status_sprites.dmi'
+	icon_state = "locked"
+
+// Movement restriction for chained targets
+/datum/status_effect/chained/on_apply()
+	. = ..()
+	RegisterSignal(owner, COMSIG_MOVABLE_PRE_MOVE, PROC_REF(check_movement))
+
+/datum/status_effect/chained/on_remove()
+	UnregisterSignal(owner, COMSIG_MOVABLE_PRE_MOVE)
+	. = ..()
+
+/datum/status_effect/chained/proc/check_movement(mob/living/carbon/human/H, turf/NewLoc)
+	SIGNAL_HANDLER
+
+	if(!istype(H))
+		return
+
+	if(!W || !(H in view(view_range, W)))
+		H.remove_status_effect(/datum/status_effect/chained)
+		return
+
+	var/current_dist = get_dist(get_turf(W), get_turf(H))
+	var/new_dist = get_dist(get_turf(W), NewLoc)
+
+	if(new_dist > current_dist)
+		to_chat(H, "<span class='warning'>The chain prevents you from moving further away!</span>")
+		return COMPONENT_MOVABLE_BLOCK_PRE_MOVE
+
 
 /mob/living/simple_animal/hostile/abnormality/woodsman/Life()
 	. = ..()
