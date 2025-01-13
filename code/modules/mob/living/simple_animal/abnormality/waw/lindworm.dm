@@ -12,8 +12,8 @@
 	rapid_melee = 1
 	move_to_delay = 3
 	damage_coeff = list(RED_DAMAGE = 1, WHITE_DAMAGE = 1, BLACK_DAMAGE = 1, PALE_DAMAGE = 1)
-	melee_damage_lower = 60
-	melee_damage_upper = 70
+	melee_damage_lower = 40
+	melee_damage_upper = 50
 	melee_damage_type = RED_DAMAGE
 	stat_attack = DEAD
 	attack_sound = 'sound/abnormalities/mountain/bite.ogg'
@@ -127,7 +127,7 @@
 		if(ABNORMALITY_WORK_INSTINCT)
 			if(!red_weak)	//Decrease red mod, store who's being worked on and lower a layer.
 				red_weak = user
-				user.physiology.red_mod *= 1.3
+				user.physiology.red_mod *= 1.05
 				layers_left-=1
 				to_chat(user, span_userdanger("You feel your armor shed; and a layer falls away from the lindworm."))
 				playsound(get_turf(src), 'sound/abnormalities/bigbird/bite.ogg', 50, 1, 2)
@@ -137,7 +137,7 @@
 		if(ABNORMALITY_WORK_INSIGHT)
 			if(!white_weak)
 				white_weak = user
-				user.physiology.white_mod *= 1.3
+				user.physiology.white_mod *= 1.05
 				layers_left-=1
 				to_chat(user, span_userdanger("You feel your armor shed; and a layer falls away from the lindworm."))
 				playsound(get_turf(src), 'sound/abnormalities/bigbird/bite.ogg', 50, 1, 2)
@@ -147,7 +147,7 @@
 		if(ABNORMALITY_WORK_ATTACHMENT)
 			if(!black_weak)
 				black_weak = user
-				user.physiology.black_mod *= 1.3
+				user.physiology.black_mod *= 1.05
 				layers_left-=1
 				to_chat(user, span_userdanger("You feel your armor shed; and a layer falls away from the lindworm."))
 				playsound(get_turf(src), 'sound/abnormalities/bigbird/bite.ogg', 50, 1, 2)
@@ -157,7 +157,7 @@
 		if(ABNORMALITY_WORK_REPRESSION)
 			if(!pale_weak)
 				pale_weak = user
-				user.physiology.pale_mod *= 1.3
+				user.physiology.pale_mod *= 1.05
 				layers_left-=1
 				to_chat(user, span_userdanger("You feel your armor shed; and a layer falls away from the lindworm."))
 				playsound(get_turf(src), 'sound/abnormalities/bigbird/bite.ogg', 50, 1, 2)
@@ -168,19 +168,19 @@
 
 /mob/living/simple_animal/hostile/abnormality/lindworm/proc/CleanupDefense()
 	if(red_weak)
-		red_weak.physiology.red_mod /= 1.3
+		red_weak.physiology.red_mod /= 1.05
 		to_chat(red_weak, span_notice("You feel your natural body hardening again."))
 
 	if(white_weak)
-		white_weak.physiology.white_mod /= 1.3
+		white_weak.physiology.white_mod /= 1.05
 		to_chat(white_weak, span_notice("You feel your natural body hardening again."))
 
 	if(black_weak)
-		black_weak.physiology.black_mod /= 1.3
+		black_weak.physiology.black_mod /= 1.05
 		to_chat(black_weak, span_notice("You feel your natural body hardening again."))
 
 	if(pale_weak)
-		pale_weak.physiology.pale_mod /= 1.3
+		pale_weak.physiology.pale_mod /= 1.05
 		to_chat(pale_weak, span_notice("You feel your natural body hardening again."))
 
 
