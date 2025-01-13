@@ -23,7 +23,7 @@
 	You’re taken back to a time you’d almost forgotten.<br>\
 	There’s someone else there, together you walk, you talk, and you laugh.<br>\
 	It feels so deeply nostalgic, but you can’t remember why.<br>\
-	\"Hey!\"<br>\
+	\"Hey !@)(!@&)&*%(%@!@#*(#\"<br>\
 	You stop. That isn’t right, they had a name.<br>\
 	You wake with start, sleep blurring your thoughts as they mix together.<br>\
 	Wondering why you're here you look around, and seeing nothing but a ball of void, leave.<br>\
