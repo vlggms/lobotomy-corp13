@@ -1,12 +1,12 @@
 //-----J_CORP-----
-//J Corp mostly impacts RNG.
+//J Corp mostly impacts RNG. It also has some other things related to J corp casinos.
 
 GLOBAL_LIST_EMPTY(jcorp_upgrades)
 
 ///Gacha
 
 /datum/data/lc13research/gacha_chance
-	research_name = "Outlet Rarity Upgrade"
+	research_name = "Crate Rarity Upgrade"
 	research_desc = "With some power, we can provide the facility with a slightly better chance to get rarer products from places they sell to."
 	cost = LOW_RESEARCH_PRICE
 	corp = J_CORP_REP
@@ -16,7 +16,7 @@ GLOBAL_LIST_EMPTY(jcorp_upgrades)
 	GLOB.jcorp_upgrades += "Gacha Chance 1"
 
 /datum/data/lc13research/gacha_chance2
-	research_name = "Outlet Rarity Upgrade II"
+	research_name = "Crate Rarity Upgrade II"
 	research_desc = "With some power, we can provide the facility with better chances to get rarer products from places they sell to."
 	cost = AVERAGE_RESEARCH_PRICE
 	corp = J_CORP_REP
@@ -27,7 +27,7 @@ GLOBAL_LIST_EMPTY(jcorp_upgrades)
 	GLOB.jcorp_upgrades += "Gacha Chance 2"
 
 /datum/data/lc13research/gacha_chance3
-	research_name = "Outlet Rarity Upgrade III"
+	research_name = "Crate Rarity Upgrade III"
 	research_desc = "With some more power, we can provide the facility with an even better chances to get rarer products from places they sell to."
 	cost = HIGH_RESEARCH_PRICE-10
 	corp = J_CORP_REP
@@ -38,7 +38,7 @@ GLOBAL_LIST_EMPTY(jcorp_upgrades)
 	GLOB.jcorp_upgrades += "Gacha Chance 3"
 
 /datum/data/lc13research/gacha_chance4
-	research_name = "Outlet Rarity Upgrade IV"
+	research_name = "Crate Rarity Upgrade IV"
 	research_desc = "With some power, we can provide the facility with a final upgrade for better chances to get rarer products from places they sell to. The Suppression Agents and Extraction Officer will likely love you with this research."
 	cost = HIGH_RESEARCH_PRICE
 	corp = J_CORP_REP
@@ -85,6 +85,15 @@ GLOBAL_LIST_EMPTY(jcorp_upgrades)
 	new /obj/item/a_gift/jcorp(get_turf(requester))
 	requester.visible_message(span_notice("The [requester] lights up as it teleports in the Lootboxes."))
 	repeat_cooldown = world.time + (10 SECONDS)
+
+//ERTs
+
+/datum/data/lc13research/mobspawner/casino_slaves
+	research_name = ""
+	research_desc = ""
+	cost =
+	corp = J_CORP_REP
+	mobspawner_type = /obj/effect/mob_spawn/human/supplypod
 
 // Critical Hits (Untested! Don't add till Critical Hits PR is merged)
 ///datum/data/lc13research/crit_sticker

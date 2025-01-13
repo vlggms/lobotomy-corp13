@@ -33,8 +33,6 @@ GLOBAL_LIST_EMPTY(possible_loot_jcorp)
 		/obj/item/storage/belt/grenade,
 		/obj/item/storage/belt/wands/full,
 		/obj/item/melee/cultblade/dagger,
-		/obj/item/grenade,
-		/obj/item/gun/ballistic/revolver/grenadelauncher,
 		/obj/item/gun/ballistic/automatic/gyropistol,
 		/obj/item/gun/ballistic/rocketlauncher,
 		/obj/item/gun/grenadelauncher,
@@ -60,11 +58,17 @@ GLOBAL_LIST_EMPTY(possible_loot_jcorp)
 	var/list/safe_items = list(
 		/obj/item/grenade/firecracker,
 		/obj/item/grenade/barrier,
-		/obj/item/grenade/spawnergrenade/shrimp
+		/obj/item/grenade/spawnergrenade/shrimp,
+		/obj/item/grenade/chem_grenade/cleaner,
+		/obj/item/grenade/chem_grenade/ez_clean,
+		/obj/item/grenade/chem_grenade/colorful,
+		/obj/item/grenade/chem_grenade/glitter,
 	)
 	var/list/safe_subtypes = list(
 		/obj/item/grenade/r_corp,
 		/obj/item/grenade/spawnergrenade/shrimp,
+		/obj/item/grenade/chem_grenade/glitter,
+		/obj/item/grenade/smokebomb,
 	)
 
 	if(!GLOB.possible_loot_jcorp.len)
@@ -79,7 +83,7 @@ GLOBAL_LIST_EMPTY(possible_loot_jcorp)
 			if(I in banned_items)
 				gift_types_list -= V
 			for(var/S in banned_subtypes)
-				if(I in subtypesof(S))
+				if(I in typesof(S))
 					gift_types_list -= V
 		for(var/safetype in safe_subtypes)
 			for(var/I in safetype)
