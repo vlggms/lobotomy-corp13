@@ -90,8 +90,8 @@
 	var/active_pull_timer
 	var/NORMAL_PULL_DISTANCE = 1
 	var/HEAVY_PULL_DISTANCE = 2
-	var/NORMAL_PULL_DELAY = 100 // 0.75 seconds in deciseconds
-	var/HEAVY_PULL_DELAY = 150 // 1 second in deciseconds
+	var/NORMAL_PULL_DELAY = 10 // 0.75 seconds in deciseconds
+	var/HEAVY_PULL_DELAY = 15 // 1 second in deciseconds
 
 	// Chain beam
 	var/datum/beam/chain_beam
