@@ -1092,6 +1092,7 @@
 	normal_integrity = 100000;
 	req_access_txt = "19"
 	},
+/obj/effect/mapping_helpers/airlock/unres,
 /turf/open/floor/plating/ironsand,
 /area/city/backstreets_alley)
 "OJ" = (
