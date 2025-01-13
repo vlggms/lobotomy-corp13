@@ -98,7 +98,7 @@ NO_INTERCEPT_REPORT
 ## Default probablity is 1, increase to make that mode more likely to be picked.
 ## Set to 0 to disable that mode.
 
-PROBABILITY CLASSIC 5
+PROBABILITY TRAITOR 5
 PROBABILITY TRAITORBRO 2
 PROBABILITY TRAITORCHAN 4
 PROBABILITY INTERNAL_AFFAIRS 0
@@ -124,7 +124,7 @@ REPEATED_MODE_ADJUST 45 30 10
 ## Toggles for continuous modes.
 ## Modes that aren't continuous will end the instant all antagonists are dead.
 
-CONTINUOUS CLASSIC
+CONTINUOUS TRAITOR
 CONTINUOUS TRAITORBRO
 CONTINUOUS TRAITORCHAN
 CONTINUOUS INTERNAL_AFFAIRS
@@ -201,9 +201,6 @@ MIDROUND_ANTAG INFILTRATION
 ## Setting at least one mode to be playable at 0/1 players is required.
 #MIN_POP EXTENDED 0
 #MAX_POP EXTENDED -1
-
-MIN_POP CLASSIC 0
-MAX_POP CLASSIC -1
 
 
 
