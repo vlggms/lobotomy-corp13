@@ -34,12 +34,10 @@
 		if(1)
 			BUTTON_FORMAT(2, "HUMOR IT", M)
 			BUTTON_FORMAT(5, "Leave", M)
-		return
 		if(2)
-			CHANCE_BUTTON_FORMAT(ReturnStat(Gluttony), "GLUTTONY", M)
-			CHANCE_BUTTON_FORMAT(ReturnStat(Sloth), "SLOTH", M)
+			CHANCE_BUTTON_FORMAT(ReturnStat(GLUTT_STAT), "GLUTTONY", M)
+			CHANCE_BUTTON_FORMAT(ReturnStat(SLOTH_STAT), "SLOTH", M)
 			. += CoinFlipping(M)
-		return
 		if(3)
 			AdjustStatNum(SLOTH_STAT, ADV_EVENT_STAT_EASY)
 		if(4)

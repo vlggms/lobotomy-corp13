@@ -5,7 +5,7 @@
 /datum/adventure_event/ppodae
 	name = "Ppodae"
 	desc = "YOU SEE THE CUTEST THING EVER"
-	require_abno = /mob/living/simple_animal/abnormality/teth/ppodae.dm
+	require_abno = /mob/living/simple_animal/hostile/abnormality/ppodae
 	adventure_cords = list(
 		"Entering the room, you notice it's near identical to a Lobotomy Corporation Contaiment Unit.<br>\
 		Specifically one for a large sized Abnormality<br>\
@@ -37,7 +37,7 @@
 		"Surely the managers didn’t make a mistake and put an actual dog in containment.<br>\
 		After searching around you find the management notes in the workstation.<br>\
 		Sure enough this is an abnormality, with a very long list of deaths it caused.<br>\
-		Maybe playing with it isn’t the best idea…",
+		Maybe playing with it isn’t the best idea...",
 	)
 
 /datum/adventure_event/ppodae/EventChoiceFormat(obj/machinery/M, mob/living/carbon/human/H)
@@ -53,9 +53,8 @@
 			AdjustCurrency(ADV_EVENT_COIN_EASY)
 		if(4)
 			CauseBattle(
-			"Ppodae: A mountiain of muscle with the facade of a puppy."
-			MON_DAMAGE_EASY,
-			30
-		)
-		if(5)
+				"Ppodae: A mountiain of muscle with the facade of a puppy.",
+				MON_DAMAGE_EASY,
+				30
+			)
 	return ..()
