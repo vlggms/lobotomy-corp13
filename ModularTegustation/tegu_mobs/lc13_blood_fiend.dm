@@ -5,9 +5,9 @@
 	name = "bloodfiend"
 	desc = "A humanoid wearing a bloody dress and a bird mask."
 	icon = 'ModularTegustation/Teguicons/blood_fiends_32x32.dmi'
-	icon_state = "bloodfiend"
-	icon_living = "bloodfiend"
-	icon_dead = "bloodfiend_dead"
+	icon_state = "test_meifiend"
+	icon_living = "test_meifiend"
+	icon_dead = "test_meifiend_dead"
 	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 1.2, WHITE_DAMAGE = 0.8, BLACK_DAMAGE = 0.6, PALE_DAMAGE = 1.3)
 	melee_damage_lower = 8
 	melee_damage_upper = 10
@@ -33,10 +33,13 @@
 	var/leap_bleed_stacks = 5
 
 /mob/living/simple_animal/hostile/humanoid/blood/fiend/proc/AdjustBloodFeast(amount)
-	adjustBruteLoss(-amount/4)
-	blood_feast += amount
-	if (blood_feast > max_blood_feast)
-		blood_feast = max_blood_feast
+	if(stat != DEAD)
+		adjustBruteLoss(-amount/4)
+		blood_feast += amount
+		if (blood_feast > max_blood_feast)
+			blood_feast = max_blood_feast
+	else
+		return
 
 /mob/living/simple_animal/hostile/humanoid/blood/fiend/death(gibbed)
 	if(prob(30))
@@ -81,6 +84,9 @@
 				blood.color = "#b52e19"
 				hit_mob = HurtInTurf(T, hit_mob, slash_damage, RED_DAMAGE, null, TRUE, FALSE, TRUE, hurt_structure = TRUE)
 
+/obj/effect/temp_visual/warning3x3/bloodfiend
+	duration = 1.5 SECONDS
+
 /mob/living/simple_animal/hostile/humanoid/blood/fiend/proc/Leap(mob/living/target)
 	if(!isliving(target) && !ismecha(target) || !can_act)
 		return
@@ -91,7 +97,9 @@
 	src.pixel_x = 16
 	playsound(src, 'sound/abnormalities/ichthys/jump.ogg', 50, FALSE, 4)
 	var/turf/target_turf = get_turf(target)
-	SLEEP_CHECK_DEATH(1 SECONDS)
+	var/obj/effect/temp_visual/warning3x3/W = new(target_turf)
+	W.color = "#fa3217ac"
+	SLEEP_CHECK_DEATH(1.5 SECONDS)
 	if(target_turf)
 		forceMove(target_turf) //look out, someone is rushing you!
 	playsound(src, leap_sound, 50, FALSE, 4)
@@ -158,11 +166,14 @@
 
 /mob/living/simple_animal/hostile/humanoid/blood/fiend/boss
 	name = "royal bloodfiend"
-	desc = "A humanoid wearing a bloody dress and a bird mask..."
+	desc = "A humanoid wearing a bloody suit and a bird mask. They appear to hold themselves in high regard."
 	icon = 'ModularTegustation/Teguicons/blood_fiends_32x32.dmi'
-	icon_state = "bloodfiend"
-	icon_living = "bloodfiend"
-	icon_dead = "bloodfiend_dead"
+	icon_state = "b_boss"
+	icon_living = "b_boss"
+	icon_dead = "b_boss_dead"
+	var/normal_state = "b_boss"
+	var/hardblood_state = "b_boss_hardblood"
+	var/exhausted_state = "b_boss_exhausted"
 	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 1, WHITE_DAMAGE = 0.6, BLACK_DAMAGE = 0.4, PALE_DAMAGE = 1.5)
 	melee_damage_lower = 7
 	melee_damage_upper = 8
@@ -190,6 +201,22 @@
 	var/summon_cost = 25
 	var/slashing = FALSE
 
+/mob/living/simple_animal/hostile/humanoid/blood/fiend/boss/AdjustBloodFeast(amount)
+	. = ..()
+	if (slashing)
+		return
+
+	if (blood_feast > max_blood_feast * 0.5)
+		icon_state = hardblood_state
+		melee_damage_lower = 10
+		melee_damage_upper = 12
+		melee_damage_type = BLACK_DAMAGE
+	else
+		icon_state = normal_state
+		melee_damage_lower = 7
+		melee_damage_upper = 8
+		melee_damage_type = RED_DAMAGE
+
 /mob/living/simple_animal/hostile/humanoid/blood/fiend/boss/Leap(mob/living/target)
 	if(!isliving(target) && !ismecha(target) || !can_act)
 		return
@@ -200,7 +227,6 @@
 	blood_target = target
 	blood_target.apply_status_effect(/datum/status_effect/bloodhold)
 	blood_target.faction += "city"
-	blood_feast = 0
 	can_act = FALSE
 	var/list/dirs_to_land = shuffle(list(NORTH, SOUTH, EAST, WEST, NORTHEAST, NORTHWEST, SOUTHEAST, SOUTHWEST))
 	var/list/dir_overlays = list()
@@ -266,10 +292,13 @@
 		var/mutable_appearance/colored_overlay = mutable_appearance(icon, "small_stagger", layer + 0.1)
 		add_overlay(colored_overlay)
 		manual_emote("kneels on the floor...")
+		icon_state = exhausted_state
 		ChangeResistances(list(RED_DAMAGE = 2, WHITE_DAMAGE = 1.2, BLACK_DAMAGE = 1, PALE_DAMAGE = 3))
 		sleep(stun_duration)
 		manual_emote("rises back up...")
 		cut_overlays()
+	blood_feast = 0
+	icon_state = normal_state
 	ChangeResistances(list(RED_DAMAGE = 1, WHITE_DAMAGE = 0.6, BLACK_DAMAGE = 0.4, PALE_DAMAGE = 1.5))
 	slashing = FALSE
 	can_act = TRUE
@@ -375,6 +404,7 @@
 	attack_sound = 'sound/effects/ordeals/brown/flea_attack.ogg'
 	attack_verb_continuous = "slashes"
 	attack_verb_simple = "slash"
+	move_to_delay = 2.5
 	maxHealth = 500
 	health = 500
 	butcher_results = list(/obj/item/food/meat/slab/crimson = 1)
