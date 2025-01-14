@@ -1,7 +1,23 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
 "ba" = (
-/obj/effect/mine/explosive,
-/obj/machinery/door/airlock/grunge,
+/obj/structure/closet/crate/wooden,
+/obj/item/stack/sheet/silk/shrimple_advanced,
+/obj/item/stack/sheet/silk/shrimple_advanced,
+/obj/item/stack/sheet/silk/shrimple_advanced,
+/obj/item/stack/sheet/silk/shrimple_advanced,
+/obj/item/stack/sheet/silk/shrimple_advanced,
+/obj/item/stack/sheet/silk/shrimple_advanced,
+/obj/item/stack/sheet/silk/shrimple_advanced,
+/turf/open/floor/engine,
+/area/city/backstreets_room)
+"bx" = (
+/obj/machinery/door/airlock/centcom{
+	desc = "A bit too sturdy...";
+	max_integrity = 10000;
+	name = "Strange Airlock";
+	normal_integrity = 100000;
+	req_access_txt = "19"
+	},
 /turf/open/floor/plasteel/dark,
 /area/city/backstreets_room)
 "bC" = (
@@ -95,6 +111,21 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/city/backstreets_room)
+"nu" = (
+/obj/structure/table/reinforced,
+/obj/item/stack/spacecash/c100,
+/obj/item/stack/spacecash/c100,
+/obj/item/stack/spacecash/c100,
+/obj/item/stack/spacecash/c100,
+/obj/item/stack/sheet/silk/crimson_simple,
+/obj/item/stack/sheet/silk/crimson_simple,
+/obj/item/stack/sheet/silk/crimson_simple,
+/obj/item/stack/sheet/silk/crimson_simple,
+/obj/item/stack/sheet/silk/crimson_simple,
+/obj/item/stack/sheet/silk/crimson_simple,
+/obj/item/stack/sheet/silk/crimson_simple,
+/turf/open/floor/plasteel/vaporwave,
+/area/city/backstreets_room)
 "nU" = (
 /obj/effect/turf_decal/weather/dirt{
 	dir = 6
@@ -108,11 +139,32 @@
 	},
 /turf/open/floor/plasteel/vaporwave,
 /area/city/backstreets_room)
+"qo" = (
+/obj/effect/turf_decal{
+	dir = 1
+	},
+/obj/structure/closet/crate/large,
+/obj/item/stack/spacecash/c100,
+/obj/item/stack/spacecash/c100,
+/obj/item/stack/spacecash/c100,
+/obj/item/stack/spacecash/c200,
+/turf/open/floor/engine,
+/area/city/backstreets_room)
 "sP" = (
 /obj/structure/fence/corner{
 	dir = 10
 	},
 /turf/open/floor/plating/dirt/jungle/dark,
+/area/city/backstreets_room)
+"sY" = (
+/obj/machinery/door/airlock/centcom{
+	desc = "A bit too sturdy...";
+	max_integrity = 10000;
+	name = "Strange Airlock";
+	normal_integrity = 100000;
+	req_access_txt = "19"
+	},
+/turf/open/floor/plasteel/vaporwave,
 /area/city/backstreets_room)
 "us" = (
 /obj/structure/table/wood/fancy/green,
@@ -137,9 +189,18 @@
 /turf/open/floor/plasteel/dark,
 /area/city/backstreets_room)
 "we" = (
-/obj/machinery/door/airlock/grunge,
-/obj/effect/mine/explosive,
-/turf/open/floor/plasteel/dark,
+/obj/structure/closet/crate/wooden,
+/obj/item/stack/sheet/silk/shrimple_simple,
+/obj/item/stack/sheet/silk/shrimple_simple,
+/obj/item/stack/sheet/silk/shrimple_simple,
+/obj/item/stack/sheet/silk/shrimple_simple,
+/obj/item/stack/sheet/silk/shrimple_simple,
+/obj/item/stack/sheet/silk/shrimple_simple,
+/obj/item/stack/sheet/silk/shrimple_simple,
+/obj/item/stack/sheet/silk/shrimple_simple,
+/obj/item/stack/sheet/silk/shrimple_simple,
+/obj/item/stack/sheet/silk/shrimple_advanced,
+/turf/open/floor/engine,
 /area/city/backstreets_room)
 "wu" = (
 /obj/structure/fence{
@@ -156,6 +217,10 @@
 "zZ" = (
 /turf/closed/indestructible/reinforced,
 /area/city/backstreets_room)
+"Ac" = (
+/obj/structure/rack,
+/turf/open/floor/plasteel/vaporwave,
+/area/city/backstreets_room)
 "Av" = (
 /obj/effect/turf_decal/siding/wideplating/light{
 	dir = 8
@@ -165,6 +230,32 @@
 	dir = 8
 	},
 /turf/open/floor/plasteel/dark,
+/area/city/backstreets_room)
+"Er" = (
+/obj/effect/turf_decal{
+	dir = 8
+	},
+/obj/structure/closet/crate/large,
+/obj/item/stack/spacecash/c100,
+/obj/item/stack/spacecash/c200,
+/obj/item/stack/spacecash/c200,
+/obj/item/stack/spacecash/c200,
+/turf/open/floor/engine,
+/area/city/backstreets_room)
+"Fs" = (
+/obj/effect/turf_decal{
+	dir = 1
+	},
+/obj/structure/closet/crate/large,
+/obj/item/stack/spacecash/c100,
+/obj/item/stack/spacecash/c100,
+/turf/open/floor/engine,
+/area/city/backstreets_room)
+"GZ" = (
+/obj/effect/turf_decal{
+	dir = 9
+	},
+/turf/open/floor/engine,
 /area/city/backstreets_room)
 "Hb" = (
 /obj/structure/fence/corner{
@@ -201,6 +292,14 @@
 	name = "dead potted plant";
 	pixel_y = 10
 	},
+/obj/item/stack/spacecash/c100,
+/obj/item/stack/sheet/silk/crimson_simple,
+/obj/item/stack/sheet/silk/crimson_simple,
+/obj/item/stack/sheet/silk/crimson_simple,
+/obj/item/stack/sheet/silk/crimson_advanced,
+/obj/item/stack/sheet/silk/crimson_advanced,
+/obj/item/stack/spacecash/c200,
+/obj/item/stack/spacecash/c200,
 /turf/open/floor/plasteel/vaporwave,
 /area/city/backstreets_room)
 "PC" = (
@@ -261,6 +360,15 @@
 "YL" = (
 /obj/structure/table/reinforced,
 /obj/item/stack/spacecash/c100,
+/obj/item/stack/spacecash/c100,
+/obj/item/stack/spacecash/c100,
+/obj/item/stack/sheet/silk/crimson_advanced,
+/obj/item/stack/sheet/silk/crimson_advanced,
+/obj/item/stack/sheet/silk/crimson_advanced,
+/obj/item/stack/sheet/silk/crimson_advanced,
+/obj/item/stack/sheet/silk/crimson_advanced,
+/obj/item/stack/spacecash/c200,
+/obj/item/stack/spacecash/c200,
 /turf/open/floor/plasteel/vaporwave,
 /area/city/backstreets_room)
 "ZS" = (
@@ -404,7 +512,7 @@ wu
 hi
 hi
 zZ
-YL
+nu
 Pf
 YL
 zZ
@@ -437,7 +545,7 @@ hi
 hi
 zZ
 ZS
-ZS
+vH
 ZS
 zZ
 TX
@@ -468,9 +576,9 @@ wu
 hi
 hi
 zZ
-ZS
-vH
-ZS
+zZ
+sY
+zZ
 zZ
 TX
 wa
@@ -483,7 +591,7 @@ lB
 zZ
 zZ
 zZ
-we
+iB
 zZ
 zZ
 zZ
@@ -576,13 +684,13 @@ zZ
 lB
 lB
 lB
-ba
+iB
 ZS
 vH
-Qy
+Ac
 vH
 ZS
-we
+iB
 lB
 lB
 ZW
@@ -675,7 +783,7 @@ lB
 zZ
 zZ
 zZ
-we
+iB
 zZ
 zZ
 zZ
@@ -991,9 +1099,9 @@ PC
 lB
 lB
 lB
-lB
-lB
-lB
+zZ
+zZ
+zZ
 zZ
 bC
 ZS
@@ -1023,9 +1131,9 @@ PC
 lB
 lB
 lB
-lB
-lB
-lB
+bx
+GZ
+Er
 zZ
 zZ
 zZ
@@ -1055,9 +1163,9 @@ lB
 lB
 lB
 ZW
-lB
-lB
-lB
+zZ
+Fs
+we
 zZ
 ZW
 ZW
@@ -1087,9 +1195,9 @@ lB
 lB
 lB
 lB
-lB
-lB
-lB
+zZ
+qo
+ba
 zZ
 ZW
 dD

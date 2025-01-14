@@ -701,7 +701,8 @@
 /obj/machinery/door/airlock{
 	icon = 'icons/obj/doors/airlocks/station/science.dmi';
 	max_integrity = 500;
-	name = "Information Department"
+	name = "Information Department";
+	hackProof = 1
 	},
 /obj/structure/disposalpipe/segment{
 	dir = 1
@@ -1492,7 +1493,13 @@
 /turf/open/floor/plasteel/sepia,
 /area/facility_hallway/command)
 "eY" = (
-/obj/effect/mapping_helpers/records_spawner,
+/obj/structure/filingcabinet/zayininfo{
+	pixel_x = -10
+	},
+/obj/structure/filingcabinet/tethinfo,
+/obj/structure/filingcabinet/heinfo{
+	pixel_x = 10
+	},
 /turf/open/floor/facility/dark{
 	color = "#ccc8c0"
 	},
@@ -4592,7 +4599,13 @@
 /turf/open/floor/plasteel/white,
 /area/facility_hallway/training)
 "pJ" = (
-/obj/effect/mapping_helpers/records_spawner/second,
+/obj/structure/filingcabinet/wawinfo{
+	pixel_x = -11
+	},
+/obj/structure/filingcabinet/alephinfo,
+/obj/structure/filingcabinet/toolinfo{
+	pixel_x = 10
+	},
 /turf/open/floor/facility/dark{
 	color = "#ccc8c0"
 	},
@@ -8453,6 +8466,13 @@
 	color = "#ccc8c0"
 	},
 /area/facility_hallway/information)
+"Dh" = (
+/obj/machinery/door/airlock/highsecurity{
+	name = "Records Office Secure Area";
+	hackProof = 1
+	},
+/turf/open/floor/facility/halls,
+/area/facility_hallway/command)
 "Dj" = (
 /obj/effect/turf_decal/tile/brown{
 	dir = 4
@@ -9209,14 +9229,6 @@
 	},
 /turf/open/floor/carpet/red,
 /area/department_main/control)
-"FQ" = (
-/obj/structure/chair/wood/wings{
-	dir = 4;
-	pixel_x = 5;
-	pixel_y = 4
-	},
-/turf/open/floor/plasteel/sepia,
-/area/department_main/training)
 "FS" = (
 /obj/structure/window/reinforced/fulltile{
 	armor = list("melee" = 30, "bullet" = 30, "laser" = 20, "energy" = 20, "bomb" = 10, "bio" = 100, "rad" = 100, "fire" = 80, "acid" = 70);
@@ -11466,6 +11478,16 @@
 /obj/structure/sign/ordealmonitor,
 /turf/open/floor/plasteel/dark,
 /area/facility_hallway/control)
+"Nj" = (
+/obj/structure/disposalpipe/segment,
+/obj/machinery/door/airlock{
+	icon = 'icons/obj/doors/airlocks/station/atmos.dmi';
+	name = "Central Command";
+	normal_integrity = 500;
+	hackProof = 1
+	},
+/turf/open/floor/facility/halls,
+/area/facility_hallway/command)
 "Nn" = (
 /obj/effect/turf_decal/tile/brown{
 	dir = 4
@@ -40820,7 +40842,7 @@ lA
 iG
 XD
 oj
-FQ
+CK
 Ft
 ZZ
 BT
@@ -48013,7 +48035,7 @@ JE
 JE
 JE
 mt
-sS
+Nj
 Av
 NX
 ir
@@ -49049,7 +49071,7 @@ dW
 kH
 Jn
 xf
-lt
+Dh
 Oy
 ss
 lu

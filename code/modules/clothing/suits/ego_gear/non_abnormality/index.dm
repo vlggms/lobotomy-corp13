@@ -26,6 +26,21 @@
 							)
 	alternative_styles = list("index_proxy_open", "index_proxy_closed")
 
+/obj/item/clothing/suit/armor/ego_gear/adjustable/index_proxy/examine(mob/user)
+	. = ..()
+	if(user.mind)
+		if(user.mind.assigned_role in list("Disciplinary Officer", "Emergency Response Agent")) //These guys get a bonus to equipping gacha.
+			. += span_notice("Due to your abilities, you get a -20 reduction to stat requirements when equipping this armor.")
+
+/obj/item/clothing/suit/armor/ego_gear/adjustable/index_proxy/CanUseEgo(mob/living/user)
+	if(user.mind)
+		if(user.mind.assigned_role in list("Disciplinary Officer", "Emergency Response Agent")) //These guys get a bonus to equipping gacha.
+			equip_bonus = 20
+		else
+			equip_bonus = 0
+	. = ..()
+
+
 /obj/item/clothing/suit/armor/ego_gear/city/index_mess
 	name = "index messenger armor"
 	desc = "Armor worn by index messengers."

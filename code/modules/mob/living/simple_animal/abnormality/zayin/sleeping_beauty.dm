@@ -39,11 +39,10 @@
 	harvest_phrase_third = "%PERSON jostles %ABNO, then captures the resulting clouds with %VESSEL."
 
 	observation_prompt = "The couch looks inviting, softer and plusher than anything you've ever known. <br>You've been working for so long, it couldn't hurt to take a break?"
-	observation_choices = list("Lie down", "Get back to work")
-	correct_choices = list("Get back to work")
-	observation_success_message = "You shake your head. You'll have time to rest when you're dead."
-	observation_fail_message = "You lay your head down into your soft and comfy pillow. You can always try again tomorrow."
-
+	observation_choices = list(
+		"Get back to work" = list(TRUE, "You shake your head. You'll have time to rest when you're dead."),
+		"Lie down" = list(FALSE, "You lay your head down into your soft and comfy pillow. You can always try again tomorrow."),
+	)
 
 	var/grab_cooldown
 	var/grab_cooldown_time = 20 SECONDS
@@ -93,6 +92,7 @@
 /mob/living/simple_animal/hostile/abnormality/sleeping/post_buckle_mob(mob/living/M)
 	..()
 	icon_state = icon_active
+	M.set_resting(TRUE, silent = TRUE)
 	M.apply_status_effect(STATUS_EFFECT_RESTED)
 	animate(M, pixel_y = -6, time = 3)
 
@@ -139,23 +139,28 @@
 
 /atom/movable/screen/alert/status_effect/rested
 	name = "Well Rested"
-	desc = "You are slowly recovering HP and SP."
+	desc = "You are slowly recovering HP and SP. More effective when resting or sleeping."
 	icon = 'ModularTegustation/Teguicons/status_sprites.dmi'
 	icon_state = "rest"
 
 /datum/status_effect/rested/tick()
 	. = ..()
 	var/mob/living/carbon/human/status_holder = owner
-	if(prob(50))
-		return
-	status_holder.adjustBruteLoss(-1)
-	status_holder.adjustSanityLoss(-1)
+	var/heal_amount = 3
+	if(status_holder.stat == UNCONSCIOUS)
+		heal_amount = 10 // Heals you really fast if you're actually sleeping
+		duration += 10 // Does not tick down if you are asleep
+	else if(status_holder.resting) // If you are at least sitting it helps
+		heal_amount = 6
+		duration += 5
+	status_holder.adjustBruteLoss(-heal_amount)
+	status_holder.adjustSanityLoss(-heal_amount)
 
 //pink midnight code
 
-/mob/living/simple_animal/hostile/abnormality/sleeping/AttackingTarget()
+/mob/living/simple_animal/hostile/abnormality/sleeping/AttackingTarget(atom/attacked_target)
 	if(grab_cooldown < world.time)
-		buckle_mob(target)
+		buckle_mob(attacked_target)
 		grab_cooldown = world.time + grab_cooldown_time
 	return ..()
 

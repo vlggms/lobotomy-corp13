@@ -36,17 +36,17 @@
 		\"Sierra... Oscar... Sierra...\" <br>\
 		What could this callsign mean? <br>\
 		Are you in danger, or is someone else? <br>What will you do?"
-	observation_choices = list("Tune your radio to 680 KHz", "Ignore it")
-	correct_choices = list("Tune your radio to 680 KHz")
-	observation_success_message = "Suddenly, you hear something from your radio, clear as day. <br>\
-		\"We hear you loud and clear.\" <br>\
-		\"You've done a great service.\" <br>\
-		The operator on the other end continues babbling, completely obscured by the returning static. <br>\
-		However, it seems you somehow managed solve their problem somehow."
-	observation_fail_message = "You turn off your radio and leave the room. <br>\
-		All abnormalities are dangerous, right? <br>\
-		This cry for help could just be a trick to make you let your guard down. <br>\
-		If there is anyone really out there, they are going to have to fend for themselves."
+	observation_choices = list(
+		"Tune your radio to 680 KHz" = list(TRUE, "Suddenly, you hear something from your radio, clear as day. <br>\
+			\"We hear you loud and clear.\" <br>\
+			\"You've done a great service.\" <br>\
+			The operator on the other end continues babbling, completely obscured by the returning static. <br>\
+			However, it seems you somehow managed solve their problem somehow."),
+		"Ignore it" = list(FALSE, "You turn off your radio and leave the room. <br>\
+			All abnormalities are dangerous, right? <br>\
+			This cry for help could just be a trick to make you let your guard down. <br>\
+			If there is anyone really out there, they are going to have to fend for themselves."),
+	)
 
 	var/input
 	var/bitposition = 4	//You write in bits. You need to successfully write a string of 5 to sucessfully work
@@ -102,25 +102,25 @@
 	//Selecting input and playing sound effect
 	switch(output)
 		if(1)
-			playsound(get_turf(src), 'sound/abnormalities/khz/Clip1.ogg', 200, 8)
+			playsound(get_turf(src), 'sound/abnormalities/khz/Clip1.ogg', 300, 8)
 			input = 8	//01000
 		if(2)
-			playsound(get_turf(src), 'sound/abnormalities/khz/Clip2.ogg', 200, 8)
+			playsound(get_turf(src), 'sound/abnormalities/khz/Clip2.ogg', 300, 8)
 			input = 25	//11001
 		if(3)
-			playsound(get_turf(src), 'sound/abnormalities/khz/Clip3.ogg', 200, 8)
+			playsound(get_turf(src), 'sound/abnormalities/khz/Clip3.ogg', 300, 8)
 			input = 24	//11000
 		if(4)
-			playsound(get_turf(src), 'sound/abnormalities/khz/Clip4.ogg', 200, 8)
+			playsound(get_turf(src), 'sound/abnormalities/khz/Clip4.ogg', 300, 8)
 			input = 13	//01101
 		if(5)
-			playsound(get_turf(src), 'sound/abnormalities/khz/Clip5.ogg', 200, 8)
+			playsound(get_turf(src), 'sound/abnormalities/khz/Clip5.ogg', 300, 8)
 			input = 26	//11010
 		if(6)
-			playsound(get_turf(src), 'sound/abnormalities/khz/Clip6.ogg', 200, 8)
+			playsound(get_turf(src), 'sound/abnormalities/khz/Clip6.ogg', 300, 8)
 			input = 16	//10000
 		if(7)
-			playsound(get_turf(src), 'sound/abnormalities/khz/Clip7.ogg', 200, 8)
+			playsound(get_turf(src), 'sound/abnormalities/khz/Clip7.ogg', 300, 8)
 			input = 28	//11100
 
 //This is for sending messages back

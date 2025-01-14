@@ -50,11 +50,11 @@
 
 	observation_prompt = "I once dedicated myself to the justice of this world, to protect my king, the kingdom and the weak. <br>\
 		However in the end nothing was truly upheld on my watch. <br>Even so... I still want to protect someone, anyone..."
-	observation_choices = list("Accept her blessing", "Refuse it")
-	correct_choices = list("Refuse it")
-	observation_success_message = "Am I not needed anymore? <br>\
-		No... <br>You're saying I should move on. <br>I don't know how, or if I can, but, perhaps things could turn out for the better. <br>We need only try."
-	observation_fail_message = "Thank you, though I am but a pitiful knight, I still yearn to protect, if I can't protect others, I may as well disappear..."
+	observation_choices = list(
+		"Refuse it" = list(TRUE, "Am I not needed anymore? <br>\
+			No... <br>You're saying I should move on. <br>I don't know how, or if I can, but, perhaps things could turn out for the better. <br>We need only try."),
+		"Accept her blessing" = list(FALSE, "Thank you, though I am but a pitiful knight, I still yearn to protect, if I can't protect others, I may as well disappear..."),
+	)
 
 	var/mob/living/carbon/human/blessed_human = null
 	var/teleport_cooldown
@@ -198,7 +198,7 @@
 	blessed_human.physiology.white_mod /= 0.5
 	blessed_human.physiology.black_mod /= 0.5
 	blessed_human.physiology.pale_mod /= 2
-	blessed_human.adjust_attribute_bonus(TEMPERANCE_ATTRIBUTE, 100)
+	blessed_human.adjust_attribute_bonus(TEMPERANCE_ATTRIBUTE, 50)
 	blessed_human = null
 	if(nihil_present) //We die during a nihil suppression if our champion dies
 		death()
@@ -251,7 +251,7 @@
 		user.physiology.pale_mod *= 2
 		user.add_overlay(mutable_appearance('ModularTegustation/Teguicons/tegu_effects.dmi', "despair", -MUTATIONS_LAYER))
 		playsound(get_turf(user), 'sound/abnormalities/despairknight/gift.ogg', 50, 0, 2)
-		user.adjust_attribute_bonus(TEMPERANCE_ATTRIBUTE, -100)
+		user.adjust_attribute_bonus(TEMPERANCE_ATTRIBUTE, -50)
 	return
 
 /mob/living/simple_animal/hostile/abnormality/despair_knight/BreachEffect(mob/living/carbon/human/user, breach_type)

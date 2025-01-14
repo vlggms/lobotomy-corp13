@@ -11,6 +11,7 @@
 
 	access = list()	//No Acess
 	minimal_access = list()
+	departments = DEPARTMENT_SCIENCE
 
 	job_attribute_limit = 0
 

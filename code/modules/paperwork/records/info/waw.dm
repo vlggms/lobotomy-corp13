@@ -368,13 +368,10 @@
 	abno_type = /mob/living/simple_animal/hostile/abnormality/sphinx
 	abno_code = "T-03-33"
 	abno_info = list(
-		"When the work was complete, the Qliphoth Counter lowered depending on the abnormality's mood. The abnormality's mood improved after an offering was successfully made.",
-		"When an employee performed riddle work, the abnormality posed a question in a strange language. Agents are then provided with a cipher.",
-		"When the employee performed offering work, an item placed on the nearby offering table was inspected by the abnormality. If the table was empty, the abnormality checked the employee's hands.",
-		"When the abnormality was disappointed with an offering, the offender had one of their senses taken away.",
-		"When the riddle was successfully solved with an offering, the Qliphoth counter raised to its maximum. In addition, the abnormality willingly parted with an anomalous object referred to henceforth as a gift.",
-		"When agent bong bong used the canopic jar gift, she was cured of permanent blindness. Effects may differ but are usually beneficial.",
-		"Agent Joshua, who was turned to stone by the abnormality was able to be saved using gift of golden needles.")
+		"Employees with a high Prudence Level had their work chance increased dramatically.",
+		"When the work result was Good, the abnormality provided a treasure with a low probability.",
+		"When the work result was Bad, the Qliphoth counter reduced. Additionally, employees with Prudence Level 4 or lower had one of their senses taken away.",
+		"Agent Joshua, who was turned to stone by the abnormality was able to be saved using the treasure of golden needles.")
 
 //Clouded Monk
 /obj/item/paper/fluff/info/waw/clouded_monk
@@ -539,3 +536,33 @@
 		"When the above occurred, F-01-57 entered a state of apparent heightened emotion, attacking more rapidly, dealing and taking more damage, and tracking the encountered abnormality.",
 		"When F-01-57 was denied a killing blow to F-02-58, the abnormality went on a rampage."
 	)
+
+//My Form Empties
+/obj/item/paper/fluff/info/waw/my_form_empties
+	abno_type =  /mob/living/simple_animal/hostile/abnormality/my_form_empties
+	abno_code = "M-04-199"//M-04-04-04 in limbus company
+	abno_info = list(
+		"When Qliphoth Counter was 2, My Form Empties chanted sutras in its cell, restoring the SP of nearby employees.",
+		"When Qliphoth Counter lowered to 1, My Form Empties entered a state of Anatman (Non-Self), raising work success rate.",
+		"When the employee had a good result during a state of Anatman, Qliphoth Counter lowered.",
+		"When the employee had a neutral result during a state of Anatman, Qliphoth Counter rose. Otherwise, it lowered at a low probability.",
+		"When the work result was bad, Qliphoth Counter decreased.",
+		"When My Form Empties escaped, a few hostile entities dubbed M-04-199-1 followed it.",
+		"When My Form Empties escaped, all agents were affected by Karma, increasing damage taken.",
+		"Karma was transferred when the agent with karma attacked other entities, excluding M-04-199."
+	)
+	abno_breach_damage_type = "White"
+	abno_breach_damage_count = "Extreme"
+
+//Hookah Caterpillar
+/obj/item/paper/fluff/info/waw/caterpillar
+	abno_type = /mob/living/simple_animal/hostile/abnormality/caterpillar
+	abno_code = "F-02-190"
+	abno_info = list(
+		"Working on F-02-190 on a work type other than repression will increase work damage and PE gained until next breach.",
+		"When Work damage and PE generated increased, so did the danger to the employee.",
+		"Eventually, works other than repression on F-02-190 will lower it's Qliphoth Counter.",
+
+	)
+	abno_breach_damage_type = "Pale"
+	abno_breach_damage_count = "Very High"

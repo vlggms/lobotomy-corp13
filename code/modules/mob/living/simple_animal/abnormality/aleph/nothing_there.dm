@@ -21,6 +21,7 @@
 	ranged = TRUE
 	pixel_x = -8
 	base_pixel_x = -8
+	del_on_death = FALSE
 	stat_attack = HARD_CRIT
 	can_breach = TRUE
 	threat_level = ALEPH_LEVEL
@@ -49,16 +50,16 @@
 	observation_prompt = "*Teeth grinding* <br>Incomprehensible sounds can be heard. <br>\
 		Its body was already broken long time ago. <br>\
 		The twisted mouth opens, the crushed down tongue undulates. <br>\"M-ma......man-ag......r.......\" <br>It's calling for the manager."
-	observation_choices = list("Approach it", "Ignore it")
-	correct_choices = list("Ignore it")
-	observation_success_message = "A chunk of flesh dropped from the mouth to the ground, depriving the abnormality an ability to talk. <br>\
-		It's talking inside the body of an employee. <br>But it is not the employee who speaks. <br>\
-		The sound of calling me. <br>Is nothing but an empty shell mimicking a dead person. <br>\
-		How many employees would have suffered to this sound? <br>It keeps getting closer to human. <br>\
-		It keeps trying. <br>However, as always, at the end, Nothing there."
-	observation_fail_message = "I think of people who were friends with this employee. <br>\
-		Those eyes, shoulders, and every bit of muscle belong to someone else. <br>\
-		It smiles. <br>No, it pretends to smile. <br>Who could be it?"
+	observation_choices = list(
+		"Ignore it" = list(TRUE, "A chunk of flesh dropped from the mouth to the ground, depriving the abnormality an ability to talk. <br>\
+			It's talking inside the body of an employee. <br>But it is not the employee who speaks. <br>\
+			The sound of calling me. <br>Is nothing but an empty shell mimicking a dead person. <br>\
+			How many employees would have suffered to this sound? <br>It keeps getting closer to human. <br>\
+			It keeps trying. <br>However, as always, at the end, Nothing there."),
+		"Approach it" = list(FALSE, "I think of people who were friends with this employee. <br>\
+			Those eyes, shoulders, and every bit of muscle belong to someone else. <br>\
+			It smiles. <br>No, it pretends to smile. <br>Who could be it?"),
+	)
 
 	var/mob/living/disguise = null
 	var/saved_appearance
@@ -75,6 +76,8 @@
 
 	var/last_heal_time = 0
 	var/heal_percent_per_second = 0.0085
+	var/regen_on = TRUE
+	var/r_corp_regen_start = 1
 
 	var/datum/looping_sound/nothingthere_ambience/soundloop
 	var/datum/looping_sound/nothingthere_heartbeat/heartbeat
@@ -227,16 +230,26 @@
 					GiveTarget(speaker)
 				say(line)
 		if((last_heal_time + 1 SECONDS) < world.time) // One Second between heals guaranteed
-			var/heal_amount = ((world.time - last_heal_time)/10)*heal_percent_per_second*maxHealth
-			if(health <= maxHealth*0.3)
-				heal_amount *= 2
-			adjustBruteLoss(-heal_amount)
+			if(SSmaptype.maptype == "rcorp")
+				regen_on = TRUE
+				if(health > maxHealth * r_corp_regen_start)
+					regen_on = FALSE
+			if(regen_on == TRUE)
+				var/heal_amount = ((world.time - last_heal_time)/10)*heal_percent_per_second*maxHealth
+				if(health <= maxHealth*0.3)
+					heal_amount *= 2
+				adjustBruteLoss(-heal_amount)
 			last_heal_time = world.time
 		if(next_transform && (world.time > next_transform))
 			next_stage()
 		if(current_stage == 2) // Egg
 			var/obj/effect/temp_visual/decoy/D = new /obj/effect/temp_visual/decoy(get_turf(src), src)
 			animate(D, alpha = 0, transform = matrix()*1.2, time = 7)
+
+/mob/living/simple_animal/hostile/abnormality/nothing_there/death(gibbed)
+	animate(src, alpha = 0, time = 10 SECONDS)
+	QDEL_IN(src, 10 SECONDS)
+	..()
 
 /mob/living/simple_animal/hostile/abnormality/nothing_there/Hear(message, atom/movable/speaker, datum/language/message_language, raw_message, radio_freq, list/spans, list/message_mods)
 	. = ..()

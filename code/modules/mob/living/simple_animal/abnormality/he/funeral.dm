@@ -9,6 +9,7 @@
 	del_on_death = FALSE
 	maxHealth = 1350 //I am a menace to society.
 	health = 1350
+	blood_volume = 0
 
 	ranged = TRUE
 	minimum_distance = 2
@@ -47,19 +48,18 @@
 
 	observation_prompt = "A tall butterfly-faced man stands before, clad in an undertakers's garment. <br>\
 		Between the two of you is a coffin and he gestures you towards it with all 3 of his hands."
-	observation_choices = list("Enter the coffin", "Don't enter the coffin")
-	correct_choices = list("Enter the coffin", "Don't enter the coffin")
-	observation_success_message = "You lie down in the coffin as the butterfly-faced man stands by, his head angled and all 3 hands crossed together over his waist in a solemn gesture. <br>\
-		It's a perfect fit for you. <br>\
-		You feel the weight of innumerable lifetimes and the weariness that came with them. <br>\
-		The butterflies lift you and the coffin as pallbearers, they lament for you in place of the people who cannot."
-	//Special answer for choice 2
-	var/observation_success_message_2 = "You don't enter because it's not your coffin. <br>\
-		The undertaker reaches out his middle hand to his waiting, insectile audience and one of the butterflies lands upon his fingers. <br>\
-		He offers you the butterfly and you place it into the coffin, gently. <br>\
-		The butterflies are the souls of the dead, waiting to be put to rest, but are still mourning for the living. <br>\
-		You and the butterfly-faced man stand in silent vigil. You both now share a vow; to grieve for the living and dead. <br>\
-		A kaledioscope of butterflies follows you as you leave the containment unit."
+	observation_choices = list(
+		"Enter the coffin" = list(TRUE, "You lie down in the coffin as the butterfly-faced man stands by, his head angled and all 3 hands crossed together over his waist in a solemn gesture. <br>\
+			It's a perfect fit for you. <br>\
+			You feel the weight of innumerable lifetimes and the weariness that came with them. <br>\
+			The butterflies lift you and the coffin as pallbearers, they lament for you in place of the people who cannot."),
+		"Don't enter the coffin" = list(TRUE, "You don't enter because it's not your coffin. <br>\
+			The undertaker reaches out his middle hand to his waiting, insectile audience and one of the butterflies lands upon his fingers. <br>\
+			He offers you the butterfly and you place it into the coffin, gently. <br>\
+			The butterflies are the souls of the dead, waiting to be put to rest, but are still mourning for the living. <br>\
+			You and the butterfly-faced man stand in silent vigil. You both now share a vow; to grieve for the living and dead. <br>\
+			A kaledioscope of butterflies follows you as you leave the containment unit."),
+	)
 
 	var/gun_cooldown
 	var/gun_cooldown_time = 4 SECONDS
@@ -84,13 +84,6 @@
 	toggle_attack_num = 1
 	toggle_message = span_colossus("You will now fire butterflies from your hands.")
 	button_icon_toggle_deactivated = "funeral_toggle0"
-
-/mob/living/simple_animal/hostile/abnormality/funeral/ObservationResult(mob/living/carbon/human/user, condition, answer) //special answer for cake result
-	if(answer == "Don't enter the coffin")
-		observation_success_message = observation_success_message_2
-	else
-		observation_success_message = initial(observation_success_message)
-	return ..()
 
 /mob/living/simple_animal/hostile/abnormality/funeral/AttackingTarget(atom/attacked_target)
 	return OpenFire()

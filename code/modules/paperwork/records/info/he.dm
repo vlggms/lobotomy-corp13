@@ -1,12 +1,14 @@
-//Teddy Bear
+// Teddy Bear
 /obj/item/paper/fluff/info/he/bear
 	abno_type = /mob/living/simple_animal/hostile/abnormality/happyteddybear
 	abno_code = "T-04-06"
 	abno_info = list(
-		"An employee died of asphyxiation after working with Happy Teddy Bear multiple times in a row.",
-		"An employee was found dead in Happy Teddy Bear’s arms with a broken neck. It is believed that visiting Happy Teddy Bear’s Containment Unit several times in a row is what causes these unfortunate incidents. Please refer to the Old Letter document for more information.")
+		"An employee died of asphyxiation after working with Happy Teddy Bear multiple times in a row unless the employee has Fortitude Level 3 or higher.",
+		"An employee was found dead in Happy Teddy Bear’s arms with a broken neck. It is believed that visiting Happy Teddy Bear’s Containment Unit several times in a row is what causes these unfortunate incidents. Please refer to the Old Letter document for more information.",
+		"If the employee has Fortitude level 4 or higher, the employee will eventually break free if they stay conscuious",
+	)
 
-//Reddit
+// Reddit
 /obj/item/paper/fluff/info/he/reddit
 	abno_type = /mob/living/simple_animal/hostile/abnormality/helper
 	abno_code = "T-05-41"
@@ -14,7 +16,7 @@
 		"When the work result was Normal, the Qliphoth Counter lowered with a normal probability.",
 		"When the work result was Bad, the Qliphoth Counter lowered with a high probability.")
 
-//Red Queen
+// Red Queen
 /obj/item/paper/fluff/info/he/queen
 	abno_type = /mob/living/simple_animal/hostile/abnormality/red_queen
 	abno_code = "F-01-112"
@@ -23,16 +25,17 @@
 		"Red Queen does not seem to provide feedback on what work it likes and will only communicate its dislikes by attempting to behead those who aggravate it.",
 		"Upon completion of a non-preferred work, there was a 1 in 5 chance she would attempt to behead the employee, dealing massive RED damage.")
 
-//Scarecrow
+// Scarecrow
 /obj/item/paper/fluff/info/he/scarecrow
 	abno_type = /mob/living/simple_animal/hostile/abnormality/scarecrow
 	abno_code = "F-01-87"
 	abno_info = list(
-		"When an employee with Prudence Level 3 or higher finished their work, the Qliphoth Counter lowered.",
+		"Employees with Prudence Level 3 or higher had a workrate reduction when working on F-01-87.",
+		"When an employee with Prudence Level 3 or higher finished their work with a neutral work result, the Qliphoth Counter lowered at a normal chance.",
 		"When the work result was Bad, the Qliphoth Counter lowered.",
 		"When Scarecrow Searching for Wisdom was escaping and killed an employee, it sucked their brain out to recover its HP.")
 
-//White Lake
+// White Lake
 /obj/item/paper/fluff/info/he/whitelake
 	abno_type = /mob/living/simple_animal/hostile/abnormality/whitelake
 	abno_code = "F-01-120"
@@ -42,7 +45,7 @@
 		"When the work result was Bad, the Qliphoth Counter lowered. If the employee also had Fortitude Level 3 or higher, the Qliphoth Counter lowered again.",
 		"When the Qliphoth Counter reached 0, the champion panicked and began attacking those around them. If there was no champion, all employees in the facility received heavy WHITE damage.")
 
-//Silent Girl
+// Silent Girl
 /obj/item/paper/fluff/info/he/silent_girl
 	abno_type = /mob/living/simple_animal/hostile/abnormality/silent_girl
 	abno_code = "T-01-01"
@@ -58,7 +61,7 @@
 		"When Silent Girl’s Qliphoth Counter reached 0, all agents are afflicted with Guilt. An Agent with Guilt had their affliction prolonged."
 		)
 
-//Blue Shep
+// Blue Shep
 /obj/item/paper/fluff/info/he/blue_shep
 	abno_type = /mob/living/simple_animal/hostile/abnormality/blue_shepherd
 	abno_code = "F-01-117"
@@ -72,7 +75,7 @@
 		"When Blue Smocked Shepherd was escaping, it mercilessly attacked everything in its sight.",
 		"WARNING: No matter what, Blue Smocked Shepherd and Reddened Buddy must not be allowed to meet.")
 
-//Reddened Buddy
+// Reddened Buddy
 /obj/item/paper/fluff/info/he/red_buddy
 	abno_type = /mob/living/simple_animal/hostile/abnormality/red_buddy
 	abno_code = "F-02-127"
@@ -88,7 +91,7 @@
 		"When Reddened Buddy escaped, he periodically howled, inflicting WHITE damage to nearby employees. Reddened Buddy was damaged greatly from its own howling.",
 		"WARNING: No matter what, Reddened Buddy and Blue Smocked Shepherd must not be allowed to meet.")
 
-//Rudolta
+// Rudolta
 /obj/item/paper/fluff/info/he/rudolta
 	abno_type = /mob/living/simple_animal/hostile/abnormality/rudolta
 	abno_code = "F-02-49"
@@ -99,7 +102,7 @@
 	abno_breach_damage_type = "White"
 	abno_breach_damage_count = "Moderate"
 
-//Der Freischutz
+// Der Freischutz
 /obj/item/paper/fluff/info/he/derfreishutz
 	abno_type = /mob/living/simple_animal/hostile/abnormality/der_freischutz
 	abno_code = "F-01-69"
@@ -114,8 +117,9 @@
 	abno_type = /mob/living/simple_animal/hostile/abnormality/woodsman
 	abno_code = "F-05-32"
 	abno_info = list(
+		"Employees with Temperance Level 3 or higher had a workrate reduction when working on F-05-32.",
+		"When an employee with Temperance Level 3 or higher finished their work with a neutral work result, the Qliphoth Counter lowered at a normal chance.",
 		"When the work result was Bad, the Qliphoth Counter lowered.",
-		"When an employee with Temperance Level 3 or higher completed their work, the Qliphoth Counter lowered.",
 		"When an employee attempts work while the Qliphoth Counter is at 1, they will immediately die. Then, the Abnormality will escape.",
 		"Whenever a body, living or dead, was placed into the Warm-Hearted Woodsman’s chest while the Qliphoth Counter was at 1, the Qliphoth Counter increased.",
 		"WARNING: When a body was placed into the Warm-Hearted Woodsman’s chest when the Qliphoth Counter was not at 1, it breached immediately.")
@@ -143,14 +147,16 @@
 	abno_breach_damage_type = "White"
 	abno_breach_damage_count = "High"
 
-//Scaredy Cat
+// Scaredy Cat
 /obj/item/paper/fluff/info/he/scaredycat
 	abno_type = /mob/living/simple_animal/hostile/abnormality/scaredy_cat
 	abno_code = "F-02-126"
 	abno_info = list(
+		"Employees with Fortitude Level 3 or higher had a workrate reduction when working on F-02-126.",
+		"When an employee with Fortitude Level 3 or higher finished their work with a neutral work result, the Qliphoth Counter lowered at a normal chance.",
+		"When an employee with Fortitude Level 3 or higher finished their work with a bad work result, the Qliphoth Counter lowered.",
 		"When another Abnormality breached containment, the Qliphoth Counter lowered.",
 		"When another \"Oz\" Abnormality breached containment, the Qliphoth Counter dropped to 0.",
-		"When an employee with Fortitude Level 3 or higher completed their work, the Qliphoth Counter lowered.",
 		"When another Abnormality was suppressed, the Qliphoth Counter increased.",
 		"When the Qliphoth Counter reached 0, Scaredy Cat teleported out of the Containment Unit to protect another breached Abnormality.",
 		"Scaredy Cat could not be fully suppressed as long as the Abnormality it protected was alive.",
@@ -158,7 +164,7 @@
 	abno_breach_damage_type = "Red"
 	abno_breach_damage_count = "Medium"
 
-//Porccubus
+// Porccubus
 /obj/item/paper/fluff/info/he/porccubus
 	abno_type = /mob/living/simple_animal/hostile/abnormality/porccubus
 	abno_code = "O-02-98"
@@ -172,7 +178,7 @@
 		"Porccubus was unaffected by any attack dealt to it from outside of its reach.",
 		"When an employee panicked during work or from Porccubus's attacks, they were drugged beyond saving.")
 
-//Child of the Galaxy
+// Child of the Galaxy
 /obj/item/paper/fluff/info/he/galaxy_child
 	abno_type = /mob/living/simple_animal/hostile/abnormality/galaxy_child
 	abno_code = "O-01-55"
@@ -183,7 +189,7 @@
 		"When the Qliphoth Counter reached 0, all employees with the Token took BLACK damage proportional to the number of employees with the Token. If at least 2 employees had the Token, Child of the Galaxy will enter a state designated as \"Depressed\".",
 		"When he was Depressed, the work success rate was high, and the first employee who completed work with Child of the Galaxy received his E.G.O. Gift.")
 
-//Piscine Mermaid
+// Piscine Mermaid
 /obj/item/paper/fluff/info/he/pisc_mermaid
 	abno_type = /mob/living/simple_animal/hostile/abnormality/pisc_mermaid
 	abno_code = "O-01-129" //I'll figure out the serial number later,
@@ -197,7 +203,7 @@
 		"Piscine Mermaid slowly suffocated everyone within sight. O-01-129-1 could not breath as long as Piscine Mermaid was alive.",
 		"While O-01-129-1 was alive, Piscine Mermaid’s resistances to all damage was Resistant. It was found that Piscine Mermaid was more vulnerable to attacks from O-01-129-1.")
 
-//Singing Machine
+// Singing Machine
 /obj/item/paper/fluff/info/he/singing_machine
 	abno_type = /mob/living/simple_animal/hostile/abnormality/singing_machine
 	abno_code = "O-05-30"
@@ -212,7 +218,7 @@
 		"When the work result was Normal or Bad while Singing Machine was in operation, the employee dove into Singing Machine, causing the noise to deal more WHITE damage and driving all afflicted by Musical Addiction into a frenzy. The Qliphoth Counter increased by 2 and Singing Machine deactivated shortly afterwards.",
 		"The above situation also occurred when an employee panicked or died during work. However, when the work result was Good, the Qliphoth Counter increased by 2 and Singing Machine deactivated.")
 
-//The Watchman
+// The Watchman
 /obj/item/paper/fluff/info/he/watchman
 	abno_type = /mob/living/simple_animal/hostile/abnormality/watchman
 	abno_code = "O-01-132"
@@ -224,7 +230,7 @@
 	abno_breach_damage_type = "None"
 	abno_breach_damage_count = "None"
 
-//Schadenfreude
+// Schadenfreude
 /obj/item/paper/fluff/info/he/schadenfreude
 	abno_type = /mob/living/simple_animal/hostile/abnormality/schadenfreude
 	abno_code = "O-05-76"
@@ -234,7 +240,7 @@
 		"When Schadenfreude was in the view of more than 3 people, the Qliphoth Counter decreased.",
 		"Schadenfreude became completely stationary when it was only viewed by one person. Please take this into account when suppressing it.")
 
-//F.A.N
+// F.A.N
 /obj/item/paper/fluff/info/he/fan
 	abno_type = /mob/living/simple_animal/hostile/abnormality/fan
 	abno_code = "T-05-134"
@@ -244,7 +250,7 @@
 		"After working on F.A.N. for the fourth time, the employee fell into the fan and was ripped to shreds. Luckily, this does not happen during a Qliphoth Meltdown.",
 		"When the Qliphoth counter became zero, the abnormality turned off and the facility began to heat up. Eventually, employees began taking mild RED damage due to overheating. Things turned back to normal when an employee hit the \"ON\" button.")
 
-//680 KHz
+// 680 KHz
 /obj/item/paper/fluff/info/he/khz
 	abno_type = /mob/living/simple_animal/hostile/abnormality/khz
 	abno_code = "T-06-135"
@@ -254,12 +260,13 @@
 		"However, inputting an incorrect sequence before starting work resulted in a lowered work success rate. The sanity of all employees in the facility was damaged after work was completed.",
 		"Working without inputting any sequence had no effects.")
 
-//The Road Home
+// The Road Home
 /obj/item/paper/fluff/info/he/road_home
 	abno_type = /mob/living/simple_animal/hostile/abnormality/road_home
 	abno_code = "F-01-136"
 	abno_info = list(
-		"When an employee with Justice Level 3 or higher completed their work, the Qliphoth Counter lowered.",
+		"Employees with Justice Level 3 or higher had a workrate reduction when working on F-01-136.",
+		"When an employee with Justice Level 3 or higher finished their work with a neutral work result, the Qliphoth Counter lowered at a normal chance.",
 		"When the work result was Bad, the Qliphoth Counter lowered.",
 		"When the Road Home breached containment, a house landed in a random department, dealing massive white damage around it.",
 		"The Road Home also teleported to another department, and tried to make a golden road to the house.",
@@ -270,7 +277,24 @@
 	abno_breach_damage_type = "Black"
 	abno_breach_damage_count = "Medium"
 
-//Siren
+// Shock Centipede
+/obj/item/paper/fluff/info/he/shock_centipede
+	abno_type = /mob/living/simple_animal/hostile/abnormality/shock_centipede
+	abno_code = "T-02-198"
+	abno_info = list(
+		"Employees of Justice level 3 or lower suffer greater work damage when working with shock centipede.",
+		"Performing Repression work with shock centipede lowered the Qliphoth Counter by 1.",
+		"In addition, when the work result was bad, the Qliphoth Counter lowered by 1.",
+		"At Qliphoth Counter 2, Shock Centipede enters a state of electrical excitement.",
+		"While in this state, good work results increase the Counter by 1. Normal results have a chance to increase or decrease the Qliphoth Counter at random.",
+		"The success rate when performing Repression work lowered when the Qliphoth Counter reached 2 or below.",
+		"While the Qliphoth counter was 1, damage dealt during work changed to Black Damage.",
+		"When Repression Work was performed while the Qliphoth Counter was 1, the Qliphoth counter increased. If the work result was good, the Qliphoth counter was raised to its maximum.",
+		"If any type of work other than Repression was completed at Qliphoth counter 1, the Qliphoth counter lowered to zero.")
+	abno_breach_damage_type = "Red/Black"
+	abno_breach_damage_count = "Low/Medium"
+
+// Siren
 /obj/item/paper/fluff/info/he/siren
 	abno_type = /mob/living/simple_animal/hostile/abnormality/siren
 	abno_code = "O-05-22"
@@ -284,7 +308,7 @@
 		"Insight work was ineffective when the Qliphoth counter was high. If the Qliphoth counter was at 5, the employee performing work was turned into dust.",
 		"Some agents have reported relief from certain symptoms after performing insight work.")
 
-//Jangsan Tiger
+// Jangsan Tiger
 /obj/item/paper/fluff/info/he/jangsan
 	abno_type = /mob/living/simple_animal/hostile/abnormality/jangsan
 	abno_code = "F-02-10"
@@ -296,7 +320,7 @@
 		"This abnormality has a thick hide that only high-impact projectiles or melee attacks can penetrate.",
 		"Agents with all stats below level 2 perish with alarming frequency near this abnormality.")
 
-//Golden False Apple
+// Golden False Apple
 /obj/item/paper/fluff/info/he/goldapple
 	abno_type = /mob/living/simple_animal/hostile/abnormality/golden_apple
 	abno_code = "O-02-143"//O-02-04-06 in LCB
@@ -308,7 +332,7 @@
 		"This abnormality must be cored with a knife or sharp object immediately after suppression work.",
 		"Following its metamorphosis, this abnormality will deal BLACK damage.")
 
-//You Must Become Strong
+// You Must Become Strong
 /obj/item/paper/fluff/info/he/you_strong
 	abno_type = /mob/living/simple_animal/hostile/abnormality/you_strong
 	abno_code = "T-09-140"
@@ -329,7 +353,7 @@
 	abno_breach_damage_count = "Moderate"
 	abno_resistances = list(RED_DAMAGE = "Endured", WHITE_DAMAGE = "Weak", BLACK_DAMAGE = "Weak", PALE_DAMAGE = "Immune")
 
-//Nameless Fetus
+// Nameless Fetus
 /obj/item/paper/fluff/info/he/fetus
 	abno_type = /mob/living/simple_animal/hostile/abnormality/fetus
 	abno_code = "O-01-15"
@@ -337,9 +361,10 @@
 		"When the work result was Normal, the Qliphoth Counter lowered with a low probability.",
 		"When the work result was Bad, the Qliphoth Counter lowered with a high probability.",
 		"When the Qliphoth Counter reached 0, Nameless Fetus began crying. Employees who heard its wails complained of a headache. Furthermore, the Qliphoth Counters of all nearby Abnormalities gradually decreased over time.",
-		"While Nameless Fetus was in a crying state, the designated agent must approach it. After a moment of turmoil, the crying stopped.")
+		"While Nameless Fetus was in a crying state, the designated agent must approach it. After a moment of turmoil, the crying stopped.",
+		"Nameless Fetus will stop crying after a long period of time. The more employees in the facility, the longer it will cry.")
 
-//Doomsday Calendar
+// Doomsday Calendar
 /obj/item/paper/fluff/info/he/doomsday_calendar
 	abno_type = /mob/living/simple_animal/hostile/abnormality/doomsday_calendar
 	abno_code = "M-04-146"//M-04-04-05 in LCB
@@ -356,7 +381,7 @@
 	abno_breach_damage_count = "High"
 	abno_resistances = list(RED_DAMAGE = "Normal", WHITE_DAMAGE = "Weak", BLACK_DAMAGE = "Endured", PALE_DAMAGE = "Weak")//for clay dolls
 
-//KQE-1J-23
+// KQE-1J-23
 /obj/item/paper/fluff/info/he/kqe
 	abno_type = /mob/living/simple_animal/hostile/abnormality/kqe
 	abno_code = "O-06-154"//O-06-20-02 in LCB
@@ -371,7 +396,7 @@
 		"Suppression of O-06-154-1 will immediately suppress KQE-1J-23.")
 	abno_breach_damage_count = "High"
 
-//Snow Queen
+// Snow Queen
 /obj/item/paper/fluff/info/he/snow_queen
 	abno_type = /mob/living/simple_animal/hostile/abnormality/snow_queen
 	abno_code = "F-01-37"
@@ -384,7 +409,7 @@
 		"Attempting to remove the employee from the Snow Queens influence physically resulted in the employees death.",
 		"Employee could not be rescued if the Snow Queen breached containment without a duel.",)
 
-//Puss in Boots
+// Puss in Boots
 /obj/item/paper/fluff/info/he/puss_in_boots
 	abno_type = /mob/living/simple_animal/hostile/abnormality/puss_in_boots
 	abno_code = "F-02-24"
@@ -397,7 +422,7 @@
 		"When the blessing was lost, Puss in boots escaped from its Containment Unit and went on a rampage.",
 		"Puss in boots may sporadically appear near F-02-24-1 to offer its assistance when an abnormality breaches.")
 
-//Pinocchio
+// Pinocchio
 /obj/item/paper/fluff/info/he/pinocchio
 	abno_type = /mob/living/simple_animal/hostile/abnormality/pinocchio
 	abno_code = "F-04-160"
@@ -409,7 +434,7 @@
 		"A baseless accusation will reduce the Qliphoth counter by 1.",
 		"During a breach, the abnormality was capable of stealing and arming itself with E.G.O., potentially becoming incredibly dangerous.")
 
-//Missed Reaper
+// Missed Reaper
 /obj/item/paper/fluff/info/he/missed_reaper
 	abno_type = /mob/living/simple_animal/hostile/abnormality/missed_reaper
 	abno_code = "O-01-13"
@@ -426,10 +451,10 @@
 		"When the work result was Normal, the Qliphoth Counter lowered with a normal probability.",
 		"When the work result was Bad, the Qliphoth Counter lowered with a high probability.")
 
-//Wayward Passenger
+// Wayward Passenger
 /obj/item/paper/fluff/info/he/wayward
 	abno_type = /mob/living/simple_animal/hostile/abnormality/wayward
-	abno_code = "T-02-170"//T-02-21-07 in LCB
+	abno_code = "T-02-170"// T-02-21-07 in LCB
 	abno_info = list(
 		"When the work result was Neutral, the Qliphoth Counter lowered at a low probability.",
 		"When the work result was Bad, the Qliphoth Counter lowered at a high probability.",
@@ -437,7 +462,7 @@
 		"When Wayward Passenger breached containment, it created spacial anomalies, dubbed T-01-170-1.",
 		"Agent Alex who entered T-01-170-1 found that it aided the suppression process.")
 
-//Norinori
+// Norinori
 /obj/item/paper/fluff/info/he/norinori
 	abno_type = /mob/living/simple_animal/hostile/abnormality/norinori
 	abno_code = "O-02-25"
@@ -448,7 +473,7 @@
 		"If the employee's Temperance Level was below 3, the employee was killed instead.",
 		"When the work result was Bad, the Qliphoth Counter lowered.")
 
-//Red Shoes
+// Red Shoes
 /obj/item/paper/fluff/info/he/red_shoes
 	abno_type = /mob/living/simple_animal/hostile/abnormality/red_shoes
 	abno_code = "O-04-08"
@@ -460,9 +485,9 @@
 		"Allured employees had their prudence attribute reduced by 50 for two minutes.",
 		"Allured employees recovered quickly after their mental corruption was resolved.",
 		"Allured employees who panicked were coerced into wearing the shoes, no matter how far away they were.")
-	abno_resistances = list(RED_DAMAGE = "Endured", WHITE_DAMAGE = "Weak", BLACK_DAMAGE = "Normal", PALE_DAMAGE = "Weak")//Solo breach
+	abno_resistances = list(RED_DAMAGE = "Endured", WHITE_DAMAGE = "Weak", BLACK_DAMAGE = "Normal", PALE_DAMAGE = "Weak")// Solo breach
 
-//Eris
+// Eris
 /obj/item/paper/fluff/info/he/eris
 	abno_type = /mob/living/simple_animal/hostile/abnormality/eris
 	abno_code = "C-01-184"
@@ -473,7 +498,7 @@
 		"While breached, C-01-184 healed all entities nearby, and would seek out and consume humans that are dead or near death.",
 		"Attacking C-01-184 while breached resulted in the employee taking white damage.")
 
-//Will You Play
+// Will You Play
 /obj/item/paper/fluff/info/he/willyouplay
 	abno_type = /mob/living/simple_animal/hostile/abnormality/willyouplay
 	abno_code = "T-01-187"
@@ -481,11 +506,11 @@
 		"T-01-187 refused standard work, insisting that the employee play a game of janken.",
 		"T-01-187 seems to prefer scissors work, however on occasion has been shown to use other work types.",
 		"If the employee was the last person to work on T-01-187, the stats gained from work was decreased.",
-		"If the employee won the game, they took severe RED damage, and if their fortitude was under level 3, T-01-187 cut off their arm.",
-		"If the employee lost the game, T-01-187 presented them with a blessing, increasing all of their stats under level 4.")
+		"If the employee won the game, they took severe RED damage, and if their fortitude was under level 3, T-01-187 cut off their arm. The employee also would get some stats under level 4, but not as much as compared to losing.",
+		"If the employee lost the game, T-01-187 presented them with a blessing, increasing all of their stats under level 4. If T-01-187 is going through a meltdown. Stats at level 4 and higher would increase by a smaller amount.")
 
 
-//Ardor Blossom Moth
+// Ardor Blossom Moth
 /obj/item/paper/fluff/info/he/ardor_blossom_moth
 	abno_type = /mob/living/simple_animal/hostile/abnormality/ardor_moth
 	abno_code = "T-02-182"
@@ -495,7 +520,7 @@
 		"Employees who worked on Ardor Blossom Moth without a proper fire had a small chance of lowering the Qliphoth counter by 2.",
 		)
 
-//Highway Devotee
+// Highway Devotee
 /obj/item/paper/fluff/info/he/highway
 	abno_type = /mob/living/simple_animal/hostile/abnormality/highway_devotee
 	abno_code = "T-01-189"
@@ -503,7 +528,7 @@
 		"When the work result was neutral, the Qliphoth counter lowered.",
 		"When the work result was bad, the Qliphoth counter lowered by 2.")
 
-//Memories of a Better Time
+// Memories of a Better Time
 /obj/item/paper/fluff/info/he/better_memories
 	abno_type = /mob/living/simple_animal/hostile/abnormality/better_memories
 	abno_code = "T-05-195"
@@ -517,18 +542,18 @@
 		"Clerk Gamma9 reports that they cant recall what memory T-05-195-1 effect made them remember.",
 		"T-05-195-1 is to be considered a pest and suppressed whenever possible to prevent interference.")
 
-//Steam Transport Machine
+// Steam Transport Machine
 /obj/item/paper/fluff/info/he/steam
 	abno_type = /mob/living/simple_animal/hostile/abnormality/steam
 	abno_code = "O-05-197"
 	abno_info = list(
 		"When the work result was Neutral, the Qliphoth counter lowered at a moderate probability.",
 		"When the work result was Bad, the Qliphoth counter lowered.",
-		"When a certain amount of time passed, the abnormality \"activated\". Each activation increased the severity of the activation effects.",
+		"When a certain amount of abnormalities have arrived, the abnormality \"activated\". Each activation increased the severity of the activation effects.",
 		"When activated, the abnormality's maximum Qliphoth counter lowered, all work types became less effective, work damage increased, and the abnormality generally became more aggressive.",
-		"At 1 hour and 15 minutes the maximum Qliphoth counter reduced to 1 and the abnormality became extremely dangerous.")
+		"When the facility is full, the maximum Qliphoth counter reduced to 1 and the abnormality became extremely dangerous.")
 
-//Drifting Fox
+// Drifting Fox
 /obj/item/paper/fluff/info/he/drifting_fox
 	abno_type = /mob/living/simple_animal/hostile/abnormality/drifting_fox
 	abno_code = "T-02-173"
@@ -538,7 +563,7 @@
 		"However, the employee who pet T-02-11-03 noted that success rates with the other work types diminished until work was completed.",
 		"When the work result was Bad, the Qliphoth counter lowered.")
 
-//Basilisoup
+// Basilisoup
 /obj/item/paper/fluff/info/he/basilisoup
 	abno_type = /mob/living/simple_animal/hostile/abnormality/basilisoup
 	abno_code = "F-02-153"

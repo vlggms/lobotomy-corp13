@@ -38,6 +38,7 @@
 
 	/// Can't move/attack when it's TRUE
 	var/reloading = FALSE
+	var/firing_time = 0
 	/// When at 12 - it will start "reloading"
 	var/fire_count = 0
 
@@ -64,18 +65,23 @@
 /mob/living/simple_animal/hostile/ordeal/green_bot_big/OpenFire(atom/A)
 	if(reloading)
 		return FALSE
+	firing_time = world.time
 	fire_count += 1
 	if(fire_count >= 12)
 		StartReloading()
 		return FALSE
 	return ..()
 
-/mob/living/simple_animal/hostile/ordeal/green_bot_big/AttackingTarget()
+/mob/living/simple_animal/hostile/ordeal/green_bot_big/AttackingTarget(atom/attacked_target)
+	if(reloading)
+		return FALSE
+	if(world.time < firing_time + 1.2 SECONDS)
+		return FALSE
 	. = ..()
 	if(.)
-		if(!istype(target, /mob/living))
+		if(!istype(attacked_target, /mob/living))
 			return
-		var/turf/T = get_turf(target)
+		var/turf/T = get_turf(attacked_target)
 		if(!T)
 			return
 		for(var/i = 1 to 4)
@@ -138,6 +144,11 @@
 	var/spawn_progress = 18 //spawn ready to produce robots
 	var/list/spawned_mobs = list()
 	var/producing = FALSE
+
+/mob/living/simple_animal/hostile/ordeal/green_dusk/Initialize(mapload)
+	. = ..()
+	if(SSmaptype.maptype in SSmaptype.citymaps)
+		guaranteed_butcher_results += list(/obj/item/head_trophy/green_datachip = 1)
 
 /mob/living/simple_animal/hostile/ordeal/green_dusk/Initialize()
 	. = ..()
@@ -264,6 +275,7 @@
 	guaranteed_butcher_results = list(/obj/item/food/meat/slab/robot = 16)
 	death_sound = 'sound/effects/ordeals/green/midnight_dead.ogg'
 	offsets_pixel_x = list("south" = -96, "north" = -96, "west" = -96, "east" = -96)
+	damage_effect_scale = 1.25
 
 	var/laser_cooldown
 	var/laser_cooldown_time = 20 SECONDS

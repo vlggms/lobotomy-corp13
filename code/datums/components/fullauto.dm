@@ -15,7 +15,8 @@
 
 /datum/component/automatic_fire/Initialize(_autofire_shot_delay)
 	. = ..()
-	if(!isgun(parent))
+	//if(!isgun(parent)) // LOBOTOMYCORPORATION EDIT CHANGE OLD -- EGO_GUNS
+	if(!isgun(parent) && !istype(parent, /obj/item/ego_weapon/ranged)) // LOBOTOMYCORPORATION EDIT CHANGE NEW -- EGO_GUNS
 		return COMPONENT_INCOMPATIBLE
 	var/obj/item/gun = parent
 	RegisterSignal(parent, COMSIG_ITEM_EQUIPPED, PROC_REF(wake_up))
@@ -116,6 +117,8 @@
 	if(!isturf(source.mob.loc)) //No firing inside lockers and stuff.
 		return
 	if(get_dist(source.mob, _target) < 2) //Adjacent clicking.
+		return
+	if(source.mob.next_move > world.time) //Too busy doing something else to fire
 		return
 
 	if(isnull(location)) //Clicking on a screen object.

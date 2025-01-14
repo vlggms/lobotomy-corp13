@@ -38,10 +38,10 @@
 
 	observation_prompt = "Whenever I enter this containment cell, I find myself whisked away to Never Never Land by Peter Pan to join his merry band of Lost Boys. <br>\
 		I had forgotten all about him when I grew up, I want to stay longer..."
-	observation_choices = list("Stay", "Leave")
-	correct_choices = list("Leave")
-	observation_success_message = "Second to the right, and straight on till morning, I found my way back to where I'm supposed to - there's still work to be done."
-	observation_fail_message = "If no one comes to get me, I'll remain here - never noticing the passing of time..."
+	observation_choices = list(
+		"Leave" = list(TRUE, "Second to the right, and straight on till morning, I found my way back to where I'm supposed to - there's still work to be done."),
+		"Stay" = list(FALSE, "If no one comes to get me, I'll remain here - never noticing the passing of time..."),
+	)
 
 	var/datum/looping_sound/orangetree_ambience/soundloop
 
@@ -174,7 +174,9 @@
 		if(!living_pawn.Adjacent(target))
 			return
 		living_pawn.a_intent = INTENT_HELP //FREE HUGS!
+		living_pawn.drop_all_held_items()
 		attack(controller, target, delta_time)
+		target.drop_all_held_items()
 
 /datum/ai_behavior/insanity_chase_mob/finish_action(datum/ai_controller/controller, succeeded)
 	. = ..()
@@ -218,7 +220,7 @@
 
 	resistance_flags = INDESTRUCTIBLE
 	var/open = FALSE
-	var/obj/item/gun/ego_gun/flammenwerfer/flamethrower
+	var/obj/item/ego_weapon/ranged/flammenwerfer/flamethrower
 
 /obj/structure/flamethrowercabinet/Initialize()
 	. = ..()
@@ -264,8 +266,8 @@
 
 /obj/structure/flamethrowercabinet/attackby(obj/item/I, mob/user, params)
 	if(open)
-		if(istype(I, /obj/item/gun/ego_gun/flammenwerfer) && !flamethrower)
-			var/obj/item/gun/ego_gun/flammenwerfer/F = I
+		if(istype(I, /obj/item/ego_weapon/ranged/flammenwerfer) && !flamethrower)
+			var/obj/item/ego_weapon/ranged/flammenwerfer/F = I
 			if(!user.transferItemToLoc(F, src))
 				return
 			flamethrower = F

@@ -38,10 +38,12 @@
 		The shrimp offers you a champagne glass full of... Something. <br>\
 		It looks and smells like wellcheers grape soda. It's soda. <br>\
 		You can even see the can's label torn off and stuck on the side. <br>Will you drink it?"
-	observation_choices = list("Drink the soda","Refuse")
-	correct_choices = list("Drink the soda","Refuse")
-	observation_success_message = "Before you can make a choice, two gigantic and heavily armed shrimp guards bust in through the door. <br>\
-		They hold you down and force you to drink the soda, and you fall asleep... <br>... <br>Somewhere in the distance, you hear seagulls."
+	observation_choices = list(
+		"Drink the soda" = list(TRUE, "Before you can make a choice, two gigantic and heavily armed shrimp guards bust in through the door. <br>\
+			They hold you down and force you to drink the soda, and you fall asleep... <br>... <br>Somewhere in the distance, you hear seagulls."),
+		"Refuse" = list(TRUE, "Before you can make a choice, two gigantic and heavily armed shrimp guards bust in through the door. <br>\
+			They hold you down and force you to drink the soda, and you fall asleep... <br>... <br>Somewhere in the distance, you hear seagulls."),
+	)
 
 	var/liked
 	var/happy = TRUE
@@ -86,10 +88,10 @@
 	var/list/dispenseitem= list(
 		/obj/item/grenade/spawnergrenade/shrimp,
 		/obj/item/grenade/spawnergrenade/shrimp/super,
-		/obj/item/gun/ego_gun/pistol/soda,
-		/obj/item/gun/ego_gun/sodasmg,
-		/obj/item/gun/ego_gun/sodashotty,
-		/obj/item/gun/ego_gun/sodarifle,
+		/obj/item/ego_weapon/ranged/pistol/soda,
+		/obj/item/ego_weapon/ranged/sodasmg,
+		/obj/item/ego_weapon/ranged/sodashotty,
+		/obj/item/ego_weapon/ranged/sodarifle,
 		/obj/item/clothing/suit/armor/ego_gear/zayin/soda,
 		/obj/item/reagent_containers/food/drinks/soda_cans/wellcheers_red,
 		/obj/item/reagent_containers/food/drinks/soda_cans/wellcheers_white,
@@ -172,6 +174,7 @@
 	icon = 'ModularTegustation/Teguicons/32x32.dmi'
 	icon_state = "wellcheers"
 	icon_living = "wellcheers"
+	icon_dead = "wellcheers_dead"
 	faction = list("shrimp")
 	health = 400
 	maxHealth = 400
@@ -186,6 +189,14 @@
 	attack_verb_simple = "punches"
 	attack_sound = 'sound/weapons/bite.ogg'
 	speak_emote = list("burbles")
+	butcher_results = list(/obj/item/stack/spacecash/c50 = 1)
+	guaranteed_butcher_results = list(/obj/item/stack/spacecash/c10 = 1)
+	silk_results = list(/obj/item/stack/sheet/silk/shrimple_simple = 4)
+
+/mob/living/simple_animal/hostile/shrimp/Initialize()
+	. = ..()
+	if(SSmaptype.maptype == "fixers" || SSmaptype.maptype == "city")
+		del_on_death = FALSE
 
 //You can put these guys about to guard an area.
 /mob/living/simple_animal/hostile/shrimp_soldier
@@ -194,6 +205,7 @@
 	icon = 'ModularTegustation/Teguicons/32x32.dmi'
 	icon_state = "wellcheers_bad"
 	icon_living = "wellcheers_bad"
+	icon_dead = "wellcheers_bad_dead"
 	faction = list("shrimp")
 	health = 500	//They're here to help
 	maxHealth = 500
@@ -213,11 +225,20 @@
 	minimum_distance = 3
 	casingtype = /obj/item/ammo_casing/caseless/ego_shrimpsoldier
 	projectilesound = 'sound/weapons/gun/pistol/shot_alt.ogg'
+	butcher_results = list(/obj/item/stack/spacecash/c50 = 1)
+	guaranteed_butcher_results = list(/obj/item/stack/spacecash/c20 = 1, /obj/item/stack/spacecash/c1 = 5)
+	silk_results = list(/obj/item/stack/sheet/silk/shrimple_simple = 8, /obj/item/stack/sheet/silk/shrimple_advanced = 4)
+
+/mob/living/simple_animal/hostile/shrimp_soldier/Initialize()
+	. = ..()
+	if(SSmaptype.maptype == "fixers" || SSmaptype.maptype == "city")
+		del_on_death = FALSE
 
 /mob/living/simple_animal/hostile/shrimp_soldier/friendly
 	name = "wellcheers corp assault officer"
 	icon_state = "wellcheers_soldier"
 	icon_living = "wellcheers_soldier"
+	icon_dead = "wellcheers_soldier_dead"
 	faction = list("neutral", "shrimp")
 
 /obj/item/grenade/spawnergrenade/shrimp

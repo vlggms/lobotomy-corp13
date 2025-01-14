@@ -2021,6 +2021,10 @@
 /obj/machinery/door/airlock/glass,
 /turf/open/floor/facility/halls,
 /area/facility_hallway/discipline)
+"eO" = (
+/obj/structure/window/paperframe,
+/turf/open/floor/plating,
+/area/facility_hallway/control)
 "eP" = (
 /obj/effect/turf_decal/tile/neutral{
 	color = "#f8f8f8";
@@ -4310,6 +4314,7 @@
 	dir = 4
 	},
 /mob/living/simple_animal/bot/cleanbot,
+/obj/machinery/holopad,
 /turf/open/floor/bronze,
 /area/department_main/training)
 "jE" = (
@@ -5377,6 +5382,7 @@
 	},
 /obj/structure/disposalpipe/junction,
 /mob/living/simple_animal/bot/cleanbot,
+/obj/machinery/holopad,
 /turf/open/floor/plasteel/sepia{
 	color = "#ccc8c0"
 	},
@@ -6063,6 +6069,7 @@
 	dir = 9
 	},
 /mob/living/simple_animal/bot/cleanbot,
+/obj/machinery/holopad,
 /turf/open/floor/plasteel/sepia,
 /area/department_main/control)
 "nS" = (
@@ -9704,6 +9711,7 @@
 	color = "#090807";
 	dir = 4
 	},
+/obj/machinery/holopad,
 /turf/open/floor/plasteel/sepia{
 	color = "#ccc8c0"
 	},
@@ -10221,6 +10229,7 @@
 	color = "#bf48b1";
 	dir = 4
 	},
+/obj/machinery/holopad,
 /turf/open/floor/plasteel/sepia,
 /area/department_main/command)
 "xJ" = (
@@ -10744,6 +10753,10 @@
 	},
 /turf/open/floor/plasteel/sepia,
 /area/facility_hallway/training)
+"yQ" = (
+/obj/machinery/smartfridge/extraction_storage/ego_weapon,
+/turf/open/floor/plating,
+/area/facility_hallway/control)
 "yU" = (
 /obj/effect/turf_decal/tile/neutral{
 	color = "#000000";
@@ -13056,6 +13069,7 @@
 	dir = 4
 	},
 /mob/living/simple_animal/bot/cleanbot,
+/obj/machinery/holopad,
 /turf/open/floor/plasteel/sepia,
 /area/department_main/welfare)
 "DT" = (
@@ -15049,6 +15063,7 @@
 	dir = 4
 	},
 /mob/living/simple_animal/bot/cleanbot,
+/obj/machinery/holopad,
 /turf/open/floor/plasteel/sepia,
 /area/department_main/discipline)
 "II" = (
@@ -17263,6 +17278,14 @@
 	},
 /turf/open/floor/plasteel/sepia,
 /area/department_main/safety)
+"NS" = (
+/obj/machinery/smartfridge/extraction_storage/ego_weapon,
+/turf/closed/indestructible/reinforced{
+	desc = "A huge chunk of wing-grade metal used in various L corporation facilities. Effectively impervious to conventional methods of destruction.";
+	name = "facility wall";
+	opacity = 0
+	},
+/area/department_main/extraction)
 "NT" = (
 /obj/structure/table/wood,
 /obj/machinery/microwave{
@@ -52642,7 +52665,7 @@ lF
 fN
 mA
 mA
-mA
+yQ
 fN
 Vi
 Dp
@@ -55997,7 +56020,7 @@ Tp
 ZC
 XQ
 xk
-Ay
+NS
 LC
 fF
 RG
@@ -57782,7 +57805,7 @@ lF
 fN
 mA
 mA
-mA
+eO
 fN
 Vi
 Zd

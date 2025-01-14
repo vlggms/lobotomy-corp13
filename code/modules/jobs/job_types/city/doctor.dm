@@ -9,6 +9,7 @@
 
 	access = list(ACCESS_MEDICAL)
 	minimal_access = list(ACCESS_MEDICAL)
+	departments = DEPARTMENT_COMMAND | DEPARTMENT_MEDICAL
 	paycheck = PAYCHECK_MEDIUM
 	paycheck_department = ACCOUNT_MED
 
@@ -126,6 +127,7 @@
 	exp_requirements = 180
 
 	display_order = JOB_DISPLAY_ORDER_MEDICALASSIST
+	departments = DEPARTMENT_MEDICAL | DEPARTMENT_FIXERS
 	maptype = list("wonderlabs", "city", "fixers")
 	job_important = "You are an a medical fixer. Your job is to explore the backstreets to grab dead fixers to bring back to the clinic."
 
@@ -138,4 +140,4 @@
 	head = /obj/item/clothing/head/soft/paramedic
 	suit =  /obj/item/clothing/suit/toggle/labcoat/paramedic
 	backpack_contents = list(/obj/item/pinpointer/crew=1)
-	l_hand = /obj/item/gun/ego_gun/pistol/kcorp
+	l_hand = /obj/item/ego_weapon/ranged/pistol/kcorp

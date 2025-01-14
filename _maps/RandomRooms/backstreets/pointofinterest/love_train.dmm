@@ -1,4 +1,21 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"ag" = (
+/obj/effect/turf_decal{
+	dir = 10
+	},
+/obj/structure/closet/crate/large,
+/obj/item/stack/sheet/silk/violet_simple,
+/obj/item/stack/sheet/silk/violet_simple,
+/obj/item/stack/sheet/silk/violet_simple,
+/obj/item/stack/sheet/silk/violet_simple,
+/obj/item/stack/sheet/silk/violet_simple,
+/obj/item/stack/sheet/silk/violet_simple,
+/obj/item/stack/sheet/silk/violet_simple,
+/obj/item/stack/sheet/silk/violet_simple,
+/obj/item/stack/sheet/silk/crimson_simple,
+/obj/item/stack/spacecash/c200,
+/turf/open/floor/engine,
+/area/city/backstreets_room)
 "bk" = (
 /mob/living/simple_animal/hostile/lovetown/slumberer,
 /turf/open/floor/wood,
@@ -46,6 +63,20 @@
 	icon_state = "wood-broken7"
 	},
 /area/city/backstreets_room)
+"gX" = (
+/obj/effect/turf_decal{
+	dir = 1
+	},
+/obj/structure/closet/crate/large,
+/obj/item/stack/sheet/silk/violet_simple,
+/obj/item/stack/sheet/silk/violet_simple,
+/obj/item/stack/sheet/silk/violet_simple,
+/obj/item/stack/sheet/silk/violet_simple,
+/obj/item/stack/spacecash/c200,
+/obj/item/stack/spacecash/c100,
+/obj/item/stack/spacecash/c100,
+/turf/open/floor/engine,
+/area/city/backstreets_room)
 "gY" = (
 /obj/effect/gibspawner/human/bodypartless,
 /obj/structure/meatfloor,
@@ -65,6 +96,12 @@
 "hQ" = (
 /obj/structure/barricade/sandbags,
 /turf/open/floor/plating/asteroid/basalt,
+/area/city/backstreets_room)
+"iq" = (
+/obj/structure/meatfloor,
+/obj/structure/lootcrate/w_corp,
+/obj/structure/lootcrate/money,
+/turf/open/floor/wood,
 /area/city/backstreets_room)
 "iw" = (
 /obj/structure/lootcrate/money,
@@ -95,6 +132,16 @@
 /area/city/backstreets_room)
 "kz" = (
 /obj/structure/lootcrate/money,
+/turf/open/floor/plating/asteroid/basalt,
+/area/city/backstreets_room)
+"kM" = (
+/obj/machinery/door/airlock/centcom{
+	desc = "A bit too sturdy...";
+	max_integrity = 10000;
+	name = "Strange Airlock";
+	normal_integrity = 100000;
+	req_access_txt = "19"
+	},
 /turf/open/floor/plating/asteroid/basalt,
 /area/city/backstreets_room)
 "mA" = (
@@ -156,7 +203,7 @@
 /turf/open/floor/carpet/blue,
 /area/city/backstreets_room)
 "wh" = (
-/obj/item/ego_weapon/city/charge/wcorp/shield/spear,
+/obj/item/ego_weapon/city/wcorp/shield/spear,
 /obj/structure/meatfloor,
 /turf/open/floor/wood,
 /area/city/backstreets_room)
@@ -195,8 +242,26 @@
 "zZ" = (
 /turf/open/floor/plating/asteroid/basalt,
 /area/city/backstreets_room)
+"AQ" = (
+/obj/effect/turf_decal{
+	dir = 6
+	},
+/obj/structure/closet/crate/wooden,
+/obj/item/stack/spacecash/c200,
+/obj/item/stack/spacecash/c200,
+/obj/item/stack/spacecash/c200,
+/obj/item/stack/spacecash/c200,
+/obj/item/stack/spacecash/c200,
+/obj/item/attribute_increase/fixer,
+/turf/open/floor/engine,
+/area/city/backstreets_room)
 "AX" = (
 /turf/open/floor/carpet/blue,
+/area/city/backstreets_room)
+"AY" = (
+/obj/structure/lootcrate/w_corp,
+/obj/structure/lootcrate/money,
+/turf/open/floor/wood,
 /area/city/backstreets_room)
 "Bb" = (
 /obj/structure/meatfloor,
@@ -235,6 +300,12 @@
 /mob/living/simple_animal/hostile/lovetown/suicidal,
 /turf/open/floor/plating/asteroid/basalt,
 /area/city/backstreets_room)
+"Dz" = (
+/obj/effect/turf_decal{
+	dir = 9
+	},
+/turf/open/floor/engine,
+/area/city/backstreets_room)
 "DB" = (
 /turf/open/floor/wood{
 	icon_state = "wood-broken"
@@ -266,11 +337,30 @@
 /obj/item/raw_anomaly_core/bluespace,
 /turf/open/floor/wood,
 /area/city/backstreets_room)
+"Ge" = (
+/obj/effect/gibspawner/human/bodypartless,
+/obj/effect/landmark/cratespawn/corpo,
+/turf/open/floor/wood,
+/area/city/backstreets_room)
 "Hb" = (
 /obj/effect/gibspawner/human/bodypartless,
 /turf/open/floor/wood{
 	icon_state = "wood-broken7"
 	},
+/area/city/backstreets_room)
+"Hc" = (
+/obj/effect/turf_decal,
+/obj/structure/closet/crate/large,
+/obj/item/stack/sheet/silk/crimson_simple,
+/obj/item/stack/sheet/silk/crimson_simple,
+/obj/item/stack/sheet/silk/crimson_simple,
+/obj/item/stack/sheet/silk/crimson_simple,
+/obj/item/stack/sheet/silk/crimson_simple,
+/obj/item/stack/sheet/silk/crimson_simple,
+/obj/item/stack/sheet/silk/crimson_simple,
+/obj/item/stack/spacecash/c200,
+/obj/item/stack/spacecash/c100,
+/turf/open/floor/engine,
 /area/city/backstreets_room)
 "HL" = (
 /mob/living/simple_animal/hostile/lovetown/shambler,
@@ -310,7 +400,7 @@
 /turf/open/floor/plating/asteroid/basalt,
 /area/city/backstreets_room)
 "LN" = (
-/obj/item/ego_weapon/city/charge/wcorp/hammer,
+/obj/item/ego_weapon/city/wcorp/hammer,
 /turf/open/floor/wood,
 /area/city/backstreets_room)
 "MA" = (
@@ -328,6 +418,12 @@
 /mob/living/simple_animal/hostile/lovetown/stabber,
 /obj/effect/gibspawner/human/bodypartless,
 /turf/open/floor/plating/asteroid/basalt,
+/area/city/backstreets_room)
+"OB" = (
+/obj/structure/lootcrate/w_corp,
+/turf/open/floor/wood{
+	icon_state = "wood-broken7"
+	},
 /area/city/backstreets_room)
 "OW" = (
 /mob/living/simple_animal/hostile/lovetown/stabber,
@@ -351,6 +447,25 @@
 "SO" = (
 /obj/effect/rune/manifest,
 /turf/open/floor/wood,
+/area/city/backstreets_room)
+"Tf" = (
+/obj/effect/turf_decal{
+	dir = 5
+	},
+/obj/structure/closet/crate/wooden,
+/obj/item/stack/sheet/silk/human_simple,
+/obj/item/stack/sheet/silk/human_simple,
+/obj/item/stack/sheet/silk/human_simple,
+/obj/item/stack/sheet/silk/human_simple,
+/obj/item/stack/sheet/silk/human_simple,
+/obj/item/stack/sheet/silk/human_simple,
+/obj/item/stack/spacecash/c100,
+/obj/item/stack/spacecash/c100,
+/obj/item/stack/spacecash/c100,
+/obj/item/stack/spacecash/c100,
+/obj/item/stack/spacecash/c100,
+/obj/item/attribute_increase/fixer,
+/turf/open/floor/engine,
 /area/city/backstreets_room)
 "Tw" = (
 /obj/effect/landmark/cratespawn/corpo,
@@ -392,7 +507,7 @@
 /turf/open/floor/plating/asteroid/basalt,
 /area/city/backstreets_room)
 "Za" = (
-/obj/item/ego_weapon/city/charge/wcorp,
+/obj/item/ego_weapon/city/wcorp,
 /obj/structure/meatfloor,
 /turf/open/floor/plating/asteroid/basalt,
 /area/city/backstreets_room)
@@ -442,13 +557,13 @@ MA
 MA
 MA
 MA
-zZ
+kz
 MA
 MA
 MA
 zZ
 JV
-zZ
+kz
 LC
 zZ
 MA
@@ -484,8 +599,8 @@ MA
 MA
 MA
 MA
-Dd
-Dd
+iq
+iq
 dX
 ZW
 Is
@@ -509,8 +624,8 @@ MA
 MA
 MA
 dX
-Lw
-Lw
+AY
+AY
 MA
 MA
 MA
@@ -669,7 +784,7 @@ zZ
 Pd
 Is
 dX
-mA
+Tw
 bk
 Dd
 RP
@@ -701,7 +816,7 @@ zZ
 zZ
 zZ
 dX
-mA
+Tw
 Dd
 Dd
 tF
@@ -733,7 +848,7 @@ zZ
 zZ
 zZ
 MA
-mA
+Tw
 Dd
 IP
 bC
@@ -755,7 +870,7 @@ zZ
 zZ
 "}
 (12,1,1) = {"
-zZ
+kz
 MA
 MA
 MA
@@ -837,7 +952,7 @@ Bd
 AX
 Dd
 mA
-mA
+Tw
 dX
 zZ
 Is
@@ -869,7 +984,7 @@ mA
 mA
 Dd
 DN
-mA
+Tw
 dX
 zZ
 zZ
@@ -957,7 +1072,7 @@ NC
 zZ
 zZ
 dX
-eU
+OB
 SO
 mA
 mA
@@ -980,7 +1095,7 @@ zZ
 "}
 (19,1,1) = {"
 Ef
-zZ
+kz
 MA
 zZ
 zZ
@@ -989,7 +1104,7 @@ zZ
 kz
 zZ
 dX
-mA
+Lw
 mA
 mA
 sP
@@ -1031,9 +1146,9 @@ BV
 mA
 Hb
 dX
-zZ
-Is
-Is
+kM
+dX
+dX
 zZ
 zZ
 zZ
@@ -1063,9 +1178,9 @@ Dd
 mA
 mA
 dX
-zZ
-zZ
-Is
+Dz
+ag
+dX
 ZW
 zZ
 zZ
@@ -1088,16 +1203,16 @@ dX
 LN
 mA
 mA
-Lw
+AY
 FN
 Dd
 Dd
 mA
 Lw
 dX
-zZ
-Us
-zZ
+gX
+Hc
+dX
 Is
 Is
 MA
@@ -1121,15 +1236,15 @@ kc
 Tw
 mA
 fT
-Lw
+AY
 Dd
-mA
-mA
+Lw
+Lw
 MA
 dX
-zZ
-zZ
-zZ
+Tf
+AQ
+dX
 zZ
 Bb
 MA
@@ -1151,17 +1266,17 @@ zZ
 dX
 nO
 mA
-wG
-mA
-mA
+Ge
+Tw
+Tw
 Dd
 MA
 MA
 MA
 dX
-zZ
-zZ
-zZ
+dX
+dX
+dX
 zZ
 MA
 MA
@@ -1194,7 +1309,7 @@ dX
 zZ
 zZ
 zZ
-MA
+zZ
 MA
 zZ
 zZ
@@ -1224,7 +1339,7 @@ MA
 MA
 dX
 zZ
-zZ
+MA
 MA
 MA
 MA
@@ -1256,7 +1371,7 @@ MA
 MA
 dX
 zZ
-zZ
+MA
 MA
 MA
 zZ
@@ -1337,7 +1452,7 @@ MA
 zZ
 JV
 Ef
-zZ
+kz
 Dw
 MA
 MA

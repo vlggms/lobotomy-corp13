@@ -39,18 +39,18 @@
 	observation_prompt = "What does this signboard say? <br>\
 		It hangs itself on a tree, trying to make its content known. <br>\
 		Its desperation is almost pitiable."
-	observation_choices = list("Pick a rose", "Unravel the brambles")
-	correct_choices = list("Pick a rose")
-	observation_success_message = "You pick a rose out of it. <br>\
-		With closer examination, you notice <br>\
-		that it has an intestinal texture. <br>\
-		What is a flower-shaped organ for?"
-	observation_fail_message = "As you try to untangle the vines, <br>\
-		sallow bits of flesh fall off. <br>\
-		The thorny brambles you thought were a source of constricting pain <br>\
-		ironically had been keeping the body together. <br>\
-		The body writhes as its flesh falls apart. <br>\
-		Blossoms of flowers sprawled on the ground substitute its screams."
+	observation_choices = list(
+		"Pick a rose" = list(TRUE, "You pick a rose out of it. <br>\
+			With closer examination, you notice <br>\
+			that it has an intestinal texture. <br>\
+			What is a flower-shaped organ for?"),
+		"Unravel the brambles" = list(FALSE, "As you try to untangle the vines, <br>\
+			sallow bits of flesh fall off. <br>\
+			The thorny brambles you thought were a source of constricting pain <br>\
+			ironically had been keeping the body together. <br>\
+			The body writhes as its flesh falls apart. <br>\
+			Blossoms of flowers sprawled on the ground substitute its screams."),
+	)
 
 	var/list/work_roses = list()
 	var/list/work_damages = list()
@@ -234,11 +234,11 @@
 	var/mob/living/simple_animal/hostile/rose_summoned/R = new(T)//Spawns the rose
 	summoned_roses += R
 	for(var/obj/item/W in target.held_items + target.get_equipped_items())//Searches the human for any E.G.O and adds them to a list.
-		if(istype(W, /obj/item/ego_weapon))//FIXME!!!! The above line doesn't actually check suit storage slots, could be more efficient too
+		if(is_ego_melee_weapon(W)) //FIXME!!!! The above line doesn't actually check suit storage slots, could be more efficient too
 			flower_damtype += W.damtype
-		if(istype(W, /obj/item/gun/ego_gun))
-			var/obj/item/gun/ego_gun/G = W
-			flower_damtype += G.chambered.BB.damage_type
+		else if(is_ego_weapon(W))
+			var/obj/item/ego_weapon/ranged/G = W
+			flower_damtype += G.last_projectile_type
 	if(LAZYLEN(flower_damtype))//Picks damage types from the list compiled previously, spawning a rose of that color.
 		damtype = pick(flower_damtype)
 	else
@@ -380,7 +380,7 @@
 	var/mob/living/status_target
 	var/killed = TRUE
 
-/mob/living/simple_animal/hostile/rose_summoned/proc/PickColor(picked_color)//fixme: new roses STILL spawn with added weaknesses, even from spawn commands
+/mob/living/simple_animal/hostile/rose_summoned/proc/PickColor(picked_color)
 	icon_state = "rose_" + picked_color
 	desc = "The heavier your sins, the deeper the color of petals will be."
 	flower_damage_type = picked_color
@@ -511,6 +511,7 @@
 	if(master)
 		master.adjustBruteLoss(-100)
 	if(!status_holder.stat >= HARD_CRIT || stacks != max_stacks)
+		INVOKE_ASYNC(src, PROC_REF(PointToFlower))
 		return
 	status_applicant.killed = FALSE
 	status_applicant.death()
@@ -529,6 +530,18 @@
 	status_holder.adjust_attribute_bonus(FORTITUDE_ATTRIBUTE, attribute_penalty)
 	status_holder.adjustBruteLoss(-attribute_penalty)
 	return ..()
+
+/datum/status_effect/stacking/crownthorns/proc/PointToFlower()
+	if(!owner || !status_applicant)
+		return
+	var/list/rose_path = get_path_to(get_turf(owner), get_turf(status_applicant), TYPE_PROC_REF(/turf, Distance_cardinal), 100)
+	var/i = 0
+	for(var/turf/T in rose_path)
+		if(i > 10)
+			break
+		new /obj/effect/temp_visual/cult/sparks(T)
+		i++
+		sleep(1)
 
 //On-kill visual effect
 /obj/structure/rose_crucifix

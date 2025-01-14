@@ -31,6 +31,12 @@
 /obj/structure/meatfloor,
 /turf/open/indestructible/necropolis/air,
 /area/city/backstreets_room)
+"A" = (
+/obj/structure/meatfloor,
+/obj/structure/lootcrate/money,
+/obj/structure/lootcrate/money,
+/turf/open/indestructible/necropolis/air,
+/area/city/backstreets_room)
 "H" = (
 /obj/structure/meatfloor,
 /turf/closed/indestructible/necropolis,
@@ -72,7 +78,7 @@ x
 (3,1,1) = {"
 x
 l
-P
+A
 p
 l
 Y

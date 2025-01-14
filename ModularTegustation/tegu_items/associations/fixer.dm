@@ -54,9 +54,9 @@
 	desc = "A kit containing Full Stop offier gear."
 
 /obj/item/storage/box/fixer/fullstop/PopulateContents()
-	new /obj/item/gun/ego_gun/city/fullstop/assault(src)
-	new /obj/item/gun/ego_gun/city/fullstop/sniper(src)
-	new /obj/item/gun/ego_gun/city/fullstop/deagle(src)
+	new /obj/item/ego_weapon/ranged/city/fullstop/assault(src)
+	new /obj/item/ego_weapon/ranged/city/fullstop/sniper(src)
+	new /obj/item/ego_weapon/ranged/city/fullstop/deagle(src)
 	new /obj/item/clothing/suit/armor/ego_gear/city/fullstopleader(src)
 	new /obj/item/clothing/suit/armor/ego_gear/city/fullstop(src)
 	new /obj/item/clothing/suit/armor/ego_gear/city/fullstop/sniper(src)
@@ -139,10 +139,10 @@
 	desc = "A kit containing Cane Office gear."
 
 /obj/item/storage/box/fixerhard/cane/PopulateContents()
-	new /obj/item/ego_weapon/city/charge/cane/cane/weak(src)
-	new /obj/item/ego_weapon/city/charge/cane/claw/weak(src)
-	new /obj/item/ego_weapon/city/charge/cane/fist/weak(src)
-	new /obj/item/ego_weapon/city/charge/cane/briefcase/weak(src)
+	new /obj/item/ego_weapon/city/cane/cane/weak(src)
+	new /obj/item/ego_weapon/city/cane/claw/weak(src)
+	new /obj/item/ego_weapon/city/cane/fist/weak(src)
+	new /obj/item/ego_weapon/city/cane/briefcase/weak(src)
 	new /obj/item/clothing/under/suit/tuxedo(src)
 	new /obj/item/clothing/under/suit/tuxedo(src)
 	new /obj/item/clothing/under/suit/tuxedo(src)

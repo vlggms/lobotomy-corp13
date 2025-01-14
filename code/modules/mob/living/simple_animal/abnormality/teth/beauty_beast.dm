@@ -36,12 +36,12 @@
 		These puddles are evidence of monster's futile struggle to end its life. \
 		\"Kill me. Stab me with that knife you have.\" The monster cannot talk. However, the soul trapped in it can talk and I can hear it. \
 		\"Why are you not helping me when you can hear me?\" The monster asks reproachfully."
-	observation_choices = list("Because I don't have a knife.", "Because this problem can't be solved with death.")
-	correct_choices = list("Because this problem can't be solved with death.")
-	observation_success_message = "'That's not important. Every single second is an agony for me. \
-		Death is a prize compared to this endless pain.' \"But you are right. It is your job to solve it. Not mine.\" \
-		\"Child, would you make a promise? Would you free me from this cycle when you are ready?\""
-	observation_fail_message = "You are lying. You know you can pull out that knife out from your pocket whenever you want."
+	observation_choices = list(
+		"Because this problem can't be solved with death" = list(TRUE, "'That's not important. Every single second is an agony for me. \
+			Death is a prize compared to this endless pain.' \"But you are right. It is your job to solve it. Not mine.\" \
+			\"Child, would you make a promise? Would you free me from this cycle when you are ready?\""),
+		"Because I don't have a knife" = list(FALSE, "You are lying. You know you can pull out that knife out from your pocket whenever you want."),
+	)
 
 	var/injured = FALSE
 

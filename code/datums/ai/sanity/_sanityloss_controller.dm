@@ -171,12 +171,12 @@
 	var/atom/selected_enemy = blackboard[BB_INSANE_CURRENT_ATTACK_TARGET]
 	var/atom/selected_item = blackboard[BB_INSANE_PICKUPTARGET]
 	var/isGunHealingTargetSanity = FALSE
-	var/obj/item/gun/ego_gun/banger = null
+	var/obj/item/ego_weapon/ranged/banger = null
 	if(the_mecha)
 		move_mod = the_mecha.movedelay + 0.1 //just a little bit more to guarantee that we can always move when mecha is ready to move
-	else if(living_pawn.held_items && living_pawn.held_items.len == 2 && istype(living_pawn.held_items[1], /obj/item/gun/ego_gun))
+	else if(living_pawn.held_items && living_pawn.held_items.len == 2 && istype(living_pawn.held_items[1], /obj/item/ego_weapon/ranged))
 		banger = living_pawn.held_items[1]
-		var/obj/item/ammo_casing/casing = initial(banger.ammo_type)
+		var/obj/item/ammo_casing/casing = initial(banger.projectile_path)
 		var/obj/projectile/boolet = initial(casing.projectile_type)
 		if(initial(boolet.damage_type) == WHITE_DAMAGE && ishuman(selected_enemy))
 			var/mob/living/carbon/human/H = selected_enemy
@@ -340,9 +340,9 @@
 				living_pawn.dropItemToGround(I, force = TRUE)
 				continue
 			has_weapon = TRUE
-			if(istype(I, /obj/item/gun/ego_gun))
-				var/obj/item/gun/ego_gun/G = I
-				var/obj/item/ammo_casing/casing = initial(G.ammo_type)
+			if(istype(I, /obj/item/ego_weapon/ranged))
+				var/obj/item/ego_weapon/ranged/G = I
+				var/obj/item/ammo_casing/casing = initial(G.projectile_path)
 				var/obj/projectile/boolet = initial(casing.projectile_type)
 				if(initial(boolet.damage_type) != WHITE_DAMAGE)
 					has_non_white_weapon = TRUE
@@ -486,7 +486,7 @@
 			item_blacklist[I] = TRUE
 			continue
 		var/obj/item/ego_weapon/EW = I
-		var/obj/item/gun/ego_gun/EG = I
+		var/obj/item/ego_weapon/ranged/EG = I
 		if(istype(EW) && !EW.CanUseEgo(living_pawn))
 			living_pawn.dropItemToGround(I, force = TRUE)
 			item_blacklist[I] = TRUE
@@ -497,7 +497,7 @@
 				item_blacklist[I] = TRUE
 				continue
 			if(!is_white_allowed)
-				var/obj/item/ammo_casing/casing = initial(EG.ammo_type)
+				var/obj/item/ammo_casing/casing = initial(EG.projectile_path)
 				var/obj/projectile/boolet = initial(casing.projectile_type)
 				if(initial(boolet.damage_type) == WHITE_DAMAGE)
 					continue
@@ -516,7 +516,7 @@
 		if(blackboard[BB_INSANE_TEMPORARY_BLACKLISTITEMS][i])
 			continue
 		var/obj/item/ego_weapon/EW = i
-		var/obj/item/gun/ego_gun/EG = i
+		var/obj/item/ego_weapon/ranged/EG = i
 		if(istype(EW) && !EW.CanUseEgo(living_pawn))
 			living_pawn.dropItemToGround(i, force = TRUE)
 			item_blacklist[i] = TRUE
@@ -527,7 +527,7 @@
 				item_blacklist[i] = TRUE
 				continue
 			if(!is_white_allowed)
-				var/obj/item/ammo_casing/casing = initial(EG.ammo_type)
+				var/obj/item/ammo_casing/casing = initial(EG.projectile_path)
 				var/obj/projectile/boolet = initial(casing.projectile_type)
 				if(initial(boolet.damage_type) == WHITE_DAMAGE)
 					continue
@@ -546,7 +546,7 @@
 		if(i.anchored)
 			continue
 		var/obj/item/ego_weapon/EW = i
-		var/obj/item/gun/ego_gun/EG = i
+		var/obj/item/ego_weapon/ranged/EG = i
 		if(istype(EW) && !EW.CanUseEgo(living_pawn))
 			item_blacklist[i] = TRUE
 			continue
@@ -555,7 +555,7 @@
 				item_blacklist[i] = TRUE
 				continue
 			if(!is_white_allowed)
-				var/obj/item/ammo_casing/casing = initial(EG.ammo_type)
+				var/obj/item/ammo_casing/casing = initial(EG.projectile_path)
 				var/obj/projectile/boolet = initial(casing.projectile_type)
 				if(initial(boolet.damage_type) == WHITE_DAMAGE)
 					continue
@@ -581,9 +581,9 @@
 				power *= 2
 			if(/obj/item/ego_weapon/blind_rage)
 				power *= 3 //not sure how accurate but will make them love using it
-	else if(considerRangedAttack && istype(I, /obj/item/gun/ego_gun))
-		var/obj/item/gun/ego_gun/gun_i = I
-		var/obj/item/ammo_casing/casing = initial(gun_i.ammo_type)
+	else if(considerRangedAttack && istype(I, /obj/item/ego_weapon/ranged))
+		var/obj/item/ego_weapon/ranged/gun_i = I
+		var/obj/item/ammo_casing/casing = initial(gun_i.projectile_path)
 		var/obj/projectile/boolet = initial(casing.projectile_type)
 		var/gun_power = initial(boolet.damage) * gun_i.burst_size * initial(casing.pellets)
 		if(gun_i.autofire)
@@ -734,9 +734,7 @@
 	..()
 	retaliate(user)
 	var/aggro = I.force
-	if(istype(I, /obj/item/ego_weapon))
-		var/obj/item/ego_weapon/EW = I
-		aggro *= EW.force_multiplier
+	aggro *= I.force_multiplier
 	if(ishuman(user))
 		aggro *= 1 + get_modified_attribute_level(user, JUSTICE_ATTRIBUTE) * 0.01
 	RegisterAggroValue(user, aggro, I.damtype)
@@ -779,9 +777,7 @@
 			var/mob/living/carbon/human/H = I.thrownby
 			retaliate(H)
 			var/aggro = I.throwforce * (1 + get_modified_attribute_level(H, JUSTICE_ATTRIBUTE) * 0.01)
-			if(istype(I, /obj/item/ego_weapon))
-				var/obj/item/ego_weapon/EW = I
-				aggro *= EW.force_multiplier
+			aggro *= I.force_multiplier
 			RegisterAggroValue(H, aggro, I.damtype)
 	return
 

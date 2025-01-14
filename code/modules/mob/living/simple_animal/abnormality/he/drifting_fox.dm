@@ -55,20 +55,20 @@
 		The umbrellas jiggled. <br.\
 		Looking closer, there’s a large fox underneath. <br.\
 		The umbrellas’ rusted iron blades have firmly rooted themselves in its back."
-	observation_choices = list("Pet the fox", "Pull out the umbrellas")
-	correct_choices = list("Pet the fox")
-	observation_success_message = "Its growl recedes. <br.\
-		You stroke it once more, <br.\
-		and it closes its eyes, pleased. <br.\
-		You stroke it once more, <br.\
-		and it settles on the ground, comforted. <br.\
-		You stroke it once more, <br.\
-		and it shrinks to become a statue."
-	observation_fail_message = "Those umbrellas seem to be causing it pain. <br.\
-		When you pull them out with force, bits of its flesh come off with them. <br.\
-		The fox yelped sharply and gave us a glare. <br.\
-		Then, it smacked you with the umbrella in its mouth. <br.\
-		It seemed to reprimand your attitude of pursuing resolution without forethought."
+	observation_choices = list(
+		"Pet the fox" = list(TRUE, "Its growl recedes. <br.\
+			You stroke it once more, <br.\
+			and it closes its eyes, pleased. <br.\
+			You stroke it once more, <br.\
+			and it settles on the ground, comforted. <br.\
+			You stroke it once more, <br.\
+			and it shrinks to become a statue."),
+		"Pull out the umbrellas" = list(FALSE, "Those umbrellas seem to be causing it pain. <br.\
+			When you pull them out with force, bits of its flesh come off with them. <br.\
+			The fox yelped sharply and gave us a glare. <br.\
+			Then, it smacked you with the umbrella in its mouth. <br.\
+			It seemed to reprimand your attitude of pursuing resolution without forethought."),
+	)
 
 	var/list/pet = list()
 	pet_bonus = "yips"
@@ -163,6 +163,7 @@
 	maxHealth = 125
 	health = 125
 	density = FALSE
+	status_flags = MUST_HIT_PROJECTILE // Allows projectiles to hit non-dense mob
 	damage_coeff = list(RED_DAMAGE = 1, WHITE_DAMAGE = 0.7, BLACK_DAMAGE = 0.5, PALE_DAMAGE = 2)
 	del_on_death = FALSE
 	ranged = TRUE

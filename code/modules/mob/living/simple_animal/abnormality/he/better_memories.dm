@@ -38,11 +38,11 @@
 
 	observation_prompt = "In the pile around the abnormality, you find a old card. <br>You almost forgot about them. <br>\
 		A pink light grows and you feel a tug on your memory."
-	observation_choices = list("Let go", "Hold on")
-	correct_choices = list("Let go")
-	observation_success_message = "You let go of the memory forever. <br>You look forward to the day you can make a memory like that again."
-	observation_fail_message = "You pull the letter back from the pink light inside the abnormality's gate. <br>\
-		The memory becomes more and more vivid as if its happening now... <br>when you finally break free you cannot recall what you fought so hard for."
+	observation_choices = list(
+		"Let go" = list(TRUE, "You let go of the memory forever. <br>You look forward to the day you can make a memory like that again."),
+		"Hold on" = list(FALSE, "You pull the letter back from the pink light inside the abnormality's gate. <br>\
+			The memory becomes more and more vivid as if its happening now... <br>when you finally break free you cannot recall what you fought so hard for."),
+	)
 
 	var/minions = 0
 
@@ -59,10 +59,9 @@
 
 // Those with low temperance will find a memory in the pile.
 /mob/living/simple_animal/hostile/abnormality/better_memories/PostWorkEffect(mob/living/carbon/human/user, work_type, pe, work_time)
-	if(get_attribute_level(user, TEMPERANCE_ATTRIBUTE) <= 60)
+	if(get_attribute_level(user, TEMPERANCE_ATTRIBUTE) < 60)
 		datum_reference.qliphoth_change(-1)
 		user.apply_status_effect(MEMORY_DEBUFF)
-	return
 
 // Better memories can have 3 seperate minions who will terroize the facility. Code modified from luna.dm
 /mob/living/simple_animal/hostile/abnormality/better_memories/ZeroQliphoth(mob/living/carbon/human/user)
@@ -204,12 +203,12 @@
 		if(target_memory[the_target] <= 100)
 			return FALSE
 
-/mob/living/simple_animal/hostile/better_memories_minion/AttackingTarget()
+/mob/living/simple_animal/hostile/better_memories_minion/AttackingTarget(atom/attacked_target)
 	if(!can_act)
 		return FALSE
 	if(!client)
-		if(ishuman(target))
-			var/mob/living/carbon/human/H = target
+		if(ishuman(attacked_target))
+			var/mob/living/carbon/human/H = attacked_target
 			/* Dont jab those standing
 			still for their picture.
 			Death is not our goal */

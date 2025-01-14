@@ -1886,6 +1886,7 @@
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
+/obj/machinery/holopad,
 /turf/open/floor/bronze,
 /area/department_main/command)
 "fL" = (
@@ -2218,7 +2219,6 @@
 	},
 /obj/effect/turf_decal/stripes/line,
 /turf/open/water/deep/polluted{
-	environment = list(/obj/item/food/fish/salt_water/piscine_mermaid = 200, /obj/item/food/fish/fresh_water/mosb = 200, /obj/item/food/fish/fresh_water/ratfish = 50, /obj/item/food/tofu/prison = 1000, /obj/item/food/meat/slab/human/mutant/zombie = 1000, /obj/item/food/dough = 800, /obj/item/stack/spacecash/c1 = 700, /obj/item/food/breadslice/moldy = 300, /obj/item/food/canned/beans = 300, /obj/item/food/canned/peaches = 300, /obj/item/reagent_containers/food/drinks/bottle/small = 300, /obj/item/reagent_containers/food/drinks/bottle/wine/unlabeled = 300, /obj/item/stack/fish_points = 250, /obj/item/food/spiderling = 200, /obj/item/food/grown/harebell = 200, /obj/item/stack/sheet/mineral/wood = 200);
 	safe = 1
 	},
 /area/department_main/welfare)
@@ -2335,7 +2335,6 @@
 /area/facility_hallway/west)
 "he" = (
 /turf/open/water/deep/saltwater/safe{
-	environment = list(/obj/item/food/fish/salt_water/marine_shrimp = 1000, /obj/item/food/fish/salt_water/clownfish = 1000, /obj/item/food/fish/salt_water/greenchromis = 1000, /obj/item/food/fish/salt_water/firefish = 1000, /obj/item/food/fish/salt_water/cardinal = 400, /obj/item/food/fish/salt_water = 400, /obj/item/food/fish/salt_water/sheephead = 400, /obj/item/food/fish/salt_water/lanternfish = 200, /obj/item/stack/spacecash/c1 = 700, /obj/item/fishing_component/hook/bone = 700, /obj/item/stack/fish_points = 600, /obj/item/food/canned/beans = 600, /obj/item/food/canned/peaches = 600, /obj/item/clothing/head/beret/fishing_hat = 200, /obj/item/reagent_containers/food/drinks/bottle/wine/unlabeled = 100);
 	icon_state = "water_turf1"
 	},
 /area/space)
@@ -4780,6 +4779,13 @@
 /obj/effect/turf_decal/tile/blue,
 /turf/open/floor/plasteel/sepia,
 /area/department_main/welfare)
+"oq" = (
+/obj/machinery/door/airlock/glass{
+	icon = 'icons/obj/doors/airlocks/station/science.dmi';
+	hackProof = 1
+	},
+/turf/open/floor/facility/halls,
+/area/facility_hallway/information)
 "or" = (
 /obj/effect/turf_decal/tile/neutral{
 	dir = 1
@@ -4799,7 +4805,8 @@
 /area/facility_hallway/human)
 "ow" = (
 /obj/machinery/door/airlock/highsecurity{
-	name = "Records Office Secure Area"
+	name = "Records Office Secure Area";
+	hackProof = 1
 	},
 /turf/open/floor/facility/halls,
 /area/facility_hallway/information)
@@ -5669,8 +5676,7 @@
 /area/department_main/training)
 "rd" = (
 /turf/open/water/deep/saltwater/safe{
-	color = "#f5f5f5";
-	environment = list(/obj/item/food/fish/salt_water/marine_shrimp = 1000, /obj/item/food/fish/salt_water/clownfish = 1000, /obj/item/food/fish/salt_water/greenchromis = 1000, /obj/item/food/fish/salt_water/firefish = 1000, /obj/item/food/fish/salt_water/cardinal = 400, /obj/item/food/fish/salt_water = 400, /obj/item/food/fish/salt_water/sheephead = 400, /obj/item/food/fish/salt_water/lanternfish = 200, /obj/item/stack/spacecash/c1 = 700, /obj/item/fishing_component/hook/bone = 700, /obj/item/stack/fish_points = 600, /obj/item/food/canned/beans = 600, /obj/item/food/canned/peaches = 600, /obj/item/clothing/head/beret/fishing_hat = 200, /obj/item/reagent_containers/food/drinks/bottle/wine/unlabeled = 100)
+	color = "#f5f5f5"
 	},
 /area/facility_hallway/central)
 "re" = (
@@ -6132,7 +6138,6 @@
 /area/facility_hallway/east)
 "sE" = (
 /turf/open/water/deep/saltwater/safe{
-	environment = list(/obj/item/food/fish/salt_water/marine_shrimp = 1000, /obj/item/food/fish/salt_water/clownfish = 1000, /obj/item/food/fish/salt_water/greenchromis = 1000, /obj/item/food/fish/salt_water/firefish = 1000, /obj/item/food/fish/salt_water/cardinal = 400, /obj/item/food/fish/salt_water = 400, /obj/item/food/fish/salt_water/sheephead = 400, /obj/item/food/fish/salt_water/lanternfish = 200, /obj/item/stack/spacecash/c1 = 700, /obj/item/fishing_component/hook/bone = 700, /obj/item/stack/fish_points = 600, /obj/item/food/canned/beans = 600, /obj/item/food/canned/peaches = 600, /obj/item/clothing/head/beret/fishing_hat = 200, /obj/item/reagent_containers/food/drinks/bottle/wine/unlabeled = 100);
 	icon_state = "water_turf1"
 	},
 /area/facility_hallway/central)
@@ -8854,6 +8859,7 @@
 	},
 /obj/machinery/navbeacon/wayfinding/welfaredepartment,
 /mob/living/simple_animal/bot/cleanbot,
+/obj/machinery/holopad,
 /turf/open/floor/plasteel/sepia{
 	color = "#ccc8c0"
 	},
@@ -9010,7 +9016,6 @@
 	set_luminosity = 24
 	},
 /turf/open/water/deep/saltwater/safe{
-	environment = list(/obj/item/food/fish/salt_water/marine_shrimp = 1000, /obj/item/food/fish/salt_water/clownfish = 1000, /obj/item/food/fish/salt_water/greenchromis = 1000, /obj/item/food/fish/salt_water/firefish = 1000, /obj/item/food/fish/salt_water/cardinal = 400, /obj/item/food/fish/salt_water = 400, /obj/item/food/fish/salt_water/sheephead = 400, /obj/item/food/fish/salt_water/lanternfish = 200, /obj/item/stack/spacecash/c1 = 700, /obj/item/fishing_component/hook/bone = 700, /obj/item/stack/fish_points = 600, /obj/item/food/canned/beans = 600, /obj/item/food/canned/peaches = 600, /obj/item/clothing/head/beret/fishing_hat = 200, /obj/item/reagent_containers/food/drinks/bottle/wine/unlabeled = 100);
 	icon_state = "water_turf1"
 	},
 /area/facility_hallway/central)
@@ -10107,7 +10112,6 @@
 	pixel_y = 4
 	},
 /turf/open/water/deep/polluted{
-	environment = list(/obj/item/food/fish/salt_water/piscine_mermaid = 200, /obj/item/food/fish/fresh_water/mosb = 200, /obj/item/food/fish/fresh_water/ratfish = 50, /obj/item/food/tofu/prison = 1000, /obj/item/food/meat/slab/human/mutant/zombie = 1000, /obj/item/food/dough = 800, /obj/item/stack/spacecash/c1 = 700, /obj/item/food/breadslice/moldy = 300, /obj/item/food/canned/beans = 300, /obj/item/food/canned/peaches = 300, /obj/item/reagent_containers/food/drinks/bottle/small = 300, /obj/item/reagent_containers/food/drinks/bottle/wine/unlabeled = 300, /obj/item/stack/fish_points = 250, /obj/item/food/spiderling = 200, /obj/item/food/grown/harebell = 200, /obj/item/stack/sheet/mineral/wood = 200);
 	safe = 1
 	},
 /area/department_main/welfare)
@@ -10259,6 +10263,7 @@
 	},
 /obj/machinery/navbeacon/wayfinding/controldepartment,
 /mob/living/simple_animal/bot/cleanbot,
+/obj/machinery/holopad,
 /turf/open/floor/plasteel/sepia{
 	color = "#ccc8c0"
 	},
@@ -10764,6 +10769,7 @@
 	icon_state = "LC2"
 	},
 /obj/structure/disposalpipe/segment,
+/obj/machinery/holopad,
 /turf/open/floor/plasteel/sepia{
 	color = "#ccc8c0"
 	},
@@ -11178,7 +11184,6 @@
 	dir = 1
 	},
 /turf/open/water/deep/polluted{
-	environment = list(/obj/item/food/fish/salt_water/piscine_mermaid = 200, /obj/item/food/fish/fresh_water/mosb = 200, /obj/item/food/fish/fresh_water/ratfish = 50, /obj/item/food/tofu/prison = 1000, /obj/item/food/meat/slab/human/mutant/zombie = 1000, /obj/item/food/dough = 800, /obj/item/stack/spacecash/c1 = 700, /obj/item/food/breadslice/moldy = 300, /obj/item/food/canned/beans = 300, /obj/item/food/canned/peaches = 300, /obj/item/reagent_containers/food/drinks/bottle/small = 300, /obj/item/reagent_containers/food/drinks/bottle/wine/unlabeled = 300, /obj/item/stack/fish_points = 250, /obj/item/food/spiderling = 200, /obj/item/food/grown/harebell = 200, /obj/item/stack/sheet/mineral/wood = 200);
 	safe = 1
 	},
 /area/department_main/welfare)
@@ -11519,7 +11524,6 @@
 	pixel_y = 15
 	},
 /turf/open/water/deep/polluted{
-	environment = list(/obj/item/food/fish/salt_water/piscine_mermaid = 200, /obj/item/food/fish/fresh_water/mosb = 200, /obj/item/food/fish/fresh_water/ratfish = 50, /obj/item/food/tofu/prison = 1000, /obj/item/food/meat/slab/human/mutant/zombie = 1000, /obj/item/food/dough = 800, /obj/item/stack/spacecash/c1 = 700, /obj/item/food/breadslice/moldy = 300, /obj/item/food/canned/beans = 300, /obj/item/food/canned/peaches = 300, /obj/item/reagent_containers/food/drinks/bottle/small = 300, /obj/item/reagent_containers/food/drinks/bottle/wine/unlabeled = 300, /obj/item/stack/fish_points = 250, /obj/item/food/spiderling = 200, /obj/item/food/grown/harebell = 200, /obj/item/stack/sheet/mineral/wood = 200);
 	safe = 1
 	},
 /area/department_main/welfare)
@@ -11888,6 +11892,7 @@
 	icon_state = "LC2"
 	},
 /obj/structure/disposalpipe/segment,
+/obj/machinery/holopad,
 /turf/open/floor/plasteel/sepia{
 	color = "#ccc8c0"
 	},
@@ -12043,7 +12048,6 @@
 	dir = 1
 	},
 /turf/open/water/deep/saltwater/safe{
-	environment = list(/obj/item/food/fish/salt_water/marine_shrimp = 1000, /obj/item/food/fish/salt_water/clownfish = 1000, /obj/item/food/fish/salt_water/greenchromis = 1000, /obj/item/food/fish/salt_water/firefish = 1000, /obj/item/food/fish/salt_water/cardinal = 400, /obj/item/food/fish/salt_water = 400, /obj/item/food/fish/salt_water/sheephead = 400, /obj/item/food/fish/salt_water/lanternfish = 200, /obj/item/stack/spacecash/c1 = 700, /obj/item/fishing_component/hook/bone = 700, /obj/item/stack/fish_points = 600, /obj/item/food/canned/beans = 600, /obj/item/food/canned/peaches = 600, /obj/item/clothing/head/beret/fishing_hat = 200, /obj/item/reagent_containers/food/drinks/bottle/wine/unlabeled = 100);
 	icon_state = "water_turf1"
 	},
 /area/department_main/welfare)
@@ -12659,9 +12663,7 @@
 /area/department_main/information)
 "MZ" = (
 /obj/effect/turf_decal/stripes/line,
-/turf/open/water/deep/saltwater/safe{
-	environment = list(/obj/item/food/fish/salt_water/marine_shrimp = 1000, /obj/item/food/fish/salt_water/clownfish = 1000, /obj/item/food/fish/salt_water/greenchromis = 1000, /obj/item/food/fish/salt_water/firefish = 1000, /obj/item/food/fish/salt_water/cardinal = 400, /obj/item/food/fish/salt_water = 400, /obj/item/food/fish/salt_water/sheephead = 400, /obj/item/food/fish/salt_water/lanternfish = 200, /obj/item/stack/spacecash/c1 = 700, /obj/item/fishing_component/hook/bone = 700, /obj/item/stack/fish_points = 600, /obj/item/food/canned/beans = 600, /obj/item/food/canned/peaches = 600, /obj/item/clothing/head/beret/fishing_hat = 200, /obj/item/reagent_containers/food/drinks/bottle/wine/unlabeled = 100)
-	},
+/turf/open/water/deep/saltwater/safe,
 /area/department_main/welfare)
 "Na" = (
 /obj/effect/turf_decal/tile/blue{
@@ -12936,7 +12938,8 @@
 /obj/machinery/door/airlock{
 	icon = 'icons/obj/doors/airlocks/station/science.dmi';
 	max_integrity = 500;
-	name = "Information Department"
+	name = "Information Department";
+	hackProof = 1
 	},
 /turf/open/floor/facility/halls,
 /area/facility_hallway/information)
@@ -13028,7 +13031,6 @@
 	},
 /obj/effect/turf_decal/stripes/line,
 /turf/open/water/deep/saltwater/safe{
-	environment = list(/obj/item/food/fish/salt_water/marine_shrimp = 1000, /obj/item/food/fish/salt_water/clownfish = 1000, /obj/item/food/fish/salt_water/greenchromis = 1000, /obj/item/food/fish/salt_water/firefish = 1000, /obj/item/food/fish/salt_water/cardinal = 400, /obj/item/food/fish/salt_water = 400, /obj/item/food/fish/salt_water/sheephead = 400, /obj/item/food/fish/salt_water/lanternfish = 200, /obj/item/stack/spacecash/c1 = 700, /obj/item/fishing_component/hook/bone = 700, /obj/item/stack/fish_points = 600, /obj/item/food/canned/beans = 600, /obj/item/food/canned/peaches = 600, /obj/item/clothing/head/beret/fishing_hat = 200, /obj/item/reagent_containers/food/drinks/bottle/wine/unlabeled = 100);
 	icon_state = "water_turf1"
 	},
 /area/department_main/welfare)
@@ -13197,8 +13199,7 @@
 	set_luminosity = 24
 	},
 /turf/open/water/deep/saltwater/safe{
-	color = "#f5f5f5";
-	environment = list(/obj/item/food/fish/salt_water/marine_shrimp = 1000, /obj/item/food/fish/salt_water/clownfish = 1000, /obj/item/food/fish/salt_water/greenchromis = 1000, /obj/item/food/fish/salt_water/firefish = 1000, /obj/item/food/fish/salt_water/cardinal = 400, /obj/item/food/fish/salt_water = 400, /obj/item/food/fish/salt_water/sheephead = 400, /obj/item/food/fish/salt_water/lanternfish = 200, /obj/item/stack/spacecash/c1 = 700, /obj/item/fishing_component/hook/bone = 700, /obj/item/stack/fish_points = 600, /obj/item/food/canned/beans = 600, /obj/item/food/canned/peaches = 600, /obj/item/clothing/head/beret/fishing_hat = 200, /obj/item/reagent_containers/food/drinks/bottle/wine/unlabeled = 100)
+	color = "#f5f5f5"
 	},
 /area/facility_hallway/central)
 "OQ" = (
@@ -14743,9 +14744,7 @@
 /obj/effect/turf_decal/stripes/line{
 	dir = 1
 	},
-/turf/open/water/deep/saltwater/safe{
-	environment = list(/obj/item/food/fish/salt_water/marine_shrimp = 1000, /obj/item/food/fish/salt_water/clownfish = 1000, /obj/item/food/fish/salt_water/greenchromis = 1000, /obj/item/food/fish/salt_water/firefish = 1000, /obj/item/food/fish/salt_water/cardinal = 400, /obj/item/food/fish/salt_water = 400, /obj/item/food/fish/salt_water/sheephead = 400, /obj/item/food/fish/salt_water/lanternfish = 200, /obj/item/stack/spacecash/c1 = 700, /obj/item/fishing_component/hook/bone = 700, /obj/item/stack/fish_points = 600, /obj/item/food/canned/beans = 600, /obj/item/food/canned/peaches = 600, /obj/item/clothing/head/beret/fishing_hat = 200, /obj/item/reagent_containers/food/drinks/bottle/wine/unlabeled = 100)
-	},
+/turf/open/water/deep/saltwater/safe,
 /area/department_main/welfare)
 "Tw" = (
 /obj/effect/turf_decal/tile/neutral{
@@ -14888,8 +14887,7 @@
 /area/facility_hallway/east)
 "Uf" = (
 /turf/open/water/deep/saltwater/safe{
-	color = "#f5f5f5";
-	environment = list(/obj/item/food/fish/salt_water/marine_shrimp = 1000, /obj/item/food/fish/salt_water/clownfish = 1000, /obj/item/food/fish/salt_water/greenchromis = 1000, /obj/item/food/fish/salt_water/firefish = 1000, /obj/item/food/fish/salt_water/cardinal = 400, /obj/item/food/fish/salt_water = 400, /obj/item/food/fish/salt_water/sheephead = 400, /obj/item/food/fish/salt_water/lanternfish = 200, /obj/item/stack/spacecash/c1 = 700, /obj/item/fishing_component/hook/bone = 700, /obj/item/stack/fish_points = 600, /obj/item/food/canned/beans = 600, /obj/item/food/canned/peaches = 600, /obj/item/clothing/head/beret/fishing_hat = 200, /obj/item/reagent_containers/food/drinks/bottle/wine/unlabeled = 100)
+	color = "#f5f5f5"
 	},
 /area/space)
 "Ug" = (
@@ -50386,12 +50384,12 @@ pH
 pH
 pH
 pH
-WF
+oq
 sl
 sl
 sl
 sl
-WF
+oq
 jd
 jd
 ow

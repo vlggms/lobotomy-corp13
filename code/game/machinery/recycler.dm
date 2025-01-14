@@ -16,7 +16,7 @@
 	var/crush_damage = 1000
 	var/eat_victim_items = TRUE
 	var/item_recycle_sound = 'sound/items/welder.ogg'
-	var/static/list/forbidden_items = typecacheof(list(/obj/item/ego_weapon, /obj/item/gun/ego_gun, /obj/item/clothing/suit/armor/ego_gear, /obj/item/toy/plush, /obj/structure/toolabnormality))
+	var/static/list/forbidden_items = typecacheof(list(/obj/item/ego_weapon, /obj/item/ego_weapon/ranged, /obj/item/clothing/suit/armor/ego_gear, /obj/item/toy/plush, /obj/structure/toolabnormality))
 
 /obj/machinery/recycler/Initialize()
 	AddComponent(/datum/component/butchering/recycler, 1, amount_produced,amount_produced/5)

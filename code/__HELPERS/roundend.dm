@@ -190,7 +190,7 @@
 	if(human_mob.mind)
 		var/datum/mind/M = human_mob.mind
 		if(M.get_skill_level(/datum/skill/fishing) >= 6)
-			player_client.give_award(/datum/award/achievement/misc/scorpworld, human_mob)
+			player_client.give_award(/datum/award/achievement/lc13/scorpworld, human_mob)
 		//If you join not from roundstart you do not apply for these achivements.
 		if(M.late_joiner)
 			return FALSE
@@ -208,9 +208,9 @@
 				"Training Officer",
 				)
 			if(M.assigned_role in valid_roles)
-				player_client.give_award(/datum/award/achievement/misc/lcorpworld, human_mob)
+				player_client.give_award(/datum/award/achievement/lc13/lcorpworld, human_mob)
 			if(istype(human_mob.ego_gift_list["Right Back Slot"], /datum/ego_gifts/twilight))
-				player_client.give_award(/datum/award/achievement/misc/twilight, human_mob)
+				player_client.give_award(/datum/award/achievement/lc13/twilight, human_mob)
 
 ///Handles random hardcore point rewarding if it applies.
 /datum/controller/subsystem/ticker/proc/HandleRandomHardcoreScore(client/player_client)

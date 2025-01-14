@@ -268,7 +268,15 @@
 		"thoughtfeeder" = 'icons/UI_Icons/Achievements/Mafia/thoughtfeeder.png',
 		"traitor" = 'icons/UI_Icons/Achievements/Mafia/traitor.png',
 		"basemafia" ='icons/UI_Icons/Achievements/basemafia.png',
-		"frenching" = 'icons/UI_Icons/Achievements/Misc/frenchingthebubble.png'
+		"frenching" = 'icons/UI_Icons/Achievements/Misc/frenchingthebubble.png',
+		"amber" = 'icons/UI_Icons/Achievements/lobotomycorp13/amber.png',
+		"claw" = 'icons/UI_Icons/Achievements/lobotomycorp13/claw.png',
+		"green" = 'icons/UI_Icons/Achievements/lobotomycorp13/green.png',
+		"lcorp" = 'icons/UI_Icons/Achievements/lobotomycorp13/lcorp.png',
+		"shrimp" = 'icons/UI_Icons/Achievements/lobotomycorp13/shrimp.png',
+		"twilight" = 'icons/UI_Icons/Achievements/lobotomycorp13/twlight.png',
+		"violet" = 'icons/UI_Icons/Achievements/lobotomycorp13/violet.png',
+		"whitenight" = 'icons/UI_Icons/Achievements/lobotomycorp13/whitenight.png',
 	)
 
 /datum/asset/spritesheet/simple/pills

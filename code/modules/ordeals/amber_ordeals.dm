@@ -44,7 +44,7 @@
 	announce_sound = 'sound/effects/ordeals/amber_start.ogg'
 	end_sound = 'sound/effects/ordeals/amber_end.ogg'
 	color = "#FFBF00"
-	ordeal_achievement = /datum/award/achievement/boss/ambermidnight
+	ordeal_achievement = /datum/award/achievement/lc13/ambermidnight
 	/// How many mobs to spawn
 	var/spawn_amount = 1
 

@@ -44,9 +44,9 @@
 	abnormality_origin = ABNORMALITY_ORIGIN_LOBOTOMY
 
 	observation_prompt = "Are you a monk?"
-	observation_choices = list("I am no longer a monk")
-	correct_choices = list("I am no longer a monk")
-	observation_success_message = "A demon shall never reach Heaven."
+	observation_choices = list(
+		"I am no longer a monk" = list(TRUE, "A demon shall never reach Heaven."),
+	)
 
 	var/datum/looping_sound/cloudedmonk_ambience/soundloop
 	var/charging = FALSE

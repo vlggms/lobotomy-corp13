@@ -13,6 +13,7 @@
 
 	access = list(ACCESS_MEDICAL, ACCESS_PHARMACY)
 	minimal_access = list(ACCESS_MEDICAL, ACCESS_PHARMACY)
+	departments = DEPARTMENT_MEDICAL
 
 	job_attribute_limit = 0
 
@@ -24,6 +25,10 @@
 	job_important = "You are a pharmacist hired by LCB. Your job is to make the medicine used by the Medical Zone."
 	job_abbreviation = "PHAR"
 
+/datum/job/pharmacist/after_spawn(mob/living/carbon/human/H, mob/M, latejoin = FALSE)
+	..()
+	ADD_TRAIT(H, TRAIT_COMBATFEAR_IMMUNE, JOB_TRAIT)
+	ADD_TRAIT(H, TRAIT_WORK_FORBIDDEN, JOB_TRAIT)
 
 /datum/outfit/job/pharmacist
 	name = "Pharmacist"

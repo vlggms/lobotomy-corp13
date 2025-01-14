@@ -45,7 +45,7 @@
 
 /mob/living/simple_animal/hostile/ordeal/amber_bug/death(gibbed)
 	alpha = 255
-	..()
+	return ..()
 
 /mob/living/simple_animal/hostile/ordeal/amber_bug/Life()
 	. = ..()
@@ -79,10 +79,12 @@
 	if(. && target) //reset burrow cooldown whenever in combat
 		burrow_cooldown = world.time + burrow_cooldown_time
 
-/mob/living/simple_animal/hostile/ordeal/amber_bug/AttackingTarget()
+/mob/living/simple_animal/hostile/ordeal/amber_bug/AttackingTarget(atom/attacked_target)
+	if(burrowing)
+		return
 	. = ..()
 	if(.)
-		var/dir_to_target = get_dir(get_turf(src), get_turf(target))
+		var/dir_to_target = get_dir(get_turf(src), get_turf(attacked_target))
 		animate(src, pixel_y = (base_pixel_y + 18), time = 2)
 		addtimer(CALLBACK(src, PROC_REF(AnimateBack)), 2)
 		for(var/i = 1 to 2)
@@ -103,7 +105,7 @@
 
 /mob/living/simple_animal/hostile/ordeal/amber_bug/proc/BurrowIn(turf/T)
 	if(!T)
-		if(GLOB.xeno_spawn.len)
+		if(length(GLOB.xeno_spawn))
 			T = pick(GLOB.xeno_spawn)
 		else
 			can_burrow_solo = FALSE
@@ -139,8 +141,10 @@
 
 //Amber dawn spawned from dusk
 /mob/living/simple_animal/hostile/ordeal/amber_bug/spawned
+	can_burrow_solo = FALSE
 	butcher_results = list()
 	guaranteed_butcher_results = list()
+	var/mob/living/simple_animal/hostile/ordeal/amber_dusk/bug_mommy
 
 /mob/living/simple_animal/hostile/ordeal/amber_bug/spawned/Initialize()
 	. = ..()
@@ -150,7 +154,13 @@
 	density = FALSE
 	animate(src, alpha = 0, time = 5 SECONDS)
 	QDEL_IN(src, 5 SECONDS)
-	..()
+	return ..()
+
+/mob/living/simple_animal/hostile/ordeal/amber_bug/spawned/Destroy()
+	if(bug_mommy)
+		bug_mommy.spawned_mobs -= src
+	bug_mommy = null
+	return ..()
 
 // Amber dusk
 /mob/living/simple_animal/hostile/ordeal/amber_dusk
@@ -182,6 +192,7 @@
 	should_projectile_blockers_change_orientation = TRUE
 	occupied_tiles_up = 1
 	offsets_pixel_x = list("south" = -16, "north" = -16, "west" = 0, "east" = -32)
+	offsets_pixel_y = list("south" = 9, "north" = -20, "west" = 0, "east" = 0)
 
 	/// This cooldown responds for both the burrowing and spawning in the dawns
 	var/burrow_cooldown
@@ -216,12 +227,30 @@
 
 /mob/living/simple_animal/hostile/ordeal/amber_dusk/Initialize()
 	. = ..()
+	setDir(WEST)
 	soundloop = new(list(src), TRUE)
 	if(LAZYLEN(butcher_results))
 		addtimer(CALLBACK(src, PROC_REF(BurrowOut), get_turf(src)))
 
+/mob/living/simple_animal/hostile/ordeal/amber_dusk/OnDirChange(atom/thing, dir, newdir)
+	. = ..()
+	if(stat == DEAD)
+		return
+	var/static/matrix/add_vertical_transform = matrix(0.8, 1.4, MATRIX_SCALE)
+	var/static/south_north = SOUTH | NORTH
+	var/static/east_west = EAST | WEST
+	var/combined = dir | newdir
+	if((combined & south_north) && (combined & east_west))
+		if(newdir & south_north)
+			transform = add_vertical_transform
+		else
+			transform = matrix()
+
 /mob/living/simple_animal/hostile/ordeal/amber_dusk/Destroy()
 	QDEL_NULL(soundloop)
+	for(var/mob/living/simple_animal/hostile/ordeal/amber_bug/spawned/bug as anything in spawned_mobs)
+		bug.bug_mommy = null
+	spawned_mobs = null
 	return ..()
 
 /mob/living/simple_animal/hostile/ordeal/amber_dusk/Life()
@@ -236,42 +265,43 @@
 	if(LAZYLEN(butcher_results))
 		alpha = 255
 	offsets_pixel_x = list("south" = -16, "north" = -16, "west" = -16, "east" = -16)
+	offsets_pixel_y = list("south" = 0, "north" = 0, "west" = 0, "east" = 0)
+	transform = matrix()
 	soundloop.stop()
-	listclearnulls(spawned_mobs)
-	for(var/mob/living/simple_animal/hostile/ordeal/amber_bug/AB in spawned_mobs)
-		AB.can_burrow_solo = TRUE
-	..()
+	for(var/mob/living/simple_animal/hostile/ordeal/amber_bug/bug in spawned_mobs)
+		bug.can_burrow_solo = TRUE
+	return ..()
 
 /mob/living/simple_animal/hostile/ordeal/amber_dusk/revive(full_heal, admin_revive)
 	. = ..()
 	offsets_pixel_x = list("south" = -16, "north" = -16, "west" = 0, "east" = -32)
+	offsets_pixel_y = list("south" = 9, "north" = -20, "west" = 0, "east" = 0)
+	density = TRUE
 
 /mob/living/simple_animal/hostile/ordeal/amber_dusk/proc/AttemptBirth()
-	listclearnulls(spawned_mobs)
-	for(var/mob/living/L in spawned_mobs)
-		if(L.stat == DEAD)
-			spawned_mobs -= L
-	var/max_spawn = clamp(GLOB.clients.len * 2, 4, 8)
+	var/max_spawn = clamp(length(GLOB.clients) * 2, 4, 8)
 	if(length(spawned_mobs) >= max_spawn)
 		return FALSE
+
 	burrowing = TRUE
 	playsound(get_turf(src), 'sound/effects/ordeals/amber/dusk_create.ogg', 50, FALSE)
 	SLEEP_CHECK_DEATH(5)
 	visible_message(span_danger("Four smaller bugs emerge from [src]!"))
 	for(var/i = 1 to 4)
-		var/turf/T = get_step(get_turf(src), pick(0, NORTH, SOUTH, EAST, WEST, NORTHEAST, NORTHWEST, SOUTHEAST, SOUTHWEST))
-		if(T.density) // Retry
+		var/turf/Turf = get_step(get_turf(src), pick(0, NORTH, SOUTH, EAST, WEST, NORTHEAST, NORTHWEST, SOUTHEAST, SOUTHWEST))
+		if(Turf.density) // Retry
 			i -= 1
 			continue
-		var/mob/living/simple_animal/hostile/ordeal/amber_bug/spawned/nb = new(T)
-		nb.can_burrow_solo = FALSE
-		spawned_mobs += nb
+
+		var/mob/living/simple_animal/hostile/ordeal/amber_bug/spawned/bug = new(Turf)
+		spawned_mobs += bug
+		bug.bug_mommy = src
 		if(ordeal_reference)
-			nb.ordeal_reference = ordeal_reference
-			ordeal_reference.ordeal_mobs += nb
+			bug.ordeal_reference = ordeal_reference
+			ordeal_reference.ordeal_mobs += bug
+
 	SLEEP_CHECK_DEATH(5)
 	burrowing = FALSE
-	return TRUE
 
 /mob/living/simple_animal/hostile/ordeal/amber_dusk/proc/BurrowIn()
 	burrowing = TRUE
@@ -282,8 +312,8 @@
 	playsound(get_turf(src), 'sound/effects/ordeals/amber/dusk_dig_in.ogg', 50, 1)
 	animate(src, alpha = 0, time = 10)
 	SLEEP_CHECK_DEATH(5)
-	for(var/mob/living/simple_animal/hostile/ordeal/amber_bug/AB in spawned_mobs)
-		addtimer(CALLBACK(AB, PROC_REF(BurrowIn), T))
+	for(var/mob/living/simple_animal/hostile/ordeal/amber_bug/bug as anything in spawned_mobs)
+		addtimer(CALLBACK(bug, PROC_REF(BurrowIn), T))
 	SLEEP_CHECK_DEATH(5)
 	density = FALSE
 	forceMove(T)
@@ -295,6 +325,7 @@
 	density = FALSE
 	for(var/turf/open/OT in range(1, T))
 		new /obj/effect/temp_visual/small_smoke/halfsecond(OT)
+
 	animate(src, alpha = 255, time = 5)
 	playsound(get_turf(src), 'sound/effects/ordeals/amber/dusk_dig_out.ogg', 50, 1)
 	visible_message(span_bolddanger("[src] burrows out from the ground!"))
@@ -305,21 +336,29 @@
 	for(var/mob/living/L in view(1, src))
 		if(!faction_check_mob(L))
 			L.apply_damage(75, RED_DAMAGE, null, L.run_armor_check(null, RED_DAMAGE))
+
 	burrow_cooldown = world.time + burrow_cooldown_time
 	burrowing = FALSE
 
 /mob/living/simple_animal/hostile/ordeal/amber_dusk/spawned
 	butcher_results = list()
 	guaranteed_butcher_results = list()
+	var/mob/living/simple_animal/hostile/ordeal/amber_midnight/bug_daddy
 
 /mob/living/simple_animal/hostile/ordeal/amber_dusk/spawned/Initialize()
-	. = ..()
 	burrow_cooldown = world.time + burrow_cooldown_time
+	return ..()
+
+/mob/living/simple_animal/hostile/ordeal/amber_dusk/spawned/Destroy()
+	if(bug_daddy)
+		bug_daddy.spawned_mobs -= src
+	bug_daddy = null
+	return ..()
 
 /mob/living/simple_animal/hostile/ordeal/amber_dusk/spawned/death(gibbed)
 	animate(src, alpha = 0, time = 5 SECONDS)
 	QDEL_IN(src, 5 SECONDS)
-	..()
+	return ..()
 
 // Amber midnight
 /mob/living/simple_animal/hostile/ordeal/amber_midnight
@@ -349,6 +388,7 @@
 	occupied_tiles_up = 2
 	offsets_pixel_x = list("south" = -96, "north" = -96, "west" = -96, "east" = -96)
 	offsets_pixel_y = list("south" = -16, "north" = -16, "west" = -16, "east" = -16)
+	damage_effect_scale = 1.25
 
 	blood_volume = BLOOD_VOLUME_NORMAL
 	death_sound = 'sound/effects/ordeals/amber/midnight_dead.ogg'
@@ -368,12 +408,15 @@
 
 /mob/living/simple_animal/hostile/ordeal/amber_midnight/Destroy()
 	QDEL_NULL(soundloop)
+	for(var/mob/living/simple_animal/hostile/ordeal/amber_dusk/spawned/bug as anything in spawned_mobs)
+		bug.bug_daddy = null
+	spawned_mobs = null
 	return ..()
 
 /mob/living/simple_animal/hostile/ordeal/amber_midnight/death(gibbed)
 	alpha = 255
 	soundloop.stop()
-	..()
+	return ..()
 
 /mob/living/simple_animal/hostile/ordeal/amber_midnight/CanAttack(atom/the_target)
 	return FALSE
@@ -388,30 +431,27 @@
 	if(!burrowing && world.time > burrow_cooldown)
 		AttemptBirth()
 		BurrowIn()
-		return
 
 /mob/living/simple_animal/hostile/ordeal/amber_midnight/proc/AttemptBirth()
-	listclearnulls(spawned_mobs)
-	for(var/mob/living/L in spawned_mobs)
-		if(L.stat == DEAD)
-			spawned_mobs -= L
-	var/max_spawn = clamp(GLOB.clients.len * 0.6, 2, 8)
+	var/max_spawn = clamp(length(GLOB.clients) * 0.6, 2, 8)
 	if(length(spawned_mobs) >= max_spawn)
 		return FALSE
+
 	burrowing = TRUE
 	playsound(get_turf(src), 'sound/effects/ordeals/amber/midnight_create.ogg', 50, FALSE)
 	SLEEP_CHECK_DEATH(2 SECONDS)
 	visible_message(span_danger("Two large bugs emerge from [src]!"))
 	for(var/i = 1 to 2)
 		var/turf/T = get_step(get_turf(src), pick(GLOB.alldirs))
-		var/mob/living/simple_animal/hostile/ordeal/amber_dusk/spawned/nb = new(T)
-		spawned_mobs += nb
+		var/mob/living/simple_animal/hostile/ordeal/amber_dusk/spawned/bug = new(T)
+		spawned_mobs += bug
+		bug.bug_daddy = src
 		if(ordeal_reference)
-			nb.ordeal_reference = ordeal_reference
-			ordeal_reference.ordeal_mobs += nb
+			bug.ordeal_reference = ordeal_reference
+			ordeal_reference.ordeal_mobs += bug
+
 	SLEEP_CHECK_DEATH(2 SECONDS)
 	burrowing = FALSE
-	return TRUE
 
 /mob/living/simple_animal/hostile/ordeal/amber_midnight/proc/BurrowIn()
 	burrowing = TRUE

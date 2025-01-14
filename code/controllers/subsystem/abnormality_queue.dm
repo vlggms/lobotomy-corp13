@@ -29,6 +29,8 @@ SUBSYSTEM_DEF(abnormality_queue)
 	var/rooms_start = 0
 	/// Amount of times PostSpawn() proc has been called. Kept separate from times_fired because admins love to call fire() manually
 	var/spawned_abnos = 0
+	/// When an abnormality spawns, the time it spawned is here. Purelly used for sephirahs TGUI console
+	var/previous_abno_spawn = 0
 	// I am using this all because default subsystem waiting and next_fire is done in a very... interesting way.
 	/// World time at which new abnormality will be spawned
 	var/next_abno_spawn = INFINITY
@@ -39,11 +41,22 @@ SUBSYSTEM_DEF(abnormality_queue)
 	/// Due to Managers not passing the Litmus Test, divine approval is now necessary for red roll
 	var/hardcore_roll_enabled = FALSE
 
+	/// Contains all suppression agents, clears itself of agents that are without a body.
+	var/list/active_suppression_agents = list()
+	/// the % values of when we give the agents in active_suppression_agents +10 attributes
+	var/list/abnormality_milestones = list(0.15, 0.29, 0.44, 0.59, 0.69, 0.79, 1000000)
+	/// How far we currently are along the chain of milestones
+	var/current_milestone = 1
+
 /datum/controller/subsystem/abnormality_queue/Initialize(timeofday)
+	rooms_start = length(GLOB.abnormality_room_spawners)
+	if(!rooms_start)
+		flags |= SS_NO_FIRE
+		return ..() // Sleepy time
+
 	RegisterSignal(SSdcs, COMSIG_GLOB_ORDEAL_END, PROC_REF(OnOrdealEnd))
-	rooms_start = GLOB.abnormality_room_spawners.len
 	next_abno_spawn_time -= min(2, rooms_start * 0.05) MINUTES // 20 rooms will decrease wait time by 1 Minute
-	..()
+	return ..()
 
 /datum/controller/subsystem/abnormality_queue/fire()
 	if(world.time >= next_abno_spawn)
@@ -51,9 +64,10 @@ SUBSYSTEM_DEF(abnormality_queue)
 
 /datum/controller/subsystem/abnormality_queue/proc/SpawnAbno()
 	// Earlier in the game, abnormalities will spawn faster and then slow down a bit
+	previous_abno_spawn = world.time
 	next_abno_spawn = world.time + next_abno_spawn_time + ((min(16, spawned_abnos) - 6) * 9) SECONDS
 
-	if(!LAZYLEN(GLOB.abnormality_room_spawners))
+	if(!length(GLOB.abnormality_room_spawners))
 		return
 
 	var/obj/effect/spawner/abnormality_room/choice = pick(GLOB.abnormality_room_spawners)
@@ -97,31 +111,45 @@ SUBSYSTEM_DEF(abnormality_queue)
 		available_levels = list(TETH_LEVEL)
 
 	// Roll the abnos from available levels
-	if(!ispath(queued_abnormality) && LAZYLEN(possible_abnormalities))
+	if(!ispath(queued_abnormality) && length(possible_abnormalities))
 		PickAbno()
 
 /datum/controller/subsystem/abnormality_queue/proc/PostSpawn()
-	if(queued_abnormality)
-		if(possible_abnormalities[initial(queued_abnormality.threat_level)][queued_abnormality] <= 0)
-			stack_trace("Queued abnormality had no weight!?")
-		possible_abnormalities[initial(queued_abnormality.threat_level)] -= queued_abnormality
-		for(var/obj/machinery/computer/abnormality_queue/Q in GLOB.lobotomy_devices)
-			Q.audible_message("<span class='announce'>[initial(queued_abnormality.name)] has arrived at the facility!</span>")
-			playsound(get_turf(Q), 'sound/machines/dun_don_alert.ogg', 50, TRUE)
-			Q.updateUsrDialog()
-		queued_abnormality = null
-		spawned_abnos++
+	if(!queued_abnormality)
+		return
+
+	if(possible_abnormalities[initial(queued_abnormality.threat_level)][queued_abnormality] <= 0)
+		stack_trace("Queued abnormality had no weight!?")
+	possible_abnormalities[initial(queued_abnormality.threat_level)] -= queued_abnormality
+	for(var/obj/machinery/computer/abnormality_queue/Q in GLOB.lobotomy_devices)
+		Q.audible_message("<span class='announce'>[initial(queued_abnormality.name)] has arrived at the facility!</span>")
+		playsound(get_turf(Q), 'sound/machines/dun_don_alert.ogg', 50, TRUE)
+		Q.updateUsrDialog()
+	queued_abnormality = null
+	spawned_abnos++
+
+	if((spawned_abnos / rooms_start) < abnormality_milestones[current_milestone])
+		return
+
+	current_milestone += 1
+	for(var/mob/living/carbon/human/person as anything in active_suppression_agents)
+		if(!istype(person) || QDELETED(person)) // gibbed or cryo'd, we no longer care about them
+			active_suppression_agents -= person
+			continue
+
+		person.adjust_all_attribute_levels(10)
+		to_chat(person, span_notice("You feel stronger than before."))
 
 /datum/controller/subsystem/abnormality_queue/proc/PickAbno()
-	if(!LAZYLEN(available_levels))
+	if(!length(available_levels))
 		return FALSE
 	/// List of threat levels that we will pick
 	var/list/picking_levels = list()
 	for(var/threat in available_levels)
-		if(!LAZYLEN(possible_abnormalities[threat]))
+		if(!length(possible_abnormalities[threat]))
 			continue
 		picking_levels |= threat
-	if(!LAZYLEN(picking_levels))
+	if(!length(picking_levels))
 		return FALSE
 
 	// There we select the abnormalities
@@ -129,7 +157,7 @@ SUBSYSTEM_DEF(abnormality_queue)
 	var/pick_count = GetFacilityUpgradeValue(UPGRADE_ABNO_QUEUE_COUNT)
 	var/list/picked_levs = list()
 	for(var/i = 1 to pick_count)
-		if(!LAZYLEN(possible_abnormalities))
+		if(!length(possible_abnormalities))
 			break
 		var/lev = pick(picking_levels)
 		// If we have more options to fill and we have multiple available levels - force them in.
@@ -139,17 +167,17 @@ SUBSYSTEM_DEF(abnormality_queue)
 			// And pick again
 			lev = pick(picking_levels)
 		picked_levs |= lev
-		if(!LAZYLEN(possible_abnormalities[lev] - picking_abnormalities))
+		if(!length(possible_abnormalities[lev] - picking_abnormalities))
 			continue
 		var/chosen_abno = PickWeightRealNumber(possible_abnormalities[lev] - picking_abnormalities)
 		picking_abnormalities += chosen_abno
-	if(!LAZYLEN(picking_abnormalities))
+	if(!length(picking_abnormalities))
 		return FALSE
 	queued_abnormality = pick(picking_abnormalities)
 	return TRUE
 
 /datum/controller/subsystem/abnormality_queue/proc/HandleStartingAbnormalities()
-	var/player_count = GLOB.clients.len
+	var/player_count = length(GLOB.clients)
 	var/i
 	for(i=1 to round(clamp(player_count, 5, 30) / 5))
 		sleep(15 SECONDS) // Allows manager to select abnormalities if he is fast enough.
@@ -173,7 +201,7 @@ SUBSYSTEM_DEF(abnormality_queue)
 	var/list/picking_abno = list()
 
 	for(var/level in available_levels)
-		if(!LAZYLEN(possible_abnormalities[level]))
+		if(!length(possible_abnormalities[level]))
 			continue
 		picking_abno |= possible_abnormalities[level]
 

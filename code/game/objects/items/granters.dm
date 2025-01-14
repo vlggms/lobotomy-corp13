@@ -532,9 +532,26 @@
 	to_chat(user, "<span class='warning'>The book turns to dust in your hands.</span>")
 	qdel(src)
 
-/obj/item/book/granter/crafting_recipe/weaving_armor
+/obj/item/book/granter/crafting_recipe/carnival
+	pages_to_mastery = 1
+	var/carnival_only = TRUE
+/obj/item/book/granter/crafting_recipe/carnival/attack_self(mob/user)
+	if (carnival_only && !(user?.mind?.assigned_role == "Carnival" || user?.mind?.assigned_role == "Workshop Attendant")) // check role
+		to_chat(user, span_danger("Wow, This book seems so wacky! None of it makes sense, to you."))
+		return FALSE
+	. = ..()
+
+/obj/item/book/granter/crafting_recipe/carnival/weaving_armor
 	name = "Weaving Armor: Basic Edition"
-	desc = "A weaving tutorial book that teaches you how to weave new armors. Carnival approved, and a best seller in District 13!"
+	desc = "A weaving tutorial book that teaches you how to weave new armors. Carnival approved, and a best seller in District 13!<br>\
+	On the back, it says that reading this book will teach how to make: <br>\
+	-Sweeper Suit: RED = 20%, WHITE = 10%, BLACK = 20%, PALE = 10%<br>\
+	-Doubting Suit: RED = 40%, WHITE = 20%, BLACK = -10%, PALE = 10%<br>\
+	-Hunger Suit: RED = -10%, WHITE = 20%, BLACK = 40%, PALE = 10%<br>\
+	-Soldier's Uniform: RED = 20%, WHITE = -20%, BLACK = 20%, PALE = 40%<br>\
+	-Reforged Suit: RED = 10%, WHITE = -20%, BLACK = 10%, PALE = 0%, Makes you 20% faster.<br>\
+	-Carnival Robes: RED = 40%, WHITE = 40%, BLACK = 60%, PALE = 0%"
+	pages_to_mastery = 0
 	crafting_recipe_types = list(
 		/datum/crafting_recipe/indigo_armor,
 		/datum/crafting_recipe/green_armor,
@@ -548,14 +565,19 @@
 		/datum/crafting_recipe/green_silk_simple,
 		/datum/crafting_recipe/indigo_silk_advanced,
 		/datum/crafting_recipe/green_silk_advanced,
-		/datum/crafting_recipe/azure_silk_simple
+		/datum/crafting_recipe/violet_silk_simple,
+		/datum/crafting_recipe/crimson_silk_simple,
 	)
 	icon_state = "book"
 	remarks = list("Make sure that you always have your weaving knife on you? I already knew that.", "Using sweepers as silk? That is brand new...", "Huh, it says here that 'Be careful around the fixer association...' ", "This book smells quite well, Like it was just made just for me!", "A rookie must have made this page, or they forgot to spell check it before printing...", "Wait, how will this turn a profit? I spent like 1000 ahn for this book!")
 
-/obj/item/book/granter/crafting_recipe/weaving_kurokumo
+/obj/item/book/granter/crafting_recipe/carnival/weaving_kurokumo
 	name = "Weaving Armor: Kurokumo Edition"
-	desc = "A weaving book that teaches you how to weave kurokumo armor. Carnival approved!"
+	desc = "A weaving book that teaches you how to weave kurokumo armor. Carnival approved!<br>\
+	On the back, it says that reading this book will teach how to make: <br>\
+	-Kurokumo Wakashu Dress Jacket: RED = 20%, WHITE = 20%, BLACK = 20%, PALE = 20%, Makes you 20% faster.<br>\
+	-Kurokumo Enforcer Dress Shirt: RED = 30%, WHITE = 30%, BLACK = 30%, PALE = 30%, Makes you 30% faster.<br>\
+	-Kurokumo Captain Kimono: RED = 30%, WHITE = 30%, BLACK = 30%, PALE = 20%, Makes you 50% faster."
 	crafting_recipe_types = list(
 		/datum/crafting_recipe/kurokumo,
 		/datum/crafting_recipe/kurokumo_jacket,
@@ -564,9 +586,16 @@
 	icon_state = "kurokumo_book"
 	remarks = list("Make sure that you always have your weaving knife on you? I already knew that.", "Using sweepers as silk? That is brand new...", "Huh, it says here that 'Be careful around the fixer association...' ", "This book smells quite well, Like it was just made just for me!", "A rookie must have made this page, or they forgot to spell check it before printing...", "Wait, how will this turn a profit? I spent like 1000 ahn for this book!")
 
-/obj/item/book/granter/crafting_recipe/weaving_seven
+/obj/item/book/granter/crafting_recipe/carnival/weaving_seven
 	name = "Weaving Armor: Seven Edition"
-	desc = "A weaving book that teaches you how to weave seven armor. Carnival approved!"
+	desc = "A weaving book that teaches you how to weave seven armor. Carnival approved!<br>\
+	On the back, it says that reading this book will teach how to make: <br>\
+	-Seven Association armor: RED = 20%, WHITE = 20%, BLACK = 40%, PALE = 0%<br>\
+	-Seven Association recon armor: RED = 0%, WHITE = 0%, BLACK = 30%, PALE = 0%, Makes you 50% faster.<br>\
+	-Seven Association veteran armor: RED = 30%, WHITE = 30%, BLACK = 50%, PALE = 20%.<br>\
+	-Seven Association intelligence armor: RED = 30%, WHITE = 30%, BLACK = 50%, PALE = 20%.<br>\
+	-Seven Association director armor: RED = 40%, WHITE = 40%, BLACK = 70%, PALE = 20%."
+
 	crafting_recipe_types = list(
 		/datum/crafting_recipe/seven,
 		/datum/crafting_recipe/seven_recon,
@@ -577,9 +606,14 @@
 	icon_state = "seven_book"
 	remarks = list("Make sure that you always have your weaving knife on you? I already knew that.", "Using sweepers as silk? That is brand new...", "Huh, it says here that 'Be careful around the fixer association...' ", "This book smells quite well, Like it was just made just for me!", "A rookie must have made this page, or they forgot to spell check it before printing...", "Wait, how will this turn a profit? I spent like 1000 ahn for this book!")
 
-/obj/item/book/granter/crafting_recipe/weaving_ncorp
+/obj/item/book/granter/crafting_recipe/carnival/weaving_ncorp
 	name = "Weaving Armor: N-Corp Edition"
-	desc = "A weaving book that teaches you how to weave n-corp armor. Carnival approved!"
+	desc = "A weaving book that teaches you how to weave n-corp armor. Carnival approved.<br>\
+	On the back, it says that reading this book will teach how to make: <br>\
+	-Nagel und Hammer armor: RED = 40%, WHITE = 20%, BLACK = 20%, PALE = 50%<br>\
+	-Decorated Nagel und Hammer armor:  RED = 50%, WHITE = 30%, BLACK = 40%, PALE = 60%<br>\
+	-Nagel und Hammer Grosshammer armor: RED = 90%, WHITE = 70%, BLACK = 70%, PALE = 80%, Makes you 100% slower.<br>\
+	-Rüstung der auserwählten Frau Gottes: RED = 60%, WHITE = 50%, BLACK = 60%, PALE = 70%."
 	crafting_recipe_types = list(
 		/datum/crafting_recipe/ncorp,
 		/datum/crafting_recipe/ncorp_vet,
@@ -592,9 +626,16 @@
 	icon_state = "n-corp_book"
 	remarks = list("Make sure that you always have your weaving knife on you? I already knew that.", "Using sweepers as silk? That is brand new...", "Huh, it says here that 'Be careful around the fixer association...' ", "This book smells quite well, Like it was just made just for me!", "A rookie must have made this page, or they forgot to spell check it before printing...", "Wait, how will this turn a profit? I spent like 1000 ahn for this book!")
 
-/obj/item/book/granter/crafting_recipe/weaving_liu
+/obj/item/book/granter/crafting_recipe/carnival/weaving_liu
 	name = "Weaving Armor: Liu Edition"
-	desc = "A weaving book that teaches you how to weave liu armor. Carnival approved!"
+	desc = "A weaving book that teaches you how to weave liu armor. Carnival approved!<br>\
+	On the back, it says that reading this book will teach how to make: <br>\
+	-Liu Association combat suit: RED = 20%, WHITE = 40%, BLACK = 20%, PALE = 0%<br>\
+	-Liu Association combat jacket: RED = 20%, WHITE = 40%, BLACK = 20%, PALE = 0%<br>\
+	-Liu Association combat coat (Vet):  RED = 30%, WHITE = 50%, BLACK = 30%, PALE = 20%<br>\
+	-Liu Association section 2 combat coat (Vet): RED = 30%, WHITE = 50%, BLACK = 30%, PALE = 20%<br>\
+	-Liu Association veteran combat jacket: RED = 30%, WHITE = 50%, BLACK = 30%, PALE = 20%<br>\
+	-Liu Association heavy combat coat: RED = 40%, WHITE = 70%, BLACK = 40%, PALE = 20%."
 	crafting_recipe_types = list(
 		/datum/crafting_recipe/liu_suit,
 		/datum/crafting_recipe/liu_jacket,
@@ -607,9 +648,13 @@
 	icon_state = "liu_book"
 	remarks = list("Make sure that you always have your weaving knife on you? I already knew that.", "Using sweepers as silk? That is brand new...", "Huh, it says here that 'Be careful around the fixer association...' ", "This book smells quite well, Like it was just made just for me!", "A rookie must have made this page, or they forgot to spell check it before printing...", "Wait, how will this turn a profit? I spent like 1000 ahn for this book!")
 
-/obj/item/book/granter/crafting_recipe/weaving_index
+/obj/item/book/granter/crafting_recipe/carnival/weaving_index
 	name = "Weaving Armor: Index Edition"
-	desc = "A weaving book that teaches you how to weave index armor. Carnival approved!"
+	desc = "A weaving book that teaches you how to weave index armor. Carnival approved!<br>\
+	On the back, it says that reading this book will teach how to make: <br>\
+	-Index proselyte armor: RED = 20%, WHITE = 20%, BLACK = 20%, PALE = 30%<br>\
+	-Index proxy armor: RED = 30%, WHITE = 30%, BLACK = 30%, PALE = 40%<br>\
+	-Index messenger armor:  RED = 50%, WHITE = 50%, BLACK = 50%, PALE = 60%"
 	crafting_recipe_types = list(
 		/datum/crafting_recipe/index_proselyte,
 		/datum/crafting_recipe/index_proxy,
@@ -618,9 +663,15 @@
 	icon_state = "index_book"
 	remarks = list("Make sure that you always have your weaving knife on you? I already knew that.", "Using sweepers as silk? That is brand new...", "Huh, it says here that 'Be careful around the fixer association...' ", "This book smells quite well, Like it was just made just for me!", "A rookie must have made this page, or they forgot to spell check it before printing...", "Wait, how will this turn a profit? I spent like 1000 ahn for this book!")
 
-/obj/item/book/granter/crafting_recipe/weaving_zwei
+/obj/item/book/granter/crafting_recipe/carnival/weaving_zwei
 	name = "Weaving Armor: Zwei Edition"
-	desc = "A weaving book that teaches you how to weave zwei armor. Carnival approved!"
+	desc = "A weaving book that teaches you how to weave zwei armor. Carnival approved!<br>\
+	On the back, it says that reading this book will teach how to make: <br>\
+	-Zwei Association casual jacket: RED = 30%, WHITE = 0%, BLACK = 0%, PALE = 0%<br>\
+	-Zwei Association armor: RED = 40%, WHITE = 20%, BLACK = 20%, PALE = 0%<br>\
+	-Zwei Association riot armor: RED = 70%, WHITE = 40%, BLACK = 40%, PALE = 20%, Makes you 70% slower.<br>\
+	-Zwei Association veteran armor: RED = 50%, WHITE = 30%, BLACK = 30%, PALE = 20%<br>\
+	-Zwei Association director armor: RED = 70%, WHITE = 40%, BLACK = 40%, PALE = 20%"
 	crafting_recipe_types = list(
 		/datum/crafting_recipe/zwei,
 		/datum/crafting_recipe/zwei_junior,
@@ -631,9 +682,101 @@
 	icon_state = "zwei_book"
 	remarks = list("Make sure that you always have your weaving knife on you? I already knew that.", "Using sweepers as silk? That is brand new...", "Huh, it says here that 'Be careful around the fixer association...' ", "This book smells quite well, Like it was just made just for me!", "A rookie must have made this page, or they forgot to spell check it before printing...", "Wait, how will this turn a profit? I spent like 1000 ahn for this book!")
 
-/obj/item/book/granter/crafting_recipe/weaving_shi
+/obj/item/book/granter/crafting_recipe/carnival/weaving_zwei_west
+	name = "Weaving Armor: Zwei West Edition"
+	desc = "A weaving book that teaches you how to weave zwei west armor. Carnival approved!<br>\
+	On the back, it says that reading this book will teach how to make: <br>\
+	-Zwei knight armor: RED = 50%, WHITE = 30%, BLACK = 30%, PALE = 10%, Makes you 40% slower.<br>\
+	-Zwei veteran knight armor: RED = 60%, WHITE = 40%, BLACK = 40%, PALE = 30%, Makes you 40% slower.<br>\
+	-Zwei knight director armor: RED = 70%, WHITE = 50%, BLACK = 50%, PALE = 40%, Makes you 40% slower."
+	crafting_recipe_types = list(
+		/datum/crafting_recipe/zweiwest,
+		/datum/crafting_recipe/zweiwestvet,
+		/datum/crafting_recipe/zweiwestleader
+	)
+	icon_state = "zwei_west_book"
+	remarks = list("Make sure that you always have your weaving knife on you? I already knew that.", "Using sweepers as silk? That is brand new...", "Huh, it says here that 'Be careful around the fixer association...' ", "This book smells quite well, Like it was just made just for me!", "A rookie must have made this page, or they forgot to spell check it before printing...", "Wait, how will this turn a profit? I spent like 1000 ahn for this book!")
+
+/obj/item/book/granter/crafting_recipe/carnival/weaving_wedge
+	name = "Weaving Armor: Wedge Office Edition"
+	desc = "A weaving book that teaches you how to weave wedge office armor. Carnival approved!<br>\
+	On the back, it says that reading this book will teach how to make: <br>\
+	-Wedge office dress: RED = 10%, WHITE = 10%, BLACK = 40%, PALE = 0%<br>\
+	-Wedge office jacket: RED = 10%, WHITE = 10%, BLACK = 40%, PALE = 0%<br>\
+	-Wedge office leader jacket: RED = 20%, WHITE = 20%, BLACK = 50%, PALE = 20%."
+	crafting_recipe_types = list(
+		/datum/crafting_recipe/wedge_male,
+		/datum/crafting_recipe/wedge_fem,
+		/datum/crafting_recipe/wedge_leader
+	)
+	icon_state = "wedge_book"
+	remarks = list("Make sure that you always have your weaving knife on you? I already knew that.", "Using sweepers as silk? That is brand new...", "Huh, it says here that 'Be careful around the fixer association...' ", "This book smells quite well, Like it was just made just for me!", "A rookie must have made this page, or they forgot to spell check it before printing...", "Wait, how will this turn a profit? I spent like 1000 ahn for this book!")
+
+/obj/item/book/granter/crafting_recipe/carnival/weaving_rosespanner
+	name = "Weaving Armor: Rosespanner Workshop Edition"
+	desc = "A weaving book that teaches you how to weave rosespanner workshop armor. Carnival approved!<br>\
+	On the back, it says that reading this book will teach how to make: <br>\
+	-Rosespanner fixer jacket: RED = 20%, WHITE = 30%, BLACK = 20%, PALE = 20%<br>\
+	-Rosespanner assassin jacket: RED = 20%, WHITE = 30%, BLACK = 20%, PALE = 20%<br>\
+	-Rosespanner representative jacket: RED = 30%, WHITE = 40%, BLACK = 30%, PALE = 30%."
+	crafting_recipe_types = list(
+		/datum/crafting_recipe/rosespanner,
+		/datum/crafting_recipe/rosespanner_assassin,
+		/datum/crafting_recipe/rosespannerrep
+	)
+	icon_state = "rosespanner_book"
+	remarks = list("Make sure that you always have your weaving knife on you? I already knew that.", "Using sweepers as silk? That is brand new...", "Huh, it says here that 'Be careful around the fixer association...' ", "This book smells quite well, Like it was just made just for me!", "A rookie must have made this page, or they forgot to spell check it before printing...", "Wait, how will this turn a profit? I spent like 1000 ahn for this book!")
+
+
+/obj/item/book/granter/crafting_recipe/carnival/weaving_molar_boatworks
+	name = "Weaving Armor: Molar Boatworks Edition"
+	desc = "A weaving book that teaches you how to weave molar boatworks armor. Carnival approved!<br>\
+	On the back, it says that reading this book will teach how to make: <br>\
+	-Molar boatworks jacket: RED = 40%, WHITE = 10%, BLACK = 10%, PALE = 0%<br>\
+	-Molar boatworks director wetsuit: RED = 50%, WHITE = 20%, BLACK = 20%, PALE = 20%."
+	crafting_recipe_types = list(
+		/datum/crafting_recipe/boatworks,
+		/datum/crafting_recipe/boatworks_director,
+	)
+	icon_state = "boatworks_book"
+	remarks = list("Make sure that you always have your weaving knife on you? I already knew that.", "Using sweepers as silk? That is brand new...", "Huh, it says here that 'Be careful around the fixer association...' ", "This book smells quite well, Like it was just made just for me!", "A rookie must have made this page, or they forgot to spell check it before printing...", "Wait, how will this turn a profit? I spent like 1000 ahn for this book!")
+
+/obj/item/book/granter/crafting_recipe/carnival/weaving_j_corp_gangs
+	name = "Weaving Armor: J Corp Gangs Edition"
+	desc = "A weaving book that teaches you how to weave armor used by gangs in J-Corp. Carnival approved!<br>\
+	On the back, it says that reading this book will teach how to make: <br>\
+	-Red ting tang shirt: RED = 10%, WHITE = 30%, BLACK = -10%, PALE = -10%<br>\
+	-Yellow ting tang shirt: RED = 10%, WHITE = 30%, BLACK = -10%, PALE = -10%<br>\
+	-Blue ting tang shirt: RED = 10%, WHITE = 30%, BLACK = -10%, PALE = -10%<br>\
+	-Green ting tang shirt: RED = 20%, WHITE = 40%, BLACK = 20%, PALE = 10%<br>\
+	-Los mariachis poncho (alegre): RED = 20%, WHITE = 20%, BLACK = -10%, PALE = -10%<br>\
+	-Los mariachis poncho (vivaz): RED = 20%, WHITE = 20%, BLACK = -10%, PALE = -10%<br>\
+	-Los mariachis armor: RED = 30%, WHITE = 30%, BLACK = 10%, PALE = 20%<br>\
+	-Los mariachis armor (Unlocked): RED = 40%, WHITE = 40%, BLACK = 20%, PALE = 30%."
+	crafting_recipe_types = list(
+		/datum/crafting_recipe/ting_tang_red,
+		/datum/crafting_recipe/ting_tang_blue,
+		/datum/crafting_recipe/ting_tang_yellow,
+		/datum/crafting_recipe/ting_tang_boss,
+		/datum/crafting_recipe/mariachi_alegre,
+		/datum/crafting_recipe/mariachi_vivaz,
+		/datum/crafting_recipe/aida,
+		/datum/crafting_recipe/aida_boss
+	)
+	icon_state = "j_corp_gangs_book"
+	remarks = list("Make sure that you always have your weaving knife on you? I already knew that.", "Using sweepers as silk? That is brand new...", "Huh, it says here that 'Be careful around the fixer association...' ", "This book smells quite well, Like it was just made just for me!", "A rookie must have made this page, or they forgot to spell check it before printing...", "Wait, how will this turn a profit? I spent like 1000 ahn for this book!")
+
+
+/obj/item/book/granter/crafting_recipe/carnival/weaving_shi
 	name = "Weaving Armor: Shi Edition"
-	desc = "A weaving book that teaches you how to weave shi armor. Carnival approved!"
+	desc = "A weaving book that teaches you how to weave shi armor. Carnival approved!<br>\
+	On the back, it says that reading this book will teach how to make: <br>\
+	-Shi association jacket: RED = 20%, WHITE = 10%, BLACK = 10%, PALE = 20%, Makes you 20% faster.<br>\
+	-Shi association veteran jacket: RED = 30%, WHITE = 20%, BLACK = 20%, PALE = 30%, Makes you 20% faster.<br>\
+	-Shi association director jacket: RED = 50%, WHITE = 20%, BLACK = 20%, PALE = 50%, Makes you 20% faster<br>\
+	-Shi association combat suit: RED = 20%, WHITE = 0%, BLACK = 0%, PALE = 10%, Makes you 40% faster.<br>\
+	-Shi association veteran jacket: RED = 30%, WHITE = 0%, BLACK = 0%, PALE = 20%, Makes you 40% faster.<br>\
+	-Shi association director jacket: RED = 40%, WHITE = 20%, BLACK = 20%, PALE = 30%, Makes you 40% faster."
 	crafting_recipe_types = list(
 		/datum/crafting_recipe/shi_2,
 		/datum/crafting_recipe/shi_5,
@@ -645,9 +788,13 @@
 	icon_state = "shi_book"
 	remarks = list("Make sure that you always have your weaving knife on you? I already knew that.", "Using sweepers as silk? That is brand new...", "Huh, it says here that 'Be careful around the fixer association...' ", "This book smells quite well, Like it was just made just for me!", "A rookie must have made this page, or they forgot to spell check it before printing...", "Wait, how will this turn a profit? I spent like 1000 ahn for this book!")
 
-/obj/item/book/granter/crafting_recipe/weaving_blade
+/obj/item/book/granter/crafting_recipe/carnival/weaving_blade
 	name = "Weaving Armor: Blade Lineage Edition"
-	desc = "A weaving book that teaches you how to weave blade lineage armor. Carnival approved!"
+	desc = "A weaving book that teaches you how to weave blade lineage armor. Carnival approved!<br>\
+	On the back, it says that reading this book will teach how to make: <br>\
+	-Blade lineage salsu robe: RED = 0%, WHITE = 0%, BLACK = 0%, PALE = 0%, Makes you 25% faster.<br>\
+	-Blade lineage cutthroat robe: RED = 0%, WHITE = 0%, BLACK = 0%, PALE = 0%, Makes you 40% faster.<br>\
+	-Blade lineage admin robe: RED = 0%, WHITE = 0%, BLACK = 0%, PALE = 0%, Makes you 60% faster."
 	crafting_recipe_types = list(
 		/datum/crafting_recipe/blade_lineage_salsu,
 		/datum/crafting_recipe/blade_lineage_cutthroat,
@@ -656,23 +803,81 @@
 	icon_state = "blade_lineage_book"
 	remarks = list("Make sure that you always have your weaving knife on you? I already knew that.", "Using sweepers as silk? That is brand new...", "Huh, it says here that 'Be careful around the fixer association...' ", "This book smells quite well, Like it was just made just for me!", "A rookie must have made this page, or they forgot to spell check it before printing...", "Wait, how will this turn a profit? I spent like 1000 ahn for this book!")
 
-/obj/item/book/granter/crafting_recipe/weaving_advancedsilk
-	name = "Weaving Armor: Conversation Edition"
-	desc = "A weaving book that teaches you how to weave one type of silk into another. Carnival approved!"
+/obj/item/book/granter/crafting_recipe/carnival/weaving_basic_converstion
+	name = "Weaving Armor: Common Conversation/Transfers Edition"
+	desc = "A weaving book that teaches you how to weave common types of silk into another. Carnival approved!"
+	pages_to_mastery = 0
 	crafting_recipe_types = list(
 		/datum/crafting_recipe/converted_green_silk_advanced,
 		/datum/crafting_recipe/converted_green_silk_elegant,
+		/datum/crafting_recipe/converted_green_silk_masterpiece,
 		/datum/crafting_recipe/converted_indigo_silk_advanced,
 		/datum/crafting_recipe/converted_indigo_silk_elegant,
+		/datum/crafting_recipe/converted_indigo_silk_masterpiece,
 		/datum/crafting_recipe/converted_amber_silk_advanced,
+		/datum/crafting_recipe/converted_amber_silk_elegant,
+		/datum/crafting_recipe/converted_amber_silk_masterpiece,
 		/datum/crafting_recipe/converted_steel_silk_advanced,
-		/datum/crafting_recipe/green_silk_to_steel_silk,
-		/datum/crafting_recipe/indigo_silk_to_amber_silk,
+		/datum/crafting_recipe/converted_steel_silk_elegant,
+		/datum/crafting_recipe/converted_steel_silk_masterpiece,
 		/datum/crafting_recipe/converted_human_silk_advanced,
 		/datum/crafting_recipe/converted_human_silk_elegant,
+		/datum/crafting_recipe/converted_human_silk_masterpiece,
+		/datum/crafting_recipe/steel_silk_transfer,
+		/datum/crafting_recipe/amber_silk_transfer,
+		/datum/crafting_recipe/steel_silk_de_transfer,
+		/datum/crafting_recipe/amber_silk_de_transfer
+	)
+	icon_state = "basic_converstion_book"
+	remarks = list("Make sure that you always have your weaving knife on you? I already knew that.", "Using sweepers as silk? That is brand new...", "Huh, it says here that 'Be careful around the fixer association...' ", "This book smells quite well, Like it was just made just for me!", "A rookie must have made this page, or they forgot to spell check it before printing...", "Wait, how will this turn a profit? I spent like 1000 ahn for this book!")
+
+/obj/item/book/granter/crafting_recipe/carnival/weaving_advanced_converstion
+	name = "Weaving Armor: Rare Conversation/Transfers Edition"
+	desc = "A weaving book that teaches you how to weave rare types of silk into another. Carnival approved!"
+	pages_to_mastery = 0
+	crafting_recipe_types = list(
+		/datum/crafting_recipe/converted_crimson_silk_advanced,
+		/datum/crafting_recipe/converted_crimson_silk_elegant,
+		/datum/crafting_recipe/converted_crimson_silk_masterpiece,
+		/datum/crafting_recipe/converted_violet_silk_advanced,
+		/datum/crafting_recipe/converted_violet_silk_elegant,
+		/datum/crafting_recipe/converted_violet_silk_masterpiece,
+		/datum/crafting_recipe/converted_shrimple_silk_advanced,
+		/datum/crafting_recipe/converted_shrimple_silk_elegant,
+		/datum/crafting_recipe/converted_shrimple_silk_masterpiece,
 		/datum/crafting_recipe/converted_azure_silk_advanced,
 		/datum/crafting_recipe/converted_azure_silk_elegant,
-		/datum/crafting_recipe/converted_azure_silk_masterpiece
+		/datum/crafting_recipe/converted_azure_silk_masterpiece,
+		/datum/crafting_recipe/azure_silk_transfer,
+		/datum/crafting_recipe/crimson_silk_transfer,
+		/datum/crafting_recipe/violet_silk_transfer,
+		/datum/crafting_recipe/shrimple_silk_transfer,
+		/datum/crafting_recipe/shrimple_silk_de_transfer_amber,
+		/datum/crafting_recipe/shrimple_silk_de_transfer_steel
 	)
-	icon_state = "advanced_silkweaving_book"
+	icon_state = "advanced_converstion_book"
+	remarks = list("Make sure that you always have your weaving knife on you? I already knew that.", "Using sweepers as silk? That is brand new...", "Huh, it says here that 'Be careful around the fixer association...' ", "This book smells quite well, Like it was just made just for me!", "A rookie must have made this page, or they forgot to spell check it before printing...", "Wait, how will this turn a profit? I spent like 1000 ahn for this book!")
+
+/obj/item/book/granter/crafting_recipe/carnival/human_replacements
+	name = "Weaving Armor: Advanced Human Replacements"
+	desc = "A weaving book that teaches you how to make human silk out of normal silk! Carnival approved!"
+	pages_to_mastery = 0
+	crafting_recipe_types = list(
+		/datum/crafting_recipe/human_silk_transfer
+	)
+	icon_state = "human_replacements_book"
+	remarks = list("Make sure that you always have your weaving knife on you? I already knew that.", "Using sweepers as silk? That is brand new...", "Huh, it says here that 'Be careful around the fixer association...' ", "This book smells quite well, Like it was just made just for me!", "A rookie must have made this page, or they forgot to spell check it before printing...", "Wait, how will this turn a profit? I spent like 1000 ahn for this book!")
+
+/obj/item/book/granter/crafting_recipe/carnival/weaving_ordeal
+	name = "Weaving Armor: Masterpiece Armor"
+	desc = "A weaving book that teaches you how to weave some of the best armor in the City... Carnival approved!"
+	pages_to_mastery = 3
+	crafting_recipe_types = list(
+		/datum/crafting_recipe/ordeal_familial_strength,
+		/datum/crafting_recipe/ordeal_painful_purpose,
+		/datum/crafting_recipe/ordeal_eternal_feast,
+		/datum/crafting_recipe/ordeal_meaningless_march,
+		/datum/crafting_recipe/ordeal_god_delusion
+	)
+	icon_state = "ordeal_silkweaving_book"
 	remarks = list("Make sure that you always have your weaving knife on you? I already knew that.", "Using sweepers as silk? That is brand new...", "Huh, it says here that 'Be careful around the fixer association...' ", "This book smells quite well, Like it was just made just for me!", "A rookie must have made this page, or they forgot to spell check it before printing...", "Wait, how will this turn a profit? I spent like 1000 ahn for this book!")

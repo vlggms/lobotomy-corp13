@@ -1,3 +1,8 @@
+/*
+* Highly Experimental Feature for spawning mobs
+* in a wave and commanding them to go to a location.
+*/
+
 #define SEND_ON_SIGNAL 1
 #define SEND_ON_WAVE 2
 #define SEND_TILL_MAX 3
@@ -23,11 +28,10 @@
 	//current wave of soldiers
 	var/list/current_wave = list()
 	//The wave order that wave_composition copies. The value of each type is how many are in each wave.
-	var/list/wave_order = list(
-		/mob/living/simple_animal/hostile/ordeal/steel_dawn = 6,
-		/mob/living/simple_animal/hostile/ordeal/steel_dawn/steel_noon/flying = 2
-		)
+	var/list/wave_order = list()
 	var/list/wave_composition = list()
+	//Path to target
+	var/list/assult_path = list()
 
 //Experimental So i dont have to use the procs all the time
 /datum/component/monwave_spawner/Initialize(attack_target, assault_type = SEND_ON_WAVE, max_mobs = 30, list/wave_faction = list("hostile"), list/new_wave_order)
@@ -43,14 +47,15 @@
 
 	if(!assault_target && assault_pace != SEND_ON_SIGNAL)
 		qdel(src)
+	GeneratePath()
 	BeginProcessing()
 
 /datum/component/monwave_spawner/process(delta_time)
 	if(!parent || !assault_target)
 		qdel(src)
 		return
-	if(last_wave.len && world.time >= resume_cooldown)
-		ResumeAssault()
+	if(length(last_wave) && world.time >= resume_cooldown)
+		CleanupAssault()
 		resume_cooldown = world.time + (1 MINUTES)
 		return
 	if(world.time >= generate_wave_cooldown)
@@ -67,9 +72,9 @@
 //If the wave_composition is empty then it will send the wave out to their assault destination while the new wave is generated.
 //If the last wave is still alive the second wave will remain where they are.
 /datum/component/monwave_spawner/proc/GenerateWave()
-	if(!wave_composition.len)
+	if(!length(wave_composition))
 		if(assault_target)
-			if(assault_pace != SEND_TILL_MAX && last_wave.len)
+			if(assault_pace != SEND_TILL_MAX && length(last_wave))
 				return FALSE
 			return StartAssault(assault_target)
 		return FALSE
@@ -107,7 +112,7 @@
 /datum/component/monwave_spawner/proc/StartAssault(enemy_base)
 	if(!enemy_base)
 		return FALSE
-	wave_leader = new /obj/effect/wave_commander(pick(get_adjacent_open_turfs(parent)))
+	wave_leader = new /obj/effect/wave_commander(get_turf(parent))
 	for(var/i in current_wave)
 		if(isnull(i))
 			current_wave -= i
@@ -117,18 +122,25 @@
 				current_wave -= H
 				continue
 			walk_to(H, wave_leader, rand(0,2), H.move_to_delay)
-	wave_leader.DoPath(get_turf(enemy_base))
+	wave_leader.DoPath(assult_path)
 	wave_composition = LAZYCOPY(wave_order)
 	last_wave = LAZYCOPY(current_wave)
 	LAZYCLEARLIST(current_wave)
 	return TRUE
 
-//Is our soldiers interrupted in their march and should we command them to go to the enemy again. This option should be used if continuous wave is not on.
-/datum/component/monwave_spawner/proc/ResumeAssault()
-	var/area/where_we_go = get_area(assault_target)
+//Despawns any idle monsters who lost the wave.
+/datum/component/monwave_spawner/proc/CleanupAssault()
 	for(var/mob/living/simple_animal/hostile/H in last_wave)
-		if(get_area(H) != where_we_go && !H.target)
-			H.patrol_to(get_turf(assault_target))
+		if(!H.target)
+			H.dust(FALSE)
+	return length(last_wave)
+
+//Generates a path for the Mob Commander
+/datum/component/monwave_spawner/proc/GeneratePath(turf_to_go)
+	var/target_loc = assault_target
+	if(turf_to_go)
+		target_loc = get_turf(turf_to_go)
+	assult_path = get_path_to(parent, target_loc, /turf/proc/Distance_cardinal, 0, 200)
 
 //Invisible Effect only visible to ghosts. Uses a altered form of Hostile Patrol Code -IP
 /obj/effect/wave_commander
@@ -142,23 +154,20 @@
 	var/patrol_move_timer = 0
 	var/list/our_path = list()
 
-/obj/effect/wave_commander/proc/DoPath(turf/target_location = null)
-	if(isnull(target_location))
+/obj/effect/wave_commander/proc/DoPath(list/assault_path)
+	our_path = assault_path.Copy()
+	if(length(our_path) <= 0)
 		RemoveCommander()
 		return FALSE
-	our_path = get_path_to(src, target_location, /turf/proc/Distance_cardinal, 0, 200)
-	if(our_path.len <= 0)
-		RemoveCommander()
-		return FALSE
-	MoveInPath(our_path[our_path.len])
+	MoveInPath(our_path[length(our_path)])
 	return TRUE
 
 /obj/effect/wave_commander/proc/MoveInPath(dest)
-	if(!dest || !our_path || !our_path.len) //A-star failed or a path/destination was not set.
+	if(!dest || !our_path || !length(our_path)) //A-star failed or a path/destination was not set.
 		RemoveCommander()
 		return FALSE
 	dest = get_turf(dest) //We must always compare turfs, so get the turf of the dest var if dest was originally something else.
-	var/turf/last_node = get_turf(our_path[our_path.len]) //This is the turf at the end of the path, it should be equal to dest.
+	var/turf/last_node = get_turf(our_path[length(our_path)]) //This is the turf at the end of the path, it should be equal to dest.
 	if(get_turf(src) == dest) //We have arrived, no need to move again.
 		return TRUE
 	else if(dest != last_node) //The path should lead us to our given destination. If this is not true, we must stop.
@@ -172,20 +181,20 @@
 	return TRUE
 
 /obj/effect/wave_commander/proc/StepInPath(dest)
-	if(!our_path || !our_path.len)
+	if(!our_path || !length(our_path))
 		RemoveCommander()
 		return FALSE
-	if(our_path.len > 1)
+	if(length(our_path) > 1)
 		step_towards(src, our_path[1])
 		if(get_turf(src) == our_path[1]) //Successful move
-			if(!our_path || !our_path.len)
+			if(!our_path || !length(our_path))
 				return
 			our_path.Cut(1, 2)
 			move_tries = 0
 		else
 			move_tries++
 			return FALSE
-	else if(our_path.len == 1)
+	else if(length(our_path) == 1)
 		RemoveCommander()
 	return TRUE
 

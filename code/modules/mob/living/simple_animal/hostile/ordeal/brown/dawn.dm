@@ -184,11 +184,11 @@
 	guaranteed_butcher_results = list(/obj/item/food/meat/slab/human/mutant/plant = 1)
 	stat_attack = DEAD
 
-/mob/living/simple_animal/hostile/ordeal/sin_gluttony/AttackingTarget()
+/mob/living/simple_animal/hostile/ordeal/sin_gluttony/AttackingTarget(atom/attacked_target)
 	. = ..()
-	if(. && isliving(target))
-		var/mob/living/L = target
-		if(L.stat != DEAD && SSmaptype.maptype != "limbus_labs")
+	if(. && isliving(attacked_target) && SSmaptype.maptype != "limbus_labs")
+		var/mob/living/L = attacked_target
+		if(L.stat != DEAD)
 			if(L.health <= HEALTH_THRESHOLD_DEAD && HAS_TRAIT(L, TRAIT_NODEATH))
 				devour(L)
 		else
@@ -211,7 +211,7 @@
 			part.dismember()
 			QDEL_NULL(part)
 			new /obj/effect/gibspawner/generic/silent(get_turf(C))
-		if(C.bodyparts.len <= 1)
+		if(length(C.bodyparts) <= 1)
 			C.gib()
 			return
 	return
@@ -299,16 +299,16 @@
 		return FALSE
 	return ..()
 
-/mob/living/simple_animal/hostile/ordeal/sin_pride/AttackingTarget()
+/mob/living/simple_animal/hostile/ordeal/sin_pride/AttackingTarget(atom/attacked_target)
 	if(charging)
 		return
 	if(dash_cooldown <= world.time && prob(10) && !client)
-		PrepCharge(target)
+		PrepCharge(attacked_target)
 		return
 	. = ..()
-	if(!ishuman(target))
+	if(!ishuman(attacked_target))
 		return
-	var/mob/living/carbon/human/H = target
+	var/mob/living/carbon/human/H = attacked_target
 	if(H.health < 0)
 		if(SSmaptype.maptype != "limbus_labs")
 			H.gib()

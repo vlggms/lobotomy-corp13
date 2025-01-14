@@ -162,19 +162,24 @@ GLOBAL_VAR_INIT(rcorp_payload, null)
 		light_on = FALSE
 		update_light()
 
-		//Round End Effects
-		SSticker.SetRoundEndSound('sound/abnormalities/donttouch/end.ogg')
-		SSticker.force_ending = 1
-		for(var/mob/M in GLOB.player_list)
-			to_chat(M, span_userdanger("[uppertext(user.real_name)] has collected the bough!"))
+		if(!SSticker.force_ending)
+			//Round End Effects
+			SSticker.SetRoundEndSound('sound/abnormalities/donttouch/end.ogg')
+			SSticker.force_ending = 1
+			for(var/mob/M in GLOB.player_list)
+				to_chat(M, span_userdanger("[uppertext(user.real_name)] has collected the bough!"))
 
-			switch(GLOB.rcorp_wincondition)
-				if(0)
-					to_chat(M, span_userdanger("R-CORP MAJOR VICTORY."))
-				if(1)
-					to_chat(M, span_userdanger("R-CORP MINOR VICTORY."))
-				if(2)
-					to_chat(M, span_userdanger("R-CORP SUPREME VICTORY."))
+				switch(GLOB.rcorp_wincondition)
+					if(0)
+						to_chat(M, span_userdanger("R-CORP MAJOR VICTORY."))
+					if(1)
+						to_chat(M, span_userdanger("R-CORP MINOR VICTORY."))
+					if(2)
+						to_chat(M, span_userdanger("R-CORP SUPREME VICTORY."))
+		else
+			var/turf/turf = get_turf(src)
+			new /obj/effect/decal/cleanable/confetti(turf)
+			playsound(turf, 'sound/misc/sadtrombone.ogg', 100)
 
 	else
 		user.gib() //lol, idiot.
@@ -191,11 +196,16 @@ GLOBAL_VAR_INIT(rcorp_payload, null)
 
 
 /mob/living/simple_animal/hostile/shrimp_vip/death(gibbed)
-	for(var/mob/M in GLOB.player_list)
-		to_chat(M, span_userdanger("THE VIP HAS BEEN SLAIN."))
-		to_chat(M, span_userdanger("R-CORP MAJOR VICTORY."))
-	SSticker.force_ending = 1
-	..()
+	if(!SSticker.force_ending)
+		for(var/mob/M in GLOB.player_list)
+			to_chat(M, span_userdanger("THE VIP HAS BEEN SLAIN."))
+			to_chat(M, span_userdanger("R-CORP MAJOR VICTORY."))
+		SSticker.force_ending = 1
+	else
+		var/turf/turf = get_turf(src)
+		new /obj/effect/decal/cleanable/confetti(turf)
+		playsound(turf, 'sound/misc/sadtrombone.ogg', 100)
+	return ..()
 
 //Arbiter
 /obj/effect/mob_spawn/human/arbiter/rcorp
@@ -239,15 +249,19 @@ GLOBAL_VAR_INIT(rcorp_payload, null)
 	resistance_flags &= ~INDESTRUCTIBLE
 
 /obj/structure/rcorpcomms/deconstruct(disassembled = TRUE)
-	for(var/mob/M in GLOB.player_list)
-		to_chat(M, span_userdanger("RCORP'S COMMUNICATIONS HAVE BEEN DESTROYED."))
-		switch(GLOB.rcorp_wincondition)
-			if(0)
-				to_chat(M, span_userdanger("ABNORMALITY MAJOR VICTORY."))
-			if(1)
-				to_chat(M, span_userdanger("ABNORMALITY SUPREME VICTORY."))
-			if(2)
-				to_chat(M, span_userdanger("ABNORMALITY MINOR VICTORY."))
-	SSticker.force_ending = 1
-	..()
-
+	if(!SSticker.force_ending)
+		for(var/mob/M in GLOB.player_list)
+			to_chat(M, span_userdanger("RCORP'S COMMUNICATIONS HAVE BEEN DESTROYED."))
+			switch(GLOB.rcorp_wincondition)
+				if(0)
+					to_chat(M, span_userdanger("ABNORMALITY MAJOR VICTORY."))
+				if(1)
+					to_chat(M, span_userdanger("ABNORMALITY SUPREME VICTORY."))
+				if(2)
+					to_chat(M, span_userdanger("ABNORMALITY MINOR VICTORY."))
+		SSticker.force_ending = 1
+	else
+		var/turf/turf = get_turf(src)
+		new /obj/effect/decal/cleanable/confetti(turf)
+		playsound(turf, 'sound/misc/sadtrombone.ogg', 100)
+	return ..()

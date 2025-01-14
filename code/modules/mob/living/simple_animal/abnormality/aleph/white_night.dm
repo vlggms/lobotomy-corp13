@@ -54,10 +54,11 @@ GLOBAL_LIST_EMPTY(apostles)
 
 	observation_prompt = "Thou knocked the door, now it hath opened. <br>\
 		Thou who carries burden, came to seek the answer."
-	observation_choices = list("Who are you?", "Where did you come from?", "Why have you come?")
-	correct_choices = list("Where did you come from?")
-	observation_success_message = "I am from the end." //TODO: multiple messages, the answer should be irrelevant, code should check for wing gift.
-	observation_fail_message = "Thy question is empty, I cannot answer"
+	observation_choices = list( // TODO IN A FEW YEARS: multiple messages, the answer should be irrelevant, code should check for wing gift.
+		"Where did you come from?" = list(TRUE, "I am from the end." ),
+		"Who are you?" = list(FALSE, "Thy question is empty, I cannot answer"),
+		"Why have you come?" = list(FALSE, "Thy question is empty, I cannot answer"),
+	)
 
 	var/holy_revival_cooldown
 	var/holy_revival_cooldown_base = 75 SECONDS
@@ -244,7 +245,7 @@ GLOBAL_LIST_EMPTY(apostles)
 		for(var/mob/living/L in view(7,src))
 			if(L.stat || !L.client)
 				continue
-			L.client.give_award(/datum/award/achievement/boss/white_night, L)
+			L.client.give_award(/datum/award/achievement/lc13/white_night, L)
 
 /* Apostles */
 
@@ -310,16 +311,16 @@ GLOBAL_LIST_EMPTY(apostles)
 		return FALSE
 	return ..()
 
-/mob/living/simple_animal/hostile/apostle/AttackingTarget()
+/mob/living/simple_animal/hostile/apostle/AttackingTarget(atom/attacked_target)
 	if(!can_act)
 		return
 
-	if(isliving(target))
-		var/mob/living/L = target
+	if(isliving(attacked_target))
+		var/mob/living/L = attacked_target
 		if(faction_check_mob(L))
 			return
 	. = ..()
-	if(. && isliving(target))
+	if(. && isliving(attacked_target))
 		if(!client && ranged && ranged_cooldown <= world.time)
 			OpenFire()
 

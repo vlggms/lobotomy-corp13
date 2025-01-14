@@ -1,15 +1,16 @@
 /obj/effect/spawner/room/backstreets/large_south
 	name = "large south backstreets spawner"
+	icon = 'ModularTegustation/Teguicons/room_spawners/16x8.dmi'
+	icon_state = ""
+	dir = SOUTH
 	room_width = 16
 	room_height = 8
 	room_type = "backstreets_large_south"
-
 
 /datum/map_template/random_room/backstreets/large_south
 	name = "Apartment - Large south A"
 	room_id = "apartment_lsa"
 	mappath = "_maps/RandomRooms/backstreets/large_south/apartment_lsa.dmm"
-	centerspawner = FALSE
 	template_width = 16
 	template_height = 8
 	stock = 3
@@ -31,5 +32,18 @@
 	room_id = "robot_castle"
 	mappath = "_maps/RandomRooms/backstreets/large_south/robot_castle.dmm"
 
+/datum/map_template/random_room/backstreets/large_south/supermarket
+	name = "Supermarket - Large South"
+	room_id = "supermarket"
+	mappath = "_maps/RandomRooms/backstreets/large_south/supermarket.dmm"
 
+/datum/map_template/random_room/backstreets/large_south/gcorp_armory
+	name = "G Corp Armory - Large South"
+	room_id = "gcorp_armory"
+	mappath = "_maps/RandomRooms/backstreets/large_south/gcorp_armory.dmm"
 
+/datum/map_template/random_room/backstreets/large_south/gcorp_armory
+	name = "Papa Bongy's Chicken - Large South"
+	room_id = "bongy"
+	mappath = "_maps/RandomRooms/backstreets/large_south/bongy.dmm"
+	stock = 1	//There can only be one papa bongy's chicken

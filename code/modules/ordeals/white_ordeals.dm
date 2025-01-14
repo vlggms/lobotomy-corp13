@@ -93,7 +93,7 @@
 	reward_percent = 0.25
 	announce_sound = 'sound/effects/ordeals/white_start.ogg'
 	end_sound = 'sound/effects/ordeals/white_end.ogg'
-	ordeal_achievement = /datum/award/achievement/boss/whitemidnight
+	ordeal_achievement = /datum/award/achievement/lc13/whitemidnight
 
 /datum/ordeal/white_midnight/Run()
 	..()

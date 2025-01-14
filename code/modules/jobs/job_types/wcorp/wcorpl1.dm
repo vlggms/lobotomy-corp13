@@ -15,6 +15,7 @@
 	//yes i have been so distant consistently indifferent
 	access = list() //add accesses as necessary
 	minimal_access = list()
+	departments = DEPARTMENT_W_CORP
 
 	roundstart_attributes = list(
 		FORTITUDE_ATTRIBUTE = 60,

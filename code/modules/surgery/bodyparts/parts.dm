@@ -115,6 +115,7 @@
 	if(!.)
 		if(bodypart_disabled)
 			owner.set_usable_hands(owner.usable_hands - 1)
+			on_disabled()
 			if(owner.stat < UNCONSCIOUS)
 				to_chat(owner, span_userdanger("Your lose control of your [name]!"))
 			if(held_index)
@@ -126,6 +127,8 @@
 		var/atom/movable/screen/inventory/hand/hand_screen_object = owner.hud_used.hand_slots["[held_index]"]
 		hand_screen_object?.update_icon()
 
+/obj/item/bodypart/l_arm/proc/on_disabled()
+//This is shitcode. but I need it elsewhere to shit code up less
 
 /obj/item/bodypart/l_arm/monkey
 	icon = 'icons/mob/animal_parts.dmi'
@@ -210,6 +213,7 @@
 	if(!.)
 		if(bodypart_disabled)
 			owner.set_usable_hands(owner.usable_hands - 1)
+			on_disabled()
 			if(owner.stat < UNCONSCIOUS)
 				to_chat(owner, span_userdanger("Your lose control of your [name]!"))
 			if(held_index)
@@ -220,6 +224,9 @@
 	if(owner.hud_used)
 		var/atom/movable/screen/inventory/hand/hand_screen_object = owner.hud_used.hand_slots["[held_index]"]
 		hand_screen_object?.update_icon()
+
+/obj/item/bodypart/r_arm/proc/on_disabled()
+//This is shitcode. but I need it elsewhere to shit code up less
 
 
 /obj/item/bodypart/r_arm/monkey

@@ -60,10 +60,10 @@
 		AreaAttack()
 		return
 
-/mob/living/simple_animal/hostile/ordeal/white_lake_corrosion/AttackingTarget()
+/mob/living/simple_animal/hostile/ordeal/white_lake_corrosion/AttackingTarget(atom/attacked_target)
 	if(!can_act)
 		return FALSE
-	return Slash(target)
+	return Slash(attacked_target)
 
 /mob/living/simple_animal/hostile/ordeal/white_lake_corrosion/proc/Slash(target)
 	if (get_dist(src, target) > 3)
@@ -216,10 +216,9 @@
 
 /mob/living/simple_animal/hostile/ordeal/white_lake_corrosion/proc/CallForHelp(mob/living/attacker)
 	for(var/mob/living/simple_animal/hostile/ordeal/silentgirl_corrosion/girls in view(10, src))
-		girls.TryTransform()
+		girls.TryTransform(attacker)
 		girls.current_target = attacker
 		girls.GiveTarget(attacker)
-		attacker.apply_status_effect(/datum/status_effect/gold_guilty)
 
 /mob/living/simple_animal/hostile/ordeal/white_lake_corrosion/proc/SpawnAdds()
 	if(QDELETED(src))
@@ -294,14 +293,14 @@
 		return FALSE
 	return ..()
 
-/mob/living/simple_animal/hostile/ordeal/silentgirl_corrosion/AttackingTarget()
-	if(!vengeful && (target != current_target))
+/mob/living/simple_animal/hostile/ordeal/silentgirl_corrosion/AttackingTarget(atom/attacked_target)
+	if(!vengeful && (attacked_target != current_target))
 		return FALSE
 	. = ..()
 	if(.)
-		if(!istype(target, /mob/living/carbon/human))
+		if(!ishuman(attacked_target))
 			return
-		var/mob/living/carbon/human/TH = target
+		var/mob/living/carbon/human/TH = attacked_target
 		if(TH.health < 0 || TH.sanity_lost)
 			finishing = TRUE
 			TH.Stun(4 SECONDS)
@@ -323,8 +322,7 @@
 			finishing = FALSE
 
 /mob/living/simple_animal/hostile/ordeal/silentgirl_corrosion/attacked_by(obj/item/I, mob/living/user)
-	if(TryTransform())
-		user.apply_status_effect(/datum/status_effect/gold_guilty)
+	TryTransform(user)
 	current_target = user
 	GiveTarget(current_target)
 	return ..()
@@ -332,8 +330,7 @@
 /mob/living/simple_animal/hostile/ordeal/silentgirl_corrosion/attack_animal(mob/living/simple_animal/M)
 	. = ..()
 	if(.)
-		if(TryTransform())
-			M.apply_status_effect(/datum/status_effect/gold_guilty)
+		TryTransform(M)
 		current_target = M
 		GiveTarget(current_target)
 
@@ -343,10 +340,8 @@
 	if(!isliving(P.firer))
 		return ..()
 	. = ..()
-	var/mob/living/firer = P.firer
-	if(TryTransform())
-		firer.apply_status_effect(/datum/status_effect/gold_guilty)
-	current_target = firer
+	TryTransform(P.firer)
+	current_target = P.firer
 	GiveTarget(current_target)
 
 /mob/living/simple_animal/hostile/ordeal/silentgirl_corrosion/hitby(atom/movable/AM, skipcatch = FALSE, hitpush = TRUE, blocked = FALSE, datum/thrownthing/throwingdatum) //thrown items
@@ -354,10 +349,7 @@
 	if(istype(AM, /obj/item))
 		I = AM
 		if(I.thrownby)
-			if(TryTransform())
-				if(ishuman(I.thrownby))
-					var/mob/living/carbon/human/attacker = I.thrownby
-					attacker.apply_status_effect(/datum/status_effect/gold_guilty)
+			TryTransform(I.thrownby)
 			current_target = I.thrownby
 			GiveTarget(current_target)
 			return ..()
@@ -367,14 +359,15 @@
 	TryTransform()
 	vengeful = TRUE
 
-/mob/living/simple_animal/hostile/ordeal/silentgirl_corrosion/proc/TryTransform()
+/mob/living/simple_animal/hostile/ordeal/silentgirl_corrosion/proc/TryTransform(mob/living/carbon/human/hooman)
 	if(stat >= DEAD)
-		return FALSE
+		return
 	if(vengeful || current_target)
-		return FALSE
+		return
+	if(istype(hooman))
+		hooman.apply_status_effect(/datum/status_effect/gold_guilty)
 	icon_state = "silent_girl_corrosion_angry"
 	playsound(src, 'sound/abnormalities/silentgirl/Guilt_Apply.ogg', 15, FALSE)
-	return TRUE
 
 /datum/status_effect/gold_guilty
 	id = "guilty"

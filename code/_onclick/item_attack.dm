@@ -84,23 +84,21 @@
 
 	for(var/turf/T in hit_turfs)
 		for(var/mob/M in T)
+			if(istype(M, /mob/living/simple_animal/projectile_blocker_dummy))
+				var/mob/living/simple_animal/projectile_blocker_dummy/pbd = M
+				M = pbd.parent
 			potential_targets |= M
 
 	potential_targets -= user
 
-	var/mob/to_smack = ismob(target) ? target : GetTarget(user, potential_targets)
+	var/mob/to_smack = GetTarget(user, potential_targets, target)
+
+	if(!to_smack)
+		SweepMiss(target, user)
+		return TRUE
 
 	var/old_animation = run_item_attack_animation
 	run_item_attack_animation = FALSE
-
-	if(!to_smack)
-		user.visible_message("<span class='danger'>[user] [swingstyle > WEAPONSWING_LARGESWEEP ? "thrusts" : "swings"] at [target]!</span>",\
-			"<span class='danger'>You [swingstyle > WEAPONSWING_LARGESWEEP ? "thrust" : "swing"] at [target]!</span>", null, COMBAT_MESSAGE_RANGE, user)
-		playsound(src, 'sound/weapons/thudswoosh.ogg', 60, TRUE)
-		user.do_attack_animation(target, used_item = src, no_effect = !run_item_attack_animation)
-		run_item_attack_animation = old_animation
-		return TRUE
-
 	. = to_smack.attackby(src, user, params)
 	run_item_attack_animation = old_animation
 
@@ -108,8 +106,15 @@
 	add_fingerprint(user)
 	return
 
-/obj/item/proc/GetTarget(mob/user, list/potential_targets = list())
-	. = null
+/obj/item/proc/SweepMiss(atom/target, mob/living/carbon/human/user)
+	user.visible_message(span_danger("[user] [swingstyle > WEAPONSWING_LARGESWEEP ? "thrusts" : "swings"] at [target]!"),\
+		span_danger("You [swingstyle > WEAPONSWING_LARGESWEEP ? "thrust" : "swing"] at [target]!"), null, COMBAT_MESSAGE_RANGE, user)
+	playsound(src, 'sound/weapons/thudswoosh.ogg', 60, TRUE)
+	user.do_attack_animation(target, used_item = src, no_effect = TRUE)
+
+/obj/item/proc/GetTarget(mob/user, list/potential_targets = list(), atom/clicked)
+	if(ismob(clicked))
+		. = clicked
 
 	for(var/mob/living/simple_animal/hostile/H in potential_targets) // Hostile List
 		if(.)
@@ -276,9 +281,7 @@
 	if(I.force)
 		var/justice_mod = 1 + (get_modified_attribute_level(user, JUSTICE_ATTRIBUTE)/100)
 		var/damage = I.force * justice_mod
-		if(istype(I, /obj/item/ego_weapon))
-			var/obj/item/ego_weapon/theweapon = I
-			damage *= theweapon.force_multiplier
+		damage *= I.force_multiplier
 		apply_damage(damage, I.damtype, white_healable = TRUE)
 		if(I.damtype in list(RED_DAMAGE, BLACK_DAMAGE, PALE_DAMAGE))
 			if(prob(33))
@@ -301,9 +304,7 @@
 		log_combat(user, src, "attacked", I)
 		var/justice_mod = 1 + (get_modified_attribute_level(user, JUSTICE_ATTRIBUTE)/100)
 		var/damage = I.force * justice_mod
-		if(istype(I, /obj/item/ego_weapon))
-			var/obj/item/ego_weapon/theweapon = I
-			damage *= theweapon.force_multiplier
+		damage *= I.force_multiplier
 		take_damage(damage, I.damtype, attack_dir = get_dir(src, user))
 		return TRUE
 

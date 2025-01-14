@@ -10,6 +10,7 @@
 	portrait = "snow_whites_apple"
 	maxHealth = 1600
 	health = 1600
+	blood_volume = 0
 	obj_damage = 0
 	damage_coeff = list(RED_DAMAGE = 0.5, WHITE_DAMAGE = 1.0, BLACK_DAMAGE = 0, PALE_DAMAGE = 1.5)
 	ranged = TRUE
@@ -59,15 +60,14 @@
 		Why does no one visit me? <br>Why does no one share my pain? <br>\
 		Why does no one like me? <br>I hope I had legs, no, it doesn't have to be legs. <br>\
 		All I want is to be able to move. <br>Oh, redemption......"
-	observation_choices = list("I shall go find it.", "It does not exist.")
-	correct_choices = list("It does not exist.")
-	observation_success_message = "This is unfair. <br>I want to be happy. <br>It's too painful to wait. <br>\
-		It is my bane that no one is around me. <br>I want this misery to crush me to nonexistence. <br>\
-		Some kind of legs sprouted out of me but I have no place to go. <br>However, I do not rot. <br>I cannot stop existing. <br>\
-		I have to go, although I have no place to go. <br>I have to go. <br>I go."
-
-	observation_fail_message = "From some moment, I realized I can walk. <br>\
-		I see light. <br>I hear people. <br>I will be free from this torment. <br>For I will meet my redemption"
+	observation_choices = list(
+		"It does not exist" = list(TRUE, "This is unfair. <br>I want to be happy. <br>It's too painful to wait. <br>\
+			It is my bane that no one is around me. <br>I want this misery to crush me to nonexistence. <br>\
+			Some kind of legs sprouted out of me but I have no place to go. <br>However, I do not rot. <br>I cannot stop existing. <br>\
+			I have to go, although I have no place to go. <br>I have to go. <br>I go."),
+		"I shall go find it" = list(FALSE, "From some moment, I realized I can walk. <br>\
+			I see light. <br>I hear people. <br>I will be free from this torment. <br>For I will meet my redemption"),
+	)
 
 	initial_language_holder = /datum/language_holder/plant //essentially flavor
 	var/togglemovement = FALSE
@@ -138,7 +138,7 @@
 	if(!. || !client)
 		return FALSE
 	togglemovement = TRUE
-	to_chat(src, "<b>Snow Whites Apple can only harm creatures that are ontop of her vines. \
+	to_chat(src, "<b>Snow White's Apple can only harm creatures that are ontop of her vines. \
 		Your ranged attack will harm all standing on vines. \
 		Your barrier spell can only be used on thick vines.</b>")
 
@@ -476,10 +476,10 @@
 		lonely.adjustBruteLoss(-1)
 		if(prob(2))
 			lonely.whisper(pick(
-				"First they had feasted upon my poisioned flesh, then i feasted upon them.",
+				"First they had feasted upon my poisoned flesh, then I feasted upon them.",
 				"Even after they left, my form would not decay.",
 				"She cast me aside and left with her prince.",
-				"After many days i wondered why i continued to exist.",
+				"After many days I wondered why I continued to exist.",
 				"Those that trampled me would speak of a witch who casted a spell that had taken her life.",
 			))
 

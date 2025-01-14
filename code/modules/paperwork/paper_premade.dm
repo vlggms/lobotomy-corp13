@@ -2,6 +2,129 @@
  *	Premade paper
  */
 
+/obj/item/paper/fluff/silk_guide
+	name = "Silk Guide: 'Exploring the Thread within us'"
+	icon_state = "silk_guide"
+	info = "Silkweaving is currently accessible to City Fixer Workshops or the Carnival in City of Light. Those who know the ways of the silk, are good people to ask if you are seeking out quality armor.\
+			Using the bodies of fallen monsters, (and fellow humans?) You are able to weave them into silk, a valuable resource, which can be used to create new armor or upgrade already existing gear.<br>\
+			<br>\
+			<br>\
+			<center><b> Part 1: Gathering Silk </b></center><br>\
+			<br>\
+			So, You are new to the trade and are oh so existed to be weaving new armor. But wait, you first need to gather your own silk! One path you can take is to do your own dirty work and head out into the backstreets and start hunting them by yourself!<br>\
+			<br>\
+			* If you are a Workshop Fixer in CF (City Fixer), you can find the necessary gear for silk gathering in the room above your workshop.<br>\
+			<br>\
+			* If you are the Carnival in CoL (City of Light), you can find the necessary gear for silk gathering in your hideout, which is on the far left side of the map.<br>\
+			<br>\
+			The next section will explain how each tool is used.<br>\
+			<br>\
+			<br>\
+			<center><b> Part 2: Silkweaving Gear </b></center><br>\
+			<br>\
+			Now, You are able to find your silkweaving gear but you don’t have any idea on what they do? Well, Time to learn their basics!<br>\
+			<br>\
+			* <b>Silkweaver:</b> Your main silk gathering tool, When you attack a dead body you will butcher it and create a unique type of silk depending on the creature you butchered. Stronger creatures will give out more, and higher rarity silk. If a creature you butcher doesn’t have silk associated with them, they will drop a random simple silk. (Green, Indigo, Steel or Amber) Lastly, You are able to butcher humans with the silk knife. The stronger the human is, the more silk they will drop. However, if that human still has a soul, you will be unable to butcher them.<br>\
+			<br>\
+			* <b>Carnival Spear:</b> Your weapon of choice! (Workshop Fixers get a off-brand/weaker version of this weapon.) This is a normal spear which deals 30 BLACK damage on hit (The off-brand version deals 22 BLACK damage), However the main highlight of the carnival spear is that it deals double damage to most backstreets mobs!<br>\
+			<br>\
+			* <b>Silk Bag:</b> A Small bag which can hold a massive amount of silk! You can use it to store all of the silk you collect while hunting in the backstreets.<br>\
+			<br>\
+			* <b>Weaving Armor; Basic Edition:</b> A Book which holds all of the basic knowledge about silk weaving. This book allows you to create basic armor and weave meat into silk.<br>\
+			<br>\
+			* (Carnival Only) <b>Carnival Armor:</b> Armor designed by the carnival, perfect at resisting the most \
+			common damage types in the backstreets!<br>\
+			<br>\
+			Now you know the gear you start out with, time to learn about your product... Silk!<br>\
+			<br>\
+			<br>\
+			<center><b> Part 3: Silk Guide </b></center><br>\
+			<br>\
+			<center> =Types/Rarities= </center><br>\
+			Silks have 2 important variables, Type and Rarity.<br>\
+			The type of the silk is determined by the source of its creation, For example weaving Sweepers will produce Indigo Silk, While weaving Bots will produce Green Silk!<br>\
+			<br>\
+			The rarity of the silk is determined by the strength of the source, For example a Sweeper Scout will only create simple silk, while a normal Sweeper will create advanced silk and simple silk!<br>\
+			There are 4 total rarities; Simple, Advanced, Elegant and Masterpiece.<br>\
+			<br>\
+			<center> =Silk Conversions/Transfers= </center><br>\
+			For the Common Silks, You can relatively easily find monsters in the backstreets which you can butcher to gather their silk type. <br>\
+			<br>\
+			However, What if you need a masterpiece rarity silk but you can’t find a monster who can drop such silk? Or you are looking to get Crimson Silk which no monster drops?<br>\
+			<br>\
+			Well then, You arrive at Silk Conversions/Transfers! They are ways you are able to use your silk to change them into higher rarities or different types!<br>\
+			<i>In order to unlock Silk Conversions/Transfers for Common Silks you will need to buy the “Weaving Armor: Common Conversions/Transfers Edition” Book.\
+			While for Rare Silks you will need to buy the “Weaving Armor: Rare Conversions/Transfers Edition” Book</i><br>\
+			<br>\
+			Silk Conversions:<br>\
+			Essentially, You are able to use 4 silks of the same type/rarity to combine them into one silk of the same type and higher rarity! For Example, Converting 4 Simple Green Silks will create 1 Advanced Green Silk.<br>\
+			<br>\
+			Silk Transfers:<br>\
+			Certain silks are able to be transferred into other silks!<br>\
+			Here is a small table to show what silks can be transferred into.<br>\
+			<br>\
+			Common Transfers:<br>\
+			2 Simple Green -> 1 Simple Steel<br>\
+			2 Simple Indigo -> 1 Simple Amber<br>\
+			<br>\
+			Rare Transfers:<br>\
+			2 Simple Steel -> 1 Simple Crimson<br>\
+			2 Simple Amber -> 1 Simple Violet<br>\
+			1 Advanced Violet + 1 Advanced Crimson -> 1 Simple Azure<br>\
+			1 Simple Steel + 1 Simple Amber -> 1 Simple Shrimple<br>\
+			<br>\
+			Human Supplements <i>(You can only get this Transfer from the book, Weaving Armor: Human Supplements Edition) </i>:<br>\
+			2 Simple Shrimple -> 1 Simple Human<br>\
+			<br>\
+			<br>\
+			<center>=Silk Uses=<br></center>\
+			As you may have read in the above sections, Silk can be used for 2 things. <br>\
+			One, You are able to attach your silk to armor in order to upgrade it!<br>\
+			The type of the silk will determine how to change your armor, while rarity will determine the size of the change.<br>\
+			For example, a Simple Indigo Silk will give you +5% BLACK and -5% RED. An Advanced Indigo Silk will multiply both of those values by 2, Giving you +10 BLACK and -10% RED. Elegant Silk multiplies the simple value by 3, while Masterpiece Silk multiples it by 4.<br>\
+			<br>\
+			However, Any time silk increases your resistance to something, It also decreases your resistance to something else. So upgrade with caution! <br>\
+			<i>(At maximum, you can increase your resistance to a damage type to 40%. However you can go infinitely negative.)</i><br>\
+			<br>\
+			And Two, You can use them as resources to tailor new armor! In order to weave armor from silk, you will need to buy some weaving books from your tailoring vending machine! It should be in the same place where you found your silkweaving gear.<br>\
+			<br>\
+			<center>=Available Silks=</center><br>\
+			Here is the current list of all silks you can get in the game.<br>\
+			<br>\
+			<b>Available Common Silks</b><br>\
+			|  Silk Type |         Armor Effect      |     Common Sources    |<br>\
+			| ---------- | ------------------------- | --------------------- |<br>\
+			| Indigo Silk|     BLACK +5%, RED -5%    |        Sweepers       |<br>\
+			| Green Silk |      RED +5%, BLACK -5%   |          Bots         |<br>\
+			| Amber Silk |    BLACK +5%, WHITE -5%   |          Worms        |<br>\
+			| Steel Silk |     RED +5%, WHITE -5%    |    G-Corp Remnants    |<br>\
+			| Human Silk | PALE +5%, RED/WHITE -2.5% | Flesh Monsters/Humans |<br>\
+			<br>\
+			<b>Available Rare Silks</b><br>\
+			|   Silk Type   |        Armor Effect        |      Common Sources     |<br>\
+			| ------------- | -------------------------- | ----------------------- |<br>\
+			|  Violet Silk  |   WHITE +5%, BLACK -5%     |      Silk Transfers     |<br>\
+			|  Crimson Silk |     WHITE +5%, RED -5%     |      Silk Transfers     |<br>\
+			|  Azure Silk   |  RED/BLACK +2.5%, RED -5%  | Resurgence Clan Machines|<br>\
+			| Shrimple Silk | WHITE +5%, RED/BLACK -2.5% |      Silk Transfers     |<br>\
+			<br>\
+			<br>\
+			<center><b> Part 4: Armor Tailoring </b></center><br>\
+			<br>\
+			Oh boy that was a lot of silk info, but now we are getting to the part you might have been looking forward to, TAILORING ARMOR! Yes, As long as you have enough silk you will be able to tailor nearly any armor in the game... As long as you have the right book. You are able to get weaving armor books from your weaving vending machine which you should be able to find in your base.<br>\
+			<br>\
+			I can tell you right now that they aren't cheap, Costing 1000 ahn per book.<br>\
+			* (If you are a workshop fixer in CF, Books will only cost 200 ahn. So... lucky you.)<br>\
+			<br>\
+			However, The cost is quite worth it as once you get your hands on one book you can reuse it as much as you want and even give it out to your fellow Tailors! Once you do read the book, you will be able to learn how to craft all of the armor from the faction the book is about!<br>\
+			<br>\
+			<br>\
+			<center><b> Part 5: The End </b></center><br>\
+			<br>\
+			Well, You were able to learn a lot about silk today... Now, It is up to you to sell your products!<br>\
+			<br>\
+			<i>Good Luck...</i> <br>"
+
 /obj/item/paper/fluff/sop
 	name = "paper- 'Standard Operating Procedure'"
 	info = "Alert Levels:<BR>\nBlue- Emergency<BR>\n\t1. Caused by fire<BR>\n\t2. Caused by manual interaction<BR>\n\tAction:<BR>\n\t\tClose all fire doors. These can only be opened by resetting the alarm<BR>\nRed- Ejection/Self-Destruct<BR>\n\t1. Caused by module operating computer.<BR>\n\tAction:<BR>\n\t\tAfter the specified time the module will eject completely.<BR>\n<BR>\nEngine Maintenance Instructions:<BR>\n\tShut off ignition systems:<BR>\n\tActivate internal power<BR>\n\tActivate orbital balance matrix<BR>\n\tRemove volatile liquids from area<BR>\n\tWear a fire suit<BR>\n<BR>\n\tAfter<BR>\n\t\tDecontaminate<BR>\n\t\tVisit medical examiner<BR>\n<BR>\nToxin Laboratory Procedure:<BR>\n\tWear a gas mask regardless<BR>\n\tGet an oxygen tank.<BR>\n\tActivate internal atmosphere<BR>\n<BR>\n\tAfter<BR>\n\t\tDecontaminate<BR>\n\t\tVisit medical examiner<BR>\n<BR>\nDisaster Procedure:<BR>\n\tFire:<BR>\n\t\tActivate sector fire alarm.<BR>\n\t\tMove to a safe area.<BR>\n\t\tGet a fire suit<BR>\n\t\tAfter:<BR>\n\t\t\tAssess Damage<BR>\n\t\t\tRepair damages<BR>\n\t\t\tIf needed, Evacuate<BR>\n\tMeteor Shower:<BR>\n\t\tActivate fire alarm<BR>\n\t\tMove to the back of ship<BR>\n\t\tAfter<BR>\n\t\t\tRepair damage<BR>\n\t\t\tIf needed, Evacuate<BR>\n\tAccidental Reentry:<BR>\n\t\tActivate fire alarms in front of ship.<BR>\n\t\tMove volatile matter to a fire proof area!<BR>\n\t\tGet a fire suit.<BR>\n\t\tStay secure until an emergency ship arrives.<BR>\n<BR>\n\t\tIf ship does not arrive-<BR>\n\t\t\tEvacuate to a nearby safe area!"
@@ -19,6 +142,17 @@
 	<br>
 	<br>Please stay safe,
 	<br>-Love, <i>Your Dearest</i>"}
+
+/obj/item/paper/fluff/joey/letter
+	name = "letter from coworker"
+	info = {"Dearest Joey,
+	<br>It is truly remarkable with how you are able to stay collected even during the most dangerous situations.
+	<br>Especially after the last breach... So many have fallen to that Predator, Even more would of fallen if you did not step in.
+	<br>Thanks to your bravery, I am sure there are many agents who would love to thank you if they got the chance to see you. Especially my brother Roy, If it was not for you stepping in and taking such a heavy blow for them.
+	<br>So, Do you think you would like to meet up after your recovery? so I could thank you in person? I heard that HamHamPangPang is holding a special event!
+	<br>
+	<br>Get better soon!,
+	<br>-Love, <i>Your coworker, Marisa</i>"}
 
 
 ////////////	Job guides n' fluff

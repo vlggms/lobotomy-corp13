@@ -23,10 +23,10 @@
 	blood_volume = BLOOD_VOLUME_NORMAL
 	silk_results = list(/obj/item/stack/sheet/silk/indigo_simple = 1)
 
-/mob/living/simple_animal/hostile/ordeal/indigo_dawn/AttackingTarget()
+/mob/living/simple_animal/hostile/ordeal/indigo_dawn/AttackingTarget(atom/attacked_target)
 	. = ..()
-	if(. && isliving(target))
-		var/mob/living/L = target
+	if(. && isliving(attacked_target))
+		var/mob/living/L = attacked_target
 		if(L.stat != DEAD)
 			if(L.health <= HEALTH_THRESHOLD_DEAD && HAS_TRAIT(L, TRAIT_NODEATH))
 				devour(L)
@@ -36,7 +36,7 @@
 /mob/living/simple_animal/hostile/ordeal/indigo_dawn/proc/devour(mob/living/L)
 	if(!L)
 		return FALSE
-	if(SSmaptype.maptype == "city")
+	if(SSmaptype.maptype in SSmaptype.citymaps)
 		return FALSE
 	visible_message(
 		span_danger("[src] devours [L]!"),
@@ -58,3 +58,7 @@
 	ranged = 1
 	retreat_distance = 3
 	minimum_distance = 1
+
+/mob/living/simple_animal/hostile/ordeal/indigo_dawn/OpenFire(atom/A)
+	visible_message(span_danger("<b>[src]</b> menacingly stares at [A]!"))
+	ranged_cooldown = world.time + ranged_cooldown_time

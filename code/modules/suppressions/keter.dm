@@ -96,8 +96,8 @@
 	running_cores += new /datum/suppression/safety
 	// More stat reductions at the start, but gets reverted over time
 	var/datum/suppression/training/T = new
-	T.attribute_debuff_count_starting = -60
-	T.attribute_debuff_count = 10
+	T.attribute_debuff_count_starting = -30
+	T.attribute_debuff_count = 5
 	running_cores += T
 	// And then start them all
 	for(var/datum/suppression/S in running_cores)

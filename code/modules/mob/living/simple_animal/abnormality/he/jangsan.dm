@@ -46,13 +46,13 @@
 
 	observation_prompt = "I'm in a field of flowers, the flowers are my friends. <br>There are many kinds of friends but I wish to pluck them all. <br>\
 		Some friends have thorns and hurt when I try to pick them. <br>Before me is a particularly juicy, thornless flower."
-	observation_choices = list("Pluck the flower", "Smell it")
-	correct_choices = list("Smell it")
-	observation_success_message = "The flower shuffles away from me as I draw near, the scent is enticing but I do not pluck it. <br>\
-		There's always time to stop and enjoy the flowers."
-	observation_fail_message = "The flower lets out a scream as I pluck it with my teeth, its ichor stains my teeth and fur red - \
-		the other thornless flowers scream in unison and flee in all directions whilst the thorniest ones scratch my fur and skin. <br>\
-		Flowers are my friends and I shall pluck them all."
+	observation_choices = list(
+		"Smell it" = list(TRUE, "The flower shuffles away from me as I draw near, the scent is enticing but I do not pluck it. <br>\
+			There's always time to stop and enjoy the flowers."),
+		"Pluck the flower" = list(FALSE, "The flower lets out a scream as I pluck it with my teeth, its ichor stains my teeth and fur red - \
+			the other thornless flowers scream in unison and flee in all directions whilst the thorniest ones scratch my fur and skin. <br>\
+			Flowers are my friends and I shall pluck them all."),
+	)
 
 	var/bullet_threshold = 40
 //breach related
@@ -141,12 +141,20 @@
 /mob/living/simple_animal/hostile/abnormality/jangsan/proc/StatCheck(mob/living/carbon/human/user)
 	strong_counter = 0 //Counts how many stats are at or above 60 AKA level 3 or higher
 	weak_counter = 0 //Counts how many stats are below 40 AKA level 1
-	for(var/attribute in stats)
-		if(get_attribute_level(user, attribute)< 40)
-			weak_counter += 1
-		if(get_attribute_level(user, attribute)>= 60)
-			strong_counter += 1
-	return
+	if(SSmaptype.maptype == "rcorp") //Buff for Jangsan for the R-Corp mode
+		for(var/attribute in stats)
+			if(get_attribute_level(user, attribute)< 61)
+				weak_counter += 1
+			if(get_attribute_level(user, attribute)>= 60) //This doesnt matter for rca
+				strong_counter += 1
+		return
+	else
+		for(var/attribute in stats)
+			if(get_attribute_level(user, attribute)< 40)
+				weak_counter += 1
+			if(get_attribute_level(user, attribute)>= 60)
+				strong_counter += 1
+		return
 
 //Too weak and it kills you
 /mob/living/simple_animal/hostile/abnormality/jangsan/PostWorkEffect(mob/living/carbon/human/user, work_type, pe, work_time)
@@ -248,9 +256,9 @@
 		return FALSE
 	return ..()
 
-/mob/living/simple_animal/hostile/abnormality/jangsan/AttackingTarget()
+/mob/living/simple_animal/hostile/abnormality/jangsan/AttackingTarget(atom/attacked_target)
 	if(bite_cooldown < world.time)
-		KillCheck(target)
+		KillCheck(attacked_target)
 	icon_state = icon_aggro
 	return ..()
 

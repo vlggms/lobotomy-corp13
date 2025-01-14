@@ -24,6 +24,7 @@
 	)
 	work_damage_amount = 10
 	work_damage_type = RED_DAMAGE
+	good_hater = TRUE
 	faction = list("hostile", "neutral")
 	can_breach = TRUE
 	start_qliphoth = 3
@@ -31,7 +32,7 @@
 	light_color = COLOR_LIGHT_ORANGE
 	light_range = 0
 	light_power = 0
-	loot = list(/obj/item/gun/ego_gun/feather)
+	loot = list(/obj/item/ego_weapon/ranged/feather)
 	ego_list = list(/datum/ego_datum/armor/feather)
 	gift_type = /datum/ego_gifts/feather
 	abnormality_origin = ABNORMALITY_ORIGIN_LOBOTOMY
@@ -41,18 +42,17 @@
 	observation_prompt = "You can only hunt it wearing a thick blindfold, but even through the fabric you can track it by the light that manages to seep through and by the heat it radiates. <br>\
 		In your hands you carry a bow nocked with an arrow, it's your last one. <br>\
 		You've been pursuing your prey for days, you..."
-	observation_choices = list("Fire an arrow", "Take off your blindfold", "Do nothing") //awaiting extra answers functionality //"Take off your blindfold" should be a third option
-	correct_choices = list("Do nothing")
-	observation_success_message = "You watch and wait as the light and heat pass until only cold and darkness reign in the forest. <br>\
-		Feeling safe, you remove your blindfold and find on the ground one of its radiant feathers. <br>\
-		Bravo brave hunter, have you found what you were seeking?"
-	observation_fail_message = "You fire an arrow at what you percieve to be the source of the light and miss entirely. <br>You return empty-handed like so many hunters before you."
-	//Special answer for choice 2
-	var/observation_success_message_2 = "Your curiosity gets the better of you. <br>\
-		The sight of a mythological bird that no one has seen before is a prize no hunter has claimed. <br>\
-		Steeling yourself, you remove the blindfold and immediately your vision is seared by the intensity of the light but you will yourself through the pain to catch a glimpse of what has long evaded every hunter's sight. <br>\
-		The bird offers a tear for your efforts. <br>\
-		Though your eyes may never recover, you have done what no hunter has dared to accomplish - captured it in your sight."
+	observation_choices = list(
+		"Do nothing" = list(TRUE, "You watch and wait as the light and heat pass until only cold and darkness reign in the forest. <br>\
+			Feeling safe, you remove your blindfold and find on the ground one of its radiant feathers. <br>\
+			Bravo brave hunter, have you found what you were seeking?"),
+		"Take off your blindfold" = list(TRUE, "Your curiosity gets the better of you. <br>\
+			The sight of a mythological bird that no one has seen before is a prize no hunter has claimed. <br>\
+			Steeling yourself, you remove the blindfold and immediately your vision is seared by the intensity of the light but you will yourself through the pain to catch a glimpse of what has long evaded every hunter's sight. <br>\
+			The bird offers a tear for your efforts. <br>\
+			Though your eyes may never recover, you have done what no hunter has dared to accomplish - captured it in your sight."),
+		"Fire an arrow" = list(FALSE, "You fire an arrow at what you percieve to be the source of the light and miss entirely. <br>You return empty-handed like so many hunters before you."),
+	)
 
 	var/pulse_cooldown
 	var/pulse_cooldown_time = 1 SECONDS
@@ -63,13 +63,6 @@
 	var/dash_max = 50
 	var/dash_damage = 220
 	var/list/been_hit = list()
-
-/mob/living/simple_animal/hostile/abnormality/fire_bird/ObservationResult(mob/living/carbon/human/user, condition, answer) //special answer for cake result
-	if(answer == "Take off your blindfold")
-		observation_success_message = observation_success_message_2
-	else
-		observation_success_message = initial(observation_success_message)
-	return ..()
 
 //Initialize
 /mob/living/simple_animal/hostile/abnormality/fire_bird/HandleStructures()
@@ -128,7 +121,7 @@
 //Breach
 /mob/living/simple_animal/hostile/abnormality/fire_bird/BreachEffect(mob/living/carbon/human/user, breach_type)
 	. = ..()
-	loot = list(/obj/item/gun/ego_gun/feather)
+	loot = list(/obj/item/ego_weapon/ranged/feather)
 	icon_state = icon_living
 	light_range = 20
 	light_power = 20

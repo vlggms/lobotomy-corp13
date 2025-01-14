@@ -7,15 +7,15 @@
 
 	"Rumor has it this Abnormality was chosen to be used for training as it is the most docile and tame of any that we have extracted. It’s called a training dummy “rabbit”, but it doesn’t seem to enjoy carrots. It likes people.<br>
 	If it escapes, it is merely following the employee as they leave its Containment Unit."<br>
-	
+
 	<h3><center>Warning: Only authorized personnel are permitted to read this document.</center></h3><br>
-	
+
 	"What happens to the employees that die in this company? We always say the standard: gather them up on off hours, cremate the remains, clean any stains, and inform families of their retirement. However, that's not always the case. Some bodies can still be useful even after death.<br>
-	
+
 	We predetermine what we do with an employee's body from the very moment they fill out their mental aptitude test. Some employees who we determine to have eccentric qualities such as 'empathy' and 'kindness' become a part of our training dummy regimen. When they die, their bodies become a part of our legion of training dummy Abnormalities. The process in which we change them from cadaver to rabbit is only designated to be known by higher classification, but we'll assure you it's nothing to concern yourself about.<br>
-	
+
 	A corpse is, unfortunately, a useless thing. After years of life in service, a person dies and ceases all useful functions. Here, however, they can be something that is very few and far between in the City: a helper to someone in desperate need of training. We cannot in confidence call it a 'friend', but it certainly comes close. The Abnormality's kindness is pure with no darker intentions as most Abnormalities have.<br>
-	
+
 	Be mindful that employees should be encouraged to not get too attached when training on this Abnormality. We are here to collect energy, not something as impractical as friendship."}
 
 //Spider Bud
@@ -117,7 +117,7 @@
 	"...Why didn't you tell me earlier that the Abnormality was responsible for their condition? I have no idea if there’s any pattern, but they all show the same strange behavior on the exact same days. Can you imagine a group of patients staring at the sky with dazed faces, wailing strange noises in the corridor at night while everyone is asleep? I had such a difficult time persuading the other patients that they must have been practicing for the company’s upcoming Halloween event. Psychiatric treatment and medicine won't help.<br>
 	"Coming, coming, still coming," they keep repeating these words, and anything else they utter is not from any language we know. I think sending them to a general hospital was an unwise decision.<br>
 	-Doctor from the (Record Deleted) Ward."}
-	
+
 //Beauty and the Beast
 /obj/item/paper/fluff/lore/teth/beauty
 	name = "F-02-44"
@@ -182,16 +182,16 @@
 	"After running a few tests on the armor, we have come up with the following conclusions: If this armor is worn by a cowardly employee, their chances of fatal injury and death are drastically increased. Inversely, when an employee who holds no fear of death wears it, their chances of injury and death are exceedingly decreased."<br>
 
 	"One of our personnel managers suggested an entrance test where interviewees wear the armor and walk around in it for ten minutes. This suggestion was immediately shot down."}
-	
+
 //Bloodbath
 /obj/item/paper/fluff/lore/teth/bloodbath
 	name = "T-05-51"
 	info = {"<h2><center>T-05-51</center></h2>	<br>
 	Bloodbath	<br>
 	"An Abnormality which contains the pain of all those who couldn’t take their sorrow in stride."<br>
-	
+
 	"A bath of a gloomy color, topped up with blood. The blood is always kept in equilibrium; it never overflows. Only despair can be found in its sunken depths. Unbearable depression overwhelms all who look into the bath. In an instant, it can pull a nearby person into it. It bears no considerable strength, but those who suffer from its crushing depression do not resist. It devours the victim until nothing remains except for their wrists. All the hands which float in the bath are pale, exsanguinated; they stretch into the air and reach out as if asking for help."<br>
-	
+
 	"It is no easy feat to cut one’s wrist with a sane mind. A strong will is needed with the resolve to make multiple attempts. Only when it is sliced as if one were simply cutting a mere slab of meat, can they achieve this. Only when one yearns for death that much, can they succeed."<br>
 	"I eternally regret not realizing to ask her why she needed that industrial knife. I eternally regret not realizing that she was hiding her wrists with long sleeves. I eternally regret not realizing that she always took extra care to hide them whenever I spoke with her. I eternally regret not realizing that I never heard her cheerful laughter anymore, and that she roamed around the company with lifeless eyes more and more often."<br>
 	"I can’t even imagine how painful it would be to cut your wrist. I found out that the only reason she could manage to do something like that was she cut hers straight through."<br>
@@ -208,7 +208,7 @@
 	It knows every children’s story and will not stop recounting until the listener finally leaves."<br>
 
 	<h3><center>Excerpt from Counseling Log</center></h3><br>
-	"She may be the loneliest of all the Abnormalities. She’s filled with loneliness, and tells her tales to fill that void. Well, every story needs a listener. When someone enters her room, she’ll try to fill that void. Of course, listening to her is a very dangerous thing. She knows every story on Earth and even those that cannot possibly exist. Our minds can’t cope with such a thing. She could fry your brain in an instant.}
+	"She may be the loneliest of all the Abnormalities. She’s filled with loneliness, and tells her tales to fill that void. Well, every story needs a listener. When someone enters her room, she’ll try to fill that void. Of course, listening to her is a very dangerous thing. She knows every story on Earth and even those that cannot possibly exist. Our minds can’t cope with such a thing. She could fry your brain in an instant."}
 
 //Forsaken Murderer
 /obj/item/paper/fluff/lore/teth/murderer
@@ -216,7 +216,7 @@
 	info = {"<h2><center>T-01-54</center></h2>	<br>
 	Forsaken Murderer	<br>
 	"An Abnormality whose brain is imbued with rage, screams, and malicious cries. There is a wound on his forehead that never seems to heal. He hates everyone and everything. He wears a straitjacket, but is as free as any man. No amount of chains and restraints is enough to prevent him from committing violence."<br>
-	
+
 	"He always had to wear a straitjacket. Some say he was a death row inmate from a federal prison. The researchers were always cautious around him. They felt that the straitjacket couldn't contain him. The researchers wanted to study a murderer's brain to prove that innate evil existed.<br>
 	It was difficult to determine who was worse: A man who murdered the innocent with no remorse, or the researchers who wanted to open up his brain to satiate their curiosity."<br>
 	"A wide range of medicine and chemicals were injected into him. Some were used for the sake of humanity's future, while others were for new medical techniques. They all had the potential of changing the world. The researchers were getting more and more excited. Although they didn't openly express so, it was almost palpable.<br>
@@ -408,7 +408,7 @@
 	Meat Lantern	<br>
 	"It's always under the floor of the Containment Unit, only showing its eyes and a mysterious luminous organ above the ground."<br>
 	"There's no way to confirm what it looks like in its entirety. As it moves underground, not through the hallway, it is impossible to predict its path when breaching. For the same reason, its escape cannot be detected."<br>
-	
+
 	<h3><center>Excerpt from Voice Records</center></h3><br>
 	"Lloyd: You're located near the Information Team right? I've heard that some employees went missing around that area. Would you mind checking to see if there's any Abnormalities causing spatial interference?<br>
 	Paul: What? But there's no such Abnormality around here. I don't detect any breaching Abnormalities either.<br>
@@ -428,10 +428,10 @@
 	"An Abnormality in the shape of a woman against the wall. Over time, her unbearable sorrow grew into a mournful obsession, covered in countless, lengthy hairs."<br>
 	"As she is always facing the wall, not a single person has seen her face. While she occasionally talks to herself and weeps quietly, it is impossible to have a meaningful conversation with her. Despite her human appearance, it is impossible to discern what she is really looking at or her true intentions."<br>
 	"She will attempt to talk to or pique the interest of those who are about to leave her Containment Unit. However, one should never look back in response, as it may cause mental damage. Certain rumors insist that one may turn to stone upon looking back, but this is clearly not true."<br>
-	
-	<h3><center>Excerpt from Observation Log 1-304</center></h3><br> 
+
+	<h3><center>Excerpt from Observation Log 1-304</center></h3><br>
 	"There is only one important rule to follow: Ignore her. She always tries to draw our attention. She mutters incoherently in an attempt to have those in the room pay closer attention to what she’s saying. She’ll even plead or whisper maliciously when someone is about to leave in the hopes that they may instinctively look back. The subconscious is a threat to your own health in her presence; it is important to have your guard up and to be aware of what is occurring when you are in the room with her. If you forget the warnings for even a second and let your guard down, you may find yourself looking back towards here. I have another warning to leave to all who read this: Do not let this insidious Abnormality learn your name. If she learns your name, she may use it to trick you into turning around. No matter what you hear or what she may do to tempt you while you are in the room with her, DO NOT and I repeat DO NOT under any circumstance look at her. Curiosity is a luxury you must NEVER indulge in when you are in her Containment Unit."<br>
-	
+
 	<h3><center>Excerpt from Counseling Log #9-39</center></h3><br>
 	"Employee F5004: <Redacted> was a colleague of mine for whom I cared deeply. Well, I cared for all my coworkers, but <Redacted> was different. The amount of passion they poured into their work was something I have rarely witnessed in life. Anyways, I have no idea how she, that Abnormality, learned <Redacted>’s name. Maybe someone called it out to them while they were inside the Containment Unit and she heard it. We should have sent two in for work with her. The common procedure was to have a team of two sent into the Containment Unit, but as you know, we’re always shorthanded. Besides, that Abnormality was low on the threat scale. If we followed the procedure and sent two inside, the powers that be would not have been happy about it one bit. (Omitted)<br>
 	Well, you know the rest. The day the incident happened, <Redacted> was sent to the Containment Unit as usual, but they didn’t come out for a long time. I know <Redacted> was a prompt and diligent worker, so I headed straight for the Containment Unit fearing the worst. Thankfully, I found them without even a scratch, but the kid looked out of it. Like, way out of it. (Omitted)<br>

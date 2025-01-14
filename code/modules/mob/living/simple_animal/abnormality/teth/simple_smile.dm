@@ -28,10 +28,10 @@
 	retreat_distance = 3
 	minimum_distance = 1
 	work_chances = list(
-		ABNORMALITY_WORK_INSTINCT = 80,
-		ABNORMALITY_WORK_INSIGHT = 80,
-		ABNORMALITY_WORK_ATTACHMENT = 80,
-		ABNORMALITY_WORK_REPRESSION = 80,
+		ABNORMALITY_WORK_INSTINCT = 85,
+		ABNORMALITY_WORK_INSIGHT = 85,
+		ABNORMALITY_WORK_ATTACHMENT = 85,
+		ABNORMALITY_WORK_REPRESSION = 85,
 	)
 	work_damage_amount = 5
 	work_damage_type = BLACK_DAMAGE
@@ -44,14 +44,14 @@
 	abnormality_origin = ABNORMALITY_ORIGIN_WONDERLAB
 
 	observation_prompt = "The abnormality appears to you from out of thin air, and swipes away your weapon."
-	observation_choices = list("Chase after it")
-	correct_choices = list("Chase after it")
-	observation_success_message = "You chase gone with a simple smile across the facility <br>\
-		You trip and scrape your leg on the facility's floor. <br>\
-		\"Well that wasn't very nice! You should apologize for so rudely disarming me, and having me run around like that!\" <br>\
-		The words come out of your mouth before you even realize what is happening. <br>\
-		And as if to answer, Gone with a Simple Smile hands your weapon back. <br>\
-		Then, it disappears with a smile."
+	observation_choices = list(
+		"Chase after it" = list(TRUE, "You chase gone with a simple smile across the facility <br>\
+			You trip and scrape your leg on the facility's floor. <br>\
+			\"Well that wasn't very nice! You should apologize for so rudely disarming me, and having me run around like that!\" <br>\
+			The words come out of your mouth before you even realize what is happening. <br>\
+			And as if to answer, Gone with a Simple Smile hands your weapon back. <br>\
+			Then, it disappears with a smile."),
+	)
 
 	var/list/stats = list(
 		FORTITUDE_ATTRIBUTE,
@@ -64,10 +64,10 @@
 
 
 
-/mob/living/simple_animal/hostile/abnormality/smile/AttackingTarget()
+/mob/living/simple_animal/hostile/abnormality/smile/AttackingTarget(atom/attacked_target)
 	. = ..()
-	if(ishuman(target))
-		var/mob/living/carbon/human/L = target
+	if(ishuman(attacked_target))
+		var/mob/living/carbon/human/L = attacked_target
 		L.Knockdown(20)
 		var/obj/item/held = L.get_active_held_item()
 		L.dropItemToGround(held) //Drop weapon
@@ -77,7 +77,7 @@
 	for (var/obj/item/ego_weapon/Y in range(1, src))
 		pullable += Y
 
-	for (var/obj/item/gun/ego_gun/Z in range(1, src))
+	for (var/obj/item/ego_weapon/ranged/Z in range(1, src))
 		pullable += Z
 
 	if(!LAZYLEN(pullable))
@@ -101,7 +101,7 @@
 
 	for(var/attribute in stats)
 		if(get_attribute_level(user, attribute)>= 40)
-			chance_modifier *= 0.7
+			chance_modifier *= 0.8
 			lucky_counter += 1
 
 	return chance * chance_modifier

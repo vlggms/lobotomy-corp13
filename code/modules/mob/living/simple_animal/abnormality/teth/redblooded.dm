@@ -52,14 +52,14 @@
 		\"Blowing freakshits away with my shotgun. <br>Talking with my brothers in arms.\" <br>\
 		\"That's all I ever needed. <br>All I ever wanted. <br>Even now, I fight for the glory of my country.\" <br>\
 		\"Do you have anything, anyone, to serve and protect?\""
-	observation_choices = list("I don't.", "I do.")
-	correct_choices = list("I do.")
-	observation_success_message = "\"Heh.\" <br>\
-		\"We might not be on the same side but I can respect that.\" <br>\
-		\"Go on then, freak. <br>Show me that you can protect what matters to you.\""
-	observation_fail_message = "\"Feh. <br>Then what's the point of living, huh?\" <br>\
-		\"Without a flag to protect, without a goal to achieve...\" <br>\
-		\"Are you any better than an animal? <br>Get out of my sight.\""
+	observation_choices = list(
+		"I do" = list(TRUE, "\"Heh.\" <br>\
+			\"We might not be on the same side but I can respect that.\" <br>\
+			\"Go on then, freak. <br>Show me that you can protect what matters to you.\""),
+		"I don't" = list(FALSE, "\"Feh. <br>Then what's the point of living, huh?\" <br>\
+			\"Without a flag to protect, without a goal to achieve...\" <br>\
+			\"Are you any better than an animal? <br>Get out of my sight.\""),
+	)
 
 	var/bloodlust = 0 //more you do repression, more damage it deals. decreases on other works.
 	var/list/fighting_quotes = list(

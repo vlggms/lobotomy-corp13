@@ -36,7 +36,7 @@
 	if(slot_flags & slot) // Equipped to right slot, not just in hands
 		if(!CanUseEgo(H))
 			return FALSE
-		if(equip_slowdown > 0)
+		if(equip_slowdown > 0 && (M == equipper || !equipper))
 			if(!do_after(H, equip_slowdown, target = H))
 				return FALSE
 	return ..()
@@ -60,6 +60,18 @@
 			return
 		neckwear.Destroy()
 
+/obj/item/clothing/suit/armor/ego_gear/pickup(mob/user)
+	. = ..()
+	if(!user.has_movespeed_modifier(/datum/movespeed_modifier/too_many_armors) && ishuman(user))
+		var/obj/item/clothing/suit/armor/ego_gear/equipped_armor = user.get_item_by_slot(ITEM_SLOT_OCLOTHING)
+		if(istype(equipped_armor))
+			if((SSmaptype.maptype in SSmaptype.citymaps) || (SSmaptype.maptype in SSmaptype.combatmaps))
+				return
+			else
+				var/list/slowdown_free_roles = list("Clerk", "Agent Support Clerk", "Facility Support Clerk", "Extraction Officer")
+				if(!(user.mind.assigned_role in slowdown_free_roles))
+					user.add_or_update_variable_movespeed_modifier(/datum/movespeed_modifier/too_many_armors)
+
 /obj/item/clothing/suit/armor/ego_gear/dropped(mob/user)
 	. = ..()
 	if(hat)
@@ -72,6 +84,8 @@
 		if(!istype(neckwear, neck))
 			return
 		neckwear.Destroy()
+	if(user.has_movespeed_modifier(/datum/movespeed_modifier/too_many_armors))
+		user.remove_movespeed_modifier(/datum/movespeed_modifier/too_many_armors)
 
 /obj/item/clothing/suit/armor/ego_gear/proc/CanUseEgo(mob/living/carbon/human/user)
 	if(!ishuman(user))
@@ -144,3 +158,7 @@
 	var/mob/living/carbon/human/H = usr
 	H.update_inv_wear_suit()
 	H.update_body()
+
+/datum/movespeed_modifier/too_many_armors
+	variable = TRUE
+	multiplicative_slowdown = 1.5 //Roughly 1/3 speed for holding too many armors

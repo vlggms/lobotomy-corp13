@@ -56,6 +56,7 @@
 /obj/item/workshop_mod/regular/red,
 /obj/item/workshop_mod/regular/white,
 /obj/item/workshop_mod/fast/red,
+/obj/structure/lootcrate/money,
 /turf/open/floor/plasteel/dark,
 /area/city/backstreets_room)
 "Q" = (

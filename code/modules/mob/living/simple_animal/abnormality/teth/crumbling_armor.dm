@@ -31,21 +31,32 @@
 	secret_icon_state = "megalovania"
 
 	observation_prompt = "The armor that took away many people's lives is sitting in front of you. <br>You can put it on, if you wish."
-	observation_choices = list("Put it on", "Dont't put it on")
-	correct_choices = list("Put it on")
-	observation_success_message = "It seems like you were not pacifist. <br>You feel the armor's warm welcome."
-	observation_fail_message = "The armor waits for another reckless one."
+	observation_choices = list(
+		"Put it on" = list(TRUE, "It seems like you were not pacifist. <br>You feel the armor's warm welcome."),
+		"Dont't put it on" = list(FALSE, "The armor waits for another reckless one."),
+	)
 
 	var/buff_icon = 'ModularTegustation/Teguicons/tegu_effects.dmi'
 	var/user_armored
 	var/numbermarked
 	var/meltdown_cooldown //no spamming the meltdown effect
 	var/meltdown_cooldown_time = 30 SECONDS
+	var/armor_dispensed
 
-/mob/living/simple_animal/hostile/abnormality/crumbling_armor/ObservationResult(mob/living/carbon/human/user, condition)
+// Hacky code to make the final observation check for a gift type without actually having it as a gift type
+/mob/living/simple_animal/hostile/abnormality/crumbling_armor/FinalObservation(mob/living/carbon/human/user)
+	gift_type = /datum/ego_gifts/recklessCourage
+	..()
+	gift_type = null
+
+/mob/living/simple_animal/hostile/abnormality/crumbling_armor/ObservationResult(mob/living/carbon/human/user, success, reply)
 	. = ..()
-	if(condition)
-		new /obj/item/clothing/suit/armor/ego_gear/he/crumbling_armor(get_turf(user))
+	if(success)
+		var/datum/ego_gifts/recklessCourage/R = new
+		user.Apply_Gift(R)
+		if(!armor_dispensed) // You only get one of these. Ever.
+			new /obj/item/clothing/suit/armor/ego_gear/he/crumbling_armor(get_turf(user))
+			armor_dispensed = TRUE
 
 /mob/living/simple_animal/hostile/abnormality/crumbling_armor/SuccessEffect(mob/living/carbon/human/user, work_type, pe)
 	. = ..()

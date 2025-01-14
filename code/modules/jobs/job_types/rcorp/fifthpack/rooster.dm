@@ -14,6 +14,7 @@
 
 	access = list()
 	minimal_access = list()
+	departments = DEPARTMENT_R_CORP
 
 	roundstart_attributes = list(
 								FORTITUDE_ATTRIBUTE = 100,
@@ -48,6 +49,7 @@
 
 	access = list(ACCESS_COMMAND)
 	minimal_access = list(ACCESS_COMMAND)
+	departments = DEPARTMENT_COMMAND | DEPARTMENT_R_CORP
 
 	roundstart_attributes = list(
 								FORTITUDE_ATTRIBUTE = 130,

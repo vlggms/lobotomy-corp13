@@ -75,7 +75,6 @@
 /area/shuttle/mining)
 "F" = (
 /obj/structure/chair/comfy/shuttle{
-	can_buckle = 0;
 	desc = "A comfortable, secure seat.";
 	name = "metalic seat";
 	dir = 1
@@ -123,7 +122,6 @@
 /area/shuttle/mining)
 "U" = (
 /obj/structure/chair/comfy/shuttle{
-	can_buckle = 0;
 	desc = "A comfortable, secure seat.";
 	name = "metalic seat";
 	dir = 1

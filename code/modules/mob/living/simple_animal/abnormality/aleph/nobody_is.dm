@@ -47,11 +47,11 @@
 	observation_prompt = "No matter where you walk to in the cell, the mirror is always facing you. <br>You trace a path around it but all you ever see is your own reflection. <br>\
 		\"It's not fair, why do you get to be you and not me?\" <br>Your reflection mutters, parroting your voice. <br>\"Why are you, you and not I? I could be you so much better than you can, just let me try.\" <br>\
 		Your reflection is holding out its hand, waiting for a handshake."
-	observation_choices = list("Shake their hand", "Turn away and leave")
-	correct_choices = list("Turn away and leave")
-	observation_success_message = "You make to exit the cell. \"Don't just leave me! I'm somebody, I'm real! I'm..! What's my name?! Just give me your name!\" <br>\
-		You don't give your name to the imitation, the closer it starts to mirrors another, the more its mimicry becomes mockery."
-	observation_fail_message = "The you in the mirror smiles. <br>\"Just you wait, I'll show you what we can do.\""
+	observation_choices = list(
+		"Turn away and leave" = list(TRUE, "You make to exit the cell. \"Don't just leave me! I'm somebody, I'm real! I'm..! What's my name?! Just give me your name!\" <br>\
+			You don't give your name to the imitation, the closer it starts to mirrors another, the more its mimicry becomes mockery."),
+		"Shake their hand" = list(FALSE, "The you in the mirror smiles. <br>\"Just you wait, I'll show you what we can do.\""),
+	)
 
 	//Contained Variables
 	var/reflect_timer
@@ -70,6 +70,7 @@
 		"Silky",
 	)
 	var/list/longbeard = list("Beard (Very Long)")
+	var/solo_punish = FALSE
 
 	//Breach Variables
 	var/whip_attack_cooldown
@@ -162,9 +163,12 @@
 			continue
 		potentialmarked += L
 	if(LAZYLEN(potentialmarked)) //It's fine if no one got picked. Probably.
+		solo_punish = FALSE
+		if(LAZYLEN(potentialmarked) < 2)
+			solo_punish = TRUE
 		ReflectChosen(pick(potentialmarked))
 		if(!IsContained())
-			to_chat(chosen, span_warning("You feel uneasy..."))
+			to_chat(chosen, span_warning("You feel the mirror's gaze upon you..."))
 	else
 		ReflectChosen(null)
 
@@ -206,12 +210,19 @@
 		adjusted_chance -= (100 - brainpower) * 0.5
 	return adjusted_chance
 
+/mob/living/simple_animal/hostile/abnormality/nobody_is/AttemptWork(mob/living/carbon/human/user, work_type)
+	if(solo_punish)
+		work_damage_amount = 22
+		return ..()
+	work_damage_amount = initial(work_damage_amount)
+	return ..()
+
 /mob/living/simple_animal/hostile/abnormality/nobody_is/PostWorkEffect(mob/living/carbon/human/user, work_type, pe, work_time)
-	if(Finisher(user)) //Checks if they are the chosen, and disguises as them if they are.
-		return
+	if(!solo_punish)
+		if(Finisher(user)) //Checks if they are the chosen, and disguises as them if they are.
+			return
 	else if(get_attribute_level(user, JUSTICE_ATTRIBUTE) < 80)
 		datum_reference.qliphoth_change(-1)
-	return
 
 /mob/living/simple_animal/hostile/abnormality/nobody_is/FailureEffect(mob/living/carbon/human/user, work_type, pe)
 	. = ..()
@@ -562,7 +573,7 @@
 			grab_victim.deal_damage(strangle_damage, BLACK_DAMAGE)
 		else	//Apply ramping damage
 			playsound(get_turf(src), 'sound/effects/wounds/crackandbleed.ogg', 200, 0, 7)
-			grab_victim.deal_damage((strangle_damage * count), BLACK_DAMAGE)
+			grab_victim.deal_damage((strangle_damage * (3 - count)), BLACK_DAMAGE)
 	count += 1
 	if(grab_victim.sanity_lost) //This should prevent weird things like panics running away halfway through
 		grab_victim.Stun(10) //Immobilize does not stop AI controllers from moving, for some reason.
@@ -614,8 +625,8 @@
 			for(var/i = 1 to 3)
 				target_turf = get_step(target_turf, get_dir(get_turf(src), target_turf))
 			return WhipAttack(target_turf)
-	if(isliving(target))
-		var/mob/living/L = target
+	if(isliving(attacked_target))
+		var/mob/living/L = attacked_target
 		if(L.health <= 0)
 			if(ishuman(L))
 				var/mob/living/carbon/human/H = L

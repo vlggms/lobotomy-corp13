@@ -15,6 +15,7 @@
 
 	access = list(ACCESS_ARMORY, ACCESS_CENT_GENERAL)
 	minimal_access = list(ACCESS_ARMORY, ACCESS_CENT_GENERAL)
+	departments = DEPARTMENT_R_CORP
 
 	roundstart_attributes = list(
 								FORTITUDE_ATTRIBUTE = 40,
@@ -61,6 +62,7 @@
 
 	access = list(ACCESS_ARMORY, ACCESS_COMMAND, ACCESS_CENT_GENERAL)
 	minimal_access = list(ACCESS_ARMORY, ACCESS_COMMAND, ACCESS_CENT_GENERAL)
+	departments = DEPARTMENT_COMMAND | DEPARTMENT_R_CORP
 
 	roundstart_attributes = list(
 								FORTITUDE_ATTRIBUTE = 80,
@@ -84,7 +86,7 @@
 	shoes = /obj/item/clothing/shoes/combat
 	gloves = /obj/item/clothing/gloves/color/black
 	implants = list(/obj/item/organ/cyberimp/eyes/hud/security)
-	belt = null
+	belt = /obj/item/storage/belt/rhino/full
 
 /datum/outfit/job/rhino/melee
 	name = "R-Corp Hammer Rhino"
@@ -97,4 +99,4 @@
 	jobtype = /datum/job/rcorp_captain/rhino
 	glasses = /obj/item/clothing/glasses/hud/diagnostic/sunglasses
 	ears = /obj/item/radio/headset/heads/headset_discipline
-
+	belt = /obj/item/storage/belt/rhino/captain

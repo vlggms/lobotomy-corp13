@@ -46,11 +46,6 @@
 /obj/structure/flora/tree/jungle/small,
 /turf/open/floor/plating/grass,
 /area/city)
-"aZ" = (
-/obj/effect/decal/cleanable/dirt/dust,
-/obj/effect/decal/cleanable/dirt/dust,
-/turf/open/floor/plasteel/white,
-/area/city)
 "bd" = (
 /obj/machinery/griddle,
 /turf/open/floor/oldshuttle,
@@ -101,13 +96,6 @@
 	},
 /turf/open/floor/carpet/black,
 /area/city/fixers)
-"bz" = (
-/obj/item/storage/backpack/duffelbag/med/surgery{
-	pixel_y = 5
-	},
-/obj/structure/table/glass,
-/turf/open/indestructible/white,
-/area/space)
 "bB" = (
 /obj/structure/fluff/arc/angela,
 /turf/open/floor/plating/grass,
@@ -144,13 +132,6 @@
 	},
 /turf/open/floor/wood,
 /area/city/fixers)
-"bV" = (
-/obj/machinery/light{
-	dir = 8
-	},
-/obj/effect/decal/cleanable/dirt/dust,
-/turf/open/floor/plasteel/white,
-/area/city)
 "bW" = (
 /obj/machinery/door/airlock/grunge{
 	name = "syndicate hideout";
@@ -203,6 +184,17 @@
 /obj/item/clothing/under/mercenary/rus_army,
 /turf/open/floor/carpet/black,
 /area/city/house)
+"cl" = (
+/obj/machinery/door/airlock/medical{
+	hackProof = 1;
+	integrity_failure = 0.1;
+	max_integrity = 1e+009;
+	name = "Secure medical room";
+	normal_integrity = 1e+009;
+	req_access_txt = "9"
+	},
+/turf/open/indestructible/white,
+/area/city)
 "cq" = (
 /obj/machinery/vending/weaving,
 /turf/closed/indestructible/reinforced,
@@ -249,6 +241,10 @@
 /obj/structure/fluff/bus/passable,
 /turf/open/floor/carpet/black,
 /area/city/shop)
+"cM" = (
+/obj/structure/fishshrine,
+/turf/open/floor/plating/beach/sand,
+/area/city)
 "cP" = (
 /obj/effect/spawner/lootdrop/garbage_spawner,
 /obj/effect/decal/cleanable/cobweb/cobweb2,
@@ -310,10 +306,6 @@
 	},
 /turf/open/indestructible/hoteltile,
 /area/city/house)
-"dz" = (
-/obj/structure/bookcase/random/adult,
-/turf/open/floor/wood,
-/area/city)
 "dC" = (
 /obj/structure/sink/kitchen{
 	dir = 1;
@@ -467,6 +459,11 @@
 "fM" = (
 /obj/machinery/light,
 /obj/structure/table/wood,
+/obj/item/folder,
+/obj/item/folder,
+/obj/item/folder,
+/obj/item/folder,
+/obj/item/folder,
 /turf/open/floor/facility/white,
 /area/city/fixers)
 "fP" = (
@@ -474,25 +471,6 @@
 	dir = 1
 	},
 /turf/open/floor/plating/ashplanet/rocky,
-/area/city)
-"fV" = (
-/obj/structure/fireplace,
-/obj/effect/decal/cleanable/dirt/dust,
-/turf/open/floor/wood,
-/area/city)
-"fX" = (
-/obj/structure/table/wood,
-/obj/item/reagent_containers/food/drinks/bottle/wine/unlabeled{
-	name = "Saito-brand wine";
-	pixel_x = 4;
-	pixel_y = 14
-	},
-/obj/item/reagent_containers/food/drinks/drinkingglass{
-	pixel_x = -6;
-	pixel_y = 12
-	},
-/obj/item/food/spaghetti/beefnoodle,
-/turf/open/floor/wood,
 /area/city)
 "fZ" = (
 /obj/machinery/vending/city_clothing,
@@ -510,6 +488,12 @@
 	width = 8
 	},
 /turf/open/floor/plating,
+/area/city)
+"gc" = (
+/obj/machinery/computer/operating{
+	dir = 4
+	},
+/turf/open/indestructible/white,
 /area/city)
 "gg" = (
 /obj/machinery/telecomms/server/presets/engineering,
@@ -750,9 +734,6 @@
 	},
 /turf/open/floor/wood,
 /area/city/fixers)
-"iO" = (
-/turf/closed/indestructible/fakeglass,
-/area/space)
 "iP" = (
 /obj/machinery/door/airlock/wood{
 	name = "bistro chef entrance";
@@ -1027,23 +1008,44 @@
 /obj/structure/closet/crate/trashcart/filled,
 /turf/open/floor/plating/ashplanet/rocky,
 /area/city)
+"mx" = (
+/obj/machinery/door/airlock/public{
+	name = "prosthetic surgery clinic"
+	},
+/obj/machinery/door/poddoor/shutters/indestructible{
+	id = "outside"
+	},
+/turf/open/indestructible/white,
+/area/city)
 "my" = (
 /obj/structure/chair/plastic{
 	dir = 8
 	},
 /turf/open/floor/plating/beach/sand,
 /area/city)
-"mR" = (
-/obj/effect/decal/cleanable/dirt/dust,
-/turf/closed/wall/bathhouse,
-/area/city)
 "mV" = (
-/obj/item/folder,
-/obj/item/folder,
-/obj/item/folder,
-/obj/item/folder,
-/obj/item/folder,
 /obj/structure/table/wood,
+/obj/item/toner/large{
+	pixel_x = 2;
+	pixel_y = -8
+	},
+/obj/item/toner/large{
+	pixel_y = -4;
+	pixel_x = 1
+	},
+/obj/item/toner/large,
+/obj/item/toner/large{
+	pixel_y = 4;
+	pixel_x = -1
+	},
+/obj/item/toner/large{
+	pixel_y = 8;
+	pixel_x = -2
+	},
+/obj/item/toner/large{
+	pixel_y = 12;
+	pixel_x = -3
+	},
 /turf/open/floor/facility/white,
 /area/city/fixers)
 "mW" = (
@@ -1135,6 +1137,12 @@
 /obj/item/pen,
 /turf/open/floor/facility/dark,
 /area/city/backstreets_room)
+"nN" = (
+/obj/machinery/door/poddoor/shutters/indestructible{
+	id = "outside"
+	},
+/turf/closed/indestructible/fakeglass,
+/area/city)
 "nQ" = (
 /obj/structure/table/wood,
 /obj/item/paper_bin,
@@ -1241,12 +1249,6 @@
 	},
 /turf/open/floor/plating/ashplanet/rocky,
 /area/city)
-"oY" = (
-/obj/machinery/light{
-	dir = 1
-	},
-/turf/open/indestructible/white,
-/area/space)
 "pc" = (
 /obj/effect/spawner/randomsnackvend,
 /turf/open/floor/facility,
@@ -1270,6 +1272,13 @@
 /obj/item/ego_weapon/city/molar/olga,
 /turf/open/floor/wood,
 /area/city/shop)
+"ph" = (
+/obj/structure/table/optable,
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/indestructible/white,
+/area/city)
 "px" = (
 /obj/machinery/light/small{
 	dir = 1
@@ -1309,6 +1318,9 @@
 /area/city)
 "pT" = (
 /obj/structure/closet/crate/freezer/surplus_limbs,
+/obj/item/krevive,
+/obj/item/krevive,
+/obj/item/krevive,
 /turf/open/floor/plasteel/showroomfloor,
 /area/city/shop)
 "pV" = (
@@ -1337,6 +1349,34 @@
 /obj/structure/window/reinforced/survival_pod,
 /turf/open/floor/mineral/silver,
 /area/city/shop)
+"qj" = (
+/obj/structure/rack,
+/turf/open/indestructible/white,
+/area/city)
+"ql" = (
+/obj/structure/table/glass,
+/obj/item/stack/cable_coil,
+/obj/item/stack/cable_coil{
+	pixel_x = 2;
+	pixel_y = -2
+	},
+/obj/item/stack/cable_coil{
+	pixel_x = 3;
+	pixel_y = 3
+	},
+/obj/item/stack/cable_coil{
+	pixel_x = -3;
+	pixel_y = 3
+	},
+/turf/open/indestructible/white,
+/area/city)
+"qn" = (
+/obj/item/storage/backpack/duffelbag/med/surgery{
+	pixel_y = 5
+	},
+/obj/structure/table/glass,
+/turf/open/indestructible/white,
+/area/city)
 "qu" = (
 /obj/machinery/light{
 	dir = 1
@@ -1474,6 +1514,13 @@
 	},
 /turf/open/floor/plasteel/showroomfloor,
 /area/city/shop)
+"rM" = (
+/obj/machinery/light{
+	dir = 1
+	},
+/obj/structure/closet/crate/freezer/surplus_limbs,
+/turf/open/floor/plasteel/white,
+/area/city)
 "rO" = (
 /obj/effect/turf_decal/tile{
 	color = "#333333";
@@ -1529,6 +1576,9 @@
 /obj/item/roller{
 	pixel_y = 12
 	},
+/obj/item/storage/backpack/duffelbag/med/surgery{
+	pixel_y = 5
+	},
 /turf/open/floor/plasteel/showroomfloor,
 /area/city/shop)
 "sj" = (
@@ -1538,6 +1588,17 @@
 	},
 /turf/open/floor/wood,
 /area/city/shop)
+"sl" = (
+/obj/machinery/door/airlock/medical{
+	hackProof = 1;
+	integrity_failure = 0.1;
+	max_integrity = 1e+009;
+	name = "Secure medical room";
+	normal_integrity = 1e+009;
+	req_access_txt = "9"
+	},
+/turf/open/floor/plasteel/white,
+/area/city)
 "sm" = (
 /obj/effect/turf_decal/bot,
 /obj/machinery/telecomms/receiver/preset_left,
@@ -1575,6 +1636,15 @@
 	},
 /turf/open/floor/plasteel,
 /area/city/shop)
+"sJ" = (
+/obj/machinery/button/door{
+	id = "outside";
+	name = "prosthetics clinic shutters";
+	pixel_y = 26;
+	req_access_txt = "9"
+	},
+/turf/open/floor/plating/ashplanet/rocky,
+/area/city)
 "sL" = (
 /obj/machinery/door/airlock/wood{
 	name = "bistro chef entrance";
@@ -1626,12 +1696,6 @@
 	},
 /turf/open/floor/wood,
 /area/city/shop)
-"tA" = (
-/obj/machinery/door/airlock/freezer{
-	name = "bathouse airlock"
-	},
-/turf/open/floor/mineral/titanium/white,
-/area/city)
 "tC" = (
 /turf/open/indestructible/hoteltile,
 /area/city/fixers)
@@ -1647,10 +1711,8 @@
 /turf/open/floor/plasteel/showroomfloor,
 /area/city/shop)
 "tH" = (
-/obj/item/storage/backpack/duffelbag/med/surgery{
-	pixel_y = 5
-	},
 /obj/structure/table/greyscale,
+/obj/item/storage/backpack/duffelbag/med/upgradedsurgery,
 /turf/open/indestructible/white,
 /area/city/shop)
 "tI" = (
@@ -1685,12 +1747,6 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/carpet/black,
 /area/city/shop)
-"tM" = (
-/obj/machinery/light,
-/obj/effect/decal/cleanable/dirt/dust,
-/obj/effect/landmark/cityloot,
-/turf/open/floor/wood,
-/area/city)
 "tO" = (
 /obj/machinery/vending/medical,
 /obj/machinery/light{
@@ -1834,6 +1890,10 @@
 /obj/structure/rack,
 /turf/open/floor/wood,
 /area/city/fixers)
+"vb" = (
+/obj/structure/table/glass,
+/turf/open/indestructible/white,
+/area/city)
 "vc" = (
 /obj/effect/mine/shrapnel,
 /obj/structure/barricade/wooden,
@@ -1863,13 +1923,6 @@
 /obj/item/flashlight/lamp,
 /turf/open/floor/carpet/donk,
 /area/city/house)
-"vm" = (
-/obj/machinery/light{
-	dir = 4
-	},
-/obj/effect/decal/cleanable/dirt/dust,
-/turf/open/floor/plasteel/white,
-/area/city)
 "vn" = (
 /obj/machinery/door/airlock/medical{
 	name = "Pre-Operation";
@@ -1930,17 +1983,6 @@
 /obj/structure/bed,
 /turf/open/floor/carpet/donk,
 /area/city/house)
-"vQ" = (
-/obj/structure/table/greyscale,
-/obj/item/stack/medical/aloe{
-	desc = "A healing paste you can apply on wounds. It smells amazing."
-	},
-/obj/item/clothing/shoes/sneakers/white{
-	name = "white slippers"
-	},
-/obj/item/clothing/under/misc/pj/blue,
-/turf/open/floor/plasteel/white,
-/area/city)
 "vR" = (
 /obj/machinery/telecomms/relay/preset/telecomms,
 /obj/structure/emergency_shield,
@@ -2056,6 +2098,20 @@
 	dir = 4
 	},
 /turf/open/indestructible/white,
+/area/city/shop)
+"wz" = (
+/obj/structure/rack,
+/obj/item/clothing/under/suit/charcoal,
+/obj/item/clothing/under/suit/charcoal,
+/obj/item/clothing/under/suit/charcoal,
+/obj/item/clothing/under/suit/charcoal,
+/obj/item/clothing/under/suit/charcoal,
+/obj/item/clothing/under/suit/charcoal,
+/obj/item/clothing/under/suit/charcoal,
+/obj/item/clothing/under/suit/charcoal,
+/obj/item/clothing/under/suit/charcoal,
+/obj/item/clothing/under/suit/charcoal,
+/turf/open/floor/facility,
 /area/city/shop)
 "wA" = (
 /obj/machinery/vending/cigarette,
@@ -2226,11 +2282,6 @@
 /obj/item/clothing/under/pants/blackjeans,
 /turf/open/floor/carpet/black,
 /area/city/house)
-"xR" = (
-/obj/structure/rack,
-/obj/item/weldingtool/largetank,
-/turf/open/indestructible/white,
-/area/space)
 "xT" = (
 /obj/effect/spawner/lootdrop/maintenance,
 /turf/open/floor/wood,
@@ -2297,10 +2348,6 @@
 /obj/item/kitchen/spoon,
 /turf/open/floor/plasteel/checker,
 /area/city/house)
-"yr" = (
-/obj/structure/curtain,
-/turf/open/floor/plasteel/white,
-/area/city)
 "ys" = (
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/effect/landmark/cityloot,
@@ -2325,6 +2372,10 @@
 /obj/effect/spawner/structure/window/reinforced,
 /turf/open/floor/plating/airless,
 /area/city/backstreets_checkpoint)
+"yI" = (
+/obj/structure/chair/office/light,
+/turf/open/floor/plasteel/white,
+/area/city)
 "yJ" = (
 /obj/structure/table/wood/bar,
 /obj/machinery/chem_dispenser/drinks/beer/fullupgrade{
@@ -2363,18 +2414,10 @@
 	},
 /turf/open/floor/plasteel/grimy,
 /area/city/house)
-"yX" = (
-/obj/structure/curtain,
-/obj/effect/decal/cleanable/dirt/dust,
-/turf/open/floor/plasteel/white,
-/area/city)
 "yY" = (
 /obj/effect/landmark/cityloot,
 /turf/open/floor/wood,
 /area/city)
-"yZ" = (
-/turf/open/indestructible/white,
-/area/space)
 "zd" = (
 /obj/machinery/light/broken{
 	dir = 8
@@ -2413,6 +2456,10 @@
 /obj/item/kitchen/spoon,
 /turf/open/floor/mineral/titanium,
 /area/city/house)
+"zm" = (
+/obj/machinery/body_preservation_unit,
+/turf/open/floor/facility,
+/area/city/shop)
 "zo" = (
 /obj/structure/table/wood/bar,
 /obj/machinery/chem_dispenser/drinks/fullupgrade{
@@ -2469,6 +2516,13 @@
 /obj/effect/turf_decal/siding/thinplating/light/end,
 /turf/open/indestructible/white,
 /area/city/shop)
+"zL" = (
+/obj/structure/reagent_dispensers/fueltank/large,
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/indestructible/white,
+/area/city)
 "zN" = (
 /obj/effect/turf_decal/bot,
 /obj/machinery/telecomms/processor/preset_two,
@@ -2689,13 +2743,6 @@
 	},
 /turf/open/floor/plasteel/grimy,
 /area/city/house)
-"Bp" = (
-/obj/structure/table/optable,
-/obj/machinery/light{
-	dir = 1
-	},
-/turf/open/indestructible/white,
-/area/space)
 "Bq" = (
 /obj/structure/chair/sofa/corp{
 	dir = 1
@@ -2869,16 +2916,6 @@
 /obj/item/choice_beacon/ingredient,
 /turf/open/floor/facility,
 /area/city/shop)
-"Cl" = (
-/obj/structure/chair/office/light,
-/turf/open/indestructible/white,
-/area/space)
-"Cn" = (
-/obj/machinery/door/airlock/public{
-	name = "prosthetic surgery clinic"
-	},
-/turf/open/indestructible/white,
-/area/space)
 "Co" = (
 /obj/structure/table/wood,
 /obj/item/paper_bin,
@@ -2905,9 +2942,6 @@
 /obj/item/food/meat/slab,
 /turf/open/floor/facility,
 /area/city/shop)
-"Cx" = (
-/turf/closed/indestructible/reinforced,
-/area/space)
 "Cz" = (
 /obj/structure/flora/ausbushes/lavendergrass,
 /turf/open/floor/plating/grass,
@@ -2957,6 +2991,11 @@
 /obj/machinery/seed_extractor,
 /turf/open/indestructible/white,
 /area/city/shop)
+"CP" = (
+/obj/structure/rack,
+/obj/item/weldingtool/experimental,
+/turf/open/indestructible/white,
+/area/city)
 "CS" = (
 /turf/open/floor/plasteel,
 /area/city/shop)
@@ -2992,7 +3031,7 @@
 /area/city/shop)
 "Dl" = (
 /obj/machinery/light,
-/obj/structure/itemselling,
+/obj/machinery/fish_market,
 /turf/open/floor/facility,
 /area/city/shop)
 "Dq" = (
@@ -3058,6 +3097,10 @@
 /obj/item/reagent_containers/food/condiment/enzyme,
 /turf/open/floor/plasteel,
 /area/city/shop)
+"DV" = (
+/obj/machinery/body_fabricator,
+/turf/open/indestructible/white,
+/area/city/shop)
 "DX" = (
 /obj/structure/sink{
 	dir = 8;
@@ -3116,23 +3159,6 @@
 /obj/machinery/processor,
 /turf/open/floor/plasteel,
 /area/city/shop)
-"Ev" = (
-/obj/structure/table/glass,
-/obj/item/stack/cable_coil,
-/obj/item/stack/cable_coil{
-	pixel_x = 2;
-	pixel_y = -2
-	},
-/obj/item/stack/cable_coil{
-	pixel_x = 3;
-	pixel_y = 3
-	},
-/obj/item/stack/cable_coil{
-	pixel_x = -3;
-	pixel_y = 3
-	},
-/turf/open/indestructible/white,
-/area/space)
 "Ew" = (
 /obj/effect/turf_decal/tile/red{
 	dir = 4
@@ -3235,6 +3261,13 @@
 	},
 /turf/open/floor/plasteel,
 /area/city/shop)
+"EU" = (
+/obj/structure/rack,
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/indestructible/white,
+/area/city)
 "Fb" = (
 /obj/structure/table/wood,
 /turf/open/floor/eighties,
@@ -3359,6 +3392,15 @@
 	},
 /turf/open/floor/wood,
 /area/city/shop)
+"Gk" = (
+/obj/machinery/button/door{
+	id = "outside";
+	name = "prosthetics clinic shutters";
+	pixel_y = 26;
+	req_access_txt = "9"
+	},
+/turf/open/floor/plasteel/white,
+/area/city)
 "Go" = (
 /obj/structure/table/wood/bar,
 /turf/open/floor/wood,
@@ -3552,13 +3594,6 @@
 /obj/item/flashlight/lamp,
 /turf/open/floor/carpet,
 /area/city/house)
-"Hp" = (
-/obj/structure/reagent_dispensers/fueltank/large,
-/obj/machinery/light{
-	dir = 1
-	},
-/turf/open/indestructible/white,
-/area/space)
 "Hq" = (
 /obj/structure/table/wood/bar,
 /obj/machinery/chem_dispenser/drinks{
@@ -3652,11 +3687,6 @@
 /obj/structure/bed,
 /turf/open/floor/carpet,
 /area/city/house)
-"Ig" = (
-/obj/structure/bed/pod,
-/obj/effect/decal/cleanable/dirt/dust,
-/turf/open/floor/wood,
-/area/city)
 "Ii" = (
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/effect/landmark/cityloot,
@@ -3718,12 +3748,6 @@
 /obj/item/screwdriver,
 /turf/open/floor/plasteel/showroomfloor,
 /area/city/shop)
-"IK" = (
-/obj/machinery/computer/operating{
-	dir = 8
-	},
-/turf/open/indestructible/white,
-/area/space)
 "IN" = (
 /obj/item/bedsheet/dorms,
 /obj/structure/bed,
@@ -3736,10 +3760,6 @@
 "IQ" = (
 /turf/closed/indestructible/fakeglass,
 /area/city/fixers)
-"IU" = (
-/obj/machinery/vending/prosthetic,
-/turf/open/indestructible/white,
-/area/space)
 "IW" = (
 /obj/item/bodypart/chest/robot,
 /obj/item/bodypart/head/robot,
@@ -3779,17 +3799,6 @@
 /obj/effect/decal/cleanable/garbage,
 /turf/open/floor/plating/ashplanet/rocky,
 /area/city)
-"Jt" = (
-/obj/machinery/door/airlock/medical{
-	hackProof = 1;
-	integrity_failure = 0.1;
-	max_integrity = 1e+009;
-	name = "Secure medical room";
-	normal_integrity = 1e+009;
-	req_access_txt = "5"
-	},
-/turf/open/indestructible/white,
-/area/space)
 "Ju" = (
 /obj/effect/mine/shrapnel,
 /obj/effect/landmark/cityloot,
@@ -3801,10 +3810,6 @@
 /obj/effect/spawner/lootdrop/maintenance,
 /turf/open/floor/wood,
 /area/city/house)
-"Jw" = (
-/obj/structure/table/glass,
-/turf/open/indestructible/white,
-/area/space)
 "Jy" = (
 /obj/item/bodypart/chest/robot,
 /obj/item/bodypart/head/robot,
@@ -3864,6 +3869,9 @@
 /obj/machinery/vending/fixer,
 /turf/open/floor/facility/white,
 /area/city/fixers)
+"JY" = (
+/turf/open/indestructible/white,
+/area/city)
 "JZ" = (
 /obj/structure/table/reinforced,
 /turf/open/floor/oldshuttle,
@@ -3903,6 +3911,94 @@
 /obj/item/bedsheet/rainbow,
 /obj/structure/bed/pod,
 /turf/open/floor/wood,
+/area/city/shop)
+"KC" = (
+/obj/structure/rack,
+/obj/item/clothing/shoes/sneakers/black{
+	pixel_y = -4
+	},
+/obj/item/clothing/shoes/sneakers/black{
+	pixel_y = -4
+	},
+/obj/item/clothing/shoes/sneakers/black{
+	pixel_y = -4
+	},
+/obj/item/clothing/shoes/sneakers/black{
+	pixel_y = -4
+	},
+/obj/item/clothing/shoes/sneakers/black{
+	pixel_y = -4
+	},
+/obj/item/clothing/shoes/sneakers/black{
+	pixel_y = -4
+	},
+/obj/item/clothing/shoes/sneakers/black{
+	pixel_y = -4
+	},
+/obj/item/clothing/shoes/sneakers/black{
+	pixel_y = -4
+	},
+/obj/item/clothing/shoes/sneakers/black{
+	pixel_y = -4
+	},
+/obj/item/clothing/shoes/sneakers/black{
+	pixel_y = -4
+	},
+/obj/item/clothing/shoes/sneakers/black{
+	pixel_y = -4
+	},
+/obj/item/clothing/shoes/sneakers/black{
+	pixel_y = -4
+	},
+/obj/item/clothing/shoes/sneakers/black{
+	pixel_y = -4
+	},
+/obj/item/clothing/shoes/sneakers/black{
+	pixel_y = -4
+	},
+/obj/item/storage/backpack{
+	pixel_y = 10
+	},
+/obj/item/storage/backpack{
+	pixel_y = 10
+	},
+/obj/item/storage/backpack{
+	pixel_y = 10
+	},
+/obj/item/storage/backpack{
+	pixel_y = 10
+	},
+/obj/item/storage/backpack{
+	pixel_y = 10
+	},
+/obj/item/storage/backpack{
+	pixel_y = 10
+	},
+/obj/item/storage/backpack{
+	pixel_y = 10
+	},
+/obj/item/storage/backpack{
+	pixel_y = 10
+	},
+/obj/item/storage/backpack{
+	pixel_y = 10
+	},
+/obj/item/storage/backpack{
+	pixel_y = 10
+	},
+/obj/item/storage/backpack{
+	pixel_y = 10
+	},
+/obj/item/storage/backpack{
+	pixel_y = 10
+	},
+/obj/item/storage/backpack{
+	pixel_y = 10
+	},
+/obj/item/storage/backpack{
+	pixel_y = 10
+	},
+/turf/open/floor/facility,
 /area/city/shop)
 "KG" = (
 /obj/effect/turf_decal/trimline/red/filled/line{
@@ -4001,6 +4097,12 @@
 	},
 /turf/open/floor/plasteel/checker,
 /area/city/house)
+"LE" = (
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/floor/plasteel/white,
+/area/city)
 "LK" = (
 /obj/structure/rack,
 /obj/item/ego_weapon/city/rats/knife,
@@ -4136,11 +4238,6 @@
 /obj/effect/landmark/cityloot,
 /turf/open/floor/plating/beach/sand,
 /area/city)
-"Ni" = (
-/obj/structure/table/glass,
-/obj/item/weldingtool/experimental,
-/turf/open/indestructible/white,
-/area/space)
 "Nk" = (
 /obj/item/kirbyplants/random{
 	pixel_y = 10
@@ -4187,6 +4284,19 @@
 /obj/machinery/door/poddoor/shutters/indestructible,
 /turf/open/floor/plating/ashplanet/rocky,
 /area/city/shop)
+"NX" = (
+/obj/machinery/light{
+	dir = 8
+	},
+/obj/structure/table/reinforced,
+/obj/effect/turf_decal/trimline/red/filled/line{
+	dir = 8
+	},
+/obj/item/ego_weapon/city/carnival_spear,
+/obj/item/paper/fluff/silk_guide,
+/obj/item/paper/fluff/silk_guide,
+/turf/open/floor/facility/dark,
+/area/city/backstreets_room)
 "NY" = (
 /obj/machinery/computer/arcade/battle,
 /turf/open/floor/eighties,
@@ -4309,6 +4419,10 @@
 /obj/effect/landmark/cityloot,
 /turf/open/floor/wood,
 /area/city)
+"Px" = (
+/obj/machinery/vending/prosthetic,
+/turf/open/indestructible/white,
+/area/city)
 "PB" = (
 /mob/living/simple_animal/mouse/brown,
 /obj/effect/spawner/lootdrop/maintenance,
@@ -4362,11 +4476,6 @@
 /obj/effect/landmark/cityloot,
 /turf/open/floor/wood,
 /area/city/house)
-"Qy" = (
-/obj/structure/table/greyscale,
-/obj/item/soap,
-/turf/open/floor/plasteel/white,
-/area/city)
 "QL" = (
 /obj/effect/turf_decal/bot,
 /obj/machinery/ntnet_relay,
@@ -4391,10 +4500,6 @@
 	},
 /turf/open/floor/wood,
 /area/city/shop)
-"QU" = (
-/obj/effect/decal/cleanable/dirt/dust,
-/turf/open/floor/plasteel/white,
-/area/city)
 "QV" = (
 /obj/structure/rack,
 /obj/effect/decal/cleanable/dirt,
@@ -4406,9 +4511,6 @@
 /obj/effect/turf_decal/bot,
 /turf/open/floor/circuit/telecomms/mainframe,
 /area/facility_hallway/north)
-"Rh" = (
-/turf/closed/wall/bathhouse,
-/area/city)
 "Rm" = (
 /obj/structure/table/reinforced,
 /obj/item/modular_computer/laptop/preset/fixer,
@@ -4597,17 +4699,6 @@
 	},
 /turf/open/floor/facility/white,
 /area/city/fixers)
-"TQ" = (
-/obj/machinery/light{
-	dir = 8
-	},
-/obj/structure/table/reinforced,
-/obj/effect/turf_decal/trimline/red/filled/line{
-	dir = 8
-	},
-/obj/item/ego_weapon/city/carnival_spear,
-/turf/open/floor/facility/dark,
-/area/city/backstreets_room)
 "TS" = (
 /obj/structure/rack,
 /obj/item/reagent_containers/hypospray/medipen/mental,
@@ -4694,10 +4785,6 @@
 	},
 /turf/open/floor/facility/dark,
 /area/city/backstreets_room)
-"Uz" = (
-/obj/structure/rack,
-/turf/open/indestructible/white,
-/area/space)
 "UC" = (
 /obj/machinery/computer/communications{
 	dir = 8
@@ -4791,14 +4878,6 @@
 /obj/machinery/hydroponics,
 /turf/open/floor/wood,
 /area/city/house)
-"VD" = (
-/obj/machinery/shower{
-	pixel_y = 16;
-	reagent_id = /datum/reagent/water/holywater
-	},
-/obj/effect/decal/cleanable/dirt/dust,
-/turf/open/floor/plasteel/white,
-/area/city)
 "VK" = (
 /obj/machinery/light{
 	dir = 1
@@ -5195,13 +5274,6 @@
 /obj/effect/turf_decal/trimline/yellow/line,
 /turf/open/floor/plasteel,
 /area/city/shop)
-"Zz" = (
-/obj/structure/rack,
-/obj/machinery/light{
-	dir = 1
-	},
-/turf/open/indestructible/white,
-/area/space)
 "ZH" = (
 /obj/structure/chair/comfy/black,
 /obj/machinery/light{
@@ -27218,7 +27290,7 @@ qF
 Ov
 ay
 ay
-TQ
+NX
 Xs
 XQ
 Oq
@@ -28230,11 +28302,11 @@ Oq
 Oq
 Oq
 Oq
-Oq
-Oq
-Oq
-Oq
-Oq
+zr
+zr
+zr
+zr
+zr
 zr
 kG
 RZ
@@ -28487,11 +28559,11 @@ Oq
 Oq
 Oq
 Oq
-Oq
-Oq
-Oq
-Oq
-Oq
+zr
+gc
+qn
+ql
+vb
 zr
 RZ
 RZ
@@ -28740,15 +28812,15 @@ Oq
 Oq
 Oq
 Oq
-Oq
 zr
 zr
 zr
 zr
 zr
-zr
-zr
-zr
+ph
+JY
+JY
+JY
 zr
 RZ
 kG
@@ -28995,17 +29067,17 @@ Oq
 Oq
 Oq
 Oq
-Oq
-Oq
-Oq
 zr
-VD
-yX
-bV
-vQ
 zr
-dz
-Ig
+zr
+rM
+CP
+Px
+zr
+vb
+JY
+JY
+JY
 zr
 RZ
 RZ
@@ -29252,17 +29324,17 @@ Oq
 Oq
 Oq
 Oq
-Oq
-Oq
-Oq
 zr
-mR
-Rh
-QU
-Qy
+zL
+sl
+Qm
+Qm
+Qm
 zr
-fV
-tM
+zr
+cl
+zr
+cl
 zr
 Ua
 RZ
@@ -29509,17 +29581,17 @@ Oq
 Oq
 Oq
 Oq
-Oq
-Oq
-Oq
 zr
-VD
-yr
-aZ
-QU
-tA
-VV
-fX
+zr
+zr
+qj
+JY
+Qm
+zr
+LE
+Qm
+vb
+Qm
 zr
 zr
 zr
@@ -29768,16 +29840,16 @@ Oq
 Oq
 Oq
 Oq
-Oq
 zr
-Rh
-Rh
-QU
+qj
+JY
 Qm
-zr
-zr
-zr
-zr
+cl
+Qm
+yI
+vb
+Qm
+mx
 Hm
 Hm
 Hm
@@ -30025,16 +30097,16 @@ Oq
 Oq
 Oq
 Oq
-Oq
 zr
-VD
-yr
-vm
-QU
-QU
-QU
-QU
-tA
+EU
+JY
+Qm
+zr
+Gk
+Qm
+vb
+Qm
+nN
 Hm
 zr
 zr
@@ -30282,7 +30354,6 @@ Oq
 Oq
 Oq
 Oq
-Oq
 zr
 zr
 zr
@@ -30292,7 +30363,8 @@ zr
 zr
 zr
 zr
-Hm
+zr
+sJ
 zr
 ap
 WX
@@ -33900,7 +33972,7 @@ og
 HA
 tk
 Dj
-Dj
+zm
 Dj
 KK
 OT
@@ -34414,7 +34486,7 @@ Xf
 HA
 Qq
 Dj
-Dj
+wz
 Dj
 pc
 OT
@@ -34671,7 +34743,7 @@ Xf
 HA
 Zj
 Dj
-Dj
+KC
 Dj
 wA
 OT
@@ -36774,7 +36846,7 @@ Hm
 zr
 Nh
 Xr
-Xr
+cM
 Xr
 Xr
 Xr
@@ -48561,7 +48633,7 @@ We
 We
 We
 We
-We
+DV
 OT
 XZ
 HA
@@ -56773,15 +56845,15 @@ Oq
 Oq
 Oq
 Oq
-Cx
-Cx
-Cx
-Cx
-Cx
-Cx
-Cx
-Cx
-Cx
+Oq
+Oq
+Oq
+Oq
+Oq
+Oq
+Oq
+Oq
+Oq
 Oq
 Oq
 Oq
@@ -57030,15 +57102,15 @@ Oq
 Oq
 Oq
 Oq
-Cx
-Hp
-xR
-IU
-Cx
-oY
-Jw
-yZ
-iO
+Oq
+Oq
+Oq
+Oq
+Oq
+Oq
+Oq
+Oq
+Oq
 Oq
 Oq
 Oq
@@ -57287,15 +57359,15 @@ Oq
 Oq
 Oq
 Oq
-Cx
-yZ
-yZ
-yZ
-Cx
-Cl
-Jw
-yZ
-Cn
+Oq
+Oq
+Oq
+Oq
+Oq
+Oq
+Oq
+Oq
+Oq
 Oq
 Oq
 Oq
@@ -57544,15 +57616,15 @@ Oq
 Oq
 Oq
 Oq
-Cx
-yZ
-yZ
-yZ
-Jt
-yZ
-Jw
-yZ
-Cx
+Oq
+Oq
+Oq
+Oq
+Oq
+Oq
+Oq
+Oq
+Oq
 Oq
 Oq
 Oq
@@ -57801,15 +57873,15 @@ Oq
 Oq
 Oq
 Oq
-Cx
-Uz
-yZ
-Cx
-Cx
-Jt
-Cx
-Jt
-Cx
+Oq
+Oq
+Oq
+Oq
+Oq
+Oq
+Oq
+Oq
+Oq
 Oq
 Oq
 Oq
@@ -58058,15 +58130,15 @@ Oq
 Oq
 Oq
 Oq
-Cx
-Uz
-yZ
-Cx
-Bp
-yZ
-yZ
-yZ
-Cx
+Oq
+Oq
+Oq
+Oq
+Oq
+Oq
+Oq
+Oq
+Oq
 Oq
 Oq
 Oq
@@ -58315,15 +58387,15 @@ Oq
 Oq
 Oq
 Oq
-Cx
-Zz
-yZ
-Cx
-IK
-bz
-Ev
-Ni
-Cx
+Oq
+Oq
+Oq
+Oq
+Oq
+Oq
+Oq
+Oq
+Oq
 Oq
 Oq
 Oq
@@ -58572,15 +58644,15 @@ Oq
 Oq
 Oq
 Oq
-Cx
-Cx
-Cx
-Cx
-Cx
-Cx
-Cx
-Cx
-Cx
+Oq
+Oq
+Oq
+Oq
+Oq
+Oq
+Oq
+Oq
+Oq
 Oq
 Oq
 Oq

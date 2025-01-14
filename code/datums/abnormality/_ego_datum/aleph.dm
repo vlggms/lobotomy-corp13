@@ -14,7 +14,7 @@
 
 // Blue star - Sound of a star
 /datum/ego_datum/weapon/star_sound
-	item_path = /obj/item/gun/ego_gun/star
+	item_path = /obj/item/ego_weapon/ranged/star
 	cost = 100
 
 /datum/ego_datum/armor/star_sound
@@ -41,7 +41,7 @@
 
 // Melting Love - Adoration
 /datum/ego_datum/weapon/adoration
-	item_path = /obj/item/gun/ego_gun/adoration
+	item_path = /obj/item/ego_weapon/ranged/adoration
 	cost = 100
 
 /datum/ego_datum/armor/adoration
@@ -108,7 +108,7 @@
 	cost = 100
 
 /datum/ego_datum/weapon/nihil
-	item_path = /obj/item/gun/ego_gun/nihil
+	item_path = /obj/item/ego_weapon/ranged/nihil
 	cost = 100
 
 // God of the Seasons - Season's Greetings
@@ -158,7 +158,7 @@
 	cost = 100
 
 /datum/ego_datum/weapon/pink
-	item_path = /obj/item/gun/ego_gun/pink
+	item_path = /obj/item/ego_weapon/ranged/pink
 	cost = 100
 
 // We Can Change Anything - Iron maiden
@@ -181,11 +181,11 @@
 	cost = 100
 
 /datum/ego_datum/weapon/arcadia
-	item_path = /obj/item/gun/ego_gun/arcadia
+	item_path = /obj/item/ego_weapon/ranged/arcadia
 	cost = 100
 
 /datum/ego_datum/weapon/judge
-	item_path = /obj/item/gun/ego_gun/arcadia/judge
+	item_path = /obj/item/ego_weapon/ranged/arcadia/judge
 	cost = 100
 
 // Ahab Personal E.G.O - Gasharpoon
@@ -202,3 +202,8 @@
 /datum/ego_datum/weapon/darkcarnival
 	item_path = /obj/item/ego_weapon/wield/darkcarnival
 	cost = 100 //This weapon is normally a result of fusion but is treated as ALEPH for certain purposes
+
+//Hookah Caterpillar - Havana
+/datum/ego_datum/weapon/havana
+	item_path = /obj/item/ego_weapon/ranged/havana
+	cost = 100

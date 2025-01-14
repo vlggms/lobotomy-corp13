@@ -13,21 +13,11 @@
 	finishedicon = list("finishedaxe")
 	finishedname = list("hand axe", "axe", "battleaxe")
 	finisheddesc = "A finished axe, ready for use."
-	var/finishedforce
-	var/charged
 
 /obj/item/ego_weapon/template/axe/attack_self(mob/user)
-	if(!active || charged)
+	if(force != true_force)
 		return
-	if(!finishedforce)
-		finishedforce = force
 
 	if(do_after(user, attack_speed*10))
-		charged = TRUE
-		force*=1.2
+		force *= 1.2
 		to_chat(user, span_info("You charge a cleave, and your next attack will deal bonus damage."))
-
-/obj/item/ego_weapon/template/axe/attack(mob/user)
-	..()
-	if(finishedforce && finishedforce!=force)
-		force = finishedforce

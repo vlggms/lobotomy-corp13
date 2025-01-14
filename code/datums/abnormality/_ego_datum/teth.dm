@@ -10,12 +10,12 @@
 // Punishing bird - Beak & Beak MK2
 /datum/ego_datum/weapon/beak
 	item_category = "Weapon (SMG)"
-	item_path = /obj/item/gun/ego_gun/beak
+	item_path = /obj/item/ego_weapon/ranged/beak
 	cost = 20
 
 /datum/ego_datum/weapon/beakmagnum
 	item_category = "Weapon (Pistol)"
-	item_path = /obj/item/gun/ego_gun/pistol/beakmagnum
+	item_path = /obj/item/ego_weapon/ranged/pistol/beakmagnum
 	cost = 20
 
 /datum/ego_datum/armor/beak
@@ -24,7 +24,7 @@
 
 // Scorched girl - Fourth match flame
 /datum/ego_datum/weapon/match
-	item_path = /obj/item/gun/ego_gun/match
+	item_path = /obj/item/ego_weapon/ranged/match
 	cost = 25
 
 /datum/ego_datum/armor/match
@@ -74,7 +74,7 @@
 
 // 1.76 MHz - Noise
 /datum/ego_datum/weapon/noise
-	item_path = /obj/item/gun/ego_gun/noise
+	item_path = /obj/item/ego_weapon/ranged/noise
 	cost = 20
 
 /datum/ego_datum/armor/noise
@@ -92,7 +92,7 @@
 
 // Old Lady - Solitude
 /datum/ego_datum/weapon/solitude
-	item_path = /obj/item/gun/ego_gun/pistol/solitude
+	item_path = /obj/item/ego_weapon/ranged/pistol/solitude
 	cost = 20
 
 /datum/ego_datum/armor/solitude
@@ -119,7 +119,7 @@
 
 // Today's Shy Look - Today's Expression
 /datum/ego_datum/weapon/shy
-	item_path = /obj/item/gun/ego_gun/pistol/shy
+	item_path = /obj/item/ego_weapon/ranged/pistol/shy
 	cost = 20
 
 /datum/ego_datum/armor/shy
@@ -164,7 +164,7 @@
 
 // Void Dream - Engulfing Dream
 /datum/ego_datum/weapon/dream
-	item_path = /obj/item/gun/ego_gun/dream
+	item_path = /obj/item/ego_weapon/ranged/dream
 	cost = 20
 
 /datum/ego_datum/armor/dream
@@ -224,17 +224,17 @@
 	cost = 20
 
 /datum/ego_datum/weapon/page
-	item_path = /obj/item/gun/ego_gun/page
+	item_path = /obj/item/ego_weapon/ranged/page
 	cost = 20
 
 // Tangle - Rapunzel
-/* /datum/ego_datum/armor/rapunzel
+/datum/ego_datum/armor/rapunzel
 	item_path = /obj/item/clothing/suit/armor/ego_gear/teth/rapunzel
 	cost = 20
 
 /datum/ego_datum/weapon/rapunzel
-	item_path = /obj/item/gun/ego_gun/rapunzel
-	cost = 20 */
+	item_path = /obj/item/ego_weapon/rapunzel
+	cost = 20
 
 // Someone's Portrait - Snapshot
 /datum/ego_datum/armor/snapshot
@@ -242,7 +242,7 @@
 	cost = 20
 
 /datum/ego_datum/weapon/snapshot
-	item_path = /obj/item/gun/ego_gun/snapshot
+	item_path = /obj/item/ego_weapon/ranged/snapshot
 	cost = 20
 
 // Pagoda Veneration - Wishing Cairn
@@ -251,7 +251,7 @@
 	cost = 20
 
 /datum/ego_datum/weapon/wishing_cairn
-	item_path = /obj/item/gun/ego_gun/wishing_cairn
+	item_path = /obj/item/ego_weapon/ranged/wishing_cairn
 	cost = 20
 
 // Fairy Gentleman - Sloshing
@@ -296,7 +296,7 @@
 	cost = 20
 
 /datum/ego_datum/weapon/patriot
-	item_path = /obj/item/gun/ego_gun/patriot
+	item_path = /obj/item/ego_weapon/ranged/patriot
 	cost = 20
 
 // Spirit of Falada - Zauberhorn
@@ -326,7 +326,48 @@
 	item_path = /obj/item/ego_weapon/sanitizer
 	cost = 20
 
+//Kikimora Kiki_Mora
+/datum/ego_datum/weapon/kikimora
+	item_path = /obj/item/ego_weapon/kikimora
+	cost = 20
+
+/datum/ego_datum/armor/kikimora
+	item_path = /obj/item/clothing/suit/armor/ego_gear/teth/kikimora
+	cost = 20
+
 // Faelantern - Midwinter Nightmare
 /datum/ego_datum/armor/faelantern
 	item_path = /obj/item/clothing/suit/armor/ego_gear/teth/faelantern
 	cost = 20
+
+//Dealer of the Damned - Luck of the Draw
+/datum/ego_datum/weapon/luckdraw
+	item_path = /obj/item/ego_weapon/ranged/luckdraw
+	cost = 20
+
+/datum/ego_datum/armor/luckdraw
+	item_path = /obj/item/clothing/suit/armor/ego_gear/teth/luckdraw
+	cost = 20
+
+//Forsaken Employee - Denial
+/datum/ego_datum/weapon/denial
+	item_path = /obj/item/ego_weapon/denial
+	cost = 20
+
+/datum/ego_datum/armor/denial
+	item_path = /obj/item/clothing/suit/armor/ego_gear/teth/denial
+	cost = 20
+
+/datum/ego_datum/weapon/clayman
+	item_path = /obj/item/ego_weapon/mini/clayman
+	cost = 20
+
+/datum/ego_datum/armor/clayman
+	item_path = /obj/item/clothing/suit/armor/ego_gear/teth/clayman
+	cost = 20
+
+// You are bald - Tough
+/datum/ego_datum/weapon/tough
+	item_path = /obj/item/ego_weapon/ranged/pistol/tough
+	cost = 20
+

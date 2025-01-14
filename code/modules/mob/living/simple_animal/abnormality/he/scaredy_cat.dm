@@ -51,10 +51,10 @@
 	)
 
 	observation_prompt = "Cowardly kitten. <br>I’ll give you the courage to stand up to anything and everything. <br>The wizard grants you..."
-	observation_choices = list("A vial of \"liquid courage\"", "Courage")
-	correct_choices = list("A vial of \"liquid courage\"")
-	observation_success_message = "What are you even going to do when you lack the bravery to face anything head-on?"
-	observation_fail_message = "Drink this potion, it’ll give you courage. <br>You’ll be braver than anyone."
+	observation_choices = list(
+		"A vial of \"liquid courage\"" = list(TRUE, "What are you even going to do when you lack the bravery to face anything head-on?"),
+		"Courage" = list(FALSE, "Drink this potion, it’ll give you courage. <br>You’ll be braver than anyone."),
+	)
 
 	/// The list of abnormality scaredy cat will automatically join when they breach, add any "Oz" abno to this list if possible
 	var/list/prefered_abno_list = list(
@@ -82,10 +82,25 @@
 	RegisterSignal(SSdcs, COMSIG_GLOB_MOB_DEATH, PROC_REF(OnMobDeath))
 	RegisterSignal(SSdcs, COMSIG_GLOB_ABNORMALITY_BREACH, PROC_REF(OnAbnoBreach))
 
-/mob/living/simple_animal/hostile/abnormality/scaredy_cat/PostWorkEffect(mob/living/carbon/human/user, work_type, pe, work_time)
+/mob/living/simple_animal/hostile/abnormality/scaredy_cat/WorkChance(mob/living/carbon/human/user, chance, work_type)
+	var/newchance = chance
+	if(get_attribute_level(user, FORTITUDE_ATTRIBUTE) >= 60)
+		newchance = chance-20
+	return newchance
+
+/mob/living/simple_animal/hostile/abnormality/scaredy_cat/NeutralEffect(mob/living/carbon/human/user, work_type, pe)
+	. = ..()
+	if(get_attribute_level(user, FORTITUDE_ATTRIBUTE) >= 60)
+		if(prob(40))
+			datum_reference.qliphoth_change(-1)
+	return
+
+/mob/living/simple_animal/hostile/abnormality/scaredy_cat/FailureEffect(mob/living/carbon/human/user, work_type, pe)
+	. = ..()
 	if(get_attribute_level(user, FORTITUDE_ATTRIBUTE) >= 60)
 		datum_reference.qliphoth_change(-1)
 	return
+
 
 /mob/living/simple_animal/hostile/abnormality/scaredy_cat/BreachEffect(mob/living/carbon/human/user, breach_type)
 	protect_cooldown = world.time + protect_cooldown_time //to avoid him teleporting twice for no reason on breach

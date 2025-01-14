@@ -36,7 +36,7 @@
 	grouped_abnos = list(
 		/mob/living/simple_animal/hostile/abnormality/fairy_gentleman = 1.5,
 		/mob/living/simple_animal/hostile/abnormality/fairy_longlegs = 1.5,
-		// Fae Lantern = 1.5
+		/mob/living/simple_animal/hostile/abnormality/faelantern = 1.5,
 	)
 
 	chem_type = /datum/reagent/abnormality/fairy_festival
@@ -46,10 +46,10 @@
 	observation_prompt = "A gaggle of fairies flitter to and fro about the containment cell, they giggle as you approach.<br>\
 		\"You're a peaceful child, aren't you? You're lucky to accept our care.\" <br>\
 		They say in a sing-song all around you. \"Only good people ever speak to us, you're a good person too, right?\""
-	observation_choices = list("Accept their care")
-	correct_choices = list("Accept their care")
-	observation_success_message = "The fairies sprinkle their powder around you and it collects upon your hands. <br>You feel special. <br>\
-		You retreat from the cell and the fairies' hungry gazes. <br>You've always known the true meaning of The Fairies' Care."
+	observation_choices = list(
+		"Accept their care" = list(TRUE, "The fairies sprinkle their powder around you and it collects upon your hands. <br>You feel special. <br>\
+			You retreat from the cell and the fairies' hungry gazes. <br>You've always known the true meaning of The Fairies' Care."),
+	)
 
 /mob/living/simple_animal/hostile/abnormality/fairy_festival/proc/FairyHeal()
 	for(var/mob/living/carbon/human/P in protected_people)
@@ -164,15 +164,15 @@
 	AddComponent(/datum/component/swarming)
 	summon_backup()
 
-/mob/living/simple_animal/hostile/mini_fairy/AttackingTarget()
+/mob/living/simple_animal/hostile/mini_fairy/AttackingTarget(atom/attacked_target)
 	. = ..()
 	var/friends = 0
 	for(var/mob/living/simple_animal/hostile/mini_fairy/fren in view(6, src))
 		friends++
 	if(friends < 3)
 		summon_backup()
-	if(ishuman(target))
-		var/mob/living/L = target
+	if(ishuman(attacked_target))
+		var/mob/living/L = attacked_target
 		if(L.health < 0 || L.stat == DEAD)
 			var/mob/living/simple_animal/hostile/mini_fairy/MF = new(get_turf(L))
 			MF.faction = src.faction

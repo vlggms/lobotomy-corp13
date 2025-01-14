@@ -48,8 +48,8 @@
 	health = 220
 	melee_reach = 2 //Spear = long range
 	melee_damage_type = BLACK_DAMAGE
-	melee_damage_lower = 10
-	melee_damage_upper = 13
+	melee_damage_lower = 7
+	melee_damage_upper = 10
 	attack_sound = 'sound/weapons/ego/spear1.ogg'
 	death_sound = 'sound/effects/limbus_death.ogg'
 	attack_verb_continuous = "stabs"

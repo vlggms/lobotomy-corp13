@@ -39,14 +39,14 @@
 
 	observation_prompt = "There is a pair of red shoes. <br>\
 		It could be sitting in front of me, or in my feet. I am......"
-	observation_choices = list("Wearing them.", "Not wearing them.")
-	correct_choices = list("Wearing them.") //TODO: Second line of dialogue, must be coded
-	observation_success_message = "I am wearing the shoes. <br>\
-		They are perfect fit, it feels good. <br>I have a weird feeling as if I am in another world. <br>\
-		There is a sharp axe in front of me. Maybe it was there all along, or maybe I just haven't realized it until now. <br>\
-		A weapon will change a lot of things."
-	observation_fail_message = "I was not wearing the shoes. <br>\
-		The shoes' crimson color is getting deeper."
+	observation_choices = list( //TODO: Second line of dialogue, must be coded
+		"Wearing them." = list(TRUE, "I am wearing the shoes. <br>\
+			They are perfect fit, it feels good. <br>I have a weird feeling as if I am in another world. <br>\
+			There is a sharp axe in front of me. Maybe it was there all along, or maybe I just haven't realized it until now. <br>\
+			A weapon will change a lot of things."),
+		"Not wearing them." = list(FALSE, "I was not wearing the shoes. <br>\
+			The shoes' crimson color is getting deeper."),
+	)
 
 	var/mutable_appearance/breach_icon
 	var/mob/living/possessee
@@ -223,11 +223,11 @@
 		if(S.stat != DEAD && !S.target && !S.client && faction_check_mob(S))//cannibalized from steel ordeals
 			S.Goto(src,S.move_to_delay,1)
 
-/mob/living/simple_animal/hostile/abnormality/red_shoes/AttackingTarget()
+/mob/living/simple_animal/hostile/abnormality/red_shoes/AttackingTarget(atom/attacked_target)
 	. = ..()
-	if(!ishuman(target))
+	if(!ishuman(attacked_target))
 		return
-	var/mob/living/carbon/human/H = target
+	var/mob/living/carbon/human/H = attacked_target
 	if(H.stat >= SOFT_CRIT || H.health < 0)
 		ChopFeet(H)
 
@@ -392,11 +392,11 @@
 	move_to_delay = 3
 	var/steppy = 0
 
-/mob/living/simple_animal/hostile/red_shoe/AttackingTarget()
+/mob/living/simple_animal/hostile/red_shoe/AttackingTarget(atom/attacked_target)
 	. = ..()
-	if(!ishuman(target))
+	if(!ishuman(attacked_target))
 		return
-	var/mob/living/carbon/human/H = target
+	var/mob/living/carbon/human/H = attacked_target
 	if(H.stat >= SOFT_CRIT || H.health < 0)
 		ChopFeet(H)
 

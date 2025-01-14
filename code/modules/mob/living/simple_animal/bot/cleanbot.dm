@@ -17,7 +17,7 @@
 	window_name = "Automatic Station Cleaner v1.4"
 	pass_flags = PASSMOB | PASSFLAPS
 	path_image_color = "#993299"
-	auto_patrol = TRUE // Let's get going, naturally!
+	auto_patrol = FALSE // Let's get going, naturally!
 	path_hud = null // No patrol visual. Literally all that was required.
 
 	var/blood = 1
@@ -198,9 +198,7 @@
 		if(istype(W, /obj/item/ego_weapon))
 			var/obj/item/ego_weapon/EW = W
 			if(!EW.CanUseEgo(src))
-				to_chat(user, span_notice("You try attaching \the [W] to \the [src]... but it falls off!"))
-				user.dropItemToGround(EW)
-				EW.forceMove(get_turf(src))
+				to_chat(user, span_notice("You try attaching \the [W] to \the [src]... but it refuses to stay on!"))
 				return FALSE
 		to_chat(user, span_notice("You start attaching \the [W] to \the [src]..."))
 		if(do_after(user, 25, target = src))

@@ -8,6 +8,7 @@
 	trusted_only = TRUE
 	access = list(ACCESS_NETWORK, ACCESS_COMMAND, ACCESS_MANAGER) // Network is the trusted chat gamer access
 	minimal_access = list(ACCESS_NETWORK, ACCESS_COMMAND, ACCESS_MANAGER)
+	departments = DEPARTMENT_COMMAND
 	mapexclude = list("wonderlabs", "mini")
 	job_important = "You are a roleplay role, and may not partake in combat. Assist the manager and roleplay with the agents and clerks"
 	job_notice = "\
@@ -23,9 +24,14 @@
 	. = ..()
 	//You're a fucking robot.
 	ADD_TRAIT(outfit_owner, TRAIT_SANITYIMMUNE, JOB_TRAIT)
+	//Okay maybe don't JUST let them grief.
+	add_verb(outfit_owner, /mob/living/carbon/human/proc/QuestComplete)
 
-	//Let'em Grief
+	//NOW Let'em Grief
+	add_verb(outfit_owner, /mob/living/carbon/human/proc/GameInfo)
+	add_verb(outfit_owner, /mob/living/carbon/human/proc/Announcement)
 	add_verb(outfit_owner, /mob/living/carbon/human/proc/RandomAbno)
+	add_verb(outfit_owner, /mob/living/carbon/human/proc/RandomSelection)
 	add_verb(outfit_owner, /mob/living/carbon/human/proc/NextAbno)
 	add_verb(outfit_owner, /mob/living/carbon/human/proc/SlowGame)
 	add_verb(outfit_owner, /mob/living/carbon/human/proc/QuickenGame)
@@ -33,7 +39,7 @@
 	add_verb(outfit_owner, /mob/living/carbon/human/proc/WorkMeltDecrease)
 	add_verb(outfit_owner, /mob/living/carbon/human/proc/MeltIncrease)
 	add_verb(outfit_owner, /mob/living/carbon/human/proc/MeltDecrease)
-	add_verb(outfit_owner, /mob/living/carbon/human/proc/GameInfo)
+	add_verb(outfit_owner, /mob/living/carbon/human/proc/BulletAuth)
 	// a TGUI menu that SHOULD contain all the above actions
 	var/datum/action/sephirah_game_panel/new_action = new(outfit_owner.mind || outfit_owner)
 	new_action.Grant(outfit_owner)
@@ -87,6 +93,14 @@ GLOBAL_LIST_INIT(sephirah_names, list(
 /*************************************************/
 //Sephirah Gamemaster commands.
 
+/mob/living/carbon/human/proc/QuestComplete()
+	set name = "Reward Custom Quest"
+	set category = "Sephirah.Events"
+	SSlobotomy_corp.lob_points += 1
+	minor_announce("The local sephirah have decided that the facility's, and by extention, the manager's, performance have been exemplary. \
+				1 LOB point has been deposited into the account of your manager", "Central Command Alert:", TRUE)
+	return
+
 /mob/living/carbon/human/proc/RandomAbno()
 	set name = "Randomize Current Abnormality"
 	set category = "Sephirah.Events"
@@ -101,10 +115,23 @@ GLOBAL_LIST_INIT(sephirah_names, list(
 		SSabnormality_queue.ClearChoices()
 
 		//Literally being griefed.
-		SSlobotomy_corp.available_box += 500
-		minor_announce("Due to a lack of resources; a random abnormality has been chosen and PE has been deposited in your account. \
+		SSlobotomy_corp.lob_points += 1
+		minor_announce("Due to a lack of resources; a random abnormality has been chosen and LOB point has been deposited in your account. \
 				Extraction Headquarters apologizes for the inconvenience", "Extraction Alert:", TRUE)
 		return
+
+/mob/living/carbon/human/proc/RandomSelection()
+	set name = "Randomize Abnormality Selection"
+	set category = "Sephirah.Events"
+
+	SSabnormality_queue.next_abno_spawn = world.time + SSabnormality_queue.next_abno_spawn_time + ((min(16, SSabnormality_queue.spawned_abnos) - 6) * 6) SECONDS
+	SSabnormality_queue.PickAbno()
+
+	//Literally being griefed.
+	SSlobotomy_corp.lob_points += 0.25
+	minor_announce("Extraction has made an error in which abnormalities your manager was to select. Extraction apologizes profusely, \
+			and the actual set of [GetFacilityUpgradeValue(UPGRADE_ABNO_QUEUE_COUNT)] abnormalities has been sent to your manager's console.", "Extraction Alert:", TRUE)
+	return
 
 //See next abnormality
 /mob/living/carbon/human/proc/NextAbno()
@@ -198,7 +225,31 @@ GLOBAL_VAR_INIT(Sephirahmeltmodifier, 0)
 	to_chat(src, span_notice("One less abnormality will melt per event."))
 	message_admins("<span class='notice'>A sephirah ([src.ckey]) has made less abnormalities melt per event.</span>")
 
+//Execution barrets
+GLOBAL_LIST_EMPTY(SephirahBullet)
 
+/mob/living/carbon/human/proc/BulletAuth()
+	set name = "Authorize Execution Bullets"
+	set category = "Sephirah"
+	GLOB.SephirahBullet |= src.ckey
+	if(length(GLOB.SephirahBullet) == 2)
+		if(SSmaptype.maptype == "skeld")
+			minor_announce("There has been an error in the authorizing of our new Execution Bullet pilot program. \
+				Execution Bullets won't be able to be delivered to this facility.", "Control Alert:", TRUE)
+		else
+			minor_announce("The facility's manager has been deemed trustworthy of our new Execution Bullet pilot program. \
+				Execution bullets will be delivered immediately.", "Disciplinary Alert:", TRUE)
+			GLOB.execution_enabled = TRUE
+
+	else
+		to_chat(src, span_notice("Your superiors have been notified of your authorization. Reminder that execution bullets require authorization of 2 sephirah."))
+		message_admins(span_notice("A sephirah ([src.ckey]) has given an authorization for execution bullets."))
+
+/mob/living/carbon/human/proc/Announcement()
+	set name = "Make Announcement"
+	set category = "Sephirah"
+	var/input = stripped_input(src,"What do you want announce?", ,"Test Announcement")
+	minor_announce("[input]" , "Official Sephirah announcement from: [src.name]")
 
 //See next abnormality
 /mob/living/carbon/human/proc/GameInfo()
@@ -248,19 +299,17 @@ GLOBAL_VAR_INIT(Sephirahmeltmodifier, 0)
 	var/mob/living/simple_animal/hostile/abnormality/queued_abno = SSabnormality_queue.queued_abnormality
 	data["queued_abno"] = initial(queued_abno.name)
 
-	/* Scrapped due to difficulty -- to be implemented
 	// START OF ARRIVAL INFORMATION
 	var/safe_abnormality_delay
-	if(SSabnormality_queue.next_abno_spawn != INFINITY) // happens when starting abnormalities are being selected, or things break
-		safe_abnormality_delay = SSabnormality_queue.next_abno_spawn
+	if(SSabnormality_queue.next_abno_spawn != INFINITY) // Happens when starting abnormalities are being selected, or things break
+		safe_abnormality_delay = floor(SSabnormality_queue.next_abno_spawn)
 	else
-		safe_abnormality_delay = ABNORMALITY_DELAY
+		safe_abnormality_delay = ABNORMALITY_DELAY + SSticker.round_start_time
 
-	data["current_arrival"] = safe_abnormality_delay
-	data["next_arrival"] = safe_abnormality_delay + SSabnormality_queue.next_abno_spawn_time + ((min(16, (SSabnormality_queue.spawned_abnos + 1)) - 6) * 6) SECONDS
-	data["progress_component"] = (world.time - ABNORMALITY_DELAY) / safe_abnormality_delay
+	data["previous_arrival_time"] = floor(SSabnormality_queue.previous_abno_spawn ? SSabnormality_queue.previous_abno_spawn : ROUNDTIME)
+	data["current_arrival_time"] = floor(world.time)
+	data["next_arrival_time"] = safe_abnormality_delay + 5 SECONDS // The seconds are because the subsystem fires every 10 seconds
 	// END OF ARRIVAL INFORMATION
-	*/
 
 	return data
 
@@ -274,8 +323,20 @@ GLOBAL_VAR_INIT(Sephirahmeltmodifier, 0)
 	var/mob/living/carbon/human/hooman = owner
 
 	switch(action) // maybe change labels?
+		if("Make announcement")
+			hooman.Announcement()
+
+		if("Complete quest")
+			hooman.QuestComplete()
+
 		if("Randomize abnormality")
 			hooman.RandomAbno()
+
+		if("Randomize selection")
+			hooman.RandomSelection()
+
+		if("Authorize execution bullets")
+			hooman.BulletAuth()
 
 		if("Slow abnormality arrival")
 			hooman.SlowGame()
@@ -294,3 +355,5 @@ GLOBAL_VAR_INIT(Sephirahmeltmodifier, 0)
 
 		if("Decrease abnormality per meltdown")
 			hooman.MeltDecrease()
+
+

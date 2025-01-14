@@ -1106,7 +1106,7 @@
 	if(!can_have_status())
 		qdel(src)
 	to_chat(owner, "<span class='warning'>The flame consumes you!!</span>")
-	owner.playsound_local(owner, 'sound/effects/book_burn.ogg', 50, TRUE)
+	owner.playsound_local(owner, 'sound/effects/burn.ogg', 50, TRUE)
 	Check_Resist(owner)
 	if(ishuman(owner))
 		owner.adjustBruteLoss(max(0, stacks - burn_res))
@@ -1159,6 +1159,76 @@
 	var/datum/status_effect/stacking/lc_burn/B = src.has_status_effect(/datum/status_effect/stacking/lc_burn)
 	if(!B)
 		src.apply_status_effect(/datum/status_effect/stacking/lc_burn, stacks)
+	else
+		B.add_stacks(stacks)
+
+#define STATUS_EFFECT_LCBLEED /datum/status_effect/stacking/lc_bleed // Deals true damage every 5 sec, can't be applied to godmode (contained abos)
+/datum/status_effect/stacking/lc_bleed
+	id = "lc_bleed"
+	alert_type = /atom/movable/screen/alert/status_effect/lc_bleed
+	max_stacks = 50
+	tick_interval = 5 SECONDS
+	consumed_on_threshold = FALSE
+	var/new_stack = FALSE
+	var/burn_res = 0
+	var/safety = TRUE
+
+/atom/movable/screen/alert/status_effect/lc_bleed
+	name = "Bleeding"
+	desc = "You're currently bleeding!!"
+	icon = 'ModularTegustation/Teguicons/status_sprites.dmi'
+	icon_state = "lc_bleed"
+
+//Bleed Damage Stuff
+/datum/status_effect/stacking/lc_bleed/on_apply()
+	. = ..()
+	RegisterSignal(owner, COMSIG_MOVABLE_PRE_MOVE, PROC_REF(Moved))
+
+//Deals true damage
+/datum/status_effect/stacking/lc_bleed/proc/Moved(mob/user, atom/new_location)
+	SIGNAL_HANDLER
+	if(!can_have_status())
+		qdel(src)
+	to_chat(owner, "<span class='warning'>Your organs bleed due to your movement!!</span>")
+	owner.playsound_local(owner, 'sound/effects/wounds/crackandbleed.ogg', 25, TRUE)
+	if(stacks >= 10)
+		var/obj/effect/decal/cleanable/blood/B = locate() in get_turf(owner)
+		if(!B)
+			B = new /obj/effect/decal/cleanable/blood(get_turf(owner))
+			B.bloodiness = 100
+	if(ishuman(owner))
+		owner.adjustBruteLoss(max(0, stacks))
+	else
+		owner.adjustBruteLoss(stacks*4) // x4 on non humans
+	stacks = round(stacks/2)
+	if(stacks == 0)
+		qdel(src)
+
+
+/datum/status_effect/stacking/lc_bleed/on_remove()
+	UnregisterSignal(owner, COMSIG_MOVABLE_PRE_MOVE)
+	return ..()
+
+/datum/status_effect/stacking/lc_bleed/can_have_status()
+	return (owner.stat != DEAD || !(owner.status_flags & GODMODE))
+
+/datum/status_effect/stacking/lc_bleed/add_stacks(stacks_added)
+	..()
+	new_stack = TRUE
+
+// The Stack Decaying
+/datum/status_effect/stacking/lc_bleed/tick()
+	if(safety)
+		if(new_stack)
+			new_stack = FALSE
+		else
+			qdel(src)
+
+//Mob Proc
+/mob/living/proc/apply_lc_bleed(stacks)
+	var/datum/status_effect/stacking/lc_bleed/B = src.has_status_effect(/datum/status_effect/stacking/lc_bleed)
+	if(!B)
+		src.apply_status_effect(/datum/status_effect/stacking/lc_bleed, stacks)
 	else
 		B.add_stacks(stacks)
 

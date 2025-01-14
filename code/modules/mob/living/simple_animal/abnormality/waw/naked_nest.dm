@@ -46,12 +46,12 @@
 
 	observation_prompt = "In the beginning, a serpent tempted Eve with a bite of the forbidden fruit an act which cast Man out of the Garden of Eden. <br>\
 		Now all that remains of that fruit is a rotten, decayed mass squirming with more evil serpents."
-	observation_choices = list("Cover your mouth", "Take a bite")
-	correct_choices = list("Take a bite")
-	observation_success_message = "Mankind's sin began long ago but it was never the serpent that was evil, it only followed its nature as did Man. <br>\
-		The serpents within the fruit paused and entered into your mouth with the bite, and evil took root - \
-		it's hard to blame them for mistaking you for being the same as the fruit that has long been their home."
-	observation_fail_message = "They could infect you at any time through any orifice, you best leave in a hurry."
+	observation_choices = list(
+		"Take a bite" = list(TRUE, "Mankind's sin began long ago but it was never the serpent that was evil, it only followed its nature as did Man. <br>\
+			The serpents within the fruit paused and entered into your mouth with the bite, and evil took root - \
+			it's hard to blame them for mistaking you for being the same as the fruit that has long been their home."),
+		"Cover your mouth" = list(FALSE, "They could infect you at any time through any orifice, you best leave in a hurry."),
+	)
 
 	var/serpentsnested = 4
 	var/origin_cooldown = 0
@@ -79,7 +79,7 @@
 		return
 	if(serpentsnested <= 2)
 		serpentsnested = serpentsnested + 1
-	return
+	return ..()
 
 /mob/living/simple_animal/hostile/abnormality/naked_nest/death(gibbed)
 	for(var/atom/movable/AM in src)
@@ -87,7 +87,7 @@
 	if(serpentsnested > 0)
 		var/mob/living/simple_animal/hostile/naked_nest_serpent/S = new(get_turf(src))
 		S.Hide()
-	..()
+	return ..()
 
 /mob/living/simple_animal/hostile/abnormality/naked_nest/Move()
 	return FALSE
@@ -187,14 +187,14 @@
 		origin_nest = home_naked_nest
 	AddComponent(/datum/component/swarming)
 
-/mob/living/simple_animal/hostile/naked_nest_serpent/AttackingTarget()
-	if(iscarbon(target))
-		var/mob/living/carbon/human/C = target
+/mob/living/simple_animal/hostile/naked_nest_serpent/AttackingTarget(atom/attacked_target)
+	if(iscarbon(attacked_target))
+		var/mob/living/carbon/human/C = attacked_target
 		if(C.stat != DEAD && !C.NAKED_NESTED && a_intent == "harm")
 			EnterHost(C)
 			return
-	if(istype(target, /mob/living/simple_animal/hostile/abnormality/naked_nest))
-		var/mob/living/simple_animal/hostile/abnormality/naked_nest/nest = target
+	if(istype(attacked_target, /mob/living/simple_animal/hostile/abnormality/naked_nest))
+		var/mob/living/simple_animal/hostile/abnormality/naked_nest/nest = attacked_target
 		nest.RecoverSerpent(src)
 	return ..()
 
@@ -277,15 +277,11 @@
 	guaranteed_butcher_results = list(/obj/item/food/meatball/human = 1) //considered having it spawn a single worm on butcher but that seemed cruel.
 	var/nesting_time = 40 SECONDS
 	var/nestingtimer
-	var/fortitude
-	var/prudence
-	var/temperance
-	var/justice
 
 /mob/living/simple_animal/hostile/naked_nested/Initialize()
 	. = ..()
 	nestingtimer = world.time + (nesting_time)
-	UpdateArmor() //in order to fix damage coefficents
+	UpdateArmor(damage_coeff) //in order to fix damage coefficents
 
 /mob/living/simple_animal/hostile/naked_nested/Life()
 	. = ..()
@@ -298,7 +294,7 @@
 /mob/living/simple_animal/hostile/naked_nested/gib()
 	for(var/atom/movable/AM in src) //morph code
 		AM.forceMove(loc)
-	..()
+	return ..()
 
 /mob/living/simple_animal/hostile/naked_nested/proc/Nest()
 	var/mob/living/simple_animal/hostile/abnormality/naked_nest/N = new(get_turf(src))
@@ -308,29 +304,6 @@
 	N.ChangeResistances(damage_coeff)
 	playsound(get_turf(src), 'sound/misc/moist_impact.ogg', 30, 1)
 	qdel(src)
-
-/mob/living/simple_animal/hostile/naked_nested/proc/UpdateArmor()
-	var/list/damage_list = list(RED_DAMAGE = 0.6, WHITE_DAMAGE = 0.8, BLACK_DAMAGE = 1.2, PALE_DAMAGE = 1.5)
-	var/obj/item/clothing/suit/armor/host_armor = locate(/obj/item/clothing/suit/armor) in contents
-	if(host_armor)
-		if(host_armor.armor[RED_DAMAGE])
-			fortitude = 1 - (host_armor.armor[RED_DAMAGE] / 100) // 100 armor / 100 = 1
-			if(fortitude <= damage_list[RED_DAMAGE] && fortitude > 0) //if armor is less than current red armor and is more than 0 since anything 0 or below is healing or immune to damage
-				damage_list[RED_DAMAGE] = fortitude
-		if(host_armor.armor[WHITE_DAMAGE])
-			prudence = 1 - (host_armor.armor[WHITE_DAMAGE] / 100)
-			if(prudence <= damage_list[WHITE_DAMAGE] && prudence > 0)
-				damage_list[WHITE_DAMAGE] = prudence
-		if(host_armor.armor[BLACK_DAMAGE])
-			temperance = 1 - (host_armor.armor[BLACK_DAMAGE] / 100)
-			if(temperance > 0)
-				damage_list[BLACK_DAMAGE] = temperance
-		if(host_armor.armor[PALE_DAMAGE])
-			justice = 1 - (host_armor.armor[PALE_DAMAGE] / 100)
-			if(justice > 0)
-				damage_list[PALE_DAMAGE] = justice
-		ChangeResistances(damage_list)
-		return TRUE
 
 /mob/living/simple_animal/hostile/naked_nested/hour_nesting //for dungeon gamemodes
 	name = "festering naked nested"
@@ -417,7 +390,8 @@
 	NestedItems(N, host.get_item_by_slot(ITEM_SLOT_BACK))
 	if(host.get_item_by_slot(ITEM_SLOT_OCLOTHING))
 		NestedItems(N, host.get_item_by_slot(ITEM_SLOT_OCLOTHING))
-		N.UpdateArmor() //moved to creature proc since changing armor values in the status effect resulted in all naked nested having their armor values changed. Even admin spawned ones.
+		N.UpdateArmor(list(RED_DAMAGE = 0.6, WHITE_DAMAGE = 0.8, BLACK_DAMAGE = 1.2, PALE_DAMAGE = 1.5))
+		//moved to creature proc since changing armor values in the status effect resulted in all naked nested having their armor values changed. Even admin spawned ones.
 	playsound(get_turf(host), 'sound/misc/soggy.ogg', 20, 1)
 	QDEL_IN(host, 2)
 

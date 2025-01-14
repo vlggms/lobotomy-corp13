@@ -525,6 +525,13 @@
 	justice_bonus = 1
 	slot = HAND_1
 
+/datum/ego_gifts/denial
+	name = "Denial"
+	icon_state = "denial"
+	justice_bonus = 3
+	slot = HELMET
+
+
 /**
  * HE EGO Gifts
  */
@@ -596,8 +603,8 @@
 /datum/ego_gifts/frostcrown
 	name = "The Winters Kiss"
 	icon_state = "frostcrown"
-	fortitude_bonus = 6
-	prudence_bonus = 6
+	fortitude_bonus = 2
+	prudence_bonus = 2
 	slot = HAT
 
 /datum/ego_gifts/fury
@@ -645,6 +652,22 @@
 	temperance_bonus = 4
 	insight_mod = 3
 	slot = EYE
+
+/datum/ego_gifts/reddit
+	name = "Reddit"
+	desc = "Thanks for the gold, kind stranger!"
+	prudence_bonus = 12
+	temperance_bonus = -4
+	justice_bonus = -4
+	insight_mod = 4
+	slot = HEAD
+
+/datum/ego_gifts/aedd
+	name = "AEDD"
+	icon_state = "grinder"
+	temperance_bonus = -2
+	justice_bonus = 5
+	slot = CHEEK
 
 /datum/ego_gifts/morii
 	name = "Morii"
@@ -1248,6 +1271,24 @@
 	justice_bonus = 6
 	slot = EYE
 
+/datum/ego_gifts/sunyata
+	name = "Bloody Gadget"
+	icon_state = "sunyata"
+	fortitude_bonus = 1
+	prudence_bonus = 2
+	temperance_bonus = 1
+	justice_bonus = 2
+	slot = HAND_1
+
+/datum/ego_gifts/good_intentions
+	name = "Good Intentions" //no stat bonuses but a minor boost to all works
+	icon_state = "good_intentions"
+	instinct_mod = 3
+	insight_mod = 3
+	attachment_mod = 3
+	repression_mod = 3
+	slot = HAT
+
 /**
  * ALEPH EGO Gifts
  */
@@ -1509,3 +1550,10 @@
 	if(!damage)
 		return
 	owner.adjustBruteLoss(-damage*0.75)
+
+/datum/ego_gifts/luckdraw
+	name = "Luck of the Draw"
+	icon_state = "luckdraw"
+	temperance_bonus = -1
+	justice_bonus = 3
+	slot = HAT

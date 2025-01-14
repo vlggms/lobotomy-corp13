@@ -13,7 +13,7 @@
 		to_chat(user, span_notice("[src] is busy!"))
 		return
 
-	if(istype(I, /obj/item/ego_weapon))
+	if(is_ego_melee_weapon(I))
 		var/obj/item/ego_weapon/theweapon = I
 		if(theweapon.force_multiplier == 1)
 			DoTheThing(I, 50)
@@ -23,7 +23,7 @@
 			to_chat(user, span_notice("You can no longer improve [I]!"))
 			return
 
-	if(istype(I, /obj/item/gun/ego_gun/pistol) || istype(I, /obj/item/gun/ego_gun) && !istype(I, /obj/item/gun/ego_gun/clerk))
+	else if(is_ego_weapon(I))
 		var/obj/item/gun/thegun = I
 		if(thegun.projectile_damage_multiplier == 1)
 			DoTheOtherThing(I, 50)
@@ -51,6 +51,7 @@
 	I.forceMove(src)
 	if(prob(successrate))
 		SuccessEffect()
+		I.force_multiplier += 0.1
 		I.projectile_damage_multiplier += 0.1
 		I.forceMove(get_turf(src))
 	else

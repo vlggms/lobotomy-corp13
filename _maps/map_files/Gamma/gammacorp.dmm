@@ -981,7 +981,7 @@
 /area/department_main/architecture)
 "hG" = (
 /obj/structure/rack,
-/obj/item/gun/ego_gun/clerk,
+/obj/item/ego_weapon/ranged/clerk,
 /turf/open/floor/carpet/royalblack,
 /area/department_main/extraction)
 "hK" = (
@@ -2553,7 +2553,8 @@
 /area/facility_hallway/discipline)
 "rn" = (
 /obj/machinery/door/airlock/highsecurity{
-	name = "Information Department"
+	name = "Information Department";
+	hackProof = 1
 	},
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/facility/halls,
@@ -3058,7 +3059,8 @@
 /area/department_main/records)
 "ui" = (
 /obj/machinery/door/airlock/highsecurity{
-	name = "Records Office Secure Area"
+	name = "Records Office Secure Area";
+	hackProof = 1
 	},
 /turf/open/floor/carpet/black,
 /area/department_main/records)
@@ -3415,7 +3417,7 @@
 	desc = "A board for mounting important items upon.";
 	name = "display board"
 	},
-/obj/item/gun/ego_gun/clerk{
+/obj/item/ego_weapon/ranged/clerk{
 	anchored = 1;
 	pixel_y = 2
 	},
@@ -3829,7 +3831,8 @@
 /area/facility_hallway/south)
 "yM" = (
 /obj/machinery/door/airlock/highsecurity{
-	name = "Records Office"
+	name = "Records Office";
+	hackProof = 1
 	},
 /turf/open/floor/facility/halls,
 /area/department_main/records)
@@ -4297,8 +4300,8 @@
 /area/facility_hallway/south)
 "Cu" = (
 /obj/structure/rack,
-/obj/item/gun/ego_gun/clerk,
-/obj/item/gun/ego_gun/clerk,
+/obj/item/ego_weapon/ranged/clerk,
+/obj/item/ego_weapon/ranged/clerk,
 /turf/open/floor/plasteel/dark,
 /area/department_main/discipline)
 "Cy" = (

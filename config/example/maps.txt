@@ -1,0 +1,104 @@
+This file contains a list of maps for use in map rotation.
+#Lines starting with # are ignored.
+Lines not inside map blocks are also ignored
+Duplicated entries use the latter one.
+All whitespace at the start and end of lines is ignored. (including indentation, thats just for show)
+Format:
+#map [map name] (name of .json file in _maps folder without the .json part)
+	minplayers [number] (0 or less disables this requirement)
+	maxplayers [number] (0 or less disables this requirement)
+	default (The last map with this defined will get all votes of players who have not explicitly voted for a map)
+	voteweight [number] (How much to count each player vote as, defaults to 1, setting to 0.5 counts each vote as half a vote, 2 as double, etc, Setting to 0 disables the map but allows players to still pick it)
+	disabled (disables the map)
+	votable (is this map votable)
+endmap
+
+For most use cases, I will be disabling a lot of the larger maps.
+Only Alpha, Psi, Zeta and Eta will be available.
+If you have over 10 players, you can enable beta and gamma, and above 20 players you can enable delta, epsilon and theta.
+
+map alphacorp
+	votable
+	maxplayers 15
+endmap
+
+#map betacorp
+	votable
+	minplayers 10
+	maxplayers 25
+endmap
+
+#map gammacorp
+	votable
+	minplayers 10
+	maxplayers 25
+endmap
+
+#map deltacorp
+	votable
+	minplayers 20
+endmap
+
+#map epsiloncorp
+	votable
+	minplayers 25
+endmap
+
+map zetacorp
+	votable
+	maxplayers 15
+endmap
+
+map etacorp
+	votable
+	maxplayers 15
+endmap
+
+#map thetacorp
+	votable
+	minplayers 20
+endmap
+
+map psicorp
+	votable
+	maxplayers 10
+endmap
+
+map cityfixers
+endmap
+
+#Need testing
+map iotacorp
+endmap
+
+
+map kappacorp
+endmap
+
+map lambdacorp
+endmap
+
+
+map rcorp_test
+endmap
+
+map wcorp
+endmap
+
+map limbus
+endmap
+
+map lclabs
+endmap
+
+map skeld
+endmap
+
+map facilitytest
+endmap
+
+map runtimestation
+endmap
+
+map city
+endmap

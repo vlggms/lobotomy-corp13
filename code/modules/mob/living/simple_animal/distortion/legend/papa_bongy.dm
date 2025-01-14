@@ -33,6 +33,8 @@
 	gender = MALE
 	egoist_attributes = 40
 	egoist_outfit = /datum/outfit/job/civilian
+	/// Prolonged exposure to a monolith will convert the distortion into an abnormality. Lifetime stew's background has bongy's head mounted on the wall, giving an obvious connection.
+	monolith_abnormality = /mob/living/simple_animal/hostile/abnormality/basilisoup
 	loot = list(/obj/item/documents/ncorporation)
 
 	var/can_act = TRUE
@@ -123,14 +125,14 @@
 				return FALSE
 	return ..()
 
-/mob/living/simple_animal/hostile/distortion/papa_bongy/AttackingTarget()
-	if(!can_act || !target)
+/mob/living/simple_animal/hostile/distortion/papa_bongy/AttackingTarget(atom/attacked_target)
+	if(!can_act || !attacked_target)
 		return FALSE
-	if(!isliving(target))
+	if(!isliving(attacked_target))
 		return ..()
-	var/mob/living/carbon/human/H = target
+	var/mob/living/carbon/human/H = attacked_target
 	if(ishuman(H))
-		if(istype(target.ai_controller, /datum/ai_controller/insane/murder/bongy))
+		if(istype(H.ai_controller, /datum/ai_controller/insane/murder/bongy))
 			LoseTarget()
 			return//need to test whether this is still needed
 		H.add_movespeed_modifier(/datum/movespeed_modifier/bongy)
@@ -139,7 +141,7 @@
 			BongyPanic(H)
 	..()
 	can_act = FALSE
-	return DingAttack(target)
+	return DingAttack(attacked_target)
 
 /mob/living/simple_animal/hostile/distortion/papa_bongy/proc/DingAttack(target)
 	var/turf/target_turf = get_turf(target)
@@ -239,10 +241,10 @@
 				return FALSE
 	return ..()
 
-/mob/living/simple_animal/hostile/bongy_hostile/AttackingTarget()
-	if(!target)
+/mob/living/simple_animal/hostile/bongy_hostile/AttackingTarget(atom/attacked_target)
+	if(!attacked_target)
 		return FALSE
-	var/mob/living/carbon/human/H = target
+	var/mob/living/carbon/human/H = attacked_target
 	..()
 	if(ishuman(H) && H.sanity_lost)
 		BongyPanic(H)

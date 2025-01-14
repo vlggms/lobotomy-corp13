@@ -27,10 +27,10 @@
 
 	observation_prompt = "The sweet stench of rot and decay hit you before you noticed the source was the bleeding person covered in plants. <br>\
 		His lips gape open and close like a fish's and what little strength he has in his limbs, he uses to beckons you closer..."
-	observation_choices = list("Get closer and listen", "Leave")
-	correct_choices = list("Get closer and listen")
-	observation_success_message = "You bend down and lend your ear to his mouth... <br>You hear the words you've been waiting your whole life to hear."
-	observation_fail_message = "The man clearly needs help, you rush to find a medic."
+	observation_choices = list(
+		"Get closer and listen" = list(TRUE, "You bend down and lend your ear to his mouth... <br>You hear the words you've been waiting your whole life to hear."),
+		"Leave" = list(FALSE, "The man clearly needs help, you rush to find a medic."),
+	)
 
 	var/seed_list = list(
 		/obj/item/seeds/grass/fairy,
@@ -142,6 +142,9 @@
 /obj/machinery/hydroponics/soil/amurdad/adjustWeeds(adjustamt) //no weeds!
 	return
 
+/obj/machinery/hydroponics/soil/amurdad/pollinate(range) //Quality of Life for the initial harvest.
+	return
+
 /obj/machinery/hydroponics/soil/amurdad/attackby(obj/item/O, mob/user, params) //no manual planting
 	if(istype(O, /obj/item/seeds) && !istype(O, /obj/item/seeds/sample))
 		return
@@ -227,7 +230,7 @@
 	reagents_add = list (
 		/datum/reagent/consumable/sugar = 0.05,
 		/datum/reagent/consumable/nutriment = 0.07,
-		/datum/reagent/abnormality/wellcheers_zero = 0.07,
+		/datum/reagent/consumable/wellcheers_white = 0.03,
 	)
 	rarity = 30
 
@@ -297,7 +300,7 @@
 	reagents_add = list(
 		/datum/reagent/consumable/nutriment = 0.07,
 		/datum/reagent/consumable/sugar = 0.07,
-		/datum/reagent/consumable/wellcheers_red = 0.07,
+		/datum/reagent/consumable/wellcheers_red = 0.03,
 	)
 	rarity = 30
 	graft_gene = /datum/plant_gene/trait/plant_type/fungal_metabolism

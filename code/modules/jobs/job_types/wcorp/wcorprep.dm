@@ -25,6 +25,7 @@
 	)
 	access = list(ACCESS_ARMORY, ACCESS_RND, ACCESS_COMMAND, ACCESS_MEDICAL, ACCESS_MANAGER)
 	minimal_access = list(ACCESS_ARMORY, ACCESS_RND, ACCESS_COMMAND, ACCESS_MEDICAL, ACCESS_MANAGER)
+	departments = DEPARTMENT_COMMAND | DEPARTMENT_W_CORP
 	rank_title = "W-Corp Representative"
 	job_important = "You are W-Corp's main representative, overseeing the cleanup operation. Assure that all things go smoothy for the company."
 	job_notice = "Manage the agents at your disposal."

@@ -60,6 +60,8 @@
 	var/success_boxes = null
 	/// How much PE you have to produce for neutral result, if not null or 0.
 	var/neutral_boxes = null
+	/// Check to see if the abnormality hates goods or can't get them.
+	var/good_hater = FALSE
 	/// List of ego equipment datums
 	var/list/ego_list = list()
 	/// EGO Gifts
@@ -94,6 +96,9 @@
 	var/core_icon = ""
 	var/core_enabled = TRUE
 
+	/// If an abnormality should not be possessed even if possessibles are enabled, mainly for admins.
+	var/do_not_possess = FALSE
+
 	// secret skin variables ahead
 
 	/// Toggles if the abnormality has a secret form and can spawn naturally
@@ -108,6 +113,8 @@
 	var/secret_icon_state
 	/// An icon state assigned when an abnormality is alive
 	var/secret_icon_living
+	// An icon state assigned when an abnormality gets suppressed in its secret form
+	var/secret_icon_dead
 	/// An icon file assigned to the abnormality in its secret form, usually should not be needed to change
 	var/secret_icon_file
 
@@ -116,13 +123,19 @@
 	/// Offset for secret skins in the Y axis
 	var/secret_vertical_offset = 0
 
-	/// Final Observation details
-	var/observation_in_progress = FALSE
+	/// Final Observation stuffs
+	/// The prompt we get alongside our choices for observing it
 	var/observation_prompt = "The abnormality is watching you. What will you do?"
-	var/list/observation_choices = list("Approach", "Leave")
-	var/list/correct_choices = list("Approach", "Leave")
-	var/observation_success_message = "Final Observation Success!"
-	var/observation_fail_message = "Final Observation Failed!"
+	/**
+	 * observation_choices is made in the format of:
+	 * "Choice" = list(TRUE or FALSE [depending on if the answer is correct], "Response"),
+	 */
+	var/list/observation_choices = list(
+		"Approach" = list(TRUE, "You approach the abnormality... and obtain a gift from it."),
+		"Leave" = list(TRUE, "You leave the abnormality... and before you notice a gift is in your hands."),
+	)
+	/// Is there a currently on-going observation?
+	var/observation_in_progress = FALSE
 
 /mob/living/simple_animal/hostile/abnormality/Initialize(mapload)
 	SHOULD_CALL_PARENT(TRUE)
@@ -185,6 +198,9 @@
 	if(secret_vertical_offset)
 		base_pixel_y = secret_vertical_offset
 
+	if(secret_icon_dead)
+		icon_dead = secret_icon_dead
+
 /mob/living/simple_animal/hostile/abnormality/Destroy()
 	SHOULD_CALL_PARENT(TRUE)
 	if(istype(datum_reference)) // Respawn the mob on death
@@ -234,8 +250,7 @@
 	if(!(status_flags & GODMODE))
 		to_chat(user, span_notice("Now isn't the time!"))
 		return
-	var/obj/item/chemical_extraction_attachment/attachment = locate() in datum_reference.console.contents
-	if(!attachment)
+	if(datum_reference.console.mechanical_upgrades["abnochem"] == 0)
 		to_chat(user, span_notice("This abnormality's cell is not properly equipped for substance extraction."))
 		return
 	if(world.time < chem_cooldown_timer)
@@ -330,13 +345,6 @@
 /mob/living/simple_animal/hostile/abnormality/proc/PostSpawn()
 	SHOULD_CALL_PARENT(TRUE)
 	HandleStructures()
-	var/condition = FALSE //Final observation debug
-	for(var/answer in observation_choices)
-		if(answer in correct_choices)
-			condition = TRUE
-	if(!condition)
-		CRASH("Abnormality has no correct choice for final observation!")
-	return
 
 // Moves structures already in its datum; Overrides can spawn structures here.
 /mob/living/simple_animal/hostile/abnormality/proc/HandleStructures()
@@ -490,6 +498,8 @@
 	toggle_ai(AI_ON) // Run.
 	status_flags &= ~GODMODE
 	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_ABNORMALITY_BREACH, src)
+	if(istype(datum_reference))
+		deadchat_broadcast(" has breached containment.", "<b>[src.name]</b>", src, get_turf(src))
 	FearEffect()
 	return TRUE
 
@@ -541,25 +551,29 @@
 			return
 		to_chat(user, span_warning("You already have a gift in the [gift_type.slot] slot, dissolve it first!"))
 		return
-	var/condition = FALSE
+
 	if(observation_in_progress)
 		to_chat(user, span_notice("Someone is already observing [src]!"))
 		return
 	observation_in_progress = TRUE
-	var/answer = final_observation_alert(user, "[observation_prompt]", "Final Observation of [src]", observation_choices, timeout = 60 SECONDS)
-	if(answer in correct_choices)
-		condition = TRUE
-	ObservationResult(user, condition, answer) //We pass along the answer just in case
+	var/answer = final_observation_alert(user, "[observation_prompt]", "Final Observation of [src]", shuffle(observation_choices), timeout = 60 SECONDS)
+	if(answer == "timed out")
+		ObservationResult(user, reply = answer)
+	else
+		var/list/answer_vars = observation_choices[answer]
+		ObservationResult(user, answer_vars[1], answer_vars[2])
+
 	observation_in_progress = FALSE
 
-/mob/living/simple_animal/hostile/abnormality/proc/ObservationResult(mob/living/carbon/human/user, condition, answer)
-	if(condition) //Successful, could override for longer observations as well.
-		final_observation_alert(user,"[observation_success_message]", "OBSERVATION SUCCESS",list("Ok"), timeout=20 SECONDS) //Some of these take a long time to read
+/mob/living/simple_animal/hostile/abnormality/proc/ObservationResult(mob/living/carbon/human/user, success = FALSE, reply = "")
+	if(success) //Successful, could override for longer observations as well.
+		final_observation_alert(user, "[reply]", "OBSERVATION SUCCESS", list("Ok"), timeout = 20 SECONDS) //Some of these take a long time to read
 		if(gift_type)
 			user.Apply_Gift(new gift_type)
 			playsound(get_turf(user), 'sound/machines/synth_yes.ogg', 30 , FALSE)
 	else
-		final_observation_alert(user,"[observation_fail_message]", "OBSERVATION FAIL",list("Ok"), timeout=20 SECONDS)
+		if(reply != "timed out")
+			final_observation_alert(user, "[reply]", "OBSERVATION FAIL", list("Ok"), timeout = 20 SECONDS)
 		playsound(get_turf(user), 'sound/machines/synth_no.ogg', 30 , FALSE)
 	datum_reference.observation_ready = FALSE
 
@@ -582,6 +596,11 @@
 			C.icon = 'ModularTegustation/Teguicons/abno_cores/waw.dmi'
 		if(5)
 			C.icon = 'ModularTegustation/Teguicons/abno_cores/aleph.dmi'
+
+/mob/living/simple_animal/hostile/abnormality/spawn_gibs()
+	if(blood_volume <= 0)
+		return
+	return new /obj/effect/gibspawner/generic(drop_location(), src, get_static_viruses())
 
 // Actions
 /datum/action/innate/abnormality_attack

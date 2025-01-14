@@ -119,3 +119,58 @@
 		/datum/reagent/abnormality/heartysyrup = 4,
 		/datum/reagent/consumable/nutriment/vile_fluid = 6,
 	)
+
+/obj/item/food/fish/fresh_water/unidentifiedfishobject
+	name = "Unidentified Fish Object"
+	desc = "What the Fuck."
+	icon_state = "unidentified-fish-object"
+	random_case_rarity = FISH_RARITY_VERY_RARE
+	fillet_type = /obj/item/food/freshfish/rotten
+	sprite_width = 8
+	sprite_height = 8
+	average_size = 40
+	average_weight = 5000
+
+/obj/item/food/fish/fresh_water/ufo
+	name = "Ufo"
+	desc = "The object hums at a low frequency, seemingly defying all laws of physics."
+	icon_state = "ufo"
+	random_case_rarity = FISH_RARITY_VERY_RARE
+	fillet_type = /obj/item/food/freshfish/slime
+	sprite_width = 8
+	sprite_height = 8
+	average_size = 40
+	average_weight = 7000
+
+/obj/item/food/fish/fresh_water/walkin_man
+	name = "Walkin Man"
+	desc = "I'm walkin' here!"
+	icon_state = "walkin_man"
+	random_case_rarity = FISH_RARITY_VERY_RARE
+	fillet_type = /obj/item/food/freshfish/white
+	sprite_width = 8
+	sprite_height = 8
+	average_size = 50
+	average_weight = 5600
+
+/obj/item/food/fish/fresh_water/boxin_man
+	name = "Boxin Man"
+	desc = "I'm boxin' here!"
+	icon_state = "boxin_man"
+	random_case_rarity = FISH_RARITY_VERY_RARE
+	fillet_type = /obj/item/food/freshfish/white
+	sprite_width = 8
+	sprite_height = 8
+	average_size = 50
+	average_weight = 5600
+
+/obj/item/food/fish/fresh_water/weever_blue_album
+	name = "Weever Blue Album"
+	desc = "Only in Dreams!"
+	icon_state = "weever_blue_album"
+	random_case_rarity = FISH_RARITY_VERY_RARE
+	fillet_type = /obj/item/food/freshfish/slime
+	sprite_width = 8
+	sprite_height = 8
+	average_size = 50
+	average_weight = 10000
