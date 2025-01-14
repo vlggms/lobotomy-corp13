@@ -594,6 +594,11 @@
 		if(5)
 			C.icon = 'ModularTegustation/Teguicons/abno_cores/aleph.dmi'
 
+/mob/living/simple_animal/hostile/abnormality/spawn_gibs()
+	if(blood_volume <= 0)
+		return
+	return new /obj/effect/gibspawner/generic(drop_location(), src, get_static_viruses())
+
 // Actions
 /datum/action/innate/abnormality_attack
 	name = "Abnormality Attack"

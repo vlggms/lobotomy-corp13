@@ -10,6 +10,7 @@
 	del_on_death = FALSE
 	maxHealth = 1600
 	health = 1600
+	blood_volume = 0
 	ranged = TRUE
 	attack_sound = 'sound/abnormalities/steam/attack.ogg'
 	friendly_verb_continuous = "bonks"

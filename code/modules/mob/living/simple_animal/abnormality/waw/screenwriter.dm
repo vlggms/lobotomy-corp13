@@ -14,6 +14,7 @@ Defeating the murderer also surpresses the abnormality.
 	faction = list("hostile")
 	threat_level = WAW_LEVEL
 	start_qliphoth = 2
+	blood_volume = 0
 	work_chances = list(
 		"Nutrition" = 35,
 		"Cleanliness" = 35,
