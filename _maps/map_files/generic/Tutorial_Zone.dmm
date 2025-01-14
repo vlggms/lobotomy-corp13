@@ -619,6 +619,10 @@
 /obj/structure/tutorialbox,
 /turf/open/floor/wood,
 /area/department_main/human)
+"te" = (
+/obj/effect/mapping_helpers/records_spawner/second,
+/turf/open/floor/facility,
+/area/test_range)
 "tS" = (
 /obj/machinery/light{
 	dir = 1
@@ -849,6 +853,10 @@
 	},
 /turf/open/floor/wood,
 /area/department_main/human)
+"BJ" = (
+/obj/effect/mapping_helpers/records_spawner,
+/turf/open/floor/facility,
+/area/test_range)
 "Cc" = (
 /obj/machinery/door/airlock/highsecurity{
 	name = "Human Resources Department";
@@ -6787,7 +6795,7 @@ XL
 XL
 XL
 nf
-eg
+BJ
 eg
 eg
 eg
@@ -6889,7 +6897,7 @@ XL
 XL
 XL
 nf
-eg
+te
 eg
 eg
 eg

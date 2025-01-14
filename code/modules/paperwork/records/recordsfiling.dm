@@ -1,14 +1,14 @@
 /**
- * Records Cabinet
+ * Records Cabinet and its spawners
+ *
  */
 
 GLOBAL_LIST_EMPTY(records_cabinets)
 
 /obj/effect/mapping_helpers/records_spawner
 	name = "ZAYIN/TETH/HE records cabinet spawner"
-	/// Changes if the lockers will be able to be walked through, and their visual position adjusted up
-	var/walk_through = FALSE
-	/// List of papers that we want to spawn, hard-coded to be 3 in lenght
+	density = TRUE
+	/// List of paper types that we want to spawn
 	var/list/desired_papers = list(
 		/obj/item/paper/fluff/info/zayin,
 		/obj/item/paper/fluff/info/teth,
@@ -17,24 +17,18 @@ GLOBAL_LIST_EMPTY(records_cabinets)
 
 /obj/effect/mapping_helpers/records_spawner/Initialize()
 	. = ..()
-	var/desired_location = -10
+	var/current_location = 5 + (length(desired_papers) * -5)
 	for(var/i in 1 to length(desired_papers))
 		var/obj/structure/filingcabinet/smart/cabinet = new(get_turf(src))
+		GLOB.records_cabinets += cabinet // Cabinets in this list are populated at round-start automatically
 
-		// take the 1st item in the list then cut to remove it from the mapping helpers list, next continue the loop
-		var/picked_paper = desired_papers[1]
-		desired_papers -= picked_paper
+		cabinet.desired_type = desired_papers[i]
+		cabinet.pixel_x = current_location
 
-		// set cabinet variables so it looks nice
-		cabinet.desired_type = picked_paper
-		cabinet.pixel_x = desired_location
-		if(walk_through)
-			cabinet.density = 0
-			cabinet.pixel_y = 20
-
-		// add the cabinet to GLOB, so ticker can populate it at round-start
-		GLOB.records_cabinets += cabinet
-		desired_location += 10
+		current_location += 10
+		if(!density)
+			cabinet.density = density
+			cabinet.pixel_y += 20
 
 /obj/effect/mapping_helpers/records_spawner/second
 	name = "WAW/ALEPH/TOOL records cabinet spawner"
@@ -46,11 +40,11 @@ GLOBAL_LIST_EMPTY(records_cabinets)
 
 /obj/effect/mapping_helpers/records_spawner/walk_through
 	name = "ZAYIN/TETH/HE records cabinet spawner -- Walk-through"
-	walk_through = TRUE
+	density = FALSE
 
 /obj/effect/mapping_helpers/records_spawner/second/walk_through
 	name = "WAW/ALEPH/TOOL records cabinet spawner -- Walk-through"
-	walk_through = TRUE
+	density = FALSE
 
 /obj/structure/filingcabinet/smart
 	icon_state = "employmentcabinet"
@@ -85,7 +79,7 @@ GLOBAL_LIST_EMPTY(records_cabinets)
 		for(var/allowed_abnormalities in gamemode.abno_types)
 			if(allowed_abnormalities == paper_origin)
 				new paper(src)
-				continue
+				break
 
 /**
  * closets filled with their respective papers, consider using mapping helpers, please
