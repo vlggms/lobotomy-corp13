@@ -275,6 +275,7 @@
 	guaranteed_butcher_results = list(/obj/item/food/meat/slab/robot = 16)
 	death_sound = 'sound/effects/ordeals/green/midnight_dead.ogg'
 	offsets_pixel_x = list("south" = -96, "north" = -96, "west" = -96, "east" = -96)
+	damage_effect_scale = 1.25
 
 	var/laser_cooldown
 	var/laser_cooldown_time = 20 SECONDS

@@ -133,6 +133,7 @@
 	offsets_pixel_y = list("south" = -8, "north" = -8, "west" = -8, "east" = -8)
 	transform = matrix(1.5, MATRIX_SCALE)
 	SetOccupiedTiles(1, 1, 1, 1)
+	damage_effect_scale = 1.2
 	startTeleport()	//Let's Spaghettioodle out of here
 
 /mob/living/simple_animal/hostile/abnormality/greed_king/proc/startTeleport()
