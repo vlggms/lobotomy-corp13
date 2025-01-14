@@ -18,7 +18,7 @@ GLOBAL_LIST_EMPTY(records_cabinets)
 /obj/effect/mapping_helpers/records_spawner/Initialize()
 	. = ..()
 	var/desired_location = -10
-	for(var/i in 1 to desired_papers.len)
+	for(var/i in 1 to length(desired_papers))
 		var/obj/structure/filingcabinet/smart/cabinet = new(get_turf(src))
 
 		// take the 1st item in the list then cut to remove it from the mapping helpers list, next continue the loop
