@@ -90,8 +90,8 @@
 	var/active_pull_timer
 	var/NORMAL_PULL_DISTANCE = 1
 	var/HEAVY_PULL_DISTANCE = 2
-	var/NORMAL_PULL_DELAY = 10 // 0.75 seconds in deciseconds
-	var/HEAVY_PULL_DELAY = 15 // 1 second in deciseconds
+	var/NORMAL_PULL_DELAY = 10 // 1 second in deciseconds
+	var/HEAVY_PULL_DELAY = 15 // 1.5 seconds in deciseconds
 
 	// Chain beam
 	var/datum/beam/chain_beam
@@ -109,17 +109,17 @@
 
 
 /obj/effect/proc_holder/spell/pointed/axe_throw
-	name = "Axe throw"
-	desc = "Axe throw"
-	panel = "Contract"
+	name = "Chain Axe throw"
+	desc = "Throw your axe, and any human hit by hit will be chained to you making them unable to run away."
 	has_action = TRUE
 	action_icon = 'icons/mob/actions/actions_abnormality.dmi'
-	action_icon_state = "contract_ruin"
+	action_icon_state = "wood_axe"
 	clothes_req = FALSE
 	charge_max = 150
+	range = 10
 	selection_type = "range"
-	active_msg = "You prepare your Contract of Ruin..."
-	deactive_msg = "You put away your Contract of Ruin..."
+	active_msg = "You prepare to throw your axe..."
+	deactive_msg = "You put away your axe..."
 	base_action = /datum/action/spell_action/spell/axe_throw
 
 
@@ -138,8 +138,20 @@
 
 /obj/projectile/chainedaxe
 	name = "chained axe"
-	icon_state = "hunter_blade_animated"
-	damage = 1
+	icon_state = "wood_axe_animated"
+	damage_type = RED_DAMAGE
+	damage = 30
+	hitsound = 'sound/effects/splat.ogg'
+	var/chain
+
+/obj/projectile/chainedaxe/fire(setAngle)
+	if(firer)
+		chain = firer.Beam(src, icon_state = "chain")
+	..()
+
+/obj/projectile/chainedaxe/Destroy()
+	qdel(chain)
+	return ..()
 
 /obj/projectile/chainedaxe/on_hit(atom/target, blocked = FALSE)
 	. = ..()
@@ -232,7 +244,7 @@
 
 	// Throw the target towards the woodsman
 	chained_target.throw_at(T, distance, throw_speed, src)
-	playsound(target_turf, 'sound/weapons/batonextend.ogg', 50, TRUE)
+	playsound(target_turf, 'sound/weapons/chainhit.ogg', 50, TRUE)
 
 /mob/living/simple_animal/hostile/abnormality/woodsman/proc/update_chain_visuals()
 	if(!chained_target)
