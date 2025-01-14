@@ -45,12 +45,12 @@
 
 	observation_prompt = "Deep, deep, at the bottom of the sea, a creature lies, dreaming. <br>\
 		It seems to be holding on to a sack of fluid. <br>What will you do?"
-	observation_choices = list("Try and swim away", "Puncture the sack")
-	correct_choices = list("Try and swim away")
-	observation_success_message = "You swim upwards, hoping it doesn't notice you. <br>\
-		Surprisingly, after a few seconds you break the water's surface and make your escape. <br>You find a trinket in your pocket."
-	observation_fail_message = "You cannot get close enough, the water slows your movements. <br>\
-		The creature notices you, and prepares an attack. <br>It is impossible to evade, and you are torn to shreds."
+	observation_choices = list(
+		"Try and swim away" = list(TRUE, "You swim upwards, hoping it doesn't notice you. <br>\
+			Surprisingly, after a few seconds you break the water's surface and make your escape. <br>You find a trinket in your pocket."),
+		"Puncture the sack" = list(FALSE, "You cannot get close enough, the water slows your movements. <br>\
+			The creature notices you, and prepares an attack. <br>It is impossible to evade, and you are torn to shreds."),
+	)
 
 	var/can_act = TRUE
 	var/jump_cooldown = 0

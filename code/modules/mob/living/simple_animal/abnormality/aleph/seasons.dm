@@ -53,14 +53,14 @@
 	observation_prompt = "I'm standing outside a forest I both have never seen before, yet know well. <br>There is no City, no civilization on the horizon, I am utterly alone. <br>\
 		Dauntlessly, I press into the forest, seeing no other path forward, and encounter a cute-looking, pink forest spirit. <br>\
 		The spirits of the forest are playful, but it's best not to offend them by forgetting to make an offering"
-	observation_choices = list("Make an offering", "Continue on")
-	correct_choices = list("Make an offering")
-	observation_success_message = "I ask the spirit to lead me to an altar to make my offering and it leads me off a beaten path... <br>\
-		It felt as though I had walked for miles and days, my clothes torn and skin pricked by brambles and thorns but finally we arrived. <br>\
-		Before me is a skull-headed pagan God hanging ominously over its altar, fear grips my heart as the pink spirit leads me to lay down on the altar..."
-	observation_fail_message = "I pass by the spirit and hear it giggle ominously... <br>\
-		... <br>\
-		In the end, I am never able to find a way out of the forest."
+	observation_choices = list(
+		"Make an offering" = list(TRUE, "I ask the spirit to lead me to an altar to make my offering and it leads me off a beaten path... <br>\
+			It felt as though I had walked for miles and days, my clothes torn and skin pricked by brambles and thorns but finally we arrived. <br>\
+			Before me is a skull-headed pagan God hanging ominously over its altar, fear grips my heart as the pink spirit leads me to lay down on the altar..."),
+		"Continue on" = list(FALSE, "I pass by the spirit and hear it giggle ominously... <br>\
+			... <br>\
+			In the end, I am never able to find a way out of the forest."),
+	)
 
 	//Var Lists
 	var/list/season_stats = list(

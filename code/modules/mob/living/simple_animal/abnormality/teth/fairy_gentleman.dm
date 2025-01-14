@@ -48,11 +48,11 @@
 	)
 
 	observation_prompt = "\"Care for a drink?\""
-	observation_choices = list("Yes", "No")
-	correct_choices = list("Yes")
-	observation_success_message = "\"Yer a good drinkin buddy as any!\""
-	observation_fail_message = "\"Pssh! you're no fun!\" <br>\
-		The fairy walks away, stumbling along the way."
+	observation_choices = list(
+		"Yes" = list(TRUE, "\"Yer a good drinkin buddy as any!\""),
+		"No" = list(FALSE, "\"Pssh! you're no fun!\" <br>\
+			The fairy walks away, stumbling along the way."),
+	)
 
 	var/can_act = TRUE
 	var/jump_cooldown = 0

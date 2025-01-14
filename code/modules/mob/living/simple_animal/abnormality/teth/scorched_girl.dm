@@ -40,13 +40,13 @@
 		The match that never caught a fire before now burns to ash. Maybe is a price for taking my body, to burn so bright and fiery. \
 		Let's run when I can burn. I have been suffering and will suffer. But why you are still happy? \
 		I know the menace I have become. If nothing will change, I at least want to see you suffering."
-	observation_choices = list("Go to her", "Do not go to her")
-	correct_choices = list("Do not go to her")
-	observation_success_message = "I stopped. I can see her in the distance. \
-		\"Maybe you are thinking I am some kind of lighthouse.\" \
-		\"At least, I hope you realize my ash is all that remains after this flame consumes the all of me.\""
-	observation_fail_message = "Come to me. \
-		You who will soon become ashes just like me."
+	observation_choices = list(
+		"Do not go to her" = list(TRUE, "I stopped. I can see her in the distance. \
+			\"Maybe you are thinking I am some kind of lighthouse.\" \
+			\"At least, I hope you realize my ash is all that remains after this flame consumes the all of me.\""),
+		"Go to her" = list(FALSE, "Come to me. \
+			You who will soon become ashes just like me."),
+	)
 
 	/// Restrict movement when this is set to TRUE
 	var/exploding = FALSE

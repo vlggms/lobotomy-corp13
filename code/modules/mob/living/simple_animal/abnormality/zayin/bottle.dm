@@ -55,26 +55,17 @@
 
 	observation_prompt = "It was all very well to say \"Drink me\" but wisdom told you not to do that in a hurry. <br>\
 		The bottle had no markings to denote whether it was poisonous but you could not be sure, it was almost certain to disagree with you, sooner or later..."
-	observation_choices = list("Drink the bottle", "Eat the cake", "Leave")
-	correct_choices = list("Leave", "Eat the cake")
-	observation_success_message = "Suspicious things are suspicious, common sense hasn't failed you yet."
-	observation_fail_message = "However this bottle was not marked as poisonous and you ventured a taste, \
-		and found it horrid, the brine clung to your tongue. <br>Who'd mark such a horrible thing for drinking?"
-	//Special answer for choice 2
-	var/observation_success_message_2 = "Abandon reason, that's how you survive in Wonderland. <br>\
-		You devour the cake by the handful, frosting and crumbs smear your hands, your face and the floor. <br>\
-		It's sweet and tart, with only the slightest hint of salt. <br>\
-		As you breach the final layer of cake, the top of the bottle cracks and a deluge of brine spills forth, filling the room faster than you could draw a breath. <br>\
-		In spite of that, you're at peace and smiling. <br>\
-		Through your fading eyesight, you spy yourself through the other side of the containment door's window - frowning."
-
-// Final Observation
-/mob/living/simple_animal/hostile/abnormality/bottle/ObservationResult(mob/living/carbon/human/user, condition, answer) //special answer for cake result
-	if(answer == "Eat the cake")
-		observation_success_message = observation_success_message_2
-	else
-		observation_success_message = initial(observation_success_message)
-	return ..()
+	observation_choices = list(
+		"Leave" = list(TRUE, "Suspicious things are suspicious, common sense hasn't failed you yet."),
+		"Eat the cake" = list(TRUE, "Abandon reason, that's how you survive in Wonderland. <br>\
+			You devour the cake by the handful, frosting and crumbs smear your hands, your face and the floor. <br>\
+			It's sweet and tart, with only the slightest hint of salt. <br>\
+			As you breach the final layer of cake, the top of the bottle cracks and a deluge of brine spills forth, filling the room faster than you could draw a breath. <br>\
+			In spite of that, you're at peace and smiling. <br>\
+			Through your fading eyesight, you spy yourself through the other side of the containment door's window - frowning."),
+		"Drink the bottle" = list(FALSE, "However this bottle was not marked as poisonous and you ventured a taste, \
+			and found it horrid, the brine clung to your tongue. <br>Who'd mark such a horrible thing for drinking?"),
+	)
 
 // Work Mechanics
 /mob/living/simple_animal/hostile/abnormality/bottle/AttemptWork(mob/living/carbon/human/user, work_type)

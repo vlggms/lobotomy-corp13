@@ -48,18 +48,18 @@
 		The lights flutter and dance in the air, creating a haze. <br>\
 		Something is burning to death within. <br>\
 		Would you be scorched as well if the flames touched you?"
-	observation_choices = list("Turn around", "Reach out")
-	correct_choices = list("Reach out")
-	observation_success_message = "Enchanted by the haze, you extend a finger, <br>\
-		waiting for one of the lights to land. <br>\
-		A glimmering ball gently perches on your digit. <br>\
-		Then, a fire engulfs it. <br>\
-		Another glow attaches to your body, then four, then eight. <br>\
-		They multiply until you have been entirely shrouded in light."
-	observation_fail_message = "Resisting the temptation to reach out, <br>\
-		you decide it’s better to stay away from such dubious warmth. <br>\
-		You feel a cold wave crawl up your spine in an instant, but it may be the right choice. <br>\
-		Even children know not to play with fire."
+	observation_choices = list(
+		"Reach out" = list(TRUE, "Enchanted by the haze, you extend a finger, <br>\
+			waiting for one of the lights to land. <br>\
+			A glimmering ball gently perches on your digit. <br>\
+			Then, a fire engulfs it. <br>\
+			Another glow attaches to your body, then four, then eight. <br>\
+			They multiply until you have been entirely shrouded in light."),
+		"Turn around" = list(FALSE, "Resisting the temptation to reach out, <br>\
+			you decide it’s better to stay away from such dubious warmth. <br>\
+			You feel a cold wave crawl up your spine in an instant, but it may be the right choice. <br>\
+			Even children know not to play with fire."),
+	)
 
 	var/stoked
 

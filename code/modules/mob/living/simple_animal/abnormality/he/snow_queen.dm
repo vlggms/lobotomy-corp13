@@ -51,10 +51,10 @@
 		Freezing and cold. <br>\
 		You thought about it often, seeing she who couldn't see her dreams come true, trapped inside ice. <br>\
 		The brave agent headed to the Snow Palace and..."
-	observation_choices = list("Saved Kai", "Met the Snow Queen")
-	correct_choices = list("Met the Snow Queen")
-	observation_success_message = "The Snow Queen was cold and beautiful. <br>You heard ice melting."
-	observation_fail_message = "Gerda saved Kai and returned home. <br>They lived happily ever after."
+	observation_choices = list(
+		"Met the Snow Queen" = list(TRUE, "The Snow Queen was cold and beautiful. <br>You heard ice melting."),
+		"Saved Kai" = list(FALSE, "Gerda saved Kai and returned home. <br>They lived happily ever after."),
+	)
 
 	ego_list = list(
 		/datum/ego_datum/weapon/frostsplinter,

@@ -53,23 +53,23 @@
 		Beside me, the great sphinx lies. <br>It beckons me to answer the plaque. <br>\
 		Written in characters I have never seen before, well are the sculptor's passions read. <br>\
 		\"What goes on four feet in the morning, two feet in midday, and three feet in the evening?\""
-	observation_choices = list("Man", "Monster")
-	correct_choices = list("Man")
-	observation_success_message = "The sphinx says something. <br>It seems happy, or proud. <br>\
-		Then, it turns to stone, and sinks into the sand. <br>\
-		Nothing beside remains. Round the decay <br>\
-		Of that colossal Wreck, boundless and bare <br>\
-		The lone and level sands stretch far away."
-	observation_fail_message = "The sphinx seems displeased. \
-		It says some incomprehensible but hurtful words to me.<br>\
-		Then, it turns to stone. <br>I try and look away, but I find that I cannot move either.<br>\
-		My skin cracks like stone, my breathing stops. <br>I fall into an abyss. <br>\
-		... <br>\
-		I am entombed in stone, with no end in sight. <br>\
-		I cannot scream, for I have no tongue to scream with. <br>\
-		I cannot see, for I have no eyes to see with. <br>\
-		I cannot hear anything, for I have no ears to hear with. <br>\
-		Soon after, my heart is taken away too. <br>And then there is nothing left."
+	observation_choices = list(
+		"Man" = list(TRUE, "The sphinx says something. <br>It seems happy, or proud. <br>\
+			Then, it turns to stone, and sinks into the sand. <br>\
+			Nothing beside remains. Round the decay <br>\
+			Of that colossal Wreck, boundless and bare <br>\
+			The lone and level sands stretch far away."),
+		"Monster" = list(FALSE, "The sphinx seems displeased. \
+			It says some incomprehensible but hurtful words to me.<br>\
+			Then, it turns to stone. <br>I try and look away, but I find that I cannot move either.<br>\
+			My skin cracks like stone, my breathing stops. <br>I fall into an abyss. <br>\
+			... <br>\
+			I am entombed in stone, with no end in sight. <br>\
+			I cannot scream, for I have no tongue to scream with. <br>\
+			I cannot see, for I have no eyes to see with. <br>\
+			I cannot hear anything, for I have no ears to hear with. <br>\
+			Soon after, my heart is taken away too. <br>And then there is nothing left."),
+	)
 
 	//work-related
 	var/happy = FALSE

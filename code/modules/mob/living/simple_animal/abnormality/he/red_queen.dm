@@ -27,10 +27,12 @@
 
 	observation_prompt = "This abnormality has a notorious reputation for being particularly dry to work with. <br>It's hard to tell what it's thinking or what work it prefers. <br>\
 		What type of work will you attempt?"
-	observation_choices = list(ABNORMALITY_WORK_INSTINCT, ABNORMALITY_WORK_INSIGHT, ABNORMALITY_WORK_ATTACHMENT, ABNORMALITY_WORK_REPRESSION)
-	correct_choices = list(ABNORMALITY_WORK_INSTINCT) // Matches Red Queen's real preferred work. This default is set to stop warnings
-	observation_success_message = "You are granted an audience with the red queen. <br>Today, you were able to to satisfy her unpredictable whims"
-	observation_fail_message = "You narrowly dodge the card-guillotine coming for your neck, that was close, let's try something else."
+	observation_choices = list( // Matches Red Queen's real preferred work.
+		ABNORMALITY_WORK_INSTINCT = list(FALSE, "You narrowly dodge the card-guillotine coming for your neck, that was close, let's try something else."),
+		ABNORMALITY_WORK_INSIGHT = list(FALSE, "You narrowly dodge the card-guillotine coming for your neck, that was close, let's try something else."),
+		ABNORMALITY_WORK_ATTACHMENT = list(FALSE, "You narrowly dodge the card-guillotine coming for your neck, that was close, let's try something else."),
+		ABNORMALITY_WORK_REPRESSION = list(FALSE, "You narrowly dodge the card-guillotine coming for your neck, that was close, let's try something else."),
+	)
 	var/liked
 
 /mob/living/simple_animal/hostile/abnormality/red_queen/Initialize(mapload)
@@ -41,8 +43,7 @@
 
 /mob/living/simple_animal/hostile/abnormality/red_queen/PostSpawn()
 	. = ..()
-	correct_choices = list()
-	correct_choices += liked
+	observation_choices[liked] = list(TRUE, "You are granted an audience with the red queen. <br>Today, you were able to to satisfy her unpredictable whims")
 
 /mob/living/simple_animal/hostile/abnormality/red_queen/PostWorkEffect(mob/living/carbon/human/user, work_type, pe)
 	if(work_type != liked)

@@ -46,10 +46,10 @@
 	observation_prompt = "A gaggle of fairies flitter to and fro about the containment cell, they giggle as you approach.<br>\
 		\"You're a peaceful child, aren't you? You're lucky to accept our care.\" <br>\
 		They say in a sing-song all around you. \"Only good people ever speak to us, you're a good person too, right?\""
-	observation_choices = list("Accept their care")
-	correct_choices = list("Accept their care")
-	observation_success_message = "The fairies sprinkle their powder around you and it collects upon your hands. <br>You feel special. <br>\
-		You retreat from the cell and the fairies' hungry gazes. <br>You've always known the true meaning of The Fairies' Care."
+	observation_choices = list(
+		"Accept their care" = list(TRUE, "The fairies sprinkle their powder around you and it collects upon your hands. <br>You feel special. <br>\
+			You retreat from the cell and the fairies' hungry gazes. <br>You've always known the true meaning of The Fairies' Care."),
+	)
 
 /mob/living/simple_animal/hostile/abnormality/fairy_festival/proc/FairyHeal()
 	for(var/mob/living/carbon/human/P in protected_people)

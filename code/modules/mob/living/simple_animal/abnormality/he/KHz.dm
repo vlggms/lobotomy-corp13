@@ -36,17 +36,17 @@
 		\"Sierra... Oscar... Sierra...\" <br>\
 		What could this callsign mean? <br>\
 		Are you in danger, or is someone else? <br>What will you do?"
-	observation_choices = list("Tune your radio to 680 KHz", "Ignore it")
-	correct_choices = list("Tune your radio to 680 KHz")
-	observation_success_message = "Suddenly, you hear something from your radio, clear as day. <br>\
-		\"We hear you loud and clear.\" <br>\
-		\"You've done a great service.\" <br>\
-		The operator on the other end continues babbling, completely obscured by the returning static. <br>\
-		However, it seems you somehow managed solve their problem somehow."
-	observation_fail_message = "You turn off your radio and leave the room. <br>\
-		All abnormalities are dangerous, right? <br>\
-		This cry for help could just be a trick to make you let your guard down. <br>\
-		If there is anyone really out there, they are going to have to fend for themselves."
+	observation_choices = list(
+		"Tune your radio to 680 KHz" = list(TRUE, "Suddenly, you hear something from your radio, clear as day. <br>\
+			\"We hear you loud and clear.\" <br>\
+			\"You've done a great service.\" <br>\
+			The operator on the other end continues babbling, completely obscured by the returning static. <br>\
+			However, it seems you somehow managed solve their problem somehow."),
+		"Ignore it" = list(FALSE, "You turn off your radio and leave the room. <br>\
+			All abnormalities are dangerous, right? <br>\
+			This cry for help could just be a trick to make you let your guard down. <br>\
+			If there is anyone really out there, they are going to have to fend for themselves."),
+	)
 
 	var/input
 	var/bitposition = 4	//You write in bits. You need to successfully write a string of 5 to sucessfully work

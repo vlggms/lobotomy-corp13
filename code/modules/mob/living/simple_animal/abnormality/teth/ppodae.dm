@@ -37,10 +37,10 @@
 	abnormality_origin = ABNORMALITY_ORIGIN_LOBOTOMY
 
 	observation_prompt = "Before me stands a creature, eagerly awaiting its next meal. The creature is..."
-	observation_choices = list("A puppy", "A monster")
-	correct_choices = list("A monster")
-	observation_success_message = "I don't know how I didn't see it before, I rushed out to warn the others. I was fired the next day."
-	observation_fail_message = "It's the cutest puppy I've ever seen."
+	observation_choices = list(
+		"A monster" = list(TRUE, "I don't know how I didn't see it before, I rushed out to warn the others. I was fired the next day."),
+		"A puppy" = list(FALSE, "It's the cutest puppy I've ever seen."),
+	)
 
 	var/smash_damage_low = 16
 	var/smash_damage_high = 28

@@ -28,10 +28,10 @@
 	observation_prompt = "It's just a stupid rumour. <br>\"If you fill it in whatever way, then the book will grant one wish!\" <br>\
 		All the newbies crow, waiting for their chance to fill the pages with their wishes. <br>\
 		You open the book and read through every wish, splotched with ink and tears, every employee had, living and dead, wrote..."
-	observation_choices = list("Tear out the wishes", "Write your own wish")
-	correct_choices = list("Write your own wish")
-	observation_success_message = "You take out the pen from your pocket and write down your wish. It'll never come true but that's why it will always remain a wish."
-	observation_fail_message = "You tear out their wishes one by one. The book's page count remains the same. Did your wish come true?"
+	observation_choices = list(
+		"Write your own wish" = list(TRUE, "You take out the pen from your pocket and write down your wish. It'll never come true but that's why it will always remain a wish."),
+		"Tear out the wishes" = list(FALSE, "You tear out their wishes one by one. The book's page count remains the same. Did your wish come true?"),
+	)
 
 	var/wordcount = 0
 	var/list/oddities = list() //List gets populated with friendly animals

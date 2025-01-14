@@ -61,9 +61,9 @@
 		playsound(src, 'sound/machines/terminal_prompt_confirm.ogg', 50, FALSE)
 	var/dat = {"<div style=text-align:center;" valign="top">[message]<BR><BR></div>"}
 	var/menu_width = 200
-	for(var/i in 1 to buttons.len)
+	for(var/i in 1 to length(buttons))
 		menu_width += 150
-		switch(buttons.len)
+		switch(length(buttons))
 			if(1)
 				dat += {"<a style="font-size:large;float:center" href="?src=[REF(src)];button=[i]">[buttons[i]]</a>"}
 			if(2)

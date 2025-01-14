@@ -52,11 +52,11 @@
 	observation_prompt = "The slime craves affection, it covers the cell's floor, walls and celing. <br>\
 		It clings to your clothes, your mask and your skin as you enter. <br>At the centre of the cell, where the deluge conglomerates most, is the facismile of a girl. <br>\
 		She waves at you shyly. <br>You..."
-	observation_choices = list("Retreat from the slime", "Reach out to her")
-	correct_choices = list("Retreat from the slime")
-	observation_success_message = "You retreat from the cell in a hurry, the slime clinging to you turns acidic. If she won't find affection from you, she'll find it another way..."
-	observation_fail_message = "You reach out your hand and she does the same, your fingers entwine with the slimy appendage and she giggles. <br>\"Let's be together forever.\" <br>\
-		You pull your hand away, but it comes out with the slime. <br>You try to retreat, but you are already caught in her trap. <br>\"Don't betray me, okay?\" <br>Those are the last words you ever hear..."
+	observation_choices = list(
+		"Retreat from the slime" = list(TRUE, "You retreat from the cell in a hurry, the slime clinging to you turns acidic. If she won't find affection from you, she'll find it another way..."),
+		"Reach out to her" = list(FALSE, "You reach out your hand and she does the same, your fingers entwine with the slimy appendage and she giggles. <br>\"Let's be together forever.\" <br>\
+			You pull your hand away, but it comes out with the slime. <br>You try to retreat, but you are already caught in her trap. <br>\"Don't betray me, okay?\" <br>Those are the last words you ever hear..."),
+	)
 
 	var/mob/living/carbon/human/gifted_human = null
 	/// Amount of BLACK damage done to all enemies around main target on melee attack. Also includes original target

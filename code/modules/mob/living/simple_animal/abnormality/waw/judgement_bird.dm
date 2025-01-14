@@ -52,11 +52,11 @@
 
 	observation_prompt = "\"Long Bird\" who lived in the forest didn't want to let creatures to be eaten by monsters. <br>\
 		His initial goal was pure, at least. <br>The forest began to be saturated by darkness. <br>His long vigil is saturated with memories and regrets."
-	observation_choices = list("Leave him be", "Console the bird")
-	correct_choices = list("Console the bird")
-	observation_success_message = "Long Bird put down his scales, that had been with him for a long time. <br>\
-		The long-lasting judgement finally ends. <br>Long Bird slowly realizes the secrets behind the monster, and he waits. <br>For the forest that he will never take back."
-	observation_fail_message = "Long Bird sees through you, even though he is blind. <br>He is weighing your sins."
+	observation_choices = list(
+		"Console the bird" = list(TRUE, "Long Bird put down his scales, that had been with him for a long time. <br>\
+			The long-lasting judgement finally ends. <br>Long Bird slowly realizes the secrets behind the monster, and he waits. <br>For the forest that he will never take back."),
+		"Leave him be" = list(FALSE, "Long Bird sees through you, even though he is blind. <br>He is weighing your sins."),
+	)
 
 	var/judgement_cooldown = 10 SECONDS
 	var/judgement_cooldown_base = 10 SECONDS

@@ -34,12 +34,12 @@
 	observation_prompt = "This place is so gloomy, everyone always seems so sad and they don't smile. <br>\
 		It's lonely to be sad, so, this little lady has been secretly giving them all presents filled with friends! <br>\
 		Did they like the surprise?"
-	observation_choices = list("Tell the truth", "Lie and say they did")
-	correct_choices = list("Tell the truth")
-	observation_success_message = "Oh, that's sad... <br>Even if they're my friends, that doesn't mean they're your friends as well. <br>\
-		I won't give you a present, but, could you stay and play with me some more today?"
-	observation_fail_message = "I'm glad! <br>I wish I could have seen their faces, I bet they were so surprised! <br>\
-		You look lonely too, I hope my present will make you laugh as well!"
+	observation_choices = list(
+		"Tell the truth" = list(TRUE, "Oh, that's sad... <br>Even if they're my friends, that doesn't mean they're your friends as well. <br>\
+			I won't give you a present, but, could you stay and play with me some more today?"),
+		"Lie and say they did" = list(FALSE, "I'm glad! <br>I wish I could have seen their faces, I bet they were so surprised! <br>\
+			You look lonely too, I hope my present will make you laugh as well!"),
+	)
 
 	attack_action_types = list(/datum/action/cooldown/laetitia_gift, /datum/action/cooldown/laetitia_summon)
 

@@ -41,9 +41,11 @@ Defeating the murderer also surpresses the abnormality.
 	abnormality_origin = ABNORMALITY_ORIGIN_ARTBOOK //Technically it was in the beta but I dont want it showing it up in LC-only modes
 
 	observation_prompt = "The play started long ago. Here is the man who killed many. And you are holding a gun."
-	observation_choices = list("Shoot the man", "Wait and see", "Shoot someone else")
-	correct_choices = list("Shoot the man", "Wait and see", "Shoot someone else")
-	observation_success_message = "Whether you shoot or not, the play ends with tragedy." //TODO: multiple texts
+	observation_choices = list( //TODO: multiple texts
+		"Shoot the man" = list(TRUE, "Whether you shoot or not, the play ends with tragedy."),
+		"Wait and see" = list(TRUE, "Whether you shoot or not, the play ends with tragedy."),
+		"Shoot someone else" = list(TRUE, "Whether you shoot or not, the play ends with tragedy."),
+	)
 
 	pet_bonus = "shuffles" //saves a few lines of code by allowing funpet() to be called by attack_hand()
 	var/mob/living/simple_animal/hostile/actor/A
