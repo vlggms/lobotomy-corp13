@@ -6,9 +6,7 @@
 	var/hardblood_state = null
 	icon = 'ModularTegustation/Teguicons/blood_fiend_gear.dmi'
 	worn_icon = 'ModularTegustation/Teguicons/blood_fiend_gear_worn.dmi'
-	armor = list(RED_DAMAGE = 30, WHITE_DAMAGE = 10, BLACK_DAMAGE = 30, PALE_DAMAGE = 20)
-	var/list/normal_armor = list(red = 30, white = 10, black = 30, pale = 20)
-	var/list/hardblood_armor = list(red = 60, white = 40, black = 60, pale = 50)
+	armor = list(RED_DAMAGE = 40, WHITE_DAMAGE = 20, BLACK_DAMAGE = 40, PALE_DAMAGE = 20)
 	hat = /obj/item/clothing/head/ego_hat/blood_fiend/bird_mask
 	neck = /obj/item/clothing/ego_neck/blood_fiend/coagulated_blood
 	var/bloodfeast = 0
@@ -57,7 +55,7 @@
 
 /obj/effect/proc_holder/ability/bloodart
 	name = "Blood Art"
-	desc = "An ability that lets the user spend the armor's bloodfeast to heal. When spending max bloodfeast, the armor's resistances are buffed for a short time."
+	desc = "An ability that lets the user spend the armor's bloodfeast to heal."
 	action_icon = 'ModularTegustation/Teguicons/status_sprites.dmi'
 	action_icon_state = "lc_bleed"
 	base_icon_state = "lc_bleed"
@@ -70,14 +68,13 @@
 		var/obj/item/clothing/suit/armor/ego_gear/city/masquerade_cloak/S = wielder.get_item_by_slot(ITEM_SLOT_OCLOTHING)
 		wielder.adjustBruteLoss(-(S.bloodfeast/4))
 		if (S.bloodfeast == S.bloodfeast_max)
-			S.armor = new S.hardblood_armor
 			if (S.hardblood_state)
 				S.icon_state = S.hardblood_state
 			addtimer(CALLBACK(src, PROC_REF(ResetArmor), S), 100)
 		S.bloodfeast = 0
+	return ..()
 
 /obj/effect/proc_holder/ability/bloodart/proc/ResetArmor(obj/item/clothing/suit/armor/ego_gear/city/masquerade_cloak/A)
-	A.armor = new A.normal_armor
 	A.icon_state = A.normal_state
 
 /obj/item/clothing/suit/armor/ego_gear/city/masquerade_cloak/masquerade_coat
@@ -86,9 +83,8 @@
 	icon_state = "Driedcoat"
 	normal_state = "Driedcoat"
 	hardblood_state = "Bloodcoat"
-	armor = list(RED_DAMAGE = 10, WHITE_DAMAGE = 20, BLACK_DAMAGE = 10, PALE_DAMAGE = 0)
-	normal_armor = list(red = 10, white = 20, black = 10, pale = 0)
-	hardblood_armor = list(red = 40, white = 20, black = 40, pale = 40)
+	bloodfeast_max = 100
+	armor = list(RED_DAMAGE = 30, WHITE_DAMAGE = 20, BLACK_DAMAGE = 10, PALE_DAMAGE = 0)
 	hat = null
 	neck = null
 	attribute_requirements = list()
