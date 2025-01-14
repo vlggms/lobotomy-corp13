@@ -8292,20 +8292,7 @@
 /turf/open/floor/plasteel/freezer,
 /area/facility_hallway/information)
 "Oi" = (
-/obj/structure/filingcabinet/zayininfo{
-	density = 0;
-	pixel_x = -10;
-	pixel_y = 19
-	},
-/obj/structure/filingcabinet/tethinfo{
-	density = 0;
-	pixel_y = 19
-	},
-/obj/structure/filingcabinet/heinfo{
-	density = 0;
-	pixel_x = 10;
-	pixel_y = 19
-	},
+/obj/effect/mapping_helpers/records_spawner/walk_through,
 /turf/open/floor/pod/dark,
 /area/department_main/records)
 "Ok" = (
@@ -8387,21 +8374,7 @@
 /turf/open/floor/pod/dark,
 /area/department_main/command)
 "OH" = (
-/obj/structure/filingcabinet/wawinfo{
-	density = 0;
-	pixel_x = -11;
-	pixel_y = 19
-	},
-/obj/structure/filingcabinet/alephinfo{
-	density = 0;
-	pixel_x = -1;
-	pixel_y = 19
-	},
-/obj/structure/filingcabinet/toolinfo{
-	density = 0;
-	pixel_x = 9;
-	pixel_y = 19
-	},
+/obj/effect/mapping_helpers/records_spawner/second/walk_through,
 /turf/open/floor/pod/dark,
 /area/department_main/records)
 "OR" = (
