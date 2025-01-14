@@ -15,6 +15,7 @@
 
 	access = list(ACCESS_MEDICAL)
 	minimal_access = list(ACCESS_MEDICAL)
+	departments = DEPARTMENT_R_CORP | DEPARTMENT_MEDICAL
 
 	roundstart_attributes = list(
 								FORTITUDE_ATTRIBUTE = 60,
@@ -66,6 +67,7 @@
 
 	access = list(ACCESS_MEDICAL, ACCESS_COMMAND)
 	minimal_access = list(ACCESS_MEDICAL, ACCESS_COMMAND)
+	departments = DEPARTMENT_COMMAND | DEPARTMENT_R_CORP | DEPARTMENT_MEDICAL
 
 	roundstart_attributes = list(
 								FORTITUDE_ATTRIBUTE = 80,

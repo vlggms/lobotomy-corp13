@@ -11,6 +11,7 @@
 	display_order = JOB_DISPLAY_ORDER_SYNDICATEVET
 	access = list(ACCESS_SYNDICATE)
 	minimal_access = list(ACCESS_SYNDICATE)
+	departments = DEPARTMENT_CITY_ANTAGONIST
 	paycheck = 200
 	maptype = list("city")
 	job_important = "You are a lieutenant in the Thumb Syndicate. You are to be respectful and follow orders from the sottocapo. Not doing either will result in death. \

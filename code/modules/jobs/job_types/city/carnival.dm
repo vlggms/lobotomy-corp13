@@ -7,6 +7,7 @@
 	selection_color = "#555555"
 	access = list(ACCESS_CARGO)
 	minimal_access = list(ACCESS_CARGO)
+	departments = DEPARTMENT_SERVICE
 	outfit = /datum/outfit/job/carnival
 	display_order = JOB_DISPLAY_ORDER_ANTAG
 	exp_requirements = 300
