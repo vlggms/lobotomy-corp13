@@ -1974,6 +1974,7 @@
 /obj/effect/turf_decal/siding/brown{
 	dir = 4
 	},
+/obj/item/attribute_temporary/stattemporary,
 /turf/open/floor/plasteel,
 /area/department_main/training)
 "oK" = (
@@ -2711,6 +2712,19 @@
 	},
 /turf/open/floor/facility,
 /area/facility_hallway/north)
+"uf" = (
+/obj/effect/turf_decal/tile/brown{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/brown,
+/obj/effect/landmark/start,
+/obj/effect/turf_decal/siding/brown,
+/obj/effect/turf_decal/siding/brown{
+	dir = 1
+	},
+/obj/item/attribute_temporary/stattemporary,
+/turf/open/floor/plasteel,
+/area/department_main/training)
 "uj" = (
 /obj/machinery/disposal/bin,
 /obj/structure/disposalpipe/trunk,
@@ -3072,6 +3086,10 @@
 "wD" = (
 /turf/open/floor/plasteel/elevatorshaft,
 /area/department_main/control)
+"wE" = (
+/obj/item/attribute_temporary/stattemporary,
+/turf/open/floor/carpet/orange,
+/area/department_main/training)
 "wF" = (
 /obj/machinery/door/airlock/highsecurity{
 	name = "Extraction Office"
@@ -5775,6 +5793,13 @@
 /obj/effect/turf_decal/box/white,
 /turf/open/floor/plasteel/dark,
 /area/department_main/records)
+"SK" = (
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/obj/item/attribute_temporary/stattemporary,
+/turf/open/floor/carpet/orange,
+/area/department_main/training)
 "SQ" = (
 /obj/effect/landmark/latejoin,
 /obj/effect/decal/cleanable/dirt,
@@ -46561,9 +46586,9 @@ op
 qO
 Kz
 qO
-Jm
-qO
-UI
+SK
+wE
+uf
 qO
 pc
 zW
@@ -46819,7 +46844,7 @@ qO
 uL
 Xl
 hO
-qO
+wE
 uL
 qO
 qO
