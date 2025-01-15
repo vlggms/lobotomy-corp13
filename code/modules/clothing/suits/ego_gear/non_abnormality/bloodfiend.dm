@@ -28,6 +28,9 @@
 	var/datum/action/spell_action/ability/item/B = BS.action
 	B.SetItem(src)
 
+/obj/item/clothing/suit/armor/ego_gear/city/masquerade_cloak/examine(mob/user)
+	. = ..()
+	. += span_notice("This outfit currently has [bloodfeast] bloodfeast out of [bloodfeast_max] maximum bloodfeast.")
 
 /obj/effect/proc_holder/ability/bloodfeast
 	name = "Bloodfeast"
@@ -59,7 +62,7 @@
 	action_icon = 'ModularTegustation/Teguicons/status_sprites.dmi'
 	action_icon_state = "lc_bleed"
 	base_icon_state = "lc_bleed"
-	cooldown_time = 10 SECONDS
+	cooldown_time = 20 SECONDS
 
 /obj/effect/proc_holder/ability/bloodart/Perform(target, mob/user)
 	playsound(get_turf(user), 'sound/abnormalities/nosferatu/bloodcollect.ogg', 25, 0, 4)
