@@ -12,7 +12,7 @@
 		"rat2" = 10,
 		"drones2" = 5,
 		"metalfixer" = 10,
-		"firefixer" = 10,
+		"flamefixer" = 10,
 		)
 
 /obj/item/combat_page/level2/Initialize()
