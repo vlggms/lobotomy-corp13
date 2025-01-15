@@ -62,7 +62,7 @@
 		/obj/item/ego_weapon/paradise = /obj/item/toy/plush/ayin, // He-he
 		/obj/item/toy/plush/hokma = /obj/item/toy/plush/benjamin,
 		/obj/item/toy/plush/angela = /obj/item/toy/plush/carmen,
-		//INSERT CHEESE WEDGE HERE		= /obj/item/ego_weapon/realization/wisconsin // Joke Weapon
+		/obj/item/food/cheesewheel		= /obj/item/ego_weapon/realization/wisconsin // Joke Weapon
 		)
 
 	//Visual vars

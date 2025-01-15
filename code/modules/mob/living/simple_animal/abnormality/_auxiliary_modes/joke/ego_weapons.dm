@@ -357,7 +357,7 @@
 /obj/item/ego_weapon/realization/wisconsin
 	name = "Wisconsin"
 	desc = "You feel like you'll dream about cheese tonight."
-	icon_state = //INSERT CHEESE WEDGE HERE
+	icon_state = "cheesewedge_wisconsin"
 	force = 50
 	attack_speed = 0.5 // should be half the normal speed
 	damtype = WHITE_DAMAGE
