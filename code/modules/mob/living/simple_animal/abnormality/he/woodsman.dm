@@ -206,6 +206,9 @@
 		release_target()
 		return
 
+	if(IsKnockdown(chained_target))
+		release_target()
+
 	var/current_dist = get_dist(get_turf(chained_target), get_turf(src))
 	if (current_dist < 2)
 		chained_target.Knockdown(3 SECONDS)
