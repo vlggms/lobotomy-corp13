@@ -354,7 +354,7 @@
 
 // netz code, might be shit
 // Wisconsin
-/obj/item/ego_weapon/realization/wisconsin
+/obj/item/ego_weapon/joke/realization/wisconsin
 	name = "Wisconsin"
 	desc = "You feel like you'll dream about cheese tonight."
 	icon_state = "cheesewedge_wisconsin"
@@ -362,11 +362,11 @@
 	attack_speed = 0.5 // should be half the normal speed
 	damtype = WHITE_DAMAGE
 	attribute_requirements = list(
-							FORTITUDE_ATTRIBUTE = 60,
-							PRUDENCE_ATTRIBUTE = 120,
-							TEMPERANCE_ATTRIBUTE = 60,
-							JUSTICE_ATTRIBUTE = 60
-							)
+					FORTITUDE_ATTRIBUTE = 60,
+					PRUDENCE_ATTRIBUTE = 120,
+					TEMPERANCE_ATTRIBUTE = 60,
+					JUSTICE_ATTRIBUTE = 60
+					)
 	var/list/random_colors = list(
 		"red" = "#FF0000",
 		"blue" = "#00FF00",
