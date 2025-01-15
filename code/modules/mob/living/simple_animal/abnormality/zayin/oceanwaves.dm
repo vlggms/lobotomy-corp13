@@ -74,7 +74,7 @@
 	//Randomize the soders then vend.
 	var/jcorp_modifier = 0
 	for(var/upgradecheck in GLOB.jcorp_upgrades)
-		if(upgradecheck == "Abno_Luck")
+		if(upgradecheck == "Abno Luck")
 			jcorp_modifier = 1
 	switch(rand(1, 10)+jcorp_modifier)
 		if(1 to 2)
@@ -91,7 +91,7 @@
 	. = ..()
 	var/jcorp_modifier = 0
 	for(var/upgradecheck in GLOB.jcorp_upgrades)
-		if(upgradecheck == "Abno_Luck")
+		if(upgradecheck == "Abno Luck")
 			jcorp_modifier = 2
 	switch(rand(1, 10)+jcorp_modifier)
 		if(1 to 4)
@@ -108,7 +108,7 @@
 	. = ..()
 	var/jcorp_modifier = 0
 	for(var/upgradecheck in GLOB.jcorp_upgrades)
-		if(upgradecheck == "Abno_Luck")
+		if(upgradecheck == "Abno Luck")
 			jcorp_modifier = 2
 	switch(rand(1, 10)+jcorp_modifier)
 		if(1 to 6)

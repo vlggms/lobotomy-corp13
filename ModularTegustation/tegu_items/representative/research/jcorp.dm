@@ -89,11 +89,27 @@ GLOBAL_LIST_EMPTY(jcorp_upgrades)
 //ERTs
 
 /datum/data/lc13research/mobspawner/casino_slaves
-	research_name = ""
-	research_desc = ""
-	cost =
+	research_name = "Casino Slaves"
+	research_desc = "We can pay some local casinos to send over some of the slaves they have to help the facility. The casinos could care less of what happens to the slaves, as long as the casinos get back their pickaxes."
+	cost = LOW_RESEARCH_PRICE
 	corp = J_CORP_REP
-	mobspawner_type = /obj/effect/mob_spawn/human/supplypod
+	mobspawner_type = /obj/effect/mob_spawn/human/supplypod/r_corp/jcorp_call/casino_slaves
+
+/datum/data/lc13research/mobspawner/casino_security
+	research_name = "Casino Security"
+	research_desc = "We can pay some local casinos to send some of their security to help with combat. "
+	cost = AVERAGE_RESEARCH_PRICE
+	corp = J_CORP_REP
+	mobspawner_type = /obj/effect/mob_spawn/human/supplypod/r_corp/jcorp_call/casino_security
+	required_research = /datum/data/lc13research/mobspawner/casino_slaves
+
+/datum/data/lc13research/mobspawner/casino_killteam
+	research_name = "Casino Reaquisition Team"
+	research_desc = "The local casino owners will be PISSED if Lcorp stole security gear or the slave pickaxes. The deal we made with the casinos was that this team would be used if such were to occur."
+	cost = 0
+	corp = J_CORP_REP
+	mobspawner_type = /obj/effect/mob_spawn/human/supplypod/r_corp/jcorp_call/casino_security/killteam
+	required_research = /datum/data/lc13research/mobspawner/casino_slaves
 
 // Critical Hits (Untested! Don't add till Critical Hits PR is merged)
 ///datum/data/lc13research/crit_sticker

@@ -55,7 +55,7 @@
 	SLEEP_CHECK_DEATH(10)
 	icon_state = "dealerdamned"
 	for(var/upgradecheck in GLOB.jcorp_upgrades)
-		if(upgradecheck == "Abno_Luck")
+		if(upgradecheck == "Abno Luck")
 			flip_modifier = 10
 	if(prob(35)+flip_modifier)
 		say("Heads, huh? Looks like you win this one.")
@@ -94,7 +94,7 @@
 			SLEEP_CHECK_DEATH(spent_chambers*5)
 			spent_chambers+=1
 			for(var/upgradecheck in GLOB.jcorp_upgrades)
-				if(upgradecheck == "Abno_Luck")
+				if(upgradecheck == "Abno Luck")
 					if(player_shot)
 						roulette_modifier = -3
 					else

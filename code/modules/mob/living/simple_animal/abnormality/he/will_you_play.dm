@@ -63,7 +63,7 @@
 	var/cheat_chance = FALSE
 	//If you paid PE to the rep, you can cheat in this game.
 	for(var/upgradecheck in GLOB.jcorp_upgrades)
-		if(upgradecheck == "Abno_Luck")
+		if(upgradecheck == "Abno Luck")
 			cheat_chance = TRUE
 
 	//Goes through every use case.
