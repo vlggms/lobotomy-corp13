@@ -633,7 +633,7 @@
 	level_1 = null;
 	level_3 = null;
 	question3 = "What are you collecting?";
-	answers3 = list("Oh!, I am gathering books...", "Specify books from the city.", "They should be called 'Skill Books?'", "If you find any, even if they have already been read, I am willing to buy them from you.");
+	answers3 = list("Oh!, I am gathering books...", "Specifically books from the city.", "They should be called 'Skill Books?'", "If you find any, I am willing to buy them from you.");
 	dir = 4;
 	greeting_line = "Oh my! Greetings human!";
 	question2 = "How did all of you get here?";
