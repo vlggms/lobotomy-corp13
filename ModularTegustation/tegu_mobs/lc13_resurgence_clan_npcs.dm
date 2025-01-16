@@ -48,12 +48,12 @@ GLOBAL_LIST_EMPTY(marked_players)
 
 /mob/living/simple_animal/hostile/clan_npc/proc/on_seeing_looting_started(datum/source, mob/living/user, obj/crate)
 	SIGNAL_HANDLER
-	if (check_visible(user, crate) && stat != DEAD)
+	if (check_visible(user, crate) && stat != DEAD && !target)
 		addtimer(CALLBACK(src, PROC_REF(Talk)), 0)
 
 /mob/living/simple_animal/hostile/clan_npc/proc/on_seeing_looting_ended(datum/source, mob/living/user, obj/crate)
 	SIGNAL_HANDLER
-	if (check_visible(user, crate) && stat != DEAD)
+	if (check_visible(user, crate) && stat != DEAD && !target)
 		addtimer(CALLBACK(src, PROC_REF(Theif_Talk)), 0)
 		if (!(user in GLOB.marked_players ))
 			GLOB.marked_players += user
