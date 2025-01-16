@@ -9,6 +9,7 @@ GLOBAL_LIST_EMPTY(marked_players)
 	icon_dead = "clan_citzen_dead"
 	faction = list("resurgence_clan", "hostile", "neutral")
 	wander = 0
+	simple_mob_flags = SILENCE_RANGED_MESSAGE
 	obj_damage = 5
 	response_disarm_continuous = "gently pushes aside"
 	response_disarm_simple = "gently push aside"
