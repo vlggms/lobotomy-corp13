@@ -99,6 +99,19 @@
 	//PLAYABLES ATTACKS
 	attack_action_types = list(/datum/action/innate/abnormality_attack/toggle/woodsman_flurry_toggle)
 
+/mob/living/simple_animal/hostile/abnormality/woodsman/Login()
+	. = ..()
+	to_chat(src, "<h1>You are Warm Hearted Woodsman, A Combat Role Abnormality.</h1><br>\
+		<b>|Seeking Hearts...|:</b> When you attack dead bodies, you will extract their heart.<br>\
+		Extracting their heart will cause you to heal and cause you to deal more damage with all of your attacks for short time.<br>\
+		<br>\
+		<b>|Heart Ripper|:</b> After you press your 'Axe Throw' ability, You will throw your axe towards the next tile you click on.<br>\
+		Any human hit by your axe, will become chained to you, making them unable to run away. You will also start reeling them to yourself.<br>\
+		If you pull them all the way next to you, they will be released and knocked down for 3 seconds. They will also be released if they break line of sight with you.<br>\
+		<br>\
+		<b>|Chopping Down|:</b> When you attack, if your flurry attack is off cooldown you will use it.<br>\
+		Your flurry attack is a 3x2 AoE in front of you, which deals RED damage, which will repeat 7 times in a row before end with a extra strong final hit.<br>\
+		You are able to toggle your flurry attack on and off with your ability.")
 
 /datum/action/spell_action/spell/axe_throw/IsAvailable()
 	if (istype(owner, /mob/living/simple_animal/hostile/abnormality/woodsman))
