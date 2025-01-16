@@ -357,6 +357,7 @@
 /obj/item/ego_weapon/joke/realization/wisconsin
 	name = "Wisconsin"
 	desc = "You feel like you'll dream about cheese tonight."
+	icon = /obj/item/ego_weapon/joke/!icons/ego_weapons
 	icon_state = "cheesewedge_wisconsin"
 	force = 50
 	attack_speed = 0.5 // should be half the normal speed
