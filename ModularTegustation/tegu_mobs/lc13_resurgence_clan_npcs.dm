@@ -9,6 +9,7 @@ GLOBAL_LIST_EMPTY(marked_players)
 	icon_dead = "clan_citzen_dead"
 	faction = list("resurgence_clan", "hostile", "neutral")
 	wander = 0
+	simple_mob_flags = SILENCE_RANGED_MESSAGE
 	obj_damage = 5
 	response_disarm_continuous = "gently pushes aside"
 	response_disarm_simple = "gently push aside"
@@ -47,12 +48,12 @@ GLOBAL_LIST_EMPTY(marked_players)
 
 /mob/living/simple_animal/hostile/clan_npc/proc/on_seeing_looting_started(datum/source, mob/living/user, obj/crate)
 	SIGNAL_HANDLER
-	if (check_visible(user, crate) && stat != DEAD)
+	if (check_visible(user, crate) && stat != DEAD && !target)
 		addtimer(CALLBACK(src, PROC_REF(Talk)), 0)
 
 /mob/living/simple_animal/hostile/clan_npc/proc/on_seeing_looting_ended(datum/source, mob/living/user, obj/crate)
 	SIGNAL_HANDLER
-	if (check_visible(user, crate) && stat != DEAD)
+	if (check_visible(user, crate) && stat != DEAD && !target)
 		addtimer(CALLBACK(src, PROC_REF(Theif_Talk)), 0)
 		if (!(user in GLOB.marked_players ))
 			GLOB.marked_players += user
