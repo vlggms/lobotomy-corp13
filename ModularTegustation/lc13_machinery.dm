@@ -376,6 +376,13 @@
 	resistance_flags = INDESTRUCTIBLE
 	max_integrity = 1000000
 
+/obj/machinery/body_preservation_unit/Initialize()
+	. = ..()
+	if(SSmaptype.maptype == "office")
+		public_use = TRUE
+		revival_attribute_penalty = -4
+		cost_multiplier = 2
+
 /obj/machinery/body_preservation_unit/attackby(obj/item/I, mob/user, params)
 	if(istype(I, /obj/item/holochip))
 		var/obj/item/holochip/H = I
