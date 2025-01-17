@@ -9,6 +9,7 @@
 	display_order = JOB_DISPLAY_ORDER_CAPTAIN
 
 	access = list(ACCESS_COMMAND) // LC13:To-Do
+	departments = DEPARTMENT_COMMAND | DEPARTMENT_SECURITY
 	exp_requirements = 6000
 	exp_type = EXP_TYPE_CREW
 	exp_type_department = EXP_TYPE_SECURITY

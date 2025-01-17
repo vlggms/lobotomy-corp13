@@ -59,20 +59,20 @@
 		but they’ll simply pretend that the passenger never existed. <br>\
 		Lost and abandoned, tossed out like trash, <br>\
 		having no place left in the City."
-	observation_choices = list("Sit still", "Guide them out")
-	correct_choices = list("Guide them out")
-	observation_success_message = "You take a few steps, and the passenger follows. <br>\
-		As you draw closer to what appears to be an exit, the passenger bows down as though to show you gratitude. <br>\
-		You heard something fall; it left behind a gift. <br>\
-		Looks like it wasn't lost after all. It may have been an employee that happened to be patrolling the area. <br>\
-		Maybe you didn't guide it—maybe it was merely following you to make sure that you found the right exit."
-	observation_fail_message = "It idly stared in your direction. <br>\
-		Then, it began shambling for you, realizing something. <br>\
-		As it drew closer, you were able to identify <br>\
-		that the being was an employee of a certain transport company, not a passenger. <br>\
-		The ID card on its chest gave it away. <br>\
-		This stranded employee was approaching you, <br>\
-		preparing to go through the motions."
+	observation_choices = list(
+		"Guide them out" = list(TRUE, "You take a few steps, and the passenger follows. <br>\
+			As you draw closer to what appears to be an exit, the passenger bows down as though to show you gratitude. <br>\
+			You heard something fall; it left behind a gift. <br>\
+			Looks like it wasn't lost after all. It may have been an employee that happened to be patrolling the area. <br>\
+			Maybe you didn't guide it—maybe it was merely following you to make sure that you found the right exit."),
+		"Sit still" = list(FALSE, "It idly stared in your direction. <br>\
+			Then, it began shambling for you, realizing something. <br>\
+			As it drew closer, you were able to identify <br>\
+			that the being was an employee of a certain transport company, not a passenger. <br>\
+			The ID card on its chest gave it away. <br>\
+			This stranded employee was approaching you, <br>\
+			preparing to go through the motions."),
+	)
 
 	//teleport vars
 	var/teleport_cooldown

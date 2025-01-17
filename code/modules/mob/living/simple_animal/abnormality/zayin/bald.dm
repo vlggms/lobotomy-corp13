@@ -42,10 +42,10 @@
 	harvest_phrase_third = "%PERSON squeezes %ABNO. Some juice drips into %VESSEL."
 
 	observation_prompt = "This abnormality is filled with dreams of bald people. Are you balding, or already bald?"
-	observation_choices = list("Yes", "No")
-	correct_choices = list("Yes")
-	observation_success_message = "Lobotomy Corporation welcomes you."
-	observation_fail_message = "Come back after watching the fast and the furious 7 five more times."
+	observation_choices = list(
+		"Yes" = list(TRUE, "Lobotomy Corporation welcomes you."),
+		"No" = list(FALSE, "Come back after watching the fast and the furious 7 five more times."),
+	)
 
 	var/bald_users = list()
 	chem_type = /datum/reagent/abnormality/bald
@@ -117,10 +117,10 @@
 		if(HAS_TRAIT(not_bald, TRAIT_BALD))
 			. -= not_bald
 
-/mob/living/simple_animal/hostile/abnormality/bald/AttackingTarget()
+/mob/living/simple_animal/hostile/abnormality/bald/AttackingTarget(atom/attacked_target)
 	. = ..()
-	if(ishuman(target))
-		var/mob/living/carbon/human/H = target
+	if(ishuman(attacked_target))
+		var/mob/living/carbon/human/H = attacked_target
 		do_bald(H)
 
 /mob/living/simple_animal/hostile/abnormality/bald/Login()

@@ -10,6 +10,7 @@
 	del_on_death = FALSE
 	maxHealth = 1600
 	health = 1600
+	blood_volume = 0
 	ranged = TRUE
 	attack_sound = 'sound/abnormalities/steam/attack.ogg'
 	friendly_verb_continuous = "bonks"
@@ -55,16 +56,16 @@
 		As it does its work, the number on the electronic display seems to update. <br>\
 		Machines exist for a purpose. <br>\
 		You feel like you should give it an order."
-	observation_choices = list("Order it to carry luggage", "Order it to do nothing")
-	correct_choices = list("Order it to carry luggage")
-	observation_success_message = "It lifts a nearby object to carry it from left to right. <br>\
-		The count on its body went up by 1. <br>\
-		Just as you started to wonder if that was it, the machine replaced one of its vacuum tubes with a new one. <br>\
-		It presented the old one to you, and naturally, you accepted."
-	observation_fail_message = "A purposeless machine is bound to lose the meaning of its existence, even if it is functional. <br>\
-		A machine whose purpose is to do nothing will do whatever it takes to achieve its directive. <br>\
-		With a loud boiling noise, the machine’s body begins to heat, expelling hot steam. <br>\
-		Seeing it glow a dangerous-looking hue, you quickly escaped the room."
+	observation_choices = list(
+		"Order it to carry luggage" = list(TRUE, "It lifts a nearby object to carry it from left to right. <br>\
+			The count on its body went up by 1. <br>\
+			Just as you started to wonder if that was it, the machine replaced one of its vacuum tubes with a new one. <br>\
+			It presented the old one to you, and naturally, you accepted."),
+		"Order it to do nothing" = list(FALSE, "A purposeless machine is bound to lose the meaning of its existence, even if it is functional. <br>\
+			A machine whose purpose is to do nothing will do whatever it takes to achieve its directive. <br>\
+			With a loud boiling noise, the machine’s body begins to heat, expelling hot steam. <br>\
+			Seeing it glow a dangerous-looking hue, you quickly escaped the room."),
+	)
 
 	var/gear = 0
 	var/steam_damage = 5

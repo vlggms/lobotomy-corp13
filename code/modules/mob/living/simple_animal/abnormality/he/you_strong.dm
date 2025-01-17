@@ -37,9 +37,9 @@
 		'I would never amount to anything in life or in death', I thought until one day I recieved a curious offer, a pamphlet in my mail. <br>\
 		\"Have you become strong? Strong for your City? Become Strong! Strong for your City!\" The suspicious pamphlet had an address and I followed it, <br>\
 		I detested my weakness and I cared not if I lived or died, I'd take any chance to not be weak. <br>At the address was a most curious machine and an instruction to enter."
-	observation_choices = list("Enter the machine")
-	correct_choices = list("Enter the machine")
-	observation_success_message = "I did as instructed and entered; now I have become strong, strong for my City. <br>I love the City I live in."
+	observation_choices = list(
+		"Enter the machine" = list(TRUE, "I did as instructed and entered; now I have become strong, strong for my City. <br>I love the City I live in."),
+	)
 
 	var/penalize = FALSE
 	var/work_count = 0

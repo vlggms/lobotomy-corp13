@@ -33,17 +33,17 @@
 		The paper is a jumbled mess of words, you can't make out anything on it. <br>\
 		A pen appears in your hand. <br>\
 		The seems to be running out of patience. <br>Will you sign?"
-	observation_choices = list("Sign the contract", "Do not sign")
-	correct_choices = list("Do not sign")
-	observation_success_message = "You take a closer look at the contract <br>\
-		There is a tiny clause in fine print <br>\
-		\"Your soul becomes the property of a contract signed.\" <br>\
-		At your refusal, the man sighs and hands you a new contract. <br>\
-		This contract seems legitimate, so you sign."
-	observation_fail_message = "You sign the contract in haste. <br>\
-		In a few moments, you feel as if a piece of you is missing. <br>\
-		You walk out in a daze, unable to remember what the contract was about. <br>\
-		Perhaps you should have read the fine print."
+	observation_choices = list(
+		"Do not sign" = list(TRUE, "You take a closer look at the contract <br>\
+			There is a tiny clause in fine print <br>\
+			\"Your soul becomes the property of a contract signed.\" <br>\
+			At your refusal, the man sighs and hands you a new contract. <br>\
+			This contract seems legitimate, so you sign."),
+		"Sign the contract" = list(FALSE, "You sign the contract in haste. <br>\
+			In a few moments, you feel as if a piece of you is missing. <br>\
+			You walk out in a daze, unable to remember what the contract was about. <br>\
+			Perhaps you should have read the fine print."),
+	)
 
 	var/list/total_havers = list()
 	var/list/fort_havers = list()

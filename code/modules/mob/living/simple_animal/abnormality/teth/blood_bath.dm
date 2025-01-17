@@ -32,10 +32,10 @@
 		One of problems, one of them was numbing. <br>People believed they could live happy life. <br>\
 		People believed they could buy sadness and sell happiness with money. <br>When the first suicide happened, we should have known that these beliefs had been shattered. <br>\
 		Many hands float in the bath. <br>Hands that wanted to grab something but could not. <br>You......"
-	observation_choices = list("Grabbed a hand", "Did not grab a hand")
-	correct_choices = list("Grabbed a hand")
-	observation_success_message = "I feel coldness and stiffness. <br>I know these hands. <br>These are the hands of people I once loved."
-	observation_fail_message = "You looked away. <br>This is not the first time you ignore them. <br>It will be the same afterwards."
+	observation_choices = list(
+		"Grabbed a hand" = list(TRUE, "I feel coldness and stiffness. <br>I know these hands. <br>These are the hands of people I once loved."),
+		"Did not grab a hand" = list(FALSE, "You looked away. <br>This is not the first time you ignore them. <br>It will be the same afterwards."),
+	)
 
 	var/hands = 0
 

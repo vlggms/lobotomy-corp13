@@ -10,6 +10,7 @@
 	portrait = "faelantern"
 	maxHealth = 1200
 	health = 1200
+	blood_volume = 0
 	base_pixel_x = -16
 	pixel_x = -16
 	threat_level = TETH_LEVEL
@@ -45,16 +46,15 @@
 		A small fairy with a green glow sits atop it. <br>\
 		Saying no words, the fairy waves at you, inviting you to come over and take a break. <br>\
 		It looked like it was smiling, and it might have been dancing."
-	observation_choices = list("Take a momentary break", "Move on without resting", "Take a break where you're standing")
-	correct_choices = list("Move on without resting")
-	observation_success_message = "This is no time to be careless and stop here. <br>\
-		Tree branches came at you to halt you from leaving, but you narrowly dodged them. <br>\
-		You knew the real meaning of the fairy's gesture: <br>\
-		\"There's no such thing as a free gift\"."
-	observation_fail_message = "The fairy's smile stretches into an eerie grin. You shouldn't have trusted its appearance and now you'll have to pay the price."
-	//Extra wrong answer
-	var/observation_fail_message_2 = "You ignore the beckoning fairy and take a short break where you stand. <br>\
-		As you gather yourself to continue on the journey, you realize that several branches had grown in the premises, trapping you in."
+	observation_choices = list(
+		"Move on without resting" = list(TRUE, "This is no time to be careless and stop here. <br>\
+			Tree branches came at you to halt you from leaving, but you narrowly dodged them. <br>\
+			You knew the real meaning of the fairy's gesture: <br>\
+			\"There's no such thing as a free gift\"."),
+		"Take a momentary break" = list(FALSE, "The fairy's smile stretches into an eerie grin. You shouldn't have trusted its appearance and now you'll have to pay the price."),
+		"Take a break where you're standing" = list(FALSE, "You ignore the beckoning fairy and take a short break where you stand. <br>\
+			As you gather yourself to continue on the journey, you realize that several branches had grown in the premises, trapping you in."),
+	)
 
 	var/can_act = FALSE
 	var/break_threshold = 450
@@ -67,13 +67,6 @@
 	var/stab_cooldown
 	var/stab_cooldown_time = 30
 	var/lured_list = list()
-
-/mob/living/simple_animal/hostile/abnormality/faelantern/ObservationResult(mob/living/carbon/human/user, condition, answer) //special answer
-	if(answer == "Take a break where you're standing")
-		observation_fail_message = observation_fail_message_2
-	else
-		observation_fail_message = initial(observation_fail_message)
-	return ..()
 
 /mob/living/simple_animal/hostile/abnormality/faelantern/AttackingTarget(atom/attacked_target)
 	return OpenFire()

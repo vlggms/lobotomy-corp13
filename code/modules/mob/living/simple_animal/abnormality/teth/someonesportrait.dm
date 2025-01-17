@@ -29,11 +29,11 @@
 //TODO: Resprite + redo of this
 	observation_prompt = "The portrait has been in our family's possession for a long time. <br>\
 		They say it was of a very important relative of ours, but we do not recognize anyone present. <br>I've always hated the picture, why couldn't anyone else see it was just biding its time, waiting to strike?"
-	observation_choices = list("Destroy the picture")
-	correct_choices = list("Destroy the picture")
-	observation_success_message = "One night, when everyone else was asleep, I snuck out of my room and found myself before that horrible thing. <br>\
-		Retrieving a lighter from my pocket I flicked it on and held it to the painting... <br>\
-		It turned out I was right, it was waiting to attack and I got into its striking range when no one else was around..."
+	observation_choices = list(
+		"Destroy the picture" = list(TRUE, "One night, when everyone else was asleep, I snuck out of my room and found myself before that horrible thing. <br>\
+			Retrieving a lighter from my pocket I flicked it on and held it to the painting... <br>\
+			It turned out I was right, it was waiting to attack and I got into its striking range when no one else was around..."),
+	)
 
 //Initialize
 /mob/living/simple_animal/hostile/abnormality/someones_portrait/PostSpawn()

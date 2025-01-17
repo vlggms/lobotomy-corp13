@@ -44,13 +44,13 @@
 		As far as I know it's just me left. <br>\
 		The site burial went off and escape is impossible, yet, the other abnormalities remain in their cells - if they leave she forces them back inside. <br>\
 		Maybe if I enter one of the unused cells, she might leave me alone?"
-	observation_choices = list("Enter a cell", "Surrender to her")
-	correct_choices = list("Enter a cell")
-	observation_success_message = "I step inside and lock the door behind me, <br>I'm stuck inside. <br>\
-		She passes by the containment unit and peers through the glass and seems satisfied."
-	observation_fail_message = "Steeling myself, I confront her during one of her rounds. <br>I tell her I'm tired and just want it to end. <br>\
-		She gets closer and lifts her skirt(?) and I'm thrust underneath, my colleagues are here- they're alive and well! <br>\
-		But, they seem despondent. <br>One looks at me says simply; \"In here, you're with us. Forever.\""
+	observation_choices = list(
+		"Enter a cell" = list(TRUE, "I step inside and lock the door behind me, <br>I'm stuck inside. <br>\
+			She passes by the containment unit and peers through the glass and seems satisfied."),
+		"Surrender to her" = list(FALSE, "Steeling myself, I confront her during one of her rounds. <br>I tell her I'm tired and just want it to end. <br>\
+			She gets closer and lifts her skirt(?) and I'm thrust underneath, my colleagues are here- they're alive and well! <br>\
+			But, they seem despondent. <br>One looks at me says simply; \"In here, you're with us. Forever.\""),
+	)
 
 	var/finishing = FALSE
 
@@ -78,14 +78,14 @@
 		|Soul Warden|: If you attack a corpse, you will dust it, heal and gain a stack of “Captured Soul”<br>\
 		For each stack of “Captured Soul”, you become faster, deal 10 less melee damage and take 50% more damage.</b>")
 
-/mob/living/simple_animal/hostile/abnormality/warden/AttackingTarget()
+/mob/living/simple_animal/hostile/abnormality/warden/AttackingTarget(atom/attacked_target)
 	. = ..()
 	if(.)
 		if(finishing)
 			return FALSE
-		if(!istype(target, /mob/living/carbon/human))
+		if(!istype(attacked_target, /mob/living/carbon/human))
 			return
-		var/mob/living/carbon/human/H = target
+		var/mob/living/carbon/human/H = attacked_target
 
 		if(H.health < 0)
 
@@ -152,4 +152,5 @@
 
 /mob/living/simple_animal/hostile/abnormality/warden/bullet_act(obj/projectile/P)
 	visible_message(span_userdanger("[src] is unfazed by \the [P]!"))
+	new /obj/effect/temp_visual/healing/no_dam(get_turf(src))
 	P.Destroy()

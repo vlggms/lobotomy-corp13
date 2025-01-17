@@ -1,0 +1,135 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"a" = (
+/turf/closed/indestructible/reinforced,
+/area/city/backstreets_room)
+"e" = (
+/obj/effect/decal/cleanable/blood/gibs/core,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/facility/dark,
+/area/city/backstreets_room)
+"h" = (
+/obj/structure/table/reinforced,
+/obj/item/reagent_containers/food/drinks/soda_cans/oceanwave/ultimate{
+	pixel_x = 6
+	},
+/obj/item/reagent_containers/food/drinks/soda_cans/wellcheers_purple{
+	pixel_x = -6
+	},
+/turf/open/floor/facility/dark,
+/area/city/backstreets_room)
+"i" = (
+/obj/effect/decal/cleanable/blood/gibs/down,
+/turf/open/floor/facility/dark,
+/area/city/backstreets_room)
+"m" = (
+/obj/machinery/chem_master{
+	is_operational = 0;
+	name = "Broken Soda Development Device"
+	},
+/turf/open/floor/facility/dark,
+/area/city/backstreets_room)
+"v" = (
+/obj/structure/rack,
+/obj/effect/decal/cleanable/blood/splatter/over_window,
+/obj/item/stack/spacecash/c100,
+/turf/open/floor/facility/dark,
+/area/city/backstreets_room)
+"x" = (
+/obj/structure/rack,
+/obj/item/storage/firstaid/regular,
+/turf/open/floor/facility/dark,
+/area/city/backstreets_room)
+"B" = (
+/obj/item/clothing/suit/toggle/labcoat/chemist,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/facility/dark,
+/area/city/backstreets_room)
+"J" = (
+/obj/structure/table/reinforced,
+/obj/item/reagent_containers/glass/bottle,
+/obj/item/reagent_containers/dropper,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/facility/dark,
+/area/city/backstreets_room)
+"M" = (
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/facility/dark,
+/area/city/backstreets_room)
+"N" = (
+/obj/effect/decal/cleanable/blood,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/facility/dark,
+/area/city/backstreets_room)
+"P" = (
+/obj/effect/decal/cleanable/dirt,
+/mob/living/simple_animal/hostile/shrimp_soldier,
+/turf/open/floor/facility/dark,
+/area/city/backstreets_room)
+"R" = (
+/obj/structure/chair/office{
+	dir = 4
+	},
+/obj/effect/decal/cleanable/blood/footprints,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/facility/dark,
+/area/city/backstreets_room)
+"S" = (
+/obj/structure/table/reinforced,
+/obj/structure/microscope,
+/turf/open/floor/facility/dark,
+/area/city/backstreets_room)
+"U" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/vending/medical,
+/turf/open/floor/facility/dark,
+/area/city/backstreets_room)
+"X" = (
+/obj/machinery/door/airlock,
+/turf/open/floor/facility/dark,
+/area/city/backstreets_room)
+
+(1,1,1) = {"
+a
+a
+a
+a
+a
+X
+a
+"}
+(2,1,1) = {"
+a
+v
+N
+B
+N
+M
+a
+"}
+(3,1,1) = {"
+a
+m
+R
+i
+P
+e
+a
+"}
+(4,1,1) = {"
+a
+S
+J
+h
+x
+U
+a
+"}
+(5,1,1) = {"
+a
+a
+a
+a
+a
+a
+a
+"}

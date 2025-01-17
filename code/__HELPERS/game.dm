@@ -136,6 +136,9 @@
 
 	return dist
 
+/proc/get_dist_manhattan(atom/Loc1, atom/Loc2)
+	return abs(Loc1.x - Loc2.x) + abs(Loc1.y - Loc2.y)
+
 /proc/circlerangeturfs(center=usr,radius=3)
 
 	var/turf/centerturf = get_turf(center)

@@ -1,3 +1,12 @@
+/obj/machinery/vending/can_be_unfasten_wrench(mob/user, silent)
+	. = ..()
+	if(!.)
+		return FAILED_UNFASTEN
+
+	// Mechanics are in pain right now, as this is the most real thing ever
+	to_chat(user, span_warning("Aw dangit, your wrench is for 20 size bolts, but this vendor has size 17 bolts, your wrench keeps slipping!"))
+	return FAILED_UNFASTEN
+
 //Links to abnormality consoles when the console spawns
 /obj/machinery/containment_panel
 	name = "containment panel"

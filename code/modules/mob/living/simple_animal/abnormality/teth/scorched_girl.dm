@@ -40,13 +40,13 @@
 		The match that never caught a fire before now burns to ash. Maybe is a price for taking my body, to burn so bright and fiery. \
 		Let's run when I can burn. I have been suffering and will suffer. But why you are still happy? \
 		I know the menace I have become. If nothing will change, I at least want to see you suffering."
-	observation_choices = list("Go to her", "Do not go to her")
-	correct_choices = list("Do not go to her")
-	observation_success_message = "I stopped. I can see her in the distance. \
-		\"Maybe you are thinking I am some kind of lighthouse.\" \
-		\"At least, I hope you realize my ash is all that remains after this flame consumes the all of me.\""
-	observation_fail_message = "Come to me. \
-		You who will soon become ashes just like me."
+	observation_choices = list(
+		"Do not go to her" = list(TRUE, "I stopped. I can see her in the distance. \
+			\"Maybe you are thinking I am some kind of lighthouse.\" \
+			\"At least, I hope you realize my ash is all that remains after this flame consumes the all of me.\""),
+		"Go to her" = list(FALSE, "Come to me. \
+			You who will soon become ashes just like me."),
+	)
 
 	/// Restrict movement when this is set to TRUE
 	var/exploding = FALSE
@@ -84,7 +84,7 @@
 	var/highestcount = 0
 	for(var/turf/T in GLOB.department_centers)
 		var/targets_at_tile = 0
-		for(var/mob/living/L in view(10, T))
+		for(var/mob/living/L in ohearers(10, T))
 			if(!faction_check_mob(L) && L.stat != DEAD)
 				targets_at_tile++
 		if(targets_at_tile > highestcount)
@@ -104,7 +104,7 @@
 		return
 
 	var/amount_inview = 0
-	for(var/mob/living/carbon/human/H in view(7, src))
+	for(var/mob/living/carbon/human/H in ohearers(7, src))
 		if(!faction_check_mob(H) && H.stat != DEAD)
 			amount_inview += 1
 	if(prob(amount_inview*20))
@@ -122,7 +122,15 @@
 	return FALSE
 
 /mob/living/simple_animal/hostile/abnormality/scorched_girl/AttackingTarget(atom/attacked_target)
-	explode()
+	if(client)
+		explode()
+		return
+	var/amount_inview = 0
+	for(var/mob/living/carbon/human/H in ohearers(7, src))
+		if(!faction_check_mob(H) && H.stat != DEAD)
+			amount_inview += 1
+	if(prob(amount_inview * 20))
+		explode()
 	return
 
 /mob/living/simple_animal/hostile/abnormality/scorched_girl/proc/explode()

@@ -37,10 +37,10 @@
 	abnormality_origin = ABNORMALITY_ORIGIN_LOBOTOMY
 
 	observation_prompt = "Before me stands a creature, eagerly awaiting its next meal. The creature is..."
-	observation_choices = list("A puppy", "A monster")
-	correct_choices = list("A monster")
-	observation_success_message = "I don't know how I didn't see it before, I rushed out to warn the others. I was fired the next day."
-	observation_fail_message = "It's the cutest puppy I've ever seen."
+	observation_choices = list(
+		"A monster" = list(TRUE, "I don't know how I didn't see it before, I rushed out to warn the others. I was fired the next day."),
+		"A puppy" = list(FALSE, "It's the cutest puppy I've ever seen."),
+	)
 
 	var/smash_damage_low = 16
 	var/smash_damage_high = 28
@@ -53,11 +53,11 @@
 		return FALSE
 	return ..()
 
-/mob/living/simple_animal/hostile/abnormality/ppodae/AttackingTarget()
+/mob/living/simple_animal/hostile/abnormality/ppodae/AttackingTarget(atom/attacked_target)
 	if(!can_act)
 		return FALSE
-	var/mob/living/carbon/L = target
-	if(iscarbon(target) && (L.health < 0 || L.stat == DEAD))
+	var/mob/living/carbon/L = attacked_target
+	if(iscarbon(attacked_target) && (L.health < 0 || L.stat == DEAD))
 		if(HAS_TRAIT(L, TRAIT_NODISMEMBER))
 			return
 		var/list/parts = list()
@@ -72,7 +72,7 @@
 			bp.forceMove(get_turf(datum_reference.landmark)) // Teleports limb to containment
 			QDEL_NULL(src)
 			// Taken from eldritch_demons.dm
-	return Smash(target)
+	return Smash(attacked_target)
 
 //AoE attack taken from woodsman
 /mob/living/simple_animal/hostile/abnormality/ppodae/proc/Smash(target)

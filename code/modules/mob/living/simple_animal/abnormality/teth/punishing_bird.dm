@@ -60,9 +60,10 @@
 	)
 
 	observation_prompt = "A bird stares at you. What is the name of this bird?"
-	observation_choices = list("Little bird", "Punishing bird")
-	correct_choices = list("Little bird", "Punishing bird")
-	observation_success_message = "The small bird accepts whatever name you decide to give it. Its nature can never change now."
+	observation_choices = list(
+		"Little bird" = list(TRUE, "The small bird accepts whatever name you decide to give it. Its nature can never change now."),
+		"Punishing bird" = list(TRUE, "The small bird accepts whatever name you decide to give it. Its nature can never change now."),
+	)
 
 	do_not_possess = TRUE
 
@@ -166,8 +167,8 @@
 			var/mob/living/carbon/le_target = pick(potential_mobs)
 			pecking_targets |= le_target
 
-/mob/living/simple_animal/hostile/abnormality/punishing_bird/AttackingTarget()
-	if(ishuman(target) && bird_angry)
+/mob/living/simple_animal/hostile/abnormality/punishing_bird/AttackingTarget(atom/attacked_target)
+	if(ishuman(attacked_target) && bird_angry)
 		melee_damage_lower = angry_damage_human
 		melee_damage_upper = angry_damage_human
 
@@ -179,8 +180,8 @@
 		melee_damage_lower = 1
 		melee_damage_upper = 2
 
-	if(isliving(target))
-		var/mob/living/L = target
+	if(isliving(attacked_target))
+		var/mob/living/L = attacked_target
 		if(!(L in enemies) && obj_damage > 0) // The target didn't attack us and we've transformed
 			to_chat(src, span_warning("You can't punish innocent people!"))
 			return

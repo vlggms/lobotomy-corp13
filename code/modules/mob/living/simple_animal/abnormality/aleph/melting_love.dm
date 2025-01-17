@@ -52,11 +52,11 @@
 	observation_prompt = "The slime craves affection, it covers the cell's floor, walls and celing. <br>\
 		It clings to your clothes, your mask and your skin as you enter. <br>At the centre of the cell, where the deluge conglomerates most, is the facismile of a girl. <br>\
 		She waves at you shyly. <br>You..."
-	observation_choices = list("Retreat from the slime", "Reach out to her")
-	correct_choices = list("Retreat from the slime")
-	observation_success_message = "You retreat from the cell in a hurry, the slime clinging to you turns acidic. If she won't find affection from you, she'll find it another way..."
-	observation_fail_message = "You reach out your hand and she does the same, your fingers entwine with the slimy appendage and she giggles. <br>\"Let's be together forever.\" <br>\
-		You pull your hand away, but it comes out with the slime. <br>You try to retreat, but you are already caught in her trap. <br>\"Don't betray me, okay?\" <br>Those are the last words you ever hear..."
+	observation_choices = list(
+		"Retreat from the slime" = list(TRUE, "You retreat from the cell in a hurry, the slime clinging to you turns acidic. If she won't find affection from you, she'll find it another way..."),
+		"Reach out to her" = list(FALSE, "You reach out your hand and she does the same, your fingers entwine with the slimy appendage and she giggles. <br>\"Let's be together forever.\" <br>\
+			You pull your hand away, but it comes out with the slime. <br>You try to retreat, but you are already caught in her trap. <br>\"Don't betray me, okay?\" <br>Those are the last words you ever hear..."),
+	)
 
 	var/mob/living/carbon/human/gifted_human = null
 	/// Amount of BLACK damage done to all enemies around main target on melee attack. Also includes original target
@@ -100,16 +100,16 @@
 		return FALSE
 	return ..()
 
-/mob/living/simple_animal/hostile/abnormality/melting_love/AttackingTarget()
+/mob/living/simple_animal/hostile/abnormality/melting_love/AttackingTarget(atom/attacked_target)
 	// Convert
-	if(ishuman(target))
-		var/mob/living/carbon/human/H = target
+	if(ishuman(attacked_target))
+		var/mob/living/carbon/human/H = attacked_target
 		if(H.stat == DEAD || H.health <= HEALTH_THRESHOLD_DEAD)
 			return SlimeConvert(H)
 
 	// Consume a slime. Cannot work on the big one, so the check is not istype()
-	if(target.type == /mob/living/simple_animal/hostile/slime)
-		var/mob/living/simple_animal/hostile/slime/S = target
+	if(attacked_target.type == /mob/living/simple_animal/hostile/slime)
+		var/mob/living/simple_animal/hostile/slime/S = attacked_target
 		visible_message(span_warning("[src] consumes \the [S], restoring its own health."))
 		. = ..() // We do a normal attack without AOE and then consume the slime to restore HP
 		adjustBruteLoss(-maxHealth * 0.2)
@@ -117,9 +117,9 @@
 		return .
 
 	// AOE attack
-	if(isliving(target) || ismecha(target))
-		new /obj/effect/gibspawner/generic/silent/melty_slime(get_turf(target))
-		for(var/turf/open/T in view(1, target))
+	if(isliving(attacked_target) || ismecha(attacked_target))
+		new /obj/effect/gibspawner/generic/silent/melty_slime(get_turf(attacked_target))
+		for(var/turf/open/T in view(1, attacked_target))
 			var/obj/effect/temp_visual/small_smoke/halfsecond/S = new(T)
 			S.color = "#FF0081"
 			var/list/got_hit = list()
@@ -326,10 +326,10 @@
 			return FALSE
 	return ..()
 
-/mob/living/simple_animal/hostile/slime/AttackingTarget()
+/mob/living/simple_animal/hostile/slime/AttackingTarget(atom/attacked_target)
 	// Convert
-	if(ishuman(target))
-		var/mob/living/carbon/human/H = target
+	if(ishuman(attacked_target))
+		var/mob/living/carbon/human/H = attacked_target
 		if(H.stat == DEAD || H.health <= HEALTH_THRESHOLD_DEAD)
 			return SlimeConvert(H)
 		if(prob(statuschance))

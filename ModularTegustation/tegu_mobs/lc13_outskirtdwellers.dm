@@ -52,10 +52,10 @@
 	if(maxHealth >= 250)
 		. += span_notice("Drag yourself onto [src] in order to ride them.")
 
-/mob/living/simple_animal/hostile/morsel/AttackingTarget()
+/mob/living/simple_animal/hostile/morsel/AttackingTarget(atom/attacked_target)
 	retreat_distance = 0
-	if(is_type_in_typecache(target,wanted_objects)) //we eats
-		qdel(target)
+	if(is_type_in_typecache(attacked_target, wanted_objects)) //we eats
+		qdel(attacked_target)
 		buffed = (buffed + 1)
 		if(buffed >= 10)
 			PustuleChurn()
@@ -87,10 +87,10 @@
 		return
 	return ..()
 
-/mob/living/simple_animal/hostile/morsel/AttackingTarget()
+/mob/living/simple_animal/hostile/morsel/AttackingTarget(atom/attacked_target)
 	. = ..()
 	if(.)
-		var/dir_to_target = get_dir(get_turf(src), get_turf(target))
+		var/dir_to_target = get_dir(get_turf(src), get_turf(attacked_target))
 		animate(src, pixel_y = (base_pixel_y + 18), time = 2)
 		addtimer(CALLBACK(src, PROC_REF(AnimateBack)), 2)
 		for(var/i = 1 to 2)
@@ -735,11 +735,11 @@ Mobs that mostly focus on dealing RED damage, they are all a bit more frail than
 		return FALSE
 	return ..()
 
-/mob/living/simple_animal/hostile/lovetown/slumberer/AttackingTarget()
+/mob/living/simple_animal/hostile/lovetown/slumberer/AttackingTarget(atom/attacked_target)
 	if(countering)
 		return
 	if(grab_ready)
-		return OpenFire(target)
+		return OpenFire(attacked_target)
 	return ..()
 
 /mob/living/simple_animal/hostile/lovetown/slumberer/OpenFire(target)
@@ -1039,8 +1039,8 @@ Mobs that mostly focus on dealing RED damage, they are all a bit more frail than
 	if(current_stage == 2)
 		adjustBruteLoss(-40) //self damages at stage 2
 
-	if(ishuman(target))
-		if(Finisher(target))
+	if(ishuman(attacked_target))
+		if(Finisher(attacked_target))
 			return
 
 	if(countering)
@@ -1053,7 +1053,7 @@ Mobs that mostly focus on dealing RED damage, they are all a bit more frail than
 		DisableCounter()
 		return
 	if(counter_ready)
-		return OpenFire(target)
+		return OpenFire(attacked_target)
 	return AoeAttack()
 
 /mob/living/simple_animal/hostile/lovetown/abomination/OpenFire(target)

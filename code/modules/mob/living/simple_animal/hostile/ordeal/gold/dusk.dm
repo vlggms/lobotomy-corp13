@@ -191,19 +191,19 @@
 	recharge_cooldown = world.time + recharge_cooldown_time
 	current_beam = Beam(A, icon_state="lightning[rand(1,12)]", time = 3 SECONDS)
 
-/mob/living/simple_animal/hostile/ordeal/thunderbird_corrosion/AttackingTarget()
+/mob/living/simple_animal/hostile/ordeal/thunderbird_corrosion/AttackingTarget(atom/attacked_target)
 	. = ..()
-	if(!isliving(target))
+	if(!isliving(attacked_target))
 		return
-	var/mob/living/L = target
+	var/mob/living/L = attacked_target
 	if(charge_level) // We deal up to 20 more damage, 1 for every point of charge.
 		L.deal_damage(charge_level, BLACK_DAMAGE)
 		playsound(get_turf(src), 'sound/weapons/fixer/generic/energyfinisher1.ogg', 75, 1)
 		to_chat(L,span_danger("The [src] unleashes its charge!"))
 		AdjustCharge(-charge_level)
-	if(!ishuman(target))
+	if(!ishuman(attacked_target))
 		return
-	var/mob/living/carbon/human/H = target
+	var/mob/living/carbon/human/H = attacked_target
 	if(H.stat >= SOFT_CRIT || H.health < 0)
 		Convert(H)
 

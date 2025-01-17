@@ -52,6 +52,7 @@ GLOBAL_VAR_INIT(wcorp_enemy_faction, "") //decides which faction WCorp will be u
 						addtimer(CALLBACK(src, PROC_REF(drawround)), 40 MINUTES)
 						to_chat(world, span_userdanger("Round will end in a draw after 40 minutes."))
 				addtimer(CALLBACK(src, PROC_REF(rcorp_announce)), 3 MINUTES)
+				addtimer(CALLBACK(src, PROC_REF(ClearIncorpBarriers)), 6 MINUTES)
 				RegisterSignal(SSdcs, COMSIG_GLOB_MOB_DEATH, PROC_REF(CheckLiving))
 
 			//Limbus Labs
@@ -88,7 +89,7 @@ GLOBAL_VAR_INIT(wcorp_enemy_faction, "") //decides which faction WCorp will be u
 /// Automatically ends the shift if no humanoid players are alive
 /datum/game_mode/combat/proc/CheckLiving()
 	for(var/mob/living/carbon/human/hooman in GLOB.human_list)
-		if(hooman.stat != DEAD && hooman.ckey)
+		if(hooman.stat != DEAD && hooman.ckey && !istype(hooman, /mob/living/carbon/human/species/pinocchio))
 			return
 
 	if(SSticker.force_ending == TRUE) // they lost another way before we could do it, how rude.
@@ -133,7 +134,7 @@ GLOBAL_VAR_INIT(wcorp_enemy_faction, "") //decides which faction WCorp will be u
 //Gamemode stuff
 /datum/game_mode/combat/proc/counterincrease()
 	addtimer(CALLBACK(src, PROC_REF(counterincrease)), 1 MINUTES)
-	GLOB.combat_counter+=1
+	GLOB.combat_counter++
 	if(SSmaptype.maptype == "wcorp")
 		for(var/mob/living/carbon/human/H in GLOB.human_list)
 			if(H.stat == DEAD)
@@ -168,3 +169,10 @@ GLOBAL_VAR_INIT(wcorp_enemy_faction, "") //decides which faction WCorp will be u
 		CRASH("No payload somehow, possibly no landmark")
 	P.start_delay = delay
 	P.GetPath()
+
+
+/datum/game_mode/combat/proc/ClearIncorpBarriers()
+	for(var/obj/effect/landmark/nobasic_incorp_move/disappearing/L in GLOB.landmarks_list)
+		qdel(L)
+	for(var/mob/living/simple_animal/hostile/abnormality/A in GLOB.abnormality_mob_list)
+		to_chat(A, "Incorporeal barrier is broken!")

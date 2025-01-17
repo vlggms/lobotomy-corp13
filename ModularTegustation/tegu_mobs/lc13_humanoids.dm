@@ -120,12 +120,12 @@ Skittish, they prefer to move in groups and will run away if the enemies are in 
 		return FALSE
 	return ..()
 
-/mob/living/simple_animal/hostile/humanoid/rat/knife/AttackingTarget()
+/mob/living/simple_animal/hostile/humanoid/rat/knife/AttackingTarget(atom/attacked_target)
 	if(!can_act)
 		return
 	..()
 	if(dash_cooldown < world.time)
-		BackstreetsDash(target)
+		BackstreetsDash(attacked_target)
 		return
 
 /mob/living/simple_animal/hostile/humanoid/rat/knife/OpenFire()
@@ -243,7 +243,22 @@ Skittish, they prefer to move in groups and will run away if the enemies are in 
 	attack_verb_simple = "slice"
 	del_on_death = TRUE
 	var/can_act = TRUE
+	var/list/loot_weapon = list(
+	)
+	var/list/loot_armor = list(
+	)
 
+/mob/living/simple_animal/hostile/humanoid/fixer/drop_loot()
+	var/list/loot
+
+	if (prob(50))
+		loot = loot_armor
+	else
+		loot = loot_weapon
+
+	if(loot?.len)
+		for(var/i in loot)
+			new i(loc)
 
 /mob/living/simple_animal/hostile/humanoid/fixer/Move()
 	if(!can_act)
@@ -256,14 +271,14 @@ Skittish, they prefer to move in groups and will run away if the enemies are in 
 	return ..()
 
 /mob/living/simple_animal/hostile/humanoid/fixer/metal
-	name = "Metal Fixer"
+	name = "Memory Forger"
 	desc = "A dude covered in a full white cloak and always wear a white mask. He seems to be wearing a tactical vest."
 	icon_state = "metal_fixer"
 	icon_living = "metal_fixer"
 	icon_dead = "metal_fixer"
 	var/icon_attacking = "metal_fixer_weapon"
-	maxHealth = 1500
-	health = 1500
+	maxHealth = 2000
+	health = 2000
 	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 0.6, WHITE_DAMAGE = 1, BLACK_DAMAGE = 0.4, PALE_DAMAGE = 1.3)
 	move_to_delay = 5
 	melee_damage_lower = 12
@@ -275,6 +290,13 @@ Skittish, they prefer to move in groups and will run away if the enemies are in 
 	attack_verb_simple = "slice"
 	del_on_death = TRUE
 	ranged = TRUE
+	loot_weapon = list (
+		/obj/item/ego_weapon/shield/eria,
+		/obj/item/ego_weapon/city/echo/iria,
+	)
+	loot_armor = list (
+	/obj/item/clothing/suit/armor/ego_gear/city/echo/plated,
+	)
 	var/statue_type = /mob/living/simple_animal/hostile/metal_fixer_statue
 	var/shots_cooldown = 50
 	var/max_statues = 12
@@ -343,7 +365,9 @@ Skittish, they prefer to move in groups and will run away if the enemies are in 
 		adjustHealth(self_damage_statue)
 		var/mutable_appearance/colored_overlay = mutable_appearance(icon, "small_stagger", layer + 0.1)
 		add_overlay(colored_overlay)
+		ChangeResistances(list(RED_DAMAGE = 1.2, WHITE_DAMAGE = 2, BLACK_DAMAGE = 0.8, PALE_DAMAGE = 2.6))
 		SLEEP_CHECK_DEATH(stun_duration)
+		ChangeResistances(list(RED_DAMAGE = 0.6, WHITE_DAMAGE = 1, BLACK_DAMAGE = 0.4, PALE_DAMAGE = 1.3))
 		cut_overlays()
 	can_act = TRUE
 
@@ -396,7 +420,7 @@ Skittish, they prefer to move in groups and will run away if the enemies are in 
 
 	adjustHealth(-(P.damage/4))
 	playsound(src, 'sound/abnormalities/voiddream/skill.ogg', 50, TRUE, 2)
-	visible_message(span_warning("[P]  contacts with [src] and heals them!"))
+	visible_message(span_warning("[P] contacts with [src] and heals them!"))
 	DamageEffect(P.damage_type)
 
 /obj/projectile/metal_fixer
@@ -422,11 +446,19 @@ Skittish, they prefer to move in groups and will run away if the enemies are in 
 		//var/mob/living/simple_animal/hostile/humanoid/fixer/metal/M = target
 		qdel(src)
 		return BULLET_ACT_BLOCK
-	return ..()
+	var/mob/living/simple_animal/hostile/humanoid/fixer/metal/M = firer
+
+	if (istype(target, /mob))
+
+		var/mob/MOB = target
+		if (MOB.faction_check_mob(M, FALSE))
+			return BULLET_ACT_BLOCK
+	. = ..()
+
 
 /mob/living/simple_animal/hostile/metal_fixer_statue
 	name = "Memory Statue"
-	desc = "A statue created by the Metal Fixer."
+	desc = "A statue created by the Memory Forger."
 	icon = 'ModularTegustation/Teguicons/tegumobs.dmi'
 	icon_state = "memory_statute"
 	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 0.5, WHITE_DAMAGE = 0, BLACK_DAMAGE = 2, PALE_DAMAGE = 2)
@@ -474,7 +506,7 @@ Skittish, they prefer to move in groups and will run away if the enemies are in 
 /mob/living/simple_animal/hostile/metal_fixer_statue/proc/heal_metal_fixer()
 	if(metal)
 		metal.adjustHealth(-heal_per_tick)
-		visible_message("<span class='notice'>The statue heals the Metal Fixer!</span>")
+		visible_message("<span class='notice'>The statue heals the Memory Forger!</span>")
 		playsound(src, 'sound/abnormalities/rosesign/rose_summon.ogg', 75, TRUE, 2)
 		icon_state = "memory_statute_heal" // Set the initial icon state to the rising animation
 		flick("memory_statute_heal", src) // Play the rising animation
@@ -489,13 +521,13 @@ Skittish, they prefer to move in groups and will run away if the enemies are in 
 	return FALSE
 
 /mob/living/simple_animal/hostile/humanoid/fixer/flame
-	name = "Flame Fixer"
+	name = "Sanguine Flame"
 	desc = "A lanky young man with fair skin, dark eyes, and an often overoptimistic expression. A heavy spear decorated with vibrant patterns on the head."
 	icon_state = "flame_fixer"
 	icon_living = "flame_fixer"
 	icon_dead = "flame_fixer"
 	maxHealth = 2500
-	health = 1500
+	health = 2500
 	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 0.4, WHITE_DAMAGE = 0.6, BLACK_DAMAGE = 1, PALE_DAMAGE = 1.3)
 	move_to_delay = 4
 	melee_damage_lower = 20
@@ -508,7 +540,12 @@ Skittish, they prefer to move in groups and will run away if the enemies are in 
 	del_on_death = TRUE
 	ranged = TRUE
 	ranged_cooldown_time = 45
-	melee_reach = 2
+	loot_weapon = list (
+	/obj/item/ego_weapon/city/echo/sunstrike,
+	)
+	loot_armor = list (
+	/obj/item/clothing/suit/armor/ego_gear/city/echo/faux,
+	)
 	var/burn_stacks = 2
 	projectiletype = /obj/projectile/flame_fixer
 	var/damage_reflection = FALSE
@@ -519,6 +556,10 @@ Skittish, they prefer to move in groups and will run away if the enemies are in 
 	var/counter_cooldown = 30
 	var/last_voice_line = 0
 	var/voice_line_cooldown = 250
+	var/counter_timer
+	var/counter_duration = 4 SECONDS
+	var/got_hit = FALSE
+
 
 /mob/living/simple_animal/hostile/humanoid/fixer/flame/proc/TripleDash()
 	// if dash is off cooldown stun until the end of dashes and say quote
@@ -527,6 +568,7 @@ Skittish, they prefer to move in groups and will run away if the enemies are in 
 	// repeat 3 times with 1 sec delay between each
 	// unstun
 	if (world.time > last_dash + dash_cooldown)
+		got_hit = FALSE
 		last_dash = world.time
 		can_act = FALSE
 		say("Dissatisfaction.")
@@ -537,9 +579,13 @@ Skittish, they prefer to move in groups and will run away if the enemies are in 
 		Dash(target)
 		icon_state = initial(icon_state)
 		last_dash = world.time
-		can_act = TRUE
+		if (!got_hit)
+			can_act = TRUE
+		got_hit = FALSE
 
 /mob/living/simple_animal/hostile/humanoid/fixer/flame/proc/Dash(dash_target)
+	if (got_hit)
+		return
 	if (!dash_target)
 		return
 	var/turf/target_turf = get_turf(dash_target)
@@ -563,7 +609,7 @@ Skittish, they prefer to move in groups and will run away if the enemies are in 
 					continue
 				new /obj/effect/temp_visual/mech_fire(T)
 				for(var/mob/living/L in T)
-					if(!faction_check_mob(L, FALSE) || locate(L) in hit_mob)
+					if(!faction_check_mob(L, FALSE) && !(locate(L) in hit_mob))
 						L.apply_damage(dash_damage, RED_DAMAGE, null, L.run_armor_check(null, RED_DAMAGE), spread_damage = TRUE)
 						LAZYADD(hit_mob, L)
 
@@ -590,28 +636,36 @@ Skittish, they prefer to move in groups and will run away if the enemies are in 
 	// counter has random cooldown 15-40 sec
 	if (!can_act)
 		return
-	TripleDash()
 
 	if (world.time > last_counter + counter_cooldown)
 		last_counter = world.time
+		got_hit = FALSE
 		can_act = FALSE
 		icon_state = "flame_fixer_counter_start"
 		say("Debilitation.")
 		SLEEP_CHECK_DEATH(10)
-		damage_reflection = TRUE
-		icon_state = "flame_fixer_counter"
-		SLEEP_CHECK_DEATH(40)
+		if (!got_hit)
+			damage_reflection = TRUE
+			icon_state = "flame_fixer_counter"
+			counter_timer = addtimer(CALLBACK(src, PROC_REF(EndCounter)), counter_duration, TIMER_STOPPABLE)
+		return
+
+	. = ..()
+	if (istype(attacked_target, /mob/living))
+		var/mob/living/L = attacked_target
+		L.apply_lc_burn(burn_stacks)
+	TripleDash()
+
+/mob/living/simple_animal/hostile/humanoid/fixer/flame/proc/EndCounter()
+	if (damage_reflection)
+		//delete timer
+		if (counter_timer !=0)
+			deltimer(counter_timer)
 		damage_reflection = FALSE
 		can_act = TRUE
 		icon_state = initial(icon_state)
 		last_counter = world.time
 		counter_cooldown = rand(100, 250)
-		return
-
-	. = ..()
-	if (istype(target, /mob/living))
-		var/mob/living/L = target
-		L.apply_lc_burn(burn_stacks)
 
 /mob/living/simple_animal/hostile/humanoid/fixer/flame/bullet_act(obj/projectile/Proj, def_zone, piercing_hit = FALSE)
 	..()
@@ -671,12 +725,16 @@ Skittish, they prefer to move in groups and will run away if the enemies are in 
 		L.apply_lc_burn(burn_stacks)
 	if(firer==target)
 		var/mob/living/simple_animal/hostile/humanoid/fixer/flame/F = target
+		F.EndCounter()
+		F.got_hit = TRUE
 		qdel(src)
 		F.can_act = FALSE
 		F.say("Derealization...")
 		var/mutable_appearance/colored_overlay = mutable_appearance(F.icon, "small_stagger", F.layer + 0.1)
 		F.add_overlay(colored_overlay)
+		F.ChangeResistances(list(RED_DAMAGE = 0.8, WHITE_DAMAGE = 1.2, BLACK_DAMAGE = 2, PALE_DAMAGE = 2.6))
 		sleep(stun_duration)
+		F.ChangeResistances(list(RED_DAMAGE = 0.4, WHITE_DAMAGE = 0.6, BLACK_DAMAGE = 1, PALE_DAMAGE = 1.3))
 		F.cut_overlays()
 		F.can_act = TRUE
 		return BULLET_ACT_BLOCK

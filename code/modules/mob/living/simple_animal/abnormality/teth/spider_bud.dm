@@ -30,13 +30,13 @@
 	observation_prompt = "I am a spider. <br>I eat anything my web catches. <br>I am starving. <br>\
 		I haven't eaten anything for days. <br>There is a big prey hanging on my web. <br>\
 		My starvation could kill me if I don't eat something."
-	observation_choices = list("Eat the prey.", "Do not eat the prey.")
-	correct_choices = list("Do not eat the prey.")
-	observation_success_message = "I could not eat the prey in front of me. <br>\
-		This starvation is slowly tiring me. <br>The prey struggles to get out, to survive. <br>\
-		The struggle did nothing but shaking my web a little bit. <br>And I watch the prey."
-	observation_fail_message = "I devoured the prey. <br>\
-		My body reacted faster than my thoughts. <br>... <br>I am a spider. <br>I eat anything my web catches."
+	observation_choices = list(
+		"Do not eat the prey" = list(TRUE, "I could not eat the prey in front of me. <br>\
+			This starvation is slowly tiring me. <br>The prey struggles to get out, to survive. <br>\
+			The struggle did nothing but shaking my web a little bit. <br>And I watch the prey."),
+		"Eat the prey" = list(FALSE, "I devoured the prey. <br>\
+			My body reacted faster than my thoughts. <br>... <br>I am a spider. <br>I eat anything my web catches."),
+	)
 
 	/// Filled with ckeys of people who broke our cocoons, they need to pay if they dare mess with us
 	var/list/metagame_list = list()

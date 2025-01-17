@@ -38,15 +38,15 @@
 		Happiness of the world means happiness for me. <br>I'm trying to stay happy. <br>\
 		I don't care even if it got me to the point where I look like this. <br>Have you met my sisters? <br>We were always one. <br>\
 		We fought together, and shared a common goal. <br>By the way, are you happy now?"
-	observation_choices = list("Yes, I'm happy", "No, I'm not happy")
-	correct_choices = list("Yes, I'm happy")
-	observation_success_message = "(The egg shook violently) <br>\
-		Don't lie. <br>Why have we been ruined like this if that's true? <br>\
-		And why have you ended up like that? <br>My greed will not be sated with such flimsy conviction. <br>\
-		But if your answer is a resolve for the future, and not just a statement of fact... <br>Things might change, slowly."
-	observation_fail_message = "I knew you were not happy. <br>\
-		You are like me. <br>You trapped yourself inside of an egg, just like me. <br>\
-		The amber-colored sky is beautiful. <br>Oh, I'm getting hungry again."
+	observation_choices = list(
+		"Yes, I'm happy" = list(TRUE, "(The egg shook violently) <br>\
+			Don't lie. <br>Why have we been ruined like this if that's true? <br>\
+			And why have you ended up like that? <br>My greed will not be sated with such flimsy conviction. <br>\
+			But if your answer is a resolve for the future, and not just a statement of fact... <br>Things might change, slowly."),
+		"No, I'm not happy" = list(FALSE, "I knew you were not happy. <br>\
+			You are like me. <br>You trapped yourself inside of an egg, just like me. <br>\
+			The amber-colored sky is beautiful. <br>Oh, I'm getting hungry again."),
+	)
 
 	//Some Variables cannibalized from helper
 	var/charge_check_time = 1 SECONDS
@@ -133,6 +133,7 @@
 	offsets_pixel_y = list("south" = -8, "north" = -8, "west" = -8, "east" = -8)
 	transform = matrix(1.5, MATRIX_SCALE)
 	SetOccupiedTiles(1, 1, 1, 1)
+	damage_effect_scale = 1.2
 	startTeleport()	//Let's Spaghettioodle out of here
 
 /mob/living/simple_animal/hostile/abnormality/greed_king/proc/startTeleport()

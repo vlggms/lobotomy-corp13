@@ -264,12 +264,15 @@
 		/obj/item/clothing/head/beret/fishing_hat = 5,
 	)
 	loot_level3 = list(
+		/obj/item/food/fish/fresh_water/ufo = 5,
+		/obj/item/food/fish/fresh_water/unidentifiedfishobject = 1,
 		/obj/item/food/fish/fresh_water/ratfish = 25,
 		/obj/item/food/fish/fresh_water/waterflea = 20,
 		/obj/item/food/fish/fresh_water/yin = 20,
 		/obj/item/food/fish/fresh_water/yang = 20,
 		/mob/living/simple_animal/hostile/retaliate/frog = 10,
 		/obj/item/food/fish/emulsijack = 5,
+		/obj/item/food/fish/fresh_water/weever_blue_album = 5,
 	)
 
 /turf/open/water/deep/saltwater
@@ -284,6 +287,7 @@
 		/obj/item/stack/sheet/mineral/wood = 10,
 	)
 	loot_level2 = list(
+		/obj/item/food/fish/salt_water/seabunny = 5,
 		/obj/item/food/fish/trout = 35,
 		/obj/item/food/fish/salt_water/cardinal = 25,
 		/obj/item/food/fish/salt_water/sheephead = 10,
@@ -293,6 +297,8 @@
 		/obj/item/clothing/head/beret/fishing_hat = 5,
 	)
 	loot_level3 = list(
+		/obj/item/food/fish/salt_water/fishmael = 8,
+		/obj/item/food/fish/salt_water/searabbit = 5,
 		/obj/item/food/fish/salt_water/lanternfish = 60,
 		/obj/item/food/fish/salt_water/smolshark = 10,
 		/obj/item/food/fish/salt_water/tuna_pallid = 10,
@@ -325,14 +331,15 @@
 		/mob/living/simple_animal/hostile/shrimp = 2,
 	)
 	loot_level3 = list(
+		/obj/item/food/fish/fresh_water/boxin_man = 10,
+		/obj/item/food/fish/fresh_water/walkin_man = 10,
+		/obj/item/food/fish/fresh_water/unidentifiedfishobject = 5,
 		/obj/item/food/fish/fresh_water/mosb = 25,
 		/obj/item/food/fish/salt_water/tuna_pallid = 25,
 		/obj/item/food/fish/salt_water/piscine_mermaid = 45,
 		/obj/item/food/fish/emulsijack = 5,
+		/obj/item/food/fish/fresh_water/weever_blue_album = 6,
 	)
-
-/turf/open/water/deep/polluted/ObjSink(atom/movable/sinkin_thing)
-	return TRUE
 
 /* Change this later so that it is not a subtype since the variable is in the deep type.
 	Safe subtype isnt nessesary since it pre sets safe to TRUE when we can just set it to
@@ -342,14 +349,18 @@
  * Safe turfs, they wont sink you when you enter them
  */
 
+/turf/open/water/deep/saltwater
+	density = FALSE
+
 /turf/open/water/deep/saltwater/safe/IsSafe()
 	return TRUE
 
 /turf/open/water/deep/obsessing_water
-	safe = TRUE
 	name = "Obsessing water"
 	desc = "A strange black and teal water."
 	icon_state = "obsessing_water"
+	safe = TRUE
+	density = FALSE
 	loot_level1 = list(
 		/obj/item/stack/sheet/mineral/wood = 30,
 		/obj/item/food/grown/harebell = 35,

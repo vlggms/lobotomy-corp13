@@ -48,11 +48,11 @@
 	)
 
 	observation_prompt = "\"Care for a drink?\""
-	observation_choices = list("Yes", "No")
-	correct_choices = list("Yes")
-	observation_success_message = "\"Yer a good drinkin buddy as any!\""
-	observation_fail_message = "\"Pssh! you're no fun!\" <br>\
-		The fairy walks away, stumbling along the way."
+	observation_choices = list(
+		"Yes" = list(TRUE, "\"Yer a good drinkin buddy as any!\""),
+		"No" = list(FALSE, "\"Pssh! you're no fun!\" <br>\
+			The fairy walks away, stumbling along the way."),
+	)
 
 	var/can_act = TRUE
 	var/jump_cooldown = 0
@@ -131,16 +131,16 @@
 	is_flying_animal = TRUE
 	ADD_TRAIT(src, TRAIT_MOVE_FLYING, INNATE_TRAIT)
 
-/mob/living/simple_animal/hostile/abnormality/fairy_gentleman/AttackingTarget()
+/mob/living/simple_animal/hostile/abnormality/fairy_gentleman/AttackingTarget(atom/attacked_target)
 	if(!can_act)
 		return
 	melee_damage_type = WHITE_DAMAGE
 	if(jump_cooldown <= world.time && prob(10) && !client)
-		FairyJump(target)
+		FairyJump(attacked_target)
 		return
-	if(!ishuman(target))
+	if(!ishuman(attacked_target))
 		return ..()
-	var/mob/living/carbon/human/H = target
+	var/mob/living/carbon/human/H = attacked_target
 	H.drunkenness += 5
 	to_chat(H, span_warning("Yuck, some of it got in your mouth!"))
 	if(H.sanity_lost)

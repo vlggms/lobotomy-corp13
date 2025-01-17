@@ -31,6 +31,9 @@ SUBSYSTEM_DEF(fishing)
 /datum/controller/subsystem/fishing/proc/Moveplanets()
 	addtimer(CALLBACK(src, PROC_REF(Moveplanets)), 7 MINUTES)
 	moonphase++
+	if(moonphase == 5)
+		moonphase = 1
+
 	if(stopnext && moonphase != 4)
 		for(var/mob/M in GLOB.player_list)
 			to_chat(M, span_userdanger("The planets begin to move again."))

@@ -62,13 +62,13 @@
 
 	observation_prompt = "Everyone likes me, every day someone new visits me and asks about my stories, the villains I've fought, the friends I've made, the adventures I've had. <br>\
 		They never grow tired of my stories but, hey is it always peaceful around here? <br>The world still needs me, doesn't it?"
-	observation_choices = list("The world still needs you", "The world doesn't need you")
-	correct_choices = list("The world doesn't need you")
-	observation_success_message = "... <br>Somehow I think I already knew that. <br>\
-		I don't know if I can accept a world that doesn't love me as I love it. <br>Can I keep on loving the world, even if I'm no longer a real Magical Girl..?"
-	observation_fail_message = "I knew it! Whilst I'm here, no villains will go unpunished! <br>Just call on me anytime!.. <br>\
-		... <br>\
-		Why is still so peaceful..?"
+	observation_choices = list(
+		"The world doesn't need you" = list(TRUE, "... <br>Somehow I think I already knew that. <br>\
+			I don't know if I can accept a world that doesn't love me as I love it. <br>Can I keep on loving the world, even if I'm no longer a real Magical Girl..?"),
+		"The world still needs you" = list(FALSE, "I knew it! Whilst I'm here, no villains will go unpunished! <br>Just call on me anytime!.. <br>\
+			... <br>\
+			Why is still so peaceful..?"),
+	)
 
 	var/obj/effect/qoh_wand/wand
 	var/chance_modifier = 1
@@ -233,8 +233,8 @@
 		wand.forceMove(get_turf(src)) //That way it will be behind her like in the game.
 	return ..()
 
-/mob/living/simple_animal/hostile/abnormality/hatred_queen/AttackingTarget()
-	return OpenFire(target)
+/mob/living/simple_animal/hostile/abnormality/hatred_queen/AttackingTarget(atom/attacked_target)
+	return OpenFire(attacked_target)
 
 /mob/living/simple_animal/hostile/abnormality/hatred_queen/OpenFire()
 	if(!can_act || IsContained())

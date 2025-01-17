@@ -44,6 +44,8 @@
 	icon = 'ModularTegustation/Teguicons/teguitems.dmi'
 	icon_state = "gadget3"
 	var/paperstock = 1
+	w_class = WEIGHT_CLASS_SMALL
+	slot_flags = ITEM_SLOT_BELT | ITEM_SLOT_POCKETS
 
 /obj/item/portacopier/attackby(obj/item/W, mob/user)
 	if(istype(W, /obj/item/paper))
@@ -103,6 +105,8 @@
 		Needs to be recharged at a printer."
 	icon = 'ModularTegustation/Teguicons/teguitems.dmi'
 	icon_state = "gadget3"
+	w_class = WEIGHT_CLASS_SMALL
+	slot_flags = ITEM_SLOT_BELT | ITEM_SLOT_POCKETS
 	var/mob/living/simple_animal/hostile/abnormality/target_abno
 	var/mob/living/carbon/human/target_agent
 	var/print_charges = 1
