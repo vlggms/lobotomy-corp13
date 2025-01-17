@@ -3072,10 +3072,6 @@
 "wD" = (
 /turf/open/floor/plasteel/elevatorshaft,
 /area/department_main/control)
-"wE" = (
-/obj/item/lc_debug/attribute_injector,
-/turf/open/floor/carpet/orange,
-/area/department_main/training)
 "wF" = (
 /obj/machinery/door/airlock/highsecurity{
 	name = "Extraction Office"
@@ -46566,7 +46562,7 @@ qO
 Kz
 qO
 Jm
-wE
+qO
 UI
 qO
 pc
