@@ -54,9 +54,6 @@
 	inhand_icon_state = "fullstopsniper"
 	force = 20
 	fire_sound = 'sound/weapons/gun/sniper/shot.ogg'
-	zoom_amt = 10 //Long range, enough to see in front of you, but no tiles behind you.
-	zoomable = TRUE
-	zoom_out_amt = 5
 	projectile_damage_multiplier = 4
 	shotsleft = 5
 	fire_delay = 30
@@ -66,6 +63,10 @@
 							TEMPERANCE_ATTRIBUTE = 60,
 							JUSTICE_ATTRIBUTE = 60
 							)
+
+/obj/item/ego_weapon/ranged/city/fullstop/sniper/Initialize(mapload)
+	. = ..()
+	AddComponent(/datum/component/scope, range_modifier = 2)
 
 /obj/item/ego_weapon/ranged/city/fullstop/deagle
 	name = "fullstop magnum"
