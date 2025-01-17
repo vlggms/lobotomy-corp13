@@ -60,6 +60,10 @@
 	SIGNAL_HANDLER
 	if(!IsContained()) // If it's breaching right now
 		return FALSE
+	if(istype(died, /mob/living/simple_animal/hostile/abnormality))
+		datum_reference.qliphoth_change(-1) // One abnormality death reduces it
+		return TRUE
+
 	if(!ishuman(died))
 		return FALSE
 	if(died.z != z)
@@ -106,6 +110,12 @@
 			layers_left+=1
 			HandleLayers()
 			H.gib()
+
+/mob/living/simple_animal/hostile/abnormality/lindworm/CanAttack(atom/the_target)
+	..()
+	if(!ishuman(the_target))
+		return FALSE
+	return TRUE
 
 /mob/living/simple_animal/hostile/abnormality/lindworm/proc/HandleLayers()
 	switch(layers_left)

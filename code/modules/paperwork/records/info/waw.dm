@@ -575,10 +575,9 @@
 	abno_type = /mob/living/simple_animal/hostile/abnormality/lindworm
 	abno_code = "F-02-194"
 	abno_info = list(
-		"Working on F-02-194 with a new work type will reduce it's layers of armor. This also lowered the employee's defenses temporarily.",
-		"When an employee died in the facility, the Qliphoth counter lowered.",
+		"Working on F-02-194 with a new work type will reduce it's layers of armor. This also lowered the employee's defenses until the abnormality was defeated.",
+		"When an employee or abnormality died in the facility, the Qliphoth counter lowered.",
 		"As employees assaulted F-02-194, it lost more layers of armor. It was unable to be defeated until all the layers of armor were destroyed.",
-
 	)
 	abno_breach_damage_type = "Red/White"
 	abno_breach_damage_count = "High"
