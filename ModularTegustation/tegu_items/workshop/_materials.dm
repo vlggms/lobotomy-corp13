@@ -33,7 +33,6 @@
 	else
 		new resource_type(get_turf(user))
 	qdel(src)
-	return
 
 /obj/item/tresmetal/proc/SetQuality(value)
 	if(!value)
@@ -69,7 +68,7 @@
 
 /obj/item/hot_tresmetal/Initialize()
 	cool_timer = addtimer(CALLBACK(src, PROC_REF(cooling)), 5 MINUTES, TIMER_STOPPABLE)
-	..()
+	. = ..()
 	name = "heated " + initial(original_mat.name)
 	desc += " Put it on an anvil and hit with a hammer to work it."
 

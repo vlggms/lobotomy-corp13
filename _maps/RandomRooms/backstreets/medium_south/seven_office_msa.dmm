@@ -1,7 +1,7 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
 "a" = (
 /obj/structure/window/reinforced/fulltile/indestructable,
-/turf/open/space/basic,
+/turf/open/floor/plating/ashplanet/wateryrock,
 /area/city/backstreets_room)
 "c" = (
 /mob/living/simple_animal/hostile/ordeal/green_bot,
@@ -44,10 +44,6 @@
 "x" = (
 /obj/machinery/door/window/westleft,
 /turf/open/floor/carpet/green,
-/area/city/backstreets_room)
-"y" = (
-/obj/structure/window/reinforced/fulltile/indestructable,
-/turf/closed/indestructible/fakedoor,
 /area/city/backstreets_room)
 "z" = (
 /mob/living/simple_animal/hostile/ordeal/green_bot_big,
@@ -112,7 +108,7 @@ l
 Q
 "}
 (5,1,1) = {"
-y
+a
 C
 c
 k
