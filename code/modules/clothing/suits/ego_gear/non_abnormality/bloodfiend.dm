@@ -69,11 +69,11 @@
 	if (ishuman(user))
 		var/mob/living/carbon/human/wielder = user
 		var/obj/item/clothing/suit/armor/ego_gear/city/masquerade_cloak/S = wielder.get_item_by_slot(ITEM_SLOT_OCLOTHING)
-		wielder.adjustBruteLoss(-(S.bloodfeast/4))
+		wielder.adjustBruteLoss(-(S.bloodfeast/2))
 		if (S.bloodfeast == S.bloodfeast_max)
 			if (S.hardblood_state)
 				S.icon_state = S.hardblood_state
-			addtimer(CALLBACK(src, PROC_REF(ResetArmor), S), 100)
+			addtimer(CALLBACK(src, PROC_REF(ResetArmor), S), 600)
 		S.bloodfeast = 0
 	return ..()
 

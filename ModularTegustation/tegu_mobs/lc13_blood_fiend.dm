@@ -161,7 +161,8 @@
 /mob/living/simple_animal/hostile/humanoid/blood/fiend/Move()
 	if(!can_act)
 		return FALSE
-	Drain()
+	if(stat != DEAD)
+		Drain()
 	..()
 
 /mob/living/simple_animal/hostile/humanoid/blood/fiend/boss
