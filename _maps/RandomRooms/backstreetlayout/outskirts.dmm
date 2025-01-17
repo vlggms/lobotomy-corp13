@@ -562,7 +562,7 @@
 	question2 = "Why are you not attacking me?";
 	question3 = "Who are your leaders?";
 	answers2 = list("Oh, You must have gotten the wrong idea.", "This clan was never about killing or hunting humans.", "It is just that one of our Elders has gone a bit rogue.", "Tinkerer is their name, They have quite a strange hatred for the city...", "However the Weaver and the Historian remain sane.", "Still leading this dream of ours.");
-	answers3 = list("Do you mean the Elders?","We used to have 3 of them.","The Tinkerer, The Historian and The Weaver","However, Tinkerer is a bit of a mess right now, They they have left.","The Historian is currently incharge of leading expeditions like these.", "While the Weaver is staying back at our village, Keeping watch over us and protecting us.");
+	answers3 = list("Do you mean the Elders?","We used to have 3 of them.","The Tinkerer, The Historian and The Weaver","However, Tinkerer is a bit of a mess right now, They have left.","The Historian is currently incharge of leading expeditions like these.", "While the Weaver is staying back at our village, Keeping watch over us and protecting us.");
 	answers1 = list("You may call me Comander Julian", "The one assigned by the Historian to lead this outpost.", "Currently waiting for the Historian to report back to us with our next orders.");
 	return_to_origin = 1;
 	city_faction = 0;
