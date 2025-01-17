@@ -1,7 +1,7 @@
 //Idea by ArcAngela, strangely enough.
 /mob/living/simple_animal/hostile/abnormality/rubber_duck
 	name = "Interdimensional Rubber Duck"
-	desc = "A small yellow duck.."
+	desc = "A small yellow duck."
 	icon = 'ModularTegustation/Teguicons/32x32.dmi'
 	icon_state = "duckcontained"
 	icon_living = "duckcontained"
@@ -28,10 +28,10 @@
 	work_damage_type = WHITE_DAMAGE
 
 	ego_list = list(
-//		/datum/ego_datum/weapon/uturn,
-//		/datum/ego_datum/armor/uturn,
+		/datum/ego_datum/weapon/squeak,
+		/datum/ego_datum/armor/squeak,
 	)
-//	gift_type =  /datum/ego_gifts/uturn
+//	gift_type =  /datum/ego_gifts/squeak
 	abnormality_origin = ABNORMALITY_ORIGIN_ORIGINAL
 	var/list/looking_players = list()
 
@@ -53,8 +53,6 @@
 		looking_players |=H
 
 /* Work effects */
-
-
 /mob/living/simple_animal/hostile/abnormality/rubber_duck/BreachEffect(mob/living/carbon/human/user, breach_type)
 	. = ..()
 

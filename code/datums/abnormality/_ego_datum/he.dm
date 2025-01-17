@@ -491,3 +491,12 @@
 /datum/ego_datum/armor/hexnail
 	item_path = /obj/item/clothing/suit/armor/ego_gear/he/hexnail
 	cost = 35
+
+// Interdimensional Rubber Duck - Squeaky Toy
+/datum/ego_datum/weapon/squeak
+	item_path = /obj/item/ego_weapon/ranged/squeak
+	cost = 35
+
+/datum/ego_datum/armor/squeak
+	item_path = /obj/item/clothing/suit/armor/ego_gear/he/squeak
+	cost = 35
