@@ -14,7 +14,9 @@
 		/obj/item/food/meat/slab/sweeper,
 		/obj/item/food/meat/slab/worm,
 		/obj/item/food/meat/slab/robot,
-		/obj/item/food/meat/slab/human/mutant/moth,
+		/obj/item/food/meat/slab/buggy,
+		/obj/item/food/meat/slab/corroded,
+		/obj/item/food/meat/slab/sinnew,
 		/obj/item/rawpe,
 		/obj/item/reagent_containers/food/drinks/bottle/wine/unlabeled,
 	)
