@@ -250,7 +250,8 @@
 
 /mob/living/simple_animal/hostile/abnormality/space_lady/BreachEffect(mob/living/carbon/human/user, breach_type)
 	. = ..()
-	Teleport()
+	if(breach_type != BREACH_MINING)
+		Teleport()
 
 
 //Bullets

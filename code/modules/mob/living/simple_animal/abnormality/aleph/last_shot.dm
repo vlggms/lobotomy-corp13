@@ -61,7 +61,9 @@ GLOBAL_LIST_EMPTY(meat_list)
 /mob/living/simple_animal/hostile/abnormality/last_shot/Move()
 	return FALSE
 
-/mob/living/simple_animal/hostile/abnormality/last_shot/BreachEffect()
+/mob/living/simple_animal/hostile/abnormality/last_shot/BreachEffect(mob/living/carbon/human/user, breach_type)
+	if(breach_type == BREACH_MINING)
+		return ..()
 	var/turf/T = pick(GLOB.department_centers)
 	forceMove(T)
 	..()

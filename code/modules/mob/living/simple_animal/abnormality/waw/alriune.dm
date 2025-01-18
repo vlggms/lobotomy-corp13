@@ -152,7 +152,8 @@
 /mob/living/simple_animal/hostile/abnormality/alriune/BreachEffect(mob/living/carbon/human/user, breach_type)
 	. = ..()
 	petals_next = world.time + petals_next_time + 30
-	TeleportAway()
+	if(breach_type != BREACH_MINING)//in ER you get a few seconds to smack it down
+		TeleportAway()
 	icon_state = "alriune_active"
 	return
 

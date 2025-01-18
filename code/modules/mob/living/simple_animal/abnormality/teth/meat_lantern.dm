@@ -146,6 +146,9 @@
 	return
 
 /mob/living/simple_animal/hostile/abnormality/meat_lantern/BreachEffect(mob/living/carbon/human/user, breach_type)
+	if(breach_type == BREACH_MINING)//as funny as it sounds, this abnormality would be unreachable
+		qdel(src)
+		return
 	. = ..()
 	update_icon()
 	density = FALSE

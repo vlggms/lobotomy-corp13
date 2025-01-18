@@ -180,12 +180,15 @@
 
 // Pink Midnight Breach
 /mob/living/simple_animal/hostile/abnormality/bottle/BreachEffect(mob/living/carbon/human/user, breach_type)
-	if(breach_type == BREACH_PINK)
+	if(breach_type == BREACH_PINK || breach_type == BREACH_MINING)
 		ADD_TRAIT(src, TRAIT_MOVE_FLYING, INNATE_TRAIT)
 		COOLDOWN_START(src, speak_damage_aura, speak_cooldown_time)
 		icon_state = "bottle_breach"
 		desc = "A floating bottle, leaking tears.\nYou can use an empty hand to drink from it."
 		can_breach = TRUE
+	if(breach_type == BREACH_MINING)
+		speak_damage = 0
+		speak_cooldown_time = 15 SECONDS
 	return ..()
 
 /mob/living/simple_animal/hostile/abnormality/bottle/attack_hand(mob/living/carbon/human/M)

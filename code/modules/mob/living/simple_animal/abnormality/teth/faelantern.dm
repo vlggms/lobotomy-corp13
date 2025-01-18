@@ -101,6 +101,12 @@
 
 /mob/living/simple_animal/hostile/abnormality/faelantern/BreachEffect(mob/living/carbon/human/user, breach_type)
 	. = ..()
+	if(breach_type == BREACH_MINING)
+		fairy_enabled = TRUE
+		fairy_health = health
+		can_act = TRUE
+		icon_state = icon_living
+		return
 	INVOKE_ASYNC(src, PROC_REF(BreachDig))
 	return
 

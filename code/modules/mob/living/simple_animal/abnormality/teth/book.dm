@@ -42,6 +42,9 @@
 	)
 	var/meltdown_cooldown //no spamming the meltdown effect
 	var/meltdown_cooldown_time = 30 SECONDS
+	var/breaching = FALSE
+	var/summon_count = 0
+
 
 /mob/living/simple_animal/hostile/abnormality/book/PostWorkEffect(mob/living/carbon/human/user, work_type, pe, work_time)
 	if(work_type == ABNORMALITY_WORK_REPRESSION)
@@ -104,6 +107,23 @@
 		if((initial(abno.threat_level)) <= TETH_LEVEL)
 			nasties += abno
 
+/mob/living/simple_animal/hostile/abnormality/book/Life()
+	. = ..()
+	if(!breaching)
+		return
+	if(summon_count > 15)
+		qdel(src)
+		return
+	if((meltdown_cooldown < world.time) && !(status_flags & GODMODE))
+		MeltdownEffect()
+		meltdown_cooldown = world.time + meltdown_cooldown_time
+
+/mob/living/simple_animal/hostile/abnormality/book/Move()
+	return FALSE
+
+/mob/living/simple_animal/hostile/abnormality/book/CanAttack(atom/the_target)
+	return FALSE
+
 /mob/living/simple_animal/hostile/abnormality/book/proc/RipPages()
 	var/mob/living/simple_animal/newspawn
 	if(wordcount >= 3)
@@ -140,7 +160,7 @@
 
 /mob/living/simple_animal/hostile/abnormality/book/ZeroQliphoth(mob/living/carbon/human/user)
 	datum_reference.qliphoth_change(start_qliphoth) //no need for qliphoth to be stuck at 0
-	if(meltdown_cooldown > world.time)
+	if(meltdown_cooldown < world.time)
 		return
 	meltdown_cooldown = world.time + meltdown_cooldown_time
 	MeltdownEffect()
@@ -153,3 +173,9 @@
 		sleep(0.5 SECONDS)
 		newspawn = pick(nasties)
 		SpawnMob(newspawn)
+		if(breaching)
+			summon_count += 1
+
+/mob/living/simple_animal/hostile/abnormality/book/BreachEffect(mob/living/carbon/human/user, breach_type)
+	if(breach_type == BREACH_MINING)
+		breaching = TRUE

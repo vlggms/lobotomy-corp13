@@ -59,6 +59,7 @@
 	var/teleport_cooldown_time = 5 MINUTES
 	var/teleport_cooldown
 	var/damage_taken = FALSE
+	var/noteleport = FALSE
 
 	//PLAYABLE ATTACKS
 	attack_action_types = list(/datum/action/innate/abnormality_attack/toggle/porccubus_dash_toggle)
@@ -132,11 +133,13 @@
 //it does have a dash that makes it able to jump around, but it can't properly "roam" per say.
 /mob/living/simple_animal/hostile/abnormality/porccubus/BreachEffect(mob/living/carbon/human/user, breach_type)
 	. = ..()
+	if(breach_type == BREACH_MINING)
+		noteleport = TRUE
 	playsound(src, 'sound/abnormalities/porccubus/head_explode_laugh.ogg', 50, FALSE, 4)
 	icon_living = "porrcubus"
 	icon_state = icon_living
 	ranged_cooldown = world.time + ranged_cooldown_time
-	if(!IsCombatMap())
+	if(!IsCombatMap() && (breach_type != BREACH_MINING))
 		var/turf/T = pick(GLOB.xeno_spawn)
 		forceMove(T)
 		teleport_cooldown = world.time + teleport_cooldown_time
@@ -148,7 +151,7 @@
 	. = ..()
 	if(status_flags & GODMODE)
 		return
-	if(IsCombatMap())
+	if(IsCombatMap() || noteleport)
 		return
 	if(teleport_cooldown < world.time) //if porccubus hasn't taken damage for 5 minutes we make him move so he doesn't stay stuck in whatever cell he got thrown in.
 		teleport_cooldown = world.time + teleport_cooldown_time
