@@ -59,8 +59,6 @@
 			return
 		if(3)
 			AdjustHitPoint(10)
-			return
 		if(4)
 			AdjustHitPoint(-5)
-			return
 	return ..()
