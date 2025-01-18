@@ -231,7 +231,7 @@
 		adjustHealth(75)
 
 /mob/living/simple_animal/hostile/abnormality/red_buddy/adjustHealth(amount, updating_health = TRUE, forced = FALSE)
-	..()
+	. = ..()
 	if(!awakened_master)
 		return
 	accumulated_damage += amount

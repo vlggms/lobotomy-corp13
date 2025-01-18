@@ -125,7 +125,7 @@
 
 //Transformation and teleportation
 /mob/living/simple_animal/hostile/abnormality/faelantern/adjustHealth(amount, updating_health = TRUE, forced = FALSE)
-	..()
+	. = ..()
 	if(stat == DEAD)
 		return
 	if(fairy_enabled)
