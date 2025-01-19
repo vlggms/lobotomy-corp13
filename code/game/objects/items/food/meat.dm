@@ -939,6 +939,39 @@
 /obj/item/food/meat/slab/crimson/MakeGrillable()
 	AddComponent(/datum/component/grillable, /obj/item/food/meat/steak/crimson, rand(30 SECONDS, 90 SECONDS), TRUE, TRUE)
 
+/obj/item/food/meat/slab/buggy
+	name = "buggy meat"
+	desc = "A chunk of horrible and unpalatable mutated meat and chitin. Some bits are still moving..."
+	icon_state = "buggymeat"
+	food_reagents = list(/datum/reagent/consumable/nutriment/protein = 4)
+	tastes = list("tender meat" = 1, "gristle" = 1)
+	foodtypes = MEAT | RAW | GROSS
+
+/obj/item/food/meat/slab/buggy/MakeGrillable()
+	AddComponent(/datum/component/grillable, /obj/item/food/meat/steak/meatproduct, rand(30 SECONDS, 90 SECONDS), TRUE, TRUE) // too lazy to add a new sprite
+
+/obj/item/food/meat/slab/corroded
+	name = "corroded meat"
+	desc = "Human meat, with other stuff mixed in. Hardly has any resemblance to the original anymore."
+	icon_state = "xenomeat" // Placeholder
+	food_reagents = list(/datum/reagent/consumable/nutriment/protein = 4)
+	tastes = list("tough meat" = 1)
+	foodtypes = MEAT | RAW | GROSS
+
+/obj/item/food/meat/slab/corroded/MakeGrillable()
+	AddComponent(/datum/component/grillable, /obj/item/food/meat/steak/meatproduct, rand(30 SECONDS, 90 SECONDS), TRUE, TRUE) // too lazy to add a new sprite
+
+/obj/item/food/meat/slab/sinnew
+	name = "sin-eew"
+	desc = "Eyeballs, veins, and offal that came from something no longer resembling a human."
+	icon_state = "sinnew"
+	food_reagents = list(/datum/reagent/consumable/nutriment/protein = 1)
+	tastes = list("blood" = 1, "tough meat" = 1)
+	foodtypes = MEAT | RAW | GROSS
+
+/obj/item/food/meat/slab/sinnew/MakeGrillable()
+	AddComponent(/datum/component/grillable, /obj/item/food/meat/steak/meatproduct, rand(30 SECONDS, 90 SECONDS), TRUE, TRUE) // too lazy to add a new sprite
+
 ////////////////////////////////////// MEAT STEAKS ///////////////////////////////////////////////////////////
 
 /obj/item/food/meat/steak
