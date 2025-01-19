@@ -20,7 +20,7 @@
 	var/mob/living/carbon/human/user = owner
 	user.adjustSanityLoss(10)
 
-	var/obj/item/grenade/r_corp/F = new /obj/item/grenade/r_corp/lcorp(get_turf(user))
+	var/obj/item/grenade/r_corp/lcorp/F = new(get_turf(user))
 	F.explosion_damage_type = pick(RED_DAMAGE, BLACK_DAMAGE, WHITE_DAMAGE)
 	F.explosion_damage = get_attribute_level(user, JUSTICE_ATTRIBUTE)*2
 	user.equip_in_one_of_slots(F, ITEM_SLOT_HANDS , qdel_on_fail = TRUE)
