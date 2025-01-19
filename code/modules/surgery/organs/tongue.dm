@@ -29,7 +29,8 @@
 		/datum/language/shadowtongue,
 		/datum/language/terrum,
 		/datum/language/nekomimetic,
-		/datum/language/bong
+		/datum/language/bong,
+		/datum/language/clockhead,
 	))
 
 /obj/item/organ/tongue/Initialize(mapload)
