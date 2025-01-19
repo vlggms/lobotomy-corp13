@@ -13,7 +13,7 @@
 	var/list/gunsinhand = list()
 	for(var/obj/item/ego_weapon/ranged/Gun in shooter.held_items)
 		gunsinhand+=Gun
-	if(!LAZYLEN(gunsinhand))
+	if(!length(gunsinhand))
 		return ..()
 
 	var/obj/item/ego_weapon/ranged/chosengun = pick(gunsinhand)
