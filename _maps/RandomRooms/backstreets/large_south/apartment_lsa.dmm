@@ -63,6 +63,9 @@
 	},
 /turf/open/floor/wood,
 /area/city/backstreets_room)
+"eM" = (
+/turf/closed/indestructible/reinforced,
+/area/city/backstreets_room)
 "ga" = (
 /obj/structure/chair/sofa/left{
 	dir = 4
@@ -417,7 +420,7 @@
 /area/city/backstreets_room)
 
 (1,1,1) = {"
-zv
+eM
 zv
 zv
 CK
@@ -457,7 +460,7 @@ IG
 zv
 "}
 (5,1,1) = {"
-zv
+eM
 zv
 zv
 zv

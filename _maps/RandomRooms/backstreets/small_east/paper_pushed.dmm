@@ -16,6 +16,9 @@
 /obj/item/clothing/head/papersack,
 /turf/open/indestructible/paper,
 /area/city/backstreets_room)
+"q" = (
+/turf/closed/indestructible/paper,
+/area/city/backstreets_room)
 "t" = (
 /obj/structure/mineral_door/silver,
 /turf/open/indestructible/paper,
@@ -79,9 +82,9 @@
 (1,1,1) = {"
 X
 X
-X
+q
 t
-X
+q
 X
 X
 "}

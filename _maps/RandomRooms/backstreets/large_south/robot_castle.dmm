@@ -564,6 +564,14 @@
 	},
 /turf/open/floor/stone,
 /area/city/backstreets_room)
+"JM" = (
+/obj/structure/fence{
+	dir = 4;
+	pixel_x = 23;
+	pixel_y = -3
+	},
+/turf/closed/indestructible/reinforced,
+/area/city/backstreets_room)
 "JU" = (
 /obj/effect/decal/cleanable/blood{
 	pixel_x = 7;
@@ -890,7 +898,7 @@ Vr
 Xe
 "}
 (5,1,1) = {"
-ng
+JM
 Xi
 yS
 Ht

@@ -14,6 +14,9 @@
 /obj/structure/chair/greyscale,
 /turf/open/floor/plating/rust,
 /area/city/backstreets_room)
+"A" = (
+/turf/closed/wall/rust,
+/area/city/backstreets_room)
 "I" = (
 /obj/effect/landmark/cratespawn,
 /turf/open/floor/plating/rust,
@@ -45,7 +48,7 @@ a
 W
 k
 W
-a
+A
 "}
 (4,1,1) = {"
 a
@@ -59,7 +62,7 @@ a
 W
 k
 W
-a
+A
 "}
 (6,1,1) = {"
 a

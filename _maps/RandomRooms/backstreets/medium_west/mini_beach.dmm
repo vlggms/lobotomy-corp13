@@ -14,8 +14,12 @@
 "x" = (
 /turf/closed/indestructible/reinforced,
 /area/city/backstreets_room)
-"H" = (
+"G" = (
+/obj/structure/mineral_door/sandstone,
 /turf/open/floor/plating/asteroid/basalt,
+/area/city/backstreets_room)
+"H" = (
+/turf/closed/indestructible/reinforced,
 /area/city/backstreets_room)
 "P" = (
 /obj/effect/mermaid_water,
@@ -88,13 +92,13 @@ x
 "}
 (6,1,1) = {"
 x
+x
+x
 H
+G
+G
 H
-H
-H
-H
-H
-H
-H
+x
+x
 x
 "}

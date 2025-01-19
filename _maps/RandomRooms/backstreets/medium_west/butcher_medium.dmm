@@ -20,6 +20,9 @@
 /obj/item/food/meat/slab/human,
 /turf/open/floor/plasteel/sepia,
 /area/city/backstreets_room)
+"m" = (
+/turf/closed/indestructible/reinforced,
+/area/city/backstreets_room)
 "n" = (
 /obj/structure/lootcrate/money,
 /turf/open/floor/plasteel/sepia,
@@ -160,9 +163,9 @@ x
 "}
 (6,1,1) = {"
 x
-x
+m
 W
-x
+m
 x
 x
 x

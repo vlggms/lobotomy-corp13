@@ -292,6 +292,9 @@
 /obj/effect/landmark/cratespawn/corpo,
 /turf/open/floor/facility/dark,
 /area/city/backstreets_room)
+"Lh" = (
+/turf/closed/indestructible/reinforced,
+/area/city/backstreets_room)
 "ND" = (
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/effect/turf_decal/siding/blue{
@@ -459,7 +462,7 @@ eF
 Kl
 uW
 og
-yN
+Lh
 "}
 (3,1,1) = {"
 yN
@@ -489,7 +492,7 @@ BS
 NF
 Oe
 qd
-yN
+Lh
 "}
 (6,1,1) = {"
 yN

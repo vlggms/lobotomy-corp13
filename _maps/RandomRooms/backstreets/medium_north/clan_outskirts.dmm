@@ -33,6 +33,9 @@
 /mob/living/simple_animal/hostile/clan/scout,
 /turf/open/floor/wood,
 /area/city/backstreets_room)
+"y" = (
+/turf/closed/indestructible/wood,
+/area/city/backstreets_room)
 "C" = (
 /turf/open/floor/grass/fakebasalt,
 /area/city/backstreets_room)
@@ -78,7 +81,7 @@ C
 u
 p
 E
-u
+y
 c
 c
 "}

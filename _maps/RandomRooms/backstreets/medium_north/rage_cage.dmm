@@ -12,6 +12,9 @@
 /obj/effect/spawner/lootdrop/cigbutt,
 /turf/open/floor/plating/asteroid/basalt,
 /area/city/backstreets_room)
+"e" = (
+/turf/closed/indestructible/reinforced,
+/area/city/backstreets_room)
 "k" = (
 /mob/living/simple_animal/hostile/humanoid/rat/pipe,
 /turf/open/floor/plating/asteroid/basalt,
@@ -95,7 +98,7 @@ Q
 Q
 Q
 Q
-Q
+e
 "}
 (2,1,1) = {"
 Q
@@ -167,5 +170,5 @@ Q
 Q
 Q
 Q
-Q
+e
 "}

@@ -1,4 +1,7 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"bJ" = (
+/turf/closed/indestructible/reinforced,
+/area/city/backstreets_room)
 "co" = (
 /obj/effect/landmark/cratespawn/corpo,
 /turf/open/floor/plasteel/dark,
@@ -387,7 +390,7 @@ SY
 ZT
 An
 ZT
-An
+bJ
 "}
 (11,1,1) = {"
 An
@@ -409,7 +412,7 @@ SY
 ZT
 An
 ZT
-An
+bJ
 "}
 (12,1,1) = {"
 An
