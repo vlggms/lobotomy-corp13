@@ -8,7 +8,7 @@
 /area/city/outskirts)
 "as" = (
 /obj/machinery/door/airlock/wood,
-/turf/open/floor/plasteel/airless/white,
+/turf/open/floor/plasteel/white,
 /area/city/outskirts)
 "aA" = (
 /obj/effect/turf_decal/siding/wood/corner,
@@ -134,7 +134,7 @@
 /area/city/outskirts)
 "cK" = (
 /obj/machinery/light/small,
-/turf/open/floor/plasteel/airless/white,
+/turf/open/floor/plasteel/white,
 /area/city/outskirts)
 "cS" = (
 /obj/effect/turf_decal/trimline/green/filled/line{
@@ -298,7 +298,7 @@
 /area/city/outskirts)
 "fs" = (
 /obj/structure/closet/secure_closet/freezer/fridge,
-/turf/open/floor/plasteel/airless/white,
+/turf/open/floor/plasteel/white,
 /area/city/outskirts)
 "fH" = (
 /obj/effect/decal/cleanable/blood/drip,
@@ -557,7 +557,7 @@
 /obj/effect/decal/cleanable/blood/tracks{
 	dir = 10
 	},
-/turf/open/floor/plasteel/airless/white,
+/turf/open/floor/plasteel/white,
 /area/city/outskirts)
 "lg" = (
 /obj/effect/turf_decal/siding/wood,
@@ -705,7 +705,7 @@
 "nG" = (
 /obj/structure/table/reinforced,
 /obj/item/reagent_containers/food/drinks/dry_ramen,
-/turf/open/floor/plasteel/airless/white,
+/turf/open/floor/plasteel/white,
 /area/city/outskirts)
 "ob" = (
 /obj/structure/fluff/bus/passable,
@@ -831,11 +831,11 @@
 /turf/open/floor/plasteel/dark,
 /area/city/outskirts)
 "pP" = (
-/turf/open/floor/plasteel/airless/white,
+/turf/open/floor/plasteel/white,
 /area/city/outskirts)
 "pU" = (
 /obj/machinery/griddle,
-/turf/open/floor/plasteel/airless/white,
+/turf/open/floor/plasteel/white,
 /area/city/outskirts)
 "pV" = (
 /obj/machinery/conveyor{
@@ -1293,7 +1293,7 @@
 /area/city/outskirts)
 "yk" = (
 /obj/effect/decal/cleanable/blood/gibs,
-/turf/open/floor/plasteel/airless/white,
+/turf/open/floor/plasteel/white,
 /area/city/outskirts)
 "yy" = (
 /turf/open/floor/plating/ashplanet/rocky,
@@ -1619,7 +1619,7 @@
 /obj/structure/sink/kitchen{
 	pixel_y = 14
 	},
-/turf/open/floor/plasteel/airless/white,
+/turf/open/floor/plasteel/white,
 /area/city/outskirts)
 "Ft" = (
 /obj/machinery/light/broken,
@@ -2062,7 +2062,7 @@
 	pixel_x = -7;
 	pixel_y = 4
 	},
-/turf/open/floor/plasteel/airless/white,
+/turf/open/floor/plasteel/white,
 /area/city/outskirts)
 "OC" = (
 /obj/structure/fluff/bus/passable/seat,
@@ -2380,7 +2380,7 @@
 /area/city/outskirts)
 "Tc" = (
 /obj/machinery/vending/dinnerware,
-/turf/open/floor/plasteel/airless/white,
+/turf/open/floor/plasteel/white,
 /area/city/outskirts)
 "Td" = (
 /obj/machinery/light/floor,
