@@ -25,9 +25,9 @@
 		/obj/item/head_trophy,
 		/obj/item/tape/resurgence,
 		/obj/item/refinedpe,
+		/obj/item/raw_anomaly_core,
 	)
 	var/list/level_3 = list(
-		/obj/item/raw_anomaly_core,
 		/obj/item/documents,
 		/obj/item/folder/syndicate,
 		/obj/item/folder/documents,
@@ -172,6 +172,11 @@
 		TEMPERANCE_ATTRIBUTE,
 		JUSTICE_ATTRIBUTE,
 	)
+
+/obj/structure/potential/Initialize()
+	. = ..()
+	new /obj/item/paper/fluff/fixer_skills (get_turf(src))
+	new /obj/item/paper/fluff/fixer_skills (get_turf(src))
 
 //Very dumb way to implement "empty hand AND full hand."
 //These two code blocks are the same except for their triggers - if you've got a better idea, please use it.

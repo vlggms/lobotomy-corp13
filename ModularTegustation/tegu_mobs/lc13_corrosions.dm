@@ -381,6 +381,7 @@
 	var/damage_threshold = 450
 	var/dash_damage = 80
 	var/charge_sound = 'sound/effects/ordeals/gold/growl1.ogg'
+	var/gibbing = TRUE
 
 /mob/living/simple_animal/hostile/ordeal/dog_corrosion/Move()
 	if(charging)
@@ -419,7 +420,7 @@
 	if(!ishuman(attacked_target))
 		return
 	var/mob/living/carbon/human/H = attacked_target
-	if(H.health < 0)
+	if(H.health < 0 || gibbing)
 		H.gib()
 		playsound(src, "sound/abnormalities/clouded_monk/eat.ogg", 75, 1)
 		adjustBruteLoss(-heal_amount)
@@ -494,7 +495,7 @@
 		if(!ishuman(L))
 			continue
 		var/mob/living/carbon/human/H = L
-		if(H.health < 0)
+		if(H.health < 0 || gibbing)
 			H.gib()
 			playsound(src, "sound/abnormalities/clouded_monk/eat.ogg", 75, 1)
 			adjustBruteLoss(-heal_amount)

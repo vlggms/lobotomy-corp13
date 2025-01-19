@@ -47,3 +47,6 @@
 /obj/projectile/bullet/c9x19mm/greenbot
 	damage = 6
 	speed = 0.4
+
+/obj/projectile/bullet/c9x19mm/greenbot/city
+	damage = 1

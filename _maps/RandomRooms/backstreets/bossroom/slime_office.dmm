@@ -649,6 +649,16 @@
 	color = "#42f545"
 	},
 /area/city/backstreets_room)
+"sS" = (
+/obj/item/gps/mining{
+	anchored = 1;
+	gpstag = "Slimy Signal";
+	alpha = 10
+	},
+/turf/open/floor/plasteel/shuttle{
+	color = "#42f545"
+	},
+/area/city/backstreets_room)
 "sY" = (
 /obj/structure/plaque/static_plaque{
 	pixel_x = 32
@@ -1979,7 +1989,7 @@ us
 us
 us
 kK
-iE
+sS
 us
 ci
 HV

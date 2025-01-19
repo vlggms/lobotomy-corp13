@@ -322,7 +322,13 @@
 /area/city/backstreets_room)
 "Ka" = (
 /mob/living/simple_animal/hostile/ordeal/indigo_dusk/red{
-	name = "\proper Lieutenant Maledy"
+	name = "\proper Lieutenant Maledy";
+	return_to_origin = 1
+	},
+/obj/item/gps/mining{
+	anchored = 1;
+	gpstag = "Sweeping Signal";
+	alpha = 10
 	},
 /turf/open/indestructible/necropolis/air,
 /area/city/backstreets_room)

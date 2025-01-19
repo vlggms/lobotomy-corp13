@@ -28,7 +28,8 @@ GLOBAL_VAR_INIT(wcorp_enemy_faction, "") //decides which faction WCorp will be u
 	for(var/mob/living/simple_animal/hostile/A in GLOB.mob_list)
 		var/obj/effect/proc_holder/spell/targeted/night_vision/bloodspell = new
 		A.AddSpell(bloodspell)
-		A.faction += "hostile"
+		if(!(SSmaptype.maptype in SSmaptype.citymaps))
+			A.faction += "hostile"
 
 	if(SSmaptype.maptype in SSmaptype.autoend)
 		switch(SSmaptype.maptype)
