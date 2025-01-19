@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <base href="../../../../../" />
+    <link rel="stylesheet" href="dmdoc.css" />
+    <title>&#x2F;mob&#x2F;living&#x2F;simple_animal&#x2F;hostile&#x2F;abnormality&#x2F;forsaken_murderer - &#x2F;tg&#x2F; Station 13</title>
+</head>
+<body>
+<header>
+    <a href="index.html">&#x2F;tg&#x2F; Station 13</a> -
+    <a href="index.html#modules">Modules</a> -
+    <a href="index.html#types">Types</a>
+ &mdash; <a href="mob/living/simple_animal/hostile/abnormality/forsaken_murderer.html#var">Var Details</a> - <a href="mob/living/simple_animal/hostile/abnormality/forsaken_murderer.html#proc">Proc Details</a></header>
+<main>
+<h1>forsaken_murderer <aside>/<a href="mob.html">mob</a>/<a href="mob/living.html">living</a>/<a href="mob/living/simple_animal.html">simple_animal</a>/<a href="mob/living/simple_animal/hostile.html">hostile</a>/<a href="mob/living/simple_animal/hostile/abnormality.html">abnormality</a>/<a href="mob/living/simple_animal/hostile/abnormality/forsaken_murderer.html">forsaken_murderer</a></aside>
+        
+    
+            <a href="https://github.com/vlggms/lobotomy-corp13/blob/1d17796698ac790670d3310d77f80640a620e172/code/modules/mob/living/simple_animal/abnormality/teth/forsaken_murderer.dm#L2">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;simple_animal&#x2F;abnormality&#x2F;teth&#x2F;forsaken_murderer.dm 2"/></a></h1>
+
+<table class="summary" cellspacing="0"><tr><td colspan="2"><h2>Vars</h2></td></tr>
+            <tr><th><a href="mob/living/simple_animal/hostile/abnormality/forsaken_murderer.html#var/damage_coeff">damage_coeff</a></th><td>Red damage is applied to health.
+White damage is applied to sanity with only a few abnormalities using that to instantly kill the victim.
+Black damage is applied to both health and sanity 10 black damage would do 10 health damage and 10 sanity damage.
+Pale damage is a % of health. Weird i know.</td></tr>
+            <tr><th><a href="mob/living/simple_animal/hostile/abnormality/forsaken_murderer.html#var/ego_list">ego_list</a></th><td>ego_list is the things you can buy with its unique type of PE.
+Making these is a bit more complicated since the types listed
+here are datums that contain the cost and typepath of the accosiated object.
+You can find the files of these in: _ego_datum.dm
+The weapons and armor themselves are in _ego_gear.dm , ego_gun file and _ego_weapon.dm</td></tr>
+            <tr><th><a href="mob/living/simple_animal/hostile/abnormality/forsaken_murderer.html#var/faction">faction</a></th><td>Leaving the faction list blank only attributes them to one faction and thats its own unique mob number.
+With this forsaken murderer will even attack duplicates of themselves.</td></tr>
+            <tr><th><a href="mob/living/simple_animal/hostile/abnormality/forsaken_murderer.html#var/gift_type">gift_type</a></th><td>Special employees get gifts from interacting with the abnormality.
+You can see the different types of gifts in ego_gifts.dm</td></tr>
+            <tr><th><a href="mob/living/simple_animal/hostile/abnormality/forsaken_murderer.html#var/maxHealth">maxHealth</a></th><td>Originally was 270.
+Fragment health is 800 with a original game health of 230 so techically forsaken murderer has more health than fragment?
+Ill round the numbers to 600 since 270 can be rounded to 300 and doubled.
+I was later told to make it 1100.
+We really dont have a Lobotomy Corp to LC13 health conversion calculator. - InsightfulParasite
+Turns out that 1100 is not enough. - Kirie/Kitsunemitsu</td></tr>
+            <tr><th><a href="mob/living/simple_animal/hostile/abnormality/forsaken_murderer.html#var/melee_damage_upper">melee_damage_upper</a></th><td>Fragments Lobotomy Corp damage was 3~4 so im giving murderer a larger gap between his lower and upper damage.
+Unsure if i should be comparing Forsaken Murderer to Fragment of the Universe.
+Most HE level abnormalities do 20+ damange.</td></tr>
+            <tr><th><a href="mob/living/simple_animal/hostile/abnormality/forsaken_murderer.html#var/observation_prompt">observation_prompt</a></th><td>Final observation code.
+observation_prompt controls the text that the user sees when they start the observation
+observation_choices is made in the format of:
+&quot;Choice&quot; = list(TRUE or FALSE [depending on if the answer is correct], &quot;Response&quot;),</td></tr><tr><td colspan="2"><h2>Procs</h2></td></tr>
+            <tr><th><a href="mob/living/simple_animal/hostile/abnormality/forsaken_murderer.html#proc/BreachEffect">BreachEffect</a></th><td>Sort of self explanatory, this is if the cooldown variable is less than the current time in the world.
+prob is a percent chance probability of 50.
+I placed the 50% chance here because i want it to be sort of unpredictable.</td></tr>
+            <tr><th><a href="mob/living/simple_animal/hostile/abnormality/forsaken_murderer.html#proc/examine">examine</a></th><td>Each abnormality has a variable called datum_refrence.
+The Qliphoth Counter, the thing that keeps abnormalities contained
+It's defined in this datum so we have to refrence it in order to manually change its counter.
+Remember this because this opens the way for coders to call procs on things that are outside this entitiy.</td></tr>
+            <tr><th><a href="mob/living/simple_animal/hostile/abnormality/forsaken_murderer.html#proc/update_icon_state">update_icon_state</a></th><td>When i first heard about sleep being a proc that delays code progression until it is done it was said in hushed tones as if it was a taboo to use it.
+Also i set it to 13 because there is 12 frames in the flick icon and i wanted a additional 0.1 second for it to show.
+Just so you know most things without SECONDS or MINUTES after it are in deciseconds</td></tr></table>
+    <h2 id="var">Var Details</h2><h3 id="var/damage_coeff"><aside class="parent"><a title="/mob/living/simple_animal" href="mob/living/simple_animal.html#var/damage_coeff">&uarr;</a></aside>damage_coeff
+            <aside>&ndash; /<a href="datum.html">datum</a>/dam_coeff</aside>
+        
+    
+            <a href="https://github.com/vlggms/lobotomy-corp13/blob/1d17796698ac790670d3310d77f80640a620e172/code/modules/mob/living/simple_animal/abnormality/teth/forsaken_murderer.dm#L33">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;simple_animal&#x2F;abnormality&#x2F;teth&#x2F;forsaken_murderer.dm 33"/></a></h3>
+        <p>Red damage is applied to health.
+White damage is applied to sanity with only a few abnormalities using that to instantly kill the victim.
+Black damage is applied to both health and sanity 10 black damage would do 10 health damage and 10 sanity damage.
+Pale damage is a % of health. Weird i know.</p><h3 id="var/ego_list"><aside class="parent"><a title="/mob/living/simple_animal/hostile/abnormality" href="mob/living/simple_animal/hostile/abnormality.html#var/ego_list">&uarr;</a></aside>ego_list
+            <aside>&ndash; /list</aside>
+        
+    
+            <a href="https://github.com/vlggms/lobotomy-corp13/blob/1d17796698ac790670d3310d77f80640a620e172/code/modules/mob/living/simple_animal/abnormality/teth/forsaken_murderer.dm#L88">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;simple_animal&#x2F;abnormality&#x2F;teth&#x2F;forsaken_murderer.dm 88"/></a></h3>
+        <p>ego_list is the things you can buy with its unique type of PE.
+Making these is a bit more complicated since the types listed
+here are datums that contain the cost and typepath of the accosiated object.
+You can find the files of these in: _ego_datum.dm
+The weapons and armor themselves are in _ego_gear.dm , ego_gun file and _ego_weapon.dm</p><h3 id="var/faction"><aside class="parent"><a title="/mob" href="mob.html#var/faction">&uarr;</a></aside>faction
+            <aside>&ndash; /list</aside>
+        
+    
+            <a href="https://github.com/vlggms/lobotomy-corp13/blob/1d17796698ac790670d3310d77f80640a620e172/code/modules/mob/living/simple_animal/abnormality/teth/forsaken_murderer.dm#L53">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;simple_animal&#x2F;abnormality&#x2F;teth&#x2F;forsaken_murderer.dm 53"/></a></h3>
+        <p>Leaving the faction list blank only attributes them to one faction and thats its own unique mob number.
+With this forsaken murderer will even attack duplicates of themselves.</p><h3 id="var/gift_type"><aside class="parent"><a title="/mob/living/simple_animal/hostile/abnormality" href="mob/living/simple_animal/hostile/abnormality.html#var/gift_type">&uarr;</a></aside>gift_type
+            <aside>&ndash; /<a href="datum.html">datum</a>/ego_gifts</aside>
+        
+    
+            <a href="https://github.com/vlggms/lobotomy-corp13/blob/1d17796698ac790670d3310d77f80640a620e172/code/modules/mob/living/simple_animal/abnormality/teth/forsaken_murderer.dm#L96">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;simple_animal&#x2F;abnormality&#x2F;teth&#x2F;forsaken_murderer.dm 96"/></a></h3>
+        <p>Special employees get gifts from interacting with the abnormality.
+You can see the different types of gifts in ego_gifts.dm</p><h3 id="var/maxHealth"><aside class="parent"><a title="/mob/living" href="mob/living.html#var/maxHealth">&uarr;</a></aside>maxHealth
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/vlggms/lobotomy-corp13/blob/1d17796698ac790670d3310d77f80640a620e172/code/modules/mob/living/simple_animal/abnormality/teth/forsaken_murderer.dm#L19">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;simple_animal&#x2F;abnormality&#x2F;teth&#x2F;forsaken_murderer.dm 19"/></a></h3>
+        <p>Originally was 270.
+Fragment health is 800 with a original game health of 230 so techically forsaken murderer has more health than fragment?
+Ill round the numbers to 600 since 270 can be rounded to 300 and doubled.
+I was later told to make it 1100.
+We really dont have a Lobotomy Corp to LC13 health conversion calculator. - InsightfulParasite
+Turns out that 1100 is not enough. - Kirie/Kitsunemitsu</p><h3 id="var/melee_damage_upper">melee_damage_upper
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/vlggms/lobotomy-corp13/blob/1d17796698ac790670d3310d77f80640a620e172/code/modules/mob/living/simple_animal/abnormality/teth/forsaken_murderer.dm#L41">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;simple_animal&#x2F;abnormality&#x2F;teth&#x2F;forsaken_murderer.dm 41"/></a></h3>
+        <p>Fragments Lobotomy Corp damage was 3~4 so im giving murderer a larger gap between his lower and upper damage.
+Unsure if i should be comparing Forsaken Murderer to Fragment of the Universe.
+Most HE level abnormalities do 20+ damange.</p><h3 id="var/observation_prompt"><aside class="parent"><a title="/mob/living/simple_animal/hostile/abnormality" href="mob/living/simple_animal/hostile/abnormality.html#var/observation_prompt">&uarr;</a></aside>observation_prompt
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/vlggms/lobotomy-corp13/blob/1d17796698ac790670d3310d77f80640a620e172/code/modules/mob/living/simple_animal/abnormality/teth/forsaken_murderer.dm#L105">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;simple_animal&#x2F;abnormality&#x2F;teth&#x2F;forsaken_murderer.dm 105"/></a></h3>
+        <p>Final observation code.
+observation_prompt controls the text that the user sees when they start the observation
+observation_choices is made in the format of:
+&quot;Choice&quot; = list(TRUE or FALSE [depending on if the answer is correct], &quot;Response&quot;),</p><h2 id="proc">Proc Details</h2><h3 id="proc/BreachEffect">BreachEffect<aside>(/<a href="mob.html">mob</a>/<a href="mob/living.html">living</a>/<a href="mob/living/carbon.html">carbon</a>/<a href="mob/living/carbon/human.html">human</a>/user, breach_type) 
+        
+    
+            <a href="https://github.com/vlggms/lobotomy-corp13/blob/1d17796698ac790670d3310d77f80640a620e172/code/modules/mob/living/simple_animal/abnormality/teth/forsaken_murderer.dm#L219">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;simple_animal&#x2F;abnormality&#x2F;teth&#x2F;forsaken_murderer.dm 219"/></a></aside>
+        </h3>
+        <p>Sort of self explanatory, this is if the cooldown variable is less than the current time in the world.
+prob is a percent chance probability of 50.
+I placed the 50% chance here because i want it to be sort of unpredictable.</p>
+<p>Roll is a proc from the offical Dream Maker Guide.
+1 is the amount of dice and 6 is the sides of those dice.
+I tried to put the link to the guide here but the codebase got upset so just try to find it at the byond website.</p>
+<p>Playsound is a unique proc that... plays a sound at the defined location.
+The first slot is location.
+Second spot is the sound that is played.
+Third is the volume of the sound.
+Four is if it has a random pitch.
+Five is sound range.
+So i guess something can be quiet but heard normally if its sound range is high?</p>
+<p>This happens when the abnormality breaches.
+If your abnormality doesnt Breach then the proc you want is ZeroQliphoth.
+Other abnormality procs can be found in the _abnormality.dm file.</p><h3 id="proc/examine"><aside class="parent"><a title="/atom" href="atom.html#proc/examine">&uarr;</a></aside>examine<aside>(/<a href="mob.html">mob</a>/user) 
+        
+    
+            <a href="https://github.com/vlggms/lobotomy-corp13/blob/1d17796698ac790670d3310d77f80640a620e172/code/modules/mob/living/simple_animal/abnormality/teth/forsaken_murderer.dm#L151">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;simple_animal&#x2F;abnormality&#x2F;teth&#x2F;forsaken_murderer.dm 151"/></a></aside>
+        </h3>
+        <p>Each abnormality has a variable called datum_refrence.
+The Qliphoth Counter, the thing that keeps abnormalities contained
+It's defined in this datum so we have to refrence it in order to manually change its counter.
+Remember this because this opens the way for coders to call procs on things that are outside this entitiy.</p><h3 id="proc/update_icon_state"><aside class="parent"><a title="/atom" href="atom.html#proc/update_icon_state">&uarr;</a></aside>update_icon_state<aside>() 
+        
+    
+            <a href="https://github.com/vlggms/lobotomy-corp13/blob/1d17796698ac790670d3310d77f80640a620e172/code/modules/mob/living/simple_animal/abnormality/teth/forsaken_murderer.dm#L247">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;simple_animal&#x2F;abnormality&#x2F;teth&#x2F;forsaken_murderer.dm 247"/></a></aside>
+        </h3>
+        <p>When i first heard about sleep being a proc that delays code progression until it is done it was said in hushed tones as if it was a taboo to use it.
+Also i set it to 13 because there is 12 frames in the flick icon and i wanted a additional 0.1 second for it to show.
+Just so you know most things without SECONDS or MINUTES after it are in deciseconds</p>
+<p>This made forsaken murderer waddle.
+Im supprised it was this easy to do this.
+Elements and Components are special non object code that you can attach to things.
+Element Variables are shared amongst all instances of it but component are individualand able to be altered without changing all the other instances of it.</p>
+<p>1 is distance thrown.
+False is if it can throw anchored objects.
+True if doesnt apply damage or stun when hits a wall.</p>
+<p>This proc updates the icon state and is part of update_icon().
+If your abnormality has multiple visual forms then you can define them here.</p></main>
+<footer>
+    lobotomy-corp13.dme
+    <a href="https://github.com/vlggms/lobotomy-corp13/tree/1d17796698ac790670d3310d77f80640a620e172">1d17796</a>
+        (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/crates/dmdoc/README.md">dmdoc 1.8.0</a></footer>
+</body>
+</html>
