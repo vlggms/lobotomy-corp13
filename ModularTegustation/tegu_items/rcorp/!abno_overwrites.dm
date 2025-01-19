@@ -47,7 +47,7 @@
 		move_to_delay = 2.3
 		melee_damage_lower = 20
 		melee_damage_upper = 20
-		ranged_cooldown_time = 0.25 SECONDS
+		ranged_cooldown_time = 1.5 SECONDS
 		projectiletype = /obj/projectile/clown_throw_rcorp
 		finishing_small_damage = 12
 		finishing_big_damage = 80
