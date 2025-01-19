@@ -226,9 +226,9 @@
 /mob/living/simple_animal/hostile/abnormality/golden_apple/PostWorkEffect(mob/living/carbon/human/user, work_type, pe)
 	..()
 	var/datum/status_effect/stacking/golden_sheen/G = user.has_status_effect(/datum/status_effect/stacking/golden_sheen)
-	if (G.stacks >= 3)//Kills the employee if you already have 2 stacks of golden sheen and instantly breaches in phase 2
+	if(G && G.stacks >= 3) // Kills the employee if you already have 2 stacks of golden sheen and instantly breaches in phase 2
 		datum_reference.qliphoth_change(-2)
-		DigestPerson(user)//becomes its "berserk" form; the user is assimilated into it
+		DigestPerson(user) // becomes its "berserk" form; the user is assimilated into it
 
 //***Breach Mechanics***//
 /mob/living/simple_animal/hostile/abnormality/golden_apple/BreachEffect(mob/living/carbon/human/user, breach_type)
