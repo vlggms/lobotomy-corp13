@@ -236,9 +236,6 @@
 	},
 /obj/effect/landmark/cratespawn,
 /obj/effect/landmark/cratespawn,
-/obj/effect/landmark/cratespawn,
-/obj/effect/landmark/cratespawn,
-/obj/effect/landmark/cratespawn,
 /turf/open/floor/plating/ironsand,
 /area/city/backstreets_room/resurgence_village)
 "fR" = (
@@ -617,8 +614,6 @@
 /obj/structure/table/wood,
 /obj/effect/landmark/cratespawn,
 /obj/effect/landmark/cratespawn,
-/obj/effect/landmark/cratespawn,
-/obj/effect/landmark/cratespawn,
 /turf/open/floor/wood,
 /area/city/backstreets_room/resurgence_village)
 "tO" = (
@@ -690,18 +685,14 @@
 /obj/structure/lootcrate/workshopallas,
 /obj/structure/lootcrate/workshopallas,
 /obj/structure/lootcrate/workshopallas,
-/obj/structure/lootcrate/workshopallas,
 /obj/effect/turf_decal/siding/blue{
 	dir = 9
 	},
-/obj/structure/lootcrate/workshopallas,
 /obj/item/flashlight/lantern{
 	on = 1;
 	pixel_y = 16;
 	anchored = 1
 	},
-/obj/structure/lootcrate/workshopallas,
-/obj/structure/lootcrate/workshopallas,
 /turf/open/floor/carpet/royalblack,
 /area/city/backstreets_room/resurgence_village)
 "wk" = (
@@ -754,6 +745,14 @@
 	},
 /turf/open/floor/plating/ironsand,
 /area/city/backstreets_room/resurgence_village)
+"xS" = (
+/obj/item/flashlight/lantern{
+	on = 1;
+	pixel_x = -16;
+	anchored = 1
+	},
+/turf/open/floor/grass/fakebasalt,
+/area/city/backstreets_room/resurgence_village)
 "yv" = (
 /obj/effect/turf_decal/siding/blue{
 	dir = 1
@@ -778,9 +777,7 @@
 	icon = 'ModularTegustation/Teguicons/toolabnormalities.dmi';
 	pixel_y = -3
 	},
-/turf/open/floor/plating/dirt/jungle/wasteland{
-	slowdown = 0
-	},
+/turf/open/floor/plating/dirt/jungle/wasteland,
 /area/city/backstreets_room/resurgence_village)
 "Aa" = (
 /obj/structure/mineral_door/wood,
@@ -1049,6 +1046,9 @@
 	slowdown = 0
 	},
 /area/city/backstreets_alley)
+"Nj" = (
+/turf/open/floor/grass/fakebasalt,
+/area/city/backstreets_room/resurgence_village)
 "NC" = (
 /obj/effect/spawner/room/backstreets/large_south,
 /turf/closed/indestructible/reinforced,
@@ -13770,7 +13770,7 @@ tP
 Jc
 kM
 Cc
-Cc
+Nj
 Cc
 Cc
 Cc
@@ -13879,7 +13879,7 @@ pR
 pR
 OH
 co
-xq
+xS
 Cc
 Cc
 vZ
@@ -14102,7 +14102,7 @@ Yt
 jX
 Jc
 kM
-Cc
+Nj
 Cc
 Cc
 Cc
