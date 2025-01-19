@@ -67,6 +67,13 @@
 	if(!CanUseEgo(user))
 		return FALSE
 	. = ..()
+	if(HAS_TRAIT(user, TRAIT_WEAK_MELEE))
+		if(!attack_speed)
+			user.changeNext_move(CLICK_CD_MELEE * 1.2)
+		else
+			user.changeNext_move(CLICK_CD_MELEE * attack_speed*1.2)
+		return TRUE
+
 	if(attack_speed)
 		user.changeNext_move(CLICK_CD_MELEE * attack_speed)
 	return TRUE
