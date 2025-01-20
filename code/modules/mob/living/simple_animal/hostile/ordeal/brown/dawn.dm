@@ -17,8 +17,8 @@
 	attack_sound = 'sound/effects/ordeals/brown/rock_attack.ogg'
 	death_sound = 'sound/effects/ordeals/brown/rock_dead.ogg'
 	damage_coeff = list(RED_DAMAGE = 1, WHITE_DAMAGE = 2, BLACK_DAMAGE = 1, PALE_DAMAGE = 2)
-	butcher_results = list(/obj/item/food/meat/slab/human/mutant/golem = 1)
-	guaranteed_butcher_results = list(/obj/item/food/meat/slab/human/mutant/golem = 1)
+	butcher_results = list(/obj/item/food/meat/slab/sinnew = 1)
+	guaranteed_butcher_results = list(/obj/item/food/meat/slab/sinnew = 1)
 	ranged = TRUE
 	move_to_delay = 8
 	var/dash_cooldown_time = 15 SECONDS //will dash at people if they get out of range but not too often
@@ -101,8 +101,8 @@
 	attack_sound = 'sound/effects/ordeals/brown/flower_attack.ogg'
 	death_sound = 'sound/effects/limbus_death.ogg'
 	damage_coeff = list(RED_DAMAGE = 2, WHITE_DAMAGE = 1, BLACK_DAMAGE = 1, PALE_DAMAGE = 2)
-	butcher_results = list(/obj/item/food/meat/slab/human/mutant/plant = 1)
-	guaranteed_butcher_results = list(/obj/item/food/meat/slab/human/mutant/plant = 1)
+	butcher_results = list(/obj/item/food/meat/slab/sinnew = 1)
+	guaranteed_butcher_results = list(/obj/item/food/meat/slab/sinnew = 1)
 	stat_attack = DEAD
 
 /mob/living/simple_animal/hostile/ordeal/sin_gluttony/AttackingTarget(atom/attacked_target)
@@ -157,8 +157,8 @@
 	attack_sound = 'sound/effects/ordeals/brown/flea_attack.ogg'
 	death_sound = 'sound/effects/ordeals/brown/flea_dead.ogg'
 	damage_coeff = list(RED_DAMAGE = 1, WHITE_DAMAGE = 1, BLACK_DAMAGE = 2, PALE_DAMAGE = 2)
-	butcher_results = list(/obj/item/food/meat/slab/human/mutant/slime = 1)
-	guaranteed_butcher_results = list(/obj/item/food/meat/slab/human/mutant/slime = 1)
+	butcher_results = list(/obj/item/food/meat/slab/sinnew = 1)
+	guaranteed_butcher_results = list(/obj/item/food/meat/slab/sinnew = 1)
 	is_flying_animal = TRUE
 	ranged = TRUE
 	ranged_cooldown_time = 5 SECONDS // Fires a laser dealing 10 white damage
@@ -186,6 +186,7 @@
 	set waitfor = FALSE
 	changeNext_move(SSnpcpool.wait / rapid_melee) //Prevents attack spam
 	animate(src, transform = matrix()*1.4, time = 16)
+	addtimer(CALLBACK(src, PROC_REF(AnimateBack)), 16)
 	can_act = FALSE
 	SLEEP_CHECK_DEATH(16)
 	var/obj/effect/temp_visual/decoy/D = new /obj/effect/temp_visual/decoy(get_turf(src), src)
@@ -201,9 +202,12 @@
 			L.deal_damage(damage_dealt, melee_damage_type)
 		for(var/obj/vehicle/sealed/mecha/V in T)
 			V.take_damage(damage_dealt, melee_damage_type)
-	animate(src, transform = matrix(), time = 0)
 	SLEEP_CHECK_DEATH(8)
 	can_act = TRUE
+
+/mob/living/simple_animal/hostile/ordeal/sin_gloom/proc/AnimateBack()
+	animate(src, transform = matrix(), time = 0)
+	return TRUE
 
 /mob/living/simple_animal/hostile/ordeal/sin_pride
 	name = "Peccatulum Superbiae"
@@ -226,8 +230,8 @@
 	attack_sound = 'sound/weapons/ego/sword1.ogg'
 	death_sound = 'sound/effects/ordeals/brown/dead_generic.ogg'
 	damage_coeff = list(RED_DAMAGE = 1, WHITE_DAMAGE = 2, BLACK_DAMAGE = 1, PALE_DAMAGE = 2)
-	butcher_results = list(/obj/item/food/meat/rawcrab = 1)
-	guaranteed_butcher_results = list(/obj/item/food/meat/rawcrab = 1)
+	butcher_results = list(/obj/item/food/meat/slab/sinnew = 1)
+	guaranteed_butcher_results = list(/obj/item/food/meat/slab/sinnew = 1)
 	ranged = TRUE
 	var/charging = FALSE
 	var/dash_num = 25
@@ -349,8 +353,8 @@
 	attack_sound = 'sound/effects/ordeals/brown/cromer_slam.ogg'
 	death_sound = 'sound/effects/limbus_death.ogg'
 	damage_coeff = list(RED_DAMAGE = 2, WHITE_DAMAGE = 1, BLACK_DAMAGE = 1, PALE_DAMAGE = 2)
-	butcher_results = list(/obj/item/food/meat/slab/human/mutant/lizard = 1)
-	guaranteed_butcher_results = list(/obj/item/food/meat/slab/human/mutant/lizard = 1)
+	butcher_results = list(/obj/item/food/meat/slab/sinnew = 1)
+	guaranteed_butcher_results = list(/obj/item/food/meat/slab/sinnew = 1)
 
 /mob/living/simple_animal/hostile/ordeal/sin_lust/Initialize()
 	. = ..()
@@ -392,8 +396,8 @@
 	attack_sound = 'sound/effects/ordeals/brown/tentacle_attack.ogg'
 	death_sound = 'sound/effects/ordeals/brown/dead_generic.ogg'
 	damage_coeff = list(RED_DAMAGE = 1, WHITE_DAMAGE = 2, BLACK_DAMAGE = 1, PALE_DAMAGE = 2)
-	butcher_results = list(/obj/item/food/carpmeat/icantbeliveitsnotcarp = 1)
-	guaranteed_butcher_results = list(/obj/item/food/carpmeat/icantbeliveitsnotcarp = 1) //should make its own kind of meat when I get around to it
+	butcher_results = list(/obj/item/food/meat/slab/sinnew = 1)
+	guaranteed_butcher_results = list(/obj/item/food/meat/slab/sinnew = 1)
 
 /mob/living/simple_animal/hostile/ordeal/sin_wrath/AttackingTarget(atom/attacked_target)
 	. = ..()
