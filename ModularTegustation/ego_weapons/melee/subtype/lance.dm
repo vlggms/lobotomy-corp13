@@ -126,6 +126,9 @@
 	if(charge_speed > -(bump_threshold))
 		RaiseLance(user)
 		return
+	if(istype(A, /mob/living/simple_animal/projectile_blocker_dummy))
+		var/mob/living/simple_animal/projectile_blocker_dummy/pbd = A
+		A = pbd.parent
 	if(isliving(A))
 		if(ishuman(A) && user.faction_check_mob(A))
 			var/mob/living/carbon/human/H = A
