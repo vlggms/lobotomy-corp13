@@ -153,7 +153,7 @@
 	ricochets_max = 2
 	ricochet_chance = 100
 	ricochet_decay_chance = 1
-	ricochet_decay_damage = 2 //Double damage after each bounce
+	ricochet_decay_damage = 2
 	ricochet_auto_aim_range = 3
 	ricochet_incidence_leeway = 0
 
@@ -168,12 +168,12 @@
 
 /obj/projectile/clown_throw_rcorp/on_hit(atom/target, blocked = FALSE)
 	if(ishuman(target))
-		damage = 10
+		damage = 5
 		nodamage = FALSE
 		var/mob/living/carbon/human/H = target
-		H.apply_lc_bleed(8)
+		H.apply_lc_bleed(6)
 		H.add_movespeed_modifier(/datum/movespeed_modifier/clowned)
-		addtimer(CALLBACK(H, TYPE_PROC_REF(/mob, remove_movespeed_modifier), /datum/movespeed_modifier/clowned), 2 SECONDS, TIMER_UNIQUE | TIMER_OVERRIDE)
+		addtimer(CALLBACK(H, TYPE_PROC_REF(/mob, remove_movespeed_modifier), /datum/movespeed_modifier/clowned), 1 SECONDS, TIMER_UNIQUE | TIMER_OVERRIDE)
 		qdel(src)
 
 	if(istype(target, /mob/living))
