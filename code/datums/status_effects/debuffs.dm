@@ -1112,6 +1112,7 @@
 		owner.adjustBruteLoss(max(0, stacks - burn_res))
 	else
 		owner.adjustBruteLoss(stacks*4) // x4 on non humans (Average burn stack is 20. 80/5 sec, extra 16 pure dps)
+	new /obj/effect/temp_visual/damage_effect/burn(get_turf(owner))
 
 	//Deletes itself after 2 tick if no new burn stack was given
 	if(safety)
@@ -1200,6 +1201,7 @@
 		owner.adjustBruteLoss(max(0, stacks))
 	else
 		owner.adjustBruteLoss(stacks*4) // x4 on non humans
+	new /obj/effect/temp_visual/damage_effect/bleed(get_turf(owner))
 	stacks = round(stacks/2)
 	if(stacks == 0)
 		qdel(src)
