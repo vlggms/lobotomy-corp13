@@ -217,7 +217,7 @@
 	for(var/mob/living/L in hit_turfs)
 		if(!faction_check_mob(L))
 			if(L in been_hit)
-				if (IsCombatMap())
+				if(IsCombatMap())
 					if (world.time - been_hit[L] < dash_attack_cooldown)
 						continue
 				else
@@ -230,7 +230,8 @@
 			if(!ishuman(L))
 				dash_damage = dash_damage * 2
 			L.deal_damage(dash_damage, melee_damage_type)
-			L.apply_lc_bleed(5)
+			if(IsCombatMap())
+				L.apply_lc_bleed(5)
 			if(!ishuman(L))
 				dash_damage = dash_damage / 2
 			if(L.stat >= HARD_CRIT)
