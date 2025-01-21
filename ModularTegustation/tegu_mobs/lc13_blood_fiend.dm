@@ -412,7 +412,6 @@
 	guaranteed_butcher_results = list(/obj/item/food/meat/slab/crimson = 1)
 	silk_results = list(/obj/item/stack/sheet/silk/crimson_simple = 1)
 	var/self_damage = 10
-	var/self_damage_type = RED_DAMAGE
 	var/blood_drop_cooldown = 0
 	var/blood_drop_cooldown_time = 2 SECONDS
 	var/bleed_stacks = 1
@@ -424,7 +423,7 @@
 	if (istype(target, /mob/living))
 		var/mob/living/L = target
 		L.apply_lc_bleed(bleed_stacks)
-	deal_damage(self_damage, self_damage_type)
+	adjustRedLoss(self_damage)
 
 /mob/living/simple_animal/hostile/humanoid/blood/bag/adjustHealth(amount, updating_health = TRUE, forced = FALSE)
 	. = ..()
