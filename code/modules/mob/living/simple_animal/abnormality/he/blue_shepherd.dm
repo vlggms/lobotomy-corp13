@@ -160,7 +160,7 @@
 		return FALSE
 	if (istype(owner, /mob/living/simple_animal/hostile/abnormality/blue_shepherd))
 		var/mob/living/simple_animal/hostile/abnormality/blue_shepherd/H = owner
-		old_speed = H.move_to_delay
+		old_speed = 3
 		H.move_to_delay = speeded_up
 		H.UpdateSpeed()
 		H.sidesteping = TRUE
