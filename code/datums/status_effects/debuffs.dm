@@ -1109,7 +1109,7 @@
 	owner.playsound_local(owner, 'sound/effects/burn.ogg', 50, TRUE)
 	Check_Resist(owner)
 	if(ishuman(owner))
-		owner.adjustBruteLoss(max(0, stacks - burn_res))
+		owner.adjustFireLoss(max(0, stacks - burn_res))
 	else
 		owner.adjustBruteLoss(stacks*4) // x4 on non humans (Average burn stack is 20. 80/5 sec, extra 16 pure dps)
 	new /obj/effect/temp_visual/damage_effect/burn(get_turf(owner))
