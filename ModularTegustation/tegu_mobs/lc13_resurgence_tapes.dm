@@ -289,7 +289,7 @@
 	timestamp = list(1, 6, 11, 16, 21, 26, 31, 36, 41, 46, 51, 56, 61, 66, 71, 76, 81, 86, 91, 96, 101, 106, 111, 116)
 
 /obj/item/tape/resurgence/his_dream
-	name = "Weavers's Logs: His Dream..."
+	name = "Weavers's Logs: His Dream"
 	desc = "A magnetic tape that can hold up to ten minutes of content. It appears to have 'His Dream' written on it's back."
 	storedinfo = list(
 	"*Quiet gust of wind, clicking and taps from a typewriter.*",
@@ -329,7 +329,7 @@
 	"*Sounds of a heavy hydraulic hand reaching down towards the Weaver’s voice.*"
 	)
 
-	timestamp = list(1, 8, 15, 22, 29, 36, 43, 50, 57, 64, 71, 78, 85, 92, 99, 106, 113, 120, 127, 134, 141, 148, 155, 162, 169, 176, 183, 190, 197, 204, 211, 218, 225, 232)
+	timestamp = list(1, 8, 15, 22, 29, 36, 43, 50, 57, 64, 71, 78, 85, 92, 99, 106, 113, 120, 127, 134, 141, 148, 155, 162, 169, 176, 183, 190, 197, 204, 211, 218, 225, 232, 239)
 
 /obj/item/tape/resurgence/redacted
 	name = "{REDACTED}"
@@ -377,14 +377,14 @@
 	"*An electric buzz quickly sounds the recorder, as quick zips around the buzz...*",
 	"*Around the electric buzz, glitching screams quickly rise and fade with swift punctures...*",
 	"*Metallic footsteps rush over to the electric buzz, some moving past the sound...*",
-	"*Many more end with a thud away from the eclectic buzz...*",
+	"*Many more end with a thud away from the electric buzz...*",
 	span_game_say(span_name("The Historian") + span_message(" screams,") + " &quot;NO... NO!!! RUN FASTER, RUN OVER HERE!!!&quot;"),
 	span_game_say(span_name("The Weaver") + span_message(" terrifiedly,") + " &quot;No... They- are all melted, nothing reminds of them... Wha-at... did we do wrong...&quot;"),
 	span_game_say(span_name("The Tinkerer") + span_message(" says,") + " &quot;Damit... They are leaving no room for us to run... They completely inclosed us...&quot;"),
 	span_game_say(span_name("The Warlord") + span_message(" shouts,") + " &quot;IF THEY ARE NOT LETTING US RUN BACK!...&quot;"),
-	"*Sounds of an Engine blazing from the Warlord...*",
+	"*Sounds of an engine blazing from the Warlord...*",
 	span_game_say(span_name("The Warlord") + span_message(" shouts,") + " &quot;WE SHALL KEEP MOVING!...&quot;"),
-	"*Heavy Tremors heard from the Warlord, start moving towards the gunfire...*",
+	"*Heavy tremors heard from the Warlord, start moving towards the gunfire...*",
 	"*Followed by an explosive crush from one side of the gunfire...*",
 	span_game_say(span_name("The Warlord") + span_message(" shouts,") + " &quot;MOVE EVERYONE, I WILL HOLD THIS OPENING!...&quot;"),
 	"*Hundreds of mechanical footsteps rushing towards the Warlord’s voice...*",
@@ -394,7 +394,7 @@
 	"*A shot rings out towards the recorder, Quickly cutting this recording short.*"
 	)
 
-	timestamp = list(1, 7, 13, 19, 25, 31, 37, 43, 49, 55, 61, 67, 73, 79, 85, 91, 97, 103, 109, 115, 121, 127, 133, 139, 145, 151, 157, 163, 169, 175, 181, 187, 193, 199, 205, 211, 217, 223, 229, 235, 241, 247, 253, 259, 265, 271, 277, 283, 289, 295, 301, 307, 313, 319, 325, 331)
+	timestamp = list(1, 7, 13, 19, 25, 31, 37, 43, 49, 55, 61, 67, 73, 79, 85, 91, 97, 103, 109, 115, 121, 127, 133, 139, 145, 151, 157, 163, 169, 175, 181, 187, 193, 199, 205, 211, 217, 223, 229, 235, 241, 247, 253, 259, 265, 271, 277, 283, 289, 295, 301, 307, 313, 319, 325, 331, 337)
 
 // /obj/item/tape/resurgence/dreams
 // 	name = "Historians Podcast: Elliot's Day"
