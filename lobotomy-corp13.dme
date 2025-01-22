@@ -3108,6 +3108,8 @@
 #include "code\modules\mob\living\simple_animal\hostile\ordeal\violet.dm"
 #include "code\modules\mob\living\simple_animal\hostile\ordeal\white.dm"
 #include "code\modules\mob\living\simple_animal\hostile\ordeal\brown\dawn.dm"
+#include "code\modules\mob\living\simple_animal\hostile\ordeal\brown\envy.dm"
+#include "code\modules\mob\living\simple_animal\hostile\ordeal\brown\noon.dm"
 #include "code\modules\mob\living\simple_animal\hostile\ordeal\gold\dawn.dm"
 #include "code\modules\mob\living\simple_animal\hostile\ordeal\gold\dusk.dm"
 #include "code\modules\mob\living\simple_animal\hostile\ordeal\gold\midnight.dm"
