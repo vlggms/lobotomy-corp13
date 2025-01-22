@@ -331,7 +331,7 @@
 
 	timestamp = list(1, 8, 15, 22, 29, 36, 43, 50, 57, 64, 71, 78, 85, 92, 99, 106, 113, 120, 127, 134, 141, 148, 155, 162, 169, 176, 183, 190, 197, 204, 211, 218, 225, 232)
 
-/obj/item/tape/resurgence/his_dream
+/obj/item/tape/resurgence/redacted
 	name = "{REDACTED}"
 	desc = "A magnetic tape that can hold up to ten minutes of content. It appears to have something scratched out on it's back."
 	storedinfo = list(

@@ -286,6 +286,10 @@
 	slowdown = 0
 	},
 /area/city/backstreets_alley)
+"io" = (
+/obj/structure/table/bronze,
+/turf/open/floor/plating/ashplanet/rocky,
+/area/city/backstreets_alley)
 "iD" = (
 /turf/open/floor/plating/ashplanet/wateryrock,
 /area/city/backstreets_alley)
@@ -8294,7 +8298,7 @@ nZ
 nZ
 nZ
 nZ
-nZ
+io
 nZ
 nZ
 iD
