@@ -222,6 +222,9 @@ GLOBAL_LIST_EMPTY(apostles)
 	return
 
 /mob/living/simple_animal/hostile/abnormality/white_night/BreachEffect(mob/living/carbon/human/user, breach_type)
+	if(breach_type == BREACH_MINING)
+		qdel(src)
+		return
 	holy_revival_cooldown = world.time + holy_revival_cooldown_base
 	. = ..()
 	for(var/mob/M in GLOB.player_list)
