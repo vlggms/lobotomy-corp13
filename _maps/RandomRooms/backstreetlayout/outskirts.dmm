@@ -159,8 +159,11 @@
 /turf/open/floor/carpet/royalblack,
 /area/city/backstreets_room/resurgence_village)
 "fc" = (
-/obj/structure/lootcrate/syndicate,
-/turf/open/floor/plating/ashplanet/rocky,
+/mob/living/simple_animal/npc/tinkerer{
+	default_delay = 15;
+	speech = list("Icon: tinker_d","Icon: tinker","Well, Looks like you were able to slay all of the faithless...", "I guess I should congratulate you for making it here, they must have been a hassle to deal with...", "Yet, Looks like you found this tape...", "Personaly, I would never want to share this with anyone...", "But it appears I can do nothing about this... You already can get it.", "All I can really say now is...", "Just keep it to yourself... Don't want to be unloading all of this on everyone...", "Icon: tinker_u")
+	},
+/turf/open/floor/plating/ashplanet/wateryrock,
 /area/city/backstreets_alley)
 "fg" = (
 /obj/structure/chair/plastic{
@@ -288,8 +291,19 @@
 /area/city/backstreets_alley)
 "io" = (
 /obj/structure/table/bronze,
-/turf/open/floor/plating/ashplanet/rocky,
-/area/city/backstreets_alley)
+/obj/structure/window/bronze{
+	dir = 8
+	},
+/obj/structure/window/bronze{
+	dir = 4
+	},
+/obj/structure/window/bronze{
+	dir = 1
+	},
+/obj/structure/window/bronze,
+/obj/item/tape/resurgence/his_dream,
+/turf/open/floor/wood,
+/area/city/backstreets_room/resurgence_village)
 "iD" = (
 /turf/open/floor/plating/ashplanet/wateryrock,
 /area/city/backstreets_alley)
@@ -1219,8 +1233,18 @@
 /turf/closed/indestructible/reinforced,
 /area/city/backstreets_room)
 "RV" = (
-/obj/structure/flora/rock,
-/obj/structure/lootcrate/syndicate,
+/obj/structure/table/bronze,
+/obj/item/tape/resurgence/redacted,
+/obj/structure/window/bronze{
+	dir = 8
+	},
+/obj/structure/window/bronze{
+	dir = 4
+	},
+/obj/structure/window/bronze{
+	dir = 1
+	},
+/obj/structure/window/bronze,
 /turf/open/floor/plating/ashplanet/rocky,
 /area/city/backstreets_alley)
 "Sa" = (
@@ -7855,7 +7879,7 @@ xf
 xf
 WZ
 yP
-fc
+nZ
 YK
 xf
 xf
@@ -7963,7 +7987,7 @@ nZ
 VB
 xf
 nZ
-Da
+nZ
 nZ
 nZ
 nZ
@@ -8072,7 +8096,7 @@ Jc
 YK
 nZ
 VB
-nZ
+Da
 nZ
 nZ
 Cq
@@ -8187,7 +8211,7 @@ BM
 BM
 BM
 nZ
-nZ
+RV
 nZ
 nZ
 nZ
@@ -8298,11 +8322,11 @@ nZ
 nZ
 nZ
 nZ
-io
+nZ
 nZ
 nZ
 iD
-fR
+iD
 xf
 xf
 iD
@@ -8405,14 +8429,14 @@ Jc
 em
 xf
 gA
-nZ
+Da
 nZ
 Cq
 nZ
 nZ
-Da
+nZ
 dk
-iD
+fc
 sg
 xf
 xf
@@ -8523,7 +8547,7 @@ nZ
 iD
 iD
 iD
-RV
+gA
 xf
 Jc
 Jc
@@ -8633,7 +8657,7 @@ nZ
 fR
 tB
 JO
-WZ
+gA
 xf
 xf
 Jc
@@ -16447,7 +16471,7 @@ LI
 gy
 eo
 aU
-sQ
+io
 LI
 Tb
 kM
