@@ -123,7 +123,10 @@
 	if(charging)
 		if(IsCombatMap())
 			if(!clogged_blades)
-				dir_to_target = direction
+				if (turn(dir_to_target, 180) != direction)
+					dir_to_target = direction
+				else
+					to_chat(src, span_userdanger("You can't do 180 degree turns!"))
 			else
 				to_chat(src, span_userdanger("Your spinning blades are clogged with blood!"))
 		return FALSE
@@ -206,7 +209,11 @@
 			INVOKE_ASYNC(D, TYPE_PROC_REF(/obj/machinery/door, open), 2)
 	if(stop_charge)
 		playsound(src, 'sound/abnormalities/helper/disable.ogg', 75, 1)
-		SLEEP_CHECK_DEATH(stuntime)
+		var/area/A = get_area(get_turf(src))
+		if (istype(A, /area/city/outskirts/rcorp_base))
+			SLEEP_CHECK_DEATH(stuntime * 3)
+		else
+			SLEEP_CHECK_DEATH(stuntime)
 		charging = FALSE
 		return
 	forceMove(T)
