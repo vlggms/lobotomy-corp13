@@ -28,12 +28,12 @@
 				return BULLET_ACT_BLOCK
 			switch(damage_type)
 				if(WHITE_DAMAGE)
-					H.adjustSanityLoss(-damage*0.2)
+					H.adjustSanityLoss(-10)
 				if(BLACK_DAMAGE)
-					H.adjustBruteLoss(-damage*0.1)
-					H.adjustSanityLoss(-damage*0.1)
+					H.adjustBruteLoss(-5)
+					H.adjustSanityLoss(-5)
 				else // Red or pale
-					H.adjustBruteLoss(-damage*0.2)
+					H.adjustBruteLoss(-10)
 			H.visible_message("<span class='warning'>[src] vanishes on contact with [H]!</span>")
 			qdel(src)
 			return BULLET_ACT_BLOCK
