@@ -5,7 +5,7 @@
 	custom_price = PAYCHECK_ASSISTANT
 
 /obj/item/choice_beacon/weaving/attack_self(mob/user)
-	if(useable_outside_office)
+	if(!useable_outside_office)
 		if(SSmaptype.maptype == "office")
 			if(canUseBeacon(user))
 				generate_options(user)
