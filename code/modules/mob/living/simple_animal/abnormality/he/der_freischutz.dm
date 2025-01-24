@@ -409,6 +409,12 @@
 				Port.fade_out()
 	return
 
+/mob/living/simple_animal/hostile/abnormality/der_freischutz/death()
+	for(var/mob/living/simple_animal/hostile/der_freis_portal/P in portals)
+		P.death(FALSE)
+	..()
+
+
 /mob/living/simple_animal/hostile/der_freis_portal
 	name = "magic portal"
 	desc = "A strange blue portal... You feel like you are being watched though it."
