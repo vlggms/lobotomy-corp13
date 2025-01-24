@@ -468,7 +468,7 @@
 		//var/mob/living/carbon/human/H = locate(stored_bodies[mob_name]["ref"])
 		//if(H && ishuman(H))
 		//	if(try_payment(revival_fee, H))
-		revive_body(mob_name)
+		revive_body(mob_name, usr.ckey)
 
 	updateUsrDialog()
 
@@ -588,10 +588,15 @@
 	new_body.revive(full_heal = TRUE, admin_revive = FALSE)
 	new_body.updateappearance()
 
-	if (isnull(usr))
-		new_body.ckey = ckey
-	else
-		new_body.ckey = usr.ckey
+	// if (isnull(usr))
+	// 	new_body.ckey = ckey
+	// else
+	new_body.ckey = ckey
+
+	if (!new_body.ckey)
+		log_game("Body Preservation Unit: Created a new body for [real_name] without a ckey.")
+		qdel(new_body)
+		return
 
 	var/assigned_role = stored_data["assigned_role"]
 	if (assigned_role)
@@ -629,6 +634,7 @@
 // Define this as a global proc
 /proc/offer_respawn_global(real_name, obj/machinery/body_preservation_unit/BPU)
 	var/mob/dead/observer/ghost = find_dead_player(real_name)
+	to_chat(ghost, "<span class='notice'>BPU is now ready to rebuild your body, click on the BPU as a ghost to re-build yourself or accept this offer.</span>")
 	if(!ghost || !ghost.client)
 		return
 	if (!istype(BPU) || !BPU.loc)
