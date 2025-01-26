@@ -383,6 +383,7 @@
 		"Each time a cursed employee speaks there is a chance a word will be taken by F-02-202-02.",
 		"Intances of F-02-202-02 will share taken words.",
 		"Curing the F-02-202-02 requires the host to fall asleep with a offering of food ontop of them.",
+		"Testing has found F-02-202 rejects junk food and raw meat.",
 		"It is considered bad luck if F-02-202 does not accept the offering.",)
 
 //Dealer of the Damned
