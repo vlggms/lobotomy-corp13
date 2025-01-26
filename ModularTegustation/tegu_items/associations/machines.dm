@@ -215,8 +215,8 @@
 	resistance_flags = INDESTRUCTIBLE
 
 /obj/structure/timelock/Initialize()
-	..()
 	addtimer(CALLBACK(src, PROC_REF(die)), 15 MINUTES)
+	return ..()
 
 /obj/structure/timelock/proc/die()
 	qdel(src)

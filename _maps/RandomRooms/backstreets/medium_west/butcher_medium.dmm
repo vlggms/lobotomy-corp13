@@ -67,8 +67,8 @@
 /turf/open/floor/plasteel/sepia,
 /area/city/backstreets_room)
 "H" = (
-/turf/closed/indestructible/rock,
-/area/space)
+/turf/template_noop,
+/area/template_noop)
 "J" = (
 /obj/machinery/smartfridge/drying_rack,
 /turf/open/floor/plasteel/sepia,
