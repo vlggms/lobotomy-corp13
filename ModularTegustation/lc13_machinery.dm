@@ -353,9 +353,9 @@
 		if(length(B.initial_traits) == 0)
 			B.initial_traits = H.status_traits
 
-/*---------------\
+/*---------------------\
 |Body Preservation Unit|
-\---------------*/
+\---------------------*/
 
 /obj/machinery/body_preservation_unit
 	name = "body preservation unit"
@@ -490,6 +490,16 @@
 			atr.level = old_atr.level
 	preserved_data["attributes"] = attributes
 
+/obj/machinery/body_preservation_unit/proc/store_actions(mob/living/carbon/human/H, list/preserved_data)
+	var/list/action_types = list()
+	for(var/datum/action/A in H.actions)
+		if(ispath(A, /datum/action/item_action))
+			continue
+		if(ispath(A, /datum/action/spell_action))
+			continue
+		action_types += A.type
+	preserved_data["action_types"] = action_types
+
 
 /obj/machinery/body_preservation_unit/proc/preserve_body(mob/living/carbon/human/H)
 	if(!H || !H.mind)
@@ -500,12 +510,14 @@
 	preserved_data["ckey"] = M.key
 	preserved_data["real_name"] = H.real_name
 	preserved_data["species"] = H.dna.species.type
+	preserved_data["gender"] = H.gender
 	var/datum/dna/D = new /datum/dna
 	H.dna.copy_dna(D)
 	preserved_data["dna"] = D
 	preserved_data["assigned_role"] = H.mind.assigned_role
 
 	store_attributes(H, preserved_data)
+	store_actions(H, preserved_data)
 
 	preserved_data["underwear"] = H.underwear
 	preserved_data["underwear_color"] = H.underwear_color
@@ -542,6 +554,7 @@
 
 	// Set up the new body with stored data
 	new_body.real_name = stored_data["real_name"]
+	new_body.gender = stored_data["gender"]
 
 	// Check if the stored DNA is valid
 	if(istype(stored_data["dna"], /datum/dna))
@@ -592,6 +605,13 @@
 	// 	new_body.ckey = ckey
 	// else
 	new_body.ckey = ckey
+
+	var/list/stored_action_types = stored_data["action_types"]
+	if (islist(stored_action_types))
+		for (var/T in stored_action_types)
+			var/datum/action/G = new T()
+			G.Grant(new_body)
+
 
 	if (!new_body.ckey)
 		log_game("Body Preservation Unit: Created a new body for [real_name] without a ckey.")
