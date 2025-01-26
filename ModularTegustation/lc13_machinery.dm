@@ -353,9 +353,9 @@
 		if(length(B.initial_traits) == 0)
 			B.initial_traits = H.status_traits
 
-/*---------------\
+/*---------------------\
 |Body Preservation Unit|
-\---------------*/
+\---------------------*/
 
 /obj/machinery/body_preservation_unit
 	name = "body preservation unit"
@@ -375,6 +375,14 @@
 	var/cost_multiplier = 5
 	resistance_flags = INDESTRUCTIBLE
 	max_integrity = 1000000
+
+/obj/machinery/body_preservation_unit/Initialize()
+	. = ..()
+	if(SSmaptype.maptype == "office")
+		public_use = TRUE
+		clone_delay_seconds = 60
+		revival_attribute_penalty = -4
+		cost_multiplier = 2
 
 /obj/machinery/body_preservation_unit/attackby(obj/item/I, mob/user, params)
 	if(istype(I, /obj/item/holochip))
@@ -461,7 +469,7 @@
 		//var/mob/living/carbon/human/H = locate(stored_bodies[mob_name]["ref"])
 		//if(H && ishuman(H))
 		//	if(try_payment(revival_fee, H))
-		revive_body(mob_name)
+		revive_body(mob_name, usr.ckey)
 
 	updateUsrDialog()
 
@@ -483,6 +491,16 @@
 			atr.level = old_atr.level
 	preserved_data["attributes"] = attributes
 
+/obj/machinery/body_preservation_unit/proc/store_actions(mob/living/carbon/human/H, list/preserved_data)
+	var/list/action_types = list()
+	for(var/datum/action/A in H.actions)
+		if(ispath(A, /datum/action/item_action))
+			continue
+		if(ispath(A, /datum/action/spell_action))
+			continue
+		action_types += A.type
+	preserved_data["action_types"] = action_types
+
 
 /obj/machinery/body_preservation_unit/proc/preserve_body(mob/living/carbon/human/H)
 	if(!H || !H.mind)
@@ -493,15 +511,16 @@
 	preserved_data["ckey"] = M.key
 	preserved_data["real_name"] = H.real_name
 	preserved_data["species"] = H.dna.species.type
+	preserved_data["gender"] = H.gender
 	var/datum/dna/D = new /datum/dna
 	H.dna.copy_dna(D)
 	preserved_data["dna"] = D
 	preserved_data["assigned_role"] = H.mind.assigned_role
-
-	store_attributes(H, preserved_data)
-
 	preserved_data["underwear"] = H.underwear
 	preserved_data["underwear_color"] = H.underwear_color
+
+	store_attributes(H, preserved_data)
+	store_actions(H, preserved_data)
 
 	stored_bodies[H.real_name] = preserved_data
 
@@ -535,6 +554,7 @@
 
 	// Set up the new body with stored data
 	new_body.real_name = stored_data["real_name"]
+	new_body.gender = stored_data["gender"]
 
 	// Check if the stored DNA is valid
 	if(istype(stored_data["dna"], /datum/dna))
@@ -581,10 +601,22 @@
 	new_body.revive(full_heal = TRUE, admin_revive = FALSE)
 	new_body.updateappearance()
 
-	if (isnull(usr))
-		new_body.ckey = ckey
-	else
-		new_body.ckey = usr.ckey
+	// if (isnull(usr))
+	// 	new_body.ckey = ckey
+	// else
+	new_body.ckey = ckey
+
+	var/list/stored_action_types = stored_data["action_types"]
+	if (islist(stored_action_types))
+		for (var/T in stored_action_types)
+			var/datum/action/G = new T()
+			G.Grant(new_body)
+
+
+	if (!new_body.ckey)
+		log_game("Body Preservation Unit: Created a new body for [real_name] without a ckey.")
+		qdel(new_body)
+		return
 
 	var/assigned_role = stored_data["assigned_role"]
 	if (assigned_role)
@@ -622,12 +654,13 @@
 // Define this as a global proc
 /proc/offer_respawn_global(real_name, obj/machinery/body_preservation_unit/BPU)
 	var/mob/dead/observer/ghost = find_dead_player(real_name)
+	to_chat(ghost, "<span class='notice'>BPU is now ready to rebuild your body, click on the BPU as a ghost to re-build yourself or accept this offer.</span>")
 	if(!ghost || !ghost.client)
 		return
 	if (!istype(BPU) || !BPU.loc)
 		return
 
-	var/response = alert(ghost, "Do you want to respawn?", "Respawn Offer", "Yes", "No")
+	var/response = alert(ghost, "Do you want to be cloned at the BPU?", "Respawn Offer", "Yes", "No")
 	if(response == "Yes")
 //		var/obj/machinery/body_preservation_unit/BPU = locate() in GLOB.machines
 		if(BPU.stored_bodies[real_name])
