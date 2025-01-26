@@ -1034,20 +1034,6 @@
 /turf/open/floor/facility/dark,
 /area/facility_hallway/information)
 "fj" = (
-/obj/structure/filingcabinet/zayininfo{
-	density = 0;
-	pixel_x = -10;
-	pixel_y = 19
-	},
-/obj/structure/filingcabinet/tethinfo{
-	density = 0;
-	pixel_y = 19
-	},
-/obj/structure/filingcabinet/heinfo{
-	density = 0;
-	pixel_x = 10;
-	pixel_y = 19
-	},
 /obj/machinery/light{
 	dir = 8;
 	pixel_x = -9;
@@ -1059,6 +1045,7 @@
 /obj/effect/turf_decal/arrows/white{
 	dir = 8
 	},
+/obj/effect/mapping_helpers/records_spawner/walk_through,
 /turf/open/floor/facility/dark,
 /area/facility_hallway/records)
 "fk" = (
@@ -4969,27 +4956,13 @@
 	},
 /area/facility_hallway/safety)
 "wW" = (
-/obj/structure/filingcabinet/wawinfo{
-	density = 0;
-	pixel_x = -11;
-	pixel_y = 19
-	},
-/obj/structure/filingcabinet/alephinfo{
-	density = 0;
-	pixel_x = -1;
-	pixel_y = 19
-	},
-/obj/structure/filingcabinet/toolinfo{
-	density = 0;
-	pixel_x = 9;
-	pixel_y = 19
-	},
 /obj/effect/turf_decal/arrows/white{
 	dir = 8
 	},
 /obj/effect/turf_decal/arrows/white{
 	dir = 4
 	},
+/obj/effect/mapping_helpers/records_spawner/second/walk_through,
 /turf/open/floor/facility/dark,
 /area/facility_hallway/records)
 "wZ" = (
