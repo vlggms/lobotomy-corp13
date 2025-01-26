@@ -515,12 +515,11 @@
 	H.dna.copy_dna(D)
 	preserved_data["dna"] = D
 	preserved_data["assigned_role"] = H.mind.assigned_role
+	preserved_data["underwear"] = H.underwear
+	preserved_data["underwear_color"] = H.underwear_color
 
 	store_attributes(H, preserved_data)
 	store_actions(H, preserved_data)
-
-	preserved_data["underwear"] = H.underwear
-	preserved_data["underwear_color"] = H.underwear_color
 
 	stored_bodies[H.real_name] = preserved_data
 
