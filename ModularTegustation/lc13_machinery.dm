@@ -380,6 +380,7 @@
 	. = ..()
 	if(SSmaptype.maptype == "office")
 		public_use = TRUE
+		clone_delay_seconds = 60
 		revival_attribute_penalty = -4
 		cost_multiplier = 2
 
@@ -659,7 +660,7 @@
 	if (!istype(BPU) || !BPU.loc)
 		return
 
-	var/response = alert(ghost, "Do you want to respawn?", "Respawn Offer", "Yes", "No")
+	var/response = alert(ghost, "Do you want to be cloned at the BPU?", "Respawn Offer", "Yes", "No")
 	if(response == "Yes")
 //		var/obj/machinery/body_preservation_unit/BPU = locate() in GLOB.machines
 		if(BPU.stored_bodies[real_name])
