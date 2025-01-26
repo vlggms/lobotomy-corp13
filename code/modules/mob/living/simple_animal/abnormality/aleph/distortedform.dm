@@ -401,15 +401,10 @@
 		return
 	var/punishment = TRUE
 	var/transform_target
-	for(var/mob/living/L in urange(15, src))
-		if(L.z != z)
-			continue
-		if(faction_check_mob(L))
-			continue
-		if((L.stat == DEAD) || (L.status_flags & GODMODE))
-			continue
-		punishment = FALSE
-		break
+	for(var/mob/living/L in ohearers(15, src))
+		if(CanAttack(L))
+			punishment = FALSE
+			break
 	if(punishment && !jump_ready) //No one is within 15 tiles? Let's just snipe players instead!
 		transform_target = pick(transform_list_longrange)
 		jump_ready = TRUE
@@ -424,7 +419,7 @@
 	transform_count += 1
 
 //Attacks
-/mob/living/simple_animal/hostile/abnormality/distortedform/CanAttack(atom/the_target)
+/mob/living/simple_animal/hostile/abnormality/distortedform/AttackingTarget(atom/attacked_target)
 	if(!can_attack || !can_act)
 		return FALSE
 	return ..()
@@ -550,7 +545,9 @@
 	playsound(src, "sound/abnormalities/distortedform/screech4.ogg", 75, FALSE, 8)
 	for(var/i = 1 to 8)
 		new /obj/effect/temp_visual/fragment_song(get_turf(src))
-		for(var/mob/living/L in view(8, src))
+		for(var/mob/living/L in ohearers(8, src))
+			if(L.z != z || (L.status_flags & GODMODE))
+				continue
 			if(faction_check_mob(L, FALSE))
 				continue
 			if(L.stat == DEAD)
@@ -563,19 +560,14 @@
 	var/list/target_list = list()
 	var/list/human_targets = list()
 	for(var/mob/living/L in urange(10, src))
-		if(L.z != z || (L.status_flags & GODMODE))
-			continue
-		if(faction_check_mob(L, FALSE))
-			continue
-		if(L.stat >= DEAD)
-			continue
-		target_list += L
-		if(ishuman(L))
-			human_targets += L
+		if(CanAttack(L))
+			target_list += L
+			if(ishuman(L))
+				human_targets += L
 
-	if(!target)
+	if(QDELETED(target))
 		if(LAZYLEN(target_list))
-			target = pick(target_list)
+			GiveTarget(pick(target_list))
 // We're checking for a lot of things here. Basically, this is a check to determine whether or not we use a mechanic that requires teamwork and/or coordination to solve.
 	if(!target || !ishuman(target) || QDELETED(target) || (human_targets.len < 2) || prob(50))
 		if(prob(50))
@@ -1242,13 +1234,13 @@
 /mob/living/simple_animal/hostile/abnormality/distortedform/proc/ToadJump(mob/living/target)
 	special_attack_cooldown = world.time + 6 SECONDS
 	can_act = FALSE
-	animate(src, alpha = 1,pixel_x = 0, pixel_z = 16, time = 0.1 SECONDS)
+	animate(src, alpha = 1, pixel_z = 16, time = 0.1 SECONDS)
 	src.pixel_z = 16
 	playsound(src, 'sound/abnormalities/blubbering_toad/windup.ogg', 50, FALSE, 4)
 	var/turf/target_turf = get_turf(target)
 	SLEEP_CHECK_DEATH(0.5 SECONDS)
 	forceMove(target_turf) //look out, someone is rushing you!
-	animate(src, alpha = 255,pixel_x = 0, pixel_z = -16, time = 0.1 SECONDS)
+	animate(src, alpha = 255, pixel_z = -16, time = 0.1 SECONDS)
 	src.pixel_z = 0
 	for(var/turf/T in view(1, src))
 		var/obj/effect/temp_visual/small_smoke/halfsecond/FX =  new(T)
