@@ -133,7 +133,8 @@
 		/obj/item/kitchen/knife/combat/survival = 100,
 		/obj/item/weldingtool/mini = 100,
 		/obj/item/reagent_containers/hypospray/medipen/mental = 100,
-		/obj/item/reagent_containers/hypospray/medipen/salacid = 100
+		/obj/item/reagent_containers/hypospray/medipen/salacid = 100,
+		/obj/item/gps/fixer = 100,
 	)
 
 	premium = list(

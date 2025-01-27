@@ -66,6 +66,18 @@
 		var/mob/living/carbon/human/human = user
 		var/user_level = get_civilian_level(human)
 		var/allowed_level1_skills = 3
+		var/list/stats = list(
+			FORTITUDE_ATTRIBUTE,
+			PRUDENCE_ATTRIBUTE,
+			TEMPERANCE_ATTRIBUTE,
+			JUSTICE_ATTRIBUTE,
+		)
+		var/stattotal
+		var/grade
+		for(var/attribute in stats)
+			stattotal += get_attribute_level(human, attribute)
+		stattotal /= 4	// Potential is an average of stats
+		grade = round((stattotal) / 20)	// Get the average level-20, divide by 20
 
 		if ((level != user_level && level != -1) )
 			if(user_level == 0 && level==1)	//Specific check for Grade 9s, throw these bastards a bone
@@ -73,7 +85,7 @@
 				allowed_level1_skills = 5
 
 			else
-				to_chat(user, span_notice("Your level is [user_level]. This book needs level [level]!"))
+				wrong_grade_info(grade)
 				return FALSE
 		if (!(user?.mind?.assigned_role in list("Civilian")))
 			to_chat(user, span_notice("Only Civilians can use this book!"))
@@ -95,3 +107,12 @@
 		qdel(src)
 	..()
 
+/obj/item/book/granter/action/skill/proc/wrong_grade_info(grade)
+	if(level==1)
+		to_chat(user, span_notice("You are Grade [max(10-grade, 1)]. Only Grade 9 and 8 Fixers are able to read this book!"))
+	else if(level == 2)
+		to_chat(user, span_notice("You are Grade [max(10-grade, 1)]. Only Grade 7 and 6 Fixers are able to read this book!"))
+	else if(level == 3)
+		to_chat(user, span_notice("You are Grade [max(10-grade, 1)]. Only Grade 5 Fixers are able to read this book!"))
+	else if(level == 4)
+		to_chat(user, span_notice("You are Grade [max(10-grade, 1)]. Only Grade 4 Fixers are able to read this book!"))

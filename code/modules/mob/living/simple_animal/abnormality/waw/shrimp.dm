@@ -200,7 +200,7 @@
 
 /mob/living/simple_animal/hostile/shrimp/Initialize()
 	. = ..()
-	if(SSmaptype.maptype == "fixers" || SSmaptype.maptype == "city")
+	if(SSmaptype.maptype in SSmaptype.citymaps)
 		del_on_death = FALSE
 
 //You can put these guys about to guard an area.
@@ -236,7 +236,7 @@
 
 /mob/living/simple_animal/hostile/shrimp_soldier/Initialize()
 	. = ..()
-	if(SSmaptype.maptype == "fixers" || SSmaptype.maptype == "city")
+	if(SSmaptype.maptype in SSmaptype.citymaps)
 		del_on_death = FALSE
 
 /mob/living/simple_animal/hostile/shrimp_soldier/friendly
