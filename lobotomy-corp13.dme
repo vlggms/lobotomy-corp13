@@ -3916,6 +3916,7 @@
 #include "interface\stylesheet.dm"
 #include "interface\skin.dmf"
 #include "ModularTegustation\chair_override.dm"
+#include "ModularTegustation\delivery_doors.dm"
 #include "ModularTegustation\engineering_bounties.dm"
 #include "ModularTegustation\harvestable_gardens.dm"
 #include "ModularTegustation\languagebooks.dm"
