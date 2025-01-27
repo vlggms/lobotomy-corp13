@@ -108,7 +108,7 @@ It's not great though.
 
 //Disc officer
 /obj/item/clothing/suit/armor/ego_gear/disc_off
-	name = "discipline officer's jackey"
+	name = "discipline officer's jacket"
 	desc = "An armored jacket used by the disciplinary officer."
 	icon_state = "disc_officer"
 	armor = list(RED_DAMAGE = 20, WHITE_DAMAGE = 20, BLACK_DAMAGE = 20, PALE_DAMAGE = 20)
