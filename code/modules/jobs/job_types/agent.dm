@@ -122,7 +122,6 @@
 
 	return ..()
 
-
 /datum/outfit/job/agent
 	name = "Agent"
 	jobtype = /datum/job/agent
@@ -135,6 +134,7 @@
 	shoes = /obj/item/clothing/shoes/laceup
 	gloves = /obj/item/clothing/gloves/color/black
 	implants = list(/obj/item/organ/cyberimp/eyes/hud/security)
+	l_hand = /obj/item/class_chooser
 
 	backpack_contents = list(
 		/obj/item/melee/classic_baton,
@@ -165,6 +165,7 @@
 	name = "Agent Intern"
 	jobtype = /datum/job/agent/intern
 	head = null
+	l_hand = null
 
 	backpack_contents = list(
 		/obj/item/melee/classic_baton,
