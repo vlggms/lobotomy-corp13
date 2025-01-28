@@ -44,7 +44,7 @@
 	var/seek_cooldown
 	var/seek_cooldown_time = 10 SECONDS
 	var/summon_group_size = 6
-	var/summon_maximum = 14
+	var/summon_maximum = 0
 	var/eat_threshold = 0.8
 	abnormality_origin = ABNORMALITY_ORIGIN_LOBOTOMY
 
@@ -97,7 +97,7 @@
 	. = ..()
 	if(protected_people.len)
 		FairyHeal()
-	if(summon_count > summon_maximum)
+	if(summon_count >= summon_maximum)
 		return
 	if((summon_cooldown < world.time) && !(status_flags & GODMODE))
 		SummonGuys(summon_type)
@@ -136,12 +136,13 @@
 /mob/living/simple_animal/hostile/abnormality/fairy_festival/BreachEffect(mob/living/carbon/human/user, breach_type)
 	if(breach_type == BREACH_PINK)
 		summon_cooldown_time = 20 SECONDS
+		summon_maximum = 15
 		SummonGuys(summon_type)
 	if(breach_type == BREACH_MINING)
 		can_breach = TRUE
 		summon_type = /mob/living/simple_animal/hostile/fairy_mass
 		summon_group_size = 1
-		summon_maximum = 3
+		summon_maximum = 4
 		SummonGuys(summon_type)
 		icon = 'ModularTegustation/Teguicons/96x48.dmi'
 		icon_state = "fairy_queen"
