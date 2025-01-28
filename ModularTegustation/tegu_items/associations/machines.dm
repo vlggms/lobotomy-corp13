@@ -17,6 +17,7 @@
 		/obj/item/food/meat/slab/buggy,
 		/obj/item/food/meat/slab/corroded,
 		/obj/item/food/meat/slab/sinnew,
+		/obj/item/food/meat/slab/crimson,
 		/obj/item/rawpe,
 		/obj/item/reagent_containers/food/drinks/bottle/wine/unlabeled,
 	)
