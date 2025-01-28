@@ -1197,6 +1197,8 @@
 	var/new_stack = FALSE
 	var/burn_res = 0
 	var/safety = TRUE
+	var/bleed_cooldown = 20
+	var/bleed_time
 
 /atom/movable/screen/alert/status_effect/lc_bleed
 	name = "Bleeding"
@@ -1212,11 +1214,14 @@
 //Deals true damage
 /datum/status_effect/stacking/lc_bleed/proc/Moved(mob/user, atom/new_location)
 	SIGNAL_HANDLER
+	if (world.time - bleed_time < bleed_cooldown)
+		return
+	bleed_time = world.time
 	if(!can_have_status())
 		qdel(src)
 	to_chat(owner, "<span class='warning'>Your organs bleed due to your movement!!</span>")
 	owner.playsound_local(owner, 'sound/effects/wounds/crackandbleed.ogg', 25, TRUE)
-	if(stacks >= 10)
+	if(stacks >= 5)
 		var/obj/effect/decal/cleanable/blood/B = locate() in get_turf(owner)
 		if(!B)
 			B = new /obj/effect/decal/cleanable/blood(get_turf(owner))
