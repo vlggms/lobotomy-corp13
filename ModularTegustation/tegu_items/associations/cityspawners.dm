@@ -110,9 +110,6 @@ GLOBAL_VAR_INIT(city_east_enemies, FALSE)
 	if (GLOB.city_center_enemies == "worms")
 		new /mob/living/simple_animal/hostile/ordeal/amber_bug (get_turf(src))
 
-
-
-
 /obj/effect/landmark/backstreetspawnwest
 	name = "cityspawn landmark"
 	icon_state = "x2"
