@@ -10,8 +10,7 @@
 /area/city/backstreets_room)
 "b" = (
 /obj/structure/fence/door{
-	dir = 4;
-	resistance_flags = 64
+	dir = 4
 	},
 /obj/effect/decal/cleanable/blood/footprints{
 	dir = 8;
@@ -41,8 +40,7 @@
 /area/city/backstreets_room)
 "m" = (
 /obj/structure/fence/corner{
-	dir = 1;
-	resistance_flags = 64
+	dir = 1
 	},
 /turf/open/floor/plating/dirt/jungle/dark,
 /area/city/backstreets_room)
@@ -63,27 +61,19 @@
 /obj/item/toy/beach_ball/holoball/dodgeball,
 /turf/open/floor/plating/dirt/jungle/dark,
 /area/city/backstreets_room)
-"u" = (
-/obj/structure/fence/end{
-	resistance_flags = 64
-	},
-/turf/open/floor/plating/dirt/jungle/dark,
-/area/city/backstreets_room)
 "v" = (
 /obj/item/toy/beach_ball/holoball/dodgeball,
 /turf/open/floor/plating/dirt/jungle/dark,
 /area/city/backstreets_room)
 "x" = (
 /obj/structure/fence/corner{
-	dir = 8;
-	resistance_flags = 64
+	dir = 8
 	},
 /turf/open/floor/plating/dirt/jungle/dark,
 /area/city/backstreets_room)
 "y" = (
 /obj/structure/fence/door{
-	dir = 4;
-	resistance_flags = 64
+	dir = 4
 	},
 /obj/effect/decal/cleanable/blood/tracks{
 	dir = 4
@@ -92,8 +82,7 @@
 /area/city/backstreets_room)
 "z" = (
 /obj/structure/fence/corner{
-	dir = 7;
-	resistance_flags = 64
+	dir = 7
 	},
 /turf/open/floor/plating/dirt/jungle/dark,
 /area/city/backstreets_room)
@@ -112,15 +101,12 @@
 /turf/open/floor/plating/dirt/jungle/dark,
 /area/city/backstreets_room)
 "H" = (
-/obj/structure/fence/end{
-	resistance_flags = 64
-	},
+/obj/structure/fence/end,
 /turf/open/floor/plating/dirt/jungle/dark,
 /area/city/backstreets_room)
 "N" = (
 /obj/structure/fence{
-	dir = 4;
-	resistance_flags = 64
+	dir = 4
 	},
 /turf/open/floor/plating/dirt/jungle/dark,
 /area/city/backstreets_room)
@@ -153,8 +139,7 @@
 /area/city/backstreets_room)
 "X" = (
 /obj/structure/fence/corner{
-	dir = 4;
-	resistance_flags = 64
+	dir = 4
 	},
 /turf/open/floor/plating/dirt/jungle/dark,
 /area/city/backstreets_room)
@@ -237,12 +222,12 @@ N
 (6,1,1) = {"
 X
 b
-u
 H
 H
 H
 H
-u
+H
+H
 y
 z
 "}

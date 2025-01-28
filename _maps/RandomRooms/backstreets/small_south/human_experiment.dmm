@@ -46,9 +46,6 @@
 /obj/structure/fence,
 /turf/open/floor/mineral/titanium/tiled/white,
 /area/city/backstreets_room)
-"N" = (
-/turf/closed/indestructible/reinforced,
-/area/city/backstreets_room)
 "P" = (
 /obj/machinery/door/airlock/centcom,
 /turf/open/floor/mineral/titanium/tiled/white,
@@ -85,7 +82,7 @@ R
 U
 "}
 (3,1,1) = {"
-N
+U
 M
 M
 M
@@ -99,7 +96,7 @@ I
 U
 "}
 (5,1,1) = {"
-N
+U
 t
 C
 x

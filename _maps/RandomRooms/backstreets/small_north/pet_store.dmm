@@ -117,16 +117,13 @@
 "U" = (
 /turf/closed/indestructible/reinforced,
 /area/city/backstreets_room)
-"Y" = (
-/turf/closed/indestructible/reinforced,
-/area/city/backstreets_room)
 
 (1,1,1) = {"
 U
 U
 U
 U
-Y
+U
 "}
 (2,1,1) = {"
 U
@@ -140,7 +137,7 @@ U
 M
 u
 R
-Y
+U
 "}
 (4,1,1) = {"
 U

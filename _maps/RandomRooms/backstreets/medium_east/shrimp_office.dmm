@@ -34,9 +34,6 @@
 /mob/living/simple_animal/hostile/shrimp,
 /turf/open/floor/carpet/royalblack,
 /area/city/backstreets_room)
-"B" = (
-/turf/closed/indestructible/reinforced,
-/area/city/backstreets_room)
 "C" = (
 /obj/structure/lootcrate/money,
 /turf/open/floor/carpet/royalblack,
@@ -78,10 +75,10 @@
 x
 x
 x
-B
+x
 H
 H
-B
+x
 x
 x
 x

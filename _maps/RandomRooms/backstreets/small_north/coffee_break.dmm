@@ -9,9 +9,6 @@
 /obj/item/flashlight/lamp/green,
 /turf/open/floor/wood,
 /area/city/backstreets_room)
-"p" = (
-/turf/closed/indestructible/reinforced,
-/area/city/backstreets_room)
 "q" = (
 /obj/effect/landmark/cratespawn,
 /turf/open/floor/wood,
@@ -53,7 +50,7 @@ U
 R
 W
 W
-p
+U
 "}
 (3,1,1) = {"
 U
@@ -67,7 +64,7 @@ U
 M
 f
 W
-p
+U
 "}
 (5,1,1) = {"
 U

@@ -19,9 +19,6 @@
 /obj/structure/grille,
 /turf/open/floor/plasteel/dark,
 /area/city/backstreets_room)
-"j" = (
-/turf/closed/indestructible/reinforced,
-/area/city/backstreets_room)
 "k" = (
 /obj/structure/rack,
 /turf/open/floor/plasteel/dark,
@@ -74,9 +71,9 @@
 a
 a
 a
-j
+a
 X
-j
+a
 a
 "}
 (2,1,1) = {"

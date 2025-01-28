@@ -34,9 +34,6 @@
 "x" = (
 /turf/closed/indestructible/reinforced,
 /area/city/backstreets_room)
-"y" = (
-/turf/closed/indestructible/reinforced,
-/area/city/backstreets_room)
 "C" = (
 /obj/effect/decal/cleanable/dirt/dust,
 /turf/closed/indestructible/reinforced,
@@ -127,9 +124,9 @@ x
 x
 x
 x
-y
+x
 H
-y
+x
 "}
 (2,1,1) = {"
 x

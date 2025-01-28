@@ -211,10 +211,6 @@
 /obj/item/kitchen/rollingpin,
 /turf/open/floor/facility/white,
 /area/city/backstreets_room)
-"F" = (
-/obj/effect/spawner/structure/window,
-/turf/open/floor/plating,
-/area/city/backstreets_room)
 "G" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/blood/tracks{
@@ -425,7 +421,7 @@ R
 L
 "}
 (3,1,1) = {"
-F
+n
 a
 w
 z
@@ -445,7 +441,7 @@ P
 L
 "}
 (5,1,1) = {"
-F
+n
 r
 b
 O

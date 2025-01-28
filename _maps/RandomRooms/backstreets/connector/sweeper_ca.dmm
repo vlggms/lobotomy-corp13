@@ -67,11 +67,6 @@
 /obj/effect/decal/cleanable/blood/gibs/limb,
 /turf/open/floor/plating/dirt/jungle/dark,
 /area/city/backstreets_room)
-"s" = (
-/obj/structure/stone_tile/slab/cracked,
-/obj/structure/mineral_door/iron,
-/turf/open/floor/plating/dirt/jungle/wasteland,
-/area/city/backstreets_room)
 "t" = (
 /obj/effect/decal/cleanable/blood/gibs,
 /turf/open/floor/plating/dirt/jungle/dark,
@@ -133,9 +128,6 @@
 "I" = (
 /obj/structure/stone_tile/slab/cracked,
 /turf/open/floor/plating/dirt/jungle/wasteland,
-/area/city/backstreets_room)
-"K" = (
-/turf/closed/indestructible/reinforced,
 /area/city/backstreets_room)
 "L" = (
 /obj/effect/decal/cleanable/blood/footprints{
@@ -230,9 +222,9 @@ U
 U
 U
 a
-K
-s
-K
+I
+I
+S
 a
 U
 U
@@ -434,9 +426,9 @@ U
 U
 U
 a
-K
-s
-K
+S
+I
+S
 a
 U
 U

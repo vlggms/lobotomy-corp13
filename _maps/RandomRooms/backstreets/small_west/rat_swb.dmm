@@ -32,9 +32,6 @@
 /obj/effect/landmark/cratespawn,
 /turf/open/floor/plating/ice,
 /area/city/backstreets_room)
-"R" = (
-/turf/closed/indestructible/reinforced,
-/area/city/backstreets_room)
 "T" = (
 /obj/structure/flora/iceshards,
 /mob/living/simple_animal/hostile/humanoid/rat/zippy,
@@ -82,9 +79,9 @@ s
 a
 "}
 (5,1,1) = {"
-R
+a
 X
-R
+a
 a
 a
 a

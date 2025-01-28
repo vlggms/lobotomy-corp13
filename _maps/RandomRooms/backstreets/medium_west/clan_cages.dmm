@@ -10,9 +10,6 @@
 	},
 /turf/open/floor/plasteel/grimy,
 /area/city/backstreets_room)
-"c" = (
-/turf/closed/indestructible/reinforced,
-/area/city/backstreets_room)
 "d" = (
 /obj/structure/table/optable,
 /obj/effect/decal/cleanable/blood,
@@ -218,9 +215,9 @@ H
 H
 H
 H
-c
+H
 E
-c
+H
 H
 H
 H

@@ -34,9 +34,6 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/facility/dark,
 /area/city/backstreets_room)
-"f" = (
-/turf/closed/indestructible/reinforced,
-/area/city/backstreets_room)
 "k" = (
 /obj/item/stack/spacecash/c50{
 	pixel_x = 6;
@@ -202,7 +199,7 @@ B
 B
 B
 r
-f
+Q
 "}
 (3,1,1) = {"
 Q
@@ -218,7 +215,7 @@ d
 z
 K
 b
-f
+Q
 "}
 (5,1,1) = {"
 Q
@@ -242,7 +239,7 @@ s
 Y
 Z
 m
-f
+Q
 "}
 (8,1,1) = {"
 Q
@@ -258,7 +255,7 @@ C
 D
 q
 q
-f
+Q
 "}
 (10,1,1) = {"
 Q

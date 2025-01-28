@@ -31,9 +31,6 @@
 /obj/structure/mineral_door/wood,
 /turf/open/floor/carpet/orange,
 /area/city/backstreets_room)
-"N" = (
-/turf/closed/indestructible/reinforced,
-/area/city/backstreets_room)
 "O" = (
 /obj/structure/table/wood/fancy,
 /obj/item/toy/cards/deck/cas,
@@ -58,10 +55,10 @@
 x
 x
 x
-N
+x
 H
 H
-N
+x
 x
 x
 x

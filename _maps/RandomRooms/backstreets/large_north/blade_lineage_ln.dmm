@@ -113,9 +113,6 @@
 /obj/structure/lootcrate/money,
 /turf/open/floor/wood,
 /area/city/backstreets_room)
-"GD" = (
-/turf/closed/indestructible/reinforced,
-/area/city/backstreets_room)
 "HL" = (
 /obj/structure/lootcrate/syndicate,
 /turf/open/floor/wood,
@@ -265,7 +262,7 @@ Ti
 Ti
 Ti
 Ti
-GD
+gl
 "}
 (2,1,1) = {"
 Ti
@@ -295,7 +292,7 @@ tH
 tH
 Jj
 tH
-GD
+gl
 "}
 (5,1,1) = {"
 Ti
@@ -385,7 +382,7 @@ tH
 Qu
 Jj
 tH
-GD
+gl
 "}
 (14,1,1) = {"
 Ti
@@ -415,5 +412,5 @@ Ti
 Ti
 Ti
 Ti
-GD
+gl
 "}

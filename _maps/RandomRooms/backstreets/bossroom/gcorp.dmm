@@ -65,9 +65,6 @@
 /obj/item/stack/spacecash/c200,
 /turf/open/floor/engine,
 /area/city/backstreets_room)
-"lr" = (
-/turf/closed/indestructible/reinforced,
-/area/city/backstreets_room)
 "oq" = (
 /obj/item/workshop_mod/curing/pale,
 /turf/open/floor/plasteel/dark,
@@ -422,7 +419,7 @@ An
 ZT
 ZT
 ZT
-lr
+An
 "}
 (11,1,1) = {"
 An
@@ -444,7 +441,7 @@ An
 ZT
 ZT
 ZT
-lr
+An
 "}
 (12,1,1) = {"
 An

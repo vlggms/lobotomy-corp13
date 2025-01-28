@@ -4,9 +4,6 @@
 /obj/item/storage/firstaid/revival,
 /turf/open/floor/wood,
 /area/city/backstreets_room)
-"b" = (
-/turf/closed/indestructible/reinforced,
-/area/city/backstreets_room)
 "e" = (
 /obj/structure/chair/comfy/black{
 	dir = 8
@@ -225,7 +222,7 @@ Q
 L
 x
 Z
-b
+L
 "}
 (3,1,1) = {"
 L
@@ -245,7 +242,7 @@ C
 L
 F
 U
-b
+L
 "}
 (5,1,1) = {"
 L
@@ -335,7 +332,7 @@ L
 O
 V
 I
-b
+L
 "}
 (14,1,1) = {"
 L
@@ -355,7 +352,7 @@ L
 z
 V
 w
-b
+L
 "}
 (16,1,1) = {"
 L

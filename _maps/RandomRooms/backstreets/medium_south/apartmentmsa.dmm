@@ -18,9 +18,6 @@
 /mob/living/simple_animal/hostile/ordeal/green_bot/factory,
 /turf/open/floor/carpet/green,
 /area/city/backstreets_room)
-"m" = (
-/turf/closed/indestructible/reinforced,
-/area/city/backstreets_room)
 "o" = (
 /obj/structure/lootcrate/backstreets,
 /turf/open/floor/carpet/green,
@@ -122,7 +119,7 @@ Q
 Q
 "}
 (8,1,1) = {"
-m
+Q
 x
 Q
 f
@@ -138,7 +135,7 @@ r
 Q
 "}
 (10,1,1) = {"
-m
+Q
 Q
 Q
 Q

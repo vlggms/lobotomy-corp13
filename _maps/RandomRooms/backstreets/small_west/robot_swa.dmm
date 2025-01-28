@@ -57,9 +57,6 @@
 /obj/structure/barricade/wooden/crude,
 /turf/open/floor/plating/dirt/jungle/dark,
 /area/city/backstreets_room)
-"Z" = (
-/turf/closed/indestructible/reinforced,
-/area/city/backstreets_room)
 
 (1,1,1) = {"
 a
@@ -98,11 +95,11 @@ N
 a
 "}
 (5,1,1) = {"
-Z
+a
 X
 X
 X
 U
-Z
+a
 a
 "}

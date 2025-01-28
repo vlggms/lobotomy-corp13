@@ -34,9 +34,6 @@
 /obj/effect/decal/cleanable/dirt/dust,
 /turf/open/floor/mineral/plastitanium,
 /area/city/backstreets_room)
-"K" = (
-/turf/closed/indestructible/reinforced,
-/area/city/backstreets_room)
 "M" = (
 /turf/closed/mineral/ash_rock,
 /area/city/backstreets_room)
@@ -100,7 +97,7 @@ S
 U
 "}
 (5,1,1) = {"
-K
+U
 t
 a
 x
@@ -114,7 +111,7 @@ N
 U
 "}
 (7,1,1) = {"
-K
+U
 U
 U
 U

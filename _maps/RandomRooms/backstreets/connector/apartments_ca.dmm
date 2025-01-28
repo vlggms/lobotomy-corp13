@@ -19,9 +19,6 @@
 /obj/effect/decal/cleanable/dirt/dust,
 /turf/open/floor/wood,
 /area/city/backstreets_room)
-"g" = (
-/turf/closed/indestructible/rock,
-/area/city/backstreets_room)
 "j" = (
 /obj/structure/dresser,
 /turf/open/floor/wood,
@@ -52,10 +49,6 @@
 /obj/machinery/griddle,
 /obj/effect/decal/cleanable/dirt/dust,
 /turf/open/floor/wood,
-/area/city/backstreets_room)
-"r" = (
-/obj/structure/mineral_door/iron,
-/turf/open/floor/plating/asteroid/basalt,
 /area/city/backstreets_room)
 "t" = (
 /obj/structure/bed/maint,
@@ -96,9 +89,6 @@
 /obj/structure/table/wood,
 /obj/item/kitchen/knife,
 /turf/open/floor/wood,
-/area/city/backstreets_room)
-"F" = (
-/turf/closed/indestructible/reinforced,
 /area/city/backstreets_room)
 "G" = (
 /obj/structure/table/wood,
@@ -169,9 +159,9 @@ a
 a
 a
 a
-F
-r
-g
+Q
+Q
+Q
 e
 e
 e
@@ -248,7 +238,7 @@ a
 a
 "}
 (6,1,1) = {"
-F
+Q
 Q
 a
 W
@@ -262,10 +252,10 @@ a
 Q
 Q
 Q
-F
+Q
 "}
 (7,1,1) = {"
-r
+Q
 U
 a
 m
@@ -279,10 +269,10 @@ a
 Q
 Q
 Q
-r
+Q
 "}
 (8,1,1) = {"
-g
+Q
 Q
 A
 W
@@ -296,7 +286,7 @@ Q
 Q
 O
 Q
-g
+Q
 "}
 (9,1,1) = {"
 e
@@ -373,9 +363,9 @@ e
 e
 e
 e
-g
-r
-g
+Q
+Q
+Q
 e
 e
 a

@@ -41,7 +41,8 @@
 /turf/open/floor/plasteel/shuttle,
 /area/city/backstreets_room)
 "n" = (
-/turf/closed/indestructible/fakeglass,
+/obj/effect/spawner/structure/window/reinforced,
+/turf/open/floor/plasteel/shuttle,
 /area/city/backstreets_room)
 "o" = (
 /obj/structure/table/reinforced,
@@ -52,9 +53,6 @@
 /obj/structure/rack,
 /obj/item/dice/d6/space,
 /turf/open/floor/plasteel/shuttle,
-/area/city/backstreets_room)
-"r" = (
-/turf/closed/indestructible/fakeglass,
 /area/city/backstreets_room)
 "t" = (
 /obj/structure/rack,
@@ -120,9 +118,7 @@
 /turf/open/floor/plasteel/shuttle,
 /area/city/backstreets_room)
 "U" = (
-/obj/machinery/door/airlock/glass_large{
-	resistance_flags = 64
-	},
+/obj/machinery/door/airlock/glass_large,
 /turf/open/floor/plasteel/shuttle,
 /area/city/backstreets_room)
 "V" = (
@@ -200,7 +196,7 @@ G
 L
 "}
 (7,1,1) = {"
-r
+n
 b
 b
 b
@@ -230,7 +226,7 @@ X
 L
 "}
 (10,1,1) = {"
-r
+n
 b
 b
 b

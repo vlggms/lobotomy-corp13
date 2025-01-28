@@ -62,9 +62,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/city/backstreets_room)
-"A" = (
-/turf/closed/indestructible/reinforced,
-/area/city/backstreets_room)
 "B" = (
 /turf/closed/mineral/ash_rock,
 /area/city/backstreets_room)
@@ -136,7 +133,7 @@ B
 B
 "}
 (3,1,1) = {"
-A
+Q
 U
 B
 B
@@ -176,7 +173,7 @@ B
 Q
 "}
 (8,1,1) = {"
-A
+Q
 O
 i
 B

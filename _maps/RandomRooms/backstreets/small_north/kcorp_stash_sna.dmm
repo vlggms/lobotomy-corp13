@@ -16,9 +16,6 @@
 "x" = (
 /turf/open/floor/circuit/green,
 /area/city/backstreets_room)
-"B" = (
-/turf/closed/indestructible/reinforced,
-/area/city/backstreets_room)
 "P" = (
 /obj/structure/barricade/wooden,
 /obj/structure/barricade/wooden,
@@ -67,7 +64,7 @@ U
 a
 a
 x
-B
+U
 "}
 (4,1,1) = {"
 Q
@@ -81,7 +78,7 @@ U
 t
 t
 x
-B
+U
 "}
 (6,1,1) = {"
 U

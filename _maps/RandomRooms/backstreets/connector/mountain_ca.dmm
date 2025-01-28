@@ -24,7 +24,6 @@
 /obj/effect/decal/cleanable/blood/tracks{
 	dir = 6
 	},
-/obj/structure/mineral_door/iron,
 /turf/open/floor/plating/dirt/jungle/dark,
 /area/city/backstreets_room)
 "dA" = (
@@ -138,10 +137,6 @@
 /obj/structure/flora/rock/pile,
 /turf/open/floor/plating/dirt/jungle/dark,
 /area/city/backstreets_room)
-"jL" = (
-/obj/effect/decal/cleanable/dirt/dust,
-/turf/closed/indestructible/reinforced,
-/area/city/backstreets_room)
 "kv" = (
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/effect/decal/cleanable/blood/gibs/up,
@@ -233,7 +228,7 @@
 	pixel_x = -3;
 	pixel_y = -8
 	},
-/turf/closed/indestructible/reinforced,
+/turf/open/floor/plating/dirt/jungle/dark,
 /area/city/backstreets_room)
 "rP" = (
 /obj/effect/decal/cleanable/dirt/dust,
@@ -304,9 +299,6 @@
 	},
 /turf/open/floor/plating/dirt/jungle/dark,
 /area/city/backstreets_room)
-"yd" = (
-/turf/closed/indestructible/reinforced,
-/area/city/backstreets_room)
 "yf" = (
 /obj/structure/flora/rock/jungle,
 /turf/open/floor/plating/dirt/jungle/dark,
@@ -333,11 +325,6 @@
 /area/city/backstreets_room)
 "Bo" = (
 /obj/structure/flora/ausbushes/fullgrass,
-/turf/open/floor/plating/dirt/jungle/dark,
-/area/city/backstreets_room)
-"BJ" = (
-/obj/effect/decal/cleanable/dirt/dust,
-/obj/structure/mineral_door/iron,
 /turf/open/floor/plating/dirt/jungle/dark,
 /area/city/backstreets_room)
 "Cz" = (
@@ -584,11 +571,6 @@
 /obj/effect/decal/cleanable/dirt/dust,
 /turf/open/floor/plating/dirt/jungle/dark,
 /area/city/backstreets_room)
-"VN" = (
-/obj/effect/decal/cleanable/dirt/dust,
-/obj/effect/decal/cleanable/dirt/dust,
-/turf/closed/indestructible/reinforced,
-/area/city/backstreets_room)
 "VO" = (
 /mob/living/simple_animal/hostile/ordeal/indigo_noon,
 /turf/open/floor/plating/dirt/jungle/dark,
@@ -637,9 +619,9 @@ dA
 dA
 dA
 dA
-jL
-BJ
-yd
+XV
+XV
+VO
 dA
 dA
 dA
@@ -675,7 +657,7 @@ Tq
 on
 Rd
 XV
-VO
+Rd
 yo
 dA
 XA
@@ -843,7 +825,7 @@ dA
 eM
 rO
 bh
-VN
+rP
 dA
 dA
 dA

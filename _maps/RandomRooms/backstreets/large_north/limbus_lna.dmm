@@ -1,7 +1,4 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
-"a" = (
-/turf/closed/indestructible/reinforced,
-/area/city/backstreets_room)
 "c" = (
 /obj/structure/rack,
 /obj/item/ego_weapon/shield/lccb,
@@ -193,9 +190,9 @@ L
 L
 L
 L
-a
+L
 u
-a
+L
 L
 "}
 (11,1,1) = {"

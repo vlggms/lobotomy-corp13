@@ -97,9 +97,6 @@
 /obj/effect/landmark/cratespawn,
 /turf/open/floor/carpet/stellar,
 /area/city/backstreets_room)
-"G" = (
-/turf/closed/indestructible/reinforced,
-/area/city/backstreets_room)
 "H" = (
 /obj/structure/lootcrate/money,
 /turf/open/floor/carpet/stellar,
@@ -184,7 +181,7 @@ d
 Q
 "}
 (7,1,1) = {"
-G
+Q
 M
 m
 e

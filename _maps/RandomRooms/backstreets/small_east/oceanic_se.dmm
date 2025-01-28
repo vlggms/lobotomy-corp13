@@ -44,9 +44,6 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/facility/dark,
 /area/city/backstreets_room)
-"D" = (
-/turf/closed/indestructible/reinforced,
-/area/city/backstreets_room)
 "J" = (
 /obj/structure/table/reinforced,
 /obj/item/reagent_containers/glass/bottle,
@@ -96,9 +93,9 @@ a
 a
 a
 a
-D
+a
 X
-D
+a
 "}
 (2,1,1) = {"
 a

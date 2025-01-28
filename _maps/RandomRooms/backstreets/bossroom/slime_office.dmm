@@ -1599,11 +1599,14 @@
 /obj/structure/spider/stickyweb/genetic,
 /turf/open/floor/carpet/green,
 /area/city/backstreets_room)
+<<<<<<< HEAD
 "SS" = (
 /turf/closed/indestructible/reinforced{
 	color = "#42f545"
 	},
 /area/city/backstreets_room)
+=======
+>>>>>>> parent of 30603e5766 (Room Updates)
 "Tb" = (
 /obj/structure/table/wood/fancy/green,
 /obj/effect/turf_decal/siding/green{
@@ -2044,7 +2047,7 @@ tG
 Tb
 oN
 Tp
-SS
+Fi
 "}
 (13,1,1) = {"
 us

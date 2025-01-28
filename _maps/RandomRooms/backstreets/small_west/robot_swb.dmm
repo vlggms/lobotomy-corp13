@@ -42,9 +42,6 @@
 /obj/structure/lootcrate/money,
 /turf/open/floor/mineral/plastitanium,
 /area/city/backstreets_room)
-"s" = (
-/turf/closed/indestructible/reinforced,
-/area/city/backstreets_room)
 "v" = (
 /turf/open/floor/plating/asteroid/basalt,
 /area/city/backstreets_room)
@@ -69,11 +66,6 @@
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/effect/decal/cleanable/dirt/dust,
 /turf/open/floor/mineral/plastitanium,
-/area/city/backstreets_room)
-"z" = (
-/obj/effect/decal/cleanable/dirt/dust,
-/obj/structure/mineral_door/iron,
-/turf/open/floor/plating/asteroid/basalt,
 /area/city/backstreets_room)
 "D" = (
 /mob/living/simple_animal/hostile/price,
@@ -171,10 +163,10 @@ a
 "}
 (5,1,1) = {"
 a
-h
-s
-z
-s
-a
+X
+v
+X
+v
+v
 a
 "}

@@ -647,9 +647,6 @@
 /obj/structure/statue/custom,
 /turf/open/floor/carpet/black,
 /area/city/backstreets_room)
-"Am" = (
-/turf/closed/wall/mineral/iron,
-/area/city/backstreets_room)
 "Az" = (
 /obj/machinery/light{
 	dir = 8
@@ -1258,7 +1255,7 @@ nA
 mI
 mI
 mI
-Am
+xO
 "}
 (10,1,1) = {"
 xO
@@ -1324,7 +1321,7 @@ qR
 pg
 vL
 vL
-Am
+xO
 "}
 (13,1,1) = {"
 xO

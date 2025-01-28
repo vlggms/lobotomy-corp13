@@ -6,9 +6,6 @@
 	},
 /turf/open/floor/plating/asteroid/basalt,
 /area/city/backstreets_room)
-"l" = (
-/turf/closed/indestructible/wood,
-/area/city/backstreets_room)
 "t" = (
 /turf/open/floor/grass/snow/safe,
 /area/city/backstreets_room)
@@ -16,14 +13,10 @@
 /mob/living/simple_animal/hostile/runawaybird{
 	name = "crow"
 	},
-/turf/open/floor/plating/asteroid/basalt,
+/turf/open/floor/grass/snow/safe,
 /area/city/backstreets_room)
 "J" = (
 /obj/item/food/sundae/jbird,
-/turf/open/floor/grass/snow/safe,
-/area/city/backstreets_room)
-"K" = (
-/obj/structure/mineral_door/wood,
 /turf/open/floor/grass/snow/safe,
 /area/city/backstreets_room)
 "M" = (
@@ -44,49 +37,49 @@
 (1,1,1) = {"
 U
 U
-l
-l
-l
+U
+U
+U
 "}
 (2,1,1) = {"
 U
 J
 R
 x
-l
+P
 "}
 (3,1,1) = {"
 U
 M
 t
+R
 t
-K
 "}
 (4,1,1) = {"
 U
 t
 x
-R
-l
+P
+t
 "}
 (5,1,1) = {"
 U
 t
-P
+t
 x
-l
+P
 "}
 (6,1,1) = {"
 U
 t
 a
 R
-l
+P
 "}
 (7,1,1) = {"
 U
 U
-l
-l
-l
+U
+U
+U
 "}

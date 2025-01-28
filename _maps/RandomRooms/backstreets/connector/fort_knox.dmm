@@ -296,9 +296,6 @@
 /obj/effect/turf_decal/delivery/white,
 /turf/open/floor/mineral/plastitanium,
 /area/city/backstreets_room)
-"U" = (
-/turf/closed/indestructible/reinforced,
-/area/city/backstreets_room)
 "W" = (
 /obj/structure/railing{
 	dir = 4
@@ -346,11 +343,11 @@ a
 a
 a
 a
-U
+a
 Q
 f
 l
-U
+a
 a
 a
 a
@@ -409,7 +406,7 @@ a
 a
 "}
 (5,1,1) = {"
-U
+a
 a
 Q
 Q
@@ -423,7 +420,7 @@ Y
 w
 M
 a
-U
+a
 "}
 (6,1,1) = {"
 Q
@@ -477,7 +474,7 @@ Q
 Q
 "}
 (9,1,1) = {"
-U
+a
 a
 Q
 Q
@@ -491,7 +488,7 @@ l
 Q
 Q
 a
-U
+a
 "}
 (10,1,1) = {"
 a
@@ -550,11 +547,11 @@ a
 a
 a
 a
-U
+a
 Q
 Q
 Q
-U
+a
 a
 a
 a

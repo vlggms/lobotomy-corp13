@@ -16,9 +16,6 @@
 /obj/item/stack/spacecash/c100,
 /turf/open/floor/plating/dirt/jungle/dark,
 /area/city/backstreets_room)
-"y" = (
-/turf/closed/indestructible/reinforced,
-/area/city/backstreets_room)
 "z" = (
 /obj/structure/bed/maint,
 /obj/effect/decal/cleanable/dirt,
@@ -92,10 +89,10 @@ U
 a
 "}
 (5,1,1) = {"
-y
+a
 X
 Q
-y
+a
 a
 a
 a

@@ -101,10 +101,6 @@
 /obj/item/stack/spacecash/c100,
 /turf/open/floor/plasteel/cult,
 /area/city/backstreets_room)
-"tF" = (
-/obj/machinery/door/airlock/cult/unruned/glass/friendly,
-/turf/open/floor/plasteel/cult,
-/area/city/backstreets_room)
 "us" = (
 /obj/structure/chair/pew/right{
 	dir = 1
@@ -433,9 +429,6 @@
 	dir = 1
 	},
 /turf/open/floor/plasteel/cult,
-/area/city/backstreets_room)
-"Qz" = (
-/turf/closed/indestructible/reinforced,
 /area/city/backstreets_room)
 "Rb" = (
 /obj/structure/chair/pew{
@@ -768,7 +761,7 @@ gQ
 Am
 Bh
 do
-Qz
+EP
 "}
 (10,1,1) = {"
 An
@@ -789,8 +782,8 @@ gQ
 gQ
 gQ
 OJ
+EP
 Fy
-tF
 "}
 (11,1,1) = {"
 An
@@ -811,8 +804,8 @@ gQ
 gQ
 gQ
 OJ
+EP
 Fy
-tF
 "}
 (12,1,1) = {"
 An
@@ -834,7 +827,7 @@ gQ
 AI
 cb
 do
-Qz
+EP
 "}
 (13,1,1) = {"
 An

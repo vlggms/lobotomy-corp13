@@ -164,9 +164,6 @@
 /obj/item/ego_weapon/ranged/shrimp/assault,
 /turf/open/floor/plasteel/vaporwave,
 /area/city/backstreets_room)
-"B" = (
-/turf/closed/indestructible/reinforced,
-/area/city/backstreets_room)
 "C" = (
 /obj/machinery/door/airlock/silver/glass,
 /turf/open/floor/plasteel/rockvault/alien{
@@ -324,7 +321,7 @@ W
 W
 q
 Z
-B
+L
 "}
 (3,1,1) = {"
 L
@@ -344,7 +341,7 @@ x
 x
 x
 P
-B
+L
 "}
 (5,1,1) = {"
 L

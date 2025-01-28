@@ -119,9 +119,6 @@
 /obj/structure/fluff/paper/stack,
 /turf/open/floor/sepia,
 /area/city/backstreets_room)
-"K" = (
-/turf/closed/indestructible/reinforced,
-/area/city/backstreets_room)
 "L" = (
 /obj/structure/table/bronze,
 /obj/item/tape/resurgence/temple_of_motus,
@@ -205,7 +202,7 @@ w
 a
 "}
 (5,1,1) = {"
-K
+a
 J
 G
 G
@@ -221,7 +218,7 @@ D
 a
 "}
 (7,1,1) = {"
-K
+a
 p
 k
 S

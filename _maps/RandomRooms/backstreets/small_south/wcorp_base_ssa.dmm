@@ -13,14 +13,12 @@
 "x" = (
 /obj/structure/closet/cabinet,
 /obj/item/clothing/under/suit/lobotomy/wcorp,
+/obj/item/clothing/head/wcorp,
 /turf/open/floor/carpet/stellar,
 /area/city/backstreets_alley)
 "y" = (
 /obj/item/ego_weapon/city/wcorp,
 /turf/open/floor/carpet/stellar,
-/area/city/backstreets_alley)
-"J" = (
-/turf/closed/indestructible/reinforced,
 /area/city/backstreets_alley)
 "M" = (
 /mob/living/simple_animal/hostile/ordeal/indigo_dawn,
@@ -39,7 +37,7 @@
 /area/city/backstreets_alley)
 
 (1,1,1) = {"
-J
+U
 U
 U
 U
@@ -81,7 +79,7 @@ t
 U
 "}
 (7,1,1) = {"
-J
+U
 U
 U
 U

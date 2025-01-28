@@ -33,9 +33,6 @@
 /obj/structure/reagent_dispensers/water_cooler,
 /turf/open/floor/carpet/blue,
 /area/city/backstreets_room)
-"D" = (
-/turf/closed/indestructible/reinforced,
-/area/city/backstreets_room)
 "H" = (
 /obj/machinery/door/airlock/command,
 /turf/open/floor/carpet/blue,
@@ -84,16 +81,16 @@
 /area/city/backstreets_room)
 
 (1,1,1) = {"
-D
+x
 H
 H
-D
 x
 x
-D
+x
+x
 H
 H
-D
+x
 "}
 (2,1,1) = {"
 x

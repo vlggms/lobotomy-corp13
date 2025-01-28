@@ -179,29 +179,3 @@
 	desc = "A warning sign which reads 'ESCAPE PODS'."
 	icon_state = "pods"
 	is_editable = TRUE
-
-////LC13 WARNING SIGNS
-
-/obj/structure/sign/warning/backstreets_1
-	name = "\improper ROOM DANGER RATING: 1 sign"
-	sign_change_name = "Location - Backstreets Room, Level 1"
-	desc = "A warning sign which warns fixers of how dangerous the next room is."
-	icon_state = "backstreets_warn_1"
-
-/obj/structure/sign/warning/backstreets_2
-	name = "\improper ROOM DANGER RATING: 2 sign"
-	sign_change_name = "Location - Backstreets Room, Level 2"
-	desc = "A warning sign which warns fixers of how dangerous the next room is."
-	icon_state = "backstreets_warn_2"
-
-/obj/structure/sign/warning/backstreets_3
-	name = "\improper ROOM DANGER RATING: 3 sign"
-	sign_change_name = "Location - Backstreets Room, Level 3"
-	desc = "A warning sign which warns fixers of how dangerous the next room is."
-	icon_state = "backstreets_warn_3"
-
-/obj/structure/sign/warning/backstreets_4
-	name = "\improper ROOM DANGER RATING: 4 sign"
-	sign_change_name = "Location - Backstreets Room, Level 4"
-	desc = "A warning sign which warns fixers of how dangerous the next room is."
-	icon_state = "backstreets_warn_4"

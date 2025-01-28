@@ -54,9 +54,6 @@
 /mob/living/simple_animal/hostile/ordeal/amber_bug/spawned,
 /turf/open/floor/plasteel,
 /area/city/backstreets_room)
-"J" = (
-/turf/closed/indestructible/reinforced,
-/area/city/backstreets_room)
 "M" = (
 /obj/structure/sink/kitchen,
 /turf/open/floor/plasteel,
@@ -84,9 +81,9 @@
 U
 s
 s
-J
+U
 X
-J
+U
 U
 "}
 (2,1,1) = {"

@@ -48,9 +48,6 @@
 /mob/living/simple_animal/hostile/shrimp,
 /turf/open/floor/carpet/purple,
 /area/city/backstreets_room)
-"s" = (
-/turf/closed/indestructible/reinforced,
-/area/city/backstreets_room)
 "t" = (
 /obj/effect/turf_decal/siding/purple{
 	dir = 6
@@ -171,7 +168,7 @@ L
 L
 L
 L
-s
+L
 "}
 (2,1,1) = {"
 L
@@ -211,7 +208,7 @@ L
 L
 L
 L
-s
+L
 "}
 (6,1,1) = {"
 L

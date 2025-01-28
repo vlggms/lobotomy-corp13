@@ -70,9 +70,6 @@
 /obj/structure/sign/poster/contraband/eat,
 /turf/closed/indestructible/reinforced,
 /area/city/backstreets_room)
-"u" = (
-/turf/closed/indestructible/reinforced,
-/area/city/backstreets_room)
 "x" = (
 /turf/closed/indestructible/reinforced,
 /area/city/backstreets_room)
@@ -254,8 +251,8 @@ x
 x
 x
 x
-u
+x
 i
-u
+x
 x
 "}

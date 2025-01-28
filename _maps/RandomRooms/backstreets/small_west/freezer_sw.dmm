@@ -56,12 +56,6 @@
 	},
 /turf/open/floor/plasteel/freezer,
 /area/city/backstreets_alley)
-"I" = (
-/obj/effect/turf_decal/weather/snow/corner{
-	dir = 4
-	},
-/turf/closed/indestructible/reinforced,
-/area/city/backstreets_alley)
 "J" = (
 /turf/closed/indestructible/reinforced,
 /area/city/backstreets_alley)
@@ -140,9 +134,9 @@ J
 (5,1,1) = {"
 l
 l
-I
+l
 X
-I
+l
 l
 l
 "}

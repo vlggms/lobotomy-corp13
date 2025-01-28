@@ -73,9 +73,6 @@
 "E" = (
 /turf/open/floor/carpet/red,
 /area/city/backstreets_room)
-"F" = (
-/turf/closed/indestructible/reinforced,
-/area/city/backstreets_room)
 "H" = (
 /obj/structure/mecha_wreckage/reticence,
 /obj/structure/window/reinforced/spawner/east,
@@ -140,9 +137,9 @@ a
 a
 a
 a
-F
+a
 n
-F
+a
 a
 a
 a

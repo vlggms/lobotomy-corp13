@@ -57,9 +57,6 @@
 /obj/structure/chair/office,
 /turf/open/floor/carpet/green,
 /area/city/backstreets_room)
-"w" = (
-/turf/closed/indestructible/reinforced,
-/area/city/backstreets_room)
 "x" = (
 /turf/closed/indestructible/reinforced,
 /area/city/backstreets_room)
@@ -182,7 +179,7 @@ x
 f
 P
 P
-w
+x
 L
 c
 S
@@ -206,7 +203,7 @@ x
 g
 H
 l
-w
+x
 Y
 a
 A
