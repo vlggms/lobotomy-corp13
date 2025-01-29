@@ -195,13 +195,14 @@
 	icon_state = "messingnagel"
 	force = 18
 	damtype = RED_DAMAGE
+	swingstyle = WEAPONSWING_THRUST
 
 	attack_verb_continuous = list("jabs", "stabs")
 	attack_verb_simple = list("jab", "stab")
 	hitsound = 'sound/weapons/fixer/generic/nail1.ogg'
-	var/nails
+//	var/nails
 
-/obj/item/ego_weapon/city/ncorp_brassnail/attack(mob/living/target, mob/living/user)
+/*/obj/item/ego_weapon/city/ncorp_brassnail/attack(mob/living/target, mob/living/user)
 	..()
 	nails++
 	if(nails>=5)
@@ -217,7 +218,7 @@
 
 	I.force += I.force* nails *0.1
 	nails = 0
-	to_chat(user, span_notice("You transfer [nails] nails to your hammer, increasing it's damage."))
+	to_chat(user, span_notice("You transfer [nails] nails to your hammer, increasing it's damage."))*/
 
 /obj/item/ego_weapon/city/ncorp_brassnail/big
 	name = "Elektrumnagel"
