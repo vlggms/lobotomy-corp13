@@ -33,7 +33,7 @@
 
 	ego_list = list(
 		/datum/ego_datum/weapon/vulnerability,
-		/datum/ego_datum/weapon/vulnerability,
+		/datum/ego_datum/armor/vulnerability,
 	)
 //	gift_type =  /datum/ego_gifts/harvest
 	abnormality_origin = ABNORMALITY_ORIGIN_ORIGINAL
