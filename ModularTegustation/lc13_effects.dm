@@ -61,3 +61,16 @@
 		return
 	animate(src, alpha = 100, time = 30)
 	addtimer(CALLBACK(src, PROC_REF(StartAnimation)),30)
+
+//Kikimora Graffiti
+/obj/effect/decal/cleanable/crayon/cognito
+	name = "graffiti"
+	desc = "strange graffiti. You can almost make out what it says."
+	icon = 'ModularTegustation/Teguicons/wall_markings.dmi'
+	icon_state = "gibberish"
+	anchored = TRUE
+	var/datum/status_effect/inflicted_effect = /datum/status_effect/display/dyscrasone_withdrawl
+
+/obj/effect/decal/cleanable/crayon/cognito/ComponentInitialize()
+	. = ..()
+	AddComponent(/datum/component/cognitohazard_visual, _cognitohazard_visual_effect=inflicted_effect, obvious=TRUE)
