@@ -1,7 +1,6 @@
 import { useBackend } from "../backend";
-import { Box, Button, LabeledList, Flex, Section } from "../components";
+import { Button, Flex, Section, TypingScroller } from "../components";
 import { Window } from "../layouts";
-import { TypingScroller } from "../components";
 
 export const SpeakingNpc = (props, context) => {
   const { act, data } = useBackend(context);
@@ -10,18 +9,28 @@ export const SpeakingNpc = (props, context) => {
     <Window title={title}>
       <Window.Content>
         <Section>
-        <Flex direction="column" height="100%">
-          <Flex.Item>
-            <Flex direction="row" align="start">
+          <Flex direction="column" height="100%">
+            <Flex.Item>
+              <Flex direction="row" align="start">
                 {img_url && (
                   <Flex.Item mr={1}>
-                    <img class="fit-picture" width="192" height="192" src={img_url} style={{ flex: 0 }} />
+                    <img
+                      class="fit-picture"
+                      width="192"
+                      height="192"
+                      src={img_url}
+                      style={{ flex: 0 }}
+                    />
                   </Flex.Item>
                 )}
                 <Flex.Item grow={1}>
-                  <TypingScroller key={text} text={text} speed={100}
+                  <TypingScroller
+                    key={text}
+                    text={text}
+                    speed={100}
                     onTypingStart={() => act("playSound")}
-                    onTypingEnd={() => act("stopSound")}/>
+                    onTypingEnd={() => act("stopSound")}
+                  />
                 </Flex.Item>
               </Flex>
             </Flex.Item>
@@ -40,13 +49,15 @@ export const SpeakingNpc = (props, context) => {
                     width="150px"
                     height="30px"
                     mb={1}
+                    disabled={!action.enabled}
                   >
                     {action.text}
                   </Button>
                 ))}
               </Flex>
             </Flex.Item>
-          </Flex>        </Section>
+          </Flex>
+        </Section>
       </Window.Content>
     </Window>
   );

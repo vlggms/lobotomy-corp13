@@ -2309,6 +2309,10 @@
 /obj/machinery/telecomms/message_server/preset,
 /turf/open/floor/circuit/telecomms/mainframe,
 /area/facility_hallway/north)
+"Gc" = (
+/obj/structure/delivery_door,
+/turf/open/floor/plating/ashplanet/rocky,
+/area/city)
 "Gn" = (
 /obj/machinery/door/airlock/medical{
 	hackProof = 1;
@@ -45055,7 +45059,7 @@ Hm
 Hm
 Hm
 Hm
-Hm
+Gc
 XJ
 XJ
 XJ
