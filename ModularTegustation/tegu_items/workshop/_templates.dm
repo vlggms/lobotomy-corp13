@@ -126,10 +126,6 @@
 		if(weapon_xp < level_xp)
 			to_chat(user, span_warning("This weapon does not have enough XP to level up yet."))
 			return
-
-		if(!do_after(user, 10 SECONDS))
-			return
-
 		weapon_xp = 0
 		level_xp += 100
 		force *= 1.1
