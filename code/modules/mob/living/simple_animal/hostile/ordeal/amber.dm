@@ -265,6 +265,14 @@
 			AttemptBirth()
 			BurrowIn()
 
+//Can only attack near the mouth
+/mob/living/simple_animal/hostile/ordeal/amber_dusk/AttackCondition(atom/attack_target)
+	var/relative_angle = abs(dir2angle(dir) - dir2angle(get_dir(src, attack_target)))
+	relative_angle = relative_angle > 180 ? 360 - relative_angle : relative_angle
+	if(relative_angle > 90)
+		return FALSE
+	return TRUE
+
 /mob/living/simple_animal/hostile/ordeal/amber_dusk/death(gibbed)
 	if(LAZYLEN(butcher_results))
 		alpha = 255
