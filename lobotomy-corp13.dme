@@ -3945,6 +3945,7 @@
 #include "ModularTegustation\trusted.dm"
 #include "ModularTegustation\turfs.dm"
 #include "ModularTegustation\agent_skills\skill_chooser.dm"
+#include "ModularTegustation\agent_skills\artificer\charge.dm"
 #include "ModularTegustation\agent_skills\defensive\hunker_down.dm"
 #include "ModularTegustation\agent_skills\defensive\parry.dm"
 #include "ModularTegustation\agent_skills\healing\healing.dm"

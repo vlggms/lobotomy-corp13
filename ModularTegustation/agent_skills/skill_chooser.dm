@@ -27,6 +27,7 @@
 			"Healing",
 			"Ranged",
 			"Skirmisher",
+			"Artificer",
 			)
 
 	var/list/available_classes = list(
@@ -87,6 +88,15 @@
 			G = new /datum/action/cooldown/blitz
 			G.Grant(user)
 			G = new /datum/action/cooldown/assault_agent
+			G.Grant(user)
+
+		if("Artificer")
+			to_chat(user, span_greenannounce("You have chosen the Artificer Agent class. In exchange for -5 attack damage and movespeed, you get the ability to recharge all tools on your person."))
+			user.adjust_attribute_bonus(JUSTICE_ATTRIBUTE, -5)
+
+			var/datum/action/G = new /datum/action/cooldown/agent_smokedash
+			G.Grant(user)
+			G = new /datum/action/cooldown/autoloader
 			G.Grant(user)
 
 	return ..()
