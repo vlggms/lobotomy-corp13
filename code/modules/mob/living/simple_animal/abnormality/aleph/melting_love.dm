@@ -493,6 +493,10 @@
 		return FALSE
 	if(is_type_in_list(AM, slime_types, FALSE))
 		return
+	if(istype(AM, /mob/living/simple_animal/projectile_blocker_dummy))
+		var/mob/living/simple_animal/projectile_blocker_dummy/pbd = AM
+		if(is_type_in_list(pbd.parent, slime_types, FALSE))
+			return
 	var/mob/living/L = AM
 	if((("hostile" in L.faction) && (SSmaptype.maptype in SSmaptype.combatmaps)))
 		return
