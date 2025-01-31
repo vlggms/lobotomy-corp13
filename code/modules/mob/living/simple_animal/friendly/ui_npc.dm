@@ -180,46 +180,169 @@
 /mob/living/simple_animal/ui_npc/mailman
 	var/parcel_deliveries = list()
 	var/item_deliveries = list()
+	portrait = "erik_bloodfiend_zoom.png"
+	start_scene_id = "intro"
 
 /mob/living/simple_animal/ui_npc/mailman/Initialize()
 		. = ..()
 		scene_manager.load_scenes(list(
 		"intro" = list(
-			"text" = "Intro scene 1. “Baa” (Who are you, mortal who crosses thy path?!!)",
+			"text" = "... *The bloodfiend is simply sitting down and reading their notepad. It appears they have not noticed you.*",
 			"actions" = list(
 				"hi" = list(
-					"Text" = "“Hi! How are you?”",
-					"next_scene" = "hru",
-					"min_rep" = 20),
-				"bye" = list(
-					"Text" = "“Bye!”",
-					"next_scene" = "bye",
-					"min_rep" = 20,
+					"Text" = "“Hello?”",
+					"next_scene" = "greeting1",
+					"min_rep" = 0),
+				"stare" = list(
+					"Text" = "*Stand here and stare at him*",
+					"next_scene" = "greeting2",
+					"min_rep" = 0,
+					"proc_callback" = ""),
+				"loud" = list(
+					"Text" = "“HELLO!!!”",
+					"next_scene" = "greeting3",
+					"min_rep" = 0,
 					"proc_callback" = ""),
 				)
 			),
-		"hru" = list(
-			"text" = "Intro scene 2. “Baa... BAA!! Baa?” (Well, I guess today is okay... BUT IT COULD BE BETTER! Anyways, How is your day?)",
+		"greeting1" = list(
+			"text" = "Hm... *The bloodfiend glances in your direction.* Greetings customer. Man, It's opening hours already?",
 			"actions" = list(
+				"..." = list(
+					"Text" = "...",
+					"next_scene" = "main_screen",
+					"min_rep" = 0,
+					"proc_callback" = ""),
+				)
+			),
+		"greeting2" = list(
+			"text" = "... *The bloodfiend slightly glances in your direction, before looking back down.*",
+			"actions" = list(
+				"..." = list(
+					"Text" = "...",
+					"next_scene" = "greeting2_2",
+					"min_rep" = 0,
+					"proc_callback" = ""),
+				)
+			),
+		"greeting2_2" = list(
+			"text" = "... Oh, Are you here for our services? <i>You should of said something...</i>",
+			"actions" = list(
+				"..." = list(
+					"Text" = "...",
+					"next_scene" = "main_screen",
+					"min_rep" = 0,
+					"proc_callback" = ""),
+				)
+			),
+		"greeting3" = list(
+			"text" = "SHOOT, WHATS HAPPING-...    Dammit, Is this how you greet people?!?",
+			"actions" = list(
+				"..." = list(
+					"Text" = "...",
+					"next_scene" = "greeting3_2",
+					"min_rep" = 0,
+					"proc_callback" = ""),
+				)
+			),
+		"greeting3_2" = list(
+			"text" = "Kids these days, lacking any kind of respect...",
+			"actions" = list(
+				"..." = list(
+					"Text" = "...",
+					"next_scene" = "main_screen",
+					"min_rep" = 0,
+					"proc_callback" = ""),
+				)
+			),
+		"main_screen" = list(
+			"text" = "Anyways, What are you looking for today at the Lifetime Clinc?",
+			"actions" = list(
+				"jobs" = list(
+					"Text" = "“I am looking for a job!”",
+					"next_scene" = "job_1",
+					"min_rep" = 0,
+					"proc_callback" = ""),
+				"bloodfiend?" = list(
+					"Text" = "“You are a bloodfiend?”",
+					"next_scene" = "main_screen",
+					"min_rep" = 0,
+					"proc_callback" = ""),
+				"clinc" = list(
+					"Text" = "“What kinds of services do you offer?”",
+					"next_scene" = "main_screen",
+					"min_rep" = 0,
+					"proc_callback" = ""),
+				)
+			),
+		"job_1" = list(
+			"text" = "Well, Lucky you. Your talking to the manager of this establishment.",
+			"actions" = list(
+				"..." = list(
+					"Text" = "...",
+					"next_scene" = "job_2",
+					"min_rep" = 0,
+					"proc_callback" = ""),
+				)
+			),
+		"job_2" = list(
+			"text" = "With us establishing a new clinic in this area, we are looking for some deliverymen.",
+			"actions" = list(
+				"..." = list(
+					"Text" = "...",
+					"next_scene" = "job_3",
+					"min_rep" = 0,
+					"proc_callback" = ""),
+				)
+			),
+		"job_3" = list(
+			"text" = "With gangs and other factions ordering medical supplies, they want their stuff get delivered discreetly.",
+			"actions" = list(
+				"..." = list(
+					"Text" = "...",
+					"next_scene" = "job_4",
+					"min_rep" = 0,
+					"proc_callback" = ""),
+				)
+			),
+		"job_4" = list(
+			"text" = "That's why you will be delivering them in the backstreets.",
+			"actions" = list(
+				"..." = list(
+					"Text" = "...",
+					"next_scene" = "job",
+					"min_rep" = 0,
+					"proc_callback" = ""),
+				)
+			),
+		"job" = list(
+			"text" = "So, Are willing to take on some orders?",
+			"actions" = list(
+				"parcel" = list(
+					"Text" = "Accept the Job",
+					"next_scene" = "job_5",
+					"min_rep" = 20,
+					"enabled_callback" = CALLBACK(src, PROC_REF(CheckParcelDelivery)),
+					"proc_callback" = CALLBACK(src, PROC_REF(OrderParcel))
+					),
 				"good" = list(
 					"Text" = "“Good!”",
 					"next_scene" = "intro",
 					"min_rep" = 20,
 					"enabled_callback" = CALLBACK(src, PROC_REF(CheckItemDelivery)),
 					"proc_callback" = CALLBACK(src, PROC_REF(OrderItem), /obj/item/food/pizza/margherita, 30)),
-				"bad" = list(
-					"Text" = "“Bad!”",
-					"next_scene" = "intro",
-					"min_rep" = 20,
-					"enabled_callback" = CALLBACK(src, PROC_REF(CheckParcelDelivery)),
-					"proc_callback" = CALLBACK(src, PROC_REF(OrderParcel))
-					),
 				)
 			),
-		"bye" = list(
-			"text" = "Intro scene 3. “Baa” (Understood, Have a good day.)",
-			"actions" = list(),
-		)
+		"job_5" = list(
+			"text" = "Very well, here's the parcel with the ordered supplies.",
+			"actions" = list(
+				"..." = list(
+					"Text" = "...",
+					"next_scene" = "main_screen",
+					"min_rep" = 0,
+					"proc_callback" = ""),
+				)
+			),
 	))
 
 /mob/living/simple_animal/ui_npc/mailman/proc/OrderParcel()
