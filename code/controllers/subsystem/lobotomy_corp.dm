@@ -134,6 +134,7 @@ SUBSYSTEM_DEF(lobotomy_corp)
 
 	if(SSmaptype.chosen_trait == "Abno Blitz")
 		next_ordeal_level = 3
+		ordeal_timelock = list(0, 0, 40 MINUTES, 60 MINUTES, 0, 0, 0, 0, 0)
 	RollOrdeal()
 	return TRUE
 
@@ -285,8 +286,9 @@ SUBSYSTEM_DEF(lobotomy_corp)
 			A.current.OnQliphothEvent()
 	var/ran_ordeal = FALSE
 	if(qliphoth_state + 1 >= next_ordeal_time) // If ordeal is supposed to happen on the meltdown after that one
-		if(istype(next_ordeal) && ordeal_timelock[next_ordeal.level] > ROUNDTIME) // And it's on timelock
-			next_ordeal_time += 1 // So it does not appear on the ordeal monitors until timelock is off
+		if(SSmaptype.chosen_trait != "Abno Blitz")
+			if(istype(next_ordeal) && ordeal_timelock[next_ordeal.level] > ROUNDTIME) // And it's on timelock
+				next_ordeal_time += 1 // So it does not appear on the ordeal monitors until timelock is off
 	if(qliphoth_state >= next_ordeal_time)
 		if(OrdealEvent())
 			ran_ordeal = TRUE
