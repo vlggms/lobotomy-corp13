@@ -2380,6 +2380,7 @@
 #include "code\modules\jobs\job_types\city\rat.dm"
 #include "code\modules\jobs\job_types\city\workshop.dm"
 #include "code\modules\jobs\job_types\city\fixer\east.dm"
+#include "code\modules\jobs\job_types\city\fixer\minifixers.dm"
 #include "code\modules\jobs\job_types\city\fixer\north.dm"
 #include "code\modules\jobs\job_types\city\misc\blade_lineage_misc.dm"
 #include "code\modules\jobs\job_types\city\syndicate\blade_lineage\cutthroat.dm"
