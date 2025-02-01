@@ -30,6 +30,9 @@
 	if(swingstyle == WEAPONSWING_SMALLSWEEP && reach > 1)
 		swingstyle = WEAPONSWING_THRUST
 	RegisterSignal(src, COMSIG_OBJ_PAINTED, PROC_REF(GetSwingColor))
+	if(SSmaptype.chosen_trait == "Callback")
+		w_class = WEIGHT_CLASS_NORMAL			//Callback to when we had stupid 10 Egos in bag
+
 
 /obj/item/ego_weapon/attack(mob/living/target, mob/living/user)
 	if(!CanUseEgo(user))

@@ -28,6 +28,7 @@ SUBSYSTEM_DEF(maptype)
 
 						//Joke stuff is below, should all be low
 						"Working Clerks" = 3,		//For the joke
+						"Callback" = 2,				//Brings back 2 Classic bugs in Backpack EGO and wounds
 						"Joke Abnormalities" = 1,	// Okay it's funny
 						"Visible Ghosts" = 1,		// Very Metagamey but funny
 						)
