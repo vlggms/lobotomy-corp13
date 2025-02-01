@@ -38,6 +38,7 @@ GLOBAL_LIST_INIT(association_jobs, list(
 		/datum/job/grandinquis,
 		/datum/job/kurocaptain,
 	)
+	var/antag_chosen
 
 /datum/job/director/after_spawn(mob/living/carbon/human/outfit_owner, mob/M)
 	ADD_TRAIT(outfit_owner, TRAIT_COMBATFEAR_IMMUNE, JOB_TRAIT)
@@ -58,8 +59,9 @@ GLOBAL_LIST_INIT(association_jobs, list(
 		if(istype(processing, /datum/job/veteran))
 			processing.total_positions = 1
 
-		if(istype(processing, antagspawn))
-			processing.total_positions = 1
+		if(!antag_chosen)
+			if(istype(processing, antagspawn))
+				processing.total_positions = 1
 
 	return ..()
 
