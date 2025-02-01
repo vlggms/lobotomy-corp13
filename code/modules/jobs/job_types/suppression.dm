@@ -38,6 +38,8 @@
 
 	if(SSmaptype.chosen_trait == "Abno Blitz")	//Need more stats during abno blitz.
 		set_attribute *= 4
+		set_attribute += GetFacilityUpgradeValue(UPGRADE_AGENT_STATS)
+
 
 	else		//Only check percentage if it's NOT blitz mode
 		switch(facility_full_percentage)
@@ -59,7 +61,7 @@
 			if(79 to 100) // ALEPHs around here (20 Abnormalities)
 				set_attribute *= 4
 
-	set_attribute += GetFacilityUpgradeValue(UPGRADE_AGENT_STATS) + SSlobotomy_corp.ordeal_stats //Used to have doubled respawn stats, but that might be a bit too broken with stats from ordeals.
+		set_attribute += GetFacilityUpgradeValue(UPGRADE_AGENT_STATS) + SSlobotomy_corp.ordeal_stats //Used to have doubled respawn stats, but that might be a bit too broken with stats from ordeals.
 
 	for(var/A in roundstart_attributes)
 		roundstart_attributes[A] = round(set_attribute)
