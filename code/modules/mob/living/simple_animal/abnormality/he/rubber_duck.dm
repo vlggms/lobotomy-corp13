@@ -34,6 +34,9 @@
 //	gift_type =  /datum/ego_gifts/squeak
 	abnormality_origin = ABNORMALITY_ORIGIN_ORIGINAL
 	var/list/looking_players = list()
+	var/list/ignore_abno_list = list(
+		/mob/living/simple_animal/hostile/abnormality/training_rabbit,
+	)
 
 /mob/living/simple_animal/hostile/abnormality/rubber_duck/Move()
 	return FALSE
@@ -71,3 +74,15 @@
 	var/list/all_turfs = RANGE_TURFS(5, src)
 	T = get_turf(pick(all_turfs))
 	forceMove(T)
+
+/mob/living/simple_animal/hostile/abnormality/rubber_duck/Initialize()
+	. = ..()
+	RegisterSignal(SSdcs, COMSIG_GLOB_ABNORMALITY_BREACH, PROC_REF(OnAbnoBreach))
+
+
+/mob/living/simple_animal/hostile/abnormality/rubber_duck/proc/OnAbnoBreach(datum/source, mob/living/simple_animal/hostile/abnormality/abno)
+	SIGNAL_HANDLER
+	if((abno.type in ignore_abno_list) || z != abno.z)
+		return
+	if(status_flags & GODMODE)
+		datum_reference.qliphoth_change(-1)
