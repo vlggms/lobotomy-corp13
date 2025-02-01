@@ -16,15 +16,13 @@
 	charge_sections = 1
 	w_class = WEIGHT_CLASS_NORMAL
 	slot_flags = ITEM_SLOT_BACK
-	zoomable = TRUE
-	zoom_amt = 10
-	zoom_out_amt = 13
 	actions_types = list()
 	ammo_type = list(/obj/item/ammo_casing/energy/sniper)
 
 /obj/item/gun/energy/sniper/Initialize()
 	. = ..()
 	fire_delay = 30
+	AddComponent(/datum/component/scope, range_modifier = 2)
 
 /obj/item/gun/energy/sniper/pin
 	pin = /obj/item/firing_pin
