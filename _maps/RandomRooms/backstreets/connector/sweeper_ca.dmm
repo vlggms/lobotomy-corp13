@@ -24,6 +24,10 @@
 /obj/effect/decal/cleanable/blood/footprints{
 	dir = 8
 	},
+/obj/effect/spawner/mobspawner/indigo_dawn{
+	max_spawns = 3;
+	radius = 3
+	},
 /turf/open/floor/plating/dirt/jungle/dark,
 /area/city/backstreets_room)
 "g" = (
@@ -109,20 +113,11 @@
 /obj/effect/decal/cleanable/blood/drip,
 /turf/open/floor/plating/dirt/jungle/dark,
 /area/city/backstreets_room)
-"F" = (
-/obj/structure/stone_tile/slab/cracked,
-/mob/living/simple_animal/hostile/ordeal/indigo_noon,
-/turf/open/floor/plating/dirt/jungle/wasteland,
-/area/city/backstreets_room)
 "G" = (
 /obj/effect/decal/cleanable/blood{
 	pixel_x = -3;
 	pixel_y = -8
 	},
-/turf/open/floor/plating/dirt/jungle/dark,
-/area/city/backstreets_room)
-"H" = (
-/mob/living/simple_animal/hostile/ordeal/indigo_noon,
 /turf/open/floor/plating/dirt/jungle/dark,
 /area/city/backstreets_room)
 "I" = (
@@ -203,7 +198,11 @@
 /turf/open/floor/plating/dirt/jungle/dark,
 /area/city/backstreets_room)
 "X" = (
-/mob/living/simple_animal/hostile/ordeal/indigo_spawn,
+/obj/effect/decal/cleanable/blood/splatter,
+/obj/effect/spawner/mobspawner/indigo_noon{
+	max_spawns = 3;
+	radius = 3
+	},
 /turf/open/floor/plating/dirt/jungle/dark,
 /area/city/backstreets_room)
 "Y" = (
@@ -258,10 +257,10 @@ q
 B
 S
 x
-H
+S
 S
 L
-X
+S
 V
 a
 a
@@ -304,7 +303,7 @@ Q
 Q
 h
 S
-X
+S
 x
 S
 D
@@ -324,7 +323,7 @@ S
 g
 S
 S
-V
+X
 T
 f
 S
@@ -355,14 +354,14 @@ Q
 Q
 S
 I
-F
+I
 S
 S
 Z
 S
 Y
 S
-X
+S
 S
 c
 N
@@ -392,7 +391,7 @@ Z
 S
 i
 Y
-H
+S
 S
 V
 D

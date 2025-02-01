@@ -41,6 +41,13 @@
 /obj/structure/fluff/paper/stack,
 /turf/open/floor/carpet/purple,
 /area/city/backstreets_room)
+"w" = (
+/obj/structure/chair/wood,
+/obj/effect/wall_vent{
+	pixel_y = 26
+	},
+/turf/open/floor/carpet/purple,
+/area/city/backstreets_room)
 "x" = (
 /obj/structure/table/wood,
 /obj/item/paper_bin,
@@ -70,6 +77,17 @@
 "L" = (
 /mob/living/simple_animal/hostile/ordeal/steel_dusk,
 /turf/open/floor/carpet/blue,
+/area/city/backstreets_room)
+"O" = (
+/obj/structure/table/wood,
+/obj/item/paper/crumpled{
+	pixel_x = 8;
+	pixel_y = 11
+	},
+/obj/item/trash/plate{
+	pixel_x = -4
+	},
+/turf/open/floor/carpet/purple,
 /area/city/backstreets_room)
 "Q" = (
 /turf/closed/indestructible/reinforced,
@@ -125,9 +143,9 @@ Q
 "}
 (7,1,1) = {"
 Q
-B
+w
 t
-f
+O
 k
 Q
 "}
