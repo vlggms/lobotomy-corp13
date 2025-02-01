@@ -24,6 +24,7 @@ SUBSYSTEM_DEF(maptype)
 						"Critical Hits" = 10,		//EGO can Critical hit.
 						"Abno Blitz" = 5,			//The game is significantly Faster, starts after noon.
 						"Selection Mishap" = 5,		//The abno selection is randomized
+						"Legacy Pale" = 5,			//You take 90% damage if pale damage hits you
 
 						//Joke stuff is below, should all be low
 						"Working Clerks" = 3,		//For the joke
