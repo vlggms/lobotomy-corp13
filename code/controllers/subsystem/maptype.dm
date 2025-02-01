@@ -29,6 +29,7 @@ SUBSYSTEM_DEF(maptype)
 						//Joke stuff is below, should all be low
 						"Working Clerks" = 3,		//For the joke
 						"Joke Abnormalities" = 1,	// Okay it's funny
+						"Visible Ghosts" = 1,		// Very Metagamey but funny
 						)
 
 	var/chosen_trait = "No Trait"
@@ -62,6 +63,10 @@ SUBSYSTEM_DEF(maptype)
 	..()
 	if(SSmaptype.maptype in SSmaptype.lc_maps)
 		chosen_trait = pickweight(lc_trait)
+		switch(chosen_trait)
+			if("Visible Ghosts")
+				var/msg = span_warning("You suddenly feel extremely obvious...")
+				set_observer_default_invisibility(0, msg)
 
 	//Badda Bing Badda Da. This makes the latejoin menu cleaner
 	switch(SSmaptype.maptype)
