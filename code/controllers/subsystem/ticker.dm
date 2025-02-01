@@ -256,8 +256,7 @@ SUBSYSTEM_DEF(ticker)
 			if("Selection Mishap")
 				var/choosingmode = pick(
 							/datum/game_mode/management/pure,
-							/datum/game_mode/management/branch
-						)
+							/datum/game_mode/management/branch)
 				mode = new choosingmode
 			else
 				mode = new /datum/game_mode/management/classic
