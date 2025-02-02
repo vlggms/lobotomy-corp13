@@ -47,11 +47,11 @@
 	observation_prompt = "No matter where you walk to in the cell, the mirror is always facing you. <br>You trace a path around it but all you ever see is your own reflection. <br>\
 		\"It's not fair, why do you get to be you and not me?\" <br>Your reflection mutters, parroting your voice. <br>\"Why are you, you and not I? I could be you so much better than you can, just let me try.\" <br>\
 		Your reflection is holding out its hand, waiting for a handshake."
-	observation_choices = list("Shake their hand", "Turn away and leave")
-	correct_choices = list("Turn away and leave")
-	observation_success_message = "You make to exit the cell. \"Don't just leave me! I'm somebody, I'm real! I'm..! What's my name?! Just give me your name!\" <br>\
-		You don't give your name to the imitation, the closer it starts to mirrors another, the more its mimicry becomes mockery."
-	observation_fail_message = "The you in the mirror smiles. <br>\"Just you wait, I'll show you what we can do.\""
+	observation_choices = list(
+		"Turn away and leave" = list(TRUE, "You make to exit the cell. \"Don't just leave me! I'm somebody, I'm real! I'm..! What's my name?! Just give me your name!\" <br>\
+			You don't give your name to the imitation, the closer it starts to mirrors another, the more its mimicry becomes mockery."),
+		"Shake their hand" = list(FALSE, "The you in the mirror smiles. <br>\"Just you wait, I'll show you what we can do.\""),
+	)
 
 	//Contained Variables
 	var/reflect_timer
@@ -231,7 +231,7 @@
 	datum_reference.qliphoth_change(-1)
 
 /mob/living/simple_animal/hostile/abnormality/nobody_is/BreachEffect(mob/living/carbon/human/user, breach_type)
-	if(!(status_flags & GODMODE)) // Already breaching
+	if(current_stage > 1)
 		return
 	if(reflect_timer)
 		deltimer(reflect_timer)
@@ -240,6 +240,8 @@
 		return
 	CheckMirrorIcon() //Clear overlays
 	next_stage()
+	if(breach_type == BREACH_MINING)
+		return
 	// Teleport us somewhere where nobody will see us at first
 	var/list/priority_list = list()
 	for(var/turf/T in GLOB.xeno_spawn)

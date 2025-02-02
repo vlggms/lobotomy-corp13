@@ -7,6 +7,13 @@
 	portrait = "one_sin"
 	maxHealth = 777
 	health = 777
+	damage_coeff = list(RED_DAMAGE = 1.5, WHITE_DAMAGE = 1, BLACK_DAMAGE = 1, PALE_DAMAGE = 2)
+	melee_damage_lower = 8
+	melee_damage_upper = 15
+	melee_damage_type = WHITE_DAMAGE
+	attack_sound = 'sound/abnormalities/onesin/onesin_attack.ogg'
+	attack_verb_continuous = "smites"
+	attack_verb_simple = "smite"
 	is_flying_animal = TRUE
 	threat_level = ZAYIN_LEVEL
 	work_chances = list(
@@ -24,7 +31,7 @@
 		/datum/ego_datum/armor/penitence
 	)
 	max_boxes = 10
-	gift_type =  /datum/ego_gifts/penitence
+	gift_type = /datum/ego_gifts/penitence
 	gift_message = "From this day forth, you shall never forget his words."
 	abnormality_origin = ABNORMALITY_ORIGIN_LOBOTOMY
 
@@ -38,12 +45,12 @@
 
 	observation_prompt = "It has great power. It is savior that will judge you, and executioner that will put you in your demise. <br>\
 		In its eyes, you find... <br>(Technically, it has no eyes, so in its pitch-black holes you find...)"
-	observation_choices = list("You find yourself.", "Nothing.")
-	correct_choices = list("Nothing.")
-	observation_success_message = "Darkness. <br>\
-		Nothing is there. Have you found the answers you were looking for?"
-	observation_fail_message = "You are found. <br>\
-		You have great power. <br>You willingly lift the axe for the greater good."
+	observation_choices = list(
+		"Nothing" = list(TRUE, "Darkness. <br>\
+			Nothing is there. Have you found the answers you were looking for?"),
+		"You find yourself" = list(FALSE, "You are found. <br>\
+			You have great power. <br>You willingly lift the axe for the greater good."),
+	)
 
 	var/halo_status = "onesin_halo_normal" //used for changing the halo overlays
 
@@ -57,7 +64,7 @@
 	. += "onesin" //by the nine this is too cursed
 
 /mob/living/simple_animal/hostile/abnormality/onesin/WorkChance(mob/living/carbon/human/user, chance)
-	if(istype(user.ego_gift_list[HAT], /datum/ego_gifts/penitence))
+	if(istype(user.ego_gift_list[HAT], gift_type))
 		return chance + 10
 	return chance
 
@@ -131,7 +138,14 @@
 			H.adjustSanityLoss(-H.maxSanity * heal_factor)
 
 /mob/living/simple_animal/hostile/abnormality/onesin/BreachEffect(mob/living/carbon/human/user, breach_type)
+	if(breach_type == BREACH_MINING)
+		update_icon()
+		return ..()
 	return FALSE // If someone wants him to breach for SOME REASON in the future, then exclude breach_type == BREACH_PINK
+
+/mob/living/simple_animal/hostile/abnormality/onesin/AttackingTarget()
+	..()
+	new /obj/effect/temp_visual/onesin_punishment(get_turf(target))
 
 /datum/reagent/abnormality/onesin
 	name = "Holy Light"

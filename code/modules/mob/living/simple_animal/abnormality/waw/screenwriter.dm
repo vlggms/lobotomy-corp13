@@ -11,9 +11,13 @@ Defeating the murderer also surpresses the abnormality.
 	icon = 'ModularTegustation/Teguicons/32x32.dmi'
 	icon_state = "screenwriter"
 	portrait = "screenwriter"
+	maxHealth = 4000
+	health = 4000
+	damage_coeff = list(RED_DAMAGE = 1.3, WHITE_DAMAGE = 0.5, BLACK_DAMAGE = 1.3, PALE_DAMAGE = 1.5)
 	faction = list("hostile")
 	threat_level = WAW_LEVEL
 	start_qliphoth = 2
+	blood_volume = 0
 	work_chances = list(
 		"Nutrition" = 35,
 		"Cleanliness" = 35,
@@ -40,9 +44,11 @@ Defeating the murderer also surpresses the abnormality.
 	abnormality_origin = ABNORMALITY_ORIGIN_ARTBOOK //Technically it was in the beta but I dont want it showing it up in LC-only modes
 
 	observation_prompt = "The play started long ago. Here is the man who killed many. And you are holding a gun."
-	observation_choices = list("Shoot the man", "Wait and see", "Shoot someone else")
-	correct_choices = list("Shoot the man", "Wait and see", "Shoot someone else")
-	observation_success_message = "Whether you shoot or not, the play ends with tragedy." //TODO: multiple texts
+	observation_choices = list( //TODO: multiple texts
+		"Shoot the man" = list(TRUE, "Whether you shoot or not, the play ends with tragedy."),
+		"Wait and see" = list(TRUE, "Whether you shoot or not, the play ends with tragedy."),
+		"Shoot someone else" = list(TRUE, "Whether you shoot or not, the play ends with tragedy."),
+	)
 
 	pet_bonus = "shuffles" //saves a few lines of code by allowing funpet() to be called by attack_hand()
 	var/mob/living/simple_animal/hostile/actor/A
@@ -55,6 +61,18 @@ Defeating the murderer also surpresses the abnormality.
 	. = ..()
 	preferred_work_type = pick(work_chances)
 	SpawnIcon()
+
+/mob/living/simple_animal/hostile/abnormality/screenwriter/Move()
+	return FALSE
+
+/mob/living/simple_animal/hostile/abnormality/screenwriter/CanAttack(atom/the_target)
+	return FALSE
+
+/mob/living/simple_animal/hostile/abnormality/screenwriter/Destroy()
+	if(A)
+		A.death()
+	EndScenario()
+	return ..()
 
 //Work stuff
 /mob/living/simple_animal/hostile/abnormality/screenwriter/AttemptWork(mob/living/carbon/human/user, work_type)
@@ -109,6 +127,10 @@ Defeating the murderer also surpresses the abnormality.
 		return
 	MeltdownEffect()
 	return
+
+/mob/living/simple_animal/hostile/abnormality/screenwriter/BreachEffect(mob/living/carbon/human/user, breach_type)
+	if(breach_type == BREACH_MINING)
+		MeltdownEffect()
 
 /mob/living/simple_animal/hostile/abnormality/screenwriter/proc/MeltdownEffect()
 	var/turf/actor_location = pick(GLOB.department_centers) //Spawn the murderer

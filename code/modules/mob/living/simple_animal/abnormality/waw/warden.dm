@@ -44,19 +44,19 @@
 		As far as I know it's just me left. <br>\
 		The site burial went off and escape is impossible, yet, the other abnormalities remain in their cells - if they leave she forces them back inside. <br>\
 		Maybe if I enter one of the unused cells, she might leave me alone?"
-	observation_choices = list("Enter a cell", "Surrender to her")
-	correct_choices = list("Enter a cell")
-	observation_success_message = "I step inside and lock the door behind me, <br>I'm stuck inside. <br>\
-		She passes by the containment unit and peers through the glass and seems satisfied."
-	observation_fail_message = "Steeling myself, I confront her during one of her rounds. <br>I tell her I'm tired and just want it to end. <br>\
-		She gets closer and lifts her skirt(?) and I'm thrust underneath, my colleagues are here- they're alive and well! <br>\
-		But, they seem despondent. <br>One looks at me says simply; \"In here, you're with us. Forever.\""
+	observation_choices = list(
+		"Enter a cell" = list(TRUE, "I step inside and lock the door behind me, <br>I'm stuck inside. <br>\
+			She passes by the containment unit and peers through the glass and seems satisfied."),
+		"Surrender to her" = list(FALSE, "Steeling myself, I confront her during one of her rounds. <br>I tell her I'm tired and just want it to end. <br>\
+			She gets closer and lifts her skirt(?) and I'm thrust underneath, my colleagues are here- they're alive and well! <br>\
+			But, they seem despondent. <br>One looks at me says simply; \"In here, you're with us. Forever.\""),
+	)
 
 	var/finishing = FALSE
 
 	var/captured_souls = 0
 
-	var/resistance_decrease = 0.5
+	var/resistance_decrease = 0.2
 
 	var/base_red_resistance = 0.7
 	var/base_white_resistance = 1.2
@@ -152,4 +152,5 @@
 
 /mob/living/simple_animal/hostile/abnormality/warden/bullet_act(obj/projectile/P)
 	visible_message(span_userdanger("[src] is unfazed by \the [P]!"))
+	new /obj/effect/temp_visual/healing/no_dam(get_turf(src))
 	P.Destroy()

@@ -46,22 +46,39 @@
 
 	observation_prompt = "The red flower waits expectantly for you as you enter the containment unit, \
 		studying your movements it leans down towards you and bares its thorns to you."
-	observation_choices = list("Touch the thorns", "Just observe")
-	correct_choices = list("Just observe")
-	observation_success_message = "The flower pulls back when it realises you make no effort to try and touch it. <br>\
-		You study it and it studies you back, it only ever wanted to make people happy the only way it knew how. <br>\
-		You turn to leave, resolving to chase after happiness with your own power."
-	observation_fail_message = "The thorns prick your hands and you feel an indescribable rush of pleasure. <br>\
-		Poppy flowers like this one have ruined many lives and now it's ruined yours, but for now - you're happy."
+	observation_choices = list(
+		"Just observe" = list(TRUE, "The flower pulls back when it realises you make no effort to try and touch it. <br>\
+			You study it and it studies you back, it only ever wanted to make people happy the only way it knew how. <br>\
+			You turn to leave, resolving to chase after happiness with your own power."),
+		"Touch the thorns" = list(FALSE, "The thorns prick your hands and you feel an indescribable rush of pleasure. <br>\
+			Poppy flowers like this one have ruined many lives and now it's ruined yours, but for now - you're happy."),
+	)
 
 	//the agent that started work on porccubus
 	var/agent_ckey
 	var/teleport_cooldown_time = 5 MINUTES
 	var/teleport_cooldown
 	var/damage_taken = FALSE
+	var/leap_recharge_time = 2 SECONDS
+	var/leap_charges = 3
+	var/max_leap_charges = 3
+	var/timer_added = FALSE
+	var/in_charging = FALSE
+	var/noteleport = FALSE
+	attack_action_types = list(/datum/action/innate/abnormality_attack/toggle/porccubus_dash_toggle)
+
+/mob/living/simple_animal/hostile/abnormality/porccubus/Login()
+	. = ..()
+	if(!. || !client)
+		return FALSE
+	to_chat(src, "<h1>You are Porccubus, A Tank Role Abnormality.</h1><br>\
+		<b>|Fluttering|: You are immune to all projectiles. However you are unable to move. \
+		However, If you click on a tile that is at least 3 tiles away from you. You will spend a leap charge to dash to that tile. \
+		You regain a leap charge every 3 seconds, and you can hold a max of 3 at a time.<br>\
+		<br>\
+		|Happiness|: Your melee attack has a range of 2 tiles.</b>")
 
 	//PLAYABLE ATTACKS
-	attack_action_types = list(/datum/action/innate/abnormality_attack/toggle/porccubus_dash_toggle)
 
 /datum/action/innate/abnormality_attack/toggle/porccubus_dash_toggle
 	name = "Toggle Dash"
@@ -132,11 +149,13 @@
 //it does have a dash that makes it able to jump around, but it can't properly "roam" per say.
 /mob/living/simple_animal/hostile/abnormality/porccubus/BreachEffect(mob/living/carbon/human/user, breach_type)
 	. = ..()
+	if(breach_type == BREACH_MINING)
+		noteleport = TRUE
 	playsound(src, 'sound/abnormalities/porccubus/head_explode_laugh.ogg', 50, FALSE, 4)
 	icon_living = "porrcubus"
 	icon_state = icon_living
 	ranged_cooldown = world.time + ranged_cooldown_time
-	if(!IsCombatMap())
+	if(!IsCombatMap() && (breach_type != BREACH_MINING))
 		var/turf/T = pick(GLOB.xeno_spawn)
 		forceMove(T)
 		teleport_cooldown = world.time + teleport_cooldown_time
@@ -148,7 +167,7 @@
 	. = ..()
 	if(status_flags & GODMODE)
 		return
-	if(IsCombatMap())
+	if(IsCombatMap() || noteleport)
 		return
 	if(teleport_cooldown < world.time) //if porccubus hasn't taken damage for 5 minutes we make him move so he doesn't stay stuck in whatever cell he got thrown in.
 		teleport_cooldown = world.time + teleport_cooldown_time
@@ -171,31 +190,52 @@
 //Breach Code Attacks
 /mob/living/simple_animal/hostile/abnormality/porccubus/OpenFire(atom/A)
 	if(client)
-		if(ranged_cooldown > world.time || chosen_attack != 1)
-			RangedAttack(A)
+		if(!IsCombatMap())
+			if(ranged_cooldown > world.time || chosen_attack != 1)
+				RangedAttack(A)
 		switch(chosen_attack)
 			if(1)
-				PorcDash(target)
+				DashChecker(target)
 		return
 
 	if(!target)
 		return
 	if(!isliving(target))
 		return
-	PorcDash(A)
+	DashChecker(A)
+
+/mob/living/simple_animal/hostile/abnormality/porccubus/proc/DashChecker(atom/target)
+	var/dist = get_dist(target, src)
+	if(IsCombatMap())
+		if(dist > 2 && leap_charges > 0 && !in_charging)
+			PorcDash(target)
+	else
+		if(dist > 2 && ranged_cooldown < world.time)
+			ranged_cooldown = world.time + ranged_cooldown_time
+			PorcDash(target)
 
 /mob/living/simple_animal/hostile/abnormality/porccubus/proc/PorcDash(atom/target)//additionally, it can dash to its target every 15 seconds if it's out of range
-	var/dist = get_dist(target, src)
-	if(dist > 2 && ranged_cooldown < world.time)
-		ranged_cooldown = world.time + ranged_cooldown_time
-		var/list/dash_line = getline(src, target)
-		for(var/turf/line_turf in dash_line) //checks if there's a valid path between the turf and the friend
-			if(line_turf.is_blocked_turf(exclude_mobs = TRUE))
-				break
-			forceMove(line_turf)
-			SLEEP_CHECK_DEATH(0.8)
-		playsound(src, 'sound/abnormalities/porccubus/porccu_giggle.ogg', 10, FALSE, 4) // This thing is absurdly loud
-		ranged_cooldown = world.time + ranged_cooldown_time
+	// var/dist = get_dist(target, src)
+	// if(IsCombatMap())
+	// 	if(dist > 2 && charges > 0)
+	// else
+	// 	if(dist > 2 && ranged_cooldown < world.time)
+	// 		ranged_cooldown = world.time + ranged_cooldown_time
+	in_charging = TRUE
+	var/list/dash_line = getline(src, target)
+	for(var/turf/line_turf in dash_line) //checks if there's a valid path between the turf and the friend
+		if(line_turf.is_blocked_turf(exclude_mobs = TRUE))
+			break
+		forceMove(line_turf)
+		SLEEP_CHECK_DEATH(1)
+	playsound(src, 'sound/abnormalities/porccubus/porccu_giggle.ogg', 10, FALSE, 4) // This thing is absurdly loud
+	ranged_cooldown = world.time + ranged_cooldown_time
+	if(IsCombatMap())
+		leap_charges -= 1
+		if(!timer_added)
+			addtimer(CALLBACK(src, PROC_REF(AddCharge)), leap_recharge_time)
+			timer_added = TRUE
+	in_charging = FALSE
 
 /mob/living/simple_animal/hostile/abnormality/porccubus/AttackingTarget(atom/attacked_target)
 	var/mob/living/carbon/human/H
@@ -213,6 +253,15 @@
 		DrugOverdose(H, H.ckey, nirvana)
 		LoseTarget()
 		H.faction += "porccubus" //that guy's already fucked, even if they can kill porccubus safely now, porccubus has done its job of being a cunt
+
+/mob/living/simple_animal/hostile/abnormality/porccubus/proc/AddCharge()
+	if(leap_charges < max_leap_charges)
+		leap_charges++
+		to_chat(src, "<span class='notice'> You now have [leap_charges]/[max_leap_charges] leap charges.</span>")
+		timer_added = FALSE
+		if(leap_charges < max_leap_charges)
+			addtimer(CALLBACK(src, PROC_REF(AddCharge)), leap_recharge_time)
+			timer_added = TRUE
 
 //Drug Item
 //this is only obtainable if someone else dies from the addiction, but it's the only way to get drugged without working on porccubus

@@ -651,6 +651,17 @@
 "jP" = (
 /obj/structure/table/wood,
 /obj/item/modular_computer/laptop/preset/civilian,
+/obj/item/toner/large{
+	pixel_y = 4;
+	pixel_x = 4
+	},
+/obj/item/toner/large{
+	pixel_y = 8
+	},
+/obj/item/toner/large{
+	pixel_y = 12;
+	pixel_x = -4
+	},
 /turf/open/floor/facility/white,
 /area/city/fixers)
 "ka" = (

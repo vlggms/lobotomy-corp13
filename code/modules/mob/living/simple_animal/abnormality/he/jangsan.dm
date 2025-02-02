@@ -46,13 +46,13 @@
 
 	observation_prompt = "I'm in a field of flowers, the flowers are my friends. <br>There are many kinds of friends but I wish to pluck them all. <br>\
 		Some friends have thorns and hurt when I try to pick them. <br>Before me is a particularly juicy, thornless flower."
-	observation_choices = list("Pluck the flower", "Smell it")
-	correct_choices = list("Smell it")
-	observation_success_message = "The flower shuffles away from me as I draw near, the scent is enticing but I do not pluck it. <br>\
-		There's always time to stop and enjoy the flowers."
-	observation_fail_message = "The flower lets out a scream as I pluck it with my teeth, its ichor stains my teeth and fur red - \
-		the other thornless flowers scream in unison and flee in all directions whilst the thorniest ones scratch my fur and skin. <br>\
-		Flowers are my friends and I shall pluck them all."
+	observation_choices = list(
+		"Smell it" = list(TRUE, "The flower shuffles away from me as I draw near, the scent is enticing but I do not pluck it. <br>\
+			There's always time to stop and enjoy the flowers."),
+		"Pluck the flower" = list(FALSE, "The flower lets out a scream as I pluck it with my teeth, its ichor stains my teeth and fur red - \
+			the other thornless flowers scream in unison and flee in all directions whilst the thorniest ones scratch my fur and skin. <br>\
+			Flowers are my friends and I shall pluck them all."),
+	)
 
 	var/bullet_threshold = 40
 //breach related
@@ -193,7 +193,8 @@
 	. = ..()
 	if(!datum_reference.abno_radio)
 		AbnoRadio()
-	addtimer(CALLBACK(src, PROC_REF(TryTeleport)), 5)
+	if(breach_type != BREACH_MINING)
+		addtimer(CALLBACK(src, PROC_REF(TryTeleport)), 5)
 
 /mob/living/simple_animal/hostile/abnormality/jangsan/proc/TryTeleport() //stolen from knight of despair
 	dir = 2

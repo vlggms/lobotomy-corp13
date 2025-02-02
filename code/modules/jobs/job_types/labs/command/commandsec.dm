@@ -9,6 +9,7 @@
 	selection_color = "#555555"
 	access = list(ACCESS_ARMORY, ACCESS_SECURITY, ACCESS_RND, ACCESS_MEDICAL, ACCESS_COMMAND)		//See /datum/job/assistant/get_access()
 	minimal_access = list(ACCESS_ARMORY, ACCESS_SECURITY, ACCESS_RND, ACCESS_MEDICAL, ACCESS_COMMAND)	//See /datum/job/assistant/get_access()
+	departments = DEPARTMENT_SECURITY
 
 	outfit = /datum/outfit/job/damage_mitigation_officer
 	display_order = 4
@@ -62,6 +63,7 @@
 	selection_color = "#555555"
 	access = list(ACCESS_ARMORY, ACCESS_SECURITY, ACCESS_RND, ACCESS_MEDICAL, ACCESS_COMMAND)		//See /datum/job/assistant/get_access()
 	minimal_access = list(ACCESS_ARMORY, ACCESS_SECURITY, ACCESS_RND, ACCESS_MEDICAL, ACCESS_COMMAND)	//See /datum/job/assistant/get_access()
+	departments = DEPARTMENT_SECURITY
 
 	outfit = /datum/outfit/job/damage_exasperation_officer
 	display_order = 4.1
@@ -115,6 +117,7 @@
 	selection_color = "#555555"
 	access = list(ACCESS_ARMORY, ACCESS_SECURITY, ACCESS_RND, ACCESS_MEDICAL, ACCESS_COMMAND)
 	minimal_access = list(ACCESS_ARMORY, ACCESS_SECURITY, ACCESS_RND, ACCESS_MEDICAL, ACCESS_COMMAND)
+	departments = DEPARTMENT_SECURITY
 
 	outfit = /datum/outfit/job/internal_police
 	display_order = 3

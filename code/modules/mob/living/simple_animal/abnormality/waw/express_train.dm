@@ -33,10 +33,10 @@
 	observation_prompt = "The booking clerk who remains dauntingly quiet sells tickets for a train with no final destination. <br>\
 		There are no clocks to alert the arrival times, instead, there are some blinking lights. <br>\
 		\"Sir! Your ticket?\" The clerk behind the counter smothered in shadow, save for two pinpricks of amber light for eyes, holds out an unmarked ticket with its gangly appendage."
-	observation_choices = list("Take the ticket")
-	correct_choices = list("Take the ticket")
-	observation_success_message = "I took the ticket from his hand, it felt like a lead weight, and asked him when the train would arrive. <br>\
-		\"Sooner than you'd like, later than you prepare for. <br>It comes for everyone Sir.\" <br>I hear the sound of a distant horn."
+	observation_choices = list(
+		"Take the ticket" = list(TRUE, "I took the ticket from his hand, it felt like a lead weight, and asked him when the train would arrive. <br>\
+			\"Sooner than you'd like, later than you prepare for. <br>It comes for everyone Sir.\" <br>I hear the sound of a distant horn."),
+	)
 
 	var/meltdown_tick = 60 SECONDS
 	var/meltdown_timer

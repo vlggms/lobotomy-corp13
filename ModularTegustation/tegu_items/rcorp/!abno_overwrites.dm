@@ -52,7 +52,9 @@
 //Porccubus gets a much shorter dash cooldown to better maneuver itself with how big of a commitment dashing is.
 /mob/living/simple_animal/hostile/abnormality/porccubus/Initialize()
 	if(IsCombatMap())
-		ranged_cooldown_time = 3 SECONDS
+		maxHealth = 3000
+		health = 3000
+		ranged_cooldown_time = 0.5 SECONDS
 	return ..()
 
 // Fairy gentleman gets a bump to his survival, damage, and a bigger ass.
@@ -75,6 +77,24 @@
 		bullet_damage = 200
 	return ..()
 
+//Due to Redblooded's very low damage and health, which is normaly fitting for a Teth. That causes them to underperform in R-Corp since they don't have any utility.
+//For that reason his health is increased and let his ammo gimmick work by reducing his ranged cooldown.
+/mob/living/simple_animal/hostile/abnormality/redblooded/Initialize()
+	if(SSmaptype.maptype == "rcorp")
+		ranged_cooldown_time = 0.5 SECONDS
+		maxHealth = 1200
+		health = 1200
+		melee_damage_lower = 15
+		melee_damage_upper = 20
+		casingtype = /obj/item/ammo_casing/caseless/rcorp_true_patriot
+	return ..()
+
+/mob/living/simple_animal/hostile/abnormality/ppodae/Initialize()
+	if(IsCombatMap())
+		smash_damage_low = 32
+		smash_damage_high = 40
+	return ..()
+
 //Warden deals even less damage then more bodies they eat, and they take more damage from all attacks.
 //Warden currently slowballs far to quickly, so this nerf should give R-Corp a better chance at fighting back against them.
 /mob/living/simple_animal/hostile/abnormality/warden/Initialize()
@@ -95,4 +115,10 @@
 	if(SSmaptype.maptype == "rcorp")
 		heal_percent_per_second = 0.01275
 		r_corp_regen_start = 0.5
+	return ..()
+
+/mob/living/simple_animal/hostile/abnormality/greed_king/Initialize()
+	if(IsCombatMap())
+		initial_charge_damage = 200
+		growing_charge_damage = 80
 	return ..()

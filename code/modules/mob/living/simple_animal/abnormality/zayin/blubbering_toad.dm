@@ -58,20 +58,20 @@
 		This resin is like gloom. <br>\
 		A sap of gloom, not quite like tears or sadness. <br>\
 		The toad holds this resin."
-	observation_choices = list("Mimic the cry", "Sit and wait")
-	correct_choices = list("Sit and wait")
-	observation_success_message = "An indeterminate amount of time passes. <br>\
-		As you waited for the toad to finish its cries, <br>\
-		it gazed into you, closing and opening its eyelids slowly. <br>\
-		With a quick, slick sound,a long blue tongue popped out towards you. <br>\
-		An eyeball belonging to the toad was on its tongue. <br>\
-		When you picked it up, it blinked its other eye at us before going on its way. <br>\
-		Was that its thanks for lending an ear?"
-	observation_fail_message = "\"Croohic, croohoo.\" <br>\
-		The toad’s cry is dull and heavy. <br>\
-		It doesn’t seem to have understood what it heard. <br>\
-		After crying like that a few more times, it hopped away from its spot. <br>\
-		All that’s left is the sticky blue resin."
+	observation_choices = list(
+		"Sit and wait" = list(TRUE, "An indeterminate amount of time passes. <br>\
+			As you waited for the toad to finish its cries, <br>\
+			it gazed into you, closing and opening its eyelids slowly. <br>\
+			With a quick, slick sound, a long blue tongue popped out towards you. <br>\
+			An eyeball belonging to the toad was on its tongue. <br>\
+			When you picked it up, it blinked its other eye at us before going on its way. <br>\
+			Was that its thanks for lending an ear?"),
+		"Mimic the cry" = list(FALSE, "\"Croohic, croohoo.\" <br>\
+			The toad’s cry is dull and heavy. <br>\
+			It doesn’t seem to have understood what it heard. <br>\
+			After crying like that a few more times, it hopped away from its spot. <br>\
+			All that’s left is the sticky blue resin."),
+	)
 
 	//work
 	var/pulse_healing = 15
@@ -116,8 +116,15 @@
 
 //Attack or approach it directly and it attacks you!
 /mob/living/simple_animal/hostile/abnormality/blubbering_toad/BreachEffect(mob/living/user, breach_type = BREACH_NORMAL)
-	if(breach_type == BREACH_PINK)
+	if(breach_type == BREACH_PINK || breach_type == BREACH_MINING)
 		persistant = TRUE
+	if(breach_type == BREACH_MINING)//nerfed to a ZAYIN statline since this is something you'll typically fight roundstart
+		name = "Weakened [name]"
+		maxHealth = 400
+		melee_damage_lower = 9
+		melee_damage_upper = 15
+		tongue_damage = 10
+		broken = TRUE
 	SetIdiot(user)
 	return ..()
 

@@ -33,17 +33,17 @@
 		The paper is a jumbled mess of words, you can't make out anything on it. <br>\
 		A pen appears in your hand. <br>\
 		The seems to be running out of patience. <br>Will you sign?"
-	observation_choices = list("Sign the contract", "Do not sign")
-	correct_choices = list("Do not sign")
-	observation_success_message = "You take a closer look at the contract <br>\
-		There is a tiny clause in fine print <br>\
-		\"Your soul becomes the property of a contract signed.\" <br>\
-		At your refusal, the man sighs and hands you a new contract. <br>\
-		This contract seems legitimate, so you sign."
-	observation_fail_message = "You sign the contract in haste. <br>\
-		In a few moments, you feel as if a piece of you is missing. <br>\
-		You walk out in a daze, unable to remember what the contract was about. <br>\
-		Perhaps you should have read the fine print."
+	observation_choices = list(
+		"Do not sign" = list(TRUE, "You take a closer look at the contract <br>\
+			There is a tiny clause in fine print <br>\
+			\"Your soul becomes the property of a contract signed.\" <br>\
+			At your refusal, the man sighs and hands you a new contract. <br>\
+			This contract seems legitimate, so you sign."),
+		"Sign the contract" = list(FALSE, "You sign the contract in haste. <br>\
+			In a few moments, you feel as if a piece of you is missing. <br>\
+			You walk out in a daze, unable to remember what the contract was about. <br>\
+			Perhaps you should have read the fine print."),
+	)
 
 	var/list/total_havers = list()
 	var/list/fort_havers = list()
@@ -52,6 +52,10 @@
 	var/list/just_havers = list()
 	var/list/spawnables = list()
 	var/total_per_contract = 4
+	var/breaching
+	var/summon_count = 0
+	var/summon_cooldown
+	var/summon_cooldown_time = 60 SECONDS
 
 /mob/living/simple_animal/hostile/abnormality/contract/Initialize()
 	. = ..()
@@ -64,6 +68,16 @@
 
 		if((initial(abno.threat_level)) <= WAW_LEVEL)
 			spawnables += abno
+
+/mob/living/simple_animal/hostile/abnormality/contract/Life()
+	. = ..()
+	if(!breaching)
+		return
+	if(summon_count > 4)
+		return
+	if((summon_cooldown < world.time) && !(status_flags & GODMODE))
+		Summon()
+		summon_cooldown = world.time + summon_cooldown_time
 
 /mob/living/simple_animal/hostile/abnormality/contract/WorkChance(mob/living/carbon/human/user, chance, work_type)
 	. = chance
@@ -147,8 +161,17 @@
 
 //Meltdown
 /mob/living/simple_animal/hostile/abnormality/contract/ZeroQliphoth(mob/living/carbon/human/user)
+	Summon()
+	datum_reference.qliphoth_change(2)
+
+/mob/living/simple_animal/hostile/abnormality/contract/BreachEffect(mob/living/carbon/human/user, breach_type)//causes a runtime
+	if(breach_type == BREACH_MINING)
+		breaching = TRUE
+	..()
+
+/mob/living/simple_animal/hostile/abnormality/contract/proc/Summon(mob/living/carbon/human/user)
 	// Don't need to lazylen this. If this is empty there is a SERIOUS PROBLEM.
-	var/mob/living/simple_animal/hostile/abnormality/spawning =	pick(spawnables)
+	var/mob/living/simple_animal/hostile/abnormality/spawning = pick(spawnables)
 	var/mob/living/simple_animal/hostile/abnormality/spawned = new spawning(get_turf(src))
 	spawned.BreachEffect()
 	spawned.color = "#000000"	//Make it black to look cool
@@ -156,7 +179,7 @@
 	spawned.desc = "What is that thing?"
 	spawned.faction = list("hostile")
 	spawned.core_enabled = FALSE
-	datum_reference.qliphoth_change(2)
+	summon_count += 1
 
 /* Work effects */
 /mob/living/simple_animal/hostile/abnormality/contract/SuccessEffect(mob/living/carbon/human/user, work_type, pe)
@@ -166,7 +189,6 @@
 /mob/living/simple_animal/hostile/abnormality/contract/PostWorkEffect(mob/living/carbon/human/user, work_type, pe, work_time)
 	work_damage_amount = initial(work_damage_amount)
 	return
-
 
 /mob/living/simple_animal/hostile/abnormality/contract/NeutralEffect(mob/living/carbon/human/user, work_type, pe)
 	. = ..()

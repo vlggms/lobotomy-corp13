@@ -32,12 +32,12 @@
 	observation_prompt = "Letters addressed to various addresses and recipients litter the containment cell. <br>\
 		Occasionally, some of the letters flutter in the air, as if a breeze has come through the cell. <br>\
 		A new batch of letters comes flooding out of the mailbox, one lands right in front of you, with your name on it."
-	observation_choices = list("Open the letter", "Ignore it")
-	correct_choices = list("Open the letter")
-	observation_success_message = "You open the letter, but the inside is blank. <br>\
-		Looking at the envelope, you notice that it is labelled \"RETURN TO SENDER\" <br>\
-		You put the envelope back in the mailbox, and find a gift inside."
-	observation_fail_message = "You know better than to fall for the tricks of an abnormality. <br>You walk out of the cell, never knowing what was in that letter."
+	observation_choices = list(
+		"Open the letter" = list(TRUE, "You open the letter, but the inside is blank. <br>\
+			Looking at the envelope, you notice that it is labelled \"RETURN TO SENDER\" <br>\
+			You put the envelope back in the mailbox, and find a gift inside."),
+		"Ignore it" = list(FALSE, "You know better than to fall for the tricks of an abnormality. <br>You walk out of the cell, never knowing what was in that letter."),
+	)
 
 	var/cooldown
 	var/cooldown_time = 10 SECONDS

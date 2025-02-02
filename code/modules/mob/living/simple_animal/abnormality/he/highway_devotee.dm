@@ -39,17 +39,17 @@
 		\"This is a one-way road. No U-turns.\" <br>\
 		\"If you take this road, it'll take ages to come back here.\" <br>\
 		As the person claims, the road seems to be stretched almost endlessly into the distance."
-	observation_choices = list("Go back the way you came instead of taking the main road", "Take the byway instead of taking the main road")
-	correct_choices = list("Go back the way you came instead of taking the main road")
-	observation_success_message = "\"The road might seem vacant right now, but take it for a bit and you'll see. <br>That the road is jam-packed with cars, and you'd be slowed to a crawl.\" <br>\
-		\"Turning around is not an option, either. There would be a car right behind you by the time you decide to go back.\" <br>\
-		\"You made the right choice.\" <br>\
-		It lightly smiled. <br>\
-		The sign was still held high for whoever might enter this highway in the future."
-	observation_fail_message = "\"Not a good choice.\" <br>\
-		\"Everyone is following the same rules to traverse this road. In any case, this highway is for everyone.\" <br>\
-		\"I assure you, the god of traffic won't forgive cheap shortcuts like that.\" <br>\
-		As you take the byway, you endured the piercing glare on your back for a good while."
+	observation_choices = list(
+		"Go back the way you came instead of taking the main road" = list(TRUE, "\"The road might seem vacant right now, but take it for a bit and you'll see. <br>That the road is jam-packed with cars, and you'd be slowed to a crawl.\" <br>\
+			\"Turning around is not an option, either. There would be a car right behind you by the time you decide to go back.\" <br>\
+			\"You made the right choice.\" <br>\
+			It lightly smiled. <br>\
+			The sign was still held high for whoever might enter this highway in the future."),
+		"Take the byway instead of taking the main road" = list(FALSE, "\"Not a good choice.\" <br>\
+			\"Everyone is following the same rules to traverse this road. In any case, this highway is for everyone.\" <br>\
+			\"I assure you, the god of traffic won't forgive cheap shortcuts like that.\" <br>\
+			As you take the byway, you endured the piercing glare on your back for a good while."),
+	)
 
 	var/talk = FALSE
 	var/list/structures = list()
@@ -90,8 +90,9 @@
 
 /mob/living/simple_animal/hostile/abnormality/highway_devotee/BreachEffect(mob/living/carbon/human/user, breach_type)
 	. = ..()
-	var/turf/T = pick(GLOB.xeno_spawn)
-	forceMove(T)
+	if(breach_type != BREACH_MINING)
+		var/turf/T = pick(GLOB.xeno_spawn)
+		forceMove(T)
 	addtimer(CALLBACK(src, PROC_REF(KillYourself)), 3 MINUTES)
 	dir = pick(list(NORTH, SOUTH, WEST, EAST))
 	for(var/turf/open/U in range(2, src))

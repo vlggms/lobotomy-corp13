@@ -11,6 +11,7 @@
 	display_order = JOB_DISPLAY_ORDER_SYNDICATEGOON
 	access = list(ACCESS_SYNDICATE)
 	minimal_access = list(ACCESS_SYNDICATE)
+	departments = DEPARTMENT_CITY_ANTAGONIST
 	paycheck = 100
 	maptype = list("city")
 	job_important = "You are an initiate in the Index syndicate. You are not inherently hostile. \

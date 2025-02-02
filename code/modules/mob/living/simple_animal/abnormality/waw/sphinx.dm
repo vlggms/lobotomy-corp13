@@ -1,6 +1,4 @@
 //Coded by Coxswain
-#define SPHINX_GAZE_COOLDOWN (12 SECONDS)
-
 /mob/living/simple_animal/hostile/abnormality/sphinx
 	name = "Sphinx"
 	desc = "A gigantic stone feline."
@@ -21,18 +19,16 @@
 	melee_damage_lower = 70
 	melee_damage_upper = 100
 	attack_sound = 'sound/abnormalities/sphinx/attack.ogg'
-	attack_action_types = list(/datum/action/cooldown/sphinx_gaze)
+	attack_action_types = list(/datum/action/cooldown/sphinx_gaze, /datum/action/cooldown/sphinx_quake)
 	can_breach = TRUE
 	threat_level = WAW_LEVEL
 	melee_damage_type = WHITE_DAMAGE
 	start_qliphoth = 3
 	work_chances = list(
-		ABNORMALITY_WORK_INSTINCT = list(0, 0, 35, 35, 40),
-		ABNORMALITY_WORK_INSIGHT = list(20, 30, 45, 50, 50),
-		ABNORMALITY_WORK_ATTACHMENT = 0,
-		ABNORMALITY_WORK_REPRESSION = list(0, 0, 25, 30, 30),
-		"Riddle" = 0,		//These should never be used, but they're here for clarity.
-		"Make Offering" = 0,
+		ABNORMALITY_WORK_INSTINCT = list(5, 10, 25, 25, 30),
+		ABNORMALITY_WORK_INSIGHT = -25,
+		ABNORMALITY_WORK_ATTACHMENT = 15,
+		ABNORMALITY_WORK_REPRESSION = list(5, 10, 25, 25, 30),
 	)
 	work_damage_amount = 12
 	work_damage_type = WHITE_DAMAGE
@@ -53,185 +49,131 @@
 		Beside me, the great sphinx lies. <br>It beckons me to answer the plaque. <br>\
 		Written in characters I have never seen before, well are the sculptor's passions read. <br>\
 		\"What goes on four feet in the morning, two feet in midday, and three feet in the evening?\""
-	observation_choices = list("Man", "Monster")
-	correct_choices = list("Man")
-	observation_success_message = "The sphinx says something. <br>It seems happy, or proud. <br>\
-		Then, it turns to stone, and sinks into the sand. <br>\
-		Nothing beside remains. Round the decay <br>\
-		Of that colossal Wreck, boundless and bare <br>\
-		The lone and level sands stretch far away."
-	observation_fail_message = "The sphinx seems displeased. \
-		It says some incomprehensible but hurtful words to me.<br>\
-		Then, it turns to stone. <br>I try and look away, but I find that I cannot move either.<br>\
-		My skin cracks like stone, my breathing stops. <br>I fall into an abyss. <br>\
-		... <br>\
-		I am entombed in stone, with no end in sight. <br>\
-		I cannot scream, for I have no tongue to scream with. <br>\
-		I cannot see, for I have no eyes to see with. <br>\
-		I cannot hear anything, for I have no ears to hear with. <br>\
-		Soon after, my heart is taken away too. <br>And then there is nothing left."
+	observation_choices = list(
+		"Man" = list(TRUE, "The sphinx says something. <br>It seems happy, or proud. <br>\
+			Then, it turns to stone, and sinks into the sand. <br>\
+			Nothing beside remains. Round the decay <br>\
+			Of that colossal Wreck, boundless and bare <br>\
+			The lone and level sands stretch far away."),
+		"Monster" = list(FALSE, "The sphinx seems displeased. \
+			It says some incomprehensible but hurtful words to me.<br>\
+			Then, it turns to stone. <br>I try and look away, but I find that I cannot move either.<br>\
+			My skin cracks like stone, my breathing stops. <br>I fall into an abyss. <br>\
+			... <br>\
+			I am entombed in stone, with no end in sight. <br>\
+			I cannot scream, for I have no tongue to scream with. <br>\
+			I cannot see, for I have no eyes to see with. <br>\
+			I cannot hear anything, for I have no ears to hear with. <br>\
+			Soon after, my heart is taken away too. <br>And then there is nothing left."),
+	)
 
 	//work-related
-	var/happy = FALSE
-	var/demand
-	var/work_cooldown
-	var/work_cooldown_time = 3 SECONDS
-	var/list/worked = list()
-	var/list/satisfied = list(
-		"Ipi etog sind lemanto.", //You mind big human
-		"Lemantinco kom geng kaskihir etog!", //(Human-honor) show has (not-lazy) mind
-	)
-	var/list/angry = list(
-		"Mi cadu cef ipi por sagmo!", //I king threat you beggar begone
-		"Mi thran lemantolly quistramos!", //I angry stupid man (body-coin)
-	)
-	var/list/translate = list(
-		"Ipi etog geng quir.", //You mind paper translate
-		"Ipi inspuz geng quir.", //You quest paper translate
-	)
-	var/list/riddleloot = list(
+	var/loot_progress = 0
+	var/prudence_work_chance = 0
+	var/list/workloot = list(
 		/obj/item/golden_needle,
 		/obj/item/canopic_jar,
 	)
-	var/list/demandlist = list(
-		/obj/item/clothing/suit/armor/ego_gear,
-		/obj/item/ego_weapon,
-		/obj/item/reagent_containers/food/drinks,
-		/obj/item/food,
-	)
-
 	//breach
 	var/can_act = TRUE
 	var/curse_cooldown
 	var/curse_cooldown_time = 12 SECONDS
+	var/quake_cooldown
+	var/quake_cooldown_time = 6 SECONDS
+	var/quake_damage = 20
 
 //Playables buttons
+	attack_action_types = list(
+		/datum/action/cooldown/sphinx_gaze,
+		/datum/action/cooldown/sphinx_quake,
+	)
+
 /datum/action/cooldown/sphinx_gaze
 	name = "Sphinx's Gaze"
 	icon_icon = 'icons/mob/actions/actions_abnormality.dmi'
 	button_icon_state = "sphinx"
 	check_flags = AB_CHECK_CONSCIOUS
 	transparent_when_unavailable = TRUE
-	cooldown_time = SPHINX_GAZE_COOLDOWN //12 seconds
-
-/mob/living/simple_animal/hostile/abnormality/sphinx/InitializeSecretIcon()
-	. = ..()
-	icon_aggro = "sphonx_eye"
+	cooldown_time = 12 SECONDS
 
 /datum/action/cooldown/sphinx_gaze/Trigger()
-	if(!..())
-		return FALSE
-	if(!istype(owner, /mob/living/simple_animal/hostile/abnormality/sphinx))
+	. = ..()
+	if(!.)
 		return FALSE
 	var/mob/living/simple_animal/hostile/abnormality/sphinx/sphinx = owner
+	if(!istype(sphinx))
+		return FALSE
 	if(sphinx.IsContained()) // No more using cooldowns while contained
+		return FALSE
+	if(sphinx.curse_cooldown_time > world.time || !sphinx.can_act)
 		return FALSE
 	StartCooldown()
 	sphinx.StoneVision(FALSE)
 	return TRUE
 
-/mob/living/simple_animal/hostile/abnormality/sphinx/PostSpawn()
-	..()
-	if((locate(/obj/structure/sacrifice_table) in range(1, src)))
-		return
-	new /obj/structure/sacrifice_table(get_step(src, SOUTH))
+/datum/action/cooldown/sphinx_quake
+	name = "Sphinx's Earthquake"
+	icon_icon = 'icons/mob/actions/actions_abnormality.dmi'
+	button_icon_state = "ebony_barrier"
+	check_flags = AB_CHECK_CONSCIOUS
+	transparent_when_unavailable = TRUE
+	cooldown_time = 6 SECONDS
 
-// Work
+/datum/action/cooldown/sphinx_quake/Trigger()
+	. = ..()
+	if(!.)
+		return FALSE
+	var/mob/living/simple_animal/hostile/abnormality/sphinx/sphinx = owner
+	if(!istype(sphinx))
+		return FALSE
+	if(sphinx.IsContained()) // No more using cooldowns while contained
+		return FALSE
+	if(sphinx.quake_cooldown > world.time || !sphinx.can_act)
+		return FALSE
+	StartCooldown()
+	sphinx.Quake()
+	return TRUE
+
+/mob/living/simple_animal/hostile/abnormality/sphinx/InitializeSecretIcon()
+	. = ..()
+	icon_aggro = "sphonx_eye"
+
+// Abnormality Work Stuff
 /mob/living/simple_animal/hostile/abnormality/sphinx/AttemptWork(mob/living/carbon/human/user, work_type)
-	if((work_type != "Riddle") && work_type != "Make Offering")
-		return ..()
-	else if(work_cooldown > world.time)
-		return FALSE
+	prudence_work_chance = clamp(get_modified_attribute_level(user, PRUDENCE_ATTRIBUTE) * 0.45, 0, 60) // Additional roll on a every work tick based on prudence
+	var/player_temperance = get_modified_attribute_level(user, TEMPERANCE_ATTRIBUTE)
+	var/work_chance_bonus = 20 *((0.07*player_temperance-1.4)/(0.07*player_temperance+4)) // 20 is half of the usual temperance_mod of 40
+	work_chance_bonus += datum_reference.understanding * 0.5  // Should be roughly half of the usual effects from temperance overall
+	prudence_work_chance = clamp(prudence_work_chance + work_chance_bonus, 0, 95)
+	if(datum_reference.overload_chance[user.ckey]) // Work penalty from overload applies here too. Probably.
+		prudence_work_chance += datum_reference.overload_chance[user.ckey]
+	return ..()
 
-	work_cooldown = world.time + work_cooldown_time
-	if(work_type == "Riddle")
-		if(!(user in worked))
-			worked += user
-			new /obj/item/paper/fluff/translation_notes(get_turf(user))
-			say(pick(translate))
-			sleep(10)
-		NewQuest() //repeat quest lines or offer new quest
-		return FALSE
-	else
-		var/I = null
-		for(var/obj/structure/sacrifice_table/S in range(1, src))
-			if(S.showpiece)
-				I = S.showpiece
-				S.dump()
-		if(I)
-			to_chat(user, span_warning("[src] seems to be looking at the [I]!"))
-		else if(user.get_active_held_item())
-			I = user.get_active_held_item()
-		else if(user.get_inactive_held_item())
-			I = user.get_inactive_held_item()
-		if(!I) //both hands are empty and there is no table
-			to_chat(user, span_warning("You have nothing to offer to [src]!"))
-			return FALSE
-		QuestHandler(I,user) //quest item must be either the active hand, or the other hand if active is empty. No guessing.
-	return FALSE
-
-/mob/living/simple_animal/hostile/abnormality/sphinx/WorkChance(mob/living/carbon/human/user, chance)
-	if(happy)
-		chance+=30
-	return chance
+/mob/living/simple_animal/hostile/abnormality/sphinx/ChanceWorktickOverride(mob/living/carbon/human/user, work_chance, init_work_chance, work_type)
+	if(!prob(init_work_chance))
+		if(!prob(prudence_work_chance))
+			return 0 // You failed both work checks, sorry bozo
+		loot_progress += 1
+	return 100
 
 /mob/living/simple_animal/hostile/abnormality/sphinx/PostWorkEffect(mob/living/carbon/human/user, work_type, pe, work_time)
+	if(loot_progress >= 16)
+		var/turf/dispense_turf = get_step(src, EAST)
+		var/reward = pick(workloot)
+		new reward(dispense_turf)
+	loot_progress = 0
 	if(user.sanity_lost)
 		QDEL_NULL(user.ai_controller)
 		user.ai_controller = /datum/ai_controller/insane/wander/sphinx
 		user.InitializeAIController()
-	if(happy)
-		happy = FALSE
-	else
-		say(pick(angry))
-		datum_reference.qliphoth_change(-1)
 
-// Riddle/Quest code
-/mob/living/simple_animal/hostile/abnormality/sphinx/proc/NewQuest()
-	if(!demand)
-		demand = pick(demandlist)
-	switch(demand)
-		if(/obj/item/clothing/suit/armor/ego_gear)
-			say("Atan eblak esm quistra utast.")//Bring me an armor EGO
-		if(/obj/item/ego_weapon)
-			say("Atan eblak esm sommel utast.")//Bring me an weapon EGO
-		if(/obj/item/reagent_containers)
-			say("Kom eblak mina brit hethre.")//Find me a water with vessel
-		if(/obj/item/food)
-			say("Atan eblak gorno tai por prin enum gorno.")//Bring me what the beggar consumes and needs (Its food)
-
-/mob/living/simple_animal/hostile/abnormality/sphinx/proc/QuestHandler(obj/item/I, mob/living/carbon/human/user)
-	if (!istype(I, demand))
-		if(demand)
-			QuestPenalty(user)
-		else
-			to_chat(user, span_warning("[src] is not waiting for an offering at the moment."))
-		return
-
-	if(demand == /obj/item/reagent_containers)
-		if(I.reagents.has_reagent(/datum/reagent/water))
-			qdel(I)
-		else
-			QuestPenalty(user)
-			return
-
-	if(demand == /obj/item/food)
-		qdel(I)
-
-	QuestReward()
-
-/mob/living/simple_animal/hostile/abnormality/sphinx/proc/QuestReward()
-	say(pick(satisfied))
-	happy = TRUE
-	demand = null
-	datum_reference.qliphoth_change(3)
-	var/turf/dispense_turf = get_step(src, pick(GLOB.alldirs))
-	var/reward = pick(riddleloot)
-	new reward(dispense_turf)
-
-/mob/living/simple_animal/hostile/abnormality/sphinx/proc/QuestPenalty(mob/living/carbon/human/user)
-	say(pick(angry))
+/mob/living/simple_animal/hostile/abnormality/sphinx/FailureEffect(mob/living/carbon/human/user, work_type, pe)
+	. = ..()
 	datum_reference.qliphoth_change(-1)
+	if(!user)
+		return
+	if(get_attribute_level(user, PRUDENCE_ATTRIBUTE) >= 100)
+		return
 	var/mob/living/carbon/human/H = user
 	var/obj/item/organ/eyes/eyes = H.getorganslot(ORGAN_SLOT_EYES)
 	var/obj/item/organ/ears/ears = H.getorganslot(ORGAN_SLOT_EARS)
@@ -280,13 +222,12 @@
 		return pick(priority)
 
 /mob/living/simple_animal/hostile/abnormality/sphinx/AttackingTarget(atom/attacked_target)
-	..()
 	if(!ishuman(attacked_target))
-		return
+		return OpenFire(attacked_target)
 
 	var/mob/living/carbon/human/H = attacked_target
 	if(!H.sanity_lost)
-		return
+		return OpenFire(attacked_target)
 
 	QDEL_NULL(H.ai_controller)
 	H.ai_controller = /datum/ai_controller/insane/wander/sphinx
@@ -294,12 +235,58 @@
 	LoseTarget(H)
 
 /mob/living/simple_animal/hostile/abnormality/sphinx/OpenFire()
-	if(!can_act || client)
+	if(!can_act)
 		return
 
-	if((curse_cooldown <= world.time))
+	if((curse_cooldown <= world.time)  && !client)
 		StoneVision(FALSE)
-	return
+		return
+	StoneThrow(target)
+
+/mob/living/simple_animal/hostile/abnormality/sphinx/attackby(obj/item/I, mob/living/user, params)
+	..()
+	if(!client)
+		TryQuake()
+
+/mob/living/simple_animal/hostile/abnormality/sphinx/attack_animal(mob/living/simple_animal/M)
+	..()
+	if(!client)
+		TryQuake()
+
+/mob/living/simple_animal/hostile/abnormality/sphinx/proc/StoneThrow()
+	if(!can_act)
+		return
+	can_act = FALSE
+	SLEEP_CHECK_DEATH(3)
+	playsound(get_turf(target), 'sound/magic/arbiter/repulse.ogg', 20, 0, 5)
+	new /obj/effect/temp_visual/rockwarning(get_turf(target), src)
+	SLEEP_CHECK_DEATH(10)
+	can_act = TRUE
+
+/mob/living/simple_animal/hostile/abnormality/sphinx/proc/TryQuake()
+	if((quake_cooldown <= world.time)  && !client)
+		Quake()
+
+/mob/living/simple_animal/hostile/abnormality/sphinx/proc/Quake()
+	if(quake_cooldown > world.time || !can_act)
+		return
+	quake_cooldown = world.time + quake_cooldown_time
+	can_act = FALSE
+	var/turf/origin = get_turf(src)
+	playsound(origin, 'sound/magic/arbiter/knock.ogg', 25, 0, 5)
+	SLEEP_CHECK_DEATH(9)
+	playsound(get_turf(src), 'sound/effects/ordeals/brown/rock_attack.ogg', 50, 0, 8)
+	for(var/turf/T in view(2, src))
+		new /obj/effect/temp_visual/smash_effect(T)
+		for(var/mob/living/victim in HurtInTurf(T, list(), quake_damage, WHITE_DAMAGE, null, TRUE, FALSE, TRUE, FALSE, TRUE, TRUE))
+			var/throw_target = get_edge_target_turf(victim, get_dir(victim, get_step_away(victim, src)))
+			if(!victim.anchored)
+				var/throw_velocity = (prob(60) ? 1 : 4)
+				victim.throw_at(throw_target, rand(1, 2), throw_velocity, src)
+	SLEEP_CHECK_DEATH(8)
+	icon_state = icon_living
+	SLEEP_CHECK_DEATH(3)
+	can_act = TRUE
 
 /mob/living/simple_animal/hostile/abnormality/sphinx/proc/StoneVision(attack_chain)
 	if((curse_cooldown > world.time) && !attack_chain)
@@ -345,11 +332,11 @@
 
 /datum/ai_behavior/say_line/insanity_sphinx
 	lines = list(
-		"Utast tom tai beos... Utast tom esm cadu!",
-		"TAI ARKUR AGAL TOM LUVRI!!!",
-		"Mi tai hur... Mi tai hur... Mi tai hur... Mi tai hur...",
-		"Mies geng thran utast lemantomos!",
-		"Ipi manba geng mosleti atan brit utast!",
+		"Our old masters are waiting for us.",
+		"Listen to the stars.",
+		"The age of mankind is over...",
+		"AHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHA!!",
+		"I can't... It's too much!",
 	)
 
 // Objects - Items
@@ -400,71 +387,6 @@
 		to_chat(H, span_warning("You hold your nose and quaff the contents of the jar!"))
 		qdel(src)
 		return
-
-/obj/item/paper/fluff/translation_notes //most of these are just fluff
-	name = "Translation Notes"
-	info = {"<h1><center>You may find this helpful when interpreting the sphinx's demands.</center></h1><br>
-	-A-	<br>
-	agal: gate	<br>
-	arkur: city	<br>
-	atan: bring	<br><br>
-	-B-	<br>
-	beos: law	<br>
-	brit: with	<br><br>
-	-C-	<br>
-	cadu: king	<br>
-	ceffe: threat	<br>
-	cihir: lazy	<br><br>
-	-E-	<br>
-	eblak: me	<br>
-	enum: and	<br>
-	esm: a	<br>
-	etog: will/mind	<br><br>
-	-G-	<br>
-	geng: has/owns	<br>
-	gorno: needs	<br><br>
-	-H-	<br>
-	hethre: vessel/boat	<br>
-	hur: scared/cowardly<br>
-	huw: old	<br><br>
-	-I-	<br>
-	ipi: you	<br>
-	inspuz: quest	<br><br>
-	-K-	<br>
-	kas: no	<br>
-	kom: show	<br><br>
-	-L-	<br>
-	lemanto: human	<br>
-	leti: gave	<br>
-	luvri : open	<br><br>
-	-M-	<br>
-	manba: came	<br>
-	medon: kill	<br>
-	mina: water	<br>
-	mos: coin	<br>
-	mi: I	<br><br>
-	-N-	<br>
-	naar: fire	<br>
-	neu: papyrus/textile	<br><br>
-	-P-	<br>
-	por: beggar/starving	<br>
-	prin: consume	<br>
-	puwun: to	<br><br>
-	-Q-	<br>
-	quir: translate	<br>
-	quistra: body/armor	<br><br>
-	-S-	<br>
-	sagmo: begone	<br>
-	sinco: honor/value	<br>
-	sommel: weapon/stick	<br><br>
-	-T-	<br>
-	tai: the	<br>
-	thran: angry	<br>
-	tolly: stupid	<br>
-	tom: to 	<br><br>
-	-U-	<br>
-	ucaf: lands	<br>
-	utast: abnormality/shell"}
 
 // Chems
 /datum/reagent/medicine/ichor //from jar
@@ -529,59 +451,41 @@
 	variable = TRUE
 	multiplicative_slowdown = 2
 
-// Objects - Structures
-/obj/structure/sacrifice_table
-	name = "sacrificial altar"
-	desc = "It looks impossibly ancient."
-	icon = 'ModularTegustation/Teguicons/32x32.dmi'
-	icon_state = "altar"
-	anchored = TRUE
-	density = TRUE
-	layer = TURF_LAYER
-	plane = FLOOR_PLANE
-	resistance_flags = INDESTRUCTIBLE
-	var/obj/item/showpiece = null
+	//Effects
+/obj/effect/temp_visual/rockattack
+	icon = 'icons/effects/effects.dmi'
+	icon_state = "rockattack"
+	duration = 6
+	randomdir = TRUE // random spike appearance
+	layer = ABOVE_MOB_LAYER
 
-/obj/structure/sacrifice_table/examine(mob/user)
+/obj/effect/temp_visual/rockwarning
+	name = "moving rocks"
+	desc = "A target warning you of incoming pain"
+	icon = 'icons/effects/effects.dmi'
+	icon_state = "rockwarning"
+	duration = 10
+	layer = RIPPLE_LAYER // We want this HIGH. SUPER HIGH. We want it so that you can absolutely, guaranteed, see exactly what is about to hit you.
+	var/damage = 40 //Red Damage
+	var/mob/living/caster // who made this, anyway
+
+/obj/effect/temp_visual/rockwarning/Initialize(mapload, new_caster)
 	. = ..()
-	if(showpiece)
-		. += span_notice("There's \a [showpiece] inside.")
+	if(new_caster)
+		caster = new_caster
+	addtimer(CALLBACK(src, PROC_REF(explode)), 0.9 SECONDS)
 
-/obj/structure/sacrifice_table/update_overlays()
-	. = ..()
-	if(showpiece)
-		var/mutable_appearance/showpiece_overlay = mutable_appearance(showpiece.icon, showpiece.icon_state)
-		showpiece_overlay.copy_overlays(showpiece)
-		showpiece_overlay.transform *= 0.7
-		. += showpiece_overlay
-
-/obj/structure/sacrifice_table/proc/insert_showpiece(obj/item/wack, mob/user)
-	if(user.transferItemToLoc(wack, src))
-		showpiece = wack
-		to_chat(user, span_notice("You put [wack] on display."))
-		update_icon()
-
-/obj/structure/sacrifice_table/proc/dump()
-	if(!QDELETED(showpiece))
-		showpiece.forceMove(drop_location())
-	showpiece = null
-	update_icon()
-
-/obj/structure/sacrifice_table/attack_hand(mob/user)
-	. = ..()
-	if(.)
+/obj/effect/temp_visual/rockwarning/proc/explode()
+	var/turf/target_turf = get_turf(src)
+	if(!target_turf)
 		return
-	user.changeNext_move(CLICK_CD_MELEE)
-	if (showpiece)
-		to_chat(user, span_notice("You remove [showpiece]."))
-		dump()
-		add_fingerprint(user)
+	if(QDELETED(caster) || caster?.stat == DEAD || !caster)
 		return
-
-/obj/structure/sacrifice_table/attackby(obj/item/W, mob/user, params)
-	if(!showpiece)
-		insert_showpiece(W, user)
-	else
-		return ..()
-
-#undef SPHINX_GAZE_COOLDOWN
+	playsound(target_turf, 'sound/effects/ordeals/brown/rock_attack.ogg', 50, 0, 8)
+	new /obj/effect/temp_visual/rockattack(target_turf)
+	for(var/turf/T in view(1, src))
+		new /obj/effect/temp_visual/smash_effect(T)
+		for(var/mob/living/L in caster.HurtInTurf(T, list(), damage, RED_DAMAGE, null, TRUE, FALSE, TRUE, hurt_hidden = TRUE, hurt_structure = TRUE))
+			if(L.health < 0)
+				L.gib()
+	qdel(src)

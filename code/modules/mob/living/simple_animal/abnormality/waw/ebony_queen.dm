@@ -12,6 +12,7 @@
 	health = 2000
 	pixel_x = -16
 	base_pixel_x = -16
+	blood_volume = 0
 	melee_damage_type = BLACK_DAMAGE
 	melee_damage_lower = 35
 	melee_damage_upper = 45
@@ -53,12 +54,12 @@
 		Her plan was a success - her behated Snow White has fallen into a death-like state. <br>\
 		Is that all I was for? <br>To bring pain to others whilst never experiencing it myself? <br>\
 		I'm beginning to rot and feel pests and other lowly creatures make a meal out of me..."
-	observation_choices = list("Rot into nothing", "Don't accept the end")
-	correct_choices = list("Don't accept the end")
-	observation_success_message = "The impression of poison brings pause to the pests and even they no longer wish to remain with me. <br>\
-		Petrified roots grow from within me and I gain some sense of being ambulatory. <br>I know now how long I had laid but I refuse to remain still. <br>\
-		I shall find vengeance. <br>Bring me snow white..."
-	observation_fail_message = "An apple culminates when it shrivels up and attracts lesser creatures. <br>I'm just an apple, I can't change a thing."
+	observation_choices = list(
+		"Don't accept the end" = list(TRUE, "The impression of poison brings pause to the pests and even they no longer wish to remain with me. <br>\
+			Petrified roots grow from within me and I gain some sense of being ambulatory. <br>I know now how long I had laid but I refuse to remain still. <br>\
+			I shall find vengeance. <br>Bring me snow white..."),
+		"Rot into nothing" = list(FALSE, "An apple culminates when it shrivels up and attracts lesser creatures. <br>I'm just an apple, I can't change a thing."),
+	)
 
 	var/barrier_cooldown
 	var/barrier_cooldown_time = 4 SECONDS
@@ -141,7 +142,8 @@
 
 /mob/living/simple_animal/hostile/abnormality/ebony_queen/BreachEffect(mob/living/carbon/human/user, breach_type)
 	. = ..()
-	addtimer(CALLBACK(src, PROC_REF(TryTeleport)), 5)
+	if(breach_type != BREACH_MINING)
+		addtimer(CALLBACK(src, PROC_REF(TryTeleport)), 5)
 
 /mob/living/simple_animal/hostile/abnormality/ebony_queen/Move()
 	if(!can_act)

@@ -38,10 +38,12 @@
 		The shrimp offers you a champagne glass full of... Something. <br>\
 		It looks and smells like wellcheers grape soda. It's soda. <br>\
 		You can even see the can's label torn off and stuck on the side. <br>Will you drink it?"
-	observation_choices = list("Drink the soda","Refuse")
-	correct_choices = list("Drink the soda","Refuse")
-	observation_success_message = "Before you can make a choice, two gigantic and heavily armed shrimp guards bust in through the door. <br>\
-		They hold you down and force you to drink the soda, and you fall asleep... <br>... <br>Somewhere in the distance, you hear seagulls."
+	observation_choices = list(
+		"Drink the soda" = list(TRUE, "Before you can make a choice, two gigantic and heavily armed shrimp guards bust in through the door. <br>\
+			They hold you down and force you to drink the soda, and you fall asleep... <br>... <br>Somewhere in the distance, you hear seagulls."),
+		"Refuse" = list(TRUE, "Before you can make a choice, two gigantic and heavily armed shrimp guards bust in through the door. <br>\
+			They hold you down and force you to drink the soda, and you fall asleep... <br>... <br>Somewhere in the distance, you hear seagulls."),
+	)
 
 	var/liked
 	var/happy = TRUE
@@ -118,6 +120,11 @@
 	datum_reference.qliphoth_change(1)
 	return
 
+/mob/living/simple_animal/hostile/abnormality/shrimp_exec/BreachEffect(mob/living/carbon/human/user, breach_type)
+	if(breach_type == BREACH_MINING)
+		pissed()
+		addtimer(CALLBACK(src, PROC_REF(pissed)), 20 SECONDS)
+
 /mob/living/simple_animal/hostile/abnormality/shrimp_exec/AttemptWork(mob/living/carbon/human/user, work_type)
 	if(work_type == liked || !liked)
 		happy = TRUE
@@ -193,7 +200,7 @@
 
 /mob/living/simple_animal/hostile/shrimp/Initialize()
 	. = ..()
-	if(SSmaptype.maptype == "fixers" || SSmaptype.maptype == "city")
+	if(SSmaptype.maptype in SSmaptype.citymaps)
 		del_on_death = FALSE
 
 //You can put these guys about to guard an area.
@@ -229,7 +236,7 @@
 
 /mob/living/simple_animal/hostile/shrimp_soldier/Initialize()
 	. = ..()
-	if(SSmaptype.maptype == "fixers" || SSmaptype.maptype == "city")
+	if(SSmaptype.maptype in SSmaptype.citymaps)
 		del_on_death = FALSE
 
 /mob/living/simple_animal/hostile/shrimp_soldier/friendly

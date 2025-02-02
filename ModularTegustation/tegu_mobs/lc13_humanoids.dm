@@ -70,7 +70,7 @@ Skittish, they prefer to move in groups and will run away if the enemies are in 
 
 /mob/living/simple_animal/hostile/humanoid/rat/Initialize()
 	. = ..()
-	if(SSmaptype.maptype == "fixers" || SSmaptype.maptype == "city")
+	if(SSmaptype.maptype in SSmaptype.citymaps)
 		del_on_death = FALSE
 
 //Knife - The leader, has a pathetically weak dash, attacks fast
@@ -451,9 +451,7 @@ Skittish, they prefer to move in groups and will run away if the enemies are in 
 	if (istype(target, /mob))
 
 		var/mob/MOB = target
-		say("Target faction: " + jointext(MOB.faction, ", "))
 		if (MOB.faction_check_mob(M, FALSE))
-			say("Faction match")
 			return BULLET_ACT_BLOCK
 	. = ..()
 

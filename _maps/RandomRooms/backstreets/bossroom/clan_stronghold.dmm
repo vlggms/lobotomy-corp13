@@ -493,6 +493,14 @@
 /obj/effect/spawner/lootdrop/garbage_spawner,
 /turf/open/floor/plasteel/dark,
 /area/city/backstreets_room)
+"tK" = (
+/obj/item/gps/mining{
+	anchored = 1;
+	gpstag = "Ordering Signal";
+	alpha = 10
+	},
+/turf/open/floor/carpet/black,
+/area/city/backstreets_room)
 "tM" = (
 /obj/effect/turf_decal/siding/thinplating/corner{
 	dir = 8
@@ -1262,7 +1270,7 @@ bY
 eO
 zX
 xO
-VT
+tK
 ZG
 ug
 nA

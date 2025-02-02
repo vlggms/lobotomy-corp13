@@ -368,13 +368,10 @@
 	abno_type = /mob/living/simple_animal/hostile/abnormality/sphinx
 	abno_code = "T-03-33"
 	abno_info = list(
-		"When the work was complete, the Qliphoth Counter lowered depending on the abnormality's mood. The abnormality's mood improved after an offering was successfully made.",
-		"When an employee performed riddle work, the abnormality posed a question in a strange language. Agents are then provided with a cipher.",
-		"When the employee performed offering work, an item placed on the nearby offering table was inspected by the abnormality. If the table was empty, the abnormality checked the employee's hands.",
-		"When the abnormality was disappointed with an offering, the offender had one of their senses taken away.",
-		"When the riddle was successfully solved with an offering, the Qliphoth counter raised to its maximum. In addition, the abnormality willingly parted with an anomalous object referred to henceforth as a gift.",
-		"When agent bong bong used the canopic jar gift, she was cured of permanent blindness. Effects may differ but are usually beneficial.",
-		"Agent Joshua, who was turned to stone by the abnormality was able to be saved using gift of golden needles.")
+		"Employees with a high Prudence Level had their work chance increased dramatically.",
+		"When the work result was Good, the abnormality provided a treasure with a low probability.",
+		"When the work result was Bad, the Qliphoth counter reduced. Additionally, employees with Prudence Level 4 or lower had one of their senses taken away.",
+		"Agent Joshua, who was turned to stone by the abnormality was able to be saved using the treasure of golden needles.")
 
 //Clouded Monk
 /obj/item/paper/fluff/info/waw/clouded_monk
