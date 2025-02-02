@@ -43,11 +43,20 @@
 /obj/effect/temp_visual/damage_effect/burn
 	icon_state = "dam_burn"
 
+/obj/effect/temp_visual/damage_effect/tox
+	icon_state = "dam_tox"
+
 /obj/effect/temp_visual/damage_effect/bleed
 	icon_state = "dam_bleed"
 
-/obj/effect/temp_visual/damage_effect/tox
-	icon_state = "dam_tox"
+/obj/effect/temp_visual/damage_effect/tremor
+	icon_state = "tremor"
+
+/obj/effect/temp_visual/damage_effect/sinking
+	icon_state = "sinking"
+
+/obj/effect/temp_visual/damage_effect/rupture
+	icon_state = "rupture"
 
 //Stuntime visual for when you're stunned by your weapon, so you know what happened.
 /obj/effect/temp_visual/weapon_stun
@@ -55,3 +64,6 @@
 	icon_state = "stun"
 	layer = ABOVE_ALL_MOB_LAYER
 	duration = 9
+
+/obj/effect/temp_visual/weapon_stun/tremorburst
+	icon_state = "tremorburst"
