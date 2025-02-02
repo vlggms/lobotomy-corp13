@@ -3961,6 +3961,7 @@
 #include "ModularTegustation\trusted.dm"
 #include "ModularTegustation\turfs.dm"
 #include "ModularTegustation\!extra_abnos\branch12\records.dm"
+#include "ModularTegustation\!extra_abnos\branch12\teth\rock.dm"
 #include "ModularTegustation\!extra_abnos\branch12\zayin\wave.dm"
 #include "ModularTegustation\altjobtitles\altjobtitles.dm"
 #include "ModularTegustation\altjobtitles\LC13.dm"
