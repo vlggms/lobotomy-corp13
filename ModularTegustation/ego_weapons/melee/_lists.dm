@@ -23,4 +23,11 @@ GLOBAL_LIST_INIT(small_ego, list (
 	/obj/item/ego_weapon/city/awl,
 	/obj/item/ego_weapon/city/wcorp/hatchet,
 	/obj/item/ego_weapon/ranged/city/fullstop/deagle,
+
+	//Branch 12 stuff
+	/obj/item/ego_weapon/branch12/mini,
+	/obj/item/ego_weapon/ranged/branch12/mini,
+	/obj/item/ego_weapon/shield/branch12/mini,
+	/obj/item/ego_weapon/ranged/branch12/lucifer/executioner,
+	/obj/item/ego_weapon/ranged/branch12/memorable/big_day,
 ))
