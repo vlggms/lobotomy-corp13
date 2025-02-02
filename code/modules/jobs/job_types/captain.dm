@@ -13,7 +13,7 @@
 	exp_requirements = 6000
 	exp_type = EXP_TYPE_CREW
 	exp_type_department = EXP_TYPE_SECURITY
-	mapexclude = list("wonderlabs", "mini")
+	mapexclude = list("wonderlabs", "mini", "branch12")
 	job_important = "You are an Agent Captain. As an experienced Agent, you are expected to disseminate important information and use your experience lead other Agents."
 
 	job_abbreviation = "CPT"

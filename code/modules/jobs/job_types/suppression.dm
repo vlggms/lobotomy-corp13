@@ -25,6 +25,8 @@
 	roundstart_attributes = list(FORTITUDE_ATTRIBUTE, PRUDENCE_ATTRIBUTE, TEMPERANCE_ATTRIBUTE, JUSTICE_ATTRIBUTE)
 	var/normal_attribute_level = 20 // Scales with round time, facility upgrades, and ordeals done
 
+	mapexclude = list("wonderlabs", "mini", "branch12")
+
 /datum/job/suppression/after_spawn(mob/living/carbon/human/outfit_owner, mob/M, latejoin = FALSE)
 	ADD_TRAIT(outfit_owner, TRAIT_WORK_FORBIDDEN, JOB_TRAIT)
 	SSabnormality_queue.active_suppression_agents += M
@@ -104,7 +106,7 @@
 	exp_requirements = 6000
 	exp_type = EXP_TYPE_CREW
 	exp_type_department = EXP_TYPE_SECURITY
-	mapexclude = list("wonderlabs", "mini", "lcorp_city")
+	mapexclude = list("wonderlabs", "mini", "lcorp_city", "branch12")
 	job_important = "You are the Disciplinary Officer. Lead the Emergency Response Agents and other Disciplinary staff into combat."
 
 	job_abbreviation = "DO"
