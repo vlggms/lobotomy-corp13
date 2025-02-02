@@ -18,6 +18,8 @@ GLOBAL_LIST_EMPTY(ego_datums)
 	var/datum/abnormality/linked_abno
 	/// All the data needed for displaying information on EGO console
 	var/list/information = list()
+	/// Can we get this from the well
+	var/well_enabled = TRUE
 
 /datum/ego_datum/New(datum/abnormality/DA)
 	if(!name && item_path)

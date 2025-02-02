@@ -9,7 +9,7 @@
 	access = list(ACCESS_NETWORK, ACCESS_COMMAND, ACCESS_MANAGER) // Network is the trusted chat gamer access
 	minimal_access = list(ACCESS_NETWORK, ACCESS_COMMAND, ACCESS_MANAGER)
 	departments = DEPARTMENT_COMMAND
-	mapexclude = list("wonderlabs", "mini", "lcorp_city", "enkephalin_rush")
+	mapexclude = list("wonderlabs", "mini", "lcorp_city", "enkephalin_rush", "branch12")
 	job_important = "You are a roleplay role, and may not partake in combat. Assist the manager and roleplay with the agents and clerks"
 	job_notice = "\
 		In the gamemaster tab, you may adjust game perimeters. \

@@ -63,7 +63,6 @@
 	var/triserum_cooldown = 0
 	var/triserum_cooldown_time = 60 SECONDS
 
-	var/datum/ordeal/ordeal_reference
 
 /datum/action/innate/megafauna_attack/serum_w
 	name = "Serum 'W'"
@@ -126,19 +125,11 @@
 	serumW_cooldown = world.time + 10 SECONDS
 
 /mob/living/simple_animal/hostile/megafauna/claw/death(gibbed)
-	if(ordeal_reference)
-		ordeal_reference.OnMobDeath(src)
-		ordeal_reference = null
 	density = FALSE
 	animate(src, alpha = 0, time = 5 SECONDS)
 	QDEL_IN(src, 5 SECONDS)
 	..()
 
-/mob/living/simple_animal/hostile/megafauna/claw/Destroy()
-	if(ordeal_reference)
-		ordeal_reference.OnMobDeath(src)
-		ordeal_reference = null
-	..()
 
 /mob/living/simple_animal/hostile/megafauna/claw/OpenFire()
 	if(charging)

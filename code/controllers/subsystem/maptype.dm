@@ -17,6 +17,9 @@ SUBSYSTEM_DEF(maptype)
 	//LC13 Maps, this enables Traits and cores
 	var/list/lc_maps = list("standard", "fishing")
 
+	//LC13 Maps with unique Ordeals
+	var/list/unique_ordeals = list("branch12")
+
 	//LC13 Gamemode Traits
 	var/list/lc_trait = list(
 						//Actual traits
