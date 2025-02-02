@@ -62,6 +62,7 @@ GLOBAL_LIST_INIT(association_jobs, list(
 		if(!antag_chosen)
 			if(istype(processing, antagspawn))
 				processing.total_positions = 1
+				antag_chosen = TRUE
 
 	return ..()
 
