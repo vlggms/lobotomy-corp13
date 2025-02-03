@@ -4,6 +4,8 @@
 Think before you code!
 Any attempt to code risk class armor will result in a 10 day Github ban.*/
 
+/*Developer's note - All LC13 armor has 50% of its red_damage armor as fire armor by default. */
+
 /obj/item/clothing/suit/armor/ego_gear/waw
 	icon = 'icons/obj/clothing/ego_gear/abnormality/waw.dmi'
 	worn_icon = 'icons/mob/clothing/ego_gear/abnormality/waw.dmi'
@@ -257,7 +259,7 @@ Any attempt to code risk class armor will result in a 10 day Github ban.*/
 	desc = "Bright as the abnormality it was extracted from, but somehow does not give off any heat. \
 			Maybe keep it away from the cold..."
 	icon_state = "featherofhonor"
-	armor = list(RED_DAMAGE = 50, WHITE_DAMAGE = 50, BLACK_DAMAGE = 30, PALE_DAMAGE = 10) //140
+	armor = list(RED_DAMAGE = 50, WHITE_DAMAGE = 50, BLACK_DAMAGE = 30, PALE_DAMAGE = 10, FIRE = 60) //140
 	attribute_requirements = list(
 							FORTITUDE_ATTRIBUTE = 80,
 							)
@@ -394,7 +396,7 @@ Any attempt to code risk class armor will result in a 10 day Github ban.*/
 	name = "rimeshank"
 	desc = "Well, I can't just shiver in the cold forever, can I?"
 	icon_state = "rimeshank"
-	armor = list(RED_DAMAGE = 70, WHITE_DAMAGE = 40, BLACK_DAMAGE = 0, PALE_DAMAGE = 30) //140
+	armor = list(RED_DAMAGE = 70, WHITE_DAMAGE = 40, BLACK_DAMAGE = 0, PALE_DAMAGE = 30, FIRE = 20) //140
 	attribute_requirements = list(
 					FORTITUDE_ATTRIBUTE = 80
 					)
