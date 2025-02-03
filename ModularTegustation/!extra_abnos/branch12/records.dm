@@ -86,9 +86,20 @@
 	abno_code = "T-01-12-233"
 	abno_info = list(
 		"When the work result was normal, the Qliphoth counter decreased with a high probability.",
-		"WWhen the counter decreased, an agent was knighted by T-01-12-233.",
+		"When the counter decreased, an agent was knighted by T-01-12-233.",
 		"A knighted employee receives an increase in all resistances for the rest of the shift, or until the death of T-01-12-233.",
 		"When an employee with level III temperance or below completed their work, the counter lowered.",
-		"When all knights have been killed, T-01-233 will return to their containment chamber.",
+	)
+
+
+// Joe Shmoe
+/obj/item/paper/fluff/info/branch12/joe_shmoe
+	abno_type = /mob/living/simple_animal/hostile/abnormality/joe_shmoe
+	abno_code = "T-01-12-111"
+	abno_info = list(
+		"When the work result was bad, the Qliphoth counter decreased.",
+		"When the work result was good, the Qliphoth counter decreased.",
+		"When the work result was neutral, the Qliphoth counter increased.",
+		"When O-01-111’s Qliphoth counter reached 0, A copy of O-01-12-111 appeared in multiple hallways of the facility",
 	)
 
