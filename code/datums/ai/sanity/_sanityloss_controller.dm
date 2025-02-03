@@ -123,6 +123,7 @@
 	var/last_known_location = null
 	var/target_lost = FALSE
 	var/stat_attack = HARD_CRIT
+	var/list/blacklist = list()	//You DON'T want to attack these
 
 /datum/ai_controller/insane/murder/Destroy()
 	if(mech_attack_timer_id)
@@ -632,6 +633,8 @@
 		if(living_thing.stat > stat_attack)
 			return FALSE
 		if(!isturf(living_thing.loc) && !ismecha(living_thing.loc))
+			return FALSE
+		if(living_thing.type in blacklist)
 			return FALSE
 		return TRUE
 	return FALSE

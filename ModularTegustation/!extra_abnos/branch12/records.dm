@@ -78,3 +78,17 @@
 		"When an employee dies in T-04-93 and they haven’t performed perfectly, the dead body will continue producing E until it they completed their work.",
 	)
 
+
+//	-------------WAW-------------
+// Queen Keres
+/obj/item/paper/fluff/info/branch12/queen_keres
+	abno_type = /mob/living/simple_animal/hostile/abnormality/queen_keres
+	abno_code = "T-01-12-233"
+	abno_info = list(
+		"When the work result was normal, the Qliphoth counter decreased with a high probability.",
+		"WWhen the counter decreased, an agent was knighted by T-01-12-233.",
+		"A knighted employee receives an increase in all resistances for the rest of the shift, or until the death of T-01-12-233.",
+		"When an employee with level III temperance or below completed their work, the counter lowered.",
+		"When all knights have been killed, T-01-233 will return to their containment chamber.",
+	)
+
