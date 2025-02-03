@@ -280,8 +280,11 @@
 /obj/machinery/computer/abnormality/proc/CheckStatus(mob/living/carbon/human/user)
 	if(user.sanity_lost)
 		return FALSE // Lost sanity
-	if(user.health < 0)
-		return FALSE // Dying
+
+	//If for some reason our goober cannot die
+	if(!HAS_TRAIT(user, TRAIT_NOSOFTCRIT))
+		if(user.health < 0)
+			return FALSE // Dying
 	if(!(datum_reference.current.status_flags & GODMODE))
 		return FALSE // Somehow it escaped
 	return TRUE

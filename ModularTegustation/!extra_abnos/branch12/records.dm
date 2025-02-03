@@ -27,3 +27,17 @@
 		"<Experiment 3> Following the events of <Redacted>, It has been observed that abnormalities originating from the black forest demonstrate high levels of aversion to O-04-12-120. Please keep this in mind as a last-resort failsafe should an emergency involving O-02-63 occurs in the main branch."
 	)
 
+
+//	-------------HE-------------
+// The Show Goes On
+/obj/item/paper/fluff/info/branch12/show_goes_on
+	abno_type = /mob/living/simple_animal/hostile/abnormality/show_goes_on
+	abno_code = "T-04-12-93"
+	abno_info = list(
+		"When the work result was not perfect the employee continued working until it was perfect or nearly so.",
+		"When the employee was performing the stage prevented damage, death, and interference from external sources.",
+		"When the work result was good the employee was healed slightly.",
+		"Every time the employee didn’t perform correctly the negative energy damage increased.",
+		"When an employee dies in T-04-93 and they haven’t performed perfectly, the dead body will continue producing E until it they completed their work.",
+	)
+
