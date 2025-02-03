@@ -186,6 +186,7 @@
 /mob/living/simple_animal/ui_npc/mailman/Initialize()
 		. = ..()
 		scene_manager.load_scenes(list(
+//Intro to the NPC
 		"intro" = list(
 			"text" = "... *The bloodfiend is simply sitting down and reading their notepad. It appears they have not noticed you.*",
 			"actions" = list(
@@ -255,8 +256,9 @@
 					"proc_callback" = ""),
 				)
 			),
+//Main Screen
 		"main_screen" = list(
-			"text" = "Anyways, What are you looking for today at the Lifetime Clinc?",
+			"text" = "Anyways, What are you looking for today at the Clinc?",
 			"actions" = list(
 				"jobs" = list(
 					"Text" = "“I am looking for a job!”",
@@ -275,6 +277,7 @@
 					"proc_callback" = ""),
 				)
 			),
+//Dialogue about getting a contract
 		"job_1" = list(
 			"text" = "Well, Lucky you. Your talking to the manager of this establishment.",
 			"actions" = list(
@@ -343,6 +346,18 @@
 					"proc_callback" = ""),
 				)
 			),
+//Dialogue about them being a bloodfiend
+		"job_1" = list(
+			"text" = "Well, Lucky you. Your talking to the manager of this establishment.",
+			"actions" = list(
+				"..." = list(
+					"Text" = "...",
+					"next_scene" = "job_2",
+					"min_rep" = 0,
+					"proc_callback" = ""),
+				)
+			),
+
 	))
 
 /mob/living/simple_animal/ui_npc/mailman/proc/OrderParcel()
