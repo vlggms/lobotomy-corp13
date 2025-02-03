@@ -51,7 +51,7 @@
 	icon = 'ModularTegustation/Teguicons/branch12/32x32.dmi'
 	icon_state = "rock"
 	force = 80
-	throwforce = 150		//You can only hold two so go nuts.
+	throwforce = 150		//It's funny but very slow
 	throw_speed = 1
 	throw_range = 3
 	stuntime = 12	//Longer reach, gives you a short stun.
@@ -72,3 +72,7 @@
 	var/mob/living/carbon/human/H = hit_atom
 	if(H.stat == DEAD)
 		H.gib()	//It's funny
+	else
+		H.Stun(20)
+		H.Knockdown(20)
+

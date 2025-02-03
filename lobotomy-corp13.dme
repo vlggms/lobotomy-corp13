@@ -3961,6 +3961,8 @@
 #include "ModularTegustation\trusted.dm"
 #include "ModularTegustation\turfs.dm"
 #include "ModularTegustation\!extra_abnos\branch12\records.dm"
+#include "ModularTegustation\!extra_abnos\branch12\!tools\eye.dm"
+#include "ModularTegustation\!extra_abnos\branch12\!tools\midnight.dm"
 #include "ModularTegustation\!extra_abnos\branch12\he\show_goes_on.dm"
 #include "ModularTegustation\!extra_abnos\branch12\teth\rock.dm"
 #include "ModularTegustation\!extra_abnos\branch12\zayin\wave.dm"
