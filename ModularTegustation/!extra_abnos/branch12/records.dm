@@ -38,6 +38,14 @@
 	- When you stop an ordeal all continuing ordeals will either increase in strength and reward, or decrease in reward."}
 
 //10 Seconds to Midnight
+/obj/item/paper/fluff/info/branch12/mislocation
+	name = "Mislocation - O-09-12-290"
+	info = {"<h1><center>O-09-12-290</center></h1>	<br>
+	Name : Mislocation<br>
+	Risk Class : Teth<br>
+	- Employees sitting at the bench of O-09-12-290 simply refused to die, and would not die unless they left the area under the lamp post."}
+
+//10 Seconds to Midnight
 /obj/item/paper/fluff/info/branch12/compass
 	name = "Predestined Compass - O-09-12-159"
 	info = {"<h1><center>O-09-12-159</center></h1>	<br>
