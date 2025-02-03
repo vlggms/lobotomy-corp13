@@ -15,6 +15,28 @@
 		virgin = FALSE
 	return ..()
 
+//	-------------TOOLS-------------
+//Eye For an Eye
+/obj/item/paper/fluff/info/branch12/eye
+	name = "Eye for an Eye - O-09-12-193"
+	info = {"<h1><center>O-09-12-193</center></h1>	<br>
+	Name : Eye for an Eye<br>
+	Risk Class : Teth	<br>
+	- When used, O-09-193 swapped the current hp and sp of the employee working on it.	<br>
+	- If an employee triggers the previous effect twice in a day they will immediately panic.	<br>
+	- Any additional uses after the second use by the employee who received the bonus will kill them."}
+
+//10 Seconds to Midnight
+/obj/item/paper/fluff/info/branch12/midnight
+	name = "10 Seconds till Midnight - O-09-12-202"
+	info = {"<h1><center>O-09-12-202</center></h1>	<br>
+	Name : 10 Seconds till Midnight<br>
+	Risk Class : Teth	<br>
+	- When an employee used T-09-202, the ordeal wouldn’t occur. A qliphoth meltdown of the corresponding meltdown level would take its place. <br>
+	- 10 seconds till midnight can only stop ordeals 2 times per shift.	<br>
+	- When used, 10 seconds till midnight would lower the qliphoth counter of 5 Abnormalities by 1.	<br>
+	- When you stop an ordeal all continuing ordeals will either increase in strength and reward, or decrease in reward."}
+
 //	-------------ZAYIN-------------
 // Full Wave M'aider
 /obj/item/paper/fluff/info/branch12/wave
