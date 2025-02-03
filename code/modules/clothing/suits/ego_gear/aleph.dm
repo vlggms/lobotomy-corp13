@@ -340,7 +340,7 @@ Any attempt to code risk class armor will result in a 10 day Github ban.*/
 					src.armor = new(red = 50, white = 70, black = 30, pale = 50)	//200
 					warning_message = "Fall has come, the leaves on your armor wither and die."
 		if("summer")
-			src.armor = new(red = 80, white = 40, black = 60, pale = 60)
+			src.armor = new(red = 80, white = 40, black = 60, pale = 60, FIRE = 80)
 			if(stored_season != current_season) //Our drip is out of season
 				src.armor = new(red = 80, white = 40, black = 50, pale = 50)
 				weakened = TRUE
@@ -348,7 +348,7 @@ Any attempt to code risk class armor will result in a 10 day Github ban.*/
 					src.armor = new(red = 70, white = 30, black = 50, pale = 50)
 					warning_message = "Winter is here. Your armor reacts, becoming stiff and brittle."
 		if("fall")
-			src.armor = new(red = 40, white = 60, black = 80, pale = 60)
+			src.armor = new(red = 40, white = 60, black = 80, pale = 60, FIRE = 80)
 			if(stored_season != current_season) //Our drip is out of season
 				src.armor = new(red = 40, white = 50, black = 80, pale = 50)
 				weakened = TRUE
@@ -399,7 +399,7 @@ Any attempt to code risk class armor will result in a 10 day Github ban.*/
 	name = "distortion"
 	desc = "To my eyes, I’m the only one who doesn’t appear distorted. In a world full of distorted people, could the one person who remains unchanged be the \"distorted\" one?"
 	icon_state = "distortion"
-	armor = list(RED_DAMAGE = 80, WHITE_DAMAGE = 70, BLACK_DAMAGE = 80, PALE_DAMAGE = 50) // 280
+	armor = list(RED_DAMAGE = 80, WHITE_DAMAGE = 70, BLACK_DAMAGE = 80, PALE_DAMAGE = 50, FIRE = 80) // 280
 	attribute_requirements = list(
 							FORTITUDE_ATTRIBUTE = 100,
 							PRUDENCE_ATTRIBUTE = 100,

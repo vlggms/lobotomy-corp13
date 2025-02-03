@@ -30,6 +30,8 @@
 /mob/living/simple_animal/adjustFireLoss(amount, updating_health = TRUE, forced = FALSE)
 	if(forced)
 		. = adjustHealth(amount * CONFIG_GET(number/damage_multiplier), updating_health, forced)
+	if(damage_coeff.fire == 1) // If fire damage is unchanged, damage dealt is based on red armor, and is raised by 50% towards base damage if the target is not weak to red.
+		. = adjustHealth(amount * clamp((damage_coeff.red * 1.5), damage_coeff.fire, damage_coeff.red) * CONFIG_GET(number/damage_multiplier), updating_health, forced)
 	else
 		. = adjustHealth(amount * damage_coeff.fire * CONFIG_GET(number/damage_multiplier), updating_health, forced)
 

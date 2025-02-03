@@ -405,7 +405,7 @@ Any attempt to code risk class armor will result in a 10 day Github ban.*/
 	name = "lifetime stew"
 	desc = "A soup fit for a king - and all from a few stones. It seemed like magic!"
 	icon_state = "lifestew"
-	armor = list(RED_DAMAGE = 20, WHITE_DAMAGE = -20, BLACK_DAMAGE = 60, PALE_DAMAGE = -20) // 40
+	armor = list(RED_DAMAGE = 20, WHITE_DAMAGE = -20, BLACK_DAMAGE = 60, PALE_DAMAGE = -20, FIRE = 20) // 40
 	attribute_requirements = list(
 							TEMPERANCE_ATTRIBUTE = 40
 							)
@@ -468,7 +468,7 @@ Any attempt to code risk class armor will result in a 10 day Github ban.*/
 	name = "ardor blossom star"
 	desc = "A dress with a bright orange jacket. Warm to the touch."
 	icon_state = "ardor_blossom"
-	armor = list(RED_DAMAGE = 50, WHITE_DAMAGE = 0, BLACK_DAMAGE = 10, PALE_DAMAGE = 10) // 70
+	armor = list(RED_DAMAGE = 50, WHITE_DAMAGE = 0, BLACK_DAMAGE = 10, PALE_DAMAGE = 10, FIRE = 50) // 70
 	attribute_requirements = list(
 							PRUDENCE_ATTRIBUTE = 40
 							)
