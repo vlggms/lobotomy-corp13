@@ -11,7 +11,7 @@
 	icon = 'icons/obj/clothing/ego_gear/lcorp.dmi'
 	worn_icon = 'icons/mob/clothing/ego_gear/lcorp.dmi'
 	flags_inv = NONE
-	armor = list(RED_DAMAGE = 20, WHITE_DAMAGE = 0, BLACK_DAMAGE = 0, PALE_DAMAGE = 0)
+	armor = list(RED_DAMAGE = 20, WHITE_DAMAGE = 0, BLACK_DAMAGE = 0, PALE_DAMAGE = 0, FIRE = 10)
 	attribute_requirements = list(
 							FORTITUDE_ATTRIBUTE = 20,
 							PRUDENCE_ATTRIBUTE = 20,
@@ -69,12 +69,12 @@ It's not great though.
 	worn_icon = 'icons/mob/clothing/ego_gear/lcorp.dmi'
 	desc = "A poorly made patchwork coat made from a bunch of spare cloth, dyed black. Worn by the extraction officer"
 	icon_state = "extraction"
-	armor = list(RED_DAMAGE = 20, WHITE_DAMAGE = 20, BLACK_DAMAGE = 20, PALE_DAMAGE = 20)
+	armor = list(RED_DAMAGE = 20, WHITE_DAMAGE = 20, BLACK_DAMAGE = 20, PALE_DAMAGE = 20, FIRE = 10)
 
 /obj/item/clothing/suit/armor/extraction/arbiter
 	name = "arbiter's armored coat"
 	desc = "A coat made out of quality cloth, providing immense protection against most damage sources. It is quite heavy."
-	armor = list(RED_DAMAGE = 90, WHITE_DAMAGE = 100, BLACK_DAMAGE = 90, PALE_DAMAGE = 90)
+	armor = list(RED_DAMAGE = 90, WHITE_DAMAGE = 100, BLACK_DAMAGE = 90, PALE_DAMAGE = 90, FIRE = 45)
 	body_parts_covered = CHEST|GROIN|LEGS|FEET|ARMS|HANDS|HEAD
 	cold_protection = CHEST|GROIN|LEGS|FEET|ARMS|HANDS|HEAD
 	heat_protection = CHEST|GROIN|LEGS|FEET|ARMS|HANDS|HEAD
@@ -88,7 +88,7 @@ It's not great though.
 	worn_icon = 'icons/mob/clothing/ego_gear/lcorp.dmi'
 	desc = "A poorly made patchwork coat made from a bunch of spare cloth, dyed grey. Worn by the records officer"
 	icon_state = "records"
-	armor = list(RED_DAMAGE = 20, WHITE_DAMAGE = 20, BLACK_DAMAGE = 20, PALE_DAMAGE = 20)
+	armor = list(RED_DAMAGE = 20, WHITE_DAMAGE = 20, BLACK_DAMAGE = 20, PALE_DAMAGE = 20, FIRE = 10)
 
 /obj/item/clothing/suit/armor/training
 	name = "worn coat"
@@ -96,7 +96,7 @@ It's not great though.
 	worn_icon = 'icons/mob/clothing/ego_gear/lcorp.dmi'
 	desc = "A coat that has been use for a very long time, by a very experienced officer. This one is orange with an intricate copper pattern on it. Worn by the Training Officer"
 	icon_state = "training"
-	armor = list(RED_DAMAGE = 20, WHITE_DAMAGE = 20, BLACK_DAMAGE = 20, PALE_DAMAGE = 20)
+	armor = list(RED_DAMAGE = 20, WHITE_DAMAGE = 20, BLACK_DAMAGE = 20, PALE_DAMAGE = 20, FIRE = 10)
 
 /obj/item/clothing/suit/armor/control
 	name = "ragged coat"
@@ -104,14 +104,14 @@ It's not great though.
 	worn_icon = 'icons/mob/clothing/suit.dmi'
 	desc = "A coat that has been use for a very long time, by an officer that is very observant. This one is brown, from both dye and dirt. Worn by the control officer"
 	icon_state = "coatcargo_t"		//Temporary sprite
-	armor = list(RED_DAMAGE = 20, WHITE_DAMAGE = 20, BLACK_DAMAGE = 20, PALE_DAMAGE = 20)
+	armor = list(RED_DAMAGE = 20, WHITE_DAMAGE = 20, BLACK_DAMAGE = 20, PALE_DAMAGE = 20, FIRE = 10)
 
 //Disc officer
 /obj/item/clothing/suit/armor/ego_gear/disc_off
 	name = "discipline officer's jackey"
 	desc = "An armored jacket used by the disciplinary officer."
 	icon_state = "disc_officer"
-	armor = list(RED_DAMAGE = 20, WHITE_DAMAGE = 20, BLACK_DAMAGE = 20, PALE_DAMAGE = 20)
+	armor = list(RED_DAMAGE = 20, WHITE_DAMAGE = 20, BLACK_DAMAGE = 20, PALE_DAMAGE = 20, FIRE = 10)
 	equip_slowdown = 0
 
 //This is tutorial armor
@@ -121,7 +121,7 @@ It's not great though.
 	icon_state = "rookie"
 	icon = 'icons/obj/clothing/ego_gear/lcorp.dmi'
 	worn_icon = 'icons/mob/clothing/ego_gear/lcorp.dmi'
-	armor = list(RED_DAMAGE = 40, WHITE_DAMAGE = -40, BLACK_DAMAGE = 0, PALE_DAMAGE = 0)
+	armor = list(RED_DAMAGE = 40, WHITE_DAMAGE = -40, BLACK_DAMAGE = 0, PALE_DAMAGE = 0, FIRE = 20)
 
 /obj/item/clothing/suit/armor/ego_gear/fledgling
 	name = "fledgling"
@@ -145,4 +145,4 @@ It's not great though.
 	icon_state = "freshman"
 	icon = 'icons/obj/clothing/ego_gear/lcorp.dmi'
 	worn_icon = 'icons/mob/clothing/ego_gear/lcorp.dmi'
-	armor = list(RED_DAMAGE = -40, WHITE_DAMAGE = 0, BLACK_DAMAGE = 0, PALE_DAMAGE = 40)
+	armor = list(RED_DAMAGE = -40, WHITE_DAMAGE = 0, BLACK_DAMAGE = 0, PALE_DAMAGE = 40, FIRE = -40)

@@ -2,7 +2,7 @@
 	name = "Echo outfit"
 	desc = "You should not be able to see this."
 	icon_state = "maid_dress"
-	armor = list(RED_DAMAGE = 30, WHITE_DAMAGE = 50, BLACK_DAMAGE = 30, PALE_DAMAGE = 20)
+	armor = list(RED_DAMAGE = 30, WHITE_DAMAGE = 50, BLACK_DAMAGE = 30, PALE_DAMAGE = 20, FIRE = 15)
 	attribute_requirements = list(
 							FORTITUDE_ATTRIBUTE = 60,
 							PRUDENCE_ATTRIBUTE = 80,
@@ -14,7 +14,7 @@
 	name = "Neon Maid Dress"
 	desc = "I have no reason to deny the greatness and beauty of such an amazing outfit!"
 	icon_state = "maid_dress"
-	armor = list(RED_DAMAGE = 20, WHITE_DAMAGE = 60, BLACK_DAMAGE = 40, PALE_DAMAGE = 10)
+	armor = list(RED_DAMAGE = 20, WHITE_DAMAGE = 60, BLACK_DAMAGE = 40, PALE_DAMAGE = 10, FIRE = 20)
 	attribute_requirements = list(
 							FORTITUDE_ATTRIBUTE = 60,
 							PRUDENCE_ATTRIBUTE = 80,
@@ -26,7 +26,7 @@
 	name = "Reverie Under the Stars"
 	desc = "A change has happened."
 	icon_state = "stars"
-	armor = list(RED_DAMAGE = 40, WHITE_DAMAGE = 40, BLACK_DAMAGE = 20, PALE_DAMAGE = 60)
+	armor = list(RED_DAMAGE = 40, WHITE_DAMAGE = 40, BLACK_DAMAGE = 20, PALE_DAMAGE = 60, FIRE = 20)
 	slowdown = 0.5
 	attribute_requirements = list(
 							FORTITUDE_ATTRIBUTE = 60,
@@ -40,7 +40,7 @@
 	desc = "An echo of a past Memory... A painful one at that."
 	icon_state = "plated"
 	hat = /obj/item/clothing/head/ego_hat/plated
-	armor = list(RED_DAMAGE = 40, WHITE_DAMAGE = 20, BLACK_DAMAGE = 60, PALE_DAMAGE = 10)
+	armor = list(RED_DAMAGE = 40, WHITE_DAMAGE = 20, BLACK_DAMAGE = 60, PALE_DAMAGE = 10, FIRE = 20)
 	attribute_requirements = list(
 							FORTITUDE_ATTRIBUTE = 60,
 							PRUDENCE_ATTRIBUTE = 60,
@@ -58,7 +58,7 @@
 	name = "Frilled Maid Outfit/Faux Fur Coat"
 	desc = "Seems that layering the two outfits stops the coat from taking any effect, but it at least still protects whatever semi-professional image he's got left."
 	icon_state = "faux"
-	armor = list(RED_DAMAGE = 60, WHITE_DAMAGE = 40, BLACK_DAMAGE = 20, PALE_DAMAGE = 10)
+	armor = list(RED_DAMAGE = 60, WHITE_DAMAGE = 40, BLACK_DAMAGE = 20, PALE_DAMAGE = 10, FIRE = 30)
 	attribute_requirements = list(
 							FORTITUDE_ATTRIBUTE = 80,
 							PRUDENCE_ATTRIBUTE = 60,

@@ -34,7 +34,7 @@ Any attempt to code risk class armor will result in a 10 day Github ban.*/
 	desc = "A suit of armor that feels like you're wearing aluminum. \
 	It’s quite light for armor, so it is rather comfortable to wear."
 	icon_state = "soda"
-	armor = list(RED_DAMAGE = 10, WHITE_DAMAGE = 0, BLACK_DAMAGE = 0, PALE_DAMAGE = 0)
+	armor = list(RED_DAMAGE = 10, WHITE_DAMAGE = 0, BLACK_DAMAGE = 0, PALE_DAMAGE = 0, FIRE = 5)
 
 /obj/item/clothing/suit/armor/ego_gear/zayin/little_alice
 	name = "little alice"	//Looks like alice from Shin Megami Tensei
@@ -46,13 +46,13 @@ Any attempt to code risk class armor will result in a 10 day Github ban.*/
 	name = "wingbeat"
 	desc = "Most of the employees do not know the true meaning of The Fairies’ Care."
 	icon_state = "wingbeat"
-	armor = list(RED_DAMAGE = 10, WHITE_DAMAGE = 0, BLACK_DAMAGE = 0, PALE_DAMAGE = 0)
+	armor = list(RED_DAMAGE = 10, WHITE_DAMAGE = 0, BLACK_DAMAGE = 0, PALE_DAMAGE = 0, FIRE = 5)
 
 /obj/item/clothing/suit/armor/ego_gear/zayin/change
 	name = "change"
 	desc = "Everything can be changed if you try hard enough!"
 	icon_state = "change"
-	armor = list(RED_DAMAGE = 10, WHITE_DAMAGE = 0, BLACK_DAMAGE = 0, PALE_DAMAGE = 0)
+	armor = list(RED_DAMAGE = 10, WHITE_DAMAGE = 0, BLACK_DAMAGE = 0, PALE_DAMAGE = 0, FIRE = 5)
 
 /obj/item/clothing/suit/armor/ego_gear/zayin/doze
 	name = "dozing"
@@ -94,7 +94,7 @@ Any attempt to code risk class armor will result in a 10 day Github ban.*/
 	name = "letter opener"
 	desc = "Liberty. Reason. Justice. Civility. Edification. Perfection. MAIL!"
 	icon_state = "letter_opener"
-	armor = list(RED_DAMAGE = 10, WHITE_DAMAGE = 0, BLACK_DAMAGE = 0, PALE_DAMAGE = 0)
+	armor = list(RED_DAMAGE = 10, WHITE_DAMAGE = 0, BLACK_DAMAGE = 0, PALE_DAMAGE = 0, FIRE = 5)
 
 /obj/item/clothing/suit/armor/ego_gear/zayin/eclipse
 	name = "eclipse of scarlet moths"
@@ -106,7 +106,7 @@ Any attempt to code risk class armor will result in a 10 day Github ban.*/
 	name = "taste of the sea"
 	desc = "A suit that's old and dyed crimson, and made of thin plastic."
 	icon_state = "oceanic"
-	armor = list(RED_DAMAGE = 10, WHITE_DAMAGE = 0, BLACK_DAMAGE = 0, PALE_DAMAGE = 0)
+	armor = list(RED_DAMAGE = 10, WHITE_DAMAGE = 0, BLACK_DAMAGE = 0, PALE_DAMAGE = 0, FIRE = 5)
 
 /obj/item/clothing/suit/armor/ego_gear/zayin/dead_dream
 	name = "dead dream"

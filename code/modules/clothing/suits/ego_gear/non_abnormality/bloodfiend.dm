@@ -6,7 +6,7 @@
 	var/hardblood_state = null
 	icon = 'ModularTegustation/Teguicons/blood_fiend_gear.dmi'
 	worn_icon = 'ModularTegustation/Teguicons/blood_fiend_gear_worn.dmi'
-	armor = list(RED_DAMAGE = 40, WHITE_DAMAGE = 20, BLACK_DAMAGE = 40, PALE_DAMAGE = 20)
+	armor = list(RED_DAMAGE = 40, WHITE_DAMAGE = 20, BLACK_DAMAGE = 40, PALE_DAMAGE = 20, FIRE = 20)
 	hat = /obj/item/clothing/head/ego_hat/blood_fiend/bird_mask
 	neck = /obj/item/clothing/ego_neck/blood_fiend/coagulated_blood
 	var/bloodfeast = 0
@@ -87,7 +87,7 @@
 	normal_state = "Driedcoat"
 	hardblood_state = "Bloodcoat"
 	bloodfeast_max = 100
-	armor = list(RED_DAMAGE = 30, WHITE_DAMAGE = 20, BLACK_DAMAGE = 10, PALE_DAMAGE = 0)
+	armor = list(RED_DAMAGE = 30, WHITE_DAMAGE = 20, BLACK_DAMAGE = 10, PALE_DAMAGE = 0, FIRE = 15)
 	hat = null
 	neck = null
 	attribute_requirements = list()

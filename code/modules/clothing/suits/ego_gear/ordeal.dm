@@ -4,7 +4,7 @@
 	icon_state = "claw"
 	icon = 'icons/obj/clothing/ego_gear/lc13_armor.dmi'
 	worn_icon = 'icons/mob/clothing/ego_gear/lc13_armor.dmi'
-	armor = list(RED_DAMAGE = 90, WHITE_DAMAGE = 100, BLACK_DAMAGE = 90, PALE_DAMAGE = 90) // The arbiter's henchman
+	armor = list(RED_DAMAGE = 90, WHITE_DAMAGE = 100, BLACK_DAMAGE = 90, PALE_DAMAGE = 90, FIRE = 45) // The arbiter's henchman
 	equip_slowdown = 0 // In accordance of arbiter armor
 	hat = /obj/item/clothing/head/ego_hat/claw_head
 	alternative_styles = list("claw", "claw_baral")
@@ -26,7 +26,7 @@
 	name = "Endless feast"
 	desc = "Made out of tough scales and flesh of a powerful ordeal. Wearing it makes you feel hungry as well."
 	icon_state = "eternal_feast"
-	armor = list(RED_DAMAGE = 50, WHITE_DAMAGE = 70, BLACK_DAMAGE = 80, PALE_DAMAGE = 40) // 240
+	armor = list(RED_DAMAGE = 50, WHITE_DAMAGE = 70, BLACK_DAMAGE = 80, PALE_DAMAGE = 40, FIRE = 25) // 240
 	attribute_requirements = list(
 							FORTITUDE_ATTRIBUTE = 100,
 							PRUDENCE_ATTRIBUTE = 80,
@@ -38,7 +38,7 @@
 	name = "Painful purpose"
 	desc = "A heavy armor made as solace of the end of all."
 	icon_state = "painful_purpose"
-	armor = list(RED_DAMAGE = 80, WHITE_DAMAGE = 50, BLACK_DAMAGE = 40, PALE_DAMAGE = 70) // 240
+	armor = list(RED_DAMAGE = 80, WHITE_DAMAGE = 50, BLACK_DAMAGE = 40, PALE_DAMAGE = 70, FIRE = 40) // 240
 	attribute_requirements = list(
 							FORTITUDE_ATTRIBUTE = 80,
 							PRUDENCE_ATTRIBUTE = 100,
@@ -50,7 +50,7 @@
 	name = "Meaningless march"
 	desc = "Want to know how I got these scars?"
 	icon_state = "meaningless_march"
-	armor = list(RED_DAMAGE = 80, WHITE_DAMAGE = 70, BLACK_DAMAGE = 50, PALE_DAMAGE = 40) // 230
+	armor = list(RED_DAMAGE = 80, WHITE_DAMAGE = 70, BLACK_DAMAGE = 50, PALE_DAMAGE = 40, FIRE = 40) // 230
 	attribute_requirements = list(
 							FORTITUDE_ATTRIBUTE = 100,
 							PRUDENCE_ATTRIBUTE = 80,
@@ -62,7 +62,7 @@
 	name = "Delusionist's end"
 	desc = "An eerie glow emanates from it."
 	icon_state = "delusion_black"
-	armor = list(RED_DAMAGE = 40, WHITE_DAMAGE = 60, BLACK_DAMAGE = 80, PALE_DAMAGE = 60) // 200
+	armor = list(RED_DAMAGE = 40, WHITE_DAMAGE = 60, BLACK_DAMAGE = 80, PALE_DAMAGE = 60, FIRE = 20) // 200
 	attribute_requirements = list(
 							FORTITUDE_ATTRIBUTE = 80,
 							PRUDENCE_ATTRIBUTE = 80,
@@ -116,16 +116,16 @@
 	desc = damage_list[current_damage][1]
 	switch(current_damage)
 		if("red")
-			src.armor = new(red = 80, white = 60, black = 0, pale = 60)
+			src.armor = new(red = 80, white = 60, black = 0, pale = 60, fire = 40)
 			playsound(get_turf(src), 'sound/effects/ordeals/violet/midnight_red_attack.ogg', 50, FALSE, 32)
 		if("white")
-			src.armor = new(red = 60, white = 80, black = 60, pale = 0)
+			src.armor = new(red = 60, white = 80, black = 60, pale = 0, fire = 30)
 			playsound(get_turf(src), 'sound/effects/ordeals/violet/midnight_white_attack.ogg', 50, FALSE, 32)
 		if("black")
 			src.armor = new(red = 0, white = 60, black = 80, pale = 60)
 			playsound(get_turf(src), 'sound/effects/ordeals/violet/midnight_black_attack1.ogg', 50, FALSE, 32)
 		if("pale")
-			src.armor = new(red = 60, white = 0, black = 60, pale = 80)
+			src.armor = new(red = 60, white = 0, black = 60, pale = 80, fire = 60)
 			playsound(get_turf(src), 'sound/effects/ordeals/violet/midnight_pale_attack.ogg', 50, FALSE, 32)
 
 // Radial menu
@@ -165,7 +165,7 @@
 	name = "Familial Strength"
 	desc = "A heavy armor from the mother of all sweepers."
 	icon_state = "familial_strength"
-	armor = list(RED_DAMAGE = 70, WHITE_DAMAGE = 30, BLACK_DAMAGE = 80, PALE_DAMAGE = 60) // 240
+	armor = list(RED_DAMAGE = 70, WHITE_DAMAGE = 30, BLACK_DAMAGE = 80, PALE_DAMAGE = 60, FIRE = 35) // 240
 	attribute_requirements = list(
 							FORTITUDE_ATTRIBUTE = 80,
 							PRUDENCE_ATTRIBUTE = 80,
@@ -177,7 +177,7 @@
 	name = "Wonderland"
 	desc = "It's hard to look at it right."
 	icon_state = "wonderland"
-	armor = list(RED_DAMAGE = 50, WHITE_DAMAGE = 40, BLACK_DAMAGE = 70, PALE_DAMAGE = 80) // 240
+	armor = list(RED_DAMAGE = 50, WHITE_DAMAGE = 40, BLACK_DAMAGE = 70, PALE_DAMAGE = 80, FIRE = 25) // 240
 	attribute_requirements = list(
 							FORTITUDE_ATTRIBUTE = 100,
 							PRUDENCE_ATTRIBUTE = 80,

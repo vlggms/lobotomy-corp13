@@ -2,7 +2,7 @@
 	name = "wedge office leader jacket"
 	desc = "An armored jacket worn by the leader of wedge office."
 	icon_state = "wedgeleader"
-	armor = list(RED_DAMAGE = 20, WHITE_DAMAGE = 20, BLACK_DAMAGE = 50, PALE_DAMAGE = 20)
+	armor = list(RED_DAMAGE = 20, WHITE_DAMAGE = 20, BLACK_DAMAGE = 50, PALE_DAMAGE = 20, FIRE = 10)
 	attribute_requirements = list(
 							FORTITUDE_ATTRIBUTE = 80,
 							PRUDENCE_ATTRIBUTE = 80,
@@ -14,7 +14,7 @@
 	name = "wedge office jacket"
 	desc = "An armored jacket worn by male wedge office fixers. This one hasn't seen use in some years, due to the director being unable to find another suitable coworker.."
 	icon_state = "wedge"
-	armor = list(RED_DAMAGE = 10, WHITE_DAMAGE = 10, BLACK_DAMAGE = 40, PALE_DAMAGE = 0)
+	armor = list(RED_DAMAGE = 10, WHITE_DAMAGE = 10, BLACK_DAMAGE = 40, PALE_DAMAGE = 0, FIRE = 5)
 	attribute_requirements = list(
 							FORTITUDE_ATTRIBUTE = 60,
 							PRUDENCE_ATTRIBUTE = 60,

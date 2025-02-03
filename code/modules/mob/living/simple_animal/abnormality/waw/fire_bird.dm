@@ -28,7 +28,7 @@
 	faction = list("hostile", "neutral")
 	can_breach = TRUE
 	start_qliphoth = 3
-	damage_coeff = list(RED_DAMAGE = 0.8, WHITE_DAMAGE = 0.4, BLACK_DAMAGE = 1.2, PALE_DAMAGE = 2.0)
+	damage_coeff = list(RED_DAMAGE = 0.8, WHITE_DAMAGE = 0.4, BLACK_DAMAGE = 1.2, PALE_DAMAGE = 2.0, FIRE = 0)
 	light_color = COLOR_LIGHT_ORANGE
 	light_range = 0
 	light_power = 0
@@ -56,7 +56,7 @@
 
 	var/pulse_cooldown
 	var/pulse_cooldown_time = 1 SECONDS
-	var/pulse_damage = 10
+	var/pulse_damage = 4
 	var/can_act = TRUE
 	var/dash_cooldown
 	var/dash_cooldown_time = 5 SECONDS
@@ -149,6 +149,7 @@
 	pulse_cooldown = world.time + pulse_cooldown_time
 	for(var/mob/living/carbon/human/L in livinginview(48, src))
 		L.deal_damage(pulse_damage, RED_DAMAGE)
+		L.deal_damage(pulse_damage, BURN)
 
 /mob/living/simple_animal/hostile/abnormality/fire_bird/proc/retaliatedash()
 	if(dash_cooldown > world.time)

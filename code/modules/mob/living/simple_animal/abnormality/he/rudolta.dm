@@ -12,7 +12,7 @@
 	health = 1200
 	pixel_x = -16
 	base_pixel_x = -16
-	damage_coeff = list(RED_DAMAGE = 1.5, WHITE_DAMAGE = 0.5, BLACK_DAMAGE = 1, PALE_DAMAGE = 2)
+	damage_coeff = list(RED_DAMAGE = 1.5, WHITE_DAMAGE = 0.5, BLACK_DAMAGE = 1, PALE_DAMAGE = 2, FIRE = 1.5)
 	stat_attack = HARD_CRIT
 	can_breach = TRUE
 	threat_level = HE_LEVEL

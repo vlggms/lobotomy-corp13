@@ -1622,6 +1622,10 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 		if(BURN, FIRE, LASER, ENERGY, RAD)
 			H.damageoverlaytemp = 20
 			var/damage_amount = forced ? damage : damage * hit_percent * burnmod * H.physiology.burn_mod
+			var/redarmor = (100-(H.run_armor_check(def_zone, RED_DAMAGE, silent = TRUE) * 0.5))/100
+			if(hit_percent > redarmor) // Damage formula for burn in LC13 is 1/2 red armor or burn armor, if burn armor is unmodified.
+				hit_percent = redarmor
+				damage_amount = forced ? damage : damage * hit_percent
 			if(BP)
 				if(BP.receive_damage(0, damage_amount, wound_bonus = wound_bonus, bare_wound_bonus = bare_wound_bonus, sharpness = sharpness))
 					H.update_damage_overlays()
