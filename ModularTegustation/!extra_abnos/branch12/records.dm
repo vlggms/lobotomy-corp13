@@ -1,4 +1,19 @@
+//All the records for this gamemodes goes into one filing cabinet
+/obj/structure/filingcabinet/branch12
+	name = "abnormality information cabinet"
+	icon_state = "chestdrawer"
+	var/virgin = TRUE
 
+/obj/structure/filingcabinet/branch12/proc/fillCurrent()
+	var/list/queue = subtypesof(/obj/item/paper/fluff/info/branch12)
+	for(var/sheet in queue)
+		new sheet(src)
+
+/obj/structure/filingcabinet/branch12/interact(mob/user)
+	if(virgin)
+		fillCurrent()
+		virgin = FALSE
+	return ..()
 
 //	-------------ZAYIN-------------
 // Full Wave M'aider
