@@ -1,6 +1,6 @@
 /mob/living/simple_animal/hostile/abnormality/show_goes_on
 	name = "The Show Goes On"
-	desc = "A simpel stage featuring odd red curtains"
+	desc = "A simple stage featuring odd red curtains, and shapes swirling in front of it."
 	icon = 'ModularTegustation/Teguicons/branch12/48x64.dmi'
 	icon_state = "show_goes"
 	pixel_x = -8
@@ -26,10 +26,6 @@
 	var/works = 0
 
 
-/mob/living/simple_animal/hostile/abnormality/show_goes_on/Initialize(mapload)
-	. = ..()
-
-
 /mob/living/simple_animal/hostile/abnormality/show_goes_on/SuccessEffect(mob/living/carbon/human/user, work_type, pe)
 	. = ..()
 	user.adjustBruteLoss(-user.maxHealth*0.2)
@@ -48,13 +44,9 @@
 			works ++
 			ForceToWork(user, work_type, TRUE)
 			return
-		else
-			work_damage_amount = initial(work_damage_amount)
-			works = 0
 
-	else
-		work_damage_amount = initial(work_damage_amount)
-		works = 0
+	work_damage_amount = initial(work_damage_amount)
+	works = 0
 
 /mob/living/simple_animal/hostile/abnormality/show_goes_on/AttemptWork(mob/living/carbon/human/user, work_type)
 	//This means that you don't die until the end of the work
@@ -69,7 +61,7 @@
 	if(user.health < 0)
 		work_damage_amount +=2
 
-/mob/living/simple_animal/hostile/abnormality/flesh_idol/WorktickFailure(mob/living/carbon/human/user)
+/mob/living/simple_animal/hostile/abnormality/show_goes_on/WorktickFailure(mob/living/carbon/human/user)
 	//Worktick failures increase damage given
 	work_damage_amount ++
 	return
