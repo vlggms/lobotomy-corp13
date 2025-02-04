@@ -44,6 +44,9 @@
 	name = ""
 	desc = ""
 
+	//make it invincible again
+	status_flags &= GODMODE
+
 //The item rock that spawns in
 /obj/item/ego_weapon/rock
 	name = "The Remnant of the Forest"
