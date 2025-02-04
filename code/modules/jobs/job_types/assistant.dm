@@ -42,7 +42,7 @@ GLOBAL_LIST_EMPTY(spawned_clerks)
 //Cannot Gain stats.
 /datum/job/assistant/after_spawn(mob/living/carbon/human/outfit_owner, mob/M, latejoin = FALSE)
 	. = ..()
-	if(SSmaptype.chosen_trait != "Working Clerks")
+	if(SSmaptype.chosen_trait != FACILITY_TRAIT_WORKING_CLERKS)
 		outfit_owner.adjust_attribute_buff(TEMPERANCE_ATTRIBUTE, 10)
 		outfit_owner.adjust_attribute_buff(PRUDENCE_ATTRIBUTE, 10)
 		ADD_TRAIT(outfit_owner, TRAIT_WORK_FORBIDDEN, JOB_TRAIT)
@@ -55,7 +55,7 @@ GLOBAL_LIST_EMPTY(spawned_clerks)
 			outfit_owner.set_attribute_limit(40)
 			outfit_owner.adjust_all_attribute_levels(40)
 
-	if(SSmaptype.chosen_trait == "Abno Blitz")
+	if(SSmaptype.chosen_trait == FACILITY_TRAIT_ABNO_BLITZ)
 		outfit_owner.set_attribute_limit(40)
 		outfit_owner.adjust_all_attribute_levels(40)
 

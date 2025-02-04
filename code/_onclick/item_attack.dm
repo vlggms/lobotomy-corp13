@@ -283,7 +283,7 @@
 		var/justice_mod = 1 + (get_modified_attribute_level(user, JUSTICE_ATTRIBUTE)/100)
 		var/crit_chance = get_modified_attribute_level(user, PRUDENCE_ATTRIBUTE)/50	//prudence is crit chance, It's a very small percentage that maxes out at 2.6%
 
-		if(SSmaptype.chosen_trait == "Critical Hits")
+		if(SSmaptype.chosen_trait == FACILITY_TRAIT_CRITICAL_HITS)
 			if(prob(crit_chance * I.crit_multiplier))	//Crit multiplier is by default 1.
 				new /obj/effect/temp_visual/crit(get_turf(user))
 				crit_bonus += get_modified_attribute_level(user, FORTITUDE_ATTRIBUTE)/100	//fortitude is crit bonus damage, bonus scaling off fortitude

@@ -54,7 +54,7 @@ SUBSYSTEM_DEF(abnormality_queue)
 		flags |= SS_NO_FIRE
 		return ..() // Sleepy time
 
-	if(SSmaptype.chosen_trait == "Abno Blitz")
+	if(SSmaptype.chosen_trait == FACILITY_TRAIT_ABNO_BLITZ)
 		next_abno_spawn_time/=2
 
 	RegisterSignal(SSdcs, COMSIG_GLOB_ORDEAL_END, PROC_REF(OnOrdealEnd))
@@ -88,7 +88,7 @@ SUBSYSTEM_DEF(abnormality_queue)
 /datum/controller/subsystem/abnormality_queue/proc/SelectAvailableLevels()
 
 	//For the blitz gamemode, only pick Waw and Aleph enemies. There should only be 80+ agents here
-	if(SSmaptype.chosen_trait == "Abno Blitz")
+	if(SSmaptype.chosen_trait == FACILITY_TRAIT_ABNO_BLITZ)
 		if(spawned_abnos >= rooms_start * 0.5)
 			available_levels = list(WAW_LEVEL, ALEPH_LEVEL)
 		else

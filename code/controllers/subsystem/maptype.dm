@@ -19,18 +19,18 @@ SUBSYSTEM_DEF(maptype)
 
 	//LC13 Gamemode Traits
 	var/list/lc_trait = list(
-						"No Trait" = 5,				//5 for No Trait
-						"MOBA Agents" = 10, 		//Agents pick a MOBA class
-						"Critical Hits" = 10,		//EGO can Critical hit.
-						"Abno Blitz" = 5,			//The game is significantly Faster, starts after noon.
-						"Selection Mishap" = 5,		//The abno selection is randomized
-						"Legacy Pale" = 5,			//You take 90% damage if pale damage hits you
+						FACILITY_TRAIT_NONE = 5,				//5 for No Trait
+						FACILITY_TRAIT_MOBA_AGENTS = 10, 		//Agents pick a MOBA class
+						FACILITY_TRAIT_CRITICAL_HITS = 10,		//EGO can Critical hit.
+						FACILITY_TRAIT_ABNO_BLITZ = 5,			//The game is significantly Faster, starts after noon.
+						FACILITY_TRAIT_FUCKED_SELECTION = 5,		//The abno selection is randomized
+						FACILITY_TRAIT_LEGACY_PALE = 5,			//You take 90% damage if pale damage hits you
 
 						//Joke stuff is below, should all be low
-						"Working Clerks" = 3,		//For the joke
-						"Callback" = 2,				//Brings back 2 Classic bugs in Backpack EGO and wounds
-						"Joke Abnormalities" = 1,	// Okay it's funny
-						"Visible Ghosts" = 1,		// Very Metagamey but funny
+						FACILITY_TRAIT_WORKING_CLERKS = 3,		//For the joke
+						FACILITY_TRAIT_CALLBACK = 2,				//Brings back 2 Classic bugs in Backpack EGO and wounds
+						FACILITY_TRAIT_JOKE_ABNOS = 1,	// Okay it's funny
+						FACILITY_TRAIT_VISIBLE_GHOSTS = 1,		// Very Metagamey but funny
 						)
 
 	var/chosen_trait = "No Trait"
@@ -65,7 +65,7 @@ SUBSYSTEM_DEF(maptype)
 	if(SSmaptype.maptype in SSmaptype.lc_maps)
 		chosen_trait = pickweight(lc_trait)
 		switch(chosen_trait)
-			if("Visible Ghosts")
+			if(FACILITY_TRAIT_VISIBLE_GHOSTS)
 				var/msg = span_warning("You suddenly feel extremely obvious...")
 				set_observer_default_invisibility(0, msg)
 

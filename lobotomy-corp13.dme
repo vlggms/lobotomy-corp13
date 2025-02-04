@@ -62,6 +62,7 @@
 #include "code\__DEFINES\exosuit_fab.dm"
 #include "code\__DEFINES\exports.dm"
 #include "code\__DEFINES\extraction.dm"
+#include "code\__DEFINES\facility_traits.dm"
 #include "code\__DEFINES\facility_upgrades.dm"
 #include "code\__DEFINES\fantasy_affixes.dm"
 #include "code\__DEFINES\fishing.dm"

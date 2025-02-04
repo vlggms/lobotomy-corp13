@@ -6,7 +6,7 @@
 
 /obj/item/class_chooser/Initialize()
 	. = ..()
-	if(SSmaptype.chosen_trait != "MOBA Agents")
+	if(SSmaptype.chosen_trait != FACILITY_TRAIT_MOBA_AGENTS)
 		qdel(src)
 	QDEL_IN(src, 60 SECONDS)	//You MUST pick within 60 seconds
 

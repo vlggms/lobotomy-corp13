@@ -251,9 +251,9 @@ SUBSYSTEM_DEF(ticker)
 			mode = new /datum/game_mode/combat
 	else
 		switch(SSmaptype.chosen_trait)
-			if("Joke Abnormalities")
+			if(FACILITY_TRAIT_JOKE_ABNOS)
 				mode = new /datum/game_mode/management/joke
-			if("Selection Mishap")
+			if(FACILITY_TRAIT_FUCKED_SELECTION)
 				var/choosingmode = pick(
 							/datum/game_mode/management/pure,
 							/datum/game_mode/management/branch)

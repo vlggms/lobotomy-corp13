@@ -30,7 +30,7 @@
 	if(swingstyle == WEAPONSWING_SMALLSWEEP && reach > 1)
 		swingstyle = WEAPONSWING_THRUST
 	RegisterSignal(src, COMSIG_OBJ_PAINTED, PROC_REF(GetSwingColor))
-	if(SSmaptype.chosen_trait == "Callback")
+	if(SSmaptype.chosen_trait == FACILITY_TRAIT_CALLBACK)
 		w_class = WEIGHT_CLASS_NORMAL			//Callback to when we had stupid 10 Egos in bag
 
 
@@ -111,7 +111,7 @@
 	if(reach>1)
 		. += span_notice("This weapon has a reach of [reach].")
 
-	if(SSmaptype.chosen_trait == "Critical Hits")
+	if(SSmaptype.chosen_trait == FACILITY_TRAIT_CRITICAL_HITS)
 		if(crit_multiplier!=1)
 			. += span_notice("This weapon has a crit rate of [crit_multiplier]x  normal.")
 
