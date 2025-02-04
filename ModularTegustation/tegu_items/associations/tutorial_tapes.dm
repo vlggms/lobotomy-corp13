@@ -161,23 +161,25 @@
 	name = "Potentials and Grading"
 	desc = "A magnetic tape that can hold up to ten minutes of content. It appears to have 'Tape 2, V' written on its back."
 	storedinfo = list(
-		span_game_say(span_name("Unknown") + span_message(" says,") + " &quot;Is this thing working...Testing..&quot;"),
-		"A soft creak of a door and the shuffling of papers can be heard, followed by whispers.",
-		span_game_say(span_name("Unknown") + span_message(" says,") + " &quot;Oh Sonetto, is this recorder...Ah it's working already?  I see, thank you. Just put the papers on that pile over there.&quot;"),
-		"More whispering, it then fades and is replaced by another creak of a door.",
-		span_game_say(span_name("Unknown") + span_message(" clears their throat,")),
-		span_game_say(span_name("Vertin Caldwell") + span_message(" says,") + " &quot;Hello, If this goes correctly, You are listening to the introductory tape I've made. My name is Vertin Caldwell and I have been requested by the Hana Association to make these tapes.&quot;"),
-		span_game_say(span_name("Vertin Caldwell") + span_message(" says,") + " &quot;Assuming your location is currently at the front of the office, the beach is where all the fishing business is done. And if you plan on fishing then please refer to the General Fishing Guide Tape.&quot;"),
-		span_game_say(span_name("Vertin Caldwell") + span_message(" says,") + " &quot;Moving on, to the right of the beach is where most of your general equipment will be located, However you will need to buy them from a vendor.&quot;"),
-		span_game_say(span_name("Vertin Caldwell") + span_message(" says,") + " &quot;But don't worry, you've been provided just enough to buy the bare essentials of which are an Armored coat, flashlight and a crowbar.&quot;"),
-		span_game_say(span_name("Vertin Caldwell") + span_message(" says,") + " &quot;Upwards will lead you inside your very own office, that is if you're the office director. The office will contain everything else you will need such as a basic kitchen, workshop forge and a medbay.&quot;"),
-		span_game_say(span_name("Vertin Caldwell") + span_message(" says,") + " &quot;If you are the office director, I suggest now grabbing the budget that Hana provides at your desk, If you just entered the office building, it is to the right and down the hall with red curtains. Do also grab the headset on the desk as it's yours.&quot;"),
-		span_game_say(span_name("Vertin Caldwell") + span_message(" says,") + " &quot;Now with the entire office's budget and a headset, you should forge a weapon if you've already gotten the necessities. Head to the forge and if there is one, please refer to the tape there.&quot;"),
-		"Sounds of shuffling papers, a soft twinkling melody could be heard in the background.",
-		span_game_say(span_name("Vertin Caldwell") + span_message(" says,") + " &quot;That's all I would like to provide on this tape...Goodluck.&quot;"),
+		span_game_say(span_name("Vertin Caldwell") + span_message(" says,") + " &quot;Recorder should be working again..&quot;"),
+		span_game_say(span_name("Vertin Caldwell") + span_message(" clears her throat.")),
+		span_game_say(span_name("Vertin Caldwell") + span_message(" says,") + " &quot;Potentials and Grades, both are important in their own parts as the fixer grades are especially what you are gonna be constantly checking.&quot;"),
+		span_game_say(span_name("Vertin Caldwell") + span_message(" says,") + " &quot;Starting with potential, potential is what is needed to increase your fixer grade. The more potential you have through using training accelerators, the better grade you will be put at after reaching certain thresholds.&quot;"),
+		span_game_say(span_name("Vertin Caldwell") + span_message(" says,") + " &quot;Training Accelerators can be obtained either for 300 Ahn in the fixer equipment vendor or for 100 fishing points if you have decided to go the fishing route.&quot;"),
+		span_game_say(span_name("Vertin Caldwell") + span_message(" says,") + " &quot;Continuing, at grade 9 you will be getting 4 potential with each use of a training accelerator, the amount obtained will weaken the moment you are raising to higher grades.&quot;"),
+		span_game_say(span_name("Vertin Caldwell") + span_message(" says,") + " &quot;Immediately reaching grade 8 will lower the potential obtained to 3, Grade 7 will have it sit at 2 while finally, Grade 6 and below will only provide 1 potential per training accelerator used.&quot;"),
+		span_game_say(span_name("Vertin Caldwell") + span_message(" says,") + " &quot;In short, this means it will take plenty more training accelerators to raise your grade as they get weaker when you yourself get stronger.&quot;"),
+		span_game_say(span_name("Vertin Caldwell") + span_message(" says,") + " &quot;Now that we have most things about potential out of the way, we will be moving onto the topic of fixer grades. Starting with the obvious of that you will start at the lowest fixer grade, Grade 9.&quot;"),
+		span_game_say(span_name("Vertin Caldwell") + span_message(" says,") + " &quot;It is not a bad thing however, as grade 9 will allow you to get 5 L1 skills which will in turn assist you a lot but I will not be going over it in this tape.&quot;"),
+		span_game_say(span_name("Vertin Caldwell") + span_message(" says,") + " &quot;Moving along, starting from grade 9 the maximum you can raise it up to is grade 4.&quot;"),
+		span_game_say(span_name("Vertin Caldwell") + span_message(" says,") + " &quot;You  can get your grade appraised at the potential estimation machine that is located to the right of the beach with the fixer equipment vendors and Hana’s item selling machine.&quot;"),
+		span_game_say(span_name("Vertin Caldwell") + span_message(" says,") + " &quot;...Ah right, don’t think I have mentioned it yet. Grades are essential because they are your stats, without higher grades you will not be able to wear better armor or wield stronger weapons..&quot;"),
+		span_game_say(span_name("Vertin Caldwell") + span_message(" says,") + " &quot;Shit! The reel is running out on this tape, I will keep this short. It will take you 5 trainers in total to reach grade 8 and another 7 if you would like to reach grade 7.&quot;"),
+		"Panicked shuffling of papers",
+		span_game_say(span_name("Vertin Caldwell") + span_message(" says,") + " &quot;Then from grade 7 it will require you 10 trainers to reach grade 6, after that. 19 trainers for grade 5 and finally 20 trainers for grade 4! Additional 10 if you want to-!&quot;"),
 	)
 
-	timestamp = list(1, 7, 13, 19, 25, 31, 37, 43, 49, 55, 61, 67, 73, 79)
+	timestamp = list(1, 7, 13, 19, 25, 31, 37, 43, 49, 55, 61, 67, 73, 79, 85, 91)
 
 /obj/item/tape/fixer/medicine
 	name = "Basics of Medicine"

@@ -806,7 +806,7 @@
 	dir = 8;
 	color = "#f52047"
 	},
-/turf/open/floor/engine/hull,
+/turf/open/floor/plasteel/stairs,
 /area/city/house)
 "dy" = (
 /obj/structure/table/greyscale,
@@ -4125,7 +4125,7 @@
 /obj/effect/turf_decal/arrows{
 	dir = 1
 	},
-/turf/open/floor/engine/hull,
+/turf/open/floor/plasteel/stairs,
 /area/city/house)
 "qV" = (
 /obj/structure/rack,
@@ -4625,7 +4625,7 @@
 	dir = 8;
 	color = "#f52047"
 	},
-/turf/open/floor/engine/hull,
+/turf/open/floor/plasteel/stairs,
 /area/city/house)
 "tp" = (
 /obj/structure/railing{
@@ -4803,7 +4803,7 @@
 	dir = 4;
 	color = "#f52047"
 	},
-/turf/open/floor/engine/hull,
+/turf/open/floor/plasteel/stairs,
 /area/city/house)
 "tX" = (
 /obj/structure/table/wood,
@@ -4912,7 +4912,7 @@
 	name = "Outskirts Lockdown Button";
 	pixel_x = 32
 	},
-/turf/open/floor/engine/hull,
+/turf/open/floor/plasteel/stairs,
 /area/city/house)
 "uu" = (
 /obj/structure/table/reinforced,
@@ -4974,8 +4974,7 @@
 /area/city/backstreets_alley)
 "uH" = (
 /obj/machinery/door/airlock/grunge{
-	name = "storage";
-	req_access_txt = "28"
+	name = "storage"
 	},
 /turf/open/floor/plasteel,
 /area/city/house)
@@ -7211,6 +7210,12 @@
 	color = "#b5b5b5"
 	},
 /area/city/backstreets_alley)
+"EE" = (
+/obj/machinery/door/airlock/grunge{
+	name = "storage"
+	},
+/turf/closed/indestructible/fakeglass,
+/area/city/house)
 "EI" = (
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/effect/decal/cleanable/dirt/dust,
@@ -7782,7 +7787,7 @@
 /turf/open/floor/carpet/stellar,
 /area/city/backstreets_alley)
 "Hz" = (
-/turf/open/floor/engine/hull,
+/turf/open/floor/plasteel/stairs,
 /area/city/house)
 "HA" = (
 /obj/structure/railing{
@@ -8505,7 +8510,7 @@
 	dir = 4;
 	color = "#f52047"
 	},
-/turf/open/floor/engine/hull,
+/turf/open/floor/plasteel/stairs,
 /area/city/house)
 "Ld" = (
 /obj/item/toy/plush/slimeplushie,
@@ -8989,7 +8994,7 @@
 /obj/effect/turf_decal/arrows{
 	dir = 1
 	},
-/turf/open/floor/engine/hull,
+/turf/open/floor/plasteel/stairs,
 /area/city/house)
 "Nf" = (
 /obj/effect/turf_decal/box/red,
@@ -9113,8 +9118,7 @@
 /area/city/backstreets_alley)
 "NK" = (
 /obj/machinery/door/airlock/wood{
-	name = "workshop fixer access";
-	req_access_txt = "11"
+	name = "workshop fixer access"
 	},
 /turf/open/floor/facility/dark,
 /area/city/house)
@@ -46503,7 +46507,7 @@ Pt
 Xt
 Xt
 Xt
-IH
+EE
 Hm
 Hm
 Hm
