@@ -180,6 +180,11 @@
 /mob/living/simple_animal/ui_npc/mailman
 	var/parcel_deliveries = list()
 	var/item_deliveries = list()
+	var/blood_resistance = 250
+	name = "Eric T."
+	desc = "A fancy looking fellow wearing a mask, they look relaxed right now."
+	health = 1000
+	maxHealth = 1000
 	portrait = "erik_bloodfiend_zoom.png"
 	start_scene_id = "intro"
 
@@ -270,6 +275,17 @@
 					"next_scene" = "bloodfiend_1",
 					"min_rep" = 0,
 					"proc_callback" = ""),
+				"arrival" = list(
+					"Text" = "“Why are you here?”",
+					"next_scene" = "arrival_1",
+					"min_rep" = 0,
+					"proc_callback" = ""),
+				"who" = list(
+					"Text" = "“Who are you?”",
+					"next_scene" = "who_1",
+					"min_rep" = 0,
+					"proc_callback" = ""),
+
 				)
 			),
 //Dialogue about getting a contract
@@ -401,8 +417,59 @@
 					"proc_callback" = ""),
 				)
 			),
+//Dialogue about them arriving here.
+		"arrival_1" = list(
+			"text" = "I guess it must be a bit surprising to see me here, with me arriving without much of an announcement.",
+			"actions" = list(
+				"..." = list(
+					"Text" = "...",
+					"next_scene" = "arrival_2",
+					"min_rep" = 0,
+					"proc_callback" = ""),
+				)
+			),
+		"arrival_2" = list(
+			"text" = "Higher up wanted some more information on how well the clinc is doing in this nest. So the offered another job to me to watch over this clinc.",
+			"actions" = list(
+				"..." = list(
+					"Text" = "...",
+					"next_scene" = "arrival_3",
+					"min_rep" = 0,
+					"proc_callback" = ""),
+				)
+			),
+		"arrival_3" = list(
+			"text" = "It pays quite well, and I basically don't need to do anything other then watch over you.",
+			"actions" = list(
+				"..." = list(
+					"Text" = "...",
+					"next_scene" = "main_screen",
+					"min_rep" = 0,
+					"proc_callback" = ""),
+				)
+			),
+//Dialogue about who they are.
+		"who_1" = list(
+			"text" = "Oh right, I still haven't made an announcement of who I am.",
+			"actions" = list(
+				"..." = list(
+					"Text" = "...",
+					"next_scene" = "arrival_2",
+					"min_rep" = 0,
+					"proc_callback" = ""),
+				)
+			),
 
 	))
+
+/mob/living/simple_animal/ui_npc/mailman/adjustHealth(amount, updating_health = TRUE, forced = FALSE)
+	if (amount > 0)
+		amount = amount - blood_resistance
+		if (amount < 0)
+			amount = 0
+	. = ..()
+	if (amount == 0)
+		new /obj/effect/temp_visual/blood_shield(src.loc)
 
 /mob/living/simple_animal/ui_npc/mailman/proc/OrderParcel()
 	var/door = pick(GLOB.delivery_doors)
@@ -453,3 +520,13 @@
 			if (U == user)
 				return FALSE
 	return TRUE
+
+/obj/effect/temp_visual/blood_shield
+	name = "blood shield"
+	desc = "A shimmering forcefield protecting the bloodfiend."
+	icon = 'icons/effects/cult_effects.dmi'
+	icon_state = "shield-cult"
+	layer = FLY_LAYER
+	light_system = MOVABLE_LIGHT
+	light_range = 2
+	duration = 6
