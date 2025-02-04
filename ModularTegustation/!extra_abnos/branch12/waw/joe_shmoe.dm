@@ -1,9 +1,9 @@
 /mob/living/simple_animal/hostile/abnormality/joe_shmoe
 	name = "Joe Shmoe"
 	desc = "It's a regular dummy with straw poking out of it."
-	icon = 'ModularTegustation/Teguicons/branch12/32x32.dmi'
-	icon_state = "joe"
-	icon_living = "joe"
+	icon = 'ModularTegustation/Teguicons/branch12/joe.dmi'
+	icon_state = "joe_1"
+	icon_living = "joe_1"
 	blood_volume = 0
 	threat_level = WAW_LEVEL
 	start_qliphoth = 4
@@ -27,6 +27,11 @@
 
 	var/list/joelist = list()
 	var/mob/living/carbon/human/marked
+
+/mob/living/simple_animal/hostile/abnormality/joe_shmoe/Initialize()
+	. = ..()
+	if(prob(10))
+		icon_state = "joe_[rand(1,12)]"
 
 /mob/living/simple_animal/hostile/abnormality/joe_shmoe/SuccessEffect(mob/living/carbon/human/user, work_type, pe)
 	. = ..()
@@ -68,9 +73,9 @@
 /mob/living/simple_animal/hostile/subjoe
 	name = "Joe Shmoe"
 	desc = "It's a regular dummy with straw poking out of it."
-	icon = 'ModularTegustation/Teguicons/branch12/32x32.dmi'
-	icon_state = "joe"
-	icon_living = "joe"
+	icon = 'ModularTegustation/Teguicons/branch12/joe.dmi'
+	icon_state = "joe_1"
+	icon_living = "joe_1"
 	del_on_death = TRUE
 	maxHealth = 800
 	health = 800
@@ -93,6 +98,14 @@
 	can_patrol = TRUE
 
 	var/mob/living/simple_animal/hostile/abnormality/joe_shmoe/masterjoe
+
+//Random sprite
+/mob/living/simple_animal/hostile/abnormality/joe_shmoe/Initialize()
+	. = ..()
+	if(prob(10))
+		icon_state = "joe_[rand(1,12)]"
+	if(prob(1))
+		icon_state = "joe_13"
 
 /mob/living/simple_animal/hostile/subjoe/Life()
 	. = ..()
