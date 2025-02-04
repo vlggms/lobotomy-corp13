@@ -8,6 +8,7 @@
 	density = FALSE
 
 /obj/structure/toolabnormality/mislocation/Crossed(atom/movable/AM, oldloc, force_stop = 0)
+	..()
 	if(!ishuman(AM))
 		return
 
@@ -17,6 +18,7 @@
 	ADD_TRAIT(user, TRAIT_NOSOFTCRIT, "memento_mori")
 
 /obj/structure/toolabnormality/mislocation/Uncrossed(atom/movable/AM, oldloc, force_stop = 0)
+	..()
 	if(!ishuman(AM))
 		return
 	var/mob/living/carbon/human/user = AM
