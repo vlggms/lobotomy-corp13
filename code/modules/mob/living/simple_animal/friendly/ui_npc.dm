@@ -267,12 +267,7 @@
 					"proc_callback" = ""),
 				"bloodfiend?" = list(
 					"Text" = "“You are a bloodfiend?”",
-					"next_scene" = "main_screen",
-					"min_rep" = 0,
-					"proc_callback" = ""),
-				"clinc" = list(
-					"Text" = "“What kinds of services do you offer?”",
-					"next_scene" = "main_screen",
+					"next_scene" = "bloodfiend_1",
 					"min_rep" = 0,
 					"proc_callback" = ""),
 				)
@@ -322,18 +317,22 @@
 			"text" = "So, Are willing to take on some orders?",
 			"actions" = list(
 				"parcel" = list(
-					"Text" = "Accept the Job",
+					"Text" = "“Accept the Job”",
 					"next_scene" = "job_5",
 					"min_rep" = 20,
 					"enabled_callback" = CALLBACK(src, PROC_REF(CheckParcelDelivery)),
-					"proc_callback" = CALLBACK(src, PROC_REF(OrderParcel))
-					),
-				"good" = list(
-					"Text" = "“Good!”",
-					"next_scene" = "intro",
+					"proc_callback" = CALLBACK(src, PROC_REF(OrderParcel))),
+				"lost_parcel" = list(
+					"Text" = "“About that...”",
+					"next_scene" = "job_6",
 					"min_rep" = 20,
 					"enabled_callback" = CALLBACK(src, PROC_REF(CheckItemDelivery)),
 					"proc_callback" = CALLBACK(src, PROC_REF(OrderItem), /obj/item/food/pizza/margherita, 30)),
+				"later" = list(
+					"Text" = "“Maybe not right now.”",
+					"next_scene" = "main_screen",
+					"min_rep" = 0,
+					"proc_callback" = ""),
 				)
 			),
 		"job_5" = list(
@@ -346,13 +345,58 @@
 					"proc_callback" = ""),
 				)
 			),
-//Dialogue about them being a bloodfiend
-		"job_1" = list(
-			"text" = "Well, Lucky you. Your talking to the manager of this establishment.",
+		"job_6" = list(
+			"text" = "Lost it? *sighs*, I guess I should of expected this would happen eventually... Just pay 400 ahn to make up for the lost parcel.",
+			"actions" = list(
+				"payback" = list(
+					"Text" = "Hand over 400 ahn",
+					"next_scene" = "main_screen",
+					"min_rep" = 0,
+					"proc_callback" = ""),
+				"backaway" = list(
+					"Text" = "“I will get that money soon...”",
+					"next_scene" = "main_screen",
+					"min_rep" = 0,
+					"proc_callback" = ""),
+				)
+			),
+		"job_7" = list(
+			"text" = "Very well, Thanks for paying back your loss, please don't lose it again.",
 			"actions" = list(
 				"..." = list(
 					"Text" = "...",
-					"next_scene" = "job_2",
+					"next_scene" = "job",
+					"min_rep" = 0,
+					"proc_callback" = ""),
+				)
+			),
+//Dialogue about them being a bloodfiend
+		"bloodfiend_1" = list(
+			"text" = "Yep, I am one of those “big bad bloodfiends” you must have heard of.",
+			"actions" = list(
+				"..." = list(
+					"Text" = "...",
+					"next_scene" = "bloodfiend_2",
+					"min_rep" = 0,
+					"proc_callback" = ""),
+				)
+			),
+		"bloodfiend_2" = list(
+			"text" = "If you are worried about me, bringing harm to you in any way, you can drop that worry.",
+			"actions" = list(
+				"..." = list(
+					"Text" = "...",
+					"next_scene" = "bloodfiend_3",
+					"min_rep" = 0,
+					"proc_callback" = ""),
+				)
+			),
+		"bloodfiend_3" = list(
+			"text" = "I am paid well at this company, and if I ever happend to need a burst of blood there plenty of bodies in the back alley.",
+			"actions" = list(
+				"..." = list(
+					"Text" = "...",
+					"next_scene" = "main_screen",
 					"min_rep" = 0,
 					"proc_callback" = ""),
 				)
