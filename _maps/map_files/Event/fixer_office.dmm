@@ -1,13 +1,4 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
-"ab" = (
-/obj/machinery/light{
-	dir = 1
-	},
-/obj/effect/turf_decal/siding/wideplating/light{
-	dir = 1
-	},
-/turf/open/floor/mineral/titanium/tiled/white,
-/area/city/house)
 "ae" = (
 /obj/effect/turf_decal/siding/thinplating/dark/corner{
 	dir = 8
@@ -286,9 +277,6 @@
 /area/city/backstreets_alley)
 "bm" = (
 /obj/machinery/light{
-	dir = 4
-	},
-/obj/effect/turf_decal/siding/wideplating/light{
 	dir = 4
 	},
 /turf/open/floor/mineral/titanium/tiled/white,
@@ -3770,7 +3758,6 @@
 /obj/structure/chair/greyscale{
 	dir = 1
 	},
-/obj/effect/turf_decal/siding/wideplating/light,
 /turf/open/floor/mineral/titanium/tiled/white,
 /area/city/house)
 "pq" = (
@@ -5318,21 +5305,6 @@
 /obj/item/reagent_containers/borghypo/borgshaker,
 /turf/open/floor/plating,
 /area/city/backstreets_alley)
-"wg" = (
-/obj/machinery/light{
-	dir = 8
-	},
-/obj/effect/turf_decal/siding/wideplating/light{
-	dir = 10
-	},
-/turf/open/floor/mineral/titanium/tiled/white,
-/area/city/house)
-"wi" = (
-/obj/effect/turf_decal/siding/wideplating/light{
-	dir = 1
-	},
-/turf/open/floor/mineral/titanium/tiled/white,
-/area/city/house)
 "wk" = (
 /obj/effect/turf_decal/siding/thinplating/dark/corner{
 	dir = 4
@@ -5858,7 +5830,6 @@
 /obj/structure/chair/greyscale{
 	dir = 1
 	},
-/obj/effect/turf_decal/siding/wideplating/light,
 /turf/open/floor/mineral/titanium/tiled/white,
 /area/city/house)
 "yA" = (
@@ -7372,9 +7343,6 @@
 	dir = 1
 	},
 /obj/structure/chair/greyscale,
-/obj/effect/turf_decal/siding/wideplating/light{
-	dir = 1
-	},
 /turf/open/floor/mineral/titanium/tiled/white,
 /area/city/house)
 "Fx" = (
@@ -7408,9 +7376,6 @@
 "FF" = (
 /obj/machinery/light{
 	dir = 8
-	},
-/obj/effect/turf_decal/siding/wideplating/light{
-	dir = 9
 	},
 /turf/open/floor/mineral/titanium/tiled/white,
 /area/city/house)
@@ -7911,7 +7876,6 @@
 /area/city/backstreets_alley)
 "HV" = (
 /obj/machinery/light,
-/obj/effect/turf_decal/siding/wideplating/light,
 /turf/open/floor/mineral/titanium/tiled/white,
 /area/city/house)
 "Ia" = (
@@ -8824,17 +8788,6 @@
 /obj/structure/lootcrate/backstreets,
 /turf/open/floor/plating/beach/sand,
 /area/city/backstreets_alley)
-"MA" = (
-/mob/living/simple_animal/hostile/debugdummy{
-	name = "Hana Training Dummy";
-	desc = "A dummy made by the hana association, it is able to record the damage it takes."
-	},
-/obj/effect/turf_decal/box,
-/obj/effect/turf_decal/siding/wideplating/light{
-	dir = 6
-	},
-/turf/open/floor/mineral/titanium/tiled/white,
-/area/city/house)
 "MF" = (
 /obj/structure/railing,
 /obj/effect/turf_decal/siding/wood{
@@ -9950,17 +9903,6 @@
 	name = "shipping container"
 	},
 /area/city/backstreets_alley)
-"RE" = (
-/mob/living/simple_animal/hostile/debugdummy{
-	name = "Hana Training Dummy";
-	desc = "A dummy made by the hana association, it is able to record the damage it takes."
-	},
-/obj/effect/turf_decal/box,
-/obj/effect/turf_decal/siding/wideplating/light{
-	dir = 5
-	},
-/turf/open/floor/mineral/titanium/tiled/white,
-/area/city/house)
 "RI" = (
 /obj/structure/rack,
 /obj/item/ego_weapon/city/mariachi,
@@ -9987,12 +9929,6 @@
 	},
 /turf/open/floor/plating/ashplanet/wateryrock,
 /area/city/backstreets_alley)
-"RL" = (
-/obj/effect/turf_decal/siding/wideplating/light{
-	dir = 4
-	},
-/turf/open/floor/mineral/titanium/tiled/white,
-/area/city/house)
 "RP" = (
 /obj/effect/turf_decal/siding/wideplating/dark{
 	dir = 4
@@ -10202,9 +10138,6 @@
 /area/city/backstreets_alley)
 "SP" = (
 /obj/structure/chair/greyscale,
-/obj/effect/turf_decal/siding/wideplating/light{
-	dir = 9
-	},
 /turf/open/floor/mineral/titanium/tiled/white,
 /area/city/house)
 "SR" = (
@@ -10389,10 +10322,6 @@
 	},
 /turf/open/floor/grass,
 /area/city/backstreets_alley)
-"TQ" = (
-/obj/effect/turf_decal/siding/wideplating/light,
-/turf/open/floor/mineral/titanium/tiled/white,
-/area/city/house)
 "TR" = (
 /obj/structure/chair/plastic,
 /turf/open/floor/plating/beach/sand,
@@ -10692,15 +10621,6 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/wood,
 /area/city/backstreets_alley)
-"Vm" = (
-/obj/structure/chair/greyscale{
-	dir = 1
-	},
-/obj/effect/turf_decal/siding/wideplating/light{
-	dir = 10
-	},
-/turf/open/floor/mineral/titanium/tiled/white,
-/area/city/house)
 "Vn" = (
 /turf/open/floor/facility{
 	color = "#c4c4c4"
@@ -10744,13 +10664,6 @@
 	color = "#b5b5b5"
 	},
 /area/city/backstreets_alley)
-"VK" = (
-/obj/structure/chair/greyscale,
-/obj/effect/turf_decal/siding/wideplating/light{
-	dir = 1
-	},
-/turf/open/floor/mineral/titanium/tiled/white,
-/area/city/house)
 "VO" = (
 /obj/machinery/light{
 	dir = 4
@@ -54744,7 +54657,7 @@ ca
 ca
 FF
 fP
-wg
+FF
 ca
 ca
 ca
@@ -55003,7 +54916,7 @@ fP
 fP
 fP
 fP
-Vm
+po
 yN
 Oq
 Oq
@@ -55511,7 +55424,7 @@ Oq
 Oq
 Oq
 ca
-VK
+SP
 fP
 fP
 fP
@@ -55768,13 +55681,13 @@ Oq
 Oq
 Oq
 DZ
-wi
+fP
 fP
 fP
 LT
 fP
 fP
-TQ
+fP
 ca
 Oq
 Oq
@@ -56025,7 +55938,7 @@ Oq
 Oq
 Oq
 ca
-ab
+Hp
 fP
 fP
 fP
@@ -56282,13 +56195,13 @@ Oq
 Oq
 Oq
 ca
-RE
-RL
+LT
+fP
 bm
 fP
 bm
-RL
-MA
+fP
+LT
 ca
 Oq
 Oq
