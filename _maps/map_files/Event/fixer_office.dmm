@@ -3444,6 +3444,9 @@
 	color = "#8f8f8f"
 	},
 /area/city/backstreets_alley)
+"nS" = (
+/turf/open/floor/engine/air,
+/area/city/house)
 "nT" = (
 /obj/structure/railing{
 	desc = "Indestructible railing created in a vain attempt of fool-proofing the wing's workplace.";
@@ -4381,12 +4384,6 @@
 /obj/effect/decal/cleanable/dirt/dust,
 /turf/open/floor/plating,
 /area/city/backstreets_alley)
-"se" = (
-/obj/machinery/door/airlock/grunge{
-	name = "storage"
-	},
-/turf/closed/indestructible/fakeglass,
-/area/city/house)
 "sf" = (
 /turf/open/water/deep/saltwater{
 	icon_state = "darkbluewater1"
@@ -4663,6 +4660,10 @@
 	},
 /turf/open/floor/plating,
 /area/city/backstreets_alley)
+"tt" = (
+/obj/effect/wall_vent,
+/turf/closed/indestructible/reinforced,
+/area/city/house)
 "tu" = (
 /obj/structure/railing{
 	desc = "Indestructible railing created in a vain attempt of fool-proofing the wing's workplace.";
@@ -5414,6 +5415,12 @@
 	color = "#8f8f8f"
 	},
 /area/city/backstreets_alley)
+"wv" = (
+/obj/machinery/door/airlock/grunge{
+	name = "storage"
+	},
+/turf/closed/indestructible/fakeglass,
+/area/city/house)
 "wx" = (
 /obj/structure/railing{
 	desc = "Indestructible railing created in a vain attempt of fool-proofing the wing's workplace.";
@@ -7120,9 +7127,6 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/wood,
 /area/city/backstreets_alley)
-"Ee" = (
-/turf/open/floor/engine/air,
-/area/city/house)
 "Eg" = (
 /obj/structure/chair/sofa/left{
 	dir = 1
@@ -43681,7 +43685,7 @@ Oq
 Oq
 ZY
 ZY
-ZY
+tt
 ZY
 ZY
 ZY
@@ -46502,7 +46506,7 @@ Oq
 Oq
 Oq
 Oq
-ZY
+tt
 Bg
 UQ
 UQ
@@ -46518,7 +46522,7 @@ Pt
 Xt
 Xt
 Xt
-se
+wv
 Hm
 Hm
 Hm
@@ -48049,7 +48053,7 @@ Hz
 Hz
 Hz
 Hz
-Ee
+nS
 QG
 Pt
 Pt
@@ -48557,7 +48561,7 @@ Oq
 Oq
 ZY
 ZY
-ZY
+tt
 ZY
 zH
 ZY
@@ -49335,7 +49339,7 @@ Oq
 Oq
 Oq
 Oq
-ZY
+tt
 Ns
 ce
 cS
@@ -49357,7 +49361,7 @@ ZY
 ZY
 ZY
 ZY
-ZY
+tt
 ZY
 zr
 zr
@@ -49609,7 +49613,7 @@ PJ
 PJ
 PJ
 lr
-ZY
+tt
 Xn
 ip
 ZY
@@ -49858,7 +49862,7 @@ fK
 ZY
 Pt
 Pt
-ZY
+tt
 jf
 ZY
 kC
@@ -50106,7 +50110,7 @@ Oq
 Oq
 ZY
 ZY
-ZY
+tt
 ZY
 ZY
 ZY
@@ -50900,7 +50904,7 @@ Ss
 Bx
 Ss
 Ss
-ZY
+tt
 Oq
 Oq
 Oq
@@ -52159,7 +52163,7 @@ Oq
 Oq
 Oq
 Oq
-ZY
+tt
 FZ
 Pt
 xw
@@ -53707,7 +53711,7 @@ Oq
 Oq
 Oq
 ZY
-ZY
+tt
 ZY
 ZY
 ZY
@@ -54223,12 +54227,12 @@ Oq
 Oq
 Oq
 Oq
-ZY
+tt
 lp
 lp
 lp
 ZY
-ZY
+tt
 ZY
 ZY
 ZY
