@@ -806,7 +806,7 @@
 	dir = 8;
 	color = "#f52047"
 	},
-/turf/open/floor/engine/air,
+/turf/open/floor/mineral/titanium/tiled,
 /area/city/house)
 "dy" = (
 /obj/structure/table/greyscale,
@@ -3444,9 +3444,6 @@
 	color = "#8f8f8f"
 	},
 /area/city/backstreets_alley)
-"nS" = (
-/turf/open/floor/engine/air,
-/area/city/house)
 "nT" = (
 /obj/structure/railing{
 	desc = "Indestructible railing created in a vain attempt of fool-proofing the wing's workplace.";
@@ -4810,7 +4807,7 @@
 	dir = 4;
 	color = "#f52047"
 	},
-/turf/open/floor/engine/air,
+/turf/open/floor/mineral/titanium/tiled,
 /area/city/house)
 "tX" = (
 /obj/structure/table/wood,
@@ -7625,7 +7622,7 @@
 	id = "outskirtslockdown";
 	name = "Outskirts Lockdown Door"
 	},
-/turf/open/floor/engine/air,
+/turf/open/floor/mineral/titanium/tiled,
 /area/city/house)
 "GF" = (
 /obj/machinery/light,
@@ -48053,7 +48050,7 @@ Hz
 Hz
 Hz
 Hz
-nS
+Ss
 QG
 Pt
 Pt
@@ -48561,7 +48558,7 @@ Oq
 Oq
 ZY
 ZY
-tt
+ZY
 ZY
 zH
 ZY
