@@ -38,7 +38,6 @@
 
 
 /mob/living/simple_animal/hostile/abnormality/rock/BreachEffect(mob/living/carbon/human/user, work_type, pe, work_time)
-	..()
 	//make it invisible
 	icon_state = null
 	name = ""
