@@ -9,7 +9,7 @@ export class TypingScroller extends Component {
   }
 
   componentDidMount() {
-    const { text, speed = 100, onTypingStart, onTypingEnd } = this.props;
+    const { text, speed = 250, onTypingStart, onTypingEnd } = this.props;
     let i = 0;
     if (text && text.length > 0 && onTypingStart) {
       onTypingStart();
