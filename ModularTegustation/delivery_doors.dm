@@ -31,7 +31,7 @@
 		// Deliver the item.
 		var/obj/item/delivery_parcel/D = I
 		if(D.address == address)
-			Reward(user, D, 150 + rand(-1,20))
+			Reward(user, D, 300 + rand(-1,20))
 		SEND_SIGNAL(src, COMSIG_PARCEL_DELIVERED, user)
 		return
 	return ..()
