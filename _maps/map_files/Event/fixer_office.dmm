@@ -806,7 +806,7 @@
 	dir = 8;
 	color = "#f52047"
 	},
-/turf/open/floor/plasteel/stairs,
+/turf/open/floor/engine/air,
 /area/city/house)
 "dy" = (
 /obj/structure/table/greyscale,
@@ -4381,6 +4381,12 @@
 /obj/effect/decal/cleanable/dirt/dust,
 /turf/open/floor/plating,
 /area/city/backstreets_alley)
+"se" = (
+/obj/machinery/door/airlock/grunge{
+	name = "storage"
+	},
+/turf/closed/indestructible/fakeglass,
+/area/city/house)
 "sf" = (
 /turf/open/water/deep/saltwater{
 	icon_state = "darkbluewater1"
@@ -4803,7 +4809,7 @@
 	dir = 4;
 	color = "#f52047"
 	},
-/turf/open/floor/plasteel/stairs,
+/turf/open/floor/engine/air,
 /area/city/house)
 "tX" = (
 /obj/structure/table/wood,
@@ -4859,8 +4865,12 @@
 "uj" = (
 /obj/effect/turf_decal/trimline/red/filled/line,
 /obj/structure/closet/crate,
-/obj/item/book/granter/crafting_recipe/carnival/weaving_armor,
-/obj/item/book/granter/crafting_recipe/carnival/weaving_armor,
+/obj/item/book/granter/crafting_recipe/carnival/weaving_armor{
+	carnival_only = 0
+	},
+/obj/item/book/granter/crafting_recipe/carnival/weaving_armor{
+	carnival_only = 0
+	},
 /turf/open/floor/facility/dark,
 /area/city/house)
 "uk" = (
@@ -7110,6 +7120,9 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/wood,
 /area/city/backstreets_alley)
+"Ee" = (
+/turf/open/floor/engine/air,
+/area/city/house)
 "Eg" = (
 /obj/structure/chair/sofa/left{
 	dir = 1
@@ -7210,12 +7223,6 @@
 	color = "#b5b5b5"
 	},
 /area/city/backstreets_alley)
-"EE" = (
-/obj/machinery/door/airlock/grunge{
-	name = "storage"
-	},
-/turf/closed/indestructible/fakeglass,
-/area/city/house)
 "EI" = (
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/effect/decal/cleanable/dirt/dust,
@@ -7614,7 +7621,7 @@
 	id = "outskirtslockdown";
 	name = "Outskirts Lockdown Door"
 	},
-/turf/open/floor/engine/hull,
+/turf/open/floor/engine/air,
 /area/city/house)
 "GF" = (
 /obj/machinery/light,
@@ -9399,8 +9406,12 @@
 	dir = 1
 	},
 /obj/structure/closet/crate,
-/obj/item/book/granter/crafting_recipe/carnival/human_replacements,
-/obj/item/book/granter/crafting_recipe/carnival/weaving_basic_converstion,
+/obj/item/book/granter/crafting_recipe/carnival/human_replacements{
+	carnival_only = 0
+	},
+/obj/item/book/granter/crafting_recipe/carnival/weaving_basic_converstion{
+	carnival_only = 0
+	},
 /turf/open/floor/facility/dark,
 /area/city/house)
 "Pg" = (
@@ -46507,7 +46518,7 @@ Pt
 Xt
 Xt
 Xt
-EE
+se
 Hm
 Hm
 Hm
@@ -48038,7 +48049,7 @@ Hz
 Hz
 Hz
 Hz
-Hz
+Ee
 QG
 Pt
 Pt
