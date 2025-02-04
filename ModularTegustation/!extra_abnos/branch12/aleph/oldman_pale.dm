@@ -13,7 +13,7 @@
 	stat_attack = HARD_CRIT
 	faction = list("hostile")
 	can_breach = FALSE
-	threat_level = TETH_LEVEL
+	threat_level = ALEPH_LEVEL
 	start_qliphoth = 4
 	work_chances = list(
 		ABNORMALITY_WORK_INSTINCT = list(0, 0, 0, 20, 30),
