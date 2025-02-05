@@ -25,7 +25,7 @@ Any attempt to code risk class armor will result in a 10 day Github ban.*/
 	desc = "The archetype was already charred from the moment of extraction. \
 	Although the exterior is scorched, it has no adverse effects on the E.G.O’s performance."
 	icon_state = "match"
-	armor = list(RED_DAMAGE = 40, WHITE_DAMAGE = -20, BLACK_DAMAGE = -20, PALE_DAMAGE = 0) // 20
+	armor = list(RED_DAMAGE = 40, WHITE_DAMAGE = -20, BLACK_DAMAGE = -20, PALE_DAMAGE = 0, FIRE = 40) // 20
 
 /obj/item/clothing/suit/armor/ego_gear/teth/fragment
 	name = "fragments from somewhere"
@@ -206,7 +206,7 @@ Any attempt to code risk class armor will result in a 10 day Github ban.*/
 	name = "capote"
 	desc = "It suffered for such a long time... Unable to do anything about the raging thirst, the flesh endlessly burning and searing."
 	icon_state = "capote"
-	armor = list(RED_DAMAGE = 40, WHITE_DAMAGE = -30, BLACK_DAMAGE = -10, PALE_DAMAGE = 0) // 0
+	armor = list(RED_DAMAGE = 40, WHITE_DAMAGE = -30, BLACK_DAMAGE = -10, PALE_DAMAGE = 0, FIRE = 40) // 0
 
 /obj/item/clothing/suit/armor/ego_gear/teth/fourleaf_clover
 	name = "four-leaf clover"

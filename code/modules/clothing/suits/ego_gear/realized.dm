@@ -149,7 +149,7 @@ No Ability	250
 	name = "ember matchlight"
 	desc = "If I must perish, then I'll make you meet the same fate."
 	icon_state = "ember_matchlight"
-	armor = list(RED_DAMAGE = 80, WHITE_DAMAGE = 40, BLACK_DAMAGE = 50, PALE_DAMAGE = 60)		//Melee
+	armor = list(RED_DAMAGE = 80, WHITE_DAMAGE = 40, BLACK_DAMAGE = 50, PALE_DAMAGE = 60, FIRE = 80)		//Melee
 	realized_ability = /obj/effect/proc_holder/ability/fire_explosion
 
 /obj/item/clothing/suit/armor/ego_gear/realization/sakura_bloom
@@ -511,7 +511,7 @@ No Ability	250
 	name = "Scorching Desperation"
 	desc = "Those feelings only become more dull over time."
 	icon_state = "desperation"
-	armor = list(RED_DAMAGE = 70, WHITE_DAMAGE = 40, BLACK_DAMAGE = 60, PALE_DAMAGE = 60)
+	armor = list(RED_DAMAGE = 70, WHITE_DAMAGE = 40, BLACK_DAMAGE = 60, PALE_DAMAGE = 60, FIRE = 90)
 	realized_ability = /obj/effect/proc_holder/ability/overheat
 
 /obj/item/clothing/suit/armor/ego_gear/realization/gasharpoon

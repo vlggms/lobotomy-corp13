@@ -257,7 +257,7 @@ Any attempt to code risk class armor will result in a 10 day Github ban.*/
 	desc = "Bright as the abnormality it was extracted from, but somehow does not give off any heat. \
 			Maybe keep it away from the cold..."
 	icon_state = "featherofhonor"
-	armor = list(RED_DAMAGE = 50, WHITE_DAMAGE = 50, BLACK_DAMAGE = 30, PALE_DAMAGE = 10) //140
+	armor = list(RED_DAMAGE = 50, WHITE_DAMAGE = 50, BLACK_DAMAGE = 30, PALE_DAMAGE = 10, FIRE = 60) //140
 	attribute_requirements = list(
 							FORTITUDE_ATTRIBUTE = 80,
 							)
@@ -303,7 +303,7 @@ Any attempt to code risk class armor will result in a 10 day Github ban.*/
 	name = "pharaoh"
 	desc = "What creature walks on four legs in the morning, two legs at noon, and three in the evening?"
 	icon_state = "pharaoh"
-	armor = list(RED_DAMAGE = 30, WHITE_DAMAGE = 60, BLACK_DAMAGE = 50, PALE_DAMAGE = 0) // 140
+	armor = list(RED_DAMAGE = 30, WHITE_DAMAGE = 60, BLACK_DAMAGE = 50, PALE_DAMAGE = 0, FIRE = 40) // 140
 	attribute_requirements = list(
 							PRUDENCE_ATTRIBUTE = 80
 							)

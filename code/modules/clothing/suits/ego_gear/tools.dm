@@ -79,7 +79,7 @@
 	desc = "Company P wished to construct the safest place on Earth. However, this shelter, while perfectly safe on the inside, \
 	alters the reality of the outside to be even more hopeless. It literally makes itself into \"the safest place on Earth.\""
 	icon_state = "shelter"
-	armor = list(RED_DAMAGE = 30, WHITE_DAMAGE = 20, BLACK_DAMAGE = 0, PALE_DAMAGE = 20) // 70
+	armor = list(RED_DAMAGE = 30, WHITE_DAMAGE = 20, BLACK_DAMAGE = 0, PALE_DAMAGE = 20, FIRE = 50) // 70
 	attribute_requirements = list(
 							FORTITUDE_ATTRIBUTE = 40
 							)
