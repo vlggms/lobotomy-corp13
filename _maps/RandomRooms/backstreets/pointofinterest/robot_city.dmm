@@ -210,6 +210,12 @@
 	},
 /turf/open/floor/engine,
 /area/city/backstreets_room)
+"ou" = (
+/obj/machinery/porta_turret/syndicate/energy{
+	dir = 10
+	},
+/turf/open/floor/engine,
+/area/city/backstreets_room)
 "oG" = (
 /obj/structure/table/reinforced,
 /obj/item/gun/energy/e_gun/rabbitdash,
@@ -436,7 +442,10 @@
 /turf/open/floor/plasteel/dark,
 /area/city/backstreets_room)
 "Be" = (
-/obj/machinery/porta_turret/syndicate/energy,
+/obj/machinery/porta_turret/syndicate/energy{
+	dir = 1;
+	on = 0
+	},
 /turf/open/floor/plasteel/dark,
 /area/city/backstreets_room)
 "BJ" = (
@@ -661,7 +670,9 @@
 /turf/open/floor/engine,
 /area/city/backstreets_room)
 "PC" = (
-/obj/machinery/porta_turret/syndicate/energy,
+/obj/machinery/porta_turret/syndicate/energy{
+	dir = 9
+	},
 /turf/open/floor/engine,
 /area/city/backstreets_room)
 "Qg" = (
@@ -1431,7 +1442,7 @@ Ej
 Zw
 Zw
 zZ
-PC
+ou
 Zw
 Zw
 PC
@@ -1463,7 +1474,7 @@ Zw
 Zw
 Zw
 zZ
-PC
+ou
 Zw
 Zw
 PC

@@ -6,16 +6,16 @@
 /obj/effect/spawner/lootdrop/garbage_spawner,
 /turf/open/floor/plating/asteroid/basalt,
 /area/city/backstreets_room)
-"x" = (
-/mob/living/simple_animal/hostile/humanoid/rat/hammer,
-/turf/open/floor/plating/asteroid/basalt,
-/area/city/backstreets_room)
 "C" = (
+/obj/structure/closet/crate/trashcart/filled,
 /obj/item/ego_weapon/city/rats/brick,
 /turf/open/floor/plating/asteroid/basalt,
 /area/city/backstreets_room)
 "M" = (
-/mob/living/simple_animal/hostile/humanoid/rat/zippy,
+/obj/structure/closet/crate/trashcart/filled,
+/obj/effect/spawner/scatter/rat_elite{
+	radius = 1
+	},
 /turf/open/floor/plating/asteroid/basalt,
 /area/city/backstreets_room)
 "P" = (
@@ -41,33 +41,33 @@ U
 t
 a
 t
-R
+C
 U
 "}
 (3,1,1) = {"
 P
-M
+a
 P
-R
+M
 U
 "}
 (4,1,1) = {"
 a
 a
 a
-C
+a
 U
 "}
 (5,1,1) = {"
 a
 t
 a
-R
+M
 U
 "}
 (6,1,1) = {"
 t
-x
+a
 P
 R
 U
