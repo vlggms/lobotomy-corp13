@@ -183,9 +183,10 @@
 /mob/living/simple_animal/ui_npc/mailman
 	var/parcel_deliveries = list()
 	var/item_deliveries = list()
+	var/ready_workers = list()
 	var/blood_resistance = 250
 	name = "Eric T."
-	desc = "A fancy looking fellow wearing a mask, they look relaxed right now."
+	desc = "A fancy looking fellow wearing a mask; they look relaxed right now."
 	health = 1000
 	maxHealth = 1000
 	portrait = "erik_bloodfiend_zoom.png"
@@ -205,12 +206,10 @@
 				"stare" = list(
 					"Text" = "*Stand here and stare at him*",
 					"next_scene" = "greeting2",
-					"min_rep" = 0,
 					"proc_callback" = ""),
 				"loud" = list(
 					"Text" = "“HELLO!!!”",
 					"next_scene" = "greeting3",
-					"min_rep" = 0,
 					"proc_callback" = ""),
 				)
 			),
@@ -220,7 +219,6 @@
 				"..." = list(
 					"Text" = "...",
 					"next_scene" = "main_screen",
-					"min_rep" = 0,
 					"proc_callback" = ""),
 				)
 			),
@@ -230,7 +228,6 @@
 				"..." = list(
 					"Text" = "...",
 					"next_scene" = "greeting2_2",
-					"min_rep" = 0,
 					"proc_callback" = ""),
 				)
 			),
@@ -240,7 +237,6 @@
 				"..." = list(
 					"Text" = "...",
 					"next_scene" = "main_screen",
-					"min_rep" = 0,
 					"proc_callback" = ""),
 				)
 			),
@@ -250,7 +246,6 @@
 				"..." = list(
 					"Text" = "...",
 					"next_scene" = "greeting3_2",
-					"min_rep" = 0,
 					"proc_callback" = ""),
 				)
 			),
@@ -260,33 +255,32 @@
 				"..." = list(
 					"Text" = "...",
 					"next_scene" = "main_screen",
-					"min_rep" = 0,
 					"proc_callback" = ""),
 				)
 			),
 //Main Screen
 		"main_screen" = list(
-			"text" = "Anyways, What are you looking for today at the Clinc?",
+			"text" = "Anyways, What are you looking for today at the Clinic?",
 			"actions" = list(
 				"jobs" = list(
 					"Text" = "“I am looking for a job!”",
 					"next_scene" = "job_1",
-					"min_rep" = 0,
-					"proc_callback" = ""),
+					"visible_callback" = CALLBACK(src, PROC_REF(SwapCheckWorker))),
+				"ready_jobs" = list(
+					"Text" = "“Ready to deliver!”",
+					"next_scene" = "job",
+					"visible_callback" = CALLBACK(src, PROC_REF(CheckWorker))),
 				"bloodfiend?" = list(
 					"Text" = "“You are a bloodfiend?”",
 					"next_scene" = "bloodfiend_1",
-					"min_rep" = 0,
 					"proc_callback" = ""),
 				"arrival" = list(
 					"Text" = "“Why are you here?”",
 					"next_scene" = "arrival_1",
-					"min_rep" = 0,
 					"proc_callback" = ""),
 				"who" = list(
 					"Text" = "“Who are you?”",
 					"next_scene" = "who_1",
-					"min_rep" = 0,
 					"proc_callback" = ""),
 
 				)
@@ -298,7 +292,6 @@
 				"..." = list(
 					"Text" = "...",
 					"next_scene" = "job_2",
-					"min_rep" = 0,
 					"proc_callback" = ""),
 				)
 			),
@@ -308,7 +301,6 @@
 				"..." = list(
 					"Text" = "...",
 					"next_scene" = "job_3",
-					"min_rep" = 0,
 					"proc_callback" = ""),
 				)
 			),
@@ -318,7 +310,6 @@
 				"..." = list(
 					"Text" = "...",
 					"next_scene" = "job_4",
-					"min_rep" = 0,
 					"proc_callback" = ""),
 				)
 			),
@@ -328,8 +319,7 @@
 				"..." = list(
 					"Text" = "...",
 					"next_scene" = "job",
-					"min_rep" = 0,
-					"proc_callback" = ""),
+					"proc_callback" = CALLBACK(src, PROC_REF(AddWorker))),
 				)
 			),
 		"job" = list(
@@ -338,20 +328,15 @@
 				"parcel" = list(
 					"Text" = "“Accept the Job”",
 					"next_scene" = "job_5",
-					"min_rep" = 20,
 					"enabled_callback" = CALLBACK(src, PROC_REF(CheckParcelDelivery)),
 					"proc_callback" = CALLBACK(src, PROC_REF(OrderParcel))),
 				"lost_parcel" = list(
 					"Text" = "“About that...”",
 					"next_scene" = "job_6",
-					"min_rep" = 20,
-					"visible_callback" = CALLBACK(src, PROC_REF(CheckItemDelivery)),
-					"proc_callback" = CALLBACK(src, PROC_REF(OrderItem), /obj/item/food/pizza/margherita, 30)),
+					"visible_callback" = CALLBACK(src, PROC_REF(SwapCheckParcelDelivery))),
 				"later" = list(
 					"Text" = "“Maybe not right now.”",
-					"next_scene" = "main_screen",
-					"min_rep" = 0,
-					"proc_callback" = ""),
+					"next_scene" = "main_screen"),
 				)
 			),
 		"job_5" = list(
@@ -360,7 +345,6 @@
 				"..." = list(
 					"Text" = "...",
 					"next_scene" = "main_screen",
-					"min_rep" = 0,
 					"proc_callback" = ""),
 				)
 			),
@@ -370,12 +354,10 @@
 				"payback" = list(
 					"Text" = "Hand over 400 ahn",
 					"next_scene" = "main_screen",
-					"min_rep" = 0,
 					"proc_callback" = ""),
 				"backaway" = list(
 					"Text" = "“I will get that money soon...”",
 					"next_scene" = "main_screen",
-					"min_rep" = 0,
 					"proc_callback" = ""),
 				)
 			),
@@ -385,7 +367,6 @@
 				"..." = list(
 					"Text" = "...",
 					"next_scene" = "job",
-					"min_rep" = 0,
 					"proc_callback" = ""),
 				)
 			),
@@ -396,7 +377,6 @@
 				"..." = list(
 					"Text" = "...",
 					"next_scene" = "bloodfiend_2",
-					"min_rep" = 0,
 					"proc_callback" = ""),
 				)
 			),
@@ -406,7 +386,6 @@
 				"..." = list(
 					"Text" = "...",
 					"next_scene" = "bloodfiend_3",
-					"min_rep" = 0,
 					"proc_callback" = ""),
 				)
 			),
@@ -416,7 +395,6 @@
 				"..." = list(
 					"Text" = "...",
 					"next_scene" = "main_screen",
-					"min_rep" = 0,
 					"proc_callback" = ""),
 				)
 			),
@@ -427,42 +405,73 @@
 				"..." = list(
 					"Text" = "...",
 					"next_scene" = "arrival_2",
-					"min_rep" = 0,
 					"proc_callback" = ""),
 				)
 			),
 		"arrival_2" = list(
-			"text" = "Higher up wanted some more information on how well the clinc is doing in this nest. So the offered another job to me to watch over this clinc.",
+			"text" = "Higher up wanted some more information on how well the clinic is doing in this nest. So the offered another job to me to watch over this clinic.",
 			"actions" = list(
 				"..." = list(
 					"Text" = "...",
 					"next_scene" = "arrival_3",
-					"min_rep" = 0,
 					"proc_callback" = ""),
 				)
 			),
 		"arrival_3" = list(
-			"text" = "It pays quite well, and I basically don't need to do anything other then watch over you.",
+			"text" = "It pays quite well, and I basically don't need to do anything other then watch over the docters and nurses.",
 			"actions" = list(
 				"..." = list(
 					"Text" = "...",
 					"next_scene" = "main_screen",
-					"min_rep" = 0,
 					"proc_callback" = ""),
 				)
 			),
 //Dialogue about who they are.
 		"who_1" = list(
-			"text" = "Oh right, I still haven't made an announcement of who I am.",
+			"text" = "*sighs*, I still haven't made a public introduction of my sudden appearance. I really needed to work on getting that sorted out.",
 			"actions" = list(
 				"..." = list(
 					"Text" = "...",
-					"next_scene" = "arrival_2",
-					"min_rep" = 0,
+					"next_scene" = "who_2",
 					"proc_callback" = ""),
 				)
 			),
-
+		"who_2" = list(
+			"text" = "Well, Let's get this introduction done and over with... *flips through their notepad...*",
+			"actions" = list(
+				"..." = list(
+					"Text" = "...",
+					"next_scene" = "who_3",
+					"proc_callback" = ""),
+				)
+			),
+		"who_3" = list(
+			"text" = "Ahm, “I am Eric T. The manager and newly employed health inspector of this clinic.”",
+			"actions" = list(
+				"..." = list(
+					"Text" = "...",
+					"next_scene" = "who_4",
+					"proc_callback" = ""),
+				)
+			),
+		"who_4" = list(
+			"text" = "“Some responsibilities of a clinic manager/health inspector include assignments like rating the clinic's efficiency, giving employees direct orders, ”- and yada yada...",
+			"actions" = list(
+				"..." = list(
+					"Text" = "...",
+					"next_scene" = "who_5",
+					"proc_callback" = ""),
+				)
+			),
+		"who_5" = list(
+			"text" = "Long story short, I am the guy who keeps the clinic on track.",
+			"actions" = list(
+				"..." = list(
+					"Text" = "...",
+					"next_scene" = "main_screen",
+					"proc_callback" = ""),
+				)
+			),
 	))
 
 /mob/living/simple_animal/ui_npc/mailman/adjustHealth(amount, updating_health = TRUE, forced = FALSE)
@@ -486,6 +495,8 @@
 			RegisterSignal(D, COMSIG_PARCEL_DELIVERED, PROC_REF(ParcelDelivered))
 		parcel_deliveries[D] += usr
 
+/mob/living/simple_animal/ui_npc/mailman/proc/AddWorker()
+	ready_workers += usr
 
 /mob/living/simple_animal/ui_npc/mailman/proc/ParcelDelivered(door, user)
 	SIGNAL_HANDLER
@@ -517,12 +528,31 @@
 				return FALSE
 	return TRUE
 
+/mob/living/simple_animal/ui_npc/mailman/proc/CheckWorker(user)
+	for(var/W in ready_workers)
+		if (U == user)
+			return TRUE
+	return FALSE
+
+/mob/living/simple_animal/ui_npc/mailman/proc/SwapCheckWorker(user)
+	for(var/W in ready_workers)
+		if (U == user)
+			return FALSE
+	return TRUE
+
 /mob/living/simple_animal/ui_npc/mailman/proc/CheckParcelDelivery(user)
 	for(var/D in parcel_deliveries)
 		for(var/U in parcel_deliveries[D])
 			if (U == user)
 				return FALSE
 	return TRUE
+
+/mob/living/simple_animal/ui_npc/mailman/proc/SwapCheckParcelDelivery(user)
+	for(var/D in parcel_deliveries)
+		for(var/U in parcel_deliveries[D])
+			if (U == user)
+				return TRUE
+	return FALSE
 
 /obj/effect/temp_visual/blood_shield
 	name = "blood shield"
