@@ -24,11 +24,12 @@
 	var/list/action_list = list()
 	for(var/action_key in current_scene.actions)
 		var/datum/ui_npc/scene_action/action = current_scene.actions[action_key]
-		action_list += list(list(
-			"key" = action_key,
-			"text" = action.text,
-			"enabled" = !action.enabled_callback || action.enabled_callback.Invoke(user) //action.min_rep <= state.reputation
-		))
+		if (!action.visible_callback || action.visible_callback.Invoke(user))
+			action_list += list(list(
+				"key" = action_key,
+				"text" = action.text,
+				"enabled" = !action.enabled_callback || action.enabled_callback.Invoke(user) //action.min_rep <= state.reputation
+			))
 
 	return list(
 		"title" = name,
@@ -77,8 +78,8 @@
 
 // Defines how the UI should currently behave.
 // Usually returns UI_INTERACTIVE when ready.
-/mob/living/simple_animal/ui_npc/ui_status(mob/user, datum/ui_state/state)
-	return UI_INTERACTIVE
+// /mob/living/simple_animal/ui_npc/ui_status(mob/user, datum/ui_state/state)
+// 	return UI_INTERACTIVE
 
 
 // Called when the UI closes.
@@ -111,8 +112,9 @@
 	var/text = ""
 	var/next_scene = ""
 	var/min_rep = 0
-	var/datum/callback/proc_callback = ""
-	var/datum/callback/enabled_callback = ""
+	var/datum/callback/proc_callback
+	var/datum/callback/enabled_callback
+	var/datum/callback/visible_callback
 
 /datum/ui_npc/scene_action/New(list/data)
 	if(!data)
@@ -122,6 +124,7 @@
 	min_rep = data["min_rep"]
 	enabled_callback = data["enabled_callback"]
 	proc_callback = data["proc_callback"]
+	visible_callback = data["visible_callback"]
 
 /datum/ui_npc/scene
 	var/text = ""
@@ -342,7 +345,7 @@
 					"Text" = "“About that...”",
 					"next_scene" = "job_6",
 					"min_rep" = 20,
-					"enabled_callback" = CALLBACK(src, PROC_REF(CheckItemDelivery)),
+					"visible_callback" = CALLBACK(src, PROC_REF(CheckItemDelivery)),
 					"proc_callback" = CALLBACK(src, PROC_REF(OrderItem), /obj/item/food/pizza/margherita, 30)),
 				"later" = list(
 					"Text" = "“Maybe not right now.”",
@@ -499,7 +502,7 @@
 			item_deliveries[D] = list()
 		if (length(item_deliveries[D]) == 0)
 			RegisterSignal(D, COMSIG_PARCEL_DELIVERED, PROC_REF(ItemDelivered))
-		parcel_deliveries[D] += usr
+		item_deliveries[D] += usr
 
 /mob/living/simple_animal/ui_npc/mailman/proc/ItemDelivered(door, user)
 	SIGNAL_HANDLER
