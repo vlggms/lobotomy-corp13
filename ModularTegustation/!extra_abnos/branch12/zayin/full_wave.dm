@@ -1,4 +1,4 @@
-/mob/living/simple_animal/hostile/abnormality/wave
+/mob/living/simple_animal/hostile/abnormality/branch12/wave
 	name = "Full-Wave M'aider"
 	desc = "You see in the static, a broadcasting terminal"
 	icon = 'ModularTegustation/Teguicons/96x96.dmi'
@@ -31,7 +31,7 @@
 	var/list/given_ability = list()
 	var/temperance_work
 
-/mob/living/simple_animal/hostile/abnormality/wave/PostWorkEffect(mob/living/carbon/human/user, work_type, pe, work_time)
+/mob/living/simple_animal/hostile/abnormality/branch12/wave/PostWorkEffect(mob/living/carbon/human/user, work_type, pe, work_time)
 	if(work_type == ABNORMALITY_WORK_ATTACHMENT)
 		temperance_work++
 
@@ -43,7 +43,7 @@
 			addtimer(CALLBACK(src, PROC_REF(WhitePulse)), 15)
 	return ..()
 
-/mob/living/simple_animal/hostile/abnormality/wave/proc/WhitePulse()
+/mob/living/simple_animal/hostile/abnormality/branch12/wave/proc/WhitePulse()
 	if(temperance_work>=2)
 		addtimer(CALLBACK(src, PROC_REF(WhitePulse)), 15)
 		//Deal minor white damage to people
@@ -52,13 +52,13 @@
 				H.deal_damage(2, WHITE_DAMAGE)
 
 
-/mob/living/simple_animal/hostile/abnormality/wave/Life()
+/mob/living/simple_animal/hostile/abnormality/branch12/wave/Life()
 	. = ..()
 	if(!.) // Dead
 		return FALSE
 
 
-/mob/living/simple_animal/hostile/abnormality/wave/SuccessEffect(mob/living/carbon/human/user, work_type, pe)
+/mob/living/simple_animal/hostile/abnormality/branch12/wave/SuccessEffect(mob/living/carbon/human/user, work_type, pe)
 	. = ..()
 	if(work_type == ABNORMALITY_WORK_ATTACHMENT)
 		for(var/mob/living/simple_animal/hostile/abnormality/A in GLOB.abnormality_mob_list)
@@ -74,7 +74,7 @@
 
 
 //Visuals
-/mob/living/simple_animal/hostile/abnormality/wave/Initialize()
+/mob/living/simple_animal/hostile/abnormality/branch12/wave/Initialize()
 	. = ..()
 	for(var/i = 1 to 3)
 		var/turf/dispense_turf = get_step(src, pick(1,2,4,5,6,8,9,10))

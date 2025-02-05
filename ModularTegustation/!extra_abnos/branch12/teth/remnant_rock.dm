@@ -1,4 +1,4 @@
-/mob/living/simple_animal/hostile/abnormality/rock
+/mob/living/simple_animal/hostile/abnormality/branch12/rock
 	name = "Remnant of the Forest"
 	desc = "A little rock with a smiley face on it."
 	icon = 'ModularTegustation/Teguicons/branch12/32x32.dmi'
@@ -24,20 +24,20 @@
 	)
 	abnormality_origin = ABNORMALITY_ORIGIN_BRANCH12
 
-/mob/living/simple_animal/hostile/abnormality/rock/PostWorkEffect(mob/living/carbon/human/user, work_type, pe, work_time)
+/mob/living/simple_animal/hostile/abnormality/branch12/rock/PostWorkEffect(mob/living/carbon/human/user, work_type, pe, work_time)
 	..()
 	var/turf/W = pick(GLOB.xeno_spawn)
 	new /obj/item/ego_weapon/rock (get_turf(W))
 	ZeroQliphoth()
 
-/mob/living/simple_animal/hostile/abnormality/rock/Move()
+/mob/living/simple_animal/hostile/abnormality/branch12/rock/Move()
 	return FALSE
 
-/mob/living/simple_animal/hostile/abnormality/rock/CanAttack(atom/the_target)
+/mob/living/simple_animal/hostile/abnormality/branch12/rock/CanAttack(atom/the_target)
 	return FALSE
 
 
-/mob/living/simple_animal/hostile/abnormality/rock/BreachEffect(mob/living/carbon/human/user, work_type, pe, work_time)
+/mob/living/simple_animal/hostile/abnormality/branch12/rock/BreachEffect(mob/living/carbon/human/user, work_type, pe, work_time)
 	//make it invisible
 	icon_state = null
 	name = ""

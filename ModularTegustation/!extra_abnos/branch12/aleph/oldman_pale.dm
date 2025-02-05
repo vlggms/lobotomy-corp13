@@ -1,5 +1,5 @@
 #define STATUS_EFFECT_INNOCENCE /datum/status_effect/display/innocence
-/mob/living/simple_animal/hostile/abnormality/oldman_pale
+/mob/living/simple_animal/hostile/abnormality/branch12/oldman_pale
 	name = "Old Man Pale"
 	desc = "A ghost in a suit."
 	icon = 'ModularTegustation/Teguicons/branch12/32x32.dmi'
@@ -35,7 +35,7 @@
 	var/list/pale_list = list()
 
 
-/mob/living/simple_animal/hostile/abnormality/oldman_pale/SuccessEffect(mob/living/carbon/human/user, work_type, pe)
+/mob/living/simple_animal/hostile/abnormality/branch12/oldman_pale/SuccessEffect(mob/living/carbon/human/user, work_type, pe)
 	. = ..()
 	if(datum_reference.qliphoth_meter ==0 && work_type == "Inspire")
 		datum_reference.qliphoth_change(4)
@@ -46,7 +46,7 @@
 	datum_reference.qliphoth_change(1)
 	return
 
-/mob/living/simple_animal/hostile/abnormality/oldman_pale/NeutralEffect(mob/living/carbon/human/user, work_type, pe)
+/mob/living/simple_animal/hostile/abnormality/branch12/oldman_pale/NeutralEffect(mob/living/carbon/human/user, work_type, pe)
 	. = ..()
 	if(prob(40))
 		datum_reference.qliphoth_change(-1)
@@ -56,7 +56,7 @@
 		user.apply_status_effect(STATUS_EFFECT_INNOCENCE)
 	return
 
-/mob/living/simple_animal/hostile/abnormality/oldman_pale/FailureEffect(mob/living/carbon/human/user, work_type, pe)
+/mob/living/simple_animal/hostile/abnormality/branch12/oldman_pale/FailureEffect(mob/living/carbon/human/user, work_type, pe)
 	. = ..()
 	datum_reference.qliphoth_change(-1)
 
@@ -65,7 +65,7 @@
 		user.apply_status_effect(STATUS_EFFECT_INNOCENCE)
 	return
 
-/mob/living/simple_animal/hostile/abnormality/oldman_pale/AttemptWork(mob/living/carbon/human/user, work_type)
+/mob/living/simple_animal/hostile/abnormality/branch12/oldman_pale/AttemptWork(mob/living/carbon/human/user, work_type)
 	if(datum_reference.qliphoth_meter !=0 && work_type != "Inspire")
 		return TRUE
 
@@ -73,24 +73,24 @@
 		return TRUE
 	return FALSE
 
-/mob/living/simple_animal/hostile/abnormality/oldman_pale/PostWorkEffect(mob/living/carbon/human/user, work_type, pe)
+/mob/living/simple_animal/hostile/abnormality/branch12/oldman_pale/PostWorkEffect(mob/living/carbon/human/user, work_type, pe)
 	..()
 	if(user.sanity_lost)
 		addtimer(CALLBACK(src, PROC_REF(apply_innocence), user), 60 SECONDS)
 
 
-/mob/living/simple_animal/hostile/abnormality/oldman_pale/ZeroQliphoth()
+/mob/living/simple_animal/hostile/abnormality/branch12/oldman_pale/ZeroQliphoth()
 	..()
 	new /obj/structure/spreading/pale (src)
 
-/mob/living/simple_animal/hostile/abnormality/oldman_pale/death()
+/mob/living/simple_animal/hostile/abnormality/branch12/oldman_pale/death()
 	for(var/V in pale_list)
 		qdel(V)
 		pale_list-=V
 	..()
 
 
-/mob/living/simple_animal/hostile/abnormality/oldman_pale/proc/apply_innocence(mob/living/carbon/human/user, work_type, pe)
+/mob/living/simple_animal/hostile/abnormality/branch12/oldman_pale/proc/apply_innocence(mob/living/carbon/human/user, work_type, pe)
 		user.apply_status_effect(STATUS_EFFECT_INNOCENCE)
 
 // Oldman Pale
@@ -109,13 +109,13 @@
 	//expand_cooldown = 20 SECONDS
 	can_expand = TRUE
 	bypass_density = TRUE
-	var/mob/living/simple_animal/hostile/abnormality/oldman_pale/connected_abno
+	var/mob/living/simple_animal/hostile/abnormality/branch12/oldman_pale/connected_abno
 
 /obj/structure/spreading/pale/Initialize()
 	. = ..()
 
 	if(!connected_abno)
-		connected_abno = locate(/mob/living/simple_animal/hostile/abnormality/oldman_pale) in GLOB.abnormality_mob_list
+		connected_abno = locate(/mob/living/simple_animal/hostile/abnormality/branch12/oldman_pale) in GLOB.abnormality_mob_list
 	if(connected_abno)
 		connected_abno.pale_list += src
 	expand()
@@ -153,7 +153,7 @@
 		H.apply_damage(2, WHITE_DAMAGE, null, H.run_armor_check(null, WHITE_DAMAGE), spread_damage = TRUE)
 		if(H.sanity_lost)
 			new /obj/structure/spreading/pale (get_turf(owner))
-			var/mob/living/simple_animal/hostile/abnormality/oldman_pale/P = locate(/mob/living/simple_animal/hostile/abnormality/oldman_pale) in GLOB.abnormality_mob_list
+			var/mob/living/simple_animal/hostile/abnormality/branch12/oldman_pale/P = locate(/mob/living/simple_animal/hostile/abnormality/branch12/oldman_pale) in GLOB.abnormality_mob_list
 			P.datum_reference.qliphoth_change(-99)
 			H.dust()
 

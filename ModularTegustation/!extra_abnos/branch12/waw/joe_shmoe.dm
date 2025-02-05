@@ -1,4 +1,4 @@
-/mob/living/simple_animal/hostile/abnormality/joe_shmoe
+/mob/living/simple_animal/hostile/abnormality/branch12/joe_shmoe
 	name = "Joe Shmoe"
 	desc = "It's a regular dummy with straw poking out of it."
 	icon = 'ModularTegustation/Teguicons/branch12/joe.dmi'
@@ -28,27 +28,27 @@
 	var/list/joelist = list()
 	var/mob/living/carbon/human/marked
 
-/mob/living/simple_animal/hostile/abnormality/joe_shmoe/Initialize()
+/mob/living/simple_animal/hostile/abnormality/branch12/joe_shmoe/Initialize()
 	. = ..()
 	if(prob(10))
 		icon_state = "joe_[rand(1,12)]"
 
-/mob/living/simple_animal/hostile/abnormality/joe_shmoe/SuccessEffect(mob/living/carbon/human/user, work_type, pe)
+/mob/living/simple_animal/hostile/abnormality/branch12/joe_shmoe/SuccessEffect(mob/living/carbon/human/user, work_type, pe)
 	. = ..()
 	datum_reference.qliphoth_change(-1)
 	return
 
-/mob/living/simple_animal/hostile/abnormality/joe_shmoe/NeutralEffect(mob/living/carbon/human/user, work_type, pe)
+/mob/living/simple_animal/hostile/abnormality/branch12/joe_shmoe/NeutralEffect(mob/living/carbon/human/user, work_type, pe)
 	. = ..()
 	datum_reference.qliphoth_change(1)
 	return
 
-/mob/living/simple_animal/hostile/abnormality/joe_shmoe/FailureEffect(mob/living/carbon/human/user, work_type, pe)
+/mob/living/simple_animal/hostile/abnormality/branch12/joe_shmoe/FailureEffect(mob/living/carbon/human/user, work_type, pe)
 	. = ..()
 	datum_reference.qliphoth_change(-1)
 	return
 
-/mob/living/simple_animal/hostile/abnormality/joe_shmoe/Life()
+/mob/living/simple_animal/hostile/abnormality/branch12/joe_shmoe/Life()
 	. = ..()
 	if(marked && marked.sanity_lost)
 		var/mob/living/simple_animal/hostile/subjoe/S = new (get_turf(marked))
@@ -60,7 +60,7 @@
 	if(length(joelist) == 0)
 		marked = null
 
-/mob/living/simple_animal/hostile/abnormality/joe_shmoe/ZeroQliphoth(mob/living/carbon/human/user, work_type, pe, work_time)
+/mob/living/simple_animal/hostile/abnormality/branch12/joe_shmoe/ZeroQliphoth(mob/living/carbon/human/user, work_type, pe, work_time)
 	..()
 	for(var/i = 1 to 6)
 		var/turf/W = pick(GLOB.xeno_spawn)
@@ -97,10 +97,10 @@
 	simple_mob_flags = SILENCE_RANGED_MESSAGE
 	can_patrol = TRUE
 
-	var/mob/living/simple_animal/hostile/abnormality/joe_shmoe/masterjoe
+	var/mob/living/simple_animal/hostile/abnormality/branch12/joe_shmoe/masterjoe
 
 //Random sprite
-/mob/living/simple_animal/hostile/abnormality/joe_shmoe/Initialize()
+/mob/living/simple_animal/hostile/abnormality/branch12/joe_shmoe/Initialize()
 	. = ..()
 	if(prob(10))
 		icon_state = "joe_[rand(1,12)]"

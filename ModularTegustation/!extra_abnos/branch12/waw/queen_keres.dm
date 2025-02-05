@@ -1,11 +1,11 @@
 //Queen Keres
-/mob/living/simple_animal/hostile/abnormality/queen_keres
+/mob/living/simple_animal/hostile/abnormality/branch12/queen_keres
 	name = "Queen Keres"
 	desc = "A towering queen in combat dress. She is cloaked in purple."
 	icon = 'ModularTegustation/Teguicons/branch12/48x64.dmi'
 	icon_state = "keres"
 
-	/*
+	/*		Sprites ain't done yet
 	icon = 'ModularTegustation/Teguicons/64x48.dmi'
 	icon_state = "queen_keres"
 	icon_living = "queen_keres"
@@ -48,23 +48,23 @@
 	var/list/knights = list()
 	var/current_qliphoth
 
-/mob/living/simple_animal/hostile/abnormality/queen_keres/PostWorkEffect(mob/living/carbon/human/user, work_type, pe, work_time)
+/mob/living/simple_animal/hostile/abnormality/branch12/queen_keres/PostWorkEffect(mob/living/carbon/human/user, work_type, pe, work_time)
 	if(get_attribute_level(user, TEMPERANCE_ATTRIBUTE) < 60)
 		datum_reference.qliphoth_change(-1)
 		KnightAgent()
 		current_qliphoth = datum_reference.qliphoth_meter
 
-/mob/living/simple_animal/hostile/abnormality/queen_keres/NeutralEffect(mob/living/carbon/human/user, work_type, pe)
+/mob/living/simple_animal/hostile/abnormality/branch12/queen_keres/NeutralEffect(mob/living/carbon/human/user, work_type, pe)
 	. = ..()
 	if(prob(80))
 		datum_reference.qliphoth_change(-1)
 		KnightAgent()
 		current_qliphoth = datum_reference.qliphoth_meter
 
-/mob/living/simple_animal/hostile/abnormality/queen_keres/PickTarget(list/Targets)
+/mob/living/simple_animal/hostile/abnormality/branch12/queen_keres/PickTarget(list/Targets)
 	return
 
-/mob/living/simple_animal/hostile/abnormality/queen_keres/Life()
+/mob/living/simple_animal/hostile/abnormality/branch12/queen_keres/Life()
 	. = ..()
 	if(!.) // Dead
 		return FALSE
@@ -80,11 +80,11 @@
 		if((pulse_cooldown < world.time))
 			BlackPulse()
 
-/mob/living/simple_animal/hostile/abnormality/queen_keres/AttackingTarget()
+/mob/living/simple_animal/hostile/abnormality/branch12/queen_keres/AttackingTarget()
 	return FALSE
 
 
-/mob/living/simple_animal/hostile/abnormality/queen_keres/BreachEffect(mob/living/carbon/human/user, work_type, pe, work_time)
+/mob/living/simple_animal/hostile/abnormality/branch12/queen_keres/BreachEffect(mob/living/carbon/human/user, work_type, pe, work_time)
 	..()
 	//Move to main room
 	var/turf/T = pick(GLOB.department_centers)
@@ -104,7 +104,7 @@
 		H.forceMove(knight_turf)
 
 
-/mob/living/simple_animal/hostile/abnormality/queen_keres/proc/BlackPulse()
+/mob/living/simple_animal/hostile/abnormality/branch12/queen_keres/proc/BlackPulse()
 	pulse_cooldown = world.time + pulse_cooldown_time
 	for(var/mob/living/L in livinginview(10, src))
 		if(faction_check_mob(L))
@@ -115,7 +115,7 @@
 		new /obj/effect/temp_visual/dir_setting/bloodsplatter(get_turf(L), pick(GLOB.alldirs))
 
 
-/mob/living/simple_animal/hostile/abnormality/queen_keres/proc/KnightAgent()
+/mob/living/simple_animal/hostile/abnormality/branch12/queen_keres/proc/KnightAgent()
 	var/potential_knights = list()
 
 	//Pick a security role to knight.
@@ -135,7 +135,7 @@
 	new_knight.physiology.black_mod *= 0.8
 	new_knight.physiology.pale_mod *= 0.8
 
-/mob/living/simple_animal/hostile/abnormality/queen_keres/proc/CheckKnights()
+/mob/living/simple_animal/hostile/abnormality/branch12/queen_keres/proc/CheckKnights()
 	for(var/mob/living/carbon/human/H in knights)
 		if(!H.sanity_lost || H.stat == DEAD)
 			knights-=H
@@ -149,7 +149,7 @@
 
 /datum/ai_controller/insane/murder/queen_keres
 	lines_type = /datum/ai_behavior/say_line/insanity_keres
-	blacklist = list(/mob/living/simple_animal/hostile/abnormality/queen_keres)
+	blacklist = list(/mob/living/simple_animal/hostile/abnormality/branch12/queen_keres)
 
 /datum/ai_behavior/say_line/insanity_keres
 	lines = list(
