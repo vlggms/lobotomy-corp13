@@ -3,6 +3,11 @@
 	icon = 'icons/mob/animal.dmi'
 	icon_state = "goat"
 	density = TRUE
+	a_intent = INTENT_HARM
+	move_resist = MOVE_FORCE_STRONG // They kept stealing my abnormalities
+	pull_force = MOVE_FORCE_STRONG
+	can_buckle_to = FALSE // Please. I beg you. Stop stealing my vending machines.
+	mob_size = MOB_SIZE_HUGE // No more lockers, Whitaker
 	var/portrait_folder = "icons/UI_Icons/NPC_Portraits/"
 	var/portrait = "the-goat.png"
 	var/soundfile =  'sound/creatures/lc13/goat_bleating.ogg'
@@ -530,13 +535,13 @@
 
 /mob/living/simple_animal/ui_npc/mailman/proc/CheckWorker(user)
 	for(var/W in ready_workers)
-		if (U == user)
+		if (W == user)
 			return TRUE
 	return FALSE
 
 /mob/living/simple_animal/ui_npc/mailman/proc/SwapCheckWorker(user)
 	for(var/W in ready_workers)
-		if (U == user)
+		if (W == user)
 			return FALSE
 	return TRUE
 
