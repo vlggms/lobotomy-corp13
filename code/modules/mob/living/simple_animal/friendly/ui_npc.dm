@@ -190,6 +190,9 @@
 	var/item_deliveries = list()
 	var/ready_workers = list()
 	var/blood_resistance = 250
+	var/last_attacked_cooldown
+	var/attacked_cooldown = 300
+	var/attacked_line = "Yep, That will just be a waste of your time."
 	name = "Eric T."
 	desc = "A fancy looking fellow wearing a mask; they look relaxed right now."
 	health = 1000
@@ -487,6 +490,11 @@
 	. = ..()
 	if (amount == 0)
 		new /obj/effect/temp_visual/blood_shield(src.loc)
+		if (last_attacked_cooldown < world.time - attacked_cooldown)
+			say(attacked_line)
+			last_attacked_cooldown = world.time
+
+/mob/living/simple_animal/ui_npc/mailman/proc/Payback()
 
 /mob/living/simple_animal/ui_npc/mailman/proc/OrderParcel()
 	var/door = pick(GLOB.delivery_doors)
