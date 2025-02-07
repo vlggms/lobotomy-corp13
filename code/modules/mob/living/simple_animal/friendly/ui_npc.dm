@@ -73,10 +73,15 @@
 	if(!chosen_action)
 		return
 
+	var/result = TRUE
 	if (chosen_action.proc_callback)
-		chosen_action.proc_callback.Invoke()
+		result = chosen_action.proc_callback.Invoke()
 
 	// Navigate to next scene if specified
+	if(chosen_action.alternative_scene && !result)
+		scene_manager.navigate_to_scene(user.client, chosen_action.alternative_scene)
+		return TRUE
+
 	if(chosen_action.next_scene)
 		scene_manager.navigate_to_scene(user.client, chosen_action.next_scene)
 		return TRUE
@@ -118,6 +123,7 @@
 /datum/ui_npc/scene_action
 	var/text = ""
 	var/next_scene = ""
+	var/alternative_scene = ""
 	var/min_rep = 0
 	var/datum/callback/proc_callback
 	var/datum/callback/enabled_callback
@@ -128,6 +134,7 @@
 		return
 	text = data["Text"]
 	next_scene = data["next_scene"]
+	alternative_scene = data["alternative_scene"]
 	min_rep = data["min_rep"]
 	enabled_callback = data["enabled_callback"]
 	proc_callback = data["proc_callback"]
@@ -359,15 +366,25 @@
 				)
 			),
 		"job_6" = list(
-			"text" = "Lost it? *sighs*, I guess I should of expected this would happen eventually... Just pay 400 ahn to make up for the lost parcel.",
+			"text" = "Lost it? *sighs*, I guess I should've expected this would happen eventually... Just pay 400 ahn to make up for the lost parcel.",
 			"actions" = list(
 				"payback" = list(
 					"Text" = "Hand over 400 ahn",
 					"next_scene" = "main_screen",
-					"proc_callback" = ""),
+					"alternative_scene" = "job_6_failed",
+					"proc_callback" = CALLBACK(src, PROC_REF(Payback))),
 				"backaway" = list(
 					"Text" = "“I will get that money soon...”",
 					"next_scene" = "main_screen",
+					"proc_callback" = ""),
+				)
+			),
+		"job_6_failed" = list(
+			"text" = "No money!",
+			"actions" = list(
+				"..." = list(
+					"Text" = "...",
+					"next_scene" = "job_6",
 					"proc_callback" = ""),
 				)
 			),
@@ -497,6 +514,7 @@
 			last_attacked_cooldown = world.time
 
 /mob/living/simple_animal/ui_npc/mailman/proc/Payback()
+	return FALSE
 
 /mob/living/simple_animal/ui_npc/mailman/proc/OrderParcel()
 	var/door = pick(GLOB.delivery_doors)
