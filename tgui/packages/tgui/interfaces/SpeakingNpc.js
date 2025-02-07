@@ -4,7 +4,13 @@ import { Window } from "../layouts";
 
 export const SpeakingNpc = (props, context) => {
   const { act, data } = useBackend(context);
-  const { title = "", text = "", img_url = "", actions = {} } = data || {};
+  const {
+    title = "",
+    text = "",
+    img_url = "",
+    actions = {},
+    typing_speed = 100,
+  } = data || {};
   return (
     <Window title={title}>
       <Window.Content>
@@ -27,7 +33,7 @@ export const SpeakingNpc = (props, context) => {
                   <TypingScroller
                     key={text}
                     text={text}
-                    speed={100}
+                    speed={typing_speed}
                     onTypingStart={() => act("playSound")}
                     onTypingEnd={() => act("stopSound")}
                   />
@@ -46,9 +52,10 @@ export const SpeakingNpc = (props, context) => {
                     key={action.key}
                     onClick={() => act(action.key)}
                     fontSize="14px"
-                    width="150px"
+                    minWidth="150px"
                     height="30px"
                     mb={1}
+                    px={2}
                     disabled={!action.enabled}
                   >
                     {action.text}
