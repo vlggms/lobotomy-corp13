@@ -19,5 +19,8 @@
 		return
 
 	if(do_after(user, attack_speed*10))
+		if(force != true_force)
+			return
+
 		force *= 1.2
 		to_chat(user, span_info("You charge a cleave, and your next attack will deal bonus damage."))
