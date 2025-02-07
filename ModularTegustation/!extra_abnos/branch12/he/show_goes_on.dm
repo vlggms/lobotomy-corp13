@@ -18,7 +18,7 @@
 
 	ego_list = list(
 		//datum/ego_datum/weapon/perfectionist,
-		//datum/ego_datum/armor/perfectionist,
+		/datum/ego_datum/armor/perfectionist,
 	)
 	//gift_type = /datum/ego_gifts/perfectionist
 	abnormality_origin = ABNORMALITY_ORIGIN_BRANCH12

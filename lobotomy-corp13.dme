@@ -3961,6 +3961,8 @@
 #include "ModularTegustation\trusted.dm"
 #include "ModularTegustation\turfs.dm"
 #include "ModularTegustation\!extra_abnos\branch12\records.dm"
+#include "ModularTegustation\!extra_abnos\branch12\!equipment\branch12_armor.dm"
+#include "ModularTegustation\!extra_abnos\branch12\!equipment\branch12_datum.dm"
 #include "ModularTegustation\!extra_abnos\branch12\!tools\compass.dm"
 #include "ModularTegustation\!extra_abnos\branch12\!tools\eye.dm"
 #include "ModularTegustation\!extra_abnos\branch12\!tools\midnight.dm"

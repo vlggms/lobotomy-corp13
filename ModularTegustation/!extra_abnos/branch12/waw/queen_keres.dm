@@ -35,7 +35,7 @@
 
 	ego_list = list(
 		//datum/ego_datum/weapon/degraded_honor,
-		//datum/ego_datum/armor/degraded_honor,
+		/datum/ego_datum/armor/degraded_honor,
 	)
 	//gift_type =  /datum/ego_gifts/honor_return
 	abnormality_origin = ABNORMALITY_ORIGIN_BRANCH12
