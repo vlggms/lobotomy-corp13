@@ -13,6 +13,7 @@
 	var/soundfile =  'sound/creatures/lc13/goat_bleating.ogg'
 	var/datum/ui_npc/scene_manager/scene_manager = new()
 	var/start_scene_id = "intro"
+	var/typing_interval = 100
 
 /mob/living/simple_animal/ui_npc/Initialize()
 	. = ..()
@@ -40,7 +41,8 @@
 		"title" = name,
 		"text" = current_scene.text,
 		"img_url" = portrait,
-		"actions" = action_list
+		"actions" = action_list,
+		"typing_speed" = typing_interval
 	)
 
 // Called to supply static data that seldom changes.
