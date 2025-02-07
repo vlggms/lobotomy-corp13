@@ -1,6 +1,6 @@
 #define STATUS_EFFECT_INNOCENCE /datum/status_effect/display/innocence
 /mob/living/simple_animal/hostile/abnormality/branch12/oldman_pale
-	name = "Old Man Pale"
+	name = "Old Man and The Pale"
 	desc = "A ghost in a suit."
 	icon = 'ModularTegustation/Teguicons/branch12/32x32.dmi'
 	icon_state = "oldman_pale"
@@ -42,8 +42,8 @@
 		for(var/V in pale_list)
 			qdel(V)
 			pale_list-=V
-
-	datum_reference.qliphoth_change(1)
+	if(work_type == ABNORMALITY_WORK_REPRESSION)
+		datum_reference.qliphoth_change(1)
 	return
 
 /mob/living/simple_animal/hostile/abnormality/branch12/oldman_pale/NeutralEffect(mob/living/carbon/human/user, work_type, pe)
@@ -66,10 +66,10 @@
 	return
 
 /mob/living/simple_animal/hostile/abnormality/branch12/oldman_pale/AttemptWork(mob/living/carbon/human/user, work_type)
-	if(datum_reference.qliphoth_meter !=0 && work_type != "Inspire")
+	if(length(pale_list) && work_type != "Inspire")
 		return TRUE
 
-	if(datum_reference.qliphoth_meter ==0 && work_type == "Inspire")
+	if(length(pale_list) && work_type == "Inspire")
 		return TRUE
 	return FALSE
 
@@ -91,7 +91,7 @@
 
 
 /mob/living/simple_animal/hostile/abnormality/branch12/oldman_pale/proc/apply_innocence(mob/living/carbon/human/user, work_type, pe)
-		user.apply_status_effect(STATUS_EFFECT_INNOCENCE)
+	user.apply_status_effect(STATUS_EFFECT_INNOCENCE)
 
 // Oldman Pale
 /obj/structure/spreading/pale
@@ -123,8 +123,6 @@
 
 /obj/structure/spreading/pale/expand()
 	addtimer(CALLBACK(src, PROC_REF(expand)), 20 SECONDS)
-//	if(connected_abno.pale_list.len>=150)
-// 		return
 	..()
 
 /obj/structure/spreading/pale/Crossed(atom/movable/AM)

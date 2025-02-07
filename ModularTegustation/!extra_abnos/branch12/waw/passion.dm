@@ -17,7 +17,7 @@
 	work_damage_type = BLACK_DAMAGE
 	ego_list = list(
 		//datum/ego_datum/weapon/passion
-		//datum/ego_datum/armor/passion,
+		/datum/ego_datum/armor/passion,
 	)
 	//gift_type =  /datum/ego_gifts/passion
 	abnormality_origin = ABNORMALITY_ORIGIN_BRANCH12
@@ -28,23 +28,34 @@
 		datum_reference.qliphoth_change(-1)
 	if(get_attribute_level(user, JUSTICE_ATTRIBUTE) > 60)
 		datum_reference.qliphoth_change(-1)
+
+	if(work_type == ABNORMALITY_WORK_REPRESSION)
+		if(prob(80))
+			datum_reference.qliphoth_change(-1)
 	return
+
+/mob/living/simple_animal/hostile/abnormality/branch12/passion/FailureEffect(mob/living/carbon/human/user, work_type, pe)
+	. = ..()
+	if(prob(80))
+		datum_reference.qliphoth_change(-1)
 
 /mob/living/simple_animal/hostile/abnormality/branch12/passion/ZeroQliphoth()
 	..()
-
-	var/list/makecrazy = list()
+	//Okay we're gonna make everyone go murder insane for like 15 seconds
 	for(var/mob/living/carbon/human/H in GLOB.player_list)
-		makecrazy+=H
+		if(!H.sanity_lost)
+			H.adjustSanityLoss(500)
+		QDEL_NULL(H.ai_controller)
+		H.ai_controller = /datum/ai_controller/insane/murder/passion
+		H.InitializeAIController()
 
-	for(var/i = 1 to 1+length(makecrazy/3))
-		for(var/mob/living/carbon/human/H in makecrazy)
-		//Replaces AI with murder one
-			if(!H.sanity_lost)
-				H.adjustSanityLoss(500)
-			QDEL_NULL(H.ai_controller)
-			H.ai_controller = /datum/ai_controller/insane/murder/passion
-			H.InitializeAIController()
+	addtimer(CALLBACK(src, PROC_REF(resane_everyone)), 15 SECONDS)
+
+
+/mob/living/simple_animal/hostile/abnormality/branch12/passion/proc/resane_everyone()
+	for(var/mob/living/carbon/human/H in GLOB.player_list)
+		if(H.sanity_lost)
+			H.adjustSanityLoss(-500)
 
 
 /datum/ai_controller/insane/murder/passion
