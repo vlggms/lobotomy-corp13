@@ -57,7 +57,7 @@
 //	-------------ZAYIN-------------
 // Full Wave M'aider
 /obj/item/paper/fluff/info/branch12/wave
-	abno_type = /mob/living/simple_animal/hostile/abnormality/wave
+	abno_type = /mob/living/simple_animal/hostile/abnormality/branch12/wave
 	abno_code = "O-06-12-102"
 	abno_info = list(
 		"It was noticed upon a good work result on attachment that a soothing song could be heard in other containment units, relaxing the other abnormalities for the rest of the shift.",
@@ -70,7 +70,7 @@
 //	-------------TETH-------------
 // Remnant of the Forest
 /obj/item/paper/fluff/info/branch12/rock
-	abno_type = /mob/living/simple_animal/hostile/abnormality/rock
+	abno_type = /mob/living/simple_animal/hostile/abnormality/branch12/rock
 	abno_code = "O-04-12-120"
 	abno_info = list(
 		"<Experiment> The employee Johnson began work on O-04-12-120, and O-04-12-120 produced 1 E then promptly disappeared.",
@@ -85,7 +85,7 @@
 //	-------------HE-------------
 // The Show Goes On
 /obj/item/paper/fluff/info/branch12/show_goes_on
-	abno_type = /mob/living/simple_animal/hostile/abnormality/show_goes_on
+	abno_type = /mob/living/simple_animal/hostile/abnormality/branch12/show_goes_on
 	abno_code = "T-04-12-93"
 	abno_info = list(
 		"When the work result was not perfect the employee continued working until it was perfect or nearly so.",
@@ -99,7 +99,7 @@
 //	-------------WAW-------------
 // Queen Keres
 /obj/item/paper/fluff/info/branch12/queen_keres
-	abno_type = /mob/living/simple_animal/hostile/abnormality/queen_keres
+	abno_type = /mob/living/simple_animal/hostile/abnormality/branch12/queen_keres
 	abno_code = "T-01-12-233"
 	abno_info = list(
 		"When the work result was normal, the Qliphoth counter decreased with a high probability.",
@@ -111,7 +111,7 @@
 
 // Joe Shmoe
 /obj/item/paper/fluff/info/branch12/joe_shmoe
-	abno_type = /mob/living/simple_animal/hostile/abnormality/joe_shmoe
+	abno_type = /mob/living/simple_animal/hostile/abnormality/branch12/joe_shmoe
 	abno_code = "T-01-12-111"
 	abno_info = list(
 		"When the work result was bad, the Qliphoth counter decreased.",
