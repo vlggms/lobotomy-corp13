@@ -8677,14 +8677,6 @@
 /obj/machinery/fish_market,
 /turf/open/floor/wood,
 /area/city)
-"LT" = (
-/mob/living/simple_animal/hostile/debugdummy{
-	name = "Hana Training Dummy";
-	desc = "A dummy made by the hana association, it is able to record the damage it takes."
-	},
-/obj/effect/turf_decal/box,
-/turf/open/floor/mineral/titanium/tiled/white,
-/area/city/house)
 "LU" = (
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/effect/turf_decal/trimline/blue/filled/line{
@@ -8788,6 +8780,10 @@
 /obj/structure/lootcrate/backstreets,
 /turf/open/floor/plating/beach/sand,
 /area/city/backstreets_alley)
+"MA" = (
+/obj/effect/turf_decal/box,
+/turf/open/floor/mineral/titanium/tiled/white,
+/area/city/house)
 "MF" = (
 /obj/structure/railing,
 /obj/effect/turf_decal/siding/wood{
@@ -55170,7 +55166,7 @@ ca
 Fv
 fP
 fP
-LT
+MA
 fP
 fP
 yz
@@ -55684,7 +55680,7 @@ DZ
 fP
 fP
 fP
-LT
+MA
 fP
 fP
 fP
@@ -56195,13 +56191,13 @@ Oq
 Oq
 Oq
 ca
-LT
+MA
 fP
 bm
 fP
 bm
 fP
-LT
+MA
 ca
 Oq
 Oq
