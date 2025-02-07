@@ -120,3 +120,29 @@
 		"When O-01-111’s Qliphoth counter reached 0, A copy of O-01-12-111 appeared in multiple hallways of the facility",
 	)
 
+// Passion of Love in Death
+/obj/item/paper/fluff/info/branch12/passion
+	abno_type = /mob/living/simple_animal/hostile/abnormality/branch12/passion
+	abno_code = "T-01-12-244"
+	abno_info = list(
+		"When the work result was bad, the Qliphoth counter decreased with a high probability.",
+		"When repression work was performed with T-01-244, the Qliphoth counter lowered at a high probability.",
+		"When an employee with level 3 justice or higher completed their work, the Qliphoth counter lowered. The same phenomenon occurred when temperance was below level 4.",
+	)
+
+
+
+//	-------------ALEPH-------------
+// Old Man and The Pale
+/obj/item/paper/fluff/info/branch12/oldman_pale
+	abno_type = /mob/living/simple_animal/hostile/abnormality/branch12/oldman_pale
+	abno_code = "T-01-12-127"
+	abno_info = list(
+		"When the work result was bad, the Qliphoth counter.",
+		"When the work result was normal, the Qliphoth counter decreased with an average probability.",
+		"When Repression work was performed and the work result was good, the Qliphoth counter.",
+		"When an employee went insane while working on T-01-12-127 then employee gained INNOCENCE after 60 seconds.",
+		"INNOCENCE could not be cleared, and slowly drained sanity.",
+		"Working Inspire on T-01-12-127 with a good result would cause all of The Pale in the facility to be cleared.",
+		"Working Inspire on T-01-12-127 with a bad or normal result would cause INNOCENCE to be applied to the employee working on T-01-12-127.",
+	)
