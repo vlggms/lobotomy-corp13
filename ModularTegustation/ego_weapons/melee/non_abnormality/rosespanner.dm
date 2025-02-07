@@ -101,8 +101,8 @@
 	desc = "A spear from the rosespanner workshop"
 	icon_state = "rosespanner_spear"
 	inhand_icon_state = "rosespanner_spear"
-	force = 52	//Slow but rosespanners a detriment, so
-	attack_speed = 1
+	force = 60	//Slow but rosespanners a detriment, so
+	attack_speed = 1.4
 	reach = 2
 	stuntime = 5
 	attribute_requirements = list(

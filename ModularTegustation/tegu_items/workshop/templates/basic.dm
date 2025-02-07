@@ -2,9 +2,10 @@
 	name = "spear template"
 	desc = "A blank spear workshop template."
 	icon_state = "speartemplate"
-	force = 20
+	force = 25
 	reach = 2		//Has 2 Square Reach.
-	attack_speed = 1.4
+	attack_speed = 1.3
+	stuntime = 5
 	attack_verb_continuous = list("pokes", "jabs", "tears", "lacerates", "gores")
 	attack_verb_simple = list("poke", "jab", "tear", "lacerate", "gore")
 	hitsound = 'sound/weapons/ego/spear1.ogg'
@@ -48,9 +49,10 @@
 	name = "javelin template"
 	desc = "A blank javelin workshop template."
 	icon_state = "javelintemplate"
-	force = 22
+	force = 27
 	reach = 2		//Has 2 Square Reach.
-	attack_speed = 1.7	//not really for melee and is therefore really slow.
+	attack_speed = 1.6	//not really for melee and is therefore really slow.
+	stuntime = 5
 	throwforce = 50
 	attack_verb_continuous = list("pokes", "jabs", "tears", "lacerates", "gores")
 	attack_verb_simple = list("poke", "jab", "tear", "lacerate", "gore")
