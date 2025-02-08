@@ -124,7 +124,7 @@ GLOBAL_LIST_EMPTY(possible_loot_jcorp)
 
 /obj/machinery/jcorp_slot_machine/attackby(obj/item/I, mob/living/user, params)
 	if(istype(I, /obj/item/coin/casino_token))
-		if(!do_after(user, 7 SECONDS, src))
+		if(!do_after(user, 2 SECONDS, src))
 			return
 		if(istype(I, /obj/item/coin/casino_token/diamond))
 			process_gamble(5)
