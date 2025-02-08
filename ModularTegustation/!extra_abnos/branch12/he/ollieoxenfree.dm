@@ -31,7 +31,7 @@
 		ABNORMALITY_WORK_ATTACHMENT = list(50, 50, 70, 70, 70),
 		ABNORMALITY_WORK_REPRESSION = list(20, 20, 10, 10, 10),
 	)
-	work_damage_amount = 20
+	work_damage_amount = 8
 	work_damage_type = BLACK_DAMAGE
 
 	var/list/ideas_stolen = list() //affects what abilities it has on breach
