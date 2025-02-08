@@ -13,12 +13,12 @@
 	icon_state = "signal"
 	armor = list(RED_DAMAGE = -10, WHITE_DAMAGE = 10, BLACK_DAMAGE = 10, PALE_DAMAGE = 0)
 
-
+//TETH
 /obj/item/clothing/suit/armor/ego_gear/branch12/serenity
 	name = "serenity"
 	desc = "They shouldn't dwell into delusions like that, it will only lead them to their doom."
 	icon_state = "penitence"
-	armor = list(RED_DAMAGE = 0, WHITE_DAMAGE = 10, BLACK_DAMAGE = 0, PALE_DAMAGE = 0)
+	armor = list(RED_DAMAGE = 10, WHITE_DAMAGE = 30, BLACK_DAMAGE = -20, PALE_DAMAGE = 0)
 
 //HE
 /obj/item/clothing/suit/armor/ego_gear/branch12/perfectionist
