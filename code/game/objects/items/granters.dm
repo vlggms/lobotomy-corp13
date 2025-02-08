@@ -535,6 +535,12 @@
 /obj/item/book/granter/crafting_recipe/carnival
 	pages_to_mastery = 1
 	var/carnival_only = TRUE
+
+/obj/item/book/granter/crafting_recipe/carnival/Initialize()
+	. = ..()
+	if(SSmaptype.maptype == "office")
+		carnival_only = FALSE
+
 /obj/item/book/granter/crafting_recipe/carnival/attack_self(mob/user)
 	if (carnival_only && !(user?.mind?.assigned_role == "Carnival" || user?.mind?.assigned_role == "Workshop Attendant")) // check role
 		to_chat(user, span_danger("Wow, This book seems so wacky! None of it makes sense, to you."))
