@@ -1,7 +1,7 @@
 //Very simple, funny little guy.
 /mob/living/simple_animal/hostile/abnormality/branch12/dove
-	name = "Gone with a Simple Smile"
-	desc = "An abnormality seeming to make up a floating cat face."
+	name = "Vow of a Dove"
+	desc = "What seems to be a short squat bird."
 	icon = 'ModularTegustation/Teguicons/branch12/64x64.dmi'
 	icon_state = "dove"
 	icon_living = "dove"
@@ -25,10 +25,10 @@
 	start_qliphoth = 2
 
 	work_chances = list(
-		ABNORMALITY_WORK_INSTINCT = 85,
-		ABNORMALITY_WORK_INSIGHT = 85,
-		ABNORMALITY_WORK_ATTACHMENT = 85,
-		ABNORMALITY_WORK_REPRESSION = 85,
+		ABNORMALITY_WORK_INSTINCT = list(20, 20, 25, 30, 30),
+		ABNORMALITY_WORK_INSIGHT = 60,
+		ABNORMALITY_WORK_ATTACHMENT = 30,
+		ABNORMALITY_WORK_REPRESSION = list(40, 45, 50, 55, 60),
 	)
 	work_damage_amount = 5
 	work_damage_type = RED_DAMAGE
