@@ -284,7 +284,7 @@
 					"next_scene" = "job_1",
 					"visible_callback" = CALLBACK(src, PROC_REF(SwapCheckWorker))),
 				"ready_jobs" = list(
-					"Text" = "“Ready to deliver!”",
+					"Text" = "“About the job.”",
 					"next_scene" = "job",
 					"visible_callback" = CALLBACK(src, PROC_REF(CheckWorker))),
 				"bloodfiend?" = list(
@@ -357,7 +357,7 @@
 				)
 			),
 		"job_5" = list(
-			"text" = "Very well, here's the parcel with the ordered supplies.",
+			"text" = "Very well, here's the parcel with the ordered supplies. I also would recommend buying one of those coordinate pinpointers in the fixer vending machines, they should make the job easier.",
 			"actions" = list(
 				"..." = list(
 					"Text" = "...",
@@ -370,7 +370,7 @@
 			"actions" = list(
 				"payback" = list(
 					"Text" = "Hand over 400 ahn",
-					"next_scene" = "main_screen",
+					"next_scene" = "job_7",
 					"alternative_scene" = "job_6_failed",
 					"proc_callback" = CALLBACK(src, PROC_REF(Payback))),
 				"backaway" = list(
@@ -380,7 +380,7 @@
 				)
 			),
 		"job_6_failed" = list(
-			"text" = "No money!",
+			"text" = "*takes a look at your ID card*, Oh, It appears that you don't have enough ahn to pay me back... Please return when you DO have enough so we don't waste each other's time.",
 			"actions" = list(
 				"..." = list(
 					"Text" = "...",
@@ -389,7 +389,7 @@
 				)
 			),
 		"job_7" = list(
-			"text" = "Very well, Thanks for paying back your loss, please don't lose it again.",
+			"text" = "*takes a look at your ID card*, Very well, Thanks for paying back your loss, please don't lose it again.",
 			"actions" = list(
 				"..." = list(
 					"Text" = "...",
