@@ -12,6 +12,8 @@
 		ABNORMALITY_WORK_ATTACHMENT = list(65, 65, 65, 80, 80),
 		ABNORMALITY_WORK_REPRESSION = list(30, 30, 0, 0, 0),
 	)
+	pixel_x = -16
+	base_pixel_x = -16
 	start_qliphoth = 2
 	work_damage_amount = 12
 	work_damage_type = BLACK_DAMAGE
