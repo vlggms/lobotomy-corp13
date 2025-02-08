@@ -24,7 +24,7 @@
 
 	ego_list = list(
 	//	/datum/ego_datum/weapon/signal,
-	//	/datum/ego_datum/armor/signal,
+		/datum/ego_datum/armor/signal,
 	)
 	//gift_type =  /datum/ego_gifts/signal
 	abnormality_origin = ABNORMALITY_ORIGIN_BRANCH12

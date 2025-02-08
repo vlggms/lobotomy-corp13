@@ -1,11 +1,10 @@
 /mob/living/simple_animal/hostile/abnormality/branch12/ollieoxenfree
 	name = "Ollieoxenfree"
 	desc = "The child asked 'How is it plagiarism if it was my work all along'"
-	icon = 'ModularTegustation/Teguicons/branch12/48x64.dmi'
-	icon_state = ""
-	icon_living = ""
-	icon_dead = ""
-	del_on_death = FALSE
+	icon = 'ModularTegustation/Teguicons/branch12/32x64.dmi'
+	icon_state = "oxenfree"
+	icon_living = "oxenfree"
+	del_on_death = TRUE
 	abnormality_origin = ABNORMALITY_ORIGIN_BRANCH12
 
 	maxHealth = 1000
@@ -38,7 +37,7 @@
 	var/list/ideas_stolen = list() //affects what abilities it has on breach
 	var/list/potential_ideas = list("skitter", "hallucination", "lifesteal", "blindness", "randomdamage", "flametile", "knockdown", "pulse", "bleed", "confusion")
 	var/dashready = TRUE
-	var/pulse_cooldown =
+	var/pulse_cooldown
 	var/pulse_cooldown_time = 3 SECONDS
 	var/pulse_damage = 20
 
@@ -48,9 +47,9 @@
 
 /mob/living/simple_animal/hostile/abnormality/branch12/ollieoxenfree/PostWorkEffect(mob/living/carbon/human/user, work_type, pe, work_time)
 	switch(work_type)
-		if(!= ABNORMALITY_WORK_ATTACHMENT)
+		if(!ABNORMALITY_WORK_ATTACHMENT)
 			datum_reference.qliphoth_change (-1)
-		if (ABNORMALITY_WORK_ATTACHMENT)
+		if(ABNORMALITY_WORK_ATTACHMENT)
 			if(length(potential_ideas))
 				ideas_stolen += pick_n_take(potential_ideas)
 				health += 100
@@ -74,7 +73,7 @@
 		if(z == "knockdown") //knock them down, from smile without the weapon drop
 			H.Knockdown(20)
 		if(z == "lifesteal") //heal by the lowest damage it can do
-			user.adjustBruteLoss(-melee_damage_lower)
+			adjustBruteLoss(-melee_damage_lower)
 
 /mob/living/simple_animal/hostile/abnormality/branch12/ollieoxenfree/proc/Skitter()
 	visible_message(span_warning("[src] Skitters faster!"), span_notice("you hear the patter of hundreds of 'original' feet"))
@@ -105,7 +104,7 @@
 		L.deal_damage(pulse_damage, WHITE_DAMAGE)
 		new /obj/effect/temp_visual/dir_setting/bloodsplatter(get_turf(L), pick(GLOB.alldirs))
 
-/mob/living/simple_animal/hostile/abnormality/ardor_moth/Move()
+/mob/living/simple_animal/hostile/abnormality/branch12/ollieoxenfree/Move()
 	..()
 	if("flametile" in ideas_stolen)
 		for(var/turf/open/T in range(1, src))
