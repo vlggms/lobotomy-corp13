@@ -36,6 +36,10 @@
 /mob/living/simple_animal/hostile/abnormality/branch12/rock/CanAttack(atom/the_target)
 	return FALSE
 
+/mob/living/simple_animal/hostile/abnormality/branch12/rock/AttemptWork(mob/living/carbon/human/user, work_type)
+	if(!icon_state)
+		return FALSE
+	return TRUE
 
 /mob/living/simple_animal/hostile/abnormality/branch12/rock/BreachEffect(mob/living/carbon/human/user, work_type, pe, work_time)
 	..()
