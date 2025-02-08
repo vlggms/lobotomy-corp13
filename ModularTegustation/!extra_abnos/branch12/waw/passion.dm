@@ -5,7 +5,7 @@
 	icon_state = "passion"
 	maxHealth = 400
 	health = 400
-	threat_level = TETH_LEVEL
+	threat_level = WAW_LEVEL
 	work_chances = list(
 		ABNORMALITY_WORK_INSTINCT = list(45, 50, 50, 55, 55),
 		ABNORMALITY_WORK_INSIGHT = list(35, 35, 40, 40, 45),
