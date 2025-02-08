@@ -251,8 +251,8 @@ SUBSYSTEM_DEF(ticker)
 			mode = new /datum/game_mode/combat
 
 	else if(SSmaptype.maptype == "branch12")
-		if(!(istype(mode, /datum/game_mode/branch12)))
-			mode = new /datum/game_mode/branch12
+		if(!(istype(mode, /datum/game_mode/management/branch12)))
+			mode = new /datum/game_mode/management/branch12
 
 	else
 		switch(SSmaptype.chosen_trait)
