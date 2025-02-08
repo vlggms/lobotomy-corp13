@@ -10,10 +10,11 @@
 	mob_size = MOB_SIZE_HUGE // No more lockers, Whitaker
 	var/portrait_folder = "icons/UI_Icons/NPC_Portraits/"
 	var/portrait = "the-goat.png"
-	var/soundfile =  'sound/creatures/lc13/goat_bleating.ogg'
+	var/sound/talking = sound('sound/creatures/lc13/mailman.ogg', repeat = TRUE)
 	var/datum/ui_npc/scene_manager/scene_manager = new()
 	var/start_scene_id = "intro"
 	var/typing_interval = 100
+	var/payback_price = 400
 
 /mob/living/simple_animal/ui_npc/Initialize()
 	. = ..()
@@ -62,10 +63,10 @@
 
 	// Handle special actions
 	if(action == "playSound")
-		playsound(usr, sound(soundfile, repeat=1), 50, channel = 3)
+		user.playsound_local(user, null, 40, 0, channel = CHANNEL_MUMBLE, use_reverb = FALSE, S = talking)
 		return TRUE
 	else if(action == "stopSound")
-		stop_sound_channel(3)
+		user.stop_sound_channel(CHANNEL_MUMBLE)
 		return TRUE
 
 
@@ -97,6 +98,7 @@
 // Called when the UI closes.
 /mob/living/simple_animal/ui_npc/ui_close(mob/user)
 	// Perform any cleanup if necessary.
+	user.stop_sound_channel(CHANNEL_MUMBLE)
 	return
 
 // Called periodically if autoupdate=TRUE. If you need periodic refreshes, do them here.
@@ -514,7 +516,29 @@
 			last_attacked_cooldown = world.time
 
 /mob/living/simple_animal/ui_npc/mailman/proc/Payback()
-	return FALSE
+	var/obj/item/card/id/C
+	if(isliving(usr))
+		var/mob/living/L = usr
+		C = L.get_idcard(TRUE)
+	if(!C)
+		say("No card found.")
+		return FALSE
+	else if (!C.registered_account)
+		say("No account found.")
+		return FALSE
+	var/datum/bank_account/account = C.registered_account
+	if(payback_price && !account.adjust_money(-payback_price))
+		say("You do not possess the funds!")
+		return FALSE
+	else
+		RemoveUser(parcel_deliveries)
+		RemoveUser(item_deliveries)
+	return TRUE
+
+/mob/living/simple_animal/ui_npc/proc/RemoveUser(list)
+	for(var/D in list)
+		list[D] -= usr
+
 
 /mob/living/simple_animal/ui_npc/mailman/proc/OrderParcel()
 	var/door = pick(GLOB.delivery_doors)
