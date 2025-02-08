@@ -34,7 +34,7 @@
 	minimal_access = list(ACCESS_COMMAND)
 	departments = DEPARTMENT_COMMAND
 
-	mapexclude = list("mini")
+	mapexclude = list("mini", "branch12")
 	job_important = "You are the Extraction Officer. Your job is to manage the EGO console, Extraction purchase console, and power generation system. Your main goal is to ensure Agents are well-equipped with EGO."
 
 	job_abbreviation = "EO"

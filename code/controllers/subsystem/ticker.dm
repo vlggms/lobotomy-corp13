@@ -249,6 +249,11 @@ SUBSYSTEM_DEF(ticker)
 	if(SSmaptype.maptype in SSmaptype.combatmaps)
 		if(!(istype(mode, /datum/game_mode/combat)))
 			mode = new /datum/game_mode/combat
+
+	else if(SSmaptype.maptype == "branch12")
+		if(!(istype(mode, /datum/game_mode/branch12)))
+			mode = new /datum/game_mode/branch12
+
 	else
 		var/choosingmode = pick(/datum/game_mode/management/classic,
 			//	/datum/game_mode/management/pure,
