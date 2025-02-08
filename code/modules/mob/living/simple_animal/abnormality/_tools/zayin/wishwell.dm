@@ -231,8 +231,17 @@
 			output = "ALEPH"
 		else
 			output = "ZAYIN" //If an EGO is not in the lists for whatever reason it will default to zayin
-	else if(istype(I, /obj/item/stack/casinotoken))
-		output = "TETH"
+	else if(istype(I, /obj/item/coin/casino_token))
+		if(istype(I, /obj/item/coin/casino_token/diamond))
+			output = "ALEPH"
+		else if(istype(I, /obj/item/coin/casino_token/gold))
+			output = "WAW"
+		else if(istype(I, /obj/item/coin/casino_token/silver))
+			output = "HE"
+		else if(istype(I, /obj/item/coin/casino_token/iron))
+			output = "TETH"
+		else
+			output = "ZAYIN"
 		to_chat(user, span_notice("You hear a plop as the token comes in contact with the water..."))
 		user.playsound_local(user, 'sound/items/coinflip.ogg', 80, TRUE)
 	else

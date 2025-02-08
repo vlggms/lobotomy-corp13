@@ -86,8 +86,20 @@ GLOBAL_LIST_EMPTY(jcorp_upgrades)
 	requester.visible_message(span_notice("The [requester] lights up as it teleports in the Lootboxes."))
 	repeat_cooldown = world.time + (10 SECONDS)
 
-//ERTs
+//Casino Machines
 
+/datum/data/lc13research/casino_machine
+	research_name = "J Corp Casino Machine"
+	research_desc = "If the agents want to bring gambling to their facility, we got a spare casino machine to offer."
+	cost = AVERAGE_RESEARCH_PRICE
+	corp = J_CORP_REP
+
+/datum/data/lc13research/casino_machine/ResearchEffect(obj/structure/representative_console/caller)
+	new /obj/machinery/jcorp_slot_machine(get_turf(caller))
+	caller.visible_message(span_notice("The [caller] lights up as it teleports in the Casino Machine."))
+
+//ERTs
+/*
 /datum/data/lc13research/mobspawner/casino_slaves
 	research_name = "Casino Slaves"
 	research_desc = "We can pay some local casinos to send over some of the slaves they have to help the facility. The casinos could care less of what happens to the slaves, as long as the casinos get back their pickaxes."
@@ -121,3 +133,4 @@ GLOBAL_LIST_EMPTY(jcorp_upgrades)
 // /datum/data/lc13research/crit_sticker/ResearchEffect(obj/structure/representative_console/requester)
 //	new /obj/item/clothing/mask/crit_sticker(get_turf(requester))
 //	..()
+*/

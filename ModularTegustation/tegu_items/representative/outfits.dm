@@ -131,5 +131,3 @@
 	W.assignment = "Asset Protection Staff"
 	W.registered_name = H.real_name
 	W.update_label()
-
-/datum/outfit/casino_slave

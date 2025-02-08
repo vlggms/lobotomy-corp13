@@ -99,7 +99,7 @@
 						roulette_modifier = -3
 					else
 						roulette_modifier = 3
-			if(prob(16.666*spent_chambers))
+			if(prob((16.666+roulette_modifier)*spent_chambers) || spent_chambers == 6) //Failsafe thanks to J corp RNG
 				playsound(user, 'sound/weapons/gun/revolver/shot_alt.ogg', 100, FALSE)
 				russian_roulette = FALSE
 				if(player_shot)
