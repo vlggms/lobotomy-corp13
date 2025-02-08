@@ -5,6 +5,8 @@
 	icon = 'ModularTegustation/Teguicons/branch12/64x64.dmi'
 	icon_state = "dove"
 	icon_living = "dove"
+	pixel_x = -16
+	base_pixel_x = -16
 	del_on_death = TRUE
 	maxHealth = 1000	//should be a little tankier as it's a bit slow
 	health = 1000

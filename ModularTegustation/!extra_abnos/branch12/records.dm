@@ -122,7 +122,6 @@
 		"When the work result was bad the counter lowered by 1.",
 		"T-06-12-143 prefers attachment work over all other types of work. Any other work besides attachment will lower the counter by 1.",
 		"When an employee performed attachment work, T-06-12-143 created an idea.",
-		"Every time the employee didn’t perform correctly the negative energy damage increased.",
 		"The ideas obtained by T-06-143 are manifested into this abnormality’s strength whenever it breaches.",
 	)
 
