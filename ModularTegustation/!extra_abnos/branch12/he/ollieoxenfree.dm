@@ -58,6 +58,7 @@
 
 //from here on, abilities it can gain on breach
 /mob/living/simple_animal/hostile/abnormality/branch12/ollieoxenfree/AttackingTarget(atom/attacked_target) //checking it's ideas and executing them
+	..()
 	if(!ishuman(attacked_target))
 		return
 	var/mob/living/carbon/human/H = attacked_target
