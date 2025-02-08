@@ -22,7 +22,7 @@
 	info = {"<h1><center>O-09-12-193</center></h1>	<br>
 	Name : Eye for an Eye<br>
 	Risk Class : Teth	<br>
-	- When used, O-09-193 swapped the current hp and sp of the employee working on it.	<br>
+	- When used, O-09-12-193 swapped the current hp and sp of the employee working on it.	<br>
 	- If an employee triggers the previous effect twice in a day they will immediately panic.	<br>
 	- Any additional uses after the second use by the employee who received the bonus will kill them."}
 
@@ -32,7 +32,7 @@
 	info = {"<h1><center>O-09-12-202</center></h1>	<br>
 	Name : 10 Seconds till Midnight<br>
 	Risk Class : Teth	<br>
-	- When an employee used T-09-202, the ordeal wouldn’t occur. A qliphoth meltdown of the corresponding meltdown level would take its place. <br>
+	- When an employee used T-09-12-202, the ordeal wouldn’t occur. A qliphoth meltdown of the corresponding meltdown level would take its place. <br>
 	- 10 seconds till midnight can only stop ordeals 2 times per shift.	<br>
 	- When used, 10 seconds till midnight would lower the qliphoth counter of 5 Abnormalities by 1.	<br>
 	- When you stop an ordeal all continuing ordeals will either increase in strength and reward, or decrease in reward."}
@@ -51,7 +51,7 @@
 	info = {"<h1><center>O-09-12-159</center></h1>	<br>
 	Name : Predestined Compass<br>
 	Risk Class : He	<br>
-	- Employees who carried O-05-159 found themselves to be luckier when working on abnormalities under a meltdown, boosting their PE production. <br>
+	- Employees who carried O-09-12-159 found themselves to be luckier when working on abnormalities under a meltdown, boosting their PE production. <br>
 	- Employees who carried the Predestined Compass, and worked on an abnormality not suffering a qliphoth meltdown would have incredibly terrible luck."}
 
 //	-------------ZAYIN-------------
@@ -63,6 +63,17 @@
 		"It was noticed upon a good work result on attachment that a soothing song could be heard in other containment units, relaxing the other abnormalities for the rest of the shift.",
 		"The relaxed abnormalities seemed more prone to testing, producing more E on average.",
 		"Despite being beneficial to E production, an employee should not try to do attachment work twice in a day. Doing so will result in <Redacted> being heard across the facility, slowly doing white damage to all employees.",
+		"The <Redacted> can be stopped once a employee gets a good work result on O-06-12-102",
+	)
+
+// Statue of Forgiveness
+/obj/item/paper/fluff/info/branch12/statue
+	abno_type = /mob/living/simple_animal/hostile/abnormality/branch12/statue_of_forgiveness
+	abno_code = "O-03-12-899"
+	abno_info = list(
+		"When an employee completed a Good work result, the employee was granted a blessing.",
+		"When an employee panics while performing a work order, the employee will seek for other employees to attack.",
+		"A second blessing cannot be given while an employee is already under the effect of it.",
 		"The <Redacted> can be stopped once a employee gets a good work result on O-06-12-102",
 	)
 
@@ -81,6 +92,14 @@
 		"<Experiment 3> Following the events of <Redacted>, It has been observed that abnormalities originating from the black forest demonstrate high levels of aversion to O-04-12-120. Please keep this in mind as a last-resort failsafe should an emergency involving O-02-63 occurs in the main branch."
 	)
 
+// Vow Of A Dove
+/obj/item/paper/fluff/info/branch12/dove
+	abno_type = /mob/living/simple_animal/hostile/abnormality/branch12/dove
+	abno_code = "O-02-12-251"
+	abno_info = list(
+		"When the work result was bad, the Qliphoth counter lowered.",
+		"When worked on by an employee with 1 or lower Temperance, the Qliphoth counter lowers.",
+	)
 
 //	-------------HE-------------
 // The Show Goes On
@@ -92,7 +111,19 @@
 		"When the employee was performing the stage prevented damage, death, and interference from external sources.",
 		"When the work result was good the employee was healed slightly.",
 		"Every time the employee didn’t perform correctly the negative energy damage increased.",
-		"When an employee dies in T-04-93 and they haven’t performed perfectly, the dead body will continue producing E until it they completed their work.",
+		"When an employee dies in T-04-12-93 and they haven’t performed perfectly, the dead body will continue producing E until it they completed their work.",
+	)
+
+// Ollieoxenfree
+/obj/item/paper/fluff/info/branch12/ollieoxenfree
+	abno_type = /mob/living/simple_animal/hostile/abnormality/branch12/ollieoxenfree
+	abno_code = "T-06-12-143"
+	abno_info = list(
+		"When the work result was bad the counter lowered by 1.",
+		"T-06-12-143 prefers attachment work over all other types of work. Any other work besides attachment will lower the counter by 1.",
+		"When an employee performed attachment work, T-06-12-143 created an idea.",
+		"Every time the employee didn’t perform correctly the negative energy damage increased.",
+		"The ideas obtained by T-06-143 are manifested into this abnormality’s strength whenever it breaches.",
 	)
 
 
