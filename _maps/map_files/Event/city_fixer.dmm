@@ -402,6 +402,16 @@
 	},
 /turf/open/floor/facility/white,
 /area/city/fixers)
+"gI" = (
+/obj/structure/delivery_door{
+	density = 1;
+	icon = 'icons/obj/votebox.dmi';
+	icon_state = "votebox_maint";
+	name = "mail box";
+	desc = "A mailbox for this house."
+	},
+/turf/closed/indestructible/reinforced,
+/area/city/shop)
 "gS" = (
 /obj/structure/table/reinforced,
 /obj/structure/railing,
@@ -949,6 +959,16 @@
 /obj/effect/spawner/randomcolavend,
 /turf/open/floor/plating/ashplanet/rocky,
 /area/city/backstreets_checkpoint)
+"nv" = (
+/obj/structure/delivery_door{
+	density = 1;
+	icon = 'icons/obj/votebox.dmi';
+	icon_state = "votebox_maint";
+	name = "mail box";
+	desc = "A mailbox for this house."
+	},
+/turf/closed/indestructible/reinforced,
+/area/city/house)
 "nx" = (
 /obj/effect/turf_decal/trimline/yellow/line,
 /obj/machinery/light,
@@ -1283,6 +1303,7 @@
 /area/city/shop)
 "tM" = (
 /obj/structure/chair/plastic,
+/mob/living/simple_animal/ui_npc/eric_t,
 /turf/open/indestructible/white,
 /area/city/shop)
 "tO" = (
@@ -2310,9 +2331,15 @@
 /turf/open/floor/circuit/telecomms/mainframe,
 /area/facility_hallway/north)
 "Gc" = (
-/obj/structure/delivery_door,
-/turf/open/floor/plating/ashplanet/rocky,
-/area/city)
+/obj/structure/delivery_door{
+	density = 1;
+	icon = 'icons/obj/votebox.dmi';
+	icon_state = "votebox_maint";
+	name = "mail box";
+	desc = "A mailbox for this house."
+	},
+/turf/closed/indestructible/reinforced,
+/area/city/fixers)
 "Gn" = (
 /obj/machinery/door/airlock/medical{
 	hackProof = 1;
@@ -26809,7 +26836,7 @@ Xi
 qD
 Hm
 Ow
-HA
+Gc
 HA
 HA
 HA
@@ -27319,7 +27346,7 @@ jx
 iV
 yr
 Rh
-Xi
+nv
 Hm
 Hm
 Hm
@@ -28353,7 +28380,7 @@ Hm
 Hm
 HA
 HA
-HA
+Gc
 Zb
 Vd
 Vd
@@ -29889,7 +29916,7 @@ Xi
 WG
 iC
 kn
-Xi
+nv
 Hm
 Hm
 Hm
@@ -32208,7 +32235,7 @@ oP
 EC
 qh
 qh
-OT
+gI
 Hm
 Hm
 Hm
@@ -35555,13 +35582,13 @@ Hm
 Hm
 HA
 HA
-HA
+Gc
 Zb
 Vd
 Vd
 HA
 HA
-HA
+Gc
 Zb
 Vd
 Vd
@@ -36593,7 +36620,7 @@ Hm
 sz
 Hm
 Hm
-OT
+gI
 zp
 Wv
 HA
@@ -37625,7 +37652,7 @@ OT
 OT
 OT
 HA
-HA
+Gc
 Vd
 Zb
 Vd
@@ -37872,7 +37899,7 @@ WX
 WX
 WX
 CX
-Vd
+Gc
 Hm
 Hm
 Hm
@@ -38625,7 +38652,7 @@ qB
 fL
 Vw
 xX
-OT
+gI
 us
 us
 us
@@ -39414,7 +39441,7 @@ WX
 WX
 WX
 CX
-Vd
+Gc
 Hm
 Hm
 Hm
@@ -44287,7 +44314,7 @@ WX
 WX
 WX
 CX
-Vd
+Gc
 Hm
 Hm
 Hm
@@ -44537,7 +44564,7 @@ Vd
 Vd
 Zb
 Vd
-Vd
+Gc
 HA
 HA
 HA
@@ -45059,7 +45086,7 @@ Hm
 Hm
 Hm
 Hm
-Gc
+Hm
 XJ
 XJ
 XJ

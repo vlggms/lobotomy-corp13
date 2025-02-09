@@ -16,9 +16,29 @@
 	var/typing_interval = 100
 	var/typing_volume = 30
 	var/payback_price = 400
+	var/shut_up = FALSE
+	var/list/emote_list = list()
+	///Last world tick we sent a slogan message out
+	var/last_emote = 0
+	///How many ticks until we can send another
+	var/emote_delay = 6000
+	var/random_emotes = "baa!"
+
+
+/mob/living/simple_animal/ui_npc/Life()
+	. = ..()
+	if(last_emote + emote_delay <= world.time && emote_list.len > 0 && !shut_up && DT_PROB(20, 1))
+		var/emote = pick(emote_list)
+		manual_emote(emote)
+		last_emote = world.time
 
 /mob/living/simple_animal/ui_npc/Initialize()
 	. = ..()
+	emote_list = splittext(random_emotes, ";")
+	// So not all machines speak at the exact same time.
+	// The first time this machine says something will be at slogantime + this random value,
+	// so if slogantime is 10 minutes, it will say it at somewhere between 10 and 20 minutes after the machine is crated.
+	last_emote = world.time + rand(0, emote_delay)
 
 // Called to supply dynamic data to the UI.
 /mob/living/simple_animal/ui_npc/ui_data(mob/user)
@@ -211,6 +231,12 @@
 	maxHealth = 1000
 	portrait = "erik_bloodfiend_zoom.png"
 	start_scene_id = "intro"
+	icon = 'ModularTegustation/Teguicons/blood_fiends_32x32.dmi'
+	icon_state = "b_boss"
+	icon_living = "b_boss"
+	icon_dead = "b_boss_dead"
+	emote_delay = 2000
+	random_emotes = "shuffles through some papers;flips a page in their notebook;sighs..."
 
 /mob/living/simple_animal/ui_npc/eric_t/Initialize()
 		. = ..()
@@ -538,21 +564,23 @@
 	if(isliving(usr))
 		var/mob/living/L = usr
 		C = L.get_idcard(TRUE)
-	if(!C)
-//		say("No card found.")
-		return FALSE
-	else if (!C.registered_account)
-//		say("No account found.")
-		return FALSE
-	var/datum/bank_account/account = C.registered_account
-	if(payback_price && !account.adjust_money(-payback_price))
-//		say("You do not possess the funds!")
-		return FALSE
+		if(!C)
+		//		say("No card found.")
+			return FALSE
+		else if (!C.registered_account)
+		//		say("No account found.")
+			return FALSE
+		var/datum/bank_account/account = C.registered_account
+		if(payback_price && !account.adjust_money(-payback_price))
+		//		say("You do not possess the funds!")
+			return FALSE
+		else
+			RemoveUser(parcel_deliveries)
+			RemoveUser(item_deliveries)
+			L.playsound_local(get_turf(src), 'sound/effects/cashregister.ogg', 25, 3, 3)
+		return TRUE
 	else
-		RemoveUser(parcel_deliveries)
-		RemoveUser(item_deliveries)
-		L.playsound(get_turf(src), 'sound/effects/cashregister.ogg', 25, 3, 3)
-	return TRUE
+		return FALSE
 
 /mob/living/simple_animal/ui_npc/proc/RemoveUser(list)
 	for(var/D in list)
@@ -564,7 +592,8 @@
 	if (istype(door, /obj/structure/delivery_door))
 		var/obj/structure/delivery_door/D = door
 		D.OrderParcel(src.loc)
-		usr.playsound(get_turf(src), 'sound/effects/cashregister.ogg', 25, 3, 3)
+		var/mob/user = usr
+		user.playsound_local(get_turf(src), 'sound/effects/cashregister.ogg', 25, 3, 3)
 		new /obj/item/pinpointer/coordinate(src.loc)
 		if (!parcel_deliveries[D])
 			parcel_deliveries[D] = list()
