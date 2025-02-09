@@ -132,6 +132,8 @@
 		ui.open()
 
 /mob/living/simple_animal/ui_npc/attack_hand(mob/living/carbon/user)
+	if (..())
+		return TRUE
 	switch(M.a_intent)
 		if("help")
 			if (stat == DEAD)
