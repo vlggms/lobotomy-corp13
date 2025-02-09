@@ -1,7 +1,7 @@
 /mob/living/simple_animal/hostile/abnormality/branch12/statue_of_forgiveness
 	name = "Statue of Forgiveness"
 	desc = "By praying for its protection, the statue might grant you its gift if you’re worthy"
-	icon = 'ModularTegustation/Teguicons/32x64.dmi'
+	icon = 'ModularTegustation/Teguicons/branch12/32x64.dmi'
 	icon_state = "forgiveness"
 	icon_living = "forgiveness"
 
@@ -56,6 +56,8 @@
 
 /mob/living/simple_animal/hostile/abnormality/branch12/statue_of_forgiveness/Life() //reset the buff when they die
 	. = ..()
+	if(!gifted_human)
+		return
 	if (gifted_human.stat == DEAD)
 		gifted_human = FALSE
 
