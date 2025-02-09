@@ -47,7 +47,7 @@ export const SpeakingNpc = (props, context) => {
                 justify="center"
                 height="100%"
               >
-                {actions.map((action) => (
+                {actions.map(action => (
                   <Button
                     key={action.key}
                     onClick={() => act(action.key)}
