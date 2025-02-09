@@ -1,3 +1,9 @@
+/mob/living/simple_animal/hostile/shrimp/Initialize()
+	. = ..()
+	if(SSmaptype.maptype in SSmaptype.citymaps)
+		melee_damage_lower = 12
+		melee_damage_upper = 14
+
 /mob/living/simple_animal/hostile/ordeal/steel_dawn/Initialize()
 	. = ..()
 	if(SSmaptype.maptype in SSmaptype.citymaps)
