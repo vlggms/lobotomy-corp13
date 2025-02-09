@@ -229,6 +229,7 @@
 	desc = "A fancy looking fellow wearing a mask; they look relaxed right now."
 	health = 1000
 	maxHealth = 1000
+	typing_interval = 30
 	portrait = "erik_bloodfiend_zoom.png"
 	start_scene_id = "intro"
 	icon = 'ModularTegustation/Teguicons/blood_fiends_32x32.dmi'
