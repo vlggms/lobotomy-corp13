@@ -37,3 +37,4 @@ export { Tabs } from './Tabs';
 export { TextArea } from './TextArea';
 export { TimeDisplay } from './TimeDisplay';
 export { Tooltip } from './Tooltip';
+export { TypingScroller } from './TypingScroller';
