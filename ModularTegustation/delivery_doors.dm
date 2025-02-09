@@ -17,8 +17,8 @@
 	GLOB.delivery_doors += src
 
 /obj/structure/delivery_door/Destroy()
-	. = ..()
 	GLOB.delivery_doors -= src
+	return ..()
 
 /obj/structure/delivery_door/attackby(obj/item/I, mob/user)
 	var/ordered_item = locate(I) in item_order
