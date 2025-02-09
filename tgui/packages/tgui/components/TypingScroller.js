@@ -17,7 +17,7 @@ export class TypingScroller extends Component {
 
     this.interval = setInterval(() => {
       if (i < text.length) {
-        this.setState((prevState) => ({
+        this.setState(prevState => ({
           displayed: prevState.displayed + text[i],
         }));
         i++;
@@ -43,14 +43,14 @@ export class TypingScroller extends Component {
   render() {
     return (
       <div
-        ref={(el) => {
+        ref={el => {
           this.containerEl = el;
         }}
         style={{
           height: "192px",
           overflow: "auto",
           border: "1px solid #ccc",
-          width: "100%"
+          width: "100%",
         }}
       >
         {this.state.displayed}
