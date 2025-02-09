@@ -132,10 +132,15 @@
 		ui.open()
 
 /mob/living/simple_animal/ui_npc/attack_hand(mob/living/carbon/user)
+	switch(M.a_intent)
+		if("help")
+			if (stat == DEAD)
+				return
+			if(!user || !user.client)
+				return
+			ui_interact(user)
+			return TRUE
 	. = ..()
-	if(!user || !user.client)
-		return
-	ui_interact(user)
 
 /mob/living/simple_animal/ui_npc/attackby(obj/item/O, mob/user, params)
 	. = ..()
