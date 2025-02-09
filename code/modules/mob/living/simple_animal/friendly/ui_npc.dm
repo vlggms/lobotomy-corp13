@@ -132,7 +132,7 @@
 		ui.open()
 
 /mob/living/simple_animal/ui_npc/attack_hand(mob/living/carbon/user)
-	if(!stat && M.a_intent == INTENT_HELP && !client)
+	if(!stat && user.a_intent == INTENT_HELP && !client)
 		if (stat == DEAD)
 			return
 		if(!user || !user.client)
