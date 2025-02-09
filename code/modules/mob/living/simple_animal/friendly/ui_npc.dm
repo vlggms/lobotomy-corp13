@@ -9,7 +9,7 @@
 	can_buckle_to = FALSE // Please. I beg you. Stop stealing my vending machines.
 	mob_size = MOB_SIZE_HUGE // No more lockers, Whitaker
 	var/portrait_folder = "icons/UI_Icons/NPC_Portraits/"
-	var/portrait = "the-goat.png"
+	var/portrait = "the-goat.PNG"
 	var/sound/talking = sound('sound/creatures/lc13/mailman.ogg', repeat = TRUE)
 	var/datum/ui_npc/scene_manager/scene_manager = new()
 	var/start_scene_id = "intro"
@@ -230,7 +230,7 @@
 	health = 1000
 	maxHealth = 1000
 	typing_interval = 30
-	portrait = "erik_bloodfiend_zoom.png"
+	portrait = "erik_bloodfiend_zoom.PNG"
 	start_scene_id = "intro"
 	icon = 'ModularTegustation/Teguicons/blood_fiends_32x32.dmi'
 	icon_state = "b_boss"
