@@ -3,6 +3,9 @@
 /obj/structure/lootcrate/k_corp,
 /turf/open/floor/circuit/green,
 /area/city/backstreets_room)
+"l" = (
+/turf/closed/indestructible/fakeglass,
+/area/city/backstreets_room)
 "r" = (
 /obj/machinery/light{
 	dir = 4
@@ -57,14 +60,14 @@ U
 R
 a
 x
-U
+l
 "}
 (3,1,1) = {"
 U
 a
 a
 x
-U
+l
 "}
 (4,1,1) = {"
 Q
@@ -78,14 +81,14 @@ U
 t
 t
 x
-U
+l
 "}
 (6,1,1) = {"
 U
 t
 t
 x
-U
+l
 "}
 (7,1,1) = {"
 U

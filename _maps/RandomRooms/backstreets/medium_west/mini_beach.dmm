@@ -15,11 +15,17 @@
 /turf/closed/indestructible/reinforced,
 /area/city/backstreets_room)
 "H" = (
-/turf/open/floor/plating/asteroid/basalt,
+/turf/closed/indestructible/fakeglass,
 /area/city/backstreets_room)
 "P" = (
 /obj/effect/mermaid_water,
 /turf/open/floor/plating,
+/area/city/backstreets_room)
+"V" = (
+/obj/structure/mineral_door/sandstone{
+	resistance_flags = 64
+	},
+/turf/open/floor/plating/asteroid/basalt,
 /area/city/backstreets_room)
 "Y" = (
 /obj/structure/lootcrate/s_corp,
@@ -88,13 +94,13 @@ x
 "}
 (6,1,1) = {"
 x
+x
 H
 H
+V
+V
 H
 H
-H
-H
-H
-H
+x
 x
 "}

@@ -7,6 +7,13 @@
 /obj/effect/decal/cleanable/dirt/dust,
 /turf/open/floor/plating/ashplanet/ash,
 /area/city/backstreets_room)
+"c" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/mineral_door/iron{
+	resistance_flags = 64
+	},
+/turf/open/floor/carpet/royalblack,
+/area/city/backstreets_room)
 "d" = (
 /obj/effect/light_emitter{
 	light_power = 4;
@@ -484,7 +491,7 @@ P
 H
 g
 b
-b
+r
 "}
 (10,1,1) = {"
 r
@@ -506,7 +513,7 @@ V
 A
 V
 V
-V
+c
 "}
 (11,1,1) = {"
 r
@@ -528,7 +535,7 @@ V
 A
 V
 V
-V
+c
 "}
 (12,1,1) = {"
 r
@@ -550,7 +557,7 @@ I
 K
 g
 b
-b
+r
 "}
 (13,1,1) = {"
 T

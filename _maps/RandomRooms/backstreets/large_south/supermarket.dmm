@@ -41,8 +41,7 @@
 /turf/open/floor/plasteel/shuttle,
 /area/city/backstreets_room)
 "n" = (
-/obj/effect/spawner/structure/window/reinforced,
-/turf/open/floor/plasteel/shuttle,
+/turf/closed/indestructible/fakeglass,
 /area/city/backstreets_room)
 "o" = (
 /obj/structure/table/reinforced,
@@ -118,7 +117,9 @@
 /turf/open/floor/plasteel/shuttle,
 /area/city/backstreets_room)
 "U" = (
-/obj/machinery/door/airlock/glass_large,
+/obj/machinery/door/airlock/glass_large{
+	resistance_flags = 64
+	},
 /turf/open/floor/plasteel/shuttle,
 /area/city/backstreets_room)
 "V" = (

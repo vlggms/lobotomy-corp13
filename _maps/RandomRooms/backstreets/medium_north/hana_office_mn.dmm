@@ -1,6 +1,8 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
 "a" = (
-/obj/machinery/door/airlock/silver,
+/obj/machinery/door/airlock/silver{
+	resistance_flags = 64
+	},
 /turf/open/floor/facility/white,
 /area/city/backstreets_room)
 "c" = (

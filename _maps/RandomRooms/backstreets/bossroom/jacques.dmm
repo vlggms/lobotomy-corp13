@@ -72,6 +72,9 @@
 /obj/structure/bookcase/random/religion,
 /turf/open/floor/plasteel/cult,
 /area/city/backstreets_room)
+"pR" = (
+/turf/closed/indestructible/fakeglass,
+/area/city/backstreets_room)
 "qV" = (
 /obj/effect/turf_decal/siding/thinplating/dark{
 	dir = 4
@@ -454,6 +457,13 @@
 /obj/item/stack/spacecash/c100,
 /turf/open/floor/plasteel/cult,
 /area/city/backstreets_room)
+"SV" = (
+/obj/machinery/door/airlock/cult/unruned/friendly{
+	name = "cult airlock";
+	resistance_flags = 64
+	},
+/turf/open/floor/plasteel/cult,
+/area/city/backstreets_room)
 "SY" = (
 /obj/effect/turf_decal/siding/thinplating/dark{
 	dir = 10
@@ -761,7 +771,7 @@ gQ
 Am
 Bh
 do
-EP
+pR
 "}
 (10,1,1) = {"
 An
@@ -776,14 +786,14 @@ gQ
 gQ
 gQ
 gQ
-OL
+gQ
 gQ
 gQ
 gQ
 gQ
 OJ
-EP
 Fy
+SV
 "}
 (11,1,1) = {"
 An
@@ -798,14 +808,14 @@ gQ
 gQ
 gQ
 gQ
-OL
+gQ
 gQ
 gQ
 gQ
 gQ
 OJ
-EP
 Fy
+SV
 "}
 (12,1,1) = {"
 An
@@ -827,7 +837,7 @@ gQ
 AI
 cb
 do
-EP
+pR
 "}
 (13,1,1) = {"
 An

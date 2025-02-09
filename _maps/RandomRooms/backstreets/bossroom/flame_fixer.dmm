@@ -330,10 +330,10 @@
 /area/city/backstreets_room)
 "KZ" = (
 /obj/effect/decal/cleanable/dirt/dust,
-/mob/living/simple_animal/hostile/ordeal/amber_bug{
-	name = "carnivorous worm"
+/obj/structure/mineral_door/wood{
+	resistance_flags = 64
 	},
-/turf/open/floor/holofloor/carpet,
+/turf/open/floor/carpet/red,
 /area/city/backstreets_room)
 "LY" = (
 /obj/effect/decal/cleanable/dirt/dust,
@@ -634,7 +634,7 @@ Oj
 rh
 rh
 OU
-OU
+Oj
 Oj
 Oj
 Oj
@@ -711,8 +711,8 @@ fZ
 fZ
 TB
 LY
-KZ
-KZ
+qW
+Eo
 "}
 (10,1,1) = {"
 Eo
@@ -733,8 +733,8 @@ rO
 rO
 PJ
 Zt
-PJ
-PJ
+rO
+KZ
 "}
 (11,1,1) = {"
 Eo
@@ -755,8 +755,8 @@ rO
 rO
 PJ
 Zt
-PJ
-PJ
+rO
+KZ
 "}
 (12,1,1) = {"
 Eo
@@ -777,8 +777,8 @@ Gc
 Gc
 Pn
 qG
-KZ
-KZ
+qW
+Eo
 "}
 (13,1,1) = {"
 Eo
@@ -832,7 +832,7 @@ Oj
 rh
 rh
 OU
-OU
+Oj
 Oj
 Oj
 Oj
