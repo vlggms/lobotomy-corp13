@@ -14,6 +14,7 @@
 	var/datum/ui_npc/scene_manager/scene_manager = new()
 	var/start_scene_id = "intro"
 	var/typing_interval = 100
+	var/typing_volume = 30
 	var/payback_price = 400
 
 /mob/living/simple_animal/ui_npc/Initialize()
@@ -63,7 +64,7 @@
 
 	// Handle special actions
 	if(action == "playSound")
-		user.playsound_local(user, null, 40, 0, channel = CHANNEL_MUMBLE, use_reverb = FALSE, S = talking)
+		user.playsound_local(user, null, typing_volume, 0, channel = CHANNEL_MUMBLE, use_reverb = FALSE, S = talking)
 		return TRUE
 	else if(action == "stopSound")
 		user.stop_sound_channel(CHANNEL_MUMBLE)
@@ -196,7 +197,7 @@
 	state.current_scene_id = scene_id
 	return scenes[scene_id]
 
-/mob/living/simple_animal/ui_npc/mailman
+/mob/living/simple_animal/ui_npc/eric_t
 	var/parcel_deliveries = list()
 	var/item_deliveries = list()
 	var/ready_workers = list()
@@ -211,7 +212,7 @@
 	portrait = "erik_bloodfiend_zoom.png"
 	start_scene_id = "intro"
 
-/mob/living/simple_animal/ui_npc/mailman/Initialize()
+/mob/living/simple_animal/ui_npc/eric_t/Initialize()
 		. = ..()
 		scene_manager.load_scenes(list(
 //Intro to the NPC
@@ -319,12 +320,21 @@
 			"actions" = list(
 				"..." = list(
 					"Text" = "...",
+					"next_scene" = "job_extra_1",
+					"proc_callback" = ""),
+				)
+			),
+		"job_extra_1" = list(
+			"text" = "Some of our deliveries are within the nest, they are no problem. However...",
+			"actions" = list(
+				"..." = list(
+					"Text" = "...",
 					"next_scene" = "job_3",
 					"proc_callback" = ""),
 				)
 			),
 		"job_3" = list(
-			"text" = "With gangs and other factions ordering medical supplies, they want their stuff get delivered discreetly.",
+			"text" = "Often we have syndicates and other factions ordering medical supplies and they want their stuff get delivered discreetly. We obviously accept them, you would surprised how much they are paying.",
 			"actions" = list(
 				"..." = list(
 					"Text" = "...",
@@ -333,7 +343,15 @@
 				)
 			),
 		"job_4" = list(
-			"text" = "That's why you will be delivering them in the backstreets.",
+			"text" = "So, we started using the backstreets as a way to deliver them, but it can be quite deadly in there.",
+			"actions" = list(
+				"..." = list(
+					"Text" = "...",
+					"next_scene" = "job_extra_2"),
+				)
+			),
+		"job_extra_2" = list(
+			"text" = "That's why we are looking for deliverymen who have some combat expertise, so they can insure that our products get delivered safely.",
 			"actions" = list(
 				"..." = list(
 					"Text" = "...",
@@ -342,7 +360,7 @@
 				)
 			),
 		"job" = list(
-			"text" = "So, Are willing to take on some orders?",
+			"text" = "Are willing to take on some orders?",
 			"actions" = list(
 				"parcel" = list(
 					"Text" = "“Accept the Job”",
@@ -503,7 +521,7 @@
 			),
 	))
 
-/mob/living/simple_animal/ui_npc/mailman/adjustHealth(amount, updating_health = TRUE, forced = FALSE)
+/mob/living/simple_animal/ui_npc/eric_t/adjustHealth(amount, updating_health = TRUE, forced = FALSE)
 	if (amount > 0)
 		amount = amount - blood_resistance
 		if (amount < 0)
@@ -515,24 +533,25 @@
 			say(attacked_line)
 			last_attacked_cooldown = world.time
 
-/mob/living/simple_animal/ui_npc/mailman/proc/Payback()
+/mob/living/simple_animal/ui_npc/eric_t/proc/Payback()
 	var/obj/item/card/id/C
 	if(isliving(usr))
 		var/mob/living/L = usr
 		C = L.get_idcard(TRUE)
 	if(!C)
-		say("No card found.")
+//		say("No card found.")
 		return FALSE
 	else if (!C.registered_account)
-		say("No account found.")
+//		say("No account found.")
 		return FALSE
 	var/datum/bank_account/account = C.registered_account
 	if(payback_price && !account.adjust_money(-payback_price))
-		say("You do not possess the funds!")
+//		say("You do not possess the funds!")
 		return FALSE
 	else
 		RemoveUser(parcel_deliveries)
 		RemoveUser(item_deliveries)
+		L.playsound(get_turf(src), 'sound/effects/cashregister.ogg', 25, 3, 3)
 	return TRUE
 
 /mob/living/simple_animal/ui_npc/proc/RemoveUser(list)
@@ -540,11 +559,12 @@
 		list[D] -= usr
 
 
-/mob/living/simple_animal/ui_npc/mailman/proc/OrderParcel()
+/mob/living/simple_animal/ui_npc/eric_t/proc/OrderParcel()
 	var/door = pick(GLOB.delivery_doors)
 	if (istype(door, /obj/structure/delivery_door))
 		var/obj/structure/delivery_door/D = door
 		D.OrderParcel(src.loc)
+		usr.playsound(get_turf(src), 'sound/effects/cashregister.ogg', 25, 3, 3)
 		new /obj/item/pinpointer/coordinate(src.loc)
 		if (!parcel_deliveries[D])
 			parcel_deliveries[D] = list()
@@ -552,16 +572,16 @@
 			RegisterSignal(D, COMSIG_PARCEL_DELIVERED, PROC_REF(ParcelDelivered))
 		parcel_deliveries[D] += usr
 
-/mob/living/simple_animal/ui_npc/mailman/proc/AddWorker()
+/mob/living/simple_animal/ui_npc/eric_t/proc/AddWorker()
 	ready_workers += usr
 
-/mob/living/simple_animal/ui_npc/mailman/proc/ParcelDelivered(door, user)
+/mob/living/simple_animal/ui_npc/eric_t/proc/ParcelDelivered(door, user)
 	SIGNAL_HANDLER
 	parcel_deliveries[door] -= user
 	if (length(parcel_deliveries[door]) == 0)
 		UnregisterSignal(door, COMSIG_PARCEL_DELIVERED)
 
-/mob/living/simple_animal/ui_npc/mailman/proc/OrderItem(item, payment)
+/mob/living/simple_animal/ui_npc/eric_t/proc/OrderItem(item, payment)
 	var/door = pick(GLOB.delivery_doors)
 	if (istype(door, /obj/structure/delivery_door))
 		var/obj/structure/delivery_door/D = door
@@ -572,39 +592,39 @@
 			RegisterSignal(D, COMSIG_PARCEL_DELIVERED, PROC_REF(ItemDelivered))
 		item_deliveries[D] += usr
 
-/mob/living/simple_animal/ui_npc/mailman/proc/ItemDelivered(door, user)
+/mob/living/simple_animal/ui_npc/eric_t/proc/ItemDelivered(door, user)
 	SIGNAL_HANDLER
 	item_deliveries[door] -= user
 	if (length(item_deliveries[door]) == 0)
 		UnregisterSignal(door, COMSIG_PARCEL_DELIVERED)
 
-/mob/living/simple_animal/ui_npc/mailman/proc/CheckItemDelivery(user)
+/mob/living/simple_animal/ui_npc/eric_t/proc/CheckItemDelivery(user)
 	for(var/D in item_deliveries)
 		for(var/U in item_deliveries[D])
 			if (U == user)
 				return FALSE
 	return TRUE
 
-/mob/living/simple_animal/ui_npc/mailman/proc/CheckWorker(user)
+/mob/living/simple_animal/ui_npc/eric_t/proc/CheckWorker(user)
 	for(var/W in ready_workers)
 		if (W == user)
 			return TRUE
 	return FALSE
 
-/mob/living/simple_animal/ui_npc/mailman/proc/SwapCheckWorker(user)
+/mob/living/simple_animal/ui_npc/eric_t/proc/SwapCheckWorker(user)
 	for(var/W in ready_workers)
 		if (W == user)
 			return FALSE
 	return TRUE
 
-/mob/living/simple_animal/ui_npc/mailman/proc/CheckParcelDelivery(user)
+/mob/living/simple_animal/ui_npc/eric_t/proc/CheckParcelDelivery(user)
 	for(var/D in parcel_deliveries)
 		for(var/U in parcel_deliveries[D])
 			if (U == user)
 				return FALSE
 	return TRUE
 
-/mob/living/simple_animal/ui_npc/mailman/proc/SwapCheckParcelDelivery(user)
+/mob/living/simple_animal/ui_npc/eric_t/proc/SwapCheckParcelDelivery(user)
 	for(var/D in parcel_deliveries)
 		for(var/U in parcel_deliveries[D])
 			if (U == user)
