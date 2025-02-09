@@ -594,7 +594,6 @@
 		D.OrderParcel(src.loc)
 		var/mob/user = usr
 		user.playsound_local(get_turf(src), 'sound/effects/cashregister.ogg', 25, 3, 3)
-		new /obj/item/pinpointer/coordinate(src.loc)
 		if (!parcel_deliveries[D])
 			parcel_deliveries[D] = list()
 		if (length(parcel_deliveries[D]) == 0)
