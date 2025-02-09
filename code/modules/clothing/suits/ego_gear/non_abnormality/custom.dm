@@ -4,7 +4,7 @@
 	icon_state = "uniqueoffice"
 	icon = 'icons/obj/clothing/ego_gear/custom_fixer.dmi'
 	worn_icon = 'icons/mob/clothing/ego_gear/custom_fixer.dmi'
-	armor = list(RED_DAMAGE = 20, WHITE_DAMAGE = 20, BLACK_DAMAGE = 20, PALE_DAMAGE = 0)
+	armor = list(RED_DAMAGE = 20, WHITE_DAMAGE = 20, BLACK_DAMAGE = 20, PALE_DAMAGE = 0, FIRE = 10)
 
 /obj/item/clothing/suit/armor/ego_gear/city/misc/second
 	name = "fixer black suit"

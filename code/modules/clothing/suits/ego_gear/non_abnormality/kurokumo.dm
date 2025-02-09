@@ -2,7 +2,7 @@
 	name = "kurokumo wakashu dress jacket"
 	desc = "A light dress shirt and jacket that offers minimal defenses, but is extremely light."
 	icon_state = "kuro_wakashu2"
-	armor = list(RED_DAMAGE = 20, WHITE_DAMAGE = 20, BLACK_DAMAGE = 20, PALE_DAMAGE = 20)
+	armor = list(RED_DAMAGE = 20, WHITE_DAMAGE = 20, BLACK_DAMAGE = 20, PALE_DAMAGE = 20, FIRE = 10)
 	slowdown = -0.2
 	attribute_requirements = list(
 							FORTITUDE_ATTRIBUTE = 60,
@@ -15,7 +15,7 @@
 	name = "kurokumo enforcer dress shirt"
 	desc = "A light dress shirt used by kurokumo enforcers."
 	icon_state = "kuro_wakashu"
-	armor = list(RED_DAMAGE = 30, WHITE_DAMAGE = 30, BLACK_DAMAGE = 30, PALE_DAMAGE = 30)
+	armor = list(RED_DAMAGE = 30, WHITE_DAMAGE = 30, BLACK_DAMAGE = 30, PALE_DAMAGE = 30, FIRE = 15)
 	slowdown = -0.3
 	attribute_requirements = list(
 							FORTITUDE_ATTRIBUTE = 80,
@@ -28,7 +28,7 @@
 	name = "kurokumo captain kimono"
 	desc = "A light but tough kimono used by kurokumo captains."
 	icon_state = "kuro_captain"
-	armor = list(RED_DAMAGE = 30, WHITE_DAMAGE = 30, BLACK_DAMAGE = 30, PALE_DAMAGE = 20)
+	armor = list(RED_DAMAGE = 30, WHITE_DAMAGE = 30, BLACK_DAMAGE = 30, PALE_DAMAGE = 20, FIRE = 15)
 	slowdown = -0.5
 	attribute_requirements = list(
 							FORTITUDE_ATTRIBUTE = 80,

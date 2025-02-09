@@ -3,7 +3,7 @@
 	name = "K corp L1 armor"
 	desc = "Armor worn by Kcorp security."
 	icon_state = "kcorp_l1"
-	armor = list(RED_DAMAGE = 40, WHITE_DAMAGE = 20, BLACK_DAMAGE = 20, PALE_DAMAGE = 0)
+	armor = list(RED_DAMAGE = 40, WHITE_DAMAGE = 20, BLACK_DAMAGE = 20, PALE_DAMAGE = 0, FIRE = 20)
 	attribute_requirements = list(
 							FORTITUDE_ATTRIBUTE = 60,
 							PRUDENCE_ATTRIBUTE = 60,
@@ -15,7 +15,7 @@
 	name = "K corp L3 armor"
 	desc = "Armor worn by Kcorp excision staff."
 	icon_state = "kcorp_l3"
-	armor = list(RED_DAMAGE = 50, WHITE_DAMAGE = 40, BLACK_DAMAGE = 40, PALE_DAMAGE = 20)
+	armor = list(RED_DAMAGE = 50, WHITE_DAMAGE = 40, BLACK_DAMAGE = 40, PALE_DAMAGE = 20, FIRE = 25)
 	hat = /obj/item/clothing/head/ego_hat/helmet/kcorp_l3
 	attribute_requirements = list(
 							FORTITUDE_ATTRIBUTE = 80,

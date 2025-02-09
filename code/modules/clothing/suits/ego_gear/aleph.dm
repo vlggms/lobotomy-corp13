@@ -13,7 +13,7 @@ Any attempt to code risk class armor will result in a 10 day Github ban.*/
 	desc = "\"My loved ones, do not worry; I have heard your prayers. \
 	Have you not yet realized that pain is but a speck to a determined mind?\""
 	icon_state = "paradise"
-	armor = list(RED_DAMAGE = 70, WHITE_DAMAGE = 70, BLACK_DAMAGE = 70, PALE_DAMAGE = 70) // 280
+	armor = list(RED_DAMAGE = 70, WHITE_DAMAGE = 70, BLACK_DAMAGE = 70, PALE_DAMAGE = 70, FIRE = 35) // 280
 	attribute_requirements = list(
 							FORTITUDE_ATTRIBUTE = 100,
 							PRUDENCE_ATTRIBUTE = 100,
@@ -25,7 +25,7 @@ Any attempt to code risk class armor will result in a 10 day Github ban.*/
 	name = "justitia"
 	desc = "A black, bandaged coat with golden linings covering it."
 	icon_state = "justitia"
-	armor = list(RED_DAMAGE = 60, WHITE_DAMAGE = 50, BLACK_DAMAGE = 50, PALE_DAMAGE = 80) // 240
+	armor = list(RED_DAMAGE = 60, WHITE_DAMAGE = 50, BLACK_DAMAGE = 50, PALE_DAMAGE = 80, FIRE = 30) // 240
 	attribute_requirements = list(
 							FORTITUDE_ATTRIBUTE = 80,
 							PRUDENCE_ATTRIBUTE = 80,
@@ -38,7 +38,7 @@ Any attempt to code risk class armor will result in a 10 day Github ban.*/
 	desc = "At the heart of the armor is a shard that emits an arcane gleam. \
 	The gentle glow feels somehow more brilliant than a flashing light."
 	icon_state = "star"
-	armor = list(RED_DAMAGE = 70, WHITE_DAMAGE = 70, BLACK_DAMAGE = 60, PALE_DAMAGE = 40) // 240
+	armor = list(RED_DAMAGE = 70, WHITE_DAMAGE = 70, BLACK_DAMAGE = 60, PALE_DAMAGE = 40, FIRE = 35) // 240
 	attribute_requirements = list(
 							FORTITUDE_ATTRIBUTE = 80,
 							PRUDENCE_ATTRIBUTE = 100,
@@ -51,7 +51,7 @@ Any attempt to code risk class armor will result in a 10 day Github ban.*/
 	desc = "A splendid tailcoat perfect for a symphony. \
 	Superb leadership is required to create a perfect ensemble."
 	icon_state = "da_capo"
-	armor = list(RED_DAMAGE = 60, WHITE_DAMAGE = 100, BLACK_DAMAGE = 60, PALE_DAMAGE = 20) // 240
+	armor = list(RED_DAMAGE = 60, WHITE_DAMAGE = 100, BLACK_DAMAGE = 60, PALE_DAMAGE = 20, FIRE = 30) // 240
 	attribute_requirements = list(
 							FORTITUDE_ATTRIBUTE = 80,
 							PRUDENCE_ATTRIBUTE = 100,
@@ -63,7 +63,7 @@ Any attempt to code risk class armor will result in a 10 day Github ban.*/
 	name = "mimicry"
 	desc = "It takes human hide to protect human flesh. To protect humans, you need something made out of humans."
 	icon_state = "mimicry"
-	armor = list(RED_DAMAGE = 80, WHITE_DAMAGE = 50, BLACK_DAMAGE = 50, PALE_DAMAGE = 60) // 240
+	armor = list(RED_DAMAGE = 80, WHITE_DAMAGE = 50, BLACK_DAMAGE = 50, PALE_DAMAGE = 60, FIRE = 40) // 240
 	attribute_requirements = list(
 							FORTITUDE_ATTRIBUTE = 100,
 							PRUDENCE_ATTRIBUTE = 80,
@@ -76,7 +76,7 @@ Any attempt to code risk class armor will result in a 10 day Github ban.*/
 	desc = "The three birds united their efforts to defeat the beast. \
 	This could stop countless incidents, but you’ll have to be prepared to step into the Black Forest…"
 	icon_state = "twilight"
-	armor = list(RED_DAMAGE = 80, WHITE_DAMAGE = 60, BLACK_DAMAGE = 80, PALE_DAMAGE = 80) // 300
+	armor = list(RED_DAMAGE = 80, WHITE_DAMAGE = 60, BLACK_DAMAGE = 80, PALE_DAMAGE = 80, FIRE = 40) // 300
 	attribute_requirements = list(
 							FORTITUDE_ATTRIBUTE = 120,
 							PRUDENCE_ATTRIBUTE = 120,
@@ -89,7 +89,7 @@ Any attempt to code risk class armor will result in a 10 day Github ban.*/
 	desc = "It is not as unpleasant to wear as it is to look at. \
 	In fact, it seems to give you an illusion of comfort and bravery."
 	icon_state = "adoration"
-	armor = list(RED_DAMAGE = 70, WHITE_DAMAGE = 50, BLACK_DAMAGE = 70, PALE_DAMAGE = 50) // 240
+	armor = list(RED_DAMAGE = 70, WHITE_DAMAGE = 50, BLACK_DAMAGE = 70, PALE_DAMAGE = 50, FIRE = 35) // 240
 	attribute_requirements = list(
 							FORTITUDE_ATTRIBUTE = 100,
 							PRUDENCE_ATTRIBUTE = 80,
@@ -102,7 +102,7 @@ Any attempt to code risk class armor will result in a 10 day Github ban.*/
 	desc = "It is holding all of the laughter of those who cannot be seen here."
 	icon_state = "smile"
 	flags_inv = HIDEGLOVES|HIDESHOES|HIDEJUMPSUIT
-	armor = list(RED_DAMAGE = 50, WHITE_DAMAGE = 50, BLACK_DAMAGE = 80, PALE_DAMAGE = 60) // 240
+	armor = list(RED_DAMAGE = 50, WHITE_DAMAGE = 50, BLACK_DAMAGE = 80, PALE_DAMAGE = 60, FIRE = 25) // 240
 	attribute_requirements = list(
 							FORTITUDE_ATTRIBUTE = 80,
 							PRUDENCE_ATTRIBUTE = 80,
@@ -115,7 +115,7 @@ Any attempt to code risk class armor will result in a 10 day Github ban.*/
 	desc = "Just looking at this, you feel quite tacky."
 	icon_state = "blooming"
 	flags_inv = HIDEGLOVES|HIDESHOES|HIDEJUMPSUIT
-	armor = list(RED_DAMAGE = 80, WHITE_DAMAGE = 80, BLACK_DAMAGE = 0, PALE_DAMAGE = 80) // 240
+	armor = list(RED_DAMAGE = 80, WHITE_DAMAGE = 80, BLACK_DAMAGE = 0, PALE_DAMAGE = 80, FIRE = 40) // 240
 	attribute_requirements = list(
 							FORTITUDE_ATTRIBUTE = 80,
 							PRUDENCE_ATTRIBUTE = 80,
@@ -128,7 +128,7 @@ Any attempt to code risk class armor will result in a 10 day Github ban.*/
 	desc = "Ah, magicians are actually in greater need of mercy."
 	icon_state = "air"
 	flags_inv = HIDEGLOVES|HIDESHOES|HIDEJUMPSUIT
-	armor = list(RED_DAMAGE = 80, WHITE_DAMAGE = 80, BLACK_DAMAGE = 30, PALE_DAMAGE = 90) // 280
+	armor = list(RED_DAMAGE = 80, WHITE_DAMAGE = 80, BLACK_DAMAGE = 30, PALE_DAMAGE = 90, FIRE = 40) // 280
 	attribute_requirements = list(
 							FORTITUDE_ATTRIBUTE = 100,
 							PRUDENCE_ATTRIBUTE = 100,
@@ -140,7 +140,7 @@ Any attempt to code risk class armor will result in a 10 day Github ban.*/
 	name = "praetorian"
 	desc = "The queen's last line of defense."
 	icon_state = "praetorian"
-	armor = list(RED_DAMAGE = 80, WHITE_DAMAGE = 60, BLACK_DAMAGE = 60, PALE_DAMAGE = 40)	//Armor was made before the abnormality.
+	armor = list(RED_DAMAGE = 80, WHITE_DAMAGE = 60, BLACK_DAMAGE = 60, PALE_DAMAGE = 40, FIRE = 40) // Armor was made before the abnormality.
 	attribute_requirements = list(
 							FORTITUDE_ATTRIBUTE = 100,
 							PRUDENCE_ATTRIBUTE = 80,
@@ -152,7 +152,7 @@ Any attempt to code risk class armor will result in a 10 day Github ban.*/
 	name = "mockery"
 	desc = "It's smug aura is almost mocking you."
 	icon_state = "mockery"
-	armor = list(RED_DAMAGE = 70, WHITE_DAMAGE = 30, BLACK_DAMAGE = 80, PALE_DAMAGE = 60) // 240
+	armor = list(RED_DAMAGE = 70, WHITE_DAMAGE = 30, BLACK_DAMAGE = 80, PALE_DAMAGE = 60, FIRE = 35) // 240
 	attribute_requirements = list(
 							FORTITUDE_ATTRIBUTE = 80,
 							PRUDENCE_ATTRIBUTE = 100,
@@ -164,7 +164,7 @@ Any attempt to code risk class armor will result in a 10 day Github ban.*/
 	name = "CENSORED"
 	desc = "Goodness, that’s disgusting."
 	icon_state = "censored"
-	armor = list(RED_DAMAGE = 60, WHITE_DAMAGE = 40, BLACK_DAMAGE = 80, PALE_DAMAGE = 60)
+	armor = list(RED_DAMAGE = 60, WHITE_DAMAGE = 40, BLACK_DAMAGE = 80, PALE_DAMAGE = 60, FIRE = 30)
 	attribute_requirements = list(
 							FORTITUDE_ATTRIBUTE = 100,
 							PRUDENCE_ATTRIBUTE = 80,
@@ -176,7 +176,7 @@ Any attempt to code risk class armor will result in a 10 day Github ban.*/
 	name = "Soulmate"
 	desc = "I’ll follow thee and make a heaven of hell, to die upon the hand I love so well."
 	icon_state = "soulmate"
-	armor = list(RED_DAMAGE = 80, WHITE_DAMAGE = 50, BLACK_DAMAGE = 40, PALE_DAMAGE = 70)
+	armor = list(RED_DAMAGE = 80, WHITE_DAMAGE = 50, BLACK_DAMAGE = 40, PALE_DAMAGE = 70, FIRE = 40)
 	attribute_requirements = list(
 							FORTITUDE_ATTRIBUTE = 100,
 							PRUDENCE_ATTRIBUTE = 80,
@@ -189,7 +189,7 @@ Any attempt to code risk class armor will result in a 10 day Github ban.*/
 	name = "out of space"
 	desc = "It was just a colour out of space, a frightful messenger from unformed realms of infinity beyond all Nature as we know it."
 	icon_state = "space"
-	armor = list(RED_DAMAGE = 30, WHITE_DAMAGE = 80, BLACK_DAMAGE = 80, PALE_DAMAGE = 50)
+	armor = list(RED_DAMAGE = 30, WHITE_DAMAGE = 80, BLACK_DAMAGE = 80, PALE_DAMAGE = 50, FIRE = 15)
 	attribute_requirements = list(
 							FORTITUDE_ATTRIBUTE = 100,
 							PRUDENCE_ATTRIBUTE = 80,
@@ -202,7 +202,7 @@ Any attempt to code risk class armor will result in a 10 day Github ban.*/
 	desc = "The jester retraced the steps of a path everybody would’ve taken. The jester always found itself at the end of that road. \
 	There was no way to know if they had gathered to become the jester, or if the jester had come to resemble them."
 	icon_state = "nihil"
-	armor = list(RED_DAMAGE = 60, WHITE_DAMAGE = 70, BLACK_DAMAGE = 70, PALE_DAMAGE = 40) // 240 - 300, 15 per upgrade; caps out at 70,80,80,70
+	armor = list(RED_DAMAGE = 60, WHITE_DAMAGE = 70, BLACK_DAMAGE = 70, PALE_DAMAGE = 40, FIRE = 30) // 240 - 300, 15 per upgrade; caps out at 70,80,80,70
 	attribute_requirements = list(
 							FORTITUDE_ATTRIBUTE = 80, //+10 per upgrade to all, only 5 to temperance
 							PRUDENCE_ATTRIBUTE = 80,
@@ -266,7 +266,7 @@ Any attempt to code risk class armor will result in a 10 day Github ban.*/
 			to_chat(user, span_nicegreen("[src] has gained extra resistance to PALE damage!"))
 
 		if("diamonds")
-			armor = armor.modifyRating(red = 10, pale = 5)
+			armor = armor.modifyRating(red = 10, pale = 5, fire = 5)
 			to_chat(user, span_nicegreen("[src] has gained extra resistance to RED damage!"))
 
 		if("clubs")
@@ -277,7 +277,7 @@ Any attempt to code risk class armor will result in a 10 day Github ban.*/
 	name = "Seasons Greetings"
 	desc = "This is a placeholder."
 	icon_state = "spring"
-	armor = list(RED_DAMAGE = 60, WHITE_DAMAGE = 60, BLACK_DAMAGE = 60, PALE_DAMAGE = 60) // 240
+	armor = list(RED_DAMAGE = 60, WHITE_DAMAGE = 60, BLACK_DAMAGE = 60, PALE_DAMAGE = 60, FIRE = 30) // 240
 	attribute_requirements = list(
 							FORTITUDE_ATTRIBUTE = 80,
 							PRUDENCE_ATTRIBUTE = 100,
@@ -332,36 +332,36 @@ Any attempt to code risk class armor will result in a 10 day Github ban.*/
 	var/warning_message
 	switch(stored_season) //Hopefully someday someone finds a more efficient way to change armor values
 		if("spring")
-			src.armor = new(red = 60, white = 80, black = 40, pale = 60)	//240
+			src.armor = new(red = 60, white = 80, black = 40, pale = 60, fire = 30)	//240
 			if(stored_season != current_season) //Our drip is out of season
-				src.armor = new(red = 50, white = 80, black = 40, pale = 50)	//220
+				src.armor = new(red = 50, white = 80, black = 40, pale = 50, fire = 25)	//220
 				weakened = TRUE
 				if(current_season == "fall")
-					src.armor = new(red = 50, white = 70, black = 30, pale = 50)	//200
+					src.armor = new(red = 50, white = 70, black = 30, pale = 50, fire = 25)	//200
 					warning_message = "Fall has come, the leaves on your armor wither and die."
 		if("summer")
-			src.armor = new(red = 80, white = 40, black = 60, pale = 60)
+			src.armor = new(red = 80, white = 40, black = 60, pale = 60, fire = 80)
 			if(stored_season != current_season) //Our drip is out of season
-				src.armor = new(red = 80, white = 40, black = 50, pale = 50)
+				src.armor = new(red = 80, white = 40, black = 50, pale = 50, fire = 80)
 				weakened = TRUE
 				if(current_season == "winter")
-					src.armor = new(red = 70, white = 30, black = 50, pale = 50)
+					src.armor = new(red = 70, white = 30, black = 50, pale = 50, fire = 70)
 					warning_message = "Winter is here. Your armor reacts, becoming stiff and brittle."
 		if("fall")
-			src.armor = new(red = 40, white = 60, black = 80, pale = 60)
+			src.armor = new(red = 40, white = 60, black = 80, pale = 60, fire = 80)
 			if(stored_season != current_season) //Our drip is out of season
-				src.armor = new(red = 40, white = 50, black = 80, pale = 50)
+				src.armor = new(red = 40, white = 50, black = 80, pale = 50, fire = 80)
 				weakened = TRUE
 				if(current_season == "spring")
-					src.armor = new(red = 30, white = 50, black = 70, pale = 50)
+					src.armor = new(red = 30, white = 50, black = 70, pale = 50, fire = 60)
 					warning_message = "The arrival of spring weakens your armor further."
 		if("winter")
-			src.armor = new(red = 40, white = 60, black = 60, pale = 80)
+			src.armor = new(red = 40, white = 60, black = 60, pale = 80, fire = 10)
 			if(stored_season != current_season) //Our drip is out of season
-				src.armor = new(red = 40, white = 50, black = 50, pale = 80)
+				src.armor = new(red = 40, white = 50, black = 50, pale = 80, fire = 10)
 				weakened = TRUE
 				if(current_season == "summer")
-					src.armor = new(red = 30, white = 50, black = 50, pale = 70)
+					src.armor = new(red = 30, white = 50, black = 50, pale = 7, fire = 0)
 					warning_message = "The summer heat is melting your armor."
 
 	if(current_holder && (weakened == TRUE))
@@ -399,7 +399,7 @@ Any attempt to code risk class armor will result in a 10 day Github ban.*/
 	name = "distortion"
 	desc = "To my eyes, I’m the only one who doesn’t appear distorted. In a world full of distorted people, could the one person who remains unchanged be the \"distorted\" one?"
 	icon_state = "distortion"
-	armor = list(RED_DAMAGE = 80, WHITE_DAMAGE = 70, BLACK_DAMAGE = 80, PALE_DAMAGE = 50) // 280
+	armor = list(RED_DAMAGE = 80, WHITE_DAMAGE = 70, BLACK_DAMAGE = 80, PALE_DAMAGE = 50, FIRE = 80) // 280
 	attribute_requirements = list(
 							FORTITUDE_ATTRIBUTE = 100,
 							PRUDENCE_ATTRIBUTE = 100,
@@ -411,7 +411,7 @@ Any attempt to code risk class armor will result in a 10 day Github ban.*/
 	name = "flesh is willing"
 	desc = "Is it immoral if you want it to happen?"
 	icon_state = "willing"
-	armor = list(RED_DAMAGE = 80, WHITE_DAMAGE = 60, BLACK_DAMAGE = 60, PALE_DAMAGE = 40) // 240
+	armor = list(RED_DAMAGE = 80, WHITE_DAMAGE = 60, BLACK_DAMAGE = 60, PALE_DAMAGE = 40, FIRE = 40) // 240
 	attribute_requirements = list(
 							FORTITUDE_ATTRIBUTE = 100,
 							PRUDENCE_ATTRIBUTE = 80,
@@ -423,7 +423,7 @@ Any attempt to code risk class armor will result in a 10 day Github ban.*/
 	name = "Pink"
 	desc = "A pink military uniform. Its pockets allow the wearer to carry various types of ammunition. It soothes the wearer; they say pink provides psychological comfort to many people."
 	icon_state = "pink"
-	armor = list(RED_DAMAGE = 50, WHITE_DAMAGE = 70, BLACK_DAMAGE = 70, PALE_DAMAGE = 50) // 240
+	armor = list(RED_DAMAGE = 50, WHITE_DAMAGE = 70, BLACK_DAMAGE = 70, PALE_DAMAGE = 50, FIRE = 25) // 240
 	attribute_requirements = list(
 							FORTITUDE_ATTRIBUTE = 80,
 							PRUDENCE_ATTRIBUTE = 80,
@@ -435,7 +435,7 @@ Any attempt to code risk class armor will result in a 10 day Github ban.*/
 	name = "Et in Arcadia Ego"
 	desc = "An old, dusty brown suit."
 	icon_state = "arcadia"
-	armor = list(RED_DAMAGE = 70, WHITE_DAMAGE = 50, BLACK_DAMAGE = 60, PALE_DAMAGE = 60) // 240
+	armor = list(RED_DAMAGE = 70, WHITE_DAMAGE = 50, BLACK_DAMAGE = 60, PALE_DAMAGE = 60, FIRE = 35) // 240
 	attribute_requirements = list(
 							FORTITUDE_ATTRIBUTE = 80,
 							PRUDENCE_ATTRIBUTE = 80,
@@ -447,7 +447,7 @@ Any attempt to code risk class armor will result in a 10 day Github ban.*/
 	name = "giant"
 	desc = "You are a Giant."
 	icon_state = "giant"
-	armor = list(RED_DAMAGE = 80, WHITE_DAMAGE = 30, BLACK_DAMAGE = 80, PALE_DAMAGE = 50) // 240
+	armor = list(RED_DAMAGE = 80, WHITE_DAMAGE = 30, BLACK_DAMAGE = 80, PALE_DAMAGE = 50, FIRE = 40) // 240
 	attribute_requirements = list(
 							FORTITUDE_ATTRIBUTE = 100,
 							PRUDENCE_ATTRIBUTE = 80,

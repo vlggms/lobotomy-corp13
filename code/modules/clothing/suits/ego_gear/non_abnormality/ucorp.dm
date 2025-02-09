@@ -5,7 +5,7 @@
 	icon = 'icons/obj/clothing/ego_gear/suits.dmi'
 	worn_icon = 'icons/mob/clothing/ego_gear/suit.dmi'
 	icon_state = "pequod_ahab"
-	armor = list(RED_DAMAGE = 30, WHITE_DAMAGE = 30, BLACK_DAMAGE = 30, PALE_DAMAGE = 30)
+	armor = list(RED_DAMAGE = 30, WHITE_DAMAGE = 30, BLACK_DAMAGE = 30, PALE_DAMAGE = 30, FIRE = 15)
 	slowdown = -0.1
 	flags_inv = null
 	attribute_requirements = list(

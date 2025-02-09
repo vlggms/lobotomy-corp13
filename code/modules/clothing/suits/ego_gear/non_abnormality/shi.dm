@@ -3,7 +3,7 @@
 	name = "Shi association jacket"
 	desc = "A light armor vest worn by shi association section 2. It's light as a feather, and increases your movement speed by 20%."
 	icon_state = "shi"
-	armor = list(RED_DAMAGE = 20, WHITE_DAMAGE = 10, BLACK_DAMAGE = 10, PALE_DAMAGE = 20)
+	armor = list(RED_DAMAGE = 20, WHITE_DAMAGE = 10, BLACK_DAMAGE = 10, PALE_DAMAGE = 20, FIRE = 10)
 	slowdown = -0.2
 	attribute_requirements = list(
 							FORTITUDE_ATTRIBUTE = 60,
@@ -16,7 +16,7 @@
 	name = "Shi association veteran jacket"
 	desc = "A light armor vest worn by shi association section 2. It's light as a feather, and increases your movement speed by 20%."
 	icon_state = "shivet"
-	armor = list(RED_DAMAGE = 30, WHITE_DAMAGE = 20, BLACK_DAMAGE = 20, PALE_DAMAGE = 30)
+	armor = list(RED_DAMAGE = 30, WHITE_DAMAGE = 20, BLACK_DAMAGE = 20, PALE_DAMAGE = 30, FIRE = 15)
 	attribute_requirements = list(
 							FORTITUDE_ATTRIBUTE = 60,
 							PRUDENCE_ATTRIBUTE = 60,
@@ -28,7 +28,7 @@
 	name = "Shi association director jacket"
 	desc = "A light armor vest worn by the director of shi association section 2. It's light as a feather, and increases your movement speed by 20%."
 	icon_state = "shileader"
-	armor = list(RED_DAMAGE = 50, WHITE_DAMAGE = 20, BLACK_DAMAGE = 20, PALE_DAMAGE = 50)
+	armor = list(RED_DAMAGE = 50, WHITE_DAMAGE = 20, BLACK_DAMAGE = 20, PALE_DAMAGE = 50, FIRE = 25)
 	attribute_requirements = list(
 							FORTITUDE_ATTRIBUTE = 60,
 							PRUDENCE_ATTRIBUTE = 80,
@@ -41,7 +41,7 @@
 	name = "Shi association combat suit"
 	desc = "A light armor vest worn by shi association section 5. It's light as a feather, and increases your movement speed by 40%."
 	icon_state = "shiassassin"
-	armor = list(RED_DAMAGE = 20, WHITE_DAMAGE = 0, BLACK_DAMAGE = 0, PALE_DAMAGE = 10)
+	armor = list(RED_DAMAGE = 20, WHITE_DAMAGE = 0, BLACK_DAMAGE = 0, PALE_DAMAGE = 10, FIRE = 10)
 	slowdown = -0.4
 	attribute_requirements = list(
 							FORTITUDE_ATTRIBUTE = 60,
@@ -54,7 +54,7 @@
 	name = "Shi association veteran combat suit"
 	desc = "A light armor vest worn by shi association section 5. It's light as a feather, and increases your movement speed by 40%."
 	icon_state = "shiassassinvet"
-	armor = list(RED_DAMAGE = 30, WHITE_DAMAGE = 0, BLACK_DAMAGE = 0, PALE_DAMAGE = 20)
+	armor = list(RED_DAMAGE = 30, WHITE_DAMAGE = 0, BLACK_DAMAGE = 0, PALE_DAMAGE = 20, FIRE = 15)
 	attribute_requirements = list(
 							FORTITUDE_ATTRIBUTE = 60,
 							PRUDENCE_ATTRIBUTE = 60,
@@ -66,7 +66,7 @@
 	name = "Shi association director combat suit"
 	desc = "A light armor vest worn by the director of shi association section 5. It's light as a feather, and increases your movement speed by 40%."
 	icon_state = "shiassassinleader"
-	armor = list(RED_DAMAGE = 40, WHITE_DAMAGE = 20, BLACK_DAMAGE = 20, PALE_DAMAGE = 30)
+	armor = list(RED_DAMAGE = 40, WHITE_DAMAGE = 20, BLACK_DAMAGE = 20, PALE_DAMAGE = 30, FIRE = 20)
 	attribute_requirements = list(
 							FORTITUDE_ATTRIBUTE = 60,
 							PRUDENCE_ATTRIBUTE = 80,

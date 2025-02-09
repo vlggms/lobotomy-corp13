@@ -8,7 +8,7 @@
 	name = "bucket"
 	desc = "The man lost his balance after seeing what the well's bucket had drawn."
 	icon_state = "bucket"
-	armor = list(RED_DAMAGE = 10, WHITE_DAMAGE = 0, BLACK_DAMAGE = 0, PALE_DAMAGE = 0)
+	armor = list(RED_DAMAGE = 10, WHITE_DAMAGE = 0, BLACK_DAMAGE = 0, PALE_DAMAGE = 0, FIRE = 5)
 
 /obj/item/clothing/suit/armor/ego_gear/tools/prohibited
 	name = "PROHIBITED!!!"
@@ -27,14 +27,14 @@
 	name = "aspiration"
 	desc = "Excessive aspiration would bring about unwarranted frenzy."
 	icon_state = "aspiration"
-	armor = list(RED_DAMAGE = 20, WHITE_DAMAGE = 0, BLACK_DAMAGE = 0, PALE_DAMAGE = 0) // 20
+	armor = list(RED_DAMAGE = 20, WHITE_DAMAGE = 0, BLACK_DAMAGE = 0, PALE_DAMAGE = 0, FIRE = 10) // 20
 
 //HE
 /obj/item/clothing/suit/armor/ego_gear/tools/swindle
 	name = "swindle"
 	desc = "All-natural snake oil! Cleans the skin, removes pimples, impetigo, and other defects!"
 	icon_state = "swindle"
-	armor = list(RED_DAMAGE = 60, WHITE_DAMAGE = -20, BLACK_DAMAGE = -20, PALE_DAMAGE = 0) // 20
+	armor = list(RED_DAMAGE = 60, WHITE_DAMAGE = -20, BLACK_DAMAGE = -20, PALE_DAMAGE = 0, FIRE = 30) // 20
 	attribute_requirements = list(
 							FORTITUDE_ATTRIBUTE = 40)
 
@@ -42,7 +42,7 @@
 	name = "ringing"
 	desc = "An army coat with buttons reminiscent of a keypad. The echoing voices in your head drown out the threats that stand before you."
 	icon_state = "ringing"
-	armor = list(RED_DAMAGE = -30, WHITE_DAMAGE = -20, BLACK_DAMAGE = 60, PALE_DAMAGE = 0) // 10
+	armor = list(RED_DAMAGE = -30, WHITE_DAMAGE = -20, BLACK_DAMAGE = 60, PALE_DAMAGE = 0, FIRE = -30) // 10
 	attribute_requirements = list(
 							TEMPERANCE_ATTRIBUTE = 40
 							)
@@ -51,7 +51,7 @@
 	name = "divinity"
 	desc = "The burden of sacrifice is yours alone..."
 	icon_state = "divinity"
-	armor = list(RED_DAMAGE = -20, WHITE_DAMAGE = -20, BLACK_DAMAGE = -20, PALE_DAMAGE = 70) // 10
+	armor = list(RED_DAMAGE = -20, WHITE_DAMAGE = -20, BLACK_DAMAGE = -20, PALE_DAMAGE = 70, FIRE = -20) // 10
 	attribute_requirements = list(
 							JUSTICE_ATTRIBUTE = 40
 							)
@@ -60,7 +60,7 @@
 	name = "destiny"
 	desc = "The role of the Moirai was to ensure that every being, mortal and divine, lived out their destiny as it was assigned to them by the laws of the universe."
 	icon_state = "destiny"
-	armor = list(RED_DAMAGE = 40, WHITE_DAMAGE = 30, BLACK_DAMAGE = -20, PALE_DAMAGE = 20) // 70
+	armor = list(RED_DAMAGE = 40, WHITE_DAMAGE = 30, BLACK_DAMAGE = -20, PALE_DAMAGE = 20, FIRE = 20) // 70
 	attribute_requirements = list(
 							FORTITUDE_ATTRIBUTE = 40
 							)
@@ -69,7 +69,7 @@
 	name = "giant tree branch"
 	desc = "The tree simply reaped from what it sowed."
 	icon_state = "sap"
-	armor = list(RED_DAMAGE = 50, WHITE_DAMAGE = -20, BLACK_DAMAGE = 30, PALE_DAMAGE = 10) // 70
+	armor = list(RED_DAMAGE = 50, WHITE_DAMAGE = -20, BLACK_DAMAGE = 30, PALE_DAMAGE = 10, FIRE = 25) // 70
 	attribute_requirements = list(
 							FORTITUDE_ATTRIBUTE = 40
 							)
@@ -79,7 +79,7 @@
 	desc = "Company P wished to construct the safest place on Earth. However, this shelter, while perfectly safe on the inside, \
 	alters the reality of the outside to be even more hopeless. It literally makes itself into \"the safest place on Earth.\""
 	icon_state = "shelter"
-	armor = list(RED_DAMAGE = 30, WHITE_DAMAGE = 20, BLACK_DAMAGE = 0, PALE_DAMAGE = 20) // 70
+	armor = list(RED_DAMAGE = 30, WHITE_DAMAGE = 20, BLACK_DAMAGE = 0, PALE_DAMAGE = 20, FIRE = 30) // 70
 	attribute_requirements = list(
 							FORTITUDE_ATTRIBUTE = 40
 							)
@@ -89,7 +89,7 @@
 	name = "wind-up"
 	desc = "Humanity has conquered disease and nature. Now we have come far enough to harness time itself."
 	icon_state = "windup"
-	armor = list(RED_DAMAGE = 10, WHITE_DAMAGE = 50, BLACK_DAMAGE = 10, PALE_DAMAGE = 70) // 140
+	armor = list(RED_DAMAGE = 10, WHITE_DAMAGE = 50, BLACK_DAMAGE = 10, PALE_DAMAGE = 70, FIRE = 10) // 140
 	attribute_requirements = list(
 							JUSTICE_ATTRIBUTE = 80
 							)
@@ -99,7 +99,7 @@
 	desc = "Late one accursed night, I compounded the elements, watched them boil and smoke together in the glass, and when the ebullition had subsided, \
 	with a strong glow of courage, drank off the potion."
 	icon_state = "hyde"
-	armor = list(RED_DAMAGE = 40, WHITE_DAMAGE = 30, BLACK_DAMAGE = 40, PALE_DAMAGE = 30) // 140
+	armor = list(RED_DAMAGE = 40, WHITE_DAMAGE = 30, BLACK_DAMAGE = 40, PALE_DAMAGE = 30, FIRE = 20) // 140
 	attribute_requirements = list(
 							PRUDENCE_ATTRIBUTE = 80
 							)

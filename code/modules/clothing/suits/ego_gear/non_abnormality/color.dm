@@ -2,7 +2,7 @@
 	name = "Jacket of Blue"
 	desc = "A regal jacket used by the blue reverberation. Offers excellent defenses against everything."
 	icon_state = "breverb"
-	armor = list(RED_DAMAGE = 70, WHITE_DAMAGE = 70, BLACK_DAMAGE = 70, PALE_DAMAGE = 90)
+	armor = list(RED_DAMAGE = 70, WHITE_DAMAGE = 70, BLACK_DAMAGE = 70, PALE_DAMAGE = 90, FIRE = 35)
 	attribute_requirements = list(
 							FORTITUDE_ATTRIBUTE = 120,
 							PRUDENCE_ATTRIBUTE = 120,

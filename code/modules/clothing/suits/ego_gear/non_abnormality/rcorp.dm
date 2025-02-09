@@ -3,7 +3,7 @@
 	name = "\improper rabbit team command suit"
 	desc = "An armored combat suit worn by R-Corporation 4th pack infantry commanders. The orange cloak denotes the rank of 'Captain', as a beacon for the infantry to follow."
 	icon_state = "rabbit"
-	armor = list(RED_DAMAGE = 50, WHITE_DAMAGE = 50, BLACK_DAMAGE = 50, PALE_DAMAGE = 50)
+	armor = list(RED_DAMAGE = 50, WHITE_DAMAGE = 50, BLACK_DAMAGE = 50, PALE_DAMAGE = 50, FIRE = 25)
 	equip_slowdown = 0
 	var/list/banned_roles = list("Ground Commander", "Lieutenant Commander")
 

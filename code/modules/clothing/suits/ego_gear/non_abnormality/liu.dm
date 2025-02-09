@@ -2,7 +2,7 @@
 	name = "Liu Association combat suit"
 	desc = "Armor worn by liu association section 1 and section 2."
 	icon_state = "liufire"
-	armor = list(RED_DAMAGE = 20, WHITE_DAMAGE = 40, BLACK_DAMAGE = 20, PALE_DAMAGE = 0)
+	armor = list(RED_DAMAGE = 20, WHITE_DAMAGE = 40, BLACK_DAMAGE = 20, PALE_DAMAGE = 0, FIRE = 20)
 	attribute_requirements = list(
 							FORTITUDE_ATTRIBUTE = 60,
 							PRUDENCE_ATTRIBUTE = 60,
@@ -19,7 +19,7 @@
 	name = "Liu Association combat coat"
 	desc = "Armor worn by liu association section 1 veterans."
 	icon_state = "liufire_vet"
-	armor = list(RED_DAMAGE = 30, WHITE_DAMAGE = 50, BLACK_DAMAGE = 30, PALE_DAMAGE = 20)
+	armor = list(RED_DAMAGE = 30, WHITE_DAMAGE = 50, BLACK_DAMAGE = 30, PALE_DAMAGE = 20, FIRE = 30)
 	attribute_requirements = list(
 							FORTITUDE_ATTRIBUTE = 60,
 							PRUDENCE_ATTRIBUTE = 80,
@@ -47,7 +47,7 @@
 	name = "Liu Association heavy combat coat"
 	desc = "Armor worn by the director of Liu Association Section 1 director."
 	icon_state = "liufire_director"
-	armor = list(RED_DAMAGE = 40, WHITE_DAMAGE = 70, BLACK_DAMAGE = 40, PALE_DAMAGE = 20)
+	armor = list(RED_DAMAGE = 40, WHITE_DAMAGE = 70, BLACK_DAMAGE = 40, PALE_DAMAGE = 20, FIRE = 40)
 	attribute_requirements = list(
 							FORTITUDE_ATTRIBUTE = 60,
 							PRUDENCE_ATTRIBUTE = 100,

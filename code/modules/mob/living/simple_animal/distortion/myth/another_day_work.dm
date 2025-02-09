@@ -126,7 +126,7 @@
 	name = "waging"
 	desc = "It appears to be a suit and tie at first glance; closer inspection reveals that it is actually a tie and suit."
 	icon_state = "waging"
-	armor = list(RED_DAMAGE = -20, WHITE_DAMAGE = -20, BLACK_DAMAGE = 40, PALE_DAMAGE = 0) // 20
+	armor = list(RED_DAMAGE = -20, WHITE_DAMAGE = -20, BLACK_DAMAGE = 40, PALE_DAMAGE = 0, FIRE = -20) // 20
 
 /obj/item/ego_weapon/waging
 	name = "waging"

@@ -3,7 +3,7 @@
 	name = "w corp armor vest"
 	desc = "A light armor vest worn by W corp. It's light as a feather."
 	icon_state = "w_corp"
-	armor = list(RED_DAMAGE = 30, WHITE_DAMAGE = 30, BLACK_DAMAGE = 30, PALE_DAMAGE = 30)
+	armor = list(RED_DAMAGE = 30, WHITE_DAMAGE = 30, BLACK_DAMAGE = 30, PALE_DAMAGE = 30, FIRE = 15)
 	slowdown = -0.1
 	flags_inv = null
 	attribute_requirements = list(

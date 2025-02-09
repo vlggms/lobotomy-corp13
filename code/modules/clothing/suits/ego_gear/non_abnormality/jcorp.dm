@@ -4,7 +4,7 @@
 	name = "red ting tang shirt"
 	desc = "A hawaiin shirt that comes with tattos, somehow. They supposedly bring good luck."
 	icon_state = "tingtang_bean"
-	armor = list(RED_DAMAGE = 10, WHITE_DAMAGE = 30, BLACK_DAMAGE = -10, PALE_DAMAGE = -10)
+	armor = list(RED_DAMAGE = 10, WHITE_DAMAGE = 30, BLACK_DAMAGE = -10, PALE_DAMAGE = -10, FIRE = 5)
 
 /obj/item/clothing/suit/armor/ego_gear/city/ting_tang/puffer
 	name = "blue ting tang shirt"
@@ -18,7 +18,7 @@
 	name = "green ting tang shirt"
 	desc = "A hawaiin shirt worn by the boss of the Ting Tang Gang. The tattos on this one feel luckier."
 	icon_state = "tingtang_boss"
-	armor = list(RED_DAMAGE = 20, WHITE_DAMAGE = 40, BLACK_DAMAGE = 20, PALE_DAMAGE = 10)
+	armor = list(RED_DAMAGE = 20, WHITE_DAMAGE = 40, BLACK_DAMAGE = 20, PALE_DAMAGE = 10, FIRE = 10)
 	attribute_requirements = list(
 							FORTITUDE_ATTRIBUTE = 60,
 							PRUDENCE_ATTRIBUTE = 60,
@@ -31,7 +31,7 @@
 	name = "los mariachis poncho"
 	desc = "A poncho worn by members of the Los Mariachis. This one's blue."
 	icon_state = "mariachis_alegre"
-	armor = list(RED_DAMAGE = 20, WHITE_DAMAGE = 20, BLACK_DAMAGE = -10, PALE_DAMAGE = -10)
+	armor = list(RED_DAMAGE = 20, WHITE_DAMAGE = 20, BLACK_DAMAGE = -10, PALE_DAMAGE = -10, FIRE = 10)
 
 /obj/item/clothing/suit/armor/ego_gear/city/mariachi/vivaz
 	desc = "A poncho worn by members of the Los Mariachis. This one's brown."
@@ -41,7 +41,7 @@
 	name = "los mariachis armor"
 	desc = "The outfit of the Los Mariachis leader. Its well woven for sure."
 	icon_state = "aida"
-	armor = list(RED_DAMAGE = 30, WHITE_DAMAGE = 30, BLACK_DAMAGE = 10, PALE_DAMAGE = 20)
+	armor = list(RED_DAMAGE = 30, WHITE_DAMAGE = 30, BLACK_DAMAGE = 10, PALE_DAMAGE = 20, FIRE = 15)
 	hat = /obj/item/clothing/head/ego_hat/aida_hat
 	attribute_requirements = list(
 							FORTITUDE_ATTRIBUTE = 60,
@@ -59,7 +59,7 @@
 	name = "los mariachis armor"
 	desc = "The outfit of the Los Mariachis leader. No one has seen this and lived."
 	icon_state = "aida_boss"
-	armor = list(RED_DAMAGE = 40, WHITE_DAMAGE = 40, BLACK_DAMAGE = 20, PALE_DAMAGE = 30)
+	armor = list(RED_DAMAGE = 40, WHITE_DAMAGE = 40, BLACK_DAMAGE = 20, PALE_DAMAGE = 30, FIRE = 20)
 	hat = /obj/item/clothing/head/ego_hat/helmet/aida_hat_boss
 	attribute_requirements = list(
 							FORTITUDE_ATTRIBUTE = 80,
