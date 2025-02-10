@@ -7,32 +7,41 @@
 	dir = 4
 	},
 /mob/living/simple_animal/hostile/ordeal/green_bot{
-	name = "clerk bot"
+	name = "clerk bot";
+	return_to_origin = 1
 	},
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/effect/decal/cleanable/dirt/dust,
-/turf/open/floor/mineral/plastitanium,
+/turf/open/floor/mineral/titanium/tiled/white,
 /area/city/backstreets_room)
 "e" = (
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/effect/decal/cleanable/dirt/dust,
-/turf/open/floor/mineral/plastitanium,
+/turf/open/floor/mineral/titanium/tiled/white,
 /area/city/backstreets_room)
 "h" = (
 /obj/effect/decal/cleanable/dirt/dust,
 /turf/closed/indestructible/reinforced,
+/area/city/backstreets_room)
+"j" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/mineral_door/silver{
+	resistance_flags = 64
+	},
+/turf/open/floor/mineral/titanium/tiled/white,
 /area/city/backstreets_room)
 "n" = (
 /obj/structure/railing{
 	dir = 1
 	},
 /mob/living/simple_animal/hostile/ordeal/green_bot{
-	name = "clerk bot"
+	name = "clerk bot";
+	return_to_origin = 1
 	},
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/effect/decal/cleanable/dirt/dust,
-/turf/open/floor/mineral/plastitanium,
+/turf/open/floor/mineral/titanium/tiled/white,
 /area/city/backstreets_room)
 "q" = (
 /obj/effect/decal/cleanable/dirt/dust,
@@ -40,32 +49,34 @@
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/structure/lootcrate/money,
-/turf/open/floor/mineral/plastitanium,
+/turf/open/floor/mineral/titanium/tiled/white,
 /area/city/backstreets_room)
 "v" = (
-/turf/open/floor/plating/asteroid/basalt,
+/turf/open/floor/mineral/titanium/tiled/white,
 /area/city/backstreets_room)
 "w" = (
 /obj/structure/railing/corner,
 /mob/living/simple_animal/hostile/ordeal/green_bot{
-	name = "clerk bot"
+	name = "clerk bot";
+	return_to_origin = 1
 	},
 /obj/effect/decal/cleanable/dirt/dust,
-/turf/open/floor/mineral/plastitanium,
+/turf/open/floor/mineral/titanium/tiled/white,
 /area/city/backstreets_room)
 "x" = (
 /obj/structure/railing/corner{
 	dir = 1
 	},
 /mob/living/simple_animal/hostile/ordeal/green_bot{
-	name = "clerk bot"
+	name = "clerk bot";
+	return_to_origin = 1
 	},
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/effect/decal/cleanable/dirt/dust,
-/turf/open/floor/mineral/plastitanium,
+/turf/open/floor/mineral/titanium/tiled/white,
 /area/city/backstreets_room)
 "D" = (
 /mob/living/simple_animal/hostile/price,
@@ -79,50 +90,54 @@
 	dir = 8
 	},
 /mob/living/simple_animal/hostile/ordeal/green_bot{
-	name = "clerk bot"
+	name = "clerk bot";
+	return_to_origin = 1
 	},
 /obj/effect/decal/cleanable/dirt/dust,
-/turf/open/floor/plating/asteroid/basalt,
+/turf/open/floor/mineral/titanium/tiled/white,
 /area/city/backstreets_room)
 "N" = (
 /obj/structure/railing/corner{
 	dir = 4
 	},
 /mob/living/simple_animal/hostile/ordeal/green_bot{
-	name = "clerk bot"
+	name = "clerk bot";
+	return_to_origin = 1
 	},
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/effect/decal/cleanable/dirt/dust,
-/turf/open/floor/mineral/plastitanium,
+/turf/open/floor/mineral/titanium/tiled/white,
 /area/city/backstreets_room)
 "R" = (
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/effect/decal/cleanable/dirt/dust,
-/turf/open/floor/mineral/plastitanium,
+/turf/open/floor/mineral/titanium/tiled/white,
 /area/city/backstreets_room)
 "S" = (
 /obj/structure/railing{
 	dir = 8
 	},
 /mob/living/simple_animal/hostile/ordeal/green_bot{
-	name = "clerk bot"
+	name = "clerk bot";
+	return_to_origin = 1
 	},
 /obj/effect/decal/cleanable/dirt/dust,
-/turf/open/floor/mineral/plastitanium,
+/turf/open/floor/mineral/titanium/tiled/white,
 /area/city/backstreets_room)
 "T" = (
 /obj/structure/railing,
 /mob/living/simple_animal/hostile/ordeal/green_bot{
-	name = "clerk bot"
+	name = "clerk bot";
+	return_to_origin = 1
 	},
 /obj/effect/decal/cleanable/dirt/dust,
-/turf/open/floor/mineral/plastitanium,
+/turf/open/floor/mineral/titanium/tiled/white,
 /area/city/backstreets_room)
 "X" = (
 /obj/effect/decal/cleanable/dirt/dust,
-/turf/open/floor/plating/asteroid/basalt,
+/turf/open/floor/mineral/titanium/tiled/white,
 /area/city/backstreets_room)
 
 (1,1,1) = {"
@@ -163,10 +178,10 @@ a
 "}
 (5,1,1) = {"
 a
-X
-v
-X
-v
-v
+a
+a
+j
+a
+a
 a
 "}

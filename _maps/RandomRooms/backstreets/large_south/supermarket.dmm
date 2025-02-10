@@ -33,7 +33,9 @@
 /turf/open/floor/plasteel/shuttle,
 /area/city/backstreets_room)
 "l" = (
-/mob/living/simple_animal/hostile/ordeal/steel_dawn/steel_noon/flying,
+/mob/living/simple_animal/hostile/ordeal/steel_dawn/steel_noon/flying{
+	return_to_origin = 1
+	},
 /turf/open/floor/plasteel/shuttle,
 /area/city/backstreets_room)
 "m" = (
@@ -108,7 +110,9 @@
 /turf/open/floor/plasteel/shuttle,
 /area/city/backstreets_room)
 "O" = (
-/mob/living/simple_animal/hostile/ordeal/steel_dawn/steel_noon,
+/mob/living/simple_animal/hostile/ordeal/steel_dawn/steel_noon{
+	return_to_origin = 1
+	},
 /turf/open/floor/plasteel/shuttle,
 /area/city/backstreets_room)
 "Q" = (

@@ -18,7 +18,8 @@
 /area/city/backstreets_room)
 "r" = (
 /mob/living/simple_animal/hostile/ordeal/green_bot_big{
-	name = "gun bot"
+	name = "gun bot";
+	return_to_origin = 1
 	},
 /turf/open/floor/plating,
 /area/city/backstreets_room)
@@ -63,7 +64,8 @@
 /area/city/backstreets_room)
 "N" = (
 /mob/living/simple_animal/hostile/ordeal/green_bot_big{
-	name = "gun bot"
+	name = "gun bot";
+	return_to_origin = 1
 	},
 /turf/open/floor/plating/rust,
 /area/city/backstreets_room)
