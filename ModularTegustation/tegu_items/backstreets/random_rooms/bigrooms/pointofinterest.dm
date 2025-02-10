@@ -34,3 +34,4 @@
 	name = "Inquisition - Point of Interest"
 	room_id = "n_corp_poi"
 	mappath = "_maps/RandomRooms/backstreets/pointofinterest/n_corp.dmm"
+	weight = 10000
