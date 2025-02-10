@@ -5,6 +5,7 @@
 	icon_state = "fairy"
 	icon_living = "fairy"
 	portrait = "fairy_festival"
+	core_icon = "fairy"
 	maxHealth = 800
 	health = 800
 	move_to_delay = 5
@@ -279,8 +280,8 @@
 	icon_state = "fairy_mass"
 	icon_living = "fairy_mass"
 	icon_dead = "fairy_mass_dead"
-	maxHealth = 300
-	health = 300
+	maxHealth = 150
+	health = 150
 	attack_verb_continuous = "bites"
 	attack_verb_simple = "bite"
 	is_flying_animal = TRUE

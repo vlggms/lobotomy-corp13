@@ -43,6 +43,7 @@
 	)
 	var/meltdown_cooldown //no spamming the meltdown effect
 	var/meltdown_cooldown_time = 30 SECONDS
+	var/breach_cooldown_time = 60 SECONDS
 	var/breaching = FALSE
 	var/summon_count = 0
 
@@ -115,9 +116,9 @@
 	if(summon_count > 10)
 		qdel(src)
 		return
-	if((meltdown_cooldown < world.time) && !(status_flags & GODMODE))
+	if(meltdown_cooldown < world.time)
 		MeltdownEffect()
-		meltdown_cooldown = world.time + meltdown_cooldown_time
+		meltdown_cooldown = world.time + breach_cooldown_time
 
 /mob/living/simple_animal/hostile/abnormality/book/Move()
 	return FALSE
