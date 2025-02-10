@@ -8,8 +8,8 @@
 	portrait = "wellcheers"
 	layer = BELOW_OBJ_LAYER
 	threat_level = ZAYIN_LEVEL
-	maxHealth = 600
-	health = 600
+	maxHealth = 900
+	health = 900
 	damage_coeff = list(RED_DAMAGE = 1, WHITE_DAMAGE = 1, BLACK_DAMAGE = 1, PALE_DAMAGE = 1)
 	work_chances = list(
 		ABNORMALITY_WORK_INSTINCT = list(70, 70, 60, 60, 60),
@@ -139,6 +139,9 @@
 	return ..()
 
 /mob/living/simple_animal/hostile/abnormality/wellcheers/AttackingTarget()
+	return FALSE
+
+/mob/living/simple_animal/hostile/abnormality/wellcheers/Move()
 	return FALSE
 
 // Soda cans
