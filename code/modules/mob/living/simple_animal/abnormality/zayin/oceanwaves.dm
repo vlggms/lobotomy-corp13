@@ -37,7 +37,6 @@
 	ranged_cooldown_time = 3 SECONDS
 	rapid = 4
 	rapid_fire_delay = 6
-	retreat_distance = 4
 	check_friendly_fire = TRUE
 	projectiletype = /obj/projectile/oceanic/special // it's like wellcheers, but crack
 	projectilesound = 'sound/machines/machine_vend.ogg'
@@ -162,6 +161,9 @@
 	return ..()
 
 /mob/living/simple_animal/hostile/abnormality/oceanicwaves/AttackingTarget()
+	return FALSE
+
+/mob/living/simple_animal/hostile/abnormality/oceanicwaves/Move()
 	return FALSE
 
 /obj/projectile/oceanic
