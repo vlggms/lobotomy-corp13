@@ -173,7 +173,7 @@
 		new /datum/data/extraction_cargo("Aquarium Branch Office ",		/obj/item/aquarium_prop/lcorp,						500) = 1,
 
 		//fishing level ups
-		new /datum/data/extraction_cargo("N Corp Fishing Trainer ",		/obj/item/attribute_increase/fixer/fishing,			100) = 1,
+		new /datum/data/extraction_cargo("N Corp Fishing Trainer ",		/obj/item/attribute_increase/fixer/fishing,			75) = 1,
 
 		//More nets
 		new /datum/data/extraction_cargo("Fishing Net ",					/obj/item/fishing_net,							100) = 1,
