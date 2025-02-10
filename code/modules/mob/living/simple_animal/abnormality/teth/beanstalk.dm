@@ -38,6 +38,12 @@
 
 	var/climbing = FALSE
 
+/mob/living/simple_animal/hostile/abnormality/beanstalk/Move()
+	return FALSE
+
+/mob/living/simple_animal/hostile/abnormality/beanstalk/CanAttack(atom/the_target)
+	return FALSE
+
 //Performing instinct work at >4 fortitude starts a special work
 /mob/living/simple_animal/hostile/abnormality/beanstalk/AttemptWork(mob/living/carbon/human/user, work_type)
 	if((get_attribute_level(user, FORTITUDE_ATTRIBUTE) >= 80) && (work_type == ABNORMALITY_WORK_INSTINCT))
