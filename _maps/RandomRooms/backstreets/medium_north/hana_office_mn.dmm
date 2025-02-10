@@ -44,10 +44,7 @@
 /turf/open/floor/facility/white,
 /area/city/backstreets_room)
 "B" = (
-/mob/living/simple_animal/hostile/ordeal/green_bot_big{
-	name = "gun bot";
-	return_to_origin = 1
-	},
+/mob/living/simple_animal/hostile/ordeal/green_bot_big,
 /turf/open/floor/facility/white,
 /area/city/backstreets_room)
 "D" = (

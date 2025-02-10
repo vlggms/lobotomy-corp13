@@ -63,10 +63,7 @@
 /turf/open/floor/plasteel/sepia,
 /area/city/backstreets_room)
 "E" = (
-/mob/living/simple_animal/hostile/butcher{
-	return_to_origin = 1;
-	maxHealth = 500
-	},
+/mob/living/simple_animal/hostile/butcher,
 /turf/open/floor/plasteel/sepia,
 /area/city/backstreets_room)
 "H" = (
