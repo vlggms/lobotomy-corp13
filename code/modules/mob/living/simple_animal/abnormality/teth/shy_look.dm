@@ -45,6 +45,8 @@
 
 /mob/living/simple_animal/hostile/abnormality/shy_look/Life()
 	. = ..()
+	if(!(status_flags & GODMODE))//Breaching
+		return
 	if(mood_cooldown < world.time && !datum_reference.working)
 		ChangeMood()
 
@@ -105,3 +107,9 @@
 		user.adjustSanityLoss(-0.2*user.maxSanity)
 	ChangeMood() //Prevents spamming work on the same mood
 	return
+
+/mob/living/simple_animal/hostile/abnormality/shy_look/BreachEffect(mob/living/carbon/human/user, breach_type)
+	icon = 'ModularTegustation/Teguicons/32x32.dmi'
+	icon_state = "bill"
+	base_pixel_x = 0
+	pixel_x = 0

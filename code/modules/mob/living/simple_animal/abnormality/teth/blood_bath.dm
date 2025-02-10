@@ -6,12 +6,14 @@
 	portrait = "blood_bath"
 	maxHealth = 1000
 	health = 1000
+	rapid_melee = 1
+	melee_queue_distance = 2
 	move_to_delay = 3
 	attack_sound = 'sound/abnormalities/ichthys/slap.ogg'
 	attack_verb_continuous = "mauls"
 	attack_verb_simple = "maul"
-	melee_damage_lower = 6
-	melee_damage_upper = 12
+	melee_damage_lower = 10
+	melee_damage_upper = 18
 	melee_damage_type = WHITE_DAMAGE
 	damage_coeff = list(RED_DAMAGE = 1.6, WHITE_DAMAGE = 1, BLACK_DAMAGE = 1.4, PALE_DAMAGE = 1.5)
 	ranged = TRUE
@@ -108,7 +110,7 @@
 		new /obj/effect/temp_visual/cult/sparks(L)
 	playsound(get_turf(src), 'sound/abnormalities/ichthys/jump.ogg', 100, FALSE, 6)
 	icon_state = "bloodbath_slamprepare"
-	SLEEP_CHECK_DEATH(12)
+	SLEEP_CHECK_DEATH(20)
 	for(var/turf/T in view(3, src))
 		var/obj/effect/temp_visual/small_smoke/halfsecond/FX =  new(T)
 		FX.color = "#b52e19"
