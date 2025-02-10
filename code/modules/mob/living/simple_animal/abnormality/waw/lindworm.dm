@@ -104,12 +104,11 @@
 				qdel(floor_fire)
 		new /obj/structure/turf_confetti(T)
 
-	if(ishuman(target))
-		var/mob/living/H = target
-		if(H.health < 0)
-			layers_left+=1
-			HandleLayers()
-			H.gib()
+	var/mob/living/H = target
+	if(H.health < 0)
+		layers_left+=1
+		HandleLayers()
+		H.gib()
 
 /mob/living/simple_animal/hostile/abnormality/lindworm/CanAttack(atom/the_target)
 	..()
