@@ -41,6 +41,15 @@
 /obj/structure/lootcrate/money,
 /turf/open/floor/plating/asteroid/basalt,
 /area/city/backstreets_room)
+"M" = (
+/mob/living/simple_animal/hostile/ordeal/amber_bug{
+	name = "carnivorous worm"
+	},
+/mob/living/simple_animal/hostile/ordeal/amber_bug{
+	name = "carnivorous worm"
+	},
+/turf/open/floor/plating/asteroid/basalt,
+/area/city/backstreets_room)
 "P" = (
 /obj/structure/flora/rock,
 /turf/open/floor/plating/asteroid/basalt,
@@ -75,8 +84,8 @@ x
 "}
 (3,1,1) = {"
 x
-Y
-Y
+M
+M
 a
 a
 Y
@@ -101,7 +110,7 @@ x
 x
 a
 s
-Y
+s
 s
 Y
 Y

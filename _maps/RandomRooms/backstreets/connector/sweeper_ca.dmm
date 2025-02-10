@@ -43,14 +43,6 @@
 /obj/item/ego_weapon/ranged/clerk,
 /turf/open/floor/plating/dirt/jungle/dark,
 /area/city/backstreets_room)
-"l" = (
-/obj/structure/stone_tile/slab/cracked,
-/obj/structure/mineral_door/sandstone{
-	resistance_flags = 64;
-	color = "#4a3218"
-	},
-/turf/open/floor/plating/dirt/jungle/wasteland,
-/area/city/backstreets_room)
 "n" = (
 /obj/effect/decal/cleanable/blood{
 	pixel_x = 11
@@ -115,13 +107,6 @@
 /area/city/backstreets_room)
 "D" = (
 /obj/effect/decal/cleanable/blood/drip,
-/turf/open/floor/plating/dirt/jungle/dark,
-/area/city/backstreets_room)
-"E" = (
-/obj/structure/mineral_door/sandstone{
-	resistance_flags = 64;
-	color = "#4a3218"
-	},
 /turf/open/floor/plating/dirt/jungle/dark,
 /area/city/backstreets_room)
 "F" = (
@@ -254,9 +239,9 @@ Q
 Q
 b
 a
-a
-E
-a
+S
+S
+S
 a
 b
 Q
@@ -273,7 +258,7 @@ q
 B
 S
 x
-S
+H
 S
 L
 X
@@ -441,9 +426,9 @@ U
 U
 U
 a
-a
-l
-a
+S
+I
+S
 a
 U
 U

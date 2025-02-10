@@ -8,9 +8,6 @@
 /area/city/backstreets_room)
 "k" = (
 /obj/structure/fence/door,
-/obj/structure/mineral_door/transparent{
-	resistance_flags = 64
-	},
 /turf/open/floor/plating/rust,
 /area/city/backstreets_room)
 "n" = (
@@ -82,8 +79,7 @@
 /area/city/backstreets_room)
 "Y" = (
 /obj/structure/fence{
-	dir = 8;
-	resistance_flags = 64
+	dir = 8
 	},
 /turf/open/floor/plating/rust,
 /area/city/backstreets_room)
