@@ -59,6 +59,8 @@
 	icon = 'ModularTegustation/Teguicons/teguitems.dmi'
 	icon_state = "tcorp_syringe"
 	amount = 1
+	var/total_adjust = 0
+	var/max_attributes = 130
 	var/list/usable_roles = list("Civilian", "Office Director", "Office Fixer")
 
 /obj/item/attribute_increase/fixer/attack_self(mob/living/carbon/human/user)
@@ -69,28 +71,50 @@
 
 
 	//max stats can't gain stats
-	if(get_attribute_level(user, TEMPERANCE_ATTRIBUTE)>=130)
+	if(get_attribute_level(user, TEMPERANCE_ATTRIBUTE)>=max_attributes)
 		to_chat(user, span_danger("You feel like you won't gain anything."))
 		return
 
-	to_chat(user, span_nicegreen("You suddenly feel different."))
 	//Guarantee one
-	user.adjust_all_attribute_levels(amount)
-	to_chat(user, "<span class='nicegreen'>You gain 1 potential!</span>")
+	total_adjust += amount
 
 	//Adjust by an extra attribute under level 2
 	if(get_attribute_level(user, TEMPERANCE_ATTRIBUTE)<=40)
-		user.adjust_all_attribute_levels(amount)
-		to_chat(user, "<span class='nicegreen'>You gain 1 potential!</span>")
+		total_adjust += amount
 
 	//And one more under level 3
 	if(get_attribute_level(user, TEMPERANCE_ATTRIBUTE)<=60)
-		user.adjust_all_attribute_levels(amount)
-		to_chat(user, "<span class='nicegreen'>You gain 1 potential!</span>")
+		total_adjust += amount
 
 	//And one last one before L4
 	if(get_attribute_level(user, TEMPERANCE_ATTRIBUTE)<=80)
-		user.adjust_all_attribute_levels(amount)
-		to_chat(user, "<span class='nicegreen'>You gain 1 potential!</span>")
+		total_adjust += amount
 
+	if(get_attribute_level(user, TEMPERANCE_ATTRIBUTE) < 40 && get_attribute_level(user, TEMPERANCE_ATTRIBUTE) + total_adjust >= 40)
+		var/choice = alert("Are you sure you want to become level 2? This will restrict access to lower level skills.", , "Yes", "No")
+		if(choice == "No")
+			total_adjust = 0
+			return
+
+	if(get_attribute_level(user, TEMPERANCE_ATTRIBUTE) < 60 && get_attribute_level(user, TEMPERANCE_ATTRIBUTE) + total_adjust >= 60)
+		var/choice = alert("Are you sure you want to become level 3? This will restrict access to lower level skills.", , "Yes", "No")
+		if(choice == "No")
+			total_adjust = 0
+			return
+
+	if(get_attribute_level(user, TEMPERANCE_ATTRIBUTE) < 100 && get_attribute_level(user, TEMPERANCE_ATTRIBUTE) + total_adjust >= 100)
+		var/choice = alert("Are you sure you want to become level 4? This will restrict access to lower level skills.", , "Yes", "No")
+		if(choice == "No")
+			total_adjust = 0
+			return
+
+	to_chat(user, span_nicegreen("You suddenly feel different."))
+	user.adjust_all_attribute_levels(total_adjust)
+	to_chat(user, "<span class='nicegreen'>You gained [total_adjust] potential!</span>")
 	qdel(src)
+
+/obj/item/attribute_increase/fixer/fishing
+	name = "n corp fishing training accelerator"
+	desc = "A fluid used to increase the stats of a non-assocaition fixer. Use in hand to activate. Increases stats more the lower your potential, however at max it can be used until you are grade 8."
+	color = "#7e02d1"
+	max_attributes = 40
