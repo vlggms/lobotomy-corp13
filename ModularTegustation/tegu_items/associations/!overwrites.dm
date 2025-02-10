@@ -1,9 +1,3 @@
-/mob/living/simple_animal/hostile/shrimp/Initialize()
-	. = ..()
-	if(SSmaptype.maptype in SSmaptype.citymaps)
-		melee_damage_lower = 12
-		melee_damage_upper = 14
-
 /mob/living/simple_animal/hostile/ordeal/steel_dawn/Initialize()
 	. = ..()
 	if(SSmaptype.maptype in SSmaptype.citymaps)
@@ -13,8 +7,6 @@
 /mob/living/simple_animal/hostile/ordeal/green_bot/Initialize()
 	. = ..()
 	if(SSmaptype.maptype in SSmaptype.citymaps)
-		melee_damage_lower = 10
-		melee_damage_upper = 12
 		ChangeResistances(list(RED_DAMAGE = 0.8, WHITE_DAMAGE = 1.3, BLACK_DAMAGE = 2, PALE_DAMAGE = 2))
 
 /mob/living/simple_animal/hostile/ordeal/steel_dawn/steel_noon/Initialize()
@@ -29,8 +21,6 @@
 /mob/living/simple_animal/hostile/ordeal/indigo_spawn/Initialize()
 	. = ..()
 	if(SSmaptype.maptype in SSmaptype.citymaps)
-		melee_damage_lower = 9
-		melee_damage_upper = 11
 		ChangeResistances(list(RED_DAMAGE = 1, WHITE_DAMAGE = 1.5, BLACK_DAMAGE = 0.5, PALE_DAMAGE = 1.5))
 
 /mob/living/simple_animal/hostile/ordeal/green_bot_big/Initialize()
@@ -42,14 +32,6 @@
 		firing_cooldown = 2.4
 		ranged_cooldown_time = 30
 		ChangeResistances(list(RED_DAMAGE = 0.8, WHITE_DAMAGE = 1.3, BLACK_DAMAGE = 2, PALE_DAMAGE = 2))
-
-/mob/living/simple_animal/hostile/ordeal/amber_bug/Initialize()
-	. = ..()
-	if(SSmaptype.maptype in SSmaptype.citymaps)
-		melee_damage_lower = 2
-		melee_damage_upper = 4
-		maxHealth = 60
-		health = 60
 
 /mob/living/simple_animal/hostile/ordeal/amber_dusk/Initialize()
 	. = ..()
