@@ -93,6 +93,16 @@
 	toggle_message = span_colossus("You will attempt to grab visitors.")
 	button_icon_toggle_deactivated = "kqe_toggle0"
 
+/mob/living/simple_animal/hostile/abnormality/kqe/Login()
+	. = ..()
+	if(!. || !client)
+		return FALSE
+	to_chat(src, "<h1>You are KQE-1J-23, A Tank Role Abnormality.</h1><br>\
+		<b>|Slam|: Your melee attack is a 3x3 AoE which deal RED damage to all targets after a short delay.<br>\
+		<br>\
+		|Extraction|: When you click on a target outside your melee range, you will mark the tile they were standing on for 5 seconds.<br>\
+		If there is a human next to or on the marked tile, they will be grabbed and stunned for 5 seconds.<br>\
+		If the target was inside of a Rhino Mech, they will be pulled out of the mech.</b>")
 
 /*** Basic Procs ***/
 /mob/living/simple_animal/hostile/abnormality/kqe/Move()

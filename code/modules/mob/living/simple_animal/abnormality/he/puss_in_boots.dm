@@ -79,6 +79,16 @@
 	toggle_message = span_colossus("You will not perform a finisher anymore.")
 	button_icon_toggle_deactivated = "puss_toggle0"
 
+/mob/living/simple_animal/hostile/abnormality/puss_in_boots/Login()
+	. = ..()
+	if(!. || !client)
+		return FALSE
+	to_chat(src, "<h1>You are Puss in Boots, A Combat Role Abnormality.</h1><br>\
+		<b>|En garde!|: When you attack, if your finisher attack is off cooldown you will use it.<br>\
+		Your finisher attack will mark your target for 4 seconds, if they are still within your sight after those 4 seconds.\
+		You will teleport to them, stun them for a second and deal heavy PALE damage.<br>\
+		You are able to toggle your finisher attack on and off with your ability.</b>")
+
 //Init stuff
 /mob/living/simple_animal/hostile/abnormality/puss_in_boots/Initialize()
 	. = ..()

@@ -115,6 +115,17 @@
 	. = ..()
 	RegisterSignal(SSdcs, COMSIG_GLOB_MOB_DEATH, PROC_REF(On_Mob_Death)) // Hell
 
+/mob/living/simple_animal/hostile/abnormality/jangsan/Login()
+	. = ..()
+	if(!. || !client)
+		return FALSE
+	to_chat(src, "<h1>You are Jangsan Tiger, A Tank Role Abnormality.</h1><br>\
+		<b>|Tough Fur|: You are immune to all projectiles which deal less than 150 Damage.<br>\
+		<br>\
+		|Fear|: Once you use this ability, all humans within 3 tiles who have all of their stats lower than level 3 will be stunned for 5 seconds, lose a high amount of sanity and gain ‘Terror’ for 5 seconds.<br>\
+		If you attack a target with the ‘Terror’, you will instantly kill them.<br>\
+		(Rhinos, Ravens and Commanders are higher than level 3, They are immune to your fear.)<br></b>")
+
 /mob/living/simple_animal/hostile/abnormality/jangsan/Destroy()
 	UnregisterSignal(SSdcs, COMSIG_GLOB_MOB_DEATH)
 	return ..()
