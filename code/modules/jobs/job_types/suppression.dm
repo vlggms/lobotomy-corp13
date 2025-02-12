@@ -18,6 +18,7 @@
 	allow_bureaucratic_error = FALSE
 	departments = DEPARTMENT_SECURITY
 
+	mapexclude = list("enkephalin_rush")
 	job_important = "You are an L-Corp Emergency Response Agent. Your job is to suppress Abnormalities. You cannot work. Use :h to talk on your departmental radio."
 	job_abbreviation = "ERA"
 
