@@ -175,6 +175,48 @@ GLOBAL_LIST_EMPTY(possible_loot_jcorp)
 		if(5)
 			new /obj/item/coin/casino_token/diamond(get_turf(src))
 
+/obj/item/blood_slots
+	name = "J Corp Blood Slots"
+	desc = "A peculiar device sold by J Corp that uses health as currency for gambling! It can give a variety of prizes!"
+	icon = 'icons/obj/syringe.dmi'
+	icon_state = "sampler"
+	slot_flags = ITEM_SLOT_POCKETS
+	w_class = WEIGHT_CLASS_SMALL
+	var/cooldown_timer = 2 SECONDS
+	var/cooldown
+
+/obj/item/blood_slots/Initialize()
+	. = ..()
+	cooldown = world.time
+
+/obj/item/blood_slots/attack_self(mob/living/user)
+	..()
+	if(cooldown <= world.time)
+		to_chat(user, span_notice("You feel the injector jab into you!"))
+		user.adjustBruteLoss(50)
+		var/result = rand(1,100)
+		switch(result)
+			if(1 to 55)
+				to_chat(user, span_notice("The machine buzzes."))
+			if(56 to 90)
+				to_chat(user, span_notice("The machine gives off a healing pulse."))
+				user.adjustBruteLoss(-100)
+				new /obj/effect/temp_visual/heal(get_turf(user), "#FF4444")
+				for(var/mob/living/carbon/human/H in view(4, get_turf(src)))
+					if(H.stat >= HARD_CRIT)
+						continue
+					H.adjustBruteLoss(-100)
+					new /obj/effect/temp_visual/heal(get_turf(H), "#FF4444")
+			if(90 to 99)
+				to_chat(user, span_notice("The machine dispenses a token!"))
+				new /obj/item/coin/casino_token/iron(get_turf(src))
+			if(100)
+				to_chat(user, span_notice("The machine dispenses a token!"))
+				new /obj/item/coin/casino_token/silver(get_turf(src))
+		cooldown = world.time + cooldown_timer
+
+
+
 // Crit Sticker (Will Test and add once Critical Hits are in)
 ///obj/item/clothing/mask/crit_sticker
 //	name = "J Corp Critical Hit Sticker"

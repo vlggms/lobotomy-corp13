@@ -91,12 +91,23 @@ GLOBAL_LIST_EMPTY(jcorp_upgrades)
 /datum/data/lc13research/casino_machine
 	research_name = "J Corp Casino Machine"
 	research_desc = "If the agents want to bring gambling to their facility, we got a spare casino machine to offer."
-	cost = AVERAGE_RESEARCH_PRICE
+	cost = LOW_RESEARCH_PRICE
 	corp = J_CORP_REP
 
 /datum/data/lc13research/casino_machine/ResearchEffect(obj/structure/representative_console/caller)
 	new /obj/machinery/jcorp_slot_machine(get_turf(caller))
 	caller.visible_message(span_notice("The [caller] lights up as it teleports in the Casino Machine."))
+
+/datum/data/lc13research/blood_machine
+	research_name = "J Corp Lifeforce Slots"
+	research_desc = "Some people are so addicted to gambling, they have admitted to be willing to sacrifice blood for gambling! So here are two devices in exchange for PE!"
+	cost = LOW_RESEARCH_PRICE
+	corp = J_CORP_REP
+
+/datum/data/lc13research/blood_machine/ResearchEffect(obj/structure/representative_console/caller)
+	new /obj/item/blood_slots(get_turf(caller))
+	new /obj/item/blood_slots(get_turf(caller))
+	caller.visible_message(span_notice("The [caller] lights up as it teleports in two odd devices."))
 
 //ERTs
 /*
