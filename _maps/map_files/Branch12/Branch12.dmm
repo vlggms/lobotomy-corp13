@@ -303,6 +303,9 @@
 /obj/structure/table/reinforced,
 /turf/open/floor/circuit/telecomms/mainframe,
 /area/department_main/manager)
+"cU" = (
+/turf/closed/indestructible/fakeglass,
+/area/facility_hallway/central)
 "cW" = (
 /obj/machinery/light,
 /obj/structure/chair/plastic{
@@ -1275,8 +1278,7 @@
 /turf/open/floor/plasteel/white,
 /area/department_main/training)
 "oz" = (
-/obj/effect/spawner/structure/window/reinforced,
-/turf/open/floor/plating,
+/turf/closed/indestructible/fakeglass,
 /area/department_main/safety)
 "oA" = (
 /turf/open/floor/plasteel,
@@ -2869,8 +2871,7 @@
 /turf/closed/indestructible/reinforced,
 /area/facility_hallway/safety)
 "Lc" = (
-/obj/effect/spawner/structure/window/reinforced,
-/turf/open/floor/plating,
+/turf/closed/indestructible/fakeglass,
 /area/facility_hallway/north)
 "Lh" = (
 /obj/effect/turf_decal/tile/brown{
@@ -2950,8 +2951,7 @@
 /turf/open/floor/plasteel,
 /area/facility_hallway/command)
 "LS" = (
-/obj/effect/spawner/structure/window/reinforced,
-/turf/open/floor/plating,
+/turf/closed/indestructible/fakeglass,
 /area/department_main/training)
 "LV" = (
 /obj/structure/rack,
@@ -37064,17 +37064,17 @@ Zw
 Hv
 Hv
 Hv
-Zg
-Zg
-Zg
-Zg
-Zg
-Zg
-Zg
-Zg
-Zg
-Zg
-Zg
+cU
+cU
+cU
+cU
+cU
+cU
+cU
+cU
+cU
+cU
+cU
 Hv
 Hv
 Hv
@@ -39644,9 +39644,9 @@ ZO
 ZO
 ZO
 ZO
-Zg
-Zg
-Zg
+cU
+cU
+cU
 Hv
 ZK
 BG
@@ -39901,7 +39901,7 @@ ZO
 ZO
 ZO
 ZO
-Zg
+cU
 Yc
 Yc
 xu
@@ -40158,7 +40158,7 @@ ZO
 ZO
 vM
 ZO
-Zg
+cU
 Yc
 xa
 xu
@@ -40415,7 +40415,7 @@ ZO
 ZO
 ZO
 ZO
-Zg
+cU
 Yc
 Yc
 xu
@@ -40672,9 +40672,9 @@ ZO
 ZO
 ZO
 ZO
-Zg
-Zg
-Zg
+cU
+cU
+cU
 Hv
 Yr
 BG
@@ -40932,7 +40932,7 @@ ZO
 ZO
 ZO
 ZO
-Zg
+cU
 ZK
 BG
 ZK
@@ -41189,7 +41189,7 @@ ZO
 ZO
 ZO
 ZO
-Zg
+cU
 ZK
 BG
 ZK
@@ -41446,7 +41446,7 @@ ZO
 ZO
 wG
 ZO
-Zg
+cU
 ZK
 BG
 vG
@@ -41703,7 +41703,7 @@ ZO
 ZO
 ZO
 ZO
-Zg
+cU
 ZK
 BG
 ZK
@@ -41960,7 +41960,7 @@ ZO
 ZO
 ZO
 ZO
-Zg
+cU
 ZK
 BG
 ZK
@@ -42216,7 +42216,7 @@ ZO
 ZO
 ZO
 Hv
-Zg
+cU
 Hv
 pK
 BG
@@ -42472,7 +42472,7 @@ ZO
 ZO
 ZO
 ZO
-Zg
+cU
 ZK
 ZK
 ZK
@@ -42729,7 +42729,7 @@ ZO
 ZO
 ZO
 ZO
-Zg
+cU
 ZK
 xF
 ZH
@@ -42986,7 +42986,7 @@ ZO
 ZO
 ZO
 ZO
-Zg
+cU
 ZK
 BG
 ZK
@@ -43232,15 +43232,15 @@ nI
 qO
 QD
 zW
-Zg
-Zg
-Zg
+cU
+cU
+cU
 Hv
-Zg
-Zg
-Zg
-Zg
-Zg
+cU
+cU
+cU
+cU
+cU
 Hv
 Hv
 Hv

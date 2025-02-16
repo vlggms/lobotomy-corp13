@@ -52,6 +52,12 @@
 	icon_state = "plagiarism"
 	armor = list(RED_DAMAGE = 30, WHITE_DAMAGE = 30, BLACK_DAMAGE = 50, PALE_DAMAGE = 30)
 
+/obj/item/clothing/suit/armor/ego_gear/branch12/nightmares
+	name = "childhood nightmares"
+	desc = "They reached for the stars, only for them to be pulled beyond their reach."
+	icon_state = "nightmares"
+	armor = list(RED_DAMAGE = 70, WHITE_DAMAGE = 20, BLACK_DAMAGE = 40, PALE_DAMAGE = 10)
+
 /obj/item/clothing/suit/armor/ego_gear/branch12/rumor
 	name = "babbling rumor"
 	desc = "They reached for the stars, only for them to be pulled beyond their reach."
