@@ -31,9 +31,19 @@
 
 
 //	WAW
+// Ollieoxenfree
+/datum/ego_datum/armor/branch12/plagiarism
+	item_path = /obj/item/clothing/suit/armor/ego_gear/branch12/plagiarism
+	cost = 50
+
 // Joe Shmoe - Average Joe
 /datum/ego_datum/armor/joe
 	item_path = /obj/item/clothing/suit/armor/ego_gear/branch12/joe
+	cost = 50
+
+//Dearest Friends - Childhood nightmares
+/datum/ego_datum/armor/branch12/nightmares
+	item_path = /obj/item/clothing/suit/armor/ego_gear/branch12/nightmares
 	cost = 50
 
 // Passion of Love in Death - Fluttering Passion

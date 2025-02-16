@@ -114,6 +114,17 @@
 		"When an employee dies in T-04-12-93 and they haven’t performed perfectly, the dead body will continue producing E until it they completed their work.",
 	)
 
+// Dearest Friends
+/obj/item/paper/fluff/info/branch12/friends
+	abno_type = /mob/living/simple_animal/hostile/abnormality/branch12/friends
+	abno_code = "T-02-12-319"
+	abno_info = list(
+		"When an employee with prudence below level 3 worked on T-02-319, the abnormality reduced white damage dealt when working with that employee.",
+		"Employees with prudence level 3 or higher who worked on T-02-319, caused the abnormality to change to red damage and increasing maximum E output to 24.",
+		"When T-02-12-319 was worked on with employees with level 3 prudence or higher, the abnormality’s Qliphoth counter would decrease by 1.",
+		"Any employee who worked on T-02-12-319 with justice work would reset the abnormality’s counter to the maximum.",
+	)
+
 // Ollieoxenfree
 /obj/item/paper/fluff/info/branch12/ollieoxenfree
 	abno_type = /mob/living/simple_animal/hostile/abnormality/branch12/ollieoxenfree
