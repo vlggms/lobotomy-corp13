@@ -34,6 +34,11 @@
 	work_damage_amount = 8
 	work_damage_type = BLACK_DAMAGE
 
+	ego_list = list(
+		//datum/ego_datum/weapon/plagiarism,
+		/datum/ego_datum/armor/branch12/plagiarism,
+	)
+
 	var/list/ideas_stolen = list() //affects what abilities it has on breach
 	var/list/potential_ideas = list("skitter", "hallucination", "lifesteal", "blindness", "randomdamage", "flametile", "knockdown", "pulse", "bleed", "confusion")
 	var/dashready = TRUE

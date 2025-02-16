@@ -34,7 +34,7 @@
 
 	ego_list = list(
 		//datum/ego_datum/weapon/nightmares,
-		//datum/ego_datum/armor/nightmares,
+		/datum/ego_datum/armor/branch12/nightmares,
 	)
 	//gift_type =  /datum/ego_gifts/nightmares
 	abnormality_origin = ABNORMALITY_ORIGIN_BRANCH12
