@@ -59,9 +59,10 @@
 	righthand_file = 'icons/mob/inhands/96x96_righthand.dmi'
 	inhand_x_dimension = 96
 	inhand_y_dimension = 96
-	force = 22
+	force = 38
 	reach = 2		//Has 2 Square Reach.
-	attack_speed = 1.8// really slow
+	stuntime = 5
+	attack_speed = 1.6// really slow
 	damtype = RED_DAMAGE
 
 	attack_verb_continuous = list("bludgeons", "whacks")
