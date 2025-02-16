@@ -1,6 +1,6 @@
 SUBSYSTEM_DEF(economy)
 	name = "Economy"
-	wait = 5 MINUTES
+	wait = 10 MINUTES
 	init_order = INIT_ORDER_ECONOMY
 	runlevels = RUNLEVEL_GAME
 	var/roundstart_paychecks = 5
@@ -41,6 +41,7 @@ SUBSYSTEM_DEF(economy)
 	var/pack_price_modifier = 1
 	var/market_crashing = FALSE
 
+
 /datum/controller/subsystem/economy/Initialize(timeofday)
 	var/budget_to_hand_out = round(budget_pool / department_accounts.len)
 	for(var/A in department_accounts)
@@ -57,18 +58,23 @@ SUBSYSTEM_DEF(economy)
 	departmental_payouts()
 	station_total = 0
 	station_target_buffer += STATION_TARGET_BUFFER
+	EmployeePayout()
+
 	for(var/account in bank_accounts_by_id)
 		var/datum/bank_account/bank_account = bank_accounts_by_id[account]
 		if(bank_account?.account_job)
 			temporary_total += (bank_account.account_job.paycheck * STARTING_PAYCHECKS)
 		if(!istype(bank_account, /datum/bank_account/department))
 			station_total += bank_account.account_balance
+
 	station_target = max(round(temporary_total / max(bank_accounts_by_id.len * 2, 1)) + station_target_buffer, 1)
 //	if(!market_crashing)
 //		price_update()		Fucks up Workshop, I'll figure out how to make it override soon:tm: - Kirie
 
 /**
- * Handy proc for obtaining a department's bank account, given the department ID, AKA the define assigned for what department they're under.
+ * Handy proc for obtaining a department's bank account,
+ * given the department ID, AKA the define assigned for
+ * what department they're under.
  */
 /datum/controller/subsystem/economy/proc/get_dep_account(dep_id)
 	for(var/datum/bank_account/department/D in generated_accounts)
@@ -76,7 +82,8 @@ SUBSYSTEM_DEF(economy)
 			return D
 
 /**
- * Departmental income payments are kept static and linear for every department, and paid out once every 5 minutes, as determined by MAX_GRANT_DPT.
+ * Departmental income payments are kept static and linear for
+ * every department, and paid out once every 10 minutes, as determined by MAX_GRANT_DPT.
  * Iterates over every department account for the same payment.
  */
 /datum/controller/subsystem/economy/proc/departmental_payouts()
@@ -87,9 +94,26 @@ SUBSYSTEM_DEF(economy)
 		dept_account.adjust_money(MAX_GRANT_DPT)
 
 /**
- * Updates the prices of all station vendors with the inflation_value, increasing/decreasing costs across the station, and alerts the crew.
+ * Pays all employee accounts. When this
+ * procc's the employee's bank account will
+ * ping and announce how much they got.
+ */
+/datum/controller/subsystem/economy/proc/EmployeePayout()
+	for(var/account in bank_accounts_by_id)
+		var/datum/bank_account/bank_account = bank_accounts_by_id[account]
+		if(istype(bank_account, /datum/bank_account/department))
+			continue
+		if(bank_account?.account_job)
+			bank_account.payday(1, TRUE)
+
+/**
+ * Updates the prices of all station vendors with the
+ * inflation_value, increasing/decreasing costs across
+ * the station, and alerts the crew.
  *
- * Iterates over the machines list for vending machines, resets their regular and premium product prices (Not contraband), and sends a message to the newscaster network.
+ * Iterates over the machines list for vending machines,
+ * resets their regular and premium product prices
+ * (Not contraband), and sends a message to the newscaster network.
  **/
 /datum/controller/subsystem/economy/proc/price_update()
 	for(var/obj/machinery/vending/V in GLOB.machines)
