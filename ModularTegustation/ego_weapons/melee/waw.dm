@@ -1998,11 +1998,11 @@
 /obj/item/ego_weapon/abyssal_route/attack_self(mob/user)
 	..()
 	if(combo_on)
-		to_chat(user, span_warning("You swap your grip, and will now perform a dive finisher."))
+		to_chat(user, span_warning("You swap your grip, and will no longer perform a dive finisher."))
 		combo_on = FALSE
 		return
 	if(!combo_on)
-		to_chat(user, span_warning("You swap your grip, and will no longer perform a dive finisher."))
+		to_chat(user, span_warning("You swap your grip, and will now perform a dive finisher."))
 		combo_on = TRUE
 		return
 
