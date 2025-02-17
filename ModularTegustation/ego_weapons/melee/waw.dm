@@ -2217,6 +2217,7 @@
 	name = "effervescent corrosion"
 	desc = "Even the scum of the earth can be molded into something useful with time and pressure."
 	icon_state = "shell"
+	special = "This weapon also covers enemies in muck that deals WHITE Damage over time. The thrust can apply this effect an additional tile from where you click."
 	force = 60
 	reach = 2
 	stuntime = 5
