@@ -1,3 +1,5 @@
+#define STATUS_EFFECT_RUMOR /datum/status_effect/display/rumor
+
 //Hand of Babel
 /mob/living/simple_animal/hostile/abnormality/branch12/babel
 	name = "Hand of Babel"
@@ -11,10 +13,10 @@
 	can_breach = FALSE
 	max_boxes = 20
 	work_chances = list(
-		ABNORMALITY_WORK_INSTINCT = 40,
-		ABNORMALITY_WORK_INSIGHT = 40,
-		ABNORMALITY_WORK_ATTACHMENT = 40,
-		ABNORMALITY_WORK_REPRESSION = 40,
+		ABNORMALITY_WORK_INSTINCT = list(0, 0, 35, 45, 45),
+		ABNORMALITY_WORK_INSIGHT = list(30, 30, 40, 50, 50),
+		ABNORMALITY_WORK_ATTACHMENT = list(40, 50, 50, 60, 60),
+		ABNORMALITY_WORK_REPRESSION = list(0, 0, 25, 35, 35),
 	)
 	work_damage_amount = 7
 	work_damage_type = WHITE_DAMAGE
@@ -29,11 +31,29 @@
 
 	//Who is affected by rumor
 	var/list/rumors = list()
+	var/minrumors = 7
 
 /mob/living/simple_animal/hostile/abnormality/branch12/babel/SuccessEffect(mob/living/carbon/human/user, work_type, pe)
 	. = ..()
-	datum_reference.qliphoth_change(-1)
+	user.apply_status_effect(STATUS_EFFECT_RUMOR)
 	return
+
+/mob/living/simple_animal/hostile/abnormality/branch12/babel/Life()
+	. = ..()
+	if(!length(rumors))
+		return
+	if(length(rumors) >= minrumors || length(rumors) >= GLOB.security_positions)
+		Create_Evil()
+
+/mob/living/simple_animal/hostile/abnormality/branch12/babel/proc/Create_Evil()
+	var/mob/living/M = pick(rumors)
+	var/location = get_turf(M)
+	new /mob/living/simple_animal/hostile/rumor(location)
+
+	qdel(M)
+	for(var/mob/living/H in rumors)
+		H.remove_status_effect(STATUS_EFFECT_RUMOR)
+
 
 // Rumor Effect
 /datum/status_effect/display/rumor
@@ -42,22 +62,72 @@
 	duration = -1
 	alert_type = null
 	display_name = "rumor"
+	var/heal_amount = 2
+	var/mob/living/simple_animal/hostile/abnormality/branch12/babel/connected_abno
 
 /datum/status_effect/display/rumor/on_apply()
 	. = ..()
 	if(ishuman(owner))
+		to_chat(owner, span_nicegreen("You have heard the rumor, and it must be spread"))
 		var/mob/living/carbon/human/H = owner
-		var/connected_abno = locate(/mob/living/simple_animal/hostile/abnormality/branch12/oldman_pale) in GLOB.abnormality_mob_list
+		connected_abno = locate(/mob/living/simple_animal/hostile/abnormality/branch12/babel) in GLOB.abnormality_mob_list
 		connected_abno.rumors += H
 
 
 /datum/status_effect/display/rumor/tick()
 	. = ..()
 	for(var/mob/living/carbon/human/H in view(4, src))
+		if(prob(5))
+			H.apply_status_effect(STATUS_EFFECT_RUMOR)
+			to_chat(owner, span_nicegreen("You spread the word of the Tower of Babel."))
+
+	var/mob/living/carbon/human/M = owner
+	M.adjustBruteLoss(-heal_amount) // It heals everyone a bit every 2 seconds.
+	M.adjustSanityLoss(-heal_amount) // It heals everyone a bit every 2 seconds.
+
 
 /datum/status_effect/display/rumor/on_remove()
 	. = ..()
 	if(ishuman(owner))
 		var/mob/living/carbon/human/H = owner
-		var/connected_abno = locate(/mob/living/simple_animal/hostile/abnormality/branch12/oldman_pale) in GLOB.abnormality_mob_list
 		connected_abno.rumors -= H
+
+
+//Her friend
+/mob/living/simple_animal/hostile/rumor
+	name = "A Rumor of the Stars"
+	desc = "The sky once seemed nearly in our reach."
+	icon = 'ModularTegustation/Teguicons/branch12/32x32.dmi'
+	icon_state = "rumor"
+	icon_living = "rumor"
+	maxHealth = 1400
+	health = 1400
+	damage_coeff = list(RED_DAMAGE = 0.8, WHITE_DAMAGE = 0.8, BLACK_DAMAGE = 0.8, PALE_DAMAGE = 1)
+	melee_damage_type = BLACK_DAMAGE
+	stat_attack = HARD_CRIT
+	melee_damage_lower = 20
+	melee_damage_upper = 30
+	attack_verb_continuous = "bashes"
+	attack_verb_simple = "bashes"
+
+/mob/living/simple_animal/hostile/rumor/AttackingTarget(atom/attacked_target) //checking it's ideas and executing them
+	..()
+	if(!ishuman(attacked_target))
+		return
+	var/mob/living/carbon/human/H = attacked_target
+
+	//apply a random debuff
+	switch(rand(1,5))
+		if(1) //from dangle
+			H.hallucination += 10
+		if(2) //kill their eyes
+			H.adjust_blurriness(15)
+		if(3) //kill their legs
+			H.set_confusion(10)
+		if(4) //bleed
+			H.apply_lc_bleed(30)
+		if(5) //knock them down, from smile without the weapon drop
+			H.Knockdown(20)
+
+
+#undef STATUS_EFFECT_RUMOR
