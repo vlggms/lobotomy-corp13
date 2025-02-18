@@ -111,6 +111,8 @@
 
 /obj/item/clothing/suit/armor/ego_gear/examine(mob/user)
 	. = ..()
+	if(slowdown!=0)
+		. += "<span class='notice'>It has a [slowdown*-10]% speed modifier.</span>"
 	if(LAZYLEN(attribute_requirements))
 		. += "<span class='notice'>It has <a href='?src=[REF(src)];list_attributes=1'>certain requirements</a> for the wearer.</span>"
 
