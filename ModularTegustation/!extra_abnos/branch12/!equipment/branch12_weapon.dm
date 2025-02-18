@@ -5,6 +5,7 @@
 /obj/item/ego_weapon/branch12
 	icon = 'ModularTegustation/Teguicons/branch12/branch12_weapon.dmi'
 
+//Weapons are simple for now.
 // --------ZAYIN---------
 //Signal
 /obj/item/ego_weapon/ranged/branch12/mini/signal
@@ -35,4 +36,127 @@
 	attack_verb_continuous = list("slices", "slashes", "stabs")
 	attack_verb_simple = list("slice", "slash", "stab")
 	hitsound = 'sound/weapons/fixer/generic/knife3.ogg'
+
+
+// --------TETH---------
+//Departure
+/obj/item/ego_weapon/branch12/departure
+	name = "Departure"
+	desc = "Each man's death diminishes me, For I am involved in mankind"
+	icon_state = "depature"
+	force = 22
+	damtype = RED_DAMAGE
+	hitsound = 'sound/weapons/slashmiss.ogg'
+
+
+// --------HE---------
+//Perfectionist
+/obj/item/ego_weapon/branch12/perfectionist
+	name = "perfectionist"
+	desc = "I couldn’t bear it, they silently judged, accusing every step I took."
+	icon_state = "perfectionist"
+	force = 30
+	reach = 3
+	stuntime = 8
+	attack_speed = 0.7
+	damtype = WHITE_DAMAGE
+	attack_verb_continuous = list("whips", "lashes", "tears")
+	attack_verb_simple = list("whip", "lash", "tear")
+	hitsound = 'sound/weapons/whip.ogg'
+	attribute_requirements = list(
+							PRUDENCE_ATTRIBUTE = 40
+							)
+
+// --------WAW---------
+//Degrading Honor
+
+
+/obj/item/ego_weapon/branch12/plagiarism
+	name = "plagiarism"
+	desc = "This is my, my work!."
+	special = "Applies a random damage number"
+	icon_state = "plagiarism"
+	force = 60
+	swingstyle = WEAPONSWING_LARGESWEEP
+	damtype = RED_DAMAGE
+	attack_verb_continuous = list("slices", "slashes", "stabs")
+	attack_verb_simple = list("slice", "slash", "stab")
+	hitsound = 'sound/weapons/fixer/generic/knife3.ogg'
+	attribute_requirements = list(
+							FORTITUDE_ATTRIBUTE = 80
+							)
+
+/obj/item/ego_weapon/branch12/plagiarism/attack(mob/living/target, mob/living/user)
+	if(!CanUseEgo(user))
+		return
+	damtype = pick(RED_DAMAGE, WHITE_DAMAGE, BLACK_DAMAGE, PALE_DAMAGE)
+	..()
+
+/obj/item/ego_weapon/branch12/honor
+	name = "degrading honor"
+	desc = "The whole art of life consists in belonging to oneself."
+	icon_state = "honor"
+	force = 60
+	reach = 2		//Has 2 Square Reach.
+	stuntime = 5	//Longer reach, gives you a short stun.
+	damtype = BLACK_DAMAGE
+	attack_verb_continuous = list("pokes", "jabs", "tears", "lacerates", "gores")
+	attack_verb_simple = list("poke", "jab", "tear", "lacerate", "gore")
+	hitsound = 'sound/weapons/fixer/generic/nail1.ogg'
+	attribute_requirements = list(
+							TEMPERANCE_ATTRIBUTE = 80
+							)
+
+/obj/item/ego_weapon/honor/get_clamped_volume()
+	return 25
+
+
+/obj/item/ego_weapon/branch12/joe
+	name = "average joe"
+	desc = "A good briefcase is your best friend. It can carry a lot of important documents, your pencils, and your lunch! It can even be a good self-defense tool!"
+	icon_state = "joe"
+	force = 72
+	attack_speed = 2
+	damtype = WHITE_DAMAGE
+	knockback = KNOCKBACK_LIGHT
+	attack_verb_continuous = list("bashes", "clubs")
+	attack_verb_simple = list("bashes", "clubs")
+	hitsound = 'sound/weapons/fixer/generic/club1.ogg'
+	attribute_requirements = list(
+							PRUDENCE_ATTRIBUTE = 80,
+							JUSTICE_ATTRIBUTE = 80
+							)
+
+// --------ALEPH---------
+//Pulsating Insanity
+/obj/item/ego_weapon/branch12/mini/insanity
+	name = "pulsating insanity"
+	desc = "I could scarcely contain my feelings of triumph"
+	icon_state = "insanity"
+	force = 52
+	swingstyle = WEAPONSWING_LARGESWEEP
+	throwforce = 100
+	throw_speed = 5
+	throw_range = 7
+	damtype = PALE_DAMAGE
+	attack_verb_continuous = list("jabs")
+	attack_verb_simple = list("jabs")
+	hitsound = 'sound/weapons/slashmiss.ogg'
+
+//Purity
+/obj/item/ego_weapon/branch12/purity
+	name = "purity"
+	desc = "To be pure is to be different than Innocent, for innocence requires ignorance while the pure takes in the experiences \
+	they go through grows while never losing that spark of light inside. To hold the weight of the world requires someone Pure, \
+	and the same can be said for this EGO which is weighed down by a heavy past that might as well be the weight of the world."
+	icon_state = "purity"
+	force = 140
+	reach = 2		//Has 2 Square Reach.
+	stuntime = 5	//Longer reach, gives you a short stun.
+	attack_speed = 1.2
+	damtype = WHITE_DAMAGE
+	attack_verb_continuous = list("pokes", "jabs", "tears", "lacerates", "gores")
+	attack_verb_simple = list("poke", "jab", "tear", "lacerate", "gore")
+	hitsound = 'sound/weapons/ego/spear1.ogg'
+
 
