@@ -50,14 +50,14 @@
 		You're not sure if it's even able to understand you. <br>Despite being shaped like a human, there's no face to relate to. <br>No eyes to look at. <br>\
 		Just the rough outline of a human. <br>\
 		Is there even anything you can say to it?"
-	observation_choices = list("Beat it up.", "Why?")
-	correct_choices = list("Why?")
-	observation_success_message = "The abnormality suddenly stops moving. <br>It doesn't quite know how to respond either. <br>\
-		It stares down at the floor as if to contemplate the question. <br>\
-		All it can offer is a shrug. <br>Perhaps there isn't an answer."
-	observation_fail_message = "There's nothing to say. <br>A crash test dummy's only purpose is to enable violence. <br>\
-		Violence for the sake of violence. <br>\
-		You smile as you pull out your baton."
+	observation_choices = list(
+		"Why?" = list(TRUE, "The abnormality suddenly stops moving. <br>It doesn't quite know how to respond either. <br>\
+			It stares down at the floor as if to contemplate the question. <br>\
+			All it can offer is a shrug. <br>Perhaps there isn't an answer."),
+		"Beat it up" = list(FALSE, "There's nothing to say. <br>A crash test dummy's only purpose is to enable violence. <br>\
+			Violence for the sake of violence. <br>\
+			You smile as you pull out your baton."),
+	)
 
 	var/revealed = TRUE
 	var/can_act = TRUE
@@ -115,7 +115,7 @@
 	Cloak()
 	GiveTarget(user)
 
-/mob/living/simple_animal/hostile/abnormality/apex_predator/AttackingTarget()
+/mob/living/simple_animal/hostile/abnormality/apex_predator/AttackingTarget(atom/attacked_target)
 	if(!can_act)
 		return
 	if(!revealed)
@@ -126,23 +126,23 @@
 		Decloak()
 		SLEEP_CHECK_DEATH(3)
 		//Backstab
-		if(target in range(1, src))
-			if(isliving(target))
-				var/mob/living/V = target
-				visible_message(span_danger("The [src] rips out [target]'s guts!"))
+		if(attacked_target in range(1, src))
+			if(isliving(attacked_target))
+				var/mob/living/V = attacked_target
+				visible_message(span_danger("The [src] rips out [attacked_target]'s guts!"))
 				new /obj/effect/gibspawner/generic(get_turf(V))
 				V.deal_damage(backstab_damage, RED_DAMAGE)
 			//Backstab succeeds from any one of 3 tiles behind a mecha, backstab from directly behind gets boosted by mecha directional armor weakness
-			else if(ismecha(target))
-				var/relative_angle = abs(dir2angle(target.dir) - dir2angle(get_dir(target, src)))
+			else if(ismecha(attacked_target))
+				var/relative_angle = abs(dir2angle(attacked_target.dir) - dir2angle(get_dir(attacked_target, src)))
 				relative_angle = relative_angle > 180 ? 360 - relative_angle : relative_angle
 				if(relative_angle >= 135)
-					visible_message(span_danger("The [src] shreds [target]'s armor!"))
-					var/obj/vehicle/sealed/mecha/M = target
+					visible_message(span_danger("The [src] shreds [attacked_target]'s armor!"))
+					var/obj/vehicle/sealed/mecha/M = attacked_target
 					M.take_damage(backstab_damage, RED_DAMAGE, attack_dir = get_dir(M, src))
 					new /obj/effect/temp_visual/kinetic_blast(get_turf(M))
 				else
-					visible_message(span_danger("The [src]'s attack misses [target]'s weakspots!"))
+					visible_message(span_danger("The [src]'s attack misses [attacked_target]'s weakspots!"))
 					..()
 			else
 				..()

@@ -42,7 +42,7 @@
 		StageChange()
 
 /mob/living/simple_animal/hostile/abnormality/black_sun/proc/StageChange()
-	stage+=1
+	stage++
 	//Add 10 stats to everyone.
 	if(stage == 1)
 		affected_players = list()	//Clear the list, then fill it up

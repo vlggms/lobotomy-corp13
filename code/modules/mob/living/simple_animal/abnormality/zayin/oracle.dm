@@ -7,8 +7,8 @@
 	icon_state = "oracle"
 	icon_living = "oracle"
 	portrait = "oracle"
-	maxHealth = 50
-	health = 50
+	maxHealth = 1500
+	health = 1500
 	damage_coeff = list(RED_DAMAGE = 2, WHITE_DAMAGE = 0, BLACK_DAMAGE = 2, PALE_DAMAGE = 2)
 	threat_level = ZAYIN_LEVEL
 	work_chances = list(
@@ -22,7 +22,7 @@
 	work_damage_type = WHITE_DAMAGE
 
 	ego_list = list(
-		/datum/ego_datum/weapon/dead_dream,	
+		/datum/ego_datum/weapon/dead_dream,
 		/datum/ego_datum/armor/dead_dream
 	)
 //	gift_type =  /datum/ego_gifts/oracle
@@ -32,15 +32,15 @@
 		<br>She was told that it would feel like no time at all. \
 		<br>Silently sleeping she dreams of the future, a future she was promised. \
 		<br>Before your eyes untold time passes until one day."
-	observation_choices = list("She woke up.", "The pod broke.")
-	correct_choices = list("The pod broke.")
-	observation_success_message = "You look into the window as you see her stir in her slumber before falling still. \
-		<br>Holding your breath in silence, \
-		<br>You remember Maria, \
-		<br>Forever dreaming of a future she will never see."
-	observation_fail_message = "The pod opens with a hiss as you watch her step out. \
-		<br>The joy on her face is immesurable, for she left behind so much to be here. \
-		<br>Then she melts away, for this was your dream."
+	observation_choices = list(
+		"The pod broke" = list(TRUE, "You look into the window as you see her stir in her slumber before falling still. \
+			<br>Holding your breath in silence, \
+			<br>You remember Maria, \
+			<br>Forever dreaming of a future she will never see."),
+		"She woke up" = list(FALSE, "The pod opens with a hiss as you watch her step out. \
+			<br>The joy on her face is immesurable, for she left behind so much to be here. \
+			<br>Then she melts away, for this was your dream."),
+	)
 
 	var/list/sleeplines = list(
 		"Hello...",
@@ -77,6 +77,11 @@
 		"A person in a blue coat... they fold into a book...",
 		)
 
+/mob/living/simple_animal/hostile/abnormality/oracle/Move()
+	return FALSE
+
+/mob/living/simple_animal/hostile/abnormality/oracle/CanAttack(atom/the_target)
+	return FALSE
 
 /mob/living/simple_animal/hostile/abnormality/oracle/PostWorkEffect(mob/living/carbon/human/user, work_type, pe)
 	if(work_type == ABNORMALITY_WORK_INSIGHT)
@@ -96,7 +101,6 @@
 			return
 		to_chat(user, span_notice("[SSlobotomy_corp.next_ordeal.name]"))
 	..()
-
 
 /mob/living/simple_animal/hostile/abnormality/oracle/Initialize(mob/living/carbon/human/user)
 	. = ..()
@@ -127,3 +131,29 @@
 		if(H.IsSleeping())
 			continue //You need to be sleeping to get notified
 		to_chat(H, "<span class='notice'>Oh.... [abno]... It has breached containment...</span>")
+
+//ER stuff
+/mob/living/simple_animal/hostile/abnormality/oracle/BreachEffect(mob/living/carbon/human/user, breach_type)//finish this shit
+	if(breach_type == BREACH_MINING)
+		var/chosenfake = pick(fakeordeals)
+		for(var/mob/living/L in livinginrange(48, src))
+			if(L.z != z)
+				continue
+			if(faction_check_mob(L))
+				continue
+			to_chat(L, span_userdanger("[chosenfake]"))
+		addtimer(CALLBACK(src, PROC_REF(NukeAttack)), 30 SECONDS)
+	return ..()
+
+/mob/living/simple_animal/hostile/abnormality/oracle/proc/NukeAttack()
+	if(stat == DEAD)
+		return
+	playsound(src, 'sound/magic/wandodeath.ogg', 100, FALSE, 40, falloff_distance = 10)
+	for(var/mob/living/L in livinginrange(48, src))
+		if(L.z != z)
+			continue
+		if(faction_check_mob(L))
+			continue
+		to_chat(L, span_userdanger("Visions of a horrible future flash before your eyes!"))
+		L.deal_damage((150 - get_dist(src, L)), WHITE_DAMAGE)
+	qdel(src)

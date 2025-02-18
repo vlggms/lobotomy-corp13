@@ -78,7 +78,6 @@
 /area/city/backstreets_room)
 "hz" = (
 /obj/structure/closet/crate/large,
-/obj/item/gun/ego_gun/pistol/kcorp/nade,
 /obj/item/ego_weapon/shield/kcorp,
 /turf/open/floor/facility/dark,
 /area/city/backstreets_room)

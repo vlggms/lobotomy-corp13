@@ -43,7 +43,7 @@
 	subcategory = CAT_ARMOR
 
 /datum/crafting_recipe/seven_vet_intel
-	name = "Seven Association recon armor"
+	name = "Seven Association veteran recon armor"
 	result = /obj/item/clothing/suit/armor/ego_gear/city/sevenvet/intel
 	reqs = list(
 		/obj/item/stack/sheet/silk/steel_simple = 4,
@@ -58,7 +58,7 @@
 	subcategory = CAT_ARMOR
 
 /datum/crafting_recipe/seven_dir
-	name = "Seven Association recon armor"
+	name = "Seven Association director armor"
 	result = /obj/item/clothing/suit/armor/ego_gear/city/sevendirector
 	reqs = list(
 		/obj/item/stack/sheet/silk/steel_elegant = 3,

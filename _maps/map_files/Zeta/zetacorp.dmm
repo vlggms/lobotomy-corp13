@@ -494,7 +494,8 @@
 /area/department_main/information)
 "bH" = (
 /obj/machinery/door/airlock/glass{
-	icon = 'icons/obj/doors/airlocks/station/science.dmi'
+	icon = 'icons/obj/doors/airlocks/station/science.dmi';
+	hackProof = 1
 	},
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -3125,6 +3126,7 @@
 /area/department_main/training)
 "iO" = (
 /obj/machinery/navbeacon/wayfinding/controldepartment,
+/obj/machinery/holopad,
 /turf/open/floor/plasteel/dark,
 /area/department_main/control)
 "iP" = (
@@ -3921,7 +3923,8 @@
 /area/facility_hallway/east)
 "lg" = (
 /obj/machinery/door/airlock/highsecurity{
-	name = "Records Office Secure Area"
+	name = "Records Office Secure Area";
+	hackProof = 1
 	},
 /turf/open/floor/facility/halls,
 /area/facility_hallway/information)
@@ -4991,8 +4994,8 @@
 	pixel_x = 9
 	},
 /obj/structure/table/wood{
-	density = 0;
-	alpha = 0
+	alpha = 0;
+	density = 0
 	},
 /obj/effect/turf_decal/siding/wood{
 	dir = 6
@@ -5249,8 +5252,8 @@
 	dir = 4
 	},
 /obj/structure/table/wood{
-	density = 0;
-	alpha = 0
+	alpha = 0;
+	density = 0
 	},
 /obj/effect/turf_decal/siding/wood{
 	dir = 10
@@ -10950,7 +10953,8 @@
 /obj/machinery/door/airlock{
 	icon = 'icons/obj/doors/airlocks/station/science.dmi';
 	max_integrity = 500;
-	name = "Information Department"
+	name = "Information Department";
+	hackProof = 1
 	},
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -11853,6 +11857,7 @@
 /obj/effect/turf_decal/siding/thinplating/dark/corner{
 	dir = 8
 	},
+/obj/machinery/holopad,
 /turf/open/floor/plasteel/dark,
 /area/department_main/information)
 "HH" = (
@@ -11987,6 +11992,13 @@
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/facility/dark,
 /area/department_main/information)
+"Id" = (
+/obj/effect/turf_decal/siding/brown{
+	dir = 1
+	},
+/obj/machinery/holopad,
+/turf/open/floor/plasteel/dark,
+/area/department_main/training)
 "Ig" = (
 /obj/effect/turf_decal/siding/thinplating/dark{
 	dir = 1
@@ -13828,10 +13840,10 @@
 /area/facility_hallway/south)
 "Ny" = (
 /obj/structure/statue/bronze/marx{
-	pixel_y = 14;
-	pixel_x = 1;
 	desc = "The wealthy, eccentric, and former owner of land this facility is built upon.";
-	name = "\improper Late Wing Shareholder bust"
+	name = "\improper Late Wing Shareholder bust";
+	pixel_x = 1;
+	pixel_y = 14
 	},
 /obj/structure/table/wood/fancy/orange,
 /obj/effect/turf_decal/siding/wood{
@@ -14392,6 +14404,7 @@
 /obj/machinery/camera/autoname,
 /obj/effect/landmark/department_center,
 /obj/machinery/navbeacon/wayfinding/safetydepartment,
+/obj/machinery/holopad,
 /turf/open/floor/mineral/titanium/purple{
 	color = "#7FFF00";
 	name = "floor"
@@ -14658,6 +14671,7 @@
 	view_range = 13
 	},
 /obj/machinery/navbeacon/wayfinding/centralcommanddepartment,
+/obj/machinery/holopad,
 /turf/open/floor/mineral/titanium/yellow{
 	name = "floor"
 	},
@@ -42907,7 +42921,7 @@ wD
 CQ
 pI
 pS
-xT
+Id
 VH
 pM
 Ak

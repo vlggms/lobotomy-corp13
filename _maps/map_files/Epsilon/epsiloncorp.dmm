@@ -1886,6 +1886,7 @@
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
+/obj/machinery/holopad,
 /turf/open/floor/bronze,
 /area/department_main/command)
 "fL" = (
@@ -4778,6 +4779,13 @@
 /obj/effect/turf_decal/tile/blue,
 /turf/open/floor/plasteel/sepia,
 /area/department_main/welfare)
+"oq" = (
+/obj/machinery/door/airlock/glass{
+	icon = 'icons/obj/doors/airlocks/station/science.dmi';
+	hackProof = 1
+	},
+/turf/open/floor/facility/halls,
+/area/facility_hallway/information)
 "or" = (
 /obj/effect/turf_decal/tile/neutral{
 	dir = 1
@@ -4797,7 +4805,8 @@
 /area/facility_hallway/human)
 "ow" = (
 /obj/machinery/door/airlock/highsecurity{
-	name = "Records Office Secure Area"
+	name = "Records Office Secure Area";
+	hackProof = 1
 	},
 /turf/open/floor/facility/halls,
 /area/facility_hallway/information)
@@ -8858,6 +8867,7 @@
 	},
 /obj/machinery/navbeacon/wayfinding/welfaredepartment,
 /mob/living/simple_animal/bot/cleanbot,
+/obj/machinery/holopad,
 /turf/open/floor/plasteel/sepia{
 	color = "#ccc8c0"
 	},
@@ -10261,6 +10271,7 @@
 	},
 /obj/machinery/navbeacon/wayfinding/controldepartment,
 /mob/living/simple_animal/bot/cleanbot,
+/obj/machinery/holopad,
 /turf/open/floor/plasteel/sepia{
 	color = "#ccc8c0"
 	},
@@ -10766,6 +10777,7 @@
 	icon_state = "LC2"
 	},
 /obj/structure/disposalpipe/segment,
+/obj/machinery/holopad,
 /turf/open/floor/plasteel/sepia{
 	color = "#ccc8c0"
 	},
@@ -11888,6 +11900,7 @@
 	icon_state = "LC2"
 	},
 /obj/structure/disposalpipe/segment,
+/obj/machinery/holopad,
 /turf/open/floor/plasteel/sepia{
 	color = "#ccc8c0"
 	},
@@ -12933,7 +12946,8 @@
 /obj/machinery/door/airlock{
 	icon = 'icons/obj/doors/airlocks/station/science.dmi';
 	max_integrity = 500;
-	name = "Information Department"
+	name = "Information Department";
+	hackProof = 1
 	},
 /turf/open/floor/facility/halls,
 /area/facility_hallway/information)
@@ -50386,12 +50400,12 @@ pH
 pH
 pH
 pH
-WF
+oq
 sl
 sl
 sl
 sl
-WF
+oq
 jd
 jd
 ow

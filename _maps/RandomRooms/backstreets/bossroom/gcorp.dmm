@@ -115,6 +115,11 @@
 /area/city/backstreets_room)
 "Eb" = (
 /mob/living/simple_animal/hostile/ordeal/steel_dusk,
+/obj/item/gps/mining{
+	anchored = 1;
+	gpstag = "Clicking Signal";
+	alpha = 10
+	},
 /turf/open/floor/plasteel/dark,
 /area/city/backstreets_room)
 "EQ" = (

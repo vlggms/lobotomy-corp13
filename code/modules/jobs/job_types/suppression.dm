@@ -16,6 +16,7 @@
 	minimal_access = list()
 
 	allow_bureaucratic_error = FALSE
+	departments = DEPARTMENT_SECURITY
 
 	job_important = "You are an L-Corp Emergency Response Agent. Your job is to suppress Abnormalities. You cannot work. Use :h to talk on your departmental radio."
 	job_abbreviation = "ERA"
@@ -90,6 +91,7 @@
 	normal_attribute_level = 20
 
 	access = list(ACCESS_COMMAND)
+	departments = DEPARTMENT_COMMAND | DEPARTMENT_SECURITY
 	exp_requirements = 6000
 	exp_type = EXP_TYPE_CREW
 	exp_type_department = EXP_TYPE_SECURITY

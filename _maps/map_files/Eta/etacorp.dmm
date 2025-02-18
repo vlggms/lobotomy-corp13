@@ -336,6 +336,7 @@
 	desc = "Even in death, a clerk does their job."
 	},
 /obj/machinery/navbeacon/wayfinding/trainingdepartment,
+/obj/machinery/holopad,
 /turf/open/floor/mineral/titanium/purple{
 	color = "#ffa500";
 	name = "floor"
@@ -695,6 +696,7 @@
 	set_luminosity = 24
 	},
 /obj/machinery/navbeacon/wayfinding/controldepartment,
+/obj/machinery/holopad,
 /turf/open/floor/mineral/titanium/yellow{
 	name = "floor"
 	},
@@ -1143,7 +1145,8 @@
 /area/facility_hallway/safety)
 "fR" = (
 /obj/machinery/door/airlock/highsecurity{
-	name = "Records Office Secure Area"
+	name = "Records Office Secure Area";
+	hackProof = 1
 	},
 /turf/open/floor/facility/halls,
 /area/facility_hallway/records)
@@ -2009,7 +2012,8 @@
 /obj/machinery/door/airlock{
 	icon = 'icons/obj/doors/airlocks/station/science.dmi';
 	max_integrity = 500;
-	name = "Information Department"
+	name = "Information Department";
+	hackProof = 1
 	},
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/facility/halls,
@@ -2701,6 +2705,7 @@
 	},
 /obj/machinery/light/floor,
 /obj/structure/disposalpipe/segment,
+/obj/machinery/holopad,
 /turf/open/floor/facility/dark,
 /area/department_main/command)
 "mK" = (
@@ -6647,6 +6652,7 @@
 	},
 /obj/machinery/navbeacon/wayfinding/informationdepartment,
 /obj/structure/disposalpipe/junction/yjunction,
+/obj/machinery/holopad,
 /turf/open/floor/mineral/titanium/purple{
 	name = "floor"
 	},
@@ -10010,6 +10016,7 @@
 	desc = "Even in death, a clerk does their job."
 	},
 /obj/machinery/navbeacon/wayfinding/safetydepartment,
+/obj/machinery/holopad,
 /turf/open/floor/mineral/titanium/purple{
 	color = "#7FFF00";
 	name = "floor"

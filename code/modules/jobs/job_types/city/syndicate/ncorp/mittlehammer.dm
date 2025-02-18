@@ -11,6 +11,7 @@
 	display_order = JOB_DISPLAY_ORDER_SYNDICATEGOON
 	access = list(ACCESS_SYNDICATE)
 	minimal_access = list(ACCESS_SYNDICATE)
+	departments = DEPARTMENT_CITY_ANTAGONIST
 	paycheck = 70
 	maptype = list("city")
 	job_important = "You are an NCorp Mittlehammer. Your main goal is to kill and maim all prosthetic users. \

@@ -17,7 +17,7 @@
 	if(!.)
 		return FALSE
 
-	if (owner.stat == DEAD)
+	if(owner.stat == DEAD)
 		return FALSE
 
 	//Compile people around you

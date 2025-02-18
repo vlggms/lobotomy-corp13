@@ -93,6 +93,8 @@
 	SEND_SIGNAL(src, COMSIG_MOB_CLIENT_LOGIN, client)
 	client.init_verbs()
 
+	client.patreon = new(client)
+
 	return TRUE
 
 

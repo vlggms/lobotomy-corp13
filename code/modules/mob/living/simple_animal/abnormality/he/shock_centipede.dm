@@ -47,22 +47,22 @@
 		The segments of the creature spark each time they move, suggesting faulty connections. <br>\
 		There are two buttons at the tank. <br>\
 		One is shaped like a thunderbolt, while the other looks like a waterdrop."
-	observation_choices = list("Thunderbolt", "Water drop")
-	correct_choices = list("Thunderbolt")
-	observation_success_message = "You press the lightning-shaped button. <br>\
-		\"Apply stimulation and pain to the centipede to increase the discharge intensity.\" <br>\
-		So writes a message above the buttons. <br>\
-		That seems to be what this one does. <br>\
-		When you pressed it, a mechanical sound played for a short while. <br>\
-		The centipede has stopped moving."
-	observation_fail_message = "You press the water drop-shaped button. <br>\
-		\"Apply stimulation and pain to the centipede to increase the discharge intensity.\" <br>\
-		So writes a message above the buttons. <br>\
-		When you pressed the drop-shaped button, the tank was filled with water. <br>\
-		The centipede twists its body as if in some sort of dance. <br>\
-		You watched the centipede’s tail scratch the tank’s surface. <br>\
-		The glass cracked and fell apart immediately afterward. <br>\
-		The electrified water fell right on your head."
+	observation_choices = list(
+		"Thunderbolt" = list(TRUE, "You press the lightning-shaped button. <br>\
+			\"Apply stimulation and pain to the centipede to increase the discharge intensity.\" <br>\
+			So writes a message above the buttons. <br>\
+			That seems to be what this one does. <br>\
+			When you pressed it, a mechanical sound played for a short while. <br>\
+			The centipede has stopped moving."),
+		"Water drop" = list(FALSE, "You press the water drop-shaped button. <br>\
+			\"Apply stimulation and pain to the centipede to increase the discharge intensity.\" <br>\
+			So writes a message above the buttons. <br>\
+			When you pressed the drop-shaped button, the tank was filled with water. <br>\
+			The centipede twists its body as if in some sort of dance. <br>\
+			You watched the centipede’s tail scratch the tank’s surface. <br>\
+			The glass cracked and fell apart immediately afterward. <br>\
+			The electrified water fell right on your head."),
+	)
 
 // Work vars
 	var/bonus_pe = 6
@@ -234,13 +234,13 @@
 		AT.pixel_y += random_y
 		return 0
 
-/mob/living/simple_animal/hostile/abnormality/shock_centipede/AttackingTarget()
+/mob/living/simple_animal/hostile/abnormality/shock_centipede/AttackingTarget(atom/attacked_target)
 	if (shield > 0 || !can_act)  // dont attack if coiled or stunned
 		return FALSE
 	if(!client)
 		TryCoil()
 		if(tail_attack_cooldown < world.time)
-			var/turf/target_turf = get_turf(target)
+			var/turf/target_turf = get_turf(attacked_target)
 			for(var/i = 1 to tailattack_range - 2)
 				target_turf = get_step(target_turf, get_dir(get_turf(src), target_turf))
 			TailAttack(target_turf)

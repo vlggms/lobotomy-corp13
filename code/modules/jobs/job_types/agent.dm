@@ -18,6 +18,7 @@
 	minimal_access = list()
 
 	allow_bureaucratic_error = FALSE
+	departments = DEPARTMENT_SECURITY
 
 	job_important = "You are a L-Corp Agent. Your job is to work on and suppress Abnormalities. Use :h to talk on your departmental radio."
 

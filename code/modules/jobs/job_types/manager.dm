@@ -16,6 +16,7 @@
 
 	access = list(ACCESS_COMMAND, ACCESS_MANAGER) // LC13:To-Do
 	minimal_access = list(ACCESS_COMMAND, ACCESS_MANAGER)
+	departments = DEPARTMENT_COMMAND
 
 	job_attribute_limit = 60
 	roundstart_attributes = list(FORTITUDE_ATTRIBUTE, PRUDENCE_ATTRIBUTE = 60, TEMPERANCE_ATTRIBUTE, JUSTICE_ATTRIBUTE)

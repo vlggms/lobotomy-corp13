@@ -423,6 +423,8 @@ GLOBAL_LIST_EMPTY(vending_products)
 /obj/machinery/vending/screwdriver_act(mob/living/user, obj/item/I)
 	if(..())
 		return TRUE
+	if(resistance_flags & INDESTRUCTIBLE)
+		return FALSE
 	if(anchored)
 		default_deconstruction_screwdriver(user, icon_state, icon_state, I)
 		cut_overlays()
@@ -497,6 +499,8 @@ GLOBAL_LIST_EMPTY(vending_products)
 					// do nothing
 
 /obj/machinery/vending/proc/freebie(mob/fatty, freebies)
+	if(resistance_flags & INDESTRUCTIBLE)
+		return
 	visible_message("<span class='notice'>[src] yields [freebies > 1 ? "several free goodies" : "a free goody"]!</span>")
 
 	for(var/i in 1 to freebies)
@@ -515,6 +519,8 @@ GLOBAL_LIST_EMPTY(vending_products)
 
 ///Tilts ontop of the atom supplied, if crit is true some extra shit can happen. Returns TRUE if it dealt damage to something.
 /obj/machinery/vending/proc/tilt(atom/fatty, crit=FALSE)
+	if(resistance_flags & INDESTRUCTIBLE)
+		return
 	visible_message("<span class='danger'>[src] tips over!</span>")
 	tilted = TRUE
 	layer = ABOVE_MOB_LAYER

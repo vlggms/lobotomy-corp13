@@ -211,6 +211,7 @@
 
 /datum/status_effect/interventionshield/wcorp
 	statuseffectvisual = icon('ModularTegustation/Teguicons/tegu_effects.dmi', "pale_shield")
+	respectivedamage = list(RED_DAMAGE, WHITE_DAMAGE, BLACK_DAMAGE, PALE_DAMAGE)
 
 /obj/item/ego_weapon/city/wcorp/shield
 	name = "w-corp type-C shieldblade"

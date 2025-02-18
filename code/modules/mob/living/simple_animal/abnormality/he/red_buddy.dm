@@ -51,14 +51,14 @@
 
 	observation_prompt = "You enter the containment unit and see a cartoonish-looking dog collapsed in the centre, shivering from pain and inflicted with terribly deep, red wounds. <br>\
 		\"My master wants a wolf...\" <br>It says breathlessly. <br>\"I'm waiting for my master, waiting, waiting... <br>I'm waiting for them...\""
-	observation_choices = list("Hug and console it", "Beat it within an inch of it's life")
-	correct_choices = list("Hug and console it")
-	observation_success_message = "You hold the wounded animal in your arms as it continues to shake. <br>\
-		\"I shook my split tail hard until flesh fell off it, I lied flat on the floor and begged... <br>My heart for my Master...\" <br>\
-		Finally it stops shivering and wounds stopped appearing on its body. <br>\"Left only red scars...\""
-	observation_fail_message = "You pull out your baton and hit the animal over and over again, kicking, spitting and cursing at it but it never reacts to any of your abuse beyond hastening its transformation. <br>\
-		The skinless dog now stands above you, neither wolf nor dog. <br>\"You can't stop a wolf with a touch gentler than my master's. <br>I'm a wolf, vile and vicious, belonging to my master.\" <br>\
-		The faux-wolf eats you in one bite."
+	observation_choices = list(
+		"Hug and console it" = list(TRUE, "You hold the wounded animal in your arms as it continues to shake. <br>\
+			\"I shook my split tail hard until flesh fell off it, I lied flat on the floor and begged... <br>My heart for my Master...\" <br>\
+			Finally it stops shivering and wounds stopped appearing on its body. <br>\"Left only red scars...\""),
+		"Beat it within an inch of it's life" = list(FALSE, "You pull out your baton and hit the animal over and over again, kicking, spitting and cursing at it but it never reacts to any of your abuse beyond hastening its transformation. <br>\
+			The skinless dog now stands above you, neither wolf nor dog. <br>\"You can't stop a wolf with a touch gentler than my master's. <br>I'm a wolf, vile and vicious, belonging to my master.\" <br>\
+			The faux-wolf eats you in one bite."),
+	)
 
 	///The blue smocked shepherd linked to red buddy
 	var/datum/abnormality/master

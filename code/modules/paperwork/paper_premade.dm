@@ -26,7 +26,7 @@
 			<br>\
 			* <b>Silkweaver:</b> Your main silk gathering tool, When you attack a dead body you will butcher it and create a unique type of silk depending on the creature you butchered. Stronger creatures will give out more, and higher rarity silk. If a creature you butcher doesn’t have silk associated with them, they will drop a random simple silk. (Green, Indigo, Steel or Amber) Lastly, You are able to butcher humans with the silk knife. The stronger the human is, the more silk they will drop. However, if that human still has a soul, you will be unable to butcher them.<br>\
 			<br>\
-			* <b>Carnival Spear:</b> Your weapon of choice! (Workshop Fixers get a off-brand/weaker version of this weapon.) This is a normal spear which deals 30 BLACK damage on hit (The off-brand version deals 15 BLACK damage), However the main highlight of the carnival spear is that it deals double damage to most backstreets mobs!<br>\
+			* <b>Carnival Spear:</b> Your weapon of choice! (Workshop Fixers get a off-brand/weaker version of this weapon.) This is a normal spear which deals 30 BLACK damage on hit (The off-brand version deals 22 BLACK damage), However the main highlight of the carnival spear is that it deals double damage to most backstreets mobs!<br>\
 			<br>\
 			* <b>Silk Bag:</b> A Small bag which can hold a massive amount of silk! You can use it to store all of the silk you collect while hunting in the backstreets.<br>\
 			<br>\
@@ -95,7 +95,7 @@
 			|  Silk Type |         Armor Effect      |     Common Sources    |<br>\
 			| ---------- | ------------------------- | --------------------- |<br>\
 			| Indigo Silk|     BLACK +5%, RED -5%    |        Sweepers       |<br>\
-			| Green Silk |      RED +5%, BLACK -5%   |          Bots         | <br>\
+			| Green Silk |      RED +5%, BLACK -5%   |          Bots         |<br>\
 			| Amber Silk |    BLACK +5%, WHITE -5%   |          Worms        |<br>\
 			| Steel Silk |     RED +5%, WHITE -5%    |    G-Corp Remnants    |<br>\
 			| Human Silk | PALE +5%, RED/WHITE -2.5% | Flesh Monsters/Humans |<br>\
@@ -124,6 +124,24 @@
 			Well, You were able to learn a lot about silk today... Now, It is up to you to sell your products!<br>\
 			<br>\
 			<i>Good Luck...</i> <br>"
+
+/obj/item/paper/fluff/fixer_skills
+	name = "Fixer Skills Guide"
+	info = "<center><b>Well, This will be a short one, but it should be enough to teach new Fixers on how to learn new skills in this line of work.</b></center><br>\
+	<br>\
+	<i>In total, there are 4 levels of skills you can learn. And depending on your grade you will be able to learn some skills, or become unable to learn others.</i><br>\
+	<br>\
+	Grade 9 Fixers will be able to learn level 1 Skills, Which are your main abilities for surviving in the backstreets ranging from healing and movement. You are also able to learn 5 of them at this level.<br>\
+	<br>\
+	Grade 8 Fixers are also able to learn level 1 Skills, but they are only able to learn 3 level 1 Skills. However, if they already knew 5 level 1 skills they will keep those skills.<br>\
+	<br>\
+	Grade 7 and 6 Fixers will be able to learn level 2 Skills, Which are your main utility, making gathering and looting easier. At this point and all higher grades, you will also be unable to learn skills of a lower level. So be cautious of over leveling.<br>\
+	<br>\
+	Grade 5 Fixers will be able to learn level 3 Skill, Which are your passives, you are able too toggle them on and off to gain benefits and downsides while they are active. You are only able to learn one of this skill.<br>\
+	<br>\
+	Finaly, Grade 4 Fixers will be able to learn level 4 Skills, Which are your 'Ultimate' abilities. They hold powerful effects, but come at the cost off having very long cooldowns. You are only able to learn one of this skill.<br>\
+	<br>\
+	<i>Written by the Hana Association</i>"
 
 /obj/item/paper/fluff/sop
 	name = "paper- 'Standard Operating Procedure'"

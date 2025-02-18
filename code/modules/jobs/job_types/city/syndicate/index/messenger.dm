@@ -12,6 +12,7 @@
 	trusted_only = TRUE
 	access = list(ACCESS_SYNDICATE, ACCESS_SYNDICATE_LEADER)
 	minimal_access = list(ACCESS_SYNDICATE, ACCESS_SYNDICATE_LEADER)
+	departments = DEPARTMENT_COMMAND | DEPARTMENT_CITY_ANTAGONIST
 	paycheck = 700
 	maptype = list("city")
 	job_important = "This is a roleplay role. You are the leader of this index branch. You are not inherently hostile. \
@@ -34,10 +35,10 @@
 	//Don't spawn these goobers without a director.
 	for(var/datum/job/processing in SSjob.occupations)
 		if(istype(processing, /datum/job/proxy))
-			processing.total_positions = 2
+			processing.total_positions = 1
 
 		if(istype(processing, /datum/job/proselyte))
-			processing.total_positions = 6
+			processing.total_positions = 2
 	. = ..()
 
 

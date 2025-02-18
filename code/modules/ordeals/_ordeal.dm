@@ -39,7 +39,7 @@
 /datum/ordeal/proc/Run()
 	start_time = ROUNDTIME
 	SSlobotomy_corp.current_ordeals += src
-	priority_announce(announce_text, name, sound='sound/effects/meltdownAlert.ogg')
+	priority_announce(announce_text, name, sound='sound/vox_fem/..ogg') // We want this to be silent, so play a silent sound since null uses defaults
 	/// If dawn started - clear suppression options
 	if(level == 1 && !istype(SSlobotomy_corp.core_suppression))
 		SSlobotomy_corp.ResetPotentialSuppressions()
@@ -54,7 +54,7 @@
 // Ends the event
 /datum/ordeal/proc/End()
 	var/total_reward = max(SSlobotomy_corp.box_goal, 3000) * reward_percent
-	priority_announce("The Ordeal has ended. Facility has been rewarded with [reward_percent*100]% PE.", name, sound=null)
+	priority_announce("The Ordeal has ended. Facility has been rewarded with [reward_percent*100]% PE.", name, sound='sound/vox_fem/..ogg')
 	SSlobotomy_corp.AdjustAvailableBoxes(total_reward)
 	SSlobotomy_corp.current_ordeals -= src
 	SSlobotomy_corp.ordeal_stats += 5

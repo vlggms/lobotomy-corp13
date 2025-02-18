@@ -1,0 +1,207 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"a" = (
+/turf/closed/indestructible/reinforced,
+/area/city/backstreets_room)
+"e" = (
+/obj/structure/table/wood,
+/obj/item/clothing/mask/cigarette/robust,
+/obj/item/clothing/mask/cigarette/robust{
+	pixel_x = 7;
+	pixel_y = 6
+	},
+/obj/item/storage/fancy/cigarettes/cigpack_robust{
+	pixel_x = -3;
+	pixel_y = 5
+	},
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plasteel/dark,
+/area/city/backstreets_room)
+"g" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/item/chair/plastic,
+/turf/open/floor/plasteel/dark,
+/area/city/backstreets_room)
+"k" = (
+/obj/structure/table/wood,
+/obj/item/ego_weapon/shield/sangria,
+/obj/item/clothing/under/limbus/prison,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plasteel/dark,
+/area/city/backstreets_room)
+"v" = (
+/obj/structure/table/wood,
+/obj/item/clothing/mask/cigarette/robust{
+	pixel_x = -4
+	},
+/obj/item/clothing/mask/cigarette/robust{
+	pixel_x = 5;
+	pixel_y = 4
+	},
+/obj/item/storage/fancy/cigarettes/cigpack_robust{
+	pixel_x = 3;
+	pixel_y = 3
+	},
+/turf/open/floor/plasteel/dark,
+/area/city/backstreets_room)
+"w" = (
+/obj/structure/table/wood,
+/obj/item/clothing/mask/cigarette/robust{
+	pixel_x = 6;
+	pixel_y = 4
+	},
+/obj/item/clothing/mask/cigarette/robust{
+	pixel_x = -7;
+	pixel_y = 11
+	},
+/obj/item/storage/fancy/cigarettes/cigpack_robust{
+	pixel_x = -4;
+	pixel_y = -1
+	},
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plasteel/dark,
+/area/city/backstreets_room)
+"x" = (
+/obj/structure/table/wood,
+/obj/item/clothing/mask/cigarette/robust{
+	pixel_x = -1;
+	pixel_y = 10
+	},
+/obj/item/clothing/mask/cigarette/robust{
+	pixel_x = -5;
+	pixel_y = 5
+	},
+/obj/item/storage/fancy/cigarettes/cigpack_robust{
+	pixel_x = 4;
+	pixel_y = 3
+	},
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plasteel/dark,
+/area/city/backstreets_room)
+"y" = (
+/obj/structure/table/wood,
+/obj/item/clothing/mask/cigarette/robust{
+	pixel_x = -2;
+	pixel_y = 6
+	},
+/obj/item/storage/fancy/cigarettes/cigpack_robust{
+	pixel_x = 5
+	},
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plasteel/dark,
+/area/city/backstreets_room)
+"F" = (
+/obj/structure/table/wood,
+/obj/item/clothing/mask/cigarette/robust{
+	pixel_x = -4;
+	pixel_y = 3
+	},
+/obj/item/clothing/mask/cigarette/robust{
+	pixel_x = 4;
+	pixel_y = 8
+	},
+/obj/item/storage/fancy/cigarettes/cigpack_robust{
+	pixel_x = 3;
+	pixel_y = 3
+	},
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plasteel/dark,
+/area/city/backstreets_room)
+"J" = (
+/obj/structure/table/wood,
+/obj/item/clothing/mask/cigarette/robust{
+	pixel_x = 4;
+	pixel_y = 5
+	},
+/obj/item/storage/fancy/cigarettes/cigpack_robust{
+	pixel_x = -3;
+	pixel_y = 2
+	},
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plasteel/dark,
+/area/city/backstreets_room)
+"K" = (
+/turf/open/floor/plasteel/dark,
+/area/city/backstreets_room)
+"N" = (
+/obj/structure/table/wood,
+/obj/item/clothing/mask/cigarette/robust{
+	pixel_x = -5;
+	pixel_y = 5
+	},
+/obj/item/clothing/mask/cigarette/robust{
+	pixel_x = -7;
+	pixel_y = 11
+	},
+/obj/item/clothing/mask/cigarette/robust{
+	pixel_x = 5;
+	pixel_y = 4
+	},
+/obj/item/clothing/mask/cigarette/robust{
+	pixel_x = 4;
+	pixel_y = 8
+	},
+/obj/item/clothing/mask/cigarette/robust,
+/obj/item/clothing/mask/cigarette/robust,
+/obj/item/storage/fancy/cigarettes/cigpack_robust{
+	pixel_x = 2;
+	pixel_y = 3
+	},
+/turf/open/floor/plasteel/dark,
+/area/city/backstreets_room)
+"Q" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/chair/plastic{
+	dir = 8
+	},
+/turf/open/floor/plasteel/dark,
+/area/city/backstreets_room)
+"X" = (
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plasteel/dark,
+/area/city/backstreets_room)
+
+(1,1,1) = {"
+a
+a
+a
+a
+a
+X
+a
+"}
+(2,1,1) = {"
+a
+v
+w
+F
+N
+X
+a
+"}
+(3,1,1) = {"
+a
+k
+K
+g
+X
+K
+a
+"}
+(4,1,1) = {"
+a
+y
+J
+e
+x
+Q
+a
+"}
+(5,1,1) = {"
+a
+a
+a
+a
+a
+a
+a
+"}

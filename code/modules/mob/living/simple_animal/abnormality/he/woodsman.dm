@@ -50,10 +50,10 @@
 	)
 
 	observation_prompt = "Tin-cold woodsman. <br>I’ll give you the heart to forgive and love anyone. <br>The wizard grants you..."
-	observation_choices = list("A heart of lead", "A warm heart")
-	correct_choices = list("A heart of lead")
-	observation_success_message = "Who do you possibly expect to understand with that ice-cold heart of yours?"
-	observation_fail_message = "You’re a machine, aren’t you? A heart is unnecessary for a machine."
+	observation_choices = list(
+		"A heart of lead" = list(TRUE, "Who do you possibly expect to understand with that ice-cold heart of yours?"),
+		"A warm heart" = list(FALSE, "You’re a machine, aren’t you? A heart is unnecessary for a machine."),
+	)
 
 	// Flurry Vars
 	var/flurry_cooldown = 0
@@ -129,8 +129,8 @@
 /mob/living/simple_animal/hostile/abnormality/woodsman/AttackingTarget(atom/attacked_target)
 	if(!can_act)
 		return FALSE
-	if(ishuman(target))
-		var/mob/living/carbon/human/H = target
+	if(ishuman(attacked_target))
+		var/mob/living/carbon/human/H = attacked_target
 		if(H.stat == DEAD || (H.health <= HEALTH_THRESHOLD_DEAD && HAS_TRAIT(H, TRAIT_NODEATH)) || H.health <= -30)
 			Heal(H)
 			return ..()
@@ -140,12 +140,12 @@
 	if(client)
 		switch(chosen_attack)
 			if(1)
-				Woodsman_Flurry(target)
+				Woodsman_Flurry(attacked_target)
 			if(2)
 				return ..()
 		return ..()
-	if(isliving(target) && flurry_cooldown <= world.time && get_dist(src, target) <= 2 && prob(30))
-		Woodsman_Flurry(target)
+	if(isliving(attacked_target) && flurry_cooldown <= world.time && get_dist(src, attacked_target) <= 2 && prob(30))
+		Woodsman_Flurry(attacked_target)
 	return ..()
 
 /mob/living/simple_animal/hostile/abnormality/woodsman/PickTarget(list/Targets) // We attack corpses first if there are any

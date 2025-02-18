@@ -2567,7 +2567,8 @@
 /area/facility_hallway/discipline)
 "rn" = (
 /obj/machinery/door/airlock/highsecurity{
-	name = "Information Department"
+	name = "Information Department";
+	hackProof = 1
 	},
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/facility/halls,
@@ -3072,7 +3073,8 @@
 /area/department_main/records)
 "ui" = (
 /obj/machinery/door/airlock/highsecurity{
-	name = "Records Office Secure Area"
+	name = "Records Office Secure Area";
+	hackProof = 1
 	},
 /turf/open/floor/carpet/black,
 /area/department_main/records)
@@ -3843,7 +3845,8 @@
 /area/facility_hallway/south)
 "yM" = (
 /obj/machinery/door/airlock/highsecurity{
-	name = "Records Office"
+	name = "Records Office";
+	hackProof = 1
 	},
 /turf/open/floor/facility/halls,
 /area/department_main/records)

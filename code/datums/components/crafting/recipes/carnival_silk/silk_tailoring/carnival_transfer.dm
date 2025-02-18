@@ -43,7 +43,7 @@
 //Advanced Transfers
 /datum/crafting_recipe/azure_silk_transfer
 	name = "Violet/Crimson Silk to Azure Silk"
-	result = /obj/item/stack/sheet/silk/amber_simple
+	result = /obj/item/stack/sheet/silk/azure_simple
 	reqs = list(/obj/item/stack/sheet/silk/crimson_advanced = 1, /obj/item/stack/sheet/silk/violet_advanced = 1)
 	tools = list(/obj/item/silkknife = 1)
 	time = 5

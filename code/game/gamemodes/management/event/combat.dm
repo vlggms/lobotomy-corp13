@@ -28,7 +28,8 @@ GLOBAL_VAR_INIT(wcorp_enemy_faction, "") //decides which faction WCorp will be u
 	for(var/mob/living/simple_animal/hostile/A in GLOB.mob_list)
 		var/obj/effect/proc_holder/spell/targeted/night_vision/bloodspell = new
 		A.AddSpell(bloodspell)
-		A.faction += "hostile"
+		if(!(SSmaptype.maptype in SSmaptype.citymaps))
+			A.faction += "hostile"
 
 	if(SSmaptype.maptype in SSmaptype.autoend)
 		switch(SSmaptype.maptype)
@@ -52,6 +53,12 @@ GLOBAL_VAR_INIT(wcorp_enemy_faction, "") //decides which faction WCorp will be u
 						addtimer(CALLBACK(src, PROC_REF(drawround)), 40 MINUTES)
 						to_chat(world, span_userdanger("Round will end in a draw after 40 minutes."))
 				addtimer(CALLBACK(src, PROC_REF(rcorp_announce)), 3 MINUTES)
+				addtimer(CALLBACK(src, PROC_REF(ClearIncorpBarriers)), 10 MINUTES)
+				minor_announce("WARNING, The facility gates will open in T-15 Minutes." , "R-Corp Intelligence Office")
+				addtimer(CALLBACK(src, PROC_REF(rcorp_opendoor)), 15 MINUTES)
+				addtimer(CALLBACK(src, PROC_REF(facility_warning_1)), 5 MINUTES)
+				addtimer(CALLBACK(src, PROC_REF(facility_warning_2)), 10 MINUTES)
+				addtimer(CALLBACK(src, PROC_REF(facility_warning_3)), 14 MINUTES)
 				RegisterSignal(SSdcs, COMSIG_GLOB_MOB_DEATH, PROC_REF(CheckLiving))
 
 			//Limbus Labs
@@ -88,7 +95,7 @@ GLOBAL_VAR_INIT(wcorp_enemy_faction, "") //decides which faction WCorp will be u
 /// Automatically ends the shift if no humanoid players are alive
 /datum/game_mode/combat/proc/CheckLiving()
 	for(var/mob/living/carbon/human/hooman in GLOB.human_list)
-		if(hooman.stat != DEAD && hooman.ckey)
+		if(hooman.stat != DEAD && hooman.ckey && !istype(hooman, /mob/living/carbon/human/species/pinocchio))
 			return
 
 	if(SSticker.force_ending == TRUE) // they lost another way before we could do it, how rude.
@@ -133,7 +140,7 @@ GLOBAL_VAR_INIT(wcorp_enemy_faction, "") //decides which faction WCorp will be u
 //Gamemode stuff
 /datum/game_mode/combat/proc/counterincrease()
 	addtimer(CALLBACK(src, PROC_REF(counterincrease)), 1 MINUTES)
-	GLOB.combat_counter+=1
+	GLOB.combat_counter++
 	if(SSmaptype.maptype == "wcorp")
 		for(var/mob/living/carbon/human/H in GLOB.human_list)
 			if(H.stat == DEAD)
@@ -155,6 +162,29 @@ GLOBAL_VAR_INIT(wcorp_enemy_faction, "") //decides which faction WCorp will be u
 		if("payload_abno")
 			announcement_type = "Intelligence has located a dangerous specimen moving towards your location. Prevent it from escaping at all costs."
 	minor_announce("[announcement_type]" , "R-Corp Intelligence Office")
+	minor_announce("WARNING, The facility gates will open in T-12 Minutes." , "R-Corp Intelligence Office")
+
+/datum/game_mode/combat/proc/rcorp_opendoor()
+	for(var/obj/machinery/button/door/indestructible/rcorp/M in GLOB.machines)
+		qdel(M)
+	minor_announce("Facility doors are locked open." , "R-Corp Intelligence Office")
+	for(var/obj/machinery/door/poddoor/M in GLOB.machines)
+		if (M.id == "inside")
+			addtimer(CALLBACK(src, PROC_REF(OpenDoor), M), 0 MINUTES)
+
+/datum/game_mode/combat/proc/facility_warning_1()
+	minor_announce("WARNING, The facility gates will open in T-10 Minutes." , "R-Corp Intelligence Office")
+
+/datum/game_mode/combat/proc/facility_warning_2()
+	minor_announce("WARNING, The facility gates will open in T-5 Minutes, Please start moving into the facility." , "R-Corp Intelligence Office")
+
+/datum/game_mode/combat/proc/facility_warning_3()
+	minor_announce("WARNING, The facility gates will open in T-1 Minute, Please be ready for enemies of a higher threat level." , "R-Corp Intelligence Office")
+
+/datum/game_mode/combat/proc/OpenDoor(door)
+	var/obj/machinery/door/poddoor/D = door
+	D.open()
+
 
 /datum/game_mode/combat/proc/StartPayload()
 	if(!GLOB.rcorp_payload)
@@ -168,3 +198,10 @@ GLOBAL_VAR_INIT(wcorp_enemy_faction, "") //decides which faction WCorp will be u
 		CRASH("No payload somehow, possibly no landmark")
 	P.start_delay = delay
 	P.GetPath()
+
+
+/datum/game_mode/combat/proc/ClearIncorpBarriers()
+	for(var/obj/effect/landmark/nobasic_incorp_move/disappearing/L in GLOB.landmarks_list)
+		qdel(L)
+	for(var/mob/living/simple_animal/hostile/abnormality/A in GLOB.abnormality_mob_list)
+		to_chat(A, "Incorporeal barrier is broken!")

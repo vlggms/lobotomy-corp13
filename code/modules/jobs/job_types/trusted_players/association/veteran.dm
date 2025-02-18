@@ -12,6 +12,7 @@
 	trusted_only = TRUE
 	access = list(ACCESS_NETWORK)
 	minimal_access = list(ACCESS_NETWORK)
+	departments = DEPARTMENT_ASSOCIATION | DEPARTMENT_FIXERS
 	paycheck = 400
 	maptype = list("wonderlabs", "city")
 

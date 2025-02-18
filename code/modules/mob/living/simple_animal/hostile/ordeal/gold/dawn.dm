@@ -1,7 +1,7 @@
 // Gold Dawn - Commander that heals its minions
 /mob/living/simple_animal/hostile/ordeal/fallen_amurdad_corrosion
 	name = "Fallen Nepenthes"
-	desc = "Improper use of E.G.O. can have serious consequences."
+	desc = "A level 1 agent of Lobotomy Corporation that has somehow been corrupted by an abnormality."
 	icon = 'ModularTegustation/Teguicons/48x48.dmi'
 	icon_state = "amurdad_corrosion"
 	icon_living = "amurdad_corrosion"
@@ -19,8 +19,7 @@
 	attack_sound = 'sound/abnormalities/ebonyqueen/attack.ogg'
 	death_sound = 'sound/effects/limbus_death.ogg'
 	damage_coeff = list(RED_DAMAGE = 1, WHITE_DAMAGE = 1, BLACK_DAMAGE = 0.8, PALE_DAMAGE = 2)
-	butcher_results = list(/obj/item/food/meat/slab/human/mutant/plant = 1, /obj/item/food/meat/slab/human = 1)
-	guaranteed_butcher_results = list(/obj/item/food/meat/slab/human/mutant/plant = 1)
+	butcher_results = list(/obj/item/food/meat/slab/corroded = 1)
 	speed = 1 //slow as balls
 	move_to_delay = 20
 	ranged = TRUE
@@ -38,7 +37,7 @@
 
 /mob/living/simple_animal/hostile/ordeal/beanstalk_corrosion
 	name = "Beanstalk Searching for Jack"
-	desc = "Improper use of E.G.O. can have serious consequences."
+	desc = "A Lobotomy Corporation clerk that has been corrupted by an abnormality."
 	icon = 'ModularTegustation/Teguicons/32x48.dmi'
 	icon_state = "beanstalk"
 	icon_living = "beanstalk"
@@ -55,5 +54,4 @@
 	attack_verb_continuous = "stabs"
 	attack_verb_simple = "stab"
 	damage_coeff = list(RED_DAMAGE = 0.9, WHITE_DAMAGE = 1.2, BLACK_DAMAGE = 0.7, PALE_DAMAGE = 2)
-	butcher_results = list(/obj/item/food/meat/slab/human/mutant/plant = 1, /obj/item/food/meat/slab/human = 1)
-	guaranteed_butcher_results = list(/obj/item/food/meat/slab/human/mutant/plant = 1)
+	butcher_results = list(/obj/item/food/meat/slab/corroded = 1)

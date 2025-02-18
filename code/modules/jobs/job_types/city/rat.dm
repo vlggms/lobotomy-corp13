@@ -10,6 +10,7 @@ Scavenger
 	selection_color = "#555555"
 	access = list(ACCESS_LAWYER)
 	minimal_access = list(ACCESS_LAWYER)
+	departments = DEPARTMENT_FIXERS // Close enough
 	outfit = /datum/outfit/job/scavenger
 	antag_rep = 7
 	display_order = JOB_DISPLAY_ORDER_ANTAG

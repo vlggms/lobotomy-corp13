@@ -36,9 +36,9 @@
 		return TRUE
 	return FALSE
 
-/mob/living/simple_animal/hostile/ordeal/crimson_clown/AttackingTarget()
-	if(istype(target, /obj/machinery/computer/abnormality))
-		var/obj/machinery/computer/abnormality/CA = target
+/mob/living/simple_animal/hostile/ordeal/crimson_clown/AttackingTarget(atom/attacked_target)
+	if(istype(attacked_target, /obj/machinery/computer/abnormality))
+		var/obj/machinery/computer/abnormality/CA = attacked_target
 		if(console_attack_counter < 12)
 			console_attack_counter += 1
 			visible_message(span_warning("[src] hits [CA]'s buttons at random!"))
@@ -382,10 +382,10 @@
 			L.apply_damage(700, RED_DAMAGE, null, L.run_armor_check(null, RED_DAMAGE))
 	gib()
 
-/mob/living/simple_animal/hostile/ordeal/crimson_tent/AttackingTarget()
+/mob/living/simple_animal/hostile/ordeal/crimson_tent/AttackingTarget(atom/attacked_target)
 	if(!can_act)
 		return FALSE
-	return Bite(target)
+	return Bite(attacked_target)
 
 /mob/living/simple_animal/hostile/ordeal/crimson_tent/proc/Bite(target)
 	if (get_dist(src, target) > 3)

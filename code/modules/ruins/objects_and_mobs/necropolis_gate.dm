@@ -157,11 +157,11 @@ GLOBAL_DATUM(necropolis_gate, /obj/structure/necropolis_gate/legion_gate)
 //ATTACK HAND IGNORING PARENT RETURN VALUE
 /obj/structure/necropolis_gate/legion_gate/attack_hand(mob/user)
 	if(!open && !changing_openness)
-		var/safety = alert(user, "You think this might be a bad idea...", "Knock on the door?", "Proceed", "Abort")
+		var/safety = alert(user, "Are you willing to face your fears?...", "Knock on the door?", "Proceed", "Abort")
 		if(safety == "Abort" || !in_range(src, user) || !src || open || changing_openness || user.incapacitated())
 			return
 		user.visible_message(span_warning("[user] knocks on [src]..."), span_boldannounce("You tentatively knock on [src]..."))
-		playsound(user.loc, 'sound/effects/shieldbash.ogg', 100, TRUE)
+		playsound(user.loc, 'sound/effects/shieldbash.ogg', 50, TRUE)
 		sleep(50)
 	return ..()
 
@@ -183,11 +183,11 @@ GLOBAL_DATUM(necropolis_gate, /obj/structure/necropolis_gate/legion_gate)
 		var/sound/legion_sound = sound('sound/creatures/legion_spawn.ogg')
 		for(var/mob/M in GLOB.player_list)
 			if(M.z == z)
-				to_chat(M, span_userdanger("Discordant whispers flood your mind in a thousand voices. Each one speaks your name, over and over. Something horrible has been released."))
-				M.playsound_local(T, null, 100, FALSE, 0, FALSE, pressure_affected = FALSE, S = legion_sound)
+				to_chat(M, span_userdanger("Discordant whispers flood your mind in a thousand voices. Each one speaks your name, over and over. Something horrible has been opened..."))
+				M.playsound_local(T, null, 25, FALSE, 0, FALSE, pressure_affected = FALSE, S = legion_sound)
 				flash_color(M, flash_color = "#FF0000", flash_time = 50)
 		var/mutable_appearance/release_overlay = mutable_appearance('icons/effects/effects.dmi', "legiondoor")
-		notify_ghosts("Legion has been released in the [get_area(src)]!", source = src, alert_overlay = release_overlay, action = NOTIFY_JUMP, flashwindow = FALSE)
+		notify_ghosts("La Mancha Land has been opened in the [get_area(src)]!", source = src, alert_overlay = release_overlay, action = NOTIFY_JUMP, flashwindow = FALSE)
 
 /obj/effect/temp_visual/necropolis
 	icon = 'icons/effects/96x96.dmi'

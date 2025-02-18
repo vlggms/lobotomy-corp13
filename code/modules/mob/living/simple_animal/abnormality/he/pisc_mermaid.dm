@@ -51,14 +51,14 @@
 		if you said I did not need to see then I'd scoop out my eyes as well.\" <br>She splashes her aquamarine tail, foam, water and something else was flicked towards you. <br>\
 		\"I made you a gift, just wear it and say that you love me too.\" <br>\
 		The water carries the comb to your feet, you pick it up as she watches you expectantly."
-	observation_choices = list("Accept the comb", "Cast it into the sea")
-	correct_choices = list("Cast it into the sea")
-	observation_success_message = "\"I don't understand, don't you love me? <br>Can't you hear, see or understand my love? <br>\
-		If I give you my eyes, my ears and my brain, could you percieve and learn to love me too? <br>Just please trade me your heart to fill this void in my chest...\" <br>\
-		You left the mermaid to her babble, love could never be something so transactional."
-	observation_fail_message = "You place the comb in your hair and the mermaid smiles, her pupils like tiny hearts, and you find yourself walking into the depths as she embraces you. <br>\
-		\"I'm so happy you gave me your heart...\" <br>She whispers as she draws you into a kiss, pulling you further and further into the waves, the water passing your chest and then your head but still she wouldn't release her embrace. <br>\
-		Salt water fills your lungs as you lose consciousness."
+	observation_choices = list(
+		"Cast it into the sea" = list(TRUE, "\"I don't understand, don't you love me? <br>Can't you hear, see or understand my love? <br>\
+			If I give you my eyes, my ears and my brain, could you percieve and learn to love me too? <br>Just please trade me your heart to fill this void in my chest...\" <br>\
+			You left the mermaid to her babble, love could never be something so transactional."),
+		"Accept the comb" = list(FALSE, "You place the comb in your hair and the mermaid smiles, her pupils like tiny hearts, and you find yourself walking into the depths as she embraces you. <br>\
+			\"I'm so happy you gave me your heart...\" <br>She whispers as she draws you into a kiss, pulling you further and further into the waves, the water passing your chest and then your head but still she wouldn't release her embrace. <br>\
+			Salt water fills your lungs as you lose consciousness."),
+	)
 
 	response_help_continuous = "pets" //You sick fuck
 	response_help_simple = "pet"

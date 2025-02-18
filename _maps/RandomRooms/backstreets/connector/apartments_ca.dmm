@@ -1,0 +1,375 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"a" = (
+/turf/closed/indestructible/reinforced,
+/area/city/backstreets_room)
+"c" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/bed/dogbed/ian,
+/turf/open/floor/wood,
+/area/city/backstreets_room)
+"d" = (
+/obj/structure/table/wood,
+/turf/open/floor/wood,
+/area/city/backstreets_room)
+"e" = (
+/turf/closed/indestructible/rock,
+/area/city/backstreets_room)
+"f" = (
+/mob/living/simple_animal/hostile/humanoid/rat/zippy,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/wood,
+/area/city/backstreets_room)
+"j" = (
+/obj/structure/dresser,
+/turf/open/floor/wood,
+/area/city/backstreets_room)
+"m" = (
+/mob/living/simple_animal/hostile/humanoid/rat,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/wood,
+/area/city/backstreets_room)
+"n" = (
+/obj/structure/table/wood,
+/obj/item/fishing_rod,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/wood,
+/area/city/backstreets_room)
+"o" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/mob/living/simple_animal/hostile/humanoid/rat/hammer,
+/turf/open/floor/wood,
+/area/city/backstreets_room)
+"p" = (
+/obj/structure/bed/dogbed/ian,
+/mob/living/simple_animal/pet/cat/jerry,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/wood,
+/area/city/backstreets_room)
+"q" = (
+/obj/machinery/griddle,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/wood,
+/area/city/backstreets_room)
+"t" = (
+/obj/structure/bed/maint,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/wood,
+/area/city/backstreets_room)
+"v" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/item/stack/sheet/animalhide/corgi,
+/turf/open/floor/wood,
+/area/city/backstreets_room)
+"w" = (
+/obj/structure/table/wood,
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/item/food/meat/slab/bear,
+/turf/open/floor/wood,
+/area/city/backstreets_room)
+"y" = (
+/obj/item/food/fish/fresh_water/ratfish,
+/obj/structure/bed/maint,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/wood,
+/area/city/backstreets_room)
+"z" = (
+/mob/living/simple_animal/hostile/humanoid/rat/pipe,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/wood,
+/area/city/backstreets_room)
+"A" = (
+/obj/structure/mineral_door/wood,
+/turf/open/floor/wood,
+/area/city/backstreets_room)
+"D" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/item/food/meat/rawbacon,
+/obj/item/food/meat/rawbacon,
+/obj/item/food/meat/rawbacon,
+/obj/structure/table/wood,
+/obj/item/kitchen/knife,
+/turf/open/floor/wood,
+/area/city/backstreets_room)
+"G" = (
+/obj/structure/table/wood,
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/machinery/light/broken{
+	dir = 8
+	},
+/obj/item/food/burger/corgi,
+/turf/open/floor/wood,
+/area/city/backstreets_room)
+"K" = (
+/obj/item/food/fish/fresh_water/ratfish,
+/turf/open/floor/wood,
+/area/city/backstreets_room)
+"L" = (
+/obj/structure/chair/wood{
+	dir = 1
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/wood,
+/area/city/backstreets_room)
+"N" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/bed,
+/obj/item/bedsheet/ian,
+/turf/open/floor/wood,
+/area/city/backstreets_room)
+"O" = (
+/mob/living/simple_animal/hostile/humanoid/rat,
+/turf/open/floor/plating/asteroid/basalt,
+/area/city/backstreets_room)
+"Q" = (
+/turf/open/floor/plating/asteroid/basalt,
+/area/city/backstreets_room)
+"R" = (
+/obj/structure/chair/wood{
+	dir = 8
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/wood,
+/area/city/backstreets_room)
+"S" = (
+/turf/open/floor/wood,
+/area/city/backstreets_room)
+"U" = (
+/mob/living/simple_animal/hostile/humanoid/rat/hammer,
+/turf/open/floor/plating/asteroid/basalt,
+/area/city/backstreets_room)
+"W" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/wood,
+/area/city/backstreets_room)
+"X" = (
+/obj/item/food/fish/fresh_water/ratfish,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/wood,
+/area/city/backstreets_room)
+"Z" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/mob/living/simple_animal/hostile/humanoid/rat,
+/turf/open/floor/wood,
+/area/city/backstreets_room)
+
+(1,1,1) = {"
+a
+a
+a
+a
+a
+a
+Q
+Q
+Q
+e
+e
+e
+a
+a
+a
+"}
+(2,1,1) = {"
+a
+W
+y
+n
+d
+a
+Q
+Q
+Q
+Q
+Q
+Q
+a
+p
+a
+"}
+(3,1,1) = {"
+a
+K
+S
+z
+X
+A
+Q
+Q
+Q
+O
+Q
+Q
+A
+f
+a
+"}
+(4,1,1) = {"
+a
+W
+W
+X
+K
+a
+a
+a
+a
+a
+a
+Q
+a
+t
+a
+"}
+(5,1,1) = {"
+a
+a
+a
+a
+a
+a
+q
+W
+G
+L
+a
+Q
+a
+a
+a
+"}
+(6,1,1) = {"
+Q
+Q
+a
+W
+w
+a
+D
+v
+o
+S
+a
+Q
+Q
+Q
+Q
+"}
+(7,1,1) = {"
+Q
+U
+a
+m
+R
+a
+c
+S
+a
+A
+a
+Q
+Q
+Q
+Q
+"}
+(8,1,1) = {"
+Q
+Q
+A
+W
+W
+a
+j
+N
+a
+Q
+Q
+Q
+O
+Q
+Q
+"}
+(9,1,1) = {"
+e
+Q
+a
+t
+j
+a
+a
+a
+a
+Q
+Q
+Q
+Q
+e
+e
+"}
+(10,1,1) = {"
+e
+Q
+a
+a
+a
+a
+Q
+Q
+Q
+Q
+Q
+a
+A
+a
+a
+"}
+(11,1,1) = {"
+e
+Q
+Q
+Q
+Q
+Q
+O
+Q
+Q
+Q
+Q
+a
+W
+t
+a
+"}
+(12,1,1) = {"
+e
+Q
+Q
+Q
+Q
+Q
+Q
+Q
+Q
+Q
+Q
+a
+Z
+j
+a
+"}
+(13,1,1) = {"
+e
+e
+e
+e
+e
+e
+Q
+Q
+Q
+e
+e
+a
+a
+a
+a
+"}

@@ -1,0 +1,257 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"c" = (
+/obj/structure/rack,
+/obj/item/ego_weapon/shield/lccb,
+/turf/open/floor/plasteel/dark,
+/area/city/backstreets_room)
+"e" = (
+/obj/structure/rack,
+/obj/item/ego_weapon/city/lccb_bat,
+/turf/open/floor/plasteel/dark,
+/area/city/backstreets_room)
+"i" = (
+/mob/living/simple_animal/hostile/ordeal/sin_wrath,
+/turf/open/floor/plasteel/dark,
+/area/city/backstreets_room)
+"j" = (
+/obj/structure/table,
+/turf/open/floor/plasteel/dark,
+/area/city/backstreets_room)
+"k" = (
+/mob/living/simple_animal/hostile/ordeal/sin_lust,
+/turf/open/floor/plasteel/dark,
+/area/city/backstreets_room)
+"p" = (
+/obj/structure/table,
+/obj/item/paper_bin,
+/obj/item/pen,
+/turf/open/floor/plasteel/dark,
+/area/city/backstreets_room)
+"t" = (
+/obj/effect/decal/cleanable/blood/gibs/up,
+/obj/effect/gibspawner/generic,
+/turf/open/floor/plasteel/dark,
+/area/city/backstreets_room)
+"u" = (
+/obj/machinery/door/airlock{
+	name = "lab entrance"
+	},
+/turf/open/floor/plasteel/dark,
+/area/city/backstreets_room)
+"A" = (
+/obj/item/shard,
+/obj/structure/grille/broken,
+/turf/open/floor/plasteel/dark,
+/area/city/backstreets_room)
+"E" = (
+/obj/structure/table_frame,
+/turf/open/floor/plasteel/dark,
+/area/city/backstreets_room)
+"I" = (
+/obj/structure/table,
+/obj/item/ego_weapon/ranged/city/limbuspistol,
+/turf/open/floor/plasteel/dark,
+/area/city/backstreets_room)
+"J" = (
+/obj/structure/rack,
+/obj/item/clothing/suit/armor/ego_gear/limbus_labs,
+/obj/item/clothing/head/beret/sec/lccb,
+/turf/open/floor/plasteel/dark,
+/area/city/backstreets_room)
+"L" = (
+/turf/closed/indestructible/reinforced,
+/area/city/backstreets_room)
+"M" = (
+/mob/living/simple_animal/hostile/ordeal/sin_gluttony,
+/turf/open/floor/plating/asteroid/basalt,
+/area/city/backstreets_room)
+"O" = (
+/mob/living/simple_animal/hostile/ordeal/sin_gloom,
+/turf/open/floor/plasteel/dark,
+/area/city/backstreets_room)
+"Q" = (
+/obj/structure/window/fulltile,
+/obj/structure/grille,
+/turf/open/floor/plasteel/dark,
+/area/city/backstreets_room)
+"U" = (
+/obj/structure/rack,
+/turf/open/floor/plasteel/dark,
+/area/city/backstreets_room)
+"V" = (
+/turf/open/floor/plating/asteroid/basalt,
+/area/city/backstreets_room)
+"X" = (
+/obj/machinery/door/airlock{
+	name = "lab security"
+	},
+/turf/open/floor/plasteel/dark,
+/area/city/backstreets_room)
+"Y" = (
+/turf/open/floor/plasteel/dark,
+/area/city/backstreets_room)
+"Z" = (
+/mob/living/simple_animal/hostile/ordeal/sin_gluttony,
+/turf/open/floor/plasteel/dark,
+/area/city/backstreets_room)
+
+(1,1,1) = {"
+L
+L
+L
+L
+L
+L
+L
+L
+"}
+(2,1,1) = {"
+L
+Y
+Y
+Q
+Y
+Y
+c
+L
+"}
+(3,1,1) = {"
+L
+Y
+k
+Q
+Z
+Y
+J
+L
+"}
+(4,1,1) = {"
+L
+L
+L
+L
+Y
+Y
+U
+L
+"}
+(5,1,1) = {"
+L
+Y
+Y
+Q
+Y
+O
+Y
+L
+"}
+(6,1,1) = {"
+L
+i
+Y
+Q
+O
+Y
+Y
+L
+"}
+(7,1,1) = {"
+L
+L
+L
+L
+Y
+Y
+e
+L
+"}
+(8,1,1) = {"
+L
+Y
+Y
+A
+Y
+Z
+J
+L
+"}
+(9,1,1) = {"
+L
+Y
+O
+Q
+Y
+Y
+U
+L
+"}
+(10,1,1) = {"
+L
+L
+L
+L
+L
+u
+L
+L
+"}
+(11,1,1) = {"
+L
+Z
+Y
+p
+Q
+V
+V
+V
+"}
+(12,1,1) = {"
+L
+t
+Y
+E
+A
+V
+V
+V
+"}
+(13,1,1) = {"
+L
+Y
+Z
+j
+Q
+V
+M
+V
+"}
+(14,1,1) = {"
+L
+Y
+Z
+Y
+X
+V
+V
+V
+"}
+(15,1,1) = {"
+L
+j
+j
+I
+Q
+V
+V
+V
+"}
+(16,1,1) = {"
+L
+L
+L
+L
+L
+L
+L
+L
+"}

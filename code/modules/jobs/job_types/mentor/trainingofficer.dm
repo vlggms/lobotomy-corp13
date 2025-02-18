@@ -8,6 +8,7 @@
 	display_order = JOB_DISPLAY_ORDER_COMMAND
 
 	access = list(ACCESS_COMMAND)
+	departments = DEPARTMENT_COMMAND
 	exp_requirements = 0
 	exp_type = EXP_TYPE_CREW
 	exp_type_department = EXP_TYPE_SECURITY

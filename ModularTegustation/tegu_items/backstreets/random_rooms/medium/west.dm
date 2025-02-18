@@ -1,15 +1,16 @@
 /obj/effect/spawner/room/backstreets/medium_west
 	name = "medium west backstreets spawner"
+	icon = 'ModularTegustation/Teguicons/room_spawners/10x10.dmi'
+	icon_state = ""
+	dir = WEST
 	room_width = 6
 	room_height = 10
 	room_type = "backstreets_medium_west"
-
 
 /datum/map_template/random_room/backstreets/medium_west
 	name = "Medical - Medium west A"
 	room_id = "medical_mwa"
 	mappath = "_maps/RandomRooms/backstreets/medium_west/medical_mwa.dmm"
-	centerspawner = FALSE
 	template_width = 6
 	template_height = 10
 	stock = 3

@@ -15,6 +15,7 @@
 
 	access = list(ACCESS_ARMORY, ACCESS_CENT_GENERAL)
 	minimal_access = list(ACCESS_ARMORY, ACCESS_CENT_GENERAL)
+	departments = DEPARTMENT_R_CORP
 
 	roundstart_attributes = list(
 								FORTITUDE_ATTRIBUTE = 40,
@@ -61,6 +62,7 @@
 
 	access = list(ACCESS_ARMORY, ACCESS_COMMAND, ACCESS_CENT_GENERAL)
 	minimal_access = list(ACCESS_ARMORY, ACCESS_COMMAND, ACCESS_CENT_GENERAL)
+	departments = DEPARTMENT_COMMAND | DEPARTMENT_R_CORP
 
 	roundstart_attributes = list(
 								FORTITUDE_ATTRIBUTE = 80,

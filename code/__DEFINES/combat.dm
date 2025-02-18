@@ -50,6 +50,8 @@
 #define BLACK_DAMAGE		"black"
 /// Deals brute damage in percents.
 #define PALE_DAMAGE			"pale"
+/// Fake damage used for hostile ai targetting
+#define AGGRO_DAMAGE		"aggro"
 
 //bitflag damage defines used for suicide_act
 #define BRUTELOSS 	            	(1<<0)

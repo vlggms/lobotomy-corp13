@@ -83,7 +83,7 @@
 
 /obj/machinery/fish_market/attackby(obj/item/I, mob/user, params)
 	if(SSfishing.IsAligned(/datum/planet/uranus))
-		to_chat(usr, span_notice("Uranus is aligned with earth. All fish points are increaed by 1.5x"))
+		to_chat(user, span_notice("Uranus is aligned with earth. All fish point output increased by 1.5x"))
 	if(istype(I, /obj/item/stack/fish_points))
 		var/obj/item/stack/fish_points/more_points = I
 		AdjustPoints(more_points.amount)
@@ -103,14 +103,15 @@
 		var/obj/item/storage/bag/fish/bag = I
 		var/fish_value = 0
 		for(var/item in bag.contents)
+			if(istype(item, /obj/item/stack/fish_points))
+				continue
+
 			if(istype(item, /obj/item/fishing_component/hook/bone))
 				fish_value += 5
 
 			if(istype(item, /obj/item/food/fish))
 				fish_value += ValueFish(item)
 
-			else
-				continue
 			qdel(item)
 
 		AdjustPoints(fish_value)
@@ -176,6 +177,7 @@
 
 		//More nets
 		new /datum/data/extraction_cargo("Fishing Net ",					/obj/item/fishing_net,							100) = 1,
+		new /datum/data/extraction_cargo("Big Baited Fishing Net ",			/obj/item/fishing_net/big_bait,					200) = 1,
 		new /datum/data/extraction_cargo("Nylon Fishing Net ",				/obj/item/fishing_net/nylon,					300) = 1,
 		new /datum/data/extraction_cargo("Steel Fishing Net ",				/obj/item/fishing_net/steel,					300) = 1,
 		new /datum/data/extraction_cargo("Baited Fishing Net ",				/obj/item/fishing_net/baited,					300) = 1,

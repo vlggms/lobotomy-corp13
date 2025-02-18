@@ -63,11 +63,11 @@
 		For monsters could come, hurting creatures at any time. <br>By the time eyes covered the whole body of the big bird, no one was around for it to protect. <br>\
 		To shine the light in this dark forest, the big bird burned every single feather it had to make an everlasting lamp. <br>\
 		The big bird now could hardly be called a bird now, it has no feathers at all."
-	observation_choices = list("Don't pet it", "Pet it")
-	correct_choices = list("Pet it")
-	observation_success_message = "It was not soft actually, it gave you chills. <br>You felt eyes looking at you with curiosity. <br>\
-		Eyes started closing as you pet the bird. <br>The big bird, for the first time in a very long time, peacefully fell asleep."
-	observation_fail_message = "The bird could get angry and bite you. <br>You ran out of the room in fear."
+	observation_choices = list(
+		"Pet it" = list(TRUE, "It was not soft actually, it gave you chills. <br>You felt eyes looking at you with curiosity. <br>\
+			Eyes started closing as you pet the bird. <br>The big bird, for the first time in a very long time, peacefully fell asleep."),
+		"Don't pet it" = list(FALSE, "The bird could get angry and bite you. <br>You ran out of the room in fear."),
+	)
 
 	var/bite_cooldown
 	var/bite_cooldown_time = 8 SECONDS
@@ -128,11 +128,11 @@
 			return FALSE
 	return ..()
 
-/mob/living/simple_animal/hostile/abnormality/big_bird/AttackingTarget()
-	if(ishuman(target))
+/mob/living/simple_animal/hostile/abnormality/big_bird/AttackingTarget(atom/attacked_target)
+	if(ishuman(attacked_target))
 		if(bite_cooldown > world.time)
 			return FALSE
-		var/mob/living/carbon/human/H = target
+		var/mob/living/carbon/human/H = attacked_target
 		var/obj/item/bodypart/head/head = H.get_bodypart("head")
 		if(QDELETED(head))
 			return

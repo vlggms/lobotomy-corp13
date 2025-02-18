@@ -1,0 +1,2219 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"ai" = (
+/obj/effect/turf_decal/siding/green{
+	color = "#006400";
+	dir = 10
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/mob/living/simple_animal/hostile/ordeal/steel_dawn,
+/turf/open/floor/carpet/green,
+/area/city/backstreets_room)
+"ao" = (
+/obj/machinery/smartfridge/extract/preloaded,
+/turf/open/floor/plating{
+	color = "#42f545"
+	},
+/area/city/backstreets_room)
+"at" = (
+/turf/open/floor/plating/asteroid/snow/airless,
+/area/city/backstreets_room)
+"aY" = (
+/obj/effect/turf_decal/siding/purple{
+	dir = 1
+	},
+/turf/open/floor/plasteel/shuttle{
+	color = "#42f545"
+	},
+/area/city/backstreets_room)
+"bk" = (
+/obj/effect/turf_decal/siding/green{
+	color = "#006400";
+	dir = 4
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/plasteel/shuttle{
+	color = "#42f545"
+	},
+/area/city/backstreets_room)
+"bl" = (
+/obj/effect/turf_decal/siding/green{
+	color = "#006400";
+	dir = 4
+	},
+/turf/open/floor/plating{
+	color = "#42f545"
+	},
+/area/city/backstreets_room)
+"bw" = (
+/obj/effect/turf_decal/siding/purple,
+/obj/item/trash/sosjerky,
+/turf/open/floor/plasteel/shuttle{
+	color = "#42f545"
+	},
+/area/city/backstreets_room)
+"bA" = (
+/obj/effect/turf_decal/siding/purple{
+	dir = 1
+	},
+/obj/structure/table/wood/fancy/green,
+/obj/structure/displaycase/forsale,
+/obj/effect/decal/cleanable/cobweb/cobweb2,
+/turf/open/floor/plating{
+	color = "#42f545"
+	},
+/area/city/backstreets_room)
+"bJ" = (
+/obj/item/slimepotion/slime/docility,
+/obj/item/slimepotion/slime/docility,
+/obj/item/slimepotion/slime/docility,
+/turf/open/floor/plasteel/white,
+/area/city/backstreets_room)
+"ci" = (
+/obj/structure/chair/office,
+/obj/machinery/light{
+	dir = 1;
+	color = "#32a852"
+	},
+/obj/effect/turf_decal/siding/green{
+	dir = 1;
+	color = "#006400"
+	},
+/turf/open/floor/carpet/green,
+/area/city/backstreets_room)
+"co" = (
+/obj/effect/turf_decal/siding/green{
+	color = "#006400";
+	dir = 4
+	},
+/obj/effect/turf_decal/siding/green/corner{
+	color = "#006400";
+	dir = 1
+	},
+/obj/effect/turf_decal/siding/green/corner{
+	color = "#006400";
+	dir = 1
+	},
+/obj/effect/turf_decal/siding/green/corner{
+	color = "#006400";
+	dir = 1
+	},
+/obj/effect/turf_decal/siding/green/corner{
+	color = "#006400";
+	dir = 1
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/item/trash/semki,
+/obj/machinery/light/broken{
+	dir = 4
+	},
+/obj/structure/disposalpipe/broken{
+	dir = 4
+	},
+/turf/open/floor/plating{
+	color = "#42f545"
+	},
+/area/city/backstreets_room)
+"cQ" = (
+/obj/item/trash/cheesie,
+/turf/open/floor/plating{
+	color = "#42f545"
+	},
+/area/city/backstreets_room)
+"ee" = (
+/obj/effect/turf_decal/siding/purple{
+	dir = 8
+	},
+/turf/open/floor/plating{
+	color = "#42f545"
+	},
+/area/city/backstreets_room)
+"eq" = (
+/obj/structure/table/wood/fancy/green,
+/obj/effect/turf_decal/siding/green/corner{
+	color = "#006400";
+	dir = 8
+	},
+/obj/effect/turf_decal/siding/green/corner{
+	color = "#006400";
+	dir = 8
+	},
+/obj/item/food/donut/jelly/slimejelly/apple,
+/obj/item/food/donut/jelly/slimejelly/apple,
+/obj/item/food/donut/jelly/slimejelly/apple,
+/obj/item/food/donut/jelly/slimejelly/apple,
+/obj/item/food/donut/jelly/slimejelly/apple,
+/obj/item/food/donut/jelly/slimejelly/caramel,
+/obj/item/food/donut/jelly/slimejelly/caramel,
+/turf/open/floor/carpet/green,
+/area/city/backstreets_room)
+"fj" = (
+/obj/structure/spider/stickyweb/genetic,
+/obj/structure/grille/broken{
+	color = "#42f545"
+	},
+/turf/open/floor/plating{
+	color = "#42f545"
+	},
+/area/city/backstreets_room)
+"fn" = (
+/turf/closed/indestructible/reinforced{
+	color = "#42f545"
+	},
+/area/city/backstreets_room)
+"fo" = (
+/obj/effect/turf_decal/siding/green/corner{
+	color = "#006400"
+	},
+/obj/effect/turf_decal/siding/green/corner{
+	color = "#006400";
+	dir = 1
+	},
+/mob/living/simple_animal/hostile/ordeal/steel_dawn,
+/turf/open/floor/plating{
+	color = "#42f545"
+	},
+/area/city/backstreets_room)
+"fz" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/mob/living/carbon/human/species/monkey,
+/obj/structure/spider/stickyweb/genetic,
+/turf/open/floor/facility/dark,
+/area/city/backstreets_room)
+"fI" = (
+/obj/machinery/camera/emp_proof{
+	dir = 1
+	},
+/turf/open/floor/plating/asteroid/snow/airless,
+/area/city/backstreets_room)
+"fQ" = (
+/obj/effect/turf_decal/siding/green{
+	color = "#006400";
+	dir = 8
+	},
+/turf/open/floor/plating{
+	color = "#42f545"
+	},
+/area/city/backstreets_room)
+"gF" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/machinery/light/broken{
+	dir = 8
+	},
+/turf/open/floor/facility/dark,
+/area/city/backstreets_room)
+"gS" = (
+/obj/effect/turf_decal/siding/green{
+	dir = 1;
+	color = "#006400"
+	},
+/obj/item/trash/sosjerky,
+/turf/open/floor/plasteel/shuttle{
+	color = "#42f545"
+	},
+/area/city/backstreets_room)
+"gW" = (
+/obj/structure/sign/departments/cargo,
+/turf/closed/indestructible/reinforced{
+	color = "#42f545"
+	},
+/area/city/backstreets_room)
+"gY" = (
+/obj/effect/turf_decal/siding/purple{
+	dir = 8
+	},
+/mob/living/simple_animal/hostile/ordeal/steel_dawn/steel_noon,
+/turf/open/floor/plasteel/shuttle{
+	color = "#42f545"
+	},
+/area/city/backstreets_room)
+"hk" = (
+/obj/effect/turf_decal/siding/purple{
+	dir = 8
+	},
+/obj/effect/turf_decal/siding/green{
+	color = "#006400";
+	dir = 4
+	},
+/turf/open/floor/plasteel/shuttle{
+	color = "#42f545"
+	},
+/area/city/backstreets_room)
+"hl" = (
+/obj/effect/turf_decal/siding/purple{
+	dir = 4
+	},
+/obj/item/kirbyplants/random,
+/obj/structure/fluff/broken_flooring{
+	color = "#42f545"
+	},
+/obj/machinery/light/broken{
+	dir = 1
+	},
+/turf/open/floor/plasteel/shuttle{
+	color = "#42f545"
+	},
+/area/city/backstreets_room)
+"hC" = (
+/obj/effect/turf_decal/siding/purple{
+	dir = 1
+	},
+/obj/structure/table/reinforced,
+/turf/open/floor/plasteel/shuttle{
+	color = "#42f545"
+	},
+/area/city/backstreets_room)
+"hK" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/machinery/light{
+	dir = 1;
+	color = "#32a852"
+	},
+/obj/effect/landmark/cratespawn/corpo,
+/obj/effect/decal/cleanable/cobweb,
+/turf/open/floor/facility/dark,
+/area/city/backstreets_room)
+"il" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/machinery/light{
+	dir = 1;
+	color = "#32a852"
+	},
+/obj/effect/landmark/cratespawn/corpo,
+/obj/effect/decal/cleanable/cobweb/cobweb2,
+/turf/open/floor/facility/dark,
+/area/city/backstreets_room)
+"im" = (
+/obj/structure/bed/abductor,
+/obj/item/bedsheet/k_corporation,
+/obj/structure/spider/stickyweb/genetic,
+/turf/open/floor/carpet/green,
+/area/city/backstreets_room)
+"ir" = (
+/obj/effect/turf_decal/siding/green/corner{
+	dir = 4;
+	color = "#006400"
+	},
+/obj/effect/turf_decal/siding/green{
+	color = "#006400";
+	dir = 8
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/plating{
+	color = "#42f545"
+	},
+/area/city/backstreets_room)
+"iE" = (
+/turf/open/floor/plasteel/shuttle{
+	color = "#42f545"
+	},
+/area/city/backstreets_room)
+"iP" = (
+/obj/effect/turf_decal/siding/purple{
+	dir = 4
+	},
+/turf/open/floor/plasteel/shuttle{
+	color = "#42f545"
+	},
+/area/city/backstreets_room)
+"jv" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/closed/indestructible/fakeglass{
+	color = "#42f545"
+	},
+/area/city/backstreets_room)
+"jy" = (
+/obj/effect/turf_decal/siding/purple{
+	dir = 8
+	},
+/obj/item/kirbyplants/random,
+/turf/open/floor/plasteel/shuttle{
+	color = "#42f545"
+	},
+/area/city/backstreets_room)
+"jQ" = (
+/obj/effect/turf_decal/siding/green{
+	color = "#006400"
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/plasteel/shuttle{
+	color = "#42f545"
+	},
+/area/city/backstreets_room)
+"jY" = (
+/obj/item/slimecross/industrial/grey,
+/obj/item/slimecross/industrial/grey,
+/mob/living/simple_animal/hostile/ordeal/steel_dawn,
+/turf/open/floor/plasteel/shuttle{
+	color = "#42f545"
+	},
+/area/city/backstreets_room)
+"kD" = (
+/mob/living/simple_animal/slime/pet{
+	color = "#32a852"
+	},
+/obj/effect/turf_decal/siding/green{
+	color = "#006400";
+	dir = 8
+	},
+/turf/open/floor/plating{
+	color = "#42f545"
+	},
+/area/city/backstreets_room)
+"kG" = (
+/obj/effect/turf_decal/siding/green{
+	dir = 1;
+	color = "#006400"
+	},
+/obj/item/trash/semki,
+/turf/open/floor/plasteel/shuttle{
+	color = "#42f545"
+	},
+/area/city/backstreets_room)
+"kK" = (
+/obj/effect/turf_decal/siding/green{
+	dir = 1;
+	color = "#006400"
+	},
+/turf/open/floor/plasteel/shuttle{
+	color = "#42f545"
+	},
+/area/city/backstreets_room)
+"kL" = (
+/obj/effect/turf_decal/siding/purple{
+	dir = 4
+	},
+/obj/item/trash/energybar,
+/turf/open/floor/plasteel/shuttle{
+	color = "#42f545"
+	},
+/area/city/backstreets_room)
+"kP" = (
+/obj/item/kirbyplants/random,
+/obj/effect/turf_decal/siding/green{
+	color = "#006400";
+	dir = 4
+	},
+/turf/open/floor/plating{
+	color = "#42f545"
+	},
+/area/city/backstreets_room)
+"lq" = (
+/obj/effect/turf_decal/siding/purple,
+/obj/effect/turf_decal/siding/green/corner{
+	color = "#006400";
+	dir = 1
+	},
+/obj/effect/turf_decal/siding/green/corner{
+	color = "#006400";
+	dir = 1
+	},
+/obj/effect/turf_decal/siding/green/corner{
+	color = "#006400";
+	dir = 1
+	},
+/obj/effect/turf_decal/siding/green/corner{
+	color = "#006400";
+	dir = 1
+	},
+/obj/structure/disposalpipe/broken{
+	dir = 8
+	},
+/turf/open/floor/plating{
+	color = "#42f545"
+	},
+/area/city/backstreets_room)
+"mr" = (
+/obj/effect/turf_decal{
+	dir = 1
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/plating{
+	color = "#42f545"
+	},
+/area/city/backstreets_room)
+"mt" = (
+/obj/effect/turf_decal/siding/green{
+	color = "#006400";
+	dir = 4
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/item/trash/semki,
+/obj/item/trash/cheesie,
+/mob/living/simple_animal/hostile/ordeal/steel_dawn,
+/turf/open/floor/plasteel/shuttle{
+	color = "#42f545"
+	},
+/area/city/backstreets_room)
+"mD" = (
+/obj/item/slimepotion/speed,
+/obj/item/slimepotion/speed,
+/obj/item/slimepotion/speed,
+/obj/item/slimepotion/slime_reviver,
+/obj/item/slimepotion/slime_reviver,
+/obj/item/slimepotion/slime_reviver,
+/obj/item/slimepotion/transference,
+/mob/living/simple_animal/hostile/illusion/escape{
+	maxHealth = 500;
+	health = 500
+	},
+/turf/open/floor/plasteel/white,
+/area/city/backstreets_room)
+"mE" = (
+/obj/machinery/light{
+	color = "#32a852"
+	},
+/obj/effect/turf_decal/siding/green{
+	color = "#006400";
+	dir = 6
+	},
+/obj/item/trash/sosjerky,
+/turf/open/floor/plating{
+	color = "#42f545"
+	},
+/area/city/backstreets_room)
+"nc" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/gibspawner/human/bodypartless,
+/obj/item/trash/semki,
+/turf/open/floor/facility/dark,
+/area/city/backstreets_room)
+"nd" = (
+/mob/living/simple_animal/slime/pet{
+	color = "#32a852"
+	},
+/obj/effect/turf_decal/siding/green{
+	dir = 1;
+	color = "#006400"
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/item/trash/semki,
+/turf/open/floor/plating{
+	color = "#42f545"
+	},
+/area/city/backstreets_room)
+"np" = (
+/obj/machinery/processor/slime,
+/turf/open/floor/plasteel/shuttle{
+	color = "#42f545"
+	},
+/area/city/backstreets_room)
+"nt" = (
+/obj/effect/turf_decal/siding/green{
+	color = "#006400"
+	},
+/obj/item/trash/energybar,
+/turf/open/floor/plating{
+	color = "#42f545"
+	},
+/area/city/backstreets_room)
+"ol" = (
+/obj/machinery/light{
+	dir = 1;
+	color = "#32a852"
+	},
+/mob/living/simple_animal/hostile/ordeal/steel_dusk,
+/turf/open/floor/carpet/green,
+/area/city/backstreets_room)
+"oA" = (
+/obj/effect/turf_decal/siding/green{
+	dir = 1;
+	color = "#006400"
+	},
+/obj/structure/spider/stickyweb/genetic,
+/turf/open/floor/carpet/green,
+/area/city/backstreets_room)
+"oC" = (
+/obj/structure/chair/sofa/right{
+	dir = 1
+	},
+/turf/open/floor/plasteel/shuttle{
+	color = "#42f545"
+	},
+/area/city/backstreets_room)
+"oN" = (
+/obj/effect/turf_decal/siding/green{
+	color = "#006400";
+	dir = 6
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/carpet/green,
+/area/city/backstreets_room)
+"oQ" = (
+/obj/structure/table/wood/fancy/green,
+/obj/structure/table/wood/fancy/green,
+/obj/structure/table/wood/fancy/green,
+/obj/structure/table/wood/fancy/green,
+/obj/structure/displaycase/forsale,
+/obj/effect/turf_decal/siding/green{
+	color = "#006400";
+	dir = 4
+	},
+/obj/structure/spider/stickyweb/genetic,
+/turf/open/floor/plating{
+	color = "#42f545"
+	},
+/area/city/backstreets_room)
+"oX" = (
+/obj/effect/turf_decal/siding/purple{
+	dir = 4
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/plasteel/shuttle{
+	color = "#42f545"
+	},
+/area/city/backstreets_room)
+"pC" = (
+/obj/effect/turf_decal/siding/green/corner{
+	color = "#006400";
+	dir = 8
+	},
+/obj/item/trash/cheesie,
+/turf/open/floor/plating{
+	color = "#42f545"
+	},
+/area/city/backstreets_room)
+"pY" = (
+/obj/machinery/door/airlock/glass_large{
+	resistance_flags = 64
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/facility/dark,
+/area/city/backstreets_room)
+"qi" = (
+/obj/item/trash/sosjerky,
+/mob/living/simple_animal/hostile/ordeal/steel_dawn,
+/turf/open/floor/plasteel/shuttle{
+	color = "#42f545"
+	},
+/area/city/backstreets_room)
+"qj" = (
+/obj/machinery/computer/camera_advanced/xenobio{
+	dir = 1
+	},
+/obj/machinery/light{
+	color = "#32a852"
+	},
+/turf/open/floor/plasteel/shuttle{
+	color = "#42f545"
+	},
+/area/city/backstreets_room)
+"qq" = (
+/obj/machinery/monkey_recycler,
+/turf/open/floor/plasteel/shuttle{
+	color = "#42f545"
+	},
+/area/city/backstreets_room)
+"rU" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/mob/living/simple_animal/hostile/morph,
+/turf/open/floor/facility/dark,
+/area/city/backstreets_room)
+"sb" = (
+/obj/effect/turf_decal/siding/purple/corner{
+	dir = 8
+	},
+/obj/structure/plaque/static_plaque{
+	pixel_x = 32
+	},
+/obj/effect/turf_decal/siding/green{
+	color = "#006400";
+	dir = 4
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/plating{
+	color = "#42f545"
+	},
+/area/city/backstreets_room)
+"su" = (
+/obj/structure/closet/secure_closet/freezer/fridge,
+/obj/structure/spider/stickyweb/genetic,
+/obj/machinery/light/broken{
+	dir = 1
+	},
+/turf/open/floor/plasteel/white,
+/area/city/backstreets_room)
+"sF" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/landmark/cratespawn/corpo,
+/obj/machinery/light/broken{
+	dir = 1
+	},
+/turf/open/floor/facility/dark,
+/area/city/backstreets_room)
+"sH" = (
+/obj/effect/turf_decal/siding/purple,
+/mob/living/simple_animal/slime/pet{
+	color = "#32a852"
+	},
+/turf/open/floor/plasteel/shuttle{
+	color = "#42f545"
+	},
+/area/city/backstreets_room)
+"sS" = (
+/obj/item/gps/mining{
+	anchored = 1;
+	gpstag = "Slimy Signal";
+	alpha = 10
+	},
+/turf/open/floor/plasteel/shuttle{
+	color = "#42f545"
+	},
+/area/city/backstreets_room)
+"sY" = (
+/obj/structure/plaque/static_plaque{
+	pixel_x = 32
+	},
+/mob/living/simple_animal/slime/pet{
+	color = "#32a852"
+	},
+/obj/effect/turf_decal/siding/green{
+	color = "#006400";
+	dir = 4
+	},
+/turf/open/floor/plasteel/shuttle{
+	color = "#42f545"
+	},
+/area/city/backstreets_room)
+"to" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/item/trash/sosjerky,
+/turf/open/floor/plating{
+	color = "#42f545"
+	},
+/area/city/backstreets_room)
+"tu" = (
+/obj/effect/turf_decal/siding/purple/corner{
+	dir = 1
+	},
+/obj/effect/turf_decal/siding/purple/corner{
+	dir = 8
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/plasteel/shuttle{
+	color = "#42f545"
+	},
+/area/city/backstreets_room)
+"tG" = (
+/obj/effect/turf_decal/siding/green/corner{
+	color = "#006400";
+	dir = 3
+	},
+/obj/effect/turf_decal/siding/green{
+	dir = 1;
+	color = "#006400"
+	},
+/turf/open/floor/carpet/green,
+/area/city/backstreets_room)
+"uk" = (
+/obj/effect/turf_decal/siding/green{
+	color = "#006400";
+	dir = 8
+	},
+/obj/item/trash/sosjerky,
+/obj/machinery/light/broken{
+	dir = 8
+	},
+/turf/open/floor/plasteel/shuttle{
+	color = "#42f545"
+	},
+/area/city/backstreets_room)
+"un" = (
+/obj/effect/turf_decal/siding/purple{
+	dir = 8
+	},
+/mob/living/simple_animal/hostile/ordeal/steel_dawn,
+/turf/open/floor/plating{
+	color = "#42f545"
+	},
+/area/city/backstreets_room)
+"us" = (
+/turf/closed/mineral/ash_rock,
+/area/city/backstreets_room)
+"vn" = (
+/obj/structure/table/wood/fancy/green,
+/obj/item/toy/plush/slimeplushie,
+/turf/open/floor/carpet/green,
+/area/city/backstreets_room)
+"vH" = (
+/obj/effect/turf_decal/siding/green{
+	color = "#006400";
+	dir = 12
+	},
+/turf/open/floor/carpet/green,
+/area/city/backstreets_room)
+"wb" = (
+/obj/structure/closet/wardrobe/science_white,
+/turf/open/floor/plating{
+	color = "#42f545"
+	},
+/area/city/backstreets_room)
+"wl" = (
+/obj/machinery/camera/emp_proof{
+	dir = 4
+	},
+/obj/effect/turf_decal/siding/purple{
+	dir = 1
+	},
+/obj/structure/table/wood/fancy/green,
+/obj/structure/displaycase/forsale,
+/obj/structure/spider/stickyweb/genetic,
+/turf/open/floor/plasteel/shuttle{
+	color = "#42f545"
+	},
+/area/city/backstreets_room)
+"wz" = (
+/obj/machinery/door/airlock/public{
+	resistance_flags = 64
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/facility/dark,
+/area/city/backstreets_room)
+"wF" = (
+/obj/machinery/light{
+	color = "#32a852"
+	},
+/obj/effect/turf_decal/siding/purple{
+	dir = 8
+	},
+/obj/structure/closet/crate/large,
+/obj/item/stack/spacecash/c100,
+/obj/item/stack/spacecash/c100,
+/obj/item/stack/spacecash/c100,
+/turf/open/floor/plasteel/shuttle{
+	color = "#42f545"
+	},
+/area/city/backstreets_room)
+"wU" = (
+/obj/structure/spider/stickyweb/genetic,
+/obj/structure/grille/broken{
+	color = "#42f545"
+	},
+/turf/open/floor/plasteel/shuttle{
+	color = "#42f545"
+	},
+/area/city/backstreets_room)
+"xa" = (
+/obj/effect/turf_decal/siding/purple{
+	dir = 1
+	},
+/obj/structure/table/reinforced,
+/obj/item/reagent_containers/dropper,
+/obj/item/reagent_containers/dropper,
+/obj/item/trash/semki,
+/turf/open/floor/plating{
+	color = "#42f545"
+	},
+/area/city/backstreets_room)
+"xg" = (
+/obj/machinery/processor/slime,
+/turf/open/floor/plating{
+	color = "#42f545"
+	},
+/area/city/backstreets_room)
+"xh" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/plating{
+	color = "#42f545"
+	},
+/area/city/backstreets_room)
+"xM" = (
+/obj/structure/sign/warning/nosmoking/circle,
+/turf/closed/indestructible/reinforced{
+	color = "#42f545"
+	},
+/area/city/backstreets_room)
+"xN" = (
+/obj/effect/turf_decal/siding/purple{
+	dir = 1
+	},
+/turf/open/floor/plating{
+	color = "#42f545"
+	},
+/area/city/backstreets_room)
+"xQ" = (
+/obj/machinery/light{
+	color = "#32a852"
+	},
+/obj/effect/turf_decal/siding/green{
+	color = "#006400"
+	},
+/turf/open/floor/plasteel/shuttle{
+	color = "#42f545"
+	},
+/area/city/backstreets_room)
+"yd" = (
+/obj/machinery/camera/emp_proof,
+/obj/effect/turf_decal/siding/green{
+	dir = 1;
+	color = "#006400"
+	},
+/obj/item/trash/semki,
+/turf/open/floor/plasteel/shuttle{
+	color = "#42f545"
+	},
+/area/city/backstreets_room)
+"yk" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/turf_decal/bot,
+/obj/structure/spider/stickyweb/genetic,
+/turf/open/floor/facility/dark,
+/area/city/backstreets_room)
+"yC" = (
+/obj/structure/extinguisher_cabinet{
+	pixel_x = 32
+	},
+/turf/open/floor/plating{
+	color = "#42f545"
+	},
+/area/city/backstreets_room)
+"yG" = (
+/obj/structure/extinguisher_cabinet{
+	pixel_x = 32
+	},
+/obj/effect/turf_decal/siding/green{
+	color = "#006400";
+	dir = 4
+	},
+/obj/machinery/light/broken{
+	dir = 4
+	},
+/turf/open/floor/plasteel/shuttle{
+	color = "#42f545"
+	},
+/area/city/backstreets_room)
+"yH" = (
+/obj/effect/turf_decal/siding/green{
+	color = "#006400"
+	},
+/obj/structure/spider/stickyweb/genetic,
+/turf/open/floor/plating{
+	color = "#42f545"
+	},
+/area/city/backstreets_room)
+"zu" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/decal/cleanable/cobweb/cobweb2,
+/turf/open/floor/facility/dark,
+/area/city/backstreets_room)
+"zL" = (
+/obj/effect/turf_decal/siding/green{
+	color = "#006400";
+	dir = 12
+	},
+/mob/living/simple_animal/hostile/ordeal/steel_dawn,
+/turf/open/floor/carpet/green,
+/area/city/backstreets_room)
+"zP" = (
+/obj/effect/decal/cleanable/cobweb/cobweb2,
+/obj/structure/disposalpipe/broken{
+	dir = 4
+	},
+/turf/open/floor/plating/asteroid/snow/airless,
+/area/city/backstreets_room)
+"zU" = (
+/obj/effect/turf_decal/siding/green{
+	dir = 1;
+	color = "#006400"
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/closed/mineral/ash_rock,
+/area/city/backstreets_room)
+"Ah" = (
+/obj/effect/turf_decal/siding/purple/corner{
+	dir = 4
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/item/trash/sosjerky,
+/turf/open/floor/plasteel/shuttle{
+	color = "#42f545"
+	},
+/area/city/backstreets_room)
+"AF" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/mob/living/simple_animal/slime/random,
+/turf/open/floor/facility/dark,
+/area/city/backstreets_room)
+"AI" = (
+/obj/structure/grille/broken{
+	color = "#42f545"
+	},
+/turf/open/floor/plating{
+	color = "#42f545"
+	},
+/area/city/backstreets_room)
+"AN" = (
+/obj/machinery/door/airlock/public{
+	resistance_flags = 64
+	},
+/obj/effect/turf_decal/siding/green/end{
+	dir = 1;
+	color = "#006400"
+	},
+/turf/open/floor/plasteel/shuttle{
+	color = "#42f545"
+	},
+/area/city/backstreets_room)
+"AY" = (
+/obj/effect/turf_decal{
+	dir = 1
+	},
+/obj/effect/turf_decal,
+/turf/open/floor/plasteel/shuttle{
+	color = "#42f545"
+	},
+/area/city/backstreets_room)
+"AZ" = (
+/obj/machinery/door/airlock/centcom{
+	desc = "A bit too sturdy...";
+	max_integrity = 10000;
+	name = "Strange Airlock";
+	normal_integrity = 100000;
+	req_access_txt = "19"
+	},
+/turf/open/floor/plasteel/white,
+/area/city/backstreets_room)
+"Ba" = (
+/obj/machinery/door/airlock/glass_large{
+	resistance_flags = 64;
+	name = "slime office"
+	},
+/turf/open/floor/plating{
+	color = "#42f545"
+	},
+/area/city/backstreets_room)
+"Bk" = (
+/turf/closed/indestructible/fakeglass{
+	color = "#42f545"
+	},
+/area/city/backstreets_room)
+"Bz" = (
+/obj/effect/turf_decal/siding/purple/corner{
+	dir = 1
+	},
+/turf/open/floor/plasteel/shuttle{
+	color = "#42f545"
+	},
+/area/city/backstreets_room)
+"BJ" = (
+/obj/machinery/light{
+	color = "#32a852"
+	},
+/obj/structure/table/reinforced,
+/obj/item/storage/box/monkeycubes,
+/obj/item/storage/box/monkeycubes,
+/obj/item/storage/box/monkeycubes,
+/obj/item/storage/box/syringes,
+/obj/item/storage/box/syringes,
+/obj/item/stack/sheet/mineral/plasma,
+/obj/item/stack/sheet/mineral/plasma,
+/obj/item/stack/sheet/mineral/plasma,
+/obj/item/reagent_containers/glass/beaker/bluespace,
+/obj/item/reagent_containers/glass/beaker/bluespace,
+/obj/item/reagent_containers/glass/beaker/bluespace,
+/turf/open/floor/plating{
+	color = "#42f545"
+	},
+/area/city/backstreets_room)
+"BW" = (
+/obj/machinery/light{
+	color = "#32a852"
+	},
+/obj/structure/table/reinforced,
+/obj/item/storage/bag/chemistry,
+/obj/machinery/reagentgrinder,
+/turf/open/floor/plating{
+	color = "#42f545"
+	},
+/area/city/backstreets_room)
+"Cc" = (
+/obj/structure/fluff/broken_flooring{
+	color = "#42f545"
+	},
+/turf/open/floor/plasteel/shuttle{
+	color = "#42f545"
+	},
+/area/city/backstreets_room)
+"Cy" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/mob/living/carbon/human/species/monkey,
+/obj/effect/turf_decal/bot,
+/obj/effect/gibspawner/human/bodypartless,
+/obj/structure/spider/stickyweb/genetic,
+/turf/open/floor/facility/dark,
+/area/city/backstreets_room)
+"CE" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/closed/mineral/ash_rock,
+/area/city/backstreets_room)
+"CF" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/mob/living/simple_animal/hostile/ordeal/steel_dawn/steel_noon,
+/turf/open/floor/plasteel/shuttle{
+	color = "#42f545"
+	},
+/area/city/backstreets_room)
+"CH" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/gibspawner/xeno/bodypartless,
+/turf/open/floor/facility/dark,
+/area/city/backstreets_room)
+"CK" = (
+/obj/machinery/camera/emp_proof{
+	dir = 6
+	},
+/obj/effect/turf_decal/siding/green{
+	dir = 1;
+	color = "#006400"
+	},
+/obj/item/trash/semki,
+/turf/open/floor/plasteel/shuttle{
+	color = "#42f545"
+	},
+/area/city/backstreets_room)
+"CT" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/mob/living/carbon/human/species/monkey,
+/turf/open/floor/facility/dark,
+/area/city/backstreets_room)
+"Dd" = (
+/obj/effect/turf_decal/siding/purple,
+/obj/effect/turf_decal/siding/purple{
+	dir = 1
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/plating{
+	color = "#42f545"
+	},
+/area/city/backstreets_room)
+"Dj" = (
+/mob/living/simple_animal/hostile/ordeal/steel_dawn,
+/turf/open/floor/plating{
+	color = "#42f545"
+	},
+/area/city/backstreets_room)
+"DN" = (
+/obj/machinery/smartfridge/extract/preloaded,
+/turf/open/floor/plasteel/shuttle{
+	color = "#42f545"
+	},
+/area/city/backstreets_room)
+"Ed" = (
+/obj/effect/turf_decal/siding/green{
+	color = "#006400";
+	dir = 9
+	},
+/obj/item/kirbyplants/random,
+/obj/structure/spider/stickyweb/genetic,
+/turf/open/floor/carpet/green,
+/area/city/backstreets_room)
+"Ek" = (
+/obj/item/kirbyplants/random,
+/obj/structure/spider/stickyweb/genetic,
+/turf/open/floor/carpet/green,
+/area/city/backstreets_room)
+"EK" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/mob/living/simple_animal/hostile/ooze/gelatinous,
+/turf/open/floor/facility/dark,
+/area/city/backstreets_room)
+"EO" = (
+/obj/effect/turf_decal/siding/green{
+	dir = 1;
+	color = "#006400"
+	},
+/obj/item/trash/cheesie,
+/turf/open/floor/plasteel/shuttle{
+	color = "#42f545"
+	},
+/area/city/backstreets_room)
+"EQ" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/decal/cleanable/cobweb,
+/turf/open/floor/facility/dark,
+/area/city/backstreets_room)
+"EV" = (
+/obj/item/kirbyplants/random,
+/obj/effect/turf_decal/siding/green{
+	color = "#006400";
+	dir = 10
+	},
+/obj/structure/fluff/broken_flooring{
+	color = "#42f545"
+	},
+/turf/open/floor/plasteel/shuttle{
+	color = "#42f545"
+	},
+/area/city/backstreets_room)
+"Fi" = (
+/obj/structure/sign/departments/science,
+/turf/closed/indestructible/reinforced{
+	color = "#42f545"
+	},
+/area/city/backstreets_room)
+"Fr" = (
+/obj/structure/spider/stickyweb/genetic,
+/mob/living/simple_animal/hostile/ordeal/steel_dawn,
+/turf/open/floor/plasteel/shuttle{
+	color = "#42f545"
+	},
+/area/city/backstreets_room)
+"Fw" = (
+/obj/structure/sign/departments/xenobio,
+/turf/closed/indestructible/reinforced{
+	color = "#42f545"
+	},
+/area/city/backstreets_room)
+"FI" = (
+/obj/effect/turf_decal/siding/green{
+	color = "#006400";
+	dir = 8
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/plasteel/shuttle{
+	color = "#42f545"
+	},
+/area/city/backstreets_room)
+"FO" = (
+/obj/machinery/door/airlock/public{
+	resistance_flags = 64
+	},
+/turf/open/floor/plasteel/shuttle{
+	color = "#42f545"
+	},
+/area/city/backstreets_room)
+"Gv" = (
+/obj/structure/plaque/static_plaque{
+	pixel_x = -32
+	},
+/obj/effect/turf_decal/siding/green{
+	color = "#006400";
+	dir = 8
+	},
+/obj/structure/fluff/broken_flooring{
+	color = "#42f545"
+	},
+/turf/open/floor/plasteel/shuttle{
+	color = "#42f545"
+	},
+/area/city/backstreets_room)
+"GZ" = (
+/obj/machinery/door/airlock/public{
+	resistance_flags = 64
+	},
+/turf/open/floor/carpet/green,
+/area/city/backstreets_room)
+"HC" = (
+/obj/structure/closet/wardrobe/green,
+/obj/structure/spider/stickyweb/genetic,
+/turf/open/floor/carpet/green,
+/area/city/backstreets_room)
+"HE" = (
+/obj/effect/turf_decal{
+	dir = 8
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/mob/living/simple_animal/hostile/ordeal/steel_dawn/steel_noon,
+/turf/open/floor/plasteel/shuttle{
+	color = "#42f545"
+	},
+/area/city/backstreets_room)
+"HV" = (
+/obj/structure/table/wood/fancy/green,
+/obj/item/paper_bin,
+/obj/item/pen,
+/obj/item/pen,
+/turf/open/floor/carpet/green,
+/area/city/backstreets_room)
+"Ik" = (
+/obj/effect/turf_decal/siding/purple,
+/obj/effect/turf_decal/siding/purple{
+	dir = 1
+	},
+/turf/open/floor/plasteel/shuttle{
+	color = "#42f545"
+	},
+/area/city/backstreets_room)
+"Jl" = (
+/obj/structure/spider/stickyweb/genetic,
+/turf/open/floor/carpet/green,
+/area/city/backstreets_room)
+"Ku" = (
+/obj/machinery/camera/emp_proof{
+	dir = 8
+	},
+/obj/structure/closet/crate/large,
+/obj/item/stack/sheet/silk/steel_simple,
+/obj/item/stack/sheet/silk/steel_simple,
+/obj/item/stack/sheet/silk/steel_simple,
+/obj/item/stack/sheet/silk/steel_simple,
+/obj/item/stack/sheet/silk/steel_simple,
+/obj/item/stack/sheet/silk/steel_simple,
+/obj/item/stack/sheet/silk/steel_simple,
+/obj/item/stack/sheet/silk/steel_simple,
+/obj/item/stack/sheet/silk/steel_advanced,
+/obj/item/stack/sheet/silk/steel_advanced,
+/obj/item/stack/sheet/silk/steel_advanced,
+/obj/item/stack/sheet/silk/steel_advanced,
+/obj/item/stack/sheet/silk/steel_advanced,
+/obj/item/stack/sheet/silk/steel_advanced,
+/obj/item/stack/sheet/silk/steel_elegant,
+/obj/item/stack/sheet/silk/steel_elegant,
+/obj/item/stack/sheet/silk/steel_elegant,
+/obj/item/stack/sheet/silk/steel_elegant,
+/obj/item/stack/sheet/silk/steel_masterpiece,
+/obj/structure/spider/stickyweb/genetic,
+/turf/open/floor/plasteel/white,
+/area/city/backstreets_room)
+"KD" = (
+/obj/effect/turf_decal/siding/purple{
+	dir = 1
+	},
+/obj/structure/table/reinforced,
+/obj/structure/closet/crate/large,
+/turf/open/floor/plasteel/shuttle{
+	color = "#42f545"
+	},
+/area/city/backstreets_room)
+"KJ" = (
+/obj/effect/turf_decal/siding/green{
+	color = "#006400"
+	},
+/turf/open/floor/plasteel/shuttle{
+	color = "#42f545"
+	},
+/area/city/backstreets_room)
+"Lg" = (
+/obj/structure/extinguisher_cabinet{
+	pixel_x = 32
+	},
+/obj/item/kirbyplants/random,
+/obj/effect/turf_decal/siding/green{
+	color = "#006400";
+	dir = 5
+	},
+/obj/machinery/light/broken{
+	dir = 4
+	},
+/turf/open/floor/plasteel/shuttle{
+	color = "#42f545"
+	},
+/area/city/backstreets_room)
+"Lm" = (
+/obj/machinery/processor/slime,
+/turf/open/floor/plating/asteroid/snow/airless,
+/area/city/backstreets_room)
+"LR" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/turf_decal/bot,
+/mob/living/simple_animal/slime/random,
+/turf/open/floor/facility/dark,
+/area/city/backstreets_room)
+"MD" = (
+/obj/effect/turf_decal/siding/purple{
+	dir = 8
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/item/trash/semki,
+/obj/item/trash/sosjerky,
+/mob/living/simple_animal/hostile/ordeal/steel_dawn,
+/turf/open/floor/plating{
+	color = "#42f545"
+	},
+/area/city/backstreets_room)
+"MF" = (
+/obj/effect/turf_decal/siding/purple{
+	dir = 4
+	},
+/obj/item/trash/energybar,
+/turf/open/floor/plating{
+	color = "#42f545"
+	},
+/area/city/backstreets_room)
+"MP" = (
+/obj/structure/sign/warning/coldtemp,
+/turf/closed/indestructible/reinforced{
+	color = "#42f545"
+	},
+/area/city/backstreets_room)
+"Nx" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/turf_decal/bot,
+/turf/open/floor/facility/dark,
+/area/city/backstreets_room)
+"Ny" = (
+/obj/effect/turf_decal/siding/green{
+	color = "#006400";
+	dir = 4
+	},
+/obj/item/trash/cheesie,
+/turf/open/floor/plating{
+	color = "#42f545"
+	},
+/area/city/backstreets_room)
+"NF" = (
+/obj/structure/closet/crate/large,
+/obj/item/stack/spacecash/c50,
+/obj/item/stack/spacecash/c50,
+/obj/item/stack/spacecash/c50,
+/obj/item/stack/spacecash/c50,
+/obj/item/stack/spacecash/c50,
+/obj/item/stack/spacecash/c50,
+/obj/item/stack/spacecash/c50,
+/obj/item/stack/spacecash/c100,
+/obj/item/stack/spacecash/c100,
+/obj/item/stack/spacecash/c100,
+/obj/item/stack/spacecash/c100,
+/obj/item/stack/spacecash/c100,
+/obj/item/stack/spacecash/c100,
+/obj/item/stack/spacecash/c200,
+/obj/item/stack/spacecash/c200,
+/obj/item/stack/spacecash/c200,
+/obj/structure/spider/stickyweb/genetic,
+/obj/effect/decal/cleanable/cobweb/cobweb2,
+/turf/open/floor/plasteel/white,
+/area/city/backstreets_room)
+"NN" = (
+/obj/effect/turf_decal/siding/purple{
+	dir = 1
+	},
+/obj/structure/fluff/broken_flooring{
+	color = "#42f545"
+	},
+/turf/open/floor/plasteel/shuttle{
+	color = "#42f545"
+	},
+/area/city/backstreets_room)
+"Ol" = (
+/obj/structure/chair/office,
+/obj/effect/turf_decal/siding/green{
+	dir = 1;
+	color = "#006400"
+	},
+/obj/machinery/light/broken{
+	dir = 1
+	},
+/turf/open/floor/carpet/green,
+/area/city/backstreets_room)
+"Om" = (
+/obj/structure/closet/wardrobe/genetics_white,
+/obj/structure/fluff/broken_flooring{
+	color = "#42f545"
+	},
+/turf/open/floor/plasteel/shuttle{
+	color = "#42f545"
+	},
+/area/city/backstreets_room)
+"Pa" = (
+/obj/machinery/camera/emp_proof{
+	dir = 6
+	},
+/obj/effect/turf_decal/siding/green{
+	dir = 1;
+	color = "#006400"
+	},
+/turf/open/floor/plasteel/shuttle{
+	color = "#42f545"
+	},
+/area/city/backstreets_room)
+"Pb" = (
+/turf/open/floor/plating{
+	color = "#42f545"
+	},
+/area/city/backstreets_room)
+"Ps" = (
+/obj/machinery/camera/emp_proof{
+	dir = 4
+	},
+/obj/machinery/door/window,
+/obj/effect/turf_decal/siding/green{
+	color = "#006400";
+	dir = 10
+	},
+/obj/structure/plaque/static_plaque{
+	pixel_x = -32
+	},
+/obj/structure/spider/stickyweb/genetic,
+/turf/open/floor/carpet/green,
+/area/city/backstreets_room)
+"Px" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/gibspawner/human/bodypartless,
+/mob/living/carbon/human/species/monkey,
+/obj/effect/turf_decal/bot,
+/turf/open/floor/facility/dark,
+/area/city/backstreets_room)
+"PI" = (
+/obj/structure/table/wood/fancy/green,
+/obj/item/key/displaycase,
+/obj/item/key/displaycase,
+/obj/effect/landmark/cratespawn/corpo,
+/obj/effect/landmark/cratespawn/corpo,
+/obj/item/documents,
+/turf/open/floor/carpet/green,
+/area/city/backstreets_room)
+"PK" = (
+/obj/machinery/monkey_recycler,
+/obj/item/trash/energybar,
+/turf/open/floor/plating{
+	color = "#42f545"
+	},
+/area/city/backstreets_room)
+"PL" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/machinery/light{
+	color = "#32a852";
+	dir = 8
+	},
+/obj/effect/decal/cleanable/cobweb,
+/turf/open/floor/facility/dark,
+/area/city/backstreets_room)
+"PV" = (
+/obj/effect/turf_decal/siding/purple{
+	dir = 1
+	},
+/obj/structure/table/reinforced,
+/obj/structure/closet/crate/large,
+/obj/item/stack/spacecash/c50,
+/obj/item/stack/spacecash/c50,
+/obj/item/stack/spacecash/c50,
+/obj/item/stack/spacecash/c100,
+/obj/item/stack/spacecash/c100,
+/obj/item/stack/spacecash/c100,
+/obj/item/stack/spacecash/c100,
+/obj/structure/spider/stickyweb/genetic,
+/turf/open/floor/plasteel/shuttle{
+	color = "#42f545"
+	},
+/area/city/backstreets_room)
+"Qa" = (
+/obj/effect/turf_decal/siding/green{
+	color = "#006400";
+	dir = 4
+	},
+/turf/open/floor/plasteel/shuttle{
+	color = "#42f545"
+	},
+/area/city/backstreets_room)
+"QZ" = (
+/obj/effect/turf_decal{
+	dir = 1
+	},
+/turf/open/floor/plasteel/shuttle{
+	color = "#42f545"
+	},
+/area/city/backstreets_room)
+"Rk" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/item/trash/sosjerky,
+/mob/living/simple_animal/hostile/ordeal/steel_dawn,
+/turf/open/floor/plating{
+	color = "#42f545"
+	},
+/area/city/backstreets_room)
+"Rw" = (
+/obj/effect/turf_decal/siding/green{
+	color = "#006400";
+	dir = 9
+	},
+/turf/open/floor/plating{
+	color = "#42f545"
+	},
+/area/city/backstreets_room)
+"Ry" = (
+/mob/living/simple_animal/slime/pet{
+	color = "#32a852"
+	},
+/turf/open/floor/plasteel/shuttle{
+	color = "#42f545"
+	},
+/area/city/backstreets_room)
+"RI" = (
+/mob/living/simple_animal/hostile/ordeal/steel_dawn,
+/turf/open/floor/plasteel/shuttle{
+	color = "#42f545"
+	},
+/area/city/backstreets_room)
+"RX" = (
+/obj/structure/spider/stickyweb/genetic,
+/turf/open/floor/plasteel/shuttle{
+	color = "#42f545"
+	},
+/area/city/backstreets_room)
+"RY" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/item/trash/semki,
+/turf/open/floor/plasteel/shuttle{
+	color = "#42f545"
+	},
+/area/city/backstreets_room)
+"Sn" = (
+/obj/structure/plaque/static_plaque{
+	pixel_x = -32
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/spider/stickyweb/genetic,
+/turf/open/floor/plasteel/shuttle{
+	color = "#42f545"
+	},
+/area/city/backstreets_room)
+"So" = (
+/obj/machinery/camera/emp_proof{
+	dir = 8
+	},
+/obj/effect/turf_decal/siding/green{
+	color = "#006400";
+	dir = 6
+	},
+/obj/structure/closet/crate/large,
+/obj/item/stack/spacecash/c100,
+/obj/item/stack/spacecash/c100,
+/obj/item/stack/spacecash/c100,
+/obj/structure/spider/stickyweb/genetic,
+/turf/open/floor/plating{
+	color = "#42f545"
+	},
+/area/city/backstreets_room)
+"SB" = (
+/obj/effect/turf_decal/siding/green/end{
+	dir = 4;
+	color = "#006400"
+	},
+/obj/item/kirbyplants/random,
+/obj/structure/plaque/static_plaque{
+	pixel_x = 32
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/decal/cleanable/cobweb/cobweb2,
+/turf/open/floor/carpet/green,
+/area/city/backstreets_room)
+"SM" = (
+/obj/structure/table/wood/fancy/green,
+/obj/item/clothing/mask/animal/frog/cursed,
+/obj/item/clothing/under/color/darkgreen,
+/obj/item/clothing/suit/armor/ego_gear/city/kcorp_sci{
+	name = "slime office scientist uniform";
+	desc = "A white labcoat with slime offices signature green. Appears to be specifically designed to not protect the wearer."
+	},
+/obj/item/clothing/shoes/cowboy/lizard,
+/obj/item/storage/backpack/satchel/vir,
+/obj/structure/spider/stickyweb/genetic,
+/turf/open/floor/carpet/green,
+/area/city/backstreets_room)
+"Tb" = (
+/obj/structure/table/wood/fancy/green,
+/obj/effect/turf_decal/siding/green{
+	color = "#006400";
+	dir = 4
+	},
+/obj/item/food/donut/jelly/slimejelly/blumpkin,
+/obj/item/food/donut/jelly/slimejelly/blumpkin,
+/obj/item/food/donut/jelly/slimejelly/trumpet,
+/obj/item/food/donut/jelly/slimejelly/trumpet,
+/obj/item/food/donut/jelly/slimejelly/bungo,
+/obj/item/food/donut/jelly/slimejelly/bungo,
+/obj/item/trash/semki,
+/obj/item/trash/sosjerky,
+/turf/open/floor/carpet/green,
+/area/city/backstreets_room)
+"Th" = (
+/obj/machinery/smartfridge/extract,
+/turf/open/floor/plasteel/white,
+/area/city/backstreets_room)
+"Tj" = (
+/obj/machinery/camera/emp_proof,
+/obj/effect/turf_decal/siding/green{
+	dir = 1;
+	color = "#006400"
+	},
+/turf/open/floor/plating{
+	color = "#42f545"
+	},
+/area/city/backstreets_room)
+"Tn" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/landmark/cratespawn/corpo,
+/turf/open/floor/facility/dark,
+/area/city/backstreets_room)
+"Tp" = (
+/obj/structure/chair/sofa/left{
+	dir = 1
+	},
+/turf/open/floor/plasteel/shuttle{
+	color = "#42f545"
+	},
+/area/city/backstreets_room)
+"TP" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/spider/stickyweb/genetic,
+/turf/open/floor/facility/dark,
+/area/city/backstreets_room)
+"Um" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/plasteel/shuttle{
+	color = "#42f545"
+	},
+/area/city/backstreets_room)
+"Uq" = (
+/obj/effect/turf_decal/siding/purple{
+	dir = 4
+	},
+/obj/item/trash/semki,
+/turf/open/floor/plasteel/shuttle{
+	color = "#42f545"
+	},
+/area/city/backstreets_room)
+"UL" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/machinery/camera/emp_proof{
+	dir = 8
+	},
+/obj/effect/landmark/cratespawn/corpo,
+/turf/open/floor/facility/dark,
+/area/city/backstreets_room)
+"Vh" = (
+/obj/machinery/light/broken{
+	dir = 4
+	},
+/turf/open/floor/plating/asteroid/snow/airless,
+/area/city/backstreets_room)
+"Vu" = (
+/obj/effect/turf_decal/siding/purple{
+	dir = 8
+	},
+/turf/open/floor/plasteel/shuttle{
+	color = "#42f545"
+	},
+/area/city/backstreets_room)
+"VF" = (
+/obj/structure/chair/comfy/teal,
+/turf/open/floor/plasteel/shuttle{
+	color = "#42f545"
+	},
+/area/city/backstreets_room)
+"Wg" = (
+/obj/structure/disposalpipe/broken{
+	dir = 8
+	},
+/turf/open/floor/plating/asteroid/snow/airless,
+/area/city/backstreets_room)
+"Wv" = (
+/obj/item/slimecross/industrial/purple,
+/obj/item/slimecross/industrial/purple,
+/obj/item/trash/energybar,
+/turf/open/floor/plasteel/shuttle{
+	color = "#42f545"
+	},
+/area/city/backstreets_room)
+"WC" = (
+/obj/effect/turf_decal/siding/purple/corner{
+	dir = 4
+	},
+/turf/open/floor/plasteel/shuttle{
+	color = "#42f545"
+	},
+/area/city/backstreets_room)
+"Xw" = (
+/obj/effect/turf_decal/siding/green{
+	color = "#006400";
+	dir = 4
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/mob/living/simple_animal/hostile/ordeal/steel_dawn,
+/turf/open/floor/plating{
+	color = "#42f545"
+	},
+/area/city/backstreets_room)
+"XA" = (
+/obj/effect/turf_decal{
+	dir = 4
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/machinery/light/broken{
+	dir = 1
+	},
+/turf/open/floor/plating{
+	color = "#42f545"
+	},
+/area/city/backstreets_room)
+"XI" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/turf_decal/bot,
+/obj/effect/landmark/cratespawn/corpo,
+/turf/open/floor/facility/dark,
+/area/city/backstreets_room)
+"YZ" = (
+/obj/effect/turf_decal/siding/purple{
+	dir = 8
+	},
+/obj/effect/turf_decal/siding/green/corner{
+	dir = 4;
+	color = "#006400"
+	},
+/obj/item/trash/energybar,
+/turf/open/floor/plasteel/shuttle{
+	color = "#42f545"
+	},
+/area/city/backstreets_room)
+"Zx" = (
+/obj/effect/turf_decal/siding/purple/corner{
+	dir = 1
+	},
+/obj/item/trash/cheesie,
+/turf/open/floor/plasteel/shuttle{
+	color = "#42f545"
+	},
+/area/city/backstreets_room)
+"ZE" = (
+/obj/effect/turf_decal/siding/green{
+	dir = 1;
+	color = "#006400"
+	},
+/turf/open/floor/plating{
+	color = "#42f545"
+	},
+/area/city/backstreets_room)
+"ZV" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/facility/dark,
+/area/city/backstreets_room)
+
+(1,1,1) = {"
+us
+us
+us
+us
+us
+fn
+fn
+fn
+fn
+xM
+fn
+fn
+fn
+fn
+fn
+fn
+fn
+fn
+fn
+fn
+"}
+(2,1,1) = {"
+us
+hK
+ZV
+XI
+Bk
+wl
+Sn
+RX
+AN
+ir
+lq
+Bk
+PL
+rU
+wz
+AY
+wz
+gF
+TP
+fn
+"}
+(3,1,1) = {"
+fn
+ZV
+Px
+AF
+Bk
+PV
+Fr
+xh
+Fw
+EO
+sH
+Bk
+zu
+CH
+Bk
+Dd
+AI
+TP
+EK
+fn
+"}
+(4,1,1) = {"
+fn
+ZV
+ZV
+ZV
+Bk
+hC
+CF
+Om
+us
+yd
+bw
+Bk
+AI
+Bk
+Bk
+Ik
+Bk
+Bk
+Bk
+fn
+"}
+(5,1,1) = {"
+fn
+wz
+Bk
+Bk
+Bk
+xN
+VF
+qj
+us
+Lg
+sb
+hk
+YZ
+Vu
+gY
+tu
+ee
+Vu
+wF
+fn
+"}
+(6,1,1) = {"
+fn
+HE
+Vu
+MD
+Vu
+Bz
+iE
+PK
+fn
+fn
+fn
+fn
+Pa
+Rk
+Pb
+yG
+mt
+Qa
+kP
+fn
+"}
+(7,1,1) = {"
+us
+hl
+kL
+iP
+iP
+Ah
+iE
+xg
+fn
+Th
+bJ
+AZ
+kK
+iE
+CE
+fn
+fn
+FO
+us
+us
+"}
+(8,1,1) = {"
+us
+jv
+jv
+jv
+jv
+aY
+Pb
+DN
+fn
+su
+mD
+gW
+gS
+iE
+fj
+Ed
+Ps
+Pb
+Tp
+us
+"}
+(9,1,1) = {"
+us
+EQ
+LR
+ZV
+jv
+xN
+Ry
+DN
+fn
+NF
+Ku
+fn
+nd
+iE
+wU
+oA
+eq
+ai
+oC
+Fi
+"}
+(10,1,1) = {"
+fn
+sF
+Nx
+fz
+pY
+QZ
+RY
+BJ
+fn
+us
+us
+us
+kK
+sS
+us
+ci
+HV
+vH
+qi
+Ba
+"}
+(11,1,1) = {"
+fn
+CT
+nc
+TP
+ZV
+mr
+Pb
+BW
+fn
+im
+HC
+us
+zU
+jQ
+fn
+Ol
+vn
+zL
+Pb
+iE
+"}
+(12,1,1) = {"
+fn
+Tn
+TP
+yk
+jv
+aY
+Wv
+ao
+fn
+ol
+Ek
+AI
+Cc
+KJ
+fn
+tG
+Tb
+oN
+Tp
+Fi
+"}
+(13,1,1) = {"
+us
+jv
+jv
+jv
+jv
+aY
+jY
+DN
+fn
+Jl
+PI
+AI
+CF
+xQ
+us
+SB
+Bk
+Um
+oC
+fn
+"}
+(14,1,1) = {"
+us
+jy
+ee
+un
+gY
+Zx
+xh
+np
+fn
+Jl
+SM
+fn
+ZE
+nt
+us
+fn
+fn
+FO
+fn
+fn
+"}
+(15,1,1) = {"
+us
+XA
+MF
+Uq
+oX
+WC
+iE
+qq
+us
+GZ
+fn
+fn
+CK
+pC
+FI
+uk
+fQ
+kD
+EV
+fn
+"}
+(16,1,1) = {"
+us
+wz
+jv
+AI
+AI
+NN
+VF
+qj
+us
+Rw
+FI
+Gv
+fo
+sY
+bl
+Xw
+Ny
+bk
+mE
+us
+"}
+(17,1,1) = {"
+fn
+TP
+Cy
+ZV
+jv
+xa
+to
+wb
+us
+Tj
+cQ
+iE
+KJ
+fn
+fn
+MP
+FO
+fn
+us
+us
+"}
+(18,1,1) = {"
+fn
+TP
+AF
+ZV
+jv
+KD
+Pb
+RI
+Fw
+kG
+Dj
+xh
+yH
+AI
+at
+Wg
+at
+at
+fI
+us
+"}
+(19,1,1) = {"
+fn
+il
+Nx
+UL
+jv
+bA
+yC
+xh
+AN
+co
+bl
+oQ
+So
+Bk
+zP
+Vh
+at
+Vh
+Lm
+us
+"}
+(20,1,1) = {"
+fn
+fn
+us
+us
+us
+fn
+fn
+fn
+fn
+xM
+fn
+fn
+fn
+fn
+fn
+fn
+us
+us
+us
+us
+"}

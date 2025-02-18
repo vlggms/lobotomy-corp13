@@ -58,17 +58,17 @@
 		Is that leakage antifreeze, or blood? <br>\
 		While you were wondering, the terminal on its chest flashed to life. <br>\
 		Looks like you can write something."
-	observation_choices = list("Hello", "Goodbye")
-	correct_choices = list("Hello")
-	observation_success_message = "The robot lifts both arms with some struggle. <br>\
-		The terminal prints out its words: <br>\
-		<Welcome, Dear Guest. Have you enjoyed the town tour? \
-		We’d like you to have a souvenir. :-)> <br>\
-		A smile is displayed on the terminal, <br>\
-		but in the robot’s gestures, you feel a plea for help."
-	observation_fail_message = "The terminal’s light goes red, and warnings start to blare. <br>\
-		The robot shakes intensely as if in pain. <br>\
-		<Farewell. <br>Farewell, <br>FarewellFarewellFarewellFarewellFarewellFarewellFarewellFarewellFarewell>"
+	observation_choices = list(
+		"Hello" = list(TRUE, "The robot lifts both arms with some struggle. <br>\
+			The terminal prints out its words: <br>\
+			<Welcome, Dear Guest. Have you enjoyed the town tour? \
+			We’d like you to have a souvenir. :-)> <br>\
+			A smile is displayed on the terminal, <br>\
+			but in the robot’s gestures, you feel a plea for help."),
+		"Goodbye" = list(FALSE, "The terminal’s light goes red, and warnings start to blare. <br>\
+			The robot shakes intensely as if in pain. <br>\
+			<Farewell. <br>Farewell, <br>FarewellFarewellFarewellFarewellFarewellFarewellFarewellFarewellFarewell>"),
+	)
 
 	var/can_act = TRUE
 	var/grab_cooldown
@@ -218,7 +218,7 @@
 	if(!can_act)
 		return FALSE
 	if ((grab_cooldown <= world.time) && prob(35) && (!client))//checks for client since you can still use the claw if you click nearby
-		var/turf/target_turf = get_turf(target)
+		var/turf/target_turf = get_turf(attacked_target)
 		return ClawGrab(target_turf)
 	return Whip_Attack()
 

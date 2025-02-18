@@ -85,9 +85,9 @@ GLOBAL_LIST_INIT(raidboss, list(/mob/living/simple_animal/hostile/distortion/shr
 /obj/effect/landmark/abnospawn/easycombat/Initialize()
 	..()
 	var/spawning = pick_n_take(GLOB.easycombat)
-	new spawning(get_turf(src))
+	var/mob/living/simple_animal/hostile/abnormality/A = new spawning(get_turf(src))
+	A.rcorp_team = "easy"
 	return INITIALIZE_HINT_QDEL
-
 
 /obj/effect/landmark/abnospawn/easysupport
 	name = "easy support abno spawner"
@@ -98,9 +98,9 @@ GLOBAL_LIST_INIT(raidboss, list(/mob/living/simple_animal/hostile/distortion/shr
 /obj/effect/landmark/abnospawn/easysupport/Initialize()
 	..()
 	var/spawning = pick_n_take(GLOB.easysupport)
-	new spawning(get_turf(src))
+	var/mob/living/simple_animal/hostile/abnormality/A = new spawning(get_turf(src))
+	A.rcorp_team = "easy"
 	return INITIALIZE_HINT_QDEL
-
 
 /obj/effect/landmark/abnospawn/easytank
 	name = "easy tank abno spawner"
@@ -111,7 +111,8 @@ GLOBAL_LIST_INIT(raidboss, list(/mob/living/simple_animal/hostile/distortion/shr
 /obj/effect/landmark/abnospawn/easytank/Initialize()
 	..()
 	var/spawning = pick_n_take(GLOB.easytank)
-	new spawning(get_turf(src))
+	var/mob/living/simple_animal/hostile/abnormality/A = new spawning(get_turf(src))
+	A.rcorp_team = "easy"
 	return INITIALIZE_HINT_QDEL
 
 /obj/effect/landmark/abnospawn/hardcombat
@@ -179,3 +180,23 @@ GLOBAL_LIST_INIT(raidboss, list(/mob/living/simple_animal/hostile/distortion/shr
 
 //To do: Deshit this.
 
+/obj/effect/landmark/nobasic_incorp_move
+	name = "incorp barrier"
+	desc = "no basic incorp move"
+	icon = 'icons/effects/landmarks_static.dmi'
+	icon_state = "x2"
+
+/obj/effect/landmark/nobasic_incorp_move/Initialize()
+	..()
+	var/turf/T = get_turf(src)
+	T.turf_flags |= NO_BASIC_INCORP_MOVE
+	return INITIALIZE_HINT_LATELOAD
+
+/obj/effect/landmark/nobasic_incorp_move/Destroy()
+	var/turf/T = get_turf(src)
+	T.turf_flags &= ~NO_BASIC_INCORP_MOVE
+	. = ..()
+
+/obj/effect/landmark/nobasic_incorp_move/disappearing
+	name = "disappearing incorp barrier"
+	desc = "no basic incorp move"

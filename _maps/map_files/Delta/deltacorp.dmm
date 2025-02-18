@@ -4314,6 +4314,7 @@
 	dir = 4
 	},
 /mob/living/simple_animal/bot/cleanbot,
+/obj/machinery/holopad,
 /turf/open/floor/bronze,
 /area/department_main/training)
 "jE" = (
@@ -5381,6 +5382,7 @@
 	},
 /obj/structure/disposalpipe/junction,
 /mob/living/simple_animal/bot/cleanbot,
+/obj/machinery/holopad,
 /turf/open/floor/plasteel/sepia{
 	color = "#ccc8c0"
 	},
@@ -6067,6 +6069,7 @@
 	dir = 9
 	},
 /mob/living/simple_animal/bot/cleanbot,
+/obj/machinery/holopad,
 /turf/open/floor/plasteel/sepia,
 /area/department_main/control)
 "nS" = (
@@ -9708,6 +9711,7 @@
 	color = "#090807";
 	dir = 4
 	},
+/obj/machinery/holopad,
 /turf/open/floor/plasteel/sepia{
 	color = "#ccc8c0"
 	},
@@ -10225,6 +10229,7 @@
 	color = "#bf48b1";
 	dir = 4
 	},
+/obj/machinery/holopad,
 /turf/open/floor/plasteel/sepia,
 /area/department_main/command)
 "xJ" = (
@@ -13064,6 +13069,7 @@
 	dir = 4
 	},
 /mob/living/simple_animal/bot/cleanbot,
+/obj/machinery/holopad,
 /turf/open/floor/plasteel/sepia,
 /area/department_main/welfare)
 "DT" = (
@@ -15065,6 +15071,7 @@
 	dir = 4
 	},
 /mob/living/simple_animal/bot/cleanbot,
+/obj/machinery/holopad,
 /turf/open/floor/plasteel/sepia,
 /area/department_main/discipline)
 "II" = (

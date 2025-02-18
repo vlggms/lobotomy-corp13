@@ -154,10 +154,6 @@
 /obj/structure/table/wood,
 /turf/open/floor/carpet/blue,
 /area/city/outskirts)
-"V" = (
-/obj/structure/displaycase,
-/turf/open/floor/carpet/blue,
-/area/city/outskirts)
 "X" = (
 /obj/structure/chair/wood,
 /turf/open/floor/carpet/blue,
@@ -230,7 +226,7 @@ a
 "}
 (5,1,1) = {"
 a
-V
+M
 M
 M
 S
@@ -238,7 +234,7 @@ S
 R
 M
 M
-V
+M
 a
 "}
 (6,1,1) = {"
@@ -282,7 +278,7 @@ a
 "}
 (9,1,1) = {"
 a
-V
+M
 M
 M
 M
@@ -290,7 +286,7 @@ F
 M
 S
 M
-V
+M
 a
 "}
 (10,1,1) = {"

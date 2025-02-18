@@ -1,0 +1,167 @@
+[
+	{
+		"code": "COL-FF-FOR",
+		"category": "Fixer Forms",
+		"name": "Fixer Office Registration",
+		"info": [
+			"<span style=\"color:'black';font-family:'Verdana';\"><h1>Hana-Association - Fixer Office Registration form</h1>",
+			"<hr>",
+			"<p><code>This is a Registration form for the creation of an office. Please fill in the following information properly. This form is meant for the Office Director.</code></p>",
+			"<p><strong><code>Registrant Information</code></strong></p>",
+			"<ul>",
+			"<li><p><code>Name:</code>[<input type=\"text\" style=\"font:'12x Verdana';color:'black';min-width:104px;max-width:104px;\" id=\"paperfield_1\" maxlength=16 size=16 />]</p></li>",
+			"<li><p><code>Age:</code>[<input type=\"text\" style=\"font:'12x Verdana';color:'black';min-width:26px;max-width:26px;\" id=\"paperfield_2\" maxlength=3 size=3 />]  <code>Sex:</code>[<input type=\"text\" style=\"font:'12x Verdana';color:'black';min-width:62px;max-width:62px;\" id=\"paperfield_3\" maxlength=9 size=9 />]</p></li>",
+			"<li><p><code>Has the registrant previously registered to another Office? (Y/N)</code> [<input type=\"text\" style=\"font:'12x Verdana';color:'black';min-width:38px;max-width:38px;\" id=\"paperfield_4\" maxlength=5 size=5 />]</p></li>",
+			"</ul>",
+			"<hr>",
+			"<center>",
+			"<p>========</p>",
+			"<p>STAMP HERE</p>",
+			"<p>========</p>",
+			"</center>",
+			"<hr>",
+			"<h3 id=\"office-details\"><code>Office Details</code></h3>",
+			"<p><strong><code>Office-Name</code></strong>: [<input type=\"text\" style=\"font:'12x Verdana';color:'black';min-width:110px;max-width:110px;\" id=\"paperfield_5\" maxlength=17 size=17 />]</p>",
+			"<p><code>Office Type </code>(<em><code>ONLY CHECK 1</code></em><code>)</code></p>",
+			"<ul>",
+			"<li><p>[<input type=\"text\" style=\"font:'12x Verdana';color:'black';min-width:20px;max-width:20px;\" id=\"paperfield_6\" maxlength=2 size=2 />] <code>Combat</code></p></li>",
+			"<li><p>[<input type=\"text\" style=\"font:'12x Verdana';color:'black';min-width:20px;max-width:20px;\" id=\"paperfield_7\" maxlength=2 size=2 />] <code>Protection</code></p></li>",
+			"<li><p>[<input type=\"text\" style=\"font:'12x Verdana';color:'black';min-width:20px;max-width:20px;\" id=\"paperfield_8\" maxlength=2 size=2 />] <code>Peacekeeping</code></p></li>",
+			"<li><p>[<input type=\"text\" style=\"font:'12x Verdana';color:'black';min-width:20px;max-width:20px;\" id=\"paperfield_9\" maxlength=2 size=2 />] <code>Recon</code></p></li>",
+			"<li><p>[<input type=\"text\" style=\"font:'12x Verdana';color:'black';min-width:20px;max-width:20px;\" id=\"paperfield_10\" maxlength=2 size=2 />] <code>Fishing</code></p></li>",
+			"<li><p>[<input type=\"text\" style=\"font:'12x Verdana';color:'black';min-width:20px;max-width:20px;\" id=\"paperfield_11\" maxlength=2 size=2 />] <code>Workshop</code></p></li>",
+			"<li><p>[<input type=\"text\" style=\"font:'12x Verdana';color:'black';min-width:20px;max-width:20px;\" id=\"paperfield_12\" maxlength=2 size=2 />] <code>Other*</code></p></li>",
+			"</ul>",
+			"<p><code>*Other must be defined for capsule, if definition is not qualified for a specific capsule, your Hana Associate will choose one for you.</code></p>",
+			"<p><code>Starting-Number of Fixers:</code> [<input type=\"text\" style=\"font:'12x Verdana';color:'black';min-width:26px;max-width:26px;\" id=\"paperfield_13\" maxlength=3 size=3 />]</p>",
+			"<p><code>By signing this, you agree to the laws and stipulations that Hana can impose.</code></p>",
+			"<p><code>Signature:</code>[<input type=\"text\" style=\"font:'12x Verdana';color:'black';min-width:134px;max-width:134px;\" id=\"paperfield_14\" maxlength=21 size=21 />]</p>",
+			"<p><code>Approved By:</code> [<input type=\"text\" style=\"font:'12x Verdana';color:'black';min-width:110px;max-width:110px;\" id=\"paperfield_15\" maxlength=17 size=17 />]</p>",
+			"<hr>",
+			"<p><em><code>Offices approved by the Hana-Association are liable to direct-orders/Emergency Summons in regards to Urban-Myths and above. Please keep in mind the Hana-Association retains the right to Remove your office from the list of Registered offices, if the Hana-Association has in any reason, or any case decided to do so. In which case, the Hana-Association retains the right to termination of this authorization</code></em></p>",
+			"</span>"
+		]
+	},
+	{
+		"code": "COL-FF-HGS",
+		"category": "Fixer Forms",
+		"name": "Hana Grading Sheet",
+		"info": [
+			"<span style=\"color:'black';font-family:'Verdana';\"><h2>Hana Grading Sheet</h2>",
+			"<h3 id=\"fixer-information\">Fixer information</h3>",
+			"<p>Name [<input type=\"text\" style=\"font:'12x Verdana';color:'black';min-width:164px;max-width:164px;\" id=\"paperfield_1\" maxlength=26 size=26 />]</p>",
+			"<p>Office [<input type=\"text\" style=\"font:'12x Verdana';color:'black';min-width:164px;max-width:164px;\" id=\"paperfield_2\" maxlength=26 size=26 />]</p>",
+			"<p>Grade Issued (C denotes Color): [<input type=\"text\" style=\"font:'12x Verdana';color:'black';min-width:14px;max-width:14px;\" id=\"paperfield_3\" maxlength=1 size=1 />]</p>",
+			"<p>Hana Official Name:</p>",
+			"<p>[<input type=\"text\" style=\"font:'12x Verdana';color:'black';min-width:182px;max-width:182px;\" id=\"paperfield_4\" maxlength=29 size=29 />]</p>",
+			"<p>Stamp Below:</p>",
+			"</span>"
+		]
+	},
+	{
+		"code": "COL-FF-SFL",
+		"category": "Fixer Forms",
+		"name": "Solo Fixer License",
+		"info": [
+			"<span style=\"color:'black';font-family:'Verdana';\"><h1>Hana-Association - Solo Fixer License Form</h1>",
+			"<hr>",
+			"<p><code>This is a Hana-Association official form stating that you are an official Fixer with no office or association affiliation.</code></p>",
+			"<p><code>As of, </code>[<input type=\"text\" style=\"font:'12x Verdana';color:'black';min-width:86px;max-width:86px;\" id=\"paperfield_1\" maxlength=13 size=13 />]<code>Citizen</code>[<input type=\"text\" style=\"font:'12x Verdana';color:'black';min-width:110px;max-width:110px;\" id=\"paperfield_2\" maxlength=17 size=17 />]<code>has requested to form a fixer under the Hana Association. Within District</code>[<input type=\"text\" style=\"font:'12x Verdana';color:'black';min-width:26px;max-width:26px;\" id=\"paperfield_3\" maxlength=3 size=3 />]<code> of the City.</code></p>",
+			"<p><code>Fixer approval given by</code> [<input type=\"text\" style=\"font:'12x Verdana';color:'black';min-width:110px;max-width:110px;\" id=\"paperfield_4\" maxlength=17 size=17 />], <code>Official of the Hana-Association</code></p>",
+			"<hr>",
+			"<center>",
+			"<p>========</p>",
+			"<p>STAMP HERE</p>",
+			"<p>========</p>",
+			"</center>",
+			"<hr>",
+			"<p><em><code>Fixers approved by the Hana-Association are liable to direct-orders/Emergency Summons in regards to Urban-Myths and above. Please keep in mind the Hana-Association retains the right to Remove your status from the registry, if the Hana-Association has in any reason, or any case decided to do so. In which case, the Hana-Association retains the right to termination of this authorization</code></em></p>",
+			"</span>"
+		]
+	},
+	{
+		"code": "COL-HQ-CQ-GMG",
+		"category": "Combat Hana Quests",
+		"name": "Combat Quest - General Meat Gathering",
+		"info": [
+			"<span style=\"color:'black';font-family:'Verdana';\"><h3>Type - Combat</h3>",
+			"<p>There have been reports of the Outskirts being flooded with excess amounts of sweepers, robots, worms, and people with augments that look like bugs.</p>",
+			"<p>The Hana Association requests assistance from fixers in clearing out the Outskirts.</p>",
+			"<p>Rewards:</p>",
+			"<ul>",
+			"<li><p>5 Bug Meat from G-Corp Remnants: 1300 Ahn</p></li>",
+			"<li><p>6 Meat Slurry from Sweepers: 1500 Ahn</p></li>",
+			"<li><p>5 Nihilist Components from Robots: 1700 Ahn</p></li>",
+			"<li><p>4 Perfect Meat from small Worms: 900 Ahn</p></li>",
+			"</ul>",
+			"<p>(These jobs are repeatable a total of <strong>three</strong> times per person/office.)</p>",
+			"</span>"
+		]
+	},
+	{
+		"code": "COL-HQ-CQ-PTC",
+		"category": "Combat Hana Quests",
+		"name": "Combat Quest - Protecting The City",
+		"info": [
+			"<span style=\"color:'black';font-family:'Verdana';\"><h3>Type - Combat (Protection)</h3>",
+			"<p>There has been reports of hostiles around the city. Hana will give you a lump sum up front,</p>",
+			"<p>so long as you assist in cleaning them out.</p>",
+			"<p>Rewards</p>",
+			"<ul>",
+			"<li><p>All proceeds from kills.</p></li>",
+			"<li><p>Grade 9 Fixer - 500 ahn</p></li>",
+			"<li><p>Grade 8 Fixer - 700 ahn</p></li>",
+			"<li><p>Grade 7 Fixer - 1000 ahn</p></li>",
+			"<li><p>Grade 6 Fixer - 1500 ahn</p></li>",
+			"<li><p>Grade 5 Fixer - 2000 ahn</p></li>",
+			"<li><p>Grade 4 Fixer - 2500 ahn</p></li>",
+			"<li><p>Grade 3 Fixer - 3000 ahn</p></li>",
+			"<li><p>Grade 2 Fixer - 4000 ahn</p></li>",
+			"<li><p>Grade 1 Fixer - 5000 ahn</p></li>",
+			"</ul>",
+			"<p>(Failure to assist will result in a breach of contract)</p>",
+			"</span>"
+		]
+	},
+	{
+		"code": "COL-HQ-RQ-BR",
+		"category": "Retrieval Hana Quests",
+		"name": "Retrieval Quest - Body Retrieval",
+		"info": [
+			"<span style=\"color:'black';font-family:'Verdana';\"><h3>Type - Retrieval</h3>",
+			"<p>Fixers going in to the Outskirts have proven to have a high chance of not coming back from their expeditions.</p>",
+			"<p>Bringing back the corpse of a registered fixer in a state that is revivable will be eligible for a reward.</p>",
+			"<p>Reward:</p>",
+			"<ul><li>Fixer Corpse returned to Hana: 1000 Ahn</li></ul>",
+			"</span>"
+		]
+	},
+	{
+		"code": "COL-HQ-BR",
+		"category": "Misc Hana Quests",
+		"name": "Contract Breach",
+		"info": [
+			"<span style=\"color:'black';font-family:'Verdana';\"><h3>Type - Contract Enforcement</h3>",
+			"<p>A Hana-made contract has been breached.</p>",
+			"<p>You are being hired to kill and retrieve their body.</p>",
+			"<p>Target - [<input type=\"text\" style=\"font:'12x Verdana';color:'black';min-width:110px;max-width:110px;\" id=\"paperfield_1\" maxlength=17 size=17 />]</p>",
+			"<p>Rewards</p>",
+			"<ul><li>[<input type=\"text\" style=\"font:'12x Verdana';color:'black';min-width:26px;max-width:26px;\" id=\"paperfield_2\" maxlength=3 size=3 />] Ahn</li></ul>",
+			"</span>"
+		]
+	},
+	{
+		"code": "COL-HQ-OI",
+		"category": "Misc Hana Quests",
+		"name": "Office Inspection",
+		"info": [
+			"<span style=\"color:'black';font-family:'Verdana';\"><h3>Type - Office Grading</h3>",
+			"<p>This is a lump sum grant given to offices that are graded.</p>",
+			"<p>Office grades are up to the local Hana Representative or Administrator.</p>",
+			"<p>Rewards</p>",
+			"<ul><li>Increase in Grade x 500 ahn</li></ul>",
+			"<p>(Only available to offices with a physical office space)</p>",
+			"</span>"
+		]
+	}
+]

@@ -33,15 +33,9 @@
 /turf/open/floor/wood,
 /area/city/outskirts)
 "fB" = (
-/obj/structure/stairs/east,
-/turf/open/floor/wood,
-/area/city/outskirts)
-"fF" = (
-/obj/structure/stairs/east,
-/obj/effect/turf_decal/siding/wood{
-	dir = 1
+/turf/open/floor/plasteel/stairs{
+	dir = 8
 	},
-/turf/open/floor/wood,
 /area/city/outskirts)
 "fY" = (
 /obj/effect/decal/cleanable/blood/gibs/up,
@@ -93,8 +87,9 @@
 /turf/open/floor/wood,
 /area/city/outskirts)
 "qE" = (
-/obj/structure/stairs/west,
-/turf/open/floor/wood,
+/turf/open/floor/plasteel/stairs{
+	dir = 4
+	},
 /area/city/outskirts)
 "qK" = (
 /obj/effect/turf_decal/siding/wood{
@@ -201,13 +196,6 @@
 /obj/structure/railing{
 	dir = 8
 	},
-/obj/effect/turf_decal/siding/wood{
-	dir = 1
-	},
-/turf/open/floor/wood,
-/area/city/outskirts)
-"Ci" = (
-/obj/structure/stairs/west,
 /obj/effect/turf_decal/siding/wood{
 	dir = 1
 	},
@@ -464,7 +452,7 @@ EK
 "}
 (3,1,1) = {"
 EK
-fF
+fB
 Yg
 EK
 fu
@@ -568,7 +556,7 @@ EK
 "}
 (11,1,1) = {"
 EK
-Ci
+qE
 Ay
 EK
 Dk

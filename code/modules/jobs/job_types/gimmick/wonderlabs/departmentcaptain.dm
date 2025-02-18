@@ -25,6 +25,7 @@ GLOBAL_LIST_INIT(captain_departments, list(
 
 	access = list()
 	minimal_access = list()
+	departments = DEPARTMENT_SECURITY
 
 	allow_bureaucratic_error = FALSE
 

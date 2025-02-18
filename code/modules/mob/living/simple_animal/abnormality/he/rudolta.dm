@@ -44,12 +44,12 @@
 		That night, when everyone was sleeping. <br>I waited for the man, sitting next to sleeping Alex. <br>\
 		Sometimes, for someone, an absurd fairy tale is a silver lining of hope. <br>When I met Santa, I imagined dismembering him. <br>... <br>\
 		In front of me is Santa. <br>My ideal. <br>People don't call it Santa. <br>Something is twitching inside of that sack. I......"
-	observation_choices = list("Opened the sack.", "Did not open the sack.")
-	correct_choices = list("Did not open the sack.")
-	observation_success_message = "Inside of the sack is a desire. <br>\
-		A hope that I've been waiting for since when I was very young. <br>I never opened the sack. <br>Did you wish come true?"
-	observation_fail_message = "There was something that I have been longing for my entire life. <br>\
-		Like Pandora's Box, it will never go back into the sack."
+	observation_choices = list(
+		"Did not open the sack" = list(TRUE, "Inside of the sack is a desire. <br>\
+			A hope that I've been waiting for since when I was very young. <br>I never opened the sack. <br>Did your wish come true?"),
+		"Opened the sack" = list(FALSE, "There was something that I have been longing for my entire life. <br>\
+			Like Pandora's Box, it will never go back into the sack."),
+	)
 
 	var/pulse_cooldown
 	var/pulse_cooldown_time = 1.8 SECONDS

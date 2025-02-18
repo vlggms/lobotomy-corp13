@@ -11,6 +11,7 @@
 	display_order = JOB_DISPLAY_ORDER_SYNDICATEGOON
 	access = list(ACCESS_SYNDICATE)
 	minimal_access = list(ACCESS_SYNDICATE)
+	departments = DEPARTMENT_CITY_ANTAGONIST
 	paycheck = 150
 	maptype = list("city")
 	job_important = "You belong to the Blade Lineage, a band of wandering swordsmen. \

@@ -6,6 +6,7 @@
 	portrait = "book"
 	maxHealth = 600
 	health = 600
+	blood_volume = 0
 	start_qliphoth = 2
 	threat_level = TETH_LEVEL
 	work_chances = list(
@@ -27,10 +28,10 @@
 	observation_prompt = "It's just a stupid rumour. <br>\"If you fill it in whatever way, then the book will grant one wish!\" <br>\
 		All the newbies crow, waiting for their chance to fill the pages with their wishes. <br>\
 		You open the book and read through every wish, splotched with ink and tears, every employee had, living and dead, wrote..."
-	observation_choices = list("Tear out the wishes", "Write your own wish")
-	correct_choices = list("Write your own wish")
-	observation_success_message = "You take out the pen from your pocket and write down your wish. It'll never come true but that's why it will always remain a wish."
-	observation_fail_message = "You tear out their wishes one by one. The book's page count remains the same. Did your wish come true?"
+	observation_choices = list(
+		"Write your own wish" = list(TRUE, "You take out the pen from your pocket and write down your wish. It'll never come true but that's why it will always remain a wish."),
+		"Tear out the wishes" = list(FALSE, "You tear out their wishes one by one. The book's page count remains the same. Did your wish come true?"),
+	)
 
 	var/wordcount = 0
 	var/list/oddities = list() //List gets populated with friendly animals
@@ -41,6 +42,9 @@
 	)
 	var/meltdown_cooldown //no spamming the meltdown effect
 	var/meltdown_cooldown_time = 30 SECONDS
+	var/breaching = FALSE
+	var/summon_count = 0
+
 
 /mob/living/simple_animal/hostile/abnormality/book/PostWorkEffect(mob/living/carbon/human/user, work_type, pe, work_time)
 	if(work_type == ABNORMALITY_WORK_REPRESSION)
@@ -103,6 +107,23 @@
 		if((initial(abno.threat_level)) <= TETH_LEVEL)
 			nasties += abno
 
+/mob/living/simple_animal/hostile/abnormality/book/Life()
+	. = ..()
+	if(!breaching)
+		return
+	if(summon_count > 15)
+		qdel(src)
+		return
+	if((meltdown_cooldown < world.time) && !(status_flags & GODMODE))
+		MeltdownEffect()
+		meltdown_cooldown = world.time + meltdown_cooldown_time
+
+/mob/living/simple_animal/hostile/abnormality/book/Move()
+	return FALSE
+
+/mob/living/simple_animal/hostile/abnormality/book/CanAttack(atom/the_target)
+	return FALSE
+
 /mob/living/simple_animal/hostile/abnormality/book/proc/RipPages()
 	var/mob/living/simple_animal/newspawn
 	if(wordcount >= 3)
@@ -133,12 +154,13 @@
 	spawnedmob.health = spawnedmob.maxHealth
 	spawnedmob.death_message = "collapses into a bunch of writing material."
 	spawnedmob.filters += filter(type="drop_shadow", x=0, y=0, size=1, offset=0, color=rgb(0, 0, 0))
+	spawnedmob.blood_volume = 0
 	src.visible_message(span_warning("Pages of [src] fold into [spawnedmob]!"))
 	playsound(get_turf(src), 'sound/items/handling/paper_pickup.ogg', 90, 1, FALSE)
 
 /mob/living/simple_animal/hostile/abnormality/book/ZeroQliphoth(mob/living/carbon/human/user)
 	datum_reference.qliphoth_change(start_qliphoth) //no need for qliphoth to be stuck at 0
-	if(meltdown_cooldown > world.time)
+	if(meltdown_cooldown < world.time)
 		return
 	meltdown_cooldown = world.time + meltdown_cooldown_time
 	MeltdownEffect()
@@ -151,3 +173,9 @@
 		sleep(0.5 SECONDS)
 		newspawn = pick(nasties)
 		SpawnMob(newspawn)
+		if(breaching)
+			summon_count += 1
+
+/mob/living/simple_animal/hostile/abnormality/book/BreachEffect(mob/living/carbon/human/user, breach_type)
+	if(breach_type == BREACH_MINING)
+		breaching = TRUE

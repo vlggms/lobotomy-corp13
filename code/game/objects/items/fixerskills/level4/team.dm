@@ -35,8 +35,8 @@
 		human.physiology.pale_mod *= 0.6
 		affected+= human
 
-	addtimer(CALLBACK(src, PROC_REF(Recall),), 10 SECONDS, TIMER_UNIQUE | TIMER_OVERRIDE)
-	addtimer(CALLBACK(src, PROC_REF(Warcry),), 0.5 SECONDS, TIMER_UNIQUE | TIMER_OVERRIDE)
+	addtimer(CALLBACK(src, PROC_REF(Recall)), 10 SECONDS, TIMER_UNIQUE | TIMER_OVERRIDE)
+	addtimer(CALLBACK(src, PROC_REF(Warcry)), 0.5 SECONDS, TIMER_UNIQUE | TIMER_OVERRIDE)
 	StartCooldown()
 
 /datum/action/cooldown/warbanner/proc/Recall()
@@ -45,6 +45,7 @@
 		human.physiology.white_mod /= 0.6
 		human.physiology.black_mod /= 0.6
 		human.physiology.pale_mod /= 0.6
+		affected-=human
 
 /datum/action/cooldown/warbanner/proc/Warcry()
 	for(var/mob/living/carbon/human/human in affected)
@@ -84,11 +85,11 @@
 	for(var/mob/living/carbon/human/human in view(range, get_turf(src)))
 		if (human == owner && !affect_self)
 			continue
-		human.add_movespeed_modifier(/datum/movespeed_modifier/retreat)
+		human.add_movespeed_modifier(/datum/movespeed_modifier/warcry)
 		addtimer(CALLBACK(human, TYPE_PROC_REF(/mob, remove_movespeed_modifier), /datum/movespeed_modifier/warcry), 5 SECONDS, TIMER_UNIQUE | TIMER_OVERRIDE)
 		affected+=human
 
-	addtimer(CALLBACK(src, PROC_REF(Warcry),), 0.5 SECONDS, TIMER_UNIQUE | TIMER_OVERRIDE)
+	addtimer(CALLBACK(src, PROC_REF(Warcry)), 0.5 SECONDS, TIMER_UNIQUE | TIMER_OVERRIDE)
 	StartCooldown()
 
 /datum/action/cooldown/warcry/proc/Warcry()
@@ -96,6 +97,7 @@
 		if(human == owner)
 			continue
 		human.say("YES SIR!")
+		affected-=human
 
 /datum/movespeed_modifier/warcry
 	variable = TRUE

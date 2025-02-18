@@ -219,6 +219,11 @@
 /area/city/backstreets_room)
 "Ac" = (
 /obj/structure/rack,
+/obj/item/gps/mining{
+	anchored = 1;
+	gpstag = "Shrimple Signal";
+	alpha = 10
+	},
 /turf/open/floor/plasteel/vaporwave,
 /area/city/backstreets_room)
 "Av" = (

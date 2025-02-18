@@ -1,0 +1,77 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"n" = (
+/obj/machinery/door/airlock/wood,
+/turf/open/floor/plating,
+/area/city/backstreets_room)
+"v" = (
+/obj/structure/lootcrate/money,
+/turf/open/floor/wood,
+/area/city/backstreets_room)
+"x" = (
+/turf/open/floor/wood,
+/area/city/backstreets_room)
+"J" = (
+/mob/living/simple_animal/hostile/runawaybird,
+/turf/open/floor/wood,
+/area/city/backstreets_room)
+"N" = (
+/obj/effect/gibspawner/human/bodypartless,
+/turf/open/floor/wood,
+/area/city/backstreets_room)
+"P" = (
+/obj/effect/landmark/cratespawn,
+/turf/open/floor/wood,
+/area/city/backstreets_room)
+"S" = (
+/obj/structure/jbird_noose,
+/turf/open/floor/wood,
+/area/city/backstreets_room)
+"X" = (
+/turf/closed/indestructible/wood,
+/area/city/backstreets_room)
+
+(1,1,1) = {"
+X
+X
+X
+X
+X
+X
+X
+"}
+(2,1,1) = {"
+X
+v
+x
+J
+N
+P
+X
+"}
+(3,1,1) = {"
+X
+S
+N
+x
+x
+J
+X
+"}
+(4,1,1) = {"
+X
+x
+J
+x
+x
+x
+X
+"}
+(5,1,1) = {"
+X
+X
+X
+n
+X
+X
+X
+"}

@@ -46,12 +46,12 @@
 	abnormality_origin = ABNORMALITY_ORIGIN_LOBOTOMY
 
 	observation_prompt = "This is the containment unit of \[CENSORED\]. <br>Many managers went mad, before they implemented the cognition filter, from the sight of it."
-	observation_choices = list("Enter the containment unit", "Don't enter")
-	correct_choices = list("Enter the containment unit")
-	observation_success_message = "You enter the containment unit of \[CENSORED\], the smell of \[REDACTED\] and the sound of \[ANULLED\] filled the air. <br>\
-		After steeling yourself, you finally saw \[CENSORED\]. <br>You manage to face the fear."
-	observation_fail_message = "A wave of nausea rises up within at the thought of entering the containment unit, and you turn on your heels to leave. <br>\
-		You're not ready to build the future."
+	observation_choices = list(
+		"Enter the containment unit" = list(TRUE, "You enter the containment unit of \[CENSORED\], the smell of \[REDACTED\] and the sound of \[ANULLED\] filled the air. <br>\
+			After steeling yourself, you finally saw \[CENSORED\]. <br>You manage to face the fear."),
+		"Don't enter" = list(FALSE, "A wave of nausea rises up within at the thought of entering the containment unit, and you turn on your heels to leave. <br>\
+			You're not ready to build the future."),
+	)
 
 	var/can_act = TRUE
 	var/ability_damage = 150
@@ -116,15 +116,15 @@
 			return FALSE
 	return ..()
 
-/mob/living/simple_animal/hostile/abnormality/censored/AttackingTarget()
+/mob/living/simple_animal/hostile/abnormality/censored/AttackingTarget(atom/attacked_target)
 	. = ..()
 	if(!can_act)
 		return
 
-	if(!ishuman(target))
+	if(!ishuman(attacked_target))
 		return
 
-	var/mob/living/carbon/human/H = target
+	var/mob/living/carbon/human/H = attacked_target
 	if(H.stat >= SOFT_CRIT || H.health < 0)
 		return Convert(H)
 

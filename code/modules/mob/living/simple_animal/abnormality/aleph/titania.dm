@@ -37,10 +37,11 @@
 	abnormality_origin = ABNORMALITY_ORIGIN_WONDERLAB
 
 	observation_prompt = "Is that you Oberon? <br>My nemesis, my beloved devil. <br>Is it you, who applied the concotion of baneful herb to my eyes?"
-	observation_choices = list("I am the Oberon you seek", "I am not him", "Stay silent")
-	correct_choices = list("I am the Oberon you seek")
-	observation_success_message = "The abhorrent name of the one who stole my child. <br>By your death, I shall finally have my revenge."
-	observation_fail_message = "Ah... <br>A mere human, human, human. <br>Cease your fear, I shall rid you of your pains. <br>Be reborn as a flower."
+	observation_choices = list(
+		"I am the Oberon you seek" = list(TRUE, "The abhorrent name of the one who stole my child. <br>By your death, I shall finally have my revenge."),
+		"I am not him" = list(FALSE, "Ah... <br>A mere human, human, human. <br>Cease your fear, I shall rid you of your pains. <br>Be reborn as a flower."),
+		"Stay silent" = list(FALSE, "Ah... <br>A mere human, human, human. <br>Cease your fear, I shall rid you of your pains. <br>Be reborn as a flower."),
+	)
 
 	var/fairy_spawn_number = 2
 	var/fairy_spawn_time = 5 SECONDS
@@ -77,10 +78,10 @@
 	return ..()
 
 //Attacking code
-/mob/living/simple_animal/hostile/abnormality/titania/AttackingTarget()
+/mob/living/simple_animal/hostile/abnormality/titania/AttackingTarget(atom/attacked_target)
 	if(fused)
 		return FALSE
-	var/mob/living/carbon/human/H = target
+	var/mob/living/carbon/human/H = attacked_target
 	//Kills the weak immediately.
 	if(get_user_level(H) < 4 && (ishuman(H)))
 		say("I rid you of your pain, mere human.")

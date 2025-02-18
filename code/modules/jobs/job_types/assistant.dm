@@ -10,12 +10,14 @@ GLOBAL_LIST_EMPTY(spawned_clerks)
 	spawn_positions = 0
 	supervisors = "absolutely everyone"
 	selection_color = "#dddddd"
-	access = list(ACCESS_ROBOTICS)			//See /datum/job/assistant/get_access()
-	minimal_access = list(ACCESS_ROBOTICS)	//See /datum/job/assistant/get_access()
-	// Let their be bot maintenance!
+
 	outfit = /datum/outfit/job/assistant
-	antag_rep = 7 //persistant currency but currently unusable
+	antag_rep = 7 // Persistant currency but currently unusable
 	display_order = JOB_DISPLAY_ORDER_CLERK
+
+	access = list(ACCESS_ROBOTICS) // Let their be bot maintenance!
+	minimal_access = list(ACCESS_ROBOTICS)
+	departments = DEPARTMENT_SERVICE
 
 	liver_traits = list(TRAIT_GREYTIDE_METABOLISM)
 

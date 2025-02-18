@@ -21,6 +21,7 @@
 								)
 	access = list(ACCESS_COMMAND)
 	minimal_access = (ACCESS_COMMAND)
+	departments = DEPARTMENT_COMMAND | DEPARTMENT_R_CORP
 	rank_title = "LT"
 	job_important = "You are a support and command role in Rcorp. Advise the Commander, Run requisitions and then deploy."
 	job_notice = "Run the Requisitions, assist Rcorp personnel on the base. After deployment, use your beacon to select which class you'd like."

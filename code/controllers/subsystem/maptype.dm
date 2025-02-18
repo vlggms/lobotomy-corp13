@@ -12,19 +12,19 @@ SUBSYSTEM_DEF(maptype)
 	var/jobtype		//If a map RNGs which jobs are available, use this
 
 	//All the map tags that delete all jobs and replace them with others.
-	var/list/clearmaps = list("rcorp", "city", "wcorp", "limbus_labs", "fixers")
+	var/list/clearmaps = list("rcorp", "city", "wcorp", "limbus_labs", "fixers", "office")
 
 	//All the map tags that are combat maps and need abnos to breach immediately
-	var/list/combatmaps = list("rcorp", "wcorp", "limbus_labs", "fixers")
+	var/list/combatmaps = list("rcorp", "wcorp", "limbus_labs", "fixers", "office")
 
 	//Ghosts should be possessbale at all times
 	var/list/autopossess = list("rcorp", "limbus_labs")
 
 	//These end after a certain number of minutes.
-	var/list/autoend = list("rcorp", "wcorp", "limbus_labs", "fixers")
+	var/list/autoend = list("rcorp", "wcorp", "limbus_labs", "fixers", "office")
 
 	//This map is city stuff
-	var/list/citymaps = list("wonderlabs", "city", "fixers")
+	var/list/citymaps = list("wonderlabs", "city", "fixers", "office")
 
 	//This is for maps that incorporate space
 	var/list/spacemaps = list("skeld")
@@ -36,7 +36,7 @@ SUBSYSTEM_DEF(maptype)
 	var/list/nofear = list("limbus_labs")
 
 	//What departments are we looking at
-	var/list/departments = list("Command","Security","Service")
+	var/list/departments = list("Command", "Security", "Service")
 
 
 /datum/controller/subsystem/maptype/Initialize()
@@ -44,12 +44,20 @@ SUBSYSTEM_DEF(maptype)
 
 	//Badda Bing Badda Da. This makes the latejoin menu cleaner
 	switch(SSmaptype.maptype)
-		if("wonderlabs", "city", "fixers")
-			departments = list("Command", "Security", "Service", "Science")
+		if("wonderlabs")
+			departments = list("Command", "Fixers", "Security", "Service")
+		if("city")
+			departments = list("Command", "Hana", "Association", "Syndicate", "Fixers", "Medical", "Security", "Service")
+		if("fixers")
+			departments = list("Command", "Hana", "Association", "Fixers", "Medical", "Service")
+		if("office")
+			departments = list("Command", "Fixers")
 		if("limbus_labs")
-			departments = list("Command", "Security","Medical", "Science", "Service" )
-		if("rcorp", "wcorp")
-			departments = list("Command", "Security")
+			departments = list("Command", "Security", "Medical", "Science", "Engineering", "Service" )
+		if("rcorp")
+			departments = list("Command", "R Corp", "Medical")
+		if("wcorp")
+			departments = list("Command", "W Corp")
 
 	var/list/all_jobs = subtypesof(/datum/job)
 	if(!all_jobs.len)

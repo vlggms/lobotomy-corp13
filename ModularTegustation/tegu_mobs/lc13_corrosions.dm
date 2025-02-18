@@ -247,12 +247,12 @@
 		return FALSE
 	..()
 
-/mob/living/simple_animal/hostile/ordeal/snake_corrosion/AttackingTarget()
+/mob/living/simple_animal/hostile/ordeal/snake_corrosion/AttackingTarget(atom/attacked_target)
 	if(!can_act)
 		return FALSE
-	..()
-	if(isliving(target))
-		var/mob/living/H = target
+	. = ..()
+	if(isliving(attacked_target))
+		var/mob/living/H = attacked_target
 		H.apply_venom(applied_venom)
 
 /mob/living/simple_animal/hostile/ordeal/snake_corrosion/OpenFire()
@@ -381,6 +381,7 @@
 	var/damage_threshold = 450
 	var/dash_damage = 80
 	var/charge_sound = 'sound/effects/ordeals/gold/growl1.ogg'
+	var/gibbing = TRUE
 
 /mob/living/simple_animal/hostile/ordeal/dog_corrosion/Move()
 	if(charging)
@@ -409,17 +410,17 @@
 		return
 	..()
 
-/mob/living/simple_animal/hostile/ordeal/dog_corrosion/AttackingTarget()
+/mob/living/simple_animal/hostile/ordeal/dog_corrosion/AttackingTarget(atom/attacked_target)
 	if(charging)
 		return
 	if(dash_cooldown <= world.time && !client && charge_ready)
-		PrepCharge(target)
+		PrepCharge(attacked_target)
 		return
 	. = ..()
-	if(!ishuman(target))
+	if(!ishuman(attacked_target))
 		return
-	var/mob/living/carbon/human/H = target
-	if(H.health < 0)
+	var/mob/living/carbon/human/H = attacked_target
+	if(H.health < 0 && gibbing)
 		H.gib()
 		playsound(src, "sound/abnormalities/clouded_monk/eat.ogg", 75, 1)
 		adjustBruteLoss(-heal_amount)
@@ -494,7 +495,7 @@
 		if(!ishuman(L))
 			continue
 		var/mob/living/carbon/human/H = L
-		if(H.health < 0)
+		if(H.health < 0 && gibbing)
 			H.gib()
 			playsound(src, "sound/abnormalities/clouded_monk/eat.ogg", 75, 1)
 			adjustBruteLoss(-heal_amount)

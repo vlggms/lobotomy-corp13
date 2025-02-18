@@ -52,7 +52,7 @@
 	var/statuseffectvisual = icon('ModularTegustation/Teguicons/tegu_effects.dmi', "red_shield")
 	var/shieldhealth = 100
 	var/damagetaken = 0
-	var/respectivedamage = RED_DAMAGE
+	var/list/respectivedamage = list(RED_DAMAGE)
 	var/faltering = 0
 
 /datum/status_effect/interventionshield/on_apply()
@@ -65,11 +65,11 @@
 
 /datum/status_effect/interventionshield/proc/OnApplyDamage(datum_source, amount, damagetype, def_zone)
 	SIGNAL_HANDLER
-	if(damagetype != respectivedamage)
+	if(!(damagetype in respectivedamage))
 		return
 
 	var/mob/living/carbon/human/H = owner
-	var/suitarmor = H.getarmor(null, respectivedamage) / 100
+	var/suitarmor = H.getarmor(null, damagetype) / 100
 	damagetaken = amount * (1 - suitarmor)
 	if(damagetaken <= 0)
 		return
@@ -104,17 +104,23 @@
 /datum/status_effect/interventionshield/white
 	id = "trauma shield"
 	statuseffectvisual = icon('ModularTegustation/Teguicons/tegu_effects.dmi', "white_shield")
-	respectivedamage = WHITE_DAMAGE
+	respectivedamage = list(WHITE_DAMAGE)
 
 /datum/status_effect/interventionshield/black
 	id = "erosion shield"
 	statuseffectvisual = icon('ModularTegustation/Teguicons/tegu_effects.dmi', "black_shield")
-	respectivedamage = BLACK_DAMAGE
+	respectivedamage = list(BLACK_DAMAGE)
 
 /datum/status_effect/interventionshield/pale
 	id = "pale shield"
 	statuseffectvisual = icon('ModularTegustation/Teguicons/tegu_effects.dmi', "pale_shield")
-	respectivedamage = PALE_DAMAGE
+	respectivedamage = list(PALE_DAMAGE)
+
+/datum/status_effect/interventionshield/perfect
+	id = "perfect shield"
+	statuseffectvisual = icon('ModularTegustation/Teguicons/tegu_effects.dmi', "manager_shield")
+	respectivedamage = list(RED_DAMAGE, WHITE_DAMAGE, BLACK_DAMAGE, PALE_DAMAGE)
+
 
 	//other bullets
 /obj/item/managerbullet/red
@@ -174,3 +180,15 @@
 
 /obj/item/managerbullet/slowdown/bulletshatter(mob/living/L)
 	L.apply_status_effect(/datum/status_effect/qliphothoverload)
+
+/obj/item/managerbullet/perfect
+	name = "perfect manager bullet"
+	desc = "A bullet used in a manager console."
+	icon = 'icons/obj/ammo.dmi'
+	icon_state = "sleeper-live"
+	color = "yellow"
+
+/obj/item/managerbullet/perfect/bulletshatter(mob/living/L)
+	if(!ishuman(L))
+		return
+	L.apply_status_effect(/datum/status_effect/interventionshield/perfect)

@@ -49,13 +49,13 @@
 		A perfect, safe place away from this scary room. <br>\
 		Everything for you. <br>\
 		Won't you come inside?"
-	observation_choices = list("Go inside", "Don't go inside")
-	correct_choices = list("Don't go inside")
-	observation_success_message = "Some things are too good to be true. <br>\
-		You take the key from under the doormat, and leave."
-	observation_fail_message = "A key appears in your hand. <br>\
-		You move to open the door. <br>\
-		But at the last minute, you are pulled away by another agent to safety."
+	observation_choices = list(
+		"Don't go inside" = list(TRUE, "Some things are too good to be true. <br>\
+			You take the key from under the doormat, and leave."),
+		"Go inside" = list(FALSE, "A key appears in your hand. <br>\
+			You move to open the door. <br>\
+			But at the last minute, you are pulled away by another agent to safety."),
+	)
 
 	var/ranged_damage = 15
 	var/damage_dealt = 0

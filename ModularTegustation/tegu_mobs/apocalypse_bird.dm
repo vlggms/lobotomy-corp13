@@ -24,6 +24,7 @@
 	occupied_tiles_left = 3
 	occupied_tiles_right = 3
 	occupied_tiles_up = 2
+	damage_effect_scale = 1.25
 	blood_volume = BLOOD_VOLUME_NORMAL
 	del_on_death = TRUE
 	death_message = "finally stops moving, falling to the ground."

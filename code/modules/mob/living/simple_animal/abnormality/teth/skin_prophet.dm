@@ -32,16 +32,16 @@
 		hands are busy nonetheless. <br>\
 		Yearning for destruction and doom, it writes and writes and writes. <br>\
 		You feel the passages it’s writing may be prophecies for someplace and sometime."
-	observation_choices = list("Snuff out the candles", "Peek at the book")
-	correct_choices = list("Snuff out the candles")
-	observation_success_message = "You hushed the candles, one by one. <br>\
-		The space grew darker, but its hands won’t stop. <br>\
-		The only light left was on the quill it held. <br>\
-		Even that was snuffed by our breaths. <br>\
-		Then, the whole place went dark. <br>\
-		All that’s left is the pen in its hand."
-	observation_fail_message = "!@)(!@&)&*%(%@!@#*(#)*(%&!@#$ <br>\
-		@$*@)$ ? <br> @#$!!@#* ! <br> @*()!%&$(^!!!!@&(@)"
+	observation_choices = list(
+		"Snuff out the candles" = list(TRUE, "You hushed the candles, one by one. <br>\
+			The space grew darker, but its hands won’t stop. <br>\
+			The only light left was on the quill it held. <br>\
+			Even that was snuffed by our breaths. <br>\
+			Then, the whole place went dark. <br>\
+			All that’s left is the pen in its hand."),
+		"Peek at the book" = list(FALSE, "!@)(!@&)&*%(%@!@#*(#)*(%&!@#$ <br>\
+			@$*@)$ ? <br> @#$!!@#* ! <br> @*()!%&$(^!!!!@&(@)"),
+	)
 
 	var/list/speak_list = list(
 		"!@)(!@&)&*%(%@!@#*(#)*(%&!@#$",

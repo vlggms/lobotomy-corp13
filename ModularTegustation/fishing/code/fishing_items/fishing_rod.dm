@@ -189,7 +189,7 @@
 			to_chat(user, span_nicegreen("[FISHGOD_MERCURY] smiles upon you!."))
 
 		if(user.god_aligned == FISHGOD_MERCURY)
-			size_modifier*=2
+			size_modifier *= 2
 
 		fishie.randomize_weight_and_size(size_modifier)
 
@@ -198,7 +198,8 @@
 			new /obj/item/stack/spacecash/c50(get_turf(user))
 
 		if(CheckPlanetAligned(FISHGOD_SATURN))
-			to_chat(user, span_nicegreen("Saturn is in alignment. You feel like better for fishing."))
+			var/list/possible_messages = list("Your mind feels clearer after fishing.", "You feel relaxed in [FISHGOD_SATURN]'s light.")
+			to_chat(user, span_nicegreen("Saturn is in alignment. [pick(possible_messages)]"))
 			user.adjustSanityLoss(-5)
 
 		to_chat(user, span_nicegreen("You caught [fishie.name]."))

@@ -1,0 +1,66 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"a" = (
+/turf/closed/indestructible/reinforced,
+/area/city/backstreets_room)
+"J" = (
+/obj/item/food/meat/slab{
+	desc = "Quality Saturnian Bison Meat.";
+	name = "bison steak"
+	},
+/obj/item/instrument/guitar{
+	desc = "...and his music was electric.";
+	name = "ukulele";
+	pixel_x = -2;
+	pixel_y = 5
+	},
+/turf/open/floor/grass/fairy,
+/area/city/backstreets_room)
+"X" = (
+/turf/open/floor/grass/fairy,
+/area/city/backstreets_room)
+
+(1,1,1) = {"
+a
+X
+X
+X
+X
+X
+a
+"}
+(2,1,1) = {"
+a
+X
+X
+X
+X
+X
+a
+"}
+(3,1,1) = {"
+a
+X
+X
+X
+X
+X
+a
+"}
+(4,1,1) = {"
+a
+X
+J
+X
+X
+X
+a
+"}
+(5,1,1) = {"
+a
+a
+a
+a
+a
+a
+a
+"}

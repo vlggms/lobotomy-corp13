@@ -77,12 +77,12 @@
 
 	observation_prompt = "A giant, glistening golden apple stands before you. <br>\
 		Radiant, shining, and pure. <br>There is a tempting crack in it, what could possibly be inside?"
-	observation_choices = list("Slice it open", "Destroy it")
-	correct_choices = list("Destroy it")
-	observation_success_message = "You put the golden apple to the torch. <br>You hear a sickening pops and sizzling as the swarm of maggots inside begins to burn and scatter. <br>\
-		The mass of maggots falls apart in a hail of silent screams."
-	observation_fail_message = "You slice open the apple, and a tidal wave of disgusting maggots bursts out. <br>\
-		You are swept in the tide. <br>Your flesh is riddled with wounds as they slowly devour you."
+	observation_choices = list(
+		"Destroy it" = list(TRUE, "You put the golden apple to the torch. <br>You hear a sickening pops and sizzling as the swarm of maggots inside begins to burn and scatter. <br>\
+			The mass of maggots falls apart in a hail of silent screams."),
+		"Slice it open" = list(FALSE, "You slice open the apple, and a tidal wave of disgusting maggots bursts out. <br>\
+			You are swept in the tide. <br>Your flesh is riddled with wounds as they slowly devour you."),
+	)
 
 	var/is_maggot = FALSE
 	var/can_act = TRUE
@@ -294,13 +294,13 @@
 	is_maggot = TRUE
 	ChangeMoveToDelayBy(-1)
 
-/mob/living/simple_animal/hostile/abnormality/golden_apple/AttackingTarget()//regular attacks or AOE. Determines the outcome for both players and the AI behavior
+/mob/living/simple_animal/hostile/abnormality/golden_apple/AttackingTarget(atom/attacked_target)//regular attacks or AOE. Determines the outcome for both players and the AI behavior
 	if(!can_act)
 		return FALSE
 	if(!is_maggot)//Is it still in the first form? Start building sheen pulses
 		if(pulse_count < pulse_maximum)
-			if(isliving(target))
-				var/mob/living/hit = target
+			if(isliving(attacked_target))
+				var/mob/living/hit = attacked_target
 				if((hit.stat == DEAD) ||!ishuman(hit))//if the target is dead or not human
 					return ..()
 				if(istype(target, /mob/living/carbon/human/species/pinocchio))
@@ -319,12 +319,12 @@
 	if(client && smash_cooldown < world.time)//playable behavior is nested under here
 		switch(chosen_attack)
 			if(1)
-				Smash(target)
+				Smash(attacked_target)
 			if(2)
-				Smash(target, wide = FALSE)
+				Smash(attacked_target, wide = FALSE)
 		return
 	if(prob(50) && (smash_cooldown < world.time))//AI behavior goes here
-		Smash(target, wide = pick(TRUE, FALSE))
+		Smash(attacked_target, wide = pick(TRUE, FALSE))
 		return
 	return ..()
 

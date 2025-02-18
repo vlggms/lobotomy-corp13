@@ -1,15 +1,14 @@
-//Planetary Momentum
 /obj/item/book/granter/action/skill/planet
-	granted_action = /datum/action/cooldown/fishing/planet
-	actionname = "Planet"
 	name = "Level 1 Skill: Planet"
+	actionname = "Planet"
+	granted_action = /datum/action/cooldown/fishing/planet
 	level = 1
 	custom_premium_price = 600
 
 /datum/action/cooldown/fishing/planet
-	button_icon_state = "planet"
 	name = "Planet"
-	cooldown_time = 6000
+	button_icon_state = "planet"
+	cooldown_time = 10 MINUTES
 	devotion_cost = 2
 
 /datum/action/cooldown/fishing/planet/FishEffect(mob/living/user)
@@ -23,39 +22,36 @@
 		to_chat(user, span_notice("You shift the movement of your aligned planet by 1."))
 		break
 
-//Lunar Motion
 /obj/item/book/granter/action/skill/moonmove
-	granted_action = /datum/action/cooldown/fishing/moonmove
-	actionname = "Lunar Motion"
 	name = "Level 1 Skill: Lunar Motion"
+	actionname = "Lunar Motion"
+	granted_action = /datum/action/cooldown/fishing/moonmove
 	level = 1
 	custom_premium_price = 600
 
 /datum/action/cooldown/fishing/moonmove
-	button_icon_state = "moonmove"
 	name = "Lunar Motion"
-	cooldown_time = 6000
+	button_icon_state = "moonmove"
+	cooldown_time = 10 MINUTES
 	devotion_cost = 3
 
 /datum/action/cooldown/fishing/moonmove/FishEffect(mob/living/user)
 	to_chat(user, span_notice("You shift the moon forwards by one phase."))
-	SSfishing.moonphase+=1		//Moon Phases will affect the power of Moon-based mods.
-	if(SSfishing.moonphase == 5)	//there's only 4
+	SSfishing.moonphase++
+	if(SSfishing.moonphase == 5) // there's only 4
 		SSfishing.moonphase = 1
 
-
-//Targeted Planet
 /obj/item/book/granter/action/skill/planet2
-	granted_action = /datum/action/cooldown/fishing/planet2
-	actionname = "Planet II"
 	name = "Level 1 Skill: Plane II"
+	actionname = "Planet II"
+	granted_action = /datum/action/cooldown/fishing/planet2
 	level = 1
 	custom_premium_price = 600
 
 /datum/action/cooldown/fishing/planet2
-	button_icon_state = "planet2"
 	name = "Planet II"
-	cooldown_time = 6000
+	button_icon_state = "planet2"
+	cooldown_time = 10 MINUTES
 	devotion_cost = 4
 
 /datum/action/cooldown/fishing/planet2/FishEffect(mob/living/user)

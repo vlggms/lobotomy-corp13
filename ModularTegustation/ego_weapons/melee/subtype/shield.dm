@@ -43,6 +43,7 @@
 	var/block_sound_volume = 50
 	var/projectile_timer
 	var/parry_timer
+	var/aggro_on_block
 
 /obj/item/ego_weapon/shield/Initialize()
 	. = ..()
@@ -56,6 +57,7 @@
 		resistances_list += list("BLACK" = reductions[3])
 	if(reductions[4] != 0)
 		resistances_list += list("PALE" = reductions[4])
+	aggro_on_block = force * 3
 
 //Allows the user to deflect projectiles for however long recovery time is set to on a hit
 /obj/item/ego_weapon/shield/melee_attack_chain(mob/user, atom/target, params)
@@ -96,6 +98,10 @@
 		shield_user.physiology.black_mod *= max(0.001, (1 - ((reductions[3]) / 100)))
 		shield_user.physiology.pale_mod *= max(0.001, (1 - ((reductions[4]) / 100)))
 		RegisterSignal(user, COMSIG_MOB_APPLY_DAMGE, PROC_REF(AnnounceBlock))
+		for(var/mob/living/simple_animal/hostile/H in hearers(3, user))
+			if(H.stat != CONSCIOUS || H.AIStatus == AI_OFF || H.client)
+				continue
+			H.RegisterAggroValue(user, aggro_on_block, AGGRO_DAMAGE)
 		if(QDELING(src))
 			DisableBlock(shield_user)
 		else

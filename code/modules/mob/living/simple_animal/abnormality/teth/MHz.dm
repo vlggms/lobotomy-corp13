@@ -11,6 +11,7 @@
 	base_pixel_y = -32
 	maxHealth = 400
 	health = 400
+	blood_volume = 0
 	start_qliphoth = 4
 	threat_level = TETH_LEVEL
 	work_chances = list(
@@ -40,11 +41,11 @@
 		As you wait, your radio hisses with static and ghostly voices, buried in electromagnetic snow. <br>\
 		\"h...e...l...p\" <br>\
 		A ghost from the past calls out, the voice is familiar but you can't place who it belongs to."
-	observation_choices = list("Tune your radio to 1.76 MHz", "Forget")
-	correct_choices = list("Tune your radio to 1.76 MHz")
-	observation_success_message = "You tune your radio and hear her plea plain as day, her voice is like sunshine. <br>\
-		Unbridled anger and sorrow at the unfairness of it all fills you as you leave the cell."
-	observation_fail_message = "But you can't forget. Not until you've atoned."
+	observation_choices = list(
+		"Tune your radio to 1.76 MHz" = list(TRUE, "You tune your radio and hear her plea plain as day, her voice is like sunshine. <br>\
+			Unbridled anger and sorrow at the unfairness of it all fills you as you leave the cell."),
+		"Forget" = list(FALSE, "But you can't forget. Not until you've atoned."),
+	)
 
 	var/reset_time = 4 MINUTES //Qliphoth resets after this time. To prevent bugs
 

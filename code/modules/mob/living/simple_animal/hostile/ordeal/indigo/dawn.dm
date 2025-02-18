@@ -23,10 +23,10 @@
 	blood_volume = BLOOD_VOLUME_NORMAL
 	silk_results = list(/obj/item/stack/sheet/silk/indigo_simple = 1)
 
-/mob/living/simple_animal/hostile/ordeal/indigo_dawn/AttackingTarget()
+/mob/living/simple_animal/hostile/ordeal/indigo_dawn/AttackingTarget(atom/attacked_target)
 	. = ..()
-	if(. && isliving(target))
-		var/mob/living/L = target
+	if(. && isliving(attacked_target))
+		var/mob/living/L = attacked_target
 		if(L.stat != DEAD)
 			if(L.health <= HEALTH_THRESHOLD_DEAD && HAS_TRAIT(L, TRAIT_NODEATH))
 				devour(L)

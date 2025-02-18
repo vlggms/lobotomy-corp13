@@ -15,6 +15,7 @@
 	//Eat shit rabbits lol
 	access = list()
 	minimal_access = list()
+	departments = DEPARTMENT_R_CORP
 
 	roundstart_attributes = list(
 								FORTITUDE_ATTRIBUTE = 60,
@@ -58,6 +59,7 @@
 
 	access = list(ACCESS_COMMAND)
 	minimal_access = list(ACCESS_COMMAND)
+	departments = DEPARTMENT_COMMAND | DEPARTMENT_R_CORP
 
 	roundstart_attributes = list(
 								FORTITUDE_ATTRIBUTE = 80,

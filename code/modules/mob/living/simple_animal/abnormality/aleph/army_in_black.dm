@@ -55,11 +55,11 @@ GLOBAL_LIST_EMPTY(army)
 
 	observation_prompt = "\"We're here to help sir, to keep the hearts of humans a clean pink, we're willing to dirty our own. We won't overlook a single speck of black.\" <br>\
 		The soldier in pink makes a salute. <br>You..."
-	observation_choices = list("Don't salute", "Salute him back")
-	correct_choices = list("Don't salute")
-	observation_success_message = "The soldier frowns. <br>\"As expected. <br>You're only human, a clean heart is only ever temporary for you. <br>Yours is rife with sin. <br>Ours are...\" <br>\
-		The soldier falls silent, as if in deep thought."
-	observation_fail_message = "The soldier in pink smiles. <br>\"Glad to have you on board Sir, with our help, there will be no more black hearts.\""
+	observation_choices = list(
+		"Don't salute" = list(TRUE, "The soldier frowns. <br>\"As expected. <br>You're only human, a clean heart is only ever temporary for you. <br>\
+			Yours is rife with sin. <br>Ours are...\" <br>The soldier falls silent, as if in deep thought."),
+		"Salute him back" = list(FALSE, "The soldier in pink smiles. <br>\"Glad to have you on board Sir, with our help, there will be no more black hearts.\""),
+	)
 
 	//Unique variables
 	var/death_counter = 0
@@ -150,9 +150,14 @@ GLOBAL_LIST_EMPTY(army)
 //*--Combat Mechanics--*
 /mob/living/simple_animal/hostile/abnormality/army/BreachEffect(mob/living/carbon/human/user, breach_type)
 	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_ABNORMALITY_BREACH, src)
-	FearEffect()
-	Blackify()
-	SpawnAdds()//set its alpha to 0 and make it non-dense
+	if(breach_type == BREACH_MINING)
+		for(var/i in 1 to 3)
+			var/mob/living/simple_animal/hostile/army_enemy/E = new(get_turf(src))
+			RegisterSignal(E, COMSIG_PARENT_QDELETING, PROC_REF(ArmyDeath))
+	else
+		FearEffect()
+		Blackify()
+		SpawnAdds()//set its alpha to 0 and make it non-dense
 	for(var/mob/living/L in protected_targets)
 		L.remove_status_effect(STATUS_EFFECT_PROTECTION)
 	density = FALSE

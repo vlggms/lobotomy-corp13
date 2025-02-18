@@ -1,0 +1,104 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"a" = (
+/turf/closed/indestructible/reinforced,
+/area/city/backstreets_room)
+"d" = (
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plasteel/dark,
+/area/city/backstreets_room)
+"f" = (
+/obj/effect/mob_spawn/human/doctor,
+/obj/effect/gibspawner/generic/silent,
+/obj/structure/chair/comfy/black,
+/turf/open/floor/plasteel/dark,
+/area/city/backstreets_room)
+"q" = (
+/obj/structure/chair/comfy/black{
+	dir = 1
+	},
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plasteel/dark,
+/area/city/backstreets_room)
+"r" = (
+/obj/machinery/vending/coffee,
+/turf/open/floor/plasteel/dark,
+/area/city/backstreets_room)
+"w" = (
+/turf/open/floor/plasteel/dark,
+/area/city/backstreets_room)
+"x" = (
+/turf/closed/indestructible/fakeglass,
+/area/city/backstreets_room)
+"J" = (
+/obj/structure/table/wood,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plasteel/dark,
+/area/city/backstreets_room)
+"N" = (
+/obj/machinery/door/airlock/centcom{
+	desc = "A bit too sturdy...";
+	max_integrity = 10000;
+	name = "Strange Airlock";
+	normal_integrity = 100000;
+	req_access_txt = "19"
+	},
+/turf/open/floor/plasteel/dark,
+/area/city/backstreets_room)
+"U" = (
+/obj/structure/table/wood,
+/obj/item/ego_weapon/ranged/city/limbusmagnum,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plasteel/dark,
+/area/city/backstreets_room)
+"X" = (
+/obj/machinery/door/airlock{
+	name = "lab entrance"
+	},
+/turf/open/floor/plasteel/dark,
+/area/city/backstreets_room)
+
+(1,1,1) = {"
+a
+a
+a
+a
+a
+X
+a
+"}
+(2,1,1) = {"
+a
+d
+d
+w
+N
+d
+a
+"}
+(3,1,1) = {"
+a
+f
+U
+q
+x
+w
+a
+"}
+(4,1,1) = {"
+a
+w
+J
+d
+x
+r
+a
+"}
+(5,1,1) = {"
+a
+a
+a
+a
+a
+a
+a
+"}

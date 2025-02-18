@@ -1,7 +1,7 @@
 // Gold Noon - Boss with minions
 /mob/living/simple_animal/hostile/ordeal/white_lake_corrosion
 	name = "Lady of the Lake"
-	desc = "Improper use of E.G.O. can have serious consequences."
+	desc = "An agent captain of the central command team, corrupted by an abnormality. But how?"
 	icon = 'ModularTegustation/Teguicons/32x64.dmi'
 	icon_state = "lake_corrosion"
 	icon_living = "lake_corrosion"
@@ -18,8 +18,7 @@
 	attack_sound = 'sound/weapons/fixer/generic/blade3.ogg'
 	death_sound = 'sound/effects/limbus_death.ogg'
 	damage_coeff = list(RED_DAMAGE = 0.8, WHITE_DAMAGE = 0.5, BLACK_DAMAGE = 1.5, PALE_DAMAGE = 1)
-	butcher_results = list(/obj/item/food/meat/slab/chicken = 1, /obj/item/food/meat/slab/human = 1)
-	guaranteed_butcher_results = list(/obj/item/food/meat/slab/chicken = 1)
+	butcher_results = list(/obj/item/food/meat/slab/corroded = 3)
 	speed = 3
 	move_to_delay = 3
 
@@ -60,10 +59,10 @@
 		AreaAttack()
 		return
 
-/mob/living/simple_animal/hostile/ordeal/white_lake_corrosion/AttackingTarget()
+/mob/living/simple_animal/hostile/ordeal/white_lake_corrosion/AttackingTarget(atom/attacked_target)
 	if(!can_act)
 		return FALSE
-	return Slash(target)
+	return Slash(attacked_target)
 
 /mob/living/simple_animal/hostile/ordeal/white_lake_corrosion/proc/Slash(target)
 	if (get_dist(src, target) > 3)
@@ -249,7 +248,7 @@
 
 /mob/living/simple_animal/hostile/ordeal/silentgirl_corrosion
 	name = "Silent Handmaiden"
-	desc = "Improper use of E.G.O. can have serious consequences."
+	desc = "A level 2 agent of Lobotomy Corporation that has somehow been corrupted by an abnormality."
 	icon = 'ModularTegustation/Teguicons/32x32.dmi'
 	icon_state = "silent_girl_corrosion"
 	icon_living = "silent_girl_corrosion"
@@ -265,8 +264,7 @@
 	attack_verb_continuous = "stabs"
 	attack_verb_simple = "stab"
 	damage_coeff = list(RED_DAMAGE = 1, WHITE_DAMAGE = 0.6, BLACK_DAMAGE = 1.5, PALE_DAMAGE = 2)
-	butcher_results = list( /obj/item/food/meat/slab/human = 1)
-	guaranteed_butcher_results = list(/obj/item/food/meat/slab/human = 1)
+	butcher_results = list( /obj/item/food/meat/slab/corroded = 1)
 	var/vengeful = FALSE
 	var/current_target = null
 	var/finishing = FALSE
@@ -293,14 +291,14 @@
 		return FALSE
 	return ..()
 
-/mob/living/simple_animal/hostile/ordeal/silentgirl_corrosion/AttackingTarget()
-	if(!vengeful && (target != current_target))
+/mob/living/simple_animal/hostile/ordeal/silentgirl_corrosion/AttackingTarget(atom/attacked_target)
+	if(!vengeful && (attacked_target != current_target))
 		return FALSE
 	. = ..()
 	if(.)
-		if(!ishuman(target))
+		if(!ishuman(attacked_target))
 			return
-		var/mob/living/carbon/human/TH = target
+		var/mob/living/carbon/human/TH = attacked_target
 		if(TH.health < 0 || TH.sanity_lost)
 			finishing = TRUE
 			TH.Stun(4 SECONDS)

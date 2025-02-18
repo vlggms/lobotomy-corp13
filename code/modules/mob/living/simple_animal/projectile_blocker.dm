@@ -47,7 +47,7 @@
 		return TRUE
 	if(!isturf(parent.loc))
 		return TRUE
-	if(parent.CanPassThroughBlocker(mover, target))
+	if(parent.CanPassThroughBlocker(mover, target, get_turf(src)))
 		return TRUE
 	return parent.CanPass(mover, target)
 
@@ -126,10 +126,12 @@
 		moveToNullspace()
 
 ///For letting some mobs walk through the blockers
-/mob/living/simple_animal/proc/CanPassThroughBlocker(atom/movable/mover, turf/target)
+/mob/living/simple_animal/proc/CanPassThroughBlocker(atom/movable/mover, turf/start, turf/destination)
 	return FALSE
 
-/mob/living/simple_animal/hostile/CanPassThroughBlocker(atom/movable/mover, turf/target)
+/mob/living/simple_animal/hostile/CanPassThroughBlocker(atom/movable/mover, turf/start, turf/destination)
 	if(isliving(mover) && faction_check_mob(mover))
+		return TRUE
+	if(isliving(mover) && get_dist_manhattan(get_turf(src), destination) > get_dist_manhattan(get_turf(src), start))
 		return TRUE
 	return FALSE

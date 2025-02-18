@@ -14,6 +14,7 @@
 	death_message = "falls to the ground, deactivating."
 	maxHealth = 1000
 	health = 1000
+	blood_volume = 0
 	rapid_melee = 4
 	ranged = TRUE
 	attack_verb_continuous = "slashes"
@@ -53,11 +54,11 @@
 	)
 
 	observation_prompt = "Is fun to clean. I was..."
-	observation_choices = list("You are special")
-	correct_choices = list("You are special")
-	observation_success_message = "There were many friends who looked like me. <br>I was special. <br>\
-		My creator always said to me. <br>\"You have to be sent to her. You are special. <br>You can give them a very special present.\" <br>\
-		Numbers of tools, which were devoid of for my friends, were put into me. <br>When I was sent to a new home, I gave them a present."
+	observation_choices = list(
+		"You are special" = list(TRUE, "There were many friends who looked like me. <br>I was special. <br>\
+			My creator always said to me. <br>\"You have to be sent to her. You are special. <br>You can give them a very special present.\" <br>\
+			Numbers of tools, which were devoid of for my friends, were put into me. <br>When I was sent to a new home, I gave them a present."),
+	)
 
 	var/charging = FALSE
 	var/dash_num = 50

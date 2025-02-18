@@ -32,14 +32,14 @@
 		The card is almost too battered and contaminated to recognize. <br>\
 		Wearing a box filled with Enkephalin on their head, the employee rams it into what looks like the door to a containment unit. <br>\
 		A rubber O-ring is worn around their neck. Could it be there to prevent Enkephalin from spilling?"
-	observation_choices = list("Cut the ring.", "Don't cut the ring.")
-	correct_choices = list("Cut the ring.")
-	observation_success_message = " The blade kept bouncing off the slippery O-ring... <br>\
-		\"Brgrrgh...\ <br>\
-		And the submerged thing pushed you away and ran off. Did it prefer to stay like that? <br>\
-		All it left was a small employee card."
-	observation_fail_message = "Tang- Tang- Tang- The ramming at the door and the sloshing continue. <br>\
-		I keep watching and listening. A more attentive hearing reveals that the sounds have a rhythm. Perhaps there is delight to be found in it."
+	observation_choices = list(
+		"Cut the ring" = list(TRUE, "The blade kept bouncing off the slippery O-ring... <br>\
+			\"Brgrrgh...\ <br>\
+			And the submerged thing pushed you away and ran off. Did it prefer to stay like that? <br>\
+			All it left was a small employee card."),
+		"Don't cut the ring" = list(FALSE, "Tang- Tang- Tang- The ramming at the door and the sloshing continue. <br>\
+			I keep watching and listening. A more attentive hearing reveals that the sounds have a rhythm. Perhaps there is delight to be found in it."),
+	)
 
 /mob/living/simple_animal/hostile/abnormality/forsaken_employee/FailureEffect(mob/living/carbon/human/user, work_type, pe, work_time, canceled)
 	. = ..()

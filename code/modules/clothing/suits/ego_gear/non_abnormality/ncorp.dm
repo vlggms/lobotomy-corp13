@@ -1,6 +1,7 @@
 /obj/item/clothing/suit/armor/ego_gear/city/ncorp
 	name = "nagel und hammer armor"
 	desc = "Armor worn by Nagel Und Hammer."
+	slowdown = 0.5
 	icon_state = "ncorp"
 	armor = list(RED_DAMAGE = 40, WHITE_DAMAGE = 20, BLACK_DAMAGE = 20, PALE_DAMAGE = 50)
 	hat = /obj/item/clothing/head/ego_hat/helmet/ncorp
@@ -14,6 +15,7 @@
 /obj/item/clothing/suit/armor/ego_gear/city/ncorp/vet
 	name = "decorated nagel und hammer armor"
 	desc = "Armor worn by the Nagel Und Hammer."
+	slowdown = 0.5
 	icon_state = "ncorp_vet"
 	armor = list(RED_DAMAGE = 50, WHITE_DAMAGE = 30, BLACK_DAMAGE = 40, PALE_DAMAGE = 60)
 	hat = /obj/item/clothing/head/ego_hat/helmet/ncorp/vet
@@ -44,6 +46,7 @@
 /obj/item/clothing/suit/armor/ego_gear/city/ncorpcommander
 	name = "Rüstung der auserwählten Frau Gottes"
 	desc = "Armor worn by leaders of Nagel Und Hammer."
+	slowdown = 0.3
 	icon_state = "ncorp_lead"
 	armor = list(RED_DAMAGE = 60, WHITE_DAMAGE = 50, BLACK_DAMAGE = 60, PALE_DAMAGE = 70)
 	neck = /obj/item/clothing/neck/ego_neck/ncorp/commander

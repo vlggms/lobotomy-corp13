@@ -162,7 +162,7 @@
 /obj/item/food/canned/pcorp_icecream
 	name = "p-corp canned ice cream"
 	desc = "P corp's specialty canned ice cream."
-	icon_state = "pcorp_can_icecream"
+	icon_state = "pcorp_icecream"
 	trash_type = /obj/item/trash/can/food/pcorp_icecream
 	food_reagents = list(/datum/reagent/consumable/nutriment = 4, /datum/reagent/medicine/sal_acid = 5)
 	tastes = list("strawberry" = 1, "mint" = 1, "chocolate" = 1,"butterscotch" = 1)
@@ -182,7 +182,7 @@
 /obj/item/trash/can/food/pcorp_icecream
 	name = "canned ice cream"
 	icon = 'icons/obj/food/food.dmi'
-	icon_state = "pcorp_can_icecream_empty"
+	icon_state = "pcorp_icecream_empty"
 
 /obj/item/trash/can/food/pcorp_burger
 	name = "canned burger"

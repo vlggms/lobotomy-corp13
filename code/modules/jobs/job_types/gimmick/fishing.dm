@@ -11,6 +11,7 @@
 
 	outfit = /datum/outfit/job/fishing
 	display_order = JOB_DISPLAY_ORDER_FIXER
+	departments = DEPARTMENT_SERVICE
 
 	job_important = "You are a fishing office fixer, hired by L-Corp. You're on this facility to get everyone fresh fish! To start fishing use the fishing rod on a body of water."
 	job_notice = "To start fishing, use your fishing rod on a body of water."

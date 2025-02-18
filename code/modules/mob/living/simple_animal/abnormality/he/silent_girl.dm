@@ -35,11 +35,11 @@
 	abnormality_origin = ABNORMALITY_ORIGIN_ARTBOOK
 
 	observation_prompt = "..."
-	observation_choices = list("Accept your guilt", "Plead your ignorance")
-	correct_choices = list("Accept your guilt")
-	observation_success_message = "The nails pierce your heart as the girl in the white dress hammers them home. <br>\
-		She opens hers eyes and you meet her gaze. <br>You're forgiven."
-	observation_fail_message = "The nails pierce your heart as the girl in the white dress hammers them home."
+	observation_choices = list(
+		"Accept your guilt" = list(TRUE, "The nails pierce your heart as the girl in the white dress hammers them home. <br>\
+			She opens hers eyes and you meet her gaze. <br>You're forgiven."),
+		"Plead your ignorance" = list(FALSE, "The nails pierce your heart as the girl in the white dress hammers them home."),
+	)
 
 /mob/living/simple_animal/hostile/abnormality/silent_girl/proc/GuiltEffect(mob/living/carbon/human/user, enable_qliphoth = TRUE, stack_count = 1)
 	if (user.stat == DEAD)

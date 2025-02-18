@@ -1,0 +1,209 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"a" = (
+/obj/structure/mineral_door/wood,
+/turf/open/floor/carpet/royalblue,
+/area/city/backstreets_room)
+"c" = (
+/turf/open/floor/mineral/gold,
+/area/city/backstreets_room)
+"d" = (
+/obj/structure/rack,
+/obj/item/stack/spacecash/c100,
+/turf/open/floor/mineral/gold,
+/area/city/backstreets_room)
+"j" = (
+/obj/structure/rack,
+/obj/item/stack/spacecash/c10,
+/turf/open/floor/mineral/gold,
+/area/city/backstreets_room)
+"k" = (
+/obj/machinery/door/airlock/centcom{
+	desc = "A bit too sturdy...";
+	max_integrity = 10000;
+	name = "Strange Airlock";
+	normal_integrity = 100000;
+	req_access_txt = "19"
+	},
+/turf/open/floor/plating,
+/area/city/backstreets_room)
+"p" = (
+/turf/open/floor/carpet/royalblue,
+/area/city/backstreets_room)
+"s" = (
+/obj/structure/lootcrate/money,
+/obj/machinery/light/dim{
+	dir = 4
+	},
+/turf/open/floor/mineral/gold,
+/area/city/backstreets_room)
+"t" = (
+/obj/item/stack/spacecash/c10,
+/turf/open/floor/mineral/gold,
+/area/city/backstreets_room)
+"u" = (
+/obj/machinery/computer/slot_machine,
+/obj/machinery/light/dim{
+	dir = 1
+	},
+/turf/open/floor/carpet/royalblue,
+/area/city/backstreets_room)
+"x" = (
+/obj/machinery/roulette,
+/obj/machinery/light/dim{
+	dir = 1
+	},
+/turf/open/floor/carpet/royalblue,
+/area/city/backstreets_room)
+"z" = (
+/obj/structure/rack,
+/obj/machinery/light/dim{
+	dir = 8;
+	pixel_x = null;
+	pixel_y = null
+	},
+/obj/item/stack/spacecash/c100,
+/turf/open/floor/mineral/gold,
+/area/city/backstreets_room)
+"A" = (
+/obj/structure/chair/stool,
+/turf/open/floor/carpet/royalblue,
+/area/city/backstreets_room)
+"B" = (
+/obj/machinery/computer/slot_machine,
+/turf/open/floor/carpet/royalblue,
+/area/city/backstreets_room)
+"G" = (
+/obj/structure/rack,
+/obj/item/stack/spacecash/c1000,
+/obj/machinery/light/dim{
+	dir = 4
+	},
+/turf/open/floor/mineral/gold,
+/area/city/backstreets_room)
+"I" = (
+/obj/structure/rack,
+/turf/open/floor/mineral/gold,
+/area/city/backstreets_room)
+"K" = (
+/obj/structure/lootcrate/money,
+/turf/open/floor/mineral/gold,
+/area/city/backstreets_room)
+"M" = (
+/obj/structure/rack,
+/obj/item/stack/spacecash/c1000,
+/obj/machinery/light/dim{
+	dir = 8;
+	pixel_x = null;
+	pixel_y = null
+	},
+/turf/open/floor/mineral/gold,
+/area/city/backstreets_room)
+"Q" = (
+/turf/closed/indestructible/reinforced,
+/area/city/backstreets_room)
+"R" = (
+/obj/structure/table,
+/obj/item/reagent_containers/food/drinks/bottle/champagne{
+	pixel_x = 7
+	},
+/obj/item/reagent_containers/food/drinks/drinkingglass{
+	pixel_y = 7
+	},
+/obj/item/reagent_containers/food/drinks/drinkingglass/filled/cola{
+	pixel_x = -6;
+	pixel_y = 2
+	},
+/obj/machinery/light/dim,
+/turf/open/floor/carpet/royalblue,
+/area/city/backstreets_room)
+"S" = (
+/obj/structure/table,
+/obj/item/food/burger/chicken{
+	pixel_x = -7
+	},
+/obj/item/food/fries{
+	pixel_x = 3
+	},
+/turf/open/floor/carpet/royalblue,
+/area/city/backstreets_room)
+
+(1,1,1) = {"
+Q
+Q
+Q
+Q
+Q
+Q
+"}
+(2,1,1) = {"
+Q
+u
+A
+p
+p
+a
+"}
+(3,1,1) = {"
+Q
+B
+A
+p
+S
+Q
+"}
+(4,1,1) = {"
+Q
+x
+A
+p
+R
+Q
+"}
+(5,1,1) = {"
+Q
+Q
+Q
+k
+Q
+Q
+"}
+(6,1,1) = {"
+Q
+M
+c
+t
+z
+Q
+"}
+(7,1,1) = {"
+Q
+I
+t
+c
+K
+Q
+"}
+(8,1,1) = {"
+Q
+j
+t
+c
+d
+Q
+"}
+(9,1,1) = {"
+Q
+G
+c
+t
+s
+Q
+"}
+(10,1,1) = {"
+Q
+Q
+Q
+Q
+Q
+Q
+"}

@@ -701,7 +701,8 @@
 /obj/machinery/door/airlock{
 	icon = 'icons/obj/doors/airlocks/station/science.dmi';
 	max_integrity = 500;
-	name = "Information Department"
+	name = "Information Department";
+	hackProof = 1
 	},
 /obj/structure/disposalpipe/segment{
 	dir = 1
@@ -8465,6 +8466,13 @@
 	color = "#ccc8c0"
 	},
 /area/facility_hallway/information)
+"Dh" = (
+/obj/machinery/door/airlock/highsecurity{
+	name = "Records Office Secure Area";
+	hackProof = 1
+	},
+/turf/open/floor/facility/halls,
+/area/facility_hallway/command)
 "Dj" = (
 /obj/effect/turf_decal/tile/brown{
 	dir = 4
@@ -11470,6 +11478,16 @@
 /obj/structure/sign/ordealmonitor,
 /turf/open/floor/plasteel/dark,
 /area/facility_hallway/control)
+"Nj" = (
+/obj/structure/disposalpipe/segment,
+/obj/machinery/door/airlock{
+	icon = 'icons/obj/doors/airlocks/station/atmos.dmi';
+	name = "Central Command";
+	normal_integrity = 500;
+	hackProof = 1
+	},
+/turf/open/floor/facility/halls,
+/area/facility_hallway/command)
 "Nn" = (
 /obj/effect/turf_decal/tile/brown{
 	dir = 4
@@ -48017,7 +48035,7 @@ JE
 JE
 JE
 mt
-sS
+Nj
 Av
 NX
 ir
@@ -49053,7 +49071,7 @@ dW
 kH
 Jn
 xf
-lt
+Dh
 Oy
 ss
 lu

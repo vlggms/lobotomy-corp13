@@ -59,12 +59,12 @@
 		current_pulse_range = max(6, current_pulse_range - min(round(amount * 0.1), 4)) // Being attacked will reduce the range temporarily
 	return ..()
 
-/mob/living/simple_animal/hostile/ordeal/black_fixer/AttackingTarget()
+/mob/living/simple_animal/hostile/ordeal/black_fixer/AttackingTarget(atom/attacked_target)
 	if(busy)
 		return
 	..()
 	if(hammer_cooldown < world.time)
-		HammerAttack(target)
+		HammerAttack(attacked_target)
 
 /mob/living/simple_animal/hostile/ordeal/black_fixer/OpenFire()
 	if(busy)
@@ -407,15 +407,15 @@
 		return FALSE
 	return ..()
 
-/mob/living/simple_animal/hostile/ordeal/red_fixer/AttackingTarget()
+/mob/living/simple_animal/hostile/ordeal/red_fixer/AttackingTarget(atom/attacked_target)
 	if(busy)
 		return
 	..()
 	if(multislash_cooldown < world.time)
-		MultiSlash(target)
+		MultiSlash(attacked_target)
 		return
 	if(prob(50) && beam_cooldown < world.time)
-		LaserBeam(target)
+		LaserBeam(attacked_target)
 		return
 
 /mob/living/simple_animal/hostile/ordeal/red_fixer/OpenFire()
@@ -565,14 +565,14 @@
 		return FALSE
 	return ..()
 
-/mob/living/simple_animal/hostile/ordeal/pale_fixer/AttackingTarget()
+/mob/living/simple_animal/hostile/ordeal/pale_fixer/AttackingTarget(atom/attacked_target)
 	if(!can_act)
 		return
 	if(prob(60) && multislash_cooldown < world.time)
-		MultiSlash(target)
+		MultiSlash(attacked_target)
 		return
 	if(prob(40) && tentacle_cooldown < world.time)
-		TentacleAttack(target)
+		TentacleAttack(attacked_target)
 		return
 	return ..()
 

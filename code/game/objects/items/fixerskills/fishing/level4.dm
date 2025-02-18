@@ -1,15 +1,14 @@
-//Align
 /obj/item/book/granter/action/skill/alignment
-	granted_action = /datum/action/cooldown/fishing/alignment
-	actionname = "Alignment"
 	name = "Level 4 Skill: Alignment"
+	actionname = "Alignment"
+	granted_action = /datum/action/cooldown/fishing/alignment
 	level = 4
 	custom_premium_price = 2400
 
 /datum/action/cooldown/fishing/alignment
+	name = "Alignment"
 	button_icon_state = "alignment"
-	name = "alignment"
-	cooldown_time = 6000
+	cooldown_time = 10 MINUTES
 	devotion_cost = 15
 
 /datum/action/cooldown/fishing/alignment/FishEffect(mob/living/user)
@@ -21,18 +20,17 @@
 		to_chat(user, span_notice("You shift your deity's planet to align with earth."))
 		break
 
-//A Moment in Time
 /obj/item/book/granter/action/skill/planetstop
-	granted_action = /datum/action/cooldown/fishing/planetstop
-	actionname = "A Moment in Time"
 	name = "Level 4 Skill: A Moment in Time"
+	actionname = "A Moment in Time"
+	granted_action = /datum/action/cooldown/fishing/planetstop
 	level = 4
 	custom_premium_price = 2400
 
 /datum/action/cooldown/fishing/planetstop
+	name = "A Moment in Time"
 	button_icon_state = "planetstop"
-	name = "planetstop"
-	cooldown_time = 18000
+	cooldown_time = 30 MINUTES
 	devotion_cost = 12
 
 /datum/action/cooldown/fishing/planetstop/FishEffect(mob/living/user)
@@ -41,19 +39,17 @@
 	for(var/mob/M in GLOB.player_list)
 		to_chat(M, span_userdanger("The planets have stopped moving."))
 
-
-//Supernova
 /obj/item/book/granter/action/skill/supernova
-	granted_action = /datum/action/cooldown/fishing/supernova
-	actionname = "Supernova"
 	name = "Level 4 Skill: Supernova"
+	actionname = "Supernova"
+	granted_action = /datum/action/cooldown/fishing/supernova
 	level = 4
 	custom_premium_price = 2400
 
 /datum/action/cooldown/fishing/supernova
+	name = "Supernova"
 	button_icon_state = "supernova"
-	name = "supernova"
-	cooldown_time = 12000
+	cooldown_time = 20 MINUTES
 	devotion_cost = 25
 
 /datum/action/cooldown/fishing/supernova/FishEffect(mob/living/user)
@@ -89,16 +85,16 @@
 
 //Alignment 2
 /obj/item/book/granter/action/skill/alignment2
-	granted_action = /datum/action/cooldown/fishing/alignment2
-	actionname = "Alignment II"
 	name = "Level 4 Skill: Alignment II"
+	actionname = "Alignment II"
+	granted_action = /datum/action/cooldown/fishing/alignment2
 	level = 4
 	custom_premium_price = 2400
 
 /datum/action/cooldown/fishing/alignment2
-	button_icon_state = "alignment2"
 	name = "Alignment II"
-	cooldown_time = 18000
+	button_icon_state = "alignment2"
+	cooldown_time = 30 MINUTES
 	devotion_cost = 35
 
 /datum/action/cooldown/fishing/alignment2/FishEffect(mob/living/user)

@@ -31,13 +31,13 @@
 	observation_prompt = "A girl in front of you dances, stumbling to and fro. <br>\
 		Her feet are chopped off at the ankles, and yet they still move. <br>\
 		You..."
-	observation_choices = list("Put on the shoes.", "Don't put on the shoes.")
-	correct_choices = list("Put on the shoes.")
-	observation_success_message = "You remove the severed feet, and put on the shoes. <br>\
-		It feels good. <br>You want to dance. <br>Please, chop off my feet."
-	observation_fail_message = "How could you do something so gross? <br>\
-		You leave the shoes where they are. <br>\
-		The girl continues shifting about without a care in the world."
+	observation_choices = list(
+		"Put on the shoes" = list(TRUE, "You remove the severed feet, and put on the shoes. <br>\
+			It feels good. <br>You want to dance. <br>Please, chop off my feet."),
+		"Don't put on the shoes" = list(FALSE, "How could you do something so gross? <br>\
+			You leave the shoes where they are. <br>\
+			The girl continues shifting about without a care in the world."),
+	)
 
 //Work Mechanics
 /mob/living/simple_animal/hostile/abnormality/penitentgirl/AttemptWork(mob/living/carbon/human/user, work_type)

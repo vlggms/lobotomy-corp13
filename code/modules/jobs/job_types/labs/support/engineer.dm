@@ -10,6 +10,7 @@
 
 	access = list(ACCESS_SECURITY, ACCESS_ARMORY, ACCESS_CONSTRUCTION)
 	minimal_access = list(ACCESS_SECURITY, ACCESS_ARMORY, ACCESS_CONSTRUCTION)
+	departments = DEPARTMENT_ENGINEERING
 
 	job_attribute_limit = 0
 

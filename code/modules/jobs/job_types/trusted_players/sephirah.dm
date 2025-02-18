@@ -8,6 +8,7 @@
 	trusted_only = TRUE
 	access = list(ACCESS_NETWORK, ACCESS_COMMAND, ACCESS_MANAGER) // Network is the trusted chat gamer access
 	minimal_access = list(ACCESS_NETWORK, ACCESS_COMMAND, ACCESS_MANAGER)
+	departments = DEPARTMENT_COMMAND
 	mapexclude = list("wonderlabs", "mini")
 	job_important = "You are a roleplay role, and may not partake in combat. Assist the manager and roleplay with the agents and clerks"
 	job_notice = "\
@@ -298,19 +299,17 @@ GLOBAL_LIST_EMPTY(SephirahBullet)
 	var/mob/living/simple_animal/hostile/abnormality/queued_abno = SSabnormality_queue.queued_abnormality
 	data["queued_abno"] = initial(queued_abno.name)
 
-	/* Scrapped due to difficulty -- to be implemented
 	// START OF ARRIVAL INFORMATION
 	var/safe_abnormality_delay
-	if(SSabnormality_queue.next_abno_spawn != INFINITY) // happens when starting abnormalities are being selected, or things break
-		safe_abnormality_delay = SSabnormality_queue.next_abno_spawn
+	if(SSabnormality_queue.next_abno_spawn != INFINITY) // Happens when starting abnormalities are being selected, or things break
+		safe_abnormality_delay = floor(SSabnormality_queue.next_abno_spawn)
 	else
-		safe_abnormality_delay = ABNORMALITY_DELAY
+		safe_abnormality_delay = ABNORMALITY_DELAY + SSticker.round_start_time
 
-	data["current_arrival"] = safe_abnormality_delay
-	data["next_arrival"] = safe_abnormality_delay + SSabnormality_queue.next_abno_spawn_time + ((min(16, (SSabnormality_queue.spawned_abnos + 1)) - 6) * 6) SECONDS
-	data["progress_component"] = (world.time - ABNORMALITY_DELAY) / safe_abnormality_delay
+	data["previous_arrival_time"] = floor(SSabnormality_queue.previous_abno_spawn ? SSabnormality_queue.previous_abno_spawn : ROUNDTIME)
+	data["current_arrival_time"] = floor(world.time)
+	data["next_arrival_time"] = safe_abnormality_delay + 5 SECONDS // The seconds are because the subsystem fires every 10 seconds
 	// END OF ARRIVAL INFORMATION
-	*/
 
 	return data
 

@@ -34,11 +34,10 @@
 		Her muttering is unintelligible, and it gives you goosebumps. You don't like being in the same space with her. \
 		You want to get out. The woman seems to be sobbing. You feel as though her crying is insisting you to turn towards her. \
 		And you also feel, that you should not."
-	observation_choices = list("Do not turn back.", "Turn back.")
-	correct_choices = list("Turn back.")
-	observation_success_message = "You face the fear, and turn to face the woman."
-	observation_fail_message = "Something terrible could happen if you turn back. You exit the room, without looking back."
-
+	observation_choices = list(
+		"Turn back" = list(TRUE, "You face the fear, and turn to face the woman."),
+		"Do not turn back" = list(FALSE, "Something terrible could happen if you turn back. You exit the room, without looking back."),
+	)
 
 /mob/living/simple_animal/hostile/abnormality/wall_gazer/NeutralEffect(mob/living/carbon/human/user, work_type, pe)
 	. = ..()

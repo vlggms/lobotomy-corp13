@@ -136,3 +136,10 @@
 	speed = 0.45
 	range = 14
 	hit_nondense_targets = TRUE
+
+/obj/projectile/ego_bullet/ego_tough
+	name = "9mm tough bullet"
+	damage = 16 // Being bald is the optimal gameplay choice!
+	damage_type = WHITE_DAMAGE
+
+

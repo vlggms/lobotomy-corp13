@@ -1,21 +1,16 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
-"ah" = (
-/obj/machinery/light{
-	dir = 2
-	},
-/turf/open/floor/plasteel/dark,
-/area/city/outskirts)
 "bH" = (
-/obj/structure/chair/comfy/shuttle{
-	dir = 4
+/obj/machinery/light{
+	dir = 1
 	},
-/obj/effect/decal/cleanable/dirt/dust,
 /turf/open/floor/plasteel/dark,
 /area/city/outskirts)
 "cn" = (
-/obj/effect/decal/cleanable/dirt/dust,
-/obj/effect/decal/cleanable/dirt/dust,
-/turf/open/floor/carpet/royalblue,
+/obj/machinery/light{
+	dir = 1
+	},
+/obj/effect/decal/cleanable/cobweb,
+/turf/open/floor/plasteel/dark,
 /area/city/outskirts)
 "eo" = (
 /obj/effect/decal/cleanable/dirt/dust,
@@ -24,25 +19,22 @@
 	},
 /turf/open/floor/carpet/royalblue,
 /area/city/outskirts)
-"eZ" = (
-/obj/effect/decal/cleanable/blood/gibs/up,
-/obj/effect/decal/cleanable/blood/bubblegum,
+"eT" = (
+/obj/effect/decal/cleanable/blood/gibs/old,
 /turf/open/floor/plasteel/dark,
 /area/city/outskirts)
 "fV" = (
-/obj/effect/decal/cleanable/blood/drip,
-/turf/open/floor/carpet/royalblue,
-/area/city/outskirts)
-"hz" = (
-/obj/effect/decal/cleanable/xenoblood/xsplatter,
-/turf/open/floor/carpet/royalblue,
+/obj/structure/railing{
+	dir = 2
+	},
+/turf/open/floor/plasteel/dark,
 /area/city/outskirts)
 "hN" = (
-/obj/structure/barricade/wooden,
-/obj/structure/barricade/wooden/crude,
-/turf/open/floor/plasteel/dark/side{
+/obj/machinery/light{
 	dir = 1
 	},
+/obj/effect/decal/cleanable/cobweb/cobweb2,
+/turf/open/floor/plasteel/dark,
 /area/city/outskirts)
 "hQ" = (
 /obj/effect/decal/cleanable/blood/footprints{
@@ -51,50 +43,49 @@
 /obj/effect/decal/cleanable/blood/tracks{
 	dir = 8
 	},
+/obj/effect/decal/cleanable/dirt/dust,
 /turf/open/floor/carpet/royalblue,
 /area/city/outskirts)
 "iO" = (
 /turf/open/floor/carpet/royalblue,
 /area/city/outskirts)
 "kt" = (
-/obj/structure/railing{
-	dir = 1
-	},
+/obj/structure/barricade/wooden,
+/obj/structure/barricade/wooden/crude,
 /turf/open/floor/plasteel/dark/side{
 	dir = 1
 	},
 /area/city/outskirts)
 "lu" = (
-/obj/effect/decal/cleanable/blood/splatter,
-/obj/effect/decal/cleanable/blood/tracks{
-	dir = 6
-	},
-/turf/open/floor/carpet/royalblue,
+/obj/effect/decal/cleanable/blood/gibs/bubblegum,
+/turf/open/floor/plasteel/dark,
 /area/city/outskirts)
 "lz" = (
-/obj/structure/barricade/wooden,
-/obj/structure/barricade/wooden/crude,
+/obj/structure/railing{
+	dir = 2
+	},
 /turf/open/floor/plasteel/dark/side,
 /area/city/outskirts)
 "mH" = (
-/turf/open/floor/plasteel/dark/side{
-	dir = 8
-	},
+/obj/effect/decal/cleanable/blood/drip,
+/turf/open/floor/plasteel/dark,
 /area/city/outskirts)
 "mU" = (
-/obj/effect/decal/cleanable/blood/footprints{
-	dir = 4
-	},
+/obj/effect/decal/cleanable/blood/gibs/down,
 /obj/effect/decal/cleanable/blood/tracks{
 	dir = 8
 	},
-/obj/effect/decal/cleanable/dirt/dust,
 /turf/open/floor/carpet/royalblue,
 /area/city/outskirts)
 "nj" = (
-/obj/structure/railing{
-	dir = 8
+/obj/effect/decal/cleanable/blood/splatter,
+/turf/open/floor/plasteel/dark,
+/area/city/outskirts)
+"nz" = (
+/obj/machinery/light{
+	dir = 2
 	},
+/obj/effect/decal/cleanable/blood/gibs/old,
 /turf/open/floor/plasteel/dark,
 /area/city/outskirts)
 "nL" = (
@@ -102,24 +93,24 @@
 /turf/closed/wall/r_wall/syndicate,
 /area/city/outskirts)
 "nO" = (
-/obj/machinery/light{
+/obj/structure/railing{
 	dir = 1
 	},
-/obj/effect/decal/cleanable/cobweb/cobweb2,
-/turf/open/floor/plasteel/dark,
+/turf/open/floor/plasteel/dark/side{
+	dir = 1
+	},
 /area/city/outskirts)
 "nX" = (
 /turf/closed/wall/r_wall/syndicate,
 /area/city/outskirts)
 "pa" = (
-/obj/effect/decal/cleanable/blood/gibs/down,
-/obj/effect/decal/cleanable/blood/tracks{
-	dir = 8
-	},
+/obj/effect/decal/cleanable/xenoblood/xsplatter,
 /turf/open/floor/carpet/royalblue,
 /area/city/outskirts)
 "qc" = (
-/obj/effect/decal/cleanable/blood/drip,
+/obj/structure/railing{
+	dir = 4
+	},
 /turf/open/floor/plasteel/dark,
 /area/city/outskirts)
 "qh" = (
@@ -137,37 +128,27 @@
 	},
 /turf/open/floor/carpet/royalblue,
 /area/city/outskirts)
-"tR" = (
-/obj/effect/decal/cleanable/blood/splatter,
-/turf/open/floor/plasteel/dark,
-/area/city/outskirts)
 "tV" = (
-/obj/structure/barricade/wooden,
-/obj/structure/barricade/wooden/crude,
-/turf/open/floor/plasteel/dark/corner{
-	dir = 4
-	},
+/obj/effect/decal/cleanable/xenoblood/xgibs,
+/turf/open/floor/carpet/royalblue,
 /area/city/outskirts)
 "vr" = (
-/turf/open/floor/plasteel/dark/corner,
-/area/city/outskirts)
-"wj" = (
-/obj/effect/decal/cleanable/blood/gibs/old,
-/turf/open/floor/plasteel/dark,
+/obj/effect/decal/cleanable/blood/drip,
+/turf/open/floor/plasteel/dark/side,
 /area/city/outskirts)
 "xn" = (
-/turf/open/floor/plasteel/dark/corner{
-	dir = 8
-	},
+/obj/effect/decal/cleanable/blood/drip,
+/turf/open/floor/carpet/royalblue,
 /area/city/outskirts)
 "xF" = (
-/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/chair/comfy/shuttle{
+	dir = 4
+	},
 /obj/effect/decal/cleanable/blood/drip,
 /turf/open/floor/plasteel/dark,
 /area/city/outskirts)
 "yl" = (
-/obj/structure/barricade/wooden,
-/obj/structure/barricade/wooden/crude,
+/obj/effect/decal/cleanable/dirt/dust,
 /turf/open/floor/carpet/royalblue,
 /area/city/outskirts)
 "yw" = (
@@ -176,34 +157,27 @@
 	},
 /area/city/outskirts)
 "zE" = (
-/obj/structure/displaycase/trophy,
-/turf/open/floor/plasteel/dark,
-/area/city/outskirts)
-"AD" = (
-/obj/structure/barricade/wooden,
-/obj/structure/barricade/wooden/crude,
-/turf/open/floor/plasteel/dark/side{
-	dir = 4
-	},
-/area/city/outskirts)
-"Bk" = (
 /obj/structure/railing{
-	dir = 1
+	dir = 8
 	},
+/obj/effect/decal/cleanable/dirt/dust,
 /turf/open/floor/plasteel/dark,
 /area/city/outskirts)
 "Bz" = (
-/obj/structure/barricade/wooden,
-/obj/structure/barricade/wooden/crude,
-/turf/open/floor/plasteel/dark/side{
-	dir = 8
+/obj/effect/decal/cleanable/blood/tracks{
+	dir = 9
 	},
+/turf/open/floor/carpet/royalblue,
 /area/city/outskirts)
 "Ci" = (
-/obj/effect/decal/cleanable/xenoblood/xgibs,
+/obj/structure/barricade/wooden,
+/obj/structure/barricade/wooden/crude,
 /turf/open/floor/carpet/royalblue,
 /area/city/outskirts)
 "Cr" = (
+/obj/effect/decal/cleanable/blood/footprints{
+	dir = 4
+	},
 /obj/effect/decal/cleanable/blood/tracks{
 	dir = 8
 	},
@@ -211,187 +185,161 @@
 /area/city/outskirts)
 "Cx" = (
 /obj/effect/decal/cleanable/dirt/dust,
-/turf/open/floor/plasteel/dark/side,
-/area/city/outskirts)
-"CV" = (
 /obj/effect/decal/cleanable/dirt/dust,
 /turf/open/floor/carpet/royalblue,
 /area/city/outskirts)
-"Eu" = (
-/turf/open/floor/plasteel/dark,
-/area/city/outskirts)
-"Fv" = (
-/obj/structure/railing{
-	dir = 4
-	},
-/turf/open/floor/plasteel/dark,
-/area/city/outskirts)
-"HE" = (
-/obj/structure/railing{
-	dir = 8
-	},
-/obj/effect/decal/cleanable/dirt/dust,
-/turf/open/floor/plasteel/dark,
-/area/city/outskirts)
-"JY" = (
-/obj/structure/railing{
-	dir = 2
-	},
-/turf/open/floor/plasteel/dark/side,
-/area/city/outskirts)
-"KK" = (
-/obj/structure/chair/comfy/shuttle{
-	dir = 4
-	},
-/obj/effect/decal/cleanable/blood/drip,
-/turf/open/floor/plasteel/dark,
-/area/city/outskirts)
-"KM" = (
+"CV" = (
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/effect/decal/cleanable/blood,
 /turf/open/floor/carpet/royalblue,
 /area/city/outskirts)
-"Lw" = (
+"Eu" = (
+/obj/structure/chair/comfy/shuttle{
+	dir = 4
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/plasteel/dark,
+/area/city/outskirts)
+"Fv" = (
+/obj/structure/displaycase/trophy,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/plasteel/dark,
+/area/city/outskirts)
+"JY" = (
+/obj/effect/decal/cleanable/blood/splatter,
+/turf/open/floor/plasteel/dark/side,
+/area/city/outskirts)
+"KK" = (
+/obj/effect/decal/cleanable/blood/gibs/up,
+/obj/effect/decal/cleanable/blood/bubblegum,
+/turf/open/floor/plasteel/dark,
+/area/city/outskirts)
+"KM" = (
 /obj/effect/decal/cleanable/blood/gibs/bubblegum,
 /obj/effect/decal/cleanable/blood/gibs/body,
 /obj/effect/decal/cleanable/blood/tracks,
 /turf/open/floor/carpet/royalblue,
 /area/city/outskirts)
-"Nm" = (
-/obj/effect/decal/cleanable/dirt/dust,
-/turf/open/floor/plasteel/dark,
-/area/city/outskirts)
-"NN" = (
-/obj/effect/decal/cleanable/blood/splatter,
+"Lw" = (
+/obj/structure/barricade/wooden,
+/obj/structure/barricade/wooden/crude,
 /turf/open/floor/plasteel/dark/side,
 /area/city/outskirts)
+"NN" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/plasteel/dark/side,
+/area/city/outskirts)
+"OE" = (
+/obj/machinery/light{
+	dir = 2
+	},
+/turf/open/floor/plasteel/dark,
+/area/city/outskirts)
 "PA" = (
+/obj/effect/decal/cleanable/blood/splatter,
 /obj/effect/decal/cleanable/blood/tracks{
-	dir = 9
+	dir = 6
 	},
 /turf/open/floor/carpet/royalblue,
 /area/city/outskirts)
 "Ri" = (
-/obj/structure/displaycase/trophy,
+/obj/structure/railing{
+	dir = 8
+	},
+/turf/open/floor/plasteel/dark,
+/area/city/outskirts)
+"SD" = (
+/obj/structure/railing{
+	dir = 1
+	},
+/turf/open/floor/plasteel/dark,
+/area/city/outskirts)
+"SZ" = (
+/turf/open/floor/plasteel/dark,
+/area/city/outskirts)
+"Ui" = (
 /obj/effect/decal/cleanable/dirt/dust,
 /turf/open/floor/plasteel/dark,
 /area/city/outskirts)
-"Rw" = (
-/turf/open/floor/plasteel/dark/side{
-	dir = 4
-	},
-/area/city/outskirts)
-"RK" = (
+"Xh" = (
 /obj/structure/chair/comfy/shuttle{
 	dir = 4
 	},
 /turf/open/floor/plasteel/dark,
 /area/city/outskirts)
-"SY" = (
-/obj/structure/railing{
-	dir = 2
-	},
-/turf/open/floor/plasteel/dark,
-/area/city/outskirts)
-"SZ" = (
-/obj/machinery/light{
-	dir = 1
-	},
-/turf/open/floor/plasteel/dark,
-/area/city/outskirts)
-"Ui" = (
-/obj/machinery/light{
-	dir = 2
-	},
-/obj/effect/decal/cleanable/blood/gibs/old,
-/turf/open/floor/plasteel/dark,
-/area/city/outskirts)
-"Wd" = (
-/obj/effect/decal/cleanable/blood/gibs/bubblegum,
-/turf/open/floor/plasteel/dark,
-/area/city/outskirts)
-"Xh" = (
-/obj/machinery/light{
-	dir = 1
-	},
-/obj/effect/decal/cleanable/cobweb,
-/turf/open/floor/plasteel/dark,
-/area/city/outskirts)
 "Xn" = (
+/obj/effect/decal/cleanable/dirt/dust,
 /obj/effect/decal/cleanable/blood/drip,
-/turf/open/floor/plasteel/dark/side,
+/turf/open/floor/plasteel/dark,
 /area/city/outskirts)
 "Yt" = (
-/obj/structure/barricade/wooden,
-/obj/structure/barricade/wooden/crude,
-/turf/open/floor/plasteel/dark/corner{
-	dir = 1
-	},
+/obj/structure/displaycase/trophy,
+/turf/open/floor/plasteel/dark,
 /area/city/outskirts)
 
 (1,1,1) = {"
 nX
-nX
-Rw
+cn
+Ui
+yw
 tV
-iO
-yl
-iO
+rQ
+Cx
 vr
-AD
-nX
+SZ
+OE
 nX
 "}
 (2,1,1) = {"
 nX
 Xh
-Nm
+Xh
 yw
 Ci
 rQ
-cn
-Xn
-Eu
-ah
+iO
+qh
+Xh
+Xh
 nX
 "}
 (3,1,1) = {"
 nX
-RK
-RK
+SZ
+lu
 yw
-yl
-rQ
 iO
-qh
-RK
-RK
+Cr
+iO
+JY
+Xn
+eT
 nX
 "}
 (4,1,1) = {"
 nX
 Eu
-Wd
+Xh
 yw
-iO
+xn
 hQ
 iO
 NN
 xF
-wj
+Xh
 nX
 "}
 (5,1,1) = {"
 nX
 bH
-RK
+mH
 yw
-fV
+iO
 mU
 iO
-Cx
+qh
 KK
-RK
+nz
 nX
 "}
 (6,1,1) = {"
@@ -402,125 +350,99 @@ yw
 iO
 pa
 iO
-qh
-eZ
+Lw
+qc
 Ui
-nX
+nL
 "}
 (7,1,1) = {"
 nX
-Eu
+fV
 Fv
-yw
+nO
 iO
-hz
+Ci
 iO
 lz
-Fv
-Nm
+Yt
+SD
 nL
 "}
 (8,1,1) = {"
 nX
-SY
+SZ
 Ri
 kt
-iO
-yl
-iO
-JY
-zE
-Bk
-nL
-"}
-(9,1,1) = {"
-nX
-Eu
-nj
-hN
 iO
 iO
 iO
 qh
-HE
-Eu
+zE
+SZ
+nX
+"}
+(9,1,1) = {"
+nX
+bH
+nj
+yw
+yl
+iO
+CV
+qh
+SZ
+OE
 nX
 "}
 (10,1,1) = {"
 nX
-SZ
-tR
+Eu
+Xh
 yw
-CV
 iO
+Bz
 KM
 qh
-Eu
-ah
+Xh
+Xh
 nX
 "}
 (11,1,1) = {"
 nX
-bH
-RK
+SZ
+mH
 yw
-iO
+Bz
 PA
-Lw
+iO
 qh
-RK
-RK
+SZ
+lu
 nX
 "}
 (12,1,1) = {"
 nX
+Xh
 Eu
-qc
 yw
-PA
-lu
+eo
 iO
-qh
-Eu
-Wd
+Ci
+vr
+Xh
+Xh
 nX
 "}
 (13,1,1) = {"
 nX
-RK
-bH
-yw
-eo
-iO
-yl
-Xn
-RK
-RK
-nX
-"}
-(14,1,1) = {"
-nX
-nO
-Eu
+hN
+SZ
 yw
 eo
 iO
 iO
 qh
-Eu
-ah
-nX
-"}
-(15,1,1) = {"
-nX
-nX
-mH
-Yt
-Cr
-yl
-iO
-xn
-Bz
-nX
+SZ
+OE
 nX
 "}
