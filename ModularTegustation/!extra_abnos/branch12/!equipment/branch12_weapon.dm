@@ -5,7 +5,7 @@
 /obj/item/ego_weapon/branch12
 	icon = 'ModularTegustation/Teguicons/branch12/branch12_weapon.dmi'
 
-
+// --------ZAYIN---------
 //Signal
 /obj/item/ego_weapon/ranged/branch12/mini/signal
 	name = "signal"
