@@ -42,14 +42,22 @@ GLOBAL_LIST_EMPTY(spawned_clerks)
 //Cannot Gain stats.
 /datum/job/assistant/after_spawn(mob/living/carbon/human/outfit_owner, mob/M, latejoin = FALSE)
 	. = ..()
-	outfit_owner.adjust_attribute_buff(TEMPERANCE_ATTRIBUTE, 10)
-	outfit_owner.adjust_attribute_buff(PRUDENCE_ATTRIBUTE, 10)
-	ADD_TRAIT(outfit_owner, TRAIT_WORK_FORBIDDEN, JOB_TRAIT)
+	if(SSmaptype.chosen_trait != FACILITY_TRAIT_WORKING_CLERKS)
+		outfit_owner.adjust_attribute_buff(TEMPERANCE_ATTRIBUTE, 10)
+		outfit_owner.adjust_attribute_buff(PRUDENCE_ATTRIBUTE, 10)
+		ADD_TRAIT(outfit_owner, TRAIT_WORK_FORBIDDEN, JOB_TRAIT)
+
+	else	//Don't buff them if they can work jesus
+		outfit_owner.set_attribute_limit(130)
 
 	for(var/upgradecheck in GLOB.lcorp_upgrades)
 		if(upgradecheck == "Clerk Buff")
 			outfit_owner.set_attribute_limit(40)
 			outfit_owner.adjust_all_attribute_levels(40)
+
+	if(SSmaptype.chosen_trait == FACILITY_TRAIT_ABNO_BLITZ)
+		outfit_owner.set_attribute_limit(40)
+		outfit_owner.adjust_all_attribute_levels(40)
 
 	if(outfit_owner.ckey in GLOB.spawned_clerks)
 		return

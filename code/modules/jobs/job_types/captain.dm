@@ -32,6 +32,7 @@
 	head = /obj/item/clothing/head/hos/beret
 	ears = /obj/item/radio/headset/heads/agent_captain/alt
 	l_pocket = /obj/item/commandprojector
+	l_hand = null
 
 	backpack_contents = list(
 		/obj/item/melee/classic_baton,
