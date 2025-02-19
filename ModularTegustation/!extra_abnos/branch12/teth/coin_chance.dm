@@ -1,9 +1,9 @@
 /mob/living/simple_animal/hostile/abnormality/branch12/coin_chance
-	name = "You Can Become Better"
-	desc = "A human-sized container with a blinding light coming from inside"
+	name = "Coin Chance"
+	desc = "A table stands in front of you with a card and stacks of chips."
 	icon = 'ModularTegustation/Teguicons/branch12/32x32.dmi'
-	icon_state = "becomebetter"
-	icon_living = "becomebetter"
+	icon_state = "deal"
+	icon_living = "deal"
 
 	work_chances = list(
 		ABNORMALITY_WORK_INSTINCT = 80,
@@ -27,8 +27,43 @@
 	..()
 	switch(work_type)
 		if(ABNORMALITY_WORK_INSTINCT)
+			if(prob(50))
+				to_chat(owner, span_nicegreen("You flip a red chip. It lands on heads."))
+				user.adjustBruteloss(-40)
+				return
+			to_chat(owner, span_warning("You flip a red chip. It lands on tails."))
+			user.adjustBruteloss(40)
+
 		if(ABNORMALITY_WORK_INSIGHT)
+			if(prob(50))
+				user.adjustSanityloss(-40)
+				to_chat(owner, span_nicegreen("You flip a blue chip. It lands on heads."))
+				return
+			user.adjustSanityloss(40)
+			to_chat(owner, span_warning("You flip a blue chip. It lands on tails."))
 
 		if(ABNORMALITY_WORK_ATTACHMENT)
+			if(prob(50))
+				user.adjustBruteloss(-40)
+				user.adjustSanityloss(-40)
+				to_chat(owner, span_nicegreen("You flip a purple chip. It lands on heads."))
+				return
+			user.adjustSanityloss(40)
+			user.adjustBruteloss(40)
+			to_chat(owner, span_warning("You flip a purple chip. It lands on tails."))
+
 		if(ABNORMALITY_WORK_REPRESSION)
+			if(prob(50))
+				user.adjust_attribute_level(FORTITUDE_ATTRIBUTE, -5)
+				user.adjust_attribute_level(PRUDENCE_ATTRIBUTE, -5)
+				user.adjust_attribute_level(TEMPERANCE_ATTRIBUTE, -5)
+				user.adjust_attribute_level(JUSTICE_ATTRIBUTE, -5)
+				to_chat(owner, span_nicegreen("You flip a blue chip. It lands on heads."))
+				return
+			user.adjust_attribute_level(FORTITUDE_ATTRIBUTE, 5)
+			user.adjust_attribute_level(PRUDENCE_ATTRIBUTE, 5)
+			user.adjust_attribute_level(TEMPERANCE_ATTRIBUTE, 5)
+			user.adjust_attribute_level(JUSTICE_ATTRIBUTE, 5)
+			to_chat(owner, span_warning("You flip a blue chip. It lands on tails."))
+
 
