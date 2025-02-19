@@ -26,8 +26,18 @@
 
 /mob/living/simple_animal/hostile/abnormality/branch12/extermination/SuccessEffect(mob/living/carbon/human/user, work_type, pe, work_time)
 	for(var/mob/living/simple_animal/hostile/abnormality/V in GLOB.abnormality_mob_list)
+		var/list/damage_these = list()
+
 		if(V.can_breach && V.IsContained() && V.z == z)
 			possible_breachers+=V
+		if(!V.IsContained())
+			damage_these+=V
+
+	if(length(damage_these))
+		for(var/mob/living/simple_animal/hostile/abnormality/D in damage_these)
+			D.applyBruteLoss(D.maxHealth*0.3)
+
+
 	if(!length(possible_breachers))
 		to_chat(user, span_notice("No one took your contract."))
 		return

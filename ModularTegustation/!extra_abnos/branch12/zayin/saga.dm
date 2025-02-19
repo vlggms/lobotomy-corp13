@@ -33,7 +33,7 @@
 	icon_state = "saga_inert"
 	current_saga = pick("Ice Age", "Famine", "Golden Age", "All Saint's Day")
 	sound_to_playing_players_on_level('sound/abnormalities/silence/church.ogg', 50, zlevel = z)
-	for(var/mob/living/carbon/human/H in GLOB.mob_list)
+	for(var/mob/H in GLOB.player_list)
 		to_chat(H, span_spider("The Saga has been read! The new age for humanity is [current_saga]!"))
 
 /mob/living/simple_animal/hostile/abnormality/branch12/saga/Life()

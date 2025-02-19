@@ -46,6 +46,10 @@
 	item_path = /obj/item/clothing/suit/armor/ego_gear/branch12/perfectionist
 	cost = 35
 
+//Deus Ex Machina - Medea
+/datum/ego_datum/armor/branch12/medea
+	item_path = /obj/item/clothing/suit/armor/ego_gear/branch12/medea
+	cost = 35
 
 // --------WAW---------
 // Ollieoxenfree - Plagiarism

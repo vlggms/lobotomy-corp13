@@ -5,7 +5,7 @@
 	icon_state = "deus"
 
 	threat_level = HE_LEVEL
-	start_qliphoth = 4
+	start_qliphoth = 2
 	work_chances = list(
 		ABNORMALITY_WORK_INSTINCT = 40,
 		ABNORMALITY_WORK_INSIGHT = 40,
@@ -18,7 +18,7 @@
 
 	ego_list = list(
 		/datum/ego_datum/weapon/branch12/medea,
-		//datum/ego_datum/armor/galaxy,
+		/datum/ego_datum/armor/branch12/medea,
 	)
 	abnormality_origin = ABNORMALITY_ORIGIN_BRANCH12
 
