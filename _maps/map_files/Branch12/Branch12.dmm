@@ -21,7 +21,7 @@
 	dir = 1
 	},
 /turf/open/floor/carpet/cyan,
-/area/department_main/control)
+/area/department_main/manager)
 "aq" = (
 /obj/structure/chair/comfy/beige{
 	dir = 1
@@ -30,13 +30,13 @@
 	dir = 1
 	},
 /turf/open/floor/carpet/cyan,
-/area/department_main/control)
+/area/department_main/manager)
 "ax" = (
 /obj/effect/turf_decal/siding/blue{
 	dir = 5
 	},
 /turf/open/floor/carpet/cyan,
-/area/department_main/control)
+/area/department_main/manager)
 "aG" = (
 /obj/machinery/light{
 	dir = 8
@@ -54,14 +54,10 @@
 	dir = 8
 	},
 /turf/open/floor/facility/halls,
-/area/department_main/control)
+/area/department_main/manager)
 "aU" = (
 /turf/open/floor/carpet/cyan,
-/area/department_main/control)
-"br" = (
-/obj/effect/landmark/latejoin,
-/turf/open/floor/carpet/cyan,
-/area/department_main/control)
+/area/department_main/manager)
 "bs" = (
 /obj/effect/turf_decal/siding/blue{
 	dir = 4
@@ -70,7 +66,7 @@
 	dir = 4
 	},
 /turf/open/floor/carpet/cyan,
-/area/department_main/control)
+/area/department_main/manager)
 "bF" = (
 /obj/machinery/door/airlock/highsecurity{
 	name = "Information Department"
@@ -81,7 +77,7 @@
 "bH" = (
 /obj/effect/turf_decal/siding/blue,
 /turf/open/floor/carpet/cyan,
-/area/department_main/control)
+/area/department_main/manager)
 "bK" = (
 /obj/machinery/regenerator/safety,
 /turf/open/floor/carpet/green,
@@ -124,44 +120,44 @@
 	dir = 6
 	},
 /turf/open/floor/carpet/cyan,
-/area/department_main/control)
+/area/department_main/manager)
 "ci" = (
 /obj/machinery/cryopod{
 	dir = 1
 	},
 /turf/open/floor/facility/halls,
-/area/department_main/control)
+/area/department_main/manager)
 "cj" = (
 /obj/machinery/door/airlock/grunge,
 /turf/open/floor/facility/halls,
-/area/department_main/control)
+/area/department_main/manager)
 "cu" = (
 /obj/machinery/light,
 /obj/structure/chair/plastic{
 	dir = 4
 	},
 /turf/open/floor/plasteel/dark,
-/area/department_main/control)
+/area/department_main/manager)
 "cv" = (
 /obj/machinery/navbeacon/wayfinding/architecturedepartment,
 /turf/open/floor/plasteel,
-/area/department_main/control)
+/area/department_main/manager)
 "cI" = (
 /obj/structure/chair/plastic{
 	dir = 8
 	},
 /turf/open/floor/plasteel/dark,
-/area/department_main/control)
+/area/department_main/manager)
 "cL" = (
 /turf/open/floor/plasteel,
-/area/department_main/control)
+/area/department_main/manager)
 "cO" = (
 /obj/machinery/light,
 /obj/structure/chair/plastic{
 	dir = 8
 	},
 /turf/open/floor/plasteel/dark,
-/area/department_main/control)
+/area/department_main/manager)
 "cU" = (
 /turf/closed/indestructible/fakeglass,
 /area/facility_hallway/central)
@@ -408,7 +404,7 @@
 /obj/effect/turf_decal/tile/blue{
 	color = "#3234B9"
 	},
-/obj/machinery/computer/communications,
+/obj/machinery/computer/abnormality_queue,
 /turf/open/floor/plasteel/sepia,
 /area/space)
 "fX" = (
@@ -477,6 +473,10 @@
 	},
 /turf/open/floor/carpet/red,
 /area/department_main/control)
+"gH" = (
+/obj/machinery/camera/autoname,
+/turf/open/floor/plasteel,
+/area/facility_hallway/command)
 "gI" = (
 /obj/structure/chair/office{
 	dir = 4
@@ -793,10 +793,10 @@
 	dir = 8
 	},
 /turf/open/floor/carpet/cyan,
-/area/department_main/control)
+/area/department_main/manager)
 "jP" = (
 /turf/closed/indestructible/fakeglass,
-/area/department_main/control)
+/area/department_main/manager)
 "jQ" = (
 /obj/effect/turf_decal/siding/brown{
 	dir = 8
@@ -1157,7 +1157,7 @@
 	dir = 9
 	},
 /turf/open/floor/carpet/cyan,
-/area/department_main/control)
+/area/department_main/manager)
 "op" = (
 /obj/effect/turf_decal/tile/brown{
 	dir = 4
@@ -1512,6 +1512,9 @@
 	},
 /turf/open/floor/carpet/orange,
 /area/department_main/training)
+"rG" = (
+/turf/open/floor/carpet/red,
+/area/department_main/manager)
 "rM" = (
 /obj/structure/disposalpipe/segment{
 	dir = 9
@@ -1519,12 +1522,6 @@
 /obj/machinery/regenerator,
 /turf/open/floor/carpet/orange,
 /area/department_main/training)
-"rO" = (
-/obj/machinery/door/airlock/highsecurity{
-	name = "Central Command Department"
-	},
-/turf/open/floor/facility/halls,
-/area/space)
 "rZ" = (
 /obj/machinery/light,
 /turf/open/floor/plasteel,
@@ -1767,6 +1764,13 @@
 "ve" = (
 /turf/closed/indestructible/reinforced,
 /area/facility_hallway/records)
+"vf" = (
+/obj/effect/turf_decal/siding/red,
+/obj/machinery/door/airlock/wood{
+	name = "Manager's Office"
+	},
+/turf/open/floor/plasteel,
+/area/department_main/manager)
 "vg" = (
 /turf/open/floor/plating,
 /area/facility_hallway/south)
@@ -2008,7 +2012,7 @@
 	dir = 10
 	},
 /turf/open/floor/carpet/cyan,
-/area/department_main/control)
+/area/department_main/manager)
 "yt" = (
 /obj/structure/chair/sofa/corp/right{
 	dir = 4
@@ -2191,7 +2195,7 @@
 /area/department_main/training)
 "Bw" = (
 /obj/machinery/facility_holomap{
-	dir = 8
+	dir = 4
 	},
 /turf/open/floor/wood,
 /area/department_main/command)
@@ -2582,15 +2586,6 @@
 	},
 /turf/open/floor/wood,
 /area/department_main/extraction)
-"Il" = (
-/obj/machinery/camera/autoname{
-	dir = 4
-	},
-/obj/machinery/light{
-	dir = 8
-	},
-/turf/open/floor/plasteel,
-/area/facility_hallway/command)
 "Im" = (
 /obj/structure/fluff/hedge/opaque,
 /turf/open/floor/plating/grass,
@@ -2637,6 +2632,13 @@
 /obj/effect/spawner/structure/window/reinforced,
 /turf/open/floor/plating,
 /area/department_main/extraction)
+"Jd" = (
+/obj/machinery/camera/autoname,
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/floor/plasteel,
+/area/facility_hallway/command)
 "Jm" = (
 /obj/structure/table/reinforced,
 /turf/open/floor/carpet/orange,
@@ -2682,7 +2684,7 @@
 	dir = 4
 	},
 /turf/open/floor/plasteel/dark,
-/area/department_main/control)
+/area/department_main/manager)
 "JR" = (
 /obj/machinery/holopad,
 /turf/open/floor/carpet/royalblack,
@@ -2733,7 +2735,7 @@
 	dir = 8
 	},
 /turf/open/floor/facility/halls,
-/area/department_main/control)
+/area/department_main/manager)
 "KH" = (
 /obj/effect/turf_decal/tile/brown{
 	dir = 1
@@ -3402,6 +3404,9 @@
 	},
 /turf/open/floor/plating,
 /area/facility_hallway/south)
+"Sw" = (
+/turf/closed/indestructible/reinforced,
+/area/department_main/manager)
 "Sy" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/conveyor_switch/oneway{
@@ -3464,7 +3469,7 @@
 "SR" = (
 /obj/structure/filingcabinet/branch12,
 /turf/open/floor/facility/halls,
-/area/department_main/control)
+/area/department_main/manager)
 "SU" = (
 /obj/machinery/conveyor{
 	dir = 4;
@@ -3578,10 +3583,6 @@
 /obj/machinery/telecomms/processor/preset_two,
 /turf/open/floor/circuit/telecomms/mainframe,
 /area/facility_hallway/information)
-"Uk" = (
-/obj/machinery/announcement_system,
-/turf/open/floor/carpet/purple,
-/area/department_main/information)
 "Up" = (
 /obj/effect/turf_decal/bot,
 /obj/effect/decal/cleanable/dirt,
@@ -3689,7 +3690,7 @@
 	dir = 8
 	},
 /turf/open/floor/plasteel/dark,
-/area/department_main/control)
+/area/department_main/manager)
 "VD" = (
 /obj/effect/turf_decal/bot,
 /obj/effect/decal/cleanable/dirt,
@@ -3740,9 +3741,8 @@
 /obj/machinery/light/small{
 	dir = 4
 	},
-/obj/machinery/ntnet_relay,
 /turf/open/floor/circuit/telecomms/mainframe,
-/area/department_main/control)
+/area/department_main/manager)
 "WB" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/landmark/latejoin,
@@ -3834,9 +3834,8 @@
 /obj/machinery/light/small{
 	dir = 8
 	},
-/obj/machinery/telecomms/relay/preset/station,
 /turf/open/floor/circuit/telecomms/mainframe,
-/area/department_main/control)
+/area/department_main/manager)
 "Xv" = (
 /turf/open/floor/wood,
 /area/department_main/command)
@@ -3902,7 +3901,7 @@
 /obj/effect/turf_decal/tile/blue{
 	color = "#3234B9"
 	},
-/obj/machinery/computer/abnormality_queue,
+/obj/machinery/computer/communications,
 /turf/open/floor/plasteel/sepia,
 /area/space)
 "Yb" = (
@@ -31916,15 +31915,15 @@ ZL
 ZL
 ZL
 ZL
-ZL
-ZL
-ZL
-ZL
-ZL
-ZL
-ZL
-ZL
-ZL
+KZ
+KZ
+KZ
+KZ
+mM
+KZ
+KZ
+KZ
+KZ
 ZL
 ZL
 ZL
@@ -32173,15 +32172,15 @@ ZL
 ZL
 ZL
 ZL
-ZL
-ZL
-ZL
-ZL
-ZL
-ZL
-ZL
-ZL
-ZL
+KZ
+VK
+VK
+VK
+KZ
+Rl
+Rl
+Rl
+KZ
 ZL
 ZL
 ZL
@@ -32430,15 +32429,15 @@ ZL
 ZL
 ZL
 ZL
-ZL
-ZL
-ZL
-ZL
-ZL
-ZL
-ZL
-ZL
-ZL
+KZ
+VK
+VK
+VK
+KZ
+CL
+oj
+Rl
+KZ
 ZL
 ZL
 ZL
@@ -32687,15 +32686,15 @@ ZL
 ZL
 ZL
 ZL
-ZL
-ZL
-ZL
-ZL
-ZL
-ZL
-ZL
-ZL
-ZL
+KZ
+VK
+VK
+VK
+KZ
+Rl
+Rl
+Rl
+KZ
 ZL
 ZL
 ZL
@@ -32944,15 +32943,15 @@ ZL
 ZL
 ZL
 ZL
-ZL
-ZL
-ZL
-ZL
-ZL
-ZL
-ZL
-ZL
-ZL
+KZ
+VK
+VK
+VK
+KZ
+nU
+Rl
+Rl
+KZ
 ZL
 ZL
 ZL
@@ -33201,15 +33200,15 @@ ZL
 ZL
 ZL
 ZL
-ZL
-ZL
-ZL
-ZL
-ZL
-ZL
-ZL
-ZL
-ZL
+KZ
+VK
+VK
+VK
+KZ
+Rl
+Rl
+Rl
+KZ
 ZL
 ZL
 ZL
@@ -33463,9 +33462,9 @@ KZ
 KZ
 KZ
 mM
-KZ
-KZ
-KZ
+CL
+Rl
+Rl
 KZ
 ZL
 ZL
@@ -33493,15 +33492,15 @@ ZL
 ZL
 ZL
 ZL
-ZL
-ZL
-ZL
-ZL
-ZL
-ZL
-ZL
-ZL
-ZL
+RV
+RV
+RV
+RV
+pF
+RV
+RV
+RV
+RV
 ZL
 ZL
 ZL
@@ -33750,15 +33749,15 @@ ZL
 ZL
 ZL
 ZL
-ZL
-ZL
-ZL
-ZL
-ZL
-ZL
-ZL
-ZL
-ZL
+RV
+xX
+xX
+xX
+RV
+tN
+tN
+tN
+RV
 ZL
 ZL
 ZL
@@ -34007,15 +34006,15 @@ ZL
 ZL
 ZL
 ZL
-ZL
-ZL
-ZL
-ZL
-ZL
-ZL
-ZL
-ZL
-ZL
+RV
+xX
+xX
+xX
+RV
+tN
+fy
+tN
+RV
 ZL
 ZL
 ZL
@@ -34264,15 +34263,15 @@ ZL
 ZL
 ZL
 ZL
-ZL
-ZL
-ZL
-ZL
-ZL
-ZL
-ZL
-ZL
-ZL
+RV
+xX
+xX
+xX
+RV
+gH
+tN
+mQ
+RV
 ZL
 ZL
 ZL
@@ -34521,15 +34520,15 @@ ZL
 ZL
 ZL
 ZL
-ZL
-ZL
-ZL
-ZL
-ZL
-ZL
-ZL
-ZL
-ZL
+RV
+xX
+xX
+xX
+RV
+tN
+tN
+tN
+RV
 ZL
 ZL
 ZL
@@ -34778,15 +34777,15 @@ ZL
 ZL
 ZL
 ZL
-ZL
-ZL
-ZL
-ZL
-ZL
-ZL
-ZL
-ZL
-ZL
+RV
+xX
+xX
+xX
+RV
+tN
+tN
+tN
+RV
 ZL
 ZL
 ZL
@@ -35040,10 +35039,10 @@ RV
 RV
 RV
 pF
-ZL
-ZL
-ZL
-ZL
+cY
+tN
+tN
+RV
 ZL
 ZL
 ZL
@@ -35297,10 +35296,10 @@ xX
 xX
 xX
 RV
-ZL
-ZL
-ZL
-ZL
+tN
+tN
+tN
+RV
 ZL
 ZL
 ZL
@@ -35554,10 +35553,10 @@ xX
 xX
 xX
 RV
-ZL
-ZL
-ZL
-ZL
+tN
+tN
+tN
+RV
 ZL
 ZL
 ZL
@@ -35811,9 +35810,9 @@ xX
 xX
 xX
 RV
-RV
-RV
-RV
+tN
+tN
+mQ
 RV
 RV
 RV
@@ -36068,8 +36067,8 @@ xX
 xX
 xX
 RV
+gH
 tN
-Il
 tN
 tN
 tN
@@ -36326,7 +36325,7 @@ xX
 xX
 RV
 tN
-fy
+tN
 tN
 tN
 tN
@@ -36582,7 +36581,7 @@ YO
 YO
 YO
 YO
-tN
+cY
 tN
 tN
 tN
@@ -39090,13 +39089,13 @@ ZL
 Ga
 Ga
 Ga
-rO
 Ga
 Ga
-rg
-rg
-rg
-dH
+Ga
+Sw
+Sw
+Sw
+Sw
 ZL
 rg
 dQ
@@ -39349,11 +39348,11 @@ Ga
 SR
 aI
 ci
-rg
-rg
+Sw
+Sw
 Xr
-rg
-dH
+Sw
+Sw
 dH
 rg
 dU
@@ -39606,12 +39605,12 @@ XV
 on
 jN
 yr
-rg
-rg
+Sw
+Sw
 jP
-rg
-rg
-rg
+Sw
+Sw
+Sw
 rg
 eh
 RQ
@@ -39863,12 +39862,12 @@ fW
 ai
 aU
 bH
-rg
+Sw
 JP
 JP
 cu
-rg
-rg
+Sw
+Sw
 ry
 RQ
 RQ
@@ -40118,14 +40117,14 @@ ZL
 Ga
 bX
 aq
-br
+aU
 bH
 cj
 cL
 cv
 cL
-RQ
-RQ
+vf
+rG
 RQ
 RQ
 RQ
@@ -40377,12 +40376,12 @@ jp
 ai
 aU
 bH
-rg
+Sw
 VC
 cI
 cO
-rg
-rg
+Sw
+Sw
 dG
 RQ
 RQ
@@ -40634,12 +40633,12 @@ Nz
 ax
 bs
 cd
-rg
-rg
+Sw
+Sw
 jP
-rg
-rg
-rg
+Sw
+Sw
+Sw
 rg
 eO
 eZ
@@ -40889,13 +40888,13 @@ ZL
 Ga
 Ga
 KC
-rg
-rg
-rg
-rg
+Sw
+Sw
+Sw
+Sw
 Wq
-rg
-dH
+Sw
+Sw
 dH
 rg
 eS
@@ -40971,7 +40970,7 @@ Od
 Nw
 Od
 Od
-Uk
+Od
 PU
 LX
 ZL
@@ -41149,10 +41148,10 @@ Ga
 Ga
 Ga
 Ga
-rg
-rg
-rg
-dH
+Sw
+Sw
+Sw
+Sw
 ZL
 rg
 rg
@@ -42513,10 +42512,10 @@ Ov
 ZU
 ZU
 Vi
-ZL
-ZL
-ZL
-ZL
+Vi
+Vi
+Vi
+Vi
 Kn
 Kn
 Kn
@@ -42769,11 +42768,11 @@ Vi
 ZU
 ZU
 ZU
+ZU
+ZU
+ZU
+ZU
 Vi
-ZL
-ZL
-ZL
-ZL
 ZL
 ZL
 ZL
@@ -43024,13 +43023,13 @@ IT
 IT
 Vi
 ZU
-Cx
+ZU
+ZU
+ZU
+ZU
+ZU
 ZU
 Vi
-ZL
-ZL
-ZL
-ZL
 ZL
 ZL
 ZL
@@ -43283,11 +43282,11 @@ Vi
 ZU
 ZU
 ZU
+ZU
+ZU
+ZU
+ZU
 Vi
-ZL
-ZL
-ZL
-ZL
 ZL
 ZL
 ZL
@@ -43528,7 +43527,7 @@ Im
 Im
 Im
 Im
-Gr
+RV
 tN
 tN
 tN
@@ -43540,11 +43539,11 @@ Vi
 Vi
 Vi
 Vi
+ND
+ZU
+ZU
+ZU
 Vi
-ZL
-ZL
-ZL
-ZL
 ZL
 ZL
 ZL
@@ -43794,14 +43793,14 @@ tN
 tN
 tN
 RV
-ZL
-ZL
-ZL
-ZL
-ZL
-ZL
-ZL
-ZL
+IT
+IT
+IT
+Vi
+ZU
+ZU
+ZU
+Vi
 ZL
 ZL
 ZL
@@ -44051,14 +44050,14 @@ tN
 tN
 tN
 RV
-ZL
-ZL
-ZL
-ZL
-ZL
-ZL
-ZL
-ZL
+IT
+IT
+IT
+Vi
+Ov
+ZU
+ZU
+Vi
 ZL
 ZL
 ZL
@@ -44308,14 +44307,14 @@ tN
 tN
 tN
 RV
-ZL
-ZL
-ZL
-ZL
-ZL
-ZL
-ZL
-ZL
+IT
+IT
+IT
+Vi
+ZU
+ZU
+ZU
+Vi
 ZL
 ZL
 ZL
@@ -44565,14 +44564,14 @@ tN
 tN
 tN
 RV
-ZL
-ZL
-ZL
-ZL
-ZL
-ZL
-ZL
-ZL
+IT
+IT
+IT
+Vi
+ZU
+Cx
+ZU
+Vi
 ZL
 ZL
 ZL
@@ -44822,14 +44821,14 @@ tN
 tN
 tN
 RV
-ZL
-ZL
-ZL
-ZL
-ZL
-ZL
-ZL
-ZL
+IT
+IT
+IT
+Vi
+ZU
+ZU
+ZU
+Vi
 ZL
 ZL
 ZL
@@ -45079,14 +45078,14 @@ tN
 tN
 UE
 RV
-ZL
-ZL
-ZL
-ZL
-ZL
-ZL
-ZL
-ZL
+Vi
+Vi
+Vi
+Vi
+Vi
+Vi
+Vi
+Vi
 ZL
 ZL
 ZL
@@ -45590,7 +45589,7 @@ xX
 xX
 RV
 tN
-fy
+tN
 tN
 RV
 ZL
@@ -46102,10 +46101,10 @@ RV
 RV
 RV
 RV
-RV
-RV
-RV
-RV
+pF
+tN
+tN
+tN
 RV
 ZL
 ZL
@@ -46355,15 +46354,15 @@ ZL
 ZL
 ZL
 ZL
-ZL
-ZL
-ZL
-ZL
-ZL
-ZL
-ZL
-ZL
-ZL
+RV
+xX
+xX
+xX
+RV
+tN
+tN
+tN
+RV
 ZL
 ZL
 ZL
@@ -46612,15 +46611,15 @@ ZL
 ZL
 ZL
 ZL
-ZL
-ZL
-ZL
-ZL
-ZL
-ZL
-ZL
-ZL
-ZL
+RV
+xX
+xX
+xX
+RV
+Jd
+tN
+tN
+RV
 ZL
 ZL
 ZL
@@ -46869,15 +46868,15 @@ ZL
 ZL
 ZL
 ZL
-ZL
-ZL
-ZL
-ZL
-ZL
-ZL
-ZL
-ZL
-ZL
+RV
+xX
+xX
+xX
+RV
+tN
+tN
+tN
+RV
 ZL
 ZL
 ZL
@@ -47126,15 +47125,15 @@ ZL
 ZL
 ZL
 ZL
-ZL
-ZL
-ZL
-ZL
-ZL
-ZL
-ZL
-ZL
-ZL
+RV
+xX
+xX
+xX
+RV
+tN
+fy
+tN
+RV
 ZL
 ZL
 ZL
@@ -47383,15 +47382,15 @@ ZL
 ZL
 ZL
 ZL
-ZL
-ZL
-ZL
-ZL
-ZL
-ZL
-ZL
-ZL
-ZL
+RV
+xX
+xX
+xX
+RV
+tN
+tN
+tN
+RV
 ZL
 ZL
 ZL
@@ -47640,15 +47639,15 @@ ZL
 ZL
 ZL
 ZL
-ZL
-ZL
-ZL
-ZL
-ZL
-ZL
-ZL
-ZL
-ZL
+RV
+RV
+RV
+RV
+RV
+RV
+RV
+RV
+RV
 ZL
 ZL
 ZL
