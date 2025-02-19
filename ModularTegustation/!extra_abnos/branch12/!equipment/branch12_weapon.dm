@@ -42,12 +42,32 @@
 	name = "age of man"
 	desc = "A copper sword, freshly forged."
 	icon_state = "age_of_man"
-	force = 16
+	force = 14
 	damtype = WHITE_DAMAGE
 	swingstyle = WEAPONSWING_LARGESWEEP
 	attack_verb_continuous = list("slices", "slashes")
 	attack_verb_simple = list("slice", "slash")
 	hitsound = 'sound/weapons/fixer/generic/knife3.ogg'
+
+//Becoming
+/obj/item/ego_weapon/branch12/becoming
+	name = "becoming"
+	desc = "A hammer made with the desire to become better"
+	icon_state = "becoming"
+	force = 14
+	damtype = RED_DAMAGE
+	attack_verb_continuous = list("slams", "strikes", "smashes")
+	attack_verb_simple = list("slam", "strike", "smash")
+
+//Making
+/obj/item/ego_weapon/branch12/making
+	name = "making"
+	desc = "A hammer made with the desire to make anything"
+	icon_state = "becoming"
+	force = 14
+	damtype = RED_DAMAGE
+	attack_verb_continuous = list("slams", "strikes", "smashes")
+	attack_verb_simple = list("slam", "strike", "smash")
 
 
 // --------TETH---------

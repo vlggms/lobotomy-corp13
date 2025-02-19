@@ -54,7 +54,7 @@
 /mob/living/simple_animal/hostile/abnormality/branch12/consilium_fracas/AttemptWork(mob/living/carbon/human/user, work_type)
 	..()
 	//Dust, idiot
-	if(get_attribute_level(user, FORTITUDE_ATTRIBUTE) < 80)
+	if(get_attribute_level(user, FORTITUDE_ATTRIBUTE) < 100)
 		user.dust()
 		return FALSE
 	return TRUE
