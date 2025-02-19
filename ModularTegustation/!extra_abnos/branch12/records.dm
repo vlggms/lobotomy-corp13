@@ -77,6 +77,38 @@
 		"The <Redacted> can be stopped once a employee gets a good work result on O-06-12-102",
 	)
 
+// Extermination Order
+/obj/item/paper/fluff/info/branch12/extermination
+	abno_type = /mob/living/simple_animal/hostile/abnormality/branch12/extermination
+	abno_code = "O-05-12-775"
+	abno_info = list(
+		"When a work was completed on O-04-12-775, a random abnormality in the facility would breach, designated O-04-12-775-1.",
+		"Upon breaching, this abnormality was considerably more agressive, attacking both employees and other abnormalities.",
+		"Headquarters is confident that you could find some use for this.",
+	)
+
+// Saga of Man
+/obj/item/paper/fluff/info/branch12/saga
+	abno_type = /mob/living/simple_animal/hostile/abnormality/branch12/saga
+	abno_code = "M-05-12-443"
+	abno_info = list(
+		"Saga of Man is inert until worked upon.",
+		"When worked, Saga of Man would tell tidings of things to come, signalled by tolling bells.",
+		"If the current Age is an Ice Age, all employees took small amounts of burn damage constantly.",
+		"If the current Age is a Famine, all employees required more food to stay healthy.",
+		"If the current Age is a Golden Age, occasionally ahn would appear in the halls of the facility.",
+		"On All Saint's Day, all employees would spontaneously rise from the dead, or be dusted. The rate of dusting seemed to be a little more than average.",
+	)
+
+// You Can Become Better
+/obj/item/paper/fluff/info/branch12/become_better
+	abno_type = /mob/living/simple_animal/hostile/abnormality/branch12/become_better
+	abno_code = "T-05-12-96"
+	abno_info = list(
+		"On a good work, T-05-12-96 would sap the corresponding stat of the employee.",
+		"T-05-12-96 would return the sapped stat in an 'innate' form.",
+	)
+
 
 //	-------------TETH-------------
 // Remnant of the Forest
@@ -136,6 +168,15 @@
 		"The ideas obtained by T-06-143 are manifested into this abnormality’s strength whenever it breaches.",
 	)
 
+
+// Deus Ex Machina
+/obj/item/paper/fluff/info/branch12/deus_ex_machina
+	abno_type = /mob/living/simple_animal/hostile/abnormality/branch12/deus_ex_machina
+	abno_code = "O-06-12-999"	//Angel number for Release
+	abno_info = list(
+		"When an abnormality in the facility was suppressed, the counter lowered by 1.",
+		"When the Qliphoth counter reached 0, the most recently suppressed abnormality was seemingly raised from the dead in the containment cell of O-06-12-999."
+	)
 
 //	-------------WAW-------------
 // Queen Keres

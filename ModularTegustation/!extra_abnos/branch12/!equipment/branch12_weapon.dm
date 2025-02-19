@@ -13,7 +13,7 @@
 	desc = "It continued calling out, expecting no response in return"
 	icon_state = "signal"
 	inhand_icon_state = "signal"
-	force = 14
+	force = 12
 	projectile_path = /obj/projectile/ego_bullet/branch12/signal
 	spread = 10
 	shotsleft = 12
@@ -30,11 +30,23 @@
 	name = "serenity"
 	desc = "By praying for its protection, the statue might grant you its gift if you’re worthy."
 	icon_state = "serenity"
-	force = 14
+	force = 12
 	damtype = WHITE_DAMAGE
 	swingstyle = WEAPONSWING_LARGESWEEP
 	attack_verb_continuous = list("slices", "slashes", "stabs")
 	attack_verb_simple = list("slice", "slash", "stab")
+	hitsound = 'sound/weapons/fixer/generic/knife3.ogg'
+
+//Age of Man
+/obj/item/ego_weapon/branch12/age
+	name = "age of man"
+	desc = "A copper sword, freshly forged."
+	icon_state = "age_of_man"
+	force = 16
+	damtype = WHITE_DAMAGE
+	swingstyle = WEAPONSWING_LARGESWEEP
+	attack_verb_continuous = list("slices", "slashes")
+	attack_verb_simple = list("slice", "slash")
 	hitsound = 'sound/weapons/fixer/generic/knife3.ogg'
 
 
@@ -125,6 +137,32 @@
 							PRUDENCE_ATTRIBUTE = 60,
 							JUSTICE_ATTRIBUTE = 60
 							)
+
+
+/obj/item/ego_weapon/ranged/branch12/mini/medea
+	name = "medea"
+	desc = "Mortal fate is hard. You'd best get used to it."
+	icon_state = "medea"
+	inhand_icon_state = "medea"
+	force = 14
+	projectile_path = /obj/projectile/ego_bullet/branch12/medea
+	fire_delay = 10
+	shotsleft = 8
+	reloadtime = 1.8 SECONDS
+	fire_sound = 'sound/weapons/gun/pistol/deagle.ogg'
+	vary_fire_sound = FALSE
+	weapon_weight = WEAPON_HEAVY
+	fire_sound_volume = 70
+	attribute_requirements = list(
+							JUSTICE_ATTRIBUTE = 80
+							)
+
+
+/obj/projectile/ego_bullet/branch12/medea
+	name = "medea"
+	damage = 70
+	damage_type = PALE_DAMAGE
+
 
 // --------ALEPH---------
 //Pulsating Insanity

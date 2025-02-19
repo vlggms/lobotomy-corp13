@@ -19,6 +19,7 @@
 	stat_attack = HARD_CRIT
 	attack_verb_continuous = "bites"
 	attack_verb_simple = "bites"
+	attack_sound = 'sound/abnormalities/cleave.ogg'
 	faction = list("hostile")
 	can_breach = TRUE
 	threat_level = TETH_LEVEL
