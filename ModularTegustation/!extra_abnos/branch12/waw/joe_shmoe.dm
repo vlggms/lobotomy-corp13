@@ -19,7 +19,7 @@
 	work_damage_type = WHITE_DAMAGE
 
 	ego_list = list(
-	//	/datum/ego_datum/weapon/joe,
+		/datum/ego_datum/weapon/joe,
 		/datum/ego_datum/armor/joe,
 	)
 	//gift_type =  /datum/ego_gifts/signal
