@@ -25,7 +25,7 @@
 	work_damage_amount = 15
 	work_damage_type = RED_DAMAGE
 	ego_list = list(
-		//datum/ego_datum/weapon/time_sands,
+		/datum/ego_datum/weapon/time_sands,
 		//datum/ego_datum/armor/time_sands,
 	)
 //	gift_type =  /datum/ego_gifts/time_sands
