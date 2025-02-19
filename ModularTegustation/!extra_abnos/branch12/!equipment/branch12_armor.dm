@@ -94,7 +94,7 @@
 	name = "purity"
 	desc = "This EGO holds the weight of the user's past mistakes, sins, shame and guilt. \
 		The only way to use it properly is to have complete and total conviction in your goal."
-	icon_state = "purtiy"
+	icon_state = "purity"
 	armor = list(RED_DAMAGE = 50, WHITE_DAMAGE = 90, BLACK_DAMAGE = 50, PALE_DAMAGE = 50) // 240
 	attribute_requirements = list(
 							FORTITUDE_ATTRIBUTE = 80,
@@ -102,4 +102,3 @@
 							TEMPERANCE_ATTRIBUTE = 80,
 							JUSTICE_ATTRIBUTE = 80
 							)
-
