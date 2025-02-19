@@ -36,6 +36,15 @@
 							TEMPERANCE_ATTRIBUTE = 40
 							)
 
+/obj/item/clothing/suit/armor/ego_gear/branch12/medea
+	name = "perfectionist"
+	desc = "They shouldn't dwell into delusions like that, it will only lead them to their doom."
+	icon_state = "perfectionist"
+	armor = list(RED_DAMAGE = 20, WHITE_DAMAGE = 20, BLACK_DAMAGE = -20, PALE_DAMAGE = 50)
+	attribute_requirements = list(
+							JUSTICE_ATTRIBUTE = 40
+							)
+
 
 // --------WAW---------
 /obj/item/clothing/suit/armor/ego_gear/branch12/joe
@@ -44,7 +53,7 @@
 	icon_state = "average_joe"
 	armor = list(RED_DAMAGE = 40, WHITE_DAMAGE = 40, BLACK_DAMAGE = 40, PALE_DAMAGE = 20)
 	attribute_requirements = list(
-							JUSTICE_ATTRIBUTE = 80
+							FORTITUDE_ATTRIBUTE = 80
 							)
 
 /obj/item/clothing/suit/armor/ego_gear/branch12/degraded_honor
