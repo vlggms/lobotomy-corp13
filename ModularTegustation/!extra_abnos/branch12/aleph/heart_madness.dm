@@ -97,6 +97,7 @@
 			continue
 		if(faction_check_mob(L))
 			continue
+		new /obj/effect/temp_visual/revenant(get_turf(L))
 		L.deal_damage((sever_damage), BLACK_DAMAGE)
 		if(!ishuman(L))
 			continue
