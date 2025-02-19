@@ -17,7 +17,7 @@
 
 
 	ego_list = list(
-		//datum/ego_datum/weapon/perfectionist,
+		/datum/ego_datum/weapon/perfectionist,
 		/datum/ego_datum/armor/perfectionist,
 	)
 	//gift_type = /datum/ego_gifts/perfectionist
