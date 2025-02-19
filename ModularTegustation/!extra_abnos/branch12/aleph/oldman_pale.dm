@@ -22,7 +22,7 @@
 		ABNORMALITY_WORK_REPRESSION = list(15, 25, 35, 45, 55),
 		"Inspire" = 45,
 	)
-	work_damage_amount = 5
+	work_damage_amount = 15
 	work_damage_type = WHITE_DAMAGE
 	ego_list = list(
 		/datum/ego_datum/weapon/purity,
@@ -102,7 +102,7 @@
 	icon_state = "halon"
 	anchored = TRUE
 	density = FALSE
-	layer = TURF_LAYER
+	layer = SPACEVINE_LAYER
 	plane = 4
 	max_integrity = 100000
 	base_icon_state = "halon"

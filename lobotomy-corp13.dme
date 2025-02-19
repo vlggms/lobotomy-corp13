@@ -3968,6 +3968,7 @@
 #include "ModularTegustation\!extra_abnos\branch12\!tools\eye.dm"
 #include "ModularTegustation\!extra_abnos\branch12\!tools\midnight.dm"
 #include "ModularTegustation\!extra_abnos\branch12\!tools\mislocation.dm"
+#include "ModularTegustation\!extra_abnos\branch12\aleph\consilium_fracas.dm"
 #include "ModularTegustation\!extra_abnos\branch12\aleph\heart_madness.dm"
 #include "ModularTegustation\!extra_abnos\branch12\aleph\oldman_pale.dm"
 #include "ModularTegustation\!extra_abnos\branch12\he\dearest_friends.dm"
