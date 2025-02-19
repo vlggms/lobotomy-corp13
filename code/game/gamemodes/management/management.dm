@@ -119,7 +119,7 @@
 	abno_types = list(
 		ABNORMALITY_ORIGIN_BRANCH12
 		)
-    
+
 /datum/game_mode/management/joke
 	name = "L Corp - Joke Abnormalities"
 	config_tag = "joke"
