@@ -55,7 +55,7 @@
 
 
 /mob/living/simple_animal/hostile/abnormality/branch12/passion/proc/resane_everyone()
-	for(var/mob/living/carbon/human/H in GLOB.player_list)
+	for(var/mob/living/carbon/human/H in GLOB.mob_list)
 		if(H.sanity_lost)
 			H.adjustSanityLoss(-500)
 
