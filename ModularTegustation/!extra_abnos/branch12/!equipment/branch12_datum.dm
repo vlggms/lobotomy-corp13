@@ -31,6 +31,10 @@
 	item_path = /obj/item/ego_weapon/branch12/departure
 	cost = 20
 
+/datum/ego_datum/armor/departure
+	item_path = /obj/item/clothing/suit/armor/ego_gear/branch12/departure
+	cost = 20
+
 
 // --------HE---------
 // The Show Goes On - Perfectionist

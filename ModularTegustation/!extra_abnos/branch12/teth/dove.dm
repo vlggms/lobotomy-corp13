@@ -36,7 +36,7 @@
 
 	ego_list = list(
 		/datum/ego_datum/weapon/departure,
-		//datum/ego_datum/armor/departure,
+		/datum/ego_datum/armor/departure,
 	)
 	//gift_type =  /datum/ego_gifts/departure
 	abnormality_origin = ABNORMALITY_ORIGIN_BRANCH12
