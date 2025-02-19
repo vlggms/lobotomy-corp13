@@ -169,7 +169,7 @@
 
 /mob/living/simple_animal/hostile/abnormality/clouded_monk/MoveToTarget(list/possible_targets)
 	if(revving_charge || charging)
-		return FALSE
+		return TRUE
 	return ..()
 
 /mob/living/simple_animal/hostile/abnormality/clouded_monk/Move()
