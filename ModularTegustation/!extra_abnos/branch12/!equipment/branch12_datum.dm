@@ -101,3 +101,8 @@
 /datum/ego_datum/weapon/insanity
 	item_path = /obj/item/ego_weapon/branch12/mini/insanity
 	cost = 100
+
+// Consilium Fracas - Sands of Time
+/datum/ego_datum/weapon/time_sands
+	item_path = /obj/item/ego_weapon/branch12/time_sands
+	cost = 100
