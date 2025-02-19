@@ -68,9 +68,7 @@
 							)
 
 // --------WAW---------
-//Degrading Honor
-
-
+//Plagiarism
 /obj/item/ego_weapon/branch12/plagiarism
 	name = "plagiarism"
 	desc = "This is my, my work!."
@@ -92,6 +90,7 @@
 	damtype = pick(RED_DAMAGE, WHITE_DAMAGE, BLACK_DAMAGE, PALE_DAMAGE)
 	..()
 
+//Degrading Honor
 /obj/item/ego_weapon/branch12/honor
 	name = "degrading honor"
 	desc = "The whole art of life consists in belonging to oneself."
@@ -110,7 +109,7 @@
 /obj/item/ego_weapon/honor/get_clamped_volume()
 	return 25
 
-
+//Average Joe
 /obj/item/ego_weapon/branch12/joe
 	name = "average joe"
 	desc = "A good briefcase is your best friend. It can carry a lot of important documents, your pencils, and your lunch! It can even be a good self-defense tool!"
@@ -123,8 +122,8 @@
 	attack_verb_simple = list("bashes", "clubs")
 	hitsound = 'sound/weapons/fixer/generic/club1.ogg'
 	attribute_requirements = list(
-							PRUDENCE_ATTRIBUTE = 80,
-							JUSTICE_ATTRIBUTE = 80
+							PRUDENCE_ATTRIBUTE = 60,
+							JUSTICE_ATTRIBUTE = 60
 							)
 
 // --------ALEPH---------
@@ -142,6 +141,12 @@
 	attack_verb_continuous = list("jabs")
 	attack_verb_simple = list("jabs")
 	hitsound = 'sound/weapons/slashmiss.ogg'
+	attribute_requirements = list(
+							FORTITUDE_ATTRIBUTE = 100,
+							PRUDENCE_ATTRIBUTE = 80,
+							TEMPERANCE_ATTRIBUTE = 80,
+							JUSTICE_ATTRIBUTE = 80
+							)
 
 //Purity
 /obj/item/ego_weapon/branch12/purity
@@ -150,7 +155,7 @@
 	they go through grows while never losing that spark of light inside. To hold the weight of the world requires someone Pure, \
 	and the same can be said for this EGO which is weighed down by a heavy past that might as well be the weight of the world."
 	icon_state = "purity"
-	force = 140
+	force = 120
 	reach = 2		//Has 2 Square Reach.
 	stuntime = 5	//Longer reach, gives you a short stun.
 	attack_speed = 1.2
@@ -158,5 +163,11 @@
 	attack_verb_continuous = list("pokes", "jabs", "tears", "lacerates", "gores")
 	attack_verb_simple = list("poke", "jab", "tear", "lacerate", "gore")
 	hitsound = 'sound/weapons/ego/spear1.ogg'
+	attribute_requirements = list(
+							FORTITUDE_ATTRIBUTE = 80,
+							PRUDENCE_ATTRIBUTE = 100,
+							TEMPERANCE_ATTRIBUTE = 80,
+							JUSTICE_ATTRIBUTE = 80
+							)
 
 

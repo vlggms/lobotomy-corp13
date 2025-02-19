@@ -34,7 +34,7 @@
 	friendly_verb_simple = "scorn"
 
 	ego_list = list(
-		//datum/ego_datum/weapon/degraded_honor,
+		/datum/ego_datum/weapon/degraded_honor,
 		/datum/ego_datum/armor/degraded_honor,
 	)
 	//gift_type =  /datum/ego_gifts/honor_return

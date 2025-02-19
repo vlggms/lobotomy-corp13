@@ -1,6 +1,5 @@
 
-//	ZAYIN
-
+// --------ZAYIN---------
 // Full-Wave M'aider - Signal
 /datum/ego_datum/weapon/signal
 	item_path = /obj/item/ego_weapon/ranged/branch12/mini/signal
@@ -16,27 +15,44 @@
 	cost = 10
 
 
-//	TETH
+// --------TETH---------
 // Statue Of Forgiveness - Serenity
 /datum/ego_datum/armor/serenity
 	item_path = /obj/item/clothing/suit/armor/ego_gear/branch12/serenity
 	cost = 20
 
+// Vow of a Dove - Departure
+/datum/ego_datum/weapon/departure
+	item_path = /obj/item/ego_weapon/branch12/departure
+	cost = 20
 
-//	HE
+
+// --------HE---------
 // The Show Goes On - Perfectionist
+/datum/ego_datum/weapon/perfectionist
+	item_path = /obj/item/ego_weapon/branch12/perfectionist
+	cost = 35
+
 /datum/ego_datum/armor/perfectionist
 	item_path = /obj/item/clothing/suit/armor/ego_gear/branch12/perfectionist
 	cost = 35
 
 
-//	WAW
-// Ollieoxenfree
+// --------WAW---------
+// Ollieoxenfree - Plagiarism
+/datum/ego_datum/weapon/plagiarism
+	item_path = /obj/item/ego_weapon/branch12/plagiarism
+	cost = 50
+
 /datum/ego_datum/armor/branch12/plagiarism
 	item_path = /obj/item/clothing/suit/armor/ego_gear/branch12/plagiarism
 	cost = 50
 
 // Joe Shmoe - Average Joe
+/datum/ego_datum/weapon/joe
+	item_path = /obj/item/ego_weapon/branch12/joe
+	cost = 35
+
 /datum/ego_datum/armor/joe
 	item_path = /obj/item/clothing/suit/armor/ego_gear/branch12/joe
 	cost = 50
@@ -52,13 +68,26 @@
 	cost = 50
 
 // Queen Keres - Degraded Honor
+/datum/ego_datum/weapon/degraded_honor
+	item_path = /obj/item/ego_weapon/branch12/honor
+	cost = 50
+
 /datum/ego_datum/armor/degraded_honor
 	item_path = /obj/item/clothing/suit/armor/ego_gear/branch12/degraded_honor
 	cost = 50
 
-// ALEPH
-/* Old Man and The Pale
+// --------ALEPH---------
+// Old Man and The Pale - Purity
+/datum/ego_datum/weapon/purity
+	item_path = /obj/item/ego_weapon/branch12/purity
+	cost = 100
+
 /datum/ego_datum/armor/purity
 	item_path = /obj/item/clothing/suit/armor/ego_gear/branch12/purity
 	cost = 100
-	*/
+
+
+// Heart Of Madness - Pulsating Insanity
+/datum/ego_datum/weapon/insanity
+	item_path = /obj/item/ego_weapon/branch12/mini/insanity
+	cost = 100

@@ -171,6 +171,16 @@
 		"When an employee with level 3 justice or higher completed their work, the Qliphoth counter lowered. The same phenomenon occurred when temperance was below level 4.",
 	)
 
+// Hand of Babel
+/obj/item/paper/fluff/info/branch12/babel
+	abno_type = /mob/living/simple_animal/hostile/abnormality/branch12/babel
+	abno_code = "T-03-12-130"
+	abno_info = list(
+		"When the work result was good, T-03-12-130 gave the employee a rumor to spread.",
+		"While under the effect of this rumor, the employee would heal quickly.",
+		"When the rumor became widespread, one employee under the effect of this rumor disappeared, melting into a form known as T-03-12-130.",
+	)
+
 
 
 //	-------------ALEPH-------------
@@ -186,4 +196,16 @@
 		"INNOCENCE could not be cleared, and slowly drained sanity.",
 		"Working Inspire on T-01-12-127 with a good result would cause all of The Pale in the facility to be cleared.",
 		"Working Inspire on T-01-12-127 with a bad or normal result would cause INNOCENCE to be applied to the employee working on T-01-12-127.",
+	)
+
+// Heart of Madness
+/obj/item/paper/fluff/info/branch12/madness
+	abno_type = /mob/living/simple_animal/hostile/abnormality/branch12/madness
+	abno_code = "T-03-12-598"
+	abno_info = list(
+		"When the work result was good, the Qliphoth counter of all he risk level and above abnormalities increased.",
+		"When Instinct work was completed the employee has a normal chance of getting their hp and sp restored to max.",
+		"Upon completion of attachment work the abnormality healed the hp of all employees with low HP in the facility, and the counter was decreased for each healed employee.",
+		"On each work completion, T-03-12-598 linked itself to a new employee.",
+		"The counter will instantly decrease to 0 if the linked employee dies due to T-03-12-598.",
 	)
