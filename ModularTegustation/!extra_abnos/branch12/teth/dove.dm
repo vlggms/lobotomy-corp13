@@ -11,7 +11,7 @@
 	maxHealth = 1000	//should be a little tankier as it's a bit slow
 	health = 1000
 	rapid_melee = 2
-	move_to_delay = 3
+	move_to_delay = 4
 	damage_coeff = list(RED_DAMAGE = 1, WHITE_DAMAGE = 1.2, BLACK_DAMAGE = 0.8, PALE_DAMAGE = 2)
 	melee_damage_lower = 14
 	melee_damage_upper = 14
@@ -49,7 +49,7 @@
 		L.apply_lc_bleed(15)
 
 /mob/living/simple_animal/hostile/abnormality/branch12/dove/PostWorkEffect(mob/living/carbon/human/user, work_type, pe, work_time)
-	if(get_attribute_level(user, TEMPERANCE_ATTRIBUTE) >40)
+	if(get_attribute_level(user, TEMPERANCE_ATTRIBUTE) <40)
 		datum_reference.qliphoth_change(-1)
 	return
 
