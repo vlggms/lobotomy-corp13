@@ -25,9 +25,8 @@
 	var/list/possible_breachers = list()
 
 /mob/living/simple_animal/hostile/abnormality/branch12/extermination/SuccessEffect(mob/living/carbon/human/user, work_type, pe, work_time)
+	var/list/damage_these = list()
 	for(var/mob/living/simple_animal/hostile/abnormality/V in GLOB.abnormality_mob_list)
-		var/list/damage_these = list()
-
 		if(V.can_breach && V.IsContained() && V.z == z)
 			possible_breachers+=V
 		if(!V.IsContained())
@@ -35,7 +34,7 @@
 
 	if(length(damage_these))
 		for(var/mob/living/simple_animal/hostile/abnormality/D in damage_these)
-			D.applyBruteLoss(D.maxHealth*0.3)
+			D.adjustBruteLoss(D.maxHealth*0.3)
 
 
 	if(!length(possible_breachers))

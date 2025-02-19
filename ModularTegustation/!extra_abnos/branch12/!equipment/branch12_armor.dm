@@ -13,6 +13,24 @@
 	icon_state = "signal"
 	armor = list(RED_DAMAGE = -10, WHITE_DAMAGE = 10, BLACK_DAMAGE = 10, PALE_DAMAGE = 0)
 
+/obj/item/clothing/suit/armor/ego_gear/branch12/becoming
+	name = "becoming"
+	desc = "You're loved. And you can do better."
+	icon_state = "becoming"
+	armor = list(RED_DAMAGE = 0, WHITE_DAMAGE = 10, BLACK_DAMAGE = 0, PALE_DAMAGE = 0)
+
+/obj/item/clothing/suit/armor/ego_gear/branch12/exterminator
+	name = "exterminator"
+	desc = "You have a job to do."
+	icon_state = "exterminator"
+	armor = list(RED_DAMAGE = 0, WHITE_DAMAGE = 0, BLACK_DAMAGE = 10, PALE_DAMAGE = 0)
+
+/obj/item/clothing/suit/armor/ego_gear/branch12/age
+	name = "age of man"
+	desc = "A suit that reminds you of the golden age of man."
+	icon_state = "age"
+	armor = list(RED_DAMAGE = 0, WHITE_DAMAGE = 10, BLACK_DAMAGE = 0, PALE_DAMAGE = 0)
+
 // --------TETH---------
 /obj/item/clothing/suit/armor/ego_gear/branch12/serenity
 	name = "serenity"
