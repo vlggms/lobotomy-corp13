@@ -4,6 +4,8 @@
 	icon = 'ModularTegustation/Teguicons/branch12/64x64.dmi'
 	icon_state = "fracas"
 	icon_living = "fracas"
+	health = 1000
+	maxHealth = 1000
 	pixel_x = -16
 	base_pixel_x = -16
 //	portrait = "oldman_pale"
@@ -105,5 +107,5 @@
 	. = ..()
 	if(ishuman(AM))
 		var/mob/living/carbon/human/H = AM
-		H.apply_damage(6, FIRE, null, H.run_armor_check(null, RED_DAMAGE), spread_damage = TRUE)
+		H.apply_damage(3, FIRE, null, H.run_armor_check(null, RED_DAMAGE), spread_damage = TRUE)
 

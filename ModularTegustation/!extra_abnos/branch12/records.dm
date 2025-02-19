@@ -84,6 +84,7 @@
 	abno_info = list(
 		"When a work was completed on O-04-12-775, a random abnormality in the facility would breach, designated O-04-12-775-1.",
 		"Upon breaching, this abnormality was considerably more agressive, attacking both employees and other abnormalities.",
+		"Completing a work on O-04-12-775 would also deal considerable damage to all breached abnormalities.",
 		"Headquarters is confident that you could find some use for this.",
 	)
 

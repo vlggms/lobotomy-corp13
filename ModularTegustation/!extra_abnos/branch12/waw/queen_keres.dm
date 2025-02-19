@@ -46,6 +46,7 @@
 	var/pulse_damage = 30
 
 	var/list/knights = list()
+	var/no_knights = FALSE
 	var/current_qliphoth
 
 /mob/living/simple_animal/hostile/abnormality/branch12/queen_keres/PostWorkEffect(mob/living/carbon/human/user, work_type, pe, work_time)
@@ -89,6 +90,8 @@
 	//Move to main room
 	var/turf/T = pick(GLOB.department_centers)
 	forceMove(T)
+	if(!length(knights))
+		no_knights = TRUE
 
 	//Grab your knights and make them insane
 	for(var/mob/living/carbon/human/H in knights)
@@ -136,6 +139,9 @@
 	new_knight.physiology.pale_mod *= 0.8
 
 /mob/living/simple_animal/hostile/abnormality/branch12/queen_keres/proc/CheckKnights()
+	if(no_knights)
+		return
+
 	for(var/mob/living/carbon/human/H in knights)
 		if(!H.sanity_lost || H.stat == DEAD)
 			knights-=H
