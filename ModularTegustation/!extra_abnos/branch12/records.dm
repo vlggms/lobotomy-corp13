@@ -189,7 +189,7 @@
 	abno_type = /mob/living/simple_animal/hostile/abnormality/branch12/oldman_pale
 	abno_code = "T-01-12-127"
 	abno_info = list(
-		"When the work result was bad, the Qliphoth counter.",
+		"When the work result was bad, the Qliphoth counter lowered.",
 		"When the work result was normal, the Qliphoth counter decreased with an average probability.",
 		"When Repression work was performed and the work result was good, the Qliphoth counter.",
 		"When an employee went insane while working on T-01-12-127 then employee gained INNOCENCE after 60 seconds.",
@@ -208,4 +208,13 @@
 		"Upon completion of attachment work the abnormality healed the hp of all employees with low HP in the facility, and the counter was decreased for each healed employee.",
 		"On each work completion, T-03-12-598 linked itself to a new employee.",
 		"The counter will instantly decrease to 0 if the linked employee dies due to T-03-12-598.",
+	)
+
+// Consilium Fracas
+/obj/item/paper/fluff/info/branch12/fracas
+	abno_type = /mob/living/simple_animal/hostile/abnormality/branch12/consilium_fracas
+	abno_code = "T-01-12-136"
+	abno_info = list(
+		"When the work result was bad, the Qliphoth counter lowered.",
+		"An employee with level 4 or lower fortitude worked on T-01-12-236, they crumbled into ash before the work could begin.",
 	)
