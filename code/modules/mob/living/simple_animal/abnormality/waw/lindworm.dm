@@ -12,8 +12,8 @@
 	rapid_melee = 1
 	move_to_delay = 3
 	damage_coeff = list(RED_DAMAGE = 1, WHITE_DAMAGE = 1, BLACK_DAMAGE = 1, PALE_DAMAGE = 1)
-	melee_damage_lower = 40
-	melee_damage_upper = 50
+	melee_damage_lower = 30
+	melee_damage_upper = 40
 	melee_damage_type = RED_DAMAGE
 	stat_attack = DEAD
 	attack_sound = 'sound/abnormalities/mountain/bite.ogg'
