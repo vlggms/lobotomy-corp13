@@ -14,6 +14,11 @@
 	item_path = /obj/item/ego_weapon/branch12/mini/serenity
 	cost = 10
 
+// Saga of Man - Age of Man
+/datum/ego_datum/weapon/branch12/age
+	item_path = /obj/item/ego_weapon/branch12/age
+	cost = 10
+
 
 // --------TETH---------
 // Statue Of Forgiveness - Serenity
@@ -74,6 +79,11 @@
 
 /datum/ego_datum/armor/degraded_honor
 	item_path = /obj/item/clothing/suit/armor/ego_gear/branch12/degraded_honor
+	cost = 50
+
+//Deus Ex Machina - Medea
+/datum/ego_datum/weapon/branch12/medea
+	item_path = /obj/item/ego_weapon/ranged/branch12/mini/medea
 	cost = 50
 
 // --------ALEPH---------
