@@ -114,7 +114,7 @@
 	},
 /obj/machinery/computer/camera_advanced/manager,
 /turf/open/floor/plasteel/sepia,
-/area/space)
+/area/department_main/manager)
 "cd" = (
 /obj/effect/turf_decal/siding/blue{
 	dir = 6
@@ -406,7 +406,7 @@
 	},
 /obj/machinery/computer/abnormality_queue,
 /turf/open/floor/plasteel/sepia,
-/area/space)
+/area/department_main/manager)
 "fX" = (
 /obj/structure/chair/office{
 	dir = 4
@@ -781,7 +781,7 @@
 	},
 /obj/machinery/computer/crew,
 /turf/open/floor/plasteel/sepia,
-/area/space)
+/area/department_main/manager)
 "jH" = (
 /obj/structure/statue/bone/rib{
 	dir = 8
@@ -2470,9 +2470,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/department_main/command)
-"Ga" = (
-/turf/closed/indestructible/reinforced,
-/area/space)
 "Ge" = (
 /obj/effect/turf_decal/siding/yellow{
 	dir = 10
@@ -3011,7 +3008,7 @@
 	},
 /obj/machinery/computer/abnormality_auxiliary,
 /turf/open/floor/plasteel/sepia,
-/area/space)
+/area/department_main/manager)
 "ND" = (
 /obj/effect/spawner/abnormality_room,
 /turf/closed/indestructible/reinforced,
@@ -3903,7 +3900,7 @@
 	},
 /obj/machinery/computer/communications,
 /turf/open/floor/plasteel/sepia,
-/area/space)
+/area/department_main/manager)
 "Yb" = (
 /obj/machinery/vending/coffee,
 /turf/open/floor/plasteel/dark,
@@ -39086,12 +39083,12 @@ ZL
 ZL
 ZL
 ZL
-Ga
-Ga
-Ga
-Ga
-Ga
-Ga
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
 Sw
 Sw
 Sw
@@ -39343,8 +39340,8 @@ ZL
 ZL
 ZL
 ZL
-Ga
-Ga
+Sw
+Sw
 SR
 aI
 ci
@@ -39600,7 +39597,7 @@ ZL
 ZL
 ZL
 ZL
-Ga
+Sw
 XV
 on
 jN
@@ -39857,7 +39854,7 @@ ZL
 ZL
 ZL
 ZL
-Ga
+Sw
 fW
 ai
 aU
@@ -40114,7 +40111,7 @@ ZL
 ZL
 ZL
 ZL
-Ga
+Sw
 bX
 aq
 aU
@@ -40371,7 +40368,7 @@ ZL
 ZL
 ZL
 ZL
-Ga
+Sw
 jp
 ai
 aU
@@ -40628,7 +40625,7 @@ ZL
 ZL
 ZL
 ZL
-Ga
+Sw
 Nz
 ax
 bs
@@ -40885,8 +40882,8 @@ ZL
 ZL
 ZL
 ZL
-Ga
-Ga
+Sw
+Sw
 KC
 Sw
 Sw
@@ -41143,11 +41140,11 @@ ZL
 ZL
 ZL
 ZL
-Ga
-Ga
-Ga
-Ga
-Ga
+Sw
+Sw
+Sw
+Sw
+Sw
 Sw
 Sw
 Sw
