@@ -30,7 +30,25 @@
 
 /mob/living/simple_animal/hostile/abnormality/branch12/become_better/SuccessEffect(mob/living/carbon/human/user, work_type, pe)
 	..()
-	user.adjust_attribute_level(work_type, -5)
-	user.adjust_attribute_buff(work_type, 2)
-	user.adjust_attribute_bonus(work_type, 1)
+	switch(work_type)
+		if(ABNORMALITY_WORK_INSTINCT)
+			user.adjust_attribute_level(FORTITUDE_ATTRIBUTE, -5)
+			user.adjust_attribute_buff(FORTITUDE_ATTRIBUTE, 2)
+			user.adjust_attribute_bonus(FORTITUDE_ATTRIBUTE, 1)
+
+		if(ABNORMALITY_WORK_INSIGHT)
+			user.adjust_attribute_level(PRUDENCE_ATTRIBUTE, -5)
+			user.adjust_attribute_buff(PRUDENCE_ATTRIBUTE, 2)
+			user.adjust_attribute_bonus(PRUDENCE_ATTRIBUTE, 1)
+
+		if(ABNORMALITY_WORK_ATTACHMENT)
+			user.adjust_attribute_level(TEMPERANCE_ATTRIBUTE, -5)
+			user.adjust_attribute_buff(TEMPERANCE_ATTRIBUTE, 2)
+			user.adjust_attribute_bonus(TEMPERANCE_ATTRIBUTE, 1)
+
+		if(ABNORMALITY_WORK_REPRESSION)
+			user.adjust_attribute_level(JUSTICE_ATTRIBUTE, -5)
+			user.adjust_attribute_buff(JUSTICE_ATTRIBUTE, 2)
+			user.adjust_attribute_bonus(JUSTICE_ATTRIBUTE, 1)
+
 
