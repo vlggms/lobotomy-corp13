@@ -20,6 +20,12 @@
 	icon_state = "serenity"
 	armor = list(RED_DAMAGE = 10, WHITE_DAMAGE = 30, BLACK_DAMAGE = -20, PALE_DAMAGE = 0)
 
+/obj/item/clothing/suit/armor/ego_gear/branch12/departure
+	name = "departure"
+	desc = "It is sadly, time for us to part."
+	icon_state = "departure"
+	armor = list(RED_DAMAGE = 10, WHITE_DAMAGE = 30, BLACK_DAMAGE = -20, PALE_DAMAGE = 0)
+
 // --------HE---------
 /obj/item/clothing/suit/armor/ego_gear/branch12/perfectionist
 	name = "perfectionist"
