@@ -14,6 +14,27 @@ SUBSYSTEM_DEF(maptype)
 	//All the map tags that delete all jobs and replace them with others.
 	var/list/clearmaps = list("rcorp", "city", "wcorp", "limbus_labs", "fixers", "office")
 
+	//LC13 Maps
+	var/list/lc_maps = list("standard", "fishing")
+
+	//LC13 Gamemode Traits
+	var/list/lc_trait = list(
+						FACILITY_TRAIT_NONE = 5,				//5 for No Trait
+						FACILITY_TRAIT_MOBA_AGENTS = 10, 		//Agents pick a MOBA class
+						FACILITY_TRAIT_CRITICAL_HITS = 10,		//EGO can Critical hit.
+						FACILITY_TRAIT_ABNO_BLITZ = 5,			//The game is significantly Faster, starts after noon.
+						FACILITY_TRAIT_FUCKED_SELECTION = 5,		//The abno selection is randomized
+						FACILITY_TRAIT_LEGACY_PALE = 5,			//You take 90% damage if pale damage hits you
+
+						//Joke stuff is below, should all be low
+						FACILITY_TRAIT_WORKING_CLERKS = 3,		//For the joke
+						FACILITY_TRAIT_CALLBACK = 2,				//Brings back 2 Classic bugs in Backpack EGO and wounds
+						FACILITY_TRAIT_JOKE_ABNOS = 1,	// Okay it's funny
+						FACILITY_TRAIT_VISIBLE_GHOSTS = 1,		// Very Metagamey but funny
+						)
+
+	var/chosen_trait = "No Trait"
+
 	//All the map tags that are combat maps and need abnos to breach immediately
 	var/list/combatmaps = list("rcorp", "wcorp", "limbus_labs", "fixers", "office")
 
@@ -41,6 +62,12 @@ SUBSYSTEM_DEF(maptype)
 
 /datum/controller/subsystem/maptype/Initialize()
 	..()
+	if(SSmaptype.maptype in SSmaptype.lc_maps)
+		chosen_trait = pickweight(lc_trait)
+		switch(chosen_trait)
+			if(FACILITY_TRAIT_VISIBLE_GHOSTS)
+				var/msg = span_warning("You suddenly feel extremely obvious...")
+				set_observer_default_invisibility(0, msg)
 
 	//Badda Bing Badda Da. This makes the latejoin menu cleaner
 	switch(SSmaptype.maptype)

@@ -255,11 +255,16 @@ SUBSYSTEM_DEF(ticker)
 			mode = new /datum/game_mode/management/branch12
 
 	else
-		var/choosingmode = pick(/datum/game_mode/management/classic,
-			//	/datum/game_mode/management/pure,
-			//	/datum/game_mode/management/branch
-				)
-		mode = new choosingmode
+		switch(SSmaptype.chosen_trait)
+			if(FACILITY_TRAIT_JOKE_ABNOS)
+				mode = new /datum/game_mode/management/joke
+			if(FACILITY_TRAIT_FUCKED_SELECTION)
+				var/choosingmode = pick(
+							/datum/game_mode/management/pure,
+							/datum/game_mode/management/branch)
+				mode = new choosingmode
+			else
+				mode = new /datum/game_mode/management/classic
 
 	CHECK_TICK
 
