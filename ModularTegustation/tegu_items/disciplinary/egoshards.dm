@@ -92,7 +92,7 @@
 	stat_requirement = 120
 	red_bonus = 60 //220 from the base of 20 in red, so 240
 	white_bonus = 60
-	black_bonus = 60
+	black_bonus = 40
 	pale_bonus = 60
 
 /obj/item/egoshard/great/white
