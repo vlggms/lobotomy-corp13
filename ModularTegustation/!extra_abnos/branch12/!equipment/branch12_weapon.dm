@@ -15,6 +15,7 @@
 	inhand_icon_state = "signal"
 	force = 12
 	projectile_path = /obj/projectile/ego_bullet/branch12/signal
+	fire_delay = 7
 	spread = 10
 	shotsleft = 12
 	reloadtime = 1.3 SECONDS
@@ -69,6 +70,25 @@
 	attack_verb_continuous = list("slams", "strikes", "smashes")
 	attack_verb_simple = list("slam", "strike", "smash")
 
+//Exterminator
+/obj/item/ego_weapon/ranged/branch12/mini/exterminator
+	name = "exterminator"
+	desc = "A gun that's made to take out pests."
+	icon_state = "exterminator"
+	inhand_icon_state = "exterminator"
+	force = 12
+	projectile_path = /obj/projectile/ego_bullet/branch12/exterminator
+	fire_delay = 7
+	spread = 10
+	shotsleft = 10
+	reloadtime = 1.2 SECONDS
+	fire_sound = 'sound/weapons/gun/smg/mp7.ogg'
+
+/obj/projectile/ego_bullet/branch12/exterminator
+	name = "exterminator"
+	damage = 12
+	damage_type = BLACK_DAMAGE
+
 
 // --------TETH---------
 //Departure
@@ -79,6 +99,61 @@
 	force = 22
 	damtype = RED_DAMAGE
 	hitsound = 'sound/weapons/slashmiss.ogg'
+
+//Acupuncture
+/obj/item/ego_weapon/branch12/mini/acupuncture
+	name = "Acupuncture"
+	desc = "One man's medicine is another man's poison."
+	icon_state = "acupuncture"
+	force = 20
+	damtype = BLACK_DAMAGE
+	swingstyle = WEAPONSWING_THRUST
+	attack_verb_continuous = list("jabs", "stabs")
+	attack_verb_simple = list("jab", "stab")
+	hitsound = 'sound/weapons/fixer/generic/nail1.ogg'
+
+//One Starry Night
+/obj/item/ego_weapon/ranged/branch12/starry_night
+	name = "One Starry Night"
+	desc = "A gun that's made to take out pests."
+	icon_state = "starry_night"
+	inhand_icon_state = "starry_night"
+	force = 12
+	projectile_path = /obj/projectile/ego_bullet/branch12/starry_night
+	fire_delay = 5
+	spread = 10
+	shotsleft = 25
+	reloadtime = 2.5 SECONDS
+	fire_sound = 'sound/weapons/gun/smg/mp7.ogg'
+
+/obj/projectile/ego_bullet/branch12/starry_night
+	name = "starry night"
+	icon_state = "whitelaser"
+	damage = 22
+	damage_type = WHITE_DAMAGE
+
+//Slot Machine
+/obj/item/ego_weapon/branch12/mini/slot_machine
+	name = "Slot Machine"
+	desc = "Big money!"
+	special = "Upon throwing, this weapon returns to the user."
+	icon_state = "coin"
+	force = 10
+	damtype = RED_DAMAGE
+	throwforce = 45
+	throw_speed = 1
+	throw_range = 7
+	attack_verb_continuous = list("slams", "strikes", "smashes")
+	attack_verb_simple = list("slam", "strike", "smash")
+
+/obj/item/ego_weapon/branch12/mini/slot_machine/throw_impact(atom/hit_atom, datum/thrownthing/throwingdatum)
+	var/caught = hit_atom.hitby(src, FALSE, FALSE, throwingdatum=throwingdatum)
+	if(thrownby && !caught)
+		addtimer(CALLBACK(src, TYPE_PROC_REF(/atom/movable, throw_at), thrownby, throw_range+2, throw_speed, null, TRUE), 1)
+	if(caught)
+		return
+	else
+		return ..()
 
 
 // --------HE---------
@@ -113,7 +188,8 @@
 	attack_verb_simple = list("slice", "slash", "stab")
 	hitsound = 'sound/weapons/fixer/generic/knife3.ogg'
 	attribute_requirements = list(
-							FORTITUDE_ATTRIBUTE = 80
+							FORTITUDE_ATTRIBUTE = 60,
+							TEMPERANCE_ATTRIBUTE = 60
 							)
 
 /obj/item/ego_weapon/branch12/plagiarism/attack(mob/living/target, mob/living/user)
@@ -141,6 +217,22 @@
 /obj/item/ego_weapon/honor/get_clamped_volume()
 	return 25
 
+//Fluttering Passion
+/obj/item/ego_weapon/branch12/passion
+	name = "fluttering passion"
+	desc = "When a red butterfly appears at a funeral, it’s believed that the butterfly is the passion they once had."
+	icon_state = "passion"
+	force = 75
+	stuntime = 5	//Stronger, so has quite the stun
+	attack_speed = 1.5	//and is a bit slower
+	damtype = BLACK_DAMAGE
+	attack_verb_continuous = list("chops")
+	attack_verb_simple = list("chop")
+	hitsound = 'sound/abnormalities/woodsman/woodsman_attack.ogg'
+	attribute_requirements = list(
+							FORTITUDE_ATTRIBUTE = 80
+							)
+
 //Average Joe
 /obj/item/ego_weapon/branch12/joe
 	name = "average joe"
@@ -158,17 +250,18 @@
 							JUSTICE_ATTRIBUTE = 60
 							)
 
-
+//Medea
 /obj/item/ego_weapon/ranged/branch12/mini/medea
 	name = "medea"
 	desc = "Mortal fate is hard. You'd best get used to it."
 	icon_state = "medea"
 	inhand_icon_state = "medea"
 	force = 14
+	damtype = PALE_DAMAGE
 	projectile_path = /obj/projectile/ego_bullet/branch12/medea
 	fire_delay = 10
-	shotsleft = 8
-	reloadtime = 1.8 SECONDS
+	shotsleft = 5
+	reloadtime = 2.1 SECONDS
 	fire_sound = 'sound/weapons/gun/pistol/deagle.ogg'
 	vary_fire_sound = FALSE
 	weapon_weight = WEAPON_HEAVY
@@ -182,6 +275,23 @@
 	name = "medea"
 	damage = 70
 	damage_type = PALE_DAMAGE
+
+
+//Icon of Chaos
+/obj/item/ego_weapon/ranged/branch12/icon_of_chaos
+	name = "Icon of Chaos"
+	desc = "Endless chaos comes from this wand."
+	special = "The beams from this wand perform various effects."
+	icon_state = "chaos"
+	inhand_icon_state = "chaos"
+	force = 20
+	damtype = PALE_DAMAGE
+	fire_delay = 10
+	projectile_path = /obj/projectile/ego_bullet/enchanted_wand
+	fire_sound = 'sound/magic/wandodeath.ogg'
+	attribute_requirements = list(
+							PRUDENCE_ATTRIBUTE = 80
+							)
 
 
 // --------ALEPH---------

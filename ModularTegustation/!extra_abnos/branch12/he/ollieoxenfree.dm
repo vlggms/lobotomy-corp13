@@ -50,10 +50,18 @@
 	. = ..()
 	datum_reference.qliphoth_change(-1)
 
+/mob/living/simple_animal/hostile/abnormality/branch12/ollieoxenfree/NeutralEffect(mob/living/carbon/human/user, work_type, pe)
+	. = ..()
+	if(!ABNORMALITY_WORK_ATTACHMENT)
+		datum_reference.qliphoth_change (-1)
+
+/mob/living/simple_animal/hostile/abnormality/branch12/ollieoxenfree/SuccessEffect(mob/living/carbon/human/user, work_type, pe)
+	. = ..()
+	if(prob(20) && work_type == ABNORMALITY_WORK_ATTACHMENT)
+		datum_reference.qliphoth_change(-1)
+
 /mob/living/simple_animal/hostile/abnormality/branch12/ollieoxenfree/PostWorkEffect(mob/living/carbon/human/user, work_type, pe, work_time)
 	switch(work_type)
-		if(!ABNORMALITY_WORK_ATTACHMENT)
-			datum_reference.qliphoth_change (-1)
 		if(ABNORMALITY_WORK_ATTACHMENT)
 			if(length(potential_ideas))
 				ideas_stolen += pick_n_take(potential_ideas)

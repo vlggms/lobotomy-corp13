@@ -1,13 +1,13 @@
 /mob/living/simple_animal/hostile/abnormality/branch12/coin_chance
-	name = "Coin Chance"
+	name = "Chance Coin"
 	desc = "A table stands in front of you with a card and stacks of chips."
-	icon = 'ModularTegustation/Teguicons/branch12/32x32.dmi'
-	icon_state = "deal"
-	icon_living = "deal"
+	icon = 'ModularTegustation/Teguicons/branch12/32x64.dmi'
+	icon_state = "coin_chance"
+	icon_living = "coin_chance"
 
 	work_chances = list(
-		ABNORMALITY_WORK_INSTINCT = 80,
-		ABNORMALITY_WORK_INSIGHT = 80,
+		ABNORMALITY_WORK_INSTINCT = 60,
+		ABNORMALITY_WORK_INSIGHT = 60,
 		ABNORMALITY_WORK_ATTACHMENT = 40,
 		ABNORMALITY_WORK_REPRESSION = 20,
 	)
@@ -16,8 +16,8 @@
 	threat_level = TETH_LEVEL
 
 	ego_list = list(
-		//datum/ego_datum/weapon/serenity,
-		//datum/ego_datum/armor/serenity,
+		/datum/ego_datum/weapon/branch12/slot_machine,
+		/datum/ego_datum/armor/branch12/slot_machine,
 	)
 	//gift_type =  /datum/ego_gifts/signal
 
@@ -28,42 +28,36 @@
 	switch(work_type)
 		if(ABNORMALITY_WORK_INSTINCT)
 			if(prob(50))
-				to_chat(owner, span_nicegreen("You flip a red chip. It lands on heads."))
-				user.adjustBruteloss(-40)
+				to_chat(user, span_nicegreen("You flip a red chip. It lands on heads."))
+				user.adjustBruteLoss(-40)
 				return
-			to_chat(owner, span_warning("You flip a red chip. It lands on tails."))
-			user.adjustBruteloss(40)
+			to_chat(user, span_warning("You flip a red chip. It lands on tails."))
+			user.adjustBruteLoss(40)
 
 		if(ABNORMALITY_WORK_INSIGHT)
 			if(prob(50))
-				user.adjustSanityloss(-40)
-				to_chat(owner, span_nicegreen("You flip a blue chip. It lands on heads."))
+				user.adjustSanityLoss(-40)
+				to_chat(user, span_nicegreen("You flip a blue chip. It lands on heads."))
 				return
-			user.adjustSanityloss(40)
-			to_chat(owner, span_warning("You flip a blue chip. It lands on tails."))
+			user.adjustSanityLoss(40)
+			to_chat(user, span_warning("You flip a blue chip. It lands on tails."))
 
 		if(ABNORMALITY_WORK_ATTACHMENT)
 			if(prob(50))
-				user.adjustBruteloss(-40)
-				user.adjustSanityloss(-40)
-				to_chat(owner, span_nicegreen("You flip a purple chip. It lands on heads."))
+				user.adjustBruteLoss(-40)
+				user.adjustSanityLoss(-40)
+				to_chat(user, span_nicegreen("You flip a purple chip. It lands on heads."))
 				return
-			user.adjustSanityloss(40)
-			user.adjustBruteloss(40)
-			to_chat(owner, span_warning("You flip a purple chip. It lands on tails."))
+			user.adjustSanityLoss(40)
+			user.adjustBruteLoss(40)
+			to_chat(user, span_warning("You flip a purple chip. It lands on tails."))
 
 		if(ABNORMALITY_WORK_REPRESSION)
 			if(prob(50))
-				user.adjust_attribute_level(FORTITUDE_ATTRIBUTE, -5)
-				user.adjust_attribute_level(PRUDENCE_ATTRIBUTE, -5)
-				user.adjust_attribute_level(TEMPERANCE_ATTRIBUTE, -5)
-				user.adjust_attribute_level(JUSTICE_ATTRIBUTE, -5)
-				to_chat(owner, span_nicegreen("You flip a blue chip. It lands on heads."))
+				user.adjust_all_attribute_levels(5)
+				to_chat(user, span_nicegreen("You flip a blue chip. It lands on heads."))
 				return
-			user.adjust_attribute_level(FORTITUDE_ATTRIBUTE, 5)
-			user.adjust_attribute_level(PRUDENCE_ATTRIBUTE, 5)
-			user.adjust_attribute_level(TEMPERANCE_ATTRIBUTE, 5)
-			user.adjust_attribute_level(JUSTICE_ATTRIBUTE, 5)
-			to_chat(owner, span_warning("You flip a blue chip. It lands on tails."))
+			user.adjust_all_attribute_levels(-5)
+			to_chat(user, span_warning("You flip a blue chip. It lands on tails."))
 
 

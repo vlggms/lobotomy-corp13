@@ -16,16 +16,16 @@
 	threat_level = ZAYIN_LEVEL
 
 	ego_list = list(
-		//datum/ego_datum/weapon/serenity,
-		//datum/ego_datum/armor/serenity,
+		/datum/ego_datum/weapon/branch12/exterminator,
+		/datum/ego_datum/armor/branch12/exterminator,
 	)
 	//gift_type =  /datum/ego_gifts/signal
 
 	abnormality_origin = ABNORMALITY_ORIGIN_BRANCH12
-	var/list/possible_breachers = list()
 
 /mob/living/simple_animal/hostile/abnormality/branch12/extermination/SuccessEffect(mob/living/carbon/human/user, work_type, pe, work_time)
 	var/list/damage_these = list()
+	var/list/possible_breachers = list()
 	for(var/mob/living/simple_animal/hostile/abnormality/V in GLOB.abnormality_mob_list)
 		if(V.can_breach && V.IsContained() && V.z == z)
 			possible_breachers+=V

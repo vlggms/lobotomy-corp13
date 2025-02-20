@@ -37,7 +37,7 @@
 	- When used, 10 seconds till midnight would lower the qliphoth counter of 5 Abnormalities by 1.	<br>
 	- When you stop an ordeal all continuing ordeals will either increase in strength and reward, or decrease in reward."}
 
-//10 Seconds to Midnight
+//Mislocation
 /obj/item/paper/fluff/info/branch12/mislocation
 	name = "Mislocation - O-09-12-290"
 	info = {"<h1><center>O-09-12-290</center></h1>	<br>
@@ -45,7 +45,7 @@
 	Risk Class : Teth<br>
 	- Employees sitting at the bench of O-09-12-290 simply refused to die, and would not die unless they left the area under the lamp post."}
 
-//10 Seconds to Midnight
+//Predestined Compass
 /obj/item/paper/fluff/info/branch12/compass
 	name = "Predestined Compass - O-09-12-159"
 	info = {"<h1><center>O-09-12-159</center></h1>	<br>
@@ -134,6 +134,45 @@
 		"When worked on by an employee with 1 or lower Temperance, the Qliphoth counter lowers.",
 	)
 
+// Book of Moon
+/obj/item/paper/fluff/info/branch12/moon_book
+	abno_type = /mob/living/simple_animal/hostile/abnormality/branch12/moon_book
+	abno_code = "M-04-12-20"
+	abno_info = list(
+		"When the work type was Repression and the work result was good, M-04-12-20 increased the understanding of multiple abnormalities in the facility.",
+		"However, this would lower the understanding of M-04-12-20.",
+		"After activating this ability, M-04-12-20 would have a chance to lower the qliphoth of any abnormality.",
+		"This chance is based off what the current understanding is.",
+	)
+
+// The Moon Rabbit
+/obj/item/paper/fluff/info/branch12/moon_rabbit
+	abno_type = /mob/living/simple_animal/hostile/abnormality/branch12/moon_rabbit
+	abno_code = "M-02-12-29"	//29 is the number of the moon and 6th sense
+	abno_info = list(
+		"After each work, M-02-12-29 would inject the employee with a drug.",
+		"The effects of this drug varied from mildly toxic to beneficial.",
+		"To heal from the toxin effects, visit one of the sleepers in the Safety Department and inject Pentetic Acid.",
+		"Branch 12 currently has no information on how this abnormality breaches, but it does seem to breach somewhat rarely.",
+		"Addendum: Branch 12 has a few theories on how M-02-12-29 breaches.",
+		"One senior researcher believes that M-02-12-29 breaches possibly off the phases of the Moon. It is unknown how it assess this.",
+		"A second researcher believes that M-02-12-29 breaches based off the alignment of the planets.",
+		"A third researcher believes that M-02-12-29 can only breach when Mercury is in retrograde.",
+	)
+
+// Coin Chance
+/obj/item/paper/fluff/info/branch12/coin_chance
+	abno_type = /mob/living/simple_animal/hostile/abnormality/branch12/coin_chance
+	abno_code = "O-04-12-777"
+	abno_info = list(
+		"After each successful work, the employee working on O-04-12-777 would instinctively flip a corresponding chip from the table.",
+		"The result of the coin flip would give the employee a corresponding effect based off the result of the coinflip.",
+		"If a red chip was flipped, it would affect the employee's HP.",
+		"If a white chip was flipped, it would affect the employee's SP.",
+		"If a purple chip was flipped, it would affect both the employee's HP and SP.",
+		"If a blue chip was flipped, it would affect the employee's stats.",
+	)
+
 //	-------------HE-------------
 // The Show Goes On
 /obj/item/paper/fluff/info/branch12/show_goes_on
@@ -163,8 +202,9 @@
 	abno_type = /mob/living/simple_animal/hostile/abnormality/branch12/ollieoxenfree
 	abno_code = "T-06-12-143"
 	abno_info = list(
+		"When the work result was good and the work type was attachment the counter lowered by 1 at a low rate..",
 		"When the work result was bad the counter lowered by 1.",
-		"T-06-12-143 prefers attachment work over all other types of work. Any other work besides attachment will lower the counter by 1.",
+		"T-06-12-143 prefers attachment work over all other types of work. Any other Neutral work besides attachment will lower the counter by 1.",
 		"When an employee performed attachment work, T-06-12-143 created an idea.",
 		"The ideas obtained by T-06-143 are manifested into this abnormality’s strength whenever it breaches.",
 	)
@@ -223,6 +263,16 @@
 		"When the rumor became widespread, one employee under the effect of this rumor disappeared, melting into a form known as T-03-12-130.",
 	)
 
+// Enchantress of Wands
+/obj/item/paper/fluff/info/branch12/enchantress_of_wands
+	abno_type = /mob/living/simple_animal/hostile/abnormality/branch12/enchantress_of_wands
+	abno_code = "M-01-12-303"
+	abno_info = list(
+		"When the work result was bad, the Qliphoth counter decreased.",
+		"When the work result was neutral, the Qliphoth counter decreased at a normal rate.",
+		"On a good result, M-01-12-303 would gift the employee a magic wand.",
+		"M-01-12-303's work rates decreased for every Qliphoth counter above 1.",
+	)
 
 
 //	-------------ALEPH-------------
@@ -259,4 +309,15 @@
 	abno_info = list(
 		"When the work result was bad, the Qliphoth counter lowered.",
 		"An employee with level 4 or lower fortitude worked on T-01-12-236, they crumbled into ash before the work could begin.",
+	)
+
+// Fly Me to the Moon
+/obj/item/paper/fluff/info/branch12/fly_moon
+	abno_type = /mob/living/simple_animal/hostile/abnormality/branch12/fly_moon
+	abno_code = "M-04-12-02"
+	abno_info = list(
+		"When an employee died in the facility, the Qliphoth counter lowered.",
+		"M-04-12-02 would gain strength for each employee in the facility that went insane.",
+		"While breaching, M-04-12-02 would start off in a strengthened state, dealing increased damage.",
+		"Once it's strength was all used up, the damage dealt would be decreased.",
 	)

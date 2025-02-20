@@ -177,6 +177,7 @@
 	icon_state = "teleporter"
 	batterycost = 500 //20 uses before requires recharge
 	var/inuse
+	var/winduptime = 100
 	default_icon = "teleporter"
 
 /obj/item/powered_gadget/teleporter/update_icon_state()
