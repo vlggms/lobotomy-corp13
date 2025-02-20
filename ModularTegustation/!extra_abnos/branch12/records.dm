@@ -202,7 +202,8 @@
 	abno_type = /mob/living/simple_animal/hostile/abnormality/branch12/ollieoxenfree
 	abno_code = "T-06-12-143"
 	abno_info = list(
-		"When the work result was good and the work type was attachment the counter lowered by 1 at a low rate..",
+		"When the work result was good and the work type was NOT Attachment the counter lowered by 1 at a low rate.",
+		"When the work result was neutral and the work type was Attachment the counter lowered by 1.",
 		"When the work result was bad the counter lowered by 1.",
 		"T-06-12-143 prefers attachment work over all other types of work. Any other Neutral work besides attachment will lower the counter by 1.",
 		"When an employee performed attachment work, T-06-12-143 created an idea.",
