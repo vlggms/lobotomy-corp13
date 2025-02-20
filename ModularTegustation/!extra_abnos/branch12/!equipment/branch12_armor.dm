@@ -42,7 +42,25 @@
 	name = "departure"
 	desc = "It is sadly, time for us to part."
 	icon_state = "departure"
-	armor = list(RED_DAMAGE = 10, WHITE_DAMAGE = 30, BLACK_DAMAGE = -20, PALE_DAMAGE = 0)
+	armor = list(RED_DAMAGE = 20, WHITE_DAMAGE = 20, BLACK_DAMAGE = -20, PALE_DAMAGE = 0)
+
+/obj/item/clothing/suit/armor/ego_gear/branch12/slot_machine
+	name = "slot machine"
+	desc = "Big Money!."
+	icon_state = "coin"
+	armor = list(RED_DAMAGE = 30, WHITE_DAMAGE = -20, BLACK_DAMAGE = 10, PALE_DAMAGE = 0)
+
+/obj/item/clothing/suit/armor/ego_gear/branch12/starry_night
+	name = "one starry night"
+	desc = "Look up to the stars."
+	icon_state = "starry_night"
+	armor = list(RED_DAMAGE = -20, WHITE_DAMAGE = 10, BLACK_DAMAGE = 0, PALE_DAMAGE = 30)
+
+/obj/item/clothing/suit/armor/ego_gear/branch12/acupuncture
+	name = "acupuncture"
+	desc = "Realize that this is good for you."
+	icon_state = "acupuncture"
+	armor = list(RED_DAMAGE = -20, WHITE_DAMAGE = 10, BLACK_DAMAGE = 30, PALE_DAMAGE = 0)
 
 // --------HE---------
 /obj/item/clothing/suit/armor/ego_gear/branch12/perfectionist

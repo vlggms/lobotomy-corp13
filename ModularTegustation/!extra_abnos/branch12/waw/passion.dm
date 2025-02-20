@@ -18,8 +18,8 @@
 	work_damage_amount = 12
 	work_damage_type = BLACK_DAMAGE
 	ego_list = list(
-		//datum/ego_datum/weapon/passion
-		/datum/ego_datum/armor/passion,
+		/datum/ego_datum/weapon/branch12/passion,
+		/datum/ego_datum/armor/branch12/passion,
 	)
 	//gift_type =  /datum/ego_gifts/passion
 	abnormality_origin = ABNORMALITY_ORIGIN_BRANCH12

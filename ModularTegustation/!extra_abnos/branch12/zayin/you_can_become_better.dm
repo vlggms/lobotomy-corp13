@@ -21,8 +21,8 @@
 	light_power = 1
 
 	ego_list = list(
-		//datum/ego_datum/weapon/serenity,
-		//datum/ego_datum/armor/serenity,
+		/datum/ego_datum/weapon/branch12/becoming,
+		/datum/ego_datum/armor/branch12/becoming,
 	)
 	//gift_type =  /datum/ego_gifts/signal
 
