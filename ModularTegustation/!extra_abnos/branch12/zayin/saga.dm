@@ -18,7 +18,7 @@
 
 	ego_list = list(
 		/datum/ego_datum/weapon/branch12/age,
-		//datum/ego_datum/armor/serenity,
+		/datum/ego_datum/armor/branch12/age,
 	)
 	//gift_type =  /datum/ego_gifts/signal
 
@@ -30,8 +30,9 @@
 	..()
 	if(current_saga!= "Ready")
 		return
+
 	icon_state = "saga_inert"
-	current_saga = pick("Ice Age", "Famine", "Golden Age", "All Saint's Day")
+	current_saga = pick("Ice Age", "Plague", "Famine", "Golden Age", "All Saint's Day", "Industrial Age")
 	sound_to_playing_players_on_level('sound/abnormalities/silence/church.ogg', 50, zlevel = z)
 	for(var/mob/H in GLOB.player_list)
 		to_chat(H, span_spider("The Saga has been read! The new age for humanity is [current_saga]!"))
@@ -56,6 +57,13 @@
 					to_chat(H, span_warning("You are oh so hungry."))
 				H.adjust_nutrition(-1)
 
+		if("Plague")
+			for(var/mob/living/carbon/human/H in GLOB.mob_list)
+				if(prob(2))
+					H.vomit(20, FALSE, distance = 0)
+					H.adjustToxLoss(3)
+					to_chat(H, span_warning("You feel sick..."))
+
 		if("Golden Age")
 			if(prob(1))
 				var/turf/T = pick(GLOB.xeno_spawn)
@@ -73,4 +81,10 @@
 					else
 						//Ashes to Ashes.
 						H.dust()
+
+		if("Industrial Age")
+			if(prob(1))
+				for(var/mob/living/carbon/human/H in GLOB.mob_list)
+					H.adjust_all_attribute_levels(2)
+					to_chat(H, span_warning("Prosperitas!"))
 

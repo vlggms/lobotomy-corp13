@@ -6,6 +6,7 @@
 	icon_living = "fracas"
 	health = 1000
 	maxHealth = 1000
+	damage_coeff = list(RED_DAMAGE = 0.4, WHITE_DAMAGE = 1, BLACK_DAMAGE = 1.5, PALE_DAMAGE = 2)
 	pixel_x = -16
 	base_pixel_x = -16
 //	portrait = "oldman_pale"

@@ -50,6 +50,9 @@
 /mob/living/simple_animal/hostile/abnormality/branch12/madness/Move()
 	return FALSE
 
+/mob/living/simple_animal/hostile/abnormality/branch12/madness/CanAttack(atom/the_target)
+	return FALSE
+
 /mob/living/simple_animal/hostile/abnormality/branch12/madness/Life()
 	. = ..()
 	if(!.) // Dead
@@ -67,9 +70,6 @@
 	if(linked_human.stat == DEAD)
 		datum_reference.qliphoth_change(-99)
 
-
-/mob/living/simple_animal/hostile/abnormality/branch12/madness/CanAttack(atom/the_target)
-	return FALSE
 
 /mob/living/simple_animal/hostile/abnormality/branch12/madness/proc/MadnessPulse()
 	pulse_cooldown = world.time + pulse_cooldown_time
