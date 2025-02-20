@@ -29,8 +29,8 @@
 	wander = FALSE
 
 	ego_list = list(
-		//datum/ego_datum/weapon/lunar_night,
-		//datum/ego_datum/armor/lunar_night,
+		//datum/ego_datum/weapon/branch12/lunar_night,
+		/datum/ego_datum/armor/branch12/lunar_night,
 	)
 	//gift_type =  /datum/ego_gifts/insanity
 	abnormality_origin = ABNORMALITY_ORIGIN_BRANCH12
