@@ -167,3 +167,10 @@
 /datum/ego_datum/weapon/time_sands
 	item_path = /obj/item/ego_weapon/branch12/time_sands
 	cost = 100
+
+
+// Fly me to the Moon - Lunar Night
+/datum/ego_datum/armor/branch12/lunar_night
+	item_path = /obj/item/clothing/suit/armor/ego_gear/branch12/lunar_night
+	cost = 100
+
