@@ -26,6 +26,8 @@
 	var/current_saga = "Ready"
 	var/last_ordeal = 0
 
+	var/industry = 10
+
 /mob/living/simple_animal/hostile/abnormality/branch12/saga/PostWorkEffect(mob/living/carbon/human/user, work_type, pe, work_time, canceled)
 	..()
 	if(current_saga!= "Ready")
@@ -47,31 +49,39 @@
 	switch(current_saga)
 		if("Ice Age")
 			for(var/mob/living/carbon/human/H in GLOB.mob_list)
+				if(H.z!=z)
+					continue
 				if(prob(1))
 					to_chat(H, span_warning("The air is very cold."))
 				H.adjustFireLoss(0.2)
 
 		if("Famine")
 			for(var/mob/living/carbon/human/H in GLOB.mob_list)
+				if(H.z!=z)
+					continue
 				if(prob(1))
 					to_chat(H, span_warning("You are oh so hungry."))
-				H.adjust_nutrition(-1)
+				H.adjust_nutrition(-0.5)
 
 		if("Plague")
 			for(var/mob/living/carbon/human/H in GLOB.mob_list)
 				if(prob(2))
+					if(H.z!=z)
+						continue
 					H.vomit(20, FALSE, distance = 0)
 					H.adjustToxLoss(3)
 					to_chat(H, span_warning("You feel sick..."))
 
 		if("Golden Age")
-			if(prob(1))
+			if(prob(5))
 				var/turf/T = pick(GLOB.xeno_spawn)
 				var/obj/item/holochip/C = new (get_turf(T))
 				C.credits = rand(200/4, 200)
 
 		if("All Saint's Day")
 			for(var/mob/living/carbon/human/H in GLOB.mob_list)
+				if(H.z!=z)
+					continue
 				if(H.stat == DEAD)
 					if(prob(30))
 						if(H.revive(full_heal = TRUE, admin_revive = TRUE))
@@ -83,8 +93,11 @@
 						H.dust()
 
 		if("Industrial Age")
-			if(prob(1))
+			if(prob(1)&& industry)
+				industry--
 				for(var/mob/living/carbon/human/H in GLOB.mob_list)
+					if(H.z!=z)
+						continue
 					H.adjust_all_attribute_levels(2)
 					to_chat(H, span_warning("Prosperitas!"))
 
