@@ -23,6 +23,8 @@
 	///How many ticks until we can send another
 	var/emote_delay = 6000
 	var/random_emotes = "baa!"
+	var/bubble = "default2"
+	var/image/speech_bubble
 
 
 /mob/living/simple_animal/ui_npc/Life()
@@ -39,6 +41,10 @@
 	// The first time this machine says something will be at slogantime + this random value,
 	// so if slogantime is 10 minutes, it will say it at somewhere between 10 and 20 minutes after the machine is crated.
 	last_emote = world.time + rand(0, emote_delay)
+	add_overlay(mutable_appearance('icons/mob/talk.dmi', bubble, ABOVE_MOB_LAYER))
+	//speech_bubble = image('icons/mob/talk.dmi', src, "[bubble]", ABOVE_MOB_LAYER)
+	//typing_overlay.appearance_flags = APPEARANCE_UI
+
 
 // Called to supply dynamic data to the UI.
 /mob/living/simple_animal/ui_npc/ui_data(mob/user)
