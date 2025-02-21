@@ -828,6 +828,14 @@
 	walk_to(src, target, minimum_distance, delay)
 
 /mob/living/simple_animal/hostile/proc/AttackingTarget(atom/attacked_target)
+	if(client)
+		if(target == src)
+			to_chat(src, span_warning("You almost attack yourself, but then decide against it."))
+			return
+		if(SSmaptype.maptype == "rcorp" && faction_check_mob(target, FALSE))
+			to_chat(src, span_warning("You almost attack your teammate, but then decide against it."))
+			return
+
 	if(!attacked_target)
 		attacked_target = target
 	if(old_rapid_melee != rapid_melee)
