@@ -243,6 +243,7 @@
 			portals.Add(P)
 			P.connected_abno = src
 			return
+		return
 	if (current_portal_index > 0)
 		var/mob/living/simple_animal/hostile/der_freis_portal/P = portals[current_portal_index]
 		P.OpenFire(target)
