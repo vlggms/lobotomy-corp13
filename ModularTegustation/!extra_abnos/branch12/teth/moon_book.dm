@@ -2,8 +2,8 @@
 	name = "Book of Moon"
 	desc = "A book with no text inside."
 	icon = 'ModularTegustation/Teguicons/branch12/32x32.dmi'
-	icon_state = "moon_book"
-	icon_living = "moon_book"
+	icon_state = "book_moon"
+	icon_living = "book_moon"
 
 	work_chances = list(
 		ABNORMALITY_WORK_INSTINCT = 40,

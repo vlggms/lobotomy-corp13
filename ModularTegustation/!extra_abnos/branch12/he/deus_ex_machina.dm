@@ -47,4 +47,4 @@
 		return
 	var/mob/living/simple_animal/hostile/abnormality/spawned = new recently_departed(get_turf(src))
 	spawned.core_enabled = FALSE
-
+	spawned.BreachEffect()
