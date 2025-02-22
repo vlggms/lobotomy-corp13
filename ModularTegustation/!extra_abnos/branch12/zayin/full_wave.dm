@@ -76,6 +76,8 @@
 //Visuals
 /mob/living/simple_animal/hostile/abnormality/branch12/wave/Initialize()
 	. = ..()
+	if(!core_enabled)
+		return
 	for(var/i = 1 to 3)
 		var/turf/dispense_turf = get_step(src, pick(1,2,4,5,6,8,9,10))
 		new /obj/effect/wave_shadow(dispense_turf)

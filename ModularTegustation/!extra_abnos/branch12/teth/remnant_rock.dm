@@ -4,6 +4,8 @@
 	icon = 'ModularTegustation/Teguicons/branch12/32x32.dmi'
 	icon_state = "rock_contained"
 	icon_living = "rock_contained"
+	maxHealth = 999999
+	health = 999999
 	blood_volume = 0
 	threat_level = TETH_LEVEL
 	max_boxes = 1
