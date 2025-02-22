@@ -1,7 +1,7 @@
 /mob/living/simple_animal/hostile/abnormality/branch12/enchantress_of_wands
 	name = "Enchantress of Wands"
 	desc = "A short magician that, while creative, is full of chaos."
-	icon = 'ModularTegustation/Teguicons/branch12/32x32.dmi'
+	icon = 'ModularTegustation/Teguicons/branch12/32x48.dmi'
 	icon_state = "enchantress"
 	icon_living = "enchantress"
 	threat_level = WAW_LEVEL
