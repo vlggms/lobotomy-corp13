@@ -1,7 +1,7 @@
 //Curing
 /datum/action/cooldown/charge
 	name = "Charge"
-	desc = "Charge all powered gadgets on your person to full. Costs 10SP"
+	desc = "Charge all powered gadgets on your person to full."
 	icon_icon = 'icons/hud/screen_skills.dmi'
 	button_icon_state = "charge"
 	cooldown_time = 30 SECONDS
@@ -18,7 +18,6 @@
 		return FALSE
 
 	var/mob/living/carbon/human/H = owner
-	H.adjustSanityLoss(10)
 	for(var/obj/item/powered_gadget/G in owner.contents)
 		if(!G.cell)
 			return
