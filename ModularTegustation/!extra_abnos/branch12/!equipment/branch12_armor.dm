@@ -73,9 +73,9 @@
 							)
 
 /obj/item/clothing/suit/armor/ego_gear/branch12/medea
-	name = "perfectionist"
+	name = "medea"
 	desc = "They shouldn't dwell into delusions like that, it will only lead them to their doom."
-	icon_state = "perfectionist"
+	icon_state = "medea"
 	armor = list(RED_DAMAGE = 20, WHITE_DAMAGE = 20, BLACK_DAMAGE = -20, PALE_DAMAGE = 50)
 	attribute_requirements = list(
 							JUSTICE_ATTRIBUTE = 40

@@ -14,7 +14,6 @@
 	)
 	work_damage_amount = 6
 	work_damage_type = PALE_DAMAGE
-	max_boxes = 12
 
 	ego_list = list(
 		/datum/ego_datum/weapon/branch12/medea,
