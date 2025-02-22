@@ -20,7 +20,7 @@
 			continue
 		if(H == owner)
 			continue
-		H.adjustBruteLoss(-H.maxHealth*healamount))
+		H.adjustBruteLoss(-H.maxHealth*healamount)
 		new /obj/effect/temp_visual/heal(get_turf(H), "#FF4444")
 	StartCooldown()
 

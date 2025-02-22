@@ -17,7 +17,6 @@
 	if (!ishuman(owner))
 		return FALSE
 
-	var/mob/living/carbon/human/H = owner
 	for(var/obj/item/powered_gadget/G in owner.contents)
 		if(!G.cell)
 			return
