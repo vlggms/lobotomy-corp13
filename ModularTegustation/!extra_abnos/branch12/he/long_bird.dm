@@ -17,6 +17,8 @@
 	stat_attack = HARD_CRIT
 	attack_verb_continuous = "bites"
 	attack_verb_simple = "bites"
+	response_help_continuous = "pets"		//Some guy recommended I do this
+	response_help_simple = "pet"
 	attack_sound = 'sound/abnormalities/cleave.ogg'
 	faction = list("hostile", "neutral")
 	can_breach = TRUE

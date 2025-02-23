@@ -362,3 +362,12 @@
 		"While breaching, M-03-12-02 would start off in a strengthened state, dealing increased damage.",
 		"Once it's strength was all used up, the damage dealt would be decreased.",
 	)
+
+// Selene Effigy
+/obj/item/paper/fluff/info/branch12/world_sage
+	abno_type = /mob/living/simple_animal/hostile/abnormality/branch12/world_sage
+	abno_code = "M-01-12-21"
+	abno_info = list(
+		"M-01-12-21's Qliphoth counter lowered if not worked for 10 minutes.",
+		"While breaching, M-01-12-21 would cover the area with tiles to be avoided.",
+	)
