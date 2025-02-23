@@ -1,22 +1,18 @@
 //Just don't fall in.
 /mob/living/simple_animal/hostile/abnormality/branch12/pentacle_genie
-	name = "Schwarzschild Radius"
-	desc = "It goes down endlessly."
-	icon = 'ModularTegustation/Teguicons/branch12/96x96.dmi'
+	name = "Genie of Pentacles"
+	desc = "A belly dancer."
+	icon = 'ModularTegustation/Teguicons/branch12/32x48.dmi'
 	icon_state = "pentacle_genie"
 	icon_living = "pentacle_genie"
-	pixel_x = -32
-	base_pixel_x = -32
-	pixel_y = -32
-	base_pixel_x = -32
 	del_on_death = TRUE
-	layer = ABOVE_OPEN_TURF_LAYER
 
-	maxHealth = 1000	//should be a little tankier as it's a bit slow
-	health = 1000
+	maxHealth = 99999
+	health = 99999
 	rapid_melee = 2
 	move_to_delay = 5
-	damage_coeff = list(RED_DAMAGE = 0, WHITE_DAMAGE = 0, BLACK_DAMAGE = 0, PALE_DAMAGE = 0)
+	damage_coeff = list(RED_DAMAGE = 0, WHITE_DAMAGE = 0, BLACK_DAMAGE = 0, PALE_DAMAGE = 0)	//Supposed to be invincible
+
 	stat_attack = HARD_CRIT
 	attack_verb_continuous = "bites"
 	attack_verb_simple = "bites"
@@ -24,67 +20,82 @@
 	faction = list("hostile")
 	can_breach = TRUE
 	threat_level = WAW_LEVEL
-	start_qliphoth = 2
+	start_qliphoth = 1
 
 	work_chances = list(
-		ABNORMALITY_WORK_INSTINCT = list(0, 0, 55, 55, 60),
-		ABNORMALITY_WORK_INSIGHT = list(0, 0, 50, 45, 40),
-		ABNORMALITY_WORK_ATTACHMENT = 0,
-		ABNORMALITY_WORK_REPRESSION = list(0, 0, 45, 45, 45),
+		ABNORMALITY_WORK_INSTINCT = list(25, 25, 50, 50, 55),
+		ABNORMALITY_WORK_INSIGHT = 0,
+		ABNORMALITY_WORK_ATTACHMENT = list(0, 0, 50, 50, 55),
+		ABNORMALITY_WORK_REPRESSION = list(0, 0, 40, 40, 40),
 	)
 	work_damage_amount = 12
 	work_damage_type =  BLACK_DAMAGE
 
 	ego_list = list(
-		//datum/ego_datum/weapon/branch12/darkness,
-		//datum/ego_datum/armor/branch12/darkness,
+		//datum/ego_datum/weapon/branch12/10000dolers,
+		//datum/ego_datum/armor/branch12/10000dolers,
 	)
 	//gift_type =  /datum/ego_gifts/departure
 	abnormality_origin = ABNORMALITY_ORIGIN_BRANCH12
-	var/list/coins
+	var/coinsleft
+	var/list/affected_players = list()
 
 /mob/living/simple_animal/hostile/abnormality/branch12/pentacle_genie/CanAttack(atom/the_target)
 	return FALSE
 
+/mob/living/simple_animal/hostile/abnormality/branch12/pentacle_genie/Move()
+	return FALSE
+
 /mob/living/simple_animal/hostile/abnormality/branch12/pentacle_genie/Life()
 	..()
-	for(var/mob/living/H in range(1, src))
-		if(H.status_flags & GODMODE)
-			continue
-		if(H==src)
-			continue
-		H.death()
-		animate(H, transform = H.transform*0.01, time = 5)
-		QDEL_IN(H, 5)
+	for(var/obj/item/red_coin/I in range(1, src))
+		qdel(I)
+		coinsleft--
+		say("Thanks for finding my coin!")
+		for(var/mob/living/carbon/human/H in affected_players)
+			H.adjust_attribute_bonus(FORTITUDE_ATTRIBUTE, 10)
+			H.adjust_attribute_bonus(PRUDENCE_ATTRIBUTE, 10)
+			H.adjust_attribute_bonus(TEMPERANCE_ATTRIBUTE, 10)
+			H.adjust_attribute_bonus(JUSTICE_ATTRIBUTE, 10)
 
-/mob/living/simple_animal/hostile/abnormality/branch12/pentacle_genie/Move()
-	. = ..()
-	for(var/mob/living/H in range(1, src))
-		if(H.status_flags & GODMODE)
-			continue
-		if(H==src)
-			continue
-		H.death()
-		animate(H, transform = H.transform*0.01, time = 5)
-		QDEL_IN(H, 5)
+	if(coinsleft == 0)
+		death()
 
 /mob/living/simple_animal/hostile/abnormality/branch12/pentacle_genie/BreachEffect(mob/living/carbon/human/user, work_type, pe, work_time)
-	addtimer(CALLBACK(src, PROC_REF(death)), 2 MINUTES)
+	for(var/i = 1 to 8)
+		var/turf/W = pick(GLOB.xeno_spawn)
+		new /obj/item/red_coin (get_turf(W))
+		coinsleft++
 	..()
 
+	var/turf/T = pick(GLOB.department_centers)
+	forceMove(T)
+	for(var/mob/living/carbon/human/H in GLOB.mob_list)
+		affected_players +=H
+		H.adjust_attribute_bonus(FORTITUDE_ATTRIBUTE, -80)
+		H.adjust_attribute_bonus(PRUDENCE_ATTRIBUTE, -80)
+		H.adjust_attribute_bonus(TEMPERANCE_ATTRIBUTE, -80)
+		H.adjust_attribute_bonus(JUSTICE_ATTRIBUTE, -80)
+	return
+
+/mob/living/simple_animal/hostile/abnormality/branch12/pentacle_genie/BreachEffect(mob/living/carbon/human/user, breach_type)
+	. = ..()
+
 /* Work effects */
-/mob/living/simple_animal/hostile/abnormality/greed_king/NeutralEffect(mob/living/carbon/human/user, work_type, pe)
+/mob/living/simple_animal/hostile/abnormality/branch12/pentacle_genie/NeutralEffect(mob/living/carbon/human/user, work_type, pe)
 	. = ..()
 	if(prob(50))
 		datum_reference.qliphoth_change(-1)
 	return
 
-/mob/living/simple_animal/hostile/abnormality/greed_king/FailureEffect(mob/living/carbon/human/user, work_type, pe)
+/mob/living/simple_animal/hostile/abnormality/branch12/pentacle_genie/FailureEffect(mob/living/carbon/human/user, work_type, pe)
 	. = ..()
 	datum_reference.qliphoth_change(-1)
 	return
 
 /obj/item/red_coin
 	name = "red coin"
-	desc = "A red coin. You feel like a genie might be able to use this.
+	desc = "A red coin. You feel like a genie might be able to use this."
+	icon = 'ModularTegustation/Teguicons/branch12/32x32.dmi'
+	icon_state = "red_coin"
 

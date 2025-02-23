@@ -22,7 +22,7 @@
 	)
 	//gift_type = /datum/ego_gifts/perfectionist
 	abnormality_origin = ABNORMALITY_ORIGIN_BRANCH12
-	var/max_works = 4
+	var/max_works = 5
 	var/works = 0
 
 
@@ -40,7 +40,7 @@
 
 	//Only start another work if you live the work
 	if(user.health > 0)
-		if(pe<=datum_reference.max_boxes-2 /* && works < max_works*/)	//Have to get equal to or more than max boxes minus 2, max 4 works
+		if(pe<=datum_reference.max_boxes-2 && works <= max_works)	//Have to get equal to or more than max boxes minus 2, max 5 works
 			works ++
 			ForceToWork(user, work_type, TRUE)
 			return
@@ -62,7 +62,8 @@
 		work_damage_amount +=2
 
 /mob/living/simple_animal/hostile/abnormality/branch12/show_goes_on/WorktickFailure(mob/living/carbon/human/user)
-	//Worktick failures increase damage given
+	..( )
+	//Worktick failures increase damage gives
 	work_damage_amount ++
 	return
 
