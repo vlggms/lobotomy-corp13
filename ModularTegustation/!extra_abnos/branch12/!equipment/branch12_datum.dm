@@ -147,6 +147,11 @@
 	item_path = /obj/item/ego_weapon/ranged/branch12/mini/medea
 	cost = 50
 
+//Hand of Babel - Babelling Rumor
+/datum/ego_datum/armor/rumor
+	item_path = /obj/item/clothing/suit/armor/ego_gear/branch12/rumor
+	cost = 50
+
 // --------ALEPH---------
 // Old Man and The Pale - Purity
 /datum/ego_datum/weapon/purity

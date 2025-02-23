@@ -23,7 +23,7 @@
 
 	ego_list = list(
 	//	/datum/ego_datum/weapon/rumor,
-	//	/datum/ego_datum/armor/rumor,
+		/datum/ego_datum/armor/rumor,
 	)
 	//gift_type =  /datum/ego_gifts/rumor
 	abnormality_origin = ABNORMALITY_ORIGIN_BRANCH12
