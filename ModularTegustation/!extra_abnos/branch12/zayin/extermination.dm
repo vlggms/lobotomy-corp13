@@ -34,6 +34,8 @@
 
 	if(length(damage_these))
 		for(var/mob/living/simple_animal/hostile/abnormality/D in damage_these)
+			if(D.damage_coeff == list(RED_DAMAGE = 0, WHITE_DAMAGE = 0, BLACK_DAMAGE = 0, PALE_DAMAGE = 0))
+				return
 			D.adjustBruteLoss(D.maxHealth*0.3)
 
 

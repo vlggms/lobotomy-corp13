@@ -222,14 +222,21 @@
 
 
 // Helios Effigy
-/obj/item/paper/fluff/info/branch12/fly_moon
-	abno_type = /mob/living/simple_animal/hostile/abnormality/branch12/fly_moon
-	abno_code = "M-03-12-02"
+/obj/item/paper/fluff/info/branch12/helios
+	abno_type = /mob/living/simple_animal/hostile/abnormality/branch12/helios
+	abno_code = "M-03-12-62"
 	abno_info = list(
 		"When an employee died in the facility, the Qliphoth counter lowered.",
-		"M-03-12-02 would gain strength for each employee in the facility that went insane.",
-		"While breaching, M-03-12-02 would start off in a strengthened state, dealing increased damage.",
-		"Once it's strength was all used up, the damage dealt would be decreased.",
+	)
+
+
+// Long Bird
+/obj/item/paper/fluff/info/branch12/long_bird
+	abno_type = /mob/living/simple_animal/hostile/abnormality/branch12/long_bird
+	abno_code = "O-02-12-63"
+	abno_info = list(
+		"When the work result was bad the qliphoth counter lowered by 1.",
+		"When an employee worked on O-02-12-63 with less than 3 Fortitude, the qliphoth counter lowered by 1.",
 	)
 
 //	-------------WAW-------------
@@ -286,10 +293,22 @@
 		"M-01-12-303's work rates decreased for every Qliphoth counter above 1.",
 	)
 
+// Enchantress of Wands
+/obj/item/paper/fluff/info/branch12/pentacle_genie
+	abno_type = /mob/living/simple_animal/hostile/abnormality/branch12/pentacle_genie
+	abno_code = "M-01-12-554"
+	abno_info = list(
+		"When the work result was bad, the Qliphoth counter decreased.",
+		"When the work result was neutral, the Qliphoth counter decreased at a normal rate.",
+		"When breaching, M-01-12-554 lowered the stat bonuses of every employee in the facility and scattered red coins.",
+		"M-01-12-554 would return stats for each coin returned to her.",
+		"M-01-12-554 seemed to be impervious to all attacks.",
+	)
+
 // Schwartzchild Radius
 /obj/item/paper/fluff/info/branch12/black_hole
 	abno_type = /mob/living/simple_animal/hostile/abnormality/branch12/black_hole
-	abno_code = "M-03-12-512"		//The number is the day that nasa released the photo of Saggitarrius A
+	abno_code = "M-03-12-512"		//The last number is the day that nasa released the photo of Saggitarrius A, May 12th
 	abno_info = list(
 		"When the work result was bad, the Qliphoth counter decreased.",
 		"When the work result was neutral, the Qliphoth counter decreased at a normal rate.",
