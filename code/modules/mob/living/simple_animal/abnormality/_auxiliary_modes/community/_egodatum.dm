@@ -15,15 +15,6 @@
 // Teth //
 //////////
 
-// Sirocco - Desert Wind
-/datum/ego_datum/weapon/desert // rank-bumped
-	item_path = /obj/item/ego_weapon/desert
-	cost = 35
-
-/datum/ego_datum/armor/desert
-	item_path = /obj/item/clothing/suit/armor/ego_gear/teth/desert
-	cost = 20
-
 ////////
 // He //
 ////////

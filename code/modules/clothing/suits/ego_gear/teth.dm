@@ -274,3 +274,10 @@ Any attempt to code risk class armor will result in a 10 day Github ban.*/
 	desc = "Make yourself a canvas and your creativity can't be limited."
 	icon_state = "creativefreedom"
 	armor = list(RED_DAMAGE = 10, WHITE_DAMAGE = 10, BLACK_DAMAGE = -10, PALE_DAMAGE = 10)
+
+/obj/item/clothing/suit/armor/ego_gear/teth/desert
+	name = "desert wind"
+	desc = "Dirty rag armor, better than nothing."
+	icon_state = "desert"
+	flags_inv = NONE
+	armor = list(RED_DAMAGE = 40, WHITE_DAMAGE = 0, BLACK_DAMAGE = -20, PALE_DAMAGE = -20) // 20
