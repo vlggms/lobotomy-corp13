@@ -30,13 +30,13 @@
 
 	ego_list = list(
 		//datum/ego_datum/weapon/branch12/solar_day,
-		/datum/ego_datum/armor/branch12/solar_day,
+		//datum/ego_datum/armor/branch12/solar_day,
 	)
 	//gift_type =  /datum/ego_gifts/insanity
 	abnormality_origin = ABNORMALITY_ORIGIN_BRANCH12
 
 	var/pulse_cooldown
-	var/pulse_cooldown_time = 12 SECONDS
+	var/pulse_cooldown_time = 17 SECONDS
 
 /mob/living/simple_animal/hostile/abnormality/branch12/helios/Move()
 	return FALSE
