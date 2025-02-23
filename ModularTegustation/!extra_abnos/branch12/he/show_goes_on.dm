@@ -40,7 +40,7 @@
 
 	//Only start another work if you live the work
 	if(user.health > 0)
-		if(pe<=datum_reference.max_boxes-2 && works < max_works)		//Have to get equal to or more than max boxes minus 2, max 4 works
+		if(pe<=datum_reference.max_boxes-2 /* && works < max_works*/)	//Have to get equal to or more than max boxes minus 2, max 4 works
 			works ++
 			ForceToWork(user, work_type, TRUE)
 			return
