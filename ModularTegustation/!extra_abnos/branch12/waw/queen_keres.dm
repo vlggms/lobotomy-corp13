@@ -2,14 +2,10 @@
 /mob/living/simple_animal/hostile/abnormality/branch12/queen_keres
 	name = "Queen Keres"
 	desc = "A towering queen in combat dress. She is cloaked in purple."
-	icon = 'ModularTegustation/Teguicons/branch12/48x64.dmi'
-	icon_state = "keres"
-
-	/*		Sprites ain't done yet
-	icon = 'ModularTegustation/Teguicons/64x48.dmi'
-	icon_state = "queen_keres"
-	icon_living = "queen_keres"
-	icon_dead = "queen_keres_dead"*/
+	icon = 'ModularTegustation/Teguicons/48x48.dmi'
+	icon_state = "keres_contained"
+	icon_living = "keres_contained"
+	icon_dead = "keres_dead"
 
 	maxHealth = 2000
 	health = 2000
@@ -87,6 +83,7 @@
 
 /mob/living/simple_animal/hostile/abnormality/branch12/queen_keres/BreachEffect(mob/living/carbon/human/user, work_type, pe, work_time)
 	..()
+	icon_state = "keres_contained"
 	//Move to main room
 	var/turf/T = pick(GLOB.department_centers)
 	forceMove(T)

@@ -1,5 +1,5 @@
 /mob/living/simple_animal/hostile/abnormality/branch12/fly_moon
-	name = "Fly Me to the Moon"
+	name = "Selene Effigy"	//Was Fly Me to the Moon but that was a lame name.
 	desc = "A pedestal filled with water with a moon effigy in it."
 	health = 4000
 	maxHealth = 4000

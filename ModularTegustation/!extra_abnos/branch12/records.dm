@@ -220,6 +220,18 @@
 		"When the Qliphoth counter reached 0, the most recently suppressed abnormality was seemingly raised from the dead in the containment cell of O-06-12-999."
 	)
 
+
+// Helios Effigy
+/obj/item/paper/fluff/info/branch12/fly_moon
+	abno_type = /mob/living/simple_animal/hostile/abnormality/branch12/fly_moon
+	abno_code = "M-03-12-02"
+	abno_info = list(
+		"When an employee died in the facility, the Qliphoth counter lowered.",
+		"M-03-12-02 would gain strength for each employee in the facility that went insane.",
+		"While breaching, M-03-12-02 would start off in a strengthened state, dealing increased damage.",
+		"Once it's strength was all used up, the damage dealt would be decreased.",
+	)
+
 //	-------------WAW-------------
 // Queen Keres
 /obj/item/paper/fluff/info/branch12/queen_keres
@@ -231,7 +243,6 @@
 		"A knighted employee receives an increase in all resistances for the rest of the shift, or until the death of T-01-12-233.",
 		"When an employee with level III temperance or below completed their work, the counter lowered.",
 	)
-
 
 // Joe Shmoe
 /obj/item/paper/fluff/info/branch12/joe_shmoe
@@ -275,6 +286,16 @@
 		"M-01-12-303's work rates decreased for every Qliphoth counter above 1.",
 	)
 
+// Schwartzchild Radius
+/obj/item/paper/fluff/info/branch12/black_hole
+	abno_type = /mob/living/simple_animal/hostile/abnormality/branch12/black_hole
+	abno_code = "M-03-12-512"		//The number is the day that nasa released the photo of Saggitarrius A
+	abno_info = list(
+		"When the work result was bad, the Qliphoth counter decreased.",
+		"When the work result was neutral, the Qliphoth counter decreased at a normal rate.",
+		"WARNING: DO NOT ENTER M-03-12-512."
+	)
+
 
 //	-------------ALEPH-------------
 // Old Man and The Pale
@@ -312,13 +333,13 @@
 		"An employee with level 4 or lower fortitude worked on T-01-12-236, they crumbled into ash before the work could begin.",
 	)
 
-// Fly Me to the Moon
+// Selene Effigy
 /obj/item/paper/fluff/info/branch12/fly_moon
 	abno_type = /mob/living/simple_animal/hostile/abnormality/branch12/fly_moon
-	abno_code = "M-04-12-02"
+	abno_code = "M-03-12-02"
 	abno_info = list(
 		"When an employee died in the facility, the Qliphoth counter lowered.",
-		"M-04-12-02 would gain strength for each employee in the facility that went insane.",
-		"While breaching, M-04-12-02 would start off in a strengthened state, dealing increased damage.",
+		"M-03-12-02 would gain strength for each employee in the facility that went insane.",
+		"While breaching, M-03-12-02 would start off in a strengthened state, dealing increased damage.",
 		"Once it's strength was all used up, the damage dealt would be decreased.",
 	)

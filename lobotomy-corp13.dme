@@ -3982,6 +3982,7 @@
 #include "ModularTegustation\!extra_abnos\branch12\teth\moon_rabbit.dm"
 #include "ModularTegustation\!extra_abnos\branch12\teth\remnant_rock.dm"
 #include "ModularTegustation\!extra_abnos\branch12\waw\babel.dm"
+#include "ModularTegustation\!extra_abnos\branch12\waw\black_hole.dm"
 #include "ModularTegustation\!extra_abnos\branch12\waw\joe_shmoe.dm"
 #include "ModularTegustation\!extra_abnos\branch12\waw\passion.dm"
 #include "ModularTegustation\!extra_abnos\branch12\waw\queen_keres.dm"
