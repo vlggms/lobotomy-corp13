@@ -531,6 +531,11 @@
 	justice_bonus = 3
 	slot = HELMET
 
+/datum/ego_gifts/desert
+	name = "Desert Wind"
+	icon_state = "desert"
+	temperance_bonus = 2
+	slot = EYE
 
 /**
  * HE EGO Gifts
