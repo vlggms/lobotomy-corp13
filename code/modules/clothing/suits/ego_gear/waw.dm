@@ -381,6 +381,24 @@ Any attempt to code risk class armor will result in a 10 day Github ban.*/
 							FORTITUDE_ATTRIBUTE = 80
 							)
 
+/obj/item/clothing/suit/armor/ego_gear/waw/heaven
+	name = "burrowing heaven"
+	desc = "As it spreads its wings for an old god, a heaven just for you burrows its way."
+	icon_state = "heaven"
+	armor = list(RED_DAMAGE = 30, WHITE_DAMAGE = 40, BLACK_DAMAGE = 40, PALE_DAMAGE = 30) // 140
+	attribute_requirements = list(
+							FORTITUDE_ATTRIBUTE = 80
+							)
+
+/obj/item/clothing/suit/armor/ego_gear/waw/faith
+	name = "untainted faith"
+	desc = "To have absolute faith on something that gives you salvation."
+	icon_state = "faith"
+	armor = list(RED_DAMAGE = -10, WHITE_DAMAGE = 50, BLACK_DAMAGE = 70, PALE_DAMAGE = 30) //140
+	attribute_requirements = list(
+					PRUDENCE_ATTRIBUTE = 80
+					)
+
 /obj/item/clothing/suit/armor/ego_gear/waw/innocence
 	name = "childhood memories"
 	desc = "In my dreams as child, Peter Pan would reach out a hand for me to hold and take me to Neverland. I had forgotten all of that, until I went into that room."
