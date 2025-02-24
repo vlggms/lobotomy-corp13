@@ -521,6 +521,7 @@
 /obj/item/ego_weapon/branch12/mini/insanity
 	name = "pulsating insanity"
 	desc = "I could scarcely contain my feelings of triumph"
+	special = "Upon hitting living target, the attacker would inflict a good amount of bleed."
 	icon_state = "insanity"
 	force = 52
 	swingstyle = WEAPONSWING_LARGESWEEP
@@ -537,6 +538,12 @@
 							TEMPERANCE_ATTRIBUTE = 80,
 							JUSTICE_ATTRIBUTE = 80
 							)
+	var/inflicted_bleed = 5
+
+/obj/item/ego_weapon/branch12/mini/insanity/attack(mob/living/target, mob/living/user)
+	. = ..()
+	if(isliving(target))
+		target.apply_lc_bleed(inflicted_bleed)
 
 //Purity
 /obj/item/ego_weapon/branch12/purity
