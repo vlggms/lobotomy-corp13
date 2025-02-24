@@ -2,7 +2,7 @@
 /mob/living/simple_animal/hostile/abnormality/branch12/queen_keres
 	name = "Queen Keres"
 	desc = "A towering queen in combat dress. She is cloaked in purple."
-	icon = 'ModularTegustation/Teguicons/48x48.dmi'
+	icon = 'ModularTegustation/Teguicons/branch12/48x48.dmi'
 	icon_state = "keres_contained"
 	icon_living = "keres_contained"
 	icon_dead = "keres_dead"

@@ -40,6 +40,7 @@
 	)
 	//gift_type =  /datum/ego_gifts/departure
 	abnormality_origin = ABNORMALITY_ORIGIN_BRANCH12
+	patrol_cooldown_time = 3 SECONDS
 
 /mob/living/simple_animal/hostile/abnormality/branch12/long_bird/PostWorkEffect(mob/living/carbon/human/user, work_type, pe, work_time)
 	if(get_attribute_level(user, FORTITUDE_ATTRIBUTE) <60)
