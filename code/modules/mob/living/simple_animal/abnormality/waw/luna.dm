@@ -6,8 +6,8 @@
 	icon = 'ModularTegustation/Teguicons/96x48.dmi'
 	icon_state = "dellaluna"
 	portrait = "luna"
-	maxHealth = 400
-	health = 400
+	maxHealth = 4000
+	health = 4000
 	damage_coeff = list(RED_DAMAGE = 1.2, WHITE_DAMAGE = 0, BLACK_DAMAGE = 1, PALE_DAMAGE = 2)
 	start_qliphoth = 3
 	threat_level = WAW_LEVEL
@@ -49,6 +49,17 @@
 	var/breached = FALSE
 	var/breached_monster
 	var/killspawn
+
+/mob/living/simple_animal/hostile/abnormality/luna/Move()
+	return FALSE
+
+/mob/living/simple_animal/hostile/abnormality/luna/CanAttack(atom/the_target)
+	return FALSE
+
+/mob/living/simple_animal/hostile/abnormality/luna/death(gibbed)
+	if(breached_monster)
+		qdel(breached_monster)
+	..()
 
 /mob/living/simple_animal/hostile/abnormality/luna/NeutralEffect(mob/living/carbon/human/user, work_type, pe)
 	. = ..()

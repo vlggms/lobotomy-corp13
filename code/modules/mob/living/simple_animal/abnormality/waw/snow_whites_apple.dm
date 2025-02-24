@@ -72,11 +72,13 @@
 	initial_language_holder = /datum/language_holder/plant //essentially flavor
 	var/togglemovement = FALSE
 	var/toggleplants = TRUE
+	var/nightmare_mode = FALSE
 	var/plant_cooldown = 30
 	var/hedge_cooldown = 0
 	var/hedge_cooldown_delay = FLORAL_BARRIER_COOLDOWN
 	var/teleport_cooldown = 0
 	var/teleport_cooldown_delay = 60 SECONDS
+	var/can_teleport = TRUE
 	//Spell automatically given to the abnormality.
 	var/obj/effect/proc_holder/spell/pointed/apple_barrier/barrier_spell
 	//All iterations share this list between eachother.
@@ -96,6 +98,8 @@
 /mob/living/simple_animal/hostile/abnormality/snow_whites_apple/BreachEffect(mob/living/carbon/human/user, breach_type)
 	. = ..()
 	update_icon()
+	if(breach_type == BREACH_MINING)//TODO: create attacking roses for this breach type
+		can_teleport = FALSE
 
 /mob/living/simple_animal/hostile/abnormality/snow_whites_apple/Initialize()
 	. = ..()
@@ -152,9 +156,18 @@
 			if(toggleplants)
 				SpreadPlants()
 			oldGrowth()
-	for(var/obj/structure/spreading/apple_vine/W in urange(15, get_turf(src)))
+	var/list/area_of_influence
+	if(nightmare_mode)
+		area_of_influence = vine_list
+	else
+		area_of_influence = urange(15, get_turf(src))
+	for(var/obj/structure/spreading/apple_vine/W in area_of_influence)
 		if(W.last_expand <= world.time)
 			W.expand()
+		else if(nightmare_mode && ranged_cooldown <= world.time)
+			var/list/did_we_hit = HurtInTurf(get_turf(W), list(), 30, BLACK_DAMAGE, check_faction = TRUE, hurt_mechs = TRUE)
+			if(did_we_hit.len)
+				W.VineAttack(pick(did_we_hit))
 	if(teleport_cooldown <= world.time && !togglemovement && !client && !IsCombatMap())
 		TryTeleport()
 
@@ -197,6 +210,8 @@
 	// Facing south for a dramatic exit.
 	dir = 2
 	if(teleport_cooldown > world.time)
+		return FALSE
+	if(!can_teleport)
 		return FALSE
 	teleport_cooldown = world.time + teleport_cooldown_delay
 	var/list/teleport_potential = TeleportList()

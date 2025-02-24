@@ -1,0 +1,1707 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"aK" = (
+/obj/structure/flora/junglebush/c,
+/obj/machinery/fish_market,
+/turf/open/floor/plating/ironsand,
+/area/city/backstreets_room/resurgence_village)
+"bO" = (
+/obj/structure/fluff/paper/stack{
+	dir = 4
+	},
+/turf/open/floor/wood,
+/area/city/backstreets_room/resurgence_village)
+"cf" = (
+/obj/structure/bonfire/prelit,
+/turf/open/floor/plating/ironsand,
+/area/city/backstreets_room/resurgence_village)
+"cr" = (
+/obj/structure/table/wood,
+/obj/item/taperecorder/empty,
+/obj/structure/fluff/paper,
+/obj/item/tape/resurgence/solution,
+/turf/open/floor/wood,
+/area/city/backstreets_room/resurgence_village)
+"dS" = (
+/obj/structure/flora/ausbushes/fullgrass,
+/turf/open/floor/plating/ironsand,
+/area/city/backstreets_room/resurgence_village)
+"er" = (
+/obj/item/flashlight/lantern{
+	on = 1;
+	pixel_y = 16;
+	anchored = 1
+	},
+/turf/open/floor/plating/ironsand,
+/area/city/backstreets_room/resurgence_village)
+"eU" = (
+/obj/effect/turf_decal/siding/wood{
+	dir = 1
+	},
+/obj/structure/chair/wood,
+/mob/living/simple_animal/hostile/clan/scout{
+	faction = list("neutral", "village");
+	can_protect = 1;
+	icon_living = "clan_scout_normal";
+	icon_state = "clan_scout_normal";
+	return_to_origin = 1;
+	city_faction = 0
+	},
+/turf/open/floor/plating/ironsand,
+/area/city/backstreets_room/resurgence_village)
+"fd" = (
+/obj/structure/table/wood,
+/obj/item/food/grown/cannabis,
+/turf/open/floor/wood,
+/area/city/backstreets_room/resurgence_village)
+"fP" = (
+/obj/structure/chair/wood{
+	dir = 1
+	},
+/mob/living/simple_animal/hostile/clan_npc/info{
+	icon_living = "clan_citzen_1";
+	icon_state = "clan_citzen_1";
+	dir = 1;
+	greeting_line = "Oh... Salutations Human.";
+	question2 = "Why are you not attacking me?";
+	question3 = "Who are your leaders?";
+	answers2 = list("Oh, You must have gotten the wrong idea.", "This clan was never about killing or hunting humans.", "It is just that one of our Elders has gone a bit rogue.", "Tinkerer is their name, They have quite a strange hatred for the city...", "However the Weaver and the Historian remain sane.", "Still leading this dream of ours.");
+	answers3 = list("Do you mean the Elders?","We used to have 3 of them.","The Tinkerer, The Historian and The Weaver","However, Tinkerer is a bit of a mess right now, They have left.","The Historian is currently incharge of leading expeditions like these.", "While the Weaver is staying back at our village, Keeping watch over us and protecting us.");
+	answers1 = list("You may call me Comander Julian", "The one assigned by the Historian to lead this outpost.", "Currently waiting for the Historian to report back to us with our next orders.");
+	return_to_origin = 1;
+	city_faction = 0;
+	faction = list("neutral", "village")
+	},
+/turf/open/floor/wood,
+/area/city/backstreets_room/resurgence_village)
+"hc" = (
+/obj/effect/turf_decal/siding/blue{
+	dir = 10
+	},
+/obj/structure/sign/poster/official/smile{
+	pixel_x = -32
+	},
+/turf/open/floor/carpet/royalblack,
+/area/city/backstreets_room/resurgence_village)
+"hA" = (
+/obj/structure/flora/rock/pile,
+/turf/open/floor/plating/ironsand,
+/area/city/backstreets_room/resurgence_village)
+"is" = (
+/obj/structure/chair/sofa/corp/left,
+/obj/effect/turf_decal/siding/blue{
+	dir = 5
+	},
+/mob/living/simple_animal/hostile/clan_npc/info{
+	icon_living = "clan_citzen_3";
+	icon_state = "clan_citzen_3";
+	question3 = "What is this mask you are wearing?";
+	question2 = "Why are you waiting here?";
+	answers1 = list("Well, You may ca-all me Paul!","I am a-a collector of so-orts...","So, I colle-ect tech from the outski-irts.", "And I store the-em here!");
+	answers2 = list("Well, Right no-ow I am a break", "I was a-able to ma-ake a good ha-aul today", "I think I deserve one.");
+	answers3 = list("Oh? Thi-is silly thing?", "Emote: taps their mask", "Fou-und it in the ruins.", "Loo-oked cool, and it he-elps me see i-in the dark.", "So tha-at is why I a-am keeping it.");
+	greeting_line = "Oh! Ni-ice meeting you hu-uman!";
+	return_to_origin = 1;
+	city_faction = 0;
+	faction = list("neutral", "village")
+	},
+/obj/item/flashlight/lantern{
+	on = 1;
+	pixel_x = 16;
+	anchored = 1
+	},
+/turf/open/floor/carpet/royalblack,
+/area/city/backstreets_room/resurgence_village)
+"kL" = (
+/turf/closed/indestructible/rock,
+/area/city/backstreets_room/resurgence_village)
+"ly" = (
+/obj/structure/riser/wood{
+	dir = 4
+	},
+/obj/effect/turf_decal/siding/blue{
+	dir = 8
+	},
+/obj/effect/turf_decal/siding/wood{
+	dir = 4
+	},
+/turf/open/floor/carpet/royalblack,
+/area/city/backstreets_room/resurgence_village)
+"lG" = (
+/obj/item/flashlight/lantern{
+	on = 1;
+	pixel_x = -16;
+	anchored = 1
+	},
+/turf/open/floor/wood,
+/area/city/backstreets_room/resurgence_village)
+"mA" = (
+/obj/structure/table/wood,
+/obj/effect/landmark/cratespawn,
+/obj/effect/landmark/cratespawn,
+/turf/open/floor/wood,
+/area/city/backstreets_room/resurgence_village)
+"mT" = (
+/obj/structure/chair/sofa/corp/right,
+/obj/effect/turf_decal/siding/blue{
+	dir = 1
+	},
+/mob/living/simple_animal/hostile/clan/defender{
+	can_protect = 1;
+	faction = list("neutral", "village");
+	icon_living = "defender_normal";
+	icon_state = "defender_normal";
+	return_to_origin = 1;
+	city_faction = 0;
+	maxHealth = 2400;
+	health = 2400
+	},
+/turf/open/floor/carpet/royalblack,
+/area/city/backstreets_room/resurgence_village)
+"mU" = (
+/turf/open/floor/plating/ironsand,
+/area/city/backstreets_room/resurgence_village)
+"of" = (
+/turf/closed/indestructible/rock,
+/area/space)
+"pn" = (
+/mob/living/simple_animal/hostile/clan/scout{
+	faction = list("neutral", "village");
+	can_protect = 1;
+	icon_living = "clan_scout_normal";
+	icon_state = "clan_scout_normal";
+	return_to_origin = 1;
+	city_faction = 0
+	},
+/turf/open/floor/plating/ironsand,
+/area/city/backstreets_room/resurgence_village)
+"ps" = (
+/obj/item/flashlight/lantern{
+	on = 1;
+	pixel_x = -16;
+	anchored = 1
+	},
+/turf/open/floor/grass/fakebasalt,
+/area/city/backstreets_room/resurgence_village)
+"pN" = (
+/obj/effect/turf_decal/siding/wood{
+	dir = 5
+	},
+/obj/structure/chair/wood{
+	dir = 8
+	},
+/turf/open/floor/plating/ironsand,
+/area/city/backstreets_room/resurgence_village)
+"qp" = (
+/obj/effect/turf_decal/raven/nine,
+/mob/living/simple_animal/hostile/clan/scout{
+	faction = list("neutral", "village");
+	can_protect = 1;
+	dir = 4;
+	icon_living = "clan_scout_normal";
+	icon_state = "clan_scout_normal";
+	return_to_origin = 1;
+	city_faction = 0
+	},
+/turf/open/floor/plating/ironsand,
+/area/city/backstreets_room/resurgence_village)
+"qM" = (
+/obj/structure/flora/ausbushes/fullgrass,
+/obj/item/flashlight/lantern{
+	on = 1;
+	pixel_y = 16;
+	anchored = 1
+	},
+/turf/open/floor/plating/ironsand,
+/area/city/backstreets_room/resurgence_village)
+"qU" = (
+/obj/effect/turf_decal/siding/wood{
+	dir = 10
+	},
+/obj/structure/chair/wood{
+	dir = 1
+	},
+/turf/open/floor/plating/ironsand,
+/area/city/backstreets_room/resurgence_village)
+"ra" = (
+/obj/item/gps/mining{
+	anchored = 1;
+	gpstag = "Robotic Signal";
+	alpha = 10
+	},
+/turf/open/floor/plating/ironsand,
+/area/city/backstreets_room/resurgence_village)
+"rk" = (
+/obj/structure/bed/pod,
+/obj/item/bedsheet/brown,
+/turf/open/floor/wood,
+/area/city/backstreets_room/resurgence_village)
+"rx" = (
+/obj/structure/curtain/cloth,
+/obj/structure/fluff/paper/stack{
+	dir = 8
+	},
+/turf/open/floor/wood,
+/area/city/backstreets_room/resurgence_village)
+"rF" = (
+/obj/structure/mineral_door/wood,
+/obj/effect/turf_decal/siding/blue/end,
+/turf/open/floor/carpet/royalblack,
+/area/city/backstreets_room/resurgence_village)
+"si" = (
+/obj/effect/turf_decal/siding/wood/corner{
+	dir = 1
+	},
+/turf/open/floor/plating/ironsand,
+/area/city/backstreets_room/resurgence_village)
+"sT" = (
+/obj/effect/turf_decal/siding/wood{
+	dir = 9
+	},
+/obj/structure/chair/wood,
+/mob/living/simple_animal/hostile/clan_npc{
+	icon_living = "clan_citzen_5";
+	icon_state = "clan_citzen_5";
+	return_to_origin = 1;
+	city_faction = 0;
+	faction = list("neutral", "village")
+	},
+/turf/open/floor/plating/ironsand,
+/area/city/backstreets_room/resurgence_village)
+"tF" = (
+/obj/structure/chair/wood{
+	dir = 1
+	},
+/obj/item/flashlight/lantern{
+	on = 1;
+	pixel_x = 16;
+	anchored = 1
+	},
+/turf/open/floor/wood,
+/area/city/backstreets_room/resurgence_village)
+"tR" = (
+/obj/structure/chair/plastic{
+	dir = 4
+	},
+/turf/open/floor/plating/ironsand,
+/area/city/backstreets_room/resurgence_village)
+"tT" = (
+/obj/effect/turf_decal/siding/wood/corner{
+	dir = 8
+	},
+/turf/open/floor/plating/ironsand,
+/area/city/backstreets_room/resurgence_village)
+"ua" = (
+/obj/structure/flora/rock/jungle,
+/turf/open/floor/plating/ironsand,
+/area/city/backstreets_room/resurgence_village)
+"uM" = (
+/obj/structure/lootcrate/workshopallas,
+/obj/structure/lootcrate/workshopallas,
+/obj/structure/lootcrate/workshopallas,
+/obj/structure/lootcrate/workshopallas,
+/obj/effect/turf_decal/siding/blue{
+	dir = 9
+	},
+/obj/item/flashlight/lantern{
+	on = 1;
+	pixel_y = 16;
+	anchored = 1
+	},
+/turf/open/floor/carpet/royalblack,
+/area/city/backstreets_room/resurgence_village)
+"vh" = (
+/obj/structure/chair/plastic{
+	dir = 4
+	},
+/mob/living/simple_animal/hostile/clan_npc/info/trader{
+	icon_state = "clan_citzen_6";
+	icon_living = "clan_citzen_6";
+	answers1 = list("...","Ca-all me Herring.", "I am but an old fi-sher who rests here...", "Once I fi-ished in the gre-eat lake...", "No-ow I fi-ish in simple ponds.");
+	question2 = "What are you buying?";
+	answers2 = list("Hm...", "Bri-ing me so-ome fish of stra-ange origins", "I-it has been a long time si-ince I have seen some...");
+	greeting_line = "Greetings...";
+	selling_answer = list("I o-only have a fe-ew tools to spare...","Bu-ut you ma-ay ta-ake a look...", "Just ho-old some holochips from yo-our ID, and I will te-ell you if you have enough.");
+	buying_say = "Ni-ice catch...";
+	poor_say = "Lo-ooks li-ike you still need ";
+	sold_say = "Ve-ery well, Ta-ake it.";
+	selling_item_1 = /obj/item/fishing_component/line/clan;
+	selling_item_1_name = "Resurgence Clan Fishing Line Reel (600 ahn)";
+	selling_item_2_name = "Resurgence Clan Fishing Net (800 ahn)";
+	selling_item_2 = /obj/item/fishing_net/resurgence;
+	cost_1 = 600;
+	cost_2 = 800;
+	selling_end = "Ve-ery well...";
+	return_to_origin = 1;
+	city_faction = 0;
+	level_1 = list(/obj/item/food/fish/siltcurrent, /obj/item/food/fish/fresh_water/mosb, /obj/item/food/fish/fresh_water/yin, /obj/item/food/fish/fresh_water/yang, /obj/item/food/fish/salt_water/fishmael, /obj/item/food/fish/salt_water/piscine_mermaid, /obj/item/food/fish/salt_water/tuna_pallid);
+	level_2 = list();
+	level_3 = list();
+	dir = 4;
+	faction = list("neutral", "village")
+	},
+/turf/open/floor/plating/ironsand,
+/area/city/backstreets_room/resurgence_village)
+"vk" = (
+/mob/living/simple_animal/hostile/clan/scout{
+	faction = list("neutral", "village");
+	can_protect = 1;
+	icon_state = "clan_scout_normal";
+	icon_living = "clan_scout_normal";
+	return_to_origin = 1;
+	city_faction = 0
+	},
+/obj/structure/fluff/paper/stack{
+	dir = 8
+	},
+/turf/open/floor/wood,
+/area/city/backstreets_room/resurgence_village)
+"vC" = (
+/mob/living/simple_animal/hostile/clan/drone/village{
+	faction = list("village")
+	},
+/turf/open/floor/plating/ironsand,
+/area/city/backstreets_room/resurgence_village)
+"wD" = (
+/obj/effect/turf_decal/raven/seven,
+/turf/open/water/deep/saltwater,
+/area/city/backstreets_room/resurgence_village)
+"xs" = (
+/obj/effect/turf_decal/siding/wood/corner,
+/turf/open/floor/plating/ironsand,
+/area/city/backstreets_room/resurgence_village)
+"xt" = (
+/obj/effect/turf_decal/siding/wood{
+	dir = 4
+	},
+/obj/structure/chair/wood{
+	dir = 8
+	},
+/turf/open/floor/plating/ironsand,
+/area/city/backstreets_room/resurgence_village)
+"yk" = (
+/obj/structure/flora/ausbushes/fullgrass,
+/obj/effect/turf_decal/raven/one,
+/mob/living/simple_animal/hostile/clan/scout{
+	faction = list("neutral", "village");
+	can_protect = 1;
+	dir = 8;
+	icon_state = "clan_scout_normal";
+	icon_living = "clan_scout_normal";
+	return_to_origin = 1;
+	city_faction = 0
+	},
+/obj/effect/turf_decal/box/red,
+/turf/open/floor/plating/ironsand,
+/area/city/backstreets_room/resurgence_village)
+"yp" = (
+/obj/effect/turf_decal/siding/wood{
+	dir = 5
+	},
+/obj/structure/chair/wood,
+/mob/living/simple_animal/hostile/clan_npc{
+	icon_living = "clan_citzen_5";
+	icon_state = "clan_citzen_5";
+	return_to_origin = 1;
+	city_faction = 0;
+	faction = list("neutral", "village")
+	},
+/turf/open/floor/plating/ironsand,
+/area/city/backstreets_room/resurgence_village)
+"yt" = (
+/obj/structure/flora/rock/pile,
+/obj/item/flashlight/lantern{
+	on = 1;
+	pixel_y = 16;
+	anchored = 1
+	},
+/obj/effect/landmark/cratespawn,
+/obj/effect/landmark/cratespawn,
+/turf/open/floor/plating/ironsand,
+/area/city/backstreets_room/resurgence_village)
+"yx" = (
+/obj/structure/flora/rock/pile/largejungle,
+/turf/open/water/jungle,
+/area/city/backstreets_room/resurgence_village)
+"zm" = (
+/obj/structure/flora/rock/pile,
+/obj/effect/turf_decal/weather/dirt{
+	dir = 1
+	},
+/obj/item/flashlight/lantern{
+	on = 1;
+	pixel_y = 16;
+	anchored = 1
+	},
+/turf/open/floor/plating/ironsand,
+/area/city/backstreets_room/resurgence_village)
+"zv" = (
+/obj/structure/mineral_door/wood,
+/turf/open/floor/wood,
+/area/city/backstreets_room/resurgence_village)
+"Bc" = (
+/obj/structure/water_source{
+	desc = "A well constructed of stone and wood. From where does it draw water?";
+	icon_state = "wishwell";
+	name = "well";
+	density = 1;
+	icon = 'ModularTegustation/Teguicons/toolabnormalities.dmi';
+	pixel_y = -3
+	},
+/turf/open/floor/plating/dirt/jungle/wasteland,
+/area/city/backstreets_room/resurgence_village)
+"Be" = (
+/obj/structure/curtain/cloth,
+/turf/open/floor/wood,
+/area/city/backstreets_room/resurgence_village)
+"Bm" = (
+/obj/effect/turf_decal/siding/wood{
+	dir = 9
+	},
+/obj/structure/chair/wood{
+	dir = 4
+	},
+/mob/living/simple_animal/hostile/clan/scout{
+	faction = list("neutral", "village");
+	can_protect = 1;
+	dir = 4;
+	icon_living = "clan_scout_normal";
+	icon_state = "clan_scout_normal";
+	return_to_origin = 1;
+	city_faction = 0
+	},
+/turf/open/floor/plating/ironsand,
+/area/city/backstreets_room/resurgence_village)
+"BP" = (
+/obj/effect/turf_decal/weather/dirt{
+	dir = 1
+	},
+/turf/open/floor/plating/ironsand,
+/area/city/backstreets_room/resurgence_village)
+"BZ" = (
+/obj/structure/riser/wood{
+	dir = 4
+	},
+/obj/effect/turf_decal/siding/wood{
+	dir = 4
+	},
+/obj/effect/turf_decal/siding/wood{
+	dir = 8
+	},
+/turf/open/floor/carpet/royalblack,
+/area/city/backstreets_room/resurgence_village)
+"Ci" = (
+/obj/structure/curtain/cloth,
+/turf/closed/indestructible/fakeglass,
+/area/city/backstreets_room/resurgence_village)
+"Cq" = (
+/obj/structure/sign/poster/contraband/borg_fancy_2,
+/turf/closed/indestructible/reinforced,
+/area/city/backstreets_alley)
+"CB" = (
+/obj/item/flashlight/lantern{
+	on = 1;
+	pixel_x = -16;
+	anchored = 1
+	},
+/turf/open/floor/plating/ironsand,
+/area/city/backstreets_room/resurgence_village)
+"CD" = (
+/obj/item/flashlight/lantern{
+	on = 1;
+	pixel_x = 16;
+	anchored = 1
+	},
+/turf/open/floor/plating/ironsand,
+/area/city/backstreets_room/resurgence_village)
+"CU" = (
+/obj/effect/turf_decal/raven/nine,
+/obj/item/flashlight/lantern{
+	on = 1;
+	pixel_x = -16;
+	anchored = 1
+	},
+/turf/open/floor/grass/fakebasalt,
+/area/city/backstreets_alley)
+"Dm" = (
+/obj/structure/sign/poster/contraband/borg_fancy_1,
+/turf/closed/indestructible/reinforced,
+/area/city/backstreets_alley)
+"Du" = (
+/obj/effect/turf_decal/siding/wood{
+	dir = 8
+	},
+/obj/structure/chair/wood{
+	dir = 4
+	},
+/mob/living/simple_animal/hostile/clan/scout{
+	faction = list("neutral", "village");
+	can_protect = 1;
+	dir = 4;
+	icon_living = "clan_scout_normal";
+	icon_state = "clan_scout_normal";
+	return_to_origin = 1;
+	city_faction = 0
+	},
+/turf/open/floor/plating/ironsand,
+/area/city/backstreets_room/resurgence_village)
+"EY" = (
+/mob/living/simple_animal/hostile/clan/scout{
+	faction = list("neutral", "village");
+	can_protect = 1;
+	dir = 1;
+	icon_state = "clan_scout_normal";
+	icon_living = "clan_scout_normal";
+	return_to_origin = 1;
+	city_faction = 0
+	},
+/obj/structure/fluff/paper,
+/turf/open/floor/wood,
+/area/city/backstreets_room/resurgence_village)
+"FD" = (
+/obj/structure/curtain/cloth,
+/obj/structure/fluff/paper,
+/turf/open/floor/wood,
+/area/city/backstreets_room/resurgence_village)
+"Gx" = (
+/obj/effect/turf_decal/weather/dirt{
+	dir = 4
+	},
+/mob/living/simple_animal/hostile/clan_npc/info/trader{
+	icon_living = "clan_citzen_4";
+	icon_state = "clan_citzen_4";
+	can_sell = 0;
+	level_2 = list(/obj/item/book/granter/action/skill);
+	level_1 = null;
+	level_3 = null;
+	question3 = "What are you collecting?";
+	answers3 = list("Oh!, I am gathering books...", "Specifically books from the city.", "They should be called 'Skill Books?'", "If you find any, I am willing to buy them from you.");
+	dir = 4;
+	greeting_line = "Oh my! Greetings human!";
+	question2 = "How did all of you get here?";
+	answers1 = list("Well, You may call me Lorenzo", "I am one of the Historian's scholars.", "Just examining and studying the city...");
+	answers2 = list("That is thanks to our Elders", "They... The Tinkerer found a way to teleport an outpost great distances.", "So the other Elders are currently using this tech to send us closer to the City.");
+	return_to_origin = 1;
+	city_faction = 0;
+	faction = list("neutral", "village")
+	},
+/turf/open/floor/plating/ironsand,
+/area/city/backstreets_room/resurgence_village)
+"HN" = (
+/turf/open/water/deep/saltwater,
+/area/city/backstreets_room/resurgence_village)
+"Id" = (
+/mob/living/simple_animal/hostile/clan_npc/info/trader{
+	icon_state = "clan_citzen_trader";
+	icon_living = "clan_citzen_trader";
+	answers1 = list("Well, Yo-ou may call me Ronan.","Currently, I am ru-unning this humble sho-op for passerbys li-ike you!");
+	question2 = "What are you buying?";
+	answers2 = list("A-as of now...", "I am willi-ing to buy robotic components.", "You kno-ow those weird bo-ots which are ru-unning around, guns or spe-ears for hands?", "I heard tha-at their parts are quite u-useful.", "Also, The outskirts wo-ould be better off without the-em.");
+	greeting_line = "Hm... We-elcome cu-ustomer.";
+	selling_answer = list("Le-et me take a lo-ook...","I got so-ome good thi-ings in store to-oday...", "Just ho-old some holochips from yo-our ID, and I will te-ell you if you have enough.");
+	buying_say = "Go-ood Deal!";
+	poor_say = "Aw... Looks li-ike you still need ";
+	sold_say = "So-old!";
+	selling_item_1 = /obj/item/book/granter/crafting_recipe/clan_drone;
+	selling_item_1_name = "Tinkerer's Blueprints: Reforged Drone (250 ahn)";
+	selling_item_2_name = "Resurgence Clan Augment: Echo Step (1000 ahn)";
+	selling_item_2 = /obj/item/organ/cyberimp/chest/resurgence_core;
+	cost_1 = 250;
+	cost_2 = 1000;
+	selling_end = "Go-ot it, We-e are always o-open if you need a-anything!";
+	return_to_origin = 1;
+	city_faction = 0;
+	level_1 = list(/obj/item/food/meat/slab/robot);
+	level_2 = list();
+	level_3 = list(/obj/item/raw_anomaly_core);
+	faction = list("neutral", "village")
+	},
+/obj/effect/turf_decal/siding/wood{
+	color = "#2e1f0e";
+	dir = 4
+	},
+/obj/effect/turf_decal/siding/blue{
+	dir = 1
+	},
+/turf/open/floor/carpet/royalblack,
+/area/city/backstreets_room/resurgence_village)
+"Iq" = (
+/obj/structure/chair/wood,
+/mob/living/simple_animal/hostile/clan_npc/info/trader{
+	icon_state = "clan_citzen_3";
+	icon_living = "clan_citzen_3";
+	answers1 = list("Well, Yo-ou may call me Lavan.","Right now I am just resting he-ere, but I do have some tapes fo-or sale!");
+	question2 = "How did you gather these tapes?";
+	answers2 = list("I-I found them in thi-is room...", "They look-ed cool, so I-I took them.", "And looks like I-I was ri-ight, as you might wa-ant to buy the-em!");
+	greeting_line = "Hello-o human!";
+	selling_answer = list("Le-et take a lookse...","Here are the ta-apes that I have fo-or sale!", "Just ho-old some holochips from yo-our ID, and I will te-ell you if you have enough.");
+	buying_say = "Go-ood Deal!";
+	poor_say = "Aw... Looks li-ike you still need ";
+	sold_say = "So-old!";
+	selling_item_1 = /obj/item/tape/resurgence/gateway;
+	selling_item_1_name = "Tinkerer's Logs: New Invention (200 ahn)";
+	selling_item_2_name = "Historians Podcast: Backstage Records (200 ahn)";
+	selling_item_2 = /obj/item/tape/resurgence/backstage;
+	cost_1 = 200;
+	selling_end = "Go-ot it, I-if you need a-anything, I will be-e right here!";
+	return_to_origin = 1;
+	city_faction = 0;
+	can_buy = 0;
+	faction = list("neutral", "village")
+	},
+/turf/open/floor/wood,
+/area/city/backstreets_room/resurgence_village)
+"IB" = (
+/obj/structure/fluff/paper/stack{
+	dir = 8
+	},
+/turf/open/floor/wood,
+/area/city/backstreets_room/resurgence_village)
+"IH" = (
+/obj/structure/chair/wood{
+	dir = 1
+	},
+/mob/living/simple_animal/hostile/clan_npc{
+	icon_living = "clan_citzen_5";
+	icon_state = "clan_citzen_5";
+	dir = 1;
+	return_to_origin = 1;
+	city_faction = 0;
+	faction = list("neutral", "village")
+	},
+/obj/item/flashlight/lantern{
+	on = 1;
+	pixel_x = 16;
+	anchored = 1
+	},
+/turf/open/floor/wood,
+/area/city/backstreets_room/resurgence_village)
+"IX" = (
+/obj/structure/water_source{
+	desc = "A well constructed of stone and wood. From where does it draw water?";
+	icon_state = "wishwell";
+	name = "well";
+	density = 1;
+	icon = 'ModularTegustation/Teguicons/toolabnormalities.dmi';
+	pixel_y = -3
+	},
+/turf/open/floor/plating/ironsand,
+/area/city/backstreets_room/resurgence_village)
+"Jw" = (
+/mob/living/simple_animal/hostile/clan/defender{
+	can_protect = 1;
+	faction = list("neutral", "village");
+	dir = 1;
+	icon_living = "defender_normal";
+	icon_state = "defender_normal";
+	return_to_origin = 1;
+	city_faction = 0;
+	health = 2400;
+	maxHealth = 2400
+	},
+/turf/open/floor/plating/ironsand,
+/area/city/backstreets_room/resurgence_village)
+"KO" = (
+/obj/item/flashlight/lantern{
+	on = 1;
+	pixel_y = 16;
+	anchored = 1
+	},
+/turf/open/floor/wood,
+/area/city/backstreets_room/resurgence_village)
+"KY" = (
+/obj/structure/plaque/static_plaque{
+	name = "echo office plaque";
+	desc = "A plaque which mentions some sort of 'Echo Office', Something about them freeing them from a 'Tinkerer'"
+	},
+/turf/closed/indestructible/wood,
+/area/city/backstreets_room/resurgence_village)
+"Li" = (
+/turf/closed/indestructible/wood,
+/area/city/backstreets_room/resurgence_village)
+"Ly" = (
+/obj/effect/turf_decal/siding/wood/corner{
+	dir = 4
+	},
+/turf/open/floor/plating/ironsand,
+/area/city/backstreets_room/resurgence_village)
+"LF" = (
+/obj/structure/sign/poster/official/work_for_a_future,
+/turf/closed/indestructible/wood,
+/area/city/backstreets_room/resurgence_village)
+"Mg" = (
+/obj/structure/flora/rock/pile/largejungle,
+/obj/item/flashlight/lantern{
+	on = 1;
+	pixel_y = 16;
+	anchored = 1
+	},
+/turf/open/water/jungle,
+/area/city/backstreets_room/resurgence_village)
+"Mr" = (
+/obj/machinery/door/airlock/centcom{
+	desc = "A bit too sturdy...";
+	max_integrity = 10000;
+	name = "Strange Airlock";
+	normal_integrity = 100000;
+	req_access_txt = "19"
+	},
+/obj/effect/mapping_helpers/airlock/unres,
+/turf/open/floor/grass/fakebasalt,
+/area/city/backstreets_alley)
+"MO" = (
+/obj/structure/plaque/static_plaque{
+	name = "folk office plaque";
+	desc = "A plaque which mentions some sort of 'Folk Office', Something about them giving them some strange speech about being yourself, even if other order you to be something else..."
+	},
+/turf/closed/indestructible/wood,
+/area/city/backstreets_room/resurgence_village)
+"Ne" = (
+/obj/structure/sign/departments/security{
+	pixel_x = 32
+	},
+/turf/open/floor/plating/ironsand,
+/area/city/backstreets_room/resurgence_village)
+"Od" = (
+/obj/item/flashlight/lantern{
+	on = 1;
+	pixel_y = 16;
+	anchored = 1
+	},
+/turf/open/water/deep/saltwater,
+/area/city/backstreets_room/resurgence_village)
+"OR" = (
+/turf/open/floor/grass/fakebasalt,
+/area/city/backstreets_room/resurgence_village)
+"OT" = (
+/obj/structure/flora/junglebush/c,
+/turf/open/floor/plating/ironsand,
+/area/city/backstreets_room/resurgence_village)
+"Px" = (
+/obj/effect/turf_decal/siding/wood{
+	dir = 6
+	},
+/obj/structure/chair/wood{
+	dir = 8
+	},
+/mob/living/simple_animal/hostile/clan/scout{
+	faction = list("neutral", "village");
+	can_protect = 1;
+	dir = 8;
+	icon_living = "clan_scout_normal";
+	icon_state = "clan_scout_normal";
+	return_to_origin = 1;
+	city_faction = 0
+	},
+/turf/open/floor/plating/ironsand,
+/area/city/backstreets_room/resurgence_village)
+"Py" = (
+/obj/structure/closet/crate/wooden,
+/obj/item/stock_parts/cell/high,
+/obj/item/stock_parts/cell/high,
+/obj/item/stock_parts/cell/high,
+/obj/item/stock_parts/cell/high,
+/obj/item/stock_parts/cell/high,
+/obj/item/stack/rods/ten,
+/turf/open/floor/plating/ironsand,
+/area/city/backstreets_room/resurgence_village)
+"PA" = (
+/obj/structure/table/wood,
+/obj/item/paper_bin,
+/obj/item/pen,
+/turf/open/floor/wood,
+/area/city/backstreets_room/resurgence_village)
+"Qm" = (
+/obj/effect/turf_decal/siding/blue{
+	dir = 4
+	},
+/obj/structure/sign/poster/official/safety_report{
+	pixel_x = 32
+	},
+/turf/open/floor/carpet/royalblack,
+/area/city/backstreets_room/resurgence_village)
+"QI" = (
+/turf/closed/indestructible/reinforced,
+/area/city/backstreets_alley)
+"QJ" = (
+/obj/structure/fluff/paper,
+/turf/open/floor/wood,
+/area/city/backstreets_room/resurgence_village)
+"QQ" = (
+/obj/effect/turf_decal/siding/wood{
+	dir = 10
+	},
+/obj/structure/chair/wood{
+	dir = 4
+	},
+/mob/living/simple_animal/hostile/clan/scout{
+	faction = list("neutral", "village");
+	can_protect = 1;
+	dir = 4;
+	icon_living = "clan_scout_normal";
+	icon_state = "clan_scout_normal";
+	return_to_origin = 1;
+	city_faction = 0
+	},
+/turf/open/floor/plating/ironsand,
+/area/city/backstreets_room/resurgence_village)
+"Rc" = (
+/obj/structure/sign/departments/cargo{
+	desc = "A sign labelling an area where shop is.";
+	name = "\improper Shop sign";
+	pixel_y = 32
+	},
+/turf/open/floor/plating/ironsand,
+/area/city/backstreets_room/resurgence_village)
+"Rj" = (
+/turf/open/floor/wood,
+/area/city/backstreets_room/resurgence_village)
+"Rp" = (
+/obj/effect/turf_decal/siding/wood{
+	dir = 6
+	},
+/obj/structure/chair/wood{
+	dir = 1
+	},
+/mob/living/simple_animal/hostile/clan_npc/info{
+	icon_living = "clan_citzen_2";
+	icon_state = "clan_citzen_2";
+	dir = 1;
+	greeting_line = "Howdy Pa-al, I have no-ot seen your kind in a whi-ile!";
+	answers1 = list("Well Pa-artner, Friends ca-all me James", "You can sa-ay I am a... Hunte-er if you could te-ell.", "I explore arou-und the rui-ins with my pal Ronan, finding monste-ers to take apa-art.", "After a-all, The Weaver does nee-ed material to make such o-outfits");
+	question2 = "What are wearing?";
+	answers2 = list("It i-is nice, Is it no-ot?", "Emote: points at thei-ir boots", "The great Weave-er was able to make the-em them for me.", "And I do sa-ay, They really fit the 'Hunter' look I have see-em often.");
+	answers3 = list("If you-u are asking abo-out this faction...", "The Cla-an is just one of ma-any villages in the O-outskirts...","All of the me-embers of the clan are ma-achines...","Li-ike me...","Delay: 20","But we are clo-ose to being hu-uman!","We ju-ust need to stu-udy mo-ore, then we can learn what it means to be Hu-uman...");
+	return_to_origin = 1;
+	city_faction = 0;
+	faction = list("neutral", "village")
+	},
+/turf/open/floor/plating/ironsand,
+/area/city/backstreets_room/resurgence_village)
+"Ry" = (
+/obj/effect/turf_decal/siding/wood,
+/obj/structure/chair/wood{
+	dir = 1
+	},
+/turf/open/floor/plating/ironsand,
+/area/city/backstreets_room/resurgence_village)
+"Sh" = (
+/mob/living/simple_animal/hostile/clan/defender{
+	can_protect = 1;
+	faction = list("neutral", "village");
+	dir = 1;
+	wants_to_talk = 1;
+	question2 = "Why are you not attacking me?";
+	question3 = "Why do you sound so strange?";
+	answers1 = list("Emote: sighs", "I am Dion, O-one of the Defenders a-at this outpost.", "Just sta-anding around he-ere, making sure everyone is sa-afe.");
+	answers2 = list("Oh, Yo-ou are o-one of the ne-ew humans around here...", "Talk wi-ith our Comander, They shou-uld be to the ri-ight of me.", "They will be a-able to e-explain some things...");
+	answers3 = list("Oh we-ell, I guess you can sa-ay that I am not there yet...", "It ta-akes a whi-ile to get a upgraded vo-oice box, so o-only the closest followers of o-our Elders get them.", "Hopefu-uly that time wi-ill come one day. But fo-or now I just nee-ed to work for i-it.");
+	icon_living = "defender_normal";
+	icon_state = "defender_normal";
+	return_to_origin = 1;
+	city_faction = 0;
+	health = 2400;
+	maxHealth = 2400
+	},
+/obj/effect/turf_decal/box/red,
+/turf/open/floor/plating/ironsand,
+/area/city/backstreets_room/resurgence_village)
+"SJ" = (
+/mob/living/simple_animal/hostile/clan/drone/village{
+	city_faction = 0;
+	faction = list("village")
+	},
+/turf/open/floor/plating/ironsand,
+/area/city/backstreets_room/resurgence_village)
+"SK" = (
+/obj/structure/chair/wood,
+/mob/living/simple_animal/hostile/clan_npc{
+	icon_living = "clan_citzen_5";
+	icon_state = "clan_citzen_5";
+	return_to_origin = 1;
+	city_faction = 0;
+	faction = list("neutral", "village")
+	},
+/turf/open/floor/wood,
+/area/city/backstreets_room/resurgence_village)
+"TT" = (
+/obj/effect/turf_decal/siding/blue/corner{
+	dir = 8
+	},
+/obj/effect/turf_decal/siding/blue/corner,
+/turf/open/floor/carpet/royalblack,
+/area/city/backstreets_room/resurgence_village)
+"Uo" = (
+/obj/effect/turf_decal/raven/nine,
+/turf/open/floor/plating/ironsand,
+/area/city/backstreets_room/resurgence_village)
+"UQ" = (
+/obj/structure/lootcrate/money,
+/obj/structure/lootcrate/money,
+/obj/structure/lootcrate/money,
+/obj/structure/lootcrate/money,
+/obj/structure/lootcrate/money,
+/obj/structure/lootcrate/money,
+/obj/structure/lootcrate/money,
+/obj/structure/lootcrate/money,
+/turf/open/floor/plating/ironsand,
+/area/city/backstreets_room/resurgence_village)
+"UT" = (
+/turf/open/floor/carpet/royalblack,
+/area/city/backstreets_room/resurgence_village)
+"VJ" = (
+/obj/effect/turf_decal/raven/seven,
+/obj/item/flashlight/lantern{
+	on = 1;
+	pixel_x = 16;
+	anchored = 1
+	},
+/turf/open/floor/grass/fakebasalt,
+/area/city/backstreets_alley)
+"VR" = (
+/obj/structure/displaycase/forsale,
+/obj/structure/table/wood/fancy/royalblue,
+/obj/effect/turf_decal/siding/blue{
+	dir = 6
+	},
+/turf/open/floor/carpet/royalblack,
+/area/city/backstreets_room/resurgence_village)
+"Wg" = (
+/obj/structure/flora/ausbushes/fullgrass,
+/obj/structure/fishshrine{
+	anchored = 1
+	},
+/turf/open/floor/plating/ironsand,
+/area/city/backstreets_room/resurgence_village)
+"Wx" = (
+/obj/effect/turf_decal/siding/blue,
+/turf/open/floor/carpet/royalblack,
+/area/city/backstreets_room/resurgence_village)
+"WU" = (
+/mob/living/simple_animal/hostile/clan/scout{
+	faction = list("neutral", "village");
+	can_protect = 1;
+	dir = 8;
+	icon_state = "clan_scout_normal";
+	icon_living = "clan_scout_normal";
+	return_to_origin = 1;
+	city_faction = 0
+	},
+/obj/effect/turf_decal/box/red,
+/turf/open/floor/plating/ironsand,
+/area/city/backstreets_room/resurgence_village)
+"XP" = (
+/turf/open/floor/grass/fakebasalt,
+/area/city/backstreets_alley)
+"Yi" = (
+/obj/effect/turf_decal/siding/blue{
+	dir = 1
+	},
+/turf/open/floor/carpet/royalblack,
+/area/city/backstreets_room/resurgence_village)
+"YN" = (
+/obj/structure/flora/junglebush/c,
+/turf/open/floor/plating/ironsand,
+/area/city/backstreets_alley)
+"ZZ" = (
+/obj/structure/displaycase/forsale,
+/obj/structure/table/wood/fancy/royalblue,
+/obj/effect/turf_decal/siding/blue,
+/turf/open/floor/carpet/royalblack,
+/area/city/backstreets_room/resurgence_village)
+
+(1,1,1) = {"
+QI
+of
+of
+of
+kL
+kL
+kL
+kL
+kL
+kL
+kL
+of
+of
+of
+of
+of
+of
+of
+of
+of
+of
+of
+"}
+(2,1,1) = {"
+QI
+QI
+of
+kL
+kL
+mU
+CB
+mU
+mU
+Sh
+kL
+kL
+kL
+kL
+kL
+kL
+of
+of
+of
+of
+of
+of
+"}
+(3,1,1) = {"
+CU
+Cq
+QI
+kL
+mU
+OR
+mU
+mU
+mU
+mU
+Uo
+kL
+Mg
+ua
+qp
+kL
+kL
+kL
+kL
+kL
+kL
+kL
+"}
+(4,1,1) = {"
+XP
+Mr
+YN
+ps
+mU
+mU
+ua
+mU
+mU
+mU
+SJ
+mU
+mU
+mU
+mU
+Li
+Li
+MO
+Li
+Li
+Li
+kL
+"}
+(5,1,1) = {"
+XP
+Mr
+XP
+CD
+mU
+mU
+mU
+mU
+mU
+mU
+mU
+mU
+mU
+mU
+mU
+Li
+KO
+Rj
+Be
+rk
+Li
+kL
+"}
+(6,1,1) = {"
+VJ
+Dm
+QI
+kL
+OR
+mU
+mU
+mU
+mU
+ua
+mU
+mU
+mU
+mU
+mU
+zv
+Rj
+Rj
+Be
+rk
+Li
+kL
+"}
+(7,1,1) = {"
+QI
+QI
+of
+kL
+yk
+mU
+mU
+mU
+mU
+mU
+mU
+mU
+ua
+mU
+mU
+Ci
+mA
+IH
+Be
+rk
+Li
+kL
+"}
+(8,1,1) = {"
+QI
+of
+of
+kL
+kL
+er
+mU
+mU
+mU
+mU
+mU
+mU
+mU
+mU
+Jw
+Li
+Ci
+Li
+Li
+Li
+Li
+kL
+"}
+(9,1,1) = {"
+QI
+of
+of
+kL
+kL
+WU
+WU
+WU
+OT
+mU
+mU
+mU
+mU
+mU
+mU
+mU
+mU
+kL
+kL
+kL
+kL
+kL
+"}
+(10,1,1) = {"
+QI
+of
+of
+kL
+Li
+Li
+Li
+Li
+Li
+er
+mU
+mU
+mU
+mU
+mU
+dS
+mU
+mU
+kL
+of
+of
+of
+"}
+(11,1,1) = {"
+QI
+of
+of
+kL
+Li
+uM
+ly
+hc
+Li
+Rc
+mU
+mU
+mU
+mU
+CD
+mU
+mU
+hA
+kL
+of
+of
+of
+"}
+(12,1,1) = {"
+QI
+of
+of
+kL
+Li
+Id
+BZ
+Wx
+Li
+dS
+mU
+ra
+mU
+Jw
+Li
+Li
+Li
+Li
+Li
+of
+of
+of
+"}
+(13,1,1) = {"
+QI
+of
+of
+kL
+Li
+Yi
+UT
+TT
+rF
+mU
+mU
+mU
+mU
+mU
+Ci
+lG
+SK
+mA
+KY
+of
+of
+of
+"}
+(14,1,1) = {"
+QI
+of
+of
+kL
+Li
+mT
+UT
+ZZ
+Ci
+mU
+mU
+mU
+mU
+mU
+Ci
+Rj
+Iq
+fd
+Li
+of
+of
+of
+"}
+(15,1,1) = {"
+QI
+of
+of
+kL
+LF
+is
+Qm
+VR
+Ci
+mU
+mU
+mU
+mU
+mU
+zv
+Rj
+Rj
+Rj
+Li
+of
+of
+of
+"}
+(16,1,1) = {"
+QI
+of
+of
+kL
+Li
+Li
+Li
+Li
+Li
+er
+mU
+SJ
+mU
+mU
+Li
+Be
+Be
+Be
+Li
+of
+of
+of
+"}
+(17,1,1) = {"
+QI
+of
+of
+kL
+kL
+kL
+UQ
+mU
+Bm
+Du
+QQ
+mU
+mU
+mU
+Li
+rk
+rk
+rk
+Li
+of
+of
+of
+"}
+(18,1,1) = {"
+QI
+of
+of
+of
+of
+kL
+Py
+sT
+si
+mU
+tT
+qU
+mU
+Jw
+Li
+Li
+Li
+Li
+Li
+of
+of
+of
+"}
+(19,1,1) = {"
+QI
+of
+of
+of
+of
+kL
+yt
+eU
+mU
+cf
+mU
+Ry
+mU
+mU
+CB
+mU
+mU
+IX
+kL
+of
+of
+of
+"}
+(20,1,1) = {"
+QI
+of
+of
+of
+of
+kL
+kL
+yp
+Ly
+mU
+xs
+Rp
+mU
+mU
+mU
+mU
+mU
+aK
+kL
+of
+of
+of
+"}
+(21,1,1) = {"
+QI
+of
+of
+of
+of
+of
+kL
+mU
+pN
+xt
+Px
+mU
+mU
+mU
+mU
+tR
+vh
+kL
+kL
+of
+of
+of
+"}
+(22,1,1) = {"
+QI
+of
+of
+of
+of
+of
+kL
+pn
+mU
+mU
+mU
+Ne
+mU
+mU
+mU
+Wg
+HN
+kL
+kL
+of
+of
+of
+"}
+(23,1,1) = {"
+QI
+of
+of
+of
+of
+of
+kL
+OT
+mU
+mU
+Li
+Li
+zv
+Ci
+Ci
+Li
+Od
+HN
+kL
+of
+of
+of
+"}
+(24,1,1) = {"
+QI
+of
+of
+of
+of
+of
+kL
+qM
+mU
+vC
+Li
+vk
+QJ
+Rj
+EY
+Li
+HN
+HN
+kL
+of
+of
+of
+"}
+(25,1,1) = {"
+QI
+of
+of
+of
+of
+of
+kL
+Gx
+mU
+mU
+Li
+bO
+IB
+Be
+Be
+Li
+HN
+HN
+kL
+of
+of
+of
+"}
+(26,1,1) = {"
+QI
+of
+of
+of
+of
+of
+kL
+Bc
+BP
+mU
+Li
+PA
+fP
+FD
+rk
+Li
+HN
+wD
+kL
+of
+of
+of
+"}
+(27,1,1) = {"
+QI
+of
+of
+of
+of
+of
+kL
+kL
+zm
+ua
+Li
+cr
+tF
+rx
+rk
+Li
+wD
+kL
+kL
+of
+of
+of
+"}
+(28,1,1) = {"
+QI
+of
+of
+of
+of
+of
+of
+kL
+kL
+yx
+Li
+Li
+Li
+Li
+Li
+Li
+kL
+kL
+of
+of
+of
+of
+"}
+(29,1,1) = {"
+QI
+of
+of
+of
+of
+of
+of
+of
+kL
+kL
+kL
+kL
+kL
+kL
+kL
+kL
+kL
+of
+of
+of
+of
+of
+"}

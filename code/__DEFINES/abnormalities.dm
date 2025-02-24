@@ -14,6 +14,7 @@
 // Breach types
 #define BREACH_NORMAL 0
 #define BREACH_PINK 1
+#define BREACH_MINING 2
 
 // List
 #define THREAT_TO_NAME list(\

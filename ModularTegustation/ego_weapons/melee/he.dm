@@ -33,7 +33,7 @@
 	desc = "The last legacy of the man who sought wisdom. The rake tilled the human brain instead of farmland."
 	special = "Use this weapon in your hand to damage every non-human within reach."
 	icon_state = "harvest"
-	force = 25
+	force = 28		//It does have an ability, and therefore needs less damage
 	damtype = BLACK_DAMAGE
 	swingstyle = WEAPONSWING_LARGESWEEP
 	attack_verb_continuous = list("attacks", "bashes", "tills")
@@ -42,6 +42,7 @@
 	attribute_requirements = list(
 							PRUDENCE_ATTRIBUTE = 40
 							)
+	crit_multiplier = 1.6	//it DOES crit more often however
 	var/can_spin = TRUE
 	var/spinning = FALSE
 
@@ -94,6 +95,7 @@
 							FORTITUDE_ATTRIBUTE = 40
 							)
 	var/rage = FALSE
+	crit_multiplier = 2	//has a crit effect.
 
 /obj/item/ego_weapon/fury/attack(mob/living/target, mob/living/carbon/human/user)
 	var/living = FALSE
@@ -127,11 +129,29 @@
 	attribute_requirements = list(
 							FORTITUDE_ATTRIBUTE = 40
 							)
+	crit_multiplier = 3	//Give a better crit chance.
 
 //ATATATATATATATATATATATATATATATATATATATATATATATATATATATATATATATATATATATATATATATATATATATATATAT
 /obj/item/ego_weapon/paw/melee_attack_chain(mob/user, atom/target, params)
 	..()
 	hitsound = "sound/weapons/punch[pick(1,2,3,4)].ogg"
+
+/obj/item/ego_weapon/paw/CritEffect(mob/living/target, mob/living/carbon/human/user)
+	for(var/turf/T in orange(1, user))
+		new /obj/effect/temp_visual/smash_effect(T)
+
+	for(var/mob/living/L in range(1, user))
+		var/aoe = force
+		var/userjust = (get_modified_attribute_level(user, JUSTICE_ATTRIBUTE))
+		var/justicemod = 1 + userjust/100
+		aoe*=force_multiplier
+		aoe*=justicemod
+		if(L == user || ishuman(L))
+			continue
+		L.apply_damage(aoe, RED_DAMAGE, null, L.run_armor_check(null, BLACK_DAMAGE), spread_damage = TRUE)
+
+
+
 
 /obj/item/ego_weapon/shield/daredevil
 	name = "life for a daredevil"
@@ -238,6 +258,7 @@
 	attribute_requirements = list(
 							FORTITUDE_ATTRIBUTE = 40
 							)
+
 /obj/item/ego_weapon/logging
 	name = "logging"
 	desc = "A versatile equipment made to cut down trees and people alike."
@@ -497,6 +518,7 @@
 	attribute_requirements = list(
 							FORTITUDE_ATTRIBUTE = 40
 							)
+	crit_multiplier = 3	//Knives get better crit.
 
 /obj/item/ego_weapon/mini/alleyway
 	name = "alleyway"
@@ -512,6 +534,7 @@
 	attribute_requirements = list(
 							PRUDENCE_ATTRIBUTE = 40
 							)
+	crit_multiplier = 3	//Knives get better crit.
 
 /obj/item/ego_weapon/shield/giant
 	name = "giant"
@@ -955,6 +978,7 @@
 	attribute_requirements = list(
 							FORTITUDE_ATTRIBUTE = 40
 							)
+	crit_multiplier = 2//Double crits
 
 /obj/item/ego_weapon/sanguine/attack(mob/living/target, mob/living/carbon/human/user)
 	if(!CanUseEgo(user))

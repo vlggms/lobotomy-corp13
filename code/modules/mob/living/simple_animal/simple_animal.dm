@@ -191,6 +191,9 @@
 	var/list/offsets_pixel_y = list("south" = 0, "north" = 0, "west" = 0, "east" = 0)
 	var/should_projectile_blockers_change_orientation = FALSE
 
+	//If they should get they city faction in City gamemodes
+	var/city_faction = TRUE
+
 /mob/living/simple_animal/Initialize()
 	. = ..()
 	GLOB.simple_animals[AIStatus] += src
@@ -237,7 +240,8 @@
 		AddSpell(bloodspell)
 	//LC13 Check. If it's the citymap, they all gain a faction
 	if(SSmaptype.maptype in SSmaptype.citymaps)
-		faction += "city"
+		if(city_faction)
+			faction += "city"
 
 	if(istype(loc, /obj/item/paper/fluff)) // Happens when records are being initialized, lets not make un-necessary blockers
 		return

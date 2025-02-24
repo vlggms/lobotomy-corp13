@@ -741,6 +741,20 @@
 	icon_state = "boatworks_book"
 	remarks = list("Make sure that you always have your weaving knife on you? I already knew that.", "Using sweepers as silk? That is brand new...", "Huh, it says here that 'Be careful around the fixer association...' ", "This book smells quite well, Like it was just made just for me!", "A rookie must have made this page, or they forgot to spell check it before printing...", "Wait, how will this turn a profit? I spent like 1000 ahn for this book!")
 
+/obj/item/book/granter/crafting_recipe/carnival/weaving_masquerade
+	name = "Weaving Armor: The Masquerade Edition"
+	desc = "A weaving book that teaches you how to weave masquerade armor. Carnival approved!<br>\
+	On the back, it says that reading this book will teach how to make: <br>\
+	-Masquerade Coat: RED = 30%, WHITE = 20%, BLACK = 10%, PALE = 0%<br>\
+	-Masquerade Cloak: RED = 40%, WHITE = 20%, BLACK = 40%, PALE = 20%.<br>\
+	There is a small note which also says: (All armors made in this book act like blood sponges, letting you drain blood to heal.)"
+	crafting_recipe_types = list(
+		/datum/crafting_recipe/bloodfiend_coat,
+		/datum/crafting_recipe/bloodfiend_cloak,
+	)
+	icon_state = "masq_book"
+	remarks = list("Make sure that you always have your weaving knife on you? I already knew that.", "Using sweepers as silk? That is brand new...", "Huh, it says here that 'Be careful around the fixer association...' ", "This book smells quite well, Like it was just made just for me!", "A rookie must have made this page, or they forgot to spell check it before printing...", "Wait, how will this turn a profit? I spent like 1000 ahn for this book!")
+
 /obj/item/book/granter/crafting_recipe/carnival/weaving_j_corp_gangs
 	name = "Weaving Armor: J Corp Gangs Edition"
 	desc = "A weaving book that teaches you how to weave armor used by gangs in J-Corp. Carnival approved!<br>\
