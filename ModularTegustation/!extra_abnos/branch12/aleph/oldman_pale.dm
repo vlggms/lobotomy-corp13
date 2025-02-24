@@ -130,7 +130,7 @@
 	if(ishuman(AM))
 		var/mob/living/carbon/human/H = AM
 		H.apply_damage(18, WHITE_DAMAGE, null, H.run_armor_check(null, WHITE_DAMAGE), spread_damage = TRUE)
-		H.adjust_blurriness(5)
+		H.set_blurriness(4)
 
 
 //innocence status effect
