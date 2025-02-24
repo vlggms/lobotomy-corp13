@@ -42,6 +42,7 @@
 	return TRUE
 
 /mob/living/simple_animal/hostile/abnormality/branch12/deus_ex_machina/ZeroQliphoth()
+	datum_reference.qliphoth_change(2)
 	if(!recently_departed)
 		return
 	var/mob/living/simple_animal/hostile/abnormality/spawned = new recently_departed(get_turf(src))
