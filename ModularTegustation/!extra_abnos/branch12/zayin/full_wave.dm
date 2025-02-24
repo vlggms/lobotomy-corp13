@@ -30,6 +30,7 @@
 	abnormality_origin = ABNORMALITY_ORIGIN_BRANCH12
 	var/list/given_ability = list()
 	var/temperance_work
+	var/list/structures = list()
 
 /mob/living/simple_animal/hostile/abnormality/branch12/wave/PostWorkEffect(mob/living/carbon/human/user, work_type, pe, work_time)
 	if(work_type == ABNORMALITY_WORK_ATTACHMENT)
@@ -52,10 +53,10 @@
 				H.deal_damage(2, WHITE_DAMAGE)
 
 
-/mob/living/simple_animal/hostile/abnormality/branch12/wave/Life()
+/mob/living/simple_animal/hostile/abnormality/branch12/wave/death()
 	. = ..()
-	if(!.) // Dead
-		return FALSE
+	for(var/Y in structures)
+		qdel(Y)
 
 
 /mob/living/simple_animal/hostile/abnormality/branch12/wave/SuccessEffect(mob/living/carbon/human/user, work_type, pe)
@@ -76,12 +77,12 @@
 //Visuals
 /mob/living/simple_animal/hostile/abnormality/branch12/wave/Initialize()
 	. = ..()
-	if(!core_enabled)
-		return
 	for(var/i = 1 to 3)
 		var/turf/dispense_turf = get_step(src, pick(1,2,4,5,6,8,9,10))
-		new /obj/effect/wave_shadow(dispense_turf)
-	new /obj/effect/radio(get_turf(src))
+		var/obj/effect/wave_shadow/V = new (dispense_turf)
+		structures+=V
+	var/obj/effect/radio/V = new (get_turf(src))
+	structures+=V
 	return
 
 /obj/effect/wave_shadow
