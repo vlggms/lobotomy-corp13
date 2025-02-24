@@ -11,7 +11,7 @@
 	maxHealth = 300	//should be a little tankier as it's a bit slow
 	health = 300
 	rapid_melee = 2
-	move_to_delay = 1
+	move_to_delay = 1.2
 	damage_coeff = list(RED_DAMAGE = 1.2, WHITE_DAMAGE = 0.8, BLACK_DAMAGE = 1.2, PALE_DAMAGE = 2)
 	melee_damage_lower = 2
 	melee_damage_upper = 2
