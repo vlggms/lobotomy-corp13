@@ -405,6 +405,7 @@
 /obj/item/ego_weapon/ranged/branch12/mini/medea
 	name = "medea"
 	desc = "Mortal fate is hard. You'd best get used to it."
+	special = "You are able to activate 'Dead Eye' mode while wielding this weapon. While 'Dead Eye' is active, your shots take 2.5 extra seconds to fire, but they become piercing and deal more damage."
 	icon_state = "medea"
 	inhand_icon_state = "medea"
 	force = 14
@@ -420,13 +421,57 @@
 	attribute_requirements = list(
 							JUSTICE_ATTRIBUTE = 80
 							)
+	var/lock_on = TRUE
+	var/lock_on_time = 2.5 SECONDS
+	var/aiming = FALSE
 
+/obj/item/ego_weapon/ranged/branch12/mini/medea/attack_self(mob/user)
+	if(!CanUseEgo(user))
+		return
+	if(lock_on)
+		lock_on = FALSE
+		to_chat(user,span_warning("You turn off your dead eye aimming..."))
+	else
+		lock_on = TRUE
+		to_chat(user,span_warning("You turn on your dead eye aimming..."))
+	. = ..()
+
+/obj/item/ego_weapon/ranged/branch12/mini/medea/afterattack(atom/target, mob/living/user, flag, params)
+	if (aiming)
+		to_chat(user, span_warning("You are already aiming at someone!"))
+		return
+	. = ..()
+
+/obj/item/ego_weapon/ranged/branch12/mini/medea/process_fire(atom/target, mob/living/user, message = TRUE)
+	if(!CanUseEgo(user))
+		return
+	if(lock_on)
+		to_chat(user, span_warning("You start aiming for [target]..."))
+		playsound(user, 'sound/abnormalities/freischutz/prepare.ogg', 35, 0, 20)
+		aiming = TRUE
+		if(do_after(user, lock_on_time, src))
+			projectile_path = /obj/projectile/ego_bullet/branch12/medea/big
+			fire_sound = 'sound/abnormalities/freischutz/shoot.ogg'
+			. = ..()
+			fire_sound = 'sound/weapons/gun/pistol/deagle.ogg'
+			projectile_path = /obj/projectile/ego_bullet/branch12/medea
+		aiming = FALSE
+	else
+		aiming = FALSE
+		. = ..()
 
 /obj/projectile/ego_bullet/branch12/medea
 	name = "medea"
 	damage = 70
 	damage_type = PALE_DAMAGE
 
+/obj/projectile/ego_bullet/branch12/medea/big
+	icon_state = "magic_bullet"
+	damage = 90
+	speed = 0.1
+	projectile_piercing = PASSMOB
+	range = 18 // Don't want people shooting it through the entire facility
+	hit_nondense_targets = TRUE
 
 //Icon of Chaos
 /obj/item/ego_weapon/ranged/branch12/icon_of_chaos
