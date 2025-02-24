@@ -22,8 +22,8 @@
 	cook_time = 12 SECONDS
 	cookables = list(
 		/obj/item/food/freshfish/pink	 					= /obj/item/food/panfry_fish,
-		/obj/item/food/fish/salt_water/salmon	 					= /obj/item/food/panfry_fish,
-		/obj/item/food/fish/fresh_water/salmon	 					= /obj/item/food/panfry_fish,
+		/obj/item/food/fish/salt_water/salmon	 			= /obj/item/food/panfry_fish,
+		/obj/item/food/fish/fresh_water/salmon	 			= /obj/item/food/panfry_fish,
 		/obj/item/food/fish/salt_water/marine_shrimp 		= /obj/item/food/panfry_fish/shrimp,
 		/obj/item/food/freshfish/white 						= /obj/item/food/panfry_fish/white,
 		)
@@ -37,7 +37,7 @@
 	cook_time = 30 SECONDS
 	cookables = list(
 		/obj/item/food/fish/salt_water/lobster	 			= /obj/item/food/lobster_baked,
-		/obj/item/food/fish/salt_water/salmon	 					= /obj/item/food/baked_salmon,
-		/obj/item/food/fish/fresh_water/salmon	 					= /obj/item/food/baked_salmon,
+		/obj/item/food/fish/salt_water/salmon	 			= /obj/item/food/baked_salmon,
+		/obj/item/food/fish/fresh_water/salmon	 			= /obj/item/food/baked_salmon,
 		/obj/item/food/meat/rawcrab							= /obj/item/food/meat/crab
 		)
