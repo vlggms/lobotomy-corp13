@@ -95,6 +95,17 @@
 		owner.icon_state = "pretamonk"
 		active = 0
 
+/mob/living/simple_animal/hostile/abnormality/clouded_monk/Login()
+	. = ..()
+	if(!. || !client)
+		return FALSE
+	to_chat(src, "<h1>You are Clouded Monk, A Combat Role Abnormality.</h1><br>\
+		<b>|Growing Hunger...|: After taking 200 damage, your rush attack will become available.<br>\
+		You are able to toggle if you use your rush attack when attacking by using your ability in the top left corner.<br>\
+		When you click on a tile which is outside your melee range while you have your rush attack ready, you will dash towards that tile after a short delay.<br>\
+		After dashing towards that tile, you will perform a 5 by 5 AoE around yourself and then repeat this dash 2 more times targeting that same tile. Then you lose access to your dash until you take another 200 damage.<br>\
+		If you run into anyone during this dash, if they are not in a rhino suit they will be instantly killed and heal you 200 HP. If they are in a rhino suit, you will deal MASSIVE damage to their suit.</b>")
+
 //init
 /mob/living/simple_animal/hostile/abnormality/clouded_monk/Initialize()
 	. = ..()

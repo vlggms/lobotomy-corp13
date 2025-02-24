@@ -108,6 +108,15 @@
 	StartCooldown()
 	return TRUE
 
+/mob/living/simple_animal/hostile/abnormality/big_wolf/Login()
+	. = ..()
+	if(!. || !client)
+		return FALSE
+	to_chat(src, "<h1>You are Big Wolf, A Combat Role Abnormality.</h1><br>\
+		<b>|Night’s Hunt|: Using your 2 abilities, you are able to switch between “Howling” and “Dashing” when clicking a tile not within your melee range.<br>\
+		|Howl|: If you have “Howling” enabled and it’s off cooldown, you will charge for a few seconds. After a few seconds, you will deal WHITE damage to all humans that can see you. Then the howl will go on a cooldown.<br>\
+		|Dash|: If you have “Howling” enabled and it’s off cooldown, you will charge for a few seconds. After a few seconds, you will move towards the tile you clicked, performing a 3 by 3 AoE which deals RED damage for every step you take while moving towards that tile.</b>")
+
 /mob/living/simple_animal/hostile/abnormality/big_wolf/SuccessEffect(mob/living/carbon/human/user, work_type, pe)
 	. = ..()
 	if(work_type == ABNORMALITY_WORK_INSTINCT && user.stat != DEAD && locate(/mob/living) in contents)

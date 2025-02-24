@@ -51,6 +51,14 @@
 	var/cooldown_time = 3
 	var/aoe_damage = 12
 
+/mob/living/simple_animal/hostile/abnormality/dimensional_refraction/Login()
+	. = ..()
+	if(!. || !client)
+		return FALSE
+	to_chat(src, "<h1>You are Dimensional Refraction Variant, A Combat Role Abnormality.</h1><br>\
+		<b>|Refraction|: You are incredibly hard to see, you can move though creatures but you move incredibly slowly.<br>\
+		|Dimensional Tear|: All humans who are next to you or on top of you will take constant RED damage. If the human is wearing a rhino suit, the damage will go through the suit and damage the wearer directly.</b>")
+
 /mob/living/simple_animal/hostile/abnormality/dimensional_refraction/proc/Melter()
 	for(var/mob/living/L in livinginview(1, src))
 		if(faction_check_mob(L))
