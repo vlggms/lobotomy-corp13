@@ -124,6 +124,7 @@
 /obj/item/ego_weapon/branch12/mini/acupuncture
 	name = "Acupuncture"
 	desc = "One man's medicine is another man's poison."
+	special = "You are able to inject yourself with this weapon. If you inject yourself with the weapon, you will take toxic damage, but gain a 30% damage buff for 5 seconds."
 	icon_state = "acupuncture"
 	force = 20
 	damtype = BLACK_DAMAGE
@@ -131,6 +132,31 @@
 	attack_verb_continuous = list("jabs", "stabs")
 	attack_verb_simple = list("jab", "stab")
 	hitsound = 'sound/weapons/fixer/generic/nail1.ogg'
+	var/inject_cooldown
+	var/inject_cooldown_time = 5.1 SECONDS
+	var/justice_buff = 30
+
+/obj/item/ego_weapon/branch12/mini/acupuncture/attack_self(mob/user)
+	if(!CanUseEgo(user))
+		return
+	if(!ishuman(user))
+		return
+	var/mob/living/carbon/human/drugie = user
+	if(inject_cooldown > world.time)
+		inject_cooldown = world.time + inject_cooldown_time
+		drugie.set_drugginess(15)
+		drugie.adjustToxLoss(4)
+		to_chat(drugie, span_nicegreen("Wow... I can taste the colors..."))
+		if(prob(20))
+			drugie.emote(pick("twitch","drool","moan","giggle"))
+		drugie.adjust_attribute_buff(JUSTICE_ATTRIBUTE, justice_buff)
+		addtimer(CALLBACK(src, PROC_REF(RemoveBuff), drugie), 5 SECONDS, TIMER_UNIQUE | TIMER_OVERRIDE)
+	else
+		to_chat(drugie, span_boldwarning("[src] has not refueled yet."))
+
+/obj/item/ego_weapon/branch12/mini/acupuncture/proc/RemoveBuff(mob/user)
+	var/mob/living/carbon/human/human = user
+	human.adjust_attribute_buff(JUSTICE_ATTRIBUTE, -justice_buff)
 
 //One Starry Night
 /obj/item/ego_weapon/ranged/branch12/starry_night
@@ -442,7 +468,7 @@
 		return
 	. = ..()
 
-/obj/item/ego_weapon/ranged/branch12/mini/medea/process_fire(atom/target, mob/living/user, message = TRUE)
+/obj/item/ego_weapon/ranged/branch12/mini/medea/process_fire(atom/target, mob/living/user, message = TRUE, params = null, zone_override = "", bonus_spread = 0, temporary_damage_multiplier = 1)
 	if(!CanUseEgo(user))
 		return
 	if(lock_on)
