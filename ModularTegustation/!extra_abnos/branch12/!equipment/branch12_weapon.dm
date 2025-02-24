@@ -120,6 +120,7 @@
 	inhand_icon_state = "starry_night"
 	force = 12
 	projectile_path = /obj/projectile/ego_bullet/branch12/starry_night
+	weapon_weight = WEAPON_HEAVY
 	fire_delay = 5
 	spread = 10
 	shotsleft = 25
