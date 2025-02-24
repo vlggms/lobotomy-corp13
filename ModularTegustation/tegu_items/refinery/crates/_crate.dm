@@ -59,6 +59,7 @@
 		veryrarechance += (repmodifier/crate_multiplier)
 
 	if(SSmaptype.maptype in SSmaptype.citymaps)	//Fuckers shouldn't loot like this
+		SEND_GLOBAL_SIGNAL(COMSIG_CRATE_LOOTING_STARTED, user, src)
 		if(!do_after(user, 7 SECONDS, src))
 			return
 
@@ -76,5 +77,9 @@
 		new cloot(get_turf(src))
 
 	to_chat(user, span_notice("You open the crate!"))
+	if(SSmaptype.maptype in SSmaptype.citymaps)
+		SEND_GLOBAL_SIGNAL(COMSIG_CRATE_LOOTING_ENDED, user, src)
+
 	new loot(get_turf(src))
 	qdel(src)
+

@@ -29,9 +29,8 @@
 
 /mob/living/simple_animal/hostile/shrimp_rifleman/Initialize()
 	. = ..()
-	if(SSmaptype.maptype == "fixers" || SSmaptype.maptype == "city")
+	if(SSmaptype.maptype in SSmaptype.citymaps)
 		del_on_death = FALSE
-
 	//extra buff shrimp i guess
 /mob/living/simple_animal/hostile/senior_shrimp
 	name = "wellcheers corp senior officer"
@@ -60,7 +59,7 @@
 
 /mob/living/simple_animal/hostile/senior_shrimp/Initialize()
 	. = ..()
-	if(SSmaptype.maptype == "fixers" || SSmaptype.maptype == "city")
+	if(SSmaptype.maptype in SSmaptype.citymaps)
 		del_on_death = FALSE
 
 /mob/living/simple_animal/hostile/senior_shrimp/ComponentInitialize()

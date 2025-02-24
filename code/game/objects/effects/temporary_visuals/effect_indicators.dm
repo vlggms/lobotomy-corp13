@@ -43,6 +43,9 @@
 /obj/effect/temp_visual/damage_effect/burn
 	icon_state = "dam_burn"
 
+/obj/effect/temp_visual/damage_effect/bleed
+	icon_state = "dam_bleed"
+
 /obj/effect/temp_visual/damage_effect/tox
 	icon_state = "dam_tox"
 

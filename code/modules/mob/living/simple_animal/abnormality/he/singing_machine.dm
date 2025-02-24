@@ -10,8 +10,9 @@ Finally, an abnormality that DOESN'T have to do any fancy movement shit. It's a 
 	icon_state = "singingmachine_closed_clean"
 	icon_living = "singingmachine_closed_clean"
 	portrait = "singing_machine"
-	maxHealth = 200
-	health = 200
+	maxHealth = 3000
+	health = 3000
+	damage_coeff = list(RED_DAMAGE = 0.7, WHITE_DAMAGE = 0.7, BLACK_DAMAGE = 1.5, PALE_DAMAGE = 1)
 	threat_level = HE_LEVEL
 	start_qliphoth = 2
 	work_chances = list(
@@ -70,6 +71,12 @@ Finally, an abnormality that DOESN'T have to do any fancy movement shit. It's a 
 			else
 				to_chat(H, span_warning("That terrible grinding noise..."))
 	return ..()
+
+/mob/living/simple_animal/hostile/abnormality/singing_machine/Move()
+	return FALSE
+
+/mob/living/simple_animal/hostile/abnormality/singing_machine/CanAttack(atom/the_target)
+	return FALSE
 
 /mob/living/simple_animal/hostile/abnormality/singing_machine/AttemptWork(mob/living/carbon/human/user, work_type)
 	if(work_type == ABNORMALITY_WORK_INSTINCT)
@@ -147,6 +154,10 @@ Finally, an abnormality that DOESN'T have to do any fancy movement shit. It's a 
 	grindNoise = new(list(src), TRUE)
 	playStatus = 1
 	return
+
+/mob/living/simple_animal/hostile/abnormality/singing_machine/BreachEffect(mob/living/carbon/human/user, breach_type)
+	if(breach_type == BREACH_MINING)
+		ZeroQliphoth()
 
 /mob/living/simple_animal/hostile/abnormality/singing_machine/proc/removeAddict(mob/living/carbon/human/addict)
 	if(addict)

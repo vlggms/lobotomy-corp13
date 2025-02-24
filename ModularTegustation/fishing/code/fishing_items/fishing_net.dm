@@ -186,3 +186,23 @@
 	fishin_power = 1
 	enemy_chance = 95
 	capacity = 1
+
+//Clan Nets
+/obj/item/fishing_net/resurgence
+	name = "resurgence clan fishing net"
+	desc = "Resurgence Clan nets are slightly better then the normal fishing net, and have a slightly higher chance at catching foes"
+	icon = 'ModularTegustation/fishing/icons/fishing.dmi'
+	icon_state = "clan_net"
+	w_class = WEIGHT_CLASS_HUGE
+	deploy_type = /obj/structure/destructible/fishing_net/resurgence
+
+/obj/structure/destructible/fishing_net/resurgence
+	name = "resurgence clan fishing net"
+	desc = "A wall of twine and wires that traps fish. Alt click to harvest."
+	icon_state = "trawling_net_clan"
+	icon_state_fished = "trawling_net_clan_full"
+	debris = list(/obj/item/fishing_net/resurgence = 1)
+	net_type = /obj/item/fishing_net/resurgence
+	fishin_cooldown = 30 SECONDS
+	fishin_power = 1
+	enemy_chance = 25
