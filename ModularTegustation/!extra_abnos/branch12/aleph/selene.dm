@@ -4,8 +4,8 @@
 	health = 4000
 	maxHealth = 4000
 	icon = 'ModularTegustation/Teguicons/branch12/32x32.dmi'
-	icon_state = "madness"
-	icon_living = "madness"
+	icon_state = "moon_pedestal"
+	icon_living = "moon_pedestal"
 
 	damage_coeff = list(RED_DAMAGE = 1, WHITE_DAMAGE = 0, BLACK_DAMAGE = 1.5, PALE_DAMAGE = 0)
 	can_breach = TRUE

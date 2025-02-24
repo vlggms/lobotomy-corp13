@@ -63,6 +63,9 @@
 
 #define ABNORMALITY_ORIGIN_BRANCH12 "Branch 12"
 
+//This exists as a dummy tag.
+#define ABNORMALITY_DUMMY "Dummy Abnormality"
+
 // Persistent PE things
 #define PE_GOAL_REACHED	"goal_reached"
 #define PE_GOAL_SPENT	"goal_spent"

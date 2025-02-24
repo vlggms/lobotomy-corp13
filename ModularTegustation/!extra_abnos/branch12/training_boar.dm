@@ -1,7 +1,7 @@
 /mob/living/simple_animal/hostile/abnormality/training_rabbit/boar
 	name = "Standard Training-Dummy Boar"
 	desc = "A boar-like training dummy. Should be completely harmless."
-	icon = 'ModularTegustation/Teguicons/tegumobs.dmi'
+	icon = 'ModularTegustation/Teguicons/branch12/32x32.dmi'
 	icon_state = "std_boar"
 	icon_living = "std_boar"
 
