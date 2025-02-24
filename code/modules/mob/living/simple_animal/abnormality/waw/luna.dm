@@ -50,6 +50,13 @@
 	var/breached_monster
 	var/killspawn
 
+/mob/living/simple_animal/hostile/abnormality/luna/Login()
+	. = ..()
+	if(!. || !client)
+		return FALSE
+	to_chat(src, "<h1>You are La Luna, A Combat Role Abnormality.</h1><br>\
+		<b>|Lunar Strike|: When you perform a melee attack and your AoE is off cooldown, you will trigger a 5 by 5 AoE after a short delay. Then it goes to a 7 second cooldown.</b>")
+
 /mob/living/simple_animal/hostile/abnormality/luna/Move()
 	return FALSE
 
@@ -177,6 +184,12 @@
 //Cannot figure out how to make this stop
 //	..()
 //	playsound(src, 'sound/abnormalities/luna/mvmt3.ogg', 180, FALSE, 28)	//Let the people know.
+/mob/living/simple_animal/hostile/luna/Login()
+	. = ..()
+	if(!. || !client)
+		return FALSE
+	to_chat(src, "<h1>You are La Luna, A Combat Role Abnormality.</h1><br>\
+		<b>|Lunar Strike|: When you perform a melee attack and your AoE is off cooldown, you will trigger a 5 by 5 AoE after a short delay. Then it goes to a 7 second cooldown.</b>")
 
 /mob/living/simple_animal/hostile/luna/Move()
 	if(aoeactive)

@@ -67,6 +67,15 @@
 
 	var/bumpdamage = 10
 
+/mob/living/simple_animal/hostile/abnormality/cleaner/Login()
+	. = ..()
+	if(!. || !client)
+		return FALSE
+	to_chat(src, "<h1>You are All Round Cleaner, A Support Role Abnormality.</h1><br>\
+		<b>|Cleaning Order|: Each time you  move, you will knock back all humans right next to you.<br>\
+		If this causes them to fly into a wall, they will be stunned and take damage.<br>\
+		Also, If you fling them into a vending machine, that will do massive damage to them!</b><br>")
+
 /mob/living/simple_animal/hostile/abnormality/cleaner/Move()
 	..()
 	//Toss meatbags aside

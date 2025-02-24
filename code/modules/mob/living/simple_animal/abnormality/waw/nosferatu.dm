@@ -95,6 +95,19 @@
 	nosferatu.Banquet()
 	return TRUE
 
+/mob/living/simple_animal/hostile/abnormality/nosferatu/Login()
+	. = ..()
+	if(!. || !client)
+		return FALSE
+	to_chat(src, "<h1>You are Nosferatu, A Combat Role Abnormality.</h1><br>\
+		<b>|Welcome, Guests|: Once you spawn in, you spawn in a few sanguine bats along with you.<br>\
+		Sanguine Bats deal a slow amount of damage, but create blood each time they attack a human.<br><br>\
+		|Bloodlust|: Each time you attack a human, you gain a stack of “Bloodlust”. Once you attack a human with 4+ bloodlust, you will deal double damage and gain a burst of “Bloodfeast”<br><br>\
+		|Bloodfeast|: Each time you take a step, you will absorb all blood within 2 tiles of you, which will heal you and raise your “Bloodfeast”.<br>\
+		Once you gain enough bloodfeast, you will receive a massive burst of healing, gain 2 stacks of “Bloodlust” and enter your berzerk state.<br>\
+		While you are in your berzerk state, you gain movement speed.<br><br>\
+		|Banquet|: You have an ability which triggers a 5 by 5 AoE which deal 100 BLACK damage to all humans.</b>")
+
 //work code
 /mob/living/simple_animal/hostile/abnormality/nosferatu/FailureEffect(mob/living/carbon/human/user, work_type, pe)
 	. = ..()
