@@ -66,7 +66,7 @@
 	return
 
 /mob/living/simple_animal/hostile/abnormality/branch12/oldman_pale/AttemptWork(mob/living/carbon/human/user, work_type)
-	if(length(pale_list) && work_type != "Inspire")
+	if((!length(pale_list)) && work_type != "Inspire")
 		return TRUE
 
 	if(length(pale_list) && work_type == "Inspire")
