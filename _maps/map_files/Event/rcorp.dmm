@@ -1,44 +1,44 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
 "aC" = (
 /turf/closed/wall/mineral/titanium/survival/pod,
-/area/city/outskirts)
+/area/city/outskirts/rcorp_base)
 "aQ" = (
 /obj/effect/landmark/wallspawner,
 /turf/open/floor/pod,
-/area/city/outskirts)
+/area/city/outskirts/rcorp_base)
 "bn" = (
 /obj/structure/lattice/catwalk,
 /obj/structure/railing{
 	dir = 4
 	},
 /turf/open/floor/fakepit,
-/area/city/outskirts)
+/area/city/outskirts/rcorp_base)
 "bt" = (
 /obj/effect/turf_decal/bot,
 /obj/machinery/telecomms/server/presets/engineering,
 /turf/open/floor/circuit/telecomms/mainframe,
-/area/city/outskirts)
+/area/city/outskirts/rcorp_base)
 "co" = (
 /obj/effect/landmark/abno_objectivespawn,
 /turf/open/floor/plating/asteroid,
-/area/city/outskirts)
+/area/city/outskirts/rcorp_base)
 "cH" = (
 /obj/effect/turf_decal/bot,
 /obj/machinery/telecomms/relay/preset/telecomms,
 /turf/open/floor/circuit/telecomms/mainframe,
-/area/city/outskirts)
+/area/city/outskirts/rcorp_base)
 "cL" = (
 /obj/structure/table/reinforced,
 /obj/machinery/recharger,
 /obj/effect/landmark/nobasic_incorp_move,
 /turf/open/floor/pod/dark,
-/area/city/outskirts)
+/area/city/outskirts/rcorp_base)
 "cW" = (
 /obj/structure/chair/comfy{
 	dir = 4
 	},
 /turf/open/floor/pod,
-/area/city/outskirts)
+/area/city/outskirts/rcorp_base)
 "dd" = (
 /obj/effect/spawner/room/rcorp,
 /obj/effect/landmark/nobasic_incorp_move,
@@ -52,26 +52,26 @@
 /obj/item/powered_gadget/handheld_taser,
 /obj/item/grenade/smokebomb,
 /turf/open/floor/pod,
-/area/city/outskirts)
+/area/city/outskirts/rcorp_base)
 "dY" = (
 /obj/effect/turf_decal/sand/plating,
 /obj/effect/landmark/latejoin,
 /turf/open/floor/pod/light,
-/area/city/outskirts)
+/area/city/outskirts/rcorp_base)
 "fv" = (
 /obj/effect/landmark/wallspawner,
 /turf/open/floor/pod/dark,
-/area/city/outskirts)
+/area/city/outskirts/rcorp_base)
 "fC" = (
 /obj/structure/table/abductor,
 /obj/item/storage/lockbox/medal/officer,
 /turf/open/floor/pod,
-/area/city/outskirts)
+/area/city/outskirts/rcorp_base)
 "gk" = (
 /obj/structure/table/wood/bar,
 /obj/machinery/recharger,
 /turf/open/floor/pod/dark,
-/area/city/outskirts)
+/area/city/outskirts/rcorp_base)
 "gx" = (
 /obj/machinery/computer/mech_bay_power_console{
 	dir = 1
@@ -89,14 +89,14 @@
 	color = "#CC5500"
 	},
 /turf/open/floor/pod/dark,
-/area/city/outskirts)
+/area/city/outskirts/rcorp_base)
 "gG" = (
 /obj/machinery/door/airlock/survival_pod{
 	name = "lieutenant commander's bunk";
 	req_access_txt = "7;5"
 	},
 /turf/open/floor/pod,
-/area/city/outskirts)
+/area/city/outskirts/rcorp_base)
 "gM" = (
 /obj/structure/table/wood/bar,
 /obj/item/food/salad/herbsalad{
@@ -109,19 +109,19 @@
 	},
 /obj/item/food/meat/steak/plain/synth,
 /turf/open/floor/pod/dark,
-/area/city/outskirts)
+/area/city/outskirts/rcorp_base)
 "gP" = (
 /turf/open/water/jungle,
-/area/city/outskirts)
+/area/city/outskirts/rcorp_base)
 "hl" = (
 /obj/effect/turf_decal/bot,
 /obj/machinery/telecomms/bus/preset_two,
 /turf/open/floor/circuit/telecomms/mainframe,
-/area/city/outskirts)
+/area/city/outskirts/rcorp_base)
 "hr" = (
 /obj/structure/fireplace,
 /turf/open/floor/pod,
-/area/city/outskirts)
+/area/city/outskirts/rcorp_base)
 "hy" = (
 /obj/structure/table/wood,
 /obj/item/food/bbqribs,
@@ -139,20 +139,20 @@
 /obj/item/food/bbqribs,
 /obj/item/food/bbqribs,
 /turf/open/floor/plating/asteroid,
-/area/city/outskirts)
+/area/city/outskirts/rcorp_base)
 "hP" = (
 /obj/effect/turf_decal/sand,
 /turf/open/floor/pod/light,
-/area/city/outskirts)
+/area/city/outskirts/rcorp_base)
 "ia" = (
 /obj/item/storage/firstaid/revival,
 /obj/structure/rack,
 /turf/open/floor/pod/dark,
-/area/city/outskirts)
+/area/city/outskirts/rcorp_base)
 "ib" = (
 /obj/machinery/telecomms/message_server/preset,
 /turf/open/floor/circuit/telecomms/mainframe,
-/area/city/outskirts)
+/area/city/outskirts/rcorp_base)
 "ih" = (
 /obj/structure/table/abductor,
 /obj/machinery/button/door{
@@ -161,19 +161,19 @@
 	req_access_txt = "19"
 	},
 /turf/open/floor/pod,
-/area/city/outskirts)
+/area/city/outskirts/rcorp_base)
 "iY" = (
 /obj/structure/rack,
 /obj/effect/landmark/rcorpitemspawn,
 /obj/item/megaphone,
 /turf/open/floor/pod/dark,
-/area/city/outskirts)
+/area/city/outskirts/rcorp_base)
 "jd" = (
 /obj/structure/chair/comfy{
 	dir = 8
 	},
 /turf/open/floor/pod,
-/area/city/outskirts)
+/area/city/outskirts/rcorp_base)
 "jy" = (
 /obj/structure/closet/secure_closet{
 	icon_state = "cdr";
@@ -187,12 +187,12 @@
 /obj/item/storage/lockbox/medal/cdr,
 /obj/item/gps,
 /turf/open/floor/pod,
-/area/city/outskirts)
+/area/city/outskirts/rcorp_base)
 "jC" = (
 /obj/structure/rack,
 /obj/item/gun/energy/e_gun/rabbit/minigun,
 /turf/open/floor/pod/dark,
-/area/city/outskirts)
+/area/city/outskirts/rcorp_base)
 "jO" = (
 /obj/effect/landmark/nobasic_incorp_move,
 /turf/closed/wall/mineral/titanium/survival/pod,
@@ -202,13 +202,13 @@
 	dir = 1
 	},
 /turf/open/floor/pod,
-/area/city/outskirts)
+/area/city/outskirts/rcorp_base)
 "kr" = (
 /obj/structure/chair/comfy{
 	dir = 1
 	},
 /turf/open/floor/pod/dark,
-/area/city/outskirts)
+/area/city/outskirts/rcorp_base)
 "kA" = (
 /obj/effect/landmark/nobasic_incorp_move,
 /turf/closed/indestructible/rock,
@@ -221,18 +221,18 @@
 /obj/item/grenade/smokebomb,
 /obj/item/grenade/smokebomb,
 /turf/open/floor/pod/dark,
-/area/city/outskirts)
+/area/city/outskirts/rcorp_base)
 "kN" = (
 /obj/effect/turf_decal/bot,
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/telecomms/processor/preset_one,
 /turf/open/floor/circuit/telecomms/mainframe,
-/area/city/outskirts)
+/area/city/outskirts/rcorp_base)
 "ls" = (
 /obj/structure/rack,
 /obj/effect/landmark/rcorpitemspawn,
 /turf/open/floor/pod/dark,
-/area/city/outskirts)
+/area/city/outskirts/rcorp_base)
 "lz" = (
 /obj/effect/light_emitter{
 	light_power = 4;
@@ -241,15 +241,15 @@
 	set_luminosity = 24
 	},
 /turf/open/floor/pod/dark,
-/area/city/outskirts)
+/area/city/outskirts/rcorp_base)
 "lT" = (
 /obj/machinery/telecomms/server/presets/command,
 /turf/open/floor/circuit/telecomms/mainframe,
-/area/city/outskirts)
+/area/city/outskirts/rcorp_base)
 "mE" = (
 /obj/machinery/computer/communications,
 /turf/open/floor/pod/dark,
-/area/city/outskirts)
+/area/city/outskirts/rcorp_base)
 "mH" = (
 /obj/structure/rack,
 /obj/item/gps,
@@ -258,7 +258,7 @@
 /obj/item/gps,
 /obj/item/gps,
 /turf/open/floor/pod/dark,
-/area/city/outskirts)
+/area/city/outskirts/rcorp_base)
 "mR" = (
 /obj/effect/light_emitter{
 	light_power = 4;
@@ -267,7 +267,7 @@
 	set_luminosity = 24
 	},
 /turf/open/floor/pod,
-/area/city/outskirts)
+/area/city/outskirts/rcorp_base)
 "nL" = (
 /obj/structure/closet/secure_closet{
 	icon_state = "lcdr";
@@ -282,7 +282,10 @@
 /obj/item/ego_weapon/city/zweihander/knife/lcdr,
 /obj/item/clothing/suit/armor/ego_gear/rcorp_officer,
 /turf/open/floor/pod,
-/area/city/outskirts)
+/area/city/outskirts/rcorp_base)
+"nV" = (
+/turf/open/floor/pod/dark,
+/area/city/outskirts/rcorp_base)
 "oi" = (
 /turf/closed/indestructible/rock,
 /area/city/outskirts)
@@ -290,12 +293,12 @@
 /obj/structure/rack,
 /obj/item/gun/energy/e_gun/rabbitdash/pale,
 /turf/open/floor/pod/dark,
-/area/city/outskirts)
+/area/city/outskirts/rcorp_base)
 "oR" = (
 /obj/effect/turf_decal/bot,
 /obj/machinery/telecomms/hub/preset,
 /turf/open/floor/circuit/telecomms/mainframe,
-/area/city/outskirts)
+/area/city/outskirts/rcorp_base)
 "pg" = (
 /obj/effect/turf_decal/bot,
 /obj/effect/decal/cleanable/dirt,
@@ -312,41 +315,41 @@
 /obj/structure/rack,
 /obj/item/gun/energy/e_gun/rabbitdash/heavy,
 /turf/open/floor/pod/dark,
-/area/city/outskirts)
+/area/city/outskirts/rcorp_base)
 "pT" = (
 /obj/effect/turf_decal/sand,
 /turf/open/floor/pod,
-/area/city/outskirts)
+/area/city/outskirts/rcorp_base)
 "qQ" = (
 /obj/structure/table,
 /obj/item/storage/firstaid/revival,
 /turf/open/floor/pod/light,
-/area/city/outskirts)
+/area/city/outskirts/rcorp_base)
 "rk" = (
 /obj/machinery/telecomms/broadcaster/preset_left,
 /obj/effect/turf_decal/bot,
 /turf/open/floor/circuit/telecomms/mainframe,
-/area/city/outskirts)
+/area/city/outskirts/rcorp_base)
 "su" = (
 /obj/structure/rack,
 /obj/effect/landmark/rcorpitemspawn,
 /obj/item/commandprojector,
 /turf/open/floor/pod/dark,
-/area/city/outskirts)
+/area/city/outskirts/rcorp_base)
 "sS" = (
 /obj/structure/window/shuttle/survival_pod,
 /turf/open/floor/pod,
-/area/city/outskirts)
+/area/city/outskirts/rcorp_base)
 "tb" = (
 /obj/machinery/telecomms/server/presets/science,
 /turf/open/floor/circuit/telecomms/mainframe,
-/area/city/outskirts)
+/area/city/outskirts/rcorp_base)
 "tc" = (
 /obj/structure/chair/plastic{
 	dir = 1
 	},
 /turf/open/floor/pod,
-/area/city/outskirts)
+/area/city/outskirts/rcorp_base)
 "tZ" = (
 /obj/structure/table/wood,
 /obj/item/food/burger/cheese,
@@ -361,7 +364,7 @@
 /obj/item/food/burger/cheese,
 /obj/item/food/burger/cheese,
 /turf/open/floor/plating/asteroid,
-/area/city/outskirts)
+/area/city/outskirts/rcorp_base)
 "uF" = (
 /obj/structure/rack,
 /obj/item/kitchen/knife/butcher,
@@ -369,7 +372,7 @@
 /obj/item/kitchen/knife/butcher,
 /obj/item/kitchen/knife/butcher,
 /turf/open/floor/pod/dark,
-/area/city/outskirts)
+/area/city/outskirts/rcorp_base)
 "vo" = (
 /obj/machinery/mech_bay_recharge_port,
 /obj/effect/turf_decal/bot,
@@ -382,30 +385,30 @@
 	dir = 4
 	},
 /turf/open/floor/pod/dark,
-/area/city/outskirts)
+/area/city/outskirts/rcorp_base)
 "vX" = (
 /obj/machinery/door/airlock/survival_pod{
 	name = "requisitions";
 	req_access_txt = "19"
 	},
 /turf/open/floor/pod,
-/area/city/outskirts)
+/area/city/outskirts/rcorp_base)
 "wA" = (
 /obj/effect/landmark/latejoin,
 /turf/open/floor/pod/light,
-/area/city/outskirts)
+/area/city/outskirts/rcorp_base)
 "wW" = (
 /obj/structure/table/abductor,
 /obj/effect/spawner/lootdrop/three_course_meal,
 /turf/open/floor/pod,
-/area/city/outskirts)
+/area/city/outskirts/rcorp_base)
 "xh" = (
 /obj/machinery/door/airlock/survival_pod{
 	name = "ground commander bunk";
 	req_access_txt = "20"
 	},
 /turf/open/floor/pod,
-/area/city/outskirts)
+/area/city/outskirts/rcorp_base)
 "xi" = (
 /obj/machinery/door/poddoor/shutters/indestructible{
 	id = "outside"
@@ -418,11 +421,11 @@
 /obj/item/reagent_containers/food/drinks/bottle/cognac,
 /obj/item/powered_gadget/detector_gadget/abnormality,
 /turf/open/floor/pod/dark,
-/area/city/outskirts)
+/area/city/outskirts/rcorp_base)
 "xu" = (
 /obj/structure/table/abductor,
 /turf/open/floor/pod,
-/area/city/outskirts)
+/area/city/outskirts/rcorp_base)
 "xQ" = (
 /obj/structure/table/abductor,
 /obj/item/clothing/under/suit/lobotomy/rabbit,
@@ -431,34 +434,34 @@
 	},
 /obj/item/ego_weapon/city/reindeer/captain,
 /turf/open/floor/pod,
-/area/city/outskirts)
+/area/city/outskirts/rcorp_base)
 "yz" = (
 /obj/structure/table/abductor,
 /obj/item/gun/energy/e_gun/rabbit/captain,
 /obj/item/clothing/head/rabbit_helmet,
 /turf/open/floor/pod,
-/area/city/outskirts)
+/area/city/outskirts/rcorp_base)
 "yJ" = (
 /obj/item/disk/nuclear/rcorp,
 /obj/structure/table/abductor,
 /turf/open/floor/pod/dark,
-/area/city/outskirts)
+/area/city/outskirts/rcorp_base)
 "za" = (
 /obj/structure/bed/pod,
 /obj/item/bedsheet/black,
 /turf/open/floor/pod,
-/area/city/outskirts)
+/area/city/outskirts/rcorp_base)
 "zj" = (
 /obj/machinery/cryopod,
 /turf/open/floor/pod/dark,
-/area/city/outskirts)
+/area/city/outskirts/rcorp_base)
 "zy" = (
 /obj/machinery/door/airlock/survival_pod{
 	name = "raven captain bunk";
 	req_access_txt = "7"
 	},
 /turf/open/floor/pod,
-/area/city/outskirts)
+/area/city/outskirts/rcorp_base)
 "zC" = (
 /obj/structure/table/wood,
 /obj/item/reagent_containers/food/drinks/bottle/champagne,
@@ -469,7 +472,7 @@
 	pixel_x = -5
 	},
 /turf/open/floor/pod,
-/area/city/outskirts)
+/area/city/outskirts/rcorp_base)
 "Aq" = (
 /obj/structure/table/abductor,
 /obj/item/storage/lockbox/medal/lcdr,
@@ -477,11 +480,11 @@
 /obj/item/ammo_box/magazine/m9mm,
 /obj/item/ammo_box/magazine/m9mm,
 /turf/open/floor/pod,
-/area/city/outskirts)
+/area/city/outskirts/rcorp_base)
 "AS" = (
 /obj/structure/chair/stool/bar,
 /turf/open/floor/pod/light,
-/area/city/outskirts)
+/area/city/outskirts/rcorp_base)
 "Bk" = (
 /obj/structure/closet/crate,
 /obj/item/gun/energy/e_gun/rabbitdash/small,
@@ -489,13 +492,13 @@
 /obj/item/clothing/suit/armor/ego_gear/rabbit/officer,
 /obj/item/gps,
 /turf/open/floor/pod,
-/area/city/outskirts)
+/area/city/outskirts/rcorp_base)
 "Bn" = (
 /obj/machinery/door/airlock/survival_pod{
 	name = "senior officer's bunks"
 	},
 /turf/open/floor/pod,
-/area/city/outskirts)
+/area/city/outskirts/rcorp_base)
 "Bs" = (
 /obj/structure/table/wood,
 /obj/item/food/cake/carrot,
@@ -515,43 +518,43 @@
 /obj/item/food/cake/carrot,
 /obj/item/kitchen/knife,
 /turf/open/floor/plating/asteroid,
-/area/city/outskirts)
+/area/city/outskirts/rcorp_base)
 "BZ" = (
 /obj/effect/turf_decal/bot,
 /obj/machinery/telecomms/server/presets/service,
 /turf/open/floor/circuit/telecomms/mainframe,
-/area/city/outskirts)
+/area/city/outskirts/rcorp_base)
 "Cp" = (
 /obj/effect/turf_decal/loading_area{
 	dir = 1
 	},
 /turf/open/floor/pod/dark,
-/area/city/outskirts)
+/area/city/outskirts/rcorp_base)
 "CQ" = (
 /obj/machinery/fat_sucker,
 /turf/open/floor/plating/asteroid,
-/area/city/outskirts)
+/area/city/outskirts/rcorp_base)
 "Dp" = (
 /obj/effect/turf_decal/sand,
 /obj/structure/chair/plastic{
 	dir = 1
 	},
 /turf/open/floor/pod/dark,
-/area/city/outskirts)
+/area/city/outskirts/rcorp_base)
 "Dr" = (
 /obj/machinery/telecomms/server/presets/security,
 /turf/open/floor/circuit/telecomms/mainframe,
-/area/city/outskirts)
+/area/city/outskirts/rcorp_base)
 "DH" = (
 /obj/effect/turf_decal/sand/plating,
 /turf/open/floor/pod/dark,
-/area/city/outskirts)
+/area/city/outskirts/rcorp_base)
 "Ed" = (
 /obj/machinery/door/airlock/survival_pod{
 	name = "officer's bunks"
 	},
 /turf/open/floor/pod,
-/area/city/outskirts)
+/area/city/outskirts/rcorp_base)
 "Et" = (
 /obj/structure/table/abductor,
 /obj/item/clothing/under/suit/lobotomy/rabbit,
@@ -560,12 +563,12 @@
 	armor = list()
 	},
 /turf/open/floor/pod,
-/area/city/outskirts)
+/area/city/outskirts/rcorp_base)
 "Ew" = (
 /obj/effect/turf_decal/sand,
 /obj/structure/chair/bronze,
 /turf/open/floor/pod,
-/area/city/outskirts)
+/area/city/outskirts/rcorp_base)
 "EW" = (
 /obj/machinery/door/airlock/survival_pod{
 	max_integrity = 500;
@@ -574,7 +577,7 @@
 	req_access_txt = "7;5"
 	},
 /turf/open/floor/pod/dark,
-/area/city/outskirts)
+/area/city/outskirts/rcorp_base)
 "Fj" = (
 /obj/machinery/computer/mech_bay_power_console,
 /obj/effect/turf_decal/bot,
@@ -590,42 +593,42 @@
 	color = "#CC5500"
 	},
 /turf/open/floor/pod/dark,
-/area/city/outskirts)
+/area/city/outskirts/rcorp_base)
 "Fu" = (
 /obj/machinery/computer/crew,
 /turf/open/floor/pod/dark,
-/area/city/outskirts)
+/area/city/outskirts/rcorp_base)
 "FE" = (
 /obj/effect/landmark/observer_start,
 /turf/open/floor/pod/light,
-/area/city/outskirts)
+/area/city/outskirts/rcorp_base)
 "FG" = (
 /obj/effect/turf_decal/bot,
 /obj/machinery/telecomms/processor/preset_two,
 /turf/open/floor/circuit/telecomms/mainframe,
-/area/city/outskirts)
+/area/city/outskirts/rcorp_base)
 "FH" = (
 /obj/effect/turf_decal/bot,
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/telecomms/bus/preset_one,
 /turf/open/floor/circuit/telecomms/mainframe,
-/area/city/outskirts)
+/area/city/outskirts/rcorp_base)
 "FO" = (
 /obj/effect/turf_decal/sand,
 /obj/effect/landmark/latejoin,
 /turf/open/floor/pod/light,
-/area/city/outskirts)
+/area/city/outskirts/rcorp_base)
 "FR" = (
 /obj/machinery/manned_turret/rcorp/stationary,
 /turf/open/floor/plating/asteroid,
-/area/city/outskirts)
+/area/city/outskirts/rcorp_base)
 "FT" = (
 /obj/structure/lattice/catwalk,
 /turf/open/floor/fakepit,
-/area/city/outskirts)
+/area/city/outskirts/rcorp_base)
 "FU" = (
 /turf/closed/indestructible/syndicate,
-/area/city/outskirts)
+/area/city/outskirts/rcorp_base)
 "Gh" = (
 /obj/machinery/door/airlock/survival_pod{
 	max_integrity = 500;
@@ -634,7 +637,7 @@
 	req_access_txt = "7;5"
 	},
 /turf/open/floor/pod/dark,
-/area/city/outskirts)
+/area/city/outskirts/rcorp_base)
 "Gl" = (
 /obj/effect/light_emitter{
 	light_power = 4;
@@ -643,14 +646,14 @@
 	set_luminosity = 24
 	},
 /turf/open/floor/plating/asteroid,
-/area/city/outskirts)
+/area/city/outskirts/rcorp_base)
 "Gq" = (
 /obj/structure/table/abductor,
 /obj/item/storage/firstaid/revival,
 /obj/item/gun/medbeam,
 /obj/item/gun/mindwhip,
 /turf/open/floor/pod,
-/area/city/outskirts)
+/area/city/outskirts/rcorp_base)
 "Gz" = (
 /obj/effect/turf_decal/bot_red,
 /obj/effect/turf_decal/tile{
@@ -662,59 +665,59 @@
 	},
 /obj/effect/landmark/rhinocaptainspawner,
 /turf/open/floor/pod/dark,
-/area/city/outskirts)
+/area/city/outskirts/rcorp_base)
 "GU" = (
 /obj/effect/turf_decal/sand,
 /turf/open/floor/pod/dark,
-/area/city/outskirts)
+/area/city/outskirts/rcorp_base)
 "Hh" = (
 /obj/effect/turf_decal/bot,
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/telecomms/processor/preset_three,
 /turf/open/floor/circuit/telecomms/mainframe,
-/area/city/outskirts)
+/area/city/outskirts/rcorp_base)
 "Hk" = (
 /turf/open/floor/pod/light,
-/area/city/outskirts)
+/area/city/outskirts/rcorp_base)
 "HZ" = (
 /obj/effect/turf_decal/bot,
 /obj/machinery/ntnet_relay,
 /turf/open/floor/circuit/telecomms/mainframe,
-/area/city/outskirts)
+/area/city/outskirts/rcorp_base)
 "Ie" = (
 /obj/structure/rcorpcomms{
 	max_integrity = 500
 	},
 /turf/open/floor/pod/dark,
-/area/city/outskirts)
+/area/city/outskirts/rcorp_base)
 "Im" = (
 /obj/structure/rack,
 /turf/open/floor/pod/dark,
-/area/city/outskirts)
+/area/city/outskirts/rcorp_base)
 "ID" = (
 /obj/structure/chair/comfy/black{
 	dir = 1
 	},
 /turf/open/floor/pod,
-/area/city/outskirts)
+/area/city/outskirts/rcorp_base)
 "IV" = (
 /obj/structure/table/abductor,
 /obj/item/clothing/under/suit/lobotomy/rabbit,
 /turf/open/floor/pod/dark,
-/area/city/outskirts)
+/area/city/outskirts/rcorp_base)
 "Jc" = (
 /obj/machinery/door/airlock/survival_pod{
 	name = "reindeer captain bunk";
 	req_access_txt = "5"
 	},
 /turf/open/floor/pod,
-/area/city/outskirts)
+/area/city/outskirts/rcorp_base)
 "Ju" = (
 /obj/structure/table,
 /obj/item/storage/firstaid/revival,
 /obj/item/ego_weapon/city/reindeer,
 /turf/open/floor/pod/light,
-/area/city/outskirts)
+/area/city/outskirts/rcorp_base)
 "Jz" = (
 /obj/machinery/door/airlock/survival_pod{
 	name = "raven team prep";
@@ -722,7 +725,7 @@
 	},
 /obj/effect/landmark/nobasic_incorp_move,
 /turf/open/floor/pod,
-/area/city/outskirts)
+/area/city/outskirts/rcorp_base)
 "Kh" = (
 /obj/structure/table/wood,
 /obj/item/food/fries,
@@ -741,52 +744,52 @@
 /obj/item/food/fries,
 /obj/item/food/fries,
 /turf/open/floor/plating/asteroid,
-/area/city/outskirts)
+/area/city/outskirts/rcorp_base)
 "Kj" = (
 /obj/structure/table/abductor,
 /turf/open/floor/pod/dark,
-/area/city/outskirts)
+/area/city/outskirts/rcorp_base)
 "Ks" = (
 /obj/structure/chair/bronze{
 	dir = 8
 	},
 /turf/open/floor/pod,
-/area/city/outskirts)
+/area/city/outskirts/rcorp_base)
 "KB" = (
 /obj/machinery/telecomms/broadcaster/preset_right,
 /obj/effect/turf_decal/bot,
 /turf/open/floor/circuit/telecomms/mainframe,
-/area/city/outskirts)
+/area/city/outskirts/rcorp_base)
 "Ls" = (
 /obj/effect/turf_decal/loading_area{
 	dir = 4
 	},
 /turf/open/floor/pod/dark,
-/area/city/outskirts)
+/area/city/outskirts/rcorp_base)
 "Lv" = (
 /obj/machinery/telecomms/server/presets/common,
 /turf/open/floor/circuit/telecomms/mainframe,
-/area/city/outskirts)
+/area/city/outskirts/rcorp_base)
 "Mk" = (
 /obj/effect/turf_decal/sand,
 /obj/machinery/sleeper/syndie,
 /turf/open/floor/pod/dark,
-/area/city/outskirts)
+/area/city/outskirts/rcorp_base)
 "My" = (
 /obj/structure/chair/stool/bar,
 /turf/open/floor/pod/dark,
-/area/city/outskirts)
+/area/city/outskirts/rcorp_base)
 "MP" = (
 /obj/effect/turf_decal/sand,
 /obj/machinery/cryopod,
 /turf/open/floor/pod/dark,
-/area/city/outskirts)
+/area/city/outskirts/rcorp_base)
 "Nc" = (
 /obj/machinery/door/airlock/survival_pod{
 	name = "junior officer quarters"
 	},
 /turf/open/floor/pod,
-/area/city/outskirts)
+/area/city/outskirts/rcorp_base)
 "Nj" = (
 /obj/structure/table/abductor,
 /obj/item/clothing/under/suit/lobotomy/rabbit,
@@ -796,16 +799,16 @@
 /obj/item/ego_weapon/city/rabbit_blade/raven,
 /obj/item/gun/energy/e_gun/rabbitdash/small,
 /turf/open/floor/pod,
-/area/city/outskirts)
+/area/city/outskirts/rcorp_base)
 "NT" = (
 /obj/effect/landmark/latejoin,
 /turf/open/floor/pod/dark,
-/area/city/outskirts)
+/area/city/outskirts/rcorp_base)
 "Oi" = (
 /obj/structure/table/reinforced,
 /obj/effect/landmark/nobasic_incorp_move,
 /turf/open/floor/pod/dark,
-/area/city/outskirts)
+/area/city/outskirts/rcorp_base)
 "OA" = (
 /obj/structure/rack,
 /obj/effect/landmark/rcorpitemspawn,
@@ -814,28 +817,28 @@
 	amount = 30
 	},
 /turf/open/floor/pod/dark,
-/area/city/outskirts)
+/area/city/outskirts/rcorp_base)
 "OE" = (
 /obj/structure/chair/wood{
 	dir = 1
 	},
 /turf/open/floor/pod,
-/area/city/outskirts)
+/area/city/outskirts/rcorp_base)
 "OZ" = (
 /obj/machinery/door/airlock/survival_pod{
 	name = "rabbit captain bunk";
 	req_access = "19"
 	},
 /turf/open/floor/pod,
-/area/city/outskirts)
+/area/city/outskirts/rcorp_base)
 "Pv" = (
 /obj/effect/turf_decal/bot,
 /obj/machinery/telecomms/bus/preset_three,
 /turf/open/floor/circuit/telecomms/mainframe,
-/area/city/outskirts)
+/area/city/outskirts/rcorp_base)
 "PG" = (
 /turf/open/floor/plating/asteroid,
-/area/city/outskirts)
+/area/city/outskirts/rcorp_base)
 "PL" = (
 /obj/structure/closet/secure_closet{
 	icon_state = "cdr";
@@ -849,10 +852,11 @@
 	name = "commander's dress beret"
 	},
 /turf/open/floor/pod,
-/area/city/outskirts)
+/area/city/outskirts/rcorp_base)
 "Qd" = (
-/turf/open/floor/pod/dark,
-/area/city/outskirts)
+/obj/effect/landmark/nobasic_incorp_move,
+/turf/closed/wall/mineral/titanium/survival/pod,
+/area/city/outskirts/rcorp_base)
 "Qe" = (
 /obj/machinery/door/airlock/survival_pod{
 	name = "Officer's meet";
@@ -860,14 +864,14 @@
 	},
 /obj/effect/landmark/nobasic_incorp_move,
 /turf/open/floor/pod,
-/area/city/outskirts)
+/area/city/outskirts/rcorp_base)
 "Qn" = (
 /obj/effect/turf_decal/sand/plating,
 /obj/structure/chair/plastic{
 	dir = 1
 	},
 /turf/open/floor/pod/dark,
-/area/city/outskirts)
+/area/city/outskirts/rcorp_base)
 "Qp" = (
 /obj/structure/table/abductor,
 /obj/item/storage/firstaid/revival,
@@ -875,12 +879,12 @@
 /obj/item/survivalcapsule/rcorpcommand,
 /obj/item/survivalcapsule/rcorpsmallcommand,
 /turf/open/floor/pod,
-/area/city/outskirts)
+/area/city/outskirts/rcorp_base)
 "QB" = (
 /obj/item/bedsheet/black,
 /obj/structure/bed/pod,
 /turf/open/floor/pod,
-/area/city/outskirts)
+/area/city/outskirts/rcorp_base)
 "QE" = (
 /obj/structure/table/wood,
 /obj/item/food/grown/tobacco,
@@ -888,7 +892,7 @@
 /obj/item/food/grown/tobacco,
 /obj/item/clothing/mask/cigarette/pipe,
 /turf/open/floor/pod,
-/area/city/outskirts)
+/area/city/outskirts/rcorp_base)
 "QF" = (
 /obj/item/clothing/suit/coordinator{
 	armor = list();
@@ -904,40 +908,40 @@
 	name = "commander's parade cap"
 	},
 /turf/open/floor/pod,
-/area/city/outskirts)
+/area/city/outskirts/rcorp_base)
 "QN" = (
 /obj/structure/lattice/catwalk,
 /obj/structure/railing{
 	dir = 8
 	},
 /turf/open/floor/fakepit,
-/area/city/outskirts)
+/area/city/outskirts/rcorp_base)
 "QP" = (
 /obj/machinery/computer/crew,
 /turf/open/floor/pod,
-/area/city/outskirts)
+/area/city/outskirts/rcorp_base)
 "QY" = (
 /obj/structure/rack,
 /obj/item/stack/sheet/mineral/sandbags/fifty,
 /obj/item/storage/box/barrier,
 /turf/open/floor/pod/dark,
-/area/city/outskirts)
+/area/city/outskirts/rcorp_base)
 "Rl" = (
 /obj/structure/window/shuttle/survival_pod,
 /obj/effect/landmark/nobasic_incorp_move,
 /turf/open/floor/pod,
-/area/city/outskirts)
+/area/city/outskirts/rcorp_base)
 "Rv" = (
 /obj/structure/chair/comfy,
 /turf/open/floor/pod,
-/area/city/outskirts)
+/area/city/outskirts/rcorp_base)
 "RB" = (
 /turf/open/floor/pod,
-/area/city/outskirts)
+/area/city/outskirts/rcorp_base)
 "RS" = (
 /obj/machinery/telecomms/server/presets/medical,
 /turf/open/floor/circuit/telecomms/mainframe,
-/area/city/outskirts)
+/area/city/outskirts/rcorp_base)
 "RY" = (
 /obj/machinery/mech_bay_recharge_port,
 /obj/effect/turf_decal/bot,
@@ -949,7 +953,7 @@
 	color = "#CC5500"
 	},
 /turf/open/floor/pod/dark,
-/area/city/outskirts)
+/area/city/outskirts/rcorp_base)
 "Sf" = (
 /obj/effect/turf_decal/bot_red,
 /obj/effect/turf_decal/tile{
@@ -962,13 +966,13 @@
 	},
 /obj/effect/landmark/rhinospawner,
 /turf/open/floor/pod/dark,
-/area/city/outskirts)
+/area/city/outskirts/rcorp_base)
 "Sh" = (
 /obj/structure/chair/comfy/black{
 	dir = 4
 	},
 /turf/open/floor/pod,
-/area/city/outskirts)
+/area/city/outskirts/rcorp_base)
 "Ty" = (
 /obj/structure/closet/secure_closet{
 	icon_state = "cdr";
@@ -980,16 +984,16 @@
 /obj/item/clothing/under/mercenary/camo,
 /obj/item/clothing/suit/armor/ego_gear/rcorp_officer/cdr,
 /turf/open/floor/pod,
-/area/city/outskirts)
+/area/city/outskirts/rcorp_base)
 "Ua" = (
 /obj/effect/turf_decal/bot,
 /obj/machinery/telecomms/receiver/preset_right,
 /turf/open/floor/circuit/telecomms/mainframe,
-/area/city/outskirts)
+/area/city/outskirts/rcorp_base)
 "UE" = (
 /obj/machinery/manned_turret/rcorp,
 /turf/open/floor/pod/dark,
-/area/city/outskirts)
+/area/city/outskirts/rcorp_base)
 "UK" = (
 /obj/effect/turf_decal/bot_red,
 /obj/effect/turf_decal/tile{
@@ -1002,19 +1006,19 @@
 	},
 /obj/vehicle/sealed/mecha/combat/rhinomelee,
 /turf/open/floor/pod/dark,
-/area/city/outskirts)
+/area/city/outskirts/rcorp_base)
 "Vo" = (
 /obj/machinery/door/airlock/survival_pod{
 	name = "rhino captain bunk";
 	req_access_txt = "3"
 	},
 /turf/open/floor/pod,
-/area/city/outskirts)
+/area/city/outskirts/rcorp_base)
 "VJ" = (
 /obj/effect/turf_decal/bot,
 /obj/machinery/telecomms/processor/preset_four,
 /turf/open/floor/circuit/telecomms/mainframe,
-/area/city/outskirts)
+/area/city/outskirts/rcorp_base)
 "VS" = (
 /obj/effect/light_emitter{
 	light_power = 4;
@@ -1023,7 +1027,7 @@
 	set_luminosity = 24
 	},
 /turf/open/floor/pod/light,
-/area/city/outskirts)
+/area/city/outskirts/rcorp_base)
 "Wj" = (
 /obj/machinery/computer/mech_bay_power_console{
 	dir = 1
@@ -1041,22 +1045,22 @@
 	color = "#CC5500"
 	},
 /turf/open/floor/pod/dark,
-/area/city/outskirts)
+/area/city/outskirts/rcorp_base)
 "Ww" = (
 /obj/effect/turf_decal/bot,
 /obj/machinery/telecomms/server/presets/supply,
 /turf/open/floor/circuit/telecomms/mainframe,
-/area/city/outskirts)
+/area/city/outskirts/rcorp_base)
 "WE" = (
 /obj/item/storage/lockbox/medal/officer,
 /obj/structure/table/abductor,
 /turf/open/floor/pod,
-/area/city/outskirts)
+/area/city/outskirts/rcorp_base)
 "WF" = (
 /obj/effect/turf_decal/bot,
 /obj/machinery/telecomms/receiver/preset_left,
 /turf/open/floor/circuit/telecomms/mainframe,
-/area/city/outskirts)
+/area/city/outskirts/rcorp_base)
 "WH" = (
 /obj/effect/spawner/room/rcorp_caves,
 /turf/closed/indestructible/rock,
@@ -1064,32 +1068,32 @@
 "Xg" = (
 /obj/structure/table/wood/bar,
 /turf/open/floor/pod/dark,
-/area/city/outskirts)
+/area/city/outskirts/rcorp_base)
 "XS" = (
 /obj/effect/turf_decal/sand,
 /obj/structure/chair/plastic{
 	dir = 1
 	},
 /turf/open/floor/pod,
-/area/city/outskirts)
+/area/city/outskirts/rcorp_base)
 "Yd" = (
 /obj/effect/turf_decal/sand,
 /obj/structure/chair/plastic{
 	dir = 1
 	},
 /turf/open/floor/pod/light,
-/area/city/outskirts)
+/area/city/outskirts/rcorp_base)
 "Yv" = (
 /obj/effect/turf_decal/sand/plating,
 /obj/effect/landmark/latejoin,
 /turf/open/floor/pod/dark,
-/area/city/outskirts)
+/area/city/outskirts/rcorp_base)
 "YM" = (
 /obj/structure/chair/plastic{
 	dir = 1
 	},
 /turf/open/floor/pod/light,
-/area/city/outskirts)
+/area/city/outskirts/rcorp_base)
 "Zt" = (
 /obj/structure/table/abductor,
 /obj/item/clothing/under/suit/lobotomy/rabbit,
@@ -1097,21 +1101,21 @@
 	armor = list()
 	},
 /turf/open/floor/pod,
-/area/city/outskirts)
+/area/city/outskirts/rcorp_base)
 "ZA" = (
 /obj/machinery/door/airlock/survival_pod{
 	name = "rhino team prep";
 	req_access_txt = "3"
 	},
 /turf/open/floor/pod,
-/area/city/outskirts)
+/area/city/outskirts/rcorp_base)
 "ZC" = (
 /obj/machinery/door/airlock/survival_pod{
 	name = "reindeer team prep";
 	req_access_txt = "5"
 	},
 /turf/open/floor/pod,
-/area/city/outskirts)
+/area/city/outskirts/rcorp_base)
 "ZG" = (
 /obj/structure/closet/secure_closet{
 	icon_state = "cdr";
@@ -1124,11 +1128,11 @@
 /obj/item/clothing/head/beret/tegu/rcorp,
 /obj/item/clothing/neck/cloak/rcorp,
 /turf/open/floor/pod,
-/area/city/outskirts)
+/area/city/outskirts/rcorp_base)
 "ZJ" = (
 /obj/effect/turf_decal/sand/plating,
 /turf/open/floor/pod/light,
-/area/city/outskirts)
+/area/city/outskirts/rcorp_base)
 
 (1,1,1) = {"
 oi
@@ -2310,9 +2314,9 @@ PG
 PG
 aC
 IV
-Qd
-Qd
-Qd
+nV
+nV
+nV
 aC
 PG
 PG
@@ -2514,7 +2518,7 @@ aC
 vo
 Hk
 Hk
-Qd
+nV
 ZA
 PG
 PG
@@ -2716,18 +2720,18 @@ aC
 Sf
 Hk
 Hk
-Qd
+nV
 aC
 PG
 PG
 PG
 aC
 uF
-Qd
-Qd
-Qd
-Qd
-Qd
+nV
+nV
+nV
+nV
+nV
 fv
 aC
 PG
@@ -2924,7 +2928,7 @@ PG
 PG
 PG
 aC
-Qd
+nV
 Ju
 Hk
 Hk
@@ -3126,7 +3130,7 @@ PG
 PG
 PG
 aC
-Qd
+nV
 gM
 Hk
 Hk
@@ -3328,7 +3332,7 @@ PG
 PG
 PG
 aC
-Qd
+nV
 Ju
 Hk
 VS
@@ -3522,15 +3526,15 @@ PG
 PG
 aC
 Fj
-Qd
-Qd
+nV
+nV
 Wj
 sS
 PG
 PG
 PG
 aC
-Qd
+nV
 gM
 Hk
 Hk
@@ -3724,15 +3728,15 @@ PG
 PG
 aC
 IV
-Qd
-Qd
+nV
+nV
 IV
 sS
 PG
 PG
 PG
 aC
-Qd
+nV
 Ju
 Hk
 Hk
@@ -4943,7 +4947,7 @@ PG
 PG
 PG
 PG
-Qd
+nV
 RB
 pT
 XS
@@ -5145,7 +5149,7 @@ PG
 PG
 PG
 PG
-Qd
+nV
 RB
 Hk
 YM
@@ -5549,7 +5553,7 @@ co
 PG
 PG
 PG
-Qd
+nV
 RB
 Hk
 YM
@@ -5751,7 +5755,7 @@ PG
 PG
 PG
 PG
-Qd
+nV
 pT
 RB
 XS
@@ -5954,11 +5958,11 @@ PG
 PG
 PG
 aC
-Qd
-Qd
-Qd
+nV
+nV
+nV
 GU
-Qd
+nV
 aC
 PG
 PG
@@ -6562,12 +6566,12 @@ PG
 PG
 PG
 Kh
-jO
+Qd
 Rl
 Rl
 Rl
 Rl
-jO
+Qd
 PG
 PG
 PG
@@ -6749,27 +6753,27 @@ PG
 gP
 gP
 gP
-jO
-jO
-jO
+Qd
+Qd
+Qd
 Rl
 Rl
 Rl
 Rl
 Rl
-jO
-jO
+Qd
+Qd
 PG
 PG
 PG
 PG
 tZ
-jO
+Qd
 gM
 My
-Qd
+nV
 Im
-jO
+Qd
 PG
 PG
 PG
@@ -6951,27 +6955,27 @@ FR
 gP
 gP
 gP
-jO
+Qd
 Fu
 kr
-Qd
-Qd
-Qd
-Qd
-Qd
+nV
+nV
+nV
+nV
+nV
 ih
-jO
+Qd
 PG
 PG
 PG
 PG
 hy
-jO
+Qd
 gk
 Hk
 Hk
 Im
-jO
+Qd
 PG
 PG
 PG
@@ -7153,27 +7157,27 @@ PG
 gP
 gP
 gP
-jO
-Kj
 Qd
+Kj
+nV
 mR
 cW
 cW
 cW
 RB
 xu
-jO
+Qd
 PG
 PG
 PG
 PG
 Bs
-jO
+Qd
 gM
 AS
 Hk
+nV
 Qd
-jO
 PG
 PG
 PG
@@ -7355,7 +7359,7 @@ PG
 gP
 gP
 gP
-jO
+Qd
 Fu
 kr
 RB
@@ -7363,18 +7367,18 @@ xu
 xu
 xu
 RB
+nV
 Qd
-jO
 PG
 PG
 PG
 PG
 CQ
-jO
+Qd
 Xg
 Hk
 Hk
-Qd
+nV
 Jz
 PG
 PG
@@ -7557,26 +7561,26 @@ PG
 gP
 gP
 gP
-jO
-Kj
 Qd
+Kj
+nV
 Rv
 wW
 xu
 wW
 kl
+nV
 Qd
-jO
 PG
 PG
 PG
 Gl
 PG
-jO
+Qd
 gM
 AS
 Hk
-Qd
+nV
 Rl
 PG
 PG
@@ -7759,7 +7763,7 @@ PG
 gP
 gP
 gP
-jO
+Qd
 mE
 kr
 RB
@@ -7767,14 +7771,14 @@ xu
 xu
 xu
 RB
-Qd
+nV
 Qe
 PG
 PG
 PG
 PG
 PG
-jO
+Qd
 gk
 Hk
 Hk
@@ -7961,25 +7965,25 @@ FR
 gP
 gP
 gP
-jO
 Qd
-Qd
+nV
+nV
 Rv
 wW
 xu
 wW
 kl
+nV
 Qd
-jO
 PG
 PG
 PG
 PG
 PG
-jO
+Qd
 gM
 My
-Qd
+nV
 mH
 Rl
 PG
@@ -8163,27 +8167,27 @@ PG
 gP
 gP
 gP
-jO
 Qd
-Qd
+nV
+nV
 RB
 xu
 wW
 xu
 RB
+nV
 Qd
-jO
 Oi
 Oi
 Oi
 cL
-jO
-jO
+Qd
+Qd
 aC
 aC
 aC
 aC
-jO
+Qd
 kA
 kA
 oi
@@ -8365,20 +8369,20 @@ PG
 gP
 gP
 gP
-jO
-Ls
 Qd
+Ls
+nV
 RB
 jd
 Ks
 RB
 RB
-Qd
+nV
 aC
-Qd
-Qd
-Qd
-Qd
+nV
+nV
+nV
+nV
 Im
 aC
 jC
@@ -8567,23 +8571,23 @@ PG
 gP
 gP
 gP
-jO
+Qd
 yJ
 Cp
-Qd
-Qd
-Qd
-Qd
-Qd
-Qd
+nV
+nV
+nV
+nV
+nV
+nV
 vX
-Qd
+nV
 Hk
 Hk
 Hk
-Qd
+nV
 EW
-Qd
+nV
 lz
 xp
 aC
@@ -8768,8 +8772,8 @@ PG
 gP
 gP
 gP
-jO
-jO
+Qd
+Qd
 aC
 aC
 aC
@@ -8786,7 +8790,7 @@ Hk
 pi
 aC
 QY
-Qd
+nV
 ia
 aC
 kA
@@ -8970,7 +8974,7 @@ PG
 gP
 gP
 gP
-jO
+Qd
 Et
 yz
 fC
@@ -8982,9 +8986,9 @@ fC
 RY
 aC
 UE
-Qd
-Qd
-Qd
+nV
+nV
+nV
 oj
 aC
 aC
@@ -9172,7 +9176,7 @@ gP
 gP
 kA
 kA
-jO
+Qd
 RB
 RB
 mR
@@ -9189,9 +9193,9 @@ vX
 aC
 aC
 aC
-Qd
+nV
 lz
-Qd
+nV
 aC
 kA
 oi
@@ -9386,14 +9390,14 @@ RB
 gx
 aC
 OA
-Qd
-Qd
-Qd
+nV
+nV
+nV
 ls
 aC
-Qd
-Qd
-Qd
+nV
+nV
+nV
 aC
 kA
 oi
@@ -9593,9 +9597,9 @@ mR
 Hk
 iY
 aC
-Qd
+nV
 Ie
-Qd
+nV
 aC
 kA
 oi
