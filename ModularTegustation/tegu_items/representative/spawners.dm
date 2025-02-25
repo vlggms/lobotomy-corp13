@@ -207,3 +207,18 @@
 	assignedrole = "Asset Protection Staff"
 	spawn_level = 100 // Goodluck, idiot.
 	uses = 20	// Evil Excision staff
+
+/*
+/obj/effect/mob_spawn/human/supplypod/r_corp/jcorp_call
+	flavour_text = "This spawner shouldn't appear ingame!"
+	reject_message = "J-Corp HQ: The casinos have been paid for a handful of staff members. We still need to make a profit from this!"
+
+/obj/effect/mob_spawn/human/supplypod/r_corp/jcorp_call/casino_slaves
+	name = "Casino Slave teleport zone"
+	outfit = /datum/outfit/casino_slave
+
+
+/obj/effect/mob_spawn/human/supplypod/r_corp/jcorp_call/casino_security
+
+/obj/effect/mob_spawn/human/supplypod/r_corp/jcorp_call/casino_security/killteam
+*/
