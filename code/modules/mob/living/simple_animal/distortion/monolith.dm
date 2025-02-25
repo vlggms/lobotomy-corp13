@@ -133,7 +133,7 @@
 		var/mob/living/simple_animal/hostile/distortion/D = target
 		if(D.monolith_abnormality)
 			var/mob/living/simple_animal/hostile/abnormality/myAbno = new D.monolith_abnormality(get_turf(target))
-			myAbno.BreachEffect()
+			myAbno.BreachEffect(null, BREACH_MINING)
 			qdel(target)
 			return TRUE
 	return FALSE

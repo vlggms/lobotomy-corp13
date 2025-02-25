@@ -7,8 +7,8 @@
 	icon_state = "oracle"
 	icon_living = "oracle"
 	portrait = "oracle"
-	maxHealth = 50
-	health = 50
+	maxHealth = 1500
+	health = 1500
 	damage_coeff = list(RED_DAMAGE = 2, WHITE_DAMAGE = 0, BLACK_DAMAGE = 2, PALE_DAMAGE = 2)
 	threat_level = ZAYIN_LEVEL
 	work_chances = list(
@@ -77,6 +77,11 @@
 		"A person in a blue coat... they fold into a book...",
 		)
 
+/mob/living/simple_animal/hostile/abnormality/oracle/Move()
+	return FALSE
+
+/mob/living/simple_animal/hostile/abnormality/oracle/CanAttack(atom/the_target)
+	return FALSE
 
 /mob/living/simple_animal/hostile/abnormality/oracle/PostWorkEffect(mob/living/carbon/human/user, work_type, pe)
 	if(work_type == ABNORMALITY_WORK_INSIGHT)
@@ -96,7 +101,6 @@
 			return
 		to_chat(user, span_notice("[SSlobotomy_corp.next_ordeal.name]"))
 	..()
-
 
 /mob/living/simple_animal/hostile/abnormality/oracle/Initialize(mob/living/carbon/human/user)
 	. = ..()
@@ -127,3 +131,29 @@
 		if(H.IsSleeping())
 			continue //You need to be sleeping to get notified
 		to_chat(H, "<span class='notice'>Oh.... [abno]... It has breached containment...</span>")
+
+//ER stuff
+/mob/living/simple_animal/hostile/abnormality/oracle/BreachEffect(mob/living/carbon/human/user, breach_type)//finish this shit
+	if(breach_type == BREACH_MINING)
+		var/chosenfake = pick(fakeordeals)
+		for(var/mob/living/L in livinginrange(48, src))
+			if(L.z != z)
+				continue
+			if(faction_check_mob(L))
+				continue
+			to_chat(L, span_userdanger("[chosenfake]"))
+		addtimer(CALLBACK(src, PROC_REF(NukeAttack)), 30 SECONDS)
+	return ..()
+
+/mob/living/simple_animal/hostile/abnormality/oracle/proc/NukeAttack()
+	if(stat == DEAD)
+		return
+	playsound(src, 'sound/magic/wandodeath.ogg', 100, FALSE, 40, falloff_distance = 10)
+	for(var/mob/living/L in livinginrange(48, src))
+		if(L.z != z)
+			continue
+		if(faction_check_mob(L))
+			continue
+		to_chat(L, span_userdanger("Visions of a horrible future flash before your eyes!"))
+		L.deal_damage((150 - get_dist(src, L)), WHITE_DAMAGE)
+	qdel(src)

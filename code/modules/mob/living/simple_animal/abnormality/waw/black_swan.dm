@@ -157,7 +157,8 @@
 	if(!LAZYLEN(teleport_potential))
 		return FALSE
 	var/turf/teleport_target = pick(teleport_potential)
-	forceMove(teleport_target)
+	if(breach_type != BREACH_MINING)
+		forceMove(teleport_target)
 	playsound(get_turf(src), 'sound/abnormalities/blackswan/sis_transformation.ogg', 30, 0, 4)
 	return
 

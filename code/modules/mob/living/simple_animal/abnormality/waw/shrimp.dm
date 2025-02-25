@@ -120,6 +120,11 @@
 	datum_reference.qliphoth_change(1)
 	return
 
+/mob/living/simple_animal/hostile/abnormality/shrimp_exec/BreachEffect(mob/living/carbon/human/user, breach_type)
+	if(breach_type == BREACH_MINING)
+		pissed()
+		addtimer(CALLBACK(src, PROC_REF(pissed)), 20 SECONDS)
+
 /mob/living/simple_animal/hostile/abnormality/shrimp_exec/AttemptWork(mob/living/carbon/human/user, work_type)
 	if(work_type == liked || !liked)
 		happy = TRUE
@@ -195,7 +200,7 @@
 
 /mob/living/simple_animal/hostile/shrimp/Initialize()
 	. = ..()
-	if(SSmaptype.maptype == "fixers" || SSmaptype.maptype == "city")
+	if(SSmaptype.maptype in SSmaptype.citymaps)
 		del_on_death = FALSE
 
 //You can put these guys about to guard an area.
@@ -231,7 +236,7 @@
 
 /mob/living/simple_animal/hostile/shrimp_soldier/Initialize()
 	. = ..()
-	if(SSmaptype.maptype == "fixers" || SSmaptype.maptype == "city")
+	if(SSmaptype.maptype in SSmaptype.citymaps)
 		del_on_death = FALSE
 
 /mob/living/simple_animal/hostile/shrimp_soldier/friendly

@@ -7,6 +7,8 @@
 	var/room_width = 0
 	var/room_height = 0
 	var/room_type = "maintenance" // Used so we can place landmarks in ruins and such.
+	var/spawn_delay_min = 0
+	var/spawn_delay_max = 0
 
 /obj/effect/spawner/room/Initialize()
 	..()
@@ -28,7 +30,14 @@
 		template.weight = (template.weight / 2)
 		if(template.stock <= 0)
 			template.spawned = TRUE
-		template.load(get_turf(src), centered = template.centerspawner)
+		if(spawn_delay_min > 0 || spawn_delay_max > 0)
+			addtimer(CALLBACK(src, TYPE_PROC_REF(/obj/effect/spawner/room, LateSpawn)), rand(spawn_delay_min, spawn_delay_max))
+		else
+			template.load(get_turf(src), centered = template.centerspawner)
+	qdel(src)
+
+/obj/effect/spawner/room/proc/LateSpawn()
+	template.load(get_turf(src), centered = template.centerspawner)
 	qdel(src)
 
 /* Spawner landmarks */

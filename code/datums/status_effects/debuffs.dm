@@ -1005,6 +1005,30 @@
 	owner.cut_overlay(statuseffectvisual)
 	return ..()
 
+#define MOB_QUARTERSPEED /datum/movespeed_modifier/bloodhold
+/datum/status_effect/bloodhold
+	id = "bloodhold"
+	duration = 8 SECONDS
+	alert_type = null
+	status_type = STATUS_EFFECT_REFRESH
+	var/statuseffectvisual
+
+/datum/status_effect/bloodhold/on_apply()
+	. = ..()
+	owner.add_movespeed_modifier(MOB_QUARTERSPEED)
+	to_chat(owner, "<span class='warning'>You are slowed down as your own blood resists your movement!</span>")
+	var/mutable_appearance/effectvisual = mutable_appearance('icons/obj/clockwork_objects.dmi', "hateful_manacles")
+	effectvisual.pixel_x = -owner.pixel_x
+	effectvisual.pixel_y = -owner.pixel_y
+	statuseffectvisual = effectvisual
+	owner.add_overlay(statuseffectvisual)
+
+/datum/status_effect/bloodhold/on_remove()
+	owner.remove_movespeed_modifier(MOB_QUARTERSPEED)
+
+	owner.cut_overlay(statuseffectvisual)
+	return ..()
+
 //update_stamina() is move_to_delay = (initial(move_to_delay) + (staminaloss * 0.06))
 // 100 stamina damage equals 6 additional move_to_delay. So 167*0.06 = 10.02
 
@@ -1109,9 +1133,10 @@
 	owner.playsound_local(owner, 'sound/effects/burn.ogg', 50, TRUE)
 	Check_Resist(owner)
 	if(ishuman(owner))
-		owner.adjustBruteLoss(max(0, stacks - burn_res))
+		owner.adjustFireLoss(max(0, stacks - burn_res))
 	else
 		owner.adjustBruteLoss(stacks*4) // x4 on non humans (Average burn stack is 20. 80/5 sec, extra 16 pure dps)
+	new /obj/effect/temp_visual/damage_effect/burn(get_turf(owner))
 
 	//Deletes itself after 2 tick if no new burn stack was given
 	if(safety)
@@ -1172,6 +1197,8 @@
 	var/new_stack = FALSE
 	var/burn_res = 0
 	var/safety = TRUE
+	var/bleed_cooldown = 20
+	var/bleed_time
 
 /atom/movable/screen/alert/status_effect/lc_bleed
 	name = "Bleeding"
@@ -1187,11 +1214,14 @@
 //Deals true damage
 /datum/status_effect/stacking/lc_bleed/proc/Moved(mob/user, atom/new_location)
 	SIGNAL_HANDLER
+	if (world.time - bleed_time < bleed_cooldown)
+		return
+	bleed_time = world.time
 	if(!can_have_status())
 		qdel(src)
 	to_chat(owner, "<span class='warning'>Your organs bleed due to your movement!!</span>")
 	owner.playsound_local(owner, 'sound/effects/wounds/crackandbleed.ogg', 25, TRUE)
-	if(stacks >= 10)
+	if(stacks >= 5)
 		var/obj/effect/decal/cleanable/blood/B = locate() in get_turf(owner)
 		if(!B)
 			B = new /obj/effect/decal/cleanable/blood(get_turf(owner))
@@ -1200,6 +1230,7 @@
 		owner.adjustBruteLoss(max(0, stacks))
 	else
 		owner.adjustBruteLoss(stacks*4) // x4 on non humans
+	new /obj/effect/temp_visual/damage_effect/bleed(get_turf(owner))
 	stacks = round(stacks/2)
 	if(stacks == 0)
 		qdel(src)

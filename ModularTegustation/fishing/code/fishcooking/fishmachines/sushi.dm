@@ -7,7 +7,8 @@
 	anchored = TRUE
 	var/list/cookables = list(
 		/obj/item/food/freshfish/white 						= /obj/item/food/sashimi/white,
-		/obj/item/food/freshfish/salmon 					= /obj/item/food/sashimi,
+		/obj/item/food/fish/salt_water/salmon 				= /obj/item/food/sashimi,
+		/obj/item/food/fish/fresh_water/salmon 				= /obj/item/food/sashimi,
 		/obj/item/food/fish/salt_water/marine_shrimp 		= /obj/item/food/sashimi/shrimp,
 		)
 	var/failed = FALSE
