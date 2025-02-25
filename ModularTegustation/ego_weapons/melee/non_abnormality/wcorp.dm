@@ -77,9 +77,10 @@
 	desc = "A glowing blue spear used by senior W corp staff."
 	icon_state = "wcorp_spear"
 	inhand_icon_state = "wcorp_spear"
-	force = 40
+	force = 60
 	reach = 2
-	attack_speed = 1.2
+	attack_speed = 1
+	stuntime = 5
 	attack_verb_continuous = list("slashes", "pokes")
 	attack_verb_simple = list("slash", "poke")
 	attribute_requirements = list(
@@ -251,8 +252,9 @@
 	righthand_file = 'ModularTegustation/Teguicons/lc13_right_64x64.dmi'
 	inhand_x_dimension = 64
 	inhand_y_dimension = 64
+	force = 50
 	reach = 2
-	attack_speed = 1.2
+	stuntime = 5
 
 //Type C club
 /obj/item/ego_weapon/city/wcorp/shield/club

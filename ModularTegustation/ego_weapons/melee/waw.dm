@@ -2011,11 +2011,11 @@
 /obj/item/ego_weapon/abyssal_route/attack_self(mob/user)
 	..()
 	if(combo_on)
-		to_chat(user, span_warning("You swap your grip, and will now perform a dive finisher."))
+		to_chat(user, span_warning("You swap your grip, and will no longer perform a dive finisher."))
 		combo_on = FALSE
 		return
 	if(!combo_on)
-		to_chat(user, span_warning("You swap your grip, and will no longer perform a dive finisher."))
+		to_chat(user, span_warning("You swap your grip, and will now perform a dive finisher."))
 		combo_on = TRUE
 		return
 
@@ -2230,6 +2230,7 @@
 	name = "effervescent corrosion"
 	desc = "Even the scum of the earth can be molded into something useful with time and pressure."
 	icon_state = "shell"
+	special = "This weapon also covers enemies in muck that deals WHITE Damage over time. The thrust can apply this effect an additional tile from where you click."
 	force = 60
 	reach = 2
 	stuntime = 5
