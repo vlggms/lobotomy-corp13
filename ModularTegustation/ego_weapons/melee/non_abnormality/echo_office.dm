@@ -18,7 +18,7 @@
 /obj/item/ego_weapon/city/echo/twins
 	name = "twins"
 	desc = "Soon, All of the wicked shall be punished..."
-	special = "Upon hit the targets WHITE vulnerability is increased by 0.2. \
+	special = "If you are wearing the Neon Maid Dress armor, Upon hit the targets WHITE vulnerability is increased by 0.2. \
 		When using both sodom and gomorrah, increase their attack speed by 0.2"
 	hitsound = 'sound/weapons/fixer/generic/knife3.ogg'
 	icon_state = "sodom"
@@ -46,11 +46,14 @@
 
 	attack_speed = old_attack_speed
 
-	if(isliving(target))
-		var/mob/living/simple_animal/M = target
-		if(!ishuman(M) && !M.has_status_effect(/datum/status_effect/rend_white))
-			new /obj/effect/temp_visual/cult/sparks(get_turf(M))
-			M.apply_status_effect(/datum/status_effect/rend_white)
+	var/mob/living/carbon/human/wielder = user
+	var/obj/item/clothing/suit/armor/ego_gear/city/echo/maid_dress/Y = wielder.get_item_by_slot(ITEM_SLOT_OCLOTHING)
+	if(istype(Y))
+		if(isliving(target))
+			var/mob/living/simple_animal/M = target
+			if(!ishuman(M) && !M.has_status_effect(/datum/status_effect/rend_white))
+				new /obj/effect/temp_visual/cult/sparks(get_turf(M))
+				M.apply_status_effect(/datum/status_effect/rend_white)
 
 /obj/item/ego_weapon/city/echo/twins/gomorrah
 	name = "gomorrah"
@@ -65,7 +68,7 @@
 /obj/item/ego_weapon/shield/eria
 	name = "eria"
 	desc = "It has been quite a while since I last used you two. I missed the feeling."
-	special = "This weapon restores health on a successful block."
+	special = "This weapon restores health on a successful block. If you are also wielding iria, increase the healing on a successful block."
 	icon_state = "eria"
 	icon = 'ModularTegustation/Teguicons/lc13_weapons.dmi'
 	lefthand_file = 'ModularTegustation/Teguicons/lc13_left.dmi'
@@ -110,17 +113,21 @@
 		to_chat(source,span_nicegreen("Your [src] withers at the touch of death!"))
 		return ..()
 	to_chat(source,span_nicegreen("You are healed by [src]."))
-	source.adjustBruteLoss(-25)
+	if ((locate(/obj/item/ego_weapon/city/echo/iria) in source.held_items) && (locate(/obj/item/ego_weapon/shield/eria) in source.held_items))
+		source.adjustBruteLoss(-15)
+	else
+		source.adjustBruteLoss(-25)
 	..()
 
 /obj/item/ego_weapon/city/echo/iria
 	name = "iria"
 	desc = "Experiences have shaped me this way."
 	icon_state = "iria"
-	special = "When attacking while using both iria and eria, deal 0.3 more damage and increase the knockback caused by iria."
+	special = "When attacking while using both iria and eria, deal 30% more damage and increase the knockback caused by iria. If you are also wearing Plated Outer Cover armor, you heal a bit of HP on hit."
 	force = 45
-	attack_speed = 1.5
+	attack_speed = 2
 	damtype = BLACK_DAMAGE
+	var/healing_on_hit = 5
 	var/damage_multiplier = 1.3
 	attack_verb_continuous = list("bashes", "hammers", "smacks")
 	attack_verb_simple = list("bash", "hammer", "smack")
@@ -141,7 +148,10 @@
 
 	if(!.)
 		return FALSE
-
+	var/mob/living/carbon/human/wielder = user
+	var/obj/item/clothing/suit/armor/ego_gear/city/echo/plated/Y = wielder.get_item_by_slot(ITEM_SLOT_OCLOTHING)
+	if(istype(Y))
+		wielder.adjustBruteLoss(-healing_on_hit)
 	force_multiplier = old_force_multiplier
 	knockback = KNOCKBACK_LIGHT
 
@@ -149,14 +159,14 @@
 /obj/item/ego_weapon/city/echo/sunstrike
 	name = "sunstrike"
 	desc = "A heavy spear decorated with vibrant patterns on the head. Etched with the name 'Helios' on the grip."
-	special = "This weapon inflicts burn on hit."
+	special = "This weapon inflicts 6 burn on hit, If you are wearing the Frilled Maid Outfit/Faux Fur Coat outfit, Double the burn inflicted."
 	icon_state = "sunstrike"
 	force = 42
 	attack_speed = 1.5
 	reach = 2
 	stuntime = 5
 	damtype = RED_DAMAGE
-	var/inflict_burn = 2
+	var/inflict_burn = 6
 	attack_verb_continuous = list("pokes", "jabs", "tears", "lacerates", "gores")
 	attack_verb_simple = list("poke", "jab", "tear", "lacerate", "gore")
 	hitsound = 'sound/weapons/ego/spear1.ogg'
@@ -171,4 +181,9 @@
 	if(!CanUseEgo(user))
 		return
 	..()
-	target.apply_lc_burn(inflict_burn)
+	var/mob/living/carbon/human/wielder = user
+	var/obj/item/clothing/suit/armor/ego_gear/city/echo/faux/Y = wielder.get_item_by_slot(ITEM_SLOT_OCLOTHING)
+	if(istype(Y))
+		target.apply_lc_burn(inflict_burn*2)
+	else
+		target.apply_lc_burn(inflict_burn)
