@@ -745,3 +745,22 @@
 	)
 	result = /obj/item/food/cannoli
 	subcategory = CAT_PASTRY
+
+/datum/crafting_recipe/food/croissant
+	name = "Croissant"
+	reqs = list(
+		/obj/item/food/pastrybase = 1,
+		/obj/item/food/butter = 1
+	)
+	result = /obj/item/food/croissant
+	subcategory = CAT_PASTRY
+
+/datum/crafting_recipe/food/pain_au_chocolat
+	name = "Pain au chocolat"
+	reqs = list(
+		/obj/item/food/pastrybase = 1,
+		/obj/item/food/butter = 1,
+		/obj/item/food/chocolatebar = 1
+	)
+	result = /obj/item/food/pain_au_chocolat
+	subcategory = CAT_PASTRY
