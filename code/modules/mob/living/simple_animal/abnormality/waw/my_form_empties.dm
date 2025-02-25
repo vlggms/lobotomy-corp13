@@ -116,14 +116,13 @@
 
 /mob/living/simple_animal/hostile/abnormality/my_form_empties/adjustHealth(amount, updating_health = TRUE, forced = FALSE)
 	if(!LAZYLEN(current_minions))
-		..()
-		return
+		return ..()
 	var/damage_penalty = LAZYLEN(current_minions)
 	if(damage_penalty >= 3)
 		amount = 0
 	else
 		amount -= amount * (0.3 * damage_penalty)
-	..()
+	return ..()
 
 /mob/living/simple_animal/hostile/abnormality/my_form_empties/AttackingTarget(atom/attacked_target)
 	return OpenFire()//staff attacks go here
