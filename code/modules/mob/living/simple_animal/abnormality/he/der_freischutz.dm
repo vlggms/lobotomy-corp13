@@ -12,7 +12,7 @@
 	minimum_distance = 10
 	retreat_distance = 2
 	move_to_delay = 6
-	damage_coeff = list(RED_DAMAGE = 1, WHITE_DAMAGE = 2, BLACK_DAMAGE = 0.7, PALE_DAMAGE = 0.5)
+	damage_coeff = list(RED_DAMAGE = 1, WHITE_DAMAGE = 2, BLACK_DAMAGE = 0.7, PALE_DAMAGE = 0.5, FIRE = 0.5)
 	stat_attack = HARD_CRIT
 	vision_range = 28 // Fit for a marksman.
 	aggro_vision_range = 40
