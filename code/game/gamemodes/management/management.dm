@@ -109,6 +109,17 @@
 		ABNORMALITY_ORIGIN_ORIGINAL
 		)
 
+/datum/game_mode/management/branch12
+	name = "Branch 12"
+	config_tag = "branch12"
+	votable = 1
+
+	announce_span = "notice"
+	announce_text = "Manage a group of Unique Branch 12 Abnormalities!"
+	abno_types = list(
+		ABNORMALITY_ORIGIN_BRANCH12
+		)
+
 /datum/game_mode/management/joke
 	name = "L Corp - Joke Abnormalities"
 	config_tag = "joke"
