@@ -185,8 +185,8 @@
 /turf/open/floor/plating/dirt/jungle/wasteland,
 /area/city/backstreets_room)
 "U" = (
-/turf/closed/indestructible/rock,
-/area/city/backstreets_room)
+/turf/template_noop,
+/area/template_noop)
 "V" = (
 /obj/effect/decal/cleanable/blood/splatter,
 /turf/open/floor/plating/dirt/jungle/dark,
