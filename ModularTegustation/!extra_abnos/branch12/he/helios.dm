@@ -9,7 +9,7 @@
 
 	damage_coeff = list(RED_DAMAGE = 0, WHITE_DAMAGE = 1, BLACK_DAMAGE = 1.5, PALE_DAMAGE = 0)
 	can_breach = TRUE
-	threat_level = ALEPH_LEVEL
+	threat_level = HE_LEVEL
 	start_qliphoth = 3
 	work_chances = list(
 		ABNORMALITY_WORK_INSTINCT = list(80, 60, 45, 30, 30),
