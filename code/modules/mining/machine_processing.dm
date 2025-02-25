@@ -135,6 +135,7 @@
 	proximity_monitor = new(src, 1)
 	var/list/allowed_materials = list(/datum/material/iron,
 									/datum/material/glass,
+									/datum/material/plastic,
 									/datum/material/silver,
 									/datum/material/gold,
 									/datum/material/diamond,

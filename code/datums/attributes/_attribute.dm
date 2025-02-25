@@ -194,7 +194,7 @@ GLOBAL_LIST_INIT(attribute_types, list(
 	for(var/a in user.attributes)
 		var/datum/attribute/atr = user.attributes[a]
 		collective_levels += atr.level
-	return clamp(round(collective_levels / 70), 1, 5)
+	return (clamp(round(collective_levels / 70), 1, 5) + user.physiology.fear_mod)
 
 // Returns a level for the show_attributes proc as a roman numeral I - V, or EX if level is too high.
 /mob/living/carbon/human/proc/get_text_level()
