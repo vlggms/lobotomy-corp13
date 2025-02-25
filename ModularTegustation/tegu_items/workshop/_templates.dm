@@ -35,7 +35,7 @@
 	if(specialmod)
 		specialmod.ActivateEffect(src, special_count, target, user)
 	..()
-	if(target.stat != DEAD)
+	if(target.stat != DEAD || !istype(target, /mob/living/simple_animal/hostile/debugdummy))
 		weapon_xp++
 	force = true_force
 
