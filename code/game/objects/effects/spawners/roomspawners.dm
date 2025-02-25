@@ -31,12 +31,12 @@
 		if(template.stock <= 0)
 			template.spawned = TRUE
 		if(spawn_delay_min > 0 || spawn_delay_max > 0)
-			addtimer(CALLBACK(src, TYPE_PROC_REF(/obj/effect/spawner/room, LateSpawn)), rand(spawn_delay_min, spawn_delay_max))
+			addtimer(CALLBACK(src, PROC_REF(LateSpawn), template), rand(spawn_delay_min, spawn_delay_max))
 		else
 			template.load(get_turf(src), centered = template.centerspawner)
-	qdel(src)
+			qdel(src)
 
-/obj/effect/spawner/room/proc/LateSpawn()
+/obj/effect/spawner/room/proc/LateSpawn(datum/map_template/random_room/template)
 	template.load(get_turf(src), centered = template.centerspawner)
 	qdel(src)
 
