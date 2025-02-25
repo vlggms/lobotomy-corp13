@@ -181,7 +181,8 @@ Defeating the murderer also surpresses the abnormality.
 		var/datum/status_effect/actor/S = L.has_status_effect(/datum/status_effect/actor)
 		if(S)
 			qdel(S)
-	UnregisterSignal(A, COMSIG_LIVING_DEATH)
+	if(A)
+		UnregisterSignal(A, COMSIG_LIVING_DEATH)
 
 //Overlays
 /mob/living/simple_animal/hostile/abnormality/screenwriter/proc/SpawnIcon()

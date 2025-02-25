@@ -256,6 +256,11 @@
 /obj/machinery/light,
 /turf/open/floor/plasteel,
 /area/facility_hallway/central)
+"Bn" = (
+/obj/machinery/light,
+/obj/effect/mapping_helpers/records_spawner/second,
+/turf/open/floor/plasteel,
+/area/facility_hallway/central)
 "BU" = (
 /obj/machinery/announcement_system,
 /turf/open/floor/plasteel,
@@ -311,6 +316,11 @@
 /obj/item/ammo_box/magazine/m45,
 /obj/item/ammo_box/magazine/m45,
 /obj/item/ammo_box/magazine/m45,
+/turf/open/floor/plasteel,
+/area/facility_hallway/central)
+"Lf" = (
+/obj/machinery/light,
+/obj/effect/mapping_helpers/records_spawner,
 /turf/open/floor/plasteel,
 /area/facility_hallway/central)
 "Ln" = (
@@ -4792,7 +4802,7 @@ bb
 OD
 fJ
 Xh
-zU
+Lf
 OD
 Xh
 Xh
@@ -5160,7 +5170,7 @@ bb
 OD
 bm
 Xh
-zU
+Bn
 OD
 Xh
 Xh
