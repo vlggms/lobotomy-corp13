@@ -43,3 +43,50 @@
 		if(prob(50))
 			M.Jitter(4)
 	..()
+
+// LC13 Related Chems
+
+/datum/reagent/drug/enkephalin
+	name = "Enkephalin"
+	description = "A substance known to be a drug, as well as a clean source of energy."
+	reagent_state = LIQUID
+	color = "#70fa9a"
+	overdose_threshold = 15
+	addiction_types = list(/datum/addiction/opiods = 25) //Unsure how strong this is ingame but it is addictive
+
+/datum/reagent/drug/enkephalin/on_mob_metabolize(mob/living/L)
+	. = ..()
+	if(istype(L, /mob/living/carbon/human))
+		var/mob/living/carbon/human/H = L
+		H.set_screwyhud(SCREWYHUD_HEALTHY)
+		if(istype(H.getorganslot(ORGAN_SLOT_STOMACH), /obj/item/organ/stomach)) //In case it doesn't exist
+			var/obj/item/organ/stomach/S = H.getorganslot(ORGAN_SLOT_STOMACH)
+			S.metabolism_efficiency -= 0.05
+
+/datum/reagent/drug/enkephalin/on_mob_life(mob/living/M)
+	. = ..()
+	if(istype(M, /mob/living/carbon/human))
+		var/mob/living/carbon/human/H = M
+		H.adjustSanityLoss(-2*REM)
+		H.hallucination += 1 //Causes hallucinations in Lob Corp
+		H.set_screwyhud(SCREWYHUD_HEALTHY) //just in case of hallucinations
+		H.adjustStaminaLoss(-2) //Lack of pain means less fatigue
+		//Also slows tumor growth, such as brain tumors
+
+/datum/reagent/drug/enkephalin/on_mob_end_metabolize(mob/living/L)
+	. = ..()
+	if(istype(L, /mob/living/carbon/human))
+		var/mob/living/carbon/human/H = L
+		H.set_screwyhud(SCREWYHUD_NONE)
+		if(istype(H.getorganslot(ORGAN_SLOT_STOMACH), /obj/item/organ/stomach)) //In case it doesn't exist
+			var/obj/item/organ/stomach/S = H.getorganslot(ORGAN_SLOT_STOMACH)
+			S.metabolism_efficiency += 0.5
+
+/datum/reagent/drug/enkephalin/overdose_process(mob/living/M)
+	. = ..()
+	if(istype(M, /mob/living/carbon/human))
+		var/mob/living/carbon/human/H = M
+		if(prob(10))
+			H.losebreath += 0.5 //Can cause the lungs to retract
+		H.hallucination += 2
+
