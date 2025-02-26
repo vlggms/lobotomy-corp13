@@ -552,9 +552,9 @@
 	they go through grows while never losing that spark of light inside. To hold the weight of the world requires someone Pure, \
 	and the same can be said for this EGO which is weighed down by a heavy past that might as well be the weight of the world."
 	icon_state = "purity"
-	force = 120
+	force = 80
 	reach = 2		//Has 2 Square Reach.
-	stuntime = 5	//Longer reach, gives you a short stun.
+	stuntime = 20	//Longer reach, gives you a short stun.
 	attack_speed = 1.2
 	damtype = WHITE_DAMAGE
 	attack_verb_continuous = list("pokes", "jabs", "tears", "lacerates", "gores")
@@ -566,6 +566,60 @@
 							TEMPERANCE_ATTRIBUTE = 80,
 							JUSTICE_ATTRIBUTE = 80
 							)
+	var/ranged_cooldown
+	var/ranged_cooldown_time = 1.5 SECONDS
+	var/ranged_range = 5
+	var/ranged_inflict = 5
+
+/obj/item/ego_weapon/branch12/purity/attack(mob/living/target, mob/living/user)
+	..()
+	var/datum/status_effect/stacking/lc_metal_decay/D = target.has_status_effect(/datum/status_effect/stacking/lc_metal_decay)
+	if(D)
+		for(var/i = 1 to 3)
+			D.statues_damage(FALSE)
+
+/obj/item/ego_weapon/branch12/purity/afterattack(atom/A, mob/living/user, proximity_flag, params)
+	if(ranged_cooldown > world.time)
+		return
+	if(!CanUseEgo(user))
+		return
+	var/turf/target_turf = get_turf(A)
+	if(!istype(target_turf))
+		return
+	if(!(target_turf in view(ranged_range, user)))
+		return
+	..()
+	var/turf/projectile_start = get_turf(user)
+	ranged_cooldown = world.time + ranged_cooldown_time
+	playsound(target_turf, 'sound/weapons/pulse.ogg', 50, TRUE)
+
+	//Stuff for creating the projctile.
+	var/obj/projectile/ego_bullet/branch12/old_pale/B = new(projectile_start)
+	B.starting = projectile_start
+	B.firer = user
+	B.fired_from = projectile_start
+	B.yo = target_turf.y - projectile_start.y
+	B.xo = target_turf.x - projectile_start.x
+	B.original = target_turf
+	B.preparePixelProjectile(target_turf, projectile_start)
+	B.fire()
+
+/obj/projectile/ego_bullet/branch12/old_pale
+	name = "pale smoke"
+	icon_state = "smoke"
+	damage = 35
+	speed = 4
+	range = 5
+	damage_type = WHITE_DAMAGE
+	projectile_piercing = PASSMOB
+	var/inflicted_decay = 5
+
+/obj/projectile/ego_bullet/branch12/old_pale/on_hit(atom/target, blocked = FALSE)
+	. = ..()
+	if(!isliving(target))
+		return
+	var/mob/living/poorfool = target
+	poorfool.apply_lc_metal_decay(inflicted_decay)
 
 //Sands of Time
 /obj/item/ego_weapon/branch12/time_sands
