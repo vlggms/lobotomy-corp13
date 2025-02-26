@@ -49,6 +49,12 @@
 		/obj/item/mailpaper/trapped/flashbang,
 	)
 
+/mob/living/simple_animal/hostile/abnormality/mailpile/AttackingTarget()
+	return FALSE
+
+/mob/living/simple_animal/hostile/abnormality/mailpile/Move()
+	return FALSE
+
 /mob/living/simple_animal/hostile/abnormality/mailpile/Destroy()
 	for(var/obj/effect/VFX in spawned_effects)
 		qdel(VFX)

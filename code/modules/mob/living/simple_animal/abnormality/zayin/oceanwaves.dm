@@ -149,6 +149,9 @@
 /mob/living/simple_animal/hostile/abnormality/oceanicwaves/AttackingTarget()
 	return FALSE
 
+/mob/living/simple_animal/hostile/abnormality/oceanicwaves/Move()
+	return FALSE
+
 /obj/projectile/oceanic
 	name = "shaken can of 'Oceanic Waves' soda"
 	desc = "A shaken can of sketchy orange soda."
