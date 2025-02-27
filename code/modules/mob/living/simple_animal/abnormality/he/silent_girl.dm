@@ -25,6 +25,7 @@
 	)
 	work_damage_amount = 5
 	work_damage_type = WHITE_DAMAGE
+	chem_type = /datum/reagent/abnormality/sin/gloom
 	start_qliphoth = 3
 
 	ego_list = list(

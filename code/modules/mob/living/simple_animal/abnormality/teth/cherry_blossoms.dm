@@ -21,6 +21,7 @@
 	start_qliphoth = 3
 	work_damage_amount = 5
 	work_damage_type = WHITE_DAMAGE
+	chem_type = /datum/reagent/abnormality/sin/lust
 	good_hater = TRUE
 
 	ego_list = list(

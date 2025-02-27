@@ -4,6 +4,7 @@
 	description = "A substance of certain vitamins that can be found in some foods. \
 		Increases fortitude by 6 while in system."
 	color = COLOR_VIVID_RED
+	metabolization_rate = 0.2 * REAGENTS_METABOLISM
 	stat_changes = list(6, 0, 0, 0)
 
 /datum/reagent/abnormality/bittersyrup

@@ -72,6 +72,11 @@
 	. = ..()
 	if(!proximity)
 		return
+	if(isabnormalitymob(A))
+		var/mob/living/simple_animal/hostile/abnormality/B = A
+		to_chat(user, span_notice("The chemical able to be extracted is: [B.chem_type]."))
+		return
+
 	if(!isnull(A.reagents))
 		last_scan = list()
 		if(A.reagents.reagent_list.len > 0)

@@ -20,6 +20,7 @@
 	)
 	work_damage_amount = 8
 	work_damage_type = RED_DAMAGE
+	chem_type = /datum/reagent/abnormality/sin/envy
 	ego_list = list(
 		/datum/ego_datum/weapon/get_strong,
 		/datum/ego_datum/armor/get_strong,

@@ -38,6 +38,7 @@
 	)
 	work_damage_amount = 14
 	work_damage_type = BLACK_DAMAGE
+	chem_type = /datum/reagent/abnormality/sin/lust
 	/* Sounds */
 	projectilesound = 'sound/abnormalities/meltinglove/ranged.ogg'
 	attack_sound = 'sound/abnormalities/meltinglove/attack.ogg'

@@ -21,6 +21,7 @@
 
 	work_damage_amount = 16
 	work_damage_type = RED_DAMAGE
+	chem_type = /datum/reagent/abnormality/sin/lust
 	can_breach = TRUE
 
 	melee_damage_lower = 92

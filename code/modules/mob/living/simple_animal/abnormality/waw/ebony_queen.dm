@@ -43,6 +43,7 @@
 	)
 	work_damage_amount = 8
 	work_damage_type = BLACK_DAMAGE
+	chem_type = /datum/reagent/abnormality/sin/gluttony
 
 	observation_prompt = "(I hear something) <br>\
 		The wicked queen is speaking with the magic mirror again and frowns when its answer remains unchanged. <br>\

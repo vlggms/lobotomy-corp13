@@ -1,5 +1,5 @@
 
-///// Dummy chems that will be produced when harvesting from an abnormality that has no unique chem.
+///// Chems that will be produced by mixing basic sins
 
 /datum/reagent/abnormality/nutrition // Restores some HP, but you go hungry faster.
 	name = "Generic Enkephalin Derivate type NT"
@@ -46,7 +46,7 @@
 	name = "Generic Enkephalin Derivate type VL"
 	description = "Barely stable, but it exists..."
 	color = "#dd3e3b"
-	health_restore = -2
+	health_restore = -1
 	stat_changes = list(0, 0, 0, 10)
 
 /datum/reagent/abnormality/abno_oil // Generally found in mechanical abnormalities. Increases vulnerability to Black damage. Increases resistance to normal damage.
@@ -61,6 +61,6 @@
 	description = "Barely stable, but it exists..."
 	color = COLOR_GRAY
 	// Attempting to balance this by making the hp cost twice the sanity restored.
-	health_restore = -4
+	health_restore = -2
 	sanity_restore = 2
 	special_properties = list("substance transforms mental wounds into physical injuries.")

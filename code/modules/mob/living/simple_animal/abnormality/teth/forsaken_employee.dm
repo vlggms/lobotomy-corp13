@@ -22,6 +22,7 @@
 	)
 	gift_type =  /datum/ego_gifts/denial
 	abnormality_origin = ABNORMALITY_ORIGIN_LIMBUS
+	chem_type = /datum/reagent/abnormality/sin/gloom
 
 	var/list/blackout_list = list()
 

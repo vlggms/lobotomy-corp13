@@ -26,6 +26,7 @@
 	)
 	work_damage_amount = 10
 	work_damage_type = WHITE_DAMAGE
+	chem_type = /datum/reagent/abnormality/sin/pride
 	good_hater = TRUE
 
 	light_color = COLOR_PINK

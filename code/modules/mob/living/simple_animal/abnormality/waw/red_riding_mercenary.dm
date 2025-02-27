@@ -37,6 +37,7 @@ It has now been over four months. Now we get her for real. -Coxswain
 	stat_attack = HARD_CRIT
 	work_damage_amount = 10
 	work_damage_type = RED_DAMAGE
+	chem_type = /datum/reagent/abnormality/sin/pride
 	patrol_cooldown_time = 10 SECONDS // She's restless
 	attack_verb_continuous = "cuts"
 	attack_verb_simple = "cuts"

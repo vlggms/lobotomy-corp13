@@ -40,6 +40,7 @@
 	)
 	work_damage_amount = 12
 	work_damage_type = WHITE_DAMAGE
+	chem_type = /datum/reagent/abnormality/sin/gluttony
 	good_hater = TRUE
 	death_message = "blows up like a balloon!"
 	speak_chance = 2

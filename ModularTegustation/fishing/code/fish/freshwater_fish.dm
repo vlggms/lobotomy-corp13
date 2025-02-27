@@ -90,3 +90,7 @@
 	random_case_rarity = FISH_RARITY_RARE
 	stable_population = 4 //set by New, but this is the default config value
 	fillet_type = /obj/item/food/freshfish/rotten
+	food_reagents = list(
+		/datum/reagent/consumable/nutriment/organ_tissue = 5,
+		/datum/reagent/abnormality/focussyrup = 4,
+	)

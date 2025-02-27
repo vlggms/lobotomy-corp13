@@ -20,6 +20,7 @@
 	)
 	work_damage_amount = 10
 	work_damage_type = WHITE_DAMAGE
+	chem_type = /datum/reagent/abnormality/sin/gloom
 	max_boxes = 15
 	response_help_continuous = "hugs" // :-)
 	response_help_simple = "hug"

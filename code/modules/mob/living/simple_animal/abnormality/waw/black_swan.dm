@@ -42,6 +42,7 @@
 	)
 	work_damage_amount = 12
 	work_damage_type = WHITE_DAMAGE
+	chem_type = /datum/reagent/abnormality/sin/pride
 	death_message = "weeps a green sludge while clutching her brooch."
 	base_pixel_x = -16
 	pixel_x = -16

@@ -25,6 +25,7 @@
 	)
 	work_damage_amount = 5
 	work_damage_type = WHITE_DAMAGE
+	chem_type = /datum/reagent/abnormality/sin/sloth
 	ego_list = list(
 		/datum/ego_datum/weapon/rapunzel,
 		/datum/ego_datum/armor/rapunzel,

@@ -37,12 +37,13 @@
 	metabolization_rate = 0.5 * REAGENTS_METABOLISM
 	stat_changes = list(-5, 10, 10, -5)
 
-/datum/reagent/abnormality/culpusumidus // Increases Prudence but inflicts sanity damage when exiting system.
+/datum/reagent/abnormality/culpusumidus // Increases Prudence and heals SP but inflicts sanity damage when exiting system.
 	name = "Culpus Umidus"
 	description = "This fluid increases prudence but induces \
 		a intense feeling of remorse when leaving the subjects system."
 	metabolization_rate = 0.5 * REAGENTS_METABOLISM
 	color = COLOR_BEIGE
+	sanity_restore = 2
 	stat_changes = list(0, 10, 0, 0)
 
 /datum/reagent/abnormality/culpusumidus/on_mob_end_metabolize(mob/living/L)
@@ -63,7 +64,7 @@
 	if(ishuman(M))
 		var/mob/living/carbon/human/H = M
 		if(H.sanity_lost)
-			H.adjustSanityLoss((-H.maxSanity*0.05)*REM)
+			H.adjustSanityLoss((-H.maxSanity*0.07)*REM)
 		else
 			H.adjustSanityLoss(-1*REM)
 	return ..()
@@ -78,7 +79,7 @@
 /datum/reagent/abnormality/piedrabital/on_mob_life(mob/living/carbon/M)
 	if(ishuman(M))
 		var/mob/living/carbon/human/H = M
-		if(prob(20 + (0.5 * current_cycle)))
+		if(prob(10 + (0.5 * current_cycle)))
 			//Chance of stun increases by 0.5 per cycle
 			if(!H.IsStun())
 				to_chat(H, "Your limbs suddenly spasm and tighten like you have pebbles stuck inside them.")
@@ -94,8 +95,8 @@
 		physically and emotionally."
 	metabolization_rate = 0.8 * REAGENTS_METABOLISM
 	color = COLOR_RED
-	health_restore = 2
-	sanity_restore = 2
+	health_restore = 3
+	sanity_restore = 3
 	stat_changes = list(-40, -40, -40, -40)
 
 /datum/reagent/abnormality/lesser_sange_rau // Rapidly converts blood into health

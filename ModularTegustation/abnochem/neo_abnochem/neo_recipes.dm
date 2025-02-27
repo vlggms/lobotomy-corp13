@@ -23,7 +23,7 @@
 
 /datum/chemical_reaction/serelam
 	results = list(/datum/reagent/abnormality/serelam  = 1)
-	required_reagents = list(/datum/reagent/abnormality/bittersyrup = 1, /datum/reagent/abnormality/tastesyrup = 1)
+	required_reagents = list(/datum/reagent/abnormality/heartysyrup = 1, /datum/reagent/abnormality/abno_oil = 1)
 	mob_react = FALSE
 	mix_message = "The mixture starts to swirl around."
 
@@ -39,7 +39,7 @@
 
 /datum/chemical_reaction/dyscrasone
 	results = list(/datum/reagent/abnormality/dyscrasone  = 2)
-	required_reagents = list(/datum/reagent/abnormality/heartysyrup = 1, /datum/reagent/abnormality/odisone = 1)
+	required_reagents = list(/datum/reagent/abnormality/bittersyrup = 1, /datum/reagent/abnormality/tastesyrup = 1)
 	mob_react = FALSE
 	mix_message = "The mixture starts sizzling."
 
@@ -76,18 +76,18 @@
 
 
 //Syrups. These are the most simple of chems.
-/datum/chemical_reaction/focussyrup
-	results = list(/datum/reagent/abnormality/focussyrup = 3)
-	required_reagents = list(/datum/reagent/abnormality/sin/gloom = 1, /datum/reagent/abnormality/sin/gluttony = 1)
+/datum/chemical_reaction/heartysyrup
+	results = list(/datum/reagent/abnormality/heartysyrup = 2)
+	required_reagents = list(/datum/reagent/abnormality/sin/sloth = 1, /datum/reagent/abnormality/sin/envy = 1)
 
 /datum/chemical_reaction/bittersyrup
-	results = list(/datum/reagent/abnormality/bittersyrup = 3)
+	results = list(/datum/reagent/abnormality/bittersyrup = 2)
 	required_reagents = list(/datum/reagent/abnormality/sin/envy = 1, /datum/reagent/abnormality/sin/lust = 1)
 
 /datum/chemical_reaction/tastesyrup
-	results = list(/datum/reagent/abnormality/tastesyrup = 3)
-	required_reagents = list(/datum/reagent/abnormality/sin/gloom = 1, /datum/reagent/abnormality/sin/wrath = 1)
+	results = list(/datum/reagent/abnormality/tastesyrup = 2)
+	required_reagents = list(/datum/reagent/abnormality/sin/pride = 1, /datum/reagent/abnormality/sin/wrath = 1)
 
-/datum/chemical_reaction/heartysyrup
-	results = list(/datum/reagent/abnormality/heartysyrup = 3)
-	required_reagents = list(/datum/reagent/abnormality/sin/sloth = 1, /datum/reagent/abnormality/sin/envy = 1)
+/datum/chemical_reaction/focussyrup
+	results = list(/datum/reagent/abnormality/focussyrup = 2)
+	required_reagents = list(/datum/reagent/abnormality/sin/gloom = 1, /datum/reagent/abnormality/sin/gluttony = 1)

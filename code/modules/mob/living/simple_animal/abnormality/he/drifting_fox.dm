@@ -25,6 +25,7 @@
 	melee_damage_lower = 5
 	melee_damage_upper = 15 // Idea taken from the old PR, have a large damage range to immitate its fucked rolls and crit chance.
 	melee_damage_type = BLACK_DAMAGE
+	chem_type = /datum/reagent/abnormality/sin/gluttony
 	stat_attack = HARD_CRIT
 	attack_sound = 'sound/abnormalities/drifting_fox/fox_melee_sound.ogg'
 	attack_verb_simple = "thwacks"
