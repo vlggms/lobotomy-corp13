@@ -438,3 +438,98 @@
 	food_reagents = list(/datum/reagent/consumable/nutriment = 3, /datum/reagent/consumable/nutriment/vitamin = 1)
 	tastes = list("cake" = 4, "butter" = 2, "cream" = 1)
 	foodtypes = GRAIN | DAIRY | SUGAR
+
+/obj/item/food/cake/charlotte
+	name = "strawberry charlotte"
+	desc = "A charlotte full of cream and strawberries."
+	icon_state = "strawberry_charlotte"
+	food_reagents = list(/datum/reagent/consumable/nutriment = 20, /datum/reagent/consumable/nutriment/vitamin = 8)
+	tastes = list("cake" = 4, "strawberry" = 2, "cream" = 1)
+	foodtypes = GRAIN | DAIRY | FRUIT | SUGAR
+
+/obj/item/food/cake/charlotte/MakeProcessable()
+	AddElement(/datum/element/processable, TOOL_KNIFE, /obj/item/food/cakeslice/charlotte, 6, 30)
+
+/obj/item/food/cakeslice/charlotte
+	name = "strawberry charlotte slice"
+	desc = "A slice of strawberry charlotte."
+	icon_state = "strawberry_charlotte_slice"
+	food_reagents = list(/datum/reagent/consumable/nutriment = 4, /datum/reagent/consumable/nutriment/vitamin = 2)
+	tastes = list("cake" = 4, "strawberry" = 2, "cream" = 1)
+	foodtypes = GRAIN | DAIRY | FRUIT | SUGAR
+
+/obj/item/food/cake/fraisier
+	name = "fraisier"
+	desc = "A delicous fraisier made of strawberry and cream."
+	icon_state = "fraisier"
+	food_reagents = list(/datum/reagent/consumable/nutriment = 20, /datum/reagent/consumable/nutriment/vitamin = 8)
+	tastes = list("cake" = 4, "strawberry" = 2, "cream" = 1)
+	foodtypes = GRAIN | DAIRY | FRUIT | SUGAR
+
+/obj/item/food/cake/fraisier/MakeProcessable()
+	AddElement(/datum/element/processable, TOOL_KNIFE, /obj/item/food/cakeslice/fraisier, 6, 30)
+
+/obj/item/food/cakeslice/fraisier
+	name = "fraisier slice"
+	desc = "A slice of fraisier."
+	icon_state = "fraisier_slice"
+	food_reagents = list(/datum/reagent/consumable/nutriment = 4, /datum/reagent/consumable/nutriment/vitamin = 2)
+	tastes = list("cake" = 4, "strawberry" = 2, "cream" = 1)
+	foodtypes = GRAIN | DAIRY | FRUIT | SUGAR
+
+/obj/item/food/cake/saint_honore
+	name = "saint honore"
+	desc = "A cake made with cream filled and caramel glazed balls on top of some chocolate and more cream."
+	icon_state = "saint_honore"
+	food_reagents = list(/datum/reagent/consumable/nutriment = 20, /datum/reagent/consumable/nutriment/vitamin = 10)
+	tastes = list("cake" = 2, "chocolate" = 2, "cream" = 2, "pastry" = 1, "caramel" = 1)
+	foodtypes = GRAIN | DAIRY | SUGAR
+
+/obj/item/food/cake/saint_honore/MakeProcessable()
+	AddElement(/datum/element/processable, TOOL_KNIFE, /obj/item/food/cakeslice/saint_honore, 6, 30)
+
+/obj/item/food/cakeslice/saint_honore
+	name = "saint honore slice"
+	desc = "A slice of saint honore."
+	icon_state = "saint_honore_slice"
+	food_reagents = list(/datum/reagent/consumable/nutriment = 4, /datum/reagent/consumable/nutriment/vitamin = 2)
+	tastes = list("cake" = 2, "chocolate" = 2, "cream" = 2, "pastry" = 1, "caramel" = 1)
+	foodtypes = GRAIN | DAIRY | SUGAR
+
+/obj/item/food/cake/black_forest
+	name = "black forest"
+	desc = "Unlike a certain black forest, this one is safe and delicously made with chocolate, cream and black cherries."
+	icon_state = "black_forest"
+	food_reagents = list(/datum/reagent/consumable/nutriment = 20, /datum/reagent/consumable/nutriment/vitamin = 8)
+	tastes = list("cake" = 2, "chocolate" = 2, "cream" = 2, "cherry" = 1)
+	foodtypes = GRAIN | DAIRY | FRUIT | SUGAR
+
+/obj/item/food/cake/black_forest/MakeProcessable()
+	AddElement(/datum/element/processable, TOOL_KNIFE, /obj/item/food/cakeslice/black_forest, 6, 30)
+
+/obj/item/food/cakeslice/black_forest
+	name = "black forest slice"
+	desc = "A slice of black forest."
+	icon_state = "black_forest_slice"
+	food_reagents = list(/datum/reagent/consumable/nutriment = 4, /datum/reagent/consumable/nutriment/vitamin = 2)
+	tastes = list("cake" = 2, "chocolate" = 2, "cream" = 2, "cherry" = 1)
+	foodtypes = GRAIN | DAIRY | FRUIT | SUGAR
+
+/obj/item/food/cake/triple_berry
+	name = "triple layer berry cake"
+	desc = "Triple the layers, triple the berries, triple the pleasure."
+	icon_state = "triple_berry_cake"
+	food_reagents = list(/datum/reagent/consumable/nutriment = 20, /datum/reagent/consumable/nutriment/vitamin = 8)
+	tastes = list("cake" = 2, "cream" = 2, "berries" = 2)
+	foodtypes = GRAIN | DAIRY | FRUIT | SUGAR
+
+/obj/item/food/cake/triple_berry/MakeProcessable()
+	AddElement(/datum/element/processable, TOOL_KNIFE, /obj/item/food/cakeslice/triple_berry, 6, 30)
+
+/obj/item/food/cakeslice/triple_berry
+	name = "triple layer berry cake slice"
+	desc = "A triple layer berry cake."
+	icon_state = "triple_berry_cake_slice"
+	food_reagents = list(/datum/reagent/consumable/nutriment = 4, /datum/reagent/consumable/nutriment/vitamin = 2)
+	tastes = list("cake" = 2, "cream" = 2, "berries" = 2)
+	foodtypes = GRAIN | DAIRY | FRUIT | SUGAR
