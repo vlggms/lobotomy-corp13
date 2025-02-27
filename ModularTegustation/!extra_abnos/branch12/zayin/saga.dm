@@ -68,7 +68,6 @@
 				if(prob(2))
 					if(H.z!=z)
 						continue
-					H.vomit(20, FALSE, distance = 0)
 					H.adjustToxLoss(3)
 					to_chat(H, span_warning("You feel sick..."))
 
@@ -93,7 +92,7 @@
 						H.dust()
 
 		if("Industrial Age")
-			if(prob(1)&& industry)
+			if(prob(2)&& industry)
 				industry--
 				for(var/mob/living/carbon/human/H in GLOB.mob_list)
 					if(H.z!=z)
@@ -101,3 +100,11 @@
 					H.adjust_all_attribute_levels(2)
 					to_chat(H, span_warning("Prosperitas!"))
 
+
+		//Not
+		if("Medical Age")
+			for(var/mob/living/carbon/human/H in GLOB.mob_list)
+				if(prob(5))
+					if(H.z!=z)
+						continue
+					H.adjustBruteLoss(3)
