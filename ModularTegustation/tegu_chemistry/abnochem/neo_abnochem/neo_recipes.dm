@@ -82,11 +82,11 @@
 
 /datum/chemical_reaction/bittersyrup
 	results = list(/datum/reagent/abnormality/bittersyrup = 2)
-	required_reagents = list(/datum/reagent/abnormality/sin/envy = 1, /datum/reagent/abnormality/sin/lust = 1)
+	required_reagents = list(/datum/reagent/abnormality/sin/envy = 1, /datum/reagent/abnormality/sin/wrath = 1)
 
 /datum/chemical_reaction/tastesyrup
 	results = list(/datum/reagent/abnormality/tastesyrup = 2)
-	required_reagents = list(/datum/reagent/abnormality/sin/pride = 1, /datum/reagent/abnormality/sin/wrath = 1)
+	required_reagents = list(/datum/reagent/abnormality/sin/gloom = 1, /datum/reagent/abnormality/sin/sloth = 1)
 
 /datum/chemical_reaction/focussyrup
 	results = list(/datum/reagent/abnormality/focussyrup = 2)
