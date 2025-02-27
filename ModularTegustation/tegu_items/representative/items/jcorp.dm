@@ -144,21 +144,25 @@ GLOBAL_LIST_EMPTY(possible_loot_jcorp)
 		return ..()
 
 /obj/machinery/jcorp_slot_machine/proc/process_gamble(var/token_value)
-	var/result = rand(10)
+	var/result = rand(20)
 	var/final_value = 0
-	if(result <= 1)
+	if(result <= 9)
 		final_value = 0
 		visible_message(span_notice("The machine buzzes as nothing comes out"))
-	else if(result <= 4)
+	else if(result == 10)
 		final_value = token_value - 1
 		visible_message(span_notice("The machine buzzes as a less valuable token comes out."))
-	else if(result <= 8)
+	else if(result <= 19)
 		final_value = token_value
-		visible_message(span_notice("The machine chimes as a token comes out"))
-	else
-		final_value = token_value
+		visible_message(span_notice("The machine chimes as twice as many tokens come out"))
 		print_prize(final_value)
-		visible_message(span_notice("The machine makes all kind of noises as the prize is twice the tokens that was put in!"))
+	else
+		final_value = token_value + 1
+		if(final_value == 6)
+			visible_message(span_notice("The machine chimes as twice as many tokens come out"))
+			print_prize(final_value)
+		else
+			visible_message(span_notice("The machine makes all kind of noises as a more valuable token comes out!"))
 	if(final_value > 0)
 		print_prize(final_value)
 
@@ -172,7 +176,7 @@ GLOBAL_LIST_EMPTY(possible_loot_jcorp)
 			new /obj/item/coin/casino_token/silver(get_turf(src))
 		if(4)
 			new /obj/item/coin/casino_token/gold(get_turf(src))
-		if(5)
+		if(5 to INFINITY) //Shouldn't be possible to get higher than six but might as well put a failsafe
 			new /obj/item/coin/casino_token/diamond(get_turf(src))
 
 /obj/item/blood_slots
