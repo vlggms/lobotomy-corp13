@@ -66,8 +66,8 @@
 	dir = 9
 	},
 /obj/machinery/light/cold/no_nightlight{
-	dir = 1;
-	brightness = 16
+	brightness = 16;
+	dir = 1
 	},
 /turf/open/floor/carpet/stellar,
 /area/department_main/command)
@@ -168,8 +168,8 @@
 /obj/structure/bed,
 /obj/item/bedsheet/cmo,
 /obj/effect/turf_decal/siding/green/corner{
-	dir = 8;
-	color = "#006400"
+	color = "#006400";
+	dir = 8
 	},
 /turf/open/floor/carpet/green,
 /area/department_main/safety)
@@ -401,8 +401,8 @@
 	dir = 1
 	},
 /obj/effect/turf_decal{
-	dir = 3;
-	color = "#FF0000"
+	color = "#FF0000";
+	dir = 3
 	},
 /turf/open/floor/facility/white,
 /area/department_main/control)
@@ -452,8 +452,8 @@
 /area/department_main/command)
 "df" = (
 /obj/effect/turf_decal/siding/green{
-	dir = 6;
-	color = "#006400"
+	color = "#006400";
+	dir = 6
 	},
 /obj/effect/turf_decal/siding/green/corner{
 	color = "#006400"
@@ -661,8 +661,8 @@
 	dir = 8
 	},
 /obj/machinery/light/cold/no_nightlight{
-	dir = 8;
-	brightness = 16
+	brightness = 16;
+	dir = 8
 	},
 /turf/open/floor/facility/white{
 	color = "a1a1a1"
@@ -688,8 +688,8 @@
 /area/department_main/information)
 "eY" = (
 /obj/machinery/light/cold/no_nightlight{
-	dir = 4;
-	brightness = 16
+	brightness = 16;
+	dir = 4
 	},
 /turf/open/floor/wood,
 /area/department_main/command)
@@ -737,8 +737,8 @@
 "fw" = (
 /obj/machinery/regenerator,
 /obj/machinery/light/cold/no_nightlight{
-	dir = 1;
-	brightness = 16
+	brightness = 16;
+	dir = 1
 	},
 /turf/open/floor/facility/dark,
 /area/department_main/control)
@@ -747,8 +747,8 @@
 	pixel_x = -32
 	},
 /obj/machinery/light/cold/no_nightlight{
-	dir = 8;
-	brightness = 16
+	brightness = 16;
+	dir = 8
 	},
 /obj/structure/disposalpipe/segment{
 	dir = 6
@@ -769,8 +769,8 @@
 	dir = 8
 	},
 /obj/machinery/light/cold/no_nightlight{
-	dir = 1;
-	brightness = 16
+	brightness = 16;
+	dir = 1
 	},
 /obj/machinery/camera/autoname{
 	dir = 8
@@ -787,8 +787,8 @@
 "fD" = (
 /obj/machinery/cryopod,
 /obj/machinery/light/cold/no_nightlight{
-	dir = 4;
-	brightness = 16
+	brightness = 16;
+	dir = 4
 	},
 /turf/open/floor/facility/dark,
 /area/facility_hallway/central)
@@ -908,8 +908,8 @@
 "gG" = (
 /obj/effect/turf_decal/delivery,
 /obj/machinery/light/cold/no_nightlight{
-	dir = 1;
-	brightness = 16
+	brightness = 16;
+	dir = 1
 	},
 /turf/open/floor/facility/white{
 	color = "a1a1a1"
@@ -918,8 +918,8 @@
 "gH" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/light/cold/no_nightlight{
-	dir = 4;
-	brightness = 16
+	brightness = 16;
+	dir = 4
 	},
 /obj/structure/disposalpipe/segment{
 	dir = 10
@@ -948,8 +948,8 @@
 "gN" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/light/cold/no_nightlight{
-	dir = 1;
-	brightness = 16
+	brightness = 16;
+	dir = 1
 	},
 /turf/open/floor/facility/white{
 	color = "a1a1a1"
@@ -958,8 +958,8 @@
 "gQ" = (
 /obj/structure/closet/secure_closet/personal/cabinet,
 /obj/effect/turf_decal/siding/green{
-	dir = 10;
-	color = "#006400"
+	color = "#006400";
+	dir = 10
 	},
 /obj/machinery/light/cold/no_nightlight{
 	brightness = 16
@@ -1097,8 +1097,8 @@
 	},
 /obj/effect/turf_decal/siding/red/corner,
 /obj/machinery/light/cold/no_nightlight{
-	dir = 1;
-	brightness = 16
+	brightness = 16;
+	dir = 1
 	},
 /turf/open/floor/holofloor/carpet,
 /area/department_main/control)
@@ -1120,8 +1120,8 @@
 /area/facility_hallway/south)
 "ia" = (
 /obj/machinery/light/cold/no_nightlight{
-	dir = 4;
-	brightness = 16
+	brightness = 16;
+	dir = 4
 	},
 /obj/structure/disposalpipe/segment{
 	dir = 10
@@ -1170,8 +1170,8 @@
 	dir = 4
 	},
 /obj/machinery/light/cold/no_nightlight{
-	dir = 8;
-	brightness = 16
+	brightness = 16;
+	dir = 8
 	},
 /turf/open/floor/carpet/stellar,
 /area/department_main/command)
@@ -1210,8 +1210,8 @@
 /area/facility_hallway/information)
 "iI" = (
 /obj/effect/turf_decal/siding/green/corner{
-	dir = 4;
-	color = "#006400"
+	color = "#006400";
+	dir = 4
 	},
 /turf/open/floor/carpet/green,
 /area/department_main/safety)
@@ -1239,8 +1239,8 @@
 	dir = 5
 	},
 /obj/machinery/light/cold/no_nightlight{
-	dir = 1;
-	brightness = 16
+	brightness = 16;
+	dir = 1
 	},
 /turf/open/floor/carpet/stellar,
 /area/department_main/command)
@@ -1268,8 +1268,8 @@
 	dir = 9
 	},
 /obj/machinery/light/cold/no_nightlight{
-	dir = 1;
-	brightness = 16
+	brightness = 16;
+	dir = 1
 	},
 /turf/open/floor/carpet/red,
 /area/department_main/control)
@@ -1278,8 +1278,8 @@
 	dir = 8
 	},
 /obj/effect/turf_decal{
-	dir = 4;
-	color = "#FF0000"
+	color = "#FF0000";
+	dir = 4
 	},
 /turf/open/floor/facility/white,
 /area/department_main/control)
@@ -1302,8 +1302,8 @@
 	dir = 1
 	},
 /obj/machinery/light/cold/no_nightlight{
-	dir = 8;
-	brightness = 16
+	brightness = 16;
+	dir = 8
 	},
 /turf/open/floor/facility/dark,
 /area/facility_hallway/central)
@@ -1346,8 +1346,8 @@
 	dir = 1
 	},
 /obj/effect/turf_decal/siding/green{
-	dir = 1;
-	color = "#006400"
+	color = "#006400";
+	dir = 1
 	},
 /turf/open/floor/carpet/green,
 /area/department_main/safety)
@@ -1371,8 +1371,8 @@
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/vending/lobotomyarmband,
 /obj/machinery/light/cold/no_nightlight{
-	dir = 1;
-	brightness = 16
+	brightness = 16;
+	dir = 1
 	},
 /turf/open/floor/facility/white{
 	color = "a1a1a1"
@@ -1394,8 +1394,8 @@
 	dir = 1
 	},
 /obj/machinery/light/cold/no_nightlight{
-	dir = 1;
-	brightness = 16
+	brightness = 16;
+	dir = 1
 	},
 /turf/open/floor/facility/white{
 	color = "a1a1a1"
@@ -1428,8 +1428,8 @@
 "jW" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/light/cold/no_nightlight{
-	dir = 1;
-	brightness = 16
+	brightness = 16;
+	dir = 1
 	},
 /turf/open/floor/facility/white{
 	color = "a1a1a1"
@@ -1457,8 +1457,8 @@
 /area/department_main/information)
 "ke" = (
 /obj/effect/turf_decal/siding/green{
-	dir = 1;
-	color = "#006400"
+	color = "#006400";
+	dir = 1
 	},
 /turf/open/floor/carpet/green,
 /area/department_main/safety)
@@ -1526,8 +1526,8 @@
 	dir = 1
 	},
 /obj/machinery/light/cold/no_nightlight{
-	dir = 4;
-	brightness = 16
+	brightness = 16;
+	dir = 4
 	},
 /turf/open/floor/holofloor/carpet,
 /area/department_main/control)
@@ -1667,8 +1667,8 @@
 "lM" = (
 /obj/effect/turf_decal/delivery,
 /obj/machinery/light/cold/no_nightlight{
-	dir = 8;
-	brightness = 16
+	brightness = 16;
+	dir = 8
 	},
 /turf/open/floor/facility/dark,
 /area/facility_hallway/command)
@@ -1696,8 +1696,8 @@
 "lZ" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/light/cold/no_nightlight{
-	dir = 4;
-	brightness = 16
+	brightness = 16;
+	dir = 4
 	},
 /obj/structure/disposalpipe/segment{
 	dir = 10
@@ -1714,8 +1714,8 @@
 "mb" = (
 /obj/effect/turf_decal/delivery/red,
 /obj/machinery/light/cold/no_nightlight{
-	dir = 1;
-	brightness = 16
+	brightness = 16;
+	dir = 1
 	},
 /turf/open/floor/facility/white{
 	color = "a1a1a1"
@@ -1725,8 +1725,8 @@
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/turf_decal/delivery,
 /obj/machinery/light/cold/no_nightlight{
-	dir = 1;
-	brightness = 16
+	brightness = 16;
+	dir = 1
 	},
 /turf/open/floor/facility/white{
 	color = "a1a1a1"
@@ -1734,8 +1734,8 @@
 /area/facility_hallway/information)
 "mf" = (
 /obj/effect/turf_decal{
-	dir = 1;
-	color = "#FF0000"
+	color = "#FF0000";
+	dir = 1
 	},
 /obj/effect/turf_decal/caution/red,
 /obj/machinery/camera/autoname{
@@ -1792,8 +1792,8 @@
 	dir = 8
 	},
 /obj/effect/turf_decal{
-	dir = 4;
-	color = "#FF0000"
+	color = "#FF0000";
+	dir = 4
 	},
 /obj/machinery/camera/autoname,
 /turf/open/floor/facility/white,
@@ -1836,8 +1836,8 @@
 "mQ" = (
 /obj/machinery/fat_sucker,
 /obj/machinery/light/cold/no_nightlight{
-	dir = 8;
-	brightness = 16
+	brightness = 16;
+	dir = 8
 	},
 /turf/open/floor/facility/white,
 /area/department_main/safety)
@@ -1898,8 +1898,8 @@
 /area/facility_hallway/control)
 "nx" = (
 /obj/effect/turf_decal/siding/green{
-	dir = 8;
-	color = "#006400"
+	color = "#006400";
+	dir = 8
 	},
 /turf/open/floor/carpet/green,
 /area/department_main/safety)
@@ -1941,8 +1941,8 @@
 /area/department_main/training)
 "nK" = (
 /obj/machinery/light/cold/no_nightlight{
-	dir = 1;
-	brightness = 16
+	brightness = 16;
+	dir = 1
 	},
 /turf/open/floor/facility/white{
 	color = "a1a1a1"
@@ -1981,8 +1981,8 @@
 /area/facility_hallway/command)
 "od" = (
 /obj/effect/turf_decal/siding/green/corner{
-	dir = 8;
-	color = "#006400"
+	color = "#006400";
+	dir = 8
 	},
 /turf/open/floor/mineral/titanium/white,
 /area/department_main/safety)
@@ -2025,8 +2025,8 @@
 /area/department_main/training)
 "oB" = (
 /obj/effect/turf_decal{
-	dir = 1;
-	color = "#FF0000"
+	color = "#FF0000";
+	dir = 1
 	},
 /obj/effect/turf_decal/caution/red,
 /obj/machinery/conveyor_switch/oneway{
@@ -2040,15 +2040,15 @@
 	},
 /obj/effect/turf_decal/arrows/red,
 /obj/machinery/light/cold/no_nightlight{
-	dir = 8;
-	brightness = 16
+	brightness = 16;
+	dir = 8
 	},
 /turf/open/floor/facility/white,
 /area/facility_hallway/command)
 "oJ" = (
 /obj/effect/turf_decal/siding/green{
-	dir = 6;
-	color = "#006400"
+	color = "#006400";
+	dir = 6
 	},
 /turf/open/floor/carpet/green,
 /area/department_main/safety)
@@ -2086,8 +2086,8 @@
 "oQ" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/light/cold/no_nightlight{
-	dir = 1;
-	brightness = 16
+	brightness = 16;
+	dir = 1
 	},
 /obj/machinery/camera/autoname,
 /turf/open/floor/facility/white{
@@ -2104,8 +2104,8 @@
 	},
 /obj/effect/turf_decal/delivery/red,
 /obj/machinery/light/cold/no_nightlight{
-	dir = 8;
-	brightness = 16
+	brightness = 16;
+	dir = 8
 	},
 /obj/machinery/door/poddoor/preopen{
 	id = "managerlockdown";
@@ -2171,12 +2171,12 @@
 /area/facility_hallway/control)
 "pq" = (
 /obj/effect/turf_decal/siding/green{
-	dir = 5;
-	color = "#006400"
+	color = "#006400";
+	dir = 5
 	},
 /obj/effect/turf_decal/siding/green/corner{
-	dir = 4;
-	color = "#006400"
+	color = "#006400";
+	dir = 4
 	},
 /turf/open/floor/carpet/green,
 /area/department_main/safety)
@@ -2230,8 +2230,8 @@
 /area/facility_hallway/information)
 "pV" = (
 /obj/machinery/light/cold/no_nightlight{
-	dir = 4;
-	brightness = 16
+	brightness = 16;
+	dir = 4
 	},
 /obj/structure/disposalpipe/segment{
 	dir = 10
@@ -2274,12 +2274,12 @@
 	dir = 9
 	},
 /obj/machinery/light/cold/no_nightlight{
-	dir = 1;
-	brightness = 16
+	brightness = 16;
+	dir = 1
 	},
 /obj/machinery/light/cold/no_nightlight{
-	dir = 8;
-	brightness = 16
+	brightness = 16;
+	dir = 8
 	},
 /obj/machinery/bookbinder,
 /turf/open/floor/carpet/purple,
@@ -2297,8 +2297,8 @@
 	},
 /obj/structure/railing,
 /obj/machinery/light/cold/no_nightlight{
-	dir = 8;
-	brightness = 16
+	brightness = 16;
+	dir = 8
 	},
 /turf/open/floor/carpet/stellar,
 /area/department_main/command)
@@ -2306,8 +2306,8 @@
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/plastic,
 /obj/machinery/light/cold/no_nightlight{
-	dir = 1;
-	brightness = 16
+	brightness = 16;
+	dir = 1
 	},
 /turf/open/floor/facility/white{
 	color = "a1a1a1"
@@ -2341,8 +2341,8 @@
 /area/facility_hallway/central)
 "qV" = (
 /obj/machinery/light/cold/no_nightlight{
-	dir = 1;
-	brightness = 16
+	brightness = 16;
+	dir = 1
 	},
 /turf/open/floor/facility/white{
 	color = "a1a1a1"
@@ -2350,8 +2350,8 @@
 /area/facility_hallway/information)
 "rb" = (
 /obj/effect/turf_decal/siding/green{
-	dir = 5;
-	color = "#006400"
+	color = "#006400";
+	dir = 5
 	},
 /turf/open/floor/carpet/green,
 /area/department_main/safety)
@@ -2422,8 +2422,8 @@
 /area/facility_hallway/safety)
 "rt" = (
 /obj/effect/turf_decal{
-	dir = 1;
-	color = "#FF0000"
+	color = "#FF0000";
+	dir = 1
 	},
 /obj/effect/turf_decal/caution/red,
 /obj/effect/turf_decal/tile/neutral,
@@ -2479,8 +2479,8 @@
 /obj/effect/turf_decal/caution/red,
 /obj/effect/turf_decal/arrows/red,
 /obj/effect/turf_decal{
-	dir = 1;
-	color = "#FF0000"
+	color = "#FF0000";
+	dir = 1
 	},
 /turf/open/floor/plasteel/white,
 /area/facility_hallway/command)
@@ -2535,8 +2535,8 @@
 /area/facility_hallway/south)
 "so" = (
 /obj/machinery/light/cold/no_nightlight{
-	dir = 4;
-	brightness = 16
+	brightness = 16;
+	dir = 4
 	},
 /obj/structure/disposalpipe/segment{
 	dir = 10
@@ -2613,8 +2613,8 @@
 "sV" = (
 /obj/effect/turf_decal/caution/red,
 /obj/effect/turf_decal{
-	dir = 1;
-	color = "#FF0000"
+	color = "#FF0000";
+	dir = 1
 	},
 /obj/structure/disposalpipe/segment{
 	dir = 1
@@ -2799,8 +2799,8 @@
 "uB" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/light/cold/no_nightlight{
-	dir = 1;
-	brightness = 16
+	brightness = 16;
+	dir = 1
 	},
 /turf/open/floor/facility/white{
 	color = "a1a1a1"
@@ -2885,8 +2885,8 @@
 	},
 /obj/effect/turf_decal/arrows/red,
 /obj/machinery/light/cold/no_nightlight{
-	dir = 4;
-	brightness = 16
+	brightness = 16;
+	dir = 4
 	},
 /turf/open/floor/facility/white,
 /area/facility_hallway/command)
@@ -2976,8 +2976,8 @@
 	dir = 4
 	},
 /obj/machinery/light/cold/no_nightlight{
-	dir = 1;
-	brightness = 16
+	brightness = 16;
+	dir = 1
 	},
 /obj/machinery/camera/autoname{
 	dir = 4
@@ -3031,8 +3031,8 @@
 "wt" = (
 /obj/machinery/fat_sucker,
 /obj/machinery/light/cold/no_nightlight{
-	dir = 4;
-	brightness = 16
+	brightness = 16;
+	dir = 4
 	},
 /turf/open/floor/facility/white,
 /area/department_main/safety)
@@ -3041,8 +3041,8 @@
 /obj/item/storage/bag/trash/bluespace,
 /obj/effect/turf_decal/bot,
 /obj/machinery/light/cold/no_nightlight{
-	dir = 1;
-	brightness = 16
+	brightness = 16;
+	dir = 1
 	},
 /turf/open/floor/plasteel/dark,
 /area/facility_hallway/command)
@@ -3125,8 +3125,8 @@
 /obj/item/roller,
 /obj/item/roller,
 /obj/machinery/light/cold/no_nightlight{
-	dir = 8;
-	brightness = 16
+	brightness = 16;
+	dir = 8
 	},
 /turf/open/floor/facility/white,
 /area/department_main/safety)
@@ -3179,8 +3179,8 @@
 	brightness = 16
 	},
 /obj/machinery/light/cold/no_nightlight{
-	dir = 4;
-	brightness = 16
+	brightness = 16;
+	dir = 4
 	},
 /obj/effect/turf_decal/siding{
 	color = "#7D6521";
@@ -3253,8 +3253,8 @@
 	icon_state = "LC8"
 	},
 /obj/machinery/light/cold/no_nightlight{
-	dir = 4;
-	brightness = 16
+	brightness = 16;
+	dir = 4
 	},
 /turf/open/floor/facility/white{
 	color = "a1a1a1"
@@ -3285,8 +3285,8 @@
 /area/facility_hallway/training)
 "yi" = (
 /obj/machinery/door/airlock/highsecurity{
-	name = "Training Department";
-	hackProof = 1
+	hackProof = 1;
+	name = "Training Department"
 	},
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -3528,8 +3528,8 @@
 "Ab" = (
 /obj/effect/turf_decal/delivery/red,
 /obj/machinery/light/cold/no_nightlight{
-	dir = 4;
-	brightness = 16
+	brightness = 16;
+	dir = 4
 	},
 /turf/open/floor/facility/white,
 /area/facility_hallway/command)
@@ -3591,8 +3591,8 @@
 /area/facility_hallway/training)
 "AH" = (
 /obj/effect/turf_decal/siding/green{
-	dir = 4;
-	color = "#006400"
+	color = "#006400";
+	dir = 4
 	},
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -3602,8 +3602,8 @@
 "AL" = (
 /obj/machinery/regenerator/safety,
 /obj/effect/turf_decal/siding/green/corner{
-	dir = 4;
-	color = "#006400"
+	color = "#006400";
+	dir = 4
 	},
 /turf/open/floor/facility/white,
 /area/department_main/safety)
@@ -3619,8 +3619,8 @@
 /area/facility_hallway/control)
 "AU" = (
 /obj/effect/turf_decal/siding/green/corner{
-	dir = 1;
-	color = "#006400"
+	color = "#006400";
+	dir = 1
 	},
 /turf/open/floor/carpet/green,
 /area/department_main/safety)
@@ -3630,8 +3630,8 @@
 	},
 /obj/structure/window/reinforced/spawner/west,
 /obj/machinery/light/cold/no_nightlight{
-	dir = 4;
-	brightness = 16
+	brightness = 16;
+	dir = 4
 	},
 /turf/open/floor/facility/dark,
 /area/facility_hallway/records)
@@ -3751,8 +3751,8 @@
 "BZ" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/light/cold/no_nightlight{
-	dir = 1;
-	brightness = 16
+	brightness = 16;
+	dir = 1
 	},
 /obj/machinery/camera/autoname,
 /turf/open/floor/facility/white{
@@ -3780,8 +3780,8 @@
 "Ch" = (
 /obj/effect/turf_decal/caution/red,
 /obj/effect/turf_decal{
-	dir = 1;
-	color = "#FF0000"
+	color = "#FF0000";
+	dir = 1
 	},
 /obj/effect/turf_decal/arrows/red,
 /turf/open/floor/plasteel/white,
@@ -3931,8 +3931,8 @@
 "CV" = (
 /obj/machinery/cryopod,
 /obj/machinery/light/cold/no_nightlight{
-	dir = 4;
-	brightness = 16
+	brightness = 16;
+	dir = 4
 	},
 /turf/open/floor/facility/white,
 /area/facility_hallway/central)
@@ -4102,12 +4102,12 @@
 /area/facility_hallway/control)
 "Ei" = (
 /obj/effect/turf_decal/siding/green{
-	dir = 9;
-	color = "#006400"
+	color = "#006400";
+	dir = 9
 	},
 /obj/effect/turf_decal/siding/green/corner{
-	dir = 1;
-	color = "#006400"
+	color = "#006400";
+	dir = 1
 	},
 /turf/open/floor/carpet/green,
 /area/department_main/safety)
@@ -4123,8 +4123,8 @@
 "Ep" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/light/cold/no_nightlight{
-	dir = 1;
-	brightness = 16
+	brightness = 16;
+	dir = 1
 	},
 /turf/open/floor/facility/white{
 	color = "a1a1a1"
@@ -4161,8 +4161,8 @@
 	max_integrity = 25
 	},
 /obj/machinery/light/cold/no_nightlight{
-	dir = 1;
-	brightness = 16
+	brightness = 16;
+	dir = 1
 	},
 /turf/open/floor/facility/white,
 /area/department_main/safety)
@@ -4192,8 +4192,8 @@
 /area/department_main/information)
 "ES" = (
 /obj/structure/bodycontainer/crematorium{
-	id = "Ncorp1";
-	dir = 8
+	dir = 8;
+	id = "Ncorp1"
 	},
 /obj/machinery/button/crematorium/indestructible{
 	id = "Ncorp1";
@@ -4296,8 +4296,8 @@
 	max_integrity = 25
 	},
 /obj/machinery/light/cold/no_nightlight{
-	dir = 1;
-	brightness = 16
+	brightness = 16;
+	dir = 1
 	},
 /turf/open/floor/facility/white,
 /area/department_main/safety)
@@ -4342,8 +4342,8 @@
 "FZ" = (
 /obj/machinery/vending/coffee,
 /obj/machinery/light/cold/no_nightlight{
-	dir = 8;
-	brightness = 16
+	brightness = 16;
+	dir = 8
 	},
 /turf/open/floor/facility/dark,
 /area/department_main/control)
@@ -4354,8 +4354,8 @@
 "Gb" = (
 /obj/machinery/blackbox_recorder,
 /obj/machinery/light/cold/no_nightlight{
-	dir = 1;
-	brightness = 16
+	brightness = 16;
+	dir = 1
 	},
 /turf/open/floor/facility/dark,
 /area/department_main/information)
@@ -4447,8 +4447,8 @@
 /area/facility_hallway/south)
 "He" = (
 /obj/machinery/light/cold/no_nightlight{
-	dir = 4;
-	brightness = 16
+	brightness = 16;
+	dir = 4
 	},
 /turf/open/floor/facility/dark,
 /area/department_main/training)
@@ -4471,8 +4471,8 @@
 "Hm" = (
 /obj/structure/railing{
 	dir = 8;
-	name = "invincible railing";
-	max_integrity = 1e+007
+	max_integrity = 1e+007;
+	name = "invincible railing"
 	},
 /turf/open/floor/plasteel/stairs,
 /area/department_main/command)
@@ -4556,8 +4556,8 @@
 	dir = 1
 	},
 /obj/machinery/light/cold/no_nightlight{
-	dir = 8;
-	brightness = 16
+	brightness = 16;
+	dir = 8
 	},
 /turf/open/floor/facility/white,
 /area/facility_hallway/central)
@@ -4615,8 +4615,8 @@
 /area/department_main/training)
 "Il" = (
 /obj/effect/turf_decal/siding/green{
-	dir = 1;
-	color = "#006400"
+	color = "#006400";
+	dir = 1
 	},
 /obj/structure/chair/office/light{
 	dir = 1
@@ -4673,8 +4673,8 @@
 /area/department_main/information)
 "IQ" = (
 /obj/machinery/light/cold/no_nightlight{
-	dir = 8;
-	brightness = 16
+	brightness = 16;
+	dir = 8
 	},
 /turf/open/floor/wood,
 /area/department_main/command)
@@ -4684,15 +4684,15 @@
 /area/facility_hallway/command)
 "IU" = (
 /obj/effect/turf_decal/siding/green{
-	dir = 10;
-	color = "#006400"
+	color = "#006400";
+	dir = 10
 	},
 /obj/effect/turf_decal/siding/green/corner{
 	color = "#006400"
 	},
 /obj/effect/turf_decal/siding/green/corner{
-	dir = 8;
-	color = "#006400"
+	color = "#006400";
+	dir = 8
 	},
 /turf/open/floor/carpet/green,
 /area/department_main/safety)
@@ -4733,8 +4733,8 @@
 /area/facility_hallway/control)
 "Jc" = (
 /obj/effect/turf_decal/siding/green{
-	dir = 4;
-	color = "#006400"
+	color = "#006400";
+	dir = 4
 	},
 /turf/open/floor/carpet/green,
 /area/department_main/safety)
@@ -4865,8 +4865,8 @@
 	dir = 4
 	},
 /obj/machinery/light/cold/no_nightlight{
-	dir = 4;
-	brightness = 16
+	brightness = 16;
+	dir = 4
 	},
 /turf/open/floor/facility/white{
 	color = "a1a1a1"
@@ -4985,8 +4985,8 @@
 /obj/item/roller,
 /obj/item/roller,
 /obj/machinery/light/cold/no_nightlight{
-	dir = 4;
-	brightness = 16
+	brightness = 16;
+	dir = 4
 	},
 /turf/open/floor/facility/white,
 /area/department_main/safety)
@@ -5097,8 +5097,8 @@
 /area/facility_hallway/information)
 "Mn" = (
 /obj/machinery/light/cold/no_nightlight{
-	dir = 8;
-	brightness = 16
+	brightness = 16;
+	dir = 8
 	},
 /turf/open/floor/facility/white{
 	color = "a1a1a1"
@@ -5126,8 +5126,8 @@
 /area/facility_hallway/information)
 "MB" = (
 /obj/effect/turf_decal/siding/green{
-	dir = 9;
-	color = "#006400"
+	color = "#006400";
+	dir = 9
 	},
 /turf/open/floor/carpet/green,
 /area/department_main/safety)
@@ -5180,12 +5180,12 @@
 	dir = 5
 	},
 /obj/machinery/light/cold/no_nightlight{
-	dir = 1;
-	brightness = 16
+	brightness = 16;
+	dir = 1
 	},
 /obj/machinery/light/cold/no_nightlight{
-	dir = 4;
-	brightness = 16
+	brightness = 16;
+	dir = 4
 	},
 /turf/open/floor/carpet/royalblack,
 /area/department_main/information)
@@ -5278,16 +5278,16 @@
 "No" = (
 /obj/machinery/blackbox_recorder,
 /obj/machinery/light/cold/no_nightlight{
-	dir = 1;
-	brightness = 16
+	brightness = 16;
+	dir = 1
 	},
 /obj/machinery/camera/autoname,
 /turf/open/floor/facility/dark,
 /area/department_main/information)
 "Ns" = (
 /obj/effect/turf_decal/siding/green{
-	dir = 8;
-	color = "#006400"
+	color = "#006400";
+	dir = 8
 	},
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -5296,8 +5296,8 @@
 /area/department_main/safety)
 "Nw" = (
 /obj/effect/turf_decal/siding/green{
-	dir = 10;
-	color = "#006400"
+	color = "#006400";
+	dir = 10
 	},
 /turf/open/floor/carpet/green,
 /area/department_main/safety)
@@ -5360,8 +5360,8 @@
 	dir = 1
 	},
 /obj/machinery/light/cold/no_nightlight{
-	dir = 8;
-	brightness = 16
+	brightness = 16;
+	dir = 8
 	},
 /turf/open/floor/facility/dark,
 /area/facility_hallway/command)
@@ -5376,8 +5376,8 @@
 "Od" = (
 /obj/effect/turf_decal/delivery,
 /obj/machinery/light/cold/no_nightlight{
-	dir = 4;
-	brightness = 16
+	brightness = 16;
+	dir = 4
 	},
 /turf/open/floor/facility/dark,
 /area/facility_hallway/command)
@@ -5389,8 +5389,8 @@
 /area/facility_hallway/command)
 "Oh" = (
 /obj/effect/turf_decal{
-	dir = 1;
-	color = "#FF0000"
+	color = "#FF0000";
+	dir = 1
 	},
 /obj/effect/turf_decal/caution/red,
 /turf/open/floor/plasteel/white,
@@ -5418,8 +5418,8 @@
 /area/facility_hallway/central)
 "Ot" = (
 /obj/effect/turf_decal/siding/green/corner{
-	dir = 1;
-	color = "#006400"
+	color = "#006400";
+	dir = 1
 	},
 /obj/machinery/disposal/bin,
 /obj/structure/disposalpipe/trunk,
@@ -5512,8 +5512,8 @@
 /area/facility_hallway/central)
 "PB" = (
 /obj/machinery/light/cold/no_nightlight{
-	dir = 1;
-	brightness = 16
+	brightness = 16;
+	dir = 1
 	},
 /turf/open/floor/plasteel/dark,
 /area/department_main/training)
@@ -5528,8 +5528,8 @@
 /area/facility_hallway/control)
 "PE" = (
 /obj/machinery/light/cold/no_nightlight{
-	dir = 1;
-	brightness = 16
+	brightness = 16;
+	dir = 1
 	},
 /obj/machinery/camera/autoname,
 /turf/open/floor/plasteel/dark,
@@ -5579,16 +5579,16 @@
 "PV" = (
 /obj/machinery/blackbox_recorder,
 /obj/machinery/light/cold/no_nightlight{
-	dir = 8;
-	brightness = 16
+	brightness = 16;
+	dir = 8
 	},
 /turf/open/floor/facility/dark,
 /area/department_main/information)
 "PX" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/light/cold/no_nightlight{
-	dir = 1;
-	brightness = 16
+	brightness = 16;
+	dir = 1
 	},
 /obj/machinery/camera/autoname,
 /turf/open/floor/facility/white{
@@ -5629,8 +5629,8 @@
 "Qu" = (
 /obj/effect/turf_decal/caution/red,
 /obj/effect/turf_decal{
-	dir = 1;
-	color = "#FF0000"
+	color = "#FF0000";
+	dir = 1
 	},
 /turf/open/floor/facility/white,
 /area/department_main/control)
@@ -5684,8 +5684,8 @@
 	pixel_y = 32
 	},
 /obj/machinery/light/cold/no_nightlight{
-	dir = 1;
-	brightness = 16
+	brightness = 16;
+	dir = 1
 	},
 /turf/open/floor/facility/white{
 	color = "a1a1a1"
@@ -5693,8 +5693,8 @@
 /area/facility_hallway/command)
 "QE" = (
 /obj/effect/turf_decal/siding/green{
-	dir = 1;
-	color = "#006400"
+	color = "#006400";
+	dir = 1
 	},
 /obj/structure/disposalpipe/segment{
 	dir = 1
@@ -5712,8 +5712,8 @@
 /obj/effect/turf_decal/siding/wood/corner,
 /obj/structure/railing,
 /obj/machinery/light/cold/no_nightlight{
-	dir = 4;
-	brightness = 16
+	brightness = 16;
+	dir = 4
 	},
 /turf/open/floor/wood,
 /area/department_main/command)
@@ -5760,8 +5760,8 @@
 "Re" = (
 /obj/effect/spawner/randomsnackvend,
 /obj/machinery/light/cold/no_nightlight{
-	dir = 8;
-	brightness = 16
+	brightness = 16;
+	dir = 8
 	},
 /turf/open/floor/facility/dark,
 /area/department_main/control)
@@ -5826,8 +5826,8 @@
 "Rs" = (
 /obj/structure/closet/secure_closet/personal/cabinet,
 /obj/effect/turf_decal/siding/green{
-	dir = 6;
-	color = "#006400"
+	color = "#006400";
+	dir = 6
 	},
 /obj/machinery/light/cold/no_nightlight{
 	brightness = 16
@@ -5852,8 +5852,8 @@
 /area/department_main/command)
 "RF" = (
 /obj/machinery/door/airlock/highsecurity{
-	name = "Records Office Secure Area";
-	hackProof = 1
+	hackProof = 1;
+	name = "Records Office Secure Area"
 	},
 /turf/open/floor/facility/halls,
 /area/department_main/training)
@@ -5880,8 +5880,8 @@
 "RN" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/light/cold/no_nightlight{
-	dir = 1;
-	brightness = 16
+	brightness = 16;
+	dir = 1
 	},
 /obj/machinery/camera/autoname,
 /turf/open/floor/facility/white{
@@ -6043,8 +6043,8 @@
 "SS" = (
 /obj/structure/chair/sofa/right,
 /obj/machinery/light/cold/no_nightlight{
-	dir = 1;
-	brightness = 16
+	brightness = 16;
+	dir = 1
 	},
 /turf/open/floor/facility/white{
 	color = "a1a1a1"
@@ -6058,8 +6058,8 @@
 	brightness = 16
 	},
 /obj/machinery/light/cold/no_nightlight{
-	dir = 8;
-	brightness = 16
+	brightness = 16;
+	dir = 8
 	},
 /obj/machinery/bookbinder,
 /turf/open/floor/carpet/purple,
@@ -6192,8 +6192,8 @@
 /area/department_main/training)
 "Tw" = (
 /obj/machinery/light/cold/no_nightlight{
-	dir = 8;
-	brightness = 16
+	brightness = 16;
+	dir = 8
 	},
 /turf/open/floor/facility/dark,
 /area/department_main/training)
@@ -6256,14 +6256,14 @@
 	},
 /obj/effect/turf_decal/delivery/red,
 /obj/machinery/computer/shuttle/mining{
+	dir = 8;
 	name = "elevator console";
 	possible_destinations = "elevator_home;elevator_away";
-	shuttleId = "manager";
-	dir = 8
+	shuttleId = "manager"
 	},
 /obj/machinery/light/cold/no_nightlight{
-	dir = 4;
-	brightness = 16
+	brightness = 16;
+	dir = 4
 	},
 /obj/machinery/camera/autoname{
 	dir = 9
@@ -6551,8 +6551,8 @@
 "Vu" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/light/cold/no_nightlight{
-	dir = 1;
-	brightness = 16
+	brightness = 16;
+	dir = 1
 	},
 /turf/open/floor/facility/white{
 	color = "a1a1a1"
@@ -6577,8 +6577,8 @@
 	dir = 8
 	},
 /obj/machinery/light/cold/no_nightlight{
-	dir = 4;
-	brightness = 16
+	brightness = 16;
+	dir = 4
 	},
 /turf/open/floor/holofloor/carpet,
 /area/department_main/control)
@@ -6611,12 +6611,12 @@
 	dir = 8
 	},
 /obj/machinery/light/cold/no_nightlight{
-	dir = 4;
-	brightness = 16
+	brightness = 16;
+	dir = 4
 	},
 /obj/machinery/light/cold/no_nightlight{
-	dir = 1;
-	brightness = 16
+	brightness = 16;
+	dir = 1
 	},
 /turf/open/floor/holofloor/carpet,
 /area/department_main/control)
@@ -6701,8 +6701,8 @@
 "Wo" = (
 /obj/structure/railing{
 	dir = 4;
-	name = "invincible railing";
-	max_integrity = 1e+007
+	max_integrity = 1e+007;
+	name = "invincible railing"
 	},
 /turf/open/floor/plasteel/stairs,
 /area/department_main/command)
@@ -6797,19 +6797,19 @@
 	dir = 8
 	},
 /obj/machinery/light/cold/no_nightlight{
-	dir = 8;
-	brightness = 16
+	brightness = 16;
+	dir = 8
 	},
 /turf/open/floor/facility/dark,
 /area/facility_hallway/records)
 "Xb" = (
 /obj/structure/bodycontainer/crematorium{
-	id = "Ncorp2";
-	dir = 4
+	dir = 4;
+	id = "Ncorp2"
 	},
 /obj/machinery/button/crematorium/indestructible{
-	pixel_x = -27;
-	id = "Ncorp2"
+	id = "Ncorp2";
+	pixel_x = -27
 	},
 /turf/open/floor/plasteel/dark,
 /area/facility_hallway/command)
@@ -6839,8 +6839,8 @@
 	},
 /obj/structure/railing,
 /obj/machinery/light/cold/no_nightlight{
-	dir = 8;
-	brightness = 16
+	brightness = 16;
+	dir = 8
 	},
 /turf/open/floor/wood,
 /area/department_main/command)
@@ -6955,8 +6955,8 @@
 /obj/machinery/vending/coffee,
 /obj/structure/railing,
 /obj/machinery/light/cold/no_nightlight{
-	dir = 4;
-	brightness = 16
+	brightness = 16;
+	dir = 4
 	},
 /turf/open/floor/carpet/stellar,
 /area/department_main/command)
@@ -6974,8 +6974,8 @@
 	dir = 1
 	},
 /obj/machinery/light/cold/no_nightlight{
-	dir = 4;
-	brightness = 16
+	brightness = 16;
+	dir = 4
 	},
 /obj/machinery/light/cold/no_nightlight{
 	brightness = 16
@@ -7082,8 +7082,8 @@
 	id = "Ncorp1"
 	},
 /obj/machinery/light/cold/no_nightlight{
-	dir = 1;
-	brightness = 16
+	brightness = 16;
+	dir = 1
 	},
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -7096,8 +7096,8 @@
 	dir = 1
 	},
 /obj/machinery/light/cold/no_nightlight{
-	dir = 4;
-	brightness = 16
+	brightness = 16;
+	dir = 4
 	},
 /turf/open/floor/facility/dark,
 /area/facility_hallway/command)
@@ -7144,8 +7144,8 @@
 	},
 /obj/structure/window/reinforced/spawner,
 /obj/machinery/light/cold/no_nightlight{
-	dir = 1;
-	brightness = 16
+	brightness = 16;
+	dir = 1
 	},
 /obj/machinery/camera/autoname,
 /turf/open/floor/facility/dark,
@@ -7175,8 +7175,8 @@
 "ZM" = (
 /obj/effect/turf_decal/delivery/red,
 /obj/machinery/light/cold/no_nightlight{
-	dir = 8;
-	brightness = 16
+	brightness = 16;
+	dir = 8
 	},
 /turf/open/floor/facility/white,
 /area/facility_hallway/command)
@@ -7187,8 +7187,8 @@
 /area/facility_hallway/central)
 "ZR" = (
 /obj/machinery/light/cold/no_nightlight{
-	dir = 1;
-	brightness = 16
+	brightness = 16;
+	dir = 1
 	},
 /turf/open/floor/facility/white{
 	color = "a1a1a1"
@@ -41768,7 +41768,7 @@ XF
 XF
 XF
 XF
-nA
+XF
 XF
 XF
 XF
