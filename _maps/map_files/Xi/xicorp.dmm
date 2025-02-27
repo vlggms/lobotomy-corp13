@@ -2145,13 +2145,6 @@
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/plasteel,
 /area/facility_hallway/training)
-"pe" = (
-/obj/structure/railing{
-	dir = 4
-	},
-/obj/effect/turf_decal/delivery,
-/turf/open/floor/facility/dark,
-/area/facility_hallway/command)
 "pf" = (
 /obj/machinery/vending/lobotomyheadset,
 /turf/open/floor/facility/white{
@@ -2969,21 +2962,6 @@
 	},
 /turf/open/floor/wood,
 /area/department_main/command)
-"vT" = (
-/obj/effect/turf_decal/delivery,
-/obj/machinery/modular_computer/console,
-/obj/structure/railing{
-	dir = 4
-	},
-/obj/machinery/light/cold/no_nightlight{
-	brightness = 16;
-	dir = 1
-	},
-/obj/machinery/camera/autoname{
-	dir = 4
-	},
-/turf/open/floor/facility/dark,
-/area/facility_hallway/command)
 "vU" = (
 /obj/effect/turf_decal/siding/red{
 	color = "#440000";
@@ -4924,12 +4902,6 @@
 /mob/living/simple_animal/bot/cleanbot,
 /turf/open/floor/plasteel/white,
 /area/facility_hallway/command)
-"KG" = (
-/obj/effect/turf_decal/caution/stand_clear{
-	dir = 8
-	},
-/turf/open/floor/plasteel/dark,
-/area/facility_hallway/command)
 "KI" = (
 /obj/effect/turf_decal/siding/purple{
 	dir = 9
@@ -6197,12 +6169,6 @@
 	},
 /turf/open/floor/facility/dark,
 /area/department_main/training)
-"Tx" = (
-/turf/open/floor/plasteel/elevatorshaft{
-	density = 1;
-	name = "Elevatorshaft"
-	},
-/area/facility_hallway/command)
 "Ty" = (
 /obj/structure/musician/piano{
 	icon_state = "piano"
@@ -6407,16 +6373,6 @@
 /obj/machinery/computer/cryopod,
 /turf/closed/indestructible/reinforced,
 /area/facility_hallway/central)
-"Ut" = (
-/obj/structure/railing{
-	dir = 4
-	},
-/obj/effect/turf_decal/delivery,
-/obj/machinery/light/cold/no_nightlight{
-	brightness = 16
-	},
-/turf/open/floor/facility/dark,
-/area/facility_hallway/command)
 "Ux" = (
 /obj/effect/turf_decal/plaque{
 	alpha = 230;
@@ -42022,13 +41978,13 @@ xx
 if
 if
 if
-xx
-vT
-pe
-KG
-pe
-Ut
-xx
+if
+if
+if
+if
+if
+if
+if
 if
 if
 if
@@ -42279,13 +42235,13 @@ if
 if
 if
 if
-xx
-Tx
-Tx
-Tx
-Tx
-Tx
-xx
+if
+if
+if
+if
+if
+if
+if
 if
 if
 if
@@ -42536,13 +42492,13 @@ if
 if
 if
 if
-xx
-Tx
-Tx
-Tx
-Tx
-Tx
-xx
+if
+if
+if
+if
+if
+if
+if
 if
 if
 if
@@ -42793,13 +42749,13 @@ if
 if
 if
 if
-xx
-Tx
-Tx
-Tx
-Tx
-Tx
-xx
+if
+if
+if
+if
+if
+if
+if
 if
 if
 if
@@ -43050,13 +43006,13 @@ if
 if
 if
 if
-xx
-Tx
-Tx
-Tx
-Tx
-Tx
-xx
+if
+if
+if
+if
+if
+if
+if
 if
 if
 if
@@ -43307,13 +43263,13 @@ if
 if
 if
 if
-xx
-Tx
-Tx
-Tx
-Tx
-Tx
-xx
+if
+if
+if
+if
+if
+if
+if
 if
 if
 if
@@ -43564,13 +43520,13 @@ if
 if
 if
 if
-xx
-xx
-xx
-xx
-xx
-xx
-xx
+if
+if
+if
+if
+if
+if
+if
 if
 if
 if
