@@ -17,6 +17,11 @@
 /area/city/backstreets_room)
 "vv" = (
 /mob/living/simple_animal/hostile/ordeal/green_dusk,
+/obj/item/gps/mining{
+	anchored = 1;
+	gpstag = "Mechanical Signal";
+	alpha = 10
+	},
 /turf/open/floor/circuit/green,
 /area/city/backstreets_room)
 "vT" = (

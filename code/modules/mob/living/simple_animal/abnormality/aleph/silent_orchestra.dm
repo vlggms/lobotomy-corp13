@@ -154,8 +154,9 @@
 
 /mob/living/simple_animal/hostile/abnormality/silentorchestra/BreachEffect(mob/living/carbon/human/user, breach_type)
 	. = ..()
-	var/turf/T = pick(GLOB.department_centers)
-	forceMove(T)
+	if(breach_type != BREACH_MINING)
+		var/turf/T = pick(GLOB.department_centers)
+		forceMove(T)
 	DamagePulse()
 	return
 

@@ -1,7 +1,7 @@
 // Gold Dusk - Commander that buffs its minion's attacks and wandering white damage
 /mob/living/simple_animal/hostile/ordeal/centipede_corrosion
 	name = "High-Voltage Centipede"
-	desc = "Improper use of E.G.O. can have serious consequences."
+	desc = "An agent of the information team, corrupted by an abnormality. But how?"
 	icon = 'ModularTegustation/Teguicons/64x48.dmi'
 	pixel_x = -16
 	base_pixel_x = -16
@@ -19,8 +19,7 @@
 	attack_sound = 'sound/abnormalities/thunderbird/tbird_peck.ogg'
 	death_sound = 'sound/effects/limbus_death.ogg'
 	damage_coeff = list(RED_DAMAGE = 0.8, WHITE_DAMAGE = 1, BLACK_DAMAGE = 0.5, PALE_DAMAGE = 0.7)
-	butcher_results = list(/obj/item/food/meat/slab/robot = 1, /obj/item/food/meat/slab/human = 1)
-	guaranteed_butcher_results = list(/obj/item/food/meat/slab/human = 1)
+	butcher_results = list(/obj/item/food/meat/slab/corroded = 2)
 	move_to_delay = 3
 	var/pulse_cooldown
 	var/pulse_cooldown_time = 4 SECONDS
@@ -148,7 +147,7 @@
 
 /mob/living/simple_animal/hostile/ordeal/thunderbird_corrosion
 	name = "Thunder Warrior"
-	desc = "Improper use of E.G.O. can have serious consequences."
+	desc = "An agent of the disciplinary team, corrupted by an abnormality. But how?"
 	icon = 'ModularTegustation/Teguicons/32x48.dmi'
 	icon_state = "thunder_warrior"
 	icon_living = "thunder_warrior"
@@ -164,8 +163,7 @@
 	attack_sound = 'sound/abnormalities/thunderbird/tbird_zombieattack.ogg'
 	death_sound = 'sound/effects/limbus_death.ogg'
 	damage_coeff = list(RED_DAMAGE = 0.8, WHITE_DAMAGE = 0.5, BLACK_DAMAGE = 1, PALE_DAMAGE = 0.7)
-	butcher_results = list(/obj/item/food/meat/slab/chicken = 1, /obj/item/food/meat/slab/human = 1)
-	guaranteed_butcher_results = list(/obj/item/food/meat/slab/human = 1)
+	butcher_results = list(/obj/item/food/meat/slab/corroded = 2)
 	move_to_delay = 3
 	ranged = TRUE
 	projectiletype = /obj/projectile/thunder_tomahawk
@@ -228,7 +226,7 @@
 
 /mob/living/simple_animal/hostile/ordeal/KHz_corrosion
 	name = "680 Ham Actor"
-	desc = "Improper use of E.G.O. can have serious consequences."
+	desc = "An agent of the control team, corrupted by an abnormality. But how?"
 	icon = 'ModularTegustation/Teguicons/32x32.dmi'
 	icon_state = "680_ham_actor"
 	icon_living = "680_ham_actor"
@@ -244,8 +242,7 @@
 	attack_sound = 'sound/abnormalities/thunderbird/tbird_peck.ogg'
 	death_sound = 'sound/effects/limbus_death.ogg'
 	damage_coeff = list(RED_DAMAGE = 0.8, WHITE_DAMAGE = 0.5, BLACK_DAMAGE = 1, PALE_DAMAGE = 1)
-	butcher_results = list(/obj/item/food/meat/slab/robot = 1, /obj/item/food/meat/slab/human = 1)
-	guaranteed_butcher_results = list(/obj/item/food/meat/slab/human = 1)
+	butcher_results = list(/obj/item/food/meat/slab/corroded = 2)
 	move_to_delay = 4
 	speak = list("Kilo India Lima Lima", "Delta India Echo", "Golf Echo Tango Oscar Uniform Tango", "Oscar Mike", "Charlie Mike")
 	speak_emote = list("emits", "groans")

@@ -188,9 +188,10 @@
 //***Breach Mechanics***//
 /mob/living/simple_animal/hostile/abnormality/doomsday_calendar/BreachEffect(mob/living/carbon/human/user, breach_type)
 	. = ..()
-	var/turf/T = pick(GLOB.department_centers)
+	if(breach_type != BREACH_MINING)
+		var/turf/T = pick(GLOB.department_centers)
+		forceMove(T)
 	icon_state = "doomsday_active"
-	forceMove(T)
 	AnnounceBreach()
 	SpawnAdds()
 

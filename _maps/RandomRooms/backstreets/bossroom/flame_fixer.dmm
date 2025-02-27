@@ -96,8 +96,12 @@
 	dir = 7
 	},
 /mob/living/simple_animal/hostile/humanoid/fixer/flame{
-	name = "Sanguine Flame";
-	health = 2500
+	return_to_origin = 1
+	},
+/obj/item/gps/mining{
+	anchored = 1;
+	gpstag = "Flaming Signal";
+	alpha = 10
 	},
 /turf/open/floor/wood,
 /area/city/backstreets_room)

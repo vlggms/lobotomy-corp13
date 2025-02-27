@@ -11,8 +11,8 @@
 	health = 4000
 	death_sound = 'sound/effects/limbus_death.ogg'
 	damage_coeff = list(RED_DAMAGE = 0.2, WHITE_DAMAGE = 0.2, BLACK_DAMAGE = 0.2, PALE_DAMAGE = 0.2)
-	butcher_results = list(/obj/item/food/meat/slab/chicken = 1, /obj/item/food/meat/slab/human = 1)
-	guaranteed_butcher_results = list(/obj/item/food/meat/slab/chicken = 1)
+	butcher_results = list(/obj/item/food/meat/slab/corroded = 1)
+	guaranteed_butcher_results = list(/obj/item/food/meat/slab/corroded = 1)
 	/// Range of the damage
 	var/symphony_range = 20
 	/// Amount of white damage every tick

@@ -88,6 +88,14 @@
 /obj/effect/spawner/lootdrop/space/fancytech,
 /turf/open/floor/engine,
 /area/city/backstreets_room)
+"hA" = (
+/obj/item/gps/mining{
+	anchored = 1;
+	gpstag = "Factory Signal";
+	alpha = 10
+	},
+/turf/open/floor/engine,
+/area/city/backstreets_room)
 "iv" = (
 /mob/living/simple_animal/hostile/ordeal/green_bot{
 	name = "clerk bot"
@@ -1552,7 +1560,7 @@ Zw
 Zw
 Zw
 Zw
-Zw
+hA
 Zw
 Zw
 zZ

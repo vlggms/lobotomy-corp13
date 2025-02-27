@@ -61,6 +61,10 @@
 			\"Are you any better than an animal? <br>Get out of my sight.\""),
 	)
 
+	var/ammo = 6
+	var/max_ammo = 6
+	var/reload_time = 2 SECONDS
+	var/last_reload_time = 0
 	var/bloodlust = 0 //more you do repression, more damage it deals. decreases on other works.
 	var/list/fighting_quotes = list(
 		"Go ahead, freakshit! Do your best!",
@@ -85,6 +89,14 @@
 		"Eat shit, you fucking commies!",
 		"This is going to be fun!",
 	)
+
+/mob/living/simple_animal/hostile/abnormality/redblooded/Login()
+	. = ..()
+	if(!. || !client)
+		return FALSE
+	to_chat(src, "<h1>You are Red Blooded American, A Support Role Abnormality.</h1><br>\
+		<b>|The American Way|: When you pick on a tile at least 2 sqrs away, You will consume 1 ammo to fire 6 pellets which deal 18 damage each.<br>\
+		You passively reload 1 ammo every 2 seconds, but you can also reload 1 ammo by hitting humans or mechs.</b>")
 
 /mob/living/simple_animal/hostile/abnormality/redblooded/AttemptWork(mob/living/carbon/human/user, work_type)
 	work_damage_amount = 6 + bloodlust
@@ -123,6 +135,27 @@
 	BreachEffect()
 	return
 
+//Breach
+/mob/living/simple_animal/hostile/abnormality/redblooded/proc/Reload()
+	playsound(src, 'sound/weapons/gun/general/bolt_rack.ogg', 25, TRUE)
+	to_chat(src, span_nicegreen("You reload your shotgun..."))
+	ammo += 1
+
+/mob/living/simple_animal/hostile/abnormality/redblooded/Life()
+	. = ..()
+	if (last_reload_time < world.time - reload_time)
+		last_reload_time = world.time
+		if (ammo < max_ammo)
+			Reload()
+
+/mob/living/simple_animal/hostile/abnormality/redblooded/AttackingTarget()
+	if(ammo < max_ammo)
+		if(isliving(target))
+			Reload()
+		if(ismecha(target))
+			Reload()
+	return ..()
+
 /mob/living/simple_animal/hostile/abnormality/redblooded/BreachEffect(mob/living/carbon/human/user, breach_type)
 	. = ..()
 	icon_state = "american_aggro"
@@ -134,9 +167,15 @@
 	return ..()
 
 /mob/living/simple_animal/hostile/abnormality/redblooded/OpenFire(atom/A)
-	if(get_dist(src, A) <= 2)
+	if(get_dist(src, A) >= 2)
+		if(ammo <= 0)
+			to_chat(src, span_warning("Out of ammo!"))
+			return FALSE
+		else
+			ammo -= 1
+			return ..()
+	else
 		return FALSE
-	return ..()
 
 //Projectiles
 /obj/item/ammo_casing/caseless/true_patriot
@@ -152,3 +191,17 @@
 	damage_type = RED_DAMAGE
 
 	damage = 8
+
+/obj/item/ammo_casing/caseless/rcorp_true_patriot
+	name = "true patriot casing"
+	desc = "a true patriot casing"
+	projectile_type = /obj/projectile/rcorp_true_patriot
+	pellets = 6
+	variance = 25
+
+/obj/projectile/rcorp_true_patriot
+	name = "american pellet"
+	desc = "100% real, surplus military ammo."
+	damage_type = RED_DAMAGE
+
+	damage = 18

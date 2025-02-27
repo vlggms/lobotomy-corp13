@@ -150,9 +150,14 @@ GLOBAL_LIST_EMPTY(army)
 //*--Combat Mechanics--*
 /mob/living/simple_animal/hostile/abnormality/army/BreachEffect(mob/living/carbon/human/user, breach_type)
 	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_ABNORMALITY_BREACH, src)
-	FearEffect()
-	Blackify()
-	SpawnAdds()//set its alpha to 0 and make it non-dense
+	if(breach_type == BREACH_MINING)
+		for(var/i in 1 to 3)
+			var/mob/living/simple_animal/hostile/army_enemy/E = new(get_turf(src))
+			RegisterSignal(E, COMSIG_PARENT_QDELETING, PROC_REF(ArmyDeath))
+	else
+		FearEffect()
+		Blackify()
+		SpawnAdds()//set its alpha to 0 and make it non-dense
 	for(var/mob/living/L in protected_targets)
 		L.remove_status_effect(STATUS_EFFECT_PROTECTION)
 	density = FALSE

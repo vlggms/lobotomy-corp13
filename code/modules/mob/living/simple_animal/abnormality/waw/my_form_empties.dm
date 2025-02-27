@@ -178,7 +178,8 @@
 	var/turf/T = pick(GLOB.department_centers)
 	icon_state = icon_living
 	soundloop.start()
-	forceMove(T)
+	if(breach_type != BREACH_MINING)
+		forceMove(T)
 	for(var/i = 1, i <= minion_amount ,i++)
 		var/karma_vis = new /obj/effect/karma_halo
 		var/picked = pick(pick(possible_minion_list))

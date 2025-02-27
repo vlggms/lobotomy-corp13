@@ -138,6 +138,7 @@
 	. = ..()
 	var/turf/T = pick(GLOB.department_centers)
 	soundloop.start()
-	forceMove(T)
+	if(breach_type != BREACH_MINING)
+		forceMove(T)
 	BluePulse()
 	return

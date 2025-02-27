@@ -20,6 +20,7 @@
 		if(1)
 			BUTTON_FORMAT(2, "SIGN", M)
 			BUTTON_FORMAT(3, "DON'T SIGN", M)
+			return
 		if(2)
 			AdjustHitPoint(-100)
 	return ..()

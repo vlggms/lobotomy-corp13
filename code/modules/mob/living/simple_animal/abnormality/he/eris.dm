@@ -56,7 +56,6 @@
 	)
 
 	var/girlboss_level = 0
-	var/can_heal = TRUE
 
 /mob/living/simple_animal/hostile/abnormality/eris/Login()
 	. = ..()
@@ -64,7 +63,7 @@
 		<b>|Humanoid Disguise|: You are only able to attack humans who only have a very low amount of health, or if they are dead.<br>\
 		If they attack a human who fulfills the above conditions, you will devor them, and gain a stack of 'Girl Boss'<br>\
 		<br>\
-		|Dine with me...|: Every second, you heal ALL targets that you can see if they are bellow half health.<br>\
+		|Dine with me...|: Every second, you heal ALL targets that you can see.<br>\
 		Your healing increases depending on the amount of 'Girl Boss' you have.<br>\
 		<br>\
 		|Elegant Form|: When you are attacked by a human, deal WHITE damage to the attack. This damage is increase depending on your 'Girl Boss' stacks.</b>")
@@ -192,17 +191,12 @@
 //Okay, but here's the math
 /mob/living/simple_animal/hostile/abnormality/eris/proc/healpulse()
 	for(var/mob/living/H in view(10, get_turf(src)))
-		can_heal = TRUE
 		if(H.stat >= SOFT_CRIT)
 			continue
 		//Shamelessly fucking stolen from risk of rain's teddy bear. Maxes out at 20.
-		if(SSmaptype.maptype == "rcorp")
-			if(H.health > H.maxHealth*0.5)
-				can_heal = FALSE
-		if (can_heal == TRUE)
-			var/healamount = 20 * (TOUGHER_TIMES(girlboss_level))
-			H.adjustBruteLoss(-healamount)	//Healing for those around.
-			new /obj/effect/temp_visual/heal(get_turf(H), "#FF4444")
+		var/healamount = 20 * (TOUGHER_TIMES(girlboss_level))
+		H.adjustBruteLoss(-healamount)	//Healing for those around.
+		new /obj/effect/temp_visual/heal(get_turf(H), "#FF4444")
 
 //Okay but here's the defensive options
 /mob/living/simple_animal/hostile/abnormality/eris/bullet_act(obj/projectile/Proj)

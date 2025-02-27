@@ -30,22 +30,20 @@
 	desc = "This device is used to spawn an abnormality to fight"
 	resistance_flags = INDESTRUCTIBLE
 	var/list/whitelist = list(
-				/mob/living/simple_animal/hostile/abnormality/forsaken_murderer,
-				/mob/living/simple_animal/hostile/abnormality/redblooded,
-				/mob/living/simple_animal/hostile/abnormality/pinocchio,
-				/mob/living/simple_animal/hostile/abnormality/funeral,
-				/mob/living/simple_animal/hostile/abnormality/scarecrow,
-				/mob/living/simple_animal/hostile/abnormality/blue_shepherd,
-				/mob/living/simple_animal/hostile/abnormality/ebony_queen,
-				/mob/living/simple_animal/hostile/abnormality/judgement_bird,
-				/mob/living/simple_animal/hostile/abnormality/warden,
-				/mob/living/simple_animal/hostile/abnormality/nothing_there,
-				/mob/living/simple_animal/hostile/abnormality/silentorchestra,
-				/mob/living/simple_animal/hostile/abnormality/last_shot,
-				/mob/living/simple_animal/hostile/abnormality/distortedform,
-				/mob/living/simple_animal/hostile/abnormality/sukuna //For the masochists
-				)
-
+		/mob/living/simple_animal/hostile/abnormality/forsaken_murderer,
+		/mob/living/simple_animal/hostile/abnormality/redblooded,
+		/mob/living/simple_animal/hostile/abnormality/pinocchio,
+		/mob/living/simple_animal/hostile/abnormality/funeral,
+		/mob/living/simple_animal/hostile/abnormality/scarecrow,
+		/mob/living/simple_animal/hostile/abnormality/blue_shepherd,
+		/mob/living/simple_animal/hostile/abnormality/ebony_queen,
+		/mob/living/simple_animal/hostile/abnormality/judgement_bird,
+		/mob/living/simple_animal/hostile/abnormality/warden,
+		/mob/living/simple_animal/hostile/abnormality/nothing_there,
+		/mob/living/simple_animal/hostile/abnormality/silentorchestra,
+		/mob/living/simple_animal/hostile/abnormality/last_shot,
+		/mob/living/simple_animal/hostile/abnormality/distortedform,
+	)
 
 /obj/machinery/computer/testrangespawner/attack_hand(mob/living/user)
 	. = ..()

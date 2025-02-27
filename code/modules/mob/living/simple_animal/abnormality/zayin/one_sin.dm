@@ -7,6 +7,13 @@
 	portrait = "one_sin"
 	maxHealth = 777
 	health = 777
+	damage_coeff = list(RED_DAMAGE = 1.5, WHITE_DAMAGE = 1, BLACK_DAMAGE = 1, PALE_DAMAGE = 2)
+	melee_damage_lower = 8
+	melee_damage_upper = 15
+	melee_damage_type = WHITE_DAMAGE
+	attack_sound = 'sound/abnormalities/onesin/onesin_attack.ogg'
+	attack_verb_continuous = "smites"
+	attack_verb_simple = "smite"
 	is_flying_animal = TRUE
 	threat_level = ZAYIN_LEVEL
 	work_chances = list(
@@ -131,7 +138,14 @@
 			H.adjustSanityLoss(-H.maxSanity * heal_factor)
 
 /mob/living/simple_animal/hostile/abnormality/onesin/BreachEffect(mob/living/carbon/human/user, breach_type)
+	if(breach_type == BREACH_MINING)
+		update_icon()
+		return ..()
 	return FALSE // If someone wants him to breach for SOME REASON in the future, then exclude breach_type == BREACH_PINK
+
+/mob/living/simple_animal/hostile/abnormality/onesin/AttackingTarget()
+	..()
+	new /obj/effect/temp_visual/onesin_punishment(get_turf(target))
 
 /datum/reagent/abnormality/onesin
 	name = "Holy Light"

@@ -54,6 +54,8 @@
 	var/dash_num = 50	//Mostly a safeguard
 	var/list/been_hit = list()
 	var/can_act = TRUE
+	var/initial_charge_damage = 800
+	var/growing_charge_damage = 0
 
 	var/nihil_present = FALSE
 
@@ -83,8 +85,8 @@
 		<b>|Gilded Cage|: Your size is 3 by 3 tiles wide, however you can still fit in 1 by 1 areas.<br>\
 		<br>\
 		|Endless Hunger|: When you click on a tile outside your melee range, you will start charging into the direction you clicked.<br>\
-		There is a 1.5 second delay before you start charging, once you start charging into a direction you will constantly move in one direction.<br>\
-		If human gets within your melee range while charging, you will instantly gib them. If a abnormality appears in your path, you will deal damage to them.<br>\
+		Once you start charging into a direction you will constantly move in one direction.<br>\
+		Initialy, your charge deal 200 RED damage, but for every tile you move you deal an extra 40 RED damage.<br>\
 		Your charge ends after you move into a wall, or any dense object. (RHINOS/OTHER ABNORMALITIES WILL STOP YOUR CHARGE)</b>")
 
 /datum/action/innate/abnormality_attack/kog_dash
@@ -171,7 +173,7 @@
 		var/dir_to_target = get_cardinal_dir(get_turf(src), get_turf(target))
 		if(dir_to_target)
 			can_act = FALSE
-			addtimer(CALLBACK(src, PROC_REF(charge), dir_to_target, 0, target), 2 SECONDS)
+			addtimer(CALLBACK(src, PROC_REF(charge), dir_to_target, 0, initial_charge_damage), 2 SECONDS)
 			return
 	return
 
@@ -184,35 +186,10 @@
 			var/dir_to_target = get_cardinal_dir(get_turf(src), get_turf(target))
 			can_act = FALSE
 			// do particle effect
-			if (IsCombatMap())
-				manual_emote("starts shaking...")
-				SLEEP_CHECK_DEATH(15)
-				addtimer(CALLBACK(src, PROC_REF(warning_effect), get_turf(src), dir_to_target, 0, target), 0 SECONDS)
-			charge(dir_to_target, 0, target)
+			charge(dir_to_target, 0, initial_charge_damage)
 	return
 
-/obj/effect/temp_visual/cult/sparks/greed
-	duration = 4
-
-/mob/living/simple_animal/hostile/abnormality/greed_king/proc/warning_effect(turf, move_dir, times_ran, target)
-	var/stop_warning = FALSE
-	if(times_ran >= dash_num)
-		stop_warning = TRUE
-	var/turf/T = get_step(turf, move_dir)
-	if(!T)
-		stop_warning = TRUE
-		return
-	if(T.density)
-		stop_warning = TRUE
-	for(var/obj/machinery/door/D in T.contents)
-		if(D.density)
-			stop_warning = TRUE
-	for(var/turf/open/R in range(1, T))
-		new /obj/effect/temp_visual/cult/sparks/greed(R)
-	if (!stop_warning)
-		addtimer(CALLBACK(src, PROC_REF(warning_effect), T, move_dir, (times_ran + 1)), 1)
-
-/mob/living/simple_animal/hostile/abnormality/greed_king/proc/charge(move_dir, times_ran, target)
+/mob/living/simple_animal/hostile/abnormality/greed_king/proc/charge(move_dir, times_ran, charge_damage)
 	setDir(move_dir)
 	var/stop_charge = FALSE
 	if(times_ran >= dash_num)
@@ -252,7 +229,7 @@
 				playsound(L, attack_sound, 75, 1)
 				new /obj/effect/temp_visual/kinetic_blast(get_turf(L))
 				if(ishuman(L))
-					L.deal_damage(800, RED_DAMAGE)
+					L.deal_damage(charge_damage, RED_DAMAGE)
 				else
 					L.adjustRedLoss(80)
 				if(L.stat >= HARD_CRIT)
@@ -279,7 +256,9 @@
 	playsound(src,'sound/effects/bamf.ogg', 70, TRUE, 20)
 	for(var/turf/open/R in range(1, src))
 		new /obj/effect/temp_visual/small_smoke/halfsecond(R)
-	addtimer(CALLBACK(src, PROC_REF(charge), move_dir, (times_ran + 1)), 2)
+	if (IsCombatMap())
+		charge_damage = charge_damage + growing_charge_damage
+	addtimer(CALLBACK(src, PROC_REF(charge), move_dir, (times_ran + 1), charge_damage), 2)
 
 /mob/living/simple_animal/hostile/abnormality/greed_king/proc/endCharge()
 	can_act = TRUE

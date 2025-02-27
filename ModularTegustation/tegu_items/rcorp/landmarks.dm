@@ -85,9 +85,9 @@ GLOBAL_LIST_INIT(raidboss, list(/mob/living/simple_animal/hostile/distortion/shr
 /obj/effect/landmark/abnospawn/easycombat/Initialize()
 	..()
 	var/spawning = pick_n_take(GLOB.easycombat)
-	new spawning(get_turf(src))
+	var/mob/living/simple_animal/hostile/abnormality/A = new spawning(get_turf(src))
+	A.rcorp_team = "easy"
 	return INITIALIZE_HINT_QDEL
-
 
 /obj/effect/landmark/abnospawn/easysupport
 	name = "easy support abno spawner"
@@ -98,9 +98,9 @@ GLOBAL_LIST_INIT(raidboss, list(/mob/living/simple_animal/hostile/distortion/shr
 /obj/effect/landmark/abnospawn/easysupport/Initialize()
 	..()
 	var/spawning = pick_n_take(GLOB.easysupport)
-	new spawning(get_turf(src))
+	var/mob/living/simple_animal/hostile/abnormality/A = new spawning(get_turf(src))
+	A.rcorp_team = "easy"
 	return INITIALIZE_HINT_QDEL
-
 
 /obj/effect/landmark/abnospawn/easytank
 	name = "easy tank abno spawner"
@@ -111,7 +111,8 @@ GLOBAL_LIST_INIT(raidboss, list(/mob/living/simple_animal/hostile/distortion/shr
 /obj/effect/landmark/abnospawn/easytank/Initialize()
 	..()
 	var/spawning = pick_n_take(GLOB.easytank)
-	new spawning(get_turf(src))
+	var/mob/living/simple_animal/hostile/abnormality/A = new spawning(get_turf(src))
+	A.rcorp_team = "easy"
 	return INITIALIZE_HINT_QDEL
 
 /obj/effect/landmark/abnospawn/hardcombat

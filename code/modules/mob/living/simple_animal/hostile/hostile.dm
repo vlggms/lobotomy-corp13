@@ -85,6 +85,9 @@
 
 	var/damage_effect_scale = 1
 
+	// Return to spawn point if target lost
+	var/return_to_origin = FALSE
+
 /mob/living/simple_animal/hostile/Initialize()
 	/*Update Speed overrides set speed and sets it
 		to the equivilent of move_to_delay. Basically
@@ -102,6 +105,9 @@
 	target_switch_resistance = clamp(maxHealth * 0.15, 100, 600)
 
 	wanted_objects = typecacheof(wanted_objects)
+
+	if (return_to_origin)
+		AddComponent(/datum/component/return_to_origin)
 
 /mob/living/simple_animal/hostile/Destroy()
 	targets_from = null
@@ -643,6 +649,7 @@
 	approaching_target = FALSE
 	in_melee = FALSE
 	walk(src, 0)
+	SEND_SIGNAL(src, COMSIG_HOSTILE_LOSTTARGET)
 	LoseAggro()
 
 /mob/living/simple_animal/hostile/proc/Aggro()

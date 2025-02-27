@@ -1650,9 +1650,7 @@
 /turf/open/floor/carpet/royalblack,
 /area/city/outskirts)
 "Ml" = (
-/obj/machinery/button/door/indestructible{
-	id = "inside"
-	},
+/obj/machinery/button/door/indestructible/rcorp,
 /obj/effect/landmark/nobasic_incorp_move/disappearing,
 /turf/closed/indestructible/syndicate,
 /area/city/outskirts)

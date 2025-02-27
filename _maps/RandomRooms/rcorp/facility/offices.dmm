@@ -47,9 +47,7 @@
 /turf/open/floor/plasteel,
 /area/city/outskirts)
 "eS" = (
-/obj/machinery/button/door/indestructible{
-	id = "inside"
-	},
+/obj/machinery/button/door/indestructible/rcorp,
 /obj/effect/landmark/nobasic_incorp_move/disappearing,
 /turf/closed/indestructible/syndicate,
 /area/city/outskirts)
@@ -72,9 +70,7 @@
 /turf/open/floor/facility/dark,
 /area/city/outskirts)
 "iB" = (
-/obj/machinery/button/door/indestructible{
-	id = "inside"
-	},
+/obj/machinery/button/door/indestructible/rcorp,
 /turf/closed/indestructible/syndicate,
 /area/city/outskirts)
 "iH" = (

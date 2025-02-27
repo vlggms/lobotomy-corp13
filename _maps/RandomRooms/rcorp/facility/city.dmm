@@ -656,9 +656,7 @@
 /turf/open/floor/wood,
 /area/city/outskirts)
 "ik" = (
-/obj/machinery/button/door/indestructible{
-	id = "inside"
-	},
+/obj/machinery/button/door/indestructible/rcorp,
 /obj/effect/landmark/nobasic_incorp_move,
 /turf/closed/indestructible/syndicate,
 /area/city/outskirts)

@@ -322,8 +322,9 @@
 		ZeroQliphoth()
 		return
 	. = ..()
-	var/turf/T = pick(GLOB.department_centers)
-	forceMove(T)
+	if(breach_type != BREACH_MINING)
+		var/turf/T = pick(GLOB.department_centers)
+		forceMove(T)
 
 //Weather controlling
 /mob/living/simple_animal/hostile/abnormality/seasons/proc/CheckWeather()

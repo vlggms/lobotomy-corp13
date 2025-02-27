@@ -137,6 +137,9 @@
 	/// Is there a currently on-going observation?
 	var/observation_in_progress = FALSE
 
+	// rcorp stuff
+	var/rcorp_team
+
 /mob/living/simple_animal/hostile/abnormality/Initialize(mapload)
 	SHOULD_CALL_PARENT(TRUE)
 	. = ..()

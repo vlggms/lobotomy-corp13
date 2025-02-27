@@ -295,6 +295,35 @@
 	name = "Backstreets Room"
 	icon_state = "hallA"
 
+/area/city/backstreets_room/resurgence_village
+	name = "Resurgence Clan Village"
+	ambientsounds = list('sound/ambience/resurgence_village1.ogg')
+
+/area/city/backstreets_room/resurgence_village/Entered(atom/movable/M)
+	set waitfor = FALSE
+	SEND_SIGNAL(src, COMSIG_AREA_ENTERED, M)
+	SEND_SIGNAL(M, COMSIG_ENTER_AREA, src) //The atom that enters the area
+	if(!isliving(M))
+		return
+
+	var/mob/living/L = M
+	if(!L.ckey)
+		return
+
+	// Ambience goes down here -- make sure to list each area separately for ease of adding things in later, thanks! Note: areas adjacent to each other should have the same sounds to prevent cutoff when possible.- LastyScratch
+	if(L.client && !L.client.ambience_playing && L.client.prefs.toggles & SOUND_SHIP_AMBIENCE)
+		L.client.ambience_playing = 1
+
+	if(!(L.client && (L.client.prefs.toggles & SOUND_AMBIENCE)))
+		return //General ambience check is below the ship ambience so one can play without the other
+
+	var/sound = pick(ambientsounds)
+	if(!L.client.played)
+		SEND_SOUND(L, sound(sound, repeat = 0, wait = 0, volume = 25, channel = CHANNEL_AMBIENCE))
+		L.client.played = TRUE
+		addtimer(CALLBACK(L.client, TYPE_PROC_REF(/client, ResetAmbiencePlayed)), 600)
+
+
 /area/library_floors
 	name = "Library"
 	icon_state = "library"

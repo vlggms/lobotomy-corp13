@@ -24,7 +24,7 @@
 	possible_a_intents = list(INTENT_HELP, INTENT_HARM)
 	//similar to a human
 	damage_coeff = list(RED_DAMAGE = 0.8, WHITE_DAMAGE = 1.2, BLACK_DAMAGE = 1, PALE_DAMAGE = 1)
-	butcher_results = list(/obj/item/food/meat/slab/human = 2, /obj/item/food/meat/slab/human/mutant/moth = 1)
+	butcher_results = list(/obj/item/food/meat/slab/buggy = 2)
 	silk_results = list(/obj/item/stack/sheet/silk/steel_simple = 1)
 
 /mob/living/simple_animal/hostile/ordeal/steel_dawn/Initialize()
@@ -66,7 +66,7 @@
 	attack_verb_continuous = "slashes"
 	attack_verb_simple = "slash"
 	death_sound = 'sound/voice/mook_death.ogg'
-	butcher_results = list(/obj/item/food/meat/slab/human = 1, /obj/item/food/meat/slab/human/mutant/moth = 2)
+	butcher_results = list(/obj/item/food/meat/slab/buggy = 2)
 	silk_results = list(/obj/item/stack/sheet/silk/steel_simple = 2, /obj/item/stack/sheet/silk/steel_advanced = 1)
 
 /mob/living/simple_animal/hostile/ordeal/steel_dawn/steel_noon/MeleeAction()
@@ -224,7 +224,7 @@
 	footstep_type = FOOTSTEP_MOB_SHOE
 	possible_a_intents = list(INTENT_HELP, INTENT_DISARM, INTENT_HARM)
 	death_sound = 'sound/voice/hiss5.ogg'
-	butcher_results = list(/obj/item/food/meat/slab/human = 2, /obj/item/food/meat/slab/human/mutant/moth = 1)
+	butcher_results = list(/obj/item/food/meat/slab/buggy = 3)
 	silk_results = list(/obj/item/stack/sheet/silk/steel_simple = 4, /obj/item/stack/sheet/silk/steel_advanced = 2, /obj/item/stack/sheet/silk/steel_elegant = 1)
 	//Last command issued
 	var/last_command = 0

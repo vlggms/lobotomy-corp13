@@ -289,6 +289,52 @@
 	subcategory = CAT_PASTRY
 
 
+/datum/crafting_recipe/food/tarte_tatin
+	name = "Tarte tatin"
+	reqs = list(
+		/obj/item/food/pie/plain = 1,
+		/obj/item/food/grown/apple = 2,
+		/datum/reagent/consumable/caramel = 5,
+		/obj/item/food/butter = 1
+	)
+	result = /obj/item/food/pie/tarte_tatin
+	subcategory = CAT_PASTRY
+
+
+/datum/crafting_recipe/food/chocolate_pie
+	name = "Chocolate pie"
+	reqs = list(
+		/obj/item/food/pie/plain = 1,
+		/obj/item/food/chocolatebar = 2
+	)
+	result = /obj/item/food/pie/chocolate
+	subcategory = CAT_PASTRY
+
+
+/datum/crafting_recipe/food/flan
+	name = "Flan"
+	reqs = list(
+		/obj/item/food/pie/plain = 1,
+		/datum/reagent/consumable/eggyolk = 5,
+		/datum/reagent/consumable/milk = 5,
+		/datum/reagent/consumable/vanilla = 5
+	)
+	result = /obj/item/food/pie/flan
+	subcategory = CAT_PASTRY
+
+
+/datum/crafting_recipe/food/lemon_meringue_pie
+	name = "Lemon meringue pie"
+	reqs = list(
+		/obj/item/food/pie/plain = 1,
+		/datum/reagent/consumable/eggyolk = 5,
+		/obj/item/food/grown/citrus/lemon = 2,
+		/datum/reagent/consumable/sugar = 5
+	)
+	result = /obj/item/food/pie/lemon_meringue
+	subcategory = CAT_PASTRY
+
+
 ////////////////////////////////////////////////DONUTS////////////////////////////////////////////////
 
 /datum/crafting_recipe/food/donut
@@ -744,4 +790,23 @@
 		/datum/reagent/consumable/sugar = 3
 	)
 	result = /obj/item/food/cannoli
+	subcategory = CAT_PASTRY
+
+/datum/crafting_recipe/food/croissant
+	name = "Croissant"
+	reqs = list(
+		/obj/item/food/pastrybase = 1,
+		/obj/item/food/butter = 1
+	)
+	result = /obj/item/food/croissant
+	subcategory = CAT_PASTRY
+
+/datum/crafting_recipe/food/pain_au_chocolat
+	name = "Pain au chocolat"
+	reqs = list(
+		/obj/item/food/pastrybase = 1,
+		/obj/item/food/butter = 1,
+		/obj/item/food/chocolatebar = 1
+	)
+	result = /obj/item/food/pain_au_chocolat
 	subcategory = CAT_PASTRY

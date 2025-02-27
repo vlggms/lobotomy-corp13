@@ -18,6 +18,11 @@
 /obj/item/gps/spaceruin
 	gpstag = SPACE_SIGNAL_GPSTAG
 
+/obj/item/gps/fixer
+	desc = "Helping lost fixers find strong signals within the backstreets."
+	gpstag = "FIX0"
+	custom_price = PAYCHECK_ASSISTANT
+
 /obj/item/gps/science
 	icon_state = "gps-s"
 	gpstag = "SCI0"

@@ -39,6 +39,7 @@
 	/// Can't move/attack when it's TRUE
 	var/reloading = FALSE
 	var/firing_time = 0
+	var/firing_cooldown = 1.2
 	/// When at 12 - it will start "reloading"
 	var/fire_count = 0
 
@@ -75,7 +76,7 @@
 /mob/living/simple_animal/hostile/ordeal/green_bot_big/AttackingTarget(atom/attacked_target)
 	if(reloading)
 		return FALSE
-	if(world.time < firing_time + 1.2 SECONDS)
+	if(world.time < firing_time + firing_cooldown SECONDS)
 		return FALSE
 	. = ..()
 	if(.)

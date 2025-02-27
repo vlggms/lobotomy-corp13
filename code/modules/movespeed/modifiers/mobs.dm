@@ -139,3 +139,7 @@
 /datum/movespeed_modifier/qliphothoverload
 	flags = IS_ACTUALLY_MULTIPLICATIVE
 	multiplicative_slowdown = 2
+
+/datum/movespeed_modifier/bloodhold
+	flags = IS_ACTUALLY_MULTIPLICATIVE
+	multiplicative_slowdown = 4

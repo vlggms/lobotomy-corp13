@@ -205,9 +205,7 @@
 /turf/open/floor/plasteel,
 /area/city/outskirts)
 "Ml" = (
-/obj/machinery/button/door/indestructible{
-	id = "inside"
-	},
+/obj/machinery/button/door/indestructible/rcorp,
 /obj/effect/landmark/nobasic_incorp_move/disappearing,
 /turf/closed/indestructible/syndicate,
 /area/city/outskirts)
@@ -256,9 +254,7 @@
 /turf/open/floor/plating/ashplanet/rocky,
 /area/city/outskirts)
 "Wn" = (
-/obj/machinery/button/door/indestructible{
-	id = "inside"
-	},
+/obj/machinery/button/door/indestructible/rcorp,
 /obj/effect/landmark/nobasic_incorp_move,
 /turf/closed/indestructible/syndicate,
 /area/city/outskirts)

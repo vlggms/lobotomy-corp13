@@ -375,8 +375,10 @@
 	projectile_piercing = PASSMOB
 
 /obj/projectile/beam/laser/iff/on_hit(atom/target, blocked = FALSE)
-	if(ishuman(target))
-		return
+	if(isliving(target))
+		var/mob/living/L = target
+		if("neutral" in L.faction)
+			return
 	nodamage = FALSE
 	. = ..()
 	qdel(src)

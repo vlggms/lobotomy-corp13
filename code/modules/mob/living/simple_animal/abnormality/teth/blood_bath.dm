@@ -4,8 +4,17 @@
 	icon = 'ModularTegustation/Teguicons/48x64.dmi'
 	icon_state = "bloodbath"
 	portrait = "blood_bath"
-	maxHealth = 400
-	health = 400
+	maxHealth = 1000
+	health = 1000
+	move_to_delay = 3
+	attack_sound = 'sound/abnormalities/ichthys/slap.ogg'
+	attack_verb_continuous = "mauls"
+	attack_verb_simple = "maul"
+	melee_damage_lower = 6
+	melee_damage_upper = 12
+	melee_damage_type = WHITE_DAMAGE
+	damage_coeff = list(RED_DAMAGE = 1.6, WHITE_DAMAGE = 1, BLACK_DAMAGE = 1.4, PALE_DAMAGE = 1.5)
+	ranged = TRUE
 	threat_level = TETH_LEVEL
 	work_chances = list(
 		ABNORMALITY_WORK_INSTINCT = list(55, 55, 50, 50, 50),
@@ -38,6 +47,8 @@
 	)
 
 	var/hands = 0
+	var/can_act = TRUE
+	var/special_attack_cooldown
 
 /mob/living/simple_animal/hostile/abnormality/bloodbath/PostWorkEffect(mob/living/carbon/human/user, work_type, pe, work_time)
 // any work performed with level 1 Fort and Temperance makes you panic and die
@@ -67,3 +78,50 @@
 			datum_reference.max_boxes = max_boxes
 			icon_state = "bloodbath"
 		return
+
+/mob/living/simple_animal/hostile/abnormality/bloodbath/BreachEffect(mob/living/carbon/human/user, breach_type)
+	if(breach_type != BREACH_MINING && breach_type != BREACH_PINK)
+		return
+	if(breach_type == BREACH_PINK)
+		maxHealth = 4000
+		melee_damage_lower = 20
+		melee_damage_upper = 40
+	..()
+	icon_state = "bloodbath_DF"
+	pixel_x = -8
+	base_pixel_x = -8
+	update_icon()
+
+/mob/living/simple_animal/hostile/abnormality/bloodbath/OpenFire()
+	if(!can_act)
+		return
+	if(special_attack_cooldown > world.time)
+		return
+	BloodBathSlam()
+
+/mob/living/simple_animal/hostile/abnormality/bloodbath/proc/BloodBathSlam()//weaker version of the DF form
+	if(!can_act)
+		return
+	special_attack_cooldown = world.time + 5 SECONDS
+	can_act = FALSE
+	for(var/turf/L in view(3, src))
+		new /obj/effect/temp_visual/cult/sparks(L)
+	playsound(get_turf(src), 'sound/abnormalities/ichthys/jump.ogg', 100, FALSE, 6)
+	icon_state = "bloodbath_slamprepare"
+	SLEEP_CHECK_DEATH(12)
+	for(var/turf/T in view(3, src))
+		var/obj/effect/temp_visual/small_smoke/halfsecond/FX =  new(T)
+		FX.color = "#b52e19"
+		for(var/mob/living/carbon/human/H in HurtInTurf(T, list(), 50, WHITE_DAMAGE, null, null, TRUE, FALSE, TRUE, FALSE, TRUE, TRUE))
+			if(H.sanity_lost)
+				H.gib()
+	playsound(get_turf(src), 'sound/abnormalities/bloodbath/Bloodbath_EyeOn.ogg', 125, FALSE, 6)
+	icon_state = "bloodbath_slam"
+	SLEEP_CHECK_DEATH(3)
+	icon_state = "bloodbath_DF"
+	can_act = TRUE
+
+/mob/living/simple_animal/hostile/abnormality/bloodbath/Move()
+	if(!can_act)
+		return FALSE
+	..()

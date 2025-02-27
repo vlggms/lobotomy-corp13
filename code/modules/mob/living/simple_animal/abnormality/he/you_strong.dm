@@ -5,8 +5,9 @@
 	icon_state = "you_strong_pause"
 	icon_living = "you_strong_pause"
 	portrait = "grown_strong"
-	maxHealth = 200
-	health = 200
+	maxHealth = 2000
+	health = 2000
+	damage_coeff = list(RED_DAMAGE = 1, WHITE_DAMAGE = 1.5, BLACK_DAMAGE = 1.5, PALE_DAMAGE = 0)
 	threat_level = HE_LEVEL
 	start_qliphoth = 3
 	work_chances = list(
@@ -61,12 +62,29 @@
 	var/datum/looping_sound/server/soundloop
 
 	var/operating = FALSE
+	var/breaching = FALSE
+	var/summon_cooldown
+	var/summon_cooldown_time = 120 SECONDS
+	var/summon_count = 0
 
 /mob/living/simple_animal/hostile/abnormality/you_strong/Initialize(mapload)
 	. = ..()
 	soundloop = new(list(src), FALSE)
 	soundloop.volume = 75
 	soundloop.extra_range = 0
+
+/mob/living/simple_animal/hostile/abnormality/you_strong/Move()
+	return FALSE
+
+/mob/living/simple_animal/hostile/abnormality/you_strong/CanAttack(atom/the_target)
+	return FALSE
+
+/mob/living/simple_animal/hostile/abnormality/you_strong/Life()
+	. = ..()
+	if(!breaching)
+		return
+	if((summon_cooldown < world.time) && !(status_flags & GODMODE))
+		SummonAdds()
 
 /mob/living/simple_animal/hostile/abnormality/you_strong/WorkComplete(mob/living/carbon/human/user, work_type, pe, work_time, canceled)
 	. = ..()
@@ -123,13 +141,27 @@
 	icon_state = "you_strong_work"
 	SLEEP_CHECK_DEATH(30 SECONDS)
 	soundloop.stop()
-	src.datum_reference.qliphoth_change(3)
+	if(datum_reference)
+		src.datum_reference.qliphoth_change(3)
 	icon_state = "you_strong_make"
 	SLEEP_CHECK_DEATH(6)
 	for(var/i = 1 to 3)
 		new /mob/living/simple_animal/hostile/grown_strong(get_step(src, EAST))
+		if(breaching)
+			summon_count += 1
 	SLEEP_CHECK_DEATH(6)
 	icon_state = "you_strong_pause"
+
+/mob/living/simple_animal/hostile/abnormality/you_strong/BreachEffect(mob/living/carbon/human/user, breach_type)
+	if(breach_type == BREACH_MINING)
+		breaching = TRUE
+	return ..()
+
+/mob/living/simple_animal/hostile/abnormality/you_strong/proc/SummonAdds()
+	summon_cooldown = world.time + summon_cooldown_time
+	if(summon_count > 9)//this list is not subtracted when minions are killed. Limited to 10 per breach
+		return
+	ZeroQliphoth()
 
 /mob/living/simple_animal/hostile/abnormality/you_strong/attacked_by(obj/item/I, mob/living/user)
 	if(!(I.type in taken_parts))

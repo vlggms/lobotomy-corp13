@@ -193,7 +193,8 @@
 	. = ..()
 	if(!datum_reference.abno_radio)
 		AbnoRadio()
-	addtimer(CALLBACK(src, PROC_REF(TryTeleport)), 5)
+	if(breach_type != BREACH_MINING)
+		addtimer(CALLBACK(src, PROC_REF(TryTeleport)), 5)
 
 /mob/living/simple_animal/hostile/abnormality/jangsan/proc/TryTeleport() //stolen from knight of despair
 	dir = 2

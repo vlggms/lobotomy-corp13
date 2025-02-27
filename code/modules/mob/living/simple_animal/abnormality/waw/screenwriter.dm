@@ -11,6 +11,9 @@ Defeating the murderer also surpresses the abnormality.
 	icon = 'ModularTegustation/Teguicons/32x32.dmi'
 	icon_state = "screenwriter"
 	portrait = "screenwriter"
+	maxHealth = 4000
+	health = 4000
+	damage_coeff = list(RED_DAMAGE = 1.3, WHITE_DAMAGE = 0.5, BLACK_DAMAGE = 1.3, PALE_DAMAGE = 1.5)
 	faction = list("hostile")
 	threat_level = WAW_LEVEL
 	start_qliphoth = 2
@@ -58,6 +61,18 @@ Defeating the murderer also surpresses the abnormality.
 	. = ..()
 	preferred_work_type = pick(work_chances)
 	SpawnIcon()
+
+/mob/living/simple_animal/hostile/abnormality/screenwriter/Move()
+	return FALSE
+
+/mob/living/simple_animal/hostile/abnormality/screenwriter/CanAttack(atom/the_target)
+	return FALSE
+
+/mob/living/simple_animal/hostile/abnormality/screenwriter/Destroy()
+	if(A)
+		A.death()
+	EndScenario()
+	return ..()
 
 //Work stuff
 /mob/living/simple_animal/hostile/abnormality/screenwriter/AttemptWork(mob/living/carbon/human/user, work_type)
@@ -112,6 +127,10 @@ Defeating the murderer also surpresses the abnormality.
 		return
 	MeltdownEffect()
 	return
+
+/mob/living/simple_animal/hostile/abnormality/screenwriter/BreachEffect(mob/living/carbon/human/user, breach_type)
+	if(breach_type == BREACH_MINING)
+		MeltdownEffect()
 
 /mob/living/simple_animal/hostile/abnormality/screenwriter/proc/MeltdownEffect()
 	var/turf/actor_location = pick(GLOB.department_centers) //Spawn the murderer

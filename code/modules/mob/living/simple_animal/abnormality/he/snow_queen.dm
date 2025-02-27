@@ -164,7 +164,7 @@
 		faction += "pink_midnight"
 	//Call root code but with normal breach
 	. = ..(null, BREACH_NORMAL)
-	if(!IsCombatMap())
+	if(!IsCombatMap() && breach_type != BREACH_MINING)
 		var/turf/T = pick(GLOB.department_centers)
 		forceMove(T)
 	update_icon()

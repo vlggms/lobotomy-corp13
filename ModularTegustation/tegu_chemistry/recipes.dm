@@ -63,3 +63,6 @@
 	results = list(/datum/reagent/yuck = 1)
 	required_reagents = list(/datum/reagent/abnormality/serelam = 5, /datum/reagent/abnormality/culpusumidus = 5)
 
+/datum/chemical_reaction/mental_stabilizator
+	results = list(/datum/reagent/medicine/mental_stabilizator = 2)
+	required_reagents = list(/datum/reagent/drug/enkephalin = 1, /datum/reagent/toxin/mindbreaker = 1)
