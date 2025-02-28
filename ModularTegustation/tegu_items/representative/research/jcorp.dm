@@ -94,10 +94,10 @@ GLOBAL_LIST_EMPTY(jcorp_upgrades)
 	cost = LOW_RESEARCH_PRICE
 	corp = J_CORP_REP
 
-/datum/data/lc13research/casino_machine/ResearchEffect(obj/structure/representative_console/caller)
-	. = ..()
-	new /obj/machinery/jcorp_slot_machine(get_turf(caller))
-	caller.visible_message(span_notice("The [caller] lights up as it teleports in the Casino Machine."))
+/datum/data/lc13research/casino_machine/ResearchEffect(obj/structure/representative_console/requester)
+	new /obj/machinery/jcorp_slot_machine(get_turf(requester))
+	requester.visible_message(span_notice("The [requester] lights up as it teleports in the Casino Machine."))
+	..()
 
 /datum/data/lc13research/blood_machine
 	research_name = "J Corp Lifeforce Slots"
@@ -105,11 +105,11 @@ GLOBAL_LIST_EMPTY(jcorp_upgrades)
 	cost = LOW_RESEARCH_PRICE
 	corp = J_CORP_REP
 
-/datum/data/lc13research/blood_machine/ResearchEffect(obj/structure/representative_console/caller)
-	. = ..()
-	new /obj/item/blood_slots(get_turf(caller))
-	new /obj/item/blood_slots(get_turf(caller))
-	caller.visible_message(span_notice("The [caller] lights up as it teleports in two odd devices."))
+/datum/data/lc13research/blood_machine/ResearchEffect(obj/structure/representative_console/requester)
+	new /obj/item/blood_slots(get_turf(requester))
+	new /obj/item/blood_slots(get_turf(requester))
+	requester.visible_message(span_notice("The [requester] lights up as it teleports in two odd devices."))
+	..()
 
 //ERTs
 /*
@@ -135,15 +135,16 @@ GLOBAL_LIST_EMPTY(jcorp_upgrades)
 	corp = J_CORP_REP
 	mobspawner_type = /obj/effect/mob_spawn/human/supplypod/r_corp/jcorp_call/casino_security/killteam
 	required_research = /datum/data/lc13research/mobspawner/casino_slaves
-
+*/
+/*
 // Critical Hits (Untested! Don't add till Critical Hits PR is merged)
-///datum/data/lc13research/crit_sticker
-//	research_name = "Critical Hit Sticker"
-//	research_desc = "These stickers contain locks which should be able to lock away the doubt or second thoughts out of a person's mind midcombat, to make them take the best opprotunites and locations to hit."
-//	cost = AVERAGE_RESEARCH_PRICE
-//	corp = J_CORP_REP
+/datum/data/lc13research/crit_hits
+	research_name = "Enable Critical Hits"
+	research_desc = "This upgrade should allow your singularity to impact L Corp's weapons to occasionally land stronger hits!"
+	cost = AVERAGE_RESEARCH_PRICE
+	corp = J_CORP_REP
 
-// /datum/data/lc13research/crit_sticker/ResearchEffect(obj/structure/representative_console/requester)
-//	new /obj/item/clothing/mask/crit_sticker(get_turf(requester))
-//	..()
+/datum/data/lc13research/crit_sticker/ResearchEffect(obj/structure/representative_console/requester)
+	new /obj/item/clothing/mask/crit_sticker(get_turf(requester))
+	..()
 */
