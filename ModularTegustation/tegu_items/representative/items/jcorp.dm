@@ -42,14 +42,12 @@ GLOBAL_LIST_EMPTY(possible_loot_jcorp)
 		/obj/item/storage/box/lc_debugtools,
 		/obj/item/storage/box/debugtools,
 		/obj/item/storage/box/material,
-		/obj/item/clothing/head/helmet/space/hardsuit/syndi/elite/admin,
 		/obj/item/clothing/suit/space/hardsuit/syndi/elite/admin,
 		/obj/item/card/id/debug,
 		/obj/item/water_turf_spawner,
 		/obj/item/ego_weapon/city/rats/truepipe,
 		/obj/item/storage/belt/grenade,
 		/obj/item/storage/belt/wands/full,
-		/obj/item/melee/cultblade/dagger,
 		/obj/item/gun/ballistic/automatic/gyropistol,
 		/obj/item/gun/ballistic/rocketlauncher,
 		/obj/item/gun/grenadelauncher,
@@ -57,12 +55,17 @@ GLOBAL_LIST_EMPTY(possible_loot_jcorp)
 		/obj/item/necromantic_stone,
 		/obj/item/gun/energy/decloner,
 		/obj/item/melee/baton/cattleprod/teleprod,
+		/obj/item/storage/backpack/duffelbag/cursed,
+		/obj/item/storage/backpack/santabag,
+		/obj/item/clothing/mask/facehugger,
+		/obj/item/gun/energy/laser/instakill,
+		/obj/item/disk/surgery/debug,
 	)
 	var/list/banned_subtypes = list(
 		/obj/item/lc_debug,
 		/obj/item/reagent_containers/glass/bottle,
 		/obj/item/uplink,
-		/obj/item/gun/magic/wand,
+		/obj/item/gun/magic,
 		/obj/item/construction/rcd,
 		/obj/item/dice/d20/fate,
 		/obj/item/clothing/mask/animal, //There are cursed variants for each type
@@ -71,6 +74,22 @@ GLOBAL_LIST_EMPTY(possible_loot_jcorp)
 		/obj/item/gun/ballistic/revolver/grenadelauncher,
 		/obj/item/storage/box/syndicate,
 		/obj/item/clothing/head/hooded,
+		/obj/item/reagent_containers/borghypo,
+		/obj/item/autosurgeon/organ/syndicate,
+		/obj/item/implanter,
+		/obj/item/storage/box/syndie_kit,
+		/obj/item/reagent_containers/hypospray,
+		/obj/item/bombcore,
+		/obj/item/a_gift,
+		/obj/item/cartridge/virus,
+		/obj/item/melee/cultblade,
+		/obj/item/reagent_containers/borghypo,
+		/obj/item/storage/belt/soulstone,
+		/obj/item/soulstone,
+		/obj/item/clothing/head/helmet/space,
+		/obj/item/storage/backpack/duffelbag/syndie,
+		/obj/item/assembly/signaler/anomaly,
+		/obj/item/autosurgeon/skillchip/syndicate,
 	)
 	var/list/safe_items = list(
 		/obj/item/grenade/firecracker,
@@ -92,7 +111,7 @@ GLOBAL_LIST_EMPTY(possible_loot_jcorp)
 		var/list/gift_types_list = subtypesof(/obj/item)
 		for(var/V in gift_types_list)
 			var/obj/item/I = V
-			if((!initial(I.icon_state)) || (!initial(I.inhand_icon_state)) || (initial(I.item_flags) & ABSTRACT))
+			if((!initial(I.icon_state)) || (!initial(I.inhand_icon_state)) || (initial(I.item_flags) & (ABSTRACT || DROPDEL)))
 				gift_types_list -= V
 				continue
 			if(I in safe_items)
@@ -221,12 +240,5 @@ GLOBAL_LIST_EMPTY(possible_loot_jcorp)
 
 
 
-// Crit Sticker (Will Test and add once Critical Hits are in)
-///obj/item/clothing/mask/crit_sticker
-//	name = "J Corp Critical Hit Sticker"
-//	desc = "A sticker with a J on it. It seems to make you feel more focused when it is on you."
-//	slot_flags = ITEM_SLOT_POCKETS
-//	w_class = WEIGHT_CLASS_SMALL
-//	var/crit_modifier = 2.5
 
 // J Corp ERT Gear (We can move this code in case somebody adds some of the gear to gacha)
