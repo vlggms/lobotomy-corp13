@@ -153,7 +153,7 @@
 
 
 /datum/crafting_recipe/food/charlotte
-	name = "Charlotte"
+	name = "Strawberry charlotte"
 	reqs = list(
 		/obj/item/food/cake/plain = 1,
 		/obj/item/food/grown/berries = 5,
