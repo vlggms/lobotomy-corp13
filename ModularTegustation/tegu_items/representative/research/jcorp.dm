@@ -94,10 +94,10 @@ GLOBAL_LIST_EMPTY(jcorp_upgrades)
 	cost = LOW_RESEARCH_PRICE
 	corp = J_CORP_REP
 
-/datum/data/lc13research/casino_machine/ResearchEffect(obj/structure/representative_console/requester)
-	new /obj/machinery/jcorp_slot_machine(get_turf(requester))
-	requester.visible_message(span_notice("The [requester] lights up as it teleports in the Casino Machine."))
-	..()
+/datum/data/lc13research/casino_machine/ResearchEffect(obj/structure/representative_console/caller)
+	. = ..()
+	new /obj/machinery/jcorp_slot_machine(get_turf(caller))
+	caller.visible_message(span_notice("The [caller] lights up as it teleports in the Casino Machine."))
 
 /datum/data/lc13research/blood_machine
 	research_name = "J Corp Lifeforce Slots"
@@ -105,11 +105,11 @@ GLOBAL_LIST_EMPTY(jcorp_upgrades)
 	cost = LOW_RESEARCH_PRICE
 	corp = J_CORP_REP
 
-/datum/data/lc13research/blood_machine/ResearchEffect(obj/structure/representative_console/requester)
-	new /obj/item/blood_slots(get_turf(requester))
-	new /obj/item/blood_slots(get_turf(requester))
-	requester.visible_message(span_notice("The [requester] lights up as it teleports in two odd devices."))
-	..()
+/datum/data/lc13research/blood_machine/ResearchEffect(obj/structure/representative_console/caller)
+	. = ..()
+	new /obj/item/blood_slots(get_turf(caller))
+	new /obj/item/blood_slots(get_turf(caller))
+	caller.visible_message(span_notice("The [caller] lights up as it teleports in two odd devices."))
 
 //ERTs
 /*
