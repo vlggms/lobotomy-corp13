@@ -12,9 +12,6 @@
 "aC" = (
 /turf/open/space,
 /area/space)
-"aV" = (
-/turf/closed/indestructible/reinforced,
-/area/space)
 "aW" = (
 /obj/machinery/door/airlock/wood{
 	name = "Officer Bunks"
@@ -126,7 +123,7 @@
 /obj/item/work_console_upgrade/chemical_extraction_attachment,
 /obj/item/work_console_upgrade/chemical_extraction_attachment,
 /turf/open/floor/plasteel/white,
-/area/space)
+/area/facility_hallway/manager)
 "cY" = (
 /obj/machinery/vending/coffee,
 /turf/open/floor/plasteel/dark,
@@ -232,9 +229,6 @@
 	},
 /turf/open/floor/wood,
 /area/facility_hallway/manager)
-"dW" = (
-/turf/open/floor/plasteel/white,
-/area/space)
 "ek" = (
 /obj/effect/turf_decal/tile{
 	color = "#111111";
@@ -331,7 +325,7 @@
 	pixel_y = -3
 	},
 /turf/open/floor/plasteel/white,
-/area/space)
+/area/facility_hallway/manager)
 "fJ" = (
 /obj/effect/turf_decal/tile/neutral{
 	dir = 1
@@ -519,7 +513,7 @@
 "if" = (
 /obj/machinery/chem_master,
 /turf/open/floor/plasteel/white,
-/area/space)
+/area/facility_hallway/manager)
 "ih" = (
 /obj/structure/rack,
 /obj/item/toy/plush/kod,
@@ -534,7 +528,7 @@
 "iv" = (
 /obj/structure/closet/crate/science/abnochem_startercrate,
 /turf/open/floor/plasteel/white,
-/area/space)
+/area/facility_hallway/manager)
 "ix" = (
 /obj/structure/railing{
 	dir = 6
@@ -930,7 +924,7 @@
 /obj/structure/table/glass,
 /obj/item/reagent_containers/syringe,
 /turf/open/floor/plasteel/white,
-/area/space)
+/area/facility_hallway/manager)
 "ob" = (
 /obj/machinery/vending/autodrobe{
 	pixel_y = -10
@@ -1193,7 +1187,7 @@
 /obj/item/storage/box/syringes,
 /obj/item/storage/box/syringes,
 /turf/open/floor/plasteel/white,
-/area/space)
+/area/facility_hallway/manager)
 "rF" = (
 /obj/machinery/computer/crew,
 /turf/open/floor/carpet/royalblack,
@@ -2510,7 +2504,7 @@
 /obj/structure/table/glass,
 /obj/item/storage/box/beakers,
 /turf/open/floor/plasteel/white,
-/area/space)
+/area/facility_hallway/manager)
 "Kl" = (
 /obj/machinery/computer/camera_advanced/manager/representative{
 	dir = 4;
@@ -2948,7 +2942,7 @@
 	},
 /obj/item/clothing/head/beret/tegu/chem,
 /turf/open/floor/plasteel/white,
-/area/space)
+/area/facility_hallway/manager)
 "Ty" = (
 /obj/effect/turf_decal/siding/white/corner{
 	dir = 8
@@ -3110,7 +3104,7 @@
 	},
 /obj/item/work_console_upgrade/chemical_extraction_attachment,
 /turf/open/floor/plasteel/white,
-/area/space)
+/area/facility_hallway/manager)
 "WI" = (
 /obj/structure/chair/plastic{
 	dir = 4
@@ -8389,7 +8383,7 @@ Yw
 Qf
 Qf
 Qf
-aV
+YQ
 YQ
 wz
 JT
@@ -8589,11 +8583,11 @@ XL
 XL
 XL
 XL
-aV
+YQ
 Tu
-dW
+Xy
 Kh
-dW
+Xy
 HZ
 Zi
 JT
@@ -8691,11 +8685,11 @@ XL
 XL
 XL
 XL
-aV
+YQ
 nY
-dW
-dW
-dW
+Xy
+Xy
+Xy
 iG
 Zi
 JT
@@ -8793,9 +8787,9 @@ XL
 XL
 XL
 XL
-aV
+YQ
 iv
-dW
+Xy
 fr
 cR
 HZ
