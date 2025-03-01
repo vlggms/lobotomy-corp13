@@ -9,7 +9,7 @@
 	health = 6000
 	fear_level = HE_LEVEL
 	move_to_delay = 3
-	damage_coeff = list(RED_DAMAGE = 0.7, WHITE_DAMAGE = 1, BLACK_DAMAGE = 1, PALE_DAMAGE = 0.2)
+	damage_coeff = list(RED_DAMAGE = 0.7, WHITE_DAMAGE = 0.7, BLACK_DAMAGE = 1, PALE_DAMAGE = 0.2)
 	melee_damage_lower = 25
 	melee_damage_upper = 30
 	melee_damage_type = BLACK_DAMAGE
@@ -27,6 +27,8 @@
 	var/counter_speed = 2 //subtracted from the movedelay when dashing
 	var/counter_ready = FALSE
 	var/damage_taken
+
+	loot = list(/obj/item/documents/ncorporation, /obj/item/documents/ncorporation)
 
 /mob/living/simple_animal/hostile/distortion/Timeripper/proc/DashCounter() //increases move speed and hits with a powerful attack that knocks back far away
 	playsound(get_turf(src), 'sound/effects/hokma_meltdown.ogg', 75, 0, 3)
