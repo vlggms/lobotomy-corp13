@@ -479,5 +479,5 @@
 	name = "The Puppeteer"
 	desc = "The thoughts and emotions I hold when I craft them… A resentment towards the City for driving me to this desperation, and a blind anger for the rich."
 	armor = list(RED_DAMAGE = 30, WHITE_DAMAGE = 30, BLACK_DAMAGE = 30, PALE_DAMAGE = 30, FIRE = 100)
-	icon_state = "Heon_Head"
+	icon_state = "Heon_head"
 	inhand_icon_state = "Heon_head"
