@@ -42,8 +42,15 @@ GLOBAL_LIST_EMPTY(ego_datums)
 		if(!ispath(item_path, /obj/item/ego_weapon/ranged))
 			return
 		var/obj/item/ego_weapon/ranged/E = new item_path(src)
+		var/bullet_damage_type = E.last_projectile_type
+		var/bullet_damage = E.last_projectile_damage
+		if(GLOB.damage_type_shuffler.is_enabled && IsColorDamageType(bullet_damage_type))
+			var/new_damage_type = GLOB.damage_type_shuffler.mapping_offense[bullet_damage_type]
+			if(new_damage_type == PALE_DAMAGE && bullet_damage_type != PALE_DAMAGE)
+				bullet_damage *= GLOB.damage_type_shuffler.pale_debuff
+			bullet_damage_type = new_damage_type
 		information["attribute_requirements"] = E.attribute_requirements.Copy()
-		information["attack_info"] = "Its bullets deal [E.last_projectile_damage] [E.last_projectile_type] damage."
+		information["attack_info"] = "Its bullets deal [bullet_damage] [bullet_damage_type] damage."
 		information["special"] = E.special
 		var/fire_delay = E.fire_delay
 		if(E.autofire)
@@ -62,7 +69,14 @@ GLOBAL_LIST_EMPTY(ego_datums)
 		qdel(E)
 		return
 	var/obj/item/ego_weapon/E = new item_path(src)
-	information["attack_info"] = "It deals [E.force] [E.damtype] damage."
+	var/damage_type = E.damtype
+	var/damage = E.force
+	if(GLOB.damage_type_shuffler.is_enabled && IsColorDamageType(damage_type))
+		var/new_damage_type = GLOB.damage_type_shuffler.mapping_offense[damage_type]
+		if(new_damage_type == PALE_DAMAGE && damage_type != PALE_DAMAGE)
+			damage *= GLOB.damage_type_shuffler.pale_debuff
+		damage_type = new_damage_type
+	information["attack_info"] = "It deals [damage] [damage_type] damage."
 	information["throwforce"] = E.throwforce
 	information["special"] = E.special
 	information["attribute_requirements"] = E.attribute_requirements.Copy()

@@ -230,9 +230,16 @@
 	return
 
 /obj/item/ego_weapon/proc/EgoAttackInfo(mob/user)
+	var/damage_type = damtype
+	var/damage = force
+	if(GLOB.damage_type_shuffler.is_enabled && IsColorDamageType(damage_type))
+		var/new_damage_type = GLOB.damage_type_shuffler.mapping_offense[damage_type]
+		if(new_damage_type == PALE_DAMAGE && damage_type != PALE_DAMAGE)
+			damage *= GLOB.damage_type_shuffler.pale_debuff
+		damage_type = new_damage_type
 	if(force_multiplier != 1)
-		return span_notice("It deals [round(force * force_multiplier, 0.1)] [damtype] damage. (+ [(force_multiplier - 1) * 100]%)")
-	return span_notice("It deals [force] [damtype] damage.")
+		return span_notice("It deals [round(damage * force_multiplier, 0.1)] [damage_type] damage. (+ [(force_multiplier - 1) * 100]%)")
+	return span_notice("It deals [damage] [damage_type] damage.")
 
 /obj/item/ego_weapon/GetTarget(mob/user, list/potential_targets = list())
 	if(damtype != WHITE_DAMAGE)

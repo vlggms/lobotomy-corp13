@@ -118,7 +118,7 @@
 		. += span_notice("This weapon has unlimited ammo.")
 	else if(shotsleft>0)
 		. += span_notice("Ammo Counter: [shotsleft]/[initial(shotsleft)].")
-	else 
+	else
 		. += span_danger("Ammo Counter: [shotsleft]/[initial(shotsleft)].")
 
 	if(reloadtime)
@@ -164,18 +164,30 @@
 	. += span_notice("Examine this weapon more for melee information.")
 
 /obj/item/ego_weapon/ranged/EgoAttackInfo()
+	var/damage_type = damtype
+	var/damage = force
+	if(GLOB.damage_type_shuffler.is_enabled && IsColorDamageType(damage_type))
+		var/new_damage_type = GLOB.damage_type_shuffler.mapping_offense[damage_type]
+		if(new_damage_type == PALE_DAMAGE && damage_type != PALE_DAMAGE)
+			damage *= GLOB.damage_type_shuffler.pale_debuff
+		damage_type = new_damage_type
 	if(force_multiplier != 1)
-		return span_notice("It deals [round(force * force_multiplier, 0.1)] [damtype] damage in melee. (+ [(force_multiplier - 1) * 100]%)")
-	return span_notice("It deals [force] [damtype] damage in melee.")
+		return span_notice("It deals [round(damage * force_multiplier, 0.1)] [damage_type] damage in melee. (+ [(force_multiplier - 1) * 100]%)")
+	return span_notice("It deals [damage] [damage_type] damage in melee.")
 
 /obj/item/ego_weapon/ranged/proc/GunAttackInfo()
 	if(!last_projectile_damage || !last_projectile_type)
 		return span_userdanger("The bullet of this EGO gun has not properly initialized, report this to coders!")
+	var/damage_type = last_projectile_type
+	var/damage = round(last_projectile_damage, 0.1)
+	if(GLOB.damage_type_shuffler.is_enabled && IsColorDamageType(damage_type))
+		var/new_damage_type = GLOB.damage_type_shuffler.mapping_offense[damage_type]
+		if(new_damage_type == PALE_DAMAGE && damage_type != PALE_DAMAGE)
+			damage = round(last_projectile_damage * GLOB.damage_type_shuffler.pale_debuff, 0.1)
+		damage_type = new_damage_type
 	if(pellets > 1)	//for shotguns
-		return span_notice("Its bullets deal [round(last_projectile_damage, 0.1)] x [pellets] [last_projectile_type] damage.[projectile_damage_multiplier != 1 ? " (+ [(projectile_damage_multiplier - 1) * 100]%)" : ""]")
-
-	return span_notice("Its bullets deal [round(last_projectile_damage, 0.1)] [last_projectile_type] damage.[projectile_damage_multiplier != 1 ? " (+ [(projectile_damage_multiplier - 1) * 100]%)" : ""]")
-
+		return span_notice("Its bullets deal [damage] x [pellets] [damage_type] damage.[projectile_damage_multiplier != 1 ? " (+ [(projectile_damage_multiplier - 1) * 100]%)" : ""]")
+	return span_notice("Its bullets deal [damage] [damage_type] damage.[projectile_damage_multiplier != 1 ? " (+ [(projectile_damage_multiplier - 1) * 100]%)" : ""]")
 
 /// Updates the damage/type of projectiles inside of the gun
 /obj/item/ego_weapon/ranged/proc/update_projectile_examine()

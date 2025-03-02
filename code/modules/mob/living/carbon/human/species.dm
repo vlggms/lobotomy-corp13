@@ -1591,6 +1591,11 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 	return TRUE
 
 /datum/species/proc/apply_damage(damage, damagetype = BRUTE, def_zone = null, blocked, mob/living/carbon/human/H, forced = FALSE, spread_damage = FALSE, wound_bonus = 0, bare_wound_bonus = 0, sharpness = SHARP_NONE, white_healable = FALSE)
+	if(GLOB.damage_type_shuffler.is_enabled && IsColorDamageType(damagetype))
+		var new_damage_type = GLOB.damage_type_shuffler.mapping_offense[damagetype]
+		if(new_damage_type == PALE_DAMAGE && damagetype != PALE_DAMAGE)
+			damage *= GLOB.damage_type_shuffler.pale_debuff
+		damagetype = new_damage_type
 	var/signal_return = SEND_SIGNAL(H, COMSIG_MOB_APPLY_DAMGE, damage, damagetype, def_zone, wound_bonus, bare_wound_bonus, sharpness)
 	if(signal_return & COMPONENT_MOB_DENY_DAMAGE)
 		return FALSE
