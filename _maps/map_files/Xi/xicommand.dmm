@@ -875,7 +875,7 @@
 	brightness = 16;
 	dir = 4
 	},
-/turf/open/floor/sepia,
+/turf/open/floor/plasteel/dark,
 /area/facility_hallway/manager)
 "dg" = (
 /obj/structure/table/glass,
@@ -1930,7 +1930,7 @@
 /obj/machinery/light/small{
 	dir = 1
 	},
-/turf/open/floor/sepia,
+/turf/open/floor/plasteel/white,
 /area/facility_hallway/manager)
 "hn" = (
 /obj/effect/turf_decal/siding{
@@ -2415,7 +2415,7 @@
 	dir = 1
 	},
 /obj/effect/turf_decal/tile/blue,
-/turf/open/floor/sepia,
+/turf/open/floor/plasteel/dark,
 /area/facility_hallway/manager)
 "iW" = (
 /obj/effect/turf_decal/tile{
@@ -3624,19 +3624,6 @@
 	},
 /turf/open/floor/facility/white,
 /area/city/shop)
-"oh" = (
-/obj/effect/turf_decal/siding/wood/corner,
-/obj/effect/turf_decal/siding/wood/corner{
-	dir = 8
-	},
-/obj/effect/turf_decal/siding/wood/corner{
-	dir = 1
-	},
-/obj/effect/turf_decal/siding/wood/corner{
-	dir = 4
-	},
-/turf/open/floor/wood,
-/area/city)
 "oj" = (
 /obj/structure/window/reinforced/spawner/east{
 	max_integrity = 25
@@ -3842,7 +3829,7 @@
 /obj/effect/turf_decal/siding/blue/end{
 	dir = 4
 	},
-/turf/open/floor/facility,
+/turf/open/floor/carpet/cyan,
 /area/city)
 "oW" = (
 /obj/structure/closet/secure_closet/freezer/fridge{
@@ -6312,6 +6299,24 @@
 /obj/item/paper/fluff/silk_guide,
 /turf/open/floor/facility/dark,
 /area/city/backstreets_room)
+"xK" = (
+/obj/effect/turf_decal/tile/blue{
+	color = "#3234B9";
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/blue{
+	color = "#3234B9"
+	},
+/obj/effect/turf_decal/tile/blue{
+	color = "#3234B9";
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/blue{
+	color = "#3234B9";
+	dir = 4
+	},
+/turf/open/floor/plasteel/dark,
+/area/facility_hallway/manager)
 "xL" = (
 /obj/structure/railing,
 /obj/item/grown/novaflower,
@@ -6413,7 +6418,7 @@
 /obj/effect/turf_decal/tile/blue{
 	dir = 1
 	},
-/turf/open/floor/sepia,
+/turf/open/floor/plasteel/dark,
 /area/facility_hallway/manager)
 "yj" = (
 /obj/structure/closet/secure_closet/freezer/fridge{
@@ -6898,6 +6903,19 @@
 	},
 /turf/open/floor/wood,
 /area/city/shop)
+"zN" = (
+/obj/effect/turf_decal/tile/bar{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/bar{
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/bar,
+/obj/effect/turf_decal/tile/bar{
+	dir = 1
+	},
+/turf/open/floor/plasteel/dark,
+/area/facility_hallway/manager)
 "zP" = (
 /obj/structure/flora/ausbushes/fullgrass,
 /obj/effect/turf_decal/siding/thinplating/dark/corner{
@@ -7111,7 +7129,7 @@
 	brightness = 16;
 	dir = 8
 	},
-/turf/open/floor/sepia,
+/turf/open/floor/plasteel/dark,
 /area/facility_hallway/manager)
 "AD" = (
 /obj/machinery/door/airlock/glass_large,
@@ -7163,7 +7181,7 @@
 	dir = 1
 	},
 /obj/item/toy/plush/lisa,
-/turf/open/floor/sepia,
+/turf/open/floor/plasteel/dark,
 /area/facility_hallway/manager)
 "AK" = (
 /obj/structure/closet/secure_closet/personal/cabinet,
@@ -7314,9 +7332,6 @@
 /turf/open/floor/plating/grass/jungle{
 	name = "Grass"
 	},
-/area/facility_hallway/manager)
-"Bt" = (
-/turf/open/floor/sepia,
 /area/facility_hallway/manager)
 "Bu" = (
 /obj/machinery/light{
@@ -8502,8 +8517,8 @@
 /turf/open/floor/plating/grass,
 /area/city)
 "FK" = (
-/obj/machinery/door/airlock/silver{
-	name = "Female Restroom"
+/obj/machinery/door/airlock/hatch{
+	name = "Restroom"
 	},
 /turf/open/floor/facility/halls,
 /area/facility_hallway/manager)
@@ -9219,7 +9234,7 @@
 /area/city/fixers)
 "In" = (
 /obj/effect/decal/cleanable/dirt,
-/turf/open/floor/sepia,
+/turf/open/floor/plasteel/white,
 /area/facility_hallway/manager)
 "Io" = (
 /turf/closed/indestructible/rock,
@@ -9391,12 +9406,6 @@
 	},
 /turf/open/indestructible/white,
 /area/city/shop)
-"IV" = (
-/obj/machinery/door/airlock/hatch{
-	name = "Male Restroom"
-	},
-/turf/open/floor/facility/halls,
-/area/facility_hallway/manager)
 "IW" = (
 /obj/effect/turf_decal/siding/blue{
 	dir = 10
@@ -9755,7 +9764,7 @@
 /obj/effect/turf_decal/siding/blue/end{
 	dir = 8
 	},
-/turf/open/floor/facility,
+/turf/open/floor/carpet/cyan,
 /area/city)
 "KE" = (
 /obj/effect/turf_decal/bot,
@@ -10440,7 +10449,7 @@
 /obj/effect/turf_decal/tile/brown{
 	dir = 8
 	},
-/turf/open/floor/sepia,
+/turf/open/floor/plasteel/dark,
 /area/facility_hallway/manager)
 "NB" = (
 /obj/structure/chair/wood/wings{
@@ -10951,7 +10960,7 @@
 /obj/structure/mirror{
 	pixel_x = -27
 	},
-/turf/open/floor/sepia,
+/turf/open/floor/plasteel/white,
 /area/facility_hallway/manager)
 "PY" = (
 /obj/structure/sign/barsign,
@@ -11379,7 +11388,7 @@
 	brightness = 16;
 	dir = 4
 	},
-/turf/open/floor/sepia,
+/turf/open/floor/plasteel/dark,
 /area/facility_hallway/manager)
 "RK" = (
 /obj/effect/turf_decal/siding/thinplating/dark{
@@ -12009,7 +12018,7 @@
 /obj/effect/turf_decal/tile/brown{
 	dir = 1
 	},
-/turf/open/floor/sepia,
+/turf/open/floor/plasteel/dark,
 /area/facility_hallway/manager)
 "Ui" = (
 /obj/effect/turf_decal/tile/bar{
@@ -12022,7 +12031,7 @@
 /obj/effect/turf_decal/tile/bar{
 	dir = 1
 	},
-/turf/open/floor/sepia,
+/turf/open/floor/plasteel/dark,
 /area/facility_hallway/manager)
 "Un" = (
 /obj/machinery/vending/cola/shamblers,
@@ -12265,7 +12274,7 @@
 /obj/structure/toilet{
 	dir = 4
 	},
-/turf/open/floor/sepia,
+/turf/open/floor/plasteel/white,
 /area/facility_hallway/manager)
 "Vt" = (
 /obj/structure/table/wood,
@@ -12682,12 +12691,6 @@
 	opacity = 0
 	},
 /area/city/shop)
-"WQ" = (
-/obj/machinery/door/airlock/wood{
-	name = "Female Clerk Quarters"
-	},
-/turf/open/floor/facility/halls,
-/area/facility_hallway/manager)
 "WU" = (
 /obj/effect/turf_decal/siding/blue{
 	dir = 5
@@ -12838,7 +12841,7 @@
 /area/facility_hallway/manager)
 "Xq" = (
 /obj/machinery/door/airlock/wood{
-	name = "Male Clerk Quarters"
+	name = "Clerk Quarters"
 	},
 /turf/open/floor/facility/halls,
 /area/facility_hallway/manager)
@@ -13492,7 +13495,7 @@
 	dir = 8
 	},
 /obj/machinery/light/cold/no_nightlight,
-/turf/open/floor/wood,
+/turf/open/floor/facility,
 /area/city)
 "ZU" = (
 /obj/structure/chair/office{
@@ -19356,11 +19359,11 @@ jo
 Gi
 Ck
 JE
-Sl
-Sl
+zN
+zN
 Ui
 eL
-Bt
+aq
 aq
 aq
 ZM
@@ -21412,11 +21415,11 @@ Gi
 Ck
 Ck
 JE
-Xn
-Xn
-Xn
+xK
+xK
+xK
 eL
-Bt
+aq
 aq
 bI
 rx
@@ -30675,7 +30678,7 @@ rx
 JE
 hm
 In
-IV
+FK
 LL
 aq
 aq
@@ -31447,11 +31450,11 @@ JE
 TZ
 sH
 NE
-WQ
+Xq
 AQ
 aq
 iA
-WQ
+Xq
 CF
 sH
 GL
@@ -50464,7 +50467,7 @@ rX
 wY
 vV
 Od
-oh
+qn
 Od
 RU
 Ee
