@@ -3471,6 +3471,9 @@
 	},
 /turf/open/floor/plasteel,
 /area/facility_hallway/information)
+"zJ" = (
+/turf/open/floor/circuit/telecomms/mainframe,
+/area/department_main/manager)
 "zO" = (
 /obj/effect/turf_decal/plaque{
 	alpha = 230;
@@ -4902,6 +4905,9 @@
 /mob/living/simple_animal/bot/cleanbot,
 /turf/open/floor/plasteel/white,
 /area/facility_hallway/command)
+"KG" = (
+/turf/closed/indestructible/reinforced,
+/area/department_main/manager)
 "KI" = (
 /obj/effect/turf_decal/siding/purple{
 	dir = 9
@@ -5388,6 +5394,10 @@
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/plasteel/dark,
 /area/facility_hallway/central)
+"Os" = (
+/obj/machinery/ntnet_relay,
+/turf/open/floor/circuit/telecomms/mainframe,
+/area/department_main/manager)
 "Ot" = (
 /obj/effect/turf_decal/siding/green/corner{
 	color = "#006400";
@@ -6242,6 +6252,10 @@
 	color = "a1a1a1"
 	},
 /area/facility_hallway/manager)
+"TJ" = (
+/obj/machinery/telecomms/relay/preset/station,
+/turf/open/floor/circuit/telecomms/mainframe,
+/area/department_main/manager)
 "TL" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/light/cold/no_nightlight{
@@ -23753,9 +23767,9 @@ if
 if
 if
 if
-if
-if
-if
+KG
+KG
+KG
 if
 if
 if
@@ -24010,9 +24024,9 @@ if
 if
 if
 if
-if
-if
-if
+KG
+TJ
+KG
 if
 if
 if
@@ -24267,9 +24281,9 @@ if
 if
 if
 if
-if
-if
-if
+KG
+zJ
+KG
 if
 if
 if
@@ -24524,9 +24538,9 @@ if
 if
 if
 if
-if
-if
-if
+KG
+Os
+KG
 if
 if
 if
@@ -24781,9 +24795,9 @@ if
 if
 if
 if
-if
-if
-if
+KG
+KG
+KG
 if
 if
 if

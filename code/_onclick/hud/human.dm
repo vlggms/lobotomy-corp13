@@ -273,7 +273,7 @@
 	rest_icon.hud = src
 	static_inventory += rest_icon
 
-	if(!(SSmaptype.maptype in SSmaptype.citymaps))
+	if(!(SSmaptype.maptype in SSmaptype.citymaps) && SSmaptype.maptype != "wonderlabs")
 		internals = new /atom/movable/screen/stats()
 		internals.hud = src
 		infodisplay += internals
