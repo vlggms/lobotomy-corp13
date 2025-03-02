@@ -19,18 +19,22 @@ SUBSYSTEM_DEF(maptype)
 
 	//LC13 Gamemode Traits
 	var/list/lc_trait = list(
-						FACILITY_TRAIT_NONE = 5,				//5 for No Trait
+						//Actual traits
 						FACILITY_TRAIT_MOBA_AGENTS = 10, 		//Agents pick a MOBA class
 						FACILITY_TRAIT_CRITICAL_HITS = 10,		//EGO can Critical hit.
-						FACILITY_TRAIT_ABNO_BLITZ = 5,			//The game is significantly Faster, starts after noon.
-						FACILITY_TRAIT_FUCKED_SELECTION = 5,		//The abno selection is randomized
-						FACILITY_TRAIT_LEGACY_PALE = 5,			//You take 90% damage if pale damage hits you
+						FACILITY_TRAIT_DEPARTMENTAL_BUFFS = 10,	//Departmental Agent Buffs
+						FACILITY_TRAIT_ABNO_BLITZ = 3,			//The game is significantly Faster, starts after noon.
 
 						//Joke stuff is below, should all be low
-						FACILITY_TRAIT_WORKING_CLERKS = 3,		//For the joke
-						FACILITY_TRAIT_CALLBACK = 2,				//Brings back 2 Classic bugs in Backpack EGO and wounds
-						FACILITY_TRAIT_JOKE_ABNOS = 1,	// Okay it's funny
+						FACILITY_TRAIT_WORKING_CLERKS = 2,		//For the joke
+						FACILITY_TRAIT_CALLBACK = 2,			//Brings back 2 Classic bugs in Backpack EGO and wounds
+						FACILITY_TRAIT_JOKE_ABNOS = 1,			// Okay it's funny
 						FACILITY_TRAIT_VISIBLE_GHOSTS = 1,		// Very Metagamey but funny
+						FACILITY_TRAIT_PLAYABLES = 1,			//I'm going to kill myself
+
+						//Disabled traits becuase these suck lmao
+						//FACILITY_TRAIT_LEGACY_PALE = 0,			//You take 90% damage if pale damage hits you
+						//FACILITY_TRAIT_FUCKED_SELECTION = 0,	//The abno selection is randomized
 						)
 
 	var/chosen_trait = "No Trait"
@@ -63,11 +67,17 @@ SUBSYSTEM_DEF(maptype)
 /datum/controller/subsystem/maptype/Initialize()
 	..()
 	if(SSmaptype.maptype in SSmaptype.lc_maps)
+		if(prob(40))	//40% chance to not run a station trait
+			return
 		chosen_trait = pickweight(lc_trait)
 		switch(chosen_trait)
 			if(FACILITY_TRAIT_VISIBLE_GHOSTS)
 				var/msg = span_warning("You suddenly feel extremely obvious...")
 				set_observer_default_invisibility(0, msg)
+
+			if(FACILITY_TRAIT_PLAYABLES)
+				if(!SSlobotomy_corp.enable_possession)
+					SSlobotomy_corp.enable_possession = TRUE
 
 	//Badda Bing Badda Da. This makes the latejoin menu cleaner
 	switch(SSmaptype.maptype)
