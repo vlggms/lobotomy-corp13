@@ -30,6 +30,7 @@
 	stat_attack = HARD_CRIT
 	work_damage_amount = 0 //his work damage now is entirely related to suffering
 	work_damage_type = RED_DAMAGE
+	chem_type = /datum/reagent/abnormality/sin/gloom
 	attack_verb_continuous = "chomps"
 	attack_verb_simple = "claws"
 	faction = list("blueshep")

@@ -25,6 +25,7 @@
 	)
 	work_damage_amount = 6
 	work_damage_type = WHITE_DAMAGE
+	chem_type = /datum/reagent/abnormality/sin/lust	///Of course the gregnant ID is a lust one.
 	can_breach = TRUE
 	start_qliphoth = 2
 	damage_coeff = list(RED_DAMAGE = 0.2, WHITE_DAMAGE = 0.2, BLACK_DAMAGE = 0.2, PALE_DAMAGE = 0.5)

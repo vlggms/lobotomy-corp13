@@ -39,6 +39,7 @@
 	start_qliphoth = 3
 	work_damage_amount = 16
 	work_damage_type = list(RED_DAMAGE, WHITE_DAMAGE, BLACK_DAMAGE, PALE_DAMAGE)
+	chem_type = /datum/reagent/abnormality/sin/lust
 
 	ego_list = list(
 		/datum/ego_datum/armor/distortion,

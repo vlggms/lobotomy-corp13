@@ -35,6 +35,7 @@ GLOBAL_LIST_EMPTY(apostles)
 	)
 	work_damage_amount = 14
 	work_damage_type = PALE_DAMAGE
+	chem_type = /datum/reagent/abnormality/sin/wrath
 	can_patrol = FALSE
 
 	light_system = MOVABLE_LIGHT

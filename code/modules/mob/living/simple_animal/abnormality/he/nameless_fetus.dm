@@ -20,6 +20,8 @@
 	max_boxes = 16
 	work_damage_amount = 7
 	work_damage_type = RED_DAMAGE
+	chem_type = /datum/reagent/abnormality/sin/gluttony
+
 	ego_list = list(
 		/datum/ego_datum/weapon/syrinx,
 		/datum/ego_datum/weapon/trachea,

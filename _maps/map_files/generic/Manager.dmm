@@ -118,6 +118,12 @@
 /obj/effect/turf_decal/siding/white/corner,
 /turf/open/floor/carpet/black,
 /area/facility_hallway/manager)
+"cR" = (
+/obj/structure/table/glass,
+/obj/item/work_console_upgrade/chemical_extraction_attachment,
+/obj/item/work_console_upgrade/chemical_extraction_attachment,
+/turf/open/floor/plasteel/white,
+/area/facility_hallway/manager)
 "cY" = (
 /obj/machinery/vending/coffee,
 /turf/open/floor/plasteel/dark,
@@ -306,6 +312,20 @@
 /obj/machinery/light/cold/no_nightlight,
 /turf/open/floor/wood,
 /area/department_main/manager)
+"fr" = (
+/obj/structure/table/glass,
+/obj/item/clothing/glasses/science{
+	pixel_y = 3
+	},
+/obj/machinery/light{
+	dir = 4
+	},
+/obj/item/clothing/glasses/science,
+/obj/item/clothing/glasses/science{
+	pixel_y = -3
+	},
+/turf/open/floor/plasteel/white,
+/area/facility_hallway/manager)
 "fJ" = (
 /obj/effect/turf_decal/tile/neutral{
 	dir = 1
@@ -490,6 +510,10 @@
 /obj/effect/spawner/randomcolavend,
 /turf/open/floor/plasteel/dark,
 /area/facility_hallway/manager)
+"if" = (
+/obj/machinery/chem_master,
+/turf/open/floor/plasteel/white,
+/area/facility_hallway/manager)
 "ih" = (
 /obj/structure/rack,
 /obj/item/toy/plush/kod,
@@ -501,6 +525,10 @@
 	},
 /turf/open/floor/wood,
 /area/department_main/manager)
+"iv" = (
+/obj/structure/closet/crate/science/abnochem_startercrate,
+/turf/open/floor/plasteel/white,
+/area/facility_hallway/manager)
 "ix" = (
 /obj/structure/railing{
 	dir = 6
@@ -563,14 +591,14 @@
 /obj/structure/reagent_dispensers/water_cooler,
 /turf/open/floor/facility/dark,
 /area/facility_hallway/manager)
-"jT" = (
-/obj/machinery/holopad/secure,
-/turf/open/floor/carpet/green,
-/area/facility_hallway/manager)
 "jL" = (
 /obj/machinery/computer/camera_advanced/manager/sephirah,
 /turf/open/floor/carpet/orange,
 /area/department_main/manager)
+"jT" = (
+/obj/machinery/holopad/secure,
+/turf/open/floor/carpet/green,
+/area/facility_hallway/manager)
 "jZ" = (
 /obj/effect/turf_decal/siding/white{
 	dir = 8
@@ -892,6 +920,11 @@
 	},
 /turf/open/floor/carpet/black,
 /area/facility_hallway/manager)
+"nY" = (
+/obj/structure/table/glass,
+/obj/item/reagent_containers/syringe,
+/turf/open/floor/plasteel/white,
+/area/facility_hallway/manager)
 "ob" = (
 /obj/machinery/vending/autodrobe{
 	pixel_y = -10
@@ -1149,6 +1182,12 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/department_main/manager)
+"rD" = (
+/obj/structure/closet,
+/obj/item/storage/box/syringes,
+/obj/item/storage/box/syringes,
+/turf/open/floor/plasteel/white,
+/area/facility_hallway/manager)
 "rF" = (
 /obj/machinery/computer/crew,
 /turf/open/floor/carpet/royalblack,
@@ -2461,6 +2500,11 @@
 /obj/item/pen/fourcolor,
 /turf/open/floor/carpet/red,
 /area/facility_hallway/manager)
+"Kh" = (
+/obj/structure/table/glass,
+/obj/item/storage/box/beakers,
+/turf/open/floor/plasteel/white,
+/area/facility_hallway/manager)
 "Kl" = (
 /obj/machinery/computer/camera_advanced/manager/representative{
 	dir = 4;
@@ -2891,6 +2935,14 @@
 /obj/machinery/light/floor,
 /turf/open/floor/carpet/black,
 /area/facility_hallway/manager)
+"Tu" = (
+/obj/structure/table/glass,
+/obj/item/clothing/suit/armor/ego_gear/limbus_labs/chem{
+	name = "chemist labcoat"
+	},
+/obj/item/clothing/head/beret/tegu/chem,
+/turf/open/floor/plasteel/white,
+/area/facility_hallway/manager)
 "Ty" = (
 /obj/effect/turf_decal/siding/white/corner{
 	dir = 8
@@ -3044,6 +3096,14 @@
 	pixel_x = -10
 	},
 /turf/closed/indestructible/reinforced,
+/area/facility_hallway/manager)
+"WB" = (
+/obj/structure/table/glass,
+/obj/machinery/light{
+	dir = 8
+	},
+/obj/item/work_console_upgrade/chemical_extraction_attachment,
+/turf/open/floor/plasteel/white,
 /area/facility_hallway/manager)
 "WI" = (
 /obj/structure/chair/plastic{
@@ -7508,7 +7568,7 @@ Vw
 UO
 fq
 Qf
-OF
+gx
 Zi
 JT
 Vb
@@ -8223,7 +8283,7 @@ sA
 Qf
 Qf
 YQ
-Zi
+Rj
 JT
 Vb
 pE
@@ -8323,7 +8383,7 @@ Yw
 Qf
 Qf
 Qf
-XL
+YQ
 YQ
 wz
 JT
@@ -8423,10 +8483,10 @@ Qf
 Qf
 Qf
 Qf
-XL
-XL
-XL
-YQ
+if
+WB
+rD
+HZ
 jn
 JT
 Vb
@@ -8523,13 +8583,13 @@ XL
 XL
 XL
 XL
-XL
-XL
-XL
-XL
-XL
 YQ
-oI
+Tu
+Xy
+Kh
+Xy
+HZ
+Zi
 JT
 Vb
 pE
@@ -8625,13 +8685,13 @@ XL
 XL
 XL
 XL
-XL
-XL
-XL
-XL
-XL
 YQ
-Rj
+nY
+Xy
+Xy
+Xy
+iG
+Zi
 JT
 Vb
 pE
@@ -8727,13 +8787,13 @@ XL
 XL
 XL
 XL
-XL
-XL
-XL
-XL
-XL
 YQ
-gx
+iv
+Xy
+fr
+cR
+HZ
+Zi
 JT
 Vb
 pE

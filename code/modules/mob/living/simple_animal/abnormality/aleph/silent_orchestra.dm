@@ -19,6 +19,7 @@
 	)
 	work_damage_amount = 16
 	work_damage_type = WHITE_DAMAGE
+	chem_type = /datum/reagent/abnormality/sin/sloth
 	good_hater = TRUE
 	can_patrol = FALSE
 

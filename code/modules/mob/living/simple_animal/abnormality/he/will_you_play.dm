@@ -15,6 +15,7 @@
 	)
 	work_damage_amount = 10
 	work_damage_type = WHITE_DAMAGE
+	chem_type = /datum/reagent/abnormality/sin/wrath
 	max_boxes = 15
 
 	ego_list = list(

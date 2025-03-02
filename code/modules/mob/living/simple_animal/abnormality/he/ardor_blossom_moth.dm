@@ -34,7 +34,7 @@
 	)
 	work_damage_amount = 7
 	work_damage_type = RED_DAMAGE
-	chem_type = /datum/reagent/abnormality/abno_oil
+	chem_type = /datum/reagent/abnormality/sin/wrath
 	patrol_cooldown_time = 3 SECONDS
 
 	ego_list = list(

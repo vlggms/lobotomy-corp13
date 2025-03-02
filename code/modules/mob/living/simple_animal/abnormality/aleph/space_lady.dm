@@ -23,6 +23,7 @@
 	)
 	work_damage_amount = 16	//Half white, half black damage
 	work_damage_type = list(WHITE_DAMAGE, BLACK_DAMAGE)
+	chem_type = /datum/reagent/abnormality/sin/gluttony	//Literally a black hole (and a white hole I guess)
 
 	ego_list = list(
 		/datum/ego_datum/weapon/space,

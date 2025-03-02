@@ -16,6 +16,7 @@
 	work_damage_amount = 6
 	work_damage_type = BLACK_DAMAGE
 	max_boxes = 10
+	chem_type = /datum/reagent/abnormality/sin/envy
 
 	ego_list = list(
 		/datum/ego_datum/weapon/nightshade,

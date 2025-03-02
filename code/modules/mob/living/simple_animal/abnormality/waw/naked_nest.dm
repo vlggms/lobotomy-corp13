@@ -21,6 +21,7 @@
 	)
 	work_damage_amount = 14
 	work_damage_type = RED_DAMAGE
+	chem_type = /datum/reagent/abnormality/sin/pride
 	max_boxes = 22
 	start_qliphoth = 1
 	fear_level = 1

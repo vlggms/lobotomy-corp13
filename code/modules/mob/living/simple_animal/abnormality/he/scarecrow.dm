@@ -30,6 +30,7 @@
 	)
 	work_damage_amount = 10
 	work_damage_type = WHITE_DAMAGE
+	chem_type = /datum/reagent/abnormality/sin/envy
 	death_message = "stops moving, with its torso rotating forwards."
 	death_sound = 'sound/abnormalities/scarecrow/death.ogg'
 

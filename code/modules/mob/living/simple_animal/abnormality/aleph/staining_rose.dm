@@ -20,6 +20,7 @@
 	start_qliphoth = 1
 	work_damage_amount = 14
 	work_damage_type = PALE_DAMAGE
+	chem_type = /datum/reagent/abnormality/sin/pride
 	pixel_x = -16
 	base_pixel_x = -16
 	pixel_y = -8

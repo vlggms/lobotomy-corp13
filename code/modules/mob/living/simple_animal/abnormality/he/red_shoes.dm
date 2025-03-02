@@ -22,6 +22,7 @@
 	)
 	work_damage_amount = 10
 	work_damage_type = RED_DAMAGE
+	chem_type = /datum/reagent/abnormality/sin/wrath
 	del_on_death = FALSE
 	death_message = "crumples into a pile of bones."
 	attack_sound = 'sound/abnormalities/redshoes/RedShoes_Attack.ogg'

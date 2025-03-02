@@ -14,6 +14,7 @@
 	base_pixel_x = -16
 
 	threat_level = ZAYIN_LEVEL
+	chem_type = /datum/reagent/abnormality/sin/gloom
 	maxHealth = 1400 //megahuge stats, almost as strong as a WAW.
 	health = 1400
 	can_breach = TRUE

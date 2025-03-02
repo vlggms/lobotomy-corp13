@@ -43,6 +43,7 @@
 		)
 	work_damage_amount = 10
 	work_damage_type = WHITE_DAMAGE
+	chem_type = /datum/reagent/abnormality/sin/gloom
 	wander = FALSE
 
 	observation_prompt = "You remember her. <br>\

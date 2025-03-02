@@ -16,6 +16,7 @@
 	)
 	work_damage_amount = 8
 	work_damage_type = BLACK_DAMAGE
+	chem_type = /datum/reagent/abnormality/sin/lust
 	max_boxes = 16 // Accurate to base game
 	melee_damage_type = WHITE_DAMAGE
 	melee_damage_lower = 1

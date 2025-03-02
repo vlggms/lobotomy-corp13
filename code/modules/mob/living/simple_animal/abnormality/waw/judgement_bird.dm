@@ -35,6 +35,7 @@
 	)
 	work_damage_amount = 10
 	work_damage_type = PALE_DAMAGE
+	chem_type = /datum/reagent/abnormality/sin/wrath
 
 	attack_action_types = list(/datum/action/innate/abnormality_attack/judgement)
 

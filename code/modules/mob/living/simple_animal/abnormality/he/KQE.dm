@@ -36,6 +36,7 @@
 	)
 	work_damage_amount = 10
 	work_damage_type = BLACK_DAMAGE
+	chem_type = /datum/reagent/abnormality/sin/envy
 
 	ego_list = list(
 		/datum/ego_datum/weapon/replica,

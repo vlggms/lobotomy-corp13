@@ -25,6 +25,7 @@
 	)
 	work_damage_amount = 10
 	work_damage_type = BLACK_DAMAGE
+	chem_type = /datum/reagent/abnormality/sin/envy
 	can_patrol = FALSE
 	death_sound = 'sound/abnormalities/roadhome/House_NormalAtk.ogg'
 	ego_list = list(

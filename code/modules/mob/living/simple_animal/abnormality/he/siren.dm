@@ -20,6 +20,7 @@
 	)
 	work_damage_amount = 11
 	work_damage_type = WHITE_DAMAGE
+	chem_type = /datum/reagent/abnormality/sin/sloth
 
 	ego_list = list(
 		/datum/ego_datum/weapon/song,

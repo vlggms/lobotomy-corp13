@@ -32,6 +32,7 @@
 	)
 	work_damage_amount = 12
 	work_damage_type = WHITE_DAMAGE
+	chem_type = /datum/reagent/abnormality/sin/gloom
 	max_boxes = 16
 	death_message = "gently descends into its own coffin."
 	base_pixel_x = -16
