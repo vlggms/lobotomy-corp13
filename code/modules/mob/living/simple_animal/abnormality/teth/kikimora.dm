@@ -27,6 +27,8 @@
 	/datum/ego_datum/armor/kikimora,
 	)
 	gift_type = null
+	//envy due to being a curse
+	chem_type = /datum/reagent/abnormality/sin/envy
 
 /mob/living/simple_animal/hostile/abnormality/kikimora/ZeroQliphoth(mob/living/carbon/human/user)
 	. = ..()
