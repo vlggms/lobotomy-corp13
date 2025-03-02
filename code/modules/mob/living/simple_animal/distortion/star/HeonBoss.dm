@@ -235,3 +235,4 @@
 /mob/living/simple_animal/hostile/puppet/LoseAggro()
 	. = ..()
 	a_intent_change(INTENT_HELP)
+
