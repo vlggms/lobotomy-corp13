@@ -116,3 +116,4 @@
 	SLEEP_CHECK_DEATH(12)
 	new /obj/effect/timestop(get_turf(src), 3, 40, list(src))
 	can_act = TRUE
+
