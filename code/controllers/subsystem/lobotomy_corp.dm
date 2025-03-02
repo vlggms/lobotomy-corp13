@@ -144,10 +144,6 @@ SUBSYSTEM_DEF(lobotomy_corp)
 		priority_announce("This shift is a 'Blitz' Shift. Cores have been disabled.", \
 						"Core Suppression", sound = 'sound/machines/dun_don_alert.ogg')
 		return
-	if(!(SSmaptype.maptype in SS.maptype.lc13_maps))	//Does not include Wonderlab and maps that are not standard becuase they will cause issues.
-		priority_announce("This shift is incompatible with Core Suppressions.", \
-						"Core Suppression", sound = 'sound/machines/dun_don_alert.ogg')
-		return
 	if(istype(core_suppression))
 		return
 	var/obj/machinery/computer/abnormality_auxiliary/aux_cons = locate() in GLOB.lobotomy_devices
