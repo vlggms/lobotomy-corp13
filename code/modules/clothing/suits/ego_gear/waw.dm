@@ -21,7 +21,8 @@ Any attempt to code risk class armor will result in a 10 day Github ban.*/
 	name = "lamp armor"
 	desc = "A dark coat with thousands of eyes on it. They are looking at you as you move."
 	icon_state = "lamp"
-	armor = list(RED_DAMAGE = 20, WHITE_DAMAGE = 30, BLACK_DAMAGE = 60, PALE_DAMAGE = 30) // 140
+	armor = list(RED_DAMAGE = 30, WHITE_DAMAGE = 30, BLACK_DAMAGE = 60, PALE_DAMAGE = 30) // 150 (+10 for slower speed)
+	slowdown = 0.1
 	attribute_requirements = list(
 							PRUDENCE_ATTRIBUTE = 60,
 							JUSTICE_ATTRIBUTE = 60
@@ -31,7 +32,8 @@ Any attempt to code risk class armor will result in a 10 day Github ban.*/
 	name = "correctional armor"
 	desc = "A white, lightly bloodstained coat. it goes all the way down to your ankles."
 	icon_state = "correctional"
-	armor = list(RED_DAMAGE = 50, WHITE_DAMAGE = 0, BLACK_DAMAGE = 60, PALE_DAMAGE = 30) // 140
+	armor = list(RED_DAMAGE = 60, WHITE_DAMAGE = 0, BLACK_DAMAGE = 60, PALE_DAMAGE = 30) // 150 (+10 for slower speed)
+	slowdown = 0.1
 	attribute_requirements = list(
 							FORTITUDE_ATTRIBUTE = 60,
 							JUSTICE_ATTRIBUTE = 60)
@@ -130,7 +132,8 @@ Any attempt to code risk class armor will result in a 10 day Github ban.*/
 	name = "cobalt scar"
 	desc = "The armor is torn up with countless traces that recount the history of the unending battle."
 	icon_state = "cobalt_scar"
-	armor = list(RED_DAMAGE = 60, WHITE_DAMAGE = 30, BLACK_DAMAGE = 40, PALE_DAMAGE = 10)
+	armor = list(RED_DAMAGE = 60, WHITE_DAMAGE = 20, BLACK_DAMAGE = 30, PALE_DAMAGE = 20) // 130 (-10 for faster speed)
+	slowdown = -0.1
 	attribute_requirements = list(
 							FORTITUDE_ATTRIBUTE = 80
 							)
@@ -139,7 +142,8 @@ Any attempt to code risk class armor will result in a 10 day Github ban.*/
 	name = "crimson scar"
 	desc = "It seems only darkness awaits those who find the value of their lives in nothing but destruction."
 	icon_state = "crimson_scar"
-	armor = list(RED_DAMAGE = 60, WHITE_DAMAGE = 40, BLACK_DAMAGE = 30, PALE_DAMAGE = 10)
+	armor = list(RED_DAMAGE = 60, WHITE_DAMAGE = 30, BLACK_DAMAGE = 20, PALE_DAMAGE = 20) // 130 (-10 for faster speed)
+	slowdown = -0.1
 	attribute_requirements = list(
 							FORTITUDE_ATTRIBUTE = 80
 							)
@@ -184,7 +188,8 @@ Any attempt to code risk class armor will result in a 10 day Github ban.*/
 	name = "ecstasy"
 	desc = "The colorful pattern is fancy, quite akin to a child's costume."
 	icon_state = "ecstasy"
-	armor = list(RED_DAMAGE = 40, WHITE_DAMAGE = 70, BLACK_DAMAGE = 10, PALE_DAMAGE = 20)
+	armor = list(RED_DAMAGE = 40, WHITE_DAMAGE = 60, BLACK_DAMAGE = 10, PALE_DAMAGE = 20) // 130 (-10 for faster speed)
+	slowdown = -0.1
 	attribute_requirements = list(
 							TEMPERANCE_ATTRIBUTE = 80)
 
@@ -219,7 +224,8 @@ Any attempt to code risk class armor will result in a 10 day Github ban.*/
 	name = "dead silence"
 	desc = "No one can go against the flow of time."
 	icon_state = "thirteen"
-	armor = list(RED_DAMAGE = 10, WHITE_DAMAGE = 10, BLACK_DAMAGE = 50, PALE_DAMAGE = 70) // 140
+	armor = list(RED_DAMAGE = 10, WHITE_DAMAGE = 20, BLACK_DAMAGE = 50, PALE_DAMAGE = 70) // 150 (+10 for slower speed)
+	slowdown = 0.1
 	attribute_requirements = list(
 							JUSTICE_ATTRIBUTE = 80
 							)
@@ -237,7 +243,8 @@ Any attempt to code risk class armor will result in a 10 day Github ban.*/
 	name = "exuviae"
 	desc = "Its scales are multi layered, suitable for protection against external threats."
 	icon_state = "exuviae"
-	armor = list(RED_DAMAGE = 60, WHITE_DAMAGE = 40, BLACK_DAMAGE = 20, PALE_DAMAGE = 20) // 140
+	armor = list(RED_DAMAGE = 60, WHITE_DAMAGE = 40, BLACK_DAMAGE = 30, PALE_DAMAGE = 20)  // 150 (+10 for slower speed)
+	slowdown = 0.1
 	attribute_requirements = list(
 							FORTITUDE_ATTRIBUTE = 80
 							)
@@ -276,7 +283,8 @@ Any attempt to code risk class armor will result in a 10 day Github ban.*/
 	name = "Animalism"
 	desc = "Nothing left behind your eyes, just animal instinct and a hollow mind - impervious to everything and everyone."
 	icon_state = "animalism"
-	armor = list(RED_DAMAGE = 10, WHITE_DAMAGE = 50, BLACK_DAMAGE = 40, PALE_DAMAGE = 40) //140
+	armor = list(RED_DAMAGE = 20, WHITE_DAMAGE = 50, BLACK_DAMAGE = 40, PALE_DAMAGE = 40)  // 150 (+10 for slower speed)
+	slowdown = 0.1
 	attribute_requirements = list(
 							FORTITUDE_ATTRIBUTE = 80,
 							)
@@ -303,7 +311,8 @@ Any attempt to code risk class armor will result in a 10 day Github ban.*/
 	name = "pharaoh"
 	desc = "What creature walks on four legs in the morning, two legs at noon, and three in the evening?"
 	icon_state = "pharaoh"
-	armor = list(RED_DAMAGE = 30, WHITE_DAMAGE = 60, BLACK_DAMAGE = 50, PALE_DAMAGE = 0) // 140
+	armor = list(RED_DAMAGE = 40, WHITE_DAMAGE = 60, BLACK_DAMAGE = 50, PALE_DAMAGE = 0) // 150 (+10 for slower speed)
+	slowdown = 0.1
 	attribute_requirements = list(
 							PRUDENCE_ATTRIBUTE = 80
 							)
@@ -313,7 +322,8 @@ Any attempt to code risk class armor will result in a 10 day Github ban.*/
 	desc = "A classic, dark dress whose edge resembles an ink cap. \
 			You may take a step towards the truth of the moon that was so difficult to understand if you wear it. "
 	icon_state = "moonlight"
-	armor = list(RED_DAMAGE = 30, WHITE_DAMAGE = 70, BLACK_DAMAGE = 40, PALE_DAMAGE = 0) // 140
+	armor = list(RED_DAMAGE = 30, WHITE_DAMAGE = 60, BLACK_DAMAGE = 40, PALE_DAMAGE = 0) // 130 (-10 for faster speed)
+	slowdown = -0.1
 	attribute_requirements = list(
 							TEMPERANCE_ATTRIBUTE = 80
 							)
@@ -323,7 +333,8 @@ Any attempt to code risk class armor will result in a 10 day Github ban.*/
 	desc = "There is no sorrow like the betrayal of a friend. \
 			Nor is there such rage."
 	icon_state = "blind_rage"
-	armor = list(RED_DAMAGE = 50, WHITE_DAMAGE = 0, BLACK_DAMAGE = 50, PALE_DAMAGE = 40) // 140
+	armor = list(RED_DAMAGE = 50, WHITE_DAMAGE = 0, BLACK_DAMAGE = 50, PALE_DAMAGE = 40) // 150 (+10 for slower speed)
+	slowdown = 0.1
 	attribute_requirements = list(
 							TEMPERANCE_ATTRIBUTE = 60,
 							JUSTICE_ATTRIBUTE = 80
@@ -394,7 +405,8 @@ Any attempt to code risk class armor will result in a 10 day Github ban.*/
 	name = "rimeshank"
 	desc = "Well, I can't just shiver in the cold forever, can I?"
 	icon_state = "rimeshank"
-	armor = list(RED_DAMAGE = 70, WHITE_DAMAGE = 40, BLACK_DAMAGE = 0, PALE_DAMAGE = 30) //140
+	armor = list(RED_DAMAGE = 70, WHITE_DAMAGE = 40, BLACK_DAMAGE = 10, PALE_DAMAGE = 30) // 150 (+10 for slower speed)
+	slowdown = 0.1
 	attribute_requirements = list(
 					FORTITUDE_ATTRIBUTE = 80
 					)
@@ -445,7 +457,8 @@ Any attempt to code risk class armor will result in a 10 day Github ban.*/
 	name = "garden of thorns"
 	desc = "Our only wish is that our garden will bloom full of flowers."
 	icon_state = "rosa"
-	armor = list(RED_DAMAGE = 30, WHITE_DAMAGE = 50, BLACK_DAMAGE = 30, PALE_DAMAGE = 30) // 140
+	armor = list(RED_DAMAGE = 30, WHITE_DAMAGE = 50, BLACK_DAMAGE = 30, PALE_DAMAGE = 20) // 130 (-10 for faster speed)
+	slowdown = -0.1
 	attribute_requirements = list(
 							PRUDENCE_ATTRIBUTE = 60,
 							JUSTICE_ATTRIBUTE = 60
@@ -455,7 +468,8 @@ Any attempt to code risk class armor will result in a 10 day Github ban.*/
 	name = "blind obsession"
 	desc = "Allow me to describe this grand and epic beast!"
 	icon_state = "blind_obsession"
-	armor = list(RED_DAMAGE = 60, WHITE_DAMAGE = -10, BLACK_DAMAGE = 50, PALE_DAMAGE = 40)//140
+	armor = list(RED_DAMAGE = 60, WHITE_DAMAGE = -10, BLACK_DAMAGE = 40, PALE_DAMAGE = 40) // 130 (-10 for faster speed)
+	slowdown = -0.1
 	attribute_requirements = list(
 							FORTITUDE_ATTRIBUTE = 80,
 							JUSTICE_ATTRIBUTE = 60)
@@ -475,7 +489,8 @@ Any attempt to code risk class armor will result in a 10 day Github ban.*/
 	name = "ya sunyata tad rupam"
 	desc = "Karma shall find its way back to you, and rest atop your head."
 	icon_state = "sunyata"
-	armor = list(RED_DAMAGE = 50, WHITE_DAMAGE = 50, BLACK_DAMAGE = -10, PALE_DAMAGE = 50)//140
+	armor = list(RED_DAMAGE = 50, WHITE_DAMAGE = 50, BLACK_DAMAGE = -20, PALE_DAMAGE = 50) // 130 (-10 for faster speed)
+	slowdown = -0.1
 	attribute_requirements = list(
 							PRUDENCE_ATTRIBUTE = 60,
 							TEMPERANCE_ATTRIBUTE = 60
