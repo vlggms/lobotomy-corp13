@@ -108,6 +108,14 @@
 
 			//Steals your brain and time, dusting your body, borrowed from Warden.
 			H.dust()
+			melee_damage_lower += damage_up
+			melee_damage_upper += damage_up
+			finishing = FALSE
+			switch(current_stage)
+				if(1)
+					icon_state = "Ripper"
+				if(2)
+					icon_state = "Ripper2"
 
 
 /mob/living/simple_animal/hostile/distortion/Timeripper/Life()
