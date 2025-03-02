@@ -30,3 +30,5 @@
 //This is a debug chem and should be replaced when found.
 /datum/reagent/abnormality/sin/emptiness
 	name = "Liquid Emptiness"
+	health_restore = 0.2 // Heals you slightly to avoid a debug feature being negative
+	sanity_restore = 0.2
