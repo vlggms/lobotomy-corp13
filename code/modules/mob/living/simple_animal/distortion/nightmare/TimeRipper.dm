@@ -15,7 +15,7 @@
 	melee_damage_type = BLACK_DAMAGE
 	stat_attack = HARD_CRIT
 	ranged = TRUE
-	attack_sound = 'sound/effects/ordeals/green/stab.ogg'
+	attack_sound = 'sound/weapons/fixer/generic/nail2.ogg'
 	attack_verb_continuous = "stabs"
 	attack_verb_simple = "pierces"
 	var/can_act = TRUE
@@ -110,10 +110,24 @@
 			H.dust()
 
 
-/mob/living/simple_animal/hostile/distortion/Timeripper/proc/Timestop()
-	say("Your time is mine.")
-	can_act = FALSE
-	SLEEP_CHECK_DEATH(12)
-	new /obj/effect/timestop(get_turf(src), 3, 40, list(src))
-	can_act = TRUE
+/mob/living/simple_animal/hostile/distortion/Timeripper/Life()
+	. = ..()
+	//Passive regen.
+	if(health <= maxHealth*0.99 && stat != DEAD)
+		adjustBruteLoss(-2)
+		if(!target)
+			adjustBruteLoss(-6)
 
+	
+/mob/living/simple_animal/hostile/distortion/Timeripper/AttackingTarget(atom/attacked_target) //His blades are pretty fucked up but this is better than freezing you in time each melee hit.
+	if(finishing)
+		return
+	. = ..()
+	if(.)
+		if(!istype(attacked_target, /mob/living/carbon/human))
+			return
+		var/mob/living/carbon/human/H = attacked_target
+		H.add_movespeed_modifier(/datum/movespeed_modifier/grab_slowdown/aggressive)
+		addtimer(CALLBACK(H, TYPE_PROC_REF(/mob, remove_movespeed_modifier), /datum/movespeed_modifier/grab_slowdown/aggressive), 4 SECONDS, TIMER_UNIQUE | TIMER_OVERRIDE)
+		
+		
