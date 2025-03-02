@@ -20,6 +20,12 @@
 	room_id = "scorp_poi"
 	mappath = "_maps/RandomRooms/backstreets/pointofinterest/scorp_vault.dmm"
 
+// Garage Door varient of Scorp Vault
+/datum/map_template/random_room/backstreets/pointofinterest/scorp
+	name = "Scorp Vault B - Point of Interest"
+	room_id = "scorpb_poi"
+	mappath = "_maps/RandomRooms/backstreets/pointofinterest/scorp_vaultb.dmm"
+
 /datum/map_template/random_room/backstreets/pointofinterest/love_train
 	name = "Love Train - Point of Interest"
 	room_id = "love_train_poi"
