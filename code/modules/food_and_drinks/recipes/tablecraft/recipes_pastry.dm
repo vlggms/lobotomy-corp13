@@ -152,6 +152,65 @@
 	subcategory = CAT_PASTRY
 
 
+/datum/crafting_recipe/food/charlotte
+	name = "Strawberry charlotte"
+	reqs = list(
+		/obj/item/food/cake/plain = 1,
+		/obj/item/food/grown/berries = 5,
+		/datum/reagent/consumable/cream = 5,
+		/obj/item/food/pastrybase = 1
+	)
+	result = /obj/item/food/cake/charlotte
+	subcategory = CAT_PASTRY
+
+
+/datum/crafting_recipe/food/fraisier
+	name = "Fraisier"
+	reqs = list(
+		/obj/item/food/cake/plain = 1,
+		/obj/item/food/grown/berries = 5,
+		/datum/reagent/consumable/cream = 5
+	)
+	result = /obj/item/food/cake/fraisier
+	subcategory = CAT_PASTRY
+
+
+/datum/crafting_recipe/food/saint_honore
+	name = "Saint Honore"
+	reqs = list(
+		/obj/item/food/cake/plain = 1,
+		/datum/reagent/consumable/cream = 5,
+		/datum/reagent/consumable/caramel = 1,
+		/obj/item/food/chocolatebar = 1,
+		/obj/item/food/pastrybase = 1
+	)
+	result = /obj/item/food/cake/saint_honore
+	subcategory = CAT_PASTRY
+
+
+/datum/crafting_recipe/food/black_forest
+	name = "Black Forest"
+	reqs = list(
+		/obj/item/food/cake/plain = 1,
+		/datum/reagent/consumable/cream = 5,
+		/obj/item/food/grown/cherries = 2,
+		/obj/item/food/chocolatebar = 2
+	)
+	result = /obj/item/food/cake/black_forest
+	subcategory = CAT_PASTRY
+
+
+/datum/crafting_recipe/food/triple_berry
+	name = "Triple layer berry cake"
+	reqs = list(
+		/obj/item/food/cake/plain = 1,
+		/datum/reagent/consumable/cream = 5,
+		/obj/item/food/grown/berries = 15
+	)
+	result = /obj/item/food/cake/triple_berry
+	subcategory = CAT_PASTRY
+
+
 ////////////////////////////////////////////////PIES////////////////////////////////////////////////
 
 /datum/crafting_recipe/food/cherrypie

@@ -274,7 +274,7 @@
 
 /obj/item/food/pie/tarte_tatin
 	name = "tarte tatin"
-	desc = "A pie with caramelized apple slices inside."
+	desc = "A pie with caramelized apple slices on top."
 	icon_state = "tarte_tatin"
 
 	food_reagents = list(/datum/reagent/consumable/nutriment = 20, /datum/reagent/consumable/nutriment/vitamin = 10)

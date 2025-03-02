@@ -862,7 +862,7 @@
 
 /obj/item/food/pain_au_chocolat
 	name = "pain au chocolat"
-	desc = "A popular french pastry made from bread with chocolate inside."
+	desc = "A popular french pastry made from pastry puff with chocolate inside."
 	icon_state = "pain_au_chocolat"
 	food_reagents = list(/datum/reagent/consumable/nutriment = 8, /datum/reagent/consumable/nutriment/vitamin = 4)
 	tastes = list("pastry" = 1, "chocolate" = 1)
