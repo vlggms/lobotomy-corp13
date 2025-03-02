@@ -25,7 +25,7 @@
 	var/pale
 
 /datum/dam_coeff/New(red = 1, white = 1, black = 1, pale = 1, brute = 1, fire = 1, tox = 1, clone = 1, stamina = 1, oxy = 1)
-	if(GLOB.damage_type_shuffler.is_enabled)
+	if(GLOB.damage_type_shuffler?.is_enabled)
 		var/list/mapping = GLOB.damage_type_shuffler.mapping_defense
 		var/list/coeffs = list(RED_DAMAGE = red, WHITE_DAMAGE = white, BLACK_DAMAGE = black, PALE_DAMAGE = pale)
 		red = coeffs[mapping[RED_DAMAGE]]
