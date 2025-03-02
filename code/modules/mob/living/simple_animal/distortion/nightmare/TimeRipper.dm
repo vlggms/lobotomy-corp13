@@ -27,6 +27,7 @@
 	var/counter_speed = 2 //subtracted from the movedelay when dashing
 	var/counter_ready = FALSE
 	var/damage_taken
+	var/nightmare_mode = FALSE
 
 	loot = list(/obj/item/documents/ncorporation, /obj/item/documents/ncorporation)
 
@@ -72,6 +73,7 @@
 /mob/living/simple_animal/hostile/distortion/Timeripper/proc/StageTransition()
 	icon = 'ModularTegustation/Teguicons/64x64.dmi'
 	icon_living = "Ripper2"
+	pixel_x = -16
 	if(!countering && can_act)
 		icon_state = icon_living
 	current_stage = 2
@@ -134,7 +136,7 @@
 /mob/living/simple_animal/hostile/distortion/Timeripper/Life()
 	. = ..()
 	//Passive regen.
-	if(health <= maxHealth*0.99 && stat != DEAD)
+	if(health <= maxHealth*1 && stat != DEAD)
 		adjustBruteLoss(-2)
 		if(!target)
 			adjustBruteLoss(-6)
@@ -148,7 +150,12 @@
 		if(!istype(attacked_target, /mob/living/carbon/human))
 			return
 		var/mob/living/carbon/human/H = attacked_target
-		H.add_movespeed_modifier(/datum/movespeed_modifier/grab_slowdown/aggressive)
-		addtimer(CALLBACK(H, TYPE_PROC_REF(/mob, remove_movespeed_modifier), /datum/movespeed_modifier/grab_slowdown/aggressive), 4 SECONDS, TIMER_UNIQUE | TIMER_OVERRIDE)
+		if(nightmare_mode)
+			new /obj/effect/timestop(get_turf(src), 1, 17.9, list(src))
+			H.add_movespeed_modifier(/datum/movespeed_modifier/grab_slowdown/aggressive)
+			addtimer(CALLBACK(H, TYPE_PROC_REF(/mob, remove_movespeed_modifier), /datum/movespeed_modifier/grab_slowdown/aggressive), 4 SECONDS, TIMER_UNIQUE | TIMER_OVERRIDE)
+		else
+			H.add_movespeed_modifier(/datum/movespeed_modifier/grab_slowdown/aggressive)
+			addtimer(CALLBACK(H, TYPE_PROC_REF(/mob, remove_movespeed_modifier), /datum/movespeed_modifier/grab_slowdown/aggressive), 4 SECONDS, TIMER_UNIQUE | TIMER_OVERRIDE)
 		
 		
