@@ -112,7 +112,14 @@
 			SLEEP_CHECK_DEATH(5)
 
 			//Steals your brain and time, dusting your body, borrowed from Warden.
-			H.dust()
+			var/obj/item/bodypart/head/head = H.get_bodypart("head")
+			if(QDELETED(head))
+				return
+			head.dismember()
+			QDEL_NULL(head)
+			H.regenerate_icons()
+			visible_message(span_danger("\The [src] takes [H]'s head off to add a brain to collection!"))
+			new /obj/effect/gibspawner/generic/silent(get_turf(H))
 			melee_damage_lower += damage_up
 			melee_damage_upper += damage_up
 			finishing = FALSE
