@@ -27,6 +27,8 @@
 /obj/item/ego_weapon/city/ensemble/greta/attack(mob/living/target, mob/living/carbon/human/user)
 	if(!CanUseEgo(user))
 		return
+
+
 	. = ..()
 	if((target.health <= target.maxHealth * 0.1 || target.stat == DEAD) && !(target.status_flags & GODMODE))	//She eats people live.
 		target.gib()
