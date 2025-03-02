@@ -92,7 +92,7 @@
 			accessory = /obj/item/clothing/accessory/armband/lobotomy/records
 			if(SSmaptype.chosen_trait == FACILITY_TRAIT_DEPARTMENTAL_BUFFS)
 				to_chat(M, "<b>Due to your chosen department, you get an attribute limit of 150.</b>")
-				outfit_owner.set_attribute_limit(amount)
+				outfit_owner.set_attribute_limit(150)
 
 		else //Pick a department or get training.
 			ears = /obj/item/radio/headset/headset_training
