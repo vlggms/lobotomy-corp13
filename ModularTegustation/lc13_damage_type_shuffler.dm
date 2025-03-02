@@ -1,0 +1,40 @@
+GLOBAL_DATUM_INIT(damage_type_shuffler, /datum/damage_type_shuffler, new /datum/damage_type_shuffler())
+
+//How it works:
+//since damage types are often hardcoded for various attacks, some weapons have damage switching features
+//and very often apply_damage is being called directly with damage type passed as a constant
+//damage type switcharoo happens inside apply_damage before any logic, weapons and mobs keep their original damage type vars
+//For armor and damage_coeffs the switcharoo happens at armor datum initialization
+//Usually when armor is being changed from code a brand new armor datum is created so it works out
+//But any runtime changes to the mapping_defense wont affect existing armor.
+//It is ensured that at least one pair of colors are switched. Up to 2 colors can remain unchanged.
+/datum/damage_type_shuffler
+	var/is_enabled = FALSE
+	///Maps (original damage type) => (new damage type), can be changed at any time.
+	var/list/mapping_offense = list(RED_DAMAGE = RED_DAMAGE, WHITE_DAMAGE = WHITE_DAMAGE, BLACK_DAMAGE = BLACK_DAMAGE, PALE_DAMAGE = PALE_DAMAGE)
+	///Gives (this color) => (that color)'s armor value, only applies when armor/damage_coeff datum is created.
+	var/list/mapping_defense = list(RED_DAMAGE = RED_DAMAGE, WHITE_DAMAGE = WHITE_DAMAGE, BLACK_DAMAGE = BLACK_DAMAGE, PALE_DAMAGE = PALE_DAMAGE)
+	///If a non pale damage type became pale then all new pale damage will be multiplied by this for a lil bit of balance.
+	var/pale_debuff = 0.75
+
+/datum/damage_type_shuffler/New()
+	. = ..()
+	ReshuffleAll()
+
+/datum/damage_type_shuffler/proc/Reshuffle(list/mapping_to_shuffle)
+	var/list/source = list(RED_DAMAGE, WHITE_DAMAGE, BLACK_DAMAGE, PALE_DAMAGE)
+	var/list/target = list(RED_DAMAGE, WHITE_DAMAGE, BLACK_DAMAGE, PALE_DAMAGE)
+	var/from = pick_n_take(source)
+	var/destination = pick(source)
+	target -= destination
+	mapping_to_shuffle[from] = destination
+	for(var/i in source)
+		mapping_to_shuffle[i] = pick_n_take(target)
+
+/datum/damage_type_shuffler/proc/ReshuffleAll()
+	Reshuffle(mapping_offense)
+	Reshuffle(mapping_defense)
+
+/proc/IsColorDamageType(damage_type)
+	var/static/list/color_damage_types = list(RED_DAMAGE = TRUE, WHITE_DAMAGE = TRUE, BLACK_DAMAGE = TRUE, PALE_DAMAGE = TRUE)
+	return color_damage_types[damage_type]

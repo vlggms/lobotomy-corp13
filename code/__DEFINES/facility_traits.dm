@@ -9,8 +9,8 @@
 #define FACILITY_TRAIT_CALLBACK "Callback"
 #define FACILITY_TRAIT_JOKE_ABNOS "Joke Abnormalities"
 #define FACILITY_TRAIT_VISIBLE_GHOSTS "Visible Ghosts"
+#define FACILITY_TRAIT_DAMAGE_TYPE_SHUFFLE "Damage Type Shuffle"
 
 //Removed ones
 #define FACILITY_TRAIT_FUCKED_SELECTION "Selection Mishap"
 #define FACILITY_TRAIT_LEGACY_PALE "Legacy Pale"
-
