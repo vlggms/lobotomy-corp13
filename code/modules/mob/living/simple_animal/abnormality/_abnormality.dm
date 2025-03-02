@@ -177,6 +177,9 @@
 	if(secret_chance && (prob(1)))
 		InitializeSecretIcon()
 
+	if(SSmaptype.chosen_trait == FACILITY_TRAIT_JOKE_ABNOS && secret_chance)
+		InitializeSecretIcon()
+
 	//Abnormalities have no name here. And we don't want nonsentient ones to breach
 	if(SSmaptype.maptype == "limbus_labs")
 		name = "Limbus Company Specimen"
