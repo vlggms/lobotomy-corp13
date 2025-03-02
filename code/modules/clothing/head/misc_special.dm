@@ -439,41 +439,68 @@
 	armor = list(RED_DAMAGE = 40, WHITE_DAMAGE = 40, BLACK_DAMAGE = 10, PALE_DAMAGE = 30, FIRE = 100)
 	icon_state = "Philiphead"
 	inhand_icon_state = "Philiphead"
-
+/obj/item/clothing/head/ego_hat/ensemble/philip/equipped(mob/living/user, slot)
+	. = ..()
+	if(ishuman(user) && slot == ITEM_SLOT_HEAD)
+		ADD_TRAIT(src, TRAIT_NODROP, "Philiphead")
+		
+		
 /obj/item/clothing/head/ego_hat/ensemble/eileen
 	name = "Head cover"
 	desc = "A gear with a purpose is content, for its rotation has meaning. Humans are cogs in the machination that is the City."
 	armor = list(RED_DAMAGE = 10, WHITE_DAMAGE = 50, BLACK_DAMAGE = 50, PALE_DAMAGE = 30, FIRE = 100)
 	icon_state = "Eileenhead"
 	inhand_icon_state = "Eileenhead"
-
+/obj/item/clothing/head/ego_hat/ensemble/eileen/equipped(mob/living/user, slot)
+	. = ..()
+	if(ishuman(user) && slot == ITEM_SLOT_HEAD)
+		ADD_TRAIT(src, TRAIT_NODROP, "Eileenhead")
+		
 /obj/item/clothing/head/ego_hat/ensemble/greta
 	name = "Is that a shark?"
 	desc = "When somebody who can live with three meals a day decides to take four, someone else is left with two! Then the poor sods who only get two meals a day fight over what little food they’ve got to sate their hunger."
 	armor = list(RED_DAMAGE = 30, WHITE_DAMAGE = 30, BLACK_DAMAGE = 30, PALE_DAMAGE = 30, FIRE = 100)
 	icon_state = "WeirdGretaHead"
 	inhand_icon_state = "WeirdGretaHead"
-
+/obj/item/clothing/head/ego_hat/ensemble/greta/equipped(mob/living/user, slot)
+	. = ..()
+	if(ishuman(user) && slot == ITEM_SLOT_HEAD)
+		ADD_TRAIT(src, TRAIT_NODROP, "WeirdGretaHead")
+		
 /obj/item/clothing/head/ego_hat/ensemble/bremen
 	name = "Musicians of Bremen"
 	desc = "Ruff, ruff ruff~!! Cockadoodledo!!! Neigh!!!."
 	armor = list(RED_DAMAGE = 30, WHITE_DAMAGE = 100, BLACK_DAMAGE = 30, PALE_DAMAGE = 30, FIRE = 100)
 	icon_state = "BremenMess"
 	inhand_icon_state = "BremenMess"
-
+/obj/item/clothing/head/ego_hat/ensemble/bremen/equipped(mob/living/user, slot)
+	. = ..()
+	if(ishuman(user) && slot == ITEM_SLOT_HEAD)
+		ADD_TRAIT(src, TRAIT_NODROP, "BremenMess")
+			
+		
 /obj/item/clothing/head/ego_hat/ensemble/tanya
 	name = "Punter of weak"
 	desc = "The weak—they gotta find ways to survive on their own. You obey the strong, or you get killed by ‘em… Either or. Someone will keep you safe if you serve ‘em like a good little pup."
 	armor = list(RED_DAMAGE = 80, WHITE_DAMAGE = 10, BLACK_DAMAGE = 10, PALE_DAMAGE = 30, FIRE = 100)
 	icon_state = "TanyaHead"
 	inhand_icon_state = "TanyaHead"
-
+	
+/obj/item/clothing/head/ego_hat/ensemble/tanya/equipped(mob/living/user, slot)
+	. = ..()
+	if(ishuman(user) && slot == ITEM_SLOT_HEAD)
+		ADD_TRAIT(src, TRAIT_NODROP, "TanyaHead")
+		
 /obj/item/clothing/head/ego_hat/ensemble/oswald
 	name = "Very funny jester hat"
 	desc = "Now, now~ Why don’t we sniff each other’s wrists in a true fashion of clown-to-clown communication ritual? I wore a whiff a peppery scent today!"
 	armor = list(RED_DAMAGE = 30, WHITE_DAMAGE = 60, BLACK_DAMAGE = 10, PALE_DAMAGE = 30, FIRE = 100)
 	icon_state = "Oswald_head"
 	inhand_icon_state = "Oswald_head"
+/obj/item/clothing/head/ego_hat/ensemble/oswald/equipped(mob/living/user, slot)
+	. = ..()
+	if(ishuman(user) && slot == ITEM_SLOT_HEAD)
+		ADD_TRAIT(src, TRAIT_NODROP, "Oswald_head")
 
 /obj/item/clothing/head/ego_hat/ensemble/heon
 	name = "The Puppeteer"
@@ -481,3 +508,7 @@
 	armor = list(RED_DAMAGE = 30, WHITE_DAMAGE = 30, BLACK_DAMAGE = 30, PALE_DAMAGE = 30, FIRE = 100)
 	icon_state = "Heon_head"
 	inhand_icon_state = "Heon_head"
+/obj/item/clothing/head/ego_hat/ensemble/heon/equipped(mob/living/user, slot)
+	. = ..()
+	if(ishuman(user) && slot == ITEM_SLOT_HEAD)
+		ADD_TRAIT(src, TRAIT_NODROP, "Heon_head")
