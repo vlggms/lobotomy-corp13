@@ -182,16 +182,13 @@
 			Can guns really bring peace and love?"
 	icon_state = "pink"
 	inhand_icon_state = "pink"
-	special = "This weapon has a scope, and fires projectiles with zero travel time. Damage dealt is increased when hitting targets further away. Middle mouse button click/alt click to zoom in that direction."
+	special = "This weapon has a scope, and fires projectiles with zero travel time. Damage dealt is increased when hitting targets further away."
 	force = 56
 	damtype = WHITE_DAMAGE
 	projectile_path = /obj/projectile/ego_bullet/pink
 	weapon_weight = WEAPON_HEAVY
 	fire_sound = 'sound/abnormalities/armyinblack/pink.ogg'
 	fire_delay = 9
-	zoomable = TRUE
-	zoom_amt = 10
-	zoom_out_amt = 13
 	shotsleft = 5
 	reloadtime = 2.1 SECONDS
 	attribute_requirements = list(
@@ -202,58 +199,9 @@
 							)
 	var/mob/current_holder
 
-/obj/item/ego_weapon/ranged/pink/MiddleClickAction(atom/target, mob/living/user)
+/obj/item/ego_weapon/ranged/pink/Initialize(mapload)
 	. = ..()
-	if(.)
-		return
-	zoom(user, get_cardinal_dir(user, target))
-
-/obj/item/ego_weapon/ranged/pink/zoom(mob/living/user, direc, forced_zoom)
-	if(!CanUseEgo(user))
-		return
-	if(!user || !user.client)
-		return
-	if(isnull(forced_zoom))
-		zoomed = !zoomed
-	else
-		zoomed = forced_zoom
-	if(src != user.get_active_held_item())
-		if(!zoomed)
-			UnregisterSignal(user, COMSIG_MOVABLE_MOVED)
-			UnregisterSignal(user, COMSIG_ATOM_DIR_CHANGE)
-			user.client.view_size.zoomIn()
-		return
-	if(!zoomed)
-		UnregisterSignal(user, COMSIG_MOVABLE_MOVED)
-		UnregisterSignal(user, COMSIG_ATOM_DIR_CHANGE)
-		user.client.view_size.zoomIn()
-	else
-		RegisterSignal(user, COMSIG_ATOM_DIR_CHANGE, PROC_REF(rotate))
-		RegisterSignal(user, COMSIG_MOVABLE_MOVED, PROC_REF(UserMoved))
-		user.client.view_size.zoomOut(zoom_out_amt, zoom_amt, direc)
-	return zoomed
-
-/obj/item/ego_weapon/ranged/pink/proc/UserMoved(mob/living/user, direc)
-	SIGNAL_HANDLER
-	zoom(user)//disengage
-
-/obj/item/ego_weapon/ranged/pink/Destroy(mob/user)//FIXME: causes component runtimes
-	if(!user)
-		return ..()
-	if(zoomed)
-		UnregisterSignal(current_holder, COMSIG_MOVABLE_MOVED)
-		UnregisterSignal(current_holder, COMSIG_ATOM_DIR_CHANGE)
-		current_holder = null
-		return ..()
-
-/obj/item/ego_weapon/ranged/pink/dropped(mob/user)
-	. = ..()
-	if(!user)
-		return
-	if(zoomed)
-		UnregisterSignal(current_holder, COMSIG_MOVABLE_MOVED)
-		UnregisterSignal(current_holder, COMSIG_ATOM_DIR_CHANGE)
-		current_holder = null
+	AddComponent(/datum/component/scope, range_modifier = 2)
 
 /obj/item/ego_weapon/ranged/arcadia
 	name = "Et in Arcadia Ego"
