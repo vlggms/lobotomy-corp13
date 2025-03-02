@@ -211,3 +211,4 @@
 	if(ishuman(AM))
 		var/mob/living/carbon/human/H = AM
 		H.apply_damage(3, FIRE, null, H.run_armor_check(null, RED_DAMAGE), spread_damage = TRUE)
+
