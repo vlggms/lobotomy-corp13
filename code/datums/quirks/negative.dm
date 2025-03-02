@@ -183,7 +183,7 @@
 /datum/quirk/nonviolent //Renamed pacifist trait
 	name = "Challenge: No Attacking"
 	desc = "You are unable to inflict violence against Abnormalities or people. This is a horrible idea."
-	value = -1
+	value = -2
 	mob_trait = TRAIT_PACIFISM
 	gain_text = "<span class='danger'>You feel repulsed by the thought of violence!</span>"
 	lose_text = "<span class='notice'>You think you can defend yourself again, thank god.</span>"
@@ -235,11 +235,11 @@
 /datum/quirk/brainproblems
 	name = "Brain Tumor"
 	desc = "You have a little friend in your brain that is slowly destroying it. Better bring some mannitol!"
-	value = -4
+	value = -6 //Tumors can really be hurtful for gameplay
 	gain_text = "<span class='danger'>You feel smooth.</span>"
 	lose_text = "<span class='notice'>You feel wrinkled again.</span>"
 	medical_record_text = "Patient has a tumor in their brain that is slowly driving them to brain death."
-	hardcore_value = 8
+	hardcore_value = 12
 	/// Location of the bottle of pills on spawn
 	var/where
 	var/where_lob
@@ -283,12 +283,12 @@
 /datum/quirk/deafness
 	name = "Deaf"
 	desc = "You are incurably deaf."
-	value = -2
+	value = -3 //Can't hear melts occur so it is kinda important
 	mob_trait = TRAIT_DEAF
 	gain_text = "<span class='danger'>You can't hear anything.</span>"
 	lose_text = "<span class='notice'>You're able to hear again!</span>"
 	medical_record_text = "Patient's cochlear nerve is incurably damaged."
-	hardcore_value = 4
+	hardcore_value = 6
 
 
 /datum/quirk/heavy_sleeper
@@ -322,7 +322,7 @@
 /datum/quirk/paraplegic
 	name = "Paraplegic"
 	desc = "Your legs do not function. Nothing will ever fix this. But hey, free wheelchair!"
-	value = -4
+	value = -6
 	human_only = TRUE
 	gain_text = null // Handled by trauma.
 	lose_text = null
@@ -406,12 +406,12 @@
 /datum/quirk/insanity
 	name = "Reality Dissociation Syndrome"
 	desc = "You suffer from a severe disorder that causes very vivid hallucinations. Mindbreaker toxin can suppress its effects, and you are immune to mindbreaker's hallucinogenic properties. <b>This is not a license to grief.</b>"
-	value = -4
+	value = -2
 	//no mob trait because it's handled uniquely
 	gain_text = "<span class='userdanger'>...</span>"
 	lose_text = "<span class='notice'>You feel in tune with the world again.</span>"
 	medical_record_text = "Patient suffers from acute Reality Dissociation Syndrome and experiences vivid hallucinations."
-	hardcore_value = 6
+	hardcore_value = 4
 
 /datum/quirk/insanity/on_process(delta_time)
 	if(quirk_holder.reagents.has_reagent(/datum/reagent/toxin/mindbreaker, needs_metabolizing = TRUE))
@@ -507,10 +507,10 @@
 /datum/quirk/junkie
 	name = "Junkie"
 	desc = "You can't get enough of hard drugs."
-	value = -1
+	value = -2 //These drugs aren't easy to get in LC13
 	gain_text = "<span class='danger'>You suddenly feel the craving for drugs.</span>"
 	medical_record_text = "Patient has a history of hard drugs."
-	hardcore_value = 4
+	hardcore_value = 5
 	var/drug_list = list(/datum/reagent/drug/crank, /datum/reagent/drug/krokodil, /datum/reagent/medicine/morphine, /datum/reagent/drug/happiness, /datum/reagent/drug/methamphetamine) //List of possible IDs
 	var/datum/reagent/reagent_type //!If this is defined, reagent_id will be unused and the defined reagent type will be instead.
 	var/datum/reagent/reagent_instance //! actual instanced version of the reagent
