@@ -102,7 +102,12 @@
 		if(H.health < 0)
 
 			finishing = TRUE
-			icon_state = "Ripper2"
+			switch(current_stage)
+				if(1)
+					icon = 'ModularTegustation/Teguicons/64x64.dmi'
+					icon_state = "Ripper2"
+				if(2)
+					icon_state = "Ripper2"
 			playsound(get_turf(src), 'sound/hallucinations/wail.ogg', 50, 1)
 			SLEEP_CHECK_DEATH(5)
 
@@ -114,6 +119,7 @@
 			switch(current_stage)
 				if(1)
 					icon_state = "Ripper"
+					icon = 'ModularTegustation/Teguicons/32x64.dmi'
 				if(2)
 					icon_state = "Ripper2"
 
