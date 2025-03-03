@@ -146,6 +146,16 @@
 	for(var/I in cached_resistances)
 		cached_resistances[I] = round(cached_resistances[I], 0.1) // Minimizes damage_coeff datums created due to rampant decimals.
 
+	if(GLOB.damage_type_shuffler?.is_enabled)
+		//since these changes are based on already mapped values we map in the opposite direction so that it cancels out when new coeff datum is made
+		var/list/mapping = GLOB.damage_type_shuffler.reverse_mapping_defense
+		var/list/coeffs = list(RED_DAMAGE = cached_resistances[RED_DAMAGE], WHITE_DAMAGE = cached_resistances[WHITE_DAMAGE],\
+								BLACK_DAMAGE = cached_resistances[BLACK_DAMAGE], PALE_DAMAGE = cached_resistances[PALE_DAMAGE])
+		cached_resistances[RED_DAMAGE] = coeffs[mapping[RED_DAMAGE]]
+		cached_resistances[WHITE_DAMAGE] = coeffs[mapping[WHITE_DAMAGE]]
+		cached_resistances[BLACK_DAMAGE] = coeffs[mapping[BLACK_DAMAGE]]
+		cached_resistances[PALE_DAMAGE] = coeffs[mapping[PALE_DAMAGE]]
+
 	damage_coeff = damage_coeff.setCoeff(
 		cached_resistances[RED_DAMAGE],\
 		cached_resistances[WHITE_DAMAGE],\
