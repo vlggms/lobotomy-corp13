@@ -15,6 +15,12 @@
 /obj/item/stack/spacecash/c10,
 /turf/open/water/jungle,
 /area/city/backstreets_alley)
+"fV" = (
+/obj/structure/delivery_door{
+	density = 1
+	},
+/turf/closed/indestructible/reinforced,
+/area/city/backstreets_alley)
 "gv" = (
 /obj/effect/portal/permanent{
 	id = "cave_path_1";
@@ -587,6 +593,7 @@ Wb
 MW
 MW
 MW
+fV
 MW
 MW
 MW
@@ -602,8 +609,7 @@ MW
 MW
 MW
 MW
-MW
-MW
+fV
 MW
 MW
 MW
@@ -746,7 +752,7 @@ MW
 MW
 MW
 MW
-MW
+fV
 MW
 MW
 MW
@@ -2001,7 +2007,7 @@ it
 it
 it
 it
-MW
+fV
 hv
 hv
 "}
@@ -2046,7 +2052,7 @@ MW
 MW
 MW
 MW
-MW
+fV
 MW
 MW
 MW
@@ -2942,7 +2948,7 @@ MW
 MW
 MW
 MW
-MW
+fV
 MW
 MW
 MW
@@ -3080,7 +3086,7 @@ CI
 kn
 kn
 kn
-MW
+fV
 hv
 hv
 hv
@@ -3146,7 +3152,7 @@ hv
 hv
 hv
 hv
-MW
+fV
 kn
 kn
 kn
@@ -3767,7 +3773,7 @@ MW
 MW
 MW
 MW
-MW
+fV
 MW
 MW
 MW
@@ -4303,7 +4309,7 @@ MW
 kn
 kn
 kn
-MW
+fV
 hv
 hv
 hv
@@ -4472,7 +4478,7 @@ hv
 hv
 hv
 hv
-MW
+fV
 kn
 kn
 kn
@@ -4645,7 +4651,7 @@ hv
 hv
 hv
 hv
-MW
+fV
 kn
 kn
 kn
@@ -5505,7 +5511,7 @@ hv
 hv
 hv
 hv
-MW
+fV
 it
 kn
 kn
@@ -5804,7 +5810,7 @@ hv
 hv
 hv
 hv
-MW
+fV
 kn
 kn
 kn
@@ -6164,7 +6170,7 @@ CI
 CI
 kn
 kn
-iZ
+kn
 kn
 iZ
 kn
@@ -7512,7 +7518,7 @@ hv
 hv
 hv
 hv
-MW
+fV
 kn
 kn
 kn
@@ -7531,7 +7537,7 @@ BD
 hv
 hv
 hv
-MW
+fV
 kn
 it
 kn
@@ -7541,7 +7547,7 @@ MW
 kn
 kn
 kn
-MW
+fV
 hv
 hv
 hv
@@ -8828,7 +8834,7 @@ hv
 hv
 hv
 hv
-MW
+fV
 kn
 kn
 kn
@@ -8956,7 +8962,7 @@ hv
 hv
 hv
 hv
-MW
+fV
 kn
 kn
 kn
@@ -9027,7 +9033,7 @@ hv
 hv
 hv
 hv
-MW
+fV
 it
 it
 it
@@ -9102,7 +9108,7 @@ MW
 it
 it
 it
-MW
+fV
 hv
 hv
 hv
@@ -9610,7 +9616,7 @@ MW
 kn
 kn
 kn
-MW
+fV
 hv
 hv
 hv
@@ -10484,7 +10490,7 @@ hv
 hv
 hv
 hv
-MW
+fV
 kn
 kn
 kn
@@ -12593,7 +12599,7 @@ MW
 MW
 MW
 MW
-MW
+fV
 MW
 MW
 MW
@@ -13310,7 +13316,7 @@ CI
 kn
 kn
 kn
-MW
+fV
 hv
 hv
 hv
@@ -14186,7 +14192,7 @@ hv
 hv
 hv
 hv
-MW
+fV
 kn
 kn
 kn
@@ -14285,7 +14291,7 @@ MW
 MW
 MW
 MW
-MW
+fV
 MW
 MW
 MW
@@ -16021,7 +16027,7 @@ kn
 MW
 MW
 MW
-MW
+fV
 MW
 MW
 MW
@@ -16064,7 +16070,7 @@ CI
 CI
 MW
 MW
-MW
+fV
 MW
 MW
 MW
@@ -16140,7 +16146,7 @@ MW
 kn
 kn
 kn
-MW
+fV
 hv
 hv
 hv
@@ -17483,7 +17489,7 @@ MW
 MW
 MW
 MW
-MW
+fV
 MW
 MW
 MW
@@ -18234,7 +18240,7 @@ hv
 hv
 hv
 hv
-MW
+fV
 kn
 kn
 kn
@@ -18297,7 +18303,7 @@ CI
 CI
 Eh
 MW
-MW
+fV
 MW
 MW
 CI
@@ -19362,7 +19368,7 @@ MW
 hv
 MW
 kn
-iZ
+kn
 kn
 kn
 kn
@@ -19573,7 +19579,7 @@ kn
 MW
 MW
 MW
-MW
+fV
 MW
 MW
 kn
@@ -19858,7 +19864,7 @@ hv
 hv
 hv
 hv
-MW
+fV
 kn
 kn
 kn
@@ -20477,7 +20483,7 @@ MW
 MW
 MW
 MW
-MW
+fV
 MW
 MW
 MW
@@ -20491,7 +20497,7 @@ MW
 MW
 MW
 MW
-MW
+fV
 MW
 MW
 MW
@@ -20579,7 +20585,7 @@ kn
 kn
 kn
 kn
-kn
+iZ
 kn
 kn
 kn
@@ -21150,7 +21156,7 @@ MW
 kn
 kn
 kn
-MW
+fV
 hv
 hv
 hv
@@ -22382,7 +22388,7 @@ MW
 MW
 MW
 MW
-MW
+fV
 MW
 MW
 MW
@@ -22454,7 +22460,7 @@ MW
 kn
 kn
 kn
-MW
+fV
 hv
 hv
 hv
@@ -23668,7 +23674,7 @@ kn
 kn
 MW
 MW
-MW
+fV
 MW
 MW
 MW
@@ -23847,7 +23853,7 @@ hv
 hv
 hv
 hv
-MW
+fV
 kn
 kn
 kn
@@ -24600,7 +24606,7 @@ hv
 hv
 hv
 hv
-MW
+fV
 kn
 kn
 kn
@@ -25022,7 +25028,7 @@ hv
 hv
 hv
 hv
-MW
+fV
 it
 it
 it
@@ -25788,7 +25794,7 @@ kn
 MW
 MW
 MW
-MW
+fV
 MW
 MW
 hv
@@ -26413,7 +26419,7 @@ CI
 kn
 kn
 kn
-MW
+fV
 hv
 hv
 hv
@@ -27772,7 +27778,7 @@ hv
 hv
 MW
 MW
-MW
+fV
 MW
 MW
 MW
@@ -28273,7 +28279,7 @@ MW
 MW
 MW
 MW
-MW
+fV
 MW
 MW
 MW

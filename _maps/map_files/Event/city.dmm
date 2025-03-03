@@ -1330,6 +1330,16 @@
 	},
 /turf/open/indestructible/white,
 /area/city/shop)
+"qc" = (
+/obj/structure/delivery_door{
+	density = 1;
+	icon = 'icons/obj/votebox.dmi';
+	icon_state = "votebox_maint";
+	name = "mail box";
+	desc = "A mailbox for this house."
+	},
+/turf/closed/indestructible/reinforced,
+/area/city)
 "qh" = (
 /obj/effect/turf_decal/tile/blue{
 	color = "#3234B9";
@@ -1837,6 +1847,16 @@
 	},
 /turf/open/floor/facility,
 /area/city/shop)
+"uB" = (
+/obj/structure/delivery_door{
+	density = 1;
+	icon = 'icons/obj/votebox.dmi';
+	icon_state = "votebox_maint";
+	name = "mail box";
+	desc = "A mailbox for this house."
+	},
+/turf/closed/indestructible/reinforced,
+/area/city/house)
 "uC" = (
 /obj/structure/table/wood,
 /obj/item/paper_bin,
@@ -2705,6 +2725,9 @@
 /obj/structure/chair/plastic{
 	dir = 1
 	},
+/mob/living/simple_animal/ui_npc/eric_t{
+	dir = 1
+	},
 /turf/open/indestructible/white,
 /area/city/shop)
 "AU" = (
@@ -3326,6 +3349,16 @@
 	},
 /turf/open/floor/carpet/black,
 /area/city/fixers)
+"FH" = (
+/obj/structure/delivery_door{
+	density = 1;
+	icon = 'icons/obj/votebox.dmi';
+	icon_state = "votebox_maint";
+	name = "mail box";
+	desc = "A mailbox for this house."
+	},
+/turf/closed/indestructible/reinforced,
+/area/city/shop)
 "FQ" = (
 /obj/structure/table/wood,
 /obj/item/food/baguette,
@@ -4506,6 +4539,16 @@
 /obj/effect/landmark/cityloot,
 /turf/open/floor/wood,
 /area/city)
+"QY" = (
+/obj/structure/delivery_door{
+	density = 1;
+	icon = 'icons/obj/votebox.dmi';
+	icon_state = "votebox_maint";
+	name = "mail box";
+	desc = "A mailbox for this house."
+	},
+/turf/closed/indestructible/reinforced,
+/area/city/backstreets_room)
 "QZ" = (
 /obj/machinery/telecomms/server/presets/science,
 /obj/effect/turf_decal/bot,
@@ -4554,6 +4597,16 @@
 "RM" = (
 /obj/structure/rack,
 /turf/open/floor/wood,
+/area/city/fixers)
+"RR" = (
+/obj/structure/delivery_door{
+	density = 1;
+	icon = 'icons/obj/votebox.dmi';
+	icon_state = "votebox_maint";
+	name = "mail box";
+	desc = "A mailbox for this house."
+	},
+/turf/closed/indestructible/reinforced,
 /area/city/fixers)
 "RZ" = (
 /mob/living/simple_animal/hostile/cockroach/glockroach,
@@ -28313,7 +28366,7 @@ RZ
 RZ
 XQ
 Yl
-XQ
+QY
 XQ
 XQ
 XQ
@@ -29593,7 +29646,7 @@ Qm
 vb
 Qm
 zr
-zr
+qc
 zr
 zr
 zr
@@ -33752,7 +33805,7 @@ OT
 OT
 OT
 OT
-OT
+FH
 tQ
 Zt
 Zt
@@ -34771,7 +34824,7 @@ Xf
 Xf
 Xf
 Xf
-HA
+RR
 Hm
 Hm
 Hm
@@ -35250,7 +35303,7 @@ zr
 CF
 HA
 HA
-HA
+RR
 Ui
 gV
 gV
@@ -35267,7 +35320,7 @@ HA
 gV
 Ui
 gV
-HA
+RR
 HA
 ds
 zr
@@ -35278,7 +35331,7 @@ HA
 gV
 Ui
 gV
-HA
+RR
 HA
 HA
 gV
@@ -36019,7 +36072,7 @@ xW
 uC
 xW
 Nk
-HA
+RR
 Hm
 Hm
 Hm
@@ -36570,7 +36623,7 @@ Sa
 rP
 Ga
 Ga
-OT
+FH
 Hm
 Hm
 Hm
@@ -37096,7 +37149,7 @@ Ez
 Dq
 Dq
 Hs
-Dq
+uB
 Hm
 Hm
 Hm
@@ -37327,7 +37380,7 @@ Dq
 YN
 YN
 nx
-Dq
+uB
 Hm
 Hm
 Hm
@@ -39126,7 +39179,7 @@ Dq
 yC
 yC
 Bn
-Dq
+uB
 Hm
 Hm
 Hm
@@ -40925,7 +40978,7 @@ Dq
 wr
 wr
 wr
-Dq
+uB
 Hm
 Hm
 Hm
@@ -41677,7 +41730,7 @@ Sc
 Hm
 Hm
 Hm
-Dq
+uB
 jI
 AU
 AU
@@ -42224,7 +42277,7 @@ Xf
 Xf
 Xf
 Xf
-HA
+RR
 Hm
 Hm
 Hm
@@ -42236,7 +42289,7 @@ Xf
 Xf
 Xf
 Xf
-HA
+RR
 Hm
 Hm
 Hm
@@ -42701,7 +42754,7 @@ Xf
 Xf
 Xf
 Xf
-HA
+RR
 Hm
 JG
 Hm
@@ -42724,7 +42777,7 @@ Dq
 YN
 YN
 qS
-Dq
+uB
 Hm
 zS
 Hm
@@ -42995,7 +43048,7 @@ rE
 Ej
 WL
 WL
-Dq
+uB
 Hm
 Hm
 Hm
@@ -43521,7 +43574,7 @@ Vb
 Dq
 Dq
 HT
-Dq
+uB
 Hm
 Hm
 Hm
@@ -44761,7 +44814,7 @@ Zt
 Hm
 Hm
 Hm
-OT
+FH
 kC
 Ru
 HA
@@ -45320,7 +45373,7 @@ bM
 Dq
 Dq
 Hs
-Dq
+uB
 Hm
 dh
 Hm
@@ -45565,7 +45618,7 @@ Dq
 YN
 YN
 qS
-Dq
+uB
 Hm
 Hm
 Hm
@@ -45793,7 +45846,7 @@ OT
 OT
 OT
 HA
-HA
+RR
 gV
 Ui
 gV
@@ -46299,7 +46352,7 @@ OT
 lk
 Gb
 Ln
-OT
+FH
 Hm
 Hm
 Hm
@@ -47376,7 +47429,7 @@ Dq
 Dq
 Dq
 Dq
-Dq
+uB
 ja
 Dq
 ds
@@ -47876,7 +47929,7 @@ Xf
 Xf
 Xf
 Xf
-HA
+RR
 Hm
 OT
 VQ
@@ -52759,7 +52812,7 @@ zr
 zr
 zr
 zr
-zr
+qc
 cZ
 zr
 zr
