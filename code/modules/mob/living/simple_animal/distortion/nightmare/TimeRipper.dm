@@ -27,7 +27,10 @@
 	var/counter_speed = 2 //subtracted from the movedelay when dashing
 	var/counter_ready = FALSE
 	var/damage_taken
+	var/damage_up = 5
 	var/nightmare_mode = FALSE
+	var/frozen_time = 600
+	var/no_dehead = 0
 
 	loot = list(/obj/item/documents/ncorporation, /obj/item/documents/ncorporation)
 
@@ -114,23 +117,42 @@
 			SLEEP_CHECK_DEATH(5)
 
 			//Steals your brain and time, dusting your body, borrowed from Warden.
-			var/obj/item/bodypart/head/head = H.get_bodypart("head")
-			if(QDELETED(head))
-				return
-			head.dismember()
-			QDEL_NULL(head)
-			H.regenerate_icons()
-			visible_message(span_danger("\The [src] takes [H]'s head off to add a brain to collection!"))
-			new /obj/effect/gibspawner/generic/silent(get_turf(H))
-			melee_damage_lower += damage_up
-			melee_damage_upper += damage_up
-			finishing = FALSE
-			switch(current_stage)
-				if(1)
-					icon_state = "Ripper"
-					icon = 'ModularTegustation/Teguicons/32x64.dmi'
-				if(2)
-					icon_state = "Ripper2"
+			if(no_dehead)
+				H.gib()
+				melee_damage_lower += damage_up
+				melee_damage_upper += damage_up
+				finishing = FALSE
+				switch(current_stage)
+					if(1)
+						icon_state = "Ripper"
+						icon = 'ModularTegustation/Teguicons/32x64.dmi'
+					if(2)
+						icon_state = "Ripper2"
+			else
+				var/obj/item/bodypart/head/head = H.get_bodypart("head")
+				if(QDELETED(head))
+					return
+				head.dismember()
+				QDEL_NULL(head)
+				H.regenerate_icons()
+				visible_message(span_danger("\The [src] takes [H]'s head off to add a brain to collection!"))
+				new /obj/effect/gibspawner/generic/silent(get_turf(H))
+				melee_damage_lower += damage_up
+				melee_damage_upper += damage_up
+				finishing = FALSE
+				switch(current_stage)
+					if(1)
+						icon_state = "Ripper"
+						icon = 'ModularTegustation/Teguicons/32x64.dmi'
+					if(2)
+						icon_state = "Ripper2"
+
+/mob/living/simple_animal/hostile/distortion/Timeripper/proc/Timestop()
+	say("Your time is mine.")
+	can_act = FALSE
+	SLEEP_CHECK_DEATH(12)
+	new /obj/effect/timestop(get_turf(src), 4, 40, list(src))
+	can_act = TRUE
 
 
 /mob/living/simple_animal/hostile/distortion/Timeripper/Life()
@@ -141,7 +163,7 @@
 		if(!target)
 			adjustBruteLoss(-6)
 
-	
+
 /mob/living/simple_animal/hostile/distortion/Timeripper/AttackingTarget(atom/attacked_target) //His blades are pretty fucked up but this is better than freezing you in time each melee hit.
 	if(finishing)
 		return
@@ -152,10 +174,12 @@
 		var/mob/living/carbon/human/H = attacked_target
 		if(nightmare_mode)
 			new /obj/effect/timestop(get_turf(src), 1, 17.9, list(src))
+			addtimer(CALLBACK (H, TYPE_PROC_REF(/mob/living, Stun), frozen_time SECONDS), 0 SECONDS)
+			to_chat(H, span_warning("You cannot move, it is as if you are frozen in time despite not being frozen anymore..."))
 			H.add_movespeed_modifier(/datum/movespeed_modifier/grab_slowdown/aggressive)
 			addtimer(CALLBACK(H, TYPE_PROC_REF(/mob, remove_movespeed_modifier), /datum/movespeed_modifier/grab_slowdown/aggressive), 4 SECONDS, TIMER_UNIQUE | TIMER_OVERRIDE)
 		else
 			H.add_movespeed_modifier(/datum/movespeed_modifier/grab_slowdown/aggressive)
 			addtimer(CALLBACK(H, TYPE_PROC_REF(/mob, remove_movespeed_modifier), /datum/movespeed_modifier/grab_slowdown/aggressive), 4 SECONDS, TIMER_UNIQUE | TIMER_OVERRIDE)
-		
-		
+
+
