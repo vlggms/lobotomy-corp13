@@ -142,7 +142,7 @@
 	if(!ishuman(user))
 		return
 	var/mob/living/carbon/human/drugie = user
-	if(inject_cooldown > world.time)
+	if(inject_cooldown < world.time)
 		inject_cooldown = world.time + inject_cooldown_time
 		drugie.set_drugginess(15)
 		drugie.adjustToxLoss(4)
@@ -233,7 +233,7 @@
 		var/extra_damage = force
 		extra_damage *= justicemod
 		target.deal_damage(extra_damage*3, damtype)
-		playsound(target, 'sound/abnormalities/spiral_contempt/spiral_hit.ogg', 25, TRUE, 4)
+		playsound(target, 'sound/abnormalities/spiral_contempt/spiral_hit.ogg', 50, TRUE, 4)
 		to_chat(user, span_nicegreen("FOR THEIR PERFORMANCE, I SHALL ACT!"))
 		crit_chance = default_crit_chance
 	else
@@ -551,10 +551,11 @@
 	desc = "To be pure is to be different than Innocent, for innocence requires ignorance while the pure takes in the experiences \
 	they go through grows while never losing that spark of light inside. To hold the weight of the world requires someone Pure, \
 	and the same can be said for this EGO which is weighed down by a heavy past that might as well be the weight of the world."
+	special = "This weapon has a ranged attack which inflicts 'Metal Decay', which deals WHITE damage every 5 seconds, then halving the stack. Attacking a target with Metal Decay will cause it to be triggered 3 time in a row, this has a cooldown. "
 	icon_state = "purity"
 	force = 80
 	reach = 2		//Has 2 Square Reach.
-	stuntime = 20	//Longer reach, gives you a short stun.
+	stuntime = 5	//Longer reach, gives you a short stun.
 	attack_speed = 1.2
 	damtype = WHITE_DAMAGE
 	attack_verb_continuous = list("pokes", "jabs", "tears", "lacerates", "gores")
@@ -566,6 +567,8 @@
 							TEMPERANCE_ATTRIBUTE = 80,
 							JUSTICE_ATTRIBUTE = 80
 							)
+	var/detonate_cooldown
+	var/detonate_cooldown_time = 8 SECONDS
 	var/ranged_cooldown
 	var/ranged_cooldown_time = 1.5 SECONDS
 	var/ranged_range = 5
@@ -575,6 +578,12 @@
 	..()
 	var/datum/status_effect/stacking/lc_metal_decay/D = target.has_status_effect(/datum/status_effect/stacking/lc_metal_decay)
 	if(D)
+		if(detonate_cooldown > world.time)
+			return
+		detonate_cooldown = world.time + detonate_cooldown_time
+		var/obj/effect/infinity/P = new get_turf(target)
+		P.color = COLOR_PURPLE
+		playsound(loc, 'sound/magic/staff_animation.ogg', 15, TRUE, extrarange = stealthy_audio ? SILENCED_SOUND_EXTRARANGE : -1, falloff_distance = 0)
 		for(var/i = 1 to 3)
 			D.statues_damage(FALSE)
 
@@ -586,12 +595,12 @@
 	var/turf/target_turf = get_turf(A)
 	if(!istype(target_turf))
 		return
-	if(!(target_turf in view(ranged_range, user)))
+	if((get_dist(user, target_turf) < 3) || !(target_turf in view(ranged_range, user)))
 		return
 	..()
 	var/turf/projectile_start = get_turf(user)
 	ranged_cooldown = world.time + ranged_cooldown_time
-	playsound(target_turf, 'sound/weapons/pulse.ogg', 50, TRUE)
+	playsound(target_turf, 'sound/effects/smoke.ogg', 20, TRUE)
 
 	//Stuff for creating the projctile.
 	var/obj/projectile/ego_bullet/branch12/old_pale/B = new(projectile_start)
@@ -607,12 +616,12 @@
 /obj/projectile/ego_bullet/branch12/old_pale
 	name = "pale smoke"
 	icon_state = "smoke"
-	damage = 35
+	damage = 10
 	speed = 4
-	range = 5
+	range = 6
 	damage_type = WHITE_DAMAGE
 	projectile_piercing = PASSMOB
-	var/inflicted_decay = 5
+	var/inflicted_decay = 8
 
 /obj/projectile/ego_bullet/branch12/old_pale/on_hit(atom/target, blocked = FALSE)
 	. = ..()
