@@ -24,13 +24,14 @@
 		if(1)
 			mode = 2
 			icon_state = "hana_spear"
-			message = "This weapon is now in spear mode, and has extra reach"
+			message = "This weapon is now in spear mode, and has extra reach and damage at the cost of stunning you."
 			hitsound = 'sound/weapons/fixer/hana_pierce.ogg'
 			attack_verb_continuous = list("stabs", "pierces")
 			attack_verb_simple = list("stab", "pierce")
 
 			reach = 2
-			attack_speed = 1.2
+			force = 60
+			stuntime = 5
 
 		if(2)
 			mode = 3
@@ -43,6 +44,7 @@
 			reach = 1
 			force = 70
 			attack_speed = 1.5
+			stuntime = 0
 
 		if(3)
 			mode = 1
@@ -54,6 +56,7 @@
 
 			force = 50
 			attack_speed = 1
+			stuntime = 0
 
 	to_chat(user, span_notice("[message]"))
 	playsound(src, 'sound/items/screwdriver2.ogg', 50, TRUE)
