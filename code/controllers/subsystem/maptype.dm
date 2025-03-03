@@ -26,10 +26,10 @@ SUBSYSTEM_DEF(maptype)
 
 						//Joke stuff is below, should all be low
 						FACILITY_TRAIT_WORKING_CLERKS = 2,		//For the joke
-						FACILITY_TRAIT_PLAYABLES = 2,			//I'm going to kill myself
 						FACILITY_TRAIT_CALLBACK = 2,			//Brings back 2 Classic bugs in Backpack EGO and wounds
 						FACILITY_TRAIT_JOKE_ABNOS = 1,			// Okay it's funny
 						FACILITY_TRAIT_VISIBLE_GHOSTS = 1,		// Very Metagamey but funny
+						FACILITY_TRAIT_PLAYABLES = 1,			//I'm going to kill myself
 
 						//Disabled traits for those who just want a normal game:
 						//FACILITY_TRAIT_LEGACY_PALE = 5,			//You take 90% damage if pale damage hits you
@@ -73,6 +73,10 @@ SUBSYSTEM_DEF(maptype)
 			if(FACILITY_TRAIT_VISIBLE_GHOSTS)
 				var/msg = span_warning("You suddenly feel extremely obvious...")
 				set_observer_default_invisibility(0, msg)
+
+			if(FACILITY_TRAIT_PLAYABLES)
+				if(!SSlobotomy_corp.enable_possession)
+					SSlobotomy_corp.enable_possession = TRUE
 
 	//Badda Bing Badda Da. This makes the latejoin menu cleaner
 	switch(SSmaptype.maptype)
