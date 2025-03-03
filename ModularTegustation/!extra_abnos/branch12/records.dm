@@ -97,7 +97,9 @@
 		"When worked, Saga of Man would tell tidings of things to come, signalled by tolling bells.",
 		"If the current Age is an Ice Age, all employees took small amounts of burn damage constantly.",
 		"If the current Age is a Famine, all employees required more food to stay healthy.",
+		"If the current Age is a Plague, all employees would receive periodic toxin damage.",
 		"If the current Age is a Golden Age, occasionally ahn would appear in the halls of the facility.",
+		"If the current Age is an industrial Age, occasionally all agents would gain stats periodically.",
 		"On All Saint's Day, all employees would spontaneously rise from the dead, or be dusted. The rate of dusting seemed to be a little more than average.",
 	)
 
