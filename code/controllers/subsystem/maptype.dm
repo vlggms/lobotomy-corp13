@@ -19,6 +19,7 @@ SUBSYSTEM_DEF(maptype)
 
 	//LC13 Gamemode Traits
 	var/list/lc_trait = list(
+						//Actual traits
 						FACILITY_TRAIT_MOBA_AGENTS = 10, 		//Agents pick a MOBA class
 						FACILITY_TRAIT_CRITICAL_HITS = 10,		//EGO can Critical hit.
 						FACILITY_TRAIT_DEPARTMENTAL_BUFFS = 10,	//Departmental Agent Buffs
@@ -31,9 +32,9 @@ SUBSYSTEM_DEF(maptype)
 						FACILITY_TRAIT_VISIBLE_GHOSTS = 1,		// Very Metagamey but funny
 						FACILITY_TRAIT_PLAYABLES = 1,			//I'm going to kill myself
 
-						//Disabled traits for those who just want a normal game:
-						//FACILITY_TRAIT_LEGACY_PALE = 5,			//You take 90% damage if pale damage hits you
-						//FACILITY_TRAIT_FUCKED_SELECTION = 5,	//The abno selection is randomized
+						//Disabled traits becuase these suck lmao
+						FACILITY_TRAIT_LEGACY_PALE = 0,			//You take 90% damage if pale damage hits you
+						FACILITY_TRAIT_FUCKED_SELECTION = 0,	//The abno selection is randomized
 						)
 
 	var/chosen_trait = "No Trait"
@@ -66,7 +67,7 @@ SUBSYSTEM_DEF(maptype)
 /datum/controller/subsystem/maptype/Initialize()
 	..()
 	if(SSmaptype.maptype in SSmaptype.lc_maps)
-		if(prob(50))	//50% chance to not run a station trait
+		if(prob(40))	//40% chance to not run a station trait
 			return
 		chosen_trait = pickweight(lc_trait)
 		switch(chosen_trait)
