@@ -132,32 +132,32 @@
 /mob/living/simple_animal/hostile/abnormality/ppodae/AttackingTarget(atom/attacked_target)
 	if(!can_act)
 		return FALSE
-	var/mob/living/carbon/L = target
+	var/mob/living/carbon/L = attacked_target
 	if(IsCombatMap())
-		if(iscarbon(target) && (L.stat == DEAD))
+		if(iscarbon(attacked_target) && (L.stat == DEAD))
 			LimbSteal(L)
 			return
 	else
-		if(iscarbon(target) && (L.health < 0 || L.stat == DEAD))
+		if(iscarbon(attacked_target) && (L.health < 0 || L.stat == DEAD))
 			LimbSteal(L)
 			return
 
 			// Taken from eldritch_demons.dm
 	if(IsCombatMap())
 		if(can_slam)
-			return Smash(target)
-		else if(isvehicle(target))
-			var/obj/vehicle/V = target
+			return Smash(attacked_target)
+		else if(isvehicle(attacked_target))
+			var/obj/vehicle/V = attacked_target
 			var/turf/target_turf = get_turf(V)
 			forceMove(target_turf)
 			manual_emote("crawls under [V]!")
-		else if (istype(target, /mob/living))
-			if (target != src)
-				var/turf/target_turf = get_turf(target)
+		else if (istype(attacked_target, /mob/living))
+			if (attacked_target != src)
+				var/turf/target_turf = get_turf(attacked_target)
 				forceMove(target_turf)
-				manual_emote("crawls under [target]!")
+				manual_emote("crawls under [attacked_target]!")
 	else
-		return Smash(target)
+		return Smash(attacked_target)
 
 /mob/living/simple_animal/hostile/abnormality/ppodae/proc/LimbSteal(mob/living/carbon/L)
 	if(HAS_TRAIT(L, TRAIT_NODISMEMBER))

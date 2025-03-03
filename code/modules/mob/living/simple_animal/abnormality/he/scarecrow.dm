@@ -162,7 +162,7 @@
 	density = FALSE
 	animate(src, alpha = 0, time = 10 SECONDS)
 	QDEL_IN(src, 10 SECONDS)
-	..()
+	return ..()
 
 /mob/living/simple_animal/hostile/abnormality/scarecrow/AttackingTarget(atom/attacked_target)
 	. = ..()
@@ -171,9 +171,9 @@
 			return
 		target_hit = TRUE
 		if (hunger == TRUE)
-			adjustBruteLoss(-(maxHealth*attack_healthmodifier))
+			adjustBruteLoss(-(maxHealth * attack_healthmodifier))
 			playsound(get_turf(src), 'sound/abnormalities/scarecrow/start_drink.ogg', 50, 1)
-		var/mob/living/carbon/human/H = target
+		var/mob/living/carbon/human/H = attacked_target
 		if(H.health < 0 && stat != DEAD && !finishing && H.getorgan(/obj/item/organ/brain))
 			finishing = TRUE
 			H.Stun(10 SECONDS)
@@ -188,7 +188,7 @@
 					if(H.health < -120) //prevents infinite healing, corpse is too mangled
 						break
 					H.adjustBruteLoss(20)
-				adjustBruteLoss(-(maxHealth*healthmodifier))
+				adjustBruteLoss(-(maxHealth * healthmodifier))
 				SLEEP_CHECK_DEATH(4)
 			if(!targets_from.Adjacent(H) || QDELETED(H))
 				finishing = FALSE

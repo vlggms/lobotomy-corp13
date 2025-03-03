@@ -221,6 +221,8 @@
 	if ((grab_cooldown <= world.time) && prob(35) && (!client))//checks for client since you can still use the claw if you click nearby
 		var/turf/target_turf = get_turf(attacked_target)
 		return ClawGrab(target_turf)
+	if(!target)
+		GiveTarget(attacked_target)
 	return Whip_Attack()
 
 /mob/living/simple_animal/hostile/abnormality/kqe/proc/Whip_Attack()

@@ -87,6 +87,8 @@
 	button_icon_toggle_deactivated = "funeral_toggle0"
 
 /mob/living/simple_animal/hostile/abnormality/funeral/AttackingTarget(atom/attacked_target)
+	if(!target)
+		GiveTarget(attacked_target)
 	return OpenFire()
 
 /mob/living/simple_animal/hostile/abnormality/funeral/OpenFire()

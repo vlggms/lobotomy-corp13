@@ -218,6 +218,8 @@
 	return FALSE
 
 /mob/living/simple_animal/hostile/parasite_tree_sapling/AttackingTarget(atom/attacked_target)
+	if(!target)
+		GiveTarget(attacked_target)
 	return OpenFire()
 
 /mob/living/simple_animal/hostile/parasite_tree_sapling/OpenFire()

@@ -624,7 +624,7 @@
 		if((current_stage == 3) && (grab_cooldown <= world.time) && prob(35))
 			return GrabAttack()
 		if((current_stage == 3) && (whip_attack_cooldown <= world.time) && prob(35))
-			var/turf/target_turf = get_turf(target)
+			var/turf/target_turf = get_turf(attacked_target)
 			for(var/i = 1 to 3)
 				target_turf = get_step(target_turf, get_dir(get_turf(src), target_turf))
 			return WhipAttack(target_turf)

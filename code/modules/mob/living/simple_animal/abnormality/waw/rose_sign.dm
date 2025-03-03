@@ -70,6 +70,8 @@
 
 /mob/living/simple_animal/hostile/abnormality/rose_sign/AttackingTarget(atom/attacked_target)
 	if(prob(30))
+		if(!target)
+			GiveTarget(attacked_target)
 		return OpenFire()
 	return
 

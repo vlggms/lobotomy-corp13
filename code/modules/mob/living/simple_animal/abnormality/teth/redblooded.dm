@@ -149,11 +149,11 @@
 		if (ammo < max_ammo)
 			Reload()
 
-/mob/living/simple_animal/hostile/abnormality/redblooded/AttackingTarget()
+/mob/living/simple_animal/hostile/abnormality/redblooded/AttackingTarget(atom/attacked_target)
 	if(ammo < max_ammo)
-		if(isliving(target))
+		if(isliving(attacked_target))
 			Reload()
-		if(ismecha(target))
+		if(ismecha(attacked_target))
 			Reload()
 	return ..()
 

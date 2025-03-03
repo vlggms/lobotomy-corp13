@@ -153,6 +153,8 @@
 			FindTarget()
 		else
 			if(!jumping)
+				if(!target)
+					GiveTarget(attacked_target)
 				Jump()
 		return
 	..()

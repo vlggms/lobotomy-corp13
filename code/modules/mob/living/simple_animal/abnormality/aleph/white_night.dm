@@ -326,6 +326,8 @@ GLOBAL_LIST_EMPTY(apostles)
 	. = ..()
 	if(. && isliving(attacked_target))
 		if(!client && ranged && ranged_cooldown <= world.time)
+			if(!target)
+				GiveTarget(attacked_target)
 			OpenFire()
 
 /mob/living/simple_animal/hostile/apostle/scythe

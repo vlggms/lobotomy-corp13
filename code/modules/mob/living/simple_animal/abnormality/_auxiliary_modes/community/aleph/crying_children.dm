@@ -395,7 +395,7 @@
 // Decrease charge for every 20% HP lost
 /mob/living/simple_animal/hostile/abnormality/crying_children/adjustHealth(amount, updating_health = TRUE, forced = FALSE)
 	var/oldhealth = health
-	..()
+	. = ..()
 	for(var/i = 1, i < 4, i++)
 		if(health < (maxHealth * 0.2 * i) && oldhealth >= (maxHealth * 0.2 * i))
 			charge -= 10
@@ -499,7 +499,7 @@
 	toggle_ai(AI_OFF)
 
 /mob/living/simple_animal/hostile/child/adjustHealth(amount, updating_health = TRUE, forced = FALSE)
-	..()
+	. = ..()
 	if(!tagged)
 		toggle_ai(initial(src.AIStatus))
 		for(var/mob/living/carbon/human/H in view(src, 10)) // Immediately attacks on getting tagged

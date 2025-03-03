@@ -61,6 +61,8 @@
 	return ..()
 
 /mob/living/simple_animal/hostile/abnormality/space_lady/AttackingTarget(atom/attacked_target)
+	if(!target)
+		GiveTarget(attacked_target)
 	OpenFire()
 	return
 

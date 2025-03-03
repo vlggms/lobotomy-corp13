@@ -143,9 +143,9 @@
 		return ..()
 	return FALSE // If someone wants him to breach for SOME REASON in the future, then exclude breach_type == BREACH_PINK
 
-/mob/living/simple_animal/hostile/abnormality/onesin/AttackingTarget()
+/mob/living/simple_animal/hostile/abnormality/onesin/AttackingTarget(atom/attacked_target)
 	..()
-	new /obj/effect/temp_visual/onesin_punishment(get_turf(target))
+	new /obj/effect/temp_visual/onesin_punishment(get_turf(attacked_target))
 
 /datum/reagent/abnormality/onesin
 	name = "Holy Light"

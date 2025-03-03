@@ -218,7 +218,7 @@
 	playsound(get_turf(src), 'sound/abnormalities/laetitia/spider_born.ogg', 50, 1)
 
 /mob/living/simple_animal/hostile/gift/AttackingTarget(atom/attacked_target)
-	if (istype(target, /mob/living/simple_animal/hostile/abnormality/laetitia))
+	if (istype(attacked_target, /mob/living/simple_animal/hostile/abnormality/laetitia))
 		manual_emote("pats Laetitia")
 		return FALSE
 	return ..()
@@ -227,7 +227,7 @@
 	density = FALSE
 	animate(src, alpha = 0, time = 10 SECONDS)
 	QDEL_IN(src, 10 SECONDS)
-	..()
+	return ..()
 
 //Given Prank Gift
 //Explodes after 3 to 4 minutes
