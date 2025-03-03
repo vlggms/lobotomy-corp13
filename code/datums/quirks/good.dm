@@ -168,3 +168,12 @@
 	var/mob/living/carbon/human/H = quirk_holder
 	H.physiology.red_mod -= 0.05
 	H.physiology.white_mod += 0.1
+
+/datum/quirk/no_taste
+	name = "Ageusia"
+	desc = "You can't taste anything! Toxic food will still poison you."
+	value = 1
+	mob_trait = TRAIT_AGEUSIA
+	gain_text = "<span class='notice'>You can't taste anything!</span>"
+	lose_text = "<span class='notice'>You can taste again!</span>"
+	medical_record_text = "Patient suffers from ageusia and is incapable of tasting food or reagents."
