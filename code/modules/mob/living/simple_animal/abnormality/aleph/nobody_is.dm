@@ -436,6 +436,8 @@
 
 //Attacks
 /mob/living/simple_animal/hostile/abnormality/nobody_is/proc/WhipAttack(target)
+	if(!target) //target deleted or something
+		return
 	if(whip_attack_cooldown > world.time)
 		return
 	whip_attack_cooldown = world.time + whip_attack_cooldown_time
@@ -576,7 +578,7 @@
 			grab_victim.deal_damage(strangle_damage, BLACK_DAMAGE)
 		else	//Apply ramping damage
 			playsound(get_turf(src), 'sound/effects/wounds/crackandbleed.ogg', 200, 0, 7)
-			grab_victim.deal_damage((strangle_damage * (3 - count)), BLACK_DAMAGE)
+			grab_victim.deal_damage((strangle_damage * (count - 3)), BLACK_DAMAGE)
 	count += 1
 	if(grab_victim.sanity_lost) //This should prevent weird things like panics running away halfway through
 		grab_victim.Stun(10) //Immobilize does not stop AI controllers from moving, for some reason.
@@ -675,7 +677,6 @@
 		return //We screwed up or the player successfully committed self-delete. Try again next time!
 	SetOccupiedTiles()
 	offsets_pixel_x = list("south" = 0, "north" = 0, "west" = 0, "east" = 0)
-	//UnregisterSignal(src, COMSIG_ATOM_DIR_CHANGE)
 	for(var/turf/open/T in view(2, src))
 		var/obj/effect/temp_visual/flesh/pinkflesh =  new(T)
 		pinkflesh.color = COLOR_PINK
@@ -698,8 +699,6 @@
 	if(M.back)
 		M.dropItemToGround(M.back)
 		M.update_inv_back()
-	M.set_lying_angle(0)
-	M.set_body_position(STANDING_UP)
 	M.forceMove(src) // Hide them for examine message to work
 	adjustBruteLoss(-maxHealth, forced = TRUE)
 	Transform(M)
@@ -711,9 +710,10 @@
 		return //We screwed up or the player successfully committed self-delete. Try again next time!
 	disguise = M
 	shelled = TRUE
+	CopyHumanAppearance(M)
 	add_overlay(mutable_appearance('icons/effects/effects.dmi', "nobody_overlay", SUIT_LAYER))
 	add_overlay(mutable_appearance('icons/effects/effects.dmi', "nobody_overlay_face", GLASSES_LAYER))
-	appearance = M.appearance
+	SLEEP_CHECK_DEATH(2)
 	if(target)
 		LoseTarget(target)
 	M.gib()
@@ -759,8 +759,8 @@
 		forceMove(get_turf(talker))
 		GiveTarget(talker)
 		return
-	var/new_message = Gibberish(raw_message, TRUE, 40)
-	say(new_message)
+	var/new_message = reverse_text(Gibberish(raw_message, TRUE, 40))
+	say(html_decode(new_message))  // Prevents html characters such as < > from being used, as they don't display properly
 
 //Objects
 /obj/effect/reflection // Hopefully temporary or at least removed someday
@@ -779,16 +779,17 @@
 
 //A simple test function to force oberon to happen without killing the reflected
 
-/mob/living/simple_animal/hostile/abnormality/nobody_is/proc/Transform_No_Kill(mob/living/carbon/human/M)
+/mob/living/simple_animal/hostile/abnormality/nobody_is/proc/TransformNoKill(mob/living/carbon/human/M)
 	set waitfor = FALSE
 	SLEEP_CHECK_DEATH(5)
 	if(!M || QDELETED(M))
 		return //We screwed up or the player successfully committed self-delete. Try again next time!
 	disguise = M
 	shelled = TRUE
+	CopyHumanAppearance(M)
 	add_overlay(mutable_appearance('icons/effects/effects.dmi', "nobody_overlay", SUIT_LAYER))
 	add_overlay(mutable_appearance('icons/effects/effects.dmi', "nobody_overlay_face", GLASSES_LAYER))
-	appearance = M.appearance
+	SLEEP_CHECK_DEATH(2)
 	if(target)
 		LoseTarget(target)
 	attack_verb_continuous = "strikes"
@@ -810,10 +811,10 @@
 	if(status_flags & GODMODE) // Still contained
 		ZeroQliphoth()
 
-/mob/living/simple_animal/hostile/abnormality/nobody_is/proc/Quick_Oberon_Spawn()
+/mob/living/simple_animal/hostile/abnormality/nobody_is/proc/QuickOberonSpawn()
 	if(!chosen || oberon_mode)//makes sure it doesn't continue if its already oberon or if there's no chosen.)
 		return
-	Transform_No_Kill(chosen)
+	TransformNoKill(chosen)
 	oberon_mode = TRUE
 	name = "Oberon"
 	var/mob/living/simple_animal/hostile/abnormality/titania/T = new(get_turf(src))
@@ -822,3 +823,55 @@
 	T.fused = TRUE
 	T.ChangeResistances(list(BRUIT = 0, RED_DAMAGE = 0, WHITE_DAMAGE = 0, BLACK_DAMAGE = 0, PALE_DAMAGE = 0))//fuck you no damaging while they erp
 	Oberon_Fusion(T)
+
+/*
+ * Make a copy of a human and copy their appearance without copying any special overlays. Notice that this currently doesn't include held items!
+ */
+
+/mob/living/simple_animal/hostile/abnormality/nobody_is/proc/CopyHumanAppearance(mob/target)
+	if(!istype(target))
+		return
+
+	var/mob/living/carbon/human/copycat = new(get_turf(src))
+	copycat.status_flags = GODMODE
+	copycat.stat = DEAD // prevents the copycat from getting fear effects, attacks, etc that could add overlays.
+
+	if(iscarbon(target))
+		var/mob/living/carbon/carbon_target = target
+		carbon_target.dna.transfer_identity(copycat, transfer_SE = TRUE)
+
+		if(ishuman(target))
+			var/mob/living/carbon/human/human_target = target
+			human_target.copy_clothing_prefs(copycat)
+			copycat.gender = human_target.gender
+			copycat.body_type = human_target.body_type
+			copycat.real_name = human_target.real_name
+			copycat.name = human_target.name
+			copycat.skin_tone = human_target.skin_tone
+			copycat.hairstyle = human_target.hairstyle
+			copycat.facial_hairstyle = human_target.facial_hairstyle
+			copycat.hair_color = human_target.hair_color
+			copycat.facial_hair_color = human_target.facial_hair_color
+			copycat.eye_color = human_target.eye_color
+			copycat.regenerate_icons()
+
+			//We're just stealing their clothes
+			for(var/obj/item/slotitem in human_target.get_all_slots())
+				if(istype(slotitem, /obj/item/clothing/suit/armor/ego_gear))
+					var/obj/item/clothing/suit/armor/ego_gear/equippable_gear = new slotitem.type(get_turf(copycat))
+					equippable_gear.equip_slowdown = 0
+					equippable_gear.attribute_requirements = list()
+					copycat.equip_to_appropriate_slot(equippable_gear, TRUE)
+				else
+					var/obj/item/itemcopy = new slotitem.type(get_turf(copycat))
+					copycat.equip_to_appropriate_slot(itemcopy, TRUE)
+
+	else
+		//even if target isn't a carbon, if they have a client we can make the
+		//dummy look like what their human would look like based on their prefs
+
+		target?.client?.prefs?.copy_to(copycat, icon_updates=TRUE, roundstart_checks=FALSE, character_setup=TRUE)
+	SLEEP_CHECK_DEATH(1)
+	appearance = copycat.appearance
+	qdel(copycat)
+	return
