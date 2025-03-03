@@ -703,6 +703,7 @@
 	},
 /obj/effect/turf_decal/siding/thinplating/light/corner,
 /obj/item/taperecorder/empty,
+/obj/item/tape/fixer/medicine,
 /turf/open/indestructible/white,
 /area/city/house)
 "cU" = (
@@ -3186,6 +3187,9 @@
 	},
 /obj/structure/table/reinforced,
 /obj/item/taperecorder/empty,
+/obj/item/tape/fixer/fishing_6{
+	pixel_y = 15
+	},
 /turf/open/floor/wood,
 /area/city)
 "my" = (
@@ -3305,6 +3309,9 @@
 	},
 /obj/structure/table/reinforced,
 /obj/structure/sushimat,
+/obj/item/stack/sheet/mineral/wood/fifty{
+	bypassmode = 1
+	},
 /turf/open/floor/wood,
 /area/city)
 "nb" = (
@@ -4455,6 +4462,11 @@
 	color = "#8f8f8f"
 	},
 /area/city/backstreets_alley)
+"st" = (
+/obj/structure/table/reinforced,
+/obj/item/tape/fixer/forging,
+/turf/open/floor/facility/dark,
+/area/city/house)
 "su" = (
 /obj/effect/landmark/backstreetspawnwest,
 /turf/open/floor/plating/beach/sand,
@@ -6412,6 +6424,18 @@
 /obj/machinery/vending/hydronutrients,
 /turf/open/indestructible/white,
 /area/city/house)
+"AV" = (
+/obj/effect/turf_decal/box,
+/obj/structure/fluff/arc{
+	desc = "A humanoid creature wearing metallic armor. It has bloodied hooks in its hands.";
+	dir = 8;
+	icon = 'ModularTegustation/Teguicons/tegumobs.dmi';
+	icon_state = "sweeper_1";
+	name = "sweeper statue";
+	pixel_x = -3
+	},
+/turf/open/floor/mineral/titanium/tiled/white,
+/area/city/house)
 "AW" = (
 /obj/effect/turf_decal/siding/thinplating/dark/corner{
 	dir = 1
@@ -6595,9 +6619,7 @@
 /area/city/backstreets_alley)
 "BC" = (
 /obj/structure/table/wood,
-/obj/structure/railing{
-	dir = 10
-	},
+/obj/structure/railing,
 /turf/open/floor/wood,
 /area/city/house)
 "BD" = (
@@ -8282,6 +8304,17 @@
 	},
 /turf/open/floor/plating/ashplanet/rocky,
 /area/city)
+"JI" = (
+/obj/effect/turf_decal/box,
+/obj/structure/fluff/arc{
+	desc = "A slim robot with a spear in place of its hand.";
+	icon = 'ModularTegustation/Teguicons/32x48.dmi';
+	icon_state = "green_bot";
+	name = "spear bot statue";
+	dir = 8
+	},
+/turf/open/floor/mineral/titanium/tiled/white,
+/area/city/house)
 "JL" = (
 /obj/structure/flora/ash/garden/waste,
 /obj/effect/landmark/backstreetspawneast,
@@ -8856,6 +8889,13 @@
 /area/city/backstreets_alley)
 "MA" = (
 /obj/effect/turf_decal/box,
+/obj/structure/fluff/arc{
+	desc = "A slim robot with a spear in place of its hand.";
+	icon = 'ModularTegustation/Teguicons/32x32.dmi';
+	icon_state = "gcorp1";
+	name = "gene corp remnant statue";
+	dir = 8
+	},
 /turf/open/floor/mineral/titanium/tiled/white,
 /area/city/house)
 "MF" = (
@@ -9821,6 +9861,17 @@
 	},
 /turf/open/floor/facility/dark,
 /area/city/backstreets_alley)
+"QX" = (
+/obj/effect/turf_decal/box,
+/obj/structure/fluff/arc{
+	desc = "A tiny worm-like creature with tough chitin and a pair of sharp claws.";
+	dir = 8;
+	icon = 'ModularTegustation/Teguicons/tegumobs.dmi';
+	icon_state = "amber_bug";
+	name = "worm statue"
+	},
+/turf/open/floor/mineral/titanium/tiled/white,
+/area/city/house)
 "QZ" = (
 /obj/machinery/telecomms/server/presets/science,
 /obj/effect/turf_decal/bot,
@@ -46507,7 +46558,7 @@ bv
 UQ
 UQ
 lj
-Cc
+st
 TI
 Pt
 Xt
@@ -50115,9 +50166,9 @@ ZY
 ZY
 ZY
 ZY
-ZY
+IH
 ie
-ZY
+IH
 ZY
 Zc
 ip
@@ -55248,7 +55299,7 @@ ca
 Fv
 fP
 fP
-MA
+AV
 fP
 fP
 yz
@@ -55758,11 +55809,11 @@ Oq
 Oq
 Oq
 Oq
-DZ
+ca
 fP
 fP
 fP
-MA
+JI
 fP
 fP
 fP
@@ -56272,8 +56323,8 @@ Oq
 Oq
 Oq
 Oq
-ca
-MA
+DZ
+QX
 fP
 bm
 fP

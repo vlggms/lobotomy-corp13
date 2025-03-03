@@ -5,8 +5,8 @@
 	icon = 'ModularTegustation/Teguicons/room_spawners/29x22.dmi'
 	icon_state = ""
 	room_type = "village"
-	spawn_delay_min = 8200
-	spawn_delay_max = 11200
+	spawn_delay_min = 16400
+	spawn_delay_max = 44800
 
 /datum/map_template/random_room/backstreets/resurgence_village
 	name = "Resurgence Village"

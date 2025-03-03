@@ -135,6 +135,38 @@
 
 	timestamp = list(1, 6, 11, 16, 21, 26, 31, 36, 41, 46, 51, 56, 61)
 
+/obj/item/tape/fixer/fishing_6
+	name = "Curiosities and Oddities of Fishing"
+	desc = "A magnetic tape that can hold up to ten minutes of content. It appears to have Part 6 of 5' written on its back."
+	storedinfo = list(
+		span_game_say(span_name("Namja Bulkkoch") + span_message(" says,") + " &quot;Right, the original plan was to just make 5 tapes, but due to recent developments there’s now a need for a 6th.&quot;"),
+		span_game_say(span_name("Namja Bulkkoch") + span_message(" says,") + " &quot;As of recent, Hana has authorized expeditions into the waters of the Great Lake.&quot;"),
+		span_game_say(span_name("Namja Bulkkoch") + span_message(" says,") + " &quot;And with that, I was told to make an addendum tape, even though this part isn’t necessarily about fishing.&quot;"),
+		span_game_say(span_name("Namja Bulkkoch") + span_message(" says,") + " &quot;Until recently there was a sea wall blocking fixers from venturing out too far,&quot;"),
+		span_game_say(span_name("Namja Bulkkoch") + span_message(" says,") + " &quot;though it has now been removed, or at least pushed back rather.&quot;"),
+		span_game_say(span_name("Namja Bulkkoch") + span_message(" says,") + " &quot;I should add, before you even think about sailing out, the waters are dangerous.&quot;"),
+		span_game_say(span_name("Namja Bulkkoch") + span_message(" says,") + " &quot;Both the water itself and the things that reside on it, so venture out at your own discretion.&quot;"),
+		span_game_say(span_name("Namja Bulkkoch") + span_message(" says,") + " &quot;Now, the basics. If you want to set sail, you first need a boat.&quot;"),
+		span_game_say(span_name("Namja Bulkkoch") + span_message(" says,") + " &quot;For that, you’ll need 250 wooden planks.&quot;"),
+		span_game_say(span_name("Namja Bulkkoch") + span_message(" says,") + " &quot;You can get those from fishing, but more efficiently from the recently added Botany.&quot;"),
+		span_game_say(span_name("Namja Bulkkoch") + span_message(" says,") + " &quot;Plant some tower-cap Mycelium, let it grow, then harvest it and work the logs with a hatchet down to usable planks.&quot;"),
+		span_game_say(span_name("Namja Bulkkoch") + span_message(" says,") + " &quot;While you do need 250 to start building a vessel, not all 250 is consumed, if I recall, only around 100 is?&quot;"),
+		span_game_say(span_name("Namja Bulkkoch") + span_message(" says,") + " &quot;Don’t ask me how or why.&quot;"),
+		span_game_say(span_name("Namja Bulkkoch") + span_message(" says,") + " &quot;Once you have that many, you can construct a One Person Boat, if you have your ‘Personal Crafting’ Guidebook, the instructions are in the “Miscellaneous” chapter, near the end.&quot;"),
+		span_game_say(span_name("Namja Bulkkoch") + span_message(" says,") + " &quot;Right below it is also the Oar that you’ll need to be able to operate it.&quot;"),
+		span_game_say(span_name("Namja Bulkkoch") + span_message(" says,") + " &quot;Once you’ve constructed your vessel and equipped it with an oar, push it out to the water.&quot;"),
+		span_game_say(span_name("Namja Bulkkoch") + span_message(" says,") + " &quot;Carefully drag yourself into your boat, and set sail, waving land goodbye.&quot;"),
+		span_game_say(span_name("Namja Bulkkoch") + span_message(" says,") + " &quot;The largest problem you’ll likely find is an old, run down outpost that once served as a dockyard for fixers.&quot;"),
+		span_game_say(span_name("Namja Bulkkoch") + span_message(" says,") + " &quot;Nowadays, it’s been overtaken by shrimp.&quot;"),
+		span_game_say(span_name("Namja Bulkkoch") + span_message(" says,") + " &quot;It has many valuables, but again, full of shrimp.&quot;"),
+		span_game_say(span_name("Namja Bulkkoch") + span_message(" says,") + " &quot;There’s of course a lot more than just it out in the waters, so explore plenty. Map out the waters.&quot;"),
+		span_game_say(span_name("Namja Bulkkoch") + span_message(" says,") + " &quot;And, to make this slightly fishing related, deeper into the lake there are different types of waters housing various kinds of fish.&quot;"),
+		span_game_say(span_name("Namja Bulkkoch") + span_message(" says,") + " &quot;It’s that shrimple.&quot;"),
+		span_game_say(span_name("Namja Bulkkoch") + span_message(" says,") + " &quot;Goodluck, don’t drown.&quot;")
+	)
+
+	timestamp = list(2, 5, 9, 13, 17, 21, 25, 29, 33, 37, 41, 45, 49, 53, 57, 61, 65, 69, 73, 77, 81, 85, 89, 93, 97, 101)
+
 /obj/item/tape/fixer/intro
 	name = "Introductory: Where to go!"
 	desc = "A magnetic tape that can hold up to ten minutes of content. It appears to have 'Tape 1, V' written on its back."
@@ -186,7 +218,7 @@
 	desc = "A magnetic tape that can hold up to ten minutes of content. It appears to have 'Tape 3, V' written on its back."
 	storedinfo = list(
 		span_game_say(span_name("Unknown") + span_message(" exclaims,") + " &quot;Damn…I’ll do this tape, just make sure to get me an investor by then Vertin! I’ve got lots to make!&quot;"),
-		"Distant footsteps then some beeping followed by a hiss of air could be heard.",
+		"Distant footsteps then some beeping followed by a hiss of air could be heard",
 		span_game_say(span_name("M.P") + span_message(" says,") + " &quot;Now then, I’m not giving you guys anything about me. But I want the credit so I’ll refer to myself as M.P&quot;"),
 		span_game_say(span_name("M.P") + span_message(" says,") + " &quot;Right now I’m asked to instruct you with this recorded tape on how to even simply get your colleagues back up.&quot;"),
 		span_game_say(span_name("M.P") + span_message(" says,") + " &quot;If you're listening to this right now while their body is on the floor…Get them on a stasis bed! Their organs are basically rotting while you listen to this.&quot;"),
@@ -197,12 +229,32 @@
 		span_game_say(span_name("M.P") + span_message(" says,") + " &quot;Assuming that you didn’t somehow mess up the steps and you followed it correctly, you will want to use the health analyzer on your dead colleague to assess what needs to be done.&quot;"),
 		span_game_say(span_name("M.P") + span_message(" says,") + " &quot;If it shows any brute or burn damage, it won’t be a problem. A Failing liver and tons of toxin damage from being an alcoholic drunkard? That will be a whole different problem I’ll cover later.&quot;"),
 		span_game_say(span_name("M.P") + span_message(" says,") + " &quot;Now that you’ve identified the damages, start off by treating their wounds. Dig into the surgical bag and take out some drapes, lay it across their torso and perform surgeries according to what damage they have.&quot;"),
-		span_game_say(span_name("M.P") + span_message(" says,") + " &quot;Let’s assume your colleague has severe brute injuries, perform a brute tending surgery and start off with an incision using the scalpel then followed by using the mechanical pinchers in hemostat mode to start tending their wounds.&quot;"),
-		span_game_say(span_name("M.P") + span_message(" says,") + " &quot;Tend their wounds only to allow them to reach defibrillation levels, fully tending them will end up in a long waiting time due to oxygen deprivation! The spot you should get their total damage at is 170.&quot;"),
+		span_game_say(span_name("M.P") + span_message(" says,") + " &quot;Let’s assume your colleague has severe brute injuries and no major organ damage, perform a advanced brute tending surgery, if you don’t know how to perform this. You're free to unbuckle them from the stasis bed and move them to the surgery table to see the surgery steps on the console.&quot;"),
+		span_game_say(span_name("M.P") + span_message(" says,") + " &quot;Then tend their wounds only to allow them to reach defibrillation levels, fully tending them will end up in a long waiting time due to oxygen deprivation! The spot you should get their total damage at is 170.&quot;"),
 		span_game_say(span_name("M.P") + span_message(" says,") + " &quot;Scanning again with a health analyzer, once you see that their damage is a total of 170 across then you are free to grab the searing tool, then with drapes in the other hand. Cauterize their open cavity to end the surgery.&quot;"),
-		span_game_say(span_name("M.P") + span_message(" says,") + " &quot;Now unbuckle them from their stasis bed, drag them to the sleeper and prepare your defibrillator by taking off your backpack and putting it on. &quot;"),
-		span_game_say(span_name("M.P") + span_message(" says,") + " &quot;Make sure to let go of your colleague and then defibrillate them with the paddles followed up by CPR and proper medication in the sleeper.&quot;"),
-		span_game_say(span_name("M.P") + span_message(" says,") + " &quot;If there were any cerebral trauma problems, that is where brain surgery would come in. So I suggest telling them to lay back down,&quot;")
+		span_game_say(span_name("M.P") + span_message(" says,") + " &quot;Now unbuckle them from their stasis bed, drag them to the sleeper and prepare your defibrillator by taking off your backpack and putting it on, make sure to let go of your colleague and then defibrillate them with the paddles followed up by CPR and proper medication in the sleeper.&quot;"),
+		span_game_say(span_name("M.P") + span_message(" says,") + " &quot;If there were any cerebral trauma problems detected, that is where brain surgery would come in, so I suggest strapping them back in and aiming to put the drapes over their head.&quot;"),
+		span_game_say(span_name("M.P") + span_message(" says,") + " &quot;Should have also said this sooner but oh well! Make sure they also don’t have non-functional organs, severely damaged is fine as organ damage is healed with time as well, Each organ can be repaired with their according surgery except the appendix.&quot;"),
+		span_game_say(span_name("M.P") + span_message(" says,") + " &quot;Just remove the appendix if it’s non-functional and toss it somewhere seeing as anybody will be fine without one, the location of the appendix is somewhere lower than the torso so it’s within the groin area where you should drape over with organ manipulation to extract it.&quot;"),
+		span_game_say(span_name("M.P") + span_message(" says,") + " &quot;Finally! With the last topic, Toxins. I’ll keep it simple and short! You make sure there’s no chemicals causing it by checking their bloodstream through interacting with a health analyzer and using it on a person or check if their liver has died.&quot;"),
+		span_game_say(span_name("M.P") + span_message(" says,") + " &quot;If there are chemicals, do a blood filtering surgery. If there isn’t, you’re free to continuously do a stomach pump surgery to slowly lower toxins at defibrillation levels and let pentetic acid from the sleeper take care of it after they’re revived.&quot;"),
+		span_game_say(span_name("M.P") + span_message(" says,") + " &quot;That should be all unless I missed something, If I did. Vertin’s just gonna have to walk to me herself and scold me.&quot;")
 	)
 
-	timestamp = list(1, 9, 17, 25, 33, 41, 49, 57, 65, 73, 81, 89, 97, 105, 113, 121, 129, 137)
+	timestamp = list(1, 7, 13, 19, 25, 31, 37, 43, 49, 55, 61, 67, 73, 79, 85, 91, 97, 103, 109, 115, 121, 127)
+
+/obj/item/tape/fixer/forging
+	name = "Creating a Weapon: Forging"
+	desc = "A magnetic tape that can hold up to ten minutes of content. It appears to have 'Tape 3, D' written on its back."
+	storedinfo = list(
+		span_game_say(span_name("Duncan") + span_message(" says,") + " &quot;Hey Hey! Must have needed a weapon if you're listening to this tape huh? Well don’t worry, Duncan’s got your back, I’ll teach you step by step how to forge a fine weapon!&quot;"),
+		span_game_say(span_name("Duncan") + span_message(" says,") + " &quot;Unlike the other tapes you would listen to, I’ll keep it short and sweet. You're probably aching to venture out. First, you’ll need to head into the material storage to the left.&quot;"),
+		span_game_say(span_name("Duncan") + span_message(" says,") + " &quot;Now if your luck is shining upon you, there should be some sweet Tres bars on a rack that you need to grab one of, if there are none you can try breaking the crates just top left of the storage if they’re there.&quot;"),
+		span_game_say(span_name("Duncan") + span_message(" says,") + " &quot;If it’s none of the above, you buy your own with the Tres vendor and you will know which it is since it’s the only vendor in the forge, but let’s say you have a Tres bar now. What do you do with it?&quot;"),
+		span_game_say(span_name("Duncan") + span_message(" says,") + " &quot;Well it’s simple Amigo! You put the Tres bar into the furnace and wait a few while it heats up, maybe grab a drink or two if it’s a fine day. But after the bar comes out piping hot, and I’m talking heated up glowing yellow, grab it and put it down on the anvil.&quot;"),
+		span_game_say(span_name("Duncan") + span_message(" says,") + " &quot;Now get yourself a hammer from the material storage, and hit the heated Tres bar as hard as you can with the hammer, after a while you will get results as you mold it into a weapon template of your choosing! I suggest to go for a sword as it is an all-rounder and you can’t go wrong with it.&quot;"),
+		span_game_say(span_name("Duncan") + span_message(" says,") + " &quot;Of Course, never forget! You cannot use a mod-less weapon template, you must grab a basic mod in the forge storage or select one of your choosing at the Tres Vendor, for recommendations I suggest white damage and either basic or healing.&quot;"),
+		span_game_say(span_name("Duncan") + span_message(" says,") + " &quot;Congrats! Now you’ve got yourself a fine weapon that will last you until the end of your office hours, these are only the basics to forging, and there is more to cover, such as the Tres Association Material Extractor but these things are not essential. So go out there and explore! Make sure to bring back some loot for your Office, Ey?&quot;")
+	)
+
+	timestamp = list(1, 7, 13, 19, 25, 31, 37, 43)
