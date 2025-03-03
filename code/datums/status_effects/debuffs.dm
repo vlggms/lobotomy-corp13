@@ -1263,7 +1263,7 @@
 	else
 		B.add_stacks(stacks)
 
-#define STATUS_EFFECT_LCMETALDECAY /datum/status_effect/stacking/lc_metal_decay // Deals true damage every 5 sec, can't be applied to godmode (contained abos)
+#define STATUS_EFFECT_LCMETALDECAY /datum/status_effect/stacking/lc_metal_decay // Deals white damage every 5 sec, can't be applied to godmode (contained abos)
 /datum/status_effect/stacking/lc_metal_decay
 	id = "lc_md"
 	alert_type = /atom/movable/screen/alert/status_effect/lc_metal_decay
@@ -1296,7 +1296,7 @@
 //Proc for dealing damage, lets it be actived from other sources.
 /datum/status_effect/stacking/lc_metal_decay/proc/statues_damage(passive_decay = TRUE)
 	to_chat(owner, "<span class='warning'>Your mind deteriorates!!</span>")
-	owner.playsound_local(owner, 'sound/effects/burn.ogg', 50, TRUE)
+	owner.playsound_local(owner, 'sound/items/haunted/ghostitemattack.ogg', 50, TRUE)
 	if(!ishuman(owner))
 		owner.apply_damage(stacks * 4, WHITE_DAMAGE, null, owner.run_armor_check(null, WHITE_DAMAGE))
 	else
