@@ -101,11 +101,11 @@
 	new /obj/structure/tbird_perch(get_turf(src))
 
 //attempts to charge its target regardless of distance with a short cooldown. Can be spammed if distant enough.
-/mob/living/simple_animal/hostile/abnormality/thunder_bird/AttackingTarget()
+/mob/living/simple_animal/hostile/abnormality/thunder_bird/AttackingTarget(atom/attacked_target)
 	if(charging)
 		return
 	if(dash_cooldown <= world.time && prob(10) && !client)
-		thunder_bird_dash(target)
+		thunder_bird_dash(attacked_target)
 		return
 	return ..()
 

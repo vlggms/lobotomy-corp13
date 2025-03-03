@@ -225,6 +225,8 @@
 	return FALSE
 
 /mob/living/simple_animal/hostile/umbrella/AttackingTarget(atom/attacked_target)
+	if(!target)
+		GiveTarget(attacked_target)
 	OpenFire()
 	return
 

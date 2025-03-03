@@ -203,6 +203,9 @@
 	if(!can_act)
 		return
 
+	if(!target)
+		GiveTarget(attacked_target)
+
 	if(client)
 		OpenFire()
 		return

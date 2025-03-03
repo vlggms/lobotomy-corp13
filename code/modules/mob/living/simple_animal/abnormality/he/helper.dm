@@ -88,11 +88,11 @@
 	button_icon_toggle_deactivated = "helper_toggle0"
 
 
-/mob/living/simple_animal/hostile/abnormality/helper/AttackingTarget()
+/mob/living/simple_animal/hostile/abnormality/helper/AttackingTarget(atom/attacked_target)
 	if(charging)
 		return
 	if(dash_cooldown <= world.time && prob(10) && !client)
-		helper_dash(target)
+		helper_dash(attacked_target)
 		return
 	return ..()
 

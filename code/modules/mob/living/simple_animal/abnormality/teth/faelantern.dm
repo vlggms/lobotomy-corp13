@@ -69,6 +69,8 @@
 	var/lured_list = list()
 
 /mob/living/simple_animal/hostile/abnormality/faelantern/AttackingTarget(atom/attacked_target)
+	if(!target)
+		GiveTarget(attacked_target)
 	return OpenFire()
 
 /mob/living/simple_animal/hostile/abnormality/faelantern/Goto(target, delay, minimum_distance)

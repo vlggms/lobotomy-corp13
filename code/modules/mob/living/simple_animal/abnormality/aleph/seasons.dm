@@ -346,7 +346,7 @@
 		return FALSE
 	if(!client)
 		if((cone_attack_cooldown <= world.time) && prob(35))
-			return ConeAttack(target)
+			return ConeAttack(attacked_target)
 		if((slam_cooldown <= world.time) && prob(35))
 			return Slam()
 	if(ishuman(attacked_target))

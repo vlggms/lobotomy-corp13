@@ -93,6 +93,8 @@
 	return FALSE
 
 /mob/living/simple_animal/hostile/abnormality/naked_nest/AttackingTarget(atom/attacked_target)
+	if(!target)
+		GiveTarget(attacked_target)
 	return OpenFire()
 
 /mob/living/simple_animal/hostile/abnormality/naked_nest/CanAttack(atom/the_target)

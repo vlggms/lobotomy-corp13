@@ -79,7 +79,9 @@
 	QDEL_NULL(soundloop)
 	return ..()
 
-/mob/living/simple_animal/hostile/abnormality/dreaming_current/AttackingTarget()
+/mob/living/simple_animal/hostile/abnormality/dreaming_current/AttackingTarget(atom/attacked_target)
+	if(!target)
+		GiveTarget(attacked_target)
 	return OpenFire()
 
 /mob/living/simple_animal/hostile/abnormality/dreaming_current/Move()

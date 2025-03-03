@@ -180,11 +180,11 @@
 		DestroySurroundings() //to break tables ssin the way
 	return ..()
 
-/mob/living/simple_animal/hostile/abnormality/clouded_monk/AttackingTarget()
+/mob/living/simple_animal/hostile/abnormality/clouded_monk/AttackingTarget(atom/attacked_target)
 	if(revving_charge || charging)
 		return
 	if(monk_charge_cooldown <= world.time && prob(33) && !client && charge_ready)
-		TripleCharge(target)
+		TripleCharge(attacked_target)
 		return
 	. = ..()
 

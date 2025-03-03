@@ -83,13 +83,14 @@
 		return FALSE
 	var/mob/living/carbon/human/H = attacked_target
 	//Kills the weak immediately.
-	if(get_user_level(H) < 4 && (ishuman(H)))
+	if(ishuman(H) && get_user_level(H) < 4)
 		say("I rid you of your pain, mere human.")
 		//Double Check
-		SpawnFairies(fairy_spawn_number*2, H, ignore_cap = TRUE)
+		SpawnFairies(fairy_spawn_number * 2, H, ignore_cap = TRUE)
 		H.gib()
+		return
 
-	if(target == nemesis)	//Deals pale damage to Oberon, fuck you.
+	if(attacked_target == nemesis)	//Deals pale damage to Oberon, fuck you.
 		melee_damage_type = PALE_DAMAGE
 		melee_damage_lower = 61
 		melee_damage_upper = 72
@@ -99,7 +100,7 @@
 		melee_damage_upper = initial(melee_damage_upper)
 	. = ..()
 
-	if(H.stat == DEAD && target == nemesis)		//Does she slay Oberon personally? If so, get buffed.
+	if(istype(H) && H.stat == DEAD && H == nemesis)		//Does she slay Oberon personally? If so, get buffed.
 		ChangeMoveToDelayBy(-1)
 		melee_damage_lower = 110
 		melee_damage_upper = 140

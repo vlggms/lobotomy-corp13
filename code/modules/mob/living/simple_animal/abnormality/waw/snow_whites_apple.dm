@@ -172,6 +172,8 @@
 		TryTeleport()
 
 /mob/living/simple_animal/hostile/abnormality/snow_whites_apple/AttackingTarget(atom/attacked_target)
+	if(!target)
+		GiveTarget(attacked_target)
 	return OpenFire()
 
 /mob/living/simple_animal/hostile/abnormality/snow_whites_apple/OpenFire()

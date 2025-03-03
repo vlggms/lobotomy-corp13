@@ -133,6 +133,8 @@
 
 /mob/living/simple_animal/hostile/ordeal/steel_dawn/steel_noon/flying/AttackingTarget(atom/attacked_target)
 	if(ranged_cooldown <= world.time && prob(30))
+		if(!target)
+			GiveTarget(attacked_target)
 		OpenFire()
 		return
 	return ..()

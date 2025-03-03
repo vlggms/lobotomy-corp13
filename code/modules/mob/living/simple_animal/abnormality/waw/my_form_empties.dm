@@ -125,6 +125,8 @@
 	return ..()
 
 /mob/living/simple_animal/hostile/abnormality/my_form_empties/AttackingTarget(atom/attacked_target)
+	if(!target)
+		GiveTarget(attacked_target)
 	return OpenFire()//staff attacks go here
 
 /mob/living/simple_animal/hostile/abnormality/my_form_empties/OpenFire()

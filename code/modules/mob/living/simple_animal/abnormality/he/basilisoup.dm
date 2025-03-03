@@ -162,13 +162,13 @@
 /mob/living/simple_animal/hostile/abnormality/basilisoup/AttackingTarget(atom/attacked_target)
 	if(!can_act)
 		return
+	. = ..()
 	if(ishuman(attacked_target))
 		var/mob/living/carbon/human/H = attacked_target
 		if(H.nutrition >= NUTRITION_LEVEL_FAT)
 			playsound(get_turf(src), 'sound/abnormalities/bigbird/bite.ogg', 50, 1, 2)
 			H.gib()
 			adjustBruteLoss(-maxHealth, forced = TRUE) //full heal after a full meal
-	return ..()
 
 /mob/living/simple_animal/hostile/abnormality/basilisoup/OpenFire(atom/A)
 	if(!can_act)

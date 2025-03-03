@@ -124,6 +124,8 @@
 	if(finishing)
 		return FALSE
 	if(phase >= 2)
+		if(!target)
+			GiveTarget(attacked_target)
 		if(prob(35) && OpenFire())
 			return
 	. = ..()

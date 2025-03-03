@@ -207,6 +207,8 @@
 	if(!can_act)
 		return FALSE
 	if(!client)
+		if(!target)
+			GiveTarget(attacked_target)
 		if(ishuman(attacked_target))
 			var/mob/living/carbon/human/H = attacked_target
 			/* Dont jab those standing
