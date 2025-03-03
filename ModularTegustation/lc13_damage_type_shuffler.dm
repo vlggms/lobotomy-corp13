@@ -14,6 +14,7 @@ GLOBAL_DATUM_INIT(damage_type_shuffler, /datum/damage_type_shuffler, new /datum/
 	var/list/mapping_offense = list(RED_DAMAGE = RED_DAMAGE, WHITE_DAMAGE = WHITE_DAMAGE, BLACK_DAMAGE = BLACK_DAMAGE, PALE_DAMAGE = PALE_DAMAGE)
 	///Gives (this color) => (that color)'s armor value, only applies when armor/damage_coeff datum is created.
 	var/list/mapping_defense = list(RED_DAMAGE = RED_DAMAGE, WHITE_DAMAGE = WHITE_DAMAGE, BLACK_DAMAGE = BLACK_DAMAGE, PALE_DAMAGE = PALE_DAMAGE)
+	var/list/reverse_mapping_defense = list(RED_DAMAGE = RED_DAMAGE, WHITE_DAMAGE = WHITE_DAMAGE, BLACK_DAMAGE = BLACK_DAMAGE, PALE_DAMAGE = PALE_DAMAGE)
 	///If a non pale damage type became pale then all new pale damage will be multiplied by this for a lil bit of balance.
 	var/pale_debuff = 0.75
 
@@ -34,6 +35,8 @@ GLOBAL_DATUM_INIT(damage_type_shuffler, /datum/damage_type_shuffler, new /datum/
 /datum/damage_type_shuffler/proc/ReshuffleAll()
 	Reshuffle(mapping_offense)
 	Reshuffle(mapping_defense)
+	for(var/mapping in mapping_defense)
+		reverse_mapping_defense[mapping_defense[mapping]] = mapping
 
 /proc/IsColorDamageType(damage_type)
 	var/static/list/color_damage_types = list(RED_DAMAGE = TRUE, WHITE_DAMAGE = TRUE, BLACK_DAMAGE = TRUE, PALE_DAMAGE = TRUE)

@@ -2,7 +2,7 @@
 
 /proc/getDamCoeff(red = 1, white = 1, black = 1, pale = 1, brute = 1, fire = 1, tox = 1, clone = 1, stamina = 1, oxy = 1)
 	. = locate(DAMCOEFFID)
-	if(!.)
+	if(!. || GLOB.damage_type_shuffler?.is_enabled)
 		. = new /datum/dam_coeff(red, white, black, pale, brute, fire, tox, clone, stamina, oxy)
 
 /proc/makeDamCoeff(list/dc = list())
