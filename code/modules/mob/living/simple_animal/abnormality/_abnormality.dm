@@ -468,7 +468,7 @@
 		var/list/damage_types = work_damage_type
 		damage.icon_state = pick(damage_types)
 	var/damage_type = damage.icon_state
-	if(GLOB.damage_type_shuffler.is_enabled && IsColorDamageType(damage_type))
+	if(GLOB.damage_type_shuffler?.is_enabled && IsColorDamageType(damage_type))
 		damage.icon_state = GLOB.damage_type_shuffler.mapping_offense[damage_type]
 
 // Dictates whereas this type of work can be performed at the moment or not
