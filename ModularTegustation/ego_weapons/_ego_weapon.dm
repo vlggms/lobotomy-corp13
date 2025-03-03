@@ -232,7 +232,7 @@
 /obj/item/ego_weapon/proc/EgoAttackInfo(mob/user)
 	var/damage_type = damtype
 	var/damage = force
-	if(GLOB.damage_type_shuffler.is_enabled && IsColorDamageType(damage_type))
+	if(GLOB.damage_type_shuffler?.is_enabled && IsColorDamageType(damage_type))
 		var/new_damage_type = GLOB.damage_type_shuffler.mapping_offense[damage_type]
 		if(new_damage_type == PALE_DAMAGE && damage_type != PALE_DAMAGE)
 			damage *= GLOB.damage_type_shuffler.pale_debuff

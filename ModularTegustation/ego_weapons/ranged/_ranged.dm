@@ -166,7 +166,7 @@
 /obj/item/ego_weapon/ranged/EgoAttackInfo()
 	var/damage_type = damtype
 	var/damage = force
-	if(GLOB.damage_type_shuffler.is_enabled && IsColorDamageType(damage_type))
+	if(GLOB.damage_type_shuffler?.is_enabled && IsColorDamageType(damage_type))
 		var/new_damage_type = GLOB.damage_type_shuffler.mapping_offense[damage_type]
 		if(new_damage_type == PALE_DAMAGE && damage_type != PALE_DAMAGE)
 			damage *= GLOB.damage_type_shuffler.pale_debuff
@@ -180,7 +180,7 @@
 		return span_userdanger("The bullet of this EGO gun has not properly initialized, report this to coders!")
 	var/damage_type = last_projectile_type
 	var/damage = round(last_projectile_damage, 0.1)
-	if(GLOB.damage_type_shuffler.is_enabled && IsColorDamageType(damage_type))
+	if(GLOB.damage_type_shuffler?.is_enabled && IsColorDamageType(damage_type))
 		var/new_damage_type = GLOB.damage_type_shuffler.mapping_offense[damage_type]
 		if(new_damage_type == PALE_DAMAGE && damage_type != PALE_DAMAGE)
 			damage = round(last_projectile_damage * GLOB.damage_type_shuffler.pale_debuff, 0.1)

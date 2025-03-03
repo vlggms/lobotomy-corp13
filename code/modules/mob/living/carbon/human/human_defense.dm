@@ -2,6 +2,8 @@
 	var/armorval = 0
 	var/organnum = 0
 
+	if(GLOB.damage_type_shuffler?.is_enabled && IsColorDamageType(type))
+		type = GLOB.damage_type_shuffler.mapping_offense[type]
 	if(def_zone)
 		if(isbodypart(def_zone))
 			var/obj/item/bodypart/bp = def_zone

@@ -15,7 +15,7 @@
  * Returns TRUE if damage applied
  */
 /mob/living/proc/apply_damage(damage = 0,damagetype = RED_DAMAGE, def_zone = null, blocked = FALSE, forced = FALSE, spread_damage = FALSE, wound_bonus = 0, bare_wound_bonus = 0, sharpness = SHARP_NONE, white_healable = FALSE)
-	if(GLOB.damage_type_shuffler.is_enabled && IsColorDamageType(damagetype))
+	if(GLOB.damage_type_shuffler?.is_enabled && IsColorDamageType(damagetype))
 		var new_damage_type = GLOB.damage_type_shuffler.mapping_offense[damagetype]
 		if(new_damage_type == PALE_DAMAGE && damagetype != PALE_DAMAGE)
 			damage *= GLOB.damage_type_shuffler.pale_debuff

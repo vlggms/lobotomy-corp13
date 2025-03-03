@@ -44,7 +44,7 @@ GLOBAL_LIST_EMPTY(ego_datums)
 		var/obj/item/ego_weapon/ranged/E = new item_path(src)
 		var/bullet_damage_type = E.last_projectile_type
 		var/bullet_damage = E.last_projectile_damage
-		if(GLOB.damage_type_shuffler.is_enabled && IsColorDamageType(bullet_damage_type))
+		if(GLOB.damage_type_shuffler?.is_enabled && IsColorDamageType(bullet_damage_type))
 			var/new_damage_type = GLOB.damage_type_shuffler.mapping_offense[bullet_damage_type]
 			if(new_damage_type == PALE_DAMAGE && bullet_damage_type != PALE_DAMAGE)
 				bullet_damage *= GLOB.damage_type_shuffler.pale_debuff
@@ -71,7 +71,7 @@ GLOBAL_LIST_EMPTY(ego_datums)
 	var/obj/item/ego_weapon/E = new item_path(src)
 	var/damage_type = E.damtype
 	var/damage = E.force
-	if(GLOB.damage_type_shuffler.is_enabled && IsColorDamageType(damage_type))
+	if(GLOB.damage_type_shuffler?.is_enabled && IsColorDamageType(damage_type))
 		var/new_damage_type = GLOB.damage_type_shuffler.mapping_offense[damage_type]
 		if(new_damage_type == PALE_DAMAGE && damage_type != PALE_DAMAGE)
 			damage *= GLOB.damage_type_shuffler.pale_debuff
