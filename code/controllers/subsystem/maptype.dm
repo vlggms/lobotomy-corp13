@@ -33,8 +33,8 @@ SUBSYSTEM_DEF(maptype)
 						FACILITY_TRAIT_PLAYABLES = 1,			//I'm going to kill myself
 
 						//Disabled traits becuase these suck lmao
-						FACILITY_TRAIT_LEGACY_PALE = 0,			//You take 90% damage if pale damage hits you
-						FACILITY_TRAIT_FUCKED_SELECTION = 0,	//The abno selection is randomized
+						//FACILITY_TRAIT_LEGACY_PALE = 0,			//You take 90% damage if pale damage hits you
+						//FACILITY_TRAIT_FUCKED_SELECTION = 0,	//The abno selection is randomized
 						)
 
 	var/chosen_trait = "No Trait"
