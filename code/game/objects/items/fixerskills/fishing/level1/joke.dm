@@ -1,5 +1,5 @@
 /// A useless* skill, made to be funny
-/obj/item/book/granter/action/skill/detect
+/obj/item/book/granter/action/skill/fishing/detect
 	name = "Level 1 Skill: Detect Fish"
 	actionname = "Detect Fish"
 	granted_action = /datum/action/cooldown/fishing/detect
@@ -24,7 +24,7 @@
 
 
 /// Opens any fish-shaped lock
-/obj/item/book/granter/action/skill/fishlockpick
+/obj/item/book/granter/action/skill/fishing/fishlockpick
 	name = "Level 1 Skill: Fish Lockpick"
 	actionname = "Fish Lockpick"
 	granted_action = /datum/action/cooldown/fishing/fishlockpick
@@ -41,7 +41,7 @@
 	to_chat(user, span_notice("All nearby fish-shaped locks have been opened."))
 
 /// Commune with the fish. Basically fishing
-/obj/item/book/granter/action/skill/fishtelepathy
+/obj/item/book/granter/action/skill/fishing/fishtelepathy
 	name = "Level 1 Skill: Fish Telepathy"
 	actionname = "Fish Telepathy"
 	granted_action = /datum/action/cooldown/fishing/fishtelepathy

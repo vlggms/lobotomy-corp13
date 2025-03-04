@@ -135,18 +135,18 @@
 
 		if (level == 3)
 			if (users_fishing_skill < strong_level_min)
-				to_chat(user, span_notice("Book level too high!"))
+				to_chat(user, span_notice("You need more expertise in fishing!"))
 				return FALSE
 		else if (level == 2)
 			if (users_fishing_skill < medium_level_min)
-				to_chat(user, span_notice("Book level too high!"))
+				to_chat(user, span_notice("You need more expertise in fishing!"))
 				return FALSE
 
 		var/allowed_weak_skills = max_allowed_weak_skills
 		for(var/datum/action/cooldown/fishing/A in user.actions)
 			if (fishing_actions_levels[A.type] == level && level == 1)
-				allowed_level1_skills -= 1
-				if(allowed_level1_skills == 0)
+				allowed_weak_skills -= 1
+				if(allowed_weak_skills == 0)
 					to_chat(user, span_notice("You are out of skills for this level!"))
 					return FALSE
 
@@ -154,7 +154,37 @@
 				to_chat(user, span_notice("You already have a skill of this level!"))
 				return FALSE
 
-
+		to_chat(user, "<span class='notice'>You feel like you've got a good handle on [actionname]!</span>")
+		var/datum/action/G = new granted_action
+		G.Grant(user)
+		onlearned(user)
 		to_chat(user,span_warning("[src] suddenly vanishes!"))
 		qdel(src)
-	..()
+
+/obj/item/fishing_tester
+	name = "Fishing Skill Tester"
+	desc = "A device that can check the fishing skill of fishers."
+	icon = 'ModularTegustation/Teguicons/teguitems.dmi'
+	icon_state = "clerkbot2_deactivated"
+	color = "#63009c"
+	slot_flags = ITEM_SLOT_BELT | ITEM_SLOT_POCKETS
+	w_class = WEIGHT_CLASS_SMALL
+
+/obj/item/fishing_tester/afterattack(atom/target, mob/user, proximity_flag)
+	. = ..()
+	if(ishuman(target))
+		var/mob/living/carbon/human/human = target
+		var/target_fishing_skill = 0
+		//Do we have the skill? Do we even have a mind?
+		if(human.mind)
+			target_fishing_skill = human.mind.get_skill_level(/datum/skill/fishing)
+		else
+			to_chat(user, span_notice("No fishing skill identified within the target."))
+			return FALSE
+		to_chat(user, span_notice("Target's Fishing Skill - Level [target_fishing_skill]."))
+		to_chat(user, span_notice("They are able to learn level 1 fishing skills!"))
+		if (target_fishing_skill >= 4)
+			to_chat(user, span_notice("They are able to learn level 2 fishing skills!"))
+		if (target_fishing_skill >= 6)
+			to_chat(user, span_notice("They are able to learn level 3 fishing skills!"))
+
