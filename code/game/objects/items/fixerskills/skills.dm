@@ -116,3 +116,53 @@
 		to_chat(user, span_notice("You are Grade [max(10-grade, 1)]. Only Grade 5 Fixers are able to read this book!"))
 	else if(level == 4)
 		to_chat(user, span_notice("You are Grade [max(10-grade, 1)]. Only Grade 4 Fixers are able to read this book!"))
+
+/obj/item/book/granter/action/skill/fishing
+	var/static/list/datum/action/fishing_actions_levels = list(
+		//These are all fishing skills
+		/datum/action/cooldown/fishing/detect = 1,
+		/datum/action/cooldown/fishing/scry = 1,
+		/datum/action/cooldown/fishing/planet = 1,
+		/datum/action/cooldown/fishing/planet2 = 1,
+		/datum/action/cooldown/fishing/prayer = 1,
+		/datum/action/cooldown/fishing/sacredword = 1,
+		/datum/action/cooldown/fishing/love = 1,
+		/datum/action/cooldown/fishing/moonmove = 1,
+		/datum/action/cooldown/fishing/commune = 1,
+		/datum/action/cooldown/fishing/fishlockpick = 1,
+		/datum/action/cooldown/fishing/fishtelepathy = 1,
+
+		/datum/action/cooldown/fishing/smite = 2,
+		/datum/action/cooldown/fishing/might = 2,
+		/datum/action/cooldown/fishing/awe = 2,
+		/datum/action/cooldown/fishing/chakra = 2,
+
+		/datum/action/cooldown/fishing/supernova = 3,
+		/datum/action/cooldown/fishing/alignment = 3,
+		/datum/action/cooldown/fishing/planetstop = 3,
+	)
+
+/obj/item/book/granter/action/skill/fishing/on_reading_finished(mob/user)
+	if (ishuman(user))
+		var/mob/living/carbon/human/human = user
+		var/users_fishing_skill = 0
+		//Do we have the skill? Do we even have a mind?
+		if(human.mind)
+			users_fishing_skill = human.mind.get_skill_level(/datum/skill/fishing)
+		else
+			return
+
+		if ((level != user_level && level != -1) )
+			if(user_level == 0 && level==1)	//Specific check for Grade 9s, throw these bastards a bone
+				to_chat(user, span_notice("Your are able to get 5 skills of this level."))
+				allowed_level1_skills = 5
+
+			else
+				wrong_grade_info(grade)
+				return FALSE
+
+
+
+		to_chat(user,span_warning("[src] suddenly vanishes!"))
+		qdel(src)
+	..()
