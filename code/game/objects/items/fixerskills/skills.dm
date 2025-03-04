@@ -37,28 +37,6 @@
 		/datum/action/cooldown/warbanner = 4,
 		/datum/action/cooldown/warcry = 4,
 		/datum/action/cooldown/nuke = 4,
-
-		//These are all fishing skills
-		/datum/action/cooldown/fishing/detect = 1,
-		/datum/action/cooldown/fishing/scry = 1,
-		/datum/action/cooldown/fishing/planet = 1,
-		/datum/action/cooldown/fishing/planet2 = 1,
-		/datum/action/cooldown/fishing/prayer = 1,
-		/datum/action/cooldown/fishing/sacredword = 1,
-		/datum/action/cooldown/fishing/love = 1,
-		/datum/action/cooldown/fishing/moonmove = 1,
-		/datum/action/cooldown/fishing/commune = 1,
-		/datum/action/cooldown/fishing/fishlockpick = 1,
-		/datum/action/cooldown/fishing/fishtelepathy = 1,
-
-		/datum/action/cooldown/fishing/smite = 2,
-		/datum/action/cooldown/fishing/might = 2,
-		/datum/action/cooldown/fishing/awe = 2,
-		/datum/action/cooldown/fishing/chakra = 2,
-
-		/datum/action/cooldown/fishing/supernova = 4,
-		/datum/action/cooldown/fishing/alignment = 4,
-		/datum/action/cooldown/fishing/planetstop = 4,
 	)
 
 /obj/item/book/granter/action/skill/on_reading_finished(mob/user)
@@ -118,6 +96,7 @@
 		to_chat(user, span_notice("You are Grade [max(10-grade, 1)]. Only Grade 4 Fixers are able to read this book!"))
 
 /obj/item/book/granter/action/skill/fishing
+	var/max_allowed_weak_skills = 3
 	var/static/list/datum/action/fishing_actions_levels = list(
 		//These are all fishing skills
 		/datum/action/cooldown/fishing/detect = 1,
@@ -141,6 +120,8 @@
 		/datum/action/cooldown/fishing/alignment = 3,
 		/datum/action/cooldown/fishing/planetstop = 3,
 	)
+	var/strong_level_min = 6
+	var/medium_level_min = 4
 
 /obj/item/book/granter/action/skill/fishing/on_reading_finished(mob/user)
 	if (ishuman(user))
@@ -152,15 +133,26 @@
 		else
 			return
 
-		if ((level != user_level && level != -1) )
-			if(user_level == 0 && level==1)	//Specific check for Grade 9s, throw these bastards a bone
-				to_chat(user, span_notice("Your are able to get 5 skills of this level."))
-				allowed_level1_skills = 5
-
-			else
-				wrong_grade_info(grade)
+		if (level == 3)
+			if (users_fishing_skill < strong_level_min)
+				to_chat(user, span_notice("Book level too high!"))
+				return FALSE
+		else if (level == 2)
+			if (users_fishing_skill < medium_level_min)
+				to_chat(user, span_notice("Book level too high!"))
 				return FALSE
 
+		var/allowed_weak_skills = max_allowed_weak_skills
+		for(var/datum/action/cooldown/fishing/A in user.actions)
+			if (fishing_actions_levels[A.type] == level && level == 1)
+				allowed_level1_skills -= 1
+				if(allowed_level1_skills == 0)
+					to_chat(user, span_notice("You are out of skills for this level!"))
+					return FALSE
+
+			if (actions_levels[A.type] == level && level != 1)
+				to_chat(user, span_notice("You already have a skill of this level!"))
+				return FALSE
 
 
 		to_chat(user,span_warning("[src] suddenly vanishes!"))
