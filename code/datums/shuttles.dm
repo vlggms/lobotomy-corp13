@@ -206,6 +206,10 @@
 	port_id = "deltamain"
 	can_be_bought = FALSE
 
+/datum/map_template/shuttle/district4/elevator
+	port_id = "district4"
+	can_be_bought = FALSE
+
 // Shuttles start here:
 
 /datum/map_template/shuttle/manager/elevator
@@ -243,6 +247,14 @@
 /datum/map_template/shuttle/deltamain/elevator
 	suffix = "elevator"
 	name = "deltamain elevator"
+
+/datum/map_template/shuttle/manager_broken/elevator//enkephalin rush
+	suffix = "elevator"
+	name = "rustic manager elevator"
+
+/datum/map_template/shuttle/district4/elevator
+	suffix = "elevator"
+	name = "district 4 elevator"
 
 /datum/map_template/shuttle/emergency/backup
 	suffix = "backup"
