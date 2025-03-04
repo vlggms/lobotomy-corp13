@@ -68,7 +68,7 @@
 /obj/item/ego_weapon/shield/eria
 	name = "eria"
 	desc = "It has been quite a while since I last used you two. I missed the feeling."
-	special = "This weapon restores health on a successful block. If you are also wielding iria, increase the healing on a successful block."
+	special = "This weapon restores health on a successful block. If you are also wearing Plated Outer Cover armor, increase the healing on a successful block by 150%."
 	icon_state = "eria"
 	icon = 'ModularTegustation/Teguicons/lc13_weapons.dmi'
 	lefthand_file = 'ModularTegustation/Teguicons/lc13_left.dmi'
@@ -113,17 +113,19 @@
 		to_chat(source,span_nicegreen("Your [src] withers at the touch of death!"))
 		return ..()
 	to_chat(source,span_nicegreen("You are healed by [src]."))
-	if ((locate(/obj/item/ego_weapon/city/echo/iria) in source.held_items) && (locate(/obj/item/ego_weapon/shield/eria) in source.held_items))
-		source.adjustBruteLoss(-15)
+	var/mob/living/carbon/human/wielder = source
+	var/obj/item/clothing/suit/armor/ego_gear/city/echo/plated/Y = wielder.get_item_by_slot(ITEM_SLOT_OCLOTHING)
+	if(istype(Y))
+		wielder.adjustBruteLoss(-25)
 	else
-		source.adjustBruteLoss(-25)
+		wielder.adjustBruteLoss(-10)
 	..()
 
 /obj/item/ego_weapon/city/echo/iria
 	name = "iria"
 	desc = "Experiences have shaped me this way."
 	icon_state = "iria"
-	special = "When attacking while using both iria and eria, deal 30% more damage and increase the knockback caused by iria. If you are also wearing Plated Outer Cover armor, you heal a bit of HP on hit."
+	special = "If you are also wearing Plated Outer Cover armor, deal 30% more damage and increase the knockback caused by iria. When attacking while using both iria and eria, you heal a bit of HP on hit."
 	force = 45
 	attack_speed = 2
 	damtype = BLACK_DAMAGE
@@ -141,16 +143,15 @@
 
 /obj/item/ego_weapon/city/echo/iria/attack(mob/living/target, mob/living/user)
 	var/old_force_multiplier = force_multiplier
-	if ((locate(/obj/item/ego_weapon/city/echo/iria) in user.held_items) && (locate(/obj/item/ego_weapon/shield/eria) in user.held_items))
-		force_multiplier = damage_multiplier
-		knockback = KNOCKBACK_MEDIUM
-	. = ..()
-
-	if(!.)
-		return FALSE
 	var/mob/living/carbon/human/wielder = user
 	var/obj/item/clothing/suit/armor/ego_gear/city/echo/plated/Y = wielder.get_item_by_slot(ITEM_SLOT_OCLOTHING)
 	if(istype(Y))
+		force_multiplier = damage_multiplier
+		knockback = KNOCKBACK_MEDIUM
+	. = ..()
+	if(!.)
+		return FALSE
+	if ((locate(/obj/item/ego_weapon/city/echo/iria) in wielder.held_items) && (locate(/obj/item/ego_weapon/shield/eria) in wielder.held_items))
 		wielder.adjustBruteLoss(-healing_on_hit)
 	force_multiplier = old_force_multiplier
 	knockback = KNOCKBACK_LIGHT

@@ -591,6 +591,7 @@
 #include "code\datums\components\crafting\recipes\carnival_silk\armor_weaving\carnival_bloodfiend.dm"
 #include "code\datums\components\crafting\recipes\carnival_silk\armor_weaving\carnival_boatworks.dm"
 #include "code\datums\components\crafting\recipes\carnival_silk\armor_weaving\carnival_custom_armor.dm"
+#include "code\datums\components\crafting\recipes\carnival_silk\armor_weaving\carnival_echo_office.dm"
 #include "code\datums\components\crafting\recipes\carnival_silk\armor_weaving\carnival_index.dm"
 #include "code\datums\components\crafting\recipes\carnival_silk\armor_weaving\carnival_j_corp_gangs.dm"
 #include "code\datums\components\crafting\recipes\carnival_silk\armor_weaving\carnival_kurokumo.dm"

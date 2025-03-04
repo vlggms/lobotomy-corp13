@@ -12,7 +12,8 @@
 
 /obj/item/clothing/suit/armor/ego_gear/city/echo/maid_dress
 	name = "Neon Maid Dress"
-	desc = "I have no reason to deny the greatness and beauty of such an amazing outfit!"
+	desc = "I have no reason to deny the greatness and beauty of such an amazing outfit! <br>\
+	Wearing this armor unlocks the true potential of gomorrah and sodom"
 	icon_state = "maid_dress"
 	armor = list(RED_DAMAGE = 20, WHITE_DAMAGE = 60, BLACK_DAMAGE = 40, PALE_DAMAGE = 10)
 	attribute_requirements = list(
@@ -72,7 +73,8 @@
 
 /obj/item/clothing/suit/armor/ego_gear/city/echo/plated
 	name = "Plated Outer Cover"
-	desc = "An echo of a past Memory... A painful one at that."
+	desc = "An echo of a past Memory... A painful one at that. <br>\
+	Wearing this armor unlocks the true potential of eria and iria."
 	icon_state = "plated"
 	hat = /obj/item/clothing/head/ego_hat/plated
 	armor = list(RED_DAMAGE = 40, WHITE_DAMAGE = 20, BLACK_DAMAGE = 60, PALE_DAMAGE = 10)
@@ -92,7 +94,8 @@
 
 /obj/item/clothing/suit/armor/ego_gear/city/echo/faux
 	name = "Frilled Maid Outfit/Faux Fur Coat"
-	desc = "Seems that layering the two outfits stops the coat from taking any effect, but it at least still protects whatever semi-professional image he's got left."
+	desc = "Seems that layering the two outfits stops the coat from taking any effect, but it at least still protects whatever semi-professional image he's got left. <br>\
+	Wearing this armor unlocks the true potential of sunstrike."
 	icon_state = "faux"
 	armor = list(RED_DAMAGE = 60, WHITE_DAMAGE = 40, BLACK_DAMAGE = 20, PALE_DAMAGE = 10)
 	attribute_requirements = list(

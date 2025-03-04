@@ -101,6 +101,7 @@
 		/obj/item/book/granter/crafting_recipe/carnival/weaving_molar_boatworks = 1,
 		/obj/item/book/granter/crafting_recipe/carnival/weaving_rosespanner = 1,
 		/obj/item/book/granter/crafting_recipe/carnival/weaving_masquerade = 1,
+		/obj/item/book/granter/crafting_recipe/carnival/weaving_echo = 1,
 	)
 
 	default_price = 100

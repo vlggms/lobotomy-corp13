@@ -96,7 +96,8 @@
 	dir = 7
 	},
 /mob/living/simple_animal/hostile/humanoid/fixer/flame{
-	return_to_origin = 1
+	return_to_origin = 1;
+	loot_armor = list(/obj/item/ego_weapon/city/echo/sunstrike)
 	},
 /obj/item/gps/mining{
 	anchored = 1;
