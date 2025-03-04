@@ -148,7 +148,10 @@
 
 /mob/living/simple_animal/hostile/ordeal/amber_bug/spawned/Initialize()
 	. = ..()
-	burrow_cooldown = world.time + burrow_cooldown_time
+	if(!(SSmaptype.maptype in SSmaptype.citymaps))
+		burrow_cooldown = world.time + burrow_cooldown_time
+	burrow_cooldown = 10 HOURS	//Dogshit code
+	burrow_cooldown_time = 10 HOURS
 
 /mob/living/simple_animal/hostile/ordeal/amber_bug/spawned/death(gibbed)
 	density = FALSE
