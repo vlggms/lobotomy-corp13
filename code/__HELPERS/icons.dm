@@ -1328,3 +1328,54 @@ GLOBAL_LIST_EMPTY(transformation_animation_objects)
 	final_color_code[2] = FLOOR(final_color_code[2]/total, 1)
 	final_color_code[3] = FLOOR(final_color_code[3]/total, 1)
 	return "#[num2hex(final_color_code[1], 2)][num2hex(final_color_code[2], 2)][num2hex(final_color_code[3], 2)]"
+
+/*
+ * Make a copy of a human and copy their appearance without copying any special overlays. Notice that this currently doesn't include held items!
+ */
+/mob/proc/CopyHumanAppearance(mob/target)
+	if(!istype(target))
+		return
+
+	var/mob/living/carbon/human/copycat = new(get_turf(src))
+	copycat.status_flags = GODMODE
+	copycat.stat = DEAD // prevents the copycat from getting fear effects, attacks, etc that could add overlays.
+
+	if(iscarbon(target))
+		var/mob/living/carbon/carbon_target = target
+		carbon_target.dna.transfer_identity(copycat, transfer_SE = TRUE)
+
+		if(ishuman(target))
+			var/mob/living/carbon/human/human_target = target
+			human_target.copy_clothing_prefs(copycat)
+			copycat.gender = human_target.gender
+			copycat.body_type = human_target.body_type
+			copycat.real_name = human_target.real_name
+			copycat.name = human_target.name
+			copycat.skin_tone = human_target.skin_tone
+			copycat.hairstyle = human_target.hairstyle
+			copycat.facial_hairstyle = human_target.facial_hairstyle
+			copycat.hair_color = human_target.hair_color
+			copycat.facial_hair_color = human_target.facial_hair_color
+			copycat.eye_color = human_target.eye_color
+			copycat.regenerate_icons()
+
+			//We're just stealing their clothes
+			for(var/obj/item/slotitem in human_target.get_all_slots())
+				if(istype(slotitem, /obj/item/clothing/suit/armor/ego_gear))
+					var/obj/item/clothing/suit/armor/ego_gear/equippable_gear = new slotitem.type(get_turf(copycat))
+					equippable_gear.equip_slowdown = 0
+					equippable_gear.attribute_requirements = list()
+					copycat.equip_to_appropriate_slot(equippable_gear, TRUE)
+				else
+					var/obj/item/itemcopy = new slotitem.type(get_turf(copycat))
+					copycat.equip_to_appropriate_slot(itemcopy, TRUE)
+
+	else
+		//even if target isn't a carbon, if they have a client we can make the
+		//dummy look like what their human would look like based on their prefs
+
+		target?.client?.prefs?.copy_to(copycat, icon_updates=TRUE, roundstart_checks=FALSE, character_setup=TRUE)
+	SLEEP_CHECK_DEATH(1)
+	appearance = copycat.appearance
+	qdel(copycat)
+	return
