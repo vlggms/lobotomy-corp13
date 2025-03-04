@@ -1,4 +1,4 @@
-/obj/item/book/granter/action/skill/scry
+/obj/item/book/granter/action/skill/fishing/scry
 	name = "Level 1 Skill: Scry"
 	actionname = "Scry"
 	granted_action = /datum/action/cooldown/fishing/scry
@@ -27,7 +27,7 @@
 		if(planet.phase == 1)
 			to_chat(user, span_notice("[planet.name] is in alignment with earth."))
 
-/obj/item/book/granter/action/skill/sacredword
+/obj/item/book/granter/action/skill/fishing/sacredword
 	name = "Level 1 Skill: Sacred Word"
 	actionname = "Sacred Word"
 	granted_action = /datum/action/cooldown/fishing/sacredword
@@ -55,7 +55,7 @@
 
 	to_chat(user, span_danger("... but silence is the only listener.")) // Your planet is done broke
 
-/obj/item/book/granter/action/skill/commune
+/obj/item/book/granter/action/skill/fishing/commune
 	name = "Level 1 Skill: Commune"
 	actionname = "Commune"
 	granted_action = /datum/action/cooldown/fishing/commune
