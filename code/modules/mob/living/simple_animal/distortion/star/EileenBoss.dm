@@ -328,7 +328,7 @@
 				continue
 			revive_humans()
 
-/mob/living/simple_animal/hostile/gears
+/mob/living/simple_animal/hostile/onlygears
 	name = "Church of Gears worshipper"
 	desc = "A humanoid with smoke coming out of their body, their brain is visible."
 	icon = 'ModularTegustation/Teguicons/32x32.dmi'
@@ -347,7 +347,7 @@
 	attack_verb_simple = "smash"
 	damage_coeff = list(RED_DAMAGE = 0.5, WHITE_DAMAGE = 0, BLACK_DAMAGE = 1, PALE_DAMAGE = 1.5)
 	speak_emote = list("bellows")
-	pixel_x = -16
+	pixel_x = 0
 	rapid_melee = 1
 	melee_queue_distance = 2
 	move_to_delay = 3
@@ -361,14 +361,14 @@
 	var/guntimer
 
 	ranged = TRUE
-	rapid = 5
+	rapid = 1
 	rapid_fire_delay = 1
 	ranged_cooldown_time = 50
 	projectiletype = /obj/projectile/steam
 	projectilesound = 'sound/distortions/BlueGear_StrongAtk.ogg'
 
 
-/mob/living/simple_animal/hostile/gears/apply_damage(damage, damagetype, def_zone, blocked, forced, spread_damage, wound_bonus, bare_wound_bonus, sharpness, white_healable)
+/mob/living/simple_animal/hostile/onlygears/apply_damage(damage, damagetype, def_zone, blocked, forced, spread_damage, wound_bonus, bare_wound_bonus, sharpness, white_healable)
 	. = ..()
 	if(steam_venting)
 		return
@@ -380,14 +380,34 @@
 		playsound(get_turf(src), 'sound/distortions/BlueGear_StrongAtk.ogg', 125, FALSE)
 		rapid = 3
 
-/mob/living/simple_animal/hostile/gears/OpenFire()
-	if(get_dist(src, target) > 1)
-		return
+/mob/living/simple_animal/hostile/onlygears/Life()
 	. = ..()
-	can_act = FALSE
-	guntimer = addtimer(CALLBACK(src, PROC_REF(startMoving)), (10), TIMER_STOPPABLE)
+	if(status_flags & GODMODE)
+		return
+	if(!steam_venting)
+		return
+	SpawnSteam()
 
-/mob/living/simple_animal/hostile/gears/proc/startMoving()
+/mob/living/simple_animal/hostile/onlygears/proc/SpawnSteam()
+	playsound(get_turf(src), 'sound/abnormalities/steam/exhale.ogg', 75, 0, 8)
+	var/turf/target_turf = get_turf(src)
+	for(var/turf/T in view(2, target_turf))
+		if(prob(30))
+			continue
+		new /obj/effect/temp_visual/palefog(T)
+		for(var/mob/living/H in T)
+			if(faction_check_mob(H))
+				continue
+			H.deal_damage(steam_damage, RED_DAMAGE)
+	adjustBruteLoss(10)
+
+/mob/living/simple_animal/hostile/onlygears/MeleeAction()
+	if(ranged_cooldown <= world.time && prob(30))
+		OpenFire()
+		return
+	return ..()
+
+/mob/living/simple_animal/hostile/onlygears/proc/startMoving()
 	can_act = TRUE
 	deltimer(guntimer)
 
@@ -395,6 +415,7 @@
 	name = "steam"
 	icon_state = "smoke"
 	hitsound = 'sound/machines/clockcult/steam_whoosh.ogg'
-	damage = 60
+	damage = 40
 	speed = 0.4
 	damage_type = RED_DAMAGE
+	
