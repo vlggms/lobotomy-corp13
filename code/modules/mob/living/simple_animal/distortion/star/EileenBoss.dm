@@ -52,7 +52,7 @@
 /mob/living/simple_animal/hostile/distortion/Eileen/Initialize(mapload)
 	. = ..()
 	var/list/units_to_add = list(
-		/mob/living/simple_animal/hostile/gears = 4,
+		/mob/living/simple_animal/hostile/onlygears = 4,
 		)
 	AddComponent(/datum/component/ai_leadership, units_to_add, 8, TRUE, TRUE)
 
@@ -68,7 +68,7 @@
 
 	//Actually spawning them
 	for(var/i=gear_spawn_number, i>=0, i--)	//This counts down.
-		var/mob/living/simple_animal/hostile/gears/B = new(get_turf(src))
+		var/mob/living/simple_animal/hostile/onlygears/B = new(get_turf(src))
 		spawned_gears+=B
 	addtimer(CALLBACK(src, PROC_REF(GearSpawn)), summon_cooldown_time)
 
