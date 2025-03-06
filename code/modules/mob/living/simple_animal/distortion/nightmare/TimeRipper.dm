@@ -34,7 +34,7 @@
 	/// Prolonged exposure to a monolith will convert the distortion into an abnormality. Black swan is the most strongly related to this guy, but I might make one for it later.
 	monolith_abnormality = /mob/living/simple_animal/hostile/abnormality/silence //Both hate their time being wasted and that there is a price to it, even if this thing cannot fight back.
 	egoist_attributes = 100
-	can_spawn = 0
+
 	var/unmanifesting
 	var/can_act = TRUE
 	var/current_stage = 1 //changes behaviour slightly on phase 2
