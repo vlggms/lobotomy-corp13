@@ -86,7 +86,6 @@
 					if(isliving(target))
 						return Timestop(target)
 				return DashCounter()
-		return
 
 
 
