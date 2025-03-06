@@ -177,7 +177,7 @@
 
 /mob/living/simple_animal/hostile/abnormality/seasons/proc/TryTransform()
 	dir = SOUTH
- 	Transform()
+	Transform()
 
 /mob/living/simple_animal/hostile/abnormality/seasons/PostSpawn()
 	. = ..()
