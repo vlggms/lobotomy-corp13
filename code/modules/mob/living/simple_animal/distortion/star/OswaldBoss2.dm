@@ -11,7 +11,7 @@
 	icon_state = "Oswald"
 	icon_living = "Oswald"
 	icon_dead = "crimson_midnight"
-	icon = 'ModularTegustation/Teguicons/64x64.dmi'
+	icon = 'ModularTegustation/Teguicons/Ensemble64x64.dmi'
 	faction = list("hostile", "crimsonOrdeal", "bongy")
 	mob_biotypes = MOB_ORGANIC|MOB_HUMANOID
 	light_color = COLOR_LIGHT_GRAYISH_RED
@@ -42,6 +42,25 @@
 	minimum_distance = 2
 	retreat_distance = 1
 	can_patrol = TRUE
+//Variables important for distortions
+	//The EGO worn by the egoist
+	ego_list = list(
+		/obj/item/clothing/suit/armor/ego_gear/city/ensemble
+		)
+	//The egoist's name, if specified. Otherwise picks a random name.
+	egoist_names = list("Oswald")
+	//The mob's gender, which will be inherited by the egoist. Can be left unspecified for a random pick.
+	gender = MALE
+	//The Egoist's outfit, which should usually be civilian unless you want them to be a fixer or something.
+	egoist_outfit = /datum/outfit/job/civilian
+	//Loot on death; distortions should be valuable targets in general.
+	loot = list(/obj/item/clothing/suit/armor/ego_gear/city/ensembleweak)
+	/// Prolonged exposure to a monolith will convert the distortion into an abnormality. Black swan is the most strongly related to this guy, but I might make one for it later.
+	monolith_abnormality = /mob/living/simple_animal/hostile/abnormality/clown //Clown
+	egoist_attributes = 130
+	can_spawn = 0
+	var/unmanifesting
+
 	var/charging = FALSE
 	var/finishing = FALSE
 	var/step = FALSE
@@ -352,7 +371,7 @@
 /mob/living/simple_animal/hostile/MrKnife
 	name = "Mr Knife"
 	desc = "A weird bladed clown with knives that seem to never run out."
-	icon = 'ModularTegustation/Teguicons/OswaldGang.dmi'
+	icon = 'ModularTegustation/Teguicons/Ensemble64x64.dmi'
 	icon_state = "MrKnife"
 	icon_living = "MrKnife"
 	is_flying_animal = FALSE
@@ -409,6 +428,7 @@
 	var/pulse_cooldown
 	var/pulse_cooldown_time = 1.8 SECONDS
 	var/pulse_damage = 5
+
 /mob/living/simple_animal/hostile/Mermaid/Life()
 	. = ..()
 	if(!.) // Dead

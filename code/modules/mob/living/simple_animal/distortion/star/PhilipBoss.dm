@@ -5,7 +5,7 @@
 /mob/living/simple_animal/hostile/distortion/Philip
 	name = "\proper The Unspeaking Child"
 	desc = "A towering blazing statue, setting everything on it's path ablaze"
-	icon = 'ModularTegustation/Teguicons/96x96.dmi'
+	icon = 'ModularTegustation/Teguicons/Ensemble96x96.dmi'
 	icon_living = "Philip"
 	icon_state = "Philip"
 	pixel_x = -50
@@ -29,6 +29,25 @@
 	death_sound = 'sound/abnormalities/crying_children/death.ogg'
 	death_message = "crumbles into pieces."
 	del_on_death = FALSE
+//Variables important for distortions
+	//The EGO worn by the egoist
+	ego_list = list(
+		/obj/item/clothing/suit/armor/ego_gear/city/ensemble,
+		/obj/item/ego_weapon/shield/city/ensemble/philip
+		)
+	//The egoist's name, if specified. Otherwise picks a random name.
+	egoist_names = list("Philip")
+	//The mob's gender, which will be inherited by the egoist. Can be left unspecified for a random pick.
+	gender = MALE
+	//The Egoist's outfit, which should usually be civilian unless you want them to be a fixer or something.
+	egoist_outfit = /datum/outfit/job/civilian
+	//Loot on death; distortions should be valuable targets in general.
+	loot = list(/obj/item/clothing/suit/armor/ego_gear/city/ensembleweak)
+	/// Prolonged exposure to a monolith will convert the distortion into an abnormality. Black swan is the most strongly related to this guy, but I might make one for it later.
+	monolith_abnormality = /mob/living/simple_animal/hostile/abnormality/crying_children //This makes no sense at all due to it being a downgrade, but it is what it is.
+	egoist_attributes = 130
+	can_spawn = 0
+	var/unmanifesting
 	var/list/children_list = list()
 	var/charge = 0
 	var/can_charge = TRUE // Prevents charging the map wide attack
@@ -263,7 +282,7 @@
 /obj/projectile/beam/sorrow_beam
 	name = "wounds of sorrow"
 	icon_state = "heavylaser"
-	damage = 150
+	damage = 100
 	damage_type = RED_DAMAGE
 
 	hitscan = TRUE

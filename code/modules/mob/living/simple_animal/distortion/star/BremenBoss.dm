@@ -1,7 +1,7 @@
 /mob/living/simple_animal/hostile/distortion/Bremen
 	name = "The Musicians of Bremen"
 	desc = "A horrible amalgamation of noises and animals."
-	icon = 'ModularTegustation/Teguicons/96x96.dmi'
+	icon = 'ModularTegustation/Teguicons/Ensemble96x96.dmi'
 	icon_state = "Bremen"
 	icon_living = "Bremen"
 	icon_dead = "Bremen"
@@ -26,6 +26,24 @@
 	can_patrol = TRUE
 	attack_sound = 'sound/distortions/Bremen_Strong.ogg'
 	melee_reach = 3
+//Variables important for distortions
+	//The EGO worn by the egoist
+	ego_list = list(
+		/obj/item/clothing/suit/armor/ego_gear/city/ensemble,
+		)
+	//The egoist's name, if specified. Otherwise picks a random name.
+	egoist_names = list("Musicians of Bremen")
+	//The mob's gender, which will be inherited by the egoist. Can be left unspecified for a random pick.
+	gender = MALE
+	//The Egoist's outfit, which should usually be civilian unless you want them to be a fixer or something.
+	egoist_outfit = /datum/outfit/job/civilian
+	//Loot on death; distortions should be valuable targets in general.
+	loot = list(/obj/item/clothing/suit/armor/ego_gear/city/ensembleweak)
+	/// Prolonged exposure to a monolith will convert the distortion into an abnormality. Black swan is the most strongly related to this guy, but I might make one for it later.
+	monolith_abnormality = /mob/living/simple_animal/hostile/abnormality/silentorchestra //Musicians that bring ruin.
+	egoist_attributes = 130
+	can_spawn = 0
+	var/unmanifesting
 	var/last_command = 0
 	//Delay on charge command
 	var/chargecommand_cooldown = 0

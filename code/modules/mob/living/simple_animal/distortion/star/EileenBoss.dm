@@ -1,7 +1,7 @@
 /mob/living/simple_animal/hostile/distortion/Eileen
 	name = "Saint of Gears"
-	desc = "An angelic creature wearing white and golden armor with a cannon-like weapon."
-	icon = 'ModularTegustation/Teguicons/64x64.dmi'
+	desc = "An angelic creature wearing white and golden armor with smoke coming out of her."
+	icon = 'ModularTegustation/Teguicons/Ensemble64x64.dmi'
 	icon_state = "Eileen"
 	icon_living = "Eileen"
 	icon_dead = "Eileen"
@@ -20,7 +20,27 @@
 	del_on_death = TRUE
 	can_patrol = TRUE
 
+//Variables important for distortions
+	//The EGO worn by the egoist
+	ego_list = list(
+		/obj/item/clothing/suit/armor/ego_gear/city/ensemble
+		)
+	//The egoist's name, if specified. Otherwise picks a random name.
+	egoist_names = list("Eileen")
+	//The mob's gender, which will be inherited by the egoist. Can be left unspecified for a random pick.
+	gender = FEMALE
+	//The Egoist's outfit, which should usually be civilian unless you want them to be a fixer or something.
+	egoist_outfit = /datum/outfit/job/civilian
+	//Loot on death; distortions should be valuable targets in general.
+	loot = list(/obj/item/clothing/suit/armor/ego_gear/city/ensembleweak)
+	/// Prolonged exposure to a monolith will convert the distortion into an abnormality. Black swan is the most strongly related to this guy, but I might make one for it later.
+	monolith_abnormality = /mob/living/simple_animal/hostile/abnormality/bluestar //Nothing really fits her much, this is closest.
+	egoist_attributes = 130
+	can_spawn = 0
+
+
 	var/can_act = TRUE
+	var/unmanifesting
 	/// She is never intended to pray unlike what I copied and pasted her from.
 	var/damage_taken = 0
 	var/damage_reflection = FALSE
@@ -49,10 +69,20 @@
 	var/holy_revival_range = 80
 	/// List of mobs that have been hit by the revival field to avoid double effect
 
+	///I could not get this proc to auto-equip hat + gloves.
+/mob/living/simple_animal/hostile/distortion/Eileen/PostUnmanifest()
+	var/mob/living/carbon/human/D = target
+	var/obj/item/clothing/head/ego_hat/ensemble/eileen/H = new(get_turf(D))
+	D.equip_to_slot_if_possible(H, ITEM_SLOT_HEAD, FALSE, TRUE, TRUE)
+	var/obj/item/clothing/gloves/color/white/G = new(get_turf(D))
+	D.equip_to_slot_if_possible(G, ITEM_SLOT_HANDS, FALSE, TRUE, TRUE)
+	return
+
+
 /mob/living/simple_animal/hostile/distortion/Eileen/Initialize(mapload)
 	. = ..()
 	var/list/units_to_add = list(
-		/mob/living/simple_animal/hostile/onlygears = 4,
+		/mob/living/simple_animal/hostile/gears = 4,
 		)
 	AddComponent(/datum/component/ai_leadership, units_to_add, 8, TRUE, TRUE)
 
@@ -68,7 +98,7 @@
 
 	//Actually spawning them
 	for(var/i=gear_spawn_number, i>=0, i--)	//This counts down.
-		var/mob/living/simple_animal/hostile/onlygears/B = new(get_turf(src))
+		var/mob/living/simple_animal/hostile/gears/B = new(get_turf(src))
 		spawned_gears+=B
 	addtimer(CALLBACK(src, PROC_REF(GearSpawn)), summon_cooldown_time)
 
@@ -328,10 +358,10 @@
 				continue
 			revive_humans()
 
-/mob/living/simple_animal/hostile/onlygears
+/mob/living/simple_animal/hostile/gears
 	name = "Church of Gears worshipper"
 	desc = "A humanoid with smoke coming out of their body, their brain is visible."
-	icon = 'ModularTegustation/Teguicons/32x32.dmi'
+	icon = 'ModularTegustation/Teguicons/Ensemble32x32.dmi'
 	icon_state = "churchgoon"
 	icon_living = "churchgoon"
 	del_on_death = TRUE
@@ -368,7 +398,7 @@
 	projectilesound = 'sound/distortions/BlueGear_StrongAtk.ogg'
 
 
-/mob/living/simple_animal/hostile/onlygears/apply_damage(damage, damagetype, def_zone, blocked, forced, spread_damage, wound_bonus, bare_wound_bonus, sharpness, white_healable)
+/mob/living/simple_animal/hostile/gears/apply_damage(damage, damagetype, def_zone, blocked, forced, spread_damage, wound_bonus, bare_wound_bonus, sharpness, white_healable)
 	. = ..()
 	if(steam_venting)
 		return
@@ -380,7 +410,7 @@
 		playsound(get_turf(src), 'sound/distortions/BlueGear_StrongAtk.ogg', 125, FALSE)
 		rapid = 3
 
-/mob/living/simple_animal/hostile/onlygears/Life()
+/mob/living/simple_animal/hostile/gears/Life()
 	. = ..()
 	if(status_flags & GODMODE)
 		return
@@ -388,7 +418,7 @@
 		return
 	SpawnSteam()
 
-/mob/living/simple_animal/hostile/onlygears/proc/SpawnSteam()
+/mob/living/simple_animal/hostile/gears/proc/SpawnSteam()
 	playsound(get_turf(src), 'sound/abnormalities/steam/exhale.ogg', 75, 0, 8)
 	var/turf/target_turf = get_turf(src)
 	for(var/turf/T in view(2, target_turf))
@@ -401,13 +431,13 @@
 			H.deal_damage(steam_damage, RED_DAMAGE)
 	adjustBruteLoss(10)
 
-/mob/living/simple_animal/hostile/onlygears/MeleeAction()
+/mob/living/simple_animal/hostile/gears/MeleeAction()
 	if(ranged_cooldown <= world.time && prob(30))
 		OpenFire()
 		return
 	return ..()
 
-/mob/living/simple_animal/hostile/onlygears/proc/startMoving()
+/mob/living/simple_animal/hostile/gears/proc/startMoving()
 	can_act = TRUE
 	deltimer(guntimer)
 
@@ -418,4 +448,4 @@
 	damage = 40
 	speed = 0.4
 	damage_type = RED_DAMAGE
-	
+

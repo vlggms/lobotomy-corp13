@@ -1,7 +1,7 @@
 /mob/living/simple_animal/hostile/distortion/Jae_Heon
 	name = "The Puppeteer"
 	desc = "An ominous spider-like puppeteer."
-	icon = 'ModularTegustation/Teguicons/48x64.dmi'
+	icon = 'ModularTegustation/Teguicons/Ensemble48x64.dmi'
 	icon_state = "Heon"
 	icon_living = "Heon"
 	icon_dead = "Heon"
@@ -32,7 +32,24 @@
 	aggro_vision_range = 30
 	ranged = TRUE//allows it to attempt charging without being in melee range
 	can_patrol = TRUE
-
+//Variables important for distortions
+	//The EGO worn by the egoist
+	ego_list = list(
+		/obj/item/clothing/suit/armor/ego_gear/city/ensemblecoat,
+		)
+	//The egoist's name, if specified. Otherwise picks a random name.
+	egoist_names = list("Jae-Heon")
+	//The mob's gender, which will be inherited by the egoist. Can be left unspecified for a random pick.
+	gender = MALE
+	//The Egoist's outfit, which should usually be civilian unless you want them to be a fixer or something.
+	egoist_outfit = /datum/outfit/job/civilian
+	//Loot on death; distortions should be valuable targets in general.
+	loot = list(/obj/item/clothing/suit/armor/ego_gear/city/ensembleweak)
+	/// Prolonged exposure to a monolith will convert the distortion into an abnormality. Black swan is the most strongly related to this guy, but I might make one for it later.
+	monolith_abnormality = /mob/living/simple_animal/hostile/abnormality/last_shot //Now he can bring back his son, as flesh blob that is.
+	egoist_attributes = 130
+	can_spawn = 0
+	var/unmanifesting
 	var/can_act = TRUE
 	var/slash_width = 1
 	var/slash_length = 30
@@ -194,7 +211,7 @@
 /mob/living/simple_animal/hostile/puppet
 	name = "Puppet"
 	desc = "A creepy puppet that behaves as if it is an alive being of it own."
-	icon = 'ModularTegustation/Teguicons/32x32.dmi'
+	icon = 'ModularTegustation/Teguicons/Ensemble32x32.dmi'
 	icon_state = "puppetgoon"
 	icon_living = "puppetgoon"
 	faction = list("hostile", "crimsonOrdeal", "bongy")
@@ -235,4 +252,3 @@
 /mob/living/simple_animal/hostile/puppet/LoseAggro()
 	. = ..()
 	a_intent_change(INTENT_HELP)
-

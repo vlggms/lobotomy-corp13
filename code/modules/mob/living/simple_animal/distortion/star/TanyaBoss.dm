@@ -2,7 +2,7 @@
 /mob/living/simple_animal/hostile/distortion/Tanya
 	name = "L'Heure du Loup"
 	desc = "You are about to be beaten to death."
-	icon = 'ModularTegustation/Teguicons/48x64.dmi'
+	icon = 'ModularTegustation/Teguicons/Ensemble48x64.dmi'
 	icon_state = "Tanya"
 	icon_living = "Tanya"
 	icon_dead = "Tanya"
@@ -27,6 +27,24 @@
 	attack_action_types = list(
 		/datum/action/innate/abnormality_attack/rudolta_buff_onrush,
 	)
+//Variables important for distortions
+	//The EGO worn by the egoist
+	ego_list = list(
+		/obj/item/clothing/suit/armor/ego_gear/city/ensemble
+		)
+	//The egoist's name, if specified. Otherwise picks a random name.
+	egoist_names = list("Tanya")
+	//The mob's gender, which will be inherited by the egoist. Can be left unspecified for a random pick.
+	gender = FEMALE
+	//The Egoist's outfit, which should usually be civilian unless you want them to be a fixer or something.
+	egoist_outfit = /datum/outfit/job/civilian
+	//Loot on death; distortions should be valuable targets in general.
+	loot = list(/obj/item/clothing/suit/armor/ego_gear/city/ensembleweak)
+	/// Prolonged exposure to a monolith will convert the distortion into an abnormality. Black swan is the most strongly related to this guy, but I might make one for it later.
+	monolith_abnormality = /mob/living/simple_animal/hostile/abnormality/big_wolf // Closest thing to her, with Gebura being like a Red Hood honestly. It was this or Buffdolta.
+	egoist_attributes = 130
+	can_spawn = 0
+	var/unmanifesting
 	var/list/fire_list = list()
 	var/can_act = TRUE
 	// Onrush vars
@@ -211,4 +229,3 @@
 	if(ishuman(AM))
 		var/mob/living/carbon/human/H = AM
 		H.apply_damage(3, FIRE, null, H.run_armor_check(null, RED_DAMAGE), spread_damage = TRUE)
-

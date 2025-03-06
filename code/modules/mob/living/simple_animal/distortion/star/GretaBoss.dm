@@ -1,7 +1,7 @@
 /mob/living/simple_animal/hostile/distortion/Greta
 	name = "Greta"
 	desc = "You should probably run instead of gawking."
-	icon = 'ModularTegustation/Teguicons/64x64.dmi'
+	icon = 'ModularTegustation/Teguicons/Ensemble64x64.dmi'
 	icon_state = "Greta"
 	icon_living = "Greta"
 	var/icon_aggro = "Greta"
@@ -24,6 +24,25 @@
 	attack_verb_continuous = "bites"
 	attack_verb_simple = "bit"
 	faction = list("hostile", "crimsonOrdeal", "bongy")
+//Variables important for distortions
+	//The EGO worn by the egoist
+	ego_list = list(
+		/obj/item/clothing/suit/armor/ego_gear/city/ensemblegreta,
+		/obj/item/ego_weapon/city/ensemble/greta
+		)
+	//The egoist's name, if specified. Otherwise picks a random name.
+	egoist_names = list("Greta")
+	//The mob's gender, which will be inherited by the egoist. Can be left unspecified for a random pick.
+	gender = FEMALE
+	//The Egoist's outfit, which should usually be civilian unless you want them to be a fixer or something.
+	egoist_outfit = /datum/outfit/job/butcher
+	//Loot on death; distortions should be valuable targets in general.
+	loot = list(/obj/item/clothing/suit/armor/ego_gear/city/ensembleweak)
+	/// Prolonged exposure to a monolith will convert the distortion into an abnormality. Black swan is the most strongly related to this guy, but I might make one for it later.
+	monolith_abnormality = /mob/living/simple_animal/hostile/abnormality/mountain //She is quite a big eater, slitcurrent and dreaming have too much of differences despite being sharks.
+	egoist_attributes = 130
+	can_spawn = 0
+	var/unmanifesting
 	var/charging = FALSE
 	var/revving_charge = FALSE
 	var/charge_ready = FALSE
