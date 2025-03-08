@@ -6,6 +6,7 @@
 	density = TRUE
 	resistance_flags = INDESTRUCTIBLE
 	var/fish_points = 0
+	var/extra_items = FALSE
 
 	var/list/order_list = list( //if you add something to this, please, for the love of god, sort it by price/type. use tabs and not spaces.
 		//Gadgets - More Technical Equipment, Usually active
@@ -19,14 +20,14 @@
 		new /datum/data/extraction_cargo("Aquarium Branch Office ",		/obj/item/aquarium_prop/lcorp,						500) = 1,
 
 		//More nets
-		new /datum/data/extraction_cargo("Fishing Net ",					/obj/item/fishing_net,							300) = 1,
-		new /datum/data/extraction_cargo("Nylon Fishing Net ",				/obj/item/fishing_net/nylon,					700) = 1,
-		new /datum/data/extraction_cargo("Steel Fishing Net ",				/obj/item/fishing_net/steel,					700) = 1,
+		new /datum/data/extraction_cargo("Fishing Net ",				/obj/item/fishing_net,							300) = 1,
+		new /datum/data/extraction_cargo("Nylon Fishing Net ",			/obj/item/fishing_net/nylon,					700) = 1,
+		new /datum/data/extraction_cargo("Steel Fishing Net ",			/obj/item/fishing_net/steel,					700) = 1,
 
 		//Better rods
-		new /datum/data/extraction_cargo("Fibreglass Fishing Rod ",			/obj/item/fishing_rod/fiberglass,				700) = 1,
-		new /datum/data/extraction_cargo("Gold-plated Fishing Rod ",		/obj/item/fishing_rod/gold,						700) = 1,
-		new /datum/data/extraction_cargo("Titanium Fishing Rod ",			/obj/item/fishing_rod/titanium,					700) = 1,
+		new /datum/data/extraction_cargo("Fibreglass Fishing Rod ",		/obj/item/fishing_rod/fiberglass,				700) = 1,
+		new /datum/data/extraction_cargo("Gold-plated Fishing Rod ",	/obj/item/fishing_rod/gold,						700) = 1,
+		new /datum/data/extraction_cargo("Titanium Fishing Rod ",		/obj/item/fishing_rod/titanium,					700) = 1,
 
 		//Lines
 		new /datum/data/extraction_cargo("Woven Fishing Line ",			/obj/item/fishing_component/line/woven,				500) = 1,
@@ -38,7 +39,7 @@
 
 	)
 
-/obj/structure/potential/Initialize()
+/obj/machinery/fish_market/Initialize()
 	. = ..()
 	new /obj/item/fishing_tester (get_turf(src))
 	new /obj/item/fishing_tester (get_turf(src))
@@ -46,6 +47,8 @@
 /obj/machinery/fish_market/ui_interact(mob/user) //Unsure if this can stand on its own as a structure, later on we may fiddle with that to break out of computer variables. -IP
 	. = ..()
 	if(SSmaptype.maptype in SSmaptype.citymaps)
+		update_stock()
+	if(extra_items)
 		update_stock()
 	if(isliving(user))
 		playsound(src, 'sound/machines/terminal_prompt_confirm.ogg', 50, FALSE)
