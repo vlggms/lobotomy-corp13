@@ -113,7 +113,7 @@
 // Joe Shmoe - Average Joe
 /datum/ego_datum/weapon/joe
 	item_path = /obj/item/ego_weapon/branch12/joe
-	cost = 35
+	cost = 50
 
 /datum/ego_datum/armor/joe
 	item_path = /obj/item/clothing/suit/armor/ego_gear/branch12/joe
@@ -127,7 +127,7 @@
 // Passion of Love in Death - Fluttering Passion
 /datum/ego_datum/weapon/branch12/passion
 	item_path = /obj/item/ego_weapon/branch12/passion
-	cost = 35
+	cost = 50
 
 /datum/ego_datum/armor/branch12/passion
 	item_path = /obj/item/clothing/suit/armor/ego_gear/branch12/passion
