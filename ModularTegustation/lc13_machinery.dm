@@ -55,6 +55,14 @@
 		add_overlay("glow_[icon_state]")
 		desc = null
 
+/obj/machinery/containment_panel/proc/console_meltdown()
+	cut_overlays()
+	desc = "It says Qliphoth Meltdown in progress, agent intervention required."
+	if(icon_state == "command")
+		add_overlay("glow_[icon_state]_meltdown")
+		return
+	add_overlay("glow_meltdown")
+
 /obj/machinery/containment_panel/proc/console_working()
 	cut_overlays()
 	desc = "It says that work is in progress."
@@ -62,7 +70,6 @@
 		add_overlay("glow_[icon_state]_work_in_progress")
 		return
 	add_overlay("glow_work_in_progress")
-	return
 
 /obj/machinery/containment_panel/proc/AbnormalityInfo()
 	if(!linked_console)
@@ -125,7 +132,6 @@
 	var/datum/browser/popup = new(user, "containment_diagnostics", "Current Containment", 500, 550)
 	popup.set_content(dat)
 	popup.open()
-	return
 
 /obj/machinery/abnormality_monitor/proc/UpdateNetwork()
 	SIGNAL_HANDLER
