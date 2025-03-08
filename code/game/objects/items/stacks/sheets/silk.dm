@@ -83,7 +83,7 @@
 
 
 /obj/item/stack/sheet/silk
-	name = "silk"
+	var/carnival_only = TRUE
 	var/datum/armor/added_armor = null
 	/*var/rarity = ""
 	var/list/rarities = list(RARITY_SIMPLE = 5,
@@ -96,6 +96,11 @@
 	rarity = aRarity
 	name = aRarity + " " + name
 	added_armor = added_armor.modifyAllRatings(rarities[aRarity])*/
+
+/obj/item/stack/sheet/silk/Initialize()
+	. = ..()
+	if(SSmaptype.maptype == "office")
+		carnival_only = FALSE
 
 //Indigo Silk
 /obj/item/stack/sheet/silk/indigo_simple

@@ -116,5 +116,11 @@
 	icon_state = "album_blue"
 	persistence_id = "prison"
 
+/obj/item/storage/photo_album/fixer
+	name = "photo album (Fixer Office)"
+	icon_state = "album_green"
+	persistence_id = "fixer"
+	custom_price = PAYCHECK_ASSISTANT
+
 /obj/item/storage/photo_album/personal
 	icon_state = "album_green"
