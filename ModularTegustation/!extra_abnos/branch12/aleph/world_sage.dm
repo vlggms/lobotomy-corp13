@@ -50,7 +50,7 @@
 	..()
 	worked = TRUE
 
-/mob/living/simple_animal/hostile/abnormality/branch12/world_sage/Worktick(mob/living/carbon/human/user)
+/mob/living/simple_animal/hostile/abnormality/branch12/world_sage/WorktickFailure(mob/living/carbon/human/user)
 	var/list/damtypes = list(RED_DAMAGE, WHITE_DAMAGE, BLACK_DAMAGE, PALE_DAMAGE)
 	var/damage = pick(damtypes)
 	work_damage_type = damage

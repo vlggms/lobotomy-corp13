@@ -12,7 +12,7 @@
 	del_on_death = TRUE
 	layer = ABOVE_OPEN_TURF_LAYER
 
-	maxHealth = 1000	//should be a little tankier as it's a bit slow
+	maxHealth = 1000	//Cannot be damaged, this is just for austerity
 	health = 1000
 	rapid_melee = 2
 	move_to_delay = 5
@@ -23,8 +23,8 @@
 	attack_sound = 'sound/abnormalities/cleave.ogg'
 	faction = list("hostile")
 	can_breach = TRUE
-	threat_level = WAW_LEVEL
-	start_qliphoth = 2
+	threat_level = ALEPH_LEVEL
+	start_qliphoth = 1
 
 	work_chances = list(
 		ABNORMALITY_WORK_INSTINCT = list(0, 0, 55, 55, 60),
@@ -32,7 +32,7 @@
 		ABNORMALITY_WORK_ATTACHMENT = 0,
 		ABNORMALITY_WORK_REPRESSION = list(0, 0, 45, 45, 45),
 	)
-	work_damage_amount = 12
+	work_damage_amount = 15
 	work_damage_type =  BLACK_DAMAGE
 
 	ego_list = list(
@@ -69,7 +69,7 @@
 		QDEL_IN(H, 5)
 
 /mob/living/simple_animal/hostile/abnormality/branch12/black_hole/BreachEffect(mob/living/carbon/human/user, work_type, pe, work_time)
-	addtimer(CALLBACK(src, PROC_REF(death)), 2 MINUTES)
+	addtimer(CALLBACK(src, PROC_REF(death)), 10 MINUTES)
 	..()
 
 /* Work effects */

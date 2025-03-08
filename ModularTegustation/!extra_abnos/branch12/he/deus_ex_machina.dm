@@ -5,7 +5,7 @@
 	icon_state = "deus"
 
 	threat_level = HE_LEVEL
-	start_qliphoth = 2
+	start_qliphoth = 3
 	work_chances = list(
 		ABNORMALITY_WORK_INSTINCT = 40,
 		ABNORMALITY_WORK_INSIGHT = 40,
@@ -42,7 +42,7 @@
 	return TRUE
 
 /mob/living/simple_animal/hostile/abnormality/branch12/deus_ex_machina/ZeroQliphoth()
-	datum_reference.qliphoth_change(2)
+	datum_reference.qliphoth_change(3)
 	if(!recently_departed)
 		return
 	var/mob/living/simple_animal/hostile/abnormality/spawned = new recently_departed(get_turf(src))

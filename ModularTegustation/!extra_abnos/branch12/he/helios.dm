@@ -17,7 +17,6 @@
 		ABNORMALITY_WORK_ATTACHMENT = 40,
 		ABNORMALITY_WORK_REPRESSION = 20,
 	)
-	max_boxes = 22
 
 	light_color = COLOR_YELLOW
 	light_range = 30
@@ -64,7 +63,7 @@
 		if(faction_check_mob(L))
 			continue
 		L.deal_damage((10), WHITE_DAMAGE)
-		L.adjustFireLoss(10)
+		L.adjustFireLoss(3)
 
 		if(!ishuman(L))
 			continue
