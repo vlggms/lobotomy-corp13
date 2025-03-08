@@ -401,7 +401,7 @@
 /mob/living/simple_animal/hostile/Mermaid
 	name = "Ms Mermaid"
 	desc = "It looks disgusting, and also like a fish."
-	icon = 'ModularTegustation/Teguicons/OswaldGang.dmi'
+	icon = 'ModularTegustation/Teguicons/Ensemble64x64.dmi'
 	icon_state = "Mermaid"
 	icon_living = "Mermaid"
 	is_flying_animal = FALSE
