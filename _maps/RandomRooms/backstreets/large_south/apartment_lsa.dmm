@@ -27,7 +27,8 @@
 	},
 /mob/living/simple_animal/hostile/ordeal/indigo_noon{
 	dir = 1;
-	name = "Prost"
+	name = "Prost";
+	wander = 0
 	},
 /turf/open/floor/wood,
 /area/city/backstreets_room)
@@ -217,7 +218,8 @@
 /obj/effect/decal/cleanable/blood/gibs,
 /mob/living/simple_animal/hostile/ordeal/indigo_noon{
 	dir = 1;
-	name = "Lex"
+	name = "Lex";
+	wander = 0
 	},
 /turf/open/floor/wood,
 /area/city/backstreets_room)
@@ -227,7 +229,8 @@
 	},
 /mob/living/simple_animal/hostile/ordeal/indigo_dawn{
 	dir = 1;
-	name = "Willy"
+	name = "Willy";
+	wander = 0
 	},
 /turf/open/floor/wood,
 /area/city/backstreets_room)

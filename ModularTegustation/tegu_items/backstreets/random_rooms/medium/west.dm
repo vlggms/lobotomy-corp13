@@ -22,6 +22,11 @@
 	mappath = "_maps/RandomRooms/backstreets/medium_west/butcher_medium.dmm"
 	stock = 1
 
+/datum/map_template/random_room/backstreets/medium_east/office_kcorp
+	name = "KCorp Office - Medium West"
+	room_id = "office_kcorp_me"
+	mappath = "_maps/RandomRooms/backstreets/medium_west/office_kcorp.dmm"
+
 /datum/map_template/random_room/backstreets/medium_west/officemwa
 	name = "Office - Medium West A"
 	room_id = "office_mwa"
