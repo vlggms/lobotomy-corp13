@@ -8,7 +8,7 @@
 	resistance_flags = INDESTRUCTIBLE
 
 	var/list/level_0 = list(
-		/obj/item/food/fish,
+//		/obj/item/food/fish,
 	)
 	var/list/level_1 = list(
 		/obj/item/food/meat/slab/sweeper,
