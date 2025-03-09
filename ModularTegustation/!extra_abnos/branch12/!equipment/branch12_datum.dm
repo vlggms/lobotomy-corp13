@@ -120,6 +120,10 @@
 	cost = 50
 
 //Dearest Friends - Childhood nightmares
+/datum/ego_datum/weapon/branch12/nightmares
+	item_path = /obj/item/ego_weapon/branch12/nightmares
+	cost = 35
+
 /datum/ego_datum/armor/branch12/nightmares
 	item_path = /obj/item/clothing/suit/armor/ego_gear/branch12/nightmares
 	cost = 50
