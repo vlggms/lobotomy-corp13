@@ -257,6 +257,91 @@
 		user.deal_damage(force*0.25, damtype)
 		to_chat(user, span_boldwarning("They are watching... Judging..."))
 
+/obj/item/ego_weapon/branch12/nightmares
+	name = "childhood nightmares"
+	desc = "A small side satchel with throwable items inside, the contents inside vary in appearance between people."
+	special = "This weapon has a ranged attack, which throws out small plushies which inflict metal decay on hit, this weapon also inflicts metal decay on hit. You gain plushies to throw by attacking targets."
+	icon_state = "nightmares"
+	inhand_icon_state = "nightmares"
+	force = 25
+	damtype = WHITE_DAMAGE
+	hitsound = 'sound/abnormalities/happyteddy/teddy_guard.ogg'
+	attribute_requirements = list(
+							PRUDENCE_ATTRIBUTE = 40
+							)
+	var/inflicted_decay = 2
+	var/ranged_cooldown
+	var/ranged_cooldown_time = 1 SECONDS
+	var/ranged_range = 7
+	var/max_stored_pals = 3
+	var/stored_pals = 3
+
+/obj/item/ego_weapon/branch12/nightmares/examine(mob/user)
+	. = ..()
+	. += span_notice("This satchel is currently holding [stored_pals] out of [max_stored_pals] friends!")
+
+/obj/item/ego_weapon/branch12/nightmares/attack(mob/living/target, mob/living/user)
+	. = ..()
+	if(isliving(target))
+		target.apply_lc_metal_decay(inflicted_decay)
+	if(stored_pals < max_stored_pals)
+		if(prob(60))
+			to_chat(user, span_nicegreen("Hey! You found another friend."))
+			stored_pals++
+
+/obj/item/ego_weapon/branch12/nightmares/afterattack(atom/A, mob/living/user, proximity_flag, params)
+	if(ranged_cooldown > world.time || !CanUseEgo(user) || (stored_pals < 1))
+		return
+	var/turf/target_turf = get_turf(A)
+	if(!istype(target_turf) || (get_dist(user, target_turf) < 3) || !(target_turf in view(ranged_range, user)))
+		return
+	..()
+	ranged_cooldown = world.time + ranged_cooldown_time
+	stored_pals--
+	playsound(src, 'sound/weapons/throwhard.ogg', 25, TRUE)
+	var/mob/living/simple_animal/hostile/nightmare_toy/thrown_object = new(get_turf(user))
+	thrown_object.throw_at(target_turf, 10, 3, user, spin = TRUE)
+
+/mob/living/simple_animal/hostile/nightmare_toy
+	name = "Forgotten Plush"
+	desc = "Have I seen them before?"
+	icon = 'icons/obj/plushes.dmi'
+	icon_state = "plushie_slime"
+	icon_living = "plushie_slime"
+	gender = NEUTER
+	resize = 0.75
+	density = FALSE
+	mob_biotypes = MOB_ROBOTIC
+	faction = list("neutral")
+	health = 100
+	maxHealth = 100
+	healable = FALSE
+	melee_damage_lower = 4
+	melee_damage_upper = 6
+	melee_damage_type = WHITE_DAMAGE
+	damage_coeff = list(RED_DAMAGE = 1.5, WHITE_DAMAGE = 0.5, BLACK_DAMAGE = 1, PALE_DAMAGE = 2)
+	stat_attack = HARD_CRIT
+	del_on_death = TRUE
+	attack_verb_continuous = "punches"
+	attack_verb_simple = "punch"
+	attack_sound = 'sound/abnormalities/happyteddy/teddy_guard.ogg'
+	var/list/plushies = list("debug", "plushie_snake", "plushie_lizard", "plushie_spacelizard", "plushie_slime", "plushie_nuke", "plushie_pman", "plushie_awake", "plushie_h", "goat", "fumo_cirno")
+	var/inflicted_decay = 4
+
+/mob/living/simple_animal/hostile/nightmare_toy/Initialize()
+	shuffle_inplace(plushies)
+	icon_state = plushies[1]
+	icon_living = plushies[1]
+	QDEL_IN(src, (10 SECONDS))
+	. = ..()
+	faction = list("neutral")
+
+/mob/living/simple_animal/hostile/nightmare_toy/AttackingTarget(atom/attacked_target)
+	. = ..()
+	if(isliving(attacked_target))
+		var/mob/living/L = attacked_target
+		L.apply_lc_metal_decay(inflicted_decay)
+
 // --------WAW---------
 //Plagiarism
 /obj/item/ego_weapon/branch12/plagiarism

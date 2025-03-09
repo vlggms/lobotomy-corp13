@@ -33,7 +33,7 @@
 	work_damage_type = WHITE_DAMAGE
 
 	ego_list = list(
-		//datum/ego_datum/weapon/nightmares,
+		/datum/ego_datum/weapon/branch12/nightmares,
 		/datum/ego_datum/armor/branch12/nightmares,
 	)
 	//gift_type =  /datum/ego_gifts/nightmares
