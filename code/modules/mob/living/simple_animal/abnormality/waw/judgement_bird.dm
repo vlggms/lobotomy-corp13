@@ -201,6 +201,8 @@
 		var/mob/living/carbon/human/L = attacked_target
 		L.Knockdown(20)
 		var/obj/item/held = L.get_active_held_item()
+		if(SSmaptype.maptype == "office")
+			return
 		L.dropItemToGround(held) //Drop weapon
 
 /mob/living/simple_animal/hostile/runawaybird/patrol_select()

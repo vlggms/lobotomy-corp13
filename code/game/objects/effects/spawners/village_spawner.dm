@@ -6,7 +6,7 @@
 	icon_state = ""
 	room_type = "village"
 	spawn_delay_min = 8200
-	spawn_delay_max = 11200
+	spawn_delay_max = 44800
 
 /datum/map_template/random_room/backstreets/resurgence_village
 	name = "Resurgence Village"
