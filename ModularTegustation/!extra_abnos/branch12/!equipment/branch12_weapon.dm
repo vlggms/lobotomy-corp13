@@ -361,7 +361,7 @@
 							FORTITUDE_ATTRIBUTE = 80
 							)
 	var/healing_on_hit = 5
-	var/inflicted_bleed = 1
+	var/inflicted_bleed = 3
 
 /obj/item/ego_weapon/branch12/passion/attack(mob/living/target, mob/living/user)
 	if(!CanUseEgo(user))
@@ -537,11 +537,11 @@
 /obj/item/ego_weapon/branch12/mini/insanity
 	name = "pulsating insanity"
 	desc = "I could scarcely contain my feelings of triumph"
-	special = "Upon hitting living target, the attacker would inflict a good amount of bleed. When this weapon is thrown, if it hits a mob you will teleport to the weapon and instantly pick it up. Also, the throwing attack deals an extra 6% more damager per bleed on target."
+	special = "Upon hitting living target, the attacker would inflict a low amount of bleed. When this weapon is thrown, if it hits a mob you will teleport to the weapon and instantly pick it up. Also, the throwing attack deals an extra 10% more damager per bleed on target. (Max of 500% more damage)"
 	icon_state = "insanity"
 	force = 48
 	swingstyle = WEAPONSWING_LARGESWEEP
-	throwforce = 100
+	throwforce = 96
 	throw_speed = 5
 	throw_range = 7
 	damtype = PALE_DAMAGE
@@ -554,10 +554,10 @@
 							TEMPERANCE_ATTRIBUTE = 80,
 							JUSTICE_ATTRIBUTE = 80
 							)
-	var/inflicted_bleed = 5
+	var/inflicted_bleed = 2
 	var/detonate_cooldown
-	var/detonate_cooldown_time = 8 SECONDS
-	var/extra_damage_per_bleed = 0.08
+	var/detonate_cooldown_time = 5 SECONDS
+	var/extra_damage_per_bleed = 0.1
 
 /obj/item/ego_weapon/branch12/mini/insanity/on_thrown(mob/living/carbon/user, atom/target)//No, clerks cannot hilariously kill themselves with this
 	if(!CanUseEgo(user))
