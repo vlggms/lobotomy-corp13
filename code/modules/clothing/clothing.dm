@@ -62,6 +62,9 @@
 	/// A lazily initiated "food" version of the clothing for moths
 	var/obj/item/food/clothing/moth_snack
 
+	/// Exclusive to LC13 - Toggles whether or not fire armor shows up in tags. Hides the armor value from the player if automatically generated.
+	var/fire_display = TRUE
+
 /obj/item/clothing/Initialize()
 	if((clothing_flags & VOICEBOX_TOGGLABLE))
 		actions_types += /datum/action/item_action/toggle_voice_box
@@ -72,6 +75,13 @@
 		LoadComponent(/datum/component/bloodysoles)
 	if(!icon_state)
 		item_flags |= ABSTRACT
+	var/burnvalue = armor.getRating(FIRE)
+	if(!burnvalue)
+		var/redvalue = armor.getRating(RED_DAMAGE)
+		if(redvalue > 0)
+			redvalue = (redvalue * 0.5)
+		armor = armor.modifyRating(FIRE = redvalue)
+		fire_display = FALSE
 
 /obj/item/clothing/MouseDrop(atom/over_object)
 	. = ..()
@@ -327,7 +337,7 @@
 
 	if(LAZYLEN(durability_list))
 		durability_list.Cut()
-	if(armor.fire)
+	if(armor.fire && fire_display)
 		durability_list += list("FIRE" = armor.fire)
 	if(armor.acid)
 		durability_list += list("ACID" = armor.acid)
@@ -361,6 +371,7 @@
 		readout += "\nYou can add numbers together by putting the symbols in descending order from left to right. You’d add all of the symbols’ individual values together to get the total value. For example, VI is 5 + 1 or 6."
 		readout += "\nYou can also subtract numbers from each other by placing a symbol with a smaller value to the left of one with a larger value. The value of the smaller symbol is subtracted from that of the larger symbol to get the total value, so IV is 5 - 1, or 4."
 		readout += "\nExamples: \nIX = 10-1 = 9. \nVI = 5+1 = 6. \nVIII = 5+1+1+1 = 8."
+		readout += "\nAdditionally, all armors that have an armor value for red damage will have half (if positive) of that value in an armor value for fire damage if not explicitly indicated."
 		to_chat(usr, "[readout.Join()]")
 
 /**
