@@ -162,6 +162,7 @@
 /obj/item/ego_weapon/ranged/branch12/starry_night
 	name = "One Starry Night"
 	desc = "A gun that's made to take out pests."
+	special = "This weapon deal 1% more damage to abnormalities, per 1% of their understanding. If they have max understanding, this weapon also reduces the target's white resistance by 20% for 5 seconds."
 	icon_state = "starry_night"
 	inhand_icon_state = "starry_night"
 	force = 12
@@ -178,6 +179,21 @@
 	icon_state = "whitelaser"
 	damage = 22
 	damage_type = WHITE_DAMAGE
+
+/obj/projectile/ego_bullet/branch12/starry_night/on_hit(atom/target, blocked = FALSE)
+	. = ..()
+	if(!istype(target, /mob/living/simple_animal/hostile/abnormality))
+		return
+	var/mob/living/simple_animal/hostile/abnormality/A = target
+	var/extra_damage = 0
+	if(A.datum_reference)
+		extra_damage = (A.datum_reference.understanding / A.datum_reference.max_understanding)
+		A.deal_damage(damage*extra_damage, "white")
+		if(A.datum_reference.understanding == A.datum_reference.max_understanding)
+			if(!A.has_status_effect(/datum/status_effect/rend_white))
+				new /obj/effect/temp_visual/cult/sparks(get_turf(A))
+				A.apply_status_effect(/datum/status_effect/rend_white)
+
 
 //Slot Machine
 /obj/item/ego_weapon/branch12/mini/slot_machine
@@ -521,9 +537,9 @@
 /obj/item/ego_weapon/branch12/mini/insanity
 	name = "pulsating insanity"
 	desc = "I could scarcely contain my feelings of triumph"
-	special = "Upon hitting living target, the attacker would inflict a good amount of bleed."
+	special = "Upon hitting living target, the attacker would inflict a good amount of bleed. When this weapon is thrown, if it hits a mob you will teleport to the weapon and instantly pick it up. Also, the throwing attack deals an extra 6% more damager per bleed on target."
 	icon_state = "insanity"
-	force = 52
+	force = 48
 	swingstyle = WEAPONSWING_LARGESWEEP
 	throwforce = 100
 	throw_speed = 5
@@ -539,6 +555,47 @@
 							JUSTICE_ATTRIBUTE = 80
 							)
 	var/inflicted_bleed = 5
+	var/detonate_cooldown
+	var/detonate_cooldown_time = 8 SECONDS
+	var/extra_damage_per_bleed = 0.08
+
+/obj/item/ego_weapon/branch12/mini/insanity/on_thrown(mob/living/carbon/user, atom/target)//No, clerks cannot hilariously kill themselves with this
+	if(!CanUseEgo(user))
+		return
+	return ..()
+
+/obj/item/ego_weapon/branch12/mini/insanity/throw_impact(atom/hit_atom, datum/thrownthing/throwingdatum)
+	//var/caught = hit_atom.hitby(src, FALSE, TRUE, throwingdatum=throwingdatum)
+	. = ..()
+	if(!ismob(hit_atom) || detonate_cooldown > world.time)
+		return
+	if(thrownby && !.)
+		detonate_cooldown = world.time + detonate_cooldown_time
+		new /obj/effect/temp_visual/dir_setting/cult/phase/out (get_turf(thrownby))
+		thrownby.forceMove(get_turf(src))
+		new /obj/effect/temp_visual/dir_setting/cult/phase (get_turf(thrownby))
+		playsound(src, 'sound/magic/exit_blood.ogg', 100, FALSE, 4)
+		src.attack_hand(thrownby)
+		bleed_boost(hit_atom, thrownby)
+		if(thrownby.get_active_held_item() == src) //if our attack_hand() picks up the item...
+			visible_message(span_warning("[thrownby] teleports to [src]!"))
+
+/obj/item/ego_weapon/branch12/mini/insanity/proc/bleed_boost(hit_target, thrower)
+	if(!ismob(hit_target) && !iscarbon(thrower))
+		return
+	var/mob/living/T = hit_target
+	var/mob/living/carbon/U = thrower
+	var/datum/status_effect/stacking/lc_bleed/B = T.has_status_effect(/datum/status_effect/stacking/lc_bleed)
+	if(B)
+		var/obj/effect/infinity/P = new get_turf(T)
+		P.color = COLOR_RED
+		var/bleed_buff = B.stacks * extra_damage_per_bleed
+		var/userjust = (get_modified_attribute_level(U, JUSTICE_ATTRIBUTE))
+		var/justicemod = 1 + userjust / 100
+		var/extra_damage = throwforce
+		extra_damage *= justicemod
+		T.deal_damage(extra_damage*bleed_buff, damtype)
+		visible_message(span_warning("[U] punctures [T] with [src]!"))
 
 /obj/item/ego_weapon/branch12/mini/insanity/attack(mob/living/target, mob/living/user)
 	. = ..()
@@ -634,7 +691,8 @@
 /obj/item/ego_weapon/branch12/time_sands
 	name = "sands of time"
 	desc = "And so it was lost."
-	icon_state = "pharoh"
+	icon_state = "pharaoh"
+	special = "This weapon inflicts burn on target and self. This weapon also deals 1% more damage per burn on target, and 4% more damage per burn on user."
 	force = 80
 	damtype = RED_DAMAGE
 	attack_verb_continuous = list("pokes", "jabs", "tears", "lacerates", "gores")
@@ -646,6 +704,25 @@
 							TEMPERANCE_ATTRIBUTE = 100,
 							JUSTICE_ATTRIBUTE = 80
 							)
+	var/extra_damage_target_burn = 0.01
+	var/extra_damage_self_burn = 0.04
+	var/inflicted_burn = 4
+	var/gained_burn = 2
 
-
-
+/obj/item/ego_weapon/branch12/time_sands/attack(mob/living/target, mob/living/user)
+	var/datum/status_effect/stacking/lc_burn/TB = target.has_status_effect(/datum/status_effect/stacking/lc_burn)
+	var/datum/status_effect/stacking/lc_burn/UB = user.has_status_effect(/datum/status_effect/stacking/lc_burn)
+	var/target_burn_buff
+	var/user_burn_buff
+	if(TB)
+		target_burn_buff = TB.stacks * extra_damage_target_burn
+	if(TB)
+		user_burn_buff = UB.stacks * extra_damage_self_burn
+	var/old_force = force
+	force = force * (1 + target_burn_buff + user_burn_buff)
+	. = ..()
+	force = old_force
+	if(isliving(target))
+		target.apply_lc_burn(inflicted_burn)
+	if(isliving(user))
+		user.apply_lc_burn(gained_burn)

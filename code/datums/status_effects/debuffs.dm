@@ -1232,6 +1232,7 @@
 		owner.adjustBruteLoss(stacks*4) // x4 on non humans
 	new /obj/effect/temp_visual/damage_effect/bleed(get_turf(owner))
 	stacks = round(stacks/2)
+	new_stack = TRUE
 	if(stacks == 0)
 		qdel(src)
 
