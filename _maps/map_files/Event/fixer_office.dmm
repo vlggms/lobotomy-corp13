@@ -75,6 +75,10 @@
 /obj/machinery/light{
 	dir = 1
 	},
+/obj/item/implanter,
+/obj/item/implanter,
+/obj/item/implanter,
+/obj/item/implanter,
 /turf/open/floor/wood,
 /area/city/house)
 "au" = (
@@ -101,6 +105,31 @@
 /area/city/backstreets_alley)
 "ax" = (
 /obj/structure/rack,
+/obj/item/locator{
+	name = "backstreets locator";
+	desc = "Used to track targets with embedded tracking implants.";
+	tracking_range = 150
+	},
+/obj/item/locator{
+	name = "backstreets locator";
+	desc = "Used to track targets with embedded tracking implants.";
+	tracking_range = 150
+	},
+/obj/item/locator{
+	name = "backstreets locator";
+	desc = "Used to track targets with embedded tracking implants.";
+	tracking_range = 150
+	},
+/obj/item/locator{
+	name = "backstreets locator";
+	desc = "Used to track targets with embedded tracking implants.";
+	tracking_range = 150
+	},
+/obj/item/locator{
+	name = "backstreets locator";
+	desc = "Used to track targets with embedded tracking implants.";
+	tracking_range = 150
+	},
 /turf/open/floor/wood,
 /area/city/house)
 "ay" = (
@@ -350,6 +379,9 @@
 	},
 /area/city/backstreets_alley)
 "bB" = (
+/obj/effect/turf_decal/stripes{
+	dir = 1
+	},
 /obj/structure/chair/comfy,
 /turf/open/floor/wood,
 /area/city/house)
@@ -4144,11 +4176,6 @@
 /area/city/backstreets_alley)
 "qO" = (
 /obj/structure/timelock,
-/obj/machinery/light{
-	dir = 4;
-	color = "#f52047"
-	},
-/obj/effect/turf_decal/stripes,
 /turf/open/floor/plating/ashplanet/rocky,
 /area/city/house)
 "qR" = (
@@ -7470,6 +7497,17 @@
 /area/city/house)
 "FK" = (
 /obj/structure/rack,
+/obj/item/crowbar,
+/obj/item/crowbar,
+/obj/item/crowbar,
+/obj/item/crowbar,
+/obj/item/crowbar,
+/obj/item/crowbar,
+/obj/item/crowbar,
+/obj/item/crowbar,
+/obj/item/crowbar,
+/obj/item/crowbar,
+/obj/item/crowbar,
 /turf/open/floor/mineral/titanium/tiled,
 /area/city/house)
 "FL" = (
@@ -7663,11 +7701,12 @@
 	},
 /area/city/backstreets_alley)
 "GE" = (
+/obj/effect/turf_decal/stripes,
 /obj/machinery/door/poddoor{
 	id = "outskirtslockdown";
 	name = "Outskirts Lockdown Door"
 	},
-/turf/open/floor/engine,
+/turf/open/floor/plating/ashplanet/rocky,
 /area/city/house)
 "GF" = (
 /obj/machinery/light,
@@ -8890,7 +8929,7 @@
 "MA" = (
 /obj/effect/turf_decal/box,
 /obj/structure/fluff/arc{
-	desc = "A slim robot with a spear in place of its hand.";
+	desc = "A insect augmented employee of the fallen Gene corp. Word on the street says that they banded into common backstreet gangs after the Smoke War.";
 	icon = 'ModularTegustation/Teguicons/32x32.dmi';
 	icon_state = "gcorp1";
 	name = "gene corp remnant statue";
@@ -10548,11 +10587,6 @@
 	density = 1
 	},
 /area/city/backstreets_alley)
-"Ut" = (
-/obj/structure/timelock,
-/obj/effect/turf_decal/stripes,
-/turf/open/floor/plating/ashplanet/rocky,
-/area/city/house)
 "Uv" = (
 /obj/effect/turf_decal/siding/thinplating/dark/corner,
 /obj/structure/railing{
@@ -11046,13 +11080,24 @@
 /turf/open/floor/plating,
 /area/city/backstreets_alley)
 "Xh" = (
-/obj/structure/timelock,
+/obj/structure/rack,
 /obj/machinery/light{
-	dir = 8;
-	color = "#f52047"
+	dir = 1
 	},
-/obj/effect/turf_decal/stripes,
-/turf/open/floor/plating/ashplanet/rocky,
+/obj/item/implantcase/tracking,
+/obj/item/implantcase/tracking,
+/obj/item/implantcase/tracking,
+/obj/item/implantcase/tracking,
+/obj/item/implantcase/tracking,
+/obj/item/implantcase/tracking,
+/obj/item/implantcase/tracking,
+/obj/item/implantcase/tracking,
+/obj/item/implantcase/tracking,
+/obj/item/implantcase/tracking,
+/obj/item/implantcase/tracking,
+/obj/item/implantcase/tracking,
+/obj/item/implantcase/tracking,
+/turf/open/floor/wood,
 /area/city/house)
 "Xi" = (
 /obj/structure/railing{
@@ -47830,8 +47875,9 @@ Oq
 Oq
 Oq
 Oq
-Xh
+qO
 GE
+nS
 qU
 Hz
 Ne
@@ -47839,7 +47885,6 @@ tn
 Ne
 Hz
 dx
-QG
 bB
 lk
 cP
@@ -48087,8 +48132,9 @@ Oq
 Oq
 Oq
 Oq
-Ut
+qO
 GE
+nS
 Hz
 Hz
 Hz
@@ -48097,7 +48143,6 @@ Hz
 Hz
 nS
 QG
-Pt
 Pt
 Pt
 Pt
@@ -48346,6 +48391,7 @@ Oq
 Oq
 qO
 GE
+nS
 us
 Hz
 Ne
@@ -48354,7 +48400,6 @@ Ne
 Hz
 tW
 QG
-Pt
 Pt
 Pt
 Pt
@@ -52210,7 +52255,7 @@ FZ
 Pt
 xw
 ZY
-at
+Xh
 Pt
 BC
 Pt
