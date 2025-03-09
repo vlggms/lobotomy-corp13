@@ -895,3 +895,16 @@
 	)
 	icon_state = "ordeal_silkweaving_book"
 	remarks = list("Make sure that you always have your weaving knife on you? I already knew that.", "Using sweepers as silk? That is brand new...", "Huh, it says here that 'Be careful around the fixer association...' ", "This book smells quite well, Like it was just made just for me!", "A rookie must have made this page, or they forgot to spell check it before printing...", "Wait, how will this turn a profit? I spent like 1000 ahn for this book!")
+
+/obj/item/book/granter/crafting_recipe/carnival/weaving_echo
+	name = "Weaving Armor: Echo Office"
+	desc = "A weaving book that teaches you how to weave echo office armor. Carnival approved!"
+	pages_to_mastery = 0
+	crafting_recipe_types = list(
+		/datum/crafting_recipe/neon_maid,
+		/datum/crafting_recipe/reverie_stars,
+		/datum/crafting_recipe/plated_cover,
+		/datum/crafting_recipe/faux_fur_coat
+	)
+	icon_state = "echo_book"
+	remarks = list("Make sure that you always have your weaving knife on you? I already knew that.", "Using sweepers as silk? That is brand new...", "Huh, it says here that 'Be careful around the fixer association...' ", "This book smells quite well, Like it was just made just for me!", "A rookie must have made this page, or they forgot to spell check it before printing...", "Wait, how will this turn a profit? I spent like 1000 ahn for this book!")
