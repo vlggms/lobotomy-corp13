@@ -1233,6 +1233,7 @@
 		owner.adjustBruteLoss(stacks*4) // x4 on non humans
 	new /obj/effect/temp_visual/damage_effect/bleed(get_turf(owner))
 	stacks = round(stacks/2)
+	new_stack = TRUE
 	if(stacks == 0)
 		qdel(src)
 
@@ -1261,6 +1262,67 @@
 	var/datum/status_effect/stacking/lc_bleed/B = src.has_status_effect(/datum/status_effect/stacking/lc_bleed)
 	if(!B)
 		src.apply_status_effect(/datum/status_effect/stacking/lc_bleed, stacks)
+	else
+		B.add_stacks(stacks)
+
+#define STATUS_EFFECT_LCMETALDECAY /datum/status_effect/stacking/lc_metal_decay // Deals white damage every 5 sec, can't be applied to godmode (contained abos)
+/datum/status_effect/stacking/lc_metal_decay
+	id = "lc_md"
+	alert_type = /atom/movable/screen/alert/status_effect/lc_metal_decay
+	max_stacks = 50
+	tick_interval = 5 SECONDS
+	consumed_on_threshold = FALSE
+	var/new_stack = FALSE
+	var/safety = TRUE
+
+/atom/movable/screen/alert/status_effect/lc_metal_decay
+	name = "Metal Decay"
+	desc = "Your mind is decaying!!"
+	icon = 'ModularTegustation/Teguicons/status_sprites.dmi'
+	icon_state = "lacerate"
+
+/datum/status_effect/stacking/lc_metal_decay/can_have_status()
+	return (owner.stat != DEAD || !(owner.status_flags & GODMODE))
+
+/datum/status_effect/stacking/lc_metal_decay/add_stacks(stacks_added)
+	..()
+	new_stack = TRUE
+
+//Ticks for passive decay.
+/datum/status_effect/stacking/lc_metal_decay/tick()
+	if(!can_have_status())
+		qdel(src)
+
+	statues_damage()
+
+//Proc for dealing damage, lets it be actived from other sources.
+/datum/status_effect/stacking/lc_metal_decay/proc/statues_damage(passive_decay = TRUE)
+	to_chat(owner, "<span class='warning'>Your mind deteriorates!!</span>")
+	owner.playsound_local(owner, 'sound/items/haunted/ghostitemattack.ogg', 50, TRUE)
+	if(!ishuman(owner))
+		owner.apply_damage(stacks * 4, WHITE_DAMAGE, null, owner.run_armor_check(null, WHITE_DAMAGE))
+	else
+		var/mob/living/carbon/human/status_holder = owner
+		status_holder.adjustSanityLoss(stacks)
+	new /obj/effect/temp_visual/damage_effect/white(get_turf(owner))
+	statues_decay(passive_decay)
+
+/datum/status_effect/stacking/lc_metal_decay/proc/statues_decay(passive_decay = TRUE)
+	if(passive_decay)
+		if(safety)
+			if(new_stack)
+				stacks = round(stacks/2)
+				new_stack = FALSE
+			else
+				qdel(src)
+	else
+		stacks = round(stacks/2)
+
+//Mob Proc
+/mob/living/proc/apply_lc_metal_decay(stacks)
+	var/datum/status_effect/stacking/lc_metal_decay/B = src.has_status_effect(/datum/status_effect/stacking/lc_metal_decay)
+	if(!B)
+		src.apply_status_effect(/datum/status_effect/stacking/lc_metal_decay, stacks)
 	else
 		B.add_stacks(stacks)
 
