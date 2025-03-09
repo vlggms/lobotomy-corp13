@@ -1,8 +1,8 @@
-/obj/item/book/granter/action/skill/alignment
-	name = "Level 4 Skill: Alignment"
+/obj/item/book/granter/action/skill/fishing/alignment
+	name = "Level 3 Skill: Alignment"
 	actionname = "Alignment"
 	granted_action = /datum/action/cooldown/fishing/alignment
-	level = 4
+	level = 3
 	custom_premium_price = 2400
 
 /datum/action/cooldown/fishing/alignment
@@ -20,11 +20,11 @@
 		to_chat(user, span_notice("You shift your deity's planet to align with earth."))
 		break
 
-/obj/item/book/granter/action/skill/planetstop
-	name = "Level 4 Skill: A Moment in Time"
+/obj/item/book/granter/action/skill/fishing/planetstop
+	name = "Level 3 Skill: A Moment in Time"
 	actionname = "A Moment in Time"
 	granted_action = /datum/action/cooldown/fishing/planetstop
-	level = 4
+	level = 3
 	custom_premium_price = 2400
 
 /datum/action/cooldown/fishing/planetstop
@@ -39,11 +39,11 @@
 	for(var/mob/M in GLOB.player_list)
 		to_chat(M, span_userdanger("The planets have stopped moving."))
 
-/obj/item/book/granter/action/skill/supernova
-	name = "Level 4 Skill: Supernova"
+/obj/item/book/granter/action/skill/fishing/supernova
+	name = "Level 3 Skill: Supernova"
 	actionname = "Supernova"
 	granted_action = /datum/action/cooldown/fishing/supernova
-	level = 4
+	level = 3
 	custom_premium_price = 2400
 
 /datum/action/cooldown/fishing/supernova
@@ -84,11 +84,11 @@
 		to_chat(user, span_userdanger("You lost sight of the planet...?"))
 
 //Alignment 2
-/obj/item/book/granter/action/skill/alignment2
-	name = "Level 4 Skill: Alignment II"
+/obj/item/book/granter/action/skill/fishing/alignment2
+	name = "Level 3 Skill: Alignment II"
 	actionname = "Alignment II"
 	granted_action = /datum/action/cooldown/fishing/alignment2
-	level = 4
+	level = 3
 	custom_premium_price = 2400
 
 /datum/action/cooldown/fishing/alignment2
