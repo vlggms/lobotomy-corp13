@@ -1029,6 +1029,60 @@
 	owner.cut_overlay(statuseffectvisual)
 	return ..()
 
+/datum/status_effect/metal_detonate
+	id = "metal_detonate"
+	duration = 5 SECONDS
+	alert_type = null
+	status_type = STATUS_EFFECT_REFRESH
+	var/statuseffectvisual
+
+/datum/status_effect/metal_detonate/on_apply()
+	. = ..()
+	to_chat(owner, "<span class='warning'>You are marked for a metal detonation!</span>")
+	var/mutable_appearance/effectvisual = mutable_appearance('icons/obj/clockwork_objects.dmi', "judicial")
+	effectvisual.pixel_x = -owner.pixel_x
+	effectvisual.pixel_y = -owner.pixel_y
+	statuseffectvisual = effectvisual
+	owner.add_overlay(statuseffectvisual)
+
+/datum/status_effect/metal_detonate/proc/shatter()
+	playsound(owner, 'sound/weapons/ego/shattering_window.ogg', 35, 0, 20)
+	new /obj/effect/temp_visual/revenant(get_turf(owner))
+	var/datum/status_effect/stacking/lc_metal_decay/D = owner.has_status_effect(/datum/status_effect/stacking/lc_metal_decay)
+	if(D)
+		if(!ishuman(owner))
+			owner.apply_damage(D.stacks * 4, WHITE_DAMAGE, null, owner.run_armor_check(null, WHITE_DAMAGE))
+		else
+			var/mob/living/carbon/human/status_holder = owner
+			status_holder.adjustSanityLoss(D.stacks)
+		D.stacks -= 2
+	qdel(src)
+
+/datum/status_effect/metal_detonate/on_remove()
+	owner.cut_overlay(statuseffectvisual)
+	return ..()
+
+#define MOB_FADING /datum/status_effect/fade_away
+/datum/status_effect/fade_away
+	id = "fade_away"
+	duration = 90 SECONDS
+	alert_type = /atom/movable/screen/alert/status_effect/fade_away
+	status_type = STATUS_EFFECT_UNIQUE
+
+/atom/movable/screen/alert/status_effect/fade_away
+	name = "Fade away..."
+	desc = "You are fading away..."
+	icon = 'icons/mob/actions/actions_spells.dmi'
+	icon_state = "skeleton"
+
+/datum/status_effect/fade_away/tick()
+	to_chat(owner, "<span class='warning'>You feel yourself fading...</span>")
+	if(owner.alpha > 50)
+		owner.alpha = (owner.alpha-3)
+
+/datum/status_effect/fade_away/on_remove()
+	owner.dust()
+
 //update_stamina() is move_to_delay = (initial(move_to_delay) + (staminaloss * 0.06))
 // 100 stamina damage equals 6 additional move_to_delay. So 167*0.06 = 10.02
 
@@ -1297,7 +1351,7 @@
 //Proc for dealing damage, lets it be actived from other sources.
 /datum/status_effect/stacking/lc_metal_decay/proc/statues_damage(passive_decay = TRUE)
 	to_chat(owner, "<span class='warning'>Your mind deteriorates!!</span>")
-	owner.playsound_local(owner, 'sound/items/haunted/ghostitemattack.ogg', 50, TRUE)
+	owner.playsound_local(owner, 'sound/items/haunted/ghostitemattack.ogg', 40, FALSE)
 	if(!ishuman(owner))
 		owner.apply_damage(stacks * 4, WHITE_DAMAGE, null, owner.run_armor_check(null, WHITE_DAMAGE))
 	else

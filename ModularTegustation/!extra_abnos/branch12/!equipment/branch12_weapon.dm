@@ -8,6 +8,7 @@
 //Weapons are simple for now.
 // --------ZAYIN---------
 //Signal
+//TODO: Make this weapon inflict more Metal Decay depending on the amount of sanity you have.
 /obj/item/ego_weapon/ranged/branch12/mini/signal
 	name = "signal"
 	desc = "It continued calling out, expecting no response in return"
@@ -39,6 +40,7 @@
 /obj/item/ego_weapon/branch12/mini/serenity
 	name = "serenity"
 	desc = "By praying for its protection, the statue might grant you its gift if you�re worthy."
+	special = "Every time you attack with this weapon, you heal SP. You heal more SP per status effect you have."
 	icon_state = "serenity"
 	force = 12
 	damtype = WHITE_DAMAGE
@@ -46,11 +48,22 @@
 	attack_verb_continuous = list("slices", "slashes", "stabs")
 	attack_verb_simple = list("slice", "slash", "stab")
 	hitsound = 'sound/weapons/fixer/generic/knife3.ogg'
+	var/heal_per_status = 5
+
+/obj/item/ego_weapon/branch12/mini/serenity/attack(mob/living/target, mob/living/user)
+	. = ..()
+	if(!ishuman(user))
+		return
+	var/mob/living/carbon/human/H = user
+	H.adjustSanityLoss((user.status_effects.len)*(-heal_per_status))
 
 //Age of Man
 /obj/item/ego_weapon/branch12/age
 	name = "age of man"
 	desc = "A copper sword, freshly forged."
+	special = "Using the weapon in hand, you will revive all fallen humans within 5 sqrs. Revived humans will then slowly decay over the course of 1.5 minutes. But, they will gain extra attributes for the duration of the decay. <br>\
+	Also, This weapon inflicts Metal Decay on hit. If the target has 15+ Metal Decay, inflict more Metal Decay <br>\
+	(Metal Decay: Deals White damage every 5 seconds, equal to it's stack. If it is on a mob, then it deal *4 more damage.)"
 	icon_state = "age_of_man"
 	force = 14
 	damtype = WHITE_DAMAGE
@@ -58,28 +71,132 @@
 	attack_verb_continuous = list("slices", "slashes")
 	attack_verb_simple = list("slice", "slash")
 	hitsound = 'sound/weapons/fixer/generic/knife3.ogg'
+	var/pray_cooldown
+	var/pray_cooldown_time = 60 SECONDS
+	var/attribute_buff = 60
+	var/range = 5
+	var/inflicted_decay = 2
+	var/target_stacks = 15
+	var/inflicted_extra_decay = 3
+
+/obj/item/ego_weapon/branch12/age/attack(mob/living/target, mob/living/user)
+	. = ..()
+	if(isliving(target))
+		target.apply_lc_metal_decay(inflicted_decay)
+	var/datum/status_effect/stacking/lc_metal_decay/D = target.has_status_effect(/datum/status_effect/stacking/lc_metal_decay)
+	if(D)
+		if(D.stacks > target_stacks)
+			target.apply_lc_metal_decay(inflicted_extra_decay)
+
+/obj/item/ego_weapon/branch12/age/attack_self(mob/user)
+	if(!CanUseEgo(user))
+		return
+	if(pray_cooldown > world.time)
+		return
+	pray_cooldown = world.time + pray_cooldown_time
+	var/success = FALSE
+	for(var/mob/living/carbon/human/human in view(range, get_turf(src)))
+		if (human == user)
+			continue
+		if (human.stat == DEAD)
+			success = TRUE
+			human.revive(full_heal = TRUE, admin_revive = TRUE)
+			human.grab_ghost(force = TRUE) // even suicides
+			to_chat(human, span_spider("The bells are ringing. It's not your day to die... At least not for now..."))
+			human.apply_status_effect(/datum/status_effect/fade_away)
+			human.adjust_attribute_buff(FORTITUDE_ATTRIBUTE, attribute_buff)
+			human.adjust_attribute_buff(PRUDENCE_ATTRIBUTE, attribute_buff)
+			human.adjust_attribute_buff(TEMPERANCE_ATTRIBUTE, attribute_buff)
+			human.adjust_attribute_buff(JUSTICE_ATTRIBUTE, attribute_buff)
+	if(success)
+		user.visible_message(span_spider("May the dead rise once more, to fight one last time..."))
+		playsound(user, 'sound/abnormalities/silence/church.ogg', 50, TRUE, 4)
 
 //Becoming
 /obj/item/ego_weapon/branch12/becoming
 	name = "becoming"
 	desc = "A hammer made with the desire to become better"
+	special = "When this weapon hits a target with metal detonation, it will cause it to 'Shatter', triggering a metal detonation and dealing double damage. This weapon can also change forms by being used in hand.<br>\
+	(Metal Detonation: Does nothing until it is 'Shattered.' Once it is 'Shattered,' it will cause Metal Decay to trigger without reducing it's stack. Weapons that cause 'Shatter' gain other benefits as well.) <br>\
+	(Metal Decay: Deals White damage every 5 seconds, equal to it's stack. If it is on a mob, then it deal *4 more damage.)"
 	icon_state = "becoming"
 	force = 14
-	damtype = RED_DAMAGE
+	damtype = BLACK_DAMAGE
 	attack_verb_continuous = list("slams", "strikes", "smashes")
 	attack_verb_simple = list("slam", "strike", "smash")
+	var/damage_multiplier = 2
+
+/obj/item/ego_weapon/branch12/becoming/attack(mob/living/target, mob/living/user)
+	var/old_force_multiplier = force_multiplier
+	if(isliving(target))
+		var/datum/status_effect/metal_detonate/D = target.has_status_effect(/datum/status_effect/metal_detonate)
+		if(D)
+			force_multiplier = damage_multiplier
+			D.shatter()
+	. = ..()
+	force_multiplier = old_force_multiplier
+
+/obj/item/ego_weapon/branch12/becoming/proc/equip_self(target)
+	if(!ishuman(target))
+		return
+	var/mob/living/carbon/human/H = target
+	src.attack_hand(H)
+
+/obj/item/ego_weapon/branch12/becoming/attack_self(mob/user)
+	if(!CanUseEgo(user))
+		return
+	if(!ishuman(user))
+		return
+	var/mob/living/carbon/human/H = user
+	var/obj/item/held = H.get_active_held_item()
+	H.dropItemToGround(held) //Drop weapon
+	var/obj/item/ego_weapon/branch12/making/maker = new(get_turf(user))
+	playsound(src, 'sound/effects/hokma_meltdown_short.ogg', 30, TRUE, 5)
+	addtimer(CALLBACK(maker, PROC_REF(equip_self), user), 1, TIMER_UNIQUE | TIMER_OVERRIDE)
+	Destroy(src)
 
 //Making
 /obj/item/ego_weapon/branch12/making
 	name = "making"
 	desc = "A hammer made with the desire to make anything"
+	special = "This weapon inflicts Metal Detonation and Metal Decay. This weapon can also change forms by being used in hand. <br>\
+	(Metal Detonation: Does nothing until it is 'Shattered.' Once it is 'Shattered,' it will cause Metal Decay to trigger without reducing it's stack. Weapons that cause 'Shatter' gain other benefits as well.) <br>\
+	(Metal Decay: Deals White damage every 5 seconds, equal to it's stack. If it is on a mob, then it deal *4 more damage.)"
+	color = "#d382ff"
 	icon_state = "becoming"
 	force = 14
-	damtype = RED_DAMAGE
+	damtype = WHITE_DAMAGE
 	attack_verb_continuous = list("slams", "strikes", "smashes")
 	attack_verb_simple = list("slam", "strike", "smash")
+	var/inflicted_decay = 2
+
+/obj/item/ego_weapon/branch12/making/attack(mob/living/target, mob/living/user)
+	. = ..()
+	if(isliving(target))
+		target.apply_lc_metal_decay(inflicted_decay)
+		target.apply_status_effect(/datum/status_effect/metal_detonate)
+
+/obj/item/ego_weapon/branch12/making/proc/equip_self(target)
+	if(!ishuman(target))
+		return
+	var/mob/living/carbon/human/H = target
+	src.attack_hand(H)
+
+/obj/item/ego_weapon/branch12/making/attack_self(mob/user)
+	if(!CanUseEgo(user))
+		return
+	if(!ishuman(user))
+		return
+	var/mob/living/carbon/human/H = user
+	var/obj/item/held = H.get_active_held_item()
+	H.dropItemToGround(held) //Drop weapon
+	var/obj/item/ego_weapon/branch12/becoming/becomer = new(get_turf(user))
+	playsound(src, 'sound/effects/hokma_meltdown_short.ogg', 30, TRUE, 5)
+	addtimer(CALLBACK(becomer, PROC_REF(equip_self), user), 1, TIMER_UNIQUE | TIMER_OVERRIDE)
+	Destroy(src)
 
 //Exterminator
+//TODO: Make this weapon inflict Metal Detonation with it's first bullet and every other bullet inflicts Metal Decay. Also it shatters it by melee hitting it. Which causes you to inflict a bunch of Metal Decay, and then shatter it.
 /obj/item/ego_weapon/ranged/branch12/mini/exterminator
 	name = "exterminator"
 	desc = "A gun that's made to take out pests."
@@ -574,7 +691,7 @@
 		return
 	if(lock_on)
 		to_chat(user, span_warning("You start aiming for [target]..."))
-		playsound(user, 'sound/abnormalities/freischutz/prepare.ogg', 35, 0, 20)
+		playsound(user, 'sound/abnormalities/freischutz/prepare.ogg', 35, TRUE, 20)
 		aiming = TRUE
 		if(do_after(user, lock_on_time, src))
 			projectile_path = /obj/projectile/ego_bullet/branch12/medea/big
