@@ -913,6 +913,7 @@
 	hit_message = "parries the attack!"
 	block_cooldown_message = "You rearm your blade."
 	//For deleting it whenever seperated from user.
+	slot_flags = null
 	item_flags = DROPDEL
 
 /obj/item/ego_weapon/shield/ice_sword/Initialize()

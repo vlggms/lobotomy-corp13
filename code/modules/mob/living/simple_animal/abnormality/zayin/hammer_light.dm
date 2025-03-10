@@ -251,6 +251,7 @@
 	attack_verb_continuous = list("slams", "strikes", "smashes")
 	attack_verb_simple = list("slam", "strike", "smash")
 	hitsound = 'sound/abnormalities/lighthammer/hammer_filter.ogg'
+	slot_flags = null
 	var/list/spawned_mobs = list()
 	var/spawned_mob_max = 4
 	var/spawn_cooldown = 0
