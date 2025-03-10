@@ -112,7 +112,6 @@
 	veryrarechance = 5
 	cosmeticchance = 33
 	lootlist =	list(
-		/obj/item/powered_gadget/detector_gadget/ordeal,
 		/obj/item/clothing/suit/space/hardsuit/rabbit,
 		/obj/item/clothing/suit/space/hardsuit/rabbit/leader,
 		/obj/item/gun/energy/e_gun/rabbitdash,
@@ -143,6 +142,7 @@
 		/obj/item/clothing/under/suit/lobotomy/rcorp_command,
 		/obj/item/clothing/head/beret/tegu/rcorp,
 		/obj/item/clothing/neck/cloak/rcorp,
+		/obj/item/powered_gadget/detector_gadget/ordeal,
 	)
 
 //S Corporation
@@ -190,7 +190,6 @@
 	lootlist =	list(
 		/obj/item/ego_weapon/city/wcorp,
 		/obj/item/clothing/suit/armor/ego_gear/wcorp,
-		/obj/item/powered_gadget/teleporter,
 	)
 
 	rareloot =	list(
@@ -212,4 +211,5 @@
 	cosmeticloot = list(
 		/obj/item/clothing/head/ego_hat/wcorp,
 		/obj/item/clothing/under/suit/lobotomy/wcorp,
+		/obj/item/powered_gadget/teleporter,
 	)

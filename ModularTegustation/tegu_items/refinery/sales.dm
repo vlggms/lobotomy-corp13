@@ -103,7 +103,7 @@
 	desc = "A machine used to send PE to R-Corp."
 	icon_state = "machiner"
 	crate = /obj/structure/lootcrate/r_corp
-	crate_timer = 420	//The most expensive because it's R corp stuff
+	crate_timer = 360	//One of the most expensive because it's R corp stuff
 	our_corporation = "R corp"
 
 /obj/structure/pe_sales/s_corp
