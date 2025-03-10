@@ -247,3 +247,45 @@
 	if(inflation%50 == 0)
 		message_admins("<span class='notice'>Investigate the high volume of Ahn being printed by Hana Association. They have currently printed [inflation*1000] Ahn. \
 			Hana is supposed to print as needed, not bank up large sums of ahn.</span>")
+
+
+GLOBAL_LIST_EMPTY(loaded_quest_z_levels)
+
+/obj/structure/maploader
+	name = "Map Loader"
+	desc = ""
+	icon = 'ModularTegustation/Teguicons/refiner.dmi'
+	icon_state = "moneymachine"
+	anchored = TRUE
+	density = FALSE
+	resistance_flags = INDESTRUCTIBLE
+	var/obj/machinery/computer/shuttle/quests_console/linked_console = null
+
+/obj/structure/maploader/attackby(obj/item/I, mob/living/user, params)
+	if (istype(I, /obj/item/quest_ticket))
+		var/obj/item/quest_ticket/T = I
+		if (!GLOB.loaded_quest_z_levels.Find(T.map))
+			load_new_z_level(T.map, T.map_name)
+			GLOB.loaded_quest_z_levels += T.map
+			if (!linked_console)
+				for(var/obj/machinery/computer/shuttle/quests_console/C in range(src, 5))
+					linked_console = C
+			linked_console.possible_destinations += ";[T.map_name]"
+			to_chat(user, span_notice("[T.map_name] was loaded."))
+
+/obj/item/quest_ticket
+	name = "Ticket"
+	desc = "Desc"
+	icon = 'ModularTegustation/Teguicons/head_trophies.dmi'
+	icon_state = "steel_head"
+
+
+	var/map = "_maps/Quests/test1.dmm"
+	var/map_name = "quest_floor"
+
+/obj/machinery/computer/shuttle/quests_console
+
+
+/obj/machinery/computer/shuttle/quests_console/connect_to_shuttle(obj/docking_port/mobile/port, obj/docking_port/stationary/dock)
+	return
+

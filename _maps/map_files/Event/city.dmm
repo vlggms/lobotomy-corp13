@@ -195,6 +195,28 @@
 	},
 /turf/open/indestructible/white,
 /area/city)
+"cp" = (
+/obj/structure/railing{
+	dir = 1
+	},
+/obj/machinery/computer/shuttle/mining{
+	dir = 4;
+	name = "bus console";
+	possible_destinations = "quest_home";
+	shuttleId = "quest"
+	},
+/obj/machinery/light{
+	dir = 8
+	},
+/obj/effect/turf_decal/stripes/line{
+	dir = 1
+	},
+/obj/machinery/door/poddoor/preopen{
+	id = "managerlockdown";
+	name = "Manager's Office Lockdown Blast Door"
+	},
+/turf/open/floor/plasteel/dark,
+/area/city)
 "cq" = (
 /obj/machinery/vending/weaving,
 /turf/closed/indestructible/reinforced,
@@ -413,6 +435,17 @@
 	},
 /turf/open/floor/wood,
 /area/city/fixers)
+"fi" = (
+/obj/docking_port/stationary{
+	dwidth = 3;
+	height = 5;
+	id = "quest_home";
+	name = "quest home";
+	roundstart_template = /datum/map_template/shuttle/quest/bus;
+	width = 6
+	},
+/turf/open/floor/plasteel/elevatorshaft,
+/area/city)
 "fj" = (
 /obj/structure/reagent_dispensers/water_cooler,
 /turf/open/floor/wood,
@@ -815,6 +848,19 @@
 /obj/structure/chair/plastic,
 /turf/open/floor/facility/white,
 /area/city/fixers)
+"jZ" = (
+/obj/structure/railing{
+	dir = 1
+	},
+/obj/effect/turf_decal/stripes/line{
+	dir = 1
+	},
+/obj/machinery/door/poddoor/preopen{
+	id = "managerlockdown";
+	name = "Manager's Office Lockdown Blast Door"
+	},
+/turf/open/floor/plasteel/dark,
+/area/city)
 "kf" = (
 /obj/structure/table/wood,
 /obj/machinery/computer/bookmanagement,
@@ -1085,6 +1131,23 @@
 	},
 /turf/open/floor/mineral/silver,
 /area/city/shop)
+"nm" = (
+/obj/structure/railing{
+	dir = 1
+	},
+/obj/machinery/light{
+	dir = 4
+	},
+/obj/effect/turf_decal/stripes/line{
+	dir = 1
+	},
+/obj/machinery/door/poddoor/preopen{
+	id = "managerlockdown";
+	name = "Manager's Office Lockdown Blast Door"
+	},
+/obj/structure/maploader,
+/turf/open/floor/plasteel/dark,
+/area/city)
 "no" = (
 /obj/effect/turf_decal/stripes/line,
 /obj/structure/sign/departments/evac{
@@ -1242,6 +1305,14 @@
 /obj/effect/decal/cleanable/blood/old,
 /obj/structure/table/reinforced,
 /turf/open/floor/plasteel/kitchen_coldroom,
+/area/city)
+"oV" = (
+/obj/machinery/door/poddoor/preopen{
+	id = "managerlockdown";
+	name = "Manager's Office Lockdown Blast Door"
+	},
+/obj/effect/spawner/structure/window/reinforced/indestructable,
+/turf/open/floor/plating,
 /area/city)
 "oW" = (
 /obj/structure/fence{
@@ -2292,6 +2363,16 @@
 /obj/structure/bed/pod,
 /turf/open/floor/wood,
 /area/city/shop)
+"xL" = (
+/obj/machinery/door/poddoor/preopen{
+	id = "managerlockdown";
+	name = "Manager's Office Lockdown Blast Door"
+	},
+/obj/machinery/door/airlock/wood/glass{
+	name = "Manager's Office"
+	},
+/turf/open/floor/plasteel,
+/area/city)
 "xM" = (
 /obj/structure/table/wood,
 /obj/item/flashlight/lamp/green,
@@ -2666,6 +2747,9 @@
 /obj/item/toy/cards/deck,
 /turf/open/floor/plasteel/grimy,
 /area/city/house)
+"AA" = (
+/turf/open/floor/plasteel/elevatorshaft,
+/area/city)
 "AC" = (
 /turf/open/floor/vault,
 /area/city/house)
@@ -3726,6 +3810,17 @@
 /turf/open/floor/wood{
 	icon_state = "wood-broken"
 	},
+/area/city)
+"Ij" = (
+/obj/machinery/door/window/brigdoor/southright{
+	dir = 1
+	},
+/obj/effect/turf_decal/caution/stand_clear,
+/obj/machinery/door/poddoor/preopen{
+	id = "managerlockdown";
+	name = "Manager's Office Lockdown Blast Door"
+	},
+/turf/open/floor/plasteel,
 /area/city)
 "Ik" = (
 /obj/machinery/door/airlock/glass_large,
@@ -39712,14 +39807,14 @@ Hm
 Hm
 Hm
 zr
-Hm
-Hm
-Hm
-Hm
 zr
-Hm
-gZ
-Rt
+zr
+zr
+zr
+zr
+zr
+zr
+zr
 Hm
 Hm
 Hm
@@ -39969,13 +40064,13 @@ Hm
 Hm
 Hm
 zr
-Hm
 zr
-zr
-Hm
-zr
-Hm
-zr
+AA
+AA
+AA
+AA
+AA
+cp
 zr
 Hm
 Hm
@@ -40226,14 +40321,14 @@ Hm
 Hm
 Hm
 zr
-Hm
 zr
-Vs
-Hm
-zr
-Hm
-Hm
-zr
+AA
+AA
+AA
+AA
+AA
+jZ
+oV
 Hm
 Hm
 Hm
@@ -40483,14 +40578,14 @@ Hm
 Hm
 Hm
 zr
-Vs
 zr
-Vs
-SP
-zr
-Hm
-Vs
-zr
+AA
+AA
+AA
+AA
+fi
+Ij
+xL
 Hm
 Hm
 Hm
@@ -40740,14 +40835,14 @@ Hm
 Hm
 Hm
 zr
-Hm
 zr
-Hm
-Hm
-zr
-Hm
-Hm
-zr
+AA
+AA
+AA
+AA
+AA
+jZ
+oV
 Hm
 Hm
 Hm
@@ -40997,13 +41092,13 @@ Hm
 Hm
 Hm
 zr
-Hm
 zr
-SP
-Hm
-Hm
-Hm
-Vs
+AA
+AA
+AA
+AA
+AA
+nm
 zr
 Hm
 Hm
@@ -41254,7 +41349,7 @@ Hm
 Hm
 Hm
 zr
-Hm
+zr
 HA
 HA
 HA
