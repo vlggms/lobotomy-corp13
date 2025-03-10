@@ -195,6 +195,28 @@
 	},
 /turf/open/indestructible/white,
 /area/city)
+"cp" = (
+/obj/structure/railing{
+	dir = 1
+	},
+/obj/machinery/computer/shuttle/mining{
+	dir = 4;
+	name = "bus console";
+	possible_destinations = "quest_home";
+	shuttleId = "quest"
+	},
+/obj/machinery/light{
+	dir = 8
+	},
+/obj/effect/turf_decal/stripes/line{
+	dir = 1
+	},
+/obj/machinery/door/poddoor/preopen{
+	id = "managerlockdown";
+	name = "Manager's Office Lockdown Blast Door"
+	},
+/turf/open/floor/plasteel/dark,
+/area/city)
 "cq" = (
 /obj/machinery/vending/weaving,
 /turf/closed/indestructible/reinforced,
@@ -413,6 +435,17 @@
 	},
 /turf/open/floor/wood,
 /area/city/fixers)
+"fi" = (
+/obj/docking_port/stationary{
+	dwidth = 3;
+	height = 5;
+	id = "quest_home";
+	name = "quest home";
+	roundstart_template = /datum/map_template/shuttle/quest/bus;
+	width = 6
+	},
+/turf/open/floor/plasteel/elevatorshaft,
+/area/city)
 "fj" = (
 /obj/structure/reagent_dispensers/water_cooler,
 /turf/open/floor/wood,
@@ -815,6 +848,19 @@
 /obj/structure/chair/plastic,
 /turf/open/floor/facility/white,
 /area/city/fixers)
+"jZ" = (
+/obj/structure/railing{
+	dir = 1
+	},
+/obj/effect/turf_decal/stripes/line{
+	dir = 1
+	},
+/obj/machinery/door/poddoor/preopen{
+	id = "managerlockdown";
+	name = "Manager's Office Lockdown Blast Door"
+	},
+/turf/open/floor/plasteel/dark,
+/area/city)
 "kf" = (
 /obj/structure/table/wood,
 /obj/machinery/computer/bookmanagement,
@@ -1085,6 +1131,23 @@
 	},
 /turf/open/floor/mineral/silver,
 /area/city/shop)
+"nm" = (
+/obj/structure/railing{
+	dir = 1
+	},
+/obj/machinery/light{
+	dir = 4
+	},
+/obj/effect/turf_decal/stripes/line{
+	dir = 1
+	},
+/obj/machinery/door/poddoor/preopen{
+	id = "managerlockdown";
+	name = "Manager's Office Lockdown Blast Door"
+	},
+/obj/structure/maploader,
+/turf/open/floor/plasteel/dark,
+/area/city)
 "no" = (
 /obj/effect/turf_decal/stripes/line,
 /obj/structure/sign/departments/evac{
@@ -1243,6 +1306,14 @@
 /obj/structure/table/reinforced,
 /turf/open/floor/plasteel/kitchen_coldroom,
 /area/city)
+"oV" = (
+/obj/machinery/door/poddoor/preopen{
+	id = "managerlockdown";
+	name = "Manager's Office Lockdown Blast Door"
+	},
+/obj/effect/spawner/structure/window/reinforced/indestructable,
+/turf/open/floor/plating,
+/area/city)
 "oW" = (
 /obj/structure/fence{
 	dir = 4
@@ -1330,6 +1401,16 @@
 	},
 /turf/open/indestructible/white,
 /area/city/shop)
+"qc" = (
+/obj/structure/delivery_door{
+	density = 1;
+	icon = 'icons/obj/votebox.dmi';
+	icon_state = "votebox_maint";
+	name = "mail box";
+	desc = "A mailbox for this house."
+	},
+/turf/closed/indestructible/reinforced,
+/area/city)
 "qh" = (
 /obj/effect/turf_decal/tile/blue{
 	color = "#3234B9";
@@ -1837,6 +1918,16 @@
 	},
 /turf/open/floor/facility,
 /area/city/shop)
+"uB" = (
+/obj/structure/delivery_door{
+	density = 1;
+	icon = 'icons/obj/votebox.dmi';
+	icon_state = "votebox_maint";
+	name = "mail box";
+	desc = "A mailbox for this house."
+	},
+/turf/closed/indestructible/reinforced,
+/area/city/house)
 "uC" = (
 /obj/structure/table/wood,
 /obj/item/paper_bin,
@@ -2272,6 +2363,16 @@
 /obj/structure/bed/pod,
 /turf/open/floor/wood,
 /area/city/shop)
+"xL" = (
+/obj/machinery/door/poddoor/preopen{
+	id = "managerlockdown";
+	name = "Manager's Office Lockdown Blast Door"
+	},
+/obj/machinery/door/airlock/wood/glass{
+	name = "Manager's Office"
+	},
+/turf/open/floor/plasteel,
+/area/city)
 "xM" = (
 /obj/structure/table/wood,
 /obj/item/flashlight/lamp/green,
@@ -2646,6 +2747,9 @@
 /obj/item/toy/cards/deck,
 /turf/open/floor/plasteel/grimy,
 /area/city/house)
+"AA" = (
+/turf/open/floor/plasteel/elevatorshaft,
+/area/city)
 "AC" = (
 /turf/open/floor/vault,
 /area/city/house)
@@ -2703,6 +2807,9 @@
 /area/city/shop)
 "AS" = (
 /obj/structure/chair/plastic{
+	dir = 1
+	},
+/mob/living/simple_animal/ui_npc/eric_t{
 	dir = 1
 	},
 /turf/open/indestructible/white,
@@ -3326,6 +3433,16 @@
 	},
 /turf/open/floor/carpet/black,
 /area/city/fixers)
+"FH" = (
+/obj/structure/delivery_door{
+	density = 1;
+	icon = 'icons/obj/votebox.dmi';
+	icon_state = "votebox_maint";
+	name = "mail box";
+	desc = "A mailbox for this house."
+	},
+/turf/closed/indestructible/reinforced,
+/area/city/shop)
 "FQ" = (
 /obj/structure/table/wood,
 /obj/item/food/baguette,
@@ -3693,6 +3810,17 @@
 /turf/open/floor/wood{
 	icon_state = "wood-broken"
 	},
+/area/city)
+"Ij" = (
+/obj/machinery/door/window/brigdoor/southright{
+	dir = 1
+	},
+/obj/effect/turf_decal/caution/stand_clear,
+/obj/machinery/door/poddoor/preopen{
+	id = "managerlockdown";
+	name = "Manager's Office Lockdown Blast Door"
+	},
+/turf/open/floor/plasteel,
 /area/city)
 "Ik" = (
 /obj/machinery/door/airlock/glass_large,
@@ -4506,6 +4634,16 @@
 /obj/effect/landmark/cityloot,
 /turf/open/floor/wood,
 /area/city)
+"QY" = (
+/obj/structure/delivery_door{
+	density = 1;
+	icon = 'icons/obj/votebox.dmi';
+	icon_state = "votebox_maint";
+	name = "mail box";
+	desc = "A mailbox for this house."
+	},
+/turf/closed/indestructible/reinforced,
+/area/city/backstreets_room)
 "QZ" = (
 /obj/machinery/telecomms/server/presets/science,
 /obj/effect/turf_decal/bot,
@@ -4554,6 +4692,16 @@
 "RM" = (
 /obj/structure/rack,
 /turf/open/floor/wood,
+/area/city/fixers)
+"RR" = (
+/obj/structure/delivery_door{
+	density = 1;
+	icon = 'icons/obj/votebox.dmi';
+	icon_state = "votebox_maint";
+	name = "mail box";
+	desc = "A mailbox for this house."
+	},
+/turf/closed/indestructible/reinforced,
 /area/city/fixers)
 "RZ" = (
 /mob/living/simple_animal/hostile/cockroach/glockroach,
@@ -28313,7 +28461,7 @@ RZ
 RZ
 XQ
 Yl
-XQ
+QY
 XQ
 XQ
 XQ
@@ -29593,7 +29741,7 @@ Qm
 vb
 Qm
 zr
-zr
+qc
 zr
 zr
 zr
@@ -33752,7 +33900,7 @@ OT
 OT
 OT
 OT
-OT
+FH
 tQ
 Zt
 Zt
@@ -34771,7 +34919,7 @@ Xf
 Xf
 Xf
 Xf
-HA
+RR
 Hm
 Hm
 Hm
@@ -35250,7 +35398,7 @@ zr
 CF
 HA
 HA
-HA
+RR
 Ui
 gV
 gV
@@ -35267,7 +35415,7 @@ HA
 gV
 Ui
 gV
-HA
+RR
 HA
 ds
 zr
@@ -35278,7 +35426,7 @@ HA
 gV
 Ui
 gV
-HA
+RR
 HA
 HA
 gV
@@ -36019,7 +36167,7 @@ xW
 uC
 xW
 Nk
-HA
+RR
 Hm
 Hm
 Hm
@@ -36570,7 +36718,7 @@ Sa
 rP
 Ga
 Ga
-OT
+FH
 Hm
 Hm
 Hm
@@ -37096,7 +37244,7 @@ Ez
 Dq
 Dq
 Hs
-Dq
+uB
 Hm
 Hm
 Hm
@@ -37327,7 +37475,7 @@ Dq
 YN
 YN
 nx
-Dq
+uB
 Hm
 Hm
 Hm
@@ -39126,7 +39274,7 @@ Dq
 yC
 yC
 Bn
-Dq
+uB
 Hm
 Hm
 Hm
@@ -39659,14 +39807,14 @@ Hm
 Hm
 Hm
 zr
-Hm
-Hm
-Hm
-Hm
 zr
-Hm
-gZ
-Rt
+zr
+zr
+zr
+zr
+zr
+zr
+zr
 Hm
 Hm
 Hm
@@ -39916,13 +40064,13 @@ Hm
 Hm
 Hm
 zr
-Hm
 zr
-zr
-Hm
-zr
-Hm
-zr
+AA
+AA
+AA
+AA
+AA
+cp
 zr
 Hm
 Hm
@@ -40173,14 +40321,14 @@ Hm
 Hm
 Hm
 zr
-Hm
 zr
-Vs
-Hm
-zr
-Hm
-Hm
-zr
+AA
+AA
+AA
+AA
+AA
+jZ
+oV
 Hm
 Hm
 Hm
@@ -40430,14 +40578,14 @@ Hm
 Hm
 Hm
 zr
-Vs
 zr
-Vs
-SP
-zr
-Hm
-Vs
-zr
+AA
+AA
+AA
+AA
+fi
+Ij
+xL
 Hm
 Hm
 Hm
@@ -40687,14 +40835,14 @@ Hm
 Hm
 Hm
 zr
-Hm
 zr
-Hm
-Hm
-zr
-Hm
-Hm
-zr
+AA
+AA
+AA
+AA
+AA
+jZ
+oV
 Hm
 Hm
 Hm
@@ -40925,7 +41073,7 @@ Dq
 wr
 wr
 wr
-Dq
+uB
 Hm
 Hm
 Hm
@@ -40944,13 +41092,13 @@ Hm
 Hm
 Hm
 zr
-Hm
 zr
-SP
-Hm
-Hm
-Hm
-Vs
+AA
+AA
+AA
+AA
+AA
+nm
 zr
 Hm
 Hm
@@ -41201,7 +41349,7 @@ Hm
 Hm
 Hm
 zr
-Hm
+zr
 HA
 HA
 HA
@@ -41677,7 +41825,7 @@ Sc
 Hm
 Hm
 Hm
-Dq
+uB
 jI
 AU
 AU
@@ -42224,7 +42372,7 @@ Xf
 Xf
 Xf
 Xf
-HA
+RR
 Hm
 Hm
 Hm
@@ -42236,7 +42384,7 @@ Xf
 Xf
 Xf
 Xf
-HA
+RR
 Hm
 Hm
 Hm
@@ -42701,7 +42849,7 @@ Xf
 Xf
 Xf
 Xf
-HA
+RR
 Hm
 JG
 Hm
@@ -42724,7 +42872,7 @@ Dq
 YN
 YN
 qS
-Dq
+uB
 Hm
 zS
 Hm
@@ -42995,7 +43143,7 @@ rE
 Ej
 WL
 WL
-Dq
+uB
 Hm
 Hm
 Hm
@@ -43521,7 +43669,7 @@ Vb
 Dq
 Dq
 HT
-Dq
+uB
 Hm
 Hm
 Hm
@@ -44761,7 +44909,7 @@ Zt
 Hm
 Hm
 Hm
-OT
+FH
 kC
 Ru
 HA
@@ -45320,7 +45468,7 @@ bM
 Dq
 Dq
 Hs
-Dq
+uB
 Hm
 dh
 Hm
@@ -45565,7 +45713,7 @@ Dq
 YN
 YN
 qS
-Dq
+uB
 Hm
 Hm
 Hm
@@ -45793,7 +45941,7 @@ OT
 OT
 OT
 HA
-HA
+RR
 gV
 Ui
 gV
@@ -46299,7 +46447,7 @@ OT
 lk
 Gb
 Ln
-OT
+FH
 Hm
 Hm
 Hm
@@ -47376,7 +47524,7 @@ Dq
 Dq
 Dq
 Dq
-Dq
+uB
 ja
 Dq
 ds
@@ -47876,7 +48024,7 @@ Xf
 Xf
 Xf
 Xf
-HA
+RR
 Hm
 OT
 VQ
@@ -52759,7 +52907,7 @@ zr
 zr
 zr
 zr
-zr
+qc
 cZ
 zr
 zr

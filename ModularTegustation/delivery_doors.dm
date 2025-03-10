@@ -14,18 +14,25 @@
 	. = ..()
 	address = "[x]-[y]"
 	name += " ([address])"
+	GLOB.delivery_doors += src
+
+/obj/structure/delivery_door/Destroy()
+	GLOB.delivery_doors -= src
+	return ..()
 
 /obj/structure/delivery_door/attackby(obj/item/I, mob/user)
 	var/ordered_item = locate(I) in item_order
 	if(ordered_item)
 		Reward(user, I, item_order[ordered_item])
 		item_order -= ordered_item
+		SEND_SIGNAL(src, COMSIG_ITEM_DELIVERED, user)
 		return
 	if(istype(I, /obj/item/delivery_parcel))
 		// Deliver the item.
 		var/obj/item/delivery_parcel/D = I
 		if(D.address == address)
-			Reward(user, D, 150 + rand(-1,20))
+			Reward(user, D, 600 + rand(-1,20))
+		SEND_SIGNAL(src, COMSIG_PARCEL_DELIVERED, user)
 		return
 	return ..()
 
