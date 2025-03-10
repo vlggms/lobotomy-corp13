@@ -1372,6 +1372,7 @@
 		stacks = round(stacks/2)
 
 //Mob Proc
+//TODO: Make it so when you inflict Metal Decay someone with 40+ stacks, you inflict Metal Detonation and when Metal is applied to someone with max stacks, cause a Shatter if they have Metal Detonation.
 /mob/living/proc/apply_lc_metal_decay(stacks)
 	var/datum/status_effect/stacking/lc_metal_decay/B = src.has_status_effect(/datum/status_effect/stacking/lc_metal_decay)
 	if(!B)

@@ -157,6 +157,7 @@
 	Destroy(src)
 
 //Making
+//TODO: Make this weapon only inflict Metal Detonation if the target has 12+ Metal Decay
 /obj/item/ego_weapon/branch12/making
 	name = "making"
 	desc = "A hammer made with the desire to make anything"
@@ -807,7 +808,7 @@
 		target.apply_lc_bleed(inflicted_bleed)
 
 //Purity
-//TODO: Let it cause MD shatters, for some upside.
+//TODO: Let it cause MD shatters, where it will do a triple shatter.
 /obj/item/ego_weapon/branch12/purity
 	name = "purity"
 	desc = "To be pure is to be different than Innocent, for innocence requires ignorance while the pure takes in the experiences \
