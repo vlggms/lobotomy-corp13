@@ -37,6 +37,7 @@
 	user.adjustSanityLoss(-healing_on_hit)
 
 //Serenity
+//TODO: Let it cause MD shatters, for some upside.
 /obj/item/ego_weapon/branch12/mini/serenity
 	name = "serenity"
 	desc = "By praying for its protection, the statue might grant you its gift if you�re worthy."
@@ -338,6 +339,7 @@
 
 // --------HE---------
 //Perfectionist
+//TODO: Increase the downside, but make it able to shatter, which guarantees a critical hit. Also it's critical hits inflict Metal Decay. Normal hits inflict less Metal Decay.
 /obj/item/ego_weapon/branch12/perfectionist
 	name = "perfectionist"
 	desc = "I couldn�t bear it, they silently judged, accusing every step I took."
@@ -805,6 +807,7 @@
 		target.apply_lc_bleed(inflicted_bleed)
 
 //Purity
+//TODO: Let it cause MD shatters, for some upside.
 /obj/item/ego_weapon/branch12/purity
 	name = "purity"
 	desc = "To be pure is to be different than Innocent, for innocence requires ignorance while the pure takes in the experiences \
