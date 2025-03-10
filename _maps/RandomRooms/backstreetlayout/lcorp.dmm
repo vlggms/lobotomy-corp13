@@ -1115,6 +1115,12 @@
 "vt" = (
 /turf/closed/indestructible/syndicate,
 /area/city/backstreets_room)
+"vu" = (
+/obj/structure/delivery_door{
+	density = 1
+	},
+/turf/closed/indestructible/reinforced,
+/area/city/backstreets_alley)
 "vF" = (
 /obj/effect/portal/permanent{
 	id = "chillb";
@@ -3498,7 +3504,7 @@ iW
 iW
 iW
 iW
-iW
+vu
 iW
 iW
 iW
@@ -3585,7 +3591,7 @@ iW
 iW
 iW
 iW
-iW
+vu
 iW
 iW
 iW
@@ -4240,7 +4246,7 @@ WY
 WY
 iW
 iW
-iW
+vu
 iW
 iW
 iW
@@ -4703,7 +4709,7 @@ iW
 iW
 iW
 iW
-iW
+vu
 iW
 iW
 iW
@@ -4711,7 +4717,7 @@ Xj
 iW
 iW
 iW
-iW
+vu
 iW
 iW
 Xj
@@ -4799,7 +4805,7 @@ iW
 iW
 iW
 iW
-iW
+vu
 iW
 iW
 iW
@@ -4971,7 +4977,7 @@ iW
 iW
 iW
 iW
-iW
+vu
 iW
 iW
 iW
@@ -5390,7 +5396,7 @@ UZ
 UZ
 UZ
 iW
-iW
+vu
 iW
 Yt
 Yt
@@ -5403,7 +5409,7 @@ iW
 iW
 iW
 iW
-iW
+vu
 iW
 iW
 iW
@@ -6750,7 +6756,7 @@ iW
 LM
 LM
 LM
-iW
+vu
 UZ
 UZ
 UZ
@@ -7189,7 +7195,7 @@ iW
 iW
 iW
 iW
-iW
+vu
 iW
 iW
 iW
@@ -7629,7 +7635,7 @@ Yt
 LM
 LM
 LM
-iW
+vu
 UZ
 UZ
 UZ
@@ -8848,7 +8854,7 @@ Tn
 UZ
 iW
 iW
-iW
+vu
 iW
 iW
 Yt
@@ -9192,7 +9198,7 @@ Yt
 LM
 LM
 LM
-iW
+vu
 UZ
 UZ
 UZ
@@ -10857,7 +10863,7 @@ iW
 LM
 LM
 LM
-iW
+vu
 UZ
 UZ
 UZ
@@ -11850,7 +11856,7 @@ iW
 Xj
 Xj
 Xj
-iW
+vu
 UZ
 UZ
 UZ
@@ -12512,7 +12518,7 @@ UZ
 UZ
 UZ
 UZ
-iW
+vu
 Xj
 Xj
 Xj
@@ -13596,7 +13602,7 @@ UZ
 UZ
 UZ
 UZ
-iW
+vu
 Xj
 Xj
 Xj
@@ -14074,7 +14080,7 @@ iW
 Xj
 Xj
 Xj
-iW
+vu
 UZ
 UZ
 UZ
@@ -14813,7 +14819,7 @@ Yt
 Yt
 UZ
 UZ
-iW
+vu
 Xj
 Xj
 Xj
@@ -15133,7 +15139,7 @@ iW
 iW
 iW
 iW
-iW
+vu
 iW
 iW
 iW
@@ -15608,7 +15614,7 @@ iW
 Xj
 Xj
 Xj
-iW
+vu
 UZ
 UZ
 UZ
@@ -15905,7 +15911,7 @@ UZ
 UZ
 UZ
 UZ
-iW
+vu
 Xj
 Xj
 Xj
@@ -15957,7 +15963,7 @@ Yt
 Xj
 Xj
 Xj
-iW
+vu
 UZ
 UZ
 UZ
@@ -16696,7 +16702,7 @@ iW
 Xj
 Xj
 Xj
-iW
+vu
 UZ
 UZ
 UZ
@@ -17157,7 +17163,7 @@ iW
 Xj
 Xj
 Xj
-iW
+vu
 UZ
 UZ
 UZ
@@ -17388,7 +17394,7 @@ iW
 Xj
 Xj
 Xj
-iW
+vu
 UZ
 UZ
 UZ
@@ -17469,7 +17475,7 @@ UZ
 UZ
 UZ
 UZ
-iW
+vu
 Xj
 Xj
 Xj
@@ -17677,7 +17683,7 @@ UZ
 UZ
 UZ
 UZ
-iW
+vu
 Xj
 Xj
 Xj
@@ -17893,7 +17899,7 @@ iW
 iW
 iW
 iW
-iW
+vu
 iW
 iW
 iW
@@ -18674,7 +18680,7 @@ UZ
 UZ
 iW
 iW
-iW
+vu
 iW
 iW
 Xj
@@ -18716,7 +18722,7 @@ St
 iW
 UZ
 UZ
-iW
+vu
 Xj
 Xj
 Xj
@@ -19238,7 +19244,7 @@ iW
 Xj
 Xj
 Xj
-iW
+vu
 UZ
 UZ
 UZ
@@ -19255,7 +19261,7 @@ UZ
 UZ
 UZ
 UZ
-iW
+vu
 Xj
 Xj
 Xj
@@ -19453,7 +19459,7 @@ Yt
 Xj
 Xj
 Xj
-iW
+vu
 UZ
 UZ
 iW
@@ -20037,7 +20043,7 @@ iW
 iW
 iW
 iW
-iW
+vu
 iW
 iW
 iW
@@ -21123,7 +21129,7 @@ UZ
 UZ
 UZ
 UZ
-iW
+vu
 Xj
 Xj
 Xj
@@ -21351,7 +21357,7 @@ Xj
 Xj
 iW
 iW
-iW
+vu
 iW
 iW
 iW
@@ -21482,7 +21488,7 @@ UZ
 UZ
 UZ
 UZ
-iW
+vu
 Xj
 Xj
 Xj
@@ -22002,7 +22008,7 @@ iW
 iW
 iW
 iW
-iW
+vu
 iW
 iW
 iW
@@ -22431,7 +22437,7 @@ iW
 iW
 iW
 iW
-iW
+vu
 iW
 iW
 iW
@@ -22453,7 +22459,7 @@ iW
 jZ
 iW
 iW
-iW
+vu
 iW
 UZ
 Yt
@@ -23105,7 +23111,7 @@ Yt
 Xj
 Xj
 Xj
-iW
+vu
 UZ
 UZ
 UZ
@@ -23130,7 +23136,7 @@ Xj
 Xj
 Xj
 Xj
-iW
+vu
 UZ
 UZ
 UZ
@@ -23231,7 +23237,7 @@ UZ
 UZ
 UZ
 UZ
-iW
+vu
 Xj
 va
 Xj
@@ -23373,7 +23379,7 @@ Yt
 Xj
 Xj
 Xj
-iW
+vu
 UZ
 UZ
 UZ
@@ -24322,7 +24328,7 @@ UZ
 UZ
 UZ
 UZ
-iW
+vu
 Xj
 Xj
 Xj
@@ -24601,7 +24607,7 @@ iW
 iW
 iW
 iW
-iW
+vu
 iW
 iW
 iW
@@ -25335,7 +25341,7 @@ iW
 Xj
 Xj
 Xj
-iW
+vu
 UZ
 UZ
 UZ
@@ -25344,7 +25350,7 @@ UZ
 UZ
 UZ
 UZ
-iW
+vu
 Xj
 Xj
 Xj
@@ -25997,7 +26003,7 @@ Yt
 Yt
 UZ
 UZ
-iW
+vu
 Xj
 Xj
 Xj
@@ -26322,7 +26328,7 @@ Yt
 Xj
 Xj
 Xj
-iW
+vu
 UZ
 UZ
 UZ
@@ -27453,7 +27459,7 @@ Xj
 Xj
 iW
 UZ
-iW
+vu
 Xj
 Xj
 Xj
@@ -27712,7 +27718,7 @@ Yt
 Xj
 Xj
 Xj
-iW
+vu
 UZ
 UZ
 UZ
@@ -28107,7 +28113,7 @@ Yt
 UZ
 UZ
 UZ
-iW
+vu
 Xj
 Xj
 Xj
@@ -28304,7 +28310,7 @@ UZ
 UZ
 UZ
 UZ
-iW
+vu
 LM
 LM
 LM
@@ -28678,7 +28684,7 @@ iW
 iW
 iW
 iW
-iW
+vu
 iW
 iW
 iW
@@ -28703,7 +28709,7 @@ iW
 iW
 iW
 iW
-iW
+vu
 iW
 iW
 iW
@@ -28764,7 +28770,7 @@ iW
 LM
 LM
 LM
-iW
+vu
 UZ
 UZ
 UZ
@@ -29028,7 +29034,7 @@ iW
 Xj
 Xj
 Xj
-iW
+vu
 UZ
 UZ
 UZ
@@ -29754,7 +29760,7 @@ iW
 iW
 iW
 iW
-iW
+vu
 iW
 iW
 iW
@@ -29991,7 +29997,7 @@ iW
 iW
 iW
 iW
-iW
+vu
 iW
 iW
 iW
@@ -30232,6 +30238,7 @@ iW
 iW
 iW
 iW
+vu
 iW
 iW
 iW
@@ -30241,8 +30248,7 @@ iW
 iW
 iW
 iW
-iW
-iW
+vu
 iW
 iW
 iW
