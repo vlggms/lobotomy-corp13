@@ -78,7 +78,9 @@
 	. = ..()
 	for(var/mob/living/carbon/human/H in view(4, src))
 		if(prob(5))
+			owner.say("We must seek the great Tower of Babel...")
 			H.apply_status_effect(STATUS_EFFECT_RUMOR)
+			H.say("Where might it be?")
 			to_chat(owner, span_nicegreen("You spread the word of the Tower of Babel."))
 
 	var/mob/living/carbon/human/M = owner
