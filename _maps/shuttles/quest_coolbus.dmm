@@ -76,6 +76,22 @@
 	name = "asphalt"
 	},
 /area/shuttle/mining)
+"E" = (
+/obj/effect/turf_decal/trimline/yellow/filled/line{
+	pixel_y = 5
+	},
+/obj/effect/turf_decal/trimline/yellow/filled/line{
+	dir = 1;
+	pixel_y = -5
+	},
+/obj/structure/fluff/bus/dense{
+	icon_state = "backwallmiddlerear"
+	},
+/turf/open/floor/plating/ashplanet{
+	name = "asphalt";
+	density = 1
+	},
+/area/shuttle/mining)
 "F" = (
 /obj/structure/fluff/bus/passable{
 	icon_state = "topdoor"
@@ -130,8 +146,8 @@
 	possible_destinations = "quest_home";
 	shuttleId = "quest";
 	layer = 2.8;
-	step_x = -20;
-	dir = 8
+	dir = 8;
+	pixel_x = -20
 	},
 /turf/open/floor/plating/ashplanet{
 	name = "asphalt"
@@ -142,7 +158,7 @@
 X
 w
 w
-w
+E
 b
 "}
 (2,1,1) = {"
