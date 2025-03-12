@@ -252,12 +252,11 @@
 GLOBAL_LIST_EMPTY(loaded_quest_z_levels)
 
 /obj/structure/maploader
-	name = "Map Loader"
-	desc = ""
-	icon = 'ModularTegustation/Teguicons/refiner.dmi'
-	icon_state = "moneymachine"
+	name = "ticker reader"
+	desc = "A small machine with a spot to insert tickets. Could give new locations to the bus to travel to."
+	icon = 'icons/obj/chemical.dmi'
+	icon_state = "minidispenser"
 	anchored = TRUE
-	density = FALSE
 	resistance_flags = INDESTRUCTIBLE
 	var/obj/machinery/computer/shuttle/quests_console/linked_console = null
 
@@ -265,26 +264,27 @@ GLOBAL_LIST_EMPTY(loaded_quest_z_levels)
 	if (istype(I, /obj/item/quest_ticket))
 		var/obj/item/quest_ticket/T = I
 		if (!GLOB.loaded_quest_z_levels.Find(T.map))
+			to_chat(user, span_notice("You insert your ticket into [src]"))
+			say("Locating path to [T.map_name]...")
 			load_new_z_level(T.map, T.map_name)
 			GLOB.loaded_quest_z_levels += T.map
 			if (!linked_console)
 				for(var/obj/machinery/computer/shuttle/quests_console/C in range(src, 5))
 					linked_console = C
 			linked_console.possible_destinations += ";[T.map_name]"
-			to_chat(user, span_notice("[T.map_name] was loaded."))
+			say("[T.map_name] has been located.")
 
 /obj/item/quest_ticket
-	name = "Ticket"
-	desc = "Desc"
-	icon = 'ModularTegustation/Teguicons/head_trophies.dmi'
-	icon_state = "steel_head"
-
-
+	name = "ruined nest ticket"
+	desc = "A small sheet of paper with a barcode. Could be given to a ticket reader to access to a new area."
+	icon = 'icons/obj/bureaucracy.dmi'
+	icon_state = "ticket"
+	inhand_icon_state = "ticket"
+	worn_icon_state = "ticket"
 	var/map = "_maps/Quests/test1.dmm"
 	var/map_name = "quest_floor"
 
 /obj/machinery/computer/shuttle/quests_console
-
 
 /obj/machinery/computer/shuttle/quests_console/connect_to_shuttle(obj/docking_port/mobile/port, obj/docking_port/stationary/dock)
 	return
