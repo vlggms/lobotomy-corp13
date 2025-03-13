@@ -208,6 +208,9 @@ SUBSYSTEM_DEF(cityevents)
 		nighttime_remove() //End the raid.
 		raiding = FALSE
 
+	if(globalillumination == 0 && daystatus)
+		minor_announce("The night in the backstreets will begin in T-100 Seconds, Please be ready.", "Local Activity Alert:", TRUE)
+
 	if(daystatus)	//After noon
 		globalillumination -= 0.02
 		addtimer(CALLBACK(src, PROC_REF(Daynight)), 10 SECONDS)
@@ -225,48 +228,49 @@ SUBSYSTEM_DEF(cityevents)
 
 	switch (chosen_event)
 		if("sweepers")
-			nighttime_spawn(/mob/living/simple_animal/hostile/ordeal/indigo_noon, 20)
+			nighttime_spawn(/mob/living/simple_animal/hostile/ordeal/indigo_noon)
 		if("scouts")
-			nighttime_spawn(/mob/living/simple_animal/hostile/ordeal/indigo_dawn, 40)
+			nighttime_spawn(/mob/living/simple_animal/hostile/ordeal/indigo_dawn)
 		if("bots")
-			nighttime_spawn(/mob/living/simple_animal/hostile/ordeal/green_bot, 10)
+			nighttime_spawn(/mob/living/simple_animal/hostile/ordeal/green_bot)
 		if("gbugs")
-			nighttime_spawn(/mob/living/simple_animal/hostile/ordeal/steel_dawn, 30)
+			nighttime_spawn(/mob/living/simple_animal/hostile/ordeal/steel_dawn)
 		if("shrimps")
-			nighttime_spawn(/mob/living/simple_animal/hostile/shrimp, 20)
+			nighttime_spawn(/mob/living/simple_animal/hostile/shrimp)
 		if("beaks")
-			nighttime_spawn(/mob/living/simple_animal/hostile/ordeal/bigBirdEye, 10)
+			nighttime_spawn(/mob/living/simple_animal/hostile/ordeal/bigBirdEye)
 		if("drones")
-			nighttime_spawn(/mob/living/simple_animal/hostile/kcorp/drone, -10)//extremely low chance
+			nighttime_spawn(/mob/living/simple_animal/hostile/kcorp/drone)
 		if("lovetowneasy")
 			nighttime_spawn(pick(/mob/living/simple_animal/hostile/lovetown/slasher,
-			/mob/living/simple_animal/hostile/lovetown/stabber), 25)
+			/mob/living/simple_animal/hostile/lovetown/stabber))
 		if("lovetownhard")
 			nighttime_spawn(pick(/mob/living/simple_animal/hostile/lovetown/shambler,
-			/mob/living/simple_animal/hostile/lovetown/slumberer), 5)
+			/mob/living/simple_animal/hostile/lovetown/slumberer))
+		if("clan")
+			nighttime_spawn(/mob/living/simple_animal/hostile/clan/scout)
+		if("bloodbag")
+			nighttime_spawn(/mob/living/simple_animal/hostile/humanoid/blood/bag)
 	wavetime+=1
 
-/datum/controller/subsystem/cityevents/proc/nighttime_spawn(mob/living/L, chance)
-	chance += wavetime*8
+/datum/controller/subsystem/cityevents/proc/nighttime_spawn(mob/living/L)
 	for(var/J in spawners)
-		if(!prob(chance))
-			continue
 		new /obj/effect/bloodpool(get_turf(J))
 		sleep(10)
 		//This is less intensive than a loop
 
 		var/mob/living/hostile1 = new L (get_turf(J))
-		hostile1 += nighttime_raiders
+		nighttime_raiders += hostile1
 
 		var/mob/living/hostile2 = new L (get_turf(J))
-		hostile2 += nighttime_raiders
+		nighttime_raiders += hostile2
 
-		var/mob/living/hostile3 = new L (get_turf(J))
-		hostile3 += nighttime_raiders
+		var/mob/living/hostile2 = new L (get_turf(J))
+		nighttime_raiders += hostile2
 
 /datum/controller/subsystem/cityevents/proc/nighttime_remove()
 	for(var/mob/living/L in nighttime_raiders)
-		L -= nighttime_raiders
+		nighttime_raiders -= L
 		if (L.stat != DEAD)
 			qdel(L)
 	minor_announce("The night in the backstreets has now concluded.", "Local Activity Alert:", TRUE)
