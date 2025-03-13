@@ -7,13 +7,14 @@ SUBSYSTEM_DEF(cityevents)
 	var/list/itemdrops = list()
 	var/list/distortion = list()
 	var/list/lights = list()
+	var/list/nighttime_raiders = list()
 	var/daystatus = TRUE	//True to darken lights, false to lighten them
+	var/raiding = FALSE
 	var/globalillumination = 1
 	var/list/total_events = list()
 	var/list/distortions_available = list()
 	var/helpful_events = list("chickens", "money", "tresmetal", "hppens", "sppens")
-	var/harmful_events = list("drones", "beaks", "shrimps", "lovetowneasy", "lovetownhard")
-	var/ordeal_events = list("sweepers", "scouts", "bots", "gbugs")
+	var/harmful_events = list("drones", "shrimps", "lovetowneasy", "lovetownhard", "sweepers", "scouts", "bots", "gbugs")
 	var/neutral_events = list("swag")
 	var/boss_events = list("sweeper", "lovetown", "factory", "gcorp")
 	var/list/generated = list()	//Which ckeys have generated stats
@@ -53,10 +54,6 @@ SUBSYSTEM_DEF(cityevents)
 	total_events += pick(helpful_events)
 	total_events += pick(helpful_events)
 	total_events += pick(helpful_events)
-	total_events += pick(harmful_events)
-	total_events += pick(ordeal_events)
-	total_events += pick(ordeal_events)
-//	total_events += pick(ordeal_events)
 	total_events += pick(neutral_events)
 	total_events += pick(neutral_events)
 	total_events += pick("money")			//Always get money
@@ -71,12 +68,9 @@ SUBSYSTEM_DEF(cityevents)
 
 //Events
 /datum/controller/subsystem/cityevents/proc/Event()
-	addtimer(CALLBACK(src, PROC_REF(Event)), 5 MINUTES)
+	addtimer(CALLBACK(src, PROC_REF(Event)), 10 MINUTES)
 	var/chosen_event
-	if(wavetime == 10 && wavetime !=0)	//after 50 minutes
-		chosen_event = Boss()
-	else
-		chosen_event = pick(total_events)
+	chosen_event = pick(total_events)
 
 	switch (chosen_event)
 		if("sweepers")
@@ -91,8 +85,6 @@ SUBSYSTEM_DEF(cityevents)
 		//Harmful events
 		if("shrimps")
 			spawnatlandmark(/mob/living/simple_animal/hostile/shrimp, 20)
-		if("beaks")
-			spawnatlandmark(/mob/living/simple_animal/hostile/ordeal/bigbird_eye, 10)
 		if("drones")
 			spawnatlandmark(/mob/living/simple_animal/hostile/kcorp/drone, -10)//extremely low chance
 		if("lovetowneasy")
@@ -125,7 +117,6 @@ SUBSYSTEM_DEF(cityevents)
 		//Neutral events
 		if("swag")
 			spawnitem(/obj/item/clothing/shoes/swagshoes, 2)	// Swag out, man
-	wavetime+=1
 	if(prob(50))
 		JobAddition()
 
@@ -173,7 +164,7 @@ SUBSYSTEM_DEF(cityevents)
 				deadchat_broadcast("A Backstreet Butcher job slot has just opened, respawn to play.", message_type=DEADCHAT_ANNOUNCEMENT)
 
 /datum/controller/subsystem/cityevents/proc/Boss()
-	minor_announce("Warning, large hostile detected. Suppression required.", "Local Activity Alert:", TRUE)
+	minor_announce("Warning, large hostile detected during this night. Suppression required.", "Local Activity Alert:", TRUE)
 	var/T = pick(spawners)
 	var/chosen_boss = pick(boss_events)
 	var/chosen_event
@@ -203,6 +194,8 @@ SUBSYSTEM_DEF(cityevents)
 		addtimer(CALLBACK(src, PROC_REF(Daynight)), 5 MINUTES)
 		daystatus = FALSE
 		globalillumination = -0.18	//Ship it back up
+		Nighttime() //And being the nighttime raid
+		raiding = TRUE
 		return
 
 	if(globalillumination >= 1.1)	//Go back down.
@@ -211,9 +204,69 @@ SUBSYSTEM_DEF(cityevents)
 		globalillumination = 1.08	//Ship it back down
 		return
 
+	if(globalillumination >= 0.54 && !daystatus && raiding)
+		nighttime_remove() //End the raid.
+		raiding = FALSE
+
 	if(daystatus)	//After noon
 		globalillumination -= 0.02
 		addtimer(CALLBACK(src, PROC_REF(Daynight)), 10 SECONDS)
 	else		//before noon
 		globalillumination += 0.02
 		addtimer(CALLBACK(src, PROC_REF(Daynight)), 10 SECONDS)
+
+/datum/controller/subsystem/cityevents/proc/Nighttime()
+	var/chosen_event
+	if(wavetime == 8 && wavetime !=0)
+		chosen_event = Boss()
+	else
+		minor_announce("Warning, the night in the backstreets has begun.", "Local Activity Alert:", TRUE)
+		chosen_event = pick(harmful_events)
+
+	switch (chosen_event)
+		if("sweepers")
+			nighttime_spawn(/mob/living/simple_animal/hostile/ordeal/indigo_noon, 20)
+		if("scouts")
+			nighttime_spawn(/mob/living/simple_animal/hostile/ordeal/indigo_dawn, 40)
+		if("bots")
+			nighttime_spawn(/mob/living/simple_animal/hostile/ordeal/green_bot, 10)
+		if("gbugs")
+			nighttime_spawn(/mob/living/simple_animal/hostile/ordeal/steel_dawn, 30)
+		if("shrimps")
+			nighttime_spawn(/mob/living/simple_animal/hostile/shrimp, 20)
+		if("beaks")
+			nighttime_spawn(/mob/living/simple_animal/hostile/ordeal/bigBirdEye, 10)
+		if("drones")
+			nighttime_spawn(/mob/living/simple_animal/hostile/kcorp/drone, -10)//extremely low chance
+		if("lovetowneasy")
+			nighttime_spawn(pick(/mob/living/simple_animal/hostile/lovetown/slasher,
+			/mob/living/simple_animal/hostile/lovetown/stabber), 25)
+		if("lovetownhard")
+			nighttime_spawn(pick(/mob/living/simple_animal/hostile/lovetown/shambler,
+			/mob/living/simple_animal/hostile/lovetown/slumberer), 5)
+	wavetime+=1
+
+/datum/controller/subsystem/cityevents/proc/nighttime_spawn(mob/living/L, chance)
+	chance += wavetime*8
+	for(var/J in spawners)
+		if(!prob(chance))
+			continue
+		new /obj/effect/bloodpool(get_turf(J))
+		sleep(10)
+		//This is less intensive than a loop
+
+		var/mob/living/hostile1 = new L (get_turf(J))
+		hostile1 += nighttime_raiders
+
+		var/mob/living/hostile2 = new L (get_turf(J))
+		hostile2 += nighttime_raiders
+
+		var/mob/living/hostile3 = new L (get_turf(J))
+		hostile3 += nighttime_raiders
+
+/datum/controller/subsystem/cityevents/proc/nighttime_remove()
+	for(var/mob/living/L in nighttime_raiders)
+		L -= nighttime_raiders
+		if (L.stat != DEAD)
+			qdel(L)
+	minor_announce("The night in the backstreets has now concluded.", "Local Activity Alert:", TRUE)
