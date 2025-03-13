@@ -25,6 +25,7 @@ SUBSYSTEM_DEF(maptype)
 						FACILITY_TRAIT_ABNO_BLITZ = 5,			//The game is significantly Faster, starts after noon.
 						FACILITY_TRAIT_FUCKED_SELECTION = 5,		//The abno selection is randomized
 						FACILITY_TRAIT_LEGACY_PALE = 5,			//You take 90% damage if pale damage hits you
+						FACILITY_TRAIT_DAMAGE_TYPE_SHUFFLE = 5, //Shuffles all lob corp color damage types randomly. Attack and armor damage types shuffled separately.
 
 						//Joke stuff is below, should all be low
 						FACILITY_TRAIT_WORKING_CLERKS = 3,		//For the joke
@@ -68,6 +69,8 @@ SUBSYSTEM_DEF(maptype)
 			if(FACILITY_TRAIT_VISIBLE_GHOSTS)
 				var/msg = span_warning("You suddenly feel extremely obvious...")
 				set_observer_default_invisibility(0, msg)
+			if(FACILITY_TRAIT_DAMAGE_TYPE_SHUFFLE)
+				GLOB.damage_type_shuffler.is_enabled = TRUE
 
 	//Badda Bing Badda Da. This makes the latejoin menu cleaner
 	switch(SSmaptype.maptype)
