@@ -207,9 +207,13 @@
 	mobspawn_table = list(/mob/living/simple_animal/hostile/ordeal/steel_dawn/steel_noon/flying = 1)
 
 /obj/effect/spawner/mobspawner/steel_dusk_squad
-	name = "g corp air assault squad spawn"
+	name = "g corp squad spawn"
 	max_spawns = 5
-	mobspawn_table = list(/mob/living/simple_animal/hostile/ordeal/steel_dawn/steel_noon/flying = 1)
+	mobspawn_table = list(
+		/mob/living/simple_animal/hostile/ordeal/steel_dawn = 7,
+		/mob/living/simple_animal/hostile/ordeal/steel_dawn/steel_noon = 2,
+		/mob/living/simple_animal/hostile/ordeal/steel_dawn/steel_noon/flying = 1,
+		)
 
 	//Shrimp
 /obj/effect/spawner/mobspawner/shrimp
