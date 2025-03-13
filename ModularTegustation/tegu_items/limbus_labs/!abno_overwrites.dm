@@ -36,3 +36,36 @@
 	. = ..()
 	if(SSmaptype.maptype == "limbus_labs")
 		ChangeResistances(list(RED_DAMAGE = 1, WHITE_DAMAGE = 1, BLACK_DAMAGE = 2, PALE_DAMAGE = 1.5))
+
+/mob/living/simple_animal/hostile/abnormality/nosferatu/Initialize()
+	. = ..()
+	if(SSmaptype.maptype == "limbus_labs")
+		ChangeResistances(list(RED_DAMAGE = 1, WHITE_DAMAGE = 1.2, BLACK_DAMAGE = 0.4, PALE_DAMAGE = 1.5))
+		faction = list("neutral", "nosferatu")
+		summon_cooldown_time = 60 MINUTES
+		bat_spawn_number = 0
+
+/mob/living/simple_animal/hostile/abnormality/nosferatu/Login()
+	. = ..()
+	if(SSmaptype.maptype == "limbus_labs")
+		faction = list("hostile","nosferatu")
+
+/mob/living/simple_animal/hostile/abnormality/nosferatu/Logout()
+	. = ..()
+	if(SSmaptype.maptype == "limbus_labs")
+		faction = list("neutral", "nosferatu")
+
+/mob/living/simple_animal/hostile/nosferatu_mob/Initialize()
+	. = ..()
+	if(SSmaptype.maptype == "limbus_labs")
+		faction = list("neutral","nosferatu")
+
+/mob/living/simple_animal/hostile/nosferatu_mob/Login()
+	. = ..()
+	if(SSmaptype.maptype == "limbus_labs")
+		faction = list("hostile", "nosferatu")
+
+/mob/living/simple_animal/hostile/nosferatu_mob/Logout()
+	. = ..()
+	if(SSmaptype.maptype == "limbus_labs")
+		faction = list("neutral", "nosferatu")
