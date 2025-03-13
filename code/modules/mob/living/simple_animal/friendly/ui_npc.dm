@@ -428,14 +428,14 @@
 					"proc_callback" = CALLBACK(src, PROC_REF(OrderParcel))),
 				"lost_parcel" = list(
 					"Text" = "“About that...”",
-					"next_scene" = "job_6",CheckList
+					"next_scene" = "job_6",
 					"visible_callback" = CALLBACK(src, PROC_REF(SwapCheckParcelDelivery))),
 				"later" = list(
 					"Text" = "“Maybe not right now.”",
 					"next_scene" = "main_screen"),
 				"quest" = list(
 					"Text" = "Any other jobs?”",
-					"next_scene" = "quest_1"
+					"next_scene" = "quest_1",
 					"visible_callback" = CALLBACK(src, PROC_REF(SwapCheckList), intro_questers)),
 				"ready_quest" = list(
 					"Text" = "“About the Contract...”",
