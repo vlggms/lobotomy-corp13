@@ -390,7 +390,7 @@
 	cost = 50
 
 /datum/ego_datum/weapon/rimeshank
-	item_path = /obj/item/ego_weapon/rimeshank
+	item_path = /obj/item/ego_weapon/mining/rimeshank
 	cost = 50
 
 // Parasite Tree - Hypocrisy
