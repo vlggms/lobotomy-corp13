@@ -1,6 +1,6 @@
 
 //Prayer
-/obj/item/book/granter/action/skill/prayer
+/obj/item/book/granter/action/skill/fishing/prayer
 	name = "Level 1 Skill: Lunar Prayer"
 	actionname = "Lunar Prayer"
 	granted_action = /datum/action/cooldown/fishing/prayer
@@ -25,7 +25,7 @@
 
 
 //God's love
-/obj/item/book/granter/action/skill/love
+/obj/item/book/granter/action/skill/fishing/love
 	name = "Level 1 Skill: The God's Love"
 	actionname = "God's Love"
 	granted_action = /datum/action/cooldown/fishing/love
