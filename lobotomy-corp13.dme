@@ -4314,7 +4314,7 @@
 #include "ModularTegustation\tegu_mobs\lc13_bongy.dm"
 #include "ModularTegustation\tegu_mobs\lc13_corrosions.dm"
 #include "ModularTegustation\tegu_mobs\lc13_humanoids.dm"
-#include "ModularTegustation\tegu_mobslc13_mutant_clowns.dm"
+#include "ModularTegustation\tegu_mobs\lc13_mutant_clowns.dm"
 #include "ModularTegustation\tegu_mobs\lc13_outskirtdwellers.dm"
 #include "ModularTegustation\tegu_mobs\lc13_resurgence_clan_mobs.dm"
 #include "ModularTegustation\tegu_mobs\lc13_resurgence_clan_npcs.dm"
