@@ -411,6 +411,9 @@
 				"later" = list(
 					"Text" = "“Maybe not right now.”",
 					"next_scene" = "main_screen"),
+				"quest" = list(
+					"Text" = "Any other jobs?”",
+					"next_scene" = "quest1"),
 				)
 			),
 		"job_5" = list(
