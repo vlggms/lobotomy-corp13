@@ -153,6 +153,26 @@
 		return
 	ui_interact(user)
 
+/mob/living/simple_animal/ui_npc/proc/AddList(var/list/npc_list, user)
+	var/in_list = FALSE
+	for(var/U in npc_list)
+		if (U == user)
+			in_list = TRUE
+	if(!in_list)
+		npc_list += usr
+
+/mob/living/simple_animal/ui_npc/proc/CheckList(var/list/npc_list, user)
+	for(var/U in npc_list)
+		if (U == user)
+			return TRUE
+	return FALSE
+
+/mob/living/simple_animal/ui_npc/proc/SwapCheckList(var/list/npc_list, user)
+	for(var/U in npc_list)
+		if (U == user)
+			return FALSE
+	return TRUE
+
 /datum/ui_npc/scene_action
 	var/text = ""
 	var/next_scene = ""
@@ -228,9 +248,11 @@
 	return scenes[scene_id]
 
 /mob/living/simple_animal/ui_npc/eric_t
-	var/parcel_deliveries = list()
-	var/item_deliveries = list()
-	var/ready_workers = list()
+	var/list/parcel_deliveries = list()
+	var/list/item_deliveries = list()
+	var/list/ready_workers = list()
+	var/list/questers = list()
+	var/list/intro_questers = list()
 	var/blood_resistance = 250
 	var/last_attacked_cooldown
 	var/attacked_cooldown = 300
@@ -406,14 +428,20 @@
 					"proc_callback" = CALLBACK(src, PROC_REF(OrderParcel))),
 				"lost_parcel" = list(
 					"Text" = "“About that...”",
-					"next_scene" = "job_6",
+					"next_scene" = "job_6",CheckList
 					"visible_callback" = CALLBACK(src, PROC_REF(SwapCheckParcelDelivery))),
 				"later" = list(
 					"Text" = "“Maybe not right now.”",
 					"next_scene" = "main_screen"),
 				"quest" = list(
 					"Text" = "Any other jobs?”",
-					"next_scene" = "quest1"),
+					"next_scene" = "quest_1"
+					"visible_callback" = CALLBACK(src, PROC_REF(SwapCheckList), intro_questers)),
+				"ready_quest" = list(
+					"Text" = "“About the Contract...”",
+					"next_scene" = "job",
+					"visible_callback" = CALLBACK(src, PROC_REF(CheckList), intro_questers)),
+
 				)
 			),
 		"job_5" = list(
@@ -559,7 +587,118 @@
 					"proc_callback" = ""),
 				)
 			),
+//Ruined Nest Quest
+		"quest_1" = list(
+			"text" = "Hm... Matter of a fact, I do have a new job for you.",
+			"actions" = list(
+				"..." = list(
+					"Text" = "...",
+					"next_scene" = "quest_2",
+					"proc_callback" = ""),
+				)
+			),
+		"quest_2" = list(
+			"text" = "You may have heard of this tale, but I used to work in another town.",
+			"actions" = list(
+				"..." = list(
+					"Text" = "...",
+					"next_scene" = "quest_3",
+					"proc_callback" = ""),
+				)
+			),
+		"quest_3" = list(
+			"text" = "However 'small' incident has occurred in that place.",
+			"actions" = list(
+				"..." = list(
+					"Text" = "...",
+					"next_scene" = "quest_4",
+					"proc_callback" = ""),
+				)
+			),
+		"quest_4" = list(
+			"text" = "And by small incident I mean one of the Bong Bong sisters triggered a nuclear detonation, eviscerating everything.",
+			"actions" = list(
+				"..." = list(
+					"Text" = "...",
+					"next_scene" = "quest_5",
+					"proc_callback" = ""),
+				)
+			),
+		"quest_5" = list(
+			"text" = "... You know, it was so annoying to move all of my operations here!",
+			"actions" = list(
+				"..." = list(
+					"Text" = "...",
+					"next_scene" = "quest_6",
+					"proc_callback" = ""),
+				)
+			),
+		"quest_6" = list(
+			"text" = "Anyways, There is one thing that I could not recover in time.",
+			"actions" = list(
+				"..." = list(
+					"Text" = "...",
+					"next_scene" = "quest_7",
+					"proc_callback" = ""),
+				)
+			),
+		"quest_7" = list(
+			"text" = "It should be in a black briefcase marked by my name, I know for a fact it is still out there.",
+			"actions" = list(
+				"..." = list(
+					"Text" = "...",
+					"next_scene" = "quest_8",
+					"proc_callback" = ""),
+				)
+			),
+		"quest_8" = list(
+			"text" = "If you could recover the briefcase, I could pay you around... 3000 ahn.",
+			"actions" = list(
+				"..." = list(
+					"Text" = "...",
+					"next_scene" = "quest_9",
+					"proc_callback" = ""),
+				)
+			),
+		"quest_9" = list(
+			"text" = "How does that sound for a contract? Go into the ruined nest and recover my breifcase in one piece, and I shall pay you 3000 ahn.",
+			"actions" = list(
+				"ready_quest" = list(
+					"Text" = "“I am ready to take this contract!”",
+					"next_scene" = "main_screen",
+					"proc_callback" = ""),
+
+				"later_quest" = list(
+					"Text" = "“Give me some time to think about it...”",
+					"next_scene" = "quest_leave",
+					"proc_callback" = ""),
+				)
+			),
+		"quest_leave" = list(
+			"text" = "Sure, return to me once you are more informed.",
+			"actions" = list(
+				"..." = list(
+					"Text" = "...",
+					"next_scene" = "main_screen",
+					"proc_callback" = CALLBACK(src, PROC_REF(AddList), intro_questers)),
+				)
+			),
 	))
+
+// /mob/living/simple_animal/ui_npc/eric_t/proc/AddQuester()
+// 	questers += usr
+
+// /mob/living/simple_animal/ui_npc/eric_t/proc/CheckQuesters(user)
+// 	for(var/Q in questers)
+// 		if (Q == user)
+// 			return TRUE
+// 	return FALSE
+
+// /mob/living/simple_animal/ui_npc/eric_t/proc/SwapCheckQuesters(user)
+// 	for(var/Q in questers)
+// 		if (Q == user)
+// 			return FALSE
+// 	return TRUE
 
 /mob/living/simple_animal/ui_npc/eric_t/adjustHealth(amount, updating_health = TRUE, forced = FALSE)
 	if (amount > 0)
