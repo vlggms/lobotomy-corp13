@@ -191,7 +191,7 @@ SUBSYSTEM_DEF(cityevents)
 		L.set_light(25, globalillumination)
 
 	if(globalillumination <= -0.2)	//Go back up
-		addtimer(CALLBACK(src, PROC_REF(Daynight)), 5 MINUTES)
+		addtimer(CALLBACK(src, PROC_REF(Daynight)), 1 MINUTES)//So raids could happen faster.
 		daystatus = FALSE
 		globalillumination = -0.18	//Ship it back up
 		Nighttime() //And being the nighttime raid
@@ -199,12 +199,12 @@ SUBSYSTEM_DEF(cityevents)
 		return
 
 	if(globalillumination >= 1.1)	//Go back down.
-		addtimer(CALLBACK(src, PROC_REF(Daynight)), 5 MINUTES)
+		addtimer(CALLBACK(src, PROC_REF(Daynight)), 1 MINUTES)
 		daystatus = TRUE
 		globalillumination = 1.08	//Ship it back down
 		return
 
-	if(globalillumination >= 0.54 && !daystatus && raiding)
+	if(globalillumination >= 0.1 && !daystatus && raiding)
 		nighttime_remove() //End the raid.
 		raiding = FALSE
 
@@ -220,7 +220,7 @@ SUBSYSTEM_DEF(cityevents)
 
 /datum/controller/subsystem/cityevents/proc/Nighttime()
 	var/chosen_event
-	if(wavetime == 8 && wavetime !=0)
+	if(wavetime == 4 && wavetime !=0)
 		chosen_event = Boss()
 	else
 		minor_announce("Warning, the night in the backstreets has begun.", "Local Activity Alert:", TRUE)
@@ -265,8 +265,8 @@ SUBSYSTEM_DEF(cityevents)
 		var/mob/living/hostile2 = new L (get_turf(J))
 		nighttime_raiders += hostile2
 
-		var/mob/living/hostile2 = new L (get_turf(J))
-		nighttime_raiders += hostile2
+		var/mob/living/hostile3 = new L (get_turf(J))
+		nighttime_raiders += hostile3
 
 /datum/controller/subsystem/cityevents/proc/nighttime_remove()
 	for(var/mob/living/L in nighttime_raiders)
