@@ -41,7 +41,8 @@
 "h" = (
 /obj/effect/decal/cleanable/dirt/dust,
 /mob/living/simple_animal/hostile/humanoid/fixer/metal{
-	return_to_origin = 1
+	return_to_origin = 1;
+	loot_armor = list(/obj/item/ego_weapon/shield/eria,/obj/item/ego_weapon/city/echo/iria)
 	},
 /obj/item/gps/mining{
 	anchored = 1;
