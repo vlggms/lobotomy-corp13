@@ -27,6 +27,7 @@
 	)
 	work_damage_amount = 3
 	work_damage_type = PALE_DAMAGE
+	chem_type = /datum/reagent/abnormality/sin/gloom
 
 	ego_list = list(
 		/datum/ego_datum/weapon/revelation,

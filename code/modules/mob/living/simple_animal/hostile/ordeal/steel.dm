@@ -69,9 +69,9 @@
 	butcher_results = list(/obj/item/food/meat/slab/buggy = 2)
 	silk_results = list(/obj/item/stack/sheet/silk/steel_simple = 2, /obj/item/stack/sheet/silk/steel_advanced = 1)
 
-/mob/living/simple_animal/hostile/ordeal/steel_dawn/steel_noon/MeleeAction()
-	health+=10
-	if(health <= maxHealth*0.25 && stat != DEAD && prob(75))
+/mob/living/simple_animal/hostile/ordeal/steel_dawn/steel_noon/AttackingTarget(atom/attacked_target)
+	adjustBruteLoss(-10)
+	if(health <= maxHealth * 0.25 && stat != DEAD && prob(75))
 		walk_to(src, 0)
 		say("FOR G CORP!!!")
 		animate(src, transform = matrix()*1.8, color = "#FF0000", time = 15)
@@ -84,12 +84,12 @@
 	visible_message(span_danger("[src] suddenly explodes!"))
 	new /obj/effect/temp_visual/explosion(get_turf(src))
 	playsound(loc, 'sound/effects/ordeals/steel/gcorp_boom.ogg', 60, TRUE)
-	for(var/mob/living/L in view(3, src))
+	for(var/mob/living/L in ohearers(3, src))
 		L.apply_damage(60, RED_DAMAGE, null, L.run_armor_check(null, RED_DAMAGE))
 
 	//Buff allies, all of these buffs only activate once.
 	//Buff the grunts around you when you die
-	for(var/mob/living/simple_animal/hostile/ordeal/steel_dawn/Y in view(7, src))
+	for(var/mob/living/simple_animal/hostile/ordeal/steel_dawn/Y in ohearers(7, src))
 		if(Y.stat >= UNCONSCIOUS)
 			continue
 		Y.say("FOR G CORP!!!")
@@ -101,7 +101,7 @@
 		Y.adjustBruteLoss(-maxHealth*0.5)
 
 	//And any manager
-	for(var/mob/living/simple_animal/hostile/ordeal/steel_dusk/Z in view(7, src))
+	for(var/mob/living/simple_animal/hostile/ordeal/steel_dusk/Z in ohearers(7, src))
 		if(Z.stat >= UNCONSCIOUS)
 			continue
 		Z.say("There will be full-on roll call tonight.")
@@ -131,8 +131,10 @@
 		return FALSE
 	return ..()
 
-/mob/living/simple_animal/hostile/ordeal/steel_dawn/steel_noon/flying/MeleeAction()
+/mob/living/simple_animal/hostile/ordeal/steel_dawn/steel_noon/flying/AttackingTarget(atom/attacked_target)
 	if(ranged_cooldown <= world.time && prob(30))
+		if(!target)
+			GiveTarget(attacked_target)
 		OpenFire()
 		return
 	return ..()

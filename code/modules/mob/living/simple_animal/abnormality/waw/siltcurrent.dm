@@ -42,6 +42,7 @@
 						)
 	work_damage_amount = 7//does constant oxygen damage during work
 	work_damage_type = RED_DAMAGE
+	chem_type = /datum/reagent/abnormality/sin/pride
 	ranged = 1
 	can_breach = TRUE
 	start_qliphoth = 2

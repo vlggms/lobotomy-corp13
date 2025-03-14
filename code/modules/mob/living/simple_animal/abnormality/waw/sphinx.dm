@@ -32,6 +32,7 @@
 	)
 	work_damage_amount = 12
 	work_damage_type = WHITE_DAMAGE
+	chem_type = /datum/reagent/abnormality/sin/wrath
 
 	ego_list = list(
 		/datum/ego_datum/weapon/pharaoh,
@@ -223,10 +224,14 @@
 
 /mob/living/simple_animal/hostile/abnormality/sphinx/AttackingTarget(atom/attacked_target)
 	if(!ishuman(attacked_target))
+		if(!target)
+			GiveTarget(attacked_target)
 		return OpenFire(attacked_target)
 
 	var/mob/living/carbon/human/H = attacked_target
 	if(!H.sanity_lost)
+		if(!target)
+			GiveTarget(attacked_target)
 		return OpenFire(attacked_target)
 
 	QDEL_NULL(H.ai_controller)

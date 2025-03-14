@@ -26,6 +26,7 @@
 	)
 	work_damage_amount = 10
 	work_damage_type = WHITE_DAMAGE
+	chem_type = /datum/reagent/abnormality/sin/gluttony
 
 	can_breach = TRUE
 	start_qliphoth = 2
@@ -79,7 +80,9 @@
 	QDEL_NULL(soundloop)
 	return ..()
 
-/mob/living/simple_animal/hostile/abnormality/dreaming_current/AttackingTarget()
+/mob/living/simple_animal/hostile/abnormality/dreaming_current/AttackingTarget(atom/attacked_target)
+	if(!target)
+		GiveTarget(attacked_target)
 	return OpenFire()
 
 /mob/living/simple_animal/hostile/abnormality/dreaming_current/Move()

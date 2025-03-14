@@ -8,7 +8,7 @@
 	if(SSmaptype.maptype == "limbus_labs")
 		health = 1500
 		maxHealth = 1500
-		ChangeResistances(1, 0.8, 0.8, 1.2)
+		ChangeResistances(list(RED_DAMAGE = 1, WHITE_DAMAGE = 0.8, BLACK_DAMAGE = 0.8, PALE_DAMAGE = 1.2))
 
 /mob/living/simple_animal/hostile/abnormality/scorched_girl/Initialize()
 	. = ..()
@@ -21,7 +21,7 @@
 	if(SSmaptype.maptype == "limbus_labs")
 		health = 2000
 		maxHealth = 2000
-		ChangeResistances(0.7, 0.6, 0.8, 1)
+		ChangeResistances(list(RED_DAMAGE = 0.7, WHITE_DAMAGE = 0.6, BLACK_DAMAGE = 0.8, PALE_DAMAGE = 1))
 		melee_damage_lower = 35
 		melee_damage_upper = 47
 
@@ -35,4 +35,4 @@
 /mob/living/simple_animal/hostile/abnormality/steam/Initialize()
 	. = ..()
 	if(SSmaptype.maptype == "limbus_labs")
-		ChangeResistances(1, 1, 2, 1.5)
+		ChangeResistances(list(RED_DAMAGE = 1, WHITE_DAMAGE = 1, BLACK_DAMAGE = 2, PALE_DAMAGE = 1.5))

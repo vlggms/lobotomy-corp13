@@ -65,9 +65,8 @@
 
 /mob/living/simple_animal/hostile/ordeal/indigo_noon/PickTarget(list/Targets)
 	if(health <= maxHealth * 0.6) // If we're damaged enough
-		for(var/mob/living/simple_animal/hostile/ordeal/indigo_noon/sweeper in view(7, src)) // And there is no sweepers even more damaged than us
+		for(var/mob/living/simple_animal/hostile/ordeal/indigo_noon/sweeper in ohearers(7, src)) // And there is no sweepers even more damaged than us
 			if(sweeper.stat != DEAD && (health > sweeper.health))
-				sweeper.PickTarget(Targets) // Let this sweeper see the same targets as we do
 				return ..()
 		var/list/highest_priority = list()
 		for(var/mob/living/L in Targets)

@@ -19,6 +19,7 @@
 	max_boxes = 20
 	work_damage_amount = 0		//Work damage is later
 	work_damage_type = RED_DAMAGE
+	chem_type = /datum/reagent/abnormality/sin/lust
 
 	ego_list = list(
 		/datum/ego_datum/weapon/heart,

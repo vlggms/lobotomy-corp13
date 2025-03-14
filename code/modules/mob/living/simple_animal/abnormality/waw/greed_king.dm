@@ -32,6 +32,7 @@
 	)
 	work_damage_amount = 10
 	work_damage_type = RED_DAMAGE
+	chem_type = /datum/reagent/abnormality/sin/gluttony
 
 	observation_prompt = "Come on, don't be like that. <br>I might look hideous but that's not important to you, right? <br>\
 		I am happy that you can hear me. <br>I once fought for happiness of the world. <br>But soon after, I noticed. <br>\

@@ -34,6 +34,7 @@
 	)
 	work_damage_amount = 16
 	work_damage_type = RED_DAMAGE
+	chem_type = /datum/reagent/abnormality/sin/envy
 
 	ego_list = list(
 		/datum/ego_datum/weapon/mimicry,
@@ -173,7 +174,7 @@
 		if((current_stage == 3) && (goodbye_cooldown <= world.time) && prob(35))
 			return Goodbye()
 		if((current_stage == 3) && (hello_cooldown <= world.time) && prob(35))
-			var/turf/target_turf = get_turf(target)
+			var/turf/target_turf = get_turf(attacked_target)
 			for(var/i = 1 to 3)
 				target_turf = get_step(target_turf, get_dir(get_turf(src), target_turf))
 			return Hello(target_turf)

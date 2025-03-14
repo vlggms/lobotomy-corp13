@@ -37,7 +37,7 @@
 /obj/structure/chair/comfy/teal{
 	dir = 4;
 	pixel_y = 15;
-	pixel_x = -5;
+	pixel_x = -5
 	},
 /obj/structure/table/wood{
 	alpha = 0;
@@ -4032,7 +4032,7 @@
 /obj/machinery/chem_dispenser/fullupgrade{
 	pixel_y = 14;
 	emagged_reagents = list();
-	dispensable_reagents = list(/datum/reagent/aluminium,/datum/reagent/bromine,/datum/reagent/carbon,/datum/reagent/chlorine,/datum/reagent/copper,/datum/reagent/consumable/ethanol,/datum/reagent/fluorine,/datum/reagent/hydrogen,/datum/reagent/iodine,/datum/reagent/iron,/datum/reagent/lithium,/datum/reagent/mercury,/datum/reagent/nitrogen,/datum/reagent/oxygen,/datum/reagent/phosphorus,/datum/reagent/potassium,/datum/reagent/uranium/radium,/datum/reagent/silicon,/datum/reagent/sodium,/datum/reagent/silver,/datum/reagent/stable_plasma,/datum/reagent/consumable/sugar,/datum/reagent/sulfur,/datum/reagent/toxin/acid,/datum/reagent/water,/datum/reagent/fuel)
+	dispensable_reagents = list(/datum/reagent/aluminium,/datum/reagent/bromine,/datum/reagent/carbon,/datum/reagent/chlorine,/datum/reagent/copper,/datum/reagent/consumable/ethanol,/datum/reagent/fluorine,/datum/reagent/hydrogen,/datum/reagent/iodine,/datum/reagent/iron,/datum/reagent/lithium,/datum/reagent/mercury,/datum/reagent/nitrogen,/datum/reagent/oxygen,/datum/reagent/phosphorus,/datum/reagent/potassium,/datum/reagent/uranium/radium,/datum/reagent/silicon,/datum/reagent/sodium,/datum/reagent/silver,/datum/reagent/stable_plasma,/datum/reagent/consumable/sugar,/datum/reagent/sulfur,/datum/reagent/toxin/acid,/datum/reagent/water,/datum/reagent/fuel,/datum/reagent/drug/enkephalin)
 	},
 /turf/open/floor/noslip,
 /area/centcom)

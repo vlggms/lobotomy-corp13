@@ -34,6 +34,7 @@
 	)
 	work_damage_amount = 11
 	work_damage_type = RED_DAMAGE
+	chem_type = /datum/reagent/abnormality/sin/envy
 	fear_level = WAW_LEVEL
 	max_boxes = 16
 	base_pixel_x = -8

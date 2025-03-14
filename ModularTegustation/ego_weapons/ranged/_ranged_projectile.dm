@@ -21,6 +21,10 @@
 	projectile.suppressed = quiet
 
 	projectile.damage *= projectile_damage_multiplier
+
+	if(HAS_TRAIT(user, TRAIT_BETTER_GUNS))
+		projectile.damage += projectile.damage*get_attribute_level(user, JUSTICE_ATTRIBUTE)/130*0.50
+
 	if(temporary_damage_multiplier)
 		projectile.damage *= temporary_damage_multiplier
 

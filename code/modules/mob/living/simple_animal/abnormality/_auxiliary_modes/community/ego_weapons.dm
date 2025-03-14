@@ -29,6 +29,8 @@
 	desc = "Some old bandages that look like they have been worn for a long time."
 	icon_state = "desert"
 	icon = 'code/modules/mob/living/simple_animal/abnormality/_auxiliary_modes/community/!icons/ego_weapons.dmi'
+	lefthand_file = 'code/modules/mob/living/simple_animal/abnormality/_auxiliary_modes/community/!icons/ego_lefthand.dmi'
+	righthand_file = 'code/modules/mob/living/simple_animal/abnormality/_auxiliary_modes/community/!icons/ego_righthand.dmi'
 	force = 21
 	attack_speed = 0.7
 	hitsound = 'sound/weapons/fixer/generic/fist1.ogg'
@@ -194,6 +196,10 @@
 	special = "Use in hand to prepare a powerful area attack. This attack becomes more powerful when charged."
 	icon_state = "sunspit"
 	icon = 'code/modules/mob/living/simple_animal/abnormality/_auxiliary_modes/community/!icons/ego_weapons.dmi'
+	lefthand_file = 'icons/mob/inhands/64x64_lefthand.dmi'
+	righthand_file = 'icons/mob/inhands/64x64_righthand.dmi'
+	inhand_x_dimension = 64
+	inhand_y_dimension = 64
 	force = 54
 	attack_speed = 1.6
 	swingstyle = WEAPONSWING_LARGESWEEP
@@ -467,11 +473,14 @@
 
 /obj/item/ego_weapon/wield/ochre
 	name = "ochre sheet"
-	desc = "Everyone says its a myth until one day something happens in the streets that brings it back to life."
+	desc = "Everyone says its a myth until one day something happens that brings it back to life."
 	special = "This weapon can fire a damaging projectile that scales with justice when held with both hands."
 	icon_state = "ochre"
 	icon = 'code/modules/mob/living/simple_animal/abnormality/_auxiliary_modes/community/!icons/ego_weapons.dmi'
-	special = "This weapon deals RED damage when wielded and WHITE otherwise."
+	lefthand_file = 'icons/mob/inhands/64x64_lefthand.dmi'
+	righthand_file = 'icons/mob/inhands/64x64_righthand.dmi'
+	inhand_x_dimension = 64
+	inhand_y_dimension = 64
 	force = 98
 	wielded_force = 98
 	reach = 2		//Has 2 Square Reach.
@@ -528,6 +537,9 @@
 	G.damage*=justicemod
 	firing_cooldown = firing_cooldown_time + world.time
 	user.changeNext_move(CLICK_CD_MELEE * attack_speed)
+	user.Immobilize(stuntime)
+	//Visual stuff to give you better feedback
+	new /obj/effect/temp_visual/weapon_stun(get_turf(user))
 
 /obj/projectile/ego_bullet/ochre
 	name = "ochre sheet"
@@ -666,6 +678,8 @@
 			This weapon has a fast attack speed, is capable of closing short gaps when attacking, and heals a small amount on a combo finsiher."
 	icon_state = "limos"
 	icon = 'code/modules/mob/living/simple_animal/abnormality/_auxiliary_modes/community/!icons/ego_weapons.dmi'
+	lefthand_file = 'code/modules/mob/living/simple_animal/abnormality/_auxiliary_modes/community/!icons/ego_lefthand.dmi'
+	righthand_file = 'code/modules/mob/living/simple_animal/abnormality/_auxiliary_modes/community/!icons/ego_righthand.dmi'
 	force = 14 // VERY fast attacks potentially
 	damtype = BLACK_DAMAGE
 	swingstyle = WEAPONSWING_THRUST

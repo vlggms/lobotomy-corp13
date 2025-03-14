@@ -33,6 +33,7 @@
 	)
 	work_damage_amount = 10
 	work_damage_type = WHITE_DAMAGE
+	chem_type = /datum/reagent/abnormality/sin/gloom
 
 	ego_list = list(
 		/datum/ego_datum/weapon/despair,
@@ -146,6 +147,8 @@
 	swords += 1
 
 /mob/living/simple_animal/hostile/abnormality/despair_knight/AttackingTarget(atom/attacked_target)
+	if(!target)
+		GiveTarget(attacked_target)
 	return OpenFire()
 
 /mob/living/simple_animal/hostile/abnormality/despair_knight/OpenFire()

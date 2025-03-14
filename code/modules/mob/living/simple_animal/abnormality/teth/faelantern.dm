@@ -30,6 +30,7 @@
 
 	work_damage_amount = 5
 	work_damage_type = WHITE_DAMAGE
+	chem_type = /datum/reagent/abnormality/sin/gluttony
 	start_qliphoth = 1
 	max_boxes = 12
 	ego_list = list(
@@ -69,6 +70,8 @@
 	var/lured_list = list()
 
 /mob/living/simple_animal/hostile/abnormality/faelantern/AttackingTarget(atom/attacked_target)
+	if(!target)
+		GiveTarget(attacked_target)
 	return OpenFire()
 
 /mob/living/simple_animal/hostile/abnormality/faelantern/Goto(target, delay, minimum_distance)
@@ -125,7 +128,7 @@
 
 //Transformation and teleportation
 /mob/living/simple_animal/hostile/abnormality/faelantern/adjustHealth(amount, updating_health = TRUE, forced = FALSE)
-	..()
+	. = ..()
 	if(stat == DEAD)
 		return
 	if(fairy_enabled)

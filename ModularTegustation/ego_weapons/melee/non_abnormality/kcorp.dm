@@ -28,9 +28,10 @@
 	righthand_file = 'ModularTegustation/Teguicons/lc13_right_64x64.dmi'
 	inhand_x_dimension = 64
 	inhand_y_dimension = 64
-	force = 44
+	force = 62
 	reach = 2
-	attack_speed = 1.2
+	stuntime = 5
+	attack_speed = 1
 	damtype = RED_DAMAGE
 	hitsound = 'sound/weapons/fixer/generic/kcorp1.ogg'
 	attack_verb_continuous = list("whacks", "slashes")
@@ -51,9 +52,10 @@
 	righthand_file = 'ModularTegustation/Teguicons/lc13_right_64x64.dmi'
 	inhand_x_dimension = 64
 	inhand_y_dimension = 64
-	force = 22
+	force = 32
 	reach = 2
 	attack_speed = 0.6
+	stuntime = 5
 	damtype = RED_DAMAGE
 	hitsound = 'sound/weapons/fixer/generic/kcorp1.ogg'
 	attack_verb_continuous = list("whacks", "slashes")

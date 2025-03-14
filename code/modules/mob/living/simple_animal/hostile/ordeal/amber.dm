@@ -183,6 +183,7 @@
 	base_pixel_x = -16
 	butcher_results = list(/obj/item/food/meat/slab/worm = 3)
 	guaranteed_butcher_results = list(/obj/item/food/meat/slab/worm = 2)
+	silk_results = list(/obj/item/stack/sheet/silk/amber_simple = 2, /obj/item/stack/sheet/silk/amber_advanced = 1)
 	attack_verb_continuous = "eviscerates"
 	attack_verb_simple = "eviscerate"
 	attack_sound = 'sound/effects/ordeals/amber/dusk_attack.ogg'
@@ -202,6 +203,8 @@
 	var/burrowing = FALSE
 	/// List of currently spawned dawns, so we don't create too many
 	var/list/spawned_mobs = list()
+	//If they can burrow or not.
+	var/can_burrow = TRUE
 
 	var/datum/looping_sound/amberdusk/soundloop
 
@@ -257,9 +260,18 @@
 	. = ..()
 	if(!.) // Dead
 		return FALSE
-	if(!burrowing && world.time > burrow_cooldown)
-		AttemptBirth()
-		BurrowIn()
+	if(can_burrow)
+		if(!burrowing && world.time > burrow_cooldown)
+			AttemptBirth()
+			BurrowIn()
+
+//Can only attack near the mouth
+/mob/living/simple_animal/hostile/ordeal/amber_dusk/AttackCondition(atom/attack_target)
+	var/relative_angle = abs(dir2angle(dir) - dir2angle(get_dir(src, attack_target)))
+	relative_angle = relative_angle > 180 ? 360 - relative_angle : relative_angle
+	if(relative_angle > 90)
+		return FALSE
+	return TRUE
 
 /mob/living/simple_animal/hostile/ordeal/amber_dusk/death(gibbed)
 	if(LAZYLEN(butcher_results))

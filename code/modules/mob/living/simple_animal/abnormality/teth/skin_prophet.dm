@@ -23,6 +23,7 @@
 	)
 	gift_type = /datum/ego_gifts/visions
 	abnormality_origin = ABNORMALITY_ORIGIN_LIMBUS
+	chem_type = /datum/reagent/abnormality/sin/wrath
 
 	observation_prompt = "Candles quietly burn away. <br>\
 		Scribbling sounds are all that fill the air. <br>\

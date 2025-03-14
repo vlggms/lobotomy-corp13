@@ -303,12 +303,12 @@
 				var/mob/living/hit = attacked_target
 				if((hit.stat == DEAD) ||!ishuman(hit))//if the target is dead or not human
 					return ..()
-				if(istype(target, /mob/living/carbon/human/species/pinocchio))
+				if(istype(hit, /mob/living/carbon/human/species/pinocchio))
 					return ..()
 				pulse_count += 1
-			if(ismecha(target))
+			if(ismecha(attacked_target))
 				var/inhabited = FALSE
-				for(var/mob/living/L in target.contents)
+				for(var/mob/living/L in attacked_target.contents)
 					if(L.stat == DEAD)
 						continue
 					inhabited = TRUE

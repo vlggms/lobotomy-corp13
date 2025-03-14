@@ -70,7 +70,7 @@ Skittish, they prefer to move in groups and will run away if the enemies are in 
 
 /mob/living/simple_animal/hostile/humanoid/rat/Initialize()
 	. = ..()
-	if(SSmaptype.maptype == "fixers" || SSmaptype.maptype == "city")
+	if(SSmaptype.maptype in SSmaptype.citymaps)
 		del_on_death = FALSE
 
 //Knife - The leader, has a pathetically weak dash, attacks fast
@@ -151,10 +151,10 @@ Skittish, they prefer to move in groups and will run away if the enemies are in 
 	attack_verb_continuous = "bashes"
 	attack_verb_simple = "bash"
 
-/mob/living/simple_animal/hostile/humanoid/rat/pipe/MeleeAction(patience = TRUE)
+/mob/living/simple_animal/hostile/humanoid/rat/pipe/AttackingTarget(atom/attacked_target)
 	playsound(get_turf(src), 'sound/abnormalities/apocalypse/swing.ogg', 75, 0, 3)
 	SLEEP_CHECK_DEATH(0.5 SECONDS)
-	if(!target.Adjacent(targets_from))
+	if(QDELETED(attacked_target) || !attacked_target.Adjacent(targets_from))
 		return
 	. = ..()
 

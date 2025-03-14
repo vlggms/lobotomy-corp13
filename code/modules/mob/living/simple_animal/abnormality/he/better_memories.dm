@@ -27,6 +27,7 @@
 		)
 	work_damage_amount = 10
 	work_damage_type = WHITE_DAMAGE
+	chem_type = /datum/reagent/abnormality/sin/sloth
 
 	ego_list = list(
 		/datum/ego_datum/weapon/morii,
@@ -207,6 +208,8 @@
 	if(!can_act)
 		return FALSE
 	if(!client)
+		if(!target)
+			GiveTarget(attacked_target)
 		if(ishuman(attacked_target))
 			var/mob/living/carbon/human/H = attacked_target
 			/* Dont jab those standing
@@ -221,7 +224,7 @@
 
 //Experiment with construct.dm code where the artificers have a melee range condition.
 /mob/living/simple_animal/hostile/better_memories_minion/MoveToTarget(list/possible_targets)
-	..()
+	. = ..()
 	//If not human then attack with jabs
 	if(!ishuman(target))
 		retreat_distance = null

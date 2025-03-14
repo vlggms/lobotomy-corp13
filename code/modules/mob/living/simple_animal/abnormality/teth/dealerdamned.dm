@@ -15,6 +15,7 @@
 	)
 	work_damage_amount = 6
 	work_damage_type = BLACK_DAMAGE
+	chem_type = /datum/reagent/abnormality/sin/gluttony
 	speak_emote = list("states")
 	pet_bonus = "waves"
 

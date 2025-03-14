@@ -22,6 +22,7 @@
 	)
 	work_damage_amount = 10
 	work_damage_type = RED_DAMAGE
+	chem_type = /datum/reagent/abnormality/sin/wrath
 	del_on_death = FALSE
 	death_message = "crumples into a pile of bones."
 	attack_sound = 'sound/abnormalities/redshoes/RedShoes_Attack.ogg'
@@ -226,7 +227,7 @@
 	if(!ishuman(attacked_target))
 		return
 	var/mob/living/carbon/human/H = attacked_target
-	if(H.stat >= SOFT_CRIT || H.health < 0)
+	if(istype(H) && (H.stat >= SOFT_CRIT || H.health < 0))
 		ChopFeet(H)
 
 /mob/living/simple_animal/hostile/abnormality/red_shoes/proc/ChopFeet(mob/living/carbon/human/H)
@@ -395,7 +396,7 @@
 	if(!ishuman(attacked_target))
 		return
 	var/mob/living/carbon/human/H = attacked_target
-	if(H.stat >= SOFT_CRIT || H.health < 0)
+	if(istype(H) && (H.stat >= SOFT_CRIT || H.health < 0))
 		ChopFeet(H)
 
 /mob/living/simple_animal/hostile/red_shoe/proc/ChopFeet(mob/living/carbon/human/H)

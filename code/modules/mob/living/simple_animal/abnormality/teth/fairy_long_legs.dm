@@ -34,6 +34,7 @@
 	)
 	work_damage_amount = 5
 	work_damage_type = RED_DAMAGE
+	chem_type = /datum/reagent/abnormality/sin/gluttony
 	death_message = "coalesces into a primordial egg."
 	death_sound = 'sound/abnormalities/fairy_longlegs/death.ogg'
 	abnormality_origin = ABNORMALITY_ORIGIN_LIMBUS

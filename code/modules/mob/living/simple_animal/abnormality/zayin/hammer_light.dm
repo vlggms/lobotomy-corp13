@@ -22,6 +22,7 @@
 	work_damage_amount = 6
 	work_damage_type = RED_DAMAGE
 	max_boxes = 8
+	chem_type = /datum/reagent/abnormality/sin/lust
 
 	ego_list = list(
 		/datum/ego_datum/weapon/evening,
@@ -250,6 +251,7 @@
 	attack_verb_continuous = list("slams", "strikes", "smashes")
 	attack_verb_simple = list("slam", "strike", "smash")
 	hitsound = 'sound/abnormalities/lighthammer/hammer_filter.ogg'
+	slot_flags = null
 	var/list/spawned_mobs = list()
 	var/spawned_mob_max = 4
 	var/spawn_cooldown = 0

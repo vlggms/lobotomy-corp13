@@ -47,7 +47,7 @@
 // Waw
 /obj/item/clothing/suit/armor/ego_gear/waw/ochre
 	name = "ochre sheet"
-	desc = "You shall not pass!"
+	desc = "The soul is not a single unity; that is what it is destined to become, and that is what we call \"Immortality\"."
 	icon_state = "ochre"
 	icon = 'code/modules/mob/living/simple_animal/abnormality/_auxiliary_modes/community/!icons/ego_armor.dmi'
 	worn_icon = 'code/modules/mob/living/simple_animal/abnormality/_auxiliary_modes/community/!icons/ego_worn.dmi'

@@ -122,7 +122,7 @@
 	food_reagents = list(
 		/datum/reagent/consumable/nutriment/protein = 1,
 		/datum/reagent/consumable/nutriment/organ_tissue = 1,
-		/datum/reagent/abnormality/bittersyrup = 4,
+		/datum/reagent/abnormality/heartysyrup = 4,
 		/datum/reagent/consumable/salt = 4,
 	)
 
@@ -201,6 +201,13 @@
 	sprite_height = 8
 	average_size = 30
 	average_weight = 300
+	food_reagents = list(
+		/datum/reagent/consumable/nutriment/protein = 1,
+		/datum/reagent/consumable/nutriment/organ_tissue = 1,
+		/datum/reagent/abnormality/focussyrup = 4,
+		/datum/reagent/consumable/salt = 4,
+	)
+
 
 /obj/item/food/fish/salt_water/searabbit
 	name = "Sea Rabbit"

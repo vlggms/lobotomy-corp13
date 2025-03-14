@@ -16,6 +16,7 @@
 	melee_damage_upper = 5
 	is_flying_animal = TRUE
 	melee_damage_type = BLACK_DAMAGE
+	chem_type = /datum/reagent/abnormality/sin/lust
 	stat_attack = HARD_CRIT
 	attack_verb_continuous = "bumps"
 	attack_verb_simple = "bumps"

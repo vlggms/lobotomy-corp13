@@ -30,6 +30,7 @@
 	)
 	work_damage_amount = 7
 	work_damage_type = RED_DAMAGE
+	chem_type = /datum/reagent/abnormality/sin/wrath
 
 	ego_list = list(
 		/datum/ego_datum/weapon/gaze,

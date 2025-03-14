@@ -24,6 +24,7 @@ Finally, an abnormality that DOESN'T have to do any fancy movement shit. It's a 
 	// Adjusted the work chances a little to really funnel people through Instinct work. You can do other stuff... sort of.
 	work_damage_amount = 12
 	work_damage_type = WHITE_DAMAGE
+	chem_type = /datum/reagent/abnormality/sin/gluttony
 	ego_list = list(
 		/datum/ego_datum/weapon/harmony,
 		/datum/ego_datum/weapon/rhythm,

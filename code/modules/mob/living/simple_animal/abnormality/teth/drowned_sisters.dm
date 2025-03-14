@@ -17,7 +17,7 @@
 	start_qliphoth = 3
 	work_damage_amount = 5		//Calculated later
 	work_damage_type = WHITE_DAMAGE
-	chem_type = /datum/reagent/abnormality/woe
+	chem_type = /datum/reagent/abnormality/sin/gloom
 	pixel_x = -32
 	base_pixel_x = -32
 

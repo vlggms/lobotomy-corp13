@@ -31,6 +31,7 @@
 	max_boxes = 18
 	work_damage_amount = 5
 	work_damage_type = PALE_DAMAGE
+	chem_type = /datum/reagent/abnormality/sin/sloth
 	patrol_cooldown_time = 3 SECONDS
 
 	ego_list = list(

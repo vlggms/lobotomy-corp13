@@ -17,6 +17,7 @@
 	)
 	work_damage_amount = 20			//Unlikely to hurt you but if she ever does she'll fuck you
 	work_damage_type = RED_DAMAGE
+	chem_type = /datum/reagent/abnormality/sin/sloth
 
 	ego_list = list(
 		/datum/ego_datum/weapon/fury,

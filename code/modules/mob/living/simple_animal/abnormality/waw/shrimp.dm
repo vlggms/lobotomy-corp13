@@ -18,7 +18,8 @@
 		ABNORMALITY_WORK_REPRESSION = -100,	//He's a snobby shrimp dude.
 	)
 	work_damage_amount = 11
-	work_damage_type = WHITE_DAMAGE	//He insults you.
+	work_damage_type = WHITE_DAMAGE	//He insults you
+	chem_type = /datum/reagent/abnormality/sin/pride
 
 	ego_list = list(
 		/datum/ego_datum/weapon/executive,
@@ -200,7 +201,7 @@
 
 /mob/living/simple_animal/hostile/shrimp/Initialize()
 	. = ..()
-	if(SSmaptype.maptype == "fixers" || SSmaptype.maptype == "city")
+	if(SSmaptype.maptype in SSmaptype.citymaps)
 		del_on_death = FALSE
 
 //You can put these guys about to guard an area.
@@ -236,7 +237,7 @@
 
 /mob/living/simple_animal/hostile/shrimp_soldier/Initialize()
 	. = ..()
-	if(SSmaptype.maptype == "fixers" || SSmaptype.maptype == "city")
+	if(SSmaptype.maptype in SSmaptype.citymaps)
 		del_on_death = FALSE
 
 /mob/living/simple_animal/hostile/shrimp_soldier/friendly

@@ -38,6 +38,7 @@ GLOBAL_LIST_EMPTY(army)
 	)
 	work_damage_amount = 17
 	work_damage_type = WHITE_DAMAGE
+	chem_type = /datum/reagent/abnormality/sin/wrath
 
 	//E.G.O list
 	ego_list = list(

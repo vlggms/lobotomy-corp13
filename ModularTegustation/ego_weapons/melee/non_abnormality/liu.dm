@@ -62,9 +62,10 @@
 	name = "liu spear"
 	desc = "A spear used by veteran fixers of Liu Section 1 and Section 2, and is used by the director of Liu Section 2."
 	icon_state = "liuspear"
-	force = 45
+	force = 60
 	reach = 2
-	attack_speed = 1.2
+	stuntime = 5
+	attack_speed = 1
 	attribute_requirements = list(
 							FORTITUDE_ATTRIBUTE = 100,
 							PRUDENCE_ATTRIBUTE = 80,

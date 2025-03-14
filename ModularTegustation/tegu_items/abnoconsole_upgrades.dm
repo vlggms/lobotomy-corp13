@@ -49,3 +49,9 @@
 	desc = "Using information collected from employee files and security footage this upgrade allows the user to see their success rate."
 	upgrade_slot = "workrate"
 	color = COLOR_SOFT_RED
+
+/obj/item/work_console_upgrade/work_meltdown_screen
+	name = "work console meltdown screen upgrade"
+	desc = "Red tinted glass and some wires that hook the work console to the door panel."
+	upgrade_slot = "meltdown"
+	color = COLOR_RED

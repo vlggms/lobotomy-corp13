@@ -319,6 +319,7 @@
 	},
 /obj/structure/closet/secure_closet/freezer/meat/open,
 /obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/spawner/lootdrop/food_random,
 /turf/open/floor/plasteel/sepia,
 /area/city/backstreets_room)
 "Y" = (

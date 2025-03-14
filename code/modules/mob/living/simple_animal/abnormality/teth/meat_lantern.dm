@@ -25,6 +25,7 @@
 
 	work_damage_amount = 5
 	work_damage_type = WHITE_DAMAGE
+	chem_type = /datum/reagent/abnormality/sin/sloth
 	start_qliphoth = 1
 	max_boxes = 14
 	ego_list = list(

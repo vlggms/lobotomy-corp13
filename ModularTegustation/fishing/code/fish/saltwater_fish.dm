@@ -70,3 +70,9 @@
 	sprite_height = 8
 	average_size = 100
 	average_weight = 1500
+	food_reagents = list(
+		/datum/reagent/consumable/nutriment/protein = 3,
+		/datum/reagent/consumable/nutriment/organ_tissue = 1,
+		/datum/reagent/consumable/nutriment/vile_fluid = 1,
+		/datum/reagent/abnormality/tastesyrup = 4,
+	)

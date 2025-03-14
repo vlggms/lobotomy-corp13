@@ -88,7 +88,7 @@
 		return FALSE
 
 	if(onrush_cooldown <= world.time)
-		OnRush(target)
+		OnRush(attacked_target)
 		return
 
 	return ..()

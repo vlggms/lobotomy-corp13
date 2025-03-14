@@ -19,6 +19,7 @@
 	max_boxes = 10
 	success_boxes = 9
 	neutral_boxes = 6
+	chem_type = /datum/reagent/abnormality/sin/gloom
 
 	ego_list = list(
 		/datum/ego_datum/weapon/oceanic,

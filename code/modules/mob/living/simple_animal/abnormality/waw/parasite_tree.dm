@@ -27,6 +27,7 @@
 	)
 	work_damage_amount = 12
 	work_damage_type = WHITE_DAMAGE
+	chem_type = /datum/reagent/abnormality/sin/sloth
 
 	ego_list = list(
 		/datum/ego_datum/weapon/hypocrisy,
@@ -217,6 +218,8 @@
 	return FALSE
 
 /mob/living/simple_animal/hostile/parasite_tree_sapling/AttackingTarget(atom/attacked_target)
+	if(!target)
+		GiveTarget(attacked_target)
 	return OpenFire()
 
 /mob/living/simple_animal/hostile/parasite_tree_sapling/OpenFire()

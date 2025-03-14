@@ -851,5 +851,23 @@
 	foodtypes = GRAIN | DAIRY | SUGAR
 	w_class = WEIGHT_CLASS_TINY
 
+/obj/item/food/croissant
+	name = "croissant"
+	desc = "A classic french pastry. Delicious."
+	icon_state = "croissant"
+	food_reagents = list(/datum/reagent/consumable/nutriment = 7, /datum/reagent/consumable/nutriment/vitamin = 3)
+	tastes = list("pastry" = 1)
+	foodtypes = GRAIN | DAIRY | BREAKFAST
+	w_class = WEIGHT_CLASS_SMALL
+
+/obj/item/food/pain_au_chocolat
+	name = "pain au chocolat"
+	desc = "A popular french pastry made from pastry puff with chocolate inside."
+	icon_state = "pain_au_chocolat"
+	food_reagents = list(/datum/reagent/consumable/nutriment = 8, /datum/reagent/consumable/nutriment/vitamin = 4)
+	tastes = list("pastry" = 1, "chocolate" = 1)
+	foodtypes = GRAIN | DAIRY | BREAKFAST
+	w_class = WEIGHT_CLASS_SMALL
 
 #undef DONUT_SPRINKLE_CHANCE
+

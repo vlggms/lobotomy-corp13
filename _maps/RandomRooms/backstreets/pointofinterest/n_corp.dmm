@@ -32,6 +32,16 @@
 /obj/item/ego_weapon/city/ncorp_mark/white,
 /turf/open/floor/wood,
 /area/city/backstreets_room)
+"cC" = (
+/obj/item/chair/wood,
+/obj/effect/decal/cleanable/dirt,
+/obj/item/gps/mining{
+	anchored = 1;
+	gpstag = "Religious Signal";
+	alpha = 10
+	},
+/turf/open/floor/wood,
+/area/city/backstreets_room)
 "dq" = (
 /obj/item/bodypart/l_leg/robot{
 	pixel_x = -6;
@@ -1108,7 +1118,7 @@ Po
 (16,1,1) = {"
 hB
 eP
-ff
+cC
 cA
 rV
 ff

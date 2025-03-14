@@ -43,6 +43,7 @@
 	)
 	work_damage_amount = 8
 	work_damage_type = BLACK_DAMAGE
+	chem_type = /datum/reagent/abnormality/sin/gluttony
 
 	observation_prompt = "(I hear something) <br>\
 		The wicked queen is speaking with the magic mirror again and frowns when its answer remains unchanged. <br>\
@@ -157,7 +158,7 @@
 
 /mob/living/simple_animal/hostile/abnormality/ebony_queen/MoveToTarget(list/possible_targets)
 	if(!can_act)
-		return
+		return TRUE
 	return ..()
 
 /mob/living/simple_animal/hostile/abnormality/ebony_queen/DestroySurroundings()
@@ -203,11 +204,14 @@
 	if(!can_act)
 		return
 
+	if(!target)
+		GiveTarget(attacked_target)
+
 	if(client)
 		OpenFire()
 		return
 
-	if(attacked_target) // You'd think this should be "attacked_target" but no this shit still uses target I hate it.
+	if(attacked_target) // You'd think this should be "attacked_target" but no this shit still uses target I hate it. // Now uses attacked_target I love it.
 		if(ismecha(attacked_target))
 			if(burst_cooldown <= world.time && prob(50))
 				thornBurst()
@@ -294,20 +298,21 @@
 	qdel(src)
 
 	//Special attacks; there are four of them
-/mob/living/simple_animal/hostile/abnormality/ebony_queen/proc/rootStab(target) //single target
+/mob/living/simple_animal/hostile/abnormality/ebony_queen/proc/rootStab(atom/attack_target) //single target
 	if(!can_act)
 		return
 	can_act = FALSE
 	playsound(get_turf(src), 'sound/creatures/venus_trap_hurt.ogg', 75, 0, 5)
 	icon_state = "ebonyqueen_attack2"
+	var/turf/T = get_turf(attack_target)
 	SLEEP_CHECK_DEATH(1)
-	new /obj/effect/temp_visual/root(get_turf(target), src)
+	new /obj/effect/temp_visual/root(T, src)
 	SLEEP_CHECK_DEATH(4)
 	icon_state = icon_living
 	SLEEP_CHECK_DEATH(2)
 	can_act = TRUE
 
-/mob/living/simple_animal/hostile/abnormality/ebony_queen/proc/thornBarrier(target) //barrier of thorns
+/mob/living/simple_animal/hostile/abnormality/ebony_queen/proc/thornBarrier(atom/attack_target) //barrier of thorns
 	if(barrier_cooldown > world.time || !can_act)
 		return
 	barrier_cooldown = world.time + barrier_cooldown_time
@@ -315,7 +320,16 @@
 	playsound(get_turf(src), 'sound/abnormalities/ebonyqueen/charge.ogg', 175, 0, 5) //very quiet sound file
 	icon_state = "ebonyqueen_attack3"
 	SLEEP_CHECK_DEATH(7.75)
-	var/turf/target_turf = get_turf(target)
+	//check if target still exists after the sleep and bail if not
+	if(QDELETED(attack_target))
+		if(!client && FindTarget())
+			attack_target = target
+		else
+			icon_state = icon_living
+			SLEEP_CHECK_DEATH(3)
+			can_act = TRUE
+			return
+	var/turf/target_turf = get_turf(attack_target)
 	SLEEP_CHECK_DEATH(0.25) //slight offset
 	for(var/turf/T in RANGE_TURFS(1, target_turf))
 		new /obj/effect/temp_visual/root(T, src)
@@ -348,7 +362,7 @@
 	SLEEP_CHECK_DEATH(3)
 	can_act = TRUE
 
-/mob/living/simple_animal/hostile/abnormality/ebony_queen/proc/rootBarrage(target) //line attack
+/mob/living/simple_animal/hostile/abnormality/ebony_queen/proc/rootBarrage(atom/attack_target) //line attack
 	if(barrage_cooldown > world.time || !can_act)
 		return
 	barrage_cooldown = world.time + barrage_cooldown_time
@@ -356,7 +370,17 @@
 	playsound(get_turf(src), 'sound/abnormalities/ebonyqueen/strongcharge.ogg', 75, 0, 5)
 	icon_state = "ebonyqueen_attack1"
 	SLEEP_CHECK_DEATH(7)
-	var/turf/target_turf = get_ranged_target_turf_direct(src, target, barrage_range)
+	//check if target still exists after the sleep and bail if not
+	if(QDELETED(attack_target))
+		if(!client && FindTarget())
+			attack_target = target
+		else
+			icon_state = icon_living
+			SLEEP_CHECK_DEATH(3)
+			can_act = TRUE
+			return
+
+	var/turf/target_turf = get_ranged_target_turf_direct(src, attack_target, barrage_range)
 	var/count = 0
 	for(var/turf/T in getline(get_turf(src), target_turf))
 		if(T.density)

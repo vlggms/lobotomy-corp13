@@ -152,6 +152,65 @@
 	subcategory = CAT_PASTRY
 
 
+/datum/crafting_recipe/food/charlotte
+	name = "Strawberry charlotte"
+	reqs = list(
+		/obj/item/food/cake/plain = 1,
+		/obj/item/food/grown/berries = 5,
+		/datum/reagent/consumable/cream = 5,
+		/obj/item/food/pastrybase = 1
+	)
+	result = /obj/item/food/cake/charlotte
+	subcategory = CAT_PASTRY
+
+
+/datum/crafting_recipe/food/fraisier
+	name = "Fraisier"
+	reqs = list(
+		/obj/item/food/cake/plain = 1,
+		/obj/item/food/grown/berries = 5,
+		/datum/reagent/consumable/cream = 5
+	)
+	result = /obj/item/food/cake/fraisier
+	subcategory = CAT_PASTRY
+
+
+/datum/crafting_recipe/food/saint_honore
+	name = "Saint Honore"
+	reqs = list(
+		/obj/item/food/cake/plain = 1,
+		/datum/reagent/consumable/cream = 5,
+		/datum/reagent/consumable/caramel = 1,
+		/obj/item/food/chocolatebar = 1,
+		/obj/item/food/pastrybase = 1
+	)
+	result = /obj/item/food/cake/saint_honore
+	subcategory = CAT_PASTRY
+
+
+/datum/crafting_recipe/food/black_forest
+	name = "Black Forest"
+	reqs = list(
+		/obj/item/food/cake/plain = 1,
+		/datum/reagent/consumable/cream = 5,
+		/obj/item/food/grown/cherries = 2,
+		/obj/item/food/chocolatebar = 2
+	)
+	result = /obj/item/food/cake/black_forest
+	subcategory = CAT_PASTRY
+
+
+/datum/crafting_recipe/food/triple_berry
+	name = "Triple layer berry cake"
+	reqs = list(
+		/obj/item/food/cake/plain = 1,
+		/datum/reagent/consumable/cream = 5,
+		/obj/item/food/grown/berries = 15
+	)
+	result = /obj/item/food/cake/triple_berry
+	subcategory = CAT_PASTRY
+
+
 ////////////////////////////////////////////////PIES////////////////////////////////////////////////
 
 /datum/crafting_recipe/food/cherrypie
@@ -286,6 +345,52 @@
 		/obj/item/seeds/wheat/oat = 4
 	)
 	result = /obj/item/food/pie/baklava
+	subcategory = CAT_PASTRY
+
+
+/datum/crafting_recipe/food/tarte_tatin
+	name = "Tarte tatin"
+	reqs = list(
+		/obj/item/food/pie/plain = 1,
+		/obj/item/food/grown/apple = 2,
+		/datum/reagent/consumable/caramel = 5,
+		/obj/item/food/butter = 1
+	)
+	result = /obj/item/food/pie/tarte_tatin
+	subcategory = CAT_PASTRY
+
+
+/datum/crafting_recipe/food/chocolate_pie
+	name = "Chocolate pie"
+	reqs = list(
+		/obj/item/food/pie/plain = 1,
+		/obj/item/food/chocolatebar = 2
+	)
+	result = /obj/item/food/pie/chocolate
+	subcategory = CAT_PASTRY
+
+
+/datum/crafting_recipe/food/flan
+	name = "Flan"
+	reqs = list(
+		/obj/item/food/pie/plain = 1,
+		/datum/reagent/consumable/eggyolk = 5,
+		/datum/reagent/consumable/milk = 5,
+		/datum/reagent/consumable/vanilla = 5
+	)
+	result = /obj/item/food/pie/flan
+	subcategory = CAT_PASTRY
+
+
+/datum/crafting_recipe/food/lemon_meringue_pie
+	name = "Lemon meringue pie"
+	reqs = list(
+		/obj/item/food/pie/plain = 1,
+		/datum/reagent/consumable/eggyolk = 5,
+		/obj/item/food/grown/citrus/lemon = 2,
+		/datum/reagent/consumable/sugar = 5
+	)
+	result = /obj/item/food/pie/lemon_meringue
 	subcategory = CAT_PASTRY
 
 
@@ -744,4 +849,23 @@
 		/datum/reagent/consumable/sugar = 3
 	)
 	result = /obj/item/food/cannoli
+	subcategory = CAT_PASTRY
+
+/datum/crafting_recipe/food/croissant
+	name = "Croissant"
+	reqs = list(
+		/obj/item/food/pastrybase = 1,
+		/obj/item/food/butter = 1
+	)
+	result = /obj/item/food/croissant
+	subcategory = CAT_PASTRY
+
+/datum/crafting_recipe/food/pain_au_chocolat
+	name = "Pain au chocolat"
+	reqs = list(
+		/obj/item/food/pastrybase = 1,
+		/obj/item/food/butter = 1,
+		/obj/item/food/chocolatebar = 1
+	)
+	result = /obj/item/food/pain_au_chocolat
 	subcategory = CAT_PASTRY

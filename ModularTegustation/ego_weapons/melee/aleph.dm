@@ -66,6 +66,7 @@
 							TEMPERANCE_ATTRIBUTE = 80,
 							JUSTICE_ATTRIBUTE = 100
 							)
+	crit_multiplier = 0	//No crits for you, you have the combo system.
 
 	var/combo = 0
 	/// Maximum world.time after which combo is reset
@@ -123,6 +124,7 @@
 							TEMPERANCE_ATTRIBUTE = 80,
 							JUSTICE_ATTRIBUTE = 80
 							)
+	crit_multiplier = 0	//No crits for you, you have the combo system.
 
 	var/combo = 0 // I am copy-pasting justitia "combo" system and nobody can stop me
 	var/combo_time
@@ -215,6 +217,7 @@
 							TEMPERANCE_ATTRIBUTE = 120,
 							JUSTICE_ATTRIBUTE = 120
 							)
+	crit_multiplier = 0	//It's twlilight
 
 /obj/item/ego_weapon/twilight/attack(mob/living/M, mob/living/user)
 	if(!CanUseEgo(user))
@@ -245,6 +248,7 @@
 	var/goldrush_damage = 140
 	var/finisher_on = TRUE //this is for a subtype, it should NEVER be false on this item.
 	damtype = RED_DAMAGE
+	crit_multiplier = 0	//Can't crit anyways.
 
 //Replaces the normal attack with the gigafuck punch
 /obj/item/ego_weapon/goldrush/attack(mob/living/target, mob/living/user)
@@ -553,6 +557,7 @@
 	attack_verb_continuous = list("cuts", "attacks", "slashes")
 	attack_verb_simple = list("cut", "attack", "slash")
 	hitsound = 'sound/weapons/rapierhit.ogg'
+	crit_multiplier = 0	//does multi-damage
 	attribute_requirements = list(
 							FORTITUDE_ATTRIBUTE = 80,
 							PRUDENCE_ATTRIBUTE = 100,
@@ -643,7 +648,7 @@
 		"Looks some sort of axe or bladed mace. An unbearable amount of heat comes off of it."),
 		"fall" = list(100, 1.2, 1, list("crushes", "burns"), list("crush", "burn"), 'sound/abnormalities/seasons/fall_attack.ogg', "autumnal equinox",BLACK_DAMAGE ,BLACK_DAMAGE,
 		"In nature, a light is often used as a simple but effective lure. This weapon follows the same premise."),
-		"winter" = list(60, 1.2, 2, list("skewers", "jabs"), list("skewer", "jab"), 'sound/abnormalities/seasons/winter_attack.ogg', "winter solstice",PALE_DAMAGE ,PALE_DAMAGE,
+		"winter" = list(80, 1, 2, list("skewers", "jabs"), list("skewer", "jab"), 'sound/abnormalities/seasons/winter_attack.ogg', "winter solstice",PALE_DAMAGE ,PALE_DAMAGE,
 		"This odd weapon is akin to the biting cold of the north.")
 		)
 	var/transforming = TRUE

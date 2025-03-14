@@ -43,6 +43,7 @@
 		)
 	work_damage_amount = 10
 	work_damage_type = WHITE_DAMAGE
+	chem_type = /datum/reagent/abnormality/sin/gloom
 	wander = FALSE
 
 	observation_prompt = "You remember her. <br>\
@@ -912,6 +913,7 @@
 	hit_message = "parries the attack!"
 	block_cooldown_message = "You rearm your blade."
 	//For deleting it whenever seperated from user.
+	slot_flags = null
 	item_flags = DROPDEL
 
 /obj/item/ego_weapon/shield/ice_sword/Initialize()

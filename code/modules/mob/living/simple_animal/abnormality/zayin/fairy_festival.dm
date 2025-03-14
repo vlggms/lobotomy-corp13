@@ -151,29 +151,29 @@
 		playsound(get_turf(src), "sound/abnormalities/fairyfestival/fairyqueen_growl.ogg", 100, FALSE)
 	return ..()
 
-/mob/living/simple_animal/hostile/abnormality/fairy_festival/AttackingTarget()
+/mob/living/simple_animal/hostile/abnormality/fairy_festival/AttackingTarget(atom/attacked_target)
 	. = ..()
 	if(summon_type != /mob/living/simple_animal/hostile/fairy_mass)//does she have fairy masses?
 		return
-	if(istype(target, /mob/living/simple_animal/hostile/fairy_mass))
-		var/mob/living/L = target
+	if(istype(attacked_target, /mob/living/simple_animal/hostile/fairy_mass))
+		var/mob/living/L = attacked_target
 		if(L.health > 0)//fairies have to be alive; scarred meat isn't tasty
 			L.gib()
 			ProcessKill()
 			playsound(get_turf(src), "sound/abnormalities/fairyfestival/fairyqueen_growl.ogg", 100, FALSE)
 			return
 		eat_threshold -= 0.2
-	if(. && isliving(target))
-		var/mob/living/L = target
-		if(isliving(target) && (L.health < 0 || L.stat == DEAD))
-			L.gib()
+	if(. && isliving(attacked_target))
+		var/mob/living/L = attacked_target
+		if(isliving(attacked_target) && (L.health < 0 || L.stat == DEAD))
 			playsound(get_turf(src), "sound/abnormalities/fairyfestival/fairyqueen_growl.ogg", 100, FALSE)
 			if(ishuman(L))
 				ProcessKill()
+			L.gib()
 
 //Cannibalism
 /mob/living/simple_animal/hostile/abnormality/fairy_festival/adjustHealth(amount, updating_health = TRUE, forced = FALSE)
-	..()
+	. = ..()
 	if(summon_type != /mob/living/simple_animal/hostile/fairy_mass)//does she have fairy masses?
 		return
 	if(health < (maxHealth * eat_threshold)) //80% health or lower, 20% less for each eat.
@@ -250,7 +250,7 @@
 /mob/living/simple_animal/hostile/mini_fairy/AttackingTarget(atom/attacked_target)
 	. = ..()
 	var/friends = 0
-	for(var/mob/living/simple_animal/hostile/mini_fairy/fren in view(6, src))
+	for(var/mob/living/simple_animal/hostile/mini_fairy/fren in ohearers(6, src))
 		friends++
 	if(friends < 3)
 		summon_backup()
@@ -296,10 +296,10 @@
 	stat_attack = DEAD
 	guaranteed_butcher_results = list(/obj/item/food/meat/slab = 1)
 
-/mob/living/simple_animal/hostile/fairy_mass/AttackingTarget()
+/mob/living/simple_animal/hostile/fairy_mass/AttackingTarget(atom/attacked_target)
 	. = ..()
-	if(iscarbon(target))
-		var/mob/living/L = target
+	if(iscarbon(attacked_target))
+		var/mob/living/L = attacked_target
 		if(L.health < 0 || L.stat == DEAD)
 			playsound(get_turf(src), 'sound/magic/demon_consume.ogg', 75, 0)
 			L.gib()

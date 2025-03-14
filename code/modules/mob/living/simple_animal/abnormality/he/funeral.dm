@@ -32,6 +32,7 @@
 	)
 	work_damage_amount = 12
 	work_damage_type = WHITE_DAMAGE
+	chem_type = /datum/reagent/abnormality/sin/gloom
 	max_boxes = 16
 	death_message = "gently descends into its own coffin."
 	base_pixel_x = -16
@@ -86,6 +87,8 @@
 	button_icon_toggle_deactivated = "funeral_toggle0"
 
 /mob/living/simple_animal/hostile/abnormality/funeral/AttackingTarget(atom/attacked_target)
+	if(!target)
+		GiveTarget(attacked_target)
 	return OpenFire()
 
 /mob/living/simple_animal/hostile/abnormality/funeral/OpenFire()

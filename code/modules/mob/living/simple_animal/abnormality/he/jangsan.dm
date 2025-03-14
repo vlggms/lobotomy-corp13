@@ -30,6 +30,7 @@
 	)
 	work_damage_amount = 10
 	work_damage_type = RED_DAMAGE
+	chem_type = /datum/reagent/abnormality/sin/gluttony
 
 //Only done to non-humans, objects, and strong(er) agents
 	attack_sound = 'sound/abnormalities/jangsan/tigerbite.ogg'

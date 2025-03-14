@@ -39,6 +39,7 @@
 	)
 	work_damage_amount = 10
 	work_damage_type = RED_DAMAGE
+	chem_type = /datum/reagent/abnormality/sin/wrath
 
 	ego_list = list(
 		/datum/ego_datum/weapon/animalism,
@@ -152,6 +153,8 @@
 			FindTarget()
 		else
 			if(!jumping)
+				if(!target)
+					GiveTarget(attacked_target)
 				Jump()
 		return
 	..()

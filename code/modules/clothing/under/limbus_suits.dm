@@ -28,22 +28,25 @@
 	desc = "For prisoners, but fancy."
 
 //Limbus Labs stuff
-/obj/item/clothing/under/limbus/lowsec
+/obj/item/clothing/under/limbus/labs
+	icon = 'icons/mob/clothing/ego_gear/under.dmi'
+
+/obj/item/clothing/under/limbus/labs/lowsec
 	name = "Low-security uniform"
 	icon_state = "lowsec"
 	desc = "Always worn by Low-sec officers. Smells of sweat and sugar."
 
-/obj/item/clothing/under/limbus/highsec
+/obj/item/clothing/under/limbus/labs/highsec
 	name = "High-security uniform"
 	icon_state = "highsec"
 	desc = "Always worn by High security officers."
 
-/obj/item/clothing/under/limbus/commandsec
+/obj/item/clothing/under/limbus/labs/commandsec
 	name = "Command Security uniform"
 	icon_state = "commandsec"
 	desc = "Worn by damage mitigation and exasperation officers. Well-cleaned, and smells faintly of perfume."
 
-/obj/item/clothing/under/limbus/officer
+/obj/item/clothing/under/limbus/labs/officer
 	name = "limbus officer uniform"
 	icon_state = "officer"
 	desc = "Worn by low security and high security commanders."

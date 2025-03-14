@@ -35,6 +35,7 @@ Defeating the murderer also surpresses the abnormality.
 	max_boxes = 24
 	work_damage_amount = 12
 	work_damage_type = WHITE_DAMAGE
+	chem_type = /datum/reagent/abnormality/sin/gluttony
 
 	ego_list = list(
 		/datum/ego_datum/weapon/scene,

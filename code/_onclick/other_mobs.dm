@@ -211,6 +211,8 @@
 			for(var/mob/living/L in T)
 				if(istype(L, /mob/living/simple_animal/projectile_blocker_dummy))
 					var/mob/living/simple_animal/projectile_blocker_dummy/pbd = L
+					if(pbd.parent == src)
+						continue
 					L = pbd.parent
 				if(L.invisibility > see_invisible)
 					continue
