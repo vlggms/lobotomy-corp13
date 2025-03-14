@@ -5,6 +5,7 @@
 	var/minY = 2
 
 /obj/effect/vaultspawner/New(turf/location,lX = minX,uX = maxX,lY = minY,uY = maxY,type = null)
+	. = ..()
 	if(!type)
 		type = pick("sandstone","rock","alien")
 
@@ -24,5 +25,3 @@
 			else
 				T.PlaceOnTop(/turf/open/floor/vault)
 			T.icon_state = "[type]vault"
-
-	qdel(src)
