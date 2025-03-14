@@ -67,7 +67,7 @@
 /mob/living/simple_animal/hostile/mutant_clown/proc/Scream()
 	scream_cooldown = world.time + scream_cooldown_time
 	can_act = FALSE
-	say(pick(combat_lines))
+	say(pick(scream_lines))
 	playsound(get_turf(src), 'sound/creatures/lc13/lovetown/scream.ogg', 50, TRUE, 3)
 	var/obj/effect/temp_visual/decoy/D = new /obj/effect/temp_visual/decoy(get_turf(src), src)
 	animate(D, alpha = 0, transform = matrix()*1.5, time = 4)

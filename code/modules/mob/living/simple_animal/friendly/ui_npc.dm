@@ -105,6 +105,9 @@
 	if (chosen_action.proc_callback)
 		result = chosen_action.proc_callback.Invoke()
 
+	if (chosen_action.proc_callback2)
+		result = chosen_action.proc_callback2.Invoke()
+
 	// Navigate to next scene if specified
 	if(chosen_action.alternative_scene && !result)
 		scene_manager.navigate_to_scene(user.client, chosen_action.alternative_scene)
@@ -153,23 +156,23 @@
 		return
 	ui_interact(user)
 
-/mob/living/simple_animal/ui_npc/proc/AddList(var/list/npc_list, user)
+/mob/living/simple_animal/ui_npc/proc/AddList(list/npc_list)
 	var/in_list = FALSE
 	for(var/U in npc_list)
-		if (U == user)
+		if (U == usr)
 			in_list = TRUE
 	if(!in_list)
 		npc_list += usr
 
-/mob/living/simple_animal/ui_npc/proc/CheckList(var/list/npc_list, user)
+/mob/living/simple_animal/ui_npc/proc/CheckList(list/npc_list)
 	for(var/U in npc_list)
-		if (U == user)
+		if (U == usr)
 			return TRUE
 	return FALSE
 
-/mob/living/simple_animal/ui_npc/proc/SwapCheckList(var/list/npc_list, user)
+/mob/living/simple_animal/ui_npc/proc/SwapCheckList(list/npc_list)
 	for(var/U in npc_list)
-		if (U == user)
+		if (U == usr)
 			return FALSE
 	return TRUE
 
@@ -179,6 +182,7 @@
 	var/alternative_scene = ""
 	var/min_rep = 0
 	var/datum/callback/proc_callback
+	var/datum/callback/proc_callback2
 	var/datum/callback/enabled_callback
 	var/datum/callback/visible_callback
 
@@ -191,6 +195,7 @@
 	min_rep = data["min_rep"]
 	enabled_callback = data["enabled_callback"]
 	proc_callback = data["proc_callback"]
+	proc_callback2 = data["proc_callback2"]
 	visible_callback = data["visible_callback"]
 
 /datum/ui_npc/scene
@@ -270,6 +275,7 @@
 	icon_dead = "b_boss_dead"
 	emote_delay = 2000
 	random_emotes = "shuffles through some papers;flips a page in their notebook;sighs..."
+	var/collected_briefcase = FALSE
 
 /mob/living/simple_animal/ui_npc/eric_t/Initialize()
 		. = ..()
@@ -384,7 +390,7 @@
 				)
 			),
 		"job_extra_1" = list(
-			"text" = "Some of our deliveries are within the nest, they are no problem. However...",
+			"text" = "Some of our deliveries are within the town, they are no problem. However...",
 			"actions" = list(
 				"..." = list(
 					"Text" = "...",
@@ -419,7 +425,7 @@
 				)
 			),
 		"job" = list(
-			"text" = "Are willing to take on some orders?",
+			"text" = "Are you willing to take on some orders?",
 			"actions" = list(
 				"parcel" = list(
 					"Text" = "“Accept the Job”",
@@ -434,14 +440,17 @@
 					"Text" = "“Maybe not right now.”",
 					"next_scene" = "main_screen"),
 				"quest" = list(
-					"Text" = "Any other jobs?”",
+					"Text" = "“Any other jobs?”",
 					"next_scene" = "quest_1",
-					"visible_callback" = CALLBACK(src, PROC_REF(SwapCheckList), intro_questers)),
+					"alternative_scene" = "quest_late",
+					"proc_callback" = CALLBACK(src, PROC_REF(check_collect_brief)),
+					"visible_callback" = CALLBACK(src, PROC_REF(SwapCheckList), intro_questers, usr)),
 				"ready_quest" = list(
 					"Text" = "“About the Contract...”",
-					"next_scene" = "job",
-					"visible_callback" = CALLBACK(src, PROC_REF(CheckList), intro_questers)),
-
+					"next_scene" = "quest_main",
+					"alternative_scene" = "quest_late",
+					"proc_callback" = CALLBACK(src, PROC_REF(check_collect_brief)),
+					"visible_callback" = CALLBACK(src, PROC_REF(CheckList), intro_questers, usr)),
 				)
 			),
 		"job_5" = list(
@@ -524,7 +533,7 @@
 				)
 			),
 		"arrival_2" = list(
-			"text" = "Higher up wanted some more information on how well the clinic is doing in this nest. So the offered another job to me to watch over this clinic.",
+			"text" = "Higher up wanted some more information on how well the clinic is doing in this town. So the offered another job to me to watch over this clinic.",
 			"actions" = list(
 				"..." = list(
 					"Text" = "...",
@@ -587,7 +596,7 @@
 					"proc_callback" = ""),
 				)
 			),
-//Ruined Nest Quest
+//Ruined Town Quest
 		"quest_1" = list(
 			"text" = "Hm... Matter of a fact, I do have a new job for you.",
 			"actions" = list(
@@ -661,11 +670,11 @@
 				)
 			),
 		"quest_9" = list(
-			"text" = "How does that sound for a contract? Go into the ruined nest and recover my breifcase in one piece, and I shall pay you 3000 ahn.",
+			"text" = "How does that sound for a contract? Go into the ruined town and recover my breifcase in one piece, and I shall pay you 3000 ahn.",
 			"actions" = list(
 				"ready_quest" = list(
 					"Text" = "“I am ready to take this contract!”",
-					"next_scene" = "main_screen",
+					"next_scene" = "quest_start",
 					"proc_callback" = ""),
 
 				"later_quest" = list(
@@ -681,6 +690,84 @@
 					"Text" = "...",
 					"next_scene" = "main_screen",
 					"proc_callback" = CALLBACK(src, PROC_REF(AddList), intro_questers)),
+				)
+			),
+		"quest_start" = list(
+			"text" = "Great, Here is the ticket to that town. Use it at the ticket reader down on bottem right side of the town. It will add it's location to the bus.",
+			"actions" = list(
+				"..." = list(
+					"Text" = "...",
+					"next_scene" = "main_screen",
+					"proc_callback" = CALLBACK(src, PROC_REF(AddList), questers)),
+				)
+			),
+
+		"quest_main" = list(
+			"text" = "Hm, Got anything to say or ask?",
+			"actions" = list(
+				"return_main" = list(
+					"Text" = "“Nevermind, I don't anything to ask.”",
+					"next_scene" = "main_screen"),
+
+				"ready_quest" = list(
+					"Text" = "“I am ready to take this contract!”",
+					"next_scene" = "quest_start",
+					"visible_callback" = CALLBACK(src, PROC_REF(SwapCheckList), questers)),
+
+				"later_quest" = list(
+					"Text" = "“Give me some time to think about it...”",
+					"next_scene" = "quest_leave",
+					"visible_callback" = CALLBACK(src, PROC_REF(SwapCheckList), questers)),
+
+				"objective_quest" = list(
+					"Text" = "“About the breifcase...”",
+					"next_scene" = "quest_breifcase",
+					"alternative_scene" = "quest_late",
+					"visible_callback" = CALLBACK(src, PROC_REF(CheckList), questers),
+					"proc_callback" = CALLBACK(src, PROC_REF(check_collect_brief))),
+				)
+			),
+		"quest_breifcase" = list(
+			"text" = "Well, Did you find it at last?",
+			"actions" = list(
+				"got_breif" = list(
+					"Text" = "“I have it right here.”",
+					"next_scene" = "quest_done",
+					"alternative_scene" = "quest_juke",
+					"visible_callback" = CALLBACK(src, PROC_REF(briefcase_check)),
+					"proc_callback" = CALLBACK(src, PROC_REF(briefcase_buy))),
+
+				"missing_breif" = list(
+					"Text" = "“Nevermind... I don't have it yet.”",
+					"next_scene" = "quest_juke"),
+				)
+			),
+		"quest_done" = list(
+			"text" = "Great work, Thanks for collecting it for me. It would of been a real hassle if I hand to go there... Anyways, Here is the promised payment of 3000 ahn.",
+			"actions" = list(
+				"..." = list(
+					"Text" = "...",
+					"next_scene" = "main_screen",
+					"proc_callback" = ""),
+				)
+			),
+		"quest_juke" = list(
+			"text" = "... You know that you need to keep holding it? *sighs*",
+			"actions" = list(
+				"..." = list(
+					"Text" = "...",
+					"next_scene" = "quest_breifcase",
+					"proc_callback" = ""),
+				)
+			),
+
+		"quest_late" = list(
+			"text" = "Sorry to let you know, but someone has already completed my contract. The reward has already been claimed.",
+			"actions" = list(
+				"..." = list(
+					"Text" = "...",
+					"next_scene" = "main_screen",
+					"proc_callback" = ""),
 				)
 			),
 	))
@@ -711,6 +798,38 @@
 		if (last_attacked_cooldown < world.time - attacked_cooldown)
 			say(attacked_line)
 			last_attacked_cooldown = world.time
+
+/mob/living/simple_animal/ui_npc/eric_t/proc/briefcase_check()
+	if(isliving(usr))
+		var/mob/living/L = usr
+		var/B = L.is_holding_item_of_type(/obj/item/eric_briefcase)
+		if(B)
+			var/obj/item/eric_briefcase/brief = B
+			if(brief && istype(brief))
+				return TRUE
+	return FALSE
+
+/mob/living/simple_animal/ui_npc/eric_t/proc/check_collect_brief()
+	if(collected_briefcase)
+		return FALSE
+	return TRUE
+
+/mob/living/simple_animal/ui_npc/eric_t/proc/briefcase_buy()
+	if(!collected_briefcase)
+		if(isliving(usr))
+			var/mob/living/L = usr
+			var/B = L.is_holding_item_of_type(/obj/item/eric_briefcase)
+			if(B)
+				var/obj/item/eric_briefcase/brief = B
+				if(brief && istype(brief))
+					qdel(brief)
+					new /obj/item/stack/spacecash/c1000 (get_turf(L))
+					new /obj/item/stack/spacecash/c1000 (get_turf(L))
+					new /obj/item/stack/spacecash/c1000 (get_turf(L))
+					playsound(get_turf(src), 'sound/effects/cashregister.ogg', 35, 3, 3)
+					collected_briefcase = TRUE
+					return TRUE
+	return FALSE
 
 /mob/living/simple_animal/ui_npc/eric_t/proc/Payback()
 	var/obj/item/card/id/C
@@ -821,3 +940,12 @@
 	light_system = MOVABLE_LIGHT
 	light_range = 2
 	duration = 6
+
+/obj/item/eric_briefcase
+	name = "secure breifcase"
+	desc = "It's made of AUTHENTIC faux-leather. It has a name writen on it's back which says 'Eric.T'."
+	icon = 'icons/obj/storage.dmi'
+	icon_state = "briefcase"
+	lefthand_file = 'icons/mob/inhands/equipment/briefcase_lefthand.dmi'
+	righthand_file = 'icons/mob/inhands/equipment/briefcase_righthand.dmi'
+	w_class = WEIGHT_CLASS_BULKY
