@@ -35,6 +35,7 @@
 	)
 	work_damage_amount = 10
 	work_damage_type = WHITE_DAMAGE
+	chem_type = /datum/reagent/abnormality/sin/lust
 
 	ego_list = list(
 		/datum/ego_datum/weapon/my_own_bride,
@@ -72,6 +73,8 @@
 	return ..()
 
 /mob/living/simple_animal/hostile/abnormality/pygmalion/AttackingTarget(atom/attacked_target)
+	if(!target)
+		GiveTarget(attacked_target)
 	return OpenFire()
 
 /mob/living/simple_animal/hostile/abnormality/pygmalion/OpenFire()

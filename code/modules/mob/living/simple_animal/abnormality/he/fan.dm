@@ -18,6 +18,7 @@
 	)
 	work_damage_amount = 5
 	work_damage_type = RED_DAMAGE
+	chem_type = /datum/reagent/abnormality/sin/sloth
 	max_boxes = 12
 
 	ego_list = list(

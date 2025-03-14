@@ -12,8 +12,9 @@
 /turf/open/floor/plasteel/white,
 /area/city/backstreets_room)
 "w" = (
-/obj/effect/decal/cleanable/dirt/dust,
-/mob/living/simple_animal/hostile/ordeal/steel_dawn,
+/obj/effect/spawner/mobspawner/steel_dawn{
+	max_spawns = 1
+	},
 /turf/open/floor/plasteel/white,
 /area/city/backstreets_room)
 "x" = (
@@ -22,11 +23,9 @@
 "E" = (
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/structure/lootcrate/money,
-/obj/structure/lootcrate/money,
 /turf/open/floor/plasteel/white,
 /area/city/backstreets_room)
 "J" = (
-/obj/structure/lootcrate/money,
 /obj/structure/lootcrate/money,
 /turf/open/floor/plasteel/white,
 /area/city/backstreets_room)
@@ -35,7 +34,9 @@
 /turf/open/floor/plasteel/white,
 /area/city/backstreets_room)
 "T" = (
-/mob/living/simple_animal/hostile/ordeal/steel_dawn/steel_noon,
+/obj/effect/spawner/mobspawner/steel_noon{
+	max_spawns = 2
+	},
 /turf/open/floor/plasteel/white,
 /area/city/backstreets_room)
 "X" = (
@@ -56,7 +57,7 @@ a
 (2,1,1) = {"
 a
 v
-w
+N
 v
 N
 v
@@ -65,10 +66,10 @@ a
 (3,1,1) = {"
 a
 E
-x
-x
 T
-T
+x
+w
+x
 a
 "}
 (4,1,1) = {"

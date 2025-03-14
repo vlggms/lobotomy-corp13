@@ -29,6 +29,7 @@
 	)
 	work_damage_amount = 16
 	work_damage_type = WHITE_DAMAGE
+	chem_type = /datum/reagent/abnormality/sin/gloom
 	can_patrol = FALSE
 
 	wander = FALSE

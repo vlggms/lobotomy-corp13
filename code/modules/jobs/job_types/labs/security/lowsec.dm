@@ -43,7 +43,7 @@
 	belt = /obj/item/pda/security
 	ears = /obj/item/radio/headset/headset_control
 	glasses = /obj/item/clothing/glasses/sunglasses
-	uniform = /obj/item/clothing/under/limbus/lowsec
+	uniform = /obj/item/clothing/under/limbus/labs/lowsec
 	shoes = /obj/item/clothing/shoes/laceup
 	gloves = /obj/item/clothing/gloves/color/black
 	implants = list(/obj/item/organ/cyberimp/eyes/hud/security)
@@ -94,7 +94,7 @@
 	belt = /obj/item/pda/security
 	ears = /obj/item/radio/headset/heads/headset_control
 	glasses = /obj/item/clothing/glasses/sunglasses
-	uniform = /obj/item/clothing/under/limbus/officer
+	uniform = /obj/item/clothing/under/limbus/labs/officer
 	suit = /obj/item/clothing/suit/armor/ego_gear/limbus_labs/lsc
 	head = /obj/item/clothing/head/beret/sec/lccb_commander
 	shoes = /obj/item/clothing/shoes/laceup

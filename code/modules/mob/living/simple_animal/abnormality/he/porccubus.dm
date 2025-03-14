@@ -28,6 +28,7 @@
 	can_patrol = FALSE //it can't move anyway but why not
 	stat_attack = HARD_CRIT
 	work_damage_type = BLACK_DAMAGE
+	chem_type = /datum/reagent/abnormality/sin/gluttony
 	melee_damage_type = WHITE_DAMAGE
 	start_qliphoth = 2
 	can_breach = TRUE
@@ -179,7 +180,7 @@
 		damage_taken = FALSE
 
 /mob/living/simple_animal/hostile/abnormality/porccubus/adjustHealth(amount, updating_health, forced)
-	..()
+	. = ..()
 	if(amount > 0)
 		damage_taken = TRUE
 

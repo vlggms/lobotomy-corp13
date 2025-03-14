@@ -40,6 +40,7 @@
 	)
 	work_damage_amount = 12
 	work_damage_type = WHITE_DAMAGE
+	chem_type = /datum/reagent/abnormality/sin/gluttony
 	good_hater = TRUE
 	death_message = "blows up like a balloon!"
 	speak_chance = 2
@@ -124,7 +125,7 @@
 					finishing = FALSE
 					return
 				TH.attack_animal(src)
-				for(var/mob/living/carbon/human/H in view(7, get_turf(src)))
+				for(var/mob/living/carbon/human/H in ohearers(7, get_turf(src)))
 					H.deal_damage(5, WHITE_DAMAGE)
 				SLEEP_CHECK_DEATH(2)
 			if(!targets_from.Adjacent(TH) || QDELETED(TH))
@@ -132,7 +133,7 @@
 				return
 			playsound(get_turf(src), 'sound/abnormalities/clownsmiling/final_stab.ogg', 50, 1)
 			TH.gib()
-			for(var/mob/living/carbon/human/H in view(7, get_turf(src)))
+			for(var/mob/living/carbon/human/H in ohearers(7, get_turf(src)))
 				H.deal_damage(30, WHITE_DAMAGE)
 
 /mob/living/simple_animal/hostile/abnormality/clown/MoveToTarget(list/possible_targets)

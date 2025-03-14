@@ -91,12 +91,16 @@
 /obj/item/organ/proc/on_death(delta_time = 2)	//runs decay when outside of a person
 	if(organ_flags & (ORGAN_SYNTHETIC | ORGAN_FROZEN))
 		return
+	if(SSmaptype.maptype == "office")
+		return
 	applyOrganDamage(maxHealth * decay_factor * 0.5 * delta_time)
 
 /obj/item/organ/proc/on_life()	//repair organ damage if the organ is not failing
 	if(organ_flags & ORGAN_FAILING)
 		return
 	if(organ_flags & ORGAN_SYNTHETIC_EMP) //Synthetic organ has been emped, is now failing.
+		if(SSmaptype.maptype == "office")
+			return
 		applyOrganDamage(maxHealth * decay_factor)
 		return
 	///Damage decrements by a percent of its maxhealth

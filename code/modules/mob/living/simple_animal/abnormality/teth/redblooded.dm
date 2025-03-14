@@ -39,6 +39,7 @@
 	max_boxes = 14
 	work_damage_amount = 6
 	work_damage_type = RED_DAMAGE
+	chem_type = /datum/reagent/abnormality/sin/wrath
 
 	ego_list = list(
 		/datum/ego_datum/weapon/patriot,
@@ -148,11 +149,11 @@
 		if (ammo < max_ammo)
 			Reload()
 
-/mob/living/simple_animal/hostile/abnormality/redblooded/AttackingTarget()
+/mob/living/simple_animal/hostile/abnormality/redblooded/AttackingTarget(atom/attacked_target)
 	if(ammo < max_ammo)
-		if(isliving(target))
+		if(isliving(attacked_target))
 			Reload()
-		if(ismecha(target))
+		if(ismecha(attacked_target))
 			Reload()
 	return ..()
 

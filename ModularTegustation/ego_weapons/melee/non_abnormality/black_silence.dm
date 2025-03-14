@@ -404,9 +404,10 @@
 	icon_state = "allas"
 	attack_verb_continuous = list("pokes", "jabs", "pierces", "gores")
 	attack_verb_simple = list("poke", "jab", "pierce", "gore")
-	force = 70
+	force = 90
 	reach = 2
-	attack_speed = 1.2
+	attack_speed = 1
+	stuntime = 5
 	special_cooldown_time = 50
 	hitsound = 'sound/weapons/ego/spear1.ogg'
 	locked_state = "allas_locked"

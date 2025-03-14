@@ -70,6 +70,7 @@
 		new /datum/data/extraction_cargo("Chemical Extraction Upgrade ",/obj/item/work_console_upgrade/chemical_extraction_attachment,		150, CAT_RESOURCE) = 1,
 		new /datum/data/extraction_cargo("Workchance Calculator Upgrade ",/obj/item/work_console_upgrade/work_prediction_attachment,		200, CAT_RESOURCE) = 1,
 		new /datum/data/extraction_cargo("AbnoChem Starter Pack ",		/obj/structure/closet/crate/science/abnochem_startercrate,			250, CAT_RESOURCE) = 1,
+		new /datum/data/extraction_cargo("Meltdown Indicator Upgrade ",	/obj/item/work_console_upgrade/work_meltdown_screen,				400, CAT_RESOURCE) = 1,
 		new /datum/data/extraction_cargo("Mysterious Invitation ",		/obj/item/invitation,												1500, CAT_RESOURCE) = 1,
 
 		//Random stuff

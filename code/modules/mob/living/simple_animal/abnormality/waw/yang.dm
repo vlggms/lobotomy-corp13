@@ -23,6 +23,7 @@
 	threat_level = WAW_LEVEL
 	work_damage_amount = 11
 	work_damage_type = WHITE_DAMAGE
+	chem_type = /datum/reagent/abnormality/sin/envy
 	work_chances = list(
 		ABNORMALITY_WORK_INSTINCT = 0,
 		ABNORMALITY_WORK_INSIGHT = list(0, 0, 40, 40, 40),

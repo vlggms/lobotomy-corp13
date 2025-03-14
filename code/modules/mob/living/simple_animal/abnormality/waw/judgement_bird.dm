@@ -35,6 +35,7 @@
 	)
 	work_damage_amount = 10
 	work_damage_type = PALE_DAMAGE
+	chem_type = /datum/reagent/abnormality/sin/wrath
 
 	attack_action_types = list(/datum/action/innate/abnormality_attack/judgement)
 
@@ -78,6 +79,8 @@
 	return ..()
 
 /mob/living/simple_animal/hostile/abnormality/judgement_bird/AttackingTarget(atom/attacked_target)
+	if(!target)
+		GiveTarget(attacked_target)
 	return OpenFire()
 
 /mob/living/simple_animal/hostile/abnormality/judgement_bird/OpenFire()
@@ -198,6 +201,8 @@
 		var/mob/living/carbon/human/L = attacked_target
 		L.Knockdown(20)
 		var/obj/item/held = L.get_active_held_item()
+		if(SSmaptype.maptype == "office")
+			return
 		L.dropItemToGround(held) //Drop weapon
 
 /mob/living/simple_animal/hostile/runawaybird/patrol_select()
