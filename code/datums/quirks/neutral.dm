@@ -203,15 +203,6 @@
 	lose_text = "<span class='danger'>You feel like libraries are boring.</span>"
 	medical_record_text = "Patient doesn't seem to say much."
 
-/datum/quirk/no_taste
-	name = "Ageusia"
-	desc = "You can't taste anything! Toxic food will still poison you."
-	value = 0
-	mob_trait = TRAIT_AGEUSIA
-	gain_text = "<span class='notice'>You can't taste anything!</span>"
-	lose_text = "<span class='notice'>You can taste again!</span>"
-	medical_record_text = "Patient suffers from ageusia and is incapable of tasting food or reagents."
-
 /datum/quirk/foreigner
 	name = "Foreigner"
 	desc = "You're not from around here. You don't know Galactic Common!"
@@ -518,3 +509,41 @@
 		return
 	var/mob/living/carbon/human/H = quirk_holder
 	H.remove_language(/datum/language/bong, TRUE, TRUE, LANGUAGE_MIND)
+
+/datum/quirk/spiritual
+	name = "Spiritual"
+	desc = "You hold a spiritual belief, whether in God, nature or the arcane rules of the universe. You gain comfort from the presence of holy people, and believe that your prayers are more special than others."
+	value = 0
+	mob_trait = TRAIT_SPIRITUAL
+	gain_text = "<span class='notice'>You have faith in a higher power.</span>"
+	lose_text = "<span class='danger'>You lose faith!</span>"
+	medical_record_text = "Patient reports a belief in a higher power."
+
+/datum/quirk/spiritual/on_spawn()
+	var/mob/living/carbon/human/H = quirk_holder
+	H.equip_to_slot_or_del(new /obj/item/storage/fancy/candle_box(H), ITEM_SLOT_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/storage/box/matches(H), ITEM_SLOT_BACKPACK)
+
+/datum/quirk/tagger
+	name = "Tagger"
+	desc = "You're an experienced artist. People will actually be impressed by your graffiti, and you can get twice as many uses out of drawing supplies."
+	value = 0
+	mob_trait = TRAIT_TAGGER
+	gain_text = "<span class='notice'>You know how to tag walls efficiently.</span>"
+	lose_text = "<span class='danger'>You forget how to tag walls properly.</span>"
+	medical_record_text = "Patient was recently seen for possible paint huffing incident."
+
+/datum/quirk/tagger/on_spawn()
+	var/mob/living/carbon/human/H = quirk_holder
+	var/obj/item/toy/crayon/spraycan/spraycan = new(get_turf(H))
+	H.put_in_hands(spraycan)
+	H.equip_to_slot(spraycan, ITEM_SLOT_BACKPACK)
+	H.regenerate_icons()
+
+/datum/quirk/prosopagnosia
+	name = "Prosopagnosia"
+	desc = "You have a mental disorder that prevents you from being able to recognize faces at all."
+	value = 0
+	mob_trait = TRAIT_PROSOPAGNOSIA
+	medical_record_text = "Patient suffers from prosopagnosia and cannot recognize faces."
+	hardcore_value = 2
