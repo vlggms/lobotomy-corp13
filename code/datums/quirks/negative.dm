@@ -358,14 +358,6 @@
 		if(I.fingerprintslast == quirk_holder.ckey)
 			quirk_holder.put_in_hands(I)
 
-/datum/quirk/prosopagnosia
-	name = "Prosopagnosia"
-	desc = "You have a mental disorder that prevents you from being able to recognize faces at all."
-	value = -1
-	mob_trait = TRAIT_PROSOPAGNOSIA
-	medical_record_text = "Patient suffers from prosopagnosia and cannot recognize faces."
-	hardcore_value = 5
-
 /datum/quirk/prosthetic_limb
 	name = "Prosthetic Limb"
 	desc = "An accident caused you to lose one of your limbs. Because of this, you now have a random prosthetic!"
