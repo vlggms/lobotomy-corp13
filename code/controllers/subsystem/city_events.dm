@@ -58,6 +58,8 @@ SUBSYSTEM_DEF(cityevents)
 	total_events += pick(neutral_events)
 	total_events += pick("money")			//Always get money
 	total_events += pick("tresmetal")		//Materials for the peacekeepers to upgrade
+	total_events += pick(harmful_events)
+	total_events += pick(harmful_events)
 
 	processing = subtypesof(/mob/living/simple_animal/hostile/distortion)
 	//Set available distortion
@@ -73,6 +75,7 @@ SUBSYSTEM_DEF(cityevents)
 	chosen_event = pick(total_events)
 
 	switch (chosen_event)
+		//Harmful events
 		if("sweepers")
 			spawnatlandmark(/mob/living/simple_animal/hostile/ordeal/indigo_noon, 20)
 		if("scouts")
@@ -81,10 +84,10 @@ SUBSYSTEM_DEF(cityevents)
 			spawnatlandmark(/mob/living/simple_animal/hostile/ordeal/green_bot, 10)
 		if("gbugs")
 			spawnatlandmark(/mob/living/simple_animal/hostile/ordeal/steel_dawn, 30)
-
-		//Harmful events
 		if("shrimps")
 			spawnatlandmark(/mob/living/simple_animal/hostile/shrimp, 20)
+		if("beaks")
+			spawnatlandmark(/mob/living/simple_animal/hostile/ordeal/bigBirdEye, 10)
 		if("drones")
 			spawnatlandmark(/mob/living/simple_animal/hostile/kcorp/drone, -10)//extremely low chance
 		if("lovetowneasy")
@@ -93,6 +96,10 @@ SUBSYSTEM_DEF(cityevents)
 		if("lovetownhard")
 			spawnatlandmark(pick(/mob/living/simple_animal/hostile/lovetown/shambler,
 			/mob/living/simple_animal/hostile/lovetown/slumberer), 5)
+		if("clan")
+			nighttime_spawn(/mob/living/simple_animal/hostile/clan/scout, 10)
+		if("bloodbag")
+			nighttime_spawn(/mob/living/simple_animal/hostile/humanoid/blood/bag, 10)
 
 		//Good events
 		if("chickens")
@@ -129,9 +136,21 @@ SUBSYSTEM_DEF(cityevents)
 		new /obj/effect/bloodpool(get_turf(J))
 		sleep(10)
 		//This is less intensive than a loop
-		new L (get_turf(J))
-		new L (get_turf(J))
-		new L (get_turf(J))
+//TODO: Fix this, Get this check if the mob is hostile. If they are, give them loot of c50 ahn
+		var/mob/living/mob1 = new L (get_turf(J))
+		if(ishostile(mob1))
+			var/mob/living/simple_animal/hostile/hostilemob1 = L
+			hostilemob1.loot += /obj/item/stack/spacecash/c50
+
+		var/mob/living/mob2 = new L (get_turf(J))
+		if(ishostile(mob2))
+			var/mob/living/simple_animal/hostile/hostilemob2 = L
+			hostilemob2.loot += /obj/item/stack/spacecash/c50
+
+		var/mob/living/mob3 = new L (get_turf(J))
+		if(ishostile(mob3))
+			var/mob/living/simple_animal/hostile/hostilemob3 = L
+			hostilemob3.loot += /obj/item/stack/spacecash/c50
 
 //Spawning items
 /datum/controller/subsystem/cityevents/proc/spawnitem(obj/item/I, chance)
@@ -253,20 +272,23 @@ SUBSYSTEM_DEF(cityevents)
 			nighttime_spawn(/mob/living/simple_animal/hostile/humanoid/blood/bag)
 	wavetime+=1
 
-/datum/controller/subsystem/cityevents/proc/nighttime_spawn(mob/living/L)
+/datum/controller/subsystem/cityevents/proc/nighttime_spawn(/mob/living/simple_animal/hostile/L)
 	for(var/J in spawners)
 		new /obj/effect/bloodpool(get_turf(J))
 		sleep(10)
 		//This is less intensive than a loop
-
-		var/mob/living/hostile1 = new L (get_turf(J))
+//TODO: Fix this, Get this check if the mob is hostile. If they are, give them loot of c50 ahn
+		var/mob/living/simple_animal/hostile/hostile1 = new L (get_turf(J))
 		nighttime_raiders += hostile1
+		hostile1.loot += /obj/item/stack/spacecash/c100
 
-		var/mob/living/hostile2 = new L (get_turf(J))
+		var/mob/living/simple_animal/hostile/hostile2 = new L (get_turf(J))
 		nighttime_raiders += hostile2
+		hostile2.loot += /obj/item/stack/spacecash/c100
 
-		var/mob/living/hostile3 = new L (get_turf(J))
+		var/mob/living/simple_animal/hostile/hostile3 = new L (get_turf(J))
 		nighttime_raiders += hostile3
+		hostile3.loot += /obj/item/stack/spacecash/c100
 
 /datum/controller/subsystem/cityevents/proc/nighttime_remove()
 	for(var/mob/living/L in nighttime_raiders)
