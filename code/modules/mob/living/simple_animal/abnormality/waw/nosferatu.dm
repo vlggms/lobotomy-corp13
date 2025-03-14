@@ -28,6 +28,7 @@
 	stat_attack = HARD_CRIT
 	work_damage_amount = 8
 	work_damage_type = RED_DAMAGE
+	chem_type = /datum/reagent/abnormality/sin/envy
 	attack_verb_continuous = "claws"
 	attack_verb_simple = "claw"
 	faction = list("hostile")

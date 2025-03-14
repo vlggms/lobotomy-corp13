@@ -43,7 +43,7 @@
 	belt = /obj/item/pda/security
 	ears = /obj/item/radio/headset/agent_lieutenant
 	glasses = /obj/item/clothing/glasses/sunglasses
-	uniform = /obj/item/clothing/under/limbus/commandsec
+	uniform = /obj/item/clothing/under/limbus/labs/commandsec
 	suit = /obj/item/clothing/suit/armor/ego_gear/limbus_labs/jacket
 	backpack_contents = list(/obj/item/melee/classic_baton=1)
 	shoes = /obj/item/clothing/shoes/laceup
@@ -97,7 +97,7 @@
 	belt = /obj/item/pda/security
 	ears = /obj/item/radio/headset/agent_lieutenant
 	glasses = /obj/item/clothing/glasses/sunglasses
-	uniform = /obj/item/clothing/under/limbus/commandsec
+	uniform = /obj/item/clothing/under/limbus/labs/commandsec
 	suit = /obj/item/clothing/suit/armor/ego_gear/limbus_labs/jacket
 	backpack_contents = list(/obj/item/melee/classic_baton=1)
 	shoes = /obj/item/clothing/shoes/laceup
@@ -151,7 +151,7 @@
 	belt = /obj/item/pda/security
 	ears = /obj/item/radio/headset/agent_lieutenant
 	glasses = /obj/item/clothing/glasses/sunglasses
-	uniform = /obj/item/clothing/under/limbus/commandsec
+	uniform = /obj/item/clothing/under/limbus/labs/commandsec
 	suit = /obj/item/clothing/suit/armor/ego_gear/limbus_labs/jacket
 	backpack_contents = list(/obj/item/melee/classic_baton=1)
 	shoes = /obj/item/clothing/shoes/laceup

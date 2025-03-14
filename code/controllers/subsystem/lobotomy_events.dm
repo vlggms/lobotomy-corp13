@@ -219,9 +219,9 @@ SUBSYSTEM_DEF(lobotomy_events)
 			return
 	var/mob/living/simple_animal/hostile/abnormality/seasons/S = locate() in GLOB.abnormality_mob_list
 	if(S)
-		if(S.datum_reference.working)
-			return
 		if(!S.IsContained())
+			return
+		if(S.datum_reference.working)
 			return
 	season_last_change = world.time + season_change_time
 	var/index = seasons.Find(current_season)

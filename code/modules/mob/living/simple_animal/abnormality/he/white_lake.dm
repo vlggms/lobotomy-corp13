@@ -19,6 +19,7 @@
 	)
 	work_damage_amount = 10
 	work_damage_type = RED_DAMAGE
+	chem_type = /datum/reagent/abnormality/sin/lust
 	//Has the weapon been given out?
 	var/sword = FALSE
 	start_qliphoth = 3

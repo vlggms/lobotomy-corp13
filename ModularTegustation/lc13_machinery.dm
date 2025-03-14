@@ -55,6 +55,14 @@
 		add_overlay("glow_[icon_state]")
 		desc = null
 
+/obj/machinery/containment_panel/proc/console_meltdown()
+	cut_overlays()
+	desc = "It says Qliphoth Meltdown in progress, agent intervention required."
+	if(icon_state == "command")
+		add_overlay("glow_[icon_state]_meltdown")
+		return
+	add_overlay("glow_meltdown")
+
 /obj/machinery/containment_panel/proc/console_working()
 	cut_overlays()
 	desc = "It says that work is in progress."
@@ -62,7 +70,6 @@
 		add_overlay("glow_[icon_state]_work_in_progress")
 		return
 	add_overlay("glow_work_in_progress")
-	return
 
 /obj/machinery/containment_panel/proc/AbnormalityInfo()
 	if(!linked_console)
@@ -125,7 +132,6 @@
 	var/datum/browser/popup = new(user, "containment_diagnostics", "Current Containment", 500, 550)
 	popup.set_content(dat)
 	popup.open()
-	return
 
 /obj/machinery/abnormality_monitor/proc/UpdateNetwork()
 	SIGNAL_HANDLER
@@ -494,13 +500,33 @@
 /obj/machinery/body_preservation_unit/proc/store_actions(mob/living/carbon/human/H, list/preserved_data)
 	var/list/action_types = list()
 	for(var/datum/action/A in H.actions)
-		if(ispath(A, /datum/action/item_action))
+		if(istype(A, /datum/action/item_action))
 			continue
-		if(ispath(A, /datum/action/spell_action))
+		if(istype(A, /datum/action/spell_action))
 			continue
 		action_types += A.type
 	preserved_data["action_types"] = action_types
 
+/obj/machinery/body_preservation_unit/proc/store_skills(mob/living/carbon/human/H, list/preserved_data)
+	preserved_data["skills"] = serialize_skills(H.mind?.known_skills)
+
+/obj/machinery/body_preservation_unit/proc/serialize_skills(list/known_skills)
+	var/list/serializable = list()
+	for(var/datum/skill/S as anything in known_skills)
+		serializable["[S.type]"] = known_skills[S]
+	return json_encode(serializable)
+
+/obj/machinery/body_preservation_unit/proc/deserialize_skills(text)
+	var/list/known_skills = list()
+	var/list/decoded = json_decode(text)
+
+	for(var/type_text in decoded)
+		var/skill_type = text2path(type_text)
+		if(!ispath(skill_type, /datum/skill))
+			continue
+		known_skills[skill_type] = decoded[type_text]
+
+	return known_skills
 
 /obj/machinery/body_preservation_unit/proc/preserve_body(mob/living/carbon/human/H)
 	if(!H || !H.mind)
@@ -521,14 +547,16 @@
 
 	store_attributes(H, preserved_data)
 	store_actions(H, preserved_data)
+	store_skills(H, preserved_data)
 
 	stored_bodies[H.real_name] = preserved_data
 
 
 	var/datum/component/respawnable/R = H.GetComponent(/datum/component/respawnable)
 	if (R)
-		R.RemoveComponent()
 		R.UnregisterDeathSignal()
+		R.RemoveComponent()
+
 
 	// Instead of implanting, add a component
 	R = H.AddComponent(/datum/component/respawnable, respawn_time = clone_delay_seconds * 10)
@@ -604,14 +632,18 @@
 	// if (isnull(usr))
 	// 	new_body.ckey = ckey
 	// else
+	new_body.equipOutfit(/datum/outfit/job/civilian)
 	new_body.ckey = ckey
+
+	var/skills_json = stored_data["skills"]
+	if (skills_json)
+		new_body.mind.known_skills = deserialize_skills(skills_json)
 
 	var/list/stored_action_types = stored_data["action_types"]
 	if (islist(stored_action_types))
 		for (var/T in stored_action_types)
 			var/datum/action/G = new T()
 			G.Grant(new_body)
-
 
 	if (!new_body.ckey)
 		log_game("Body Preservation Unit: Created a new body for [real_name] without a ckey.")
@@ -622,11 +654,9 @@
 	if (assigned_role)
 		new_body.mind.assigned_role = assigned_role
 
-
 	playsound(get_turf(src), 'sound/effects/bin_close.ogg', 35, 3, 3)
 	playsound(get_turf(src), 'sound/misc/splort.ogg', 35, 3, 3)
 	to_chat(new_body, "<span class='warning'>You have been revived in a new body, but your attributes have decreased slightly.</span>")
-
 
 // New component for handling respawns
 /datum/component/respawnable

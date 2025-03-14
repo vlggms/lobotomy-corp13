@@ -572,7 +572,7 @@
 /*
 	LC13 Airlocks
 */
-
+//One day ill replace this with a structure similar to the necropolis gate. -IP
 /obj/machinery/door/airlock/snowqueen
 	name = "Snow Queen's Gate"
 	desc = "Are you ready for what lies ahead?"
@@ -583,7 +583,7 @@
 	assemblytype = null
 	glass = TRUE
 	bound_width = 128
-	bound_height = 128
+	aiControlDisabled = AI_WIRE_DISABLED
 	hackProof = TRUE
 	autoclose = TRUE
 	resistance_flags = INDESTRUCTIBLE

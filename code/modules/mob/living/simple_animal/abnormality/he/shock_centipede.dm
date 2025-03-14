@@ -34,6 +34,7 @@
 						)
 	work_damage_amount = 6
 	work_damage_type = RED_DAMAGE
+	chem_type = /datum/reagent/abnormality/sin/gloom
 
 	ego_list = list(
 		/datum/ego_datum/weapon/aedd,

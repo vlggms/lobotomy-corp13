@@ -269,6 +269,8 @@
 /datum/quirk/brainproblems/on_process(delta_time)
 	if(HAS_TRAIT(quirk_holder, TRAIT_TUMOR_SUPPRESSED))
 		return
+	if(quirk_holder.reagents.has_reagent(/datum/reagent/drug/enkephalin, needs_metabolizing = TRUE))
+		return
 	quirk_holder.adjustOrganLoss(ORGAN_SLOT_BRAIN, 0.2 * delta_time)
 
 	var/brain_loss = quirk_holder.getOrganLoss(ORGAN_SLOT_BRAIN)
