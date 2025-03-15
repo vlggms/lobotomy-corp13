@@ -49,7 +49,6 @@
 	if(pe == 0) //work fail
 		Win(user, work_type)
 		return
-
 	switch(work_type)
 		if("Scissors")
 			player = 0
@@ -61,17 +60,29 @@
 	player*=3
 	player += janken
 
+	var/cheat_chance = FALSE
+	//If you paid PE to the rep, you can cheat in this game.
+	for(var/upgradecheck in GLOB.jcorp_upgrades)
+		if(upgradecheck == "Abno Luck")
+			cheat_chance = TRUE
+
 	//Goes through every use case.
 	//Ties, When both digits are the same.
 	//Lose, when the player loses
 	//Win, when the player wins
 	switch(player)
 		if(0, 4, 8)
-			Tie(user, work_type)
+			if(prob(10) && cheat_chance)
+				Lose(user, work_type)
+			else
+				Tie(user, work_type)
 		if(2, 5, 6)
 			Lose(user, work_type)
 		if(1, 3, 7)
-			Win(user, work_type)
+			if(prob(10) && cheat_chance)
+				Lose(user, work_type)
+			else
+				Win(user, work_type)
 	..()
 
 /mob/living/simple_animal/hostile/abnormality/willyouplay/proc/Tie(mob/living/carbon/human/user, work_type)
