@@ -44,11 +44,12 @@
 //Sottoacpo
 /obj/item/ego_weapon/ranged/city/thumb/sottocapo
 	name = "thumb sottocapo shotgun"
-	desc = "A pistol used by thumb sottocapos. While expensive, it's power is rarely matched among syndicates."
+	desc = "A handgun used by thumb sottocapos. While expensive, it's power is rarely matched among syndicates."
 	icon_state = "thumb_sottocapo"
 	inhand_icon_state = "thumb_sottocapo"
 	force = 20	//It's a pistol
-	projectile_path = /obj/projectile/ego_bullet/tendamage // does 10 damage
+	projectile_path = /obj/projectile/ego_bullet/tendamage // does 30 damage (odd, there's no force mod on this one)
+	weapon_weight = WEAPON_MEDIUM
 	pellets = 8
 	variance = 16
 	attribute_requirements = list(
