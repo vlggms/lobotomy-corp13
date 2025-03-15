@@ -48,9 +48,15 @@
 /mob/living/simple_animal/hostile/abnormality/branch12/babel/proc/Create_Evil()
 	var/mob/living/M = pick(rumors)
 	var/location = get_turf(M)
-	new /mob/living/simple_animal/hostile/rumor(location)
-
-	qdel(M)
+	var/mob/living/simple_animal/hostile/rumor/evil = new (location)
+	var/obj/item/radio/headset/radio = M.get_item_by_slot(ITEM_SLOT_EARS)
+	if(radio)
+		radio.forceMove(get_turf(M))
+	ADD_TRAIT(M, TRAIT_NOBREATH, type)
+	ADD_TRAIT(M, TRAIT_INCAPACITATED, type)
+	ADD_TRAIT(M, TRAIT_IMMOBILIZED, type)
+	ADD_TRAIT(M, TRAIT_HANDS_BLOCKED, type)
+	M.forceMove(evil)
 	for(var/mob/living/H in rumors)
 		H.remove_status_effect(STATUS_EFFECT_RUMOR)
 
@@ -77,6 +83,8 @@
 /datum/status_effect/display/rumor/tick()
 	. = ..()
 	for(var/mob/living/carbon/human/H in view(4, src))
+		if(H == owner)
+			continue
 		if(prob(5))
 			owner.say("We must seek the great Tower of Babel...")
 			H.apply_status_effect(STATUS_EFFECT_RUMOR)
@@ -131,5 +139,20 @@
 		if(5) //knock them down, from smile without the weapon drop
 			H.Knockdown(20)
 
-
+/mob/living/simple_animal/hostile/rumor/death(gibbed)
+	var/drop_turf = pick(get_adjacent_open_turfs(src)) //Copied from the Big and will be Bad Wolf
+	for(var/atom/movable/i in contents)
+		if(isliving(i))
+			var/mob/living/L = i
+			if(!L.client)
+				dropHardClothing(L, drop_turf)
+				qdel(L)
+				continue
+			L.Knockdown(10, FALSE)
+			REMOVE_TRAIT(L, TRAIT_NOBREATH, type)
+			REMOVE_TRAIT(L, TRAIT_INCAPACITATED, type)
+			REMOVE_TRAIT(L, TRAIT_IMMOBILIZED, type)
+			REMOVE_TRAIT(L, TRAIT_HANDS_BLOCKED, type)
+		i.forceMove(drop_turf)
+	. = ..()
 #undef STATUS_EFFECT_RUMOR

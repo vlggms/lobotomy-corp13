@@ -45,7 +45,8 @@
 /obj/item/ego_weapon/branch12/mini/serenity
 	name = "serenity"
 	desc = "By praying for its protection, the statue might grant you its gift if you�re worthy."
-	special = "Every time you attack with this weapon, you heal SP. You heal more SP per status effect you have."
+	special = "Every time you attack with this weapon, you heal SP. You heal more SP per status effect you have. You also inflict Metal Decay equal to the amount of statues effects you have. <br>\
+	(Metal Decay: Deals White damage every 5 seconds, equal to it's stack and then halves it. If it is on a mob, then it deal *4 more damage.)"
 	icon_state = "serenity"
 	force = 12
 	damtype = WHITE_DAMAGE
@@ -61,6 +62,8 @@
 		return
 	var/mob/living/carbon/human/H = user
 	H.adjustSanityLoss((user.status_effects.len)*(-heal_per_status))
+	if(isliving(target))
+		target.apply_lc_metal_decay(user.status_effects.len)
 
 //Age of Man
 /obj/item/ego_weapon/branch12/age
