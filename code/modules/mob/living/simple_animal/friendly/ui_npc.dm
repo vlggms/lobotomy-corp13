@@ -156,13 +156,14 @@
 		return
 	ui_interact(user)
 
-/mob/living/simple_animal/ui_npc/proc/AddList(list/npc_list)
-	var/in_list = FALSE
-	for(var/U in npc_list)
-		if (U == usr)
-			in_list = TRUE
-	if(!in_list)
-		npc_list += usr
+/mob/living/simple_animal/ui_npc/proc/AddList()
+	for (var/list/L in args)
+		var/in_list = FALSE
+		for(var/U in L)
+			if (U == usr)
+				in_list = TRUE
+		if(!in_list)
+			L += usr
 
 /mob/living/simple_animal/ui_npc/proc/CheckList(list/npc_list)
 	for(var/U in npc_list)
@@ -688,7 +689,7 @@
 			"actions" = list(
 				"..." = list(
 					"Text" = "...",
-					"next_scene" = "main_screen",
+					"next_scene" = "job",
 					"proc_callback" = CALLBACK(src, PROC_REF(AddList), intro_questers)),
 				)
 			),
@@ -697,8 +698,8 @@
 			"actions" = list(
 				"..." = list(
 					"Text" = "...",
-					"next_scene" = "main_screen",
-					"proc_callback" = CALLBACK(src, PROC_REF(AddList), questers)),
+					"next_scene" = "job",
+					"proc_callback" = CALLBACK(src, PROC_REF(AddList), questers, intro_questers)),
 				)
 			),
 
