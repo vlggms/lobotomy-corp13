@@ -156,6 +156,11 @@
 	item_path = /obj/item/clothing/suit/armor/ego_gear/branch12/rumor
 	cost = 50
 
+//Genie of Pentacles - 10000dolers
+/datum/ego_datum/weapon/branch12/ten_thousand_dolers
+	item_path = /obj/item/ego_weapon/branch12/ten_thousand_dolers
+	cost = 50
+
 // --------ALEPH---------
 // Old Man and The Pale - Purity
 /datum/ego_datum/weapon/purity
@@ -179,6 +184,10 @@
 
 
 // Fly me to the Moon - Lunar Night
+/datum/ego_datum/weapon/branch12/lunar_night
+	item_path = /obj/item/ego_weapon/branch12/lunar_night
+	cost = 100
+
 /datum/ego_datum/armor/branch12/lunar_night
 	item_path = /obj/item/clothing/suit/armor/ego_gear/branch12/lunar_night
 	cost = 100

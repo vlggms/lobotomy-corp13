@@ -179,8 +179,7 @@
 	special = "This weapon inflicts Mental Detonation if the target has 15+ Mental Decay. This weapon can also change forms by being used in hand. <br>\
 	(Mental Detonation: Does nothing until it is 'Shattered.' Once it is 'Shattered,' it will cause Mental Decay to trigger without reducing it's stack. Weapons that cause 'Shatter' gain other benefits as well.) <br>\
 	(Mental Decay: Deals White damage every 5 seconds, equal to it's stack and then halves it. If it is on a mob, then it deal *4 more damage.)"
-	color = "#d382ff"
-	icon_state = "becoming"
+	icon_state = "making"
 	force = 14
 	damtype = WHITE_DAMAGE
 	attack_verb_continuous = list("slams", "strikes", "smashes")
@@ -483,7 +482,6 @@
 	icon_state = "plushie_slime"
 	icon_living = "plushie_slime"
 	gender = NEUTER
-	resize = 0.75
 	density = FALSE
 	mob_biotypes = MOB_ROBOTIC
 	faction = list("neutral")
@@ -509,6 +507,7 @@
 	QDEL_IN(src, (10 SECONDS))
 	. = ..()
 	faction = list("neutral")
+	resize = 0.75
 
 /mob/living/simple_animal/hostile/nightmare_toy/AttackingTarget(atom/attacked_target)
 	. = ..()
@@ -544,7 +543,9 @@
 /obj/item/ego_weapon/branch12/honor
 	name = "degrading honor"
 	desc = "The whole art of life consists in belonging to oneself."
-	special = "With a 1 minute cooldown, Using it in hand you are able to inspire your fellow workers by giving them a 40% damage buff for 5 seconds at the cost of some of your SP."
+	special = "With a 1 minute cooldown, Using it in hand you are able to inspire your fellow workers by giving them a 40% damage buff for 5 seconds at the cost of some of your SP. <br>\
+	This also all hostile mobs that you can see to gain 6 Mental Decay. <br>\
+	(Mental Decay: Deals White damage every 5 seconds, equal to it's stack and then halves it. If it is on a mob, then it deal *4 more damage.)"
 	icon_state = "honor"
 	force = 60
 	reach = 2		//Has 2 Square Reach.
@@ -563,6 +564,7 @@
 	var/affect_self = TRUE
 	var/justice_buff = 40
 	var/sp_cost = 20
+	var/inflicted_mental_decay = 6
 
 //sound\magic\clockwork\invoke_general.ogg
 /obj/item/ego_weapon/branch12/honor/attack_self(mob/user)
@@ -577,6 +579,8 @@
 	warcry_cooldown = world.time + warcry_cooldown_time
 	commander.say("SLAY THEM, FOR THE QUEEN!", list("colossus","yell"), sanitize = FALSE)
 	playsound(commander, 'sound/magic/clockwork/invoke_general.ogg', 50, TRUE, 4)
+	for(var/mob/living/simple_animal/hostile/H in view(range, get_turf(src)))
+		H.apply_lc_mental_decay(inflicted_mental_decay)
 	for(var/mob/living/carbon/human/human in view(range, get_turf(src)))
 		if (human == commander && !affect_self)
 			continue
@@ -663,7 +667,7 @@
 	var/active = FALSE
 	var/range = 4
 	var/list/other_targets = list()
-	var/sp_cost = 35
+	var/sp_cost = 45
 	var/inflicted_decay = 4
 
 /obj/item/ego_weapon/branch12/joe/attack_self(mob/user)
@@ -792,6 +796,142 @@
 			D.shatter()
 			for(var/mob/living/simple_animal/hostile/H in view(3, get_turf(src)))
 				H.apply_lc_mental_decay(10)
+
+//10000dolers
+/obj/item/ego_weapon/branch12/ten_thousand_dolers
+	name = "100000 Dollars"
+	desc = "Build it all up, to cash it in..."
+	special = "Each time you attack with this weapon, You will throw out some coins (You can also use this weapon as a ranged weapon to throw out coins). However these coins are very inaccurate. These coins exist for 8 seconds before fading away. <br>\
+	When you use this weapon in hand, you will recall all coins. With them dealing RED damage to any hostile they fly through, and inflicting 2 Metal Decay per coin. <br>\
+	(Mental Decay: Deals White damage every 5 seconds, equal to it's stack and then halves it. If it is on a mob, then it deal *4 more damage.)"
+	icon_state = "blue_coin"
+	inhand_icon_state = "blue_coin"
+	force = 34
+	damtype = RED_DAMAGE
+	attribute_requirements = list(
+							FORTITUDE_ATTRIBUTE = 60,
+							TEMPERANCE_ATTRIBUTE = 60
+							)
+	var/ranged_cooldown
+	var/ranged_cooldown_time = 0.5 SECONDS
+	var/recall_cooldown
+	var/recall_cooldown_time = 8 SECONDS
+	var/ranged_range = 7
+
+/obj/item/ego_weapon/branch12/ten_thousand_dolers/attack_self(mob/user)
+	if(!CanUseEgo(user))
+		return
+	if(recall_cooldown > world.time)
+		return
+	recall_cooldown = world.time + recall_cooldown_time
+	to_chat(user, span_nicegreen("[src] recalls all nearby coins!"))
+	playsound(get_turf(user), 'sound/magic/arbiter/repulse.ogg', 60, 0, 5)
+	for(var/mob/living/simple_animal/hostile/blue_coin/C in view(9, get_turf(user)))
+		C.recall(user)
+
+/obj/item/ego_weapon/branch12/ten_thousand_dolers/attack(mob/living/target, mob/living/user)
+	. = ..()
+	var/turf/origin = get_turf(target)
+	var/list/all_turfs = RANGE_TURFS(1, origin)
+	for(var/turf/T in shuffle(all_turfs))
+		if (T.is_blocked_turf(exclude_mobs = TRUE))
+			continue
+		var/mob/living/simple_animal/hostile/blue_coin/placed_coin = new (T)
+		var/random_x = rand(-16, 16)
+		placed_coin.pixel_x += random_x
+		var/random_y = rand(-16, 16)
+		placed_coin.pixel_y += random_y
+		break
+
+/obj/item/ego_weapon/branch12/ten_thousand_dolers/afterattack(atom/A, mob/living/user, proximity_flag, params)
+	if(ranged_cooldown > world.time)
+		return
+	if(!CanUseEgo(user))
+		return
+	var/turf/target_turf = get_turf(A)
+	if(!istype(target_turf))
+		return
+	if(!(target_turf in view(ranged_range, user)))
+		return
+	..()
+	var/turf/projectile_start = get_turf(user)
+	ranged_cooldown = world.time + ranged_cooldown_time
+	playsound(get_turf(src), 'sound/effects/cashregister.ogg', 25, 3, 3)
+
+	//Stuff for creating the projctile.
+	var/obj/projectile/ego_bullet/branch12/blue_coin/B = new(projectile_start)
+	B.starting = projectile_start
+	B.firer = user
+	B.fired_from = projectile_start
+	B.yo = target_turf.y - projectile_start.y
+	B.xo = target_turf.x - projectile_start.x
+	B.original = target_turf
+	B.preparePixelProjectile(target_turf, projectile_start)
+	B.fire()
+
+/obj/projectile/ego_bullet/branch12/blue_coin
+	name = "blue coin"
+	icon = 'ModularTegustation/Teguicons/branch12/branch12_weapon.dmi'
+	icon_state = "blue_coin"
+	damage = 0
+	speed = 0.8
+	nodamage = TRUE
+	projectile_piercing = PASSMOB
+	range = 4
+
+/obj/projectile/ego_bullet/branch12/blue_coin/on_range()
+	var/turf/origin = get_turf(src)
+	var/list/all_turfs = RANGE_TURFS(1, origin)
+	for(var/turf/T in shuffle(all_turfs))
+		if (T.is_blocked_turf(exclude_mobs = TRUE))
+			continue
+		var/mob/living/simple_animal/hostile/blue_coin/placed_coin = new (T)
+		var/random_x = rand(-16, 16)
+		placed_coin.pixel_x += random_x
+		var/random_y = rand(-16, 16)
+		placed_coin.pixel_y += random_y
+		break
+	. = ..()
+
+/mob/living/simple_animal/hostile/blue_coin
+	name = "blue coin"
+	desc = "A blue coin made by 100000 Dollars"
+	icon = 'ModularTegustation/Teguicons/branch12/branch12_weapon.dmi'
+	icon_state = "blue_coin"
+	icon_living = "blue_coin"
+	gender = NEUTER
+	density = FALSE
+	mob_biotypes = MOB_ROBOTIC
+	faction = list("neutral")
+	health = 50
+	maxHealth = 50
+	healable = FALSE
+	var/dash_damage = 25
+	var/inflicted_decay = 2
+
+/mob/living/simple_animal/hostile/blue_coin/CanAttack(atom/the_target)
+	return FALSE
+
+/mob/living/simple_animal/hostile/blue_coin/Move()
+	return FALSE
+
+/mob/living/simple_animal/hostile/blue_coin/Initialize()
+	QDEL_IN(src, (8 SECONDS))
+	. = ..()
+	faction = list("neutral")
+
+/mob/living/simple_animal/hostile/blue_coin/proc/recall(mob/recall_target)
+	var/turf/slash_start = get_turf(src)
+	var/turf/slash_end = get_turf(recall_target)
+	var/list/hitline = getline(slash_start, slash_end)
+	forceMove(slash_end)
+	for(var/turf/T in hitline)
+		for(var/mob/living/simple_animal/hostile/L in HurtInTurf(T, list(), dash_damage, RED_DAMAGE, check_faction = TRUE, hurt_mechs = TRUE, hurt_structure = TRUE))
+			to_chat(L, span_userdanger("[src] quickly flies through you!"))
+			L.apply_lc_mental_decay(inflicted_decay)
+	new /datum/beam(slash_start.Beam(slash_end, "magic_bullet", time=3))
+	playsound(src, attack_sound, 50, FALSE, 4)
+	qdel(src)
 
 //Icon of Chaos
 /obj/item/ego_weapon/ranged/branch12/icon_of_chaos
@@ -976,6 +1116,65 @@
 		return
 	var/mob/living/poorfool = target
 	poorfool.apply_lc_mental_decay(inflicted_decay)
+
+/obj/item/ego_weapon/branch12/lunar_night
+	name = "lunar night"
+	desc = "A reflection of the moon."
+	special = "When you attack with this weapon, if the target has Mental Detonation, shatter it and increase the weapon's damage by 5. You will also lose denisty for 4 seconds. <br>\
+	After attacking, if the target has 20+ Mental Decay, inflict Mental Detonation to the target. Otherwise, if there are no targets with Mental Detonation, inflict Mental Detonation on 1 random nearby target."
+	icon_state = "lunar_night"
+	force = 60
+	damtype = BLACK_DAMAGE
+	attack_verb_continuous = list("slices", "slashes", "stabs")
+	attack_verb_simple = list("slice", "slash", "stab")
+	hitsound = 'sound/weapons/fixer/reverb_normal.ogg'
+	attribute_requirements = list(
+							FORTITUDE_ATTRIBUTE = 80,
+							PRUDENCE_ATTRIBUTE = 80,
+							TEMPERANCE_ATTRIBUTE = 80,
+							JUSTICE_ATTRIBUTE = 100
+							)
+	var/damage_buff_per_shatter = 5
+	var/old_force = 60
+	var/max_force = 120
+	var/shatter_limit = 20
+
+/obj/item/ego_weapon/branch12/lunar_night/attack(mob/living/target, mob/living/user)
+	var/datum/status_effect/mental_detonate/MD = target.has_status_effect(/datum/status_effect/mental_detonate)
+	if(MD)
+		MD.shatter()
+		if(force < max_force)
+			force += damage_buff_per_shatter
+		var/datum/status_effect/stacking/lc_mental_decay/decay = target.has_status_effect(/datum/status_effect/stacking/lc_mental_decay)
+		if(decay)
+			if(decay.stacks >= shatter_limit)
+				target.apply_status_effect(/datum/status_effect/mental_detonate)
+	else
+		force = old_force
+	var/is_detonate = FALSE
+	var/list/detonate_targets = list()
+	for(var/mob/living/simple_animal/hostile/H in view(5, get_turf(user)))
+		var/datum/status_effect/mental_detonate/D = H.has_status_effect(/datum/status_effect/mental_detonate)
+		if(D)
+			is_detonate = TRUE
+			break
+		else
+			if(H != target)
+				detonate_targets += H
+	if(!is_detonate && detonate_targets.len)
+		shuffle_inplace(detonate_targets)
+		var/mob/living/simple_animal/hostile/random_marked = detonate_targets[1]
+		random_marked.apply_status_effect(/datum/status_effect/mental_detonate)
+		user.density = FALSE
+		user.color = "#57f7ff"
+	else
+		RemoveBuff(user)
+	addtimer(CALLBACK(src, PROC_REF(RemoveBuff), user), 4 SECONDS, TIMER_UNIQUE | TIMER_OVERRIDE)
+	. = ..()
+
+/obj/item/ego_weapon/branch12/lunar_night/proc/RemoveBuff(mob/user)
+	user.density = TRUE
+	user.color = null
 
 //Sands of Time
 /obj/item/ego_weapon/branch12/time_sands
