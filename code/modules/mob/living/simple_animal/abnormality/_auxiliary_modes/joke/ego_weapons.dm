@@ -350,3 +350,29 @@
 
 /obj/item/ego_weapon/lance/wild_ride/get_clamped_volume()
 	return 40
+
+
+// netz code, might be shit
+// Wisconsin
+/obj/item/ego_weapon/joke/realization/wisconsin
+	name = "Wisconsin"
+	desc = "You feel like you'll dream about cheese tonight."
+	icon = "code/modules/mob/living/simple_animal/abnormality/_auxiliary_modes/joke/!icons/ego_weapons.dmi"
+	icon_state = "cheesewedge_wisconsin"
+	force = 50
+	attack_speed = 0.5 // should be half the normal speed
+	damtype = WHITE_DAMAGE
+	attribute_requirements = list(
+					FORTITUDE_ATTRIBUTE = 60,
+					PRUDENCE_ATTRIBUTE = 120,
+					TEMPERANCE_ATTRIBUTE = 60,
+					JUSTICE_ATTRIBUTE = 60
+					)
+	var/list/random_colors = list(
+		"red" = "#FF0000",
+		"blue" = "#00FF00",
+		"green" = "#0000FF",
+		"yellow" = "#FFFF00",
+		"cyan" = "#00FFFF",
+		"purple" = "#FF00FF"
+	)
