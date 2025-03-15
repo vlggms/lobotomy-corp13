@@ -1,30 +1,6 @@
 //traits with no real impact that can be taken freely
 //MAKE SURE THESE DO NOT MAJORLY IMPACT GAMEPLAY. those should be positive or negative traits.
 
-/datum/quirk/nerd
-	name = "Nerd"
-	desc = "You take 5% less WHITE damage, but take 10% more RED damage. You spend all your free time playing niche video games and reading Korean light novels."
-	value = 0
-	gain_text = "<span class='notice'>You feel nervous about touching grass.</span>"
-	medical_record_text = "Patient displays severe socially avoidant behaviours."
-
-/datum/quirk/nerd/on_spawn()
-	var/mob/living/carbon/human/H = quirk_holder
-	H.physiology.red_mod += 0.1
-	H.physiology.white_mod -= 0.05
-
-/datum/quirk/brawler
-	name = "Brawler"
-	desc = "You take 5% less RED damage, but take 10% more WHITE damage. Instead of getting an education, you chose to train and become the best Fixer in the City."
-	value = 0
-	gain_text = "<span class='notice'>Time to chew ass and kick bubblegum.</span>"
-	medical_record_text = "Patient is more physically fit than the average person."
-
-/datum/quirk/brawler/on_spawn()
-	var/mob/living/carbon/human/H = quirk_holder
-	H.physiology.red_mod -= 0.05
-	H.physiology.white_mod += 0.1
-
 /datum/quirk/family_heirloom // re-naming the quirk in the code causes a lot of problems, so leaving it as-is
 	name = "Plushie Lover"
 	desc = "You love plushies so much that you take them to work with you. You start with one plushie that changes based on your job."
