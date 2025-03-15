@@ -11,8 +11,8 @@
 /obj/item/ego_weapon/ranged/branch12/mini/signal
 	name = "signal"
 	desc = "It continued calling out, expecting no response in return"
-	special = "Upon hitting living target, inflict 1 Metal Decay per 20 missing SP. Then the firer recovers a bit of SP. <br>\
-	(Metal Decay: Deals White damage every 5 seconds, equal to it's stack and then halves it. If it is on a mob, then it deal *4 more damage.)"
+	special = "Upon hitting living target, inflict 1 Mental Decay per 20 missing SP. Then the firer recovers a bit of SP. <br>\
+	(Mental Decay: Deals White damage every 5 seconds, equal to it's stack and then halves it. If it is on a mob, then it deal *4 more damage.)"
 	icon_state = "signal"
 	inhand_icon_state = "signal"
 	force = 12
@@ -37,7 +37,7 @@
 	var/mob/living/carbon/human/user = firer
 	var/mob/living/target_hit = target
 	var/inflicted_decay = round((user.maxSanity - user.sanityhealth)/inflict_per_sanityloss)
-	target_hit.apply_lc_metal_decay(inflicted_decay)
+	target_hit.apply_lc_mental_decay(inflicted_decay)
 	user.adjustSanityLoss(-healing_on_hit)
 
 //Serenity
@@ -45,8 +45,8 @@
 /obj/item/ego_weapon/branch12/mini/serenity
 	name = "serenity"
 	desc = "By praying for its protection, the statue might grant you its gift if you�re worthy."
-	special = "Every time you attack with this weapon, you heal SP. You heal more SP per status effect you have. You also inflict Metal Decay equal to the amount of statues effects you have. <br>\
-	(Metal Decay: Deals White damage every 5 seconds, equal to it's stack and then halves it. If it is on a mob, then it deal *4 more damage.)"
+	special = "Every time you attack with this weapon, you heal SP. You heal more SP per status effect you have. You also inflict Mental Decay equal to the amount of statues effects you have. <br>\
+	(Mental Decay: Deals White damage every 5 seconds, equal to it's stack and then halves it. If it is on a mob, then it deal *4 more damage.)"
 	icon_state = "serenity"
 	force = 12
 	damtype = WHITE_DAMAGE
@@ -63,15 +63,15 @@
 	var/mob/living/carbon/human/H = user
 	H.adjustSanityLoss((user.status_effects.len)*(-heal_per_status))
 	if(isliving(target))
-		target.apply_lc_metal_decay(user.status_effects.len)
+		target.apply_lc_mental_decay(user.status_effects.len)
 
 //Age of Man
 /obj/item/ego_weapon/branch12/age
 	name = "age of man"
 	desc = "A copper sword, freshly forged."
 	special = "Using the weapon in hand, you will revive all fallen humans within 5 sqrs. Revived humans will then slowly decay over the course of 1.5 minutes. But, they will gain extra attributes for the duration of the decay. <br>\
-	Also, This weapon inflicts 2 Metal Decay on hit. If the target has 15+ Metal Decay, inflict 3 more Metal Decay <br>\
-	(Metal Decay: Deals White damage every 5 seconds, equal to it's stack and then halves it. If it is on a mob, then it deal *4 more damage.)"
+	Also, This weapon inflicts 2 Mental Decay on hit. If the target has 15+ Mental Decay, inflict 3 more Mental Decay <br>\
+	(Mental Decay: Deals White damage every 5 seconds, equal to it's stack and then halves it. If it is on a mob, then it deal *4 more damage.)"
 	icon_state = "age_of_man"
 	force = 14
 	damtype = WHITE_DAMAGE
@@ -90,11 +90,11 @@
 /obj/item/ego_weapon/branch12/age/attack(mob/living/target, mob/living/user)
 	. = ..()
 	if(isliving(target))
-		target.apply_lc_metal_decay(inflicted_decay)
-	var/datum/status_effect/stacking/lc_metal_decay/D = target.has_status_effect(/datum/status_effect/stacking/lc_metal_decay)
+		target.apply_lc_mental_decay(inflicted_decay)
+	var/datum/status_effect/stacking/lc_mental_decay/D = target.has_status_effect(/datum/status_effect/stacking/lc_mental_decay)
 	if(D)
 		if(D.stacks > target_stacks)
-			target.apply_lc_metal_decay(inflicted_extra_decay)
+			target.apply_lc_mental_decay(inflicted_extra_decay)
 
 /obj/item/ego_weapon/branch12/age/attack_self(mob/user)
 	if(!CanUseEgo(user))
@@ -131,9 +131,9 @@
 /obj/item/ego_weapon/branch12/becoming
 	name = "becoming"
 	desc = "A hammer made with the desire to become better"
-	special = "This weapon inflicts 2 Metal Decay on hit. When this weapon hits a target with Metal Detonation, it will cause it to 'Shatter', and the weapon will deal double damage. This weapon can also change forms by being used in hand.<br>\
-	(Metal Detonation: Does nothing until it is 'Shattered.' Once it is 'Shattered,' it will cause Metal Decay to trigger without reducing it's stack. Weapons that cause 'Shatter' gain other benefits as well.) <br>\
-	(Metal Decay: Deals White damage every 5 seconds, equal to it's stack and then halves it. If it is on a mob, then it deal *4 more damage.)"
+	special = "This weapon inflicts 2 Mental Decay on hit. When this weapon hits a target with Mental Detonation, it will cause it to 'Shatter', and the weapon will deal double damage. This weapon can also change forms by being used in hand.<br>\
+	(Mental Detonation: Does nothing until it is 'Shattered.' Once it is 'Shattered,' it will cause Mental Decay to trigger without reducing it's stack. Weapons that cause 'Shatter' gain other benefits as well.) <br>\
+	(Mental Decay: Deals White damage every 5 seconds, equal to it's stack and then halves it. If it is on a mob, then it deal *4 more damage.)"
 	icon_state = "becoming"
 	force = 14
 	damtype = BLACK_DAMAGE
@@ -145,8 +145,8 @@
 /obj/item/ego_weapon/branch12/becoming/attack(mob/living/target, mob/living/user)
 	var/old_force_multiplier = force_multiplier
 	if(isliving(target))
-		target.apply_lc_metal_decay(inflicted_decay)
-		var/datum/status_effect/metal_detonate/D = target.has_status_effect(/datum/status_effect/metal_detonate)
+		target.apply_lc_mental_decay(inflicted_decay)
+		var/datum/status_effect/mental_detonate/D = target.has_status_effect(/datum/status_effect/mental_detonate)
 		if(D)
 			force_multiplier = damage_multiplier
 			D.shatter()
@@ -176,9 +176,9 @@
 /obj/item/ego_weapon/branch12/making
 	name = "making"
 	desc = "A hammer made with the desire to make anything"
-	special = "This weapon inflicts Metal Detonation if the target has 15+ Metal Decay. This weapon can also change forms by being used in hand. <br>\
-	(Metal Detonation: Does nothing until it is 'Shattered.' Once it is 'Shattered,' it will cause Metal Decay to trigger without reducing it's stack. Weapons that cause 'Shatter' gain other benefits as well.) <br>\
-	(Metal Decay: Deals White damage every 5 seconds, equal to it's stack and then halves it. If it is on a mob, then it deal *4 more damage.)"
+	special = "This weapon inflicts Mental Detonation if the target has 15+ Mental Decay. This weapon can also change forms by being used in hand. <br>\
+	(Mental Detonation: Does nothing until it is 'Shattered.' Once it is 'Shattered,' it will cause Mental Decay to trigger without reducing it's stack. Weapons that cause 'Shatter' gain other benefits as well.) <br>\
+	(Mental Decay: Deals White damage every 5 seconds, equal to it's stack and then halves it. If it is on a mob, then it deal *4 more damage.)"
 	color = "#d382ff"
 	icon_state = "becoming"
 	force = 14
@@ -190,9 +190,9 @@
 /obj/item/ego_weapon/branch12/making/attack(mob/living/target, mob/living/user)
 	. = ..()
 	if(isliving(target))
-		var/datum/status_effect/stacking/lc_metal_decay/D = target.has_status_effect(/datum/status_effect/stacking/lc_metal_decay)
+		var/datum/status_effect/stacking/lc_mental_decay/D = target.has_status_effect(/datum/status_effect/stacking/lc_mental_decay)
 		if(D.stacks >= detonation_breakpoint)
-			target.apply_status_effect(/datum/status_effect/metal_detonate)
+			target.apply_status_effect(/datum/status_effect/mental_detonate)
 
 /obj/item/ego_weapon/branch12/making/proc/equip_self(target)
 	if(!ishuman(target))
@@ -214,13 +214,13 @@
 	Destroy(src)
 
 //Exterminator
-//TODO: Make this weapon inflict Metal Detonation with it's first bullet and every other bullet inflicts Metal Decay. Also it shatters it by melee hitting it. Which causes you to inflict a bunch of Metal Decay, and then shatter it.
+//TODO: Make this weapon inflict Mental Detonation with it's first bullet and every other bullet inflicts Mental Decay. Also it shatters it by melee hitting it. Which causes you to inflict a bunch of Mental Decay, and then shatter it.
 /obj/item/ego_weapon/ranged/branch12/mini/exterminator
 	name = "exterminator"
 	desc = "A gun that's made to take out pests."
-	special = "This weapon inflicts 1 Metal Decay with each shot, and the first bullet of each mag inflicts Metal Detonation. <br>\
-	(Metal Detonation: Does nothing until it is 'Shattered.' Once it is 'Shattered,' it will cause Metal Decay to trigger without reducing it's stack. Weapons that cause 'Shatter' gain other benefits as well.) <br>\
-	(Metal Decay: Deals White damage every 5 seconds, equal to it's stack and then halves it. If it is on a mob, then it deal *4 more damage.)"
+	special = "This weapon inflicts 1 Mental Decay with each shot, and the first bullet of each mag inflicts Mental Detonation. <br>\
+	(Mental Detonation: Does nothing until it is 'Shattered.' Once it is 'Shattered,' it will cause Mental Decay to trigger without reducing it's stack. Weapons that cause 'Shatter' gain other benefits as well.) <br>\
+	(Mental Decay: Deals White damage every 5 seconds, equal to it's stack and then halves it. If it is on a mob, then it deal *4 more damage.)"
 	icon_state = "exterminator"
 	inhand_icon_state = "exterminator"
 	force = 12
@@ -251,7 +251,7 @@
 		return
 	var/obj/item/ego_weapon/ranged/branch12/mini/exterminator/gun = fired_from
 	var/mob/living/target_hit = target
-	target_hit.apply_lc_metal_decay(gun.inflicted_decay)
+	target_hit.apply_lc_mental_decay(gun.inflicted_decay)
 
 /obj/projectile/ego_bullet/branch12/exterminator/first
 	name = "marking exterminator"
@@ -259,7 +259,7 @@
 /obj/projectile/ego_bullet/branch12/exterminator/first/on_hit(atom/target, blocked = FALSE)
 	. = ..()
 	var/mob/living/target_hit = target
-	target_hit.apply_status_effect(/datum/status_effect/metal_detonate)
+	target_hit.apply_status_effect(/datum/status_effect/mental_detonate)
 
 // --------TETH---------
 //Departure
@@ -383,14 +383,14 @@
 
 // --------HE---------
 //Perfectionist
-//TODO: Increase the downside, but make it able to shatter, which guarantees a critical hit. Also it's critical hits inflict Metal Decay. Normal hits inflict less Metal Decay.
+//TODO: Increase the downside, but make it able to shatter, which guarantees a critical hit. Also it's critical hits inflict Mental Decay. Normal hits inflict less Mental Decay.
 /obj/item/ego_weapon/branch12/perfectionist
 	name = "perfectionist"
 	desc = "I couldn�t bear it, they silently judged, accusing every step I took."
 	special = "Upon hitting living target, You have a chance to critically hit the target dealing quadruple damage. However, if you don't hit you take some damage. <br>\
-	This weapon also inflicts 2 Metal Decay on hit, and if the target has Metal Detonation, shatter it, inflict double the Metal Decay and guarantee a critical hit. <br>\
-	(Metal Detonation: Does nothing until it is 'Shattered.' Once it is 'Shattered,' it will cause Metal Decay to trigger without reducing it's stack. Weapons that cause 'Shatter' gain other benefits as well.) <br>\
-	(Metal Decay: Deals White damage every 5 seconds, equal to it's stack and then halves it. If it is on a mob, then it deal *4 more damage.)"
+	This weapon also inflicts 2 Mental Decay on hit, and if the target has Mental Detonation, shatter it, inflict double the Mental Decay and guarantee a critical hit. <br>\
+	(Mental Detonation: Does nothing until it is 'Shattered.' Once it is 'Shattered,' it will cause Mental Decay to trigger without reducing it's stack. Weapons that cause 'Shatter' gain other benefits as well.) <br>\
+	(Mental Decay: Deals White damage every 5 seconds, equal to it's stack and then halves it. If it is on a mob, then it deal *4 more damage.)"
 	icon_state = "perfectionist"
 	force = 30
 	reach = 3
@@ -411,12 +411,12 @@
 /obj/item/ego_weapon/branch12/perfectionist/attack(mob/living/target, mob/living/user)
 	..()
 	if(isliving(target))
-		target.apply_lc_metal_decay(inflicted_decay)
-		var/datum/status_effect/metal_detonate/D = target.has_status_effect(/datum/status_effect/metal_detonate)
+		target.apply_lc_mental_decay(inflicted_decay)
+		var/datum/status_effect/mental_detonate/D = target.has_status_effect(/datum/status_effect/mental_detonate)
 		if(prob(crit_chance) || D)
 			if(D)
 				D.shatter()
-				target.apply_lc_metal_decay(inflicted_decay)
+				target.apply_lc_mental_decay(inflicted_decay)
 			var/userjust = (get_modified_attribute_level(user, JUSTICE_ATTRIBUTE))
 			var/justicemod = 1 + userjust / 100
 			var/extra_damage = force
@@ -433,8 +433,8 @@
 /obj/item/ego_weapon/branch12/nightmares
 	name = "childhood nightmares"
 	desc = "A small side satchel with throwable items inside, the contents inside vary in appearance between people."
-	special = "This weapon has a ranged attack, which throws out small plushies which inflict 2 Metal Decay on hit, this weapon also inflicts 2 Metal Decay on hit. You gain plushies to throw by attacking targets. <br>\
-	(Metal Decay: Deals White damage every 5 seconds, equal to it's stack and then halves it. If it is on a mob, then it deal *4 more damage.)"
+	special = "This weapon has a ranged attack, which throws out small plushies which inflict 2 Mental Decay on hit, this weapon also inflicts 2 Mental Decay on hit. You gain plushies to throw by attacking targets. <br>\
+	(Mental Decay: Deals White damage every 5 seconds, equal to it's stack and then halves it. If it is on a mob, then it deal *4 more damage.)"
 	icon_state = "nightmares"
 	inhand_icon_state = "nightmares"
 	force = 25
@@ -457,7 +457,7 @@
 /obj/item/ego_weapon/branch12/nightmares/attack(mob/living/target, mob/living/user)
 	. = ..()
 	if(isliving(target))
-		target.apply_lc_metal_decay(inflicted_decay)
+		target.apply_lc_mental_decay(inflicted_decay)
 	if(stored_pals < max_stored_pals)
 		if(prob(60))
 			to_chat(user, span_nicegreen("Hey! You found another friend."))
@@ -514,7 +514,7 @@
 	. = ..()
 	if(isliving(attacked_target))
 		var/mob/living/L = attacked_target
-		L.apply_lc_metal_decay(inflicted_decay)
+		L.apply_lc_mental_decay(inflicted_decay)
 
 // --------WAW---------
 //Plagiarism
@@ -646,7 +646,8 @@
 /obj/item/ego_weapon/branch12/joe
 	name = "average joe"
 	desc = "A good briefcase is your best friend. It can carry a lot of important documents, your pencils, and your lunch! It can even be a good self-defense tool!"
-	special = "You are able to turn on abnormality deterrence, which lets you make the foes you attack ignore you, at the cost of your SP."
+	special = "You are able to turn on abnormality deterrence, which lets you make the foes you attack ignore you, at the cost of your SP. Also, when you attack foes who are not targeting you, you inflict 4 Mental Decay<br>\
+	(Mental Decay: Deals White damage every 5 seconds, equal to it's stack and then halves it. If it is on a mob, then it deal *4 more damage.)"
 	icon_state = "joe"
 	force = 72
 	attack_speed = 2
@@ -662,7 +663,8 @@
 	var/active = FALSE
 	var/range = 4
 	var/list/other_targets = list()
-	var/sp_cost = 10
+	var/sp_cost = 35
+	var/inflicted_decay = 4
 
 /obj/item/ego_weapon/branch12/joe/attack_self(mob/user)
 	if(!CanUseEgo(user))
@@ -682,6 +684,10 @@
 	var/justicemod = 1 + userjust / 100
 	var/extra_damage = force * justicemod
 	target.deal_damage(-extra_damage, AGGRO_DAMAGE)
+	if(ishostile(target))
+		var/mob/living/simple_animal/hostile/blindfool = target
+		if(blindfool.target != user)
+			blindfool.apply_lc_mental_decay(10)
 	if(active)
 		if(ishuman(user))
 			var/mob/living/carbon/human/joe = user
@@ -707,9 +713,9 @@
 	name = "medea"
 	desc = "Mortal fate is hard. You'd best get used to it."
 	special = "You are able to activate 'Dead Eye' mode while wielding this weapon. While 'Dead Eye' is active, your shots take 2 extra seconds to fire, but they become piercing and deal more damage. <br>\
-	Also, while you are using Deadeye mode, if you hit someone with Metal Detonation, you will cause a Shatter, which will inflict 10 Metal Decay to all nearby mobs.<br>\
-	(Metal Detonation: Does nothing until it is 'Shattered.' Once it is 'Shattered,' it will cause Metal Decay to trigger without reducing it's stack. Weapons that cause 'Shatter' gain other benefits as well.) <br>\
-	(Metal Decay: Deals White damage every 5 seconds, equal to it's stack and then halves it. If it is on a mob, then it deal *4 more damage.)"
+	Also, while you are using Deadeye mode, if you hit someone with Mental Detonation, you will cause a Shatter, which will inflict 10 Mental Decay to all nearby mobs.<br>\
+	(Mental Detonation: Does nothing until it is 'Shattered.' Once it is 'Shattered,' it will cause Mental Decay to trigger without reducing it's stack. Weapons that cause 'Shatter' gain other benefits as well.) <br>\
+	(Mental Decay: Deals White damage every 5 seconds, equal to it's stack and then halves it. If it is on a mob, then it deal *4 more damage.)"
 	icon_state = "medea"
 	inhand_icon_state = "medea"
 	force = 14
@@ -781,11 +787,11 @@
 	. = ..()
 	if(isliving(target))
 		var/mob/living/L = target
-		var/datum/status_effect/metal_detonate/D = L.has_status_effect(/datum/status_effect/metal_detonate)
+		var/datum/status_effect/mental_detonate/D = L.has_status_effect(/datum/status_effect/mental_detonate)
 		if(D)
 			D.shatter()
 			for(var/mob/living/simple_animal/hostile/H in view(3, get_turf(src)))
-				H.apply_lc_metal_decay(10)
+				H.apply_lc_mental_decay(10)
 
 //Icon of Chaos
 /obj/item/ego_weapon/ranged/branch12/icon_of_chaos
@@ -881,10 +887,10 @@
 	desc = "To be pure is to be different than Innocent, for innocence requires ignorance while the pure takes in the experiences \
 	they go through grows while never losing that spark of light inside. To hold the weight of the world requires someone Pure, \
 	and the same can be said for this EGO which is weighed down by a heavy past that might as well be the weight of the world."
-	special = "This weapon has a ranged attack which inflicts 5 Metal Decay. Attacking a target with Metal Decay will cause it to be triggered 3 time in a row, this has a cooldown. <br>\
-	When attacking a target with Metal Detonation, cause a Shatter 3 times in a row. <br>\
-	(Metal Detonation: Does nothing until it is 'Shattered.' Once it is 'Shattered,' it will cause Metal Decay to trigger without reducing it's stack. Weapons that cause 'Shatter' gain other benefits as well.) <br>\
-	(Metal Decay: Deals White damage every 5 seconds, equal to it's stack and then halves it. If it is on a mob, then it deal *4 more damage.)"
+	special = "This weapon has a ranged attack which inflicts 5 Mental Decay. Attacking a target with Mental Decay will cause it to be triggered 3 time in a row, this has a cooldown. <br>\
+	When attacking a target with Mental Detonation, cause a Shatter 3 times in a row. <br>\
+	(Mental Detonation: Does nothing until it is 'Shattered.' Once it is 'Shattered,' it will cause Mental Decay to trigger without reducing it's stack. Weapons that cause 'Shatter' gain other benefits as well.) <br>\
+	(Mental Decay: Deals White damage every 5 seconds, equal to it's stack and then halves it. If it is on a mob, then it deal *4 more damage.)"
 	icon_state = "purity"
 	force = 80
 	reach = 2		//Has 2 Square Reach.
@@ -909,15 +915,15 @@
 
 /obj/item/ego_weapon/branch12/purity/attack(mob/living/target, mob/living/user)
 	..()
-	var/datum/status_effect/metal_detonate/mark = target.has_status_effect(/datum/status_effect/metal_detonate)
+	var/datum/status_effect/mental_detonate/mark = target.has_status_effect(/datum/status_effect/mental_detonate)
 	if(mark)
 		mark.shatter()
 		for(var/i = 1 to 2)
-			target.apply_status_effect(/datum/status_effect/metal_detonate)
-			var/datum/status_effect/metal_detonate/extra_mark = target.has_status_effect(/datum/status_effect/metal_detonate)
+			target.apply_status_effect(/datum/status_effect/mental_detonate)
+			var/datum/status_effect/mental_detonate/extra_mark = target.has_status_effect(/datum/status_effect/mental_detonate)
 			extra_mark.shatter()
 
-	var/datum/status_effect/stacking/lc_metal_decay/D = target.has_status_effect(/datum/status_effect/stacking/lc_metal_decay)
+	var/datum/status_effect/stacking/lc_mental_decay/D = target.has_status_effect(/datum/status_effect/stacking/lc_mental_decay)
 	if(D)
 		if(detonate_cooldown > world.time)
 			return
@@ -969,7 +975,7 @@
 	if(!isliving(target))
 		return
 	var/mob/living/poorfool = target
-	poorfool.apply_lc_metal_decay(inflicted_decay)
+	poorfool.apply_lc_mental_decay(inflicted_decay)
 
 //Sands of Time
 /obj/item/ego_weapon/branch12/time_sands
