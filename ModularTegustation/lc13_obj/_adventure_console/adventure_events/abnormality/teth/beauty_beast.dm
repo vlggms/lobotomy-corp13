@@ -1,6 +1,6 @@
 /**
 	*Currently the main idea is the actual action itself.
-	*There’s some more symbolism with that, but it’s kind of ignored unless this get’s rewritten later.
+	*Thereâ€™s some more symbolism with that, but itâ€™s kind of ignored unless this getâ€™s rewritten later.
 	*-ML
 	*/
 /datum/adventure_event/beauty_beast
@@ -12,9 +12,9 @@
 		Light streams in through the windows forming ornate patterns across the floor<br>\
 		all of it serving to frame an abomination.<br>\
 		It has countless eyes, each rolling in agony, its body twisted so its<br>\
-		Insectoid limbs bend out at angles not fitting it’s beastly form<br>\
+		Insectoid limbs bend out at angles not fitting itâ€™s beastly form<br>\
 		and a human like leg sticks out next to one far more animile like.<br>\
-		Open wounds pulse on it’s side, pus and blood leaking out across wiry fur.<br>\
+		Open wounds pulse on itâ€™s side, pus and blood leaking out across wiry fur.<br>\
 		It turns towards you, mandibles clicking in something somehow resembling human speech.<br>\
 		\"Free me from my curse, kill me.\"",
 
@@ -31,7 +31,7 @@
 		The monster looks at it longingly.<br>\
 		You do not pick it up, instead turning to leave.<br>\
 		\"Please!\" It cries after you, \"Save me!\"<br>\
-		But that isn’t your job, someone else can do that.",
+		But that isnâ€™t your job, someone else can do that.",
 	)
 
 /datum/adventure_event/beauty_beast/EventChoiceFormat(obj/machinery/M, mob/living/carbon/human/H)
