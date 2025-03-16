@@ -126,7 +126,7 @@
 //Thumb
 /obj/item/ego_weapon/ranged/city/thumb/weak
 	force = 20
-	projectile_damage_multiplier = 1.8 //18 damage per bullet
+	projectile_damage_multiplier = 2.5 //25 damage per bullet
 	attribute_requirements = list(
 		FORTITUDE_ATTRIBUTE = 60,
 		PRUDENCE_ATTRIBUTE = 60,
