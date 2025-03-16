@@ -12,7 +12,7 @@
 	name = "signal"
 	desc = "It continued calling out, expecting no response in return"
 	special = "Upon hitting living target, inflict 1 Mental Decay per 20 missing SP. Then the firer recovers a bit of SP. <br>\
-	(Mental Decay: Deals White damage every 5 seconds, equal to it's stack and then halves it. If it is on a mob, then it deal *4 more damage.)"
+	(Mental Decay: Deals White damage every 5 seconds, equal to its stack, and then halves it. If it is on a mob, then it deals *4 more damage.)"
 	icon_state = "signal"
 	inhand_icon_state = "signal"
 	force = 12
@@ -45,7 +45,7 @@
 	name = "serenity"
 	desc = "By praying for its protection, the statue might grant you its gift if you�re worthy."
 	special = "Every time you attack with this weapon, you heal SP. You heal more SP per status effect you have. You also inflict Mental Decay equal to the amount of statues effects you have. <br>\
-	(Mental Decay: Deals White damage every 5 seconds, equal to it's stack and then halves it. If it is on a mob, then it deal *4 more damage.)"
+	(Mental Decay: Deals White damage every 5 seconds, equal to its stack, and then halves it. If it is on a mob, then it deals *4 more damage.)"
 	icon_state = "serenity"
 	force = 12
 	damtype = WHITE_DAMAGE
@@ -70,7 +70,7 @@
 	desc = "A copper sword, freshly forged."
 	special = "Using the weapon in hand, you will revive all fallen humans within 5 sqrs. Revived humans will then slowly decay over the course of 1.5 minutes. But, they will gain extra attributes for the duration of the decay. <br>\
 	Also, This weapon inflicts 2 Mental Decay on hit. If the target has 15+ Mental Decay, inflict 3 more Mental Decay <br><br>\
-	(Mental Decay: Deals White damage every 5 seconds, equal to it's stack and then halves it. If it is on a mob, then it deal *4 more damage.)"
+	(Mental Decay: Deals White damage every 5 seconds, equal to its stack, and then halves it. If it is on a mob, then it deals *4 more damage.)"
 	icon_state = "age_of_man"
 	force = 14
 	damtype = WHITE_DAMAGE
@@ -130,7 +130,7 @@
 	desc = "A hammer made with the desire to become better"
 	special = "This weapon inflicts 2 Mental Decay on hit. When this weapon hits a target with Mental Detonation, it will cause it to 'Shatter', and the weapon will deal double damage. This weapon can also change forms by being used in hand.<br><br>\
 	(Mental Detonation: Does nothing until it is 'Shattered.' Once it is 'Shattered,' it will cause Mental Decay to trigger without reducing it's stack. Weapons that cause 'Shatter' gain other benefits as well.) <br>\
-	(Mental Decay: Deals White damage every 5 seconds, equal to it's stack and then halves it. If it is on a mob, then it deal *4 more damage.)"
+	(Mental Decay: Deals White damage every 5 seconds, equal to its stack, and then halves it. If it is on a mob, then it deals *4 more damage.)"
 	icon_state = "becoming"
 	force = 14
 	damtype = BLACK_DAMAGE
@@ -175,7 +175,7 @@
 	desc = "A hammer made with the desire to make anything"
 	special = "This weapon inflicts Mental Detonation if the target has 15+ Mental Decay. This weapon can also change forms by being used in hand. <br><br>\
 	(Mental Detonation: Does nothing until it is 'Shattered.' Once it is 'Shattered,' it will cause Mental Decay to trigger without reducing it's stack. Weapons that cause 'Shatter' gain other benefits as well.) <br>\
-	(Mental Decay: Deals White damage every 5 seconds, equal to it's stack and then halves it. If it is on a mob, then it deal *4 more damage.)"
+	(Mental Decay: Deals White damage every 5 seconds, equal to its stack, and then halves it. If it is on a mob, then it deals *4 more damage.)"
 	icon_state = "making"
 	force = 14
 	damtype = WHITE_DAMAGE
@@ -215,7 +215,7 @@
 	desc = "A gun that's made to take out pests."
 	special = "This weapon inflicts 1 Mental Decay with each shot, and the first bullet of each mag inflicts Mental Detonation. <br><br>\
 	(Mental Detonation: Does nothing until it is 'Shattered.' Once it is 'Shattered,' it will cause Mental Decay to trigger without reducing it's stack. Weapons that cause 'Shatter' gain other benefits as well.) <br>\
-	(Mental Decay: Deals White damage every 5 seconds, equal to it's stack and then halves it. If it is on a mob, then it deal *4 more damage.)"
+	(Mental Decay: Deals White damage every 5 seconds, equal to its stack, and then halves it. If it is on a mob, then it deals *4 more damage.)"
 	icon_state = "exterminator"
 	inhand_icon_state = "exterminator"
 	force = 12
@@ -282,7 +282,7 @@
 	name = "Acupuncture"
 	desc = "One man's medicine is another man's poison."
 	special = "You are able to inject yourself with this weapon. If you inject yourself with the weapon, you will take toxic damage, but gain a 30% damage buff and inflict 3 Mental Decay on hit for 5 seconds. <br>\
-	(Mental Decay: Deals White damage every 5 seconds, equal to it's stack and then halves it. If it is on a mob, then it deal *4 more damage.)"
+	(Mental Decay: Deals White damage every 5 seconds, equal to its stack, and then halves it. If it is on a mob, then it deals *4 more damage.)"
 	icon_state = "acupuncture"
 	force = 20
 	damtype = BLACK_DAMAGE
@@ -331,7 +331,7 @@
 	desc = "A gun that's made to take out pests."
 	special = "This weapon deal 1% more damage to abnormalities, per 1% of their understanding. If they have max understanding, this weapon also reduces the target's white resistance by 20% for 5 seconds.<br>\
 	You also inflict 1 Mental Decay per 50% understanding the target has. <br>\
-	(Mental Decay: Deals White damage every 5 seconds, equal to it's stack and then halves it. If it is on a mob, then it deal *4 more damage.)"
+	(Mental Decay: Deals White damage every 5 seconds, equal to its stack, and then halves it. If it is on a mob, then it deals *4 more damage.)"
 	icon_state = "starry_night"
 	inhand_icon_state = "starry_night"
 	force = 12
@@ -397,7 +397,7 @@
 	special = "Upon hitting living target, You have a chance to critically hit the target dealing quadruple damage. However, if you don't hit you take some damage. <br>\
 	This weapon also inflicts 2 Mental Decay on hit, and if the target has Mental Detonation, shatter it, inflict double the Mental Decay and guarantee a critical hit. <br><br>\
 	(Mental Detonation: Does nothing until it is 'Shattered.' Once it is 'Shattered,' it will cause Mental Decay to trigger without reducing it's stack. Weapons that cause 'Shatter' gain other benefits as well.) <br>\
-	(Mental Decay: Deals White damage every 5 seconds, equal to it's stack and then halves it. If it is on a mob, then it deal *4 more damage.)"
+	(Mental Decay: Deals White damage every 5 seconds, equal to its stack, and then halves it. If it is on a mob, then it deals *4 more damage.)"
 	icon_state = "perfectionist"
 	force = 30
 	reach = 3
@@ -441,7 +441,7 @@
 	name = "childhood nightmares"
 	desc = "A small side satchel with throwable items inside, the contents inside vary in appearance between people."
 	special = "This weapon has a ranged attack, which throws out small plushies which inflict 2 Mental Decay on hit, this weapon also inflicts 2 Mental Decay on hit. You gain plushies to throw by attacking targets. <br><br>\
-	(Mental Decay: Deals White damage every 5 seconds, equal to it's stack and then halves it. If it is on a mob, then it deal *4 more damage.)"
+	(Mental Decay: Deals White damage every 5 seconds, equal to its stack, and then halves it. If it is on a mob, then it deals *4 more damage.)"
 	icon_state = "nightmares"
 	inhand_icon_state = "nightmares"
 	force = 25
@@ -553,7 +553,7 @@
 	desc = "The whole art of life consists in belonging to oneself."
 	special = "With a 1 minute cooldown, Using it in hand you are able to inspire your fellow workers by giving them a 40% damage buff for 5 seconds at the cost of some of your SP. <br>\
 	This also all hostile mobs that you can see are inflicted with 6 Mental Decay. <br><br>\
-	(Mental Decay: Deals White damage every 5 seconds, equal to it's stack and then halves it. If it is on a mob, then it deal *4 more damage.)"
+	(Mental Decay: Deals White damage every 5 seconds, equal to its stack, and then halves it. If it is on a mob, then it deals *4 more damage.)"
 	icon_state = "honor"
 	force = 60
 	reach = 2		//Has 2 Square Reach.
@@ -658,7 +658,7 @@
 	name = "average joe"
 	desc = "A good briefcase is your best friend. It can carry a lot of important documents, your pencils, and your lunch! It can even be a good self-defense tool!"
 	special = "You are able to turn on abnormality deterrence, which lets you make the foes you attack ignore you, at the cost of your SP. Also, when you attack foes who are not targeting you, you inflict 4 Mental Decay<br><br>\
-	(Mental Decay: Deals White damage every 5 seconds, equal to it's stack and then halves it. If it is on a mob, then it deal *4 more damage.)"
+	(Mental Decay: Deals White damage every 5 seconds, equal to its stack, and then halves it. If it is on a mob, then it deals *4 more damage.)"
 	icon_state = "joe"
 	force = 72
 	attack_speed = 2
@@ -726,7 +726,7 @@
 	special = "You are able to activate 'Dead Eye' mode while wielding this weapon. While 'Dead Eye' is active, your shots take 2 extra seconds to fire, but they become piercing and deal more damage. <br>\
 	Also, while you are using Deadeye mode, if you hit someone with Mental Detonation, you will cause a Shatter, which will inflict 10 Mental Decay to all nearby mobs.<br><br>\
 	(Mental Detonation: Does nothing until it is 'Shattered.' Once it is 'Shattered,' it will cause Mental Decay to trigger without reducing it's stack. Weapons that cause 'Shatter' gain other benefits as well.) <br>\
-	(Mental Decay: Deals White damage every 5 seconds, equal to it's stack and then halves it. If it is on a mob, then it deal *4 more damage.)"
+	(Mental Decay: Deals White damage every 5 seconds, equal to its stack, and then halves it. If it is on a mob, then it deals *4 more damage.)"
 	icon_state = "medea"
 	inhand_icon_state = "medea"
 	force = 14
@@ -810,7 +810,7 @@
 	desc = "Build it all up, to cash it in..."
 	special = "Each time you attack with this weapon, You will throw out some coins (You can also use this weapon as a ranged weapon to throw out coins). However these coins are very inaccurate. These coins exist for 8 seconds before fading away. <br>\
 	When you use this weapon in hand, you will recall all coins. With them dealing RED damage to any hostile they fly through, and inflicting 2 Metal Decay per coin. <br><br>\
-	(Mental Decay: Deals White damage every 5 seconds, equal to it's stack and then halves it. If it is on a mob, then it deal *4 more damage.)"
+	(Mental Decay: Deals White damage every 5 seconds, equal to its stack, and then halves it. If it is on a mob, then it deals *4 more damage.)"
 	icon_state = "blue_coin"
 	inhand_icon_state = "blue_coin"
 	force = 34
@@ -947,7 +947,7 @@
 	special = "This weapon inflicts random debuffs to the target, ranging from: 4 Bleed, 4 Burn, Red/White/Black Armor Rend and Healing Block.<br>\
 	This weapon also inflicts Mental Decay equal to the number of debuffs the target has (Max of 5). If the target also has Mental Detonation, Shatter it and inflict all of the possible statues effects this weapon can inflict.<br><br>\
 	(Mental Detonation: Does nothing until it is 'Shattered.' Once it is 'Shattered,' it will cause Mental Decay to trigger without reducing it's stack. Weapons that cause 'Shatter' gain other benefits as well.) <br>\
-	(Mental Decay: Deals White damage every 5 seconds, equal to it's stack and then halves it. If it is on a mob, then it deal *4 more damage.)"
+	(Mental Decay: Deals White damage every 5 seconds, equal to its stack, and then halves it. If it is on a mob, then it deals *4 more damage.)"
 	icon_state = "rumor"
 	force = 30
 	attack_speed = 1.6
@@ -1092,7 +1092,7 @@
 	special = "This weapon has a ranged attack which inflicts 5 Mental Decay. Attacking a target with Mental Decay will cause it to be triggered 3 time in a row, this has a cooldown. <br>\
 	When attacking a target with Mental Detonation, cause a Shatter 3 times in a row. <br><br>\
 	(Mental Detonation: Does nothing until it is 'Shattered.' Once it is 'Shattered,' it will cause Mental Decay to trigger without reducing it's stack. Weapons that cause 'Shatter' gain other benefits as well.) <br>\
-	(Mental Decay: Deals White damage every 5 seconds, equal to it's stack and then halves it. If it is on a mob, then it deal *4 more damage.)"
+	(Mental Decay: Deals White damage every 5 seconds, equal to its stack, and then halves it. If it is on a mob, then it deals *4 more damage.)"
 	icon_state = "purity"
 	force = 80
 	reach = 2		//Has 2 Square Reach.
@@ -1186,7 +1186,7 @@
 	special = "When you attack with this weapon, if the target has Mental Detonation, shatter it and increase the weapon's damage by 5. You will also lose denisty for 4 seconds. <br><br>\
 	After attacking, if the target has 20+ Mental Decay, inflict Mental Detonation to the target. Otherwise, if there are no targets with Mental Detonation, inflict Mental Detonation on 1 random nearby target. <br><br>\
 	(Mental Detonation: Does nothing until it is 'Shattered.' Once it is 'Shattered,' it will cause Mental Decay to trigger without reducing it's stack. Weapons that cause 'Shatter' gain other benefits as well.) <br>\
-	(Mental Decay: Deals White damage every 5 seconds, equal to it's stack and then halves it. If it is on a mob, then it deal *4 more damage.)"
+	(Mental Decay: Deals White damage every 5 seconds, equal to its stack, and then halves it. If it is on a mob, then it deals *4 more damage.)"
 	icon_state = "lunar_night"
 	force = 60
 	damtype = BLACK_DAMAGE
@@ -1289,7 +1289,7 @@
 	special = "When you attack with this weapon, if the target has Mental Decay, gain darkness equal to the amount Mental Decay the target has. Then trigger the Mental Decay on target. If the target has Mental Detonation, shatter it and gain 20 Darkness. <br><br>\
 	At enough darkness, you are able to spend all of your darkness to send out a singularity which deal MASSIVE damage. Then more darkness you had at the time of creation, then greater it's size and damage is. However the speed and range will decease at higher amounts. <br><br>\
 	(Mental Detonation: Does nothing until it is 'Shattered.' Once it is 'Shattered,' it will cause Mental Decay to trigger without reducing it's stack. Weapons that cause 'Shatter' gain other benefits as well.) <br>\
-	(Mental Decay: Deals White damage every 5 seconds, equal to it's stack and then halves it. If it is on a mob, then it deal *4 more damage.)"
+	(Mental Decay: Deals White damage every 5 seconds, equal to its stack, and then halves it. If it is on a mob, then it deals *4 more damage.)"
 	force = 100
 	damtype = BLACK_DAMAGE
 	attack_speed = 1.6
