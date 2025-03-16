@@ -11,7 +11,8 @@
 /obj/item/ego_weapon/ranged/branch12/mini/signal
 	name = "signal"
 	desc = "It continued calling out, expecting no response in return"
-	special = "Upon hitting living target, the firer recovers a bit of SP."
+	special = "Upon hitting living target, inflict 1 Mental Decay per 20 missing SP. Then the firer recovers a bit of SP. <br>\
+	(Mental Decay: Deals White damage every 5 seconds, equal to its stack, and then halves it. If it is on a mob, then it deals *4 more damage.)"
 	icon_state = "signal"
 	inhand_icon_state = "signal"
 	force = 12
@@ -27,18 +28,24 @@
 	damage = 12
 	damage_type = WHITE_DAMAGE
 	var/healing_on_hit = 4
+	var/inflict_per_sanityloss = 20
 
 /obj/projectile/ego_bullet/branch12/signal/on_hit(atom/target, blocked = FALSE)
 	. = ..()
 	if(!ishuman(firer) || !isliving(target))
 		return
 	var/mob/living/carbon/human/user = firer
+	var/mob/living/target_hit = target
+	var/inflicted_decay = round((user.maxSanity - user.sanityhealth)/inflict_per_sanityloss)
+	target_hit.apply_lc_mental_decay(inflicted_decay)
 	user.adjustSanityLoss(-healing_on_hit)
 
 //Serenity
 /obj/item/ego_weapon/branch12/mini/serenity
 	name = "serenity"
 	desc = "By praying for its protection, the statue might grant you its gift if you�re worthy."
+	special = "Every time you attack with this weapon, you heal SP. You heal more SP per status effect you have. You also inflict Mental Decay equal to the amount of statues effects you have. <br>\
+	(Mental Decay: Deals White damage every 5 seconds, equal to its stack, and then halves it. If it is on a mob, then it deals *4 more damage.)"
 	icon_state = "serenity"
 	force = 12
 	damtype = WHITE_DAMAGE
@@ -46,11 +53,24 @@
 	attack_verb_continuous = list("slices", "slashes", "stabs")
 	attack_verb_simple = list("slice", "slash", "stab")
 	hitsound = 'sound/weapons/fixer/generic/knife3.ogg'
+	var/heal_per_status = 5
+
+/obj/item/ego_weapon/branch12/mini/serenity/attack(mob/living/target, mob/living/user)
+	. = ..()
+	if(!ishuman(user))
+		return
+	var/mob/living/carbon/human/H = user
+	H.adjustSanityLoss((user.status_effects.len)*(-heal_per_status))
+	if(isliving(target))
+		target.apply_lc_mental_decay(user.status_effects.len)
 
 //Age of Man
 /obj/item/ego_weapon/branch12/age
 	name = "age of man"
 	desc = "A copper sword, freshly forged."
+	special = "Using the weapon in hand, you will revive all fallen humans within 5 sqrs. Revived humans will then slowly decay over the course of 1.5 minutes. But, they will gain extra attributes for the duration of the decay. <br>\
+	Also, This weapon inflicts 2 Mental Decay on hit. If the target has 15+ Mental Decay, inflict 3 more Mental Decay <br><br>\
+	(Mental Decay: Deals White damage every 5 seconds, equal to its stack, and then halves it. If it is on a mob, then it deals *4 more damage.)"
 	icon_state = "age_of_man"
 	force = 14
 	damtype = WHITE_DAMAGE
@@ -58,31 +78,144 @@
 	attack_verb_continuous = list("slices", "slashes")
 	attack_verb_simple = list("slice", "slash")
 	hitsound = 'sound/weapons/fixer/generic/knife3.ogg'
+	var/attribute_buff = 40
+	var/range = 5
+	var/inflicted_decay = 2
+	var/target_stacks = 15
+	var/inflicted_extra_decay = 3
+
+/obj/item/ego_weapon/branch12/age/attack(mob/living/target, mob/living/user)
+	. = ..()
+	if(isliving(target))
+		target.apply_lc_mental_decay(inflicted_decay)
+	var/datum/status_effect/stacking/lc_mental_decay/D = target.has_status_effect(/datum/status_effect/stacking/lc_mental_decay)
+	if(D)
+		if(D.stacks > target_stacks)
+			target.apply_lc_mental_decay(inflicted_extra_decay)
+
+/obj/item/ego_weapon/branch12/age/attack_self(mob/user)
+	if(!CanUseEgo(user))
+		return
+	var/success = FALSE
+	for(var/mob/living/carbon/human/human in view(range, get_turf(src)))
+		if (human == user)
+			continue
+		if (human.stat == DEAD)
+			success = TRUE
+			human.revive(full_heal = TRUE, admin_revive = TRUE)
+			human.grab_ghost(force = TRUE) // even suicides
+			to_chat(human, span_spider("The bells are ringing. It's not your day to die... At least not for now..."))
+			human.apply_status_effect(/datum/status_effect/fade_away)
+			human.adjust_attribute_buff(FORTITUDE_ATTRIBUTE, attribute_buff)
+			human.adjust_attribute_buff(PRUDENCE_ATTRIBUTE, attribute_buff)
+			human.adjust_attribute_buff(TEMPERANCE_ATTRIBUTE, -attribute_buff)
+			human.adjust_attribute_buff(JUSTICE_ATTRIBUTE, attribute_buff)
+	for(var/mob/living/simple_animal/hostile/ordeal/O in view(range, get_turf(src)))
+		success = TRUE
+		O.revive(full_heal = TRUE, admin_revive = TRUE)
+		O.faction = list("neutral")
+		O.apply_status_effect(/datum/status_effect/fade_away)
+		O.color = "#fffc66"
+
+	if(success)
+		user.visible_message(span_spider("May the dead rise once more, to fight one last time..."))
+		playsound(user, 'sound/abnormalities/silence/church.ogg', 50, TRUE, 4)
+		qdel(src)
+	else
+		to_chat(user, "There is none to bring back!")
 
 //Becoming
 /obj/item/ego_weapon/branch12/becoming
 	name = "becoming"
 	desc = "A hammer made with the desire to become better"
+	special = "This weapon inflicts 2 Mental Decay on hit. When this weapon hits a target with Mental Detonation, it will cause it to 'Shatter', and the weapon will deal double damage. This weapon can also change forms by being used in hand.<br><br>\
+	(Mental Detonation: Does nothing until it is 'Shattered.' Once it is 'Shattered,' it will cause Mental Decay to trigger without reducing it's stack. Weapons that cause 'Shatter' gain other benefits as well.) <br>\
+	(Mental Decay: Deals White damage every 5 seconds, equal to its stack, and then halves it. If it is on a mob, then it deals *4 more damage.)"
 	icon_state = "becoming"
 	force = 14
-	damtype = RED_DAMAGE
+	damtype = BLACK_DAMAGE
 	attack_verb_continuous = list("slams", "strikes", "smashes")
 	attack_verb_simple = list("slam", "strike", "smash")
+	var/inflicted_decay = 2
+	var/damage_multiplier = 2
+
+/obj/item/ego_weapon/branch12/becoming/attack(mob/living/target, mob/living/user)
+	var/old_force_multiplier = force_multiplier
+	if(isliving(target))
+		target.apply_lc_mental_decay(inflicted_decay)
+		var/datum/status_effect/mental_detonate/D = target.has_status_effect(/datum/status_effect/mental_detonate)
+		if(D)
+			force_multiplier = damage_multiplier
+			D.shatter()
+	. = ..()
+	force_multiplier = old_force_multiplier
+
+/obj/item/ego_weapon/branch12/becoming/proc/equip_self(target)
+	if(!ishuman(target))
+		return
+	var/mob/living/carbon/human/H = target
+	src.attack_hand(H)
+
+/obj/item/ego_weapon/branch12/becoming/attack_self(mob/user)
+	if(!CanUseEgo(user))
+		return
+	if(!ishuman(user))
+		return
+	var/mob/living/carbon/human/H = user
+	var/obj/item/held = H.get_active_held_item()
+	H.dropItemToGround(held) //Drop weapon
+	var/obj/item/ego_weapon/branch12/making/maker = new(get_turf(user))
+	playsound(src, 'sound/effects/hokma_meltdown_short.ogg', 30, TRUE, 5)
+	addtimer(CALLBACK(maker, PROC_REF(equip_self), user), 1, TIMER_UNIQUE | TIMER_OVERRIDE)
+	Destroy(src)
 
 //Making
 /obj/item/ego_weapon/branch12/making
 	name = "making"
 	desc = "A hammer made with the desire to make anything"
-	icon_state = "becoming"
+	special = "This weapon inflicts Mental Detonation if the target has 15+ Mental Decay. This weapon can also change forms by being used in hand. <br><br>\
+	(Mental Detonation: Does nothing until it is 'Shattered.' Once it is 'Shattered,' it will cause Mental Decay to trigger without reducing it's stack. Weapons that cause 'Shatter' gain other benefits as well.) <br>\
+	(Mental Decay: Deals White damage every 5 seconds, equal to its stack, and then halves it. If it is on a mob, then it deals *4 more damage.)"
+	icon_state = "making"
 	force = 14
-	damtype = RED_DAMAGE
+	damtype = WHITE_DAMAGE
 	attack_verb_continuous = list("slams", "strikes", "smashes")
 	attack_verb_simple = list("slam", "strike", "smash")
+	var/detonation_breakpoint = 15
+
+/obj/item/ego_weapon/branch12/making/attack(mob/living/target, mob/living/user)
+	. = ..()
+	if(isliving(target))
+		var/datum/status_effect/stacking/lc_mental_decay/D = target.has_status_effect(/datum/status_effect/stacking/lc_mental_decay)
+		if(D.stacks >= detonation_breakpoint)
+			target.apply_status_effect(/datum/status_effect/mental_detonate)
+
+/obj/item/ego_weapon/branch12/making/proc/equip_self(target)
+	if(!ishuman(target))
+		return
+	var/mob/living/carbon/human/H = target
+	src.attack_hand(H)
+
+/obj/item/ego_weapon/branch12/making/attack_self(mob/user)
+	if(!CanUseEgo(user))
+		return
+	if(!ishuman(user))
+		return
+	var/mob/living/carbon/human/H = user
+	var/obj/item/held = H.get_active_held_item()
+	H.dropItemToGround(held) //Drop weapon
+	var/obj/item/ego_weapon/branch12/becoming/becomer = new(get_turf(user))
+	playsound(src, 'sound/effects/hokma_meltdown_short.ogg', 30, TRUE, 5)
+	addtimer(CALLBACK(becomer, PROC_REF(equip_self), user), 1, TIMER_UNIQUE | TIMER_OVERRIDE)
+	Destroy(src)
 
 //Exterminator
 /obj/item/ego_weapon/ranged/branch12/mini/exterminator
 	name = "exterminator"
 	desc = "A gun that's made to take out pests."
+	special = "This weapon inflicts 1 Mental Decay with each shot, and the first bullet of each mag inflicts Mental Detonation. <br><br>\
+	(Mental Detonation: Does nothing until it is 'Shattered.' Once it is 'Shattered,' it will cause Mental Decay to trigger without reducing it's stack. Weapons that cause 'Shatter' gain other benefits as well.) <br>\
+	(Mental Decay: Deals White damage every 5 seconds, equal to its stack, and then halves it. If it is on a mob, then it deals *4 more damage.)"
 	icon_state = "exterminator"
 	inhand_icon_state = "exterminator"
 	force = 12
@@ -92,19 +225,43 @@
 	shotsleft = 10
 	reloadtime = 1.2 SECONDS
 	fire_sound = 'sound/weapons/gun/smg/mp7.ogg'
+	var/inflicted_decay = 1
+
+/obj/item/ego_weapon/ranged/branch12/mini/exterminator/before_firing(atom/target, mob/user)
+	if(shotsleft == initial(shotsleft))
+		projectile_path = /obj/projectile/ego_bullet/branch12/exterminator/first
+
+/obj/item/ego_weapon/ranged/branch12/mini/exterminator/process_fire(atom/target, mob/living/user, message = TRUE, params = null, zone_override = "", bonus_spread = 0, temporary_damage_multiplier = 1)
+	. = ..()
+	projectile_path = /obj/projectile/ego_bullet/branch12/exterminator
 
 /obj/projectile/ego_bullet/branch12/exterminator
 	name = "exterminator"
 	damage = 12
 	damage_type = BLACK_DAMAGE
 
+/obj/projectile/ego_bullet/branch12/exterminator/on_hit(atom/target, blocked = FALSE)
+	. = ..()
+	if(!istype(fired_from, /obj/item/ego_weapon/ranged/branch12/mini/exterminator) || !isliving(target))
+		return
+	var/obj/item/ego_weapon/ranged/branch12/mini/exterminator/gun = fired_from
+	var/mob/living/target_hit = target
+	target_hit.apply_lc_mental_decay(gun.inflicted_decay)
+
+/obj/projectile/ego_bullet/branch12/exterminator/first
+	name = "marking exterminator"
+
+/obj/projectile/ego_bullet/branch12/exterminator/first/on_hit(atom/target, blocked = FALSE)
+	. = ..()
+	var/mob/living/target_hit = target
+	target_hit.apply_status_effect(/datum/status_effect/mental_detonate)
 
 // --------TETH---------
 //Departure
 /obj/item/ego_weapon/branch12/departure
 	name = "Departure"
 	desc = "Each man's death diminishes me, For I am involved in mankind"
-	special = "Upon hitting living target, Inflict bleed to the target and gain some bleed to self."
+	special = "Upon hitting living target, Inflict 4 Bleed to the target and gain 1 Bleed."
 	icon_state = "departure"
 	force = 8
 	attack_speed = 0.5
@@ -124,7 +281,8 @@
 /obj/item/ego_weapon/branch12/mini/acupuncture
 	name = "Acupuncture"
 	desc = "One man's medicine is another man's poison."
-	special = "You are able to inject yourself with this weapon. If you inject yourself with the weapon, you will take toxic damage, but gain a 30% damage buff for 5 seconds."
+	special = "You are able to inject yourself with this weapon. If you inject yourself with the weapon, you will take toxic damage, but gain a 30% damage buff and inflict 3 Mental Decay on hit for 5 seconds. <br>\
+	(Mental Decay: Deals White damage every 5 seconds, equal to its stack, and then halves it. If it is on a mob, then it deals *4 more damage.)"
 	icon_state = "acupuncture"
 	force = 20
 	damtype = BLACK_DAMAGE
@@ -135,6 +293,13 @@
 	var/inject_cooldown
 	var/inject_cooldown_time = 5.1 SECONDS
 	var/justice_buff = 30
+	var/normal_mental_decay_inflict = 3
+	var/mental_decay_inflict = 0
+
+/obj/item/ego_weapon/branch12/mini/acupuncture/attack(mob/living/target, mob/living/user)
+	..()
+	if(isliving(target))
+		target.apply_lc_mental_decay(mental_decay_inflict)
 
 /obj/item/ego_weapon/branch12/mini/acupuncture/attack_self(mob/user)
 	if(!CanUseEgo(user))
@@ -145,8 +310,9 @@
 	if(inject_cooldown < world.time)
 		inject_cooldown = world.time + inject_cooldown_time
 		drugie.set_drugginess(15)
-		drugie.adjustToxLoss(4)
+		drugie.adjustToxLoss(7)
 		to_chat(drugie, span_nicegreen("Wow... I can taste the colors..."))
+		mental_decay_inflict = normal_mental_decay_inflict
 		if(prob(20))
 			drugie.emote(pick("twitch","drool","moan","giggle"))
 		drugie.adjust_attribute_buff(JUSTICE_ATTRIBUTE, justice_buff)
@@ -156,13 +322,16 @@
 
 /obj/item/ego_weapon/branch12/mini/acupuncture/proc/RemoveBuff(mob/user)
 	var/mob/living/carbon/human/human = user
+	mental_decay_inflict = 0
 	human.adjust_attribute_buff(JUSTICE_ATTRIBUTE, -justice_buff)
 
 //One Starry Night
 /obj/item/ego_weapon/ranged/branch12/starry_night
 	name = "One Starry Night"
 	desc = "A gun that's made to take out pests."
-	special = "This weapon deal 1% more damage to abnormalities, per 1% of their understanding. If they have max understanding, this weapon also reduces the target's white resistance by 20% for 5 seconds."
+	special = "This weapon deal 1% more damage to abnormalities, per 1% of their understanding. If they have max understanding, this weapon also reduces the target's white resistance by 20% for 5 seconds.<br>\
+	You also inflict 1 Mental Decay per 50% understanding the target has. <br>\
+	(Mental Decay: Deals White damage every 5 seconds, equal to its stack, and then halves it. If it is on a mob, then it deals *4 more damage.)"
 	icon_state = "starry_night"
 	inhand_icon_state = "starry_night"
 	force = 12
@@ -189,6 +358,7 @@
 	if(A.datum_reference)
 		extra_damage = (A.datum_reference.understanding / A.datum_reference.max_understanding)
 		A.deal_damage(damage*extra_damage, "white")
+		A.apply_lc_mental_decay(round(extra_damage*2))
 		if(A.datum_reference.understanding == A.datum_reference.max_understanding)
 			if(!A.has_status_effect(/datum/status_effect/rend_white))
 				new /obj/effect/temp_visual/cult/sparks(get_turf(A))
@@ -224,7 +394,10 @@
 /obj/item/ego_weapon/branch12/perfectionist
 	name = "perfectionist"
 	desc = "I couldn�t bear it, they silently judged, accusing every step I took."
-	special = "Upon hitting living target, You have a chance to critically hit the target dealing quadruple damage. However, if you don't hit you take some damage."
+	special = "Upon hitting living target, You have a chance to critically hit the target dealing quadruple damage. However, if you don't hit you take some damage. <br>\
+	This weapon also inflicts 2 Mental Decay on hit, and if the target has Mental Detonation, shatter it, inflict double the Mental Decay and guarantee a critical hit. <br><br>\
+	(Mental Detonation: Does nothing until it is 'Shattered.' Once it is 'Shattered,' it will cause Mental Decay to trigger without reducing it's stack. Weapons that cause 'Shatter' gain other benefits as well.) <br>\
+	(Mental Decay: Deals White damage every 5 seconds, equal to its stack, and then halves it. If it is on a mob, then it deals *4 more damage.)"
 	icon_state = "perfectionist"
 	force = 30
 	reach = 3
@@ -237,30 +410,38 @@
 	attribute_requirements = list(
 							PRUDENCE_ATTRIBUTE = 40
 							)
-	var/crit_chance = 10
-	var/default_crit_chance = 10
-	var/crit_chance_raise = 10
+	var/crit_chance = 5
+	var/default_crit_chance = 5
+	var/crit_chance_raise = 5
+	var/inflicted_decay = 2
 
 /obj/item/ego_weapon/branch12/perfectionist/attack(mob/living/target, mob/living/user)
 	..()
-	if(prob(crit_chance))
-		var/userjust = (get_modified_attribute_level(user, JUSTICE_ATTRIBUTE))
-		var/justicemod = 1 + userjust / 100
-		var/extra_damage = force
-		extra_damage *= justicemod
-		target.deal_damage(extra_damage*3, damtype)
-		playsound(target, 'sound/abnormalities/spiral_contempt/spiral_hit.ogg', 50, TRUE, 4)
-		to_chat(user, span_nicegreen("FOR THEIR PERFORMANCE, I SHALL ACT!"))
-		crit_chance = default_crit_chance
-	else
-		crit_chance += crit_chance_raise
-		user.deal_damage(force*0.25, damtype)
-		to_chat(user, span_boldwarning("They are watching... Judging..."))
+	if(isliving(target))
+		target.apply_lc_mental_decay(inflicted_decay)
+		var/datum/status_effect/mental_detonate/D = target.has_status_effect(/datum/status_effect/mental_detonate)
+		if(prob(crit_chance) || D)
+			if(D)
+				D.shatter()
+				target.apply_lc_mental_decay(inflicted_decay)
+			var/userjust = (get_modified_attribute_level(user, JUSTICE_ATTRIBUTE))
+			var/justicemod = 1 + userjust / 100
+			var/extra_damage = force
+			extra_damage *= justicemod
+			target.deal_damage(extra_damage*3, damtype)
+			playsound(target, 'sound/abnormalities/spiral_contempt/spiral_hit.ogg', 50, TRUE, 4)
+			to_chat(user, span_nicegreen("FOR THEIR PERFORMANCE, I SHALL ACT!"))
+			crit_chance = default_crit_chance
+		else
+			crit_chance += crit_chance_raise
+			user.deal_damage(force*0.25, damtype)
+			to_chat(user, span_boldwarning("They are watching... Judging..."))
 
 /obj/item/ego_weapon/branch12/nightmares
 	name = "childhood nightmares"
 	desc = "A small side satchel with throwable items inside, the contents inside vary in appearance between people."
-	special = "This weapon has a ranged attack, which throws out small plushies which inflict metal decay on hit, this weapon also inflicts metal decay on hit. You gain plushies to throw by attacking targets."
+	special = "This weapon has a ranged attack, which throws out small plushies which inflict 2 Mental Decay on hit, this weapon also inflicts 2 Mental Decay on hit. You gain plushies to throw by attacking targets. <br><br>\
+	(Mental Decay: Deals White damage every 5 seconds, equal to its stack, and then halves it. If it is on a mob, then it deals *4 more damage.)"
 	icon_state = "nightmares"
 	inhand_icon_state = "nightmares"
 	force = 25
@@ -283,7 +464,7 @@
 /obj/item/ego_weapon/branch12/nightmares/attack(mob/living/target, mob/living/user)
 	. = ..()
 	if(isliving(target))
-		target.apply_lc_metal_decay(inflicted_decay)
+		target.apply_lc_mental_decay(inflicted_decay)
 	if(stored_pals < max_stored_pals)
 		if(prob(60))
 			to_chat(user, span_nicegreen("Hey! You found another friend."))
@@ -309,7 +490,6 @@
 	icon_state = "plushie_slime"
 	icon_living = "plushie_slime"
 	gender = NEUTER
-	resize = 0.75
 	density = FALSE
 	mob_biotypes = MOB_ROBOTIC
 	faction = list("neutral")
@@ -326,7 +506,7 @@
 	attack_verb_simple = "punch"
 	attack_sound = 'sound/abnormalities/happyteddy/teddy_guard.ogg'
 	var/list/plushies = list("debug", "plushie_snake", "plushie_lizard", "plushie_spacelizard", "plushie_slime", "plushie_nuke", "plushie_pman", "plushie_awake", "plushie_h", "goat", "fumo_cirno")
-	var/inflicted_decay = 4
+	var/inflicted_decay = 2
 
 /mob/living/simple_animal/hostile/nightmare_toy/Initialize()
 	shuffle_inplace(plushies)
@@ -335,12 +515,13 @@
 	QDEL_IN(src, (10 SECONDS))
 	. = ..()
 	faction = list("neutral")
+	resize = 0.75
 
 /mob/living/simple_animal/hostile/nightmare_toy/AttackingTarget(atom/attacked_target)
 	. = ..()
 	if(isliving(attacked_target))
 		var/mob/living/L = attacked_target
-		L.apply_lc_metal_decay(inflicted_decay)
+		L.apply_lc_mental_decay(inflicted_decay)
 
 // --------WAW---------
 //Plagiarism
@@ -370,7 +551,9 @@
 /obj/item/ego_weapon/branch12/honor
 	name = "degrading honor"
 	desc = "The whole art of life consists in belonging to oneself."
-	special = "With a 1 minute cooldown, Using it in hand you are able to inspire your fellow workers by giving them a 40% damage buff for 5 seconds at the cost of some of your SP."
+	special = "With a 1 minute cooldown, Using it in hand you are able to inspire your fellow workers by giving them a 40% damage buff for 5 seconds at the cost of some of your SP. <br>\
+	This also all hostile mobs that you can see are inflicted with 6 Mental Decay. <br><br>\
+	(Mental Decay: Deals White damage every 5 seconds, equal to its stack, and then halves it. If it is on a mob, then it deals *4 more damage.)"
 	icon_state = "honor"
 	force = 60
 	reach = 2		//Has 2 Square Reach.
@@ -389,8 +572,8 @@
 	var/affect_self = TRUE
 	var/justice_buff = 40
 	var/sp_cost = 20
+	var/inflicted_mental_decay = 6
 
-//sound\magic\clockwork\invoke_general.ogg
 /obj/item/ego_weapon/branch12/honor/attack_self(mob/user)
 	if(!CanUseEgo(user))
 		return
@@ -403,6 +586,8 @@
 	warcry_cooldown = world.time + warcry_cooldown_time
 	commander.say("SLAY THEM, FOR THE QUEEN!", list("colossus","yell"), sanitize = FALSE)
 	playsound(commander, 'sound/magic/clockwork/invoke_general.ogg', 50, TRUE, 4)
+	for(var/mob/living/simple_animal/hostile/H in view(range, get_turf(src)))
+		H.apply_lc_mental_decay(inflicted_mental_decay)
 	for(var/mob/living/carbon/human/human in view(range, get_turf(src)))
 		if (human == commander && !affect_self)
 			continue
@@ -472,7 +657,8 @@
 /obj/item/ego_weapon/branch12/joe
 	name = "average joe"
 	desc = "A good briefcase is your best friend. It can carry a lot of important documents, your pencils, and your lunch! It can even be a good self-defense tool!"
-	special = "You are able to turn on abnormality deterrence, which lets you make the foes you attack ignore you, at the cost of your SP."
+	special = "You are able to turn on abnormality deterrence, which lets you make the foes you attack ignore you, at the cost of your SP. Also, when you attack foes who are not targeting you, you inflict 4 Mental Decay<br><br>\
+	(Mental Decay: Deals White damage every 5 seconds, equal to its stack, and then halves it. If it is on a mob, then it deals *4 more damage.)"
 	icon_state = "joe"
 	force = 72
 	attack_speed = 2
@@ -488,7 +674,8 @@
 	var/active = FALSE
 	var/range = 4
 	var/list/other_targets = list()
-	var/sp_cost = 10
+	var/sp_cost = 45
+	var/inflicted_decay = 4
 
 /obj/item/ego_weapon/branch12/joe/attack_self(mob/user)
 	if(!CanUseEgo(user))
@@ -508,6 +695,10 @@
 	var/justicemod = 1 + userjust / 100
 	var/extra_damage = force * justicemod
 	target.deal_damage(-extra_damage, AGGRO_DAMAGE)
+	if(ishostile(target))
+		var/mob/living/simple_animal/hostile/blindfool = target
+		if(blindfool.target != user)
+			blindfool.apply_lc_mental_decay(10)
 	if(active)
 		if(ishuman(user))
 			var/mob/living/carbon/human/joe = user
@@ -532,7 +723,10 @@
 /obj/item/ego_weapon/ranged/branch12/mini/medea
 	name = "medea"
 	desc = "Mortal fate is hard. You'd best get used to it."
-	special = "You are able to activate 'Dead Eye' mode while wielding this weapon. While 'Dead Eye' is active, your shots take 2.5 extra seconds to fire, but they become piercing and deal more damage."
+	special = "You are able to activate 'Dead Eye' mode while wielding this weapon. While 'Dead Eye' is active, your shots take 2 extra seconds to fire, but they become piercing and deal more damage. <br>\
+	Also, while you are using Deadeye mode, if you hit someone with Mental Detonation, you will cause a Shatter, which will inflict 10 Mental Decay to all nearby mobs.<br><br>\
+	(Mental Detonation: Does nothing until it is 'Shattered.' Once it is 'Shattered,' it will cause Mental Decay to trigger without reducing it's stack. Weapons that cause 'Shatter' gain other benefits as well.) <br>\
+	(Mental Decay: Deals White damage every 5 seconds, equal to its stack, and then halves it. If it is on a mob, then it deals *4 more damage.)"
 	icon_state = "medea"
 	inhand_icon_state = "medea"
 	force = 14
@@ -574,7 +768,7 @@
 		return
 	if(lock_on)
 		to_chat(user, span_warning("You start aiming for [target]..."))
-		playsound(user, 'sound/abnormalities/freischutz/prepare.ogg', 35, 0, 20)
+		playsound(user, 'sound/abnormalities/freischutz/prepare.ogg', 35, TRUE, 20)
 		aiming = TRUE
 		if(do_after(user, lock_on_time, src))
 			projectile_path = /obj/projectile/ego_bullet/branch12/medea/big
@@ -599,6 +793,208 @@
 	projectile_piercing = PASSMOB
 	range = 18 // Don't want people shooting it through the entire facility
 	hit_nondense_targets = TRUE
+
+/obj/projectile/ego_bullet/branch12/medea/big/on_hit(atom/target, blocked = FALSE)
+	. = ..()
+	if(isliving(target))
+		var/mob/living/L = target
+		var/datum/status_effect/mental_detonate/D = L.has_status_effect(/datum/status_effect/mental_detonate)
+		if(D)
+			D.shatter()
+			for(var/mob/living/simple_animal/hostile/H in view(3, get_turf(src)))
+				H.apply_lc_mental_decay(10)
+
+//10000dolers
+/obj/item/ego_weapon/branch12/ten_thousand_dolers
+	name = "100000 Dollars"
+	desc = "Build it all up, to cash it in..."
+	special = "Each time you attack with this weapon, You will throw out some coins (You can also use this weapon as a ranged weapon to throw out coins). However these coins are very inaccurate. These coins exist for 8 seconds before fading away. <br>\
+	When you use this weapon in hand, you will recall all coins. With them dealing RED damage to any hostile they fly through, and inflicting 2 Metal Decay per coin. <br><br>\
+	(Mental Decay: Deals White damage every 5 seconds, equal to its stack, and then halves it. If it is on a mob, then it deals *4 more damage.)"
+	icon_state = "blue_coin"
+	inhand_icon_state = "blue_coin"
+	force = 34
+	damtype = RED_DAMAGE
+	attribute_requirements = list(
+							FORTITUDE_ATTRIBUTE = 60,
+							TEMPERANCE_ATTRIBUTE = 60
+							)
+	var/ranged_cooldown
+	var/ranged_cooldown_time = 0.5 SECONDS
+	var/recall_cooldown
+	var/recall_cooldown_time = 8 SECONDS
+	var/ranged_range = 7
+
+/obj/item/ego_weapon/branch12/ten_thousand_dolers/attack_self(mob/user)
+	if(!CanUseEgo(user))
+		return
+	if(recall_cooldown > world.time)
+		return
+	recall_cooldown = world.time + recall_cooldown_time
+	to_chat(user, span_nicegreen("[src] recalls all nearby coins!"))
+	playsound(get_turf(user), 'sound/magic/arbiter/repulse.ogg', 60, 0, 5)
+	for(var/mob/living/simple_animal/hostile/blue_coin/C in view(9, get_turf(user)))
+		C.recall(user)
+
+/obj/item/ego_weapon/branch12/ten_thousand_dolers/attack(mob/living/target, mob/living/user)
+	. = ..()
+	var/turf/origin = get_turf(target)
+	var/list/all_turfs = RANGE_TURFS(1, origin)
+	for(var/turf/T in shuffle(all_turfs))
+		if (T.is_blocked_turf(exclude_mobs = TRUE))
+			continue
+		var/mob/living/simple_animal/hostile/blue_coin/placed_coin = new (T)
+		var/random_x = rand(-16, 16)
+		placed_coin.pixel_x += random_x
+		var/random_y = rand(-16, 16)
+		placed_coin.pixel_y += random_y
+		break
+
+/obj/item/ego_weapon/branch12/ten_thousand_dolers/afterattack(atom/A, mob/living/user, proximity_flag, params)
+	if(ranged_cooldown > world.time)
+		return
+	if(!CanUseEgo(user))
+		return
+	var/turf/target_turf = get_turf(A)
+	if(!istype(target_turf))
+		return
+	if(!(target_turf in view(ranged_range, user)))
+		return
+	..()
+	var/turf/projectile_start = get_turf(user)
+	ranged_cooldown = world.time + ranged_cooldown_time
+	playsound(get_turf(src), 'sound/effects/cashregister.ogg', 25, 3, 3)
+
+	//Stuff for creating the projctile.
+	var/obj/projectile/ego_bullet/branch12/blue_coin/B = new(projectile_start)
+	B.starting = projectile_start
+	B.firer = user
+	B.fired_from = projectile_start
+	B.yo = target_turf.y - projectile_start.y
+	B.xo = target_turf.x - projectile_start.x
+	B.original = target_turf
+	B.preparePixelProjectile(target_turf, projectile_start)
+	B.fire()
+
+/obj/projectile/ego_bullet/branch12/blue_coin
+	name = "blue coin"
+	icon = 'ModularTegustation/Teguicons/branch12/branch12_weapon.dmi'
+	icon_state = "blue_coin"
+	damage = 0
+	speed = 0.8
+	nodamage = TRUE
+	projectile_piercing = PASSMOB
+	range = 4
+
+/obj/projectile/ego_bullet/branch12/blue_coin/on_range()
+	var/turf/origin = get_turf(src)
+	var/list/all_turfs = RANGE_TURFS(1, origin)
+	for(var/turf/T in shuffle(all_turfs))
+		if (T.is_blocked_turf(exclude_mobs = TRUE))
+			continue
+		var/mob/living/simple_animal/hostile/blue_coin/placed_coin = new (T)
+		var/random_x = rand(-16, 16)
+		placed_coin.pixel_x += random_x
+		var/random_y = rand(-16, 16)
+		placed_coin.pixel_y += random_y
+		break
+	. = ..()
+
+/mob/living/simple_animal/hostile/blue_coin
+	name = "blue coin"
+	desc = "A blue coin made by 100000 Dollars"
+	icon = 'ModularTegustation/Teguicons/branch12/branch12_weapon.dmi'
+	icon_state = "blue_coin"
+	icon_living = "blue_coin"
+	gender = NEUTER
+	density = FALSE
+	mob_biotypes = MOB_ROBOTIC
+	faction = list("neutral")
+	health = 50
+	maxHealth = 50
+	healable = FALSE
+	var/dash_damage = 25
+	var/inflicted_decay = 2
+
+/mob/living/simple_animal/hostile/blue_coin/CanAttack(atom/the_target)
+	return FALSE
+
+/mob/living/simple_animal/hostile/blue_coin/Move()
+	return FALSE
+
+/mob/living/simple_animal/hostile/blue_coin/Initialize()
+	QDEL_IN(src, (8 SECONDS))
+	. = ..()
+	faction = list("neutral")
+
+/mob/living/simple_animal/hostile/blue_coin/proc/recall(mob/recall_target)
+	var/turf/slash_start = get_turf(src)
+	var/turf/slash_end = get_turf(recall_target)
+	var/list/hitline = getline(slash_start, slash_end)
+	forceMove(slash_end)
+	for(var/turf/T in hitline)
+		for(var/mob/living/simple_animal/hostile/L in HurtInTurf(T, list(), dash_damage, RED_DAMAGE, check_faction = TRUE, hurt_mechs = TRUE, hurt_structure = TRUE))
+			to_chat(L, span_userdanger("[src] quickly flies through you!"))
+			L.apply_lc_mental_decay(inflicted_decay)
+	new /datum/beam(slash_start.Beam(slash_end, "magic_bullet", time=3))
+	playsound(src, attack_sound, 50, FALSE, 4)
+	qdel(src)
+
+//Rumor
+/obj/item/ego_weapon/branch12/rumor
+	name = "rumor"
+	desc = "They reached for the stars, only for them to be pulled beyond their reach."
+	special = "This weapon inflicts random debuffs to the target, ranging from: 4 Bleed, 4 Burn, Red/White/Black Armor Rend and Healing Block.<br>\
+	This weapon also inflicts Mental Decay equal to the number of debuffs the target has (Max of 5). If the target also has Mental Detonation, Shatter it and inflict all of the possible statues effects this weapon can inflict.<br><br>\
+	(Mental Detonation: Does nothing until it is 'Shattered.' Once it is 'Shattered,' it will cause Mental Decay to trigger without reducing it's stack. Weapons that cause 'Shatter' gain other benefits as well.) <br>\
+	(Mental Decay: Deals White damage every 5 seconds, equal to its stack, and then halves it. If it is on a mob, then it deals *4 more damage.)"
+	icon_state = "rumor"
+	force = 30
+	attack_speed = 1.6
+	swingstyle = WEAPONSWING_LARGESWEEP
+	damtype = BLACK_DAMAGE
+	attack_verb_continuous = list("slashes", "slices", "rips", "cuts")
+	attack_verb_simple = list("slash", "slice", "rip", "cut")
+	hitsound = 'sound/weapons/ego/da_capo2.ogg'
+	attribute_requirements = list(
+							TEMPERANCE_ATTRIBUTE = 60,
+							JUSTICE_ATTRIBUTE = 60
+							)
+	var/bleed_inflict = 4
+	var/burn_inflict = 4
+	var/max_decay_infliction = 5
+
+/obj/item/ego_weapon/branch12/rumor/attack(mob/living/target, mob/living/user)
+	. = ..()
+	if(isliving(target))
+		var/mob/living/L = target
+		if(target.status_effects)
+			var/inflicted_decay = target.status_effects.len
+			if(inflicted_decay >= max_decay_infliction)
+				inflicted_decay = max_decay_infliction
+			target.apply_lc_mental_decay(inflicted_decay)
+		switch(rand(1,6))
+			if(1)
+				L.apply_lc_bleed(bleed_inflict)
+			if(2)
+				L.apply_lc_burn(burn_inflict)
+			if(3)
+				L.apply_status_effect(/datum/status_effect/rend_red)
+			if(4)
+				L.apply_status_effect(/datum/status_effect/rend_white)
+			if(5)
+				L.apply_status_effect(/datum/status_effect/rend_black)
+			if(6)
+				L.apply_status_effect(/datum/status_effect/healing_block)
+		var/datum/status_effect/mental_detonate/mark = target.has_status_effect(/datum/status_effect/mental_detonate)
+		if(mark)
+			mark.shatter()
+			L.apply_lc_bleed(bleed_inflict)
+			L.apply_lc_burn(burn_inflict)
+			L.apply_status_effect(/datum/status_effect/rend_red)
+			L.apply_status_effect(/datum/status_effect/rend_white)
+			L.apply_status_effect(/datum/status_effect/rend_black)
+			L.apply_status_effect(/datum/status_effect/healing_block)
 
 //Icon of Chaos
 /obj/item/ego_weapon/ranged/branch12/icon_of_chaos
@@ -693,7 +1089,10 @@
 	desc = "To be pure is to be different than Innocent, for innocence requires ignorance while the pure takes in the experiences \
 	they go through grows while never losing that spark of light inside. To hold the weight of the world requires someone Pure, \
 	and the same can be said for this EGO which is weighed down by a heavy past that might as well be the weight of the world."
-	special = "This weapon has a ranged attack which inflicts 'Metal Decay', which deals WHITE damage every 5 seconds, then halving the stack. Attacking a target with Metal Decay will cause it to be triggered 3 time in a row, this has a cooldown. "
+	special = "This weapon has a ranged attack which inflicts 5 Mental Decay. Attacking a target with Mental Decay will cause it to be triggered 3 time in a row, this has a cooldown. <br>\
+	When attacking a target with Mental Detonation, cause a Shatter 3 times in a row. <br><br>\
+	(Mental Detonation: Does nothing until it is 'Shattered.' Once it is 'Shattered,' it will cause Mental Decay to trigger without reducing it's stack. Weapons that cause 'Shatter' gain other benefits as well.) <br>\
+	(Mental Decay: Deals White damage every 5 seconds, equal to its stack, and then halves it. If it is on a mob, then it deals *4 more damage.)"
 	icon_state = "purity"
 	force = 80
 	reach = 2		//Has 2 Square Reach.
@@ -712,13 +1111,21 @@
 	var/detonate_cooldown
 	var/detonate_cooldown_time = 8 SECONDS
 	var/ranged_cooldown
-	var/ranged_cooldown_time = 1.5 SECONDS
+	var/ranged_cooldown_time = 2 SECONDS
 	var/ranged_range = 5
 	var/ranged_inflict = 5
 
 /obj/item/ego_weapon/branch12/purity/attack(mob/living/target, mob/living/user)
 	..()
-	var/datum/status_effect/stacking/lc_metal_decay/D = target.has_status_effect(/datum/status_effect/stacking/lc_metal_decay)
+	var/datum/status_effect/mental_detonate/mark = target.has_status_effect(/datum/status_effect/mental_detonate)
+	if(mark)
+		mark.shatter()
+		for(var/i = 1 to 2)
+			target.apply_status_effect(/datum/status_effect/mental_detonate)
+			var/datum/status_effect/mental_detonate/extra_mark = target.has_status_effect(/datum/status_effect/mental_detonate)
+			extra_mark.shatter()
+
+	var/datum/status_effect/stacking/lc_mental_decay/D = target.has_status_effect(/datum/status_effect/stacking/lc_mental_decay)
 	if(D)
 		if(detonate_cooldown > world.time)
 			return
@@ -770,7 +1177,69 @@
 	if(!isliving(target))
 		return
 	var/mob/living/poorfool = target
-	poorfool.apply_lc_metal_decay(inflicted_decay)
+	poorfool.apply_lc_mental_decay(inflicted_decay)
+
+//Lunar Night
+/obj/item/ego_weapon/branch12/lunar_night
+	name = "lunar night"
+	desc = "A reflection of the moon."
+	special = "When you attack with this weapon, if the target has Mental Detonation, shatter it and increase the weapon's damage by 5. You will also lose denisty for 4 seconds. <br><br>\
+	After attacking, if the target has 20+ Mental Decay, inflict Mental Detonation to the target. Otherwise, if there are no targets with Mental Detonation, inflict Mental Detonation on 1 random nearby target. <br><br>\
+	(Mental Detonation: Does nothing until it is 'Shattered.' Once it is 'Shattered,' it will cause Mental Decay to trigger without reducing it's stack. Weapons that cause 'Shatter' gain other benefits as well.) <br>\
+	(Mental Decay: Deals White damage every 5 seconds, equal to its stack, and then halves it. If it is on a mob, then it deals *4 more damage.)"
+	icon_state = "lunar_night"
+	force = 60
+	damtype = BLACK_DAMAGE
+	attack_verb_continuous = list("slices", "slashes", "stabs")
+	attack_verb_simple = list("slice", "slash", "stab")
+	hitsound = 'sound/weapons/fixer/reverb_normal.ogg'
+	attribute_requirements = list(
+							FORTITUDE_ATTRIBUTE = 80,
+							PRUDENCE_ATTRIBUTE = 80,
+							TEMPERANCE_ATTRIBUTE = 80,
+							JUSTICE_ATTRIBUTE = 100
+							)
+	var/damage_buff_per_shatter = 5
+	var/old_force = 60
+	var/max_force = 120
+	var/shatter_limit = 20
+
+/obj/item/ego_weapon/branch12/lunar_night/attack(mob/living/target, mob/living/user)
+	var/datum/status_effect/mental_detonate/MD = target.has_status_effect(/datum/status_effect/mental_detonate)
+	if(MD)
+		MD.shatter()
+		if(force < max_force)
+			force += damage_buff_per_shatter
+		var/datum/status_effect/stacking/lc_mental_decay/decay = target.has_status_effect(/datum/status_effect/stacking/lc_mental_decay)
+		if(decay)
+			if(decay.stacks >= shatter_limit)
+				target.apply_status_effect(/datum/status_effect/mental_detonate)
+	else
+		force = old_force
+	var/is_detonate = FALSE
+	var/list/detonate_targets = list()
+	for(var/mob/living/simple_animal/hostile/H in view(5, get_turf(user)))
+		var/datum/status_effect/mental_detonate/D = H.has_status_effect(/datum/status_effect/mental_detonate)
+		if(D)
+			is_detonate = TRUE
+			break
+		else
+			if(H != target)
+				detonate_targets += H
+	if(!is_detonate && detonate_targets.len)
+		shuffle_inplace(detonate_targets)
+		var/mob/living/simple_animal/hostile/random_marked = detonate_targets[1]
+		random_marked.apply_status_effect(/datum/status_effect/mental_detonate)
+		user.density = FALSE
+		user.color = "#57f7ff"
+	else
+		RemoveBuff(user)
+	addtimer(CALLBACK(src, PROC_REF(RemoveBuff), user), 4 SECONDS, TIMER_UNIQUE | TIMER_OVERRIDE)
+	. = ..()
+
+/obj/item/ego_weapon/branch12/lunar_night/proc/RemoveBuff(mob/user)
+	user.density = TRUE
+	user.color = null
 
 //Sands of Time
 /obj/item/ego_weapon/branch12/time_sands
@@ -811,3 +1280,184 @@
 		target.apply_lc_burn(inflicted_burn)
 	if(isliving(user))
 		user.apply_lc_burn(gained_burn)
+
+//Darkness
+/obj/item/ego_weapon/branch12/darkness
+	name = "darkness"
+	desc = "It's all consuming... Gaze into it enough, you might never leave it."
+	icon_state = "darkness"
+	special = "When you attack with this weapon, if the target has Mental Decay, gain darkness equal to the amount Mental Decay the target has. Then trigger the Mental Decay on target. If the target has Mental Detonation, shatter it and gain 20 Darkness. <br><br>\
+	At enough darkness, you are able to spend all of your darkness to send out a singularity which deal MASSIVE damage. Then more darkness you had at the time of creation, then greater it's size and damage is. However the speed and range will decease at higher amounts. <br><br>\
+	(Mental Detonation: Does nothing until it is 'Shattered.' Once it is 'Shattered,' it will cause Mental Decay to trigger without reducing it's stack. Weapons that cause 'Shatter' gain other benefits as well.) <br>\
+	(Mental Decay: Deals White damage every 5 seconds, equal to its stack, and then halves it. If it is on a mob, then it deals *4 more damage.)"
+	force = 100
+	damtype = BLACK_DAMAGE
+	attack_speed = 1.6
+	hitsound = 'sound/weapons/ego/hammer.ogg'
+	attack_verb_continuous = list("slams", "strikes", "smashes")
+	attack_verb_simple = list("slam", "strike", "smash")
+	attribute_requirements = list(
+							FORTITUDE_ATTRIBUTE = 80,
+							PRUDENCE_ATTRIBUTE = 80,
+							TEMPERANCE_ATTRIBUTE = 100,
+							JUSTICE_ATTRIBUTE = 80
+							)
+	var/max_gathered_darkness = 1000
+	var/gathered_darkness = 700
+	var/ranged_cooldown
+	var/ranged_cooldown_time = 1 SECONDS
+	var/ranged_range = 8
+	var/summoning_time
+	var/darkness_per_shatter = 20
+	var/inflicted_decay = 2
+
+/obj/item/ego_weapon/branch12/darkness/examine(mob/user)
+	. = ..()
+	. += span_notice("This weapon currently has gathered [gathered_darkness] darkness out of [max_gathered_darkness] maximum darkness.")
+
+/obj/item/ego_weapon/branch12/darkness/attack(mob/living/target, mob/living/user)
+	..()
+	var/datum/status_effect/mental_detonate/mark = target.has_status_effect(/datum/status_effect/mental_detonate)
+	if(mark)
+		mark.shatter()
+		if(gathered_darkness <= (max_gathered_darkness-darkness_per_shatter))
+			gathered_darkness += darkness_per_shatter
+	var/datum/status_effect/stacking/lc_mental_decay/D = target.has_status_effect(/datum/status_effect/stacking/lc_mental_decay)
+	if(D)
+		if(gathered_darkness <= (max_gathered_darkness - D.stacks))
+			gathered_darkness += D.stacks
+			to_chat(user, span_nicegreen("You siphon some of the target's mental decay!"))
+			playsound(loc, 'sound/magic/teleport_diss.ogg', 25, TRUE, extrarange = stealthy_audio ? SILENCED_SOUND_EXTRARANGE : -1, falloff_distance = 0)
+			var/obj/effect/infinity/P = new get_turf(target)
+			P.color = COLOR_PURPLE
+			D.statues_damage(FALSE)
+	if(isliving(target))
+		var/mob/living/target_hit = target
+		target_hit.apply_lc_mental_decay(inflicted_decay)
+
+/obj/item/ego_weapon/branch12/darkness/afterattack(atom/A, mob/living/user, proximity_flag, params)
+	if(ranged_cooldown > world.time)
+		return
+	if(!CanUseEgo(user))
+		return
+	var/turf/target_turf = get_turf(A)
+	if(!istype(target_turf))
+		return
+	if((get_dist(user, target_turf) < 2) || !(target_turf in view(ranged_range, user)))
+		return
+	..()
+
+	//Stuff for creating the projctile.
+	var/obj/projectile/magic/aoe/black_hole/B
+	if(gathered_darkness >= 900)
+		B = new /obj/projectile/magic/aoe/black_hole/stage_5
+	else if(gathered_darkness >= 600)
+		B = new /obj/projectile/magic/aoe/black_hole/stage_4
+	else if(gathered_darkness >= 400)
+		B = new /obj/projectile/magic/aoe/black_hole/stage_3
+	else if(gathered_darkness >= 200)
+		B = new /obj/projectile/magic/aoe/black_hole/stage_2
+	else if(gathered_darkness >= 100)
+		B = new /obj/projectile/magic/aoe/black_hole
+	else
+		return
+	ranged_cooldown = world.time + ranged_cooldown_time
+	playsound(target_turf, 'sound/magic/arbiter/repulse.ogg', 45, TRUE)
+	update_black_hole(B, user, target_turf)
+
+/obj/item/ego_weapon/branch12/darkness/proc/update_black_hole(obj/projectile/magic/aoe/black_hole/B, mob/user, turf/target_turf)
+	var/turf/projectile_start = get_turf(user)
+	B.starting = projectile_start
+	B.firer = user
+	B.fired_from = projectile_start
+	B.yo = target_turf.y - projectile_start.y
+	B.xo = target_turf.x - projectile_start.x
+	B.original = target_turf
+	B.set_angle(Get_Angle(user, target_turf))
+	B.forceMove(projectile_start)
+	//B.preparePixelProjectile(target_turf, user, TRUE)
+	if(do_after(user, B.appearing_time, src))
+		B.fire()
+		gathered_darkness = 0
+	else
+		qdel(B)
+
+/obj/projectile/magic/aoe/black_hole
+	name = "devouring singularity"
+	icon = 'icons/obj/singularity.dmi'
+	icon_state = "singularity_s1"
+	alpha = 0
+	range = 50
+	damage = 100
+	damage_type = BLACK_DAMAGE
+	armour_penetration = 0
+	speed = 1
+	white_healing = FALSE
+	nodamage = FALSE
+	projectile_piercing = PASSMOB
+	projectile_phasing = (ALL & (~PASSMOB))
+	hitsound = 'sound/magic/arbiter/pillar_hit.ogg'
+	var/consuming_range = 0
+	var/appearing_time = 10
+
+/obj/projectile/magic/aoe/black_hole/Initialize()
+	. = ..()
+	animate(src, alpha = 255, time = appearing_time)
+
+/obj/projectile/magic/aoe/black_hole/Range()
+	if(proxdet)
+		if(isliving(firer))
+			var/mob/living/user = firer
+			var/target_aoe_turf = locate(src.x + consuming_range, src.y + consuming_range, user.z)
+			for(var/mob/living/L in range(consuming_range, target_aoe_turf))
+				if(L != user && !(faction_check(L.faction, list("neutral"), FALSE)))
+					L.deal_damage(damage, "black")
+
+	range--
+	damage += damage_falloff_tile
+	if(range <= 0 && loc)
+		on_range()
+
+/obj/projectile/magic/aoe/black_hole/stage_2
+	icon = 'icons/effects/96x96.dmi'
+	icon_state = "singularity_s3"
+	range = 40
+	damage = 200
+	speed = 1.5
+	pixel_x = -32
+	pixel_y = -32
+	consuming_range = 1
+	appearing_time = 20
+
+/obj/projectile/magic/aoe/black_hole/stage_3
+	icon = 'icons/effects/160x160.dmi'
+	icon_state = "singularity_s5"
+	range = 30
+	damage = 400
+	speed = 2.5
+	pixel_x = -64
+	pixel_y = -64
+	consuming_range = 2
+	appearing_time = 30
+
+/obj/projectile/magic/aoe/black_hole/stage_4
+	icon = 'icons/effects/224x224.dmi'
+	icon_state = "singularity_s7"
+	range = 20
+	damage = 600
+	speed = 3.5
+	pixel_x = -96
+	pixel_y = -96
+	consuming_range = 3
+	appearing_time = 40
+
+/obj/projectile/magic/aoe/black_hole/stage_5
+	icon = 'icons/effects/288x288.dmi'
+	icon_state = "singularity_s9"
+	range = 10
+	damage = 800
+	speed = 4.5
+	pixel_x = -128
+	pixel_y = -128
+	consuming_range = 4
+	appearing_time = 50
