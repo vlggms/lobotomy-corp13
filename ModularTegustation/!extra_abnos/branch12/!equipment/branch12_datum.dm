@@ -152,8 +152,17 @@
 	cost = 50
 
 //Hand of Babel - Babelling Rumor
+/datum/ego_datum/weapon/rumor
+	item_path = /obj/item/ego_weapon/branch12/rumor
+	cost = 50
+
 /datum/ego_datum/armor/rumor
 	item_path = /obj/item/clothing/suit/armor/ego_gear/branch12/rumor
+	cost = 50
+
+//Genie of Pentacles - 10000dolers
+/datum/ego_datum/weapon/branch12/ten_thousand_dolers
+	item_path = /obj/item/ego_weapon/branch12/ten_thousand_dolers
 	cost = 50
 
 // --------ALEPH---------
@@ -179,7 +188,15 @@
 
 
 // Fly me to the Moon - Lunar Night
+/datum/ego_datum/weapon/branch12/lunar_night
+	item_path = /obj/item/ego_weapon/branch12/lunar_night
+	cost = 100
+
 /datum/ego_datum/armor/branch12/lunar_night
 	item_path = /obj/item/clothing/suit/armor/ego_gear/branch12/lunar_night
 	cost = 100
 
+// Schwarzschild Radius - Darkness
+/datum/ego_datum/weapon/branch12/darkness
+	item_path = /obj/item/ego_weapon/branch12/darkness
+	cost = 100
