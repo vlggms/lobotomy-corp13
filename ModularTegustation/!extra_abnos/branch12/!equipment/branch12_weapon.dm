@@ -261,7 +261,7 @@
 /obj/item/ego_weapon/branch12/departure
 	name = "Departure"
 	desc = "Each man's death diminishes me, For I am involved in mankind"
-	special = "Upon hitting living target, Inflict bleed to the target and gain some bleed to self."
+	special = "Upon hitting living target, Inflict 4 Bleed to the target and gain 1 Bleed."
 	icon_state = "departure"
 	force = 8
 	attack_speed = 0.5
@@ -281,7 +281,8 @@
 /obj/item/ego_weapon/branch12/mini/acupuncture
 	name = "Acupuncture"
 	desc = "One man's medicine is another man's poison."
-	special = "You are able to inject yourself with this weapon. If you inject yourself with the weapon, you will take toxic damage, but gain a 30% damage buff for 5 seconds."
+	special = "You are able to inject yourself with this weapon. If you inject yourself with the weapon, you will take toxic damage, but gain a 30% damage buff and inflict 3 Mental Decay on hit for 5 seconds. <br>\
+	(Mental Decay: Deals White damage every 5 seconds, equal to it's stack and then halves it. If it is on a mob, then it deal *4 more damage.)"
 	icon_state = "acupuncture"
 	force = 20
 	damtype = BLACK_DAMAGE
@@ -292,6 +293,13 @@
 	var/inject_cooldown
 	var/inject_cooldown_time = 5.1 SECONDS
 	var/justice_buff = 30
+	var/normal_mental_decay_inflict = 3
+	var/mental_decay_inflict = 0
+
+/obj/item/ego_weapon/branch12/mini/acupuncture/attack(mob/living/target, mob/living/user)
+	..()
+	if(isliving(target))
+		target.apply_lc_mental_decay(mental_decay_inflict)
 
 /obj/item/ego_weapon/branch12/mini/acupuncture/attack_self(mob/user)
 	if(!CanUseEgo(user))
@@ -302,8 +310,9 @@
 	if(inject_cooldown < world.time)
 		inject_cooldown = world.time + inject_cooldown_time
 		drugie.set_drugginess(15)
-		drugie.adjustToxLoss(4)
+		drugie.adjustToxLoss(7)
 		to_chat(drugie, span_nicegreen("Wow... I can taste the colors..."))
+		mental_decay_inflict = normal_mental_decay_inflict
 		if(prob(20))
 			drugie.emote(pick("twitch","drool","moan","giggle"))
 		drugie.adjust_attribute_buff(JUSTICE_ATTRIBUTE, justice_buff)
@@ -313,6 +322,7 @@
 
 /obj/item/ego_weapon/branch12/mini/acupuncture/proc/RemoveBuff(mob/user)
 	var/mob/living/carbon/human/human = user
+	mental_decay_inflict = 0
 	human.adjust_attribute_buff(JUSTICE_ATTRIBUTE, -justice_buff)
 
 //One Starry Night
