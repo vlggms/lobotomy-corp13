@@ -1358,7 +1358,6 @@
 	else
 		var/mob/living/carbon/human/status_holder = owner
 		status_holder.adjustSanityLoss(stacks)
-	new /obj/effect/temp_visual/damage_effect/white(get_turf(owner))
 	statues_decay(passive_decay)
 
 /datum/status_effect/stacking/lc_mental_decay/proc/statues_decay(passive_decay = TRUE)

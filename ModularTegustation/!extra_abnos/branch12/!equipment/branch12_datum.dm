@@ -192,3 +192,7 @@
 	item_path = /obj/item/clothing/suit/armor/ego_gear/branch12/lunar_night
 	cost = 100
 
+// Schwarzschild Radius - Darkness
+/datum/ego_datum/weapon/branch12/darkness
+	item_path = /obj/item/ego_weapon/branch12/darkness
+	cost = 100
