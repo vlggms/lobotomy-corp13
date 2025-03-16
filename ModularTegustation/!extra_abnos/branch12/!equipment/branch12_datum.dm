@@ -152,6 +152,10 @@
 	cost = 50
 
 //Hand of Babel - Babelling Rumor
+/datum/ego_datum/weapon/rumor
+	item_path = /obj/item/ego_weapon/branch12/rumor
+	cost = 50
+
 /datum/ego_datum/armor/rumor
 	item_path = /obj/item/clothing/suit/armor/ego_gear/branch12/rumor
 	cost = 50

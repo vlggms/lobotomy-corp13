@@ -940,6 +940,62 @@
 	playsound(src, attack_sound, 50, FALSE, 4)
 	qdel(src)
 
+//Rumor
+/obj/item/ego_weapon/branch12/rumor
+	name = "rumor"
+	desc = "They reached for the stars, only for them to be pulled beyond their reach."
+	special = "This weapon inflicts random debuffs to the target, ranging from: 4 Bleed, 4 Burn, Red/White/Black Armor Rend and Healing Block.<br>\
+	This weapon also inflicts Mental Decay equal to the number of debuffs the target has (Max of 5). If the target also has Mental Detonation, Shatter it and inflict all of the possible statues effects this weapon can inflict.<br><br>\
+	(Mental Detonation: Does nothing until it is 'Shattered.' Once it is 'Shattered,' it will cause Mental Decay to trigger without reducing it's stack. Weapons that cause 'Shatter' gain other benefits as well.) <br>\
+	(Mental Decay: Deals White damage every 5 seconds, equal to it's stack and then halves it. If it is on a mob, then it deal *4 more damage.)"
+	icon_state = "rumor"
+	force = 30
+	attack_speed = 1.6
+	swingstyle = WEAPONSWING_LARGESWEEP
+	damtype = BLACK_DAMAGE
+	attack_verb_continuous = list("slashes", "slices", "rips", "cuts")
+	attack_verb_simple = list("slash", "slice", "rip", "cut")
+	hitsound = 'sound/weapons/ego/da_capo2.ogg'
+	attribute_requirements = list(
+							TEMPERANCE_ATTRIBUTE = 60,
+							JUSTICE_ATTRIBUTE = 60
+							)
+	var/bleed_inflict = 4
+	var/burn_inflict = 4
+	var/max_decay_infliction = 5
+
+/obj/item/ego_weapon/branch12/rumor/attack(mob/living/target, mob/living/user)
+	. = ..()
+	if(isliving(target))
+		var/mob/living/L = target
+		if(target.status_effects)
+			var/inflicted_decay = target.status_effects.len
+			if(inflicted_decay >= max_decay_infliction)
+				inflicted_decay = max_decay_infliction
+			target.apply_lc_mental_decay(inflicted_decay)
+		switch(rand(1,6))
+			if(1)
+				L.apply_lc_bleed(bleed_inflict)
+			if(2)
+				L.apply_lc_burn(burn_inflict)
+			if(3)
+				L.apply_status_effect(/datum/status_effect/rend_red)
+			if(4)
+				L.apply_status_effect(/datum/status_effect/rend_white)
+			if(5)
+				L.apply_status_effect(/datum/status_effect/rend_black)
+			if(6)
+				L.apply_status_effect(/datum/status_effect/healing_block)
+		var/datum/status_effect/mental_detonate/mark = target.has_status_effect(/datum/status_effect/mental_detonate)
+		if(mark)
+			mark.shatter()
+			L.apply_lc_bleed(bleed_inflict)
+			L.apply_lc_burn(burn_inflict)
+			L.apply_status_effect(/datum/status_effect/rend_red)
+			L.apply_status_effect(/datum/status_effect/rend_white)
+			L.apply_status_effect(/datum/status_effect/rend_black)
+			L.apply_status_effect(/datum/status_effect/healing_block)
+
 //Icon of Chaos
 /obj/item/ego_weapon/ranged/branch12/icon_of_chaos
 	name = "Icon of Chaos"
@@ -1240,6 +1296,12 @@
 	hitsound = 'sound/weapons/ego/hammer.ogg'
 	attack_verb_continuous = list("slams", "strikes", "smashes")
 	attack_verb_simple = list("slam", "strike", "smash")
+	attribute_requirements = list(
+							FORTITUDE_ATTRIBUTE = 80,
+							PRUDENCE_ATTRIBUTE = 80,
+							TEMPERANCE_ATTRIBUTE = 100,
+							JUSTICE_ATTRIBUTE = 80
+							)
 	var/max_gathered_darkness = 1000
 	var/gathered_darkness = 700
 	var/ranged_cooldown
