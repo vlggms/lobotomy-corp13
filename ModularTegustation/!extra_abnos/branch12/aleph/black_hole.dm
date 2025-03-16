@@ -36,7 +36,7 @@
 	work_damage_type =  BLACK_DAMAGE
 
 	ego_list = list(
-		//datum/ego_datum/weapon/branch12/darkness,
+		/datum/ego_datum/weapon/branch12/darkness,
 		//datum/ego_datum/armor/branch12/darkness,
 	)
 	//gift_type =  /datum/ego_gifts/departure

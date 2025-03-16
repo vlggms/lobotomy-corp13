@@ -179,6 +179,12 @@
 	},
 /turf/open/floor/plasteel,
 /area/facility_hallway/central)
+"dg" = (
+/obj/structure/sign/ordealmonitor{
+	pixel_x = 32
+	},
+/turf/open/floor/carpet/purple,
+/area/department_main/information)
 "do" = (
 /obj/structure/chair/comfy/teal,
 /turf/open/floor/wood,
@@ -749,6 +755,9 @@
 "jl" = (
 /obj/structure/table/glass,
 /obj/item/reagent_containers/hypospray/emais,
+/obj/structure/sign/ordealmonitor{
+	pixel_x = 32
+	},
 /turf/open/floor/plasteel/white,
 /area/department_main/safety)
 "jo" = (
@@ -932,6 +941,13 @@
 	},
 /turf/open/water/deep/obsessing_water,
 /area/facility_hallway/training)
+"kX" = (
+/obj/structure/disposalpipe/segment,
+/obj/structure/sign/ordealmonitor{
+	pixel_x = 32
+	},
+/turf/open/floor/carpet/orange,
+/area/department_main/training)
 "le" = (
 /obj/effect/turf_decal/tile/brown{
 	dir = 8
@@ -1106,6 +1122,9 @@
 /obj/machinery/light{
 	dir = 8
 	},
+/obj/structure/sign/ordealmonitor{
+	pixel_x = -32
+	},
 /turf/open/floor/plasteel/white,
 /area/department_main/safety)
 "ng" = (
@@ -1255,6 +1274,12 @@
 /obj/machinery/smartfridge/food,
 /turf/closed/indestructible/reinforced,
 /area/facility_hallway/training)
+"ph" = (
+/obj/structure/sign/ordealmonitor{
+	pixel_x = -32
+	},
+/turf/open/floor/wood,
+/area/department_main/command)
 "pr" = (
 /obj/machinery/door/airlock/wood,
 /turf/open/floor/plasteel/elevatorshaft,
@@ -1719,6 +1744,12 @@
 	},
 /turf/open/floor/wood,
 /area/facility_hallway/central)
+"uf" = (
+/obj/structure/sign/ordealmonitor{
+	pixel_x = -32
+	},
+/turf/open/floor/carpet/purple,
+/area/department_main/information)
 "uj" = (
 /obj/effect/light_emitter{
 	light_power = 4;
@@ -2206,7 +2237,7 @@
 /turf/open/floor/facility/dark,
 /area/department_main/command)
 "BD" = (
-/obj/effect/landmark/abnormality_spawn/training_rabbit,
+/obj/effect/landmark/abnormality_spawn/training_rabbit/boar,
 /turf/open/floor/facility/dark,
 /area/department_main/command)
 "BG" = (
@@ -2581,6 +2612,9 @@
 /obj/machinery/light{
 	dir = 4
 	},
+/obj/structure/sign/ordealmonitor{
+	pixel_x = 32
+	},
 /turf/open/floor/wood,
 /area/department_main/extraction)
 "Im" = (
@@ -2866,6 +2900,12 @@
 "LS" = (
 /turf/closed/indestructible/fakeglass,
 /area/department_main/training)
+"LU" = (
+/obj/structure/sign/ordealmonitor{
+	pixel_x = 32
+	},
+/turf/open/floor/wood,
+/area/department_main/command)
 "LV" = (
 /obj/structure/rack,
 /turf/open/floor/plasteel,
@@ -36835,12 +36875,12 @@ Dw
 DV
 Es
 YO
-RV
 Im
 wY
 wY
 wY
 Gr
+tN
 tN
 tN
 tN
@@ -37092,12 +37132,12 @@ QF
 Xw
 EI
 YO
-ZL
 Im
 IZ
 IZ
 IZ
 Lx
+tN
 tN
 tN
 mQ
@@ -37349,12 +37389,12 @@ QF
 Xw
 EI
 YO
-ZL
 Im
 IZ
 JF
 IZ
 Lx
+tN
 tN
 tN
 UE
@@ -37606,12 +37646,12 @@ QF
 Xw
 EM
 YO
-ZL
 Im
 IZ
 IZ
 IZ
 Lx
+tN
 tN
 tN
 tN
@@ -37863,12 +37903,12 @@ QF
 Xw
 EI
 YO
-ZL
 Im
 wY
 wY
 wY
 Gr
+tN
 tN
 tN
 tN
@@ -38378,7 +38418,7 @@ Xw
 EI
 sz
 GS
-Xv
+ph
 Xv
 Xv
 KJ
@@ -38909,7 +38949,7 @@ UK
 RE
 Od
 Od
-Od
+uf
 ON
 Nw
 OS
@@ -41223,7 +41263,7 @@ Oa
 Op
 Nw
 Od
-Od
+dg
 Od
 Od
 LX
@@ -41966,7 +42006,7 @@ BG
 ZK
 YO
 zB
-Xv
+LU
 Xv
 Xv
 CZ
@@ -43262,11 +43302,11 @@ EM
 YO
 ZL
 ZL
-ZL
-ZL
-ZL
-ZL
-ZL
+RV
+RV
+RV
+RV
+RV
 Mv
 tN
 tN
@@ -43519,7 +43559,7 @@ FZ
 YO
 ZL
 ZL
-ZL
+RV
 Im
 Im
 Im
@@ -43776,7 +43816,7 @@ YO
 YO
 ZL
 ZL
-ZL
+RV
 Im
 IZ
 IZ
@@ -44033,7 +44073,7 @@ ZL
 ZL
 ZL
 ZL
-ZL
+RV
 Im
 IZ
 LL
@@ -44290,7 +44330,7 @@ ZL
 ZL
 ZL
 ZL
-ZL
+RV
 Im
 IZ
 IZ
@@ -44547,7 +44587,7 @@ ZL
 ZL
 ZL
 ZL
-ZL
+RV
 Kz
 Im
 Im
@@ -44767,7 +44807,7 @@ zW
 zW
 zW
 uL
-jX
+kX
 oK
 jX
 jX
@@ -44804,11 +44844,11 @@ ZL
 ZL
 ZL
 ZL
-ZL
-ZL
-ZL
-ZL
-ZL
+RV
+RV
+RV
+RV
+RV
 RV
 xX
 xX

@@ -271,7 +271,7 @@
 	abno_info = list(
 		"When the work result was bad, the Qliphoth counter decreased with a high probability.",
 		"When repression work was performed with T-01-244, the Qliphoth counter lowered at a high probability.",
-		"When an employee with level 3 justice or higher completed their work, the Qliphoth counter lowered. The same phenomenon occurred when temperance was below level 4.",
+		"When an employee with level 3 justice or higher completed their work, the Qliphoth counter lowered. The same phenomenon occurred when temperance was above level 4.",
 	)
 
 // Hand of Babel
