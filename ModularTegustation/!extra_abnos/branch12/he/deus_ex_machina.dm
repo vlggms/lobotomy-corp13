@@ -5,7 +5,7 @@
 	icon_state = "deus"
 
 	threat_level = HE_LEVEL
-	start_qliphoth = 3
+	start_qliphoth = 4
 	work_chances = list(
 		ABNORMALITY_WORK_INSTINCT = 40,
 		ABNORMALITY_WORK_INSIGHT = 40,

@@ -71,7 +71,8 @@
 		//flashbang
 		var/mob/living/carbon/human/H = L
 		H.set_confusion(10)
-		H.adjust_blindness(2)
+		H.overlay_fullscreen("flash", type)
+		addtimer(CALLBACK(H, PROC_REF(clear_fullscreen), "flash", 25), 25)
 
 
 	SLEEP_CHECK_DEATH(3)
