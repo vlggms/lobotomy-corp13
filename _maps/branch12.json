@@ -3,18 +3,23 @@
 	"map_name": "Branch 12",
 	"map_path": "map_files/Branch12",
 	"map_file": [
-		"Branch12.dmm"
-	],
-	"traits": [
-		{
-			"Baseturf": "/turf/open/floor/plating/asteroid"
-		}
+		"Branch12.dmm",
+		"Branch12manager.dmm"
 	],
 	"space_ruin_levels": 0,
 	"space_empty_levels": 0,
-	"shuttles": {
-		"emergency": "emergency_alpha"
-	},
+	"traits": [
+		{
+			"Up": 1,
+			"Baseturf": "/turf/open/indestructible",
+			"Linkage": "Cross"
+		},
+		{
+			"Down": -1,
+			"Baseturf": "/turf/open/indestructible",
+			"Linkage": "Cross"
+		}
+	],
 	"minetype": "none",
 	"maptype": "branch12"
 }
