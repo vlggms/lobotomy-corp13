@@ -65,8 +65,8 @@
 	if(work_type == ABNORMALITY_WORK_ATTACHMENT)
 		if(length(potential_ideas))
 			ideas_stolen += pick_n_take(potential_ideas)
-			health += 100
-			maxHealth += 100
+			//health += 100
+			//maxHealth += 100
 
 //from here on, abilities it can gain on breach
 /mob/living/simple_animal/hostile/abnormality/branch12/ollieoxenfree/AttackingTarget(atom/attacked_target) //checking it's ideas and executing them
