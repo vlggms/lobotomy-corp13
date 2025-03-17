@@ -4373,4 +4373,13 @@
 #include "ModularTegustation\tegu_xenobio_blackcross\black_extracts.dm"
 #include "ModularTegustation\tegu_xenobio_blackcross\slime_code.dm"
 #include "ModularTegustation\zTegu_overwrite\tegu_overwrite_vars.dm"
+#include "code\modules\mob\living\simple_animal\distortion\star\PhilipBoss.dm"
+#include "code\modules\mob\living\simple_animal\distortion\star\EileenBoss.dm"
+#include "code\modules\mob\living\simple_animal\distortion\star\GretaBoss.dm"
+#include "code\modules\mob\living\simple_animal\distortion\star\BremenBoss.dm"
+#include "code\modules\mob\living\simple_animal\distortion\star\OswaldBoss2.dm"
+#include "code\modules\mob\living\simple_animal\distortion\star\TanyaBoss.dm"
+#include "code\modules\mob\living\simple_animal\distortion\star\HeonBoss.dm"
+#include "ModularTegustation\ego_weapons\melee\non_abnormality\ensemble.dm"
+#include "code\modules\clothing\suits\ego_gear\non_abnormality\EnsembleBody.dm"
 // END_INCLUDE
