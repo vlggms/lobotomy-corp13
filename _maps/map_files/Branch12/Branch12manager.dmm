@@ -275,8 +275,13 @@
 /turf/open/floor/carpet/cyan,
 /area/department_main/manager)
 "cr" = (
-/obj/effect/landmark/latejoin,
-/turf/open/floor/carpet/cyan,
+/obj/machinery/computer/extraction_cargo{
+	dir = 8
+	},
+/obj/structure/sign/ordealmonitor{
+	pixel_y = 32
+	},
+/turf/open/floor/facility/halls,
 /area/department_main/manager)
 "cu" = (
 /obj/effect/turf_decal/siding/blue{
@@ -304,15 +309,8 @@
 /turf/open/floor/carpet/cyan,
 /area/department_main/manager)
 "cO" = (
-/obj/docking_port/stationary{
-	dwidth = 3;
-	height = 5;
-	id = "epsilon_control";
-	name = "2F - Control";
-	roundstart_template = null;
-	width = 6
-	},
-/turf/open/floor/plasteel/elevatorshaft,
+/obj/machinery/telecomms/relay/preset/station,
+/turf/open/floor/circuit/telecomms/mainframe,
 /area/department_main/manager)
 "cP" = (
 /obj/structure/railing{
@@ -329,7 +327,6 @@
 /turf/open/floor/facility/halls,
 /area/department_main/manager)
 "cU" = (
-/obj/machinery/regenerator,
 /turf/open/floor/plasteel/dark,
 /area/department_main/manager)
 "cW" = (
@@ -401,8 +398,10 @@
 /turf/open/floor/plasteel,
 /area/department_main/manager)
 "dQ" = (
-/obj/machinery/telecomms/relay/preset/station,
-/turf/open/floor/circuit/telecomms/mainframe,
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/floor/plasteel,
 /area/department_main/manager)
 "dU" = (
 /turf/open/floor/circuit/telecomms/mainframe,
@@ -411,404 +410,41 @@
 /obj/machinery/ntnet_relay,
 /turf/open/floor/circuit/telecomms/mainframe,
 /area/department_main/manager)
-"eO" = (
-/turf/closed/indestructible/reinforced,
-/area/space)
-"eS" = (
-/turf/open/floor/plasteel/elevatorshaft,
-/area/space)
-"eV" = (
-/obj/effect/turf_decal/delivery/red,
-/obj/machinery/computer/shuttle/mining{
-	max_integrity = 350000;
-	name = "elevator console";
-	possible_destinations = "epsilon_control";
-	shuttleId = "epsilon"
-	},
-/obj/structure/railing{
-	dir = 8
-	},
-/obj/machinery/light/cold/no_nightlight{
-	brightness = 16;
-	dir = 1
-	},
-/obj/machinery/camera/autoname{
-	dir = 8
-	},
-/turf/open/floor/facility/white,
-/area/space)
-"eX" = (
-/obj/machinery/light/floor{
-	pixel_x = 8;
-	pixel_y = -8
-	},
-/obj/effect/turf_decal/tile/blue{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/blue{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/blue{
-	dir = 8
-	},
-/obj/effect/turf_decal/tile/blue{
-	color = "#3234B9"
-	},
-/obj/machinery/computer/abnormality_queue,
-/turf/open/floor/plasteel/sepia,
-/area/space)
-"eZ" = (
-/obj/machinery/computer/security/telescreen{
-	network = list("ss13");
-	pixel_x = -17;
-	pixel_y = 39
-	},
-/obj/machinery/computer/security/telescreen{
-	network = list("ss13");
-	pixel_x = -17;
-	pixel_y = 27
-	},
-/obj/machinery/computer/security/telescreen{
-	network = list("ss13");
-	pixel_x = 3;
-	pixel_y = 45
-	},
-/obj/machinery/computer/security/telescreen{
-	network = list("ss13");
-	pixel_x = 3;
-	pixel_y = 33
-	},
-/obj/machinery/computer/security/telescreen{
-	network = list("ss13");
-	pixel_x = -37;
-	pixel_y = 33
-	},
-/obj/machinery/computer/security/telescreen{
-	network = list("ss13");
-	pixel_x = -37;
-	pixel_y = 21
-	},
-/obj/effect/turf_decal/tile/blue{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/blue{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/blue{
-	color = "#3234B9";
-	dir = 8
-	},
-/obj/effect/turf_decal/tile/blue{
-	color = "#3234B9"
-	},
-/obj/machinery/computer/communications,
-/turf/open/floor/plasteel/sepia,
-/area/space)
-"fa" = (
-/obj/machinery/computer/security/telescreen{
-	network = list("ss13");
-	pixel_x = -10;
-	pixel_y = 45
-	},
-/obj/machinery/computer/security/telescreen{
-	network = list("ss13");
-	pixel_x = -10;
-	pixel_y = 33
-	},
-/obj/effect/turf_decal/tile/blue{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/blue{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/blue{
-	color = "#3234B9";
-	dir = 8
-	},
-/obj/effect/turf_decal/tile/blue{
-	color = "#3234B9"
-	},
-/obj/machinery/camera/autoname{
-	dir = 6
-	},
-/obj/machinery/light/cold/no_nightlight{
-	dir = 1
-	},
-/obj/machinery/computer/camera_advanced/manager,
-/turf/open/floor/plasteel/sepia,
-/area/space)
-"fo" = (
-/obj/machinery/computer/security/telescreen{
-	network = list("ss13");
-	pixel_x = -24;
-	pixel_y = 45
-	},
-/obj/machinery/computer/security/telescreen{
-	network = list("ss13");
-	pixel_x = -24;
-	pixel_y = 33
-	},
-/obj/effect/turf_decal/tile/blue{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/blue{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/blue{
-	color = "#3234B9";
-	dir = 8
-	},
-/obj/effect/turf_decal/tile/blue{
-	color = "#3234B9"
-	},
-/obj/machinery/computer/crew,
-/turf/open/floor/plasteel/sepia,
-/area/space)
-"fq" = (
-/obj/machinery/computer/security/telescreen{
-	network = list("ss13");
-	pixel_x = -37;
-	pixel_y = 45
-	},
-/obj/machinery/computer/security/telescreen{
-	network = list("ss13");
-	pixel_x = -37;
-	pixel_y = 33
-	},
-/obj/machinery/computer/security/telescreen{
-	network = list("ss13");
-	pixel_x = -17;
-	pixel_y = 39
-	},
-/obj/machinery/computer/security/telescreen{
-	network = list("ss13");
-	pixel_x = -17;
-	pixel_y = 27
-	},
-/obj/machinery/computer/security/telescreen{
-	network = list("ss13");
-	pixel_x = 3;
-	pixel_y = 33
-	},
-/obj/machinery/computer/security/telescreen{
-	network = list("ss13");
-	pixel_x = 3;
-	pixel_y = 21
-	},
-/obj/machinery/light/floor{
-	pixel_x = -9;
-	pixel_y = -8
-	},
-/obj/effect/turf_decal/tile/blue,
-/obj/effect/turf_decal/tile/blue{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/blue{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/blue{
-	color = "#3234B9";
-	dir = 8
-	},
-/obj/machinery/computer/abnormality_auxiliary,
-/turf/open/floor/plasteel/sepia,
-/area/space)
-"fr" = (
-/obj/structure/railing{
-	dir = 8
-	},
-/obj/effect/turf_decal/delivery/red,
-/turf/open/floor/facility/white,
-/area/space)
 "fy" = (
 /obj/structure/filingcabinet/branch12,
 /turf/open/floor/facility/halls,
-/area/space)
-"fz" = (
-/obj/effect/turf_decal/siding/blue{
-	dir = 9
-	},
-/turf/open/floor/carpet/cyan,
-/area/space)
-"fC" = (
-/obj/effect/turf_decal/siding/blue{
-	dir = 1
-	},
-/turf/open/floor/carpet/cyan,
-/area/space)
-"fD" = (
-/obj/structure/chair/comfy/beige{
-	dir = 1
-	},
-/obj/effect/turf_decal/siding/blue{
-	dir = 1
-	},
-/turf/open/floor/carpet/cyan,
-/area/space)
-"fL" = (
-/obj/effect/turf_decal/siding/blue{
-	dir = 5
-	},
-/turf/open/floor/carpet/cyan,
-/area/space)
-"fP" = (
-/obj/machinery/computer/extraction_cargo{
-	dir = 8
-	},
-/turf/open/floor/facility/halls,
-/area/space)
-"fQ" = (
-/obj/effect/turf_decal/caution/stand_clear/red{
-	dir = 4
-	},
-/turf/open/floor/plasteel/white,
-/area/space)
-"fS" = (
-/obj/machinery/door/airlock/highsecurity{
-	name = "Central Command Department"
-	},
-/turf/open/floor/facility/halls,
-/area/space)
-"fU" = (
-/obj/machinery/light/cold/no_nightlight{
-	dir = 8
-	},
-/turf/open/floor/facility/halls,
-/area/space)
-"fX" = (
-/obj/effect/turf_decal/siding/blue{
-	dir = 8
-	},
-/turf/open/floor/carpet/cyan,
-/area/space)
-"fY" = (
-/turf/open/floor/carpet/cyan,
-/area/space)
-"fZ" = (
-/obj/effect/turf_decal/siding/blue{
-	dir = 4
-	},
-/obj/machinery/light/cold/no_nightlight{
-	dir = 4
-	},
-/turf/open/floor/carpet/cyan,
-/area/space)
-"gi" = (
-/obj/machinery/cryopod{
-	dir = 1
-	},
-/turf/open/floor/facility/halls,
-/area/space)
-"gk" = (
-/obj/effect/turf_decal/siding/blue{
-	dir = 10
-	},
-/turf/open/floor/carpet/cyan,
-/area/space)
-"gt" = (
-/obj/effect/turf_decal/siding/blue,
-/turf/open/floor/carpet/cyan,
-/area/space)
-"gz" = (
-/obj/effect/turf_decal/siding/blue{
-	dir = 6
-	},
-/turf/open/floor/carpet/cyan,
-/area/space)
-"gE" = (
-/obj/docking_port/stationary{
-	dwidth = 3;
-	height = 5;
-	id = "epsilon_control";
-	name = "2F - Control";
-	roundstart_template = null;
-	width = 6
-	},
-/turf/open/floor/plasteel/elevatorshaft,
-/area/space)
-"gG" = (
-/obj/structure/railing{
-	dir = 8
-	},
-/obj/effect/turf_decal/delivery/red,
-/obj/machinery/light/cold/no_nightlight{
-	brightness = 16
-	},
-/turf/open/floor/facility/white,
-/area/space)
-"gI" = (
-/obj/machinery/door/airlock/grunge,
-/turf/open/floor/facility/halls,
-/area/space)
-"gL" = (
-/obj/structure/chair/plastic{
-	dir = 4
-	},
-/turf/open/floor/plasteel/dark,
-/area/space)
-"gR" = (
-/turf/open/floor/plasteel,
-/area/space)
-"gS" = (
-/obj/machinery/camera/autoname{
-	dir = 9
-	},
-/obj/structure/chair/plastic{
-	dir = 8
-	},
-/turf/open/floor/plasteel/dark,
-/area/space)
+/area/department_main/manager)
 "gU" = (
 /obj/machinery/light/small{
 	dir = 8
 	},
 /obj/machinery/telecomms/relay/preset/station,
 /turf/open/floor/circuit/telecomms/mainframe,
-/area/space)
-"hf" = (
-/turf/closed/indestructible/fakeglass,
-/area/space)
-"hh" = (
-/obj/machinery/navbeacon/wayfinding/architecturedepartment,
-/turf/open/floor/plasteel,
-/area/space)
-"hl" = (
-/obj/structure/chair/plastic{
-	dir = 8
-	},
-/turf/open/floor/plasteel/dark,
-/area/space)
+/area/department_main/manager)
 "hn" = (
 /obj/machinery/light/small{
 	dir = 4
 	},
 /obj/machinery/ntnet_relay,
 /turf/open/floor/circuit/telecomms/mainframe,
-/area/space)
-"ho" = (
-/obj/machinery/light,
-/obj/structure/chair/plastic{
-	dir = 4
-	},
-/turf/open/floor/plasteel/dark,
-/area/space)
-"ht" = (
-/obj/machinery/light,
-/obj/structure/chair/plastic{
-	dir = 8
-	},
-/turf/open/floor/plasteel/dark,
-/area/space)
-"hu" = (
-/turf/open/floor/circuit/telecomms/mainframe,
-/area/space)
-"hv" = (
-/obj/machinery/ntnet_relay,
-/turf/open/floor/circuit/telecomms/mainframe,
-/area/space)
+/area/department_main/manager)
 "qP" = (
 /turf/open/space/basic,
 /area/space)
+"zG" = (
+/obj/docking_port/stationary{
+	dwidth = 3;
+	height = 5;
+	id = "epsilon_control";
+	name = "2F - Manager's Office";
+	width = 6
+	},
+/turf/open/floor/plasteel/elevatorshaft,
+/area/department_main/manager)
+"Jl" = (
+/obj/machinery/light,
+/turf/open/floor/plasteel,
+/area/department_main/manager)
 "ZL" = (
 /turf/closed/indestructible/rock,
 /area/space)
@@ -3618,13 +3254,13 @@ ZL
 ZL
 ZL
 ZL
-eO
-eO
-eO
-eO
-eO
-eO
-eO
+ae
+ae
+ae
+ae
+ae
+ae
+ae
 ZL
 ZL
 ZL
@@ -3875,13 +3511,13 @@ ZL
 ZL
 ZL
 ZL
-eO
-eS
-eS
-eS
-eS
-eS
-eO
+ae
+af
+af
+af
+af
+af
+ae
 ZL
 ZL
 ZL
@@ -4132,13 +3768,13 @@ ZL
 ZL
 ZL
 ZL
-eO
-eS
-eS
-eS
-eS
-eS
-eO
+ae
+af
+af
+af
+af
+af
+ae
 ZL
 ZL
 ZL
@@ -4389,20 +4025,20 @@ ZL
 ZL
 ZL
 ZL
-eO
-eS
-eS
-eS
-eS
-gE
-eO
+ae
+af
+af
+af
+af
+af
+ae
 ZL
 ZL
 ZL
 ZL
-eO
-eO
-eO
+ae
+ae
+ae
 ZL
 ZL
 ZL
@@ -4646,20 +4282,20 @@ ZL
 ZL
 ZL
 ZL
-eO
-eS
-eS
-eS
-eS
-eS
-eO
+ae
+af
+af
+af
+af
+af
+ae
 ZL
 ZL
 ZL
 ZL
-eO
-hu
-eO
+ae
+dU
+ae
 ZL
 ZL
 ZL
@@ -4903,20 +4539,20 @@ ZL
 ZL
 ZL
 ZL
-eO
-eS
-eS
-eS
-eS
-eS
-eO
+ae
+af
+af
+af
+af
+af
+ae
 ZL
 ZL
 ZL
 ZL
-eO
-hu
-eO
+ae
+dU
+ae
 ZL
 ZL
 ZL
@@ -5160,20 +4796,20 @@ ZL
 ZL
 ZL
 ZL
-eO
-eV
-fr
-fQ
-fr
-gG
-eO
+ae
+ai
+aU
+cd
+aU
+cP
+ae
 ZL
 ZL
 ZL
 ZL
-eO
-hv
-eO
+ae
+eh
+ae
 ZL
 ZL
 ZL
@@ -5417,20 +5053,20 @@ qP
 ZL
 ZL
 ZL
-eO
-eO
-eO
-fS
-eO
-eO
-eO
-eO
-eO
+ae
+ae
+ae
+cg
+ae
+ae
+ae
+ae
+ae
 ZL
 ZL
-eO
-eO
-eO
+ae
+ae
+ae
 ZL
 ZL
 ZL
@@ -5674,15 +5310,15 @@ qP
 ZL
 ZL
 ZL
-eO
-eO
+ae
+ae
 fy
-fU
-gi
-eO
-eO
+ci
+br
+ae
+ae
 gU
-eO
+ae
 ZL
 ZL
 ZL
@@ -5931,16 +5567,16 @@ ZL
 ZL
 ZL
 ZL
-eO
-eX
-fz
-fX
-gk
-eO
-eO
-hf
-eO
-eO
+ae
+aq
+bs
+cj
+cv
+ae
+ae
+db
+ae
+ae
 ZL
 ZL
 ZL
@@ -6188,16 +5824,16 @@ qP
 ZL
 ZL
 ZL
-eO
-eZ
-fC
-fY
-gt
-eO
-gL
-gL
-ho
-eO
+ae
+at
+bu
+cm
+cI
+ae
+dd
+dd
+dH
+ae
 ZL
 ZL
 ZL
@@ -6445,16 +6081,16 @@ qP
 ZL
 ZL
 ZL
-eO
-fa
-fD
-fY
-gt
-gI
-gR
-hh
-gR
-eO
+ae
+ax
+bF
+cm
+cI
+cS
+cW
+do
+cW
+ae
 ZL
 ZL
 ZL
@@ -6702,16 +6338,16 @@ ZL
 ZL
 ZL
 ZL
-eO
-fo
-fC
-fY
-gt
-eO
-gS
-hl
-ht
-eO
+ae
+aG
+bu
+cm
+cI
+ae
+cY
+dB
+dM
+ae
 ZL
 ZL
 ZL
@@ -6959,16 +6595,16 @@ ZL
 ZL
 ZL
 ZL
-eO
-fq
-fL
-fZ
-gz
-eO
-eO
-hf
-eO
-eO
+ae
+aI
+bH
+cu
+cL
+ae
+ae
+db
+ae
+ae
 ZL
 ZL
 ZL
@@ -7216,15 +6852,15 @@ ZL
 ZL
 ZL
 ZL
-eO
-eO
-fP
-eO
-eO
-eO
-eO
+ae
+ae
+bJ
+ae
+ae
+ae
+ae
 hn
-eO
+ae
 ZL
 ZL
 ZL
@@ -7474,14 +7110,14 @@ ZL
 ZL
 ZL
 ZL
-eO
-eO
-eO
-eO
-eO
-eO
-eO
-eO
+ae
+ae
+ae
+ae
+ae
+ae
+ae
+ae
 ZL
 ZL
 ZL
@@ -25794,13 +25430,13 @@ ZL
 ZL
 ZL
 ZL
-ae
-ae
-ae
-ae
-ae
-ae
-ae
+ZL
+ZL
+ZL
+ZL
+ZL
+ZL
+ZL
 ZL
 ZL
 ZL
@@ -26051,13 +25687,13 @@ ZL
 ZL
 ZL
 ZL
-ae
-af
-af
-af
-af
-af
-ae
+ZL
+ZL
+ZL
+ZL
+ZL
+ZL
+ZL
 ZL
 ZL
 ZL
@@ -26308,22 +25944,22 @@ ZL
 ZL
 ZL
 ZL
+ZL
+ZL
+ZL
+ZL
+ZL
+ZL
+ZL
+ZL
+ZL
 ae
-af
-af
-af
-af
-af
 ae
-ZL
-ZL
-ZL
-ZL
-ZL
-ZL
-ZL
-ZL
-ZL
+ae
+ae
+ae
+ae
+ae
 ZL
 ZL
 ZL
@@ -26565,22 +26201,22 @@ ZL
 ZL
 ZL
 ZL
+ZL
+ZL
+ZL
+ZL
+ZL
+ZL
+ZL
+ZL
+ZL
 ae
 af
 af
 af
 af
-cO
+af
 ae
-ZL
-ZL
-ZL
-ZL
-ae
-ae
-ae
-ZL
-ZL
 ZL
 ZL
 ZL
@@ -26822,22 +26458,22 @@ ZL
 ZL
 ZL
 ZL
-ae
-af
-af
-af
-af
-af
-ae
+ZL
+ZL
+ZL
+ZL
+ZL
 ZL
 ZL
 ZL
 ZL
 ae
-dQ
+af
+af
+af
+af
+af
 ae
-ZL
-ZL
 ZL
 ZL
 ZL
@@ -27079,22 +26715,22 @@ ZL
 ZL
 ZL
 ZL
-ae
-af
-af
-af
-af
-af
-ae
+ZL
+ZL
+ZL
+ZL
+ZL
 ZL
 ZL
 ZL
 ZL
 ae
-dU
+af
+af
+af
+af
+zG
 ae
-ZL
-ZL
 ZL
 ZL
 ZL
@@ -27336,22 +26972,22 @@ ZL
 ZL
 ZL
 ZL
-ae
-ai
-aU
-cd
-aU
-cP
-ae
+ZL
+ZL
+ZL
+ZL
+ZL
 ZL
 ZL
 ZL
 ZL
 ae
-eh
+af
+af
+af
+af
+af
 ae
-ZL
-ZL
 ZL
 ZL
 ZL
@@ -27593,22 +27229,22 @@ ZL
 ZL
 ZL
 ZL
-ae
-ae
-ae
-cg
-ae
-ae
-ae
-ae
-ae
-ZL
 ZL
 ae
 ae
 ae
-ZL
-ZL
+ae
+ae
+ae
+ae
+ae
+ae
+af
+af
+af
+af
+af
+ae
 ZL
 ZL
 ZL
@@ -27859,13 +27495,13 @@ ae
 ae
 da
 ae
-ZL
-ZL
-ZL
-ZL
-ZL
-ZL
-ZL
+ae
+ai
+aU
+cd
+aU
+cP
+ae
 ZL
 ZL
 ZL
@@ -28117,12 +27753,12 @@ ae
 db
 ae
 ae
-ZL
-ZL
-ZL
-ZL
-ZL
-ZL
+ae
+ae
+cg
+ae
+ae
+ae
 ZL
 ZL
 ZL
@@ -28374,12 +28010,12 @@ cU
 dd
 dH
 ae
-ZL
-ZL
-ZL
-ZL
-ZL
-ZL
+dQ
+cW
+cW
+cW
+Jl
+ae
 ZL
 ZL
 ZL
@@ -28624,19 +28260,19 @@ ZL
 ae
 ax
 bF
-cr
+cm
 cI
 cS
 cW
 do
 cW
 dN
-ZL
-ZL
-ZL
-ZL
-ZL
-ZL
+cW
+cW
+cW
+cW
+cW
+ae
 ZL
 ZL
 ZL
@@ -28888,12 +28524,12 @@ cY
 dB
 dM
 ae
-ZL
-ZL
-ZL
-ZL
-ZL
-ZL
+dQ
+cW
+cW
+cW
+Jl
+ae
 ZL
 ZL
 ZL
@@ -29145,12 +28781,12 @@ ae
 db
 ae
 ae
-ZL
-ZL
-ZL
-ZL
-ZL
-ZL
+ae
+ae
+ae
+ae
+ae
+ae
 ZL
 ZL
 ZL
@@ -29394,7 +29030,7 @@ ZL
 ZL
 ae
 ae
-bJ
+cr
 ae
 ae
 ae
@@ -31965,9 +31601,9 @@ ZL
 ZL
 ZL
 ZL
-ZL
-ZL
-ZL
+ae
+ae
+ae
 ZL
 ZL
 ZL
@@ -32222,9 +31858,9 @@ ZL
 ZL
 ZL
 ZL
-ZL
-ZL
-ZL
+ae
+cO
+ae
 ZL
 ZL
 ZL
@@ -32479,9 +32115,9 @@ ZL
 ZL
 ZL
 ZL
-ZL
-ZL
-ZL
+ae
+dU
+ae
 ZL
 ZL
 ZL
@@ -32736,9 +32372,9 @@ ZL
 ZL
 ZL
 ZL
-ZL
-ZL
-ZL
+ae
+eh
+ae
 ZL
 ZL
 ZL
@@ -32993,9 +32629,9 @@ ZL
 ZL
 ZL
 ZL
-ZL
-ZL
-ZL
+ae
+ae
+ae
 ZL
 ZL
 ZL
