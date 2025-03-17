@@ -882,6 +882,12 @@
 /obj/structure/disposalpipe/junction/flip,
 /turf/open/floor/carpet/green,
 /area/department_main/safety)
+"mv" = (
+/obj/machinery/door/airlock/highsecurity{
+	name = "Control Department"
+	},
+/turf/open/floor/carpet/red,
+/area/department_main/control)
 "mC" = (
 /obj/structure/table/reinforced,
 /obj/effect/turf_decal/tile/brown{
@@ -1611,9 +1617,6 @@
 "ve" = (
 /turf/closed/indestructible/reinforced,
 /area/facility_hallway/records)
-"vf" = (
-/turf/open/floor/carpet/red,
-/area/facility_hallway/manager)
 "vg" = (
 /turf/open/floor/plating,
 /area/facility_hallway/south)
@@ -3258,9 +3261,6 @@
 	},
 /turf/open/floor/plating,
 /area/facility_hallway/south)
-"Sw" = (
-/turf/closed/indestructible/rock,
-/area/facility_hallway/manager)
 "Sy" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/conveyor_switch/oneway{
@@ -38934,12 +38934,12 @@ ZL
 ZL
 ZL
 ZL
+ZL
 OQ
 OQ
 OQ
 OQ
 OQ
-Sw
 ZL
 rg
 dQ
@@ -39187,6 +39187,7 @@ ZL
 ZL
 ZL
 ZL
+ZL
 OQ
 OQ
 OQ
@@ -39196,8 +39197,7 @@ EG
 Yu
 Xr
 OQ
-OQ
-ZL
+rg
 rg
 dU
 RQ
@@ -39444,6 +39444,7 @@ ZL
 ZL
 ZL
 ZL
+ZL
 OQ
 ZF
 ZF
@@ -39453,8 +39454,7 @@ ZF
 Sn
 jP
 IU
-OQ
-ZL
+rg
 rg
 eh
 RQ
@@ -39701,6 +39701,7 @@ ZL
 ZL
 ZL
 ZL
+ZL
 OQ
 ZF
 ZF
@@ -39710,7 +39711,6 @@ ZF
 Sn
 jP
 IU
-OQ
 rg
 ry
 RQ
@@ -39958,6 +39958,7 @@ ZL
 ZL
 ZL
 ZL
+ZL
 OQ
 ZF
 ZF
@@ -39967,8 +39968,7 @@ ZF
 cL
 jP
 IU
-vf
-RQ
+mv
 RQ
 RQ
 RQ
@@ -40215,6 +40215,7 @@ ZL
 ZL
 ZL
 ZL
+ZL
 OQ
 ZF
 ZF
@@ -40224,7 +40225,6 @@ ZF
 Sn
 jP
 IU
-OQ
 rg
 dG
 RQ
@@ -40472,6 +40472,7 @@ ZL
 ZL
 ZL
 ZL
+ZL
 OQ
 ZF
 ZF
@@ -40481,7 +40482,6 @@ ZF
 Sn
 jP
 IU
-OQ
 rg
 rg
 eO
@@ -40729,6 +40729,7 @@ ZL
 ZL
 ZL
 ZL
+ZL
 OQ
 OQ
 OQ
@@ -40737,7 +40738,6 @@ OQ
 Dn
 OF
 Wq
-OQ
 OQ
 rg
 rg
@@ -40990,12 +40990,12 @@ ZL
 ZL
 ZL
 ZL
+ZL
 OQ
 OQ
 OQ
 OQ
 OQ
-Sw
 ZL
 rg
 rg
