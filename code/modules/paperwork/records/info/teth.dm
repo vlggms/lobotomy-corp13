@@ -398,7 +398,7 @@
 	abno_info = list(
 		"Tangle had a bad reaction when working on a random EMPLOYEE, and their Qliphoth Counter lowered.",
 		"Working large amounts of instinct works on tangle ended in it's Qliphoth Counter being lowered.",)
-	
+
 //Generic Brand Modelling Clay
 /obj/item/paper/fluff/info/teth/clayman
 	abno_type = /mob/living/simple_animal/hostile/abnormality/clayman
@@ -409,3 +409,13 @@
 		"When the work result was Bad, the Qliphoth Counter lowered."
 	)
 
+//Sirocco
+/obj/item/paper/fluff/info/teth/sirocco
+	abno_type = /mob/living/simple_animal/hostile/abnormality/sirocco
+	abno_code = "C-01-205"
+	abno_info = list(
+		"Once the Qliphoth Counter reaches 0, Sirocco leaves her containment cell to play.",
+		"Every two minutes, the Qliphoth Counter lowered by one.",
+		"When the work result was Normal, the Qliphoth Counter raised.",
+		"When the work result was Good, Sirocco was quicker to return to her cell in a later breach."
+	)
