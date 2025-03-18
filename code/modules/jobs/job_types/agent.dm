@@ -30,6 +30,7 @@
 
 /datum/job/agent/after_spawn(mob/living/carbon/human/outfit_owner, mob/M, latejoin = FALSE)
 	// Assign department security
+	job_attribute_limit = 130		//Have to set because it's a datum and may be changed later
 	var/department
 	if(M && M.client && M.client.prefs)
 		department = M.client.prefs.prefered_agent_department
@@ -92,7 +93,7 @@
 			accessory = /obj/item/clothing/accessory/armband/lobotomy/records
 			if(SSmaptype.chosen_trait == FACILITY_TRAIT_DEPARTMENTAL_BUFFS)
 				to_chat(M, "<b>Due to your chosen department, you get an attribute limit of 150.</b>")
-				outfit_owner.set_attribute_limit(150)
+				job_attribute_limit = 150
 
 		else //Pick a department or get training.
 			ears = /obj/item/radio/headset/headset_training

@@ -196,6 +196,8 @@
 					attribute_given = threat_level * SSlobotomy_corp.melt_work_multiplier
 				else
 					to_chat(user, span_warning("You don't feel like you've learned anything from this!"))
+			if(HAS_TRAIT(user, TRAIT_BONUS_EXP))
+				attribute_given ++
 			user.adjust_attribute_level(attribute_type, attribute_given)
 
 	if(console?.tutorial) //don't run logging-related code if tutorial console
