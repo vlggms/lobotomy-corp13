@@ -44,6 +44,8 @@
 	duffelbag = /obj/item/storage/backpack/duffelbag/med
 	box = /obj/item/storage/box/survival/medical
 
+	backpack_contents = /obj/item/prosthetictool
+
 
 /obj/item/clothing/head/beret/tegu/mint
 	name = "prosthetic surgeon beret"
