@@ -34,6 +34,7 @@
 	var/scream_cooldown
 	var/scream_cooldown_time = 5 SECONDS
 	var/scream_damage = 15
+	var/move_speed_maskbreak = 2
 
 	var/maskbreak_say_1 = "No... NO-OT MY MA-ASK!!!"
 	var/maskbreak_say_2 = "I WI-ILL BRE-EAK YOU!!!"
@@ -102,7 +103,7 @@
 	retreat_distance = 0
 	minimum_distance = 0
 	say(maskbreak_say_1)
-	move_to_delay = 2
+	move_to_delay = move_speed_maskbreak
 	UpdateSpeed()
 	playsound(get_turf(src), 'sound/creatures/lc13/lovetown/scream.ogg', 50, TRUE, 3)
 	ChangeResistances(list(RED_DAMAGE = 0.2, WHITE_DAMAGE = 0.2, BLACK_DAMAGE = 0.2, PALE_DAMAGE = 0.2))
@@ -112,17 +113,134 @@
 	can_act = TRUE
 
 /mob/living/simple_animal/hostile/mutant_clown/boss
+	name = "'Grandpa'"
 	icon = 'icons/mob/clown_mobs.dmi'
 	icon_state = "mutant"
 	icon_living = "mutant"
-	maxHealth = 2500
-	health = 2500
+	pixel_x = -16
+	base_pixel_x = -16
+	maxHealth = 1000
+	health = 1000
 	damage_coeff = list(RED_DAMAGE = 1, WHITE_DAMAGE = 0.4, BLACK_DAMAGE = 0.5, PALE_DAMAGE = 1.5)
 	melee_damage_lower = 20
 	melee_damage_upper = 30
-	scream_cooldown_time = 2.5 SECONDS
 	scream_damage = 20
 	loot = list(/obj/effect/mob_spawn/human/clown/corpse, /obj/item/mutant_heart)
+	move_speed_maskbreak = 14
+	maskbreak_say_1 = "..."
+	maskbreak_say_2 = "Whe-ere... is the joy?"
+	scream_lines = list(
+		"For... Family...",
+		"Saving... Them...",
+		"Get away...",
+		"Don't look... At them...",
+		"Leave... Us...",
+	)
+	var/meat_cooldown
+	var/meat_cooldown_time = 2.5 SECONDS
+	var/list/spawned_hearts = list()
+
+/mob/living/simple_animal/hostile/mutant_clown/boss/AttackingTarget()
+	if(current_stage == 1)
+		return OpenFire()
+	else
+		Slam()
+		return OpenFire()
+
+/mob/living/simple_animal/hostile/mutant_clown/boss/OpenFire()
+	if(scream_cooldown <= world.time)
+		Scream()
+	if(meat_cooldown <= world.time)
+		MeatDrop()
+	return
+
+/mob/living/simple_animal/hostile/mutant_clown/boss/proc/MeatDrop()
+	meat_cooldown = world.time + meat_cooldown_time
+	playsound(get_turf(target), 'sound/magic/arbiter/repulse.ogg', 20, 0, 5)
+	new /obj/effect/temp_visual/meat_warning(get_turf(target), src)
+
+/mob/living/simple_animal/hostile/mutant_clown/boss/Move()
+	if(spawned_hearts.len)
+		return FALSE
+	return ..()
+
+/mob/living/simple_animal/hostile/mutant_clown/boss/adjustHealth(amount, updating_health = TRUE, forced = FALSE)
+	if(spawned_hearts.len)
+		amount = 0
+	. = ..()
+	if(amount == 0)
+		new /obj/effect/temp_visual/blood_shield(src.loc)
+
+/mob/living/simple_animal/hostile/mutant_clown/boss/Destroy()
+	. = ..()
+	for(var/mob/living/simple_animal/hostile/mutant_clown/C in GLOB.mob_living_list)
+		C.BreakMask()
+
+/mob/living/simple_animal/hostile/mutant_heart
+	name = "decaying heart"
+	desc = "A still beating massive heart, feeding 'Grandfather'."
+	icon = 'icons/obj/meteor.dmi'
+	icon_state = "meateor"
+	damage_coeff = list(RED_DAMAGE = 1.5, WHITE_DAMAGE = 0.5, BLACK_DAMAGE = 1, PALE_DAMAGE = 2)
+	maxHealth = 500
+	health = 500
+	del_on_death = TRUE
+	var/connected_mob
+	var/current_connection
+
+/mob/living/simple_animal/hostile/mutant_heart/Move()
+	return FALSE
+
+/mob/living/simple_animal/hostile/mutant_heart/AttackingTarget()
+	return FALSE
+
+/mob/living/simple_animal/hostile/mutant_heart/Initialize()
+	. = ..()
+	for(var/mob/living/simple_animal/hostile/mutant_clown/boss/B in view(10, src))
+		B.spawned_hearts += src
+		connected_mob = B
+		current_connection = Beam(B, icon_state="blood", time=INFINITY, maxdistance=20 * 2, beam_type=/obj/effect/ebeam/blood_connection)
+		break
+
+/mob/living/simple_animal/hostile/mutant_heart/Destroy()
+	var/mob/living/simple_animal/hostile/mutant_clown/boss/father = connected_mob
+	father.spawned_hearts -= src
+	qdel(current_connection)
+	current_connection = null
+	playsound(get_turf(father), 'sound/creatures/lc13/lovetown/abomination_stagetransition.ogg', 75, 0, 3)
+	. = ..()
+
+/obj/effect/ebeam/blood_connection
+	name = "bloodly connection"
+
+/obj/effect/temp_visual/meat_warning
+	name = "bloated meat"
+	desc = "A pile of rotten meat, You should get away instead of reading this."
+	icon = 'icons/mob/cult.dmi'
+	icon_state = "meat_bomb"
+	color = "#a3001e"
+	duration = 10
+	layer = RIPPLE_LAYER // We want this HIGH. SUPER HIGH. We want it so that you can absolutely, guaranteed, see exactly what is about to hit you.
+	var/damage = 40 //Red Damage
+	var/mob/living/caster // who made this, anyway
+
+/obj/effect/temp_visual/meat_warning/Initialize(mapload, new_caster)
+	. = ..()
+	if(new_caster)
+		caster = new_caster
+	addtimer(CALLBACK(src, PROC_REF(explode)), 0.9 SECONDS)
+
+/obj/effect/temp_visual/meat_warning/proc/explode()
+	var/turf/target_turf = get_turf(src)
+	if(!target_turf)
+		return
+	if(QDELETED(caster) || caster?.stat == DEAD || !caster)
+		return
+	for(var/turf/T in view(1, src))
+		new /obj/effect/temp_visual/smash_effect(T)
+		new /obj/effect/decal/cleanable/blood(T)
+		caster.HurtInTurf(T, list(), damage, RED_DAMAGE, null, TRUE, FALSE, TRUE, hurt_hidden = TRUE, hurt_structure = FALSE)
+	qdel(src)
 
 /obj/item/mutant_heart
 	name = "Mutated Heart"
