@@ -529,3 +529,4 @@
 				target.apply_damage(serumA_damage, PALE_DAMAGE, null, target.run_armor_check(null, PALE_DAMAGE))
 				new /obj/effect/temp_visual/cleave(target.loc)
 				playsound(target, 'sound/distortions/kim_bone_claim.ogg', 25, 0, 5)
+
