@@ -48,7 +48,6 @@ GLOBAL_LIST_EMPTY(nuke_rats_players)
 	retreat_distance = 0
 	butcher_results = list(/obj/item/food/meat/slab/human = 1, /obj/item/stack/spacecash/c10 = 1)
 	silk_results = list(/obj/item/stack/sheet/silk/human_simple = 1)
-	glob_faction = GLOB.nuke_rats_players
 	attacked_line = "You will pay for this!"
 	starting_looting_line = "Hand off, that is ours."
 	ending_looting_line = "That's it, you asked for this."
@@ -168,6 +167,11 @@ GLOBAL_LIST_EMPTY(nuke_rats_players)
 	mark_once_attacked = TRUE
 	return_to_origin = TRUE
 
+/mob/living/simple_animal/hostile/humanoid/rat/pipe/scavenger/Initialize()
+	. = ..()
+	glob_faction = GLOB.nuke_rats_players
+	faction = list("neutral")
+
 //Hammer - Tanky rat, but runs away at half health
 /mob/living/simple_animal/hostile/humanoid/rat/hammer
 	name = "cowardly rat"
@@ -198,6 +202,11 @@ GLOBAL_LIST_EMPTY(nuke_rats_players)
 	name = "cowardly scavenger"
 	mark_once_attacked = TRUE
 	return_to_origin = TRUE
+
+/mob/living/simple_animal/hostile/humanoid/rat/hammer/scavenger/Initialize()
+	. = ..()
+	glob_faction = GLOB.nuke_rats_players
+	faction = list("neutral")
 
 //Zippy - Uses a gun that fires 70% of the time and has a 1% chance to explode, leaving them without a gun.
 /mob/living/simple_animal/hostile/humanoid/rat/zippy
@@ -244,6 +253,11 @@ GLOBAL_LIST_EMPTY(nuke_rats_players)
 	name = "fidgety scavenger"
 	mark_once_attacked = TRUE
 	return_to_origin = TRUE
+
+/mob/living/simple_animal/hostile/humanoid/rat/zippy/scavenger/Initialize()
+	. = ..()
+	glob_faction = GLOB.nuke_rats_players
+	faction = list("neutral")
 
 /mob/living/simple_animal/hostile/humanoid/fixer
 	name = "fixer"

@@ -263,6 +263,11 @@
 /obj/effect/turf_decal/sand,
 /turf/open/floor/wood,
 /area/city/house)
+"cw" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/mob/living/simple_animal/hostile/humanoid/rat/zippy/scavenger,
+/turf/open/floor/wood,
+/area/city)
 "cx" = (
 /obj/machinery/light/small{
 	dir = 4
@@ -320,6 +325,19 @@
 	density = 1
 	},
 /area/city)
+"cF" = (
+/obj/structure/table/wood,
+/obj/item/clothing/mask/gas/explorer{
+	step_y = -4
+	},
+/obj/item/clothing/mask/gas/explorer,
+/obj/item/clothing/mask/gas/explorer{
+	step_y = 4
+	},
+/turf/open/floor/wood{
+	icon_state = "wood-broken"
+	},
+/area/city/shop)
 "cG" = (
 /obj/machinery/hydroponics{
 	color = "#875300"
@@ -566,6 +584,7 @@
 "ef" = (
 /obj/item/reagent_containers/food/drinks/beer,
 /obj/effect/decal/cleanable/dirt,
+/mob/living/simple_animal/hostile/rat,
 /turf/open/floor/wood{
 	icon_state = "wood-broken6"
 	},
@@ -739,6 +758,7 @@
 /obj/structure/rack,
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/cobweb/cobweb2,
+/obj/structure/lootcrate/money,
 /turf/open/floor/wood,
 /area/city)
 "fe" = (
@@ -866,13 +886,13 @@
 "fM" = (
 /obj/effect/decal/cleanable/dirt/dust,
 /mob/living/simple_animal/mouse/gray,
-/mob/living/simple_animal/hostile/humanoid/rat/zippy,
 /turf/open/floor/wood{
 	icon_state = "wood-broken"
 	},
 /area/city)
 "fN" = (
 /obj/effect/decal/cleanable/dirt/dust,
+/mob/living/simple_animal/hostile/humanoid/rat/hammer/scavenger,
 /turf/open/floor/wood{
 	icon_state = "wood-broken"
 	},
@@ -937,6 +957,13 @@
 	intact = 0
 	},
 /area/city/house)
+"gy" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/decal/cleanable/blood/footprints{
+	dir = 8
+	},
+/turf/open/indestructible/necropolis,
+/area/city/shop)
 "gB" = (
 /obj/structure/table_frame/wood,
 /obj/item/modular_computer/laptop/preset/civilian,
@@ -1011,6 +1038,9 @@
 	dir = 8
 	},
 /obj/effect/turf_decal/sand,
+/mob/living/simple_animal/hostile/humanoid/rat/hammer/scavenger{
+	dir = 8
+	},
 /turf/open/floor/plating/rust,
 /area/city)
 "hl" = (
@@ -1024,6 +1054,17 @@
 	icon_state = "wood-broken"
 	},
 /area/city/fixers)
+"hm" = (
+/obj/structure/table/wood,
+/obj/item/clothing/mask/gas/explorer{
+	step_y = -4
+	},
+/obj/item/clothing/mask/gas/explorer,
+/obj/item/clothing/mask/gas/explorer{
+	step_y = 4
+	},
+/turf/open/floor/wood,
+/area/city/shop)
 "ho" = (
 /obj/structure/table_frame/wood,
 /obj/effect/decal/cleanable/dirt/dust,
@@ -1260,6 +1301,12 @@
 	density = 1
 	},
 /area/city)
+"iS" = (
+/obj/structure/rack,
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/lootcrate/money,
+/turf/open/floor/wood,
+/area/city)
 "iU" = (
 /obj/structure/rack,
 /obj/item/storage/box/syringes/variety{
@@ -1377,13 +1424,7 @@
 /area/city)
 "kb" = (
 /obj/effect/decal/cleanable/dirt/dust,
-/mob/living/simple_animal/hostile/mutant_clown{
-	name = "'Mother?'";
-	icon_state = "glutton";
-	base_pixel_x = -16;
-	pixel_x = -16
-	},
-/turf/open/floor/plating,
+/turf/open/indestructible/necropolis,
 /area/city/shop)
 "kc" = (
 /obj/structure/closet/crate{
@@ -1400,7 +1441,6 @@
 "kg" = (
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/effect/spawner/lootdrop/garbage_spawner,
-/mob/living/simple_animal/hostile/humanoid/rat/zippy,
 /turf/open/floor/wood,
 /area/city)
 "kj" = (
@@ -1716,7 +1756,7 @@
 /obj/item/bodypart/r_arm,
 /obj/machinery/light/small,
 /obj/effect/decal/cleanable/dirt/dust,
-/turf/open/floor/plating,
+/turf/open/floor/plasteel/vaporwave,
 /area/city/shop)
 "mx" = (
 /obj/structure/rack{
@@ -1725,6 +1765,19 @@
 /obj/effect/decal/cleanable/dirt/dust,
 /turf/open/floor/plating/rust,
 /area/city/shop)
+"mC" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/turf_decal/siding/wood{
+	dir = 4
+	},
+/obj/structure/chair/wood{
+	dir = 8
+	},
+/mob/living/simple_animal/hostile/humanoid/rat/hammer/scavenger{
+	dir = 8
+	},
+/turf/open/floor/plating/rust,
+/area/city)
 "mE" = (
 /obj/structure/fence/door/opened{
 	dir = 4
@@ -1804,6 +1857,13 @@
 	},
 /turf/open/floor/plating/asteroid,
 /area/city)
+"nd" = (
+/obj/effect/decal/cleanable/dirt,
+/mob/living/simple_animal/hostile/rat,
+/turf/open/floor/wood{
+	icon_state = "wood-broken"
+	},
+/area/city/house)
 "ne" = (
 /obj/machinery/hydroponics{
 	color = "#875300"
@@ -1837,6 +1897,9 @@
 /obj/structure/bed/maint,
 /obj/machinery/light/red,
 /obj/effect/decal/cleanable/dirt/dust,
+/mob/living/simple_animal/hostile/humanoid/rat/pipe/scavenger{
+	dir = 1
+	},
 /turf/open/floor/wood,
 /area/city)
 "np" = (
@@ -1891,10 +1954,8 @@
 /turf/open/floor/wood,
 /area/city/shop)
 "nN" = (
-/obj/effect/decal/cleanable/dirt/dust,
-/mob/living/simple_animal/hostile/humanoid/rat/knife,
-/turf/open/floor/wood,
-/area/city)
+/turf/closed/indestructible/necropolis,
+/area/city/shop)
 "nQ" = (
 /obj/structure/chair/plastic,
 /obj/effect/turf_decal/sand/plating,
@@ -2054,6 +2115,7 @@
 "oQ" = (
 /obj/item/reagent_containers/food/drinks/beer,
 /obj/effect/decal/cleanable/dirt,
+/mob/living/simple_animal/hostile/rat,
 /turf/open/floor/wood,
 /area/city/house)
 "oS" = (
@@ -2135,6 +2197,14 @@
 "pJ" = (
 /obj/structure/sign/poster/official/bless_this_spess,
 /turf/closed/indestructible/rust,
+/area/city)
+"pK" = (
+/obj/structure/bed/maint,
+/obj/effect/decal/cleanable/dirt/dust,
+/mob/living/simple_animal/hostile/humanoid/rat/pipe/scavenger{
+	dir = 1
+	},
+/turf/open/floor/wood,
 /area/city)
 "pO" = (
 /obj/structure/fluff/bus/dense{
@@ -2384,6 +2454,7 @@
 	dir = 1
 	},
 /obj/effect/decal/cleanable/cobweb,
+/obj/effect/mob_spawn/human/corpse/russian,
 /turf/open/floor/wood,
 /area/city/shop)
 "re" = (
@@ -2398,9 +2469,10 @@
 /turf/open/floor/plating/rust,
 /area/city/house)
 "rg" = (
+/obj/structure/bed/maint,
 /obj/effect/decal/cleanable/dirt/dust,
-/mob/living/simple_animal/hostile/humanoid/rat/hammer,
-/turf/open/floor/plating/rust,
+/mob/living/simple_animal/hostile/humanoid/rat/pipe/scavenger,
+/turf/open/floor/wood,
 /area/city)
 "ri" = (
 /obj/structure/table/reinforced{
@@ -2484,6 +2556,9 @@
 "rU" = (
 /obj/structure/bed/maint,
 /obj/effect/decal/cleanable/dirt/dust,
+/mob/living/simple_animal/hostile/humanoid/rat/pipe/scavenger{
+	dir = 1
+	},
 /turf/open/floor/wood{
 	icon_state = "wood-broken7"
 	},
@@ -2504,7 +2579,9 @@
 	dir = 4
 	},
 /obj/effect/decal/cleanable/dirt/dust,
-/turf/open/floor/plating,
+/obj/item/tank/internals/emergency_oxygen/double,
+/obj/item/tank/internals/emergency_oxygen/double,
+/turf/open/indestructible/necropolis,
 /area/city/shop)
 "sa" = (
 /obj/structure/closet/secure_closet/personal/cabinet,
@@ -2528,6 +2605,9 @@
 /obj/structure/bed/maint,
 /obj/effect/decal/cleanable/dirt/dust,
 /mob/living/simple_animal/mouse/white,
+/mob/living/simple_animal/hostile/humanoid/rat/zippy/scavenger{
+	dir = 1
+	},
 /turf/open/floor/wood,
 /area/city)
 "si" = (
@@ -2705,6 +2785,12 @@
 /obj/effect/decal/cleanable/cobweb/cobweb2,
 /turf/open/floor/plating/rust,
 /area/city/house)
+"tc" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/spawner/lootdrop/maintenance,
+/mob/living/simple_animal/hostile/rat,
+/turf/open/floor/wood,
+/area/city/house)
 "td" = (
 /mob/living/simple_animal/hostile/poison/giant_spider,
 /turf/open/floor/wood{
@@ -2781,7 +2867,7 @@
 /obj/effect/mob_spawn/human/corpse,
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/effect/gibspawner/larva/bodypartless,
-/turf/open/floor/plating,
+/turf/open/indestructible/necropolis,
 /area/city/shop)
 "tT" = (
 /obj/effect/turf_decal/box/red/corners,
@@ -3048,6 +3134,16 @@
 	},
 /turf/open/floor/wood,
 /area/city/shop)
+"vi" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/mob/living/simple_animal/hostile/mutant_clown{
+	name = "'Mother?'";
+	icon_state = "glutton";
+	base_pixel_x = -16;
+	pixel_x = -16
+	},
+/turf/open/indestructible/necropolis,
+/area/city/shop)
 "vj" = (
 /obj/machinery/light/small,
 /obj/effect/decal/cleanable/dirt,
@@ -3123,6 +3219,12 @@
 /obj/effect/turf_decal/sand,
 /turf/open/floor/plating/rust,
 /area/city/fixers)
+"vL" = (
+/obj/effect/mob_spawn/human/corpse/russian,
+/turf/open/floor/wood{
+	icon_state = "wood-broken"
+	},
+/area/city/shop)
 "vN" = (
 /obj/machinery/light/small,
 /obj/structure/flora/ash/garden/arid,
@@ -3229,7 +3331,7 @@
 	color = "#875300"
 	},
 /obj/effect/decal/cleanable/dirt/dust,
-/turf/open/floor/plating,
+/turf/open/indestructible/necropolis,
 /area/city/shop)
 "wJ" = (
 /obj/effect/turf_decal/trimline/red/filled/line{
@@ -3255,7 +3357,7 @@
 	name = "bistro chef entrance"
 	},
 /obj/effect/decal/cleanable/dirt/dust,
-/turf/open/floor/plating,
+/turf/open/floor/plasteel/vaporwave,
 /area/city/shop)
 "wP" = (
 /obj/structure/sigsystem/projectile_launcher{
@@ -3276,6 +3378,17 @@
 	},
 /turf/open/floor/wood,
 /area/city/fixers)
+"wY" = (
+/mob/living/simple_animal/hostile/netherworld/migo{
+	maxHealth = 350;
+	melee_damage_lower = 15;
+	melee_damage_upper = 20;
+	move_to_delay = 10
+	},
+/turf/open/floor/wood{
+	icon_state = "wood-broken6"
+	},
+/area/city)
 "wZ" = (
 /obj/machinery/light/broken{
 	dir = 1
@@ -3392,6 +3505,13 @@
 /obj/effect/decal/cleanable/dirt/dust,
 /turf/open/floor/wood,
 /area/city/shop)
+"xW" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/mob/living/simple_animal/hostile/humanoid/rat/zippy/scavenger{
+	dir = 8
+	},
+/turf/open/floor/plating/rust,
+/area/city)
 "yc" = (
 /obj/structure/closet/cabinet,
 /obj/item/reagent_containers/glass/bowl,
@@ -3421,6 +3541,11 @@
 	icon_state = "wood-broken"
 	},
 /area/city/fixers)
+"ye" = (
+/obj/effect/decal/cleanable/dirt,
+/mob/living/simple_animal/hostile/rat,
+/turf/open/floor/wood,
+/area/city/house)
 "yi" = (
 /obj/structure/bookcase/random,
 /turf/open/floor/wood{
@@ -3481,6 +3606,8 @@
 "yC" = (
 /obj/structure/bed/maint,
 /obj/effect/decal/cleanable/dirt,
+/obj/effect/spawner/lootdrop/maintenance,
+/obj/structure/lootcrate/money,
 /turf/open/floor/wood,
 /area/city/house)
 "yF" = (
@@ -3667,6 +3794,8 @@
 	},
 /obj/structure/bed/maint,
 /obj/effect/decal/cleanable/dirt,
+/obj/effect/spawner/lootdrop/maintenance,
+/obj/structure/lootcrate/money,
 /turf/open/floor/wood{
 	icon_state = "wood-broken"
 	},
@@ -3862,6 +3991,16 @@
 	icon_state = "wood-broken6"
 	},
 /area/city/fixers)
+"Bp" = (
+/obj/effect/decal/cleanable/dirt,
+/mob/living/simple_animal/hostile/netherworld/migo{
+	maxHealth = 350;
+	melee_damage_lower = 15;
+	melee_damage_upper = 20;
+	move_to_delay = 10
+	},
+/turf/open/floor/wood,
+/area/city)
 "Bt" = (
 /obj/structure/table{
 	color = "#875300"
@@ -4085,6 +4224,12 @@
 /obj/effect/turf_decal/sand/plating,
 /turf/open/floor/plating,
 /area/city/shop)
+"Dr" = (
+/obj/effect/decal/cleanable/dirt,
+/mob/living/simple_animal/hostile/rat,
+/obj/effect/spawner/lootdrop/maintenance,
+/turf/open/floor/wood,
+/area/city/house)
 "Dw" = (
 /obj/structure/fluff/bus/passable/seat,
 /obj/effect/decal/cleanable/dirt,
@@ -4197,6 +4342,10 @@
 	},
 /turf/open/floor/wood,
 /area/city/shop)
+"Eo" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/plasteel/vaporwave,
+/area/city/shop)
 "Ep" = (
 /obj/structure/table_frame/wood,
 /obj/machinery/computer/bookmanagement,
@@ -4219,7 +4368,9 @@
 /obj/structure/chair/wood{
 	dir = 4
 	},
-/mob/living/simple_animal/hostile/humanoid/rat/hammer,
+/mob/living/simple_animal/hostile/humanoid/rat/hammer/scavenger{
+	dir = 4
+	},
 /turf/open/floor/plating/rust,
 /area/city)
 "EA" = (
@@ -4289,7 +4440,6 @@
 "EU" = (
 /obj/effect/decal/cleanable/dirt/dust,
 /mob/living/simple_animal/mouse/white,
-/mob/living/simple_animal/hostile/humanoid/rat/zippy,
 /turf/open/floor/wood,
 /area/city)
 "EX" = (
@@ -4327,7 +4477,9 @@
 /obj/structure/chair/wood{
 	dir = 8
 	},
-/mob/living/simple_animal/hostile/humanoid/rat/hammer,
+/mob/living/simple_animal/hostile/humanoid/rat/pipe/scavenger{
+	dir = 8
+	},
 /turf/open/floor/plating/rust,
 /area/city)
 "Fj" = (
@@ -4685,10 +4837,11 @@
 /turf/open/floor/plating/rust,
 /area/city)
 "HS" = (
-/obj/effect/decal/cleanable/dirt/dust,
-/mob/living/simple_animal/hostile/humanoid/rat/pipe,
+/obj/effect/decal/cleanable/blood/footprints{
+	dir = 8
+	},
 /turf/open/floor/wood,
-/area/city)
+/area/city/shop)
 "HT" = (
 /obj/effect/turf_decal/bot,
 /obj/machinery/telecomms/bus/preset_two,
@@ -4794,9 +4947,14 @@
 	},
 /area/city/house)
 "ID" = (
-/obj/structure/plasticflaps/opaque,
-/turf/open/floor/plasteel/dark,
-/area/city/shop)
+/obj/structure/bed/maint,
+/obj/machinery/light/red{
+	dir = 1
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/mob/living/simple_animal/hostile/humanoid/rat/hammer/scavenger,
+/turf/open/floor/wood,
+/area/city)
 "IG" = (
 /obj/structure/window/reinforced/spawner/east{
 	resistance_flags = 115
@@ -4967,6 +5125,11 @@
 	},
 /turf/open/floor/wood,
 /area/city/shop)
+"JQ" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/lootcrate/money,
+/turf/open/floor/wood,
+/area/city/house)
 "JR" = (
 /obj/machinery/door/airlock/wood{
 	name = "employee housing"
@@ -5013,7 +5176,9 @@
 /obj/machinery/light/red{
 	dir = 4
 	},
-/mob/living/simple_animal/hostile/humanoid/rat/pipe,
+/mob/living/simple_animal/hostile/humanoid/rat/hammer/scavenger{
+	dir = 1
+	},
 /turf/open/floor/wood,
 /area/city)
 "Kd" = (
@@ -5035,6 +5200,9 @@
 "Km" = (
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/effect/decal/cleanable/food/flour,
+/mob/living/simple_animal/hostile/humanoid/rat/hammer/scavenger{
+	dir = 1
+	},
 /turf/open/floor/wood{
 	icon_state = "wood-broken"
 	},
@@ -5100,6 +5268,13 @@
 /obj/structure/bonfire/prelit,
 /turf/open/floor/plating/rust,
 /area/city)
+"KG" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/decal/cleanable/blood/footprints{
+	dir = 8
+	},
+/turf/open/floor/plasteel/vaporwave,
+/area/city/shop)
 "KL" = (
 /obj/structure/mineral_door/wood,
 /turf/open/floor/wood{
@@ -5152,7 +5327,7 @@
 	color = "#875300"
 	},
 /obj/effect/decal/cleanable/dirt/dust,
-/turf/open/floor/plating,
+/turf/open/indestructible/necropolis,
 /area/city/shop)
 "Ls" = (
 /obj/effect/decal/cleanable/dirt/dust,
@@ -5297,6 +5472,14 @@
 	},
 /turf/open/floor/plating/rust,
 /area/city/fixers)
+"Mp" = (
+/obj/structure/bed/maint,
+/obj/effect/decal/cleanable/dirt/dust,
+/mob/living/simple_animal/hostile/humanoid/rat/zippy/scavenger{
+	dir = 8
+	},
+/turf/open/floor/wood,
+/area/city)
 "Mr" = (
 /obj/structure/closet/secure_closet/medical2,
 /turf/open/floor/plating/rust,
@@ -5452,6 +5635,14 @@
 	dir = 8
 	},
 /turf/open/floor/plating/rust,
+/area/city/house)
+"ND" = (
+/obj/effect/decal/cleanable/dirt,
+/mob/living/simple_animal/hostile/regalrat{
+	move_to_delay = 6;
+	maxHealth = 800
+	},
+/turf/open/floor/wood,
 /area/city/house)
 "NH" = (
 /obj/structure/fluff/bus/dense{
@@ -5727,7 +5918,9 @@
 "Px" = (
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/structure/fluff/paper,
-/mob/living/simple_animal/hostile/humanoid/rat/zippy,
+/mob/living/simple_animal/hostile/humanoid/rat/pipe/scavenger{
+	dir = 4
+	},
 /turf/open/floor/wood,
 /area/city)
 "Py" = (
@@ -5937,6 +6130,16 @@
 /mob/living/simple_animal/mouse/brown,
 /obj/effect/spawner/lootdrop/maintenance,
 /turf/open/indestructible/necropolis/air,
+/area/city)
+"Rl" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/turf_decal/siding/wood{
+	dir = 8
+	},
+/obj/structure/chair/wood{
+	dir = 4
+	},
+/turf/open/floor/plating/rust,
 /area/city)
 "Rm" = (
 /obj/effect/decal/cleanable/dirt/dust,
@@ -6180,13 +6383,11 @@
 	},
 /area/city/shop)
 "SJ" = (
-/obj/structure/bed/maint,
-/obj/machinery/light/red{
-	dir = 1
-	},
 /obj/effect/decal/cleanable/dirt/dust,
-/mob/living/simple_animal/hostile/humanoid/rat/zippy,
-/turf/open/floor/wood,
+/mob/living/simple_animal/hostile/humanoid/rat/zippy/scavenger{
+	dir = 4
+	},
+/turf/open/floor/plating/rust,
 /area/city)
 "SK" = (
 /obj/effect/decal/cleanable/dirt/dust,
@@ -6252,6 +6453,8 @@
 /area/city/house)
 "SW" = (
 /obj/item/reagent_containers/food/drinks/beer,
+/mob/living/simple_animal/hostile/rat,
+/obj/effect/spawner/lootdrop/maintenance,
 /turf/open/floor/wood,
 /area/city/house)
 "SX" = (
@@ -6307,7 +6510,9 @@
 	dir = 4
 	},
 /obj/effect/turf_decal/sand,
-/mob/living/simple_animal/hostile/humanoid/rat/hammer,
+/mob/living/simple_animal/hostile/humanoid/rat/pipe/scavenger{
+	dir = 4
+	},
 /turf/open/floor/plating/rust,
 /area/city)
 "Tn" = (
@@ -6336,7 +6541,8 @@
 /area/city/shop)
 "TC" = (
 /obj/effect/decal/cleanable/dirt/dust,
-/turf/open/floor/plating,
+/obj/item/tank/internals/emergency_oxygen/double,
+/turf/open/indestructible/necropolis,
 /area/city/shop)
 "TD" = (
 /obj/structure/fluff/beach_umbrella/syndi,
@@ -6368,7 +6574,6 @@
 "TM" = (
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/structure/fluff/paper,
-/mob/living/simple_animal/hostile/humanoid/rat/zippy,
 /turf/open/floor/wood{
 	icon_state = "wood-broken"
 	},
@@ -6381,7 +6586,7 @@
 	dir = 1
 	},
 /obj/effect/decal/cleanable/dirt/dust,
-/turf/open/floor/plating,
+/turf/open/indestructible/necropolis,
 /area/city/shop)
 "TP" = (
 /obj/structure/closet/crate{
@@ -6489,6 +6694,9 @@
 	dir = 8
 	},
 /obj/effect/spawner/lootdrop/garbage_spawner,
+/mob/living/simple_animal/hostile/humanoid/rat/zippy/scavenger{
+	dir = 4
+	},
 /turf/open/floor/plating/rust,
 /area/city)
 "Uq" = (
@@ -6533,10 +6741,10 @@
 /turf/open/indestructible/necropolis,
 /area/city)
 "Uz" = (
+/obj/structure/bed/maint,
 /obj/effect/decal/cleanable/dirt/dust,
-/obj/effect/turf_decal/box,
-/mob/living/simple_animal/hostile/humanoid/rat/hammer,
-/turf/open/floor/plating/rust,
+/mob/living/simple_animal/hostile/humanoid/rat/zippy/scavenger,
+/turf/open/floor/wood,
 /area/city)
 "UC" = (
 /obj/structure/table/reinforced{
@@ -6606,6 +6814,7 @@
 	},
 /obj/structure/bed/maint,
 /obj/effect/decal/cleanable/dirt,
+/obj/effect/spawner/lootdrop/maintenance,
 /turf/open/floor/wood{
 	icon_state = "wood-broken6"
 	},
@@ -6752,6 +6961,10 @@
 /obj/effect/turf_decal/caution/stand_clear/red,
 /turf/open/floor/plasteel/dark,
 /area/city)
+"Wa" = (
+/obj/effect/spawner/lootdrop/maintenance,
+/turf/open/floor/wood,
+/area/city/house)
 "Wd" = (
 /obj/machinery/telecomms/relay/preset/telecomms,
 /obj/structure/emergency_shield,
@@ -6767,14 +6980,18 @@
 /area/city/fixers)
 "Wq" = (
 /obj/effect/decal/cleanable/dirt/dust,
-/mob/living/simple_animal/hostile/humanoid/rat/hammer,
+/mob/living/simple_animal/hostile/humanoid/rat/pipe/scavenger{
+	dir = 8
+	},
 /turf/open/floor/wood,
 /area/city)
 "Ws" = (
 /obj/structure/bed/maint,
 /obj/machinery/light/red,
 /obj/effect/decal/cleanable/dirt/dust,
-/mob/living/simple_animal/hostile/humanoid/rat/pipe,
+/mob/living/simple_animal/hostile/humanoid/rat/zippy/scavenger{
+	dir = 1
+	},
 /turf/open/floor/wood,
 /area/city)
 "Wu" = (
@@ -6834,6 +7051,13 @@
 /obj/structure/flora/ash/garden/arid,
 /turf/open/floor/plating/asteroid,
 /area/city/fixers)
+"WU" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/item/tank/internals/emergency_oxygen/double,
+/obj/item/tank/internals/emergency_oxygen/double,
+/obj/item/tank/internals/emergency_oxygen/double,
+/turf/open/floor/plasteel/vaporwave,
+/area/city/shop)
 "WX" = (
 /obj/structure/table_frame/wood,
 /obj/effect/decal/cleanable/dirt/dust,
@@ -6910,6 +7134,16 @@
 /obj/effect/decal/cleanable/dirt/dust,
 /turf/open/floor/wood,
 /area/city/shop)
+"Xp" = (
+/mob/living/simple_animal/hostile/netherworld/migo{
+	maxHealth = 350;
+	melee_damage_lower = 15;
+	melee_damage_upper = 20;
+	move_to_delay = 10;
+	loot = list(/obj/item/stack/spacecash/c100)
+	},
+/turf/open/floor/plating/asteroid,
+/area/city)
 "Xr" = (
 /obj/structure/table_frame/wood,
 /obj/machinery/light/small,
@@ -6967,13 +7201,12 @@
 	},
 /area/city/house)
 "XI" = (
+/obj/structure/kitchenspike,
+/obj/effect/mob_spawn/human/corpse,
 /obj/effect/decal/cleanable/dirt/dust,
-/obj/effect/spawner/lootdrop/garbage_spawner,
-/mob/living/simple_animal/hostile/humanoid/rat/pipe,
-/turf/open/floor/wood{
-	icon_state = "wood-broken"
-	},
-/area/city)
+/obj/effect/gibspawner/larva/bodypartless,
+/turf/open/floor/plasteel/vaporwave,
+/area/city/shop)
 "XJ" = (
 /obj/structure/mineral_door/wood,
 /obj/effect/turf_decal/sand,
@@ -7040,6 +7273,19 @@
 /obj/effect/decal/cleanable/cobweb/cobweb2,
 /turf/open/floor/plating,
 /area/city/fixers)
+"XT" = (
+/mob/living/simple_animal/hostile/netherworld/migo{
+	maxHealth = 350;
+	melee_damage_lower = 15;
+	melee_damage_upper = 20;
+	move_to_delay = 10
+	},
+/turf/open/floor/plating/asteroid,
+/area/city)
+"XW" = (
+/mob/living/simple_animal/hostile/rat,
+/turf/open/floor/plating/asteroid,
+/area/city)
 "XX" = (
 /obj/effect/decal/cleanable/glitter/pink,
 /turf/open/indestructible/necropolis/air,
@@ -7088,7 +7334,6 @@
 "Yk" = (
 /obj/effect/decal/cleanable/dirt/dust,
 /mob/living/simple_animal/mouse/gray,
-/mob/living/simple_animal/hostile/humanoid/rat/pipe,
 /turf/open/floor/wood,
 /area/city)
 "Yq" = (
@@ -7104,6 +7349,14 @@
 /obj/structure/barricade/wooden,
 /turf/open/floor/wood,
 /area/city)
+"YA" = (
+/obj/effect/decal/cleanable/blood/footprints{
+	dir = 8
+	},
+/turf/open/floor/wood{
+	icon_state = "wood-broken"
+	},
+/area/city/shop)
 "YB" = (
 /obj/structure/closet/crate/bin{
 	pixel_y = 22;
@@ -7125,7 +7378,9 @@
 "YF" = (
 /obj/effect/decal/cleanable/dirt/dust,
 /mob/living/simple_animal/mouse/white,
-/mob/living/simple_animal/hostile/humanoid/rat/zippy,
+/mob/living/simple_animal/hostile/humanoid/rat/pipe/scavenger{
+	dir = 4
+	},
 /turf/open/floor/wood{
 	icon_state = "wood-broken"
 	},
@@ -8980,11 +9235,11 @@ oY
 oY
 oY
 oY
-Vr
+kC
 Ud
 vu
 UU
-Vr
+kC
 on
 on
 on
@@ -9070,11 +9325,11 @@ oY
 oY
 oY
 oY
-Vr
+kC
 oy
 ho
 mm
-Vr
+kC
 on
 Vr
 Vr
@@ -9160,11 +9415,11 @@ oY
 oY
 oY
 oY
-Vr
+kC
 Ud
 xd
 xd
-Vr
+kC
 on
 Vr
 nV
@@ -9250,11 +9505,11 @@ oY
 oY
 oY
 oY
-Vr
+kC
 eB
 zj
 Zh
-qB
+xi
 IR
 qB
 aS
@@ -9340,11 +9595,11 @@ oY
 oY
 oY
 oY
-Vr
+kC
 XX
 ho
 iL
-Vr
+kC
 on
 Vr
 Vr
@@ -9358,13 +9613,13 @@ on
 kC
 kC
 bw
+as
+XW
 bw
 bw
-bw
-bw
-bw
-bw
-bw
+as
+XW
+RV
 Vr
 Ke
 bw
@@ -9430,11 +9685,11 @@ oY
 oY
 oY
 oY
-Vr
+kC
 Ft
 xd
 dI
-Vr
+kC
 on
 Vr
 on
@@ -9447,14 +9702,14 @@ on
 on
 on
 kC
-bw
+RV
 ew
 ew
 ew
 hX
 ew
 ew
-bw
+as
 Vr
 Vr
 Vr
@@ -9520,11 +9775,11 @@ oY
 oY
 oY
 oY
-Vr
+kC
 Ft
 vu
 bl
-Vr
+kC
 on
 Vr
 on
@@ -9537,17 +9792,17 @@ ew
 ew
 Ye
 kC
-bw
+as
 ew
 UW
-HK
+tc
 lX
-SU
+nd
 ew
-bw
-bw
-bw
-bw
+RV
+RV
+XW
+as
 bw
 bw
 bw
@@ -9610,11 +9865,11 @@ oY
 oY
 oY
 oY
-Vr
+kC
 Ft
 ho
 iL
-Vr
+kC
 on
 Vr
 Ye
@@ -9627,9 +9882,9 @@ Sy
 kI
 on
 kC
-bw
+XW
 ew
-SU
+nd
 oQ
 HK
 SW
@@ -9700,11 +9955,11 @@ oY
 oY
 oY
 oY
-Vr
+kC
 Ft
 xy
 xd
-Vr
+kC
 on
 Vr
 on
@@ -9717,7 +9972,7 @@ RU
 ew
 on
 kC
-bw
+RV
 ew
 wZ
 HK
@@ -9725,8 +9980,8 @@ lX
 lX
 es
 oQ
-lX
-lX
+ND
+Dr
 Aa
 ew
 bw
@@ -9790,7 +10045,7 @@ oY
 oY
 oY
 oY
-Vr
+kC
 Ft
 TL
 TL
@@ -9807,19 +10062,19 @@ uV
 ew
 mE
 kC
-bw
+as
 ew
 ew
 yC
 ef
-By
+Wa
 SU
 HK
-lX
+ye
 Re
-lX
+JQ
 ew
-ZW
+bw
 Vr
 vn
 vn
@@ -9880,13 +10135,13 @@ oY
 oY
 oY
 oY
-Vr
-Vr
-Vr
-Vr
-Vr
-Vr
-Vr
+kC
+kC
+kC
+kC
+kC
+kC
+kC
 mE
 ew
 ew
@@ -9897,7 +10152,7 @@ ew
 ew
 on
 wq
-ZW
+bw
 RV
 ew
 ew
@@ -9976,7 +10231,7 @@ oY
 oY
 oY
 oY
-Vr
+kC
 on
 on
 on
@@ -10066,8 +10321,8 @@ oY
 oY
 oY
 oY
-Vr
-Vr
+kC
+kC
 Rg
 Hj
 Hj
@@ -11660,7 +11915,7 @@ yP
 Eb
 no
 ej
-SJ
+Gf
 Eb
 fN
 nk
@@ -11747,10 +12002,10 @@ oY
 oY
 ej
 Wu
-XI
+MZ
 Kx
 ej
-jV
+rg
 Eb
 Eb
 uF
@@ -11838,10 +12093,10 @@ oY
 ej
 wi
 Eb
-jV
+pK
 ej
-jV
-HS
+Uz
+Eb
 Eb
 wi
 QB
@@ -11930,9 +12185,9 @@ Yk
 Eb
 Ws
 ej
-Gf
+ID
 fM
-Wq
+Eb
 Eb
 QB
 oY
@@ -12108,7 +12363,7 @@ Vr
 ej
 qY
 sO
-Yh
+SJ
 Yh
 Yh
 Un
@@ -12198,7 +12453,7 @@ SM
 EM
 Yh
 Yh
-Uz
+xk
 Yh
 Yh
 Yh
@@ -12287,7 +12542,7 @@ bw
 Ox
 EM
 PP
-rg
+Yh
 yW
 Yh
 Yh
@@ -12558,7 +12813,7 @@ Ox
 EM
 Tm
 Ew
-Ew
+Rl
 Yh
 ej
 oH
@@ -12652,7 +12907,7 @@ Yh
 zF
 qO
 Eb
-nN
+Eb
 XE
 QB
 oY
@@ -12737,7 +12992,7 @@ bw
 Ox
 EM
 hi
-Fi
+mC
 Fi
 Yh
 ej
@@ -12922,7 +13177,7 @@ Yh
 Yh
 ej
 aN
-Eb
+Wq
 Pq
 QB
 oY
@@ -13008,7 +13263,7 @@ Ox
 EM
 PP
 yW
-rg
+Yh
 bH
 ej
 ej
@@ -13097,7 +13352,7 @@ bw
 wc
 EM
 PP
-Yh
+xW
 xk
 Yh
 Yh
@@ -13280,7 +13535,7 @@ Il
 Km
 ej
 eh
-rg
+Yh
 ej
 GJ
 ej
@@ -13726,8 +13981,8 @@ bw
 Vr
 oY
 ej
-jV
-HS
+Uz
+Eb
 Eb
 wi
 ej
@@ -13818,7 +14073,7 @@ oY
 ej
 jV
 MZ
-HS
+Eb
 cj
 ej
 ln
@@ -13906,14 +14161,14 @@ bw
 Vr
 oY
 ej
-jV
+rg
 EU
-Eb
+cw
 ZG
 ej
 iN
 vR
-jV
+Mp
 QB
 oY
 oY
@@ -14293,9 +14548,9 @@ oY
 oY
 Fx
 Ql
+HS
 Tb
-Tb
-ID
+Hw
 Tb
 aX
 Tb
@@ -14473,7 +14728,7 @@ oY
 oY
 Fx
 TP
-Tb
+HS
 UE
 Fx
 Tb
@@ -14653,7 +14908,7 @@ oY
 Fx
 SF
 He
-Tb
+HS
 Hw
 Qd
 Hw
@@ -14743,8 +14998,8 @@ oY
 Fx
 Zm
 Tb
-Hw
-Ej
+vL
+cF
 Fx
 sP
 Ej
@@ -14833,8 +15088,8 @@ oY
 Fx
 QV
 Tb
-Hw
-He
+YA
+hm
 Fx
 It
 It
@@ -15010,10 +15265,10 @@ oY
 oY
 oY
 oY
-Fx
+nN
 TN
-TC
-TC
+WU
+KG
 ms
 Fx
 CB
@@ -15100,11 +15355,11 @@ oY
 oY
 oY
 oY
-Fx
+nN
 tS
-TC
-TC
-tS
+kb
+Eo
+XI
 Fx
 kS
 bw
@@ -15190,11 +15445,11 @@ oY
 oY
 oY
 oY
-Fx
+nN
 tS
 kb
-TC
-tS
+gy
+XI
 Fx
 KZ
 bw
@@ -15280,10 +15535,10 @@ oY
 oY
 oY
 oY
-Fx
+nN
 wH
-TC
-TC
+vi
+kb
 TC
 ab
 KZ
@@ -15370,8 +15625,8 @@ oY
 oY
 oY
 oY
-Fx
-Fx
+nN
+nN
 Ll
 rY
 Fx
@@ -15461,9 +15716,9 @@ oY
 oY
 oY
 oY
-Fx
-Fx
-Fx
+nN
+nN
+nN
 Fx
 oY
 oY
@@ -16471,7 +16726,7 @@ Vr
 oY
 Vr
 vH
-fk
+wY
 rH
 rH
 fk
@@ -16654,7 +16909,7 @@ aq
 xf
 rH
 kZ
-rH
+Bp
 en
 Vr
 RV
@@ -16745,7 +17000,7 @@ fk
 en
 aq
 rH
-aq
+iS
 Vr
 ao
 Vr
@@ -17305,7 +17560,7 @@ bw
 ka
 ka
 ka
-bw
+XT
 Pp
 ZI
 ka
@@ -17386,7 +17641,7 @@ bw
 bw
 bw
 ka
-bw
+XT
 bw
 CI
 ka
@@ -17933,7 +18188,7 @@ ZI
 xR
 Ei
 ka
-bw
+Xp
 ka
 ka
 ka
@@ -18016,7 +18271,7 @@ KZ
 KZ
 bw
 Pp
-bw
+XT
 ka
 ka
 ka

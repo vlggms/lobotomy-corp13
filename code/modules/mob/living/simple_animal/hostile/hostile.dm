@@ -96,7 +96,7 @@ GLOBAL_LIST_EMPTY(marked_players)
 	var/attacked_line = "You will pay for this!"
 	var/starting_looting_line = "Hand off, that is ours."
 	var/ending_looting_line = "That's it, you asked for this."
-	var/list/glob_faction = GLOB.marked_players
+	var/list/glob_faction = list()
 
 /mob/living/simple_animal/hostile/Initialize()
 	/*Update Speed overrides set speed and sets it
@@ -122,6 +122,8 @@ GLOBAL_LIST_EMPTY(marked_players)
 	if(mark_once_attacked)
 		RegisterSignal(SSdcs, COMSIG_CRATE_LOOTING_STARTED, PROC_REF(on_seeing_looting_started))
 		RegisterSignal(SSdcs, COMSIG_CRATE_LOOTING_ENDED, PROC_REF(on_seeing_looting_ended))
+
+	glob_faction = GLOB.marked_players
 
 /mob/living/simple_animal/hostile/proc/on_seeing_looting_started(datum/source, mob/living/user, obj/crate)
 	SIGNAL_HANDLER
