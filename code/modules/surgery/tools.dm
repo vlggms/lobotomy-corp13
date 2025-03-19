@@ -459,7 +459,7 @@
 	icon = 'icons/obj/module.dmi'
 	icon_state = "beaker_holder"
 	inhand_icon_state = "electronic"
-	lefthandfile = 'icons/mob/inhands/misc/devices_lefthand.dmi'
+	lefthand_file = 'icons/mob/inhands/misc/devices_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/misc/devices_righthand.dmi'
 	force = 5
 	w_class = WEIGHT_CLASS_SMALL
