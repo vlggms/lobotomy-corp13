@@ -113,7 +113,7 @@
 	can_act = TRUE
 
 /mob/living/simple_animal/hostile/mutant_clown/boss
-	name = "'Grandpa'"
+	name = "'Grandfather'"
 	icon = 'icons/mob/clown_mobs.dmi'
 	icon_state = "mutant"
 	icon_living = "mutant"
@@ -174,7 +174,8 @@
 /mob/living/simple_animal/hostile/mutant_clown/boss/Destroy()
 	. = ..()
 	for(var/mob/living/simple_animal/hostile/mutant_clown/C in GLOB.mob_living_list)
-		C.BreakMask()
+		if(C.current_stage == 1)
+			C.BreakMask()
 
 /mob/living/simple_animal/hostile/mutant_heart
 	name = "decaying heart"
