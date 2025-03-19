@@ -48,7 +48,6 @@
 	box = /obj/item/storage/box/survival/medical
 
 
-
 /obj/item/clothing/head/beret/tegu/mint
 	name = "prosthetic surgeon beret"
 	desc = "A lovely mint beret found across the city in the hands of prosthetics surgeons."
