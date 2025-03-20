@@ -74,7 +74,7 @@
 		loaded = FALSE
 	else if(blackjack == 0)
 		timeleft -= round(refine_timer/3)
-		to_chat(user, span_notice("You correctly filter the PE, speeding up refining."))
+		to_chat(user, span_notice("You correctly filter the PE, speeding up refining, and giving a chance for double output."))
 
 /obj/structure/refinery/proc/counter()
 	timeleft--
@@ -82,6 +82,10 @@
 		loaded = FALSE
 		new /obj/item/refinedpe(get_turf(src))
 		visible_message(span_notice("The refinery finishes refining a box."))
+
+		//If you complete the refinery minigame, you can
+		if(!blackjack && prob(30))
+			new /obj/item/refinedpe(get_turf(src))
 
 	if(loaded)
 		addtimer(CALLBACK(src, PROC_REF(counter)), 1 SECONDS)
