@@ -19,6 +19,7 @@ GLOBAL_LIST_INIT(command_positions, list(
 	"Grand Inquisitor",
 	"Thumb Sottocapo",
 	"Kurokumo Kashira",
+	"Dead Rabbits Boss",
 
 	// R-corp Fourth Pack
 	"Ground Commander",
@@ -72,7 +73,7 @@ GLOBAL_LIST_INIT(medical_positions, list(
 	"Nurse",
 	"Paramedic",
 	"Medical Fixer Assistant",
-	"Prosthetics Surgeon",
+	"Proshetics Surgeon",
 	))
 
 
@@ -242,6 +243,9 @@ GLOBAL_LIST_INIT(city_antagonist_positions, list(
 	"Kurokumo Kashira",
 	"Kurokumo Hosa",
 	"Kurokumo Wakashu",
+
+	"Dead Rabbits Boss",
+	"Dead Rabbit",
 ))
 
 
