@@ -50,3 +50,4 @@
 	glasses = /obj/item/clothing/glasses/sunglasses
 	backpack_contents = list(/obj/item/structurecapsule/syndicate/DeadRabbit)
 	shoes = /obj/item/clothing/shoes/jackboots
+
