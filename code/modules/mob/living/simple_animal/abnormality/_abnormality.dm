@@ -174,10 +174,7 @@
 	else
 		gift_message += "\nYou are granted a gift by [src]!"
 
-	if(secret_chance && (prob(1)))
-		InitializeSecretIcon()
-
-	if(SSmaptype.chosen_trait == FACILITY_TRAIT_JOKE_ABNOS && secret_chance)
+	if(secret_chance && (prob(1) || SSmaptype.chosen_trait == FACILITY_TRAIT_JOKE_ABNOS))
 		InitializeSecretIcon()
 
 	//Abnormalities have no name here. And we don't want nonsentient ones to breach
