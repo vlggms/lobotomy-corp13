@@ -53,7 +53,7 @@
 	var/bullet_damage = 80
 	var/list/portals = list()
 	var/zoomed = FALSE
-	var/max_portals = 3
+	var/max_portals = 7
 	var/current_portal_index = 0
 	var/portal_cooldown
 	var/portal_cooldown_time = 5 SECONDS
@@ -70,7 +70,7 @@
 		The Magic Bullet deals BLACK damage and pieces through mobs. After firing a Magic Bullet, there is a 7 second cooldown between you can fire another one.<br>\
 		<br>\
 		|Devil's Contract|: Using the Sniper Sights ability on the top left of your screen you are able to increase your view range, see through walls and gain the ability to place down 'Magic Portals' \
-		There is a 10 second cooldown between placing down portals, you can have a max of 3 portals and you can't place them in R-Corp's base or on dense terrain. \
+		There is a 10 second cooldown between placing down portals, you can have a max of 7 portals and you can't place them in R-Corp's base or on dense terrain. \
 		If you can't place down a portal, you will fire your Magic Bullet instead.<br>\
 		<br>\
 		|Devil's Sights|: You are able view through your portals using your 'Portal View' button on the top left of your screen, \
