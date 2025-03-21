@@ -2401,6 +2401,8 @@
 #include "code\modules\jobs\job_types\city\syndicate\thumb\capo.dm"
 #include "code\modules\jobs\job_types\city\syndicate\thumb\soldato.dm"
 #include "code\modules\jobs\job_types\city\syndicate\thumb\sottocapo.dm"
+#include "code\modules\jobs\job_types\city\syndicate\dead_rabbits\RabbitBoss.dm"
+#include "code\modules\jobs\job_types\city\syndicate\dead_rabbits\RabbitThug.dm"
 #include "code\modules\jobs\job_types\gimmick\fishing.dm"
 #include "code\modules\jobs\job_types\gimmick\wonderlabs\departmentcaptain.dm"
 #include "code\modules\jobs\job_types\gimmick\wonderlabs\departmenthead.dm"
