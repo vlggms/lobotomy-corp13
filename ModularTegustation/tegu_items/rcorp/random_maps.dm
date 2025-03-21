@@ -82,11 +82,11 @@
 	weight = 5
 
 //Special Types.
-/datum/map_template/random_room/rcorp/raidboss
-	name = "Rcorp - Raid Boss"
-	room_id = "rcorp_inside_raidboss"
-	mappath = "_maps/RandomRooms/rcorp/facility/raidboss.dmm"
-	weight = 10
+// /datum/map_template/random_room/rcorp/raidboss
+// 	name = "Rcorp - Raid Boss"
+// 	room_id = "rcorp_inside_raidboss"
+// 	mappath = "_maps/RandomRooms/rcorp/facility/raidboss.dmm"
+// 	weight = 10
 
 // /datum/map_template/random_room/rcorp/zombies
 // 	name = "Rcorp - City"
