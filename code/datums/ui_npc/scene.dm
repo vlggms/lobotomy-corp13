@@ -29,15 +29,15 @@
 	text = data["text"]
 
 	// Visibility conditions
-	visibility_expression = data["visibility"]
+	visibility_expression = data["visibility_expression"]
 	visible_proc = data["visible_proc"]
 
 	// Enablement conditions
-	enabled_expression = data["enabled"]
+	enabled_expression = data["enabled_expression"]
 	enabled_proc = data["enabled_proc"]
 
 	// Callbacks and updates
-	proc_callbacks = data["procs"] || list()
+	proc_callbacks = data["proc_callbacks"] || list()
 	var_updates = data["var_updates"] || list()
 
 	// Transitions

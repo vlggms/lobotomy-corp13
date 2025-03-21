@@ -44,11 +44,6 @@
 	if(isnull(scene_manager.get_var(user.client, "player.is_worker")))
 		scene_manager.set_var(user.client, "player.is_worker", FALSE)
 
-	// Set money for player if it doesn't exist (in a real implementation, this would check actual balance)
-	var/player_money = scene_manager.get_var(user.client, "player.money")
-	if(isnull(player_money))
-		scene_manager.set_var(user.client, "player.money", 500)
-
 	// Check if player has the briefcase
 	var/has_briefcase = briefcase_check(user)
 	scene_manager.set_var(user.client, "player.has_briefcase", has_briefcase)
@@ -130,14 +125,14 @@
 		"text" = "Anyways, What are you looking for today at the Clinic?",
 		"actions" = list(
 			"jobs" = list(
-				"text" = "I am looking for a job!",
-				"visibility_expression" = "NOT player.is_worker",
-				"default_scene" = "job_1"
-			),
-			"ready_jobs" = list(
-				"text" = "About the job.",
-				"visibility_expression" = "player.is_worker",
-				"default_scene" = "job"
+				"text" = "\[player.is_worker?About the job.:I am looking for a job!\]",
+				"default_scene" = "job_1",
+				"transitions" = list(
+					list(
+						"expression" = "player.is_worker",
+						"scene" = "job"
+					)
+				)
 			),
 			"bloodfiend?" = list(
 				"text" = "You are a bloodfiend?",
@@ -160,6 +155,9 @@
 		"actions" = list(
 			"..." = list(
 				"text" = "...",
+				"var_updates" = list(
+					"player.is_worker" = TRUE
+				),
 				"default_scene" = "job_2"
 			)
 		)
@@ -240,18 +238,19 @@
 				"default_scene" = "main_screen"
 			),
 			"quest" = list(
-				"text" = "Any other jobs?",
-				"visibility_expression" = "NOT dialog.intro_quest_shown AND NOT npc.briefcase_collected",
-				"var_updates" = list(
-					"dialog.intro_quest_shown" = TRUE
-				),
-				"default_scene" = "quest_1"
+				"text" = "\[dialog.intro_quest_shown?About the Contract...:Any other jobs?\]",
+				"default_scene" = "quest_1",
+				"transitions" = list(
+					list(
+						"expression" = "npc.briefcase_collected",
+						"scene" = "quest_late"
+					),
+					list(
+						"expression" = "dialog.intro_quest_shown",
+						"scene" = "quest_main"
+					)
+				)
 			),
-			"ready_quest" = list(
-				"text" = "About the Contract...",
-				"visibility_expression" = "dialog.intro_quest_shown AND NOT dialog.quest_accepted AND NOT npc.briefcase_collected",
-				"default_scene" = "quest_main"
-			)
 		)
 	)
 
@@ -260,7 +259,7 @@
 		"actions" = list(
 			"..." = list(
 				"text" = "...",
-				"default_scene" = "main_screen"
+				"default_scene" = "job"
 			)
 		)
 	)
@@ -274,7 +273,6 @@
 				"proc_callbacks" = list(CALLBACK(src, PROC_REF(Payback))),
 				"var_updates" = list(
 					"player.has_parcel_job" = FALSE,
-					"player.money" = "{player.money - 400}"
 				),
 				"default_scene" = "job_7",
 				"transitions" = list(
@@ -430,6 +428,9 @@
 		"actions" = list(
 			"..." = list(
 				"text" = "...",
+				"var_updates" = list(
+					"dialog.intro_quest_shown" = TRUE
+				),
 				"default_scene" = "quest_2"
 			)
 		)
@@ -565,7 +566,7 @@
 			),
 			"objective_quest" = list(
 				"text" = "About the breifcase...",
-				"visibility_expression" = "dialog.quest_accepted AND NOT npc.briefcase_collected",
+				"visibility_expression" = "dialog.quest_accepted",
 				"default_scene" = "quest_breifcase",
 				"transitions" = list(
 					list(
@@ -604,9 +605,6 @@
 
 	scenes["quest_done"] = list(
 		"text" = "Great work, Thanks for collecting it for me. It would of been a real hassle if I hand to go there... Anyways, Here is the promised payment of 3000 ahn.",
-		"on_enter" = list(
-			"player.money" = "{player.money + 3000}"
-		),
 		"actions" = list(
 			"..." = list(
 				"text" = "...",
@@ -620,7 +618,7 @@
 		"actions" = list(
 			"..." = list(
 				"text" = "...",
-				"default_scene" = "quest_breifcase"
+				"default_scene" = "quest_main"
 			)
 		)
 	)
@@ -665,7 +663,6 @@
 				new /obj/item/stack/spacecash/c1000 (get_turf(L))
 				new /obj/item/stack/spacecash/c1000 (get_turf(L))
 				playsound(get_turf(src), 'sound/effects/cashregister.ogg', 35, 3, 3)
-				scene_manager.npc_vars.variables["briefcase_collected"] = TRUE
 				return TRUE
 	return FALSE
 

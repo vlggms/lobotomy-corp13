@@ -230,16 +230,19 @@
 	// Simple case: direct variable check
 	return (var_name in variables)
 
-// Universal Player Resolver
+// Enhanced Universal Player Resolver
 // Automatically resolves variables based on mob member variables
+// Also supports storing custom variables in a dictionary
 /datum/var_resolver/player
 	var/mob/living/carbon/human/player_mob = null
+	var/datum/var_resolver/dictionary/custom_vars = null  // Dictionary for custom variables
 	var/list/cached_values = list()  // Optional cache for expensive operations
 
 /datum/var_resolver/player/New(mob/living/carbon/human/M)
 	player_mob = M
+	custom_vars = new()  // Initialize the dictionary resolver for custom variables
 
-// Get variable through direct member variable access
+// Get variable through direct member variable access or from custom vars
 /datum/var_resolver/player/get_var(var_name)
 	if(!player_mob)
 		return null
@@ -266,14 +269,21 @@
 
 		// Other categories can be added as needed
 
-	// Direct variable access for non-nested paths
-	// If the variable exists directly on the player mob, return it
+	if (var_name == "money")
+		return get_money()
+
+	// First check if it's a custom variable in our dictionary
+	var/custom_value = custom_vars.get_var(var_name)
+	if(!isnull(custom_value))
+		return custom_value
+
+	// If not found in custom vars, check if it exists directly on the player mob
 	if(var_name in player_mob.vars)
 		return player_mob.vars[var_name]
 
 	return null
 
-// Set a variable on the player mob
+// Set a variable on the player mob or in custom vars
 /datum/var_resolver/player/set_var(var_name, value)
 	if(!player_mob)
 		return FALSE
@@ -291,18 +301,21 @@
 
 		// Handle other categories as needed
 
-	// Direct variable setting for non-nested paths
-	// Only set certain safe variables
+	// Direct variable setting
+	// First, let's always try to store it in our custom vars dictionary
+	return custom_vars.set_var(var_name, value)
+
+	/*
+	// If we wanted to set some variables directly on the mob, we could do:
+	// Only set certain safe variables on the actual mob
 	switch(var_name)
 		if("gold", "money", "currency")
 			// Example of safe variable to modify
 			if(var_name in player_mob.vars)
 				player_mob.vars[var_name] = value
 				return TRUE
-
 		// Add more safe variables as needed
-
-	return FALSE
+	*/
 
 // Check if a variable exists
 /datum/var_resolver/player/has_var(var_name)
@@ -318,15 +331,35 @@
 
 		// Handle known categories
 		switch(category)
-			if("inventory", "stats")
+			if("inventory", "stats", "faction")
 				return TRUE  // We know these categories exist
 
-		// For unknown categories, return false
-		return FALSE
+		// For unknown categories, check in custom vars
+		return custom_vars.has_var(var_name)
+
+	if(var_name == "money")
+		return TRUE
 
 	// Direct check for non-nested paths
+	// First check custom vars
+	if(custom_vars.has_var(var_name))
+		return TRUE
+
+	// Then check if the variable exists directly on the player mob
 	return (var_name in player_mob.vars)
 
+/datum/var_resolver/player/proc/get_money()
+	var/obj/item/card/id/C = player_mob.get_idcard(TRUE)
+	if(!C)
+		return 0
+	else if(!C.registered_account)
+		return 0
+
+	var/datum/bank_account/account = C.registered_account
+	return account.account_balance
+
+// The rest of the code remains the same as the original
+// (get_inventory_var, set_inventory_var, get_stats_var, etc.)
 // Handle inventory-related variables
 /datum/var_resolver/player/proc/get_inventory_var(item_name, list/path_parts)
 	// This would need to be customized based on your inventory system

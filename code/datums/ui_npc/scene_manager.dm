@@ -13,6 +13,8 @@
 	var/list/player_resolvers = list()
 	var/list/dialog_resolvers = list()
 
+	var/list/var_managers = list()
+
 /datum/ui_npc/scene_manager/New()
 	// Initialize global variables
 	global_vars = new()
@@ -26,12 +28,17 @@
 	for(var/scene_key in scene_data)
 		scenes[scene_key] = new /datum/ui_npc/scene(scene_data[scene_key])
 
+
 // Get or create a variable manager for a specific player
 /datum/ui_npc/scene_manager/proc/get_var_manager(client/client)
 	if(!client || !client.mob)
 		return null
 
 	var/client_ref = "\ref[client]"
+
+	// Return existing manager if we have one
+	if(client_ref in var_managers)
+		return var_managers[client_ref]
 
 	// Create or get dialog resolver for this player
 	var/datum/var_resolver/dictionary/dialog_resolver
@@ -46,15 +53,23 @@
 	else
 		dialog_resolver = dialog_resolvers[client_ref]
 
-	// Create a player resolver that directly uses the mob's variables
-	var/datum/var_resolver/player/player_resolver = new(client.mob)
+	// Create or get player resolver for this player
+	var/datum/var_resolver/player/player_resolver
+	if(!(client_ref in player_resolvers))
+		player_resolver = new(client.mob)
+		player_resolvers[client_ref] = player_resolver
+	else
+		player_resolver = player_resolvers[client_ref]
 
 	// Create a manager with all resolvers
 	var/datum/var_resolver_manager/manager = new()
-	manager.register_resolver("player", player_resolver)  // Direct mob variable access
+	manager.register_resolver("player", player_resolver)  // Player-specific variables
 	manager.register_resolver("npc", npc_vars)            // NPC-specific variables
 	manager.register_resolver("dialog", dialog_resolver)  // Conversation state
 	manager.register_resolver("world", global_vars)       // Global game state
+
+	// Cache the manager for future use
+	var_managers[client_ref] = manager
 
 	return manager
 
