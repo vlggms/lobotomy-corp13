@@ -1,85 +1,1126 @@
-"aa" = (/obj/structure/closet/cabinet{anchored = 1},/obj/item/clothing/suit/armor/ego_gear/city/DeadRabbit,/obj/item/clothing/suit/armor/ego_gear/city/DeadRabbit,/obj/item/ego_weapon/city/DRabbitbat,/obj/item/ego_weapon/city/DRabbitbat,/obj/item/ego_weapon/city/DRabbitbat,/obj/item/clothing/suit/armor/ego_gear/city/DeadRabbit,/turf/open/floor/carpet/black,/area/city/backstreets_room)
-"ab" = (/obj/structure/table/wood,/obj/machinery/light/floor,/obj/structure/railing,/obj/item/pen/charcoal,/turf/open/floor/wood{color = "#ccc8c0"},/area/city/backstreets_room)
-"ac" = (/obj/structure/window/reinforced/tinted{dir = 4},/obj/item/shears,/obj/structure/closet/cabinet{anchored = 1},/obj/machinery/light/floor,/obj/item/storage/firstaid/regular,/obj/item/storage/firstaid/revival,/obj/item/clothing/suit/armor/ego_gear/city/DeadRabbitBoss,/obj/item/ego_weapon/city/DRabbitBossBat,/obj/item/jammer,/turf/open/floor/carpet/royalblack,/area/city/backstreets_room)
-"ad" = (/obj/structure/mineral_door/wood,/turf/open/floor/wood{color = "#ccc8c0"},/area/city/backstreets_room)
-"ae" = (/obj/structure/window/reinforced/tinted{dir = 1},/obj/structure/table/wood{density = 0; mouse_opacity = 0; alpha = 0},/turf/open/floor/wood{color = "#ccc8c0"},/area/city/backstreets_room)
-"af" = (/obj/structure/table/wood,/obj/item/kirbyplants{icon_state = "plant-04"; pixel_y = 13; anchored = 1},/obj/structure/railing{dir = 8},/turf/open/floor/carpet/red,/area/city/backstreets_room)
-"ag" = (/obj/structure/filingcabinet{name = "debtor records filing cabinet"; density = 0; layer = 3.3; pixel_x = 16},/obj/effect/turf_decal/siding/wood{dir = 1; color = "#2e1f0e"},/obj/effect/turf_decal/siding/wood/corner{dir = 1; color = "#331800"},/obj/effect/turf_decal/siding/wood/corner{dir = 4; color = "#331800"},/obj/machinery/light/floor,/turf/open/floor/carpet/red,/area/city/backstreets_room)
-"ah" = (/obj/structure/table/wood,/obj/structure/railing{dir = 8},/turf/open/floor/carpet/red,/area/city/backstreets_room)
-"ai" = (/obj/structure/filingcabinet{name = "debtor records filing cabinet"; density = 0; layer = 3.3; pixel_x = 16},/obj/structure/chair/comfy{dir = 8; pixel_x = -4; pixel_y = 4; can_buckle = 0},/turf/open/floor/carpet/red,/area/city/backstreets_room)
-"aj" = (/obj/effect/turf_decal/siding/wood{dir = 1; color = "#694720"},/obj/effect/turf_decal/siding/wood/corner{dir = 1},/obj/machinery/light/floor,/turf/open/floor/carpet/purple,/area/city/backstreets_room)
-"ak" = (/obj/effect/turf_decal/siding/wood{dir = 1; color = "#694720"},/obj/effect/turf_decal/siding/wood/corner{dir = 4},/turf/open/floor/carpet/purple,/area/city/backstreets_room)
-"al" = (/obj/structure/chair/sofa/corp/left{mouse_opacity = 0; pixel_x = 5},/obj/structure/chair/sofa/corp/right{name = "stolen corporate sofa"; desc = "Soft and cushy. Just liked the poor feather who couldnt pay his protection fee."; pixel_x = -5},/obj/structure/plaque{pixel_y = 32},/turf/open/floor/carpet/purple,/area/city/backstreets_room)
-"am" = (/obj/effect/turf_decal/siding/wood{dir = 1; color = "#694720"},/obj/effect/turf_decal/siding/wood/corner{dir = 1},/turf/open/floor/carpet/purple,/area/city/backstreets_room)
-"an" = (/obj/structure/railing{dir = 4},/obj/effect/turf_decal/siding/wood{dir = 1; color = "#694720"},/obj/effect/turf_decal/siding/wood/corner{dir = 4},/obj/machinery/light/floor,/turf/open/floor/carpet/purple,/area/city/backstreets_room)
-"ao" = (/obj/structure/table/wood,/obj/item/paper_bin{pixel_y = 3},/obj/structure/railing{dir = 8},/obj/item/pen/fountain/captain{name = "thumb issued fountain pen"; pixel_y = 5},/turf/open/floor/carpet/red,/area/city/backstreets_room)
-"ap" = (/obj/effect/turf_decal/siding/wood{dir = 4; color = "#2e1f0e"},/obj/effect/turf_decal/siding/wood/corner{dir = 4; color = "#331800"},/obj/effect/turf_decal/siding/wood/corner{color = "#331800"},/turf/open/floor/carpet/red,/area/city/backstreets_room)
-"aq" = (/obj/structure/mineral_door/wood,/turf/open/floor/carpet/purple,/area/city/backstreets_room)
-"ar" = (/obj/effect/turf_decal/siding/wood{dir = 8},/obj/effect/turf_decal/siding/wood/corner{dir = 8},/obj/effect/turf_decal/siding/wood/corner{dir = 1},/obj/structure/chair/comfy/black{dir = 4; pixel_x = 5; pixel_y = 4},/turf/open/floor/carpet/purple,/area/city/backstreets_room)
-"as" = (/obj/structure/table/wood/fancy/royalblack,/turf/open/floor/carpet/purple,/area/city/backstreets_room)
-"at" = (/obj/structure/table/wood/fancy/black,/obj/effect/spawner/lootdrop/three_course_meal,/obj/machinery/light/floor,/turf/open/floor/carpet/purple,/area/city/backstreets_room)
-"au" = (/obj/structure/railing{dir = 4},/obj/structure/chair/comfy/black{dir = 8; pixel_x = -6; pixel_y = 4},/turf/open/floor/carpet/purple,/area/city/backstreets_room)
-"av" = (/obj/structure/mineral_door/wood,/turf/open/floor/carpet/red,/area/city/backstreets_room)
-"aw" = (/obj/structure/filingcabinet{name = "debtor records filing cabinet"; density = 0; layer = 3.3; pixel_x = 16},/obj/effect/turf_decal/siding/wood{dir = 8; color = "#2e1f0e"},/obj/effect/turf_decal/siding/wood/corner{dir = 8; color = "#331800"},/obj/effect/turf_decal/siding/wood/corner{dir = 1; color = "#331800"},/turf/open/floor/carpet/red,/area/city/backstreets_room)
-"ax" = (/obj/structure/chair/comfy/black{dir = 4; pixel_x = 5; pixel_y = 4},/turf/open/floor/carpet/purple,/area/city/backstreets_room)
-"ay" = (/obj/structure/table/wood/fancy/royalblack,/obj/machinery/light/floor,/obj/item/toy/plush/heathcliff,/turf/open/floor/carpet/purple,/area/city/backstreets_room)
-"az" = (/turf/open/floor/wood,/area/city/backstreets_room)
-"aA" = (/obj/structure/filingcabinet{name = "debtor records filing cabinet"; density = 0; layer = 3.3; pixel_x = 16},/obj/effect/turf_decal/siding/wood{color = "#2e1f0e"},/obj/effect/turf_decal/siding/wood/corner{dir = 8; color = "#331800"},/obj/effect/turf_decal/siding/wood/corner{color = "#331800"},/obj/machinery/light/floor,/turf/open/floor/carpet/red,/area/city/backstreets_room)
-"aB" = (/obj/effect/turf_decal/siding/wood{dir = 7},/obj/effect/turf_decal/siding/wood/corner,/obj/effect/turf_decal/siding/wood/corner{dir = 8},/obj/machinery/light/floor,/turf/open/floor/carpet/purple,/area/city/backstreets_room)
-"aC" = (/obj/structure/chair/comfy/black{dir = 1; pixel_y = 7},/turf/open/floor/carpet/purple,/area/city/backstreets_room)
-"aD" = (/obj/structure/railing{dir = 4},/obj/effect/turf_decal/siding/wood{dir = 7},/obj/effect/turf_decal/siding/wood/corner{dir = 8},/obj/effect/turf_decal/siding/wood/corner,/obj/machinery/light/floor,/turf/open/floor/carpet/purple,/area/city/backstreets_room)
-"aE" = (/obj/structure/table/wood{density = 0; mouse_opacity = 0; alpha = 0},/turf/open/floor/wood,/area/city/backstreets_room)
-"aF" = (/obj/structure/closet/cabinet{anchored = 1},/turf/open/floor/carpet/black,/area/city/backstreets_room)
-"aG" = (/turf/open/floor/wood{color = "#ccc8c0"},/turf/closed/wall/mineral/wood,/area/city/backstreets_room)
-"aH" = (/obj/structure/table/wood/poker,/obj/item/reagent_containers/food/drinks/drinkingglass/shotglass{pixel_x = -3; pixel_y = 4},/obj/item/reagent_containers/food/drinks/beer,/turf/open/floor/wood{color = "#ccc8c0"},/area/city/backstreets_room)
-"aI" = (/obj/structure/table/wood/poker,/obj/item/reagent_containers/food/drinks/drinkingglass/shotglass{pixel_x = 4; pixel_y = 1},/obj/machinery/light/floor,/obj/item/reagent_containers/food/drinks/beer,/turf/open/floor/wood{color = "#ccc8c0"},/area/city/backstreets_room)
-"aJ" = (/obj/structure/table/wood/poker,/obj/item/reagent_containers/food/drinks/drinkingglass/shotglass{pixel_x = -4; pixel_y = 1},/obj/item/reagent_containers/food/drinks/beer,/turf/open/floor/wood{color = "#ccc8c0"},/area/city/backstreets_room)
-"aT" = (/obj/effect/turf_decal/siding/wood{dir = 4; color = "#2e1f0e"},/obj/effect/turf_decal/siding/wood/corner{color = "#331800"},/obj/effect/turf_decal/siding/wood/corner{dir = 4; color = "#331800"},/obj/structure/chair/sofa/corp/left{name = "stolen corporate sofa"; desc = "Soft and cushy. Just liked the poor feather who couldnt pay his protection fee."},/obj/structure/filingcabinet{density = 0; pixel_x = 10; pixel_y = 28; resistance_flags = 115},/obj/structure/filingcabinet{density = 0; pixel_y = 28; resistance_flags = 115},/obj/structure/filingcabinet{density = 0; pixel_x = -11; pixel_y = 28; resistance_flags = 115},/turf/open/floor/wood{color = "#ccc8c0"},/area/city/backstreets_room)
-"ba" = (/obj/structure/table/wood{density = 0; mouse_opacity = 0; alpha = 0},/obj/item/kirbyplants{icon_state = "plant-04"; pixel_y = 18; anchored = 1},/obj/machinery/light/floor,/turf/open/floor/wood,/area/city/backstreets_room)
-"bi" = (/obj/structure/window/paperframe{resistance_flags = 115; CanAtmosPass = 0},/turf/open/floor/wood{color = "#ccc8c0"},/area/city/backstreets_room)
-"di" = (/obj/structure/bookcase/random{density = 0; pixel_y = 32},/obj/structure/bed/pod,/obj/item/bedsheet/cult,/obj/structure/window/reinforced/tinted{dir = 4},/turf/open/floor/carpet/royalblack,/area/city/backstreets_room)
-"eh" = (/obj/structure/toilet{dir = 8; pixel_y = 2},/obj/structure/mirror{pixel_y = 26},/obj/structure/sink/greyscale{pixel_y = 16},/turf/open/floor/plasteel/freezer,/area/city/backstreets_room)
-"gh" = (/obj/machinery/chem_dispenser/drinks/beer,/obj/structure/table/wood/fancy,/obj/machinery/light{dir = 4; pixel_x = 9; pixel_y = 4},/turf/open/floor/wood{color = "#ccc8c0"},/area/city/backstreets_room)
-"hJ" = (/obj/structure/bed{name = "bunk beds"; density = 1; can_buckle = 0},/obj/structure/bed{name = "bunk beds"; density = 1; layer = 2.95; pixel_y = 15; can_buckle = 0},/obj/structure/ladder{layer = 2.97; mouse_opacity = 0; pixel_x = 4; pixel_y = -5},/obj/item/bedsheet/grey{name = "kurokumo enforcer's bedsheet"; layer = 2.96; pixel_y = 15; anchored = 1},/obj/item/bedsheet/grey{name = "kurokumo enforcer's bedsheet"; layer = 2.94; anchored = 1},/obj/machinery/light{dir = 1; pixel_y = 19},/obj/machinery/light/floor,/turf/open/floor/carpet/black,/area/city/backstreets_room)
-"hL" = (/obj/structure/bed,/obj/structure/bed{name = "bunk beds"; density = 1; layer = 2.95; pixel_y = 15; can_buckle = 0},/obj/structure/ladder{layer = 2; mouse_opacity = 0; pixel_x = 4; pixel_y = 11},/obj/item/bedsheet/grey{name = "kurokumo enforcer's bedsheet"; layer = 2.96; pixel_y = 15; anchored = 1},/obj/item/bedsheet/grey{name = "kurokumo enforcer's bedsheet"; layer = 2.94; anchored = 1},/obj/machinery/light/floor,/turf/open/floor/carpet/black,/area/city/backstreets_room)
-"ma" = (/obj/machinery/light/floor,/turf/open/floor/wood,/area/city/backstreets_room)
-"mj" = (/obj/structure/sign/barsign{pixel_y = 32; req_access = null},/obj/machinery/chem_dispenser/drinks,/obj/structure/table/wood/fancy/royalblue,/turf/open/floor/wood{color = "#ccc8c0"},/area/city/backstreets_room)
-"nl" = (/obj/machinery/door/window/survival_pod{dir = 1},/obj/machinery/light/floor,/turf/open/floor/wood{color = "#ccc8c0"},/area/city/backstreets_room)
-"nr" = (/obj/structure/chair/sofa/corp/right{name = "stolen corporate sofa"; desc = "Soft and cushy. Just liked the poor feather who couldnt pay his protection fee."},/obj/structure/filingcabinet{density = 0; pixel_x = -11; pixel_y = 28; resistance_flags = 115},/obj/structure/filingcabinet{density = 0; pixel_y = 28; resistance_flags = 115},/obj/structure/filingcabinet{density = 0; pixel_x = 10; pixel_y = 28; resistance_flags = 115},/obj/item/clothing/suit/straight_jacket,/obj/item/restraints/handcuffs{pixel_x = 7},/obj/item/restraints/handcuffs{pixel_x = 7},/obj/item/restraints/handcuffs{pixel_x = 7},/turf/open/floor/wood{color = "#ccc8c0"},/area/city/backstreets_room)
-"td" = (/obj/effect/turf_decal/siding/wood{color = "#2e1f0e"},/obj/effect/turf_decal/siding/wood/corner{color = "#331800"},/turf/open/floor/wood{color = "#ccc8c0"},/area/city/backstreets_room)
-"tA" = (/obj/effect/turf_decal/siding/wood{dir = 8; color = "#2e1f0e"},/obj/effect/turf_decal/siding/wood/corner{dir = 8; color = "#331800"},/obj/effect/turf_decal/siding/wood/corner{dir = 1; color = "#331800"},/obj/structure/bookcase/random{density = 0; pixel_y = 32},/obj/machinery/light/floor,/turf/open/floor/wood{color = "#ccc8c0"},/area/city/backstreets_room)
-"tY" = (/obj/effect/turf_decal/siding/wood{dir = 4},/obj/effect/turf_decal/siding/wood/corner,/obj/effect/turf_decal/siding/wood/corner{dir = 4},/turf/open/floor/wood,/area/city/backstreets_room)
-"uq" = (/obj/structure/bed{name = "bunk beds"; density = 1; layer = 2.95; pixel_y = 15; can_buckle = 0},/obj/structure/bed{name = "bunk beds"; density = 1; can_buckle = 0},/obj/structure/ladder{layer = 2.97; mouse_opacity = 0; pixel_x = 4; pixel_y = -5},/obj/item/bedsheet/grey{name = "kurokumo enforcer's bedsheet"; layer = 2.94; anchored = 1},/obj/item/bedsheet/grey{name = "kurokumo enforcer's bedsheet"; layer = 2.96; pixel_y = 15; anchored = 1},/obj/machinery/light{dir = 1; pixel_y = 19},/obj/machinery/light/floor,/turf/open/floor/carpet/black,/area/city/backstreets_room)
-"wf" = (/obj/machinery/vending/boozeomat/all_access{density = 0; pixel_x = 26},/obj/effect/turf_decal/siding/wood{color = "#2e1f0e"},/obj/effect/turf_decal/siding/wood/corner{dir = 8; color = "#331800"},/obj/effect/turf_decal/siding/wood/corner{color = "#331800"},/turf/open/floor/wood{color = "#ccc8c0"},/area/city/backstreets_room)
-"xz" = (/obj/item/kirbyplants{icon_state = "plant-04"; pixel_x = -7; pixel_y = 18; anchored = 1},/obj/structure/table/wood{density = 0; mouse_opacity = 0; alpha = 0},/turf/open/floor/wood,/area/city/backstreets_room)
-"yR" = (/obj/item/kirbyplants{icon_state = "plant-04"; pixel_x = -9; pixel_y = 19; anchored = 1},/obj/structure/table/wood{density = 0; mouse_opacity = 0; alpha = 0},/obj/effect/turf_decal/siding/wood{color = "#694720"},/obj/effect/turf_decal/siding/wood/corner{dir = 5},/obj/effect/turf_decal/siding/wood/corner{dir = 8},/turf/open/floor/wood,/area/city/backstreets_room)
-"zT" = (/obj/structure/chair/office{dir = 1; anchored = 1},/turf/open/floor/wood,/area/city/backstreets_room)
-"Ae" = (/obj/structure/bed{name = "bunk beds"; density = 1; can_buckle = 0},/obj/structure/bed{name = "bunk beds"; density = 1; layer = 2.95; pixel_y = 15; can_buckle = 0},/obj/structure/ladder{layer = 2; mouse_opacity = 0; pixel_x = 4; pixel_y = 11},/obj/item/bedsheet/grey{name = "kurokumo enforcer's bedsheet"; layer = 2.96; pixel_y = 15; anchored = 1},/obj/item/bedsheet/grey{name = "kurokumo enforcer's bedsheet"; layer = 2.94; anchored = 1},/obj/machinery/light/floor,/turf/open/floor/carpet/black,/area/city/backstreets_room)
-"Ap" = (/obj/structure/bed{name = "bunk beds"; density = 1; layer = 2.95; pixel_y = 15; can_buckle = 0},/obj/structure/bed{name = "bunk beds"; density = 1; can_buckle = 0},/obj/structure/ladder{layer = 2; mouse_opacity = 0; pixel_x = 4; pixel_y = 11},/obj/item/bedsheet/grey{name = "kurokumo enforcer's bedsheet"; layer = 2.96; pixel_y = 15; anchored = 1},/obj/item/bedsheet/grey{name = "kurokumo enforcer's bedsheet"; layer = 2.94; anchored = 1},/obj/machinery/light/floor,/turf/open/floor/carpet/black,/area/city/backstreets_room)
-"At" = (/obj/structure/window/reinforced/tinted{dir = 8},/obj/machinery/shower{pixel_y = 17},/obj/structure/curtain/cloth,/turf/open/floor/noslip,/area/city/backstreets_room)
-"AE" = (/turf/open/floor/wood{color = "#ccc8c0"},/area/city/backstreets_room)
-"AV" = (/obj/effect/turf_decal/siding/wood{color = "#2e1f0e"},/obj/effect/turf_decal/siding/wood/corner{dir = 8; color = "#331800"},/turf/open/floor/wood{color = "#ccc8c0"},/area/city/backstreets_room)
-"Bo" = (/obj/effect/turf_decal/siding/wood{dir = 1; color = "#694720"},/obj/effect/turf_decal/siding/wood/corner{dir = 1},/obj/effect/turf_decal/siding/wood/corner{dir = 4},/turf/open/floor/wood,/area/city/backstreets_room)
-"Fp" = (/obj/structure/table/wood,/obj/machinery/light/floor,/obj/structure/railing,/obj/item/paper_bin{pixel_x = -6; pixel_y = 3},/obj/item/pen/fountain/captain{name = "thumb issued fountain pen"; pixel_x = -6; pixel_y = 5},/turf/open/floor/wood{color = "#ccc8c0"},/area/city/backstreets_room)
-"Fr" = (/obj/machinery/vending/boozeomat/all_access{density = 0; pixel_x = 26},/obj/machinery/light/floor,/turf/open/floor/wood{color = "#ccc8c0"},/area/city/backstreets_room)
-"Gw" = (/obj/effect/turf_decal/siding/wood{dir = 8},/obj/effect/turf_decal/siding/wood/corner{dir = 1},/obj/effect/turf_decal/siding/wood/corner{dir = 8},/turf/open/floor/wood,/area/city/backstreets_room)
-"Ku" = (/obj/structure/bed{name = "bunk beds"; density = 1; layer = 2.95; pixel_y = 15; can_buckle = 0},/obj/structure/bed{name = "bunk beds"; density = 1; can_buckle = 0},/obj/structure/ladder{layer = 2; mouse_opacity = 0; pixel_x = 4; pixel_y = 11},/obj/item/bedsheet/grey{name = "kurokumo enforcer's bedsheet"; layer = 2.94; anchored = 1},/obj/item/bedsheet/grey{name = "kurokumo enforcer's bedsheet"; layer = 2.96; pixel_y = 15; anchored = 1},/obj/machinery/light/floor,/turf/open/floor/carpet/black,/area/city/backstreets_room)
-"La" = (/obj/item/kirbyplants{icon_state = "plant-04"; pixel_x = -7; anchored = 1},/obj/structure/table/wood{density = 0; mouse_opacity = 0; alpha = 0},/turf/open/floor/wood,/area/city/backstreets_room)
-"Ud" = (/obj/machinery/door/window/survival_pod,/obj/machinery/light{dir = 4; pixel_x = 9; pixel_y = 4},/turf/open/floor/plasteel/freezer,/area/city/backstreets_room)
-"US" = (/obj/structure/chair/office{dir = 4},/turf/open/floor/wood,/area/city/backstreets_room)
-"Yy" = (/obj/structure/window/reinforced/tinted,/obj/structure/window/reinforced/tinted{dir = 8},/obj/structure/bedsheetbin,/obj/structure/table/reinforced,/obj/machinery/light/floor,/turf/open/floor/plasteel/freezer,/area/city/backstreets_room)
-"Zp" = (/obj/machinery/vending/boozeomat/all_access{density = 0; pixel_x = 26},/turf/open/floor/wood{color = "#ccc8c0"},/area/city/backstreets_room)
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"ai" = (
+/obj/effect/turf_decal/siding/wood{
+	dir = 8;
+	color = "#2e1f0e"
+	},
+/obj/effect/turf_decal/siding/wood/corner{
+	dir = 8;
+	color = "#331800"
+	},
+/obj/effect/turf_decal/siding/wood/corner{
+	dir = 1;
+	color = "#331800"
+	},
+/obj/structure/bookcase/random{
+	density = 0;
+	pixel_y = 32
+	},
+/obj/machinery/light/floor,
+/turf/open/floor/wood{
+	color = "#ccc8c0"
+	},
+/area/city/backstreets_room)
+"cm" = (
+/obj/effect/turf_decal/siding/wood{
+	dir = 1;
+	color = "#694720"
+	},
+/obj/effect/turf_decal/siding/wood/corner{
+	dir = 1
+	},
+/obj/effect/turf_decal/siding/wood/corner{
+	dir = 4
+	},
+/turf/open/floor/wood,
+/area/city/backstreets_room)
+"cK" = (
+/obj/structure/bed{
+	name = "bunk beds";
+	density = 1;
+	can_buckle = 0
+	},
+/obj/structure/bed{
+	name = "bunk beds";
+	density = 1;
+	layer = 2.95;
+	pixel_y = 15;
+	can_buckle = 0
+	},
+/obj/structure/ladder{
+	layer = 2;
+	mouse_opacity = 0;
+	pixel_x = 4;
+	pixel_y = 11
+	},
+/obj/item/bedsheet/grey{
+	name = "kurokumo enforcer's bedsheet";
+	layer = 2.96;
+	pixel_y = 15;
+	anchored = 1
+	},
+/obj/item/bedsheet/grey{
+	name = "kurokumo enforcer's bedsheet";
+	layer = 2.94;
+	anchored = 1
+	},
+/obj/machinery/light/floor,
+/turf/open/floor/carpet/black,
+/area/city/backstreets_room)
+"cW" = (
+/obj/effect/turf_decal/siding/wood{
+	dir = 8
+	},
+/obj/effect/turf_decal/siding/wood/corner{
+	dir = 8
+	},
+/obj/effect/turf_decal/siding/wood/corner{
+	dir = 1
+	},
+/obj/structure/chair/comfy/black{
+	dir = 4;
+	pixel_x = 5;
+	pixel_y = 4
+	},
+/turf/open/floor/carpet/purple,
+/area/city/backstreets_room)
+"ek" = (
+/obj/effect/turf_decal/siding/wood{
+	color = "#2e1f0e"
+	},
+/obj/effect/turf_decal/siding/wood/corner{
+	color = "#331800"
+	},
+/turf/open/floor/wood{
+	color = "#ccc8c0"
+	},
+/area/city/backstreets_room)
+"en" = (
+/obj/item/kirbyplants{
+	icon_state = "plant-04";
+	pixel_x = -7;
+	anchored = 1
+	},
+/obj/structure/table/wood{
+	density = 0;
+	mouse_opacity = 0;
+	alpha = 0
+	},
+/turf/open/floor/wood,
+/area/city/backstreets_room)
+"eC" = (
+/obj/machinery/vending/boozeomat/all_access{
+	density = 0;
+	pixel_x = 26
+	},
+/obj/machinery/light/floor,
+/turf/open/floor/wood{
+	color = "#ccc8c0"
+	},
+/area/city/backstreets_room)
+"fh" = (
+/obj/effect/turf_decal/siding/wood{
+	dir = 8
+	},
+/obj/effect/turf_decal/siding/wood/corner{
+	dir = 1
+	},
+/obj/effect/turf_decal/siding/wood/corner{
+	dir = 8
+	},
+/turf/open/floor/wood,
+/area/city/backstreets_room)
+"fR" = (
+/obj/effect/turf_decal/siding/wood{
+	dir = 4;
+	color = "#2e1f0e"
+	},
+/obj/effect/turf_decal/siding/wood/corner{
+	color = "#331800"
+	},
+/obj/effect/turf_decal/siding/wood/corner{
+	dir = 4;
+	color = "#331800"
+	},
+/obj/structure/chair/sofa/corp/left{
+	name = "stolen corporate sofa";
+	desc = "Soft and cushy. Just liked the poor feather who couldnt pay his protection fee."
+	},
+/obj/structure/filingcabinet{
+	density = 0;
+	pixel_x = 10;
+	pixel_y = 28;
+	resistance_flags = 115
+	},
+/obj/structure/filingcabinet{
+	density = 0;
+	pixel_y = 28;
+	resistance_flags = 115
+	},
+/obj/structure/filingcabinet{
+	density = 0;
+	pixel_x = -11;
+	pixel_y = 28;
+	resistance_flags = 115
+	},
+/turf/open/floor/wood{
+	color = "#ccc8c0"
+	},
+/area/city/backstreets_room)
+"ha" = (
+/obj/structure/toilet{
+	dir = 8;
+	pixel_y = 2
+	},
+/obj/structure/mirror{
+	pixel_y = 26
+	},
+/obj/structure/sink/greyscale{
+	pixel_y = 16
+	},
+/turf/open/floor/plasteel/freezer,
+/area/city/backstreets_room)
+"hF" = (
+/obj/machinery/door/window/survival_pod,
+/obj/machinery/light{
+	dir = 4;
+	pixel_x = 9;
+	pixel_y = 4
+	},
+/turf/open/floor/plasteel/freezer,
+/area/city/backstreets_room)
+"iT" = (
+/obj/effect/turf_decal/siding/wood{
+	dir = 1;
+	color = "#694720"
+	},
+/obj/effect/turf_decal/siding/wood/corner{
+	dir = 4
+	},
+/turf/open/floor/carpet/purple,
+/area/city/backstreets_room)
+"kE" = (
+/obj/effect/turf_decal/siding/wood{
+	dir = 7
+	},
+/obj/effect/turf_decal/siding/wood/corner,
+/obj/effect/turf_decal/siding/wood/corner{
+	dir = 8
+	},
+/obj/machinery/light/floor,
+/turf/open/floor/carpet/purple,
+/area/city/backstreets_room)
+"mh" = (
+/obj/structure/bookcase/random{
+	density = 0;
+	pixel_y = 32
+	},
+/obj/structure/bed/pod,
+/obj/item/bedsheet/cult,
+/obj/structure/window/reinforced/tinted{
+	dir = 4
+	},
+/turf/open/floor/carpet/royalblack,
+/area/city/backstreets_room)
+"ne" = (
+/turf/open/floor/wood,
+/area/city/backstreets_room)
+"nC" = (
+/obj/structure/closet/cabinet{
+	anchored = 1
+	},
+/obj/item/clothing/suit/armor/ego_gear/city/DeadRabbit,
+/obj/item/clothing/suit/armor/ego_gear/city/DeadRabbit,
+/obj/item/ego_weapon/city/DRabbitbat,
+/obj/item/ego_weapon/city/DRabbitbat,
+/obj/item/ego_weapon/city/DRabbitbat,
+/obj/item/clothing/suit/armor/ego_gear/city/DeadRabbit,
+/turf/open/floor/carpet/black,
+/area/city/backstreets_room)
+"ox" = (
+/obj/effect/turf_decal/siding/wood{
+	color = "#2e1f0e"
+	},
+/obj/effect/turf_decal/siding/wood/corner{
+	dir = 8;
+	color = "#331800"
+	},
+/turf/open/floor/wood{
+	color = "#ccc8c0"
+	},
+/area/city/backstreets_room)
+"qk" = (
+/obj/structure/window/reinforced/tinted{
+	dir = 4
+	},
+/obj/item/shears,
+/obj/structure/closet/cabinet{
+	anchored = 1
+	},
+/obj/machinery/light/floor,
+/obj/item/storage/firstaid/regular,
+/obj/item/storage/firstaid/revival,
+/obj/item/clothing/suit/armor/ego_gear/city/DeadRabbitBoss,
+/obj/item/ego_weapon/city/DRabbitBossBat,
+/obj/item/jammer,
+/turf/open/floor/carpet/royalblack,
+/area/city/backstreets_room)
+"rC" = (
+/obj/structure/window/paperframe{
+	resistance_flags = 115;
+	CanAtmosPass = 0
+	},
+/turf/open/floor/wood{
+	color = "#ccc8c0"
+	},
+/area/city/backstreets_room)
+"si" = (
+/obj/structure/sign/barsign{
+	pixel_y = 32;
+	req_access = null
+	},
+/obj/machinery/chem_dispenser/drinks,
+/obj/structure/table/wood/fancy/royalblue,
+/turf/open/floor/wood{
+	color = "#ccc8c0"
+	},
+/area/city/backstreets_room)
+"sl" = (
+/obj/structure/filingcabinet{
+	name = "debtor records filing cabinet";
+	density = 0;
+	layer = 3.3;
+	pixel_x = 16
+	},
+/obj/structure/chair/comfy{
+	dir = 8;
+	pixel_x = -4;
+	pixel_y = 4;
+	can_buckle = 0
+	},
+/turf/open/floor/carpet/red,
+/area/city/backstreets_room)
+"sv" = (
+/obj/structure/chair/comfy/black{
+	dir = 4;
+	pixel_x = 5;
+	pixel_y = 4
+	},
+/turf/open/floor/carpet/purple,
+/area/city/backstreets_room)
+"tZ" = (
+/turf/open/floor/wood{
+	color = "#ccc8c0"
+	},
+/area/city/backstreets_room)
+"uB" = (
+/obj/structure/table/wood,
+/obj/structure/railing{
+	dir = 8
+	},
+/turf/open/floor/carpet/red,
+/area/city/backstreets_room)
+"uI" = (
+/obj/structure/mineral_door/wood,
+/turf/open/floor/carpet/red,
+/area/city/backstreets_room)
+"vC" = (
+/obj/structure/table/wood{
+	density = 0;
+	mouse_opacity = 0;
+	alpha = 0
+	},
+/obj/item/kirbyplants{
+	icon_state = "plant-04";
+	pixel_y = 18;
+	anchored = 1
+	},
+/obj/machinery/light/floor,
+/turf/open/floor/wood,
+/area/city/backstreets_room)
+"ws" = (
+/obj/structure/table/wood/poker,
+/obj/item/reagent_containers/food/drinks/drinkingglass/shotglass{
+	pixel_x = -3;
+	pixel_y = 4
+	},
+/obj/item/reagent_containers/food/drinks/beer,
+/turf/open/floor/wood{
+	color = "#ccc8c0"
+	},
+/area/city/backstreets_room)
+"zy" = (
+/obj/structure/closet/cabinet{
+	anchored = 1
+	},
+/turf/open/floor/carpet/black,
+/area/city/backstreets_room)
+"Ao" = (
+/obj/effect/turf_decal/siding/wood{
+	dir = 4;
+	color = "#2e1f0e"
+	},
+/obj/effect/turf_decal/siding/wood/corner{
+	dir = 4;
+	color = "#331800"
+	},
+/obj/effect/turf_decal/siding/wood/corner{
+	color = "#331800"
+	},
+/turf/open/floor/carpet/red,
+/area/city/backstreets_room)
+"Bc" = (
+/obj/structure/railing{
+	dir = 4
+	},
+/obj/structure/chair/comfy/black{
+	dir = 8;
+	pixel_x = -6;
+	pixel_y = 4
+	},
+/turf/open/floor/carpet/purple,
+/area/city/backstreets_room)
+"Bj" = (
+/obj/item/kirbyplants{
+	icon_state = "plant-04";
+	pixel_x = -9;
+	pixel_y = 19;
+	anchored = 1
+	},
+/obj/structure/table/wood{
+	density = 0;
+	mouse_opacity = 0;
+	alpha = 0
+	},
+/obj/effect/turf_decal/siding/wood{
+	color = "#694720"
+	},
+/obj/effect/turf_decal/siding/wood/corner{
+	dir = 5
+	},
+/obj/effect/turf_decal/siding/wood/corner{
+	dir = 8
+	},
+/turf/open/floor/wood,
+/area/city/backstreets_room)
+"Bt" = (
+/obj/structure/window/reinforced/tinted{
+	dir = 1
+	},
+/obj/structure/table/wood{
+	density = 0;
+	mouse_opacity = 0;
+	alpha = 0
+	},
+/turf/open/floor/wood{
+	color = "#ccc8c0"
+	},
+/area/city/backstreets_room)
+"Bw" = (
+/obj/machinery/door/window/survival_pod{
+	dir = 1
+	},
+/obj/machinery/light/floor,
+/turf/open/floor/wood{
+	color = "#ccc8c0"
+	},
+/area/city/backstreets_room)
+"Bz" = (
+/obj/machinery/light/floor,
+/turf/open/floor/wood,
+/area/city/backstreets_room)
+"BG" = (
+/obj/structure/window/reinforced/tinted{
+	dir = 8
+	},
+/obj/machinery/shower{
+	pixel_y = 17
+	},
+/obj/structure/curtain/cloth,
+/turf/open/floor/noslip,
+/area/city/backstreets_room)
+"Cu" = (
+/obj/structure/bed,
+/obj/structure/bed{
+	name = "bunk beds";
+	density = 1;
+	layer = 2.95;
+	pixel_y = 15;
+	can_buckle = 0
+	},
+/obj/structure/ladder{
+	layer = 2;
+	mouse_opacity = 0;
+	pixel_x = 4;
+	pixel_y = 11
+	},
+/obj/item/bedsheet/grey{
+	name = "kurokumo enforcer's bedsheet";
+	layer = 2.96;
+	pixel_y = 15;
+	anchored = 1
+	},
+/obj/item/bedsheet/grey{
+	name = "kurokumo enforcer's bedsheet";
+	layer = 2.94;
+	anchored = 1
+	},
+/obj/machinery/light/floor,
+/turf/open/floor/carpet/black,
+/area/city/backstreets_room)
+"Ew" = (
+/obj/structure/bed{
+	name = "bunk beds";
+	density = 1;
+	can_buckle = 0
+	},
+/obj/structure/bed{
+	name = "bunk beds";
+	density = 1;
+	layer = 2.95;
+	pixel_y = 15;
+	can_buckle = 0
+	},
+/obj/structure/ladder{
+	layer = 2.97;
+	mouse_opacity = 0;
+	pixel_x = 4;
+	pixel_y = -5
+	},
+/obj/item/bedsheet/grey{
+	name = "kurokumo enforcer's bedsheet";
+	layer = 2.96;
+	pixel_y = 15;
+	anchored = 1
+	},
+/obj/item/bedsheet/grey{
+	name = "kurokumo enforcer's bedsheet";
+	layer = 2.94;
+	anchored = 1
+	},
+/obj/machinery/light{
+	dir = 1;
+	pixel_y = 19
+	},
+/obj/machinery/light/floor,
+/turf/open/floor/carpet/black,
+/area/city/backstreets_room)
+"EW" = (
+/obj/structure/table/wood,
+/obj/item/paper_bin{
+	pixel_y = 3
+	},
+/obj/structure/railing{
+	dir = 8
+	},
+/obj/item/pen/fountain/captain{
+	name = "thumb issued fountain pen";
+	pixel_y = 5
+	},
+/turf/open/floor/carpet/red,
+/area/city/backstreets_room)
+"EX" = (
+/obj/structure/table/wood/poker,
+/obj/item/reagent_containers/food/drinks/drinkingglass/shotglass{
+	pixel_x = -4;
+	pixel_y = 1
+	},
+/obj/item/reagent_containers/food/drinks/beer,
+/turf/open/floor/wood{
+	color = "#ccc8c0"
+	},
+/area/city/backstreets_room)
+"EY" = (
+/obj/item/kirbyplants{
+	icon_state = "plant-04";
+	pixel_x = -7;
+	pixel_y = 18;
+	anchored = 1
+	},
+/obj/structure/table/wood{
+	density = 0;
+	mouse_opacity = 0;
+	alpha = 0
+	},
+/turf/open/floor/wood,
+/area/city/backstreets_room)
+"Fe" = (
+/obj/machinery/chem_dispenser/drinks/beer,
+/obj/structure/table/wood/fancy,
+/obj/machinery/light{
+	dir = 4;
+	pixel_x = 9;
+	pixel_y = 4
+	},
+/turf/open/floor/wood{
+	color = "#ccc8c0"
+	},
+/area/city/backstreets_room)
+"FR" = (
+/obj/effect/turf_decal/siding/wood{
+	dir = 1;
+	color = "#694720"
+	},
+/obj/effect/turf_decal/siding/wood/corner{
+	dir = 1
+	},
+/turf/open/floor/carpet/purple,
+/area/city/backstreets_room)
+"HB" = (
+/obj/structure/chair/comfy/black{
+	dir = 1;
+	pixel_y = 7
+	},
+/turf/open/floor/carpet/purple,
+/area/city/backstreets_room)
+"HN" = (
+/obj/structure/railing{
+	dir = 4
+	},
+/obj/effect/turf_decal/siding/wood{
+	dir = 7
+	},
+/obj/effect/turf_decal/siding/wood/corner{
+	dir = 8
+	},
+/obj/effect/turf_decal/siding/wood/corner,
+/obj/machinery/light/floor,
+/turf/open/floor/carpet/purple,
+/area/city/backstreets_room)
+"Ib" = (
+/obj/structure/bed{
+	name = "bunk beds";
+	density = 1;
+	layer = 2.95;
+	pixel_y = 15;
+	can_buckle = 0
+	},
+/obj/structure/bed{
+	name = "bunk beds";
+	density = 1;
+	can_buckle = 0
+	},
+/obj/structure/ladder{
+	layer = 2;
+	mouse_opacity = 0;
+	pixel_x = 4;
+	pixel_y = 11
+	},
+/obj/item/bedsheet/grey{
+	name = "kurokumo enforcer's bedsheet";
+	layer = 2.96;
+	pixel_y = 15;
+	anchored = 1
+	},
+/obj/item/bedsheet/grey{
+	name = "kurokumo enforcer's bedsheet";
+	layer = 2.94;
+	anchored = 1
+	},
+/obj/machinery/light/floor,
+/turf/open/floor/carpet/black,
+/area/city/backstreets_room)
+"IY" = (
+/obj/structure/railing{
+	dir = 4
+	},
+/obj/effect/turf_decal/siding/wood{
+	dir = 1;
+	color = "#694720"
+	},
+/obj/effect/turf_decal/siding/wood/corner{
+	dir = 4
+	},
+/obj/machinery/light/floor,
+/turf/open/floor/carpet/purple,
+/area/city/backstreets_room)
+"Ja" = (
+/obj/structure/chair/sofa/corp/left{
+	mouse_opacity = 0;
+	pixel_x = 5
+	},
+/obj/structure/chair/sofa/corp/right{
+	name = "stolen corporate sofa";
+	desc = "Soft and cushy. Just liked the poor feather who couldnt pay his protection fee.";
+	pixel_x = -5
+	},
+/obj/structure/plaque{
+	pixel_y = 32
+	},
+/turf/open/floor/carpet/purple,
+/area/city/backstreets_room)
+"Kb" = (
+/obj/structure/chair/office{
+	dir = 4
+	},
+/turf/open/floor/wood,
+/area/city/backstreets_room)
+"Kn" = (
+/obj/machinery/vending/boozeomat/all_access{
+	density = 0;
+	pixel_x = 26
+	},
+/obj/effect/turf_decal/siding/wood{
+	color = "#2e1f0e"
+	},
+/obj/effect/turf_decal/siding/wood/corner{
+	dir = 8;
+	color = "#331800"
+	},
+/obj/effect/turf_decal/siding/wood/corner{
+	color = "#331800"
+	},
+/turf/open/floor/wood{
+	color = "#ccc8c0"
+	},
+/area/city/backstreets_room)
+"KF" = (
+/turf/open/floor/wood{
+	color = "#ccc8c0"
+	},
+/turf/closed/wall/mineral/wood,
+/area/city/backstreets_room)
+"Ll" = (
+/obj/structure/table/wood/fancy/black,
+/obj/effect/spawner/lootdrop/three_course_meal,
+/obj/machinery/light/floor,
+/turf/open/floor/carpet/purple,
+/area/city/backstreets_room)
+"MX" = (
+/obj/structure/table/wood,
+/obj/machinery/light/floor,
+/obj/structure/railing,
+/obj/item/pen/charcoal,
+/turf/open/floor/wood{
+	color = "#ccc8c0"
+	},
+/area/city/backstreets_room)
+"Nh" = (
+/obj/structure/table/wood{
+	density = 0;
+	mouse_opacity = 0;
+	alpha = 0
+	},
+/turf/open/floor/wood,
+/area/city/backstreets_room)
+"NL" = (
+/obj/effect/turf_decal/siding/wood{
+	dir = 1;
+	color = "#694720"
+	},
+/obj/effect/turf_decal/siding/wood/corner{
+	dir = 1
+	},
+/obj/machinery/light/floor,
+/turf/open/floor/carpet/purple,
+/area/city/backstreets_room)
+"NZ" = (
+/obj/structure/table/wood/poker,
+/obj/item/reagent_containers/food/drinks/drinkingglass/shotglass{
+	pixel_x = 4;
+	pixel_y = 1
+	},
+/obj/machinery/light/floor,
+/obj/item/reagent_containers/food/drinks/beer,
+/turf/open/floor/wood{
+	color = "#ccc8c0"
+	},
+/area/city/backstreets_room)
+"Oj" = (
+/obj/structure/window/reinforced/tinted,
+/obj/structure/window/reinforced/tinted{
+	dir = 8
+	},
+/obj/structure/bedsheetbin,
+/obj/structure/table/reinforced,
+/obj/machinery/light/floor,
+/turf/open/floor/plasteel/freezer,
+/area/city/backstreets_room)
+"Pc" = (
+/obj/structure/filingcabinet{
+	name = "debtor records filing cabinet";
+	density = 0;
+	layer = 3.3;
+	pixel_x = 16
+	},
+/obj/effect/turf_decal/siding/wood{
+	dir = 1;
+	color = "#2e1f0e"
+	},
+/obj/effect/turf_decal/siding/wood/corner{
+	dir = 1;
+	color = "#331800"
+	},
+/obj/effect/turf_decal/siding/wood/corner{
+	dir = 4;
+	color = "#331800"
+	},
+/obj/machinery/light/floor,
+/turf/open/floor/carpet/red,
+/area/city/backstreets_room)
+"PG" = (
+/obj/structure/table/wood,
+/obj/item/kirbyplants{
+	icon_state = "plant-04";
+	pixel_y = 13;
+	anchored = 1
+	},
+/obj/structure/railing{
+	dir = 8
+	},
+/turf/open/floor/carpet/red,
+/area/city/backstreets_room)
+"QA" = (
+/obj/structure/table/wood,
+/obj/machinery/light/floor,
+/obj/structure/railing,
+/obj/item/paper_bin{
+	pixel_x = -6;
+	pixel_y = 3
+	},
+/obj/item/pen/fountain/captain{
+	name = "thumb issued fountain pen";
+	pixel_x = -6;
+	pixel_y = 5
+	},
+/turf/open/floor/wood{
+	color = "#ccc8c0"
+	},
+/area/city/backstreets_room)
+"Rq" = (
+/obj/machinery/vending/boozeomat/all_access{
+	density = 0;
+	pixel_x = 26
+	},
+/turf/open/floor/wood{
+	color = "#ccc8c0"
+	},
+/area/city/backstreets_room)
+"RM" = (
+/obj/structure/filingcabinet{
+	name = "debtor records filing cabinet";
+	density = 0;
+	layer = 3.3;
+	pixel_x = 16
+	},
+/obj/effect/turf_decal/siding/wood{
+	dir = 8;
+	color = "#2e1f0e"
+	},
+/obj/effect/turf_decal/siding/wood/corner{
+	dir = 8;
+	color = "#331800"
+	},
+/obj/effect/turf_decal/siding/wood/corner{
+	dir = 1;
+	color = "#331800"
+	},
+/turf/open/floor/carpet/red,
+/area/city/backstreets_room)
+"Sc" = (
+/obj/structure/mineral_door/wood,
+/turf/open/floor/wood{
+	color = "#ccc8c0"
+	},
+/area/city/backstreets_room)
+"Ty" = (
+/obj/structure/bed{
+	name = "bunk beds";
+	density = 1;
+	layer = 2.95;
+	pixel_y = 15;
+	can_buckle = 0
+	},
+/obj/structure/bed{
+	name = "bunk beds";
+	density = 1;
+	can_buckle = 0
+	},
+/obj/structure/ladder{
+	layer = 2.97;
+	mouse_opacity = 0;
+	pixel_x = 4;
+	pixel_y = -5
+	},
+/obj/item/bedsheet/grey{
+	name = "kurokumo enforcer's bedsheet";
+	layer = 2.94;
+	anchored = 1
+	},
+/obj/item/bedsheet/grey{
+	name = "kurokumo enforcer's bedsheet";
+	layer = 2.96;
+	pixel_y = 15;
+	anchored = 1
+	},
+/obj/machinery/light{
+	dir = 1;
+	pixel_y = 19
+	},
+/obj/machinery/light/floor,
+/turf/open/floor/carpet/black,
+/area/city/backstreets_room)
+"Ug" = (
+/obj/structure/filingcabinet{
+	name = "debtor records filing cabinet";
+	density = 0;
+	layer = 3.3;
+	pixel_x = 16
+	},
+/obj/effect/turf_decal/siding/wood{
+	color = "#2e1f0e"
+	},
+/obj/effect/turf_decal/siding/wood/corner{
+	dir = 8;
+	color = "#331800"
+	},
+/obj/effect/turf_decal/siding/wood/corner{
+	color = "#331800"
+	},
+/obj/machinery/light/floor,
+/turf/open/floor/carpet/red,
+/area/city/backstreets_room)
+"WQ" = (
+/obj/structure/bed{
+	name = "bunk beds";
+	density = 1;
+	layer = 2.95;
+	pixel_y = 15;
+	can_buckle = 0
+	},
+/obj/structure/bed{
+	name = "bunk beds";
+	density = 1;
+	can_buckle = 0
+	},
+/obj/structure/ladder{
+	layer = 2;
+	mouse_opacity = 0;
+	pixel_x = 4;
+	pixel_y = 11
+	},
+/obj/item/bedsheet/grey{
+	name = "kurokumo enforcer's bedsheet";
+	layer = 2.94;
+	anchored = 1
+	},
+/obj/item/bedsheet/grey{
+	name = "kurokumo enforcer's bedsheet";
+	layer = 2.96;
+	pixel_y = 15;
+	anchored = 1
+	},
+/obj/machinery/light/floor,
+/turf/open/floor/carpet/black,
+/area/city/backstreets_room)
+"WW" = (
+/obj/structure/table/wood/fancy/royalblack,
+/turf/open/floor/carpet/purple,
+/area/city/backstreets_room)
+"Yl" = (
+/obj/structure/mineral_door/wood,
+/turf/open/floor/carpet/purple,
+/area/city/backstreets_room)
+"Ze" = (
+/obj/structure/chair/office{
+	dir = 1;
+	anchored = 1
+	},
+/turf/open/floor/wood,
+/area/city/backstreets_room)
+"Zq" = (
+/obj/structure/chair/sofa/corp/right{
+	name = "stolen corporate sofa";
+	desc = "Soft and cushy. Just liked the poor feather who couldnt pay his protection fee."
+	},
+/obj/structure/filingcabinet{
+	density = 0;
+	pixel_x = -11;
+	pixel_y = 28;
+	resistance_flags = 115
+	},
+/obj/structure/filingcabinet{
+	density = 0;
+	pixel_y = 28;
+	resistance_flags = 115
+	},
+/obj/structure/filingcabinet{
+	density = 0;
+	pixel_x = 10;
+	pixel_y = 28;
+	resistance_flags = 115
+	},
+/obj/item/clothing/suit/straight_jacket,
+/obj/item/restraints/handcuffs{
+	pixel_x = 7
+	},
+/obj/item/restraints/handcuffs{
+	pixel_x = 7
+	},
+/obj/item/restraints/handcuffs{
+	pixel_x = 7
+	},
+/turf/open/floor/wood{
+	color = "#ccc8c0"
+	},
+/area/city/backstreets_room)
+"ZC" = (
+/obj/effect/turf_decal/siding/wood{
+	dir = 4
+	},
+/obj/effect/turf_decal/siding/wood/corner,
+/obj/effect/turf_decal/siding/wood/corner{
+	dir = 4
+	},
+/turf/open/floor/wood,
+/area/city/backstreets_room)
+"ZD" = (
+/obj/structure/table/wood/fancy/royalblack,
+/obj/machinery/light/floor,
+/obj/item/toy/plush/heathcliff,
+/turf/open/floor/carpet/purple,
+/area/city/backstreets_room)
 
 (1,1,1) = {"
-hJaauqaGnraTadtAdiAteh
-LamayRaGFpabaGAEacYyUd
-aGaGadaGzTzTaGAVtdaenl
-maafagaGadadbiadadbibi
-USahaiaGajakalamanmjgh
-GwaoapaqarasatasauaHZp
-tYavawaGaxasayasauaIFr
-azaGaAaGaBaCaCaCaDaJwf
-aGaGadaGadaGaGaGadaGad
-xzmaBoaGBomaaEaGBobaBo
-KuaFhLaGApaFAeaGApaFAe
+Ew
+en
+KF
+Bz
+Kb
+fh
+ZC
+ne
+KF
+EY
+WQ
+"}
+(2,1,1) = {"
+nC
+Bz
+KF
+PG
+uB
+EW
+uI
+KF
+KF
+Bz
+zy
+"}
+(3,1,1) = {"
+Ty
+Bj
+Sc
+Pc
+sl
+Ao
+RM
+Ug
+Sc
+cm
+Cu
+"}
+(4,1,1) = {"
+KF
+KF
+KF
+KF
+KF
+Yl
+KF
+KF
+KF
+KF
+KF
+"}
+(5,1,1) = {"
+Zq
+QA
+Ze
+Sc
+NL
+cW
+sv
+kE
+Sc
+cm
+Ib
+"}
+(6,1,1) = {"
+fR
+MX
+Ze
+Sc
+iT
+WW
+WW
+HB
+KF
+Bz
+zy
+"}
+(7,1,1) = {"
+Sc
+KF
+KF
+rC
+Ja
+Ll
+ZD
+HB
+KF
+Nh
+cK
+"}
+(8,1,1) = {"
+ai
+tZ
+ox
+Sc
+FR
+WW
+WW
+HB
+KF
+KF
+KF
+"}
+(9,1,1) = {"
+mh
+qk
+ek
+Sc
+IY
+Bc
+Bc
+HN
+Sc
+cm
+Ib
+"}
+(10,1,1) = {"
+BG
+Oj
+Bt
+rC
+si
+ws
+NZ
+EX
+KF
+vC
+zy
+"}
+(11,1,1) = {"
+ha
+hF
+Bw
+rC
+Fe
+Rq
+eC
+Kn
+Sc
+cm
+cK
 "}
