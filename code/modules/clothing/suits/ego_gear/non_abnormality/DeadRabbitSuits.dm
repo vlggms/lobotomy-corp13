@@ -40,3 +40,4 @@
 	desc = "A rag helmet worn by boss of Dead Rabbits."
 	worn_icon = 'icons/mob/clothing/ego_gear/DeadRabbits.dmi'
 	icon_state = "RabbitBossHat"
+
