@@ -15,7 +15,8 @@
 	maxHealth = 1000	//Cannot be damaged, this is just for austerity
 	health = 1000
 	rapid_melee = 2
-	move_to_delay = 5
+	move_to_delay = 3
+	patrol_cooldown_time = 2 SECONDS
 	damage_coeff = list(RED_DAMAGE = 0, WHITE_DAMAGE = 0, BLACK_DAMAGE = 0, PALE_DAMAGE = 0)
 	stat_attack = HARD_CRIT
 	attack_verb_continuous = "bites"
@@ -48,6 +49,7 @@
 
 /mob/living/simple_animal/hostile/abnormality/branch12/black_hole/Life()
 	..()
+	goonchem_vortex(get_turf(src), 0, 3)
 	for(var/mob/living/H in range(1, src))
 		if(H.status_flags & GODMODE)
 			continue
