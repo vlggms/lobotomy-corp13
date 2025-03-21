@@ -216,3 +216,4 @@
 		adjustBruteLoss(-2)
 		if(!target)
 			adjustBruteLoss(-6)
+
