@@ -66,3 +66,9 @@
 	description = "A place for the Kurokumo Clan."
 	mappath = "_maps/templates/syndicate_office/kurokumosake.dmm"
 
+/datum/map_template/shelter/DeadRabbit
+	name = "Dead Rabbits Hideout"
+	shelter_id = "Deadrabbit_base"
+	description = "A place for the Dead Rabbits to hide and rest in."
+	mappath = "_maps/templates/syndicate_office/DeadRabbitHideoutfix.dmm"
+
