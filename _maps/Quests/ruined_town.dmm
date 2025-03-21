@@ -7501,8 +7501,8 @@
 /obj/docking_port/stationary{
 	dwidth = 5;
 	height = 5;
-	id = "quest_floor";
-	name = "quest floor";
+	id = "ruined_town_floor";
+	name = "ruined floor";
 	width = 10
 	},
 /turf/open/floor/plating/ashplanet{

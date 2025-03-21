@@ -248,7 +248,6 @@
 		message_admins("<span class='notice'>Investigate the high volume of Ahn being printed by Hana Association. They have currently printed [inflation*1000] Ahn. \
 			Hana is supposed to print as needed, not bank up large sums of ahn.</span>")
 
-
 GLOBAL_LIST_EMPTY(loaded_quest_z_levels)
 
 /obj/structure/maploader
@@ -257,6 +256,7 @@ GLOBAL_LIST_EMPTY(loaded_quest_z_levels)
 	icon = 'icons/obj/chemical.dmi'
 	icon_state = "minidispenser"
 	anchored = TRUE
+	density = TRUE
 	resistance_flags = INDESTRUCTIBLE
 	var/obj/machinery/computer/shuttle/quests_console/linked_console = null
 
@@ -265,24 +265,25 @@ GLOBAL_LIST_EMPTY(loaded_quest_z_levels)
 		var/obj/item/quest_ticket/T = I
 		if (!GLOB.loaded_quest_z_levels.Find(T.map))
 			to_chat(user, span_notice("You insert your ticket into [src]"))
-			say("Locating path to [T.map_name]...")
+			say("Locating path to [T.ticket_name]...")
 			load_new_z_level(T.map, T.map_name)
 			GLOB.loaded_quest_z_levels += T.map
 			if (!linked_console)
 				for(var/obj/machinery/computer/shuttle/quests_console/C in range(src, 5))
 					linked_console = C
 			linked_console.possible_destinations += ";[T.map_name]"
-			say("[T.map_name] has been located.")
+			say("[T.ticket_name] has been located, The bus has been updated with it's coordinates.")
 
 /obj/item/quest_ticket
-	name = "ruined nest ticket"
+	name = "'Dilapidated Town' ticket"
 	desc = "A small sheet of paper with a barcode. Could be given to a ticket reader to access to a new area."
 	icon = 'icons/obj/bureaucracy.dmi'
 	icon_state = "ticket"
 	inhand_icon_state = "ticket"
 	worn_icon_state = "ticket"
-	var/map = "_maps/Quests/test1.dmm"
-	var/map_name = "quest_floor"
+	var/map = "_maps/Quests/ruined_town.dmm"
+	var/map_name = "ruined_town_floor"
+	var/ticket_name = "Dilapidated Town"
 
 /obj/machinery/computer/shuttle/quests_console
 
