@@ -32,6 +32,9 @@
 	name = "Kurokumo Capsule"
 	template_id = "kurokumo_base"
 
+/obj/item/structurecapsule/syndicate/DeadRabbit
+	name = "Dead Rabbit Capsule"
+	template_id = "Deadrabbit_base"
 
 
 
