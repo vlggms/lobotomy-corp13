@@ -308,6 +308,7 @@
 /obj/effect/turf_decal/tile/neutral{
 	dir = 8
 	},
+/obj/effect/turf_decal/sand,
 /turf/open/floor/plating/rust,
 /area/city/fixers)
 "cD" = (
@@ -319,7 +320,6 @@
 /obj/effect/turf_decal/trimline/red/filled/warning{
 	dir = 9
 	},
-/obj/effect/turf_decal/sand/plating,
 /turf/open/floor/plating/ashplanet{
 	name = "asphalt";
 	density = 1
@@ -393,6 +393,7 @@
 /obj/effect/turf_decal/siding/thinplating{
 	dir = 8
 	},
+/obj/effect/turf_decal/sand,
 /turf/open/floor/plating/rust,
 /area/city/fixers)
 "cU" = (
@@ -662,7 +663,7 @@
 /obj/effect/decal/cleanable/glitter/pink,
 /obj/structure/meatfloor,
 /obj/structure/meatfloor,
-/turf/open/indestructible/necropolis/air,
+/turf/open/indestructible/necropolis,
 /area/city)
 "eC" = (
 /obj/structure/fence/door,
@@ -848,6 +849,7 @@
 	dir = 4
 	},
 /obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/turf_decal/sand/plating,
 /turf/open/floor/plating/rust,
 /area/city/fixers)
 "fv" = (
@@ -993,7 +995,7 @@
 	name = "prosthetics clinic shutters";
 	pixel_y = 26
 	},
-/turf/open/indestructible/necropolis/air,
+/turf/open/indestructible/necropolis,
 /area/city)
 "gS" = (
 /obj/structure/toilet{
@@ -1143,12 +1145,12 @@
 /turf/open/floor/wood,
 /area/city/house)
 "hY" = (
-/mob/living/simple_animal/hostile/mutant_clown{
-	name = "'Sister'";
-	icon_state = "pie spewer"
+/obj/structure/sigsystem/projectile_launcher{
+	name = "shotgun trap";
+	signaller_code = 99
 	},
-/turf/open/indestructible/necropolis/air,
-/area/city)
+/turf/closed/indestructible/rust,
+/area/city/fixers)
 "hZ" = (
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/effect/turf_decal/sand,
@@ -1157,6 +1159,7 @@
 "ia" = (
 /obj/structure/table_frame/wood,
 /obj/structure/railing,
+/obj/item/stack/sheet/mineral/wood,
 /turf/open/floor/wood{
 	icon_state = "wood-broken6"
 	},
@@ -1242,7 +1245,7 @@
 	dir = 1
 	},
 /obj/structure/closet/crate/freezer/surplus_limbs,
-/turf/open/indestructible/necropolis/air,
+/turf/open/indestructible/necropolis,
 /area/city)
 "iB" = (
 /obj/structure/bed/pod,
@@ -1295,7 +1298,6 @@
 	dir = 1;
 	pixel_y = -5
 	},
-/obj/effect/turf_decal/sand/plating,
 /turf/open/floor/plating/ashplanet{
 	name = "asphalt";
 	density = 1
@@ -1384,6 +1386,7 @@
 	},
 /obj/effect/turf_decal/siding/thinplating,
 /obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/turf_decal/sand/plating,
 /turf/open/floor/plating/rust,
 /area/city/fixers)
 "jy" = (
@@ -1509,7 +1512,6 @@
 /obj/effect/turf_decal/trimline/red/filled/warning{
 	dir = 4
 	},
-/obj/effect/turf_decal/sand/plating,
 /turf/open/floor/plating/ashplanet{
 	name = "asphalt";
 	density = 1
@@ -1748,6 +1750,9 @@
 "mr" = (
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/effect/decal/cleanable/garbage,
+/mob/living/simple_animal/hostile/humanoid/rat/hammer/scavenger{
+	dir = 1
+	},
 /turf/open/floor/plating/rust,
 /area/city)
 "ms" = (
@@ -1782,7 +1787,7 @@
 /obj/structure/fence/door/opened{
 	dir = 4
 	},
-/turf/open/indestructible/necropolis/air,
+/turf/open/indestructible/necropolis,
 /area/city)
 "mH" = (
 /obj/effect/turf_decal/trimline/red/filled/line{
@@ -1803,7 +1808,7 @@
 	req_access_txt = "9";
 	color = "#875300"
 	},
-/turf/open/indestructible/necropolis/air,
+/turf/open/indestructible/necropolis,
 /area/city)
 "mO" = (
 /obj/structure/filingcabinet/medical,
@@ -1818,10 +1823,9 @@
 /turf/open/floor/wood,
 /area/city)
 "mQ" = (
-/obj/structure/meatfloor,
-/obj/structure/meatfloor,
-/turf/open/indestructible/necropolis/air,
-/area/city)
+/obj/structure/flora/ash/garden/arid,
+/turf/open/floor/plating/asteroid,
+/area/city/backstreets_checkpoint)
 "mV" = (
 /obj/structure/table{
 	color = "#875300"
@@ -1843,11 +1847,13 @@
 /turf/open/floor/plating/rust,
 /area/city/shop)
 "mZ" = (
-/obj/machinery/light{
-	dir = 1
+/obj/structure/sigsystem/projectile_launcher{
+	name = "shotgun trap";
+	signaller_code = 99;
+	dir = 8
 	},
-/turf/open/indestructible/necropolis/air,
-/area/city)
+/turf/closed/indestructible/rust,
+/area/city/fixers)
 "na" = (
 /obj/effect/light_emitter{
 	light_power = 4;
@@ -1911,13 +1917,16 @@
 	intact = 0
 	},
 /area/city/house)
+"nr" = (
+/obj/structure/lootcrate/backstreets,
+/obj/structure/lootcrate/backstreets,
+/obj/structure/lootcrate/backstreets,
+/obj/structure/lootcrate/backstreets,
+/turf/open/floor/wood,
+/area/city/fixers)
 "nt" = (
-/mob/living/simple_animal/hostile/mutant_clown/boss{
-	base_pixel_x = -16;
-	pixel_x = -16;
-	name = "'Grandpa?'"
-	},
-/turf/open/indestructible/necropolis/air,
+/mob/living/simple_animal/hostile/mutant_clown/boss,
+/turf/open/indestructible/necropolis,
 /area/city)
 "nx" = (
 /obj/structure/table/wood/bar,
@@ -2014,10 +2023,17 @@
 /obj/structure/window/reinforced/spawner/east{
 	resistance_flags = 115
 	},
+/obj/effect/turf_decal/sand,
 /turf/open/floor/plating/rust,
 /area/city/fixers)
 "on" = (
-/turf/open/indestructible/necropolis/air,
+/mob/living/simple_animal/hostile/mutant_clown{
+	name = "'Mother?'";
+	icon_state = "glutton";
+	base_pixel_x = -16;
+	pixel_x = -16
+	},
+/turf/open/indestructible/necropolis,
 /area/city)
 "op" = (
 /obj/effect/decal/cleanable/dirt/dust,
@@ -2054,12 +2070,12 @@
 /turf/open/floor/plating/rust,
 /area/city/house)
 "os" = (
-/obj/structure/meatfloor,
-/mob/living/simple_animal/hostile/mutant_clown{
-	name = "'Son in Law?'"
+/obj/machinery/door/airlock/grunge{
+	name = "association director's office";
+	req_access_txt = "99"
 	},
-/turf/open/indestructible/necropolis/air,
-/area/city)
+/turf/open/floor/wood,
+/area/city/fixers)
 "oy" = (
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/effect/decal/cleanable/glitter/pink,
@@ -2067,7 +2083,7 @@
 /mob/living/simple_animal/hostile/mutant_clown{
 	name = "'Son'"
 	},
-/turf/open/indestructible/necropolis/air,
+/turf/open/indestructible/necropolis,
 /area/city)
 "oC" = (
 /obj/effect/decal/cleanable/dirt/dust,
@@ -2124,7 +2140,8 @@
 	},
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/barricade/wooden,
-/turf/open/floor/plating,
+/obj/effect/turf_decal/sand/plating,
+/turf/open/floor/plating/rust,
 /area/city)
 "oU" = (
 /obj/machinery/door/airlock/grunge{
@@ -2151,6 +2168,14 @@
 /obj/structure/chair/stool/bar,
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/turf_decal/sand/plating,
+/turf/open/floor/plating/rust,
+/area/city/fixers)
+"pj" = (
+/obj/effect/turf_decal/tile/neutral{
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/neutral,
+/obj/effect/turf_decal/sand,
 /turf/open/floor/plating/rust,
 /area/city/fixers)
 "pl" = (
@@ -2258,6 +2283,10 @@
 /obj/structure/spider/cocoon,
 /turf/open/floor/plating/rust,
 /area/city/house)
+"qi" = (
+/mob/living/simple_animal/mouse/brown,
+/turf/open/indestructible/necropolis,
+/area/city)
 "ql" = (
 /obj/machinery/door/airlock/grunge{
 	name = "association office";
@@ -2505,6 +2534,7 @@
 	department = "Local Association";
 	pixel_y = 30
 	},
+/obj/item/stack/sheet/mineral/wood,
 /turf/open/floor/plating/rust,
 /area/city/fixers)
 "rr" = (
@@ -2612,7 +2642,6 @@
 /area/city)
 "si" = (
 /obj/effect/turf_decal/trimline/red/filled/warning,
-/obj/effect/turf_decal/sand/plating,
 /turf/open/floor/plating/ashplanet{
 	name = "asphalt";
 	density = 1
@@ -3121,7 +3150,6 @@
 /turf/open/floor/plating/asteroid,
 /area/city/backstreets_checkpoint)
 "ve" = (
-/obj/effect/turf_decal/sand/plating,
 /turf/open/floor/plating/ashplanet{
 	name = "asphalt";
 	density = 1
@@ -3192,6 +3220,9 @@
 	},
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/structure/meatfloor,
+/mob/living/simple_animal/hostile/mutant_clown{
+	name = "'Son in Law?'"
+	},
 /turf/open/indestructible/necropolis,
 /area/city/backstreets_room)
 "vF" = (
@@ -3289,9 +3320,13 @@
 /turf/open/floor/wood,
 /area/city/shop)
 "wq" = (
-/obj/effect/spawner/lootdrop/maintenance,
-/turf/open/indestructible/necropolis/air,
-/area/city)
+/obj/item/pressure_plate/autohide{
+	roundstart_signaller_code = 99
+	},
+/turf/open/floor/wood{
+	intact = 0
+	},
+/area/city/fixers)
 "wv" = (
 /obj/structure/chair/sofa/corp/left{
 	dir = 1
@@ -3311,6 +3346,7 @@
 "wB" = (
 /obj/structure/table_frame/wood,
 /obj/structure/railing,
+/obj/item/stack/sheet/mineral/wood,
 /turf/open/floor/wood,
 /area/city/fixers)
 "wE" = (
@@ -3615,6 +3651,23 @@
 /obj/effect/turf_decal/sand/plating,
 /turf/open/floor/plating,
 /area/city/shop)
+"yH" = (
+/obj/structure/closet/crate{
+	color = "#875300"
+	},
+/obj/item/stack/spacecash/c500,
+/obj/item/stack/spacecash/c500,
+/obj/item/stack/spacecash/c500,
+/obj/item/stack/spacecash/c200,
+/obj/item/stack/spacecash/c200,
+/obj/item/stack/spacecash/c200,
+/obj/item/stack/spacecash/c200,
+/obj/item/stack/spacecash/c10,
+/obj/item/stack/spacecash/c10,
+/obj/item/stack/spacecash/c10,
+/obj/item/stack/spacecash/c10,
+/turf/open/floor/wood,
+/area/city/fixers)
 "yK" = (
 /obj/structure/table/reinforced{
 	color = "#875300"
@@ -3718,7 +3771,6 @@
 /obj/effect/turf_decal/trimline/red/filled/warning{
 	dir = 5
 	},
-/obj/effect/turf_decal/sand/plating,
 /turf/open/floor/plating/ashplanet{
 	name = "asphalt";
 	density = 1
@@ -3950,7 +4002,8 @@
 /area/city/shop)
 "Bc" = (
 /obj/machinery/door/airlock/grunge{
-	name = "association equipment"
+	name = "association equipment";
+	req_access_txt = "99"
 	},
 /turf/open/floor/wood,
 /area/city/fixers)
@@ -4128,7 +4181,6 @@
 /obj/effect/turf_decal/trimline/white/filled/line{
 	pixel_y = 10
 	},
-/obj/effect/turf_decal/sand/plating,
 /turf/open/floor/plating/ashplanet{
 	name = "asphalt";
 	density = 1
@@ -4198,6 +4250,10 @@
 /obj/effect/turf_decal/sand/plating,
 /turf/open/floor/plating,
 /area/city/backstreets_checkpoint)
+"CV" = (
+/obj/machinery/door/keycard/stockroom,
+/turf/open/floor/wood,
+/area/city/fixers)
 "De" = (
 /obj/structure/table_frame/wood,
 /obj/effect/turf_decal/sand,
@@ -4516,10 +4572,12 @@
 /turf/open/floor/plating/rust,
 /area/city/shop)
 "Ft" = (
-/obj/effect/decal/cleanable/dirt/dust,
-/obj/effect/decal/cleanable/glitter/pink,
-/turf/open/indestructible/necropolis/air,
-/area/city)
+/obj/item/eric_briefcase,
+/obj/structure/closet/crate{
+	color = "#875300"
+	},
+/turf/open/floor/wood,
+/area/city/fixers)
 "Fu" = (
 /obj/structure/table_frame,
 /obj/item/flashlight/lamp{
@@ -4722,6 +4780,14 @@
 /obj/effect/decal/cleanable/dirt/dust,
 /turf/open/floor/wood,
 /area/city/house)
+"GT" = (
+/obj/structure/sigsystem/projectile_launcher{
+	name = "shotgun trap";
+	signaller_code = 99;
+	dir = 4
+	},
+/turf/closed/indestructible/rust,
+/area/city/fixers)
 "GY" = (
 /obj/structure/weightmachine/weightlifter,
 /obj/structure/meatfloor,
@@ -4734,6 +4800,7 @@
 /obj/effect/turf_decal/tile/neutral,
 /obj/structure/chair/comfy/brown,
 /obj/effect/decal/cleanable/dirt,
+/obj/effect/turf_decal/sand,
 /turf/open/floor/plating/rust,
 /area/city/fixers)
 "Hd" = (
@@ -4824,6 +4891,7 @@
 	dir = 8
 	},
 /obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/turf_decal/sand,
 /turf/open/floor/plating/rust,
 /area/city/fixers)
 "HK" = (
@@ -4884,7 +4952,12 @@
 /area/city/fixers)
 "Ii" = (
 /obj/structure/chair/comfy/black,
-/turf/open/floor/plating/rust,
+/obj/item/pressure_plate/autohide{
+	roundstart_signaller_code = 99
+	},
+/turf/open/floor/wood{
+	intact = 0
+	},
 /area/city/fixers)
 "Ik" = (
 /obj/structure/fluff/bus/passable/seat,
@@ -5000,7 +5073,8 @@
 /area/city)
 "IR" = (
 /obj/structure/meatfloor,
-/turf/open/indestructible/necropolis/air,
+/mob/living/simple_animal/hostile/mutant_heart,
+/turf/open/indestructible/necropolis,
 /area/city)
 "IU" = (
 /obj/machinery/modular_computer/console{
@@ -5034,7 +5108,7 @@
 /mob/living/simple_animal/hostile/mutant_clown{
 	name = "'Son'"
 	},
-/turf/open/indestructible/necropolis/air,
+/turf/open/indestructible/necropolis,
 /area/city)
 "Jg" = (
 /obj/structure/filingcabinet/chestdrawer,
@@ -5139,12 +5213,13 @@
 	},
 /area/city/house)
 "JS" = (
-/obj/machinery/door/airlock/public{
-	name = "prosthetic surgery clinic";
-	color = "#875300"
+/obj/structure/sigsystem/projectile_launcher{
+	name = "shotgun trap";
+	signaller_code = 99;
+	dir = 1
 	},
-/turf/closed/mineral/ash_rock,
-/area/city)
+/turf/closed/indestructible/rust,
+/area/city/fixers)
 "JW" = (
 /obj/machinery/door/airlock/wood{
 	name = "Hana backstreet access"
@@ -5281,6 +5356,11 @@
 	intact = 0
 	},
 /area/city/house)
+"KO" = (
+/obj/effect/decal/cleanable/garbage,
+/mob/living/simple_animal/mouse/brown,
+/turf/open/floor/plating/asteroid,
+/area/city)
 "KU" = (
 /obj/effect/decal/remains/human{
 	desc = "They look like human remains. They look smaller than you'd like."
@@ -5569,9 +5649,10 @@
 /turf/open/floor/plating/rust,
 /area/city/house)
 "MW" = (
-/obj/structure/grille/broken,
-/turf/open/floor/plating/rust,
-/area/city/fixers)
+/mob/living/simple_animal/hostile/mutant_heart,
+/obj/structure/meatfloor,
+/turf/open/indestructible/necropolis,
+/area/city)
 "MZ" = (
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/effect/spawner/lootdrop/garbage_spawner,
@@ -5698,16 +5779,8 @@
 /turf/open/floor/plating/rust,
 /area/city/shop)
 "NO" = (
-/obj/machinery/door/airlock/medical{
-	hackProof = 1;
-	integrity_failure = 0.1;
-	max_integrity = 1e+009;
-	name = "Secure medical room";
-	normal_integrity = 1e+009;
-	color = "#875300"
-	},
-/turf/open/indestructible/necropolis/air,
-/area/city)
+/turf/open/indestructible/necropolis,
+/area/city/fixers)
 "NS" = (
 /obj/structure/table_frame,
 /obj/item/shard,
@@ -5813,7 +5886,7 @@
 /obj/machinery/light{
 	dir = 1
 	},
-/turf/open/indestructible/necropolis/air,
+/turf/open/indestructible/necropolis,
 /area/city)
 "OF" = (
 /obj/effect/spawner/lootdrop/garbage_spawner,
@@ -5942,7 +6015,6 @@
 /obj/effect/turf_decal/trimline/red/filled/warning{
 	dir = 6
 	},
-/obj/effect/turf_decal/sand/plating,
 /turf/open/floor/plating/ashplanet{
 	name = "asphalt";
 	density = 1
@@ -6007,7 +6079,7 @@
 "Qc" = (
 /mob/living/simple_animal/mouse/brown,
 /obj/structure/meatfloor,
-/turf/open/indestructible/necropolis/air,
+/turf/open/indestructible/necropolis,
 /area/city)
 "Qd" = (
 /obj/machinery/door/airlock/wood{
@@ -6069,6 +6141,11 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plating/rust,
 /area/city)
+"QO" = (
+/obj/structure/table_frame/wood,
+/obj/item/stack/sheet/mineral/wood,
+/turf/open/floor/plating/rust,
+/area/city/fixers)
 "QP" = (
 /obj/machinery/vending/city,
 /obj/effect/turf_decal/sand/plating,
@@ -6110,7 +6187,6 @@
 /obj/effect/turf_decal/trimline/red/filled/warning{
 	dir = 8
 	},
-/obj/effect/turf_decal/sand/plating,
 /turf/open/floor/plating/ashplanet{
 	name = "asphalt";
 	density = 1
@@ -6127,9 +6203,8 @@
 /turf/open/floor/plating/asteroid,
 /area/city/fixers)
 "Rg" = (
-/mob/living/simple_animal/mouse/brown,
 /obj/effect/spawner/lootdrop/maintenance,
-/turf/open/indestructible/necropolis/air,
+/turf/open/indestructible/necropolis,
 /area/city)
 "Rl" = (
 /obj/effect/decal/cleanable/dirt/dust,
@@ -6475,7 +6550,7 @@
 /area/city/shop)
 "Td" = (
 /obj/structure/flora/ash/garden/waste,
-/turf/open/indestructible/necropolis/air,
+/turf/open/indestructible/necropolis,
 /area/city)
 "Te" = (
 /obj/structure/table/reinforced{
@@ -6650,7 +6725,7 @@
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/effect/decal/cleanable/glitter/pink,
 /obj/structure/meatfloor,
-/turf/open/indestructible/necropolis/air,
+/turf/open/indestructible/necropolis,
 /area/city)
 "Ue" = (
 /obj/structure/meatfloor,
@@ -6660,7 +6735,6 @@
 /obj/effect/turf_decal/trimline/red/filled/warning{
 	dir = 1
 	},
-/obj/effect/turf_decal/sand/plating,
 /turf/open/floor/plating/ashplanet{
 	name = "asphalt";
 	density = 1
@@ -6732,6 +6806,7 @@
 	dir = 1
 	},
 /obj/effect/turf_decal/siding/thinplating,
+/obj/effect/turf_decal/sand,
 /turf/open/floor/plating/rust,
 /area/city/fixers)
 "Ux" = (
@@ -6791,10 +6866,13 @@
 /obj/structure/closet/crate{
 	color = "#875300"
 	},
-/obj/item/storage/firstaid/revival,
-/obj/item/storage/firstaid/revival,
 /obj/item/storage/firstaid/regular,
-/obj/item/storage/firstaid/regular,
+/obj/item/reagent_containers/hypospray/medipen/salacid,
+/obj/item/reagent_containers/hypospray/medipen/salacid,
+/obj/item/reagent_containers/hypospray/medipen/salacid,
+/obj/item/reagent_containers/hypospray/medipen/mental,
+/obj/item/reagent_containers/hypospray/medipen/mental,
+/obj/item/reagent_containers/hypospray/medipen/mental,
 /turf/open/floor/wood,
 /area/city/fixers)
 "US" = (
@@ -6853,7 +6931,6 @@
 /obj/effect/turf_decal/trimline/red/filled/warning{
 	dir = 10
 	},
-/obj/effect/turf_decal/sand/plating,
 /turf/open/floor/plating/ashplanet{
 	name = "asphalt";
 	density = 1
@@ -6918,7 +6995,6 @@
 /area/city/shop)
 "Vw" = (
 /obj/machinery/vending/cola,
-/obj/structure/flora/ash/garden/arid,
 /turf/open/floor/plating/asteroid,
 /area/city)
 "Vy" = (
@@ -7014,6 +7090,9 @@
 /obj/effect/decal/cleanable/dirt/dust,
 /turf/open/floor/wood,
 /area/city/shop)
+"WE" = (
+/turf/closed/indestructible/necropolis,
+/area/city/fixers)
 "WK" = (
 /obj/machinery/door/airlock/wood{
 	name = "employee housing"
@@ -7288,7 +7367,7 @@
 /area/city)
 "XX" = (
 /obj/effect/decal/cleanable/glitter/pink,
-/turf/open/indestructible/necropolis/air,
+/turf/open/indestructible/necropolis,
 /area/city)
 "Ya" = (
 /obj/effect/decal/cleanable/dirt,
@@ -7321,7 +7400,7 @@
 /area/city/fixers)
 "Ye" = (
 /obj/effect/decal/cleanable/garbage,
-/turf/open/indestructible/necropolis/air,
+/turf/open/indestructible/necropolis,
 /area/city)
 "Yh" = (
 /obj/effect/decal/cleanable/dirt/dust,
@@ -7422,11 +7501,10 @@
 /obj/docking_port/stationary{
 	dwidth = 5;
 	height = 5;
-	id = "quest_floor";
-	name = "quest floor";
+	id = "ruined_town_floor";
+	name = "ruined floor";
 	width = 10
 	},
-/obj/effect/turf_decal/sand/plating,
 /turf/open/floor/plating/ashplanet{
 	name = "asphalt";
 	density = 1
@@ -7468,7 +7546,7 @@
 /area/city)
 "Zg" = (
 /obj/structure/rack,
-/turf/open/indestructible/necropolis/air,
+/turf/open/indestructible/necropolis,
 /area/city)
 "Zh" = (
 /obj/structure/table_frame/wood,
@@ -7703,13 +7781,13 @@ oY
 (2,1,1) = {"
 kC
 kC
-on
-IR
-IR
-on
-on
-on
-on
+MW
+Eh
+Eh
+dI
+dI
+dI
+dI
 kC
 kC
 oY
@@ -7792,14 +7870,14 @@ oY
 "}
 (3,1,1) = {"
 kC
-on
-on
-on
-IR
-mQ
-IR
-IR
-IR
+dI
+dI
+dI
+Eh
+Hl
+Eh
+Eh
+Eh
 IR
 kC
 kC
@@ -7882,16 +7960,16 @@ oY
 "}
 (4,1,1) = {"
 kC
-on
-on
-on
-IR
-mQ
-IR
-on
-on
-on
-on
+WO
+dI
+dI
+Eh
+Hl
+Eh
+dI
+dI
+dI
+dI
 kC
 oY
 oY
@@ -7972,15 +8050,15 @@ oY
 "}
 (5,1,1) = {"
 kC
-on
-on
-IR
-IR
+dI
+dI
+Eh
+Eh
 nt
-IR
-IR
-on
-on
+Eh
+Eh
+dI
+dI
 on
 kC
 oY
@@ -8062,16 +8140,16 @@ oY
 "}
 (6,1,1) = {"
 kC
-on
-IR
-IR
-on
-on
-on
-IR
-on
-on
-on
+dI
+Eh
+Eh
+dI
+dI
+dI
+Eh
+dI
+dI
+dI
 kC
 oY
 oY
@@ -8153,15 +8231,15 @@ oY
 (7,1,1) = {"
 kC
 IR
-on
-on
-on
-on
-on
-IR
-on
-on
-on
+dI
+dI
+dI
+dI
+dI
+Eh
+dI
+dI
+dI
 kC
 oY
 oY
@@ -8243,13 +8321,13 @@ oY
 (8,1,1) = {"
 kC
 kC
-on
-on
-on
-on
-on
-IR
-on
+dI
+dI
+dI
+dI
+dI
+Eh
+MW
 kC
 kC
 kC
@@ -8335,7 +8413,7 @@ oY
 kC
 kC
 kC
-on
+dI
 kC
 kC
 kC
@@ -8425,7 +8503,7 @@ oY
 oY
 oY
 kC
-on
+dI
 kC
 Vr
 Vr
@@ -8515,7 +8593,7 @@ oY
 oY
 oY
 kC
-on
+dI
 kC
 Vr
 vt
@@ -8527,14 +8605,14 @@ dI
 dI
 dI
 Vr
-on
-on
-on
-on
-on
-on
-on
-on
+dI
+dI
+dI
+dI
+dI
+dI
+dI
+dI
 Vr
 oY
 oY
@@ -8605,7 +8683,7 @@ oY
 oY
 Vr
 Vr
-on
+dI
 Vr
 Vr
 LS
@@ -8617,7 +8695,7 @@ Eh
 GP
 Eh
 Vr
-on
+dI
 kC
 kC
 kC
@@ -8695,7 +8773,7 @@ Vr
 Vr
 Vr
 iz
-on
+dI
 Zg
 Vr
 NS
@@ -8707,7 +8785,7 @@ dI
 dI
 Eh
 Jt
-on
+dI
 kC
 EX
 dI
@@ -8782,11 +8860,11 @@ oY
 "}
 (14,1,1) = {"
 Vr
-mZ
+Ux
 mM
-os
-IR
-IR
+dI
+Eh
+Eh
 Vr
 Vr
 tN
@@ -8797,7 +8875,7 @@ Vd
 dI
 Eh
 qB
-IR
+Eh
 xi
 Eh
 Eh
@@ -8875,8 +8953,8 @@ Vr
 Vr
 Vr
 Zg
-IR
-on
+Eh
+dI
 Vr
 Ux
 dI
@@ -8887,7 +8965,7 @@ Vr
 Vr
 qB
 Vr
-on
+dI
 kC
 kC
 kC
@@ -8965,21 +9043,21 @@ oY
 oY
 Vr
 Zg
-IR
-on
-NO
+Eh
+NT
+tN
 dI
 uc
 iq
 Eh
-JS
-on
-on
-IR
-on
-on
-on
-hY
+KZ
+dI
+dI
+Eh
+dI
+dI
+dI
+EX
 kC
 kC
 kC
@@ -9055,21 +9133,21 @@ oY
 oY
 Vr
 OE
-IR
-on
+Eh
+dI
 Vr
 dI
 dI
 iq
 NT
 KZ
-on
+dI
 Vr
 qB
 Jt
 Vr
 Vr
-on
+dI
 kC
 gO
 gO
@@ -9159,7 +9237,7 @@ Ld
 dI
 gh
 Vr
-on
+dI
 kC
 gO
 gO
@@ -9240,16 +9318,16 @@ Ud
 vu
 UU
 kC
-on
-on
-on
-on
+dI
+dI
+dI
+dI
 Vr
 aS
 dU
 dI
 Vr
-on
+dI
 kC
 gO
 gO
@@ -9330,7 +9408,7 @@ oy
 ho
 mm
 kC
-on
+dI
 Vr
 Vr
 Vr
@@ -9339,7 +9417,7 @@ Ld
 OY
 dI
 Vr
-on
+dI
 kC
 gO
 gO
@@ -9420,7 +9498,7 @@ Ud
 xd
 xd
 kC
-on
+dI
 Vr
 nV
 dI
@@ -9429,7 +9507,7 @@ EX
 Eh
 dI
 Vr
-on
+dI
 kC
 gO
 gO
@@ -9510,7 +9588,7 @@ eB
 zj
 Zh
 xi
-IR
+Eh
 qB
 aS
 XO
@@ -9519,7 +9597,7 @@ Eh
 Eh
 dU
 Vr
-on
+dI
 kC
 kC
 Vr
@@ -9600,7 +9678,7 @@ XX
 ho
 iL
 kC
-on
+dI
 Vr
 Vr
 Vr
@@ -9609,7 +9687,7 @@ Vr
 qB
 Vr
 Vr
-on
+dI
 kC
 kC
 bw
@@ -9686,21 +9764,21 @@ oY
 oY
 oY
 kC
-Ft
+TL
 xd
 dI
 kC
-on
+dI
 Vr
-on
-on
-on
-on
+dI
+dI
+dI
+dI
 Qc
-on
-on
-on
-on
+dI
+dI
+dI
+dI
 kC
 RV
 ew
@@ -9776,13 +9854,13 @@ oY
 oY
 oY
 kC
-Ft
+TL
 vu
 bl
 kC
-on
+dI
 Vr
-on
+dI
 ew
 ew
 ew
@@ -9866,11 +9944,11 @@ oY
 oY
 oY
 kC
-Ft
+TL
 ho
 iL
 kC
-on
+dI
 Vr
 Ye
 ew
@@ -9880,7 +9958,7 @@ dP
 Sy
 Sy
 kI
-on
+dI
 kC
 XW
 ew
@@ -9956,13 +10034,13 @@ oY
 oY
 oY
 kC
-Ft
+TL
 xy
 xd
 kC
-on
+dI
 Vr
-on
+dI
 ew
 Sy
 Sy
@@ -9970,7 +10048,7 @@ Dj
 Sy
 RU
 ew
-on
+dI
 kC
 RV
 ew
@@ -10046,12 +10124,12 @@ oY
 oY
 oY
 kC
-Ft
+TL
 TL
 TL
 qw
 Td
-on
+dI
 Jc
 ew
 GY
@@ -10136,8 +10214,8 @@ oY
 oY
 oY
 kC
-kC
-kC
+dI
+dI
 kC
 kC
 kC
@@ -10150,8 +10228,8 @@ ew
 ew
 ew
 ew
-on
-wq
+dI
+Rg
 bw
 RV
 ew
@@ -10225,22 +10303,22 @@ oY
 oY
 oY
 oY
-oY
-oY
-oY
-oY
+kC
+dI
+dI
+kC
 oY
 oY
 kC
-on
-on
-on
+dI
+dI
+qi
 bw
 bw
 bw
 bw
-on
-on
+dI
+dI
 bw
 bw
 bw
@@ -10314,11 +10392,11 @@ oY
 oY
 oY
 oY
-oY
-oY
-oY
-oY
-oY
+kC
+kC
+dI
+dI
+kC
 oY
 oY
 kC
@@ -10404,11 +10482,11 @@ oY
 oY
 oY
 oY
-oY
-oY
-oY
-oY
-oY
+kC
+dI
+dI
+kC
+kC
 oY
 oY
 oY
@@ -10494,16 +10572,16 @@ oY
 oY
 oY
 oY
-oY
-oY
-oY
-oY
+kC
+dI
+dI
+kC
 oY
 oY
 oY
 oY
 Vr
-ao
+KO
 Hj
 Qt
 bT
@@ -10584,10 +10662,10 @@ oY
 oY
 oY
 oY
-oY
-oY
-oY
-oY
+kC
+dI
+dI
+kC
 oY
 oY
 oY
@@ -10674,16 +10752,16 @@ oY
 oY
 oY
 oY
-Hj
-Hj
-Hj
+WE
+NO
+ry
 Hj
 Hj
 Hj
 oY
 oY
 Vr
-ZW
+bw
 Hj
 MG
 hy
@@ -10769,7 +10847,7 @@ Fh
 zG
 Ii
 Vs
-Hj
+JS
 oY
 oY
 Vr
@@ -10806,7 +10884,7 @@ Rf
 Vm
 FG
 Hj
-MD
+pj
 jx
 bf
 ft
@@ -10857,9 +10935,9 @@ oY
 Hj
 bh
 ts
-ry
+wq
 KV
-Hj
+JS
 oY
 oY
 Vr
@@ -10897,9 +10975,9 @@ qG
 Vm
 Hj
 Hj
-MW
-MW
-MW
+uZ
+uZ
+uZ
 Hj
 Hj
 bw
@@ -10944,10 +11022,10 @@ oY
 oY
 oY
 oY
-Hj
+hY
 IJ
 zG
-ry
+wq
 eD
 Hj
 oY
@@ -11037,8 +11115,8 @@ oY
 Hj
 Hj
 QD
-Hj
-Hj
+GT
+GT
 Hj
 Hj
 Hj
@@ -11124,11 +11202,11 @@ oY
 oY
 oY
 oY
-Hj
+hY
 Kd
 ry
 ry
-ry
+wq
 sm
 zG
 pr
@@ -11304,12 +11382,12 @@ oY
 oY
 oY
 oY
-Hj
+hY
 Pb
 Ii
-Kd
+QO
 wy
-Hj
+JS
 ZE
 jf
 zG
@@ -11399,7 +11477,7 @@ CP
 ry
 le
 ry
-ua
+os
 zG
 ts
 zG
@@ -11487,8 +11565,8 @@ Hj
 Hj
 Hj
 ua
-Hj
-Hj
+mZ
+mZ
 Hj
 Hj
 Hj
@@ -11572,9 +11650,9 @@ oY
 "}
 (45,1,1) = {"
 Hj
-zG
-zG
-Hj
+Ft
+yH
+hY
 zy
 zG
 wB
@@ -11666,7 +11744,7 @@ zG
 ts
 Hj
 zu
-zG
+wq
 wB
 zG
 zy
@@ -11752,9 +11830,9 @@ oY
 "}
 (47,1,1) = {"
 Hj
-zG
+nr
 fl
-Hj
+hY
 zy
 zG
 ia
@@ -11845,7 +11923,7 @@ Hj
 zG
 zG
 xS
-zG
+wq
 wF
 wB
 zG
@@ -11935,8 +12013,8 @@ Hj
 wF
 UQ
 Hj
-Hj
-Hj
+mZ
+mZ
 Hj
 Hj
 Hj
@@ -12022,7 +12100,7 @@ oY
 "}
 (50,1,1) = {"
 Hj
-Hj
+CV
 Hj
 Hj
 Hj
@@ -12837,7 +12915,7 @@ bF
 Ca
 Pv
 Pv
-Pv
+mQ
 Pv
 Pv
 Pv
@@ -12972,7 +13050,7 @@ gW
 gW
 gW
 gW
-bw
+lx
 bw
 bw
 Vr
@@ -13038,7 +13116,7 @@ Ut
 Py
 Iw
 ew
-bw
+lx
 ew
 to
 pc
@@ -13201,7 +13279,7 @@ Pv
 Pv
 Pv
 Pv
-Pv
+mQ
 Pv
 Pv
 HG
@@ -13283,7 +13361,7 @@ oY
 (64,1,1) = {"
 OT
 OT
-Pv
+mQ
 Pv
 Pv
 Pv
@@ -13557,7 +13635,7 @@ qp
 hp
 Pv
 Pv
-Pv
+mQ
 Hj
 YX
 uo
@@ -14595,7 +14673,7 @@ dp
 bw
 bw
 bw
-bw
+lx
 Vw
 ew
 Te

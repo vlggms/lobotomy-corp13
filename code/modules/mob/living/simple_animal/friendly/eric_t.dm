@@ -366,6 +366,16 @@
 		"actions" = list(
 			"..." = list(
 				"text" = "...",
+				"default_scene" = "arrival_4"
+			)
+		)
+	)
+
+	scenes["arrival_4"] = list(
+		"text" = "Plus, Thanks to all of the good work that Sana put into improving our reputation. This town is safe enough to keep my identity as a bloodfiend open.",
+		"actions" = list(
+			"..." = list(
+				"text" = "...",
 				"default_scene" = "main_screen"
 			)
 		)
@@ -511,6 +521,7 @@
 		"actions" = list(
 			"ready_quest" = list(
 				"text" = "I am ready to take this contract!",
+				"proc_callbacks" = list(CALLBACK(src, PROC_REF(give_ticket))),
 				"default_scene" = "quest_start"
 			),
 			"later_quest" = list(
@@ -552,11 +563,12 @@
 		"actions" = list(
 			"return_main" = list(
 				"text" = "Nevermind, I don't anything to ask.",
-				"default_scene" = "main_screen"
+				"default_scene" = "job"
 			),
 			"ready_quest" = list(
 				"text" = "I am ready to take this contract!",
 				"visibility_expression" = "NOT dialog.quest_accepted",
+				"proc_callbacks" = list(CALLBACK(src, PROC_REF(give_ticket))),
 				"default_scene" = "quest_start"
 			),
 			"later_quest" = list(
@@ -648,6 +660,14 @@
 				return TRUE
 	return FALSE
 
+/mob/living/simple_animal/ui_npc/eric_t/proc/give_ticket()
+	if(isliving(usr))
+		var/mob/living/L = usr
+		new /obj/item/quest_ticket (get_turf(L))
+		for(var/obj/machinery/computer/communications/C in GLOB.machines)
+			if(!(C.machine_stat & (BROKEN|NOPOWER)) && is_station_level(C.z))
+				C.say(L.name + " has accepted the 'Dilapidated Town', breifcase retrieval contract.")
+
 /mob/living/simple_animal/ui_npc/eric_t/proc/briefcase_buy()
 	if(scene_manager.npc_vars.variables["briefcase_collected"])
 		return FALSE
@@ -663,6 +683,9 @@
 				new /obj/item/stack/spacecash/c1000 (get_turf(L))
 				new /obj/item/stack/spacecash/c1000 (get_turf(L))
 				playsound(get_turf(src), 'sound/effects/cashregister.ogg', 35, 3, 3)
+				for(var/obj/machinery/computer/communications/C in GLOB.machines)
+					if(!(C.machine_stat & (BROKEN|NOPOWER)) && is_station_level(C.z))
+						C.say(L.name + " has completed the 'Dilapidated Town', breifcase retrieval contract. Remember this for their grading.")
 				return TRUE
 	return FALSE
 
@@ -688,7 +711,7 @@
 	var/door = pick(GLOB.delivery_doors)
 	if(istype(door, /obj/structure/delivery_door))
 		var/obj/structure/delivery_door/D = door
-		D.OrderParcel(src.loc)
+		D.OrderParcel(user.loc)
 
 		var/mob/user = usr
 		user.playsound_local(get_turf(src), 'sound/effects/cashregister.ogg', 25, 3, 3)
