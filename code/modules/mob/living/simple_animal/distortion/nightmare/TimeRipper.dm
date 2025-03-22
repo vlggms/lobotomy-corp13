@@ -62,7 +62,7 @@
 	current_stage = 2
 	//Speed changed from 6 to 4
 	counter_threshold = 300
-	playsound(get_turf(src), 'sound/creatures/lc13/lovetown/abomination_stagetransition.ogg', 75, 0, 3)
+	playsound(get_turf(src), 'sound/effects/clockcult_gateway_disrupted.ogg', 75, 0, 3)
 
 /mob/living/simple_animal/hostile/distortion/TimeRipper/proc/DashCounter() //increases move speed and hits with a powerful attack that knocks back far away
 	playsound(get_turf(src), 'sound/effects/hokma_meltdown.ogg', 75, 0, 3)
