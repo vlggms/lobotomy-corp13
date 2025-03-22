@@ -359,6 +359,7 @@
 	desc = "A mining lantern."
 	light_range = 6			// luminosity when on
 	light_system = MOVABLE_LIGHT
+	custom_price = 300
 
 /obj/item/flashlight/lantern/heirloom_moth
 	name = "old lantern"
