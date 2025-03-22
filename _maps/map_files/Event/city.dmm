@@ -2952,6 +2952,10 @@
 	},
 /turf/open/floor/facility/dark,
 /area/city/fixers)
+"CC" = (
+/obj/machinery/newscaster/security_unit,
+/turf/closed/indestructible/reinforced,
+/area/city/fixers)
 "CD" = (
 /obj/structure/table/optable,
 /obj/machinery/light{
@@ -2994,6 +2998,7 @@
 "CP" = (
 /obj/structure/rack,
 /obj/item/weldingtool/experimental,
+/obj/item/screwdriver,
 /turf/open/indestructible/white,
 /area/city)
 "CS" = (
@@ -4312,6 +4317,10 @@
 /obj/structure/curtain,
 /turf/open/indestructible/white,
 /area/city/shop)
+"Om" = (
+/obj/machinery/newscaster,
+/turf/closed/indestructible/reinforced,
+/area/city/fixers)
 "Oo" = (
 /obj/item/storage/box/cups,
 /obj/structure/table/wood,
@@ -37825,7 +37834,7 @@ Hm
 IQ
 jQ
 Sr
-HA
+Om
 Co
 um
 Sr
@@ -39113,7 +39122,7 @@ Sr
 kw
 UC
 Sr
-HA
+CC
 ZH
 xM
 HA
@@ -39367,7 +39376,7 @@ Hm
 IQ
 jQ
 Sr
-HA
+Om
 un
 Sr
 HA
