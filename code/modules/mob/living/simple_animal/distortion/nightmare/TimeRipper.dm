@@ -29,13 +29,13 @@
 		/datum/ego_datum/weapon/thirteen
 		)
 	//The egoist's name, if specified. Otherwise picks a random name.
-	egoist_names = list("Jack")
+	egoist_names = list("Jack Knife")
 	//The mob's gender, which will be inherited by the egoist. Can be left unspecified for a random pick.
 	gender = MALE
 	//The Egoist's outfit, which should usually be civilian unless you want them to be a fixer or something.
 	egoist_outfit = /datum/outfit/job/civilian
 	//Loot on death; distortions should be valuable targets in general.
-	/// Prolonged exposure to a monolith will convert the distortion into an abnormality. Black swan is the most strongly related to this guy, but I might make one for it later.
+	/// Prolonged exposure to a monolith will convert the distortion into an abnormality. 
 	monolith_abnormality = /mob/living/simple_animal/hostile/abnormality/silence //Both hate their time being wasted and that there is a price to it, even if this thing cannot fight back.
 	egoist_attributes = 100
 
