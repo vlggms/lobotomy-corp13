@@ -17,7 +17,7 @@
 	rapid_melee = 2
 	attack_verb_continuous = "stabs"
 	attack_verb_simple = "pierces"
-	attack_sound = 'sound/weapons/bladeslice.ogg'
+	attack_sound = 'sound/weapons/fixer/generic/blade4.ogg'
 	death_sound = 'sound/effects/limbus_death.ogg'
 	damage_coeff = list(RED_DAMAGE = 1, WHITE_DAMAGE = 0.6, BLACK_DAMAGE = 1.5, PALE_DAMAGE = 0.3)
 	move_to_delay = 3
@@ -38,6 +38,7 @@
 	/// Prolonged exposure to a monolith will convert the distortion into an abnormality. 
 	monolith_abnormality = /mob/living/simple_animal/hostile/abnormality/silence //Both hate their time being wasted and that there is a price to it, even if this thing cannot fight back.
 	egoist_attributes = 100
+	loot = list(/obj/item/documents/ncorporation, /obj/item/documents/ncorporation) //Placeholder, we need more loot items
 
 	var/can_act = TRUE
 	var/current_stage = 1 //changes behaviour slightly on phase 2
@@ -64,7 +65,7 @@
 	counter_threshold = 300
 	playsound(get_turf(src), 'sound/effects/clockcult_gateway_disrupted.ogg', 75, 0, 3)
 
-/mob/living/simple_animal/hostile/distortion/TimeRipper/proc/DashCounter() //increases move speed and hits with a powerful attack that knocks back far away
+/mob/living/simple_animal/hostile/distortion/TimeRipper/proc/DashCounter() //increases move speed greatly temporarily.
 	playsound(get_turf(src), 'sound/effects/hokma_meltdown.ogg', 75, 0, 3)
 	switch(current_stage)
 		if(1)
@@ -131,7 +132,7 @@
 			SLEEP_CHECK_DEATH(5)
 			melee_damage_lower += damage_down
 			melee_damage_upper += damage_down
-			//Takes your skin and leaves your bone. You are now a flesh servant under her skirt in GBJ
+			//Mmm, head.
 			if(nodehead)
 				H.gib()
 			else
