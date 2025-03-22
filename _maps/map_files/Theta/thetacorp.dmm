@@ -1493,13 +1493,7 @@
 /turf/open/floor/plasteel/sepia,
 /area/facility_hallway/command)
 "eY" = (
-/obj/structure/filingcabinet/zayininfo{
-	pixel_x = -10
-	},
-/obj/structure/filingcabinet/tethinfo,
-/obj/structure/filingcabinet/heinfo{
-	pixel_x = 10
-	},
+/obj/effect/mapping_helpers/records_spawner,
 /turf/open/floor/facility/dark{
 	color = "#ccc8c0"
 	},
@@ -4599,13 +4593,7 @@
 /turf/open/floor/plasteel/white,
 /area/facility_hallway/training)
 "pJ" = (
-/obj/structure/filingcabinet/wawinfo{
-	pixel_x = -11
-	},
-/obj/structure/filingcabinet/alephinfo,
-/obj/structure/filingcabinet/toolinfo{
-	pixel_x = 10
-	},
+/obj/effect/mapping_helpers/records_spawner/second,
 /turf/open/floor/facility/dark{
 	color = "#ccc8c0"
 	},
