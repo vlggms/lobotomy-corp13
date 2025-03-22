@@ -2991,6 +2991,7 @@
 #include "code\modules\mob\living\simple_animal\distortion\plague\lantern.dm"
 #include "code\modules\mob\living\simple_animal\distortion\star\papa_bongy_spicy.dm"
 #include "code\modules\mob\living\simple_animal\distortion\star\shrimp.dm"
+#include "code\modules\mob\living\simple_animal\distortion\nightmare\TimeRipper.dm"
 #include "code\modules\mob\living\simple_animal\friendly\butterfly.dm"
 #include "code\modules\mob\living\simple_animal\friendly\cat.dm"
 #include "code\modules\mob\living\simple_animal\friendly\crab.dm"
