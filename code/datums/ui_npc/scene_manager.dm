@@ -9,7 +9,7 @@
 	// NPC variables - specific to this NPC but shared across all conversations
 	var/datum/var_resolver/dictionary/npc_vars
 
-	// Per-player resolvers - stored by client reference
+	// Per-player resolvers - stored by user reference
 	var/list/player_resolvers = list()
 	var/list/dialog_resolvers = list()
 
@@ -30,36 +30,36 @@
 
 
 // Get or create a variable manager for a specific player
-/datum/ui_npc/scene_manager/proc/get_var_manager(client/client)
-	if(!client || !client.mob)
+/datum/ui_npc/scene_manager/proc/get_var_manager(mob/user)
+	if(!user)
 		return null
 
-	var/client_ref = "\ref[client]"
+	var/user_ref = "\ref[user]"
 
 	// Return existing manager if we have one
-	if(client_ref in var_managers)
-		return var_managers[client_ref]
+	if(user_ref in var_managers)
+		return var_managers[user_ref]
 
 	// Create or get dialog resolver for this player
 	var/datum/var_resolver/dictionary/dialog_resolver
-	if(!(client_ref in dialog_resolvers))
+	if(!(user_ref in dialog_resolvers))
 		dialog_resolver = new()
-		dialog_resolvers[client_ref] = dialog_resolver
+		dialog_resolvers[user_ref] = dialog_resolver
 
 		// Initialize dialog state
 		dialog_resolver.variables["is_first_visit"] = TRUE
 		dialog_resolver.variables["visit_count"] = 1
 		dialog_resolver.variables["discussed"] = list()
 	else
-		dialog_resolver = dialog_resolvers[client_ref]
+		dialog_resolver = dialog_resolvers[user_ref]
 
 	// Create or get player resolver for this player
 	var/datum/var_resolver/player/player_resolver
-	if(!(client_ref in player_resolvers))
-		player_resolver = new(client.mob)
-		player_resolvers[client_ref] = player_resolver
+	if(!(user_ref in player_resolvers))
+		player_resolver = new(user)
+		player_resolvers[user_ref] = player_resolver
 	else
-		player_resolver = player_resolvers[client_ref]
+		player_resolver = player_resolvers[user_ref]
 
 	// Create a manager with all resolvers
 	var/datum/var_resolver_manager/manager = new()
@@ -69,67 +69,67 @@
 	manager.register_resolver("world", global_vars)       // Global game state
 
 	// Cache the manager for future use
-	var_managers[client_ref] = manager
+	var_managers[user_ref] = manager
 
 	return manager
 
 // Get a parser for a specific player
-/datum/ui_npc/scene_manager/proc/get_parser(client/client)
-	var/datum/var_resolver_manager/manager = get_var_manager(client)
+/datum/ui_npc/scene_manager/proc/get_parser(mob/user)
+	var/datum/var_resolver_manager/manager = get_var_manager(user)
 	if(!manager)
 		return null
 
 	return new /datum/scoped_expression_parser(manager)
 
 // Enhanced get_user_state that tracks player-specific dialog state
-/datum/ui_npc/scene_manager/proc/get_user_state(client/client)
-	if(!client)
+/datum/ui_npc/scene_manager/proc/get_user_state(mob/user)
+	if(!user)
 		return null
 
-	var/client_ref = "\ref[client]"
-	if(!user_states[client_ref])
+	var/user_ref = "\ref[user]"
+	if(!user_states[user_ref])
 		var/datum/ui_npc/conversation_state/new_state = new()
-		user_states[client_ref] = new_state
+		user_states[user_ref] = new_state
 
 		// Initialize dialog state for this player
 		var/datum/var_resolver/dictionary/dialog_resolver
-		if(!(client_ref in dialog_resolvers))
+		if(!(user_ref in dialog_resolvers))
 			dialog_resolver = new()
-			dialog_resolvers[client_ref] = dialog_resolver
+			dialog_resolvers[user_ref] = dialog_resolver
 			dialog_resolver.variables["is_first_visit"] = TRUE
 			dialog_resolver.variables["visit_count"] = 1
 		else
-			dialog_resolver = dialog_resolvers[client_ref]
+			dialog_resolver = dialog_resolvers[user_ref]
 			dialog_resolver.variables["is_first_visit"] = FALSE
 			dialog_resolver.variables["visit_count"]++
 
-	return user_states[client_ref]
+	return user_states[user_ref]
 
 // Variable getters and setters that use player-specific context
-/datum/ui_npc/scene_manager/proc/set_var(client/client, var_path, value)
-	var/datum/var_resolver_manager/manager = get_var_manager(client)
+/datum/ui_npc/scene_manager/proc/set_var(mob/user, var_path, value)
+	var/datum/var_resolver_manager/manager = get_var_manager(user)
 	if(!manager)
 		return FALSE
 
 	return manager.set_var(var_path, value)
 
-/datum/ui_npc/scene_manager/proc/get_var(client/client, var_path)
-	var/datum/var_resolver_manager/manager = get_var_manager(client)
+/datum/ui_npc/scene_manager/proc/get_var(mob/user, var_path)
+	var/datum/var_resolver_manager/manager = get_var_manager(user)
 	if(!manager)
 		return null
 
 	return manager.get_var(var_path)
 
 // Process text with variable substitution for a specific player
-/datum/ui_npc/scene_manager/proc/process_text(client/client, text)
-	if(!text || !client)
+/datum/ui_npc/scene_manager/proc/process_text(mob/user, text)
+	if(!text || !user)
 		return text
 
-	var/datum/scoped_expression_parser/parser = get_parser(client)
+	var/datum/scoped_expression_parser/parser = get_parser(user)
 	if(!parser)
 		return text
 
-	var/datum/var_resolver_manager/manager = get_var_manager(client)
+	var/datum/var_resolver_manager/manager = get_var_manager(user)
 
 	// Replace {variable} references
 	var/regex/var_regex = new(@"\{([^{}]+)\}", "g")
@@ -157,23 +157,23 @@
 	return processed
 
 // Evaluate conditions for a specific player
-/datum/ui_npc/scene_manager/proc/evaluate_condition(client/client, condition)
-	if(!condition || condition == "" || !client)
+/datum/ui_npc/scene_manager/proc/evaluate_condition(mob/user, condition)
+	if(!condition || condition == "" || !user)
 		return TRUE
 
-	var/datum/scoped_expression_parser/parser = get_parser(client)
+	var/datum/scoped_expression_parser/parser = get_parser(user)
 	if(!parser)
 		return TRUE
 
 	return parser.eval_scoped_expression(condition)
 
 // Process variable updates for a specific player
-/datum/ui_npc/scene_manager/proc/process_var_updates(client/client, list/updates)
-	if(!islist(updates) || !client)
+/datum/ui_npc/scene_manager/proc/process_var_updates(mob/user, list/updates)
+	if(!islist(updates) || !user)
 		return
 
-	var/datum/var_resolver_manager/manager = get_var_manager(client)
-	var/datum/scoped_expression_parser/parser = get_parser(client)
+	var/datum/var_resolver_manager/manager = get_var_manager(user)
+	var/datum/scoped_expression_parser/parser = get_parser(user)
 
 	if(!manager || !parser)
 		return
@@ -189,13 +189,13 @@
 		manager.set_var(var_path, value)
 
 // Check if an action should be visible for a specific player
-/datum/ui_npc/scene_manager/proc/is_action_visible(client/client, datum/ui_npc/scene_action/action)
-	if(!client || !action)
+/datum/ui_npc/scene_manager/proc/is_action_visible(mob/user, datum/ui_npc/scene_action/action)
+	if(!user || !action)
 		return FALSE
 
 	// Check the visibility expression if it exists
 	if(action.visibility_expression && action.visibility_expression != "")
-		return evaluate_condition(client, action.visibility_expression)
+		return evaluate_condition(user, action.visibility_expression)
 
 	// Check the visibility proc if it exists
 	if(action.visible_proc)
@@ -205,13 +205,13 @@
 	return TRUE
 
 // Check if an action should be enabled for a specific player
-/datum/ui_npc/scene_manager/proc/is_action_enabled(client/client, datum/ui_npc/scene_action/action)
-	if(!client || !action)
+/datum/ui_npc/scene_manager/proc/is_action_enabled(mob/user, datum/ui_npc/scene_action/action)
+	if(!user || !action)
 		return FALSE
 
 	// Check the enabled expression if it exists
 	if(action.enabled_expression && action.enabled_expression != "")
-		return evaluate_condition(client, action.enabled_expression)
+		return evaluate_condition(user, action.enabled_expression)
 
 	// Check the enabled proc if it exists
 	if(action.enabled_proc)
@@ -221,8 +221,8 @@
 	return TRUE
 
 // Execute an action's callbacks and variable updates
-/datum/ui_npc/scene_manager/proc/execute_action(client/client, datum/ui_npc/scene_action/action)
-	if(!client || !action)
+/datum/ui_npc/scene_manager/proc/execute_action(mob/user, datum/ui_npc/scene_action/action)
+	if(!user || !action)
 		return
 
 	// Execute all proc callbacks
@@ -232,18 +232,18 @@
 
 	// Process variable updates
 	if(islist(action.var_updates) && action.var_updates.len)
-		process_var_updates(client, action.var_updates)
+		process_var_updates(user, action.var_updates)
 
 	// Determine the next scene
-	var/next_scene = action.get_next_scene(src, client)
+	var/next_scene = action.get_next_scene(src, user)
 	if(next_scene && next_scene != "")
-		return navigate_to_scene(client, next_scene)
+		return navigate_to_scene(user, next_scene)
 
 	return null
 
 // Enhanced navigate with player-specific variable state tracking
-/datum/ui_npc/scene_manager/proc/navigate_to_scene(client/client, scene_id)
-	var/datum/ui_npc/conversation_state/state = get_user_state(client)
+/datum/ui_npc/scene_manager/proc/navigate_to_scene(mob/user, scene_id)
+	var/datum/ui_npc/conversation_state/state = get_user_state(user)
 	if(!state)
 		return
 
@@ -254,36 +254,36 @@
 
 	// Process on_exit for the current scene if it exists
 	if(current_scene && current_scene.on_exit && islist(current_scene.on_exit))
-		process_var_updates(client, current_scene.on_exit)
+		process_var_updates(user, current_scene.on_exit)
 
 	// Store current scene in history before changing
 	if(state.current_scene_id)
 		state.scene_history += state.current_scene_id
-		set_var(client, "dialog.previous_scene", state.current_scene_id)
+		set_var(user, "dialog.previous_scene", state.current_scene_id)
 
 	// Update current scene
 	state.current_scene_id = scene_id
-	set_var(client, "dialog.current_scene", scene_id)
+	set_var(user, "dialog.current_scene", scene_id)
 
 	var/datum/ui_npc/scene/new_scene = scenes[scene_id]
 
 	// Process on_enter variable updates if they exist
 	if(new_scene && new_scene.on_enter && islist(new_scene.on_enter))
-		process_var_updates(client, new_scene.on_enter)
+		process_var_updates(user, new_scene.on_enter)
 
 	return new_scene
 
-// Get the current scene object for a given client
-/datum/ui_npc/scene_manager/proc/get_current_scene(client/client)
-	var/datum/ui_npc/conversation_state/state = get_user_state(client)
+// Get the current scene object for a given user
+/datum/ui_npc/scene_manager/proc/get_current_scene(mob/user)
+	var/datum/ui_npc/conversation_state/state = get_user_state(user)
 	if(!state || !state.current_scene_id)
 		return null
 
 	return scenes[state.current_scene_id]
 
 // Get all visible actions for the current scene
-/datum/ui_npc/scene_manager/proc/get_visible_actions(client/client)
-	var/datum/ui_npc/conversation_state/state = get_user_state(client)
+/datum/ui_npc/scene_manager/proc/get_visible_actions(mob/user)
+	var/datum/ui_npc/conversation_state/state = get_user_state(user)
 	if(!state || !state.current_scene_id)
 		return list()
 
@@ -294,21 +294,21 @@
 	var/list/visible_actions = list()
 	for(var/action_key in current_scene.actions)
 		var/datum/ui_npc/scene_action/action = current_scene.actions[action_key]
-		if(is_action_visible(client, action))
+		if(is_action_visible(user, action))
 			visible_actions[action_key] = action
 
 	return visible_actions
 
 // Clear dialog state for a player when they exit conversation
-/datum/ui_npc/scene_manager/proc/clear_conversation(client/client)
-	if(!client)
+/datum/ui_npc/scene_manager/proc/clear_conversation(mob/user)
+	if(!user)
 		return
 
-	var/client_ref = "\ref[client]"
+	var/user_ref = "\ref[user]"
 
 	// Keep the dialog resolver but reset the state
-	if(client_ref in dialog_resolvers)
-		var/datum/var_resolver/dictionary/dialog_resolver = dialog_resolvers[client_ref]
+	if(user_ref in dialog_resolvers)
+		var/datum/var_resolver/dictionary/dialog_resolver = dialog_resolvers[user_ref]
 		dialog_resolver.variables["current_scene"] = null
 		// Keep visit count and tracking which topics were discussed
 

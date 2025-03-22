@@ -34,19 +34,19 @@
 
 /mob/living/simple_animal/ui_npc/eric_t/update_player_variables(mob/user)
 	. = ..()
-	if(!user?.client)
+	if(!user)
 		return
 
 	// Initialize player-specific variables if they don't exist
-	if(isnull(scene_manager.get_var(user.client, "player.has_parcel_job")))
-		scene_manager.set_var(user.client, "player.has_parcel_job", FALSE)
+	if(isnull(scene_manager.get_var(user, "player.has_parcel_job")))
+		scene_manager.set_var(user, "player.has_parcel_job", FALSE)
 
-	if(isnull(scene_manager.get_var(user.client, "player.is_worker")))
-		scene_manager.set_var(user.client, "player.is_worker", FALSE)
+	if(isnull(scene_manager.get_var(user, "player.is_worker")))
+		scene_manager.set_var(user, "player.is_worker", FALSE)
 
 	// Check if player has the briefcase
 	var/has_briefcase = briefcase_check(user)
-	scene_manager.set_var(user.client, "player.has_briefcase", has_briefcase)
+	scene_manager.set_var(user, "player.has_briefcase", has_briefcase)
 
 /mob/living/simple_animal/ui_npc/eric_t/proc/get_eric_scenes()
 	var/list/scenes = list()
@@ -702,8 +702,8 @@
 	SIGNAL_HANDLER
 
 	// Clear the parcel job flag for this user when delivered
-	if(user?.client)
-		scene_manager.set_var(user.client, "player.has_parcel_job", FALSE)
+	if(user)
+		scene_manager.set_var(user, "player.has_parcel_job", FALSE)
 
 	// Unregister the signal
 	UnregisterSignal(door, COMSIG_PARCEL_DELIVERED)

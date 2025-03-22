@@ -84,11 +84,11 @@
 	if(!user?.client)
 		return list()
 
-	var/datum/ui_npc/conversation_state/state = scene_manager.get_user_state(user.client)
+	var/datum/ui_npc/conversation_state/state = scene_manager.get_user_state(user)
 	if(!state.current_scene_id)
-		scene_manager.navigate_to_scene(user.client, start_scene_id)
+		scene_manager.navigate_to_scene(user, start_scene_id)
 
-	var/datum/ui_npc/scene/current_scene = scene_manager.get_current_scene(user.client)
+	var/datum/ui_npc/scene/current_scene = scene_manager.get_current_scene(user)
 	if(!current_scene)
 		return list()
 
@@ -96,21 +96,21 @@
 	update_player_variables(user)
 
 	// Process text with variable substitution
-	var/processed_text = scene_manager.process_text(user.client, current_scene.text)
+	var/processed_text = scene_manager.process_text(user, current_scene.text)
 
 	var/list/action_list = list()
 	for(var/action_key in current_scene.actions)
 		var/datum/ui_npc/scene_action/action = current_scene.actions[action_key]
 
 		// Check if action should be visible using our player-specific condition system
-		if(scene_manager.is_action_visible(user.client, action, user))
+		if(scene_manager.is_action_visible(user, action, user))
 			// Process text for this action with variable substitution
-			var/processed_action_text = scene_manager.process_text(user.client, action.text)
+			var/processed_action_text = scene_manager.process_text(user, action.text)
 
 			action_list += list(list(
 				"key" = action_key,
 				"text" = processed_action_text,
-				"enabled" = scene_manager.is_action_enabled(user.client, action, user)
+				"enabled" = scene_manager.is_action_enabled(user, action, user)
 			))
 
 	return list(
@@ -123,41 +123,17 @@
 
 // Helper method to update player variables before processing UI data
 /mob/living/simple_animal/ui_npc/proc/update_player_variables(mob/user)
-	if(!user?.client)
+	if(!user)
 		return
-
-	// Get client reference for this player
-	//var/client_ref = "\ref[user.client]"
-
-	// Update basic player stats
-	// scene_manager.set_var(user.client, "player.name", user.name)
-	// scene_manager.set_var(user.client, "player.health", user.health)
-
-	// if(istype(user, /mob/living/carEbon/human))
-	// 	var/mob/living/carbon/human/H = user
-	// 	scene_manager.set_var(user.client, "player.species", H.dna?.species?.name || "Unknown")
-
-		// Check inventory if needed
-		// For example, check if player has certain items
-		// scene_manager.set_var(user.client, "player.has_sword", H.has_item("sword"))
-
-	// You can add more variables based on your game's systems
-
-	// Update NPC-specific data about this player
-	// var/reputation = scene_manager.get_var(user.client, "npc.player_reputation") || 0
-	// scene_manager.set_var(user.client, "npc.player_reputation", reputation)
-
-	// // Set basic NPC variables
-	// scene_manager.set_var(user.client, "npc.name", name)
 
 // Enhanced ui_act method to use the new scene_manager and action system
 /mob/living/simple_animal/ui_npc/ui_act(action, data, datum/tgui/ui, datum/ui_state/state)
 	. = ..()
 	var/mob/user = usr
-	if(!user?.client)
+	if(!user)
 		return
 
-	var/datum/ui_npc/scene/current_scene = scene_manager.get_current_scene(user.client)
+	var/datum/ui_npc/scene/current_scene = scene_manager.get_current_scene(user)
 	if(!current_scene)
 		return
 
@@ -175,7 +151,7 @@
 
 	// Use the scene_manager's execute_action to handle all processing
 	// This handles proc callbacks, variable updates, and scene transitions
-	var/datum/ui_npc/scene/next_scene = scene_manager.execute_action(user.client, chosen_action)
+	var/datum/ui_npc/scene/next_scene = scene_manager.execute_action(user, chosen_action)
 
 	// If we successfully navigated to a new scene, return TRUE
 	if(next_scene)
@@ -188,7 +164,7 @@
 	user.stop_sound_channel(CHANNEL_MUMBLE)
 
 	// Clear dialog state when UI closes
-	if(user?.client)
-		scene_manager.clear_conversation(user.client)
+	if(user)
+		scene_manager.clear_conversation(user)
 
 	return

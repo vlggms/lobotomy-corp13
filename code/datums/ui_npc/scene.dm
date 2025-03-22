@@ -45,12 +45,12 @@
 	default_scene = data["default_scene"] || ""
 
 // Determine which scene to transition to based on conditions
-/datum/ui_npc/scene_action/proc/get_next_scene(datum/ui_npc/scene_manager/manager, client/client)
+/datum/ui_npc/scene_action/proc/get_next_scene(datum/ui_npc/scene_manager/manager, mob/user)
 	// Check each transition in order
 	for(var/list/transition in transitions)
 		// Expression-based condition
 		if(transition["expression"])
-			if(manager.evaluate_condition(client, transition["expression"]))
+			if(manager.evaluate_condition(user, transition["expression"]))
 				return transition["scene"]
 
 		// Proc-based condition
