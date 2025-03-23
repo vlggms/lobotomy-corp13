@@ -44,10 +44,24 @@
 
 	var/list/peccetulum = list(
 		/mob/living/simple_animal/hostile/ordeal/sin_gloom,
+		/mob/living/simple_animal/hostile/ordeal/sin_gloom,
+		/mob/living/simple_animal/hostile/ordeal/sin_gloom/noon,
 		/mob/living/simple_animal/hostile/ordeal/sin_gluttony,
+		/mob/living/simple_animal/hostile/ordeal/sin_gluttony,
+		/mob/living/simple_animal/hostile/ordeal/sin_gluttony/noon,
 		/mob/living/simple_animal/hostile/ordeal/sin_pride,
+		/mob/living/simple_animal/hostile/ordeal/sin_pride,
+		/mob/living/simple_animal/hostile/ordeal/sin_pride/noon,
 		/mob/living/simple_animal/hostile/ordeal/sin_lust,
-		/mob/living/simple_animal/hostile/ordeal/sin_wrath
+		/mob/living/simple_animal/hostile/ordeal/sin_lust,
+		/mob/living/simple_animal/hostile/ordeal/sin_lust/noon,
+		/mob/living/simple_animal/hostile/ordeal/sin_wrath,
+		/mob/living/simple_animal/hostile/ordeal/sin_wrath,
+		/mob/living/simple_animal/hostile/ordeal/sin_wrath/noon,
+		/mob/living/simple_animal/hostile/ordeal/sin_sloth,
+		/mob/living/simple_animal/hostile/ordeal/sin_sloth,
+		/mob/living/simple_animal/hostile/ordeal/sin_sloth/noon,
+		/mob/living/simple_animal/hostile/ordeal/sin_envy,
 	)
 
 	message_admins("<span class='notice'>Asset Protection ([src.ckey]) has spawned Peccetulum.</span>")
