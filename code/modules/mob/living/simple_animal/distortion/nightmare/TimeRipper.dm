@@ -144,7 +144,7 @@
 				H.regenerate_icons()
 				visible_message(span_danger("\The [src] takes [H]'s head off into his collection!"))
 				new /obj/effect/gibspawner/generic/silent(get_turf(H))
-				playsound(get_turf(src), 'sound/abnormalities/bigbird/bite.ogg', 50, 1, 2)
+				playsound(get_turf(src), 'sound/weapons/bladeslice.ogg', 250, TRUE)
 				finishing = FALSE
 				switch(current_stage)
 					if(1)
