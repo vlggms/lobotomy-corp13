@@ -266,8 +266,8 @@ GLOBAL_LIST_EMPTY(loaded_quest_z_levels)
 		if (!GLOB.loaded_quest_z_levels.Find(T.map))
 			to_chat(user, span_notice("You insert your ticket into [src]"))
 			say("Locating path to [T.ticket_name]...")
-			load_new_z_level(T.map, T.map_name)
 			GLOB.loaded_quest_z_levels += T.map
+			load_new_z_level(T.map, T.map_name)
 			if (!linked_console)
 				for(var/obj/machinery/computer/shuttle/quests_console/C in range(src, 5))
 					linked_console = C

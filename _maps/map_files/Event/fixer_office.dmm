@@ -175,8 +175,7 @@
 	dir = 8
 	},
 /turf/open/floor/plating/ashplanet{
-	name = "asphalt";
-	density = 1
+	name = "asphalt"
 	},
 /area/city)
 "aH" = (
@@ -2210,8 +2209,7 @@
 	dir = 4
 	},
 /turf/open/floor/plating/ashplanet{
-	name = "asphalt";
-	density = 1
+	name = "asphalt"
 	},
 /area/city)
 "ix" = (
@@ -2737,8 +2735,7 @@
 "kq" = (
 /obj/effect/turf_decal/trimline/red/filled/warning,
 /turf/open/floor/plating/ashplanet{
-	name = "asphalt";
-	density = 1
+	name = "asphalt"
 	},
 /area/city)
 "kr" = (
@@ -4486,8 +4483,7 @@
 	dir = 1
 	},
 /turf/open/floor/plating/ashplanet{
-	name = "asphalt";
-	density = 1
+	name = "asphalt"
 	},
 /area/city)
 "rS" = (
@@ -5334,6 +5330,14 @@
 /obj/item/flashlight/lamp,
 /turf/open/floor/carpet/black,
 /area/city/backstreets_alley)
+"vy" = (
+/obj/effect/turf_decal/trimline/white/filled/line{
+	pixel_y = 10
+	},
+/turf/open/floor/plating/ashplanet{
+	name = "asphalt"
+	},
+/area/city)
 "vz" = (
 /obj/structure/railing{
 	desc = "Indestructible railing created in a vain attempt of fool-proofing the wing's workplace.";
@@ -5974,8 +5978,7 @@
 	dir = 6
 	},
 /turf/open/floor/plating/ashplanet{
-	name = "asphalt";
-	density = 1
+	name = "asphalt"
 	},
 /area/city)
 "yl" = (
@@ -6775,6 +6778,18 @@
 	color = "#b5b5b5"
 	},
 /area/city/backstreets_alley)
+"BA" = (
+/obj/effect/turf_decal/trimline/yellow/filled/line{
+	pixel_y = 5
+	},
+/obj/effect/turf_decal/trimline/yellow/filled/line{
+	dir = 1;
+	pixel_y = -5
+	},
+/turf/open/floor/plating/ashplanet{
+	name = "asphalt"
+	},
+/area/city)
 "BC" = (
 /obj/structure/table/wood,
 /obj/structure/railing,
@@ -7547,8 +7562,7 @@
 	width = 10
 	},
 /turf/open/floor/plating/ashplanet{
-	name = "asphalt";
-	density = 1
+	name = "asphalt"
 	},
 /area/city)
 "Fn" = (
@@ -8003,8 +8017,7 @@
 	dir = 9
 	},
 /turf/open/floor/plating/ashplanet{
-	name = "asphalt";
-	density = 1
+	name = "asphalt"
 	},
 /area/city)
 "Hs" = (
@@ -8579,8 +8592,7 @@
 	dir = 10
 	},
 /turf/open/floor/plating/ashplanet{
-	name = "asphalt";
-	density = 1
+	name = "asphalt"
 	},
 /area/city)
 "JY" = (
@@ -10787,8 +10799,7 @@
 	dir = 5
 	},
 /turf/open/floor/plating/ashplanet{
-	name = "asphalt";
-	density = 1
+	name = "asphalt"
 	},
 /area/city)
 "Uj" = (
@@ -10832,6 +10843,11 @@
 	color = "#b5b5b5"
 	},
 /area/city/backstreets_alley)
+"Uw" = (
+/turf/open/floor/plating/ashplanet{
+	name = "asphalt"
+	},
+/area/city)
 "Ux" = (
 /obj/structure/railing{
 	desc = "Indestructible railing created in a vain attempt of fool-proofing the wing's workplace.";
@@ -57130,9 +57146,9 @@ ca
 Oq
 zr
 Hq
-EY
+Uw
 aG
-Bo
+BA
 JW
 vF
 Hm
@@ -57386,11 +57402,11 @@ LY
 ca
 Oq
 zr
-EY
-EY
-EY
-Bo
-EY
+Uw
+Uw
+Uw
+BA
+Uw
 vF
 WS
 zr
@@ -57644,9 +57660,9 @@ ca
 Oq
 zr
 rR
-EY
-Kw
-Bo
+Uw
+vy
+BA
 kq
 vF
 pr
@@ -57900,11 +57916,11 @@ CB
 ca
 Oq
 zr
-EY
-EY
-EY
-Bo
-EY
+Uw
+Uw
+Uw
+BA
+Uw
 vF
 pr
 zr
@@ -58158,9 +58174,9 @@ ca
 Oq
 zr
 rR
-EY
-EY
-Bo
+Uw
+Uw
+BA
 Fj
 vF
 mb
@@ -58414,11 +58430,11 @@ mL
 ca
 Oq
 zr
-EY
-Kw
-EY
-Bo
-EY
+Uw
+vy
+Uw
+BA
+Uw
 vF
 pr
 zr
@@ -58672,9 +58688,9 @@ ca
 Oq
 zr
 rR
-EY
-EY
-Bo
+Uw
+Uw
+BA
 kq
 vF
 pr
@@ -58928,11 +58944,11 @@ UQ
 ca
 Oq
 zr
-EY
-EY
-EY
-Bo
-EY
+Uw
+Uw
+Uw
+BA
+Uw
 vF
 WS
 zr
@@ -59186,9 +59202,9 @@ ca
 Oq
 zr
 Uh
-EY
+Uw
 iv
-Bo
+BA
 yg
 gl
 dz

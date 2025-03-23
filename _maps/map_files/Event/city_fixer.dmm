@@ -285,6 +285,18 @@
 /obj/item/kitchen/spoon,
 /turf/open/indestructible/hoteltile,
 /area/city/house)
+"eU" = (
+/obj/effect/turf_decal/trimline/yellow/filled/line{
+	pixel_y = 5
+	},
+/obj/effect/turf_decal/trimline/yellow/filled/line{
+	dir = 1;
+	pixel_y = -5
+	},
+/turf/open/floor/plating/ashplanet{
+	name = "asphalt"
+	},
+/area/city)
 "eY" = (
 /obj/structure/sink/kitchen{
 	dir = 4;
@@ -301,8 +313,7 @@
 	dir = 4
 	},
 /turf/open/floor/plating/ashplanet{
-	name = "asphalt";
-	density = 1
+	name = "asphalt"
 	},
 /area/city)
 "fw" = (
@@ -477,8 +488,7 @@
 "hn" = (
 /obj/effect/turf_decal/trimline/red/filled/warning,
 /turf/open/floor/plating/ashplanet{
-	name = "asphalt";
-	density = 1
+	name = "asphalt"
 	},
 /area/city)
 "hw" = (
@@ -1116,8 +1126,7 @@
 	width = 10
 	},
 /turf/open/floor/plating/ashplanet{
-	name = "asphalt";
-	density = 1
+	name = "asphalt"
 	},
 /area/city)
 "pz" = (
@@ -1569,8 +1578,7 @@
 	dir = 5
 	},
 /turf/open/floor/plating/ashplanet{
-	name = "asphalt";
-	density = 1
+	name = "asphalt"
 	},
 /area/city)
 "vQ" = (
@@ -1963,8 +1971,7 @@
 	dir = 1
 	},
 /turf/open/floor/plating/ashplanet{
-	name = "asphalt";
-	density = 1
+	name = "asphalt"
 	},
 /area/city)
 "yX" = (
@@ -2264,8 +2271,7 @@
 	dir = 8
 	},
 /turf/open/floor/plating/ashplanet{
-	name = "asphalt";
-	density = 1
+	name = "asphalt"
 	},
 /area/city)
 "BU" = (
@@ -2369,6 +2375,14 @@
 	},
 /turf/open/floor/facility,
 /area/city/shop)
+"DY" = (
+/obj/effect/turf_decal/trimline/white/filled/line{
+	pixel_y = 10
+	},
+/turf/open/floor/plating/ashplanet{
+	name = "asphalt"
+	},
+/area/city)
 "Eg" = (
 /obj/effect/turf_decal/box,
 /obj/effect/landmark/fixerbase,
@@ -2704,8 +2718,7 @@
 	dir = 9
 	},
 /turf/open/floor/plating/ashplanet{
-	name = "asphalt";
-	density = 1
+	name = "asphalt"
 	},
 /area/city)
 "Ls" = (
@@ -2838,8 +2851,7 @@
 	dir = 6
 	},
 /turf/open/floor/plating/ashplanet{
-	name = "asphalt";
-	density = 1
+	name = "asphalt"
 	},
 /area/city)
 "Pd" = (
@@ -2922,6 +2934,11 @@
 /obj/machinery/fish_market,
 /turf/open/floor/wood,
 /area/city)
+"QX" = (
+/turf/open/floor/plating/ashplanet{
+	name = "asphalt"
+	},
+/area/city)
 "QZ" = (
 /obj/machinery/telecomms/server/presets/science,
 /obj/effect/turf_decal/bot,
@@ -2960,8 +2977,7 @@
 	dir = 10
 	},
 /turf/open/floor/plating/ashplanet{
-	name = "asphalt";
-	density = 1
+	name = "asphalt"
 	},
 /area/city)
 "Su" = (
@@ -39177,9 +39193,9 @@ Oq
 Oq
 zr
 Ld
-Ls
+QX
 BH
-Gj
+eU
 Sg
 Rr
 Hm
@@ -39433,11 +39449,11 @@ zr
 Oq
 Oq
 zr
-Ls
-Ls
-Ls
-Gj
-Ls
+QX
+QX
+QX
+eU
+QX
 Rr
 Ow
 zr
@@ -39691,9 +39707,9 @@ Oq
 Oq
 zr
 yV
-Ls
-KJ
-Gj
+QX
+DY
+eU
 hn
 Rr
 iE
@@ -39947,11 +39963,11 @@ zr
 Oq
 Oq
 zr
-Ls
-Ls
-Ls
-Gj
-Ls
+QX
+QX
+QX
+eU
+QX
 Rr
 iE
 zr
@@ -40205,9 +40221,9 @@ zr
 Oq
 zr
 yV
-Ls
-Ls
-Gj
+QX
+QX
+eU
 pm
 Rr
 zT
@@ -40461,11 +40477,11 @@ TJ
 zr
 Oq
 zr
-Ls
-KJ
-Ls
-Gj
-Ls
+QX
+DY
+QX
+eU
+QX
 Rr
 iE
 zr
@@ -40719,9 +40735,9 @@ zr
 Oq
 zr
 yV
-Ls
-Ls
-Gj
+QX
+QX
+eU
 hn
 Rr
 iE
@@ -40975,11 +40991,11 @@ TJ
 zr
 Oq
 zr
-Ls
-Ls
-Ls
-Gj
-Ls
+QX
+QX
+QX
+eU
+QX
 Rr
 Ow
 zr
@@ -41233,9 +41249,9 @@ zr
 Oq
 zr
 vN
-Ls
+QX
 fr
-Gj
+eU
 OZ
 st
 OS
