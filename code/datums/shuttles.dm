@@ -731,5 +731,5 @@
 	can_be_bought = FALSE
 
 /datum/map_template/shuttle/quest/bus
-	suffix = "bus"
+	suffix = "coolbus"
 	name = "quest bus"

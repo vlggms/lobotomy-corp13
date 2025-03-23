@@ -711,9 +711,8 @@
 	var/door = pick(GLOB.delivery_doors)
 	if(istype(door, /obj/structure/delivery_door))
 		var/obj/structure/delivery_door/D = door
-		D.OrderParcel(user.loc)
-
 		var/mob/user = usr
+		D.OrderParcel(user.loc)
 		user.playsound_local(get_turf(src), 'sound/effects/cashregister.ogg', 25, 3, 3)
 
 		// Set up signal handling for parcel delivery

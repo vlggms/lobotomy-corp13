@@ -23,6 +23,22 @@
 	name = "asphalt"
 	},
 /area/shuttle/mining)
+"g" = (
+/obj/structure/fluff/bus/dense{
+	icon_state = "frontwallbottom"
+	},
+/obj/docking_port/mobile{
+	name = "quest bus";
+	id = "quest";
+	port_direction = 2;
+	dwidth = 2;
+	height = 4;
+	width = 4
+	},
+/turf/open/floor/plating/ashplanet{
+	name = "asphalt"
+	},
+/area/shuttle/mining)
 "h" = (
 /obj/structure/fluff/bus/dense{
 	icon_state = "frontwallbottomrear"
@@ -187,7 +203,7 @@ K
 R
 x
 J
-W
+g
 "}
 (6,1,1) = {"
 K

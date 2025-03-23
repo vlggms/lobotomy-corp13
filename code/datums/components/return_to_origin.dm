@@ -19,6 +19,7 @@
 	// patrol back
 	if(parent_hostile.stat == DEAD)
 		qdel(src)
+		return
 	if (!parent_hostile.target)
 		if (get_turf(parent_hostile) != origin)
 			if(!(parent_hostile.patrol_to(origin)))

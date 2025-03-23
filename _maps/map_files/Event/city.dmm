@@ -508,8 +508,7 @@
 	dir = 5
 	},
 /turf/open/floor/plating/ashplanet{
-	name = "asphalt";
-	density = 1
+	name = "asphalt"
 	},
 /area/city)
 "fI" = (
@@ -1220,8 +1219,7 @@
 	dir = 6
 	},
 /turf/open/floor/plating/ashplanet{
-	name = "asphalt";
-	density = 1
+	name = "asphalt"
 	},
 /area/city)
 "no" = (
@@ -1262,8 +1260,7 @@
 	dir = 9
 	},
 /turf/open/floor/plating/ashplanet{
-	name = "asphalt";
-	density = 1
+	name = "asphalt"
 	},
 /area/city)
 "nI" = (
@@ -1734,8 +1731,7 @@
 	dir = 10
 	},
 /turf/open/floor/plating/ashplanet{
-	name = "asphalt";
-	density = 1
+	name = "asphalt"
 	},
 /area/city)
 "sc" = (
@@ -2401,8 +2397,7 @@
 	dir = 8
 	},
 /turf/open/floor/plating/ashplanet{
-	name = "asphalt";
-	density = 1
+	name = "asphalt"
 	},
 /area/city)
 "xe" = (
@@ -2636,6 +2631,18 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/carpet/black,
 /area/space)
+"yR" = (
+/obj/effect/turf_decal/trimline/yellow/filled/line{
+	pixel_y = 5
+	},
+/obj/effect/turf_decal/trimline/yellow/filled/line{
+	dir = 1;
+	pixel_y = -5
+	},
+/turf/open/floor/plating/ashplanet{
+	name = "asphalt"
+	},
+/area/city)
 "yS" = (
 /obj/machinery/door/airlock/grunge{
 	name = "association backstreets office";
@@ -3643,8 +3650,7 @@
 	width = 10
 	},
 /turf/open/floor/plating/ashplanet{
-	name = "asphalt";
-	density = 1
+	name = "asphalt"
 	},
 /area/city)
 "FH" = (
@@ -3805,8 +3811,7 @@
 "GI" = (
 /obj/effect/turf_decal/trimline/red/filled/warning,
 /turf/open/floor/plating/ashplanet{
-	name = "asphalt";
-	density = 1
+	name = "asphalt"
 	},
 /area/city)
 "GK" = (
@@ -3972,6 +3977,14 @@
 /obj/machinery/telecomms/server/presets/common,
 /turf/open/floor/circuit/telecomms/mainframe,
 /area/facility_hallway/north)
+"HN" = (
+/obj/effect/turf_decal/trimline/white/filled/line{
+	pixel_y = 10
+	},
+/turf/open/floor/plating/ashplanet{
+	name = "asphalt"
+	},
+/area/city)
 "HO" = (
 /turf/closed/indestructible/rock,
 /area/city)
@@ -4661,8 +4674,7 @@
 	dir = 1
 	},
 /turf/open/floor/plating/ashplanet{
-	name = "asphalt";
-	density = 1
+	name = "asphalt"
 	},
 /area/city)
 "NV" = (
@@ -5035,8 +5047,7 @@
 	dir = 4
 	},
 /turf/open/floor/plating/ashplanet{
-	name = "asphalt";
-	density = 1
+	name = "asphalt"
 	},
 /area/city)
 "SF" = (
@@ -5321,6 +5332,11 @@
 /obj/machinery/hydroponics,
 /turf/open/floor/wood,
 /area/city/house)
+"VF" = (
+/turf/open/floor/plating/ashplanet{
+	name = "asphalt"
+	},
+/area/city)
 "VK" = (
 /obj/machinery/light{
 	dir = 1
@@ -48089,9 +48105,9 @@ TZ
 hJ
 zr
 nB
-TS
+VF
 wY
-be
+yR
 rX
 Fv
 Hm
@@ -48345,11 +48361,11 @@ zr
 GN
 GN
 zr
-TS
-TS
-TS
-be
-TS
+VF
+VF
+VF
+yR
+VF
 Fv
 cp
 zr
@@ -48603,9 +48619,9 @@ TZ
 GN
 zr
 NR
-TS
-ft
-be
+VF
+HN
+yR
 GI
 Fv
 AA
@@ -48859,11 +48875,11 @@ zr
 GN
 GN
 zr
-TS
-TS
-TS
-be
-TS
+VF
+VF
+VF
+yR
+VF
 Fv
 AA
 zr
@@ -49117,9 +49133,9 @@ rO
 GN
 zr
 NR
-TS
-TS
-be
+VF
+VF
+yR
 FD
 Fv
 dz
@@ -49373,11 +49389,11 @@ zr
 GN
 of
 zr
-TS
-ft
-TS
-be
-TS
+VF
+HN
+VF
+yR
+VF
 Fv
 AA
 zr
@@ -49631,9 +49647,9 @@ GN
 GN
 zr
 NR
-TS
-TS
-be
+VF
+VF
+yR
 GI
 Fv
 AA
@@ -49887,11 +49903,11 @@ DF
 GN
 fi
 zr
-TS
-TS
-TS
-be
-TS
+VF
+VF
+VF
+yR
+VF
 Fv
 cp
 zr
@@ -50145,9 +50161,9 @@ fi
 oP
 zr
 fC
-TS
+VF
 Sz
-be
+yR
 nm
 oV
 nO
