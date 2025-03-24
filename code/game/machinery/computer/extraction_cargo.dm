@@ -8,7 +8,7 @@
 /obj/machinery/computer/extraction_cargo
 	name = "corporate trade console"
 	desc = "Used to purchase supplies at the expense of energy."
-	icon_screen = "supply"
+	icon_screen = "extraction_cargo"
 	resistance_flags = INDESTRUCTIBLE
 	var/selected_level = CAT_GADGET
 
