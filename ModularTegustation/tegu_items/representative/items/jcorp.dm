@@ -60,6 +60,7 @@ GLOBAL_LIST_EMPTY(possible_loot_jcorp)
 		/obj/item/clothing/mask/facehugger,
 		/obj/item/gun/energy/laser/instakill,
 		/obj/item/disk/surgery/debug,
+		/obj/item/clothing/suit/space/chronos,
 	)
 	var/list/banned_subtypes = list(
 		/obj/item/lc_debug,
