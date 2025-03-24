@@ -7,7 +7,7 @@
 /datum/adventure_event/red_riding_hood_mercenary
 	name = "Little Red Riding Hooded Mercenary"
 	desc = "YOU SEE A PERSON IN RED RAGS"
-	required_abno = /mob/living/simple_animal/abnormality/waw/red_riding_hood_mercenary
+	require_abno = /mob/living/simple_animal/hostile/abnormality/red_hood
 	adventure_cords = list(
 		"You enter a home filled with pictures of the same beast<br>\
 		plastered across the walls, each one ripped or torn or shot or covered.<br>\
@@ -18,7 +18,7 @@
 
 		"\"Where!\" The girl exclaims.<br>\
 		As they hurry you along you explain where to go.<br>\
-		They don’t bother to thank you, grabbing their weapons and charging off.<br>\
+		They donï¿½t bother to thank you, grabbing their weapons and charging off.<br>\
 		There is no way anything deserves the horrors she will commit.",
 
 		"The girl sighs, taking out her gun.<br>\
@@ -42,6 +42,5 @@
 		if(2)
 			AdjustStatNum(PRIDE_STAT, ADV_EVENT_STAT_EASY)
 		if(3)
-			AdjustHealth(-40)
-		if(4)
-	return..()
+			AdjustHitPoint(-40)
+	return ..()
