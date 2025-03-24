@@ -1379,3 +1379,177 @@
 /datum/movespeed_modifier/tremor
 	multiplicative_slowdown = 0
 	variable = TRUE
+
+//Fragile status effects
+/datum/status_effect/stacking/protection/fragile
+	id = "fragile"
+	alert_type = /atom/movable/screen/alert/status_effect/fragile
+	protection = -1
+	protection_mod = /datum/dc_change/fragility
+
+/atom/movable/screen/alert/status_effect/fragile
+	name = "Fragility"
+	desc = "You are Fragile! All damage taken will be increased by "
+	icon = 'ModularTegustation/Teguicons/status_sprites.dmi'
+	icon_state = "fragile"
+
+//Mob Proc
+/mob/living/proc/apply_lc_fragile(stacks)
+	var/datum/status_effect/stacking/protection/fragile/F = src.has_status_effect(/datum/status_effect/stacking/protection/fragile)
+	if(!F)
+		src.apply_status_effect(/datum/status_effect/stacking/protection/fragile, stacks)
+		return
+
+	if(F.stacks)
+		F.add_stacks(stacks)
+		return
+
+//Damage Type Fragile Varients
+/datum/status_effect/stacking/damtype_protection/fragile
+	id = "red_fragile"
+	alert_type = /atom/movable/screen/alert/status_effect/damtype_protection/fragile
+	protection = -1
+	protection_mod = /datum/dc_change/red_fragility
+
+/atom/movable/screen/alert/status_effect/damtype_protection/fragile
+	name = "Red Fragility"
+	desc = "You are fragile! Red damage taken will be increased by "
+	icon = 'ModularTegustation/Teguicons/status_sprites.dmi'
+	icon_state = "red_fragile"
+
+//Mob Proc
+/mob/living/proc/apply_lc_red_fragile(stacks)
+	var/datum/status_effect/stacking/damtype_protection/fragile/F = src.has_status_effect(/datum/status_effect/stacking/damtype_protection/fragile)
+	if(!F)
+		src.apply_status_effect(/datum/status_effect/stacking/damtype_protection/fragile, stacks)
+		return
+
+	if(F.stacks)
+		F.add_stacks(stacks)
+		return
+
+/datum/status_effect/stacking/damtype_protection/white/fragile
+	id = "white_fragile"
+	alert_type = /atom/movable/screen/alert/status_effect/damtype_protection/white/fragile
+	protection = -1
+	protection_mod = /datum/dc_change/white_fragility
+
+/atom/movable/screen/alert/status_effect/damtype_protection/white/fragile
+	name = "White Fragility"
+	desc = "You are fragile! White damage taken will be increased by "
+	icon = 'ModularTegustation/Teguicons/status_sprites.dmi'
+	icon_state = "white_fragile"
+
+//Mob Proc
+/mob/living/proc/apply_lc_white_fragile(stacks)
+	var/datum/status_effect/stacking/damtype_protection/white/fragile/F = src.has_status_effect(/datum/status_effect/stacking/damtype_protection/white/fragile)
+	if(!F)
+		src.apply_status_effect(/datum/status_effect/stacking/damtype_protection/white/fragile, stacks)
+		return
+
+	if(F.stacks)
+		F.add_stacks(stacks)
+		return
+
+/datum/status_effect/stacking/damtype_protection/black/fragile
+	id = "black_fragile"
+	alert_type = /atom/movable/screen/alert/status_effect/damtype_protection/black/fragile
+	protection = -1
+	protection_mod = /datum/dc_change/black_fragility
+
+/atom/movable/screen/alert/status_effect/damtype_protection/black/fragile
+	name = "Black Fragility"
+	desc = "You are fragile! Black damage taken will be increased by "
+	icon = 'ModularTegustation/Teguicons/status_sprites.dmi'
+	icon_state = "black_fragile"
+
+//Mob Proc
+/mob/living/proc/apply_lc_black_fragile(stacks)
+	var/datum/status_effect/stacking/damtype_protection/black/fragile/F = src.has_status_effect(/datum/status_effect/stacking/damtype_protection/black/fragile)
+	if(!F)
+		src.apply_status_effect(/datum/status_effect/stacking/damtype_protection/black/fragile, stacks)
+		return
+
+	if(F.stacks)
+		F.add_stacks(stacks)
+		return
+
+/datum/status_effect/stacking/damtype_protection/pale/fragile
+	id = "pale_fragile"
+	alert_type = /atom/movable/screen/alert/status_effect/damtype_protection/pale/fragile
+	protection = -1
+	protection_mod = /datum/dc_change/pale_fragility
+
+/atom/movable/screen/alert/status_effect/damtype_protection/pale/fragile
+	name = "Pale Fragility"
+	desc = "You are fragile! Pale damage taken will be increased by "
+	icon = 'ModularTegustation/Teguicons/status_sprites.dmi'
+	icon_state = "pale_fragile"
+
+//Mob Proc
+/mob/living/proc/apply_lc_pale_fragile(stacks)
+	var/datum/status_effect/stacking/damtype_protection/pale/fragile/F = src.has_status_effect(/datum/status_effect/stacking/damtype_protection/pale/fragile)
+	if(!F)
+		src.apply_status_effect(/datum/status_effect/stacking/damtype_protection/pale/fragile, stacks)
+		return
+
+	if(F.stacks)
+		F.add_stacks(stacks)
+		return
+
+//Global Damage Up
+/datum/status_effect/stacking/damage_up/down
+	id = "damage_down"
+	alert_type = /atom/movable/screen/alert/status_effect/damage_up/down
+	damage_mode = -1
+
+/atom/movable/screen/alert/status_effect/damage_up/down
+	name = "Damage Down"
+	desc = "You are weakend! Your melee damage is decreased by "
+	icon = 'ModularTegustation/Teguicons/status_sprites.dmi'
+	icon_state = "red_protection"
+
+//Specific Damage Down
+/datum/status_effect/stacking/damtype_damage_up/down
+	id = "red_damage_down"
+	alert_type = /atom/movable/screen/alert/status_effect/red_damage_up/down
+	damage_mode = -1
+
+/atom/movable/screen/alert/status_effect/red_damage_up/down
+	name = "Red Damage Down"
+	desc = "You are weakend! Your RED melee damage is decreased by "
+	icon = 'ModularTegustation/Teguicons/status_sprites.dmi'
+	icon_state = "red_protection"
+
+/datum/status_effect/stacking/damtype_damage_up/white/down
+	id = "white_damage_down"
+	alert_type = /atom/movable/screen/alert/status_effect/white_damage_up/down
+	damage_mode = -1
+
+/atom/movable/screen/alert/status_effect/white_damage_up/down
+	name = "White Damage Down"
+	desc = "You are weakend! Your WHITE melee damage is reduced by "
+	icon = 'ModularTegustation/Teguicons/status_sprites.dmi'
+	icon_state = "red_protection"
+
+/datum/status_effect/stacking/damtype_damage_up/black/down
+	id = "black_damage_down"
+	alert_type = /atom/movable/screen/alert/status_effect/black_damage_up/down
+	damage_mode = -1
+
+/atom/movable/screen/alert/status_effect/black_damage_up/down
+	name = "Black Damage Down"
+	desc = "You are weakend! Your BLACK melee damage is reduced by "
+	icon = 'ModularTegustation/Teguicons/status_sprites.dmi'
+	icon_state = "red_protection"
+
+/datum/status_effect/stacking/damtype_damage_up/pale/down
+	id = "pale_damage_down"
+	alert_type = /atom/movable/screen/alert/status_effect/pale_damage_up/down
+	damage_mode = -1
+
+/atom/movable/screen/alert/status_effect/pale_damage_up/down
+	name = "Pale Damage Down"
+	desc = "You are weakend! Your PALE melee damage is reduced by "
+	icon = 'ModularTegustation/Teguicons/status_sprites.dmi'
+	icon_state = "red_protection"
