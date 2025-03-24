@@ -1,4 +1,4 @@
-/mob/living/simple_animal/ui_npc/shopkeeper
+/mob/living/simple_animal/hostile/ui_npc/shopkeeper
 	name = "Marcus"
 	desc = "A friendly shopkeeper with an impressive selection of wares."
 	icon = 'icons/mob/animal.dmi'
@@ -10,7 +10,7 @@
 	bubble = "normal"
 
 
-/mob/living/simple_animal/ui_npc/shopkeeper/Initialize()
+/mob/living/simple_animal/hostile/ui_npc/shopkeeper/Initialize()
 	. = ..()
 	// Set up scenes for this shopkeeper
 	scene_manager.load_scenes(get_shop_scenes())
@@ -28,7 +28,7 @@
 	scene_manager.global_vars.variables["station_alert"] = FALSE
 	scene_manager.global_vars.variables["time_of_day"] = "day"
 
-/mob/living/simple_animal/ui_npc/shopkeeper/update_player_variables(mob/user)
+/mob/living/simple_animal/hostile/ui_npc/shopkeeper/update_player_variables(mob/user)
 	. = ..()
 	if(!user?.client)
 		return
@@ -50,7 +50,7 @@
 	// if(isnull(reputation))
 	// 	scene_manager.set_var(user.client, "npc.player_reputation", 0)
 
-/mob/living/simple_animal/ui_npc/shopkeeper/proc/get_shop_scenes()
+/mob/living/simple_animal/hostile/ui_npc/shopkeeper/proc/get_shop_scenes()
 	var/list/scenes = list()
 
 	// Greeting scene - handles first visit vs returning customer

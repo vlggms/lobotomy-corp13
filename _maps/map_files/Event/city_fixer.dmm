@@ -1379,7 +1379,7 @@
 /area/city/shop)
 "tM" = (
 /obj/structure/chair/plastic,
-/mob/living/simple_animal/ui_npc/eric_t,
+/mob/living/simple_animal/hostile/ui_npc/eric_t,
 /turf/open/indestructible/white,
 /area/city/shop)
 "tO" = (

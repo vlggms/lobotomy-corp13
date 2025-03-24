@@ -1,4 +1,4 @@
-/mob/living/simple_animal/ui_npc
+/mob/living/simple_animal/hostile/ui_npc
 	name = "The Goat"
 	icon = 'icons/mob/animal.dmi'
 	icon_state = "goat"
@@ -8,6 +8,7 @@
 	pull_force = MOVE_FORCE_STRONG
 	can_buckle_to = FALSE // Please. I beg you. Stop stealing my vending machines.
 	mob_size = MOB_SIZE_HUGE // No more lockers, Whitaker
+	faction = list("neutral")
 	var/portrait_folder = "icons/UI_Icons/NPC_Portraits/"
 	var/portrait = "the-goat.PNG"
 	var/sound/talking = sound('sound/creatures/lc13/mailman.ogg', repeat = TRUE)
@@ -27,14 +28,14 @@
 	var/image/speech_bubble
 
 
-/mob/living/simple_animal/ui_npc/Life()
+/mob/living/simple_animal/hostile/ui_npc/Life()
 	. = ..()
 	if(last_emote + emote_delay <= world.time && emote_list.len > 0 && !shut_up && DT_PROB(20, 1))
 		var/emote = pick(emote_list)
 		manual_emote(emote)
 		last_emote = world.time
 
-/mob/living/simple_animal/ui_npc/Initialize()
+/mob/living/simple_animal/hostile/ui_npc/Initialize()
 	. = ..()
 
 	// Original code
@@ -51,11 +52,11 @@
 	scene_manager.global_vars.variables["time_of_day"] = "day"  // Example global variable
 
 // Called to supply static data that seldom changes.
-/mob/living/simple_animal/ui_npc/ui_static_data(mob/user)
+/mob/living/simple_animal/hostile/ui_npc/ui_static_data(mob/user)
 	return list()
 
 // Called periodically if autoupdate=TRUE. If you need periodic refreshes, do them here.
-/mob/living/simple_animal/ui_npc/ui_interact(mob/user, datum/tgui/ui)
+/mob/living/simple_animal/hostile/ui_npc/ui_interact(mob/user, datum/tgui/ui)
 	user << browse_rsc(file("[portrait_folder][portrait]"))
 	. = ..()
 	ui = SStgui.try_update_ui(user, src, ui)
@@ -63,7 +64,7 @@
 		ui = new(user, src, "SpeakingNpc")
 		ui.open()
 
-/mob/living/simple_animal/ui_npc/attack_hand(mob/living/carbon/user)
+/mob/living/simple_animal/hostile/ui_npc/attack_hand(mob/living/carbon/user)
 	if(!stat && user.a_intent == INTENT_HELP && !client)
 		if (stat == DEAD)
 			return
@@ -73,14 +74,14 @@
 		return TRUE
 	. = ..()
 
-/mob/living/simple_animal/ui_npc/attackby(obj/item/O, mob/user, params)
+/mob/living/simple_animal/hostile/ui_npc/attackby(obj/item/O, mob/user, params)
 	. = ..()
 	if(!user || !user.client)
 		return
 	ui_interact(user)
 
 // Enhanced ui_data method with player-specific variable processing
-/mob/living/simple_animal/ui_npc/ui_data(mob/user)
+/mob/living/simple_animal/hostile/ui_npc/ui_data(mob/user)
 	if(!user?.client)
 		return list()
 
@@ -122,12 +123,12 @@
 	)
 
 // Helper method to update player variables before processing UI data
-/mob/living/simple_animal/ui_npc/proc/update_player_variables(mob/user)
+/mob/living/simple_animal/hostile/ui_npc/proc/update_player_variables(mob/user)
 	if(!user)
 		return
 
 // Enhanced ui_act method to use the new scene_manager and action system
-/mob/living/simple_animal/ui_npc/ui_act(action, data, datum/tgui/ui, datum/ui_state/state)
+/mob/living/simple_animal/hostile/ui_npc/ui_act(action, data, datum/tgui/ui, datum/ui_state/state)
 	. = ..()
 	var/mob/user = usr
 	if(!user)
@@ -160,7 +161,7 @@
 	return FALSE
 
 // Handle UI closing - clear conversation state
-/mob/living/simple_animal/ui_npc/ui_close(mob/user)
+/mob/living/simple_animal/hostile/ui_npc/ui_close(mob/user)
 	user.stop_sound_channel(CHANNEL_MUMBLE)
 
 	// Clear dialog state when UI closes

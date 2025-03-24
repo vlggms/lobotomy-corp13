@@ -414,7 +414,7 @@
 /obj/machinery/light{
 	dir = 1
 	},
-/mob/living/simple_animal/ui_npc/eric_t{
+/mob/living/simple_animal/hostile/ui_npc/eric_t{
 	dir = 8
 	},
 /turf/open/floor/wood,

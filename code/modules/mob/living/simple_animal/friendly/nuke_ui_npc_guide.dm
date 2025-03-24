@@ -1,4 +1,4 @@
-/mob/living/simple_animal/ui_npc/rat_scout
+/mob/living/simple_animal/hostile/ui_npc/rat_scout
 	name = "guide scavenger"
 	desc = "One of the many inhabitants of the backstreets, armed with an odd pipe."
 	maxHealth = 100
@@ -24,7 +24,7 @@
 	butcher_results = list(/obj/item/food/meat/slab/human = 1, /obj/item/stack/spacecash/c10 = 1)
 	silk_results = list(/obj/item/stack/sheet/silk/human_simple = 1)
 
-/mob/living/simple_animal/ui_npc/rat_scout/Initialize()
+/mob/living/simple_animal/hostile/ui_npc/rat_scout/Initialize()
 		. = ..()
 		scene_manager.load_scenes(list(
 //Intro to the NPC

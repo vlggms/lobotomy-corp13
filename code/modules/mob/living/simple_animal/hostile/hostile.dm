@@ -148,7 +148,7 @@ GLOBAL_LIST_EMPTY(marked_players)
 	var/crate_visible = (crate in view(vision_range, src))
 	return user_visible && crate_visible
 
-/mob/living/simple_animal/hostile/humanoid/rat/bullet_act(obj/projectile/P)
+/mob/living/simple_animal/hostile/bullet_act(obj/projectile/P)
 	. = ..()
 	if(mark_once_attacked)
 		if(P.firer && get_dist(src, P.firer) <= aggro_vision_range)
@@ -550,14 +550,6 @@ GLOBAL_LIST_EMPTY(marked_players)
 	that you override this for your mob instead of making
 	niche conditions. In some cases using Found() will suffice.*/
 /mob/living/simple_animal/hostile/CanAttack(atom/the_target)
-	if(mark_once_attacked)
-		if (the_target in glob_faction)
-			if (istype(the_target, /mob/living))
-				var/mob/living/L = the_target
-				if (L.stat == DEAD)
-					return FALSE
-			return TRUE
-
 	if(isturf(the_target) || QDELETED(the_target) || the_target.type == /atom/movable/lighting_object)
 		// bail out on invalids
 		return FALSE
@@ -577,6 +569,10 @@ GLOBAL_LIST_EMPTY(marked_players)
 			var/mob/living/L = the_target
 			if(!L.CanBeAttacked(src))
 				return FALSE
+
+			if(mark_once_attacked)
+				if (the_target in glob_faction)
+					return TRUE
 
 			var/faction_check = faction_check_mob(L)
 			if(robust_searching)

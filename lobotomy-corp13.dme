@@ -3008,6 +3008,7 @@
 #include "code\modules\mob\living\simple_animal\friendly\lizard.dm"
 #include "code\modules\mob\living\simple_animal\friendly\mouse.dm"
 #include "code\modules\mob\living\simple_animal\friendly\npc.dm"
+#include "code\modules\mob\living\simple_animal\friendly\nuked_npc.dm"
 #include "code\modules\mob\living\simple_animal\friendly\penguin.dm"
 #include "code\modules\mob\living\simple_animal\friendly\pet.dm"
 #include "code\modules\mob\living\simple_animal\friendly\shopkeeper.dm"

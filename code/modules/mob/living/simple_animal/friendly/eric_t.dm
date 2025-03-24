@@ -1,4 +1,4 @@
-/mob/living/simple_animal/ui_npc/eric_t
+/mob/living/simple_animal/hostile/ui_npc/eric_t
 	name = "Eric T."
 	desc = "A fancy looking fellow wearing a mask; they look relaxed right now."
 	health = 1000
@@ -17,12 +17,12 @@
 	var/blood_resistance = 250
 	var/last_attacked_cooldown
 	var/attacked_cooldown = 300
-	var/attacked_line = "Yep, That will just be a waste of your time."
+	var/shielded_line = "Yep, That will just be a waste of your time."
 
 	// Price for replacing lost parcels
 	var/payback_price = 400
 
-/mob/living/simple_animal/ui_npc/eric_t/Initialize()
+/mob/living/simple_animal/hostile/ui_npc/eric_t/Initialize()
 	. = ..()
 
 	// Initialize NPC-specific variables
@@ -32,7 +32,7 @@
 	// Load scenes
 	scene_manager.load_scenes(get_eric_scenes())
 
-/mob/living/simple_animal/ui_npc/eric_t/update_player_variables(mob/user)
+/mob/living/simple_animal/hostile/ui_npc/eric_t/update_player_variables(mob/user)
 	. = ..()
 	if(!user)
 		return
@@ -48,7 +48,7 @@
 	var/has_briefcase = briefcase_check(user)
 	scene_manager.set_var(user, "player.has_briefcase", has_briefcase)
 
-/mob/living/simple_animal/ui_npc/eric_t/proc/get_eric_scenes()
+/mob/living/simple_animal/hostile/ui_npc/eric_t/proc/get_eric_scenes()
 	var/list/scenes = list()
 
 	// Intro scenes
@@ -647,7 +647,7 @@
 
 	return scenes
 
-/mob/living/simple_animal/ui_npc/eric_t/proc/briefcase_check(mob/user)
+/mob/living/simple_animal/hostile/ui_npc/eric_t/proc/briefcase_check(mob/user)
 	if(!user)
 		user = usr
 
@@ -660,7 +660,7 @@
 				return TRUE
 	return FALSE
 
-/mob/living/simple_animal/ui_npc/eric_t/proc/give_ticket()
+/mob/living/simple_animal/hostile/ui_npc/eric_t/proc/give_ticket()
 	if(isliving(usr))
 		var/mob/living/L = usr
 		new /obj/item/quest_ticket (get_turf(L))
@@ -668,7 +668,7 @@
 			if(!(C.machine_stat & (BROKEN|NOPOWER)) && is_station_level(C.z))
 				C.say(L.name + " has accepted the 'Dilapidated Town', breifcase retrieval contract.")
 
-/mob/living/simple_animal/ui_npc/eric_t/proc/briefcase_buy()
+/mob/living/simple_animal/hostile/ui_npc/eric_t/proc/briefcase_buy()
 	if(scene_manager.npc_vars.variables["briefcase_collected"])
 		return FALSE
 
@@ -689,7 +689,7 @@
 				return TRUE
 	return FALSE
 
-/mob/living/simple_animal/ui_npc/eric_t/proc/Payback()
+/mob/living/simple_animal/hostile/ui_npc/eric_t/proc/Payback()
 	var/obj/item/card/id/C
 	if(isliving(usr))
 		var/mob/living/L = usr
@@ -707,7 +707,7 @@
 			return TRUE
 	return FALSE
 
-/mob/living/simple_animal/ui_npc/eric_t/proc/OrderParcel()
+/mob/living/simple_animal/hostile/ui_npc/eric_t/proc/OrderParcel()
 	var/door = pick(GLOB.delivery_doors)
 	if(istype(door, /obj/structure/delivery_door))
 		var/obj/structure/delivery_door/D = door
@@ -720,7 +720,7 @@
 		return TRUE
 	return FALSE
 
-/mob/living/simple_animal/ui_npc/eric_t/proc/ParcelDelivered(door, mob/user)
+/mob/living/simple_animal/hostile/ui_npc/eric_t/proc/ParcelDelivered(door, mob/user)
 	SIGNAL_HANDLER
 
 	// Clear the parcel job flag for this user when delivered
@@ -730,7 +730,7 @@
 	// Unregister the signal
 	UnregisterSignal(door, COMSIG_PARCEL_DELIVERED)
 
-/mob/living/simple_animal/ui_npc/eric_t/adjustHealth(amount, updating_health = TRUE, forced = FALSE)
+/mob/living/simple_animal/hostile/ui_npc/eric_t/adjustHealth(amount, updating_health = TRUE, forced = FALSE)
 	if(amount > 0)
 		amount = amount - blood_resistance
 		if(amount < 0)
@@ -739,7 +739,7 @@
 	if(amount == 0)
 		new /obj/effect/temp_visual/blood_shield(src.loc)
 		if(last_attacked_cooldown < world.time - attacked_cooldown)
-			say(attacked_line)
+			say(shielded_line)
 			last_attacked_cooldown = world.time
 
 // The briefcase item remains the same
