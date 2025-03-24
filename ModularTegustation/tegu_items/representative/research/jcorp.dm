@@ -70,22 +70,6 @@ GLOBAL_LIST_EMPTY(jcorp_upgrades)
 	. = ..()
 	GLOB.jcorp_upgrades += "Tool Gacha"
 
-//Lootboxes
-
-/datum/data/lc13research/lootbox
-	research_name = "Repeatable: J Corp Brand Lootboxes"
-	research_desc = "Hey, it's Tom from Marketing. We have been thinking of a new way to try to encourage people to gamble, and we heard some people won't resist a shiny box that can contain something neat. We will send you two boxes if you provide the energy."
-	cost = AVERAGE_RESEARCH_PRICE
-	corp = J_CORP_REP
-
-/datum/data/lc13research/lootbox/ResearchEffect(obj/structure/representative_console/requester)
-	if(repeat_cooldown > world.time)
-		return
-	new /obj/item/a_gift/jcorp(get_turf(requester))
-	new /obj/item/a_gift/jcorp(get_turf(requester))
-	requester.visible_message(span_notice("The [requester] lights up as it teleports in the Lootboxes."))
-	repeat_cooldown = world.time + (10 SECONDS)
-
 //Casino Machines
 
 /datum/data/lc13research/casino_machine
