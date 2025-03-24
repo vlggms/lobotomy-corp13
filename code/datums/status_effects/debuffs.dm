@@ -1409,7 +1409,7 @@
 	name = "Fragility"
 	desc = "You are Fragile! All damage taken will be increased by "
 	icon = 'ModularTegustation/Teguicons/status_sprites.dmi'
-	icon_state = "karma"
+	icon_state = "fragile"
 
 //Mob Proc
 /mob/living/proc/apply_lc_fragile(stacks)
@@ -1433,7 +1433,7 @@
 	name = "Red Fragility"
 	desc = "You are fragile! Red damage taken will be increased by "
 	icon = 'ModularTegustation/Teguicons/status_sprites.dmi'
-	icon_state = "karma"
+	icon_state = "red_fragile"
 
 //Mob Proc
 /mob/living/proc/apply_lc_red_fragile(stacks)
@@ -1456,7 +1456,7 @@
 	name = "White Fragility"
 	desc = "You are fragile! White damage taken will be increased by "
 	icon = 'ModularTegustation/Teguicons/status_sprites.dmi'
-	icon_state = "karma"
+	icon_state = "white_fragile"
 
 //Mob Proc
 /mob/living/proc/apply_lc_white_fragile(stacks)
@@ -1479,7 +1479,7 @@
 	name = "Black Fragility"
 	desc = "You are fragile! Black damage taken will be increased by "
 	icon = 'ModularTegustation/Teguicons/status_sprites.dmi'
-	icon_state = "karma"
+	icon_state = "black_fragile"
 
 //Mob Proc
 /mob/living/proc/apply_lc_black_fragile(stacks)
@@ -1502,7 +1502,7 @@
 	name = "Pale Fragility"
 	desc = "You are fragile! Pale damage taken will be increased by "
 	icon = 'ModularTegustation/Teguicons/status_sprites.dmi'
-	icon_state = "karma"
+	icon_state = "pale_fragile"
 
 //Mob Proc
 /mob/living/proc/apply_lc_pale_fragile(stacks)

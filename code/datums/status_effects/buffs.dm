@@ -600,7 +600,7 @@
 	name = "Protection"
 	desc = "You are protected! All damage taken will be decreased by "
 	icon = 'ModularTegustation/Teguicons/status_sprites.dmi'
-	icon_state = "karma"
+	icon_state = "protection"
 
 /datum/status_effect/stacking/protection/on_apply()
 	. = ..()
@@ -695,7 +695,7 @@
 	name = "Red Protection"
 	desc = "You are protected! Red damage taken will be decreased by "
 	icon = 'ModularTegustation/Teguicons/status_sprites.dmi'
-	icon_state = "karma"
+	icon_state = "red_protection"
 
 /datum/status_effect/stacking/damtype_protection/on_apply()
 	. = ..()
@@ -798,7 +798,7 @@
 	name = "White Protection"
 	desc = "You are protected! White damage taken will be decreased by "
 	icon = 'ModularTegustation/Teguicons/status_sprites.dmi'
-	icon_state = "karma"
+	icon_state = "white_protection"
 
 //Mob Proc
 /mob/living/proc/apply_lc_white_protection(stacks)
@@ -821,7 +821,7 @@
 	name = "Black Protection"
 	desc = "You are protected! Black damage taken will be decreased by "
 	icon = 'ModularTegustation/Teguicons/status_sprites.dmi'
-	icon_state = "karma"
+	icon_state = "black_protection"
 
 //Mob Proc
 /mob/living/proc/apply_lc_black_protection(stacks)
@@ -844,7 +844,7 @@
 	name = "Pale Protection"
 	desc = "You are protected! Pale damage taken will be decreased by "
 	icon = 'ModularTegustation/Teguicons/status_sprites.dmi'
-	icon_state = "karma"
+	icon_state = "pale_protection"
 
 //Mob Proc
 /mob/living/proc/apply_lc_pale_protection(stacks)
