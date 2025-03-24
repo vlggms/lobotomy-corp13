@@ -90,6 +90,7 @@ GLOBAL_LIST_EMPTY(possible_loot_jcorp)
 		/obj/item/storage/backpack/duffelbag/syndie,
 		/obj/item/assembly/signaler/anomaly,
 		/obj/item/autosurgeon/skillchip/syndicate,
+		/obj/item/gun/energy/meteorgun,
 	)
 	var/list/safe_items = list(
 		/obj/item/grenade/firecracker,
@@ -109,9 +110,11 @@ GLOBAL_LIST_EMPTY(possible_loot_jcorp)
 		for(var/V in typesof(safe_subtypes))
 			var/obj/item/I = V
 			safe_items += I
-		for(var/V in typesof(banned_subtypes))
-			var/obj/item/I = V
-			banned_items += I
+		for(var/S in typesof(banned_subtypes))
+			var/obj/item/subtype = S
+			for(var/V in typesof(subtype))
+				var/obj/item/I = V
+				banned_items += I
 		var/list/all_items = subtypesof(/obj/item)
 		for(var/V in all_items)
 			var/obj/item/I = V
