@@ -183,3 +183,11 @@
 
 	/// Which god are you aligned with?
 	var/god_aligned = FISHGOD_NONE
+
+	///How much extra damage will they do with thier weapons/attacks? (1% more damage per extra damage)
+	///(Specific damage ups will only work if the attacker is using that specific damage type.)
+	var/extra_damage = 0
+	var/extra_damage_red = 0
+	var/extra_damage_white = 0
+	var/extra_damage_black = 0
+	var/extra_damage_pale = 0
