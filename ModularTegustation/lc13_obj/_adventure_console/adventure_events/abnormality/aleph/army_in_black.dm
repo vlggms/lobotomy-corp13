@@ -5,9 +5,9 @@
 	*/
 /datum/adventure_event/army_in_black
 	name = "Army in Black"
-	description = "YOU SEE A BUNCH OF SOLDIERS IN GELATINOUS HEARTS"
-	required_abno = /mob/living/simple_animal/abnormality/aleph/army_in_black
-	adventure_cords = (
+	desc = "YOU SEE A BUNCH OF SOLDIERS IN GELATINOUS HEARTS"
+	require_abno = /mob/living/simple_animal/hostile/abnormality/army
+	adventure_cords = list(
 		"Inside the facility rows and rows of gelatinous hearts sit,<br>\
 		Each of them containing a person in bright pink military gear.<br>\
 		You approach one, it’s impossible to see any expression on their face.<br>\
@@ -31,6 +31,7 @@
 		"\"Why can’t the human heart be more than just an organ?\"<br>\
 		With that they go silent, allowing you to leave.",
 	)
+
 /datum/adventure_event/army_in_black/EventChoiceFormat(obj/machinery/M, mob/living/carbon/human/H)
 	switch(cords)
 		if(1)
@@ -39,8 +40,7 @@
 			BUTTON_FORMAT(4, "FLESH", M)
 			return
 		if(2)
-			AdjustHealth(+35)
+			AdjustHitPoint(35)
 		if(3)
-			AdjustHealth(-50)
-		if(4)
-	return..()
+			AdjustHitPoint(-50)
+	return ..()

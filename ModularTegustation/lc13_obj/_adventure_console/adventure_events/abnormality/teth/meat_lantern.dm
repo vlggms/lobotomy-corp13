@@ -8,7 +8,7 @@
 	desc = "YOU SEE A FLOWER ON A PATH"
 	require_abno = /mob/living/simple_animal/hostile/abnormality/meat_lantern
 	adventure_cords = list(
-		"A thin path snakes through a forest full oflowering trees.<br>\
+		"A thin path snakes through a forest full of flowering trees.<br>\
 		White flowers bloom on every branch, breaking away in small bunches to float down and settle on the trail.<br>\
 		No animals can be heard, leaving you surrounded by an eerie silence<br>\
 		broken only by the whispers of wind through the petals and leaves.<br>\
