@@ -856,3 +856,25 @@
 	if(P.stacks)
 		P.add_stacks(stacks)
 		return
+
+/datum/status_effect/stacking/damage_up
+	id = "damage_up"
+	status_type = STATUS_EFFECT_MULTIPLE
+	duration = 100
+	max_stacks = 10
+	stacks = 0
+	consumed_on_threshold = FALSE
+	alert_type = /atom/movable/screen/alert/status_effect/damage_up
+	var/damage_mod = 1
+
+/atom/movable/screen/alert/status_effect/damage_up
+	name = "Damage Up"
+	desc = "You are inpowered! Your melee damage is increased by "
+	icon = 'ModularTegustation/Teguicons/status_sprites.dmi'
+	icon_state = "red_protection"
+
+/datum/status_effect/stacking/damage_up/add_stacks(stacks_added)//update your weaknesses
+	. = ..()
+	if(!owner)
+		return
+	linked_alert.desc = initial(linked_alert.desc)+"[stacks*10]%!"

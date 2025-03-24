@@ -292,6 +292,9 @@
 					critting.CritEffect(src, user)
 
 		var/damage = I.force * justice_mod * crit_bonus
+		var/datum/status_effect/stacking/damage_up/DU = user.has_status_effect(/datum/status_effect/stacking/damage_up)
+		if(DU)
+			damage = damage * (DU.stacks * 10)
 		if(istype(I, /obj/item/ego_weapon))
 			var/obj/item/ego_weapon/theweapon = I
 			damage *= theweapon.force_multiplier
@@ -318,6 +321,9 @@
 		log_combat(user, src, "attacked", I)
 		var/justice_mod = 1 + (get_modified_attribute_level(user, JUSTICE_ATTRIBUTE)/100)
 		var/damage = I.force * justice_mod
+		var/datum/status_effect/stacking/damage_up/DU = user.has_status_effect(/datum/status_effect/stacking/damage_up)
+		if(DU)
+			damage = damage * (DU.stacks * 10)
 		damage *= I.force_multiplier
 		take_damage(damage, I.damtype, attack_dir = get_dir(src, user))
 		return TRUE
