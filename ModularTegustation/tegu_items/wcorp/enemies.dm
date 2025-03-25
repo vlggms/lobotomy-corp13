@@ -145,13 +145,20 @@ GLOBAL_VAR_INIT(wcorp_boss_spawn, FALSE)
 					switch(rand(1, 100))
 						if(40 to 65)
 							spawntype = /mob/living/simple_animal/hostile/ordeal/sin_sloth
+							if(prob(25))
+								spawntype = /mob/living/simple_animal/hostile/ordeal/sin_sloth/noon
 						if(65 to 85)
 							spawntype = /mob/living/simple_animal/hostile/ordeal/sin_gloom
+							if(prob(25))
+								spawntype = /mob/living/simple_animal/hostile/ordeal/sin_gloom/noon
 						if(85 to 100)
 							spawntype = /mob/living/simple_animal/hostile/ordeal/sin_pride
+							if(prob(25))
+								spawntype = /mob/living/simple_animal/hostile/ordeal/sin_pride/noon
 						else
 							spawntype = /mob/living/simple_animal/hostile/ordeal/sin_gluttony
-
+							if(prob(25))
+								spawntype = /mob/living/simple_animal/hostile/ordeal/sin_gluttony/noon
 
 				//100% one Abomination, rest 20% Slashers / 20% Stabbers / 60% Suicidals
 				if(13 to 14)
@@ -162,27 +169,32 @@ GLOBAL_VAR_INIT(wcorp_boss_spawn, FALSE)
 						switch(rand(1,100))
 							if(60 to 80)
 								spawntype = /mob/living/simple_animal/hostile/ordeal/sin_pride
+								if(prob(25))
+									spawntype = /mob/living/simple_animal/hostile/ordeal/sin_pride/noon
 							if(80 to 100)
 								spawntype = /mob/living/simple_animal/hostile/ordeal/sin_gloom
+								if(prob(25))
+									spawntype = /mob/living/simple_animal/hostile/ordeal/sin_gloom/noon
 							else
 								spawntype = /mob/living/simple_animal/hostile/ordeal/sin_gluttony
+								if(prob(25))
+									spawntype = /mob/living/simple_animal/hostile/ordeal/sin_gluttony/noon
 
 				//20% Slasher / 20% Stabber / 20% Slammer / 20% Shambler / 20% Slumberer
 				if(15 to INFINITY)
 					switch(rand(1, 100))
-						if(20 to 30)
-							spawntype = /mob/living/simple_animal/hostile/ordeal/sin_lust
-						if(30 to 60)
-							spawntype = /mob/living/simple_animal/hostile/ordeal/sin_gloom
-						if(60 to 80)
-							spawntype = /mob/living/simple_animal/hostile/ordeal/sin_wrath
-						if(80 to 100)
-							spawntype = /mob/living/simple_animal/hostile/ordeal/sin_pride
+						if(16 to 32)
+							spawntype = /mob/living/simple_animal/hostile/ordeal/sin_lust/noon
+						if(32 to 48)
+							spawntype = /mob/living/simple_animal/hostile/ordeal/sin_gloom/noon
+						if(48 to 64)
+							spawntype = /mob/living/simple_animal/hostile/ordeal/sin_wrath/noon
+						if(64 to 80)
+							spawntype = /mob/living/simple_animal/hostile/ordeal/sin_pride/noon
+						if(80 to 96)
+							spawntype = /mob/living/simple_animal/hostile/ordeal/sin_gluttony/noon
 						else
-							spawntype = /mob/living/simple_animal/hostile/ordeal/sin_gluttony
-
-
-
+							spawntype = /mob/living/simple_animal/hostile/ordeal/sin_sloth/noon
 
 		if("shrimp")
 			spawntype = /mob/living/simple_animal/hostile/shrimp_rifleman
@@ -192,7 +204,6 @@ GLOBAL_VAR_INIT(wcorp_boss_spawn, FALSE)
 				if(1 to 3)
 					if(prob(10))
 						spawntype = /mob/living/simple_animal/hostile/shrimp
-
 
 				if(4 to 7)
 					switch(rand(1, 100))
@@ -226,10 +237,6 @@ GLOBAL_VAR_INIT(wcorp_boss_spawn, FALSE)
 						else
 							spawntype = /mob/living/simple_animal/hostile/shrimp
 
-
-
-
-
 				if(14 to INFINITY)
 					switch(rand(1, 100))
 						if(35 to 55)
@@ -241,6 +248,32 @@ GLOBAL_VAR_INIT(wcorp_boss_spawn, FALSE)
 						else
 							spawntype = /mob/living/simple_animal/hostile/shrimp
 
+		if("bloodfiends")
+			spawntype = /mob/living/simple_animal/hostile/humanoid/blood/bag
+			switch(GLOB.combat_counter)
+
+				//10% Bloodfiend / 90% Bloodbag
+				if(1 to 5)
+					if(prob(10))
+						spawntype = /mob/living/simple_animal/hostile/humanoid/blood/fiend
+
+				//50% Bloodfiend / 50% Bloodbag
+				if(6 to 14)
+					switch(rand(1, 100))
+						if(50 to 100)
+							spawntype = /mob/living/simple_animal/hostile/humanoid/blood/fiend
+						else
+							spawntype = /mob/living/simple_animal/hostile/humanoid/blood/bag
+
+				//50% Bloodbag / 40% Bloodfiend / 10% Bloodfiend Boss
+				if(15 to INFINITY)
+					switch(rand(1, 100))
+						if(50 to 90)
+							spawntype = /mob/living/simple_animal/hostile/humanoid/blood/fiend
+						if(90 to 100)
+							spawntype = /mob/living/simple_animal/hostile/humanoid/blood/fiend/boss
+						else
+							spawntype = /mob/living/simple_animal/hostile/humanoid/blood/bag
 
 	var/mob/living/simple_animal/hostile/H = new spawntype(get_turf(src))
 	H.can_patrol = TRUE
