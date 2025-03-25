@@ -41,7 +41,7 @@
 	var/old_force = force
 	if(SSmaptype.maptype in SSmaptype.citymaps)
 		if(ishuman(target))
-			force *= 0.25
+			force *= 0.40
 	. = ..()
 	if(SSmaptype.maptype in SSmaptype.citymaps)
 		if(old_force != force)
