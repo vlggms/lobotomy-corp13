@@ -128,10 +128,10 @@
 	if(!. && istype(mover, /obj/projectile))
 		return prob(30)
 
-/obj/structure/grille/CanAStarPass(ID, dir, caller)
+/obj/structure/grille/CanAStarPass(ID, dir, requester)
 	. = !density
-	if(ismovable(caller))
-		var/atom/movable/mover = caller
+	if(ismovable(requester))
+		var/atom/movable/mover = requester
 		. = . || (mover.pass_flags & PASSGRILLE)
 
 /obj/structure/grille/attackby(obj/item/W, mob/user, params)

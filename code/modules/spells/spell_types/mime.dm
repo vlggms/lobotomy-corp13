@@ -210,15 +210,15 @@
 		invocation_type ="none"
 	..()
 
-/obj/effect/proc_holder/spell/aimed/finger_guns/InterceptClickOn(mob/living/caller, params, atom/target)
-	if(caller.incapacitated())
-		to_chat(caller, "<span class='warning'>You can't properly point your fingers while incapacitated.</span>")
+/obj/effect/proc_holder/spell/aimed/finger_guns/InterceptClickOn(mob/living/requester, params, atom/target)
+	if(requester.incapacitated())
+		to_chat(requester, "<span class='warning'>You can't properly point your fingers while incapacitated.</span>")
 		if(charge_type == "recharge")
 			var/refund_percent = current_amount/projectile_amount
 			charge_counter = charge_max * refund_percent
 			start_recharge()
 		remove_ranged_ability()
-		on_deactivation(caller)
+		on_deactivation(requester)
 	..()
 
 /obj/item/book/granter/spell/mimery_blockade

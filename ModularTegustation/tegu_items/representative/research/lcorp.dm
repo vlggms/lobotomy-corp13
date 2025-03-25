@@ -9,7 +9,7 @@ GLOBAL_LIST_EMPTY(lcorp_upgrades)
 	cost = AVERAGE_RESEARCH_PRICE
 	corp = L_CORP_REP
 
-/datum/data/lc13research/reroll/ResearchEffect(obj/structure/representative_console/caller)
+/datum/data/lc13research/reroll/ResearchEffect(obj/structure/representative_console/requester)
 	SSabnormality_queue.next_abno_spawn = world.time + SSabnormality_queue.next_abno_spawn_time + ((min(16, SSabnormality_queue.spawned_abnos) - 6) * 6) SECONDS
 	SSabnormality_queue.PickAbno()
 	minor_announce("Extraction has given you another choice of [GetFacilityUpgradeValue(UPGRADE_ABNO_QUEUE_COUNT)] abnormalities.", "Extraction Alert:", TRUE)
@@ -21,7 +21,7 @@ GLOBAL_LIST_EMPTY(lcorp_upgrades)
 	cost = LOW_RESEARCH_PRICE
 	corp = L_CORP_REP
 
-/datum/data/lc13research/redroll/ResearchEffect(obj/structure/representative_console/caller)
+/datum/data/lc13research/redroll/ResearchEffect(obj/structure/representative_console/requester)
 	SSabnormality_queue.hardcore_roll_enabled = TRUE
 	minor_announce("Extraction has given you access to red rolls.", "Extraction Alert:", TRUE)
 	..()
@@ -33,12 +33,12 @@ GLOBAL_LIST_EMPTY(lcorp_upgrades)
 	cost = 2
 	corp = L_CORP_REP
 
-/datum/data/lc13research/regenerator_overcharge/ResearchEffect(obj/structure/representative_console/caller)
+/datum/data/lc13research/regenerator_overcharge/ResearchEffect(obj/structure/representative_console/requester)
 	if(repeat_cooldown > world.time)
 		return
 	for(var/obj/machinery/regenerator/R in GLOB.lobotomy_devices)
 		R.burst = TRUE
-	caller.visible_message(span_notice("The [caller] rumbles for a moment soon after your message is delivered."))
+	requester.visible_message(span_notice("The [requester] rumbles for a moment soon after your message is delivered."))
 	repeat_cooldown = world.time + (10 SECONDS)
 
 
@@ -49,7 +49,7 @@ GLOBAL_LIST_EMPTY(lcorp_upgrades)
 	cost = AVERAGE_RESEARCH_PRICE
 	corp = L_CORP_REP
 
-/datum/data/lc13research/pe_quota1/ResearchEffect(obj/structure/representative_console/caller)
+/datum/data/lc13research/pe_quota1/ResearchEffect(obj/structure/representative_console/requester)
 	SSlobotomy_corp.box_goal -= 1000
 	SSlobotomy_corp.AdjustGoalBoxes(0)
 	minor_announce("HQ has reduced your PE quota by 1000.", "HQ Alert:", TRUE)
@@ -62,7 +62,7 @@ GLOBAL_LIST_EMPTY(lcorp_upgrades)
 	corp = L_CORP_REP
 	required_research = /datum/data/lc13research/pe_quota1
 
-/datum/data/lc13research/pe_quota2/ResearchEffect(obj/structure/representative_console/caller)
+/datum/data/lc13research/pe_quota2/ResearchEffect(obj/structure/representative_console/requester)
 	SSlobotomy_corp.box_goal -= 1000
 	SSlobotomy_corp.AdjustGoalBoxes(0)
 	minor_announce("HQ has reduced your PE quota by 1000.", "HQ Alert:", TRUE)
@@ -75,7 +75,7 @@ GLOBAL_LIST_EMPTY(lcorp_upgrades)
 	corp = L_CORP_REP
 	required_research = /datum/data/lc13research/pe_quota2
 
-/datum/data/lc13research/pe_quota3/ResearchEffect(obj/structure/representative_console/caller)
+/datum/data/lc13research/pe_quota3/ResearchEffect(obj/structure/representative_console/requester)
 	SSlobotomy_corp.box_goal -= 1000
 	SSlobotomy_corp.AdjustGoalBoxes(0)
 	minor_announce("HQ has reduced your PE quota by 1000.", "HQ Alert:", TRUE)
@@ -89,8 +89,8 @@ GLOBAL_LIST_EMPTY(lcorp_upgrades)
 	cost = HIGH_RESEARCH_PRICE
 	corp = L_CORP_REP
 
-/datum/data/lc13research/Lcorplimitbreaker/ResearchEffect(obj/structure/representative_console/caller)
-	new /obj/item/limit_increase/lcorp(get_turf(caller))
+/datum/data/lc13research/Lcorplimitbreaker/ResearchEffect(obj/structure/representative_console/requester)
+	new /obj/item/limit_increase/lcorp(get_turf(requester))
 	..()
 
 
@@ -101,8 +101,8 @@ GLOBAL_LIST_EMPTY(lcorp_upgrades)
 	cost = AVERAGE_RESEARCH_PRICE
 	corp = L_CORP_REP
 
-/datum/data/lc13research/officerlimitbreaker/ResearchEffect(obj/structure/representative_console/caller)
-	new /obj/item/limit_increase/officer(get_turf(caller))
+/datum/data/lc13research/officerlimitbreaker/ResearchEffect(obj/structure/representative_console/requester)
+	new /obj/item/limit_increase/officer(get_turf(requester))
 	..()
 
 
@@ -112,8 +112,8 @@ GLOBAL_LIST_EMPTY(lcorp_upgrades)
 	cost = AVERAGE_RESEARCH_PRICE
 	corp = L_CORP_REP
 
-/datum/data/lc13research/understandingmachine/ResearchEffect(obj/structure/representative_console/caller)
-	new /obj/item/understandingbooster(get_turf(caller))
+/datum/data/lc13research/understandingmachine/ResearchEffect(obj/structure/representative_console/requester)
+	new /obj/item/understandingbooster(get_turf(requester))
 	..()
 
 //Level 2 Clerks
@@ -123,7 +123,7 @@ GLOBAL_LIST_EMPTY(lcorp_upgrades)
 	cost = HIGH_RESEARCH_PRICE
 	corp = L_CORP_REP
 
-/datum/data/lc13research/clerkbuff/ResearchEffect(obj/structure/representative_console/caller)
+/datum/data/lc13research/clerkbuff/ResearchEffect(obj/structure/representative_console/requester)
 	for(var/mob/living/carbon/human/H in GLOB.player_list)
 		if(H?.mind?.assigned_role in GLOB.service_positions)
 			H.set_attribute_limit(40)
@@ -139,7 +139,7 @@ GLOBAL_LIST_EMPTY(lcorp_upgrades)
 	cost = HIGH_RESEARCH_PRICE
 	corp = L_CORP_REP
 
-/datum/data/lc13research/agentworkchance/ResearchEffect(obj/structure/representative_console/caller)
+/datum/data/lc13research/agentworkchance/ResearchEffect(obj/structure/representative_console/requester)
 	for(var/mob/living/carbon/human/H in GLOB.player_list)
 		ADD_TRAIT(H, TRAIT_WORK_KNOWLEDGE, JOB_TRAIT)
 
@@ -153,11 +153,11 @@ GLOBAL_LIST_EMPTY(lcorp_upgrades)
 	cost = LOW_RESEARCH_PRICE
 
 	corp = L_CORP_REP
-/datum/data/lc13research/plushie_extractor/ResearchEffect(obj/structure/representative_console/caller)
+/datum/data/lc13research/plushie_extractor/ResearchEffect(obj/structure/representative_console/requester)
 	if(repeat_cooldown > world.time)
 		return
-	new /obj/item/device/Plushie_Extractor(get_turf(caller))
-	caller.visible_message(span_notice("The [caller] lights up as it teleports in the Extractor."))
+	new /obj/item/device/Plushie_Extractor(get_turf(requester))
+	requester.visible_message(span_notice("The [requester] lights up as it teleports in the Extractor."))
 	repeat_cooldown = world.time + (10 SECONDS)
 
 //EGO Gift Extractor
@@ -167,11 +167,11 @@ GLOBAL_LIST_EMPTY(lcorp_upgrades)
 	cost = AVERAGE_RESEARCH_PRICE+5
 	corp = L_CORP_REP
 
-/datum/data/lc13research/ego_gift_extractor/ResearchEffect(obj/structure/representative_console/caller)
+/datum/data/lc13research/ego_gift_extractor/ResearchEffect(obj/structure/representative_console/requester)
 	if(repeat_cooldown > world.time)
 		return
-	new /obj/item/ego_gift_extractor(get_turf(caller))
-	caller.visible_message(span_notice("The [caller] lights up as it teleports in the Extractor."))
+	new /obj/item/ego_gift_extractor(get_turf(requester))
+	requester.visible_message(span_notice("The [requester] lights up as it teleports in the Extractor."))
 	repeat_cooldown = world.time + (10 SECONDS)
 
 //Refinery Upgrades
@@ -267,7 +267,7 @@ GLOBAL_LIST_EMPTY(lcorp_upgrades)
 	cost = HIGH_RESEARCH_PRICE
 	corp = L_CORP_REP
 
-/datum/data/lc13research/lob/lvl1/ResearchEffect(obj/structure/representative_console/caller)
+/datum/data/lc13research/lob/lvl1/ResearchEffect(obj/structure/representative_console/requester)
 	minor_announce("HQ has improved your LOB points budget.", "HQ Alert:", TRUE)
 	for(var/obj/machinery/computer/abnormality_auxiliary/A in GLOB.lobotomy_devices)
 		SSlobotomy_corp.lob_points +=2
@@ -283,7 +283,7 @@ GLOBAL_LIST_EMPTY(lcorp_upgrades)
 	corp = L_CORP_REP
 	required_research = /datum/data/lc13research/lob/lvl1
 
-/datum/data/lc13research/lob/lvl2/ResearchEffect(obj/structure/representative_console/caller)
+/datum/data/lc13research/lob/lvl2/ResearchEffect(obj/structure/representative_console/requester)
 	minor_announce("HQ has further improved your LOB points budget.", "HQ Alert:", TRUE)
 	for(var/obj/machinery/computer/abnormality_auxiliary/A in GLOB.lobotomy_devices)
 		SSlobotomy_corp.lob_points +=2

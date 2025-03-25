@@ -11,7 +11,7 @@ GLOBAL_LIST_EMPTY(jcorp_upgrades)
 	cost = LOW_RESEARCH_PRICE
 	corp = J_CORP_REP
 
-/datum/data/lc13research/gacha_chance/ResearchEffect(obj/structure/representative_console/caller)
+/datum/data/lc13research/gacha_chance/ResearchEffect(obj/structure/representative_console/requester)
 	. = ..()
 	GLOB.jcorp_upgrades += "Gacha Chance 1"
 
@@ -22,7 +22,7 @@ GLOBAL_LIST_EMPTY(jcorp_upgrades)
 	corp = J_CORP_REP
 	required_research = /datum/data/lc13research/gacha_chance
 
-/datum/data/lc13research/gacha_chance2/ResearchEffect(obj/structure/representative_console/caller)
+/datum/data/lc13research/gacha_chance2/ResearchEffect(obj/structure/representative_console/requester)
 	. = ..()
 	GLOB.jcorp_upgrades += "Gacha Chance 2"
 
@@ -33,7 +33,7 @@ GLOBAL_LIST_EMPTY(jcorp_upgrades)
 	corp = J_CORP_REP
 	required_research = /datum/data/lc13research/gacha_chance2
 
-/datum/data/lc13research/gacha_chance3/ResearchEffect(obj/structure/representative_console/caller)
+/datum/data/lc13research/gacha_chance3/ResearchEffect(obj/structure/representative_console/requester)
 	. = ..()
 	GLOB.jcorp_upgrades += "Gacha Chance 3"
 
@@ -44,7 +44,7 @@ GLOBAL_LIST_EMPTY(jcorp_upgrades)
 	corp = J_CORP_REP
 	required_research = /datum/data/lc13research/gacha_chance3
 
-/datum/data/lc13research/gacha_chance4/ResearchEffect(obj/structure/representative_console/caller)
+/datum/data/lc13research/gacha_chance4/ResearchEffect(obj/structure/representative_console/requester)
 	. = ..()
 	GLOB.jcorp_upgrades += "Gacha Chance 4"
 
@@ -54,7 +54,7 @@ GLOBAL_LIST_EMPTY(jcorp_upgrades)
 	cost = AVERAGE_RESEARCH_PRICE
 	corp = J_CORP_REP
 
-/datum/data/lc13research/well_gacha/ResearchEffect(obj/structure/representative_console/caller)
+/datum/data/lc13research/well_gacha/ResearchEffect(obj/structure/representative_console/requester)
 	. = ..()
 	GLOB.jcorp_upgrades += "Well Gacha"
 
@@ -64,12 +64,12 @@ GLOBAL_LIST_EMPTY(jcorp_upgrades)
 	cost = AVERAGE_RESEARCH_PRICE
 	corp = J_CORP_REP
 
-/datum/data/lc13research/lootbox/ResearchEffect(obj/structure/representative_console/caller)
+/datum/data/lc13research/lootbox/ResearchEffect(obj/structure/representative_console/requester)
 	if(repeat_cooldown > world.time)
 		return
-	new /obj/item/a_gift/jcorp(get_turf(caller))
-	new /obj/item/a_gift/jcorp(get_turf(caller))
-	caller.visible_message(span_notice("The [caller] lights up as it teleports in the Lootboxes."))
+	new /obj/item/a_gift/jcorp(get_turf(requester))
+	new /obj/item/a_gift/jcorp(get_turf(requester))
+	requester.visible_message(span_notice("The [requester] lights up as it teleports in the Lootboxes."))
 	repeat_cooldown = world.time + (10 SECONDS)
 
 // Critical Hits (Untested! Don't add till Critical Hits PR is merged)
@@ -79,6 +79,6 @@ GLOBAL_LIST_EMPTY(jcorp_upgrades)
 //	cost = AVERAGE_RESEARCH_PRICE
 //	corp = J_CORP_REP
 
-// /datum/data/lc13research/crit_sticker/ResearchEffect(obj/structure/representative_console/caller)
-//	new /obj/item/clothing/mask/crit_sticker(get_turf(caller))
+// /datum/data/lc13research/crit_sticker/ResearchEffect(obj/structure/representative_console/requester)
+//	new /obj/item/clothing/mask/crit_sticker(get_turf(requester))
 //	..()

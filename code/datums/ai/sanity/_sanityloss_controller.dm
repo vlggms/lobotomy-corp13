@@ -308,12 +308,12 @@
 			return TRUE
 	return FALSE
 
-/turf/proc/reachableTurftestWithMobs(caller, turf/T, ID, simulated_only)
-	if(T && !T.density && !(simulated_only && SSpathfinder.space_type_cache[T.type]) && !LinkBlockedWithAccess(T,caller, ID))
+/turf/proc/reachableTurftestWithMobs(requester, turf/T, ID, simulated_only)
+	if(T && !T.density && !(simulated_only && SSpathfinder.space_type_cache[T.type]) && !LinkBlockedWithAccess(T,requester, ID))
 		if(is_type_in_typecache(T, GLOB.dangerous_turfs) && !(locate(/obj/structure/lattice) in T))
 			return FALSE
 		for(var/mob/living/L in T)
-			if(!L.CanPass(caller, T))
+			if(!L.CanPass(requester, T))
 				return FALSE
 		if(locate(/obj/item/soap) in T)
 			return FALSE
