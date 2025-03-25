@@ -223,7 +223,9 @@
 	else
 		bloodlust -= 1
 	AdjustThirst(40)
-	if(H.health < 0 && !SSmaptype.maptype == "limbus_labs"|| H.stat == DEAD && !SSmaptype.maptype == "limbus_labs")
+	if(SSmaptype.maptype == "limbus_labs")
+		return ..()
+	if(H.health < 0 || H.stat == DEAD)
 		H.Drain()
 	return ..()
 
@@ -254,7 +256,12 @@
 		var/obj/effect/temp_visual/smash_effect/bloodeffect =  new(T)
 		bloodeffect.color = "#b52e19"
 		for(var/mob/living/carbon/human/H in HurtInTurf(T, list(), banquet_damage, BLACK_DAMAGE, null, TRUE, FALSE, TRUE, FALSE, TRUE, TRUE))
-			if(H.health < 0 && !SSmaptype.maptype == "limbus_labs")
+			if(SSmaptype.maptype == "limbus_labs")
+				playsound(get_turf(src), 'sound/abnormalities/nosferatu/attack_special.ogg', 50, 0, 5)
+				SLEEP_CHECK_DEATH(3)
+				can_act = TRUE
+				return
+			if(H.health < 0)
 				H.Drain()
 	playsound(get_turf(src), 'sound/abnormalities/nosferatu/attack_special.ogg', 50, 0, 5)
 	SLEEP_CHECK_DEATH(3)
