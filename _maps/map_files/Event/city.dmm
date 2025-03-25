@@ -1049,7 +1049,7 @@
 /turf/open/floor/facility/white,
 /area/city/fixers)
 "mW" = (
-/obj/structure/closet/secure_closet/medical2,
+/obj/structure/closet/secure_closet/medical2/city,
 /turf/open/indestructible/white,
 /area/city/shop)
 "mZ" = (
