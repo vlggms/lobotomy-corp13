@@ -7,9 +7,9 @@
 	cost = AVERAGE_RESEARCH_PRICE
 	corp = P_CORP_REP
 
-/datum/data/lc13research/pcorpbackpack/ResearchEffect(obj/structure/representative_console/caller)
-	new /obj/item/storage/backpack/pcorp(get_turf(caller))
-	new /obj/item/storage/backpack/pcorp(get_turf(caller))
+/datum/data/lc13research/pcorpbackpack/ResearchEffect(obj/structure/representative_console/requester)
+	new /obj/item/storage/backpack/pcorp(get_turf(requester))
+	new /obj/item/storage/backpack/pcorp(get_turf(requester))
 	..()
 
 /datum/data/lc13research/bigpcorpbackpack
@@ -19,9 +19,9 @@
 	corp = P_CORP_REP
 	required_research = /datum/data/lc13research/pcorpbackpack
 
-/datum/data/lc13research/bigpcorpbackpack/ResearchEffect(obj/structure/representative_console/caller)
-	new /obj/item/storage/backpack/pcorpheavy(get_turf(caller))
-	new /obj/item/storage/backpack/pcorpheavy(get_turf(caller))
+/datum/data/lc13research/bigpcorpbackpack/ResearchEffect(obj/structure/representative_console/requester)
+	new /obj/item/storage/backpack/pcorpheavy(get_turf(requester))
+	new /obj/item/storage/backpack/pcorpheavy(get_turf(requester))
 	..()
 
 //Belt lines
@@ -32,9 +32,9 @@
 	corp = P_CORP_REP
 	required_research = /datum/data/lc13research/pcorpbackpack
 
-/datum/data/lc13research/egobelt/ResearchEffect(obj/structure/representative_console/caller)
-	new /obj/item/storage/belt/egopcorp(get_turf(caller))
-	new /obj/item/storage/belt/egopcorp(get_turf(caller))
+/datum/data/lc13research/egobelt/ResearchEffect(obj/structure/representative_console/requester)
+	new /obj/item/storage/belt/egopcorp(get_turf(requester))
+	new /obj/item/storage/belt/egopcorp(get_turf(requester))
 	..()
 
 /datum/data/lc13research/armorbelt
@@ -44,9 +44,9 @@
 	corp = P_CORP_REP
 	required_research = /datum/data/lc13research/pcorpbackpack
 
-/datum/data/lc13research/armorbelt/ResearchEffect(obj/structure/representative_console/caller)
-	new /obj/item/storage/belt/egoarmor(get_turf(caller))
-	new /obj/item/storage/belt/egoarmor(get_turf(caller))
+/datum/data/lc13research/armorbelt/ResearchEffect(obj/structure/representative_console/requester)
+	new /obj/item/storage/belt/egoarmor(get_turf(requester))
+	new /obj/item/storage/belt/egoarmor(get_turf(requester))
 	..()
 
 
@@ -58,9 +58,9 @@
 	corp = P_CORP_REP
 	required_research = /datum/data/lc13research/pcorpbackpack
 
-/datum/data/lc13research/pocketpouch/ResearchEffect(obj/structure/representative_console/caller)
-	new /obj/item/storage/pcorp_pocket(get_turf(caller))
-	new /obj/item/storage/pcorp_pocket(get_turf(caller))
+/datum/data/lc13research/pocketpouch/ResearchEffect(obj/structure/representative_console/requester)
+	new /obj/item/storage/pcorp_pocket(get_turf(requester))
+	new /obj/item/storage/pcorp_pocket(get_turf(requester))
 
 /datum/data/lc13research/pocketpistol
 	research_name = "Repurchasable: P Corp Weapon Pouch (x2)"
@@ -69,9 +69,9 @@
 	corp = P_CORP_REP
 	required_research = /datum/data/lc13research/pcorpbackpack
 
-/datum/data/lc13research/pocketpistol/ResearchEffect(obj/structure/representative_console/caller)
-	new /obj/item/storage/pcorp_weapon(get_turf(caller))
-	new /obj/item/storage/pcorp_weapon(get_turf(caller))
+/datum/data/lc13research/pocketpistol/ResearchEffect(obj/structure/representative_console/requester)
+	new /obj/item/storage/pcorp_weapon(get_turf(requester))
+	new /obj/item/storage/pcorp_weapon(get_turf(requester))
 
 
 //Gloves line
@@ -82,8 +82,8 @@
 	corp = P_CORP_REP
 	required_research = /datum/data/lc13research/pcorpbackpack
 
-/datum/data/lc13research/smallgloves/ResearchEffect(obj/structure/representative_console/caller)
-	new /obj/item/clothing/gloves/pcorp(get_turf(caller))
+/datum/data/lc13research/smallgloves/ResearchEffect(obj/structure/representative_console/requester)
+	new /obj/item/clothing/gloves/pcorp(get_turf(requester))
 
 /datum/data/lc13research/pcorpgloves
 	research_name = "Repurchasable: P Corp Dimensional Gloves MK2"
@@ -92,8 +92,8 @@
 	corp = P_CORP_REP
 	required_research = /datum/data/lc13research/bigpcorpbackpack
 
-/datum/data/lc13research/pcorpgloves/ResearchEffect(obj/structure/representative_console/caller)
-	new /obj/item/clothing/gloves/pcorpbig(get_turf(caller))
+/datum/data/lc13research/pcorpgloves/ResearchEffect(obj/structure/representative_console/requester)
+	new /obj/item/clothing/gloves/pcorpbig(get_turf(requester))
 
 
 
@@ -105,9 +105,9 @@
 	corp = P_CORP_REP
 	required_research = /datum/data/lc13research/pcorpbackpack
 
-/datum/data/lc13research/crate/ResearchEffect(obj/structure/representative_console/caller)
-	new /obj/structure/closet/crate/pcorp(get_turf(caller))
-	new /obj/structure/closet/crate/pcorp(get_turf(caller))
+/datum/data/lc13research/crate/ResearchEffect(obj/structure/representative_console/requester)
+	new /obj/structure/closet/crate/pcorp(get_turf(requester))
+	new /obj/structure/closet/crate/pcorp(get_turf(requester))
 	..()
 
 

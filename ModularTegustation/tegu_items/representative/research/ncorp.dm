@@ -7,10 +7,10 @@
 	cost = LOW_RESEARCH_PRICE
 	corp = N_CORP_REP
 
-/datum/data/lc13research/nbuff1/ResearchEffect(obj/structure/representative_console/caller)
-	new /obj/item/attribute_increase/small(get_turf(caller))
-	new /obj/item/attribute_increase/small(get_turf(caller))
-	new /obj/item/attribute_increase/small(get_turf(caller))
+/datum/data/lc13research/nbuff1/ResearchEffect(obj/structure/representative_console/requester)
+	new /obj/item/attribute_increase/small(get_turf(requester))
+	new /obj/item/attribute_increase/small(get_turf(requester))
+	new /obj/item/attribute_increase/small(get_turf(requester))
 	..()
 
 /datum/data/lc13research/nbuff2
@@ -20,10 +20,10 @@
 	corp = N_CORP_REP
 	required_research = /datum/data/lc13research/nbuff1
 
-/datum/data/lc13research/nbuff2/ResearchEffect(obj/structure/representative_console/caller)
-	new /obj/item/attribute_increase/medium(get_turf(caller))
-	new /obj/item/attribute_increase/medium(get_turf(caller))
-	new /obj/item/attribute_increase/medium(get_turf(caller))
+/datum/data/lc13research/nbuff2/ResearchEffect(obj/structure/representative_console/requester)
+	new /obj/item/attribute_increase/medium(get_turf(requester))
+	new /obj/item/attribute_increase/medium(get_turf(requester))
+	new /obj/item/attribute_increase/medium(get_turf(requester))
 	..()
 
 /datum/data/lc13research/nbuff3
@@ -34,10 +34,10 @@
 	corp = N_CORP_REP
 	required_research = /datum/data/lc13research/nbuff2
 
-/datum/data/lc13research/nbuff3/ResearchEffect(obj/structure/representative_console/caller)
-	new /obj/item/attribute_increase/large(get_turf(caller))
-	new /obj/item/attribute_increase/large(get_turf(caller))
-	new /obj/item/attribute_increase/large(get_turf(caller))
+/datum/data/lc13research/nbuff3/ResearchEffect(obj/structure/representative_console/requester)
+	new /obj/item/attribute_increase/large(get_turf(requester))
+	new /obj/item/attribute_increase/large(get_turf(requester))
+	new /obj/item/attribute_increase/large(get_turf(requester))
 	..()
 
 /datum/data/lc13research/nbuff4
@@ -48,8 +48,8 @@
 	corp = N_CORP_REP
 	required_research = /datum/data/lc13research/nbuff3
 
-/datum/data/lc13research/nbuff4/ResearchEffect(obj/structure/representative_console/caller)
-	new /obj/item/attribute_increase/xtralarge(get_turf(caller))
+/datum/data/lc13research/nbuff4/ResearchEffect(obj/structure/representative_console/requester)
+	new /obj/item/attribute_increase/xtralarge(get_turf(requester))
 	..()
 
 
@@ -60,8 +60,8 @@
 	cost = HIGH_RESEARCH_PRICE
 	corp = N_CORP_REP
 
-/datum/data/lc13research/nlimit1/ResearchEffect(obj/structure/representative_console/caller)
-	new /obj/item/limit_increase(get_turf(caller))
+/datum/data/lc13research/nlimit1/ResearchEffect(obj/structure/representative_console/requester)
+	new /obj/item/limit_increase(get_turf(requester))
 	..()
 
 /datum/data/lc13research/nlimit2
@@ -71,8 +71,8 @@
 	corp = N_CORP_REP
 	required_research = /datum/data/lc13research/nlimit1
 
-/datum/data/lc13research/nlimit2/ResearchEffect(obj/structure/representative_console/caller)
-	new /obj/item/limit_increase(get_turf(caller))
+/datum/data/lc13research/nlimit2/ResearchEffect(obj/structure/representative_console/requester)
+	new /obj/item/limit_increase(get_turf(requester))
 	..()
 
 //Temporary line
@@ -83,11 +83,11 @@
 	corp = N_CORP_REP
 	required_research = /datum/data/lc13research/nbuff1
 
-/datum/data/lc13research/ntemp1/ResearchEffect(obj/structure/representative_console/caller)
-	ItemUnlock(caller.order_list, "Fading Fortitude Ampule",	/obj/item/attribute_temporary/fortitudesmall, 500)
-	ItemUnlock(caller.order_list, "Fading Temperance Ampule",	/obj/item/attribute_temporary/temperancesmall, 500)
-	ItemUnlock(caller.order_list, "Fading Prudence Ampule",	/obj/item/attribute_temporary/prudencesmall, 500)
-	ItemUnlock(caller.order_list, "Fading Justice Ampule",	/obj/item/attribute_temporary/justicesmall, 500)
+/datum/data/lc13research/ntemp1/ResearchEffect(obj/structure/representative_console/requester)
+	ItemUnlock(requester.order_list, "Fading Fortitude Ampule",	/obj/item/attribute_temporary/fortitudesmall, 500)
+	ItemUnlock(requester.order_list, "Fading Temperance Ampule",	/obj/item/attribute_temporary/temperancesmall, 500)
+	ItemUnlock(requester.order_list, "Fading Prudence Ampule",	/obj/item/attribute_temporary/prudencesmall, 500)
+	ItemUnlock(requester.order_list, "Fading Justice Ampule",	/obj/item/attribute_temporary/justicesmall, 500)
 	..()
 
 /datum/data/lc13research/ntemp2
@@ -97,8 +97,8 @@
 	corp = N_CORP_REP
 	required_research = /datum/data/lc13research/ntemp1
 
-/datum/data/lc13research/ntemp2/ResearchEffect(obj/structure/representative_console/caller)
-	ItemUnlock(caller.order_list, "Fading Attribute Ampule",	/obj/item/attribute_temporary/stattemporary, 1000)
+/datum/data/lc13research/ntemp2/ResearchEffect(obj/structure/representative_console/requester)
+	ItemUnlock(requester.order_list, "Fading Attribute Ampule",	/obj/item/attribute_temporary/stattemporary, 1000)
 	..()
 
 /datum/data/lc13research/ntemp3
@@ -108,11 +108,11 @@
 	corp = N_CORP_REP
 	required_research = /datum/data/lc13research/ntemp2
 
-/datum/data/lc13research/ntemp3/ResearchEffect(obj/structure/representative_console/caller)
-	ItemUnlock(caller.order_list, "Focused Fading Fortitude Ampule",	/obj/item/attribute_temporary/fortitudebig, 1500)
-	ItemUnlock(caller.order_list, "Focused Fading Temperance Ampule",	/obj/item/attribute_temporary/temperancebig, 1500)
-	ItemUnlock(caller.order_list, "Focused Fading Prudence Ampule",	/obj/item/attribute_temporary/prudencebig, 1500)
-	ItemUnlock(caller.order_list, "Focused Fading Justice Ampule",	/obj/item/attribute_temporary/justicebig, 1500)
+/datum/data/lc13research/ntemp3/ResearchEffect(obj/structure/representative_console/requester)
+	ItemUnlock(requester.order_list, "Focused Fading Fortitude Ampule",	/obj/item/attribute_temporary/fortitudebig, 1500)
+	ItemUnlock(requester.order_list, "Focused Fading Temperance Ampule",	/obj/item/attribute_temporary/temperancebig, 1500)
+	ItemUnlock(requester.order_list, "Focused Fading Prudence Ampule",	/obj/item/attribute_temporary/prudencebig, 1500)
+	ItemUnlock(requester.order_list, "Focused Fading Justice Ampule",	/obj/item/attribute_temporary/justicebig, 1500)
 	..()
 
 
