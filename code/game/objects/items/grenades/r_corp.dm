@@ -33,3 +33,9 @@
 	icon_state = "r_corp_pale"
 	explosion_damage_type = PALE_DAMAGE
 	explosion_damage = 150
+
+/obj/item/grenade/r_corp/thumb
+	name = "frag grenade"
+	desc = "An anti-personnel fragmentation grenade, this weapon is used by a select few Capos of the Thumb."
+	icon_state = "frag"
+	explosion_damage = 550
