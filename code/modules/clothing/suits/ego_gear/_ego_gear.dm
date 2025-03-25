@@ -114,7 +114,7 @@
 /obj/item/clothing/suit/armor/ego_gear/examine(mob/user)
 	. = ..()
 	if(LAZYLEN(attribute_requirements))
-		. += "<span class='notice'>It has <a href='?src=[REF(src)];list_attributes=1'>certain requirements</a> for the wearer.</span>"
+		. += "<span class='notice'>It has <a href='byond://?src=[REF(src)];list_attributes=1'>certain requirements</a> for the wearer.</span>"
 
 /obj/item/clothing/suit/armor/ego_gear/Topic(href, href_list)
 	. = ..()

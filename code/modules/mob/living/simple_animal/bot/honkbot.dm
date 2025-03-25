@@ -88,12 +88,12 @@ Status: []<BR>
 Behaviour controls are [locked ? "locked" : "unlocked"]<BR>
 Maintenance panel panel is [open ? "opened" : "closed"]"},
 
-"<A href='?src=[REF(src)];power=[TRUE]'>[on ? "On" : "Off"]</A>" )
+"<A href='byond://?src=[REF(src)];power=[TRUE]'>[on ? "On" : "Off"]</A>" )
 
 	if(!locked || issilicon(user) || isAdminGhostAI(user))
 		dat += text({"<BR> Auto Patrol: []"},
 
-"<A href='?src=[REF(src)];operation=patrol'>[auto_patrol ? "On" : "Off"]</A>" )
+"<A href='byond://?src=[REF(src)];operation=patrol'>[auto_patrol ? "On" : "Off"]</A>" )
 	return	dat
 
 /mob/living/simple_animal/bot/honkbot/proc/judgement_criteria()

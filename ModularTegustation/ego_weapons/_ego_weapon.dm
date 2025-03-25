@@ -103,7 +103,7 @@
 	if(special)
 		. += span_notice("[special]")
 	if(LAZYLEN(attribute_requirements))
-		. += span_notice("It has <a href='?src=[REF(src)];list_attributes=1'>certain requirements</a> for the wearer.")
+		. += span_notice("It has <a href='byond://?src=[REF(src)];list_attributes=1'>certain requirements</a> for the wearer.")
 
 	if(type in GLOB.small_ego)
 		. += span_notice("This weapon fits in an EGO belt.")
