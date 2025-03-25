@@ -1514,3 +1514,60 @@
 	if(F.stacks)
 		F.add_stacks(stacks)
 		return
+
+//Global Damage Up
+/datum/status_effect/stacking/damage_up/down
+	id = "damage_down"
+	alert_type = /atom/movable/screen/alert/status_effect/damage_up/down
+	damage_mode = -1
+
+/atom/movable/screen/alert/status_effect/damage_up/down
+	name = "Damage Down"
+	desc = "You are weakend! Your melee damage is decreased by "
+	icon = 'ModularTegustation/Teguicons/status_sprites.dmi'
+	icon_state = "red_protection"
+
+//Specific Damage Down
+/datum/status_effect/stacking/damtype_damage_up/down
+	id = "red_damage_down"
+	alert_type = /atom/movable/screen/alert/status_effect/red_damage_up/down
+	damage_mode = -1
+
+/atom/movable/screen/alert/status_effect/red_damage_up/down
+	name = "Red Damage Down"
+	desc = "You are weakend! Your RED melee damage is decreased by "
+	icon = 'ModularTegustation/Teguicons/status_sprites.dmi'
+	icon_state = "red_protection"
+
+/datum/status_effect/stacking/damtype_damage_up/white/down
+	id = "white_damage_down"
+	alert_type = /atom/movable/screen/alert/status_effect/white_damage_up/down
+	damage_mode = -1
+
+/atom/movable/screen/alert/status_effect/white_damage_up/down
+	name = "White Damage Down"
+	desc = "You are weakend! Your WHITE melee damage is reduced by "
+	icon = 'ModularTegustation/Teguicons/status_sprites.dmi'
+	icon_state = "red_protection"
+
+/datum/status_effect/stacking/damtype_damage_up/black/down
+	id = "black_damage_down"
+	alert_type = /atom/movable/screen/alert/status_effect/black_damage_up/down
+	damage_mode = -1
+
+/atom/movable/screen/alert/status_effect/black_damage_up/down
+	name = "Black Damage Down"
+	desc = "You are weakend! Your BLACK melee damage is reduced by "
+	icon = 'ModularTegustation/Teguicons/status_sprites.dmi'
+	icon_state = "red_protection"
+
+/datum/status_effect/stacking/damtype_damage_up/pale/down
+	id = "pale_damage_down"
+	alert_type = /atom/movable/screen/alert/status_effect/pale_damage_up/down
+	damage_mode = -1
+
+/atom/movable/screen/alert/status_effect/pale_damage_up/down
+	name = "Pale Damage Down"
+	desc = "You are weakend! Your PALE melee damage is reduced by "
+	icon = 'ModularTegustation/Teguicons/status_sprites.dmi'
+	icon_state = "red_protection"

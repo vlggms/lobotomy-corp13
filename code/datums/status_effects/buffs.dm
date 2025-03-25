@@ -702,7 +702,7 @@
 	if(!owner)
 		return
 	var/mob/living/carbon/human/H = owner
-	physiology_mod = ((stacks / 10)*protection)//up to 2.16 to physiology
+	physiology_mod = ((stacks / 10)*protection)
 	if(ishuman(H))
 		if(damage_type == RED_DAMAGE)
 			H.physiology.red_mod -= physiology_mod
@@ -857,6 +857,7 @@
 		P.add_stacks(stacks)
 		return
 
+//Global Damage Up
 /datum/status_effect/stacking/damage_up
 	id = "damage_up"
 	status_type = STATUS_EFFECT_MULTIPLE
@@ -865,7 +866,8 @@
 	stacks = 0
 	consumed_on_threshold = FALSE
 	alert_type = /atom/movable/screen/alert/status_effect/damage_up
-	var/damage_mod = 1
+	var/damage_mode = 1
+	var/damage_increase = 0
 
 /atom/movable/screen/alert/status_effect/damage_up
 	name = "Damage Up"
@@ -873,8 +875,146 @@
 	icon = 'ModularTegustation/Teguicons/status_sprites.dmi'
 	icon_state = "red_protection"
 
+/datum/status_effect/stacking/damage_up/on_apply()
+	. = ..()
+	if(!owner)
+		return
+	if(isliving(owner))
+		var/mob/living/L = owner
+		damage_increase = ((stacks * 10) * damage_mode)
+		L.extra_damage += damage_increase
+
 /datum/status_effect/stacking/damage_up/add_stacks(stacks_added)//update your weaknesses
 	. = ..()
 	if(!owner)
 		return
 	linked_alert.desc = initial(linked_alert.desc)+"[stacks*10]%!"
+	if(isliving(owner))
+		var/mob/living/L = owner
+		L.extra_damage -= damage_increase
+		damage_increase = ((stacks * 10) * damage_mode)
+		L.extra_damage += damage_increase
+
+/datum/status_effect/stacking/damage_up/on_remove()
+	. = ..()
+	if(!owner)
+		return
+	if(isliving(owner))
+		var/mob/living/L = owner
+		L.extra_damage -= damage_increase
+
+/datum/status_effect/stacking/damage_up/tick()
+	if(!can_have_status())
+		qdel(src)
+
+//Specific Damage Up
+/datum/status_effect/stacking/damtype_damage_up
+	id = "red_damage_up"
+	status_type = STATUS_EFFECT_MULTIPLE
+	duration = 100
+	max_stacks = 10
+	stacks = 0
+	consumed_on_threshold = FALSE
+	alert_type = /atom/movable/screen/alert/status_effect/red_damage_up
+	var/damage_mode = 1
+	var/damage_increase = 0
+	var/damage_type = RED_DAMAGE
+
+/atom/movable/screen/alert/status_effect/red_damage_up
+	name = "Red Damage Up"
+	desc = "You are inpowered! Your RED melee damage is increased by "
+	icon = 'ModularTegustation/Teguicons/status_sprites.dmi'
+	icon_state = "red_protection"
+
+/datum/status_effect/stacking/damtype_damage_up/on_apply()
+	. = ..()
+	if(!owner)
+		return
+	if(isliving(owner))
+		var/mob/living/L = owner
+		damage_increase = ((stacks * 10) * damage_mode)
+		if(damage_type == RED_DAMAGE)
+			L.extra_damage_red += damage_increase
+		if(damage_type == WHITE_DAMAGE)
+			L.extra_damage_white += damage_increase
+		if(damage_type == BLACK_DAMAGE)
+			L.extra_damage_black += damage_increase
+		if(damage_type == PALE_DAMAGE)
+			L.extra_damage_pale += damage_increase
+
+/datum/status_effect/stacking/damtype_damage_up/add_stacks(stacks_added)
+	. = ..()
+	if(!owner)
+		return
+	linked_alert.desc = initial(linked_alert.desc)+"[stacks*10]%!"
+	if(isliving(owner))
+		var/mob/living/L = owner
+		if(damage_type == RED_DAMAGE)
+			L.extra_damage_red -= damage_increase
+		if(damage_type == WHITE_DAMAGE)
+			L.extra_damage_white -= damage_increase
+		if(damage_type == BLACK_DAMAGE)
+			L.extra_damage_black -= damage_increase
+		if(damage_type == PALE_DAMAGE)
+			L.extra_damage_pale -= damage_increase
+		damage_increase = ((stacks * 10) * damage_mode)
+		if(damage_type == RED_DAMAGE)
+			L.extra_damage_red += damage_increase
+		if(damage_type == WHITE_DAMAGE)
+			L.extra_damage_white += damage_increase
+		if(damage_type == BLACK_DAMAGE)
+			L.extra_damage_black += damage_increase
+		if(damage_type == PALE_DAMAGE)
+			L.extra_damage_pale += damage_increase
+
+/datum/status_effect/stacking/damtype_damage_up/on_remove()
+	. = ..()
+	if(!owner)
+		return
+	if(isliving(owner))
+		var/mob/living/L = owner
+		if(damage_type == RED_DAMAGE)
+			L.extra_damage_red -= damage_increase
+		if(damage_type == WHITE_DAMAGE)
+			L.extra_damage_white -= damage_increase
+		if(damage_type == BLACK_DAMAGE)
+			L.extra_damage_black -= damage_increase
+		if(damage_type == PALE_DAMAGE)
+			L.extra_damage_pale -= damage_increase
+
+/datum/status_effect/stacking/damtype_damage_up/tick()
+	if(!can_have_status())
+		qdel(src)
+
+/datum/status_effect/stacking/damtype_damage_up/white
+	id = "white_damage_up"
+	alert_type = /atom/movable/screen/alert/status_effect/white_damage_up
+	damage_type = WHITE_DAMAGE
+
+/atom/movable/screen/alert/status_effect/white_damage_up
+	name = "White Damage Up"
+	desc = "You are inpowered! Your WHITE melee damage is increased by "
+	icon = 'ModularTegustation/Teguicons/status_sprites.dmi'
+	icon_state = "red_protection"
+
+/datum/status_effect/stacking/damtype_damage_up/black
+	id = "black_damage_up"
+	alert_type = /atom/movable/screen/alert/status_effect/black_damage_up
+	damage_type = BLACK_DAMAGE
+
+/atom/movable/screen/alert/status_effect/black_damage_up
+	name = "Black Damage Up"
+	desc = "You are inpowered! Your BLACK melee damage is increased by "
+	icon = 'ModularTegustation/Teguicons/status_sprites.dmi'
+	icon_state = "red_protection"
+
+/datum/status_effect/stacking/damtype_damage_up/pale
+	id = "pale_damage_up"
+	alert_type = /atom/movable/screen/alert/status_effect/pale_damage_up
+	damage_type = PALE_DAMAGE
+
+/atom/movable/screen/alert/status_effect/pale_damage_up
+	name = "Pale Damage Up"
+	desc = "You are inpowered! Your PALE melee damage is increased by "
+	icon = 'ModularTegustation/Teguicons/status_sprites.dmi'
+	icon_state = "red_protection"
