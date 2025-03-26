@@ -384,7 +384,7 @@
 		"Once it's strength was all used up, the damage dealt would be decreased.",
 	)
 
-// Selene Effigy
+// Sage of the World
 /obj/item/paper/fluff/info/branch12/world_sage
 	abno_type = /mob/living/simple_animal/hostile/abnormality/branch12/world_sage
 	abno_code = "M-01-12-21"
