@@ -339,6 +339,7 @@
 	damage_coeff = list(RED_DAMAGE = 2, WHITE_DAMAGE = 2, BLACK_DAMAGE = 2, PALE_DAMAGE = 2)
 	speed = 5
 	density = TRUE
+	faction = list("hostile", "KQE")
 	var/mob/living/simple_animal/hostile/abnormality/kqe/abno_host//This is KQE!
 
 /mob/living/simple_animal/hostile/kqe_heart/Move()
