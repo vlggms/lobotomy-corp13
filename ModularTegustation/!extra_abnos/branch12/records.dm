@@ -99,7 +99,7 @@
 		"If the current Age is a Famine, all employees required more food to stay healthy.",
 		"If the current Age is a Plague, all employees would receive periodic toxin damage.",
 		"If the current Age is a Golden Age, occasionally ahn would appear in the halls of the facility.",
-		"If the current Age is an industrial Age, occasionally all agents would gain stats periodically.",
+		"If the current Age is an Industrial Age, occasionally all agents would gain stats periodically.",
 		"On All Saint's Day, all employees would spontaneously rise from the dead, or be dusted. The rate of dusting seemed to be a little more than average.",
 	)
 
@@ -175,6 +175,15 @@
 		"If a blue chip was flipped, it would affect the employee's stats.",
 	)
 
+// Ulies Workshop
+/obj/item/paper/fluff/info/branch12/workshop
+	abno_type = /mob/living/simple_animal/hostile/abnormality/branch12/workshop
+	abno_code = "O-01-12-523"
+	abno_info = list(
+		"After each neutral or failure work, the employee working on O-01-12-523 would spend 200 Facility PE, and in exchange would gift the employee a weapon.",
+		"These weapons were of generally poor quality. It is recomended for Clerks to use said weapons.",
+	)
+
 //	-------------HE-------------
 // The Show Goes On
 /obj/item/paper/fluff/info/branch12/show_goes_on
@@ -241,6 +250,16 @@
 		"When an employee worked on O-02-12-63 with less than 3 Fortitude, the qliphoth counter lowered by 1.",
 	)
 
+// Fire on the Velvet Horizon
+/obj/item/paper/fluff/info/branch12/horizon
+	abno_type = /mob/living/simple_animal/hostile/abnormality/branch12/velvet_horizon
+	abno_code = "T-01-12-611"
+	abno_info = list(
+		"During work, T-01-12-611 dealt constant damage.",
+		"If the work result was good, the Qliphoth Counter increased.",
+		"When the work result was neutral the qliphoth counter lowered by 1 at a normal rate.",
+		"When the work result was bad the qliphoth counter lowered by 1.",
+	)
 //	-------------WAW-------------
 // Queen Keres
 /obj/item/paper/fluff/info/branch12/queen_keres
