@@ -24,6 +24,7 @@
 		ChangeResistances(list(RED_DAMAGE = 0.7, WHITE_DAMAGE = 0.6, BLACK_DAMAGE = 0.8, PALE_DAMAGE = 1))
 		melee_damage_lower = 35
 		melee_damage_upper = 47
+		faction = list("neutral", "bee")
 
 /mob/living/simple_animal/hostile/abnormality/hatred_queen/Initialize()
 	. = ..()
@@ -41,14 +42,15 @@
 	. = ..()
 	if(SSmaptype.maptype == "limbus_labs")
 		ChangeResistances(list(RED_DAMAGE = 1, WHITE_DAMAGE = 1.2, BLACK_DAMAGE = 0.4, PALE_DAMAGE = 1.5))
-		faction = list("neutral", "nosferatu")
 		summon_cooldown_time = 60 MINUTES
 		bat_spawn_number = 0
+		faction = list("neutral", "nosferatu")
 
+//The faction changes let them kill each other with their abilities while sentient
 /mob/living/simple_animal/hostile/abnormality/nosferatu/Login()
 	. = ..()
 	if(SSmaptype.maptype == "limbus_labs")
-		faction = list("hostile","nosferatu")
+		faction = list("nosferatu")
 
 /mob/living/simple_animal/hostile/abnormality/nosferatu/Logout()
 	. = ..()
@@ -58,7 +60,7 @@
 /mob/living/simple_animal/hostile/nosferatu_mob/Initialize()
 	. = ..()
 	if(SSmaptype.maptype == "limbus_labs")
-		faction = list("neutral","nosferatu")
+		faction = list("neutral", "nosferatu")
 
 /mob/living/simple_animal/hostile/nosferatu_mob/Login()
 	. = ..()
@@ -69,3 +71,66 @@
 	. = ..()
 	if(SSmaptype.maptype == "limbus_labs")
 		faction = list("neutral", "nosferatu")
+
+/mob/living/simple_animal/hostile/abnormality/red_hood/Login()
+	. = ..()
+	faction = list("redhood")
+
+/mob/living/simple_animal/hostile/abnormality/kqe/Login()
+	. = ..()
+	faction = list("kqe")
+
+/mob/living/simple_animal/hostile/abnormality/funeral/Login()
+	. = ..()
+	faction = list("funeral")
+
+/mob/living/simple_animal/hostile/abnormality/blue_shepherd/Login()
+	. = ..()
+	faction = list("blueshep")
+
+/mob/living/simple_animal/hostile/abnormality/fragment/Login()
+	. = ..()
+	faction = list("fragment")
+
+/mob/living/simple_animal/hostile/abnormality/woodsman/Login()
+	. = ..()
+	faction = list("oz")
+
+/mob/living/simple_animal/hostile/abnormality/mountain/Login()
+	. = ..()
+	faction = list("mosb")
+
+/mob/living/simple_animal/hostile/abnormality/pisc_mermaid/Login()
+	. = ..()
+	faction = list("piscine")
+
+/mob/living/simple_animal/hostile/abnormality/scorched_girl/Login()
+	. = ..()
+	faction = list("scorched")
+
+/mob/living/simple_animal/hostile/abnormality/clouded_monk/Login()
+	. = ..()
+	faction = list("monk")
+
+/mob/living/simple_animal/hostile/abnormality/general_b/Login()
+	. = ..()
+	faction = list("bee")
+
+/mob/living/simple_animal/hostile/abnormality/general_b/Logout()
+	. = ..()
+	faction = list("neutral", "bee")
+
+/mob/living/simple_animal/hostile/soldier_bee/Initialize()
+	. = ..()
+	if(SSmaptype.maptype == "limbus_labs")
+		faction = list("neutral", "bee")
+
+/mob/living/simple_animal/hostile/soldier_bee/Login()
+	. = ..()
+	if(SSmaptype.maptype == "limbus_labs")
+		faction = list("hostile", "bee")
+
+/mob/living/simple_animal/hostile/soldier_bee/Logout()
+	. = ..()
+	if(SSmaptype.maptype == "limbus_labs")
+		faction = list("neutral", "bee")

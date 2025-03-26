@@ -5,6 +5,7 @@
 	icon_state = "generalbee"
 	icon_living = "generalbee"
 	core_icon = "gbee_egg"
+	faction = list("hostile", "bee")
 	speak_emote = list("buzzes")
 	pixel_x = -8
 	base_pixel_x = -8
@@ -276,27 +277,12 @@
 	robust_searching = TRUE
 	stat_attack = HARD_CRIT
 	del_on_death = TRUE
+	faction = list("hostile", "bee")
 	death_sound = 'sound/abnormalities/bee/death.ogg'
 	attack_verb_continuous = "bites"
 	attack_verb_simple = "bite"
 	attack_sound = 'sound/weapons/bite.ogg'
 	speak_emote = list("buzzes")
-
-/mob/living/simple_animal/hostile/soldier_bee/Initialize()
-	. = ..()
-	if(SSmaptype.maptype == "limbus_labs")
-		faction = list("neutral")
-
-/mob/living/simple_animal/hostile/soldier_bee/Login()
-	. = ..()
-	if(SSmaptype.maptype == "limbus_labs")
-		faction = list("hostile")
-
-/mob/living/simple_animal/hostile/soldier_bee/Logout()
-	. = ..()
-	if(SSmaptype.maptype == "limbus_labs")
-		faction = list("neutral")
-
 
 /* Artillery bees */
 /mob/living/simple_animal/hostile/artillery_bee
