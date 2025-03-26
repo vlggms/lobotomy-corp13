@@ -871,7 +871,7 @@
 
 /atom/movable/screen/alert/status_effect/damage_up
 	name = "Damage Up"
-	desc = "You are inpowered! Your melee damage is increased by "
+	desc = "You are empowered! Your melee damage is increased by "
 	icon = 'ModularTegustation/Teguicons/status_sprites.dmi'
 	icon_state = "red_protection"
 
@@ -922,7 +922,7 @@
 
 /atom/movable/screen/alert/status_effect/red_damage_up
 	name = "Red Damage Up"
-	desc = "You are inpowered! Your RED melee damage is increased by "
+	desc = "You are empowered! Your RED melee damage is increased by "
 	icon = 'ModularTegustation/Teguicons/status_sprites.dmi'
 	icon_state = "red_protection"
 
@@ -993,7 +993,7 @@
 
 /atom/movable/screen/alert/status_effect/white_damage_up
 	name = "White Damage Up"
-	desc = "You are inpowered! Your WHITE melee damage is increased by "
+	desc = "You are empowered! Your WHITE melee damage is increased by "
 	icon = 'ModularTegustation/Teguicons/status_sprites.dmi'
 	icon_state = "red_protection"
 
@@ -1004,7 +1004,7 @@
 
 /atom/movable/screen/alert/status_effect/black_damage_up
 	name = "Black Damage Up"
-	desc = "You are inpowered! Your BLACK melee damage is increased by "
+	desc = "You are empowered! Your BLACK melee damage is increased by "
 	icon = 'ModularTegustation/Teguicons/status_sprites.dmi'
 	icon_state = "red_protection"
 
@@ -1015,6 +1015,6 @@
 
 /atom/movable/screen/alert/status_effect/pale_damage_up
 	name = "Pale Damage Up"
-	desc = "You are inpowered! Your PALE melee damage is increased by "
+	desc = "You are empowered! Your PALE melee damage is increased by "
 	icon = 'ModularTegustation/Teguicons/status_sprites.dmi'
 	icon_state = "red_protection"
