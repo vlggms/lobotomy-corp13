@@ -38,14 +38,7 @@
 	if(!CanUseEgo(user))
 		return FALSE
 
-	var/old_force = force
-	if(SSmaptype.maptype in SSmaptype.citymaps)
-		if(ishuman(target))
-			force *= 0.40
 	. = ..()
-	if(SSmaptype.maptype in SSmaptype.citymaps)
-		if(old_force != force)
-			force = old_force
 
 	if(charge && attack_charge_gain)
 		HandleCharge(1, target)
