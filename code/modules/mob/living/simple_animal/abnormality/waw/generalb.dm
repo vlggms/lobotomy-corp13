@@ -5,7 +5,6 @@
 	icon_state = "generalbee"
 	icon_living = "generalbee"
 	core_icon = "gbee_egg"
-	faction = list("hostile", "bee")
 	speak_emote = list("buzzes")
 	pixel_x = -8
 	base_pixel_x = -8
@@ -277,7 +276,6 @@
 	robust_searching = TRUE
 	stat_attack = HARD_CRIT
 	del_on_death = TRUE
-	faction = list("hostile", "bee")
 	death_sound = 'sound/abnormalities/bee/death.ogg'
 	attack_verb_continuous = "bites"
 	attack_verb_simple = "bite"

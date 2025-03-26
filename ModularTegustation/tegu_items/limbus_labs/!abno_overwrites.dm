@@ -134,3 +134,18 @@
 	. = ..()
 	if(SSmaptype.maptype == "limbus_labs")
 		faction = list("neutral", "bee")
+
+/mob/living/simple_animal/hostile/laetitia/Initialize()
+	. = ..()
+	if(SSmaptype.maptype == "limbus_labs")
+		faction = list("neutral", "laetitia")
+
+/mob/living/simple_animal/hostile/laetitia/Login()
+	. = ..()
+	if(SSmaptype.maptype == "limbus_labs")
+		faction = list("laetitia")
+
+/mob/living/simple_animal/hostile/laetitia/Logout()
+	. = ..()
+	if(SSmaptype.maptype == "limbus_labs")
+		faction = list("neutral", "laetitia")

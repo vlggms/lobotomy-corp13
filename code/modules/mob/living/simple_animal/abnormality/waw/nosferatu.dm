@@ -31,7 +31,6 @@
 	chem_type = /datum/reagent/abnormality/sin/envy
 	attack_verb_continuous = "claws"
 	attack_verb_simple = "claw"
-	faction = list("hostile", "nosferatu") //avoids faction jank with his minions
 	attack_sound = 'sound/abnormalities/nosferatu/attack.ogg'
 	can_breach = TRUE
 	start_qliphoth = 3
@@ -268,7 +267,6 @@
 	icon_state = "nosferatu_mob"
 	icon_living = "nosferatu_mob"
 	icon_dead = "nosferatu_mob"
-	faction = list("hostile", "nosferatu")
 	is_flying_animal = TRUE
 	density = FALSE
 	status_flags = MUST_HIT_PROJECTILE // Lets them be shot
