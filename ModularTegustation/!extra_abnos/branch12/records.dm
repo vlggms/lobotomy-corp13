@@ -183,6 +183,14 @@
 		"After each neutral or failure work, the employee working on O-01-12-523 would spend 200 Facility PE, and in exchange would gift the employee a weapon.",
 		"These weapons were of generally poor quality. It is recomended for Clerks to use said weapons.",
 	)
+//Sunset at the Pyramids
+/obj/item/paper/fluff/info/branch12/sunset
+	abno_type = /mob/living/simple_animal/hostile/abnormality/branch12/sunset
+	abno_code = "M-04-12-476"
+	abno_info = list(
+		"When work was completed on M-04-12-476, the lotuses covering it changed colour. The damage it did to the next employee corresponded to the colour of these lotuses.",
+		"Carrying out a work type appropriate to the lotus' colour resulted in massively increased success rate, while failing to do so resulted in punishment.",
+	)
 
 //	-------------HE-------------
 // The Show Goes On

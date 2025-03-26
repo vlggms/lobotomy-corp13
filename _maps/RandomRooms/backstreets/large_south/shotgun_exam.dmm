@@ -1,0 +1,429 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"a" = (
+/obj/effect/spawner/lootdrop/misc_random,
+/obj/structure/table,
+/obj/item/hot_tresmetal/human{
+	pixel_x = -11;
+	pixel_y = -2
+	},
+/turf/open/floor/plasteel/showroomfloor,
+/area/city/backstreets_room)
+"b" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/machinery/door/airlock/survival_pod/glass{
+	name = "decomissioned wing recruitment drive"
+	},
+/turf/open/floor/plasteel/shuttle,
+/area/city/backstreets_room)
+"c" = (
+/turf/open/floor/plasteel/showroomfloor,
+/area/city/backstreets_room)
+"d" = (
+/obj/structure/table/wood,
+/obj/item/paper/crumpled/muddy,
+/turf/open/floor/plasteel/grimy,
+/area/city/backstreets_room)
+"e" = (
+/obj/item/keycard/yellow{
+	puzzle_id = "shotgun";
+	name = "wing recruitment drive keycard"
+	},
+/obj/structure/table/abductor{
+	name = "keycard table"
+	},
+/obj/effect/decal/cleanable/greenglow,
+/turf/open/floor/plastic,
+/area/city/backstreets_room)
+"f" = (
+/obj/effect/light_emitter{
+	light_power = 4;
+	light_range = 25;
+	set_cap = 3;
+	set_luminosity = 24
+	},
+/obj/item/pressure_plate/autohide{
+	roundstart_signaller_code = 125
+	},
+/turf/open/floor/plastic,
+/area/city/backstreets_room)
+"g" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/plastic,
+/area/city/backstreets_room)
+"i" = (
+/obj/structure/sign/departments/examroom{
+	pixel_y = -31;
+	sign_change_name = "CORP RECRUITMENT EXAM ROOM";
+	desc = "A guidance sign which reads 'Wing Recruitment Exam Room'."
+	},
+/turf/open/floor/plasteel/grimy,
+/area/city/backstreets_room)
+"j" = (
+/obj/machinery/vending/cigarette{
+	pixel_x = 17;
+	pixel_y = 4
+	},
+/obj/effect/decal/cleanable/ash,
+/turf/open/floor/plasteel/grimy,
+/area/city/backstreets_room)
+"l" = (
+/obj/machinery/door/keycard{
+	puzzle_id = "shotgun";
+	name = "wing recruitment storage"
+	},
+/turf/open/floor/plasteel/showroomfloor,
+/area/city/backstreets_room)
+"m" = (
+/turf/open/floor/plastic,
+/area/city/backstreets_room)
+"n" = (
+/obj/structure/sigsystem/projectile_launcher{
+	name = "punishment 125";
+	signaller_code = 125
+	},
+/turf/closed/indestructible/wood,
+/area/city/backstreets_room)
+"o" = (
+/obj/machinery/camera{
+	dir = 10
+	},
+/turf/open/floor/plasteel/grimy,
+/area/city/backstreets_room)
+"p" = (
+/obj/effect/light_emitter,
+/obj/item/mop,
+/obj/item/reagent_containers/glass/bucket,
+/turf/open/floor/plasteel/dark,
+/area/city/backstreets_room)
+"q" = (
+/obj/structure/reagent_dispensers/water_cooler{
+	pixel_x = -9
+	},
+/obj/structure/reagent_dispensers/water_cooler{
+	pixel_x = 7
+	},
+/turf/open/floor/plastic,
+/area/city/backstreets_room)
+"r" = (
+/obj/item/paper/pamphlet/violent_video_games,
+/turf/open/floor/plasteel/showroomfloor,
+/area/city/backstreets_room)
+"t" = (
+/obj/effect/light_emitter{
+	light_power = 4;
+	light_range = 25;
+	set_cap = 3;
+	set_luminosity = 24
+	},
+/obj/item/pressure_plate/autohide{
+	roundstart_signaller_code = 127
+	},
+/turf/open/floor/plastic,
+/area/city/backstreets_room)
+"v" = (
+/obj/effect/wall_vent,
+/turf/closed/indestructible/reinforced{
+	opacity = 0
+	},
+/area/city/backstreets_room)
+"w" = (
+/obj/structure/sigsystem/projectile_launcher{
+	name = "punishment 124";
+	signaller_code = 124
+	},
+/turf/closed/indestructible/wood,
+/area/city/backstreets_room)
+"x" = (
+/obj/machinery/camera{
+	dir = 8
+	},
+/obj/effect/wall_vent{
+	pixel_x = 32
+	},
+/turf/open/floor/plastic,
+/area/city/backstreets_room)
+"y" = (
+/obj/structure/chair/comfy/teal,
+/obj/effect/light_emitter,
+/turf/open/floor/plasteel/grimy,
+/area/city/backstreets_room)
+"z" = (
+/obj/structure/chair/comfy/teal,
+/turf/open/floor/plasteel/grimy,
+/area/city/backstreets_room)
+"B" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/plasteel/grimy,
+/area/city/backstreets_room)
+"C" = (
+/obj/structure/sign/directions/vault{
+	dir = 4;
+	pixel_y = 27
+	},
+/turf/open/floor/plasteel/dark,
+/area/city/backstreets_room)
+"D" = (
+/obj/structure/sign/painting/library{
+	pixel_x = -32
+	},
+/turf/open/floor/plasteel/grimy,
+/area/city/backstreets_room)
+"E" = (
+/obj/item/workshop_mod/vile{
+	pixel_x = -5;
+	pixel_y = 4
+	},
+/obj/effect/light_emitter,
+/obj/structure/table,
+/obj/item/hot_tresmetal/violet{
+	pixel_x = 14
+	},
+/turf/open/floor/plasteel/showroomfloor,
+/area/city/backstreets_room)
+"F" = (
+/turf/open/floor/plasteel/grimy,
+/area/city/backstreets_room)
+"H" = (
+/obj/structure/sigsystem/projectile_launcher{
+	name = "punishment 127";
+	signaller_code = 127;
+	dir = 8
+	},
+/turf/closed/indestructible/wood,
+/area/city/backstreets_room)
+"I" = (
+/obj/effect/decal/cleanable/generic,
+/turf/open/floor/plastic,
+/area/city/backstreets_room)
+"J" = (
+/obj/structure/reagent_dispensers/water_cooler{
+	pixel_x = -9
+	},
+/turf/open/floor/plasteel/grimy,
+/area/city/backstreets_room)
+"K" = (
+/obj/structure/sign/painting/library{
+	pixel_y = -32
+	},
+/obj/item/pressure_plate/autohide{
+	roundstart_signaller_code = 127
+	},
+/turf/open/floor/plastic,
+/area/city/backstreets_room)
+"L" = (
+/turf/closed/indestructible/reinforced,
+/area/city/backstreets_room)
+"M" = (
+/obj/item/pressure_plate/autohide{
+	roundstart_signaller_code = 127
+	},
+/turf/open/floor/plastic,
+/area/city/backstreets_room)
+"N" = (
+/obj/structure/destructible/tripwire_trap{
+	dir = 8;
+	pixel_y = -11
+	},
+/obj/item/ego_weapon/city/rats/brick,
+/obj/effect/decal/cleanable/oil/streak,
+/turf/open/floor/plasteel/dark,
+/area/city/backstreets_room)
+"O" = (
+/turf/open/floor/plasteel/dark,
+/area/city/backstreets_room)
+"Q" = (
+/obj/structure/sign/departments/cargo{
+	sign_change_name = "Storage Room"
+	},
+/turf/closed/indestructible/wood,
+/area/city/backstreets_room)
+"R" = (
+/obj/item/pressure_plate/autohide{
+	roundstart_signaller_code = 124
+	},
+/turf/open/floor/plastic,
+/area/city/backstreets_room)
+"U" = (
+/turf/closed/indestructible/wood,
+/area/city/backstreets_room)
+"V" = (
+/obj/effect/decal/cleanable/generic,
+/obj/item/pressure_plate/autohide{
+	roundstart_signaller_code = 124
+	},
+/turf/open/floor/plastic,
+/area/city/backstreets_room)
+"X" = (
+/obj/item/pressure_plate/autohide{
+	roundstart_signaller_code = 125
+	},
+/turf/open/floor/plastic,
+/area/city/backstreets_room)
+"Y" = (
+/obj/machinery/vending/cola/sodie{
+	pixel_x = 17;
+	pixel_y = 4
+	},
+/turf/open/floor/plasteel/grimy,
+/area/city/backstreets_room)
+
+(1,1,1) = {"
+L
+U
+U
+U
+U
+L
+L
+L
+"}
+(2,1,1) = {"
+U
+y
+D
+J
+Q
+r
+E
+L
+"}
+(3,1,1) = {"
+U
+z
+F
+B
+l
+c
+a
+L
+"}
+(4,1,1) = {"
+L
+d
+F
+o
+U
+v
+L
+L
+"}
+(5,1,1) = {"
+b
+F
+B
+F
+N
+O
+p
+L
+"}
+(6,1,1) = {"
+L
+j
+Y
+i
+L
+O
+O
+L
+"}
+(7,1,1) = {"
+U
+L
+L
+L
+L
+C
+O
+L
+"}
+(8,1,1) = {"
+U
+q
+g
+m
+m
+g
+m
+L
+"}
+(9,1,1) = {"
+n
+X
+X
+M
+M
+m
+M
+L
+"}
+(10,1,1) = {"
+n
+m
+m
+g
+m
+I
+M
+L
+"}
+(11,1,1) = {"
+n
+m
+f
+t
+M
+M
+K
+L
+"}
+(12,1,1) = {"
+w
+m
+R
+m
+g
+m
+m
+L
+"}
+(13,1,1) = {"
+w
+m
+m
+m
+R
+M
+m
+L
+"}
+(14,1,1) = {"
+w
+m
+V
+M
+M
+M
+g
+L
+"}
+(15,1,1) = {"
+U
+m
+x
+M
+e
+m
+m
+L
+"}
+(16,1,1) = {"
+L
+U
+U
+H
+H
+H
+H
+L
+"}

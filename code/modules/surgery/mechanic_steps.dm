@@ -45,6 +45,7 @@
 	name = "prepare electronics"
 	implements = list(
 		TOOL_MULTITOOL = 100,
+		/obj/item/prosthetictool = 100,
 		TOOL_HEMOSTAT = 10) // try to reboot internal controllers via short circuit with some conductor
 	time = 24
 

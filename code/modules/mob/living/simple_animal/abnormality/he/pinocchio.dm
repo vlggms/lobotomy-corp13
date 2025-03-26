@@ -23,6 +23,7 @@
 	damage_coeff = list(RED_DAMAGE = 1.2, WHITE_DAMAGE = 0.5, BLACK_DAMAGE = 0.7, PALE_DAMAGE = 0.9)
 	work_damage_amount = 8
 	work_damage_type = WHITE_DAMAGE
+	chem_type = /datum/reagent/abnormality/sin/envy
 	max_boxes = 16
 
 	ego_list = list(
@@ -322,7 +323,7 @@
 	knife_butcher_results = list(/obj/item/stack/sheet/mineral/wood = 5)
 	species_traits = list(NO_UNDERWEAR,NOBLOOD,NOEYESPRITES)
 	inherent_traits = list(TRAIT_ADVANCEDTOOLUSER,TRAIT_NOMETABOLISM,TRAIT_TOXIMMUNE,TRAIT_NOBREATH,TRAIT_RESISTCOLD,TRAIT_RESISTHIGHPRESSURE,TRAIT_RESISTLOWPRESSURE,TRAIT_RADIMMUNE,TRAIT_GENELESS,\
-	TRAIT_NOHUNGER,TRAIT_XENO_IMMUNE,TRAIT_NOCLONELOSS)
+	TRAIT_NOHUNGER,TRAIT_XENO_IMMUNE,TRAIT_NOCLONELOSS,TRAIT_LIGHT_STEP)
 	punchdamagelow = 10
 	punchdamagehigh = 15
 	bodypart_overides = list(

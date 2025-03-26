@@ -30,6 +30,7 @@
 	)
 	work_damage_amount = 8
 	work_damage_type = BLACK_DAMAGE
+	chem_type = /datum/reagent/abnormality/sin/lust
 	base_pixel_x = -12
 	pixel_x = -12
 

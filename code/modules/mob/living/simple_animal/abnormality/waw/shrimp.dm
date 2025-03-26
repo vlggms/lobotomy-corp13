@@ -18,7 +18,8 @@
 		ABNORMALITY_WORK_REPRESSION = -100,	//He's a snobby shrimp dude.
 	)
 	work_damage_amount = 11
-	work_damage_type = WHITE_DAMAGE	//He insults you.
+	work_damage_type = WHITE_DAMAGE	//He insults you
+	chem_type = /datum/reagent/abnormality/sin/pride
 
 	ego_list = list(
 		/datum/ego_datum/weapon/executive,

@@ -34,6 +34,7 @@
 	)
 	work_damage_amount = 10
 	work_damage_type = WHITE_DAMAGE
+	chem_type = /datum/reagent/abnormality/sin/lust
 	melee_damage_type = BLACK_DAMAGE
 
 	ego_list = list(
@@ -79,7 +80,7 @@
 
 /datum/action/innate/change_icon_merm
 	name = "Toggle Icon"
-	desc = "Toggle your icon between breached and contained. (Works only for Limbus Company Labratories)"
+	desc = "Toggle your icon between breached and contained. (Works only for Limbus Company Laboratories)"
 
 /datum/action/innate/change_icon_merm/Activate()
 	. = ..()

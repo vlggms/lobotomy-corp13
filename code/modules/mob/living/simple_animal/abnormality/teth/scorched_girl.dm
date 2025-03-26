@@ -22,7 +22,7 @@
 	)
 	work_damage_amount = 6
 	work_damage_type = RED_DAMAGE
-	chem_type = /datum/reagent/abnormality/woe
+	chem_type = /datum/reagent/abnormality/sin/envy
 	damage_coeff = list(RED_DAMAGE = 0.5, WHITE_DAMAGE = 2, BLACK_DAMAGE = 1, PALE_DAMAGE = 2)
 	faction = list("hostile")
 	can_breach = TRUE
@@ -94,9 +94,6 @@
 		..()
 	else
 		patrol_path = get_path_to(src, target_center, TYPE_PROC_REF(/turf, Distance_cardinal), 0, 200)
-
-/mob/living/simple_animal/hostile/abnormality/scorched_girl/MeleeAction()
-	return OpenFire()
 
 /mob/living/simple_animal/hostile/abnormality/scorched_girl/OpenFire()
 	if(client)

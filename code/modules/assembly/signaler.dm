@@ -18,6 +18,7 @@
 	var/datum/mind/suicider
 	///Holds a reference string to the mob, decides how much of a gamer you are.
 	var/suicide_mob
+	var/silent = FALSE
 	var/hearing_range = 1
 
 	/// String containing the last piece of logging data relating to when this signaller has received a signal.
@@ -127,10 +128,13 @@
 
 	var/time = time2text(world.realtime,"hh:mm:ss")
 	var/turf/T = get_turf(src)
+	var/coords = "???"
+	if(T)
+		coords = "[T.x],[T.y],[T.z]"
 
 	var/logging_data
 	if(usr)
-		logging_data = "[time] <B>:</B> [usr.key] used [src] @ location ([T.x],[T.y],[T.z]) <B>:</B> [format_frequency(frequency)]/[code]"
+		logging_data = "[time] <B>:</B> [usr.key] used [src] @ location ([coords]) <B>:</B> [format_frequency(frequency)]/[code]"
 		GLOB.lastsignalers.Add(logging_data)
 
 	var/datum/signal/signal = new(list("code" = code), logging_data = logging_data)
@@ -152,11 +156,12 @@
 	last_receive_signal_log = istype(holder, /obj/item/transfer_valve) ? signal.logging_data : null
 
 	pulse(TRUE)
-	audible_message("[icon2html(src, hearers(src))] *beep* *beep* *beep*", null, hearing_range)
-	for(var/CHM in get_hearers_in_view(hearing_range, src))
-		if(ismob(CHM))
-			var/mob/LM = CHM
-			LM.playsound_local(get_turf(src), 'sound/machines/triple_beep.ogg', ASSEMBLY_BEEP_VOLUME, TRUE)
+	if(!silent)
+		audible_message("[icon2html(src, hearers(src))] *beep* *beep* *beep*", null, hearing_range)
+		for(var/CHM in get_hearers_in_view(hearing_range, src))
+			if(ismob(CHM))
+				var/mob/LM = CHM
+				LM.playsound_local(get_turf(src), 'sound/machines/triple_beep.ogg', ASSEMBLY_BEEP_VOLUME, TRUE)
 	return TRUE
 
 /obj/item/assembly/signaler/proc/set_frequency(new_frequency)

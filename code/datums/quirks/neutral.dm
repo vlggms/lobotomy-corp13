@@ -1,30 +1,6 @@
 //traits with no real impact that can be taken freely
 //MAKE SURE THESE DO NOT MAJORLY IMPACT GAMEPLAY. those should be positive or negative traits.
 
-/datum/quirk/nerd
-	name = "Nerd"
-	desc = "You take 5% less WHITE damage, but take 10% more RED damage. You spend all your free time playing niche video games and reading Korean light novels."
-	value = 0
-	gain_text = "<span class='notice'>You feel nervous about touching grass.</span>"
-	medical_record_text = "Patient displays severe socially avoidant behaviours."
-
-/datum/quirk/nerd/on_spawn()
-	var/mob/living/carbon/human/H = quirk_holder
-	H.physiology.red_mod += 0.1
-	H.physiology.white_mod -= 0.05
-
-/datum/quirk/brawler
-	name = "Brawler"
-	desc = "You take 5% less RED damage, but take 10% more WHITE damage. Instead of getting an education, you chose to train and become the best Fixer in the City."
-	value = 0
-	gain_text = "<span class='notice'>Time to chew ass and kick bubblegum.</span>"
-	medical_record_text = "Patient is more physically fit than the average person."
-
-/datum/quirk/brawler/on_spawn()
-	var/mob/living/carbon/human/H = quirk_holder
-	H.physiology.red_mod -= 0.05
-	H.physiology.white_mod += 0.1
-
 /datum/quirk/family_heirloom // re-naming the quirk in the code causes a lot of problems, so leaving it as-is
 	name = "Plushie Lover"
 	desc = "You love plushies so much that you take them to work with you. You start with one plushie that changes based on your job."
@@ -202,15 +178,6 @@
 	gain_text = "<span class='notice'>You feel like reading a good book quietly.</span>"
 	lose_text = "<span class='danger'>You feel like libraries are boring.</span>"
 	medical_record_text = "Patient doesn't seem to say much."
-
-/datum/quirk/no_taste
-	name = "Ageusia"
-	desc = "You can't taste anything! Toxic food will still poison you."
-	value = 0
-	mob_trait = TRAIT_AGEUSIA
-	gain_text = "<span class='notice'>You can't taste anything!</span>"
-	lose_text = "<span class='notice'>You can taste again!</span>"
-	medical_record_text = "Patient suffers from ageusia and is incapable of tasting food or reagents."
 
 /datum/quirk/foreigner
 	name = "Foreigner"
@@ -518,3 +485,41 @@
 		return
 	var/mob/living/carbon/human/H = quirk_holder
 	H.remove_language(/datum/language/bong, TRUE, TRUE, LANGUAGE_MIND)
+
+/datum/quirk/spiritual
+	name = "Spiritual"
+	desc = "You hold a spiritual belief, whether in God, nature or the arcane rules of the universe. You gain comfort from the presence of holy people, and believe that your prayers are more special than others."
+	value = 0
+	mob_trait = TRAIT_SPIRITUAL
+	gain_text = "<span class='notice'>You have faith in a higher power.</span>"
+	lose_text = "<span class='danger'>You lose faith!</span>"
+	medical_record_text = "Patient reports a belief in a higher power."
+
+/datum/quirk/spiritual/on_spawn()
+	var/mob/living/carbon/human/H = quirk_holder
+	H.equip_to_slot_or_del(new /obj/item/storage/fancy/candle_box(H), ITEM_SLOT_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/storage/box/matches(H), ITEM_SLOT_BACKPACK)
+
+/datum/quirk/tagger
+	name = "Tagger"
+	desc = "You're an experienced artist. People will actually be impressed by your graffiti, and you can get twice as many uses out of drawing supplies."
+	value = 0
+	mob_trait = TRAIT_TAGGER
+	gain_text = "<span class='notice'>You know how to tag walls efficiently.</span>"
+	lose_text = "<span class='danger'>You forget how to tag walls properly.</span>"
+	medical_record_text = "Patient was recently seen for possible paint huffing incident."
+
+/datum/quirk/tagger/on_spawn()
+	var/mob/living/carbon/human/H = quirk_holder
+	var/obj/item/toy/crayon/spraycan/spraycan = new(get_turf(H))
+	H.put_in_hands(spraycan)
+	H.equip_to_slot(spraycan, ITEM_SLOT_BACKPACK)
+	H.regenerate_icons()
+
+/datum/quirk/prosopagnosia
+	name = "Prosopagnosia"
+	desc = "You have a mental disorder that prevents you from being able to recognize faces at all."
+	value = 0
+	mob_trait = TRAIT_PROSOPAGNOSIA
+	medical_record_text = "Patient suffers from prosopagnosia and cannot recognize faces."
+	hardcore_value = 2

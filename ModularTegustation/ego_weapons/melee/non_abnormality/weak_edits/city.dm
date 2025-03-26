@@ -126,7 +126,7 @@
 //Thumb
 /obj/item/ego_weapon/ranged/city/thumb/weak
 	force = 20
-	projectile_damage_multiplier = 2 //20 damage per bullet
+	projectile_damage_multiplier = 2.5 //25 damage per bullet
 	attribute_requirements = list(
 		FORTITUDE_ATTRIBUTE = 60,
 		PRUDENCE_ATTRIBUTE = 60,
@@ -137,7 +137,7 @@
 //Capo
 /obj/item/ego_weapon/ranged/city/thumb/capo/weak
 	force = 25
-	projectile_damage_multiplier = 3 //30 damage per bullet
+	projectile_damage_multiplier = 3.5 //35 damage per bullet
 	attribute_requirements = list(
 		FORTITUDE_ATTRIBUTE = 80,
 		PRUDENCE_ATTRIBUTE = 80,
@@ -148,10 +148,11 @@
 //Sottocapo
 /obj/item/ego_weapon/ranged/city/thumb/sottocapo/weak
 	force = 10	//It's a pistol
-	projectile_damage_multiplier = 0.7 //5 damage per bullet
-	projectile_path = /obj/projectile/ego_bullet/tendamage // total 56 damage
+	projectile_damage_multiplier = 1.1 //11 damage per bullet
+	projectile_path = /obj/projectile/ego_bullet/tendamage // total 88 damage
 	pellets = 8
 	variance = 16
+	reloadtime = 7 SECONDS // it is a bit stronger, but requires a bit longer reload time. (either hit with it or step back for downtime)
 	attribute_requirements = list(
 		FORTITUDE_ATTRIBUTE = 100,
 		PRUDENCE_ATTRIBUTE = 100,

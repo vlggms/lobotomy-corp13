@@ -72,7 +72,7 @@ GLOBAL_LIST_INIT(medical_positions, list(
 	"Nurse",
 	"Paramedic",
 	"Medical Fixer Assistant",
-	"Proshetics Surgeon",
+	"Prosthetics Surgeon",
 	))
 
 

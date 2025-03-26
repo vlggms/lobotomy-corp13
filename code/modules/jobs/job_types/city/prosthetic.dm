@@ -1,5 +1,5 @@
 /datum/job/prosdoctor
-	title = "Proshetics Surgeon"
+	title = "Prosthetics Surgeon"
 	faction = "Station"
 	total_positions = 1
 	spawn_positions = 1
@@ -29,7 +29,7 @@
 	ADD_TRAIT(H, TRAIT_COMBATFEAR_IMMUNE, JOB_TRAIT)
 
 /datum/outfit/job/prosdoctor
-	name = "Proshetics Surgeon"
+	name = "Prosthetics Surgeon"
 	jobtype = /datum/job/prosdoctor
 
 	belt = /obj/item/pda/medical
@@ -42,6 +42,9 @@
 	backpack = /obj/item/storage/backpack/medic
 	satchel = /obj/item/storage/backpack/satchel/med
 	duffelbag = /obj/item/storage/backpack/duffelbag/med
+
+	backpack_contents = list(/obj/item/prosthetictool)
+
 	box = /obj/item/storage/box/survival/medical
 
 

@@ -106,87 +106,151 @@
 		/obj/item/tresmetal/indigo = 1
 		)
 
+///This spawner scatters the spawned stuff around where it is placed.
+/obj/effect/spawner/mobspawner
+	icon = 'icons/effects/landmarks_static.dmi'
+	icon_state = "xeno_spawn"
+	///determines how many things to scatter
+	var/max_spawns = 3
+	///determines how big of a range we should scatter things in.
+	var/radius = 1
+	///This weighted list acts as the loot table for the spawner
+	var/list/mobspawn_table
+
+
+/obj/effect/spawner/mobspawner/Initialize()
+	..()
+	if(!length(mobspawn_table))
+		return INITIALIZE_HINT_QDEL
+
+	var/list/candidate_locations = ReturnPlacementTurfs()
+
+	if(!length(candidate_locations))
+		return INITIALIZE_HINT_QDEL
+
+	PlaceMobs(candidate_locations)
+
+	return INITIALIZE_HINT_QDEL
+
+/obj/effect/spawner/mobspawner/proc/ReturnPlacementTurfs()
+	. = list()
+	for(var/turf/turf_in_view in view(radius, get_turf(src)))
+		if(turf_in_view.density)
+			continue
+		if(locate(/obj/machinery/door) in turf_in_view)
+			continue
+		var/bad_turf = FALSE
+		for(var/obj/O in turf_in_view)
+			if(O.density)
+				bad_turf = TRUE
+				break
+		if(!bad_turf)
+			. += turf_in_view
+
+/obj/effect/spawner/mobspawner/proc/PlaceMobs(list/places_to_place)
+	for(var/i = 1 to max_spawns)
+		if(!places_to_place.len)
+			break
+		var/turf/place_to_spawn = pick_n_take(places_to_place)
+		var/spawned_thing = pickweight(mobspawn_table)
+		SpawnMob(spawned_thing, place_to_spawn)
+
+/obj/effect/spawner/mobspawner/proc/SpawnMob(type, turf/spawn_turf)
+	var/mob/living/L = new type(spawn_turf)
+	if(ishostile(L))
+		var/mob/living/simple_animal/hostile/H = L
+		H.wander = FALSE
+
 //Pseudo Group Spawners
 	//Amber Worms
-/obj/effect/spawner/scatter/amber_dawn
+/obj/effect/spawner/mobspawner/amber_dawn
 	name = "amber swarm spawn"
 	max_spawns = 5
-	loot_table = list(/mob/living/simple_animal/hostile/ordeal/amber_bug = 1)
+	mobspawn_table = list(/mob/living/simple_animal/hostile/ordeal/amber_bug = 1)
 
 	//Green Bots
-/obj/effect/spawner/scatter/green_dawn
+/obj/effect/spawner/mobspawner/green_dawn
 	name = "bot package spawn"
 	max_spawns = 5
-	loot_table = list(/mob/living/simple_animal/hostile/ordeal/green_bot = 1)
+	mobspawn_table = list(/mob/living/simple_animal/hostile/ordeal/green_bot = 1)
 
-/obj/effect/spawner/scatter/green_noon
+/obj/effect/spawner/mobspawner/green_noon
 	name = "big bot package spawn"
 	max_spawns = 5
-	loot_table = list(/mob/living/simple_animal/hostile/ordeal/green_bot_big = 1)
+	mobspawn_table = list(/mob/living/simple_animal/hostile/ordeal/green_bot_big = 1)
 
 	//Indigo Sweepers
-/obj/effect/spawner/scatter/indigo_dawn
+/obj/effect/spawner/mobspawner/indigo_dawn
 	name = "sweeper scout pack spawn"
 	max_spawns = 5
-	loot_table = list(/mob/living/simple_animal/hostile/ordeal/indigo_dawn = 1)
+	mobspawn_table = list(/mob/living/simple_animal/hostile/ordeal/indigo_dawn = 1)
 
-/obj/effect/spawner/scatter/indigo_noon
+/obj/effect/spawner/mobspawner/indigo_noon
 	name = "sweeper pack spawn"
 	max_spawns = 5
-	loot_table = list(/mob/living/simple_animal/hostile/ordeal/indigo_noon = 1)
+	mobspawn_table = list(/mob/living/simple_animal/hostile/ordeal/indigo_noon = 1)
 
 	//Steel Roaches
-/obj/effect/spawner/scatter/steel_dawn
+/obj/effect/spawner/mobspawner/steel_dawn
 	name = "g corp squad spawn"
 	max_spawns = 5
-	loot_table = list(/mob/living/simple_animal/hostile/ordeal/steel_dawn = 1)
+	mobspawn_table = list(/mob/living/simple_animal/hostile/ordeal/steel_dawn = 1)
 
-/obj/effect/spawner/scatter/steel_noon
+/obj/effect/spawner/mobspawner/steel_noon
 	name = "g corp assault squad spawn"
 	max_spawns = 5
-	loot_table = list(/mob/living/simple_animal/hostile/ordeal/steel_dawn/steel_noon = 1)
+	mobspawn_table = list(/mob/living/simple_animal/hostile/ordeal/steel_dawn/steel_noon = 1)
 
-/obj/effect/spawner/scatter/steel_noon
+/obj/effect/spawner/mobspawner/steel_noon_fly
 	name = "g corp air assault squad spawn"
 	max_spawns = 5
-	loot_table = list(/mob/living/simple_animal/hostile/ordeal/steel_dawn/steel_noon/flying = 1)
+	mobspawn_table = list(/mob/living/simple_animal/hostile/ordeal/steel_dawn/steel_noon/flying = 1)
+
+/obj/effect/spawner/mobspawner/steel_dusk_squad
+	name = "g corp squad spawn"
+	max_spawns = 5
+	mobspawn_table = list(
+		/mob/living/simple_animal/hostile/ordeal/steel_dawn = 7,
+		/mob/living/simple_animal/hostile/ordeal/steel_dawn/steel_noon = 2,
+		/mob/living/simple_animal/hostile/ordeal/steel_dawn/steel_noon/flying = 1,
+		)
 
 	//Shrimp
-/obj/effect/spawner/scatter/shrimp
+/obj/effect/spawner/mobspawner/shrimp
 	name = "shrimp squad spawn"
 	max_spawns = 5
-	loot_table = list(/mob/living/simple_animal/hostile/shrimp = 4,
+	mobspawn_table = list(/mob/living/simple_animal/hostile/shrimp = 4,
 					/mob/living/simple_animal/hostile/shrimp_soldier = 1)
 
-/obj/effect/spawner/scatter/shrimp_melee
+/obj/effect/spawner/mobspawner/shrimp_melee
 	name = "fishin shrimp squad spawn"
 	max_spawns = 5
-	loot_table = list(/mob/living/simple_animal/hostile/shrimp = 1)
+	mobspawn_table = list(/mob/living/simple_animal/hostile/shrimp = 1)
 
-/obj/effect/spawner/scatter/shrimp_ranged
+/obj/effect/spawner/mobspawner/shrimp_ranged
 	name = "shrimp soldier squad spawn"
 	max_spawns = 5
-	loot_table = list(/mob/living/simple_animal/hostile/shrimp_soldier = 1)
+	mobspawn_table = list(/mob/living/simple_animal/hostile/shrimp_soldier = 1)
 
 	//Backstreet Humanoids
-/obj/effect/spawner/scatter/rat
+/obj/effect/spawner/mobspawner/rat
 	name = "rat syndicate spawn"
 	max_spawns = 5
-	loot_table = list(/mob/living/simple_animal/hostile/humanoid/rat = 1)
+	mobspawn_table = list(/mob/living/simple_animal/hostile/humanoid/rat = 1)
 
-/obj/effect/spawner/scatter/rat_elite
+/obj/effect/spawner/mobspawner/rat_elite
 	name = "rat elite spawn"
 	max_spawns = 1
-	loot_table = list(
+	mobspawn_table = list(
 		/mob/living/simple_animal/hostile/humanoid/rat/knife = 3,
 		/mob/living/simple_animal/hostile/humanoid/rat/pipe = 3,
 		/mob/living/simple_animal/hostile/humanoid/rat/hammer = 3,
 		/mob/living/simple_animal/hostile/humanoid/rat/zippy = 1)
 
-/obj/effect/spawner/scatter/rat_random
+/obj/effect/spawner/mobspawner/rat_random
 	name = "rat gang spawn"
 	max_spawns = 5
-	loot_table = list(/mob/living/simple_animal/hostile/humanoid/rat = 6,
+	mobspawn_table = list(/mob/living/simple_animal/hostile/humanoid/rat = 6,
 		/mob/living/simple_animal/hostile/humanoid/rat/knife = 1,
 		/mob/living/simple_animal/hostile/humanoid/rat/pipe = 2,
 		/mob/living/simple_animal/hostile/humanoid/rat/hammer = 2,

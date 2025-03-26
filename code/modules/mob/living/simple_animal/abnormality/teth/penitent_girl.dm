@@ -19,7 +19,7 @@
 	is_flying_animal = TRUE
 	work_damage_amount = 6
 	work_damage_type = WHITE_DAMAGE
-	chem_type = /datum/reagent/abnormality/woe
+	chem_type = /datum/reagent/abnormality/sin/gloom
 
 	ego_list = list(
 		/datum/ego_datum/weapon/sorrow,

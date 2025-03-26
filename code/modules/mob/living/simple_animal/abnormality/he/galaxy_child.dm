@@ -1,5 +1,4 @@
 #define STATUS_EFFECT_FRIENDSHIP /datum/status_effect/display/friendship
-#define GALAXY_COOLDOWN (60 SECONDS)
 /mob/living/simple_animal/hostile/abnormality/galaxy_child
 	name = "Child of the Galaxy"
 	desc = "A young, lost child."
@@ -18,6 +17,7 @@
 	)
 	work_damage_amount = 8
 	work_damage_type = BLACK_DAMAGE
+	chem_type = /datum/reagent/abnormality/sin/gloom
 	max_boxes = 16
 
 	ego_list = list(
@@ -38,97 +38,25 @@
 		"Stay" = list(FALSE, "\"Will you stay here with me?\" <br>\"If you won't, I don't need you.\""),
 	)
 
-	var/heal_cooldown_time = 2 SECONDS
-	var/heal_cooldown
-	var/list/galaxy_friend = list()
-	var/heal_mod = 0.5 //0.25 heal/sec
+	/// List of people who are our friends
+	var/list/galaxy_friends = list()
+	/// Used to calculate delta time for accurate healing no matter the lag
+	var/last_healing_time
+
+	/// How much healing per second do we add each time a new user takes the pebble
+	var/heal_mod = 0.25
+	/// The current amount of healing per second we do to pebble users
+	var/healing_per_second = 0
+
+	/// How much more damage we deal per a person that befriends us
 	var/damage_mod = 60
-	var/heal_amount
-	var/damage_amount
+	/// The current amount of damage we deal to pebble users when exploding
+	var/damage_amount = 0
+
+	/// Are we currently depressed after our friends perished?
 	var/depressed = FALSE
-	var/chance_modifier = 1
-
-	var/galaxy_cooldown
-	var/galaxy_cooldown_time = 5 SECONDS
-
-	attack_action_types = list(/datum/action/cooldown/friend_gift, /datum/action/cooldown/galaxygiftbreak)
-
-/datum/action/cooldown/friend_gift
-	name = "Gift Pebble"
-	icon_icon = 'ModularTegustation/Teguicons/status_sprites.dmi'
-	button_icon_state = "friendship"
-	check_flags = AB_CHECK_CONSCIOUS
-	transparent_when_unavailable = TRUE
-	cooldown_time = GALAXY_COOLDOWN //5 seconds
-
-/datum/action/cooldown/friend_gift/Trigger()
-	if(!..())
-		return FALSE
-	if(!istype(owner, /mob/living/simple_animal/hostile/abnormality/galaxy_child))
-		return FALSE
-	var/mob/living/simple_animal/hostile/abnormality/galaxy_child/galaxy_child = owner
-	StartCooldown()
-	galaxy_child.manualgift()
-	return TRUE
-
-/mob/living/simple_animal/hostile/abnormality/galaxy_child/proc/manualgift()
-	var/list/nearby = viewers(7, src) // first call viewers to get all mobs that see us
-	if((SSmaptype.maptype == "limbus_labs"))
-		for(var/mob in nearby) // then sanitize the list
-			if(mob == src) // cut ourselfes from the list
-				nearby -= mob
-			if(!ishuman(mob)) // cut all the non-humans from the list
-				nearby -= mob
-			//if(mob.stat == DEAD)
-				//nearby -= mob
-			if(mob in galaxy_friend) //cut who is already a friend
-				nearby -= mob
-		var/mob/living/carbon/human/new_friend = input(src, "Choose who you want to gift a pebble to", "Select your new friend") as null|anything in nearby // pick someone from the list
-		var/giftask = alert(new_friend, "Do you wish to receive the child's gift?", "Recieve Gift", "Yes", "No")
-		if(giftask == "Yes")
-			new_friend.apply_status_effect(STATUS_EFFECT_FRIENDSHIP)
-			galaxy_friend |= new_friend
-			heal_amount += heal_mod
-			damage_amount += damage_mod
-			RegisterSignal(new_friend, COMSIG_LIVING_DEATH, PROC_REF(FriendDeath))
-			icon_state = "galaxy"
-			depressed = FALSE
-
-/datum/action/cooldown/galaxygiftbreak
-	name = "Break Gifts"
-	check_flags = AB_CHECK_CONSCIOUS
-	transparent_when_unavailable = TRUE
-	cooldown_time = GALAXY_COOLDOWN //5 seconds
-
-/datum/action/cooldown/galaxygiftbreak/Trigger()
-	if(!..())
-		return FALSE
-	if(!istype(owner, /mob/living/simple_animal/hostile/abnormality/galaxy_child))
-		return FALSE
-	var/mob/living/simple_animal/hostile/abnormality/galaxy_child/galaxy_child = owner
-	StartCooldown()
-	galaxy_child.break_gifts()
-	return TRUE
-
-/mob/living/simple_animal/hostile/abnormality/galaxy_child/proc/break_gifts(mob/living/carbon/human/user)
-	if((SSmaptype.maptype == "limbus_labs"))
-		if(LAZYLEN(galaxy_friend))
-			for(var/mob/living/carbon/human/L in galaxy_friend)
-				if(QDELETED(L))
-					continue
-				L.deal_damage(damage_amount, BLACK_DAMAGE)
-				L.remove_status_effect(STATUS_EFFECT_FRIENDSHIP)
-				UnregisterSignal(L, COMSIG_LIVING_DEATH)
-				new /obj/effect/temp_visual/pebblecrack(get_turf(L))
-				playsound(get_turf(L), "shatter", 50, TRUE)
-				to_chat(L, span_userdanger("Your pebble violently shatters as Child of the Galaxy begins to weep!"))
-		//reset everything
-		heal_amount = 0
-		damage_amount = 0
-		depressed = TRUE
-		LAZYCLEARLIST(galaxy_friend)
-		icon_state = "galaxy_weep"
-
+	/// Multiplies work chance by itself, increases when depressed
+	var/work_chance_modifier = 1
 
 /mob/living/simple_animal/hostile/abnormality/galaxy_child/examine(mob/user)
 	. = ..()
@@ -138,37 +66,47 @@
 /mob/living/simple_animal/hostile/abnormality/galaxy_child/PostSpawn()
 	. = ..()
 	datum_reference.qliphoth_meter = 1
+	if((SSmaptype.maptype == "limbus_labs"))
+		var/datum/action/cooldown/friend_gift/gift = new()
+		gift.Grant(src)
+		var/datum/action/cooldown/galaxygiftbreak/antigift = new()
+		antigift.Grant(src)
+
+/mob/living/simple_animal/hostile/abnormality/galaxy_child/Destroy(force)
+	break_gifts()
+	return ..()
 
 /mob/living/simple_animal/hostile/abnormality/galaxy_child/Life()
 	. = ..()
-	if(heal_cooldown < world.time)
-		heal_cooldown = world.time + heal_cooldown_time
-		heal()
+	var/delta_time = (world.time - last_healing_time) / 10
+	last_healing_time = world.time
+	for(var/mob/living/carbon/human/friend as anything in galaxy_friends)
+		friend.adjustBruteLoss(-(healing_per_second * delta_time))
+		friend.adjustSanityLoss(-(healing_per_second * delta_time))
 
 /mob/living/simple_animal/hostile/abnormality/galaxy_child/WorkChance(mob/living/carbon/human/user, chance)
-	return chance * chance_modifier
+	return chance * work_chance_modifier
 
 /mob/living/simple_animal/hostile/abnormality/galaxy_child/PostWorkEffect(mob/living/carbon/human/user, work_type, pe, work_time, canceled)
 	if(canceled)
 		return
-	if(!datum_reference.qliphoth_meter) //this sets galaxy_child to a state similar to just spawning in
+
+	if(!datum_reference.qliphoth_meter) // This sets galaxy_child to a state similar to just spawning in
 		datum_reference.qliphoth_change(1)
-	if(user in galaxy_friend)
+
+	if(user in galaxy_friends)
 		datum_reference.qliphoth_change(2)
-	else //Does math, gives them the required stuff
-		user.apply_status_effect(STATUS_EFFECT_FRIENDSHIP)
-		galaxy_friend |= user
-		heal_amount += heal_mod
-		damage_amount += damage_mod
-		RegisterSignal(user, COMSIG_LIVING_DEATH, PROC_REF(FriendDeath))
-		src.say("I really, really like you! This pebble is super important to me! Please keep it with you forever.")
+		return
+
+	give_pebble(user)
+	say("I really, really like you! This pebble is super important to me! Please keep it with you forever.")
 
 /mob/living/simple_animal/hostile/abnormality/galaxy_child/GiftUser(mob/living/carbon/human/user, pe, chance)
-	if(pe <= 0) //work fail
+	if(pe <= 0) // Work fail
 		return
 	if(depressed)
 		chance = 100
-		chance_modifier = 1
+		work_chance_modifier = initial(work_chance_modifier)
 		depressed = FALSE
 	return ..(user, pe, chance)
 
@@ -182,44 +120,152 @@
 		TurfTransform(/turf/open/floor/facility/dark)
 
 /mob/living/simple_animal/hostile/abnormality/galaxy_child/ZeroQliphoth(mob/living/carbon/human/user)
-	if(LAZYLEN(galaxy_friend))
-		for(var/mob/living/carbon/human/L in galaxy_friend)
-			if(QDELETED(L))
-				continue
-			L.deal_damage(damage_amount, BLACK_DAMAGE)
-			L.remove_status_effect(STATUS_EFFECT_FRIENDSHIP)
-			UnregisterSignal(L, COMSIG_LIVING_DEATH)
-			new /obj/effect/temp_visual/pebblecrack(get_turf(L))
-			playsound(get_turf(L), "shatter", 50, TRUE)
-			to_chat(L, span_userdanger("Your pebble violently shatters as Child of the Galaxy begins to weep!"))
-	//reset everything
-	heal_amount = 0
-	damage_amount = 0
-	if(galaxy_friend.len >= 2)
-		depressed = TRUE
-		chance_modifier = 1.25
-	LAZYCLEARLIST(galaxy_friend)
-	icon_state = "galaxy_weep"
+	break_gifts()
 	TurfTransform(/turf/open/floor/fakespace)
 
-/mob/living/simple_animal/hostile/abnormality/galaxy_child/proc/heal()
-	if(LAZYLEN(galaxy_friend))
-		for(var/mob/living/carbon/human/H in galaxy_friend)
-			H.adjustBruteLoss(-heal_amount) // It heals everyone a bit every 2 seconds.
-			H.adjustSanityLoss(-heal_amount)
+/mob/living/simple_animal/hostile/abnormality/galaxy_child/proc/give_pebble(mob/living/carbon/human/new_friend)
+	if(!istype(new_friend))
+		return
 
-/mob/living/simple_animal/hostile/abnormality/galaxy_child/proc/FriendDeath(datum/source, gibbed)
+	new_friend.apply_status_effect(STATUS_EFFECT_FRIENDSHIP)
+	galaxy_friends |= new_friend
+	healing_per_second += heal_mod
+	damage_amount += damage_mod
+	RegisterSignal(new_friend, COMSIG_LIVING_DEATH, PROC_REF(on_friend_death))
+	RegisterSignal(new_friend, COMSIG_PARENT_QDELETING, PROC_REF(on_friend_deletion))
+
+/mob/living/simple_animal/hostile/abnormality/galaxy_child/proc/break_gifts()
+	for(var/mob/living/carbon/human/friend as anything in galaxy_friends)
+		friend.deal_damage(damage_amount, BLACK_DAMAGE)
+		friend.remove_status_effect(STATUS_EFFECT_FRIENDSHIP)
+		UnregisterSignal(friend, COMSIG_LIVING_DEATH)
+		UnregisterSignal(friend, COMSIG_PARENT_QDELETING)
+		new /obj/effect/temp_visual/pebblecrack(get_turf(friend))
+		playsound(get_turf(friend), "shatter", 50, TRUE)
+		to_chat(friend, span_userdanger("Your pebble violently shatters as Child of the Galaxy begins to weep!"))
+
+	healing_per_second = 0 // We reset our current bonuses
+	damage_amount = 0
+	if(length(galaxy_friends) > 1)
+		depressed = TRUE
+		work_chance_modifier *= 1.25
+		galaxy_friends.Cut()
+
+	else if(length(galaxy_friends))
+		galaxy_friends.Cut()
+
+	icon_state = "galaxy_weep"
+
+/mob/living/simple_animal/hostile/abnormality/galaxy_child/proc/on_friend_death(mob/living/dead_friend, gibbed)
 	SIGNAL_HANDLER
-	UnregisterSignal(source, COMSIG_LIVING_DEATH)
-	to_chat(src, span_userdanger("You sense that one of your friends has perished...."))
+	galaxy_friends -= dead_friend
 	datum_reference.qliphoth_change(-4)
+	dead_friend.remove_status_effect(STATUS_EFFECT_FRIENDSHIP)
+	UnregisterSignal(dead_friend, COMSIG_LIVING_DEATH)
+	UnregisterSignal(dead_friend, COMSIG_PARENT_QDELETING)
+	new /obj/effect/temp_visual/pebblecrack(get_turf(dead_friend))
+	playsound(dead_friend, "shatter", 50, TRUE)
+	to_chat(src, span_userdanger("You sense that one of your friends has perished and feel your heart ache."))
+
+/mob/living/simple_animal/hostile/abnormality/galaxy_child/proc/on_friend_deletion(mob/deleted_friend)
+	SIGNAL_HANDLER
+	UnregisterSignal(deleted_friend, COMSIG_LIVING_DEATH)
+	UnregisterSignal(deleted_friend, COMSIG_PARENT_QDELETING)
+	galaxy_friends -= deleted_friend
+
+/datum/action/cooldown/friend_gift
+	name = "Gift Pebble"
+	icon_icon = 'ModularTegustation/Teguicons/status_sprites.dmi'
+	button_icon_state = "friendship"
+	check_flags = AB_CHECK_CONSCIOUS
+	transparent_when_unavailable = TRUE
+	cooldown_time = 5 SECONDS
+
+/datum/action/cooldown/friend_gift/Trigger()
+	. = ..()
+	if(!.)
+		return FALSE
+
+	var/mob/living/simple_animal/hostile/abnormality/galaxy_child/galaxy_owner = owner
+	if(!istype(galaxy_owner)) // Sorry, only the child can give pebbles
+		return FALSE
+
+	var/list/possible_friend_list = list()
+	for(var/mob/living/carbon/human/possible_friend as anything in view(7, galaxy_owner)) // Get every valid human in range
+		if(!istype(possible_friend))
+			continue
+		if(!possible_friend.client)
+			continue
+		if(possible_friend.stat == DEAD)
+			continue
+		if(possible_friend in galaxy_owner.galaxy_friends) // You can't have 2 pebbles batman
+			continue
+
+		possible_friend_list += possible_friend
+
+	if(!length(possible_friend_list))
+		to_chat(galaxy_owner, span_notice("There's nobody you can gift your pebble to."))
+		return
+
+	// pick someone to be your new best friend
+	var/mob/living/carbon/human/new_friend = input(galaxy_owner, "Choose who you want to gift a pebble to", "Select your new friend") as null|anything in possible_friend_list
+	if(!new_friend)
+		return
+
+	if(get_dist(galaxy_owner, new_friend) > 7) // User inputs can last a long time, make sure everything is still valid
+		to_chat(galaxy_owner, span_warning("You can't reach [new_friend] from here!"))
+		return
+
+	if(new_friend.stat == DEAD)
+		to_chat(galaxy_owner, span_warning("It's too late to save them..."))
+		return
+
+	var/giftask = alert(new_friend, "Do you wish to receive the child's gift?", "Recieve Gift", "Yes", "No")
+	if(get_dist(galaxy_owner, new_friend) > 7) // I HATE USER INPUTS, JUST PRESS THE DAMN BUTTON IMMEDIATELLY
+		to_chat(galaxy_owner, span_warning("You can't reach [galaxy_owner] from here!"))
+		return
+
+	if(giftask == "Yes")
+		galaxy_owner.give_pebble(new_friend)
+		galaxy_owner.icon_state = "galaxy"
+		galaxy_owner.depressed = FALSE
+
+	StartCooldown()
+	return TRUE
+
+/datum/action/cooldown/galaxygiftbreak
+	name = "Break Gifts"
+	check_flags = AB_CHECK_CONSCIOUS
+	transparent_when_unavailable = TRUE
+	cooldown_time = 5 SECONDS
+
+/datum/action/cooldown/galaxygiftbreak/Trigger()
+	. = ..()
+	if(!.)
+		return FALSE
+
+	var/mob/living/simple_animal/hostile/abnormality/galaxy_child/galaxy_owner = owner
+	if(!istype(galaxy_owner))
+		return FALSE
+
+	if(alert(galaxy_owner, "Are you sure you want to break all pebbles?", "Pebble toss", "Yes", "No") != "Yes")
+		return FALSE
+
+	var/friend_names = ""
+	for(var/mob/past_friend as anything in galaxy_owner.galaxy_friends)
+		friend_names = "[past_friend], [friend_names]"
+
+	to_chat(galaxy_owner, span_userdanger("[friend_names].. They were never true friends..."))
+	galaxy_owner.break_gifts()
+	StartCooldown()
+	return TRUE
 
 //FRIEND
 //For now, just a notification. If we ever want to do anything with it, it's here.
 /datum/status_effect/display/friendship
 	id = "friend"
 	status_type = STATUS_EFFECT_UNIQUE
-	duration = -1		//Lasts basically forever
+	duration = -1 // Lasts forever
 	alert_type = /atom/movable/screen/alert/status_effect/friendship
 	display_name = "galaxy"
 
@@ -228,8 +274,6 @@
 	desc = "With a sparking pebble in your possession, you recover HP and SP over time."
 	icon = 'ModularTegustation/Teguicons/status_sprites.dmi'
 	icon_state = "friendship"
-
-#undef STATUS_EFFECT_FRIENDSHIP
 
 /obj/effect/temp_visual/pebblecrack
 	icon = 'ModularTegustation/Teguicons/tegu_effects.dmi'
@@ -241,4 +285,4 @@
 	. = ..()
 	animate(src, alpha = 0, time = duration)
 
-#undef GALAXY_COOLDOWN
+#undef STATUS_EFFECT_FRIENDSHIP

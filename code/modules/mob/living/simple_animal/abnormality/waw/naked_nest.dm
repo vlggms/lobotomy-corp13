@@ -21,6 +21,7 @@
 	)
 	work_damage_amount = 14
 	work_damage_type = RED_DAMAGE
+	chem_type = /datum/reagent/abnormality/sin/pride
 	max_boxes = 22
 	start_qliphoth = 1
 	fear_level = 1
@@ -93,6 +94,8 @@
 	return FALSE
 
 /mob/living/simple_animal/hostile/abnormality/naked_nest/AttackingTarget(atom/attacked_target)
+	if(!target)
+		GiveTarget(attacked_target)
 	return OpenFire()
 
 /mob/living/simple_animal/hostile/abnormality/naked_nest/CanAttack(atom/the_target)

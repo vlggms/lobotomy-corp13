@@ -37,6 +37,7 @@
 	)
 	work_damage_amount = 9
 	work_damage_type = RED_DAMAGE
+	chem_type = /datum/reagent/abnormality/sin/sloth
 
 	ranged = TRUE
 	rapid = 5

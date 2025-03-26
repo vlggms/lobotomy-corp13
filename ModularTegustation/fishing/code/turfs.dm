@@ -255,7 +255,8 @@
 		/obj/item/food/breadslice/moldy = 2,
 	)
 	loot_level2 = list(
-		/obj/item/food/fish/fresh_water/catfish = 50,
+		/obj/item/food/fish/fresh_water/catfish = 35,
+		/obj/item/food/fish/fresh_water/salmon = 15,
 		/obj/item/food/fish/fresh_water/bass = 10,
 		/obj/item/food/fish/fresh_water/eel = 10,
 		/obj/item/stack/sheet/sinew/wolf = 10,
@@ -288,7 +289,8 @@
 	)
 	loot_level2 = list(
 		/obj/item/food/fish/salt_water/seabunny = 5,
-		/obj/item/food/fish/trout = 35,
+		/obj/item/food/fish/trout = 20,
+		/obj/item/food/fish/salt_water/salmon = 15,
 		/obj/item/food/fish/salt_water/cardinal = 25,
 		/obj/item/food/fish/salt_water/sheephead = 10,
 		/obj/item/food/fish/salt_water/blue_tang = 10,
@@ -299,7 +301,8 @@
 	loot_level3 = list(
 		/obj/item/food/fish/salt_water/fishmael = 8,
 		/obj/item/food/fish/salt_water/searabbit = 5,
-		/obj/item/food/fish/salt_water/lanternfish = 60,
+		/obj/item/food/fish/salt_water/lanternfish = 45,
+		/obj/item/food/fish/salt_water/lobster = 15,
 		/obj/item/food/fish/salt_water/smolshark = 10,
 		/obj/item/food/fish/salt_water/tuna_pallid = 10,
 		/mob/living/simple_animal/crab = 10,

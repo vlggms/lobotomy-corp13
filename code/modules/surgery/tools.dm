@@ -452,3 +452,23 @@
 	attack_verb_simple = list("pumps", "siphons")
 	tool_behaviour = TOOL_BLOODFILTER
 	toolspeed = 1
+
+/obj/item/prosthetictool
+	name = "prosthetic electronic tool"
+	desc = "A specialized medical tool for prosthetic electronic manipulation."
+	icon = 'icons/obj/module.dmi'
+	icon_state = "beaker_holder"
+	inhand_icon_state = "electronic"
+	lefthand_file = 'icons/mob/inhands/misc/devices_lefthand.dmi'
+	righthand_file = 'icons/mob/inhands/misc/devices_righthand.dmi'
+	force = 5
+	w_class = WEIGHT_CLASS_SMALL
+	throwforce = 0
+	throw_range = 7
+	throw_speed = 3
+	drop_sound = 'sound/items/handling/multitool_drop.ogg'
+	pickup_sound =  'sound/items/handling/multitool_pickup.ogg'
+	custom_materials = list(/datum/material/iron=50, /datum/material/glass=20)
+	// Only used in one thing so far, so probably not worth having tool_behaviour?
+	toolspeed = 1
+	usesound = 'sound/weapons/empty.ogg'

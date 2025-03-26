@@ -42,6 +42,7 @@
 	)
 	work_damage_amount = 7
 	work_damage_type = BLACK_DAMAGE
+	chem_type = /datum/reagent/abnormality/sin/lust
 
 	can_breach = TRUE
 	start_qliphoth = 2
@@ -234,6 +235,8 @@
 	return ..()
 
 /mob/living/simple_animal/hostile/abnormality/hatred_queen/AttackingTarget(atom/attacked_target)
+	if(!target)
+		GiveTarget(attacked_target)
 	return OpenFire(attacked_target)
 
 /mob/living/simple_animal/hostile/abnormality/hatred_queen/OpenFire()

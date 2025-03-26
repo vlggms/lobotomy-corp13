@@ -29,6 +29,7 @@ SUBSYSTEM_DEF(minor_mapping)
 			num_mice -= 1
 			mouse = null
 
+//Subsystem that puts drugs under our floors - IP
 /datum/controller/subsystem/minor_mapping/proc/place_satchels(amount=10)
 	var/list/turfs = find_satchel_suitable_turfs()
 

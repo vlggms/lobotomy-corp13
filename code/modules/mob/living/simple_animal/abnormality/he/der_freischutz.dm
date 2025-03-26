@@ -26,6 +26,7 @@
 	)
 	work_damage_amount = 8 // This was halved what it should be.
 	work_damage_type = BLACK_DAMAGE
+	chem_type = /datum/reagent/abnormality/sin/pride
 
 	ego_list = list(
 		/datum/ego_datum/weapon/magicbullet,
@@ -103,6 +104,8 @@
 
 
 /mob/living/simple_animal/hostile/abnormality/der_freischutz/AttackingTarget(atom/attacked_target)
+	if(!target)
+		GiveTarget(attacked_target)
 	return OpenFire()
 
 /mob/living/simple_animal/hostile/abnormality/der_freischutz/OpenFire()
