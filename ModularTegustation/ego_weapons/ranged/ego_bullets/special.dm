@@ -2,6 +2,14 @@
 	damage = 17
 	speed = 0.25
 
+/obj/projectile/ego_bullet/ego_soda/rifle/black
+	damage = 25
+	damage_type = BLACK_DAMAGE
+
+/obj/projectile/ego_bullet/ego_soda/white
+	damage = 18
+	damage_type = WHITE_DAMAGE
+
 /obj/projectile/ego_bullet/ego_kcorp
 	damage = 15
 

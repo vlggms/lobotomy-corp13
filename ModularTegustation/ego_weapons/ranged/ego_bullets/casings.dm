@@ -24,3 +24,9 @@
 	name = "sodassniper casing"
 	desc = "A casing."
 	projectile_type = /obj/projectile/ego_bullet/ego_soda/rifle
+
+/obj/item/ammo_casing/caseless/ego_shrimpsoldier/white
+	projectile_type = /obj/projectile/ego_bullet/ego_soda/white
+
+/obj/item/ammo_casing/caseless/ego_shrimprifle/black
+	projectile_type = /obj/projectile/ego_bullet/ego_soda/rifle/black

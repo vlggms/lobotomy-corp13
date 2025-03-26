@@ -58,6 +58,16 @@
 /mob/living/simple_animal/hostile/abnormality/fan/SuccessEffect(mob/living/carbon/human/user, work_type, pe)
 	..()
 	successcount+=1
+	if(prob(20)) //Some weird dream I had where FAN had a chance to spawn a random SS13 gun
+		var/gun_type = pick(GLOB.summoned_guns)
+		var/obj/item/gun/G = new gun_type(get_turf(user))
+		if (istype(G)) // The list may contain some non-gun type guns which do not have this proc
+			G.unlock()
+		playsound(get_turf(user),'sound/magic/summon_guns.ogg', 50, TRUE)
+
+		var/in_hand = user.put_in_hands(G) // not always successful
+
+		to_chat(user, span_warning("\A [G] appears [in_hand ? "in your hand" : "at your feet"]!"))
 
 /mob/living/simple_animal/hostile/abnormality/fan/PostWorkEffect(mob/living/carbon/human/user, work_type, pe, work_time)
 	if(user in danger)
