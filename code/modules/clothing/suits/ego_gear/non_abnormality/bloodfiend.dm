@@ -94,11 +94,11 @@
 /obj/item/clothing/suit/armor/ego_gear/city/masquerade_cloak/barber_dress
 	name = "barber's dress"
 	desc = "A dress worn by a powerful bloodfiend, or at least a replica..."
-	icon_state = "Driedcoat"
-	normal_state = "Driedcoat"
+	icon_state = "Barber"
+	normal_state = "Barber"
 	bloodfeast_max = 400
 	armor = list(RED_DAMAGE = 50, WHITE_DAMAGE = 30, BLACK_DAMAGE = 50, PALE_DAMAGE = 40)
-	hat = null
+	hat = /obj/item/clothing/head/ego_hat/blood_fiend/barber_mask
 	neck = null
 	attribute_requirements = list(
 							FORTITUDE_ATTRIBUTE = 100,
@@ -107,20 +107,37 @@
 							JUSTICE_ATTRIBUTE = 100
 							)
 
+/obj/item/clothing/suit/armor/ego_gear/city/masquerade_cloak/barber_dress/sleeves
+	desc = "A dress worn by a powerful bloodfiend, or at least a replica... Now with sleeves!"
+	icon_state = "BarberSleeves"
+	normal_state = "BarberSleeves"
+
 /obj/item/clothing/suit/armor/ego_gear/city/masquerade_cloak/prince_suit
 	name = "prince's suit"
 	desc = "A suit worn by a powerful bloodfiend, or at least a replica..."
-	icon_state = "Driedcoat"
-	normal_state = "Driedcoat"
+	icon_state = "Cassetti"
+	normal_state = "Cassetti"
 	bloodfeast_max = 300
 	armor = list(RED_DAMAGE = 70, WHITE_DAMAGE = 20, BLACK_DAMAGE = 30, PALE_DAMAGE = 30)
-	hat = null
-	neck = null
+	hat = /obj/item/clothing/head/ego_hat/blood_fiend/cassetti_mask
 	attribute_requirements = list(
 							FORTITUDE_ATTRIBUTE = 80,
 							PRUDENCE_ATTRIBUTE = 80,
 							TEMPERANCE_ATTRIBUTE = 80,
 							JUSTICE_ATTRIBUTE = 80
+							)
+
+/obj/item/clothing/suit/armor/ego_gear/city/masquerade_cloak/prince_suit/hardblood
+	name = "reinforced prince's suit"
+	icon_state = "CassettiReal"
+	normal_state = "CassettiReal"
+	armor = list(RED_DAMAGE = 80, WHITE_DAMAGE = 40, BLACK_DAMAGE = 50, PALE_DAMAGE = 50)
+	hat = /obj/item/clothing/head/ego_hat/blood_fiend/cassetti_mask/hardblood
+	attribute_requirements = list(
+							FORTITUDE_ATTRIBUTE = 100,
+							PRUDENCE_ATTRIBUTE = 100,
+							TEMPERANCE_ATTRIBUTE = 100,
+							JUSTICE_ATTRIBUTE = 100
 							)
 
 /obj/item/clothing/ego_neck/blood_fiend
@@ -144,6 +161,24 @@
 	name = "masquerade mask"
 	desc = "A mask that the bloodfiends have worn during the masquerade..."
 	icon_state = "bird_mask"
+
+/obj/item/clothing/head/ego_hat/blood_fiend/barber_mask
+	name = "barber mask"
+	desc = "A mask that the bloodfiends have worn during the masquerade..."
+	icon_state = "BarberMaskNew"
+
+/obj/item/clothing/head/ego_hat/blood_fiend/barber_mask/old
+	icon_state = "BarberMask"
+
+/obj/item/clothing/head/ego_hat/blood_fiend/cassetti_mask
+	name = "prince mask"
+	desc = "A mask that the bloodfiends have worn during the masquerade..."
+	icon_state = "CassettiMask"
+
+/obj/item/clothing/head/ego_hat/blood_fiend/cassetti_mask/hardblood
+	name = "prince mask"
+	desc = "A mask that the bloodfiends have worn during the masquerade..."
+	icon_state = "CassettiRealHead"
 
 /obj/item/clothing/neck/blood_fiend/coagulated_blood
 	name = "coagulated blood"
