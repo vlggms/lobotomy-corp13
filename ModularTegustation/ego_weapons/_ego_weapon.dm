@@ -37,7 +37,6 @@
 /obj/item/ego_weapon/attack(mob/living/target, mob/living/user)
 	if(!CanUseEgo(user))
 		return FALSE
-
 	. = ..()
 
 	if(charge && attack_charge_gain)
