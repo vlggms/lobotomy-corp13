@@ -8,7 +8,7 @@
 	worn_icon = 'ModularTegustation/Teguicons/blood_fiend_gear_worn.dmi'
 	armor = list(RED_DAMAGE = 40, WHITE_DAMAGE = 20, BLACK_DAMAGE = 40, PALE_DAMAGE = 20)
 	hat = /obj/item/clothing/head/ego_hat/blood_fiend/bird_mask
-	neck = /obj/item/clothing/ego_neck/blood_fiend/coagulated_blood
+	neck = /obj/item/clothing/ego_neck/blood_fiend/masquerade_tie
 	var/bloodfeast = 0
 	var/bloodfeast_max = 200
 	attribute_requirements = list(
@@ -89,8 +89,39 @@
 	bloodfeast_max = 100
 	armor = list(RED_DAMAGE = 30, WHITE_DAMAGE = 20, BLACK_DAMAGE = 10, PALE_DAMAGE = 0)
 	hat = null
-	neck = null
 	attribute_requirements = list()
+
+/obj/item/clothing/suit/armor/ego_gear/city/masquerade_cloak/barber_dress
+	name = "barber's dress"
+	desc = "A dress worn by a powerful bloodfiend, or at least a replica..."
+	icon_state = "Driedcoat"
+	normal_state = "Driedcoat"
+	bloodfeast_max = 400
+	armor = list(RED_DAMAGE = 50, WHITE_DAMAGE = 30, BLACK_DAMAGE = 50, PALE_DAMAGE = 40)
+	hat = null
+	neck = null
+	attribute_requirements = list(
+							FORTITUDE_ATTRIBUTE = 100,
+							PRUDENCE_ATTRIBUTE = 100,
+							TEMPERANCE_ATTRIBUTE = 100,
+							JUSTICE_ATTRIBUTE = 100
+							)
+
+/obj/item/clothing/suit/armor/ego_gear/city/masquerade_cloak/prince_suit
+	name = "prince's suit"
+	desc = "A suit worn by a powerful bloodfiend, or at least a replica..."
+	icon_state = "Driedcoat"
+	normal_state = "Driedcoat"
+	bloodfeast_max = 300
+	armor = list(RED_DAMAGE = 70, WHITE_DAMAGE = 20, BLACK_DAMAGE = 30, PALE_DAMAGE = 30)
+	hat = null
+	neck = null
+	attribute_requirements = list(
+							FORTITUDE_ATTRIBUTE = 80,
+							PRUDENCE_ATTRIBUTE = 80,
+							TEMPERANCE_ATTRIBUTE = 80,
+							JUSTICE_ATTRIBUTE = 80
+							)
 
 /obj/item/clothing/ego_neck/blood_fiend
 	icon = 'ModularTegustation/Teguicons/blood_fiend_gear.dmi'
@@ -104,7 +135,7 @@
 	icon = 'ModularTegustation/Teguicons/blood_fiend_gear.dmi'
 	worn_icon = 'ModularTegustation/Teguicons/blood_fiend_gear_worn.dmi'
 
-/obj/item/clothing/neck/blood_fiend/masquerade_tie
+/obj/item/clothing/ego_neck/blood_fiend/masquerade_tie
 	name = "masquerade tie"
 	desc = "A tie which fits the masquerade cloak."
 	icon_state = "masqtie"
@@ -114,7 +145,7 @@
 	desc = "A mask that the bloodfiends have worn during the masquerade..."
 	icon_state = "bird_mask"
 
-/obj/item/clothing/ego_neck/blood_fiend/coagulated_blood
+/obj/item/clothing/neck/blood_fiend/coagulated_blood
 	name = "coagulated blood"
 	desc = "The coagulated blood of a bloodfiend..."
 	icon_state = "coagulated_blood"
