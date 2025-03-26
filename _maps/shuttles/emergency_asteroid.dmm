@@ -353,7 +353,7 @@
 /turf/open/floor/mineral/titanium/white,
 /area/shuttle/escape)
 "bD" = (
-/obj/structure/closet/secure_closet/medical2,
+/obj/structure/closet/secure_closet/medical2/city,
 /turf/open/floor/mineral/titanium/white,
 /area/shuttle/escape)
 "bE" = (
