@@ -79,7 +79,7 @@
 /obj/item/ego_weapon/city/bladelineage
 	name = "blade lineage katana"
 	desc = "A blade that is standard among blade lineage."
-	special = "Use this weapon in hand to immobilize yourself for 3 seconds and deal 5x damage on the next attack within 5 seconds."
+	special = "Use this weapon in hand to immobilize yourself for 3 seconds and deal 5x damage on the next attack within 5 seconds. This empowered attack also deals 2% more damage per 1% of your missing HP, on top of the 5x damage."
 	icon_state = "blade_lineage"
 	inhand_icon_state = "blade_lineage"
 	force = 46
@@ -111,6 +111,7 @@
 	user.Immobilize(3 SECONDS)
 	to_chat(user, span_userdanger("Yield my flesh."))
 	force*=multiplier
+	force*=(1 + (user.health/user.maxHealth)*2)
 
 	addtimer(CALLBACK(src, PROC_REF(Return), user), 5 SECONDS)
 
