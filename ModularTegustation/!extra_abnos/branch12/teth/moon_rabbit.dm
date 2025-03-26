@@ -3,8 +3,8 @@
 	name = "The Moon Rabbit"
 	desc = "A little girl with rabbit ears"
 	icon = 'ModularTegustation/Teguicons/branch12/48x32.dmi'
-	icon_state = "horizon"
-	icon_living = "horizon"
+	icon_state = "moon_rabbit"
+	icon_living = "moon_rabbit"
 	pixel_x = -8
 	base_pixel_x = -8
 	del_on_death = TRUE
