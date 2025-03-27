@@ -18,7 +18,7 @@
 	if(stat != DEAD)
 		DamageEffect(damage_amt, WHITE_DAMAGE)
 	if(HAS_TRAIT(src, TRAIT_BRUTESANITY))
-		adjustBruteLoss(amount, forced=forced)
+		adjustBruteLoss(amount, forced = forced)
 	else
 		adjustSanityLoss(damage_amt, forced)
 	if(updating_health)
