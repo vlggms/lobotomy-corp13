@@ -85,3 +85,11 @@
 #define COMSIG_KB_MOVEMENT_WEST_DOWN "keybinding_movement_west_down"
 #define COMSIG_KB_MOVEMENT_EAST_DOWN "keybinding_movement_east_down"
 
+//Abno
+
+#define COMSIG_KB_MOB_DER_FREISCHUTZ_PORTAL_VIEW "keybinding_mob_der_freischutz_portal_view"
+#define COMSIG_KB_MOB_DER_FREISCHUTZ_PORTAL_REMOVE "keybinding_mob_der_freischutz_portal_remove"
+#define COMSIG_KB_MOB_BLUE_SHEPHERD_DODGE "keybinding_mob_blue_shepherd_dodge"
+#define COMSIG_KB_MOB_BLUE_SHEPHERD_COUNTER "keybinding_mob_blue_shepherd_counter"
+#define COMSIG_KB_MOB_FRAGMENT_SONG "keybinding_mob_fragment_song"
+

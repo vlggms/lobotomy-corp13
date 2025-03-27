@@ -278,6 +278,9 @@
 /area/city/outskirts
 	name = "Outskirts"
 
+/area/city/outskirts/rcorp_base
+	name = "R-Corp Base"
+
 /area/city/fixers
 	name = "Fixer Office"
 
