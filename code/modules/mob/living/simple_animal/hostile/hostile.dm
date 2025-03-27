@@ -152,9 +152,10 @@ GLOBAL_LIST_EMPTY(marked_players)
 	. = ..()
 	if(mark_once_attacked)
 		if(P.firer && get_dist(src, P.firer) <= aggro_vision_range)
-			if (!(P.firer in glob_faction ))
-				glob_faction += P.firer
-				say(attacked_line)
+			if(!ishostile(P.firer))
+				if (!(P.firer in glob_faction))
+					glob_faction += P.firer
+					say(attacked_line)
 
 /mob/living/simple_animal/hostile/attackby(obj/item/O, mob/user, params)
 	. = ..()

@@ -195,6 +195,15 @@
 /mob/living/simple_animal/hostile/mutant_heart/AttackingTarget()
 	return FALSE
 
+/mob/living/simple_animal/hostile/mutant_heart/Life()
+	. = ..()
+	if(!connected_mob)
+		for(var/mob/living/simple_animal/hostile/mutant_clown/boss/B in view(10, src))
+			B.spawned_hearts += src
+			connected_mob = B
+			current_connection = Beam(B, icon_state="blood", time=INFINITY, maxdistance=20 * 2, beam_type=/obj/effect/ebeam/blood_connection)
+			break
+
 /mob/living/simple_animal/hostile/mutant_heart/Initialize()
 	. = ..()
 	for(var/mob/living/simple_animal/hostile/mutant_clown/boss/B in view(10, src))

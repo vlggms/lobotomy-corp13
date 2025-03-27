@@ -916,7 +916,6 @@
 /area/city/shop)
 "fM" = (
 /obj/effect/decal/cleanable/dirt/dust,
-/mob/living/simple_animal/mouse/gray,
 /turf/open/floor/wood{
 	icon_state = "wood-broken"
 	},
@@ -1853,9 +1852,6 @@
 	pixel_x = 10
 	},
 /obj/effect/decal/cleanable/dirt/dust,
-/mob/living/simple_animal/mouse/white{
-	faction = list("neutral")
-	},
 /turf/open/floor/wood,
 /area/city)
 "mQ" = (
@@ -2674,9 +2670,6 @@
 "sd" = (
 /obj/structure/bed/maint,
 /obj/effect/decal/cleanable/dirt/dust,
-/mob/living/simple_animal/mouse/white{
-	faction = list("neutral")
-	},
 /mob/living/simple_animal/hostile/humanoid/rat/zippy/scavenger{
 	dir = 1
 	},
@@ -4599,13 +4592,6 @@
 	},
 /turf/open/floor/wood,
 /area/city/shop)
-"EU" = (
-/obj/effect/decal/cleanable/dirt/dust,
-/mob/living/simple_animal/mouse/white{
-	faction = list("neutral")
-	},
-/turf/open/floor/wood,
-/area/city)
 "EX" = (
 /mob/living/simple_animal/hostile/mutant_clown{
 	name = "'Sister'";
@@ -5435,12 +5421,6 @@
 /obj/effect/turf_decal/sand/plating,
 /turf/open/floor/plating/rust,
 /area/city/fixers)
-"Kx" = (
-/obj/structure/bed/maint,
-/obj/effect/decal/cleanable/dirt/dust,
-/mob/living/simple_animal/mouse/gray,
-/turf/open/floor/wood,
-/area/city)
 "Ky" = (
 /obj/machinery/door/airlock/wood{
 	name = "employee housing"
@@ -7650,7 +7630,7 @@
 /area/city/fixers)
 "Yk" = (
 /obj/effect/decal/cleanable/dirt/dust,
-/mob/living/simple_animal/mouse/gray,
+/mob/living/simple_animal/hostile/ui_npc/rat_leader,
 /turf/open/floor/wood,
 /area/city)
 "Yq" = (
@@ -7694,9 +7674,6 @@
 /area/city/backstreets_checkpoint)
 "YF" = (
 /obj/effect/decal/cleanable/dirt/dust,
-/mob/living/simple_animal/mouse/white{
-	faction = list("neutral")
-	},
 /mob/living/simple_animal/hostile/humanoid/rat/pipe/scavenger{
 	dir = 4
 	},
@@ -7916,7 +7893,6 @@
 	},
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/effect/decal/cleanable/cobweb,
-/mob/living/simple_animal/mouse/brown/tom,
 /obj/machinery/vending/city_clothing,
 /turf/open/floor/wood,
 /area/city)
@@ -12328,7 +12304,7 @@ oY
 ej
 Wu
 MZ
-Kx
+jV
 ej
 rg
 Eb
@@ -12506,7 +12482,7 @@ Vr
 oY
 oY
 ej
-Yk
+Eb
 Eb
 Ws
 ej
@@ -13232,7 +13208,7 @@ Yh
 zF
 qO
 Eb
-Eb
+Yk
 XE
 QB
 oY
@@ -13947,7 +13923,7 @@ Vr
 oY
 ej
 OV
-EU
+Eb
 ej
 Ls
 Yh
@@ -14487,7 +14463,7 @@ Vr
 oY
 ej
 rg
-EU
+Eb
 cw
 ZG
 ej
@@ -16263,8 +16239,8 @@ CI
 Hj
 yK
 Nu
-qG
-qG
+bw
+bw
 pC
 rm
 ig
@@ -16352,10 +16328,10 @@ Vr
 bw
 Hj
 Hj
-qG
-qG
-qG
-qG
+bw
+bw
+bw
+bw
 Hj
 qJ
 Hj

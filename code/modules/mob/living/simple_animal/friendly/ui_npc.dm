@@ -70,6 +70,8 @@
 			return
 		if(!user || !user.client)
 			return
+		if(target)
+			return
 		ui_interact(user)
 		return TRUE
 	. = ..()
