@@ -15,6 +15,28 @@
 
 // All WAW joke E.G.O
 
+/obj/item/clothing/suit/armor/ego_gear/waw/pro_skub
+	name = "pro-skub"
+	desc = "Skub!"
+	icon_state = "pro_skub"
+	icon = 'code/modules/mob/living/simple_animal/abnormality/_auxiliary_modes/joke/!icons/ego_armor.dmi'
+	worn_icon = 'code/modules/mob/living/simple_animal/abnormality/_auxiliary_modes/joke/!icons/ego_worn.dmi'
+	armor = list(RED_DAMAGE = 30, WHITE_DAMAGE = 60, BLACK_DAMAGE = 20, PALE_DAMAGE = 30)  // 140
+	attribute_requirements = list(
+							JUSTICE_ATTRIBUTE = 80
+							)
+
+/obj/item/clothing/suit/armor/ego_gear/waw/anti_skub
+	name = "anti-skub"
+	desc = "Fuck skub!"
+	icon_state = "anti_skub"
+	icon = 'code/modules/mob/living/simple_animal/abnormality/_auxiliary_modes/joke/!icons/ego_armor.dmi'
+	worn_icon = 'code/modules/mob/living/simple_animal/abnormality/_auxiliary_modes/joke/!icons/ego_worn.dmi'
+	armor = list(RED_DAMAGE = 30, WHITE_DAMAGE = 20, BLACK_DAMAGE = 60, PALE_DAMAGE = 30)  // 140
+	attribute_requirements = list(
+							JUSTICE_ATTRIBUTE = 80
+							)
+
 // All ALEPH joke E.G.O
 /obj/item/clothing/suit/armor/ego_gear/aleph/chaosdunk
 	name = "chaos dunk"

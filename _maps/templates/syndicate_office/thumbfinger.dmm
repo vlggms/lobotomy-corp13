@@ -313,10 +313,12 @@
 /obj/item/ego_weapon/ranged/city/thumb/capo/weak,
 /obj/item/clothing/suit/armor/ego_gear/city/thumb_capo,
 /obj/item/ego_weapon/city/thumbmelee/weak,
-/obj/item/grenade/frag,
 /obj/structure/window/reinforced/tinted{
 	dir = 1
 	},
+/obj/item/grenade/r_corp/thumb,
+/obj/item/grenade/r_corp/thumb,
+/obj/item/grenade/r_corp/thumb,
 /turf/open/floor/carpet/red,
 /area/city/backstreets_room)
 "qC" = (
@@ -777,7 +779,9 @@
 /obj/item/ego_weapon/ranged/city/thumb/capo/weak,
 /obj/item/clothing/suit/armor/ego_gear/city/thumb_capo,
 /obj/item/ego_weapon/city/thumbmelee/weak,
-/obj/item/grenade/frag,
+/obj/item/grenade/r_corp/thumb,
+/obj/item/grenade/r_corp/thumb,
+/obj/item/grenade/r_corp/thumb,
 /turf/open/floor/carpet/red,
 /area/city/backstreets_room)
 "Us" = (

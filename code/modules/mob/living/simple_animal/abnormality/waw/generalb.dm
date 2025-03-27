@@ -282,22 +282,6 @@
 	attack_sound = 'sound/weapons/bite.ogg'
 	speak_emote = list("buzzes")
 
-/mob/living/simple_animal/hostile/soldier_bee/Initialize()
-	. = ..()
-	if(SSmaptype.maptype == "limbus_labs")
-		faction = list("neutral")
-
-/mob/living/simple_animal/hostile/soldier_bee/Login()
-	. = ..()
-	if(SSmaptype.maptype == "limbus_labs")
-		faction = list("hostile")
-
-/mob/living/simple_animal/hostile/soldier_bee/Logout()
-	. = ..()
-	if(SSmaptype.maptype == "limbus_labs")
-		faction = list("neutral")
-
-
 /* Artillery bees */
 /mob/living/simple_animal/hostile/artillery_bee
 	name = "artillery bee"

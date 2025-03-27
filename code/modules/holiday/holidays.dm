@@ -164,6 +164,14 @@
 /datum/holiday/no_this_is_patrick/greet()
 	return "Happy National Inebriation Day!"
 
+/datum/holiday/shelter_day
+	name = "The 27th Of March"
+	begin_day = 27
+	begin_month = MARCH
+
+/datum/holiday/shelter_day/greet()
+	return "On this day, we remember the selected refugees that were safely shielded from the ocean of endless screams and bloodshed."
+
 /datum/holiday/april_fools
 	name = APRIL_FOOLS
 	begin_day = 1
@@ -316,6 +324,17 @@
 
 /datum/holiday/pirate/getStationPrefix()
 	return pick("Yarr","Scurvy","Yo-ho-ho")
+
+/datum/holiday/ewf
+	name = "The 21st Night Of September"
+	begin_day = 21
+	begin_month = SEPTEMBER
+
+/datum/holiday/ewf/greet()
+	return "Do you remember? The 21st Night of September?"
+
+/datum/holiday/ewf/getStationPrefix()
+	return pick("Earth","Wind","Fire")
 
 /datum/holiday/programmers
 	name = "Programmers' Day"

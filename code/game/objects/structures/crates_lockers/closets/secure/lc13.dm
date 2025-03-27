@@ -37,3 +37,6 @@
 			/obj/item/combat_page/level2,
 		)
 
+//Doing it here to avoid conflicts if anything in the future touches medical.dm
+/obj/structure/closet/secure_closet/medical2/city
+	req_access = list(ACCESS_MEDICAL)

@@ -193,6 +193,9 @@
 	return
 
 /mob/living/simple_animal/hostile/abnormality/blue_shepherd/BreachEffect(mob/living/carbon/human/user, breach_type)
+	if(SSmaptype.maptype == "limbus_labs")
+		return
+
 	var/sighted = FALSE
 	for(var/mob/living/carbon/human/L in view(4, src))
 		sighted = TRUE

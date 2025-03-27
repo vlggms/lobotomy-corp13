@@ -72,7 +72,7 @@
 /area/centcom)
 "ai" = (
 /obj/machinery/door/window/brigdoor{
-	req_access_txt = "3"
+	req_access_txt = "19;3"
 	},
 /obj/effect/turf_decal/siding/yellow{
 	dir = 4
@@ -923,7 +923,7 @@
 "dA" = (
 /obj/machinery/door/airlock/highsecurity{
 	name = "damage mitigation armory";
-	req_access_txt = "19"
+	req_access_txt = "19;3;1"
 	},
 /turf/open/floor/facility/halls,
 /area/centcom)
@@ -5192,7 +5192,7 @@
 "vB" = (
 /obj/machinery/door/window/brigdoor{
 	dir = 8;
-	req_one_access_txt = "32;19";
+	req_one_access_txt = "1;19";
 	opacity = 1
 	},
 /obj/machinery/camera{
@@ -5435,7 +5435,7 @@
 "wz" = (
 /obj/machinery/door/window/brigdoor{
 	dir = 8;
-	req_one_access_txt = "32;19"
+	req_one_access_txt = "1;19"
 	},
 /turf/open/floor/carpet/executive,
 /area/centcom)
@@ -5661,6 +5661,7 @@
 /obj/structure/lattice/catwalk,
 /obj/effect/mapping_helpers/simple_pipes,
 /obj/structure/disposalpipe/segment,
+/obj/effect/landmark/xeno_spawn,
 /turf/open/floor/plating,
 /area/centcom)
 "xq" = (
@@ -6040,7 +6041,7 @@
 "zg" = (
 /obj/machinery/door/airlock/highsecurity{
 	name = "internal police armory";
-	req_access_txt = "19"
+	req_access_txt = "19;3;1"
 	},
 /turf/open/floor/facility/halls,
 /area/centcom)
@@ -7196,17 +7197,6 @@
 	pixel_x = 18
 	},
 /turf/open/indestructible/crystal_floor,
-/area/centcom)
-"Dz" = (
-/obj/effect/mapping_helpers/simple_pipes,
-/obj/structure/lattice/catwalk,
-/obj/effect/landmark/xeno_spawn,
-/obj/machinery/light/small{
-	dir = 4;
-	pixel_y = 9;
-	pixel_x = 8
-	},
-/turf/open/floor/plating,
 /area/centcom)
 "DC" = (
 /obj/effect/turf_decal/bot,
@@ -8520,7 +8510,7 @@
 "IS" = (
 /obj/machinery/door/airlock/highsecurity{
 	name = "damage exasperation armory";
-	req_access_txt = "19"
+	req_access_txt = "19;3;1"
 	},
 /turf/open/floor/facility/halls,
 /area/centcom)
@@ -9356,7 +9346,7 @@
 "LZ" = (
 /obj/machinery/door/window/brigdoor{
 	dir = 1;
-	req_access_txt = "69"
+	req_access_txt = "19;3"
 	},
 /obj/effect/turf_decal/siding/yellow{
 	dir = 4
@@ -38219,7 +38209,7 @@ qa
 uT
 uT
 uT
-Dz
+qa
 uT
 ap
 AR

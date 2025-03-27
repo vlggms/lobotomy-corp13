@@ -237,19 +237,29 @@
 	. = ..()
 	SpinAnimation()
 
-/obj/projectile/beam/water_jet //it's just a reskin for gold ordeals
+/obj/projectile/beam/water_jet
 	name = "water jet"
 	icon_state = "snapshot"
 	hitsound = null
-	damage = 10
+	damage = 0
 	damage_type = WHITE_DAMAGE
-
 	hitscan = TRUE
+	projectile_piercing = PASSMOB
 	muzzle_type = /obj/effect/projectile/muzzle/laser/snapshot
 	tracer_type = /obj/effect/projectile/tracer/laser/snapshot
 	impact_type = /obj/effect/projectile/impact/laser/snapshot
 	wound_bonus = -100
 	bare_wound_bonus = -100
+
+/obj/projectile/beam/water_jet/on_hit(atom/target, blocked = FALSE)
+	if(isliving(target) && isliving(firer))
+		var/mob/living/T = target
+		var/mob/living/F = firer
+		if(faction_check(F.faction, T.faction, FALSE))
+			return
+	damage = 10 // Using nodamage var does not work for this purpose
+	. = ..()
+	qdel(src)
 
 /obj/projectile/hunter_blade
 	name = "hunter's scythe"

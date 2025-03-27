@@ -442,7 +442,9 @@
 	playsound(src, 'sound/weapons/flash.ogg', 100, TRUE)
 
 	for (var/mob/living/L in viewers(flash_range,src)) //The actual flashing
-		if (!ishuman(L))
+		if(!ishuman(L))
+			continue
+		if(faction_check(L.faction, list("kcorp")))
 			continue
 		L.flash_act()
 		L.Paralyze(5 SECONDS) //you better dodge it

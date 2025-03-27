@@ -250,6 +250,7 @@ SUBSYSTEM_DEF(ticker)
 		if(!(istype(mode, /datum/game_mode/combat)))
 			mode = new /datum/game_mode/combat
 	else
+
 		switch(SSmaptype.chosen_trait)
 			if(FACILITY_TRAIT_JOKE_ABNOS)
 				mode = new /datum/game_mode/management/joke
@@ -260,6 +261,9 @@ SUBSYSTEM_DEF(ticker)
 				mode = new choosingmode
 			else
 				mode = new /datum/game_mode/management/classic
+
+		if(SSevents.holidays && SSevents.holidays[APRIL_FOOLS]) //runs in April 1st
+			mode = new /datum/game_mode/management/joke
 
 	CHECK_TICK
 

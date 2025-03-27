@@ -208,6 +208,7 @@
 	stat_attack = HARD_CRIT
 	melee_damage_lower = 20
 	melee_damage_upper = 30
+	faction = list("hostile", "laetitia")
 	attack_verb_continuous = "stabs"
 	attack_verb_simple = "stab"
 	attack_sound = 'sound/abnormalities/laetitia/spider_attack.ogg'

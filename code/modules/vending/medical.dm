@@ -12,6 +12,7 @@
 					/obj/item/reagent_containers/glass/bottle/ethanol = 5,
 					/obj/item/healthanalyzer = 4,
 					/obj/item/wrench/medical = 1,
+					/obj/item/prosthetictool = 1,
 					/obj/item/stack/sticky_tape/surgical = 3,
 					/obj/item/healthanalyzer/wound = 4,
 					/obj/item/stack/medical/ointment = 2,
