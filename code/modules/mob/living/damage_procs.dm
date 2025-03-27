@@ -285,7 +285,7 @@
 
 /mob/living/proc/adjustPaleLoss(amount, updating_health = TRUE, forced = FALSE)
 	if(HAS_TRAIT(src, TRAIT_BRUTEPALE))
-		adjustBruteLoss(amount, forced = forced)
+		return adjustBruteLoss(amount, forced = forced)
 	if(SSmaptype.chosen_trait == FACILITY_TRAIT_LEGACY_PALE)	//You eat shit and die
 		if(prob(amount))
 			var/damage_amt = maxHealth * 0.9	//If Legacy Pale hits you, take 90% of your health in damage
