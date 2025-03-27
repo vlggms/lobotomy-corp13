@@ -20,7 +20,7 @@
 
 		"Accepting it�s invitation you rest against it�s trunk, basking in the shade.<br>\
 		The cool shadows, pillowy grass, and firm trunk form the perfect spot to relax.<br>\
-		You wake up as the sun begins o set, feeling rejuvenated.<br>\
+		You wake up as the sun begins to set, feeling rejuvenated.<br>\
 		Your next stop isn�t far, so with a stretch you return to the road.",
 
 		"The tree is so perfect you could only sully it.<br>\
