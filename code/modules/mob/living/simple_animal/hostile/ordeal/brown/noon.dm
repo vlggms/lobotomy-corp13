@@ -37,6 +37,96 @@
 	butcher_results = list(/obj/item/food/meat/slab/sinnew = 2)
 	guaranteed_butcher_results = list(/obj/item/food/meat/slab/sinnew = 2)
 	rupture_damage = 4
+	dismember_probability = 100
+	var/mob/living/carbon/human/grab_victim = null
+	var/can_act = TRUE
+	var/release_threshold = 200 //Total raw damage needed to break a player out of a grab (from any source)
+	var/release_damage = 0
+	var/grab_progress = 0
+
+/mob/living/simple_animal/hostile/ordeal/sin_gluttony/noon/AttackingTarget(atom/attacked_target)
+	if(!can_act)
+		return
+	. = ..()
+	if(ishuman(attacked_target))
+		if(grab_progress > 5)
+			GrabAttack(attacked_target)
+			grab_progress = 0
+			return
+		grab_progress += 1
+
+/mob/living/simple_animal/hostile/ordeal/sin_gluttony/noon/Move()
+	if(!can_act)
+		return FALSE
+	return ..()
+
+/mob/living/simple_animal/hostile/ordeal/sin_gluttony/noon/proc/GrabAttack(mob/living/carbon/human/victim)
+	if(!istype(victim))
+		return
+	grab_victim = victim
+	Strangle()
+	can_act = FALSE
+
+/mob/living/simple_animal/hostile/ordeal/sin_gluttony/noon/proc/Strangle()
+	set waitfor = FALSE
+	release_damage = 0
+	grab_victim.Immobilize(10)
+	if(grab_victim.sanity_lost)
+		grab_victim.Stun(10) //Immobilize does not stop AI controllers from moving, for some reason.
+	grab_victim.forceMove(get_turf(src))
+	animate(grab_victim, alpha = 0, time = 2)
+	SLEEP_CHECK_DEATH(5)
+	to_chat(grab_victim, span_userdanger("[src] has grabbed you! Attack [src] to break free!"))
+	StrangleHit(1)
+
+/mob/living/simple_animal/hostile/ordeal/sin_gluttony/noon/proc/StrangleHit(count)
+	if(!grab_victim)
+		ReleaseGrab()
+		return
+	if(grab_victim.health < 0)
+		grab_victim.gib()
+		ReleaseGrab()
+		return
+	do_attack_animation(get_step(src, dir), no_effect = TRUE)
+	grab_victim.deal_damage(melee_damage_upper, RED_DAMAGE)
+	new /obj/effect/temp_visual/damage_effect/rupture(get_turf(src))
+	grab_victim.deal_damage(rupture_damage, BRUTE)
+	grab_victim.Immobilize(10)
+	playsound(get_turf(src), 'sound/effects/ordeals/brown/flower_attack.ogg', 50, 0, 7)
+	playsound(get_turf(src), 'sound/effects/ordeals/brown/flower_kill.ogg', 50, 0, 7)
+	switch(count)
+		if(0 to 3)
+			playsound(get_turf(src), 'sound/effects/wounds/crack1.ogg', 200, 0, 7)
+			to_chat(grab_victim, span_userdanger("You are being devoured!"))
+		if(4)	//Apply double damage
+			playsound(get_turf(src), 'sound/effects/wounds/crackandbleed.ogg', 200, 0, 7)
+			to_chat(grab_victim, span_userdanger("It hurts so much!"))
+			grab_victim.deal_damage(rupture_damage, BRUTE)
+		else	//Apply ramping damage
+			playsound(get_turf(src), 'sound/effects/wounds/crackandbleed.ogg', 200, 0, 7)
+			grab_victim.deal_damage((rupture_damage * (3 - count)), BRUTE)
+	count += 1
+	if(grab_victim.sanity_lost) //This should prevent weird things like panics running away halfway through
+		grab_victim.Stun(10) //Immobilize does not stop AI controllers from moving, for some reason.
+	SLEEP_CHECK_DEATH(10)
+	StrangleHit(count)
+
+/mob/living/simple_animal/hostile/ordeal/sin_gluttony/noon/proc/ReleaseGrab()
+	if(grab_victim)
+		animate(grab_victim, alpha = 255, time = 2)
+	grab_victim = null
+	can_act = TRUE
+
+/mob/living/simple_animal/hostile/ordeal/sin_gluttony/noon/death(gibbed)
+	ReleaseGrab()
+	return ..()
+
+/mob/living/simple_animal/hostile/ordeal/sin_gluttony/noon/apply_damage(damage, damagetype, def_zone, blocked, forced, spread_damage, wound_bonus, bare_wound_bonus, sharpness, white_healable)
+	. = ..()
+	if(grab_victim)
+		release_damage = clamp(release_damage + damage, 0, release_threshold)
+		if(release_damage >= release_threshold)
+			ReleaseGrab()
 
 /mob/living/simple_animal/hostile/ordeal/sin_gloom/noon
 	name = "Peccatulum Morositatis?"
@@ -148,8 +238,31 @@
 	maxHealth = 600
 	health = 600
 	melee_damage_lower = 4
-	melee_damage_upper = 12
-	melee_reach = 2 // Now it has reach attacks
+	melee_damage_upper = 20
 	damage_coeff = list(RED_DAMAGE = 1.2, WHITE_DAMAGE = 1.2, BLACK_DAMAGE = 0.5, PALE_DAMAGE = 1.5)
 	butcher_results = list(/obj/item/food/meat/slab/sinnew = 2)
 	guaranteed_butcher_results = list(/obj/item/food/meat/slab/sinnew = 2)
+	burn_stacks = 10
+	charge_damage = 35
+	charge_attack_delay = 7
+	charging_speed = 0.8
+
+/mob/living/simple_animal/hostile/ordeal/sin_wrath/noon/EndCharge(bump = FALSE)
+	. = ..()
+	var/turf/T = get_turf(src)
+	for(var/turf/TF in range(1, T))//Smash AOE visual
+		new /obj/effect/temp_visual/smash_effect(TF)
+	for(var/mob/living/L in range(1, T))//damage applied to targets in range
+		if(faction_check_mob(L))
+			continue
+		if(L.z != z)
+			continue
+		visible_message(span_boldwarning("[src] slams [L]!"))
+		to_chat(L, span_userdanger("[src] slams you!"))
+		var/turf/LT = get_turf(L)
+		new /obj/effect/temp_visual/kinetic_blast(LT)
+		if(ishuman(L))
+			var/mob/living/carbon/human/H = L
+			H.apply_lc_burn(floor(burn_stacks * 0.5))
+		L.apply_damage(charge_damage * 0.40,RED_DAMAGE, null, L.run_armor_check(null, RED_DAMAGE), spread_damage = TRUE)
+		playsound(L, 'sound/effects/ordeals/brown/cromer_slam.ogg', 75, 1)
