@@ -32,6 +32,8 @@
 /mob/living/simple_animal/hostile/abnormality/branch12/ascension_ceremony/Initialize()
 	. = ..()
 	soundloop = new(list(src), FALSE)
+	if(prob(30))
+		icon_state = "void"
 
 /mob/living/simple_animal/hostile/abnormality/branch12/ascension_ceremony/Destroy()
 	QDEL_NULL(soundloop)
