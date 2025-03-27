@@ -5,7 +5,7 @@
 	*/
 /datum/adventure_event/army_in_black
 	name = "Army in Black"
-	description = "YOU SEE A BUNCH OF SOLDIERS IN GELATINOUS HEARTS"
+	desc = "YOU SEE A BUNCH OF SOLDIERS IN GELATINOUS HEARTS"
 	required_abno = /mob/living/simple_animal/abnormality/aleph/army_in_black
 	adventure_cords = (
 		"Inside the facility rows and rows of gelatinous hearts sit,<br>\
@@ -42,5 +42,4 @@
 			AdjustHealth(+35)
 		if(3)
 			AdjustHealth(-50)
-		if(4)
 	return..()
