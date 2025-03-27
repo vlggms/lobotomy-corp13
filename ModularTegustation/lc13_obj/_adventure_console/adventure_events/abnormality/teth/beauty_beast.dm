@@ -8,23 +8,24 @@
 	desc = "YOU SEE AN ABOMINATION"
 	require_abno = /mob/living/simple_animal/hostile/abnormality/beauty
 	adventure_cords = list(
-		"You enter a room with stained glass, stone walls,arching ceilings, and a small knife next to the door.<br>\
+		"You enter a room with stained glass, stone walls, arching ceilings, and a small knife next to the door.<br>\
 		Light streams in through the windows forming ornate patterns across the floor<br>\
 		all of it serving to frame an abomination.<br>\
 		It has countless eyes, each rolling in agony, its body twisted so its<br>\
-		Insectoid limbs bend out at angles not fitting it’s beastly form<br>\
-		and a human like leg sticks out next to one far more animile like.<br>\
+		insectoid limbs bend out at angles not fitting it’s beastly form<br>\
+		and a human like leg sticks out next to one far more beast like.<br>\
 		Open wounds pulse on it’s side, pus and blood leaking out across wiry fur.<br>\
 		It turns towards you, mandibles clicking in something somehow resembling human speech.<br>\
 		\"Free me from my curse, kill me.\"",
 
-		"\"Thank you!\" It groans as your plun.<br>\
-		It convulses, once, twice, and then it collapses.<br>\
+		"\"Thank you!\" It groans as your plunge the knife into oozing flesh.<br>\
+		It convulses, once, twice, and then collapses.<br>\
 		You turn to leave, and trip.<br>\
-		Your leg twists, snapping your foot as it elongates and things gristly hair springing forth as your skin thickens into a shell of chitin.<br>\
+		Your leg twists, snapping your foot as it elongates and thin gristly hair springs forth<br>\
+		as your skin thickens into a shell of chitin.<br>\
 		Your body bloats up, your bones ripping out of flesh until it grows like a tumor to meet your new body shape,<br>\
 		your hand fuses together into a grotesque foot, while the other mutates into a paw.<br>\
-		Trying to scream from the multitude of eyes blooming from your face your mandibles click.<br>\
+		Trying to scream from the multitude of eyes blooming from your face makes your mandibles click.<br>\
 		You are cursed, and want the relese of death.",
 
 		"You look at the knife sitting at the entry way.<br>\

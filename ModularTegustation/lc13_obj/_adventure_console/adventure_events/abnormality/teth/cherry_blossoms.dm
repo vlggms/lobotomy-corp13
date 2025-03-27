@@ -46,9 +46,9 @@
 		Some are the remains of small animals,<br>\
 		Most are unmistakably human.<br>\
 		Filled with morbid curiosity you continue digging,<br>\
-		unearthing a fresh and very ghuman corpsecorpse.<br>\
+		unearthing a fresh and very human corpse.<br>\
 		As you watch the tree feed another branch blooms.<br>\
-		Into ood red flowers that fade into the beautiful pink you had admired.",
+		With blood red flowers that fade into the beautiful pink you had admired.",
 	)
 /datum/adventure_event/cherry_blossoms/EventChoiceFormat(obj/machinery/M, mob/living/carbon/human/H)
 	switch(cords)
