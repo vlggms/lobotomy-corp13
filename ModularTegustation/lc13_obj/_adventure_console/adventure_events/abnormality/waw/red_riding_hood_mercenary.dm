@@ -6,7 +6,7 @@
 	*/
 /datum/adventure_event/red_riding_hood_mercenary
 	name = "Little Red Riding Hooded Mercenary"
-	description = "YOU SEE A PERSON IN RED RAGS"
+	desc = "YOU SEE A PERSON IN RED RAGS"
 	required_abno = /mob/living/simple_animal/abnormality/waw/red_riding_hood_mercenary
 	adventure_cords = list(
 		"You enter a home filled with pictures of the same beast<br>\

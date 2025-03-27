@@ -8,27 +8,27 @@
 	desc = "YOU SEE A FLOWER ON A PATH"
 	require_abno = /mob/living/simple_animal/hostile/abnormality/meat_lantern
 	adventure_cords = list(
-		"A thin path snakes through a forest full oflowering trees.<br>\
+		"A thin path snakes through a forest full of flowering trees.<br>\
 		White flowers bloom on every branch, breaking away in small bunches to float down and settle on the trail.<br>\
 		No animals can be heard, leaving you surrounded by an eerie silence<br>\
 		broken only by the whispers of wind through the petals and leaves.<br>\
 		All of it centered around a single flower in the center of the path,<br>\
 		a glistening fruit poking out from between it's bunches.<br>\
-		It’s radiant, a beautiful citrusy green, inviting you to come and eat it.",
+		It’s radiant, a beautiful citrusy green, inviting you to come and take a bite.",
 
 		"At the moment nothing would hit the spot better then some fruity goodness.<br>\
 		So you step forward, next to the flower, and pick the fruit.<br>\
 		It doesn’t come off.<br>\
 		In fact, it doesn't feel like fruit.<br>\
 		Instead it’s warm and fleshy<br>\
-		and the the ground is rumbling beneath you.<br>\
+		and is that the ground is rumbling beneath you?<br>\
 		SNAP",
 
 		"The fruit does look tempting.<br>\
 		But do you really want to be eating something that you found in the woods?<br>\
 		For all you know it could be poisonous.<br>\
-		As you think to yourself, the twittering a bird fills the air.<br>\
-		It had the same thoughts as you, but it doesn’t wait, flying down to peck at the fruiting body.<br>\
+		As you think to yourself, a bird flies down singing absentmindedly.<br>\
+		It had the same thought as you, but it doesn’t wait, landing to peck at the fruiting body.<br>\
 		SNAP<br>\
 		In a moment a giant mouth erupts from the ground swallowing the bird whole.<br>\
 		It’s a good thing you waited.",

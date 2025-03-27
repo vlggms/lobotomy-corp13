@@ -5,7 +5,7 @@
 	*/
 /datum/adventure_event/big_wolf
 	name = "Big and Will Be Bad Wolf"
-	description = "YOUS SEE A WOLF IN THE MOONLIGHT"
+	desc = "YOUS SEE A WOLF IN THE MOONLIGHT"
 	require_abno = /mob/living/simple_animal/hostile/abnormality/big_wolf
 	adventure_cords = list(
 		"A pale silver moon illuminates the field.<br>\
