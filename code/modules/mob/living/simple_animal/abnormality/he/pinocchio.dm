@@ -272,21 +272,6 @@
 	var/strings = icon('icons/mob/mutant_bodyparts.dmi', "strings_pinnochio_ADJ")
 	src.add_overlay(strings)
 
-/mob/living/carbon/human/species/pinocchio/adjustBlackLoss(amount, updating_health = TRUE, forced = FALSE, white_healable = FALSE)
-	if(amount > 0 && !forced)
-		new /obj/effect/temp_visual/damage_effect/black(get_turf(src))
-	return adjustBruteLoss(amount, forced = forced) // Override, otherwise we'd end up taking damage twice.
-
-/mob/living/carbon/human/species/pinocchio/adjustWhiteLoss(amount, updating_health = TRUE, forced = FALSE, white_healable = FALSE)
-	if(amount > 0 && !forced)
-		new /obj/effect/temp_visual/damage_effect/white(get_turf(src))
-	return adjustBruteLoss(amount, forced = forced) // Override with the parent, sanity damage is now just brute damage
-
-/mob/living/carbon/human/species/pinocchio/adjustPaleLoss(amount, updating_health = TRUE, forced = FALSE)
-	if(amount > 0 && !forced)
-		new /obj/effect/temp_visual/damage_effect/pale(get_turf(src))
-	return adjustBruteLoss(amount, forced = forced) // No % pale damage
-
 /mob/living/carbon/human/species/pinocchio/canBeHandcuffed()
 	return FALSE
 
@@ -323,7 +308,7 @@
 	knife_butcher_results = list(/obj/item/stack/sheet/mineral/wood = 5)
 	species_traits = list(NO_UNDERWEAR,NOBLOOD,NOEYESPRITES)
 	inherent_traits = list(TRAIT_ADVANCEDTOOLUSER,TRAIT_NOMETABOLISM,TRAIT_TOXIMMUNE,TRAIT_NOBREATH,TRAIT_RESISTCOLD,TRAIT_RESISTHIGHPRESSURE,TRAIT_RESISTLOWPRESSURE,TRAIT_RADIMMUNE,TRAIT_GENELESS,\
-	TRAIT_NOHUNGER,TRAIT_XENO_IMMUNE,TRAIT_NOCLONELOSS,TRAIT_LIGHT_STEP)
+	TRAIT_NOHUNGER,TRAIT_XENO_IMMUNE,TRAIT_NOCLONELOSS,TRAIT_LIGHT_STEP,TRAIT_BRUTEPALE,TRAIT_BRUTESANITY)
 	punchdamagelow = 10
 	punchdamagehigh = 15
 	bodypart_overides = list(
