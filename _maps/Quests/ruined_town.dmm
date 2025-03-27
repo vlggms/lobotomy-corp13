@@ -5500,6 +5500,10 @@
 /obj/structure/mineral_door/wood,
 /turf/open/floor/wood,
 /area/city/house)
+"KM" = (
+/mob/living/simple_animal/hostile/ui_npc/rat_scout,
+/turf/open/floor/plating/asteroid,
+/area/city)
 "KO" = (
 /obj/effect/decal/cleanable/garbage,
 /mob/living/simple_animal/mouse/brown{
@@ -15015,7 +15019,7 @@ dp
 DF
 eQ
 ew
-bw
+KM
 bw
 bw
 bw
