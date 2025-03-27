@@ -12,7 +12,6 @@
 		return FALSE
 	if (ishuman(owner))
 		var/mob/living/carbon/human/human = owner
-		human.adjustSanityLoss(10)
 		human.physiology.red_mod *= 0.1
 		human.physiology.white_mod *= 0.1
 		human.physiology.black_mod *= 0.1
