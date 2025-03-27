@@ -6,8 +6,8 @@
 /datum/adventure_event/army_in_black
 	name = "Army in Black"
 	desc = "YOU SEE A BUNCH OF SOLDIERS IN GELATINOUS HEARTS"
-	required_abno = /mob/living/simple_animal/abnormality/aleph/army_in_black
-	adventure_cords = (
+	require_abno = /mob/living/simple_animal/hostile/abnormality/army
+	adventure_cords = list(
 		"Inside the facility rows and rows of gelatinous hearts sit,<br>\
 		Each of them containing a person in bright pink military gear.<br>\
 		You approach one, it’s impossible to see any expression on their face.<br>\
@@ -39,7 +39,7 @@
 			BUTTON_FORMAT(4, "FLESH", M)
 			return
 		if(2)
-			AdjustHealth(+35)
+			AdjustHitPoint(35)
 		if(3)
-			AdjustHealth(-50)
+			AdjustHitPoint(-50)
 	return..()

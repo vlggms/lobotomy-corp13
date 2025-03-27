@@ -64,7 +64,7 @@
 		if(3)
 			AdjustStatNum(WRATH_STAT, ADV_EVENT_STAT_EASY)
 		if(4)
-			AdjustHealth(-40)
+			AdjustHitPoint(-40)
 		if(5)
 			AdjustStatNum(WRATH_STAT, -2)
 			AdjustStatNum(PRIDE_STAT, 4)
