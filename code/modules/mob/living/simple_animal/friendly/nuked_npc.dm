@@ -6,7 +6,7 @@
 	typing_interval = 30
 	typing_volume = 25
 	talking = sound('sound/creatures/lc13/mailman.ogg', repeat = TRUE)
-	portrait = "erik_bloodfiend_zoom.PNG"
+	portrait = "rat_guide.PNG"
 	start_scene_id = "intro"
 	icon = 'ModularTegustation/Teguicons/tegumobs.dmi'
 	icon_state = "rat_pipe"
@@ -32,11 +32,6 @@
 	glob_faction = GLOB.nuke_rats_players
 	faction = list("neutral")
 
-	// Set up NPC-specific variables
-	scene_manager.npc_vars.variables["knows_about_bastion"] = FALSE
-	scene_manager.npc_vars.variables["has_explained_mutation"] = FALSE
-
-	// Load scenes with enhanced features
 	scene_manager.load_scenes(list(
 		//Intro to the NPC
 		"intro" = list(
@@ -111,10 +106,7 @@
 		),
 
 		"greeting3_2" = list(
-			"text" = "I need to tell the bastion about this... Oh! I should then tell you more about this place.",
-			"var_updates" = list(
-				"npc.knows_about_bastion" = TRUE
-			),
+			"text" = "I need to tell the outpost about this... Oh! I should then tell you more about this place.",
 			"actions" = list(
 				"..." = list(
 					"text" = "...",
@@ -131,26 +123,14 @@
 			"actions" = list(
 				"ruin" = list(
 					"text" = "Why is everything so ruined?",
-					"visibility_expression" = "!dialog.discussed.ruins",
-					"var_updates" = list(
-						"dialog.discussed.ruins" = TRUE
-					),
 					"default_scene" = "ruin_1"
 				),
-				"bastion" = list(
+				"outpost" = list(
 					"text" = "Where is everyone else?",
-					"visibility_expression" = "!dialog.discussed.bastion",
-					"var_updates" = list(
-						"dialog.discussed.bastion" = TRUE
-					),
-					"default_scene" = "bastion_1"
+					"default_scene" = "outpost_1"
 				),
 				"guide" = list(
 					"text" = "Why are you out here?",
-					"visibility_expression" = "!dialog.discussed.guide_role",
-					"var_updates" = list(
-						"dialog.discussed.guide_role" = TRUE
-					),
 					"default_scene" = "guide_1"
 				),
 			)
@@ -223,31 +203,17 @@
 			"actions" = list(
 				"mutated" = list(
 					"text" = "Mutated?",
-					"var_updates" = list(
-						"dialog.asked_about_mutation" = TRUE
-					),
 					"default_scene" = "ruin1_1"
 				),
 				"stay" = list(
 					"text" = "Then why are you still here?",
-					"var_updates" = list(
-						"dialog.asked_about_staying" = TRUE
-					),
 					"default_scene" = "ruin2_1"
 				),
-				"back" = list(
-					"text" = "Let's talk about something else.",
-					"visibility_expression" = "dialog.asked_about_mutation || dialog.asked_about_staying",
-					"default_scene" = "main_screen"
-				)
 			)
 		),
 
 		"ruin1_1" = list(
 			"text" = "The poor folk who didn't die to the blast...",
-			"on_enter" = list(
-				"npc.has_explained_mutation" = TRUE
-			),
 			"actions" = list(
 				"..." = list(
 					"text" = "...",
@@ -306,31 +272,28 @@
 			)
 		),
 
-		//Bastion info
-		"bastion_1" = list(
-			"text" = "Most of the other scavengers around here are probably back at the bastion.",
-			"on_enter" = list(
-				"npc.knows_about_bastion" = TRUE
-			),
+		//outpost info
+		"outpost_1" = list(
+			"text" = "Most of the other scavengers around here are probably back at the outpost.",
 			"actions" = list(
 				"..." = list(
 					"text" = "...",
-					"default_scene" = "bastion_2"
+					"default_scene" = "outpost_2"
 				)
 			)
 		),
 
-		"bastion_2" = list(
+		"outpost_2" = list(
 			"text" = "It is a small hideout, southwest of here. Currently being lead by a fellow named Leon...",
 			"actions" = list(
 				"..." = list(
 					"text" = "...",
-					"default_scene" = "bastion_3"
+					"default_scene" = "outpost_3"
 				)
 			)
 		),
 
-		"bastion_3" = list(
+		"outpost_3" = list(
 			"text" = "He should be able to explain more about the small group he made.",
 			"actions" = list(
 				"..." = list(
@@ -362,25 +325,17 @@
 		),
 
 		"guide_3" = list(
-			"text" = "I guess we also sometimes find survivors wandering the streets, and we help them to return to our bastion.\[npc.knows_about_bastion ?  You should come by sometime. Leon would be happy to meet someone who survived out here. : \]",
+			"text" = "I guess we also sometimes find survivors wandering the streets, and we help them to return to our outpost.\[npc.knows_about_outpost ?  You should come by sometime. Leon would be happy to meet someone who survived out here. : \]",
 			"actions" = list(
-				"..." = list(
-					"text" = "...",
-					"default_scene" = "main_screen"
-				),
 				"visit" = list(
-					"text" = "I might visit the bastion soon.",
-					"visibility_expression" = "npc.knows_about_bastion",
-					"var_updates" = list(
-						"dialog.will_visit_bastion" = TRUE
-					),
-					"default_scene" = "visit_bastion"
-				)
+					"text" = "I might visit the outpost soon.",
+					"default_scene" = "visit_outpost"
+				),
 			)
 		),
 
-		"visit_bastion" = list(
-			"text" = "Great! Just head southwest and look for the old library building with the barricaded windows. Tell them Erik sent you.",
+		"visit_outpost" = list(
+			"text" = "Great! Just head southwest and look for the campfire with my mates sitting around it. Leon should in the building in the middle of the outpost.",
 			"actions" = list(
 				"thanks" = list(
 					"text" = "Thanks for the directions.",
