@@ -71,6 +71,12 @@
 "E" = (
 /turf/closed/indestructible/rock,
 /area/space)
+"G" = (
+/obj/structure/delivery_door{
+	density = 1
+	},
+/turf/closed/indestructible/reinforced,
+/area/city/backstreets_alley)
 "I" = (
 /obj/structure/sign/warning/securearea,
 /turf/closed/indestructible/reinforced,
@@ -242,6 +248,7 @@ L
 L
 L
 L
+G
 L
 L
 L
@@ -260,8 +267,7 @@ L
 L
 L
 L
-L
-L
+G
 L
 L
 L
@@ -300,7 +306,7 @@ L
 L
 L
 L
-L
+G
 L
 L
 L
@@ -979,7 +985,7 @@ c
 i
 i
 i
-L
+G
 E
 E
 E
@@ -1733,7 +1739,7 @@ E
 L
 L
 L
-L
+G
 L
 L
 L
@@ -1785,7 +1791,7 @@ E
 "}
 (16,1,1) = {"
 E
-L
+G
 a
 a
 a
@@ -1822,7 +1828,7 @@ c
 a
 a
 a
-L
+G
 E
 E
 E
@@ -2089,7 +2095,7 @@ c
 i
 i
 r
-L
+G
 E
 E
 E
@@ -2503,7 +2509,7 @@ E
 L
 L
 L
-L
+G
 L
 L
 L
@@ -2964,7 +2970,7 @@ L
 i
 i
 i
-L
+G
 E
 E
 E
@@ -3158,7 +3164,7 @@ I
 L
 L
 L
-L
+G
 L
 L
 L
@@ -3430,7 +3436,7 @@ c
 L
 L
 L
-L
+G
 L
 L
 L
@@ -3894,7 +3900,7 @@ E
 "}
 (35,1,1) = {"
 E
-L
+G
 a
 a
 a
@@ -3959,7 +3965,7 @@ E
 E
 E
 E
-L
+G
 i
 i
 i
@@ -4056,7 +4062,7 @@ i
 i
 i
 i
-L
+G
 E
 E
 E
@@ -4349,7 +4355,7 @@ L
 L
 L
 L
-L
+G
 L
 L
 L
@@ -4369,7 +4375,7 @@ L
 L
 L
 L
-L
+G
 L
 L
 L
@@ -4545,7 +4551,7 @@ L
 i
 i
 i
-L
+G
 E
 E
 E
@@ -5038,6 +5044,7 @@ E
 L
 L
 L
+G
 L
 L
 L
@@ -5046,8 +5053,7 @@ L
 L
 L
 L
-L
-L
+G
 L
 L
 L
@@ -5804,7 +5810,7 @@ E
 L
 L
 L
-L
+G
 L
 L
 L
@@ -6099,7 +6105,7 @@ c
 i
 i
 i
-L
+G
 E
 E
 E
@@ -6282,7 +6288,7 @@ c
 c
 i
 i
-L
+G
 E
 E
 E
@@ -6640,7 +6646,7 @@ L
 i
 i
 i
-L
+G
 E
 E
 c
@@ -7857,7 +7863,7 @@ c
 E
 E
 E
-L
+G
 i
 i
 i
@@ -7986,7 +7992,7 @@ c
 i
 i
 i
-L
+G
 E
 E
 E
@@ -8041,7 +8047,7 @@ c
 L
 L
 L
-L
+G
 L
 L
 L
@@ -8056,7 +8062,7 @@ i
 L
 L
 L
-L
+G
 L
 L
 L
@@ -8344,7 +8350,7 @@ E
 E
 E
 E
-L
+G
 i
 i
 i
@@ -9390,7 +9396,7 @@ i
 L
 L
 L
-L
+G
 L
 L
 L
@@ -9735,7 +9741,7 @@ w
 i
 i
 i
-L
+G
 E
 E
 E
@@ -10194,7 +10200,7 @@ E
 E
 E
 E
-L
+G
 i
 i
 i
@@ -10258,7 +10264,7 @@ E
 E
 E
 E
-L
+G
 i
 i
 i
@@ -10344,6 +10350,7 @@ w
 L
 L
 L
+G
 L
 L
 L
@@ -10355,8 +10362,7 @@ L
 L
 L
 L
-L
-L
+G
 L
 L
 L
@@ -11171,7 +11177,7 @@ i
 i
 a
 i
-L
+G
 E
 E
 L
@@ -11372,7 +11378,7 @@ i
 i
 i
 i
-L
+G
 E
 E
 E
@@ -11637,7 +11643,7 @@ E
 E
 E
 E
-L
+G
 i
 i
 i
@@ -11932,7 +11938,7 @@ E
 E
 E
 E
-L
+G
 i
 i
 i
@@ -12399,7 +12405,7 @@ L
 i
 i
 i
-L
+G
 E
 E
 E
@@ -13035,28 +13041,28 @@ L
 L
 L
 L
+G
+L
+c
+c
+c
+c
+c
+c
+c
+c
+c
+c
+c
+c
+c
+c
+c
 L
 L
-c
-c
-c
-c
-c
-c
-c
-c
-c
-c
-c
-c
-c
-c
-c
 L
 L
-L
-L
-L
+G
 L
 L
 L
@@ -13790,7 +13796,7 @@ E
 E
 E
 E
-L
+G
 i
 i
 i
@@ -13917,7 +13923,7 @@ c
 i
 i
 i
-L
+G
 E
 E
 E
@@ -14485,7 +14491,7 @@ E
 E
 E
 E
-L
+G
 i
 i
 i
@@ -14729,7 +14735,7 @@ L
 L
 L
 L
-L
+G
 L
 L
 L
@@ -14963,7 +14969,7 @@ E
 L
 L
 L
-L
+G
 L
 L
 L
@@ -16051,7 +16057,7 @@ L
 L
 L
 L
-L
+G
 L
 L
 L
@@ -16692,7 +16698,7 @@ L
 i
 i
 i
-L
+G
 E
 E
 E
@@ -16952,7 +16958,7 @@ L
 L
 L
 L
-L
+G
 L
 L
 L
@@ -17149,7 +17155,7 @@ E
 E
 E
 E
-L
+G
 i
 a
 a
@@ -17242,7 +17248,7 @@ L
 L
 L
 L
-L
+G
 L
 L
 L
@@ -17631,7 +17637,7 @@ E
 E
 E
 E
-L
+G
 a
 a
 a
@@ -17826,7 +17832,7 @@ E
 E
 E
 E
-L
+G
 i
 i
 i
@@ -18119,7 +18125,7 @@ E
 E
 E
 E
-L
+G
 i
 i
 i
@@ -18277,7 +18283,7 @@ L
 a
 a
 a
-L
+G
 E
 E
 E
@@ -18301,7 +18307,7 @@ L
 i
 i
 i
-L
+G
 E
 E
 E
@@ -19262,7 +19268,7 @@ c
 a
 a
 a
-L
+G
 E
 E
 E
@@ -19466,7 +19472,7 @@ L
 L
 L
 L
-L
+G
 L
 L
 L
@@ -19507,7 +19513,7 @@ c
 L
 L
 L
-L
+G
 L
 L
 L
@@ -19929,7 +19935,7 @@ a
 a
 L
 L
-L
+G
 L
 L
 L
@@ -20521,7 +20527,7 @@ i
 i
 i
 i
-L
+G
 E
 E
 E
@@ -20894,7 +20900,7 @@ E
 E
 E
 E
-L
+G
 a
 a
 i
@@ -21398,7 +21404,7 @@ a
 L
 L
 L
-L
+G
 L
 L
 L
@@ -22258,7 +22264,7 @@ c
 i
 i
 i
-L
+G
 E
 E
 E
@@ -22954,7 +22960,7 @@ c
 c
 a
 a
-L
+G
 E
 E
 E
@@ -23810,6 +23816,7 @@ L
 L
 L
 L
+G
 L
 L
 L
@@ -23817,7 +23824,6 @@ L
 L
 L
 L
-L
 c
 c
 c
@@ -23834,7 +23840,7 @@ c
 c
 c
 L
-L
+G
 L
 L
 L
@@ -24696,7 +24702,7 @@ c
 a
 a
 a
-L
+G
 E
 E
 E
@@ -25547,7 +25553,7 @@ E
 E
 E
 E
-L
+G
 a
 a
 a
@@ -25603,7 +25609,7 @@ L
 a
 a
 a
-L
+G
 E
 E
 E
@@ -25843,7 +25849,7 @@ E
 E
 E
 E
-L
+G
 a
 a
 a
@@ -26257,7 +26263,7 @@ L
 L
 L
 L
-L
+G
 L
 L
 L
@@ -27893,7 +27899,7 @@ L
 L
 L
 L
-L
+G
 L
 L
 L

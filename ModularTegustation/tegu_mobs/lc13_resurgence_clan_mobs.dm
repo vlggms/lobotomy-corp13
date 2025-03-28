@@ -51,7 +51,7 @@
 	var/greeting_cooldown = 20 SECONDS
 	var/last_greeting_cooldown = 0
 	var/speaking = FALSE
-	var/attacked_line = "Oh-h... You messe-ed up now..."
+	attacked_line = "Oh-h... You messe-ed up now..."
 
 //Normal Clan Stuff
 /mob/living/simple_animal/hostile/clan/spawn_gibs()

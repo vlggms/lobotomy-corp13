@@ -2827,9 +2827,10 @@
 /turf/open/floor/carpet/green,
 /area/city/backstreets_room)
 "rr" = (
-/turf/closed/indestructible/fakedoor{
-	name = "Malfunctioning Door"
+/obj/structure/delivery_door{
+	density = 1
 	},
+/turf/closed/indestructible/reinforced,
 /area/city/backstreets_alley)
 "rt" = (
 /obj/effect/decal/cleanable/dirt/dust,
@@ -4793,12 +4794,6 @@
 	},
 /turf/open/floor/facility/halls,
 /area/city/backstreets_room)
-"EI" = (
-/turf/closed/indestructible/fakedoor{
-	desc = "Too bad the door is broken.";
-	name = "Arcade Plush Storage"
-	},
-/area/city/backstreets_alley)
 "EQ" = (
 /obj/effect/turf_decal/siding/purple{
 	dir = 1
@@ -9033,7 +9028,7 @@ Qj
 bF
 iY
 iY
-Ux
+rr
 kI
 "}
 (10,1,1) = {"
@@ -10920,7 +10915,7 @@ hK
 iY
 iY
 iY
-Ux
+rr
 kI
 "}
 (27,1,1) = {"
@@ -12017,7 +12012,7 @@ JE
 bF
 bF
 bF
-Ux
+rr
 kI
 kI
 kI
@@ -12359,7 +12354,7 @@ kI
 kI
 kI
 kI
-Ux
+rr
 iY
 iY
 iY
@@ -13223,7 +13218,7 @@ Ux
 Ux
 Ux
 Ux
-Ux
+rr
 Ux
 Ux
 Ux
@@ -13859,7 +13854,7 @@ Ux
 Ux
 Ux
 Ux
-Ux
+rr
 Ux
 Ux
 Ux
@@ -15530,7 +15525,7 @@ kI
 kI
 kI
 kI
-Ux
+rr
 js
 bF
 bF
@@ -15743,7 +15738,7 @@ JE
 JE
 Ux
 Ux
-Ux
+rr
 Ux
 Ux
 Ux
@@ -16681,7 +16676,7 @@ JE
 iY
 iY
 iY
-Ux
+rr
 kI
 kI
 kI
@@ -17710,7 +17705,7 @@ Ux
 Ux
 Ux
 Ux
-Ux
+rr
 Ux
 Ux
 Ux
@@ -18938,7 +18933,7 @@ rr
 Dr
 bF
 oE
-Ux
+rr
 kI
 kI
 JE
@@ -24209,7 +24204,7 @@ kI
 kI
 kI
 kI
-EI
+rr
 Dr
 bF
 oE
@@ -25076,7 +25071,7 @@ bF
 Ux
 Ux
 Ux
-EI
+rr
 Ux
 JE
 JE
@@ -25487,7 +25482,7 @@ Ux
 js
 bF
 Re
-rr
+Ux
 kI
 kI
 kI
@@ -27169,7 +27164,7 @@ Ux
 js
 bF
 oE
-Ux
+rr
 kI
 kI
 kI
@@ -27666,7 +27661,7 @@ kI
 kI
 kI
 kI
-Ux
+rr
 bF
 bF
 bF
@@ -28373,7 +28368,7 @@ JE
 JE
 JE
 Ux
-Ux
+rr
 Ux
 Ux
 Ux
@@ -28839,7 +28834,7 @@ Ux
 Ux
 Ux
 Ux
-Ux
+rr
 Ux
 Ux
 Ux
@@ -29097,7 +29092,7 @@ Ux
 Ux
 Ux
 Ux
-Ux
+rr
 Ux
 Ux
 Ux
@@ -30102,7 +30097,7 @@ kI
 kI
 kI
 kI
-Ux
+rr
 bF
 bF
 bF
