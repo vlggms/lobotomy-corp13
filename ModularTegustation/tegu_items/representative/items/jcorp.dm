@@ -100,30 +100,32 @@ GLOBAL_LIST_EMPTY(possible_loot_jcorp)
 		/obj/item/grenade/chem_grenade/ez_clean,
 		/obj/item/grenade/chem_grenade/colorful,
 	)
-	var/list/safe_subtypes = list(
+/*	No current support, do it soon.
+var/list/safe_subtypes = list(
 		/obj/item/grenade/r_corp,
 		/obj/item/grenade/spawnergrenade/shrimp,
 		/obj/item/grenade/chem_grenade/glitter,
 		/obj/item/grenade/smokebomb,
-	)
+	)*/
 
 	if(!GLOB.possible_loot_jcorp.len)
-		for(var/V in typesof(safe_subtypes))
-			var/obj/item/I = V
-			safe_items += I
-		for(var/S in typesof(banned_subtypes))
-			var/obj/item/subtype = S
-			for(var/V in typesof(subtype))
-				var/obj/item/I = V
-				banned_items += I
 		var/list/all_items = subtypesof(/obj/item)
 		for(var/V in all_items)
 			var/obj/item/I = V
 			if((!initial(I.icon_state)) || (!initial(I.inhand_icon_state)) || (initial(I.item_flags) & (ABSTRACT || DROPDEL)))
 				continue
-			if(I in (safe_items || banned_items))
-				continue
+
+			//This is the initial safe items list, we will then pull banned items out of it
 			safe_items += I
+
+		for(var/obj/item/I in safe_items)
+			if(is_type_in_list(I, banned_items))
+				safe_items-=I
+				continue
+			if(is_type_in_list(I, banned_subtypes))
+				safe_items-=I
+				continue
+
 		GLOB.possible_loot_jcorp = safe_items
 	var/gift_type = pick(GLOB.possible_loot_jcorp)
 	return gift_type
