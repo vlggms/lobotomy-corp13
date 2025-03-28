@@ -1,6 +1,6 @@
 /mob/living/simple_animal/hostile/abnormality/branch12/nostalgia
 	name = "Whiff of Nostalgia"
-	desc = "A large sandstone monolith covered in lotuses"
+	desc = "A small vending machine that distributes small yellow capsules."
 	icon = 'ModularTegustation/Teguicons/branch12/32x32.dmi'
 	icon_state = "nostalgia"
 	icon_living = "nostalgia"
@@ -8,7 +8,7 @@
 
 	work_chances = list(
 		ABNORMALITY_WORK_INSTINCT = 20,
-		ABNORMALITY_WORK_INSIGHT = 60,
+		ABNORMALITY_WORK_INSIGHT = 40,
 		ABNORMALITY_WORK_ATTACHMENT = 30,
 		ABNORMALITY_WORK_REPRESSION = 45,
 	)
@@ -28,7 +28,12 @@
 		spawning_capsule.heal_amount = transfer_capsule
 		ready = FALSE
 		icon_state = "nostalgia_unpowered"
+		addtimer(CALLBACK(src, PROC_REF(reset)), 60 SECONDS)
 
+
+/mob/living/simple_animal/hostile/abnormality/branch12/nostalgia/proc/reset()
+	icon_state = "nostalgia"
+	ready = TRUE
 
 	//Nostalgia Capsules
 /obj/item/nostalgia_capsule
