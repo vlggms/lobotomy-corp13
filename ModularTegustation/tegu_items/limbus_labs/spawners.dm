@@ -17,7 +17,9 @@ GLOBAL_LIST_INIT(low_security, list(
 	/mob/living/simple_animal/hostile/abnormality/galaxy_child,
 	/mob/living/simple_animal/hostile/abnormality/woodsman,
 	/mob/living/simple_animal/hostile/abnormality/steam,
-	/mob/living/simple_animal/hostile/abnormality/laetitia
+	/mob/living/simple_animal/hostile/abnormality/laetitia,
+	/mob/living/simple_animal/hostile/abnormality/fairy_gentleman,
+	/mob/living/simple_animal/hostile/abnormality/smile,
 
 ))
 
@@ -31,6 +33,8 @@ GLOBAL_LIST_INIT(high_security, list(
 	/mob/living/simple_animal/hostile/abnormality/general_b,
 	/mob/living/simple_animal/hostile/abnormality/hatred_queen,
 	/mob/living/simple_animal/hostile/abnormality/nosferatu,
+	/mob/living/simple_animal/hostile/abnormality/sphinx,
+	/mob/living/simple_animal/hostile/abnormality/judgement_bird,
 
 ))
 
