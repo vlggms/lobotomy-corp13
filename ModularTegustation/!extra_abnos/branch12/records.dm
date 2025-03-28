@@ -334,16 +334,6 @@
 		"M-01-12-554 seemed to be impervious to all attacks.",
 	)
 
-// Schwartzchild Radius
-/obj/item/paper/fluff/info/branch12/black_hole
-	abno_type = /mob/living/simple_animal/hostile/abnormality/branch12/black_hole
-	abno_code = "M-03-12-512"		//The last number is the day that nasa released the photo of Saggitarrius A, May 12th
-	abno_info = list(
-		"When the work result was bad, the Qliphoth counter decreased.",
-		"When the work result was neutral, the Qliphoth counter decreased at a normal rate.",
-		"WARNING: DO NOT ENTER M-03-12-512."
-	)
-
 
 //	-------------ALEPH-------------
 // Old Man and The Pale
@@ -399,4 +389,14 @@
 	abno_info = list(
 		"M-01-12-21's Qliphoth counter lowered if not worked for 10 minutes.",
 		"While breaching, M-01-12-21 would cover the area with tiles to be avoided.",
+	)
+
+// Schwartzchild Radius
+/obj/item/paper/fluff/info/branch12/black_hole
+	abno_type = /mob/living/simple_animal/hostile/abnormality/branch12/black_hole
+	abno_code = "T-03-12-512"		//The last number is the day that nasa released the photo of Saggitarrius A, May 12th
+	abno_info = list(
+		"When the work result was bad, the Qliphoth counter decreased.",
+		"When the work result was neutral, the Qliphoth counter decreased at a normal rate.",
+		"WARNING: DO NOT ENTER M-03-12-512."
 	)
