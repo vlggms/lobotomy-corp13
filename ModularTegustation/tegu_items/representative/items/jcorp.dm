@@ -39,9 +39,6 @@ GLOBAL_LIST_EMPTY(possible_loot_jcorp)
 
 /obj/item/a_gift/jcorp/get_gift_type()
 	var/list/banned_items = list(
-		/obj/item/storage/box/lc_debugtools,
-		/obj/item/storage/box/debugtools,
-		/obj/item/storage/box/material,
 		/obj/item/clothing/suit/space/hardsuit/syndi/elite/admin,
 		/obj/item/card/id/debug,
 		/obj/item/water_turf_spawner,
@@ -58,9 +55,13 @@ GLOBAL_LIST_EMPTY(possible_loot_jcorp)
 		/obj/item/storage/backpack/duffelbag/cursed,
 		/obj/item/storage/backpack/santabag,
 		/obj/item/clothing/mask/facehugger,
-		/obj/item/gun/energy/laser/instakill,
 		/obj/item/disk/surgery/debug,
 		/obj/item/clothing/suit/space/chronos,
+		/obj/item/veilrender,
+		/obj/item/clothing/head/sombrero/shamebrero,
+		/obj/item/lava_staff,
+		/obj/item/cult_bastard,
+		/obj/item/gun/energy/minigun, //No pack means it auto deletes itself
 	)
 	var/list/banned_subtypes = list(
 		/obj/item/lc_debug,
@@ -73,12 +74,11 @@ GLOBAL_LIST_EMPTY(possible_loot_jcorp)
 		/obj/item/defibrillator,
 		/obj/item/grenade,
 		/obj/item/gun/ballistic/revolver/grenadelauncher,
-		/obj/item/storage/box/syndicate,
+		/obj/item/storage/box,
 		/obj/item/clothing/head/hooded,
 		/obj/item/reagent_containers/borghypo,
 		/obj/item/autosurgeon/organ/syndicate,
 		/obj/item/implanter,
-		/obj/item/storage/box/syndie_kit,
 		/obj/item/reagent_containers/hypospray,
 		/obj/item/bombcore,
 		/obj/item/a_gift,
@@ -92,6 +92,9 @@ GLOBAL_LIST_EMPTY(possible_loot_jcorp)
 		/obj/item/assembly/signaler/anomaly,
 		/obj/item/autosurgeon/skillchip/syndicate,
 		/obj/item/gun/energy/meteorgun,
+		/obj/item/implanter/uplink,
+		/obj/item/shockpaddles,
+		/obj/item/gun/energy/laser/instakill,
 	)
 	var/list/safe_items = list(
 		/obj/item/grenade/firecracker,
@@ -100,33 +103,33 @@ GLOBAL_LIST_EMPTY(possible_loot_jcorp)
 		/obj/item/grenade/chem_grenade/ez_clean,
 		/obj/item/grenade/chem_grenade/colorful,
 	)
-/*	No current support, do it soon.
-var/list/safe_subtypes = list(
+	var/list/safe_subtypes = list(
 		/obj/item/grenade/r_corp,
 		/obj/item/grenade/spawnergrenade/shrimp,
 		/obj/item/grenade/chem_grenade/glitter,
 		/obj/item/grenade/smokebomb,
-	)*/
+	)
 
 	if(!GLOB.possible_loot_jcorp.len)
-		var/list/all_items = subtypesof(/obj/item)
-		for(var/V in all_items)
+		var/list/gift_types_list = subtypesof(/obj/item)
+		for(var/V in gift_types_list)
 			var/obj/item/I = V
-			if((!initial(I.icon_state)) || (!initial(I.inhand_icon_state)) || (initial(I.item_flags) & (ABSTRACT || DROPDEL)))
+			if((!initial(I.icon_state)) || (!initial(I.inhand_icon_state)) || (initial(I.item_flags) & (ABSTRACT | DROPDEL)))
+				gift_types_list -= V
 				continue
-
-			//This is the initial safe items list, we will then pull banned items out of it
-			safe_items += I
-
-		for(var/obj/item/I in safe_items)
-			if(is_type_in_list(I, banned_items))
-				safe_items-=I
+			if(I in safe_items)
 				continue
-			if(is_type_in_list(I, banned_subtypes))
-				safe_items-=I
-				continue
+			if(I in banned_items)
+				gift_types_list -= V
+			for(var/S in banned_subtypes)
+				if(I in typesof(S))
+					gift_types_list -= V
+		for(var/safetype in safe_subtypes)
+			for(var/I in safetype)
+				if(!(I in gift_types_list))
+					gift_types_list += I
 
-		GLOB.possible_loot_jcorp = safe_items
+		GLOB.possible_loot_jcorp = gift_types_list
 	var/gift_type = pick(GLOB.possible_loot_jcorp)
 	return gift_type
 
