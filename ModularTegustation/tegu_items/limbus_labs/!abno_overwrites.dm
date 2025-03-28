@@ -191,4 +191,15 @@
 /mob/living/simple_animal/hostile/runawaybird/Initialize()
 	. = ..()
 	if(SSmaptype.maptype == "limbus_labs")
+		faction = list("neutral", "bird")
 		status_flags = MUST_HIT_PROJECTILE
+
+/mob/living/simple_animal/hostile/runawaybird/Login()
+	. = ..()
+	if(SSmaptype.maptype == "limbus_labs")
+		faction = list("hostile", "bird")
+
+/mob/living/simple_animal/hostile/runawaybird/Logout()
+	. = ..()
+	if(SSmaptype.maptype == "limbus_labs")
+		faction = list("neutral", "bird")

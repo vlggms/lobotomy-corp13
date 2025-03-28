@@ -191,7 +191,6 @@
 	melee_damage_type = PALE_DAMAGE
 	obj_damage = 0
 	environment_smash = ENVIRONMENT_SMASH_NONE
-	faction = list("hostile", "bird")
 	attack_verb_continuous = "pecks"
 	attack_verb_simple = "peck"
 	attack_sound = 'sound/weapons/fixer/generic/nail1.ogg'
