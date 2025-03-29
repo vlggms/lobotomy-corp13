@@ -7,6 +7,7 @@
 	name = "auxiliary managerial console"
 	desc = "Used for various optional actions available to manager."
 	resistance_flags = INDESTRUCTIBLE
+	icon_screen = "aux"
 	/// Currently selected console page
 	var/page = CORE_SUPPRESSIONS
 	/// All possible pages

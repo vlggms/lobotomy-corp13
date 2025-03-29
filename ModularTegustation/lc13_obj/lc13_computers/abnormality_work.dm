@@ -1,6 +1,7 @@
 /obj/machinery/computer/abnormality
 	name = "abnormality work console"
 	desc = "Used to perform various tasks with the abnormalities."
+	icon_screen = "abnormality_work"
 	resistance_flags = INDESTRUCTIBLE
 
 	/// Datum reference of the abnormality this console is related to

@@ -1,6 +1,7 @@
 /obj/machinery/computer/ego_purchase
 	name = "abnormality EGO purchase console"
 	desc = "Used to purchase EGO equipment."
+	icon_screen = "extraction_ego"
 	resistance_flags = INDESTRUCTIBLE
 	/// Currently selected(shown) level of abnormalities whose EGO will be on the interface
 	var/selected_level = ZAYIN_LEVEL

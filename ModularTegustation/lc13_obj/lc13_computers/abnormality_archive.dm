@@ -4,7 +4,7 @@
 	icon = 'icons/obj/computer.dmi'
 	icon_state = "computer"
 	icon_keyboard = "tech_key"
-	icon_screen = "forensic"
+	icon_screen = "archive"
 	var/printfile
 	var/printing_status
 	var/notehtml
