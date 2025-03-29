@@ -20,7 +20,7 @@
 		"Lying is Bad!" = 0,
 	)
 
-	damage_coeff = list(RED_DAMAGE = 1.2, WHITE_DAMAGE = 0.5, BLACK_DAMAGE = 0.7, PALE_DAMAGE = 0.9)
+	damage_coeff = list(RED_DAMAGE = 1.2, WHITE_DAMAGE = 0.5, BLACK_DAMAGE = 0.7, PALE_DAMAGE = 0.9, FIRE = 1.5)
 	work_damage_amount = 8
 	work_damage_type = WHITE_DAMAGE
 	chem_type = /datum/reagent/abnormality/sin/envy
@@ -320,6 +320,7 @@
 	BODY_ZONE_CHEST = /obj/item/bodypart/chest/puppet)
 	speedmod = 1.3
 	changesource_flags = MIRROR_BADMIN | WABBAJACK
+	burnmod = 2
 
 /datum/species/puppet/check_roundstart_eligible()
 	return FALSE //heck no

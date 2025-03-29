@@ -22,7 +22,7 @@
 	health = 1500
 	blood_volume = 0
 	move_to_delay = 5
-	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 1.1, WHITE_DAMAGE = 0.8, BLACK_DAMAGE = 0.8, PALE_DAMAGE = 0.8) //ASK SOMEONE GOOD AT BALANCING ABOUT THIS -IP
+	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 1.1, WHITE_DAMAGE = 0.8, BLACK_DAMAGE = 0.8, PALE_DAMAGE = 0.8, FIRE = 2) //ASK SOMEONE GOOD AT BALANCING ABOUT THIS -IP
 	base_pixel_x = -16
 	pixel_x = -16
 	can_breach = TRUE
