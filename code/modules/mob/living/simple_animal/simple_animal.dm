@@ -194,6 +194,10 @@
 	//If they should get they city faction in City gamemodes
 	var/city_faction = TRUE
 
+	//Can we attack? Can we move
+	var/can_act = TRUE
+	var/can_move = TRUE
+
 /mob/living/simple_animal/Initialize()
 	. = ..()
 	GLOB.simple_animals[AIStatus] += src
@@ -625,7 +629,15 @@
 		var/obj/vehicle/sealed/mecha/M = the_target
 		if(LAZYLEN(M.occupants))
 			return FALSE
+	//Don't attack if you can't.
+	if (!can_act)
+		return FALSE
 	return TRUE
+
+/mob/living/simple_animal/Move()
+	if(!can_move)
+		return FALSE
+	..()
 
 /mob/living/simple_animal/handle_fire()
 	return TRUE
