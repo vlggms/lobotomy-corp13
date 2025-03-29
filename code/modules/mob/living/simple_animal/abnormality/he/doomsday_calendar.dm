@@ -348,7 +348,7 @@
 	del_on_death = FALSE
 	density = TRUE
 	var/list/breach_affected = list()
-	var/can_act = TRUE
+
 
 /mob/living/simple_animal/hostile/doomsday_doll/Initialize()
 	. = ..()

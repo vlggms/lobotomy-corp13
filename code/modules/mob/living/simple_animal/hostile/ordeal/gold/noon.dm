@@ -22,7 +22,7 @@
 	speed = 3
 	move_to_delay = 3
 
-	var/can_act = TRUE
+
 	var/slash_width = 1
 	var/slash_length = 3
 	var/sweep_cooldown

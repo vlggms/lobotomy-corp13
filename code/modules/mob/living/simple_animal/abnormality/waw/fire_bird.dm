@@ -58,7 +58,7 @@
 	var/pulse_cooldown
 	var/pulse_cooldown_time = 1 SECONDS
 	var/pulse_damage = 10
-	var/can_act = TRUE
+
 	var/dash_cooldown
 	var/dash_cooldown_time = 5 SECONDS
 	var/dash_max = 50

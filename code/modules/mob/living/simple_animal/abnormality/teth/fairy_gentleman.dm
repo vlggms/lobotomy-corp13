@@ -55,7 +55,7 @@
 			The fairy walks away, stumbling along the way."),
 	)
 
-	var/can_act = TRUE
+
 	var/jump_cooldown = 0
 	var/jump_cooldown_time = 8 SECONDS
 	var/jump_damage = 30

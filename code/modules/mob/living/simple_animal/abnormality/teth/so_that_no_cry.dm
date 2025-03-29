@@ -55,7 +55,7 @@
 			It now ignores you, as if disappointed."),
 	)
 
-	var/can_act = TRUE
+
 	/// When this reaches 400 - begins reflecting damage
 	var/damage_taken = 0
 	var/damage_reflection = FALSE

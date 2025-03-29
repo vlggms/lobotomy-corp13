@@ -154,7 +154,7 @@
 	del_on_death = TRUE
 	can_patrol = TRUE
 
-	var/can_act = TRUE
+
 	/// When this reaches 480 - begins reflecting damage
 	var/damage_taken = 0
 	var/damage_reflection = FALSE
@@ -521,7 +521,7 @@
 	attack_sound = 'sound/effects/ordeals/white/pale_knife.ogg'
 	del_on_death = TRUE
 
-	var/can_act = TRUE
+
 	var/multislash_cooldown
 	var/multislash_cooldown_time = 5 SECONDS
 	/// Amount of pale damage per slash

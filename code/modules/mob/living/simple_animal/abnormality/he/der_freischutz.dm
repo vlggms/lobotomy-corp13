@@ -45,7 +45,7 @@
 		"Don't pay" = list(FALSE, "The man scowls. <br>\"Don't waste my time with such shaky conviction.\""),
 	)
 
-	var/can_act = TRUE
+
 	var/bullet_cooldown
 	var/bullet_cooldown_time = 7 SECONDS
 	var/bullet_fire_delay = 1.5 SECONDS

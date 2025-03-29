@@ -196,6 +196,7 @@
 
 	//Can we attack? Can we move
 	var/can_act = TRUE
+
 	var/can_move = TRUE
 
 /mob/living/simple_animal/Initialize()

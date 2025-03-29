@@ -324,7 +324,7 @@
 	var/spawn_time
 	var/spawn_time_cooldown = 20 SECONDS
 	var/list/spawned_mobs = list()
-	var/can_act = TRUE
+
 	var/bite_width = 1
 	var/bite_length = 3
 	var/bite_damage = 30

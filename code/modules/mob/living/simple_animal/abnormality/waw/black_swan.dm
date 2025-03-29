@@ -82,7 +82,7 @@
 	)
 	//If is in closed or open mode
 	var/beak_closed = FALSE
-	var/can_act = TRUE
+
 	var/umbrella_open = FALSE
 	//cooldowns
 	var/umbrella_cooldown = 0

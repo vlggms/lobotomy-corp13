@@ -83,7 +83,7 @@
 	var/tongue_damage = 20
 	var/jump_cooldown
 	var/jump_cooldown_time = 6 SECONDS
-	var/can_act = TRUE
+
 	var/retreating = FALSE
 	var/mob/living/idiot = null
 	var/transformed = FALSE

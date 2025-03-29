@@ -7,7 +7,7 @@
 	icon_living = "sweet_home"
 	icon_dead = "sweet_home_death"
 	portrait = "my_sweet_home"
-	var/can_act = TRUE
+
 	threat_level = TETH_LEVEL
 	can_breach = TRUE
 	del_on_death = FALSE

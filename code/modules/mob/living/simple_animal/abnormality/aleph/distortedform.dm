@@ -98,8 +98,7 @@
 	/// List of Living People on Breach
 	var/list/survivors = list()
 	/// Can it perform Another Attack?
-	var/can_act = TRUE
-	var/can_move = FALSE
+
 	var/can_attack = TRUE
 	var/changed = FALSE
 	var/transform_cooldown

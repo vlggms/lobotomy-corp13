@@ -68,7 +68,7 @@
 			(The wolf seems unhappy)"),
 	)
 
-	var/can_act = TRUE
+
 	//For when the wolf becomes incorporal and flees.
 	var/last_reached_health = 75
 	//For some reason wolf's AI just turns off when there is if(fleeing_now)

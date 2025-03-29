@@ -26,7 +26,7 @@
 	var/charge_level = 0
 	var/charge_level_cap = 20
 	var/broken = FALSE
-	var/can_act = TRUE
+
 
 /mob/living/simple_animal/hostile/ordeal/centipede_corrosion/Move()
 	if(!can_act)
@@ -247,7 +247,7 @@
 	speak = list("Kilo India Lima Lima", "Delta India Echo", "Golf Echo Tango Oscar Uniform Tango", "Oscar Mike", "Charlie Mike")
 	speak_emote = list("emits", "groans")
 	ranged = TRUE
-	var/can_act = TRUE
+
 	var/effect_cooldown
 	var/effect_cooldown_time = 4 SECONDS
 	var/screech_cooldown

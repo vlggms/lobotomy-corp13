@@ -50,7 +50,7 @@
 	var/song_cooldown
 	var/song_cooldown_time = 10 SECONDS
 	var/song_damage = 5 // Dealt 8 times
-	var/can_act = TRUE
+
 
 	//Visual/Animation Vars
 	var/obj/effect/fragment_legs/legs

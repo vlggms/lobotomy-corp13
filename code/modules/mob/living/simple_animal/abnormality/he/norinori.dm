@@ -65,7 +65,7 @@
 	)
 
 //breach related
-	var/can_act = TRUE
+
 	var/transformed = FALSE
 	pet_bonus = "meows" //saves a few lines of code by allowing funpet() to be called by attack_hand()
 

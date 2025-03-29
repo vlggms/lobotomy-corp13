@@ -54,7 +54,7 @@
 			You're not ready to build the future."),
 	)
 
-	var/can_act = TRUE
+
 	var/ability_damage = 150
 	var/ability_cooldown
 	var/ability_cooldown_time = 10 SECONDS

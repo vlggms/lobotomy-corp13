@@ -83,7 +83,7 @@
 	var/stunned_cooldown = 20 SECONDS
 
 
-	var/can_act = TRUE
+
 	var/stunned = FALSE
 	var/ending = FALSE
 	var/hunted_target
@@ -695,7 +695,7 @@
 	var/max_conjured = 12
 	var/list/staves = list()
 
-	var/can_act = TRUE
+
 
 /mob/living/simple_animal/hostile/azure_hermit/Initialize()
 	. = ..()

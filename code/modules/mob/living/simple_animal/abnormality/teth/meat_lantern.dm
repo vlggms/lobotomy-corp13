@@ -45,7 +45,7 @@
 		"Call for security" = list(FALSE, "Something so beautiful had no right to exist in the City. You called for security and left in a hurry back to your grey workplace."),
 	)
 
-	var/can_act = TRUE
+
 	var/detect_range = 1
 	var/chop_cooldown
 	var/chop_cooldown_time = 4 SECONDS

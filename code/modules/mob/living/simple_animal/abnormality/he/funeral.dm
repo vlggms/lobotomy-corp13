@@ -71,7 +71,7 @@
 	var/swarm_length = 24
 	var/swarm_width = 3
 	var/list/swarm_killed = list()
-	var/can_act = TRUE
+
 
 	//PLAYABLES ATTACKS
 	attack_action_types = list(/datum/action/innate/abnormality_attack/toggle/funeral_butterfly_toggle)

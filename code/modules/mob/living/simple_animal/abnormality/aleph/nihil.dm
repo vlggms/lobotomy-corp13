@@ -45,7 +45,7 @@
 			Nothing matters. <br>We will repeat this song and dance until the end of time.<br> I can only laugh at this pointless endeavor."),
 	)
 
-	var/can_act = TRUE
+
 	//Teleports
 	var/icon_inverted
 	var/teleport_cooldown

@@ -76,7 +76,7 @@
 	var/death_counter = 0
 	/// Reduce qliphoth if not enough people have died for too long
 	var/counter_amount = 0
-	var/can_act = TRUE
+
 	var/teleport_cooldown
 	var/teleport_cooldown_time = 30 SECONDS
 	var/beam_cooldown

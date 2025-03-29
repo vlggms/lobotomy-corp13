@@ -63,7 +63,7 @@
 	var/banquet_cooldown
 	var/banquet_cooldown_time = 12 SECONDS
 	var/banquet_damage = 100
-	var/can_act = TRUE
+
 	var/berzerk = FALSE
 	//minion stuff
 	var/list/spawned_bats = list()

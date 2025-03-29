@@ -43,7 +43,7 @@
 	//Custon unmanifest effect
 	unmanifest_effect = /obj/effect/gibspawner/human
 
-	var/can_act = TRUE
+
 	var/transformed = FALSE
 
 //Proc that can be used for additional effects on unmanifest

@@ -71,7 +71,7 @@
 	var/gear = 0
 	var/steam_damage = 5
 	var/steam_venting = FALSE
-	var/can_act = TRUE
+
 	var/guntimer
 	var/updatetimer
 

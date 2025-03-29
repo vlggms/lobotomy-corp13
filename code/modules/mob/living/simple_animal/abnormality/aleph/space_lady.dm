@@ -51,7 +51,7 @@
 	var/explosion_timer = 2 SECONDS
 	var/explosion_state = 3
 	var/explosion_damage = 100
-	var/can_act = TRUE
+
 	var/negative_range = 10
 
 //She can't move or attack.

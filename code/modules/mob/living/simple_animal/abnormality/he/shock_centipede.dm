@@ -83,7 +83,7 @@
 	var/coil_cooldown_time = 100
 	var/coil_max_shield = 500
 	var/coil_start_charge = 12
-	var/can_act = TRUE
+
 	var/immortal = FALSE
 
 // Attack vars

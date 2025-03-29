@@ -78,7 +78,7 @@
 	//teleport vars
 	var/teleport_cooldown
 	var/teleport_cooldown_time = 10 SECONDS
-	var/can_act = TRUE
+
 	//dash vars
 	var/charging = FALSE
 	var/can_dash = FALSE

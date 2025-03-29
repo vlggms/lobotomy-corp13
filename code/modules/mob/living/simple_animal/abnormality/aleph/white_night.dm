@@ -290,7 +290,7 @@ GLOBAL_LIST_EMPTY(apostles)
 	mob_size = MOB_SIZE_HUGE
 	blood_volume = BLOOD_VOLUME_NORMAL
 	can_patrol = TRUE // You have legs, use them.
-	var/can_act = TRUE
+
 	var/death_counter = 0
 
 /mob/living/simple_animal/hostile/apostle/Move()

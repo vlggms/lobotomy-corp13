@@ -52,8 +52,6 @@ Difficulty: Hard
 	var/stomp_range = 1
 	/// Stores directions the mob is moving, then calls that a move has fully ended when these directions are removed in moved
 	var/stored_move_dirs = 0
-	/// If the wendigo is allowed to move
-	var/can_move = TRUE
 	/// Stores the last scream time so it doesn't spam it
 	var/last_scream = 0
 

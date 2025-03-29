@@ -54,7 +54,7 @@
 	var/teleport_cooldown
 	var/dash_num = 50	//Mostly a safeguard
 	var/list/been_hit = list()
-	var/can_act = TRUE
+
 	var/initial_charge_damage = 800
 	var/growing_charge_damage = 0
 

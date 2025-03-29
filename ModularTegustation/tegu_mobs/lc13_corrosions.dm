@@ -25,7 +25,7 @@
 	guaranteed_butcher_results = list(/obj/item/food/meat/slab/human = 1)
 	move_to_delay = 5
 	ranged = TRUE
-	var/can_act = TRUE
+
 	/// When this reaches 400 - begins reflecting damage
 	var/damage_taken = 0
 	var/damage_reflection = FALSE
@@ -199,7 +199,7 @@
 	var/poison_damage = 20
 	var/applied_venom = 3
 	var/poison_range = 3
-	var/can_act = TRUE
+
 	var/guntimer
 
 	ranged = TRUE
