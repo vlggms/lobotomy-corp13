@@ -162,18 +162,14 @@
 	del_on_death = TRUE
 	a_intent = INTENT_HARM
 	var/aoe_range = 10
+	can_act = FALSE
+	can_move = FALSE
 
 /mob/living/simple_animal/hostile/sun_pillar/Initialize()
 	..()
 	for(var/mob/living/simple_animal/hostile/sun_pillar/M in src.loc)	//Don't put two down at the same place
 		if(M!=src)
 			qdel(src)
-
-/mob/living/simple_animal/hostile/sun_pillar/AttackingTarget()
-	return FALSE
-
-/mob/living/simple_animal/hostile/sun_pillar/Move()
-	return FALSE
 
 /mob/living/simple_animal/hostile/sun_pillar/Life()
 	..()

@@ -39,6 +39,7 @@
 	)
 	gift_type =  /datum/ego_gifts/diffraction
 	abnormality_origin = ABNORMALITY_ORIGIN_LOBOTOMY
+	can_attack = FALSE
 
 	observation_prompt = "It's invisible to almost all means of measurement, the only way I know it's there is due to the effect it has on the cup of water before me. <br>\
 		I calmly observe the chamber's surroundings and make adjustments when I notice the surface of the cup's liquid begin to bubble."
@@ -60,9 +61,6 @@
 		new /obj/effect/temp_visual/dir_setting/bloodsplatter(get_turf(L), pick(GLOB.alldirs))
 	addtimer(CALLBACK(src, PROC_REF(Melter)), cooldown_time)
 
-
-/mob/living/simple_animal/hostile/abnormality/dimensional_refraction/AttackingTarget()
-	return FALSE
 
 /mob/living/simple_animal/hostile/abnormality/dimensional_refraction/PickTarget(list/Targets)
 	return

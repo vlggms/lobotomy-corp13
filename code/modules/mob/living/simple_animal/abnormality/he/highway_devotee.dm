@@ -34,6 +34,8 @@
 	)
 	gift_type =  /datum/ego_gifts/uturn
 	abnormality_origin = ABNORMALITY_ORIGIN_LIMBUS
+	can_move = FALSE
+	can_attack = FALSE
 
 	observation_prompt = "There's a long, wide road ahead. <br>\
 		You see someone with a sign at the entrance. <br>\
@@ -54,9 +56,6 @@
 
 	var/talk = FALSE
 	var/list/structures = list()
-
-/mob/living/simple_animal/hostile/abnormality/highway_devotee/Move()
-	return FALSE
 
 /mob/living/simple_animal/hostile/abnormality/highway_devotee/Life()
 	..()

@@ -62,6 +62,8 @@
 	var/pulse_damage = 120 // Scales with distance; Ideally, you shouldn't be able to outheal it with white V armor or less
 
 	var/datum/looping_sound/bluestar/soundloop
+	can_act = FALSE
+	can_move = FALSE
 
 /mob/living/simple_animal/hostile/abnormality/bluestar/Initialize()
 	. = ..()
@@ -77,18 +79,12 @@
 	QDEL_IN(src, 5 SECONDS)
 	..()
 
-/mob/living/simple_animal/hostile/abnormality/bluestar/Move()
-	return FALSE
-
 /mob/living/simple_animal/hostile/abnormality/bluestar/Life()
 	. = ..()
 	if(!.) // Dead
 		return FALSE
 	if((pulse_cooldown < world.time) && !(status_flags & GODMODE))
 		BluePulse()
-
-/mob/living/simple_animal/hostile/abnormality/bluestar/CanAttack(atom/the_target)
-	return FALSE
 
 /mob/living/simple_animal/hostile/abnormality/bluestar/proc/BluePulse()
 	pulse_cooldown = world.time + pulse_cooldown_time

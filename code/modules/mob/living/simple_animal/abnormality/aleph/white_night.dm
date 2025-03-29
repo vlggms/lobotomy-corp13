@@ -48,6 +48,8 @@ GLOBAL_LIST_EMPTY(apostles)
 	)
 	gift_type =  /datum/ego_gifts/paradise
 	abnormality_origin = ABNORMALITY_ORIGIN_LOBOTOMY
+	can_move = FALSE
+	can_attack = FALSE
 
 	grouped_abnos = list(
 		/mob/living/simple_animal/hostile/abnormality/onesin = 5,
@@ -84,12 +86,6 @@ GLOBAL_LIST_EMPTY(apostles)
 		"5" = list("Please, mercy...", "Grant us salvation...", "Let us witness in awe..."),
 		)
 	return pick(result_text_list[level])
-
-/mob/living/simple_animal/hostile/abnormality/white_night/AttackingTarget()
-	return FALSE
-
-/mob/living/simple_animal/hostile/abnormality/white_night/Move()
-	return FALSE
 
 /mob/living/simple_animal/hostile/abnormality/white_night/Life()
 	. = ..()

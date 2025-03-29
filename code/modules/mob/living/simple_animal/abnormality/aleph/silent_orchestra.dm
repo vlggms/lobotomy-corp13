@@ -35,6 +35,8 @@
 	)
 	gift_type =  /datum/ego_gifts/dacapo
 	abnormality_origin = ABNORMALITY_ORIGIN_LOBOTOMY
+	can_move = FALSE
+	can_attack = FALSE
 
 	observation_prompt = "I was the conductor of Lobotomy Corporation, I put my everything into it. <br>\
 		Now, I conduct the song of apocalypse to make everything right. <br>As if he is about to start the performance, he stretches his arm. <br>\
@@ -55,9 +57,6 @@
 	/// List of effects currently spawned
 	var/list/performers = list()
 
-/mob/living/simple_animal/hostile/abnormality/silentorchestra/Move()
-	return FALSE
-
 /mob/living/simple_animal/hostile/abnormality/silentorchestra/Life()
 	. = ..()
 	if(!.) // Dead
@@ -70,9 +69,6 @@
 		O.fade_out()
 	performers.Cut()
 	return ..()
-
-/mob/living/simple_animal/hostile/abnormality/silentorchestra/CanAttack(atom/the_target)
-	return FALSE
 
 /mob/living/simple_animal/hostile/abnormality/silentorchestra/proc/DamagePulse()
 	if(current_movement_num < 5)
