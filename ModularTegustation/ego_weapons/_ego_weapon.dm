@@ -118,71 +118,71 @@
 		. += span_nicegreen("This weapon fits in an EGO belt.")
 
 	//Melee stuff is NOT shown on ranged lol
-	if(!is_ranged)
-		if(reach>1)
-			. += span_notice("This weapon has a reach of [reach].")
-
-		if(SSmaptype.chosen_trait == FACILITY_TRAIT_CRITICAL_HITS)
-			if(crit_multiplier!=1)
-				. += span_notice("This weapon has a crit rate of [crit_multiplier]x  normal.")
+	if(is_ranged)
+		return
+	if(reach>1)
+		. += span_notice("This weapon has a reach of [reach].")
+	if(SSmaptype.chosen_trait == FACILITY_TRAIT_CRITICAL_HITS)
+		if(crit_multiplier!=1)
+			. += span_notice("This weapon has a crit rate of [crit_multiplier]x  normal.")
 
 		if(crit_info)
 			. += span_notice("[crit_info]")
 
-		if(throwforce>force)
-			. += span_notice("This weapon deals [throwforce] [damtype] damage when thrown.")
+	if(throwforce>force)
+		. += span_notice("This weapon deals [throwforce] [damtype] damage when thrown.")
 
-		switch(attack_speed)
-			if(-INFINITY to 0.39)
-				. += span_notice("This weapon has a very fast attack speed.")
+	switch(attack_speed)
+		if(-INFINITY to 0.39)
+			. += span_notice("This weapon has a very fast attack speed.")
 
-			if(0.4 to 0.69) // nice
-				. += span_notice("This weapon has a fast attack speed.")
+		if(0.4 to 0.69) // nice
+			. += span_notice("This weapon has a fast attack speed.")
 
-			if(0.7 to 0.99)
-				. += span_notice("This weapon attacks slightly faster than normal.")
+		if(0.7 to 0.99)
+			. += span_notice("This weapon attacks slightly faster than normal.")
 
-			if(1.01 to 1.49)
-				. += span_notice("This weapon attacks slightly slower than normal.")
+		if(1.01 to 1.49)
+			. += span_notice("This weapon attacks slightly slower than normal.")
 
-			if(1.5 to 1.99)
-				. += span_notice("This weapon has a slow attack speed.")
+		if(1.5 to 1.99)
+			. += span_notice("This weapon has a slow attack speed.")
 
-			if(2 to INFINITY)
-				. += span_notice("This weapon attacks extremely slow.")
+		if(2 to INFINITY)
+			. += span_notice("This weapon attacks extremely slow.")
 
-		switch(swingstyle)
-			if(WEAPONSWING_LARGESWEEP)
-				. += span_notice("This weapon can be swung in an arc instead of at a specific target.")
+	switch(swingstyle)
+		if(WEAPONSWING_LARGESWEEP)
+			. += span_notice("This weapon can be swung in an arc instead of at a specific target.")
 
-			if(WEAPONSWING_THRUST)
-				. += span_notice("This weapon can be thrust at tiles up to [reach] tiles away instead of a specific target.")
+		if(WEAPONSWING_THRUST)
+			. += span_notice("This weapon can be thrust at tiles up to [reach] tiles away instead of a specific target.")
 
-		switch(stuntime)
-			if(1 to 2)
-				. += span_notice("This weapon stuns you for a very short duration on hit.")
-			if(2 to 4)
-				. += span_notice("This weapon stuns you for a short duration on hit.")
-			if(5 to 6)
-				. += span_notice("This weapon stuns you for a moderate duration on hit.")
-			if(6 to 8)
-				. += span_danger("CAUTION: This weapon stuns you for a long duration on hit.")
-			if(9 to INFINITY)
-				. += span_danger("WARNING: This weapon stuns you for a very long duration on hit.")
+	switch(stuntime)
+		if(1 to 2)
+			. += span_notice("This weapon stuns you for a very short duration on hit.")
+		if(2 to 4)
+			. += span_notice("This weapon stuns you for a short duration on hit.")
+		if(5 to 6)
+			. += span_notice("This weapon stuns you for a moderate duration on hit.")
+		if(6 to 8)
+			. += span_danger("CAUTION: This weapon stuns you for a long duration on hit.")
+		if(9 to INFINITY)
+			. += span_danger("WARNING: This weapon stuns you for a very long duration on hit.")
 
 
-		switch(knockback)
-			if(KNOCKBACK_LIGHT)
-				. += span_notice("This weapon has slight enemy knockback.")
+	switch(knockback)
+		if(KNOCKBACK_LIGHT)
+			. += span_notice("This weapon has slight enemy knockback.")
 
-			if(KNOCKBACK_MEDIUM)
-				. += span_notice("This weapon has decent enemy knockback.")
+		if(KNOCKBACK_MEDIUM)
+			. += span_notice("This weapon has decent enemy knockback.")
 
-			if(KNOCKBACK_HEAVY)
-				. += span_notice("This weapon has neck-snapping enemy knockback.")
+		if(KNOCKBACK_HEAVY)
+			. += span_notice("This weapon has neck-snapping enemy knockback.")
 
-			else if(knockback)
-				. += span_notice("This weapon has [knockback >= 10 ? "neck-snapping": ""] enemy knockback.")
+		else if(knockback)
+			. += span_notice("This weapon has [knockback >= 10 ? "neck-snapping": ""] enemy knockback.")
 
 
 /obj/item/ego_weapon/Topic(href, href_list)
