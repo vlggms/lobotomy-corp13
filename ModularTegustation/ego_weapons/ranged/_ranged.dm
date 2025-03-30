@@ -136,7 +136,7 @@
 
 	switch(weapon_weight)
 		if(WEAPON_HEAVY)
-			. += span_warning("This weapon requires both hands to fire.")
+			. += span_danger("This weapon requires both hands to fire.")
 		if(WEAPON_MEDIUM)
 			. += span_notice("This weapon can be fired with one hand.")
 		if(WEAPON_LIGHT)
