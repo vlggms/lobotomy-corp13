@@ -371,3 +371,8 @@
 	item_path = /obj/item/ego_weapon/ranged/pistol/tough
 	cost = 20
 
+
+// Sirocco - Desert Wind
+/datum/ego_datum/armor/desert
+	item_path = /obj/item/clothing/suit/armor/ego_gear/teth/desert
+	cost = 20

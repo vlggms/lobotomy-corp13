@@ -9,15 +9,6 @@
 	armor = list(RED_DAMAGE = 0, WHITE_DAMAGE = 10, BLACK_DAMAGE = 0, PALE_DAMAGE = 0) // 10
 
 // Teth
-/obj/item/clothing/suit/armor/ego_gear/teth/desert
-	name = "desert wind"
-	desc = "Dirty rag armor, better than nothing. It's light as a feather, and increases your movement speed by 10%."
-	icon_state = "desert"
-	icon = 'code/modules/mob/living/simple_animal/abnormality/_auxiliary_modes/community/!icons/ego_armor.dmi'
-	worn_icon = 'code/modules/mob/living/simple_animal/abnormality/_auxiliary_modes/community/!icons/ego_worn.dmi'
-	flags_inv = NONE
-	armor = list(RED_DAMAGE = -10, WHITE_DAMAGE = 10, BLACK_DAMAGE = -20, PALE_DAMAGE = 0) // -20
-	slowdown = -0.1
 
 // He
 /obj/item/clothing/suit/armor/ego_gear/he/sunspit
