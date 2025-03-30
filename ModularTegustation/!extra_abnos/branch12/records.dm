@@ -198,7 +198,7 @@
 	abno_type = /mob/living/simple_animal/hostile/abnormality/branch12/nostalgia
 	abno_code = "O-04-12-64"
 	abno_info = list(
-		"When work was completed on O-04-12-64, it would take a chunk of employee's SP and dispense a capsule.",
+		"When Insight work was completed on O-04-12-64, it would take a chunk of employee's SP and dispense a capsule.",
 		"This capsule could be used to heal the SP of the person that used it.",
 	)
 
