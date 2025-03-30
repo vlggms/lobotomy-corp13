@@ -281,7 +281,7 @@
 
 //Golden Weave
 /obj/item/paper/fluff/info/branch12/golden_weave
-	abno_type = /mob/living/simple_animal/hostile/abnormality/branch12/sunset
+	abno_type = /mob/living/simple_animal/hostile/abnormality/branch12/weave
 	abno_code = "F-01-12-444"
 	abno_info = list(
 		"When the work result was good the qliphoth counter lowered by 1 at a low rate.",

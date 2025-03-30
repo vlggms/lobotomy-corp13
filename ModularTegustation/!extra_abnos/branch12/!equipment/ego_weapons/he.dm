@@ -185,11 +185,11 @@
 /obj/item/ego_weapon/ranged/branch12/memorable
 	name = "Something Memorable"
 	desc = "It's something memorable, something to believe in."
-	icon_state = "lucifer"
-	inhand_icon_state = "lucifer"
-	special = "Use in hand to load bullets."
+	icon_state = "memorable"
+	inhand_icon_state = "memorable"
+	special = "Use in hand to load bullets. Bullets fire in a 3x3 AOE."
 	force = 20
-	projectile_path = /obj/projectile/ego_bullet/lucifer
+	projectile_path = /obj/projectile/ego_bullet/memorable
 	weapon_weight = WEAPON_HEAVY
 	spread = 5
 	recoil = 1.5

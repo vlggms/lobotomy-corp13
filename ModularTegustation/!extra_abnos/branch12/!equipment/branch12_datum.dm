@@ -120,6 +120,11 @@
 	item_path = /obj/item/ego_weapon/branch12/mini/gold_needle
 	cost = 35
 
+//Long Bird - Egoification!
+/datum/ego_datum/weapon/branch12/egoification
+	item_path = /obj/item/ego_weapon/branch12/egoification
+	cost = 35
+
 // Velvet Horizon - Something Memorable & A Big Day
 /datum/ego_datum/weapon/branch12/memorable
 	item_path = /obj/item/ego_weapon/ranged/branch12/memorable

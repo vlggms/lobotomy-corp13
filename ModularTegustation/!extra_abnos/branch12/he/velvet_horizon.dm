@@ -7,7 +7,7 @@
 	icon_living = "horizon"
 	maxHealth = 1200
 	health = 1200
-	threat_level = TETH_LEVEL
+	threat_level = HE_LEVEL
 	stat_attack = HARD_CRIT
 	move_to_delay = 5
 	vision_range = 12
