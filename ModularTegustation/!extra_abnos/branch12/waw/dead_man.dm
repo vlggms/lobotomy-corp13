@@ -84,11 +84,11 @@
 		return FALSE
 	if(!died.lastattackerckey)
 		return FALSE
-	datum_reference.qliphoth_change(-1) // One death reduces it, but it has to be killed by a player
 	var/look_for_ckey = died.lastattackerckey
 	for(var/mob/living/carbon/human/H in GLOB.player_list)
 		if(H.ckey == look_for_ckey)
 			marked_man = H
+	datum_reference.qliphoth_change(-1) // One death reduces it, but it has to be killed by a player
 	return TRUE
 
 /mob/living/simple_animal/hostile/abnormality/branch12/deadman/Life(mob/living/carbon/human/user, work_type, pe, work_time)
