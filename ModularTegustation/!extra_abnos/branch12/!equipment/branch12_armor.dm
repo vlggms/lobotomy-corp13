@@ -163,6 +163,17 @@
 							)
 
 
+/obj/item/clothing/suit/armor/ego_gear/branch12/plasmacore
+	name = "Plasmacore E-6"
+	desc = "A very snazzy looking blue dress jacket, befitting of a captain."
+	icon_state = "plasmacore"
+	flags_inv = NONE
+	armor = list(RED_DAMAGE = 30, WHITE_DAMAGE = 30, BLACK_DAMAGE = 30, PALE_DAMAGE = 50)
+	attribute_requirements = list(
+							TEMPERANCE_ATTRIBUTE = 80,
+							)
+
+
 // --------ALEPH---------
 /obj/item/clothing/suit/armor/ego_gear/branch12/purity
 	name = "purity"
@@ -182,6 +193,18 @@
 	desc = "A reflection of the moon."
 	icon_state = "lunar_night"
 	armor = list(RED_DAMAGE = 50, WHITE_DAMAGE = 50, BLACK_DAMAGE = 70, PALE_DAMAGE = 70) // 240
+	attribute_requirements = list(
+							FORTITUDE_ATTRIBUTE = 80,
+							PRUDENCE_ATTRIBUTE = 80,
+							TEMPERANCE_ATTRIBUTE = 80,
+							JUSTICE_ATTRIBUTE = 100
+							)
+
+/obj/item/clothing/suit/armor/ego_gear/branch12/XXI
+	name = "XXI"
+	desc = "A colorful coat that reminds you that it's time for a new beginning."
+	icon_state = "arcana"
+	armor = list(RED_DAMAGE = 60, WHITE_DAMAGE = 60, BLACK_DAMAGE = 60, PALE_DAMAGE = 60) // 240
 	attribute_requirements = list(
 							FORTITUDE_ATTRIBUTE = 80,
 							PRUDENCE_ATTRIBUTE = 80,

@@ -259,3 +259,8 @@
 /datum/ego_datum/weapon/branch12/executioner
 	item_path = /obj/item/ego_weapon/ranged/branch12/lucifer/executioner
 	cost = 100
+
+// Sage of the World - XXI
+/datum/ego_datum/armor/branch12/XXI
+	item_path = /obj/item/clothing/suit/armor/ego_gear/branch12/XXI
+	cost = 100

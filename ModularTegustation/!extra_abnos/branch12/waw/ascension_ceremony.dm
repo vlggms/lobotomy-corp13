@@ -63,9 +63,9 @@
 
 
 /mob/living/simple_animal/hostile/abnormality/branch12/ascension_ceremony/death()
-	..()
 	for(var/turf/T in spaceturfs)
-		addtimer(CALLBACK(T, TYPE_PROC_REF(/datum, _RemoveElement), list(0)), 20)
+		T.RemoveElement(/datum/element/forced_gravity, 0)
+	..()
 	QDEL_NULL(soundloop)
 
 /mob/living/simple_animal/hostile/abnormality/branch12/ascension_ceremony/SuccessEffect(mob/living/carbon/human/user, work_type, pe)
