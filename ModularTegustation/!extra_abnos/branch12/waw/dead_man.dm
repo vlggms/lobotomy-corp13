@@ -135,6 +135,11 @@
 	..()
 
 //Patrol stuff
+
+/mob/living/simple_animal/hostile/abnormality/branch12/deadman/PickTarget(list/Targets) // Only patrol to the marked
+	if(marked_man)
+		return marked_man
+
 /mob/living/simple_animal/hostile/abnormality/branch12/deadman/patrol_reset()
 	. = ..()
 	if(marked_man)
