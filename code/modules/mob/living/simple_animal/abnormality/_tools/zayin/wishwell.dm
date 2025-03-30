@@ -187,7 +187,7 @@
 	for(var/path in subtypesof(/datum/ego_datum))
 		var/datum/ego_datum/ego = path
 		//No Branch 12 stuff, it's not 100% balanced for basegame
-		if(istype(ego, /datum/ego_datum/branch12))
+		if(istype(ego, /datum/ego_datum/weapon/branch12) || istype(ego, /datum/ego_datum/armor/branch12))
 			continue
 
 		switch(initial(ego.cost))

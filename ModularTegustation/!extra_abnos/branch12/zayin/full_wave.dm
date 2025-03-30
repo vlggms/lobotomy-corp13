@@ -23,8 +23,8 @@
 	chem_type = /datum/reagent/abnormality/abno_oil
 
 	ego_list = list(
-		/datum/ego_datum/weapon/signal,
-		/datum/ego_datum/armor/signal,
+		/datum/ego_datum/weapon/branch12/signal,
+		/datum/ego_datum/armor/branch12/signal,
 	)
 	//gift_type =  /datum/ego_gifts/signal
 	abnormality_origin = ABNORMALITY_ORIGIN_BRANCH12

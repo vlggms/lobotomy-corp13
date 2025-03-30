@@ -1,16 +1,16 @@
 
 // --------ZAYIN---------
 // Full-Wave M'aider - Signal
-/datum/ego_datum/weapon/signal
+/datum/ego_datum/weapon/branch12/signal
 	item_path = /obj/item/ego_weapon/ranged/branch12/mini/signal
 	cost = 10
 
-/datum/ego_datum/armor/signal
+/datum/ego_datum/armor/branch12/signal
 	item_path = /obj/item/clothing/suit/armor/ego_gear/branch12/signal
 	cost = 10
 
 // Statue Of Forgiveness - Serenity
-/datum/ego_datum/weapon/serenity
+/datum/ego_datum/weapon/branch12/serenity
 	item_path = /obj/item/ego_weapon/branch12/mini/serenity
 	cost = 10
 
@@ -44,16 +44,16 @@
 
 // --------TETH---------
 // Statue Of Forgiveness - Serenity
-/datum/ego_datum/armor/serenity
+/datum/ego_datum/armor/branch12/serenity
 	item_path = /obj/item/clothing/suit/armor/ego_gear/branch12/serenity
 	cost = 20
 
 // Vow of a Dove - Departure
-/datum/ego_datum/weapon/departure
+/datum/ego_datum/weapon/branch12/departure
 	item_path = /obj/item/ego_weapon/branch12/departure
 	cost = 20
 
-/datum/ego_datum/armor/departure
+/datum/ego_datum/armor/branch12/departure
 	item_path = /obj/item/clothing/suit/armor/ego_gear/branch12/departure
 	cost = 20
 
@@ -102,11 +102,11 @@
 
 // --------HE---------
 // The Show Goes On - Perfectionist
-/datum/ego_datum/weapon/perfectionist
+/datum/ego_datum/weapon/branch12/perfectionist
 	item_path = /obj/item/ego_weapon/branch12/perfectionist
 	cost = 35
 
-/datum/ego_datum/armor/perfectionist
+/datum/ego_datum/armor/branch12/perfectionist
 	item_path = /obj/item/clothing/suit/armor/ego_gear/branch12/perfectionist
 	cost = 35
 
@@ -145,7 +145,7 @@
 
 // --------WAW---------
 // Ollieoxenfree - Plagiarism
-/datum/ego_datum/weapon/plagiarism
+/datum/ego_datum/weapon/branch12/plagiarism
 	item_path = /obj/item/ego_weapon/branch12/plagiarism
 	cost = 50
 
@@ -154,11 +154,11 @@
 	cost = 50
 
 // Joe Shmoe - Average Joe
-/datum/ego_datum/weapon/joe
+/datum/ego_datum/weapon/branch12/joe
 	item_path = /obj/item/ego_weapon/branch12/joe
 	cost = 50
 
-/datum/ego_datum/armor/joe
+/datum/ego_datum/armor/branch12/joe
 	item_path = /obj/item/clothing/suit/armor/ego_gear/branch12/joe
 	cost = 50
 
@@ -181,11 +181,11 @@
 	cost = 50
 
 // Queen Keres - Degraded Honor
-/datum/ego_datum/weapon/degraded_honor
+/datum/ego_datum/weapon/branch12/degraded_honor
 	item_path = /obj/item/ego_weapon/branch12/honor
 	cost = 50
 
-/datum/ego_datum/armor/degraded_honor
+/datum/ego_datum/armor/branch12/degraded_honor
 	item_path = /obj/item/clothing/suit/armor/ego_gear/branch12/degraded_honor
 	cost = 50
 
@@ -195,11 +195,11 @@
 	cost = 50
 
 //Hand of Babel - Babelling Rumor
-/datum/ego_datum/weapon/rumor
+/datum/ego_datum/weapon/branch12/rumor
 	item_path = /obj/item/ego_weapon/branch12/rumor
 	cost = 50
 
-/datum/ego_datum/armor/rumor
+/datum/ego_datum/armor/branch12/rumor
 	item_path = /obj/item/clothing/suit/armor/ego_gear/branch12/rumor
 	cost = 50
 
@@ -227,22 +227,22 @@
 
 // --------ALEPH---------
 // Old Man and The Pale - Purity
-/datum/ego_datum/weapon/purity
+/datum/ego_datum/weapon/branch12/purity
 	item_path = /obj/item/ego_weapon/branch12/purity
 	cost = 100
 
-/datum/ego_datum/armor/purity
+/datum/ego_datum/armor/branch12/purity
 	item_path = /obj/item/clothing/suit/armor/ego_gear/branch12/purity
 	cost = 100
 
 
 // Heart Of Madness - Pulsating Insanity
-/datum/ego_datum/weapon/insanity
+/datum/ego_datum/weapon/branch12/insanity
 	item_path = /obj/item/ego_weapon/branch12/mini/insanity
 	cost = 100
 
 // Consilium Fracas - Sands of Time
-/datum/ego_datum/weapon/time_sands
+/datum/ego_datum/weapon/branch12/time_sands
 	item_path = /obj/item/ego_weapon/branch12/time_sands
 	cost = 100
 

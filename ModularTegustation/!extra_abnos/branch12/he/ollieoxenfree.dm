@@ -35,7 +35,7 @@
 	work_damage_type = BLACK_DAMAGE
 
 	ego_list = list(
-		/datum/ego_datum/weapon/plagiarism,
+		/datum/ego_datum/weapon/branch12/plagiarism,
 		/datum/ego_datum/armor/branch12/plagiarism,
 	)
 
