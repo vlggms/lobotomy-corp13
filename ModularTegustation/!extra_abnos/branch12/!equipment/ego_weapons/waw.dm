@@ -534,7 +534,7 @@
 	fire_sound_volume = 30
 	fire_delay = 15
 
-	attribute_requirements = list(INSTINCT_ATTRIBUTE = 80)
+	attribute_requirements = list(FORTITUDE_ATTRIBUTE = 80)
 	shotsleft = 15
 	reloadtime = 100 SECONDS
 
