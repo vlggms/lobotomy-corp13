@@ -88,8 +88,10 @@
 		if(research>=100 && prob(40))
 			research++
 	else	//goes down if it's low, and integrity lowers as well
-		research--
-		integrity--
+		if(prob(40))
+			research--
+		if(prob(40))
+			integrity--
 
 	switch(orders)
 		if("repair")

@@ -357,10 +357,19 @@
 // Ascension Ceremony
 /obj/item/paper/fluff/info/branch12/ascension
 	abno_type = /mob/living/simple_animal/hostile/abnormality/branch12/ascension_ceremony
-	abno_code = "T-01-12-451"
+	abno_code = "T-01-12-201"
 	abno_info = list(
 		"When the work result was bad, the Qliphoth counter decreased.",
 		"When the work result was good, the employee recieved an oxygen tank, refilling their oxygen completely.",
+	)
+
+// Dead Man's Plan
+/obj/item/paper/fluff/info/branch12/deadman
+	abno_type = /mob/living/simple_animal/hostile/abnormality/branch12/deadman
+	abno_code = "O-01-12-612"
+	abno_info = list(
+		"When an abnormality in the facility was suppressed, the qliphoth counter decreased.",
+		"WARNING: Do not let any employee marked by O-01-12-612 to leave the facility floor.",
 	)
 
 //	-------------ALEPH-------------
