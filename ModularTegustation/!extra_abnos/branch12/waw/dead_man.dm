@@ -28,7 +28,7 @@
 		ABNORMALITY_WORK_ATTACHMENT = 30,
 		ABNORMALITY_WORK_REPRESSION = 50,
 	)
-	work_damage_amount = 9
+	work_damage_amount = 12
 	work_damage_type = BLACK_DAMAGE
 
 	//So you can see him coming through doors
