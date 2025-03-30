@@ -78,6 +78,8 @@
 
 /mob/living/simple_animal/hostile/abnormality/branch12/deadman/proc/on_mob_death(datum/source, mob/living/died, gibbed)
 	SIGNAL_HANDLER
+	if(!IsContained())
+		return
 	if(!istype(died, /mob/living/simple_animal/hostile/abnormality))
 		return FALSE
 	if(died.z != z)
