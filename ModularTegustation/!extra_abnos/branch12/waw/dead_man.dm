@@ -23,10 +23,10 @@
 	start_qliphoth = 5
 
 	work_chances = list(
-	//	ABNORMALITY_WORK_INSTINCT = list(20, 20, 25, 30, 30),
-	//	ABNORMALITY_WORK_INSIGHT = 60,
-	//	ABNORMALITY_WORK_ATTACHMENT = 30,
-	//	ABNORMALITY_WORK_REPRESSION = list(40, 45, 50, 55, 60),
+		ABNORMALITY_WORK_INSTINCT = 45,
+		ABNORMALITY_WORK_INSIGHT = 0,
+		ABNORMALITY_WORK_ATTACHMENT = 30,
+		ABNORMALITY_WORK_REPRESSION = 50,
 	)
 	work_damage_amount = 9
 	work_damage_type = BLACK_DAMAGE
@@ -50,7 +50,7 @@
 
 //Attacking stuff
 /mob/living/simple_animal/hostile/abnormality/branch12/deadman/CanAttack(atom/the_target)
-	if(ishuman(the_target))
+	if(ismob(the_target))
 		if(the_target!=marked_man)
 			return FALSE
 	return TRUE
@@ -82,7 +82,9 @@
 		return FALSE
 	if(died.z != z)
 		return FALSE
-	datum_reference.qliphoth_change(-1) // One death reduces it
+	if(!died.lastattackerckey)
+		return FALSE
+	datum_reference.qliphoth_change(-1) // One death reduces it, but it has to be killed by a player
 	var/look_for_ckey = died.lastattackerckey
 	for(var/mob/living/carbon/human/H in GLOB.player_list)
 		if(H.ckey == look_for_ckey)
@@ -91,15 +93,20 @@
 
 /mob/living/simple_animal/hostile/abnormality/branch12/deadman/Life(mob/living/carbon/human/user, work_type, pe, work_time)
 	..()
+	if(IsContained())
+		return
+
 	if(prob(20))//Low-effort, low processing way to check if people are constantly around him, to reduce bodyblocking.
 		//I won't be emptying this list, so you can't keep pestering him and then running away.
 		for(var/mob/living/carbon/human/H in range(2,src))
 			if(H in nearby_players)	//If you try to bodyblock him in a door, stun and bleed.
 				H.Stun(20)
+				H.Knockdown(20)
 				H.apply_lc_bleed(15)
 				say("Begone. I quarrel not with you, fool.")
 				nearby_players -= H
-			nearby_players|=H
+			else
+				nearby_players|=H
 
 	//Kill them if they run to the manager's floor.
 	if(marked_man.z!=z)
@@ -125,6 +132,7 @@
 	sound_to_playing_players_on_level('sound/abnormalities/silence/bong.ogg', 50, zlevel = z)
 	for(var/mob/H in GLOB.player_list)
 		to_chat(H, span_userdanger("You. [marked_man]. You will be slain for your sins."))
+	..()
 
 //Patrol stuff
 /mob/living/simple_animal/hostile/abnormality/branch12/deadman/patrol_reset()

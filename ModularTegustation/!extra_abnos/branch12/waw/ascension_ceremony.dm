@@ -28,21 +28,28 @@
 
 	ego_list = list(
 		/datum/ego_datum/weapon/branch12/plasmacoree6,
+		//datum/ego_datum/weapon/branch12/antique,
 		/datum/ego_datum/armor/branch12/plasmacoree6,
 	)
 
 	var/datum/looping_sound/bluestar/soundloop
 	var/list/spaceturfs = list()
+	var/list/spaceeffects = list()
 	patrol_cooldown_time = 5 SECONDS	//Tends to get stuck
 
 /mob/living/simple_animal/hostile/abnormality/branch12/ascension_ceremony/Initialize()
 	. = ..()
+	ADD_TRAIT(src, TRAIT_SPACEWALK, INNATE_TRAIT)
 	soundloop = new(list(src), FALSE)
 	if(prob(30))
 		icon_state = "void"
 
 /mob/living/simple_animal/hostile/abnormality/branch12/ascension_ceremony/Destroy()
 	QDEL_NULL(soundloop)
+	for(var/turf/T in spaceturfs)
+		T.AddElement(/datum/element/forced_gravity, 1, TRUE)
+	for(var/V in spaceeffects)
+		qdel(V)
 	return ..()
 
 /mob/living/simple_animal/hostile/abnormality/branch12/ascension_ceremony/WorktickFailure(mob/living/carbon/human/user)
@@ -56,19 +63,18 @@
 /mob/living/simple_animal/hostile/abnormality/branch12/ascension_ceremony/Life()
 	..()
 	for(var/turf/T in view(12,src))
-		spaceturfs |= T
+		if(T in spaceturfs)
+			continue
+		spaceturfs += T
 		T.AddElement(/datum/element/forced_gravity, 0)
+
+		var/obj/effect/ascensionsparkles/S = new (get_turf(T))
+		spaceeffects+=S
 	if(!IsContained())
 		for(var/mob/living/carbon/H in view(12,src))
 			H.apply_damage(9, OXY, null, H.run_armor_check(null, PALE_DAMAGE), spread_damage = TRUE)
 			new /obj/effect/temp_visual/mermaid_drowning(get_turf(H))
 
-
-/mob/living/simple_animal/hostile/abnormality/branch12/ascension_ceremony/death()
-	for(var/turf/T in spaceturfs)
-		T.RemoveElement(/datum/element/forced_gravity, 0)
-	..()
-	QDEL_NULL(soundloop)
 
 /mob/living/simple_animal/hostile/abnormality/branch12/ascension_ceremony/SuccessEffect(mob/living/carbon/human/user, work_type, pe)
 	user.adjustOxyLoss(-100)
@@ -76,3 +82,11 @@
 /mob/living/simple_animal/hostile/abnormality/branch12/ascension_ceremony/BreachEffect(mob/living/carbon/human/user, breach_type)
 	. = ..()
 	soundloop.start()
+
+/obj/effect/ascensionsparkles
+	gender = PLURAL
+	name = "sparkles"
+	icon = 'icons/effects/effects.dmi'
+	icon_state = "shieldsparkles"
+	anchored = TRUE
+	alpha = 50
