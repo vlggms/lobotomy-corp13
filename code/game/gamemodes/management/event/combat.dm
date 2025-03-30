@@ -80,7 +80,7 @@ GLOBAL_VAR_INIT(wcorp_enemy_faction, "") //decides which faction WCorp will be u
 				addtimer(CALLBACK(src, PROC_REF(counterincrease)), 3 MINUTES)
 				to_chat(world, span_userdanger("Players will be victorius 20 minutes."))
 
-				switch(rand(1,4))
+				switch(rand(1,5))
 					if(1)
 						GLOB.wcorp_enemy_faction = "lovetown"
 					if(2)
@@ -89,6 +89,8 @@ GLOBAL_VAR_INIT(wcorp_enemy_faction, "") //decides which faction WCorp will be u
 						GLOB.wcorp_enemy_faction = "peccatulum"
 					if(4)
 						GLOB.wcorp_enemy_faction = "shrimp"
+					if(5)
+						GLOB.wcorp_enemy_faction = "bloodfiends"
 
 				RegisterSignal(SSdcs, COMSIG_GLOB_MOB_DEATH, PROC_REF(CheckLiving))
 
