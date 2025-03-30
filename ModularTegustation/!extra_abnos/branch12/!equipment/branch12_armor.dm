@@ -62,6 +62,12 @@
 	icon_state = "acupuncture"
 	armor = list(RED_DAMAGE = -20, WHITE_DAMAGE = 10, BLACK_DAMAGE = 30, PALE_DAMAGE = 0)
 
+/obj/item/clothing/suit/armor/ego_gear/branch12/loving_memory
+	name = "In Loving Memory"
+	desc = "A Memorandum, for that which you forgot."
+	icon_state = "loving_memory"
+	armor = list(RED_DAMAGE = -20, WHITE_DAMAGE = 20, BLACK_DAMAGE = 20, PALE_DAMAGE = 0)
+
 // --------HE---------
 /obj/item/clothing/suit/armor/ego_gear/branch12/perfectionist
 	name = "perfectionist"
@@ -81,6 +87,23 @@
 							JUSTICE_ATTRIBUTE = 40
 							)
 
+/obj/item/clothing/suit/armor/ego_gear/branch12/memorable
+	name = "something memorable"
+	desc = "Come on, give me something memorable, something to believe in. I've been waiting for this long."
+	icon_state = "memorable"
+	armor = list(RED_DAMAGE = 50, WHITE_DAMAGE = 20, BLACK_DAMAGE = -20, PALE_DAMAGE = 20)
+	attribute_requirements = list(
+							JUSTICE_ATTRIBUTE = 40
+							)
+
+/obj/item/clothing/suit/armor/ego_gear/branch12/solar_day
+	name = "solar day"
+	desc = "After the night is gone, is the light of a new day."
+	icon_state = "solar_day"
+	armor = list(RED_DAMAGE = 40, WHITE_DAMAGE = 40, BLACK_DAMAGE = -10, PALE_DAMAGE = 0)
+	attribute_requirements = list(
+							PRUDENCE_ATTRIBUTE = 40
+							)
 
 // --------WAW---------
 /obj/item/clothing/suit/armor/ego_gear/branch12/joe

@@ -31,8 +31,9 @@
 	del_on_death = FALSE
 
 	ego_list = list(
-	//	/datum/ego_datum/weapon/match,
-	//	/datum/ego_datum/armor/match,
+		/datum/ego_datum/weapon/branch12/memorable,
+		/datum/ego_datum/weapon/branch12/big_day,
+		/datum/ego_datum/armor/branch12/memorable,
 	)
 	//gift_type =  /datum/ego_gifts/match
 	abnormality_origin = ABNORMALITY_ORIGIN_BRANCH12

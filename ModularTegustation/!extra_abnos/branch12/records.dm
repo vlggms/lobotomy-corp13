@@ -183,6 +183,7 @@
 		"After each neutral or failure work, the employee working on O-01-12-523 would spend 200 Facility PE, and in exchange would gift the employee a weapon.",
 		"These weapons were of generally poor quality. It is recomended for Clerks to use said weapons.",
 	)
+
 //Sunset at the Pyramids
 /obj/item/paper/fluff/info/branch12/sunset
 	abno_type = /mob/living/simple_animal/hostile/abnormality/branch12/sunset
@@ -190,6 +191,15 @@
 	abno_info = list(
 		"When work was completed on M-04-12-476, the lotuses covering it changed colour. The damage it did to the next employee corresponded to the colour of these lotuses.",
 		"Carrying out a work type appropriate to the lotus' colour resulted in massively increased success rate, while failing to do so resulted in punishment.",
+	)
+
+//Whiff of Nostalgia
+/obj/item/paper/fluff/info/branch12/nostalgia
+	abno_type = /mob/living/simple_animal/hostile/abnormality/branch12/nostalgia
+	abno_code = "O-04-12-64"
+	abno_info = list(
+		"When work was completed on O-04-12-64, it would take a chunk of employee's SP and dispense a capsule.",
+		"This capsule could be used to heal the SP of the person that used it.",
 	)
 
 //	-------------HE-------------
@@ -268,6 +278,16 @@
 		"When the work result was neutral the qliphoth counter lowered by 1 at a normal rate.",
 		"When the work result was bad the qliphoth counter lowered by 1.",
 	)
+
+//Golden Weave
+/obj/item/paper/fluff/info/branch12/golden_weave
+	abno_type = /mob/living/simple_animal/hostile/abnormality/branch12/sunset
+	abno_code = "F-01-12-444"
+	abno_info = list(
+		"When the work result was good the qliphoth counter lowered by 1 at a low rate.",
+		"When the work result was bad the qliphoth counter lowered by 1.",
+	)
+
 //	-------------WAW-------------
 // Queen Keres
 /obj/item/paper/fluff/info/branch12/queen_keres
@@ -334,6 +354,14 @@
 		"M-01-12-554 seemed to be impervious to all attacks.",
 	)
 
+// Ascension Ceremony
+/obj/item/paper/fluff/info/branch12/ascension
+	abno_type = /mob/living/simple_animal/hostile/abnormality/branch12/ascension_ceremony
+	abno_code = "T-01-12-451"
+	abno_info = list(
+		"When the work result was bad, the Qliphoth counter decreased.",
+		"When the work result was good, the employee recieved an oxygen tank, refilling their oxygen completely.",
+	)
 
 //	-------------ALEPH-------------
 // Old Man and The Pale

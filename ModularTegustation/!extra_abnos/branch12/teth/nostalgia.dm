@@ -16,6 +16,10 @@
 	work_damage_type = WHITE_DAMAGE
 	abnormality_origin = ABNORMALITY_ORIGIN_BRANCH12
 	var/ready = TRUE
+	ego_list = list(
+		//datum/ego_datum/weapon/branch12/loving_memory,
+		/datum/ego_datum/armor/branch12/loving_memory,
+	)
 
 /mob/living/simple_animal/hostile/abnormality/branch12/nostalgia/PostWorkEffect(mob/living/carbon/human/user, work_type, pe, work_time)
 	if(work_type == ABNORMALITY_WORK_INSIGHT)

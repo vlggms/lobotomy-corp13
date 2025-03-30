@@ -14,6 +14,13 @@
 	)
 	work_damage_amount = 5
 	work_damage_type = PALE_DAMAGE //placeholder for the first work
+
+	ego_list = list(
+		/datum/ego_datum/weapon/branch12/white_lotus,
+		/datum/ego_datum/weapon/branch12/black_lotus,
+		//datum/ego_datum/armor/branch12/white_lotus,
+	)
+
 	var/list/lotus = list(ABNORMALITY_WORK_INSTINCT, ABNORMALITY_WORK_INSIGHT, ABNORMALITY_WORK_ATTACHMENT, ABNORMALITY_WORK_REPRESSION)
 	var/wanted_work
 	abnormality_origin = ABNORMALITY_ORIGIN_BRANCH12

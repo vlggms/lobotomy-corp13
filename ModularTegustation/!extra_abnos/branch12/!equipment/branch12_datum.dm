@@ -84,6 +84,21 @@
 	item_path = /obj/item/clothing/suit/armor/ego_gear/branch12/starry_night
 	cost = 20
 
+// Sunset at the Pyramids - White Lotus & Black Lotus
+/datum/ego_datum/weapon/branch12/white_lotus
+	item_path = /obj/item/ego_weapon/branch12/mini/white_lotus
+	cost = 20
+
+/datum/ego_datum/weapon/branch12/black_lotus
+	item_path = /obj/item/ego_weapon/shield/branch12/mini/black_lotus
+	cost = 20
+
+
+// Whiff Of Nostalgia - In Loving Memory
+/datum/ego_datum/armor/branch12/loving_memory
+	item_path = /obj/item/clothing/suit/armor/ego_gear/branch12/loving_memory
+	cost = 20
+
 
 // --------HE---------
 // The Show Goes On - Perfectionist
@@ -98,6 +113,29 @@
 //Deus Ex Machina - Medea
 /datum/ego_datum/armor/branch12/medea
 	item_path = /obj/item/clothing/suit/armor/ego_gear/branch12/medea
+	cost = 35
+
+//Golden Weave - Gold Needle
+/datum/ego_datum/weapon/branch12/needle
+	item_path = /obj/item/ego_weapon/branch12/mini/gold_needle
+	cost = 35
+
+// Velvet Horizon - Something Memorable & A Big Day
+/datum/ego_datum/weapon/branch12/memorable
+	item_path = /obj/item/ego_weapon/ranged/branch12/memorable
+	cost = 35
+
+/datum/ego_datum/weapon/branch12/big_day
+	item_path = /obj/item/ego_weapon/ranged/branch12/memorable/big_day
+	cost = 35
+
+/datum/ego_datum/armor/branch12/memorable
+	item_path = /obj/item/clothing/suit/armor/ego_gear/branch12/memorable
+	cost = 35
+
+//Helios Effigy - Solar Day
+/datum/ego_datum/armor/branch12/solar_day
+	item_path = /obj/item/clothing/suit/armor/ego_gear/branch12/solar_day
 	cost = 35
 
 // --------WAW---------
@@ -187,7 +225,7 @@
 	cost = 100
 
 
-// Fly me to the Moon - Lunar Night
+// Selene Effigy - Lunar Night
 /datum/ego_datum/weapon/branch12/lunar_night
 	item_path = /obj/item/ego_weapon/branch12/lunar_night
 	cost = 100
@@ -196,7 +234,18 @@
 	item_path = /obj/item/clothing/suit/armor/ego_gear/branch12/lunar_night
 	cost = 100
 
+
 // Schwarzschild Radius - Darkness
 /datum/ego_datum/weapon/branch12/darkness
 	item_path = /obj/item/ego_weapon/branch12/darkness
+	cost = 100
+
+
+// Altar of the Black Sun - Lucifer, Morning Star & Executioner
+/datum/ego_datum/weapon/branch12/lucifer
+	item_path = /obj/item/ego_weapon/ranged/branch12/lucifer
+	cost = 100
+
+/datum/ego_datum/weapon/branch12/executioner
+	item_path = /obj/item/ego_weapon/ranged/branch12/lucifer/executioner
 	cost = 100

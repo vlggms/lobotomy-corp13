@@ -28,16 +28,16 @@
 	minimum_distance = 4
 	work_chances = list(
 		ABNORMALITY_WORK_INSTINCT = 40,
-		ABNORMALITY_WORK_INSIGHT = 40,
-		ABNORMALITY_WORK_ATTACHMENT = 40,
-		ABNORMALITY_WORK_REPRESSION = 40,
+		ABNORMALITY_WORK_INSIGHT = 30,
+		ABNORMALITY_WORK_ATTACHMENT = 20,
+		ABNORMALITY_WORK_REPRESSION = 60,
 	)
 	work_damage_amount = 7
 	work_damage_type = BLACK_DAMAGE
 
 	ego_list = list(
-		//datum/ego_datum/weapon/trick,
-		//datum/ego_datum/armor/trick,
+		/datum/ego_datum/weapon/branch12/needle,
+		//datum/ego_datum/armor/branch12/needle,
 	)
 	//gift_type =  /datum/ego_gifts/trick
 	abnormality_origin = ABNORMALITY_ORIGIN_BRANCH12
@@ -56,6 +56,12 @@
 		qdel(V)
 		current_weaves-=V
 	..()
+
+/mob/living/simple_animal/hostile/abnormality/branch12/weave/SuccessEffect(mob/living/carbon/human/user, work_type, pe)
+	. = ..()
+	if(prob(20))
+		datum_reference.qliphoth_change(-1)
+	return
 
 /mob/living/simple_animal/hostile/abnormality/branch12/weave/FailureEffect(mob/living/carbon/human/user, work_type, pe)
 	. = ..()

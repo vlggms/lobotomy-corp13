@@ -1,4 +1,3 @@
-//Just don't fall in.
 /mob/living/simple_animal/hostile/abnormality/branch12/pentacle_genie
 	name = "Genie of Pentacles"
 	desc = "A belly dancer."
