@@ -41,10 +41,28 @@
 /mob/living/simple_animal/hostile/abnormality/nosferatu/Initialize()
 	. = ..()
 	if(SSmaptype.maptype == "limbus_labs")
-		ChangeResistances(list(RED_DAMAGE = 1, WHITE_DAMAGE = 1.2, BLACK_DAMAGE = 0.4, PALE_DAMAGE = 1.5))
+		ChangeResistances(list(RED_DAMAGE = 2, WHITE_DAMAGE = 1.2, BLACK_DAMAGE = 0.4, PALE_DAMAGE = 1.5))
 		summon_cooldown_time = 60 MINUTES
 		bat_spawn_number = 0
 		faction = list("neutral", "nosferatu")
+
+/mob/living/simple_animal/hostile/abnormality/laetitia/Initialize()
+	. = ..()
+	if(SSmaptype.maptype == "limbus_labs")
+		faction = list("neutral", "laetitia")
+
+/mob/living/simple_animal/hostile/abnormality/judgement_bird/Initialize()
+	. = ..()
+	if(SSmaptype.maptype == "limbus_labs")
+		faction = list("neutral", "bird")
+		var/mob/living/simple_animal/hostile/runawaybird/V = new(get_turf(src))
+		birdlist+=V
+		V = new(get_turf(src))
+
+/mob/living/simple_animal/hostile/abnormality/schadenfreude/Life()//Hes just a little guy, let him schmoove a bit
+	. = ..()
+	if(SSmaptype.maptype == "limbus_labs")
+		seen = TRUE
 
 //The faction changes let them kill each other with their abilities while sentient
 /mob/living/simple_animal/hostile/abnormality/nosferatu/Login()
@@ -135,17 +153,53 @@
 	if(SSmaptype.maptype == "limbus_labs")
 		faction = list("neutral", "bee")
 
-/mob/living/simple_animal/hostile/laetitia/Initialize()
-	. = ..()
-	if(SSmaptype.maptype == "limbus_labs")
-		faction = list("neutral", "laetitia")
-
-/mob/living/simple_animal/hostile/laetitia/Login()
+/mob/living/simple_animal/hostile/abnormality/laetitia/Login()
 	. = ..()
 	if(SSmaptype.maptype == "limbus_labs")
 		faction = list("laetitia")
 
-/mob/living/simple_animal/hostile/laetitia/Logout()
+/mob/living/simple_animal/hostile/abnormality/laetitia/Logout()
 	. = ..()
 	if(SSmaptype.maptype == "limbus_labs")
 		faction = list("neutral", "laetitia")
+
+/mob/living/simple_animal/hostile/abnormality/fairy_gentleman/Login()
+	. = ..()
+	if(SSmaptype.maptype == "limbus_labs")
+		faction = list("fairy")
+
+/mob/living/simple_animal/hostile/abnormality/fairy_longlegs/Login()
+	. = ..()
+	if(SSmaptype.maptype == "limbus_labs")
+		faction = list("fairy")
+
+/mob/living/simple_animal/hostile/abnormality/scarecrow/Login()
+	. = ..()
+	if(SSmaptype.maptype == "limbus_labs")
+		faction = list("oz")
+
+/mob/living/simple_animal/hostile/abnormality/sphinx/Login()
+	. = ..()
+	if(SSmaptype.maptype == "limbus_labs")
+		faction = list("pharaoh")
+
+/mob/living/simple_animal/hostile/abnormality/judgement_bird/Login()
+	. = ..()
+	if(SSmaptype.maptype == "limbus_labs")
+		faction = list("bird")
+
+/mob/living/simple_animal/hostile/runawaybird/Initialize()
+	. = ..()
+	if(SSmaptype.maptype == "limbus_labs")
+		faction = list("neutral", "bird")
+		status_flags = MUST_HIT_PROJECTILE
+
+/mob/living/simple_animal/hostile/runawaybird/Login()
+	. = ..()
+	if(SSmaptype.maptype == "limbus_labs")
+		faction = list("hostile", "bird")
+
+/mob/living/simple_animal/hostile/runawaybird/Logout()
+	. = ..()
+	if(SSmaptype.maptype == "limbus_labs")
+		faction = list("neutral", "bird")

@@ -102,31 +102,42 @@
 	playsound(get_turf(src), 'sound/abnormalities/judgementbird/pre_ability.ogg', 50, 0, 2)
 	SLEEP_CHECK_DEATH(2 SECONDS)
 	playsound(get_turf(src), 'sound/abnormalities/judgementbird/ability.ogg', 75, 0, 7)
-	for(var/mob/living/L in urange(judgement_range, src))
-		if(faction_check_mob(L, FALSE))
-			continue
-		if(L.stat == DEAD)
-			continue
-		new /obj/effect/temp_visual/judgement(get_turf(L))
-		L.deal_damage(judgement_damage, PALE_DAMAGE)
+	if(SSmaptype.maptype == "limbus_labs")
+		for(var/mob/living/L in oview(judgement_range, src))//Listen I need jbird to not kill people through walls if hes going to play nice
+			if(faction_check_mob(L, FALSE))
+				continue
+			if(L.stat == DEAD)
+				continue
+			new /obj/effect/temp_visual/judgement(get_turf(L))
+			L.deal_damage(judgement_damage, PALE_DAMAGE)
 
-		if(L.stat == DEAD)	//Gotta fucking check again in case it kills you. Real moment
-			if(!IsCombatMap())
-				var/turf/T = get_turf(L)
-				if(locate(/obj/structure/jbird_noose) in T)
-					T = pick_n_take(T.reachableAdjacentTurfs())//if a noose is on this tile, it'll still create another one. You probably shouldn't be letting this many people die to begin with
-					L.forceMove(T)
-				var/obj/structure/jbird_noose/N = new(get_turf(L))
-				N.buckle_mob(L)
-				playsound(get_turf(L), 'sound/abnormalities/judgementbird/kill.ogg', 75, 0, 7)
-				playsound(get_turf(L), 'sound/abnormalities/judgementbird/hang.ogg', 100, 0, 7)
-				var/mob/living/simple_animal/hostile/runawaybird/V = new(get_turf(L))
-				birdlist+=V
-				V = new(get_turf(L))
-				birdlist+=V
+	else
+		for(var/mob/living/L in urange(judgement_range, src))
+			if(faction_check_mob(L, FALSE))
+				continue
+			if(L.stat == DEAD)
+				continue
+			new /obj/effect/temp_visual/judgement(get_turf(L))
+			L.deal_damage(judgement_damage, PALE_DAMAGE)
+
+			if(L.stat == DEAD)	//Gotta fucking check again in case it kills you. Real moment
+				if(!IsCombatMap())
+					var/turf/T = get_turf(L)
+					if(locate(/obj/structure/jbird_noose) in T)
+						T = pick_n_take(T.reachableAdjacentTurfs())//if a noose is on this tile, it'll still create another one. You probably shouldn't be letting this many people die to begin with
+						L.forceMove(T)
+					var/obj/structure/jbird_noose/N = new(get_turf(L))
+					N.buckle_mob(L)
+					playsound(get_turf(L), 'sound/abnormalities/judgementbird/kill.ogg', 75, 0, 7)
+					playsound(get_turf(L), 'sound/abnormalities/judgementbird/hang.ogg', 100, 0, 7)
+					var/mob/living/simple_animal/hostile/runawaybird/V = new(get_turf(L))
+					birdlist+=V
+					V = new(get_turf(L))
+					birdlist+=V
 
 	icon_state = icon_living
 	judging = FALSE
+	return
 
 /mob/living/simple_animal/hostile/abnormality/judgement_bird/NeutralEffect(mob/living/carbon/human/user, work_type, pe)
 	. = ..()
