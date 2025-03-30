@@ -2227,10 +2227,6 @@
 /obj/structure/window/reinforced/spawner{
 	dir = 4
 	},
-/obj/machinery/computer/med_data{
-	dir = 1;
-	pixel_x = -3
-	},
 /turf/open/floor/mineral/titanium/blue,
 /area/centcom)
 "jZ" = (
@@ -7072,6 +7068,10 @@
 	dir = 1;
 	resistance_flags = 115;
 	pixel_x = 2
+	},
+/obj/machinery/computer/med_data{
+	dir = 1;
+	pixel_x = 29
 	},
 /turf/open/floor/mineral/titanium/blue,
 /area/centcom)
