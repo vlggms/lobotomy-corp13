@@ -29,7 +29,7 @@
 		ABNORMALITY_WORK_REPRESSION = 50,
 	)
 	work_damage_amount = 12
-	work_damage_type = BLACK_DAMAGE
+	work_damage_type = RED_DAMAGE
 
 	//So you can see him coming through doors
 	light_color = COLOR_BUBBLEGUM_RED

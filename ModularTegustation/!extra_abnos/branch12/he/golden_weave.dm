@@ -25,7 +25,7 @@
 
 	ranged = 1
 	retreat_distance = 3
-	minimum_distance = 4
+	minimum_distance = 1
 	work_chances = list(
 		ABNORMALITY_WORK_INSTINCT = 40,
 		ABNORMALITY_WORK_INSIGHT = 30,
