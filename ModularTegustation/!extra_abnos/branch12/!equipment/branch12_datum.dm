@@ -208,6 +208,11 @@
 	item_path = /obj/item/ego_weapon/branch12/ten_thousand_dolers
 	cost = 50
 
+//Ascension Ceremony - Plasmacore E-6
+/datum/ego_datum/weapon/branch12/plasmacoree6
+	item_path =/obj/item/ego_weapon/ranged/branch12/mini/plasmacoree6
+	cost = 50
+
 // --------ALEPH---------
 // Old Man and The Pale - Purity
 /datum/ego_datum/weapon/purity

@@ -26,6 +26,10 @@
 	faction = list("hostile", "neutral")
 	start_qliphoth = 2
 
+	ego_list = list(
+		/datum/ego_datum/weapon/branch12/plasmacoree6,
+	)
+
 	var/datum/looping_sound/bluestar/soundloop
 	var/list/spaceturfs = list()
 

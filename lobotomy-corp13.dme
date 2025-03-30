@@ -3976,6 +3976,7 @@
 #include "ModularTegustation\!extra_abnos\branch12\!equipment\ego_weapons\aleph.dm"
 #include "ModularTegustation\!extra_abnos\branch12\!equipment\ego_weapons\he.dm"
 #include "ModularTegustation\!extra_abnos\branch12\!equipment\ego_weapons\teth.dm"
+#include "ModularTegustation\!extra_abnos\branch12\!equipment\ego_weapons\waw.dm"
 #include "ModularTegustation\!extra_abnos\branch12\!tools\compass.dm"
 #include "ModularTegustation\!extra_abnos\branch12\!tools\eye.dm"
 #include "ModularTegustation\!extra_abnos\branch12\!tools\midnight.dm"
