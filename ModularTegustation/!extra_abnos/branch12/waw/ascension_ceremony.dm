@@ -28,7 +28,7 @@
 
 	ego_list = list(
 		/datum/ego_datum/weapon/branch12/plasmacoree6,
-		//datum/ego_datum/weapon/branch12/antique,
+		/datum/ego_datum/weapon/branch12/antique,
 		/datum/ego_datum/armor/branch12/plasmacoree6,
 	)
 

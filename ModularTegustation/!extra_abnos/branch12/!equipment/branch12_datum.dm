@@ -212,9 +212,13 @@
 	item_path = /obj/item/clothing/suit/armor/ego_gear/branch12/ten_thousand_dolers
 	cost = 50
 
-//Ascension Ceremony - Plasmacore E-6
+//Ascension Ceremony - Plasmacore E-6 & Captain's Antique Laser Gun
 /datum/ego_datum/weapon/branch12/plasmacoree6
-	item_path =/obj/item/ego_weapon/ranged/branch12/mini/plasmacoree6
+	item_path = /obj/item/ego_weapon/ranged/branch12/mini/plasmacoree6
+	cost = 50
+
+/datum/ego_datum/weapon/branch12/antique
+	item_path = /obj/item/ego_weapon/ranged/branch12/antique
 	cost = 50
 
 /datum/ego_datum/armor/branch12/plasmacoree6

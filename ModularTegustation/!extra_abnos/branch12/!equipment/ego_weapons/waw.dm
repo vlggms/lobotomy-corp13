@@ -500,7 +500,6 @@
 	special = "Use in hand to load bullets."
 	force = 20
 	projectile_path = /obj/projectile/ego_bullet/plasmacoree6
-	weapon_weight = WEAPON_HEAVY
 	spread = 5
 	fire_sound = 'sound/weapons/laser3.ogg'
 	vary_fire_sound = TRUE
@@ -508,9 +507,8 @@
 	fire_delay = 15
 
 	attribute_requirements = list(TEMPERANCE_ATTRIBUTE = 80)
-	shotsleft = 4
+	shotsleft = 5
 	reloadtime = 1 SECONDS
-
 
 /obj/item/ego_weapon/ranged/branch12/mini/plasmacoree6/reload_ego(mob/user)
 	if(shotsleft == initial(shotsleft))
@@ -521,6 +519,37 @@
 		playsound(src, 'sound/weapons/gun/general/slide_lock_1.ogg', 50, TRUE)
 		shotsleft +=1
 	is_reloading = FALSE
+
+/obj/item/ego_weapon/ranged/branch12/antique
+	name = "Captain's Antique Laser Gun"
+	desc = "A beautiful laser gun coming from a far away space station."
+	icon_state = "space"
+	inhand_icon_state = "space"
+	special = "This gun regenerates bullets over time, instead of being reloaded."
+	force = 20
+	projectile_path = /obj/projectile/ego_bullet/plasmacoree6
+	spread = 5
+	fire_sound = 'sound/weapons/laser3.ogg'
+	vary_fire_sound = TRUE
+	fire_sound_volume = 30
+	fire_delay = 15
+
+	attribute_requirements = list(INSTINCT_ATTRIBUTE = 80)
+	shotsleft = 15
+	reloadtime = 100 SECONDS
+
+/obj/item/ego_weapon/ranged/branch12/antique/Initialize()
+	addtimer(CALLBACK(src, PROC_REF(charge)), 10 SECONDS)
+
+/obj/item/ego_weapon/ranged/branch12/antique/proc/charge()
+	addtimer(CALLBACK(src, PROC_REF(charge)), 10 SECONDS)
+
+	if(shotsleft <= initial(shotsleft))
+		shotsleft++
+
+/obj/item/ego_weapon/ranged/branch12/antique/reload_ego(mob/user)
+	to_chat(user,"<span class='notice'>You see no way to reload this EGO.</span>")
+
 
 /obj/projectile/ego_bullet/plasmacoree6
 	name = "plasmacore e6"
