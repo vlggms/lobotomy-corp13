@@ -32,16 +32,12 @@
 
 	//How much food and ammo you have
 	var/supplies = 100
-
 	//How much fuel your station has
 	var/fuel = 100
-
 	//How much damage is taken by the station. Goes down very slowly.
 	var/integrity = 100
-
 	//How safe the station is. When this gets to 0, lower hull integrity quickly.
 	var/security = 70
-
 	//How much research capacity you have. Increases quota PE when above 20
 	var/research = 0
 

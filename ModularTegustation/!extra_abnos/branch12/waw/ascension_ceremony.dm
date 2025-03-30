@@ -33,6 +33,7 @@
 
 	var/datum/looping_sound/bluestar/soundloop
 	var/list/spaceturfs = list()
+	patrol_cooldown_time = 5 SECONDS	//Tends to get stuck
 
 /mob/living/simple_animal/hostile/abnormality/branch12/ascension_ceremony/Initialize()
 	. = ..()
