@@ -105,11 +105,13 @@
 	if(special)
 		. += span_notice("[special]")
 	if(LAZYLEN(attribute_requirements))
-		if(!ishuman(user) || CanUseEgo(user))
+		if(!ishuman(user))	//You get a notice if you are a ghost or otherwise
+			. += span_notice("It has <a href='?src=[REF(src)];list_attributes=1'>certain requirements</a> for the wearer.")
+		else if(CanUseEgo(user))	//It's green if you can use it
 			. += span_nicegreen("It has <a href='?src=[REF(src)];list_attributes=1'>certain requirements</a> for the wearer.")
-		else
-			. += span_warning("You cannot use this EGO!")
-			. += span_warning("It has <a href='?src=[REF(src)];list_attributes=1'>certain requirements</a> for the wearer.")
+		else				//and red if you cannot use it
+			. += span_danger("You cannot use this EGO!")
+			. += span_danger("It has <a href='?src=[REF(src)];list_attributes=1'>certain requirements</a> for the wearer.")
 
 	var/list/typecache_small = typecacheof(GLOB.small_ego)
 	if(is_type_in_typecache(src, typecache_small))
@@ -164,9 +166,9 @@
 			if(5 to 6)
 				. += span_notice("This weapon stuns you for a moderate duration on hit.")
 			if(6 to 8)
-				. += span_warning("CAUTION: This weapon stuns you for a long duration on hit.")
+				. += span_danger("CAUTION: This weapon stuns you for a long duration on hit.")
 			if(9 to INFINITY)
-				. += span_warning("WARNING: This weapon stuns you for a very long duration on hit.")
+				. += span_danger("WARNING: This weapon stuns you for a very long duration on hit.")
 
 
 		switch(knockback)
@@ -186,10 +188,10 @@
 /obj/item/ego_weapon/Topic(href, href_list)
 	. = ..()
 	if(href_list["list_attributes"])
-		var/display_text = span_warning("<b>It requires the following attributes:</b>")
+		var/display_text = span_danger("<b>It requires the following attributes:</b>")
 		for(var/atr in attribute_requirements)
 			if(attribute_requirements[atr] > 0)
-				display_text += "\n <span class='warning'>[atr]: [attribute_requirements[atr]].</span>"
+				display_text += "\n <span class='danger'>[atr]: [attribute_requirements[atr]].</span>"
 		display_text += SpecialGearRequirements()
 		to_chat(usr, display_text)
 

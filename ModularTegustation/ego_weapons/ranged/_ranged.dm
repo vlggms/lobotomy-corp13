@@ -118,7 +118,7 @@
 		. += span_notice("Ammo Counter: [shotsleft]/[initial(shotsleft)].")
 	if(reloadtime && shotsleft<=0)	//Different text if it's empty
 		. += span_danger("Ammo Counter: [shotsleft]/[initial(shotsleft)].")
-	else
+	if(!reloadtime)
 		. += span_notice("This weapon has unlimited ammo.")
 
 	if(reloadtime)
@@ -130,9 +130,9 @@
 			if(1.21 SECONDS to 1.71 SECONDS)
 				. += span_notice("This weapon has a normal reload speed.")
 			if(1.71 SECONDS to 2.51 SECONDS)
-				. += span_warning("This weapon has a slow reload.")
+				. += span_danger("This weapon has a slow reload.")
 			if(2.51 to INFINITY)
-				. += span_warning("This weapon has an extremely slow reload.")
+				. += span_danger("This weapon has an extremely slow reload.")
 
 	switch(weapon_weight)
 		if(WEAPON_HEAVY)
@@ -151,9 +151,9 @@
 			if(11 to 15)
 				. += span_notice("This weapon fires slightly slower than usual.")
 			if(16 to 20)
-				. += span_warning("This weapon fires slowly.")
+				. += span_danger("This weapon fires slowly.")
 			else
-				. += span_warning("This weapon fires extremely slowly.")
+				. += span_danger("This weapon fires extremely slowly.")
 	else
 		//Give it to 'em in true rounds per minute, accurate to the 5s
 		var/rpm = 600 / autofire
@@ -171,7 +171,11 @@
 /obj/item/ego_weapon/ranged/proc/GunAttackInfo()
 	if(!last_projectile_damage || !last_projectile_type)
 		return span_userdanger("The bullet of this EGO gun has not properly initialized, report this to coders!")
+	if(pellets > 1)	//for shotguns
+		return span_notice("Its bullets deal [round(last_projectile_damage, 0.1)] x [pellets] [last_projectile_type] damage.[projectile_damage_multiplier != 1 ? " (+ [(projectile_damage_multiplier - 1) * 100]%)" : ""]")
+
 	return span_notice("Its bullets deal [round(last_projectile_damage, 0.1)] [last_projectile_type] damage.[projectile_damage_multiplier != 1 ? " (+ [(projectile_damage_multiplier - 1) * 100]%)" : ""]")
+
 
 /// Updates the damage/type of projectiles inside of the gun
 /obj/item/ego_weapon/ranged/proc/update_projectile_examine()
