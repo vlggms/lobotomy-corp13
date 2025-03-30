@@ -77,7 +77,7 @@
 		to_chat(owner, span_nicegreen("You have heard the rumor, and it must be spread"))
 		var/mob/living/carbon/human/H = owner
 		connected_abno = locate(/mob/living/simple_animal/hostile/abnormality/branch12/babel) in GLOB.abnormality_mob_list
-		connected_abno.rumors += H
+		connected_abno.rumors |= H
 
 
 /datum/status_effect/display/rumor/tick()

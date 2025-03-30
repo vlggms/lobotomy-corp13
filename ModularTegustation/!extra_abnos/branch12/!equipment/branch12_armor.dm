@@ -173,6 +173,24 @@
 							TEMPERANCE_ATTRIBUTE = 80,
 							)
 
+/obj/item/clothing/suit/armor/ego_gear/branch12/icon
+	name = "Icon of Chaos"
+	desc = "A blue suitcoat with a beautiful black skirt."
+	icon_state = "chaos"
+	armor = list(RED_DAMAGE = 30, WHITE_DAMAGE = 20, BLACK_DAMAGE = 30, PALE_DAMAGE = 60)
+	attribute_requirements = list(
+							TEMPERANCE_ATTRIBUTE = 80,
+							)
+
+/obj/item/clothing/suit/armor/ego_gear/branch12/ten_thousand_dolers
+	name = "100000 Dollars"
+	desc = "A very expensive outfit marked with gold."
+	icon_state = "doler"
+	armor = list(RED_DAMAGE = 30, WHITE_DAMAGE = 30, BLACK_DAMAGE = 60, PALE_DAMAGE = 20)
+	attribute_requirements = list(
+							TEMPERANCE_ATTRIBUTE = 80,
+							)
+
 
 // --------ALEPH---------
 /obj/item/clothing/suit/armor/ego_gear/branch12/purity
@@ -180,7 +198,7 @@
 	desc = "This EGO holds the weight of the user's past mistakes, sins, shame and guilt. \
 		The only way to use it properly is to have complete and total conviction in your goal."
 	icon_state = "purity"
-	armor = list(RED_DAMAGE = 50, WHITE_DAMAGE = 90, BLACK_DAMAGE = 50, PALE_DAMAGE = 50) // 240
+	armor = list(RED_DAMAGE = 50, WHITE_DAMAGE = 80, BLACK_DAMAGE = 50, PALE_DAMAGE = 60) // 240
 	attribute_requirements = list(
 							FORTITUDE_ATTRIBUTE = 80,
 							PRUDENCE_ATTRIBUTE = 100,
@@ -198,6 +216,18 @@
 							PRUDENCE_ATTRIBUTE = 80,
 							TEMPERANCE_ATTRIBUTE = 80,
 							JUSTICE_ATTRIBUTE = 100
+							)
+
+/obj/item/clothing/suit/armor/ego_gear/branch12/darkness
+	name = "darkness"
+	desc = "A beautiful suit the color of darkness."
+	icon_state = "darkness"
+	armor = list(RED_DAMAGE = 60, WHITE_DAMAGE = 50, BLACK_DAMAGE = 80, PALE_DAMAGE = 50) // 240
+	attribute_requirements = list(
+							FORTITUDE_ATTRIBUTE = 80,
+							PRUDENCE_ATTRIBUTE = 80,
+							TEMPERANCE_ATTRIBUTE = 100,
+							JUSTICE_ATTRIBUTE = 80
 							)
 
 /obj/item/clothing/suit/armor/ego_gear/branch12/XXI

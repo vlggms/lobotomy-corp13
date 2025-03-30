@@ -203,14 +203,22 @@
 	item_path = /obj/item/clothing/suit/armor/ego_gear/branch12/rumor
 	cost = 50
 
-//Genie of Pentacles - 10000dolers
+//Genie of Pentacles - 10000 dolers
 /datum/ego_datum/weapon/branch12/ten_thousand_dolers
 	item_path = /obj/item/ego_weapon/branch12/ten_thousand_dolers
+	cost = 50
+
+/datum/ego_datum/armor/branch12/ten_thousand_dolers
+	item_path = /obj/item/clothing/suit/armor/ego_gear/branch12/ten_thousand_dolers
 	cost = 50
 
 //Ascension Ceremony - Plasmacore E-6
 /datum/ego_datum/weapon/branch12/plasmacoree6
 	item_path =/obj/item/ego_weapon/ranged/branch12/mini/plasmacoree6
+	cost = 50
+
+/datum/ego_datum/armor/branch12/plasmacoree6
+	item_path = /obj/item/clothing/suit/armor/ego_gear/branch12/plasmacore
 	cost = 50
 
 // --------ALEPH---------
@@ -250,6 +258,10 @@
 	item_path = /obj/item/ego_weapon/branch12/darkness
 	cost = 100
 
+/datum/ego_datum/armor/branch12/darkness
+	item_path = /obj/item/clothing/suit/armor/ego_gear/branch12/darkness
+	cost = 100
+
 
 // Altar of the Black Sun - Lucifer, Morning Star & Executioner
 /datum/ego_datum/weapon/branch12/lucifer
@@ -259,6 +271,7 @@
 /datum/ego_datum/weapon/branch12/executioner
 	item_path = /obj/item/ego_weapon/ranged/branch12/lucifer/executioner
 	cost = 100
+
 
 // Sage of the World - XXI
 /datum/ego_datum/armor/branch12/XXI

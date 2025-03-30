@@ -32,7 +32,7 @@
 
 	ego_list = list(
 		/datum/ego_datum/weapon/branch12/ten_thousand_dolers,
-		//datum/ego_datum/armor/branch12/ten_thousand_dolers,
+		/datum/ego_datum/armor/branch12/ten_thousand_dolers,
 	)
 	//gift_type =  /datum/ego_gifts/departure
 	abnormality_origin = ABNORMALITY_ORIGIN_BRANCH12
