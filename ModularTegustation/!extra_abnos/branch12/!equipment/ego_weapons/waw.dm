@@ -539,6 +539,7 @@
 	reloadtime = 100 SECONDS
 
 /obj/item/ego_weapon/ranged/branch12/antique/Initialize()
+	..()
 	addtimer(CALLBACK(src, PROC_REF(charge)), 10 SECONDS)
 
 /obj/item/ego_weapon/ranged/branch12/antique/proc/charge()
