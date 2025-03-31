@@ -242,7 +242,7 @@
 		),
 		list(
 			"id" = "consuming_augment",
-			"name" = "Consuming Augment, []",
+			"name" = "Consuming Augment",
 			"ahn_cost" = 50,
 			"ep_cost" = 4,
 			"desc" = "You gain a new ability called \"Consuming Augment\". When you use this ability, you are able to select a dead simple mob corpse right next to you. (Pointed spell) Once you do, you will gib that corpse and gain something depending on the effect's []. This ability has a cooldown of 40 seconds.\n\[HP\]: Gibbing a corpse will cause you to heal 25% of your max HP\n\[Protection\]: Gibbing a corpse will cause you to take 40% less damage from all attacks for 30 seconds.\n\[Strength\]: Gibbing a corpse will cause you to deal 40% more damage with your attacks for 30 seconds.",
@@ -250,7 +250,7 @@
 		),
 		list(
 			"id" = "mark",
-			"name" = "[] Mark",
+			"name" = "Mark",
 			"ahn_cost" = 50,
 			"ep_cost" = 4,
 			"desc" = "You gain a new ability called \"Mark Target\". This causes you to select a target (Pointed spell), who will become marked by you for 30 seconds. (You can't mark yourself). The effects of the mark are determined by the effects []. This has a cooldown of 1 minute.\n\[Commander\]: The marked target takes 50% more damage from all melee attacks, (excluding your attacks.)\n\[Protection\]: The marked target takes 50% less damage from damage, as long as you are within 3 sqrs of them.\n\[Assassination\]: The marked target takes 50% more damage from your attacks, as long as they are not targeting you. (They need to have a target in order to get the damage buff), (This only works on hostile mobs)\n\[Aid\]: The marked target heals 4 HP every time you attack a mob. This has a cooldown of half a second.",
