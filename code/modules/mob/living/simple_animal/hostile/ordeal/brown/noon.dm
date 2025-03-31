@@ -39,7 +39,6 @@
 	rupture_damage = 4
 	dismember_probability = 100
 	var/mob/living/carbon/human/grab_victim = null
-	var/can_act = TRUE
 	var/release_threshold = 200 //Total raw damage needed to break a player out of a grab (from any source)
 	var/release_damage = 0
 	var/grab_progress = 0
