@@ -114,12 +114,12 @@
 /obj/item/ego_weapon/ranged/examine(mob/user)
 	. = ..()
 	. += GunAttackInfo()
-	if(reloadtime && shotsleft>0)
-		. += span_notice("Ammo Counter: [shotsleft]/[initial(shotsleft)].")
-	else if(reloadtime && shotsleft<=0)	//Different text if it's empty
-		. += span_danger("Ammo Counter: [shotsleft]/[initial(shotsleft)].")
-	else
+	if(!reloadtime)
 		. += span_notice("This weapon has unlimited ammo.")
+	else if(shotsleft>0)
+		. += span_notice("Ammo Counter: [shotsleft]/[initial(shotsleft)].")
+	else 
+		. += span_danger("Ammo Counter: [shotsleft]/[initial(shotsleft)].")
 
 	if(reloadtime)
 		switch(reloadtime)
