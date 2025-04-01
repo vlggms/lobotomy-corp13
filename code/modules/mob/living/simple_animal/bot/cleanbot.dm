@@ -49,7 +49,7 @@
 	var/static/list/research = list("Research Director" = "Ph.D.", "Roboticist" = "M.S.", "Scientist" = "B.S.")
 	var/static/list/legal = list("Lawyer" = "Esq.")
 	var/static/list/LC_highStaff = list("Arbiter"="Arbiter","Lord"="Lord","Sephirah"="Sephirah","Shopkeep" = "EO.","Archivist" = "RO.", "Templar Banner Knight"="Agent Cpt.", "Department Head"="Dep. Head")
-	var/static/list/LC_lowStaff = list("Department Captain"="Dep. Cpt.","Veteran Agent"="Veteran","Senior Agent"="Sr. Agent","Templar Knight"="Templar Knight","Agent Intern"="Intern")
+	var/static/list/LC_lowStaff = list("Department Captain"="Dep. Cpt.","Veteran Agent"="Veteran","Senior Agent"="Sr. Agent","Templar Knight"="Templar Knight","Squire"="Intern")
 	var/static/list/LC_clerks = list("Clerk"="Clerk")
 
 	var/list/prefixes

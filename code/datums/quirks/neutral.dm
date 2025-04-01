@@ -27,7 +27,7 @@
 		// Common folk
 		if("Templar Knight")
 			heirloom_type = pick(/obj/item/toy/plush/bigbird, /obj/item/toy/plush/big_bad_wolf, /obj/item/toy/plush/pinocchio)
-		if("Agent Intern")
+		if("Squire")
 			heirloom_type = pick(/obj/item/toy/plush/scorched)
 		if("Clerk")
 			heirloom_type = pick(/obj/item/toy/plush/moth)

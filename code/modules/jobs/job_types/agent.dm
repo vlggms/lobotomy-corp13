@@ -149,7 +149,7 @@
 
 // Trainee, for new players
 /datum/job/agent/intern
-	title = "Agent Intern"
+	title = "Squire"
 	selection_color = "#ccaaaa"
 	total_positions = -1
 	spawn_positions = -1
@@ -165,10 +165,10 @@
 		If there is a Records Officer, seek them out for assistance.\
 	"
 
-	job_abbreviation = "INRN"
+	job_abbreviation = "SQRE"
 
 /datum/outfit/job/agent/intern
-	name = "Agent Intern"
+	name = "Squire"
 	jobtype = /datum/job/agent/intern
 	head = null
 	l_hand = null

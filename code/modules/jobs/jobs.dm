@@ -123,7 +123,7 @@ GLOBAL_LIST_INIT(security_positions, list(
 	"Agent Lieutenant",
 	"Senior Agent",
 	"Templar Knight",
-	"Agent Intern",
+	"Squire",
 
 	// LCB Labs
 	"High Security Commander",

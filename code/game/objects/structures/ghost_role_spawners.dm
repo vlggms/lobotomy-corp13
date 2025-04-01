@@ -998,7 +998,7 @@
 
 //Tutorial agent
 /datum/outfit/tutorial
-	name = "Agent Intern"
+	name = "Squire"
 
 	head = null
 	belt = null

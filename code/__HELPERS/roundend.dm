@@ -202,7 +202,7 @@
 				"Clerk",
 				"Templar Banner Knight",
 				"Templar Knight",
-				"Agent Intern",
+				"Squire",
 				"Shopkeep",
 				"Archivist",
 				"Training Officer",

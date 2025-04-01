@@ -48,7 +48,7 @@ GLOBAL_DATUM_INIT(crewmonitor, /datum/crewmonitor, new)
 		"Veteran Agent" = 12,
 		"Senior Agent" = 13,
 		"Templar Knight" = 14,
-		"Agent Intern" = 15,
+		"Squire" = 15,
 		// 20-29: Medbay
 		"Chief Medical Officer" = 20,
 		"Chemist" = 21,
