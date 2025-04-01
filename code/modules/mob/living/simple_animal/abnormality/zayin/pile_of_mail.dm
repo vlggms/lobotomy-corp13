@@ -147,7 +147,7 @@
 			chance *= 2
 			continue
 		chance = 20
-		if(role in list("Lord", "Extraction Officer", "Records Officer","High Priest"))
+		if(role in list("Lord", "Shopkeep", "Archivist","High Priest"))
 			weaken = TRUE
 		var/threat_type = pickweight(list(
 			/obj/item/mailpaper/trapped/fairies = 10,

@@ -16,9 +16,9 @@
 		// Command
 		if("Lord")
 			heirloom_type = pick(/obj/item/toy/plush/angela)
-		if("Extraction Officer")
+		if("Shopkeep")
 			heirloom_type = pick(/obj/item/toy/plush/binah)
-		if("Records Officer")
+		if("Archivist")
 			heirloom_type = pick(/obj/item/toy/plush/hokma)
 		if("Templar Banner Knight")
 			heirloom_type = pick(/obj/item/toy/plush/mosb, /obj/item/toy/plush/melt)

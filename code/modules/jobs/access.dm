@@ -373,7 +373,7 @@
 			return "Code Scotch"
 
 /proc/get_all_jobs()
-	return list("Clerk","Agent Intern", "Templar Knight", "Senior Agent", "Veteran Agent", "Agent Lieutenant", "Templar Banner Knight", "Department Captain", "Department Head","High Priest", "Records Officer", "Extraction Officer", "Lord", "Main Office Representative",
+	return list("Clerk","Agent Intern", "Templar Knight", "Senior Agent", "Veteran Agent", "Agent Lieutenant", "Templar Banner Knight", "Department Captain", "Department Head","High Priest", "Archivist", "Shopkeep", "Lord", "Main Office Representative",
 		"Rabbit Team", "Rabbit Team Leader", "Disciplinary Officer", "Emergency Response Agent", "Training Officer",
 
 		//R Corp Assault

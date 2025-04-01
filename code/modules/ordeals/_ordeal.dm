@@ -161,8 +161,8 @@
 		"Templar Banner Knight",
 		"Templar Knight",
 		"Agent Intern",
-		"Extraction Officer",
-		"Records Officer",
+		"Shopkeep",
+		"Archivist",
 		"Training Officer",
 		)
 	if(human_mob.mind.assigned_role in valid_roles)

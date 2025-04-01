@@ -70,7 +70,7 @@
 			if((SSmaptype.maptype in SSmaptype.citymaps) || (SSmaptype.maptype in SSmaptype.combatmaps))
 				return
 			else
-				var/list/slowdown_free_roles = list("Clerk", "Agent Support Clerk", "Facility Support Clerk", "Extraction Officer")
+				var/list/slowdown_free_roles = list("Clerk", "Agent Support Clerk", "Facility Support Clerk", "Shopkeep")
 				if(!(user.mind.assigned_role in slowdown_free_roles))
 					user.add_or_update_variable_movespeed_modifier(/datum/movespeed_modifier/too_many_armors)
 

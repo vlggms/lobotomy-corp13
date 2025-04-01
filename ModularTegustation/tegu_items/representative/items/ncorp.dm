@@ -61,7 +61,7 @@
 	desc = "A fluid used to increase the limit of L-Corp officer's potential. Use in hand to activate."
 	icon_state = "oddity7_gween"
 	amount = 80
-	allowed_roles = list("Records Officer", "Extraction Officer")
+	allowed_roles = list("Archivist", "Shopkeep")
 
 //Temporary attributes
 #define STATUS_EFFECT_FORTITUDE /datum/status_effect/ncorp/fortitude

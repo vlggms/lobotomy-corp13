@@ -15,7 +15,7 @@
 
 //Extraction, for less copypaste
 /datum/job/command
-	title = "Extraction Officer"
+	title = "Shopkeep"
 	department_head = list("Lord")
 	faction = "Station"
 	total_positions = 1
@@ -37,7 +37,7 @@
 	mapexclude = list("mini")
 	job_important = "You are the Extraction Officer. Your job is to manage the EGO console, Extraction purchase console, and power generation system. Your main goal is to ensure Agents are well-equipped with EGO."
 
-	job_abbreviation = "EO"
+	job_abbreviation = "SHOP"
 
 	job_attribute_limit = 60
 	roundstart_attributes = list(
@@ -57,7 +57,7 @@
 		outfit_owner.adjust_all_attribute_levels(60)
 
 /datum/outfit/job/command/extraction
-	name = "Extraction Officer"
+	name = "Shopkeep"
 	jobtype = /datum/job/command
 	suit =  /obj/item/clothing/suit/armor/extraction
 
@@ -72,7 +72,7 @@
 
 //Records
 /datum/job/command/records
-	title = "Records Officer"
+	title = "Archivist"
 	outfit = /datum/outfit/job/command/records
 	exp_requirements = 600
 	job_important = "\
@@ -84,14 +84,14 @@
 
 	job_notice = "Being in charge of handling Abnormality documentation, you should also assist new Interns and Clerks in learning how to work at L-Corp."
 
-	job_abbreviation = "RO"
+	job_abbreviation = "ARCH"
 
 /datum/job/command/records/after_spawn(mob/living/outfit_owner, mob/M)
 	. = ..()
 	ADD_TRAIT(outfit_owner, TRAIT_WORK_KNOWLEDGE, JOB_TRAIT)
 
 /datum/outfit/job/command/records
-	name = "Records Officer"
+	name = "Archivist"
 	jobtype = /datum/job/command/records
 	suit =  /obj/item/clothing/suit/armor/records
 

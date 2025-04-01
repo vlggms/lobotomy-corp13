@@ -34,8 +34,8 @@ GLOBAL_DATUM_INIT(crewmonitor, /datum/crewmonitor, new)
 		// Note that jobs divisible by 10 are considered heads of staff, and bolded
 		// 00: Manager
 		"Lord" = 00,
-		"Extraction Officer" = 01,
-		"Records Officer" = 02,
+		"Shopkeep" = 01,
+		"Archivist" = 02,
 		"Sephirah" = 03,
 		// 10-19: Security
 		//Either Captain or Department head depending on the map

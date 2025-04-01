@@ -203,8 +203,8 @@
 				"Templar Banner Knight",
 				"Templar Knight",
 				"Agent Intern",
-				"Extraction Officer",
-				"Records Officer",
+				"Shopkeep",
+				"Archivist",
 				"Training Officer",
 				)
 			if(M.assigned_role in valid_roles)

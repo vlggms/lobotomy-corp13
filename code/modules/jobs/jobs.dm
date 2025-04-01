@@ -1,8 +1,8 @@
 // LOBOTOMYCORPORATION EDIT -- This whole un-modular monstrosity
 GLOBAL_LIST_INIT(command_positions, list(
 	"Lord",
-	"Extraction Officer",
-	"Records Officer",
+	"Shopkeep",
+	"Archivist",
 	"Control Officer",
 	"Training Officer",
 	"Disciplinary Officer",

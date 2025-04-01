@@ -183,7 +183,7 @@
 	name = "one of the Record Officer's watches"
 	targetitem = /obj/item/records
 	difficulty = 5
-	excludefromjob = list("Records Officer")
+	excludefromjob = list("Archivist")
 
 /datum/objective_item/steal/medal
 	name = "one of the manager's medals"
@@ -195,7 +195,7 @@
 	name = "skub"
 	targetitem = /obj/item/skub
 	difficulty = 2 //Skub can be gotten from the Seph vendors or EO console
-	excludefromjob = list("Extraction Officer")
+	excludefromjob = list("Shopkeep")
 
 /datum/objective_item/steal/cactus
 	name = "the manager's cactus"

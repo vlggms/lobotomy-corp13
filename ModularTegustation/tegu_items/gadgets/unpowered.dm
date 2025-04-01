@@ -117,7 +117,7 @@
 	if(proximity_flag == 1)
 		var/mob/living/carbon/human/H = user
 		if(ishuman(H))
-			if(H?.mind?.assigned_role == "Records Officer")
+			if(H?.mind?.assigned_role == "Archivist")
 				if(isliving(target))
 					RegisterTarget(target, user)
 			else

@@ -58,7 +58,7 @@
 				to_chat(usr, span_warning("Not enough PE boxes stored for this operation."))
 				playsound(get_turf(src), 'sound/machines/terminal_prompt_deny.ogg', 50, TRUE)
 				return FALSE
-			if(usr.mind.assigned_role == "Extraction Officer")
+			if(usr.mind.assigned_role == "Shopkeep")
 				new E.item_path(get_turf(src))
 				to_chat(usr, span_notice("[E.item_path] has been dispensed!"))
 

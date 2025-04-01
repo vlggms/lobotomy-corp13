@@ -16,7 +16,7 @@
 //This is used to make sure that are extraction tool is able to be used by the player
 /obj/item/extraction/proc/tool_checks(mob/user)
 	//First we check if they are a extraction Officer
-	if(user?.mind?.assigned_role != "Extraction Officer")
+	if(user?.mind?.assigned_role != "Shopkeep")
 		//We were not the EO so give feedback and fail the check
 		to_chat(user, span_warning("You cannot use this!"))
 		return FALSE
