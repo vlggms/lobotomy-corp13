@@ -116,9 +116,9 @@
 	. += GunAttackInfo()
 	if(reloadtime && shotsleft>0)
 		. += span_notice("Ammo Counter: [shotsleft]/[initial(shotsleft)].")
-	if(reloadtime && shotsleft<=0)	//Different text if it's empty
+	else if(reloadtime && shotsleft<=0)	//Different text if it's empty
 		. += span_danger("Ammo Counter: [shotsleft]/[initial(shotsleft)].")
-	if(!reloadtime)
+	else
 		. += span_notice("This weapon has unlimited ammo.")
 
 	if(reloadtime)
