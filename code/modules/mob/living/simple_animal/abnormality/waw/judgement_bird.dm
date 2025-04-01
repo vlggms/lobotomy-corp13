@@ -183,6 +183,8 @@
 	icon_living = "runaway_bird"
 	pass_flags = PASSTABLE
 	is_flying_animal = TRUE
+	density = FALSE
+	status_flags = MUST_HIT_PROJECTILE
 	health = 100
 	maxHealth = 100
 	melee_damage_lower = 5
