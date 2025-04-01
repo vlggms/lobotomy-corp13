@@ -1,18 +1,18 @@
 /// Command
 /datum/job/manager
-	senior_title = "Administrator"
-	ultra_senior_title = "Architect"
+	senior_title = "Count"
+	ultra_senior_title = "King"
 
 /// Security
 /datum/job/agent
-	alt_titles = list("Newbie Agent")
-	senior_title = "Senior Agent"
-	ultra_senior_title = "Veteran Agent"
+	alt_titles = list("Squire")
+	senior_title = "Senior Templar Knight"
+	ultra_senior_title = "Templar Grand Knight"
 
 /datum/job/agent/captain
 	alt_titles = list()
-	senior_title = "Senior Agent Captain"
-	ultra_senior_title = "Veteran Agent Captain"
+	senior_title = "Grand Banner Knight"
+	ultra_senior_title = "Templar Banner Lord"
 
 /// Service
 /datum/job/assistant

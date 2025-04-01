@@ -16,7 +16,7 @@
 		//Only Agents specifically and Dept Captains get this.
 		//Might be good for Interns to not have this option
 		//Captains belong to the "Command" Class
-			"Agent",
+			"Templar Knight",
 			"Department Captain",
 			)
 

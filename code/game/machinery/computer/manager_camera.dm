@@ -252,11 +252,11 @@ GLOBAL_VAR_INIT(execution_enabled, FALSE)
 	if(!GLOB.execution_enabled) //Failsafe in case admins turn off the bullets due to a rampaging manager
 		to_chat(owner, span_warning("ERROR: BULLET INITIALIZATION FAILURE - AUTHORIZATION HAS BEEN REVOKED."))
 		return FALSE
-	if(owner.mind.assigned_role != "Manager") //You aren't the manager!
+	if(owner.mind.assigned_role != "Lord") //You aren't the manager!
 		to_chat(owner, span_warning("ERROR: BULLET INITIALIZATION FAILURE - ONLY AUTHORIZED TO THE MANAGER."))
 		return FALSE
 	if(H.mind)
-		if(H.mind.assigned_role == "Sephirah" || H.mind.assigned_role == "Main Office Representative") //Too important to execute
+		if(H.mind.assigned_role =="High Priest" || H.mind.assigned_role == "Main Office Representative") //Too important to execute
 			to_chat(owner, span_warning("ERROR: BULLET INITIALIZATION FAILURE - TARGET ENTITY EXCEEDS USER AUTHORITY."))
 			return FALSE
 	if(SSmaptype.maptype == "skeld")

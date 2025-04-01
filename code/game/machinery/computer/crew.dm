@@ -33,13 +33,13 @@ GLOBAL_DATUM_INIT(crewmonitor, /datum/crewmonitor, new)
 	var/list/jobs = list(
 		// Note that jobs divisible by 10 are considered heads of staff, and bolded
 		// 00: Manager
-		"Manager" = 00,
+		"Lord" = 00,
 		"Extraction Officer" = 01,
 		"Records Officer" = 02,
 		"Sephirah" = 03,
 		// 10-19: Security
 		//Either Captain or Department head depending on the map
-		"Agent Captain" = 10,
+		"Templar Banner Knight" = 10,
 		"Department Head" = 10,
 
 		"Department Captain" = 11,
@@ -47,7 +47,7 @@ GLOBAL_DATUM_INIT(crewmonitor, /datum/crewmonitor, new)
 
 		"Veteran Agent" = 12,
 		"Senior Agent" = 13,
-		"Agent" = 14,
+		"Templar Knight" = 14,
 		"Agent Intern" = 15,
 		// 20-29: Medbay
 		"Chief Medical Officer" = 20,

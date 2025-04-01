@@ -177,8 +177,8 @@ SUBSYSTEM_DEF(lobotomy_corp)
 	if(extra_core)
 		addtimer(CALLBACK(src, PROC_REF(WarnBeforeReset)), (4 MINUTES))
 	if(announce)
-		var/announce_text = "[extra_core ? "Extra" : "Sephirah"] Core Suppressions have been made available via auxiliary managerial consoles."
-		var/announce_title = "[extra_core ? "Extra" : "Sephirah"] Core Suppression"
+		var/announce_text = "[extra_core ? "Extra" :"High Priest"] Core Suppressions have been made available via auxiliary managerial consoles."
+		var/announce_title = "[extra_core ? "Extra" :"High Priest"] Core Suppression"
 		priority_announce(announce_text, \
 						announce_title, sound = 'sound/machines/dun_don_alert.ogg')
 	for(var/obj/machinery/computer/abnormality_auxiliary/A in GLOB.lobotomy_devices)

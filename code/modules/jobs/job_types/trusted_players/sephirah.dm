@@ -1,6 +1,6 @@
 //Sephirah
 /datum/job/command/sephirah
-	title = "Sephirah"
+	title ="High Priest"
 	outfit = /datum/outfit/job/sephirah
 	total_positions = 3
 	spawn_positions = 3
@@ -18,7 +18,7 @@
 		Abusing this will result in a loss of whitelist.\
 	"
 
-	job_abbreviation = "SEPH"
+	job_abbreviation = "PRST"
 
 /datum/job/command/sephirah/after_spawn(mob/living/carbon/human/outfit_owner, mob/M)
 	. = ..()
@@ -71,7 +71,7 @@
 	medsensor.add_hud_to(outfit_owner)
 
 /datum/outfit/job/sephirah
-	name = "Sephirah"
+	name ="High Priest"
 	jobtype = /datum/job/command/sephirah
 
 	belt = /obj/item/pda/security
@@ -136,7 +136,7 @@ GLOBAL_LIST_INIT(sephirah_names, list(
 //See next abnormality
 /mob/living/carbon/human/proc/NextAbno()
 	set name = "Next Abnormality Check"
-	set category = "Sephirah"
+	set category ="High Priest"
 	//Abno stuff, so you can grief more effectively.
 	var/mob/living/simple_animal/hostile/abnormality/queued_abno = SSabnormality_queue.queued_abnormality
 	to_chat(src, span_notice("Current Status:"))
@@ -230,7 +230,7 @@ GLOBAL_LIST_EMPTY(SephirahBullet)
 
 /mob/living/carbon/human/proc/BulletAuth()
 	set name = "Authorize Execution Bullets"
-	set category = "Sephirah"
+	set category ="High Priest"
 	GLOB.SephirahBullet |= src.ckey
 	if(length(GLOB.SephirahBullet) == 2)
 		if(SSmaptype.maptype == "skeld")
@@ -247,14 +247,14 @@ GLOBAL_LIST_EMPTY(SephirahBullet)
 
 /mob/living/carbon/human/proc/Announcement()
 	set name = "Make Announcement"
-	set category = "Sephirah"
+	set category ="High Priest"
 	var/input = stripped_input(src,"What do you want announce?", ,"Test Announcement")
 	minor_announce("[input]" , "Official Sephirah announcement from: [src.name]")
 
 //See next abnormality
 /mob/living/carbon/human/proc/GameInfo()
 	set name = "Check Game Info"
-	set category = "Sephirah"
+	set category ="High Priest"
 	//So you can see what the others have done
 	to_chat(src, span_notice("Current Status:"))
 	to_chat(src, span_notice("Sephirah Meltdown Modifier: [GLOB.Sephirahmeltmodifier]."))

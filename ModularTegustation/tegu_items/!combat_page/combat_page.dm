@@ -17,7 +17,7 @@ GLOBAL_VAR_INIT(combat_points, 0)
 	var/being_used = FALSE
 
 	//DO, RO and EO can all use these. and Training officer I guess
-	var/list/allowedroles = list("Disciplinary Officer", "Extraction Officer", "Records Officer", "Training Officer", "Sephirah")
+	var/list/allowedroles = list("Disciplinary Officer", "Extraction Officer", "Records Officer", "Training Officer","High Priest")
 
 /obj/item/combat_page/attack_self(mob/living/user)
 	..()

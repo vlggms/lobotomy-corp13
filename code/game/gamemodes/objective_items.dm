@@ -177,7 +177,7 @@
 	name = "The manager's Highly Confidential Folder"
 	targetitem = /obj/item/folder/syndicate/blue
 	difficulty = 5
-	excludefromjob = list("Manager")
+	excludefromjob = list("Lord")
 
 /datum/objective_item/steal/ro_watch
 	name = "one of the Record Officer's watches"
@@ -189,7 +189,7 @@
 	name = "one of the manager's medals"
 	targetitem = /obj/item/clothing/accessory/medal
 	difficulty = 3 //Almost no manager actually uses these anyways
-	excludefromjob = list("Manager")
+	excludefromjob = list("Lord")
 
 /datum/objective_item/steal/skub
 	name = "skub"
@@ -201,7 +201,7 @@
 	name = "the manager's cactus"
 	targetitem = /obj/item/food/grown/star_cactus
 	difficulty = 5
-	excludefromjob = list("Manager")
+	excludefromjob = list("Lord")
 
 //Unique Objectives
 /datum/objective_item/special/New()

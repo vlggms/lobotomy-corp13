@@ -1,6 +1,6 @@
 /datum/job/agent
-	title = "Agent"
-	department_head = list("Manager")
+	title = "Templar Knight"
+	department_head = list("Lord")
 	faction = "Station"
 	total_positions = -1
 	spawn_positions = -1
@@ -22,7 +22,7 @@
 
 	job_important = "You are a L-Corp Agent. Your job is to work on and suppress Abnormalities. Use :h to talk on your departmental radio."
 
-	job_abbreviation = "AGT"
+	job_abbreviation = "KNGT"
 
 	/// Values set in after_spawn() depending on var/normal_attribute_level and abnormality number per total abnormality cells
 	roundstart_attributes = list(FORTITUDE_ATTRIBUTE, PRUDENCE_ATTRIBUTE, TEMPERANCE_ATTRIBUTE, JUSTICE_ATTRIBUTE)
@@ -68,7 +68,7 @@
 	if(accessory)
 		var/obj/item/clothing/under/U = outfit_owner.w_uniform
 		U.attach_accessory(new accessory)
-	if(outfit_owner.mind.assigned_role == "Agent")
+	if(outfit_owner.mind.assigned_role == "Templar Knight")
 		if(ears)
 			if(outfit_owner.ears)
 				qdel(outfit_owner.ears)
@@ -129,7 +129,7 @@
 	return ..()
 
 /datum/outfit/job/agent
-	name = "Agent"
+	name = "Templar Knight"
 	jobtype = /datum/job/agent
 
 	head = /obj/item/clothing/head/beret/tegu/lobotomy/agent

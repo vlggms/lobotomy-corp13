@@ -14,18 +14,18 @@
 	var/obj/item/heirloom_type
 	switch(quirk_holder.mind.assigned_role)
 		// Command
-		if("Manager")
+		if("Lord")
 			heirloom_type = pick(/obj/item/toy/plush/angela)
 		if("Extraction Officer")
 			heirloom_type = pick(/obj/item/toy/plush/binah)
 		if("Records Officer")
 			heirloom_type = pick(/obj/item/toy/plush/hokma)
-		if("Agent Captain")
+		if("Templar Banner Knight")
 			heirloom_type = pick(/obj/item/toy/plush/mosb, /obj/item/toy/plush/melt)
 		if("Sephirah") //Today im NOT giving a GUN to HOD
 			heirloom_type = pick(/obj/item/toy/plush/malkuth, /obj/item/toy/plush/netzach, /obj/item/toy/plush/hod, /obj/item/toy/plush/lisa, /obj/item/toy/plush/enoch, /obj/item/toy/plush/yesod, /obj/item/toy/plush/gebura)
 		// Common folk
-		if("Agent")
+		if("Templar Knight")
 			heirloom_type = pick(/obj/item/toy/plush/bigbird, /obj/item/toy/plush/big_bad_wolf, /obj/item/toy/plush/pinocchio)
 		if("Agent Intern")
 			heirloom_type = pick(/obj/item/toy/plush/scorched)

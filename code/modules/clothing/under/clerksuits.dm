@@ -3,7 +3,7 @@
 	desc = "A tailored black suit, used by company security agents."
 	icon = 'icons/obj/clothing/ego_gear/lcuniform.dmi'
 	worn_icon = 'icons/mob/clothing/ego_gear/under.dmi'
-	icon_state = "agent"
+	icon_state = "Templar Knight"
 	can_adjust = FALSE
 
 
@@ -148,4 +148,4 @@
 /obj/item/clothing/under/suit/lobotomy/jcorp
 	name = "j-corp officer uniform"
 	desc = "A business suit. Used by J-corp staff."
-	icon_state = "agent" //Placeholder until a sprite is made
+	icon_state = "Templar Knight" //Placeholder until a sprite is made

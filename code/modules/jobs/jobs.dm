@@ -1,6 +1,6 @@
 // LOBOTOMYCORPORATION EDIT -- This whole un-modular monstrosity
 GLOBAL_LIST_INIT(command_positions, list(
-	"Manager",
+	"Lord",
 	"Extraction Officer",
 	"Records Officer",
 	"Control Officer",
@@ -8,7 +8,7 @@ GLOBAL_LIST_INIT(command_positions, list(
 	"Disciplinary Officer",
 	"Sephirah",
 	"Department Head",
-	"Agent Captain",
+	"Templar Banner Knight",
 
 	// City heads
 	"Doctor",
@@ -119,10 +119,10 @@ GLOBAL_LIST_INIT(security_positions, list(
 	"Disciplinary Officer",
 	"Emergency Response Agent",
 
-	"Agent Captain",
+	"Templar Banner Knight",
 	"Agent Lieutenant",
 	"Senior Agent",
-	"Agent",
+	"Templar Knight",
 	"Agent Intern",
 
 	// LCB Labs

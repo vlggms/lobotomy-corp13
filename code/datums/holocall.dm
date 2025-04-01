@@ -844,7 +844,7 @@
 	DELAY 50
 	SAY First type <span class='italics'>ghost</span> in the text bar at the bottom of the screen. Then type <span class='italics'>respawn</span> to join the facility.
 	DELAY 50
-	SAY We recommend that new players join rounds as an "Agent", as the other jobs have restrictions and different gameplay loops.
+	SAY We recommend that new players join rounds as an "Templar Knight", as the other jobs have restrictions and different gameplay loops.
 	DELAY 45
 	SAY Good luck employee. Face the fear, build the future.
 	DELAY 60"}

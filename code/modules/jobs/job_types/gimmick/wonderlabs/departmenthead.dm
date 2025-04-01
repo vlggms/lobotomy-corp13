@@ -10,7 +10,7 @@ GLOBAL_LIST_INIT(head_departments, list(
 
 /datum/job/departmenthead
 	title = "Department Head"
-	department_head = list("Manager")
+	department_head = list("Lord")
 	faction = "Station"
 	total_positions = 6
 	spawn_positions = 6

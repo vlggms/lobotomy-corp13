@@ -164,7 +164,7 @@
 // Agent upgrades
 /datum/facility_upgrade/agent_spawn_stats_bonus
 	name = UPGRADE_AGENT_STATS
-	category = "Agent"
+	category = "Templar Knight"
 	value = 0
 	max_value = 30
 	var/value_increase = 5

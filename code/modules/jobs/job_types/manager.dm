@@ -1,5 +1,5 @@
 /datum/job/manager
-	title = "Manager"
+	title = "Lord"
 	department_head = list("L Corp")
 	faction = "Station"
 	total_positions = 1
@@ -22,7 +22,7 @@
 	roundstart_attributes = list(FORTITUDE_ATTRIBUTE, PRUDENCE_ATTRIBUTE = 60, TEMPERANCE_ATTRIBUTE, JUSTICE_ATTRIBUTE)
 	job_important = "You are the Manager. Your goal is to provide overwatch to Agents and Clerks while guiding the facility's progress. You are able to choose arriving Abnormalities, buy facility upgrades, and apply buffs through your camera console."
 
-	job_abbreviation = "MGR"
+	job_abbreviation = "LORD"
 
 /datum/job/manager/announce(mob/living/carbon/human/outfit_owner)
 	..()
@@ -46,7 +46,7 @@
 	medsensor.add_hud_to(outfit_owner)
 
 /datum/outfit/job/manager
-	name = "Manager"
+	name = "Lord"
 	jobtype = /datum/job/manager
 
 	belt = /obj/item/pda/security

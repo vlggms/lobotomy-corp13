@@ -1,7 +1,7 @@
 
 // Captain
 /datum/job/agent/captain
-	title = "Agent Captain"
+	title = "Templar Banner Knight"
 	selection_color = "#BB9999"
 	total_positions = 1
 	spawn_positions = 1
@@ -16,7 +16,7 @@
 	mapexclude = list("wonderlabs", "mini")
 	job_important = "You are an Agent Captain. As an experienced Agent, you are expected to disseminate important information and use your experience lead other Agents."
 
-	job_abbreviation = "CPT"
+	job_abbreviation = "BANR"
 
 /datum/job/agent/captain/after_spawn(mob/living/carbon/human/outfit_owner, mob/M, latejoin = FALSE)
 	..()
@@ -27,7 +27,7 @@
 	G.Grant(outfit_owner)
 
 /datum/outfit/job/agent/captain
-	name = "Agent Captain"
+	name = "Templar Banner Knight"
 	jobtype = /datum/job/agent/captain
 	head = /obj/item/clothing/head/hos/beret
 	ears = /obj/item/radio/headset/heads/agent_captain/alt

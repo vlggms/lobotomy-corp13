@@ -129,7 +129,7 @@
 //Assigns antagonists in Skeld
 /datum/game_mode/proc/SetSkeldAntags()
 
-	var/list/innocent_roles = list("Agent Captain", "Sephirah", "Main Office Representative") //Roles to not be antags in Skeld
+	var/list/innocent_roles = list("Templar Banner Knight","High Priest", "Main Office Representative") //Roles to not be antags in Skeld
 	var/list/possible_antags = list()
 	var/list/charlie_names = list("a captain", "a security officer", "an engineer", "a scientist", "a doctor", "an assistant")
 	CONFIG_SET(flag/norespawn, 1) //We cant have murdered people spoiling the surprise

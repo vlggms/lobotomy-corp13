@@ -198,10 +198,10 @@
 		if(SSmaptype.maptype == "standard")
 			//Standard LC13 Gamemode Achivements.
 			var/list/valid_roles = list(
-				"Manager",
+				"Lord",
 				"Clerk",
-				"Agent Captain",
-				"Agent",
+				"Templar Banner Knight",
+				"Templar Knight",
 				"Agent Intern",
 				"Extraction Officer",
 				"Records Officer",

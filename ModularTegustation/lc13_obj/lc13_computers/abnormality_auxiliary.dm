@@ -63,7 +63,7 @@
 			var/list/upgrades_per_category = list(
 				"Bullets" = list(),
 				"Bullet Upgrades" = list(),
-				"Agent" = list(),
+				"Templar Knight" = list(),
 				"Abnormalities" = list(),
 				"Unsorted" = list(),
 			)
@@ -239,7 +239,7 @@
 			if("Bullet Upgrades")
 				real_bullet_upgrades += upgrade_data
 
-			if("Agent")
+			if("Templar Knight")
 				agent_upgrades += upgrade_data
 
 			if("Abnormalities")

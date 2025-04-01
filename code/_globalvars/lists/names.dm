@@ -44,5 +44,5 @@ List of configurable names in preferences and their metadata
 */
 GLOBAL_LIST_INIT(preferences_custom_names, list(
 	"human" = list("pref_name" = "Backup Human", "qdesc" = "backup human name, used in the event you are assigned a command role as another species", "allow_numbers" = FALSE , "group" = "backup_human", "allow_null" = FALSE),
-	"sephirah" = list("pref_name" = "Sephirah" , "qdesc" = "sephirah name", "allow_numbers" = FALSE , "group" = "fun", "allow_null" = FALSE),
+	"sephirah" = list("pref_name" ="High Priest" , "qdesc" = "sephirah name", "allow_numbers" = FALSE , "group" = "fun", "allow_null" = FALSE),
 	))

@@ -1,6 +1,6 @@
 /datum/species/sephirah
-	name = "Sephirah"
-	id = "sephirah"
+	name ="High Priest"
+	id ="High Priest"
 	mutant_bodyparts = list()
 	changesource_flags = MIRROR_BADMIN | WABBAJACK | ERT_SPAWN
 
@@ -9,7 +9,7 @@
 	meat = null
 	nojumpsuit = TRUE
 
-	limbs_id = "sephirah"
+	limbs_id ="High Priest"
 	say_mod = "boops" //You're a bobot
 	species_traits = list(MUTCOLORS, NOEYESPRITES, NO_UNDERWEAR, AGENDER, NOBLOOD)
 	inherent_traits = list(TRAIT_ADVANCEDTOOLUSER,TRAIT_VIRUSIMMUNE,TRAIT_NODISMEMBER,TRAIT_NOLIMBDISABLE,TRAIT_NOHUNGER,TRAIT_NOBREATH)

@@ -93,7 +93,7 @@
 	if(!ishuman(user))
 		return FALSE
 	if(user.mind)
-		if(user.mind.assigned_role == "Sephirah") //This is an RP role
+		if(user.mind.assigned_role =="High Priest") //This is an RP role
 			return FALSE
 
 	var/mob/living/carbon/human/H = user

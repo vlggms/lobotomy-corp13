@@ -98,7 +98,7 @@
 
 /datum/anonymous_theme/employees/anonymous_name(mob/M)
 	var/is_head_of_staff = (M.mind.assigned_role in GLOB.command_positions)
-	var/name = "[is_head_of_staff ? "Manager" : "Employee"] "
+	var/name = "[is_head_of_staff ? "Lord" : "Employee"] "
 	for(var/i in 1 to 6)
 		if(prob(30) || i == 1)
 			name += ascii2text(rand(65, 90)) //A - Z

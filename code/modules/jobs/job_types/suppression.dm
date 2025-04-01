@@ -1,6 +1,6 @@
 /datum/job/suppression
 	title = "Emergency Response Agent"
-	department_head = list("Manager", "Disciplinary Officer")
+	department_head = list("Lord", "Disciplinary Officer")
 	faction = "Station"
 	// note: job slots by default are 0
 	supervisors = "the Manager and the Disciplinary Officer"

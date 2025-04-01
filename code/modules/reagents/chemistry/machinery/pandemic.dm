@@ -86,7 +86,7 @@
 			this["stage_speed"] = A.totalStageSpeed()
 			this["transmission"] = A.totalTransmittable()
 		this["index"] = index++
-		this["agent"] = D.agent
+		this["Templar Knight"] = D.agent
 		this["description"] = D.desc || "none"
 		this["spread"] = D.spread_text || "none"
 		this["cure"] = D.cure_text || "none"

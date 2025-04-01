@@ -328,7 +328,7 @@
 	min_val = -1
 
 /datum/config_entry/string/overflow_job
-	config_entry_value = "Agent"
+	config_entry_value = "Templar Knight"
 
 /datum/config_entry/flag/starlight
 /datum/config_entry/flag/grey_assistants
