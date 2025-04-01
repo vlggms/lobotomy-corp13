@@ -3,7 +3,7 @@
 	desc = "A tailored black suit, used by company security agents."
 	icon = 'icons/obj/clothing/ego_gear/lcuniform.dmi'
 	worn_icon = 'icons/mob/clothing/ego_gear/under.dmi'
-	icon_state = "Templar Knight"
+	icon_state = "agent"
 	can_adjust = FALSE
 
 
