@@ -118,6 +118,7 @@
 /datum/ordeal/proc/AbleToRun()
 	if(SSmaptype.maptype in SSmaptype.unique_ordeals)
 		can_run = FALSE
+		return FALSE
 	return can_run
 
 //Global special blurb

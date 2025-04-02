@@ -6,10 +6,10 @@
 	end_announce_text = "And they will die to fulfill their purpose."
 	announce_sound = 'sound/effects/ordeals/crimson_start.ogg'
 	end_sound = 'sound/effects/ordeals/crimson_end.ogg'
-	level = 2
-	reward_percent = 0.15
+	level = 1
+	reward_percent = 0.10
 	spawn_places = 6
-	spawn_amount = 1
+	spawn_amount = 4
 	spawn_type = list(
 		/mob/living/simple_animal/hostile/humanoid/blood/bag,
 		)
@@ -36,10 +36,10 @@
 	grunt_type = list(/mob/living/simple_animal/hostile/humanoid/blood/bag)
 	color = "#7d0e26"
 	can_run = FALSE
-	level = 3
-	reward_percent = 0.2
+	level = 2
+	reward_percent = 0.15
 	boss_amount = 3
-	grunt_amount = 2
+	grunt_amount = 6
 	boss_player_multiplicator = 0.03
 	grunt_player_multiplicator = 0.05
 
@@ -61,8 +61,8 @@
 		/mob/living/simple_animal/hostile/humanoid/blood/fiend)
 	color = "#7d0e26"
 	can_run = FALSE
-	level = 4
-	reward_percent = 0.25
+	level = 3
+	reward_percent = 0.20
 	boss_amount = 2
 	grunt_amount = 6
 	boss_player_multiplicator = 0.03

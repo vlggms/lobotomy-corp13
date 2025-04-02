@@ -1,4 +1,3 @@
-
 // Has a dawn and a midnight
 /datum/ordeal/boss/branch12/chicken_dawn
 	name = "Memory of Fried Chicken I"

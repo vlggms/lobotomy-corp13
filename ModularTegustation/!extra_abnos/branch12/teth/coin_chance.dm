@@ -37,10 +37,10 @@
 		if(ABNORMALITY_WORK_INSIGHT)
 			if(prob(50))
 				user.adjustSanityLoss(-40)
-				to_chat(user, span_nicegreen("You flip a blue chip. It lands on heads."))
+				to_chat(user, span_nicegreen("You flip a white chip. It lands on heads."))
 				return
 			user.adjustSanityLoss(40)
-			to_chat(user, span_warning("You flip a blue chip. It lands on tails."))
+			to_chat(user, span_warning("You flip a white chip. It lands on tails."))
 
 		if(ABNORMALITY_WORK_ATTACHMENT)
 			if(prob(50))
