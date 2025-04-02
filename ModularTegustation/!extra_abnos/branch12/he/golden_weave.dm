@@ -47,7 +47,7 @@
 	..()
 	if(IsContained())
 		return
-	if(prob(30))
+	if(prob(40))
 		var/obj/structure/golden_weave/V = new(get_turf(src))
 		current_weaves+=V
 

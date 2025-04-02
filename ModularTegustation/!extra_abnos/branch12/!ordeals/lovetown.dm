@@ -52,7 +52,7 @@
 	grunt_player_multiplicator = 0
 
 
-/datum/ordeal/simplespawn/branch12/lovetown_noon/AbleToRun()
+/datum/ordeal/simplecommander/branch12/lovetown_noon/AbleToRun()
 	if(SSmaptype.maptype == "branch12")
 		can_run = TRUE
 	return can_run
@@ -80,7 +80,7 @@
 	grunt_player_multiplicator = 0
 
 
-/datum/ordeal/simplespawn/branch12/lovetown_dusk/AbleToRun()
+/datum/ordeal/simplecommander/branch12/lovetown_dusk/AbleToRun()
 	if(SSmaptype.maptype == "branch12")
 		can_run = TRUE
 	return can_run
