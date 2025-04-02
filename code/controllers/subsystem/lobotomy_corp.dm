@@ -130,8 +130,8 @@ SUBSYSTEM_DEF(lobotomy_corp)
 		if(O.level < 1)
 			qdel(O)
 			continue
-			if(O.AbleToRun())
-		all_ordeals[O.level] += O
+		if(O.AbleToRun())
+			all_ordeals[O.level] += O
 
 	if(SSmaptype.chosen_trait == FACILITY_TRAIT_ABNO_BLITZ)
 		next_ordeal_level = 3
