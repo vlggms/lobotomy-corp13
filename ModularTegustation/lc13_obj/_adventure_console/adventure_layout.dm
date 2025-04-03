@@ -620,6 +620,8 @@
 
 		//Extra
 		if("ABNOS")
+			if(all_abnos)
+				return FALSE
 			all_abnos = TRUE
 	AdjustCoins(cost)
 
