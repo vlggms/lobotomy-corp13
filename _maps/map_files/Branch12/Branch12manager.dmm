@@ -249,12 +249,6 @@
 	},
 /turf/open/floor/carpet/cyan,
 /area/department_main/manager)
-"bJ" = (
-/obj/machinery/computer/extraction_cargo{
-	dir = 8
-	},
-/turf/open/floor/facility/halls,
-/area/department_main/manager)
 "cd" = (
 /obj/effect/turf_decal/caution/stand_clear/red{
 	dir = 4
@@ -264,12 +258,6 @@
 "cg" = (
 /obj/machinery/door/airlock/highsecurity{
 	name = "Central Command Department"
-	},
-/turf/open/floor/facility/halls,
-/area/department_main/manager)
-"ci" = (
-/obj/machinery/light/cold/no_nightlight{
-	dir = 8
 	},
 /turf/open/floor/facility/halls,
 /area/department_main/manager)
@@ -350,6 +338,10 @@
 /obj/machinery/light/small{
 	dir = 8
 	},
+/obj/structure/table/reinforced,
+/obj/item/food/meatclown{
+	pixel_y = 3
+	},
 /turf/open/floor/circuit/telecomms/mainframe,
 /area/department_main/manager)
 "db" = (
@@ -415,10 +407,6 @@
 /obj/machinery/ntnet_relay,
 /turf/open/floor/circuit/telecomms/mainframe,
 /area/department_main/manager)
-"fy" = (
-/obj/structure/filingcabinet/branch12,
-/turf/open/floor/facility/halls,
-/area/department_main/manager)
 "gx" = (
 /obj/machinery/light/cold/no_nightlight{
 	dir = 8
@@ -426,24 +414,11 @@
 /obj/structure/filingcabinet/branch12,
 /turf/open/floor/facility/halls,
 /area/department_main/manager)
-"gU" = (
-/obj/machinery/light/small{
-	dir = 8
-	},
-/obj/machinery/telecomms/relay/preset/station,
-/turf/open/floor/circuit/telecomms/mainframe,
-/area/department_main/manager)
-"hn" = (
-/obj/machinery/light/small{
-	dir = 4
-	},
-/obj/machinery/ntnet_relay,
-/turf/open/floor/circuit/telecomms/mainframe,
-/area/department_main/manager)
 "ht" = (
 /obj/structure/table/wood,
 /obj/item/clothing/suit/apron/chef,
 /obj/item/clothing/head/chefhat,
+/obj/machinery/light,
 /turf/open/floor/wood,
 /area/department_main/manager)
 "iR" = (
@@ -486,17 +461,13 @@
 	name = "manager's private quarters";
 	req_access_txt = "20"
 	},
-/turf/open/space/basic,
-/area/department_main/manager)
-"lO" = (
-/obj/machinery/door/airlock/grunge{
-	name = "manager's study";
-	req_access_txt = "20"
-	},
-/turf/open/floor/plasteel,
+/turf/open/floor/wood,
 /area/department_main/manager)
 "oB" = (
 /obj/machinery/griddle,
+/obj/machinery/light{
+	dir = 1
+	},
 /turf/open/floor/wood,
 /area/department_main/manager)
 "pE" = (
@@ -537,6 +508,7 @@
 /obj/machinery/light,
 /obj/structure/table/wood,
 /obj/machinery/computer/security/wooden_tv,
+/obj/machinery/light,
 /turf/open/floor/wood,
 /area/department_main/manager)
 "zG" = (
@@ -554,7 +526,7 @@
 	name = "manager's mess";
 	req_access_txt = "20"
 	},
-/turf/open/floor/plasteel,
+/turf/open/floor/wood,
 /area/department_main/manager)
 "zP" = (
 /obj/structure/chair/wood{
@@ -583,6 +555,9 @@
 /obj/structure/table/wood,
 /obj/item/storage/fancy/candle_box,
 /obj/item/lighter,
+/obj/machinery/light{
+	dir = 1
+	},
 /turf/open/floor/wood,
 /area/department_main/manager)
 "Jl" = (
@@ -603,6 +578,13 @@
 "Mh" = (
 /obj/machinery/computer/abnormality_auxiliary{
 	dir = 1
+	},
+/turf/open/floor/wood,
+/area/department_main/manager)
+"NB" = (
+/obj/machinery/door/airlock/grunge{
+	name = "manager's study";
+	req_access_txt = "20"
 	},
 /turf/open/floor/wood,
 /area/department_main/manager)
@@ -630,6 +612,7 @@
 /obj/structure/chair/wood{
 	dir = 4
 	},
+/obj/machinery/light,
 /turf/open/floor/wood,
 /area/department_main/manager)
 "ZJ" = (
@@ -3447,13 +3430,13 @@ ZL
 ZL
 ZL
 ZL
-ae
-ae
-ae
-ae
-ae
-ae
-ae
+ZL
+ZL
+ZL
+ZL
+ZL
+ZL
+ZL
 ZL
 ZL
 ZL
@@ -3704,13 +3687,13 @@ ZL
 ZL
 ZL
 ZL
-ae
-af
-af
-af
-af
-af
-ae
+ZL
+ZL
+ZL
+ZL
+ZL
+ZL
+ZL
 ZL
 ZL
 ZL
@@ -3961,13 +3944,13 @@ ZL
 ZL
 ZL
 ZL
-ae
-af
-af
-af
-af
-af
-ae
+ZL
+ZL
+ZL
+ZL
+ZL
+ZL
+ZL
 ZL
 ZL
 ZL
@@ -4218,20 +4201,20 @@ ZL
 ZL
 ZL
 ZL
-ae
-af
-af
-af
-af
-af
-ae
 ZL
 ZL
 ZL
 ZL
-ae
-ae
-ae
+ZL
+ZL
+ZL
+ZL
+ZL
+ZL
+ZL
+ZL
+ZL
+ZL
 ZL
 ZL
 ZL
@@ -4475,20 +4458,20 @@ ZL
 ZL
 ZL
 ZL
-ae
-af
-af
-af
-af
-af
-ae
 ZL
 ZL
 ZL
 ZL
-ae
-dU
-ae
+ZL
+ZL
+ZL
+ZL
+ZL
+ZL
+ZL
+ZL
+ZL
+ZL
 ZL
 ZL
 ZL
@@ -4732,20 +4715,20 @@ ZL
 ZL
 ZL
 ZL
-ae
-af
-af
-af
-af
-af
-ae
 ZL
 ZL
 ZL
 ZL
-ae
-dU
-ae
+ZL
+ZL
+ZL
+ZL
+ZL
+ZL
+ZL
+ZL
+ZL
+ZL
 ZL
 ZL
 ZL
@@ -4989,20 +4972,20 @@ ZL
 ZL
 ZL
 ZL
-ae
-ai
-aU
-cd
-aU
-cP
-ae
 ZL
 ZL
 ZL
 ZL
-ae
-eh
-ae
+ZL
+ZL
+ZL
+ZL
+ZL
+ZL
+ZL
+ZL
+ZL
+ZL
 ZL
 ZL
 ZL
@@ -5246,20 +5229,20 @@ qP
 ZL
 ZL
 ZL
-ae
-ae
-ae
-cg
-ae
-ae
-ae
-ae
-ae
 ZL
 ZL
-ae
-ae
-ae
+ZL
+ZL
+ZL
+ZL
+ZL
+ZL
+ZL
+ZL
+ZL
+ZL
+ZL
+ZL
 ZL
 ZL
 ZL
@@ -5503,15 +5486,15 @@ qP
 ZL
 ZL
 ZL
-ae
-ae
-fy
-ci
-br
-ae
-ae
-gU
-ae
+ZL
+ZL
+ZL
+ZL
+ZL
+ZL
+ZL
+ZL
+ZL
 ZL
 ZL
 ZL
@@ -5760,16 +5743,16 @@ ZL
 ZL
 ZL
 ZL
-ae
-aq
-bs
-cj
-cv
-ae
-ae
-db
-ae
-ae
+ZL
+ZL
+ZL
+ZL
+ZL
+ZL
+ZL
+ZL
+ZL
+ZL
 ZL
 ZL
 ZL
@@ -6017,16 +6000,16 @@ qP
 ZL
 ZL
 ZL
-ae
-at
-bu
-cm
-cI
-ae
-dd
-dd
-dH
-ae
+ZL
+ZL
+ZL
+ZL
+ZL
+ZL
+ZL
+ZL
+ZL
+ZL
 ZL
 ZL
 ZL
@@ -6274,16 +6257,16 @@ qP
 ZL
 ZL
 ZL
-ae
-ax
-bF
-cm
-cI
-cS
-cW
-do
-cW
-ae
+ZL
+ZL
+ZL
+ZL
+ZL
+ZL
+ZL
+ZL
+ZL
+ZL
 ZL
 ZL
 ZL
@@ -6531,16 +6514,16 @@ ZL
 ZL
 ZL
 ZL
-ae
-aG
-bu
-cm
-cI
-ae
-cY
-dB
-dM
-ae
+ZL
+ZL
+ZL
+ZL
+ZL
+ZL
+ZL
+ZL
+ZL
+ZL
 ZL
 ZL
 ZL
@@ -6788,16 +6771,16 @@ ZL
 ZL
 ZL
 ZL
-ae
-aI
-bH
-cu
-cL
-ae
-ae
-db
-ae
-ae
+ZL
+ZL
+ZL
+ZL
+ZL
+ZL
+ZL
+ZL
+ZL
+ZL
 ZL
 ZL
 ZL
@@ -7045,15 +7028,15 @@ ZL
 ZL
 ZL
 ZL
-ae
-ae
-bJ
-ae
-ae
-ae
-ae
-hn
-ae
+ZL
+ZL
+ZL
+ZL
+ZL
+ZL
+ZL
+ZL
+ZL
 ZL
 ZL
 ZL
@@ -7303,14 +7286,14 @@ ZL
 ZL
 ZL
 ZL
-ae
-ae
-ae
-ae
-ae
-ae
-ae
-ae
+ZL
+ZL
+ZL
+ZL
+ZL
+ZL
+ZL
+ZL
 ZL
 ZL
 ZL
@@ -30262,8 +30245,8 @@ ZL
 ae
 ae
 ae
+NB
 ae
-lO
 ae
 ae
 jC
@@ -30517,11 +30500,11 @@ ZL
 ZL
 ZL
 ZL
-ZL
 ae
 KQ
 ux
 vI
+ae
 ae
 ae
 ae
@@ -30712,7 +30695,6 @@ ZL
 ZL
 "}
 (118,1,1) = {"
-ZL
 ZL
 ZL
 ZL
@@ -30967,9 +30949,9 @@ ZL
 ZL
 ZL
 ZL
+ZL
 "}
 (119,1,1) = {"
-ZL
 ZL
 ZL
 ZL
@@ -31224,6 +31206,7 @@ ZL
 ZL
 ZL
 ZL
+ZL
 "}
 (120,1,1) = {"
 ZL
@@ -31288,12 +31271,12 @@ ZL
 ZL
 ZL
 ZL
+ae
+ae
+ae
+ae
+ae
 ZL
-ae
-ae
-ae
-ae
-ae
 ZL
 ZL
 ZL
