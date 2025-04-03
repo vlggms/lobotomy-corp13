@@ -8,12 +8,13 @@
 	aggro_vision_range = 20
 
 /mob/living/simple_animal/hostile/ordeal/death(gibbed)
+	..()
 	mob_size = MOB_SIZE_HUMAN //let body bags carry dead ordeals
 
 
 //You should let these gib on Citymap
 /mob/living/simple_animal/hostile/ordeal/Initialize()
-	. = ..()
+	..()
 	if(SSmaptype.maptype in SSmaptype.citymaps)
 		stat_attack = HARD_CRIT	//Guarantee this
 
