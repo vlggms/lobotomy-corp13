@@ -24,7 +24,7 @@
 	var/leap_sound = 'sound/abnormalities/nosferatu/attack_special.ogg'
 	var/blood_feast = 450
 	var/max_blood_feast = 500
-	var/can_act = TRUE
+
 	var/leap_damage = 50
 	var/slash_damage = 25
 	var/drain_cooldown = 0

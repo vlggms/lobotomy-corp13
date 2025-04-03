@@ -71,7 +71,7 @@
 			<Farewell. <br>Farewell, <br>FarewellFarewellFarewellFarewellFarewellFarewellFarewellFarewellFarewell>"),
 	)
 
-	var/can_act = TRUE
+
 	var/grab_cooldown
 	var/grab_cooldown_time = 15 SECONDS
 	var/grab_damage = 120

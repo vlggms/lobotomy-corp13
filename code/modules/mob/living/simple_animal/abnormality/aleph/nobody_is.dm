@@ -59,7 +59,7 @@
 	var/mob/living/disguise = null
 	var/shelled = FALSE
 	var/mob/living/carbon/human/chosen = null
-	var/can_act = TRUE
+
 	var/current_stage = 1
 	var/next_transform = null
 	var/list/longhair = list( // EXTREMELY TEMPORARY but easier to do than figuring out complex image manipulation

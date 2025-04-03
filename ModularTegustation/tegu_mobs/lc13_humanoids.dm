@@ -89,7 +89,7 @@ Skittish, they prefer to move in groups and will run away if the enemies are in 
 	attack_sound = 'sound/weapons/bladeslice.ogg'
 	attack_verb_continuous = "slashes"
 	attack_verb_simple = "slash"
-	var/can_act = TRUE
+
 	var/dash_cooldown
 	var/dash_cooldown_time = 10 SECONDS
 	var/dash_damage = 20
@@ -242,7 +242,7 @@ Skittish, they prefer to move in groups and will run away if the enemies are in 
 	attack_verb_continuous = "slices"
 	attack_verb_simple = "slice"
 	del_on_death = TRUE
-	var/can_act = TRUE
+
 	var/list/loot_weapon = list(
 	)
 	var/list/loot_armor = list(

@@ -70,7 +70,7 @@
 	var/burst_cooldown_time = 10 SECONDS
 	var/barrage_range = 10
 
-	var/can_act = TRUE
+
 
 	ego_list = list(
 		/datum/ego_datum/weapon/ebony_stem,
