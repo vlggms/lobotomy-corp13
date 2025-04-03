@@ -39,3 +39,14 @@
 	desc = "An anti-personnel fragmentation grenade, this weapon is used by a select few Capos of the Thumb."
 	icon_state = "frag"
 	explosion_damage = 550
+
+/obj/effect/spawner/lootdrop/grenade
+	name = "rcorp grenade spawner"
+	lootdoubles = FALSE
+
+	loot = list(
+			/obj/item/grenade/r_corp = 3,
+			/obj/item/grenade/r_corp/white = 3,
+			/obj/item/grenade/r_corp/black = 3,
+			/obj/item/grenade/r_corp/pale = 1,
+		)

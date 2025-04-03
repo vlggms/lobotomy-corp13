@@ -22,5 +22,5 @@
 			BUTTON_FORMAT(3, "DON'T SIGN", M)
 			return
 		if(2)
-			AdjustHitPoint(-100)
+			AdjustHitPoint(-gamer.virtual_integrity)
 	return ..()
