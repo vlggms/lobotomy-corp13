@@ -433,3 +433,4 @@
 		"When the work result was Neutral, the Qliphoth Counter lowered by 1 with a high probability",
 		"When the work result was Bad, the Qliphoth Counter lowered by 1."
 	)
+
