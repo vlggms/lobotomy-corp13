@@ -3,7 +3,6 @@
 	desc = "In here, you're with us. Forever."
 	icon_state = "correctional"
 	inhand_icon_state = "correctional"
-	special = "This weapon fires 6 pellets."
 	force = 33
 	damtype = BLACK_DAMAGE
 	attack_speed = 1.3
@@ -247,7 +246,6 @@
 	weapon_weight = WEAPON_MEDIUM
 	pellets = 3
 	variance = 14
-	special = "This weapon fires 3 pellets."
 	fire_delay = 7
 	shotsleft = 9
 	reloadtime = 1 SECONDS

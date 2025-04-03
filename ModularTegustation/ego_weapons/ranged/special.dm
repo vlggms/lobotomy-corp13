@@ -14,7 +14,6 @@
 	desc = "A gun used by shrimp corp, apparently."
 	icon_state = "sodashotgun"
 	inhand_icon_state = "sodalong"
-	special = "This weapon fires 3 pellets."
 	force = 18
 	attack_speed = 1.3
 	projectile_path = /obj/projectile/ego_bullet/ego_soda

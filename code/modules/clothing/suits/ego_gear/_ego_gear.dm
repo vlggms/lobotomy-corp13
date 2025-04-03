@@ -114,7 +114,13 @@
 /obj/item/clothing/suit/armor/ego_gear/examine(mob/user)
 	. = ..()
 	if(LAZYLEN(attribute_requirements))
-		. += "<span class='notice'>It has <a href='?src=[REF(src)];list_attributes=1'>certain requirements</a> for the wearer.</span>"
+		if(!ishuman(user))	//You get a notice if you are a ghost or otherwise
+			. += span_notice("It has <a href='?src=[REF(src)];list_attributes=1'>certain requirements</a> for the wearer.")
+		else if(CanUseEgo(user))	//It's green if you can use it
+			. += span_nicegreen("It has <a href='?src=[REF(src)];list_attributes=1'>certain requirements</a> for the wearer.")
+		else				//and red if you cannot use it
+			. += span_danger("You cannot use this EGO!")
+			. += span_danger("It has <a href='?src=[REF(src)];list_attributes=1'>certain requirements</a> for the wearer.")
 
 /obj/item/clothing/suit/armor/ego_gear/Topic(href, href_list)
 	. = ..()
