@@ -1,72 +1,58 @@
 #define STATUS_EFFECT_POWERHEXED /datum/status_effect/powerhexed
 #define STATUS_EFFECT_WEAKHEX /datum/status_effect/weakhex
 /mob/living/simple_animal/hostile/abnormality/hurting_teddy
-  name = "Hurting Teddy Bear"
-  desc = "A large worn out teddy bear that has been impaled with nails. Its faded grey fur is coated in grime."
-  icon = 'ModularTegustation/Teguicons/64x64.dmi'
-  icon_state = "hurting_teddy"
-  icon_living = "hurting_teddy"
-  portrait = "hurting_teddy"
-  pixel_x = -16
-  base_pixel_x = -16
-  maxHealth = 1500 //it's a teddy bear that's been abused all its life, it should have some HP. It also has two pieces of rank bump equipment.
-  health = 1500
-  rapid_melee = 1
-  melee_queue_distance = 3
-  move_to_delay = 5 // it's tanky for a TETH. It should be slow.
-  damage_coeff = list(RED_DAMAGE = 0.8, WHITE_DAMAGE = 1.5, BLACK_DAMAGE = 0.8, PALE_DAMAGE = 2)
-  can_breach = TRUE
-  melee_damage_lower = 12
-  melee_damage_upper = 18
-  melee_damage_type = BLACK_DAMAGE
-  stat_attack = HARD_CRIT
-  attack_sound = 'sound/weapons/ego/mace1.ogg'
-  attack_verb_continuous = "smashes"
-  attack_verb_simple = "smash"
-  friendly_verb_continuous = "squeezes"
-  friendly_verb_simple = "squeeze"
-  can_breach = TRUE
-  threat_level = TETH_LEVEL
-  start_qliphoth = 3
-  max_boxes = 14
-  work_chances = list(
-  	ABNORMALITY_WORK_INSTINCT = 55,
-  	ABNORMALITY_WORK_INSIGHT = 55,
-  	ABNORMALITY_WORK_ATTACHMENT = 60,
-  	ABNORMALITY_WORK_REPRESSION = 10 //It's already been hurt enough, man! if you do this, we're not longer friends!
-  ) //only one person can work on it with these rates so they're higher than normal. everyone else will only get low/common rates.
-  work_damage_amount = 5
-  work_damage_type = BLACK_DAMAGE
-  chem_type = /datum/reagent/abnormality/sin/envy //all of its EGO is envy. makes sense to me.
-  ego_list = list(
-  	/datum/ego_datum/weapon/hexnail,
-  	/datum/ego_datum/armor/hexnail
-  )
-  //gift_type = /datum/ego_gifts/hex_nail
-  abnormality_origin = ABNORMALITY_ORIGIN_LIMBUS
+	name = "Hurting Teddy Bear"
+	desc = "A large worn out teddy bear that has been impaled with nails. Its faded grey fur is coated in grime."
+	icon = 'ModularTegustation/Teguicons/64x64.dmi'
+	icon_living = "hurting_teddy"
+	icon_state = "hurting_teddy"
+	portrait = "hurting_teddy"
+	pixel_x = -16
+	base_pixel_x = -16
+	maxHealth = 1500 //it's a teddy bear that's been abused all its life, it should have some HP. It also has two pieces of rank bump equipment.
+	health = 1500
+	rapid_melee = 1
+	melee_queue_distance = 3
+	move_to_delay = 5 // it's tanky for a TETH. It should be slow.
+	damage_coeff = list(RED_DAMAGE = 0.8, WHITE_DAMAGE = 1.5, BLACK_DAMAGE = 0.8, PALE_DAMAGE = 2)
+	can_breach = TRUE
+	melee_damage_lower = 12
+	melee_damage_upper = 18
+	melee_damage_type = BLACK_DAMAGE
+	stat_attack = HARD_CRIT
+	attack_sound = 'sound/weapons/ego/mace1.ogg'
+	attack_verb_continuous = "smashes"
+	attack_verb_simple = "smash"
+	friendly_verb_continuous = "squeezes"
+	friendly_verb_simple = "squeeze"
+	can_breach = TRUE
+	threat_level = TETH_LEVEL
+	start_qliphoth = 3
+	max_boxes = 14
+	work_chances = list(
+		ABNORMALITY_WORK_INSTINCT = 55,
+		ABNORMALITY_WORK_INSIGHT = 55,
+		ABNORMALITY_WORK_ATTACHMENT = 60,
+		ABNORMALITY_WORK_REPRESSION = 10 //It's already been hurt enough, man! if you do this, we're not longer friends!
+	) //only one person can work on it with these rates so they're higher than normal. everyone else will only get low/common rates.
+	work_damage_amount = 5
+	work_damage_type = BLACK_DAMAGE
+	chem_type = /datum/reagent/abnormality/sin/envy //all of its EGO is envy. makes sense to me.
+	ego_list = list(
+		/datum/ego_datum/weapon/hexnail,
+		/datum/ego_datum/armor/hexnail
+	)
+//gift_type = /datum/ego_gifts/hex_nail
+	abnormality_origin = ABNORMALITY_ORIGIN_LIMBUS
 
-  observation_prompt = "A teddy bear suffers from having nails lodged into its body. <br>\
-  	The bloodstains decorating it are a telling sign of all the time it spent in pain. <br>\
-  	The holes where its eyes should be are empty. Nothing but dry red marks remain inside. <br>\
-  	In spite of that, it stands with its arms wide, endeavoring to fulfill its duty of giving hugs."
-  observation_choices = list(
-		"Remove the nails" = list(TRUE, "You removed the nails from the teddy bear. <br>\
-			Bloody pus pours out of the holes. <br>\
-			Once the plush had finished its copious exudation, only a dark cavity remained within. <br>\
-			It is an empty void.."),
-		"Bandage its wounds" = list(FALSE, "You applied bandages to the holes in its chest. <br>\
-			Blood leaks and saturates them. The wound still seems sore. <br>\
-			You gave it some extra dressing, making sure that it’ll last a good while. Yet you know the wound will only continue to fester.")
-	) //basically just a slightly edited version of its mirror dungeon event. don't feel like writing a whole new thing for it.
-
-var/bearfriended //the one who can work on it safely
-var/mob/living/carbon/human/hug_victim = null
-var/release_threshold = 200 //Total raw damage needed to break a player out of a grab (from any source)
-var/release_damage = 0
-var/hug_progress = 0
-var/hug_damage = 8
-var/crush_damage = 3
-var/can_act = TRUE
+	var/bearfriended //the one who can work on it safely
+	var/mob/living/carbon/human/hug_victim = null
+	var/release_threshold = 200 //Total raw damage needed to break a player out of a grab (from any source)
+	var/release_damage = 0
+	var/hug_progress = 0
+	var/hug_damage = 8
+	var/crush_damage = 3
+	var/can_act = TRUE
 
 //Work Mechanics
 
