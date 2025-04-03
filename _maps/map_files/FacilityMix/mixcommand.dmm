@@ -2030,7 +2030,7 @@
 	pixel_y = 32
 	},
 /turf/open/floor/carpet/black,
-/area/space)
+/area/city/shop)
 "kj" = (
 /obj/structure/chair/wood{
 	dir = 4
@@ -2054,7 +2054,7 @@
 	dir = 8
 	},
 /turf/open/floor/carpet/black,
-/area/space)
+/area/city/shop)
 "kS" = (
 /obj/effect/turf_decal/siding/blue{
 	color = "#3234B9";
@@ -2083,7 +2083,7 @@
 /area/city/fixers)
 "lX" = (
 /turf/open/floor/carpet/black,
-/area/space)
+/area/city/shop)
 "mn" = (
 /turf/open/floor/carpet/black,
 /area/department_main/command)
@@ -2342,7 +2342,7 @@
 	},
 /obj/effect/turf_decal/siding/white,
 /turf/open/floor/carpet/black,
-/area/space)
+/area/city/shop)
 "xJ" = (
 /obj/machinery/vending/city_clothing,
 /turf/open/floor/plating/ashplanet/rocky,
@@ -2464,7 +2464,7 @@
 "DZ" = (
 /obj/effect/turf_decal/siding/white,
 /turf/open/floor/carpet/black,
-/area/space)
+/area/city/shop)
 "Eb" = (
 /obj/structure/table,
 /obj/item/reagent_containers/food/condiment/enzyme,
@@ -2552,7 +2552,7 @@
 	dir = 4
 	},
 /turf/open/floor/carpet/black,
-/area/space)
+/area/city/shop)
 "IT" = (
 /obj/machinery/door/airlock/wood{
 	name = "subsidary director's bedroom"
@@ -2589,7 +2589,7 @@
 	dir = 6
 	},
 /turf/open/floor/carpet/black,
-/area/space)
+/area/city/shop)
 "KE" = (
 /obj/structure/rack,
 /obj/machinery/light{
@@ -2842,7 +2842,7 @@
 	},
 /obj/item/kirbyplants/fullysynthetic,
 /turf/open/floor/carpet/black,
-/area/space)
+/area/city/shop)
 "SZ" = (
 /obj/structure/closet/secure_closet/personal/cabinet,
 /obj/effect/turf_decal/siding/white{
@@ -2851,7 +2851,7 @@
 /obj/item/cane,
 /obj/item/clothing/glasses/monocle,
 /turf/open/floor/carpet/black,
-/area/space)
+/area/city/shop)
 "Ti" = (
 /obj/effect/wall_vent,
 /turf/closed/indestructible/reinforced,
@@ -2871,7 +2871,7 @@
 	dir = 1
 	},
 /turf/open/floor/carpet/black,
-/area/space)
+/area/city/shop)
 "TP" = (
 /obj/effect/turf_decal/siding/thinplating/dark{
 	dir = 8
@@ -2980,7 +2980,7 @@
 	name = "Corporate Folder"
 	},
 /turf/open/floor/carpet/black,
-/area/space)
+/area/city/shop)
 "YN" = (
 /turf/open/floor/facility/white,
 /area/space)
@@ -30169,10 +30169,10 @@ ZR
 ZR
 ZR
 ZR
-Vo
-Vo
-Vo
-Vo
+ZR
+ZR
+ZR
+ZR
 jq
 jq
 jq
@@ -30429,7 +30429,7 @@ ZR
 SZ
 kt
 SL
-cJ
+ZR
 cJ
 cJ
 cJ
@@ -30686,7 +30686,7 @@ ZR
 kf
 lX
 DZ
-cJ
+ZR
 gG
 gG
 gG
@@ -30943,7 +30943,7 @@ be
 lX
 lX
 xH
-cJ
+ZR
 gG
 gG
 gG
@@ -31200,7 +31200,7 @@ ZR
 TF
 lX
 DZ
-cJ
+ZR
 gG
 gG
 gG
@@ -31457,7 +31457,7 @@ ZR
 YF
 IK
 Kj
-cJ
+ZR
 gG
 gG
 gG
