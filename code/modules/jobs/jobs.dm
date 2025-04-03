@@ -14,6 +14,8 @@ GLOBAL_LIST_INIT(command_positions, list(
 	"Doctor",
 	"Hana Administrator",
 	"Association Section Director",
+	"Association Assistant Director",
+	"Subsidary Office Director",
 	"Index Messenger",
 	"Blade Lineage Cutthroat",
 	"Grand Inquisitor",

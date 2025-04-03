@@ -37,7 +37,7 @@
 	return ..()
 
 /datum/outfit/job/mixed_director
-	name = "Associate Director"
+	name = "Association Section Director"
 	jobtype = /datum/job/mixed_director
 
 	belt = /obj/item/pda/security
@@ -87,7 +87,7 @@
 	return ..()
 
 /datum/outfit/job/mixed_veteran
-	name = "Associate Veteran"
+	name = "Association Assistant Director"
 	jobtype = /datum/job/mixed_veteran
 
 	belt = /obj/item/pda/security

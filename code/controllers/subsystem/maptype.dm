@@ -85,6 +85,8 @@ SUBSYSTEM_DEF(maptype)
 			departments = list("Command", "R Corp", "Medical")
 		if("wcorp")
 			departments = list("Command", "W Corp")
+		if("lcorp_city")
+			departments = list("Command", "Security", "Service", "Association", "Fixers", "Medical")
 
 	var/list/all_jobs = subtypesof(/datum/job)
 	if(!all_jobs.len)
