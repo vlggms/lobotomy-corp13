@@ -14,7 +14,7 @@ SUBSYSTEM_DEF(maptype)
 	//All the map tags that delete all jobs and replace them with others.
 	var/list/clearmaps = list("rcorp", "city", "wcorp", "limbus_labs", "fixers", "office")
 
-	//LC13 Maps
+	//LC13 Maps, this enables Traits and cores
 	var/list/lc_maps = list("standard", "fishing")
 
 	//LC13 Gamemode Traits
@@ -45,7 +45,7 @@ SUBSYSTEM_DEF(maptype)
 	var/list/autoend = list("rcorp", "wcorp", "limbus_labs", "fixers", "office")
 
 	//This map is city stuff
-	var/list/citymaps = list("wonderlabs", "city", "fixers", "office")
+	var/list/citymaps = list("wonderlabs", "city", "fixers", "office", "lcorp_city")
 
 	//This is for maps that incorporate space
 	var/list/spacemaps = list("skeld")

@@ -20,7 +20,7 @@
 
 	display_order = JOB_DISPLAY_ORDER_MEDICAL
 	alt_titles = list("Surgeon")
-	maptype = list("wonderlabs", "city", "fixers")
+	maptype = list("wonderlabs", "city", "fixers", "lcorp_city")
 	job_important = "You are the town doctor, visit your clinic to the east of town and start healing peopl who come in. You must charge money for your services."
 	job_notice = "You are forbidden from reviving lobotomy corp employees."
 
@@ -30,6 +30,11 @@
 	ADD_TRAIT(H, TRAIT_COMBATFEAR_IMMUNE, JOB_TRAIT)
 	//Can't have assistants without a doctor.
 	for(var/datum/job/processing in SSjob.occupations)
+		if(SSmaptype.maptype == "lcorp_city")
+			if(istype(processing, /datum/job/doctor/nurse))
+				processing.total_positions = 1
+			return
+
 		if(istype(processing, /datum/job/doctor/nurse))
 			processing.total_positions = 2
 		if(SSmaptype.maptype == "fixers")
@@ -74,7 +79,7 @@
 	exp_requirements = 180
 
 	display_order = JOB_DISPLAY_ORDER_MEDICALASSIST
-	maptype = list("wonderlabs", "city", "fixers")
+	maptype = list("wonderlabs", "city", "fixers", "lcorp_city")
 	job_important = "You are an assistant to the town doctor, visit your clinic to the east of town and start healing people who come in. You must charge money for your services."
 
 /datum/outfit/job/doctor/nurse
