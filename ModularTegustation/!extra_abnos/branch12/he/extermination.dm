@@ -10,10 +10,12 @@
 		ABNORMALITY_WORK_INSIGHT = 50,
 		ABNORMALITY_WORK_ATTACHMENT = 30,
 		ABNORMALITY_WORK_REPRESSION = 80,
+		"Read the Page" = 100
 	)
-	work_damage_amount = 5
+	work_damage_amount = 7
 	work_damage_type = BLACK_DAMAGE
-	threat_level = ZAYIN_LEVEL
+	threat_level = HE_LEVEL
+	start_qliphoth = 3
 
 	ego_list = list(
 		/datum/ego_datum/weapon/branch12/exterminator,
@@ -23,7 +25,13 @@
 
 	abnormality_origin = ABNORMALITY_ORIGIN_BRANCH12
 
-/mob/living/simple_animal/hostile/abnormality/branch12/extermination/SuccessEffect(mob/living/carbon/human/user, work_type, pe, work_time)
+/mob/living/simple_animal/hostile/abnormality/branch12/extermination/PostWorkEffect(mob/living/carbon/human/user, work_type, pe, work_time)
+	if(work_type == "Read the Page")
+		datum_reference.qliphoth_change(-3)
+
+	datum_reference.qliphoth_change(-1)
+
+/mob/living/simple_animal/hostile/abnormality/branch12/extermination/ZeroQliphoth()
 	var/list/damage_these = list()
 	var/list/possible_breachers = list()
 	for(var/mob/living/simple_animal/hostile/abnormality/V in GLOB.abnormality_mob_list)
@@ -38,9 +46,7 @@
 				return
 			D.adjustBruteLoss(D.maxHealth*0.3)
 
-
 	if(!length(possible_breachers))
-		to_chat(user, span_notice("No one took your contract."))
 		return
 	var/mob/living/simple_animal/hostile/abnormality/breaching = pick(possible_breachers)
 	breaching.datum_reference.qliphoth_change(-99)

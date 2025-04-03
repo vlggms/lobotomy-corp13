@@ -77,16 +77,6 @@
 		"The <Redacted> can be stopped once a employee gets a good work result on O-06-12-102",
 	)
 
-// Extermination Order
-/obj/item/paper/fluff/info/branch12/extermination
-	abno_type = /mob/living/simple_animal/hostile/abnormality/branch12/extermination
-	abno_code = "O-05-12-775"
-	abno_info = list(
-		"When a work was completed on O-04-12-775, a random abnormality in the facility would breach, designated O-04-12-775-1.",
-		"Upon breaching, this abnormality was considerably more agressive, attacking both employees and other abnormalities.",
-		"Completing a work on O-04-12-775 would also deal considerable damage to all breached abnormalities.",
-		"Headquarters is confident that you could find some use for this.",
-	)
 
 // Saga of Man
 /obj/item/paper/fluff/info/branch12/saga
@@ -288,6 +278,20 @@
 		"When the work result was bad the qliphoth counter lowered by 1.",
 	)
 
+
+// Extermination Order
+/obj/item/paper/fluff/info/branch12/extermination
+	abno_type = /mob/living/simple_animal/hostile/abnormality/branch12/extermination
+	abno_code = "O-05-12-775"
+	abno_info = list(
+		"After each work, the qliphoth counter decreased.",
+		"Reading the page reduced the qliphoth counter to 0.",
+		"When a qliphoth counter was 0, a random abnormality in the facility would breach, designated O-04-12-775-1.",
+		"Upon breaching, this abnormality was considerably more agressive, attacking both employees and other abnormalities.",
+		"Completing a work on O-04-12-775 would also deal considerable damage to all breached abnormalities.",
+		"Headquarters is confident that you could find some use for this.",
+	)
+
 //	-------------WAW-------------
 // Queen Keres
 /obj/item/paper/fluff/info/branch12/queen_keres
@@ -370,6 +374,16 @@
 	abno_info = list(
 		"When an abnormality in the facility was suppressed, the qliphoth counter decreased.",
 		"WARNING: Do not let any employee marked by O-01-12-612 to leave the facility floor.",
+	)
+
+// Dead Bird
+/obj/item/paper/fluff/info/branch12/dead_bird
+	abno_type = /mob/living/simple_animal/hostile/abnormality/branch12/dead_bird
+	abno_code = "O-02-12-40"
+	abno_info = list(
+		"When the work result was bad, the Qliphoth counter decreased.",
+		"When the work result was normal, the Qliphoth counter decreased at a low rate.",
+		"O-02-12-40 would have to be constantly attacked during it breach, until death."
 	)
 
 //	-------------ALEPH-------------
