@@ -523,20 +523,19 @@
 /obj/item/ego_weapon/ranged/branch12/antique
 	name = "Captain's Antique Laser Gun"
 	desc = "A beautiful laser gun coming from a far away space station."
-	icon_state = "space"
-	inhand_icon_state = "space"
+	icon_state = "caplaser"
+	inhand_icon_state = "caplaser"
 	special = "This gun regenerates bullets over time, instead of being reloaded."
 	force = 20
 	projectile_path = /obj/projectile/ego_bullet/plasmacoree6
 	spread = 5
-	fire_sound = 'sound/weapons/laser3.ogg'
+	fire_sound = 'sound/weapons/laser.ogg'
 	vary_fire_sound = TRUE
 	fire_sound_volume = 30
-	fire_delay = 15
+	fire_delay = 7
 
 	attribute_requirements = list(FORTITUDE_ATTRIBUTE = 80)
 	shotsleft = 15
-	reloadtime = 100 SECONDS
 
 /obj/item/ego_weapon/ranged/branch12/antique/Initialize()
 	..()
@@ -554,6 +553,6 @@
 
 /obj/projectile/ego_bullet/plasmacoree6
 	name = "plasmacore e6"
-	icon_state = "heavylaser"
+	icon_state = "heav ylaser"
 	damage = 60
 	damage_type = RED_DAMAGE
