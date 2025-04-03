@@ -171,7 +171,7 @@
 		new /datum/data/adventure_upgrade("RUN HEALING: 5",		5,	10,	"RUNHEAL") = 1,
 		new /datum/data/adventure_upgrade("RUN HEALING: 10",	10,	25,	"RUNHEAL") = 1,
 
-		//Run healing
+		//Run gold chance
 		new /datum/data/adventure_upgrade("RUN GOLD CHANCE: 10%",		10,	3,	"RUNGOLD") = 1,
 		new /datum/data/adventure_upgrade("RUN GOLD CHANCE: 35%",		35,	10,	"RUNGOLD") = 1,
 		new /datum/data/adventure_upgrade("RUN GOLD CHANCE: 50%",		50,	25,	"RUNGOLD") = 1,
@@ -452,11 +452,11 @@
 				DoBattle(roll(virtual_damage))
 			if(3)
 				if(prob(info_chance))
-					temp_text += "THE ENEMY TAKES THE CHANCE TO STRIKE<br>"
-					DoBattle(0)
-				else
 					temp_text += "<br>HP:[enemy_integrity]<br>DAMAGE:[enemy_damage]<br>YOUR WELCOME<br>"
 					currently_scanned = TRUE
+				else
+					temp_text += "THE ENEMY TAKES THE CHANCE TO STRIKE<br>"
+					DoBattle(0)
 			if(4)
 				if(prob(run_chance))
 					temp_text += "<br>YOU RUN AWAY FROM YOUR OPPONENT<br>[run_healing] DAMAGE HEALED<br>EVENT PROGRESS -5<br>"
@@ -651,6 +651,7 @@
 			"A BROKEN STRING OF YARN LEADS INTO THIS PATH",
 			"YOU GET AN OMINOUS FEELING",
 			"YOU READY YOUR WEAPON",
+			"EYES IN THE DARKNESS",
 		)
 	if(what_path == ADVENTURE_MODE_TRAVEL)
 		//When this is more formed i may change these to be the event descriptions.
@@ -660,6 +661,7 @@
 			"THIS PATH IS DULL",
 			"THIS ROAD IS CLEAR",
 			"YOU SEE NOTHING OF NOTE",
+			"A SHORT WALK"
 		)
 	if(ispath(what_path))
 		//There used to be a EVENT_MODE_TRAVEL here but i chose the chaotic option that is extremly janky.-IP
