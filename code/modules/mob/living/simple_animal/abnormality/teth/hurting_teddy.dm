@@ -45,20 +45,6 @@
   //gift_type = /datum/ego_gifts/hex_nail
   abnormality_origin = ABNORMALITY_ORIGIN_LIMBUS
 
-  observation_prompt = "A teddy bear suffers from having nails lodged into its body. <br>\
-  	The bloodstains decorating it are a telling sign of all the time it spent in pain. <br>\
-  	The holes where its eyes should be are empty. Nothing but dry red marks remain inside. <br>\
-  	In spite of that, it stands with its arms wide, endeavoring to fulfill its duty of giving hugs."
-  observation_choices = list(
-	"Remove the nails" = list(TRUE, "You removed the nails from the teddy bear. <br>\
-		Bloody pus pours out of the holes. <br>\
-		Once the plush had finished its copious exudation, only a dark cavity remained within. <br>\
-		It is an empty void."),
-	"Bandage its wounds" = list(FALSE, "You applied bandages to the holes in its chest. <br>\
-		Blood leaks and saturates them. The wound still seems sore. <br>\
-		You gave it some extra dressing, making sure that it’ll last a good while. Yet you know the wound will only continue to fester.")
-	) //basically just a slightly edited version of its mirror dungeon event. don't feel like writing a whole new thing for it.
-
 var/bearfriended //the one who can work on it safely
 var/mob/living/carbon/human/hug_victim = null
 var/release_threshold = 200 //Total raw damage needed to break a player out of a grab (from any source)
