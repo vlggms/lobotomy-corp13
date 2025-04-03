@@ -45,14 +45,14 @@
   //gift_type = /datum/ego_gifts/hex_nail
   abnormality_origin = ABNORMALITY_ORIGIN_LIMBUS
 
-var/bearfriended //the one who can work on it safely
-var/mob/living/carbon/human/hug_victim = null
-var/release_threshold = 200 //Total raw damage needed to break a player out of a grab (from any source)
-var/release_damage = 0
-var/hug_progress = 0
-var/hug_damage = 8
-var/crush_damage = 3
-var/can_act = TRUE
+	var/bearfriended //the one who can work on it safely
+	var/mob/living/carbon/human/hug_victim = null
+	var/release_threshold = 200 //Total raw damage needed to break a player out of a grab (from any source)
+	var/release_damage = 0
+	var/hug_progress = 0
+	var/hug_damage = 8
+	var/crush_damage = 3
+	var/can_act = TRUE
 
 //Work Mechanics
 
