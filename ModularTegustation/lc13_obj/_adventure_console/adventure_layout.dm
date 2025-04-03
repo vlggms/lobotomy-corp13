@@ -269,6 +269,11 @@
 				"YOUR LEADERS PLAN TO SACRIFICE YOU WHILE YOU WORK",
 				"GO BACK TO THE LAKE",
 				"YELLOW FROG LEGS FOR MY EVIL SPELL",
+				"WE ARE WATCHING",
+				"[uppertext(H.name)]. [uppertext(H.name)]. [uppertext(H.name)]. [uppertext(H.name)]",
+				"49 20 53 45 45 20 59 4F 55",
+				"THEY ARE GETTING CLOSER",
+				"DO NOT ENTER THE ELEVATOR WITH HIM.",
 			)]</b>"
 
 	StatCatchup()
@@ -399,7 +404,8 @@
 /datum/adventure_layout/proc/GeneratePaths(max_paths)
 	for(var/i=1 to max_paths)
 		//Unsure if i should put in a check in order to prevent 3% chance events.-IP
-		if(prob(program_progress) && program_progress > 25)
+		//A minimum is fine, I set it to 15%. - KK
+		if(prob(program_progress) && program_progress > 15)
 			paths_to_tread += GrabEvent()
 			continue
 		if(prob(program_progress + 10))
@@ -652,16 +658,22 @@
 			"YOU GET AN OMINOUS FEELING",
 			"YOU READY YOUR WEAPON",
 			"EYES IN THE DARKNESS",
+			"THIS PATH IS DANGER",
+			"A SHAPE IN THE FOG",
+			"UNSEEN WHISPERS",
+			"THE RUSTLING OF BUSHES",
 		)
 	if(what_path == ADVENTURE_MODE_TRAVEL)
 		//When this is more formed i may change these to be the event descriptions.
 		path_descs = list(
-			"THIS PATH IS COLD",
 			"THIS PATH IS SAFE",
-			"THIS PATH IS DULL",
 			"THIS ROAD IS CLEAR",
 			"YOU SEE NOTHING OF NOTE",
-			"A SHORT WALK"
+			"A SHORT WALK",
+			"IT IS COLD HERE.",
+			"THIS IS DULL",
+			"THE TRAIL SEEMS EMPTY.",
+			"NOTHING THERE.",
 		)
 	if(ispath(what_path))
 		//There used to be a EVENT_MODE_TRAVEL here but i chose the chaotic option that is extremly janky.-IP
