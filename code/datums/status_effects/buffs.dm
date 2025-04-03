@@ -582,3 +582,439 @@
 	. = ..()
 	REMOVE_TRAIT(owner, trait, src)
 	owner.update_sight()
+
+//Global Damage Type Protections
+/datum/status_effect/stacking/protection
+	id = "protection"
+	status_type = STATUS_EFFECT_MULTIPLE
+	duration = 100
+	max_stacks = 9
+	stacks = 0
+	consumed_on_threshold = FALSE
+	alert_type = /atom/movable/screen/alert/status_effect/protection
+	var/protection_mod = /datum/dc_change/protection
+	var/physiology_mod
+	var/protection = 1
+
+/atom/movable/screen/alert/status_effect/protection
+	name = "Protection"
+	desc = "You are protected! All damage taken will be decreased by "
+	icon = 'ModularTegustation/Teguicons/status_sprites.dmi'
+	icon_state = "protection"
+
+/datum/status_effect/stacking/protection/on_apply()
+	. = ..()
+	if(!owner)
+		return
+	var/mob/living/carbon/human/H = owner
+	physiology_mod = ((stacks / 10)*protection)//up to 2.16 to physiology
+	if(ishuman(H))
+		H.physiology.red_mod -= physiology_mod
+		H.physiology.white_mod -= physiology_mod
+		H.physiology.black_mod -= physiology_mod
+		H.physiology.pale_mod -= physiology_mod
+		return
+	if(!isanimal(owner))
+		return
+	var/mob/living/simple_animal/A = owner
+	A.AddModifier(protection_mod)
+	var/datum/dc_change/protection/mod = A.HasDamageMod(protection_mod)
+	mod.potency = 1-((stacks / 10) * protection)//this is roughly -0.1 damage coeff for every stack, on average
+	A.UpdateResistances()
+
+/datum/status_effect/stacking/protection/add_stacks(stacks_added)//update your weaknesses
+	. = ..()
+	if(!owner)
+		return
+	linked_alert.desc = initial(linked_alert.desc)+"[stacks*10]%!"
+	var/mob/living/carbon/human/H = owner
+	if(ishuman(H))
+		if(physiology_mod)//removes the existing protection modifier, before the damage modifier is updated
+			H.physiology.red_mod += physiology_mod
+			H.physiology.white_mod += physiology_mod
+			H.physiology.black_mod += physiology_mod
+			H.physiology.pale_mod += physiology_mod
+		physiology_mod = (stacks / 10)*protection
+		H.physiology.red_mod -= physiology_mod
+		H.physiology.white_mod -= physiology_mod
+		H.physiology.black_mod -= physiology_mod
+		H.physiology.pale_mod -= physiology_mod
+		return
+	if(!isanimal(owner))
+		return
+	var/mob/living/simple_animal/A = owner
+	var/datum/dc_change/protection/mod = A.HasDamageMod(protection_mod)
+	mod.potency = 1-((stacks / 10) * protection)//this is roughly -0.1 damage coeff for every stack, on average
+	A.UpdateResistances()
+
+/datum/status_effect/stacking/protection/on_remove()
+	. = ..()
+	if(!owner)
+		return
+	var/mob/living/carbon/human/H = owner
+	if(ishuman(H))
+		H.physiology.red_mod += physiology_mod
+		H.physiology.white_mod += physiology_mod
+		H.physiology.black_mod += physiology_mod
+		H.physiology.pale_mod += physiology_mod
+		return
+	var/mob/living/simple_animal/A = owner
+	if(A.HasDamageMod(protection_mod))
+		A.RemoveModifier(protection_mod)
+
+/datum/status_effect/stacking/protection/tick()
+	if(!can_have_status())
+		qdel(src)
+
+//Mob Proc
+/mob/living/proc/apply_lc_protection(stacks)
+	var/datum/status_effect/stacking/protection/P = src.has_status_effect(/datum/status_effect/stacking/protection)
+	if(!P)
+		src.apply_status_effect(/datum/status_effect/stacking/protection, stacks)
+		return
+
+	if(P.stacks)
+		P.add_stacks(stacks)
+		return
+
+//Specific Damage Type Protections
+/datum/status_effect/stacking/damtype_protection
+	id = "red_protection"
+	status_type = STATUS_EFFECT_MULTIPLE
+	duration = 100
+	max_stacks = 9
+	stacks = 0
+	consumed_on_threshold = FALSE
+	alert_type = /atom/movable/screen/alert/status_effect/damtype_protection
+	var/protection_mod = /datum/dc_change/red_protection
+	var/physiology_mod
+	var/damage_type = RED_DAMAGE
+	var/protection = 1
+
+/atom/movable/screen/alert/status_effect/damtype_protection
+	name = "Red Protection"
+	desc = "You are protected! Red damage taken will be decreased by "
+	icon = 'ModularTegustation/Teguicons/status_sprites.dmi'
+	icon_state = "red_protection"
+
+/datum/status_effect/stacking/damtype_protection/on_apply()
+	. = ..()
+	if(!owner)
+		return
+	var/mob/living/carbon/human/H = owner
+	physiology_mod = ((stacks / 10)*protection)
+	if(ishuman(H))
+		if(damage_type == RED_DAMAGE)
+			H.physiology.red_mod -= physiology_mod
+		if(damage_type == WHITE_DAMAGE)
+			H.physiology.white_mod -= physiology_mod
+		if(damage_type == BLACK_DAMAGE)
+			H.physiology.black_mod -= physiology_mod
+		if(damage_type == PALE_DAMAGE)
+			H.physiology.pale_mod -= physiology_mod
+		return
+	if(!isanimal(owner))
+		return
+	var/mob/living/simple_animal/A = owner
+	A.AddModifier(protection_mod)
+	var/datum/dc_change/mod = A.HasDamageMod(protection_mod)
+	mod.potency = 1-((stacks / 10) * protection)//this is roughly -0.1 damage coeff for every stack, on average
+	A.UpdateResistances()
+
+/datum/status_effect/stacking/damtype_protection/add_stacks(stacks_added)//update your weaknesses
+	. = ..()
+	if(!owner)
+		return
+	linked_alert.desc = initial(linked_alert.desc)+"[stacks*10]%!"
+	var/mob/living/carbon/human/H = owner
+	if(ishuman(H))
+		if(physiology_mod)//removes the existing protection modifier, before the damage modifier is updated
+			if(damage_type == RED_DAMAGE)
+				H.physiology.red_mod += physiology_mod
+			if(damage_type == WHITE_DAMAGE)
+				H.physiology.white_mod += physiology_mod
+			if(damage_type == BLACK_DAMAGE)
+				H.physiology.black_mod += physiology_mod
+			if(damage_type == PALE_DAMAGE)
+				H.physiology.pale_mod += physiology_mod
+		physiology_mod = (stacks / 10)*protection
+		if(damage_type == RED_DAMAGE)
+			H.physiology.red_mod -= physiology_mod
+		if(damage_type == WHITE_DAMAGE)
+			H.physiology.white_mod -= physiology_mod
+		if(damage_type == BLACK_DAMAGE)
+			H.physiology.black_mod -= physiology_mod
+		if(damage_type == PALE_DAMAGE)
+			H.physiology.pale_mod -= physiology_mod
+		return
+	if(!isanimal(owner))
+		return
+	var/mob/living/simple_animal/A = owner
+	var/datum/dc_change/mod = A.HasDamageMod(protection_mod)
+	mod.potency = 1-((stacks / 10) * protection)//this is roughly -0.1 damage coeff for every stack, on average
+	A.UpdateResistances()
+
+/datum/status_effect/stacking/damtype_protection/on_remove()
+	. = ..()
+	if(!owner)
+		return
+	var/mob/living/carbon/human/H = owner
+	if(ishuman(H))
+		if(damage_type == RED_DAMAGE)
+			H.physiology.red_mod += physiology_mod
+		if(damage_type == WHITE_DAMAGE)
+			H.physiology.white_mod += physiology_mod
+		if(damage_type == BLACK_DAMAGE)
+			H.physiology.black_mod += physiology_mod
+		if(damage_type == PALE_DAMAGE)
+			H.physiology.pale_mod += physiology_mod
+		return
+	var/mob/living/simple_animal/A = owner
+	if(A.HasDamageMod(protection_mod))
+		A.RemoveModifier(protection_mod)
+
+/datum/status_effect/stacking/damtype_protection/tick()
+	if(!can_have_status())
+		qdel(src)
+
+//Mob Proc
+/mob/living/proc/apply_lc_red_protection(stacks)
+	var/datum/status_effect/stacking/damtype_protection/P = src.has_status_effect(/datum/status_effect/stacking/damtype_protection)
+	if(!P)
+		src.apply_status_effect(/datum/status_effect/stacking/damtype_protection, stacks)
+		return
+
+	if(P.stacks)
+		P.add_stacks(stacks)
+		return
+
+/datum/status_effect/stacking/damtype_protection/white
+	id = "white_protection"
+	alert_type = /atom/movable/screen/alert/status_effect/damtype_protection/white
+	protection_mod = /datum/dc_change/white_protection
+	damage_type = WHITE_DAMAGE
+
+/atom/movable/screen/alert/status_effect/damtype_protection/white
+	name = "White Protection"
+	desc = "You are protected! White damage taken will be decreased by "
+	icon = 'ModularTegustation/Teguicons/status_sprites.dmi'
+	icon_state = "white_protection"
+
+//Mob Proc
+/mob/living/proc/apply_lc_white_protection(stacks)
+	var/datum/status_effect/stacking/damtype_protection/white/P = src.has_status_effect(/datum/status_effect/stacking/damtype_protection/white)
+	if(!P)
+		src.apply_status_effect(/datum/status_effect/stacking/damtype_protection/white, stacks)
+		return
+
+	if(P.stacks)
+		P.add_stacks(stacks)
+		return
+
+/datum/status_effect/stacking/damtype_protection/black
+	id = "black_protection"
+	alert_type = /atom/movable/screen/alert/status_effect/damtype_protection/black
+	protection_mod = /datum/dc_change/black_protection
+	damage_type = BLACK_DAMAGE
+
+/atom/movable/screen/alert/status_effect/damtype_protection/black
+	name = "Black Protection"
+	desc = "You are protected! Black damage taken will be decreased by "
+	icon = 'ModularTegustation/Teguicons/status_sprites.dmi'
+	icon_state = "black_protection"
+
+//Mob Proc
+/mob/living/proc/apply_lc_black_protection(stacks)
+	var/datum/status_effect/stacking/damtype_protection/black/P = src.has_status_effect(/datum/status_effect/stacking/damtype_protection/black)
+	if(!P)
+		src.apply_status_effect(/datum/status_effect/stacking/damtype_protection/black, stacks)
+		return
+
+	if(P.stacks)
+		P.add_stacks(stacks)
+		return
+
+/datum/status_effect/stacking/damtype_protection/pale
+	id = "pale_protection"
+	alert_type = /atom/movable/screen/alert/status_effect/damtype_protection/pale
+	protection_mod = /datum/dc_change/pale_protection
+	damage_type = PALE_DAMAGE
+
+/atom/movable/screen/alert/status_effect/damtype_protection/pale
+	name = "Pale Protection"
+	desc = "You are protected! Pale damage taken will be decreased by "
+	icon = 'ModularTegustation/Teguicons/status_sprites.dmi'
+	icon_state = "pale_protection"
+
+//Mob Proc
+/mob/living/proc/apply_lc_pale_protection(stacks)
+	var/datum/status_effect/stacking/damtype_protection/pale/P = src.has_status_effect(/datum/status_effect/stacking/damtype_protection/pale)
+	if(!P)
+		src.apply_status_effect(/datum/status_effect/stacking/damtype_protection/pale, stacks)
+		return
+
+	if(P.stacks)
+		P.add_stacks(stacks)
+		return
+
+//Global Damage Up
+/datum/status_effect/stacking/damage_up
+	id = "damage_up"
+	status_type = STATUS_EFFECT_MULTIPLE
+	duration = 100
+	max_stacks = 10
+	stacks = 0
+	consumed_on_threshold = FALSE
+	alert_type = /atom/movable/screen/alert/status_effect/damage_up
+	var/damage_mode = 1
+	var/damage_increase = 0
+
+/atom/movable/screen/alert/status_effect/damage_up
+	name = "Damage Up"
+	desc = "You are empowered! Your melee damage is increased by "
+	icon = 'ModularTegustation/Teguicons/status_sprites.dmi'
+	icon_state = "red_protection"
+
+/datum/status_effect/stacking/damage_up/on_apply()
+	. = ..()
+	if(!owner)
+		return
+	if(isliving(owner))
+		var/mob/living/L = owner
+		damage_increase = ((stacks * 10) * damage_mode)
+		L.extra_damage += damage_increase
+
+/datum/status_effect/stacking/damage_up/add_stacks(stacks_added)//update your weaknesses
+	. = ..()
+	if(!owner)
+		return
+	linked_alert.desc = initial(linked_alert.desc)+"[stacks*10]%!"
+	if(isliving(owner))
+		var/mob/living/L = owner
+		L.extra_damage -= damage_increase
+		damage_increase = ((stacks * 10) * damage_mode)
+		L.extra_damage += damage_increase
+
+/datum/status_effect/stacking/damage_up/on_remove()
+	. = ..()
+	if(!owner)
+		return
+	if(isliving(owner))
+		var/mob/living/L = owner
+		L.extra_damage -= damage_increase
+
+/datum/status_effect/stacking/damage_up/tick()
+	if(!can_have_status())
+		qdel(src)
+
+//Specific Damage Up
+/datum/status_effect/stacking/damtype_damage_up
+	id = "red_damage_up"
+	status_type = STATUS_EFFECT_MULTIPLE
+	duration = 100
+	max_stacks = 10
+	stacks = 0
+	consumed_on_threshold = FALSE
+	alert_type = /atom/movable/screen/alert/status_effect/red_damage_up
+	var/damage_mode = 1
+	var/damage_increase = 0
+	var/damage_type = RED_DAMAGE
+
+/atom/movable/screen/alert/status_effect/red_damage_up
+	name = "Red Damage Up"
+	desc = "You are empowered! Your RED melee damage is increased by "
+	icon = 'ModularTegustation/Teguicons/status_sprites.dmi'
+	icon_state = "red_protection"
+
+/datum/status_effect/stacking/damtype_damage_up/on_apply()
+	. = ..()
+	if(!owner)
+		return
+	if(isliving(owner))
+		var/mob/living/L = owner
+		damage_increase = ((stacks * 10) * damage_mode)
+		if(damage_type == RED_DAMAGE)
+			L.extra_damage_red += damage_increase
+		if(damage_type == WHITE_DAMAGE)
+			L.extra_damage_white += damage_increase
+		if(damage_type == BLACK_DAMAGE)
+			L.extra_damage_black += damage_increase
+		if(damage_type == PALE_DAMAGE)
+			L.extra_damage_pale += damage_increase
+
+/datum/status_effect/stacking/damtype_damage_up/add_stacks(stacks_added)
+	. = ..()
+	if(!owner)
+		return
+	linked_alert.desc = initial(linked_alert.desc)+"[stacks*10]%!"
+	if(isliving(owner))
+		var/mob/living/L = owner
+		if(damage_type == RED_DAMAGE)
+			L.extra_damage_red -= damage_increase
+		if(damage_type == WHITE_DAMAGE)
+			L.extra_damage_white -= damage_increase
+		if(damage_type == BLACK_DAMAGE)
+			L.extra_damage_black -= damage_increase
+		if(damage_type == PALE_DAMAGE)
+			L.extra_damage_pale -= damage_increase
+		damage_increase = ((stacks * 10) * damage_mode)
+		if(damage_type == RED_DAMAGE)
+			L.extra_damage_red += damage_increase
+		if(damage_type == WHITE_DAMAGE)
+			L.extra_damage_white += damage_increase
+		if(damage_type == BLACK_DAMAGE)
+			L.extra_damage_black += damage_increase
+		if(damage_type == PALE_DAMAGE)
+			L.extra_damage_pale += damage_increase
+
+/datum/status_effect/stacking/damtype_damage_up/on_remove()
+	. = ..()
+	if(!owner)
+		return
+	if(isliving(owner))
+		var/mob/living/L = owner
+		if(damage_type == RED_DAMAGE)
+			L.extra_damage_red -= damage_increase
+		if(damage_type == WHITE_DAMAGE)
+			L.extra_damage_white -= damage_increase
+		if(damage_type == BLACK_DAMAGE)
+			L.extra_damage_black -= damage_increase
+		if(damage_type == PALE_DAMAGE)
+			L.extra_damage_pale -= damage_increase
+
+/datum/status_effect/stacking/damtype_damage_up/tick()
+	if(!can_have_status())
+		qdel(src)
+
+/datum/status_effect/stacking/damtype_damage_up/white
+	id = "white_damage_up"
+	alert_type = /atom/movable/screen/alert/status_effect/white_damage_up
+	damage_type = WHITE_DAMAGE
+
+/atom/movable/screen/alert/status_effect/white_damage_up
+	name = "White Damage Up"
+	desc = "You are empowered! Your WHITE melee damage is increased by "
+	icon = 'ModularTegustation/Teguicons/status_sprites.dmi'
+	icon_state = "red_protection"
+
+/datum/status_effect/stacking/damtype_damage_up/black
+	id = "black_damage_up"
+	alert_type = /atom/movable/screen/alert/status_effect/black_damage_up
+	damage_type = BLACK_DAMAGE
+
+/atom/movable/screen/alert/status_effect/black_damage_up
+	name = "Black Damage Up"
+	desc = "You are empowered! Your BLACK melee damage is increased by "
+	icon = 'ModularTegustation/Teguicons/status_sprites.dmi'
+	icon_state = "red_protection"
+
+/datum/status_effect/stacking/damtype_damage_up/pale
+	id = "pale_damage_up"
+	alert_type = /atom/movable/screen/alert/status_effect/pale_damage_up
+	damage_type = PALE_DAMAGE
+
+/atom/movable/screen/alert/status_effect/pale_damage_up
+	name = "Pale Damage Up"
+	desc = "You are empowered! Your PALE melee damage is increased by "
+	icon = 'ModularTegustation/Teguicons/status_sprites.dmi'
+	icon_state = "red_protection"
