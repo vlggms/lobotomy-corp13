@@ -4109,7 +4109,7 @@
 #include "ModularTegustation\lc13_obj\_adventure_console\adventure_events\general\fun_contract.dm"
 #include "ModularTegustation\lc13_obj\_adventure_console\adventure_events\general\jazz_end.dm"
 #include "ModularTegustation\lc13_obj\_adventure_console\adventure_events\general\legacy.dm"
-#include "ModularTegustation\lc13_obj\_adventure_console\adventure_events\general\Man_Sand.dm"
+#include "ModularTegustation\lc13_obj\_adventure_console\adventure_events\general\man_sands.dm"
 #include "ModularTegustation\lc13_obj\_adventure_console\adventure_events\general\quiz.dm"
 #include "ModularTegustation\lc13_obj\_adventure_console\adventure_events\general\sinking_bell.dm"
 #include "ModularTegustation\lc13_obj\_adventure_console\adventure_events\general\vending machine.dm"

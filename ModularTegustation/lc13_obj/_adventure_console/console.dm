@@ -97,6 +97,15 @@
 			updateUsrDialog()
 			return TRUE
 
+	//Setting display menu for the mini menu in the shoppe
+	if(href_list["set_minidisplay"])
+		var/set_display = text2num(href_list["set_minidisplay"])
+		if(isnum(set_display) && set_display != adventure_data.minimenu_mode)
+			adventure_data.minimenu_mode = set_display
+			playsound(get_turf(src), 'sound/machines/terminal_prompt_confirm.ogg', 50, TRUE)
+			updateUsrDialog()
+			return TRUE
+
 	//Adventure Mode choice reaction.
 	if(href_list["travel"])
 		var/travel_num = text2num(href_list["travel"])
