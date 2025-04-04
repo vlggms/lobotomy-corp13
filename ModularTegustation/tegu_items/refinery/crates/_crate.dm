@@ -58,7 +58,7 @@
 	if(veryrarechance)
 		veryrarechance += (repmodifier/crate_multiplier)
 
-	if(SSmaptype.maptype in SSmaptype.citymaps && user?.mind?.assigned_role == "Extraction Officer")	//Fuckers shouldn't loot like this, unless for some reason the EO exists.
+	if((SSmaptype.maptype in SSmaptype.citymaps) && (user?.mind?.assigned_role != "Extraction Officer"))	//Fuckers shouldn't loot like this, unless for some reason the EO exists.
 		SEND_GLOBAL_SIGNAL(COMSIG_CRATE_LOOTING_STARTED, user, src)
 		if(!do_after(user, 7 SECONDS, src))
 			return
