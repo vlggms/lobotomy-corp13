@@ -149,6 +149,8 @@ class IndexedDbBackend {
   }
 }
 
+let namespace = 'lc13-';
+
 /**
  * Web Storage Proxy object, which selects the best backend available
  * depending on the environment.
@@ -173,17 +175,17 @@ class StorageProxy {
 
   async get(key) {
     const backend = await this.backendPromise;
-    return backend.get(key);
+    return backend.get(namespace + key);
   }
 
   async set(key, value) {
     const backend = await this.backendPromise;
-    return backend.set(key, value);
+    return backend.set(namespace + key, value);
   }
 
   async remove(key) {
     const backend = await this.backendPromise;
-    return backend.remove(key);
+    return backend.remove(namespace + key);
   }
 
   async clear() {
