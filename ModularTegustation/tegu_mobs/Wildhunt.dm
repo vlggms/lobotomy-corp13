@@ -34,7 +34,7 @@
 	death_message = "falls to the ground, decaying into glowing particles."
 	death_sound = 'ModularTegustation/Tegusounds/claw/death.ogg'
 	footstep_type = FOOTSTEP_MOB_HEAVY
-
+	del_on_death = TRUE
 
 	var/special_attacking = FALSE // Are you currently performing a special attack
 	var/special_windup = 8 // How many deciseconds between showing a tell for a special attack and using it
