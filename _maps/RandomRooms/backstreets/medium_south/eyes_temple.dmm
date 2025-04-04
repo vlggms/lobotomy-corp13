@@ -10,21 +10,25 @@
 	dir = 8
 	},
 /area/city/backstreets_room)
+"h" = (
+/mob/living/simple_animal/hostile/ordeal/bigbird_eye,
+/turf/open/floor/plasteel/cult,
+/area/city/backstreets_room)
 "o" = (
 /obj/effect/decal/cleanable/dirt/dust,
 /turf/closed/indestructible/reinforced,
 /area/city/backstreets_room)
 "u" = (
 /obj/effect/decal/cleanable/dirt/dust,
-/mob/living/simple_animal/hostile/ordeal/bigBirdEye{
-	wander = 0
-	},
 /turf/open/indestructible/cult,
 /area/city/backstreets_room)
-"y" = (
-/mob/living/simple_animal/hostile/ordeal/bigBirdEye{
-	wander = 0
+"w" = (
+/mob/living/simple_animal/hostile/ordeal/bigbird_eye{
+	dir = 1
 	},
+/turf/open/floor/plasteel/cult,
+/area/city/backstreets_room)
+"y" = (
 /obj/structure/trap/stun,
 /obj/effect/decal/cleanable/crayon,
 /turf/open/indestructible/cult,
@@ -32,14 +36,17 @@
 "z" = (
 /obj/effect/decal/cleanable/blood,
 /obj/effect/decal/cleanable/dirt/dust,
-/mob/living/simple_animal/hostile/ordeal/bigBirdEye{
-	wander = 0
-	},
 /turf/open/indestructible/cult,
 /area/city/backstreets_room)
 "A" = (
 /obj/effect/decal/cleanable/dirt/dust,
 /turf/closed/wall/mineral/cult,
+/area/city/backstreets_room)
+"B" = (
+/mob/living/simple_animal/hostile/ordeal/bigbird_eye{
+	dir = 8
+	},
+/turf/open/floor/plasteel/cult,
 /area/city/backstreets_room)
 "C" = (
 /obj/effect/mob_spawn/human/corpse/assistant,
@@ -60,9 +67,6 @@
 /turf/closed/indestructible/reinforced,
 /area/city/backstreets_room)
 "L" = (
-/mob/living/simple_animal/hostile/ordeal/bigBirdEye{
-	wander = 0
-	},
 /turf/open/indestructible/cult,
 /area/city/backstreets_room)
 "M" = (
@@ -79,6 +83,19 @@
 /area/city/backstreets_room)
 "Q" = (
 /turf/closed/indestructible/reinforced,
+/area/city/backstreets_room)
+"V" = (
+/mob/living/simple_animal/hostile/ordeal/bigbird_eye{
+	dir = 4
+	},
+/turf/open/floor/plasteel/cult,
+/area/city/backstreets_room)
+"W" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/mob/living/simple_animal/hostile/ordeal/bigbird_eye{
+	dir = 4
+	},
+/turf/open/floor/plasteel/cult,
 /area/city/backstreets_room)
 "X" = (
 /obj/effect/decal/cleanable/dirt/dust,
@@ -115,14 +132,14 @@ Y
 (4,1,1) = {"
 Y
 L
-E
+V
 E
 X
 Y
 "}
 (5,1,1) = {"
 Y
-E
+h
 y
 E
 X
@@ -132,13 +149,13 @@ Y
 Q
 L
 E
-E
+w
 N
 A
 "}
 (7,1,1) = {"
 Q
-X
+W
 u
 Y
 Y
@@ -147,7 +164,7 @@ o
 (8,1,1) = {"
 Y
 L
-E
+B
 H
 C
 Y
