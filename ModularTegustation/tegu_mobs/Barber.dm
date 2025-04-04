@@ -151,7 +151,7 @@
 
 
 /mob/living/simple_animal/hostile/Barber/proc/Finisher(mob/living/target) //This is not so super easy to avoid.
-	target.apply_damage(1, RED_DAMAGE, null, target.run_armor_check(null, RED_DAMAGE), spread_damage = TRUE) //1% of your health in red damage
+	target.apply_damage(30, RED_DAMAGE, null, target.run_armor_check(null, RED_DAMAGE), spread_damage = TRUE) //30% of your health in red damage
 	to_chat(target, span_danger("[src] is trying to cut your head off!"))
 	if(!ishuman(target))
 		target.deal_damage(500, RED_DAMAGE)
