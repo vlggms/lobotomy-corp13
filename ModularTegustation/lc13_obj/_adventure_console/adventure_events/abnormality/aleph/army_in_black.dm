@@ -10,25 +10,25 @@
 	adventure_cords = list(
 		"Inside the facility rows and rows of gelatinous hearts sit,<br>\
 		Each of them containing a person in bright pink military gear.<br>\
-		You approach one, it�s impossible to see any expression on their face.<br>\
+		You approach one, it's impossible to see any expression on their face.<br>\
 		One of them turns towards you and gives a quick salute before asking:<br>\
-		\"What color are human�s hearts?\"",
+		\"What color are human's hearts?\" ",
 
-		"\"Of course, that is the color in every human�s heart.\" They say warmly.<br>\
-		You don�t see them move, but you feel them with you as you leave.<br>\
+		"\"Of course, that is the color in every human's heart.\" They say warmly.<br>\
+		You don't see them move, but you feel them with you as you leave.<br>\
 		Protecting you from what comes next.",
 
-		"\"Can�t the human heart exist without Darkness?\"<br>\
-		You once again refute what it�s saying.<br>\
-		The gelatinous substance it�s in starts to darken,<br>\
-		Along with the thing�s armor.<br>\
-		\"We�re able to protect humanity from it.\"<br>\
-		\"So why won�t you let us bear the burden for you?\"<br>\
+		"\"Can't the human heart exist without Darkness?\"<br>\
+		You once again refute what it's saying.<br>\
+		The gelatinous substance it's in starts to darken,<br>\
+		Along with the thing's armor.<br>\
+		\"We're able to protect humanity from it.\"<br>\
+		\"So why won't you let us bear the burden for you?\"<br>\
 		It begins to spark, strands of black lighting leaping out at you.<br>\
 		You turn to run as the bubbles begin to spark as they turn black.<br>\
-		\"Why won�t you let us take your darkness?\"",
+		\"Why won't you let us take your darkness?\"",
 
-		"\"Why can�t the human heart be more than just an organ?\"<br>\
+		"\"Why can't the human heart be more than just an organ?\"<br>\
 		With that they go silent, allowing you to leave.",
 	)
 

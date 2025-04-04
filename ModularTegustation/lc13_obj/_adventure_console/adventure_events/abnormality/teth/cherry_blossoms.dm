@@ -13,31 +13,31 @@
 		Especially the vibrant pink cherry blossoms.<br>\
 		Every petal is stained with colors too pristine for this world.<br>\
 		Its branches spread out casting a cool shadow for anyone to enjoy.<br>\
-		Even it�s tan trunk, aside from a small yawning crack, is perfect.<br>\
+		Even it's tan trunk, aside from a small yawning crack, is perfect.<br>\
 		Just enough of a curve to be pleasing, but straight enough to be stable.<br>\
 		All framed by the snow of pink petals slowly floating to earth.<br>\
 		Who blessed the world with this?",
 
-		"Accepting it�s invitation you rest against it�s trunk, basking in the shade.<br>\
+		"Accepting it's invitation you rest against it's trunk, basking in the shade.<br>\
 		The cool shadows, pillowy grass, and firm trunk form the perfect spot to relax.<br>\
 		You wake up as the sun begins to set, feeling rejuvenated.<br>\
-		Your next stop isn�t far, so with a stretch you return to the road.",
+		Your next stop isn't far, so with a stretch you return to the road.",
 
 		"The tree is so perfect you could only sully it.<br>\
-		So you gaze upon it, absorbing it�s beauty where you couldn�t deface it.<br>\
+		So you gaze upon it, absorbing it's beauty where you couldn't deface it.<br>\
 		And you are content with that.",
 
 		"Approaching the tree, its trunk's  maw seems to draw you in.<br>\
 		It's pitch black.<br>\
 		But the darkness isn't empty.<br>\
-		You�re sure you can see something in it.<br>\
+		You're sure you can see something in it.<br>\
 		So you reach in.<br>\
 		Something latches onto your hand.<br<\
 		Biting into your flesh as you rip away.<br>\
 		Deep gashes cover your hand, as something slithers from the trunk.<br>\
 		So you run, leaving it behind.",
 
-		"Surely this tree didn�t become so beautiful by happenstance.<br>\
+		"Surely this tree didn't become so beautiful by happenstance.<br>\
 		There must be some sort of root cause.<br>\
 		And that gives you a place to start looking.<br>\
 		Earnestly you begin to dig,<br>\
