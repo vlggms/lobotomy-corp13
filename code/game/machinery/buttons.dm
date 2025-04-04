@@ -319,3 +319,15 @@
 	. = ..()
 	. += "<span class='notice'>There's a small inscription on the button...</span>"
 	. += "<span class='notice'>THIS CALLS THE ELEVATOR! IT DOES NOT OPERATE IT! Interact with the elevator itself to use it!</span>"
+
+/obj/machinery/button/sigsystem
+	device_type = /obj/item/assembly/signaler/system
+	var/signaller_freq = FREQ_PRESSURE_PLATE
+	var/signaller_code = 111
+
+/obj/machinery/button/sigsystem/setup_device()
+	if(istype(device, /obj/item/assembly/signaler/system))
+		var/obj/item/assembly/signaler/system/A = device
+		A.set_frequency(signaller_freq)
+		A.code = signaller_code
+	initialized_button = 1
