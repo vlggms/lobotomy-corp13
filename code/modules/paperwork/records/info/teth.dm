@@ -427,9 +427,10 @@
 	abno_info = list(
 		"The first agent to work on Hurting Teddy Bear when it has no friends is marked as the abnormality's friend.",
 		"An agent marked as a friend reported increased success on works with the abnormality and, when they started a work on the abnormality, their health and sanity were slightly healed.",
-		"When a non-friend agent works on the abnormality after a friend is made, they reported worse success on all works. They also reported being hexed by the abnormality.",
-		"Agents hexed by the abnormality take more RED and BLACK damage until the effect wore off naturally.",
-		"When Repression work was peformed, if the agent was friends with the abnormality, they cease to be friends with the abnormality and they were hexed in the process. The hex was weaker and wore off faster if it was applied this way.",
+		"When a non-friend agent works on the abnormality after a friend is made, they reported worse success on all works. They also reported impaled by a nail.",
+		"Agents that have a nail in them report minor bleeding whenever they took any damage.",
+		"When Repression work was peformed, if the agent was friends with the abnormality, they cease to be friends with the abnormality and they were hexed in the process.",
+		"An agent hexed by the abnormality took more RED and BLACK damage until the effect wore off naturally.",
 		"When the work result was Neutral, the Qliphoth Counter lowered by 1 with a high probability",
 		"When the work result was Bad, the Qliphoth Counter lowered by 1."
 	)

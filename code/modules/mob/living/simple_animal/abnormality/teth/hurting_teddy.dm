@@ -1,5 +1,5 @@
-#define STATUS_EFFECT_POWERHEXED /datum/status_effect/powerhexed
-#define STATUS_EFFECT_WEAKHEX /datum/status_effect/weakhex
+#define STATUS_EFFECT_HEX /datum/status_effect/hex
+#define STATUS_EFFECT_NAILS /datum/status_effect/nails
 /mob/living/simple_animal/hostile/abnormality/hurting_teddy
 	name = "Hurting Teddy Bear"
 	desc = "A large worn out teddy bear that has been impaled with nails. Its faded grey fur is coated in grime."
@@ -70,13 +70,13 @@
 		to_chat(user, span_nicegreen("Hurting Teddy Bear becomes your friend!"))
 
 	if (user != bearfriended) //get punished.
-		to_chat(user, span_warning("Hurting Teddy Bear already has a friend! You've been hexed for intruding!"))
-		user.apply_status_effect(STATUS_EFFECT_POWERHEXED)
+		to_chat(user, span_warning("You feel something sharp being jabbed into you!"))
+		user.apply_status_effect(STATUS_EFFECT_NAILS)
 
 	if(work_type == ABNORMALITY_WORK_REPRESSION && user == bearfriended) //you can use this to swap the bearfriend if you're fine losing the counter on a bad or a neutral
 		bearfriended = null
 		to_chat(user, span_warning("Hurting Teddy Bear isn't your friend anymore! You feel bad for betraying it..."))
-		user.apply_status_effect(STATUS_EFFECT_WEAKHEX)
+		user.apply_status_effect(STATUS_EFFECT_HEX)
 	return ..()
 
 /mob/living/simple_animal/hostile/abnormality/hurting_teddy/NeutralEffect(mob/living/carbon/human/user, work_type, pe)
@@ -182,21 +182,21 @@
 		ReleaseHug()
 
 //**   STATUS EFFECTS  **//
-//POWERHEXED
-//Clingy abnos punishment
-/datum/status_effect/powerhexed
-	id = "Hexed"
+//HEXED
+//Betray the abno, get hexed.
+/datum/status_effect/hex
+	id = "Hex"
 	status_type = STATUS_EFFECT_UNIQUE
 	duration = 3 MINUTES
-	alert_type = /atom/movable/screen/alert/status_effect/powerhexed
+	alert_type = /atom/movable/screen/alert/status_effect/hex
 
-/atom/movable/screen/alert/status_effect/powerhexed
-	name = "Hexed"
+/atom/movable/screen/alert/status_effect/hex
+	name = "Hex"
 	desc = "You take more RED and BLACK damage"
 	icon = 'ModularTegustation/Teguicons/status_sprites.dmi'
-	icon_state = "schismatic"
+	icon_state = "schismatic" //placeholder. Yell at spriters if you want this fixed.
 
-/datum/status_effect/powerhexed/on_apply()
+/datum/status_effect/hex/on_apply()
 	. = ..()
 	if(!ishuman(owner))
 		return
@@ -204,47 +204,57 @@
 	status_holder.physiology.red_mod /= 0.8
 	status_holder.physiology.black_mod /= 0.8
 
-/datum/status_effect/powerhexed/on_remove()
+/datum/status_effect/hex/on_remove()
 	. = ..()
 	if(!ishuman(owner))
 		return
 	var/mob/living/carbon/human/status_holder = owner
+	to_chat(status_holder, span_nicegreen("You feel the hex being lifted."))
 	status_holder.physiology.red_mod *= 0.8
 	status_holder.physiology.black_mod *= 0.8
 
 
-//WEAKHEX
-//Inflicts when you BETRAY your FRIEND you MONSTER!
-/datum/status_effect/weakhex
-	id = "Hexed"
+//Nails
+//Clingy abno punishment.
+/datum/status_effect/nails
+	id = "Nails"
 	status_type = STATUS_EFFECT_UNIQUE
 	duration = 2 MINUTES
-	alert_type = /atom/movable/screen/alert/status_effect/weakhex
+	alert_type = /atom/movable/screen/alert/status_effect/nails
 
-/atom/movable/screen/alert/status_effect/weakhex
-	name = "Hexed"
-	desc = "You take more RED and BLACK damage"
+/atom/movable/screen/alert/status_effect/nails
+	name = "Nails"
+	desc = "The nails stuck inside you bear a heavy curse. You gain bleed whenever you receive damage."
 	icon = 'ModularTegustation/Teguicons/status_sprites.dmi'
-	icon_state = "sacrifice"
+	icon_state = "sacrifice" //placeholder. Yell at spriters if you want this fixed.
 
-/datum/status_effect/weakhex/on_apply()
+/datum/status_effect/nails/on_apply()
 	. = ..()
 	if(!ishuman(owner))
 		return
 	var/mob/living/carbon/human/status_holder = owner
-	status_holder.physiology.red_mod /= 0.9
-	status_holder.physiology.black_mod /= 0.9
+	to_chat(status_holder, span_userdanger("A cursed nail is stuck inside you!"))
+	RegisterSignal(owner, COMSIG_MOB_APPLY_DAMGE, PROC_REF(DealBleed))
 
-/datum/status_effect/weakhex/on_remove()
+/datum/status_effect/nails/on_remove()
 	. = ..()
 	if(!ishuman(owner))
 		return
 	var/mob/living/carbon/human/status_holder = owner
-	status_holder.physiology.red_mod *= 0.9
-	status_holder.physiology.black_mod *= 0.9
+	to_chat(status_holder, span_nicegreen("The nail loosens! You're able to pull it out now!"))
+	UnregisterSignal(owner, COMSIG_MOB_APPLY_DAMGE)
 
-#undef STATUS_EFFECT_POWERHEXED
-#undef STATUS_EFFECT_WEAKHEX
+/datum/status_effect/nails/proc/DealBleed(mob/living/carbon/human/owner, damage, damagetype, def_zone)
+	SIGNAL_HANDLER
+	var/mob/living/carbon/human/H = owner
+	if(!istype(H))
+		return
+	if(damage <= 1)
+		return
+	H.apply_lc_bleed(1)
+
+#undef STATUS_EFFECT_HEX
+#undef STATUS_EFFECT_NAILS
 
 
 
