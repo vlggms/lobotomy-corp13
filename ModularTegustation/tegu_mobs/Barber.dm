@@ -22,6 +22,7 @@
 	faction = list("hostile", "nosferatu") //Shall not commit fidelity a second time
 	attack_sound = 'sound/abnormalities/nosferatu/attack.ogg'
 	ranged = TRUE
+	del_on_death = TRUE
 
 	var/charging = FALSE
 	var/feeding
