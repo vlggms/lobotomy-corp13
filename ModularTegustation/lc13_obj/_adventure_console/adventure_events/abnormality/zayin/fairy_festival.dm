@@ -15,9 +15,8 @@
 		After the first, the others follow hovering around you as they poke and prod, seemingly curious about what you are.<br>\
 		Amid the commotion, one larger than the rest grabs onto you trying to tug you deeper into the grove.",
 
-		"Following the fairy it brings you deeper and deeper into the forest, as the trees close in around you feel something's eyes.",
-
-		"Ability Challenge",
+		"Following the fairy it brings you deeper and deeper into the forest, as the trees close in around you feel something's eyes.<br>\
+		Ability Challenge",
 
 		"Something shifts in the darkness, looking around you see it rise out of the undergrowth.<br>\
 		It's gaunt, it's limbs practically skeletal, but still unmistakably a massive fairy.<br>\
@@ -49,8 +48,8 @@
 	switch(cords)
 		if(1)
 			BUTTON_FORMAT(2, "FOLLOW IT", M)
-			BUTTON_FORMAT(3, "RESIST IT", M)
-			BUTTON_FORMAT(4, "SQUISH IT", M)
+			BUTTON_FORMAT(5, "RESIST IT", M)
+			BUTTON_FORMAT(6, "SQUISH IT", M)
 			return
 		if(2)
 			CHANCE_BUTTON_FORMAT(ReturnStat(PRIDE_STAT), "PRIDE", M)
@@ -58,7 +57,15 @@
 			. += CoinFlipping(M)
 			return
 		if(3)
-			AdjustHitPoint(10)
+			AdjustCurrency(ADV_EVENT_COIN_EASY)
 		if(4)
+			CauseBattle(
+				"Fairy Queen: The Abomination ruling over the fairies.",
+				MON_DAMAGE_EASY,
+				45
+			)
+		if(5)
+			AdjustHitPoint(10)
+		if(6)
 			AdjustHitPoint(-5)
 	return ..()
