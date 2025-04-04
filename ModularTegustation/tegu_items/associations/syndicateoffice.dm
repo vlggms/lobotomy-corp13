@@ -32,6 +32,9 @@
 	name = "Kurokumo Capsule"
 	template_id = "kurokumo_base"
 
+/obj/item/structurecapsule/syndicate/DeadRabbit
+	name = "Dead Rabbit Capsule"
+	template_id = "Deadrabbit_base"
 
 
 
@@ -65,4 +68,10 @@
 	shelter_id = "kurokumo_base"
 	description = "A place for the Kurokumo Clan."
 	mappath = "_maps/templates/syndicate_office/kurokumosake.dmm"
+
+/datum/map_template/shelter/DeadRabbit
+	name = "Dead Rabbits Hideout"
+	shelter_id = "Deadrabbit_base"
+	description = "A place for the Dead Rabbits to hide and rest in."
+	mappath = "_maps/templates/syndicate_office/DeadRabbitHideoutfix.dmm"
 
