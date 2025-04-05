@@ -1,4 +1,4 @@
-/obj/item/book/granter/action/skill/smite
+/obj/item/book/granter/action/skill/fishing/smite
 	name = "Level 2 Skill: Smite the Heretics"
 	actionname = "Smite the Heretics"
 	granted_action = /datum/action/cooldown/fishing/smite
@@ -26,7 +26,7 @@
 		else
 			to_chat(sinner, span_userdanger("The gods have punished you for your sins using [user] as a conduit!"))
 
-/obj/item/book/granter/action/skill/might
+/obj/item/book/granter/action/skill/fishing/might
 	name = "Level 2 Skill: Lunar Might"
 	actionname = "Lunar Might"
 	granted_action = /datum/action/cooldown/fishing/might
@@ -50,7 +50,7 @@
 	var/mob/living/carbon/human/H = owner
 	H.adjust_attribute_bonus(JUSTICE_ATTRIBUTE, -stat_hold)
 
-/obj/item/book/granter/action/skill/awe
+/obj/item/book/granter/action/skill/fishing/awe
 	name = "Level 2 Skill: Awe the Weak"
 	actionname = "Awe the Weak"
 	granted_action = /datum/action/cooldown/fishing/awe
@@ -73,7 +73,7 @@
 
 	StartCooldown()
 
-/obj/item/book/granter/action/skill/chakra
+/obj/item/book/granter/action/skill/fishing/chakra
 	name = "Level 2 Skill: Chakra Misalignment"
 	actionname = "Chakra Misalignment"
 	granted_action = /datum/action/cooldown/fishing/chakra
@@ -116,7 +116,7 @@
 
 /// Salmon Splitter
 /// Explode someone dead into fish
-/obj/item/book/granter/action/skill/splitter
+/obj/item/book/granter/action/skill/fishing/splitter
 	name = "Level 2 Skill: Greater Fish - Vertical"
 	actionname = "Greater Fish - Vertical"
 	granted_action = /datum/action/cooldown/fishing/splitter
