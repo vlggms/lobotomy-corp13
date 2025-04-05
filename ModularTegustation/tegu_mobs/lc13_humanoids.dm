@@ -28,6 +28,7 @@ Skittish, they prefer to move in groups and will run away if the enemies are in 
 */
 
 //Rat - no special abilities, attacks fast
+GLOBAL_LIST_EMPTY(nuke_rats_players)
 /mob/living/simple_animal/hostile/humanoid/rat
 	name = "rat"
 	desc = "One of the many inhabitants of the backstreets, extremely weak and skittish."
@@ -47,6 +48,9 @@ Skittish, they prefer to move in groups and will run away if the enemies are in 
 	retreat_distance = 0
 	butcher_results = list(/obj/item/food/meat/slab/human = 1, /obj/item/stack/spacecash/c10 = 1)
 	silk_results = list(/obj/item/stack/sheet/silk/human_simple = 1)
+	attacked_line = "You will pay for this!"
+	starting_looting_line = "Hand off, that is ours."
+	ending_looting_line = "That's it, you asked for this."
 	var/retreat_distance_default = 0
 
 /mob/living/simple_animal/hostile/humanoid/rat/GiveTarget(new_target)
@@ -158,6 +162,16 @@ Skittish, they prefer to move in groups and will run away if the enemies are in 
 		return
 	. = ..()
 
+/mob/living/simple_animal/hostile/humanoid/rat/pipe/scavenger
+	name = "brute scavenger"
+	mark_once_attacked = TRUE
+	return_to_origin = TRUE
+
+/mob/living/simple_animal/hostile/humanoid/rat/pipe/scavenger/Initialize()
+	. = ..()
+	glob_faction = GLOB.nuke_rats_players
+	faction = list("neutral")
+
 //Hammer - Tanky rat, but runs away at half health
 /mob/living/simple_animal/hostile/humanoid/rat/hammer
 	name = "cowardly rat"
@@ -183,6 +197,16 @@ Skittish, they prefer to move in groups and will run away if the enemies are in 
 	. = ..()
 	if(health < coward_health_threshold)
 		retreat_distance_default = 4
+
+/mob/living/simple_animal/hostile/humanoid/rat/hammer/scavenger
+	name = "cowardly scavenger"
+	mark_once_attacked = TRUE
+	return_to_origin = TRUE
+
+/mob/living/simple_animal/hostile/humanoid/rat/hammer/scavenger/Initialize()
+	. = ..()
+	glob_faction = GLOB.nuke_rats_players
+	faction = list("neutral")
 
 //Zippy - Uses a gun that fires 70% of the time and has a 1% chance to explode, leaving them without a gun.
 /mob/living/simple_animal/hostile/humanoid/rat/zippy
@@ -224,6 +248,16 @@ Skittish, they prefer to move in groups and will run away if the enemies are in 
 			return
 		else
 			. = ..()
+
+/mob/living/simple_animal/hostile/humanoid/rat/zippy/scavenger
+	name = "fidgety scavenger"
+	mark_once_attacked = TRUE
+	return_to_origin = TRUE
+
+/mob/living/simple_animal/hostile/humanoid/rat/zippy/scavenger/Initialize()
+	. = ..()
+	glob_faction = GLOB.nuke_rats_players
+	faction = list("neutral")
 
 /mob/living/simple_animal/hostile/humanoid/fixer
 	name = "fixer"
