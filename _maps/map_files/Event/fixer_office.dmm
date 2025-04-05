@@ -406,6 +406,9 @@
 /obj/machinery/light{
 	dir = 1
 	},
+/mob/living/simple_animal/hostile/ui_npc/eric_t{
+	dir = 8
+	},
 /turf/open/floor/wood,
 /area/city/house)
 "bG" = (
@@ -417,9 +420,6 @@
 /obj/machinery/sleeper/syndie,
 /obj/effect/turf_decal/siding/wood{
 	dir = 8
-	},
-/obj/machinery/light{
-	dir = 1
 	},
 /turf/open/indestructible/white,
 /area/city/house)
@@ -1028,6 +1028,20 @@
 "ef" = (
 /turf/closed/indestructible/reinforced,
 /area/facility_hallway/north)
+"eg" = (
+/obj/effect/turf_decal/trimline/yellow/filled/line{
+	dir = 8;
+	pixel_x = 5
+	},
+/obj/effect/turf_decal/trimline/yellow/filled/line{
+	dir = 4;
+	pixel_x = -5
+	},
+/turf/open/floor/plating/ashplanet{
+	name = "asphalt";
+	density = 1
+	},
+/area/city)
 "eh" = (
 /obj/machinery/door/airlock/glass_large{
 	name = "Long-Term Sleep Centre"
@@ -1524,6 +1538,14 @@
 	color = "#f5f5f5"
 	},
 /area/city/backstreets_alley)
+"fR" = (
+/obj/effect/turf_decal/trimline/red/filled/warning{
+	dir = 9
+	},
+/turf/open/floor/plating/ashplanet{
+	name = "asphalt"
+	},
+/area/city)
 "fS" = (
 /obj/machinery/porta_turret/syndicate/energy{
 	faction = list("city", "hostile")
@@ -2106,6 +2128,20 @@
 /obj/structure/fluff/beach_umbrella/engine,
 /turf/open/floor/plating/grass,
 /area/city)
+"ic" = (
+/obj/effect/turf_decal/trimline/red/filled/warning,
+/obj/docking_port/stationary{
+	dwidth = 5;
+	height = 5;
+	id = "quest_home";
+	name = "quest home";
+	roundstart_template = /datum/map_template/shuttle/quest/bus;
+	width = 10
+	},
+/turf/open/floor/plating/ashplanet{
+	name = "asphalt"
+	},
+/area/city)
 "ie" = (
 /obj/machinery/door/airlock/grunge{
 	name = "new fixer gear"
@@ -2426,6 +2462,36 @@
 "jf" = (
 /turf/closed/indestructible/rock,
 /area/city/house)
+"jg" = (
+/obj/effect/turf_decal/trimline/yellow/filled/line{
+	dir = 8;
+	pixel_x = 5
+	},
+/obj/effect/turf_decal/trimline/yellow/filled/line{
+	dir = 4;
+	pixel_x = -5
+	},
+/obj/effect/light_emitter{
+	light_power = 4;
+	light_range = 25;
+	set_cap = 3;
+	set_luminosity = 24
+	},
+/turf/open/floor/plating/ashplanet{
+	name = "asphalt";
+	density = 1
+	},
+/area/city)
+"jj" = (
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/floor/plating/ashplanet/rocky,
+/area/city)
+"jk" = (
+/obj/structure/maploader,
+/turf/open/floor/plating/ashplanet/rocky,
+/area/city)
 "jl" = (
 /obj/structure/table/reinforced,
 /turf/open/floor/wood,
@@ -3457,11 +3523,33 @@
 	},
 /turf/open/floor/facility/dark,
 /area/city/house)
+"nt" = (
+/obj/machinery/computer/shuttle/mining{
+	dir = 1;
+	name = "bus console";
+	possible_destinations = "quest_home";
+	shuttleId = "quest"
+	},
+/turf/open/floor/plating/ashplanet/rocky,
+/area/city)
 "nu" = (
 /obj/effect/turf_decal/trimline/blue/filled/line,
 /obj/structure/curtain,
 /turf/open/floor/plating,
 /area/city/backstreets_alley)
+"nw" = (
+/obj/effect/turf_decal/trimline/yellow/filled/line{
+	pixel_y = 5
+	},
+/obj/effect/turf_decal/trimline/yellow/filled/line{
+	dir = 1;
+	pixel_y = -5
+	},
+/turf/open/floor/plating/ashplanet{
+	name = "asphalt";
+	density = 1
+	},
+/area/city)
 "ny" = (
 /obj/machinery/door/poddoor{
 	id = "synd_boat_dock";
@@ -3482,6 +3570,18 @@
 	name = "shipping container"
 	},
 /area/city/backstreets_alley)
+"nF" = (
+/obj/effect/turf_decal/trimline/yellow/filled/line{
+	pixel_y = 5
+	},
+/obj/effect/turf_decal/trimline/yellow/filled/line{
+	dir = 1;
+	pixel_y = -5
+	},
+/turf/open/floor/plating/ashplanet{
+	name = "asphalt"
+	},
+/area/city)
 "nJ" = (
 /obj/structure/table/wood/bar,
 /turf/open/floor/plating,
@@ -3683,6 +3783,18 @@
 /obj/structure/flora/ash/garden/waste,
 /turf/open/floor/plating/asteroid/basalt,
 /area/city/backstreets_alley)
+"oD" = (
+/obj/effect/light_emitter{
+	light_power = 4;
+	light_range = 25;
+	set_cap = 3;
+	set_luminosity = 24
+	},
+/turf/open/floor/plating/ashplanet{
+	name = "asphalt";
+	density = 1
+	},
+/area/city)
 "oE" = (
 /obj/effect/turf_decal/siding/thinplating/dark/corner{
 	dir = 4
@@ -3718,6 +3830,14 @@
 	},
 /turf/open/floor/facility/dark,
 /area/city/backstreets_alley)
+"oI" = (
+/obj/effect/turf_decal/trimline/red/filled/warning{
+	dir = 10
+	},
+/turf/open/floor/plating/ashplanet{
+	name = "asphalt"
+	},
+/area/city)
 "oJ" = (
 /obj/effect/turf_decal/siding/thinplating/dark/corner{
 	dir = 4
@@ -3916,6 +4036,12 @@
 	},
 /turf/open/floor/plating/ashplanet/wateryrock,
 /area/city/backstreets_alley)
+"pI" = (
+/obj/effect/turf_decal/trimline/blue/filled/line{
+	dir = 4
+	},
+/turf/open/floor/plating/ashplanet/rocky,
+/area/city)
 "pK" = (
 /obj/structure/closet/crate/trashcart/filled,
 /turf/open/floor/facility{
@@ -4030,6 +4156,11 @@
 	density = 1
 	},
 /area/city/backstreets_alley)
+"qj" = (
+/turf/open/floor/plating/ashplanet{
+	name = "asphalt"
+	},
+/area/city)
 "qk" = (
 /obj/structure/railing{
 	desc = "Indestructible railing created in a vain attempt of fool-proofing the wing's workplace.";
@@ -4249,6 +4380,14 @@
 	},
 /turf/open/floor/mineral/titanium/tiled/white,
 /area/city/backstreets_alley)
+"rg" = (
+/obj/effect/turf_decal/trimline/red/filled/warning{
+	dir = 1
+	},
+/turf/open/floor/plating/ashplanet{
+	name = "asphalt"
+	},
+/area/city)
 "rh" = (
 /obj/structure/railing{
 	desc = "Indestructible railing created in a vain attempt of fool-proofing the wing's workplace.";
@@ -5091,6 +5230,12 @@
 /obj/item/paper/fluff/silk_guide,
 /turf/open/floor/facility/dark,
 /area/city/house)
+"uM" = (
+/obj/effect/turf_decal/trimline/blue/filled/corner{
+	dir = 4
+	},
+/turf/open/floor/plating/ashplanet/rocky,
+/area/city)
 "uO" = (
 /obj/structure/fluff/big_chain{
 	alpha = 0;
@@ -5507,6 +5652,12 @@
 /obj/machinery/body_fabricator,
 /turf/open/indestructible/white,
 /area/city/house)
+"wI" = (
+/obj/effect/turf_decal/trimline/blue/filled/line{
+	dir = 1
+	},
+/turf/open/floor/plating/ashplanet/rocky,
+/area/city)
 "wJ" = (
 /obj/effect/turf_decal/siding/thinplating/dark/corner,
 /obj/structure/railing/corner{
@@ -5700,6 +5851,10 @@
 	},
 /turf/open/floor/plating,
 /area/city/backstreets_alley)
+"xF" = (
+/obj/machinery/light,
+/turf/open/floor/plating/ashplanet/rocky,
+/area/city)
 "xI" = (
 /obj/structure/sign/painting/library{
 	pixel_x = 32
@@ -5873,6 +6028,16 @@
 	},
 /turf/open/floor/plating,
 /area/city/backstreets_alley)
+"yo" = (
+/obj/effect/turf_decal/trimline/white/filled/line{
+	dir = 4;
+	pixel_x = -10
+	},
+/turf/open/floor/plating/ashplanet{
+	name = "asphalt";
+	density = 1
+	},
+/area/city)
 "yu" = (
 /obj/structure/table/wood,
 /obj/item/storage/backpack/duffelbag/med/surgery,
@@ -6714,6 +6879,14 @@
 	},
 /turf/open/water/deep/saltwater,
 /area/city/backstreets_alley)
+"BN" = (
+/obj/effect/turf_decal/trimline/white/filled/line{
+	pixel_y = 10
+	},
+/turf/open/floor/plating/ashplanet{
+	name = "asphalt"
+	},
+/area/city)
 "BQ" = (
 /obj/effect/turf_decal/siding/thinplating/dark{
 	dir = 4
@@ -6891,6 +7064,14 @@
 	color = "#b5b5b5"
 	},
 /area/city/backstreets_alley)
+"Cv" = (
+/obj/effect/turf_decal/trimline/red/filled/warning{
+	dir = 6
+	},
+/turf/open/floor/plating/ashplanet{
+	name = "asphalt"
+	},
+/area/city)
 "Cz" = (
 /obj/machinery/door/airlock/wood{
 	name = "workshop"
@@ -7074,6 +7255,15 @@
 	},
 /turf/open/floor/plating,
 /area/city/backstreets_alley)
+"Dv" = (
+/obj/effect/turf_decal/trimline/white/filled/line{
+	pixel_y = 10
+	},
+/turf/open/floor/plating/ashplanet{
+	name = "asphalt";
+	density = 1
+	},
+/area/city)
 "Dw" = (
 /obj/effect/turf_decal/siding/thinplating/dark/corner{
 	dir = 8
@@ -7257,6 +7447,12 @@
 /obj/item/reagent_containers/glass/bucket,
 /turf/open/indestructible/white,
 /area/city/house)
+"Eu" = (
+/obj/effect/turf_decal/trimline/red/filled/warning,
+/turf/open/floor/plating/ashplanet{
+	name = "asphalt"
+	},
+/area/city)
 "Ew" = (
 /obj/structure/rack,
 /obj/item/ego_weapon/city/fixerhammer,
@@ -7426,6 +7622,14 @@
 	color = "#b5b5b5"
 	},
 /area/city/backstreets_alley)
+"Fs" = (
+/obj/effect/turf_decal/trimline/red/filled/warning{
+	dir = 8
+	},
+/turf/open/floor/plating/ashplanet{
+	name = "asphalt"
+	},
+/area/city)
 "Fu" = (
 /obj/machinery/stasis,
 /obj/machinery/light{
@@ -7747,6 +7951,12 @@
 /obj/effect/turf_decal/bot,
 /turf/open/floor/mineral/titanium/tiled/white,
 /area/city/house)
+"GQ" = (
+/obj/effect/turf_decal/trimline/blue/filled/line{
+	dir = 5
+	},
+/turf/open/floor/plating/ashplanet/rocky,
+/area/city)
 "GS" = (
 /obj/machinery/telecomms/server/presets/supply,
 /obj/effect/turf_decal/bot,
@@ -7763,6 +7973,12 @@
 /obj/machinery/processor,
 /turf/open/floor/plating,
 /area/city/backstreets_alley)
+"GX" = (
+/obj/structure/chair/plastic{
+	dir = 1
+	},
+/turf/open/floor/plating/ashplanet/rocky,
+/area/city)
 "GZ" = (
 /obj/structure/railing/corner{
 	name = "wing-grade railing";
@@ -9338,6 +9554,14 @@
 /obj/structure/fluff/beach_umbrella/science,
 /turf/open/floor/plating/beach/sand,
 /area/city/backstreets_alley)
+"Ol" = (
+/obj/effect/turf_decal/trimline/red/filled/warning{
+	dir = 4
+	},
+/turf/open/floor/plating/ashplanet{
+	name = "asphalt"
+	},
+/area/city)
 "On" = (
 /obj/effect/turf_decal/siding/thinplating/light/corner{
 	dir = 8
@@ -9392,6 +9616,15 @@
 	color = "#b5b5b5"
 	},
 /area/city/backstreets_alley)
+"Ow" = (
+/obj/effect/turf_decal/trimline/yellow/filled/line{
+	dir = 10
+	},
+/turf/open/floor/plating/ashplanet{
+	name = "asphalt";
+	density = 1
+	},
+/area/city)
 "Oz" = (
 /obj/effect/turf_decal/siding/thinplating/dark{
 	dir = 8
@@ -10337,6 +10570,12 @@
 	},
 /turf/open/floor/plating,
 /area/city/backstreets_alley)
+"SZ" = (
+/turf/open/floor/plating/ashplanet{
+	name = "asphalt";
+	density = 1
+	},
+/area/city)
 "Td" = (
 /obj/structure/mineral_door/wood,
 /turf/open/indestructible/hoteltile,
@@ -10981,6 +11220,9 @@
 	color = "#b5b5b5"
 	},
 /area/city/backstreets_alley)
+"WI" = (
+/turf/closed/indestructible/rock,
+/area/city)
 "WJ" = (
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/effect/turf_decal/trimline/blue/arrow_cw{
@@ -11199,6 +11441,10 @@
 /obj/effect/decal/cleanable/dirt/dust,
 /turf/open/floor/plating/ashplanet/wateryrock,
 /area/city/backstreets_alley)
+"XC" = (
+/obj/machinery/door/airlock/glass_large,
+/turf/open/floor/mineral/titanium/tiled/white,
+/area/city/house)
 "XF" = (
 /obj/machinery/vending/dinnerware,
 /obj/effect/turf_decal/tile/red{
@@ -11597,6 +11843,14 @@
 /obj/effect/landmark/cratespawn/corpo,
 /turf/open/floor/circuit/green,
 /area/city/backstreets_alley)
+"Zm" = (
+/obj/effect/turf_decal/trimline/red/filled/warning{
+	dir = 5
+	},
+/turf/open/floor/plating/ashplanet{
+	name = "asphalt"
+	},
+/area/city)
 "Zo" = (
 /obj/item/storage/secure/safe{
 	pixel_x = -22
@@ -23341,12 +23595,12 @@ Oq
 Oq
 Oq
 Oq
-Oq
-Oq
-Oq
-Oq
-Oq
-Oq
+ef
+ef
+ef
+ef
+ef
+ef
 Oq
 "}
 (46,1,1) = {"
@@ -23598,12 +23852,12 @@ Oq
 Oq
 Oq
 Oq
-Oq
-Oq
-Oq
-Oq
-Oq
-Oq
+ef
+KZ
+FY
+ef
+ef
+ef
 Oq
 "}
 (47,1,1) = {"
@@ -23855,12 +24109,12 @@ Oq
 Oq
 Oq
 Oq
-Oq
-Oq
-Oq
-Oq
-Oq
-Oq
+ef
+zN
+JC
+mg
+QZ
+ef
 Oq
 "}
 (48,1,1) = {"
@@ -24112,12 +24366,12 @@ Oq
 Oq
 Oq
 Oq
-Oq
-Oq
-Oq
-Oq
-Oq
-Oq
+ef
+Su
+sm
+cy
+gg
+ef
 Oq
 "}
 (49,1,1) = {"
@@ -24369,12 +24623,12 @@ Oq
 Oq
 Oq
 Oq
-Oq
-Oq
-Oq
-Oq
-Oq
-Oq
+ef
+TC
+hR
+hm
+GS
+ef
 Oq
 "}
 (50,1,1) = {"
@@ -24626,12 +24880,12 @@ Oq
 Oq
 Oq
 Oq
-Oq
-Oq
-Oq
-Oq
-Oq
-Oq
+ef
+sc
+sD
+yK
+Yf
+ef
 Oq
 "}
 (51,1,1) = {"
@@ -24883,12 +25137,12 @@ Oq
 Oq
 Oq
 Oq
-Oq
-Oq
-Oq
-Oq
-Oq
-Oq
+ef
+Ww
+QL
+TE
+bp
+ef
 Oq
 "}
 (52,1,1) = {"
@@ -25140,12 +25394,12 @@ Oq
 Oq
 Oq
 Oq
-Oq
-Oq
-Oq
-Oq
-Oq
-Oq
+ef
+HG
+hb
+ef
+vR
+ef
 Oq
 "}
 (53,1,1) = {"
@@ -25397,12 +25651,12 @@ Oq
 Oq
 Oq
 Oq
-Oq
-Oq
-Oq
-Oq
-Oq
-Oq
+ef
+ef
+ef
+ef
+ef
+ef
 Oq
 "}
 (54,1,1) = {"
@@ -54835,10 +55089,10 @@ FF
 ca
 ca
 ca
-Oq
-Oq
-Oq
-Oq
+zr
+zr
+zr
+zr
 Oq
 Oq
 Oq
@@ -55092,11 +55346,11 @@ fP
 fP
 po
 yN
-Oq
-Oq
-Oq
-Oq
-Oq
+Hm
+Hm
+Hm
+zr
+zr
 Oq
 Oq
 Oq
@@ -55349,6 +55603,11 @@ fP
 fP
 yz
 ca
+jj
+Hm
+Hm
+Hm
+zr
 Oq
 Oq
 Oq
@@ -55358,12 +55617,7 @@ Oq
 Oq
 Oq
 Oq
-ef
-ef
-ef
-ef
-ef
-ef
+Oq
 Oq
 Oq
 Oq
@@ -55604,8 +55858,15 @@ fP
 fP
 fP
 fP
-po
-ca
+fP
+XC
+Hm
+Hm
+Hm
+Hm
+zr
+zr
+zr
 Oq
 Oq
 Oq
@@ -55614,13 +55875,6 @@ Oq
 Oq
 Oq
 Oq
-Oq
-ef
-KZ
-FY
-ef
-ef
-ef
 Oq
 Oq
 Oq
@@ -55862,7 +56116,15 @@ JI
 fP
 fP
 fP
-ca
+fP
+Hm
+Hm
+JH
+Hm
+Hm
+Hm
+zr
+zr
 Oq
 Oq
 Oq
@@ -55870,14 +56132,6 @@ Oq
 Oq
 Oq
 Oq
-Oq
-Oq
-ef
-zN
-JC
-mg
-QZ
-ef
 Oq
 Oq
 Oq
@@ -56120,6 +56374,14 @@ fP
 fP
 HV
 ca
+jj
+Hm
+Hm
+Hm
+Hm
+Hm
+Hm
+zr
 Oq
 Oq
 Oq
@@ -56127,14 +56389,6 @@ Oq
 Oq
 Oq
 Oq
-Oq
-Oq
-ef
-Su
-sm
-cy
-gg
-ef
 Oq
 Oq
 Oq
@@ -56377,6 +56631,14 @@ bm
 fP
 MA
 ca
+Hm
+Hm
+Hm
+Hm
+Hm
+Hm
+Hm
+zr
 Oq
 Oq
 Oq
@@ -56384,14 +56646,6 @@ Oq
 Oq
 Oq
 Oq
-Oq
-Oq
-ef
-TC
-hR
-hm
-GS
-ef
 Oq
 Oq
 Oq
@@ -56634,6 +56888,14 @@ ca
 ca
 Ck
 ca
+pI
+pI
+pI
+pI
+pI
+uM
+Hm
+zr
 Oq
 Oq
 Oq
@@ -56641,14 +56903,6 @@ Oq
 Oq
 Oq
 Oq
-Oq
-Oq
-ef
-sc
-sD
-yK
-Yf
-ef
 Oq
 Oq
 Oq
@@ -56890,6 +57144,15 @@ fP
 GP
 ca
 Oq
+zr
+fR
+qj
+Fs
+nF
+oI
+wI
+Hm
+zr
 Oq
 Oq
 Oq
@@ -56897,15 +57160,6 @@ Oq
 Oq
 Oq
 Oq
-Oq
-Oq
-Oq
-ef
-Ww
-QL
-TE
-bp
-ef
 Oq
 Oq
 Oq
@@ -57147,6 +57401,15 @@ fP
 LY
 ca
 Oq
+zr
+qj
+qj
+qj
+nF
+qj
+wI
+xF
+zr
 Oq
 Oq
 Oq
@@ -57154,15 +57417,6 @@ Oq
 Oq
 Oq
 Oq
-Oq
-Oq
-Oq
-ef
-HG
-hb
-ef
-vR
-ef
 Oq
 Oq
 Oq
@@ -57404,6 +57658,15 @@ fP
 fP
 ca
 Oq
+zr
+rg
+qj
+BN
+nF
+Eu
+wI
+GX
+zr
 Oq
 Oq
 Oq
@@ -57411,15 +57674,6 @@ Oq
 Oq
 Oq
 Oq
-Oq
-Oq
-Oq
-ef
-ef
-ef
-ef
-ef
-ef
 Oq
 Oq
 Oq
@@ -57661,15 +57915,15 @@ te
 CB
 ca
 Oq
-Oq
-Oq
-Oq
-Oq
-Oq
-Oq
-Oq
-Oq
-Oq
+zr
+qj
+qj
+qj
+nF
+qj
+wI
+GX
+zr
 Oq
 Oq
 Oq
@@ -57918,15 +58172,15 @@ nK
 nK
 ca
 Oq
-Oq
-Oq
-Oq
-Oq
-Oq
-Oq
-Oq
-Oq
-Oq
+zr
+rg
+qj
+qj
+nF
+ic
+wI
+jk
+zr
 Oq
 Oq
 Oq
@@ -58175,15 +58429,15 @@ UQ
 mL
 ca
 Oq
-Oq
-Oq
-Oq
-Oq
-Oq
-Oq
-Oq
-Oq
-Oq
+zr
+qj
+BN
+qj
+nF
+qj
+wI
+GX
+zr
 Oq
 Oq
 Oq
@@ -58432,15 +58686,15 @@ UQ
 UQ
 ca
 Oq
-Oq
-Oq
-Oq
-Oq
-Oq
-Oq
-Oq
-Oq
-Oq
+zr
+rg
+qj
+qj
+nF
+Eu
+wI
+GX
+zr
 Oq
 Oq
 Oq
@@ -58689,16 +58943,16 @@ UQ
 UQ
 ca
 Oq
-Oq
-Oq
-Oq
-Oq
-Oq
-Oq
-Oq
-Oq
-Oq
-Oq
+zr
+qj
+qj
+qj
+nF
+qj
+wI
+xF
+zr
+zr
 Oq
 Oq
 Oq
@@ -58946,16 +59200,16 @@ kI
 KJ
 ca
 Oq
-Oq
-Oq
-Oq
-Oq
-Oq
-Oq
-Oq
-Oq
-Oq
-Oq
+zr
+Zm
+qj
+Ol
+nF
+Cv
+GQ
+uM
+nt
+zr
 Oq
 Oq
 Oq
@@ -59203,16 +59457,16 @@ ca
 ca
 ca
 Oq
-Oq
-Oq
-Oq
-Oq
-Oq
-Oq
-Oq
-Oq
-Oq
-Oq
+zr
+SZ
+SZ
+SZ
+nw
+SZ
+SZ
+GQ
+zr
+zr
 Oq
 Oq
 Oq
@@ -59460,15 +59714,15 @@ Oq
 Oq
 Oq
 Oq
-Oq
-Oq
-Oq
-Oq
-Oq
-Oq
-Oq
-Oq
-Oq
+zr
+SZ
+SZ
+SZ
+nw
+SZ
+SZ
+SZ
+zr
 Oq
 Oq
 Oq
@@ -59717,15 +59971,15 @@ Oq
 Oq
 Oq
 Oq
-Oq
-Oq
-Oq
-Oq
-Oq
-Oq
-Oq
-Oq
-Oq
+zr
+SZ
+Dv
+SZ
+nw
+oD
+Dv
+SZ
+zr
 Oq
 Oq
 Oq
@@ -59974,15 +60228,15 @@ Oq
 Oq
 Oq
 Oq
-Oq
-Oq
-Oq
-Oq
-Oq
-Oq
-Oq
-Oq
-Oq
+zr
+SZ
+SZ
+SZ
+nw
+SZ
+SZ
+SZ
+zr
 Oq
 Oq
 Oq
@@ -60231,15 +60485,15 @@ Oq
 Oq
 Oq
 Oq
-Oq
-Oq
-Oq
-Oq
-Oq
-Oq
-Oq
-Oq
-Oq
+zr
+SZ
+SZ
+SZ
+nw
+SZ
+SZ
+SZ
+zr
 Oq
 Oq
 Oq
@@ -60488,15 +60742,15 @@ Oq
 Oq
 Oq
 Oq
-Oq
-Oq
-Oq
-Oq
-Oq
-Oq
-Oq
-Oq
-Oq
+zr
+SZ
+SZ
+Dv
+nw
+Dv
+SZ
+SZ
+zr
 Oq
 Oq
 Oq
@@ -60745,15 +60999,15 @@ Oq
 Oq
 Oq
 Oq
-Oq
-Oq
-Oq
-Oq
-Oq
-Oq
-Oq
-Oq
-Oq
+zr
+SZ
+SZ
+SZ
+nw
+SZ
+SZ
+SZ
+zr
 Oq
 Oq
 Oq
@@ -61002,15 +61256,15 @@ Oq
 Oq
 Oq
 Oq
-Oq
-Oq
-Oq
-Oq
-Oq
-Oq
-Oq
-Oq
-Oq
+zr
+SZ
+SZ
+SZ
+nw
+SZ
+SZ
+SZ
+zr
 Oq
 Oq
 Oq
@@ -61259,16 +61513,16 @@ Oq
 Oq
 Oq
 Oq
-Oq
-Oq
-Oq
-Oq
-Oq
-Oq
-Oq
-Oq
-Oq
-Oq
+zr
+SZ
+Dv
+SZ
+nw
+SZ
+Dv
+SZ
+zr
+zr
 Oq
 Oq
 Oq
@@ -61516,31 +61770,31 @@ Oq
 Oq
 Oq
 Oq
-Oq
-Oq
-Oq
-Oq
-Oq
-Oq
-Oq
-Oq
-Oq
-Oq
-Oq
-Oq
-Oq
-Oq
-Oq
-Oq
-Oq
-Oq
-Oq
-Oq
-Oq
-Oq
-Oq
-Oq
-Oq
+zr
+SZ
+SZ
+SZ
+nw
+SZ
+SZ
+SZ
+SZ
+zr
+zr
+zr
+zr
+zr
+zr
+zr
+zr
+zr
+zr
+zr
+zr
+zr
+zr
+zr
+zr
 NB
 Kv
 Yy
@@ -61773,31 +62027,31 @@ Oq
 Oq
 Oq
 Oq
-Oq
-Oq
-Oq
-Oq
-Oq
-Oq
-Oq
-Oq
-Oq
-Oq
-Oq
-Oq
-Oq
-Oq
-Oq
-Oq
-Oq
-Oq
-Oq
-Oq
-Oq
-Oq
-Oq
-Oq
-Oq
+zr
+SZ
+SZ
+SZ
+nw
+SZ
+SZ
+SZ
+SZ
+yo
+SZ
+SZ
+SZ
+yo
+SZ
+SZ
+SZ
+yo
+SZ
+SZ
+SZ
+SZ
+yo
+SZ
+WI
 NB
 Kv
 Yy
@@ -62030,31 +62284,31 @@ Oq
 Oq
 Oq
 Oq
-Oq
-Oq
-Oq
-Oq
-Oq
-Oq
-Oq
-Oq
-Oq
-Oq
-Oq
-Oq
-Oq
-Oq
-Oq
-Oq
-Oq
-Oq
-Oq
-Oq
-Oq
-Oq
-Oq
-Oq
-Oq
+zr
+SZ
+SZ
+Dv
+nw
+Dv
+SZ
+SZ
+SZ
+SZ
+SZ
+SZ
+SZ
+SZ
+SZ
+SZ
+SZ
+SZ
+SZ
+SZ
+SZ
+SZ
+SZ
+SZ
+WI
 NB
 Kv
 Kv
@@ -62287,31 +62541,31 @@ Oq
 Oq
 Oq
 Oq
-Oq
-Oq
-Oq
-Oq
-Oq
-Oq
-Oq
-Oq
-Oq
-Oq
-Oq
-Oq
-Oq
-Oq
-Oq
-Oq
-Oq
-Oq
-Oq
-Oq
-Oq
-Oq
-Oq
-Oq
-Oq
+zr
+SZ
+SZ
+SZ
+nw
+SZ
+SZ
+yo
+SZ
+SZ
+SZ
+yo
+SZ
+SZ
+SZ
+yo
+SZ
+SZ
+SZ
+SZ
+yo
+SZ
+SZ
+SZ
+WI
 NB
 Kv
 Kv
@@ -62544,31 +62798,31 @@ Oq
 Oq
 Oq
 Oq
-Oq
-Oq
-Oq
-Oq
-Oq
-Oq
-Oq
-Oq
-Oq
-Oq
-Oq
-Oq
-Oq
-Oq
-Oq
-Oq
-Oq
-Oq
-Oq
-Oq
-Oq
-Oq
-Oq
-Oq
-Oq
+zr
+SZ
+SZ
+SZ
+Ow
+eg
+jg
+eg
+eg
+eg
+eg
+eg
+eg
+eg
+eg
+eg
+eg
+eg
+eg
+eg
+eg
+eg
+jg
+eg
+WI
 NB
 uP
 Kv
@@ -62801,31 +63055,31 @@ Oq
 Oq
 Oq
 Oq
-Oq
-Oq
-Oq
-Oq
-Oq
-Oq
-Oq
-Oq
-Oq
-Oq
-Oq
-Oq
-Oq
-Oq
-Oq
-Oq
-Oq
-Oq
-Oq
-Oq
-Oq
-Oq
-Oq
-Oq
-Oq
+zr
+zr
+SZ
+SZ
+SZ
+SZ
+SZ
+yo
+SZ
+SZ
+SZ
+yo
+SZ
+SZ
+SZ
+yo
+SZ
+SZ
+SZ
+SZ
+yo
+SZ
+SZ
+SZ
+WI
 NB
 SI
 Kv
@@ -63059,30 +63313,30 @@ Oq
 Oq
 Oq
 Oq
-Oq
-Oq
-Oq
-Oq
-Oq
-Oq
-Oq
-Oq
-Oq
-Oq
-Oq
-Oq
-Oq
-Oq
-Oq
-Oq
-Oq
-Oq
-Oq
-Oq
-Oq
-Oq
-Oq
-Oq
+zr
+zr
+SZ
+SZ
+SZ
+SZ
+SZ
+SZ
+SZ
+SZ
+SZ
+SZ
+SZ
+SZ
+SZ
+SZ
+SZ
+SZ
+SZ
+SZ
+SZ
+SZ
+SZ
+WI
 NB
 Kv
 CN
@@ -63317,29 +63571,29 @@ Oq
 Oq
 Oq
 Oq
-Oq
-Oq
-Oq
-Oq
-Oq
-Oq
-Oq
-Oq
-Oq
-Oq
-Oq
-Oq
-Oq
-Oq
-Oq
-Oq
-Oq
-Oq
-Oq
-Oq
-Oq
-Oq
-Oq
+zr
+zr
+SZ
+SZ
+SZ
+SZ
+SZ
+yo
+SZ
+SZ
+SZ
+yo
+SZ
+SZ
+SZ
+yo
+SZ
+SZ
+SZ
+SZ
+yo
+SZ
+WI
 NB
 Kv
 Kv
@@ -63575,28 +63829,28 @@ Oq
 Oq
 Oq
 Oq
-Oq
-Oq
-Oq
-Oq
-Oq
-Oq
-Oq
-Oq
-Oq
-Oq
-Oq
-Oq
-Oq
-Oq
-Oq
-Oq
-Oq
-Oq
-Oq
-Oq
-Oq
-Oq
+zr
+zr
+zr
+zr
+zr
+zr
+zr
+zr
+zr
+zr
+zr
+zr
+zr
+zr
+zr
+zr
+zr
+zr
+zr
+zr
+zr
+zr
 NB
 Kv
 Kv
