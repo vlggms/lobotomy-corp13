@@ -15,6 +15,8 @@
 	del_on_death = FALSE
 	melee_damage_type = BLACK_DAMAGE
 	damage_coeff = list(RED_DAMAGE = 1.5, WHITE_DAMAGE = 0.8, BLACK_DAMAGE = 1, PALE_DAMAGE = 1.2)
+	speak_emote = list("states")
+	speech_span = SPAN_ROBOT
 	melee_damage_lower = 20
 	melee_damage_upper = 25
 	move_to_delay = 3
