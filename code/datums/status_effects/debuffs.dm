@@ -1029,6 +1029,61 @@
 	owner.cut_overlay(statuseffectvisual)
 	return ..()
 
+/datum/status_effect/mental_detonate
+	id = "mental_detonate"
+	duration = 5 SECONDS
+	alert_type = null
+	status_type = STATUS_EFFECT_REFRESH
+	var/statuseffectvisual
+
+/datum/status_effect/mental_detonate/on_apply()
+	. = ..()
+	to_chat(owner, "<span class='warning'>You are marked for a mental detonation!</span>")
+	var/mutable_appearance/effectvisual = mutable_appearance('icons/obj/clockwork_objects.dmi', "judicial")
+	effectvisual.pixel_x = -owner.pixel_x
+	effectvisual.pixel_y = -owner.pixel_y
+	statuseffectvisual = effectvisual
+	owner.add_overlay(statuseffectvisual)
+
+/datum/status_effect/mental_detonate/proc/shatter()
+	playsound(owner, 'sound/weapons/ego/shattering_window.ogg', 35, 0, 20)
+	new /obj/effect/temp_visual/revenant(get_turf(owner))
+	var/datum/status_effect/stacking/lc_mental_decay/D = owner.has_status_effect(/datum/status_effect/stacking/lc_mental_decay)
+	if(D)
+		if(!ishuman(owner))
+			owner.apply_damage(D.stacks * 4, WHITE_DAMAGE, null, owner.run_armor_check(null, WHITE_DAMAGE))
+		else
+			var/mob/living/carbon/human/status_holder = owner
+			status_holder.adjustSanityLoss(D.stacks)
+		if(D.stacks >= 2)
+			D.stacks -= 2
+	qdel(src)
+
+/datum/status_effect/mental_detonate/on_remove()
+	owner.cut_overlay(statuseffectvisual)
+	return ..()
+
+#define MOB_FADING /datum/status_effect/fade_away
+/datum/status_effect/fade_away
+	id = "fade_away"
+	duration = 90 SECONDS
+	alert_type = /atom/movable/screen/alert/status_effect/fade_away
+	status_type = STATUS_EFFECT_UNIQUE
+
+/atom/movable/screen/alert/status_effect/fade_away
+	name = "Fade away..."
+	desc = "You are fading away..."
+	icon = 'icons/mob/actions/actions_spells.dmi'
+	icon_state = "skeleton"
+
+/datum/status_effect/fade_away/tick()
+	to_chat(owner, "<span class='warning'>You feel yourself fading...</span>")
+	if(owner.alpha > 50)
+		owner.alpha = (owner.alpha-3)
+
+/datum/status_effect/fade_away/on_remove()
+	owner.dust()
+
 //update_stamina() is move_to_delay = (initial(move_to_delay) + (staminaloss * 0.06))
 // 100 stamina damage equals 6 additional move_to_delay. So 167*0.06 = 10.02
 
@@ -1233,6 +1288,7 @@
 		owner.adjustBruteLoss(stacks*4) // x4 on non humans
 	new /obj/effect/temp_visual/damage_effect/bleed(get_turf(owner))
 	stacks = round(stacks/2)
+	new_stack = TRUE
 	if(stacks == 0)
 		qdel(src)
 
@@ -1261,6 +1317,67 @@
 	var/datum/status_effect/stacking/lc_bleed/B = src.has_status_effect(/datum/status_effect/stacking/lc_bleed)
 	if(!B)
 		src.apply_status_effect(/datum/status_effect/stacking/lc_bleed, stacks)
+	else
+		B.add_stacks(stacks)
+
+#define STATUS_EFFECT_LCMETALDECAY /datum/status_effect/stacking/lc_mental_decay // Deals white damage every 5 sec, can't be applied to godmode (contained abos)
+/datum/status_effect/stacking/lc_mental_decay
+	id = "lc_md"
+	alert_type = /atom/movable/screen/alert/status_effect/lc_mental_decay
+	max_stacks = 50
+	tick_interval = 5 SECONDS
+	consumed_on_threshold = FALSE
+	var/new_stack = FALSE
+	var/safety = TRUE
+
+/atom/movable/screen/alert/status_effect/lc_mental_decay
+	name = "Metal Decay"
+	desc = "Your mind is decaying!!"
+	icon = 'ModularTegustation/Teguicons/status_sprites.dmi'
+	icon_state = "lacerate"
+
+/datum/status_effect/stacking/lc_mental_decay/can_have_status()
+	return (owner.stat != DEAD || !(owner.status_flags & GODMODE))
+
+/datum/status_effect/stacking/lc_mental_decay/add_stacks(stacks_added)
+	..()
+	new_stack = TRUE
+
+//Ticks for passive decay.
+/datum/status_effect/stacking/lc_mental_decay/tick()
+	if(!can_have_status())
+		qdel(src)
+
+	statues_damage()
+
+//Proc for dealing damage, lets it be actived from other sources.
+/datum/status_effect/stacking/lc_mental_decay/proc/statues_damage(passive_decay = TRUE)
+	to_chat(owner, "<span class='warning'>Your mind deteriorates!!</span>")
+	owner.playsound_local(owner, 'sound/items/haunted/ghostitemattack.ogg', 40, FALSE)
+	if(!ishuman(owner))
+		owner.apply_damage(stacks * 4, WHITE_DAMAGE, null, owner.run_armor_check(null, WHITE_DAMAGE))
+	else
+		var/mob/living/carbon/human/status_holder = owner
+		status_holder.adjustSanityLoss(stacks)
+	statues_decay(passive_decay)
+
+/datum/status_effect/stacking/lc_mental_decay/proc/statues_decay(passive_decay = TRUE)
+	if(passive_decay)
+		if(safety)
+			if(new_stack)
+				stacks = round(stacks/2)
+				new_stack = FALSE
+			else
+				qdel(src)
+	else
+		stacks = round(stacks/2)
+
+//Mob Proc
+//TODO: Make it so when you inflict Metal Decay someone with 40+ stacks, you inflict Metal Detonation and when Metal is applied to someone with max stacks, cause a Shatter if they have Metal Detonation.
+/mob/living/proc/apply_lc_mental_decay(stacks)
+	var/datum/status_effect/stacking/lc_mental_decay/B = src.has_status_effect(/datum/status_effect/stacking/lc_mental_decay)
+	if(!B)
+		src.apply_status_effect(/datum/status_effect/stacking/lc_mental_decay, stacks)
 	else
 		B.add_stacks(stacks)
 
