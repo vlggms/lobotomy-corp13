@@ -99,10 +99,15 @@
 	attack_verb_continuous = "lacerates"
 	attack_verb_simple = "lacerate"
 	speed = -0.5
+	damage_coeff = list(RED_DAMAGE = 1, WHITE_DAMAGE = 1.5, BLACK_DAMAGE = 1, PALE_DAMAGE = 1)
+	butcher_results = list(/obj/item/food/meat/slab/fruit = 1)
+	guaranteed_butcher_results = list(/obj/item/food/meat/slab/fruit = 1)
+	silk_results = list(/obj/item/stack/sheet/silk/violet_simple = 2, /obj/item/stack/sheet/silk/violet_advanced = 1)
 	var/static/list/migo_sounds
 	death_message = "wails as its form turns into a pulpy mush."
 	death_sound = 'sound/voice/hiss6.ogg'
 	phaser = FALSE
+	var/scream_damage = 20
 
 /mob/living/simple_animal/hostile/netherworld/migo/Initialize()
 	. = ..()
@@ -114,6 +119,10 @@
 		return
 	var/chosen_sound = pick(migo_sounds)
 	playsound(src, chosen_sound, 50, TRUE)
+	manual_emote("twitches unnaturally...")
+	for(var/mob/living/L in view(7, src))
+		if(!faction_check_mob(L))
+			L.apply_damage(scream_damage, WHITE_DAMAGE, null, L.run_armor_check(null, WHITE_DAMAGE))
 
 /mob/living/simple_animal/hostile/netherworld/migo/Life()
 	..()
@@ -122,6 +131,10 @@
 	if(prob(10))
 		var/chosen_sound = pick(migo_sounds)
 		playsound(src, chosen_sound, 50, TRUE)
+		manual_emote("twitches unnaturally...")
+		for(var/mob/living/L in view(7, src))
+			if(!faction_check_mob(L))
+				L.apply_damage(scream_damage, WHITE_DAMAGE, null, L.run_armor_check(null, WHITE_DAMAGE))
 
 /mob/living/simple_animal/hostile/netherworld/blankbody
 	name = "blank body"
