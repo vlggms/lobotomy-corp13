@@ -9,6 +9,7 @@
 	portrait = "siren"
 	maxHealth = 1000
 	health = 1000
+	speak_emote = list("plays")
 	threat_level = HE_LEVEL
 	start_qliphoth = 5
 	minimum_distance = 3 //runs away during pink midnight
