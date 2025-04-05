@@ -98,7 +98,11 @@
 /mob/living/simple_animal/hostile/khealing/CanAttack(atom/the_target)
 	if(!ishuman(the_target))
 		return FALSE
-	var/mob/living/H = the_target
+	var/mob/living/carbon/human/H = the_target
+	for(var/X in H.bodyparts)
+		var/obj/item/bodypart/BP = X
+		if(BP.status == BODYPART_ROBOTIC)
+			return FALSE
 	if(H.health != H.maxHealth)
 		return TRUE
 	return FALSE
@@ -109,6 +113,9 @@
 		H.adjustStaminaLoss(rand(14, 18))
 		if(!defective)
 			H.adjustBruteLoss(-20)
+			H.adjustFireLoss(-10)
+			H.adjustToxLoss(-5)
+			H.adjustOxyLoss(-5)
 			to_chat(H, span_nicegreen("You feel your injuries painfully close!"))
 			if(prob(25))
 				H.emote("scream")
