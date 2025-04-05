@@ -240,12 +240,20 @@
 
 /mob/living/simple_animal/hostile/abnormality/funeral/proc/SwarmTurfLinger(turf/T)
 	for(var/i = 1 to 40) //40 times
-		for(var/mob/living/carbon/human/H in HurtInTurf(T, list(), swarm_damage, WHITE_DAMAGE, check_faction = TRUE, hurt_mechs = TRUE))
-			if(H.stat == DEAD)
-				continue
-			if(H.sanity_lost)
-				H.death()
-				KillAnimation(H)
+		if(SSmaptype.maptype == "limbus_labs")
+			for(var/mob/living/carbon/human/H in HurtInTurf(T, list(), swarm_damage, WHITE_DAMAGE, check_faction = TRUE, hurt_mechs = TRUE, hurt_structure = TRUE))
+				if(H.stat == DEAD)
+					continue
+				if(H.sanity_lost)
+					H.death()
+					KillAnimation(H)
+		else
+			for(var/mob/living/carbon/human/H in HurtInTurf(T, list(), swarm_damage, WHITE_DAMAGE, check_faction = TRUE, hurt_mechs = TRUE))
+				if(H.stat == DEAD)
+					continue
+				if(H.sanity_lost)
+					H.death()
+					KillAnimation(H)
 		SLEEP_CHECK_DEATH(0.25 SECONDS) //10 seconds
 
 /mob/living/simple_animal/hostile/abnormality/funeral/proc/KillAnimation(mob/living/carbon/human/killed)

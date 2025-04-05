@@ -495,6 +495,10 @@
 			var/obj/effect/temp_visual/L = new /obj/effect/temp_visual/revenant(TF)
 			L.color = current_beam.visuals.color
 		for(var/turf/TF in hit_line)
+			if(SSmaptype.maptype == "limbus_labs")
+				if(!friendly)
+					for(var/obj/structure/obstacle in range(beam_stage-1, TF))
+						obstacle.take_damage(11, BLACK_DAMAGE)
 			for(var/mob/living/L in range(beam_stage-1, TF))
 				if(L.status_flags & GODMODE)
 					continue
