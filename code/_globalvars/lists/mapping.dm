@@ -38,6 +38,8 @@ GLOBAL_LIST_EMPTY(emergencyresponseteamspawn)
 GLOBAL_LIST_EMPTY(ruin_landmarks)
 GLOBAL_LIST_EMPTY(bar_areas)
 
+GLOBAL_LIST_EMPTY(delivery_doors)
+
 //away missions
 GLOBAL_LIST_EMPTY(vr_spawnpoints)
 
