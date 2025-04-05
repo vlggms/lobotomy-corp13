@@ -467,7 +467,7 @@
 		),
 
 		"heart_done" = list(
-			"text" = "Oh- wow... You were able to actually take them down... Thanks a lot man, feel free to take anything from our stockroom.",
+			"text" = "Oh- wow... You were able to actually take them down... Thanks a lot man, feel free to take anything from our stockroom. You should be able to find it north of this location, and on the right side of it you will find the door.",
 			"actions" = list(
 				"..." = list(
 					"text" = "...",
