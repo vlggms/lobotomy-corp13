@@ -65,6 +65,14 @@
 			You drink the soda, and fall asleep... <br>... <br>Somewhere in the distance, you hear seagulls.")
 	)
 
+//Not only is it funny, I want it to have the shit it does on Legacy
+/mob/living/simple_animal/hostile/abnormality/wellcheers/Initialize()
+	if(SSmaptype.chosen_trait == FACILITY_TRAIT_LEGACY_PALE)
+		work_damage_amount = 2
+		work_damage_type = PALE_DAMAGE
+	. = ..()
+
+
 /mob/living/simple_animal/hostile/abnormality/wellcheers/HandleStructures()
 	. = ..()
 	if(!.)
