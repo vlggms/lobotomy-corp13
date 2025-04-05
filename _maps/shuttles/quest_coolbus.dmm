@@ -1,0 +1,235 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"a" = (
+/obj/structure/fluff/bus/dense{
+	icon_state = "hoodbottom"
+	},
+/turf/open/floor/plating/ashplanet{
+	name = "asphalt"
+	},
+/area/shuttle/mining)
+"b" = (
+/obj/structure/fluff/bus/dense{
+	icon_state = "backwalltoprear"
+	},
+/turf/open/floor/plating/ashplanet{
+	name = "asphalt"
+	},
+/area/shuttle/mining)
+"c" = (
+/obj/structure/fluff/bus/dense{
+	icon_state = "reartire"
+	},
+/turf/open/floor/plating/ashplanet{
+	name = "asphalt"
+	},
+/area/shuttle/mining)
+"g" = (
+/obj/structure/fluff/bus/dense{
+	icon_state = "frontwallbottom"
+	},
+/obj/docking_port/mobile{
+	name = "quest bus";
+	id = "quest";
+	port_direction = 2;
+	dwidth = 2;
+	height = 4;
+	width = 4
+	},
+/turf/open/floor/plating/ashplanet{
+	name = "asphalt"
+	},
+/area/shuttle/mining)
+"h" = (
+/obj/structure/fluff/bus/dense{
+	icon_state = "frontwallbottomrear"
+	},
+/turf/open/floor/plating/ashplanet{
+	name = "asphalt"
+	},
+/area/shuttle/mining)
+"j" = (
+/obj/structure/fluff/bus/dense{
+	icon_state = "fronttire"
+	},
+/turf/open/floor/plating/ashplanet{
+	name = "asphalt"
+	},
+/area/shuttle/mining)
+"n" = (
+/obj/structure/fluff/bus/passable{
+	icon_state = "bottomdoor";
+	layer = 3
+	},
+/turf/open/floor/plating/ashplanet{
+	name = "asphalt"
+	},
+/area/shuttle/mining)
+"v" = (
+/obj/structure/fluff/bus/dense{
+	icon_state = "hoodtop"
+	},
+/turf/open/floor/plating/ashplanet{
+	name = "asphalt"
+	},
+/area/shuttle/mining)
+"w" = (
+/obj/structure/fluff/bus/dense{
+	icon_state = "backwallmiddlerear"
+	},
+/turf/open/floor/plating/ashplanet{
+	name = "asphalt"
+	},
+/area/shuttle/mining)
+"x" = (
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/carpet/black,
+/area/shuttle/mining)
+"y" = (
+/obj/structure/fluff/bus/passable{
+	icon_state = "wheredahoodat"
+	},
+/turf/open/floor/plating/ashplanet{
+	name = "asphalt"
+	},
+/area/shuttle/mining)
+"E" = (
+/obj/effect/turf_decal/trimline/yellow/filled/line{
+	pixel_y = 5
+	},
+/obj/effect/turf_decal/trimline/yellow/filled/line{
+	dir = 1;
+	pixel_y = -5
+	},
+/obj/structure/fluff/bus/dense{
+	icon_state = "backwallmiddlerear"
+	},
+/turf/open/floor/plating/ashplanet{
+	name = "asphalt";
+	density = 1
+	},
+/area/shuttle/mining)
+"F" = (
+/obj/structure/fluff/bus/passable{
+	icon_state = "topdoor"
+	},
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/carpet/black,
+/area/shuttle/mining)
+"J" = (
+/obj/structure/fluff/bus/passable,
+/obj/structure/fluff/bus/passable/seat,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/carpet/black,
+/area/shuttle/mining)
+"K" = (
+/obj/structure/fluff/bus/dense,
+/turf/open/floor/plating/ashplanet{
+	name = "asphalt"
+	},
+/area/shuttle/mining)
+"P" = (
+/obj/structure/fluff/bus/passable/seat/driver,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/carpet/black,
+/area/shuttle/mining)
+"R" = (
+/obj/structure/fluff/bus/passable/seat,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/carpet/black,
+/area/shuttle/mining)
+"W" = (
+/obj/structure/fluff/bus/dense{
+	icon_state = "frontwallbottom"
+	},
+/turf/open/floor/plating/ashplanet{
+	name = "asphalt"
+	},
+/area/shuttle/mining)
+"X" = (
+/obj/structure/fluff/bus/dense{
+	icon_state = "backwallbottomrear"
+	},
+/turf/open/floor/plating/ashplanet{
+	name = "asphalt"
+	},
+/area/shuttle/mining)
+"Y" = (
+/obj/structure/fluff/bus/dense{
+	icon_state = "hoodmiddle"
+	},
+/obj/machinery/computer/shuttle/quests_console{
+	name = "bus console";
+	possible_destinations = "quest_home";
+	shuttleId = "quest";
+	layer = 2.8;
+	dir = 8;
+	pixel_x = -20
+	},
+/turf/open/floor/plating/ashplanet{
+	name = "asphalt"
+	},
+/area/shuttle/mining)
+
+(1,1,1) = {"
+X
+w
+w
+E
+b
+"}
+(2,1,1) = {"
+K
+R
+x
+J
+h
+"}
+(3,1,1) = {"
+K
+R
+x
+J
+c
+"}
+(4,1,1) = {"
+K
+R
+x
+J
+W
+"}
+(5,1,1) = {"
+K
+R
+x
+J
+g
+"}
+(6,1,1) = {"
+K
+R
+x
+J
+W
+"}
+(7,1,1) = {"
+K
+R
+x
+J
+W
+"}
+(8,1,1) = {"
+K
+P
+x
+F
+n
+"}
+(9,1,1) = {"
+y
+v
+Y
+a
+j
+"}
