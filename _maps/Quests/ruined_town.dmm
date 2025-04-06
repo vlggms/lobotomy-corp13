@@ -2111,13 +2111,6 @@
 /obj/effect/decal/cleanable/dirt/dust,
 /turf/open/floor/plating/rust,
 /area/city/house)
-"os" = (
-/obj/machinery/door/airlock/grunge{
-	name = "association director's office";
-	req_access_txt = "99"
-	},
-/turf/open/floor/wood,
-/area/city/fixers)
 "oy" = (
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/structure/meatfloor,
@@ -3457,6 +3450,21 @@
 /obj/item/keycard/entry{
 	color = "#ab0025"
 	},
+/obj/item/keycard/entry{
+	color = "#ab0025"
+	},
+/obj/item/keycard/entry{
+	color = "#ab0025"
+	},
+/obj/item/keycard/entry{
+	color = "#ab0025"
+	},
+/obj/item/keycard/entry{
+	color = "#ab0025"
+	},
+/obj/item/keycard/entry{
+	color = "#ab0025"
+	},
 /turf/open/indestructible/necropolis,
 /area/city/backstreets_room)
 "wM" = (
@@ -4094,13 +4102,6 @@
 /obj/effect/decal/cleanable/dirt/dust,
 /turf/open/floor/plating/rust,
 /area/city/shop)
-"Bc" = (
-/obj/machinery/door/airlock/grunge{
-	name = "association equipment";
-	req_access_txt = "99"
-	},
-/turf/open/floor/wood,
-/area/city/fixers)
 "Bd" = (
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plating/rust,
@@ -11718,7 +11719,7 @@ CP
 ry
 le
 ry
-os
+CV
 zG
 ts
 zG
@@ -12079,7 +12080,7 @@ wq
 ia
 zG
 wq
-Bc
+CV
 zG
 wF
 Rw
