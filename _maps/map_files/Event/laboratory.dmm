@@ -1599,6 +1599,27 @@
 /obj/effect/spawner/structure/window/reinforced,
 /turf/open/floor/facility/dark,
 /area/centcom)
+"gV" = (
+/obj/structure/table/wood/bar,
+/obj/effect/turf_decal/siding/wood{
+	layer = 2.85
+	},
+/obj/machinery/door/poddoor/preopen{
+	id = "kitchen"
+	},
+/obj/item/storage/box/drinkingglasses{
+	pixel_x = 2;
+	pixel_y = 11
+	},
+/obj/item/reagent_containers/glass/rag{
+	pixel_x = 5;
+	pixel_y = 2
+	},
+/obj/item/reagent_containers/food/drinks/shaker{
+	pixel_x = -7
+	},
+/turf/open/floor/facility/dark,
+/area/centcom)
 "gX" = (
 /obj/effect/turf_decal/siding/yellow/corner{
 	dir = 4
@@ -7694,17 +7715,6 @@
 /turf/open/floor/pod/dark,
 /area/centcom)
 "FB" = (
-/obj/item/storage/box/drinkingglasses{
-	pixel_x = 2;
-	pixel_y = 11
-	},
-/obj/item/reagent_containers/food/drinks/shaker{
-	pixel_x = -7
-	},
-/obj/item/reagent_containers/glass/rag{
-	pixel_x = 5;
-	pixel_y = 2
-	},
 /obj/structure/table/wood/bar,
 /obj/effect/turf_decal/siding/wood{
 	layer = 2.85
@@ -7715,6 +7725,9 @@
 /obj/effect/turf_decal/tile/blue{
 	color = "#5269e9";
 	dir = 1
+	},
+/obj/machinery/microwave{
+	pixel_y = 5
 	},
 /turf/open/floor/plasteel/white,
 /area/centcom)
@@ -46437,7 +46450,7 @@ kL
 SY
 FB
 Si
-iq
+gV
 NF
 tn
 gA
