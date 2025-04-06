@@ -103,11 +103,11 @@
 	jobtype = /datum/job/raven/support
 	suit = /obj/item/clothing/suit/armor/ego_gear/rabbit/ravensup
 	backpack_contents = list(
+		/obj/item/storage/box/rcorp_grenades = 1,
 		/obj/item/powered_gadget/slowingtrapmk1 = 1,
 		/obj/item/powered_gadget/detector_gadget/abnormality = 1,
 		/obj/item/powered_gadget/vitals_projector = 1,
-		/obj/item/powered_gadget/handheld_taser = 1,
-		/obj/item/grenade/smokebomb = 1)
+		/obj/item/powered_gadget/handheld_taser = 1)
 
 /datum/outfit/job/raven/captain
 	name = "Raven Squad Captain"
@@ -117,3 +117,18 @@
 	suit = /obj/item/clothing/suit/armor/ego_gear/rabbit/ravencap
 	suit_store = null
 	ears = /obj/item/radio/headset/heads/headset_information
+
+//Grenade box
+/obj/item/storage/box/rcorp_grenades
+	name = "R-Corp Grenade box"
+	desc = "A kit containing various grenades."
+
+/obj/item/storage/box/rcorp_grenades/PopulateContents()
+	new /obj/item/grenade/smokebomb(src)
+	new /obj/item/grenade/r_corp(src)
+	new /obj/item/grenade/r_corp(src)
+	new /obj/item/grenade/r_corp/white(src)
+	new /obj/item/grenade/r_corp/white(src)
+	new /obj/item/grenade/r_corp/black(src)
+	new /obj/item/grenade/r_corp/black(src)
+	new /obj/item/grenade/r_corp/pale(src)
