@@ -100,6 +100,9 @@
 /obj/structure/closet/crate/freezer/surplus_limbs{
 	color = "#875300"
 	},
+/obj/item/reagent_containers/hypospray/medipen/mental,
+/obj/item/reagent_containers/hypospray/medipen/mental,
+/obj/item/reagent_containers/hypospray/medipen/mental,
 /turf/open/floor/plating/rust,
 /area/city/shop)
 "aN" = (
@@ -144,6 +147,10 @@
 /area/city/shop)
 "aZ" = (
 /obj/structure/spider/cocoon,
+/obj/effect/landmark/npc_reveal_sensor{
+	sensor_id = "ambush";
+	cooldown_duration = 6000
+	},
 /turf/open/floor/wood{
 	icon_state = "wood-broken6"
 	},
@@ -2319,6 +2326,10 @@
 /area/city/shop)
 "qg" = (
 /obj/structure/spider/cocoon,
+/obj/effect/landmark/npc_reveal_sensor{
+	sensor_id = "ambush";
+	cooldown_duration = 6000
+	},
 /turf/open/floor/plating/rust,
 /area/city/house)
 "qi" = (
@@ -3440,6 +3451,12 @@
 	},
 /obj/structure/meatfloor,
 /obj/effect/decal/cleanable/glitter/pink,
+/obj/structure/table/reinforced{
+	color = "#875300"
+	},
+/obj/item/keycard/entry{
+	color = "#ab0025"
+	},
 /turf/open/indestructible/necropolis,
 /area/city/backstreets_room)
 "wM" = (
@@ -3478,13 +3495,7 @@
 /turf/open/floor/wood,
 /area/city/fixers)
 "wY" = (
-/mob/living/simple_animal/hostile/netherworld/migo{
-	maxHealth = 750;
-	melee_damage_lower = 5;
-	melee_damage_upper = 10;
-	move_to_delay = 10;
-	loot = list(/obj/item/stack/spacecash/c100)
-	},
+/mob/living/simple_animal/hostile/netherworld/migo,
 /turf/open/floor/wood{
 	icon_state = "wood-broken6"
 	},
@@ -3815,6 +3826,12 @@
 /obj/effect/turf_decal/sand/plating,
 /turf/open/floor/plating,
 /area/city/shop)
+"zg" = (
+/obj/effect/decal/cleanable/blood/footprints{
+	dir = 4
+	},
+/turf/open/floor/plating/rust,
+/area/city/shop)
 "zj" = (
 /obj/structure/chair/office{
 	dir = 4
@@ -4121,13 +4138,7 @@
 /area/city/fixers)
 "Bp" = (
 /obj/effect/decal/cleanable/dirt,
-/mob/living/simple_animal/hostile/netherworld/migo{
-	maxHealth = 750;
-	melee_damage_lower = 5;
-	melee_damage_upper = 10;
-	move_to_delay = 10;
-	loot = list(/obj/item/stack/spacecash/c100)
-	},
+/mob/living/simple_animal/hostile/netherworld/migo,
 /turf/open/floor/wood,
 /area/city)
 "Bt" = (
@@ -4540,6 +4551,9 @@
 "EC" = (
 /obj/effect/turf_decal/trimline/red/filled/line,
 /obj/structure/lootcrate/money,
+/obj/structure/table/reinforced{
+	color = "#875300"
+	},
 /turf/open/indestructible/necropolis,
 /area/city/backstreets_room)
 "EE" = (
@@ -4753,12 +4767,10 @@
 /turf/open/floor/circuit/telecomms/mainframe,
 /area/facility_hallway/north)
 "Ge" = (
-/obj/effect/landmark/npc_reveal_sensor{
-	sensor_id = "ambush";
-	cooldown_duration = 6000
-	},
-/turf/open/floor/plating/rust,
-/area/city/house)
+/obj/item/stack/spacecash/c100,
+/obj/item/stack/spacecash/c100,
+/turf/open/floor/plating/asteroid,
+/area/city)
 "Gf" = (
 /obj/structure/bed/maint,
 /obj/machinery/light/red{
@@ -5511,6 +5523,10 @@
 	},
 /obj/structure/spider/stickyweb,
 /obj/structure/spider/cocoon,
+/obj/effect/landmark/npc_reveal_sensor{
+	sensor_id = "ambush";
+	cooldown_duration = 6000
+	},
 /turf/open/floor/plating/rust,
 /area/city/house)
 "KZ" = (
@@ -5584,13 +5600,10 @@
 /turf/open/floor/plating/asteroid,
 /area/city)
 "LG" = (
-/obj/structure/chair/wood,
-/obj/effect/landmark/npc_reveal_sensor{
-	sensor_id = "ambush";
-	cooldown_duration = 6000
-	},
-/turf/open/floor/wood,
-/area/city/house)
+/mob/living/simple_animal/hostile/netherworld/migo,
+/obj/effect/mob_spawn/human/corpse/butcher,
+/turf/open/floor/plating/rust,
+/area/city/shop)
 "LJ" = (
 /turf/open/floor/wood{
 	icon_state = "wood-broken"
@@ -5824,6 +5837,12 @@
 	icon_state = "wood-broken"
 	},
 /area/city)
+"Nl" = (
+/obj/effect/decal/cleanable/blood/footprints{
+	dir = 1
+	},
+/turf/open/floor/plating/rust,
+/area/city/shop)
 "Nq" = (
 /obj/structure/table/reinforced{
 	color = "#875300"
@@ -5883,10 +5902,7 @@
 /area/city/house)
 "ND" = (
 /obj/effect/decal/cleanable/dirt,
-/mob/living/simple_animal/hostile/regalrat{
-	move_to_delay = 6;
-	maxHealth = 800
-	},
+/mob/living/simple_animal/hostile/regalrat,
 /turf/open/floor/wood,
 /area/city/house)
 "NH" = (
@@ -6514,6 +6530,10 @@
 	},
 /obj/structure/spider/stickyweb,
 /obj/structure/spider/cocoon,
+/obj/effect/landmark/npc_reveal_sensor{
+	sensor_id = "ambush";
+	cooldown_duration = 6000
+	},
 /turf/open/floor/plating/rust,
 /area/city/house)
 "RP" = (
@@ -6544,9 +6564,6 @@
 "RU" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/rack,
-/obj/item/keycard/entry{
-	color = "#ab0025"
-	},
 /obj/effect/decal/cleanable/greenglow{
 	light_color = "#ff0037";
 	color = "#ff0037"
@@ -6789,6 +6806,9 @@
 	light_color = "#ff0037";
 	color = "#ff0037"
 	},
+/obj/structure/table/reinforced{
+	color = "#875300"
+	},
 /turf/open/indestructible/necropolis,
 /area/city/backstreets_room)
 "Tm" = (
@@ -6931,6 +6951,10 @@
 	},
 /obj/structure/spider/cocoon,
 /obj/structure/spider/stickyweb,
+/obj/effect/landmark/npc_reveal_sensor{
+	sensor_id = "ambush";
+	cooldown_duration = 6000
+	},
 /turf/open/floor/plating/rust,
 /area/city/house)
 "Ud" = (
@@ -7569,13 +7593,7 @@
 /turf/open/floor/plating,
 /area/city/fixers)
 "XT" = (
-/mob/living/simple_animal/hostile/netherworld/migo{
-	maxHealth = 750;
-	melee_damage_lower = 5;
-	melee_damage_upper = 10;
-	move_to_delay = 10;
-	loot = list(/obj/item/stack/spacecash/c100)
-	},
+/mob/living/simple_animal/hostile/netherworld/migo,
 /turf/open/floor/plating/asteroid,
 /area/city)
 "XW" = (
@@ -9446,11 +9464,11 @@ oY
 oY
 Vr
 Vr
-Vr
-Vr
-Vr
-Vr
-Vr
+kC
+qw
+kC
+kC
+kC
 Vr
 Vr
 Vr
@@ -10349,8 +10367,8 @@ oY
 kC
 xd
 xd
-Mv
-qw
+xd
+kC
 Td
 dI
 Jc
@@ -13076,7 +13094,7 @@ Ru
 Mx
 SK
 VT
-Ge
+Ut
 Ut
 OB
 bw
@@ -13526,7 +13544,7 @@ qr
 Ut
 IX
 yc
-LG
+Av
 gB
 jB
 bw
@@ -14455,7 +14473,7 @@ dp
 dp
 iX
 ew
-bw
+KM
 bw
 bw
 bw
@@ -14995,7 +15013,7 @@ dp
 DF
 eQ
 ew
-KM
+bw
 bw
 bw
 bw
@@ -15764,15 +15782,15 @@ ka
 Fx
 Pw
 pz
-pz
+Nl
 NN
+Nl
 pz
+Nl
 pz
-pz
-pz
-pz
+Nl
 Fs
-pz
+Nl
 Rs
 Rs
 EF
@@ -15853,7 +15871,7 @@ ka
 ka
 Fx
 Mr
-pz
+zg
 qR
 Fx
 Ea
@@ -16034,7 +16052,7 @@ DJ
 Fx
 hq
 qf
-pz
+LG
 pz
 Zv
 pz
@@ -16865,7 +16883,7 @@ ML
 sr
 bw
 bw
-bw
+XT
 Yx
 SS
 PW
@@ -16948,7 +16966,7 @@ Vr
 gO
 gO
 Vr
-bw
+XT
 bw
 Op
 Op
@@ -17143,7 +17161,7 @@ bw
 bw
 Op
 Op
-bw
+XT
 bw
 bw
 Op
@@ -17936,7 +17954,7 @@ KZ
 KZ
 KZ
 uS
-bw
+Ge
 bw
 bw
 bw
@@ -18023,7 +18041,7 @@ oY
 oY
 dN
 KZ
-bw
+XT
 bw
 bw
 KZ
@@ -18838,7 +18856,7 @@ KZ
 Ia
 Ia
 KZ
-bw
+XT
 bw
 KZ
 KZ
@@ -18928,7 +18946,7 @@ Ia
 Ia
 Ia
 KZ
-bw
+Ge
 KZ
 KZ
 KZ
@@ -19039,7 +19057,7 @@ Ia
 Ia
 KZ
 KZ
-bw
+XT
 KZ
 oY
 oY
@@ -19129,7 +19147,7 @@ KZ
 Ia
 Ia
 KZ
-bw
+Ge
 KZ
 oY
 oY
@@ -19204,7 +19222,7 @@ Ia
 Ia
 Ia
 KZ
-bw
+Ge
 KZ
 Ia
 Ia
@@ -19304,7 +19322,7 @@ Ia
 Ia
 KZ
 KZ
-bw
+XT
 KZ
 Ia
 Ia
