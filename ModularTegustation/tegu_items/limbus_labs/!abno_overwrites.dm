@@ -92,19 +92,23 @@
 
 /mob/living/simple_animal/hostile/abnormality/red_hood/Login()
 	. = ..()
-	faction = list("redhood")
+	if(SSmaptype.maptype == "limbus_labs")
+		faction = list("redhood")
 
 /mob/living/simple_animal/hostile/abnormality/kqe/Login()
 	. = ..()
-	faction = list("kqe")
+	if(SSmaptype.maptype == "limbus_labs")
+		faction = list("kqe")
 
 /mob/living/simple_animal/hostile/abnormality/funeral/Login()
 	. = ..()
-	faction = list("funeral")
+	if(SSmaptype.maptype == "limbus_labs")
+		faction = list("funeral")
 
 /mob/living/simple_animal/hostile/abnormality/blue_shepherd/Login()
 	. = ..()
-	faction = list("blueshep")
+	if(SSmaptype.maptype == "limbus_labs")
+		faction = list("blueshep")
 
 /mob/living/simple_animal/hostile/abnormality/fragment/Login()
 	. = ..()
@@ -112,31 +116,38 @@
 
 /mob/living/simple_animal/hostile/abnormality/woodsman/Login()
 	. = ..()
-	faction = list("oz")
+	if(SSmaptype.maptype == "limbus_labs")
+		faction = list("oz")
 
 /mob/living/simple_animal/hostile/abnormality/mountain/Login()
 	. = ..()
-	faction = list("mosb")
+	if(SSmaptype.maptype == "limbus_labs")
+		faction = list("mosb")
 
 /mob/living/simple_animal/hostile/abnormality/pisc_mermaid/Login()
 	. = ..()
-	faction = list("piscine")
+	if(SSmaptype.maptype == "limbus_labs")
+		faction = list("piscine")
 
 /mob/living/simple_animal/hostile/abnormality/scorched_girl/Login()
 	. = ..()
-	faction = list("scorched")
+	if(SSmaptype.maptype == "limbus_labs")
+		faction = list("scorched")
 
 /mob/living/simple_animal/hostile/abnormality/clouded_monk/Login()
 	. = ..()
-	faction = list("monk")
+	if(SSmaptype.maptype == "limbus_labs")
+		faction = list("monk")
 
 /mob/living/simple_animal/hostile/abnormality/general_b/Login()
 	. = ..()
-	faction = list("bee")
+	if(SSmaptype.maptype == "limbus_labs")
+		faction = list("bee")
 
 /mob/living/simple_animal/hostile/abnormality/general_b/Logout()
 	. = ..()
-	faction = list("neutral", "bee")
+	if(SSmaptype.maptype == "limbus_labs")
+		faction = list("neutral", "bee")
 
 /mob/living/simple_animal/hostile/soldier_bee/Initialize()
 	. = ..()
