@@ -25,6 +25,11 @@
 		max_damage = 50
 
 //To avoid other issues when possessed
+/mob/living/simple_animal/hostile/abnormality/Initialize()
+	. = ..()
+	if(SSmaptype.maptype == "limbus_labs")
+		vision_range = 7
+		aggro_vision_range = 7
 
 /mob/living/simple_animal/hostile/abnormality/Login()
 	. = ..()
