@@ -3463,7 +3463,7 @@
 /obj/machinery/computer/shuttle/mining{
 	dir = 1;
 	name = "bus console";
-	possible_destinations = "quest_floor";
+	possible_destinations = "ruined_town_floor";
 	shuttleId = "quest"
 	},
 /turf/open/floor/plating/asteroid,
