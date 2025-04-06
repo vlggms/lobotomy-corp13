@@ -164,7 +164,6 @@ GLOBAL_VAR_INIT(wcorp_enemy_faction, "") //decides which faction WCorp will be u
 		if("payload_abno")
 			announcement_type = "Intelligence has located a dangerous specimen moving towards your location. Prevent it from escaping at all costs."
 	minor_announce("[announcement_type]" , "R-Corp Intelligence Office")
-	minor_announce("WARNING, The facility gates will open in T-12 Minutes." , "R-Corp Intelligence Office")
 
 /datum/game_mode/combat/proc/rcorp_opendoor()
 	for(var/obj/machinery/button/door/indestructible/rcorp/M in GLOB.machines)
