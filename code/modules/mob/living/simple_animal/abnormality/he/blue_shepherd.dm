@@ -125,7 +125,7 @@
 	var/countering = FALSE
 	var/counter_damage = 20
 	//PLAYABLES ATTACKS
-	attack_action_types = list(/datum/action/innate/abnormality_attack/toggle/sheperd_spin_toggle, /datum/action/cooldown/dodge, /datum/action/cooldown/counter)
+	attack_action_types = list(/datum/action/innate/abnormality_attack/toggle/sheperd_spin_toggle, /datum/action/cooldown/evade, /datum/action/cooldown/parry)
 
 /mob/living/simple_animal/hostile/abnormality/blue_shepherd/Login()
 	. = ..()
@@ -143,11 +143,11 @@
 		Also, Anyone hit by this AoE will knockdown all humans who are hit by it.\
 		</b>")
 
-/datum/action/cooldown/dodge
+/datum/action/cooldown/evade
 	name = "Dodge"
 	icon_icon = 'ModularTegustation/Teguicons/teguicons.dmi'
 	button_icon_state = "ruina_evade"
-	desc = "Gain a short speed boost dodge your foes!"
+	desc = "Gain a short speed boost evade your foes!"
 	cooldown_time = 30
 	var/speeded_up = 2
 	var/restspeed = 4
@@ -155,7 +155,7 @@
 	var/weaken_duration = 15
 	var/old_speed
 
-/datum/action/cooldown/dodge/Trigger()
+/datum/action/cooldown/evade/Trigger()
 	if(!..())
 		return FALSE
 	if (istype(owner, /mob/living/simple_animal/hostile/abnormality/blue_shepherd))
@@ -183,7 +183,7 @@
 	animate(trail, alpha=120)
 	animate(alpha = 0, time = 10)
 
-/datum/action/cooldown/dodge/proc/slowdown()
+/datum/action/cooldown/evade/proc/slowdown()
 	if (istype(owner, /mob/living/simple_animal/hostile/abnormality/blue_shepherd))
 		var/mob/living/simple_animal/hostile/abnormality/blue_shepherd/H = owner
 		H.move_to_delay = restspeed
@@ -192,22 +192,22 @@
 		addtimer(CALLBACK(src, PROC_REF(recover)), weaken_duration)
 		H.UpdateSpeed()
 
-/datum/action/cooldown/dodge/proc/recover()
+/datum/action/cooldown/evade/proc/recover()
 	if (istype(owner, /mob/living/simple_animal/hostile/abnormality/blue_shepherd))
 		var/mob/living/simple_animal/hostile/abnormality/blue_shepherd/H = owner
 		H.move_to_delay = old_speed
 		H.no_counter = FALSE
 		H.UpdateSpeed()
 
-/datum/action/cooldown/counter
+/datum/action/cooldown/parry
 	name = "Counter"
 	icon_icon = 'ModularTegustation/Teguicons/teguicons.dmi'
 	button_icon_state = "hollowpoint_ability"
 	desc = "Predict an attack, to deal damage to your foes!"
 	cooldown_time = 100
-	var/countering_duration = 10
+	var/counter_duration = 10
 
-/datum/action/cooldown/counter/Trigger()
+/datum/action/cooldown/parry/Trigger()
 	if(!..())
 		return FALSE
 	if (istype(owner, /mob/living/simple_animal/hostile/abnormality/blue_shepherd))
@@ -222,7 +222,7 @@
 			H.manual_emote("raises their blade...")
 			H.color = "#26a2d4"
 			playsound(H, 'sound/items/unsheath.ogg', 75, FALSE, 4)
-			addtimer(CALLBACK(src, PROC_REF(endcounter)), countering_duration)
+			addtimer(CALLBACK(src, PROC_REF(endcounter)), counter_duration)
 			StartCooldown()
 
 /mob/living/simple_animal/hostile/abnormality/blue_shepherd/attacked_by(obj/item/I, mob/living/user)
@@ -246,7 +246,7 @@
 			H.Knockdown(20)
 	countering = FALSE
 
-/datum/action/cooldown/counter/proc/endcounter()
+/datum/action/cooldown/parry/proc/endcounter()
 	if (istype(owner, /mob/living/simple_animal/hostile/abnormality/blue_shepherd))
 		var/mob/living/simple_animal/hostile/abnormality/blue_shepherd/H = owner
 		H.countering = FALSE
@@ -539,9 +539,9 @@
 		UnregisterSignal(SSdcs, COMSIG_GLOB_ABNORMALITY_SPAWN)
 
 /mob/living/simple_animal/hostile/abnormality/blue_shepherd/proc/TriggerDodge()
-	for(var/datum/action/cooldown/dodge/A in actions)
+	for(var/datum/action/cooldown/evade/A in actions)
 		A.Trigger()
 
 /mob/living/simple_animal/hostile/abnormality/blue_shepherd/proc/TriggerCounter()
-	for(var/datum/action/cooldown/counter/A in actions)
+	for(var/datum/action/cooldown/parry/A in actions)
 		A.Trigger()
