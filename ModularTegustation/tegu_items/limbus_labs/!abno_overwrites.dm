@@ -112,7 +112,8 @@
 
 /mob/living/simple_animal/hostile/abnormality/fragment/Login()
 	. = ..()
-	faction = list("fragment")
+	if(SSmaptype.maptype == "limbus_labs")
+		faction = list("fragment")
 
 /mob/living/simple_animal/hostile/abnormality/woodsman/Login()
 	. = ..()
