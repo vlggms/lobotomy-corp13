@@ -6,7 +6,10 @@
 	icon = 'ModularTegustation/Teguicons/64x64.dmi'
 	icon_living = "hurting_teddy"
 	icon_state = "hurting_teddy"
+	icon_dead = "hurting_core"
+	core_icon = "hurting_core"
 	portrait = "hurting_teddy"
+	del_on_death = FALSE
 	pixel_x = -16
 	base_pixel_x = -16
 	maxHealth = 1500 //it's a teddy bear that's been abused all its life, it should have some HP. It also has two pieces of rank bump equipment.
@@ -102,6 +105,13 @@
 	. = ..()
 	bearfriended = null //like staining rose, it's cleanup. Lets another chump work on it if you don't feel like repressing.
 	GiveTarget(user)
+
+/mob/living/simple_animal/hostile/abnormality/hurting_teddy/death(gibbed)
+	icon = 'ModularTegustation/Teguicons/abno_cores/teth.dmi'
+	density = FALSE
+	animate(src, alpha = 0, time = 10 SECONDS)
+	QDEL_IN(src, 10 SECONDS)
+	..()
 
 /mob/living/simple_animal/hostile/abnormality/hurting_teddy/AttackingTarget(atom/attacked_target)
 	if(!can_act)
@@ -255,8 +265,5 @@
 
 #undef STATUS_EFFECT_HEX
 #undef STATUS_EFFECT_NAILS
-
-
-
 
 
