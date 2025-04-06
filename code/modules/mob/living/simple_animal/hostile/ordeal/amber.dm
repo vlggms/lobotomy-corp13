@@ -105,8 +105,13 @@
 
 /mob/living/simple_animal/hostile/ordeal/amber_bug/proc/BurrowIn(turf/T)
 	if(!T)
-		if(length(GLOB.xeno_spawn) && SSmaptype!= "lcorp_city")
+		if(length(GLOB.xeno_spawn))
 			T = pick(GLOB.xeno_spawn)
+
+		else if(SSmaptype == "lcorp_city")
+			can_burrow_solo = FALSE
+			return
+
 		else
 			can_burrow_solo = FALSE
 			return

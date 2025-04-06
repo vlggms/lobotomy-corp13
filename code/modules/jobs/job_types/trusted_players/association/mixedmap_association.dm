@@ -62,8 +62,8 @@
 	spawn_positions = 1
 	display_order = JOB_DISPLAY_ORDER_VETERAN
 	trusted_only = TRUE
-	access = list(ACCESS_NETWORK)
-	minimal_access = list(ACCESS_NETWORK)
+	access = list(ACCESS_PHARMACY, ACCESS_NETWORK, ACCESS_RC_ANNOUNCE) // I want to use the number 69.
+	minimal_access = list(ACCESS_PHARMACY, ACCESS_NETWORK, ACCESS_RC_ANNOUNCE) // I want to use the number 69.
 	departments = DEPARTMENT_ASSOCIATION | DEPARTMENT_FIXERS
 	paycheck = 400
 	maptype = list("lcorp_city")

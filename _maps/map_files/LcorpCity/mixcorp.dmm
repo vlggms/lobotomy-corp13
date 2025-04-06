@@ -230,6 +230,7 @@
 /obj/structure/sign/ordealmonitor{
 	pixel_x = -32
 	},
+/obj/machinery/telecomms/relay/preset/mining,
 /turf/open/floor/carpet/purple,
 /area/department_main/information)
 "cR" = (
@@ -248,6 +249,13 @@
 	},
 /turf/open/floor/plasteel,
 /area/facility_hallway/south)
+"dj" = (
+/obj/structure/toilet{
+	pixel_y = 15
+	},
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/noslip,
+/area/facility_hallway/central)
 "dy" = (
 /obj/structure/bookcase/random,
 /obj/machinery/light,
@@ -365,6 +373,11 @@
 "if" = (
 /turf/closed/indestructible/rock,
 /area/space)
+"ij" = (
+/obj/machinery/door/airlock/centcom,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plasteel/showroomfloor,
+/area/facility_hallway/central)
 "jL" = (
 /obj/machinery/facility_holomap{
 	dir = 8
@@ -474,6 +487,14 @@
 /obj/structure/chair/stool/bar,
 /turf/open/floor/carpet/orange,
 /area/department_main/training)
+"oR" = (
+/obj/machinery/shower{
+	pixel_y = 15
+	},
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/camera,
+/turf/open/floor/noslip,
+/area/facility_hallway/central)
 "oW" = (
 /obj/machinery/facility_holomap{
 	dir = 8
@@ -894,6 +915,11 @@
 	},
 /turf/open/floor/carpet/orange,
 /area/department_main/training)
+"GB" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/light/small,
+/turf/open/floor/plasteel/showroomfloor,
+/area/facility_hallway/central)
 "GM" = (
 /obj/effect/landmark/department_center,
 /mob/living/simple_animal/bot/cleanbot,
@@ -1046,6 +1072,10 @@
 /obj/item/papercutter,
 /turf/open/floor/carpet/purple,
 /area/department_main/information)
+"OF" = (
+/obj/machinery/regenerator,
+/turf/open/floor/carpet/purple,
+/area/department_main/information)
 "Pl" = (
 /obj/effect/spawner/abnormality_room,
 /turf/closed/indestructible/reinforced,
@@ -1150,6 +1180,10 @@
 /obj/structure/bookcase/random,
 /turf/open/floor/carpet/orange,
 /area/department_main/training)
+"Uc" = (
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plasteel/showroomfloor,
+/area/facility_hallway/central)
 "Uo" = (
 /obj/structure/table/glass,
 /obj/item/refiner_filter/yellow{
@@ -1168,6 +1202,20 @@
 "Vo" = (
 /turf/closed/indestructible/reinforced,
 /area/facility_hallway/south)
+"VS" = (
+/obj/structure/mirror{
+	pixel_y = 32
+	},
+/obj/structure/sink{
+	pixel_y = 20
+	},
+/obj/structure/sign/poster/official/cleanliness{
+	pixel_x = 32
+	},
+/obj/effect/decal/cleanable/dirt,
+/obj/item/reagent_containers/hypospray/medipen/salacid,
+/turf/open/floor/noslip,
+/area/facility_hallway/central)
 "VZ" = (
 /obj/machinery/light/cold{
 	dir = 4
@@ -1254,6 +1302,10 @@
 "Yq" = (
 /turf/open/floor/facility/white,
 /area/department_main/safety)
+"Yu" = (
+/obj/machinery/regenerator,
+/turf/open/floor/carpet/orange,
+/area/department_main/training)
 "YR" = (
 /obj/machinery/light/cold{
 	dir = 1
@@ -31206,7 +31258,7 @@ pk
 pk
 pk
 QC
-TU
+Yu
 tv
 Xe
 Xe
@@ -32244,9 +32296,9 @@ mr
 mr
 Pq
 Xe
-if
-if
-if
+Xe
+Xe
+Xe
 if
 if
 if
@@ -32501,9 +32553,9 @@ mr
 mr
 mr
 Xe
-if
-if
-if
+oR
+Uc
+Xe
 yf
 yf
 yf
@@ -32758,9 +32810,9 @@ mr
 mr
 mr
 Xe
-if
-if
-if
+dj
+GB
+Xe
 yf
 Xf
 gJ
@@ -33015,9 +33067,9 @@ mr
 mr
 mr
 Xe
-if
-if
-if
+VS
+Uc
+Xe
 yf
 uC
 Az
@@ -33273,7 +33325,7 @@ mr
 mr
 Xe
 Xe
-Xe
+ij
 Xe
 yf
 zL
@@ -34306,7 +34358,7 @@ Xe
 yf
 YR
 Qf
-Hj
+OF
 uA
 uA
 uA
