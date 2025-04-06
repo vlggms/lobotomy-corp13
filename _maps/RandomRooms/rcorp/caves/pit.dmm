@@ -44,13 +44,6 @@
 	},
 /turf/open/floor/plating/asteroid,
 /area/city/outskirts)
-"h" = (
-/obj/effect/landmark/abnospawn/easysupport,
-/obj/structure/railing/corner{
-	dir = 8
-	},
-/turf/open/floor/plating/asteroid,
-/area/city/outskirts)
 "i" = (
 /turf/open/floor/plating/asteroid,
 /area/city/outskirts)
@@ -5490,10 +5483,10 @@ R
 d
 s
 v
-C
 i
 i
-h
+i
+x
 s
 p
 R
@@ -5862,7 +5855,7 @@ i
 i
 i
 i
-m
+i
 i
 i
 i

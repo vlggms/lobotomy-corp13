@@ -16,7 +16,7 @@
 	pin = /obj/item/firing_pin
 	//None of these fucking guys can use Rcorp guns
 	var/list/banned_roles = list("Reindeer Squad Captain",
-		"R-Corp Berserker Reindeer","R-Corp Medical Reindeer","R-Corp Gunner Rhino","R-Corp Hammer Rhino","R-Corp Scout Raven","R-Corp Support Raven",,
+		"R-Corp Berserker Reindeer","R-Corp Medical Reindeer","R-Corp Gunner Rhino","R-Corp Hammer Rhino","R-Corp Scout Raven","R-Corp Support Raven",
 		"R-Corp Roadrunner", "Roadrunner Squad Leader")
 
 /obj/item/gun/energy/e_gun/rabbitdash/process_fire(atom/target, mob/living/user, message, params, zone_override, bonus_spread)
@@ -107,8 +107,8 @@
 	zoomable = TRUE
 	zoom_amt = 10 //Long range, enough to see in front of you, but no tiles behind you.
 	zoom_out_amt = 5
-	projectile_damage_multiplier = 3
+	projectile_damage_multiplier = 5
 	ammo_type = list(
-		/obj/item/ammo_casing/energy/laser/red/iff,
+		/obj/item/ammo_casing/energy/laser/red/iff/sniper,
 		)
 

@@ -383,6 +383,9 @@
 	. = ..()
 	qdel(src)
 
+/obj/projectile/beam/laser/iff/fast
+	speed = 0.3 // higher power = faster, that's how light works right
+
 /obj/projectile/beam/laser/iff/white
 	damage_type = WHITE_DAMAGE
 	light_color = COLOR_WHITE
