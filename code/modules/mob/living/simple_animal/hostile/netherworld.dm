@@ -126,8 +126,8 @@
 
 /mob/living/simple_animal/hostile/netherworld/migo/AttackingTarget(atom/attacked_target)
 	. = ..()
-	if(ishuman(the_target))
-		var/mob/living/carbon/human/L = the_target
+	if(ishuman(attacked_target))
+		var/mob/living/carbon/human/L = attacked_target
 		if(L.sanity_lost && L.stat != DEAD)
 			L.apply_damage(scream_damage, PALE_DAMAGE, null, L.run_armor_check(null, PALE_DAMAGE))
 	return ..()
