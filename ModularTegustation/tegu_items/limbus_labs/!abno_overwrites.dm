@@ -41,7 +41,7 @@
 /mob/living/simple_animal/hostile/abnormality/nosferatu/Initialize()
 	. = ..()
 	if(SSmaptype.maptype == "limbus_labs")
-		ChangeResistances(list(RED_DAMAGE = 2, WHITE_DAMAGE = 1.2, BLACK_DAMAGE = 0.4, PALE_DAMAGE = 1.5))
+		ChangeResistances(list(RED_DAMAGE = 1.4, WHITE_DAMAGE = 1.2, BLACK_DAMAGE = 0.4, PALE_DAMAGE = 1.5))
 		summon_cooldown_time = 60 MINUTES
 		bat_spawn_number = 0
 		faction = list("neutral", "nosferatu")
