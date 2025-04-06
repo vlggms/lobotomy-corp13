@@ -124,7 +124,6 @@
 	desc = "A kit containing various grenades."
 
 /obj/item/storage/box/rcorp_grenades/PopulateContents()
-	new /obj/item/grenade/smokebomb(src)
 	new /obj/item/grenade/r_corp(src)
 	new /obj/item/grenade/r_corp(src)
 	new /obj/item/grenade/r_corp/white(src)
