@@ -1,5 +1,5 @@
 /**
- * ADVENTURE CONSOLE V1.1
+ * ADVENTURE CONSOLE V2.0
  * TEXT BASED ADVENTURES
  * Adventures that are mostly predefined paths.
  * This was difficult to finalize since i havent made a text based adventure before.
@@ -10,6 +10,13 @@
  * portable it also makes it so that when the console is destroyed there is just a datum
  * floating around in the code. Unsure how bad this is. -IP
  */
+
+#define ATTACK_MINIMENU 0
+#define HEALTH_MINIMENU 1
+#define BLOCK_MINIMENU 2
+#define RUN_MINIMENU 3
+#define INFO_MINIMENU 4
+#define EXTRA_MINIMENU 5
 
 /datum/adventure_layout
 	///Current and max player health
@@ -50,6 +57,8 @@
 	var/list/event_options = list()
 	///list of all events.
 	var/static/list/events = list()
+	//Keys required for events to appear.
+	var/list/event_keys = list()
 
 	//Battle Mode Variables
 	///Enemy's current health
@@ -60,6 +69,8 @@
 	var/enemy_damage = "1d6"
 	///Coins rewarded after defeating the enemy
 	var/enemy_coin = 0
+	//Event Key unlocked by defeating this enemy
+	var/enemy_key
 	///One day maybe we will have proper enemies but for now this will suffice. -IP
 	var/list/enemy_descriptions = list(
 		"<b>Recorded Clerk</b>:A familiar looking humanoid. They wear ragged clothes and a L corp armband. You swear you used to know their name.<br>",
@@ -94,6 +105,7 @@
 	* beelining enemy encounters will result in about 5 coins before the user is
 	* defeated. -IP
 	*/
+	var/minimenu_mode = 0
 	var/list/exchange_shop_list = list(
 		/*		All Toys. Will add them back later in their own mini tab
 		new /datum/data/extraction_cargo("SNAP POP",	/obj/item/toy/snappop,				10) = 1,
@@ -118,79 +130,79 @@
 	var/list/exchange_upgrade_list = list(
 		//-------- ATTACK --------
 		//DICE
-		new /datum/data/adventure_upgrade("COMBAT DICE UPGRADE 1d6","1d6",		1, "DICE") = 1,	//Basically mandatory
+		new /datum/data/adventure_upgrade("COMBAT DICE UPGRADE 1d6","1d6",		1, "DICE", ATTACK_MINIMENU) = 1,	//Basically mandatory
 
-		new /datum/data/adventure_upgrade("COMBAT DICE UPGRADE 3d2","3d2",		5, "DICE") = 1,	//This is a more powerful 1d6
-		new /datum/data/adventure_upgrade("COMBAT DICE UPGRADE 1d8","1d8",		5, "DICE") = 1,
+		new /datum/data/adventure_upgrade("COMBAT DICE UPGRADE 3d2","3d2",		5, "DICE", ATTACK_MINIMENU) = 1,	//This is a more powerful 1d6
+		new /datum/data/adventure_upgrade("COMBAT DICE UPGRADE 1d8","1d8",		5, "DICE", ATTACK_MINIMENU) = 1,
 
-		new /datum/data/adventure_upgrade("COMBAT DICE UPGRADE 2d4","2d4",		10, "DICE") = 1,	//T3 dice
-		new /datum/data/adventure_upgrade("COMBAT DICE UPGRADE 1d10","1d10",	12, "DICE") = 1,
+		new /datum/data/adventure_upgrade("COMBAT DICE UPGRADE 2d4","2d4",		10, "DICE", ATTACK_MINIMENU) = 1,	//T3 dice
+		new /datum/data/adventure_upgrade("COMBAT DICE UPGRADE 1d10","1d10",	12, "DICE", ATTACK_MINIMENU) = 1,
 
-		new /datum/data/adventure_upgrade("COMBAT DICE UPGRADE 1d12","1d12",	18, "DICE") = 1,	//T4 Dice
-		new /datum/data/adventure_upgrade("COMBAT DICE UPGRADE 2d6","2d6",		20, "DICE") = 1,
-		new /datum/data/adventure_upgrade("COMBAT DICE UPGRADE 3d4","3d4",		22, "DICE") = 1,
+		new /datum/data/adventure_upgrade("COMBAT DICE UPGRADE 1d12","1d12",	18, "DICE", ATTACK_MINIMENU) = 1,	//T4 Dice
+		new /datum/data/adventure_upgrade("COMBAT DICE UPGRADE 2d6","2d6",		20, "DICE", ATTACK_MINIMENU) = 1,
+		new /datum/data/adventure_upgrade("COMBAT DICE UPGRADE 3d4","3d4",		22, "DICE", ATTACK_MINIMENU) = 1,
 
 		//-------- HEALTH --------
 		//Healing
-		new /datum/data/adventure_upgrade("RESTORE 15 HEALTH",	15,		1, "HP") = 1,
-		new /datum/data/adventure_upgrade("RESTORE 100 HEALTH",	100,	5, "HP") = 1,
+		new /datum/data/adventure_upgrade("RESTORE 15 HEALTH",	15,		1, "HP", HEALTH_MINIMENU) = 1,
+		new /datum/data/adventure_upgrade("RESTORE 100 HEALTH",	100,	5, "HP", HEALTH_MINIMENU) = 1,
 
 		//Health
-		new /datum/data/adventure_upgrade("MAX INTEGRITY: 110",	110,	3,	"MAXHP") = 1,
-		new /datum/data/adventure_upgrade("MAX INTEGRITY: 120",	120,	7,	"MAXHP") = 1,
-		new /datum/data/adventure_upgrade("MAX INTEGRITY: 130",	130,	15, "MAXHP") = 1,
-		new /datum/data/adventure_upgrade("MAX INTEGRITY: 140",	140,	30, "MAXHP") = 1,
-		new /datum/data/adventure_upgrade("MAX INTEGRITY: 150",	150,	50, "MAXHP") = 1,
+		new /datum/data/adventure_upgrade("MAX INTEGRITY: 110",	110,	3,	"MAXHP", HEALTH_MINIMENU) = 1,
+		new /datum/data/adventure_upgrade("MAX INTEGRITY: 120",	120,	7,	"MAXHP", HEALTH_MINIMENU) = 1,
+		new /datum/data/adventure_upgrade("MAX INTEGRITY: 130",	130,	15, "MAXHP", HEALTH_MINIMENU) = 1,
+		new /datum/data/adventure_upgrade("MAX INTEGRITY: 140",	140,	30, "MAXHP", HEALTH_MINIMENU) = 1,
+		new /datum/data/adventure_upgrade("MAX INTEGRITY: 150",	150,	50, "MAXHP", HEALTH_MINIMENU) = 1,
 
 		//-------- BLOCK --------
 		//Block Dice
-		new /datum/data/adventure_upgrade("BLOCK DICE UPGRADE 1d6","1d6",		1, 	"BLOCKDICE") = 1,	//Basically mandatory
-		new /datum/data/adventure_upgrade("BLOCK DICE UPGRADE 1d8","1d8",		3, 	"BLOCKDICE") = 1,
-		new /datum/data/adventure_upgrade("BLOCK DICE UPGRADE 1d10","1d10",		6,	"BLOCKDICE") = 1,
-		new /datum/data/adventure_upgrade("BLOCK DICE UPGRADE 1d12","1d12",		10, "BLOCKDICE") = 1,	//T4 Dice
+		new /datum/data/adventure_upgrade("BLOCK DICE UPGRADE 1d6","1d6",		1, 	"BLOCKDICE", BLOCK_MINIMENU) = 1,	//Basically mandatory
+		new /datum/data/adventure_upgrade("BLOCK DICE UPGRADE 1d8","1d8",		3, 	"BLOCKDICE", BLOCK_MINIMENU) = 1,
+		new /datum/data/adventure_upgrade("BLOCK DICE UPGRADE 1d10","1d10",		6,	"BLOCKDICE", BLOCK_MINIMENU) = 1,
+		new /datum/data/adventure_upgrade("BLOCK DICE UPGRADE 1d12","1d12",		10, "BLOCKDICE", BLOCK_MINIMENU) = 1,	//T4 Dice
 
 		//Block Healing
-		new /datum/data/adventure_upgrade("BLOCK HEALING: 3",	3,	5,	"BLOCKHEAL") = 1,
-		new /datum/data/adventure_upgrade("BLOCK HEALING: 5",	5,	10,	"BLOCKHEAL") = 1,
-		new /datum/data/adventure_upgrade("BLOCK HEALING: 10",	10,	25, "BLOCKHEAL") = 1,
+		new /datum/data/adventure_upgrade("BLOCK HEALING: 3",	3,	5,	"BLOCKHEAL", BLOCK_MINIMENU) = 1,
+		new /datum/data/adventure_upgrade("BLOCK HEALING: 5",	5,	10,	"BLOCKHEAL", BLOCK_MINIMENU) = 1,
+		new /datum/data/adventure_upgrade("BLOCK HEALING: 10",	10,	25, "BLOCKHEAL", BLOCK_MINIMENU) = 1,
 
 		//Max Block Healing
-		new /datum/data/adventure_upgrade("MAX BLOCK HEALING: 20",	20,	15, "BLOCKMAX") = 1,
-		new /datum/data/adventure_upgrade("MAX BLOCK HEALING: 30",	30,	30, "BLOCKMAX") = 1,
+		new /datum/data/adventure_upgrade("MAX BLOCK HEALING: 20",	20,	15, "BLOCKMAX", BLOCK_MINIMENU) = 1,
+		new /datum/data/adventure_upgrade("MAX BLOCK HEALING: 30",	30,	30, "BLOCKMAX", BLOCK_MINIMENU) = 1,
 
 
 		//-------- RUN --------
 		//Run Chance
-		new /datum/data/adventure_upgrade("RUN CHANCE: 40%",	40,	7,	"RUNCHANCE") = 1,
-		new /datum/data/adventure_upgrade("RUN CHANCE: 50%",	50,	15,	"RUNCHANCE") = 1,
-		new /datum/data/adventure_upgrade("RUN CHANCE: 60%",	60,	27, "RUNCHANCE") = 1,
-		new /datum/data/adventure_upgrade("RUN CHANCE: 70%",	70,	45, "RUNCHANCE") = 1,
+		new /datum/data/adventure_upgrade("RUN CHANCE: 40%",	40,	7,	"RUNCHANCE", RUN_MINIMENU) = 1,
+		new /datum/data/adventure_upgrade("RUN CHANCE: 50%",	50,	15,	"RUNCHANCE", RUN_MINIMENU) = 1,
+		new /datum/data/adventure_upgrade("RUN CHANCE: 60%",	60,	27, "RUNCHANCE", RUN_MINIMENU) = 1,
+		new /datum/data/adventure_upgrade("RUN CHANCE: 70%",	70,	45, "RUNCHANCE", RUN_MINIMENU) = 1,
 
 		//Run healing
-		new /datum/data/adventure_upgrade("RUN HEALING: 3",		3,	3,	"RUNHEAL") = 1,
-		new /datum/data/adventure_upgrade("RUN HEALING: 5",		5,	10,	"RUNHEAL") = 1,
-		new /datum/data/adventure_upgrade("RUN HEALING: 10",	10,	25,	"RUNHEAL") = 1,
+		new /datum/data/adventure_upgrade("RUN HEALING: 3",		3,	3,	"RUNHEAL", RUN_MINIMENU) = 1,
+		new /datum/data/adventure_upgrade("RUN HEALING: 5",		5,	10,	"RUNHEAL", RUN_MINIMENU) = 1,
+		new /datum/data/adventure_upgrade("RUN HEALING: 10",	10,	25,	"RUNHEAL", RUN_MINIMENU) = 1,
 
 		//Run gold chance
-		new /datum/data/adventure_upgrade("RUN GOLD CHANCE: 10%",		10,	3,	"RUNGOLD") = 1,
-		new /datum/data/adventure_upgrade("RUN GOLD CHANCE: 35%",		35,	10,	"RUNGOLD") = 1,
-		new /datum/data/adventure_upgrade("RUN GOLD CHANCE: 50%",		50,	25,	"RUNGOLD") = 1,
+		new /datum/data/adventure_upgrade("RUN GOLD CHANCE: 10%",		10,	3,	"RUNGOLD", RUN_MINIMENU) = 1,
+		new /datum/data/adventure_upgrade("RUN GOLD CHANCE: 35%",		35,	10,	"RUNGOLD", RUN_MINIMENU) = 1,
+		new /datum/data/adventure_upgrade("RUN GOLD CHANCE: 50%",		50,	25,	"RUNGOLD", RUN_MINIMENU) = 1,
 
 
 		//-------- INFO --------
 		//Info Chance
-		new /datum/data/adventure_upgrade("INFO CHANCE: 40%",	40,	3,	"INFOCHANCE") = 1,
-		new /datum/data/adventure_upgrade("INFO CHANCE: 60%",	60,	7,	"INFOCHANCE") = 1,
-		new /datum/data/adventure_upgrade("INFO CHANCE: 80%",	80,	14, "INFOCHANCE") = 1,
+		new /datum/data/adventure_upgrade("INFO CHANCE: 40%",	40,	3,	"INFOCHANCE", INFO_MINIMENU) = 1,
+		new /datum/data/adventure_upgrade("INFO CHANCE: 60%",	60,	7,	"INFOCHANCE", INFO_MINIMENU) = 1,
+		new /datum/data/adventure_upgrade("INFO CHANCE: 80%",	80,	14, "INFOCHANCE", INFO_MINIMENU) = 1,
 
 		//Info Bonus
-		new /datum/data/adventure_upgrade("INFO BONUS: 1",		1,	7,	"INFOBONUS") = 1,
-		new /datum/data/adventure_upgrade("INFO BONUS: 2",		2,	20,	"INFOBONUS") = 1,
-		new /datum/data/adventure_upgrade("INFO BONUS: 3",		3,	35,	"INFOBONUS") = 1,
+		new /datum/data/adventure_upgrade("INFO BONUS: 1",		1,	7,	"INFOBONUS", INFO_MINIMENU) = 1,
+		new /datum/data/adventure_upgrade("INFO BONUS: 2",		2,	20,	"INFOBONUS", INFO_MINIMENU) = 1,
+		new /datum/data/adventure_upgrade("INFO BONUS: 3",		3,	35,	"INFOBONUS", INFO_MINIMENU) = 1,
 
 
 		//Special
-		new /datum/data/adventure_upgrade("MORE CONTENT",	100,			20, "ABNOS") = 1,
+		new /datum/data/adventure_upgrade("MORE CONTENT",	100,			20, "ABNOS", EXTRA_MINIMENU) = 1,
 	)
 
 	/*-----------------\
@@ -201,12 +213,14 @@
 	var/stat_value = 0
 	var/cost = 0
 	var/trade_type = "HP"
+	var/cat = 0
 
-/datum/data/adventure_upgrade/New(name, stat_amt, cost, trading_type)
+/datum/data/adventure_upgrade/New(name, stat_amt, cost, trading_type, new_cat)
 	src.stuff_name = name
 	src.stat_value = stat_amt
 	src.cost = cost
 	src.trade_type = trading_type
+	src.cat = new_cat
 
 //---
 /datum/adventure_layout/New(set_debug_menu = FALSE)
@@ -216,6 +230,22 @@
 		for(var/_event in subtypesof(/datum/adventure_event))
 			events += _event
 	debug_menu = set_debug_menu
+	if(debug_menu)
+		virtual_coins = 100
+
+	/*-------------\
+	|UNSORTED PROCS|
+	\-------------*/
+/**
+ * Add a key to the list in order to unlock connected events
+ */
+/datum/adventure_layout/proc/GiveKey(key_id)
+	if(!key_id)
+		return FALSE
+	if(event_keys.Find(key_id
+	))
+		return FALSE
+	event_keys += key_id
 
 	/*---------------\
 	|Return Visual UI|
@@ -314,23 +344,43 @@
 				adventure tab you will gain 3% additive chance to find a event. Winning<br>\
 				battles will grant you a 10% increased chance. These events are generally<br>\
 				related to abnormalities that you have within your facility. At the end of<br>\
-				your shift a report will be expected on the events you encounter.<br>"
+				your shift a report will be expected on the events you encounter.<br>\
+				<tt>\
+				----------<br>\
+				|TROPHIES|<br>\
+				----------<br>"
+			var/items_per_rack = 0
+			for(var/trophy_name in event_keys)
+				. += "[trophy_name], "
+				items_per_rack++
+				if(items_per_rack >= 4)
+					. += "<br>"
+					items_per_rack = 0
+			. += "</tt>"
 
 		if(ADVENTURE_TEXT_DISPLAY)
 			. += "[TravelUI(interfacer)]"
 
 		if(EXCHANGE_TEXT_DISPLAY)
-			. += "COIN EXCHANGE <br> \
-				<tt>--------------------| </tt><br>\
-				PHYSICAL_MERCHANDISE<br>"
-			//Code taken from fish_market.dm
-			for(var/datum/data/extraction_cargo/A in exchange_shop_list)
-				. += " <A href='byond://?src=[REF(interfacer)];purchase=[REF(A)]'>[A.equipment_name] ([A.cost] Coins)</A><br>"
-			. += "<tt>--------------------| </tt><br> \
-				STAT UPGRADES<br>"
-			for(var/datum/data/adventure_upgrade/U in exchange_upgrade_list)
-				. += " <A href='byond://?src=[REF(interfacer)];upgrade=[REF(U)]'>[U.stuff_name] ([U.cost] Coins)</A><br>"
-			. += "<tt>--------------------| </tt><br>"
+			. += "[ShoppeUI(interfacer, viewer)]"
+
+
+/datum/adventure_layout/proc/ShoppeUI(obj/machinery/interfacer, mob/living/carbon/human/viewer)
+	. += "COIN EXCHANGE <br> \
+		<tt>--------------------| </tt><br>\
+		PHYSICAL_MERCHANDISE<br>"
+	//Code taken from fish_market.dm
+	for(var/datum/data/extraction_cargo/A in exchange_shop_list)
+		. += " <A href='byond://?src=[REF(interfacer)];purchase=[REF(A)]'>[A.equipment_name] ([A.cost] Coins)</A><br>"
+	. += "<tt>--------------------| </tt><br> \
+		SYSTEM UPGRADES<br>"
+	for(var/minimenu_mode_option = ATTACK_MINIMENU to EXTRA_MINIMENU)
+		. += "<A href='byond://?src=[REF(interfacer)];set_minidisplay=[minimenu_mode_option]'>[minimenu_mode_option == minimenu_mode ? "<b><u>[nameMiniMenu(minimenu_mode_option)]</u></b>" : "[nameMiniMenu(minimenu_mode_option)]"]</A>"
+	. += "<br><tt>--------------------| </tt><br>"
+	for(var/datum/data/adventure_upgrade/U in exchange_upgrade_list)
+		if(U.cat == minimenu_mode)
+			. += " <A href='byond://?src=[REF(interfacer)];upgrade=[REF(U)]'>[U.stuff_name] ([U.cost] Coins)</A><br>"
+	. += "<tt>--------------------| </tt>"
 
 /datum/adventure_layout/proc/TravelUI(obj/machinery/call_machine)
 	switch(travel_mode)
@@ -400,6 +450,7 @@
 	 * -IP
 	 */
 	enemy_coin = round((temp_sides * temp_dice)/5)
+	enemy_key = null
 
 /datum/adventure_layout/proc/GeneratePaths(max_paths)
 	for(var/i=1 to max_paths)
@@ -488,6 +539,7 @@
 		temp_text += "PROGRAM UNSTABLE<br>1 COIN LOST<br>EVENT PROGRESS -2"
 		virtual_coins--
 		AdjustProgress(-2)
+		enemy_key = null
 
 	/*-----------\
 	|Battle Procs|
@@ -520,6 +572,10 @@
 	if(currently_scanned && info_bonus)
 		temp_text += "<br>INFORMATION BONUS:[info_bonus] COINS GAINED"
 		virtual_coins += info_bonus
+	if(enemy_key)
+		temp_text += "<br>TROPHY GAINED:[enemy_key]"
+		GiveKey(enemy_key)
+	enemy_key = null
 	currently_scanned = FALSE
 
 	AdjustProgress(10)
@@ -642,11 +698,23 @@
 	var/list/new_events = events - event_options
 	for(var/_option in new_events)
 		var/datum/adventure_event/A = _option
+		//Lets see if i can make a lock + key event criteria.
+		if(FormatNonexistentEventCriteria(initial(A.event_locks)))
+			continue
 		if(initial(A.require_abno) && !all_abnos)	//Do you require an abno and do you NOT have all abnos?
 			if(!locate(initial(A.require_abno)) in GLOB.abnormality_mob_list)
 				continue
 		event_options += A
 		event_options[A] = 10
+
+//This is awful and insane for code. Since i cant get the list from a datum that doesnt exist, i will instead make it a text variable that i will then seperate into a list. -IP
+/datum/adventure_layout/proc/FormatNonexistentEventCriteria(lock_chain)
+	if(!lock_chain)
+		return
+	var/list/formatted_lock = splittext(lock_chain, ",")
+	LAZYREMOVE(formatted_lock, event_keys)
+	//If all of the locks are removed by keys then it will return null.
+	return formatted_lock
 
 //Describes details about the path ahead.
 /datum/adventure_layout/proc/DescribePath(path_num)
@@ -699,6 +767,21 @@
 		if(EXCHANGE_TEXT_DISPLAY)
 			return "COIN SHOP"
 
+/datum/adventure_layout/proc/nameMiniMenu(cat)
+	switch(cat)
+		if(ATTACK_MINIMENU)
+			return "ATTACK"
+		if(HEALTH_MINIMENU)
+			return "HEALTH"
+		if(BLOCK_MINIMENU)
+			return "BLOCK"
+		if(RUN_MINIMENU)
+			return "RUN"
+		if(INFO_MINIMENU)
+			return "INFO"
+		if(EXTRA_MINIMENU)
+			return "EXTRA"
+
 /datum/adventure_layout/proc/nameStat(stat_named)
 	switch(stat_named)
 		if(WRATH_STAT)
@@ -731,3 +814,10 @@
 		newhealth -= hp_overload_check
 	AdjustHP(newhealth)
 	last_logged_time = world.time
+
+#undef ATTACK_MINIMENU
+#undef HEALTH_MINIMENU
+#undef BLOCK_MINIMENU
+#undef RUN_MINIMENU
+#undef INFO_MINIMENU
+#undef EXTRA_MINIMENU
