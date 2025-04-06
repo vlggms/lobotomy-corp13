@@ -16,6 +16,7 @@
 	melee_damage_upper = 12
 	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 0.7, WHITE_DAMAGE = 1, BLACK_DAMAGE = 2, PALE_DAMAGE = 2)
 	speak_emote = list("states")
+	speech_span = SPAN_ROBOT
 	vision_range = 14
 	aggro_vision_range = 20
 
@@ -84,9 +85,23 @@
 		if(H.stat == DEAD)
 			H.gib(FALSE, FALSE, FALSE)
 
-	//destroy blood
-	for(var/obj/effect/decal/cleanable/blood/B in view(src, 2))
-		qdel(B)
+	//destroy the unclean
+	for(var/turf/tile in view(src, 2))
+		tile.wash(CLEAN_SCRUB)
+		for(var/A in tile)
+			// Clean small items that are lying on the ground
+			if(isitem(A))
+				var/obj/item/I = A
+				if(I.w_class <= WEIGHT_CLASS_SMALL && !ismob(I.loc))
+					I.wash(CLEAN_SCRUB)
+			// Clean humans that are lying down
+			else if(ishuman(A))
+				var/mob/living/carbon/human/cleaned_human = A
+				if(cleaned_human.body_position == LYING_DOWN)
+					cleaned_human.wash(CLEAN_SCRUB)
+					cleaned_human.regenerate_icons()
+					to_chat(cleaned_human, span_danger("[src] flawlessly cleans you of your features!"))
+					ADD_TRAIT(cleaned_human, TRAIT_DISFIGURED, TRAIT_GENERIC) //cleans your face of uneeded features
 
 /mob/living/simple_animal/hostile/abnormality/cleaner/update_icon_state()
 	if(status_flags & GODMODE)
@@ -119,4 +134,3 @@
 	. = ..()
 	update_icon()
 	GiveTarget(user)
-

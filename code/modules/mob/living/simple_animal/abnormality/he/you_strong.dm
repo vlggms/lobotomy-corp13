@@ -30,6 +30,7 @@
 
 	max_boxes = 16
 	speak_emote = list("beeps", "crackles", "buzzes")
+	speech_span = SPAN_ROBOT
 
 	pixel_x = -32
 	pixel_y = -8

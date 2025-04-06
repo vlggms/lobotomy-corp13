@@ -57,10 +57,11 @@
 	end_announce_text = "As it turns out, cola isn't all that great of a power source."
 	reward_percent = 0.15
 	level = 2
-	spawn_amount = 3
+	spawn_amount = 2
 	spawn_type = list(
 		/mob/living/simple_animal/hostile/ordeal/shrimp,
-		/mob/living/simple_animal/hostile/ordeal/shrimp_soldier
+		/mob/living/simple_animal/hostile/ordeal/shrimp_soldier,
+		/mob/living/simple_animal/hostile/ordeal/shrimp_rifleman,
 	)
 	place_player_multiplicator = 0.1
 	spawn_player_multiplicator = 0.05

@@ -13,6 +13,7 @@ Finally, an abnormality that DOESN'T have to do any fancy movement shit. It's a 
 	maxHealth = 3000
 	health = 3000
 	damage_coeff = list(RED_DAMAGE = 0.7, WHITE_DAMAGE = 0.7, BLACK_DAMAGE = 1.5, PALE_DAMAGE = 1)
+	speak_emote = list("sings")
 	threat_level = HE_LEVEL
 	start_qliphoth = 2
 	work_chances = list(

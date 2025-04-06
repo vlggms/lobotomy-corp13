@@ -89,7 +89,7 @@
 			AdjustHitPoint(100)
 			AdjustStatNum(RAND_STAT,-1)
 		if(7)
-			AdjustHitPoint(-100)
+			AdjustHitPoint(-gamer.virtual_integrity)
 			AdjustStatNum(WRATH_STAT,1)
 			AdjustStatNum(LUST_STAT,1)
 			AdjustStatNum(SLOTH_STAT,1)
