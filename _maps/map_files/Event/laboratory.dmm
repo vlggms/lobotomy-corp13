@@ -3814,7 +3814,8 @@
 /obj/machinery/door/poddoor/preopen{
 	armor = list("melee" = 20, "bullet" = 100, "laser" = 100, "energy" = 100, "bomb" = 50, "bio" = 100, "rad" = 100, "fire" = 100, "acid" = 70);
 	max_integrity = 1800;
-	id = "mosb_containment3"
+	id = "mosb_containment3";
+	damage_deflection = 0
 	},
 /obj/effect/spawner/structure/window/reinforced{
 	max_integrity = 3000
@@ -5088,7 +5089,8 @@
 /obj/machinery/door/poddoor/preopen{
 	armor = list("melee" = 20, "bullet" = 100, "laser" = 100, "energy" = 100, "bomb" = 50, "bio" = 100, "rad" = 100, "fire" = 100, "acid" = 70);
 	max_integrity = 1800;
-	id = "emergency_lockdown1"
+	id = "emergency_lockdown1";
+	damage_deflection = 0
 	},
 /obj/effect/spawner/structure/window/reinforced{
 	max_integrity = 3000
