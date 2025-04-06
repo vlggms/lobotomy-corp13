@@ -64,7 +64,7 @@
 	var/cute_resist_pale = 2
 	var/cute_speed = 1
 	//Other Stuff
-	var/limb_heal = 0.1
+	var/limb_heal = 0.02
 
 
 /mob/living/simple_animal/hostile/abnormality/ppodae/Login()
@@ -87,7 +87,7 @@
 	button_icon_state = "ppodae_transform"
 	check_flags = AB_CHECK_CONSCIOUS
 	transparent_when_unavailable = TRUE
-	cooldown_time = 5 SECONDS
+	cooldown_time = 12.5 SECONDS
 
 /datum/action/cooldown/ppodae_transform/Trigger()
 	if(!..())
