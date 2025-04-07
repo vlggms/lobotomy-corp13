@@ -217,10 +217,11 @@
 		break
 
 /mob/living/simple_animal/hostile/mutant_heart/Destroy()
-	var/mob/living/simple_animal/hostile/mutant_clown/boss/father = connected_mob
-	father.spawned_hearts -= src
-	qdel(current_connection)
-	current_connection = null
+	if(connected_mob)
+		var/mob/living/simple_animal/hostile/mutant_clown/boss/father = connected_mob
+		father.spawned_hearts -= src
+		qdel(current_connection)
+		current_connection = null
 	playsound(get_turf(father), 'sound/creatures/lc13/lovetown/abomination_stagetransition.ogg', 75, 0, 3)
 	. = ..()
 
