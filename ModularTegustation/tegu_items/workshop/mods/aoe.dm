@@ -10,15 +10,21 @@
 	..()
 
 /obj/item/workshop_mod/aoe/ActivateEffect(obj/item/ego_weapon/template/T, special_count = 0, mob/living/target, mob/living/carbon/human/user)
-	for(var/mob/living/L in view(aoemod, get_turf(target)))
-		var/aoe_damage = T.force / 2
-		var/userjust = (get_attribute_level(user, JUSTICE_ATTRIBUTE))
-		var/justicemod = 1 + userjust/100
-		aoe_damage*=justicemod
-		if(L == user)
-			continue
-		L.deal_damage(aoe_damage, damagetype)
-		new /obj/effect/temp_visual/small_smoke/halfsecond(get_turf(L))
+	if (toggle)
+		for(var/mob/living/simple_animal/L in view(aoemod, get_turf(target)))
+			Aoe(L, user, T.force / 2)
+	else
+		for(var/mob/living/L in view(aoemod, get_turf(target)))
+			Aoe(L, user, T.force)
+
+/obj/item/workshop_mod/aoe/proc/Aoe(mob/living/L, mob/living/carbon/human/user, aoe_damage)
+	var/userjust = (get_attribute_level(user, JUSTICE_ATTRIBUTE))
+	var/justicemod = 1 + userjust/100
+	aoe_damage*=justicemod
+	if(L == user)
+		return
+	L.deal_damage(aoe_damage, damagetype)
+	new /obj/effect/temp_visual/small_smoke/halfsecond(get_turf(L))
 
 /obj/item/workshop_mod/aoe/red
 	name = "aoe red damage mod"

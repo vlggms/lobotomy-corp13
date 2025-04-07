@@ -1,4 +1,4 @@
-/obj/item/book/granter/action/skill/planet
+/obj/item/book/granter/action/skill/fishing/planet
 	name = "Level 1 Skill: Planet"
 	actionname = "Planet"
 	granted_action = /datum/action/cooldown/fishing/planet
@@ -22,7 +22,7 @@
 		to_chat(user, span_notice("You shift the movement of your aligned planet by 1."))
 		break
 
-/obj/item/book/granter/action/skill/moonmove
+/obj/item/book/granter/action/skill/fishing/moonmove
 	name = "Level 1 Skill: Lunar Motion"
 	actionname = "Lunar Motion"
 	granted_action = /datum/action/cooldown/fishing/moonmove
@@ -41,7 +41,7 @@
 	if(SSfishing.moonphase == 5) // there's only 4
 		SSfishing.moonphase = 1
 
-/obj/item/book/granter/action/skill/planet2
+/obj/item/book/granter/action/skill/fishing/planet2
 	name = "Level 1 Skill: Plane II"
 	actionname = "Planet II"
 	granted_action = /datum/action/cooldown/fishing/planet2
