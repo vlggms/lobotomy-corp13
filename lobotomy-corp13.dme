@@ -4005,6 +4005,7 @@
 #include "ModularTegustation\ego_weapons\melee\zayin.dm"
 #include "ModularTegustation\ego_weapons\melee\non_abnormality\_cityweapons.dm"
 #include "ModularTegustation\ego_weapons\melee\non_abnormality\black_silence.dm"
+#include "ModularTegustation\ego_weapons\melee\non_abnormality\bloodfiend.dm"
 #include "ModularTegustation\ego_weapons\melee\non_abnormality\blue_sicko.dm"
 #include "ModularTegustation\ego_weapons\melee\non_abnormality\cane.dm"
 #include "ModularTegustation\ego_weapons\melee\non_abnormality\carnival.dm"
