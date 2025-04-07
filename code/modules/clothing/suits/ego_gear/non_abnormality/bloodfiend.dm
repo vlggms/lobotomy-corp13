@@ -74,11 +74,21 @@
 			if (S.hardblood_state)
 				S.icon_state = S.hardblood_state
 			addtimer(CALLBACK(src, PROC_REF(ResetArmor), S), 600)
+		var/blood_weapon = wielder.is_holding_item_of_type(/obj/item/ego_weapon/blood)
+		if(blood_weapon)
+			var/obj/item/ego_weapon/blood/W = blood_weapon
+			if(W && istype(W))
+				if(S.bloodfeast >= W.hardblood_threshold)
+					W.activate_hardblood()
+					addtimer(CALLBACK(src, PROC_REF(ResetWeapon), W), 100)
 		S.bloodfeast = 0
 	return ..()
 
 /obj/effect/proc_holder/ability/bloodart/proc/ResetArmor(obj/item/clothing/suit/armor/ego_gear/city/masquerade_cloak/A)
 	A.icon_state = A.normal_state
+
+/obj/effect/proc_holder/ability/bloodart/proc/ResetWeapon(obj/item/ego_weapon/blood/A)
+	A.deactivate_hardblood()
 
 /obj/item/clothing/suit/armor/ego_gear/city/masquerade_cloak/masquerade_coat
 	name = "masquerade coat"
@@ -112,7 +122,7 @@
 	icon_state = "BarberSleeves"
 	normal_state = "BarberSleeves"
 
-/obj/item/clothing/suit/armor/ego_gear/city/masquerade_cloak/prince_suit
+/obj/item/clothing/suit/armor/ego_gear/city/masquerade_cloak/cassetti
 	name = "prince's suit"
 	desc = "A suit worn by a powerful bloodfiend, or at least a replica..."
 	icon_state = "Cassetti"
@@ -127,7 +137,7 @@
 							JUSTICE_ATTRIBUTE = 80
 							)
 
-/obj/item/clothing/suit/armor/ego_gear/city/masquerade_cloak/prince_suit/hardblood
+/obj/item/clothing/suit/armor/ego_gear/city/masquerade_cloak/cassetti/hardblood
 	name = "reinforced prince's suit"
 	icon_state = "CassettiReal"
 	normal_state = "CassettiReal"
