@@ -168,7 +168,7 @@
 	..()
 	if(!CanUseEgo(user))
 		return
-	if(!isliving(target))
+	if(target.stat == DEAD)
 		return
 
 	if(get_dist(target, user) < 2)//You need to use your range to trigger the guard
@@ -184,12 +184,17 @@
 	if(user.dir == 8)
 		dodgelanding = locate(user.x - 1, user.y, user.z)
 	user.throw_at(dodgelanding, 1, 1, spin = FALSE)
-	sleep(1)
 
-	if(get_dist(target, user) > 1)//If you try to use the greatsword like a spear you deserve this
-		user.changeNext_move(CLICK_CD_MELEE * 1.5)
-		user.Immobilize(2 SECONDS)
-		to_chat(user, span_userdanger("You hesitate to lunge fowards leaving you open to gaps."))
+	if(isliving(target))
+		if(get_dist(target, user) > 1)//If you try to use the greatsword like a spear you deserve this
+			user.changeNext_move(CLICK_CD_MELEE * 2)
+			user.Knockdown(2 SECONDS)
+			var/obj/item/held = user.get_active_held_item()
+			user.dropItemToGround(held)
+			to_chat(user, span_userdanger("Your swing is too wide leading you to lose your balance!"))
+			return
+
+	if(!isliving(target))
 		return
 
 	user.Immobilize(2 SECONDS)
