@@ -144,7 +144,7 @@
 /obj/item/ego_weapon/city/zweiwest
 	name = "zwei knight greatsword"
 	desc = "A bulky rectangular greatsword used by the zwei of the west."
-	special = "If used at 2 range you will lunge fowards then block"
+	special = "If used at 2 range you will lunge fowards then block, if you fail to lunge you will hesitate."
 	icon_state = "zweiwest"
 	inhand_icon_state = "zweiwest"
 	force = 50
@@ -168,11 +168,12 @@
 	..()
 	if(!CanUseEgo(user))
 		return
-
-	var/distance = get_dist(target, user)
-
-	if(distance != 2)
+	if(!isliving(target))
 		return
+
+	if(get_dist(target, user) < 2)//You need to use your range to trigger the guard
+		return
+
 	var/dodgelanding
 	if(user.dir == 1)
 		dodgelanding = locate(user.x, user.y + 1, user.z)
@@ -183,6 +184,14 @@
 	if(user.dir == 8)
 		dodgelanding = locate(user.x - 1, user.y, user.z)
 	user.throw_at(dodgelanding, 1, 1, spin = FALSE)
+	sleep(1)
+
+	if(get_dist(target, user) > 1)//If you try to use the greatsword like a spear you deserve this
+		user.changeNext_move(CLICK_CD_MELEE * 1.5)
+		user.Immobilize(2 SECONDS)
+		to_chat(user, span_userdanger("You hesitate to lunge fowards leaving you open to gaps."))
+		return
+
 	user.Immobilize(2 SECONDS)
 	user.physiology.red_mod *= defense_buff
 	user.physiology.white_mod *= defense_buff
