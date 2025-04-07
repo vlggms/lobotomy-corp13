@@ -66,3 +66,44 @@
 /datum/dc_change/karma
 	potency = 1.1
 	damage_type = list(RED_DAMAGE, WHITE_DAMAGE, BLACK_DAMAGE, PALE_DAMAGE)
+
+/// Stacking Protection/Fragile, used for Protection/Fragile status effects
+/datum/dc_change/protection
+	potency = 1
+	damage_type = list(RED_DAMAGE, WHITE_DAMAGE, BLACK_DAMAGE, PALE_DAMAGE)
+
+/datum/dc_change/red_protection
+	potency = 1
+	damage_type = list(RED_DAMAGE)
+
+/datum/dc_change/white_protection
+	potency = 1
+	damage_type = list(WHITE_DAMAGE)
+
+/datum/dc_change/black_protection
+	potency = 1
+	damage_type = list(BLACK_DAMAGE)
+
+/datum/dc_change/pale_protection
+	potency = 1
+	damage_type = list(PALE_DAMAGE)
+
+/datum/dc_change/fragility
+	potency = 1
+	damage_type = list(RED_DAMAGE, WHITE_DAMAGE, BLACK_DAMAGE, PALE_DAMAGE)
+
+/datum/dc_change/red_fragility
+	potency = 1
+	damage_type = list(RED_DAMAGE)
+
+/datum/dc_change/white_fragility
+	potency = 1
+	damage_type = list(WHITE_DAMAGE)
+
+/datum/dc_change/black_fragility
+	potency = 1
+	damage_type = list(BLACK_DAMAGE)
+
+/datum/dc_change/pale_fragility
+	potency = 1
+	damage_type = list(PALE_DAMAGE)
