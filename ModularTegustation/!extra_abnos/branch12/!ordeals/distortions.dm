@@ -33,7 +33,7 @@
 	reward_percent = 0.25
 	color = "#30317a"
 	can_run = FALSE
-	bosstype = /mob/living/simple_animal/hostile/distortion/Kim
+	bosstype = /mob/living/simple_animal/hostile/distortion/kim
 
 
 /datum/ordeal/boss/branch12/kim/AbleToRun()
