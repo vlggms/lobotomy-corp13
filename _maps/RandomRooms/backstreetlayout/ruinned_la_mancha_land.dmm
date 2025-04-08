@@ -470,6 +470,11 @@
 /mob/living/simple_animal/hostile/humanoid/blood/bag,
 /turf/open/floor/plasteel/chapel,
 /area/city/backstreets_alley)
+"ma" = (
+/obj/structure/table/wood/fancy/red,
+/obj/item/ego_weapon/blood/barber,
+/turf/open/floor/mineral/plastitanium/red,
+/area/city/backstreets_alley)
 "mb" = (
 /obj/effect/decal/cleanable/blood,
 /obj/effect/gibspawner/human/bodypartless,
@@ -710,13 +715,16 @@
 	},
 /turf/open/floor/material,
 /area/city/backstreets_alley)
+"sT" = (
+/obj/item/clothing/suit/armor/ego_gear/city/masquerade_cloak/cassetti,
+/obj/structure/table/wood/fancy/red,
+/turf/open/indestructible/necropolis/air,
+/area/city/backstreets_alley)
 "ts" = (
 /obj/structure/flora/rock{
 	color = "#c963ff"
 	},
-/turf/open/floor/plating/ashplanet/ash{
-	color = "#da82ff"
-	},
+/turf/open/indestructible/necropolis/air,
 /area/city/backstreets_alley)
 "tC" = (
 /obj/structure/chair/pew/right{
@@ -1510,9 +1518,7 @@
 /area/city/backstreets_alley)
 "Ni" = (
 /obj/structure/ash_walker_eggshell,
-/turf/open/floor/plating/ashplanet/ash{
-	color = "#da82ff"
-	},
+/turf/open/indestructible/necropolis/air,
 /area/city/backstreets_alley)
 "Nj" = (
 /obj/structure/statue/bone/rib,
@@ -1622,6 +1628,11 @@
 /obj/effect/decal/cleanable/glass,
 /turf/open/floor/material,
 /area/city/backstreets_alley)
+"Qh" = (
+/obj/structure/table/wood/fancy/red,
+/obj/item/clothing/suit/armor/ego_gear/city/masquerade_cloak/barber_dress,
+/turf/open/floor/mineral/plastitanium/red,
+/area/city/backstreets_alley)
 "QA" = (
 /mob/living/simple_animal/hostile/humanoid/blood/fiend/boss,
 /turf/open/floor/plasteel/chapel{
@@ -1665,6 +1676,11 @@
 /turf/closed/indestructible/reinforced{
 	color = "#c963ff"
 	},
+/area/city/backstreets_alley)
+"Rz" = (
+/obj/item/ego_weapon/blood/cassetti,
+/obj/structure/table/wood/fancy/red,
+/turf/open/indestructible/necropolis/air,
 /area/city/backstreets_alley)
 "RG" = (
 /mob/living/simple_animal/hostile/humanoid/blood/fiend,
@@ -1953,9 +1969,7 @@
 /area/city/backstreets_alley)
 "Zt" = (
 /obj/structure/flora/ash/cacti,
-/turf/open/floor/plating/ashplanet/ash{
-	color = "#da82ff"
-	},
+/turf/open/indestructible/necropolis/air,
 /area/city/backstreets_alley)
 "Zu" = (
 /obj/structure/railing{
@@ -2578,7 +2592,7 @@ re
 aU
 RN
 RN
-JZ
+Qh
 JZ
 PD
 PD
@@ -3022,7 +3036,7 @@ re
 aU
 RN
 RN
-JZ
+ma
 JZ
 PD
 PD
@@ -20870,8 +20884,8 @@ UG
 UG
 UG
 UG
-ay
-ay
+aU
+aU
 ay
 mE
 ay
@@ -20981,7 +20995,7 @@ UG
 UG
 UG
 UG
-ay
+aU
 Zt
 NN
 lE
@@ -21092,9 +21106,9 @@ mw
 UG
 UG
 UG
-ay
-UG
-UG
+aU
+sT
+dA
 lE
 Vl
 tJ
@@ -21203,9 +21217,9 @@ UG
 UG
 UG
 UG
-ay
+aU
 Ni
-UG
+dA
 lE
 Vl
 tJ
@@ -21314,8 +21328,8 @@ UG
 UG
 UG
 UG
-ay
-UG
+aU
+Rz
 UG
 lE
 Vl
@@ -21425,7 +21439,7 @@ UG
 UG
 UG
 UG
-ay
+aU
 ts
 by
 lE
@@ -21536,7 +21550,7 @@ UG
 UG
 UG
 UG
-ay
+aU
 ay
 ay
 mE
