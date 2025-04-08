@@ -167,7 +167,7 @@ export class StorageProxy {
         if (!testHubStorage()) {
           Byond.winset(null, 'browser-options', '+byondstorage');
 
-          return new Promise((resolve) => {
+          return new Promise(resolve => {
             const listener = () => {
               document.removeEventListener('byondstorageupdated', listener);
               resolve(new HubStorageBackend());
