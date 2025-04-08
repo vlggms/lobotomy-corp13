@@ -24,6 +24,11 @@
 		force += rcorp_buff
 	return ..()
 
+/obj/item/ego_weapon/city/rabbit_blade/attack(mob/living/user)
+	if(user.mind)
+		if(user.mind.has_antag_datum(/datum/antagonist/wizard/arbiter/rcorp)) //You are a arbiter not a homeless man with a knife
+			return FALSE
+
 /obj/item/ego_weapon/city/rabbit_blade/attack_self(mob/living/user)
 	switch(damtype)
 		if(RED_DAMAGE)
@@ -90,11 +95,20 @@
 	var/ranged_cooldown
 	var/ranged_cooldown_time = 1.3 SECONDS
 
+/obj/item/ego_weapon/city/reindeer/attack(mob/living/user)
+	if(user.mind)
+		if(user.mind.has_antag_datum(/datum/antagonist/wizard/arbiter/rcorp)) //You are a arbiter not a mentally unstable supersoldier
+			return FALSE
+
 /obj/item/ego_weapon/city/reindeer/afterattack(atom/A, mob/living/user, proximity_flag, params)
 	if(ranged_cooldown > world.time)
 		return
 	if(!CanUseEgo(user))
 		return
+	if(user.mind)
+		if(user.mind.has_antag_datum(/datum/antagonist/wizard/arbiter/rcorp))
+			to_chat(user, span_notice("You wouldn't stoop so low as to use the weapons of those below you.")) //You are a arbiter not a mentally unstable supersoldier
+			return FALSE
 	var/turf/target_turf = get_turf(A)
 	if(!istype(target_turf))
 		return
@@ -162,6 +176,9 @@
 	if(user.mind)
 		if(user.mind.assigned_role in banned_roles)
 			to_chat(user, span_notice("You are not trained to use Rcorp firearms!"))
+			return FALSE
+		if(user.mind.has_antag_datum(/datum/antagonist/wizard/arbiter/rcorp))
+			to_chat(user, span_notice("You wouldn't stoop so low as to use the weapons of those below you.")) //You are a arbiter not a crazed gunman
 			return FALSE
 	..()
 
@@ -243,10 +260,14 @@
 		force += rcorp_buff
 	return ..()
 
+/obj/item/ego_weapon/city/rabbit_rush/attack(mob/living/user)
+	if(user.mind)
+		if(user.mind.has_antag_datum(/datum/antagonist/wizard/arbiter/rcorp)) //You are a arbiter not a homeless man with a knife
+			return FALSE
+
 /obj/item/ego_weapon/city/rabbit_rush/attack_self(mob/user)
 	if(!CanUseEgo(user))
 		return
-
 	if(!do_after(user, 10, src))
 		return
 	if(teleporting)
@@ -258,6 +279,10 @@
 
 /obj/item/ego_weapon/city/rabbit_rush/afterattack(atom/A, mob/living/user, proximity_flag, params)
 	var/turf/target_turf = get_turf(A)
+	if(user.mind)
+		if(user.mind.has_antag_datum(/datum/antagonist/wizard/arbiter/rcorp))
+			to_chat(user, span_notice("You wouldn't stoop so low as to use the weapons of those below you.")) //You are a arbiter not a methed up knife freak
+			return FALSE
 	if(!istype(target_turf))
 		return
 	if(get_dist(user, target_turf) < 2)

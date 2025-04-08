@@ -42,6 +42,7 @@
 	ADD_TRAIT(M, TRAIT_SANITYIMMUNE, "Arbiter")
 	ADD_TRAIT(M, TRAIT_BRUTEPALE, "Arbiter")
 	ADD_TRAIT(M, TRAIT_BRUTESANITY, "Arbiter")
+	ADD_TRAIT(M, TRAIT_NIGHT_VISION, "Arbiter")
 	M.adjust_attribute_buff(FORTITUDE_ATTRIBUTE, 500) // Obviously they are very tough
 	for(var/spell_type in spell_types)
 		var/obj/effect/proc_holder/spell/S = new spell_type
@@ -63,6 +64,7 @@
 	REMOVE_TRAIT(M, TRAIT_SANITYIMMUNE, "Arbiter")
 	REMOVE_TRAIT(M, TRAIT_BRUTEPALE, "Arbiter")
 	REMOVE_TRAIT(M, TRAIT_BRUTESANITY, "Arbiter")
+	REMOVE_TRAIT(M, TRAIT_NIGHT_VISION, "Arbiter")
 	M.adjust_attribute_buff(FORTITUDE_ATTRIBUTE, -500)
 
 /datum/outfit/arbiter
