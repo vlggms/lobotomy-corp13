@@ -116,6 +116,44 @@
 							TEMPERANCE_ATTRIBUTE = 100,
 							JUSTICE_ATTRIBUTE = 100
 							)
+	var/sound/boss_theme = sound('sound/weapons/ego/barber_theme.ogg', repeat = TRUE)
+	var/song_on = FALSE
+
+/obj/item/clothing/suit/armor/ego_gear/city/masquerade_cloak/barber_dress/Initialize()
+	. = ..()
+	var/obj/effect/proc_holder/ability/AS = new /obj/effect/proc_holder/ability/barber_theme
+	var/datum/action/spell_action/ability/item/A = AS.action
+	A.SetItem(src)
+
+/obj/item/clothing/suit/armor/ego_gear/city/masquerade_cloak/barber_dress/dropped(mob/user)
+	end_song()
+	. = ..()
+
+/obj/item/clothing/suit/armor/ego_gear/city/masquerade_cloak/barber_dress/proc/start_song(mob/user)
+	user.playsound_local(get_turf(user), boss_theme, 12.5, 0, channel = CHANNEL_HEARTBEAT, use_reverb = FALSE)
+	song_on = TRUE
+
+/obj/item/clothing/suit/armor/ego_gear/city/masquerade_cloak/barber_dress/proc/end_song(mob/user)
+	user.stop_sound_channel(CHANNEL_HEARTBEAT)
+	song_on = FALSE
+
+/obj/effect/proc_holder/ability/barber_theme
+	name = "Activate Aura"
+	desc = "An ability lets you to activate your aura, it is truly peak."
+	action_icon = 'ModularTegustation/Teguicons/blood_fiend_gear.dmi'
+	action_icon_state = "BarberMaskNew"
+	base_icon_state = "BarberMaskNew"
+	cooldown_time = 1 SECONDS
+
+/obj/effect/proc_holder/ability/barber_theme/Perform(target, mob/user)
+	if(ishuman(user))
+		var/mob/living/carbon/human/wielder = user
+		var/obj/item/clothing/suit/armor/ego_gear/city/masquerade_cloak/barber_dress/D = wielder.get_item_by_slot(ITEM_SLOT_OCLOTHING)
+		if(D.song_on)
+			D.end_song(wielder)
+		else
+			D.start_song(wielder)
+	return ..()
 
 /obj/item/clothing/suit/armor/ego_gear/city/masquerade_cloak/barber_dress/sleeves
 	desc = "A dress worn by a powerful bloodfiend, or at least a replica... Now with sleeves!"

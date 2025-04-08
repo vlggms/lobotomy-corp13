@@ -29,7 +29,7 @@
 	hardblood_threshold = 200
 	attack_verb_continuous = list("cuts", "slices")
 	attack_verb_simple = list("cut", "slice")
-	hitsound = 'sound/weapons/ego/sword1.ogg'
+	hitsound = 'sound/weapons/ego/barber1.ogg'
 	attribute_requirements = list(
 							FORTITUDE_ATTRIBUTE = 100,
 							PRUDENCE_ATTRIBUTE = 80,
@@ -43,6 +43,11 @@
 	var/execute_threshold = 0.2
 	var/execute_limit = 1500
 	var/bloodfeast_increase = 40
+	//Voiceline Stuff
+	var/vc_on = FALSE
+
+	var/kill_cooldown
+	var/kill_cooldown_time = 10 SECONDS
 
 /obj/item/ego_weapon/blood/barber/attack_self(mob/living/carbon/human/user)
 	..()
@@ -54,7 +59,7 @@
 	if(!open_scissor)
 		open_scissor = TRUE
 		to_chat(user, "<span class='nicegreen'>You open the blades!")
-		playsound(src, 'sound/abnormalities/clownsmiling/jumpscare.ogg', 50, FALSE, 9)
+		playsound(src, 'sound/weapons/ego/barber2.ogg', 50, FALSE, 9)
 	else
 		open_scissor = FALSE
 		open_cooldown = world.time + open_cooldown_time
@@ -63,6 +68,12 @@
 
 /obj/item/ego_weapon/blood/barber/attack(mob/living/target, mob/living/carbon/human/user)
 	..()
+	if(vc_on && prob(25))
+		if(prob(75))
+			playsound(src, 'sound/weapons/ego/barber_vc_attack1.ogg', 50, FALSE, 9)
+		else
+			playsound(src, 'sound/weapons/ego/barber_vc_attack2.ogg', 50, FALSE, 9)
+
 	if(open_scissor)
 		for(var/mob/living/L in view(aoe_range, get_turf(target)))
 			var/aoe_damage = force
@@ -84,6 +95,9 @@
 				var/obj/item/clothing/suit/armor/ego_gear/city/masquerade_cloak/S = wielder.get_item_by_slot(ITEM_SLOT_OCLOTHING)
 				S.bloodfeast += bloodfeast_increase
 				to_chat(user, "<span class='nicegreen'>You increase your outfit's bloodfeast!")
+				if(vc_on && !(kill_cooldown > world.time))
+					kill_cooldown = world.time + kill_cooldown_time
+					playsound(src, 'sound/weapons/ego/barber_vc_kill.ogg', 50, FALSE, 9)
 
 /obj/item/ego_weapon/blood/barber/update_icon_state()
 	icon_state = inhand_icon_state = "[initial(icon_state)]" + "[open_scissor ? "" : "_closed"]" + "[hardblood_mode ? "_buffed" : ""]"
@@ -91,11 +105,15 @@
 /obj/item/ego_weapon/blood/barber/activate_hardblood()
 	. = ..()
 	force += 20
+	if(vc_on)
+		playsound(src, 'sound/weapons/ego/barber_vc_hardblood.ogg', 50, FALSE, 9)
 	update_icon_state()
 
 /obj/item/ego_weapon/blood/barber/deactivate_hardblood()
 	. = ..()
-	force += 20
+	force -= 20
+	if(vc_on)
+		playsound(src, 'sound/weapons/ego/barber_vc_heh.ogg', 50, FALSE, 9)
 	update_icon_state()
 
 /obj/item/ego_weapon/blood/cassetti
