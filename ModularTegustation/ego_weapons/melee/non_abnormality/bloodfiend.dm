@@ -17,9 +17,9 @@
 /obj/item/ego_weapon/blood/barber
 	name = "blood-tinged scissorblades"
 	desc = "So, how did you like the game? Mine's your favorite, isn't it?"
-	special = "By using this weapon in hand, you are able to open and close your scissorblades. While they are open, this weapon will have an 5x5 AoE. \
+	special = "By using this weapon in hand, you are able to open and close your scissorblades. While they are open, this weapon will have a 5x5 AoE. \
 		When you consume 200+ hardblood with your outfit, this weapon enters a 'Hardblood' state. \
-		While this weapon is in it's hardblood state, it will deal 20 more damage, and the AoE deals even more damage. \
+		While this weapon is in its hardblood state, it will deal 20 more damage, and the AoE deals even more damage. \
 		This weapon executes foes with 20% or less HP, generating bloodfeast for the outfit. Doesn't work on powerful foes."
 	inhand_x_dimension = 64
 	inhand_y_dimension = 64
@@ -119,10 +119,9 @@
 /obj/item/ego_weapon/blood/cassetti
 	name = "hardblood glaive"
 	desc = "I Am... The Prince... of the Parade...!"
-	special = "By using this weapon in hand, you are able to open and close your scissorblades. While they are open, this weapon will have an 5x5 AoE. \
+	special = "When killing or attacking a dead mob, convert them into a bloodbag and heal 10% of your HP. \
 		When you consume 200+ hardblood with your outfit, this weapon enters a 'Hardblood' state. \
-		While this weapon is in it's hardblood state, it will deal 20 more damage, and the AoE deals even more damage. \
-		This weapon executes foes with 20% or less HP, generating bloodfeast for the outfit. Doesn't work on powerful foes."
+		While this weapon is in it's hardblood state, when you throw this weapon, you will teleport to it and pick it up."
 	icon_state = "cassetti"
 	force = 130
 	reach = 2
@@ -148,9 +147,9 @@
 		return
 	..()
 	if((target.stat == DEAD) && !(target.status_flags & GODMODE) && ishostile(target))
+		var/mob/living/simple_animal/hostile/humanoid/blood/bag/blood = new(get_turf(target))
 		target.gib()
 		user.adjustBruteLoss(-user.maxHealth * 0.1)	//Heal 10% HP
-		var/mob/living/simple_animal/hostile/humanoid/blood/bag/blood = new(get_turf(src))
 		blood.faction = user.faction
 
 /obj/item/ego_weapon/blood/cassetti/on_thrown(mob/living/carbon/user, atom/target)//No, clerks cannot hilariously kill themselves with this
