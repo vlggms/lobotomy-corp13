@@ -95,6 +95,28 @@
 	boss_amount = 1
 	grunt_amount = 2
 	roamer_amount = 4
+	var/bigbosstype = /mob/living/simple_animal/hostile/ordeal/thunderbird_corrosion_boss
+	var/bossspawnloc = null
+
+/datum/ordeal/gold_dawn/gold_dusk/Run()
+	..()
+	var/turf/T
+	if(bossspawnloc)
+		for(var/turf/D in GLOB.department_centers)
+			if(istype(get_area(D), bossspawnloc))
+				T = D
+				break
+		if(!T)
+			var/X = pick(GLOB.department_centers)
+			T = get_turf(X)
+			log_game("Failed to spawn [src] in [bossspawnloc]")
+	else
+		var/X = pick(GLOB.department_centers)
+		T = get_turf(X)
+	spawngrunts(T, grunt_type, roamer_amount)
+	var/mob/living/simple_animal/hostile/ordeal/C = new bigbosstype(T)
+	ordeal_mobs += C
+	C.ordeal_reference = src
 
 //Midnight TODO: Finish and add the new mobs - Currently uses "old" version
 /datum/ordeal/gold_dawn/gold_midnight
