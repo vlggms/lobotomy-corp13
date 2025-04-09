@@ -3,7 +3,7 @@
 	desc = "A devyat association-issued delivery trunks."
 	special = "This weapon also functions as a backpack, and can be worn as one. \
 		When attacking a foe with this weapon, it will activate combat mode, which will cause it to passively gain stacks of courier trunk and you use this weapon to attack. \
-		At 10+ courier trunk, your attack deal an extra 30% damage. At 20+ courier trunk, your attacks deal 60% more damage. At 30+ courier trunk, your attacks deal 100% more damage, \
+		At 10+ courier trunk, your attack deals an extra 30% damage. At 20+ courier trunk, your attacks deal 60% more damage. At 30+ courier trunk, your attacks deal 100% more damage, \
 		At the cost of dealing BLACK damage to the user, per courier trunk the weapon has, each time they gain courier trunk. \
 		While combat mode is active, you can't drop the weapon and you can only turn it off by using the weapon in your hand. \
 		You can also DNA lock the courier trunk by alt-clicking it. This will prevent it from being opened or looted. \
