@@ -230,8 +230,7 @@
 	icon = 'icons/obj/ego_weapons.dmi'
 	icon_state = "warring2_firey"
 	damage_type = BLACK_DAMAGE
-
-	damage = 45
+	damage = 20
 
 /obj/projectile/thunder_tomahawk/Initialize()
 	. = ..()
