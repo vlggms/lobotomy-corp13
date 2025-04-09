@@ -40,7 +40,9 @@
 /obj/structure/fence/door/opened{
 	dir = 4
 	},
-/turf/open/floor/plating/ashplanet/rocky,
+/turf/open/floor/plating/ashplanet/rocky{
+	layer = 1.98
+	},
 /area/city)
 "aG" = (
 /obj/structure/table/reinforced,
@@ -64,7 +66,9 @@
 /obj/structure/chair/plastic{
 	dir = 4
 	},
-/turf/open/floor/plating/ashplanet/rocky,
+/turf/open/floor/plating/ashplanet/rocky{
+	layer = 1.98
+	},
 /area/city/backstreets_checkpoint)
 "aS" = (
 /obj/machinery/door/airlock/grunge{
@@ -97,7 +101,9 @@
 /area/city/house)
 "bl" = (
 /obj/structure/closet/crate/trashcart/filled,
-/turf/open/floor/plating/ashplanet/rocky,
+/turf/open/floor/plating/ashplanet/rocky{
+	layer = 1.98
+	},
 /area/city)
 "bm" = (
 /obj/machinery/vending/cigarette,
@@ -182,7 +188,9 @@
 /area/city/shop)
 "bP" = (
 /obj/machinery/vending/donksofttoyvendor,
-/turf/open/floor/plating/ashplanet/rocky,
+/turf/open/floor/plating/ashplanet/rocky{
+	layer = 1.98
+	},
 /area/city/house)
 "bQ" = (
 /obj/structure/extinguisher_cabinet{
@@ -313,7 +321,9 @@
 	name = "NO ENTRY";
 	req_access_txt = "150"
 	},
-/turf/open/floor/plating/ashplanet/rocky,
+/turf/open/floor/plating/ashplanet/rocky{
+	layer = 1.98
+	},
 /area/city)
 "cR" = (
 /obj/structure/fluff/bus/dense{
@@ -372,7 +382,9 @@
 "dy" = (
 /obj/machinery/vending/city_clothing,
 /obj/machinery/light/small,
-/turf/open/floor/plating/ashplanet/rocky,
+/turf/open/floor/plating/ashplanet/rocky{
+	layer = 1.98
+	},
 /area/city)
 "dz" = (
 /obj/effect/light_emitter{
@@ -403,7 +415,9 @@
 /area/city/house)
 "dI" = (
 /obj/machinery/light,
-/turf/open/floor/plating/ashplanet/rocky,
+/turf/open/floor/plating/ashplanet/rocky{
+	layer = 1.98
+	},
 /area/city)
 "dM" = (
 /obj/effect/spawner/lootdrop/garbage_spawner,
@@ -475,7 +489,9 @@
 /area/city/fixers)
 "er" = (
 /obj/structure/fence/door/opened,
-/turf/open/floor/plating/ashplanet/rocky,
+/turf/open/floor/plating/ashplanet/rocky{
+	layer = 1.98
+	},
 /area/city)
 "es" = (
 /obj/structure/dresser,
@@ -486,7 +502,9 @@
 /area/city/house)
 "eu" = (
 /obj/effect/spawner/randomsnackvend,
-/turf/open/floor/plating/ashplanet/rocky,
+/turf/open/floor/plating/ashplanet/rocky{
+	layer = 1.98
+	},
 /area/city/backstreets_checkpoint)
 "ex" = (
 /obj/item/bodypart/chest/robot,
@@ -547,7 +565,9 @@
 	pixel_y = 26;
 	req_access_txt = "9"
 	},
-/turf/open/floor/plating/ashplanet/rocky,
+/turf/open/floor/plating/ashplanet/rocky{
+	layer = 1.98
+	},
 /area/city)
 "eO" = (
 /turf/open/floor/wood,
@@ -636,7 +656,9 @@
 /area/city/shop)
 "fS" = (
 /obj/structure/timelock,
-/turf/open/floor/plating/ashplanet/rocky,
+/turf/open/floor/plating/ashplanet/rocky{
+	layer = 1.98
+	},
 /area/city/backstreets_alley)
 "fZ" = (
 /obj/machinery/door/airlock/medical{
@@ -870,7 +892,9 @@
 /obj/structure/chair/plastic{
 	dir = 1
 	},
-/turf/open/floor/plating/ashplanet/rocky,
+/turf/open/floor/plating/ashplanet/rocky{
+	layer = 1.98
+	},
 /area/city)
 "hP" = (
 /obj/machinery/light{
@@ -1038,7 +1062,9 @@
 "jI" = (
 /obj/effect/landmark/cityloot,
 /obj/effect/spawner/lootdrop/maintenance,
-/turf/open/floor/plating/ashplanet/rocky,
+/turf/open/floor/plating/ashplanet/rocky{
+	layer = 1.98
+	},
 /area/city)
 "jM" = (
 /obj/structure/table/optable,
@@ -1116,7 +1142,9 @@
 /area/city/fixers)
 "kt" = (
 /obj/effect/spawner/lootdrop/garbage_spawner,
-/turf/open/floor/plating/ashplanet/rocky,
+/turf/open/floor/plating/ashplanet/rocky{
+	layer = 1.98
+	},
 /area/city)
 "ku" = (
 /obj/structure/table/optable,
@@ -1136,7 +1164,9 @@
 	set_cap = 3;
 	set_luminosity = 24
 	},
-/turf/open/floor/plating/ashplanet/rocky,
+/turf/open/floor/plating/ashplanet/rocky{
+	layer = 1.98
+	},
 /area/city)
 "kC" = (
 /obj/structure/rack,
@@ -1237,7 +1267,9 @@
 /area/city)
 "lL" = (
 /obj/machinery/door/poddoor/shutters/indestructible,
-/turf/open/floor/plating/ashplanet/rocky,
+/turf/open/floor/plating/ashplanet/rocky{
+	layer = 1.98
+	},
 /area/city/shop)
 "lO" = (
 /obj/effect/turf_decal/arrows{
@@ -1249,7 +1281,9 @@
 /obj/structure/fence{
 	dir = 4
 	},
-/turf/open/floor/plating/ashplanet/rocky,
+/turf/open/floor/plating/ashplanet/rocky{
+	layer = 1.98
+	},
 /area/city)
 "lS" = (
 /obj/item/toy/plush/bongbong,
@@ -1257,7 +1291,9 @@
 /turf/open/floor/facility/dark,
 /area/city)
 "lT" = (
-/turf/open/floor/plating/ashplanet/rocky,
+/turf/open/floor/plating/ashplanet/rocky{
+	layer = 1.98
+	},
 /area/city)
 "lV" = (
 /turf/closed/indestructible/rock,
@@ -1374,7 +1410,9 @@
 	id = "citycheckpoint";
 	name = "Outskirts - Facility Checkpoint Door"
 	},
-/turf/open/floor/plating/ashplanet/rocky,
+/turf/open/floor/plating/ashplanet/rocky{
+	layer = 1.98
+	},
 /area/city/backstreets_checkpoint)
 "nh" = (
 /obj/structure/fluff/bus/dense{
@@ -1669,7 +1707,9 @@
 /obj/effect/turf_decal/trimline/blue/filled/corner{
 	dir = 4
 	},
-/turf/open/floor/plating/ashplanet/rocky,
+/turf/open/floor/plating/ashplanet/rocky{
+	layer = 1.98
+	},
 /area/city)
 "pB" = (
 /obj/machinery/light{
@@ -1723,7 +1763,9 @@
 /area/facility_hallway/north)
 "qq" = (
 /obj/effect/spawner/randomcolavend,
-/turf/open/floor/plating/ashplanet/rocky,
+/turf/open/floor/plating/ashplanet/rocky{
+	layer = 1.98
+	},
 /area/city/backstreets_checkpoint)
 "qs" = (
 /obj/effect/turf_decal/tile{
@@ -1921,7 +1963,9 @@
 	name = "bistro alley entrance";
 	req_access_txt = "9"
 	},
-/turf/open/floor/plating/ashplanet/rocky,
+/turf/open/floor/plating/ashplanet/rocky{
+	layer = 1.98
+	},
 /area/city)
 "rS" = (
 /obj/structure/fluff/bus/passable,
@@ -2169,7 +2213,9 @@
 /area/city/house)
 "ud" = (
 /obj/effect/landmark/latejoin,
-/turf/open/floor/plating/ashplanet/rocky,
+/turf/open/floor/plating/ashplanet/rocky{
+	layer = 1.98
+	},
 /area/city)
 "uf" = (
 /turf/open/floor/carpet/black,
@@ -2236,7 +2282,9 @@
 /area/facility_hallway/north)
 "uD" = (
 /obj/machinery/vending/cigarette,
-/turf/open/floor/plating/ashplanet/rocky,
+/turf/open/floor/plating/ashplanet/rocky{
+	layer = 1.98
+	},
 /area/city/house)
 "uH" = (
 /obj/effect/mine/shrapnel,
@@ -2458,7 +2506,9 @@
 /area/space)
 "wl" = (
 /obj/effect/landmark/distortion,
-/turf/open/floor/plating/ashplanet/rocky,
+/turf/open/floor/plating/ashplanet/rocky{
+	layer = 1.98
+	},
 /area/city)
 "wm" = (
 /obj/structure/table/wood,
@@ -2548,7 +2598,9 @@
 /area/city/shop)
 "xh" = (
 /obj/effect/spawner/lootdrop/glowstick,
-/turf/open/floor/plating/ashplanet/rocky,
+/turf/open/floor/plating/ashplanet/rocky{
+	layer = 1.98
+	},
 /area/city)
 "xv" = (
 /turf/open/floor/facility/dark,
@@ -2671,7 +2723,9 @@
 /obj/effect/turf_decal/trimline/blue/filled/line{
 	dir = 5
 	},
-/turf/open/floor/plating/ashplanet/rocky,
+/turf/open/floor/plating/ashplanet/rocky{
+	layer = 1.98
+	},
 /area/city)
 "yk" = (
 /obj/structure/rack,
@@ -2848,7 +2902,9 @@
 /area/city/backstreets_checkpoint)
 "Ab" = (
 /obj/machinery/vending/cigarette/beach,
-/turf/open/floor/plating/ashplanet/rocky,
+/turf/open/floor/plating/ashplanet/rocky{
+	layer = 1.98
+	},
 /area/city/backstreets_checkpoint)
 "Ad" = (
 /obj/structure/chair/sofa/corp/right{
@@ -2972,7 +3028,9 @@
 "Bq" = (
 /mob/living/simple_animal/mouse/brown,
 /obj/effect/spawner/lootdrop/maintenance,
-/turf/open/floor/plating/ashplanet/rocky,
+/turf/open/floor/plating/ashplanet/rocky{
+	layer = 1.98
+	},
 /area/city)
 "Bs" = (
 /obj/machinery/vending/boozeomat/all_access,
@@ -3076,7 +3134,9 @@
 /area/city/fixers)
 "Cq" = (
 /obj/structure/itemselling,
-/turf/open/floor/plating/ashplanet/rocky,
+/turf/open/floor/plating/ashplanet/rocky{
+	layer = 1.98
+	},
 /area/city/backstreets_checkpoint)
 "Cs" = (
 /obj/effect/turf_decal/bot,
@@ -3118,7 +3178,9 @@
 /area/city/fixers)
 "CV" = (
 /obj/machinery/vending/cola,
-/turf/open/floor/plating/ashplanet/rocky,
+/turf/open/floor/plating/ashplanet/rocky{
+	layer = 1.98
+	},
 /area/city)
 "CZ" = (
 /obj/effect/turf_decal/tile/blue{
@@ -3161,7 +3223,9 @@
 /area/city/shop)
 "Dn" = (
 /mob/living/simple_animal/bot/cleanbot,
-/turf/open/floor/plating/ashplanet/rocky,
+/turf/open/floor/plating/ashplanet/rocky{
+	layer = 1.98
+	},
 /area/city)
 "Dr" = (
 /obj/structure/closet/cabinet,
@@ -3399,7 +3463,9 @@
 /obj/effect/spawner/lootdrop/garbage_spawner,
 /obj/effect/decal/cleanable/cobweb/cobweb2,
 /obj/structure/closet/crate/trashcart/filled,
-/turf/open/floor/plating/ashplanet/rocky,
+/turf/open/floor/plating/ashplanet/rocky{
+	layer = 1.98
+	},
 /area/city)
 "FE" = (
 /obj/effect/turf_decal/bot,
@@ -3437,7 +3503,9 @@
 /area/city/fixers)
 "FN" = (
 /obj/structure/fence,
-/turf/open/floor/plating/ashplanet/rocky,
+/turf/open/floor/plating/ashplanet/rocky{
+	layer = 1.98
+	},
 /area/city)
 "FO" = (
 /obj/structure/table/wood,
@@ -3566,7 +3634,9 @@
 	dir = 1
 	},
 /obj/structure/closet/crate/trashcart/filled,
-/turf/open/floor/plating/ashplanet/rocky,
+/turf/open/floor/plating/ashplanet/rocky{
+	layer = 1.98
+	},
 /area/city)
 "GO" = (
 /obj/structure/table,
@@ -3587,7 +3657,9 @@
 "GP" = (
 /obj/effect/decal/cleanable/garbage,
 /mob/living/simple_animal/mouse,
-/turf/open/floor/plating/ashplanet/rocky,
+/turf/open/floor/plating/ashplanet/rocky{
+	layer = 1.98
+	},
 /area/city)
 "GV" = (
 /obj/structure/bookcase/random,
@@ -3608,7 +3680,9 @@
 "Hk" = (
 /obj/effect/spawner/lootdrop/garbage_spawner,
 /obj/structure/closet/crate/trashcart/filled,
-/turf/open/floor/plating/ashplanet/rocky,
+/turf/open/floor/plating/ashplanet/rocky{
+	layer = 1.98
+	},
 /area/city)
 "Hl" = (
 /obj/machinery/body_fabricator,
@@ -3799,7 +3873,9 @@
 /area/city/shop)
 "IG" = (
 /obj/effect/spawner/lootdrop/maint_drugs,
-/turf/open/floor/plating/ashplanet/rocky,
+/turf/open/floor/plating/ashplanet/rocky{
+	layer = 1.98
+	},
 /area/city)
 "IO" = (
 /obj/item/bodypart/chest/robot,
@@ -3959,7 +4035,9 @@
 /area/city/shop)
 "JD" = (
 /mob/living/simple_animal/mouse/brown,
-/turf/open/floor/plating/ashplanet/rocky,
+/turf/open/floor/plating/ashplanet/rocky{
+	layer = 1.98
+	},
 /area/city)
 "JF" = (
 /obj/structure/table/reinforced,
@@ -4007,7 +4085,9 @@
 /obj/effect/turf_decal/trimline/blue/filled/line{
 	dir = 1
 	},
-/turf/open/floor/plating/ashplanet/rocky,
+/turf/open/floor/plating/ashplanet/rocky{
+	layer = 1.98
+	},
 /area/city)
 "Ky" = (
 /obj/effect/turf_decal/trimline/white/filled/line{
@@ -4118,7 +4198,9 @@
 	set_cap = 3;
 	set_luminosity = 24
 	},
-/turf/open/floor/plating/ashplanet/rocky,
+/turf/open/floor/plating/ashplanet/rocky{
+	layer = 1.98
+	},
 /area/city/backstreets_checkpoint)
 "Ll" = (
 /obj/machinery/light/small{
@@ -4224,7 +4306,9 @@
 "LZ" = (
 /obj/effect/landmark/cityspawner,
 /mob/living/simple_animal/bot/cleanbot,
-/turf/open/floor/plating/ashplanet/rocky,
+/turf/open/floor/plating/ashplanet/rocky{
+	layer = 1.98
+	},
 /area/city)
 "Ma" = (
 /obj/structure/fence{
@@ -4250,7 +4334,9 @@
 	possible_destinations = "quest_home";
 	shuttleId = "quest"
 	},
-/turf/open/floor/plating/ashplanet/rocky,
+/turf/open/floor/plating/ashplanet/rocky{
+	layer = 1.98
+	},
 /area/city)
 "Mu" = (
 /obj/structure/rack,
@@ -4659,7 +4745,9 @@
 /area/city)
 "PN" = (
 /obj/effect/landmark/cityloot,
-/turf/open/floor/plating/ashplanet/rocky,
+/turf/open/floor/plating/ashplanet/rocky{
+	layer = 1.98
+	},
 /area/city)
 "PX" = (
 /obj/machinery/hydroponics,
@@ -4691,7 +4779,9 @@
 /area/city/shop)
 "Qk" = (
 /mob/living/simple_animal/mouse,
-/turf/open/floor/plating/ashplanet/rocky,
+/turf/open/floor/plating/ashplanet/rocky{
+	layer = 1.98
+	},
 /area/city)
 "Qo" = (
 /obj/machinery/door/airlock/medical{
@@ -4718,7 +4808,9 @@
 /turf/open/floor/plasteel/vaporwave,
 /area/city)
 "Qt" = (
-/turf/open/floor/plating/ashplanet/rocky,
+/turf/open/floor/plating/ashplanet/rocky{
+	layer = 1.98
+	},
 /area/city/backstreets_checkpoint)
 "QB" = (
 /obj/structure/bookcase/random,
@@ -4734,13 +4826,17 @@
 /area/space)
 "QJ" = (
 /obj/effect/spawner/randomsnackvend,
-/turf/open/floor/plating/ashplanet/rocky,
+/turf/open/floor/plating/ashplanet/rocky{
+	layer = 1.98
+	},
 /area/city)
 "QN" = (
 /obj/effect/turf_decal/trimline/blue/filled/line{
 	dir = 4
 	},
-/turf/open/floor/plating/ashplanet/rocky,
+/turf/open/floor/plating/ashplanet/rocky{
+	layer = 1.98
+	},
 /area/city)
 "QQ" = (
 /obj/machinery/light,
@@ -4880,7 +4976,9 @@
 /area/city/fixers)
 "Sd" = (
 /obj/machinery/vending/city_clothing,
-/turf/open/floor/plating/ashplanet/rocky,
+/turf/open/floor/plating/ashplanet/rocky{
+	layer = 1.98
+	},
 /area/city)
 "Sf" = (
 /obj/machinery/processor,
@@ -5116,7 +5214,9 @@
 /area/city/house)
 "TZ" = (
 /obj/effect/spawner/lootdrop/grille_or_trash,
-/turf/open/floor/plating/ashplanet/rocky,
+/turf/open/floor/plating/ashplanet/rocky{
+	layer = 1.98
+	},
 /area/city)
 "Ua" = (
 /obj/structure/table/wood,
@@ -5299,7 +5399,9 @@
 	id = "outskirtslockdown";
 	name = "Outskirts Lockdown Door"
 	},
-/turf/open/floor/plating/ashplanet/rocky,
+/turf/open/floor/plating/ashplanet/rocky{
+	layer = 1.98
+	},
 /area/city/backstreets_checkpoint)
 "Vm" = (
 /obj/structure/closet/secure_closet/personal/cabinet,
@@ -5316,11 +5418,15 @@
 /turf/open/floor/carpet/black,
 /area/city/house)
 "Vo" = (
-/turf/open/floor/plating/ashplanet/rocky,
+/turf/open/floor/plating/ashplanet/rocky{
+	layer = 1.98
+	},
 /area/city/house)
 "Vr" = (
 /obj/structure/potential,
-/turf/open/floor/plating/ashplanet/rocky,
+/turf/open/floor/plating/ashplanet/rocky{
+	layer = 1.98
+	},
 /area/city/backstreets_checkpoint)
 "Vw" = (
 /obj/machinery/light{
@@ -5441,7 +5547,9 @@
 /area/city/shop)
 "Wr" = (
 /obj/effect/spawner/lootdrop/maintenance,
-/turf/open/floor/plating/ashplanet/rocky,
+/turf/open/floor/plating/ashplanet/rocky{
+	layer = 1.98
+	},
 /area/city)
 "Wt" = (
 /turf/open/floor/carpet/green,
@@ -5450,7 +5558,9 @@
 /obj/machinery/light/small{
 	dir = 1
 	},
-/turf/open/floor/plating/ashplanet/rocky,
+/turf/open/floor/plating/ashplanet/rocky{
+	layer = 1.98
+	},
 /area/city)
 "WE" = (
 /obj/structure/fluff/bus/dense{
@@ -5562,7 +5672,9 @@
 /area/city/shop)
 "XL" = (
 /obj/effect/landmark/cityspawner,
-/turf/open/floor/plating/ashplanet/rocky,
+/turf/open/floor/plating/ashplanet/rocky{
+	layer = 1.98
+	},
 /area/city)
 "XM" = (
 /obj/structure/closet/secure_closet/personal/cabinet,
@@ -5572,7 +5684,9 @@
 "XQ" = (
 /obj/effect/decal/cleanable/garbage,
 /obj/effect/spawner/lootdrop/maintenance,
-/turf/open/floor/plating/ashplanet/rocky,
+/turf/open/floor/plating/ashplanet/rocky{
+	layer = 1.98
+	},
 /area/city)
 "XS" = (
 /obj/structure/rack,
@@ -5613,7 +5727,9 @@
 /area/city/house)
 "YD" = (
 /obj/structure/maploader,
-/turf/open/floor/plating/ashplanet/rocky,
+/turf/open/floor/plating/ashplanet/rocky{
+	layer = 1.98
+	},
 /area/city)
 "YF" = (
 /obj/effect/decal/remains/human{
@@ -5693,7 +5809,9 @@
 /area/city/house)
 "Zf" = (
 /obj/effect/decal/cleanable/garbage,
-/turf/open/floor/plating/ashplanet/rocky,
+/turf/open/floor/plating/ashplanet/rocky{
+	layer = 1.98
+	},
 /area/city)
 "Zh" = (
 /obj/machinery/light{
