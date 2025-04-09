@@ -11,7 +11,7 @@
 							FORTITUDE_ATTRIBUTE = 80,
 							PRUDENCE_ATTRIBUTE = 80,
 							TEMPERANCE_ATTRIBUTE = 80,
-							JUSTICE_ATTRIBUTE = 80
+							JUSTICE_ATTRIBUTE = 80,
 							)
 
 /obj/item/clothing/suit/armor/ego_gear/city/devyat_suit/weak
@@ -23,7 +23,7 @@
 							FORTITUDE_ATTRIBUTE = 60,
 							PRUDENCE_ATTRIBUTE = 60,
 							TEMPERANCE_ATTRIBUTE = 60,
-							JUSTICE_ATTRIBUTE = 60
+							JUSTICE_ATTRIBUTE = 60,
 							)
 
 /obj/item/clothing/head/ego_hat/devyat_goggles
