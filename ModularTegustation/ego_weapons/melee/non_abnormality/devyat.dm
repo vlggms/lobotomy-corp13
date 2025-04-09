@@ -5,7 +5,9 @@
 		When attacking a foe with this weapon, it will activate combat mode, which will cause it to passively gain stacks of courier trunk and you use this weapon to attack. \
 		At 10+ courier trunk, your attack deal an extra 30% damage. At 20+ courier trunk, your attacks deal 60% more damage. At 30+ courier trunk, your attacks deal 100% more damage, \
 		At the cost of dealing BLACK damage to the user, per courier trunk the weapon has, each time they gain courier trunk. \
-		While combat mode is active, you can't drop the weapon and you can only turn it off by using the weapon in your hand."
+		While combat mode is active, you can't drop the weapon and you can only turn it off by using the weapon in your hand. \
+		You can also DNA lock the courier trunk by alt-clicking it. This will prevent it from being opened or looted. \
+		You can remove the lock by alt-clicking it if you are the owner, or by using a devyat trunk unlocker."
 	worn_icon = 'icons/obj/clothing/ego_gear/devyat_armor.dmi'
 	worn_icon_state = "s_polu"
 	icon = 'icons/obj/clothing/ego_gear/devyat_icon.dmi'
