@@ -538,7 +538,9 @@
 /area/city/backstreets_alley)
 "ch" = (
 /obj/structure/fence/door/opened,
-/turf/open/floor/plating/ashplanet/rocky,
+/turf/open/floor/plating/ashplanet/rocky{
+	layer = 1.98
+	},
 /area/city)
 "cj" = (
 /obj/machinery/light{
@@ -809,7 +811,9 @@
 /area/city/backstreets_alley)
 "dh" = (
 /obj/effect/landmark/latejoin,
-/turf/open/floor/plating/ashplanet/rocky,
+/turf/open/floor/plating/ashplanet/rocky{
+	layer = 1.98
+	},
 /area/city)
 "dk" = (
 /obj/machinery/light/small,
@@ -866,7 +870,9 @@
 /obj/effect/turf_decal/trimline/blue/filled/corner{
 	dir = 4
 	},
-/turf/open/floor/plating/ashplanet/rocky,
+/turf/open/floor/plating/ashplanet/rocky{
+	layer = 1.98
+	},
 /area/city)
 "dA" = (
 /obj/effect/turf_decal/trimline/red/filled/line{
@@ -1646,7 +1652,9 @@
 /obj/effect/turf_decal/trimline/blue/filled/line{
 	dir = 5
 	},
-/turf/open/floor/plating/ashplanet/rocky,
+/turf/open/floor/plating/ashplanet/rocky{
+	layer = 1.98
+	},
 /area/city)
 "gm" = (
 /obj/effect/turf_decal/tile/blue{
@@ -2446,7 +2454,9 @@
 /obj/machinery/light{
 	dir = 1
 	},
-/turf/open/floor/plating/ashplanet/rocky,
+/turf/open/floor/plating/ashplanet/rocky{
+	layer = 1.98
+	},
 /area/city)
 "jd" = (
 /obj/structure/flora/rock/pile{
@@ -2834,7 +2844,9 @@
 /area/city/house)
 "kH" = (
 /obj/effect/turf_decal/weather/sand,
-/turf/open/floor/plating/ashplanet/rocky,
+/turf/open/floor/plating/ashplanet/rocky{
+	layer = 1.98
+	},
 /area/city)
 "kI" = (
 /obj/item/target/clown,
@@ -3163,7 +3175,9 @@
 /area/city/backstreets_alley)
 "mb" = (
 /obj/structure/maploader,
-/turf/open/floor/plating/ashplanet/rocky,
+/turf/open/floor/plating/ashplanet/rocky{
+	layer = 1.98
+	},
 /area/city)
 "mc" = (
 /obj/structure/bonfire/dense,
@@ -3811,7 +3825,9 @@
 	possible_destinations = "quest_home";
 	shuttleId = "quest"
 	},
-/turf/open/floor/plating/ashplanet/rocky,
+/turf/open/floor/plating/ashplanet/rocky{
+	layer = 1.98
+	},
 /area/city)
 "oN" = (
 /obj/effect/decal/cleanable/dirt/dust,
@@ -3941,7 +3957,9 @@
 /obj/structure/chair/plastic{
 	dir = 1
 	},
-/turf/open/floor/plating/ashplanet/rocky,
+/turf/open/floor/plating/ashplanet/rocky{
+	layer = 1.98
+	},
 /area/city)
 "ps" = (
 /obj/machinery/door/window/northleft,
@@ -4261,7 +4279,9 @@
 /area/city/backstreets_alley)
 "qO" = (
 /obj/structure/timelock,
-/turf/open/floor/plating/ashplanet/rocky,
+/turf/open/floor/plating/ashplanet/rocky{
+	layer = 1.98
+	},
 /area/city/house)
 "qR" = (
 /obj/structure/chair{
@@ -4568,7 +4588,9 @@
 /obj/effect/turf_decal/trimline/blue/filled/line{
 	dir = 4
 	},
-/turf/open/floor/plating/ashplanet/rocky,
+/turf/open/floor/plating/ashplanet/rocky{
+	layer = 1.98
+	},
 /area/city)
 "sm" = (
 /obj/effect/turf_decal/bot,
@@ -5378,7 +5400,9 @@
 /obj/effect/turf_decal/trimline/blue/filled/line{
 	dir = 1
 	},
-/turf/open/floor/plating/ashplanet/rocky,
+/turf/open/floor/plating/ashplanet/rocky{
+	layer = 1.98
+	},
 /area/city)
 "vG" = (
 /obj/effect/turf_decal/siding/thinplating/dark/corner{
@@ -7882,7 +7906,9 @@
 	id = "outskirtslockdown";
 	name = "Outskirts Lockdown Door"
 	},
-/turf/open/floor/plating/ashplanet/rocky,
+/turf/open/floor/plating/ashplanet/rocky{
+	layer = 1.98
+	},
 /area/city/house)
 "GF" = (
 /obj/machinery/light,
@@ -7997,7 +8023,9 @@
 /turf/open/floor/eighties,
 /area/city/backstreets_alley)
 "Hm" = (
-/turf/open/floor/plating/ashplanet/rocky,
+/turf/open/floor/plating/ashplanet/rocky{
+	layer = 1.98
+	},
 /area/city)
 "Ho" = (
 /obj/effect/turf_decal/trimline/red/filled/line{
@@ -8194,7 +8222,9 @@
 /turf/open/floor/plasteel/vaporwave,
 /area/city/backstreets_alley)
 "Ic" = (
-/turf/open/floor/plating/ashplanet/rocky,
+/turf/open/floor/plating/ashplanet/rocky{
+	layer = 1.98
+	},
 /area/city/backstreets_alley)
 "Im" = (
 /obj/structure/sign/poster/lobotomycorp/hhpp,
@@ -8528,7 +8558,9 @@
 	set_cap = 3;
 	set_luminosity = 24
 	},
-/turf/open/floor/plating/ashplanet/rocky,
+/turf/open/floor/plating/ashplanet/rocky{
+	layer = 1.98
+	},
 /area/city)
 "JI" = (
 /obj/effect/turf_decal/box,
@@ -8585,7 +8617,9 @@
 /area/city/backstreets_alley)
 "JV" = (
 /obj/effect/landmark/backstreetspawnwest,
-/turf/open/floor/plating/ashplanet/rocky,
+/turf/open/floor/plating/ashplanet/rocky{
+	layer = 1.98
+	},
 /area/city/backstreets_alley)
 "JW" = (
 /obj/effect/turf_decal/trimline/red/filled/warning{
@@ -9575,7 +9609,9 @@
 /obj/structure/fence{
 	dir = 4
 	},
-/turf/open/floor/plating/ashplanet/rocky,
+/turf/open/floor/plating/ashplanet/rocky{
+	layer = 1.98
+	},
 /area/city)
 "Oq" = (
 /turf/closed/indestructible/rock,
@@ -11260,7 +11296,9 @@
 /area/city/backstreets_alley)
 "WS" = (
 /obj/machinery/light,
-/turf/open/floor/plating/ashplanet/rocky,
+/turf/open/floor/plating/ashplanet/rocky{
+	layer = 1.98
+	},
 /area/city)
 "WT" = (
 /obj/machinery/vending/coffee,
@@ -11747,7 +11785,9 @@
 /area/city/backstreets_alley)
 "YU" = (
 /obj/structure/flora/ash/garden/waste,
-/turf/open/floor/plating/ashplanet/rocky,
+/turf/open/floor/plating/ashplanet/rocky{
+	layer = 1.98
+	},
 /area/city/backstreets_alley)
 "YV" = (
 /obj/effect/decal/cleanable/dirt,
