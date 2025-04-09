@@ -4061,6 +4061,7 @@
 #include "ModularTegustation\fishing\code\fish\freshwater_fish.dm"
 #include "ModularTegustation\fishing\code\fish\misc_fish.dm"
 #include "ModularTegustation\fishing\code\fish\saltwater_fish.dm"
+#include "ModularTegustation\fishing\code\fish\abnofishes\abnofish.dm"
 #include "ModularTegustation\fishing\code\fish\LC13_fish\freshwater_fish.dm"
 #include "ModularTegustation\fishing\code\fish\LC13_fish\saltwater_fish.dm"
 #include "ModularTegustation\fishing\code\fishcooking\fishfood.dm"
