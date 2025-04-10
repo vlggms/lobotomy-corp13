@@ -136,6 +136,9 @@
 	// rcorp stuff
 	var/rcorp_team
 
+	// abnofish stuff
+	var/bonus_fish_pe = 0
+
 /mob/living/simple_animal/hostile/abnormality/Initialize(mapload)
 	SHOULD_CALL_PARENT(TRUE)
 	. = ..()
@@ -244,6 +247,16 @@
 	return (AIStatus == AI_IDLE) && !(status_flags & GODMODE)
 
 /mob/living/simple_animal/hostile/abnormality/attackby(obj/O, mob/user, params)
+	if(istype(O, /obj/item/food/fish/abnofish))
+		var/obj/item/food/fish/abnofish/fish = O
+		if(fish.associated_abnormality == src.type)
+			to_chat(user, span_notice("You offer [src] [fish]. [src] accepts."))
+			bonus_fish_pe += fish.GetBonusPE()
+			fish.TriggerAbnormalityEffect(src)
+			qdel(O)
+			return
+		to_chat(user, span_danger("You offer [src] [fish]. [src] declines."))
+		return
 	if(!istype(O, /obj/item/reagent_containers))
 		return ..()
 	if(!(status_flags & GODMODE))
@@ -395,6 +408,9 @@
 		NeutralEffect(user, work_type, pe, work_time, canceled)
 	else
 		FailureEffect(user, work_type, pe, work_time, canceled)
+	if(bonus_fish_pe)
+		pe += bonus_fish_pe
+		bonus_fish_pe = 0
 	PostWorkEffect(user, work_type, pe, work_time, canceled)
 	GiftUser(user, pe)
 	return
