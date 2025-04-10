@@ -61,7 +61,7 @@
 	l_hand = /obj/item/clothing/suit/armor/ego_gear/city/hana
 	l_pocket = /obj/item/potential_tester
 
-	backpack_contents = list()
+	backpack_contents = list(/obj/item/office_marker)
 
 //Hana
 /datum/job/hana/boss
