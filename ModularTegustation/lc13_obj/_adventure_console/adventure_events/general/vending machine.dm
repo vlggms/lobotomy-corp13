@@ -25,7 +25,7 @@
 			return
 		if(2)
 			AdjustCurrency(-1)
-			AdjustHitPoint(100)
+			AdjustHitPoint(50)
 		if(3)
 			AdjustStatNum(SLOTH_STAT,1)
 	return ..()

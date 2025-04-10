@@ -10,8 +10,8 @@
 		and something clinks to the ground outside of the machine.",
 
 		"The machine spits you out.<br>\
-		You call back to the clinking outside of the machine, seeing<br>\
-		a pile of coins lie outside for you to take."
+		You call back to the clinking outside of the machine,<br>\
+		seeing a pile of coins lie outside for you to take."
 		)
 	var/machine_coins = 0
 
