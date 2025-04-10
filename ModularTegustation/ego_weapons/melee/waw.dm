@@ -951,12 +951,11 @@
 			M.apply_status_effect(/datum/status_effect/rend_white)
 	user.Immobilize(5)
 
-
-
+// Reworked to use the bloodfeast component. Collect blood to improve your life leech ability.
 /obj/item/ego_weapon/dipsia
 	name = "dipsia"
 	desc = "The thirst will never truly be quenched."
-	special = "This weapon heals you on hit."
+	special = "This weapon heals you on hit. Using this weapon in hand can toggle enhanced health drain using collected blood."
 	icon_state = "dipsia"
 	force = 32
 	damtype = RED_DAMAGE
@@ -967,19 +966,72 @@
 							FORTITUDE_ATTRIBUTE = 80
 							)
 	crit_multiplier = 1.2	//Rapier, better crits
+	var/siphoning = FALSE
+	var/siphon_time = 1 SECONDS
+
+/obj/item/ego_weapon/dipsia/Initialize()
+	. = ..()
+	AddComponent(/datum/component/bloodfeast, siphon = TRUE, range = 2, starting = 100, threshold = 1500, max_amount = 1500)
+
+/obj/item/ego_weapon/dipsia/examine(mob/user)
+	. = ..()
+	var/datum/component/bloodfeast/bloodfeast = GetComponent(/datum/component/bloodfeast)
+	if(bloodfeast) // dont want to succ blood while contained
+		. += "It has [bloodfeast.blood_amount] units of stored blood."
+
+/obj/item/ego_weapon/dipsia/proc/AdjustThirst(blood_amount)
+	var/datum/component/bloodfeast/bloodfeast = GetComponent(/datum/component/bloodfeast)
+	bloodfeast.AdjustBlood(blood_amount)
+
+/obj/item/ego_weapon/dipsia/attack_self(mob/living/user)
+	if(!CanUseEgo(user))
+		return
+	if(siphoning)
+		to_chat(user,span_warning("You cease siphoning with the [src] sword."))
+		siphoning = FALSE
+		filters = null
+		user.playsound_local(user, 'sound/effects/bleed.ogg', 25, TRUE)
+		return
+	var/datum/component/bloodfeast/bloodfeast = GetComponent(/datum/component/bloodfeast)
+	siphoning = TRUE
+	user.playsound_local(user, 'sound/effects/bleed_apply.ogg', 25, TRUE)
+	to_chat(user,span_warning("You begin siphoning with the [src] sword."))
+	if(bloodfeast.blood_amount < 100)
+		to_chat(user,span_warning("The sword drains your blood to fuel itself!"))
+		user.adjustBruteLoss(20)
+		AdjustThirst(100)
+	AdjustThirst(-50)
+	filters += filter(type="drop_shadow", x=0, y=0, size=5, offset=2, color=rgb(163, 8, 8))
+	addtimer(CALLBACK(src, PROC_REF(SiphonDrain), user), siphon_time)
+
+/obj/item/ego_weapon/dipsia/proc/SiphonDrain(mob/user)
+	var/datum/component/bloodfeast/bloodfeast = GetComponent(/datum/component/bloodfeast)
+	AdjustThirst(-10)
+	if(bloodfeast.blood_amount < 1)
+		siphoning = FALSE
+		filters = null
+		if(user)
+			to_chat(user,span_warning("Your [src] sword shuts off due to a lack of blood!"))
+			return
+	addtimer(CALLBACK(src, PROC_REF(SiphonDrain), user), siphon_time)
 
 /obj/item/ego_weapon/dipsia/attack(mob/living/target, mob/living/carbon/human/user)
 	if(!CanUseEgo(user))
 		return
 	if(!(target.status_flags & GODMODE) && target.stat != DEAD)
-		var/heal_amt = force*0.10
+		var/userjust = (get_modified_attribute_level(user, JUSTICE_ATTRIBUTE))
+		var/justicemod = 1 + userjust/100
+		AdjustThirst(force * justicemod)
+		var/heal_amt = force* 0.05
+		if(siphoning)
+			heal_amt *= 4
 		if(isanimal(target))
 			var/mob/living/simple_animal/S = target
 			if(S.damage_coeff.getCoeff(damtype) > 0)
 				heal_amt *= S.damage_coeff.getCoeff(damtype)
 			else
 				heal_amt = 0
-		user.adjustBruteLoss(-heal_amt)
+			user.adjustBruteLoss(-heal_amt)
 	..()
 
 /obj/item/ego_weapon/shield/pharaoh
