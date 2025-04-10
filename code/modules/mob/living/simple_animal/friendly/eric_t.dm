@@ -744,7 +744,7 @@
 
 // The briefcase item remains the same
 /obj/item/eric_briefcase
-	name = "secure breifcase"
+	name = "secure briefcase"
 	desc = "It's made of AUTHENTIC faux-leather. It has a name writen on it's back which says 'Eric.T'."
 	icon = 'icons/obj/storage.dmi'
 	icon_state = "briefcase"
