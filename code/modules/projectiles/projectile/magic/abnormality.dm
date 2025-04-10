@@ -396,3 +396,18 @@
 	. = ..()
 	hitsound = "sound/weapons/ego/rapier[pick(1,2)].ogg"
 	animate(src, alpha = 255, time = 3)
+
+/obj/projectile/nosferatu_bat
+	name = "bat"
+	icon_state = "bat"
+	damage = 25
+	hitsound = 'sound/abnormalities/nosferatu/bat_attack.ogg'
+
+/obj/projectile/nosferatu_bat/on_hit(atom/target, blocked = FALSE)
+	. = ..()
+	if(ishuman(target))
+		var/mob/living/carbon/human/H = target
+		if(H.stat == DEAD)
+			return
+		var/obj/effect/decal/cleanable/blood/B = new(get_turf(src))
+		B.bloodiness = 200 // 200 Blood for nosferatu or its minions to collect
