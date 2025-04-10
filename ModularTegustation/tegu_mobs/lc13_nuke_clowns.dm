@@ -272,6 +272,7 @@
 	var/min_next_adrenaline = 0
 	var/regen_amount = 10
 	var/regen_mult = 1.5
+	var/health_threshold = 0.9
 
 /obj/item/organ/heart/mutant_heart/Insert(mob/living/carbon/M, special = 0)
 	..()
@@ -285,7 +286,7 @@
 
 /obj/item/organ/heart/mutant_heart/on_life()
 	. = ..()
-	if(ishuman(owner) && owner.health < owner.maxHealth && world.time > min_next_adrenaline)
+	if(ishuman(owner) && owner.health < owner.maxHealth * health_threshold && world.time > min_next_adrenaline)
 		var/mob/living/carbon/human/joyful = owner
 		min_next_adrenaline = world.time + rand(10, 20)
 		to_chat(joyful, "<span class='userdanger'>This pain... Brings us such joy...</span>")
