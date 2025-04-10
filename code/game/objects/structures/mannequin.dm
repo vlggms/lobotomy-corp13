@@ -235,16 +235,16 @@
 //Mannequin Interaction UI
 /obj/structure/mannequin/proc/ShowInventory(mob/user)
 	var/dat
-	dat += "<BR><B>Back:</B> <A href='?src=\ref[src];item=[SLOT_MANNEQUIN_BACK]'>[makeStrippingButton(clothing[SLOT_MANNEQUIN_BACK])]</A>"
-	dat += "<BR><B>Head:</B> <A href='?src=\ref[src];item=[SLOT_MANNEQUIN_HEAD]'>[makeStrippingButton(clothing[SLOT_MANNEQUIN_HEAD])]</A>"
-	dat += "<BR><B>Neck:</B> <A href='?src=\ref[src];item=[SLOT_MANNEQUIN_NECK]'>[makeStrippingButton(clothing[SLOT_MANNEQUIN_NECK])]</A>"
-	dat += "<BR><B>Mask:</B> <A href='?src=\ref[src];item=[SLOT_MANNEQUIN_MASK]'>[makeStrippingButton(clothing[SLOT_MANNEQUIN_MASK])]</A>"
-	dat += "<BR><B>Eyes:</B> <A href='?src=\ref[src];item=[SLOT_MANNEQUIN_EYES]'>[makeStrippingButton(clothing[SLOT_MANNEQUIN_EYES])]</A>"
-	dat += "<BR><B>Belt:</B> <A href='?src=\ref[src];item=[SLOT_MANNEQUIN_BELT]'>[makeStrippingButton(clothing[SLOT_MANNEQUIN_BELT])]</A>"
-	dat += "<BR><B>Shoes:</B> <A href='?src=\ref[src];item=[SLOT_MANNEQUIN_FEET]'>[makeStrippingButton(clothing[SLOT_MANNEQUIN_FEET])]</A>"
-	dat += "<BR><B>Gloves:</B> <A href='?src=\ref[src];item=[SLOT_MANNEQUIN_GLOVES]'>[makeStrippingButton(clothing[SLOT_MANNEQUIN_GLOVES])]</A>"
-	dat += "<BR><B>Uniform:</B> <A href='?src=\ref[src];item=[SLOT_MANNEQUIN_ICLOTHING]'>[makeStrippingButton(clothing[SLOT_MANNEQUIN_ICLOTHING])]</A>"
-	dat += "<BR><B>Exosuit:</B> <A href='?src=\ref[src];item=[SLOT_MANNEQUIN_OCLOTHING]'>[makeStrippingButton(clothing[SLOT_MANNEQUIN_OCLOTHING])]</A>"
+	dat += "<BR><B>Back:</B> <A href='byond://?src=\ref[src];item=[SLOT_MANNEQUIN_BACK]'>[makeStrippingButton(clothing[SLOT_MANNEQUIN_BACK])]</A>"
+	dat += "<BR><B>Head:</B> <A href='byond://?src=\ref[src];item=[SLOT_MANNEQUIN_HEAD]'>[makeStrippingButton(clothing[SLOT_MANNEQUIN_HEAD])]</A>"
+	dat += "<BR><B>Neck:</B> <A href='byond://?src=\ref[src];item=[SLOT_MANNEQUIN_NECK]'>[makeStrippingButton(clothing[SLOT_MANNEQUIN_NECK])]</A>"
+	dat += "<BR><B>Mask:</B> <A href='byond://?src=\ref[src];item=[SLOT_MANNEQUIN_MASK]'>[makeStrippingButton(clothing[SLOT_MANNEQUIN_MASK])]</A>"
+	dat += "<BR><B>Eyes:</B> <A href='byond://?src=\ref[src];item=[SLOT_MANNEQUIN_EYES]'>[makeStrippingButton(clothing[SLOT_MANNEQUIN_EYES])]</A>"
+	dat += "<BR><B>Belt:</B> <A href='byond://?src=\ref[src];item=[SLOT_MANNEQUIN_BELT]'>[makeStrippingButton(clothing[SLOT_MANNEQUIN_BELT])]</A>"
+	dat += "<BR><B>Shoes:</B> <A href='byond://?src=\ref[src];item=[SLOT_MANNEQUIN_FEET]'>[makeStrippingButton(clothing[SLOT_MANNEQUIN_FEET])]</A>"
+	dat += "<BR><B>Gloves:</B> <A href='byond://?src=\ref[src];item=[SLOT_MANNEQUIN_GLOVES]'>[makeStrippingButton(clothing[SLOT_MANNEQUIN_GLOVES])]</A>"
+	dat += "<BR><B>Uniform:</B> <A href='byond://?src=\ref[src];item=[SLOT_MANNEQUIN_ICLOTHING]'>[makeStrippingButton(clothing[SLOT_MANNEQUIN_ICLOTHING])]</A>"
+	dat += "<BR><B>Exosuit:</B> <A href='byond://?src=\ref[src];item=[SLOT_MANNEQUIN_OCLOTHING]'>[makeStrippingButton(clothing[SLOT_MANNEQUIN_OCLOTHING])]</A>"
 	//LC13 specific consideration
 	var/obj/item/clothing/suit/ego_armor = clothing[SLOT_MANNEQUIN_OCLOTHING]
 	if(ego_armor)
@@ -254,15 +254,15 @@
 			[1-(ego_armor.armor[BLACK_DAMAGE]/100)] BLACK|\
 			[1-(ego_armor.armor[PALE_DAMAGE]/100)] PALE"
 	dat += "<BR>---"
-	dat += "<BR><B>RightHand:</B> <A href='?src=\ref[src];item=[SLOT_MANNEQUIN_RIGHT_HAND]'>[makeStrippingButton(clothing[SLOT_MANNEQUIN_RIGHT_HAND])]</A>"
-	dat += "<BR><B>LeftHand:</B> <A href='?src=\ref[src];item=[SLOT_MANNEQUIN_LEFT_HAND]'>[makeStrippingButton(clothing[SLOT_MANNEQUIN_LEFT_HAND])]</A><BR>"
+	dat += "<BR><B>RightHand:</B> <A href='byond://?src=\ref[src];item=[SLOT_MANNEQUIN_RIGHT_HAND]'>[makeStrippingButton(clothing[SLOT_MANNEQUIN_RIGHT_HAND])]</A>"
+	dat += "<BR><B>LeftHand:</B> <A href='byond://?src=\ref[src];item=[SLOT_MANNEQUIN_LEFT_HAND]'>[makeStrippingButton(clothing[SLOT_MANNEQUIN_LEFT_HAND])]</A><BR>"
 	dat += "<BR>---"
-	dat += "<BR>Recolor Mannequin:<B><A href='?src=\ref[src];recolor=recolor'>[GetCurrentColor()]</A></B>"
-	dat += "<BR>Turn Mannequin:<B><A href='?src=\ref[src];turn=turn'>[dir2text(dir)]</A></B>"
+	dat += "<BR>Recolor Mannequin:<B><A href='byond://?src=\ref[src];recolor=recolor'>[GetCurrentColor()]</A></B>"
+	dat += "<BR>Turn Mannequin:<B><A href='byond://?src=\ref[src];turn=turn'>[dir2text(dir)]</A></B>"
 	dat += "<BR>"
 	dat += {"
 	<BR>
-	<BR><A href='?src=\ref[user];mach_close=mob\ref[src]'>Close</A>
+	<BR><A href='byond://?src=\ref[user];mach_close=mob\ref[src]'>Close</A>
 	"}
 
 	var/datum/browser/popup = new(user, "mannequin\ref[src]", "[src]", 340, 500)

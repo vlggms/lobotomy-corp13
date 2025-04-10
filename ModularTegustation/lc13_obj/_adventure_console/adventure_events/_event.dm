@@ -55,20 +55,20 @@
  * This proc is called by the adventure datum in order to build the UI.
  * Its like a hub where all other general things are called.
  */
-/datum/adventure_event/proc/Event(obj/machinery/caller, mob/living/carbon/human/H)
+/datum/adventure_event/proc/Event(obj/machinery/requester, mob/living/carbon/human/H)
 	if(!gamer)
 		return "<br>ERROR:USER PROFILE MISSING"
 
-	if(!caller)
+	if(!requester)
 		return "<br>ERROR:INTERFACE MISSING"
 
 	if(cords == 0)
-		EventComplete(caller,H)
+		EventComplete(requester,H)
 		return
 
 	//UI Data for machine that calls us.
 	. = UI_Display()
-	. += EventChoiceFormat(caller, H)
+	. += EventChoiceFormat(requester, H)
 
 /**
  * Formating stuff such as UI display that is returned to the calling userface
