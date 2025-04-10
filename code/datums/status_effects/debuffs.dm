@@ -1192,6 +1192,7 @@
 /datum/status_effect/stacking/lc_bleed/on_apply()
 	. = ..()
 	RegisterSignal(owner, COMSIG_MOVABLE_PRE_MOVE, PROC_REF(Moved))
+	owner.playsound_local(owner, 'sound/effects/bleed_apply.ogg', 25, TRUE)
 
 //Deals true damage
 /datum/status_effect/stacking/lc_bleed/proc/Moved(mob/user, atom/new_location)
@@ -1202,7 +1203,7 @@
 	if(!can_have_status())
 		qdel(src)
 	to_chat(owner, "<span class='warning'>Your organs bleed due to your movement!!</span>")
-	owner.playsound_local(owner, 'sound/effects/wounds/crackandbleed.ogg', 25, TRUE)
+	owner.playsound_local(owner, 'sound/effects/bleed.ogg', 25, TRUE)
 	if(stacks >= 5)
 		var/obj/effect/decal/cleanable/blood/B = locate() in get_turf(owner)
 		if(!B)
