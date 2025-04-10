@@ -255,16 +255,16 @@
  * This proc is called by the adventure datum in order to build the UI.
  * Its like a hub where all other general things are called.
  */
-/datum/adventure_layout/proc/Adventure(obj/machinery/caller, mob/living/carbon/human/H)
+/datum/adventure_layout/proc/Adventure(obj/machinery/requester, mob/living/carbon/human/H)
 	if(!H.client)
 		return
 
 	//Dispaly Event Data
 	if(event_data)
-		. += event_data.Event(caller, H)
+		. += event_data.Event(requester, H)
 		if(!event_data)
 			//Emergency Exit because the event can lead to a empty screen due to the event deleting itself.
-			GENERAL_BUTTON(REF(caller),"set_display",NORMAL_TEXT_DISPLAY,"RETURN TO MAIN PROGRAM")
+			GENERAL_BUTTON(REF(requester),"set_display",NORMAL_TEXT_DISPLAY,"RETURN TO MAIN PROGRAM")
 	else
 		//STATS! ARE HERE
 		. = "<tt>\
@@ -283,12 +283,12 @@
 			</tt>"
 		//From highest menu define to lowest. -IP
 		for(var/mode_option = NORMAL_TEXT_DISPLAY to EXCHANGE_TEXT_DISPLAY)
-			. += "<A href='byond://?src=[REF(caller)];set_display=[mode_option]'>[mode_option == display_mode ? "<b><u>[nameMenu(mode_option)]</u></b>" : "[nameMenu(mode_option)]"]</A>"
+			. += "<A href='byond://?src=[REF(requester)];set_display=[mode_option]'>[mode_option == display_mode ? "<b><u>[nameMenu(mode_option)]</u></b>" : "[nameMenu(mode_option)]"]</A>"
 		if(debug_menu)
-			. += "<A href='byond://?src=[REF(caller)];set_display=[DEBUG_TEXT_DISPLAY]'>[display_mode == DEBUG_TEXT_DISPLAY ? "<b><u>[nameMenu(DEBUG_TEXT_DISPLAY)]</u></b>" : "[nameMenu(DEBUG_TEXT_DISPLAY)]"]</A>"
+			. += "<A href='byond://?src=[REF(requester)];set_display=[DEBUG_TEXT_DISPLAY]'>[display_mode == DEBUG_TEXT_DISPLAY ? "<b><u>[nameMenu(DEBUG_TEXT_DISPLAY)]</u></b>" : "[nameMenu(DEBUG_TEXT_DISPLAY)]"]</A>"
 
 		. += "<br>\
-			[DisplayUI(caller, H)]<br>\
+			[DisplayUI(requester, H)]<br>\
 			<tt>~~~~~~~~~~</tt><br><b>[pick(
 				"THE RUINS ARE CLOSING IN",
 				"THEY ALL MARCH OUTWARDS<br>LEAVING THE CITY BEHIND",
