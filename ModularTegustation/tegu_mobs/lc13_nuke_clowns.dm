@@ -129,7 +129,7 @@
 	melee_damage_lower = 20
 	melee_damage_upper = 30
 	scream_damage = 20
-	loot = list(/obj/effect/mob_spawn/human/clown/corpse, /obj/item/mutant_heart)
+	loot = list(/obj/effect/mob_spawn/human/clown/corpse, /obj/item/organ/heart/mutant_heart)
 	move_speed_maskbreak = 14
 	maskbreak_say_1 = "..."
 	maskbreak_say_2 = "Whe-ere... is the joy?"
@@ -262,3 +262,32 @@
 	desc = "It still beats... Forever in suffering..."
 	icon = 'ModularTegustation/Teguicons/tier4_organs.dmi'
 	icon_state = "heart-c-u3-on"
+
+/obj/item/organ/heart/mutant_heart
+	name = "Mutated Heart"
+	desc = "It still beats... Forever in suffering..."
+	icon = 'ModularTegustation/Teguicons/tier4_organs.dmi'
+	icon_state = "heart-c-u3-on"
+	organ_flags = ORGAN_SYNTHETIC
+	var/min_next_adrenaline = 0
+	var/regen_amount = 10
+	var/regen_mult = 1.5
+
+/obj/item/organ/heart/mutant_heart/Insert(mob/living/carbon/M, special = 0)
+	..()
+	M.gain_trauma_type(/datum/brain_trauma/mild/healthy, TRAUMA_RESILIENCE_ABSOLUTE)
+	M.gain_trauma_type(/datum/brain_trauma/severe/split_personality, TRAUMA_RESILIENCE_ABSOLUTE)
+
+/obj/item/organ/heart/mutant_heart/Remove(mob/living/carbon/M, special = 0)
+	..()
+	M.cure_trauma_type(/datum/brain_trauma/mild/healthy, TRAUMA_RESILIENCE_ABSOLUTE)
+	M.cure_trauma_type(/datum/brain_trauma/severe/split_personality, TRAUMA_RESILIENCE_ABSOLUTE)
+
+/obj/item/organ/heart/mutant_heart/on_life()
+	. = ..()
+	if(ishuman(owner) && owner.health < owner.maxHealth && world.time > min_next_adrenaline)
+		var/mob/living/carbon/human/joyful = owner
+		min_next_adrenaline = world.time + rand(10, 20)
+		to_chat(joyful, "<span class='userdanger'>This pain... Brings us such joy...</span>")
+		joyful.heal_overall_damage(regen_amount*regen_mult, regen_amount*regen_mult, regen_amount*regen_mult, BODYPART_ORGANIC)
+		joyful.apply_damage(regen_amount, WHITE_DAMAGE)
