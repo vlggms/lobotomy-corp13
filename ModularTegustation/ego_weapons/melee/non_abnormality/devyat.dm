@@ -1,13 +1,10 @@
 /obj/item/ego_weapon/city/devyat_trunk
 	name = "devyat courier trunk"
 	desc = "A devyat association-issued delivery trunks."
-	special = "This weapon also functions as a backpack, and can be worn as one. \
-		When attacking a foe with this weapon, it will activate combat mode, which will cause it to passively gain stacks of courier trunk and you use this weapon to attack. \
-		At 10+ courier trunk, your attack deals an extra 30% damage. At 20+ courier trunk, your attacks deal 60% more damage. At 30+ courier trunk, your attacks deal 100% more damage, \
-		At the cost of dealing BLACK damage to the user, per courier trunk the weapon has, each time they gain courier trunk. \
-		While combat mode is active, you can't drop the weapon and you can only turn it off by using the weapon in your hand. \
-		You can also DNA lock the courier trunk by alt-clicking it. This will prevent it from being opened or looted. \
-		You can remove the lock by alt-clicking it if you are the owner, or by using a devyat trunk unlocker."
+	special = "This weapon also functions as a backpack. \
+	When you attack, you enter combat mode; and attacking in combat mode will deal increasing damage to both the user and the target. \
+	It cannot be dropped while in combat mode. \
+	Alt click the trunk to lock or unlock it."
 	worn_icon = 'icons/obj/clothing/ego_gear/devyat_armor.dmi'
 	worn_icon_state = "s_polu"
 	icon = 'icons/obj/clothing/ego_gear/devyat_icon.dmi'
@@ -15,7 +12,7 @@
 	righthand_file = 'ModularTegustation/Teguicons/devyat_right.dmi'
 	icon_state = "s_polu"
 	inhand_icon_state = "s_polu"
-	force = 35
+	force = 28 //Cityweapons says that that 32 DPS is a normal amount for HE weapons, and since this weapon can ramp up, I am reducing it by a little bit.
 	slot_flags = ITEM_SLOT_BACK
 	damtype = BLACK_DAMAGE
 	attribute_requirements = list(
@@ -296,7 +293,7 @@
 	worn_icon_state = "b_polu"
 	icon_state = "b_polu"
 	inhand_icon_state = "b_polu"
-	force = 51
+	force = 42
 	slot_flags = ITEM_SLOT_BACK
 	attack_speed = 1.5
 	attack_verb_continuous = list("bludgeons", "smacks")
