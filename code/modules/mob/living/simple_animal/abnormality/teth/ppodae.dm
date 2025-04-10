@@ -48,7 +48,7 @@
 	var/smash_damage_high = 28
 	var/smash_length = 2
 	var/smash_width = 1
-	var/can_act = TRUE
+
 	var/buff_form = TRUE
 	//Buff Form stuff
 	var/buff_resist_red = 0.5

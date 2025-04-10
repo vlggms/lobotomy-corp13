@@ -47,7 +47,7 @@
 	)
 
 	var/hands = 0
-	var/can_act = TRUE
+
 	var/special_attack_cooldown
 
 /mob/living/simple_animal/hostile/abnormality/bloodbath/PostWorkEffect(mob/living/carbon/human/user, work_type, pe, work_time)

@@ -85,7 +85,7 @@
 	)
 
 	var/is_maggot = FALSE
-	var/can_act = TRUE
+
 	var/victim_name
 	var/say_chance = 7//it's pretty talkative
 	var/smash_cooldown

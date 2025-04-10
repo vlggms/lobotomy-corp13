@@ -52,7 +52,6 @@
 	move_force = MOVE_FORCE_NORMAL
 
 	var/flying = FALSE
-	var/can_move = TRUE
 	var/can_attack = TRUE
 	var/current_stage = 1
 

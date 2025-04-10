@@ -9,7 +9,7 @@
 	del_on_death = FALSE
 	maxHealth = 12000
 	health = 12000
-	var/can_act = TRUE
+
 	var/list/survivors = list()
 	var/cleave_cooldown
 	var/cleave_cooldown_time = 6 SECONDS

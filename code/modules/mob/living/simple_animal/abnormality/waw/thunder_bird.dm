@@ -294,6 +294,8 @@
 	var/boom_damage = 50
 	layer = POINT_LAYER	//Sprite should always be visible
 	var/mob/living/simple_animal/hostile/abnormality/thunder_bird/master
+	var/can_act = TRUE
+
 
 /obj/effect/thunderbolt/Initialize()
 	. = ..()
@@ -301,7 +303,6 @@
 
 //Zombie conversion through lightning bombs
 /obj/effect/thunderbolt/proc/Convert(mob/living/carbon/human/H)
-	var/can_act = TRUE
 	if(!istype(H))
 		return
 	if(!can_act)
@@ -366,7 +367,7 @@
 	density = TRUE
 	guaranteed_butcher_results = list(/obj/item/food/badrecipe = 1)
 	var/list/breach_affected = list()
-	var/can_act = TRUE
+
 	var/mob/living/simple_animal/hostile/abnormality/thunder_bird/master
 
 //Zombie conversion from zombie kills

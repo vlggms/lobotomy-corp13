@@ -48,6 +48,8 @@ GLOBAL_LIST_EMPTY(apostles)
 	)
 	gift_type =  /datum/ego_gifts/paradise
 	abnormality_origin = ABNORMALITY_ORIGIN_LOBOTOMY
+	can_move = FALSE
+	can_act = FALSE
 
 	grouped_abnos = list(
 		/mob/living/simple_animal/hostile/abnormality/onesin = 5,
@@ -84,12 +86,6 @@ GLOBAL_LIST_EMPTY(apostles)
 		"5" = list("Please, mercy...", "Grant us salvation...", "Let us witness in awe..."),
 		)
 	return pick(result_text_list[level])
-
-/mob/living/simple_animal/hostile/abnormality/white_night/AttackingTarget()
-	return FALSE
-
-/mob/living/simple_animal/hostile/abnormality/white_night/Move()
-	return FALSE
 
 /mob/living/simple_animal/hostile/abnormality/white_night/Life()
 	. = ..()
@@ -290,7 +286,7 @@ GLOBAL_LIST_EMPTY(apostles)
 	mob_size = MOB_SIZE_HUGE
 	blood_volume = BLOOD_VOLUME_NORMAL
 	can_patrol = TRUE // You have legs, use them.
-	var/can_act = TRUE
+
 	var/death_counter = 0
 
 /mob/living/simple_animal/hostile/apostle/Move()
