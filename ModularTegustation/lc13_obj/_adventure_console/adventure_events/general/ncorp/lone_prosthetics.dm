@@ -60,6 +60,7 @@
 		if(5)
 			AdjustStatNum(WRATH_STAT,2)
 		if(6)		//Doing good is the worst thing to do.
-			AdjustStatNum(WRATH_STAT,-1)
+			AdjustStatNum(WRATH_STAT,-2)
+			AdjustStatNum(PRIDE_STAT,-2)
 
 	return ..()

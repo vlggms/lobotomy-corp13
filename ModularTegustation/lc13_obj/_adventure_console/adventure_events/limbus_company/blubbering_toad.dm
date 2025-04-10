@@ -54,6 +54,6 @@
 		if(4)
 			AdjustHitPoint(5)
 		if(5)
-			AdjustStatNum(PRIDE_STAT, ADV_EVENT_STAT_NORMAL)
+			AdjustStatNum(GLOOM_STAT, ADV_EVENT_STAT_NORMAL)
 
 	return ..()

@@ -58,7 +58,7 @@
 		if(4)
 			BUTTON_FORMAT(5, "...", M)
 			//You DON'T die, but you take a lot of damage.
-			AdjustHitPoint(-50)
+			AdjustHitPoint(-70)
 			AdjustStatNum(PRIDE_STAT,3) //Gain a bit of pride
 			AdjustStatNum(WRATH_STAT,-2) //And lose 2 to all other stats.
 			AdjustStatNum(LUST_STAT,-2)
