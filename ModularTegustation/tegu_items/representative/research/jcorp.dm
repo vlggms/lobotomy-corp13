@@ -78,12 +78,12 @@ GLOBAL_LIST_EMPTY(jcorp_upgrades)
 	cost = AVERAGE_RESEARCH_PRICE
 	corp = J_CORP_REP
 
-/datum/data/lc13research/lootbox/ResearchEffect(obj/structure/representative_console/caller)
+/datum/data/lc13research/lootbox/ResearchEffect(obj/structure/representative_console/requester)
 	if(repeat_cooldown > world.time)
 		return
-	new /obj/item/a_gift/jcorp(get_turf(caller))
-	new /obj/item/a_gift/jcorp(get_turf(caller))
-	caller.visible_message(span_notice("The [caller] lights up as it teleports in the Lootboxes."))
+	new /obj/item/a_gift/jcorp(get_turf(requester))
+	new /obj/item/a_gift/jcorp(get_turf(requester))
+	requester.visible_message(span_notice("The [requester] lights up as it teleports in the Lootboxes."))
 	repeat_cooldown = world.time + (10 SECONDS)
 
 //Casino Machines
@@ -94,10 +94,10 @@ GLOBAL_LIST_EMPTY(jcorp_upgrades)
 	cost = LOW_RESEARCH_PRICE
 	corp = J_CORP_REP
 
-/datum/data/lc13research/casino_machine/ResearchEffect(obj/structure/representative_console/caller)
+/datum/data/lc13research/casino_machine/ResearchEffect(obj/structure/representative_console/requester)
 	. = ..()
-	new /obj/machinery/jcorp_slot_machine(get_turf(caller))
-	caller.visible_message(span_notice("The [caller] lights up as it teleports in the Casino Machine."))
+	new /obj/machinery/jcorp_slot_machine(get_turf(requester))
+	requester.visible_message(span_notice("The [requester] lights up as it teleports in the Casino Machine."))
 
 /datum/data/lc13research/blood_machine
 	research_name = "J Corp Lifeforce Slots"
@@ -105,11 +105,11 @@ GLOBAL_LIST_EMPTY(jcorp_upgrades)
 	cost = LOW_RESEARCH_PRICE
 	corp = J_CORP_REP
 
-/datum/data/lc13research/blood_machine/ResearchEffect(obj/structure/representative_console/caller)
+/datum/data/lc13research/blood_machine/ResearchEffect(obj/structure/representative_console/requester)
 	. = ..()
-	new /obj/item/blood_slots(get_turf(caller))
-	new /obj/item/blood_slots(get_turf(caller))
-	caller.visible_message(span_notice("The [caller] lights up as it teleports in two odd devices."))
+	new /obj/item/blood_slots(get_turf(requester))
+	new /obj/item/blood_slots(get_turf(requester))
+	requester.visible_message(span_notice("The [requester] lights up as it teleports in two odd devices."))
 
 //ERTs
 /*
