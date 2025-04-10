@@ -6,7 +6,7 @@
 	view_range = 1
 	projectile_type = /obj/projectile/beam/laser/pale
 
-/obj/machinery/manned_turret/rcorp/user_buckle_mob(mob/user)
+/obj/machinery/manned_turret/rcorp/user_buckle_mob(mob/living/M, mob/user, check_loc = TRUE)
 	. = ..()
 	if(user.mind)
 		if(user.mind.has_antag_datum(/datum/antagonist/wizard/arbiter/rcorp)) //You are a arbiter not a heavy weapons guy
