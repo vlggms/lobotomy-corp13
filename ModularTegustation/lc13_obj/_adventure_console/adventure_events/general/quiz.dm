@@ -21,6 +21,7 @@
 		\"IM SORRY BUT THAT IS NOT WRITTEN HERE, GOODBYE\"<br>\
 		They then start violently growing blue metal out of their face.",
 		)
+	event_locks = "FACE THE FEAR COFFEE MUG"
 
 /datum/adventure_event/quiz/EventChoiceFormat(obj/machinery/M, mob/living/carbon/human/H)
 	switch(cords)
@@ -39,8 +40,9 @@
 			AdjustStatNum(PRIDE_STAT, ADV_EVENT_STAT_EASY)
 		if(5)
 			CauseBattle(
-				"Speculative Amalagam Error:Some imperfect mix of a fixer and a sweeper. The differing physiology of a sweeper and a human causes them to violently ooze red fluid from where the sweeper parts end and the human parts begin.",
+				"Speculative Amalagam Error:Some imperfect mix of a fixer and a sweeper. Red ooze erupts from where the sweeper parts end and the human parts begin.",
 				"1d8",
 				MON_HP_RAND_EASY,
+				new_key = "Warped Sweeper Metal"
 			)
 	return ..()

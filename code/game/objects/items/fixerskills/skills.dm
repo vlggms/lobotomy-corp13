@@ -3,6 +3,8 @@
 	actionname = null
 	var/level = 0
 	var/mob/living/carbon/human/user
+	var/list/usable_roles = list("Civilian", "Office Director", "Office Fixer",
+		"Subsidary Office Director", "Fixer")
 
 	//To do: Refactor.
 	var/static/list/datum/action/actions_levels = list(
@@ -87,7 +89,7 @@
 			else
 				wrong_grade_info(grade)
 				return FALSE
-		if (!(user?.mind?.assigned_role in list("Civilian", "Office Director", "Office Fixer")))
+		if (!(user?.mind?.assigned_role in usable_roles))
 			to_chat(user, span_notice("Only Civilians can use this book!"))
 			return FALSE
 

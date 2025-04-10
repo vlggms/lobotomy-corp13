@@ -211,7 +211,7 @@
 /atom/movable/screen/legend/Initialize(mapload, color, text)
 	. = ..()
 	saved_color = color
-	maptext = "<a href='?src=[REF(src)]' style='color: [saved_color]'><span style=\"font-family: 'Small Fonts'; font-size: 7px;\">[text]</span></a>"
+	maptext = "<a href='byond://?src=[REF(src)]' style='color: [saved_color]'><span style=\"font-family: 'Small Fonts'; font-size: 7px;\">[text]</span></a>"
 	alpha = 254
 /atom/movable/screen/legend/Click(location, control, params)
 	if(!usr.incapacitated() && !isdead(usr))

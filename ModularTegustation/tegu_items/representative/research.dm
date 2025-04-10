@@ -15,20 +15,20 @@
 	var/required_research
 
 //Pre loaded with making researched true since most researches will only happen once.
-/datum/data/lc13research/proc/ResearchEffect(obj/structure/representative_console/caller)
-	caller.researched_stuff += src
+/datum/data/lc13research/proc/ResearchEffect(obj/structure/representative_console/requester)
+	requester.researched_stuff += src
 
-/datum/data/lc13research/proc/CanResearch(obj/structure/representative_console/caller)
-	if(!ReqResearch(caller, required_research))
+/datum/data/lc13research/proc/CanResearch(obj/structure/representative_console/requester)
+	if(!ReqResearch(requester, required_research))
 		return FALSE
 	if(repeat_cooldown > world.time)
 		return FALSE
 	return TRUE
 
 //Proc that returns false if any of the research that is required is missing from the callers researched_stuff.
-/datum/data/lc13research/proc/ReqResearch(obj/structure/representative_console/caller, research_needed)
-	var/req = locate(research_needed) in caller.research_list
-	if(!req || LAZYFIND(caller.researched_stuff, req))
+/datum/data/lc13research/proc/ReqResearch(obj/structure/representative_console/requester, research_needed)
+	var/req = locate(research_needed) in requester.research_list
+	if(!req || LAZYFIND(requester.researched_stuff, req))
 		return TRUE
 	return FALSE
 
@@ -43,7 +43,7 @@
 /datum/data/lc13research/mobspawner
 	var/mobspawner_type
 
-/datum/data/lc13research/mobspawner/ResearchEffect(obj/structure/representative_console/caller)
+/datum/data/lc13research/mobspawner/ResearchEffect(obj/structure/representative_console/requester)
 	var/landing_zone = AnalyzeLandingZone()
 	if(!landing_zone)
 		//Well shit i guess we will just land here.
@@ -87,6 +87,6 @@
 	/obj/effect/mob_spawn/human/supplypod/r_corp/association/seven,
 	)
 
-/datum/data/lc13research/mobspawner/association/ResearchEffect(obj/structure/representative_console/caller)
+/datum/data/lc13research/mobspawner/association/ResearchEffect(obj/structure/representative_console/requester)
 	mobspawner_type = pick(associationspawners)
 	..()	*/

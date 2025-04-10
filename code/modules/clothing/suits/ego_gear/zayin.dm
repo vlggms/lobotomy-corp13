@@ -110,7 +110,7 @@ Any attempt to code risk class armor will result in a 10 day Github ban.*/
 
 /obj/item/clothing/suit/armor/ego_gear/zayin/dead_dream
 	name = "dead dream"
-	desc = "We garentee cryopreservation is as safe as can be. The future is just one dream away."
+	desc = "We guarantee cryopreservation is as safe as can be. The future is just one dream away."
 	icon_state = "dead_dream"
 	armor = list(RED_DAMAGE = 0, WHITE_DAMAGE = 10, BLACK_DAMAGE = 0, PALE_DAMAGE = 0)
 

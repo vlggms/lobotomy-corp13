@@ -153,7 +153,7 @@
 	if(power_drained > max_power * 0.98)
 		if (!admins_warned)
 			admins_warned = TRUE
-			message_admins("Power sink at ([x],[y],[z] - <A HREF='?_src_=holder;[HrefToken()];adminplayerobservecoodjump=1;X=[x];Y=[y];Z=[z]'>JMP</a>) is 95% full. Explosion imminent.")
+			message_admins("Power sink at ([x],[y],[z] - <A HREF='byond://?_src_=holder;[HrefToken()];adminplayerobservecoodjump=1;X=[x];Y=[y];Z=[z]'>JMP</a>) is 95% full. Explosion imminent.")
 		playsound(src, 'sound/effects/screech.ogg', 100, TRUE, TRUE)
 
 	if(power_drained >= max_power)

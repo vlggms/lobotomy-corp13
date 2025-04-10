@@ -2,21 +2,21 @@ macro "default"
 
 
 menu "menu"
-	elem 
+	elem
 		name = "&File"
 		command = ""
 		saved-params = "is-checked"
-	elem 
+	elem
 		name = "&Quick screenshot\tF2"
 		command = ".screenshot auto"
 		category = "&File"
 		saved-params = "is-checked"
-	elem 
+	elem
 		name = "&Save screenshot as...\tShift+F2"
 		command = ".screenshot"
 		category = "&File"
 		saved-params = "is-checked"
-	elem 
+	elem
 		name = ""
 		command = ""
 		category = "&File"
@@ -26,21 +26,21 @@ menu "menu"
 		command = ".reconnect"
 		category = "&File"
 		saved-params = "is-checked"
-	elem 
+	elem
 		name = "&Quit\tAlt-F4"
 		command = ".quit"
 		category = "&File"
 		saved-params = "is-checked"
-	elem 
+	elem
 		name = "&Help"
 		command = ""
 		saved-params = "is-checked"
-	elem 
+	elem
 		name = "&Admin Help\tF1"
 		command = "adminhelp"
 		category = "&Help"
 		saved-params = "is-checked"
-	elem 
+	elem
 		name = "&Hotkeys"
 		command = "hotkeys-help"
 		category = "&Help"
@@ -51,7 +51,7 @@ window "mainwindow"
 	elem "mainwindow"
 		type = MAIN
 		pos = 0,0
-		size = 640x440
+		size = 640x464
 		anchor1 = none
 		anchor2 = none
 		is-default = true
@@ -59,29 +59,37 @@ window "mainwindow"
 		icon = 'icons\\tg_32.png'
 		macro = "default"
 		menu = "menu"
+		statusbar = false
+		on-status = ".winset \"status_bar.text=[[*]]\" "
 	elem "split"
 		type = CHILD
 		pos = 3,0
 		size = 634x417
 		anchor1 = 0,0
 		anchor2 = 100,100
-		saved-params = "splitter"
 		left = "mapwindow"
 		right = "infowindow"
 		is-vert = true
 	elem "input"
 		type = INPUT
 		pos = 3,420
-		size = 517x20
+		size = 510x20
 		anchor1 = 0,100
 		anchor2 = 100,100
-		background-color = #d3b5b5
 		is-default = true
-		border = sunken
+		border = line
 		saved-params = "command"
+	elem "status_bar"
+		type = LABEL
+		pos = 5,442
+		size = 630x20
+		anchor1 = 0,100
+		anchor2 = 100,100
+		align = left
+		font-style = bold
 	elem "saybutton"
 		type = BUTTON
-		pos = 600,420
+		pos = 598,420
 		size = 40x20
 		anchor1 = 100,100
 		anchor2 = none
@@ -91,7 +99,7 @@ window "mainwindow"
 		button-type = pushbox
 	elem "oocbutton"
 		type = BUTTON
-		pos = 520,420
+		pos = 515,420
 		size = 40x20
 		anchor1 = 100,100
 		anchor2 = none
@@ -101,7 +109,7 @@ window "mainwindow"
 		button-type = pushbox
 	elem "mebutton"
 		type = BUTTON
-		pos = 560,420
+		pos = 557,420
 		size = 40x20
 		anchor1 = 100,100
 		anchor2 = none

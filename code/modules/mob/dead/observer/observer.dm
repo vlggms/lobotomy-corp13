@@ -651,9 +651,12 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 			var/mob/living/simple_animal/hostile/abnormality/abnormality = L
 			if(abnormality.do_not_possess)
 				continue
-
-		if(istype(L, /mob/living/carbon/human/dummy) || !get_turf(L)) //Haha no.
+		if(!get_turf(L))
 			continue
+		if(istype(L, /mob/living/carbon/human))
+			var/mob/living/carbon/human/H = L
+			if(istype(H, /mob/living/carbon/human/dummy) || H.sanity_lost) //Haha no.
+				continue
 		// LOBOTOMYCORPORATION ADDITION END
 
 		if(!(L in GLOB.player_list) && !L.mind)

@@ -28,7 +28,7 @@
 		You are a fixer that recently blew into town to assist the local offices in their endeavors."
 
 	var/list/associations = list("zwei","shi5", "liu5", "seven")
-	var/list/uncommon_associations = list("shi2", "cinq", "liu1")
+	var/list/uncommon_associations = list("shi2", "cinq", "liu1", "zweiw")
 	var/list/rare_associations = list("hana", "liu2")
 
 /datum/job/associateroaming/after_spawn(mob/living/carbon/human/H, mob/M)
@@ -56,6 +56,10 @@
 		if("zwei")
 			armor = /obj/item/clothing/suit/armor/ego_gear/city/zwei
 			weapon = /obj/item/ego_weapon/city/zweihander
+
+		if("zweiw")
+			armor = /obj/item/clothing/suit/armor/ego_gear/city/zweiwest
+			weapon = /obj/item/ego_weapon/city/zweiwest
 
 		if("shi2")
 			armor = /obj/item/clothing/suit/armor/ego_gear/city/shi

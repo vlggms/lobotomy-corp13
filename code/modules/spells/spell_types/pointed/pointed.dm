@@ -65,21 +65,21 @@
 		action.button_icon_state = "[action_icon_state]"
 	action.UpdateButtonIcon()
 
-/obj/effect/proc_holder/spell/pointed/InterceptClickOn(mob/living/caller, params, atom/target)
+/obj/effect/proc_holder/spell/pointed/InterceptClickOn(mob/living/requester, params, atom/target)
 	if(..())
 		return TRUE
 	if(aim_assist && isturf(target))
 		var/list/possible_targets = list()
 		for(var/A in target)
-			if(intercept_check(caller, A, TRUE))
+			if(intercept_check(requester, A, TRUE))
 				possible_targets += A
 		if(possible_targets.len == 1)
 			target = possible_targets[1]
-	if(!intercept_check(caller, target))
+	if(!intercept_check(requester, target))
 		return TRUE
-	if(!cast_check(FALSE, caller))
+	if(!cast_check(FALSE, requester))
 		return TRUE
-	perform(list(target), user = caller)
+	perform(list(target), user = requester)
 	remove_ranged_ability()
 	return TRUE // Do not do any underlying actions after the spell cast
 

@@ -27,4 +27,5 @@
 			//I just love how ominous this sound effect is.
 			playsound(get_turf(H), 'sound/effects/creak1.ogg', 20, FALSE)
 			AdjustStatNum(GLOOM_STAT,ADV_EVENT_STAT_EASY)
+			RewardKey("FACE THE FEAR COFFEE MUG")
 	return ..()

@@ -34,10 +34,10 @@
 	var/call_start_time
 	var/head_call = FALSE //calls from a head of staff autoconnect, if the receiving pad is not secure.
 
-//creates a holocall made by `caller` from `calling_pad` to `callees`
-/datum/holocall/New(mob/living/caller, obj/machinery/holopad/calling_pad, list/callees, elevated_access = FALSE)
+//creates a holocall made by `requester` from `calling_pad` to `callees`
+/datum/holocall/New(mob/living/requester, obj/machinery/holopad/calling_pad, list/callees, elevated_access = FALSE)
 	call_start_time = world.time
-	user = caller
+	user = requester
 	calling_pad.outgoing_call = src
 	calling_holopad = calling_pad
 	head_call = elevated_access
@@ -212,7 +212,7 @@
 
 //RECORDS
 /datum/holorecord
-	var/caller_name = "Unknown" //Caller name
+	var/caller_name = "Unknown" //requester name
 	var/image/caller_image
 	var/list/entries = list()
 	var/language = /datum/language/common //Initial language, can be changed by HOLORECORD_LANGUAGE entries
@@ -300,7 +300,7 @@
 		var/datum/preset_holoimage/H = new preset_image_type
 		record.caller_image = H.build_image()
 
-//These build caller image from outfit and some additional data, for use by mappers for ruin holorecords
+//These build requester image from outfit and some additional data, for use by mappers for ruin holorecords
 /datum/preset_holoimage
 	var/nonhuman_mobtype //Fill this if you just want something nonhuman
 	var/outfit_type

@@ -246,7 +246,7 @@
 
 	. += span_notice("This weapon works differently from most weapons and can be used to disarm other players.")
 
-	. += span_notice("It has a <a href='?src=[REF(src)];'>tag</a> explaining how to use [src].")
+	. += span_notice("It has a <a href='byond://?src=[REF(src)];'>tag</a> explaining how to use [src].")
 
 /obj/item/melee/classic_baton/Topic(href, href_list)
 	. = ..()

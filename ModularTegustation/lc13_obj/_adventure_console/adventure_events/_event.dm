@@ -25,6 +25,15 @@
 		"B",
 		"C",
 	)
+	/*
+	* Event Keys required for this event to appear.
+	* This needs to be a text string due to events
+	* not existing until encountered,
+	* "Warped Sweeper Metal,Coffee Cup,Mud" makes
+	* the event require all 3 of the keys to appear.
+	* Capitalization and spaces will be considered.
+	*/
+	var/event_locks = ""
 
 /datum/adventure_event/New(datum/adventure_layout/player)
 	. = ..()
@@ -46,20 +55,20 @@
  * This proc is called by the adventure datum in order to build the UI.
  * Its like a hub where all other general things are called.
  */
-/datum/adventure_event/proc/Event(obj/machinery/caller, mob/living/carbon/human/H)
+/datum/adventure_event/proc/Event(obj/machinery/requester, mob/living/carbon/human/H)
 	if(!gamer)
 		return "<br>ERROR:USER PROFILE MISSING"
 
-	if(!caller)
+	if(!requester)
 		return "<br>ERROR:INTERFACE MISSING"
 
 	if(cords == 0)
-		EventComplete(caller,H)
+		EventComplete(requester,H)
 		return
 
 	//UI Data for machine that calls us.
 	. = UI_Display()
-	. += EventChoiceFormat(caller, H)
+	. += EventChoiceFormat(requester, H)
 
 /**
  * Formating stuff such as UI display that is returned to the calling userface
@@ -102,11 +111,12 @@
 		/*-----------------\
 		|Event Effect Procs|
 		\-----------------*/
-/datum/adventure_event/proc/CauseBattle(new_desc = "ERROR", new_damage = MON_DAMAGE_EASY, new_hp = 50, new_coin)
+/datum/adventure_event/proc/CauseBattle(new_desc = "ERROR", new_damage = MON_DAMAGE_EASY, new_hp = 50, new_coin, new_key)
 	gamer.travel_mode = ADVENTURE_MODE_EVENT_BATTLE
 	gamer.enemy_desc = new_desc
 	gamer.enemy_integrity = new_hp
 	gamer.enemy_damage = new_damage
+	gamer.enemy_key = new_key
 	if(!new_coin)
 		gamer.enemy_coin = round(MaxDiceDam(new_damage)/5)
 	else
@@ -177,3 +187,7 @@
 		temp_text += "[add_num] [gamer.nameStat(stat_to_add)] LOST<br>"
 	if(add_num >= 1)
 		temp_text += "[add_num] [gamer.nameStat(stat_to_add)] GAINED<br>"
+
+/datum/adventure_event/proc/RewardKey(key_identifier)
+	gamer.GiveKey(key_identifier)
+	temp_text += "[key_identifier] GAINED<br>"

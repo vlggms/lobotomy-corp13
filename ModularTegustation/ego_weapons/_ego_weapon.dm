@@ -106,12 +106,12 @@
 		. += span_notice("[special]")
 	if(LAZYLEN(attribute_requirements))
 		if(!ishuman(user))	//You get a notice if you are a ghost or otherwise
-			. += span_notice("It has <a href='?src=[REF(src)];list_attributes=1'>certain requirements</a> for the wearer.")
+			. += span_notice("It has <a href='byond://?src=[REF(src)];list_attributes=1'>certain requirements</a> for the wearer.")
 		else if(CanUseEgo(user))	//It's green if you can use it
-			. += span_nicegreen("It has <a href='?src=[REF(src)];list_attributes=1'>certain requirements</a> for the wearer.")
+			. += span_nicegreen("It has <a href='byond://?src=[REF(src)];list_attributes=1'>certain requirements</a> for the wearer.")
 		else				//and red if you cannot use it
 			. += span_danger("You cannot use this EGO!")
-			. += span_danger("It has <a href='?src=[REF(src)];list_attributes=1'>certain requirements</a> for the wearer.")
+			. += span_danger("It has <a href='byond://?src=[REF(src)];list_attributes=1'>certain requirements</a> for the wearer.")
 
 	var/list/typecache_small = typecacheof(GLOB.small_ego)
 	if(is_type_in_typecache(src, typecache_small))

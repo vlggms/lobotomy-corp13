@@ -67,12 +67,12 @@
 		return . || mover.throwing || mover.movement_type & checking
 	return TRUE
 
-/obj/structure/railing/CanAStarPass(ID, to_dir, caller)
+/obj/structure/railing/CanAStarPass(ID, to_dir, requester)
 	if(!density)
 		return TRUE
 	if(dir & to_dir)
 		var/checking = FLYING | FLOATING
-		var/atom/movable/mover = caller
+		var/atom/movable/mover = requester
 		return istype(mover) && (mover.throwing || mover.movement_type & checking)
 	return TRUE
 

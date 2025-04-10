@@ -8,13 +8,13 @@
 	cost = AVERAGE_RESEARCH_PRICE
 	corp = W_CORP_REP
 
-/datum/data/lc13research/w_corp_typea/ResearchEffect(obj/structure/representative_console/caller)
-	ItemUnlock(caller.order_list, "W Corp Type A Fist", /obj/item/ego_weapon/city/wcorp/fist, 1000)
-	ItemUnlock(caller.order_list, "W Corp Type A Axe", /obj/item/ego_weapon/city/wcorp/axe, 1000)
-	ItemUnlock(caller.order_list, "W Corp Type A Spear", /obj/item/ego_weapon/city/wcorp/spear, 1000)
-	ItemUnlock(caller.order_list, "W Corp Type A Dagger", /obj/item/ego_weapon/city/wcorp/dagger, 1000)
-	ItemUnlock(caller.order_list, "W Corp Type A Hammer", /obj/item/ego_weapon/city/wcorp/hammer, 1000)
-	ItemUnlock(caller.order_list, "W Corp Type A Hatchet", /obj/item/ego_weapon/city/wcorp/hatchet, 1000)
+/datum/data/lc13research/w_corp_typea/ResearchEffect(obj/structure/representative_console/requester)
+	ItemUnlock(requester.order_list, "W Corp Type A Fist", /obj/item/ego_weapon/city/wcorp/fist, 1000)
+	ItemUnlock(requester.order_list, "W Corp Type A Axe", /obj/item/ego_weapon/city/wcorp/axe, 1000)
+	ItemUnlock(requester.order_list, "W Corp Type A Spear", /obj/item/ego_weapon/city/wcorp/spear, 1000)
+	ItemUnlock(requester.order_list, "W Corp Type A Dagger", /obj/item/ego_weapon/city/wcorp/dagger, 1000)
+	ItemUnlock(requester.order_list, "W Corp Type A Hammer", /obj/item/ego_weapon/city/wcorp/hammer, 1000)
+	ItemUnlock(requester.order_list, "W Corp Type A Hatchet", /obj/item/ego_weapon/city/wcorp/hatchet, 1000)
 	..()
 
 /datum/data/lc13research/w_corp_typec
@@ -23,11 +23,11 @@
 	cost = AVERAGE_RESEARCH_PRICE
 	corp = W_CORP_REP
 
-/datum/data/lc13research/w_corp_typec/ResearchEffect(obj/structure/representative_console/caller)
-	ItemUnlock(caller.order_list, "W Corp Type C ShieldBlade",	/obj/item/ego_weapon/city/wcorp/shield, 850)
-	ItemUnlock(caller.order_list, "W Corp Type C ShieldGlaive",		/obj/item/ego_weapon/city/wcorp/shield/spear, 1000)
-	ItemUnlock(caller.order_list, "W Corp Type C ShieldClub",	/obj/item/ego_weapon/city/wcorp/shield/club, 850)
-	ItemUnlock(caller.order_list, "W Corp Type C ShieldAxe",	/obj/item/ego_weapon/city/wcorp/shield/axe, 850)
+/datum/data/lc13research/w_corp_typec/ResearchEffect(obj/structure/representative_console/requester)
+	ItemUnlock(requester.order_list, "W Corp Type C ShieldBlade",	/obj/item/ego_weapon/city/wcorp/shield, 850)
+	ItemUnlock(requester.order_list, "W Corp Type C ShieldGlaive",		/obj/item/ego_weapon/city/wcorp/shield/spear, 1000)
+	ItemUnlock(requester.order_list, "W Corp Type C ShieldClub",	/obj/item/ego_weapon/city/wcorp/shield/club, 850)
+	ItemUnlock(requester.order_list, "W Corp Type C ShieldAxe",	/obj/item/ego_weapon/city/wcorp/shield/axe, 850)
 	..()
 
 /datum/data/lc13research/mobspawner/wcorp
@@ -53,7 +53,7 @@
 	mobspawner_type = /obj/effect/mob_spawn/human/supplypod/r_corp/wcorp_call/level3
 	required_research = /datum/data/lc13research/mobspawner/wcorp
 
-/datum/data/lc13research/mobspawner/wcorpl3/ResearchEffect(obj/structure/representative_console/caller)
+/datum/data/lc13research/mobspawner/wcorpl3/ResearchEffect(obj/structure/representative_console/requester)
 	minor_announce("A notice to all L-Corp clientele, we have the saddening news that this facility is in need of cleanup due to a breach of contract, remain seated as W-Corp Staff resolve the issue.", "W Corp HQ Update:", TRUE)
 	..()
 
@@ -64,8 +64,8 @@
 	cost = AVERAGE_RESEARCH_PRICE
 	corp = W_CORP_REP
 
-/datum/data/lc13research/teleporter/ResearchEffect(obj/structure/representative_console/caller)
-	var/place_to_place = get_turf(caller)
+/datum/data/lc13research/teleporter/ResearchEffect(obj/structure/representative_console/requester)
+	var/place_to_place = get_turf(requester)
 	//two keycards for both quantum pads.
 	new /obj/item/quantum_keycard(place_to_place)
 	new /obj/item/quantum_keycard(place_to_place)
@@ -88,8 +88,8 @@
 	cost = 3
 	corp = W_CORP_REP
 
-/datum/data/lc13research/qkeys/ResearchEffect(obj/structure/representative_console/caller)
-	var/place_to_place = get_turf(caller)
+/datum/data/lc13research/qkeys/ResearchEffect(obj/structure/representative_console/requester)
+	var/place_to_place = get_turf(requester)
 	new /obj/item/quantum_keycard(place_to_place)
 	new /obj/item/quantum_keycard(place_to_place)
 
@@ -101,9 +101,9 @@
 	cost = AVERAGE_RESEARCH_PRICE
 	corp = W_CORP_REP
 
-/datum/data/lc13research/fasttiles/ResearchEffect(obj/structure/representative_console/caller)
-	new /obj/item/stack/tile/noslip/fifty(get_turf(caller))
-	new /obj/item/stack/tile/noslip/fifty(get_turf(caller))
+/datum/data/lc13research/fasttiles/ResearchEffect(obj/structure/representative_console/requester)
+	new /obj/item/stack/tile/noslip/fifty(get_turf(requester))
+	new /obj/item/stack/tile/noslip/fifty(get_turf(requester))
 
 /obj/item/stack/tile/noslip/fifty
 	amount = 50
@@ -115,8 +115,8 @@
 	cost = AVERAGE_RESEARCH_PRICE
 	corp = W_CORP_REP
 
-/datum/data/lc13research/bluespace/ResearchEffect(obj/structure/representative_console/caller)
-	new /obj/item/stack/tile/bluespace/thirty(get_turf(caller))
+/datum/data/lc13research/bluespace/ResearchEffect(obj/structure/representative_console/requester)
+	new /obj/item/stack/tile/bluespace/thirty(get_turf(requester))
 
 /obj/item/stack/tile/bluespace/thirty
 	amount = 30

@@ -7,7 +7,7 @@
 		a woman wearing a bright yellow and black jacket.<br>\
 		'HALT. Lay down your arms!'<br>\
 		She demands you hand over your weapons.<br>\
-		'You are entering the domain of the queen!",
+		'You are entering the domain of the queen!' ",
 
 		"You lay your weapons down.<br>\
 		The guard picks them up for inspection before handing them back.<br>\
