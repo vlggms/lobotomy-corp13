@@ -54,5 +54,5 @@
 	ears = /obj/item/radio/headset/syndicatecity/heads
 	uniform = /obj/item/clothing/under/suit/lobotomy/plain
 	glasses = /obj/item/clothing/glasses/sunglasses
-	backpack_contents = list(/obj/item/structurecapsule/syndicate/kurokumo)
+	backpack_contents = list(/obj/item/structurecapsule/syndicate/kurokumo, /obj/item/office_marker/syndicate)
 	shoes = /obj/item/clothing/shoes/laceup

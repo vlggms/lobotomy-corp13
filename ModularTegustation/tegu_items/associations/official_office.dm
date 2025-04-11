@@ -36,6 +36,26 @@
 				H.assigned_office = null
 				to_chat(user, span_nicegreen("You removed [target] from the [H.assigned_office] Office."))
 
+/obj/item/office_marker/syndicate
+	desc = "A small device which allows syndicates to bypass the office gates."
+	name = "syndicate bypass"
+	icon = 'icons/obj/grenade.dmi'
+	icon_state = "delivery"
+	inhand_icon_state = "flashbang"
+	usable_roles = list("Hana Blade Lineage Cutthroat", "Index Messenger", "Kurokumo Kashira", "Grand Inquisitor", "Thumb Sottocapo")
+
+/obj/item/office_marker/syndicate/attack_self(mob/living/carbon/human/user)
+	return
+
+/obj/item/office_marker/syndicate/afterattack(atom/target, mob/user, proximity_flag)
+	if(!(user?.mind?.assigned_role in usable_roles))
+		to_chat(user, span_danger("You cannot use this item, as you are not a part of a syndicate."))
+		return
+	if(ishuman(target))
+		var/mob/living/carbon/human/H = target
+		H.assigned_office = "syndicate_bypass"
+		to_chat(user, span_nicegreen("You gave the bypass to [H]."))
+
 /obj/item/attribute_increase/fixer/office
 	name = "office n corp training accelerator"
 	desc = "A fluid used to increase the stats of a non-assocaition fixer. Use in hand to activate. Increases stats more the lower your potential. Effects eveyone a part of your office."
@@ -53,7 +73,7 @@
 		return
 
 	for(var/mob/living/carbon/human/H in range(5, get_turf(src)))
-		if(H.assigned_office == user.assigned_office)
+		if(H.assigned_office == user.assigned_office && H.assigned_office != "syndicate_bypass" && H != user)
 			if(!public_use)
 				if(!(H?.mind?.assigned_role in usable_roles))
 					to_chat(H, span_danger("You cannot use this item, as you must not belong to an association."))
