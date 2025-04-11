@@ -144,3 +144,7 @@
 	icon_state = "gaussstrong"
 	damage_type = RED_DAMAGE
 	damage = 65
+
+/obj/projectile/ego_bullet/ego_squeak
+	name = "squeak"
+	damage = 7

@@ -576,3 +576,11 @@
 		"When the work result was Bad, the Qliphoth counter lowered.",
 		"When work was successfully performed, a certain amount of the raw material was converted into nutritous and healing Lifetime Stew, and ejected from the abnormality.",
 		"Employees who consume too much of the Lifetime Stew, or food in general become easy meals for this abnormality.")
+
+// Rubber Duck
+/obj/item/paper/fluff/info/he/rubber_duck
+	abno_type = /mob/living/simple_animal/hostile/abnormality/rubber_duck
+	abno_code = "F-02-182"
+	abno_info = list(
+		"When another abnormality breached, the Qliphoth counter lowered.",
+		"F-02-182 returned to it's containment after 5 minutes.")
