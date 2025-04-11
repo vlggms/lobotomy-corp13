@@ -205,7 +205,7 @@
 
 //Genie of Pentacles - 10000 dolers
 /datum/ego_datum/weapon/branch12/ten_thousand_dolers
-	item_path = /obj/item/ego_weapon/branch12/ten_thousand_dolers
+	item_path = /obj/item/ego_weapon/branch12/mini/ten_thousand_dolers
 	cost = 50
 
 /datum/ego_datum/armor/branch12/ten_thousand_dolers

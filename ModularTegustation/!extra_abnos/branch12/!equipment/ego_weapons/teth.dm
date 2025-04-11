@@ -112,7 +112,9 @@
 /obj/item/ego_weapon/branch12/mini/slot_machine
 	name = "Slot Machine"
 	desc = "Big money!"
-	special = "Upon throwing, this weapon returns to the user."
+	special = "Upon throwing, this weapon returns to the user. Also, When hitting a foe by throwing this weapon you will inflict Mental Detonation if the target has 15+ Mental Decay. Then you inflict 3 Mental Decay. <br>\
+	(Mental Detonation: Does nothing until it is 'Shattered.' Once it is 'Shattered,' it will cause Mental Decay to trigger without reducing it's stack. Weapons that cause 'Shatter' gain other benefits as well.) <br>\
+	(Mental Decay: Deals White damage every 5 seconds, equal to its stack, and then halves it. If it is on a mob, then it deals *4 more damage.)"
 	icon_state = "coin"
 	force = 10
 	damtype = RED_DAMAGE
@@ -121,15 +123,27 @@
 	throw_range = 7
 	attack_verb_continuous = list("slams", "strikes", "smashes")
 	attack_verb_simple = list("slam", "strike", "smash")
+	var/detonation_breakpoint = 15
+	var/mental_decay_inflict = 3
 
 /obj/item/ego_weapon/branch12/mini/slot_machine/throw_impact(atom/hit_atom, datum/thrownthing/throwingdatum)
 	var/caught = hit_atom.hitby(src, FALSE, FALSE, throwingdatum=throwingdatum)
 	if(thrownby && !caught)
+		mental_inflict(hit_atom, thrownby)
 		addtimer(CALLBACK(src, TYPE_PROC_REF(/atom/movable, throw_at), thrownby, throw_range+2, throw_speed, null, TRUE), 1)
 	if(caught)
 		return
 	else
 		return ..()
+
+/obj/item/ego_weapon/branch12/mini/slot_machine/proc/mental_inflict(hit_target, thrower)
+	if(!ismob(hit_target) && !iscarbon(thrower))
+		return
+	var/mob/living/T = hit_target
+	var/datum/status_effect/stacking/lc_mental_decay/D = T.has_status_effect(/datum/status_effect/stacking/lc_mental_decay)
+	if(D.stacks >= detonation_breakpoint)
+		T.apply_status_effect(/datum/status_effect/mental_detonate)
+	T.apply_lc_mental_decay(mental_decay_inflict)
 
 //White Lotus
 /obj/item/ego_weapon/branch12/mini/white_lotus

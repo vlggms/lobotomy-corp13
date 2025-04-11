@@ -5,7 +5,9 @@
 /obj/item/ego_weapon/branch12/plagiarism
 	name = "plagiarism"
 	desc = "This is my, my work!."
-	special = "Applies a random damage number"
+	special = "This weapon has a random damage type, also you are able to turn on 'Idea Theift'. Which causes this weapon to consume 8 Mental Decay from the target, to inflict Mental Detonation. <br><br>\
+	(Mental Detonation: Does nothing until it is 'Shattered.' Once it is 'Shattered,' it will cause Mental Decay to trigger without reducing it's stack. Weapons that cause 'Shatter' gain other benefits as well.) <br>\
+	(Mental Decay: Deals White damage every 5 seconds, equal to its stack, and then halves it. If it is on a mob, then it deals *4 more damage.)"
 	icon_state = "plagiarism"
 	force = 60
 	swingstyle = WEAPONSWING_LARGESWEEP
@@ -17,11 +19,29 @@
 							FORTITUDE_ATTRIBUTE = 60,
 							TEMPERANCE_ATTRIBUTE = 60
 							)
+	var/active = FALSE
+	var/detonation_breakpoint = 8
+
+/obj/item/ego_weapon/branch12/plagiarism/attack_self(mob/user)
+	if(!CanUseEgo(user))
+		return
+	if(active)
+		active = FALSE
+		to_chat(user,span_warning("You turn off your idea theift..."))
+		return
+	if(!active)
+		active = TRUE
+		to_chat(user,span_warning("You turn on your idea theift..."))
+		return
 
 /obj/item/ego_weapon/branch12/plagiarism/attack(mob/living/target, mob/living/user)
 	if(!CanUseEgo(user))
 		return
 	damtype = pick(RED_DAMAGE, WHITE_DAMAGE, BLACK_DAMAGE, PALE_DAMAGE)
+	var/datum/status_effect/stacking/lc_mental_decay/D = target.has_status_effect(/datum/status_effect/stacking/lc_mental_decay)
+	if(D.stacks >= detonation_breakpoint)
+		D.stacks -= detonation_breakpoint
+		target.apply_status_effect(/datum/status_effect/mental_detonate)
 	..()
 
 //Degrading Honor
@@ -134,8 +154,9 @@
 /obj/item/ego_weapon/branch12/joe
 	name = "average joe"
 	desc = "A good briefcase is your best friend. It can carry a lot of important documents, your pencils, and your lunch! It can even be a good self-defense tool!"
-	special = "You are able to turn on abnormality deterrence, which lets you make the foes you attack ignore you, at the cost of your SP. Also, when you attack foes who are not targeting you, you inflict 4 Mental Decay<br><br>\
-	(Mental Decay: Deals White damage every 5 seconds, equal to its stack, and then halves it. If it is on a mob, then it deals *4 more damage.)"
+	special = "You are able to turn on abnormality deterrence, which lets you make the foes you attack ignore you, at the cost of your SP. Also, when you attack foes who are not targeting you, you inflict 4 Mental Decay. You also inflict Mental Detonation if the target has 15+ Mental Decay<br><br>\
+	(Mental Decay: Deals White damage every 5 seconds, equal to its stack, and then halves it. If it is on a mob, then it deals *4 more damage.)<br>\
+	(Mental Detonation: Does nothing until it is 'Shattered.' Once it is 'Shattered,' it will cause Mental Decay to trigger without reducing it's stack. Weapons that cause 'Shatter' gain other benefits as well.)"
 	icon_state = "joe"
 	force = 72
 	attack_speed = 2
@@ -153,6 +174,7 @@
 	var/list/other_targets = list()
 	var/sp_cost = 45
 	var/inflicted_decay = 4
+	var/detonation_breakpoint = 15
 
 /obj/item/ego_weapon/branch12/joe/attack_self(mob/user)
 	if(!CanUseEgo(user))
@@ -175,7 +197,10 @@
 	if(ishostile(target))
 		var/mob/living/simple_animal/hostile/blindfool = target
 		if(blindfool.target != user)
-			blindfool.apply_lc_mental_decay(10)
+			blindfool.apply_lc_mental_decay(inflicted_decay)
+			var/datum/status_effect/stacking/lc_mental_decay/D = blindfool.has_status_effect(/datum/status_effect/stacking/lc_mental_decay)
+			if(D.stacks >= detonation_breakpoint)
+				blindfool.apply_status_effect(/datum/status_effect/mental_detonate)
 	if(active)
 		if(ishuman(user))
 			var/mob/living/carbon/human/joe = user
@@ -200,8 +225,8 @@
 /obj/item/ego_weapon/ranged/branch12/mini/medea
 	name = "medea"
 	desc = "Mortal fate is hard. You'd best get used to it."
-	special = "You are able to activate 'Dead Eye' mode while wielding this weapon. While 'Dead Eye' is active, your shots take 2 extra seconds to fire, but they become piercing and deal more damage. <br>\
-	Also, while you are using Deadeye mode, if you hit someone with Mental Detonation, you will cause a Shatter, which will inflict 10 Mental Decay to all nearby mobs.<br><br>\
+	special = "You are able to activate 'Dead Eye' mode while wielding this weapon. While 'Dead Eye' is active, your shots take 2 extra seconds to fire, but they become piercing and deal 30% more damage. <br>\
+	Also, while you are using Deadeye mode, if you hit someone with Mental Detonation, you will cause a Shatter, which will cause the bullet to deal 200% more damage, and inflict 10 Mental Decay to all nearby mobs.<br><br>\
 	(Mental Detonation: Does nothing until it is 'Shattered.' Once it is 'Shattered,' it will cause Mental Decay to trigger without reducing it's stack. Weapons that cause 'Shatter' gain other benefits as well.) <br>\
 	(Mental Decay: Deals White damage every 5 seconds, equal to its stack, and then halves it. If it is on a mob, then it deals *4 more damage.)"
 	icon_state = "medea"
@@ -278,15 +303,16 @@
 		var/datum/status_effect/mental_detonate/D = L.has_status_effect(/datum/status_effect/mental_detonate)
 		if(D)
 			D.shatter()
+			L.deal_damage(damage*2, damage_type)
 			for(var/mob/living/simple_animal/hostile/H in view(3, get_turf(src)))
 				H.apply_lc_mental_decay(10)
 
 //10000dolers
-/obj/item/ego_weapon/branch12/ten_thousand_dolers
+/obj/item/ego_weapon/branch12/mini/ten_thousand_dolers
 	name = "100000 Dollars"
 	desc = "Build it all up, to cash it in..."
 	special = "Each time you attack with this weapon, You will throw out some coins (You can also use this weapon as a ranged weapon to throw out coins). However these coins are very inaccurate. These coins exist for 8 seconds before fading away. <br>\
-	When you use this weapon in hand, you will recall all coins. With them dealing RED damage to any hostile they fly through, and inflicting 2 Metal Decay per coin. <br><br>\
+	When you use this weapon in hand, you will recall all coins. With them dealing RED damage to any hostile they fly through, and inflicting 2 Mental Decay per coin. <br><br>\
 	(Mental Decay: Deals White damage every 5 seconds, equal to its stack, and then halves it. If it is on a mob, then it deals *4 more damage.)"
 	icon_state = "blue_coin"
 	inhand_icon_state = "blue_coin"
@@ -302,7 +328,7 @@
 	var/recall_cooldown_time = 8 SECONDS
 	var/ranged_range = 7
 
-/obj/item/ego_weapon/branch12/ten_thousand_dolers/attack_self(mob/user)
+/obj/item/ego_weapon/branch12/mini/ten_thousand_dolers/attack_self(mob/user)
 	if(!CanUseEgo(user))
 		return
 	if(recall_cooldown > world.time)
@@ -313,7 +339,7 @@
 	for(var/mob/living/simple_animal/hostile/blue_coin/C in view(9, get_turf(user)))
 		C.recall(user)
 
-/obj/item/ego_weapon/branch12/ten_thousand_dolers/attack(mob/living/target, mob/living/user)
+/obj/item/ego_weapon/branch12/mini/ten_thousand_dolers/attack(mob/living/target, mob/living/user)
 	. = ..()
 	var/turf/origin = get_turf(target)
 	var/list/all_turfs = RANGE_TURFS(1, origin)
@@ -327,7 +353,7 @@
 		placed_coin.pixel_y += random_y
 		break
 
-/obj/item/ego_weapon/branch12/ten_thousand_dolers/afterattack(atom/A, mob/living/user, proximity_flag, params)
+/obj/item/ego_weapon/branch12/mini/ten_thousand_dolers/afterattack(atom/A, mob/living/user, proximity_flag, params)
 	if(ranged_cooldown > world.time)
 		return
 	if(!CanUseEgo(user))
@@ -410,7 +436,7 @@
 	var/list/hitline = getline(slash_start, slash_end)
 	forceMove(slash_end)
 	for(var/turf/T in hitline)
-		for(var/mob/living/simple_animal/hostile/L in HurtInTurf(T, list(), dash_damage, RED_DAMAGE, check_faction = TRUE, hurt_mechs = TRUE, hurt_structure = TRUE))
+		for(var/mob/living/simple_animal/hostile/L in HurtInTurf(T, list(), dash_damage, RED_DAMAGE, check_faction = TRUE, hurt_mechs = TRUE, hurt_structure = FALSE))
 			to_chat(L, span_userdanger("[src] quickly flies through you!"))
 			L.apply_lc_mental_decay(inflicted_decay)
 	new /datum/beam(slash_start.Beam(slash_end, "magic_bullet", time=3))
