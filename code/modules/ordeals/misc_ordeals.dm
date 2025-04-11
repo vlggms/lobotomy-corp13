@@ -51,3 +51,36 @@
 	melee_damage_lower = 2
 	melee_damage_upper = 3
 	charge = 15
+
+/datum/ordeal/specificcommanders/azure_noon
+	name = "The Noon of the Azure"
+	flavor_name = "The Defenders"
+	announce_text = "They belive they are protecting our people... Delusional..."
+	end_announce_text = "I will show them true protection, by revealing the truth..."
+	level = 2
+	announce_sound = 'sound/effects/ordeals/azure_start.ogg'
+	end_sound = 'sound/effects/ordeals/azure_end.ogg'
+	reward_percent = 0.15
+	potential_types = list(
+		/mob/living/simple_animal/hostile/clan/defender/branch12,
+		/mob/living/simple_animal/hostile/clan/defender/branch12,
+		/mob/living/simple_animal/hostile/clan/defender/branch12,
+		/mob/living/simple_animal/hostile/clan/defender/branch12
+		)
+	grunttype = list(/mob/living/simple_animal/hostile/clan/scout/branch12)
+	place_player_multiplicator = 0.05
+	spawn_player_multiplicator = 0.025
+	color = "#015d5d"
+	can_run = FALSE
+
+/datum/ordeal/specificcommanders/azure_noon/AbleToRun()
+	if(SSmaptype.maptype == "branch12") //runs dec 1-31st
+		can_run = TRUE
+	return can_run
+
+/mob/living/simple_animal/hostile/clan/defender/branch12
+	health = 2400
+	maxHealth = 2400
+	melee_damage_lower = 10
+	melee_damage_upper = 12
+	charge = 10
