@@ -4216,6 +4216,7 @@
 #include "ModularTegustation\tegu_items\associations\head_trophies.dm"
 #include "ModularTegustation\tegu_items\associations\items.dm"
 #include "ModularTegustation\tegu_items\associations\machines.dm"
+#include "ModularTegustation\tegu_items\associations\official_office.dm"
 #include "ModularTegustation\tegu_items\associations\syndicateoffice.dm"
 #include "ModularTegustation\tegu_items\associations\tutorial_tapes.dm"
 #include "ModularTegustation\tegu_items\associations\vending.dm"

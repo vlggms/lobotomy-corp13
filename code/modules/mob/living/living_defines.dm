@@ -183,3 +183,6 @@
 
 	/// Which god are you aligned with?
 	var/god_aligned = FISHGOD_NONE
+
+	/// Are you a part of an office?
+	var/assigned_office = null
