@@ -10,8 +10,9 @@
 	icon_dead = "regalrat_dead"
 	speak_chance = 0
 	turns_per_move = 5
-	maxHealth = 70
-	health = 70
+	maxHealth = 700
+	health = 700
+	damage_coeff = list(RED_DAMAGE = 2, WHITE_DAMAGE = 0, BLACK_DAMAGE = 1.5, PALE_DAMAGE = 2)
 	see_in_dark = 5
 	obj_damage = 10
 	butcher_results = list(/obj/item/clothing/head/crown = 1,)
@@ -23,6 +24,7 @@
 	response_harm_simple = "slash"
 	melee_damage_lower = 13
 	melee_damage_upper = 15
+	melee_damage_type = RED_DAMAGE
 	attack_verb_continuous = "slashes"
 	attack_verb_simple = "slash"
 	attack_sound = 'sound/weapons/bladeslice.ogg'
@@ -211,12 +213,14 @@
 	emote_see = list("runs in a circle.", "stands on their hind legs.")
 	melee_damage_lower = 3
 	melee_damage_upper = 5
+	melee_damage_type = RED_DAMAGE
 	obj_damage = 5
 	speak_chance = 1
 	turns_per_move = 5
 	see_in_dark = 6
 	maxHealth = 15
 	health = 15
+	damage_coeff = list(RED_DAMAGE = 2, WHITE_DAMAGE = 0, BLACK_DAMAGE = 1.5, PALE_DAMAGE = 2)
 	butcher_results = list(/obj/item/food/meat/slab/mouse = 1)
 	density = FALSE
 	ventcrawler = VENTCRAWLER_ALWAYS

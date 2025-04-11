@@ -17,9 +17,14 @@
 
 /datum/component/return_to_origin/proc/ParentLostTarget()
 	// patrol back
+	if(parent_hostile.stat == DEAD)
+		qdel(src)
+		return
 	if (!parent_hostile.target)
 		if (get_turf(parent_hostile) != origin)
-			parent_hostile.patrol_to(origin)
+			if(!(parent_hostile.patrol_to(origin)))
+				addtimer(CALLBACK(src, PROC_REF(ParentLostTarget)), 300)
+				return
 		else
 			parent_hostile.dir = original_dir
 	addtimer(CALLBACK(src, PROC_REF(ParentLostTarget)), 50)
