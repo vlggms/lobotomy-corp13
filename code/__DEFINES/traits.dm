@@ -182,7 +182,10 @@ Remember to update _globalvars/traits.dm if you're adding/removing/renaming trai
 #define TRAIT_WORK_FORBIDDEN		"work_forbidden"
 #define TRAIT_ATTRIBUTES_VISION		"attributes_vision"
 #define TRAIT_WEAK_MELEE		"weak_melee"
+#define TRAIT_STRONG_MELEE		"strong_melee"
 #define TRAIT_BETTER_GUNS		"better_guns"
+#define TRAIT_BONUS_EXP			"bonus_exp"
+
 /// reduces the use time of syringes, pills, patches and medigels but only when using on someone
 #define TRAIT_FASTMED "fast_med_use"
 #define TRAIT_NOBREATH			"no_breath"
