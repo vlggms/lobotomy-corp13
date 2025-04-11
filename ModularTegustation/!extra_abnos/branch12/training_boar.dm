@@ -5,10 +5,10 @@
 	icon_state = "std_boar"
 	icon_living = "std_boar"
 
-/obj/effect/landmark/abnormality_spawn/training_rabbit/boar
+/obj/effect/landmark/abnormality_spawn/boar
 	name = "training boar spawn"
 
-/obj/effect/landmark/abnormality_spawn/training_rabbit/boar/LateInitialize()
+/obj/effect/landmark/abnormality_spawn/boar/LateInitialize()
 	..()
 	datum_reference = new(src, /mob/living/simple_animal/hostile/abnormality/training_rabbit/boar)
 	var/obj/machinery/computer/abnormality/training_rabbit/AR = get_closest_atom(/obj/machinery/computer/abnormality/training_rabbit, GLOB.lobotomy_devices, src)

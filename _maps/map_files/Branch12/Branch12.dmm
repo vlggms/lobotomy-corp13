@@ -2126,7 +2126,7 @@
 /turf/open/floor/facility/dark,
 /area/department_main/command)
 "BD" = (
-/obj/effect/landmark/abnormality_spawn/training_rabbit/boar,
+/obj/effect/landmark/abnormality_spawn/boar,
 /turf/open/floor/facility/dark,
 /area/department_main/command)
 "BG" = (

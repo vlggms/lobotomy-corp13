@@ -42,7 +42,11 @@
 	. = ..()
 	if(!length(rumors))
 		return
-	if(length(rumors) >= minrumors || length(rumors) >= GLOB.security_positions)
+	var/total_agents = 0
+	for(var/mob/player in GLOB.player_list)
+		if(isliving(player) && (player.mind?.assigned_role in GLOB.security_positions))
+			total_agents += 1
+	if(length(rumors) >= minrumors || length(rumors) >= total_agents)
 		Create_Evil()
 
 /mob/living/simple_animal/hostile/abnormality/branch12/babel/proc/Create_Evil()
@@ -110,15 +114,16 @@
 	icon = 'ModularTegustation/Teguicons/branch12/32x32.dmi'
 	icon_state = "rumor"
 	icon_living = "rumor"
-	maxHealth = 1400
-	health = 1400
+	maxHealth = 2600
+	health = 2600
 	damage_coeff = list(RED_DAMAGE = 0.8, WHITE_DAMAGE = 0.8, BLACK_DAMAGE = 0.8, PALE_DAMAGE = 1)
 	melee_damage_type = BLACK_DAMAGE
 	stat_attack = HARD_CRIT
-	melee_damage_lower = 20
-	melee_damage_upper = 30
+	melee_damage_lower = 10
+	melee_damage_upper = 20
 	attack_verb_continuous = "bashes"
 	attack_verb_simple = "bashes"
+	del_on_death = FALSE
 
 /mob/living/simple_animal/hostile/rumor/AttackingTarget(atom/attacked_target) //checking it's ideas and executing them
 	..()
@@ -140,12 +145,19 @@
 			H.Knockdown(20)
 
 /mob/living/simple_animal/hostile/rumor/death(gibbed)
-	var/drop_turf = pick(get_adjacent_open_turfs(src)) //Copied from the Big and will be Bad Wolf
+	FreeCursed()
+	density = FALSE
+	animate(src, alpha = 0, time = 10 SECONDS)
+	QDEL_IN(src, 10 SECONDS)
+	..()
+
+/mob/living/simple_animal/hostile/rumor/proc/FreeCursed()
+	var/spew_turf = pick(get_adjacent_open_turfs(src))
 	for(var/atom/movable/i in contents)
 		if(isliving(i))
 			var/mob/living/L = i
 			if(!L.client)
-				dropHardClothing(L, drop_turf)
+				dropHardClothing(L, spew_turf)
 				qdel(L)
 				continue
 			L.Knockdown(10, FALSE)
@@ -153,6 +165,6 @@
 			REMOVE_TRAIT(L, TRAIT_INCAPACITATED, type)
 			REMOVE_TRAIT(L, TRAIT_IMMOBILIZED, type)
 			REMOVE_TRAIT(L, TRAIT_HANDS_BLOCKED, type)
-		i.forceMove(drop_turf)
-	. = ..()
+		i.forceMove(spew_turf)
+
 #undef STATUS_EFFECT_RUMOR

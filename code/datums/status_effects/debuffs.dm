@@ -1375,11 +1375,14 @@
 //Mob Proc
 //TODO: Make it so when you inflict Metal Decay someone with 40+ stacks, you inflict Metal Detonation and when Metal is applied to someone with max stacks, cause a Shatter if they have Metal Detonation.
 /mob/living/proc/apply_lc_mental_decay(stacks)
+	new /obj/effect/temp_visual/damage_effect/mental_decay(get_turf(src))
 	var/datum/status_effect/stacking/lc_mental_decay/B = src.has_status_effect(/datum/status_effect/stacking/lc_mental_decay)
 	if(!B)
 		src.apply_status_effect(/datum/status_effect/stacking/lc_mental_decay, stacks)
 	else
 		B.add_stacks(stacks)
+		if(B.stacks >= 40)
+			src.apply_status_effect(/datum/status_effect/mental_detonate)
 
 /datum/status_effect/display/dyscrasone_withdrawl
 	id = "dyscrasone_withdrawl"
