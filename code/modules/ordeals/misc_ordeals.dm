@@ -22,3 +22,32 @@
 
 /datum/ordeal/boss/pink_midnight/proc/MobDeathWrapper(datum/source, mob/living/deadMob)
 	OnMobDeath(deadMob)
+
+/datum/ordeal/simplespawn/azure_dawn
+	name = "The Dawn of the Azure"
+	flavor_name = "The Scouts"
+	announce_text = "They are trapped in a world of delusion... I shall break them free..."
+	end_announce_text = "Even as you tear us down... You can't break my will..."
+	level = 1
+	reward_percent = 0.1
+	announce_sound = 'sound/effects/ordeals/azure_start.ogg'
+	end_sound = 'sound/effects/ordeals/azure_end.ogg'
+	spawn_places = 4
+	spawn_amount = 2
+	spawn_type = /mob/living/simple_animal/hostile/clan/scout/branch12
+	place_player_multiplicator = 0.05
+	spawn_player_multiplicator = 0.025
+	color = "#015d5d"
+	can_run = FALSE
+
+/datum/ordeal/simplespawn/azure_dawn/AbleToRun()
+	if(SSmaptype.maptype == "branch12") //runs dec 1-31st
+		can_run = TRUE
+	return can_run
+
+/mob/living/simple_animal/hostile/clan/scout/branch12
+	maxHealth = 1250
+	health = 1250
+	melee_damage_lower = 2
+	melee_damage_upper = 3
+	charge = 15
