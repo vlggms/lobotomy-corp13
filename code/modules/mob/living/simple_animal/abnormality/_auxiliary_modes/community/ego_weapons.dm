@@ -58,7 +58,7 @@
 /obj/item/ego_weapon/sunspit
 	name = "sunspit"
 	desc = "Goodness gracious, great mauls of fire!"
-	special = "Use in hand to prepare a powerful area attack. This attack becomes more powerful when charged."
+	special = "Use in hand to prepare a powerful area attack. This attack requires charge to use, but deals armor-piercing burn damage."
 	icon_state = "sunspit"
 	icon = 'code/modules/mob/living/simple_animal/abnormality/_auxiliary_modes/community/!icons/ego_weapons.dmi'
 	lefthand_file = 'icons/mob/inhands/64x64_lefthand.dmi'
@@ -113,7 +113,7 @@
 	if(!can_spin)
 		to_chat(user,span_warning("You attacked too recently."))
 		return
-	if(do_after(user, 12, src))
+	if(do_after(user, 8, src))
 		charge_amount -= charge_cost
 		addtimer(CALLBACK(src, PROC_REF(spin_reset)), 12)
 		playsound(src, 'sound/abnormalities/seasons/summer_attack.ogg', 75, FALSE, 4)
@@ -153,7 +153,7 @@
 		playsound(T, 'sound/weapons/fixer/generic/fire3.ogg', 30, TRUE, 3)
 		new /obj/effect/temp_visual/smash_effect(T)
 		new /obj/effect/temp_visual/fire/fast(T)
-		been_hit = user.HurtInTurf(T, been_hit, aoe_damage, RED_DAMAGE, check_faction = TRUE)
+		been_hit = user.HurtInTurf(T, been_hit, aoe_damage, BURN, check_faction = TRUE)
 
 /obj/item/ego_weapon/sunspit/get_clamped_volume()
 	return 40
