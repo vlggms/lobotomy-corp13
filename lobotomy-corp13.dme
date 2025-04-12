@@ -3985,6 +3985,7 @@
 #include "ModularTegustation\!extra_abnos\branch12\!ordeals\distortions.dm"
 #include "ModularTegustation\!extra_abnos\branch12\!ordeals\lovetown.dm"
 #include "ModularTegustation\!extra_abnos\branch12\!ordeals\misc.dm"
+#include "ModularTegustation\!extra_abnos\branch12\!ordeals\resurgence.dm"
 #include "ModularTegustation\!extra_abnos\branch12\!tools\compass.dm"
 #include "ModularTegustation\!extra_abnos\branch12\!tools\eye.dm"
 #include "ModularTegustation\!extra_abnos\branch12\!tools\midnight.dm"
