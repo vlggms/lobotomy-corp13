@@ -125,3 +125,95 @@
 	butcher_results = null
 	guaranteed_butcher_results = null
 	teleport_away = TRUE
+
+/datum/ordeal/simplespawn/carmine_dawn
+	name = "The Dawn of the Carmine"
+	flavor_name = "The Bloodbags"
+	announce_text = "Dregs that failed to become Kindreds..."
+	end_announce_text = "Portable bags of blood to replenish themselves at times of need..."
+	level = 1
+	reward_percent = 0.1
+	announce_sound = 'sound/ambience/antag/bloodcult.ogg'
+	end_sound = 'sound/ambience/antag/ling_aler.ogg'
+	spawn_places = 4
+	spawn_amount = 3
+	spawn_type = /mob/living/simple_animal/hostile/humanoid/blood/bag
+	place_player_multiplicator = 0.05
+	spawn_player_multiplicator = 0.025
+	color = "#960018"
+	can_run = TRUE
+
+/datum/ordeal/simplespawn/carmine_dawn/AbleToRun()
+	if(SSmaptype.maptype == "branch12")
+		can_run = TRUE
+	return can_run
+
+/datum/ordeal/specificcommanders/carmine_noon
+	name = "The Noon of the Carmine"
+	flavor_name = "The Bloodfiends"
+	announce_text = "Ah, I must advise you against underestimating their bloodlust..."
+	end_announce_text = "Because no matter how hungry for blood you think they are... They will be worse."
+	level = 2
+	announce_sound = 'sound/ambience/antag/bloodcult.ogg'
+	end_sound = 'sound/ambience/antag/ling_aler.ogg'
+	reward_percent = 0.15
+	potential_types = list(
+		/mob/living/simple_animal/hostile/humanoid/blood/fiend,
+		/mob/living/simple_animal/hostile/humanoid/blood/fiend,
+		/mob/living/simple_animal/hostile/humanoid/blood/fiend,
+		/mob/living/simple_animal/hostile/humanoid/blood/fiend
+		)
+	grunttype = list(/mob/living/simple_animal/hostile/humanoid/blood/bag)
+	color = "#960018"
+	can_run = TRUE
+
+/datum/ordeal/specificcommanders/carmine_noon/AbleToRun()
+	if(SSmaptype.maptype == "branch12")
+		can_run = TRUE
+	return can_run
+
+/datum/ordeal/specificcommanders/carmine_dusk
+	name = "The Dusk of the Carmine"
+	flavor_name = "The 3rd Kindred"
+	announce_text = "Rebellion...? Defiance...? It wasn't something so simple."
+	end_announce_text = "...we were dying a slow, painful, unbearable death."
+	level = 3
+	announce_sound = 'sound/ambience/antag/bloodcult.ogg'
+	end_sound = 'sound/ambience/antag/ling_aler.ogg'
+	reward_percent = 0.20
+	potential_types = list(
+		/mob/living/simple_animal/hostile/humanoid/blood/fiend/boss/branch12,
+		/mob/living/simple_animal/hostile/humanoid/blood/fiend/boss/branch12,
+		/mob/living/simple_animal/hostile/humanoid/blood/fiend/boss/branch12
+		)
+	grunttype = list(/mob/living/simple_animal/hostile/humanoid/blood/bag)
+	color = "#960018"
+	can_run = TRUE
+
+/datum/ordeal/specificcommanders/carmine_dusk/AbleToRun()
+	if(SSmaptype.maptype == "branch12")
+		can_run = TRUE
+	return can_run
+
+/mob/living/simple_animal/hostile/humanoid/blood/fiend/boss/branch12
+	name = "abandoned royal bloodfiend"
+	maxHealth = 3000
+	health = 3000
+	melee_damage_lower = 10
+	melee_damage_upper = 12
+
+/mob/living/simple_animal/hostile/humanoid/blood/fiend/boss/branch12/AdjustBloodFeast(amount)
+	. = ..()
+	if (slashing)
+		return
+
+	if (blood_feast > max_blood_feast * 0.5)
+		icon_state = hardblood_state
+		melee_damage_lower = 20
+		melee_damage_upper = 24
+		melee_damage_type = BLACK_DAMAGE
+	else
+		icon_state = normal_state
+		melee_damage_lower = 10
+		melee_damage_upper = 12
+		melee_damage_type = RED_DAMAGE
