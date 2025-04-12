@@ -490,13 +490,6 @@
 	},
 /turf/open/floor/plasteel/showroomfloor,
 /area/city/shop)
-"bH" = (
-/obj/structure/closet/crate/freezer/surplus_limbs,
-/obj/item/krevive,
-/obj/item/krevive,
-/obj/item/krevive,
-/turf/open/floor/plasteel/showroomfloor,
-/area/city/shop)
 "bI" = (
 /obj/structure/table,
 /obj/item/organ/ears/cybernetic,
@@ -1072,14 +1065,12 @@
 /obj/machinery/button/door/indestructible{
 	id = "outskirtslockdown";
 	name = "Outskirts Lockdown Button";
-	pixel_y = 7;
-	req_access_txt = "20"
+	pixel_y = 7
 	},
 /obj/machinery/button/door/indestructible{
 	id = "citycheckpoint";
 	name = "Outskirts - Facility Checkpoint Button";
-	pixel_y = -3;
-	req_access_txt = "20"
+	pixel_y = -3
 	},
 /turf/open/floor/carpet/blue,
 /area/city/fixers)
@@ -2009,6 +2000,10 @@
 /obj/structure/rack,
 /turf/open/floor/facility,
 /area/city/fixers)
+"hK" = (
+/obj/structure/closet/crate/freezer/surplus_limbs,
+/turf/open/indestructible/white,
+/area/city/shop)
 "iv" = (
 /obj/item/kirbyplants/random,
 /obj/effect/turf_decal/siding/wood{
@@ -2080,6 +2075,17 @@
 	},
 /turf/open/floor/carpet/black,
 /area/city/shop)
+"kI" = (
+/obj/machinery/door/airlock/medical{
+	hackProof = 1;
+	integrity_failure = 0.1;
+	max_integrity = 1e+009;
+	name = "morgue";
+	normal_integrity = 1e+009;
+	req_access_txt = "5"
+	},
+/turf/open/floor/plasteel/showroomfloor,
+/area/city/shop)
 "kS" = (
 /obj/effect/turf_decal/siding/blue{
 	color = "#3234B9";
@@ -2142,6 +2148,10 @@
 /obj/machinery/holopad,
 /turf/open/floor/carpet/royalblack,
 /area/department_main/extraction)
+"ns" = (
+/obj/machinery/light,
+/turf/open/floor/plasteel/showroomfloor,
+/area/city/shop)
 "nw" = (
 /obj/machinery/door/airlock/wood{
 	name = "workshop fixer access"
@@ -2198,6 +2208,9 @@
 	},
 /turf/open/floor/carpet/black,
 /area/department_main/records)
+"oO" = (
+/turf/open/floor/facility,
+/area/space)
 "oQ" = (
 /obj/machinery/door/airlock/wood{
 	name = "subsidiary office storage"
@@ -2453,6 +2466,12 @@
 "AW" = (
 /turf/closed/indestructible/reinforced,
 /area/city/fixers)
+"Bc" = (
+/obj/structure/bodycontainer/morgue{
+	dir = 2
+	},
+/turf/open/floor/plasteel/showroomfloor,
+/area/city/shop)
 "Bq" = (
 /obj/machinery/light{
 	dir = 1
@@ -2591,6 +2610,15 @@
 /obj/effect/spawner/structure/window/reinforced,
 /turf/open/floor/plasteel/elevatorshaft,
 /area/department_main/extraction)
+"Gq" = (
+/obj/machinery/light{
+	dir = 1
+	},
+/obj/structure/bodycontainer/morgue{
+	dir = 2
+	},
+/turf/open/floor/plasteel/showroomfloor,
+/area/city/shop)
 "Gv" = (
 /obj/machinery/light{
 	dir = 8
@@ -2677,6 +2705,13 @@
 	dir = 6
 	},
 /turf/open/floor/carpet/black,
+/area/city/shop)
+"Kq" = (
+/obj/machinery/door/airlock/grunge{
+	name = "storage";
+	req_access_txt = "28"
+	},
+/turf/open/floor/facility,
 /area/city/shop)
 "KE" = (
 /obj/structure/rack,
@@ -3064,6 +3099,14 @@
 /obj/effect/landmark/toolspawn,
 /turf/open/floor/facility/dark,
 /area/department_main/records)
+"Vx" = (
+/obj/machinery/gibber,
+/obj/effect/gibspawner/human/bodypartless,
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/floor/facility,
+/area/space)
 "VJ" = (
 /obj/structure/table,
 /obj/item/kitchen/knife,
@@ -32115,9 +32158,9 @@ jq
 jq
 jq
 jq
-jq
-jq
-jq
+Vo
+Vo
+Vo
 ZR
 ZR
 ZR
@@ -32372,12 +32415,12 @@ jq
 jq
 jq
 jq
-jq
-jq
-jq
+Vo
+oO
+oO
 ZR
 ae
-bB
+af
 ZR
 cm
 aH
@@ -32629,11 +32672,11 @@ jq
 jq
 jq
 jq
-jq
-jq
-jq
-ZR
-af
+Vo
+Vx
+oO
+Kq
+bB
 bB
 bW
 cm
@@ -32886,9 +32929,9 @@ jq
 jq
 jq
 jq
-jq
-jq
-jq
+Vo
+oO
+oO
 ZR
 ag
 bB
@@ -33143,9 +33186,9 @@ jq
 jq
 jq
 jq
-jq
-jq
-jq
+Vo
+Vo
+Vo
 ZR
 ai
 bB
@@ -35970,10 +36013,10 @@ jq
 jq
 jq
 jq
-jq
-jq
-jq
-jq
+ZR
+ZR
+ZR
+ZR
 ZR
 ZR
 ZR
@@ -36227,10 +36270,10 @@ jq
 jq
 jq
 jq
-jq
-jq
-jq
-jq
+ZR
+Gq
+bY
+ns
 ZR
 bF
 aq
@@ -36484,10 +36527,10 @@ jq
 jq
 jq
 jq
-jq
-jq
-jq
-jq
+ZR
+Bc
+bY
+bY
 ZR
 bG
 bY
@@ -36741,12 +36784,12 @@ jq
 jq
 jq
 jq
-jq
-jq
-jq
-jq
 ZR
-bH
+Bc
+bY
+bY
+kI
+bY
 bY
 cr
 ZR
@@ -36998,10 +37041,10 @@ jq
 jq
 jq
 jq
-jq
-jq
-jq
-jq
+ZR
+Bc
+bY
+bY
 ZR
 bI
 bY
@@ -37255,10 +37298,10 @@ jq
 jq
 jq
 jq
-jq
-jq
-jq
-jq
+ZR
+Gq
+bY
+ns
 ZR
 ZR
 bZ
@@ -37512,10 +37555,10 @@ jq
 jq
 jq
 jq
-jq
-jq
-jq
-jq
+ZR
+ZR
+ZR
+ZR
 ZR
 bJ
 Se
@@ -38292,7 +38335,7 @@ ZR
 ZR
 ZR
 ZR
-ZR
+hK
 dq
 dE
 Se
@@ -38548,7 +38591,7 @@ jq
 jq
 jq
 jq
-jq
+ZR
 ZR
 ZR
 ZR
