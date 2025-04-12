@@ -2361,7 +2361,7 @@
 /turf/open/floor/carpet/royalblue,
 /area/city/fixers)
 "vI" = (
-/obj/machinery/body_preservation_unit,
+/obj/structure/potential,
 /turf/open/floor/facility,
 /area/city/fixers)
 "wl" = (
