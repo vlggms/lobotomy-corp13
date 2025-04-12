@@ -4418,6 +4418,7 @@
 #include "ModularTegustation\tegu_mobs\lc13_outskirtdwellers.dm"
 #include "ModularTegustation\tegu_mobs\lc13_resurgence_clan_mobs.dm"
 #include "ModularTegustation\tegu_mobs\lc13_resurgence_clan_npcs.dm"
+#include "ModularTegustation\tegu_mobs\lc13_resurgence_special_forces.dm"
 #include "ModularTegustation\tegu_mobs\lc13_resurgence_tapes.dm"
 #include "ModularTegustation\tegu_mobs\necromancer.dm"
 #include "ModularTegustation\tegu_mobs\necromancer_mobs.dm"
