@@ -47,7 +47,7 @@
 	icon_state = "dam_tox"
 
 /obj/effect/temp_visual/damage_effect/mental_decay
- 	icon_state = "stat_md"
+	icon_state = "stat_md"
 
 /obj/effect/temp_visual/damage_effect/bleed
 	icon_state = "dam_bleed"
