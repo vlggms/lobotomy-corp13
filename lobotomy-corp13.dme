@@ -3983,6 +3983,7 @@
 #include "ModularTegustation\!extra_abnos\branch12\!ordeals\bloodfiend.dm"
 #include "ModularTegustation\!extra_abnos\branch12\!ordeals\bongy.dm"
 #include "ModularTegustation\!extra_abnos\branch12\!ordeals\distortions.dm"
+#include "ModularTegustation\!extra_abnos\branch12\!ordeals\echo.dm"
 #include "ModularTegustation\!extra_abnos\branch12\!ordeals\lovetown.dm"
 #include "ModularTegustation\!extra_abnos\branch12\!ordeals\misc.dm"
 #include "ModularTegustation\!extra_abnos\branch12\!ordeals\resurgence.dm"
