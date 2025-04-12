@@ -41,7 +41,7 @@
 	can_run = TRUE
 
 /datum/ordeal/simplespawn/azure_dawn/AbleToRun()
-	if(SSmaptype.maptype == "branch12") //runs dec 1-31st
+	if(SSmaptype.maptype == "branch12")
 		can_run = TRUE
 	return can_run
 
@@ -50,6 +50,8 @@
 	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 0.8, WHITE_DAMAGE = 1.5, BLACK_DAMAGE = 1.2, PALE_DAMAGE = 2)
 	maxHealth = 1250
 	health = 1250
+	butcher_results = null
+	guaranteed_butcher_results = null
 	teleport_away = TRUE
 	melee_damage_lower = 2
 	melee_damage_upper = 3
@@ -75,7 +77,7 @@
 	can_run = TRUE
 
 /datum/ordeal/specificcommanders/azure_noon/AbleToRun()
-	if(SSmaptype.maptype == "branch12") //runs dec 1-31st
+	if(SSmaptype.maptype == "branch12")
 		can_run = TRUE
 	return can_run
 
@@ -85,6 +87,8 @@
 	maxHealth = 2400
 	teleport_away = TRUE
 	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 0.6, WHITE_DAMAGE = 1.2, BLACK_DAMAGE = 0.8, PALE_DAMAGE = 1.5)
+	butcher_results = null
+	guaranteed_butcher_results = null
 	melee_damage_lower = 10
 	melee_damage_upper = 12
 	charge = 10
@@ -103,12 +107,21 @@
 		)
 	grunttype = list(/mob/living/simple_animal/hostile/clan/drone/branch12)
 
+/datum/ordeal/specificcommanders/azure_noon/dusk/spawngrunts(turf/T, list/grunttype, spawn_amount = 2)
+	. = ..()
+
 /mob/living/simple_animal/hostile/clan/demolisher/branch12
 	name = "Reinforced Demolisher"
 	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 1, WHITE_DAMAGE = 1.4, BLACK_DAMAGE = 1.2, PALE_DAMAGE = 1.6)
+	butcher_results = null
+	guaranteed_butcher_results = null
 	health = 2000
 	maxHealth = 2000
 	charge = 5
 
 /mob/living/simple_animal/hostile/clan/drone/branch12
+	name = "Reinforced Drone"
+	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 0.8, WHITE_DAMAGE = 1.5, BLACK_DAMAGE = 1.2, PALE_DAMAGE = 2)
+	butcher_results = null
+	guaranteed_butcher_results = null
 	teleport_away = TRUE

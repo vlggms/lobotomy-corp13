@@ -68,23 +68,24 @@
 
 /mob/living/simple_animal/hostile/clan/demolisher/adjustHealth(amount, updating_health = TRUE, forced = FALSE)
 	..()
-	if (shield)
-		shield_counter += 1
-		if (shield_counter > max_shield_counter && charge > 1)
-			shield_counter = 0
-			charge--
+	if(amount > 0)
+		if (shield)
+			shield_counter += 1
+			if (shield_counter > max_shield_counter && charge > 1)
+				shield_counter = 0
+				charge--
 
-		var/obj/effect/temp_visual/shock_shield/AT = new /obj/effect/temp_visual/shock_shield(loc, src)
-		var/random_x = rand(-16, 16)
-		AT.pixel_x += random_x
+			var/obj/effect/temp_visual/shock_shield/AT = new /obj/effect/temp_visual/shock_shield(loc, src)
+			var/random_x = rand(-16, 16)
+			AT.pixel_x += random_x
 
-		var/random_y = rand(5, 32)
-		AT.pixel_y += random_y
-	else
-		if(charge >= 4)
-			shield = TRUE
-			ChangeResistances(list(RED_DAMAGE = 0.2, WHITE_DAMAGE = 0.3, BLACK_DAMAGE = 0.3, PALE_DAMAGE = 0.5))
-			shield_time = world.time
+			var/random_y = rand(5, 32)
+			AT.pixel_y += random_y
+		else
+			if(charge >= 4)
+				shield = TRUE
+				ChangeResistances(list(RED_DAMAGE = 0.2, WHITE_DAMAGE = 0.3, BLACK_DAMAGE = 0.3, PALE_DAMAGE = 0.5))
+				shield_time = world.time
 
 /mob/living/simple_animal/hostile/clan/demolisher/proc/demolish(atom/fool)
 	playsound(fool, 'sound/effects/explosion2.ogg', 60, TRUE)
@@ -124,6 +125,7 @@
 	density = FALSE
 	layer = BELOW_OBJ_LAYER
 	armor = list(RED_DAMAGE = 50, WHITE_DAMAGE = 100, BLACK_DAMAGE = 25, PALE_DAMAGE = 100)
+	var/object_break = FALSE
 	var/detonate_time = 120
 	var/beep_time = 10
 	var/beep_counter = 0
@@ -169,9 +171,10 @@
 			L.deal_damage(clamp((15 * (2 ** (8 - dist))), detonate_min_damage, detonate_max_damage), RED_DAMAGE) //15-3840 damage scaling exponentially with distance
 		else
 			L.deal_damage(600 - ((dist > 2 ? dist : 0 )* 75), RED_DAMAGE) //0-600 damage scaling on distance, we don't want it oneshotting mobs
-		for(var/turf/T in view(8, src))
-			for(var/obj/S in T)
-				S.take_damage(clamp((15 * (2 ** (8 - dist))), detonate_object_min_damage, detonate_object_max_damage), RED_DAMAGE)
+		if(object_break)
+			for(var/turf/T in view(8, src))
+				for(var/obj/S in T)
+					S.take_damage(clamp((15 * (2 ** (8 - dist))), detonate_object_min_damage, detonate_object_max_damage), RED_DAMAGE)
 	explosion(loc, 0, 0, 1)
 	qdel(D)
 	qdel(src)
