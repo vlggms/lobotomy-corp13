@@ -77,7 +77,7 @@ GLOBAL_VAR_INIT(city_east_enemies, FALSE)
 		"gcorp",
 		"sweeper",
 		"bots",
-		"worms",
+		//"worms",		Causes issues.
 	)
 
 /obj/effect/landmark/backstreetspawn/Initialize()
@@ -117,7 +117,7 @@ GLOBAL_VAR_INIT(city_east_enemies, FALSE)
 		"gcorp",
 		"sweeper",
 		"bots",
-		"worms",
+		//"worms",		Causes issues.
 	)
 
 /obj/effect/landmark/backstreetspawnwest/Initialize()
@@ -159,7 +159,7 @@ GLOBAL_VAR_INIT(city_east_enemies, FALSE)
 		"gcorp",
 		"sweeper",
 		"bots",
-		"worms",
+		//"worms",		Causes issues.
 	)
 
 /obj/effect/landmark/backstreetspawneast/Initialize()
