@@ -56,7 +56,7 @@
 	end_announce_text = "And they will die to fulfill their purpose."
 	announce_sound = 'sound/effects/ordeals/crimson_start.ogg'
 	end_sound = 'sound/effects/ordeals/crimson_end.ogg'
-	boss_type = list(/mob/living/simple_animal/hostile/humanoid/blood/fiend/boss)
+	boss_type = list(/mob/living/simple_animal/hostile/humanoid/blood/fiend/boss/branch12)
 	grunt_type = list(/mob/living/simple_animal/hostile/humanoid/blood/bag,
 		/mob/living/simple_animal/hostile/humanoid/blood/fiend)
 	color = "#7d0e26"
@@ -72,3 +72,26 @@
 	if(SSmaptype.maptype == "branch12")
 		can_run = TRUE
 	return can_run
+
+/mob/living/simple_animal/hostile/humanoid/blood/fiend/boss/branch12
+	name = "abandoned royal bloodfiend"
+	maxHealth = 3000
+	health = 3000
+	melee_damage_lower = 10
+	melee_damage_upper = 12
+
+/mob/living/simple_animal/hostile/humanoid/blood/fiend/boss/branch12/AdjustBloodFeast(amount)
+	. = ..()
+	if (slashing)
+		return
+
+	if (blood_feast > max_blood_feast * 0.5)
+		icon_state = hardblood_state
+		melee_damage_lower = 20
+		melee_damage_upper = 24
+		melee_damage_type = BLACK_DAMAGE
+	else
+		icon_state = normal_state
+		melee_damage_lower = 10
+		melee_damage_upper = 12
+		melee_damage_type = RED_DAMAGE
