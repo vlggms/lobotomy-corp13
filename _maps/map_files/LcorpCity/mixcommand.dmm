@@ -703,6 +703,23 @@
 	},
 /turf/open/floor/wood,
 /area/city/shop)
+"cp" = (
+/obj/structure/table,
+/obj/machinery/button/door/indestructible{
+	id = "outskirtslockdown";
+	name = "Outskirts Lockdown Button";
+	pixel_y = 7
+	},
+/obj/machinery/button/door/indestructible{
+	id = "citycheckpoint";
+	name = "Outskirts - Facility Checkpoint Button";
+	pixel_y = -3
+	},
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/floor/carpet/red,
+/area/city/fixers)
 "cq" = (
 /obj/machinery/vending/wardrobe/medi_wardrobe,
 /turf/open/floor/plasteel/showroomfloor,
@@ -789,6 +806,12 @@
 "cD" = (
 /turf/open/floor/plating/ashplanet/rocky,
 /area/department_main/command)
+"cE" = (
+/obj/structure/bed,
+/obj/item/bedsheet/hos,
+/obj/machinery/light,
+/turf/open/floor/carpet/red,
+/area/city/fixers)
 "cJ" = (
 /turf/closed/indestructible/reinforced,
 /area/city)
@@ -1343,6 +1366,11 @@
 	},
 /turf/open/floor/facility/dark,
 /area/department_main/command)
+"eR" = (
+/obj/structure/rack,
+/obj/item/ego_weapon/city/shi_assassin/serpent,
+/turf/open/floor/facility/dark,
+/area/city/fixers)
 "eS" = (
 /obj/effect/turf_decal/plaque{
 	alpha = 230;
@@ -2004,6 +2032,9 @@
 /obj/structure/closet/crate/freezer/surplus_limbs,
 /turf/open/indestructible/white,
 /area/city/shop)
+"iq" = (
+/turf/open/floor/carpet/red,
+/area/city/fixers)
 "iv" = (
 /obj/item/kirbyplants/random,
 /obj/effect/turf_decal/siding/wood{
@@ -2034,6 +2065,10 @@
 "jq" = (
 /turf/closed/indestructible/rock,
 /area/space)
+"jK" = (
+/obj/item/kirbyplants/random,
+/turf/open/floor/carpet/red,
+/area/city/fixers)
 "jP" = (
 /obj/machinery/stasis,
 /obj/machinery/light,
@@ -2075,6 +2110,20 @@
 	},
 /turf/open/floor/carpet/black,
 /area/city/shop)
+"kB" = (
+/obj/structure/chair/comfy{
+	dir = 8
+	},
+/turf/open/floor/carpet/red,
+/area/city/fixers)
+"kC" = (
+/obj/structure/rack,
+/obj/item/ego_weapon/city/shi_assassin/sakura,
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/floor/facility/dark,
+/area/city/fixers)
 "kI" = (
 /obj/machinery/door/airlock/medical{
 	hackProof = 1;
@@ -2123,9 +2172,20 @@
 "lX" = (
 /turf/open/floor/carpet/black,
 /area/city/shop)
+"mh" = (
+/obj/structure/table/reinforced,
+/obj/structure/railing,
+/turf/open/floor/facility/dark,
+/area/city/fixers)
 "mn" = (
 /turf/open/floor/carpet/black,
 /area/department_main/records)
+"mv" = (
+/obj/structure/table/wood,
+/obj/item/paper_bin,
+/obj/item/pen,
+/turf/open/floor/carpet/red,
+/area/city/fixers)
 "mN" = (
 /obj/effect/turf_decal/box/white,
 /obj/structure/toolabnormality/realization,
@@ -2232,6 +2292,15 @@
 /obj/item/clothing/under/suit/charcoal,
 /turf/open/floor/facility,
 /area/city/fixers)
+"pi" = (
+/obj/structure/rack,
+/obj/item/ego_weapon/city/shi_assassin/yokai,
+/turf/open/floor/facility/dark,
+/area/city/fixers)
+"pn" = (
+/obj/machinery/light,
+/turf/open/floor/facility/dark,
+/area/city/fixers)
 "pT" = (
 /obj/machinery/computer/abnormality/training_rabbit,
 /turf/open/floor/facility/dark,
@@ -2248,10 +2317,27 @@
 /obj/item/rawpe,
 /turf/open/floor/carpet/royalblack,
 /area/department_main/extraction)
+"qs" = (
+/obj/structure/chair/comfy,
+/turf/open/floor/carpet/red,
+/area/city/fixers)
 "qD" = (
 /obj/structure/chair/pew/right,
 /turf/open/floor/plating/grass,
 /area/department_main/command)
+"qI" = (
+/obj/structure/chair/comfy/black{
+	dir = 1
+	},
+/turf/open/floor/carpet/red,
+/area/city/fixers)
+"qY" = (
+/obj/machinery/door/airlock/grunge{
+	name = "Shi armory office";
+	req_access_txt = "69"
+	},
+/turf/open/floor/wood,
+/area/city/fixers)
 "qZ" = (
 /obj/effect/turf_decal/siding/blue{
 	color = "#3234B9";
@@ -2287,6 +2373,13 @@
 	},
 /turf/open/floor/wood,
 /area/city/shop)
+"sl" = (
+/obj/machinery/light{
+	dir = 4
+	},
+/obj/item/kirbyplants/random,
+/turf/open/floor/carpet/red,
+/area/city/fixers)
 "sz" = (
 /obj/effect/turf_decal/bot,
 /obj/machinery/telecomms/bus/preset_three,
@@ -2357,6 +2450,17 @@
 /obj/item/bedsheet/red,
 /turf/open/floor/wood,
 /area/city/fixers)
+"vy" = (
+/obj/structure/table/wood,
+/obj/item/stamp{
+	pixel_x = -4
+	},
+/obj/item/stamp/denied{
+	pixel_x = 4
+	},
+/obj/item/radio/headset/association_locked/heads,
+/turf/open/floor/carpet/red,
+/area/city/fixers)
 "vD" = (
 /turf/open/floor/carpet/royalblue,
 /area/city/fixers)
@@ -2390,6 +2494,13 @@
 	},
 /turf/open/floor/wood,
 /area/city/shop)
+"wz" = (
+/obj/machinery/door/airlock/grunge{
+	name = "association secure area";
+	req_access_txt = "67"
+	},
+/turf/open/floor/carpet/red,
+/area/city/fixers)
 "wA" = (
 /turf/open/floor/carpet/royalblack,
 /area/department_main/extraction)
@@ -2397,6 +2508,13 @@
 /obj/machinery/vending/cigarette,
 /turf/open/floor/plating/ashplanet/rocky,
 /area/city)
+"xb" = (
+/obj/machinery/door/airlock/grunge{
+	name = "Shi director's office";
+	req_access_txt = "69"
+	},
+/turf/open/floor/carpet/red,
+/area/city/fixers)
 "xH" = (
 /obj/machinery/requests_console{
 	announcementConsole = 1;
@@ -2411,6 +2529,16 @@
 /obj/machinery/vending/city_clothing,
 /turf/open/floor/plating/ashplanet/rocky,
 /area/city)
+"xM" = (
+/obj/structure/table/wood,
+/obj/item/stamp{
+	pixel_x = -4
+	},
+/obj/item/stamp/denied{
+	pixel_x = 4
+	},
+/turf/open/floor/carpet/red,
+/area/city/fixers)
 "xP" = (
 /obj/machinery/door/poddoor{
 	id = "outskirtslockdown";
@@ -2418,6 +2546,10 @@
 	},
 /turf/open/floor/plating/ashplanet/rocky,
 /area/city/backstreets_checkpoint)
+"xU" = (
+/obj/structure/table/wood,
+/turf/open/floor/carpet/red,
+/area/city/fixers)
 "yy" = (
 /obj/machinery/pdapainter,
 /obj/machinery/light{
@@ -2450,6 +2582,19 @@
 /obj/structure/table/wood,
 /obj/item/flashlight/lamp/green,
 /turf/open/floor/wood,
+/area/city/fixers)
+"Ad" = (
+/obj/effect/spawner/randomsnackvend,
+/turf/open/floor/facility/dark,
+/area/city/fixers)
+"Ae" = (
+/obj/machinery/requests_console{
+	announcementConsole = 1;
+	department = "Local Association";
+	pixel_y = 30
+	},
+/obj/structure/chair/comfy/black,
+/turf/open/floor/carpet/red,
 /area/city/fixers)
 "Ao" = (
 /obj/machinery/vending/city,
@@ -2489,6 +2634,18 @@
 	dir = 1
 	},
 /turf/open/floor/wood,
+/area/city/fixers)
+"By" = (
+/obj/structure/rack,
+/obj/item/card/id/fixer/association/zwei,
+/obj/item/card/id/fixer/association/zwei,
+/obj/item/card/id/fixer/association/zwei,
+/obj/item/card/id/fixer/association/zwei,
+/obj/item/card/id/fixer/association/zwei,
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/floor/facility/dark,
 /area/city/fixers)
 "BC" = (
 /obj/machinery/door/airlock/centcom,
@@ -2548,6 +2705,15 @@
 	},
 /turf/open/floor/plating/grass,
 /area/department_main/command)
+"Dy" = (
+/obj/machinery/photocopier,
+/turf/open/floor/carpet/red,
+/area/city/fixers)
+"DG" = (
+/obj/item/storage/box/cups,
+/obj/structure/table/wood,
+/turf/open/floor/carpet/red,
+/area/city/fixers)
 "DQ" = (
 /turf/closed/indestructible/reinforced,
 /area/department_main/extraction)
@@ -2566,6 +2732,21 @@
 	dir = 1
 	},
 /turf/open/floor/wood,
+/area/city/fixers)
+"Ep" = (
+/obj/machinery/requests_console{
+	announcementConsole = 1;
+	department = "Local Association";
+	pixel_y = 30
+	},
+/turf/open/floor/carpet/red,
+/area/city/fixers)
+"Eq" = (
+/obj/structure/closet/crate{
+	anchored = 1;
+	storage_capacity = 100
+	},
+/turf/open/floor/carpet/red,
 /area/city/fixers)
 "Ev" = (
 /obj/structure/rack,
@@ -2590,6 +2771,25 @@
 	},
 /turf/open/floor/wood,
 /area/city/fixers)
+"Fe" = (
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/floor/carpet/red,
+/area/city/fixers)
+"Fl" = (
+/obj/structure/closet{
+	icon_state = "hop"
+	},
+/obj/item/stack/spacecash/c10000,
+/obj/machinery/light{
+	dir = 1
+	},
+/obj/item/radio/headset/heads/headset_association,
+/obj/item/ego_weapon/city/shi_assassin/vet,
+/obj/item/clothing/suit/armor/ego_gear/city/shi/vet,
+/turf/open/floor/carpet/red,
+/area/city/fixers)
 "Fz" = (
 /turf/open/floor/wood,
 /area/city/fixers)
@@ -2605,6 +2805,14 @@
 /obj/structure/representative_console,
 /turf/open/floor/wood,
 /area/city/shop)
+"Gl" = (
+/obj/structure/bed,
+/obj/item/bedsheet/hos,
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/floor/carpet/red,
+/area/city/fixers)
 "Go" = (
 /obj/effect/turf_decal/siding/brown,
 /obj/effect/spawner/structure/window/reinforced,
@@ -2633,6 +2841,12 @@
 "GY" = (
 /obj/effect/spawner/randomsnackvend,
 /turf/open/floor/facility,
+/area/city/fixers)
+"HD" = (
+/obj/machinery/light{
+	dir = 4
+	},
+/turf/open/floor/carpet/red,
 /area/city/fixers)
 "HR" = (
 /obj/machinery/door/airlock/highsecurity{
@@ -2696,6 +2910,13 @@
 /obj/structure/fans/tiny,
 /turf/open/floor/plasteel/elevatorshaft,
 /area/department_main/extraction)
+"JS" = (
+/obj/structure/table/wood,
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/floor/wood,
+/area/city/fixers)
 "Kj" = (
 /obj/structure/bed/pod{
 	dir = 6
@@ -2758,6 +2979,10 @@
 /obj/effect/turf_decal/box/white,
 /turf/open/floor/facility/dark,
 /area/department_main/records)
+"LO" = (
+/obj/machinery/light,
+/turf/open/floor/carpet/red,
+/area/city/fixers)
 "LS" = (
 /obj/effect/turf_decal/box/white,
 /obj/structure/toolabnormality/touch,
@@ -2774,6 +2999,12 @@
 	},
 /turf/open/floor/carpet/black,
 /area/department_main/records)
+"MF" = (
+/obj/machinery/modular_computer/console{
+	dir = 4
+	},
+/turf/open/floor/wood,
+/area/city/fixers)
 "MM" = (
 /obj/structure/rack,
 /obj/item/storage/backpack{
@@ -2899,6 +3130,16 @@
 "Nv" = (
 /turf/open/floor/facility/dark,
 /area/department_main/extraction)
+"Nx" = (
+/obj/structure/rack,
+/obj/item/radio/headset/headset_cent,
+/obj/item/radio/headset/headset_cent,
+/obj/item/radio/headset/headset_cent,
+/obj/item/radio/headset/headset_cent,
+/obj/item/radio/headset/headset_cent,
+/obj/machinery/light,
+/turf/open/floor/facility/dark,
+/area/city/fixers)
 "Nz" = (
 /turf/closed/indestructible/fakeglass,
 /area/city/fixers)
@@ -2913,6 +3154,10 @@
 	},
 /turf/open/floor/wood,
 /area/city/shop)
+"NS" = (
+/obj/structure/chair/comfy/black,
+/turf/open/floor/carpet/red,
+/area/city/fixers)
 "NX" = (
 /obj/effect/turf_decal/siding/blue{
 	color = "#3234B9";
@@ -2981,6 +3226,16 @@
 	},
 /turf/open/floor/carpet/royalblue,
 /area/city/shop)
+"QK" = (
+/obj/machinery/light,
+/obj/machinery/vending/coffee,
+/turf/open/floor/facility/dark,
+/area/city/fixers)
+"QX" = (
+/obj/structure/bed,
+/obj/item/bedsheet/hos,
+/turf/open/floor/carpet/red,
+/area/city/fixers)
 "Rd" = (
 /obj/effect/turf_decal/siding/wood{
 	dir = 4
@@ -2993,6 +3248,17 @@
 /obj/item/radio/headset/association_locked/subsidiary/heads,
 /turf/open/floor/wood,
 /area/city/fixers)
+"Rp" = (
+/obj/structure/rack,
+/obj/item/clothing/suit/armor/ego_gear/city/shi,
+/obj/item/clothing/suit/armor/ego_gear/city/shi,
+/obj/item/clothing/suit/armor/ego_gear/city/shi,
+/obj/item/clothing/suit/armor/ego_gear/city/shi,
+/obj/item/clothing/suit/armor/ego_gear/city/shi,
+/obj/item/ego_weapon/city/shi_assassin,
+/obj/item/ego_weapon/city/shi_assassin,
+/turf/open/floor/facility/dark,
+/area/city/fixers)
 "RP" = (
 /obj/effect/turf_decal/siding/wood{
 	dir = 4
@@ -3002,6 +3268,21 @@
 "Se" = (
 /turf/open/indestructible/white,
 /area/city/shop)
+"Sq" = (
+/obj/structure/closet{
+	icon_state = "hop";
+	name = "director's equipment"
+	},
+/obj/item/stack/spacecash/c10000,
+/obj/item/stack/spacecash/c10000,
+/obj/machinery/light{
+	dir = 1
+	},
+/obj/item/radio/headset/heads/headset_association,
+/obj/item/clothing/suit/armor/ego_gear/city/shi/director,
+/obj/item/ego_weapon/city/shi_assassin/director,
+/turf/open/floor/carpet/red,
+/area/city/fixers)
 "Sx" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 8
@@ -3091,6 +3372,11 @@
 	},
 /turf/open/floor/plasteel,
 /area/city/shop)
+"Ux" = (
+/obj/machinery/light,
+/obj/item/kirbyplants/random,
+/turf/open/floor/carpet/red,
+/area/city/fixers)
 "Vo" = (
 /turf/closed/indestructible/reinforced,
 /area/space)
@@ -3151,6 +3437,20 @@
 /obj/effect/spawner/randomsnackvend,
 /turf/open/floor/plating/ashplanet/rocky,
 /area/city)
+"XY" = (
+/obj/machinery/door/airlock/grunge{
+	name = "association secure area";
+	req_access_txt = "67"
+	},
+/turf/open/floor/facility/white,
+/area/city/fixers)
+"Yd" = (
+/obj/structure/reagent_dispensers/water_cooler,
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/floor/facility/dark,
+/area/city/fixers)
 "Yl" = (
 /obj/machinery/holopad,
 /turf/open/floor/carpet/royalblack,
@@ -3192,6 +3492,14 @@
 /obj/machinery/light/small,
 /turf/open/floor/plasteel/showroomfloor,
 /area/city)
+"YY" = (
+/obj/machinery/light,
+/obj/structure/closet/crate{
+	anchored = 1;
+	storage_capacity = 100
+	},
+/turf/open/floor/carpet/red,
+/area/city/fixers)
 "Zf" = (
 /obj/effect/turf_decal/siding/wood{
 	dir = 8
@@ -3205,6 +3513,12 @@
 /obj/item/food/meat/steak/crimson,
 /obj/item/reagent_containers/food/drinks/bottle/champagne,
 /turf/open/floor/wood,
+/area/city/fixers)
+"Zg" = (
+/obj/structure/chair/comfy{
+	dir = 4
+	},
+/turf/open/floor/carpet/red,
 /area/city/fixers)
 "Zj" = (
 /obj/effect/turf_decal/stripes/line,
@@ -3224,6 +3538,13 @@
 /obj/effect/turf_decal/stripes/line,
 /turf/open/floor/plasteel/dark,
 /area/city)
+"Zy" = (
+/obj/structure/table/wood,
+/obj/item/documents/ncorporation{
+	name = "association confidential documents"
+	},
+/turf/open/floor/carpet/red,
+/area/city/fixers)
 "ZC" = (
 /obj/machinery/vending/lobotomyuniform,
 /obj/effect/turf_decal/box/white,
@@ -40125,12 +40446,6 @@ Wk
 Wk
 Wk
 Wk
-Wk
-AW
-Nz
-Nz
-Nz
-AW
 AW
 AW
 AW
@@ -40139,6 +40454,12 @@ AW
 Nz
 Nz
 Nz
+Nz
+Nz
+AW
+AW
+AW
+AW
 AW
 VQ
 VQ
@@ -40383,19 +40704,19 @@ jq
 jq
 jq
 AW
-dM
-eU
-eU
-eU
-bN
+By
+Rp
+Nx
 AW
-cx
-fJ
-fN
-gd
-gk
-gk
-go
+cp
+iq
+iq
+iq
+LO
+AW
+Gl
+iq
+YY
 AW
 VQ
 VQ
@@ -40640,19 +40961,19 @@ jq
 jq
 jq
 AW
-eU
-eZ
-eZ
-eZ
-eU
+Ws
+Ws
+Ws
+mh
+iq
+iq
+Zg
+Zg
+Zg
 AW
-fC
-fK
-fS
-gd
-Fz
-Fz
-Fz
+QX
+iq
+Eq
 AW
 VQ
 VQ
@@ -40897,20 +41218,20 @@ jq
 jq
 jq
 AW
-eV
-fa
-fa
-fa
-eU
+pi
+Ws
+Ws
+mh
+iq
+qs
+xU
+xU
+xU
 AW
-aC
-eU
-eU
-ds
-Fz
-Fz
-Fz
-gu
+QX
+iq
+Eq
+AW
 VQ
 VQ
 VQ
@@ -41154,20 +41475,20 @@ jq
 jq
 jq
 AW
-eU
-fd
-fd
-fd
-eU
+eR
+Ws
+Ws
+mh
+iq
+iq
+kB
+kB
+kB
 AW
+QX
+iq
+Eq
 AW
-AW
-AW
-AW
-Fz
-Fz
-gp
-Nz
 VQ
 VQ
 VQ
@@ -41411,20 +41732,20 @@ jq
 jq
 jq
 AW
-eU
-eU
-eU
-eU
-eU
-fB
-Fz
-fL
-fT
+kC
+Ws
+pn
 AW
-fo
-Fz
-gq
-Nz
+DG
+iq
+iq
+iq
+iq
+AW
+QX
+iq
+Eq
+AW
 VQ
 VQ
 VQ
@@ -41668,19 +41989,19 @@ jq
 jq
 jq
 AW
-bN
-ff
-fk
-eU
-eU
-Fz
-Fz
-Fz
-fV
+AW
+qY
 AW
 AW
-dL
+Yd
+Ws
+Ws
+Ad
+QK
 AW
+Fe
+iq
+LO
 AW
 VQ
 VQ
@@ -41925,20 +42246,20 @@ jq
 jq
 jq
 AW
+Fe
+iq
+iq
 AW
 AW
-AW
-AW
-AW
-AW
-fD
-Fz
-Fz
-Fz
-fB
-Fz
-gr
 Nz
+wz
+Nz
+AW
+AW
+XY
+gd
+gd
+AW
 VQ
 VQ
 VQ
@@ -42182,20 +42503,20 @@ jq
 jq
 jq
 AW
-eW
+iq
+Zy
+iq
 AW
-Fz
-fm
-Fz
-Fz
-Fz
-Fz
-Fz
-Fz
-Fz
-Fz
-fQ
-Nz
+jK
+iq
+iq
+iq
+iq
+wz
+iq
+iq
+Ux
+AW
 VQ
 VQ
 VQ
@@ -42439,20 +42760,20 @@ jq
 jq
 jq
 AW
-eX
-fj
-gh
+Ae
+vy
+iq
+xb
+HD
+iq
+iq
+iq
+sl
 AW
-fn
-fn
-fn
-AW
-AW
-ge
-AW
-AW
-AW
-AW
+Fe
+iq
+iq
+gd
 VQ
 VQ
 VQ
@@ -42696,20 +43017,20 @@ jq
 jq
 jq
 AW
+Fe
+xU
+iq
 AW
 AW
-Fz
+wz
 AW
-fo
-Fz
-gh
 AW
-fW
-vD
-gl
 AW
-gs
 AW
+iq
+iq
+iq
+gd
 VQ
 et
 VQ
@@ -42953,20 +43274,20 @@ jq
 jq
 jq
 AW
-eX
-fj
+AW
+AW
+xb
+AW
+MF
 gh
 AW
-fp
-Fz
-Fz
-fM
-vD
-vD
-vD
+Gl
+iq
 AW
-vD
-AW
+iq
+mv
+iq
+gu
 VQ
 VQ
 VQ
@@ -43210,19 +43531,19 @@ jq
 jq
 jq
 AW
+iq
+iq
+iq
 AW
-AW
+fV
 Fz
 AW
-fr
-Fz
-fG
-AW
-fY
-gi
-vD
-gn
-vD
+Ep
+iq
+ds
+NS
+xM
+qI
 AW
 VQ
 VQ
@@ -43467,19 +43788,19 @@ jq
 jq
 jq
 AW
-eX
-fj
-gh
+Sq
+iq
+cE
 AW
-fu
-Fz
-fI
+JS
+fQ
 AW
-ga
-gj
-gm
+Fl
+Dy
 AW
-gt
+Fe
+xU
+LO
 AW
 VQ
 VQ
@@ -46568,21 +46889,21 @@ Vo
 Vo
 jq
 jq
-jq
-jq
-jq
-jq
-jq
-jq
-jq
-jq
-jq
-jq
-jq
-jq
-jq
-jq
-jq
+AW
+AW
+AW
+AW
+AW
+Nz
+Nz
+Nz
+Nz
+Nz
+AW
+AW
+AW
+AW
+AW
 jq
 jq
 jq
@@ -46825,21 +47146,21 @@ YN
 Vo
 jq
 jq
-jq
-jq
-jq
-jq
-jq
-jq
-jq
-jq
-jq
-jq
-jq
-jq
-jq
-jq
-jq
+AW
+By
+Rp
+Nx
+AW
+cp
+iq
+iq
+iq
+LO
+AW
+Gl
+iq
+YY
+AW
 jq
 jq
 jq
@@ -47082,21 +47403,21 @@ YN
 Vo
 jq
 jq
-jq
-jq
-jq
-jq
-jq
-jq
-jq
-jq
-jq
-jq
-jq
-jq
-jq
-jq
-jq
+AW
+Ws
+Ws
+Ws
+mh
+iq
+iq
+Zg
+Zg
+Zg
+AW
+QX
+iq
+Eq
+AW
 jq
 jq
 jq
@@ -47339,21 +47660,21 @@ YN
 Vo
 jq
 jq
-jq
-jq
-jq
-jq
-jq
-jq
-jq
-jq
-jq
-jq
-jq
-jq
-jq
-jq
-jq
+AW
+pi
+Ws
+Ws
+mh
+iq
+qs
+xU
+xU
+xU
+AW
+QX
+iq
+Eq
+AW
 jq
 jq
 jq
@@ -47596,21 +47917,21 @@ YN
 Vo
 jq
 jq
-jq
-jq
-jq
-jq
-jq
-jq
-jq
-jq
-jq
-jq
-jq
-jq
-jq
-jq
-jq
+AW
+eR
+Ws
+Ws
+mh
+iq
+iq
+kB
+kB
+kB
+AW
+QX
+iq
+Eq
+AW
 jq
 jq
 jq
@@ -47853,21 +48174,21 @@ YN
 Vo
 jq
 jq
-jq
-jq
-jq
-jq
-jq
-jq
-jq
-jq
-jq
-jq
-jq
-jq
-jq
-jq
-jq
+AW
+kC
+Ws
+pn
+AW
+DG
+iq
+iq
+iq
+iq
+AW
+QX
+iq
+Eq
+AW
 jq
 jq
 jq
@@ -48110,21 +48431,21 @@ YN
 Vo
 jq
 jq
-jq
-jq
-jq
-jq
-jq
-jq
-jq
-jq
-jq
-jq
-jq
-jq
-jq
-jq
-jq
+AW
+AW
+qY
+AW
+AW
+Yd
+Ws
+Ws
+Ad
+QK
+AW
+Fe
+iq
+LO
+AW
 jq
 jq
 jq
@@ -48367,21 +48688,21 @@ YN
 Vo
 jq
 jq
-jq
-jq
-jq
-jq
-jq
-jq
-jq
-jq
-jq
-jq
-jq
-jq
-jq
-jq
-jq
+AW
+Fe
+iq
+iq
+AW
+AW
+Nz
+wz
+Nz
+AW
+AW
+XY
+gd
+gd
+AW
 jq
 jq
 jq
@@ -48624,21 +48945,21 @@ YN
 Vo
 jq
 jq
-jq
-jq
-jq
-jq
-jq
-jq
-jq
-jq
-jq
-jq
-jq
-jq
-jq
-jq
-jq
+AW
+iq
+Zy
+iq
+AW
+jK
+iq
+iq
+iq
+iq
+wz
+iq
+iq
+Ux
+AW
 jq
 jq
 jq
@@ -48881,21 +49202,21 @@ YN
 Vo
 jq
 jq
-jq
-jq
-jq
-jq
-jq
-jq
-jq
-jq
-jq
-jq
-jq
-jq
-jq
-jq
-jq
+AW
+Ae
+vy
+iq
+xb
+HD
+iq
+iq
+iq
+sl
+AW
+Fe
+iq
+iq
+gd
 jq
 jq
 jq
@@ -49138,21 +49459,21 @@ YN
 Vo
 jq
 jq
-jq
-jq
-jq
-jq
-jq
-jq
-jq
-jq
-jq
-jq
-jq
-jq
-jq
-jq
-jq
+AW
+Fe
+xU
+iq
+AW
+AW
+wz
+AW
+AW
+AW
+AW
+iq
+iq
+iq
+gd
 jq
 jq
 jq
@@ -49395,21 +49716,21 @@ YN
 Vo
 jq
 jq
-jq
-jq
-jq
-jq
-jq
-jq
-jq
-jq
-jq
-jq
-jq
-jq
-jq
-jq
-jq
+AW
+AW
+AW
+xb
+AW
+MF
+gh
+AW
+Gl
+iq
+AW
+iq
+mv
+iq
+gu
 jq
 jq
 jq
@@ -49652,21 +49973,21 @@ YN
 Vo
 jq
 jq
-jq
-jq
-jq
-jq
-jq
-jq
-jq
-jq
-jq
-jq
-jq
-jq
-jq
-jq
-jq
+AW
+iq
+iq
+iq
+AW
+fV
+Fz
+AW
+Ep
+iq
+ds
+NS
+xM
+qI
+AW
 jq
 jq
 jq
@@ -49909,21 +50230,21 @@ YN
 Vo
 jq
 jq
-jq
-jq
-jq
-jq
-jq
-jq
-jq
-jq
-jq
-jq
-jq
-jq
-jq
-jq
-jq
+AW
+Sq
+iq
+cE
+AW
+JS
+fQ
+AW
+Fl
+Dy
+AW
+Fe
+xU
+LO
+AW
 jq
 jq
 jq
@@ -50166,21 +50487,21 @@ Vo
 Vo
 jq
 jq
-jq
-jq
-jq
-jq
-jq
-jq
-jq
-jq
-jq
-jq
-jq
-jq
-jq
-jq
-jq
+AW
+AW
+AW
+AW
+AW
+AW
+AW
+AW
+AW
+AW
+AW
+AW
+AW
+AW
+AW
 jq
 jq
 jq
@@ -51177,21 +51498,21 @@ jq
 jq
 jq
 jq
-jq
-jq
-jq
-jq
-jq
-jq
-jq
-jq
-jq
-jq
-jq
-jq
-jq
-jq
-jq
+AW
+AW
+Nz
+Nz
+Nz
+AW
+AW
+AW
+AW
+AW
+AW
+Nz
+Nz
+Nz
+AW
 jq
 jq
 jq
@@ -51434,21 +51755,21 @@ jq
 jq
 jq
 jq
-jq
-jq
-jq
-jq
-jq
-jq
-jq
-jq
-jq
-jq
-jq
-jq
-jq
-jq
-jq
+AW
+dM
+eU
+eU
+eU
+eU
+AW
+cx
+fJ
+fN
+gd
+gk
+gk
+go
+AW
 jq
 jq
 jq
@@ -51691,21 +52012,21 @@ jq
 jq
 jq
 jq
-jq
-jq
-jq
-jq
-jq
-jq
-jq
-jq
-jq
-jq
-jq
-jq
-jq
-jq
-jq
+AW
+eU
+eZ
+eZ
+eZ
+eU
+AW
+fC
+fK
+fS
+gd
+Fz
+Fz
+Fz
+AW
 jq
 jq
 jq
@@ -51948,21 +52269,21 @@ jq
 jq
 jq
 jq
-jq
-jq
-jq
-jq
-jq
-jq
-jq
-jq
-jq
-jq
-jq
-jq
-jq
-jq
-jq
+AW
+eV
+fa
+fa
+fa
+eU
+AW
+aC
+eU
+eU
+ds
+Fz
+Fz
+Fz
+gu
 jq
 jq
 jq
@@ -52205,21 +52526,21 @@ jq
 jq
 jq
 jq
-jq
-jq
-jq
-jq
-jq
-jq
-jq
-jq
-jq
-jq
-jq
-jq
-jq
-jq
-jq
+AW
+eU
+fd
+fd
+fd
+eU
+AW
+AW
+AW
+AW
+AW
+Fz
+Fz
+gp
+Nz
 jq
 jq
 jq
@@ -52462,21 +52783,21 @@ jq
 jq
 jq
 jq
-jq
-jq
-jq
-jq
-jq
-jq
-jq
-jq
-jq
-jq
-jq
-jq
-jq
-jq
-jq
+AW
+eU
+eU
+eU
+eU
+eU
+fB
+Fz
+fL
+fT
+AW
+fo
+Fz
+gq
+Nz
 jq
 jq
 jq
@@ -52719,21 +53040,21 @@ jq
 jq
 jq
 jq
-jq
-jq
-jq
-jq
-jq
-jq
-jq
-jq
-jq
-jq
-jq
-jq
-jq
-jq
-jq
+AW
+bN
+ff
+fk
+eU
+eU
+Fz
+Fz
+Fz
+fV
+AW
+AW
+dL
+AW
+AW
 jq
 jq
 jq
@@ -52976,21 +53297,21 @@ jq
 jq
 jq
 jq
-jq
-jq
-jq
-jq
-jq
-jq
-jq
-jq
-jq
-jq
-jq
-jq
-jq
-jq
-jq
+AW
+AW
+AW
+AW
+AW
+AW
+AW
+fD
+Fz
+Fz
+Fz
+fB
+Fz
+gr
+Nz
 jq
 jq
 jq
@@ -53233,21 +53554,21 @@ jq
 jq
 jq
 jq
-jq
-jq
-jq
-jq
-jq
-jq
-jq
-jq
-jq
-jq
-jq
-jq
-jq
-jq
-jq
+AW
+eW
+AW
+Fz
+fm
+Fz
+Fz
+Fz
+Fz
+Fz
+Fz
+Fz
+Fz
+fQ
+Nz
 jq
 jq
 jq
@@ -53490,21 +53811,21 @@ jq
 jq
 jq
 jq
-jq
-jq
-jq
-jq
-jq
-jq
-jq
-jq
-jq
-jq
-jq
-jq
-jq
-jq
-jq
+AW
+eX
+fj
+gh
+AW
+fn
+fn
+fn
+AW
+AW
+ge
+AW
+AW
+AW
+AW
 jq
 jq
 jq
@@ -53747,21 +54068,21 @@ jq
 jq
 jq
 jq
-jq
-jq
-jq
-jq
-jq
-jq
-jq
-jq
-jq
-jq
-jq
-jq
-jq
-jq
-jq
+AW
+AW
+AW
+Fz
+AW
+fo
+Fz
+gh
+AW
+fW
+vD
+gl
+AW
+gs
+AW
 jq
 jq
 jq
@@ -54004,21 +54325,21 @@ jq
 jq
 jq
 jq
-jq
-jq
-jq
-jq
-jq
-jq
-jq
-jq
-jq
-jq
-jq
-jq
-jq
-jq
-jq
+AW
+eX
+fj
+gh
+AW
+fp
+Fz
+Fz
+fM
+vD
+vD
+vD
+AW
+vD
+AW
 jq
 jq
 jq
@@ -54261,21 +54582,21 @@ jq
 jq
 jq
 jq
-jq
-jq
-jq
-jq
-jq
-jq
-jq
-jq
-jq
-jq
-jq
-jq
-jq
-jq
-jq
+AW
+AW
+AW
+Fz
+AW
+fr
+Fz
+fG
+AW
+fY
+gi
+vD
+gn
+vD
+AW
 jq
 jq
 jq
@@ -54518,21 +54839,21 @@ jq
 jq
 jq
 jq
-jq
-jq
-jq
-jq
-jq
-jq
-jq
-jq
-jq
-jq
-jq
-jq
-jq
-jq
-jq
+AW
+eX
+fj
+gh
+AW
+fu
+Fz
+fI
+AW
+ga
+gj
+gm
+AW
+gt
+AW
 jq
 jq
 jq
@@ -54775,21 +55096,21 @@ jq
 jq
 jq
 jq
-jq
-jq
-jq
-jq
-jq
-jq
-jq
-jq
-jq
-jq
-jq
-jq
-jq
-jq
-jq
+AW
+AW
+AW
+AW
+AW
+AW
+AW
+AW
+AW
+AW
+AW
+AW
+AW
+AW
+AW
 jq
 jq
 jq
