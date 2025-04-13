@@ -4329,7 +4329,8 @@
 	dir = 1;
 	name = "bus console";
 	possible_destinations = "quest_home";
-	shuttleId = "quest"
+	shuttleId = "quest";
+	resistance_flags = 64
 	},
 /turf/open/floor/plating/ashplanet/rocky{
 	layer = 1.98

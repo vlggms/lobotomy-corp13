@@ -163,7 +163,8 @@
 	shuttleId = "quest";
 	layer = 2.8;
 	dir = 8;
-	pixel_x = -20
+	pixel_x = -20;
+	resistance_flags = 64
 	},
 /turf/open/floor/plating/ashplanet{
 	name = "asphalt"
