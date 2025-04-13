@@ -181,7 +181,7 @@
 	name = "high-information eyes"
 	desc = "Many fixers who work in dangerous locations swear by these cybernetic eyes' ability to detect threats ahead of time."
 	eye_color = "F00"
-	sight_flags = SEE_MOBS | SEE_OBJS | SEE_TURFS
+	sight_flags = SEE_MOBS | SEE_TURFS
 	lighting_alpha = LIGHTING_PLANE_ALPHA_MOSTLY_VISIBLE
 	flash_protect = FLASH_PROTECTION_SENSITIVE
 	see_in_dark = 8
