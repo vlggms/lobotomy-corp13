@@ -103,6 +103,11 @@ interface ByondType {
    */
   parseJson(text: string): any;
 
+    /**
+   * Downloads a blob, platform-agnostic
+   */
+  saveBlob(blob: Blob, filename: string, ext: string): void;
+
   /**
    * Loads a stylesheet into the document.
    */

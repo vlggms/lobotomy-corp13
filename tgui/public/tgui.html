@@ -110,6 +110,13 @@
         }
       }
     }
+
+    // If we're a Chromium client, just use the fancy method
+    if (window.cef_to_byond) {
+      cef_to_byond('byond://' + url);
+      return;
+    }
+
     // Perform a standard call via location.href
     if (url.length < 2048) {
       location.href = 'byond://' + url;
@@ -147,6 +154,9 @@
   };
 
   Byond.winget = function (id, propName) {
+    if (id === null) {
+      id = '';
+    }
     var isArray = propName instanceof Array;
     var isSpecific = propName && propName !== '*' && !isArray;
     var promise = Byond.callAsync('winget', {
@@ -162,7 +172,10 @@
   };
 
   Byond.winset = function (id, propName, propValue) {
-    if (typeof id === 'object' && id !== null) {
+    if (id === null) {
+      id = '';
+    }
+    else if (typeof id === 'object' && id !== null) {
       return Byond.call('winset', id);
     }
     var props = {};
@@ -285,7 +298,6 @@
       node.rel = 'stylesheet';
       node.crossOrigin = 'anonymous';
       node.href = url;
-      console.log(node.href)
       // Temporarily set media to something inapplicable
       // to ensure it'll fetch without blocking render
       if (!sync) {
@@ -324,6 +336,37 @@
   Byond.loadCss = function (url, sync) {
     loadAsset({ url: url, sync: sync, type: 'css' });
   };
+
+  Byond.saveBlob = function (blob, filename, ext) {
+    if (window.navigator.msSaveBlob) {
+      window.navigator.msSaveBlob(blob, filename)
+    } else if (window.showSaveFilePicker) {
+      var accept = {};
+      accept[blob.type] = [ext];
+
+      var opts = {
+        suggestedName: filename,
+        types: [
+          {
+            description: "SS13 file",
+            accept: accept,
+          }
+        ]
+      }
+
+      try {
+        window.showSaveFilePicker(opts).then(function (fileHandle) {
+          fileHandle.createWritable().then(function (writeableFileHandle) {
+            writeableFileHandle.write(blob).then(function () {
+              writeableFileHandle.close()
+            }).catch(function (e) { console.error(e) });
+          }).catch(function (e) { console.error(e) });
+        }).catch(function (e) { console.error(e) });
+      } catch (e) { console.error(e) }
+
+    }
+  };
+
 })();
 
 // Global error handling
@@ -401,53 +444,19 @@ window.__updateQueue__ = [];
 window.update = function (message) {
   window.__updateQueue__.push(message);
 };
-// Necessary polyfill to make Webpack code splitting work on IE8
-if (!Function.prototype.bind) (function () {
-  var slice = Array.prototype.slice;
-  Function.prototype.bind = function () {
-    var thatFunc = this, thatArg = arguments[0];
-    var args = slice.call(arguments, 1);
-    if (typeof thatFunc !== 'function') {
-      // closest thing possible to the ECMAScript 5
-      // internal IsCallable function
-      throw new TypeError('Function.prototype.bind - ' +
-        'what is trying to be bound is not callable');
-    }
-    return function () {
-      var funcArgs = args.concat(slice.call(arguments))
-      return thatFunc.apply(thatArg, funcArgs);
-    };
-  };
-})();
-
-if (!Array.prototype['forEach']) {
-  Array.prototype.forEach = function (callback, thisArg) {
-    if (this == null) {
-      throw new TypeError('Array.prototype.forEach called on null or undefined');
-    }
-    var T, k;
-    var O = Object(this);
-    var len = O.length >>> 0;
-    if (typeof callback !== "function") {
-      throw new TypeError(callback + ' is not a function');
-    }
-    if (arguments.length > 1) {
-      T = thisArg;
-    }
-    k = 0;
-    while (k < len) {
-      var kValue;
-      if (k in O) {
-        kValue = O[k];
-        callback.call(T, kValue, k, O);
-      }
-      k++;
-    }
-  };
-}
 </script>
 
 <style>
+blink {
+  animation: 1s linear infinite condemned-blink-effect;
+}
+
+@keyframes condemned-blink-effect {
+  0% { visibility: hidden; }
+  50% { visibility: hidden; }
+  100% { visibility: visible; }
+}
+
 .FatalError {
   display: none;
   position: absolute;
@@ -535,6 +544,7 @@ if (!Array.prototype['forEach']) {
 </head>
 <body>
 
+<!-- tgui:inline-polyfill -->
 <!-- Inline assets -->
 <!-- tgui:assets -->
 
