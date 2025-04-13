@@ -578,6 +578,7 @@
 	enemy_key = null
 	currently_scanned = FALSE
 
+	max_block_heal = 0
 	AdjustProgress(10)
 	AdjustStats(increased_stat, 2)
 

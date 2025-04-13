@@ -5,7 +5,7 @@
 		"You wake up on a bench in an art gallery, completely alone. <br>\
 		Your back hurts.<br>\
 		In the distance you hear a melody, the soft strings echoing in the halls.<br>\
-		You take time to look around the gallery.",w
+		You take time to look around the gallery.",
 
 		"A painting catches your eye. <br>\
 		It is the portrait of a woman, her face completely skinned. <br>\
@@ -14,20 +14,20 @@
 		You get the feeling of someone's gaze on your back. <br>\
 		Turning around, you see shadows moving in the hallway.
 		",
-		//success in coinflip
+		//success in coinflip, High Sloth
 
-		"You take some time to inspect",		//Fail in coinflip
+		"You take some time to inspect a beautiful watercolor of the sea.  <br>\
+		Some time to enjoy an excellent sculpture of the human form, <br>\
+		And some time to enjoy a nap on the bench again.",		//Fail in coinflip, Low Sloth
 		)
 
 /datum/adventure_event/skin_woman/EventChoiceFormat(obj/machinery/M, mob/living/carbon/human/H)
 	switch(cords)
 		if(1)
 			CHANCE_BUTTON_FORMAT(ReturnStat(SLOTH_STAT), "SLOTH", M)
-			. += CoinFlipping(M)
 			return
 		if(2)
-			AdjustCurrency(-1)
-			AdjustHitPoint(50)
+			RewardKey("SHE KNOWS")
 		if(3)
 			AdjustStatNum(SLOTH_STAT,2)
 	return ..()

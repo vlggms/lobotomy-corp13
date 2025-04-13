@@ -1,5 +1,8 @@
 /**
 	*The first N-Corp Event. Simple, you eat the bread and you get some health and lose a stat.
+
+	*Writing wise, N-Corp has two themes: Making friends and being a monster.
+	*Statwise, N-Corp has two stats, primary of Pride and secondary of Wrath
 	*/
 /datum/adventure_event/ncorp_events
 	name = "N-Corporation: Bread"
