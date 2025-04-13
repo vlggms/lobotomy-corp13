@@ -252,7 +252,7 @@
 		/obj/item/organ/cyberimp/arm/briefcase = 100,
 		/obj/item/organ/cyberimp/arm/surgery = 100,
 		/obj/item/organ/cyberimp/arm/overdrive = 100,
-		/obj/item/organ/cyberimp/arm/observation = 100,
+		/obj/item/organ/eyes/robotic/infofixer = 100,
 		/obj/item/extra_arm = 100,
 		/obj/item/extra_arm/double = 100,
 	)
