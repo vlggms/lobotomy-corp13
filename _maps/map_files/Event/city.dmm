@@ -1337,9 +1337,6 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/facility/dark,
 /area/city)
-"ms" = (
-/turf/closed/indestructible/reinforced,
-/area/space)
 "mv" = (
 /obj/structure/chair/wood,
 /turf/open/floor/vault,
@@ -1978,7 +1975,7 @@
 /obj/effect/decal/cleanable/dirt,
 /obj/item/storage/firstaid/regular,
 /turf/open/floor/facility/white,
-/area/space)
+/area/city)
 "rV" = (
 /obj/effect/landmark/cityloot,
 /obj/item/stack/spacecash/c100,
@@ -2579,7 +2576,7 @@
 /obj/item/reagent_containers/hypospray/medipen/mental,
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/facility/white,
-/area/space)
+/area/city)
 "wU" = (
 /obj/machinery/light{
 	dir = 1
@@ -4100,7 +4097,7 @@
 "Kz" = (
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/facility/white,
-/area/space)
+/area/city)
 "KF" = (
 /obj/structure/table/wood,
 /obj/item/reagent_containers/food/drinks/drinkingglass,
@@ -4110,7 +4107,7 @@
 /obj/item/reagent_containers/hypospray/medipen/mental,
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/facility/white,
-/area/space)
+/area/city)
 "KK" = (
 /obj/structure/table,
 /obj/item/reagent_containers/food/condiment/enzyme,
@@ -4552,7 +4549,7 @@
 /obj/effect/decal/cleanable/dirt,
 /obj/item/reagent_containers/hypospray/medipen/salacid,
 /turf/open/floor/facility/white,
-/area/space)
+/area/city)
 "Oc" = (
 /obj/structure/table/wood,
 /turf/open/floor/eighties,
@@ -53625,7 +53622,7 @@ OD
 rU
 wT
 rU
-ms
+OD
 lV
 OD
 nT
@@ -53882,7 +53879,7 @@ aZ
 KG
 Kz
 NZ
-ms
+OD
 lV
 OD
 nT
@@ -54139,7 +54136,7 @@ OD
 Kz
 NZ
 Kz
-ms
+OD
 lV
 OD
 OD
@@ -54396,7 +54393,7 @@ OD
 wT
 rU
 wT
-ms
+OD
 lV
 lV
 OD
@@ -54650,10 +54647,10 @@ SV
 SV
 SV
 OD
-ms
-ms
-ms
-ms
+OD
+OD
+OD
+OD
 lV
 lV
 lV
