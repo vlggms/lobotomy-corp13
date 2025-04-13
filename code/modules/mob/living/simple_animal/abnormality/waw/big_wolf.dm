@@ -40,6 +40,7 @@
 	)
 	work_damage_amount = 12
 	work_damage_type = RED_DAMAGE
+	chem_type = /datum/reagent/abnormality/sin/gluttony
 	melee_damage_type = RED_DAMAGE
 	melee_damage_lower = 20
 	melee_damage_upper = 40

@@ -25,6 +25,7 @@
 	melee_damage_upper = 25
 	damage_coeff = list(RED_DAMAGE = 0.5, WHITE_DAMAGE = 1, BLACK_DAMAGE = 2, PALE_DAMAGE = 2)
 	speak_emote = list("states")
+	speech_span = SPAN_ROBOT
 	vision_range = 14
 	aggro_vision_range = 20
 	can_breach = TRUE
@@ -38,6 +39,7 @@
 	)
 	work_damage_amount = 10
 	work_damage_type = RED_DAMAGE
+	chem_type = /datum/reagent/abnormality/sin/wrath
 
 	ego_list = list(
 		/datum/ego_datum/weapon/grinder,
@@ -88,11 +90,11 @@
 	button_icon_toggle_deactivated = "helper_toggle0"
 
 
-/mob/living/simple_animal/hostile/abnormality/helper/AttackingTarget()
+/mob/living/simple_animal/hostile/abnormality/helper/AttackingTarget(atom/attacked_target)
 	if(charging)
 		return
 	if(dash_cooldown <= world.time && prob(10) && !client)
-		helper_dash(target)
+		helper_dash(attacked_target)
 		return
 	return ..()
 

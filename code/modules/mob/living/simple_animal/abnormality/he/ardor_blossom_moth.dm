@@ -17,7 +17,7 @@
 	stat_attack = HARD_CRIT
 	melee_damage_lower = 11
 	melee_damage_upper = 12
-	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 0.5, WHITE_DAMAGE = 1, BLACK_DAMAGE = 0.7, PALE_DAMAGE = 2)
+	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 0.5, WHITE_DAMAGE = 1, BLACK_DAMAGE = 0.7, PALE_DAMAGE = 2, FIRE = 0.2)
 	speak_emote = list("flutters")
 	vision_range = 14
 	aggro_vision_range = 20
@@ -34,7 +34,7 @@
 	)
 	work_damage_amount = 7
 	work_damage_type = RED_DAMAGE
-	chem_type = /datum/reagent/abnormality/abno_oil
+	chem_type = /datum/reagent/abnormality/sin/wrath
 	patrol_cooldown_time = 3 SECONDS
 
 	ego_list = list(

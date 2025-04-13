@@ -14,6 +14,31 @@ SUBSYSTEM_DEF(maptype)
 	//All the map tags that delete all jobs and replace them with others.
 	var/list/clearmaps = list("rcorp", "city", "wcorp", "limbus_labs", "fixers", "office")
 
+	//LC13 Maps, this enables Traits and cores
+	var/list/lc_maps = list("standard", "fishing")
+
+	//LC13 Gamemode Traits
+	var/list/lc_trait = list(
+						//Actual traits
+						FACILITY_TRAIT_MOBA_AGENTS = 10, 		//Agents pick a MOBA class
+						FACILITY_TRAIT_CRITICAL_HITS = 10,		//EGO can Critical hit.
+						FACILITY_TRAIT_DEPARTMENTAL_BUFFS = 10,	//Departmental Agent Buffs
+						FACILITY_TRAIT_ABNO_BLITZ = 3,			//The game is significantly Faster, starts after noon.
+
+						//Joke stuff is below, should all be low
+						FACILITY_TRAIT_WORKING_CLERKS = 2,		//For the joke
+						FACILITY_TRAIT_CALLBACK = 2,			//Brings back 2 Classic bugs in Backpack EGO and wounds
+						FACILITY_TRAIT_JOKE_ABNOS = 1,			// Okay it's funny
+						FACILITY_TRAIT_VISIBLE_GHOSTS = 1,		// Very Metagamey but funny
+						FACILITY_TRAIT_PLAYABLES = 1,			//I'm going to kill myself
+
+						//Disabled traits becuase these suck lmao
+						//FACILITY_TRAIT_LEGACY_PALE = 0,			//You take 90% damage if pale damage hits you
+						//FACILITY_TRAIT_FUCKED_SELECTION = 0,	//The abno selection is randomized
+						)
+
+	var/chosen_trait = "No Trait"
+
 	//All the map tags that are combat maps and need abnos to breach immediately
 	var/list/combatmaps = list("rcorp", "wcorp", "limbus_labs", "fixers", "office")
 
@@ -24,7 +49,7 @@ SUBSYSTEM_DEF(maptype)
 	var/list/autoend = list("rcorp", "wcorp", "limbus_labs", "fixers", "office")
 
 	//This map is city stuff
-	var/list/citymaps = list("wonderlabs", "city", "fixers", "office")
+	var/list/citymaps = list("wonderlabs", "city", "fixers", "office", "lcorp_city")
 
 	//This is for maps that incorporate space
 	var/list/spacemaps = list("skeld")
@@ -41,6 +66,18 @@ SUBSYSTEM_DEF(maptype)
 
 /datum/controller/subsystem/maptype/Initialize()
 	..()
+	if(SSmaptype.maptype in SSmaptype.lc_maps)
+		if(prob(40))	//40% chance to not run a station trait
+			return
+		chosen_trait = pickweight(lc_trait)
+		switch(chosen_trait)
+			if(FACILITY_TRAIT_VISIBLE_GHOSTS)
+				var/msg = span_warning("You suddenly feel extremely obvious...")
+				set_observer_default_invisibility(0, msg)
+
+			if(FACILITY_TRAIT_PLAYABLES)
+				if(!SSlobotomy_corp.enable_possession)
+					SSlobotomy_corp.enable_possession = TRUE
 
 	//Badda Bing Badda Da. This makes the latejoin menu cleaner
 	switch(SSmaptype.maptype)
@@ -58,6 +95,8 @@ SUBSYSTEM_DEF(maptype)
 			departments = list("Command", "R Corp", "Medical")
 		if("wcorp")
 			departments = list("Command", "W Corp")
+		if("lcorp_city")
+			departments = list("Command", "Security", "Service", "Association", "Fixers", "Medical")
 
 	var/list/all_jobs = subtypesof(/datum/job)
 	if(!all_jobs.len)

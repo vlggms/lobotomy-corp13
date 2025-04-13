@@ -30,7 +30,9 @@
 /turf/open/floor/carpet/stellar,
 /area/city/backstreets_room)
 "k" = (
-/mob/living/simple_animal/hostile/ordeal/steel_dawn,
+/obj/effect/spawner/mobspawner/steel_dawn{
+	max_spawns = 2
+	},
 /turf/open/floor/carpet/stellar,
 /area/city/backstreets_room)
 "m" = (
@@ -51,10 +53,9 @@
 /turf/open/floor/carpet/royalblack,
 /area/city/backstreets_room)
 "q" = (
-/obj/structure/chair/wood{
-	dir = 8
+/obj/effect/spawner/mobspawner/steel_dawn{
+	max_spawns = 2
 	},
-/mob/living/simple_animal/hostile/ordeal/steel_dawn,
 /turf/open/floor/carpet/royalblack,
 /area/city/backstreets_room)
 "s" = (
@@ -70,7 +71,10 @@
 /turf/open/floor/plating,
 /area/city/backstreets_room)
 "v" = (
-/mob/living/simple_animal/hostile/ordeal/steel_dawn/steel_noon,
+/obj/effect/spawner/mobspawner/steel_noon{
+	max_spawns = 1;
+	radius = 0
+	},
 /turf/open/floor/carpet/stellar,
 /area/city/backstreets_room)
 "x" = (
@@ -191,8 +195,8 @@ Q
 (8,1,1) = {"
 a
 W
-q
-q
+W
+W
 x
 Q
 "}
@@ -200,7 +204,7 @@ Q
 u
 x
 p
-x
+q
 x
 Q
 "}

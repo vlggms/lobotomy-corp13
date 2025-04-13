@@ -42,6 +42,7 @@
 	)
 	work_damage_amount = 7
 	work_damage_type = BLACK_DAMAGE
+	chem_type = /datum/reagent/abnormality/sin/lust
 
 	can_breach = TRUE
 	start_qliphoth = 2
@@ -234,6 +235,8 @@
 	return ..()
 
 /mob/living/simple_animal/hostile/abnormality/hatred_queen/AttackingTarget(atom/attacked_target)
+	if(!target)
+		GiveTarget(attacked_target)
 	return OpenFire(attacked_target)
 
 /mob/living/simple_animal/hostile/abnormality/hatred_queen/OpenFire()
@@ -492,6 +495,10 @@
 			var/obj/effect/temp_visual/L = new /obj/effect/temp_visual/revenant(TF)
 			L.color = current_beam.visuals.color
 		for(var/turf/TF in hit_line)
+			if(SSmaptype.maptype == "limbus_labs")
+				if(!friendly)
+					for(var/obj/structure/obstacle in range(beam_stage-1, TF))
+						obstacle.take_damage(11, BLACK_DAMAGE)
 			for(var/mob/living/L in range(beam_stage-1, TF))
 				if(L.status_flags & GODMODE)
 					continue

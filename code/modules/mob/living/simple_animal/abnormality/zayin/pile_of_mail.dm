@@ -17,6 +17,7 @@
 
 	work_damage_amount = 5
 	work_damage_type = RED_DAMAGE
+	chem_type = /datum/reagent/abnormality/sin/pride
 
 	gift_type =  /datum/ego_gifts/mail
 	gift_message = "A postage stamp makes its way to your hands. Without thinking, you stick it on your cheek."

@@ -9,6 +9,7 @@
 	portrait = "siren"
 	maxHealth = 1000
 	health = 1000
+	speak_emote = list("plays")
 	threat_level = HE_LEVEL
 	start_qliphoth = 5
 	minimum_distance = 3 //runs away during pink midnight
@@ -20,6 +21,7 @@
 	)
 	work_damage_amount = 11
 	work_damage_type = WHITE_DAMAGE
+	chem_type = /datum/reagent/abnormality/sin/sloth
 
 	ego_list = list(
 		/datum/ego_datum/weapon/song,

@@ -1108,7 +1108,6 @@
 	tick_interval = 5 SECONDS
 	consumed_on_threshold = FALSE
 	var/new_stack = FALSE
-	var/burn_res = 0
 	var/safety = TRUE
 
 /atom/movable/screen/alert/status_effect/lc_burn
@@ -1131,12 +1130,10 @@
 		qdel(src)
 	to_chat(owner, "<span class='warning'>The flame consumes you!!</span>")
 	owner.playsound_local(owner, 'sound/effects/burn.ogg', 50, TRUE)
-	Check_Resist(owner)
 	if(ishuman(owner))
-		owner.adjustFireLoss(max(0, stacks - burn_res))
+		owner.apply_damage(stacks, BURN, null, owner.run_armor_check(null, BURN))
 	else
-		owner.adjustBruteLoss(stacks*4) // x4 on non humans (Average burn stack is 20. 80/5 sec, extra 16 pure dps)
-	new /obj/effect/temp_visual/damage_effect/burn(get_turf(owner))
+		owner.apply_damage(stacks*4, BURN, null, owner.run_armor_check(null, BURN)) // x4 on non humans (Average burn stack is 20. 80/5 sec, extra 16 pure dps)
 
 	//Deletes itself after 2 tick if no new burn stack was given
 	if(safety)
@@ -1147,24 +1144,10 @@
 		else
 			qdel(src)
 
-//Check armor
-/datum/status_effect/stacking/lc_burn/proc/Check_Resist(mob/living/owner)
-	//I was hesistant to put a new var for this check in suit.dm, so I just check for each armor instead
-	var/mob/living/carbon/human/H = owner
-	var/obj/item/clothing/suit/armor/ego_gear/aleph/waxen/C = H.get_item_by_slot(ITEM_SLOT_OCLOTHING)
-	var/obj/item/clothing/suit/armor/ego_gear/realization/desperation/D = H.get_item_by_slot(ITEM_SLOT_OCLOTHING)
-	if(istype(C))
-		burn_res = 15
-	else if(istype(D))
-		burn_res = 25
-	else
-		burn_res = 0
-
 //Update burn appearance
 /datum/status_effect/stacking/lc_burn/proc/Update_Burn_Overlay(mob/living/owner)
-	Check_Resist(owner)
-	if(stacks > burn_res && !(owner.on_fire) && ishuman(owner))
-		if(stacks >= 50)
+	if(stacks && !(owner.on_fire) && ishuman(owner))
+		if(stacks >= 15)
 			owner.cut_overlay(mutable_appearance('icons/mob/OnFire.dmi', "Generic_mob_burning", -FIRE_LAYER))
 			owner.cut_overlay(mutable_appearance('icons/mob/OnFire.dmi', "Standing", -FIRE_LAYER))
 			owner.add_overlay(mutable_appearance('icons/mob/OnFire.dmi', "Standing", -FIRE_LAYER))
@@ -1195,7 +1178,6 @@
 	tick_interval = 5 SECONDS
 	consumed_on_threshold = FALSE
 	var/new_stack = FALSE
-	var/burn_res = 0
 	var/safety = TRUE
 	var/bleed_cooldown = 20
 	var/bleed_time
@@ -1328,3 +1310,71 @@
 	REMOVE_TRAIT(owner, TRAIT_PHYSICAL_HEALING_BLOCKED, STATUS_EFFECT_TRAIT)
 	if(ishuman(owner))
 		REMOVE_TRAIT(owner, TRAIT_SANITY_HEALING_BLOCKED, STATUS_EFFECT_TRAIT)
+
+// Tremor
+/datum/status_effect/stacking/lc_tremor
+	id = "lc_tremor"
+	alert_type = /atom/movable/screen/alert/status_effect/lc_tremor
+	max_stacks = 50
+	tick_interval = 10 SECONDS
+	consumed_on_threshold = FALSE
+	var/new_stack = TRUE
+
+/atom/movable/screen/alert/status_effect/lc_tremor
+	name = "Tremor"
+	desc = "You're unsteady on your feet, and move a bit slower."
+	icon = 'ModularTegustation/Teguicons/status_sprites.dmi'
+	icon_state = "tremor"
+
+//Slowdown on stack, prepares tremor burst
+/datum/status_effect/stacking/lc_tremor/on_apply()
+	. = ..()
+	owner.add_or_update_variable_movespeed_modifier(/datum/movespeed_modifier/tremor, multiplicative_slowdown = stacks * 0.4)
+
+/datum/status_effect/stacking/lc_tremor/on_remove()
+	owner.remove_movespeed_modifier(/datum/movespeed_modifier/tremor)
+	return ..()
+
+/datum/status_effect/stacking/lc_tremor/add_stacks(stacks)
+	. = ..()
+	owner.add_or_update_variable_movespeed_modifier(/datum/movespeed_modifier/tremor, multiplicative_slowdown = stacks * 0.4)
+
+/datum/status_effect/stacking/lc_tremor/can_have_status()
+	return (owner.stat != DEAD || !(owner.status_flags & GODMODE))
+
+// The Stack Decaying
+/datum/status_effect/stacking/lc_tremor/tick()
+	if(new_stack)
+		new_stack = FALSE
+	else
+		qdel(src)
+
+/datum/status_effect/stacking/lc_tremor/proc/TremorBurst()
+	new /obj/effect/temp_visual/weapon_stun/tremorburst(get_turf(owner))
+	playsound(owner, 'sound/effects/tremorburst.ogg', 50, FALSE)
+	if(ishuman(owner))
+		owner.Knockdown(stacks)
+		qdel(src)
+		return
+	owner.adjustBruteLoss(5 * stacks)
+	qdel(src)
+
+//Mob Proc
+/mob/living/proc/apply_lc_tremor(stacks, tremorburst)
+	var/datum/status_effect/stacking/lc_tremor/T = src.has_status_effect(/datum/status_effect/stacking/lc_tremor)
+	if(!T)
+		src.apply_status_effect(/datum/status_effect/stacking/lc_tremor, stacks)
+		new /obj/effect/temp_visual/damage_effect/tremor(get_turf(src))
+		return
+
+	if(T.stacks < tremorburst)
+		T.add_stacks(stacks)
+		new /obj/effect/temp_visual/damage_effect/tremor(get_turf(src))
+		T.new_stack = TRUE
+		return
+	T.TremorBurst()
+
+
+/datum/movespeed_modifier/tremor
+	multiplicative_slowdown = 0
+	variable = TRUE

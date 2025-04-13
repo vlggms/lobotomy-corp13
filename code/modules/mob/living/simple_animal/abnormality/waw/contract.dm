@@ -19,6 +19,7 @@
 	start_qliphoth = 2
 	work_damage_amount = 8
 	work_damage_type = PALE_DAMAGE	//Lawyers take your fucking soul
+	chem_type = /datum/reagent/abnormality/sin/lust
 
 	ego_list = list(
 		/datum/ego_datum/weapon/infinity,

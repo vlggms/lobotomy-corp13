@@ -8,6 +8,8 @@
 	portrait = "fan"
 	maxHealth = 400
 	health = 400
+	speak_emote = list("states")
+	speech_span = SPAN_ROBOT
 	threat_level = HE_LEVEL
 	start_qliphoth = 1
 	work_chances = list(
@@ -18,6 +20,7 @@
 	)
 	work_damage_amount = 5
 	work_damage_type = RED_DAMAGE
+	chem_type = /datum/reagent/abnormality/sin/sloth
 	max_boxes = 12
 
 	ego_list = list(

@@ -97,6 +97,7 @@
 /datum/outfit/kcorp/level3
 	name = "K Corp Class 3"
 	suit = /obj/item/clothing/suit/armor/ego_gear/city/kcorp_l3/ert
+	head = /obj/item/clothing/head/ego_hat/helmet/kcorp_l3
 
 /datum/outfit/kcorp/level3/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
 	var/belt = pick(
@@ -113,6 +114,7 @@
 
 /datum/outfit/kcorp/level3/kill
 	name = "K Corp Asset Protection Staff"
+	glasses = /obj/item/clothing/glasses/sunglasses
 	r_hand = /obj/item/grenade/spawnergrenade/kcorpdrone
 	l_pocket = /obj/item/ksyringe
 	r_pocket = /obj/item/krevive

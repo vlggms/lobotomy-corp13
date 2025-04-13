@@ -82,11 +82,7 @@
 	var/harvest_phrase_third = "%PERSON harvests... something... into %VESSEL."
 	// Dummy chemicals - called if chem_type is null.
 	var/list/dummy_chems = list(
-		/datum/reagent/abnormality/nutrition,
-		/datum/reagent/abnormality/cleanliness,
-		/datum/reagent/abnormality/consensus,
-		/datum/reagent/abnormality/amusement,
-		/datum/reagent/abnormality/violence,
+		/datum/reagent/abnormality/sin/emptiness,	//Set to a useless dummy chem rn. Should actually be replaced on every abno
 	)
 	// Increased Abno appearance chance
 	/// Assoc list, you do [path] = [probability_multiplier] for each entry
@@ -174,7 +170,7 @@
 	else
 		gift_message += "\nYou are granted a gift by [src]!"
 
-	if(secret_chance && (prob(1)))
+	if(secret_chance && (prob(1) || SSmaptype.chosen_trait == FACILITY_TRAIT_JOKE_ABNOS))
 		InitializeSecretIcon()
 
 	//Abnormalities have no name here. And we don't want nonsentient ones to breach

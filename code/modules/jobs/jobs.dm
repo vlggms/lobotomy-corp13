@@ -14,6 +14,8 @@ GLOBAL_LIST_INIT(command_positions, list(
 	"Doctor",
 	"Hana Administrator",
 	"Association Section Director",
+	"Association Assistant Director",
+	"Subsidary Office Director",
 	"Index Messenger",
 	"Blade Lineage Cutthroat",
 	"Grand Inquisitor",
@@ -72,7 +74,7 @@ GLOBAL_LIST_INIT(medical_positions, list(
 	"Nurse",
 	"Paramedic",
 	"Medical Fixer Assistant",
-	"Proshetics Surgeon",
+	"Prosthetics Surgeon",
 	))
 
 
@@ -209,7 +211,6 @@ GLOBAL_LIST_INIT(fixer_positions, list(
 	"Fixer",
 	"Rat", // most fitting, somehow
 
-	"Fixer",
 	"Office Fixer",
 ))
 

@@ -38,6 +38,7 @@
 	)
 	work_damage_amount = 8
 	work_damage_type = BLACK_DAMAGE
+	chem_type = /datum/reagent/abnormality/sin/envy
 
 	ego_list = list(
 		/datum/ego_datum/weapon/stem,
@@ -172,6 +173,8 @@
 		TryTeleport()
 
 /mob/living/simple_animal/hostile/abnormality/snow_whites_apple/AttackingTarget(atom/attacked_target)
+	if(!target)
+		GiveTarget(attacked_target)
 	return OpenFire()
 
 /mob/living/simple_animal/hostile/abnormality/snow_whites_apple/OpenFire()

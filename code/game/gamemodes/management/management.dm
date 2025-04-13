@@ -108,3 +108,40 @@
 		ABNORMALITY_ORIGIN_ARTBOOK,
 		ABNORMALITY_ORIGIN_ORIGINAL
 		)
+
+/datum/game_mode/management/joke
+	name = "L Corp - Joke Abnormalities"
+	config_tag = "joke"
+	votable = 0 //God no
+
+	announce_span = "notice"
+	announce_text = "Manage a wide cast of abnormalities from all normal sources, and joke abnormalities!"
+	abno_types = list(
+		ABNORMALITY_ORIGIN_LOBOTOMY,
+		ABNORMALITY_ORIGIN_ALTERED,
+		ABNORMALITY_ORIGIN_ARTBOOK,
+		ABNORMALITY_ORIGIN_WONDERLAB,
+		ABNORMALITY_ORIGIN_RUINA,
+		ABNORMALITY_ORIGIN_LIMBUS,
+		ABNORMALITY_ORIGIN_ORIGINAL,
+		ABNORMALITY_ORIGIN_JOKE,
+		)
+
+/datum/game_mode/management/community
+	name = "L Corp - Community Abnormalities"
+	config_tag = "community"
+	votable = 0 //God no
+
+	announce_span = "notice"
+	announce_text = "Manage a wide cast of abnormalities from all normal sources, and community abnormalities!"
+	abno_types = list(
+		ABNORMALITY_ORIGIN_LOBOTOMY,
+		ABNORMALITY_ORIGIN_ALTERED,
+		ABNORMALITY_ORIGIN_ARTBOOK,
+		ABNORMALITY_ORIGIN_WONDERLAB,
+		ABNORMALITY_ORIGIN_RUINA,
+		ABNORMALITY_ORIGIN_LIMBUS,
+		ABNORMALITY_ORIGIN_ORIGINAL,
+		ABNORMALITY_ORIGIN_COMMUNITY
+		)
+

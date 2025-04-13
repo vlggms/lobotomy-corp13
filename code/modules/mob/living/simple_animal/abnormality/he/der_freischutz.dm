@@ -12,7 +12,7 @@
 	minimum_distance = 10
 	retreat_distance = 2
 	move_to_delay = 6
-	damage_coeff = list(RED_DAMAGE = 1, WHITE_DAMAGE = 2, BLACK_DAMAGE = 0.7, PALE_DAMAGE = 0.5)
+	damage_coeff = list(RED_DAMAGE = 1, WHITE_DAMAGE = 2, BLACK_DAMAGE = 0.7, PALE_DAMAGE = 0.5, FIRE = 0.5)
 	stat_attack = HARD_CRIT
 	vision_range = 28 // Fit for a marksman.
 	aggro_vision_range = 40
@@ -26,6 +26,7 @@
 	)
 	work_damage_amount = 8 // This was halved what it should be.
 	work_damage_type = BLACK_DAMAGE
+	chem_type = /datum/reagent/abnormality/sin/pride
 
 	ego_list = list(
 		/datum/ego_datum/weapon/magicbullet,
@@ -103,6 +104,8 @@
 
 
 /mob/living/simple_animal/hostile/abnormality/der_freischutz/AttackingTarget(atom/attacked_target)
+	if(!target)
+		GiveTarget(attacked_target)
 	return OpenFire()
 
 /mob/living/simple_animal/hostile/abnormality/der_freischutz/OpenFire()

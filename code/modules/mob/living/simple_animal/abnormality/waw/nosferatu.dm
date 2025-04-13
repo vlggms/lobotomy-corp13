@@ -28,9 +28,9 @@
 	stat_attack = HARD_CRIT
 	work_damage_amount = 8
 	work_damage_type = RED_DAMAGE
+	chem_type = /datum/reagent/abnormality/sin/envy
 	attack_verb_continuous = "claws"
 	attack_verb_simple = "claw"
-	faction = list("hostile")
 	attack_sound = 'sound/abnormalities/nosferatu/attack.ogg'
 	can_breach = TRUE
 	start_qliphoth = 3
@@ -72,7 +72,10 @@
 	var/bat_spawn_number = 3
 
 	//PLAYABLES ATTACKS
-	attack_action_types = list(/datum/action/cooldown/nosferatu_banquet)
+	attack_action_types = list(
+		/datum/action/cooldown/nosferatu_banquet,
+		/datum/action/innate/change_icon_nosf,
+	)
 
 //Playables buttons
 /datum/action/cooldown/nosferatu_banquet
@@ -82,6 +85,24 @@
 	check_flags = AB_CHECK_CONSCIOUS
 	transparent_when_unavailable = TRUE
 	cooldown_time = NOSFERATU_BANQUET_COOLDOWN //12 seconds
+
+/datum/action/innate/change_icon_nosf
+	name = "Toggle Icon"
+	desc = "Toggle your icon between breached and contained. (Works only for Limbus Company Labratories)"
+
+/datum/action/innate/change_icon_nosf/Activate()
+	. = ..()
+	if(SSmaptype.maptype == "limbus_labs")
+		owner.icon = 'ModularTegustation/Teguicons/64x64.dmi'
+		owner.icon_state = "nosferatu"
+		active = 1
+
+/datum/action/innate/change_icon_nosf/Deactivate()
+	. = ..()
+	if(SSmaptype.maptype == "limbus_labs")
+		owner.icon = 'ModularTegustation/Teguicons/64x64.dmi'
+		owner.icon_state = "nosferatu_breach"
+		active = 0
 
 /datum/action/cooldown/nosferatu_banquet/Trigger()
 	if(!..())
@@ -201,6 +222,8 @@
 	else
 		bloodlust -= 1
 	AdjustThirst(40)
+	if(SSmaptype.maptype == "limbus_labs")
+		return ..()
 	if(H.health < 0 || H.stat == DEAD)
 		H.Drain()
 	return ..()
@@ -232,6 +255,11 @@
 		var/obj/effect/temp_visual/smash_effect/bloodeffect =  new(T)
 		bloodeffect.color = "#b52e19"
 		for(var/mob/living/carbon/human/H in HurtInTurf(T, list(), banquet_damage, BLACK_DAMAGE, null, TRUE, FALSE, TRUE, FALSE, TRUE, TRUE))
+			if(SSmaptype.maptype == "limbus_labs")
+				playsound(get_turf(src), 'sound/abnormalities/nosferatu/attack_special.ogg', 50, 0, 5)
+				SLEEP_CHECK_DEATH(3)
+				can_act = TRUE
+				return
 			if(H.health < 0)
 				H.Drain()
 	playsound(get_turf(src), 'sound/abnormalities/nosferatu/attack_special.ogg', 50, 0, 5)
@@ -246,7 +274,6 @@
 	icon_state = "nosferatu_mob"
 	icon_living = "nosferatu_mob"
 	icon_dead = "nosferatu_mob"
-	faction = list("hostile")
 	is_flying_animal = TRUE
 	density = FALSE
 	status_flags = MUST_HIT_PROJECTILE // Lets them be shot

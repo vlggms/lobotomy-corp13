@@ -54,6 +54,9 @@ SUBSYSTEM_DEF(abnormality_queue)
 		flags |= SS_NO_FIRE
 		return ..() // Sleepy time
 
+	if(SSmaptype.chosen_trait == FACILITY_TRAIT_ABNO_BLITZ)
+		next_abno_spawn_time/=2
+
 	RegisterSignal(SSdcs, COMSIG_GLOB_ORDEAL_END, PROC_REF(OnOrdealEnd))
 	next_abno_spawn_time -= min(2, rooms_start * 0.05) MINUTES // 20 rooms will decrease wait time by 1 Minute
 	return ..()
@@ -83,6 +86,21 @@ SUBSYSTEM_DEF(abnormality_queue)
 
 // Abno level selection
 /datum/controller/subsystem/abnormality_queue/proc/SelectAvailableLevels()
+
+	//For the blitz gamemode, only pick Waw and Aleph enemies. There should only be 80+ agents here
+	if(SSmaptype.chosen_trait == FACILITY_TRAIT_ABNO_BLITZ)
+		if(spawned_abnos >= rooms_start * 0.5)
+			available_levels = list(WAW_LEVEL, ALEPH_LEVEL)
+		else
+			available_levels = list(WAW_LEVEL)
+
+		// Roll the abnos from available levels
+		if(!ispath(queued_abnormality) && length(possible_abnormalities))
+			PickAbno()
+
+		return	//And return
+
+
 	// ALEPH and WAW
 	if(spawned_abnos >= rooms_start * 0.75)
 		if(spawned_abnos >= rooms_start - 2) // Last two picks will always be ALEPHs

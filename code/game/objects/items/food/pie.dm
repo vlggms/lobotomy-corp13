@@ -272,3 +272,82 @@
 	tastes = list("meat...?" = 1, "pie" = 1, "meat" = 1)
 	foodtypes = GRAIN | MEAT
 
+/obj/item/food/pie/tarte_tatin
+	name = "tarte tatin"
+	desc = "A pie with caramelized apple slices on top."
+	icon_state = "tarte_tatin"
+
+	food_reagents = list(/datum/reagent/consumable/nutriment = 20, /datum/reagent/consumable/nutriment/vitamin = 10)
+	tastes = list("sweetness" = 2, "apple" = 2, "caramel" = 2)
+	foodtypes = GRAIN | DAIRY | FRUIT | SUGAR
+
+/obj/item/food/pie/tarte_tatin/MakeProcessable()
+	AddElement(/datum/element/processable, TOOL_KNIFE, /obj/item/food/pieslice/tarte_tatin, 5, 30)
+
+/obj/item/food/pieslice/tarte_tatin
+	name = "tarte tatin slice"
+	desc = "A slice of tarte tatin."
+	icon_state = "tarte_tatin_slice"
+	food_reagents = list(/datum/reagent/consumable/nutriment = 4, /datum/reagent/consumable/nutriment/vitamin = 2)
+	tastes = list("sweetness" = 2, "apple" = 2, "caramel" = 2)
+	foodtypes = GRAIN | DAIRY | FRUIT | SUGAR
+
+/obj/item/food/pie/chocolate
+	name = "chocolate pie"
+	desc = "A pie simply made with chocolate."
+	icon_state = "chocolate_pie"
+
+	food_reagents = list(/datum/reagent/consumable/nutriment = 15, /datum/reagent/consumable/nutriment/vitamin = 8)
+	tastes = list("sweetness" = 2, "chocolate" = 4)
+	foodtypes = GRAIN | DAIRY | FRUIT | SUGAR
+
+/obj/item/food/pie/chocolate/MakeProcessable()
+	AddElement(/datum/element/processable, TOOL_KNIFE, /obj/item/food/pieslice/chocolate, 5, 30)
+
+/obj/item/food/pieslice/chocolate
+	name = "chocolate pie slice"
+	desc = "A slice of chocolate pie."
+	icon_state = "chocolate_pie_slice"
+	food_reagents = list(/datum/reagent/consumable/nutriment = 3, /datum/reagent/consumable/nutriment/vitamin = 2)
+	tastes = list("sweetness" = 2, "chocolate" = 4)
+	foodtypes = GRAIN | DAIRY | FRUIT | SUGAR
+
+/obj/item/food/pie/flan
+	name = "flan"
+	desc = "A flan made with eggs, milk and vanilla, sweet."
+	icon_state = "flan"
+
+	food_reagents = list(/datum/reagent/consumable/nutriment = 20, /datum/reagent/consumable/nutriment/vitamin = 10)
+	tastes = list("sweetness" = 2, "vanilla" = 2)
+	foodtypes = GRAIN | DAIRY | FRUIT | SUGAR
+
+/obj/item/food/pie/flan/MakeProcessable()
+	AddElement(/datum/element/processable, TOOL_KNIFE, /obj/item/food/pieslice/flan, 5, 30)
+
+/obj/item/food/pieslice/flan
+	name = "flan slice"
+	desc = "A slice of flan."
+	icon_state = "flan_slice"
+	food_reagents = list(/datum/reagent/consumable/nutriment = 4, /datum/reagent/consumable/nutriment/vitamin = 2)
+	tastes = list("sweetness" = 2, "vanilla" = 2)
+	foodtypes = GRAIN | DAIRY | FRUIT | SUGAR
+
+/obj/item/food/pie/lemon_meringue
+	name = "lemon meringue pie"
+	desc = "A lemon pie with dollops of meringue on top."
+	icon_state = "lemon_meringue_pie"
+
+	food_reagents = list(/datum/reagent/consumable/nutriment = 20, /datum/reagent/consumable/nutriment/vitamin = 10)
+	tastes = list("sweetness" = 2, "lemon" = 2, "meringue" = 2)
+	foodtypes = GRAIN | DAIRY | FRUIT | SUGAR
+
+/obj/item/food/pie/lemon_meringue/MakeProcessable()
+	AddElement(/datum/element/processable, TOOL_KNIFE, /obj/item/food/pieslice/lemon_meringue, 5, 30)
+
+/obj/item/food/pieslice/lemon_meringue
+	name = "lemon meringue pie slice"
+	desc = "A slice of lemon meringue pie."
+	icon_state = "lemon_meringue_pie_slice"
+	food_reagents = list(/datum/reagent/consumable/nutriment = 4, /datum/reagent/consumable/nutriment/vitamin = 2)
+	tastes = list("sweetness" = 2, "lemon" = 2, "meringue" = 2)
+	foodtypes = GRAIN | DAIRY | FRUIT | SUGAR

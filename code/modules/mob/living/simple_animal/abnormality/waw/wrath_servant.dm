@@ -33,6 +33,7 @@
 	)
 	work_damage_amount = 12
 	work_damage_type = BLACK_DAMAGE
+	chem_type = /datum/reagent/abnormality/sin/wrath
 
 	melee_damage_type = RED_DAMAGE
 	melee_damage_lower = 30

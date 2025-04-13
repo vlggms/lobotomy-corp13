@@ -183,7 +183,7 @@
 /datum/quirk/nonviolent //Renamed pacifist trait
 	name = "Challenge: No Attacking"
 	desc = "You are unable to inflict violence against Abnormalities or people. This is a horrible idea."
-	value = -1
+	value = -2
 	mob_trait = TRAIT_PACIFISM
 	gain_text = "<span class='danger'>You feel repulsed by the thought of violence!</span>"
 	lose_text = "<span class='notice'>You think you can defend yourself again, thank god.</span>"
@@ -269,6 +269,8 @@
 /datum/quirk/brainproblems/on_process(delta_time)
 	if(HAS_TRAIT(quirk_holder, TRAIT_TUMOR_SUPPRESSED))
 		return
+	if(quirk_holder.reagents.has_reagent(/datum/reagent/drug/enkephalin, needs_metabolizing = TRUE))
+		return
 	quirk_holder.adjustOrganLoss(ORGAN_SLOT_BRAIN, 0.2 * delta_time)
 
 	var/brain_loss = quirk_holder.getOrganLoss(ORGAN_SLOT_BRAIN)
@@ -281,12 +283,12 @@
 /datum/quirk/deafness
 	name = "Deaf"
 	desc = "You are incurably deaf."
-	value = -2
+	value = -3 //Can't hear melts occur so it is kinda important
 	mob_trait = TRAIT_DEAF
 	gain_text = "<span class='danger'>You can't hear anything.</span>"
 	lose_text = "<span class='notice'>You're able to hear again!</span>"
 	medical_record_text = "Patient's cochlear nerve is incurably damaged."
-	hardcore_value = 4
+	hardcore_value = 6
 
 
 /datum/quirk/heavy_sleeper
@@ -356,14 +358,6 @@
 		if(I.fingerprintslast == quirk_holder.ckey)
 			quirk_holder.put_in_hands(I)
 
-/datum/quirk/prosopagnosia
-	name = "Prosopagnosia"
-	desc = "You have a mental disorder that prevents you from being able to recognize faces at all."
-	value = -1
-	mob_trait = TRAIT_PROSOPAGNOSIA
-	medical_record_text = "Patient suffers from prosopagnosia and cannot recognize faces."
-	hardcore_value = 5
-
 /datum/quirk/prosthetic_limb
 	name = "Prosthetic Limb"
 	desc = "An accident caused you to lose one of your limbs. Because of this, you now have a random prosthetic!"
@@ -404,12 +398,12 @@
 /datum/quirk/insanity
 	name = "Reality Dissociation Syndrome"
 	desc = "You suffer from a severe disorder that causes very vivid hallucinations. Mindbreaker toxin can suppress its effects, and you are immune to mindbreaker's hallucinogenic properties. <b>This is not a license to grief.</b>"
-	value = -4
+	value = -2
 	//no mob trait because it's handled uniquely
 	gain_text = "<span class='userdanger'>...</span>"
 	lose_text = "<span class='notice'>You feel in tune with the world again.</span>"
 	medical_record_text = "Patient suffers from acute Reality Dissociation Syndrome and experiences vivid hallucinations."
-	hardcore_value = 6
+	hardcore_value = 4
 
 /datum/quirk/insanity/on_process(delta_time)
 	if(quirk_holder.reagents.has_reagent(/datum/reagent/toxin/mindbreaker, needs_metabolizing = TRUE))
@@ -505,10 +499,10 @@
 /datum/quirk/junkie
 	name = "Junkie"
 	desc = "You can't get enough of hard drugs."
-	value = -1
+	value = -2 //These drugs aren't easy to get in LC13
 	gain_text = "<span class='danger'>You suddenly feel the craving for drugs.</span>"
 	medical_record_text = "Patient has a history of hard drugs."
-	hardcore_value = 4
+	hardcore_value = 5
 	var/drug_list = list(/datum/reagent/drug/crank, /datum/reagent/drug/krokodil, /datum/reagent/medicine/morphine, /datum/reagent/drug/happiness, /datum/reagent/drug/methamphetamine) //List of possible IDs
 	var/datum/reagent/reagent_type //!If this is defined, reagent_id will be unused and the defined reagent type will be instead.
 	var/datum/reagent/reagent_instance //! actual instanced version of the reagent

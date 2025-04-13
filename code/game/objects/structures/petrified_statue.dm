@@ -73,7 +73,6 @@
 	visible_message(span_danger("[src] shatters!."))
 	qdel(src)
 
-
 /mob/proc/petrify(statue_timer)
 
 /mob/living/carbon/human/petrify(statue_timer)

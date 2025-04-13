@@ -74,7 +74,7 @@ It's not great though.
 /obj/item/clothing/suit/armor/extraction/arbiter
 	name = "arbiter's armored coat"
 	desc = "A coat made out of quality cloth, providing immense protection against most damage sources. It is quite heavy."
-	armor = list(RED_DAMAGE = 90, WHITE_DAMAGE = 100, BLACK_DAMAGE = 90, PALE_DAMAGE = 90)
+	armor = list(RED_DAMAGE = 90, WHITE_DAMAGE = 90, BLACK_DAMAGE = 90, PALE_DAMAGE = 90)
 	body_parts_covered = CHEST|GROIN|LEGS|FEET|ARMS|HANDS|HEAD
 	cold_protection = CHEST|GROIN|LEGS|FEET|ARMS|HANDS|HEAD
 	heat_protection = CHEST|GROIN|LEGS|FEET|ARMS|HANDS|HEAD
@@ -108,7 +108,7 @@ It's not great though.
 
 //Disc officer
 /obj/item/clothing/suit/armor/ego_gear/disc_off
-	name = "discipline officer's jackey"
+	name = "discipline officer's jacket"
 	desc = "An armored jacket used by the disciplinary officer."
 	icon_state = "disc_officer"
 	armor = list(RED_DAMAGE = 20, WHITE_DAMAGE = 20, BLACK_DAMAGE = 20, PALE_DAMAGE = 20)

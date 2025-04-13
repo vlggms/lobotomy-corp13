@@ -40,6 +40,8 @@
 			check += "Next ordeal type will be __[SSlobotomy_corp.next_ordeal.ReturnSecretName()]__.\n"
 		if(istype(SSlobotomy_corp.core_suppression)) // Currently active core suppression
 			check += "**[SSlobotomy_corp.core_suppression.name]** is currently in the process.\n"
+		if(SSmaptype.maptype in SSmaptype.lc_maps) // Let's tell people what ordeal type is next
+			check += "Current station trait: __[SSmaptype.chosen_trait]__.\n"
 	check += "Join the round: `byond://[server ? server : "[world.internet_address ? world.internet_address : world.address]:[world.port]"]`"
 	return check
 

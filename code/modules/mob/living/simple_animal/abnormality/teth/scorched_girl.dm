@@ -22,7 +22,7 @@
 	)
 	work_damage_amount = 6
 	work_damage_type = RED_DAMAGE
-	chem_type = /datum/reagent/abnormality/woe
+	chem_type = /datum/reagent/abnormality/sin/envy
 	damage_coeff = list(RED_DAMAGE = 0.5, WHITE_DAMAGE = 2, BLACK_DAMAGE = 1, PALE_DAMAGE = 2)
 	faction = list("hostile")
 	can_breach = TRUE
@@ -95,9 +95,6 @@
 	else
 		patrol_path = get_path_to(src, target_center, TYPE_PROC_REF(/turf, Distance_cardinal), 0, 200)
 
-/mob/living/simple_animal/hostile/abnormality/scorched_girl/MeleeAction()
-	return OpenFire()
-
 /mob/living/simple_animal/hostile/abnormality/scorched_girl/OpenFire()
 	if(client)
 		explode()
@@ -152,6 +149,9 @@
 		H.deal_damage(boom_damage, RED_DAMAGE)
 		if(H.health < 0)
 			H.gib()
+	if(SSmaptype.maptype == "limbus_labs")
+		for(var/obj/structure/obstacle in view(2, src))
+			obstacle.take_damage(boom_damage, RED_DAMAGE)
 	new /obj/effect/temp_visual/explosion(get_turf(src))
 	var/datum/effect_system/smoke_spread/S = new
 	S.set_up(7, get_turf(src))

@@ -20,9 +20,10 @@
 		"Lying is Bad!" = 0,
 	)
 
-	damage_coeff = list(RED_DAMAGE = 1.2, WHITE_DAMAGE = 0.5, BLACK_DAMAGE = 0.7, PALE_DAMAGE = 0.9)
+	damage_coeff = list(RED_DAMAGE = 1.2, WHITE_DAMAGE = 0.5, BLACK_DAMAGE = 0.7, PALE_DAMAGE = 0.9, FIRE = 1.5)
 	work_damage_amount = 8
 	work_damage_type = WHITE_DAMAGE
+	chem_type = /datum/reagent/abnormality/sin/envy
 	max_boxes = 16
 
 	ego_list = list(
@@ -271,21 +272,6 @@
 	var/strings = icon('icons/mob/mutant_bodyparts.dmi', "strings_pinnochio_ADJ")
 	src.add_overlay(strings)
 
-/mob/living/carbon/human/species/pinocchio/adjustBlackLoss(amount, updating_health = TRUE, forced = FALSE, white_healable = FALSE)
-	if(amount > 0 && !forced)
-		new /obj/effect/temp_visual/damage_effect/black(get_turf(src))
-	return adjustBruteLoss(amount, forced = forced) // Override, otherwise we'd end up taking damage twice.
-
-/mob/living/carbon/human/species/pinocchio/adjustWhiteLoss(amount, updating_health = TRUE, forced = FALSE, white_healable = FALSE)
-	if(amount > 0 && !forced)
-		new /obj/effect/temp_visual/damage_effect/white(get_turf(src))
-	return adjustBruteLoss(amount, forced = forced) // Override with the parent, sanity damage is now just brute damage
-
-/mob/living/carbon/human/species/pinocchio/adjustPaleLoss(amount, updating_health = TRUE, forced = FALSE)
-	if(amount > 0 && !forced)
-		new /obj/effect/temp_visual/damage_effect/pale(get_turf(src))
-	return adjustBruteLoss(amount, forced = forced) // No % pale damage
-
 /mob/living/carbon/human/species/pinocchio/canBeHandcuffed()
 	return FALSE
 
@@ -322,7 +308,7 @@
 	knife_butcher_results = list(/obj/item/stack/sheet/mineral/wood = 5)
 	species_traits = list(NO_UNDERWEAR,NOBLOOD,NOEYESPRITES)
 	inherent_traits = list(TRAIT_ADVANCEDTOOLUSER,TRAIT_NOMETABOLISM,TRAIT_TOXIMMUNE,TRAIT_NOBREATH,TRAIT_RESISTCOLD,TRAIT_RESISTHIGHPRESSURE,TRAIT_RESISTLOWPRESSURE,TRAIT_RADIMMUNE,TRAIT_GENELESS,\
-	TRAIT_NOHUNGER,TRAIT_XENO_IMMUNE,TRAIT_NOCLONELOSS)
+	TRAIT_NOHUNGER,TRAIT_XENO_IMMUNE,TRAIT_NOCLONELOSS,TRAIT_LIGHT_STEP,TRAIT_BRUTEPALE,TRAIT_BRUTESANITY)
 	punchdamagelow = 10
 	punchdamagehigh = 15
 	bodypart_overides = list(
@@ -334,6 +320,7 @@
 	BODY_ZONE_CHEST = /obj/item/bodypart/chest/puppet)
 	speedmod = 1.3
 	changesource_flags = MIRROR_BADMIN | WABBAJACK
+	burnmod = 2
 
 /datum/species/puppet/check_roundstart_eligible()
 	return FALSE //heck no

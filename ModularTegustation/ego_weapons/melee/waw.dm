@@ -49,6 +49,7 @@
 	attribute_requirements = list(
 							JUSTICE_ATTRIBUTE = 80
 							)
+	crit_multiplier = 1.5	//Rapier, little better crits
 	var/combo = 0
 	var/combo_time
 	var/combo_wait = 10
@@ -110,6 +111,7 @@
 							FORTITUDE_ATTRIBUTE = 80
 							)
 	var/charged = FALSE
+	crit_multiplier = 0.7	//Less crits for you.
 
 /obj/item/ego_weapon/totalitarianism/attack(mob/living/M, mob/living/user)
 	..()
@@ -140,6 +142,7 @@
 	attribute_requirements = list(
 							PRUDENCE_ATTRIBUTE = 80
 							)
+	crit_multiplier = 1.5	//Slightly better crits
 	var/charged = FALSE
 	var/meter = 0
 	var/meter_counter = 1
@@ -230,6 +233,7 @@
 	attribute_requirements = list(
 							FORTITUDE_ATTRIBUTE = 80
 							)
+	crit_multiplier = 1.8 //better crits
 
 	var/combo = 1
 	var/combo_time
@@ -495,6 +499,7 @@
 	attribute_requirements = list(
 							PRUDENCE_ATTRIBUTE = 60
 							)
+	crit_multiplier = 2.3	//Also better crits
 	var/hit_count = 0
 	var/max_count = 16
 	var/special_cost = 4
@@ -670,6 +675,7 @@
 							TEMPERANCE_ATTRIBUTE = 60,
 							PRUDENCE_ATTRIBUTE = 60
 							)
+	crit_multiplier = 2.4
 
 	var/dash_cooldown
 	var/dash_cooldown_time = 4 SECONDS
@@ -729,6 +735,7 @@
 							TEMPERANCE_ATTRIBUTE = 60,
 							PRUDENCE_ATTRIBUTE = 60
 							)
+	crit_multiplier = 2.4
 
 	var/dash_cooldown
 	var/dash_cooldown_time = 4 SECONDS
@@ -874,6 +881,7 @@
 	attribute_requirements = list(
 							TEMPERANCE_ATTRIBUTE = 80
 							)
+	crit_multiplier = 1.5
 
 /obj/item/ego_weapon/moonlight/attack_self(mob/user)
 	. = ..()
@@ -910,6 +918,7 @@
 	attribute_requirements = list(
 							FORTITUDE_ATTRIBUTE = 80
 							)
+	crit_multiplier = 1.5
 
 /obj/item/ego_weapon/heaven/get_clamped_volume()
 	return 25
@@ -957,6 +966,7 @@
 	attribute_requirements = list(
 							FORTITUDE_ATTRIBUTE = 80
 							)
+	crit_multiplier = 1.2	//Rapier, better crits
 
 /obj/item/ego_weapon/dipsia/attack(mob/living/target, mob/living/carbon/human/user)
 	if(!CanUseEgo(user))
@@ -1127,6 +1137,7 @@
 	damtype = PALE_DAMAGE
 	var/mark_damage
 	var/mark_type = RED_DAMAGE
+	crit_multiplier = 1.5
 
 //Replaces the normal attack with a mark
 /obj/item/ego_weapon/mini/infinity/attack(mob/living/target, mob/living/user)
@@ -1545,6 +1556,7 @@
 							FORTITUDE_ATTRIBUTE = 60,
 							TEMPERANCE_ATTRIBUTE = 60
 							)
+	crit_multiplier = 2
 
 /obj/item/ego_weapon/cobalt/attack(mob/living/target, mob/living/user)
 	force = initial(force)
@@ -1675,6 +1687,7 @@
 							FORTITUDE_ATTRIBUTE = 60,
 							JUSTICE_ATTRIBUTE = 60
 	)
+	crit_multiplier = 1.2
 
 	charge = TRUE
 	ability_type = ABILITY_UNIQUE
@@ -1998,11 +2011,11 @@
 /obj/item/ego_weapon/abyssal_route/attack_self(mob/user)
 	..()
 	if(combo_on)
-		to_chat(user, span_warning("You swap your grip, and will now perform a dive finisher."))
+		to_chat(user, span_warning("You swap your grip, and will no longer perform a dive finisher."))
 		combo_on = FALSE
 		return
 	if(!combo_on)
-		to_chat(user, span_warning("You swap your grip, and will no longer perform a dive finisher."))
+		to_chat(user, span_warning("You swap your grip, and will now perform a dive finisher."))
 		combo_on = TRUE
 		return
 
@@ -2217,6 +2230,7 @@
 	name = "effervescent corrosion"
 	desc = "Even the scum of the earth can be molded into something useful with time and pressure."
 	icon_state = "shell"
+	special = "This weapon also covers enemies in muck that deals WHITE Damage over time. The thrust can apply this effect an additional tile from where you click."
 	force = 60
 	reach = 2
 	stuntime = 5

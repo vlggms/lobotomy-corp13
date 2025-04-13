@@ -22,7 +22,7 @@
 	health = 1500
 	blood_volume = 0
 	move_to_delay = 5
-	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 1.1, WHITE_DAMAGE = 0.8, BLACK_DAMAGE = 0.8, PALE_DAMAGE = 0.8) //ASK SOMEONE GOOD AT BALANCING ABOUT THIS -IP
+	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 1.1, WHITE_DAMAGE = 0.8, BLACK_DAMAGE = 0.8, PALE_DAMAGE = 0.8, FIRE = 2) //ASK SOMEONE GOOD AT BALANCING ABOUT THIS -IP
 	base_pixel_x = -16
 	pixel_x = -16
 	can_breach = TRUE
@@ -43,6 +43,7 @@
 		)
 	work_damage_amount = 10
 	work_damage_type = WHITE_DAMAGE
+	chem_type = /datum/reagent/abnormality/sin/gloom
 	wander = FALSE
 
 	observation_prompt = "You remember her. <br>\
@@ -912,6 +913,7 @@
 	hit_message = "parries the attack!"
 	block_cooldown_message = "You rearm your blade."
 	//For deleting it whenever seperated from user.
+	slot_flags = null
 	item_flags = DROPDEL
 
 /obj/item/ego_weapon/shield/ice_sword/Initialize()

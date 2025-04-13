@@ -6,11 +6,11 @@
 	cost = LOW_RESEARCH_PRICE
 	corp = ALL_REP_RESEARCH
 
-/datum/data/lc13research/ratknife/ResearchEffect(obj/structure/representative_console/caller)
-	ItemUnlock(caller.order_list, "Rat Knife",	/obj/item/ego_weapon/city/rats/knife, 100)
-	ItemUnlock(caller.order_list, "Rat Hammer",	/obj/item/ego_weapon/city/rats, 100)
-	ItemUnlock(caller.order_list, "Brick",	/obj/item/ego_weapon/city/rats/brick, 100)
-	ItemUnlock(caller.order_list, "Metal Pipe",	/obj/item/ego_weapon/city/rats/pipe, 100)
+/datum/data/lc13research/ratknife/ResearchEffect(obj/structure/representative_console/requester)
+	ItemUnlock(requester.order_list, "Rat Knife",	/obj/item/ego_weapon/city/rats/knife, 100)
+	ItemUnlock(requester.order_list, "Rat Hammer",	/obj/item/ego_weapon/city/rats, 100)
+	ItemUnlock(requester.order_list, "Brick",	/obj/item/ego_weapon/city/rats/brick, 100)
+	ItemUnlock(requester.order_list, "Metal Pipe",	/obj/item/ego_weapon/city/rats/pipe, 100)
 	..()
 
 /datum/data/lc13research/refineryspeed
@@ -19,7 +19,7 @@
 	cost = LOW_RESEARCH_PRICE
 	corp = ALL_REP_RESEARCH
 
-/datum/data/lc13research/refineryspeed/ResearchEffect(obj/structure/representative_console/caller)
+/datum/data/lc13research/refineryspeed/ResearchEffect(obj/structure/representative_console/requester)
 	. = ..()
 	for(var/obj/structure/refinery/ref in GLOB.lobotomy_devices)
 		ref.refine_timer -= initial(ref.refine_timer)/10
@@ -37,7 +37,7 @@
 	cost = LOW_RESEARCH_PRICE
 	corp = ALL_REP_RESEARCH
 
-/datum/data/lc13research/salesspeed/ResearchEffect(obj/structure/representative_console/caller)
+/datum/data/lc13research/salesspeed/ResearchEffect(obj/structure/representative_console/requester)
 	. = ..()
 	for(var/obj/structure/pe_sales/sales in GLOB.lobotomy_devices)
 		sales.power_timer -= initial(sales.power_timer)/10

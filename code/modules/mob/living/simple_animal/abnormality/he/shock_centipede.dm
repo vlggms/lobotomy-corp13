@@ -17,7 +17,8 @@
 	melee_damage_lower = 3
 	melee_damage_upper = 4
 	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 0.8, WHITE_DAMAGE = 1, BLACK_DAMAGE = 0.5, PALE_DAMAGE = 2)
-	speak_emote = list("screechs")
+	speak_emote = list("screeches")
+	speech_span = SPAN_ROBOT
 	vision_range = 14
 	melee_reach = 2
 	pixel_x = -32
@@ -34,6 +35,7 @@
 						)
 	work_damage_amount = 6
 	work_damage_type = RED_DAMAGE
+	chem_type = /datum/reagent/abnormality/sin/gloom
 
 	ego_list = list(
 		/datum/ego_datum/weapon/aedd,

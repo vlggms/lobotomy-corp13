@@ -233,7 +233,7 @@
 	return TRUE
 
 /obj/item/mecha_parts/mecha_equipment/weapon/ballistic/get_equip_info()
-	return "[..()] \[[src.projectiles][projectiles_cache_max &&!projectile_energy_cost?"/[projectiles_cache]":""]\][!disabledreload &&(src.projectiles < initial(src.projectiles))?" - <a href='?src=[REF(src)];rearm=1'>Rearm</a>":null]"
+	return "[..()] \[[src.projectiles][projectiles_cache_max &&!projectile_energy_cost?"/[projectiles_cache]":""]\][!disabledreload &&(src.projectiles < initial(src.projectiles))?" - <a href='byond://?src=[REF(src)];rearm=1'>Rearm</a>":null]"
 
 
 /obj/item/mecha_parts/mecha_equipment/weapon/ballistic/rearm()
@@ -485,7 +485,7 @@
 		return
 
 	if(can_toggle_lethal)
-		return "[..()] &nbsp; <a href='?src=[REF(src)];lethalPunch=1'>[harmful?"Punch":"Pat"] mode</a>"
+		return "[..()] &nbsp; <a href='byond://?src=[REF(src)];lethalPunch=1'>[harmful?"Punch":"Pat"] mode</a>"
 	else
 		return ..()
 

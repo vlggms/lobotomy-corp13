@@ -67,9 +67,10 @@
 	/*
 	* This is related to abnochem where a chemical can be harvested from abnormalities.
 	* This is more for general flavor and will be randomly filled if left empty.
-	* I placed this here because i felt like violence makes the most sense.
+	* Kirie/Kitsunemitsu Note - This has been updated to the new Sin chem system.
+	* There's 7 sin chems based off the limbus sins, pick one to put here.
 	*/
-	chem_type = /datum/reagent/abnormality/violence
+	chem_type = /datum/reagent/abnormality/sin/pride
 
 	//shows in chat when the creature is defeated. Default is "stops moving".
 	death_message = "falls over."

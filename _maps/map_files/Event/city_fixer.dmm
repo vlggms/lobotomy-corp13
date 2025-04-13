@@ -1488,6 +1488,10 @@
 /obj/effect/turf_decal/bot,
 /turf/open/floor/circuit/telecomms/mainframe,
 /area/facility_hallway/north)
+"wd" = (
+/obj/machinery/newscaster,
+/turf/closed/indestructible/reinforced,
+/area/city/fixers)
 "wn" = (
 /obj/structure/table/greyscale,
 /obj/item/storage/firstaid/emergency,
@@ -1840,7 +1844,7 @@
 /turf/open/indestructible/white,
 /area/city/shop)
 "yY" = (
-/obj/structure/closet/secure_closet/medical2,
+/obj/structure/closet/secure_closet/medical2/city,
 /turf/open/indestructible/white,
 /area/city/shop)
 "yZ" = (
@@ -1925,6 +1929,7 @@
 "zQ" = (
 /obj/structure/rack,
 /obj/item/weldingtool/experimental,
+/obj/item/screwdriver,
 /turf/open/indestructible/white,
 /area/city/shop)
 "zR" = (
@@ -40421,7 +40426,7 @@ ed
 fw
 hz
 ZP
-HA
+wd
 nl
 Xf
 pg
@@ -40938,7 +40943,7 @@ Tm
 Tm
 Tm
 of
-HA
+wd
 Tm
 Tm
 rO
@@ -41966,7 +41971,7 @@ Tm
 Tm
 Tm
 of
-HA
+wd
 Tm
 Tm
 rG

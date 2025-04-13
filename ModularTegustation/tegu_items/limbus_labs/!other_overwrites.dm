@@ -25,6 +25,11 @@
 		max_damage = 50
 
 //To avoid other issues when possessed
+/mob/living/simple_animal/hostile/abnormality/Initialize()
+	. = ..()
+	if(SSmaptype.maptype == "limbus_labs")
+		vision_range = 7
+		aggro_vision_range = 7
 
 /mob/living/simple_animal/hostile/abnormality/Login()
 	. = ..()
@@ -46,3 +51,14 @@
 	if(SSmaptype.maptype == "limbus_labs")
 		prosthetic_cost = 0
 		organic_cost = 100
+
+/obj/structure/statue/petrified/deconstruct(disassembled = TRUE)
+	if(!disassembled)
+		if(petrified_mob)
+			if(SSmaptype.maptype == "limbus_labs")
+				visible_message(span_danger("[src] shatters!."))
+				qdel(src)
+				return
+			petrified_mob.dust()
+	visible_message(span_danger("[src] shatters!."))
+	qdel(src)

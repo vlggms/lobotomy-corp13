@@ -14,6 +14,8 @@
 	custom_premium_price = 600
 
 /datum/action/cooldown/dash
+	name = "Dash"
+	desc = "Dash fowards a few tiles. Costs stamina."
 	icon_icon = 'icons/hud/screen_skills.dmi'
 	button_icon_state = "dash"
 	name = "Dash"

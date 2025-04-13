@@ -8,6 +8,8 @@
 	health = 600
 	threat_level = ZAYIN_LEVEL
 	damage_coeff = list(RED_DAMAGE = 1.2, WHITE_DAMAGE = 1.2, BLACK_DAMAGE = 0.8, PALE_DAMAGE = 0.8)
+	speak_emote = list("advertises")
+	speech_span = SPAN_ROBOT
 	work_chances = list(
 		ABNORMALITY_WORK_INSTINCT = 70,
 		ABNORMALITY_WORK_INSIGHT = 70,
@@ -19,6 +21,7 @@
 	max_boxes = 10
 	success_boxes = 9
 	neutral_boxes = 6
+	chem_type = /datum/reagent/abnormality/sin/gloom
 
 	ego_list = list(
 		/datum/ego_datum/weapon/oceanic,

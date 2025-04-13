@@ -30,6 +30,7 @@
 
 /datum/job/agent/after_spawn(mob/living/carbon/human/outfit_owner, mob/M, latejoin = FALSE)
 	// Assign department security
+	job_attribute_limit = 130		//Have to set because it's a datum and may be changed later
 	var/department
 	if(M && M.client && M.client.prefs)
 		department = M.client.prefs.prefered_agent_department
@@ -39,31 +40,66 @@
 		if("Control")
 			ears = /obj/item/radio/headset/headset_control
 			accessory = /obj/item/clothing/accessory/armband/lobotomy
+			if(SSmaptype.chosen_trait == FACILITY_TRAIT_DEPARTMENTAL_BUFFS)
+				outfit_owner.add_movespeed_modifier(/datum/movespeed_modifier/assault)	//They should REALLY never get this NGL
+				to_chat(M, "<b>Due to your chosen department, you get a 10% movespeed bonus.</b>")
 		if("Command")
 			ears = /obj/item/radio/headset/headset_command
 			accessory = /obj/item/clothing/accessory/armband/lobotomy/command
+			if(SSmaptype.chosen_trait == FACILITY_TRAIT_DEPARTMENTAL_BUFFS)
+				to_chat(M, "<b>Due to your chosen department, you get +3 to all stats.</b>")
+				outfit_owner.adjust_attribute_buff(FORTITUDE_ATTRIBUTE, 3)
+				outfit_owner.adjust_attribute_buff(PRUDENCE_ATTRIBUTE, 3)
+				outfit_owner.adjust_attribute_buff(TEMPERANCE_ATTRIBUTE, 3)
+				outfit_owner.adjust_attribute_buff(JUSTICE_ATTRIBUTE, 3)
 		if("Information")
 			ears = /obj/item/radio/headset/headset_information
 			accessory = /obj/item/clothing/accessory/armband/lobotomy/info
+			if(SSmaptype.chosen_trait == FACILITY_TRAIT_DEPARTMENTAL_BUFFS)
+				to_chat(M, "<b>Due to your chosen department, you get a +10 Work speed and rate bonus.</b>")
+				outfit_owner.adjust_attribute_bonus(TEMPERANCE_ATTRIBUTE, 10)
 		if("Safety")
 			ears = /obj/item/radio/headset/headset_safety
 			accessory = /obj/item/clothing/accessory/armband/lobotomy/safety
+			if(SSmaptype.chosen_trait == FACILITY_TRAIT_DEPARTMENTAL_BUFFS)
+				to_chat(M, "<b>Due to your chosen department, you get a +10 Fortitude and Prudence buff.</b>")
+				outfit_owner.adjust_attribute_buff(FORTITUDE_ATTRIBUTE, 10)
+				outfit_owner.adjust_attribute_buff(PRUDENCE_ATTRIBUTE, 10)
 		if("Disciplinary")
 			ears = /obj/item/radio/headset/headset_discipline
 			accessory = /obj/item/clothing/accessory/armband/lobotomy/discipline
+			if(SSmaptype.chosen_trait == FACILITY_TRAIT_DEPARTMENTAL_BUFFS)
+				to_chat(M, "<b>Due to your chosen department, you get a +15% damage bonus.</b>")
+				ADD_TRAIT(outfit_owner, TRAIT_STRONG_MELEE, JOB_TRAIT)
 		if("Welfare")
 			ears = /obj/item/radio/headset/headset_welfare
 			accessory = /obj/item/clothing/accessory/armband/lobotomy/welfare
+			if(SSmaptype.chosen_trait == FACILITY_TRAIT_DEPARTMENTAL_BUFFS)
+				to_chat(M, "<b>Due to your chosen department, you get a +7% defense bonus.</b>")
+				outfit_owner.physiology.red_mod /= 1.07
+				outfit_owner.physiology.white_mod /= 1.07
+				outfit_owner.physiology.black_mod /= 1.07
+				outfit_owner.physiology.pale_mod /= 1.07
 		if("Extraction")
 			ears = /obj/item/radio/headset/headset_extraction
 			accessory = /obj/item/clothing/accessory/armband/lobotomy/extraction
+			if(SSmaptype.chosen_trait == FACILITY_TRAIT_DEPARTMENTAL_BUFFS)
+				to_chat(M, "<b>Due to your chosen department, you get a +5 Max HP, SP and Justice bonus.</b>")
+				outfit_owner.adjust_attribute_bonus(FORTITUDE_ATTRIBUTE, 5)
+				outfit_owner.adjust_attribute_bonus(PRUDENCE_ATTRIBUTE, 5)
+				outfit_owner.adjust_attribute_bonus(JUSTICE_ATTRIBUTE, 5)
 		if("Record")
 			ears = /obj/item/radio/headset/headset_records
 			accessory = /obj/item/clothing/accessory/armband/lobotomy/records
+			if(SSmaptype.chosen_trait == FACILITY_TRAIT_DEPARTMENTAL_BUFFS)
+				to_chat(M, "<b>Due to your chosen department, you get an attribute limit of 150.</b>")
+				job_attribute_limit = 150
 
 		else //Pick a department or get training.
 			ears = /obj/item/radio/headset/headset_training
 			accessory = /obj/item/clothing/accessory/armband/lobotomy/training
+			if(SSmaptype.chosen_trait == FACILITY_TRAIT_DEPARTMENTAL_BUFFS)
+				ADD_TRAIT(outfit_owner, TRAIT_BONUS_EXP, JOB_TRAIT)
 
 	if(accessory)
 		var/obj/item/clothing/under/U = outfit_owner.w_uniform
@@ -83,24 +119,29 @@
 	if(SSabnormality_queue.spawned_abnos) // dont divide by 0
 		facility_full_percentage = 100 * (SSabnormality_queue.spawned_abnos / SSabnormality_queue.rooms_start)
 	// how full the facility is, from 0 abnormalities out of 24 cells being 0% and 24/24 cells being 100%
-	switch(facility_full_percentage)
-		if(15 to 29) // Shouldn't be anything more than TETHs (4 Abnormalities)
-			set_attribute *= 1.5
 
-		if(29 to 44) // HEs (8 Abnormalities)
-			set_attribute *= 2
+	if(SSmaptype.chosen_trait == FACILITY_TRAIT_ABNO_BLITZ)	//blitz needs you with higher stats
+		set_attribute *= 4
 
-		if(44 to 59) // A bit before WAWs (11 Abnormalities)
-			set_attribute *= 2.5
+	else
+		switch(facility_full_percentage)
+			if(15 to 29) // Shouldn't be anything more than TETHs (4 Abnormalities)
+				set_attribute *= 1.5
 
-		if(59 to 69) // WAWs around here (15 Abnormalities)
-			set_attribute *= 3
+			if(29 to 44) // HEs (8 Abnormalities)
+				set_attribute *= 2
 
-		if(69 to 79) // ALEPHs starting to spawn (17 Abnormalities)
-			set_attribute *= 3.5
+			if(44 to 59) // A bit before WAWs (11 Abnormalities)
+				set_attribute *= 2.5
 
-		if(79 to 100) // ALEPHs around here (20 Abnormalities)
-			set_attribute *= 4
+			if(59 to 69) // WAWs around here (15 Abnormalities)
+				set_attribute *= 3
+
+			if(69 to 79) // ALEPHs starting to spawn (17 Abnormalities)
+				set_attribute *= 3.5
+
+			if(79 to 100) // ALEPHs around here (20 Abnormalities)
+				set_attribute *= 4
 
 	set_attribute += GetFacilityUpgradeValue(UPGRADE_AGENT_STATS)
 
@@ -120,8 +161,8 @@
 		if(istype(processing, /datum/job/suppression/captain))
 			processing.total_positions = 1
 
-	return ..()
 
+	return ..()
 
 /datum/outfit/job/agent
 	name = "Agent"
@@ -135,6 +176,7 @@
 	shoes = /obj/item/clothing/shoes/laceup
 	gloves = /obj/item/clothing/gloves/color/black
 	implants = list(/obj/item/organ/cyberimp/eyes/hud/security)
+	l_hand = /obj/item/class_chooser
 
 	backpack_contents = list(
 		/obj/item/melee/classic_baton,
@@ -165,6 +207,7 @@
 	name = "Agent Intern"
 	jobtype = /datum/job/agent/intern
 	head = null
+	l_hand = null
 
 	backpack_contents = list(
 		/obj/item/melee/classic_baton,

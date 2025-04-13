@@ -14,6 +14,7 @@
 			)
 	work_damage_amount = 16
 	work_damage_type = RED_DAMAGE
+	chem_type = /datum/reagent/abnormality/sin/sloth
 	start_qliphoth = 3
 
 	ego_list = list(

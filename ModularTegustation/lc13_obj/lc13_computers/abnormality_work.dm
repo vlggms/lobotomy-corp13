@@ -1,6 +1,7 @@
 /obj/machinery/computer/abnormality
 	name = "abnormality work console"
 	desc = "Used to perform various tasks with the abnormalities."
+	icon_screen = "abnormality_work"
 	resistance_flags = INDESTRUCTIBLE
 
 	/// Datum reference of the abnormality this console is related to
@@ -31,6 +32,7 @@
 	var/list/mechanical_upgrades = list(
 		"abnochem" = 0,
 		"workrate" = 0,
+		"meltdown" = 0,
 		)
 
 /obj/machinery/computer/abnormality/Initialize()
@@ -337,12 +339,16 @@
 	meltdown = melt_type
 	datum_reference.current.MeltdownStart()
 	update_icon()
+	if(linked_panel && mechanical_upgrades["meltdown"])
+		linked_panel.console_meltdown()
 	playsound(src, 'sound/machines/warning-buzzer.ogg', 75, FALSE, 3)
 	return TRUE
 
 /obj/machinery/computer/abnormality/proc/qliphoth_meltdown_effect()
 	meltdown = FALSE
 	update_icon()
+	if(linked_panel)
+		linked_panel.console_status(src)
 	datum_reference.qliphoth_change(-999)
 	SEND_SIGNAL(src, COMSIG_MELTDOWN_FINISHED, datum_reference, FALSE)
 	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_MELTDOWN_FINISHED, datum_reference, FALSE)

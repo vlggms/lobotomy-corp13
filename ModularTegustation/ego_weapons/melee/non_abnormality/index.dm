@@ -107,8 +107,9 @@
 	inhand_x_dimension = 64
 	inhand_y_dimension = 64
 	hitsound = 'sound/weapons/fixer/generic/nail1.ogg'
-	attack_speed = 1.2
 	reach = 2
+	force = 64
+	stuntime = 5
 	swingstyle = WEAPONSWING_THRUST
 
 //Fockin massive sword

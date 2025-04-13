@@ -19,6 +19,7 @@
 	attack_verb_simple = "smash"
 	damage_coeff = list(RED_DAMAGE = 0.5, WHITE_DAMAGE = 1, BLACK_DAMAGE = 2, PALE_DAMAGE = 1.5)
 	speak_emote = list("bellows")
+	speech_span = SPAN_ROBOT
 	pixel_x = -16
 	can_breach = TRUE
 	rapid_melee = 1
@@ -37,6 +38,7 @@
 	)
 	work_damage_amount = 9
 	work_damage_type = RED_DAMAGE
+	chem_type = /datum/reagent/abnormality/sin/sloth
 
 	ranged = TRUE
 	rapid = 5

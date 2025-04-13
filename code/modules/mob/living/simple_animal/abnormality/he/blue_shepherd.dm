@@ -34,6 +34,7 @@
 	stat_attack = HARD_CRIT
 	work_damage_amount = 10
 	work_damage_type = BLACK_DAMAGE
+	chem_type = /datum/reagent/abnormality/sin/pride
 	attack_verb_continuous = "cuts"
 	attack_verb_simple = "cuts"
 	faction = list("blueshep")
@@ -192,6 +193,9 @@
 	return
 
 /mob/living/simple_animal/hostile/abnormality/blue_shepherd/BreachEffect(mob/living/carbon/human/user, breach_type)
+	if(SSmaptype.maptype == "limbus_labs")
+		return
+
 	var/sighted = FALSE
 	for(var/mob/living/carbon/human/L in view(4, src))
 		sighted = TRUE

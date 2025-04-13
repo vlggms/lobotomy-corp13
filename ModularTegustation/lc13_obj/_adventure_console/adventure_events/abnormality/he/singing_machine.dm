@@ -12,7 +12,7 @@
 	"Putting yourself into the machine seems a bit extreme.<br>\
 	However, if the sound it makes is that good you might have to listen.<br>\
 	Against your better judgement you open the machine slipping a finger inside trying to keep it above the gnashing teeth.<br>\
-	Slowly you inch closer, until it grabs you, yanking you towards the machine.<br>\
+	Slowly you inch closer, until it grabs you, yanking you into the machine.<br>\
 	Before you can stop yourself your arm is dragged into the depths, a new tune bursting forth amidst your screams.<br>\
 	It is the most beautiful thing you’ve heard.",
 
@@ -41,7 +41,7 @@
 		if(1)
 			BUTTON_FORMAT(2, "PUT YOUR FINGER IN THE MACHINE", M)
 			BUTTON_FORMAT(3, "THROW THE PERSON IN THE MACHINE", M)
-			BUTTON_FORMAT(4, "JUST LEAVE", M)
+			BUTTON_FORMAT(6, "JUST LEAVE", M)
 			return
 		if(2)
 			AdjustHitPoint(-30)

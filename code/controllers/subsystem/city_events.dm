@@ -89,7 +89,7 @@ SUBSYSTEM_DEF(cityevents)
 		if("shrimps")
 			spawnatlandmark(/mob/living/simple_animal/hostile/shrimp, 20)
 		if("beaks")
-			spawnatlandmark(/mob/living/simple_animal/hostile/ordeal/bigBirdEye, 10)
+			spawnatlandmark(/mob/living/simple_animal/hostile/ordeal/bigbird_eye, 10)
 		if("drones")
 			spawnatlandmark(/mob/living/simple_animal/hostile/kcorp/drone, -10)//extremely low chance
 		if("lovetowneasy")

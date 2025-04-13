@@ -250,11 +250,20 @@ SUBSYSTEM_DEF(ticker)
 		if(!(istype(mode, /datum/game_mode/combat)))
 			mode = new /datum/game_mode/combat
 	else
-		var/choosingmode = pick(/datum/game_mode/management/classic,
-			//	/datum/game_mode/management/pure,
-			//	/datum/game_mode/management/branch
-				)
-		mode = new choosingmode
+
+		switch(SSmaptype.chosen_trait)
+			if(FACILITY_TRAIT_JOKE_ABNOS)
+				mode = new /datum/game_mode/management/joke
+			if(FACILITY_TRAIT_FUCKED_SELECTION)
+				var/choosingmode = pick(
+							/datum/game_mode/management/pure,
+							/datum/game_mode/management/branch)
+				mode = new choosingmode
+			else
+				mode = new /datum/game_mode/management/classic
+
+		if(SSevents.holidays && SSevents.holidays[APRIL_FOOLS]) //runs in April 1st
+			mode = new /datum/game_mode/management/joke
 
 	CHECK_TICK
 
@@ -462,7 +471,7 @@ SUBSYSTEM_DEF(ticker)
 	if(!hpc)
 		listclearnulls(queued_players)
 		for (var/mob/dead/new_player/NP in queued_players)
-			to_chat(NP, "<span class='userdanger'>The alive players limit has been released!<br><a href='?src=[REF(NP)];late_join=override'>[html_encode(">>Join Game<<")]</a></span>")
+			to_chat(NP, "<span class='userdanger'>The alive players limit has been released!<br><a href='byond://?src=[REF(NP)];late_join=override'>[html_encode(">>Join Game<<")]</a></span>")
 			SEND_SOUND(NP, sound('sound/misc/notice1.ogg'))
 			NP.LateChoices()
 		queued_players.len = 0
@@ -477,7 +486,7 @@ SUBSYSTEM_DEF(ticker)
 			listclearnulls(queued_players)
 			if(living_player_count() < hpc)
 				if(next_in_line?.client)
-					to_chat(next_in_line, "<span class='userdanger'>A slot has opened! You have approximately 20 seconds to join. <a href='?src=[REF(next_in_line)];late_join=override'>\>\>Join Game\<\<</a></span>")
+					to_chat(next_in_line, "<span class='userdanger'>A slot has opened! You have approximately 20 seconds to join. <a href='byond://?src=[REF(next_in_line)];late_join=override'>\>\>Join Game\<\<</a></span>")
 					SEND_SOUND(next_in_line, sound('sound/misc/notice1.ogg'))
 					next_in_line.LateChoices()
 					return

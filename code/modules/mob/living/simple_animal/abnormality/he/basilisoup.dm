@@ -15,7 +15,7 @@
 	melee_reach = 2 // Long neck = long range
 	ranged = TRUE
 	threat_level = HE_LEVEL
-	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 0.8, WHITE_DAMAGE = 1.2, BLACK_DAMAGE = 0.8, PALE_DAMAGE = 1.5)
+	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 0.8, WHITE_DAMAGE = 1.2, BLACK_DAMAGE = 0.8, PALE_DAMAGE = 1.5, FIRE = 0.6)
 	melee_damage_lower = 22
 	melee_damage_upper = 30
 	melee_damage_type = BLACK_DAMAGE
@@ -34,6 +34,7 @@
 	)
 	work_damage_amount = 10
 	work_damage_type = BLACK_DAMAGE
+	chem_type = /datum/reagent/abnormality/sin/lust
 
 	ego_list = list(
 		/datum/ego_datum/armor/lifestew,
@@ -162,13 +163,13 @@
 /mob/living/simple_animal/hostile/abnormality/basilisoup/AttackingTarget(atom/attacked_target)
 	if(!can_act)
 		return
+	. = ..()
 	if(ishuman(attacked_target))
 		var/mob/living/carbon/human/H = attacked_target
 		if(H.nutrition >= NUTRITION_LEVEL_FAT)
 			playsound(get_turf(src), 'sound/abnormalities/bigbird/bite.ogg', 50, 1, 2)
 			H.gib()
 			adjustBruteLoss(-maxHealth, forced = TRUE) //full heal after a full meal
-	return ..()
 
 /mob/living/simple_animal/hostile/abnormality/basilisoup/OpenFire(atom/A)
 	if(!can_act)

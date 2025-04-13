@@ -1239,7 +1239,7 @@ GLOBAL_LIST_EMPTY(transformation_animation_objects)
  * result_appearance - End result appearance/atom/image
  * time - Animation duration
  * transform_overlay - Appearance/atom/image of effect that moves along the animation - should be horizonatally centered
- * reset_after - If FALSE, filters won't be reset and helper vis_objects will not be removed after animation duration expires. Cleanup must be handled by the caller!
+ * reset_after - If FALSE, filters won't be reset and helper vis_objects will not be removed after animation duration expires. Cleanup must be handled by the requester!
  */
 /atom/movable/proc/transformation_animation(result_appearance,time = 3 SECONDS,transform_overlay,reset_after=TRUE)
 	var/list/transformation_objects = GLOB.transformation_animation_objects[src] || list()

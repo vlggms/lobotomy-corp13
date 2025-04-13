@@ -27,8 +27,9 @@
 	tile_overlay = image(icon = 'icons/turf/floors.dmi', icon_state = "pp_overlay")
 	if(roundstart_signaller)
 		sigdev = new
+		sigdev.silent = TRUE
 		sigdev.code = roundstart_signaller_code
-		sigdev.frequency = roundstart_signaller_freq
+		sigdev.set_frequency(roundstart_signaller_freq)
 
 	AddElement(/datum/element/undertile, tile_overlay = tile_overlay, use_anchor = TRUE)
 	RegisterSignal(src, COMSIG_OBJ_HIDE, PROC_REF(ToggleActive))
@@ -80,3 +81,16 @@
 /obj/item/pressure_plate/proc/ToggleActive(datum/source, covered)
 	active = covered
 
+/obj/item/pressure_plate/autohide
+	trigger_delay = 1
+	anchored = TRUE
+	roundstart_signaller = TRUE
+	protected = TRUE
+	roundstart_hide = TRUE
+	removable_signaller = FALSE
+
+/obj/item/pressure_plate/autohide/Initialize()
+	. = ..()
+	var/turf/our_turf = get_turf(src)
+	if(our_turf)
+		SEND_SIGNAL(src, COMSIG_OBJ_HIDE, our_turf.intact)

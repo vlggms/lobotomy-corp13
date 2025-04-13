@@ -37,7 +37,7 @@
 /obj/structure/chair/comfy/teal{
 	dir = 4;
 	pixel_y = 15;
-	pixel_x = -5;
+	pixel_x = -5
 	},
 /obj/structure/table/wood{
 	alpha = 0;
@@ -72,7 +72,7 @@
 /area/centcom)
 "ai" = (
 /obj/machinery/door/window/brigdoor{
-	req_access_txt = "3"
+	req_access_txt = "19;3"
 	},
 /obj/effect/turf_decal/siding/yellow{
 	dir = 4
@@ -923,7 +923,7 @@
 "dA" = (
 /obj/machinery/door/airlock/highsecurity{
 	name = "damage mitigation armory";
-	req_access_txt = "19"
+	req_access_txt = "19;3;1"
 	},
 /turf/open/floor/facility/halls,
 /area/centcom)
@@ -1599,6 +1599,27 @@
 /obj/effect/spawner/structure/window/reinforced,
 /turf/open/floor/facility/dark,
 /area/centcom)
+"gV" = (
+/obj/structure/table/wood/bar,
+/obj/effect/turf_decal/siding/wood{
+	layer = 2.85
+	},
+/obj/machinery/door/poddoor/preopen{
+	id = "kitchen"
+	},
+/obj/item/storage/box/drinkingglasses{
+	pixel_x = 2;
+	pixel_y = 11
+	},
+/obj/item/reagent_containers/glass/rag{
+	pixel_x = 5;
+	pixel_y = 2
+	},
+/obj/item/reagent_containers/food/drinks/shaker{
+	pixel_x = -7
+	},
+/turf/open/floor/facility/dark,
+/area/centcom)
 "gX" = (
 /obj/effect/turf_decal/siding/yellow/corner{
 	dir = 4
@@ -2226,10 +2247,6 @@
 "jX" = (
 /obj/structure/window/reinforced/spawner{
 	dir = 4
-	},
-/obj/machinery/computer/med_data{
-	dir = 1;
-	pixel_x = -3
 	},
 /turf/open/floor/mineral/titanium/blue,
 /area/centcom)
@@ -3818,7 +3835,8 @@
 /obj/machinery/door/poddoor/preopen{
 	armor = list("melee" = 20, "bullet" = 100, "laser" = 100, "energy" = 100, "bomb" = 50, "bio" = 100, "rad" = 100, "fire" = 100, "acid" = 70);
 	max_integrity = 1800;
-	id = "mosb_containment3"
+	id = "mosb_containment3";
+	damage_deflection = 0
 	},
 /obj/effect/spawner/structure/window/reinforced{
 	max_integrity = 3000
@@ -4032,7 +4050,7 @@
 /obj/machinery/chem_dispenser/fullupgrade{
 	pixel_y = 14;
 	emagged_reagents = list();
-	dispensable_reagents = list(/datum/reagent/aluminium,/datum/reagent/bromine,/datum/reagent/carbon,/datum/reagent/chlorine,/datum/reagent/copper,/datum/reagent/consumable/ethanol,/datum/reagent/fluorine,/datum/reagent/hydrogen,/datum/reagent/iodine,/datum/reagent/iron,/datum/reagent/lithium,/datum/reagent/mercury,/datum/reagent/nitrogen,/datum/reagent/oxygen,/datum/reagent/phosphorus,/datum/reagent/potassium,/datum/reagent/uranium/radium,/datum/reagent/silicon,/datum/reagent/sodium,/datum/reagent/silver,/datum/reagent/stable_plasma,/datum/reagent/consumable/sugar,/datum/reagent/sulfur,/datum/reagent/toxin/acid,/datum/reagent/water,/datum/reagent/fuel)
+	dispensable_reagents = list(/datum/reagent/aluminium,/datum/reagent/bromine,/datum/reagent/carbon,/datum/reagent/chlorine,/datum/reagent/copper,/datum/reagent/consumable/ethanol,/datum/reagent/fluorine,/datum/reagent/hydrogen,/datum/reagent/iodine,/datum/reagent/iron,/datum/reagent/lithium,/datum/reagent/mercury,/datum/reagent/nitrogen,/datum/reagent/oxygen,/datum/reagent/phosphorus,/datum/reagent/potassium,/datum/reagent/uranium/radium,/datum/reagent/silicon,/datum/reagent/sodium,/datum/reagent/silver,/datum/reagent/stable_plasma,/datum/reagent/consumable/sugar,/datum/reagent/sulfur,/datum/reagent/toxin/acid,/datum/reagent/water,/datum/reagent/fuel,/datum/reagent/drug/enkephalin)
 	},
 /turf/open/floor/noslip,
 /area/centcom)
@@ -5092,7 +5110,8 @@
 /obj/machinery/door/poddoor/preopen{
 	armor = list("melee" = 20, "bullet" = 100, "laser" = 100, "energy" = 100, "bomb" = 50, "bio" = 100, "rad" = 100, "fire" = 100, "acid" = 70);
 	max_integrity = 1800;
-	id = "emergency_lockdown1"
+	id = "emergency_lockdown1";
+	damage_deflection = 0
 	},
 /obj/effect/spawner/structure/window/reinforced{
 	max_integrity = 3000
@@ -5192,7 +5211,7 @@
 "vB" = (
 /obj/machinery/door/window/brigdoor{
 	dir = 8;
-	req_one_access_txt = "32;19";
+	req_one_access_txt = "1;19";
 	opacity = 1
 	},
 /obj/machinery/camera{
@@ -5435,7 +5454,7 @@
 "wz" = (
 /obj/machinery/door/window/brigdoor{
 	dir = 8;
-	req_one_access_txt = "32;19"
+	req_one_access_txt = "1;19"
 	},
 /turf/open/floor/carpet/executive,
 /area/centcom)
@@ -5661,6 +5680,7 @@
 /obj/structure/lattice/catwalk,
 /obj/effect/mapping_helpers/simple_pipes,
 /obj/structure/disposalpipe/segment,
+/obj/effect/landmark/xeno_spawn,
 /turf/open/floor/plating,
 /area/centcom)
 "xq" = (
@@ -6040,7 +6060,7 @@
 "zg" = (
 /obj/machinery/door/airlock/highsecurity{
 	name = "internal police armory";
-	req_access_txt = "19"
+	req_access_txt = "19;3;1"
 	},
 /turf/open/floor/facility/halls,
 /area/centcom)
@@ -7072,6 +7092,10 @@
 	resistance_flags = 115;
 	pixel_x = 2
 	},
+/obj/machinery/computer/med_data{
+	dir = 1;
+	pixel_x = 29
+	},
 /turf/open/floor/mineral/titanium/blue,
 /area/centcom)
 "CX" = (
@@ -7196,17 +7220,6 @@
 	pixel_x = 18
 	},
 /turf/open/indestructible/crystal_floor,
-/area/centcom)
-"Dz" = (
-/obj/effect/mapping_helpers/simple_pipes,
-/obj/structure/lattice/catwalk,
-/obj/effect/landmark/xeno_spawn,
-/obj/machinery/light/small{
-	dir = 4;
-	pixel_y = 9;
-	pixel_x = 8
-	},
-/turf/open/floor/plating,
 /area/centcom)
 "DC" = (
 /obj/effect/turf_decal/bot,
@@ -7702,17 +7715,6 @@
 /turf/open/floor/pod/dark,
 /area/centcom)
 "FB" = (
-/obj/item/storage/box/drinkingglasses{
-	pixel_x = 2;
-	pixel_y = 11
-	},
-/obj/item/reagent_containers/food/drinks/shaker{
-	pixel_x = -7
-	},
-/obj/item/reagent_containers/glass/rag{
-	pixel_x = 5;
-	pixel_y = 2
-	},
 /obj/structure/table/wood/bar,
 /obj/effect/turf_decal/siding/wood{
 	layer = 2.85
@@ -7723,6 +7725,9 @@
 /obj/effect/turf_decal/tile/blue{
 	color = "#5269e9";
 	dir = 1
+	},
+/obj/machinery/microwave{
+	pixel_y = 5
 	},
 /turf/open/floor/plasteel/white,
 /area/centcom)
@@ -8520,7 +8525,7 @@
 "IS" = (
 /obj/machinery/door/airlock/highsecurity{
 	name = "damage exasperation armory";
-	req_access_txt = "19"
+	req_access_txt = "19;3;1"
 	},
 /turf/open/floor/facility/halls,
 /area/centcom)
@@ -9356,7 +9361,7 @@
 "LZ" = (
 /obj/machinery/door/window/brigdoor{
 	dir = 1;
-	req_access_txt = "69"
+	req_access_txt = "19;3"
 	},
 /obj/effect/turf_decal/siding/yellow{
 	dir = 4
@@ -38219,7 +38224,7 @@ qa
 uT
 uT
 uT
-Dz
+qa
 uT
 ap
 AR
@@ -46445,7 +46450,7 @@ kL
 SY
 FB
 Si
-iq
+gV
 NF
 tn
 gA

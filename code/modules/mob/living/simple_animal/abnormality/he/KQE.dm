@@ -15,6 +15,8 @@
 	del_on_death = FALSE
 	melee_damage_type = BLACK_DAMAGE
 	damage_coeff = list(RED_DAMAGE = 1.5, WHITE_DAMAGE = 0.8, BLACK_DAMAGE = 1, PALE_DAMAGE = 1.2)
+	speak_emote = list("states")
+	speech_span = SPAN_ROBOT
 	melee_damage_lower = 20
 	melee_damage_upper = 25
 	move_to_delay = 3
@@ -36,6 +38,7 @@
 	)
 	work_damage_amount = 10
 	work_damage_type = BLACK_DAMAGE
+	chem_type = /datum/reagent/abnormality/sin/envy
 
 	ego_list = list(
 		/datum/ego_datum/weapon/replica,
@@ -220,6 +223,8 @@
 	if ((grab_cooldown <= world.time) && prob(35) && (!client))//checks for client since you can still use the claw if you click nearby
 		var/turf/target_turf = get_turf(attacked_target)
 		return ClawGrab(target_turf)
+	if(!target)
+		GiveTarget(attacked_target)
 	return Whip_Attack()
 
 /mob/living/simple_animal/hostile/abnormality/kqe/proc/Whip_Attack()
@@ -230,7 +235,7 @@
 	SLEEP_CHECK_DEATH(10)
 	for(var/turf/T in view(2, src))
 		new /obj/effect/temp_visual/smash_effect(T)
-		HurtInTurf(T, list(), melee_damage_upper, RED_DAMAGE, check_faction = TRUE, hurt_mechs = TRUE)
+		HurtInTurf(T, list(), melee_damage_upper, RED_DAMAGE, check_faction = TRUE, hurt_mechs = TRUE, hurt_structure = TRUE)
 	icon_state = "kqe_prepare2"
 	SLEEP_CHECK_DEATH(3)
 	icon_state = icon_living
@@ -336,6 +341,7 @@
 	damage_coeff = list(RED_DAMAGE = 2, WHITE_DAMAGE = 2, BLACK_DAMAGE = 2, PALE_DAMAGE = 2)
 	speed = 5
 	density = TRUE
+	faction = list("hostile", "KQE")
 	var/mob/living/simple_animal/hostile/abnormality/kqe/abno_host//This is KQE!
 
 /mob/living/simple_animal/hostile/kqe_heart/Move()

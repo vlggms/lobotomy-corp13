@@ -63,6 +63,8 @@
 	ADD_TRAIT(M, TRAIT_NOFIRE, "Claw")
 	ADD_TRAIT(M, TRAIT_NODISMEMBER, "Claw")
 	ADD_TRAIT(M, TRAIT_SANITYIMMUNE, "Claw")
+	ADD_TRAIT(M, TRAIT_BRUTEPALE, "Claw")
+	ADD_TRAIT(M, TRAIT_NIGHT_VISION, "Claw")
 	M.adjust_attribute_buff(FORTITUDE_ATTRIBUTE, 250) // Half of Arbiter, you're the claw not getting hit is part of your training
 
 /datum/antagonist/claw/remove_innate_effects(mob/living/mob_override)
@@ -79,6 +81,8 @@
 	REMOVE_TRAIT(M, TRAIT_NOFIRE, "Claw")
 	REMOVE_TRAIT(M, TRAIT_NODISMEMBER, "Claw")
 	REMOVE_TRAIT(M, TRAIT_SANITYIMMUNE, "Claw")
+	REMOVE_TRAIT(M, TRAIT_BRUTEPALE, "Claw")
+	REMOVE_TRAIT(M, TRAIT_NIGHT_VISION, "Claw")
 	M.adjust_attribute_buff(FORTITUDE_ATTRIBUTE, -250)
 
 /datum/outfit/claw
