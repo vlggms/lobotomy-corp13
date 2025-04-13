@@ -1,17 +1,17 @@
-/obj/item/book/granter/action/skill/fishing/smite
+/obj/item/book/granter/action/skill/smite
 	name = "Level 2 Skill: Smite the Heretics"
 	actionname = "Smite the Heretics"
-	granted_action = /datum/action/cooldown/fishing/smite
+	granted_action = /datum/action/cooldown/smite
 	level = 2
 	custom_premium_price = 1200
 
-/datum/action/cooldown/fishing/smite
+/datum/action/cooldown/smite
 	name = "Smite the Heretics"
 	button_icon_state = "smite"
 	cooldown_time = 30 SECONDS
 	devotion_cost = 7
 
-/datum/action/cooldown/fishing/smite/FishEffect(mob/living/user)
+/datum/action/cooldown/smite/FishEffect(mob/living/user)
 	for(var/mob/living/sinner in view(4, get_turf(src)))
 		if(user.god_aligned == sinner.god_aligned)
 			continue
@@ -26,44 +26,44 @@
 		else
 			to_chat(sinner, span_userdanger("The gods have punished you for your sins using [user] as a conduit!"))
 
-/obj/item/book/granter/action/skill/fishing/might
+/obj/item/book/granter/action/skill/might
 	name = "Level 2 Skill: Lunar Might"
 	actionname = "Lunar Might"
-	granted_action = /datum/action/cooldown/fishing/might
+	granted_action = /datum/action/cooldown/might
 	level = 2
 	custom_premium_price = 1200
 
-/datum/action/cooldown/fishing/might
+/datum/action/cooldown/might
 	name = "Lunar Might"
 	button_icon_state = "might"
 	cooldown_time = 30 SECONDS
 	devotion_cost = 7
 	var/stat_hold = 0
 
-/datum/action/cooldown/fishing/might/FishEffect(mob/living/user)
+/datum/action/cooldown/might/FishEffect(mob/living/user)
 	var/mob/living/carbon/human/H = owner
 	stat_hold = SSfishing.moonphase*10
 	H.adjust_attribute_bonus(JUSTICE_ATTRIBUTE, stat_hold)
 	addtimer(CALLBACK(src, PROC_REF(Recall),), 20 SECONDS, TIMER_UNIQUE | TIMER_OVERRIDE)
 
-/datum/action/cooldown/fishing/might/proc/Recall(mob/living/carbon/human/user)
+/datum/action/cooldown/might/proc/Recall(mob/living/carbon/human/user)
 	var/mob/living/carbon/human/H = owner
 	H.adjust_attribute_bonus(JUSTICE_ATTRIBUTE, -stat_hold)
 
-/obj/item/book/granter/action/skill/fishing/awe
+/obj/item/book/granter/action/skill/awe
 	name = "Level 2 Skill: Awe the Weak"
 	actionname = "Awe the Weak"
-	granted_action = /datum/action/cooldown/fishing/awe
+	granted_action = /datum/action/cooldown/awe
 	level = 2
 	custom_premium_price = 1200
 
-/datum/action/cooldown/fishing/awe
+/datum/action/cooldown/awe
 	name = "Awe the Weak"
 	button_icon_state = "awe"
 	cooldown_time = 30 SECONDS
 	devotion_cost = 8
 
-/datum/action/cooldown/fishing/awe/FishEffect(mob/living/user)
+/datum/action/cooldown/awe/FishEffect(mob/living/user)
 	for(var/mob/living/victim in view(5, get_turf(src)))
 		if(victim == owner)
 			continue
@@ -73,20 +73,20 @@
 
 	StartCooldown()
 
-/obj/item/book/granter/action/skill/fishing/chakra
+/obj/item/book/granter/action/skill/chakra
 	name = "Level 2 Skill: Chakra Misalignment"
 	actionname = "Chakra Misalignment"
-	granted_action = /datum/action/cooldown/fishing/chakra
+	granted_action = /datum/action/cooldown/chakra
 	level = 2
 	custom_premium_price = 1200
 
-/datum/action/cooldown/fishing/chakra
+/datum/action/cooldown/chakra
 	name = "Chakra Misalignment"
 	button_icon_state = "chakra"
 	cooldown_time = 30 SECONDS
 	devotion_cost = 12
 
-/datum/action/cooldown/fishing/chakra/FishEffect(mob/living/user)
+/datum/action/cooldown/chakra/FishEffect(mob/living/user)
 	for(var/mob/living/victim in view(4, get_turf(user)))
 		if(victim == owner)
 			continue
@@ -103,12 +103,12 @@
 
 		obliterate(victim) // their planet is dead, and so will they be
 
-/datum/action/cooldown/fishing/chakra/proc/smite(mob/living/carbon/asshole, mob/living/carbon/user)
+/datum/action/cooldown/chakra/proc/smite(mob/living/carbon/asshole, mob/living/carbon/user)
 	asshole.apply_damage(user.devotion * SSfishing.moonphase * 0.5, WHITE_DAMAGE, null, asshole.run_armor_check(null, WHITE_DAMAGE), spread_damage = TRUE)	//KILL
 	if(ishuman(asshole))
 		to_chat(asshole, span_userdanger("You feel your chakra rend itself!"), confidential = TRUE)
 
-/datum/action/cooldown/fishing/chakra/proc/obliterate(mob/living/carbon/H)
+/datum/action/cooldown/chakra/proc/obliterate(mob/living/carbon/H)
 	to_chat(H, span_userdanger("YOUR CHAKRA IS SPLITTING YOUR BODY!"), confidential = TRUE)
 	new /obj/effect/temp_visual/human_horizontal_bisect(get_turf(H))
 	H.set_lying_angle(NORTH) // gunk code I know, but it is the simplest way to override gib_animation() without touching other code. Also looks smoother.
@@ -116,20 +116,20 @@
 
 /// Salmon Splitter
 /// Explode someone dead into fish
-/obj/item/book/granter/action/skill/fishing/splitter
+/obj/item/book/granter/action/skill/splitter
 	name = "Level 2 Skill: Greater Fish - Vertical"
 	actionname = "Greater Fish - Vertical"
-	granted_action = /datum/action/cooldown/fishing/splitter
+	granted_action = /datum/action/cooldown/splitter
 	level = 2
 	custom_premium_price = 1200
 
-/datum/action/cooldown/fishing/splitter
+/datum/action/cooldown/splitter
 	name = "Greater Fish - Vertical"
 	button_icon_state = "splitter"
 	cooldown_time = 10 SECONDS
 	devotion_cost = 7
 
-/datum/action/cooldown/fishing/splitter/FishEffect(mob/living/user)
+/datum/action/cooldown/splitter/FishEffect(mob/living/user)
 	//Compile people around you in crit
 	for(var/mob/living/future_fish in view(2, get_turf(src)))
 		if(future_fish == owner)

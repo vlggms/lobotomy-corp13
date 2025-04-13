@@ -119,9 +119,3 @@
 		to_chat(user, "<span class='nicegreen'>You gained [total_adjust] potential!</span>")
 		adjusting = FALSE
 		qdel(src)
-
-/obj/item/attribute_increase/fixer/fishing
-	name = "n corp fishing training accelerator"
-	desc = "A fluid used to increase the stats of a non-assocaition fixer. Use in hand to activate. Increases stats more the lower your potential, however at max it can be used until you are grade 8."
-	color = "#7e02d1"
-	max_attributes = 40
