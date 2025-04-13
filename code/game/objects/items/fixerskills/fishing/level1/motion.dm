@@ -1,17 +1,17 @@
 /obj/item/book/granter/action/skill/planet
 	name = "Level 1 Skill: Planet"
 	actionname = "Planet"
-	granted_action = /datum/action/cooldown/planet
+	granted_action = /datum/action/cooldown/fishing/planet
 	level = 1
 	custom_premium_price = 600
 
-/datum/action/cooldown/planet
+/datum/action/cooldown/fishing/planet
 	name = "Planet"
 	button_icon_state = "planet"
 	cooldown_time = 10 MINUTES
 	devotion_cost = 2
 
-/datum/action/cooldown/planet/FishEffect(mob/living/user)
+/datum/action/cooldown/fishing/planet/FishEffect(mob/living/user)
 	for(var/datum/planet/planet as anything in SSfishing.planets)
 		if(user.god_aligned != planet.god)
 			continue
@@ -25,17 +25,17 @@
 /obj/item/book/granter/action/skill/moonmove
 	name = "Level 1 Skill: Lunar Motion"
 	actionname = "Lunar Motion"
-	granted_action = /datum/action/cooldown/moonmove
+	granted_action = /datum/action/cooldown/fishing/moonmove
 	level = 1
 	custom_premium_price = 600
 
-/datum/action/cooldown/moonmove
+/datum/action/cooldown/fishing/moonmove
 	name = "Lunar Motion"
 	button_icon_state = "moonmove"
 	cooldown_time = 10 MINUTES
 	devotion_cost = 3
 
-/datum/action/cooldown/moonmove/FishEffect(mob/living/user)
+/datum/action/cooldown/fishing/moonmove/FishEffect(mob/living/user)
 	to_chat(user, span_notice("You shift the moon forwards by one phase."))
 	SSfishing.moonphase++
 	if(SSfishing.moonphase == 5) // there's only 4
@@ -44,17 +44,17 @@
 /obj/item/book/granter/action/skill/planet2
 	name = "Level 1 Skill: Plane II"
 	actionname = "Planet II"
-	granted_action = /datum/action/cooldown/planet2
+	granted_action = /datum/action/cooldown/fishing/planet2
 	level = 1
 	custom_premium_price = 600
 
-/datum/action/cooldown/planet2
+/datum/action/cooldown/fishing/planet2
 	name = "Planet II"
 	button_icon_state = "planet2"
 	cooldown_time = 10 MINUTES
 	devotion_cost = 4
 
-/datum/action/cooldown/planet2/FishEffect(mob/living/user)
+/datum/action/cooldown/fishing/planet2/FishEffect(mob/living/user)
 	var/list/planet_names = list()
 	for(var/datum/planet/planet as anything in SSfishing.planets)
 		planet_names += planet.name

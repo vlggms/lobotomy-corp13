@@ -1,17 +1,17 @@
 /obj/item/book/granter/action/skill/alignment
 	name = "Level 3 Skill: Alignment"
 	actionname = "Alignment"
-	granted_action = /datum/action/cooldown/alignment
+	granted_action = /datum/action/cooldown/fishing/alignment
 	level = 4
 	custom_premium_price = 2400
 
-/datum/action/cooldown/alignment
+/datum/action/cooldown/fishing/alignment
 	name = "Alignment"
 	button_icon_state = "alignment"
 	cooldown_time = 10 MINUTES
 	devotion_cost = 15
 
-/datum/action/cooldown/alignment/FishEffect(mob/living/user)
+/datum/action/cooldown/fishing/alignment/FishEffect(mob/living/user)
 	for(var/datum/planet/planet as anything in SSfishing.planets)
 		if(user.god_aligned != planet.god)
 			continue
@@ -23,17 +23,17 @@
 /obj/item/book/granter/action/skill/planetstop
 	name = "Level 3 Skill: A Moment in Time"
 	actionname = "A Moment in Time"
-	granted_action = /datum/action/cooldown/planetstop
+	granted_action = /datum/action/cooldown/fishing/planetstop
 	level = 4
 	custom_premium_price = 2400
 
-/datum/action/cooldown/planetstop
+/datum/action/cooldown/fishing/planetstop
 	name = "A Moment in Time"
 	button_icon_state = "planetstop"
 	cooldown_time = 30 MINUTES
 	devotion_cost = 12
 
-/datum/action/cooldown/planetstop/FishEffect(mob/living/user)
+/datum/action/cooldown/fishing/planetstop/FishEffect(mob/living/user)
 	to_chat(user, span_notice("You halt the planets in their place, letting you bask in their glow a moment more."))
 	SSfishing.stopnext = TRUE
 	for(var/mob/M in GLOB.player_list)
@@ -42,17 +42,17 @@
 /obj/item/book/granter/action/skill/supernova
 	name = "Level 3 Skill: Supernova"
 	actionname = "Supernova"
-	granted_action = /datum/action/cooldown/supernova
+	granted_action = /datum/action/cooldown/fishing/supernova
 	level = 4
 	custom_premium_price = 2400
 
-/datum/action/cooldown/supernova
+/datum/action/cooldown/fishing/supernova
 	name = "Supernova"
 	button_icon_state = "supernova"
 	cooldown_time = 20 MINUTES
 	devotion_cost = 25
 
-/datum/action/cooldown/supernova/FishEffect(mob/living/user)
+/datum/action/cooldown/fishing/supernova/FishEffect(mob/living/user)
 	var/list/planet_names = list()
 	for(var/datum/planet/planet as anything in SSfishing.planets)
 		if(user.god_aligned != planet.god)
@@ -87,17 +87,17 @@
 /obj/item/book/granter/action/skill/alignment2
 	name = "Level 3 Skill: Alignment II"
 	actionname = "Alignment II"
-	granted_action = /datum/action/cooldown/alignment2
+	granted_action = /datum/action/cooldown/fishing/alignment2
 	level = 4
 	custom_premium_price = 2400
 
-/datum/action/cooldown/alignment2
+/datum/action/cooldown/fishing/alignment2
 	name = "Alignment II"
 	button_icon_state = "alignment2"
 	cooldown_time = 30 MINUTES
 	devotion_cost = 35
 
-/datum/action/cooldown/alignment2/FishEffect(mob/living/user)
+/datum/action/cooldown/fishing/alignment2/FishEffect(mob/living/user)
 	for(var/datum/planet/planet as anything in SSfishing.planets)
 		planet.phase = 1
 
