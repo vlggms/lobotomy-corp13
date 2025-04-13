@@ -1,5 +1,5 @@
 /obj/item/book/granter/action/skill/alignment
-	name = "Level 3 Skill: Alignment"
+	name = "Level 4 Skill: Alignment"
 	actionname = "Alignment"
 	granted_action = /datum/action/cooldown/fishing/alignment
 	level = 4
@@ -21,7 +21,7 @@
 		break
 
 /obj/item/book/granter/action/skill/planetstop
-	name = "Level 3 Skill: A Moment in Time"
+	name = "Level 4 Skill: A Moment in Time"
 	actionname = "A Moment in Time"
 	granted_action = /datum/action/cooldown/fishing/planetstop
 	level = 4
@@ -40,7 +40,7 @@
 		to_chat(M, span_userdanger("The planets have stopped moving."))
 
 /obj/item/book/granter/action/skill/supernova
-	name = "Level 3 Skill: Supernova"
+	name = "Level 4 Skill: Supernova"
 	actionname = "Supernova"
 	granted_action = /datum/action/cooldown/fishing/supernova
 	level = 4
@@ -85,7 +85,7 @@
 
 //Alignment 2
 /obj/item/book/granter/action/skill/alignment2
-	name = "Level 3 Skill: Alignment II"
+	name = "Level 4 Skill: Alignment II"
 	actionname = "Alignment II"
 	granted_action = /datum/action/cooldown/fishing/alignment2
 	level = 4
