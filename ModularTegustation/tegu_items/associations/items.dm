@@ -61,7 +61,8 @@
 	amount = 1
 	var/total_adjust = 0
 	var/max_attributes = 130
-	var/list/usable_roles = list("Civilian", "Office Director", "Office Fixer")
+	var/list/usable_roles = list("Civilian", "Office Director", "Office Fixer",
+		"Subsidary Office Director", "Fixer")
 	var/adjusting = FALSE
 
 /obj/item/attribute_increase/fixer/attack_self(mob/living/carbon/human/user)
