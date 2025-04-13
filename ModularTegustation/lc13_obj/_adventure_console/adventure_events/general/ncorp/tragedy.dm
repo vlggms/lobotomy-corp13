@@ -29,7 +29,7 @@
 	The sun is shining down on the meadow, and her face is shining with a smile.<br>\
 	And she begins to speak. <br>\
 	'I'm glad I found you when I did.'<br>\
-	'There was so much blood, 10 more minutes and you would have been a gonner,'<br>\
+	'There was so much blood, 10 more minutes and you would have been a goner,'<br>\
 	'I'm so happy that I was able to help you.'<br>\
 	She stands up. 'I'm a few hours late to get back. They're going to tan my hide.'<br>\
 	She leaves you a can of bread and a bottle of water. 'Here. Have some food. And don't move.'<br>\
