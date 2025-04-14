@@ -4251,6 +4251,7 @@
 #include "ModularTegustation\tegu_items\!combat_page\level3.dm"
 #include "ModularTegustation\tegu_items\associations\!overwrites.dm"
 #include "ModularTegustation\tegu_items\associations\association_beacon.dm"
+#include "ModularTegustation\tegu_items\associations\augment_components.dm"
 #include "ModularTegustation\tegu_items\associations\augment_ui.dm"
 #include "ModularTegustation\tegu_items\associations\augments.dm"
 #include "ModularTegustation\tegu_items\associations\cityspawners.dm"
