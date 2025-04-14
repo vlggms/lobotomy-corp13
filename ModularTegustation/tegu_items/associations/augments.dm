@@ -60,12 +60,13 @@
 			"repeatable" = 3, // Max 3 times
 		),
 		list(
-			"id" = "struggling_defense",
-			"name" = "Struggling Defense",
-			"ahn_cost" = 50,
-			"ep_cost" = 4, // Positive EP cost
-			"desc" = "For every 25% of HP lost, take 25%*X less damage.",
+			"id" = "regeneration",
+			"name" = "Regeneration",
+			"ahn_cost" = 25,
+			"ep_cost" = 2, // Positive EP cost
+			"desc" = "On hit with a RED weapon, heal a flat 2*X HP (Has a cooldown of half a second)",
 			"repeatable" = 3, // Max 3 times
+			"component" = /datum/component/regeneration
 		),
 		list(
 			"id" = "emergency_shields_red",
@@ -293,10 +294,36 @@
 // Augment Item definition (basic structure)
 /obj/item/augment
 	name = "Augment"
-	// ... other properties ...
+	icon = 'icons/mob/cult.dmi'
+	icon_state = "artificer"
 	var/datum/augment_design/design_details // Store the applied design data
 	var/primary_color = "#FFFFFF"
 	var/secondary_color = "#CCCCCC"
+
+/obj/item/augment/attack(mob/M, mob/user)
+	. = ..()
+	if (!CanUseAugment(user))
+		to_chat(user, "Only surgeons can do that!")
+		return FALSE
+	if (!ishuman(M))
+		to_chat(user, "Only affects human!")
+		return FALSE
+	if (!do_after(user, 10 SECONDS, M))
+		to_chat(user, "Interrupted!")
+		return FALSE
+
+	src.forceMove(M)
+	var/mob/living/carbon/human/H = M
+	ApplyEffects(H)
+
+/obj/item/augment/proc/CanUseAugment(mob/user)
+	return TRUE
+
+/obj/item/augment/proc/ApplyEffects(mob/living/carbon/human/H)
+	for (var/list/effect in design_details.selected_effects_data)
+		if (effect["component"])
+			H.AddComponent(effect["component"])
+	return
 
 /obj/item/augment/proc/apply_design(datum/augment_design/applied_design, p_color, s_color)
 	if(!applied_design)
@@ -344,7 +371,17 @@
 			return uppertext(color_text) // Return valid hex, uppercased for consistency
 	return default_color // Failed validation
 
-// Assume these helper procs exist or implement them:
-// mob/proc/get_id_card() - returns the user's ID card object
-// mob/proc/pay_amount(amount) - deducts currency, returns TRUE on success
-// mob/proc/give_amount(amount) - adds currency (for refunds)
+/datum/component/regeneration
+	dupe_mode = COMPONENT_DUPE_UNIQUE
+
+
+/datum/component/regeneration/Initialize()
+	if(!ishuman(parent))
+		return COMPONENT_INCOMPATIBLE
+
+	RegisterSignal(parent, COMSIG_MOB_ITEM_ATTACK, PROC_REF(trigger_regen))
+
+/datum/component/regeneration/proc/trigger_regen(datum/source, mob/living/target, mob/living/user, obj/item/item)
+	to_chat(user, "Healed by [item.damtype]" )
+	return
+
