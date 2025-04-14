@@ -5,12 +5,12 @@
 
 	*/
 
-//Sloth - Start Event
+//Glutt - Start Event
+//Sloth -
 //Gloom - A Tram Ride
 //Pride - Bedroom Blues
 //Envy  -
 //Lust  -
-//Glutt -
 //Wrath -
 
 /datum/adventure_event/skinevent

@@ -27,8 +27,8 @@
 			BUTTON_FORMAT(3, "EAT THE MYSTERY MEAT", M)
 			return
 		if(2)
-			AdjustHitPoint(10)		//
-			AdjustStatNum(LUST_STAT,1)
+			AdjustHitPoint(10)
+			AdjustStatNum(ENVY_STAT,1) // Envy is charisma and camraderie
 		if(3)
 			AdjustHitPoint(50)
 			AdjustStatNum(RAND_STAT,-1)

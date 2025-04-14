@@ -24,10 +24,10 @@
 /datum/adventure_event/skin_woman/EventChoiceFormat(obj/machinery/M, mob/living/carbon/human/H)
 	switch(cords)
 		if(1)
-			CHANCE_BUTTON_FORMAT(ReturnStat(SLOTH_STAT), "SLOTH", M)
+			CHANCE_BUTTON_FORMAT(ReturnStat(GLUTT_STAT), "GLUTTONY", M)
 			return
 		if(2)
 			RewardKey("SHE KNOWS")
 		if(3)
-			AdjustStatNum(SLOTH_STAT,2)
+			AdjustStatNum(GLUTT_STAT,2)
 	return ..()
