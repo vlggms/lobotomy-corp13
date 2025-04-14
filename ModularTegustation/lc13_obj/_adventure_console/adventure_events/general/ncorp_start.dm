@@ -45,4 +45,6 @@
 
 		if(6)
 			RewardKey("NAGEL INITIATION")
+			//Event cannot be encountered again if you get the invitation.
+			spend_event = TRUE
 	return ..()
