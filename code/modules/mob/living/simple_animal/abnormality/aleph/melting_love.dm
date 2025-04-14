@@ -129,6 +129,11 @@
 				L.apply_status_effect(STATUS_EFFECT_SLIMED)
 	return ..()
 
+/mob/living/simple_animal/hostile/abnormality/melting_love/bullet_act(obj/projectile/P)
+	if (P.damage_type == RED_DAMAGE && !ishuman(P.firer))
+		return BULLET_ACT_BLOCK
+	. = ..()
+
 /mob/living/simple_animal/hostile/abnormality/melting_love/Move()
 	. = ..()
 	var/turf/T = get_turf(src)
