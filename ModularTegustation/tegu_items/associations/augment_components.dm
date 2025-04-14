@@ -35,6 +35,8 @@
 	if(!ishuman(parent))
 		return FALSE
 	var/mob/living/carbon/human/H = parent
+	if(item.force <= 0 && target.stat == DEAD)
+		return FALSE
 	regen_cooldown = world.time + regen_cooldown_time
 	H.adjustBruteLoss(-2*amount)
 	to_chat(user, span_nicegreen("Your body regenerates as you rip into [target]!"))
@@ -52,6 +54,8 @@
 	if(!ishuman(parent))
 		return FALSE
 	var/mob/living/carbon/human/H = parent
+	if(item.force <= 0 && target.stat == DEAD)
+		return FALSE
 	regen_cooldown = world.time + regen_cooldown_time
 	H.adjustSanityLoss(-2*amount)
 	to_chat(user, span_nicegreen("Your mind stabilizes as you rip into [target]!"))
