@@ -7,7 +7,7 @@ GLOBAL_DATUM_INIT(damage_type_shuffler, /datum/damage_type_shuffler, new /datum/
 //For armor and damage_coeffs the switcharoo happens at armor datum initialization
 //Usually when armor is being changed from code a brand new armor datum is created so it works out
 //But any runtime changes to the mapping_defense wont affect existing armor.
-//It is ensured that at least one pair of colors are switched. Up to 2 colors can remain unchanged.
+//It is ensured that at most only 1 color maps into itself.
 /datum/damage_type_shuffler
 	var/is_enabled = FALSE
 	///Maps (original damage type) => (new damage type), can be changed at any time.
@@ -22,15 +22,31 @@ GLOBAL_DATUM_INIT(damage_type_shuffler, /datum/damage_type_shuffler, new /datum/
 	. = ..()
 	ReshuffleAll()
 
-/datum/damage_type_shuffler/proc/Reshuffle(list/mapping_to_shuffle)
-	var/list/source = list(RED_DAMAGE, WHITE_DAMAGE, BLACK_DAMAGE, PALE_DAMAGE)
-	var/list/target = list(RED_DAMAGE, WHITE_DAMAGE, BLACK_DAMAGE, PALE_DAMAGE)
-	var/from = pick_n_take(source)
-	var/destination = pick(source)
-	target -= destination
-	mapping_to_shuffle[from] = destination
-	for(var/i in source)
-		mapping_to_shuffle[i] = pick_n_take(target)
+/datum/damage_type_shuffler/proc/Reshuffle(list/mapping)
+	var/list/sources = list(RED_DAMAGE, WHITE_DAMAGE, BLACK_DAMAGE, PALE_DAMAGE)
+	var/list/targets = list(RED_DAMAGE, WHITE_DAMAGE, BLACK_DAMAGE, PALE_DAMAGE)
+	for(var/i in 1 to 3)
+		MapNeverSelf(mapping, sources, targets)
+	MapAllowSelf(mapping, sources, targets)
+
+/datum/damage_type_shuffler/proc/MapNeverSelf(list/mapping, list/sources, list/targets)
+	var/source = pick_n_take(sources)
+	var/target = pick(targets - source)
+	if(!source || !target)
+		stack_trace("damage shuffler/MapNeverSelf: failed to map from [sources] to [targets].")
+		return FALSE
+	targets -= target
+	mapping[source] = target
+	return TRUE
+
+/datum/damage_type_shuffler/proc/MapAllowSelf(list/mapping, list/sources, list/targets)
+	var/source = pick_n_take(sources)
+	var/target = pick_n_take(targets)
+	if(!source || !target)
+		stack_trace("damage shuffler/MapAllowSelf: failed to map from [sources] to [targets].")
+		return FALSE
+	mapping[source] = target
+	return TRUE
 
 /datum/damage_type_shuffler/proc/ReshuffleAll()
 	Reshuffle(mapping_offense)
