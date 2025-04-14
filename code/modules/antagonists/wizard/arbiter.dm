@@ -42,7 +42,8 @@
 	ADD_TRAIT(M, TRAIT_SANITYIMMUNE, "Arbiter")
 	ADD_TRAIT(M, TRAIT_BRUTEPALE, "Arbiter")
 	ADD_TRAIT(M, TRAIT_BRUTESANITY, "Arbiter")
-	ADD_TRAIT(M, TRAIT_NIGHT_VISION, "Arbiter")
+	ADD_TRAIT(M, TRAIT_TRUE_NIGHT_VISION, "Arbiter")
+	M.update_sight() //Nightvision trait wont matter without it
 	M.adjust_attribute_buff(FORTITUDE_ATTRIBUTE, 500) // Obviously they are very tough
 	for(var/spell_type in spell_types)
 		var/obj/effect/proc_holder/spell/S = new spell_type
@@ -64,7 +65,8 @@
 	REMOVE_TRAIT(M, TRAIT_SANITYIMMUNE, "Arbiter")
 	REMOVE_TRAIT(M, TRAIT_BRUTEPALE, "Arbiter")
 	REMOVE_TRAIT(M, TRAIT_BRUTESANITY, "Arbiter")
-	REMOVE_TRAIT(M, TRAIT_NIGHT_VISION, "Arbiter")
+	REMOVE_TRAIT(M, TRAIT_TRUE_NIGHT_VISION, "Arbiter")
+	M.update_sight() //Removing nightvision wont matter without it
 	M.adjust_attribute_buff(FORTITUDE_ATTRIBUTE, -500)
 
 /datum/outfit/arbiter

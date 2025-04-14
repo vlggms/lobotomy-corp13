@@ -7,10 +7,11 @@
 	projectile_type = /obj/projectile/beam/laser/pale
 
 /obj/machinery/manned_turret/rcorp/user_buckle_mob(mob/living/M, mob/user, check_loc = TRUE)
-	. = ..()
 	if(user.mind)
-		if(user.mind.has_antag_datum(/datum/antagonist/wizard/arbiter/rcorp)) //You are a arbiter not a heavy weapons guy
-			return
+		if(user.mind.has_antag_datum(/datum/antagonist/wizard/arbiter/rcorp))
+			to_chat(user, "<span class='notice'>You wouldn't stoop so low as to use the weapons of those below you.</span>") //You are an arbiter not a heavy weapons guy
+			return FALSE
+	 ..()
 
 /obj/machinery/manned_turret/rcorp/stationary
 	name = "rcorp manned turret"
