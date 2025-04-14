@@ -4250,6 +4250,7 @@
 #include "ModularTegustation\tegu_items\lc13unique_items.dm"
 #include "ModularTegustation\tegu_items\associations\!overwrites.dm"
 #include "ModularTegustation\tegu_items\associations\association_beacon.dm"
+#include "ModularTegustation\tegu_items\associations\augment_components.dm"
 #include "ModularTegustation\tegu_items\associations\augment_ui.dm"
 #include "ModularTegustation\tegu_items\associations\augments.dm"
 #include "ModularTegustation\tegu_items\associations\cityspawners.dm"

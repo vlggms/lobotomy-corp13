@@ -2,14 +2,16 @@
 // The Augment Fabricator Machine
 //--------------------------------------
 
-#define AUGMENT_ICON_FILE 'icons/mob/cult.dmi' // CHANGE THIS to your actual DMI file path
+#define AUGMENT_ICON_FILE 'icons/effects/augment_fab.dmi' // CHANGE THIS to your actual DMI file path
 
 /obj/machinery/augment_fabricator
 	name = "Augment Fabricator"
 	desc = "A machine used to design and fabricate custom augments. Requires proper clearance."
-	icon = 'ModularTegustation/Teguicons/refiner.dmi'
-	icon_state = "machine2"
+	icon = 'icons/obj/machines/research.dmi'
+	icon_state = "protolathe"
+	var/icon_state_animation = "protolathe_n"
 	anchored = TRUE
+	density = TRUE
 
 	// --- TGUI Handler ---
 	/// Manages the TGUI interactions for this machine.
@@ -27,9 +29,9 @@
 			"upgradable" = 1,
 			"desc" = "A standard internal augmentation base.",
 			"icon_file" = AUGMENT_ICON_FILE, // Store the file path
-			"icon_preview" = "artificer", // Base icon state
-			"primary_overlay_state" = "glow_artificer0", // State for primary color mask
-			"secondary_overlay_state" = "glow_artificer0" // State for secondary color mask
+			"icon_preview" = "prosthetic", // Base icon state
+			"primary_overlay_state" = "prosthetic_prim", // State for primary color mask
+			"secondary_overlay_state" = "prosthetic_secon" // State for secondary color mask
 			),
 		"Tattoo" = list(
 			"id" = "tattoo",
@@ -39,9 +41,9 @@
 			"negative_immune" = 1,
 			"desc" = "An augment woven into the skin. Resists negative side-effects.",
 			"icon_file" = AUGMENT_ICON_FILE, // Store the file path
-			"icon_preview" = "wraith", // Base icon state
-			"primary_overlay_state" = "glow_wraith0", // State for primary color mask
-			"secondary_overlay_state" = "glow_wraith0" // State for secondary color mask
+			"icon_preview" = "tattoo", // Base icon state
+			"primary_overlay_state" = "tattoo_prim", // State for primary color mask
+			"secondary_overlay_state" = "tattoo_secon" // State for secondary color mask
 		)
 		// Add other forms here
 	)
@@ -66,7 +68,7 @@
 			"ep_cost" = 2, // Positive EP cost
 			"desc" = "On hit with a RED weapon, heal a flat 2*X HP (Has a cooldown of half a second)",
 			"repeatable" = 3, // Max 3 times
-			"component" = /datum/component/regeneration
+			"component" = /datum/component/augment/regeneration
 		),
 		list(
 			"id" = "emergency_shields_red",
@@ -165,6 +167,11 @@
 	// --- Create the Augment ---
 	// Optional: Add a fabrication delay?
 	// sleep(30) // 3 seconds delay
+
+	var/temp_icon_state = icon_state
+	icon_state = icon_state_animation
+	sleep(7)
+	icon_state = temp_icon_state
 
 	var/obj/item/augment/new_augment = new(get_turf(src)) // Create item at machine's location
 	if(new_augment)
@@ -294,8 +301,8 @@
 // Augment Item definition (basic structure)
 /obj/item/augment
 	name = "Augment"
-	icon = 'icons/mob/cult.dmi'
-	icon_state = "artificer"
+	icon = AUGMENT_ICON_FILE
+	icon_state = "prosthetic"
 	var/datum/augment_design/design_details // Store the applied design data
 	var/primary_color = "#FFFFFF"
 	var/secondary_color = "#CCCCCC"
@@ -370,18 +377,3 @@
 					return default_color // Invalid character
 			return uppertext(color_text) // Return valid hex, uppercased for consistency
 	return default_color // Failed validation
-
-/datum/component/regeneration
-	dupe_mode = COMPONENT_DUPE_UNIQUE
-
-
-/datum/component/regeneration/Initialize()
-	if(!ishuman(parent))
-		return COMPONENT_INCOMPATIBLE
-
-	RegisterSignal(parent, COMSIG_MOB_ITEM_ATTACK, PROC_REF(trigger_regen))
-
-/datum/component/regeneration/proc/trigger_regen(datum/source, mob/living/target, mob/living/user, obj/item/item)
-	to_chat(user, "Healed by [item.damtype]" )
-	return
-
