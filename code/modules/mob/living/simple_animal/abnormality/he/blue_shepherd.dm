@@ -120,9 +120,139 @@
 		"That red thing? they miss the love, the cuddles, the happiness of that moment dearly.",
 		"And when that 'buddy' fully realises the situation it's in, it becomes a wolf. That's when it can get my attention and care, what a dummy.",
 	)
-
+	var/no_counter = FALSE
+	var/sidesteping = FALSE
+	var/countering = FALSE
+	var/counter_damage = 20
 	//PLAYABLES ATTACKS
-	attack_action_types = list(/datum/action/innate/abnormality_attack/toggle/sheperd_spin_toggle)
+	attack_action_types = list(/datum/action/innate/abnormality_attack/toggle/sheperd_spin_toggle, /datum/action/cooldown/evade, /datum/action/cooldown/parry)
+
+/mob/living/simple_animal/hostile/abnormality/blue_shepherd/Login()
+	. = ..()
+	to_chat(src, "<h1>You are Blue Shepherd, A Combat Role Abnormality.</h1><br>\
+		<b>|Slayer|: When you attack, if your spin attack is off cooldown you will use it. \
+		Your spin attack is a 5x5 AoE centered around you, which deals medium BLACK damage. \
+		You are able to toggle your spin attack on and off with your ability.<br>\
+		<br>\
+		|Sidestep|: You are able to trigger your 'Dodge' ability using the button on the top left of your screen, \
+		Or you can use a hotkey. (Which is Spacebar by default). When you trigger your 'Dodge' ability you will gain a speed boost and lose density (Bullet will pass through you.) for 1 second. \
+		Once the speed boost ends, you will be slowed down for 1.5 seconds.<br>\
+		<br>\
+		|Counter|: You are able to trigger your 'Counter' ability using the button on the top left of your screen, \
+		Or you can use a hotkey. (Which is E by default). When you trigger your 'Counter' ability, If you take damage within the next second you will trigger a 5x5 AoE which deals BLACK damage. \
+		Also, Anyone hit by this AoE will knockdown all humans who are hit by it.\
+		</b>")
+
+/datum/action/cooldown/evade
+	name = "Dodge"
+	icon_icon = 'ModularTegustation/Teguicons/teguicons.dmi'
+	button_icon_state = "ruina_evade"
+	desc = "Gain a short speed boost evade your foes!"
+	cooldown_time = 30
+	var/speeded_up = 2
+	var/restspeed = 4
+	var/speed_duration = 10
+	var/weaken_duration = 15
+	var/old_speed
+
+/datum/action/cooldown/evade/Trigger()
+	if(!..())
+		return FALSE
+	if (istype(owner, /mob/living/simple_animal/hostile/abnormality/blue_shepherd))
+		var/mob/living/simple_animal/hostile/abnormality/blue_shepherd/H = owner
+		old_speed = 3
+		H.move_to_delay = speeded_up
+		H.UpdateSpeed()
+		H.sidesteping = TRUE
+		H.density = FALSE
+		H.no_counter = TRUE
+		addtimer(CALLBACK(src, PROC_REF(slowdown)), speed_duration)
+		StartCooldown()
+
+/mob/living/simple_animal/hostile/abnormality/blue_shepherd/Moved()
+	. = ..()
+	if (sidesteping)
+		MoveVFX()
+
+/mob/living/simple_animal/hostile/abnormality/blue_shepherd/proc/MoveVFX()
+	set waitfor = FALSE
+	var/obj/viscon_filtereffect/distortedform_trail/trail = new(src.loc,themob = src, waittime = 5)
+	trail.vis_contents += src
+	trail.filters += filter(type="drop_shadow", x=0, y=0, size=3, offset=2, color=rgb(0, 250, 229))
+	trail.filters += filter(type = "blur", size = 3)
+	animate(trail, alpha=120)
+	animate(alpha = 0, time = 10)
+
+/datum/action/cooldown/evade/proc/slowdown()
+	if (istype(owner, /mob/living/simple_animal/hostile/abnormality/blue_shepherd))
+		var/mob/living/simple_animal/hostile/abnormality/blue_shepherd/H = owner
+		H.move_to_delay = restspeed
+		H.density = TRUE
+		H.sidesteping = FALSE
+		addtimer(CALLBACK(src, PROC_REF(recover)), weaken_duration)
+		H.UpdateSpeed()
+
+/datum/action/cooldown/evade/proc/recover()
+	if (istype(owner, /mob/living/simple_animal/hostile/abnormality/blue_shepherd))
+		var/mob/living/simple_animal/hostile/abnormality/blue_shepherd/H = owner
+		H.move_to_delay = old_speed
+		H.no_counter = FALSE
+		H.UpdateSpeed()
+
+/datum/action/cooldown/parry
+	name = "Counter"
+	icon_icon = 'ModularTegustation/Teguicons/teguicons.dmi'
+	button_icon_state = "hollowpoint_ability"
+	desc = "Predict an attack, to deal damage to your foes!"
+	cooldown_time = 100
+	var/counter_duration = 10
+
+/datum/action/cooldown/parry/Trigger()
+	if(!..())
+		return FALSE
+	if (istype(owner, /mob/living/simple_animal/hostile/abnormality/blue_shepherd))
+		var/mob/living/simple_animal/hostile/abnormality/blue_shepherd/H = owner
+		if(H.no_counter)
+			to_chat(H, "You are curretnly dodging!")
+			return FALSE
+		else
+			H.ChangeResistances(list(RED_DAMAGE = 0, WHITE_DAMAGE = 0, BLACK_DAMAGE = 0, PALE_DAMAGE = 0))
+			H.countering = TRUE
+			H.slashing = TRUE
+			H.manual_emote("raises their blade...")
+			H.color = "#26a2d4"
+			playsound(H, 'sound/items/unsheath.ogg', 75, FALSE, 4)
+			addtimer(CALLBACK(src, PROC_REF(endcounter)), counter_duration)
+			StartCooldown()
+
+/mob/living/simple_animal/hostile/abnormality/blue_shepherd/attacked_by(obj/item/I, mob/living/user)
+	. = ..()
+	if (countering)
+		counter()
+
+/mob/living/simple_animal/hostile/abnormality/blue_shepherd/bullet_act(obj/projectile/P, def_zone, piercing_hit = FALSE)
+	. = ..()
+	if (countering)
+		counter()
+
+/mob/living/simple_animal/hostile/abnormality/blue_shepherd/proc/counter()
+	var/list/been_hit = list()
+	say(pick(combat_lines))
+	playsound(src, 'sound/weapons/fixer/generic/finisher2.ogg', 75, TRUE, 2)
+	for(var/turf/T in range(2, src))
+		new /obj/effect/temp_visual/smash_effect(T)
+		been_hit = HurtInTurf(T, been_hit, counter_damage, BLACK_DAMAGE, check_faction = TRUE, hurt_mechs = TRUE, mech_damage = 15)
+		for(var/mob/living/carbon/human/H in T)
+			H.Knockdown(20)
+	countering = FALSE
+
+/datum/action/cooldown/parry/proc/endcounter()
+	if (istype(owner, /mob/living/simple_animal/hostile/abnormality/blue_shepherd))
+		var/mob/living/simple_animal/hostile/abnormality/blue_shepherd/H = owner
+		H.countering = FALSE
+		H.slashing = FALSE
+		H.color = null
+		H.ChangeResistances(list(RED_DAMAGE = 0.6, WHITE_DAMAGE = 1, BLACK_DAMAGE = 0.8, PALE_DAMAGE = 1.5))
 
 /datum/action/innate/abnormality_attack/toggle/sheperd_spin_toggle
 	name = "Toggle Spinning Slash"
@@ -407,3 +537,11 @@
 	if(abno.name == "Reddened Buddy")
 		buddy = abno
 		UnregisterSignal(SSdcs, COMSIG_GLOB_ABNORMALITY_SPAWN)
+
+/mob/living/simple_animal/hostile/abnormality/blue_shepherd/proc/TriggerDodge()
+	for(var/datum/action/cooldown/evade/A in actions)
+		A.Trigger()
+
+/mob/living/simple_animal/hostile/abnormality/blue_shepherd/proc/TriggerCounter()
+	for(var/datum/action/cooldown/parry/A in actions)
+		A.Trigger()

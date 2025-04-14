@@ -137,6 +137,15 @@
 					V = new(get_turf(L))
 					birdlist+=V
 
+	for(var/obj/vehicle/V in urange(judgement_range, src))
+		for(var/mob/living/occupant in V.occupants)
+			if(faction_check_mob(occupant, FALSE))
+				continue
+			if(occupant.stat == DEAD)
+				continue
+			new /obj/effect/temp_visual/judgement(get_turf(V))
+			occupant.deal_damage(judgement_damage, PALE_DAMAGE)
+
 	icon_state = icon_living
 	judging = FALSE
 	return
