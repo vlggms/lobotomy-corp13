@@ -146,7 +146,7 @@
 	if(!CanUseEgo(user))
 		return
 	..()
-	if((target.stat == DEAD) && !(target.status_flags & GODMODE) && ishostile(target))
+	if((target.stat == DEAD) && !(target.status_flags & GODMODE) && ishostile(target) && !(istype(target, /mob/living/simple_animal/hostile/humanoid/blood/bag)))
 		var/mob/living/simple_animal/hostile/humanoid/blood/bag/blood = new(get_turf(target))
 		target.gib()
 		user.adjustBruteLoss(-user.maxHealth * 0.1)	//Heal 10% HP
