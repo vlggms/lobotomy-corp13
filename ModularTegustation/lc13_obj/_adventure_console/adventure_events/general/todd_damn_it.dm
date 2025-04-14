@@ -5,14 +5,14 @@
 	name = "A cart somewhere cold"
 	desc = "A BUMPY ROAD, A DEAD END"
 	adventure_cords = list(
-		"You jolt awake, you're taken down the bumpy streets on a cart.<br>\
-		\"Hey, you.\" a defiant man with bound hands addresses you \"You're finally awake.\"<br>\
+		"You jolt awake, you're being taken down the bumpy streets on a cart.<br>\
+		\"Hey, you.\" A defiant man with bound hands addresses you \"You're finally awake.\"<br>\
 		The cart is pulled into a small village, where soldiers glare at you.<br>\
 		You aren't quite sure where you are, or who these people are. You only know one thing.<br>\
 		<br>\
 		You are being lead to your death.",
 
-		"You refuse to just sit and wait for your death, at the first opportunity you headbutt a guard and bolt away from the cart!<br>\
+		"Refusing to sit and wait for death, you headbutt a guard at the first opportunity and bolt away from the cart!<br>\
 		Just as you're about to round the nearest corner you feel a sharp pain through your back. You cough up blood before collapsing to the ground.<br>\
 		<br>\
 		You awaken with a start curled up in a ball in an alley. What was that about?",
@@ -38,4 +38,3 @@
 			AdjustStatNum(PRIDE_STAT,1)
 			AdjustStatNum(GLUTT_STAT,-1)
 	return ..()
-
