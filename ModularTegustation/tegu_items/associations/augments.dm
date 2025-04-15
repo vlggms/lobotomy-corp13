@@ -54,12 +54,12 @@
 	var/list/available_effects = list(
 		// --- Reactive Damage Effects ---
 		list(
-			"id" = "struggling_strength",
-			"name" = "Struggling Strength",
+			"id" = "absorption",
+			"name" = "Absorption",
 			"ahn_cost" = 50,
 			"ep_cost" = 4, // Positive EP cost
-			"desc" = "For every 25% of HP lost, deal 25%*X more damage.",
-			"repeatable" = 3, // Max 3 times
+			"desc" = "On kill, regenerate as much HP as the amount of damage you dealt.",
+			"component" = /datum/component/augment/absorption
 		),
 		list(
 			"id" = "regeneration",
@@ -71,12 +71,13 @@
 			"component" = /datum/component/augment/regeneration
 		),
 		list(
-			"id" = "emergency_shields_red",
-			"name" = "Emergency Shields, RED",
-			"ahn_cost" = 50,
-			"ep_cost" = 4, // Positive EP cost
-			"desc" = "When you take damage while under 50% HP, gain 5 RED Protection. This has a cooldown of 1 minute.",
-			// "repeatable" key omitted or set to 0/null means not repeatable
+			"id" = "tranquility",
+			"name" = "Tranquility",
+			"ahn_cost" = 25,
+			"ep_cost" = 2, // Positive EP cost
+			"desc" = "On hit with a WHITE weapon, heal a flat 2*X SP (Has a cooldown of half a second)",
+			"repeatable" = 3, // Max 3 times
+			"component" = /datum/component/augment/tranquility
 		),
 		// --- Example Negative Effect ---
 		list(
