@@ -328,9 +328,19 @@
 	return TRUE
 
 /obj/item/augment/proc/ApplyEffects(mob/living/carbon/human/H)
+	var/list/grouped_efects_list = new/list()
 	for (var/list/effect in design_details.selected_effects_data)
+		var/current_id = effect["id"]
+		if (!islist(grouped_efects_list[current_id]))
+			grouped_efects_list[current_id] = list(effect)
+		else
+			grouped_efects_list[current_id] += list(effect)
+
+	for (var/id in grouped_efects_list)
+		var/list/items_in_group = grouped_efects_list[id]
+		var/effect = items_in_group[1]
 		if (effect["component"])
-			H.AddComponent(effect["component"])
+			H.AddComponent(effect["component"], items_in_group.len)
 	return
 
 /obj/item/augment/proc/apply_design(datum/augment_design/applied_design, p_color, s_color)
@@ -353,6 +363,10 @@
 
 	src.primary_color = p_color
 	src.secondary_color = s_color
+
+	var/form_data = applied_design.form_data
+	icon = generate_augment_preview_icon(form_data["icon_file"], form_data["icon_preview"], form_data["primary_overlay_state"],
+		form_data["secondary_overlay_state"], p_color, s_color)
 
 	// TODO: Apply actual game effects based on design_details
 	// - Modify stats (if applicable)
