@@ -673,8 +673,9 @@
 		src.apply_status_effect(/datum/status_effect/stacking/protection, stacks)
 		return
 
-	if(P.stacks)
-		P.add_stacks(stacks)
+	if(P.stacks < stacks)
+		qdel(P)
+		src.apply_status_effect(/datum/status_effect/stacking/protection, stacks)
 		return
 
 //Specific Damage Type Protections
@@ -784,8 +785,9 @@
 		src.apply_status_effect(/datum/status_effect/stacking/damtype_protection, stacks)
 		return
 
-	if(P.stacks)
-		P.add_stacks(stacks)
+	if(P.stacks < stacks)
+		qdel(P)
+		src.apply_status_effect(/datum/status_effect/stacking/damtype_protection, stacks)
 		return
 
 /datum/status_effect/stacking/damtype_protection/white
@@ -807,8 +809,9 @@
 		src.apply_status_effect(/datum/status_effect/stacking/damtype_protection/white, stacks)
 		return
 
-	if(P.stacks)
-		P.add_stacks(stacks)
+	if(P.stacks < stacks)
+		qdel(P)
+		src.apply_status_effect(/datum/status_effect/stacking/damtype_protection/white, stacks)
 		return
 
 /datum/status_effect/stacking/damtype_protection/black
@@ -830,8 +833,9 @@
 		src.apply_status_effect(/datum/status_effect/stacking/damtype_protection/black, stacks)
 		return
 
-	if(P.stacks)
-		P.add_stacks(stacks)
+	if(P.stacks < stacks)
+		qdel(P)
+		src.apply_status_effect(/datum/status_effect/stacking/damtype_protection/black, stacks)
 		return
 
 /datum/status_effect/stacking/damtype_protection/pale
@@ -853,8 +857,9 @@
 		src.apply_status_effect(/datum/status_effect/stacking/damtype_protection/pale, stacks)
 		return
 
-	if(P.stacks)
-		P.add_stacks(stacks)
+	if(P.stacks < stacks)
+		qdel(P)
+		src.apply_status_effect(/datum/status_effect/stacking/damtype_protection/pale, stacks)
 		return
 
 //Global Damage Up
@@ -906,6 +911,18 @@
 /datum/status_effect/stacking/damage_up/tick()
 	if(!can_have_status())
 		qdel(src)
+
+//Mob Proc
+/mob/living/proc/apply_lc_strength(stacks)
+	var/datum/status_effect/stacking/damage_up/S = src.has_status_effect(/datum/status_effect/stacking/damage_up)
+	if(!S)
+		src.apply_status_effect(/datum/status_effect/stacking/damage_up, stacks)
+		return
+
+	if(S.stacks < stacks)
+		qdel(S)
+		src.apply_status_effect(/datum/status_effect/stacking/damage_up, stacks)
+		return
 
 //Specific Damage Up
 /datum/status_effect/stacking/damtype_damage_up
@@ -986,6 +1003,18 @@
 	if(!can_have_status())
 		qdel(src)
 
+//Mob Proc
+/mob/living/proc/apply_lc_red_strength(stacks)
+	var/datum/status_effect/stacking/damtype_damage_up/S = src.has_status_effect(/datum/status_effect/stacking/damtype_damage_up)
+	if(!S)
+		src.apply_status_effect(/datum/status_effect/stacking/damtype_damage_up, stacks)
+		return
+
+	if(S.stacks < stacks)
+		qdel(S)
+		src.apply_status_effect(/datum/status_effect/stacking/damtype_damage_up, stacks)
+		return
+
 /datum/status_effect/stacking/damtype_damage_up/white
 	id = "white_damage_up"
 	alert_type = /atom/movable/screen/alert/status_effect/white_damage_up
@@ -996,6 +1025,18 @@
 	desc = "You are empowered! Your WHITE melee damage is increased by "
 	icon = 'ModularTegustation/Teguicons/status_sprites.dmi'
 	icon_state = "red_protection"
+
+//Mob Proc
+/mob/living/proc/apply_lc_white_strength(stacks)
+	var/datum/status_effect/stacking/damtype_damage_up/white/S = src.has_status_effect(/datum/status_effect/stacking/damtype_damage_up/white)
+	if(!S)
+		src.apply_status_effect(/datum/status_effect/stacking/damtype_damage_up/white, stacks)
+		return
+
+	if(S.stacks < stacks)
+		qdel(S)
+		src.apply_status_effect(/datum/status_effect/stacking/damtype_damage_up/white, stacks)
+		return
 
 /datum/status_effect/stacking/damtype_damage_up/black
 	id = "black_damage_up"
@@ -1008,6 +1049,18 @@
 	icon = 'ModularTegustation/Teguicons/status_sprites.dmi'
 	icon_state = "red_protection"
 
+//Mob Proc
+/mob/living/proc/apply_lc_black_strength(stacks)
+	var/datum/status_effect/stacking/damtype_damage_up/black/S = src.has_status_effect(/datum/status_effect/stacking/damtype_damage_up/black)
+	if(!S)
+		src.apply_status_effect(/datum/status_effect/stacking/damtype_damage_up/black, stacks)
+		return
+
+	if(S.stacks < stacks)
+		qdel(S)
+		src.apply_status_effect(/datum/status_effect/stacking/damtype_damage_up/black, stacks)
+		return
+
 /datum/status_effect/stacking/damtype_damage_up/pale
 	id = "pale_damage_up"
 	alert_type = /atom/movable/screen/alert/status_effect/pale_damage_up
@@ -1018,3 +1071,15 @@
 	desc = "You are empowered! Your PALE melee damage is increased by "
 	icon = 'ModularTegustation/Teguicons/status_sprites.dmi'
 	icon_state = "red_protection"
+
+//Mob Proc
+/mob/living/proc/apply_lc_pale_strength(stacks)
+	var/datum/status_effect/stacking/damtype_damage_up/pale/S = src.has_status_effect(/datum/status_effect/stacking/damtype_damage_up/pale)
+	if(!S)
+		src.apply_status_effect(/datum/status_effect/stacking/damtype_damage_up/pale, stacks)
+		return
+
+	if(S.stacks < stacks)
+		qdel(S)
+		src.apply_status_effect(/datum/status_effect/stacking/damtype_damage_up/pale, stacks)
+		return
