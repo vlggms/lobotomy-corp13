@@ -1512,7 +1512,7 @@
 	name = "Damage Down"
 	desc = "You are weakend! Your melee damage is decreased by "
 	icon = 'ModularTegustation/Teguicons/status_sprites.dmi'
-	icon_state = "red_protection"
+	icon_state = "feeble"
 
 //Mob Proc
 /mob/living/proc/apply_lc_feeble(stacks)
@@ -1536,7 +1536,7 @@
 	name = "Red Damage Down"
 	desc = "You are weakend! Your RED melee damage is decreased by "
 	icon = 'ModularTegustation/Teguicons/status_sprites.dmi'
-	icon_state = "red_protection"
+	icon_state = "red_feeble"
 
 /mob/living/proc/apply_lc_red_feeble(stacks)
 	var/datum/status_effect/stacking/damtype_damage_up/down/F = src.has_status_effect(/datum/status_effect/stacking/damtype_damage_up/down)
@@ -1558,7 +1558,7 @@
 	name = "White Damage Down"
 	desc = "You are weakend! Your WHITE melee damage is reduced by "
 	icon = 'ModularTegustation/Teguicons/status_sprites.dmi'
-	icon_state = "red_protection"
+	icon_state = "white_feeble"
 
 /mob/living/proc/apply_lc_white_feeble(stacks)
 	var/datum/status_effect/stacking/damtype_damage_up/white/down/F = src.has_status_effect(/datum/status_effect/stacking/damtype_damage_up/white/down)
@@ -1580,7 +1580,7 @@
 	name = "Black Damage Down"
 	desc = "You are weakend! Your BLACK melee damage is reduced by "
 	icon = 'ModularTegustation/Teguicons/status_sprites.dmi'
-	icon_state = "red_protection"
+	icon_state = "black_feeble"
 
 /mob/living/proc/apply_lc_black_feeble(stacks)
 	var/datum/status_effect/stacking/damtype_damage_up/black/down/F = src.has_status_effect(/datum/status_effect/stacking/damtype_damage_up/black/down)
@@ -1602,7 +1602,7 @@
 	name = "Pale Damage Down"
 	desc = "You are weakend! Your PALE melee damage is reduced by "
 	icon = 'ModularTegustation/Teguicons/status_sprites.dmi'
-	icon_state = "red_protection"
+	icon_state = "pale_feeble"
 
 /mob/living/proc/apply_lc_pale_feeble(stacks)
 	var/datum/status_effect/stacking/damtype_damage_up/pale/down/F = src.has_status_effect(/datum/status_effect/stacking/damtype_damage_up/pale/down)
