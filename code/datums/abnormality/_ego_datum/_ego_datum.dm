@@ -75,9 +75,12 @@ GLOBAL_LIST_EMPTY(ego_datums)
 	var/damage_type = E.damtype
 	var/damage = E.force
 	if(GLOB.damage_type_shuffler?.is_enabled && IsColorDamageType(damage_type))
-		var/new_damage_type = GLOB.damage_type_shuffler.mapping_offense[damage_type]
+		var/datum/damage_type_shuffler/shuffler = GLOB.damage_type_shuffler
+		var/new_damage_type = shuffler.mapping_offense[damage_type]
 		if(new_damage_type == PALE_DAMAGE && damage_type != PALE_DAMAGE)
-			damage *= GLOB.damage_type_shuffler.pale_debuff
+			damage *= shuffler.pale_debuff
+		else if(new_damage_type != PALE_DAMAGE && damage_type == PALE_DAMAGE)
+			damage /= shuffler.pale_debuff
 		damage_type = new_damage_type
 	information["attack_info"] = "It deals [damage] [damage_type] damage."
 	information["throwforce"] = E.throwforce
