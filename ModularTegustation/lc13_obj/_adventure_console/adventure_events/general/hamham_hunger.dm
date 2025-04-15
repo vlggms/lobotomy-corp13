@@ -38,7 +38,7 @@
 /datum/adventure_event/hamham_hunger/EventChoiceFormat(obj/machinery/M, mob/living/carbon/human/H)
 	switch(cords)
 		if(1)
-			/*These are all actual menu items from Hampang Kitchen.*/
+			/*These are all actual menu items from Hampang Kitchen. */
 			BUTTON_FORMAT(2, "ORDER HAM AND BACON SANDWICH", M)
 			BUTTON_FORMAT(3, "ORDER CARAMEL COCO LATTE", M)
 			BUTTON_FORMAT(4, "ORDER HONEY CHEESE SALAD", M)
