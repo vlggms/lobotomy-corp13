@@ -13,8 +13,8 @@
 
 	RegisterSignal(parent, COMSIG_MOB_ITEM_ATTACK, PROC_REF(attack_effect))
 	RegisterSignal(parent, COMSIG_MOB_ITEM_AFTERATTACK, PROC_REF(afterattack_effect))
-	RegisterSignal(parent, COMSIG_MOB_APPLY_DAMGE, PROC_REF(take_damage_effect)) ////datum/species/proc/apply_damage(damage, damagetype = BRUTE, def_zone = null, blocked, mob/living/carbon/human/H, forced = FALSE, spread_damage = FALSE, wound_bonus = 0, bare_wound_bonus = 0, sharpness = SHARP_NONE, white_healable = FALSE)
-	RegisterSignal(parent, COMSIG_MOB_AFTER_APPLY_DAMGE, PROC_REF(after_take_damage_effect)) ////datum/species/proc/apply_damage(damage, damagetype = BRUTE, def_zone = null, blocked, mob/living/carbon/human/H, forced = FALSE, spread_damage = FALSE, wound_bonus = 0, bare_wound_bonus = 0, sharpness = SHARP_NONE, white_healable = FALSE)
+	RegisterSignal(parent, COMSIG_MOB_APPLY_DAMGE, PROC_REF(take_damage_effect)) ///datum/species/proc/apply_damage(damage, damagetype = BRUTE, def_zone = null, blocked, mob/living/carbon/human/H, forced = FALSE, spread_damage = FALSE, wound_bonus = 0, bare_wound_bonus = 0, sharpness = SHARP_NONE, white_healable = FALSE)
+	RegisterSignal(parent, COMSIG_MOB_AFTER_APPLY_DAMGE, PROC_REF(after_take_damage_effect)) ///datum/species/proc/apply_damage(damage, damagetype = BRUTE, def_zone = null, blocked, mob/living/carbon/human/H, forced = FALSE, spread_damage = FALSE, wound_bonus = 0, bare_wound_bonus = 0, sharpness = SHARP_NONE, white_healable = FALSE)
 	RegisterSignal(parent, COMSIG_ATOM_ATTACK_ANIMAL, PROC_REF(attackedby_mob))
 
 /datum/component/augment/proc/attack_effect(datum/source, mob/living/target, mob/living/user, obj/item/item)
@@ -36,7 +36,9 @@
 	to_chat(parent, "Attackby Mob Effect Triggered, attacked by [animal]")
 
 
-//Attacking Effects
+///Attacking Effects
+
+//Regeneration
 /datum/component/augment/regeneration
 	var/regen_cooldown
 	var/regen_cooldown_time = 5
@@ -57,6 +59,7 @@
 	H.adjustBruteLoss(amount * repeat)
 	to_chat(user, span_nicegreen("Your body regenerates as you rip into [target]!"))
 
+//Tranquility
 /datum/component/augment/tranquility
 	var/regen_cooldown
 	var/regen_cooldown_time = 5
@@ -77,6 +80,7 @@
 	H.adjustSanityLoss(amount * repeat)
 	to_chat(H, span_nicegreen("Your mind stabilizes as you rip into [target]!"))
 
+//Struggling Strength
 /datum/component/augment/struggling_strength
 	var/damage_buff = 10
 	var/damage_buff_mult = 0
@@ -92,21 +96,208 @@
 	else if(missing_hp <= 0.25)
 		damage_buff_mult++
 	total_damage_buff = damage_buff * damage_buff_mult * repeat
-	human_parent.physiology.red_mod -= total_damage_buff
-	human_parent.physiology.white_mod -= total_damage_buff
-	human_parent.physiology.black_mod -= total_damage_buff
-	human_parent.physiology.pale_mod -= total_damage_buff
+	human_parent.extra_damage += total_damage_buff
 
-/datum/component/augment/struggling_strength/after_take_damage_effect(datum/source, damage, damagetype, def_zone)
+/datum/component/augment/struggling_strength/afterattack_effect(datum/source, atom/target, mob/user, proximity_flag, click_parameters, obj/item/item)
 	. = ..()
-	human_parent.physiology.red_mod += total_damage_buff
-	human_parent.physiology.white_mod += total_damage_buff
-	human_parent.physiology.black_mod += total_damage_buff
-	human_parent.physiology.pale_mod += total_damage_buff
+	human_parent.extra_damage -= total_damage_buff
 	total_damage_buff = 0
 	damage_buff_mult = 0
 
-//On Kill Effects
+//Armor Rend, RED
+/datum/component/augment/ar_red
+	var/inflict_cooldown
+	var/inflict_cooldown_time = 10
+
+/datum/component/augment/ar_red/attack_effect(datum/source, mob/living/target, mob/living/user, obj/item/item)
+	. = ..()
+	if(inflict_cooldown > world.time)
+		return FALSE
+	if(item.damtype != BLACK_DAMAGE)
+		return FALSE
+	if(!ishuman(parent))
+		return FALSE
+	var/mob/living/carbon/human/H = parent
+	if(item.force <= 0 && target.stat == DEAD)
+		return FALSE
+	inflict_cooldown = world.time + inflict_cooldown_time
+	target.apply_lc_black_fragile(1)
+
+//Armor Rend, BLACK
+/datum/component/augment/ar_black
+	var/inflict_cooldown
+	var/inflict_cooldown_time = 10
+
+/datum/component/augment/ar_black/attack_effect(datum/source, mob/living/target, mob/living/user, obj/item/item)
+	. = ..()
+	if(inflict_cooldown > world.time)
+		return FALSE
+	if(item.damtype != RED_DAMAGE)
+		return FALSE
+	if(!ishuman(parent))
+		return FALSE
+	var/mob/living/carbon/human/H = parent
+	if(item.force <= 0 && target.stat == DEAD)
+		return FALSE
+	inflict_cooldown = world.time + inflict_cooldown_time
+	target.apply_lc_red_fragile(1)
+
+//Shattering Mind, RED
+/datum/component/augment/shattering_mind_red
+	var/damage_buff = 10
+	var/damage_buff_mult = 0
+	var/total_damage_buff = 0
+
+/datum/component/augment/shattering_mind_red/attack_effect(datum/source, mob/living/target, mob/living/user, obj/item/item)
+	. = ..()
+	var/missing_sp = (human_parent.sanityhealth/human_parent.maxSanity)
+	if(missing_sp <= 0.75)
+		damage_buff_mult++
+	else if(missing_sp <= 0.50)
+		damage_buff_mult++
+	else if(missing_sp <= 0.25)
+		damage_buff_mult++
+	total_damage_buff = damage_buff * damage_buff_mult * repeat
+	human_parent.extra_damage_red += total_damage_buff
+
+/datum/component/augment/shattering_mind_red/afterattack_effect(datum/source, atom/target, mob/user, proximity_flag, click_parameters, obj/item/item)
+	. = ..()
+	human_parent.extra_damage_red -= total_damage_buff
+	total_damage_buff = 0
+	damage_buff_mult = 0
+
+//Shattering Mind, WHITE
+/datum/component/augment/shattering_mind_white
+	var/damage_buff = 10
+	var/damage_buff_mult = 0
+	var/total_damage_buff = 0
+
+/datum/component/augment/shattering_mind_white/attack_effect(datum/source, mob/living/target, mob/living/user, obj/item/item)
+	. = ..()
+	var/missing_sp = (human_parent.sanityhealth/human_parent.maxSanity)
+	if(missing_sp <= 0.75)
+		damage_buff_mult++
+	else if(missing_sp <= 0.50)
+		damage_buff_mult++
+	else if(missing_sp <= 0.25)
+		damage_buff_mult++
+	total_damage_buff = damage_buff * damage_buff_mult * repeat
+	human_parent.extra_damage_white += total_damage_buff
+
+/datum/component/augment/shattering_mind_white/afterattack_effect(datum/source, atom/target, mob/user, proximity_flag, click_parameters, obj/item/item)
+	. = ..()
+	human_parent.extra_damage_white -= total_damage_buff
+	total_damage_buff = 0
+	damage_buff_mult = 0
+
+//Shattering Mind, BLACK
+/datum/component/augment/shattering_mind_black
+	var/damage_buff = 10
+	var/damage_buff_mult = 0
+	var/total_damage_buff = 0
+
+/datum/component/augment/shattering_mind_black/attack_effect(datum/source, mob/living/target, mob/living/user, obj/item/item)
+	. = ..()
+	var/missing_sp = (human_parent.sanityhealth/human_parent.maxSanity)
+	if(missing_sp <= 0.75)
+		damage_buff_mult++
+	else if(missing_sp <= 0.50)
+		damage_buff_mult++
+	else if(missing_sp <= 0.25)
+		damage_buff_mult++
+	total_damage_buff = damage_buff * damage_buff_mult * repeat
+	human_parent.extra_damage_black += total_damage_buff
+
+/datum/component/augment/shattering_mind_black/afterattack_effect(datum/source, atom/target, mob/user, proximity_flag, click_parameters, obj/item/item)
+	. = ..()
+	human_parent.extra_damage_black -= total_damage_buff
+	total_damage_buff = 0
+	damage_buff_mult = 0
+
+//Unstable
+/datum/component/augment/unstable
+	var/damage_buff = 30
+	var/total_damage_buff = 0
+	var/buffed_damage = FALSE
+
+/datum/component/augment/unstable/attack_effect(datum/source, mob/living/target, mob/living/user, obj/item/item)
+	. = ..()
+	if(item.damtype != BLACK_DAMAGE)
+		return FALSE
+	if(human_parent.sanityhealth < human_parent.maxSanity * 0.5)
+		human_parent.deal_damage(human_parent.maxSanity * 0.05, WHITE_DAMAGE)
+		human_parent.extra_damage_black += damage_buff
+		to_chat(human_parent, span_nicegreen("You savagely attack [target]!"))
+		buffed_damage = TRUE
+
+/datum/component/augment/unstable/afterattack_effect(datum/source, atom/target, mob/user, proximity_flag, click_parameters, obj/item/item)
+	. = ..()
+	if(buffed_damage)
+		human_parent.extra_damage_black -= damage_buff
+		buffed_damage = FALSE
+
+//Gashing Wounds
+/datum/component/augment/gashing_wounds
+	var/inflict_cooldown
+	var/inflict_cooldown_time = 5
+
+/datum/component/augment/gashing_wounds/attack_effect(datum/source, mob/living/target, mob/living/user, obj/item/item)
+	. = ..()
+	if(inflict_cooldown > world.time)
+		return FALSE
+	if(item.damtype != RED_DAMAGE)
+		return FALSE
+	if(!ishuman(parent))
+		return FALSE
+	var/mob/living/carbon/human/H = parent
+	if(item.force <= 0 && target.stat == DEAD)
+		return FALSE
+	inflict_cooldown = world.time + inflict_cooldown_time
+	target.apply_lc_bleed(2)
+
+//Scorching Mind
+/datum/component/augment/scorching_mind
+	var/inflict_cooldown
+	var/inflict_cooldown_time = 10
+
+/datum/component/augment/scorching_mind/attack_effect(datum/source, mob/living/target, mob/living/user, obj/item/item)
+	. = ..()
+	if(inflict_cooldown > world.time)
+		return FALSE
+	if(item.damtype != WHITE_DAMAGE)
+		return FALSE
+	if(!ishuman(parent))
+		return FALSE
+	var/mob/living/carbon/human/H = parent
+	if(item.force <= 0 && target.stat == DEAD)
+		return FALSE
+	inflict_cooldown = world.time + inflict_cooldown_time
+	target.apply_lc_burn(3)
+
+//Slothful Decay
+/datum/component/augment/slothful_decay
+	var/inflict_cooldown
+	var/inflict_cooldown_time = 15
+
+/datum/component/augment/slothful_decay/attack_effect(datum/source, mob/living/target, mob/living/user, obj/item/item)
+	. = ..()
+	if(inflict_cooldown > world.time)
+		return FALSE
+	if(item.damtype != BLACK_DAMAGE)
+		return FALSE
+	if(!ishuman(parent))
+		return FALSE
+	var/mob/living/carbon/human/H = parent
+	if(item.force <= 0 && target.stat == DEAD)
+		return FALSE
+	inflict_cooldown = world.time + inflict_cooldown_time
+	target.apply_lc_tremor(2, 50)
+	if(item.attack_speed >= 1.5)
+		target.apply_lc_tremor(2, 50)
+
+///On Kill Effects
+
+//Absorption
 /datum/component/augment/absorption/afterattack_effect(datum/source, atom/target, mob/user, proximity_flag, click_parameters, obj/item/item)
 	if(last_target.stat == DEAD)
 		var/justice_mod = 1 + (get_modified_attribute_level(human_parent, JUSTICE_ATTRIBUTE)/100)
@@ -115,6 +306,7 @@
 		to_chat(human_parent, span_nicegreen("Your body regenerates has you execute [target]!"))
 	. = ..()
 
+//Brutalize
 /datum/component/augment/brutalize
 	var/kill_damage = 15
 
@@ -128,7 +320,9 @@
 		to_chat(human_parent, span_nicegreen("You strike fear into your foes as you brutalize [target]!"))
 	. = ..()
 
-//Reactive Damage Effects
+///Reactive Damage Effects
+
+//Struggling Defense
 /datum/component/augment/struggling_defense
 	var/damage_resist = 10
 	var/damage_resist_mult = 0
@@ -157,3 +351,119 @@
 	human_parent.physiology.pale_mod += total_damage_resist
 	total_damage_resist = 0
 	damage_resist_mult = 0
+
+//Emergency Shields, RED
+/datum/component/augment/ES_red
+	var/ES_cooldown
+	var/ES_cooldown_time = 600
+
+/datum/component/augment/ES_red/take_damage_effect(datum/source, damage, damagetype, def_zone)
+	. = ..()
+	if(human_parent.health > human_parent.maxHealth/2)
+		return FALSE
+	if(ES_cooldown > world.time)
+		return FALSE
+	ES_cooldown = world.time + ES_cooldown_time
+	human_parent.apply_lc_red_protection(8)
+
+//Emergency Shields, BLACK
+/datum/component/augment/ES_black
+	var/ES_cooldown
+	var/ES_cooldown_time = 600
+
+/datum/component/augment/ES_black/take_damage_effect(datum/source, damage, damagetype, def_zone)
+	. = ..()
+	if(human_parent.health > human_parent.maxHealth/2)
+		return FALSE
+	if(ES_cooldown > world.time)
+		return FALSE
+	ES_cooldown = world.time + ES_cooldown_time
+	human_parent.apply_lc_black_protection(8)
+
+//Emergency Shields, White
+/datum/component/augment/ES_white
+	var/ES_cooldown
+	var/ES_cooldown_time = 600
+
+/datum/component/augment/ES_white/take_damage_effect(datum/source, damage, damagetype, def_zone)
+	. = ..()
+	if(human_parent.sanityhealth > human_parent.maxSanity/2)
+		return FALSE
+	if(ES_cooldown > world.time)
+		return FALSE
+	ES_cooldown = world.time + ES_cooldown_time
+	human_parent.apply_lc_white_protection(8)
+
+//Defensive Preparations
+/datum/component/augment/defensive_preparations
+	var/defense_cooldown
+	var/defense_cooldown_time = 600
+
+/datum/component/augment/defensive_preparations/take_damage_effect(datum/source, damage, damagetype, def_zone)
+	. = ..()
+	if(defense_cooldown > world.time)
+		return FALSE
+	defense_cooldown = world.time + defense_cooldown_time
+	for(var/mob/living/carbon/human/H in urange(4, human_parent))
+		H.apply_lc_protection(4)
+
+//Reinforcement Nanties
+/datum/component/augment/reinforcement_nanties
+	var/damage_resist = 5
+	var/damage_resist_mult = 0
+	var/total_damage_resist = 0
+
+/datum/component/augment/reinforcement_nanties/take_damage_effect(datum/source, damage, damagetype, def_zone)
+	. = ..()
+	for(var/mob/living/carbon/human/H in view(7, human_parent))
+		damage_resist_mult++
+	total_damage_resist = damage_resist * damage_resist_mult * repeat
+	if(total_damage_resist > 40)
+		total_damage_resist = 40
+	human_parent.physiology.red_mod -= total_damage_resist
+	human_parent.physiology.white_mod -= total_damage_resist
+	human_parent.physiology.black_mod -= total_damage_resist
+	human_parent.physiology.pale_mod -= total_damage_resist
+
+/datum/component/augment/reinforcement_nanties/after_take_damage_effect(datum/source, damage, damagetype, def_zone)
+	. = ..()
+	human_parent.physiology.red_mod += total_damage_resist
+	human_parent.physiology.white_mod += total_damage_resist
+	human_parent.physiology.black_mod += total_damage_resist
+	human_parent.physiology.pale_mod += total_damage_resist
+	total_damage_resist = 0
+	damage_resist_mult = 0
+
+///Downsides
+
+//Paranoid
+/datum/component/augment/paranoid
+	var/nearby_human = FALSE
+
+/datum/component/augment/paranoid/take_damage_effect(datum/source, damage, damagetype, def_zone)
+	. = ..()
+	for(var/mob/living/carbon/human/H in view(7, human_parent))
+		nearby_human = TRUE
+	if(!nearby_human)
+		human_parent.deal_damage(10, WHITE_DAMAGE)
+
+/datum/component/augment/paranoid/after_take_damage_effect(datum/source, damage, damagetype, def_zone)
+	. = ..()
+	nearby_human = FALSE
+
+//Boot Up Sequence
+/datum/component/augment/bps
+	var/inflict_cooldown
+	var/inflict_cooldown_time = 60
+
+/datum/component/augment/bps/attack_effect(datum/source, mob/living/target, mob/living/user, obj/item/item)
+	. = ..()
+	if(inflict_cooldown > world.time)
+		return FALSE
+	if(!ishuman(parent))
+		return FALSE
+	var/mob/living/carbon/human/H = parent
+	if(item.force <= 0 && target.stat == DEAD)
+		return FALSE
+	inflict_cooldown = world.time + inflict_cooldown_time
+	H.apply_lc_feeble(3)
