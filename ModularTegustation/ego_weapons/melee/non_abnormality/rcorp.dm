@@ -24,10 +24,19 @@
 		force += rcorp_buff
 	return ..()
 
-/obj/item/ego_weapon/city/rabbit_blade/attack(mob/living/user)
+/obj/item/ego_weapon/city/rabbit_blade/attack(mob/living/target, mob/living/user)
 	if(user.mind)
-		if(user.mind.has_antag_datum(/datum/antagonist/wizard/arbiter/rcorp)) //You are a arbiter not a homeless man with a knife
+		if(user.mind.has_antag_datum(/datum/antagonist/wizard/arbiter/rcorp))
+			to_chat(user, span_notice("You wouldn't stoop so low as to use the weapons of those below you.")) //You are a arbiter not a homeless man with a knife
 			return FALSE
+	..()
+
+/obj/item/ego_weapon/city/rabbit_blade/attack_obj(obj/target, mob/living/user)
+	if(user.mind)
+		if(user.mind.has_antag_datum(/datum/antagonist/wizard/arbiter/rcorp))
+			to_chat(user, span_notice("You wouldn't stoop so low as to use the weapons of those below you.")) //You are a arbiter not a homeless man with a knife
+			return FALSE
+	..()
 
 /obj/item/ego_weapon/city/rabbit_blade/attack_self(mob/living/user)
 	switch(damtype)
@@ -95,10 +104,17 @@
 	var/ranged_cooldown
 	var/ranged_cooldown_time = 1.3 SECONDS
 
-/obj/item/ego_weapon/city/reindeer/attack(mob/living/user)
+/obj/item/ego_weapon/city/reindeer/attack(mob/living/target, mob/living/user)
 	if(user.mind)
 		if(user.mind.has_antag_datum(/datum/antagonist/wizard/arbiter/rcorp)) //You are a arbiter not a mentally unstable supersoldier
 			return FALSE
+	..()
+
+/obj/item/ego_weapon/city/reindeer/attack_obj(obj/target, mob/living/user)
+	if(user.mind)
+		if(user.mind.has_antag_datum(/datum/antagonist/wizard/arbiter/rcorp)) //You are a arbiter not a mentally unstable supersoldier
+			return FALSE
+	..()
 
 /obj/item/ego_weapon/city/reindeer/afterattack(atom/A, mob/living/user, proximity_flag, params)
 	if(ranged_cooldown > world.time)
@@ -260,10 +276,17 @@
 		force += rcorp_buff
 	return ..()
 
-/obj/item/ego_weapon/city/rabbit_rush/attack(mob/living/user)
+/obj/item/ego_weapon/city/rabbit_rush/attack(mob/living/target, mob/living/user)
 	if(user.mind)
 		if(user.mind.has_antag_datum(/datum/antagonist/wizard/arbiter/rcorp)) //You are a arbiter not a homeless man with a knife
 			return FALSE
+	..()
+
+/obj/item/ego_weapon/city/rabbit_rush/attack_obj(obj/target, mob/living/user)
+	if(user.mind)
+		if(user.mind.has_antag_datum(/datum/antagonist/wizard/arbiter/rcorp)) //You are a arbiter not a homeless man with a knife
+			return FALSE
+	..()
 
 /obj/item/ego_weapon/city/rabbit_rush/attack_self(mob/user)
 	if(!CanUseEgo(user))
