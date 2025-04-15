@@ -45,9 +45,12 @@ GLOBAL_LIST_EMPTY(ego_datums)
 		var/bullet_damage_type = E.last_projectile_type
 		var/bullet_damage = E.last_projectile_damage
 		if(GLOB.damage_type_shuffler?.is_enabled && IsColorDamageType(bullet_damage_type))
-			var/new_damage_type = GLOB.damage_type_shuffler.mapping_offense[bullet_damage_type]
+			var/datum/damage_type_shuffler/shuffler = GLOB.damage_type_shuffler
+			var/new_damage_type = shuffler.mapping_offense[bullet_damage_type]
 			if(new_damage_type == PALE_DAMAGE && bullet_damage_type != PALE_DAMAGE)
-				bullet_damage *= GLOB.damage_type_shuffler.pale_debuff
+				bullet_damage *= shuffler.pale_debuff
+			else if(new_damage_type != PALE_DAMAGE && bullet_damage_type == PALE_DAMAGE)
+				bullet_damage /= shuffler.pale_debuff
 			bullet_damage_type = new_damage_type
 		information["attribute_requirements"] = E.attribute_requirements.Copy()
 		information["attack_info"] = "Its bullets deal [bullet_damage] [bullet_damage_type] damage."
@@ -126,10 +129,20 @@ GLOBAL_LIST_EMPTY(ego_datums)
 		return
 	var/obj/item/clothing/suit/armor/ego_gear/E = new item_path(src)
 	information["armor"] = list()
-	information["armor"][RED_DAMAGE] = E.armor_to_protection_class(E.armor.red)
-	information["armor"][WHITE_DAMAGE] = E.armor_to_protection_class(E.armor.white)
-	information["armor"][BLACK_DAMAGE] = E.armor_to_protection_class(E.armor.black)
-	information["armor"][PALE_DAMAGE] = E.armor_to_protection_class(E.armor.pale)
+	var/red_armor = E.armor.red
+	var/white_armor = E.armor.white
+	var/black_armor = E.armor.black
+	var/pale_armor = E.armor.pale
+	if(GLOB.damage_type_shuffler?.is_enabled)
+		var/list/mapping = GLOB.damage_type_shuffler.mapping_defense
+		red_armor = E.armor.getRating(mapping[RED_DAMAGE])
+		white_armor = E.armor.getRating(mapping[WHITE_DAMAGE])
+		black_armor = E.armor.getRating(mapping[BLACK_DAMAGE])
+		pale_armor = E.armor.getRating(mapping[PALE_DAMAGE])
+	information["armor"][RED_DAMAGE] = E.armor_to_protection_class(red_armor)
+	information["armor"][WHITE_DAMAGE] = E.armor_to_protection_class(white_armor)
+	information["armor"][BLACK_DAMAGE] = E.armor_to_protection_class(black_armor)
+	information["armor"][PALE_DAMAGE] = E.armor_to_protection_class(pale_armor)
 	information["attribute_requirements"] = E.attribute_requirements.Copy()
 	qdel(E)
 

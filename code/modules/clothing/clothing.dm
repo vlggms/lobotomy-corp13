@@ -326,14 +326,24 @@
 
 	if(LAZYLEN(armor_list))
 		armor_list.Cut()
-	if(armor.red)
-		armor_list += list("RED" = armor.red)
-	if(armor.white)
-		armor_list += list("WHITE" = armor.white)
-	if(armor.black)
-		armor_list += list("BLACK" = armor.black)
-	if(armor.pale)
-		armor_list += list("PALE" = armor.pale)
+	var/red_armor = armor.red
+	var/white_armor = armor.white
+	var/black_armor = armor.black
+	var/pale_armor = armor.pale
+	if(GLOB.damage_type_shuffler?.is_enabled)
+		var/list/mapping = GLOB.damage_type_shuffler.mapping_defense
+		red_armor = armor.getRating(mapping[RED_DAMAGE])
+		white_armor = armor.getRating(mapping[WHITE_DAMAGE])
+		black_armor = armor.getRating(mapping[BLACK_DAMAGE])
+		pale_armor = armor.getRating(mapping[PALE_DAMAGE])
+	if(red_armor)
+		armor_list += list("RED" = red_armor)
+	if(white_armor)
+		armor_list += list("WHITE" = white_armor)
+	if(black_armor)
+		armor_list += list("BLACK" = black_armor)
+	if(pale_armor)
+		armor_list += list("PALE" = pale_armor)
 
 	if(LAZYLEN(durability_list))
 		durability_list.Cut()
