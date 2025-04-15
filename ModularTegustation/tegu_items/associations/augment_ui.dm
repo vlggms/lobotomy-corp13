@@ -140,7 +140,8 @@
 		var/form_id = config["form"] // Get ID from config
 		var/rank = clamp(text2num(config["rank"]), 1, machine.maxRank)
 		var/list/selected_effect_ids = config["selectedEffects"]
-		if(!istype(selected_effect_ids, /list)) selected_effect_ids = list()
+		if(!istype(selected_effect_ids, /list))
+			selected_effect_ids = list()
 
 		// --- Find form name from ID for validation call (if needed) ---
 		// NOTE: Assumes validate_and_calculate needs the NAME, not ID. Adjust if it takes ID.
@@ -179,7 +180,7 @@
 			src.cached_preview_base64 = null // Clear cache on successful fabrication
 			qdel(current_validation_design) // Clean up successful design datum
 			current_validation_design = null
-			SStgui.close_user_uis(usr, machine) // Close UI
+			SStgui.close_user_uis(usr, src) // Close UI
 			return TRUE // Stop processing since UI is closed
 		else
 			// Fabrication failed (perform_fabrication should have messaged user)
@@ -215,7 +216,8 @@
 			var/s_secondary = sanitize_hex_color(secondary_color_hex, "#888888")
 			var/icon/final_icon = generate_augment_preview_icon(form_data["icon_file"], form_data["icon_preview"], form_data["primary_overlay_state"], form_data["secondary_overlay_state"], s_primary, s_secondary)
 			if(final_icon)
-				base64_icon = icon2base64(final_icon); qdel(final_icon)
+				base64_icon = icon2base64(final_icon)
+				qdel(final_icon)
 
 		// --- REVISED V2: Store result directly. Mark for update. ---
 		// Only update cache if the new value is different (prevents redundant updates if colors typed quickly)
@@ -248,7 +250,7 @@
 
 	return ..()
 
-/datum/tgui_handler/augment_fabricator/proc/generate_augment_preview_icon(icon_file, base_state, primary_overlay_state, secondary_overlay_state, primary_color, secondary_color)
+/proc/generate_augment_preview_icon(icon_file, base_state, primary_overlay_state, secondary_overlay_state, primary_color, secondary_color)
 	// Basic validation
 	if (!icon_file || !base_state)
 		log_runtime("generate_augment_preview_icon missing required args: file='[icon_file]', state='[base_state]'")
