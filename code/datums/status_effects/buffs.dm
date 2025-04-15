@@ -878,7 +878,7 @@
 	name = "Damage Up"
 	desc = "You are empowered! Your melee damage is increased by "
 	icon = 'ModularTegustation/Teguicons/status_sprites.dmi'
-	icon_state = "red_protection"
+	icon_state = "strength"
 
 /datum/status_effect/stacking/damage_up/on_apply()
 	. = ..()
@@ -941,7 +941,7 @@
 	name = "Red Damage Up"
 	desc = "You are empowered! Your RED melee damage is increased by "
 	icon = 'ModularTegustation/Teguicons/status_sprites.dmi'
-	icon_state = "red_protection"
+	icon_state = "red_strength"
 
 /datum/status_effect/stacking/damtype_damage_up/on_apply()
 	. = ..()
@@ -1024,7 +1024,7 @@
 	name = "White Damage Up"
 	desc = "You are empowered! Your WHITE melee damage is increased by "
 	icon = 'ModularTegustation/Teguicons/status_sprites.dmi'
-	icon_state = "red_protection"
+	icon_state = "white_strength"
 
 //Mob Proc
 /mob/living/proc/apply_lc_white_strength(stacks)
@@ -1047,7 +1047,7 @@
 	name = "Black Damage Up"
 	desc = "You are empowered! Your BLACK melee damage is increased by "
 	icon = 'ModularTegustation/Teguicons/status_sprites.dmi'
-	icon_state = "red_protection"
+	icon_state = "black_strength"
 
 //Mob Proc
 /mob/living/proc/apply_lc_black_strength(stacks)
@@ -1070,7 +1070,7 @@
 	name = "Pale Damage Up"
 	desc = "You are empowered! Your PALE melee damage is increased by "
 	icon = 'ModularTegustation/Teguicons/status_sprites.dmi'
-	icon_state = "red_protection"
+	icon_state = "pale_strength"
 
 //Mob Proc
 /mob/living/proc/apply_lc_pale_strength(stacks)
