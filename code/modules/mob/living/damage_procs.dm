@@ -16,9 +16,12 @@
  */
 /mob/living/proc/apply_damage(damage = 0,damagetype = RED_DAMAGE, def_zone = null, blocked = FALSE, forced = FALSE, spread_damage = FALSE, wound_bonus = 0, bare_wound_bonus = 0, sharpness = SHARP_NONE, white_healable = FALSE)
 	if(GLOB.damage_type_shuffler?.is_enabled && IsColorDamageType(damagetype))
-		var new_damage_type = GLOB.damage_type_shuffler.mapping_offense[damagetype]
+		var/datum/damage_type_shuffler/shuffler = GLOB.damage_type_shuffler
+		var new_damage_type = shuffler.mapping_offense[damagetype]
 		if(new_damage_type == PALE_DAMAGE && damagetype != PALE_DAMAGE)
-			damage *= GLOB.damage_type_shuffler.pale_debuff
+			damage *= shuffler.pale_debuff
+		else if(new_damage_type != PALE_DAMAGE && damagetype == PALE_DAMAGE)
+			damage /= shuffler.pale_debuff
 		damagetype = new_damage_type
 	var/signal_return = SEND_SIGNAL(src, COMSIG_MOB_APPLY_DAMGE, damage, damagetype, def_zone)
 	if(signal_return & COMPONENT_MOB_DENY_DAMAGE)

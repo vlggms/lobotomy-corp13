@@ -1,6 +1,9 @@
 /mob/living/carbon/human/getarmor(def_zone, type)
 	var/armorval = 0
 	var/organnum = 0
+	if(GLOB.damage_type_shuffler?.is_enabled && IsColorDamageType(type))
+		var/datum/damage_type_shuffler/shuffler = GLOB.damage_type_shuffler
+		type = shuffler.mapping_defense[shuffler.mapping_offense[type]]
 
 	if(def_zone)
 		if(isbodypart(def_zone))

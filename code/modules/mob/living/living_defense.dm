@@ -1,8 +1,5 @@
 
 /mob/living/proc/run_armor_check(def_zone = null, attack_flag = RED_DAMAGE, absorb_text = null, soften_text = null, armour_penetration, penetrated_text, silent=FALSE)
-	if(GLOB.damage_type_shuffler?.is_enabled && IsColorDamageType(attack_flag))
-		attack_flag = GLOB.damage_type_shuffler.mapping_offense[attack_flag]
-
 	var/armor = getarmor(def_zone, attack_flag)
 
 	if(armor <= 0)

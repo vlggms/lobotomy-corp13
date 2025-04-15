@@ -2,7 +2,7 @@
 
 /proc/getArmor(melee = 0, bullet = 0, laser = 0, energy = 0, bomb = 0, bio = 0, rad = 0, fire = 0, acid = 0, magic = 0, wound = 0, red = 0, white = 0, black = 0, pale = 0)
 	. = locate(ARMORID)
-	if (!. || GLOB.damage_type_shuffler?.is_enabled)
+	if (!.)
 		. = new /datum/armor(melee, bullet, laser, energy, bomb, bio, rad, fire, acid, magic, wound, red, white, black, pale)
 
 /datum/armor
@@ -24,13 +24,6 @@
 	var/wound
 
 /datum/armor/New(melee = 0, bullet = 0, laser = 0, energy = 0, bomb = 0, bio = 0, rad = 0, fire = 0, acid = 0, magic = 0, wound = 0, red = 0, white = 0, black = 0, pale = 0)
-	if(GLOB.damage_type_shuffler?.is_enabled)
-		var/list/mapping = GLOB.damage_type_shuffler.mapping_defense
-		var/list/coeffs = list(RED_DAMAGE = red, WHITE_DAMAGE = white, BLACK_DAMAGE = black, PALE_DAMAGE = pale)
-		red = coeffs[mapping[RED_DAMAGE]]
-		white = coeffs[mapping[WHITE_DAMAGE]]
-		black = coeffs[mapping[BLACK_DAMAGE]]
-		pale = coeffs[mapping[PALE_DAMAGE]]
 	src.red = red
 	src.white = white
 	src.black = black
