@@ -36,10 +36,10 @@
 		"Tattoo" = list(
 			"id" = "tattoo",
 			"name" = "Tattoo",
-			"base_cost" = 100,
-			"base_ep" = 2,
+			"base_cost" = 50,
+			"base_ep" = 4,
 			"negative_immune" = 1,
-			"desc" = "An augment woven into the skin. Resists negative side-effects.",
+			"desc" = "An augment woven into the skin. Unable to have negative effect.",
 			"icon_file" = AUGMENT_ICON_FILE, // Store the file path
 			"icon_preview" = "tattoo", // Base icon state
 			"primary_overlay_state" = "tattoo_prim", // State for primary color mask
@@ -54,32 +54,195 @@
 	var/list/available_effects = list(
 		// --- Reactive Damage Effects ---
 		list(
-			"id" = "absorption",
-			"name" = "Absorption",
+			"id" = "struggling_defense",
+			"name" = "Struggling Defense",
 			"ahn_cost" = 50,
 			"ep_cost" = 4, // Positive EP cost
-			"desc" = "On kill, regenerate as much HP as the amount of damage you dealt.",
-			"component" = /datum/component/augment/absorption
+			"desc" = "For every 25% of HP lost, take 10%*X less damage.",
+			"repeatable" = 3, // Max 3 times
+			"component" = /datum/component/augment/struggling_defense
 		),
+		list(
+			"id" = "ES_red",
+			"name" = "Emergency Shields, RED",
+			"ahn_cost" = 50,
+			"ep_cost" = 4,
+			"desc" = "When you take brute damage while under 50% HP, gain 8 RED Protection. This has a cooldown of 1 minute.",
+			"component" = /datum/component/augment/ES_red
+		),
+		list(
+			"id" = "ES_black",
+			"name" = "Emergency Shields, BLACK",
+			"ahn_cost" = 50,
+			"ep_cost" = 4,
+			"desc" = "When you take brute damage while under 50% HP, gain 8 BLACK Protection. This has a cooldown of 1 minute.",
+			"component" = /datum/component/augment/ES_black
+		),
+		list(
+			"id" = "ES_white",
+			"name" = "Emergency Shields, WHITE",
+			"ahn_cost" = 25,
+			"ep_cost" = 2,
+			"desc" = "When you take sanity damage while under 50% SP, gain 8 WHITE Protection. This has a cooldown of 1 minute.",
+			"component" = /datum/component/augment/ES_white
+		),
+		list(
+			"id" = "defensive_preparations",
+			"name" = "Defensive Preparations",
+			"ahn_cost" = 50,
+			"ep_cost" = 4,
+			"desc" = "When taking brute damage, give yourself and all humans within 4 sqrs of you 4 Protection. This has a cooldown of 1.5 minutes.",
+			"repeatable" = 3,
+			"component" = /datum/component/augment/defensive_preparations
+		),
+		list(
+			"id" = "reinforcement_nanties",
+			"name" = "Reinforcement Nanties",
+			"ahn_cost" = 25,
+			"ep_cost" = 2,
+			"desc" = "When you take damage, you will take 5*X% less damage per human you can see. (Max of 40%).",
+			"repeatable" = 3,
+			"component" = /datum/component/augment/reinforcement_nanties
+		),
+		// --- Attacking Effects ---
 		list(
 			"id" = "regeneration",
 			"name" = "Regeneration",
 			"ahn_cost" = 25,
-			"ep_cost" = 2, // Positive EP cost
+			"ep_cost" = 2,
 			"desc" = "On hit with a RED weapon, heal a flat 2*X HP (Has a cooldown of half a second)",
-			"repeatable" = 3, // Max 3 times
+			"repeatable" = 3,
 			"component" = /datum/component/augment/regeneration
 		),
 		list(
 			"id" = "tranquility",
 			"name" = "Tranquility",
 			"ahn_cost" = 25,
-			"ep_cost" = 2, // Positive EP cost
+			"ep_cost" = 2,
 			"desc" = "On hit with a WHITE weapon, heal a flat 2*X SP (Has a cooldown of half a second)",
-			"repeatable" = 3, // Max 3 times
+			"repeatable" = 3,
 			"component" = /datum/component/augment/tranquility
 		),
-		// --- Example Negative Effect ---
+		list(
+			"id" = "struggling_strength",
+			"name" = "Struggling Strength",
+			"ahn_cost" = 50,
+			"ep_cost" = 4,
+			"repeatable" = 3,
+			"desc" = "For every 25% of HP lost, deal 10%*X more damage.",
+			"component" = /datum/component/augment/struggling_strength
+		),
+		list(
+			"id" = "ar_red",
+			"name" = "Armor Rend, RED",
+			"ahn_cost" = 50,
+			"ep_cost" = 4,
+			"desc" = "On hit with a BLACK weapon, inflict 1 RED fragility.",
+			"component" = /datum/component/augment/ar_red
+		),
+		list(
+			"id" = "ar_black",
+			"name" = "Armor Rend, BLACK",
+			"ahn_cost" = 50,
+			"ep_cost" = 4,
+			"desc" = "On hit with a RED weapon, inflict 1 BLACK fragility.",
+			"component" = /datum/component/augment/ar_black
+		),
+		list(
+			"id" = "dual_wield",
+			"name" = "Strong Arms",
+			"ahn_cost" = 200,
+			"ep_cost" = 8,
+			"desc" = "When you perform a melee attack, if you are holding another weapon in your other hand, attack the same target with your other weapon. This has a cooldown of the other weapons attack speed *4",
+			"component" = /datum/component/augment/dual_wield
+		),
+		list(
+			"id" = "unstable",
+			"name" = "Unstable",
+			"ahn_cost" = 50,
+			"ep_cost" = 4,
+			"desc" = "While at 50% or higher SP, you BLACK melee attacks deal 20% more damage, but you also take SP damage equal to 5% of your Max SP per hit.",
+			"component" = /datum/component/augment/unstable
+		),
+		list(
+			"id" = "shattering_mind_red",
+			"name" = "Shattering Mind, RED",
+			"ahn_cost" = 25,
+			"ep_cost" = 2,
+			"repeatable" = 3,
+			"desc" = "For every 25% of your missing SP, deal an extra 10*X% RED damage.",
+			"component" = /datum/component/augment/shattering_mind_red
+		),
+		list(
+			"id" = "shattering_mind_white",
+			"name" = "Shattering Mind, WHITE",
+			"ahn_cost" = 25,
+			"ep_cost" = 2,
+			"repeatable" = 3,
+			"desc" = "For every 25% of your missing SP, deal an extra 10*X% WHITE damage.",
+			"component" = /datum/component/augment/shattering_mind_white
+		),
+		list(
+			"id" = "shattering_mind_black",
+			"name" = "Shattering Mind, BLACK",
+			"ahn_cost" = 25,
+			"ep_cost" = 2,
+			"repeatable" = 3,
+			"desc" = "For every 25% of your missing SP, deal an extra 10*X% BLACK damage.",
+			"component" = /datum/component/augment/shattering_mind_black
+		),
+		list(
+			"id" = "gashing_wounds",
+			"name" = "Gashing Wounds",
+			"ahn_cost" = 25,
+			"ep_cost" = 2,
+			"desc" = "On hit with a RED weapon, inflict 2 Bleed (Cooldown of half a second)",
+			"component" = /datum/component/augment/gashing_wounds
+		),
+		list(
+			"id" = "scorching_mind",
+			"name" = "Scorching Mind",
+			"ahn_cost" = 25,
+			"ep_cost" = 2,
+			"desc" = "On hit with a WHITE weapon, inflict 3 Burn (Cooldown of 1 second.)",
+			"component" = /datum/component/augment/scorching_mind
+		),
+		list(
+			"id" = "slothful_decay",
+			"name" = "Slothful Decay",
+			"ahn_cost" = 25,
+			"ep_cost" = 2,
+			"desc" = "On hit with a BLACK weapon, inflict 2 Tremor. If the weapon has an attack speed greater than 1.5 second, Inflict an extra 2 Tremor. (Cooldown of 1.5 seconds.)",
+			"component" = /datum/component/augment/slothful_decay
+		),
+		// --- Execution Effects ---
+		list(
+			"id" = "absorption",
+			"name" = "Absorption",
+			"ahn_cost" = 50,
+			"ep_cost" = 4,
+			"desc" = "On kill, regenerate as much HP as the amount of damage you dealt.",
+			"component" = /datum/component/augment/absorption
+		),
+		list(
+			"id" = "brutalize",
+			"name" = "Brutalize",
+			"ahn_cost" = 25,
+			"ep_cost" = 2,
+			"repeatable" = 3,
+			"desc" = "On kill, deal 15*X WHITE damage to all simple mobs within 2 sqrs of you.",
+			"component" = /datum/component/augment/brutalize
+		),
+		list(
+			"id" = "flesh_morphing",
+			"name" = "Flesh-Morphing",
+			"ahn_cost" = 50,
+			"ep_cost" = 4,
+			"repeatable" = 3,
+			"desc" = "On kill, One human within 4 sqrs of you (not including you), Heals 10% * X of your target max HP.",
+			"component" = /datum/component/augment/flesh_morphing
+		),
+		// --- Negative Effects ---
 		list(
 			"id" = "paranoid",
 			"name" = "Paranoid ",
