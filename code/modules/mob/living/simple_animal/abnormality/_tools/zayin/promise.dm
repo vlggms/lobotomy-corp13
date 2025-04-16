@@ -36,6 +36,9 @@
 /obj/structure/toolabnormality/promise/proc/DoTheThing(obj/item/ego_weapon/I, successrate)
 	processing = TRUE
 	I.forceMove(src)
+	for(var/upgradecheck in GLOB.jcorp_upgrades)
+		if(upgradecheck == "Tool Gacha")
+			successrate += 25
 	if(prob(successrate))
 		SuccessEffect()
 		I.force_multiplier += 0.1
