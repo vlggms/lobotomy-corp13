@@ -81,12 +81,98 @@
 		),
 		// --- Example Negative Effect ---
 		list(
-			"id" = "fragile_core",
-			"name" = "Fragile Core",
-			"ahn_cost" = -20, // Can cost negative ahn (refund)
-			"ep_cost" = -2, // Negative EP cost signifies a downside, grants EP
-			"desc" = "Increases maximum health by 10, but increases brute damage taken by 15%.",
-		)
+			"id" = "paranoid",
+			"name" = "Paranoid ",
+			"ahn_cost" = 50,
+			"ep_cost" = -6, // Negative EP cost signifies a downside, grants EP
+			"desc" = "Whenever you take damage, you take an extra 10 WHITE damage if you don’t have any human insight.",
+			"component" = /datum/component/augment/paranoid
+		),
+		list(
+			"id" = "bus",
+			"name" = "Boot Up Sequence",
+			"ahn_cost" = 25,
+			"ep_cost" = -4,
+			"desc" = "When you make an attack, gain 3 Feeble. This has a cooldown of 70 seconds.",
+			"component" = /datum/component/augment/bus
+		),
+		list(
+			"id" = "overheated",
+			"name" = "Overheated",
+			"ahn_cost" = 10,
+			"ep_cost" = -2,
+			"desc" = "When you make an attack, for the next 10 seconds each time you attack you gain 2*X Burn. This has a cooldown of 1.5 minutes.",
+			"repeatable" = 3,
+			"component" = /datum/component/augment/overheated
+		),
+		list(
+			"id" = "thanatophobia",
+			"name" = "Thanatophobia",
+			"ahn_cost" = 25,
+			"ep_cost" = -4,
+			"desc" = "When you take damage while under 50% HP, take an extra 10 WHITE damage. Has a cooldown of 1 second.",
+			"component" = /datum/component/augment/thanatophobia
+		),
+		list(
+			"id" = "pacifist",
+			"name" = "Pacifist",
+			"ahn_cost" = 25,
+			"ep_cost" = -4,
+			"desc" = "On kill, gain 3 Feeble",
+			"component" = /datum/component/augment/pacifist
+		),
+		list(
+			"id" = "struggling_weakness",
+			"name" = "Struggling Weakness",
+			"ahn_cost" = 25,
+			"ep_cost" = -4,
+			"desc" = "For every 25% of HP lost, deal 20%*X less damage..",
+			"repeatable" = 3,
+			"component" = /datum/component/augment/struggling_weakness
+		),
+		list(
+			"id" = "struggling_fragility",
+			"name" = "Struggling Fragility",
+			"ahn_cost" = 25,
+			"ep_cost" = -4,
+			"desc" = "For every 25% of HP lost, take 20%*X more damage..",
+			"repeatable" = 3,
+			"component" = /datum/component/augment/struggling_fragility
+		),
+		list(
+			"id" = "algophobia",
+			"name" = "Algophobia",
+			"ahn_cost" = 10,
+			"ep_cost" = -2,
+			"desc" = "When you take RED damage, take an extra (RED damage) * 0.5 * X WHITE damage. This has a cooldown of 1 second.",
+			"repeatable" = 3,
+			"component" = /datum/component/augment/algophobia
+		),
+		list(
+			"id" = "weak_arms",
+			"name" = "Weak Arms",
+			"ahn_cost" = 25,
+			"ep_cost" = -4,
+			"desc" = "Your melee attacks have their attack speed decreased by half.",
+			"component" = /datum/component/augment/weak_arms
+		),
+		list(
+			"id" = "annoyance",
+			"name" = "Annoyance",
+			"ahn_cost" = 25,
+			"ep_cost" = -4,
+			"desc" = "After every 8 attacks, all foes within 3 sqrs will start targeting you and you gain 2 Fragile.",
+			"component" = /datum/component/augment/annoyance
+		),
+		list(
+			"id" = "allodynia",
+			"name" = "Allodynia",
+			"ahn_cost" = 10,
+			"ep_cost" = -2,
+			"desc" = "When you take damage, you gain 2 * X Bleed. (Has a cooldown of 1 second). Also, you take bleed damage each time you attack. (That has a cooldown of 3 seconds)",
+			"repeatable" = 3,
+			"component" = /datum/component/augment/allodynia
+		),
 		// Add other effects following this structure
 	)
 
