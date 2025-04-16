@@ -340,7 +340,7 @@
 	)
 
 	var/maxRank = 5
-	var/list/rankAttributeReqs = list(0, 40, 60, 80, 100)
+	var/list/rankAttributeReqs = list(20, 40, 60, 80, 100)
 	var/currencySymbol = "ahn"
 
 // --- Initialization ---
@@ -556,6 +556,13 @@
 	var/datum/augment_design/design_details // Store the applied design data
 	var/primary_color = "#FFFFFF"
 	var/secondary_color = "#CCCCCC"
+	var/list/rankAttributeReqs = list(20, 40, 60, 80, 100)
+	var/list/stats = list(
+		FORTITUDE_ATTRIBUTE,
+		PRUDENCE_ATTRIBUTE,
+		TEMPERANCE_ATTRIBUTE,
+		JUSTICE_ATTRIBUTE,
+	)
 
 /obj/item/augment/attack(mob/M, mob/user)
 	. = ..()
@@ -565,12 +572,18 @@
 	if (!ishuman(M))
 		to_chat(user, "Only affects human!")
 		return FALSE
-	if (!do_after(user, 10 SECONDS, M))
+	var/mob/living/carbon/human/H = M
+	var/stattotal
+	for(var/attribute in stats)
+		stattotal+=get_attribute_level(H, attribute)
+	stattotal /= 4	//Potential is an average of stats
+	if(stattotal < rankAttributeReqs[rank])
+		to_chat(user, "[H.name] is too weak to use this augment!")
+		return FALSE
+	if (!do_after(user, 10 SECONDS, H))
 		to_chat(user, "Interrupted!")
 		return FALSE
-
-	src.forceMove(M)
-	var/mob/living/carbon/human/H = M
+	src.forceMove(H)
 	ApplyEffects(H)
 
 /obj/item/augment/proc/CanUseAugment(mob/user)
@@ -641,3 +654,36 @@
 					return default_color // Invalid character
 			return uppertext(color_text) // Return valid hex, uppercased for consistency
 	return default_color // Failed validation
+
+/obj/item/augment_tester
+	name = "Augment Tester"
+	desc = "A device that can check what types of augments the target can use."
+	icon = 'ModularTegustation/Teguicons/teguitems.dmi'
+	icon_state = "potential_scanner"
+	slot_flags = ITEM_SLOT_BELT | ITEM_SLOT_POCKETS
+	w_class = WEIGHT_CLASS_SMALL
+	var/list/stats = list(
+		FORTITUDE_ATTRIBUTE,
+		PRUDENCE_ATTRIBUTE,
+		TEMPERANCE_ATTRIBUTE,
+		JUSTICE_ATTRIBUTE,
+	)
+
+/obj/item/augment_tester/afterattack(atom/target, mob/user, proximity_flag)
+	. = ..()
+	if(ishuman(target))
+		var/mob/living/carbon/human/H = target
+		var/stattotal
+		for(var/attribute in stats)
+			stattotal+=get_attribute_level(H, attribute)
+		stattotal /= 4	//Potential is an average of stats
+		var/best_augment = round(stattotal/20)
+		if(best_augment > 5)
+			best_augment = 5
+		if(best_augment < 1)
+			to_chat(user, span_notice("The target is unable to use any augments."))
+			return
+		to_chat(user, span_notice("The target is able to use [best_augment] or lower augments."))
+		return
+
+	to_chat(user, span_notice("No human identified."))
