@@ -280,19 +280,19 @@
 	if(item.attack_speed >= 1.5)
 		target.apply_lc_tremor(2, 55)
 
-//Dual-Wield
+//Strong Arms
 /datum/component/augment/dual_wield
 	var/inflict_cooldown
-	var/inflict_cooldown_time = 30
+	var/inflict_cooldown_time = 40
 
 /datum/component/augment/dual_wield/afterattack_effect(datum/source, atom/target, mob/user, proximity_flag, obj/item/item)
 	if(inflict_cooldown < world.time)
-		inflict_cooldown = world.time + inflict_cooldown_time
 		if(human_parent.a_intent == INTENT_HARM)
 			for(var/obj/item/ego_weapon/W in human_parent.held_items)
 				if(W == item)
 					continue
 				else if(W.CanUseEgo(human_parent))
+					inflict_cooldown = world.time + inflict_cooldown_time * W.attack_speed
 					sleep(2)
 					if(last_target in view(W.reach, human_parent))
 						playsound(W.loc, W.hitsound)
