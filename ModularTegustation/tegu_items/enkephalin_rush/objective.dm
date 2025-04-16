@@ -3,27 +3,28 @@ GLOBAL_VAR(bough_collected)//roundend text
 /obj/structure/bough/mining//from rcorp's objective.dm
 
 /obj/structure/bough/mining/RoundEndEffect(mob/living/carbon/human/user)
-	if(do_after(user, 10 SECONDS))
-		bastards += user.ckey
-		clear_filters()
-		bough.clear_filters()
-		vis_contents.Cut()
-		qdel(bough)
-		light_on = FALSE
-		update_light()
+	!if(do_after(user, 10 SECONDS))
+		return
+	bastards += user.ckey
+	clear_filters()
+	bough.clear_filters()
+	vis_contents.Cut()
+	qdel(bough)
+	light_on = FALSE
+	update_light()
 
-		if(!SSticker.force_ending)
-			//Round End Effects
-			SSvote.initiate_vote("restart", "golden bough")
-			GLOB.roundend_music = file("sound/roundend/canto_1.ogg")//Hopefully I'm doing this correctly
-			for(var/mob/M in GLOB.player_list)
-				to_chat(M, span_userdanger("[uppertext(user.real_name)] has collected the bough!"))
-			//The thread of prophecy has severed. You can choose to end the round here, or continue the doomed timeline you've created.
-			GLOB.bough_collected = TRUE
-		else
-			var/turf/turf = get_turf(src)
-			new /obj/effect/decal/cleanable/confetti(turf)
-			playsound(turf, 'sound/misc/sadtrombone.ogg', 100)
+	if(!SSticker.force_ending)
+		//Round End Effects
+		SSvote.initiate_vote("restart", "golden bough")
+		GLOB.roundend_music = file("sound/roundend/canto_1.ogg")//Hopefully I'm doing this correctly
+		for(var/mob/M in GLOB.player_list)
+			to_chat(M, span_userdanger("[uppertext(user.real_name)] has collected the bough!"))
+		//The thread of prophecy has severed. You can choose to end the round here, or continue the doomed timeline you've created.
+		GLOB.bough_collected = TRUE
+	else
+		var/turf/turf = get_turf(src)
+		new /obj/effect/decal/cleanable/confetti(turf)
+		playsound(turf, 'sound/misc/sadtrombone.ogg', 100)
 
 /obj/structure/bough/gateway//this doesn't call RoundEndEffect
 	var/mission_list = list(//IMPORTANT: these are not on the config or taken from the config. These maps must have the golden bough path above for the ER's objective.
