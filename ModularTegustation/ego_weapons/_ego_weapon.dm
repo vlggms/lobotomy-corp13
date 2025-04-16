@@ -104,6 +104,9 @@
 		. += EgoAttackInfo(user)
 	if(special)
 		. += span_notice("[special]")
+	if(tool_behaviour == TOOL_MINING)
+		. += span_notice("This weapon can be used to mine at a [(100/toolspeed)]% efficiency.")
+
 	if(LAZYLEN(attribute_requirements))
 		if(!ishuman(user))	//You get a notice if you are a ghost or otherwise
 			. += span_notice("It has <a href='byond://?src=[REF(src)];list_attributes=1'>certain requirements</a> for the wearer.")

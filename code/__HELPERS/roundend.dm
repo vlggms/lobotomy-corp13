@@ -376,6 +376,9 @@
 	//PE Quota
 	if(SSmaptype.maptype == "standard")
 		parts += pe_report()
+	//Enkephalin Rush
+	if(SSmaptype.maptype == "enkephalin_rush")
+		parts += mining_report()
 
 	listclearnulls(parts)
 
@@ -906,3 +909,21 @@
 				return
 			qdel(query_update_everything_ranks)
 		qdel(query_check_everything_ranks)
+
+//enkephalin rush roundend stuff
+/datum/controller/subsystem/ticker/proc/mining_report()
+	. = list()
+	var/repaired_machines = (GLOB.lobotomy_repairs)
+	var/total_machines = (GLOB.lobotomy_damages)
+	var/facility_full_percentage = 100 * (repaired_machines / total_machines)
+	. += "<span class='header'>Site Recovery Report</span>"
+	. += "<div class='panel stationborder'>"
+	. += "[facility_full_percentage]% of the facility has been recovered!<br>"
+	if(facility_full_percentage >= 100)
+		. += "The facility is fully functional!<br>"
+	if(GLOB.bough_collected)
+		. += "The golden bough has been successfully retrieved!<br>"
+	else
+		. += "You have failed to collect the golden bough.<br>"
+	. += "</div>"
+	return

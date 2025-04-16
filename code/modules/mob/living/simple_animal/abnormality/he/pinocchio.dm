@@ -293,6 +293,10 @@
 	C.contained_abno = /mob/living/simple_animal/hostile/abnormality/pinocchio//release()ing or extract()ing this core will spawn the abnormality, making it a valid core.
 	C.threat_level = 3
 	C.icon = 'ModularTegustation/Teguicons/abno_cores/he.dmi'
+	C.ego_list = list(
+		/datum/ego_datum/weapon/marionette,
+		/datum/ego_datum/armor/marionette,
+	)
 
 /datum/species/puppet
 	name = "Puppet"
