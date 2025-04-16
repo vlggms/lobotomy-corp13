@@ -3,7 +3,7 @@ GLOBAL_VAR(bough_collected)//roundend text
 /obj/structure/bough/mining//from rcorp's objective.dm
 
 /obj/structure/bough/mining/RoundEndEffect(mob/living/carbon/human/user)
-	!if(do_after(user, 10 SECONDS))
+	if(!do_after(user, 10 SECONDS))
 		return
 	bastards += user.ckey
 	clear_filters()
