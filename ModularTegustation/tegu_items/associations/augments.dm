@@ -577,7 +577,7 @@
 	for(var/attribute in stats)
 		stattotal+=get_attribute_level(H, attribute)
 	stattotal /= 4	//Potential is an average of stats
-	if(stattotal < rankAttributeReqs[rank])
+	if(stattotal < rankAttributeReqs[design_details.rank])
 		to_chat(user, "[H.name] is too weak to use this augment!")
 		return FALSE
 	if (!do_after(user, 10 SECONDS, H))
