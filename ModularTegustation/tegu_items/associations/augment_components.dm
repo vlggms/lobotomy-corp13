@@ -475,11 +475,11 @@
 	nearby_human = FALSE
 
 //Boot Up Sequence
-/datum/component/augment/bps
+/datum/component/augment/bus
 	var/inflict_cooldown
 	var/inflict_cooldown_time = 60
 
-/datum/component/augment/bps/attack_effect(datum/source, mob/living/target, mob/living/user, obj/item/item)
+/datum/component/augment/bus/attack_effect(datum/source, mob/living/target, mob/living/user, obj/item/item)
 	. = ..()
 	if(inflict_cooldown > world.time)
 		return FALSE
