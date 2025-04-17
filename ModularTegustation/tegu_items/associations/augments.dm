@@ -39,7 +39,7 @@
 			"base_cost" = 50,
 			"base_ep" = 4,
 			"negative_immune" = 1,
-			"desc" = "An augment woven into the skin. Unable to have negative effects.",
+			"desc" = "An augment woven into the skin. Unable to have negative effects and causes the user to grow physically weaker, then higher the rank of the tattoo.",
 			"icon_file" = AUGMENT_ICON_FILE, // Store the file path
 			"icon_preview" = "tattoo", // Base icon state
 			"primary_overlay_state" = "tattoo_prim", // State for primary color mask
@@ -556,6 +556,11 @@
 		JUSTICE_ATTRIBUTE,
 	)
 	var/list/roles = list("Prosthetics Surgeon")
+	var/active_augment = FALSE
+	// var/mutable_appearance/augment_overlay_prim
+	// var/mutable_appearance/augment_overlay_second
+	// var/overlay_icon_state = ""
+	// var/overlay_layer = -ABOVE_MOB_LAYER
 
 /obj/item/augment/attack(mob/M, mob/user)
 	. = ..()
@@ -581,7 +586,8 @@
 				continue
 			else
 				A = i
-
+				if(!A.active_augment)
+					A = null
 	if (A)
 		to_chat(user, span_warning("Augment already present within [H.name]!"))
 		return FALSE
@@ -592,7 +598,17 @@
 	playsound(get_turf(src), 'sound/items/deconstruct.ogg', 50, TRUE, -1)
 	to_chat(user, span_nicegreen("[name] has been successfully inserted into [H.name]."))
 	src.forceMove(H)
+	active_augment = TRUE
+	if(design_details.form_data["id"] == "tattoo")
+		H.adjust_all_attribute_buffs(design_details.rank * -4)
+		// augment_overlay_prim = FormatOverlay(H)
+		// H.add_overlay(augment_overlay_prim)
+		// augment_overlay_second = FormatOverlay(H)
+		// H.add_overlay(augment_overlay_second)
 	ApplyEffects(H)
+
+// /obj/item/augment/proc/FormatOverlay(mob/living/carbon/human/user)
+// 	return mutable_appearance(src.icon, src.overlay_icon_state, src.overlay_layer)
 
 /obj/item/augment/proc/CanUseAugment(mob/user)
 	if(user?.mind?.assigned_role in roles)
@@ -733,6 +749,11 @@
 					C.RemoveComponent()
 		A.forceMove(remove_turf)
 		playsound(get_turf(src), 'sound/items/deconstruct.ogg', 50, TRUE, -1)
+		if(A.design_details.form_data["id"] == "tattoo")
+			H.adjust_all_attribute_buffs(A.design_details.rank * 4)
+			// H.cut_overlay(A.augment_overlay_prim)
+			// H.cut_overlay(A.augment_overlay_second)
+		A.active_augment = FALSE
 		to_chat(user, span_nicegreen("Successfuly removed [A.name] from [H.name]!"))
 	else
 		to_chat(user, span_warning("No augment found within [H.name]!"))
