@@ -315,7 +315,7 @@ const EffectsPage = (props, context) => {
   // --- UPDATED: Find form by ID ---
   const selectedForm = forms.find(f => f.id === selectedFormId) || null;
   const baseCost = selectedForm ? selectedForm.base_cost * selectedRank : 0;
-  const baseEp = selectedForm ? selectedForm.base_ep + selectedRank * 2 : 0;
+  const baseEp = selectedForm ? selectedForm.base_ep + (selectedRank - 1) * 2 : 0;
 
   // Calculations remain the same (selectedCounts, currentEpCost, etc.)
    const selectedCounts = selectedEffects.reduce((counts, effectId) => {
