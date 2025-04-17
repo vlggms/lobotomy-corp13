@@ -27,7 +27,6 @@
 			"name" = "Internal Prosthetic",
 			"base_cost" = 200,
 			"base_ep" = 2,
-			"upgradable" = 1,
 			"desc" = "A standard internal augmentation base.",
 			"icon_file" = AUGMENT_ICON_FILE, // Store the file path
 			"icon_preview" = "prosthetic", // Base icon state
@@ -40,7 +39,7 @@
 			"base_cost" = 50,
 			"base_ep" = 4,
 			"negative_immune" = 1,
-			"desc" = "An augment woven into the skin. Unable to have negative effect.",
+			"desc" = "An augment woven into the skin. Unable to have negative effects.",
 			"icon_file" = AUGMENT_ICON_FILE, // Store the file path
 			"icon_preview" = "tattoo", // Base icon state
 			"primary_overlay_state" = "tattoo_prim", // State for primary color mask
@@ -410,6 +409,7 @@
 
 	var/temp_icon_state = icon_state
 	icon_state = icon_state_animation
+	playsound(get_turf(src), 'sound/items/rped.ogg', 50, TRUE, -1)
 	sleep(7)
 	icon_state = temp_icon_state
 
@@ -467,7 +467,7 @@
 
 	// 3. Calculate Base Values (No change)
 	src.base_ahn_cost = form_data["base_cost"] * src.rank
-	src.base_ep = form_data["base_ep"] * src.rank
+	src.base_ep = form_data["base_ep"] + (src.rank * 2)
 
 	// 4. Validate and Calculate Effects (UPDATED LOGIC)
 	src.total_ep_cost = 0
@@ -553,14 +553,15 @@
 		TEMPERANCE_ATTRIBUTE,
 		JUSTICE_ATTRIBUTE,
 	)
+	var/list/roles = list("Prosthetics Surgeon")
 
 /obj/item/augment/attack(mob/M, mob/user)
 	. = ..()
 	if (!CanUseAugment(user))
-		to_chat(user, "Only surgeons can do that!")
+		to_chat(user, span_warning("You don't have any expertise in attaching this augment."))
 		return FALSE
 	if (!ishuman(M))
-		to_chat(user, "Only affects human!")
+		to_chat(user, span_warning("You are only able to attach this augment to humans!"))
 		return FALSE
 	var/mob/living/carbon/human/H = M
 	var/stattotal
@@ -568,26 +569,33 @@
 		stattotal+=get_attribute_level(H, attribute)
 	stattotal /= 4	//Potential is an average of stats
 	if(stattotal < rankAttributeReqs[design_details.rank])
-		to_chat(user, "[H.name] is too weak to use this augment!")
+		to_chat(user, span_warning("[H.name] is too weak to use this augment!"))
 		return FALSE
 
 	var/obj/item/augment/A = null
 	for(var/atom/movable/i in H.contents)
 		if (istype(i, /obj/item/augment))
-			A = i
+			if(i == src)
+				continue
+			else
+				A = i
 
 	if (A)
-		to_chat(user, "Augment already present!")
+		to_chat(user, span_warning("Augment already present within [H.name]!"))
 		return FALSE
 
+	to_chat(user, span_warning("Inserting [name]..."))
 	if (!do_after(user, 10 SECONDS, H))
-		to_chat(user, "Interrupted!")
 		return FALSE
+	playsound(get_turf(src), 'sound/items/deconstruct.ogg', 50, TRUE, -1)
+	to_chat(user, span_nicegreen("[name] has been successfully inserted into [H.name]."))
 	src.forceMove(H)
 	ApplyEffects(H)
 
 /obj/item/augment/proc/CanUseAugment(mob/user)
-	return TRUE
+	if(user?.mind?.assigned_role in roles)
+		return TRUE
+	return FALSE
 
 /obj/item/augment/proc/ApplyEffects(mob/living/carbon/human/H)
 	var/list/grouped_efects_list = new/list()
@@ -648,7 +656,7 @@
 	name = "Augment Tester"
 	desc = "A device that can check what types of augments the target can use."
 	icon = 'ModularTegustation/Teguicons/teguitems.dmi'
-	icon_state = "potential_scanner"
+	icon_state = "records_stats"
 	slot_flags = ITEM_SLOT_BELT | ITEM_SLOT_POCKETS
 	w_class = WEIGHT_CLASS_SMALL
 	var/list/stats = list(
@@ -661,7 +669,16 @@
 /obj/item/augment_tester/afterattack(atom/target, mob/user, proximity_flag)
 	. = ..()
 	if(ishuman(target))
+		playsound(get_turf(src), 'sound/machines/cryo_warning.ogg', 50, TRUE, -1)
 		var/mob/living/carbon/human/H = target
+
+		var/obj/item/augment/A = null
+		for(var/atom/movable/i in H.contents)
+			if (istype(i, /obj/item/augment))
+				A = i
+		if(A)
+			to_chat(user, span_notice("The target current has the [A.name] augment."))
+
 		var/stattotal
 		for(var/attribute in stats)
 			stattotal+=get_attribute_level(H, attribute)
@@ -672,7 +689,7 @@
 		if(best_augment < 1)
 			to_chat(user, span_notice("The target is unable to use any augments."))
 			return
-		to_chat(user, span_notice("The target is able to use [best_augment] or lower augments."))
+		to_chat(user, span_notice("The target is able to use rank [best_augment] or lower augments."))
 		return
 
 	to_chat(user, span_notice("No human identified."))
@@ -682,16 +699,17 @@
 	name = "Augment Remover"
 	desc = "A device that can remove augments."
 	icon = 'ModularTegustation/Teguicons/teguitems.dmi'
-	icon_state = "potential_scanner"
+	icon_state = "gadget1"
 	slot_flags = ITEM_SLOT_BELT | ITEM_SLOT_POCKETS
 	w_class = WEIGHT_CLASS_SMALL
+	var/list/roles = list("Prosthetics Surgeon")
 
 /obj/item/augment_remover/attack(mob/M, mob/user)
 	if (!CanRemoveAugment(user))
-		to_chat(user, "Only surgeons can do that!")
+		to_chat(user, span_warning("You don't have any expertise in using this tool."))
 		return FALSE
 	if (!ishuman(M))
-		to_chat(user, "Only affects human!")
+		to_chat(user, span_warning("You are only able to use this tool on humans!"))
 		return FALSE
 	var/mob/living/carbon/human/H = M
 
@@ -702,18 +720,22 @@
 			A = i
 
 	if (A)
+		playsound(get_turf(src), 'sound/items/drill_use.ogg', 50, TRUE, -1)
+		to_chat(user, span_warning("Removing [A.name] from [H.name]..."))
 		if (!do_after(user, 10 SECONDS, H))
-			to_chat(user, "Interrupted!")
 			return FALSE
-
 		for(var/list/effect in A.design_details.selected_effects_data)
 			if (effect["component"])
 				var/datum/component/augment/C = H.GetComponent(effect["component"])
 				if (C)
 					C.RemoveComponent()
 		A.forceMove(remove_turf)
+		playsound(get_turf(src), 'sound/items/deconstruct.ogg', 50, TRUE, -1)
+		to_chat(user, span_nicegreen("Successfuly removed [A.name] from [H.name]!"))
 	else
-		to_chat(user, "No augment found!")
+		to_chat(user, span_warning("No augment found within [H.name]!"))
 
 /obj/item/augment_remover/proc/CanRemoveAugment(mob/user)
-	return TRUE
+	if(user?.mind?.assigned_role in roles)
+		return TRUE
+	return FALSE
