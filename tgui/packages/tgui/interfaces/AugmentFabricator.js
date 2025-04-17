@@ -315,7 +315,7 @@ const EffectsPage = (props, context) => {
   // --- UPDATED: Find form by ID ---
   const selectedForm = forms.find(f => f.id === selectedFormId) || null;
   const baseCost = selectedForm ? selectedForm.base_cost * selectedRank : 0;
-  const baseEp = selectedForm ? selectedForm.base_ep * selectedRank : 0;
+  const baseEp = selectedForm ? selectedForm.base_ep + selectedRank * 2 : 0;
 
   // Calculations remain the same (selectedCounts, currentEpCost, etc.)
    const selectedCounts = selectedEffects.reduce((counts, effectId) => {
@@ -326,14 +326,16 @@ const EffectsPage = (props, context) => {
     return effects.find(e => e.id === effectId);
   }).filter(e => e);
   const currentEpCost = selectedEffectsData.reduce((sum, effect) => sum + (effect?.ep_cost || 0), 0); // Add safety check for effect
+  const currentNegEpCost = selectedEffectsData.reduce((sum, effect) => sum + (effect?.ep_cost < 0 ? effect?.ep_cost : 0), 0);
   const currentEffectsCost = selectedEffectsData.reduce((sum, effect) => sum + (effect?.ahn_cost || 0), 0); // Add safety check for effect
   const remainingEp = baseEp - currentEpCost;
+  const remainingNegEp = baseEp + currentNegEpCost
   const totalCost = baseCost + currentEffectsCost;
 
   // Event Handlers (handleAddEffect, handleRemoveEffect remain the same)
    const handleAddEffect = (effectToAdd) => {
     if (!effectToAdd) return;
-    if (effectToAdd.ep_cost <= remainingEp) {
+    if ((effectToAdd.ep_cost > 0 && effectToAdd.ep_cost <= remainingEp) || (effectToAdd.ep_cost < 0 && -effectToAdd.ep_cost <= remainingNegEp)) {
       setSelectedEffects([...selectedEffects, effectToAdd.id]);
     }
   };
@@ -423,7 +425,7 @@ const EffectsPage = (props, context) => {
                   const currentCount = selectedCounts[effect.id] || 0;
                   const remainingRepeats = maxRepeats - currentCount;
 
-                  const canAfford = effect.ep_cost <= remainingEp;
+                  const canAfford = (effect.ep_cost > 0 && effect.ep_cost <= remainingEp) || (effect.ep_cost < 0 && -effect.ep_cost <= remainingNegEp);
                   const maxReached = isRepeatable && remainingRepeats <= 0;
                   const alreadyAddedNonRepeatable = !isRepeatable && currentCount > 0;
 
