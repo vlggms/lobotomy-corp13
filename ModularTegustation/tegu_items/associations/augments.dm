@@ -506,6 +506,8 @@
 				log_admin("[src.validation_error]")
 				return FALSE
 
+		// TODO: Check for negative effects. Sum of all negative effect <= base EP
+
 		// Check form restrictions (Example: Tattoo form immunity to negative effects)
 		// Negative effect identified by ep_cost < 0
 		if(form_data["negative_immune"] && effect_def["ep_cost"] < 0)
