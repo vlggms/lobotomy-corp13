@@ -467,7 +467,7 @@
 
 	// 3. Calculate Base Values (No change)
 	src.base_ahn_cost = form_data["base_cost"] * src.rank
-	src.base_ep = form_data["base_ep"] + (src.rank * 2)
+	src.base_ep = form_data["base_ep"] + ((src.rank - 1) * 2)
 
 	// 4. Validate and Calculate Effects (UPDATED LOGIC)
 	src.total_ep_cost = 0
