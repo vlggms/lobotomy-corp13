@@ -18,6 +18,7 @@
 	var/datum/tgui_handler/augment_fabricator/ui_handler = null
 
 	var/const/ui_key = "AugmentFabricator"
+	var/list/roles = list("Prosthetics Surgeon")
 
 	// --- Data (Same as before) ---
 	var/list/available_forms = list(
@@ -361,9 +362,9 @@
 		return TRUE
 
 	// --- Access Check ---
-	// if(!check_access(user.get_id_card())) // Use your access check proc
-	// 	to_chat(user, "<span class='warning'>Access denied.</span>")
-	// 	return TRUE
+	if(!(user?.mind?.assigned_role in roles))
+		to_chat(user, "<span class='notice'>You need to be a surgeon to use this machine!</span>")
+		return TRUE
 
 	// --- Delegate UI Interaction to the Handler ---
 	if(ui_handler)
@@ -373,29 +374,26 @@
 		to_chat(user, "<span class='warning'>Machine interface error. Please report this.</span>")
 		return TRUE
 
-	// --- Machine-Specific Logic Procs ---
 
-/// Placeholder for checking if the user can afford the cost.
-/obj/machinery/augment_fabricator/proc/can_afford(mob/user, amount)
-	// Replace with actual currency check logic (e.g., checking user's bank account, wallet)
-	// Example: return user.get_bank_balance() >= amount
-	log_runtime("Checking if [user] can afford [amount] [src.currencySymbol]")
-	// Placeholder: Assume everyone can afford for now
-	// If using a direct payment system on the mob:
-	// var/datum/money_account/account = user.get_account() // Hypothetical
-	// return account && account.can_afford(amount)
-	return TRUE // Placeholder
-
-	/// Placeholder for deducting the cost.
+/// Placeholder for deducting the cost.
 /obj/machinery/augment_fabricator/proc/deduct_cost(mob/user, amount)
-	// Replace with actual currency deduction logic
-	// Example: user.deduct_from_bank(amount)
-	log_runtime("Deducting [amount] [src.currencySymbol] from [user]")
-	// Placeholder: Assume deduction works
-	// If using a direct payment system on the mob:
-	// var/datum/money_account/account = user.get_account() // Hypothetical
-	// return account && account.pay_amount(amount)
-	return TRUE // Placeholder
+	var/obj/item/card/id/C
+	if(isliving(user))
+		var/mob/living/L = user
+		C = L.get_idcard(TRUE)
+		if(!C)
+			return FALSE
+		else if(!C.registered_account)
+			return FALSE
+
+		var/datum/bank_account/account = C.registered_account
+		if(amount && !account.adjust_money(-amount))
+			return FALSE
+		else
+			L.playsound_local(get_turf(src), 'sound/effects/cashregister.ogg', 25, 3, 3)
+			return TRUE
+	return FALSE
+
 
 /// Handles the actual creation of the augment item. Called by the UI handler.
 /obj/machinery/augment_fabricator/proc/perform_fabrication(mob/user, datum/augment_design/design, creator_name, creator_desc, primary_color, secondary_color)
@@ -406,17 +404,9 @@
 	var/total_ahn_cost = design.total_ahn_cost
 
 	// --- Final Checks & Payment ---
-	if(!can_afford(user, total_ahn_cost))
-		to_chat(user, "<span class='warning'>You cannot afford the cost of [total_ahn_cost] [src.currencySymbol].</span>")
-		return null // Fabrication fails
-
 	if(!deduct_cost(user, total_ahn_cost))
 		to_chat(user, "<span class='warning'>Failed to deduct [total_ahn_cost] [src.currencySymbol]. Payment cancelled.</span>")
 		return null // Fabrication fails
-
-	// --- Create the Augment ---
-	// Optional: Add a fabrication delay?
-	// sleep(30) // 3 seconds delay
 
 	var/temp_icon_state = icon_state
 	icon_state = icon_state_animation
@@ -580,6 +570,16 @@
 	if(stattotal < rankAttributeReqs[design_details.rank])
 		to_chat(user, "[H.name] is too weak to use this augment!")
 		return FALSE
+
+	var/obj/item/augment/A = null
+	for(var/atom/movable/i in H.contents)
+		if (istype(i, /obj/item/augment))
+			A = i
+
+	if (A)
+		to_chat(user, "Augment already present!")
+		return FALSE
+
 	if (!do_after(user, 10 SECONDS, H))
 		to_chat(user, "Interrupted!")
 		return FALSE
@@ -630,17 +630,6 @@
 	icon = generate_augment_preview_icon(form_data["icon_file"], form_data["icon_preview"], form_data["primary_overlay_state"],
 		form_data["secondary_overlay_state"], p_color, s_color)
 
-	// TODO: Apply actual game effects based on design_details
-	// - Modify stats (if applicable)
-	// - Add components/verbs for abilities from selected_effects_data
-	// - Update icon based on form_data and colors (requires icon generation/state logic)
-	// Example: queue_icon_update()
-
-	// Optional: Cleanup when deleted
-	// Del()
-	//    qdel(design_details)
-	//    ..()
-
 /proc/sanitize_hex_color(color_text, default_color = "#FFFFFF")
 	if(!color_text) return default_color
 	// Basic check for # followed by 3 or 6 hex chars
@@ -687,3 +676,44 @@
 		return
 
 	to_chat(user, span_notice("No human identified."))
+
+
+/obj/item/augment_remover
+	name = "Augment Remover"
+	desc = "A device that can remove augments."
+	icon = 'ModularTegustation/Teguicons/teguitems.dmi'
+	icon_state = "potential_scanner"
+	slot_flags = ITEM_SLOT_BELT | ITEM_SLOT_POCKETS
+	w_class = WEIGHT_CLASS_SMALL
+
+/obj/item/augment_remover/attack(mob/M, mob/user)
+	if (!CanRemoveAugment(user))
+		to_chat(user, "Only surgeons can do that!")
+		return FALSE
+	if (!ishuman(M))
+		to_chat(user, "Only affects human!")
+		return FALSE
+	var/mob/living/carbon/human/H = M
+
+	var/remove_turf = pick(get_adjacent_open_turfs(H))
+	var/obj/item/augment/A = null
+	for(var/atom/movable/i in H.contents)
+		if (istype(i, /obj/item/augment))
+			A = i
+
+	if (A)
+		if (!do_after(user, 10 SECONDS, H))
+			to_chat(user, "Interrupted!")
+			return FALSE
+
+		for(var/list/effect in A.design_details.selected_effects_data)
+			if (effect["component"])
+				var/datum/component/augment/C = H.GetComponent(effect["component"])
+				if (C)
+					C.RemoveComponent()
+		A.forceMove(remove_turf)
+	else
+		to_chat(user, "No augment found!")
+
+/obj/item/augment_remover/proc/CanRemoveAugment(mob/user)
+	return TRUE

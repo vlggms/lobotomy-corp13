@@ -168,9 +168,6 @@
 		var/primary_color = sanitize_hex_color(config["primaryColor"])
 		var/secondary_color = sanitize_hex_color(config["secondaryColor"])
 
-		// --- Check Resources ---
-		// if(!machine.can_afford(usr, total_ahn_cost)) { ... return TRUE }
-
 		// --- Perform Fabrication ---
 		to_chat(usr, "<span class='notice'>Initiating fabrication process...</span>")
 		var/obj/item/augment/new_augment = machine.perform_fabrication(usr, current_validation_design, creator_name, creator_desc, primary_color, secondary_color)

@@ -11,6 +11,9 @@
 	human_parent = parent
 	repeat = _repeat
 
+/datum/component/augment/RegisterWithParent()
+	. = ..()
+
 	RegisterSignal(parent, COMSIG_MOB_ITEM_ATTACK, PROC_REF(attack_effect))
 	RegisterSignal(parent, COMSIG_MOB_ITEM_AFTERATTACK, PROC_REF(afterattack_effect))
 	RegisterSignal(parent, COMSIG_MOB_APPLY_DAMGE, PROC_REF(take_damage_effect)) ///datum/species/proc/apply_damage(damage, damagetype = BRUTE, def_zone = null, blocked, mob/living/carbon/human/H, forced = FALSE, spread_damage = FALSE, wound_bonus = 0, bare_wound_bonus = 0, sharpness = SHARP_NONE, white_healable = FALSE)
@@ -34,6 +37,11 @@
 
 /datum/component/augment/proc/attackedby_mob(datum/source, mob/living/simple_animal/animal)
 	to_chat(parent, "Attackby Mob Effect Triggered, attacked by [animal]")
+
+/datum/component/augment/UnregisterFromParent()
+	. = ..()
+	UnregisterSignal(parent, list(COMSIG_MOB_ITEM_ATTACK, COMSIG_MOB_ITEM_AFTERATTACK, COMSIG_MOB_APPLY_DAMGE,
+	 COMSIG_MOB_AFTER_APPLY_DAMGE, COMSIG_ATOM_ATTACK_ANIMAL))
 
 
 ///Attacking Effects
