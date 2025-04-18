@@ -476,8 +476,9 @@
 
 	// --- Access Check ---
 	if(!(user?.mind?.assigned_role in roles))
-		to_chat(user, "<span class='notice'>You need to be a surgeon to use this machine!</span>")
-		return TRUE
+		if(SSmaptype.maptype != "office")
+			to_chat(user, "<span class='notice'>You need to be a surgeon to use this machine!</span>")
+			return TRUE
 
 	// --- Delegate UI Interaction to the Handler ---
 	if(ui_handler)
@@ -726,7 +727,7 @@
 // 	return mutable_appearance(src.icon, src.overlay_icon_state, src.overlay_layer)
 
 /obj/item/augment/proc/CanUseAugment(mob/user)
-	if(user?.mind?.assigned_role in roles)
+	if(user?.mind?.assigned_role in roles || SSmaptype.maptype == "office")
 		return TRUE
 	return FALSE
 
@@ -874,6 +875,6 @@
 		to_chat(user, span_warning("No augment found within [H.name]!"))
 
 /obj/item/augment_remover/proc/CanRemoveAugment(mob/user)
-	if(user?.mind?.assigned_role in roles)
+	if(user?.mind?.assigned_role in roles || SSmaptype.maptype != "office")
 		return TRUE
 	return FALSE
