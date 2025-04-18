@@ -24,6 +24,8 @@
 	for(var/obj/machinery/door/door in view(1, get_turf(src)))
 		if(istype(door, /obj/machinery/door/poddoor))
 			continue
+		if(istype(door, /obj/machinery/door/keycard))
+			continue
 		if(istype(door, /obj/machinery/door/airlock))
 			var/obj/machinery/door/airlock/A = door
 			A.locked = FALSE

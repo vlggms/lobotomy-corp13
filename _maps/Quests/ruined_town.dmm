@@ -1185,7 +1185,7 @@
 /obj/structure/sigsystem/projectile_launcher{
 	name = "shotgun trap";
 	signaller_code = 99;
-	projectile_type = /obj/projectile/bullet/scattershot
+	projectile_type = /obj/projectile/bullet/scattershot/ruined_town
 	},
 /turf/closed/indestructible/rust,
 /area/city/fixers)
@@ -1370,6 +1370,7 @@
 /obj/structure/sigsystem/projectile_launcher{
 	name = "shotgun trap";
 	signaller_code = 131;
+	projectile_type = /obj/projectile/bullet/shotgun_beanbag/ruined_town;
 	dir = 8
 	},
 /turf/closed/indestructible/rust,
@@ -1890,7 +1891,7 @@
 	name = "shotgun trap";
 	signaller_code = 99;
 	dir = 8;
-	projectile_type = /obj/projectile/bullet/scattershot
+	projectile_type = /obj/projectile/bullet/scattershot/ruined_town
 	},
 /turf/closed/indestructible/rust,
 /area/city/fixers)
@@ -2039,6 +2040,7 @@
 /obj/structure/sigsystem/projectile_launcher{
 	name = "shotgun trap";
 	signaller_code = 132;
+	projectile_type = /obj/projectile/bullet/shotgun_beanbag/ruined_town;
 	dir = 8
 	},
 /turf/closed/indestructible/rust,
@@ -2081,6 +2083,7 @@
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/structure/sigsystem/projectile_launcher{
 	name = "shotgun trap";
+	projectile_type = /obj/projectile/bullet/shotgun_beanbag/ruined_town;
 	signaller_code = 132
 	},
 /turf/closed/indestructible/rust,
@@ -2292,6 +2295,7 @@
 /obj/structure/sigsystem/projectile_launcher{
 	name = "shotgun trap";
 	signaller_code = 132;
+	projectile_type = /obj/projectile/bullet/shotgun_beanbag/ruined_town;
 	dir = 1
 	},
 /turf/closed/indestructible/rust,
@@ -3017,6 +3021,7 @@
 /obj/structure/sigsystem/projectile_launcher{
 	name = "shotgun trap";
 	signaller_code = 130;
+	projectile_type = /obj/projectile/bullet/shotgun_beanbag/ruined_town;
 	dir = 1
 	},
 /turf/closed/indestructible/rust,
@@ -3488,6 +3493,7 @@
 /obj/structure/sigsystem/projectile_launcher{
 	name = "shotgun trap";
 	signaller_code = 127;
+	projectile_type = /obj/projectile/bullet/shotgun_beanbag/ruined_town;
 	dir = 4
 	},
 /turf/closed/indestructible/rust,
@@ -3551,6 +3557,7 @@
 /obj/structure/sigsystem/projectile_launcher{
 	name = "shotgun trap";
 	signaller_code = 132;
+	projectile_type = /obj/projectile/bullet/shotgun_beanbag/ruined_town;
 	dir = 8
 	},
 /turf/closed/indestructible/rust,
@@ -4182,6 +4189,7 @@
 /obj/structure/sigsystem/projectile_launcher{
 	name = "shotgun trap";
 	signaller_code = 130;
+	projectile_type = /obj/projectile/bullet/shotgun_beanbag/ruined_town;
 	dir = 8
 	},
 /turf/closed/indestructible/rust,
@@ -4235,6 +4243,7 @@
 "Ch" = (
 /obj/structure/sigsystem/projectile_launcher{
 	name = "shotgun trap";
+	projectile_type = /obj/projectile/bullet/shotgun_beanbag/ruined_town;
 	signaller_code = 130
 	},
 /turf/closed/indestructible/rust,
@@ -4540,6 +4549,7 @@
 /obj/structure/sigsystem/projectile_launcher{
 	name = "shotgun trap";
 	signaller_code = 131;
+	projectile_type = /obj/projectile/bullet/shotgun_beanbag/ruined_town;
 	dir = 4
 	},
 /turf/closed/indestructible/rust,
@@ -4904,7 +4914,7 @@
 	name = "shotgun trap";
 	signaller_code = 99;
 	dir = 4;
-	projectile_type = /obj/projectile/bullet/scattershot
+	projectile_type = /obj/projectile/bullet/scattershot/ruined_town
 	},
 /turf/closed/indestructible/rust,
 /area/city/fixers)
@@ -5362,7 +5372,7 @@
 	name = "shotgun trap";
 	signaller_code = 99;
 	dir = 1;
-	projectile_type = /obj/projectile/bullet/scattershot
+	projectile_type = /obj/projectile/bullet/scattershot/ruined_town
 	},
 /turf/closed/indestructible/rust,
 /area/city/fixers)
@@ -6602,6 +6612,7 @@
 /obj/structure/sigsystem/projectile_launcher{
 	name = "shotgun trap";
 	signaller_code = 130;
+	projectile_type = /obj/projectile/bullet/shotgun_beanbag/ruined_town;
 	dir = 4
 	},
 /turf/closed/indestructible/rust,
