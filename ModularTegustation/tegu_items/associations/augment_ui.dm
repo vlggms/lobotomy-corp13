@@ -53,6 +53,9 @@
 /datum/tgui_handler/augment_fabricator/ui_state(mob/user)
 	return GLOB.physical_state // Or a machine-specific state if applicable
 
+/datum/tgui_handler/augment_fabricator/proc/update_uis()
+	SStgui.update_uis(src)
+
 /// Opens or updates the TGUI window for the user.
 /datum/tgui_handler/augment_fabricator/ui_interact(mob/user, datum/tgui/ui = null)
 	if(!machine)
@@ -100,7 +103,7 @@
 
 	data["effects"] = list()
 	for(var/list/effect_data in machine.available_effects) // Iterate through the list of lists
-		data["effects"] += list(effect_data) // Send copy
+		data["effects"] += list(effect_data.Copy()) // Send copy
 
 	data["maxRank"] = machine.maxRank
 	data["rankAttributeReqs"] = machine.rankAttributeReqs
@@ -112,9 +115,11 @@
 
 /// Handles actions sent from the UI. Replaces Topic handling for UI actions.
 /datum/tgui_handler/augment_fabricator/ui_act(action, list/params, datum/tgui/ui)
-	if(..()) return TRUE
+	if(..())
+		return TRUE
 	// Ensure UI object is valid as we'll need it for updates
-	if(!machine || !ui || ui_status(usr) == UI_CLOSE) return TRUE
+	if(!machine || !ui || ui_status(usr) == UI_CLOSE)
+		return TRUE
 
 	// --- Variable to track if an update is needed by the action ---
 	var/needs_update = FALSE
