@@ -20,6 +20,11 @@
 	var/const/ui_key = "AugmentFabricator"
 	var/list/roles = list("Prosthetics Surgeon")
 
+	var/market_change_interval = 20 * 60 * 10 // 20 minutes in deciseconds
+	var/list/sale_percentages = list(25, 33, 40, 66)
+	var/list/markup_percentages = list(25, 33, 40)
+	var/max_66_sales = 2
+
 	// --- Data (Same as before) ---
 	var/list/available_forms = list(
 		"Internal Prosthetic" = list(
@@ -351,7 +356,116 @@
 	if(!ui_handler)
 		log_admin("Failed to initialize tgui_handler for [src]")
 
-	// --- Core Interaction ---
+	// --- Initialize Market State for Effects ---
+	// Ensure all effects have the market keys, prevents runtime errors later
+	for(var/list/effect_data in available_effects)
+		if(!isnull(effect_data["ahn_cost"])) // Only process if it has a base cost
+			effect_data["current_ahn_cost"] = effect_data["ahn_cost"] // Initialize current cost
+		else // Handle cases where ahn_cost might be missing (though it shouldn't be)
+			effect_data["ahn_cost"] = 0
+			effect_data["current_ahn_cost"] = 0
+		effect_data["sale_percent"] = 0
+		effect_data["markup_percent"] = 0
+	// --- End Initialization ---
+
+	// --- Schedule First Market Change Immediately ---
+	ApplyMarketChange() // Run it once at startup
+	// Schedule the next one
+	ScheduleNextMarketChange()
+
+/// Schedules the next market change event.
+/obj/machinery/augment_fabricator/proc/ScheduleNextMarketChange()
+	// Use addtimer with a CALLBACK to call ApplyMarketChange on this specific instance later
+	addtimer(CALLBACK(src, PROC_REF(ApplyMarketChange)), market_change_interval, TIMER_UNIQUE) // TIMER_UNIQUE prevents duplicate timers
+
+/// Applies the random market changes to the effects list.
+/obj/machinery/augment_fabricator/proc/ApplyMarketChange()
+	if(QDELETED(src))
+		return // Don't run if machine is being deleted
+
+	log_game("[src] Applying market change at world time [world.time]")
+
+	// 1. Reset all effects to base price and clear flags
+	for(var/list/effect_data in available_effects)
+		effect_data["current_ahn_cost"] = effect_data["ahn_cost"]
+		effect_data["sale_percent"] = 0
+		effect_data["markup_percent"] = 0
+
+	// 2. Prepare for selection
+	var/list/effect_indices = list()
+	for(var/i = 1 to available_effects.len)
+		effect_indices += i // Store indices
+
+	effect_indices = shuffle(effect_indices) // Randomize the order
+
+	// 3. Calculate number of sales and markups
+	var/total_effects = effect_indices.len
+	var/num_on_sale = round(total_effects * 0.20)
+	var/num_marked_up = round(total_effects * 0.10)
+
+	// Ensure we don't try to select more than available
+	num_on_sale = min(num_on_sale, total_effects)
+	num_marked_up = min(num_marked_up, total_effects - num_on_sale) // Markups come from remaining pool
+
+	// 4. Apply Sales
+	var/num_66_applied = 0
+	var/list/applied_indices = list() // Track which indices are already modified
+
+	for(var/i = 1 to num_on_sale)
+		if(effect_indices.len == 0)
+			break // Should not happen if counts are correct, but safety first
+		var/effect_index = effect_indices[1] // Pick the first from shuffled list
+		effect_indices -= effect_index      // Remove it from the pool
+		applied_indices += effect_index     // Mark as processed
+
+		var/list/effect_data = available_effects[effect_index]
+		if(effect_data["ahn_cost"] <= 0)
+			continue // Don't put free things on sale
+
+		// Determine available sale percentages
+		var/list/possible_sales = sale_percentages.Copy() // Work on a copy
+		if(num_66_applied >= max_66_sales)
+			possible_sales -= 66 // Remove 66% if limit reached
+
+		if(possible_sales.len == 0)
+			continue // Should not happen unless only 66% was left
+
+		var/sale_percent = pick(possible_sales)
+		if(sale_percent == 66)
+			num_66_applied++
+
+		effect_data["sale_percent"] = sale_percent
+		effect_data["current_ahn_cost"] = round(effect_data["ahn_cost"] * (1 - sale_percent / 100.0))
+		effect_data["current_ahn_cost"] = max(1, effect_data["current_ahn_cost"]) // Ensure cost is at least 1
+		log_game("[src] Effect '[effect_data["name"]]' now on sale: [sale_percent]% off. New cost: [effect_data["current_ahn_cost"]]")
+
+
+	// 5. Apply Markups (from the remaining pool)
+	for(var/i = 1 to num_marked_up)
+		if(effect_indices.len == 0)
+			break // Ran out of effects to mark up
+		var/effect_index = effect_indices[1] // Pick the first from remaining shuffled list
+		effect_indices -= effect_index      // Remove it
+		applied_indices += effect_index     // Mark as processed
+
+		var/list/effect_data = available_effects[effect_index]
+		if(effect_data["ahn_cost"] <= 0)
+			continue // Don't mark up free things (or apply logic if desired)
+
+		var/markup_percent = pick(markup_percentages)
+
+		effect_data["markup_percent"] = markup_percent
+		effect_data["current_ahn_cost"] = round(effect_data["ahn_cost"] * (1 + markup_percent / 100.0))
+		log_game("[src] Effect '[effect_data["name"]]' now marked up: [markup_percent]%. New cost: [effect_data["current_ahn_cost"]]")
+
+
+	// 6. Update UI for anyone viewing
+	ui_handler.update_uis()
+
+	// 7. Schedule the *next* market change
+	ScheduleNextMarketChange()
+
+// --- Core Interaction ---
 /obj/machinery/augment_fabricator/attack_hand(mob/user)
 	if(!Adjacent(user, src))
 		return ..()
@@ -520,7 +634,7 @@
 		// Let's keep adding the raw definition for now, apply_design might need counts
 		src.selected_effects_data += list(effect_def) // Store the definition list for reference
 		src.total_ep_cost += effect_def["ep_cost"]
-		src.effects_ahn_cost += effect_def["ahn_cost"]
+		src.effects_ahn_cost += effect_def["current_ahn_cost"]
 
 	// 5. Final Calculations & Checks (No change)
 	src.remaining_ep = src.base_ep - src.total_ep_cost
@@ -529,8 +643,9 @@
 		log_admin("[src.validation_error]")
 		return FALSE
 
+	// !!! TOTAL AHN COST NOW USES CURRENT EFFECT COSTS !!!
 	src.total_ahn_cost = src.base_ahn_cost + src.effects_ahn_cost
-	src.total_ahn_cost = max(0, src.total_ahn_cost)
+	src.total_ahn_cost = max(0, src.total_ahn_cost) // Ensure non-negative
 
 	// TODO: Add any other validation rules
 
