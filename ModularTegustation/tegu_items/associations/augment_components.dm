@@ -295,18 +295,17 @@
 
 /datum/component/augment/dual_wield/afterattack_effect(datum/source, atom/target, mob/user, proximity_flag, obj/item/item)
 	if(inflict_cooldown < world.time)
-		if(human_parent.a_intent == INTENT_HARM)
-			for(var/obj/item/ego_weapon/W in human_parent.held_items)
-				if(W == item)
-					continue
-				else if(W.CanUseEgo(human_parent))
-					inflict_cooldown = world.time + inflict_cooldown_time * W.attack_speed
-					sleep(2)
-					if(last_target in view(W.reach, human_parent))
-						playsound(W.loc, W.hitsound)
-						human_parent.do_attack_animation(last_target)
-						last_target.attacked_by(W, human_parent)
-						log_combat(human_parent, target, pick(W.attack_verb_continuous), W.name, "(INTENT: [uppertext(human_parent.a_intent)]) (DAMTYPE: [uppertext(W.damtype)])")
+		for(var/obj/item/ego_weapon/W in human_parent.held_items)
+			if(W == item)
+				continue
+			else if(W.CanUseEgo(human_parent))
+				inflict_cooldown = world.time + inflict_cooldown_time * W.attack_speed
+				sleep(2)
+				if(last_target in view(W.reach, human_parent))
+					playsound(W.loc, W.hitsound)
+					human_parent.do_attack_animation(last_target, null, W)
+					last_target.attacked_by(W, human_parent)
+					log_combat(human_parent, target, pick(W.attack_verb_continuous), W.name, "(INTENT: [uppertext(human_parent.a_intent)]) (DAMTYPE: [uppertext(W.damtype)])")
 	. = ..()
 
 ///On Kill Effects
