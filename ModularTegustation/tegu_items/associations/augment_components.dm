@@ -21,22 +21,22 @@
 	RegisterSignal(parent, COMSIG_ATOM_ATTACK_ANIMAL, PROC_REF(attackedby_mob))
 
 /datum/component/augment/proc/attack_effect(datum/source, mob/living/target, mob/living/user, obj/item/item)
-	to_chat(parent, "Attack Effect Triggered, we attacked [target]")
+	// to_chat(parent, "Attack Effect Triggered, we attacked [target]")
 	if(target.stat != DEAD)
 		last_target = target
 
 /datum/component/augment/proc/afterattack_effect(datum/source, atom/target, mob/user, proximity_flag, obj/item/item)
-	to_chat(parent, "After Attack Effect Triggered, we attacked [target]")
+	// to_chat(parent, "After Attack Effect Triggered, we attacked [target]")
 	last_target = null
 
 /datum/component/augment/proc/take_damage_effect(datum/source, damage, damagetype, def_zone)
-	to_chat(parent, "Take Damage Effect Triggered, You have taken [damage] [damagetype] damage!")
+	// to_chat(parent, "Take Damage Effect Triggered, You have taken [damage] [damagetype] damage!")
 
 /datum/component/augment/proc/after_take_damage_effect(datum/source, damage, damagetype, def_zone)
-	to_chat(parent, "Take After Damage Effect Triggered, You have taken [damage] [damagetype] damage!")
+	// to_chat(parent, "Take After Damage Effect Triggered, You have taken [damage] [damagetype] damage!")
 
 /datum/component/augment/proc/attackedby_mob(datum/source, mob/living/simple_animal/animal)
-	to_chat(parent, "Attackby Mob Effect Triggered, attacked by [animal]")
+	// to_chat(parent, "Attackby Mob Effect Triggered, attacked by [animal]")
 
 /datum/component/augment/UnregisterFromParent()
 	. = ..()
