@@ -139,7 +139,6 @@
 	height = 5;
 	id = "epsilon_control";
 	name = "2F - Control";
-	roundstart_template = null;
 	width = 6
 	},
 /turf/open/floor/plasteel/elevatorshaft,
@@ -1329,9 +1328,6 @@
 "ZP" = (
 /turf/open/floor/plating,
 /area/facility_hallway/north)
-"ZX" = (
-/turf/closed/indestructible/reinforced,
-/area/space)
 
 (1,1,1) = {"
 if
@@ -29191,7 +29187,7 @@ if
 if
 if
 if
-ZX
+un
 Zb
 Zb
 Zb
@@ -29448,7 +29444,7 @@ if
 if
 if
 if
-ZX
+un
 Zb
 Zb
 Zb
@@ -29705,7 +29701,7 @@ if
 if
 if
 if
-ZX
+un
 Zb
 Zb
 Zb
@@ -29962,7 +29958,7 @@ if
 if
 if
 if
-ZX
+un
 un
 un
 un

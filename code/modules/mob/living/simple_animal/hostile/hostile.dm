@@ -1,5 +1,5 @@
 #define MAX_DAMAGE_SUFFERED 250
-
+GLOBAL_LIST_EMPTY(marked_players)
 /mob/living/simple_animal/hostile
 	faction = list("hostile")
 	stop_automated_movement_when_pulled = 0
@@ -91,6 +91,13 @@
 	// Return to spawn point if target lost
 	var/return_to_origin = FALSE
 
+	//If the mob is a part of a faction
+	var/mark_once_attacked = FALSE
+	var/attacked_line = "You will pay for this!"
+	var/starting_looting_line = "Hand off, that is ours."
+	var/ending_looting_line = "That's it, you asked for this."
+	var/list/glob_faction = list()
+
 /mob/living/simple_animal/hostile/Initialize()
 	/*Update Speed overrides set speed and sets it
 		to the equivilent of move_to_delay. Basically
@@ -112,8 +119,62 @@
 	if (return_to_origin)
 		AddComponent(/datum/component/return_to_origin)
 
+	if(mark_once_attacked)
+		RegisterSignal(SSdcs, COMSIG_CRATE_LOOTING_STARTED, PROC_REF(on_seeing_looting_started))
+		RegisterSignal(SSdcs, COMSIG_CRATE_LOOTING_ENDED, PROC_REF(on_seeing_looting_ended))
+
+	glob_faction = GLOB.marked_players
+
+/mob/living/simple_animal/hostile/proc/on_seeing_looting_started(datum/source, mob/living/user, obj/crate)
+	SIGNAL_HANDLER
+	if (check_visible(user, crate) && stat != DEAD && !target)
+		addtimer(CALLBACK(src, PROC_REF(Talk)), 0)
+
+/mob/living/simple_animal/hostile/proc/on_seeing_looting_ended(datum/source, mob/living/user, obj/crate)
+	SIGNAL_HANDLER
+	if (check_visible(user, crate) && stat != DEAD && !target)
+		addtimer(CALLBACK(src, PROC_REF(Theif_Talk)), 0)
+		if (!(user in glob_faction))
+			glob_faction += user
+
+/mob/living/simple_animal/hostile/proc/Talk()
+	say(starting_looting_line)
+
+/mob/living/simple_animal/hostile/proc/Theif_Talk()
+	say(ending_looting_line)
+
+/mob/living/simple_animal/hostile/proc/check_visible(mob/living/user, obj/crate)
+	var/user_visible = (user in view(vision_range, src))
+	var/crate_visible = (crate in view(vision_range, src))
+	return user_visible && crate_visible
+
+/mob/living/simple_animal/hostile/bullet_act(obj/projectile/P)
+	. = ..()
+	if(mark_once_attacked)
+		if(P.firer && get_dist(src, P.firer) <= aggro_vision_range)
+			if(!ishostile(P.firer))
+				if (!(P.firer in glob_faction))
+					glob_faction += P.firer
+					say(attacked_line)
+
+/mob/living/simple_animal/hostile/attackby(obj/item/O, mob/user, params)
+	. = ..()
+	if(mark_once_attacked)
+		if(ishuman(user))
+			if (O.force > 0)
+				if (!(user in glob_faction ))
+					glob_faction += user
+					say(attacked_line)
+		else
+			if (!(user in glob_faction ))
+				glob_faction += user
+				say(attacked_line)
+
 /mob/living/simple_animal/hostile/Destroy()
 	targets_from = null
+	if(mark_once_attacked)
+		UnregisterSignal(SSdcs, COMSIG_CRATE_LOOTING_STARTED)
+		UnregisterSignal(SSdcs, COMSIG_CRATE_LOOTING_ENDED)
 	return ..()
 
 /mob/living/simple_animal/hostile/Life()
@@ -509,6 +570,10 @@
 			var/mob/living/L = the_target
 			if(!L.CanBeAttacked(src))
 				return FALSE
+
+			if(mark_once_attacked)
+				if (the_target in glob_faction)
+					return TRUE
 
 			var/faction_check = faction_check_mob(L)
 			if(robust_searching)
