@@ -109,6 +109,10 @@
 
 /obj/item/ego_weapon/city/devyat_trunk/ComponentInitialize()
 	AddComponent(component_type)
+	var/datum/component/storage/STR = GetComponent(/datum/component/storage)
+	STR.allow_big_nesting = TRUE
+	STR.max_w_class = WEIGHT_CLASS_GIGANTIC
+	STR.max_combined_w_class = 35
 
 /obj/item/ego_weapon/city/devyat_trunk/AllowDrop()
 	return FALSE
@@ -246,7 +250,6 @@
 		update_icon_state()
 		if(!tier2_vc_trigger)
 			tier2_vc_trigger = TRUE
-			attack_self(user)
 			playsound(get_turf(user), 'sound/weapons/ego/devyat_stage_up.ogg', 25, 0, 4)
 			addtimer(CALLBACK(src, PROC_REF(entering_stage_2), user), 1)
 
