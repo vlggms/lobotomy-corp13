@@ -12,7 +12,7 @@
 	base_pixel_x = -16
 	maxHealth = 2000
 	health = 2000
-	move_to_delay = 4
+	move_to_delay = 6
 	rapid_melee = 1
 	threat_level = WAW_LEVEL
 	work_chances = list(
@@ -35,6 +35,10 @@
 	can_breach = TRUE
 	start_qliphoth = 3
 	ranged = TRUE
+	retreat_distance = 2
+	minimum_distance = 1
+	projectiletype = /obj/projectile/nosferatu_bat
+	projectilesound = 'sound/weapons/fixer/generic/dodge.ogg'
 
 	ego_list = list(
 		/datum/ego_datum/weapon/dipsia,
@@ -59,10 +63,10 @@
 	//breach stuff
 	var/bloodlust = 4
 	var/bloodlust_cooldown = 4
-	var/blood = 0 //stored healing
 	var/banquet_cooldown
 	var/banquet_cooldown_time = 12 SECONDS
 	var/banquet_damage = 100
+	var/banquet_range = 3
 	var/can_act = TRUE
 	var/berzerk = FALSE
 	//minion stuff
@@ -116,6 +120,16 @@
 	nosferatu.Banquet()
 	return TRUE
 
+/mob/living/simple_animal/hostile/abnormality/nosferatu/Initialize(mapload)
+	. = ..()
+	AddComponent(/datum/component/bloodfeast, siphon = TRUE, range = 2)
+
+/mob/living/simple_animal/hostile/abnormality/nosferatu/PostSpawn()
+	..()
+	var/datum/component/bloodfeast/bloodfeast = GetComponent(/datum/component/bloodfeast)
+	if(bloodfeast) // dont want to succ blood while contained
+		bloodfeast.passive_siphon = FALSE
+
 //work code
 /mob/living/simple_animal/hostile/abnormality/nosferatu/FailureEffect(mob/living/carbon/human/user, work_type, pe)
 	. = ..()
@@ -129,10 +143,19 @@
 		feeding = FALSE
 	return ..()
 
-/mob/living/simple_animal/hostile/abnormality/nosferatu/Worktick(mob/living/carbon/human/user) //take damage every work on instinct
+/mob/living/simple_animal/hostile/abnormality/nosferatu/Worktick(mob/living/carbon/human/user)
+	. = ..()
 	if(feeding)
-		user.deal_damage(3, BLACK_DAMAGE)
-		new /obj/effect/temp_visual/dir_setting/bloodsplatter(get_turf(user)) //Indicates damage being dealt to the player
+		user.apply_lc_bleed(1)
+		new /obj/effect/temp_visual/dir_setting/bloodsplatter(get_turf(user))
+
+/mob/living/simple_animal/hostile/abnormality/nosferatu/WorktickFailure(mob/living/carbon/human/user)
+	. = ..()
+	var/datum/status_effect/stacking/lc_bleed/B = user.has_status_effect(/datum/status_effect/stacking/lc_bleed)
+	if(!B)
+		return
+	else
+		B.Moved(user, get_turf(src)) // Ticks bleeding
 
 /mob/living/simple_animal/hostile/abnormality/nosferatu/PostWorkEffect(mob/living/carbon/human/user, work_type, pe, work_time)
 	switch(work_type)
@@ -148,51 +171,52 @@
 //breach
 /mob/living/simple_animal/hostile/abnormality/nosferatu/BreachEffect(mob/living/carbon/human/user, breach_type)
 	. = ..()
-	update_icon()
-	playsound(get_turf(src), 'sound/abnormalities/nosferatu/transform.ogg', 50, 8) //big loud warning
 	addtimer(CALLBACK(src, PROC_REF(BatSpawn)), 5 SECONDS)
 	var/list/units_to_add = list(
 		/mob/living/simple_animal/hostile/nosferatu_mob = 8
 		)
-	AddComponent(/datum/component/ai_leadership, units_to_add, 2, TRUE)
+	AddComponent(/datum/component/ai_leadership, units_to_add, 4)
+	var/datum/component/bloodfeast/bloodfeast = GetComponent(/datum/component/bloodfeast)
+	if(bloodfeast) // Give me blood!
+		bloodfeast.passive_siphon = TRUE
 
 /mob/living/simple_animal/hostile/abnormality/nosferatu/update_icon_state()
-	if(status_flags & GODMODE) // Not breaching
+	if(!berzerk) // Not berzerk mode
 		icon_state = initial(icon_state)
 	else // Breaching
 		icon_state = icon_aggro
 	icon_living = icon_state
 
-/mob/living/simple_animal/hostile/abnormality/nosferatu/Move()
-	if(!can_act)
-		return FALSE
-	var/turf/T = get_turf(src)
-	if(!T)
-		..()
+/mob/living/simple_animal/hostile/abnormality/nosferatu/Life()
+	. = ..()
+	if(!.)
 		return
-	for(var/obj/effect/decal/cleanable/blood/B in view(T, 2)) //will clean up any blood, but only heals from human blood
-		if(B.blood_state == BLOOD_STATE_HUMAN)
-			playsound(T, 'sound/abnormalities/nosferatu/bloodcollect.ogg', 25, 3)
-			if(B.bloodiness == 100) //Bonus for "pristine" bloodpools, also to prevent footprint spam
-				AdjustThirst(30)
-			else
-				AdjustThirst(max((B.bloodiness**2)/800,1))
-		qdel(B)
-	..()
+	var/datum/component/bloodfeast/bloodfeast = GetComponent(/datum/component/bloodfeast)
+	if(bloodfeast.blood_amount < 3000) // If we have over 3000 blood saved up, we can start using some for regeneration
+		return
+	var/amount_healed = clamp(bloodfeast.blood_amount * 0.0050, 1, 35) // 15-35 hp healed per second, consuming blood, scaling based on total blood
+	src.adjustBruteLoss(-amount_healed)
+	AdjustThirst(-amount_healed)
 
-/mob/living/simple_animal/hostile/abnormality/nosferatu/proc/AdjustThirst(thirst)
-	blood = clamp(thirst + blood, 0, 400)
-	src.adjustBruteLoss(-thirst)
-	if(blood > 300 && !berzerk)
+/mob/living/simple_animal/hostile/abnormality/nosferatu/proc/AdjustThirst(blood_amount)
+	var/datum/component/bloodfeast/bloodfeast = GetComponent(/datum/component/bloodfeast)
+	bloodfeast.AdjustBlood(blood_amount)
+	if(bloodfeast.blood_amount > 3000 && !berzerk)
 		Berzerk()
 
 /mob/living/simple_animal/hostile/abnormality/nosferatu/proc/Berzerk()
-	AdjustThirst(-300)
-	animate(src, transform = matrix()*1.2, color = "#FF0000", time = 10)
+	AdjustThirst(-3000)
 	playsound(get_turf(src), 'sound/abnormalities/nosferatu/transform.ogg', 35, 8)
 	bloodlust_cooldown = clamp(bloodlust_cooldown - 2, 0, 4)
-	ChangeMoveToDelayBy(-1)
+	ChangeMoveToDelayBy(-3)
 	berzerk = TRUE
+	update_icon()
+	var/obj/effect/temp_visual/decoy/D = new /obj/effect/temp_visual/decoy(get_turf(src), src)
+	animate(D, alpha = 0, transform = matrix()*2, time = 5)
+	retreat_distance = null
+	minimum_distance = null
+	projectiletype = null
+	projectilesound = null
 
 /mob/living/simple_animal/hostile/abnormality/nosferatu/add_splatter_floor(turf/T, small_drip) //no spilling blood, it just works.
 	return
@@ -201,30 +225,32 @@
 /mob/living/simple_animal/hostile/abnormality/nosferatu/OpenFire()
 	if(!can_act)
 		return
-
 	if(client)
-		return
-
+		return ..()
 	if((banquet_cooldown < world.time) && (get_dist(src, target) < 4))
 		Banquet()
 		return
+	return ..()
 
-/mob/living/simple_animal/hostile/abnormality/nosferatu/AttackingTarget(atom/attacked_target) //Combo for double attacks
-	if(!ishuman(attacked_target))
+/mob/living/simple_animal/hostile/abnormality/nosferatu/Move()
+	if(!can_act)
+		return FALSE
+	..()
+
+/mob/living/simple_animal/hostile/abnormality/nosferatu/AttackingTarget(atom/attacked_target)
+	if(!ismob(attacked_target))
+		return ..()
+	if(!berzerk)
+		OpenFire(attacked_target)
+		return
+	if(!ishuman(target))
 		return ..()
 	var/mob/living/carbon/human/H = attacked_target
-	if(bloodlust <= 0)
-		bloodlust = bloodlust_cooldown
-		H.deal_damage(45, BLACK_DAMAGE)
-		playsound(get_turf(src), 'sound/abnormalities/nosferatu/bat_attack.ogg', 50, 1)
-		to_chat(attacked_target, span_danger("The [src] attacks you savagely!"))
-		AdjustThirst(40)
-	else
-		bloodlust -= 1
-	AdjustThirst(40)
+	AdjustThirst(200)
 	if(SSmaptype.maptype == "limbus_labs")
 		return ..()
 	if(H.health < 0 || H.stat == DEAD)
+		AdjustThirst(H.blood_volume) // gain up to 2000 blood by draining a corpse
 		H.Drain()
 	return ..()
 
@@ -247,24 +273,65 @@
 /mob/living/simple_animal/hostile/abnormality/nosferatu/proc/Banquet()//AOE attack
 	banquet_cooldown = world.time + banquet_cooldown_time
 	can_act = FALSE
-	for(var/turf/L in view(2, src))
-		new /obj/effect/temp_visual/cult/sparks(L)
+	var/turf/myturf = get_turf(src)
+	var/list/all_turfs = circleviewturfs(myturf, banquet_range)
 	playsound(get_turf(src), 'sound/abnormalities/nosferatu/special_start.ogg', 50, 0, 5)
-	SLEEP_CHECK_DEATH(10)
-	for(var/turf/T in view(2, src))
-		var/obj/effect/temp_visual/smash_effect/bloodeffect =  new(T)
-		bloodeffect.color = "#b52e19"
-		for(var/mob/living/carbon/human/H in HurtInTurf(T, list(), banquet_damage, BLACK_DAMAGE, null, TRUE, FALSE, TRUE, FALSE, TRUE, TRUE))
-			if(SSmaptype.maptype == "limbus_labs")
-				playsound(get_turf(src), 'sound/abnormalities/nosferatu/attack_special.ogg', 50, 0, 5)
-				SLEEP_CHECK_DEATH(3)
-				can_act = TRUE
-				return
-			if(H.health < 0)
-				H.Drain()
-	playsound(get_turf(src), 'sound/abnormalities/nosferatu/attack_special.ogg', 50, 0, 5)
-	SLEEP_CHECK_DEATH(3)
+	for(var/turf/E in all_turfs)
+		new /obj/effect/temp_visual/cult/sparks(E)
+	SLEEP_CHECK_DEATH(7)
+	for(var/i = 1 to banquet_range)
+		var/counter = 0
+		for(var/turf/T in all_turfs)
+			if(get_dist(myturf, T) != i)
+				continue
+			addtimer(CALLBACK(src, PROC_REF(DoAttack), T, all_turfs), ((counter * 0.2) + 3 * (i+1)) + 0.5 SECONDS)
+			counter += 1
+	SLEEP_CHECK_DEATH(14)
+	if(berzerk) // Spend 400 blood in berzerker mode to perform a more powerful version - a second attack with wider reach
+		var/datum/component/bloodfeast/bloodfeast = GetComponent(/datum/component/bloodfeast)
+		if(bloodfeast.blood_amount >= 400)
+			AdjustThirst(-400)
+			var/extended_range = banquet_range + 1
+			all_turfs = circleviewturfs(myturf, extended_range)
+			for(var/turf/E in all_turfs)
+				new /obj/effect/temp_visual/cult/sparks(E)
+			for(var/i = extended_range, i > 0, i--)
+				var/counter = 0
+				for(var/turf/T in all_turfs)
+					if(get_dist(myturf, T) != i)
+						continue
+					addtimer(CALLBACK(src, PROC_REF(DoAttack), T, all_turfs), ((counter * 0.2) + 3 * (clamp(5 - i,0 ,5))) + 0.5 SECONDS)
+					counter += 1
+	SLEEP_CHECK_DEATH(20)
 	can_act = TRUE
+
+/mob/living/simple_animal/hostile/abnormality/nosferatu/proc/DoAttack(turf/T, list/all_turfs)
+	if(stat == DEAD)
+		return
+	var/obj/effect/temp_visual/smash_effect/bloodeffect =  new(T)
+	bloodeffect.color = "#b52e19"
+	playsound(T, 'sound/abnormalities/nosferatu/attack_special.ogg', 25, 0, 5)
+	for(var/mob/living/L in HurtInTurf(T, list(), banquet_damage, BLACK_DAMAGE, hurt_mechs = TRUE, hurt_structure = TRUE, break_not_destroy = TRUE))
+		L.deal_damage(banquet_damage, BLACK_DAMAGE)
+		all_turfs -= T
+	for(var/mob/living/carbon/human/H in HurtInTurf(T, list(), banquet_damage, BLACK_DAMAGE, null, TRUE, FALSE, TRUE, FALSE, TRUE, TRUE))
+		if(H.health < 0)
+			AdjustThirst(H.blood_volume) // gain up to 2000 blood by draining a corpse
+			H.Drain()
+
+/mob/living/simple_animal/hostile/abnormality/nosferatu/attack_animal(mob/living/simple_animal/M)
+	if(!istype(M, /mob/living/simple_animal/hostile/nosferatu_mob))
+		return ..()
+	var/mob/living/simple_animal/hostile/nosferatu_mob/blood_transfer_target = M
+	var/datum/component/bloodfeast/target_bloodfeast = blood_transfer_target.GetComponent(/datum/component/bloodfeast)
+	if(target_bloodfeast.blood_amount >= 100)
+		var/amount_to_transfer = clamp(target_bloodfeast.blood_amount, 100, 1000)
+		target_bloodfeast.AdjustBlood(-amount_to_transfer)
+		AdjustThirst(amount_to_transfer)
+		visible_message(span_danger("<b>[blood_transfer_target]</b> transfers some collected blood to [src]!"))
+		playsound(get_turf(src), 'sound/abnormalities/nosferatu/bloodcollect.ogg', 10, 1)
+	else
+		blood_transfer_target.LoseTarget()
 
 //spawned mobs
 /mob/living/simple_animal/hostile/nosferatu_mob
@@ -290,20 +357,58 @@
 	melee_damage_upper = 20
 	move_to_delay = 1.3 //very fast, very weak.
 	stat_attack = HARD_CRIT
-	ranged = 1
+	ranged = TRUE
 	retreat_distance = 3
 	minimum_distance = 1
 
+/mob/living/simple_animal/hostile/nosferatu_mob/Initialize(mapload)
+	. = ..()
+	AddComponent(/datum/component/bloodfeast, range = 1)
+
+/mob/living/simple_animal/hostile/nosferatu_mob/proc/AdjustThirst(blood_amount)
+	var/datum/component/bloodfeast/bloodfeast = GetComponent(/datum/component/bloodfeast)
+	bloodfeast.AdjustBlood(blood_amount)
+
 /mob/living/simple_animal/hostile/nosferatu_mob/AttackingTarget(atom/attacked_target) //they spawn blood on hit
-	if(ishuman(attacked_target))
-		var/obj/effect/decal/cleanable/blood/B = locate() in get_turf(src)
-		if(!B)
-			B = new /obj/effect/decal/cleanable/blood(get_turf(src))
-			B.bloodiness = 100
-	return ..()
+	. = ..()
+	if(!ishuman(attacked_target))
+		return
+	var/mob/living/carbon/human/H = attacked_target
+	if(H.health < 0 || H.stat == DEAD)
+		AdjustThirst(H.blood_volume) // gain up to 2000 blood by draining a corpse
+		H.Drain()
+		return
+	AdjustThirst(100)
 
 /mob/living/simple_animal/hostile/nosferatu_mob/OpenFire(atom/A)
+	if(istype(A, /mob/living/simple_animal/hostile/abnormality/nosferatu))
+		return
 	visible_message(span_danger("<b>[src]</b> flies around, seemingly aiming for [A]!"))
 	ranged_cooldown = world.time + ranged_cooldown_time
+
+/mob/living/simple_animal/hostile/nosferatu_mob/PickTarget(list/Targets)
+	var/list/priority = list()
+	for(var/mob/living/L in Targets)
+		if(istype(L, /mob/living/simple_animal/hostile/abnormality/nosferatu))
+			var/datum/component/bloodfeast/bloodfeast = GetComponent(/datum/component/bloodfeast)
+			if(bloodfeast.blood_amount >= 500)
+				return L // We have a bunch of blood, time to give it to bossman.4
+			continue
+		if(!CanAttack(L))
+			continue
+		priority += L
+	if(LAZYLEN(priority))
+		return pick(priority)
+
+/mob/living/simple_animal/hostile/nosferatu_mob/CanAttack(atom/the_target)
+	if(istype(the_target, /mob/living/simple_animal/hostile/abnormality/nosferatu))
+		return TRUE
+	return ..()
+
+/mob/living/simple_animal/hostile/nosferatu_mob/death(gibbed)
+	var/datum/component/bloodfeast/bloodfeast = GetComponent(/datum/component/bloodfeast)
+	var/obj/effect/decal/cleanable/blood/B = new(get_turf(src))
+	B.bloodiness = (bloodfeast.blood_amount * 0.5) // drops half of its blood on death. This is potentially far more than what fits in a splatter.
+	..()
 
 #undef NOSFERATU_BANQUET_COOLDOWN
