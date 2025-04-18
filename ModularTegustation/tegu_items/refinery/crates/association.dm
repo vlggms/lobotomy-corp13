@@ -28,6 +28,7 @@
 		/obj/item/ego_weapon/city/liu/fist,
 		/obj/item/clothing/suit/armor/ego_gear/city/cinq,
 		/obj/item/ego_weapon/city/cinq,
+		/obj/item/clothing/suit/armor/ego_gear/city/devyat_suit/weak,
 	)
 
 	rareloot =	list(
@@ -51,6 +52,9 @@
 		/obj/item/clothing/suit/armor/ego_gear/city/liuvet/section2,
 		/obj/item/clothing/suit/armor/ego_gear/city/liuvet/section5,
 		/obj/item/ego_weapon/city/liu/fist/vet,
+		/obj/item/ego_weapon/city/devyat_trunk,
+		/obj/item/ego_weapon/city/devyat_trunk/demo,
+		/obj/item/clothing/suit/armor/ego_gear/city/devyat_suit,
 	)
 
 	veryrareloot =	list(
