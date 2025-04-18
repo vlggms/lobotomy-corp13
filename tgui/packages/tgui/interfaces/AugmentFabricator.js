@@ -325,9 +325,10 @@ const EffectsPage = (props, context) => {
   const selectedEffectsData = selectedEffects.map(effectId => {
     return effects.find(e => e.id === effectId);
   }).filter(e => e);
+
   const currentEpCost = selectedEffectsData.reduce((sum, effect) => sum + (effect?.ep_cost || 0), 0); // Add safety check for effect
   const currentNegEpCost = selectedEffectsData.reduce((sum, effect) => sum + (effect?.ep_cost < 0 ? effect?.ep_cost : 0), 0);
-  const currentEffectsCost = selectedEffectsData.reduce((sum, effect) => sum + (effect?.ahn_cost || 0), 0); // Add safety check for effect
+  const currentEffectsCost = selectedEffectsData.reduce((sum, effect) => sum + (effect?.current_ahn_cost || 0), 0);
   const remainingEp = baseEp - currentEpCost;
   const remainingNegEp = baseEp + currentNegEpCost
   const totalCost = baseCost + currentEffectsCost;
@@ -382,6 +383,12 @@ const EffectsPage = (props, context) => {
          <Box display="flex" justifyContent="space-between" alignItems="center">
           <Box>
             Total Cost: <AnimatedNumber value={totalCost} /> {currencySymbol}
+            {/* Optional: Show base cost if different */}
+            {totalCost !== (baseCost + selectedEffectsData.reduce((sum, effect) => sum + (effect?.ahn_cost || 0), 0)) && (
+              <Box inline ml={1} color="label" fontSize="small">
+                (Base: {baseCost + selectedEffectsData.reduce((sum, effect) => sum + (effect?.ahn_cost || 0), 0)})
+              </Box>
+            )}
           </Box>
           <Box textAlign="right">
             <Box color={remainingEp < 0 ? 'bad' : 'good'}>
@@ -442,11 +449,21 @@ const EffectsPage = (props, context) => {
                       else if (alreadyAddedNonRepeatable) buttonTitle = "Cannot add again";
                   }
 
+                  // --- Market Display Logic ---
+                  const baseCost = effect.ahn_cost ?? 0;
+                  const currentCost = effect.current_ahn_cost ?? baseCost; // Fallback to base if missing
+                  const isOnSale = effect.sale_percent > 0;
+                  const isMarkedUp = effect.markup_percent > 0;
+                  // --- End Market Display Logic ---
+
                   return (
                     <Table.Row key={effect.id} style={{ borderBottom: '1px solid rgba(255, 255, 255, 0.05)' }}>
                       <Table.Cell py={1}>
-                        <Box fontSize="medium" title={effect.desc || ''}>
+                      <Box fontSize="medium" title={effect.desc || ''}>
                           {effect.name}
+                          {/* Optional: Sale/Markup Badges */}
+                          {isOnSale && <Box inline ml={1} px={0.5} backgroundColor="green" color="white" fontSize="tiny" style={{ borderRadius: '3px' }}>SALE</Box>}
+                          {isMarkedUp && <Box inline ml={1} px={0.5} backgroundColor="red" color="white" fontSize="tiny" style={{ borderRadius: '3px' }}>UP</Box>}
                         </Box>
                         <Box color="label" fontSize="small" mt={0.5}>
                           {effect.desc || 'No description.'}
@@ -467,8 +484,20 @@ const EffectsPage = (props, context) => {
                           <Box color="label">-</Box>
                         )}
                       </Table.Cell>
+                      {/* Cost Cell (UPDATED) */}
                       <Table.Cell collapsing textAlign="right">
-                        {effect.ahn_cost ?? '0'} {currencySymbol}
+                        <Box color={isOnSale ? 'good' : (isMarkedUp ? 'bad' : 'label')}>
+                          {currentCost} {currencySymbol}
+                        </Box>
+                        {/* Show original price if different */}
+                        {(isOnSale || isMarkedUp) && baseCost !== currentCost && (
+                          <Box color="label" fontSize="tiny" style={{ textDecoration: 'line-through' }}>
+                            ({baseCost})
+                          </Box>
+                        )}
+                        {/* Show percentage */}
+                        {isOnSale && <Box color="good" fontSize="tiny">({effect.sale_percent}% off)</Box>}
+                        {isMarkedUp && <Box color="bad" fontSize="tiny">(+{effect.markup_percent}%)</Box>}
                       </Table.Cell>
                       <Table.Cell collapsing textAlign="right" color={effect.ep_cost > 0 ? 'bad' : (isNegative ? 'good' : 'label')}>
                           {effect.ep_cost > 0 ? `-${effect.ep_cost}` : (isNegative ? `+${Math.abs(effect.ep_cost)}` : '0')}
