@@ -53,6 +53,7 @@
 
 	var/overclock = FALSE
 	var/overclock_mult = 1
+	var/RR_armor = 0.5
 
 /obj/item/devyat_unlocker
 	name = "devyat trunk unlocker"
@@ -168,11 +169,19 @@
 	if(combat_mode)
 		to_chat(user, span_nicegreen("Activating Strategic R&R mode..."))
 		can_attack = FALSE
+		user.physiology.red_mod -= RR_armor
+		user.physiology.white_mod -= RR_armor
+		user.physiology.black_mod -= RR_armor
+		user.physiology.pale_mod -= RR_armor
 		if(do_after(user, 50, user))
 			end_combat()
 			to_chat(user, "<span class='spider'><b>Combat mode deactivated!</b></span>")
 		else
 			to_chat(user, "<span class='spider'><b>Strategic R&R mode interrupted!</b></span>")
+		user.physiology.red_mod += RR_armor
+		user.physiology.white_mod += RR_armor
+		user.physiology.black_mod += RR_armor
+		user.physiology.pale_mod += RR_armor
 		can_attack = TRUE
 	else
 		start_combat(user)
