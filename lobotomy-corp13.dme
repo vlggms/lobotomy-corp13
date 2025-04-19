@@ -4121,6 +4121,7 @@
 #include "ModularTegustation\lc13_obj\_adventure_console\adventure_events\general\ncorp_start.dm"
 #include "ModularTegustation\lc13_obj\_adventure_console\adventure_events\general\quiz.dm"
 #include "ModularTegustation\lc13_obj\_adventure_console\adventure_events\general\sinking_bell.dm"
+#include "ModularTegustation\lc13_obj\_adventure_console\adventure_events\general\tempting_treats.dm"
 #include "ModularTegustation\lc13_obj\_adventure_console\adventure_events\general\todd_damn_it.dm"
 #include "ModularTegustation\lc13_obj\_adventure_console\adventure_events\general\vending machine.dm"
 #include "ModularTegustation\lc13_obj\_adventure_console\adventure_events\general\ncorp\_bread.dm"
