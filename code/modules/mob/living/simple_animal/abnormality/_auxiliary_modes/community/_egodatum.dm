@@ -60,11 +60,10 @@
 	cost = 50
 
 // Tools of the Forgotten Farm - Furrows (Enkephalin Rush)
-/**Enable this when the mining subtype is created.
 /datum/ego_datum/weapon/furrows
 	item_path = /obj/item/ego_weapon/furrows
 	cost = 50
-
+/**
 //Missing sprites
 /datum/ego_datum/armor/furrows
 	item_path = /obj/item/clothing/suit/armor/ego_gear/waw/furrows

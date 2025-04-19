@@ -6,7 +6,7 @@
 		subjects ability to think."
 	metabolization_rate = 0.5 * REAGENTS_METABOLISM
 	color = COLOR_RED
-	stat_changes = list(10, -5, -5, 10)
+	stat_changes = list(15, -5, -5, 15)
 
 /datum/reagent/abnormality/dyscrasone // Addictive stat buffing. Debuff is in status_effects/debuff.dm
 	name = "Dyscrasone"
@@ -35,7 +35,7 @@
 		users calm in intense situations but also weakens \
 		their muscles during combat."
 	metabolization_rate = 0.5 * REAGENTS_METABOLISM
-	stat_changes = list(-5, 10, 10, -5)
+	stat_changes = list(-5, 15, 15, -5)
 
 /datum/reagent/abnormality/culpusumidus // Increases Prudence and heals SP but inflicts sanity damage when exiting system.
 	name = "Culpus Umidus"
@@ -95,8 +95,8 @@
 		physically and emotionally."
 	metabolization_rate = 0.8 * REAGENTS_METABOLISM
 	color = COLOR_RED
-	health_restore = 3
-	sanity_restore = 3
+	health_restore = 5
+	sanity_restore = 5
 	stat_changes = list(-40, -40, -40, -40)
 
 /datum/reagent/abnormality/lesser_sange_rau // Rapidly converts blood into health

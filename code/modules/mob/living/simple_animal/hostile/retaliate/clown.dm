@@ -412,7 +412,7 @@
 		user.icon_state = "glutton_tongue"
 		add_ranged_ability(user, span_notice("Your throat muscles tense up. <B>Left-click to regurgitate a funny morsel!</B>"), TRUE)
 
-/obj/effect/proc_holder/regurgitate/InterceptClickOn(mob/living/caller, params, atom/target)
+/obj/effect/proc_holder/regurgitate/InterceptClickOn(mob/living/requester, params, atom/target)
 	. = ..()
 
 	if(.)

@@ -159,7 +159,7 @@ Nothing else in the console has ID requirements.
 			l += "</tr><tr>"
 			line_length = 1
 
-		l += "<td><A href='?src=[REF(src)];category=[C];switch_screen=[menu_num]'>[C]</A></td>"
+		l += "<td><A href='byond://?src=[REF(src)];category=[C];switch_screen=[menu_num]'>[C]</A></td>"
 		line_length++
 
 	l += "</tr></table></div>"
@@ -172,68 +172,68 @@ Nothing else in the console has ID requirements.
 	l += "<div class='statusDisplay'><b>[stored_research.organization] Research and Development Network</b>"
 	l += "Available points: <BR>[techweb_point_display_rdconsole(stored_research.research_points, stored_research.last_bitcoins)]"
 	l += "Security protocols: [obj_flags & EMAGGED ? "<font color='red'>Disabled</font>" : "<font color='green'>Enabled</font>"]"
-	l += "<a href='?src=[REF(src)];switch_screen=[RDSCREEN_MENU]'>Main Menu</a> | <a href='?src=[REF(src)];switch_screen=[back]'>Back</a></div>[RDSCREEN_NOBREAK]"
-	l += "[ui_mode == 1? "<span class='linkOn'>Normal View</span>" : "<a href='?src=[REF(src)];ui_mode=1'>Normal View</a>"] | [ui_mode == 2? "<span class='linkOn'>Expert View</span>" : "<a href='?src=[REF(src)];ui_mode=2'>Expert View</a>"] | [ui_mode == 3? "<span class='linkOn'>List View</span>" : "<a href='?src=[REF(src)];ui_mode=3'>List View</a>"]"
+	l += "<a href='byond://?src=[REF(src)];switch_screen=[RDSCREEN_MENU]'>Main Menu</a> | <a href='byond://?src=[REF(src)];switch_screen=[back]'>Back</a></div>[RDSCREEN_NOBREAK]"
+	l += "[ui_mode == 1? "<span class='linkOn'>Normal View</span>" : "<a href='byond://?src=[REF(src)];ui_mode=1'>Normal View</a>"] | [ui_mode == 2? "<span class='linkOn'>Expert View</span>" : "<a href='byond://?src=[REF(src)];ui_mode=2'>Expert View</a>"] | [ui_mode == 3? "<span class='linkOn'>List View</span>" : "<a href='byond://?src=[REF(src)];ui_mode=3'>List View</a>"]"
 	return l
 
 /obj/machinery/computer/rdconsole/proc/ui_main_menu()
 	var/list/l = list()
 	if(research_control)
-		l += "<H2><a href='?src=[REF(src)];switch_screen=[RDSCREEN_TECHWEB]'>Technology</a>"
+		l += "<H2><a href='byond://?src=[REF(src)];switch_screen=[RDSCREEN_TECHWEB]'>Technology</a>"
 	if(d_disk)
-		l += "<hr><a href='?src=[REF(src)];switch_screen=[RDSCREEN_DESIGNDISK]'>Design Disk</a>"
+		l += "<hr><a href='byond://?src=[REF(src)];switch_screen=[RDSCREEN_DESIGNDISK]'>Design Disk</a>"
 	if(t_disk)
-		l += "<hr><a href='?src=[REF(src)];switch_screen=[RDSCREEN_TECHDISK]'>Tech Disk</a>"
-	l += "<hr><a href='?src=[REF(src)];switch_screen=[RDSCREEN_SETTINGS]'>Settings</a></H2>"
+		l += "<hr><a href='byond://?src=[REF(src)];switch_screen=[RDSCREEN_TECHDISK]'>Tech Disk</a>"
+	l += "<hr><a href='byond://?src=[REF(src)];switch_screen=[RDSCREEN_SETTINGS]'>Settings</a></H2>"
 	return l
 
 /obj/machinery/computer/rdconsole/proc/ui_locked()
-	return list("<h3><a href='?src=[REF(src)];switch_screen=[RDSCREEN_MENU];unlock_console=1'>SYSTEM LOCKED</a></h3></br>")
+	return list("<h3><a href='byond://?src=[REF(src)];switch_screen=[RDSCREEN_MENU];unlock_console=1'>SYSTEM LOCKED</a></h3></br>")
 
 /obj/machinery/computer/rdconsole/proc/ui_settings()
 	var/list/l = list()
 	l += "<div class='statusDisplay'><h3>R&D Console Settings:</h3>"
-	l += "<A href='?src=[REF(src)];lock_console=1'>Lock Console</A></div>"
+	l += "<A href='byond://?src=[REF(src)];lock_console=1'>Lock Console</A></div>"
 	return l
 
 /obj/machinery/computer/rdconsole/proc/ui_techdisk()		//Legacy code
 	RDSCREEN_UI_TDISK_CHECK
 	var/list/l = list()
-	l += "<div class='statusDisplay'>Disk Operations: <A href='?src=[REF(src)];clear_tech=0'>Clear Disk</A>"
-	l += "<A href='?src=[REF(src)];eject_tech=1'>Eject Disk</A>"
-	l += "<A href='?src=[REF(src)];updt_tech=0'>Upload All</A>"
-	l += "<A href='?src=[REF(src)];copy_tech=1'>Load Technology to Disk</A></div>"
+	l += "<div class='statusDisplay'>Disk Operations: <A href='byond://?src=[REF(src)];clear_tech=0'>Clear Disk</A>"
+	l += "<A href='byond://?src=[REF(src)];eject_tech=1'>Eject Disk</A>"
+	l += "<A href='byond://?src=[REF(src)];updt_tech=0'>Upload All</A>"
+	l += "<A href='byond://?src=[REF(src)];copy_tech=1'>Load Technology to Disk</A></div>"
 	l += "<div class='statusDisplay'><h3>Stored Technology Nodes:</h3>"
 	for(var/i in t_disk.stored_research.researched_nodes)
 		var/datum/techweb_node/N = SSresearch.techweb_node_by_id(i)
-		l += "<A href='?src=[REF(src)];view_node=[i];back_screen=[screen]'>[N.display_name]</A>"
+		l += "<A href='byond://?src=[REF(src)];view_node=[i];back_screen=[screen]'>[N.display_name]</A>"
 	l += "</div>"
 	return l
 
 /obj/machinery/computer/rdconsole/proc/ui_designdisk()		//Legacy code
 	RDSCREEN_UI_DDISK_CHECK
 	var/list/l = list()
-	l += "Disk Operations: <A href='?src=[REF(src)];clear_design=0'>Clear Disk</A><A href='?src=[REF(src)];updt_design=0'>Upload All</A><A href='?src=[REF(src)];eject_design=1'>Eject Disk</A>"
+	l += "Disk Operations: <A href='byond://?src=[REF(src)];clear_design=0'>Clear Disk</A><A href='byond://?src=[REF(src)];updt_design=0'>Upload All</A><A href='byond://?src=[REF(src)];eject_design=1'>Eject Disk</A>"
 	for(var/i in 1 to d_disk.max_blueprints)
 		l += "<div class='statusDisplay'>"
 		if(d_disk.blueprints[i])
 			var/datum/design/D = d_disk.blueprints[i]
-			l += "<A href='?src=[REF(src)];view_design=[D.id]'>[D.name]</A>"
-			l += "Operations: <A href='?src=[REF(src)];updt_design=[i]'>Upload to database</A> <A href='?src=[REF(src)];clear_design=[i]'>Clear Slot</A>"
+			l += "<A href='byond://?src=[REF(src)];view_design=[D.id]'>[D.name]</A>"
+			l += "Operations: <A href='byond://?src=[REF(src)];updt_design=[i]'>Upload to database</A> <A href='byond://?src=[REF(src)];clear_design=[i]'>Clear Slot</A>"
 		else
-			l += "Empty Slot Operations: <A href='?src=[REF(src)];switch_screen=[RDSCREEN_DESIGNDISK_UPLOAD];disk_slot=[i]'>Load Design to Slot</A>"
+			l += "Empty Slot Operations: <A href='byond://?src=[REF(src)];switch_screen=[RDSCREEN_DESIGNDISK_UPLOAD];disk_slot=[i]'>Load Design to Slot</A>"
 		l += "</div>"
 	return l
 
 /obj/machinery/computer/rdconsole/proc/ui_designdisk_upload()	//Legacy code
 	RDSCREEN_UI_DDISK_CHECK
 	var/list/l = list()
-	l += "<A href='?src=[REF(src)];switch_screen=[RDSCREEN_DESIGNDISK];back_screen=[screen]'>Return to Disk Operations</A><div class='statusDisplay'>"
+	l += "<A href='byond://?src=[REF(src)];switch_screen=[RDSCREEN_DESIGNDISK];back_screen=[screen]'>Return to Disk Operations</A><div class='statusDisplay'>"
 	l += "<h3>Load Design to Disk:</h3>"
 	for(var/v in stored_research.researched_designs)
 		var/datum/design/D = SSresearch.techweb_design_by_id(v)
 		l += "[D.name] "
-		l += "<A href='?src=[REF(src)];copy_design=[disk_slot_selected];copy_design_ID=[D.id]'>Copy to Disk</A>"
+		l += "<A href='byond://?src=[REF(src)];copy_design=[disk_slot_selected];copy_design_ID=[D.id]'>Copy to Disk</A>"
 	l += "</div>"
 	return l
 
@@ -275,14 +275,14 @@ Nothing else in the console has ID requirements.
 		for(var/datum/techweb_node/N in avail)
 			var/not_unlocked = (stored_research.available_nodes[N.id] && !stored_research.researched_nodes[N.id])
 			var/has_points = (stored_research.can_afford(N.get_price(stored_research)))
-			var/research_href = not_unlocked? (has_points? "<A href='?src=[REF(src)];research_node=[N.id]'>Research</A>" : "<span class='linkOff bad'>Not Enough Points</span>") : null
-			l += "<A href='?src=[REF(src)];view_node=[N.id];back_screen=[screen]'>[N.display_name]</A>[research_href]"
+			var/research_href = not_unlocked? (has_points? "<A href='byond://?src=[REF(src)];research_node=[N.id]'>Research</A>" : "<span class='linkOff bad'>Not Enough Points</span>") : null
+			l += "<A href='byond://?src=[REF(src)];view_node=[N.id];back_screen=[screen]'>[N.display_name]</A>[research_href]"
 		l += "</div><div><h3>Locked Nodes:</h3>"
 		for(var/datum/techweb_node/N in unavail)
-			l += "<A href='?src=[REF(src)];view_node=[N.id];back_screen=[screen]'>[N.display_name]</A>"
+			l += "<A href='byond://?src=[REF(src)];view_node=[N.id];back_screen=[screen]'>[N.display_name]</A>"
 		l += "</div><div><h3>Researched Nodes:</h3>"
 		for(var/datum/techweb_node/N in res)
-			l += "<A href='?src=[REF(src)];view_node=[N.id];back_screen=[screen]'>[N.display_name]</A>"
+			l += "<A href='byond://?src=[REF(src)];view_node=[N.id];back_screen=[screen]'>[N.display_name]</A>"
 		l += "</div>[RDSCREEN_NOBREAK]"
 	return l
 
@@ -295,7 +295,7 @@ Nothing else in the console has ID requirements.
 		return l
 	var/display_name = node.display_name
 	if (selflink)
-		display_name = "<A href='?src=[REF(src)];view_node=[node.id];back_screen=[screen]'>[display_name]</A>"
+		display_name = "<A href='byond://?src=[REF(src)];view_node=[node.id];back_screen=[screen]'>[display_name]</A>"
 	l += "<div class='statusDisplay technode'><b>[display_name]</b> [RDSCREEN_NOBREAK]"
 	if(minimal)
 		l += "<br>[node.description]"
@@ -304,7 +304,7 @@ Nothing else in the console has ID requirements.
 			l += "<span class='linkOff'>Researched</span>"
 		else if(stored_research.available_nodes[node.id])
 			if(stored_research.can_afford(node.get_price(stored_research)))
-				l += "<BR><A href='?src=[REF(src)];research_node=[node.id]'>[node.price_display(stored_research)]</A>"
+				l += "<BR><A href='byond://?src=[REF(src)];research_node=[node.id]'>[node.price_display(stored_research)]</A>"
 			else
 				l += "<BR><span class='linkOff'>[node.price_display(stored_research)]</span>"  // gray - too expensive
 		else

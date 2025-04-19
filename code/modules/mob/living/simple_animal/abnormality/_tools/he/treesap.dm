@@ -33,7 +33,11 @@
 	to_chat(user, span_danger("You sip of the sap."))
 
 	if(user in used)
-		if(prob(20))
+		var/boom_chance = 20
+		for(var/upgradecheck in GLOB.jcorp_upgrades)
+			if(upgradecheck == "Tool Gacha")
+				boom_chance -= 5
+		if(prob(boom_chance))
 			user.apply_status_effect(STATUS_EFFECT_BOOMSAP)
 		else
 			user.apply_status_effect(STATUS_EFFECT_TREESAP)

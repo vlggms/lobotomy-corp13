@@ -50,6 +50,7 @@
 	. = ..()
 	if(SSmaptype.maptype == "limbus_labs")
 		faction = list("neutral", "laetitia")
+		obj_damage = 11
 
 /mob/living/simple_animal/hostile/abnormality/judgement_bird/Initialize()
 	. = ..()
@@ -58,6 +59,11 @@
 		var/mob/living/simple_animal/hostile/runawaybird/V = new(get_turf(src))
 		birdlist+=V
 		V = new(get_turf(src))
+
+/mob/living/simple_animal/hostile/abnormality/galaxy_child/Initialize()
+	. = ..()
+	if(SSmaptype.maptype == "limbus_labs")
+		obj_damage = 11
 
 /mob/living/simple_animal/hostile/abnormality/schadenfreude/Life()//Hes just a little guy, let him schmoove a bit
 	. = ..()
@@ -204,7 +210,7 @@
 	. = ..()
 	if(SSmaptype.maptype == "limbus_labs")
 		faction = list("neutral", "bird")
-		status_flags = MUST_HIT_PROJECTILE
+		obj_damage = 11
 
 /mob/living/simple_animal/hostile/runawaybird/Login()
 	. = ..()

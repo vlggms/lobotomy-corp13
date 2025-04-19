@@ -1,0 +1,17 @@
+{
+	"version": 1,
+	"map_name": "District 4",
+	"map_path": "map_files/Enkephalin_Rush",
+	"map_file": [
+		"district_4.dmm"
+	],
+	"traits": [
+		{
+			"Baseturf": "/turf/open/floor/plating/asteroid"
+		}
+	],
+	"space_ruin_levels": 0,
+	"space_empty_levels": 0,
+	"minetype": "none",
+	"maptype": "enkephalin_rush"
+}

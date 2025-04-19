@@ -367,6 +367,10 @@
 	},
 /turf/open/floor/plasteel/showroomfloor,
 /area/facility_hallway/north)
+"bV" = (
+/obj/machinery/chem_master,
+/turf/open/floor/plasteel/white,
+/area/department_main/safety)
 "bY" = (
 /obj/structure/disposalpipe/segment{
 	dir = 9
@@ -410,6 +414,13 @@
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/plasteel,
 /area/facility_hallway/south)
+"cr" = (
+/obj/structure/table/glass,
+/obj/machinery/light,
+/obj/item/storage/box/pillbottles,
+/obj/item/storage/box/pillbottles,
+/turf/open/floor/plasteel/white,
+/area/department_main/safety)
 "cs" = (
 /obj/structure/disposalpipe/junction/flip{
 	dir = 4
@@ -1127,11 +1138,8 @@
 /turf/closed/indestructible/rock,
 /area/space)
 "fR" = (
-/obj/structure/flora/ausbushes/fullgrass,
-/obj/structure/flora/ausbushes/lavendergrass,
-/obj/structure/flora/ausbushes/brflowers,
-/obj/item/kirbyplants/random,
-/turf/open/floor/grass,
+/obj/machinery/computer/extraction_cargo/chemistry,
+/turf/open/floor/plasteel/white,
 /area/department_main/safety)
 "fU" = (
 /obj/effect/turf_decal/tile/brown{
@@ -1360,23 +1368,11 @@
 /turf/open/floor/plasteel,
 /area/facility_hallway/north)
 "hF" = (
-/obj/effect/turf_decal/tile/green{
-	dir = 8
-	},
-/obj/effect/turf_decal/tile/green{
+/obj/effect/turf_decal/siding/green,
+/obj/effect/turf_decal/siding/green{
 	dir = 1
 	},
-/obj/effect/turf_decal/tile/green{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/green,
-/obj/structure/closet/secure_closet/personal{
-	anchored = 1
-	},
-/obj/item/toy/plush/netzach,
-/obj/effect/turf_decal/bot,
-/obj/item/clothing/neck/stripedgreenscarf,
-/turf/open/floor/plasteel/dark,
+/turf/open/floor/facility/white,
 /area/department_main/safety)
 "hH" = (
 /obj/effect/turf_decal/siding/yellow{
@@ -1652,10 +1648,8 @@
 /turf/open/floor/plasteel,
 /area/facility_hallway/north)
 "iO" = (
-/obj/structure/flora/ausbushes/fullgrass,
-/obj/structure/flora/ausbushes/ppflowers,
-/obj/structure/flora/ausbushes/grassybush,
-/turf/open/floor/grass,
+/obj/machinery/light,
+/turf/open/floor/plasteel/white,
 /area/department_main/safety)
 "iX" = (
 /obj/structure/railing{
@@ -1855,12 +1849,7 @@
 	},
 /obj/effect/turf_decal/tile/green,
 /obj/machinery/light,
-/obj/structure/closet/secure_closet/personal{
-	anchored = 1
-	},
-/obj/item/toy/plush/netzach,
 /obj/effect/turf_decal/bot,
-/obj/item/clothing/neck/stripedgreenscarf,
 /turf/open/floor/plasteel/dark,
 /area/department_main/safety)
 "jR" = (
@@ -2442,6 +2431,13 @@
 /obj/effect/landmark/refinerspawn,
 /turf/open/floor/plasteel/dark,
 /area/department_main/discipline)
+"mk" = (
+/obj/effect/turf_decal/siding/green/corner,
+/obj/effect/turf_decal/siding/green/corner{
+	dir = 4
+	},
+/turf/open/floor/facility/white,
+/area/department_main/safety)
 "mp" = (
 /obj/structure/bookcase/random,
 /turf/open/floor/carpet/purple,
@@ -4606,6 +4602,12 @@
 	},
 /turf/open/floor/carpet/black,
 /area/department_main/records)
+"wa" = (
+/obj/structure/chair/office{
+	dir = 1
+	},
+/turf/open/floor/plasteel/white,
+/area/department_main/safety)
 "wd" = (
 /turf/open/floor/plasteel/dark,
 /area/department_main/welfare)
@@ -5105,6 +5107,11 @@
 	},
 /turf/open/floor/plasteel,
 /area/facility_hallway/north)
+"yG" = (
+/obj/structure/table/glass,
+/obj/item/storage/bag/chemistry,
+/turf/open/floor/plasteel/white,
+/area/department_main/safety)
 "yK" = (
 /obj/effect/turf_decal/tile/blue{
 	color = "#3234B9"
@@ -5635,6 +5642,9 @@
 /obj/item/toy/plush/netzach,
 /obj/effect/turf_decal/bot,
 /obj/item/clothing/neck/stripedgreenscarf,
+/obj/structure/sign/departments/chemistry/pharmacy{
+	pixel_y = 32
+	},
 /turf/open/floor/plasteel/dark,
 /area/department_main/safety)
 "Bn" = (
@@ -6116,6 +6126,12 @@
 	},
 /turf/open/floor/plasteel,
 /area/facility_hallway/north)
+"DW" = (
+/obj/machinery/door/airlock/glass{
+	name = "chemistry"
+	},
+/turf/open/floor/plasteel/white,
+/area/department_main/safety)
 "DY" = (
 /obj/effect/turf_decal/siding/yellow{
 	dir = 8
@@ -7580,6 +7596,14 @@
 	},
 /turf/open/floor/plasteel,
 /area/facility_hallway/training)
+"LC" = (
+/obj/structure/closet/crate/science/abnochem_startercrate,
+/obj/item/clothing/suit/armor/ego_gear/limbus_labs/chem{
+	name = "chemist labcoat"
+	},
+/obj/item/clothing/head/beret/tegu/chem,
+/turf/open/floor/plasteel/white,
+/area/department_main/safety)
 "LD" = (
 /obj/effect/turf_decal/siding/yellow/corner{
 	dir = 4
@@ -9215,6 +9239,10 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/department_main/training)
+"Ui" = (
+/obj/effect/spawner/structure/window/plasma/reinforced/plastitanium,
+/turf/open/floor/plasteel/dark,
+/area/department_main/safety)
 "Uk" = (
 /obj/effect/turf_decal/siding/purple,
 /obj/machinery/vending/cigarette,
@@ -10028,6 +10056,16 @@
 /obj/item/reagent_containers/glass/beaker/large,
 /turf/open/floor/plasteel,
 /area/facility_hallway/training)
+"XY" = (
+/obj/structure/table/glass,
+/obj/item/hand_labeler,
+/obj/item/hand_labeler_refill,
+/obj/item/hand_labeler_refill,
+/obj/item/clothing/glasses/science{
+	pixel_y = -3
+	},
+/turf/open/floor/plasteel/white,
+/area/department_main/safety)
 "Ya" = (
 /obj/machinery/vending/snack/blue,
 /turf/open/floor/carpet/royalblue,
@@ -42415,7 +42453,7 @@ cu
 IR
 qL
 at
-at
+mk
 at
 jK
 at
@@ -42928,9 +42966,9 @@ an
 an
 an
 an
-cU
-cU
-cU
+Ui
+DW
+Ui
 an
 cU
 cU
@@ -43186,7 +43224,7 @@ JB
 JB
 an
 fR
-aw
+cu
 iO
 an
 kB
@@ -43442,9 +43480,9 @@ JB
 JB
 JB
 an
-an
-an
-an
+bV
+wa
+cu
 an
 an
 an
@@ -43698,10 +43736,10 @@ JB
 JB
 JB
 JB
-JB
-JB
-JB
-JB
+an
+LC
+cu
+cu
 Rc
 kD
 kD
@@ -43955,10 +43993,10 @@ JB
 JB
 JB
 JB
-JB
-JB
-JB
-JB
+an
+yG
+XY
+cr
 Rc
 kD
 kD
@@ -44212,10 +44250,10 @@ JB
 JB
 JB
 JB
-JB
-JB
-JB
-JB
+an
+an
+an
+an
 Rc
 kD
 kD

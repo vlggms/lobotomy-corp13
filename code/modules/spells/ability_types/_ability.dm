@@ -95,7 +95,7 @@
 	action.button_icon_state = "[base_icon_state][active]"
 	action.UpdateButtonIcon()
 
-/obj/effect/proc_holder/ability/aimed/InterceptClickOn(mob/living/caller, params, atom/target)
+/obj/effect/proc_holder/ability/aimed/InterceptClickOn(mob/living/requester, params, atom/target)
 	if(..())
 		return FALSE
 	if(!can_cast())

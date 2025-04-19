@@ -104,7 +104,7 @@
 	exp_requirements = 6000
 	exp_type = EXP_TYPE_CREW
 	exp_type_department = EXP_TYPE_SECURITY
-	mapexclude = list("wonderlabs", "mini", "lcorp_city")
+	mapexclude = list("wonderlabs", "mini", "lcorp_city", "enkephalin_rush")
 	job_important = "You are the Disciplinary Officer. Lead the Emergency Response Agents and other Disciplinary staff into combat."
 
 	job_abbreviation = "DO"

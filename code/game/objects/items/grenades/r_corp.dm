@@ -6,6 +6,13 @@
 	var/explosion_damage = 200
 	var/explosion_range = 2
 
+/obj/item/grenade/r_corp/attack_self(mob/user)
+	if(user.mind)
+		if(user.mind.has_antag_datum(/datum/antagonist/wizard/arbiter/rcorp))
+			to_chat(user, span_notice("You wouldn't stoop so low as to use the weapons of those below you.")) //You are a arbiter not a demoman
+			return FALSE
+	..()
+
 /obj/item/grenade/r_corp/detonate(mob/living/lanced_by)
 	var/aThrower = thrower
 	. = ..()

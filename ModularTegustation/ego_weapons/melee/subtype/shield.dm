@@ -190,7 +190,7 @@
 		. += span_notice("This weapon can block on command.")
 
 	if(LAZYLEN(resistances_list))
-		. += span_notice("It has a <a href='?src=[REF(src)];list_resistances=1'>tag</a> listing its protection classes.")
+		. += span_notice("It has a <a href='byond://?src=[REF(src)];list_resistances=1'>tag</a> listing its protection classes.")
 
 //Code for armor tags
 /obj/item/ego_weapon/shield/Topic(href, href_list)

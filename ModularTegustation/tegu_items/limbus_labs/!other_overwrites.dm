@@ -48,7 +48,7 @@
 //Torso Fabricator is free for this mode, but 100 ahn for an organic body.
 /obj/machinery/body_fabricator/Initialize()
 	. = ..()
-	if(SSmaptype.maptype == "limbus_labs")
+	if(SSmaptype.maptype == "limbus_labs" || SSmaptype.maptype == "enkephalin_rush")
 		prosthetic_cost = 0
 		organic_cost = 100
 

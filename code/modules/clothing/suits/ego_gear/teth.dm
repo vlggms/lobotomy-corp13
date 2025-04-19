@@ -4,6 +4,8 @@
 Think before you code!
 Any attempt to code risk class armor will result in a 10 day Github ban.*/
 
+/*Developer's note - All LC13 armor has 50% of its red_damage armor as fire armor by default. */
+
 /obj/item/clothing/suit/armor/ego_gear/teth
 	icon = 'icons/obj/clothing/ego_gear/abnormality/teth.dmi'
 	worn_icon = 'icons/mob/clothing/ego_gear/abnormality/teth.dmi'
@@ -25,7 +27,7 @@ Any attempt to code risk class armor will result in a 10 day Github ban.*/
 	desc = "The archetype was already charred from the moment of extraction. \
 	Although the exterior is scorched, it has no adverse effects on the E.G.O’s performance."
 	icon_state = "match"
-	armor = list(RED_DAMAGE = 40, WHITE_DAMAGE = -20, BLACK_DAMAGE = -20, PALE_DAMAGE = 0) // 20
+	armor = list(RED_DAMAGE = 40, WHITE_DAMAGE = -20, BLACK_DAMAGE = -20, PALE_DAMAGE = 0, FIRE = 30) // 20
 
 /obj/item/clothing/suit/armor/ego_gear/teth/fragment
 	name = "fragments from somewhere"
@@ -206,7 +208,7 @@ Any attempt to code risk class armor will result in a 10 day Github ban.*/
 	name = "capote"
 	desc = "It suffered for such a long time... Unable to do anything about the raging thirst, the flesh endlessly burning and searing."
 	icon_state = "capote"
-	armor = list(RED_DAMAGE = 40, WHITE_DAMAGE = -30, BLACK_DAMAGE = -10, PALE_DAMAGE = 0) // 0
+	armor = list(RED_DAMAGE = 40, WHITE_DAMAGE = -30, BLACK_DAMAGE = -10, PALE_DAMAGE = 0, FIRE = 30) // 0
 
 /obj/item/clothing/suit/armor/ego_gear/teth/fourleaf_clover
 	name = "four-leaf clover"
@@ -280,4 +282,4 @@ Any attempt to code risk class armor will result in a 10 day Github ban.*/
 	desc = "Dirty rag armor, better than nothing."
 	icon_state = "desert"
 	flags_inv = NONE
-	armor = list(RED_DAMAGE = 40, WHITE_DAMAGE = 0, BLACK_DAMAGE = -20, PALE_DAMAGE = -20) // 20
+	armor = list(RED_DAMAGE = 40, WHITE_DAMAGE = 0, BLACK_DAMAGE = -20, PALE_DAMAGE = -20, FIRE = 30) // 20

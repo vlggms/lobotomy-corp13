@@ -376,19 +376,21 @@
 	overdose_threshold = 30
 	var/healing = 0.5
 
-/datum/reagent/medicine/omnizine/on_mob_life(mob/living/M)
+/datum/reagent/medicine/omnizine/on_mob_life(mob/living/carbon/human/M)
 	M.adjustToxLoss(-healing*REM, 0)
 	M.adjustOxyLoss(-healing*REM, 0)
 	M.adjustBruteLoss(-healing*REM, 0)
+	M.adjustSanityLoss(-healing*REM, 0)
 	M.adjustFireLoss(-healing*REM, 0)
 	..()
 	. = 1
 
-/datum/reagent/medicine/omnizine/overdose_process(mob/living/M)
+/datum/reagent/medicine/omnizine/overdose_process(mob/living/carbon/human/M)
 	M.adjustToxLoss(1.5*REM, 0)
 	M.adjustOxyLoss(1.5*REM, 0)
 	M.adjustBruteLoss(1.5*REM, FALSE, FALSE, BODYPART_ORGANIC)
 	M.adjustFireLoss(1.5*REM, FALSE, FALSE, BODYPART_ORGANIC)
+	M.adjustSanityLoss(1.5*REM, 0)
 	..()
 	. = 1
 

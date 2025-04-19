@@ -8,6 +8,7 @@
 
 /obj/machinery/computer/extraction_cargo/discipline
 	name = "disciplinary equipment console"
+	icon_screen = "disciplinary_cargo"
 	order_list = list(
 		//Gadgets - Technical Equipment, active, that the Disc team could use.
 		new /datum/data/extraction_cargo("Barrier Grenade Kit ",		/obj/item/storage/box/barrier,										60, CAT_GADGET) = 1,

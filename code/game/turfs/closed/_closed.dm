@@ -162,6 +162,8 @@
 	to_chat(user, "<span class='notice'>The poster falls down!</span>")
 	D.roll_and_drop(get_turf(user))
 
+/turf/closed/indestructible/reinforced/old
+	icon = 'icons/turf/walls/facility_old.dmi'
 
 /turf/closed/indestructible/riveted
 	icon = 'icons/turf/walls/riveted.dmi'

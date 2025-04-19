@@ -4,6 +4,8 @@
 Think before you code!
 Any attempt to code risk class armor will result in a 10 day Github ban.*/
 
+/*Developer's note - All LC13 armor has 50% of its red_damage armor as fire armor by default. */
+
 /obj/item/clothing/suit/armor/ego_gear/zayin
 	icon = 'icons/obj/clothing/ego_gear/abnormality/zayin.dmi'
 	worn_icon = 'icons/mob/clothing/ego_gear/abnormality/zayin.dmi'

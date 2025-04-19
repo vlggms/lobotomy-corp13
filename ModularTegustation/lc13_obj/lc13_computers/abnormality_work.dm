@@ -318,10 +318,7 @@
 		datum_reference.work_complete(user, work_type, pe, work_speed*datum_reference.max_boxes, was_melting, canceled)
 		if(recorded) //neither rabbit nor tutorial calls this
 			SSlobotomy_corp.WorkComplete(pe, (meltdown_time <= 0))
-	if(mechanical_upgrades["abnochem"])
-		chem_charges += 1
-	else
-		chem_charges = min(chem_charges + 0.2, 10)
+	chem_charges ++
 	meltdown_time = 0
 	datum_reference.working = FALSE
 	return TRUE
