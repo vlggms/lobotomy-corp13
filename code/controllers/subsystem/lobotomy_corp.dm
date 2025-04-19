@@ -131,7 +131,8 @@ SUBSYSTEM_DEF(lobotomy_corp)
 		if(O.level < 1)
 			qdel(O)
 			continue
-		all_ordeals[O.level] += O
+		if(O.AbleToRun())
+			all_ordeals[O.level] += O
 
 	if(SSmaptype.chosen_trait == FACILITY_TRAIT_ABNO_BLITZ)
 		next_ordeal_level = 3
@@ -144,6 +145,8 @@ SUBSYSTEM_DEF(lobotomy_corp)
 	if(SSmaptype.chosen_trait == FACILITY_TRAIT_ABNO_BLITZ)
 		priority_announce("This shift is a 'Blitz' Shift. Cores have been disabled.", \
 						"Core Suppression", sound = 'sound/machines/dun_don_alert.ogg')
+		return
+	if(SSmaptype.maptype == "Branch 12")
 		return
 	if(istype(core_suppression))
 		return
