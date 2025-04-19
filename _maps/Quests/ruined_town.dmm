@@ -80,6 +80,11 @@
 /obj/effect/decal/cleanable/dirt/dust,
 /turf/open/floor/wood,
 /area/city/house)
+"aF" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/barricade/meatbags,
+/turf/open/indestructible/necropolis,
+/area/city)
 "aG" = (
 /obj/structure/chair/stool,
 /obj/effect/turf_decal/sand,
@@ -163,6 +168,10 @@
 	},
 /turf/open/water/deep/polluted,
 /area/city/fixers)
+"bg" = (
+/obj/structure/barricade/meatbags,
+/turf/open/indestructible/necropolis,
+/area/city)
 "bh" = (
 /obj/machinery/light{
 	dir = 1
@@ -178,9 +187,9 @@
 /turf/open/floor/plating/rust,
 /area/city)
 "bl" = (
-/obj/structure/table_frame/wood,
-/obj/item/poster/random_contraband,
-/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/meatfloor,
+/obj/structure/lootcrate/hana,
+/obj/structure/barricade/meatbags,
 /turf/open/indestructible/necropolis,
 /area/city)
 "bm" = (
@@ -683,6 +692,11 @@
 "ew" = (
 /turf/closed/indestructible/rust,
 /area/city/house)
+"ex" = (
+/obj/structure/flora/ash/garden/waste,
+/obj/structure/lootcrate/hana,
+/turf/open/floor/plating/asteroid/basalt/wasteland,
+/area/city)
 "ez" = (
 /obj/effect/turf_decal/sand/plating,
 /turf/open/floor/plating,
@@ -790,8 +804,7 @@
 "fd" = (
 /obj/structure/rack,
 /obj/effect/decal/cleanable/dirt,
-/obj/effect/decal/cleanable/cobweb/cobweb2,
-/obj/structure/lootcrate/money,
+/obj/structure/lootcrate/hana,
 /turf/open/floor/wood,
 /area/city)
 "fe" = (
@@ -1024,6 +1037,12 @@
 /obj/effect/decal/cleanable/dirt/dust,
 /turf/closed/mineral/ash_rock,
 /area/city/house)
+"gG" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/decal/cleanable/glitter/pink,
+/obj/structure/meatfloor,
+/turf/open/indestructible/necropolis,
+/area/city)
 "gK" = (
 /obj/structure/closet,
 /turf/open/floor/plating/rust,
@@ -1253,6 +1272,14 @@
 /obj/item/shard,
 /turf/open/indestructible/necropolis,
 /area/city)
+"it" = (
+/obj/item/nuke_core{
+	anchored = 1;
+	mouse_opacity = 0;
+	alpha = 0
+	},
+/turf/open/floor/plating/asteroid/basalt/wasteland,
+/area/city)
 "iv" = (
 /obj/effect/turf_decal/bot,
 /obj/machinery/telecomms/processor/preset_four,
@@ -1317,6 +1344,7 @@
 /obj/structure/table_frame/wood,
 /obj/item/flashlight/lamp,
 /obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/barricade/meatbags,
 /turf/open/indestructible/necropolis,
 /area/city)
 "iM" = (
@@ -1349,11 +1377,11 @@
 	},
 /area/city)
 "iS" = (
-/obj/structure/rack,
-/obj/effect/decal/cleanable/dirt,
-/obj/structure/lootcrate/money,
-/turf/open/floor/wood,
-/area/city)
+/obj/structure/table_frame/wood,
+/obj/item/flashlight/lamp/green,
+/obj/structure/lootcrate/hana,
+/turf/open/floor/plating/rust,
+/area/city/fixers)
 "iU" = (
 /obj/structure/rack,
 /obj/item/storage/box/syringes/variety{
@@ -1660,6 +1688,13 @@
 /obj/structure/meatfloor,
 /turf/open/floor/plating,
 /area/city/shop)
+"lp" = (
+/obj/structure/meatfloor,
+/mob/living/simple_animal/hostile/mutant_clown{
+	name = "'Son'"
+	},
+/turf/open/indestructible/necropolis,
+/area/city)
 "lq" = (
 /obj/machinery/modular_computer/console/preset{
 	dir = 8
@@ -1958,10 +1993,12 @@
 /turf/open/floor/wood,
 /area/city/house)
 "nr" = (
-/obj/structure/lootcrate/backstreets,
-/obj/structure/lootcrate/backstreets,
-/obj/structure/lootcrate/backstreets,
-/obj/structure/lootcrate/backstreets,
+/obj/structure/lootcrate/hana,
+/obj/structure/lootcrate/hana,
+/obj/structure/lootcrate/hana,
+/obj/structure/lootcrate/hana,
+/obj/structure/lootcrate/hana,
+/obj/structure/lootcrate/hana,
 /turf/open/floor/wood,
 /area/city/fixers)
 "nt" = (
@@ -2134,7 +2171,6 @@
 /obj/structure/fluff/paper/stack{
 	dir = 8
 	},
-/obj/item/stack/spacecash/c100,
 /turf/open/floor/wood,
 /area/city)
 "oH" = (
@@ -2191,6 +2227,16 @@
 	},
 /turf/open/floor/wood,
 /area/city/fixers)
+"oW" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/table/reinforced{
+	color = "#875300"
+	},
+/obj/structure/lootcrate/hana,
+/obj/structure/lootcrate/hana,
+/obj/structure/lootcrate/hana,
+/turf/open/floor/wood,
+/area/city)
 "oY" = (
 /turf/closed/indestructible/rock,
 /area/space)
@@ -2789,6 +2835,15 @@
 	},
 /turf/open/floor/plating/rust,
 /area/city/fixers)
+"sI" = (
+/mob/living/simple_animal/hostile/netherworld/migo,
+/obj/item/nuke_core{
+	anchored = 1;
+	mouse_opacity = 0;
+	alpha = 0
+	},
+/turf/open/floor/plating/asteroid,
+/area/city)
 "sJ" = (
 /obj/effect/turf_decal/tile{
 	color = "#333333";
@@ -2970,6 +3025,11 @@
 	light_range = 25;
 	set_cap = 3;
 	set_luminosity = 24
+	},
+/obj/item/nuke_core{
+	anchored = 1;
+	mouse_opacity = 0;
+	alpha = 0
 	},
 /turf/open/floor/plating/asteroid/basalt/wasteland,
 /area/city)
@@ -3567,6 +3627,7 @@
 /mob/living/simple_animal/hostile/mutant_clown{
 	name = "'Son'"
 	},
+/obj/structure/meatfloor,
 /turf/open/indestructible/necropolis,
 /area/city)
 "xB" = (
@@ -3691,6 +3752,7 @@
 	light_color = "#ff0037";
 	color = "#ff0037"
 	},
+/obj/structure/barricade/meatbags,
 /turf/open/indestructible/necropolis,
 /area/city)
 "ys" = (
@@ -5239,6 +5301,12 @@
 	},
 /turf/open/floor/wood,
 /area/city/fixers)
+"IW" = (
+/obj/structure/table_frame/wood,
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/barricade/meatbags,
+/turf/open/indestructible/necropolis,
+/area/city)
 "IX" = (
 /obj/structure/sink/kitchen{
 	dir = 4;
@@ -5445,6 +5513,11 @@
 /obj/effect/turf_decal/sand/plating,
 /turf/open/floor/plating/rust,
 /area/city/fixers)
+"Kt" = (
+/obj/structure/lootcrate/hana,
+/obj/structure/barricade/meatbags,
+/turf/open/indestructible/necropolis,
+/area/city)
 "Ky" = (
 /obj/machinery/door/airlock/wood{
 	name = "employee housing"
@@ -5570,6 +5643,7 @@
 	color = "#875300"
 	},
 /obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/lootcrate/hana,
 /turf/open/indestructible/necropolis,
 /area/city/shop)
 "Ls" = (
@@ -5818,6 +5892,11 @@
 /obj/structure/lootcrate/money,
 /turf/open/floor/plating/rust,
 /area/city/house)
+"MN" = (
+/obj/structure/lootcrate/hana,
+/obj/structure/lootcrate/hana,
+/turf/open/floor/plating/asteroid/basalt/wasteland,
+/area/city)
 "MR" = (
 /obj/effect/turf_decal/siding/wood{
 	dir = 8
@@ -6017,6 +6096,15 @@
 	},
 /turf/open/indestructible/necropolis,
 /area/city)
+"Oe" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/decal/cleanable/greenglow{
+	light_color = "#ff0037";
+	color = "#ff0037"
+	},
+/obj/structure/meatfloor,
+/turf/open/indestructible/necropolis,
+/area/city)
 "Of" = (
 /obj/effect/turf_decal/trimline/red/filled/line{
 	dir = 8
@@ -6155,6 +6243,13 @@
 /obj/structure/meatfloor,
 /turf/open/indestructible/necropolis,
 /area/city)
+"Pa" = (
+/obj/structure/table{
+	color = "#875300"
+	},
+/obj/structure/lootcrate/hana,
+/turf/open/floor/plating/rust,
+/area/city/shop)
 "Pb" = (
 /obj/machinery/photocopier,
 /turf/open/floor/plating/rust,
@@ -7063,6 +7158,10 @@
 	},
 /turf/open/indestructible/necropolis,
 /area/city)
+"Uy" = (
+/mob/living/simple_animal/hostile/netherworld/migo,
+/turf/open/floor/plating/asteroid/basalt/wasteland,
+/area/city)
 "Uz" = (
 /obj/structure/bed/maint,
 /obj/effect/decal/cleanable/dirt/dust,
@@ -7134,6 +7233,15 @@
 /obj/structure/lootcrate/money,
 /turf/open/indestructible/necropolis,
 /area/city)
+"UV" = (
+/obj/effect/turf_decal/sand/plating,
+/obj/item/nuke_core{
+	anchored = 1;
+	mouse_opacity = 0;
+	alpha = 0
+	},
+/turf/open/floor/plating/rust,
+/area/city)
 "UW" = (
 /obj/machinery/light/broken{
 	dir = 1
@@ -7142,6 +7250,8 @@
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/spawner/lootdrop/maintenance,
 /obj/item/food/cheesewheel,
+/obj/structure/lootcrate/hana,
+/obj/structure/lootcrate/hana,
 /turf/open/floor/wood{
 	icon_state = "wood-broken6"
 	},
@@ -7511,12 +7621,12 @@
 /turf/closed/indestructible/rust,
 /area/city)
 "XE" = (
-/obj/effect/decal/cleanable/dirt/dust,
-/obj/structure/table/reinforced{
-	color = "#875300"
+/obj/item/nuke_core{
+	anchored = 1;
+	mouse_opacity = 0;
+	alpha = 0
 	},
-/obj/item/stack/spacecash/c100,
-/turf/open/floor/wood,
+/turf/open/floor/plating/asteroid,
 /area/city)
 "XF" = (
 /obj/item/kirbyplants/random{
@@ -7791,6 +7901,16 @@
 /obj/structure/fluff/beach_umbrella/cap,
 /turf/open/floor/plating/ironsand,
 /area/city)
+"Zd" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/turf_decal/sand/plating,
+/obj/item/nuke_core{
+	anchored = 1;
+	mouse_opacity = 0;
+	alpha = 0
+	},
+/turf/open/floor/plating/rust,
+/area/city)
 "Zf" = (
 /obj/structure/rack,
 /obj/effect/turf_decal/sand/plating,
@@ -7807,6 +7927,10 @@
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/structure/meatfloor,
 /turf/open/indestructible/necropolis,
+/area/city)
+"Zi" = (
+/obj/structure/lootcrate/hana,
+/turf/open/floor/plating/asteroid/basalt/wasteland,
 /area/city)
 "Zl" = (
 /obj/effect/decal/cleanable/dirt,
@@ -8068,9 +8192,9 @@ kC
 kC
 io
 Eh
-Eh
-dI
-dI
+bl
+Kt
+Kt
 dI
 dI
 kC
@@ -8335,7 +8459,7 @@ kC
 oY
 oY
 kC
-dI
+Kt
 dI
 Eh
 Eh
@@ -8434,7 +8558,7 @@ dI
 Eh
 dI
 Ux
-dI
+Kt
 kC
 oY
 oY
@@ -8524,7 +8648,7 @@ Ux
 Eh
 dI
 dI
-dI
+Kt
 kC
 oY
 oY
@@ -8608,9 +8732,9 @@ kC
 kC
 Ux
 dI
-dI
-dI
-dI
+Kt
+Kt
+Kt
 Eh
 io
 kC
@@ -9928,8 +10052,8 @@ oY
 oY
 oY
 kC
-dI
-ho
+bg
+IW
 yo
 kC
 dI
@@ -10020,7 +10144,7 @@ oY
 kC
 TL
 Mv
-dI
+Jc
 kC
 dI
 Vr
@@ -10108,9 +10232,9 @@ oY
 oY
 oY
 kC
-xd
-vu
-bl
+Ud
+zj
+Zh
 kC
 Ux
 Vr
@@ -10198,8 +10322,8 @@ oY
 oY
 oY
 kC
-xd
-ho
+aF
+IW
 iL
 kC
 dI
@@ -10288,9 +10412,9 @@ oY
 oY
 oY
 kC
-Mv
+Oe
 xy
-TL
+gG
 kC
 dI
 Vr
@@ -10468,8 +10592,8 @@ oY
 oY
 oY
 kC
-dI
-dI
+Eh
+Eh
 kC
 kC
 kC
@@ -10558,8 +10682,8 @@ oY
 oY
 oY
 kC
-dI
-dI
+bg
+bg
 kC
 oY
 oY
@@ -10648,8 +10772,8 @@ oY
 oY
 kC
 kC
-dI
-dI
+lp
+Eh
 kC
 oY
 oY
@@ -13098,7 +13222,7 @@ Vm
 VM
 Hj
 Oy
-Vs
+iS
 Hj
 ka
 ew
@@ -13150,7 +13274,7 @@ Yh
 ej
 oH
 IQ
-rF
+oW
 QB
 oY
 oY
@@ -13240,7 +13364,7 @@ zF
 qO
 Eb
 Yk
-XE
+rF
 QB
 oY
 oY
@@ -13330,7 +13454,7 @@ Yh
 ej
 Eb
 ZN
-rF
+oW
 QB
 oY
 oY
@@ -16245,7 +16369,7 @@ bw
 Fx
 Ow
 aM
-hq
+Pa
 Fx
 Fx
 Fx
@@ -16990,7 +17114,7 @@ bw
 Zu
 jK
 Cq
-BO
+Zd
 BO
 Cq
 Vr
@@ -17062,7 +17186,7 @@ wY
 rH
 rH
 fk
-aq
+fd
 Vr
 bw
 Vr
@@ -17150,7 +17274,7 @@ Vr
 aq
 rH
 rH
-rH
+Bp
 rH
 aq
 Vr
@@ -17177,7 +17301,7 @@ Op
 XT
 bw
 bw
-Op
+UV
 Op
 Vr
 bw
@@ -17332,7 +17456,7 @@ fk
 en
 aq
 rH
-iS
+fd
 Vr
 ao
 Vr
@@ -17342,7 +17466,7 @@ Vr
 Vr
 bw
 Vr
-BO
+Zd
 bw
 ka
 ka
@@ -17438,11 +17562,11 @@ bw
 ka
 ka
 bw
+it
 ka
-ka
 bw
 bw
-bw
+XE
 ka
 bw
 bw
@@ -17539,7 +17663,7 @@ bw
 bw
 ka
 BO
-BO
+Zd
 Vr
 Ia
 Vr
@@ -17792,7 +17916,7 @@ KZ
 KZ
 bw
 bw
-bw
+XE
 ka
 ka
 ka
@@ -17806,7 +17930,7 @@ ka
 ka
 bw
 Ei
-bw
+XE
 bw
 ka
 ka
@@ -18055,7 +18179,7 @@ oY
 dN
 KZ
 XT
-bw
+XE
 bw
 KZ
 KZ
@@ -18067,9 +18191,9 @@ bw
 Ei
 ka
 ka
+Uy
 ka
-ka
-ZI
+ex
 ka
 ka
 ka
@@ -18078,7 +18202,7 @@ ka
 ka
 bw
 CI
-bw
+XE
 bw
 bw
 KZ
@@ -18158,9 +18282,9 @@ ka
 ka
 ka
 HV
-ka
+MN
 tU
-ka
+Zi
 ka
 ka
 ka
@@ -18249,8 +18373,8 @@ ka
 ka
 ka
 ka
-ka
-ka
+Zi
+Zi
 bw
 xR
 Ei
@@ -18339,7 +18463,7 @@ ka
 bw
 bw
 ka
-ka
+Zi
 ka
 ka
 ka
@@ -18513,7 +18637,7 @@ ka
 KZ
 bw
 bw
-ka
+it
 bw
 ka
 ZI
@@ -18530,7 +18654,7 @@ ka
 ka
 bw
 ka
-ka
+it
 KZ
 Vr
 ve
@@ -18596,7 +18720,7 @@ oY
 Ia
 KZ
 uS
-bw
+XE
 KZ
 KZ
 KZ
@@ -18607,7 +18731,7 @@ XT
 ka
 ka
 ka
-ka
+it
 ka
 CI
 bw
@@ -18706,7 +18830,7 @@ ka
 Pp
 bw
 Ei
-bw
+XE
 bw
 KZ
 KZ
@@ -18869,7 +18993,7 @@ KZ
 Ia
 Ia
 KZ
-XT
+sI
 bw
 KZ
 KZ
@@ -18889,7 +19013,7 @@ bw
 ka
 ka
 bw
-bw
+XE
 KZ
 KZ
 oY
@@ -19055,7 +19179,7 @@ KZ
 Ia
 Ia
 KZ
-bw
+XE
 bw
 KZ
 KZ
@@ -19154,7 +19278,7 @@ Ia
 Ia
 KZ
 KZ
-bw
+XE
 KZ
 KZ
 Ia

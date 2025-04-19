@@ -190,6 +190,10 @@
 	maxHealth = 500
 	health = 500
 	del_on_death = TRUE
+	atmos_requirements = list("min_oxy" = 0, "max_oxy" = 0, "min_tox" = 0, "max_tox" = 0, "min_co2" = 0, "max_co2" = 0, "min_n2" = 0, "max_n2" = 0)
+	minbodytemp = 0
+	maxbodytemp = 1500
+	pressure_resistance = 200
 	var/connected_mob
 	var/current_connection
 
