@@ -61,7 +61,7 @@
 	if(!ishuman(parent))
 		return FALSE
 	var/mob/living/carbon/human/H = parent
-	if(item.force <= 0 && target.stat == DEAD)
+	if(item.force <= 0 || target.stat == DEAD)
 		return FALSE
 	regen_cooldown = world.time + regen_cooldown_time
 	H.adjustBruteLoss(amount * repeat)
@@ -82,7 +82,7 @@
 	if(!ishuman(parent))
 		return FALSE
 	var/mob/living/carbon/human/H = parent
-	if(item.force <= 0 && target.stat == DEAD)
+	if(item.force <= 0 || target.stat == DEAD)
 		return FALSE
 	regen_cooldown = world.time + regen_cooldown_time
 	H.adjustSanityLoss(amount * repeat)
@@ -123,7 +123,7 @@
 		return FALSE
 	if(item.damtype != BLACK_DAMAGE)
 		return FALSE
-	if(item.force <= 0 && target.stat == DEAD)
+	if(item.force <= 0 || target.stat == DEAD)
 		return FALSE
 	inflict_cooldown = world.time + inflict_cooldown_time
 	target.apply_lc_black_fragile(1)
@@ -139,7 +139,7 @@
 		return FALSE
 	if(item.damtype != RED_DAMAGE)
 		return FALSE
-	if(item.force <= 0 && target.stat == DEAD)
+	if(item.force <= 0 || target.stat == DEAD)
 		return FALSE
 	inflict_cooldown = world.time + inflict_cooldown_time
 	target.apply_lc_red_fragile(1)
@@ -249,7 +249,7 @@
 		return FALSE
 	if(item.damtype != RED_DAMAGE)
 		return FALSE
-	if(item.force <= 0 && target.stat == DEAD)
+	if(item.force <= 0 || target.stat == DEAD)
 		return FALSE
 	inflict_cooldown = world.time + inflict_cooldown_time
 	target.apply_lc_bleed(2)
@@ -265,7 +265,7 @@
 		return FALSE
 	if(item.damtype != WHITE_DAMAGE)
 		return FALSE
-	if(item.force <= 0 && target.stat == DEAD)
+	if(item.force <= 0 || target.stat == DEAD)
 		return FALSE
 	inflict_cooldown = world.time + inflict_cooldown_time
 	target.apply_lc_burn(3)
@@ -281,7 +281,7 @@
 		return FALSE
 	if(item.damtype != BLACK_DAMAGE)
 		return FALSE
-	if(item.force <= 0 && target.stat == DEAD)
+	if(item.force <= 0 || target.stat == DEAD)
 		return FALSE
 	inflict_cooldown = world.time + inflict_cooldown_time
 	target.apply_lc_tremor(2, 55)
@@ -300,7 +300,6 @@
 				continue
 			else if(W.CanUseEgo(human_parent))
 				inflict_cooldown = world.time + inflict_cooldown_time * W.attack_speed
-				sleep(2)
 				if(last_target in view(W.reach, human_parent))
 					playsound(W.loc, W.hitsound)
 					human_parent.do_attack_animation(last_target, null, W)
@@ -493,7 +492,7 @@
 	if(!ishuman(parent))
 		return FALSE
 	var/mob/living/carbon/human/H = parent
-	if(item.force <= 0 && target.stat == DEAD)
+	if(item.force <= 0 || target.stat == DEAD)
 		return FALSE
 	inflict_cooldown = world.time + inflict_cooldown_time
 	H.apply_lc_feeble(3)
@@ -582,7 +581,7 @@
 	. = ..()
 	if(self_burn)
 		human_parent.apply_lc_burn(2 * repeat)
-	if(item.force <= 0 && target.stat == DEAD)
+	if(item.force <= 0 || target.stat == DEAD)
 		return FALSE
 	if(tp_cooldown > world.time)
 		return FALSE
