@@ -23,7 +23,7 @@
 
 		 "There's a burning pain inside. Nausea keeps bubbling up. You keep eating.",
 
-		 "Acrid bile and vomit bubbles out of your mouth, tinged with blood. You keep eating".
+		 "Acrid bile and vomit bubbles out of your mouth, tinged with blood. You keep eating",
 
 		 "You keep eating. <br>\
 		 A blade flashes in the man's hand. <br>\
