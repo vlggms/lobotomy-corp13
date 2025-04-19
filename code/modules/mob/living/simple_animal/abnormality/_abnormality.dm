@@ -584,6 +584,7 @@
 	C.icon_state = core_icon
 	C.contained_abno = src.type
 	C.threat_level = threat_level
+	C.ego_list += ego_list
 	switch(GetRiskLevel())
 		if(1)
 			return

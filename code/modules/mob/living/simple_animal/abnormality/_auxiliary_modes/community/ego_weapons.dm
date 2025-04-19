@@ -1,7 +1,7 @@
 // ZAYIN
 /obj/item/ego_weapon/support/dragon_staff
 	name = "dragon's staff"
-	desc = "A staff built from stained wood tipped with a strange, twisted skull. It reminds you of the tales your father regaled you with long ago."
+	desc = "A staff built from stained wood tipped with a strange, twisted skull. It reminds you of the the tall tales a father would tell."
 	special = "Use this weapon in your hand when wearing matching armor to shield nearby humans from 50 white damage."
 	icon_state = "dragon_staff"
 	icon = 'code/modules/mob/living/simple_animal/abnormality/_auxiliary_modes/community/!icons/ego_weapons.dmi'
@@ -158,7 +158,7 @@
 /obj/item/ego_weapon/sunspit/get_clamped_volume()
 	return 40
 
-/obj/item/ego_weapon/furrows//TODO: function as a mining tool. Add to mining subtype PR
+/obj/item/ego_weapon/furrows
 	name = "furrows"
 	desc = "A rusty pick-mattock caked in mud. Its texture is heavily decayed, as if it had been buried for a long time."
 	icon_state = "furrows"
@@ -170,6 +170,9 @@
 	attack_verb_continuous = list("bashes", "jabs", "picks", "impales", "spikes")
 	attack_verb_simple = list("bash", "jab", "pick", "impale", "spike")
 	hitsound = 'sound/weapons/fixer/generic/gen1.ogg'
+	usesound = 'sound/effects/picaxe1.ogg'
+	toolspeed = 0.1
+	tool_behaviour = TOOL_MINING
 	attribute_requirements = list(
 							FORTITUDE_ATTRIBUTE = 60,
 							JUSTICE_ATTRIBUTE = 60

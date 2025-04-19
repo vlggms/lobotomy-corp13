@@ -14,6 +14,7 @@
 		"The figure looks towards you, and so do the shadows.<br>\
 		You are not alone.",
 	)
+	force_encounter = TRUE
 
 /datum/adventure_event/legacy/EventChoiceFormat(obj/machinery/M, mob/living/carbon/human/H)
 	switch(cords)
@@ -28,4 +29,5 @@
 			playsound(get_turf(H), 'sound/effects/creak1.ogg', 20, FALSE)
 			AdjustStatNum(GLOOM_STAT,ADV_EVENT_STAT_EASY)
 			RewardKey("FACE THE FEAR COFFEE MUG")
+			spend_event = TRUE
 	return ..()

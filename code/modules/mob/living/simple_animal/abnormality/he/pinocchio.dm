@@ -165,7 +165,6 @@
 		realboy.apply_status_effect(/datum/status_effect/panicked_type/puppet)
 	//Destroys the invisible pinocchio, as it is unecessary in Rcorp, also gives him NV goggles and shoes.
 	else
-		realboy.equip_to_slot(new /obj/item/clothing/glasses/night/rabbit, ITEM_SLOT_EYES)
 		realboy.equip_to_slot(new /obj/item/clothing/shoes/combat, ITEM_SLOT_FEET)
 		qdel(src)
 	return TRUE
@@ -294,6 +293,10 @@
 	C.contained_abno = /mob/living/simple_animal/hostile/abnormality/pinocchio//release()ing or extract()ing this core will spawn the abnormality, making it a valid core.
 	C.threat_level = 3
 	C.icon = 'ModularTegustation/Teguicons/abno_cores/he.dmi'
+	C.ego_list = list(
+		/datum/ego_datum/weapon/marionette,
+		/datum/ego_datum/armor/marionette,
+	)
 
 /datum/species/puppet
 	name = "Puppet"
@@ -308,7 +311,7 @@
 	knife_butcher_results = list(/obj/item/stack/sheet/mineral/wood = 5)
 	species_traits = list(NO_UNDERWEAR,NOBLOOD,NOEYESPRITES)
 	inherent_traits = list(TRAIT_ADVANCEDTOOLUSER,TRAIT_NOMETABOLISM,TRAIT_TOXIMMUNE,TRAIT_NOBREATH,TRAIT_RESISTCOLD,TRAIT_RESISTHIGHPRESSURE,TRAIT_RESISTLOWPRESSURE,TRAIT_RADIMMUNE,TRAIT_GENELESS,\
-	TRAIT_NOHUNGER,TRAIT_XENO_IMMUNE,TRAIT_NOCLONELOSS,TRAIT_LIGHT_STEP,TRAIT_BRUTEPALE,TRAIT_BRUTESANITY)
+	TRAIT_NOHUNGER,TRAIT_XENO_IMMUNE,TRAIT_NOCLONELOSS,TRAIT_LIGHT_STEP,TRAIT_BRUTEPALE,TRAIT_BRUTESANITY, TRAIT_TRUE_NIGHT_VISION,)
 	punchdamagelow = 10
 	punchdamagehigh = 15
 	bodypart_overides = list(

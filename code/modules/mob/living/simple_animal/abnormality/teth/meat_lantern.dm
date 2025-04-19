@@ -148,14 +148,14 @@
 
 /mob/living/simple_animal/hostile/abnormality/meat_lantern/BreachEffect(mob/living/carbon/human/user, breach_type)
 	if(breach_type == BREACH_MINING)//as funny as it sounds, this abnormality would be unreachable
-		qdel(src)
-		return
+		sleep(10 SECONDS)
 	. = ..()
 	update_icon()
 	density = FALSE
 	med_hud_set_health() //hides medhud
 	med_hud_set_status()
-	forceMove(pick(GLOB.xeno_spawn))
+	if(breach_type != BREACH_MINING)
+		forceMove(pick(GLOB.xeno_spawn))
 	chop_cooldown = world.time + chop_cooldown_time
 	proximity_monitor = new(src, detect_range)
 	return

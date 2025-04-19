@@ -15,6 +15,8 @@
 	var/extra_chance = 0
 	//Short lived text that says things that had happened.
 	var/temp_text = ""
+	//Determines if the event can only be encountered once.
+	var/spend_event = FALSE
 	//The adventure datum that this event is connected to. Hopefully is set upon being created by it.
 	var/datum/adventure_layout/gamer
 	//If we need a certain abnormality to appear as a option. If no abnormality is listed this event will occur normally
@@ -34,6 +36,8 @@
 	* Capitalization and spaces will be considered.
 	*/
 	var/event_locks = ""
+	//Should this encounter be unavoidable?
+	var/force_encounter = FALSE
 
 /datum/adventure_event/New(datum/adventure_layout/player)
 	. = ..()
@@ -84,6 +88,8 @@
 	gamer.event_data = null
 	cords = 1
 	M.updateUsrDialog()
+	if(spend_event)
+		gamer.spent_events += src.type
 	qdel(src)
 
 //Called by console after a choice is recieved.

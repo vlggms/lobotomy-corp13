@@ -46,7 +46,7 @@
 	if(has_flipped)
 		say("Woah there, hotshot. We've already had a game recently!")
 		return
-
+	var/flip_modifier = 0
 	has_flipped = TRUE
 	var/mob/living/user = petter
 	user.deal_damage(user.maxHealth*0.2, RED_DAMAGE)
@@ -54,7 +54,10 @@
 	manual_emote("flips a gold coin.")
 	SLEEP_CHECK_DEATH(10)
 	icon_state = "dealerdamned"
-	if(prob(35))
+	for(var/upgradecheck in GLOB.jcorp_upgrades)
+		if(upgradecheck == "Abno Luck")
+			flip_modifier = 10
+	if(prob(35)+flip_modifier)
 		say("Heads, huh? Looks like you win this one.")
 		coin_status = TRUE
 		user.adjustBruteLoss(-user.maxHealth*0.2)
@@ -84,12 +87,19 @@
 		var/russian_roulette = TRUE
 		var/player_shot = TRUE
 		var/spent_chambers = 0
+		var/roulette_modifier = 0
 
 		while(russian_roulette)
 			user.Immobilize(spent_chambers*5)
 			SLEEP_CHECK_DEATH(spent_chambers*5)
 			spent_chambers+=1
-			if(prob(16.666*spent_chambers))
+			for(var/upgradecheck in GLOB.jcorp_upgrades)
+				if(upgradecheck == "Abno Luck")
+					if(player_shot)
+						roulette_modifier = -3
+					else
+						roulette_modifier = 3
+			if(prob((16.666+roulette_modifier)*spent_chambers) || spent_chambers == 6) //Failsafe thanks to J corp RNG
 				playsound(user, 'sound/weapons/gun/revolver/shot_alt.ogg', 100, FALSE)
 				russian_roulette = FALSE
 				if(player_shot)
