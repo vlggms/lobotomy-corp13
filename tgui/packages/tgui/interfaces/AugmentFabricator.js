@@ -10,11 +10,11 @@ import {
   NumberInput,
   Section,
   Table,
-  TextArea
+  TextArea,
 } from '../components';
 import { Window } from '../layouts';
 
-const isValidHex = (color) => /^#([0-9A-F]{3}){1,2}$/i.test(color);
+const isValidHex = color => /^#([0-9A-F]{3}){1,2}$/i.test(color);
 
 export const AugmentFabricator = (props, context) => {
   const { data = {} } = useBackend(context);
@@ -25,10 +25,9 @@ export const AugmentFabricator = (props, context) => {
     <Window
       title="Augment Fabricator"
       width={700}
-      height={650}
-    >
+      height={650}>
       <Window.Content scrollable>
-        {!hasLoaded ? ( <NoticeBox>Loading configuration...</NoticeBox> ) : (
+        {!hasLoaded ? (<NoticeBox>Loading configuration...</NoticeBox>) : (
           <>
             {page === 'template' && <TemplatePage setPage={setPage} /> }
             {/* Pass context to EffectsPage if it uses useBackend/useSharedState */}
@@ -67,23 +66,23 @@ const TemplatePage = (props, context) => {
   const baseCost = selectedForm ? (selectedForm.base_cost || 0) * currentRank : 0;
   const baseEp = selectedForm ? (selectedForm.base_ep || 0) * currentRank : 0;
   const rankReq = (rankAttributeReqs?.length > currentRank - 1)
-                  ? (rankAttributeReqs[currentRank - 1] || 0) : 0;
+    ? (rankAttributeReqs[currentRank - 1] || 0) : 0;
 
   // Helper function to request preview update
   const requestPreviewUpdate = (formId, pColor, sColor) => {
     // Pass validated colors to the backend action
     if (formId && isValidHex(pColor) && isValidHex(sColor)) {
       act('get_preview_icon', {
-         formId: formId,
-         primaryColor: pColor,
-         secondaryColor: sColor,
+        formId: formId,
+        primaryColor: pColor,
+        secondaryColor: sColor,
       });
     }
     // If inputs are invalid, the backend should handle returning null preview data
   };
 
   // Form Button Handler
-  const handleFormSelect = (newFormId) => {
+  const handleFormSelect = newFormId => {
     setSelectedFormId(newFormId);
     requestPreviewUpdate(newFormId, primaryColor, secondaryColor);
   };
@@ -116,24 +115,23 @@ const TemplatePage = (props, context) => {
         <LabeledList>
           <LabeledList.Item label="Form">
             {forms.length === 0 ? (
-               <Box color="label">No forms available.</Box>
+              <Box color="label">No forms available.</Box>
             ) : forms.map(f => {
-                // Ensure checks for valid data before rendering button
-                if (!f || !f.id) return null;
-                const formName = f.name || 'Unnamed Form';
-                const formDesc = f.desc || formName;
-                const formStats = `(${(f.base_cost || 0)} ${currencySymbol}, ${(f.base_ep || 0)} EP)`;
-                return (
-                  <Button
-                    key={f.id}
-                    selected={selectedFormId === f.id}
-                    onClick={() => handleFormSelect(f.id)}
-                    mr={1} // Margin between buttons
-                    content={`${formName} ${formStats}`}
-                    tooltip={formDesc}
-                  />
-                );
-              })}
+              // Ensure checks for valid data before rendering button
+              if (!f || !f.id) return null;
+              const formName = f.name || 'Unnamed Form';
+              const formDesc = f.desc || formName;
+              const formStats = `(${(f.base_cost || 0)} ${currencySymbol}, ${(f.base_ep || 0)} EP)`;
+              return (
+                <Button
+                  key={f.id}
+                  selected={selectedFormId === f.id}
+                  onClick={() => handleFormSelect(f.id)}
+                  mr={1} // Margin between buttons
+                  content={`${formName} ${formStats}`}
+                  tooltip={formDesc} />
+              );
+            })}
           </LabeledList.Item>
           <LabeledList.Item label="Rank">
             <NumberInput
@@ -142,15 +140,14 @@ const TemplatePage = (props, context) => {
               maxValue={maxRank}
               step={1}
               width="50px"
-              onChange={handleRankChange}
-            />
+              onChange={handleRankChange} />
             <Box inline ml={2}>
               {rankReq > 0 && `(Req: ${rankReq}+ Attr)`}
             </Box>
           </LabeledList.Item>
         </LabeledList>
         {/* Conditional render for Cost/EP details */}
-         {selectedForm && (
+        {selectedForm && (
           <Box mt={1}>
             <Box borderBottom={1} borderColor="rgba(255, 255, 255, 0.1)" my={1} />
             {/* Render direct values - ensure baseCost/baseEp are numbers */}
@@ -163,118 +160,112 @@ const TemplatePage = (props, context) => {
 
       {/* Flavor & Appearance Section */}
       <Section title="Flavor & Appearance">
-          <Flex>
-            {/* Left Column: Inputs */}
-            <Flex.Item grow={1} mr={2}>
-               <LabeledList>
-                <LabeledList.Item label="Augment Name">
-                  <Input
-                    value={augName}
-                    onInput={(e, value) => setAugName(value)} // Direct state update
-                    width="100%"
-                    maxLength={64} // Restore attributes
-                    placeholder="E.g., 'My Awesome Arm'"
-                  />
-                </LabeledList.Item>
-                <LabeledList.Item label="Description">
-                  <TextArea
-                    value={augDesc}
-                    onInput={(e, value) => setAugDesc(value)} // Direct state update
-                    width="100%"
-                    height="60px" // Restore attributes
-                    maxLength={256}
-                    placeholder="A brief description..."
-                  />
-                </LabeledList.Item>
-                <LabeledList.Item label="Primary Color">
-                   <Input
-                     value={primaryColor}
-                     onInput={handlePrimaryColorChange} // Use specific handler
-                     width="100px" // Restore attributes
-                     placeholder="#RRGGBB"
-                     maxLength={7}
-                     // Style for validation feedback
-                     style={{ borderLeft: `5px solid ${isValidHex(primaryColor) ? primaryColor : 'red'}` }}
-                   />
-                   {/* Color Swatch */}
-                   <Box inline width="20px" height="20px" ml={1} backgroundColor={isValidHex(primaryColor) ? primaryColor : 'transparent'} style={{ border: '1px solid grey', verticalAlign: 'middle' }} />
-                   {/* Invalid Hex Message */}
-                   {!isValidHex(primaryColor) && primaryColor && primaryColor.length > 0 && <Box inline ml={1} color="bad">Invalid Hex</Box>}
-                </LabeledList.Item>
-                 <LabeledList.Item label="Secondary Color">
-                   <Input
-                     value={secondaryColor}
-                     onInput={handleSecondaryColorChange} // Use specific handler
-                     width="100px" // Restore attributes
-                     placeholder="#RRGGBB"
-                     maxLength={7}
-                     // Style for validation feedback
-                     style={{ borderLeft: `5px solid ${isValidHex(secondaryColor) ? secondaryColor : 'red'}` }}
-                   />
-                   {/* Color Swatch */}
-                   <Box inline width="20px" height="20px" ml={1} backgroundColor={isValidHex(secondaryColor) ? secondaryColor : 'transparent'} style={{ border: '1px solid grey', verticalAlign: 'middle' }} />
-                   {/* Invalid Hex Message */}
-                   {!isValidHex(secondaryColor) && secondaryColor && secondaryColor.length > 0 && <Box inline ml={1} color="bad">Invalid Hex</Box>}
-                </LabeledList.Item>
-               </LabeledList>
-              </Flex.Item>
+        <Flex>
+          {/* Left Column: Inputs */}
+          <Flex.Item grow={1} mr={2}>
+            <LabeledList>
+              <LabeledList.Item label="Augment Name">
+                <Input
+                  value={augName}
+                  onInput={(e, value) => setAugName(value)} // Direct state update
+                  width="100%"
+                  maxLength={64} // Restore attributes
+                  placeholder="E.g., 'My Awesome Arm'" />
+              </LabeledList.Item>
+              <LabeledList.Item label="Description">
+                <TextArea
+                  value={augDesc}
+                  onInput={(e, value) => setAugDesc(value)} // Direct state update
+                  width="100%"
+                  height="60px" // Restore attributes
+                  maxLength={256}
+                  placeholder="A brief description..." />
+              </LabeledList.Item>
+              <LabeledList.Item label="Primary Color">
+                <Input
+                  value={primaryColor}
+                  onInput={handlePrimaryColorChange} // Use specific handler
+                  width="100px" // Restore attributes
+                  placeholder="#RRGGBB"
+                  maxLength={7}
+                  // Style for validation feedback
+                  style={{ borderLeft: `5px solid ${isValidHex(primaryColor) ? primaryColor : 'red'}` }} />
+                {/* Color Swatch */}
+                <Box inline width="20px" height="20px" ml={1} backgroundColor={isValidHex(primaryColor) ? primaryColor : 'transparent'} style={{ border: '1px solid grey', verticalAlign: 'middle' }} />
+                {/* Invalid Hex Message */}
+                {!isValidHex(primaryColor) && primaryColor && primaryColor.length > 0 && <Box inline ml={1} color="bad">Invalid Hex</Box>}
+              </LabeledList.Item>
+              <LabeledList.Item label="Secondary Color">
+                <Input
+                  value={secondaryColor}
+                  onInput={handleSecondaryColorChange} // Use specific handler
+                  width="100px" // Restore attributes
+                  placeholder="#RRGGBB"
+                  maxLength={7}
+                  // Style for validation feedback
+                  style={{ borderLeft: `5px solid ${isValidHex(secondaryColor) ? secondaryColor : 'red'}` }} />
+                {/* Color Swatch */}
+                <Box inline width="20px" height="20px" ml={1} backgroundColor={isValidHex(secondaryColor) ? secondaryColor : 'transparent'} style={{ border: '1px solid grey', verticalAlign: 'middle' }} />
+                {/* Invalid Hex Message */}
+                {!isValidHex(secondaryColor) && secondaryColor && secondaryColor.length > 0 && <Box inline ml={1} color="bad">Invalid Hex</Box>}
+              </LabeledList.Item>
+            </LabeledList>
+          </Flex.Item>
 
-            {/* Right Column: Preview */}
+          {/* Right Column: Preview */}
 
-            <Flex.Item shrink={0} basis="120px" textAlign="center">
-                <Box mb={1} color="label">Preview:</Box>
-                {/* Container Box - SQUARE */}
+          <Flex.Item shrink={0} basis="120px" textAlign="center">
+            <Box mb={1} color="label">Preview:</Box>
+            {/* Container Box - SQUARE */}
+            <Box
+              m="auto"
+              width="64px" // Fixed SQUARE width
+              height="64px" // Fixed SQUARE height
+              backgroundColor="#222"
+              // Remove flex centering, as image will now fill the box
+              // display: 'flex',
+              // alignItems: 'center',
+              // justifyContent: 'center',
+              style={{
+                border: '1px solid #555',
+                // imageRendering: 'pixelated', // Apply to inner img if needed
+                overflow: 'hidden', // Clip anything overflowing
+              }}>
+              {/* Conditionally render the image using Box as="img" OR the placeholder */}
+              {(previewIconBase64 && typeof previewIconBase64 === 'string') ? (
                 <Box
-                    m="auto"
-                    width="64px"  // Fixed SQUARE width
-                    height="64px" // Fixed SQUARE height
-                    backgroundColor="#222"
-                    // Remove flex centering, as image will now fill the box
-                    // display: 'flex',
-                    // alignItems: 'center',
-                    // justifyContent: 'center',
-                    style={{
-                        border: '1px solid #555',
-                        // imageRendering: 'pixelated', // Apply to inner img if needed
-                        overflow: 'hidden', // Clip anything overflowing
-                    }}
-                >
-                    {/* Conditionally render the image using Box as="img" OR the placeholder */}
-                    {(previewIconBase64 && typeof previewIconBase64 === 'string') ? (
-                        <Box
-                            key={previewIconBase64.substring(0, 20)}
-                            as="img"
-                            src={`data:image/png;base64,${previewIconBase64}`}
-                            alt="Augment Preview"
-                            title="Augment Preview"
-                            style={{
-                                // --- FORCE size to 100% of container ---
-                                width: '100%',
-                                height: '100%',
-                                // --- END FORCE size ---
+                  key={previewIconBase64.substring(0, 20)}
+                  as="img"
+                  src={`data:image/png;base64,${previewIconBase64}`}
+                  alt="Augment Preview"
+                  title="Augment Preview"
+                  style={{
+                    // --- FORCE size to 100% of container ---
+                    width: '100%',
+                    height: '100%',
+                    // --- END FORCE size ---
 
-                                // Pixelation styles
-                                imageRendering: 'pixelated',
-                                '-ms-interpolation-mode': 'nearest-neighbor',
+                    // Pixelation styles
+                    imageRendering: 'pixelated',
+                    '-ms-interpolation-mode': 'nearest-neighbor',
 
-                                display: 'block', // Good practice for images filling space
-                            }}
-                        />
-                    ) : (
-                        // Placeholder Box - needs centering if flex is removed from parent
-                         <Box
-                            width="100%" height="100%" display="flex"
-                            alignItems="center" justifyContent="center"
-                            color="label" fontSize="small">
-                            {selectedFormId ? 'Loading...' : 'Select Form'}
-                         </Box>
-                    )}
+                    display: 'block', // Good practice for images filling space
+                  }} />
+              ) : (
+              // Placeholder Box - needs centering if flex is removed from parent
+                <Box
+                  width="100%" height="100%" display="flex"
+                  alignItems="center" justifyContent="center"
+                  color="label" fontSize="small">
+                  {selectedFormId ? 'Loading...' : 'Select Form'}
                 </Box>
-                {/* Preview Text (remains the same) */}
-                <Box mt={1} fontSize="small">
-                    {selectedForm ? `${augName || selectedForm.name || 'Unnamed'} (R${currentRank})` : 'Select Form'}
-                </Box>
-            </Flex.Item>
+              )}
+            </Box>
+            {/* Preview Text (remains the same) */}
+            <Box mt={1} fontSize="small">
+              {selectedForm ? `${augName || selectedForm.name || 'Unnamed'} (R${currentRank})` : 'Select Form'}
+            </Box>
+          </Flex.Item>
         </Flex>
       </Section>
 
@@ -284,8 +275,7 @@ const TemplatePage = (props, context) => {
           icon="arrow-right"
           content="Select Effects"
           disabled={!selectedFormId} // Disable based on ID
-          onClick={() => setPage('effects')}
-        />
+          onClick={() => setPage('effects')} />
       </Box>
     </Box>
   );
@@ -318,7 +308,7 @@ const EffectsPage = (props, context) => {
   const baseEp = selectedForm ? selectedForm.base_ep + (selectedRank - 1) * 2 : 0;
 
   // Calculations remain the same (selectedCounts, currentEpCost, etc.)
-   const selectedCounts = selectedEffects.reduce((counts, effectId) => {
+  const selectedCounts = selectedEffects.reduce((counts, effectId) => {
     counts[effectId] = (counts[effectId] || 0) + 1;
     return counts;
   }, {});
@@ -330,17 +320,17 @@ const EffectsPage = (props, context) => {
   const currentNegEpCost = selectedEffectsData.reduce((sum, effect) => sum + (effect?.ep_cost < 0 ? effect?.ep_cost : 0), 0);
   const currentEffectsCost = selectedEffectsData.reduce((sum, effect) => sum + (effect?.current_ahn_cost || 0), 0);
   const remainingEp = baseEp - currentEpCost;
-  const remainingNegEp = baseEp + currentNegEpCost
+  const remainingNegEp = baseEp + currentNegEpCost;
   const totalCost = baseCost + currentEffectsCost;
 
   // Event Handlers (handleAddEffect, handleRemoveEffect remain the same)
-   const handleAddEffect = (effectToAdd) => {
+  const handleAddEffect = effectToAdd => {
     if (!effectToAdd) return;
     if ((effectToAdd.ep_cost > 0 && effectToAdd.ep_cost <= remainingEp) || (effectToAdd.ep_cost < 0 && -effectToAdd.ep_cost <= remainingNegEp)) {
       setSelectedEffects([...selectedEffects, effectToAdd.id]);
     }
   };
-  const handleRemoveEffect = (indexToRemove) => {
+  const handleRemoveEffect = indexToRemove => {
     setSelectedEffects(selectedEffects.filter((_, index) => index !== indexToRemove));
   };
 
@@ -348,7 +338,7 @@ const EffectsPage = (props, context) => {
     // --- UPDATED: Check form ID ---
     if (!selectedFormId || remainingEp < 0) {
       // Add more user-friendly feedback if possible (e.g., NoticeBox or dedicated message area)
-      alert("Please ensure a Form is selected and you have non-negative remaining EP.");
+      alert('Please ensure a Form is selected and you have non-negative remaining EP.');
       return;
     }
     // Optional: Check if name is required, depends on game design
@@ -356,16 +346,16 @@ const EffectsPage = (props, context) => {
       // alert("Please provide an Augment Name.");
       // return;
     }
-     // Check colors are valid before sending
-     if (!isValidHex(primaryColor) || !isValidHex(secondaryColor)) {
-       alert("Please ensure Primary and Secondary colors are valid hex codes (e.g., #FFFFFF).");
-       return;
-     }
+    // Check colors are valid before sending
+    if (!isValidHex(primaryColor) || !isValidHex(secondaryColor)) {
+      alert('Please ensure Primary and Secondary colors are valid hex codes (e.g., #FFFFFF).');
+      return;
+    }
 
     const config = {
       form: selectedFormId, // --- SEND ID ---
       rank: selectedRank,
-      name: augName.trim() || selectedForm?.name || "Unnamed Augment", // Use form name as fallback if blank
+      name: augName.trim() || selectedForm?.name || 'Unnamed Augment', // Use form name as fallback if blank
       description: augDesc.trim(),
       primaryColor: primaryColor,
       secondaryColor: secondaryColor,
@@ -380,7 +370,7 @@ const EffectsPage = (props, context) => {
     <Box>
       {/* Top Info Bar */}
       <Section>
-         <Box display="flex" justifyContent="space-between" alignItems="center">
+        <Box display="flex" justifyContent="space-between" alignItems="center">
           <Box>
             Total Cost: <AnimatedNumber value={totalCost} /> {currencySymbol}
             {/* Optional: Show base cost if different */}
@@ -417,13 +407,13 @@ const EffectsPage = (props, context) => {
               </Table.Row>
               {/* Effects Rows */}
               {!effects || effects.length === 0 ? (
-                  <Table.Row><Table.Cell colSpan={5}>No effects available.</Table.Cell></Table.Row>
-                ) : (
-                  effects.map(effect => {
+                <Table.Row><Table.Cell colSpan={5}>No effects available.</Table.Cell></Table.Row>
+              ) : (
+                effects.map(effect => {
                   // Safety check for effect data
                   if (!effect || !effect.id || !effect.name) {
-                      console.error("Skipping invalid effect object:", effect);
-                      return null;
+                    console.error('Skipping invalid effect object:', effect);
+                    return null;
                   }
 
                   const isNegative = effect.ep_cost < 0;
@@ -441,12 +431,12 @@ const EffectsPage = (props, context) => {
 
                   const isDisabled = !canAfford || maxReached || alreadyAddedNonRepeatable || formRestricted;
 
-                  let buttonTitle = "Add Effect";
+                  let buttonTitle = 'Add Effect';
                   if (isDisabled) {
-                      if (formRestricted) buttonTitle = `Form '${selectedForm?.name}' cannot take negative effects`;
-                      else if (!canAfford) buttonTitle = "Not enough EP";
-                      else if (maxReached) buttonTitle = `Max repetitions (${maxRepeats}) reached`;
-                      else if (alreadyAddedNonRepeatable) buttonTitle = "Cannot add again";
+                    if (formRestricted) buttonTitle = `Form '${selectedForm?.name}' cannot take negative effects`;
+                    else if (!canAfford) buttonTitle = 'Not enough EP';
+                    else if (maxReached) buttonTitle = `Max repetitions (${maxRepeats}) reached`;
+                    else if (alreadyAddedNonRepeatable) buttonTitle = 'Cannot add again';
                   }
 
                   // --- Market Display Logic ---
@@ -459,7 +449,7 @@ const EffectsPage = (props, context) => {
                   return (
                     <Table.Row key={effect.id} style={{ borderBottom: '1px solid rgba(255, 255, 255, 0.05)' }}>
                       <Table.Cell py={1}>
-                      <Box fontSize="medium" title={effect.desc || ''}>
+                        <Box fontSize="medium" title={effect.desc || ''}>
                           {effect.name}
                           {/* Optional: Sale/Markup Badges */}
                           {isOnSale && <Box inline ml={1} px={0.5} backgroundColor="green" color="white" fontSize="tiny" style={{ borderRadius: '3px' }}>SALE</Box>}
@@ -472,11 +462,11 @@ const EffectsPage = (props, context) => {
                       <Table.Cell collapsing>
                         {isRepeatable && (
                           <Box color="good" title={`Can be applied up to ${maxRepeats} times.`}>
-                              Repeatable ({remainingRepeats} left)
+                            Repeatable ({remainingRepeats} left)
                           </Box>
                         )}
                         {isNegative && (
-                          <Box color={formRestricted ? 'grey' : 'bad'} title={formRestricted ? `Blocked by form '${selectedForm?.name}'` : "Grants EP but may have downsides."}>
+                          <Box color={formRestricted ? 'grey' : 'bad'} title={formRestricted ? `Blocked by form '${selectedForm?.name}'` : 'Grants EP but may have downsides.'}>
                             Negative
                           </Box>
                         )}
@@ -500,20 +490,19 @@ const EffectsPage = (props, context) => {
                         {isMarkedUp && <Box color="bad" fontSize="tiny">(+{effect.markup_percent}%)</Box>}
                       </Table.Cell>
                       <Table.Cell collapsing textAlign="right" color={effect.ep_cost > 0 ? 'bad' : (isNegative ? 'good' : 'label')}>
-                          {effect.ep_cost > 0 ? `-${effect.ep_cost}` : (isNegative ? `+${Math.abs(effect.ep_cost)}` : '0')}
+                        {effect.ep_cost > 0 ? `-${effect.ep_cost}` : (isNegative ? `+${Math.abs(effect.ep_cost)}` : '0')}
                       </Table.Cell>
                       <Table.Cell collapsing>
                         <Button
                           icon="plus"
                           title={buttonTitle}
                           disabled={isDisabled}
-                          onClick={() => handleAddEffect(effect)}
-                        />
+                          onClick={() => handleAddEffect(effect)} />
                       </Table.Cell>
                     </Table.Row>
                   );
                 })
-                )}
+              )}
             </Table>
           </Section>
         </Box>
@@ -532,12 +521,14 @@ const EffectsPage = (props, context) => {
                 </Table.Row>
                 {selectedEffects.map((effectId, index) => {
                   const effect = effects.find(e => e.id === effectId);
-                  if (!effect) return (
+                  if (!effect) {
+                    return (
                       <Table.Row key={`missing-${index}-${effectId}`}>
-                          <Table.Cell colSpan={3} color="bad">Error: Effect data missing for ID {effectId}</Table.Cell>
+                        <Table.Cell colSpan={3} color="bad">Error: Effect data missing for ID {effectId}</Table.Cell>
                       </Table.Row>
-                  );
-                   const isNegative = effect.ep_cost < 0;
+                    ); 
+                  }
+                  const isNegative = effect.ep_cost < 0;
                   return (
                     <Table.Row key={`${effectId}-${index}`}>
                       <Table.Cell>{effect.name}</Table.Cell>
@@ -550,8 +541,7 @@ const EffectsPage = (props, context) => {
                           title="Remove Effect"
                           onClick={() => handleRemoveEffect(index)}
                           color="bad"
-                          compact // Make button smaller if needed
-                        />
+                          compact />
                       </Table.Cell>
                     </Table.Row>
                   );
@@ -567,16 +557,14 @@ const EffectsPage = (props, context) => {
         <Button
           icon="arrow-left"
           content="Back to Template"
-          onClick={() => setPage('template')}
-        />
+          onClick={() => setPage('template')} />
         <Button
           icon="cog"
           content="Fabricate"
           color="good"
-           // --- UPDATED: Disable check ---
+          // --- UPDATED: Disable check ---
           disabled={remainingEp < 0 || !selectedFormId || !isValidHex(primaryColor) || !isValidHex(secondaryColor)}
-          onClick={handleFabricate}
-        />
+          onClick={handleFabricate} />
       </Box>
     </Box>
   );
