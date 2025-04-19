@@ -51,6 +51,7 @@
 
 	var/cooldown_time = 3
 	var/aoe_damage = 12
+	var/invisibility_level = 30
 
 /mob/living/simple_animal/hostile/abnormality/dimensional_refraction/proc/Melter()
 	for(var/mob/living/L in livinginview(1, src))
@@ -74,7 +75,7 @@
 /* Qliphoth/Breach effects */
 /mob/living/simple_animal/hostile/abnormality/dimensional_refraction/BreachEffect(mob/living/carbon/human/user, breach_type)
 	. = ..()
-	alpha = 30
+	alpha = invisibility_level
 	addtimer(CALLBACK(src, PROC_REF(Melter)), cooldown_time)
 
 

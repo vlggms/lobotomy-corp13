@@ -9,10 +9,14 @@
 		healthmodifier = 0.02
 	return ..()
 
-//Jangsen is slow, and blocks bullets fully now to let them function as a tank
+//Jangsan blocks ranged damage up to 200 and kills those of lower level
+//Jangsan is slow, and blocks bullets fully now to let them function as a tank
+//Jangsans oneshot was pointless only killing enemies who would never be in melee range in the first place
+//These changes should allow him to tank with his low HP pool while still being threatened by: rhinos, reindeers, roadrunners, raven captains, rooster captains
 /mob/living/simple_animal/hostile/abnormality/jangsan/Initialize()
-	if(IsCombatMap())
-		bullet_threshold = 150
+	if(SSmaptype.maptype == "rcorp")
+		bullet_threshold = 300
+		weak_attribute = 61 //What triggers the clerkoid meter
 	return ..()
 
 //R-Corp cannot eat 180 white damage
@@ -121,4 +125,23 @@
 	if(IsCombatMap())
 		initial_charge_damage = 200
 		growing_charge_damage = 80
+	return ..()
+
+//apex predator backstabs do 150% more damage
+//apex predator backstabs are highly choreographed and reveal apex, the apex player should be rewarded for pulling it off
+/mob/living/simple_animal/hostile/abnormality/apex_predator/Initialize()
+	if(SSmaptype.maptype == "rcorp")
+		backstab_damage = 500
+	return ..()
+
+//puss in boots finishers do 100% more damage
+//puss in boots has a highly choreographed attack which also stuns himself and the target if he hits it, often meaning death for Puss
+/mob/living/simple_animal/hostile/abnormality/puss_in_boots/Initialize()
+	if(SSmaptype.maptype == "rcorp")
+		finisher_damage = 200
+	return ..()
+
+/mob/living/simple_animal/hostile/abnormality/dimensional_refraction/Initialize()
+	if(SSmaptype.maptype == "rcorp")
+		invisibility_level = 10
 	return ..()

@@ -60,7 +60,10 @@
 	var/teleport_cooldown
 	var/teleport_cooldown_time = 120 SECONDS
 	var/strong_counter
+	var/strong_attribute = 60 //How many stats you need to be strong
 	var/weak_counter
+	var/weak_attribute = 40 //How many stats you need to be weak
+	var/clerkoidmeter = 4 //How many weak stats you need to trigger the clerkoidmeter
 	pet_bonus = "meows" //saves a few lines of code by allowing funpet() to be called by attack_hand()
 	var/list/stats = list(
 		FORTITUDE_ATTRIBUTE,
@@ -142,20 +145,12 @@
 /mob/living/simple_animal/hostile/abnormality/jangsan/proc/StatCheck(mob/living/carbon/human/user)
 	strong_counter = 0 //Counts how many stats are at or above 60 AKA level 3 or higher
 	weak_counter = 0 //Counts how many stats are below 40 AKA level 1
-	if(SSmaptype.maptype == "rcorp") //Buff for Jangsan for the R-Corp mode
-		for(var/attribute in stats)
-			if(get_attribute_level(user, attribute)< 61)
-				weak_counter += 1
-			if(get_attribute_level(user, attribute)>= 60) //This doesnt matter for rca
-				strong_counter += 1
-		return
-	else
-		for(var/attribute in stats)
-			if(get_attribute_level(user, attribute)< 40)
-				weak_counter += 1
-			if(get_attribute_level(user, attribute)>= 60)
-				strong_counter += 1
-		return
+	for(var/attribute in stats)
+		if(get_attribute_level(user, attribute)< weak_attribute)
+			weak_counter += 1
+		if(get_attribute_level(user, attribute)>= strong_attribute)
+			strong_counter += 1
+	return
 
 //Too weak and it kills you
 /mob/living/simple_animal/hostile/abnormality/jangsan/PostWorkEffect(mob/living/carbon/human/user, work_type, pe, work_time)
@@ -271,7 +266,7 @@
 		return
 	var/mob/living/carbon/human/H = target
 	StatCheck(H)
-	if(weak_counter >= 4)
+	if(weak_counter >= clerkoidmeter)
 		var/obj/item/bodypart/head/head = H.get_bodypart("head")
 		if(QDELETED(head))
 			return
@@ -299,7 +294,7 @@
 			continue
 		if(H.stat == DEAD)
 			continue
-		if(weak_counter >= 4)
+		if(weak_counter >= clerkoidmeter)
 			icon_state = "jangsan_bite"
 			FearStun(H)
 			chase_cooldown = world.time + chase_cooldown_time
@@ -314,7 +309,7 @@
 			continue
 		if(ishuman(L))
 			StatCheck(L)
-			if(weak_counter >= 4)
+			if(weak_counter >= clerkoidmeter)
 				highest_priority += L
 			else
 				lower_priority += L
@@ -332,7 +327,7 @@
 			return ..()
 		var/mob/living/carbon/human/H = target
 		StatCheck(H)
-		if(weak_counter >= 4 && get_dist(src, target) < 4) //clerk got too close time to die
+		if(weak_counter >= clerkoidmeter && get_dist(src, target) < 4) //clerk got too close time to die
 			icon_state = "jangsan_bite"
 			FearStun(target)
 			chase_cooldown = world.time + chase_cooldown_time
