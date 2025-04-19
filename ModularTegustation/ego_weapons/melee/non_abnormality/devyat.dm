@@ -111,9 +111,9 @@
 /obj/item/ego_weapon/city/devyat_trunk/ComponentInitialize()
 	AddComponent(component_type)
 	var/datum/component/storage/STR = GetComponent(/datum/component/storage)
-	STR.allow_big_nesting = TRUE
-	STR.max_w_class = WEIGHT_CLASS_GIGANTIC
-	STR.max_combined_w_class = 35
+	STR.max_w_class = WEIGHT_CLASS_NORMAL
+	STR.max_combined_w_class = 60
+	STR.max_items = 14
 
 /obj/item/ego_weapon/city/devyat_trunk/AllowDrop()
 	return FALSE
