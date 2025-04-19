@@ -316,9 +316,12 @@ const EffectsPage = (props, context) => {
     return effects.find(e => e.id === effectId);
   }).filter(e => e);
 
-  const currentEpCost = selectedEffectsData.reduce((sum, effect) => sum + (effect?.ep_cost || 0), 0); // Add safety check for effect
-  const currentNegEpCost = selectedEffectsData.reduce((sum, effect) => sum + (effect?.ep_cost < 0 ? effect?.ep_cost : 0), 0);
-  const currentEffectsCost = selectedEffectsData.reduce((sum, effect) => sum + (effect?.current_ahn_cost || 0), 0);
+  const currentEpCost = selectedEffectsData.reduce((sum, effect) =>
+    sum + (effect?.ep_cost || 0), 0); // Add safety check for effect
+  const currentNegEpCost = selectedEffectsData.reduce((sum, effect) =>
+    sum + (effect?.ep_cost < 0 ? effect?.ep_cost : 0), 0);
+  const currentEffectsCost = selectedEffectsData.reduce((sum, effect) =>
+    sum + (effect?.current_ahn_cost || 0), 0);
   const remainingEp = baseEp - currentEpCost;
   const remainingNegEp = baseEp + currentNegEpCost;
   const totalCost = baseCost + currentEffectsCost;
@@ -326,7 +329,8 @@ const EffectsPage = (props, context) => {
   // Event Handlers (handleAddEffect, handleRemoveEffect remain the same)
   const handleAddEffect = effectToAdd => {
     if (!effectToAdd) return;
-    if ((effectToAdd.ep_cost > 0 && effectToAdd.ep_cost <= remainingEp) || (effectToAdd.ep_cost < 0 && -effectToAdd.ep_cost <= remainingNegEp)) {
+    if ((effectToAdd.ep_cost > 0 && effectToAdd.ep_cost <= remainingEp)
+      || (effectToAdd.ep_cost < 0 && -effectToAdd.ep_cost <= remainingNegEp)) {
       setSelectedEffects([...selectedEffects, effectToAdd.id]);
     }
   };
@@ -374,7 +378,8 @@ const EffectsPage = (props, context) => {
           <Box>
             Total Cost: <AnimatedNumber value={totalCost} /> {currencySymbol}
             {/* Optional: Show base cost if different */}
-            {totalCost !== (baseCost + selectedEffectsData.reduce((sum, effect) => sum + (effect?.ahn_cost || 0), 0)) && (
+            {totalCost !== (baseCost + selectedEffectsData.reduce((sum, effect) =>
+              sum + (effect?.ahn_cost || 0), 0)) && (
               <Box inline ml={1} color="label" fontSize="small">
                 (Base: {baseCost + selectedEffectsData.reduce((sum, effect) => sum + (effect?.ahn_cost || 0), 0)})
               </Box>
@@ -422,7 +427,8 @@ const EffectsPage = (props, context) => {
                   const currentCount = selectedCounts[effect.id] || 0;
                   const remainingRepeats = maxRepeats - currentCount;
 
-                  const canAfford = (effect.ep_cost > 0 && effect.ep_cost <= remainingEp) || (effect.ep_cost < 0 && -effect.ep_cost <= remainingNegEp);
+                  const canAfford = (effect.ep_cost > 0 && effect.ep_cost <= remainingEp)
+                    || (effect.ep_cost < 0 && -effect.ep_cost <= remainingNegEp);
                   const maxReached = isRepeatable && remainingRepeats <= 0;
                   const alreadyAddedNonRepeatable = !isRepeatable && currentCount > 0;
 
@@ -526,7 +532,7 @@ const EffectsPage = (props, context) => {
                       <Table.Row key={`missing-${index}-${effectId}`}>
                         <Table.Cell colSpan={3} color="bad">Error: Effect data missing for ID {effectId}</Table.Cell>
                       </Table.Row>
-                    ); 
+                    );
                   }
                   const isNegative = effect.ep_cost < 0;
                   return (
