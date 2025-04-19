@@ -10,7 +10,7 @@ jobs:
   run_linters:
     if: "!contains(github.event.head_commit.message, '[ci skip]')"
     name: Run Linters
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-24.04
     env:
       TG_BOOTSTRAP_NODE_LINUX: 1
     steps:
@@ -55,7 +55,7 @@ jobs:
   compile_all_maps:
     if: "!contains(github.event.head_commit.message, '[ci skip]')"
     name: Compile Maps
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-24.04
     env:
       TG_BOOTSTRAP_NODE_LINUX: 1
     steps:
@@ -86,7 +86,7 @@ jobs:
   run_all_tests:
     if: "!contains(github.event.head_commit.message, '[ci skip]')"
     name: Integration Tests
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-24.04
     env:
       TG_BOOTSTRAP_NODE_LINUX: 1
     services:
