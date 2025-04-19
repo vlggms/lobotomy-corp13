@@ -91,6 +91,12 @@ endmap
 map lclabs
 endmap
 
+map district_4
+	voteable
+	minplayers 10
+	maxplayers 60
+endmap
+
 map skeld
 endmap
 
