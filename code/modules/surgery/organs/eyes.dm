@@ -185,6 +185,7 @@
 	lighting_alpha = LIGHTING_PLANE_ALPHA_MOSTLY_VISIBLE
 	flash_protect = FLASH_PROTECTION_SENSITIVE
 	see_in_dark = 8
+	custom_premium_price = 1800
 
 /obj/item/organ/eyes/robotic/flashlight
 	name = "flashlight eyes"
