@@ -38,4 +38,3 @@
 			AdjustStatNum(PRIDE_STAT,1)
 			AdjustStatNum(GLUTT_STAT,-1)
 	return ..()
-
