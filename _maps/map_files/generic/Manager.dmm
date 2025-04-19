@@ -1364,13 +1364,6 @@
 	},
 /turf/open/floor/carpet/royalblue,
 /area/facility_hallway/manager)
-"ts" = (
-/obj/machinery/vending/cigarette/beach,
-/obj/structure/sign/departments/chemistry/pharmacy{
-	step_y = 32
-	},
-/turf/open/floor/facility/dark,
-/area/facility_hallway/manager)
 "tM" = (
 /obj/structure/table,
 /obj/item/pen/fourcolor,
@@ -2679,6 +2672,10 @@
 /obj/effect/turf_decal/stripes/line,
 /obj/structure/railing,
 /turf/open/floor/plasteel/dark,
+/area/facility_hallway/manager)
+"ND" = (
+/obj/structure/sign/departments/chemistry/pharmacy,
+/turf/closed/indestructible/reinforced,
 /area/facility_hallway/manager)
 "NF" = (
 /obj/effect/turf_decal/siding/blue{
@@ -8405,8 +8402,8 @@ Qf
 Qf
 Qf
 YQ
-YQ
-ts
+ND
+wz
 JT
 Vb
 pE

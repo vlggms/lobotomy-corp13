@@ -1141,6 +1141,10 @@
 	},
 /turf/open/floor/facility/white,
 /area/department_main/command)
+"iS" = (
+/obj/structure/sign/departments/chemistry/pharmacy,
+/turf/closed/indestructible/reinforced,
+/area/department_main/safety)
 "iT" = (
 /obj/structure/chair/comfy/black{
 	dir = 4
@@ -7895,9 +7899,6 @@
 /area/department_main/control)
 "ZM" = (
 /obj/machinery/chem_master,
-/obj/structure/sign/departments/chemistry/pharmacy{
-	step_x = -32
-	},
 /turf/open/floor/facility,
 /area/department_main/safety)
 "ZN" = (
@@ -26583,7 +26584,7 @@ Oq
 VK
 Oq
 Oq
-Oq
+iS
 Oq
 Oq
 PD

@@ -148,6 +148,10 @@
 	},
 /turf/open/floor/facility/dark,
 /area/department_main/training)
+"aZ" = (
+/obj/structure/sign/departments/chemistry/pharmacy,
+/turf/closed/indestructible/reinforced,
+/area/department_main/safety)
 "bb" = (
 /turf/closed/indestructible/fakeglass,
 /area/department_main/information)
@@ -2221,9 +2225,6 @@
 "qd" = (
 /obj/machinery/light,
 /obj/structure/table/glass,
-/obj/structure/sign/departments/chemistry/pharmacy{
-	step_y = -32
-	},
 /turf/open/floor/carpet/green,
 /area/department_main/safety)
 "qe" = (
@@ -33258,7 +33259,7 @@ NN
 NN
 aq
 qd
-cu
+aZ
 cu
 cu
 cu
