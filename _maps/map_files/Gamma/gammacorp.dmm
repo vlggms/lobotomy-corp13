@@ -7572,6 +7572,10 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/department_main/discipline)
+"Xx" = (
+/obj/structure/sign/departments/chemistry/pharmacy,
+/turf/closed/indestructible/reinforced,
+/area/department_main/safety)
 "Xy" = (
 /obj/effect/turf_decal/siding/red{
 	color = "#440000";
@@ -7895,9 +7899,6 @@
 /area/department_main/control)
 "ZM" = (
 /obj/machinery/chem_master,
-/obj/structure/sign/departments/chemistry/pharmacy{
-	step_x = -32
-	},
 /turf/open/floor/facility,
 /area/department_main/safety)
 "ZN" = (
@@ -26583,7 +26584,7 @@ Oq
 VK
 Oq
 Oq
-Oq
+Xx
 Oq
 Oq
 PD

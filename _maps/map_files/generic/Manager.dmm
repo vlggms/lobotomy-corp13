@@ -1364,13 +1364,6 @@
 	},
 /turf/open/floor/carpet/royalblue,
 /area/facility_hallway/manager)
-"ts" = (
-/obj/machinery/vending/cigarette/beach,
-/obj/structure/sign/departments/chemistry/pharmacy{
-	step_y = 32
-	},
-/turf/open/floor/facility/dark,
-/area/facility_hallway/manager)
 "tM" = (
 /obj/structure/table,
 /obj/item/pen/fourcolor,
@@ -2982,6 +2975,10 @@
 	},
 /obj/machinery/holopad/secure,
 /turf/open/floor/wood,
+/area/facility_hallway/manager)
+"TD" = (
+/obj/structure/sign/departments/chemistry/pharmacy,
+/turf/closed/indestructible/reinforced,
 /area/facility_hallway/manager)
 "TK" = (
 /obj/structure/table/wood,
@@ -8405,8 +8402,8 @@ Qf
 Qf
 Qf
 YQ
-YQ
-ts
+TD
+wz
 JT
 Vb
 pE

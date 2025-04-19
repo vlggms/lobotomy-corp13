@@ -5643,7 +5643,7 @@
 /obj/effect/turf_decal/bot,
 /obj/item/clothing/neck/stripedgreenscarf,
 /obj/structure/sign/departments/chemistry/pharmacy{
-	step_y = 32
+	pixel_y = 32
 	},
 /turf/open/floor/plasteel/dark,
 /area/department_main/safety)

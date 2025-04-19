@@ -2221,9 +2221,6 @@
 "qd" = (
 /obj/machinery/light,
 /obj/structure/table/glass,
-/obj/structure/sign/departments/chemistry/pharmacy{
-	step_y = -32
-	},
 /turf/open/floor/carpet/green,
 /area/department_main/safety)
 "qe" = (
@@ -4006,6 +4003,10 @@
 /obj/effect/turf_decal/siding/purple,
 /turf/open/floor/plasteel,
 /area/facility_hallway/south)
+"DT" = (
+/obj/structure/sign/departments/chemistry/pharmacy,
+/turf/closed/indestructible/reinforced,
+/area/department_main/safety)
 "DV" = (
 /obj/effect/turf_decal/siding/purple{
 	dir = 5
@@ -33258,7 +33259,7 @@ NN
 NN
 aq
 qd
-cu
+DT
 cu
 cu
 cu
