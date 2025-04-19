@@ -224,8 +224,8 @@
 		list(
 			"id" = "absorption",
 			"name" = "Absorption",
-			"ahn_cost" = 50,
-			"ep_cost" = 4,
+			"ahn_cost" = 100,
+			"ep_cost" = 6,
 			"desc" = "On kill, regenerate as much HP as the amount of damage you dealt.",
 			"component" = /datum/component/augment/absorption
 		),
