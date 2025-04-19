@@ -3943,6 +3943,7 @@
 #include "ModularTegustation\engineering_bounties.dm"
 #include "ModularTegustation\harvestable_gardens.dm"
 #include "ModularTegustation\languagebooks.dm"
+#include "ModularTegustation\lc13_damage_type_shuffler.dm"
 #include "ModularTegustation\lc13_effects.dm"
 #include "ModularTegustation\lc13_ids.dm"
 #include "ModularTegustation\lc13_machinery.dm"

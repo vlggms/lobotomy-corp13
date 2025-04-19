@@ -310,7 +310,10 @@ GLOBAL_VAR_INIT(execution_enabled, FALSE)
 
 		var/list/damage_types = list(RED_DAMAGE, WHITE_DAMAGE, BLACK_DAMAGE, PALE_DAMAGE)
 		for(var/i in damage_types)
-			var/resistance = SimpleResistanceToText(monster.damage_coeff.getCoeff(i))
+			var/damage_type = i
+			if(GLOB.damage_type_shuffler?.is_enabled)
+				damage_type = GLOB.damage_type_shuffler.mapping_defense[i]
+			var/resistance = SimpleResistanceToText(monster.damage_coeff.getCoeff(damage_type))
 			message += "\n[capitalize(i)]: [resistance]"
 
 		message += "</span>"

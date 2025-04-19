@@ -62,22 +62,34 @@
 	if(forced)
 		. = adjustHealth(amount * CONFIG_GET(number/damage_multiplier), updating_health, forced)
 	else
-		. = adjustHealth(amount * damage_coeff.red * CONFIG_GET(number/damage_multiplier), updating_health, forced)
+		var/damage_coeff_value = damage_coeff.red
+		if(GLOB.damage_type_shuffler?.is_enabled)
+			damage_coeff_value = damage_coeff.getCoeff(GLOB.damage_type_shuffler.mapping_defense[RED_DAMAGE])
+		. = adjustHealth(amount * damage_coeff_value * CONFIG_GET(number/damage_multiplier), updating_health, forced)
 
 /mob/living/simple_animal/adjustWhiteLoss(amount, updating_health = TRUE, forced = FALSE, white_healable = FALSE)
 	if(forced)
 		. = adjustHealth(amount * CONFIG_GET(number/damage_multiplier), updating_health, forced)
 	else
-		. = adjustHealth(amount * damage_coeff.white * CONFIG_GET(number/damage_multiplier), updating_health, forced)
+		var/damage_coeff_value = damage_coeff.white
+		if(GLOB.damage_type_shuffler?.is_enabled)
+			damage_coeff_value = damage_coeff.getCoeff(GLOB.damage_type_shuffler.mapping_defense[WHITE_DAMAGE])
+		. = adjustHealth(amount * damage_coeff_value * CONFIG_GET(number/damage_multiplier), updating_health, forced)
 
 /mob/living/simple_animal/adjustBlackLoss(amount, updating_health = TRUE, forced = FALSE, white_healable = FALSE)
 	if(forced)
 		. = adjustHealth(amount * CONFIG_GET(number/damage_multiplier), updating_health, forced)
 	else
-		. = adjustHealth(amount * damage_coeff.black * CONFIG_GET(number/damage_multiplier), updating_health, forced)
+		var/damage_coeff_value = damage_coeff.black
+		if(GLOB.damage_type_shuffler?.is_enabled)
+			damage_coeff_value = damage_coeff.getCoeff(GLOB.damage_type_shuffler.mapping_defense[BLACK_DAMAGE])
+		. = adjustHealth(amount * damage_coeff_value * CONFIG_GET(number/damage_multiplier), updating_health, forced)
 
 /mob/living/simple_animal/adjustPaleLoss(amount, updating_health = TRUE, forced = FALSE)
 	if(forced)
 		. = adjustHealth(amount * CONFIG_GET(number/damage_multiplier), updating_health, forced)
 	else
-		. = adjustHealth(amount * damage_coeff.pale * CONFIG_GET(number/damage_multiplier), updating_health, forced)
+		var/damage_coeff_value = damage_coeff.pale
+		if(GLOB.damage_type_shuffler?.is_enabled)
+			damage_coeff_value = damage_coeff.getCoeff(GLOB.damage_type_shuffler.mapping_defense[PALE_DAMAGE])
+		. = adjustHealth(amount * damage_coeff_value * CONFIG_GET(number/damage_multiplier), updating_health, forced)

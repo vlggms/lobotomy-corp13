@@ -68,8 +68,11 @@ For escape damage you will have to get creative and figure out how dangerous it 
 			Qliphoth Counter: [initial(abno_type.start_qliphoth)]<br>"
 
 	// Work damage
+	var/initial_work_damage_type = initial(abno_type.work_damage_type)
 	if(isnull(abno_work_damage_type))
-		abno_work_damage_type = uppertext(initial(abno_type.work_damage_type))
+		abno_work_damage_type = uppertext(initial_work_damage_type)
+	if(GLOB.damage_type_shuffler?.is_enabled && IsColorDamageType(initial_work_damage_type))
+		abno_work_damage_type = uppertext(GLOB.damage_type_shuffler.mapping_offense[initial_work_damage_type])
 	if(isnull(abno_work_damage_count))
 		abno_work_damage_count = SimpleWorkDamageToText(initial(abno_type.work_damage_amount))
 	info += "Work Damage Type: [abno_work_damage_type]<br>"
