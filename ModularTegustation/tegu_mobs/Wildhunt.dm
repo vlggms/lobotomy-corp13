@@ -393,14 +393,6 @@
 	QDEL_NULL(RVP)
 	return ..()
 
-	for(var/mob/living/simple_animal/hostile/CatherineHandRight/A in hands)
-		A.death()
-		QDEL_IN(A, 1.5 SECONDS)
-	hands = null
-	QDEL_NULL(particles)
-	particles = null
-	QDEL_NULL(RVP)
-	return ..()
 
 /mob/living/simple_animal/hostile/Catherine/Initialize(mapload)
 	. = ..()
