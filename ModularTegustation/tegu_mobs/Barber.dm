@@ -30,7 +30,6 @@
 	var/blood = 0
 	var/bloodlust = 4
 	var/bloodlust_cooldown = 4
-	var/bloodfeast = 0 //Do not let get this too high or else...
 	var/banquet_cooldown
 	var/banquet_cooldown_time = 12 SECONDS
 	var/banquet_damage = 100
