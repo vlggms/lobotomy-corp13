@@ -423,6 +423,7 @@
 /obj/structure/closet/crate/sigsystem
 	name = "system crate"
 	desc = "A rectangular steel crate. Seems to be wired to be unlocked remotely."
+	icon_state = "securecrate"
 	anchored = TRUE
 	anchorable = TRUE
 	var/obj/item/assembly/signaler/system/sigdev
@@ -447,10 +448,21 @@
 /obj/structure/closet/crate/sigsystem/after_open(mob/living/user, force = FALSE)
 	//No i must hide the sigdev before they see the wires.
 	if(sigdev)
+		sigdev.anchored = TRUE
 		sigdev.signal()
 		qdel(sigdev)
 	if(lock_sigdev)
+		lock_sigdev.anchored = TRUE
 		qdel(lock_sigdev)
+
+/obj/structure/closet/crate/sigsystem/update_overlays()
+	. = ..()
+	if(broken)
+		. += "securecrateemag"
+	else if(locked)
+		. += "securecrater"
+	else
+		. += "securecrateg"
 
 /obj/structure/closet/crate/sigsystem/proc/pulse(code)
 	if(code == lock_signaller_code && locked)
