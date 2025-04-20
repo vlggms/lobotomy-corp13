@@ -32,9 +32,9 @@
 	start_qliphoth = 2
 	work_chances = list(
 		ABNORMALITY_WORK_INSTINCT = 45,
-		ABNORMALITY_WORK_INSIGHT = 30,
+		ABNORMALITY_WORK_INSIGHT = 35,
 		ABNORMALITY_WORK_ATTACHMENT = 0,
-		ABNORMALITY_WORK_REPRESSION = list(55, 55, 55, 60, 60),
+		ABNORMALITY_WORK_REPRESSION = list(60, 60, 60, 55, 55),
 	)
 	max_boxes = 14
 	work_damage_amount = 6
@@ -109,7 +109,7 @@
 	else
 		icon_state = "american_idle"
 	return ..()
-
+	
 /mob/living/simple_animal/hostile/abnormality/redblooded/NeutralEffect(mob/living/carbon/human/user, work_type, pe)
 	. = ..()
 	if(prob(50)) //slightly higher than other TETHs, given that the counter can be raised

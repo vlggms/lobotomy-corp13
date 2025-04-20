@@ -1,7 +1,6 @@
-//Just don't fall in.
 /mob/living/simple_animal/hostile/abnormality/branch12/pentacle_genie
 	name = "Genie of Pentacles"
-	desc = "A belly dancer."
+	desc = "A belly dancer wearing a purple and gold outfit."
 	icon = 'ModularTegustation/Teguicons/branch12/32x48.dmi'
 	icon_state = "pentacle_genie"
 	icon_living = "pentacle_genie"
@@ -33,7 +32,7 @@
 
 	ego_list = list(
 		/datum/ego_datum/weapon/branch12/ten_thousand_dolers,
-		//datum/ego_datum/armor/branch12/ten_thousand_dolers,
+		/datum/ego_datum/armor/branch12/ten_thousand_dolers,
 	)
 	//gift_type =  /datum/ego_gifts/departure
 	abnormality_origin = ABNORMALITY_ORIGIN_BRANCH12
@@ -62,6 +61,11 @@
 		death()
 
 /mob/living/simple_animal/hostile/abnormality/branch12/pentacle_genie/BreachEffect(mob/living/carbon/human/user, work_type, pe, work_time)
+	for(var/mob/living/simple_animal/hostile/abnormality/branch12/pentacle_genie/L in GLOB.mob_list)
+		if(L!=src && !L.IsContained())
+			qdel(src)
+			return
+
 	for(var/i = 1 to 8)
 		var/turf/W = pick(GLOB.xeno_spawn)
 		new /obj/item/red_coin (get_turf(W))

@@ -2,6 +2,40 @@
 	damage = 17
 	speed = 0.25
 
+/obj/projectile/ego_bullet/shrimp_red
+	name = "9mm soda bullet R"
+	damage = 8
+	range = 12
+	spread = 20
+	damage_type = RED_DAMAGE
+
+/obj/projectile/ego_bullet/shrimp_white
+	name = "9mm soda bullet W"
+	damage = 70
+	speed = 0.1
+	damage_type = WHITE_DAMAGE
+	projectile_piercing = PASSMOB
+
+/obj/projectile/ego_bullet/shrimp_white/on_hit(atom/target, blocked = FALSE)
+	..()
+	if(!ishuman(target))
+		return
+	var/mob/living/carbon/human/H = target
+	if(H.sanity_lost)
+		var/obj/item/bodypart/head/head = H.get_bodypart("head")
+		if(istype(head))
+			if(QDELETED(head))
+				return
+			head.dismember()
+			QDEL_NULL(head)
+			H.regenerate_icons()
+			visible_message(span_danger("[H]'s head blew right off!"))
+
+/obj/projectile/ego_bullet/shrimp_pale
+	name = "9mm soda bullet P"
+	damage = 6
+	damage_type = PALE_DAMAGE
+
 /obj/projectile/ego_bullet/ego_kcorp
 	damage = 15
 

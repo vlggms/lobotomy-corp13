@@ -18,8 +18,8 @@
 	max_boxes = 10
 
 	ego_list = list(
-		/datum/ego_datum/weapon/serenity,
-		/datum/ego_datum/armor/serenity,
+		/datum/ego_datum/weapon/branch12/serenity,
+		/datum/ego_datum/armor/branch12/serenity,
 	)
 	//gift_type =  /datum/ego_gifts/signal
 

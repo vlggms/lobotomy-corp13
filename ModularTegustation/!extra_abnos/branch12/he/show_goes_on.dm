@@ -17,8 +17,8 @@
 
 
 	ego_list = list(
-		/datum/ego_datum/weapon/perfectionist,
-		/datum/ego_datum/armor/perfectionist,
+		/datum/ego_datum/weapon/branch12/perfectionist,
+		/datum/ego_datum/armor/branch12/perfectionist,
 	)
 	//gift_type = /datum/ego_gifts/perfectionist
 	abnormality_origin = ABNORMALITY_ORIGIN_BRANCH12
@@ -40,7 +40,7 @@
 
 	//Only start another work if you live the work
 	if(user.health > 0)
-		if(pe<=datum_reference.max_boxes-2 && works <= max_works)	//Have to get equal to or more than max boxes minus 2, max 5 works
+		if(pe<=datum_reference.max_boxes-3 && works <= max_works)	//Have to get equal to or more than max boxes minus 2, max 5 works
 			works ++
 			ForceToWork(user, work_type, TRUE)
 			return

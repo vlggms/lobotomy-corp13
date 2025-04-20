@@ -7,7 +7,7 @@
 	icon_living = "horizon"
 	maxHealth = 1200
 	health = 1200
-	threat_level = TETH_LEVEL
+	threat_level = HE_LEVEL
 	stat_attack = HARD_CRIT
 	move_to_delay = 5
 	vision_range = 12
@@ -16,9 +16,9 @@
 	melee_damage_upper = 21
 	melee_damage_type = RED_DAMAGE
 	work_chances = list(
-		ABNORMALITY_WORK_INSTINCT = 40,
+		ABNORMALITY_WORK_INSTINCT = 35,
 		ABNORMALITY_WORK_INSIGHT = list(60, 60, 50, 50, 50),
-		ABNORMALITY_WORK_ATTACHMENT = 40,
+		ABNORMALITY_WORK_ATTACHMENT = 15,
 		ABNORMALITY_WORK_REPRESSION = list(50, 50, 40, 40, 40),
 	)
 	attack_sound = 'sound/abnormalities/redhood/attack_1.ogg'
@@ -31,8 +31,9 @@
 	del_on_death = FALSE
 
 	ego_list = list(
-	//	/datum/ego_datum/weapon/match,
-	//	/datum/ego_datum/armor/match,
+		/datum/ego_datum/weapon/branch12/memorable,
+		/datum/ego_datum/weapon/branch12/big_day,
+		/datum/ego_datum/armor/branch12/memorable,
 	)
 	//gift_type =  /datum/ego_gifts/match
 	abnormality_origin = ABNORMALITY_ORIGIN_BRANCH12
@@ -61,8 +62,8 @@
 
 //"death"
 /mob/living/simple_animal/hostile/abnormality/branch12/velvet_horizon/death()
-	explode()
-	..()
+	if(!exploding)
+		explode()
 
 /mob/living/simple_animal/hostile/abnormality/branch12/velvet_horizon/proc/explode()
 	if(boom_cooldown > world.time) // That's only for players

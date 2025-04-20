@@ -88,7 +88,7 @@
 				for (var/datum/reagent/abnormality/abnoChem in A.reagents.reagent_list)
 					to_chat(user, span_notice("\t [abnoChem]"))
 					last_scan |= abnoChem
-				to_chat(user, span_notice("Property analysis <a href='?src=[REF(src)];analysis=1'>available</a>."))
+				to_chat(user, span_notice("Property analysis <a href='byond://?src=[REF(src)];analysis=1'>available</a>."))
 				return
 	to_chat(user, span_notice("No enkephalin-derived substances found in [A]."))
 

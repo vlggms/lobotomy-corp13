@@ -301,6 +301,9 @@
 	attack_verb_continuous = list("slams", "attacks")
 	attack_verb_simple = list("slam", "attack")
 	hitsound = 'sound/weapons/ego/hammer.ogg'
+	usesound = 'sound/weapons/ego/hammer.ogg'
+	toolspeed = 0.12
+	tool_behaviour = TOOL_MINING
 	attribute_requirements = list(
 							FORTITUDE_ATTRIBUTE = 80,
 							PRUDENCE_ATTRIBUTE = 100,

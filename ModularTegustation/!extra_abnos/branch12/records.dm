@@ -77,16 +77,6 @@
 		"The <Redacted> can be stopped once a employee gets a good work result on O-06-12-102",
 	)
 
-// Extermination Order
-/obj/item/paper/fluff/info/branch12/extermination
-	abno_type = /mob/living/simple_animal/hostile/abnormality/branch12/extermination
-	abno_code = "O-05-12-775"
-	abno_info = list(
-		"When a work was completed on O-04-12-775, a random abnormality in the facility would breach, designated O-04-12-775-1.",
-		"Upon breaching, this abnormality was considerably more agressive, attacking both employees and other abnormalities.",
-		"Completing a work on O-04-12-775 would also deal considerable damage to all breached abnormalities.",
-		"Headquarters is confident that you could find some use for this.",
-	)
 
 // Saga of Man
 /obj/item/paper/fluff/info/branch12/saga
@@ -183,6 +173,7 @@
 		"After each neutral or failure work, the employee working on O-01-12-523 would spend 200 Facility PE, and in exchange would gift the employee a weapon.",
 		"These weapons were of generally poor quality. It is recomended for Clerks to use said weapons.",
 	)
+
 //Sunset at the Pyramids
 /obj/item/paper/fluff/info/branch12/sunset
 	abno_type = /mob/living/simple_animal/hostile/abnormality/branch12/sunset
@@ -190,6 +181,15 @@
 	abno_info = list(
 		"When work was completed on M-04-12-476, the lotuses covering it changed colour. The damage it did to the next employee corresponded to the colour of these lotuses.",
 		"Carrying out a work type appropriate to the lotus' colour resulted in massively increased success rate, while failing to do so resulted in punishment.",
+	)
+
+//Whiff of Nostalgia
+/obj/item/paper/fluff/info/branch12/nostalgia
+	abno_type = /mob/living/simple_animal/hostile/abnormality/branch12/nostalgia
+	abno_code = "O-04-12-64"
+	abno_info = list(
+		"When Insight work was completed on O-04-12-64, it would take a chunk of employee's SP and dispense a capsule.",
+		"This capsule could be used to heal the SP of the person that used it.",
 	)
 
 //	-------------HE-------------
@@ -268,6 +268,30 @@
 		"When the work result was neutral the qliphoth counter lowered by 1 at a normal rate.",
 		"When the work result was bad the qliphoth counter lowered by 1.",
 	)
+
+//Golden Weave
+/obj/item/paper/fluff/info/branch12/golden_weave
+	abno_type = /mob/living/simple_animal/hostile/abnormality/branch12/weave
+	abno_code = "F-01-12-444"
+	abno_info = list(
+		"When the work result was good the qliphoth counter lowered by 1 at a low rate.",
+		"When the work result was bad the qliphoth counter lowered by 1.",
+	)
+
+
+// Extermination Order
+/obj/item/paper/fluff/info/branch12/extermination
+	abno_type = /mob/living/simple_animal/hostile/abnormality/branch12/extermination
+	abno_code = "O-05-12-775"
+	abno_info = list(
+		"After each work, the qliphoth counter decreased.",
+		"Reading the page reduced the qliphoth counter to 0.",
+		"When a qliphoth counter was 0, a random abnormality in the facility would breach, designated O-04-12-775-1.",
+		"Upon breaching, this abnormality was considerably more agressive, attacking both employees and other abnormalities.",
+		"Completing a work on O-04-12-775 would also deal considerable damage to all breached abnormalities.",
+		"Headquarters is confident that you could find some use for this.",
+	)
+
 //	-------------WAW-------------
 // Queen Keres
 /obj/item/paper/fluff/info/branch12/queen_keres
@@ -334,16 +358,33 @@
 		"M-01-12-554 seemed to be impervious to all attacks.",
 	)
 
-// Schwartzchild Radius
-/obj/item/paper/fluff/info/branch12/black_hole
-	abno_type = /mob/living/simple_animal/hostile/abnormality/branch12/black_hole
-	abno_code = "M-03-12-512"		//The last number is the day that nasa released the photo of Saggitarrius A, May 12th
+// Ascension Ceremony
+/obj/item/paper/fluff/info/branch12/ascension
+	abno_type = /mob/living/simple_animal/hostile/abnormality/branch12/ascension_ceremony
+	abno_code = "T-01-12-201"
 	abno_info = list(
 		"When the work result was bad, the Qliphoth counter decreased.",
-		"When the work result was neutral, the Qliphoth counter decreased at a normal rate.",
-		"WARNING: DO NOT ENTER M-03-12-512."
+		"When the work result was good, the employee recieved an oxygen tank, refilling their oxygen completely.",
 	)
 
+// Dead Man's Plan
+/obj/item/paper/fluff/info/branch12/deadman
+	abno_type = /mob/living/simple_animal/hostile/abnormality/branch12/deadman
+	abno_code = "O-01-12-612"
+	abno_info = list(
+		"When an abnormality in the facility was suppressed, the qliphoth counter decreased.",
+		"WARNING: Do not let any employee marked by O-01-12-612 to leave the facility floor.",
+	)
+
+// Dead Bird
+/obj/item/paper/fluff/info/branch12/dead_bird
+	abno_type = /mob/living/simple_animal/hostile/abnormality/branch12/dead_bird
+	abno_code = "O-02-12-40"
+	abno_info = list(
+		"When the work result was bad, the Qliphoth counter decreased.",
+		"When the work result was normal, the Qliphoth counter decreased at a low rate.",
+		"O-02-12-40 would have to be constantly attacked during it breach, until death."
+	)
 
 //	-------------ALEPH-------------
 // Old Man and The Pale
@@ -399,4 +440,14 @@
 	abno_info = list(
 		"M-01-12-21's Qliphoth counter lowered if not worked for 10 minutes.",
 		"While breaching, M-01-12-21 would cover the area with tiles to be avoided.",
+	)
+
+// Schwartzchild Radius
+/obj/item/paper/fluff/info/branch12/black_hole
+	abno_type = /mob/living/simple_animal/hostile/abnormality/branch12/black_hole
+	abno_code = "T-03-12-512"		//The last number is the day that nasa released the photo of Saggitarrius A, May 12th
+	abno_info = list(
+		"When the work result was bad, the Qliphoth counter decreased.",
+		"When the work result was neutral, the Qliphoth counter decreased at a normal rate.",
+		"WARNING: DO NOT ENTER M-03-12-512."
 	)

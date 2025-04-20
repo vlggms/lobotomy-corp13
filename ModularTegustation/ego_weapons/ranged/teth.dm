@@ -54,7 +54,6 @@
 	desc = "The noises take you back to the very moment of the day that everyone had forgotten."
 	icon_state = "noise"
 	inhand_icon_state = "noise"
-	special = "This weapon fires 5 pellets."
 	force = 14
 	damtype = WHITE_DAMAGE
 	projectile_path = /obj/projectile/ego_bullet/ego_noise
@@ -186,7 +185,6 @@
 	righthand_file = 'icons/mob/inhands/64x64_righthand.dmi'
 	inhand_x_dimension = 64
 	inhand_y_dimension = 64
-	special = "This weapon fires 4 pellets."
 	force = 18
 	attack_speed = 1.3
 	projectile_path = /obj/projectile/ego_bullet/ego_patriot

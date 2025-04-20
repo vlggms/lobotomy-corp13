@@ -366,7 +366,7 @@
 	gib()
 
 // bigBirdEye
-/mob/living/simple_animal/hostile/ordeal/bigBirdEye
+/mob/living/simple_animal/hostile/ordeal/bigbird_eye
 	name = "beak thing"
 	desc = "A giant eye creature that has an enormous beak protruding from the pupil."
 	icon = 'ModularTegustation/Teguicons/tegumobs.dmi'
@@ -392,11 +392,11 @@
 	search_objects = 1
 	del_on_death = TRUE
 
-/mob/living/simple_animal/hostile/ordeal/bigBirdEye/Life()
+/mob/living/simple_animal/hostile/ordeal/bigbird_eye/Life()
     . = ..()
     buffed += 1
     if(buffed >= 2) //every 2 life ticks check for cowardace.
-        if(!is_type_in_typecache(target,wanted_objects) && retreat_distance < 20 && !locate(/mob/living/simple_animal/hostile/ordeal/bigBirdEye) in oview(get_turf(src), 2))
+        if(!is_type_in_typecache(target,wanted_objects) && retreat_distance < 20 && !locate(/mob/living/simple_animal/hostile/ordeal/bigbird_eye) in oview(get_turf(src), 2))
             retreat_distance = 20
         else if(retreat_distance > 1)
             retreat_distance = null
@@ -442,7 +442,9 @@
 	playsound(src, 'sound/weapons/flash.ogg', 100, TRUE)
 
 	for (var/mob/living/L in viewers(flash_range,src)) //The actual flashing
-		if (!ishuman(L))
+		if(!ishuman(L))
+			continue
+		if(faction_check(L.faction, list("kcorp")))
 			continue
 		L.flash_act()
 		L.Paralyze(5 SECONDS) //you better dodge it

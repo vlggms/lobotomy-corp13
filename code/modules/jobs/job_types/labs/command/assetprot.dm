@@ -24,7 +24,7 @@
 	..()
 	ADD_TRAIT(H, TRAIT_WORK_FORBIDDEN, JOB_TRAIT)
 	ADD_TRAIT(H, TRAIT_COMBATFEAR_IMMUNE, JOB_TRAIT)
-	add_verb(H, /mob/living/carbon/human/proc/peccetulum_spawn)
+	add_verb(H, /mob/living/carbon/human/proc/peccatulum_spawn)
 
 /datum/outfit/job/asset_protection
 	name = "LC Asset Protection"
@@ -38,24 +38,38 @@
 	l_pocket = /obj/item/radio
 
 
-/mob/living/carbon/human/proc/peccetulum_spawn()
-	set name = "Spawn Peccetulum"
+/mob/living/carbon/human/proc/peccatulum_spawn()
+	set name = "Spawn Peccatulum"
 	set category = "Gamemaster"
 
-	var/list/peccetulum = list(
+	var/list/peccatulum = list(
 		/mob/living/simple_animal/hostile/ordeal/sin_gloom,
 		/mob/living/simple_animal/hostile/ordeal/sin_gluttony,
 		/mob/living/simple_animal/hostile/ordeal/sin_pride,
 		/mob/living/simple_animal/hostile/ordeal/sin_lust,
-		/mob/living/simple_animal/hostile/ordeal/sin_wrath
+		/mob/living/simple_animal/hostile/ordeal/sin_wrath,
+		/mob/living/simple_animal/hostile/ordeal/sin_sloth,
+		/mob/living/simple_animal/hostile/ordeal/sin_envy,
 	)
 
-	message_admins("<span class='notice'>Asset Protection ([src.ckey]) has spawned Peccetulum.</span>")
+	var/list/peccatulum_noon = list(
+		/mob/living/simple_animal/hostile/ordeal/sin_gloom/noon,
+		/mob/living/simple_animal/hostile/ordeal/sin_gluttony/noon,
+		/mob/living/simple_animal/hostile/ordeal/sin_pride/noon,
+		/mob/living/simple_animal/hostile/ordeal/sin_lust/noon,
+		/mob/living/simple_animal/hostile/ordeal/sin_wrath/noon,
+		/mob/living/simple_animal/hostile/ordeal/sin_sloth/noon,
+	)
+
+	message_admins("<span class='notice'>Asset Protection ([src.ckey]) has spawned Peccatulum.</span>")
 	var/turf/W = pick(GLOB.xeno_spawn)
 	for(var/turf/T in orange(1, W))
-		var/spawning = pick(peccetulum)
-		if(prob(40))
+		var/spawning = pick(peccatulum)
+		var/spawning_noon = pick(peccatulum_noon)
+		if(prob(67))
 			new spawning (T)
+		if(prob(33))
+			new spawning_noon (T)
 	minor_announce("LCD and Asset acquisition has delivered new minor abnormalities to study. Caution, they may be extremely hostile.", "LCD Team update:", TRUE)
 
 

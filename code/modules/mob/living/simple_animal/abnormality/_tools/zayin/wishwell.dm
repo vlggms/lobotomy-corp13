@@ -186,6 +186,10 @@
 	//Sorts them into their lists
 	for(var/path in subtypesof(/datum/ego_datum))
 		var/datum/ego_datum/ego = path
+		//No Branch 12 stuff, it's not 100% balanced for basegame
+		if(istype(ego, /datum/ego_datum/weapon/branch12) || istype(ego, /datum/ego_datum/armor/branch12))
+			continue
+
 		switch(initial(ego.cost))
 			if(200 to INFINITY)
 				superEGO += initial(ego.item_path)
@@ -231,8 +235,17 @@
 			output = "ALEPH"
 		else
 			output = "ZAYIN" //If an EGO is not in the lists for whatever reason it will default to zayin
-	else if(istype(I, /obj/item/casinotoken))
-		output = "TETH"
+	else if(istype(I, /obj/item/coin/casino_token))
+		if(istype(I, /obj/item/coin/casino_token/diamond))
+			output = "ALEPH"
+		else if(istype(I, /obj/item/coin/casino_token/gold))
+			output = "WAW"
+		else if(istype(I, /obj/item/coin/casino_token/silver))
+			output = "HE"
+		else if(istype(I, /obj/item/coin/casino_token/iron))
+			output = "TETH"
+		else
+			output = "ZAYIN"
 		to_chat(user, span_notice("You hear a plop as the token comes in contact with the water..."))
 		user.playsound_local(user, 'sound/items/coinflip.ogg', 80, TRUE)
 	else
@@ -249,7 +262,7 @@
 	qdel(I)
 	var/gacha = rand(1,100)
 	for(var/upgradecheck in GLOB.jcorp_upgrades)
-		if(upgradecheck == "Well Gacha")
+		if(upgradecheck == "Tool Gacha")
 			gacha = min(gacha+5,100)
 	switch(output)
 		if("MONEY")

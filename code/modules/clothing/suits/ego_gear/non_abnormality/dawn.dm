@@ -2,7 +2,7 @@
 	name = "dawn office leader jacket"
 	desc = "An armored jacket worn by the leader of dawn office."
 	icon_state = "dawnleader"
-	armor = list(RED_DAMAGE = 20, WHITE_DAMAGE = 50, BLACK_DAMAGE = 20, PALE_DAMAGE = 20)
+	armor = list(RED_DAMAGE = 20, WHITE_DAMAGE = 50, BLACK_DAMAGE = 20, PALE_DAMAGE = 20, FIRE = 50)
 	attribute_requirements = list(
 							FORTITUDE_ATTRIBUTE = 80,
 							PRUDENCE_ATTRIBUTE = 80,
@@ -14,7 +14,7 @@
 	name = "dawn office jacket"
 	desc = "An armored jacket worn by dawn office fixers. This one is extremely well worn, and has been tailored many times."
 	icon_state = "dawn"
-	armor = list(RED_DAMAGE = 10, WHITE_DAMAGE = 40, BLACK_DAMAGE = 10, PALE_DAMAGE = 0)
+	armor = list(RED_DAMAGE = 10, WHITE_DAMAGE = 40, BLACK_DAMAGE = 10, PALE_DAMAGE = 0, FIRE = 40)
 	attribute_requirements = list(
 							FORTITUDE_ATTRIBUTE = 60,
 							PRUDENCE_ATTRIBUTE = 60,

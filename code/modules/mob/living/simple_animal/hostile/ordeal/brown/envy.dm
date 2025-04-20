@@ -10,7 +10,7 @@
 	icon = 'ModularTegustation/Teguicons/32x32.dmi'
 	icon_state = "envysin"
 	icon_living = "envysin"
-	icon_dead = "lovetown_dead" // temporary
+	icon_dead = "envysin_dead"
 	faction = list("brown_ordeal")
 	maxHealth = 100
 	health = 100

@@ -118,10 +118,11 @@ SUBSYSTEM_DEF(lobotomy_corp)
 	var/player_mod = length(GLOB.player_list) * 0.2
 	box_goal = clamp(round(7500 * player_mod), 3000, 36000)
 
-	//Here's the anouncement for the trait.
-	priority_announce("This shift is a ''[SSmaptype.chosen_trait]'' Shift. All staff is to be advised..", \
-					"HQ Control", sound = 'sound/machines/dun_don_alert.ogg')
-	return TRUE
+	if(SSmaptype.maptype in SSmaptype.lc_maps)
+		//Here's the anouncement for the trait.
+		priority_announce("This shift is a ''[SSmaptype.chosen_trait]'' Shift. All staff is to be advised..", \
+						"HQ Control", sound = 'sound/machines/dun_don_alert.ogg')
+		return TRUE
 
 /datum/controller/subsystem/lobotomy_corp/proc/InitializeOrdeals()
 	// Build ordeals global list
@@ -130,11 +131,12 @@ SUBSYSTEM_DEF(lobotomy_corp)
 		if(O.level < 1)
 			qdel(O)
 			continue
-		all_ordeals[O.level] += O
+		if(O.AbleToRun())
+			all_ordeals[O.level] += O
 
 	if(SSmaptype.chosen_trait == FACILITY_TRAIT_ABNO_BLITZ)
 		next_ordeal_level = 3
-		ordeal_timelock = list(0, 0, 40 MINUTES, 60 MINUTES, 0, 0, 0, 0, 0)
+		ordeal_timelock = list(0, 0, 30 MINUTES, 50 MINUTES, 0, 0, 0, 0, 0)
 	RollOrdeal()
 	return TRUE
 

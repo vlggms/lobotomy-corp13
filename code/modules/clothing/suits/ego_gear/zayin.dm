@@ -4,6 +4,8 @@
 Think before you code!
 Any attempt to code risk class armor will result in a 10 day Github ban.*/
 
+/*Developer's note - All LC13 armor has 50% of its red_damage armor as fire armor by default. */
+
 /obj/item/clothing/suit/armor/ego_gear/zayin
 	icon = 'icons/obj/clothing/ego_gear/abnormality/zayin.dmi'
 	worn_icon = 'icons/mob/clothing/ego_gear/abnormality/zayin.dmi'
@@ -110,7 +112,7 @@ Any attempt to code risk class armor will result in a 10 day Github ban.*/
 
 /obj/item/clothing/suit/armor/ego_gear/zayin/dead_dream
 	name = "dead dream"
-	desc = "We garentee cryopreservation is as safe as can be. The future is just one dream away."
+	desc = "We guarantee cryopreservation is as safe as can be. The future is just one dream away."
 	icon_state = "dead_dream"
 	armor = list(RED_DAMAGE = 0, WHITE_DAMAGE = 10, BLACK_DAMAGE = 0, PALE_DAMAGE = 0)
 

@@ -1,9 +1,9 @@
 /mob/living/simple_animal/hostile/abnormality/branch12/ollieoxenfree
 	name = "Ollieoxenfree"
 	desc = "The child asked 'How is it plagiarism if it was my work all along'"
-	icon = 'ModularTegustation/Teguicons/branch12/32x64.dmi'
-	icon_state = "oxenfree"
-	icon_living = "oxenfree"
+	icon = 'ModularTegustation/Teguicons/branch12/48x64.dmi'
+	icon_state = "ollie"
+	icon_living = "ollie"
 	del_on_death = TRUE
 	abnormality_origin = ABNORMALITY_ORIGIN_BRANCH12
 
@@ -35,7 +35,7 @@
 	work_damage_type = BLACK_DAMAGE
 
 	ego_list = list(
-		/datum/ego_datum/weapon/plagiarism,
+		/datum/ego_datum/weapon/branch12/plagiarism,
 		/datum/ego_datum/armor/branch12/plagiarism,
 	)
 

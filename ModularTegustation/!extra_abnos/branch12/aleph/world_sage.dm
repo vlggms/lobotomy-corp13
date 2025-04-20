@@ -28,7 +28,7 @@
 
 	ego_list = list(
 		//datum/ego_datum/weapon/branch12/XXI,
-		//datum/ego_datum/armor/branch12/XXI,
+		/datum/ego_datum/armor/branch12/XXI,
 	)
 	//gift_type =  /datum/ego_gifts/insanity
 	abnormality_origin = ABNORMALITY_ORIGIN_BRANCH12
@@ -54,7 +54,7 @@
 	var/list/damtypes = list(RED_DAMAGE, WHITE_DAMAGE, BLACK_DAMAGE, PALE_DAMAGE)
 	var/damage = pick(damtypes)
 	work_damage_type = damage
-	user.deal_damage(work_damage_amount, damage) // take 5 random damage each time
+	user.deal_damage(work_damage_amount, damage)
 	WorkDamageEffect()
 
 /mob/living/simple_animal/hostile/abnormality/branch12/world_sage/death()
@@ -111,7 +111,9 @@
 					/obj/structure/jester_tile/black,
 					/obj/structure/jester_tile/pale,
 					/obj/structure/jester_tile/stun,
-					/obj/structure/jester_tile/drugs)
+					/obj/structure/jester_tile/drugs,
+					/obj/structure/jester_tile/statdown,
+					)
 			new to_spawn(F)
 
 
@@ -120,7 +122,7 @@
 	SLEEP_CHECK_DEATH(10)
 
 	//small AOE pushback
-	goonchem_vortex(get_turf(src), 0, 5)
+	goonchem_vortex(get_turf(src), 0, 3)
 	for(var/turf/T in view(3, src))
 		if(T.density)
 			continue
@@ -266,4 +268,15 @@
 	if(ishuman(AM))
 		var/mob/living/carbon/human/H = AM
 		H.set_drugginess(15)
+
+
+/obj/structure/jester_tile/statdown
+	name = "Stat Down Tile"
+	icon_state = "statdown"
+
+/obj/structure/jester_tile/statdown/Crossed(atom/movable/AM)
+	. = ..()
+	if(ishuman(AM))
+		var/mob/living/carbon/human/H = AM
+		H.adjust_all_attribute_levels(-1)
 

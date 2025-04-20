@@ -38,14 +38,6 @@
 		for(var/i in 1 to 2)
 			new /mob/living/simple_animal/hostile/shrimp/grieving(get_turf(user))
 
-//friendly spawned shrimp
-/mob/living/simple_animal/hostile/shrimp/grieving
-	name = "wellcheers obituary serviceman"
-	desc = "A shrimp that appears to be grieving. A moment of silence, please."
-	icon_state = "wellcheers_funeral"
-	icon_living = "wellcheers_funeral"
-	faction = list("neutral", "shrimp")
-
 /obj/item/ego_weapon/ranged/pistol/nostalgia
 	name = "nostalgia"
 	desc = "An old-looking pistol made of wood"

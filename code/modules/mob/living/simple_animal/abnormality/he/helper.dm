@@ -25,6 +25,7 @@
 	melee_damage_upper = 25
 	damage_coeff = list(RED_DAMAGE = 0.5, WHITE_DAMAGE = 1, BLACK_DAMAGE = 2, PALE_DAMAGE = 2)
 	speak_emote = list("states")
+	speech_span = SPAN_ROBOT
 	vision_range = 14
 	aggro_vision_range = 20
 	can_breach = TRUE

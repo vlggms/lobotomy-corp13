@@ -461,6 +461,7 @@
 
 	ears = /obj/item/radio/headset/headset_cent/alt
 	r_pocket = /obj/item/reagent_containers/hypospray/medipen/mental
+	belt = /obj/item/ego_weapon/city/reindeer
 
 /datum/outfit/job/reindeer/berserker/ert/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
 	if(visualsOnly)

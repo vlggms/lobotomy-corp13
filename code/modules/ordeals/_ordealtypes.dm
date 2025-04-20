@@ -54,7 +54,7 @@
 				spawning = pick(spawn_type)
 			else
 				spawning = spawn_type
-			var/mob/living/simple_animal/hostile/ordeal/M = new spawning(deploy_spot)
+			var/mob/living/simple_animal/hostile/M = new spawning(deploy_spot)
 			ordeal_mobs += M
 			M.ordeal_reference = src
 
@@ -90,7 +90,7 @@
 		if(available_locs.len > 1)
 			available_locs -= T
 		for(var/Y in boss_type)
-			var/mob/living/simple_animal/hostile/ordeal/C = new Y(T)
+			var/mob/living/simple_animal/hostile/C = new Y(T)
 			ordeal_mobs += C
 			C.ordeal_reference = src
 		spawngrunts(T, grunt_type, (grunt_amount + grunt_player_mod))
@@ -117,7 +117,7 @@
 		if(available_locs.len > 1)
 			available_locs -= T
 		var/chosen_type = pick_n_take(spawntypes)
-		var/mob/living/simple_animal/hostile/ordeal/C = new chosen_type(T)
+		var/mob/living/simple_animal/hostile/C = new chosen_type(T)
 		ordeal_mobs += C
 		C.ordeal_reference = src
 		spawngrunts(T, grunttype)
@@ -132,7 +132,7 @@
 			deploy_spot = pick_n_take(deployment_area)
 		if(grunttype.len > 1) //if list is more than 1 pick a type of grunt. Dont know if this helps with processing power to bypass picking every time.
 			spawntype = pick(grunttype)
-		var/mob/living/simple_animal/hostile/ordeal/M = new spawntype (deploy_spot)
+		var/mob/living/simple_animal/hostile/M = new spawntype (deploy_spot)
 		ordeal_mobs += M
 		M.ordeal_reference = src
 
@@ -159,6 +159,6 @@
 	else
 		var/X = pick(GLOB.department_centers)
 		T = get_turf(X)
-	var/mob/living/simple_animal/hostile/ordeal/C = new bosstype(T)
+	var/mob/living/simple_animal/hostile/C = new bosstype(T)
 	ordeal_mobs += C
 	C.ordeal_reference = src

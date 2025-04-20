@@ -17,7 +17,10 @@
 		damage_amt *= -1
 	if(stat != DEAD)
 		DamageEffect(damage_amt, WHITE_DAMAGE)
-	adjustSanityLoss(damage_amt, forced)
+	if(HAS_TRAIT(src, TRAIT_BRUTESANITY))
+		adjustBruteLoss(amount, forced = forced)
+	else
+		adjustSanityLoss(damage_amt, forced)
 	if(updating_health)
 		updatehealth()
 	return damage_amt
@@ -29,7 +32,8 @@
 	if(stat != DEAD)
 		DamageEffect(amount, BLACK_DAMAGE)
 	adjustBruteLoss(amount, forced = forced)
-	adjustSanityLoss(damage_amt, forced = forced)
+	if(!HAS_TRAIT(src, TRAIT_BRUTESANITY))
+		adjustSanityLoss(damage_amt, forced = forced)
 	return damage_amt
 
 /mob/living/carbon/human/adjustPaleLoss(amount, updating_health = TRUE, forced = FALSE)

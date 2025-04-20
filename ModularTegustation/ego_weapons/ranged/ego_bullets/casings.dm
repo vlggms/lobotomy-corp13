@@ -24,3 +24,21 @@
 	name = "sodassniper casing"
 	desc = "A casing."
 	projectile_type = /obj/projectile/ego_bullet/ego_soda/rifle
+
+/obj/item/ammo_casing/caseless/red_minigun
+	name = "sodamini casing"
+	desc = "A casing."
+	projectile_type = /obj/projectile/ego_bullet/shrimp_red
+	variance = 90
+
+/obj/item/ammo_casing/caseless/white_sniper
+	name = "sodasniper casing"
+	desc = "A casing."
+	projectile_type = /obj/projectile/ego_bullet/shrimp_white
+
+/obj/item/ammo_casing/caseless/pale_shotgun
+	name = "sodashotty casing P"
+	desc = "A casing."
+	projectile_type = /obj/projectile/ego_bullet/shrimp_pale
+	pellets = 8
+	variance = 16

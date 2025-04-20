@@ -12,9 +12,9 @@
 		ABNORMALITY_WORK_ATTACHMENT = list(65, 65, 65, 80, 80),
 		ABNORMALITY_WORK_REPRESSION = list(30, 30, 0, 0, 0),
 	)
+	start_qliphoth = 2
 	pixel_x = -16
 	base_pixel_x = -16
-	start_qliphoth = 2
 	work_damage_amount = 12
 	work_damage_type = BLACK_DAMAGE
 	ego_list = list(
@@ -43,7 +43,7 @@
 
 /mob/living/simple_animal/hostile/abnormality/branch12/passion/ZeroQliphoth()
 	..()
-	//Okay we're gonna make everyone go murder insane for like 15 seconds
+	//Okay we're gonna make everyone go murder insane for like 5 seconds
 	for(var/mob/living/carbon/human/H in GLOB.player_list)
 		if(!H.sanity_lost)
 			H.adjustSanityLoss(500)
@@ -51,7 +51,7 @@
 		H.ai_controller = /datum/ai_controller/insane/murder/passion
 		H.InitializeAIController()
 
-	addtimer(CALLBACK(src, PROC_REF(resane_everyone)), 15 SECONDS)
+	addtimer(CALLBACK(src, PROC_REF(resane_everyone)), 5 SECONDS)
 
 
 /mob/living/simple_animal/hostile/abnormality/branch12/passion/proc/resane_everyone()

@@ -19,8 +19,8 @@
 	work_damage_type = WHITE_DAMAGE
 
 	ego_list = list(
-		/datum/ego_datum/weapon/joe,
-		/datum/ego_datum/armor/joe,
+		/datum/ego_datum/weapon/branch12/joe,
+		/datum/ego_datum/armor/branch12/joe,
 	)
 	//gift_type =  /datum/ego_gifts/signal
 	abnormality_origin = ABNORMALITY_ORIGIN_BRANCH12

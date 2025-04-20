@@ -257,7 +257,7 @@
 	else
 		add_ranged_ability(user, span_cult("You prepare to mark a target for your cult..."))
 
-/obj/effect/proc_holder/cultmark/InterceptClickOn(mob/living/caller, params, atom/target)
+/obj/effect/proc_holder/cultmark/InterceptClickOn(mob/living/requester, params, atom/target)
 	if(..())
 		return
 	if(ranged_ability_user.incapacitated())
@@ -267,7 +267,7 @@
 	if(!isturf(T))
 		return FALSE
 
-	var/datum/antagonist/cult/C = caller.mind.has_antag_datum(/datum/antagonist/cult,TRUE)
+	var/datum/antagonist/cult/C = requester.mind.has_antag_datum(/datum/antagonist/cult,TRUE)
 
 	if(target in view(7, get_turf(ranged_ability_user)))
 		if(C.cult_team.blood_target)
@@ -432,7 +432,7 @@
 	else
 		add_ranged_ability(user, span_cult("You prepare to tear through the fabric of reality..."))
 
-/obj/effect/proc_holder/pulse/InterceptClickOn(mob/living/caller, params, atom/target)
+/obj/effect/proc_holder/pulse/InterceptClickOn(mob/living/requester, params, atom/target)
 	if(..())
 		return
 	if(ranged_ability_user.incapacitated())
@@ -442,7 +442,7 @@
 	if(!isturf(T))
 		return FALSE
 	if(target in view(7, get_turf(ranged_ability_user)))
-		if((!(iscultist(target) || istype(target, /obj/structure/destructible/cult)) || target == caller) && !(attached_action.throwing))
+		if((!(iscultist(target) || istype(target, /obj/structure/destructible/cult)) || target == requester) && !(attached_action.throwing))
 			return
 		if(!attached_action.throwing)
 			attached_action.throwing = TRUE
@@ -462,5 +462,5 @@
 			attached_action.throwing = FALSE
 			attached_action.cooldown = world.time + attached_action.base_cooldown
 			remove_ranged_ability(span_cult("A pulse of blood magic surges through you as you shift [attached_action.throwee] through time and space."))
-			caller.update_action_buttons_icon()
-			addtimer(CALLBACK(caller, TYPE_PROC_REF(/mob, update_action_buttons_icon)), attached_action.base_cooldown)
+			requester.update_action_buttons_icon()
+			addtimer(CALLBACK(requester, TYPE_PROC_REF(/mob, update_action_buttons_icon)), attached_action.base_cooldown)

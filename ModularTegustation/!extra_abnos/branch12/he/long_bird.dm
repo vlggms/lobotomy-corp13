@@ -35,7 +35,7 @@
 	work_damage_type = RED_DAMAGE
 
 	ego_list = list(
-	//	/datum/ego_datum/weapon/legs,
+		/datum/ego_datum/weapon/branch12/egoification,
 	//	/datum/ego_datum/armor/legs
 	)
 	//gift_type =  /datum/ego_gifts/departure
