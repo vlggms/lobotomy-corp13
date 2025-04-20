@@ -247,6 +247,173 @@
 			"desc" = "On kill, One human within 4 sqrs of you (not including you), Heals 10% * X of your target max HP.",
 			"component" = /datum/component/augment/flesh_morphing
 		),
+		// --- Status Effects ---
+		list(
+			"id" = "burn_vigor",
+			"name" = "Burn Vigor",
+			"ahn_cost" = 25,
+			"ep_cost" = 2,
+			"repeatable" = 3,
+			"desc" = "When making a melee attack, deal an extra 10*X% more damage for every 5 burn on self.",
+			"component" = /datum/component/augment/burn_vigor
+		),
+		list(
+			"id" = "bleed_vigor",
+			"name" = "Bleed Vigor",
+			"ahn_cost" = 25,
+			"ep_cost" = 2,
+			"repeatable" = 3,
+			"desc" = "When making a melee attack, deal an extra 10*X% more damage for every 5 bleed on self.",
+			"component" = /datum/component/augment/bleed_vigor
+		),
+		list(
+			"id" = "tremor_defense",
+			"name" = "Tremor Defense",
+			"ahn_cost" = 25,
+			"ep_cost" = 2,
+			"repeatable" = 3,
+			"desc" = "For every 10 Tremor on self, take 10*X% less damage from RED/BLACK attacks.",
+			"component" = /datum/component/augment/tremor_defense
+		),
+		list(
+			"id" = "earthquake",
+			"name" = "Earthquake",
+			"ahn_cost" = 100,
+			"ep_cost" = 8,
+			"desc" = "When attacking a target with 20+ Tremor, trigger a Tremor burst on target and deal (Tremor on target * 6) RED damage to all mobs within 3 sqrs of the target. This has a cooldown of 30 seconds.",
+			"component" = /datum/component/augment/earthquake
+		),
+		list(
+			"id" = "tremor_break",
+			"name" = "Tremor Break",
+			"ahn_cost" = 50,
+			"ep_cost" = 4,
+			"desc" = "When attacking a target with 15+ Tremor, trigger a Tremor Burst on the target and inflict (Tremor on Target / 5) Feeble to the target. This has a cooldown of 30 seconds.",
+			"component" = /datum/component/augment/tremor_break
+		),
+		list(
+			"id" = "tremor_burst",
+			"name" = "Tremor Burst",
+			"ahn_cost" = 25,
+			"ep_cost" = 2,
+			"desc" = "When attacking a target with 10+ Tremor, trigger a Tremor Burst on the target. This has a cooldown of 10 seconds.",
+			"component" = /datum/component/augment/tremor_burst
+		),
+		list(
+			"id" = "reflective_tremor",
+			"name" = "Reflective Tremor",
+			"ahn_cost" = 25,
+			"ep_cost" = 2,
+			"repeatable" = 4,
+			"desc" = "When taking RED/BLACK damage from a melee attack, inflict 2*X Tremor to the target and X Tremor to self. (This has a cooldown of 1 second)",
+			"component" = /datum/component/augment/reflective_tremor
+		),
+		list(
+			"id" = "blood_jaunt",
+			"name" = "Blood Jaunt",
+			"ahn_cost" = 200,
+			"ep_cost" = 8,
+			"desc" = "When you click on a tile outside your melee range, You will teleport to that tile and will inflict 10 bleed to all foes within 2 sqrs, and yourself. (Has a cooldown of 1 minute) (You need to be in harm intent in order to trigger this.)",
+			"component" = /datum/component/augment/blood_jaunt
+		),
+		list(
+			"id" = "sanguine_desire",
+			"name" = "Sanguine Desire",
+			"ahn_cost" = 50,
+			"ep_cost" = 4,
+			"desc" = "When making a melee attack to a target with bleed, heal 3 SP and an extra 2 SP for every status effect they have. (Has a cooldown of 1 second).",
+			"component" = /datum/component/augment/sanguine_desire
+		),
+		list(
+			"id" = "pyromaniac",
+			"name" = "Pyromaniac",
+			"ahn_cost" = 50,
+			"ep_cost" = 4,
+			"desc" = "When making a melee attack, while having 5+ burn on self, transfer 2 Burn on self to the target.",
+			"component" = /datum/component/augment/pyromaniac
+		),
+		list(
+			"id" = "hemomaniac",
+			"name" = "Hemomaniac",
+			"ahn_cost" = 50,
+			"ep_cost" = 4,
+			"desc" = "When making a melee attack, while having 5+ bleed on self, transfer 2 Bleed on self to the target.",
+			"component" = /datum/component/augment/hemomaniac
+		),
+		list(
+			"id" = "spreading_embers",
+			"name" = "Spreading Embers",
+			"ahn_cost" = 50,
+			"ep_cost" = 4,
+			"desc" = "When attacking a target with 10+ burn, inflict 10 burn to all foes within 3 sqrs of the target, and inflict 15 burn to self. (This has a cooldown of 30 seconds).",
+			"component" = /datum/component/augment/spreading_embers
+		),
+		list(
+			"id" = "regenerative_warmth",
+			"name" = "Regenerative Warmth",
+			"ahn_cost" = 50,
+			"ep_cost" = 4,
+			"desc" = "On kill, One human within 4 sqrs of you (not including you), Heals 10% * X of your target max HP.",
+			"component" = /datum/component/augment/regenerative_warmth
+		),
+		list(
+			"id" = "stoneward_form",
+			"name" = "Stoneward Form",
+			"ahn_cost" = 50,
+			"ep_cost" = 4,
+			"desc" = "When you take damage, spawn a Stoneward Statue which every 2 seconds heals all humans near it and gives them 3 Tremor.",
+			"component" = /datum/component/augment/stoneward_form
+		),
+		list(
+			"id" = "ink_over",
+			"name" = "Ink Over",
+			"ahn_cost" = 50,
+			"ep_cost" = 4,
+			"desc" = "When making a melee attack to a target with bleed, deal 20% more damage, and deal an additional 10% for each status effect they have.",
+			"component" = /datum/component/augment/ink_over
+		),
+		list(
+			"id" = "blood_rush",
+			"name" = "Blood Rush",
+			"ahn_cost" = 50,
+			"ep_cost" = 4,
+			"desc" = "On Kill, Gain a 50% speed boost for 5 seconds and gain 5 Bleed.",
+			"component" = /datum/component/augment/blood_rush
+		),
+		list(
+			"id" = "time_moratorium",
+			"name" = "Time Moratorium",
+			"ahn_cost" = 50,
+			"ep_cost" = 4,
+			"desc" = "On hit against a target with 15+ tremor, consume 10 tremor from the target to trigger the timestop effect around them, with an AoE of 2 and duration of 4 seconds. (Has a cooldown of 30 seconds.)",
+			"component" = /datum/component/augment/time_moratorium
+		),
+		list(
+			"id" = "rekindled_flame",
+			"name" = "Rekindled Flame",
+			"ahn_cost" = 25,
+			"ep_cost" = 2,
+			"repeatable" = 3,
+			"desc" = "When attacking a target, inflict 1*X Burn for every 25% of your missing HP.",
+			"component" = /datum/component/augment/rekindled_flame
+		),
+		list(
+			"id" = "force_of_a_wildfire ",
+			"name" = "Force of a Wildfire ",
+			"ahn_cost" = 100,
+			"ep_cost" = 6,
+			"desc" = "On kill, All foes who are within 3 sqrs of the user, get inflicted with burn equal to the executed target’s burn.",
+			"component" = /datum/component/augment/force_of_a_wildfire
+		),
+		list(
+			"id" = "unstable_inertia",
+			"name" = "Unstable Inertia",
+			"ahn_cost" = 25,
+			"ep_cost" = 2,
+			"repeatable" = 3,
+			"desc" = "When you take damage, inflict 1*X Tremor for every 25% of your missing HP.",
+			"component" = /datum/component/augment/unstable_inertia
+		),
 		// --- Negative Effects ---
 		list(
 			"id" = "paranoid",
