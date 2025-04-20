@@ -55,8 +55,7 @@
 		return FALSE
 	var/turf/T = get_turf(src)
 	if(!T)
-		..()
-		return
+		return ..()
 	for(var/obj/effect/decal/cleanable/blood/B in view(T, 2)) //will clean up any blood, but only heals from human blood
 		if(B.blood_state == BLOOD_STATE_HUMAN)
 			playsound(T, 'sound/abnormalities/nosferatu/bloodcollect.ogg', 25, 3)
