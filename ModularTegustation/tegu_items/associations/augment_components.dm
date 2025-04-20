@@ -105,6 +105,7 @@
 		damage_buff_mult++
 	total_damage_buff = damage_buff * damage_buff_mult * repeat
 	human_parent.extra_damage += total_damage_buff
+	to_chat(human_parent, span_nicegreen("You take [total_damage_buff]% less damage!, Due to Struggling Strength"))
 
 /datum/component/augment/struggling_strength/afterattack_effect(datum/source, atom/target, mob/user, proximity_flag, obj/item/item)
 	. = ..()
@@ -126,6 +127,7 @@
 	if(item.force <= 0 || target.stat == DEAD)
 		return FALSE
 	inflict_cooldown = world.time + inflict_cooldown_time
+	to_chat(human_parent, span_nicegreen("You inflict 1 BLACK fragility to [target], Due to Armor Rend, RED!"))
 	target.apply_lc_black_fragile(1)
 
 //Armor Rend, BLACK
@@ -142,6 +144,7 @@
 	if(item.force <= 0 || target.stat == DEAD)
 		return FALSE
 	inflict_cooldown = world.time + inflict_cooldown_time
+	to_chat(human_parent, span_nicegreen("You inflict 1 RED fragility to [target], Due to Armor Rend, BLACK!"))
 	target.apply_lc_red_fragile(1)
 
 //Shattering Mind, RED
@@ -161,6 +164,8 @@
 		damage_buff_mult++
 	total_damage_buff = damage_buff * damage_buff_mult * repeat
 	human_parent.extra_damage_red += total_damage_buff
+	if(item.damtype == RED_DAMAGE)
+		to_chat(human_parent, span_nicegreen("You dealt [total_damage_buff]% more RED damage! Due to Shattering Mind, RED"))
 
 /datum/component/augment/shattering_mind_red/afterattack_effect(datum/source, atom/target, mob/user, proximity_flag, obj/item/item)
 	. = ..()
@@ -185,6 +190,8 @@
 		damage_buff_mult++
 	total_damage_buff = damage_buff * damage_buff_mult * repeat
 	human_parent.extra_damage_white += total_damage_buff
+	if(item.damtype == WHITE_DAMAGE)
+		to_chat(human_parent, span_nicegreen("You dealt [total_damage_buff]% more WHITE damage! Due to Shattering Mind, WHITE"))
 
 /datum/component/augment/shattering_mind_white/afterattack_effect(datum/source, atom/target, mob/user, proximity_flag, obj/item/item)
 	. = ..()
@@ -209,6 +216,8 @@
 		damage_buff_mult++
 	total_damage_buff = damage_buff * damage_buff_mult * repeat
 	human_parent.extra_damage_black += total_damage_buff
+	if(item.damtype == BLACK_DAMAGE)
+		to_chat(human_parent, span_nicegreen("You dealt [total_damage_buff]% more BLACK damage! Due to Shattering Mind, BLACK"))
 
 /datum/component/augment/shattering_mind_black/afterattack_effect(datum/source, atom/target, mob/user, proximity_flag, obj/item/item)
 	. = ..()
@@ -229,7 +238,7 @@
 	if(human_parent.sanityhealth > human_parent.maxSanity * 0.5)
 		human_parent.deal_damage(human_parent.maxSanity * 0.05, WHITE_DAMAGE)
 		human_parent.extra_damage_black += damage_buff
-		to_chat(human_parent, span_nicegreen("You savagely attack [target]!"))
+		to_chat(human_parent, span_nicegreen("You savagely attack [target], losing a bit of your mind... Due to Unstable"))
 		buffed_damage = TRUE
 
 /datum/component/augment/unstable/afterattack_effect(datum/source, atom/target, mob/user, proximity_flag, obj/item/item)
@@ -253,6 +262,7 @@
 		return FALSE
 	inflict_cooldown = world.time + inflict_cooldown_time
 	target.apply_lc_bleed(2)
+	to_chat(human_parent, span_nicegreen("You inflict 2 bleed to [target]! Due to Gashing Wounds"))
 
 //Scorching Mind
 /datum/component/augment/scorching_mind
@@ -269,6 +279,7 @@
 		return FALSE
 	inflict_cooldown = world.time + inflict_cooldown_time
 	target.apply_lc_burn(3)
+	to_chat(human_parent, span_nicegreen("You inflict 3 burn to [target]! Due to Scorching Mind"))
 
 //Slothful Decay
 /datum/component/augment/slothful_decay
@@ -285,9 +296,10 @@
 		return FALSE
 	inflict_cooldown = world.time + inflict_cooldown_time
 	target.apply_lc_tremor(2, 55)
+	to_chat(human_parent, span_nicegreen("You inflict 2 tremor to [target]! Due to Slothful Decay"))
 	if(item.attack_speed >= 1.5)
 		target.apply_lc_tremor(2, 55)
-
+		to_chat(human_parent, span_nicegreen("You inflict 2 tremor to [target]! Due to Slothful Decay"))
 //Strong Arms
 /datum/component/augment/dual_wield
 	var/inflict_cooldown
@@ -315,7 +327,7 @@
 		var/justice_mod = 1 + (get_modified_attribute_level(human_parent, JUSTICE_ATTRIBUTE)/100)
 		var/total_damage = item.force * justice_mod
 		human_parent.adjustBruteLoss(-1*total_damage)
-		to_chat(human_parent, span_nicegreen("Your body regenerates has you execute [target]!"))
+		to_chat(human_parent, span_nicegreen("Your body regenerates has you execute [target]! Due to Absorption"))
 	. = ..()
 
 //Brutalize
@@ -329,7 +341,7 @@
 				continue
 			L.deal_damage(kill_damage * repeat, WHITE_DAMAGE)
 		new /obj/effect/gibspawner/human/bodypartless(get_turf(target))
-		to_chat(human_parent, span_nicegreen("You strike fear into your foes as you brutalize [target]!"))
+		to_chat(human_parent, span_nicegreen("You strike fear into your foes as you brutalize [target]! Due to Brutalize"))
 	. = ..()
 
 //Flesh-Morphing
@@ -346,7 +358,7 @@
 
 		potential_target.adjustBruteLoss(last_target.maxHealth * 0.1 * repeat)
 		to_chat(potential_target, span_nicegreen("You feel your flesh regrow as [human_parent] executes [target]!"))
-		to_chat(human_parent, span_nicegreen("You heal [potential_target] as you execute [target]!"))
+		to_chat(human_parent, span_nicegreen("You heal [potential_target] as you execute [target]! Due to Flesh-Morphing"))
 	. = ..()
 
 ///Reactive Damage Effects
@@ -371,6 +383,7 @@
 	human_parent.physiology.white_mod -= total_damage_resist
 	human_parent.physiology.black_mod -= total_damage_resist
 	human_parent.physiology.pale_mod -= total_damage_resist
+	to_chat(human_parent, span_nicegreen("You take [total_damage_resist]% less damage! Due to Struggling Defense"))
 
 /datum/component/augment/struggling_defense/after_take_damage_effect(datum/source, damage, damagetype, def_zone)
 	. = ..()
@@ -394,6 +407,7 @@
 		return FALSE
 	ES_cooldown = world.time + ES_cooldown_time
 	human_parent.apply_lc_red_protection(8)
+	to_chat(human_parent, span_nicegreen("Emergency RED Shields, Activated!"))
 
 //Emergency Shields, BLACK
 /datum/component/augment/ES_black
@@ -408,6 +422,7 @@
 		return FALSE
 	ES_cooldown = world.time + ES_cooldown_time
 	human_parent.apply_lc_black_protection(8)
+	to_chat(human_parent, span_nicegreen("Emergency BLACK Shields, Activated!"))
 
 //Emergency Shields, White
 /datum/component/augment/ES_white
@@ -422,6 +437,7 @@
 		return FALSE
 	ES_cooldown = world.time + ES_cooldown_time
 	human_parent.apply_lc_white_protection(8)
+	to_chat(human_parent, span_nicegreen("Emergency WHITE Shields, Activated!"))
 
 //Defensive Preparations
 /datum/component/augment/defensive_preparations
@@ -433,7 +449,9 @@
 	if(defense_cooldown > world.time)
 		return FALSE
 	defense_cooldown = world.time + defense_cooldown_time
+	to_chat(human_parent, span_nicegreen("You protect all nearby allies! Due to Defensive Preparations"))
 	for(var/mob/living/carbon/human/H in urange(4, human_parent))
+		to_chat(H, span_nicegreen("You feel protected by [human_parent], gaining 4 Protection!"))
 		H.apply_lc_protection(4)
 
 //Reinforcement Nanties
@@ -453,6 +471,7 @@
 	human_parent.physiology.white_mod -= total_damage_resist
 	human_parent.physiology.black_mod -= total_damage_resist
 	human_parent.physiology.pale_mod -= total_damage_resist
+	to_chat(human_parent, span_nicegreen("You took [total_damage_resist]% less damage! Due to Reinforcement Nanties"))
 
 /datum/component/augment/reinforcement_nanties/after_take_damage_effect(datum/source, damage, damagetype, def_zone)
 	. = ..()
@@ -462,6 +481,415 @@
 	human_parent.physiology.pale_mod += total_damage_resist
 	total_damage_resist = 0
 	damage_resist_mult = 0
+
+///Status
+
+//Burn Vigor
+/datum/component/augment/burn_vigor
+	var/damage_buff = 10
+	var/total_damage_buff = 0
+
+/datum/component/augment/burn_vigor/attack_effect(datum/source, mob/living/target, mob/living/user, obj/item/item)
+	. = ..()
+	var/datum/status_effect/stacking/lc_burn/UB = user.has_status_effect(/datum/status_effect/stacking/lc_burn)
+	if(UB)
+		total_damage_buff = round(UB.stacks/5) * damage_buff * repeat
+	else
+		total_damage_buff = 0
+	human_parent.extra_damage += total_damage_buff
+	to_chat(human_parent, span_nicegreen("You dealt [total_damage_buff]% more damage! Due to Burn Vigor"))
+
+/datum/component/augment/burn_vigor/afterattack_effect(datum/source, atom/target, mob/user, proximity_flag, obj/item/item)
+	. = ..()
+	human_parent.extra_damage -= total_damage_buff
+	total_damage_buff = 0
+
+//Burn Vigor
+/datum/component/augment/bleed_vigor
+	var/damage_buff = 10
+	var/total_damage_buff = 0
+
+/datum/component/augment/bleed_vigor/attack_effect(datum/source, mob/living/target, mob/living/user, obj/item/item)
+	. = ..()
+	var/datum/status_effect/stacking/lc_bleed/UB = user.has_status_effect(/datum/status_effect/stacking/lc_bleed)
+	if(UB)
+		total_damage_buff = round(UB.stacks/5) * damage_buff * repeat
+	else
+		total_damage_buff = 0
+	human_parent.extra_damage += total_damage_buff
+	to_chat(human_parent, span_nicegreen("You dealt [total_damage_buff]% more damage! Due to Bleed Vigor"))
+
+/datum/component/augment/bleed_vigor/afterattack_effect(datum/source, atom/target, mob/user, proximity_flag, obj/item/item)
+	. = ..()
+	human_parent.extra_damage -= total_damage_buff
+	total_damage_buff = 0
+
+//Tremor Defense
+/datum/component/augment/tremor_defense
+	var/damage_resist = 10
+	var/total_damage_resist = 0
+
+/datum/component/augment/struggling_defense/take_damage_effect(datum/source, damage, damagetype, def_zone)
+	. = ..()
+	var/datum/status_effect/stacking/lc_tremor/UT = human_parent.has_status_effect(/datum/status_effect/stacking/lc_tremor)
+	if(UT)
+		total_damage_resist = round(UT.stacks/5) * damage_resist * repeat
+		to_chat(human_parent, span_nicegreen("You took [total_damage_resist]% less damage! Due to Tremor Defense"))
+	else
+		total_damage_resist = 0
+	human_parent.physiology.red_mod -= total_damage_resist
+	human_parent.physiology.black_mod -= total_damage_resist
+
+/datum/component/augment/struggling_defense/after_take_damage_effect(datum/source, damage, damagetype, def_zone)
+	. = ..()
+	human_parent.physiology.red_mod += total_damage_resist
+	human_parent.physiology.black_mod += total_damage_resist
+	total_damage_resist = 0
+
+//Earthquake
+/datum/component/augment/earthquake
+	var/inflict_cooldown
+	var/inflict_cooldown_time = 300
+
+/datum/component/augment/earthquake/attack_effect(datum/source, mob/living/target, mob/living/user, obj/item/item)
+	. = ..()
+	var/datum/status_effect/stacking/lc_tremor/TT = target.has_status_effect(/datum/status_effect/stacking/lc_tremor)
+	if(TT)
+		if(TT.stacks >= 20)
+			if(inflict_cooldown > world.time)
+				return FALSE
+			if(item.force <= 0 || target.stat == DEAD)
+				return FALSE
+			inflict_cooldown = world.time + inflict_cooldown_time
+			TT.TremorBurst()
+			new /obj/effect/temp_visual/explosion(get_turf(target))
+			playsound(get_turf(target), 'sound/effects/ordeals/steel/gcorp_boom.ogg', 60, TRUE)
+			for(var/mob/living/simple_animal/hostile/H in view(3, target))
+				H.apply_damage((TT.stacks * 6), RED_DAMAGE, null, H.run_armor_check(null, RED_DAMAGE))
+
+//Tremor Break
+/datum/component/augment/tremor_break
+	var/inflict_cooldown
+	var/inflict_cooldown_time = 300
+
+/datum/component/augment/tremor_break/attack_effect(datum/source, mob/living/target, mob/living/user, obj/item/item)
+	. = ..()
+	var/datum/status_effect/stacking/lc_tremor/TT = target.has_status_effect(/datum/status_effect/stacking/lc_tremor)
+	if(TT)
+		if(TT.stacks >= 15)
+			if(inflict_cooldown > world.time)
+				return FALSE
+			if(item.force <= 0 || target.stat == DEAD)
+				return FALSE
+			inflict_cooldown = world.time + inflict_cooldown_time
+			TT.TremorBurst()
+			target.apply_lc_feeble(round(TT.stacks/5))
+			to_chat(human_parent, span_nicegreen("You inflicted [round(TT.stacks/5)] feeble to [target]! Due to Tremor Break"))
+
+//Tremor Break
+/datum/component/augment/tremor_burst
+	var/inflict_cooldown
+	var/inflict_cooldown_time = 100
+
+/datum/component/augment/tremor_burst/attack_effect(datum/source, mob/living/target, mob/living/user, obj/item/item)
+	. = ..()
+	var/datum/status_effect/stacking/lc_tremor/TT = target.has_status_effect(/datum/status_effect/stacking/lc_tremor)
+	if(TT)
+		if(TT.stacks >= 10)
+			if(inflict_cooldown > world.time)
+				return FALSE
+			if(item.force <= 0 || target.stat == DEAD)
+				return FALSE
+			inflict_cooldown = world.time + inflict_cooldown_time
+			TT.TremorBurst()
+
+//Reflective Tremor
+/datum/component/augment/reflective_tremor
+	var/inflict_cooldown
+	var/inflict_cooldown_time = 10
+
+/datum/component/augment/reflective_tremor/attackedby_mob(datum/source, mob/living/simple_animal/animal)
+	. = ..()
+	if(animal.melee_damage_type == RED_DAMAGE || animal.melee_damage_type == BLACK_DAMAGE)
+		if(inflict_cooldown > world.time)
+			return FALSE
+		inflict_cooldown = world.time + inflict_cooldown_time
+		animal.apply_lc_tremor(repeat * 2)
+		human_parent.apply_lc_tremor(repeat)
+		to_chat(human_parent, span_nicegreen("You inflicted [repeat * 2] tremor to [animal], and gained [repeat] tremor! Due to Reflective Tremor"))
+
+//Blood Jaunt
+/datum/component/augment/blood_jaunt
+	var/inflict_cooldown
+	var/inflict_cooldown_time = 600
+
+/datum/component/augment/blood_jaunt/afterattack_effect(datum/source, atom/target, mob/user, proximity_flag, obj/item/item)
+	. = ..()
+	if(human_parent.a_intent != INTENT_HARM)
+		return FALSE
+	if(inflict_cooldown > world.time)
+		return FALSE
+	inflict_cooldown = world.time + inflict_cooldown_time
+	new /obj/effect/temp_visual/dir_setting/cult/phase/out (get_turf(human_parent))
+	human_parent.forceMove(get_turf(target))
+	new /obj/effect/temp_visual/dir_setting/cult/phase (get_turf(human_parent))
+	playsound(src, 'sound/magic/exit_blood.ogg', 100, FALSE, 4)
+	human_parent.apply_lc_bleed(10)
+	for(var/mob/living/simple_animal/hostile/H in view(2, human_parent))
+		H.apply_lc_bleed(10)
+
+//Sanguine Desire
+/datum/component/augment/sanguine_desire
+	var/inflict_cooldown
+	var/inflict_cooldown_time = 100
+
+/datum/component/augment/sanguine_desire/attack_effect(datum/source, mob/living/target, mob/living/user, obj/item/item)
+	. = ..()
+	var/datum/status_effect/stacking/lc_bleed/TB = target.has_status_effect(/datum/status_effect/stacking/lc_bleed)
+	if(TB)
+		if(inflict_cooldown > world.time)
+			return FALSE
+		if(item.force <= 0 || target.stat == DEAD)
+			return FALSE
+		inflict_cooldown = world.time + inflict_cooldown_time
+		human_parent.adjustSanityLoss(-3 + (target.status_effects.len * -2))
+		to_chat(human_parent, span_nicegreen("You healed [-3 + (target.status_effects.len * -2)] SP! Due to Sanguine Desire"))
+
+//Pyromaniac
+/datum/component/augment/pyromaniac/attack_effect(datum/source, mob/living/target, mob/living/user, obj/item/item)
+	. = ..()
+	var/datum/status_effect/stacking/lc_burn/UB = user.has_status_effect(/datum/status_effect/stacking/lc_burn)
+	if(UB)
+		if(UB.stacks >= 5)
+			target.apply_lc_burn(2)
+			UB.stacks -= 2
+			to_chat(human_parent, span_nicegreen("You transferred 2 burn to [target]! Due to Pyromaniac"))
+
+//Hemomaniac
+/datum/component/augment/hemomaniac/attack_effect(datum/source, mob/living/target, mob/living/user, obj/item/item)
+	. = ..()
+	var/datum/status_effect/stacking/lc_bleed/UB = user.has_status_effect(/datum/status_effect/stacking/lc_bleed)
+	if(UB)
+		if(UB.stacks >= 5)
+			target.apply_lc_bleed(2)
+			UB.stacks -= 2
+			to_chat(human_parent, span_nicegreen("You transferred 2 bleed to [target]! Due to Hemomaniac"))
+
+//Spreading Embers
+/datum/component/augment/spreading_embers
+	var/inflict_cooldown
+	var/inflict_cooldown_time = 300
+
+/datum/component/augment/spreading_embers/attack_effect(datum/source, mob/living/target, mob/living/user, obj/item/item)
+	. = ..()
+	var/datum/status_effect/stacking/lc_burn/TB = target.has_status_effect(/datum/status_effect/stacking/lc_burn)
+	if(TB)
+		if(TB.stacks >= 10)
+			if(inflict_cooldown > world.time)
+				return FALSE
+			if(item.force <= 0 || target.stat == DEAD)
+				return FALSE
+			inflict_cooldown = world.time + inflict_cooldown_time
+			to_chat(human_parent, span_userdanger("You incinerate [target]! Due to Spreading Embers"))
+			playsound(target, 'sound/abnormalities/crying_children/attack_aoe.ogg', 50, TRUE)
+			human_parent.apply_lc_burn(15)
+			for(var/mob/living/simple_animal/hostile/H in view(2, target))
+				H.apply_lc_burn(10)
+
+//Regenerative Warmth
+/datum/component/augment/regenerative_warmth/take_damage_effect(datum/source, damage, damagetype, def_zone)
+	. = ..()
+	if(damagetype != BURN)
+		return FALSE
+	human_parent.adjustBruteLoss(damage/2)
+	human_parent.adjustFireLoss(damage/2)
+	to_chat(human_parent, span_nicegreen("You regenerate [damage/2] HP from the burn! Due to Regenerative Warmth"))
+
+//Stoneward Form
+/datum/component/augment/stoneward_form
+	var/inflict_cooldown
+	var/inflict_cooldown_time = 50
+
+/datum/component/augment/stoneward_form/take_damage_effect(datum/source, damage, damagetype, def_zone)
+	. = ..()
+	if(inflict_cooldown > world.time)
+		return FALSE
+	inflict_cooldown = world.time + inflict_cooldown_time
+	var/list/available_turfs = list()
+	for(var/turf/T in view(2, human_parent.loc))
+		if(isfloorturf(T) && !T.density && !locate(/mob/living) in T)
+			available_turfs += T
+	human_parent.visible_message("<span class='danger'>[human_parent] starts spawning a statue! Due to Stoneward Form</span>")
+	if(available_turfs.len)
+		var/turf/statue_turf = pick(available_turfs)
+		var/mob/living/simple_animal/hostile/stoneward_statue/S = new /mob/living/simple_animal/hostile/stoneward_statue(statue_turf)
+		S.icon_state = "memory_statute_grow" // Set the initial icon state to the rising animation
+		flick("memory_statute_grow", S) // Play the rising animation
+		spawn(10) // Wait for the animation to finish
+			S.icon_state = initial(S.icon_state) // Set the icon state back to the default statue icon
+		human_parent.visible_message("<span class='danger'>[human_parent] spawns a statue. </span>")
+
+/mob/living/simple_animal/hostile/stoneward_statue
+	name = "Stoneward Statue"
+	desc = "A statue created by an Augment User."
+	icon = 'ModularTegustation/Teguicons/tegumobs.dmi'
+	icon_state = "memory_statute"
+	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 0.5, WHITE_DAMAGE = 0, BLACK_DAMAGE = 2, PALE_DAMAGE = 2)
+	health = 100
+	maxHealth = 100
+	speed = 0
+	move_resist = INFINITY
+	mob_size = MOB_SIZE_HUGE
+	var/heal_cooldown = 20
+	var/heal_timer
+	var/heal_per_tick = 20
+	var/self_destruct_timer
+
+/mob/living/simple_animal/hostile/stoneward_statue/Initialize()
+	. = ..()
+	heal_timer = addtimer(CALLBACK(src, .proc/heal), heal_cooldown, TIMER_STOPPABLE)
+	self_destruct_timer = addtimer(CALLBACK(src, .proc/self_destruct), 0.5 MINUTES, TIMER_STOPPABLE)
+	AIStatus = AI_OFF
+	stop_automated_movement = TRUE
+	anchored = TRUE
+
+/mob/living/simple_animal/hostile/stoneward_statue/Destroy()
+	deltimer(heal_timer)
+	deltimer(self_destruct_timer)
+	return ..()
+
+/mob/living/simple_animal/hostile/stoneward_statue/proc/self_destruct()
+	visible_message("<span class='danger'>The statue crumbles and self-destructs!</span>")
+	qdel(src)
+
+/mob/living/simple_animal/hostile/stoneward_statue/adjustHealth(amount, updating_health = TRUE, forced = FALSE)
+	. = ..()
+	if(health <= 0)
+		visible_message("<span class='danger'>The statue crumbles into pieces!</span>")
+		qdel(src)
+
+/mob/living/simple_animal/hostile/stoneward_statue/proc/heal()
+	for(var/mob/living/carbon/human/H in view(3, src))
+		H.adjustBruteLoss(-heal_per_tick)
+		H.apply_lc_tremor(3, 55)
+	visible_message("<span class='notice'>The statue heals everyone around it!</span>")
+	playsound(src, 'sound/abnormalities/rosesign/rose_summon.ogg', 75, TRUE, 2)
+	icon_state = "memory_statute_heal" // Set the initial icon state to the rising animation
+	flick("memory_statute_heal", src) // Play the rising animation
+	spawn(10) // Wait for the animation to finish
+		icon_state = initial(icon_state) // Set the icon state back to the default statue icon
+	heal_timer = addtimer(CALLBACK(src, .proc/heal), heal_cooldown, TIMER_STOPPABLE)
+
+/mob/living/simple_animal/hostile/stoneward_statue/AttackingTarget()
+	return FALSE
+
+/mob/living/simple_animal/hostile/stoneward_statue/CanAttack(atom/the_target)
+	return FALSE
+
+//Ink Over
+/datum/component/augment/ink_over
+	var/damage_buff = 10
+	var/total_damage_buff = 0
+
+/datum/component/augment/ink_over/attack_effect(datum/source, mob/living/target, mob/living/user, obj/item/item)
+	. = ..()
+	var/datum/status_effect/stacking/lc_bleed/TB = target.has_status_effect(/datum/status_effect/stacking/lc_bleed)
+	if(TB)
+		total_damage_buff += (damage_buff * 2)
+		total_damage_buff += (target.status_effects.len - 1) * damage_buff
+		human_parent.extra_damage += total_damage_buff
+		to_chat(human_parent, span_nicegreen("You dealt [total_damage_buff]% more damage to [target]! Due to Ink Over"))
+	else
+		total_damage_buff = 0
+
+/datum/component/augment/ink_over/afterattack_effect(datum/source, atom/target, mob/user, proximity_flag, obj/item/item)
+	. = ..()
+	human_parent.extra_damage -= total_damage_buff
+	total_damage_buff = 0
+
+//Blood Rush
+/datum/component/augment/blood_rush
+	var/blood_rush_timer
+
+/datum/component/augment/blood_rush/afterattack_effect(datum/source, atom/target, mob/user, proximity_flag, obj/item/item)
+	if(last_target.stat == DEAD)
+		human_parent.apply_lc_bleed(5)
+		to_chat(human_parent, span_nicegreen("You accelerate as you execute [last_target]! Due to Blood Rush"))
+		if(blood_rush_timer)
+			deltimer(blood_rush_timer)
+		else
+			human_parent.add_movespeed_modifier(/datum/movespeed_modifier/blood_rush)
+		blood_rush_timer = addtimer(CALLBACK(src, PROC_REF(remove_rush)), 50, TIMER_STOPPABLE)
+	. = ..()
+
+/datum/component/augment/blood_rush/proc/remove_rush()
+	human_parent.remove_movespeed_modifier(/datum/movespeed_modifier/blood_rush)
+
+/datum/movespeed_modifier/blood_rush
+	variable = TRUE
+	multiplicative_slowdown = -1.5
+
+//Time Moratorium
+/datum/component/augment/time_moratorium
+	var/inflict_cooldown
+	var/inflict_cooldown_time = 300
+
+/datum/component/augment/time_moratorium/attack_effect(datum/source, mob/living/target, mob/living/user, obj/item/item)
+	. = ..()
+	var/datum/status_effect/stacking/lc_tremor/TT = target.has_status_effect(/datum/status_effect/stacking/lc_tremor)
+	if(TT)
+		if(TT.stacks >= 15)
+			if(inflict_cooldown > world.time)
+				return FALSE
+			if(item.force <= 0 || target.stat == DEAD)
+				return FALSE
+			inflict_cooldown = world.time + inflict_cooldown_time
+			TT.TremorBurst()
+			TT.stacks -= 10
+			new /obj/effect/timestop(get_turf(target), 2, 40, list(human_parent))
+
+//Rekindled Flame
+/datum/component/augment/rekindled_flame
+	var/inflict_buff_mult = 0
+
+/datum/component/augment/rekindled_flame/attack_effect(datum/source, mob/living/target, mob/living/user, obj/item/item)
+	. = ..()
+	var/missing_hp = (human_parent.health/human_parent.maxHealth)
+	if(missing_hp <= 0.75)
+		inflict_buff_mult++
+	else if(missing_hp <= 0.50)
+		inflict_buff_mult++
+	else if(missing_hp <= 0.25)
+		inflict_buff_mult++
+	target.apply_lc_burn(inflict_buff_mult * repeat)
+	to_chat(human_parent, span_nicegreen("You inflict [inflict_buff_mult * repeat] burn to [target]! Due to Rekindled Flame"))
+	inflict_buff_mult = 0
+
+//Force of a Wildfire
+/datum/component/augment/force_of_a_wildfire/afterattack_effect(datum/source, atom/target, mob/user, proximity_flag, obj/item/item)
+	if(last_target.stat == DEAD)
+		var/datum/status_effect/stacking/lc_burn/TB = last_target.has_status_effect(/datum/status_effect/stacking/lc_burn)
+		if(TB)
+			for(var/mob/living/simple_animal/hostile/H in view(3, human_parent))
+				H.apply_lc_burn(TB.stacks)
+	. = ..()
+
+//Unstable Inertia
+/datum/component/augment/unstable_inertia
+	var/inflict_mult = 0
+
+/datum/component/augment/unstable_inertia/attackedby_mob(datum/source, mob/living/simple_animal/animal)
+	. = ..()
+	var/missing_hp = (human_parent.health/human_parent.maxHealth)
+	if(missing_hp <= 0.75)
+		inflict_mult++
+	else if(missing_hp <= 0.50)
+		inflict_mult++
+	else if(missing_hp <= 0.25)
+		inflict_mult++
+	animal.apply_lc_tremor(repeat * inflict_mult)
+	to_chat(human_parent, span_nicegreen("You inflict [repeat * inflict_mult] tremor to [animal]! Due to Unstable Inertia"))
+	inflict_mult = 0
 
 ///Downsides
 
@@ -474,6 +902,7 @@
 	for(var/mob/living/carbon/human/H in view(7, human_parent))
 		nearby_human = TRUE
 	if(!nearby_human)
+		to_chat(human_parent, span_warning("You take 10 WHITE damage, as there are no humans near you! Due to Paranoid"))
 		human_parent.deal_damage(10, WHITE_DAMAGE)
 
 /datum/component/augment/paranoid/after_take_damage_effect(datum/source, damage, damagetype, def_zone)
@@ -495,12 +924,14 @@
 	if(item.force <= 0 || target.stat == DEAD)
 		return FALSE
 	inflict_cooldown = world.time + inflict_cooldown_time
+	to_chat(H, span_warning("You gain 3 Feeble, as you start combat! Due to Boot Up Sequence"))
 	H.apply_lc_feeble(3)
 
 //Pacifist
 /datum/component/augment/pacifist/afterattack_effect(datum/source, atom/target, mob/user, proximity_flag, obj/item/item)
 	if(last_target.stat == DEAD)
 		human_parent.apply_lc_feeble(3)
+		to_chat(human_parent, span_warning("You gain 3 Feeble, as execute [last_target]! Due to Pacifist"))
 	. = ..()
 
 //Thanatophobia
@@ -516,6 +947,7 @@
 		return FALSE
 	tp_cooldown = world.time + tp_cooldown_time
 	human_parent.deal_damage(10, WHITE_DAMAGE)
+	to_chat(human_parent, span_warning("As you take damage under 50% HP, you also take 10 WHITE damage! Due to Thanatophobia"))
 
 //Struggling Weakness
 /datum/component/augment/struggling_weakness
@@ -534,6 +966,7 @@
 		damage_buff_mult++
 	total_damage_buff = damage_buff * damage_buff_mult * repeat
 	human_parent.extra_damage -= total_damage_buff
+	to_chat(human_parent, span_warning("You deal [total_damage_buff]% less damage! Due to Struggling Weakness"))
 
 /datum/component/augment/struggling_weakness/afterattack_effect(datum/source, atom/target, mob/user, proximity_flag, obj/item/item)
 	. = ..()
@@ -561,6 +994,7 @@
 	human_parent.physiology.white_mod += total_damage_resist
 	human_parent.physiology.black_mod += total_damage_resist
 	human_parent.physiology.pale_mod += total_damage_resist
+	to_chat(human_parent, span_warning("You take [total_damage_resist]% more damage! Due to Struggling Fragility"))
 
 /datum/component/augment/struggling_fragility/after_take_damage_effect(datum/source, damage, damagetype, def_zone)
 	. = ..()
@@ -581,6 +1015,7 @@
 	. = ..()
 	if(self_burn)
 		human_parent.apply_lc_burn(2 * repeat)
+		to_chat(human_parent, span_warning("You gain [2 * repeat] burn! Due to Overheated"))
 	if(item.force <= 0 || target.stat == DEAD)
 		return FALSE
 	if(tp_cooldown > world.time)
@@ -605,6 +1040,7 @@
 		return FALSE
 	tp_cooldown = world.time + tp_cooldown_time
 	human_parent.deal_damage(damage * repeat * 0.5, WHITE_DAMAGE)
+	to_chat(human_parent, span_warning("You take [damage * repeat * 0.5] WHITE damage, as you take RED damage! Due to Algophobia"))
 
 //Weak Arms
 /datum/component/augment/weak_arms
@@ -614,6 +1050,7 @@
 	. = ..()
 	old_attack_speed = item.attack_speed
 	item.attack_speed = item.attack_speed * 2
+	to_chat(human_parent, span_warning("Your attack is 100% slower! Due to Weak Arms"))
 
 /datum/component/augment/weak_arms/afterattack_effect(datum/source, atom/target, mob/user, proximity_flag, obj/item/item)
 	. = ..()
@@ -627,6 +1064,7 @@
 	. = ..()
 	attack_counter++
 	if(attack_counter >= 8)
+		to_chat(human_parent, span_warning("All of your nearby foes target you! Due to Annoyance"))
 		for(var/mob/living/simple_animal/hostile/H in view(3, human_parent))
 			if(!H.faction_check_mob(human_parent))
 				H.GiveTarget(human_parent)
@@ -660,3 +1098,4 @@
 		return FALSE
 	gain_bleed_cooldown = world.time + gain_bleed_cooldown_time
 	human_parent.apply_lc_bleed(2 * repeat)
+	to_chat(human_parent, span_warning("As you take damage, you gain [2 * repeat] bleed! Due to Allodynia"))
