@@ -303,5 +303,4 @@
 	if(!istype(head))
 		return FALSE
 	head.dismember()
-	return
 
