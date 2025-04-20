@@ -165,7 +165,6 @@
 	if(!istype(head))
 		return FALSE
 	head.dismember()
-	return
 
 
 /mob/living/simple_animal/hostile/Barber/OpenFire()
