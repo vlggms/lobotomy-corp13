@@ -201,7 +201,6 @@
 /mob/living/simple_animal/hostile/megafauna/Erlking/proc/SpecialReset()
 	pixel_x = initial(pixel_x)
 	base_pixel_x = initial(base_pixel_x)
-	return
 
 
 /mob/living/simple_animal/hostile/megafauna/Erlking/proc/BladeThrow(atom/target) // Dullahan afterimages spam
