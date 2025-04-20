@@ -141,4 +141,92 @@
 
 	playsound(src, 'sound/weapons/egloves.ogg', 50, TRUE, -1)
 
+/obj/item/ego_weapon/city/zweiwest
+	name = "zwei knight greatsword"
+	desc = "A bulky rectangular greatsword used by the zwei of the west."
+	special = "If used at 2 range you will lunge fowards then block, if you fail to lunge you will hesitate."
+	icon_state = "zweiwest"
+	inhand_icon_state = "zweiwest"
+	force = 50
+	reach = 2
+	attack_speed = 2
+	damtype = RED_DAMAGE
+	swingstyle = WEAPONSWING_LARGESWEEP
+	var/defense_buff = 0.8
+	attribute_requirements = list(
+		FORTITUDE_ATTRIBUTE = 60,
+		PRUDENCE_ATTRIBUTE = 40,
+		TEMPERANCE_ATTRIBUTE = 40,
+		JUSTICE_ATTRIBUTE = 40,
+	)
 
+	hitsound = 'sound/weapons/bladeslice.ogg'
+	attack_verb_continuous = list("attacks", "slashes", "slices", "tears", "lacerates", "rips", "dices", "cuts")
+	attack_verb_simple = list("attack", "slash", "slice", "tear", "lacerate", "rip", "dice", "cut")
+
+/obj/item/ego_weapon/city/zweiwest/attack(mob/living/target, mob/living/carbon/human/user)
+	..()
+	if(!CanUseEgo(user))
+		return
+	if(target.stat == DEAD)
+		return
+
+	if(get_dist(target, user) < 2)//You need to use your range to trigger the guard
+		return
+
+	var/dodgelanding
+	if(user.dir == 1)
+		dodgelanding = locate(user.x, user.y + 1, user.z)
+	if(user.dir == 2)
+		dodgelanding = locate(user.x, user.y - 1, user.z)
+	if(user.dir == 4)
+		dodgelanding = locate(user.x + 1, user.y, user.z)
+	if(user.dir == 8)
+		dodgelanding = locate(user.x - 1, user.y, user.z)
+	user.throw_at(dodgelanding, 1, 1, spin = FALSE)
+
+	if(isliving(target))
+		if(get_dist(target, user) > 1)//If you try to use the greatsword like a spear you deserve this
+			user.changeNext_move(CLICK_CD_MELEE * 2)
+			user.Knockdown(2 SECONDS)
+			var/obj/item/held = user.get_active_held_item()
+			user.dropItemToGround(held)
+			to_chat(user, span_userdanger("Your swing is too wide leading you to lose your balance!"))
+			return
+
+	if(!isliving(target))
+		return
+
+	user.Immobilize(2 SECONDS)
+	user.physiology.red_mod *= defense_buff
+	user.physiology.white_mod *= defense_buff
+	user.physiology.black_mod *= defense_buff
+	user.physiology.pale_mod *= defense_buff
+	user.changeNext_move(CLICK_CD_MELEE * 0.15)
+	to_chat(user, span_userdanger("You slam your greatsword onto the ground!"))
+	user.say("Greatsword Guard!")
+
+	playsound(src, 'sound/weapons/ego/shield1.ogg', 50, TRUE)
+
+	addtimer(CALLBACK(src, PROC_REF(Return), user), 2 SECONDS)
+
+/obj/item/ego_weapon/city/zweiwest/proc/Return(mob/living/carbon/human/user)
+	user.physiology.red_mod /= defense_buff
+	user.physiology.white_mod /= defense_buff
+	user.physiology.black_mod /= defense_buff
+	user.physiology.pale_mod /= defense_buff
+	to_chat(user, span_notice("You raise your greatsword once more!"))
+
+/obj/item/ego_weapon/city/zweiwest/vet
+	name = "veteran zwei knight greatsword"
+	desc = "A bulky rectangular greatsword used by the veterans of the zwei of the west."
+	icon_state = "zweiwest_fat"
+	inhand_icon_state = "zweiwest_fat"
+	force = 72
+	defense_buff = 0.5
+	attribute_requirements = list(
+							FORTITUDE_ATTRIBUTE = 80,
+							PRUDENCE_ATTRIBUTE = 60,
+							TEMPERANCE_ATTRIBUTE = 60,
+							JUSTICE_ATTRIBUTE = 60
+							)

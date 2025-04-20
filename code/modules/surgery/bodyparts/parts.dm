@@ -12,6 +12,7 @@
 	max_stamina_damage = 120
 	var/obj/item/cavity_item
 	wound_resistance = 50
+	max_damage_callback = 200
 
 /obj/item/bodypart/chest/can_dismember(obj/item/I)
 	if(owner.stat < HARD_CRIT || !get_organs())

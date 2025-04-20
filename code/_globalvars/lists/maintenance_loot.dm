@@ -187,9 +187,11 @@ GLOBAL_LIST_INIT(uncommon_loot, list(//uncommon: useful items
 		/obj/item/clothing/gloves/color/black = 1,
 		) = 8,
 
+	/*//No, sci is not being added to Enkephalin Rush.
 	list(//strange objects
 		/obj/item/relic = 5,
 		) = 8,
+	*/
 
 	list(//construction and crafting
 		/obj/item/stock_parts/cell/high = 1,

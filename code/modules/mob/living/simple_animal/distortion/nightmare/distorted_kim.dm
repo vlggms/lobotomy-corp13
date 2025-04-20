@@ -1,7 +1,7 @@
-/mob/living/simple_animal/hostile/distortion/Kim
+/mob/living/simple_animal/hostile/distortion/kim
 	name = "Kaukritya-Aniyata"
 	desc = "A humanoid shrouded in darkness full of intent to kill."
-	icon = 'ModularTegustation/Teguicons/DistortedKim.dmi'
+	icon = 'ModularTegustation/Teguicons/distorted_kim.dmi'
 	icon_state = "Kim"
 	icon_living = "Kim"
 	icon_dead = "Kim"
@@ -75,7 +75,7 @@
 	var/serumA_cooldown_time = 10 SECONDS
 	var/nightmare_mode = FALSE
 
-/mob/living/simple_animal/hostile/distortion/Kim/Login()
+/mob/living/simple_animal/hostile/distortion/kim/Login()
 	. = ..()
 	to_chat(src, "<h1>There is no such thing as honor in this city.</h1><br>\
 		<b>|Overthrow|: Dash rapidly towards the target while slashing the area.<br>\
@@ -94,12 +94,12 @@
 	var/countering_duration = 10
 
 
-/mob/living/simple_animal/hostile/distortion/Kim/Moved()
+/mob/living/simple_animal/hostile/distortion/kim/Moved()
 	. = ..()
 	if (sidesteping)
 		MoveVFX()
 
-/mob/living/simple_animal/hostile/distortion/Kim/proc/MoveVFX()
+/mob/living/simple_animal/hostile/distortion/kim/proc/MoveVFX()
 	set waitfor = FALSE
 	var/obj/viscon_filtereffect/distortedform_trail/trail = new(src.loc,themob = src, waittime = 5)
 	trail.vis_contents += src
@@ -109,8 +109,8 @@
 	animate(alpha = 0, time = 10)
 
 /datum/action/cooldown/dodge/proc/slowdown()
-	if (istype(owner, /mob/living/simple_animal/hostile/distortion/Kim))
-		var/mob/living/simple_animal/hostile/distortion/Kim/H = owner
+	if (istype(owner, /mob/living/simple_animal/hostile/distortion/kim))
+		var/mob/living/simple_animal/hostile/distortion/kim/H = owner
 		H.density = TRUE
 		H.sidesteping = FALSE
 		H.UpdateSpeed()
@@ -119,8 +119,8 @@
 /datum/action/cooldown/counter/Trigger()
 	if(!..())
 		return FALSE
-	if (istype(owner, /mob/living/simple_animal/hostile/distortion/Kim))
-		var/mob/living/simple_animal/hostile/distortion/Kim/H = owner
+	if (istype(owner, /mob/living/simple_animal/hostile/distortion/kim))
+		var/mob/living/simple_animal/hostile/distortion/kim/H = owner
 		if(H.no_counter)
 			return FALSE
 		else
@@ -132,17 +132,17 @@
 			addtimer(CALLBACK(src, PROC_REF(endcounter)), countering_duration)
 			StartCooldown()
 
-/mob/living/simple_animal/hostile/distortion/Kim/attacked_by(obj/item/I, mob/living/user)
+/mob/living/simple_animal/hostile/distortion/kim/attacked_by(obj/item/I, mob/living/user)
 	. = ..()
 	if (countering)
 		counter()
 
-/mob/living/simple_animal/hostile/distortion/Kim/bullet_act(obj/projectile/P, def_zone, piercing_hit = FALSE)
+/mob/living/simple_animal/hostile/distortion/kim/bullet_act(obj/projectile/P, def_zone, piercing_hit = FALSE)
 	. = ..()
 	if (countering)
 		counter()
 
-/mob/living/simple_animal/hostile/distortion/Kim/proc/counter()
+/mob/living/simple_animal/hostile/distortion/kim/proc/counter()
 	var/list/been_hit = list()
 	say("Yield my Flesh.")
 	playsound(src, 'sound/weapons/fixer/generic/finisher2.ogg', 75, TRUE, 2)
@@ -154,8 +154,8 @@
 	countering = FALSE
 
 /datum/action/cooldown/counter/proc/endcounter()
-	if (istype(owner, /mob/living/simple_animal/hostile/distortion/Kim))
-		var/mob/living/simple_animal/hostile/distortion/Kim/H = owner
+	if (istype(owner, /mob/living/simple_animal/hostile/distortion/kim))
+		var/mob/living/simple_animal/hostile/distortion/kim/H = owner
 		H.countering = FALSE
 		H.color = null
 		H.ChangeResistances(list(RED_DAMAGE = 1, WHITE_DAMAGE = 1, BLACK_DAMAGE = 1, PALE_DAMAGE = 1))
@@ -163,7 +163,7 @@
 
 
 
-/mob/living/simple_animal/hostile/distortion/Kim/proc/claimbones(target)
+/mob/living/simple_animal/hostile/distortion/kim/proc/claimbones(target)
 	if(!isliving(target))
 		return
 	var/mob/living/T = target
@@ -202,7 +202,7 @@
 	finishing = FALSE
 
 
-/mob/living/simple_animal/hostile/distortion/Kim/proc/Finisher(mob/living/target) //This is super hard to avoid
+/mob/living/simple_animal/hostile/distortion/kim/proc/Finisher(mob/living/target) //This is super hard to avoid
 	target.apply_damage(10, PALE_DAMAGE, null, target.run_armor_check(null, RED_DAMAGE), spread_damage = TRUE) //10% of your health in red damage
 	to_chat(target, span_danger("[src] is trying to cut you in half!"))
 	if(!ishuman(target))
@@ -215,7 +215,7 @@
 	H.set_lying_angle(360) //gunk code I know, but it is the simplest way to override gib_animation() without touching other code. Also looks smoother.
 	H.gib()
 
-/mob/living/simple_animal/hostile/distortion/Kim/AttackingTarget(atom/attacked_target)
+/mob/living/simple_animal/hostile/distortion/kim/AttackingTarget(atom/attacked_target)
 	if(charging)
 		return
 	if(dash_cooldown <= world.time && !client && charge_ready)
@@ -232,7 +232,7 @@
 	return
 
 
-/mob/living/simple_animal/hostile/distortion/Kim/proc/Charge(move_dir, times_ran)
+/mob/living/simple_animal/hostile/distortion/kim/proc/Charge(move_dir, times_ran)
 	var/stop_charge = FALSE
 	if(times_ran >= dash_num)
 		stop_charge = TRUE
@@ -286,7 +286,7 @@
 			times_ran = dash_num //stop the charge, we got them!
 	addtimer(CALLBACK(src, PROC_REF(Charge), move_dir, (times_ran + 1)), 0.5)
 
-/mob/living/simple_animal/hostile/distortion/Kim/OpenFire()
+/mob/living/simple_animal/hostile/distortion/kim/OpenFire()
 	if(nightmare_mode)
 		if(dash_cooldown <= world.time && charge_ready)
 			var/chance_to_dash = 25
@@ -305,13 +305,13 @@
 				PrepCharge(target)
 
 
-/mob/living/simple_animal/hostile/distortion/Kim/OpenFire(atom/A)
+/mob/living/simple_animal/hostile/distortion/kim/OpenFire(atom/A)
 	if(!can_act == TRUE)
 		return
 	if(ranged_cooldown <= world.time)
 		Charge(A)
 
-/mob/living/simple_animal/hostile/distortion/Kim/Life()
+/mob/living/simple_animal/hostile/distortion/kim/Life()
 	. = ..()
 	if(!.) // Dead
 		return FALSE
@@ -319,7 +319,7 @@
 		return
 	counter_cooldown = world.time + counter_cooldown_time
 
-/mob/living/simple_animal/hostile/distortion/Kim/proc/PrepCharge(target, forced)
+/mob/living/simple_animal/hostile/distortion/kim/proc/PrepCharge(target, forced)
 	if(charging || dash_cooldown > world.time && (!forced))
 		return
 	new /obj/effect/temp_visual/distortedform_shift(get_turf(src))
@@ -342,36 +342,36 @@
 /obj/projectile/ripper_dash_effect/on_hit(atom/target, blocked = FALSE)
 	return
 
-/mob/living/simple_animal/hostile/distortion/Kim/adjustHealth(amount, updating_health = TRUE, forced = FALSE)
+/mob/living/simple_animal/hostile/distortion/kim/adjustHealth(amount, updating_health = TRUE, forced = FALSE)
 	. = ..()
 	if(. > 0)
 		damage_taken += .
 	if(damage_taken >= 480 && !damage_reflection)
 		StartReflecting()
 
-/mob/living/simple_animal/hostile/distortion/Kim/death(gibbed)
+/mob/living/simple_animal/hostile/distortion/kim/death(gibbed)
 	if(damage_reflection)
 		damage_reflection = FALSE
 	return ..()
 
-/mob/living/simple_animal/hostile/distortion/Kim/Move()
+/mob/living/simple_animal/hostile/distortion/kim/Move()
 	if(!can_act)
 		return FALSE
 	return ..()
 
-/mob/living/simple_animal/hostile/distortion/Kim/attack_hand(mob/living/carbon/human/M)
+/mob/living/simple_animal/hostile/distortion/kim/attack_hand(mob/living/carbon/human/M)
 	..()
 	if(!.)
 		return
 	if(damage_reflection && M.a_intent == INTENT_HARM)
 		ReflectDamage(M, M?.dna?.species?.attack_type, M?.dna?.species?.punchdamagehigh)
 
-/mob/living/simple_animal/hostile/distortion/Kim/attack_paw(mob/living/carbon/human/M)
+/mob/living/simple_animal/hostile/distortion/kim/attack_paw(mob/living/carbon/human/M)
 	..()
 	if(damage_reflection && M.a_intent != INTENT_HELP)
 		ReflectDamage(M, M?.dna?.species?.attack_type, 5)
 
-/mob/living/simple_animal/hostile/distortion/Kim/attack_animal(mob/living/simple_animal/M)
+/mob/living/simple_animal/hostile/distortion/kim/attack_animal(mob/living/simple_animal/M)
 	. = ..()
 	if(!damage_reflection)
 		return
@@ -380,13 +380,13 @@
 		if(damage > 0)
 			ReflectDamage(M, M.melee_damage_type, damage)
 
-/mob/living/simple_animal/hostile/distortion/Kim/bullet_act(obj/projectile/Proj, def_zone, piercing_hit = FALSE)
+/mob/living/simple_animal/hostile/distortion/kim/bullet_act(obj/projectile/Proj, def_zone, piercing_hit = FALSE)
 	..()
 	if(damage_reflection && Proj.firer)
 		if(get_dist(Proj.firer, src) < 5)
 			ReflectDamage(Proj.firer, Proj.damage_type, Proj.damage)
 
-/mob/living/simple_animal/hostile/distortion/Kim/attackby(obj/item/I, mob/living/user, params)
+/mob/living/simple_animal/hostile/distortion/kim/attackby(obj/item/I, mob/living/user, params)
 	..()
 	if(!damage_reflection)
 		return
@@ -396,7 +396,7 @@
 	ReflectDamage(user, I.damtype, damage)
 	claimbones()
 
-/mob/living/simple_animal/hostile/distortion/Kim/adjustHealth(amount, updating_health = TRUE, forced = FALSE)
+/mob/living/simple_animal/hostile/distortion/kim/adjustHealth(amount, updating_health = TRUE, forced = FALSE)
 	. = ..()
 	if(. > 0)
 		damage_taken += .
@@ -408,7 +408,7 @@
 	if(damage_taken > 400 && !damage_reflection)
 		StartReflecting()
 
-/mob/living/simple_animal/hostile/distortion/Kim/proc/StartReflecting()
+/mob/living/simple_animal/hostile/distortion/kim/proc/StartReflecting()
 	say("Yield my flesh...")
 	can_act = TRUE
 	damage_reflection = TRUE
@@ -425,7 +425,7 @@
 	damage_reflection = FALSE
 	can_act = TRUE
 
-/mob/living/simple_animal/hostile/distortion/Kim/proc/ReflectDamage(mob/living/attacker, attack_type = RED_DAMAGE, damage)
+/mob/living/simple_animal/hostile/distortion/kim/proc/ReflectDamage(mob/living/attacker, attack_type = RED_DAMAGE, damage)
 	if(QDELETED(src) || stat == DEAD)
 		return
 	if(damage < 1)
@@ -436,19 +436,19 @@
 	playsound(src, 'sound/effects/ordeals/white/white_reflect.ogg', min(15 + damage, 100), TRUE, 4)
 	attacker.apply_damage(damage, attack_type, null, attacker.getarmor(null, attack_type))
 
-/mob/living/simple_animal/hostile/distortion/Kim/attack_hand(mob/living/carbon/human/M)
+/mob/living/simple_animal/hostile/distortion/kim/attack_hand(mob/living/carbon/human/M)
 	. = ..()
 	if(!.)
 		return
 	if(damage_reflection && M.a_intent == INTENT_HARM)
 		ReflectDamage(M, M?.dna?.species?.attack_type, M?.dna?.species?.punchdamagehigh)
 
-/mob/living/simple_animal/hostile/distortion/Kim/attack_paw(mob/living/carbon/human/M)
+/mob/living/simple_animal/hostile/distortion/kim/attack_paw(mob/living/carbon/human/M)
 	. = ..()
 	if(damage_reflection && M.a_intent != INTENT_HELP)
 		ReflectDamage(M, M?.dna?.species?.attack_type, 5)
 
-/mob/living/simple_animal/hostile/distortion/Kim/attack_animal(mob/living/simple_animal/M)
+/mob/living/simple_animal/hostile/distortion/kim/attack_animal(mob/living/simple_animal/M)
 	. = ..()
 	if(!damage_reflection)
 		return
@@ -457,12 +457,12 @@
 		if(damage > 0)
 			ReflectDamage(M, M.melee_damage_type, damage)
 
-/mob/living/simple_animal/hostile/distortion/Kim/bullet_act(obj/projectile/Proj, def_zone, piercing_hit = FALSE)
+/mob/living/simple_animal/hostile/distortion/kim/bullet_act(obj/projectile/Proj, def_zone, piercing_hit = FALSE)
 	. = ..()
 	if(damage_reflection && Proj.firer)
 		ReflectDamage(Proj.firer, Proj.damage_type, Proj.damage)
 
-/mob/living/simple_animal/hostile/distortion/Kim/attackby(obj/item/I, mob/living/user, params)
+/mob/living/simple_animal/hostile/distortion/kim/attackby(obj/item/I, mob/living/user, params)
 	. = ..()
 	if(!damage_reflection)
 		return
@@ -473,7 +473,7 @@
 	claimbones(target)
 
 
-/mob/living/simple_animal/hostile/distortion/Kim/proc/SerumA(mob/living/target)
+/mob/living/simple_animal/hostile/distortion/kim/proc/SerumA(mob/living/target)
 	if(serumA_cooldown > world.time)
 		return
 	if(!isliving(target) || QDELETED(target))
@@ -495,7 +495,7 @@
 	icon_state = icon_living
 	charging = FALSE
 
-/mob/living/simple_animal/hostile/distortion/Kim/proc/blink(mob/living/LT)
+/mob/living/simple_animal/hostile/distortion/kim/proc/blink(mob/living/LT)
 	if(!istype(LT) || QDELETED(LT))
 		var/list/potential_people = list()
 		for(var/mob/living/L in view(9, src))

@@ -103,6 +103,8 @@
 	SLEEP_CHECK_DEATH(2 SECONDS)
 	playsound(get_turf(src), 'sound/abnormalities/judgementbird/ability.ogg', 75, 0, 7)
 	if(SSmaptype.maptype == "limbus_labs")
+		for(var/obj/structure/obstacle in view(2, src))
+			obstacle.take_damage(judgement_damage, PALE_DAMAGE)
 		for(var/mob/living/L in oview(judgement_range, src))//Listen I need jbird to not kill people through walls if hes going to play nice
 			if(faction_check_mob(L, FALSE))
 				continue

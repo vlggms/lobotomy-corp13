@@ -198,6 +198,28 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 /obj/item/radio/headset/syndicatecity/heads
 	command = TRUE
 
+//LC13 Association when mixed
+/obj/item/radio/headset/association_locked
+	name = "association headset"
+	desc = "An updated, modular intercom that fits over the head. Takes encryption keys, but only a few."
+	icon_state = "headset"
+	inhand_icon_state = "headset"
+	freerange = TRUE
+	freqlock = TRUE
+	frequency = FREQ_CENTCOM
+
+/obj/item/radio/headset/association_locked/heads
+	name = "association director headset"
+	command = TRUE
+
+/obj/item/radio/headset/association_locked/subsidiary
+	name = "subsidary fixer headset"
+	frequency = 1487
+
+/obj/item/radio/headset/association_locked/subsidiary/heads
+	name = "subsidary director headset"
+	command = TRUE
+
 
 /obj/item/radio/headset/heads
 	command = TRUE

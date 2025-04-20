@@ -397,7 +397,8 @@ GLOBAL_LIST_INIT(sand_recipes, list(\
 
 /obj/item/coin/examine(mob/user)
 	. = ..()
-	. += "<span class='info'>It's worth [value] ahn.</span>"
+	if(!istype(src, /obj/item/coin/casino_token))
+		. += "<span class='info'>It's worth [value] ahn.</span>"
 
 /obj/item/coin/attackby(obj/item/W, mob/user, params)
 	if(istype(W, /obj/item/stack/cable_coil))
