@@ -541,10 +541,6 @@
 	. = ..()
 	AddComponent(/datum/component/knockback, 3, FALSE, FALSE)
 
-
-
-
-
 //Use this to scare the fuck out of people, unaccessible outside admins
 /mob/living/simple_animal/hostile/megafauna/Erlking/proc/Announce()
 	send_to_playing_players(span_narsiesmall("Proelium Fatale."))
