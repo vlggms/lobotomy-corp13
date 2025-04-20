@@ -900,6 +900,8 @@
 /datum/component/augment/paranoid/take_damage_effect(datum/source, damage, damagetype, def_zone)
 	. = ..()
 	for(var/mob/living/carbon/human/H in view(7, human_parent))
+		if(H.stat == DEAD)
+			continue
 		nearby_human = TRUE
 	if(!nearby_human)
 		to_chat(human_parent, span_warning("You take 10 WHITE damage, as there are no humans near you! Due to Paranoid"))
