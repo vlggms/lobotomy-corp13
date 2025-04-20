@@ -209,7 +209,6 @@
 	throw_timer = world.time + throw_cooldown
 	say("Tear them to shreds, Dullahan!")
 	addtimer(CALLBACK(src, PROC_REF(GetThrown), target), special_windup)
-	return
 
 /mob/living/simple_animal/hostile/megafauna/Erlking/proc/GetThrown(atom/target)
 	playsound(src, 'ModularTegustation/Tegusounds/Erlking/ErlkingDullahan.ogg', 50, FALSE, 4)
