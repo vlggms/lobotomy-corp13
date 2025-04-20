@@ -15,7 +15,7 @@
 
 /datum/adventure_event/skinevent
 	name = "A Tram Ride"
-	desc = "YOU SEE A FAINT LIGHT"
+	desc = "THE LULL OF A TRAIN"
 	adventure_cords = list(
 		"Sitting on the bench, and listening to the tram roll over the tracks,<br>\
 		you feel absolutely exhausted from your travels.<br>\
@@ -47,6 +47,7 @@
 		You rush out of the tram at the next stop, and spend all night sprinting home.",		//You see her
 		)
 	event_locks = "SHE KNOWS"
+	force_encounter = TRUE
 
 /datum/adventure_event/skinevent/EventChoiceFormat(obj/machinery/M, mob/living/carbon/human/H)
 	switch(cords)

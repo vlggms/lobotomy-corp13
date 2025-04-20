@@ -28,6 +28,7 @@
 			return
 		if(2)
 			RewardKey("SHE KNOWS")
+			spend_event = TRUE
 		if(3)
 			AdjustStatNum(GLUTT_STAT,2)
 	return ..()

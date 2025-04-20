@@ -1,6 +1,6 @@
 /datum/adventure_event/skinevent/bedroom
 	name = "Bedroom Blues"
-	desc = "YOU SEE A FAINT LIGHT"
+	desc = "THE WARMTH OF YOUR BED"
 	adventure_cords = list(
 		"You lay on your bed, but you are unable to go to bed.<br>\
 		The faint light and soft noises coming from your window are keeping you up.<br>\
