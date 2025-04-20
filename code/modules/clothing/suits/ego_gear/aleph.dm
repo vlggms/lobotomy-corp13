@@ -334,36 +334,36 @@ Any attempt to code risk class armor will result in a 10 day Github ban.*/
 	var/warning_message
 	switch(stored_season) //Hopefully someday someone finds a more efficient way to change armor values
 		if("spring")
-			src.armor = new(red = 60, white = 80, black = 40, pale = 60, fire = 30)	//240
+			src.armor = getArmor(red = 60, white = 80, black = 40, pale = 60, fire = 30)	//240
 			if(stored_season != current_season) //Our drip is out of season
-				src.armor = new(red = 50, white = 80, black = 40, pale = 50, fire = 30)	//220
+				src.armor = getArmor(red = 50, white = 80, black = 40, pale = 50, fire = 30)	//220
 				weakened = TRUE
 				if(current_season == "fall")
-					src.armor = new(red = 50, white = 70, black = 30, pale = 50, fire = 30)	//200
+					src.armor = getArmor(red = 50, white = 70, black = 30, pale = 50, fire = 30)	//200
 					warning_message = "Fall has come, the leaves on your armor wither and die."
 		if("summer")
-			src.armor = new(red = 80, white = 40, black = 60, pale = 60, fire = 70)
+			src.armor = getArmor(red = 80, white = 40, black = 60, pale = 60, fire = 70)
 			if(stored_season != current_season) //Our drip is out of season
-				src.armor = new(red = 80, white = 40, black = 50, pale = 50, fire = 70)
+				src.armor = getArmor(red = 80, white = 40, black = 50, pale = 50, fire = 70)
 				weakened = TRUE
 				if(current_season == "winter")
-					src.armor = new(red = 70, white = 30, black = 50, pale = 50, fire = 70)
+					src.armor = getArmor(red = 70, white = 30, black = 50, pale = 50, fire = 70)
 					warning_message = "Winter is here. Your armor reacts, becoming stiff and brittle."
 		if("fall")
-			src.armor = new(red = 40, white = 60, black = 80, pale = 60, fire = 70)
+			src.armor = getArmor(red = 40, white = 60, black = 80, pale = 60, fire = 70)
 			if(stored_season != current_season) //Our drip is out of season
-				src.armor = new(red = 40, white = 50, black = 80, pale = 50, fire = 70)
+				src.armor = getArmor(red = 40, white = 50, black = 80, pale = 50, fire = 70)
 				weakened = TRUE
 				if(current_season == "spring")
-					src.armor = new(red = 30, white = 50, black = 70, pale = 50, fire = 70)
+					src.armor = getArmor(red = 30, white = 50, black = 70, pale = 50, fire = 70)
 					warning_message = "The arrival of spring weakens your armor further."
 		if("winter")
-			src.armor = new(red = 40, white = 60, black = 60, pale = 80, fire = 10)
+			src.armor = getArmor(red = 40, white = 60, black = 60, pale = 80, fire = 10)
 			if(stored_season != current_season) //Our drip is out of season
-				src.armor = new(red = 40, white = 50, black = 50, pale = 80, fire = 10)
+				src.armor = getArmor(red = 40, white = 50, black = 50, pale = 80, fire = 10)
 				weakened = TRUE
 				if(current_season == "summer")
-					src.armor = new(red = 30, white = 50, black = 50, pale = 70, fire = 0)
+					src.armor = getArmor(red = 30, white = 50, black = 50, pale = 70, fire = 0)
 					warning_message = "The summer heat is melting your armor."
 
 	if(current_holder && (weakened == TRUE))
