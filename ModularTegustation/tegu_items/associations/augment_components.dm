@@ -326,6 +326,8 @@
 	if(last_target.stat == DEAD)
 		var/justice_mod = 1 + (get_modified_attribute_level(human_parent, JUSTICE_ATTRIBUTE)/100)
 		var/total_damage = item.force * justice_mod
+		if(total_damage > 50)
+			total_damage = 50
 		human_parent.adjustBruteLoss(-1*total_damage)
 		to_chat(human_parent, span_nicegreen("Your body regenerates has you execute [target]! Due to Absorption"))
 	. = ..()
@@ -484,6 +486,10 @@
 
 ///Status
 
+//Double check if vigors work
+//Make augments work with gauntlets
+//Time Mortarium and Reflictive Tremor
+
 //Burn Vigor
 /datum/component/augment/burn_vigor
 	var/damage_buff = 10
@@ -614,8 +620,8 @@
 		if(inflict_cooldown > world.time)
 			return FALSE
 		inflict_cooldown = world.time + inflict_cooldown_time
-		animal.apply_lc_tremor(repeat * 2)
-		human_parent.apply_lc_tremor(repeat)
+		animal.apply_lc_tremor(repeat * 2, 55)
+		human_parent.apply_lc_tremor(repeat, 55)
 		to_chat(human_parent, span_nicegreen("You inflicted [repeat * 2] tremor to [animal], and gained [repeat] tremor! Due to Reflective Tremor"))
 
 //Blood Jaunt
@@ -887,7 +893,7 @@
 		inflict_mult++
 	else if(missing_hp <= 0.25)
 		inflict_mult++
-	animal.apply_lc_tremor(repeat * inflict_mult)
+	animal.apply_lc_tremor(repeat * inflict_mult, 55)
 	to_chat(human_parent, span_nicegreen("You inflict [repeat * inflict_mult] tremor to [animal]! Due to Unstable Inertia"))
 	inflict_mult = 0
 
