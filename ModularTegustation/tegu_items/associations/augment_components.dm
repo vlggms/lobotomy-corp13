@@ -319,6 +319,21 @@
 					log_combat(human_parent, target, pick(W.attack_verb_continuous), W.name, "(INTENT: [uppertext(human_parent.a_intent)]) (DAMTYPE: [uppertext(W.damtype)])")
 	. = ..()
 
+//Strong Grip
+/datum/component/augment/strong_grip
+	var/obj/item/gripped_item
+
+/datum/component/augment/strong_grip/afterattack_effect(datum/source, atom/target, mob/user, proximity_flag, obj/item/item)
+	. = ..()
+	if(human_parent.a_intent == INTENT_HARM)
+		gripped_item = human_parent.get_active_held_item()
+		to_chat(human_parent, span_nicegreen("You tighten your grip on [gripped_item] due to you having HARM INTENT on! Due to Strong Grip"))
+		ADD_TRAIT(gripped_item, TRAIT_NODROP)
+	else
+		REMOVE_TRAIT(gripped_item, TRAIT_NODROP)
+		to_chat(human_parent, span_nicegreen("You release your grip on [gripped_item] due to you not having HARM INTENT on! Due to Strong Grip"))
+		gripped_item = null
+
 ///On Kill Effects
 
 //Absorption
@@ -483,6 +498,19 @@
 	human_parent.physiology.pale_mod += total_damage_resist
 	total_damage_resist = 0
 	damage_resist_mult = 0
+
+//Stalwart Form
+/datum/component/augment/stalwart_form/Initialize()
+	. = ..()
+	human_parent.physiology.stun_mod -= 0.9
+	human_parent.physiology.red_mod += 0.15
+	human_parent.physiology.black_mod += 0.15
+
+/datum/component/augment/stalwart_form/Destroy()
+	. = ..()
+	human_parent.physiology.stun_mod += 0.9
+	human_parent.physiology.red_mod -= 0.15
+	human_parent.physiology.black_mod -= 0.15
 
 ///Status
 
@@ -897,6 +925,73 @@
 	to_chat(human_parent, span_nicegreen("You inflict [repeat * inflict_mult] tremor to [animal]! Due to Unstable Inertia"))
 	inflict_mult = 0
 
+//Blood Cycler
+/datum/component/augment/blood_cycler/RegisterWithParent()
+	. = ..()
+	RegisterSignal(parent, COMSIG_STATUS_BLEED_DAMAGE, PROC_REF(bleed_regen))
+
+/datum/component/augment/blood_cycler/proc/bleed_regen(datum/source, mob/living/bleeder, bleed_stack)
+	if(get_dist(human_parent, bleeder) > 4)
+		return FALSE
+	var/regen_amount = bleed_stack/2
+	if(!ishuman(bleeder))
+		regen_amount *= 4
+	if(regen_amount > 100)
+		regen_amount = 100
+	human_parent.adjustBruteLoss(regen_amount)
+	to_chat(human_parent, span_nicegreen("You regen [regen_amount] HP due to [bleeder] bleeding! Due to Blood Cycler"))
+
+//Acidic Blood
+/datum/component/augment/acidic_blood/RegisterWithParent()
+	. = ..()
+	RegisterSignal(parent, COMSIG_STATUS_BLEED_DAMAGE, PROC_REF(bleed_regen))
+
+/datum/component/augment/acidic_blood/proc/bleed_regen(datum/source, mob/living/bleeder, bleed_stack)
+	if(human_parent != bleeder)
+		return FALSE
+	for(var/mob/living/simple_animal/S in view(3, human_parent))
+		S.deal_damage(bleed_stack * 2 * repeat, BLACK_DAMAGE)
+	to_chat(human_parent, span_nicegreen("You dealt [bleed_stack * 4] BLACK damage to all nearby mobs due to you bleeding! Due to Acidic Blood"))
+
+//Reclaimed Flame
+/datum/component/augment/reclaimed_flame
+	var/blood_rush_timer
+
+/datum/component/augment/reclaimed_flame/afterattack_effect(datum/source, atom/target, mob/user, proximity_flag, obj/item/item)
+	if(last_target.stat == DEAD)
+		human_parent.adjustFireLoss(20 * repeat)
+		to_chat(human_parent, span_nicegreen("You heal some BURN damage as you execute [last_target]! Due to Reclaimed Flame"))
+	. = ..()
+
+//Cooling Systems
+/datum/component/augment/cooling_systems/Initialize()
+	. = ..()
+	human_parent.physiology.burn_mod -= 0.75
+	human_parent.physiology.red_mod += 0.25
+
+/datum/component/augment/cooling_systems/Destroy()
+	. = ..()
+	human_parent.physiology.burn_mod += 0.75
+	human_parent.physiology.red_mod -= 0.25
+
+//Fireproof
+/datum/component/augment/fireproof
+	var/proofing_fire = FALSE
+
+/datum/component/augment/fireproof/take_damage_effect(datum/source, damage, damagetype, def_zone)
+	. = ..()
+	var/missing_hp = (human_parent.health/human_parent.maxHealth)
+	if(missing_hp <= 0.15 && damagetype == BURN)
+		human_parent.physiology.burn_mod -= 1
+		proofing_fire = TRUE
+		to_chat(human_parent, span_nicegreen("You ignore the BURN damage, due to being under or equal 15% health! Due to Fireproof"))
+
+/datum/component/augment/fireproof/after_take_damage_effect(datum/source, damage, damagetype, def_zone)
+	. = ..()
+	if(proofing_fire)
+		human_parent.physiology.burn_mod += 1
+		proofing_fire = FALSE
+
 ///Downsides
 
 //Paranoid
@@ -1107,3 +1202,60 @@
 	gain_bleed_cooldown = world.time + gain_bleed_cooldown_time
 	human_parent.apply_lc_bleed(2 * repeat)
 	to_chat(human_parent, span_warning("As you take damage, you gain [2 * repeat] bleed! Due to Allodynia"))
+
+//Internal Vibrations
+/datum/component/augment/internal_vibrations
+	var/gain_tremor_cooldown
+	var/gain_tremor_cooldown_time = 5
+
+/datum/component/augment/internal_vibrations/take_damage_effect(datum/source, damage, damagetype, def_zone)
+	. = ..()
+	if(gain_tremor_cooldown > world.time)
+		return FALSE
+	gain_tremor_cooldown = world.time + gain_tremor_cooldown_time
+	human_parent.apply_lc_tremor(2 * repeat, 55)
+	to_chat(human_parent, span_warning("As you take damage, you gain [2 * repeat] tremor! Due to Internal Vibrations"))
+	if(damagetype == WHITE_DAMAGE)
+		human_parent.apply_lc_tremor(2 * repeat, 55)
+		to_chat(human_parent, span_warning("As you take damage, you gain [2 * repeat] tremor! Due to Internal Vibrations"))
+
+//Scalding Skin
+/datum/component/augment/scalding_skin
+	var/gain_burn_cooldown
+	var/gain_burn_cooldown_time = 30
+
+/datum/component/augment/scalding_skin/take_damage_effect(datum/source, damage, damagetype, def_zone)
+	. = ..()
+	if(gain_burn_cooldown > world.time)
+		return FALSE
+	gain_burn_cooldown = world.time + (gain_burn_cooldown_time/repeat)
+	human_parent.apply_lc_burn(round(damage/5))
+	to_chat(human_parent, span_warning("As you take damage, you gain [round(damage/5)] burn! Due to Scalding Skin"))
+	if(damagetype == RED_DAMAGE)
+		human_parent.apply_lc_burn(round(damage/5))
+		to_chat(human_parent, span_warning("As you take damage, you gain [round(damage/5)] tremor! Due to Scalding Skin"))
+
+//Open Wound
+/datum/component/augment/open_wound
+	var/tp_cooldown
+	var/tp_cooldown_time = 200
+	var/self_bleed = FALSE
+
+/datum/component/augment/open_wound/take_damage_effect(datum/source, damage, damagetype, def_zone)
+	. = ..()
+	if(damagetype != BLACK_DAMAGE)
+		return FALSE
+	if(tp_cooldown > world.time)
+		return FALSE
+	tp_cooldown = world.time + tp_cooldown_time
+	self_bleed = TRUE
+	addtimer(CALLBACK(src, PROC_REF(end_wound)), 10 SECONDS)
+
+/datum/component/augment/open_wound/attack_effect(datum/source, mob/living/target, mob/living/user, obj/item/item)
+	. = ..()
+	if(self_bleed)
+		human_parent.apply_lc_bleed(2 * repeat)
+		to_chat(human_parent, span_warning("You gain [2 * repeat] bleed! Due to Open Wound"))
+
+/datum/component/augment/open_wound/proc/end_wound()
+	self_bleed = FALSE
