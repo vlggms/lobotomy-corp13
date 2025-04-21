@@ -226,7 +226,7 @@
 			"name" = "Absorption",
 			"ahn_cost" = 100,
 			"ep_cost" = 6,
-			"desc" = "On kill, regenerate as much HP as the amount of damage you dealt.",
+			"desc" = "On kill, regenerate as much HP as the amount of damage you dealt. (Max of 50 HP healing)",
 			"component" = /datum/component/augment/absorption
 		),
 		list(
@@ -353,7 +353,7 @@
 			"name" = "Regenerative Warmth",
 			"ahn_cost" = 50,
 			"ep_cost" = 4,
-			"desc" = "On kill, One human within 4 sqrs of you (not including you), Heals 10% * X of your target max HP.",
+			"desc" = "Taking BURN damage heals BRUTE and BURN damage equal to 50% of BURN damage taken.",
 			"component" = /datum/component/augment/regenerative_warmth
 		),
 		list(
