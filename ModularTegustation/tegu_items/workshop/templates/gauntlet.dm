@@ -18,6 +18,7 @@
 		to_chat(user, "<span class='spider'><b>Your attack was interrupted!</b></span>")
 		return
 
+	SEND_SIGNAL(user, COMSIG_MOB_ITEM_ATTACK, target, user, src)
 	to_chat(target, span_userdanger("[user] punches you with everything they got!!"))
 	to_chat(user, span_danger("You throw your entire body into this punch!"))
 
@@ -28,6 +29,15 @@
 	var/userjust = (get_modified_attribute_level(user, JUSTICE_ATTRIBUTE))
 	var/justicemod = 1 + userjust/100
 	force *= justicemod
+	force *= (1 + (user.extra_damage / 100))
+	if(src.damtype == RED_DAMAGE)
+		force *= (1 + (user.extra_damage_red / 100))
+	if(src.damtype == WHITE_DAMAGE)
+		force *= (1 + (user.extra_damage_white / 100))
+	if(src.damtype == BLACK_DAMAGE)
+		force *= (1 + (user.extra_damage_black / 100))
+	if(src.damtype == PALE_DAMAGE)
+		force *= (1 + (user.extra_damage_pale / 100))
 
 	if(ishuman(target))
 		force = min(force, 50)
@@ -43,3 +53,4 @@
 		target.throw_at(throw_target, 2, 4, user) //Bigass knockback.
 
 	force = true_force
+	SEND_SIGNAL(user, COMSIG_MOB_ITEM_AFTERATTACK, target, user, TRUE, src)
