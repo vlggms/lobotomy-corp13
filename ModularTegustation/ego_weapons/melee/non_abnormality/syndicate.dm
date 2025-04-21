@@ -112,9 +112,28 @@
 	to_chat(user, span_userdanger("Yield my flesh."))
 	force*=multiplier
 
+	var/obj/item/clothing/suit/armor/ego_gear/city/blade_lineage_salsu/S = user.get_item_by_slot(ITEM_SLOT_OCLOTHING)
+	var/obj/item/clothing/suit/armor/ego_gear/city/blade_lineage_cutthroat/C = user.get_item_by_slot(ITEM_SLOT_OCLOTHING)
+	var/obj/item/clothing/suit/armor/ego_gear/city/blade_lineage_admin/R = user.get_item_by_slot(ITEM_SLOT_OCLOTHING)
+
+	if(istype(S))
+		ADD_TRAIT(user, TRAIT_NOSOFTCRIT, "unrelenting")
+
+	if(istype(C))
+		ADD_TRAIT(user, TRAIT_NOHARDCRIT, "unrelenting")
+		ADD_TRAIT(user, TRAIT_NOSOFTCRIT, "unrelenting")
+
+	if(istype(R))
+		ADD_TRAIT(user, TRAIT_NODEATH, "unrelenting")
+		ADD_TRAIT(user, TRAIT_NOHARDCRIT, "unrelenting")
+		ADD_TRAIT(user, TRAIT_NOSOFTCRIT, "unrelenting")
+
 	addtimer(CALLBACK(src, PROC_REF(Return), user), 5 SECONDS)
 
 /obj/item/ego_weapon/city/bladelineage/attack(mob/living/target, mob/living/carbon/human/user)
+	REMOVE_TRAIT(user, TRAIT_NODEATH, "unrelenting")
+	REMOVE_TRAIT(user, TRAIT_NOHARDCRIT, "unrelenting")
+	REMOVE_TRAIT(user, TRAIT_NOSOFTCRIT, "unrelenting")
 	..()
 	if(force != initial(force))
 		to_chat(user, span_userdanger("To claim their bones."))
@@ -124,3 +143,6 @@
 	force = initial(force)
 	ready = TRUE
 	to_chat(user, span_notice("Your blade is ready."))
+	REMOVE_TRAIT(user, TRAIT_NODEATH, "unrelenting")
+	REMOVE_TRAIT(user, TRAIT_NOHARDCRIT, "unrelenting")
+	REMOVE_TRAIT(user, TRAIT_NOSOFTCRIT, "unrelenting")
