@@ -328,9 +328,9 @@
 	if(human_parent.a_intent == INTENT_HARM)
 		gripped_item = human_parent.get_active_held_item()
 		to_chat(human_parent, span_nicegreen("You tighten your grip on [gripped_item] due to you having HARM INTENT on! Due to Strong Grip"))
-		ADD_TRAIT(gripped_item, TRAIT_NODROP)
+		ADD_TRAIT(gripped_item, TRAIT_NODROP, src)
 	else
-		REMOVE_TRAIT(gripped_item, TRAIT_NODROP)
+		REMOVE_TRAIT(gripped_item, TRAIT_NODROP, src)
 		to_chat(human_parent, span_nicegreen("You release your grip on [gripped_item] due to you not having HARM INTENT on! Due to Strong Grip"))
 		gripped_item = null
 
