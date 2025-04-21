@@ -1213,6 +1213,8 @@
 		owner.adjustBruteLoss(max(0, stacks))
 	else
 		owner.adjustBruteLoss(stacks*4) // x4 on non humans
+	for(var/mob/living/L in view(5, owner))
+		SEND_SIGNAL(L, COMSIG_STATUS_BLEED_DAMAGE, owner, stacks)
 	new /obj/effect/temp_visual/damage_effect/bleed(get_turf(owner))
 	stacks = round(stacks/2)
 	if(stacks == 0)
