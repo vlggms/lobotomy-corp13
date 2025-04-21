@@ -109,6 +109,30 @@
 			"repeatable" = 3,
 			"component" = /datum/component/augment/reinforcement_nanties
 		),
+		list(
+			"id" = "cooling_systems",
+			"name" = "Cooling Systems",
+			"ahn_cost" = 100,
+			"ep_cost" = 4,
+			"desc" = "Take 75% less damage from BURN, however take 25% more damage from RED attacks.",
+			"component" = /datum/component/augment/cooling_systems
+		),
+		list(
+			"id" = "stalwart_form",
+			"name" = "Stalwart Form",
+			"ahn_cost" = 100,
+			"ep_cost" = 4,
+			"desc" = "Stuns/Knockdowns are 90% less effective on you. However, you will take 15% extra RED and BLACK damage.",
+			"component" = /datum/component/augment/stalwart_form
+		),
+		list(
+			"id" = "fireproof",
+			"name" = "Fireproof",
+			"ahn_cost" = 50,
+			"ep_cost" = 4,
+			"desc" = "Under 15% HP, you become immune to BURN damage.",
+			"component" = /datum/component/augment/fireproof
+		),
 		// --- Attacking Effects ---
 		list(
 			"id" = "regeneration",
@@ -220,6 +244,14 @@
 			"desc" = "On hit with a BLACK weapon, inflict 2 Tremor. If the weapon has an attack speed greater than 1.5 second, Inflict an extra 2 Tremor. (Cooldown of 1.5 seconds.)",
 			"component" = /datum/component/augment/slothful_decay
 		),
+		list(
+			"id" = "strong_grip",
+			"name" = "Strong Grip",
+			"ahn_cost" = 100,
+			"ep_cost" = 4,
+			"desc" = "If you attack while you have HARM intent, your weapon will become unable to be dropped. This effect is removed when you attack in any other intent.",
+			"component" = /datum/component/augment/strong_grip
+		),
 		// --- Execution Effects ---
 		list(
 			"id" = "absorption",
@@ -246,6 +278,15 @@
 			"repeatable" = 3,
 			"desc" = "On kill, One human within 4 sqrs of you (not including you), Heals 10% * X of your target max HP.",
 			"component" = /datum/component/augment/flesh_morphing
+		),
+		list(
+			"id" = "reclaimed_flame",
+			"name" = "Reclaimed Flame",
+			"ahn_cost" = 50,
+			"ep_cost" = 4,
+			"repeatable" = 3,
+			"desc" = "On kill, heal 20 * X BURN damage.",
+			"component" = /datum/component/augment/reclaimed_flame
 		),
 		// --- Status Effects ---
 		list(
@@ -414,6 +455,25 @@
 			"desc" = "When you take damage, inflict 1*X Tremor for every 25% of your missing HP.",
 			"component" = /datum/component/augment/unstable_inertia
 		),
+		list(
+			"id" = "blood_cycler",
+			"name" = "Blood Cycler",
+			"ahn_cost" = 50,
+			"ep_cost" = 4,
+			"desc" = "Any time a mob/human within 3 sqrs of you takes Bleed damage, heal HP equal to 50% of the bleed damage they have taken. (Max of 100).",
+			"component" = /datum/component/augment/blood_cycler
+		),
+
+		list(
+			"id" = "acidic_blood",
+			"name" = "Acidic Blood",
+			"ahn_cost" = 25,
+			"ep_cost" = 2,
+			"repeatable" = 3,
+			"desc" = "When you take bleed damage, Deal BLACK damage equal to the amount of bleed you have *2X, to all simple mobs within 3 sqrs of you..",
+			"component" = /datum/component/augment/acidic_blood
+		),
+
 		// --- Negative Effects ---
 		list(
 			"id" = "paranoid",
@@ -507,6 +567,33 @@
 			"desc" = "When you take damage, you gain 2 * X Bleed. (Has a cooldown of 1 second). Also, you take bleed damage each time you attack. (That has a cooldown of 3 seconds)",
 			"repeatable" = 3,
 			"component" = /datum/component/augment/allodynia
+		),
+		list(
+			"id" = "internal_vibrations",
+			"name" = "Internal Vibrations",
+			"ahn_cost" = 10,
+			"ep_cost" = -2,
+			"desc" = "When you take damage, gain 2 * X tremor. Gain double the amount of tremor if the damage type was WHITE. (Has a cooldown of 0.5 second)",
+			"repeatable" = 3,
+			"component" = /datum/component/augment/internal_vibrations
+		),
+		list(
+			"id" = "scalding_skin",
+			"name" = "Scalding Skin",
+			"ahn_cost" = 10,
+			"ep_cost" = -2,
+			"desc" = "When you take damage, you will gain burn equal to the (damage taken)  / 5. If the damage type was RED, double the gained burn. (This has a cooldown of 30 / X seconds)",
+			"repeatable" = 3,
+			"component" = /datum/component/augment/scalding_skin
+		),
+		list(
+			"id" = "open_wound",
+			"name" = "Open Wound",
+			"ahn_cost" = 10,
+			"ep_cost" = -2,
+			"desc" = "After taking BLACK damage, for the next 10 seconds all of your attacks will inflict 2 * X Bleed to self. (Has a cooldown of 20 seconds.)",
+			"repeatable" = 3,
+			"component" = /datum/component/augment/open_wound
 		),
 		// Add other effects following this structure
 	)
