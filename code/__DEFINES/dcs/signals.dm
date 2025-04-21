@@ -1075,6 +1075,9 @@
 #define COMSIG_AQUARIUM_FLUID_CHANGED "aquarium_fluid_changed"
 */
 
+//Status signals
+#define COMSIG_STATUS_BLEED_DAMAGE "bleed_damage"
+
 /// generally called before temporary non-parallel animate()s on the atom (animation_duration)
 #define COMSIG_ATOM_TEMPORARY_ANIMATION_START "atom_temp_animate_start" // LC13 addition: MODULE ID: FISHING
 
@@ -1104,6 +1107,3 @@
 
 #define COMSIG_PARCEL_DELIVERED "parcel_delivered"
 #define COMSIG_ITEM_DELIVERED "item_delivered"
-
-//Status signals
-#define COMSIG_STATUS_BLEED_DAMAGE "bleed_damage"
