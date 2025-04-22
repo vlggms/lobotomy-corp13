@@ -3,7 +3,7 @@
 	desc = "A devyat association-issued delivery trunks."
 	special = "This weapon also functions as a backpack. \
 	When you attack, you enter combat mode; and attacking in combat mode will deal increasing damage to both the user and the target. \
-	It cannot be dropped while in combat mode. \
+	It cannot be dropped while in combat mode. Combat mode can be turned off by using it in hand.\
 	Alt click the trunk to lock or unlock it."
 	worn_icon = 'icons/obj/clothing/ego_gear/devyat_armor.dmi'
 	worn_icon_state = "s_polu"
