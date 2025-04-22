@@ -523,6 +523,12 @@
 /obj/effect/decal/cleanable/cobweb/cobweb2,
 /turf/open/floor/wood,
 /area/city/house)
+"dB" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/item/keycard/office,
+/obj/effect/mob_spawn/human/corpse/russian,
+/turf/open/indestructible/necropolis,
+/area/city/shop)
 "dD" = (
 /obj/structure/rack,
 /obj/effect/decal/cleanable/dirt,
@@ -955,6 +961,15 @@
 /obj/effect/turf_decal/sand/plating,
 /turf/open/floor/plating/rust,
 /area/city/fixers)
+"fQ" = (
+/obj/structure/flora/rock/pile,
+/obj/item/nuke_core{
+	anchored = 1;
+	mouse_opacity = 0;
+	alpha = 0
+	},
+/turf/open/floor/plating/asteroid,
+/area/city)
 "fR" = (
 /obj/effect/spawner/lootdrop/maint_drugs,
 /obj/effect/mob_spawn/human/corpse/butcher,
@@ -1235,6 +1250,7 @@
 "if" = (
 /obj/structure/lootcrate/hana,
 /obj/structure/barricade/meatbags,
+/obj/structure/lootcrate/hana,
 /turf/open/indestructible/necropolis,
 /area/city)
 "ig" = (
@@ -1367,6 +1383,10 @@
 /obj/effect/landmark/npc_reveal_spawn{
 	mobtype = /mob/living/simple_animal/hostile/poison/giant_spider;
 	sensor_id = "ambush"
+	},
+/obj/effect/landmark/npc_reveal_sensor{
+	sensor_id = "ambush";
+	cooldown_duration = 6000
 	},
 /turf/open/floor/wood{
 	icon_state = "wood-broken6"
@@ -1578,6 +1598,14 @@
 /obj/effect/turf_decal/sand/plating,
 /turf/open/floor/plating/rust,
 /area/city/fixers)
+"kx" = (
+/obj/effect/decal/cleanable/greenglow{
+	light_color = "#ff0037";
+	color = "#ff0037"
+	},
+/obj/structure/barricade/meatbags,
+/turf/open/indestructible/necropolis,
+/area/city)
 "kz" = (
 /obj/effect/turf_decal/trimline/red/filled/warning{
 	dir = 4
@@ -1694,6 +1722,11 @@
 /area/city/house)
 "lr" = (
 /obj/structure/flora/rock,
+/obj/item/nuke_core{
+	anchored = 1;
+	mouse_opacity = 0;
+	alpha = 0
+	},
 /turf/open/floor/plating/asteroid/basalt/wasteland,
 /area/city)
 "lu" = (
@@ -2040,6 +2073,15 @@
 "nN" = (
 /turf/closed/indestructible/necropolis,
 /area/city/shop)
+"nO" = (
+/obj/structure/flora/rock,
+/obj/item/nuke_core{
+	anchored = 1;
+	mouse_opacity = 0;
+	alpha = 0
+	},
+/turf/open/floor/plating/asteroid,
+/area/city)
 "nQ" = (
 /obj/structure/chair/plastic,
 /obj/effect/turf_decal/sand/plating,
@@ -2570,7 +2612,6 @@
 	dir = 1
 	},
 /obj/effect/decal/cleanable/cobweb,
-/obj/effect/mob_spawn/human/corpse/russian,
 /turf/open/floor/wood,
 /area/city/shop)
 "re" = (
@@ -3106,6 +3147,10 @@
 	mobtype = /mob/living/simple_animal/hostile/poison/giant_spider;
 	sensor_id = "ambush"
 	},
+/obj/effect/landmark/npc_reveal_sensor{
+	sensor_id = "ambush";
+	cooldown_duration = 6000
+	},
 /turf/open/floor/plating/rust,
 /area/city/house)
 "uk" = (
@@ -3180,6 +3225,12 @@
 	},
 /turf/open/floor/wood,
 /area/city/house)
+"uB" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/decal/cleanable/glitter/pink,
+/obj/structure/barricade/meatbags,
+/turf/open/indestructible/necropolis,
+/area/city)
 "uD" = (
 /obj/structure/dresser,
 /obj/machinery/light{
@@ -3285,7 +3336,12 @@
 	name = "'Mother?'";
 	icon_state = "glutton";
 	base_pixel_x = -16;
-	pixel_x = -16
+	pixel_x = -16;
+	scream_damage = 40;
+	maxHealth = 1000;
+	melee_damage_lower = 40;
+	melee_damage_upper = 40;
+	color = "#f194f2"
 	},
 /turf/open/indestructible/necropolis,
 /area/city/shop)
@@ -3385,7 +3441,6 @@
 /area/city/fixers)
 "vL" = (
 /obj/effect/mob_spawn/human/corpse/russian,
-/obj/item/keycard/office,
 /turf/open/floor/wood{
 	icon_state = "wood-broken"
 	},
@@ -3633,6 +3688,7 @@
 	name = "'Son'"
 	},
 /obj/structure/meatfloor,
+/obj/structure/barricade/meatbags,
 /turf/open/indestructible/necropolis,
 /area/city)
 "xB" = (
@@ -3753,6 +3809,7 @@
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/effect/decal/cleanable/glitter/pink,
 /obj/structure/meatfloor,
+/obj/structure/barricade/meatbags,
 /turf/open/indestructible/necropolis,
 /area/city)
 "yo" = (
@@ -3848,6 +3905,7 @@
 	color = "#ff0037"
 	},
 /obj/structure/meatfloor,
+/obj/structure/barricade/meatbags,
 /turf/open/indestructible/necropolis,
 /area/city)
 "yK" = (
@@ -4110,6 +4168,13 @@
 /obj/effect/turf_decal/bot,
 /turf/open/floor/circuit/telecomms/mainframe,
 /area/facility_hallway/north)
+"Au" = (
+/mob/living/simple_animal/hostile/mutant_clown{
+	name = "'Son'"
+	},
+/obj/structure/barricade/meatbags,
+/turf/open/indestructible/necropolis,
+/area/city)
 "Av" = (
 /obj/structure/chair/wood,
 /turf/open/floor/wood,
@@ -4374,6 +4439,11 @@
 /obj/effect/decal/cleanable/cobweb,
 /obj/structure/closet/crate/trashcart/filled,
 /turf/open/floor/plating/asteroid,
+/area/city)
+"CC" = (
+/obj/structure/meatfloor,
+/obj/structure/barricade/meatbags,
+/turf/open/indestructible/necropolis,
 /area/city)
 "CD" = (
 /obj/effect/mine/shrapnel,
@@ -5666,6 +5736,9 @@
 	},
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/structure/lootcrate/hana,
+/obj/structure/lootcrate/hana,
+/obj/structure/lootcrate/hana,
+/obj/structure/lootcrate/hana,
 /turf/open/indestructible/necropolis,
 /area/city/shop)
 "Ls" = (
@@ -5841,6 +5914,7 @@
 	light_color = "#ff0037";
 	color = "#ff0037"
 	},
+/obj/structure/barricade/meatbags,
 /turf/open/indestructible/necropolis,
 /area/city)
 "Mw" = (
@@ -6714,6 +6788,7 @@
 /obj/structure/meatfloor,
 /obj/structure/lootcrate/hana,
 /obj/structure/barricade/meatbags,
+/obj/structure/lootcrate/hana,
 /turf/open/indestructible/necropolis,
 /area/city)
 "Sf" = (
@@ -8068,6 +8143,12 @@
 /obj/structure/spider/stickyweb,
 /turf/open/floor/plating/rust,
 /area/city/house)
+"ZV" = (
+/obj/item/paper/crumpled/ruins/snowdin/dontdeadopeninside{
+	info = "Josh... It is too late for her. She has changed, there is nothing that we can do for her. I will let you stay here for the night to make sure she doesn't get out but please, don't do anything rash. Boss is relaying on us to find out what makes them tick."
+	},
+/turf/open/floor/wood,
+/area/city/shop)
 "ZW" = (
 /mob/living/simple_animal/mouse/brown{
 	faction = list("neutral")
@@ -10151,9 +10232,9 @@ oY
 oY
 oY
 kC
-TL
+uB
 Mv
-Jc
+Au
 kC
 dI
 Vr
@@ -10601,8 +10682,8 @@ oY
 oY
 oY
 kC
-Eh
-Eh
+CC
+CC
 kC
 kC
 kC
@@ -10870,8 +10951,8 @@ oY
 oY
 oY
 kC
-dI
-dI
+hv
+hv
 kC
 kC
 oY
@@ -10960,8 +11041,8 @@ oY
 oY
 oY
 kC
-dI
-Ux
+hv
+kx
 kC
 oY
 oY
@@ -15552,7 +15633,7 @@ oY
 oY
 Fx
 QV
-Tb
+ZV
 YA
 hm
 Fx
@@ -16003,7 +16084,7 @@ oY
 nN
 wH
 vi
-kb
+dB
 TC
 ab
 KZ
@@ -17119,7 +17200,7 @@ Op
 bw
 bw
 bw
-bw
+IM
 Zu
 jK
 Cq
@@ -17128,7 +17209,7 @@ BO
 Cq
 Vr
 bw
-Op
+XE
 cO
 hH
 BO
@@ -17756,7 +17837,7 @@ Ei
 bw
 bw
 ka
-ka
+bl
 bw
 bw
 ka
@@ -17839,7 +17920,7 @@ ka
 bw
 ZI
 ka
-ka
+bl
 bw
 xR
 ka
@@ -18103,18 +18184,18 @@ uS
 Ge
 bw
 bw
-bw
+IM
 bw
 ka
 XT
 bw
 CI
-ka
+bl
 xR
 ka
 ka
 ka
-Pp
+fQ
 ka
 ka
 ka
@@ -18374,11 +18455,11 @@ Ia
 Ia
 KZ
 uS
-bw
+IM
 ka
 ka
 ka
-ka
+bl
 ka
 ka
 ka
@@ -18387,7 +18468,7 @@ vx
 bw
 xR
 Ei
-ka
+bl
 ka
 ka
 bw
@@ -18834,7 +18915,7 @@ ka
 ka
 bw
 ka
-ka
+bl
 ka
 Pp
 bw
@@ -18917,7 +18998,7 @@ bw
 bw
 KZ
 bw
-bw
+IM
 CI
 ka
 ka
@@ -19182,7 +19263,7 @@ Ia
 Ia
 Ia
 KZ
-uS
+nO
 KZ
 KZ
 Ia

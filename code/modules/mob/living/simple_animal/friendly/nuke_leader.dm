@@ -505,9 +505,9 @@
 
 	if(isliving(user))
 		var/mob/living/L = user
-		var/B = L.is_holding_item_of_type(/obj/item/mutant_heart)
+		var/B = L.is_holding_item_of_type(/obj/item/organ/heart/mutant_heart)
 		if(B)
-			var/obj/item/mutant_heart/heart = B
+			var/obj/item/organ/heart/mutant_heart/heart = B
 			if(heart && istype(heart))
 				return TRUE
 	return FALSE
@@ -518,9 +518,9 @@
 
 	if(isliving(usr))
 		var/mob/living/L = usr
-		var/B = L.is_holding_item_of_type(/obj/item/mutant_heart)
+		var/B = L.is_holding_item_of_type(/obj/item/organ/heart/mutant_heart)
 		if(B)
-			var/obj/item/mutant_heart/heart = B
+			var/obj/item/organ/heart/mutant_heart/heart = B
 			if(heart && istype(heart))
 				qdel(heart)
 				new /obj/item/keycard/stockroom (get_turf(L))

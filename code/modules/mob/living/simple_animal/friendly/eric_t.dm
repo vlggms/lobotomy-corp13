@@ -12,12 +12,17 @@
 	icon_dead = "b_boss_dead"
 	emote_delay = 2000
 	random_emotes = "shuffles through some papers;flips a page in their notebook;sighs..."
+	return_to_origin = TRUE
 
 	// Combat-related variables
 	var/blood_resistance = 250
 	var/last_attacked_cooldown
 	var/attacked_cooldown = 300
 	var/shielded_line = "Yep, That will just be a waste of your time."
+	var/attacked_amount = 0
+	var/warning_line = "... You really don't want to mess with me, Child."
+	var/last_warning_cooldown
+	var/warning_cooldown = 50
 
 	// Price for replacing lost parcels
 	var/payback_price = 400
@@ -741,6 +746,28 @@
 		if(last_attacked_cooldown < world.time - attacked_cooldown)
 			say(shielded_line)
 			last_attacked_cooldown = world.time
+
+/mob/living/simple_animal/hostile/ui_npc/eric_t/attackby(obj/item/I, mob/living/user, params)
+	..()
+	attacked_amount++
+	if(attacked_amount >= 5 && attacked_amount != 10)
+		if(last_warning_cooldown < world.time - warning_cooldown)
+			say(warning_line)
+			last_warning_cooldown = world.time
+	if(attacked_amount == 10)
+		say("Well, You asked for this... [user.name]")
+		visible_message(span_warning("[src] drains all of [user.name]'s blood!"))
+		new /obj/effect/temp_visual/cult/sparks(get_turf(user))
+		user.adjustBruteLoss(300)
+		user.playsound_local(get_turf(src), 'sound/magic/disintegrate.ogg', 60, 3, 3)
+		attacked_amount = 0
+		afterkill()
+
+/mob/living/simple_animal/hostile/ui_npc/eric_t/proc/afterkill()
+	sleep(25)
+	manual_emote("Wipes their gloves clean...")
+	sleep(45)
+	say("Anyone else wants to bother me?")
 
 // The briefcase item remains the same
 /obj/item/eric_briefcase
