@@ -22,6 +22,9 @@
 	sharpness = SHARP_NONE
 	embedding = null
 
+/obj/projectile/bullet/shotgun_beanbag/ruined_town
+	hit_nondense_targets = TRUE
+
 /obj/projectile/bullet/incendiary/shotgun
 	name = "incendiary slug"
 	damage = 20
@@ -122,3 +125,6 @@
 
 /obj/projectile/bullet/scattershot
 	damage = 24
+
+/obj/projectile/bullet/scattershot/ruined_town
+	hit_nondense_targets = TRUE
