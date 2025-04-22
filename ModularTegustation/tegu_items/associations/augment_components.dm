@@ -563,7 +563,7 @@
 	var/damage_resist = 10
 	var/total_damage_resist = 0
 
-/datum/component/augment/struggling_defense/take_damage_effect(datum/source, damage, damagetype, def_zone)
+/datum/component/augment/tremor_defense/take_damage_effect(datum/source, damage, damagetype, def_zone)
 	. = ..()
 	var/datum/status_effect/stacking/lc_tremor/UT = human_parent.has_status_effect(/datum/status_effect/stacking/lc_tremor)
 	if(UT)
@@ -574,7 +574,7 @@
 	human_parent.physiology.red_mod -= total_damage_resist
 	human_parent.physiology.black_mod -= total_damage_resist
 
-/datum/component/augment/struggling_defense/after_take_damage_effect(datum/source, damage, damagetype, def_zone)
+/datum/component/augment/tremor_defense/after_take_damage_effect(datum/source, damage, damagetype, def_zone)
 	. = ..()
 	human_parent.physiology.red_mod += total_damage_resist
 	human_parent.physiology.black_mod += total_damage_resist
