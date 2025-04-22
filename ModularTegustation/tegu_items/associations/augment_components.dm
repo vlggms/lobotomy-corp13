@@ -1192,6 +1192,8 @@
 		human_parent.adjustBruteLoss(max(0, B.stacks))
 		to_chat(human_parent, "<span class='warning'>Your organs bleed due to your movement!!</span>")
 		human_parent.playsound_local(human_parent, 'sound/effects/wounds/crackandbleed.ogg', 25, TRUE)
+		for(var/mob/living/L in view(5, human_parent))
+			SEND_SIGNAL(L, COMSIG_STATUS_BLEED_DAMAGE, human_parent, B.stacks)
 		new /obj/effect/temp_visual/damage_effect/bleed(get_turf(human_parent))
 		B.stacks = round(B.stacks/2)
 
