@@ -169,3 +169,85 @@
 		src.attack_hand(thrownby)
 		if(thrownby.get_active_held_item() == src) //if our attack_hand() picks up the item...
 			visible_message(span_warning("[thrownby] teleports to [src]!"))
+
+/obj/item/ego_weapon/blood/priest
+	name = "hardblood staff"
+	desc = "Are you still thinking about blood?"
+	special = "When attacking with over 50% of your max HP, you gain bleed and create blood piles around you. At less then 50% max HP, you heal by the damage dealt * 0.25 \
+		When you consume 200+ hardblood with your outfit, this weapon enters a 'Hardblood' state. \
+		While this weapon is in it's hardblood state, You can use this weapon in hand to convert it into a whip which has extra range at the cost of dealing less damage."
+	icon_state = "priest"
+	force = 110
+	attack_speed = 2
+	damtype = RED_DAMAGE
+	hardblood_threshold = 200
+	attack_verb_continuous = list("pierces", "stabs")
+	attack_verb_simple = list("pierce", "stab")
+	hitsound = 'sound/weapons/ego/priest_basic_attack.ogg'
+	attribute_requirements = list(
+							FORTITUDE_ATTRIBUTE = 100,
+							PRUDENCE_ATTRIBUTE = 100,
+							TEMPERANCE_ATTRIBUTE = 80,
+							JUSTICE_ATTRIBUTE = 80
+							)
+	var/whip_mode = FALSE
+
+/obj/item/ego_weapon/blood/priest/attack_self(mob/living/carbon/human/user)
+	..()
+	if(!CanUseEgo(user))
+		return
+	if(hardblood_mode)
+		if(!whip_mode)
+			whip_mode = TRUE
+			reach = 2
+			force = 90
+			hitsound = 'sound/weapons/ego/priest_whip_attack.ogg'
+			to_chat(user, "<span class='nicegreen'>More, more blood...!")
+			playsound(user, 'sound/weapons/ego/priest_strong_whip_attack.ogg', 50, FALSE, 9)
+	update_icon_state()
+
+/obj/item/ego_weapon/blood/priest/attack(mob/living/target, mob/living/carbon/human/user)
+	if(!CanUseEgo(user))
+		return
+	..()
+	if(((user.health/user.maxHealth) >= 0.5))
+		to_chat(user, "<span class='warning'>The Deserved Penance...")
+		user.apply_lc_bleed(5)
+		var/turf/origin = get_turf(user)
+		var/list/all_turfs = RANGE_TURFS(1, origin)
+		for(var/turf/T in shuffle(all_turfs))
+			if (T.is_blocked_turf(exclude_mobs = TRUE))
+				continue
+			var/obj/effect/decal/cleanable/blood/B = locate() in T
+			if(!B)
+				B = new /obj/effect/decal/cleanable/blood(T)
+				B.bloodiness = 100
+				break
+	else
+		var/userjust = (get_attribute_level(user, JUSTICE_ATTRIBUTE))
+		var/justicemod = 1 + userjust/100
+		user.adjustBruteLoss(-force * justicemod * 0.25)
+		to_chat(user, "<span class='nicegreen'>How Bountiful...")
+
+	if(whip_mode)
+		for(var/i = 1 to 3)
+			sleep(2)
+			if(target in view(reach,user))
+				playsound(loc, hitsound, get_clamped_volume(), TRUE, extrarange = stealthy_audio ? SILENCED_SOUND_EXTRARANGE : -1, falloff_distance = 0)
+				user.do_attack_animation(target)
+				target.attacked_by(src, user)
+				log_combat(user, target, pick(attack_verb_continuous), src.name, "(INTENT: [uppertext(user.a_intent)]) (DAMTYPE: [uppertext(damtype)])")
+
+	update_icon_state()
+
+/obj/item/ego_weapon/blood/priest/deactivate_hardblood()
+	hardblood_mode = FALSE
+	if(whip_mode)
+		whip_mode = FALSE
+		reach = 1
+		force = 110
+		hitsound = 'sound/weapons/ego/priest_basic_attack.ogg'
+	update_icon_state()
+
+/obj/item/ego_weapon/blood/priest/update_icon_state()
+	icon_state = inhand_icon_state = "[initial(icon_state)]" + "[whip_mode ? "_powered" : ""]"
