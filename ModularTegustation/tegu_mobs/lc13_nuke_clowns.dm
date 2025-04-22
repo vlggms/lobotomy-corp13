@@ -18,8 +18,8 @@
 	mob_size = MOB_SIZE_HUGE
 	faction = list("hostile")
 	melee_damage_type = RED_DAMAGE
-	melee_damage_lower = 15
-	melee_damage_upper = 20
+	melee_damage_lower = 20
+	melee_damage_upper = 30
 	attack_sound = 'sound/items/bikehorn.ogg'
 	obj_damage = 0
 	environment_smash = ENVIRONMENT_SMASH_NONE
@@ -126,8 +126,8 @@
 	maxHealth = 1000
 	health = 1000
 	damage_coeff = list(RED_DAMAGE = 1, WHITE_DAMAGE = 0.4, BLACK_DAMAGE = 0.5, PALE_DAMAGE = 1.5)
-	melee_damage_lower = 20
-	melee_damage_upper = 30
+	melee_damage_lower = 35
+	melee_damage_upper = 50
 	scream_damage = 20
 	loot = list(/obj/effect/mob_spawn/human/clown/corpse, /obj/item/organ/heart/mutant_heart)
 	move_speed_maskbreak = 14
