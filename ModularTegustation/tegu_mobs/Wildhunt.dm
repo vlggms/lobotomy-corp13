@@ -527,7 +527,7 @@
 	rapid_melee = 1
 	pixel_x = -10
 	faction = list("hostile")
-	rapid_melee = 3
+	rapid_melee = 0.8
 	melee_damage_type = WHITE_DAMAGE
 	obj_damage = 40
 	environment_smash = ENVIRONMENT_SMASH_NONE
