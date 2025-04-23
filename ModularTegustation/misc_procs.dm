@@ -36,6 +36,16 @@
 	message_admins(span_adminnotice("[possessing_player.key] has possessed [abnormality.name]."))
 	log_admin("[possessing_player.key] has possessed [abnormality.name].")
 
+	if(SSlobotomy_corp.chosen_trait == FACILITY_TRAIT_PLAYABLES) //Most convenient way I could think of off the top of my head.
+		if(LAZYLEN(SSlobotomy_corp.all_abnormality_datums))
+			for(var/datum/abnormality/A in SSlobotomy_corp.all_abnormality_datums)
+				if(A.abno_radio)
+					continue
+				if(isnull(A.current))
+					A.abno_radio = TRUE
+					continue
+				A.current.AbnoRadio()
+
 	abnormality.key = possessing_player.key
 	abnormality.client?.init_verbs()
 	qdel(possessing_player)
