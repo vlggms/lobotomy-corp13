@@ -177,6 +177,9 @@
 		When you consume 200+ hardblood with your outfit, this weapon enters a 'Hardblood' state. \
 		While this weapon is in it's hardblood state, You can use this weapon in hand to convert it into a whip which has extra range at the cost of dealing less damage."
 	icon_state = "priest"
+	icon = 'ModularTegustation/Teguicons/blood_weapon_icon.dmi'
+	lefthand_file = 'ModularTegustation/Teguicons/blood_weapon_32x32_worn_left.dmi'
+	righthand_file = 'ModularTegustation/Teguicons/blood_weapon_32x32_worn_right.dmi'
 	force = 110
 	attack_speed = 2
 	damtype = RED_DAMAGE
