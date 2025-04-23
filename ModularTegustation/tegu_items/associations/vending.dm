@@ -25,10 +25,11 @@
 		//The office stuff
 		/obj/item/structurecapsule/fixer = 1,	//fishing
 		/obj/item/structurecapsule/fixer/combat = 2,
-		/obj/item/structurecapsule/fixer/protection = 2,
+		/obj/item/structurecapsule/fixer/delivery = 2,
 		/obj/item/structurecapsule/fixer/workshop = 1,
 		/obj/item/structurecapsule/fixer/recon = 1,
 		/obj/item/structurecapsule/fixer/peacekeeper = 1,
+		/obj/item/structurecapsule/fixer/contract = 1,
 
 		//Boxes cost you an extra 700
 		/obj/item/storage/box/fixer/wedge = 1,
