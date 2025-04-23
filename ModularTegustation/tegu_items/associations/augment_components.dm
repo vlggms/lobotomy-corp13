@@ -938,8 +938,11 @@
 		regen_amount *= 4
 	if(regen_amount > 100)
 		regen_amount = 100
-	human_parent.adjustBruteLoss(regen_amount)
+	human_parent.adjustBruteLoss(-regen_amount)
 	to_chat(human_parent, span_nicegreen("You regen [regen_amount] HP due to [bleeder] bleeding! Due to Blood Cycler"))
+
+/datum/component/augment/blood_cycler/UnregisterFromParent()
+	UnregisterSignal(parent, COMSIG_STATUS_BLEED_DAMAGE)
 
 //Acidic Blood
 /datum/component/augment/acidic_blood/RegisterWithParent()
