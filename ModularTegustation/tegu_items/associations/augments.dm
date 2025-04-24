@@ -65,7 +65,7 @@
 			"ep_cost" = 4, // Positive EP cost
 			"desc" = "For every 25% of HP lost, take 10%*X less damage.",
 			"repeatable" = 3, // Max 3 times
-			"component" = /datum/component/augment/struggling_defense
+			"component" = /datum/component/augment/resisting_augment/struggling_defense
 		),
 		list(
 			"id" = "ES_red",
@@ -107,7 +107,7 @@
 			"ep_cost" = 2,
 			"desc" = "When you take damage, you will take 5*X% less damage per human you can see. (Max of 40%).",
 			"repeatable" = 3,
-			"component" = /datum/component/augment/reinforcement_nanties
+			"component" = /datum/component/augment/resisting_augment/reinforcement_nanties
 		),
 		list(
 			"id" = "cooling_systems",
@@ -314,7 +314,7 @@
 			"ep_cost" = 2,
 			"repeatable" = 3,
 			"desc" = "For every 10 Tremor on self, take 10*X% less damage from RED/BLACK attacks.",
-			"component" = /datum/component/augment/tremor_defense
+			"component" = /datum/component/augment/resisting_augment/tremor_defense
 		),
 		list(
 			"id" = "earthquake",
