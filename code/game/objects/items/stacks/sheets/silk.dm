@@ -11,9 +11,9 @@
 /datum/component/butchering/silkbutchering/ButcherEffects(mob/living/meat)
 	var/turf/T = meat.drop_location()
 	if(ishuman(meat))
-		if(meat.client)
-			meat.visible_message(span_notice("[meat]'s soul resists the silkweaver!"))
-			return FALSE
+		// if(meat.client)
+		// 	meat.visible_message(span_notice("[meat]'s soul resists the silkweaver!"))
+		// 	return FALSE
 		var/mob/living/carbon/human/H = meat
 		var/total = get_attribute_level(H, FORTITUDE_ATTRIBUTE) + get_attribute_level(H, PRUDENCE_ATTRIBUTE) + get_attribute_level(H, TEMPERANCE_ATTRIBUTE) + get_attribute_level(H, JUSTICE_ATTRIBUTE)
 
