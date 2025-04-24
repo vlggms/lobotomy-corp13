@@ -73,6 +73,18 @@
 					to_chat(user, "<span class='spider'><b>You disable the DNA lock on [src].</b></span>")
 
 //Storage Stuff
+/obj/item/ego_weapon/city/devyat_trunk/equip_to_best_slot(mob/M, check_hand = TRUE)
+	if(combat_mode)
+		to_chat(M, span_warning("You are unable to equip the devyat bag during combat mode!"))
+		return FALSE
+	. = ..()
+
+/obj/item/ego_weapon/city/devyat_trunk/mob_can_equip(mob/living/M, mob/living/equipper, slot, disable_warning = FALSE, bypass_equip_delay_self = FALSE)
+	if(combat_mode)
+		to_chat(M, span_warning("You are unable to equip the devyat bag during combat mode!"))
+		return FALSE
+	. = ..()
+
 /obj/item/ego_weapon/city/devyat_trunk/attack_hand(mob/user)
 	if(owner && (user != owner))
 		if(ishuman(user))
