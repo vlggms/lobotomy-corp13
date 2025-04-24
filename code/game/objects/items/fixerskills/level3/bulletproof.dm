@@ -43,3 +43,4 @@
 		return BULLET_ACT_BLOCK
 	to_chat(A, span_userdanger("Your armor has been pierced!"))
 	..()
+
