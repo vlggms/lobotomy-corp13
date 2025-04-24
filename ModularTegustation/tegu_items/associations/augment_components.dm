@@ -158,9 +158,9 @@
 	var/missing_sp = (human_parent.sanityhealth/human_parent.maxSanity)
 	if(missing_sp <= 0.75)
 		damage_buff_mult++
-	else if(missing_sp <= 0.50)
+	if(missing_sp <= 0.50)
 		damage_buff_mult++
-	else if(missing_sp <= 0.25)
+	if(missing_sp <= 0.25)
 		damage_buff_mult++
 	total_damage_buff = damage_buff * damage_buff_mult * repeat
 	human_parent.extra_damage_red += total_damage_buff
@@ -184,9 +184,9 @@
 	var/missing_sp = (human_parent.sanityhealth/human_parent.maxSanity)
 	if(missing_sp <= 0.75)
 		damage_buff_mult++
-	else if(missing_sp <= 0.50)
+	if(missing_sp <= 0.50)
 		damage_buff_mult++
-	else if(missing_sp <= 0.25)
+	if(missing_sp <= 0.25)
 		damage_buff_mult++
 	total_damage_buff = damage_buff * damage_buff_mult * repeat
 	human_parent.extra_damage_white += total_damage_buff
@@ -210,9 +210,9 @@
 	var/missing_sp = (human_parent.sanityhealth/human_parent.maxSanity)
 	if(missing_sp <= 0.75)
 		damage_buff_mult++
-	else if(missing_sp <= 0.50)
+	if(missing_sp <= 0.50)
 		damage_buff_mult++
-	else if(missing_sp <= 0.25)
+	if(missing_sp <= 0.25)
 		damage_buff_mult++
 	total_damage_buff = damage_buff * damage_buff_mult * repeat
 	human_parent.extra_damage_black += total_damage_buff
@@ -1005,7 +1005,7 @@
 
 /datum/component/augment/fireproof/take_damage_effect(datum/source, damage, damagetype, def_zone)
 	. = ..()
-	var/missing_hp = (human_parent.health/human_parent.maxHealth)
+	var/missing_hp = ((human_parent.health - damage)/human_parent.maxHealth)
 	if(missing_hp <= 0.15 && damagetype == BURN)
 		human_parent.physiology.burn_mod -= 1
 		proofing_fire = TRUE
