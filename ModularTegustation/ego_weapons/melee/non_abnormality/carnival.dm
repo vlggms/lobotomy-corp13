@@ -45,6 +45,8 @@
 		for(var/mob/living/carbon/human/O in view(7, user))
 			if(O == user || O == H)
 				continue
+			if(O.stat == DEAD || !O.client)
+				continue
 			else
 				alone = FALSE
 		if(alone)
