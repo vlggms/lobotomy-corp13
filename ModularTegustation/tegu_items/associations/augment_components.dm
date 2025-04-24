@@ -380,36 +380,74 @@
 
 ///Reactive Damage Effects
 
-//Struggling Defense
-/datum/component/augment/struggling_defense
-	var/damage_resist = 10
-	var/damage_resist_mult = 0
+/datum/component/augment/resisting_augment
 	var/total_damage_resist = 0
 
-/datum/component/augment/struggling_defense/take_damage_effect(datum/source, damage, damagetype, def_zone)
+/datum/component/augment/resisting_augment/proc/get_total_damage_resist(datum/source, damage, damagetype, def_zone)
+	return 0
+
+/datum/component/augment/resisting_augment/take_damage_effect(datum/source, damage, damagetype, def_zone)
 	. = ..()
+	total_damage_resist = get_total_damage_resist(source, damage, damagetype, def_zone)
+	// if mod < 5% - DO NOT CHANGE IT
+	// IF mod - res < 5% change mod to 5% and remember the res
+	switch(damagetype)
+		if (RED_DAMAGE)
+			if (human_parent.physiology.red_mod < 0.05)
+				total_damage_resist = 0
+			else if((human_parent.physiology.red_mod - total_damage_resist) < 0.05)
+				total_damage_resist = human_parent.physiology.red_mod - 0.05
+			human_parent.physiology.red_mod -= total_damage_resist
+		if (WHITE_DAMAGE)
+			if (human_parent.physiology.white_mod < 0.05)
+				total_damage_resist = 0
+			else if((human_parent.physiology.white_mod - total_damage_resist) < 0.05)
+				total_damage_resist = human_parent.physiology.white_mod - 0.05
+			human_parent.physiology.white_mod -= total_damage_resist
+		if (BLACK_DAMAGE)
+			if (human_parent.physiology.black_mod < 0.05)
+				total_damage_resist = 0
+			else if((human_parent.physiology.black_mod - total_damage_resist) < 0.05)
+				total_damage_resist = human_parent.physiology.black_mod - 0.05
+			human_parent.physiology.black_mod -= total_damage_resist
+		if (PALE_DAMAGE)
+			if (human_parent.physiology.pale_mod < 0.05)
+				total_damage_resist = 0
+			else if((human_parent.physiology.pale_mod - total_damage_resist) < 0.05)
+				total_damage_resist = human_parent.physiology.pale_mod - 0.05
+			human_parent.physiology.pale_mod -= total_damage_resist
+
+/datum/component/augment/resisting_augment/after_take_damage_effect(datum/source, damage, damagetype, def_zone)
+	. = ..()
+	switch(damagetype)
+		if (RED_DAMAGE)
+			human_parent.physiology.red_mod += total_damage_resist
+		if (WHITE_DAMAGE)
+			human_parent.physiology.white_mod += total_damage_resist
+		if (BLACK_DAMAGE)
+			human_parent.physiology.black_mod += total_damage_resist
+		if (PALE_DAMAGE)
+			human_parent.physiology.pale_mod += total_damage_resist
+
+
+//Struggling Defense
+/datum/component/augment/resisting_augment/struggling_defense
+	var/damage_resist = 0.1
+
+/datum/component/augment/resisting_augment/struggling_defense/take_damage_effect(datum/source, damage, damagetype, def_zone)
+	. = ..()
+	to_chat(human_parent, span_nicegreen("You take [total_damage_resist * 100]% less damage! Due to Struggling Defense"))
+
+/datum/component/augment/resisting_augment/struggling_defense/get_total_damage_resist(datum/source, damage, damagetype, def_zone)
 	var/missing_hp = (human_parent.health/human_parent.maxHealth)
+	var/damage_resist_mult = 0
 	if(missing_hp <= 0.75)
 		damage_resist_mult++
-	else if(missing_hp <= 0.50)
+	if(missing_hp <= 0.50)
 		damage_resist_mult++
-	else if(missing_hp <= 0.25)
+	if(missing_hp <= 0.25)
 		damage_resist_mult++
-	total_damage_resist = damage_resist * damage_resist_mult * repeat
-	human_parent.physiology.red_mod -= total_damage_resist
-	human_parent.physiology.white_mod -= total_damage_resist
-	human_parent.physiology.black_mod -= total_damage_resist
-	human_parent.physiology.pale_mod -= total_damage_resist
-	to_chat(human_parent, span_nicegreen("You take [total_damage_resist]% less damage! Due to Struggling Defense"))
-
-/datum/component/augment/struggling_defense/after_take_damage_effect(datum/source, damage, damagetype, def_zone)
-	. = ..()
-	human_parent.physiology.red_mod += total_damage_resist
-	human_parent.physiology.white_mod += total_damage_resist
-	human_parent.physiology.black_mod += total_damage_resist
-	human_parent.physiology.pale_mod += total_damage_resist
-	total_damage_resist = 0
-	damage_resist_mult = 0
+	return damage_resist * damage_resist_mult * repeat
 
 //Emergency Shields, RED
 /datum/component/augment/ES_red
@@ -472,32 +510,22 @@
 		H.apply_lc_protection(4)
 
 //Reinforcement Nanties
-/datum/component/augment/reinforcement_nanties
-	var/damage_resist = 5
-	var/damage_resist_mult = 0
-	var/total_damage_resist = 0
+/datum/component/augment/resisting_augment/reinforcement_nanties
+	var/damage_resist = 0.05
 
-/datum/component/augment/reinforcement_nanties/take_damage_effect(datum/source, damage, damagetype, def_zone)
-	. = ..()
+/datum/component/augment/resisting_augment/reinforcement_nanties/get_total_damage_resist(datum/source, damage, damagetype, def_zone)
+	var/damage_resist_mult = 0
 	for(var/mob/living/carbon/human/H in view(7, human_parent))
 		damage_resist_mult++
-	total_damage_resist = damage_resist * damage_resist_mult * repeat
-	if(total_damage_resist > 40)
-		total_damage_resist = 40
-	human_parent.physiology.red_mod -= total_damage_resist
-	human_parent.physiology.white_mod -= total_damage_resist
-	human_parent.physiology.black_mod -= total_damage_resist
-	human_parent.physiology.pale_mod -= total_damage_resist
-	to_chat(human_parent, span_nicegreen("You took [total_damage_resist]% less damage! Due to Reinforcement Nanties"))
+	var/resist = damage_resist * damage_resist_mult * repeat
+	if(resist > 40)
+		resist = 40
+	return resist
 
-/datum/component/augment/reinforcement_nanties/after_take_damage_effect(datum/source, damage, damagetype, def_zone)
+/datum/component/augment/resisting_augment/reinforcement_nanties/take_damage_effect(datum/source, damage, damagetype, def_zone)
 	. = ..()
-	human_parent.physiology.red_mod += total_damage_resist
-	human_parent.physiology.white_mod += total_damage_resist
-	human_parent.physiology.black_mod += total_damage_resist
-	human_parent.physiology.pale_mod += total_damage_resist
-	total_damage_resist = 0
-	damage_resist_mult = 0
+
+	to_chat(human_parent, span_nicegreen("You took [total_damage_resist*100]% less damage! Due to Reinforcement Nanties"))
 
 //Stalwart Form
 /datum/component/augment/stalwart_form/Initialize()
@@ -559,26 +587,20 @@
 	total_damage_buff = 0
 
 //Tremor Defense
-/datum/component/augment/tremor_defense
-	var/damage_resist = 10
-	var/total_damage_resist = 0
+/datum/component/augment/resisting_augment/tremor_defense
+	var/damage_resist = 0.1
 
-/datum/component/augment/tremor_defense/take_damage_effect(datum/source, damage, damagetype, def_zone)
-	. = ..()
+/datum/component/augment/resisting_augment/tremor_defense/get_total_damage_resist(datum/source, damage, damagetype, def_zone)
 	var/datum/status_effect/stacking/lc_tremor/UT = human_parent.has_status_effect(/datum/status_effect/stacking/lc_tremor)
-	if(UT)
-		total_damage_resist = round(UT.stacks/5) * damage_resist * repeat
-		to_chat(human_parent, span_nicegreen("You took [total_damage_resist]% less damage! Due to Tremor Defense"))
-	else
-		total_damage_resist = 0
-	human_parent.physiology.red_mod -= total_damage_resist
-	human_parent.physiology.black_mod -= total_damage_resist
+	var/resist = 0
+	if(UT && (damagetype == RED_DAMAGE || damagetype == BLACK_DAMAGE))
+		resist = round(UT.stacks/5) * damage_resist * repeat
 
-/datum/component/augment/tremor_defense/after_take_damage_effect(datum/source, damage, damagetype, def_zone)
+	return resist
+
+/datum/component/augment/resisting_augment/tremor_defense/take_damage_effect(datum/source, damage, damagetype, def_zone)
 	. = ..()
-	human_parent.physiology.red_mod += total_damage_resist
-	human_parent.physiology.black_mod += total_damage_resist
-	total_damage_resist = 0
+	to_chat(human_parent, span_nicegreen("You took [total_damage_resist * 100]% less damage! Due to Tremor Defense"))
 
 //Earthquake
 /datum/component/augment/earthquake
@@ -962,7 +984,7 @@
 
 /datum/component/augment/reclaimed_flame/afterattack_effect(datum/source, atom/target, mob/user, proximity_flag, obj/item/item)
 	if(last_target.stat == DEAD)
-		human_parent.adjustFireLoss(20 * repeat)
+		human_parent.adjustFireLoss(-20 * repeat)
 		to_chat(human_parent, span_nicegreen("You heal some BURN damage as you execute [last_target]! Due to Reclaimed Flame"))
 	. = ..()
 
@@ -1082,7 +1104,7 @@
 
 //Struggling Fragility
 /datum/component/augment/struggling_fragility
-	var/damage_resist = 10
+	var/damage_resist = 0.1
 	var/damage_resist_mult = 0
 	var/total_damage_resist = 0
 
@@ -1100,7 +1122,7 @@
 	human_parent.physiology.white_mod += total_damage_resist
 	human_parent.physiology.black_mod += total_damage_resist
 	human_parent.physiology.pale_mod += total_damage_resist
-	to_chat(human_parent, span_warning("You take [total_damage_resist]% more damage! Due to Struggling Fragility"))
+	to_chat(human_parent, span_warning("You take [total_damage_resist*10]% more damage! Due to Struggling Fragility"))
 
 /datum/component/augment/struggling_fragility/after_take_damage_effect(datum/source, damage, damagetype, def_zone)
 	. = ..()
