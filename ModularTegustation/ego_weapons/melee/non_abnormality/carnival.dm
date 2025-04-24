@@ -42,7 +42,7 @@
 	if(ishuman(target))
 		var/mob/living/carbon/human/H = target
 		var/alone = TRUE
-		for(var/mob/living/carbon/human/O in view(7, human_parent))
+		for(var/mob/living/carbon/human/O in view(7, user))
 			if(O == user || O == H)
 				continue
 			else
