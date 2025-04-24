@@ -1265,6 +1265,10 @@
 /obj/item/stack/spacecash/c100,
 /turf/open/floor/facility/dark,
 /area/city)
+"lJ" = (
+/obj/machinery/augment_fabricator,
+/turf/open/indestructible/white,
+/area/city)
 "lL" = (
 /obj/machinery/door/poddoor/shutters/indestructible,
 /turf/open/floor/plating/ashplanet/rocky{
@@ -1508,6 +1512,11 @@
 	},
 /turf/open/floor/wood,
 /area/city/house)
+"oe" = (
+/obj/structure/rack,
+/obj/item/augment_remover,
+/turf/open/indestructible/white,
+/area/city)
 "oi" = (
 /obj/machinery/telecomms/server/presets/common,
 /turf/open/floor/circuit/telecomms/mainframe,
@@ -2346,6 +2355,12 @@
 	},
 /turf/open/floor/oldshuttle,
 /area/city/house)
+"uU" = (
+/mob/living/simple_animal/npc/insurgence_grunt{
+	dir = 4
+	},
+/turf/open/indestructible/white,
+/area/city)
 "uX" = (
 /obj/structure/closet/cabinet,
 /obj/item/reagent_containers/food/drinks/beer,
@@ -4900,6 +4915,7 @@
 /area/city)
 "Ru" = (
 /obj/structure/rack,
+/obj/item/augment_tester,
 /turf/open/indestructible/white,
 /area/city)
 "Rv" = (
@@ -30439,8 +30455,8 @@ lV
 lV
 lV
 OD
-Ru
-lf
+oe
+uU
 Pf
 KP
 Pf
@@ -30697,7 +30713,7 @@ lV
 lV
 OD
 Ry
-lf
+lJ
 Pf
 OD
 xC

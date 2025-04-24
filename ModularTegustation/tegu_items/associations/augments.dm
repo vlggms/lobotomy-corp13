@@ -18,7 +18,7 @@
 	var/datum/tgui_handler/augment_fabricator/ui_handler = null
 
 	var/const/ui_key = "AugmentFabricator"
-	var/list/roles = list("Prosthetics Surgeon", "Office Director", "Office Fixer")
+	var/list/roles = list("Prosthetics Surgeon", "Office Director", "Office Fixer", "Doctor")
 
 	var/market_change_interval = 20 * 60 * 10 // 20 minutes in deciseconds
 	var/list/sale_percentages = list(25, 33, 40, 66)
@@ -925,7 +925,7 @@
 		TEMPERANCE_ATTRIBUTE,
 		JUSTICE_ATTRIBUTE,
 	)
-	var/list/roles = list("Prosthetics Surgeon", "Office Director", "Office Fixer")
+	var/list/roles = list("Prosthetics Surgeon", "Office Director", "Office Fixer", "Doctor")
 	var/active_augment = FALSE
 	// var/mutable_appearance/augment_overlay_prim
 	// var/mutable_appearance/augment_overlay_second
@@ -1082,6 +1082,32 @@
 
 	to_chat(user, span_notice("No human identified."))
 
+/obj/item/ncorp_augment_tester
+	name = "N-Corp Augment Tester"
+	desc = "A device that can check if a target has an augment."
+	icon = 'ModularTegustation/Teguicons/teguitems.dmi'
+	icon_state = "disc_stats"
+	slot_flags = ITEM_SLOT_BELT | ITEM_SLOT_POCKETS
+	w_class = WEIGHT_CLASS_SMALL
+
+/obj/item/ncorp_augment_tester/attack(mob/M, mob/user)
+	if(ishuman(M))
+		to_chat(user, span_notice("Locating augments within [M.name]..."))
+		playsound(get_turf(src), 'sound/machines/cryo_warning.ogg', 50, TRUE, -1)
+		var/mob/living/carbon/human/H = M
+		if (!do_after(user, 8 SECONDS, H))
+			return FALSE
+
+		var/obj/item/augment/A = null
+		for(var/atom/movable/i in H.contents)
+			if (istype(i, /obj/item/augment))
+				A = i
+		if(A)
+			to_chat(user, span_boldwarning("[M.name] has an augment!"))
+			playsound(get_turf(src), 'sound/machines/nuke/confirm_beep.ogg', 100, TRUE, -1)
+		else
+			to_chat(user, span_nicegreen("[M.name] doesn't have an augment!"))
+			playsound(get_turf(src), 'sound/machines/nuke/angry_beep.ogg', 100, TRUE, -1)
 
 /obj/item/augment_remover
 	name = "Augment Remover"
@@ -1090,7 +1116,7 @@
 	icon_state = "gadget1"
 	slot_flags = ITEM_SLOT_BELT | ITEM_SLOT_POCKETS
 	w_class = WEIGHT_CLASS_SMALL
-	var/list/roles = list("Prosthetics Surgeon", "Office Director", "Office Fixer")
+	var/list/roles = list("Prosthetics Surgeon", "Office Director", "Office Fixer", "Doctor")
 
 /obj/item/augment_remover/attack(mob/M, mob/user)
 	if (!CanRemoveAugment(user))
