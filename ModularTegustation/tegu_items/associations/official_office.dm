@@ -135,9 +135,8 @@
 		if(H?.mind?.assigned_role in usable_roles)
 			if(!H.assigned_office)
 				if(!check_times[H] || check_times[H] < world.time) //Let's not spam the message
-					to_chat(H, span_boldwarning("As a Civilian or Fixer, You need to be a part of an office in other to pass!"))
+					to_chat(H, span_boldwarning("You are moving into the backstreets without an offical office resignation! Your journey will be a painful one without your office."))
 					check_times[H] = world.time + OFFICE_MESSAGE_COOLDOWN
 				alarm_beep()
-				return FALSE
 
 #undef OFFICE_MESSAGE_COOLDOWN
