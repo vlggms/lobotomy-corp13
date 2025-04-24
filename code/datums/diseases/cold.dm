@@ -1,4 +1,5 @@
 /datum/disease/cold
+	form = "Virus"
 	name = "The Cold"
 	max_stages = 3
 	cure_text = "Rest & Spaceacillin"
