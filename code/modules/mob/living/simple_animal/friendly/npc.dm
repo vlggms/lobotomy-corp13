@@ -292,3 +292,25 @@
 	var/mobtype = /mob/living/simple_animal/npc
 
 
+/mob/living/simple_animal/npc/insurgence_grunt
+	name = "grade 1, transport agent"
+	desc = "A heavily augmented human, wearing bright red armor. A helmet is covering their face, replacing their face with a emotionless stare..."
+	icon = 'ModularTegustation/Teguicons/teaser_mobs.dmi'
+	icon_state = "insurgence_grunt"
+	icon_living = "insurgence_grunt"
+	icon_dead = "none"
+	speech = list("Emote: tightens some screws in the augment fabricator...", "Only a few more tweaks and...", "Oh- shoot. The client has aleady arrived!?", "I guess I should do the introduction now...", "Emote: pulls out a small paper script", "I will make this story short, but some folks hired my organization to construct this augment fabricator.", "So they sent me to transport it here, and looks like I did a might good job!", "Oh right, You can use the augment fabricator to build augments which improve their users greatly.", "It will be quite self explanatory once you interact with it.")
+	default_delay = 30
+
+/mob/living/simple_animal/npc/priest/Leave()
+	manual_emote("looks at their watch...")
+	SLEEP_CHECK_DEATH(20)
+	say("Right, Got to move now...")
+	SLEEP_CHECK_DEATH(20)
+	manual_emote("taps a button on their watch...")
+	playsound(loc, 'sound/machines/cryo_warning.ogg', vol = 75, vary = TRUE, extrarange = -3)
+	animate(src, alpha = 0, time = 6 SECONDS)
+	SLEEP_CHECK_DEATH(20)
+	say("Please enjoy the Insurgence Company's brand new, 'augment fabricator'.")
+	SLEEP_CHECK_DEATH(40)
+	qdel(src)
