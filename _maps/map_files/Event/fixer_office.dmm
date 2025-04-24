@@ -548,6 +548,13 @@
 	},
 /turf/open/floor/carpet/black,
 /area/city/backstreets_alley)
+"ck" = (
+/obj/effect/turf_decal/siding/wideplating/dark,
+/mob/living/simple_animal/npc/insurgence_grunt{
+	dir = 4
+	},
+/turf/open/floor/facility/dark,
+/area/city/house)
 "cl" = (
 /obj/structure/table/wood,
 /obj/item/folder{
@@ -46908,7 +46915,7 @@ ZY
 bv
 UQ
 UQ
-lj
+ck
 st
 TI
 Pt
