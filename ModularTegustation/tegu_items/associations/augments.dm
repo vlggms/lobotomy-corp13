@@ -430,6 +430,39 @@
 			"component" = /datum/component/augment/time_moratorium
 		),
 		list(
+			"id" = "tremor_everlasting",
+			"name" = "Tremor Everlasting",
+			"ahn_cost" = 50,
+			"ep_cost" = 4,
+			"desc" = "On hit against a target with 10+ tremor, preform a Tremor Burst and inflict Tremor equal to half of their current tremor. (Has a cooldown of 30 seconds.)",
+			"component" = /datum/component/augment/tremor_everlasting
+		),
+		list(
+			"id" = "tremor_deterioration",
+			"name" = "Tremor Deterioration",
+			"ahn_cost" = 25,
+			"ep_cost" = 2,
+			"repeatable" = 3,
+			"desc" = "On hit against a target with 4+ tremor on self, consume 3 tremor on self to trigger an 3x3 AoE centered around the target, which deals half damage of your weapon and inflicts X tremor. (Has a cooldown of 2.5 seconds.)",
+			"component" = /datum/component/augment/tremor_deterioration
+		),
+		list(
+			"id" = "vibroweld_morph_combat_effect",
+			"name" = "Vibroweld Morph-combat effect",
+			"ahn_cost" = 50,
+			"ep_cost" = 4,
+			"desc" = "On hit against a target with 16+ tremor on self, consume 15 tremor on self to trigger 3 Tremor Bursts on target. (Has a cooldown of 30 seconds.)",
+			"component" = /datum/component/augment/vibroweld_morph_combat_effect
+		),
+		list(
+			"id" = "tremor_ruin",
+			"name" = "Tremor Ruin",
+			"ahn_cost" = 50,
+			"ep_cost" = 4,
+			"desc" = "On hit against a target with 10+ tremor, Prefrom a Tremor Burst and inflict BLACK fragility equal to (targets tremor/5). (Has a cooldown of 15 seconds.)",
+			"component" = /datum/component/augment/tremor_ruin
+		),
+		list(
 			"id" = "rekindled_flame",
 			"name" = "Rekindled Flame",
 			"ahn_cost" = 25,
