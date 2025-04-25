@@ -86,13 +86,9 @@
 		CoffinSlam(target)
 		return
 
-	if(((throw_timer <= world.time)))
-		switch(current_stage)
-			if(2)
-				if(isliving(target))
-					return BladeThrow(target)
-		return
-	return
+	if(throw_timer <= world.time)
+		if((current_stage == 2) && (isliving(target)))
+			return BladeThrow(target)
 
 // Slams the area with the sleigh, doing heavy damage
 /mob/living/simple_animal/hostile/megafauna/Erlking/proc/CoffinSlam(atom/target)
