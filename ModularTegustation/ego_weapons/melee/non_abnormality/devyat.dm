@@ -16,10 +16,10 @@
 	slot_flags = ITEM_SLOT_BACK
 	damtype = BLACK_DAMAGE
 	attribute_requirements = list(
-							FORTITUDE_ATTRIBUTE = 60,
+							FORTITUDE_ATTRIBUTE = 40,
 							PRUDENCE_ATTRIBUTE = 60,
-							TEMPERANCE_ATTRIBUTE = 60,
-							JUSTICE_ATTRIBUTE = 60
+							TEMPERANCE_ATTRIBUTE = 40,
+							JUSTICE_ATTRIBUTE = 40
 							)
 	attack_verb_continuous = list("slices", "gashes", "stabs")
 	attack_verb_simple = list("slice", "gash", "stab")
@@ -326,3 +326,9 @@
 	tier0_icon = "b_polu"
 	tier1_icon = "b_polu_demo"
 	tier2_icon = "b_polu_hammer"
+	attribute_requirements = list(
+							FORTITUDE_ATTRIBUTE = 60,
+							PRUDENCE_ATTRIBUTE = 80,
+							TEMPERANCE_ATTRIBUTE = 60,
+							JUSTICE_ATTRIBUTE = 60
+							)
