@@ -313,7 +313,7 @@
 			"ahn_cost" = 25,
 			"ep_cost" = 2,
 			"repeatable" = 3,
-			"desc" = "For every 10 Tremor on self, take 5*X% less damage from RED/BLACK attacks. (Max of 50%)",
+			"desc" = "For every 10 Tremor on self, take 5*X% less damage from RED/BLACK attacks. (Max of 30% + (X - 1) * 20%)",
 			"component" = /datum/component/augment/resisting_augment/tremor_defense
 		),
 		list(
@@ -402,7 +402,7 @@
 			"name" = "Stoneward Form",
 			"ahn_cost" = 50,
 			"ep_cost" = 4,
-			"desc" = "When you take damage, spawn a Stoneward Statue which every 2 seconds heals all humans near it and gives them 3 Tremor. (Spawning has a cooldown of 30 seconds)",
+			"desc" = "When you take damage, spawn a Stoneward Statue which every 5 seconds heals all humans near it and gives them 3 Tremor. (Spawning has a cooldown of 30 seconds)",
 			"component" = /datum/component/augment/stoneward_form
 		),
 		list(
