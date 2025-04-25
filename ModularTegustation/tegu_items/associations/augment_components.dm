@@ -588,13 +588,15 @@
 
 //Tremor Defense
 /datum/component/augment/resisting_augment/tremor_defense
-	var/damage_resist = 0.1
+	var/damage_resist = 0.05
 
 /datum/component/augment/resisting_augment/tremor_defense/get_total_damage_resist(datum/source, damage, damagetype, def_zone)
 	var/datum/status_effect/stacking/lc_tremor/UT = human_parent.has_status_effect(/datum/status_effect/stacking/lc_tremor)
 	var/resist = 0
 	if(UT && (damagetype == RED_DAMAGE || damagetype == BLACK_DAMAGE))
-		resist = round(UT.stacks/5) * damage_resist * repeat
+		resist = round(UT.stacks/10) * damage_resist * repeat
+	if(resist > 0.5)
+		resist = 0.5
 
 	return resist
 
@@ -764,7 +766,7 @@
 //Stoneward Form
 /datum/component/augment/stoneward_form
 	var/inflict_cooldown
-	var/inflict_cooldown_time = 50
+	var/inflict_cooldown_time = 300
 
 /datum/component/augment/stoneward_form/take_damage_effect(datum/source, damage, damagetype, def_zone)
 	. = ..()
@@ -798,7 +800,7 @@
 	mob_size = MOB_SIZE_HUGE
 	var/heal_cooldown = 20
 	var/heal_timer
-	var/heal_per_tick = 20
+	var/heal_per_tick = 10
 	var/self_destruct_timer
 
 /mob/living/simple_animal/hostile/stoneward_statue/Initialize()
