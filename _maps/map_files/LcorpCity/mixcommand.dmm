@@ -2336,12 +2336,6 @@
 /obj/structure/chair/pew/right,
 /turf/open/floor/plating/grass,
 /area/department_main/command)
-"qM" = (
-/mob/living/simple_animal/npc/insurgence_grunt{
-	dir = 4
-	},
-/turf/open/indestructible/white,
-/area/city/shop)
 "qZ" = (
 /obj/effect/turf_decal/siding/blue{
 	color = "#3234B9";
@@ -2547,10 +2541,6 @@
 	name = "asphalt"
 	},
 /area/city)
-"ys" = (
-/obj/machinery/augment_fabricator,
-/turf/open/indestructible/white,
-/area/city/shop)
 "yy" = (
 /obj/machinery/pdapainter,
 /obj/machinery/light{
@@ -2673,11 +2663,6 @@
 	density = 1
 	},
 /area/city)
-"Co" = (
-/obj/structure/rack,
-/obj/item/augment_tester,
-/turf/open/indestructible/white,
-/area/city/shop)
 "Cr" = (
 /obj/machinery/light{
 	dir = 1
@@ -3285,11 +3270,6 @@
 	},
 /obj/item/kirbyplants/fullysynthetic,
 /turf/open/floor/carpet/black,
-/area/city/shop)
-"SO" = (
-/obj/structure/rack,
-/obj/item/augment_remover,
-/turf/open/indestructible/white,
 /area/city/shop)
 "SZ" = (
 /obj/structure/closet/secure_closet/personal/cabinet,
@@ -37624,9 +37604,9 @@ jq
 jq
 jq
 jq
-ZR
-ZR
-ZR
+jq
+jq
+jq
 ZR
 ZR
 bZ
@@ -37881,11 +37861,11 @@ jq
 jq
 jq
 jq
+jq
+jq
+jq
 ZR
 bJ
-Se
-Se
-Se
 Se
 ct
 ZR
@@ -38138,11 +38118,11 @@ jq
 jq
 jq
 jq
+jq
+jq
+jq
 ZR
 bK
-Se
-qM
-Se
 Se
 Se
 cL
@@ -38395,12 +38375,12 @@ jq
 jq
 jq
 jq
+jq
+jq
+jq
 ZR
 bL
 ca
-ys
-SO
-Co
 cu
 cM
 Se
@@ -38652,9 +38632,9 @@ jq
 jq
 jq
 jq
-ZR
-ZR
-ZR
+jq
+jq
+jq
 ZR
 ZR
 ZR
