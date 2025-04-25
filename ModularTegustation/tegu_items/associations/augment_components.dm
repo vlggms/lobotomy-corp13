@@ -906,6 +906,89 @@
 			TT.stacks -= 10
 			new /obj/effect/timestop(get_turf(target), 2, 40, list(human_parent))
 
+//Tremor Everlasting
+/datum/component/augment/tremor_everlasting
+	var/inflict_cooldown
+	var/inflict_cooldown_time = 300
+
+/datum/component/augment/tremor_everlasting/attack_effect(datum/source, mob/living/target, mob/living/user, obj/item/item)
+	. = ..()
+	var/datum/status_effect/stacking/lc_tremor/TT = target.has_status_effect(/datum/status_effect/stacking/lc_tremor)
+	if(TT)
+		if(TT.stacks >= 10)
+			if(inflict_cooldown > world.time)
+				return FALSE
+			if(item.force <= 0 || target.stat == DEAD)
+				return FALSE
+			inflict_cooldown = world.time + inflict_cooldown_time
+			TT.TremorBurst()
+			target.apply_lc_tremor(TT.stacks*0.5, 55)
+			to_chat(human_parent, span_nicegreen("You preformed a tremor burst on target and inflicted [TT.stacks*0.5] tremor! Due to Tremor Everlasting"))
+
+//Tremor Deterioration
+/datum/component/augment/tremor_deterioration
+	var/inflict_cooldown
+	var/inflict_cooldown_time = 25
+
+/datum/component/augment/tremor_deterioration/attack_effect(datum/source, mob/living/target, mob/living/user, obj/item/item)
+	. = ..()
+	var/datum/status_effect/stacking/lc_tremor/UT = human_parent.has_status_effect(/datum/status_effect/stacking/lc_tremor)
+	if(UT)
+		if(UT.stacks >= 4)
+			if(inflict_cooldown > world.time)
+				return FALSE
+			if(item.force <= 0 || target.stat == DEAD)
+				return FALSE
+			inflict_cooldown = world.time + inflict_cooldown_time
+			UT.stacks -= 3
+			var/justice_mod = 1 + (get_modified_attribute_level(human_parent, JUSTICE_ATTRIBUTE)/100)
+			var/total_damage = item.force * justice_mod * 0.5
+			for(var/mob/living/simple_animal/hostile/H in view(1, target))
+				H.deal_damage(total_damage, item.damtype)
+				H.apply_lc_tremor(repeat, 55)
+			to_chat(human_parent, span_nicegreen("You consumed 3 tremor from yourself, deal an 3x3 AoE around your target! Due to Tremor Deterioration"))
+
+//Vibroweld Morph-combat effect
+/datum/component/augment/vibroweld_morph_combat_effect
+	var/inflict_cooldown
+	var/inflict_cooldown_time = 300
+
+/datum/component/augment/vibroweld_morph_combat_effect/attack_effect(datum/source, mob/living/target, mob/living/user, obj/item/item)
+	. = ..()
+	var/datum/status_effect/stacking/lc_tremor/UT = human_parent.has_status_effect(/datum/status_effect/stacking/lc_tremor)
+	var/datum/status_effect/stacking/lc_tremor/TT = target.has_status_effect(/datum/status_effect/stacking/lc_tremor)
+	if(UT && TT)
+		if(UT.stacks >= 16)
+			if(inflict_cooldown > world.time)
+				return FALSE
+			if(item.force <= 0 || target.stat == DEAD)
+				return FALSE
+			inflict_cooldown = world.time + inflict_cooldown_time
+			UT.stacks -= 15
+			TT.TremorBurst()
+			TT.TremorBurst()
+			TT.TremorBurst()
+			to_chat(human_parent, span_nicegreen("You consumed 15 tremor from yourself, to perform 3 Tremor Bursts on the target! Due to Vibroweld Morph-combat effect"))
+
+//Tremor Ruin
+/datum/component/augment/tremor_ruin
+	var/inflict_cooldown
+	var/inflict_cooldown_time = 150
+
+/datum/component/augment/tremor_ruin/attack_effect(datum/source, mob/living/target, mob/living/user, obj/item/item)
+	. = ..()
+	var/datum/status_effect/stacking/lc_tremor/TT = target.has_status_effect(/datum/status_effect/stacking/lc_tremor)
+	if(TT)
+		if(TT.stacks >= 10)
+			if(inflict_cooldown > world.time)
+				return FALSE
+			if(item.force <= 0 || target.stat == DEAD)
+				return FALSE
+			inflict_cooldown = world.time + inflict_cooldown_time
+			TT.TremorBurst()
+			target.apply_lc_black_fragile(round(TT.stacks/5))
+			to_chat(human_parent, span_nicegreen("You inflicted [round(TT.stacks/5)] black fragile to [target]! Due to Tremor Ruin"))
+
 //Rekindled Flame
 /datum/component/augment/rekindled_flame
 	var/inflict_buff_mult = 0
