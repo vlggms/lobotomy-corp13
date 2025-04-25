@@ -479,7 +479,7 @@
 			"id" = "paranoid",
 			"name" = "Paranoid ",
 			"ahn_cost" = 50,
-			"ep_cost" = -6, // Negative EP cost signifies a downside, grants EP
+			"ep_cost" = -4, // Negative EP cost signifies a downside, grants EP
 			"desc" = "Whenever you take damage, you take an extra 10 WHITE damage if you don’t have any human insight.",
 			"component" = /datum/component/augment/paranoid
 		),
