@@ -595,8 +595,8 @@
 	var/resist = 0
 	if(UT && (damagetype == RED_DAMAGE || damagetype == BLACK_DAMAGE))
 		resist = round(UT.stacks/10) * damage_resist * repeat
-	if(resist > 0.5)
-		resist = 0.5
+	if(resist > (0.3 + (0.2 * (repeat - 1))))
+		resist = 0.3 + (0.2 * (repeat - 1))
 
 	return resist
 
@@ -798,7 +798,7 @@
 	speed = 0
 	move_resist = INFINITY
 	mob_size = MOB_SIZE_HUGE
-	var/heal_cooldown = 20
+	var/heal_cooldown = 50
 	var/heal_timer
 	var/heal_per_tick = 10
 	var/self_destruct_timer
@@ -827,7 +827,7 @@
 		qdel(src)
 
 /mob/living/simple_animal/hostile/stoneward_statue/proc/heal()
-	for(var/mob/living/carbon/human/H in view(3, src))
+	for(var/mob/living/carbon/human/H in view(2, src))
 		H.adjustBruteLoss(-heal_per_tick)
 		H.apply_lc_tremor(3, 55)
 	visible_message("<span class='notice'>The statue heals everyone around it!</span>")
