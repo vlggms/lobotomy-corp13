@@ -274,9 +274,9 @@
 	icon_living = "insurgence_grunt"
 	icon_dead = "none"
 	speech = list("Emote: tightens some screws in the augment fabricator...", "Only a few more tweaks and...", "Oh- shoot. The client has aleady arrived!?", "I guess I should do the introduction now...", "Emote: pulls out a small paper script", "I will make this story short, but some folks hired my organization to construct this augment fabricator.", "So they sent me to transport it here, and looks like I did a might good job!", "Oh right, You can use the augment fabricator to build augments which improve their users greatly.", "It will be quite self explanatory once you interact with it.")
-	default_delay = 30
+	default_delay = 50
 
-/mob/living/simple_animal/npc/priest/Leave()
+/mob/living/simple_animal/npc/insurgence_grunt/Leave()
 	manual_emote("looks at their watch...")
 	SLEEP_CHECK_DEATH(20)
 	say("Right, Got to move now...")
