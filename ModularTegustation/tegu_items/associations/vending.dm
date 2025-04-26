@@ -25,7 +25,7 @@
 		//The office stuff
 		/obj/item/structurecapsule/fixer = 1,	//fishing
 		/obj/item/structurecapsule/fixer/combat = 2,
-		/obj/item/structurecapsule/fixer/delivery = 2,
+		/obj/item/structurecapsule/fixer/delivery = 1,
 		/obj/item/structurecapsule/fixer/workshop = 1,
 		/obj/item/structurecapsule/fixer/recon = 1,
 		/obj/item/structurecapsule/fixer/peacekeeper = 1,
