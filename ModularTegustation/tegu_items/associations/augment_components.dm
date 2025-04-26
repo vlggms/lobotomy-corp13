@@ -105,7 +105,7 @@
 		damage_buff_mult++
 	total_damage_buff = damage_buff * damage_buff_mult * repeat
 	human_parent.extra_damage += total_damage_buff
-	to_chat(human_parent, span_nicegreen("You take [total_damage_buff]% less damage!, Due to Struggling Strength"))
+	to_chat(human_parent, span_nicegreen("You deal [total_damage_buff]% more damage!, Due to Struggling Strength"))
 
 /datum/component/augment/struggling_strength/afterattack_effect(datum/source, atom/target, mob/user, proximity_flag, obj/item/item)
 	. = ..()
