@@ -156,6 +156,7 @@
 /obj/machinery/door/poddoor/shutters/window/preopen{
 	id = "extraction"
 	},
+/obj/item/peacemachine_connector,
 /turf/open/floor/mineral/titanium/blue{
 	name = "floor";
 	color = "#52B4E9"
@@ -172,6 +173,7 @@
 	},
 /obj/structure/table/wood,
 /obj/effect/spawner/lootdrop/donkpockets,
+/obj/structure/peacemachine,
 /turf/open/floor/mineral/plastitanium/red{
 	name = "floor"
 	},
@@ -249,12 +251,6 @@
 /obj/item/storage/fancy/donut_box{
 	pixel_y = 11
 	},
-/obj/item/stack/spacecash/c1000,
-/obj/item/stack/spacecash/c1000,
-/obj/item/stack/spacecash/c1000,
-/obj/item/stack/spacecash/c1000,
-/obj/item/stack/spacecash/c1000,
-/obj/item/stack/spacecash/c1000,
 /turf/open/floor/mineral/titanium,
 /area/city/fixers)
 "A" = (
