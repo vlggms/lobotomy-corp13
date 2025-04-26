@@ -90,18 +90,26 @@
 
 //Struggling Strength
 /datum/component/augment/struggling_strength
-	var/damage_buff = 10
+	var/damage_buff = 5
 	var/damage_buff_mult = 0
 	var/total_damage_buff = 0
 
 /datum/component/augment/struggling_strength/attack_effect(datum/source, mob/living/target, mob/living/user, obj/item/item)
 	. = ..()
 	var/missing_hp = (human_parent.health/human_parent.maxHealth)
+	if(missing_hp <= 0.875)
+		damage_buff_mult++
 	if(missing_hp <= 0.75)
 		damage_buff_mult++
-	else if(missing_hp <= 0.50)
+	if(missing_hp <= 0.625)
 		damage_buff_mult++
-	else if(missing_hp <= 0.25)
+	if(missing_hp <= 0.50)
+		damage_buff_mult++
+	if(missing_hp <= 0.375)
+		damage_buff_mult++
+	if(missing_hp <= 0.25)
+		damage_buff_mult++
+	if(missing_hp <= 0.125)
 		damage_buff_mult++
 	total_damage_buff = damage_buff * damage_buff_mult * repeat
 	human_parent.extra_damage += total_damage_buff
@@ -432,7 +440,7 @@
 
 //Struggling Defense
 /datum/component/augment/resisting_augment/struggling_defense
-	var/damage_resist = 0.1
+	var/damage_resist = 0.05
 
 /datum/component/augment/resisting_augment/struggling_defense/take_damage_effect(datum/source, damage, damagetype, def_zone)
 	. = ..()
@@ -441,11 +449,19 @@
 /datum/component/augment/resisting_augment/struggling_defense/get_total_damage_resist(datum/source, damage, damagetype, def_zone)
 	var/missing_hp = (human_parent.health/human_parent.maxHealth)
 	var/damage_resist_mult = 0
+	if(missing_hp <= 0.875)
+		damage_resist_mult++
 	if(missing_hp <= 0.75)
+		damage_resist_mult++
+	if(missing_hp <= 0.625)
 		damage_resist_mult++
 	if(missing_hp <= 0.50)
 		damage_resist_mult++
+	if(missing_hp <= 0.375)
+		damage_resist_mult++
 	if(missing_hp <= 0.25)
+		damage_resist_mult++
+	if(missing_hp <= 0.125)
 		damage_resist_mult++
 	return damage_resist * damage_resist_mult * repeat
 
@@ -684,6 +700,8 @@
 /datum/component/augment/blood_jaunt/afterattack_effect(datum/source, atom/target, mob/user, proximity_flag, obj/item/item)
 	. = ..()
 	if(human_parent.a_intent != INTENT_HARM)
+		return FALSE
+	if(get_dist(human_parent, target) > 3)
 		return FALSE
 	if(inflict_cooldown > world.time)
 		return FALSE
@@ -1173,9 +1191,9 @@
 	var/missing_hp = (human_parent.health/human_parent.maxHealth)
 	if(missing_hp <= 0.75)
 		damage_buff_mult++
-	else if(missing_hp <= 0.50)
+	if(missing_hp <= 0.50)
 		damage_buff_mult++
-	else if(missing_hp <= 0.25)
+	if(missing_hp <= 0.25)
 		damage_buff_mult++
 	total_damage_buff = damage_buff * damage_buff_mult * repeat
 	human_parent.extra_damage -= total_damage_buff
@@ -1198,9 +1216,9 @@
 	var/missing_hp = (human_parent.health/human_parent.maxHealth)
 	if(missing_hp <= 0.75)
 		damage_resist_mult++
-	else if(missing_hp <= 0.50)
+	if(missing_hp <= 0.50)
 		damage_resist_mult++
-	else if(missing_hp <= 0.25)
+	if(missing_hp <= 0.25)
 		damage_resist_mult++
 	total_damage_resist = damage_resist * damage_resist_mult * repeat
 	human_parent.physiology.red_mod += total_damage_resist
