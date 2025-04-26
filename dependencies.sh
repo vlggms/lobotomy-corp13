@@ -21,4 +21,4 @@ export SPACEMAN_DMM_VERSION=suite-1.9
 export EXTOOLS_VERSION=v0.0.7
 
 # Python version for mapmerge and other tools
-export PYTHON_VERSION=3.9
+export PYTHON_VERSION=3.7.9
