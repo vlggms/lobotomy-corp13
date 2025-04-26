@@ -2115,6 +2115,7 @@
 #include "code\modules\clothing\suits\ego_gear\non_abnormality\fullstop.dm"
 #include "code\modules\clothing\suits\ego_gear\non_abnormality\hana.dm"
 #include "code\modules\clothing\suits\ego_gear\non_abnormality\index.dm"
+#include "code\modules\clothing\suits\ego_gear\non_abnormality\insurgence.dm"
 #include "code\modules\clothing\suits\ego_gear\non_abnormality\jcorp.dm"
 #include "code\modules\clothing\suits\ego_gear\non_abnormality\kcorp.dm"
 #include "code\modules\clothing\suits\ego_gear\non_abnormality\kurokumo.dm"
