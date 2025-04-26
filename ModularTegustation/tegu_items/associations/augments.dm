@@ -61,9 +61,9 @@
 		list(
 			"id" = "struggling_defense",
 			"name" = "Struggling Defense",
-			"ahn_cost" = 50,
-			"ep_cost" = 4, // Positive EP cost
-			"desc" = "For every 25% of HP lost, take 10%*X less damage.",
+			"ahn_cost" = 25,
+			"ep_cost" = 2, // Positive EP cost
+			"desc" = "For every 12.5% of HP lost, take 5%*X less damage.",
 			"repeatable" = 3, // Max 3 times
 			"component" = /datum/component/augment/resisting_augment/struggling_defense
 		),
@@ -155,10 +155,10 @@
 		list(
 			"id" = "struggling_strength",
 			"name" = "Struggling Strength",
-			"ahn_cost" = 50,
-			"ep_cost" = 4,
+			"ahn_cost" = 25,
+			"ep_cost" = 2,
 			"repeatable" = 3,
-			"desc" = "For every 25% of HP lost, deal 10%*X more damage.",
+			"desc" = "For every 12.5% of HP lost, deal 5%*X more damage.",
 			"component" = /datum/component/augment/struggling_strength
 		),
 		list(
@@ -354,7 +354,7 @@
 			"name" = "Blood Jaunt",
 			"ahn_cost" = 200,
 			"ep_cost" = 8,
-			"desc" = "When you click on a tile outside your melee range, You will teleport to that tile and will inflict 10 bleed to all foes within 2 sqrs, and yourself. (Has a cooldown of 1 minute) (You need to be in harm intent in order to trigger this.)",
+			"desc" = "When you click on a tile outside your melee range and within 3 sqrs, You will teleport to that tile and will inflict 10 bleed to all foes within 2 sqrs, and yourself. (Has a cooldown of 1 minute) (You need to be in harm intent in order to trigger this.)",
 			"component" = /datum/component/augment/blood_jaunt
 		),
 		list(
