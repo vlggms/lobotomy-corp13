@@ -178,6 +178,7 @@
 							)
 	var/naked_parry
 	var/realized_parry
+	var/can_hype = TRUE
 
 /obj/item/ego_weapon/shield/daredevil/melee_attack_chain(mob/user, atom/target, params)
 	if (!istype(user,/mob/living/carbon/human))
@@ -234,15 +235,29 @@
 	..()
 
 /obj/item/ego_weapon/shield/daredevil/AnnounceBlock(mob/living/carbon/human/source, damage, damagetype, def_zone)
-	if(naked_parry)
+	if(damagetype == PALE_DAMAGE && can_hype)
+		if(naked_parry || realized_parry) // You get 100% pale resist on empowered parry, it deserves it's own message.
+			to_chat(source, span_nicegreen("Stand your ground in the face of death. Struggle against the inevitable with reckless abandon, for you shall have me by your side."))
+		else // On the other hand, non-empowered parry has 0% pale resist, tell the user that they are being dumb.
+			to_chat(source, span_warning("To attempt parry the aspect of death is to hide from inevitability. To hide is to fear. Show me that you do not fear death."))
+		can_hype = FALSE // It's over.
+		addtimer(CALLBACK(src, PROC_REF(hype_returns)), 120) // Less intrusive than the big Colossus font, still on cooldown due to being quite the long message.
+	else if(naked_parry)
 		hit_message = "is untouchable!"
 		force = 18 // bonus damage for like, 2 seconds.
 	else if(realized_parry)
 		force = 50 // bonus damage for like, 2 seconds.
-		hit_message = "A GOD DOES NOT FEAR DEATH!"
-	else if(damagetype == PALE_DAMAGE)
-		to_chat(source,span_warning("To attempt parry the aspect of death is to hide from inevitability. To hide is to fear. Show me that you do not fear death."))
+		hit_message = "is untouchable!"
+		..()
+		if(can_hype)
+			to_chat(source, span_colossus("A GOD DOES NOT FEAR DEATH!")) // The font is LARGE, that's why it is on a cooldown.
+			can_hype = FALSE // It's SO over.
+			addtimer(CALLBACK(src, PROC_REF(hype_returns)), 180) // But we WILL be back (after 18 seconds).
+		return
 	..()
+
+/obj/item/ego_weapon/shield/daredevil/proc/hype_returns()
+	can_hype = TRUE
 
 /obj/item/ego_weapon/christmas
 	name = "christmas"
