@@ -759,8 +759,8 @@
 	. = ..()
 	if(damagetype != BURN)
 		return FALSE
-	human_parent.adjustBruteLoss(damage/2)
-	human_parent.adjustFireLoss(damage/2)
+	human_parent.adjustBruteLoss(-damage/2)
+	human_parent.adjustFireLoss(-damage/2)
 	to_chat(human_parent, span_nicegreen("You regenerate [damage/2] HP from the burn! Due to Regenerative Warmth"))
 
 //Stoneward Form
