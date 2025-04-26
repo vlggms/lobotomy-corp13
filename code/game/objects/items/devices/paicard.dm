@@ -52,7 +52,7 @@
 	if (!in_range(src, user))
 		return
 	user.set_machine(src)
-	var/dat = "<TT><B>Personal AI Device</B><BR>"
+	var/dat = "<pre><B>Personal AI Device</B><BR>"
 	if(pai)
 		if(!pai.master_dna || !pai.master)
 			dat += "<a href='byond://?src=[REF(src)];setdna=1'>Imprint Master DNA</a><br>"
@@ -75,11 +75,11 @@
 			if(H.real_name == pai.master || H.dna.unique_enzymes == pai.master_dna)
 				dat += "<A href='byond://?src=[REF(src)];toggle_holo=1'>\[[pai.canholo? "Disable" : "Enable"] holomatrix projectors\]</a><br>"
 		dat += "<A href='byond://?src=[REF(src)];fix_speech=1'>\[Reset speech synthesis module\]</a><br>"
-		dat += "<A href='byond://?src=[REF(src)];wipe=1'>\[Wipe current pAI personality\]</a><br>"
+		dat += "<A href='byond://?src=[REF(src)];wipe=1'>\[Wipe current pAI personality\]</a><br></pre>"
 	else
 		dat += "No personality installed.<br>"
-		dat += "Searching for a personality... Press view available personalities to notify potential candidates."
-		dat += "<A href='byond://?src=[REF(src)];request=1'>\[View available personalities\]</a><br>"
+		dat += "Searching for a personality... <br>Press view available personalities to notify potential candidates.<br>"
+		dat += "<A href='byond://?src=[REF(src)];request=1'>\[View available personalities\]</a><br></pre>"
 	user << browse(dat, "window=paicard")
 	onclose(user, "paicard")
 	return
