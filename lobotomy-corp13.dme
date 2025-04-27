@@ -4414,8 +4414,6 @@
 #include "ModularTegustation\tegu_mobs\necromancer_mobs.dm"
 #include "ModularTegustation\tegu_mobs\syndicatespaceman.dm"
 #include "ModularTegustation\tegu_mobs\tegu.dm"
-#include "ModularTegustation\tegu_mobs\Barber.dm"
-#include "ModularTegustation\tegu_mobs\Wildhunt.dm"
 #include "ModularTegustation\tegu_mobs\the_claw.dm"
 #include "ModularTegustation\tegu_ruins\lavaland_ruins.dm"
 #include "ModularTegustation\tegu_security_code\body_cameras.dm"
