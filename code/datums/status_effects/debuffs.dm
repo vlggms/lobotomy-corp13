@@ -1108,7 +1108,6 @@
 	tick_interval = 5 SECONDS
 	consumed_on_threshold = FALSE
 	var/new_stack = FALSE
-	var/burn_res = 0
 	var/safety = TRUE
 
 /atom/movable/screen/alert/status_effect/lc_burn
@@ -1131,12 +1130,10 @@
 		qdel(src)
 	to_chat(owner, "<span class='warning'>The flame consumes you!!</span>")
 	owner.playsound_local(owner, 'sound/effects/burn.ogg', 50, TRUE)
-	Check_Resist(owner)
 	if(ishuman(owner))
-		owner.adjustFireLoss(max(0, stacks - burn_res))
+		owner.apply_damage(stacks, BURN, null, owner.run_armor_check(null, BURN))
 	else
-		owner.adjustBruteLoss(stacks*4) // x4 on non humans (Average burn stack is 20. 80/5 sec, extra 16 pure dps)
-	new /obj/effect/temp_visual/damage_effect/burn(get_turf(owner))
+		owner.apply_damage(stacks*4, BURN, null, owner.run_armor_check(null, BURN)) // x4 on non humans (Average burn stack is 20. 80/5 sec, extra 16 pure dps)
 
 	//Deletes itself after 2 tick if no new burn stack was given
 	if(safety)
@@ -1147,26 +1144,10 @@
 		else
 			qdel(src)
 
-//Check armor
-/datum/status_effect/stacking/lc_burn/proc/Check_Resist(mob/living/owner)
-	//I was hesistant to put a new var for this check in suit.dm, so I just check for each armor instead
-	var/mob/living/carbon/human/H = owner
-	if(!H.get_item_by_slot(ITEM_SLOT_OCLOTHING)) // Prevents runtimes from people who are naked
-		return
-	var/obj/item/clothing/suit/armor/ego_gear/aleph/waxen/C = H.get_item_by_slot(ITEM_SLOT_OCLOTHING)
-	var/obj/item/clothing/suit/armor/ego_gear/realization/desperation/D = H.get_item_by_slot(ITEM_SLOT_OCLOTHING)
-	if(istype(C))
-		burn_res = 15
-	else if(istype(D))
-		burn_res = 25
-	else
-		burn_res = 0
-
 //Update burn appearance
 /datum/status_effect/stacking/lc_burn/proc/Update_Burn_Overlay(mob/living/owner)
-	Check_Resist(owner)
-	if(stacks > burn_res && !(owner.on_fire) && ishuman(owner))
-		if(stacks >= 50)
+	if(stacks && !(owner.on_fire) && ishuman(owner))
+		if(stacks >= 15)
 			owner.cut_overlay(mutable_appearance('icons/mob/OnFire.dmi', "Generic_mob_burning", -FIRE_LAYER))
 			owner.cut_overlay(mutable_appearance('icons/mob/OnFire.dmi', "Standing", -FIRE_LAYER))
 			owner.add_overlay(mutable_appearance('icons/mob/OnFire.dmi', "Standing", -FIRE_LAYER))

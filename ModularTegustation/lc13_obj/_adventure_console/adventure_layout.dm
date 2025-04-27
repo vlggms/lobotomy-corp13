@@ -1,5 +1,5 @@
 /**
- * ADVENTURE CONSOLE V2.0
+ * ADVENTURE CONSOLE V2.1
  * TEXT BASED ADVENTURES
  * Adventures that are mostly predefined paths.
  * This was difficult to finalize since i havent made a text based adventure before.
@@ -55,6 +55,8 @@
 	var/list/paths_to_tread = list()
 	///Events we can choose from.
 	var/list/event_options = list()
+	///Events we cannot encounter again
+	var/list/spent_events = list()
 	///list of all events.
 	var/static/list/events = list()
 	//Keys required for events to appear.
@@ -255,16 +257,18 @@
  * This proc is called by the adventure datum in order to build the UI.
  * Its like a hub where all other general things are called.
  */
-/datum/adventure_layout/proc/Adventure(obj/machinery/caller, mob/living/carbon/human/H)
+/datum/adventure_layout/proc/Adventure(obj/machinery/requester, mob/living/carbon/human/H)
 	if(!H.client)
 		return
 
 	//Dispaly Event Data
 	if(event_data)
-		. += event_data.Event(caller, H)
+		. += event_data.Event(requester, H)
 		if(!event_data)
+			//Due to a quirk of the code we have to set it to main menu before we can actually change back to where we were.
+			display_mode = NORMAL_TEXT_DISPLAY
 			//Emergency Exit because the event can lead to a empty screen due to the event deleting itself.
-			GENERAL_BUTTON(REF(caller),"set_display",NORMAL_TEXT_DISPLAY,"RETURN TO MAIN PROGRAM")
+			GENERAL_BUTTON(REF(requester),"set_display",ADVENTURE_TEXT_DISPLAY,"RETURN TO THE PATH")
 	else
 		//STATS! ARE HERE
 		. = "<tt>\
@@ -283,12 +287,12 @@
 			</tt>"
 		//From highest menu define to lowest. -IP
 		for(var/mode_option = NORMAL_TEXT_DISPLAY to EXCHANGE_TEXT_DISPLAY)
-			. += "<A href='byond://?src=[REF(caller)];set_display=[mode_option]'>[mode_option == display_mode ? "<b><u>[nameMenu(mode_option)]</u></b>" : "[nameMenu(mode_option)]"]</A>"
+			. += "<A href='byond://?src=[REF(requester)];set_display=[mode_option]'>[mode_option == display_mode ? "<b><u>[nameMenu(mode_option)]</u></b>" : "[nameMenu(mode_option)]"]</A>"
 		if(debug_menu)
-			. += "<A href='byond://?src=[REF(caller)];set_display=[DEBUG_TEXT_DISPLAY]'>[display_mode == DEBUG_TEXT_DISPLAY ? "<b><u>[nameMenu(DEBUG_TEXT_DISPLAY)]</u></b>" : "[nameMenu(DEBUG_TEXT_DISPLAY)]"]</A>"
+			. += "<A href='byond://?src=[REF(requester)];set_display=[DEBUG_TEXT_DISPLAY]'>[display_mode == DEBUG_TEXT_DISPLAY ? "<b><u>[nameMenu(DEBUG_TEXT_DISPLAY)]</u></b>" : "[nameMenu(DEBUG_TEXT_DISPLAY)]"]</A>"
 
 		. += "<br>\
-			[DisplayUI(caller, H)]<br>\
+			[DisplayUI(requester, H)]<br>\
 			<tt>~~~~~~~~~~</tt><br><b>[pick(
 				"THE RUINS ARE CLOSING IN",
 				"THEY ALL MARCH OUTWARDS<br>LEAVING THE CITY BEHIND",
@@ -453,17 +457,35 @@
 	enemy_key = null
 
 /datum/adventure_layout/proc/GeneratePaths(max_paths)
+	var/datum/adventure_event/forced_event
+	var/list/editable_paths = list()
 	for(var/i=1 to max_paths)
 		//Unsure if i should put in a check in order to prevent 3% chance events.-IP
 		//A minimum is fine, I set it to 15%. - KK
 		if(prob(program_progress) && program_progress > 15)
-			paths_to_tread += GrabEvent()
+			var/datum/adventure_event/P = GrabEvent()
+			editable_paths += P
+			if(P.force_encounter == TRUE)
+				forced_event = P
+				break
 			continue
 		if(prob(program_progress + 10))
-			paths_to_tread += ADVENTURE_MODE_BATTLE
+			editable_paths += ADVENTURE_MODE_BATTLE
 			continue
 		else
-			paths_to_tread += ADVENTURE_MODE_TRAVEL
+			editable_paths += ADVENTURE_MODE_TRAVEL
+
+	//Should we force the player to only take this path?
+	if(forced_event)
+		for(var/path_to_take in editable_paths)
+			var/datum/adventure_event/A = editable_paths[path_to_take]
+			if(forced_event && A == forced_event)
+				continue
+			editable_paths -= A
+			if(istype(A, /datum/adventure_event))
+				qdel(A)
+
+	paths_to_tread = editable_paths.Copy()
 	return paths_to_tread
 
 //Creates and sets a event. 2nd part to GrabEvent().
@@ -578,6 +600,7 @@
 	enemy_key = null
 	currently_scanned = FALSE
 
+	max_block_heal = 0
 	AdjustProgress(10)
 	AdjustStats(increased_stat, 2)
 
@@ -694,10 +717,15 @@
 
 //Updates event list to see if we can have any new events
 /datum/adventure_layout/proc/CheckEventList()
+	//Remove spent events
+	event_options.Remove(spent_events)
 	//The event list except all events we already have are removed.
 	var/list/new_events = events - event_options
 	for(var/_option in new_events)
 		var/datum/adventure_event/A = _option
+		//Do not add already spent events.
+		if(locate(A) in spent_events)
+			continue
 		//Lets see if i can make a lock + key event criteria.
 		if(FormatNonexistentEventCriteria(initial(A.event_locks)))
 			continue

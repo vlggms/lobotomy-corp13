@@ -170,7 +170,7 @@
 	else
 		gift_message += "\nYou are granted a gift by [src]!"
 
-	if(secret_chance && (prob(1)))
+	if(secret_chance && (prob(1) || SSmaptype.chosen_trait == FACILITY_TRAIT_JOKE_ABNOS))
 		InitializeSecretIcon()
 
 	//Abnormalities have no name here. And we don't want nonsentient ones to breach
@@ -584,6 +584,7 @@
 	C.icon_state = core_icon
 	C.contained_abno = src.type
 	C.threat_level = threat_level
+	C.ego_list += ego_list
 	switch(GetRiskLevel())
 		if(1)
 			return
