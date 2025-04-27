@@ -31,7 +31,7 @@
 	name = "white egoshard"
 	icon_state = "egoshard_w"
 	damage_type = WHITE_DAMAGE
-	red_bonus = 0 //100 from the base of 20 in red, so 120
+	red_bonus = 0 //90 from the base of 20 in red, so 110
 	white_bonus = 50
 	black_bonus = 20
 	pale_bonus = 20
@@ -40,7 +40,7 @@
 	name = "black egoshard"
 	icon_state = "egoshard_b"
 	damage_type = BLACK_DAMAGE
-	red_bonus = 0 //100 from the base of 20 in red, so 120
+	red_bonus = 0 //90 from the base of 20 in red, so 110
 	white_bonus = 20
 	black_bonus = 50
 	pale_bonus = 20
