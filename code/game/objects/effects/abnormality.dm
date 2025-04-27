@@ -294,20 +294,3 @@
 	layer = BELOW_MOB_LAYER
 	alpha = 200
 	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
-
-/obj/effect/coffin
-	name = "Coffin"
-	desc = "CASHY!"
-	icon = 'icons/obj/crates.dmi'
-	icon_state = "coffin"
-	density = FALSE
-	anchored = TRUE
-
-/obj/effect/coffin/Initialize()
-	. = ..()
-	addtimer(CALLBACK(src, PROC_REF(FadeOut)), 5)
-
-/obj/effect/coffin/proc/FadeOut()
-	animate(src, alpha = 0, time = 5)
-	QDEL_IN(src, 5)
-

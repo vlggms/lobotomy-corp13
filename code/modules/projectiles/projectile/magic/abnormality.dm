@@ -396,15 +396,3 @@
 	. = ..()
 	hitsound = "sound/weapons/ego/rapier[pick(1,2)].ogg"
 	animate(src, alpha = 255, time = 3)
-
-/obj/projectile/Erlking
-	name = "Memorial"
-	icon = 'ModularTegustation/Teguicons/WildhuntDullahan.dmi'
-	icon_state = "Erlkingprojectile"
-	desc = "Just looking at it seems to suck the life out of you..."
-	damage = 25
-	damage_type = BLACK_DAMAGE
-	projectile_piercing = PASSMOB
-	hitsound = 'ModularTegustation/Tegusounds/Erlking/Erlkinghit.ogg'
-	spread = 20
-
