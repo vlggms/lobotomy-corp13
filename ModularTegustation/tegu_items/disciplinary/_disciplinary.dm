@@ -10,7 +10,7 @@
 	var/base_damage = 30 //Base damage of the tier
 	var/tier = 1 //used to figure out gun damage
 	//Armor stats
-	var/red_bonus = 20 //50 from the base of 20 in red, so 70
+	var/red_bonus = 10 //40 from the base of 20 in red, so 60
 	var/white_bonus = 10
 	var/black_bonus = 10
 	var/pale_bonus = 10
