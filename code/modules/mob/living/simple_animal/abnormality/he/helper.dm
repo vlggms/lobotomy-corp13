@@ -63,11 +63,20 @@
 	)
 
 	var/charging = FALSE
+	var/clogged_blades = FALSE
 	var/dash_num = 50
 	var/dash_cooldown = 0
 	var/dash_cooldown_time = 8 SECONDS
 	var/list/been_hit = list() // Don't get hit twice.
 	var/stuntime = 3 SECONDS
+	var/dir_to_target
+	var/dash_damage = 60
+	var/dash_speed = 1
+	var/clogged_blades_time = 1
+	var/dash_attack_volune = 75
+	var/dash_move_max_volune = 70
+	var/dash_move_min_volune = 50
+	var/dash_attack_cooldown = 20
 
 	//PLAYABLES ATTACKS
 	attack_action_types = list(/datum/action/innate/abnormality_attack/toggle/helper_dash_toggle)
@@ -78,6 +87,18 @@
 	secret_icon_state = "reddit"
 	secret_vertical_offset = 0
 	secret_icon_dead = "reddit_dead"
+
+/mob/living/simple_animal/hostile/abnormality/helper/Login()
+	. = ..()
+	to_chat(src, "<h1>You are All Round Helper, A Combat Role Abnormality.</h1><br>\
+		<b>|Cleaning Protocol|: When you attack, if your charge attack is off cooldown you will use it. \
+		Once you start your spin attack, you will wind up for a few seconds. Then you will rush into the direction you attacked. \
+		While you are rushing, all humans next to you will take RED damage, inflict 5 'Bleed' and you will be able to move over small obstacles like barricades or windows. \
+		After to hit a human with a rush attack, you will be unable to hit them again within the next 2 seconds. \
+		Once you run into a wall while rushing, you will be stunned for 2 seconds and end your rush.<br>\
+		<br>\
+		|Cleaning Mk2|: While you are rushing, you are able change directions. However, After you hit a human while rushing, you will be unable to change directions for 1 second. \
+		You are able to toggle your spin attack on and off with your ability.</b>")
 
 /datum/action/innate/abnormality_attack/toggle/helper_dash_toggle
 	name = "Toggle Dash"
@@ -98,8 +119,16 @@
 		return
 	return ..()
 
-/mob/living/simple_animal/hostile/abnormality/helper/Move()
+/mob/living/simple_animal/hostile/abnormality/helper/Move(turf/newloc, direction, step_x, step_y)
 	if(charging)
+		if(IsCombatMap())
+			if(!clogged_blades)
+				if (turn(dir_to_target, 180) != direction)
+					dir_to_target = direction
+				else
+					to_chat(src, span_userdanger("You can't do 180 degree turns!"))
+			else
+				to_chat(src, span_userdanger("Your spinning blades are clogged with blood!"))
 		return FALSE
 	return ..()
 
@@ -112,8 +141,8 @@
 
 	if(dash_cooldown <= world.time)
 		var/chance_to_dash = 25
-		var/dir_to_target = get_dir(get_turf(src), get_turf(target))
-		if(dir_to_target in list(NORTH, SOUTH, WEST, EAST))
+		var/dir_to_tar = get_dir(get_turf(src), get_turf(target))
+		if(dir_to_tar in list(NORTH, SOUTH, WEST, EAST))
 			chance_to_dash = 100
 		if(prob(chance_to_dash))
 			helper_dash(target)
@@ -148,20 +177,20 @@
 	update_icon()
 	dash_cooldown = world.time + dash_cooldown_time
 	charging = TRUE
-	var/dir_to_target = get_dir(get_turf(src), get_turf(target))
+	dir_to_target = get_dir(get_turf(src), get_turf(target))
 	var/para = TRUE
 	if(dir_to_target in list(WEST, NORTHWEST, SOUTHWEST))
 		para = FALSE
 	been_hit = list()
 	SpinAnimation(1.3 SECONDS, 1, para)
-	addtimer(CALLBACK(src, PROC_REF(do_dash), dir_to_target, 0), 1.5 SECONDS)
+	addtimer(CALLBACK(src, PROC_REF(do_dash), 0), 1.5 SECONDS)
 	playsound(src, 'sound/abnormalities/helper/rise.ogg', 100, 1)
 
-/mob/living/simple_animal/hostile/abnormality/helper/proc/do_dash(move_dir, times_ran)
+/mob/living/simple_animal/hostile/abnormality/helper/proc/do_dash(times_ran)
 	var/stop_charge = FALSE
 	if(times_ran >= dash_num)
 		stop_charge = TRUE
-	var/turf/T = get_step(get_turf(src), move_dir)
+	var/turf/T = get_step(get_turf(src), dir_to_target)
 	if(!T)
 		charging = FALSE
 		return
@@ -180,42 +209,67 @@
 			INVOKE_ASYNC(D, TYPE_PROC_REF(/obj/machinery/door, open), 2)
 	if(stop_charge)
 		playsound(src, 'sound/abnormalities/helper/disable.ogg', 75, 1)
-		SLEEP_CHECK_DEATH(stuntime)
+		var/area/A = get_area(get_turf(src))
+		if (istype(A, /area/city/outskirts/rcorp_base))
+			SLEEP_CHECK_DEATH(stuntime * 3)
+		else
+			SLEEP_CHECK_DEATH(stuntime)
 		charging = FALSE
 		return
 	forceMove(T)
 	var/para = TRUE
-	if(move_dir in list(WEST, NORTHWEST, SOUTHWEST))
+	if(dir_to_target in list(WEST, NORTHWEST, SOUTHWEST))
 		para = FALSE
 	SpinAnimation(3, 1, para)
-	playsound(src, "sound/abnormalities/helper/move0[pick(1,2,3)].ogg", rand(50, 70), 1)
+	playsound(src, "sound/abnormalities/helper/move0[pick(1,2,3)].ogg", rand(dash_move_min_volune, dash_move_max_volune), 1)
 	var/list/hit_turfs = range(1, T)
 	for(var/mob/living/L in hit_turfs)
 		if(!faction_check_mob(L))
 			if(L in been_hit)
-				continue
+				if(IsCombatMap())
+					if (world.time - been_hit[L] < dash_attack_cooldown)
+						continue
+				else
+					continue
 			visible_message(span_boldwarning("[src] runs through [L]!"))
 			to_chat(L, span_userdanger("[src] pierces you with their spinning blades!"))
-			playsound(L, attack_sound, 75, 1)
+			playsound(L, attack_sound, dash_attack_volune, 1)
 			var/turf/LT = get_turf(L)
 			new /obj/effect/temp_visual/kinetic_blast(LT)
-			var/damage = 60
 			if(!ishuman(L))
-				damage = 120
-			L.deal_damage(damage, melee_damage_type)
+				dash_damage = dash_damage * 2
+			L.deal_damage(dash_damage, melee_damage_type)
+			if(IsCombatMap())
+				L.apply_lc_bleed(5)
+			if(!ishuman(L))
+				dash_damage = dash_damage / 2
 			if(L.stat >= HARD_CRIT)
 				L.gib()
 				continue
-			been_hit += L
+			//been_hit += L
+			been_hit[L] = world.time
+			if(!clogged_blades)
+				to_chat(src, span_userdanger("Your spinning blades are now clogged with blood!"))
+				clogged_blades = TRUE
+				color = "#f5413b"
+				addtimer(CALLBACK(src, PROC_REF(clogged_blades)), clogged_blades_time SECONDS)
 	for(var/obj/vehicle/sealed/mecha/V in hit_turfs)
 		if(V in been_hit)
-			continue
+			if (IsCombatMap())
+				if (world.time - been_hit[V] < dash_attack_cooldown)
+					continue
+			else
+				continue
 		visible_message(span_boldwarning("[src] runs through [V]!"))
 		to_chat(V.occupants, span_userdanger("[src] pierces your mech with their spinning blades!"))
-		playsound(V, attack_sound, 75, 1)
-		V.take_damage(60, melee_damage_type, attack_dir = get_dir(V, src))
-		been_hit += V
-	addtimer(CALLBACK(src, PROC_REF(do_dash), move_dir, (times_ran + 1)), 1)
+		playsound(V, attack_sound, dash_attack_volune, 1)
+		V.take_damage(dash_damage, melee_damage_type, attack_dir = get_dir(V, src))
+		been_hit[V] = world.time
+	addtimer(CALLBACK(src, PROC_REF(do_dash), (times_ran + 1)), dash_speed)
+
+/mob/living/simple_animal/hostile/abnormality/helper/proc/clogged_blades()
+	clogged_blades = FALSE
+	color = null
 
 /* Work effects */
 /mob/living/simple_animal/hostile/abnormality/helper/NeutralEffect(mob/living/carbon/human/user, work_type, pe)
