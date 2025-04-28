@@ -1,8 +1,8 @@
 /mob/living/simple_animal/hostile/ui_npc/eric_t
 	name = "Eric T."
 	desc = "A fancy looking fellow wearing a mask; they look relaxed right now."
-	health = 1000
-	maxHealth = 1000
+	health = 2500
+	maxHealth = 2500
 	typing_interval = 30
 	portrait = "erik_bloodfiend_zoom.PNG"
 	start_scene_id = "intro"
@@ -48,6 +48,9 @@
 
 	if(isnull(scene_manager.get_var(user, "player.is_worker")))
 		scene_manager.set_var(user, "player.is_worker", FALSE)
+
+	if(isnull(scene_manager.get_var(user, "player.collected_parcels")))
+		scene_manager.set_var(user, "player.collected_parcels", 0)
 
 	// Check if player has the briefcase
 	var/has_briefcase = briefcase_check(user)
@@ -244,6 +247,7 @@
 			),
 			"quest" = list(
 				"text" = "\[dialog.intro_quest_shown?About the Contract...:Any other jobs?\]",
+				"visibility_expression" = "player.collected_parcels>=6",
 				"default_scene" = "quest_1",
 				"transitions" = list(
 					list(
@@ -264,6 +268,9 @@
 		"actions" = list(
 			"..." = list(
 				"text" = "...",
+				"var_updates" = list(
+					"player.collected_parcels" = "{player.collected_parcels++}",
+				),
 				"default_scene" = "job"
 			)
 		)
@@ -765,7 +772,7 @@
 
 /mob/living/simple_animal/hostile/ui_npc/eric_t/proc/afterkill()
 	sleep(25)
-	manual_emote("Wipes their gloves clean...")
+	manual_emote("wipes their gloves clean...")
 	sleep(45)
 	say("Anyone else wants to bother me?")
 
