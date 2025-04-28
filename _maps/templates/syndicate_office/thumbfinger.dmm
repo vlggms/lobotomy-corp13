@@ -561,6 +561,7 @@
 /obj/item/grenade/r_corp/thumb{
 	det_time = 20
 	},
+/obj/item/restraints/handcuffs,
 /turf/open/floor/wood,
 /area/city/backstreets_room)
 "HY" = (
@@ -682,9 +683,11 @@
 	},
 /obj/structure/table/wood,
 /obj/item/modular_computer/laptop,
-/obj/item/stack/spacecash/c10000,
-/obj/item/stack/spacecash/c10000,
-/obj/item/stack/spacecash/c10000,
+/obj/item/stack/spacecash/c1000,
+/obj/item/stack/spacecash/c1000,
+/obj/item/stack/spacecash/c1000,
+/obj/item/stack/spacecash/c1000,
+/obj/item/stack/spacecash/c1000,
 /turf/open/floor/carpet/red,
 /area/city/backstreets_room)
 "Ng" = (

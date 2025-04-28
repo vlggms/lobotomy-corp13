@@ -769,10 +769,8 @@
 /obj/structure/closet/cabinet{
 	anchored = 1
 	},
-/obj/item/clothing/suit/armor/ego_gear/city/kurokumo,
-/obj/item/clothing/suit/armor/ego_gear/city/kurokumo,
 /obj/item/ego_weapon/city/kurokumo/weak,
-/obj/item/ego_weapon/city/kurokumo/weak,
+/obj/item/clothing/suit/armor/ego_gear/city/kurokumo/jacket,
 /turf/open/floor/carpet/black,
 /area/city/backstreets_room)
 "Jz" = (
@@ -895,8 +893,6 @@
 	anchored = 1
 	},
 /obj/item/clothing/suit/armor/ego_gear/city/kurokumo/jacket,
-/obj/item/clothing/suit/armor/ego_gear/city/kurokumo/jacket,
-/obj/item/ego_weapon/city/kurokumo/weak,
 /obj/item/ego_weapon/city/kurokumo/weak,
 /turf/open/floor/carpet/black,
 /area/city/backstreets_room)
@@ -918,9 +914,11 @@
 	desc = "A blade that is used by those willing to go out with honour.";
 	pixel_x = -19
 	},
-/obj/item/stack/spacecash/c10000,
-/obj/item/stack/spacecash/c10000,
-/obj/item/stack/spacecash/c10000,
+/obj/item/stack/spacecash/c1000,
+/obj/item/stack/spacecash/c1000,
+/obj/item/stack/spacecash/c1000,
+/obj/item/stack/spacecash/c1000,
+/obj/item/stack/spacecash/c1000,
 /turf/open/floor/wood{
 	color = "#ccc8c0"
 	},

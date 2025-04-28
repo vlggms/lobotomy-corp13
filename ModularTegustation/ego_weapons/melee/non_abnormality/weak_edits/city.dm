@@ -47,7 +47,7 @@
 	attack_verb_continuous = list("slices", "slashes", "stabs")
 	attack_verb_simple = list("slice", "slash", "stab")
 	hitsound = 'sound/weapons/bladeslice.ogg'
-	force = 35
+	force = 45
 	attribute_requirements = list(
 		FORTITUDE_ATTRIBUTE = 80,
 		PRUDENCE_ATTRIBUTE = 80,
@@ -74,7 +74,7 @@
 	desc = "A dagger used by index proxies."
 	icon_state = "indexdagger"
 	inhand_icon_state = "indexdagger"
-	force = 20
+	force = 30
 	attack_speed = 0.5
 
 
@@ -91,7 +91,7 @@
 	attack_verb_continuous = list("cleaves", "cuts")
 	attack_verb_simple = list("cleaves", "cuts")
 	hitsound = 'sound/weapons/fixer/generic/finisher1.ogg'
-	force = 55
+	force = 70
 	attack_speed = 2
 	attribute_requirements = list(
 		FORTITUDE_ATTRIBUTE = 100,
