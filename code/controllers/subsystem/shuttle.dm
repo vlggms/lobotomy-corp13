@@ -336,6 +336,9 @@ SUBSYSTEM_DEF(shuttle)
 			callShuttle = FALSE
 			break
 
+	if(SSmaptype.maptype in SSmaptype.lc_maps || SSmaptype.maptype == "lcorp_city" || SSmaptype.maptype == "city")
+		callShuttle = FALSE
+
 	if(callShuttle)
 		if(EMERGENCY_IDLE_OR_RECALLED)
 			emergency.request(null, set_coefficient = 2.5)
