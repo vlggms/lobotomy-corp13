@@ -20,7 +20,8 @@
 	for(var/mob/living/target in view(range, get_turf(src)))
 		if(target.stat == DEAD) // theyre already dead whats wrong with you
 			continue
-
+		if (human == owner)
+			continue
 		if(target.maxHealth >= skilluser.maxHealth)
 			new /obj/effect/temp_visual/slice(get_turf(target))
 			target.adjustBruteLoss(target.maxHealth*0.3, TRUE, TRUE)
