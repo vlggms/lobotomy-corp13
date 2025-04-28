@@ -506,3 +506,13 @@
 /datum/ego_datum/armor/havana
 	item_path = /obj/item/clothing/suit/armor/ego_gear/waw/havana
 	cost = 50
+
+// Burrowing Heaven - Heaven
+// This Abnormality does not exist. At least its EGO does.
+/datum/ego_datum/weapon/heaven
+	item_path = /obj/item/ego_weapon/heaven
+	cost = 50
+
+/datum/ego_datum/armor/heaven
+	item_path = /obj/item/clothing/suit/armor/ego_gear/waw/heaven
+	cost = 50

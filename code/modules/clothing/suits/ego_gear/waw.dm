@@ -501,3 +501,10 @@ Any attempt to code risk class armor will result in a 10 day Github ban.*/
 	attribute_requirements = list(
 							JUSTICE_ATTRIBUTE = 80
 							)
+
+/obj/item/clothing/suit/armor/ego_gear/waw/heaven
+	name = "heaven"
+	desc = "That's what a gaze is. Attention. An invisible string that connects us."
+	icon_state = "heaven"
+	armor = list(RED_DAMAGE = 10, WHITE_DAMAGE = 60, BLACK_DAMAGE = 60, PALE_DAMAGE = 10) // 140. LobCorp original stats: 1.2, 0.8, 0.6, 1.2.
+	attribute_requirements = list(FORTITUDE_ATTRIBUTE = 80) //Requires Fortitude Level 3 in LobCorp.
