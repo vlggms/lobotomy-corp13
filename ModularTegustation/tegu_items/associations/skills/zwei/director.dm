@@ -21,7 +21,7 @@
 		if(target.stat == DEAD) // theyre already dead whats wrong with you
 			continue
 
-		if(target.maxHealth > skilluser.maxHealth)
+		if(target.maxHealth >= skilluser.maxHealth)
 			new /obj/effect/temp_visual/slice(get_turf(target))
 			target.adjustBruteLoss(target.maxHealth*0.3, TRUE, TRUE)
 		target.add_movespeed_modifier(/datum/movespeed_modifier/retreat)

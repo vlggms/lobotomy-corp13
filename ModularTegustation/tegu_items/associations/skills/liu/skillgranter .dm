@@ -22,7 +22,7 @@
 	name = "Liu Association Veteran Skill Book"
 	allowedjob = list("Association Veteran")
 
-/obj/item/assoc_skill_granter/liu/attack_self(mob/living/carbon/human/user)
+/obj/item/assoc_skill_granter/liu/veteran/attack_self(mob/living/carbon/human/user)
 	if(!(user?.mind?.assigned_role in allowedjob))
 		to_chat(user, span_notice("Only association members of authorized ranking are allowed to read this book!"))
 		return ..()
@@ -46,7 +46,7 @@
 	name = "Liu Association Director Skill Book"
 	allowedjob = list("Association Section Director")
 
-/obj/item/assoc_skill_granter/liu/attack_self(mob/living/carbon/human/user)
+/obj/item/assoc_skill_granter/liu/director/attack_self(mob/living/carbon/human/user)
 	if(!(user?.mind?.assigned_role in allowedjob))
 		to_chat(user, span_notice("Only association members of authorized ranking are allowed to read this book!"))
 		return ..()

@@ -3,8 +3,8 @@
 	icon_icon = 'icons/hud/screen_skills.dmi'
 	button_icon_state = "solarflare"
 	cooldown_time = 60 SECONDS
-	var/list/affected = list()
 	var/range = 5
+	var/affect_self = FALSE
 
 /datum/action/cooldown/weaknessanalyzed/Trigger()
 	. = ..()
@@ -15,11 +15,12 @@
 		return FALSE
 
 	for(var/mob/living/L in view(range, owner))
-		if(owner.faction_check_mob(L, FALSE))
-			continue
 		if(L.stat == DEAD)
 			continue
+		if (L == owner && !affect_self)
+			continue
 		L.apply_status_effect(/datum/status_effect/rend_seven)
+		owner.say("	I've analyzed the enemy's behavior.")
 	StartCooldown()
 	return ..()
 
@@ -31,11 +32,27 @@
 
 /datum/status_effect/rend_seven/on_apply()
 	. = ..()
-	if(!isanimal(owner))
-		qdel(src)
+	if(ishuman(owner))
+		var/mob/living/carbon/human/L = owner
+		L.physiology.red_mod *= 1.4
+		L.physiology.white_mod *= 1.4
+		L.physiology.black_mod *= 1.4
+		L.physiology.pale_mod *= 1.4
 		return
 	var/mob/living/simple_animal/M = owner
 	M.AddModifier(/datum/dc_change/seven)
+
+/datum/status_effect/rend_seven/on_remove()
+	. = ..()
+	if(ishuman(owner))
+		var/mob/living/carbon/human/L = owner
+		L.physiology.red_mod /= 1.4
+		L.physiology.white_mod /= 1.4
+		L.physiology.black_mod /= 1.4
+		L.physiology.pale_mod /= 1.4
+		return
+	var/mob/living/simple_animal/M = owner
+	M.RemoveModifier(/datum/dc_change/seven)
 
 /datum/action/cooldown/fieldcommand
 	name = "Field Command"
