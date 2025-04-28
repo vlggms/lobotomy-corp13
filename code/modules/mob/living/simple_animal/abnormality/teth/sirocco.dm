@@ -37,7 +37,7 @@
 		/datum/ego_datum/armor/desert,
 	)
 	gift_type = /datum/ego_gifts/desert
-	abnormality_origin = ABNORMALITY_ORIGIN_COMMUNITY
+	abnormality_origin = ABNORMALITY_ORIGIN_ORIGINAL
 
 	observation_prompt = "Why is everyone here such a bore? <br>Why doesn't anyone want to play with me? <br>\
 		A young girl's voice cries out from somewhere within the storm. <br>\
