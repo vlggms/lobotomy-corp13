@@ -2,8 +2,6 @@
 "aa" = (
 /obj/item/clothing/suit/armor/ego_gear/city/index,
 /obj/item/ego_weapon/city/fakeindex,
-/obj/item/clothing/suit/armor/ego_gear/city/index,
-/obj/item/ego_weapon/city/fakeindex,
 /obj/effect/turf_decal/tile/blue{
 	color = "#3234B9";
 	dir = 4
