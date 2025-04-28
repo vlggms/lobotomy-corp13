@@ -306,7 +306,8 @@
 	abno_info = list(
 		"When work was complete, everyone in the facility was healed.",
 		"During work, the employee took random damage continuously.",
-		"When work was completed 4 times, The Qliphoth counter lowered.",
+		"When work was completed, The Qliphoth counter lowered.",
+		"After 5 minutes have passed, The Qliphoth counter increased.",
 		"When the Qliphoth counter reached 0, one abnormality breached containment.")
 	abno_work_damage_type = "Random"
 
