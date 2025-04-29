@@ -13,6 +13,7 @@
 	melee_damage_upper = 18
 	attack_verb_continuous = "stabs"
 	attack_verb_simple = "stab"
+	attack_sound = 'sound/weapons/fixer/generic/spear2.ogg'
 	ranged = TRUE
 	charge = 5
 	max_charge = 30
@@ -135,15 +136,18 @@
 	maxHealth = 300
 	health = 300
 	move_to_delay = 1.6
+	faction = list("mad fly")
 	damage_coeff = list(RED_DAMAGE = 1.5, WHITE_DAMAGE = 0.4, BLACK_DAMAGE = 0.6, PALE_DAMAGE = 2)
 	melee_damage_type = WHITE_DAMAGE
 	melee_damage_lower = 2
 	melee_damage_upper = 4
 	attack_verb_continuous = "bites"
 	attack_verb_simple = "bite"
+	attack_sound = 'sound/abnormalities/fairyfestival/fairy_festival_bite.ogg'
+	del_on_death = TRUE
 	var/mob/living/nesting_target
 	var/devouring_cooldown
-	var/devouring_cooldown_time = 1 SECONDS
+	var/devouring_cooldown_time = 2 SECONDS
 
 /mob/living/simple_animal/hostile/mad_fly_swarm/Life()
 	. = ..()
@@ -152,6 +156,7 @@
 	devouring_cooldown = world.time + devouring_cooldown_time
 	if(nesting_target)
 		nesting_target.deal_damage(melee_damage_upper * 2, RED_DAMAGE)
+		playsound(get_turf(src), 'sound/abnormalities/fairyfestival/fairy_festival_bite.ogg', 50, FALSE, 5)
 		nestting_target.visible_message(span_danger("\The [src] devours [nesting_target]'s from the inside!"))
 
 /mob/living/simple_animal/hostile/mad_fly_swarm/AttackingTarget(atom/attacked_target)
@@ -178,5 +183,72 @@
 	var/target_turf = get_turf(src)
 	new /obj/effect/gibspawner/generic(target_turf)
 	forceMove(target_turf)
-	visible_message(span_danger("\The [src] crawls out of [nesting_target]'s skin!"))
+	playsound(get_turf(src), 'sound/abnormalities/fairyfestival/fairyqueen_eat.ogg', 50, FALSE, 5)
+	visible_message(span_danger("\The [src] crawls out of [nesting_target]'s skin, creating a new nest!"))
+	new /mob/living/simple_animal/hostile/mad_fly_nest(target_turf)
 	nesting_target = null
+
+// Mad Fly Nest
+/mob/living/simple_animal/hostile/mad_fly_nest
+	name = "strange nest"
+	desc = "Made out of some sort of gel like substance... You can see small maggots inside of it."
+	icon = 'icons/mob/alien.dmi'
+	icon_state = "egg"
+	icon_living = "egg"
+	icon_dead = "egg_hatched"
+	layer = LYING_MOB_LAYER
+	faction = list("mad fly")
+	gender = NEUTER
+	obj_damage = 0
+	maxHealth = 1000
+	health = 1000
+	damage_coeff = list(RED_DAMAGE = 1, WHITE_DAMAGE = 0.2, BLACK_DAMAGE = 0.5, PALE_DAMAGE = 1.5)
+	butcher_results = list(/obj/item/food/meat/slab/xeno = 3)
+	death_sound = 'sound/effects/ordeals/crimson/dusk_dead.ogg'
+	var/spawn_progress = 18 //spawn ready to produce flies
+	var/list/spawned_mobs = list()
+	var/producing = FALSE
+
+/mob/living/simple_animal/hostile/mad_fly_nest/CanAttack(atom/the_target)
+	return FALSE
+
+/mob/living/simple_animal/hostile/mad_fly_nest/Move()
+	return FALSE
+
+/mob/living/simple_animal/hostile/mad_fly_nest/death(gibbed)
+	new /obj/effect/gibspawner/xeno/bodypartless(get_turf(src))
+	. = ..()
+
+/mob/living/simple_animal/hostile/mad_fly_nest/Life()
+	. = ..()
+	if(!.) // Dead
+		return FALSE
+	listclearnulls(spawned_mobs)
+	for(var/mob/living/L in spawned_mobs)
+		if(L.stat == DEAD || QDELETED(L))
+			spawned_mobs -= L
+	if(producing)
+		return
+	if(length(spawned_mobs) >= 3)
+		return
+	if(spawn_progress < 20)
+		spawn_progress += 1
+		return
+	Produce()
+
+/mob/living/simple_animal/hostile/ordeal/green_dusk/proc/Produce()
+	if(producing || stat == DEAD)
+		return
+	producing = TRUE
+	icon_state = "egg_opening"
+	SLEEP_CHECK_DEATH(15)
+	visible_message(span_danger("\A new swarm climbs out of [src]!"))
+	for(var/i = 1 to 3)
+		var/turf/T = get_step(get_turf(src), pick(0, EAST))
+		var/mob/living/simple_animal/hostile/mad_fly_swarm/nb = new /mob/living/simple_animal/hostile/mad_fly_swarm(T)
+		spawned_mobs += nb
+		SLEEP_CHECK_DEATH(1)
+	SLEEP_CHECK_DEATH(2)
+	icon = initial(icon)
+	producing = FALSE
+	spawn_progress = -5 // Basically, puts us on a tiny cooldown
