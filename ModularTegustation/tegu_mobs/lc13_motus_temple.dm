@@ -6,23 +6,31 @@
 	icon_state = "stone_guard"
 	icon_living = "stone_guard"
 	icon_dead = "stone_guard_dead"
-	maxHealth = 2000
-	health = 2000
+	maxHealth = 1000
+	health = 1000
 	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 0.6, WHITE_DAMAGE = 0.8, BLACK_DAMAGE = 1.2, PALE_DAMAGE = 1.5)
 	attack_verb_continuous = "stabs"
 	attack_verb_simple = "stab"
 	ranged = TRUE
-	var/attack_tremor = 2
+	var/attack_tremor = 3
 	var/can_act = TRUE
-	var/ability_damage = 25
+	var/ability_damage = 40
 	var/ability_cooldown
-	var/ability_cooldown_time = 6 SECONDS
+	var/ability_cooldown_time = 10 SECONDS
+	var/ability_range = 5
+	var/ability_delay = 0.5 SECONDS
 
 /mob/living/simple_animal/hostile/clan/stone_guard/ChargeUpdated()
-	if(charge > 5)
-
+	if(charge > 6)
+		ChangeResistances(list(RED_DAMAGE = 0.3, WHITE_DAMAGE = 0.3, BLACK_DAMAGE = 0.3, PALE_DAMAGE = 0.8))
 	else
+		ChangeResistances(list(RED_DAMAGE = 0.6, WHITE_DAMAGE = 0.8, BLACK_DAMAGE = 1.2, PALE_DAMAGE = 1.5))
 		return
+
+/mob/living/simple_animal/hostile/clan/stone_guard/Move()
+	if(!can_act)
+		return FALSE
+	. = ..()
 
 /mob/living/simple_animal/hostile/clan/stone_guard/AttackingTarget(atom/attacked_target)
 	if(!can_act)
@@ -31,6 +39,11 @@
 	if(isliving(target))
 		var/mob/living/victim = target
 		victim.apply_lc_tremor(attack_tremor, 55)
+	if(world.time > ability_cooldown)
+		var/turf/target_turf = get_turf(attacked_target)
+		for(var/i = 1 to ability_range - 2)
+			target_turf = get_step(target_turf, get_dir(get_turf(src), target_turf))
+		RangedAbility(target_turf)
 
 /mob/living/simple_animal/hostile/clan/stone_guard/OpenFire()
 	if(!can_act)
@@ -50,7 +63,7 @@
 	ability_cooldown = world.time + ability_cooldown_time
 	var/turf/T = get_ranged_target_turf_direct(src, get_turf(target), ability_range, rand(-10,10))
 	var/list/turf_list = list()
-	playsound(src, 'sound/weapons/ego/censored2.ogg', 50, FALSE, 5)
+	playsound(src, 'sound/abnormalities/crumbling/warning.ogg', 50, FALSE, 5)
 	for(var/turf/TT in getline(src, T))
 		if(TT.density)
 			break
@@ -68,19 +81,19 @@
 		animate(D, alpha = 0, transform = matrix()*1.2, time = 8)
 		SLEEP_CHECK_DEATH(0.15 SECONDS)
 	SLEEP_CHECK_DEATH(ability_delay)
-	get_thrust_turfs()
-	playsound(src, 'sound/weapons/ego/censored1.ogg', 75, FALSE, 5)
+	playsound(src, 'sound/weapons/fixer/hana_pierce.ogg', 75, FALSE, 5)
 	for(var/turf/TT in turf_list)
+		var/obj/effect/temp_visual/thrust/AoE = new(T, COLOR_GRAY)
+		var/matrix/M = matrix(AoE.transform)
+		M.Turn(Get_Angle(src, T)-90)
+		AoE.transform = M
+		var/hit_target = FALSE
 		for(var/mob/living/L in HurtInTurf(TT, list(), ability_damage, RED_DAMAGE, null, TRUE, FALSE, TRUE, hurt_structure = TRUE))
-			new /obj/effect/temp_visual/dir_setting/bloodsplatter(get_turf(L), pick(GLOB.alldirs))
-			L.apply_lc_bleed(15)
+			hit_target = TRUE
+			var/datum/status_effect/stacking/lc_tremor/tremor = L.has_status_effect(/datum/status_effect/stacking/lc_tremor)
+			if(tremor)
+				tremor.TremorBurst()
+		if(!hit_target)
+			charge = 0
+			ChargeUpdated()
 	can_act = TRUE
-
-/mob/living/simple_animal/hostile/clan/stone_guard/proc/get_thrust_turfs(atom/target, mob/user)
-	. = getline(get_step_towards(user, target), target)
-	for(var/turf/T in .)
-		var/obj/effect/temp_visual/thrust/TT = new(T, swingcolor ? swingcolor : COLOR_GRAY)
-		var/matrix/M = matrix(TT.transform)
-		M.Turn(Get_Angle(user, target)-90)
-		TT.transform = M
-	return
