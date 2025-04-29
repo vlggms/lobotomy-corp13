@@ -1,4 +1,4 @@
-//Clan Member: Scout
+//Stone Guard
 /mob/living/simple_animal/hostile/clan/stone_guard
 	name = "stone statue"
 	desc = "A humanoid looking statue wielding a spear... It appears to have 'Resurgence Clan' etched on their back..."
@@ -9,9 +9,14 @@
 	maxHealth = 1000
 	health = 1000
 	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 0.6, WHITE_DAMAGE = 0.8, BLACK_DAMAGE = 1.2, PALE_DAMAGE = 1.5)
+	melee_damage_lower = 14
+	melee_damage_upper = 18
 	attack_verb_continuous = "stabs"
 	attack_verb_simple = "stab"
 	ranged = TRUE
+	charge = 5
+	max_charge = 30
+	clan_charge_cooldown = 0.5 SECONDS
 	var/attack_tremor = 3
 	var/can_act = TRUE
 	var/ability_damage = 40
@@ -19,9 +24,12 @@
 	var/ability_cooldown_time = 10 SECONDS
 	var/ability_range = 5
 	var/ability_delay = 0.5 SECONDS
+	var/stun_duration = 5 SECONDS
 
 /mob/living/simple_animal/hostile/clan/stone_guard/ChargeUpdated()
-	if(charge > 6)
+	if(charge <= 1 && can_act)
+		stagger()
+	if(charge >= 15)
 		ChangeResistances(list(RED_DAMAGE = 0.3, WHITE_DAMAGE = 0.3, BLACK_DAMAGE = 0.3, PALE_DAMAGE = 0.8))
 	else
 		ChangeResistances(list(RED_DAMAGE = 0.6, WHITE_DAMAGE = 0.8, BLACK_DAMAGE = 1.2, PALE_DAMAGE = 1.5))
@@ -54,6 +62,23 @@
 	dir = dir_to_target
 	RangedAbility(target)
 
+/mob/living/simple_animal/hostile/clan/stone_guard/adjustHealth(amount, updating_health, forced)
+	. = ..()
+	if(amount > 0 && charge > 0)
+		charge -= 1
+
+/mob/living/simple_animal/hostile/clan/stone_guard/proc/stagger()
+	can_act = FALSE
+	playsound(src, 'sound/weapons/ego/devyat_overclock_death.ogg', 50, FALSE, 5)
+	var/mutable_appearance/colored_overlay = mutable_appearance('ModularTegustation/Teguicons/tegumobs.dmi', "small_stagger", layer + 0.1)
+	add_overlay(colored_overlay)
+	ChangeResistances(list(RED_DAMAGE = 1.2, WHITE_DAMAGE = 1.6, BLACK_DAMAGE = 2.4, PALE_DAMAGE = 3))
+	SLEEP_CHECK_DEATH(stun_duration)
+	charge = 15
+	ChangeResistances(list(RED_DAMAGE = 0.6, WHITE_DAMAGE = 0.8, BLACK_DAMAGE = 1.2, PALE_DAMAGE = 1.5))
+	cut_overlays()
+	can_act = TRUE
+
 /mob/living/simple_animal/hostile/clan/stone_guard/proc/RangedAbility(atom/target)
 	if(!can_act)
 		return
@@ -63,6 +88,7 @@
 	ability_cooldown = world.time + ability_cooldown_time
 	var/turf/T = get_ranged_target_turf_direct(src, get_turf(target), ability_range, rand(-10,10))
 	var/list/turf_list = list()
+	say("Commencing Protocol: Transpierce")
 	playsound(src, 'sound/abnormalities/crumbling/warning.ogg', 50, FALSE, 5)
 	for(var/turf/TT in getline(src, T))
 		if(TT.density)
@@ -94,6 +120,63 @@
 			if(tremor)
 				tremor.TremorBurst()
 		if(!hit_target)
-			charge = 0
+			charge -= 5
+			playsound(src, 'sound/weapons/ego/devyat_overclock.ogg', 50, FALSE, 5)
 			ChargeUpdated()
 	can_act = TRUE
+
+//Mad Fly Swarm
+/mob/living/simple_animal/hostile/mad_fly_swarm
+	name = "mad fly swarm"
+	desc = "A swarm of maddened flies... or are they mosquitoes?"
+	icon = 'ModularTegustation/Teguicons/teaser_mobs.dmi'
+	icon_state = "mad_fly_swarm"
+	icon_living = "mad_fly_swarm"
+	maxHealth = 300
+	health = 300
+	move_to_delay = 1.6
+	damage_coeff = list(RED_DAMAGE = 1.5, WHITE_DAMAGE = 0.4, BLACK_DAMAGE = 0.6, PALE_DAMAGE = 2)
+	melee_damage_type = WHITE_DAMAGE
+	melee_damage_lower = 2
+	melee_damage_upper = 4
+	attack_verb_continuous = "bites"
+	attack_verb_simple = "bite"
+	var/mob/living/nesting_target
+	var/devouring_cooldown
+	var/devouring_cooldown_time = 1 SECONDS
+
+/mob/living/simple_animal/hostile/mad_fly_swarm/Life()
+	. = ..()
+	if(world.time < devouring_cooldown)
+		return
+	devouring_cooldown = world.time + devouring_cooldown_time
+	if(nesting_target)
+		nesting_target.deal_damage(melee_damage_upper * 2, RED_DAMAGE)
+		nestting_target.visible_message(span_danger("\The [src] devours [nesting_target]'s from the inside!"))
+
+/mob/living/simple_animal/hostile/mad_fly_swarm/AttackingTarget(atom/attacked_target)
+	. = ..()
+	for(var/i = 1 to 4)
+		attacked_target.attack_animal(src)
+
+	var/target_turf = get_turf(attacked_target)
+	forceMove(target_turf)
+	if(ishuman(attacked_target))
+		var/mob/living/carbon/human/L = attacked_target
+		if(L.sanity_lost && L.stat != DEAD)
+			nesting_target = L
+			nesting()
+
+/mob/living/simple_animal/hostile/mad_fly_swarm/proc/nesting()
+	if(nesting_target)
+		visible_message(span_danger("\The [src] crawls into [nesting_target]'s skin!"))
+		forceMove(nesting_target)
+		RegisterSignal(nesting_target, COMSIG_LIVING_DEATH, PROC_REF(larva_burst))
+
+/mob/living/simple_animal/hostile/mad_fly_swarm/proc/larva_burst()
+	UnregisterSignal(nesting_target, COMSIG_LIVING_DEATH)
+	var/target_turf = get_turf(src)
+	new /obj/effect/gibspawner/generic(target_turf)
+	forceMove(target_turf)
+	visible_message(span_danger("\The [src] crawls out of [nesting_target]'s skin!"))
+	nesting_target = null
