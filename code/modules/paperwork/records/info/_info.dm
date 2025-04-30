@@ -102,7 +102,10 @@ For escape damage you will have to get creative and figure out how dangerous it 
 
 	info += "<h3><center>Breach Information</center></h3><br>"
 	if(isnull(abno_breach_damage_type))
-		abno_breach_damage_type = uppertext(initial(abno_type.melee_damage_type))
+		var/damage_type = initial(abno_type.melee_damage_type)
+		if(GLOB.damage_type_shuffler?.is_enabled && IsColorDamageType(damage_type))
+			damage_type = GLOB.damage_type_shuffler.mapping_offense[damage_type]
+		abno_breach_damage_type = uppertext(damage_type)
 	if(isnull(abno_breach_damage_count))
 		abno_breach_damage_count = SimpleDamageToText(initial(abno_type.melee_damage_upper) * initial(abno_type.rapid_melee))
 	info += "<h4>Escape Damage Type:</h4> [abno_breach_damage_type]<br>"
@@ -110,9 +113,12 @@ For escape damage you will have to get creative and figure out how dangerous it 
 
 	// Resistances
 	for(var/line in abno_resistances)
-		var/resist = abno_resistances[line]
+		var/damage_type = line
+		if(GLOB.damage_type_shuffler?.is_enabled && IsColorDamageType(line))
+			damage_type = GLOB.damage_type_shuffler.mapping_defense[line]
+		var/resist = abno_resistances[damage_type]
 		if(!resist)
-			resist = SimpleResistanceToText(GLOB.cached_abno_resistances[abno_type][line])
+			resist = SimpleResistanceToText(GLOB.cached_abno_resistances[abno_type][damage_type])
 		info += "<h4>[capitalize(line)] Resistance:</h4> [resist]<br>"
 
 /obj/item/paper/fluff/info/AltClick(mob/living/user, obj/item/I)
