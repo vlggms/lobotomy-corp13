@@ -220,6 +220,10 @@
 	var/spawn_progress = 10 //spawn ready to produce flies
 	var/list/spawned_mobs = list()
 	var/producing = FALSE
+	var/chem_cooldown_timer = 30 SECONDS
+	var/chem_cooldown
+	var/chem_type = /datum/reagent/medicine/mental_stabilizator
+	var/chem_yield = 5
 
 /mob/living/simple_animal/hostile/mad_fly_nest/CanAttack(atom/the_target)
 	return FALSE
@@ -230,6 +234,28 @@
 /mob/living/simple_animal/hostile/mad_fly_nest/death(gibbed)
 	new /obj/effect/gibspawner/xeno/bodypartless(get_turf(src))
 	. = ..()
+
+/mob/living/simple_animal/hostile/mad_fly_nest/examine(mob/user)
+	. = ..()
+	if(world.time < chem_cooldown_timer)
+		. += span_warning("[src] is not ready to be harvensted.")
+	else
+		. += span_nicegreen("[src] is ready to be harvensted.")
+
+/mob/living/simple_animal/hostile/mad_fly_nest/attackby(obj/O, mob/user, params)
+	if(!istype(O, /obj/item/reagent_containers))
+		return ..()
+	if(world.time < chem_cooldown_timer)
+		to_chat(user, span_notice("You may need to wait a bit longer."))
+		return
+	var/obj/item/reagent_containers/my_container = O
+	HarvestChem(my_container, user)
+
+/mob/living/simple_animal/hostile/mad_fly_nest/proc/HarvestChem(obj/item/reagent_containers/C, mob/user)
+	visible_message("[user] uses [C] to extract some reagents from [src]")
+	if(chem_type)
+		C.reagents.add_reagent(chem_type, chem_yield)
+	chem_cooldown_timer = world.time + chem_cooldown
 
 /mob/living/simple_animal/hostile/mad_fly_nest/Life()
 	. = ..()
