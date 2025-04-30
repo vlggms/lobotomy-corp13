@@ -149,6 +149,13 @@
 	var/devouring_cooldown
 	var/devouring_cooldown_time = 2 SECONDS
 
+/mob/living/simple_animal/hostile/mad_fly_swarm/Initialize()
+	. = ..()
+	var/matrix/init_transform = transform
+	transform *= 0.1
+	alpha = 25
+	animate(src, alpha = 255, transform = init_transform, time = 5)
+
 /mob/living/simple_animal/hostile/mad_fly_swarm/Life()
 	. = ..()
 	if(world.time < devouring_cooldown)
@@ -169,13 +176,8 @@
 	if(ishuman(attacked_target))
 		var/mob/living/carbon/human/L = attacked_target
 		if(L.sanity_lost && L.stat != DEAD)
-			var/fellow_fly = FALSE
-			for(var/atom/movable/i in L.contents)
-				if (!istype(i, /mob/living/simple_animal/hostile/mad_fly_swarm))
-					fellow_fly = TRUE
-			if(!fellow_fly)
-				nesting_target = L
-				nesting()
+			nesting_target = L
+			nesting()
 			else
 				for(var/i = 1 to 5)
 					L.apply_damage(melee_damage_upper, RED_DAMAGE, null, L.run_armor_check(null, RED_DAMAGE))
@@ -192,8 +194,17 @@
 	new /obj/effect/gibspawner/generic(target_turf)
 	forceMove(target_turf)
 	playsound(get_turf(src), 'sound/abnormalities/fairyfestival/fairyqueen_eat.ogg', 50, FALSE, 5)
-	visible_message(span_danger("\The [src] crawls out of [nesting_target]'s skin, creating a new nest!"))
-	new /mob/living/simple_animal/hostile/mad_fly_nest(target_turf)
+	var/fellow_fly = FALSE
+	for(var/atom/movable/i in nesting_target.contents)
+		if (!istype(i, /mob/living/simple_animal/hostile/mad_fly_swarm))
+			if(i == src)
+				continue
+			fellow_fly = TRUE
+	if(!fellow_fly)
+		visible_message(span_danger("\The [src] crawls out of [nesting_target]'s skin, creating a new nest!"))
+		new /mob/living/simple_animal/hostile/mad_fly_nest(target_turf)
+	else
+		visible_message(span_danger("\The [src] crawls out of [nesting_target]'s skin!"))
 	nesting_target = null
 	var/matrix/init_transform = transform
 	transform *= 0.1
@@ -208,7 +219,6 @@
 	icon_state = "egg"
 	icon_living = "egg"
 	icon_dead = "egg_hatched"
-	layer = LYING_MOB_LAYER
 	faction = list("mad fly")
 	gender = NEUTER
 	obj_damage = 0
@@ -238,7 +248,7 @@
 /mob/living/simple_animal/hostile/mad_fly_nest/examine(mob/user)
 	. = ..()
 	if(world.time < chem_cooldown_timer)
-		. += span_warning("[src] is not ready to be harvensted.")
+		. += span_red("[src] is not ready to be harvensted.")
 	else
 		. += span_nicegreen("[src] is ready to be harvensted.")
 
@@ -249,7 +259,8 @@
 		to_chat(user, span_notice("You may need to wait a bit longer."))
 		return
 	var/obj/item/reagent_containers/my_container = O
-	HarvestChem(my_container, user)
+	if(do_after(user, 10 SECONDS, src))
+		HarvestChem(my_container, user)
 
 /mob/living/simple_animal/hostile/mad_fly_nest/proc/HarvestChem(obj/item/reagent_containers/C, mob/user)
 	visible_message("[user] uses [C] to extract some reagents from [src]")
@@ -283,8 +294,9 @@
 	visible_message(span_danger("\A new swarm climbs out of [src]!"))
 	var/turf/T = get_step(get_turf(src), pick(0, EAST))
 	var/mob/living/simple_animal/hostile/mad_fly_swarm/nb = new /mob/living/simple_animal/hostile/mad_fly_swarm(T)
+	nb.return_to_origin = TRUE
 	spawned_mobs += nb
 	SLEEP_CHECK_DEATH(2)
 	icon_state = "egg"
 	producing = FALSE
-	spawn_progress = -5 // Basically, puts us on a tiny cooldown
+	spawn_progress = -5
