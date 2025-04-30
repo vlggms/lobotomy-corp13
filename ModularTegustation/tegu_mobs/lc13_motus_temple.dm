@@ -157,7 +157,7 @@
 	if(nesting_target)
 		nesting_target.deal_damage(melee_damage_upper * 2, RED_DAMAGE)
 		playsound(get_turf(src), 'sound/abnormalities/fairyfestival/fairy_festival_bite.ogg', 50, FALSE, 5)
-		nestting_target.visible_message(span_danger("\The [src] devours [nesting_target]'s from the inside!"))
+		nesting_target.visible_message(span_danger("\The [src] devours [nesting_target]'s from the inside!"))
 
 /mob/living/simple_animal/hostile/mad_fly_swarm/AttackingTarget(atom/attacked_target)
 	. = ..()
@@ -169,8 +169,16 @@
 	if(ishuman(attacked_target))
 		var/mob/living/carbon/human/L = attacked_target
 		if(L.sanity_lost && L.stat != DEAD)
-			nesting_target = L
-			nesting()
+			var/fellow_fly = FALSE
+			for(var/atom/movable/i in H.contents)
+				if (!istype(i, /mob/living/simple_animal/hostile/mad_fly_swarm))
+					fellow_fly = TRUE
+			if(!fellow_fly)
+				nesting_target = L
+				nesting()
+			else
+				for(var/i = 1 to 5)
+					L.apply_damage(melee_damage_upper, RED_DAMAGE, null, L.run_armor_check(null, RED_DAMAGE))
 
 /mob/living/simple_animal/hostile/mad_fly_swarm/proc/nesting()
 	if(nesting_target)
@@ -187,6 +195,10 @@
 	visible_message(span_danger("\The [src] crawls out of [nesting_target]'s skin, creating a new nest!"))
 	new /mob/living/simple_animal/hostile/mad_fly_nest(target_turf)
 	nesting_target = null
+	var/matrix/init_transform = transform
+	transform *= 0.1
+	alpha = 25
+	animate(src, alpha = 255, transform = init_transform, time = 5)
 
 // Mad Fly Nest
 /mob/living/simple_animal/hostile/mad_fly_nest
@@ -205,7 +217,7 @@
 	damage_coeff = list(RED_DAMAGE = 1, WHITE_DAMAGE = 0.2, BLACK_DAMAGE = 0.5, PALE_DAMAGE = 1.5)
 	butcher_results = list(/obj/item/food/meat/slab/xeno = 3)
 	death_sound = 'sound/effects/ordeals/crimson/dusk_dead.ogg'
-	var/spawn_progress = 18 //spawn ready to produce flies
+	var/spawn_progress = 10 //spawn ready to produce flies
 	var/list/spawned_mobs = list()
 	var/producing = FALSE
 
@@ -229,26 +241,24 @@
 			spawned_mobs -= L
 	if(producing)
 		return
-	if(length(spawned_mobs) >= 3)
+	if(length(spawned_mobs) >= 2)
 		return
 	if(spawn_progress < 20)
 		spawn_progress += 1
 		return
 	Produce()
 
-/mob/living/simple_animal/hostile/ordeal/green_dusk/proc/Produce()
+/mob/living/simple_animal/hostile/mad_fly_nest/proc/Produce()
 	if(producing || stat == DEAD)
 		return
 	producing = TRUE
 	icon_state = "egg_opening"
-	SLEEP_CHECK_DEATH(15)
+	SLEEP_CHECK_DEATH(13)
 	visible_message(span_danger("\A new swarm climbs out of [src]!"))
-	for(var/i = 1 to 3)
-		var/turf/T = get_step(get_turf(src), pick(0, EAST))
-		var/mob/living/simple_animal/hostile/mad_fly_swarm/nb = new /mob/living/simple_animal/hostile/mad_fly_swarm(T)
-		spawned_mobs += nb
-		SLEEP_CHECK_DEATH(1)
+	var/turf/T = get_step(get_turf(src), pick(0, EAST))
+	var/mob/living/simple_animal/hostile/mad_fly_swarm/nb = new /mob/living/simple_animal/hostile/mad_fly_swarm(T)
+	spawned_mobs += nb
 	SLEEP_CHECK_DEATH(2)
-	icon = initial(icon)
+	icon_state = "egg"
 	producing = FALSE
 	spawn_progress = -5 // Basically, puts us on a tiny cooldown
