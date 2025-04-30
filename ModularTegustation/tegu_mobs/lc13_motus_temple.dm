@@ -136,7 +136,7 @@
 	maxHealth = 300
 	health = 300
 	move_to_delay = 1.6
-	faction = list("mad fly")
+	faction = list("madfly")
 	damage_coeff = list(RED_DAMAGE = 1.5, WHITE_DAMAGE = 0.4, BLACK_DAMAGE = 0.6, PALE_DAMAGE = 2)
 	melee_damage_type = WHITE_DAMAGE
 	melee_damage_lower = 2
@@ -216,7 +216,7 @@
 	icon_state = "egg"
 	icon_living = "egg"
 	icon_dead = "egg_hatched"
-	faction = list("mad fly")
+	faction = list("madfly")
 	gender = NEUTER
 	obj_damage = 0
 	maxHealth = 1000
@@ -298,3 +298,276 @@
 	icon_state = "egg"
 	producing = FALSE
 	spawn_progress = -5
+
+// Mad Fly Nest
+/mob/living/simple_animal/hostile/scarlet_rose
+	name = "scarlet rose"
+	desc = "A single blood red rose, connected to all nearby vines..."
+	icon = 'ModularTegustation/Teguicons/32x32.dmi'
+	icon_state = "rose_red"
+	maxHealth = 1500
+	health = 1500
+	del_on_death = TRUE
+	faction = list("scarletrose")
+	gender = NEUTER
+	obj_damage = 0
+	death_message = "collapses into a pile of plantmatter."
+	death_sound = 'sound/creatures/venus_trap_death.ogg'
+	attacked_sound = 'sound/creatures/venus_trap_hurt.ogg'
+	damage_coeff = list(RED_DAMAGE = 0.5, WHITE_DAMAGE = 0.5, BLACK_DAMAGE = 0.5, PALE_DAMAGE = 0.5)
+	initial_language_holder = /datum/language_holder/plant //essentially flavor
+	ranged = TRUE
+	ranged_cooldown_time = 4 SECONDS
+	var/vine_range = 10
+	var/plant_cooldown = 30
+	//All iterations share this list between eachother.
+	var/static/list/vine_list = list()
+	var/chem_cooldown_timer = 30 SECONDS
+	var/chem_cooldown
+	var/chem_type = /datum/reagent/medicine/sal_acid
+	var/chem_yield = 10
+
+/mob/living/simple_animal/hostile/scarlet_rose/death(gibbed)
+	density = FALSE
+	new /obj/item/scarlet_rose(get_turf(src))
+	animate(src, alpha = 0, time = 5 SECONDS)
+	QDEL_IN(src, 5 SECONDS)
+	..()
+
+/mob/living/simple_animal/hostile/scarlet_rose/Destroy()
+	for(var/obj/structure/spreading/scarlet_vine/vine in vine_list)
+		vine.can_expand = FALSE
+		var/del_time = rand(4,10) //all the vines dissapear at different interval so it looks more organic.
+		animate(vine, alpha = 0, time = del_time SECONDS)
+		QDEL_IN(vine, del_time SECONDS)
+	vine_list.Cut()
+	return ..()
+
+/mob/living/simple_animal/hostile/scarlet_rose/examine(mob/user)
+	. = ..()
+	if(world.time < chem_cooldown_timer)
+		. += span_red("[src] is not ready to be harvensted.")
+	else
+		. += span_nicegreen("[src] is ready to be harvensted.")
+
+/mob/living/simple_animal/hostile/scarlet_rose/attackby(obj/O, mob/user, params)
+	if(!istype(O, /obj/item/reagent_containers))
+		return ..()
+	if(world.time < chem_cooldown_timer)
+		to_chat(user, span_notice("You may need to wait a bit longer."))
+		return
+	var/obj/item/reagent_containers/my_container = O
+	visible_message("[user] starts extracting some reagents from [src]...")
+	if(do_after(user, 10 SECONDS, src))
+		HarvestChem(my_container, user)
+
+/mob/living/simple_animal/hostile/scarlet_rose/proc/HarvestChem(obj/item/reagent_containers/C, mob/user)
+	visible_message("[user] uses [C] to extract some reagents from [src]")
+	if(chem_type)
+		C.reagents.add_reagent(chem_type, chem_yield)
+	chem_cooldown_timer = world.time + chem_cooldown
+
+/mob/living/simple_animal/hostile/scarlet_rose/CanAttack(atom/the_target)
+	return FALSE
+
+/mob/living/simple_animal/hostile/scarlet_rose/Move()
+	return FALSE
+
+/mob/living/simple_animal/hostile/scarlet_rose/Life()
+	. = ..()
+	var/list/area_of_influence
+	area_of_influence = urange(vine_range, get_turf(src))
+	for(var/obj/structure/spreading/scarlet_vine/W in area_of_influence)
+		if(W.last_expand <= world.time)
+			W.expand()
+		else if(ranged_cooldown <= world.time)
+			var/list/did_we_hit = HurtInTurf(get_turf(W), list(), 10, RED_DAMAGE, check_faction = TRUE, hurt_mechs = TRUE)
+			if(did_we_hit.len)
+				W.VineAttack(pick(did_we_hit))
+			for(var/mob/living/carbon/human/H in did_we_hit)
+				H.apply_lc_bleed(5)
+				to_chat(H, span_danger("Scarlet vines cuts into your legs!"))
+	SpreadPlants()
+
+/mob/living/simple_animal/hostile/scarlet_rose/AttackingTarget(atom/attacked_target)
+	if(!target)
+		GiveTarget(attacked_target)
+	return OpenFire()
+
+/mob/living/simple_animal/hostile/scarlet_rose/OpenFire()
+	if(ranged_cooldown <= world.time)
+		VineSpike()
+
+/mob/living/simple_animal/hostile/scarlet_rose/proc/SpreadPlants()
+	if(!isturf(loc) || isspaceturf(loc))
+		return
+	if(locate(/obj/structure/spreading/scarlet_vine) in get_turf(src))
+		return
+	new /obj/structure/spreading/scarlet_vine(loc)
+
+/mob/living/simple_animal/hostile/scarlet_rose/proc/VineSpike()
+	playsound(get_turf(src), projectilesound, 30)
+	for(var/obj/structure/spreading/scarlet_vine/W in view(vision_range, src))
+		var/list/did_we_hit = HurtInTurf(get_turf(W), list(), 10, RED_DAMAGE, check_faction = TRUE, hurt_mechs = TRUE)
+		if(did_we_hit.len)
+			W.VineAttack(pick(did_we_hit))
+		for(var/mob/living/carbon/human/H in did_we_hit)
+			H.apply_lc_bleed(5)
+
+	ranged_cooldown = world.time + ranged_cooldown_time
+
+//VINE CODE: stolen alien weed code
+/obj/structure/spreading/scarlet_vine
+	gender = PLURAL
+	name = "scarlet flora"
+	desc = "Bloody vines, yearning for blood..."
+	icon = 'icons/effects/spacevines.dmi'
+	icon_state = "Med1"
+	base_icon_state = "Med1"
+	color = "#800000"
+	max_integrity = 15
+	resistance_flags = FLAMMABLE
+	pass_flags_self = LETPASSTHROW
+	armor = list(
+		MELEE = 0,
+		BULLET = 0,
+		FIRE = -50,
+		RED_DAMAGE = 80,
+		WHITE_DAMAGE = 0,
+		BLACK_DAMAGE = 40,
+		PALE_DAMAGE = -50,
+	)
+	var/old_growth = FALSE
+	/* Number of tries it takes to get through the vines.
+		Patrol shuts off if the creature fails to move 5 times. */
+	var/tangle = 2
+	//Redundant and Ineffecient abnormality teamwork var.
+	var/allow_abnopass = FALSE
+	//Connected Abnormality.
+	var/static/mob/living/simple_animal/hostile/scarlet_rose/connected_rose
+	//strictly for crossed proc
+	var/list/static/ignore_typecache
+	var/list/static/atom_remove_condition
+
+
+/obj/structure/spreading/scarlet_vine/Initialize()
+	. = ..()
+
+	//This is to register a abnormality if we dont have one
+	if(!connected_rose)
+		for(var/mob/living/simple_animal/hostile/scarlet_rose/R in urange(16, get_turf(src)))
+			connected_rose = R
+			break
+	if(connected_rose)
+		connected_rose.vine_list += src
+
+	if(!atom_remove_condition)
+		atom_remove_condition = typecacheof(list(
+			/obj/projectile/ego_bullet/ego_match,
+			/obj/projectile/ego_bullet/ego_warring2,
+			/obj/projectile/ego_bullet/flammenwerfer,
+			/obj/effect/decal/cleanable/wrath_acid,
+			/mob/living/simple_animal/hostile/abnormality/fire_bird,
+			/mob/living/simple_animal/hostile/abnormality/helper,
+			/mob/living/simple_animal/hostile/abnormality/greed_king,
+			/mob/living/simple_animal/hostile/abnormality/dimensional_refraction,
+			/mob/living/simple_animal/hostile/abnormality/wrath_servant,
+			/obj/vehicle/sealed/mecha,
+		))
+
+	if(!ignore_typecache)
+		ignore_typecache = typecacheof(list(
+			/obj/effect,
+			/mob/dead,
+			/mob/living/simple_animal/hostile/abnormality/snow_whites_apple,
+			/mob/living/simple_animal/hostile/abnormality/golden_apple,
+			/mob/living/simple_animal/hostile/abnormality/ebony_queen,
+			/mob/living/simple_animal/hostile/abnormality/seasons,
+		))
+
+/obj/structure/spreading/scarlet_vine/Destroy()
+	if(connected_rose)
+		connected_rose.vine_list -= src
+	return ..()
+
+/* Only allows the user to pass if the proc returns TRUE.
+	This proc doesnt like variables that were not defined
+	inside of it.*/
+/obj/structure/spreading/scarlet_vine/CanAllowThrough(atom/movable/mover, turf/target)
+	. = ..()
+	//List of things that trample vines.
+	if(is_type_in_typecache(mover, atom_remove_condition))
+		qdel(src)
+		return TRUE
+	//If we just ignore the creature.
+	if(is_type_in_typecache(mover, ignore_typecache))
+		return TRUE
+	//Vine effect and extra considerations.
+	if(isliving(mover))
+		if(isliving(mover.pulledby))
+			return TRUE
+		return VineEffect(mover)
+	return TRUE
+
+/obj/structure/spreading/scarlet_vine/play_attack_sound(damage_amount, damage_type = BRUTE)
+	playsound(loc, 'sound/creatures/venus_trap_hurt.ogg', 60, TRUE)
+
+/obj/structure/spreading/scarlet_vine/proc/VineEffect(mob/living/L)
+	// They just flew over the vines. :/
+	if(L.movement_type & FLYING)
+		return TRUE
+
+	if(ishuman(L))
+		var/mob/living/carbon/human/lonely = L
+		var/obj/item/trimming = lonely.get_active_held_item()
+		if(!isnull(trimming))
+			var/weeding = trimming.get_sharpness()
+			if(weeding == SHARP_EDGED && trimming.force >= 5)
+				if(prob(10))
+					to_chat(lonely, span_warning("You cut back [name] as it reaches for you."))
+				else if(prob(10) || (prob(30) && old_growth))
+					to_chat(lonely, span_warning("[name] stab your legs spitefully."))
+					lonely.adjustRedLoss(5)
+				take_damage(15, BRUTE, "melee", 1)
+				return TRUE
+
+	//Entangling code
+	if(tangle <= 0)
+		tangle = initial(tangle)
+		return TRUE
+
+	tangle--
+	if(prob(10))
+		to_chat(L, span_danger("[src] block your path, and cuts into your legs!"))
+		L.apply_lc_bleed(5)
+
+//Called by snow white when she attacks
+/obj/structure/spreading/scarlet_vine/proc/VineAttack(hit_thing)
+	if(isliving(hit_thing))
+		var/mob/living/L = hit_thing
+		if(L.stat != DEAD)
+			new /obj/effect/temp_visual/vinespike(get_turf(L))
+			return
+		// if(ishuman(L))
+		// 	var/mob/living/carbon/human/H = L
+		// 	if(H.stat == DEAD)
+		// 		var/obj/item/organ/eyes/B = H.getorganslot(ORGAN_SLOT_BRAIN)
+		// 		if(B)
+		// 			new /obj/effect/temp_visual/vinespike(get_turf(H))
+		// 			H.add_overlay(icon('ModularTegustation/Teguicons/tegu_effects.dmi', "f0442_victem"))
+		// 			B.Remove(H)
+	else
+		new /obj/effect/temp_visual/vinespike(get_turf(hit_thing))
+
+/obj/item/scarlet_rose
+	name = "scarlet rose"
+	desc = "The remains of the scarlet rose, they shall remain unrooted, until they are returned to the earth..."
+	icon = 'icons/obj/hydroponics/harvest.dmi'
+	icon_state = "poppy"
+	w_class = WEIGHT_CLASS_SMALL
+
+/obj/item/scarlet_rose/attack_self(mob/user)
+	. = ..()
+	new /mob/living/simple_animal/hostile/scarlet_rose(get_turf(src))
+	to_chat(user, "You plant the [src] into the ground, and it quickly blossoms!")
+	qdel(src)
