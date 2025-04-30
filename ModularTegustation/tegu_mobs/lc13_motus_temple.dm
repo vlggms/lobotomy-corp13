@@ -170,7 +170,7 @@
 		var/mob/living/carbon/human/L = attacked_target
 		if(L.sanity_lost && L.stat != DEAD)
 			var/fellow_fly = FALSE
-			for(var/atom/movable/i in H.contents)
+			for(var/atom/movable/i in L.contents)
 				if (!istype(i, /mob/living/simple_animal/hostile/mad_fly_swarm))
 					fellow_fly = TRUE
 			if(!fellow_fly)
