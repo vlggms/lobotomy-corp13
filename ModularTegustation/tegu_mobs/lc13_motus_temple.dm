@@ -178,9 +178,6 @@
 		if(L.sanity_lost && L.stat != DEAD)
 			nesting_target = L
 			nesting()
-			else
-				for(var/i = 1 to 5)
-					L.apply_damage(melee_damage_upper, RED_DAMAGE, null, L.run_armor_check(null, RED_DAMAGE))
 
 /mob/living/simple_animal/hostile/mad_fly_swarm/proc/nesting()
 	if(nesting_target)
@@ -196,7 +193,7 @@
 	playsound(get_turf(src), 'sound/abnormalities/fairyfestival/fairyqueen_eat.ogg', 50, FALSE, 5)
 	var/fellow_fly = FALSE
 	for(var/atom/movable/i in nesting_target.contents)
-		if (!istype(i, /mob/living/simple_animal/hostile/mad_fly_swarm))
+		if(istype(i, /mob/living/simple_animal/hostile/mad_fly_swarm))
 			if(i == src)
 				continue
 			fellow_fly = TRUE
@@ -259,6 +256,7 @@
 		to_chat(user, span_notice("You may need to wait a bit longer."))
 		return
 	var/obj/item/reagent_containers/my_container = O
+	visible_message("[user] starts extracting some reagents from [src]...")
 	if(do_after(user, 10 SECONDS, src))
 		HarvestChem(my_container, user)
 
@@ -290,7 +288,7 @@
 		return
 	producing = TRUE
 	icon_state = "egg_opening"
-	SLEEP_CHECK_DEATH(13)
+	SLEEP_CHECK_DEATH(10)
 	visible_message(span_danger("\A new swarm climbs out of [src]!"))
 	var/turf/T = get_step(get_turf(src), pick(0, EAST))
 	var/mob/living/simple_animal/hostile/mad_fly_swarm/nb = new /mob/living/simple_animal/hostile/mad_fly_swarm(T)
