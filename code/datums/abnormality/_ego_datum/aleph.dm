@@ -207,3 +207,8 @@
 /datum/ego_datum/weapon/havana
 	item_path = /obj/item/ego_weapon/ranged/havana
 	cost = 100
+
+// The Adult Who Tells Lies - False Throne
+/datum/ego_datum/armor/throne
+	item_path = /obj/item/clothing/suit/armor/ego_gear/aleph/throne
+	cost = 100
