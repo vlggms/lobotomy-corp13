@@ -271,6 +271,14 @@
 	var/current_target = null
 	var/finishing = FALSE
 
+/mob/living/simple_animal/hostile/ordeal/silentgirl_corrosion/Bumped(atom/A)
+	..()
+	if(ishuman(A))
+		if(!vengeful && A != current_target)
+			TryTransform(A)
+			current_target = A
+			GiveTarget(A)
+
 /mob/living/simple_animal/hostile/ordeal/silentgirl_corrosion/CanAttack(atom/the_target)
 	if(finishing)
 		return FALSE
