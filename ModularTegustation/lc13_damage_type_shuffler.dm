@@ -22,34 +22,36 @@ GLOBAL_DATUM_INIT(damage_type_shuffler, /datum/damage_type_shuffler, new /datum/
 	ReshuffleAll()
 
 /datum/damage_type_shuffler/proc/Reshuffle(list/mapping)
-	var/list/sources = list(RED_DAMAGE, WHITE_DAMAGE, BLACK_DAMAGE, PALE_DAMAGE)
-	var/list/targets = list(RED_DAMAGE, WHITE_DAMAGE, BLACK_DAMAGE, PALE_DAMAGE)
-	for(var/i in 1 to 3)
-		MapNeverSelf(mapping, sources, targets)
-	MapAllowSelf(mapping, sources, targets)
+	//Hard coding these is the best way I could figure out to get a uniform distribution of mappings.
+	//all 17 possible mappings with up to 1 self mapped type.
+	var/static/list/all_mappings = list(
+		list(RED_DAMAGE = RED_DAMAGE, WHITE_DAMAGE = BLACK_DAMAGE, BLACK_DAMAGE = PALE_DAMAGE, PALE_DAMAGE = WHITE_DAMAGE),
+		list(RED_DAMAGE = RED_DAMAGE, WHITE_DAMAGE = PALE_DAMAGE, BLACK_DAMAGE = WHITE_DAMAGE, PALE_DAMAGE = BLACK_DAMAGE),
 
-/datum/damage_type_shuffler/proc/MapNeverSelf(list/mapping, list/sources, list/targets)
-	var/sources_string = "[sources]"
-	var/targets_string = "[targets]"
-	var/source = pick_n_take(sources)
-	var/target = pick(targets - source)
-	if(!source || !target)
-		stack_trace("damage shuffler/MapNeverSelf: failed to map from [sources_string] to [targets_string].")
-		return FALSE
-	targets -= target
-	mapping[source] = target
-	return TRUE
+		list(RED_DAMAGE = BLACK_DAMAGE, WHITE_DAMAGE = WHITE_DAMAGE, BLACK_DAMAGE = PALE_DAMAGE, PALE_DAMAGE = RED_DAMAGE),
+		list(RED_DAMAGE = PALE_DAMAGE, WHITE_DAMAGE = WHITE_DAMAGE, BLACK_DAMAGE = RED_DAMAGE, PALE_DAMAGE = BLACK_DAMAGE),
 
-/datum/damage_type_shuffler/proc/MapAllowSelf(list/mapping, list/sources, list/targets)
-	var/sources_string = "[sources]"
-	var/targets_string = "[targets]"
-	var/source = pick_n_take(sources)
-	var/target = pick_n_take(targets)
-	if(!source || !target)
-		stack_trace("damage shuffler/MapAllowSelf: failed to map from [sources_string] to [targets_string].")
-		return FALSE
-	mapping[source] = target
-	return TRUE
+		list(RED_DAMAGE = WHITE_DAMAGE, WHITE_DAMAGE = PALE_DAMAGE, BLACK_DAMAGE = BLACK_DAMAGE, PALE_DAMAGE = RED_DAMAGE),
+		list(RED_DAMAGE = PALE_DAMAGE, WHITE_DAMAGE = RED_DAMAGE, BLACK_DAMAGE = BLACK_DAMAGE, PALE_DAMAGE = WHITE_DAMAGE),
+
+		list(RED_DAMAGE = WHITE_DAMAGE, WHITE_DAMAGE = BLACK_DAMAGE, BLACK_DAMAGE = RED_DAMAGE, PALE_DAMAGE = PALE_DAMAGE),
+		list(RED_DAMAGE = BLACK_DAMAGE, WHITE_DAMAGE = RED_DAMAGE, BLACK_DAMAGE = WHITE_DAMAGE, PALE_DAMAGE = PALE_DAMAGE),
+
+		list(RED_DAMAGE = WHITE_DAMAGE, WHITE_DAMAGE = RED_DAMAGE, BLACK_DAMAGE = PALE_DAMAGE, PALE_DAMAGE = BLACK_DAMAGE),
+		list(RED_DAMAGE = WHITE_DAMAGE, WHITE_DAMAGE = BLACK_DAMAGE, BLACK_DAMAGE = PALE_DAMAGE, PALE_DAMAGE = RED_DAMAGE),
+		list(RED_DAMAGE = WHITE_DAMAGE, WHITE_DAMAGE = PALE_DAMAGE, BLACK_DAMAGE = RED_DAMAGE, PALE_DAMAGE = BLACK_DAMAGE),
+
+		list(RED_DAMAGE = BLACK_DAMAGE, WHITE_DAMAGE = RED_DAMAGE, BLACK_DAMAGE = PALE_DAMAGE, PALE_DAMAGE = WHITE_DAMAGE),
+		list(RED_DAMAGE = BLACK_DAMAGE, WHITE_DAMAGE = PALE_DAMAGE, BLACK_DAMAGE = RED_DAMAGE, PALE_DAMAGE = WHITE_DAMAGE),
+		list(RED_DAMAGE = BLACK_DAMAGE, WHITE_DAMAGE = PALE_DAMAGE, BLACK_DAMAGE = WHITE_DAMAGE, PALE_DAMAGE = RED_DAMAGE),
+
+		list(RED_DAMAGE = PALE_DAMAGE, WHITE_DAMAGE = RED_DAMAGE, BLACK_DAMAGE = WHITE_DAMAGE, PALE_DAMAGE = BLACK_DAMAGE),
+		list(RED_DAMAGE = PALE_DAMAGE, WHITE_DAMAGE = BLACK_DAMAGE, BLACK_DAMAGE = RED_DAMAGE, PALE_DAMAGE = WHITE_DAMAGE),
+		list(RED_DAMAGE = PALE_DAMAGE, WHITE_DAMAGE = BLACK_DAMAGE, BLACK_DAMAGE = WHITE_DAMAGE, PALE_DAMAGE = RED_DAMAGE),
+	)
+	var/list/picked_mapping = pick(all_mappings)
+	for(var/i in picked_mapping)
+		mapping[i] = picked_mapping[i]
 
 /datum/damage_type_shuffler/proc/ReshuffleAll()
 	Reshuffle(mapping_offense)
