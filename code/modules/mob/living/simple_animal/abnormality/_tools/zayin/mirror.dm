@@ -4,6 +4,11 @@
 	icon_state = "mirror"
 	var/list/gazers = list()
 
+	ego_list = list(
+		/datum/ego_datum/weapon/mirror,
+		/datum/ego_datum/armor/mirror,
+	)
+
 /obj/structure/toolabnormality/mirror/attack_hand(mob/living/carbon/human/user)
 	. = ..()
 

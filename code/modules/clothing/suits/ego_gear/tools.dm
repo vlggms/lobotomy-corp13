@@ -22,6 +22,18 @@
 	icon_state = "plastic"
 	armor = list(RED_DAMAGE = 0, WHITE_DAMAGE = 10, BLACK_DAMAGE = 0, PALE_DAMAGE = 0)
 
+/obj/item/clothing/suit/armor/ego_gear/tools/mirror
+	name = "adjustment"
+	desc = "The only thing reflected on this mirror is people."
+	icon_state = "mirror"
+	armor = list(RED_DAMAGE = 0, WHITE_DAMAGE = 0, BLACK_DAMAGE = 10, PALE_DAMAGE = 0)
+
+/obj/item/clothing/suit/armor/ego_gear/tools/promise
+	name = "belief and promise"
+	desc = "However, all that those promises yielded was only hollowness and betrayal."
+	icon_state = "promise"
+	armor = list(RED_DAMAGE = 0, WHITE_DAMAGE = 10, BLACK_DAMAGE = 0, PALE_DAMAGE = 0)
+
 //TETH
 /obj/item/clothing/suit/armor/ego_gear/tools/aspiration
 	name = "aspiration"
