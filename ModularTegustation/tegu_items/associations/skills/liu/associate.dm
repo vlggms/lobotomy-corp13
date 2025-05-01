@@ -1,3 +1,4 @@
+#define STATUS_EFFECT_FLAMEKISSED	/datum/status_effect/flamekissed //You are iron, you can endure the heat
 /datum/action/innate/flamekiss
 	name = "Flamekissed"
 	icon_icon = 'icons/hud/screen_skills.dmi'
@@ -8,6 +9,7 @@
 	active = TRUE
 	var/mob/living/carbon/human/iron = owner
 	iron.physiology.burn_mod *= 0.1
+	iron.apply_status_effect(STATUS_EFFECT_FLAMEKISSED)
 	UpdateButtonIcon()
 
 /datum/action/innate/flamekiss/Deactivate()
@@ -16,6 +18,7 @@
 	active = FALSE
 	var/mob/living/carbon/human/iron = owner
 	iron.physiology.burn_mod /= 0.1
+	iron.remove_status_effect(STATUS_EFFECT_FLAMEKISSED)
 	UpdateButtonIcon()
 
 /datum/action/cooldown/ember
@@ -42,7 +45,7 @@
 	StartCooldown()
 
 /datum/action/cooldown/doubleburn
-	name = "Double Burn"
+	name = "Burn Swap"
 	icon_icon = 'icons/hud/screen_skills.dmi'
 	button_icon_state = "battleready_off"
 	cooldown_time = 10 SECONDS
@@ -86,9 +89,31 @@
 /obj/structure/turf_fireliu/Initialize()
 	. = ..()
 	QDEL_IN(src, 10 SECONDS)
+	for(var/mob/living/fuel in src.loc)
+		if(!ishuman(fuel))
+			fuel.apply_damage(5, FIRE, null, fuel.run_armor_check(null, FIRE), spread_damage = TRUE)
+		fuel.apply_damage(5, FIRE, null, fuel.run_armor_check(null, FIRE), spread_damage = TRUE)
+		fuel.adjust_fire_stacks(1)
+		fuel.IgniteMob()
+		to_chat(fuel, "<span class='danger'>You are singed as flames ignite around you!</span>")
 
 /obj/structure/turf_fireliu/Crossed(atom/movable/AM)
 	. = ..()
 	if(ismob(AM))
 		var/mob/living/fuel = AM
+		if(!ishuman(fuel))
+			fuel.apply_damage(10, FIRE, null, fuel.run_armor_check(null, FIRE), spread_damage = TRUE)
 		fuel.apply_damage(10, FIRE, null, fuel.run_armor_check(null, FIRE), spread_damage = TRUE)
+		fuel.adjust_fire_stacks(2)
+		fuel.IgniteMob()
+		to_chat(fuel, "<span class='danger'>You can feel the searing heat as you run through the flames!</span>")
+
+/datum/status_effect/flamekissed
+	id = "flamekissed"
+	alert_type = null
+	var/healing = 1
+
+/datum/status_effect/flamekissed/tick()
+	. = ..()
+	if (owner.stat != DEAD)
+		owner.adjustFireLoss(-healing)

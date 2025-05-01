@@ -7,7 +7,7 @@
 		to_chat(user, span_notice("Only association members of authorized ranking are allowed to read this book!"))
 		return ..()
 
-	to_chat(user, span_greenannounce("You finish reading the book having learned three Liu association skills. <br>Flamekissed which allows you to thrive in the heat <br>Ember which allows you to set those around you alight. <br>Double Burn which allows you to swap burn and white damage on those close to you"))
+	to_chat(user, span_greenannounce("You finish reading the book having learned three Liu association skills. <br>Flamekissed which allows you to thrive in the heat <br>Ember which allows you to set those around you alight. <br>Burn Swap which allows you to swap burn and white damage on those close to you"))
 
 	var/datum/action/G = new /datum/action/innate/flamekiss
 	G.Grant(user)
@@ -27,7 +27,7 @@
 		to_chat(user, span_notice("Only association members of authorized ranking are allowed to read this book!"))
 		return ..()
 
-	to_chat(user, span_greenannounce("You finish reading the book having learned five Liu association skills. <br>Flamekissed which allows you to thrive in the heat <br>Ember which allows you to set those around you alight. <br>Double Burn which allows you to swap burn and white damage on those close to you. <br> Blast Spear which increases your speed for each person around you. <br> Flare which sets everything around you ablaze."))
+	to_chat(user, span_greenannounce("You finish reading the book having learned five Liu association skills. <br>Flamekissed which allows you to thrive in the heat <br>Ember which allows you to set those around you alight. <br>Burn Swap which allows you to swap burn and white damage on those close to you. <br> Blast Spear which increases your speed for each person around you. <br> Flare which sets everything around you ablaze."))
 
 	var/datum/action/G = new /datum/action/innate/flamekiss
 	G.Grant(user)
@@ -51,7 +51,7 @@
 		to_chat(user, span_notice("Only association members of authorized ranking are allowed to read this book!"))
 		return ..()
 
-	to_chat(user, span_greenannounce("You finish reading the book having learned six Liu association skills. <br>Flamekissed which allows you to thrive in the heat <br>Ember which allows you to set those around you alight. <br>Double Burn which allows you to swap burn and white damage on those close to you. <br> Blast Spear which increases your speed for each person around you. <br> Flare which sets everything around you ablaze. <br> Final Burn which allows you to double the burn on anyone standing atop the blazes"))
+	to_chat(user, span_greenannounce("You finish reading the book having learned six Liu association skills. <br>Flamekissed which allows you to thrive in the heat <br>Ember which allows you to set those around you alight. <br>Burn Swap which allows you to swap burn and white damage on those close to you. <br> Blast Spear which increases your speed for each person around you. <br> Flare which sets everything around you ablaze. <br> Final Burn which allows you to double the burn on anyone standing atop the blazes"))
 
 	var/datum/action/G = new /datum/action/innate/flamekiss
 	G.Grant(user)
