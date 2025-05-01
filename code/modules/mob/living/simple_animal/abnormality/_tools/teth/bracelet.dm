@@ -5,6 +5,11 @@
 	icon_state = "bracelet"
 	var/list/active_users = list()
 
+	ego_list = list(
+		/datum/ego_datum/weapon/luminosity,
+		/datum/ego_datum/armor/luminosity,
+	)
+
 /obj/structure/toolabnormality/bracelet/attack_hand(mob/living/carbon/human/user)
 	. = ..()
 	if(!do_after(user, 6))

@@ -5,6 +5,11 @@
 	icon_state = "behavior"
 	var/list/active_users = list()
 
+	ego_list = list(
+		/datum/ego_datum/weapon/adjustment,
+		/datum/ego_datum/armor/adjustment,
+	)
+
 /obj/structure/toolabnormality/behavior/attack_hand(mob/living/carbon/human/user)
 	. = ..()
 	if(!do_after(user, 6))
