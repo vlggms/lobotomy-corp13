@@ -444,7 +444,7 @@
 		"An agent marked as a friend reported increased success on works with the abnormality and, when they started a work on the abnormality, their health and sanity were slightly healed.",
 		"When a non-friend agent works on the abnormality after a friend is made, they reported worse success on all works and were impaled by a nail upon work completion.",
 		"Agents that have a nail in them report minor bleeding whenever they took any damage.",
-		"When Repression work was peformed, if the agent was friends with the abnormality, they cease to be friends with the abnormality and they were hexed in the process."
+		"When Repression work was peformed, if the agent was friends with the abnormality, they cease to be friends with the abnormality and they were hexed in the process.",
 		"An agent hexed by the abnormality took more RED and BLACK damage until the effect wore off naturally.",
 		"When the work result was Neutral, the Qliphoth Counter lowered by 1 with a high probability",
 		"When the work result was Bad, the Qliphoth Counter lowered by 1."
