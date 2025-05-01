@@ -218,7 +218,7 @@
 		return
 
 	I.force += I.force* nails *0.1
-	if(I.force >= nail_limit)
+	if(I.force > nail_limit)
 		I.force = nail_limit
 	to_chat(user, span_notice("You transfer [nails] nails to your hammer, increasing it's damage to [I.force]."))
 	nails = 0
