@@ -111,7 +111,7 @@
 /datum/status_effect/flamekissed
 	id = "flamekissed"
 	alert_type = null
-	var/healing = 1
+	var/healing = 0.5
 
 /datum/status_effect/flamekissed/tick()
 	. = ..()
