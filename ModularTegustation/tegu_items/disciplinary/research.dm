@@ -45,7 +45,7 @@ GLOBAL_LIST_EMPTY(geresearched_abnos)
 
 	if(!breacher.can_breach)
 		//Here you just get 20 PE per threat level. Just smth small.
-		var/pe_reward = lob_amount*=100
+		var/pe_reward = lob_amount*100
 		to_chat(user, span_warning("This abnormality is incompatible with the [src]. A minor PE bonus of [pe_reward] has been rewarded."))
 		SSlobotomy_corp.AdjustAvailableBoxes(pe_reward)
 		return FALSE
