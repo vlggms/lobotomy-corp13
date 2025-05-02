@@ -21,6 +21,7 @@
 	name = "Dash"
 	cooldown_time = 3 SECONDS
 	var/direction = 1
+	var/stamina_damage = 10
 
 /datum/action/cooldown/dash/Trigger()
 	. = ..()
@@ -42,7 +43,7 @@
 	if (ishuman(owner))
 		var/mob/living/carbon/human/human = owner
 		if (!human.IsParalyzed())
-			human.adjustStaminaLoss(20, TRUE, TRUE)
+			human.adjustStaminaLoss(stamina_damage, TRUE, TRUE)
 			human.throw_at(dodgelanding, 3, 2, spin = TRUE)
 			StartCooldown()
 			return TRUE
@@ -74,7 +75,7 @@
 	if (ishuman(owner))
 		var/mob/living/carbon/human/human = owner
 		human.add_movespeed_modifier(/datum/movespeed_modifier/assault)
-		addtimer(CALLBACK(human, TYPE_PROC_REF(/mob, remove_movespeed_modifier), /datum/movespeed_modifier/assault), 5 SECONDS, TIMER_UNIQUE | TIMER_OVERRIDE)
+		addtimer(CALLBACK(human, TYPE_PROC_REF(/mob, remove_movespeed_modifier), /datum/movespeed_modifier/assault), 10 SECONDS, TIMER_UNIQUE | TIMER_OVERRIDE)
 		StartCooldown()
 
 /datum/movespeed_modifier/assault
