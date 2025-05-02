@@ -114,7 +114,7 @@
 			"name" = "Cooling Systems",
 			"ahn_cost" = 100,
 			"ep_cost" = 4,
-			"desc" = "Take 75% less damage from BURN, however take 25% more damage from RED attacks.",
+			"desc" = "Take 75% less damage from OVERHEAT, however take 25% more damage from RED attacks.",
 			"component" = /datum/component/augment/cooling_systems
 		),
 		list(
@@ -130,7 +130,7 @@
 			"name" = "Fireproof",
 			"ahn_cost" = 50,
 			"ep_cost" = 4,
-			"desc" = "Under 15% HP, you become immune to BURN damage.",
+			"desc" = "Under 15% HP, you become immune to OVERHEAT damage.",
 			"component" = /datum/component/augment/fireproof
 		),
 		// --- Attacking Effects ---
@@ -225,7 +225,7 @@
 			"name" = "Gashing Wounds",
 			"ahn_cost" = 25,
 			"ep_cost" = 2,
-			"desc" = "On hit with a RED weapon, inflict 2 Bleed (Cooldown of half a second)",
+			"desc" = "On hit with a RED weapon, inflict 2 BLEED (Cooldown of half a second)",
 			"component" = /datum/component/augment/gashing_wounds
 		),
 		list(
@@ -233,7 +233,7 @@
 			"name" = "Scorching Mind",
 			"ahn_cost" = 25,
 			"ep_cost" = 2,
-			"desc" = "On hit with a WHITE weapon, inflict 3 Burn (Cooldown of 1 second.)",
+			"desc" = "On hit with a WHITE weapon, inflict 3 OVERHEAT (Cooldown of 1 second.)",
 			"component" = /datum/component/augment/scorching_mind
 		),
 		list(
@@ -241,7 +241,7 @@
 			"name" = "Slothful Decay",
 			"ahn_cost" = 25,
 			"ep_cost" = 2,
-			"desc" = "On hit with a BLACK weapon, inflict 2 Tremor. If the weapon has an attack speed greater than 1.5 second, Inflict an extra 2 Tremor. (Cooldown of 1.5 seconds.)",
+			"desc" = "On hit with a BLACK weapon, inflict 2 TREMOR. If the weapon has an attack speed greater than 1.5 second, Inflict an extra 2 TREMOR. (Cooldown of 1.5 seconds.)",
 			"component" = /datum/component/augment/slothful_decay
 		),
 		list(
@@ -285,35 +285,35 @@
 			"ahn_cost" = 50,
 			"ep_cost" = 4,
 			"repeatable" = 3,
-			"desc" = "On kill, heal 20 * X BURN damage.",
+			"desc" = "On kill, heal 20 * X OVERHEAT damage.",
 			"component" = /datum/component/augment/reclaimed_flame
 		),
 		// --- Status Effects ---
 		list(
 			"id" = "burn_vigor",
-			"name" = "Burn Vigor",
+			"name" = "OVERHEAT Vigor",
 			"ahn_cost" = 25,
 			"ep_cost" = 2,
 			"repeatable" = 3,
-			"desc" = "When making a melee attack, deal an extra 10*X% more damage for every 5 burn on self.",
+			"desc" = "When making a melee attack, deal an extra 10*X% more damage for every 5 OVERHEAT on self.",
 			"component" = /datum/component/augment/burn_vigor
 		),
 		list(
 			"id" = "bleed_vigor",
-			"name" = "Bleed Vigor",
+			"name" = "BLEED Vigor",
 			"ahn_cost" = 25,
 			"ep_cost" = 2,
 			"repeatable" = 3,
-			"desc" = "When making a melee attack, deal an extra 10*X% more damage for every 5 bleed on self.",
+			"desc" = "When making a melee attack, deal an extra 10*X% more damage for every 5 BLEED on self.",
 			"component" = /datum/component/augment/bleed_vigor
 		),
 		list(
 			"id" = "tremor_defense",
-			"name" = "Tremor Defense",
+			"name" = "TREMOR Defense",
 			"ahn_cost" = 25,
 			"ep_cost" = 2,
 			"repeatable" = 3,
-			"desc" = "For every 10 Tremor on self, take 5*X% less damage from RED/BLACK attacks. (Max of 30% + (X - 1) * 20%)",
+			"desc" = "For every 10 TREMOR on self, take 5*X% less damage from RED/BLACK attacks. (Max of 30% + (X - 1) * 20%)",
 			"component" = /datum/component/augment/resisting_augment/tremor_defense
 		),
 		list(
@@ -321,32 +321,32 @@
 			"name" = "Earthquake",
 			"ahn_cost" = 100,
 			"ep_cost" = 8,
-			"desc" = "When attacking a target with 20+ Tremor, trigger a Tremor burst on target and deal (Tremor on target * 6) RED damage to all mobs within 3 sqrs of the target. This has a cooldown of 30 seconds.",
+			"desc" = "When attacking a target with 20+ TREMOR, trigger a TREMOR burst on target and deal (TREMOR on target * 6) RED damage to all mobs within 3 sqrs of the target. This has a cooldown of 30 seconds.",
 			"component" = /datum/component/augment/earthquake
 		),
 		list(
 			"id" = "tremor_break",
-			"name" = "Tremor Break",
+			"name" = "TREMOR Break",
 			"ahn_cost" = 50,
 			"ep_cost" = 4,
-			"desc" = "When attacking a target with 15+ Tremor, trigger a Tremor Burst on the target and inflict (Tremor on Target / 5) Feeble to the target. This has a cooldown of 30 seconds.",
+			"desc" = "When attacking a target with 15+ TREMOR, trigger a TREMOR Burst on the target and inflict (TREMOR on Target / 5) Feeble to the target. This has a cooldown of 30 seconds.",
 			"component" = /datum/component/augment/tremor_break
 		),
 		list(
 			"id" = "tremor_burst",
-			"name" = "Tremor Burst",
+			"name" = "TREMOR Burst",
 			"ahn_cost" = 25,
 			"ep_cost" = 2,
-			"desc" = "When attacking a target with 10+ Tremor, trigger a Tremor Burst on the target. This has a cooldown of 10 seconds.",
+			"desc" = "When attacking a target with 10+ TREMOR, trigger a TREMOR Burst on the target. This has a cooldown of 10 seconds.",
 			"component" = /datum/component/augment/tremor_burst
 		),
 		list(
 			"id" = "reflective_tremor",
-			"name" = "Reflective Tremor",
+			"name" = "Reflective TREMOR",
 			"ahn_cost" = 25,
 			"ep_cost" = 2,
 			"repeatable" = 4,
-			"desc" = "When taking RED/BLACK damage from a melee attack, inflict 2*X Tremor to the target and X Tremor to self. (This has a cooldown of 1 second)",
+			"desc" = "When taking RED/BLACK damage from a melee attack, inflict 2*X TREMOR to the target and X TREMOR to self. (This has a cooldown of 1 second)",
 			"component" = /datum/component/augment/reflective_tremor
 		),
 		list(
@@ -354,7 +354,7 @@
 			"name" = "Blood Jaunt",
 			"ahn_cost" = 200,
 			"ep_cost" = 8,
-			"desc" = "When you click on a tile outside your melee range and within 3 sqrs, You will teleport to that tile and will inflict 10 bleed to all foes within 2 sqrs, and yourself. (Has a cooldown of 1 minute) (You need to be in harm intent in order to trigger this.)",
+			"desc" = "When you click on a tile outside your melee range and within 3 sqrs, You will teleport to that tile and will inflict 10 BLEED to all foes within 2 sqrs, and yourself. (Has a cooldown of 1 minute) (You need to be in harm intent in order to trigger this.)",
 			"component" = /datum/component/augment/blood_jaunt
 		),
 		list(
@@ -362,7 +362,7 @@
 			"name" = "Sanguine Desire",
 			"ahn_cost" = 50,
 			"ep_cost" = 4,
-			"desc" = "When making a melee attack to a target with bleed, heal 3 SP and an extra 2 SP for every status effect they have. (Has a cooldown of 1 second).",
+			"desc" = "When making a melee attack to a target with BLEED, heal 3 SP and an extra 2 SP for every status effect they have. (Has a cooldown of 1 second).",
 			"component" = /datum/component/augment/sanguine_desire
 		),
 		list(
@@ -370,7 +370,7 @@
 			"name" = "Pyromaniac",
 			"ahn_cost" = 50,
 			"ep_cost" = 4,
-			"desc" = "When making a melee attack, while having 5+ burn on self, transfer 2 Burn on self to the target.",
+			"desc" = "When making a melee attack, while having 5+ OVERHEAT on self, transfer 2 OVERHEAT on self to the target.",
 			"component" = /datum/component/augment/pyromaniac
 		),
 		list(
@@ -378,7 +378,7 @@
 			"name" = "Hemomaniac",
 			"ahn_cost" = 50,
 			"ep_cost" = 4,
-			"desc" = "When making a melee attack, while having 5+ bleed on self, transfer 2 Bleed on self to the target.",
+			"desc" = "When making a melee attack, while having 5+ BLEED on self, transfer 2 BLEED on self to the target.",
 			"component" = /datum/component/augment/hemomaniac
 		),
 		list(
@@ -386,7 +386,7 @@
 			"name" = "Spreading Embers",
 			"ahn_cost" = 50,
 			"ep_cost" = 4,
-			"desc" = "When attacking a target with 10+ burn, inflict 10 burn to all foes within 3 sqrs of the target, and inflict 15 burn to self. (This has a cooldown of 30 seconds).",
+			"desc" = "When attacking a target with 10+ OVERHEAT, inflict 10 OVERHEAT to all foes within 3 sqrs of the target, and inflict 15 OVERHEAT to self. (This has a cooldown of 30 seconds).",
 			"component" = /datum/component/augment/spreading_embers
 		),
 		list(
@@ -394,7 +394,7 @@
 			"name" = "Regenerative Warmth",
 			"ahn_cost" = 50,
 			"ep_cost" = 4,
-			"desc" = "Taking BURN damage heals BRUTE and BURN damage equal to 50% of BURN damage taken.",
+			"desc" = "Taking OVERHEAT damage heals BRUTE and OVERHEAT damage equal to 50% of OVERHEAT damage taken.",
 			"component" = /datum/component/augment/regenerative_warmth
 		),
 		list(
@@ -402,7 +402,7 @@
 			"name" = "Stoneward Form",
 			"ahn_cost" = 50,
 			"ep_cost" = 4,
-			"desc" = "When you take damage, spawn a Stoneward Statue which every 5 seconds heals all humans near it and gives them 3 Tremor. (Spawning has a cooldown of 30 seconds)",
+			"desc" = "When you take damage, spawn a Stoneward Statue which every 5 seconds heals all humans near it and gives them 3 TREMOR. (Spawning has a cooldown of 30 seconds)",
 			"component" = /datum/component/augment/stoneward_form
 		),
 		list(
@@ -410,7 +410,7 @@
 			"name" = "Ink Over",
 			"ahn_cost" = 50,
 			"ep_cost" = 4,
-			"desc" = "When making a melee attack to a target with bleed, deal 20% more damage, and deal an additional 10% for each status effect they have.",
+			"desc" = "When making a melee attack to a target with BLEED, deal 20% more damage, and deal an additional 10% for each status effect they have.",
 			"component" = /datum/component/augment/ink_over
 		),
 		list(
@@ -418,7 +418,7 @@
 			"name" = "Blood Rush",
 			"ahn_cost" = 50,
 			"ep_cost" = 4,
-			"desc" = "On Kill, Gain a 50% speed boost for 5 seconds and gain 5 Bleed.",
+			"desc" = "On Kill, Gain a 50% speed boost for 5 seconds and gain 5 BLEED.",
 			"component" = /datum/component/augment/blood_rush
 		),
 		list(
@@ -426,24 +426,24 @@
 			"name" = "Time Moratorium",
 			"ahn_cost" = 50,
 			"ep_cost" = 4,
-			"desc" = "On hit against a target with 15+ tremor, consume 10 tremor from the target to trigger the timestop effect around them, with an AoE of 2 and duration of 4 seconds. (Has a cooldown of 30 seconds.)",
+			"desc" = "On hit against a target with 15+ TREMOR, consume 10 TREMOR from the target to trigger the timestop effect around them, with an AoE of 2 and duration of 4 seconds. (Has a cooldown of 30 seconds.)",
 			"component" = /datum/component/augment/time_moratorium
 		),
 		list(
 			"id" = "tremor_everlasting",
-			"name" = "Tremor Everlasting",
+			"name" = "TREMOR Everlasting",
 			"ahn_cost" = 50,
 			"ep_cost" = 4,
-			"desc" = "On hit against a target with 10+ tremor, preform a Tremor Burst and inflict Tremor equal to half of their current tremor. (Has a cooldown of 30 seconds.)",
+			"desc" = "On hit against a target with 10+ TREMOR, preform a TREMOR Burst and inflict TREMOR equal to half of their current TREMOR. (Has a cooldown of 30 seconds.)",
 			"component" = /datum/component/augment/tremor_everlasting
 		),
 		list(
 			"id" = "tremor_deterioration",
-			"name" = "Tremor Deterioration",
+			"name" = "TREMOR Deterioration",
 			"ahn_cost" = 25,
 			"ep_cost" = 2,
 			"repeatable" = 3,
-			"desc" = "On hit against a target with 4+ tremor on self, consume 3 tremor on self to trigger an 3x3 AoE centered around the target, which deals half damage of your weapon and inflicts X tremor. (Has a cooldown of 2.5 seconds.)",
+			"desc" = "On hit against a target with 4+ TREMOR on self, consume 3 TREMOR on self to trigger an 3x3 AoE centered around the target, which deals half damage of your weapon and inflicts X TREMOR. (Has a cooldown of 2.5 seconds.)",
 			"component" = /datum/component/augment/tremor_deterioration
 		),
 		list(
@@ -451,15 +451,15 @@
 			"name" = "Vibroweld Morph-combat effect",
 			"ahn_cost" = 50,
 			"ep_cost" = 4,
-			"desc" = "On hit against a target with 16+ tremor on self, consume 15 tremor on self to trigger 3 Tremor Bursts on target. (Has a cooldown of 30 seconds.)",
+			"desc" = "On hit against a target with 16+ TREMOR on self, consume 15 TREMOR on self to trigger 3 TREMOR Bursts on target. (Has a cooldown of 30 seconds.)",
 			"component" = /datum/component/augment/vibroweld_morph_combat_effect
 		),
 		list(
 			"id" = "tremor_ruin",
-			"name" = "Tremor Ruin",
+			"name" = "TREMOR Ruin",
 			"ahn_cost" = 50,
 			"ep_cost" = 4,
-			"desc" = "On hit against a target with 10+ tremor, Prefrom a Tremor Burst and inflict BLACK fragility equal to (targets tremor/5). (Has a cooldown of 15 seconds.)",
+			"desc" = "On hit against a target with 10+ TREMOR, Prefrom a TREMOR Burst and inflict BLACK fragility equal to (targets TREMOR/5). (Has a cooldown of 15 seconds.)",
 			"component" = /datum/component/augment/tremor_ruin
 		),
 		list(
@@ -468,7 +468,7 @@
 			"ahn_cost" = 25,
 			"ep_cost" = 2,
 			"repeatable" = 3,
-			"desc" = "When attacking a target, inflict 1*X Burn for every 25% of your missing HP.",
+			"desc" = "When attacking a target, inflict 1*X OVERHEAT for every 25% of your missing HP.",
 			"component" = /datum/component/augment/rekindled_flame
 		),
 		list(
@@ -476,7 +476,7 @@
 			"name" = "Force of a Wildfire ",
 			"ahn_cost" = 100,
 			"ep_cost" = 6,
-			"desc" = "On kill, All foes who are within 3 sqrs of the user, get inflicted with burn equal to the executed target’s burn.",
+			"desc" = "On kill, All foes who are within 3 sqrs of the user, get inflicted with OVERHEAT equal to the executed target’s OVERHEAT.",
 			"component" = /datum/component/augment/force_of_a_wildfire
 		),
 		list(
@@ -485,7 +485,7 @@
 			"ahn_cost" = 25,
 			"ep_cost" = 2,
 			"repeatable" = 3,
-			"desc" = "When you take damage, inflict 1*X Tremor for every 25% of your missing HP.",
+			"desc" = "When you take damage, inflict 1*X TREMOR for every 25% of your missing HP.",
 			"component" = /datum/component/augment/unstable_inertia
 		),
 		list(
@@ -493,7 +493,7 @@
 			"name" = "Blood Cycler",
 			"ahn_cost" = 50,
 			"ep_cost" = 4,
-			"desc" = "Any time a mob/human within 3 sqrs of you takes Bleed damage, heal HP equal to 50% of the bleed damage they have taken. (Max of 100).",
+			"desc" = "Any time a mob/human within 3 sqrs of you takes BLEED damage, heal HP equal to 50% of the BLEED damage they have taken. (Max of 100).",
 			"component" = /datum/component/augment/blood_cycler
 		),
 
@@ -503,7 +503,7 @@
 			"ahn_cost" = 25,
 			"ep_cost" = 2,
 			"repeatable" = 3,
-			"desc" = "When you take bleed damage, Deal BLACK damage equal to the amount of bleed you have *2X, to all simple mobs within 3 sqrs of you..",
+			"desc" = "When you take BLEED damage, Deal BLACK damage equal to the amount of BLEED you have *2X, to all simple mobs within 3 sqrs of you..",
 			"component" = /datum/component/augment/acidic_blood
 		),
 
@@ -529,7 +529,7 @@
 			"name" = "Overheated",
 			"ahn_cost" = 10,
 			"ep_cost" = -2,
-			"desc" = "When you make an attack, for the next 10 seconds each time you attack you gain 2*X Burn. This has a cooldown of 1.5 minutes.",
+			"desc" = "When you make an attack, for the next 10 seconds each time you attack you gain 2*X OVERHEAT. This has a cooldown of 1.5 minutes.",
 			"repeatable" = 3,
 			"component" = /datum/component/augment/overheated
 		),
@@ -597,7 +597,7 @@
 			"name" = "Allodynia",
 			"ahn_cost" = 10,
 			"ep_cost" = -2,
-			"desc" = "When you take damage, you gain 2 * X Bleed. (Has a cooldown of 1 second). Also, you take bleed damage each time you attack. (That has a cooldown of 3 seconds)",
+			"desc" = "When you take damage, you gain 2 * X BLEED. (Has a cooldown of 1 second). Also, you take BLEED damage each time you attack. (That has a cooldown of 3 seconds)",
 			"repeatable" = 3,
 			"component" = /datum/component/augment/allodynia
 		),
@@ -606,7 +606,7 @@
 			"name" = "Internal Vibrations",
 			"ahn_cost" = 10,
 			"ep_cost" = -2,
-			"desc" = "When you take damage, gain 2 * X tremor. Gain double the amount of tremor if the damage type was WHITE. (Has a cooldown of 0.5 second)",
+			"desc" = "When you take damage, gain 2 * X TREMOR. Gain double the amount of TREMOR if the damage type was WHITE. (Has a cooldown of 0.5 second)",
 			"repeatable" = 3,
 			"component" = /datum/component/augment/internal_vibrations
 		),
@@ -615,7 +615,7 @@
 			"name" = "Scalding Skin",
 			"ahn_cost" = 10,
 			"ep_cost" = -2,
-			"desc" = "When you take damage, you will gain burn equal to the (damage taken)  / 5. If the damage type was RED, double the gained burn. (This has a cooldown of 30 / X seconds)",
+			"desc" = "When you take damage, you will gain OVERHEAT equal to the (damage taken)  / 5. If the damage type was RED, double the gained OVERHEAT. (This has a cooldown of 30 / X seconds)",
 			"repeatable" = 3,
 			"component" = /datum/component/augment/scalding_skin
 		),
@@ -624,7 +624,7 @@
 			"name" = "Open Wound",
 			"ahn_cost" = 10,
 			"ep_cost" = -2,
-			"desc" = "After taking BLACK damage, for the next 10 seconds all of your attacks will inflict 2 * X Bleed to self. (Has a cooldown of 20 seconds.)",
+			"desc" = "After taking BLACK damage, for the next 10 seconds all of your attacks will inflict 2 * X BLEED to self. (Has a cooldown of 20 seconds.)",
 			"repeatable" = 3,
 			"component" = /datum/component/augment/open_wound
 		),
