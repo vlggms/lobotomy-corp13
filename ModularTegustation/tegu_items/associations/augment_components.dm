@@ -286,7 +286,7 @@
 	if(item.force <= 0 || target.stat == DEAD)
 		return FALSE
 	inflict_cooldown = world.time + inflict_cooldown_time
-	target.apply_lc_burn(3)
+	target.apply_lc_overheat(3)
 	to_chat(human_parent, span_nicegreen("You inflict 3 burn to [target]! Due to Scorching Mind"))
 
 //Slothful Decay
@@ -391,61 +391,64 @@
 /datum/component/augment/resisting_augment
 	var/total_damage_resist = 0
 	var/armor_changed = FALSE
+	var/can_update_armor = TRUE
 
 /datum/component/augment/resisting_augment/proc/get_total_damage_resist(datum/source, damage, damagetype, def_zone)
 	return 0
 
 /datum/component/augment/resisting_augment/take_damage_effect(datum/source, damage, damagetype, def_zone)
 	. = ..()
-	var/armor = human_parent.getarmor(null, damagetype)
-	total_damage_resist = get_total_damage_resist(source, damage, damagetype, def_zone)
+	if(can_update_armor)
+		can_update_armor = FALSE
+		var/armor = human_parent.getarmor(null, damagetype)
+		total_damage_resist = get_total_damage_resist(source, damage, damagetype, def_zone)
 
-	if (armor > 0)
-		if (armor > 95)
-			total_damage_resist = 0
-		else if((total_damage_resist + armor) > 95)
-			total_damage_resist = armor - 95
+		if (armor > 0)
+			if (armor > 95)
+				total_damage_resist = 0
+			else if((total_damage_resist + armor) > 95)
+				total_damage_resist = armor - 95
 
-		armor += total_damage_resist
+			armor += total_damage_resist
+			switch(damagetype)
+				if (RED_DAMAGE)
+					human_parent.physiology.armor.setRating(red=armor)
+				if (WHITE_DAMAGE)
+					human_parent.physiology.armor.setRating(white=armor)
+				if (BLACK_DAMAGE)
+					human_parent.physiology.armor.setRating(black=armor)
+				if (PALE_DAMAGE)
+					human_parent.physiology.armor.setRating(pale=armor)
+			armor_changed = TRUE
+			return
+
+		// if mod < 5% - DO NOT CHANGE IT
+		// IF mod - res < 5% change mod to 5% and remember the res
 		switch(damagetype)
 			if (RED_DAMAGE)
-				human_parent.physiology.armor.setRating(red=armor)
+				if (human_parent.physiology.red_mod < 0.05)
+					total_damage_resist = 0
+				else if((human_parent.physiology.red_mod - total_damage_resist) < 0.05)
+					total_damage_resist = human_parent.physiology.red_mod - 0.05
+				human_parent.physiology.red_mod -= total_damage_resist
 			if (WHITE_DAMAGE)
-				human_parent.physiology.armor.setRating(white=armor)
+				if (human_parent.physiology.white_mod < 0.05)
+					total_damage_resist = 0
+				else if((human_parent.physiology.white_mod - total_damage_resist) < 0.05)
+					total_damage_resist = human_parent.physiology.white_mod - 0.05
+				human_parent.physiology.white_mod -= total_damage_resist
 			if (BLACK_DAMAGE)
-				human_parent.physiology.armor.setRating(black=armor)
+				if (human_parent.physiology.black_mod < 0.05)
+					total_damage_resist = 0
+				else if((human_parent.physiology.black_mod - total_damage_resist) < 0.05)
+					total_damage_resist = human_parent.physiology.black_mod - 0.05
+				human_parent.physiology.black_mod -= total_damage_resist
 			if (PALE_DAMAGE)
-				human_parent.physiology.armor.setRating(pale=armor)
-		armor_changed = TRUE
-		return
-
-	// if mod < 5% - DO NOT CHANGE IT
-	// IF mod - res < 5% change mod to 5% and remember the res
-	switch(damagetype)
-		if (RED_DAMAGE)
-			if (human_parent.physiology.red_mod < 0.05)
-				total_damage_resist = 0
-			else if((human_parent.physiology.red_mod - total_damage_resist) < 0.05)
-				total_damage_resist = human_parent.physiology.red_mod - 0.05
-			human_parent.physiology.red_mod -= total_damage_resist
-		if (WHITE_DAMAGE)
-			if (human_parent.physiology.white_mod < 0.05)
-				total_damage_resist = 0
-			else if((human_parent.physiology.white_mod - total_damage_resist) < 0.05)
-				total_damage_resist = human_parent.physiology.white_mod - 0.05
-			human_parent.physiology.white_mod -= total_damage_resist
-		if (BLACK_DAMAGE)
-			if (human_parent.physiology.black_mod < 0.05)
-				total_damage_resist = 0
-			else if((human_parent.physiology.black_mod - total_damage_resist) < 0.05)
-				total_damage_resist = human_parent.physiology.black_mod - 0.05
-			human_parent.physiology.black_mod -= total_damage_resist
-		if (PALE_DAMAGE)
-			if (human_parent.physiology.pale_mod < 0.05)
-				total_damage_resist = 0
-			else if((human_parent.physiology.pale_mod - total_damage_resist) < 0.05)
-				total_damage_resist = human_parent.physiology.pale_mod - 0.05
-			human_parent.physiology.pale_mod -= total_damage_resist
+				if (human_parent.physiology.pale_mod < 0.05)
+					total_damage_resist = 0
+				else if((human_parent.physiology.pale_mod - total_damage_resist) < 0.05)
+					total_damage_resist = human_parent.physiology.pale_mod - 0.05
+				human_parent.physiology.pale_mod -= total_damage_resist
 
 /datum/component/augment/resisting_augment/after_take_damage_effect(datum/source, damage, damagetype, def_zone)
 	. = ..()
@@ -460,6 +463,7 @@
 				human_parent.physiology.armor.setRating(black=armor)
 			if (PALE_DAMAGE)
 				human_parent.physiology.armor.setRating(pale=armor)
+		can_update_armor = TRUE
 		return
 
 	switch(damagetype)
@@ -471,7 +475,7 @@
 			human_parent.physiology.black_mod += total_damage_resist
 		if (PALE_DAMAGE)
 			human_parent.physiology.pale_mod += total_damage_resist
-
+	can_update_armor = TRUE
 
 //Struggling Defense
 /datum/component/augment/resisting_augment/struggling_defense
@@ -604,7 +608,7 @@
 
 /datum/component/augment/burn_vigor/attack_effect(datum/source, mob/living/target, mob/living/user, obj/item/item)
 	. = ..()
-	var/datum/status_effect/stacking/lc_burn/UB = user.has_status_effect(/datum/status_effect/stacking/lc_burn)
+	var/datum/status_effect/stacking/lc_overheat/UB = user.has_status_effect(/datum/status_effect/stacking/lc_overheat)
 	if(UB)
 		total_damage_buff = round(UB.stacks/5) * damage_buff * repeat
 	else
@@ -769,10 +773,10 @@
 //Pyromaniac
 /datum/component/augment/pyromaniac/attack_effect(datum/source, mob/living/target, mob/living/user, obj/item/item)
 	. = ..()
-	var/datum/status_effect/stacking/lc_burn/UB = user.has_status_effect(/datum/status_effect/stacking/lc_burn)
+	var/datum/status_effect/stacking/lc_overheat/UB = user.has_status_effect(/datum/status_effect/stacking/lc_overheat)
 	if(UB)
 		if(UB.stacks >= 5)
-			target.apply_lc_burn(2)
+			target.apply_lc_overheat(2)
 			UB.stacks -= 2
 			to_chat(human_parent, span_nicegreen("You transferred 2 burn to [target]! Due to Pyromaniac"))
 
@@ -793,7 +797,7 @@
 
 /datum/component/augment/spreading_embers/attack_effect(datum/source, mob/living/target, mob/living/user, obj/item/item)
 	. = ..()
-	var/datum/status_effect/stacking/lc_burn/TB = target.has_status_effect(/datum/status_effect/stacking/lc_burn)
+	var/datum/status_effect/stacking/lc_overheat/TB = target.has_status_effect(/datum/status_effect/stacking/lc_overheat)
 	if(TB)
 		if(TB.stacks >= 10)
 			if(inflict_cooldown > world.time)
@@ -803,9 +807,9 @@
 			inflict_cooldown = world.time + inflict_cooldown_time
 			to_chat(human_parent, span_userdanger("You incinerate [target]! Due to Spreading Embers"))
 			playsound(target, 'sound/abnormalities/crying_children/attack_aoe.ogg', 50, TRUE)
-			human_parent.apply_lc_burn(15)
+			human_parent.apply_lc_overheat(15)
 			for(var/mob/living/simple_animal/hostile/H in view(2, target))
-				H.apply_lc_burn(10)
+				H.apply_lc_overheat(10)
 
 //Regenerative Warmth
 /datum/component/augment/regenerative_warmth/take_damage_effect(datum/source, damage, damagetype, def_zone)
@@ -1055,17 +1059,17 @@
 		inflict_buff_mult++
 	else if(missing_hp <= 0.25)
 		inflict_buff_mult++
-	target.apply_lc_burn(inflict_buff_mult * repeat)
+	target.apply_lc_overheat(inflict_buff_mult * repeat)
 	to_chat(human_parent, span_nicegreen("You inflict [inflict_buff_mult * repeat] burn to [target]! Due to Rekindled Flame"))
 	inflict_buff_mult = 0
 
 //Force of a Wildfire
 /datum/component/augment/force_of_a_wildfire/afterattack_effect(datum/source, atom/target, mob/user, proximity_flag, obj/item/item)
 	if(last_target.stat == DEAD)
-		var/datum/status_effect/stacking/lc_burn/TB = last_target.has_status_effect(/datum/status_effect/stacking/lc_burn)
+		var/datum/status_effect/stacking/lc_overheat/TB = last_target.has_status_effect(/datum/status_effect/stacking/lc_overheat)
 		if(TB)
 			for(var/mob/living/simple_animal/hostile/H in view(3, human_parent))
-				H.apply_lc_burn(TB.stacks)
+				H.apply_lc_overheat(TB.stacks)
 	. = ..()
 
 //Unstable Inertia
@@ -1280,7 +1284,7 @@
 /datum/component/augment/overheated/attack_effect(datum/source, mob/living/target, mob/living/user, obj/item/item)
 	. = ..()
 	if(self_burn)
-		human_parent.apply_lc_burn(2 * repeat)
+		human_parent.apply_lc_overheat(2 * repeat)
 		to_chat(human_parent, span_warning("You gain [2 * repeat] burn! Due to Overheated"))
 	if(item.force <= 0 || target.stat == DEAD)
 		return FALSE
@@ -1394,10 +1398,10 @@
 	if(gain_burn_cooldown > world.time)
 		return FALSE
 	gain_burn_cooldown = world.time + (gain_burn_cooldown_time/repeat)
-	human_parent.apply_lc_burn(round(damage/5))
+	human_parent.apply_lc_overheat(round(damage/5))
 	to_chat(human_parent, span_warning("As you take damage, you gain [round(damage/5)] burn! Due to Scalding Skin"))
 	if(damagetype == RED_DAMAGE)
-		human_parent.apply_lc_burn(round(damage/5))
+		human_parent.apply_lc_overheat(round(damage/5))
 		to_chat(human_parent, span_warning("As you take damage, you gain [round(damage/5)] tremor! Due to Scalding Skin"))
 
 //Open Wound
