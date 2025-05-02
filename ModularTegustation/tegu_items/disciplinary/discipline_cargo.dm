@@ -40,7 +40,7 @@
 
 		//Resources - This is for EGOshards
 
-		//Combat pages are too evil rn, wait like 1 week and I'll add it. If it's been more than a week, read this comment again - Kirie/Kitsunemitsu
+		//Combat pages are too evil rn. I'm working on a new system. - Kirie/Kitsunemitsu
 		//new /datum/data/extraction_cargo("L1 Combat Page ",				/obj/item/combat_page/level1,					200, CAT_RESOURCE) = 1,
 		//new /datum/data/extraction_cargo("L2 Combat Page ",				/obj/item/combat_page/level2,					400, CAT_RESOURCE) = 1,
 		//new /datum/data/extraction_cargo("L3 Combat Page ",				/obj/item/combat_page/level3,					800, CAT_RESOURCE) = 1,
