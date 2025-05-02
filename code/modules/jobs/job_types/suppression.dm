@@ -1,5 +1,5 @@
 /datum/job/suppression
-	title = "Emergency Response Agent"
+	title = "Combat Research Agent"
 	department_head = list("Manager", "Disciplinary Officer")
 	faction = "Station"
 	// note: job slots by default are 0
@@ -19,8 +19,9 @@
 	allow_bureaucratic_error = FALSE
 	departments = DEPARTMENT_SECURITY
 
-	job_important = "You are an L-Corp Emergency Response Agent. Your job is to suppress Abnormalities. You cannot work. Use :h to talk on your departmental radio."
-	job_abbreviation = "ERA"
+	job_important = "You are an L-Corp Combat Research Agent. Your job is to suppress Abnormalities. You cannot work. Use :h to talk on your departmental radio."
+	job_abbreviation = "CRA"
+	alt_titles = list("Emergency Response Agent")
 
 	roundstart_attributes = list(FORTITUDE_ATTRIBUTE, PRUDENCE_ATTRIBUTE, TEMPERANCE_ATTRIBUTE, JUSTICE_ATTRIBUTE)
 	var/normal_attribute_level = 20 // Scales with round time, facility upgrades, and ordeals done
@@ -71,7 +72,7 @@
 
 
 /datum/outfit/job/suppression
-	name = "Emergency Response Agent"
+	name = "Combat Research Agent"
 	jobtype = /datum/job/suppression
 
 	head = /obj/item/clothing/head/beret/sec
@@ -105,7 +106,7 @@
 	exp_type = EXP_TYPE_CREW
 	exp_type_department = EXP_TYPE_SECURITY
 	mapexclude = list("wonderlabs", "mini", "lcorp_city", "enkephalin_rush")
-	job_important = "You are the Disciplinary Officer. Lead the Emergency Response Agents and other Disciplinary staff into combat."
+	job_important = "You are the Disciplinary Officer. Lead the Combat Research Agents and other Disciplinary staff into combat."
 
 	job_abbreviation = "DO"
 
@@ -128,4 +129,5 @@
 		/obj/item/melee/classic_baton,
 		/obj/item/announcementmaker/lcorp,
 		/obj/item/powered_gadget/enkephalin_injector,
+		/obj/item/disc_researcher,
 	)
