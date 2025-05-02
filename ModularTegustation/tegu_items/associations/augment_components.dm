@@ -390,13 +390,35 @@
 
 /datum/component/augment/resisting_augment
 	var/total_damage_resist = 0
+	var/armor_changed = FALSE
 
 /datum/component/augment/resisting_augment/proc/get_total_damage_resist(datum/source, damage, damagetype, def_zone)
 	return 0
 
 /datum/component/augment/resisting_augment/take_damage_effect(datum/source, damage, damagetype, def_zone)
 	. = ..()
+	var/armor = human_parent.getarmor(null, damagetype)
 	total_damage_resist = get_total_damage_resist(source, damage, damagetype, def_zone)
+
+	if (armor > 0)
+		if (armor > 95)
+			total_damage_resist = 0
+		else if((total_damage_resist + armor) > 95)
+			total_damage_resist = armor - 95
+
+		armor += total_damage_resist
+		switch(damagetype)
+			if (RED_DAMAGE)
+				human_parent.physiology.armor.setRating(red=armor)
+			if (WHITE_DAMAGE)
+				human_parent.physiology.armor.setRating(white=armor)
+			if (BLACK_DAMAGE)
+				human_parent.physiology.armor.setRating(black=armor)
+			if (PALE_DAMAGE)
+				human_parent.physiology.armor.setRating(pale=armor)
+		armor_changed = TRUE
+		return
+
 	// if mod < 5% - DO NOT CHANGE IT
 	// IF mod - res < 5% change mod to 5% and remember the res
 	switch(damagetype)
@@ -427,6 +449,19 @@
 
 /datum/component/augment/resisting_augment/after_take_damage_effect(datum/source, damage, damagetype, def_zone)
 	. = ..()
+	if (armor_changed)
+		var/armor = human_parent.getarmor(null, damagetype) - total_damage_resist
+		switch(damagetype)
+			if (RED_DAMAGE)
+				human_parent.physiology.armor.setRating(red=armor)
+			if (WHITE_DAMAGE)
+				human_parent.physiology.armor.setRating(white=armor)
+			if (BLACK_DAMAGE)
+				human_parent.physiology.armor.setRating(black=armor)
+			if (PALE_DAMAGE)
+				human_parent.physiology.armor.setRating(pale=armor)
+		return
+
 	switch(damagetype)
 		if (RED_DAMAGE)
 			human_parent.physiology.red_mod += total_damage_resist
