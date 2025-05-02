@@ -1170,6 +1170,56 @@
 	else
 		B.add_stacks(stacks)
 
+#define STATUS_EFFECT_LCBURN /datum/status_effect/stacking/overheat // Deals true damage every 5 sec, can't be applied to godmode (contained abos)
+/datum/status_effect/stacking/lc_overheat
+	id = "lc_overheat"
+	alert_type = /atom/movable/screen/alert/status_effect/overheat
+	max_stacks = 50
+	tick_interval = 5 SECONDS
+	consumed_on_threshold = FALSE
+	var/new_stack = FALSE
+	var/safety = TRUE
+
+/atom/movable/screen/alert/status_effect/overheat
+	name = "Overheated"
+	desc = "You're burning up from your augment!!"
+	icon = 'ModularTegustation/Teguicons/status_sprites.dmi'
+	icon_state = "lc_burn"
+
+/datum/status_effect/stacking/lc_overheat/can_have_status()
+	return (owner.stat != DEAD || !(owner.status_flags & GODMODE))
+
+/datum/status_effect/stacking/lc_overheat/add_stacks(stacks_added)
+	..()
+	new_stack = TRUE
+
+//Deals true damage
+/datum/status_effect/stacking/lc_overheat/tick()
+	if(!can_have_status())
+		qdel(src)
+	to_chat(owner, "<span class='warning'>The heat consumes you!!</span>")
+	owner.playsound_local(owner, 'sound/effects/burn.ogg', 50, TRUE)
+	if(ishuman(owner))
+		owner.apply_damage(stacks, BURN, null, owner.run_armor_check(null, BURN))
+	else
+		owner.apply_damage(stacks*4, BURN, null, owner.run_armor_check(null, BURN)) // x4 on non humans (Average burn stack is 20. 80/5 sec, extra 16 pure dps)
+
+	//Deletes itself after 2 tick if no new burn stack was given
+	if(safety)
+		if(new_stack)
+			stacks = round(stacks/2)
+			new_stack = FALSE
+		else
+			qdel(src)
+
+//Mob Proc
+/mob/living/proc/apply_lc_overheat(stacks)
+	var/datum/status_effect/stacking/lc_overheat/B = src.has_status_effect(/datum/status_effect/stacking/lc_overheat)
+	if(!B)
+		src.apply_status_effect(/datum/status_effect/stacking/lc_overheat, stacks)
+	else
+		B.add_stacks(stacks)
+
 #define STATUS_EFFECT_LCBLEED /datum/status_effect/stacking/lc_bleed // Deals true damage every 5 sec, can't be applied to godmode (contained abos)
 /datum/status_effect/stacking/lc_bleed
 	id = "lc_bleed"
