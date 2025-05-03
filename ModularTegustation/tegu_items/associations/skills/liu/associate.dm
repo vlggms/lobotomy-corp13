@@ -106,7 +106,6 @@
 		fuel.apply_damage(10, FIRE, null, fuel.run_armor_check(null, FIRE), spread_damage = TRUE)
 		fuel.adjust_fire_stacks(2)
 		fuel.IgniteMob()
-		to_chat(fuel, "<span class='danger'>You can feel the searing heat as you run through the flames!</span>")
 
 /datum/status_effect/flamekissed
 	id = "flamekissed"
