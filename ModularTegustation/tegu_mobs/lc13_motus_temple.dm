@@ -227,8 +227,8 @@
 	var/spawn_progress = 10 //spawn ready to produce flies
 	var/list/spawned_mobs = list()
 	var/producing = FALSE
-	var/chem_cooldown_timer = 30 SECONDS
-	var/chem_cooldown
+	var/chem_cooldown_timer
+	var/chem_cooldown = 3 MINUTES
 	var/chem_type = /datum/reagent/medicine/mental_stabilizator
 	var/chem_yield = 5
 
@@ -299,7 +299,7 @@
 	producing = FALSE
 	spawn_progress = -5
 
-// Mad Fly Nest
+// Scarlet Rose
 /mob/living/simple_animal/hostile/scarlet_rose
 	name = "scarlet rose"
 	desc = "A single blood red rose, connected to all nearby vines..."
@@ -307,7 +307,7 @@
 	icon_state = "rose_red"
 	maxHealth = 1500
 	health = 1500
-	del_on_death = TRUE
+	del_on_death = FALSE
 	faction = list("scarletrose")
 	gender = NEUTER
 	obj_damage = 0
@@ -316,16 +316,15 @@
 	attacked_sound = 'sound/creatures/venus_trap_hurt.ogg'
 	damage_coeff = list(RED_DAMAGE = 0.5, WHITE_DAMAGE = 0.5, BLACK_DAMAGE = 0.5, PALE_DAMAGE = 0.5)
 	initial_language_holder = /datum/language_holder/plant //essentially flavor
-	ranged = TRUE
-	ranged_cooldown_time = 4 SECONDS
 	var/vine_range = 10
-	var/plant_cooldown = 30
+	var/ability_cooldown
+	var/ability_cooldown_time = 4 SECONDS
 	//All iterations share this list between eachother.
 	var/static/list/vine_list = list()
-	var/chem_cooldown_timer = 30 SECONDS
-	var/chem_cooldown
+	var/chem_cooldown_timer
+	var/chem_cooldown = 3 MINUTES
 	var/chem_type = /datum/reagent/medicine/sal_acid
-	var/chem_yield = 10
+	var/chem_yield = 15
 
 /mob/living/simple_animal/hostile/scarlet_rose/death(gibbed)
 	density = FALSE
@@ -380,23 +379,16 @@
 	for(var/obj/structure/spreading/scarlet_vine/W in area_of_influence)
 		if(W.last_expand <= world.time)
 			W.expand()
-		else if(ranged_cooldown <= world.time)
+		if(ability_cooldown <= world.time)
 			var/list/did_we_hit = HurtInTurf(get_turf(W), list(), 10, RED_DAMAGE, check_faction = TRUE, hurt_mechs = TRUE)
 			if(did_we_hit.len)
 				W.VineAttack(pick(did_we_hit))
 			for(var/mob/living/carbon/human/H in did_we_hit)
 				H.apply_lc_bleed(5)
 				to_chat(H, span_danger("Scarlet vines cuts into your legs!"))
+	if(ability_cooldown <= world.time)
+		ability_cooldown = world.time + ability_cooldown_time
 	SpreadPlants()
-
-/mob/living/simple_animal/hostile/scarlet_rose/AttackingTarget(atom/attacked_target)
-	if(!target)
-		GiveTarget(attacked_target)
-	return OpenFire()
-
-/mob/living/simple_animal/hostile/scarlet_rose/OpenFire()
-	if(ranged_cooldown <= world.time)
-		VineSpike()
 
 /mob/living/simple_animal/hostile/scarlet_rose/proc/SpreadPlants()
 	if(!isturf(loc) || isspaceturf(loc))
@@ -404,17 +396,6 @@
 	if(locate(/obj/structure/spreading/scarlet_vine) in get_turf(src))
 		return
 	new /obj/structure/spreading/scarlet_vine(loc)
-
-/mob/living/simple_animal/hostile/scarlet_rose/proc/VineSpike()
-	playsound(get_turf(src), projectilesound, 30)
-	for(var/obj/structure/spreading/scarlet_vine/W in view(vision_range, src))
-		var/list/did_we_hit = HurtInTurf(get_turf(W), list(), 10, RED_DAMAGE, check_faction = TRUE, hurt_mechs = TRUE)
-		if(did_we_hit.len)
-			W.VineAttack(pick(did_we_hit))
-		for(var/mob/living/carbon/human/H in did_we_hit)
-			H.apply_lc_bleed(5)
-
-	ranged_cooldown = world.time + ranged_cooldown_time
 
 //VINE CODE: stolen alien weed code
 /obj/structure/spreading/scarlet_vine
@@ -559,6 +540,48 @@
 	else
 		new /obj/effect/temp_visual/vinespike(get_turf(hit_thing))
 
+/mob/living/simple_animal/hostile/scarlet_rose/growing
+	name = "scarlet sprout"
+	desc = "A single blood red sprout, connected to all nearby vines... It appears to be still be growing..."
+	icon = 'icons/obj/hydroponics/harvest.dmi'
+	icon_state = "poppy"
+	maxHealth = 500
+	health = 500
+	color = "#fc0f03"
+	del_on_death = TRUE
+	damage_coeff = list(RED_DAMAGE = 1, WHITE_DAMAGE = 1, BLACK_DAMAGE = 1, PALE_DAMAGE = 1)
+	vine_range = 3
+	chem_yield = 5
+	ability_cooldown_time = 30 SECONDS
+	var/growing_counter
+	var/growing_cooldown = 30 SECONDS
+	var/growing_cooldown_time
+	var/growing_counter_max = 40
+
+/mob/living/simple_animal/hostile/scarlet_rose/growing/Life()
+	. = ..()
+	if(world.time > growing_cooldown_time)
+		growing_cooldown_time = world.time + growing_cooldown
+		growing_counter++
+		playsound(src, 'sound/abnormalities/rosesign/vinegrab_prep.ogg', 50, FALSE, 5)
+		if(growing_counter >= growing_counter_max)
+			visible_message(span_danger("\The [src] blossoms it's scarlet petals!"))
+			new /mob/living/simple_animal/hostile/scarlet_rose(get_turf(src))
+			qdel(src)
+
+/mob/living/simple_animal/hostile/scarlet_rose/growing/examine(mob/user)
+	. = ..()
+	if(growing_counter >= 35)
+		. += span_red("[src] is about to blossom!")
+	else if(growing_counter >= 25)
+		. += span_red("[src] is rooting itself into the ground...")
+	else if(growing_counter >= 15)
+		. += span_nicegreen("[src] is a scarlet flower...")
+	else if(growing_counter >= 5)
+		. += span_nicegreen("[src] is a small sprout...")
+	else
+		. += span_nicegreen("[src] is but a sprout...")
+
 /obj/item/scarlet_rose
 	name = "scarlet rose"
 	desc = "The remains of the scarlet rose, they shall remain unrooted, until they are returned to the earth..."
@@ -568,6 +591,6 @@
 
 /obj/item/scarlet_rose/attack_self(mob/user)
 	. = ..()
-	new /mob/living/simple_animal/hostile/scarlet_rose(get_turf(src))
-	to_chat(user, "You plant the [src] into the ground, and it quickly blossoms!")
+	new /mob/living/simple_animal/hostile/scarlet_rose/growing(get_turf(src))
+	to_chat(user, "You plant the [src] into the ground, and it quickly sprouts!")
 	qdel(src)
