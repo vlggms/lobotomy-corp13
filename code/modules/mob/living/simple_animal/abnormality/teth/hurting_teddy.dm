@@ -46,11 +46,16 @@
 		/datum/ego_datum/armor/hexnail
 	)
 //gift_type = /datum/ego_gifts/hex_nail
+
+	grouped_abnos = list(
+		/mob/living/simple_animal/hostile/abnormality/happyteddybear = 1.5,
+	)
+
 	abnormality_origin = ABNORMALITY_ORIGIN_LIMBUS
 
 	var/bearfriended //the one who can work on it safely
 	var/mob/living/carbon/human/hug_victim = null
-	var/release_threshold = 200 //Total raw damage needed to break a player out of a grab (from any source)
+	var/release_threshold = 100 //Total raw damage needed to break a player out of a grab (from any source)
 	var/release_damage = 0
 	var/hug_progress = 0
 	var/hug_damage = 8
