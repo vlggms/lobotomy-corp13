@@ -166,7 +166,7 @@
 			"name" = "Armor Rend, RED",
 			"ahn_cost" = 50,
 			"ep_cost" = 4,
-			"desc" = "On hit with a BLACK weapon, inflict 1 RED fragility.",
+			"desc" = "On hit with a RED weapon, inflict 3 BLACK fragility.",
 			"component" = /datum/component/augment/ar_red
 		),
 		list(
@@ -174,7 +174,7 @@
 			"name" = "Armor Rend, BLACK",
 			"ahn_cost" = 50,
 			"ep_cost" = 4,
-			"desc" = "On hit with a RED weapon, inflict 1 BLACK fragility.",
+			"desc" = "On hit with a BLACK weapon, inflict 3 RED fragility.",
 			"component" = /datum/component/augment/ar_black
 		),
 		list(
