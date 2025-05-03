@@ -1170,7 +1170,7 @@
 	else
 		B.add_stacks(stacks)
 
-#define STATUS_EFFECT_LCBURN /datum/status_effect/stacking/overheat // Deals true damage every 5 sec, can't be applied to godmode (contained abos)
+#define STATUS_EFFECT_LCOVERHEAT /datum/status_effect/stacking/overheat // Deals true damage every 5 sec, can't be applied to godmode (contained abos)
 /datum/status_effect/stacking/lc_overheat
 	id = "lc_overheat"
 	alert_type = /atom/movable/screen/alert/status_effect/overheat
