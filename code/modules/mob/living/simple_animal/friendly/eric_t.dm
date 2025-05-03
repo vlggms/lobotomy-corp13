@@ -27,6 +27,15 @@
 	// Price for replacing lost parcels
 	var/payback_price = 400
 
+	// Stats for checking Grade
+	var/list/stats = list(
+		FORTITUDE_ATTRIBUTE,
+		PRUDENCE_ATTRIBUTE,
+		TEMPERANCE_ATTRIBUTE,
+		JUSTICE_ATTRIBUTE,
+	)
+	var/quest_grade = 7
+
 /mob/living/simple_animal/hostile/ui_npc/eric_t/Initialize()
 	. = ..()
 
@@ -49,12 +58,15 @@
 	if(isnull(scene_manager.get_var(user, "player.is_worker")))
 		scene_manager.set_var(user, "player.is_worker", FALSE)
 
-	if(isnull(scene_manager.get_var(user, "player.collected_parcels")))
-		scene_manager.set_var(user, "player.collected_parcels", 0)
+	// if(isnull(scene_manager.get_var(user, "player.collected_parcels")))
+	// 	scene_manager.set_var(user, "player.collected_parcels", 0)
 
 	// Check if player has the briefcase
 	var/has_briefcase = briefcase_check(user)
 	scene_manager.set_var(user, "player.has_briefcase", has_briefcase)
+
+	var/quest_grade = check_grade(user)
+	scene_manager.set_var(user, "player.quest_grade", quest_grade)
 
 /mob/living/simple_animal/hostile/ui_npc/eric_t/proc/get_eric_scenes()
 	var/list/scenes = list()
@@ -216,6 +228,16 @@
 		"actions" = list(
 			"..." = list(
 				"text" = "...",
+				"default_scene" = "job_extra_3"
+			)
+		)
+	)
+
+	scenes["job_extra_3"] = list(
+		"text" = "Also, I have an extra job. But I am only offering it to fellows of grade 7 or higher. It is quite a dangerous job...",
+		"actions" = list(
+			"..." = list(
+				"text" = "...",
 				"var_updates" = list(
 					"player.is_worker" = TRUE
 				),
@@ -246,8 +268,8 @@
 				"default_scene" = "main_screen"
 			),
 			"quest" = list(
-				"text" = "\[dialog.intro_quest_shown?About the Contract...:Any other jobs?\]",
-				"visibility_expression" = "player.collected_parcels>=6",
+				"text" = "\[dialog.intro_quest_shown?About the Contract...:Any other jobs? I am a high grade now.\]",
+				"visibility_expression" = "player.quest_grade",
 				"default_scene" = "quest_1",
 				"transitions" = list(
 					list(
@@ -268,9 +290,9 @@
 		"actions" = list(
 			"..." = list(
 				"text" = "...",
-				"var_updates" = list(
-					"player.collected_parcels" = "{player.collected_parcels++}",
-				),
+				// "var_updates" = list(
+				// 	"player.collected_parcels" = "{player.collected_parcels++}",
+				// ),
 				"default_scene" = "job"
 			)
 		)
@@ -679,6 +701,22 @@
 		for(var/obj/machinery/computer/communications/C in GLOB.machines)
 			if(!(C.machine_stat & (BROKEN|NOPOWER)) && is_station_level(C.z))
 				C.say(L.name + " has accepted the 'Dilapidated Town', breifcase retrieval contract.")
+
+/mob/living/simple_animal/hostile/ui_npc/eric_t/proc/check_grade(mob/user)
+	if(!user)
+		user = usr
+
+	if(ishuman(user))
+		var/mob/living/carbon/human/H = user
+		var/stattotal
+		var/grade
+		for(var/attribute in stats)
+			stattotal+=get_attribute_level(H, attribute)
+		stattotal /= 4	//Potential is an average of stats
+		grade = round((stattotal)/20)	//Get the average level-20, divide by 20
+		if(10-grade <= quest_grade) //Ex. Quest grade
+			return TRUE
+	return FALSE
 
 /mob/living/simple_animal/hostile/ui_npc/eric_t/proc/briefcase_buy()
 	if(scene_manager.npc_vars.variables["briefcase_collected"])

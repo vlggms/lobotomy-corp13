@@ -3129,6 +3129,7 @@
 	mouse_opacity = 0;
 	alpha = 0
 	},
+/mob/living/simple_animal/hostile/netherworld/migo,
 /turf/open/floor/plating/asteroid/basalt/wasteland,
 /area/city)
 "tV" = (
