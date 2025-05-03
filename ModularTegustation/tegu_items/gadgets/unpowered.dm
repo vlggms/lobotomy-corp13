@@ -330,10 +330,25 @@
 		check1c = H.physiology.black_mod
 		check1d = H.physiology.pale_mod
 		if(suit)
-			check1a = 1 - (H.getarmor(null, RED_DAMAGE) / 100)
-			check1b = 1 - (H.getarmor(null, WHITE_DAMAGE) / 100)
-			check1c = 1 - (H.getarmor(null, BLACK_DAMAGE) / 100)
-			check1d = 1 - (H.getarmor(null, PALE_DAMAGE) / 100)
+			var/red_armor = 1 - (H.getarmor(null, RED_DAMAGE) / 100)
+			var/white_armor = 1 - (H.getarmor(null, WHITE_DAMAGE) / 100)
+			var/black_armor = 1 - (H.getarmor(null, BLACK_DAMAGE) / 100)
+			var/pale_armor = 1 - (H.getarmor(null, PALE_DAMAGE) / 100)
+			if(GLOB.damage_type_shuffler?.is_enabled)
+				var/list/temp = list()
+				var/datum/damage_type_shuffler/shuffler = GLOB.damage_type_shuffler
+				temp[shuffler.mapping_offense[RED_DAMAGE]] = red_armor
+				temp[shuffler.mapping_offense[WHITE_DAMAGE]] = white_armor
+				temp[shuffler.mapping_offense[BLACK_DAMAGE]] = black_armor
+				temp[shuffler.mapping_offense[PALE_DAMAGE]] = pale_armor
+				red_armor = temp[RED_DAMAGE]
+				white_armor = temp[WHITE_DAMAGE]
+				black_armor = temp[BLACK_DAMAGE]
+				pale_armor = temp[PALE_DAMAGE]
+			check1a *= red_armor
+			check1b *= white_armor
+			check1c *= black_armor
+			check1d *= pale_armor
 		if(H.job)
 			check1e = H.job
 	else
@@ -349,7 +364,13 @@
 		if(isabnormalitymob(mon))
 			var/mob/living/simple_animal/hostile/abnormality/abno = mon
 			check1e = THREAT_TO_NAME[abno.threat_level]
-
+		if(GLOB.damage_type_shuffler?.is_enabled)
+			var/list/temp = list(RED_DAMAGE = check1a, WHITE_DAMAGE = check1b, BLACK_DAMAGE = check1c, PALE_DAMAGE = check1d)
+			var/datum/damage_type_shuffler/shuffler = GLOB.damage_type_shuffler
+			check1a = temp[shuffler.mapping_defense[RED_DAMAGE]]
+			check1b = temp[shuffler.mapping_defense[WHITE_DAMAGE]]
+			check1c = temp[shuffler.mapping_defense[BLACK_DAMAGE]]
+			check1d = temp[shuffler.mapping_defense[PALE_DAMAGE]]
 	var/output = "--------------------\n[check1e ? check1e+" [target]" : "[target]"]\nHP [target.health]/[target.maxHealth]\nR [check1a] W [check1b] B [check1c] P [check1d]\n--------------------"
 	to_chat(user, span_notice("[output]"))
 	deep_scan_log = output
@@ -419,6 +440,7 @@
 	attack_verb_simple = list("attack", "bash", "batter", "bludgeon", "whack")
 	toolspeed = 1
 	armor = list(MELEE = 0, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 0, RAD = 0, FIRE = 100, ACID = 100)
+	custom_price = 300
 	var/mode = RAK_HP_MODE
 
 /obj/item/safety_kit/attack_self(mob/user)

@@ -20,7 +20,7 @@
 		"Lying is Bad!" = 0,
 	)
 
-	damage_coeff = list(RED_DAMAGE = 1.2, WHITE_DAMAGE = 0.5, BLACK_DAMAGE = 0.7, PALE_DAMAGE = 0.9)
+	damage_coeff = list(RED_DAMAGE = 1.2, WHITE_DAMAGE = 0.5, BLACK_DAMAGE = 0.7, PALE_DAMAGE = 0.9, FIRE = 1.5)
 	work_damage_amount = 8
 	work_damage_type = WHITE_DAMAGE
 	chem_type = /datum/reagent/abnormality/sin/envy
@@ -165,7 +165,6 @@
 		realboy.apply_status_effect(/datum/status_effect/panicked_type/puppet)
 	//Destroys the invisible pinocchio, as it is unecessary in Rcorp, also gives him NV goggles and shoes.
 	else
-		realboy.equip_to_slot(new /obj/item/clothing/glasses/night/rabbit, ITEM_SLOT_EYES)
 		realboy.equip_to_slot(new /obj/item/clothing/shoes/combat, ITEM_SLOT_FEET)
 		qdel(src)
 	return TRUE
@@ -272,21 +271,6 @@
 	var/strings = icon('icons/mob/mutant_bodyparts.dmi', "strings_pinnochio_ADJ")
 	src.add_overlay(strings)
 
-/mob/living/carbon/human/species/pinocchio/adjustBlackLoss(amount, updating_health = TRUE, forced = FALSE, white_healable = FALSE)
-	if(amount > 0 && !forced)
-		new /obj/effect/temp_visual/damage_effect/black(get_turf(src))
-	return adjustBruteLoss(amount, forced = forced) // Override, otherwise we'd end up taking damage twice.
-
-/mob/living/carbon/human/species/pinocchio/adjustWhiteLoss(amount, updating_health = TRUE, forced = FALSE, white_healable = FALSE)
-	if(amount > 0 && !forced)
-		new /obj/effect/temp_visual/damage_effect/white(get_turf(src))
-	return adjustBruteLoss(amount, forced = forced) // Override with the parent, sanity damage is now just brute damage
-
-/mob/living/carbon/human/species/pinocchio/adjustPaleLoss(amount, updating_health = TRUE, forced = FALSE)
-	if(amount > 0 && !forced)
-		new /obj/effect/temp_visual/damage_effect/pale(get_turf(src))
-	return adjustBruteLoss(amount, forced = forced) // No % pale damage
-
 /mob/living/carbon/human/species/pinocchio/canBeHandcuffed()
 	return FALSE
 
@@ -309,6 +293,10 @@
 	C.contained_abno = /mob/living/simple_animal/hostile/abnormality/pinocchio//release()ing or extract()ing this core will spawn the abnormality, making it a valid core.
 	C.threat_level = 3
 	C.icon = 'ModularTegustation/Teguicons/abno_cores/he.dmi'
+	C.ego_list = list(
+		/datum/ego_datum/weapon/marionette,
+		/datum/ego_datum/armor/marionette,
+	)
 
 /datum/species/puppet
 	name = "Puppet"
@@ -323,7 +311,7 @@
 	knife_butcher_results = list(/obj/item/stack/sheet/mineral/wood = 5)
 	species_traits = list(NO_UNDERWEAR,NOBLOOD,NOEYESPRITES)
 	inherent_traits = list(TRAIT_ADVANCEDTOOLUSER,TRAIT_NOMETABOLISM,TRAIT_TOXIMMUNE,TRAIT_NOBREATH,TRAIT_RESISTCOLD,TRAIT_RESISTHIGHPRESSURE,TRAIT_RESISTLOWPRESSURE,TRAIT_RADIMMUNE,TRAIT_GENELESS,\
-	TRAIT_NOHUNGER,TRAIT_XENO_IMMUNE,TRAIT_NOCLONELOSS,TRAIT_LIGHT_STEP)
+	TRAIT_NOHUNGER,TRAIT_XENO_IMMUNE,TRAIT_NOCLONELOSS,TRAIT_LIGHT_STEP,TRAIT_BRUTEPALE,TRAIT_BRUTESANITY, TRAIT_TRUE_NIGHT_VISION,)
 	punchdamagelow = 10
 	punchdamagehigh = 15
 	bodypart_overides = list(
@@ -335,6 +323,7 @@
 	BODY_ZONE_CHEST = /obj/item/bodypart/chest/puppet)
 	speedmod = 1.3
 	changesource_flags = MIRROR_BADMIN | WABBAJACK
+	burnmod = 2
 
 /datum/species/puppet/check_roundstart_eligible()
 	return FALSE //heck no

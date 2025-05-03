@@ -10,10 +10,38 @@
 	armor = list(RED_DAMAGE = 20, WHITE_DAMAGE = -10, BLACK_DAMAGE = 0, PALE_DAMAGE = 0)
 
 // All TETH joke E.G.O
+/obj/item/clothing/suit/armor/ego_gear/teth/an_ego
+	name = "an ego"
+	desc = "An ambiguous error block that turns into armor when it makes prolonged contact with a human torso. Generally not useful and also kind of hard to look at."
+	icon = 'code/modules/mob/living/simple_animal/abnormality/_auxiliary_modes/joke/!icons/ego_armor.dmi'
+	worn_icon = 'code/modules/mob/living/simple_animal/abnormality/_auxiliary_modes/joke/!icons/ego_worn.dmi'
+	armor = list(RED_DAMAGE = -10, WHITE_DAMAGE = -10, BLACK_DAMAGE = 0, PALE_DAMAGE = 40) // Has horrible stat spread
 
 // All HE joke E.G.O
 
 // All WAW joke E.G.O
+
+/obj/item/clothing/suit/armor/ego_gear/waw/pro_skub
+	name = "pro-skub"
+	desc = "Skub!"
+	icon_state = "pro_skub"
+	icon = 'code/modules/mob/living/simple_animal/abnormality/_auxiliary_modes/joke/!icons/ego_armor.dmi'
+	worn_icon = 'code/modules/mob/living/simple_animal/abnormality/_auxiliary_modes/joke/!icons/ego_worn.dmi'
+	armor = list(RED_DAMAGE = 30, WHITE_DAMAGE = 60, BLACK_DAMAGE = 20, PALE_DAMAGE = 30)  // 140
+	attribute_requirements = list(
+							JUSTICE_ATTRIBUTE = 80
+							)
+
+/obj/item/clothing/suit/armor/ego_gear/waw/anti_skub
+	name = "anti-skub"
+	desc = "Fuck skub!"
+	icon_state = "anti_skub"
+	icon = 'code/modules/mob/living/simple_animal/abnormality/_auxiliary_modes/joke/!icons/ego_armor.dmi'
+	worn_icon = 'code/modules/mob/living/simple_animal/abnormality/_auxiliary_modes/joke/!icons/ego_worn.dmi'
+	armor = list(RED_DAMAGE = 30, WHITE_DAMAGE = 20, BLACK_DAMAGE = 60, PALE_DAMAGE = 30)  // 140
+	attribute_requirements = list(
+							JUSTICE_ATTRIBUTE = 80
+							)
 
 // All ALEPH joke E.G.O
 /obj/item/clothing/suit/armor/ego_gear/aleph/chaosdunk

@@ -178,6 +178,7 @@
 							)
 	var/naked_parry
 	var/realized_parry
+	var/can_hype = TRUE
 
 /obj/item/ego_weapon/shield/daredevil/melee_attack_chain(mob/user, atom/target, params)
 	if (!istype(user,/mob/living/carbon/human))
@@ -234,15 +235,29 @@
 	..()
 
 /obj/item/ego_weapon/shield/daredevil/AnnounceBlock(mob/living/carbon/human/source, damage, damagetype, def_zone)
-	if(naked_parry)
+	if(damagetype == PALE_DAMAGE && can_hype)
+		if(naked_parry || realized_parry) // You get 100% pale resist on empowered parry, it deserves it's own message.
+			to_chat(source, span_nicegreen("Stand your ground in the face of death. Struggle against the inevitable with reckless abandon, for you shall have me by your side."))
+		else // On the other hand, non-empowered parry has 0% pale resist, tell the user that they are being dumb.
+			to_chat(source, span_warning("To attempt parry the aspect of death is to hide from inevitability. To hide is to fear. Show me that you do not fear death."))
+		can_hype = FALSE // It's over.
+		addtimer(CALLBACK(src, PROC_REF(hype_returns)), 120) // Less intrusive than the big Colossus font, still on cooldown due to being quite the long message.
+	else if(naked_parry)
 		hit_message = "is untouchable!"
 		force = 18 // bonus damage for like, 2 seconds.
 	else if(realized_parry)
 		force = 50 // bonus damage for like, 2 seconds.
-		hit_message = "A GOD DOES NOT FEAR DEATH!"
-	else if(damagetype == PALE_DAMAGE)
-		to_chat(source,span_warning("To attempt parry the aspect of death is to hide from inevitability. To hide is to fear. Show me that you do not fear death."))
+		hit_message = "is untouchable!"
+		..()
+		if(can_hype)
+			to_chat(source, span_colossus("A GOD DOES NOT FEAR DEATH!")) // The font is LARGE, that's why it is on a cooldown.
+			can_hype = FALSE // It's SO over.
+			addtimer(CALLBACK(src, PROC_REF(hype_returns)), 180) // But we WILL be back (after 18 seconds).
+		return
 	..()
+
+/obj/item/ego_weapon/shield/daredevil/proc/hype_returns()
+	can_hype = TRUE
 
 /obj/item/ego_weapon/christmas
 	name = "christmas"
@@ -2151,3 +2166,135 @@
 /obj/item/ego_weapon/hexnail/melee_attack_chain(mob/user, atom/target, params)
 	..()
 	hitsound = "sound/weapons/fixer/generic/knife[pick(1,2,3,4)].ogg"
+
+/obj/item/ego_weapon/desert
+	name = "desert wind"
+	desc = "Some old bandages that look like they have been worn for a long time."
+	icon_state = "desert"
+	force = 21
+	attack_speed = 0.7
+	hitsound = 'sound/weapons/fixer/generic/fist1.ogg'
+	attribute_requirements = list(
+							JUSTICE_ATTRIBUTE = 40
+							)
+	var/chain = 0
+	var/activated
+	var/dash_range = 5
+	var/combo_time
+	var/combo_wait = 10
+
+/obj/item/ego_weapon/desert/AltClick(mob/user)
+	if(HAS_TRAIT(src, TRAIT_NODROP))
+		REMOVE_TRAIT(src, TRAIT_NODROP, SPECIAL)
+		to_chat(user, span_notice("You loosen the [src]."))
+		return
+	ADD_TRAIT(src, TRAIT_NODROP, SPECIAL)
+	to_chat(user, span_notice("You tightly attach [src] to your body."))
+
+
+/obj/item/ego_weapon/desert/examine(mob/user)
+	. = ..()
+	. += span_notice("Some attacks with this weapon will normally cause it to be dropped. You can use alt+click to tightly bind this weapon to your hand.")
+	. += span_notice("This weapon has light and heavy attacks. Use in hand to activate a heavy attack. Combos are as follows:")
+	. += span_notice("LLL - 3 Hit fast combo, ending in a quick finisher.")
+	. += span_notice("H 	 - Heavy drop kick attack with high range that briefly leaves you stunned.")
+	. += span_notice("LH 	 - An open palm strike that knocks back the target.")
+	. += span_notice("LLH 	 - High Damage combo, last hit ends in a 2.5x damage boost with no windup.")
+
+/obj/item/ego_weapon/desert/attack_self(mob/living/carbon/user)
+	if(world.time > combo_time)
+		chain = 0
+	if(activated)
+		activated = FALSE
+		to_chat(user, span_danger("You revoke your preparation of a heavy attack."))
+	else
+		activated = TRUE
+		to_chat(user, span_danger("You prep a heavy attack!"))
+
+
+/obj/item/ego_weapon/desert/attack(mob/living/target, mob/living/user)
+	if(!CanUseEgo(user))
+		return
+
+	if(world.time > combo_time)
+		chain = 0
+	combo_time = world.time + combo_wait
+
+	var/during_windup //can't attack during windup
+	if(during_windup)
+		return
+
+	//Setting chain and attack speed to 0
+	chain+=1
+	attack_speed = initial(attack_speed)
+
+	//Teh Chain of attacks. See the examine for what each chain does.
+
+	switch(chain)
+		if(1)
+			if(activated) //H - Drop Kick attack
+				to_chat(user, span_danger("You leap at your target."))
+				step_towards(user,target)
+				stuntime = 20
+				force *= 3
+				hitsound = 'sound/weapons/fixer/oldboys.ogg'
+				user.Knockdown(10)
+				knockback(target, user)
+
+		if(2)
+			if(activated) //LH - Knockback Palm Strike
+				to_chat(user, span_danger("You strike with your palm."))
+				hitsound = 'sound/weapons/fixer/generic/gen2.ogg'
+				knockback(target, user)
+				force *= 1.5
+
+		if(3)
+			if(activated) //LLH - Heavy hitting finisher
+				to_chat(user, span_danger("You strike a critical blow."))
+				during_windup = TRUE
+				force *= 2.5
+				hitsound = 'sound/weapons/fixer/generic/gen2.ogg'
+			else
+				force *= 0.7
+				attack_speed = 0.3
+				hitsound = 'sound/weapons/fixer/generic/dodge2.ogg'
+				user.spin(20, 1)
+			chain=0
+
+
+	//Special attacks are slower.
+	if(attack_speed == initial(attack_speed) && activated)
+		attack_speed = 2
+	. = ..()
+
+	//Reset Everything
+	if(activated)
+		chain=0
+		to_chat(user, span_danger("Your chain is reset."))
+		activated = FALSE
+	force = initial(force)
+	hitsound = initial(hitsound)
+	stuntime = initial(stuntime)
+
+/obj/item/ego_weapon/desert/proc/knockback(mob/living/target, mob/living/user)
+	var/atom/throw_target = get_edge_target_turf(target, user.dir)
+	if(!target.anchored)
+		var/whack_speed = (prob(60) ? 1 : 4)
+		target.throw_at(throw_target, rand(1, 3), whack_speed, user)
+
+/obj/item/ego_weapon/desert/afterattack(atom/A, mob/living/user, proximity_flag, params)
+	if(!CanUseEgo(user))
+		return
+	if(!isliving(A))
+		return
+	if(!activated || chain > 0)
+		return
+	if((get_dist(user, A) < 2) || (!(can_see(user, A, dash_range))))
+		return
+	..()
+	for(var/i in 2 to get_dist(user, A))
+		step_towards(user,A)
+	if((get_dist(user, A) < 2))
+		A.attackby(src,user)
+	playsound(src, 'sound/weapons/fixer/generic/dodge.ogg', 50, FALSE, 9)
+	to_chat(user, "<span class='warning'>You dash to [A]!")

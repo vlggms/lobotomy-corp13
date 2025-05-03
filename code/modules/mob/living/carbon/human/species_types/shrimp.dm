@@ -25,7 +25,7 @@
 
 /mob/living/carbon/human/species/shrimp/attack_ghost(mob/dead/observer/ghost)
 	if(key)
-		to_chat(src, span_notice("Somebody is already controlling this crustacean."))
+		to_chat(ghost, span_notice("Somebody is already controlling this crustacean."))
 		return
 
 	var/response = alert(ghost, "Do you want to take it over?", "Soul transfer", "Yes", "No")
@@ -33,7 +33,7 @@
 		return
 
 	if(key)
-		to_chat(src, span_notice("Somebody has taken this crustacean whilst you were busy selecting!"))
+		to_chat(ghost, span_notice("Somebody has taken this crustacean whilst you were busy selecting!"))
 		return
 
 	ckey = ghost.client.ckey

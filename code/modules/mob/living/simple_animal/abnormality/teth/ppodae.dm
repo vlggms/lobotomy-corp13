@@ -64,7 +64,7 @@
 	var/cute_resist_pale = 2
 	var/cute_speed = 1
 	//Other Stuff
-	var/limb_heal = 0.1
+	var/limb_heal = 0.02
 
 
 /mob/living/simple_animal/hostile/abnormality/ppodae/Login()
@@ -73,13 +73,13 @@
 		return FALSE
 	to_chat(src, "<h1>You are Ppodae, A Support/Combat Role Abnormality.</h1><br>\
 		<b>|How adorable!|: You are able to switch between a 'Cute' and 'Buff' form. \
-		Switching between forms has a 5 second cooldown and each time you switch forms you create smoke which lasts for 9 seconds.<br>\
+		Switching between forms has a 10 second cooldown and each time you switch forms you create smoke which lasts for 9 seconds.<br>\
 		<br>\
 		|Cute!|: While you are in your 'Cute' form, you have a MASSIVE speed boost and if you try to melee attack mechs or living mobs, you will crawl under them.<br>\
 		<br>\
 		|Strong!|: While you are in your 'Buff' form, you take 50% less damage from all attacks and you prefrom a 3x3 AoE attack when you try to melee attack, (Really good at breaking down Structures)<br>\
 		<br>\
-		|He's just Playing|: When you melee attack a unconscious or dead human body, you are able to tear off a limb, which heals you 10% of your max HP. (You can do this 4 time per body)</b>")
+		|He's just Playing|: When you melee attack a unconscious or dead human body, you are able to tear off a limb, which heals you 2% of your max HP. (You can do this 4 time per body)</b>")
 
 /datum/action/cooldown/ppodae_transform
 	name = "Transform!"
@@ -87,7 +87,7 @@
 	button_icon_state = "ppodae_transform"
 	check_flags = AB_CHECK_CONSCIOUS
 	transparent_when_unavailable = TRUE
-	cooldown_time = 5 SECONDS
+	cooldown_time = 12.5 SECONDS
 
 /datum/action/cooldown/ppodae_transform/Trigger()
 	if(!..())

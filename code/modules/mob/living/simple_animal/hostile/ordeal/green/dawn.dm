@@ -1,6 +1,6 @@
 // Green dawn
 /mob/living/simple_animal/hostile/ordeal/green_bot
-	name = "doubt"
+	name = "doubt alpha"
 	desc = "A slim robot with a spear in place of its hand."
 	icon = 'ModularTegustation/Teguicons/32x48.dmi'
 	icon_state = "green_bot"
@@ -98,6 +98,7 @@
 // Subtypes
 
 /mob/living/simple_animal/hostile/ordeal/green_bot/syringe
+	name = "doubt beta"
 	desc = "A slim robot with a syringe in place of its hand."
 	icon_state = "green_bot_b"
 	icon_living = "green_bot_b"
@@ -123,6 +124,7 @@
 	..()
 
 /mob/living/simple_animal/hostile/ordeal/green_bot/fast
+	name = "doubt gamma"
 	desc = "A slim robot with two spears."
 	icon_state = "green_bot_c"
 	icon_living = "green_bot_c"

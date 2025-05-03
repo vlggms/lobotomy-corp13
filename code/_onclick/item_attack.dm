@@ -281,6 +281,8 @@
 	if(I.force)
 		var/crit_bonus = 1
 		var/justice_mod = 1 + (get_modified_attribute_level(user, JUSTICE_ATTRIBUTE)/100)
+		if(HAS_TRAIT(user, TRAIT_STRONG_MELEE))
+			justice_mod*=1.15
 		var/crit_chance = get_modified_attribute_level(user, PRUDENCE_ATTRIBUTE)/50	//prudence is crit chance, It's a very small percentage that maxes out at 2.6%
 
 		if(SSmaptype.chosen_trait == FACILITY_TRAIT_CRITICAL_HITS)

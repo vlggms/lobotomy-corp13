@@ -54,6 +54,14 @@
 	range = 18 // Don't want people shooting it through the entire facility
 	hit_nondense_targets = TRUE
 
+/obj/projectile/ego_bullet/ego_magicbullet/on_hit(atom/target, blocked = FALSE, pierce_hit)
+	if(istype(target, /mob/living/simple_animal/hostile/der_freis_portal))
+		var/mob/living/simple_animal/hostile/der_freis_portal/P = target
+		P.death()
+	. = ..()
+
+
+
 /obj/projectile/ego_bullet/ego_solemnlament
 	name = "solemn lament"
 	icon_state = "whitefly"

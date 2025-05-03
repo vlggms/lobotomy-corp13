@@ -154,7 +154,7 @@
 	var/stat_tab
 
 	/// whether our browser is ready or not yet
-	var/statbrowser_ready = FALSE
+	var/statbrowser_ready = TRUE
 
 	/// list of all tabs
 	var/list/panel_tabs = list()

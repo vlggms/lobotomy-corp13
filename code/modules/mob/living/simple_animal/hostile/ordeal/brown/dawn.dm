@@ -118,6 +118,7 @@
 	guaranteed_butcher_results = list(/obj/item/food/meat/slab/sinnew = 1)
 	stat_attack = DEAD
 	var/rupture_damage = 2
+	var/dismember_probability = 20
 
 /mob/living/simple_animal/hostile/ordeal/sin_gluttony/AttackingTarget(atom/attacked_target)
 	. = ..()
@@ -145,7 +146,7 @@
 		return
 	var/mob/living/carbon/C = L
 	for(var/obj/item/bodypart/part in C.bodyparts)
-		if(part.dismemberable && prob(20) && part.body_part != CHEST && C.stat == DEAD)
+		if(part.dismemberable && prob(dismember_probability) && part.body_part != CHEST && C.stat == DEAD)
 			part.dismember()
 			QDEL_NULL(part)
 			new /obj/effect/gibspawner/generic/silent(get_turf(C))
@@ -482,6 +483,7 @@
 	melee_damage_type = BLACK_DAMAGE
 	melee_damage_lower = 2
 	melee_damage_upper = 6
+	melee_reach = 3 // Will try to attack from this distance
 	attack_verb_continuous = "stabs"
 	attack_verb_simple = "stab"
 	attack_sound = 'sound/effects/ordeals/brown/tentacle_attack.ogg'
@@ -489,12 +491,107 @@
 	damage_coeff = list(RED_DAMAGE = 1.5, WHITE_DAMAGE = 1.5, BLACK_DAMAGE = 0.7, PALE_DAMAGE = 2)
 	butcher_results = list(/obj/item/food/meat/slab/sinnew = 1)
 	guaranteed_butcher_results = list(/obj/item/food/meat/slab/sinnew = 1)
-	var/burn_stacks = 1
+	var/burn_stacks = 5
+	var/charge_ready = TRUE
+	var/charging
+	var/revving_charge = FALSE
+	var/charge_damage = 30
+	var/charge_attack_cooldown = 0
+	var/charge_attack_cooldown_time = 1 SECONDS
+	var/charge_attack_delay = 10
+	var/charging_speed = 0.6
 
 /mob/living/simple_animal/hostile/ordeal/sin_wrath/AttackingTarget(atom/attacked_target)
+	if(revving_charge || charging)
+		return
+	if(charge_attack_cooldown <= world.time && charge_ready && !attacked_target.Adjacent(targets_from))
+		Charge(chargeat = attacked_target, delay = (charge_attack_delay))
+		return
 	. = ..()
 	new /obj/effect/temp_visual/damage_effect/burn(get_turf(target))
 	if(!ishuman(target))
 		return
 	var/mob/living/carbon/human/H = target
 	H.apply_lc_burn(burn_stacks)
+
+/mob/living/simple_animal/hostile/ordeal/sin_wrath/Goto(target, delay, minimum_distance)
+	if(revving_charge || charging)
+		return FALSE
+	return ..()
+
+/mob/living/simple_animal/hostile/ordeal/sin_wrath/MoveToTarget(list/possible_targets)
+	if(revving_charge || charging)
+		return FALSE
+	return ..()
+
+/mob/living/simple_animal/hostile/ordeal/sin_wrath/Move()
+	if(revving_charge)
+		return FALSE
+	if(charging)
+		DestroySurroundings() //to break tables ssin the way
+	return ..()
+
+//charge code
+/mob/living/simple_animal/hostile/ordeal/sin_wrath/proc/Charge(atom/chargeat = target, delay = 1 SECONDS, chargepast = 2)
+	if(stat == DEAD)
+		return
+	if(charge_attack_cooldown > world.time || charging || revving_charge)
+		return
+	if(!chargeat)
+		return
+	face_atom(chargeat)
+	var/turf/T = get_ranged_target_turf(chargeat, dir, chargepast)
+	if(!T)
+		return
+	var/turf/chargeturf = get_turf(chargeat)
+	if(chargeturf) //for some reason this can end up being null
+		new /obj/effect/temp_visual/cult/sparks(chargeturf) //in case the big effect is behind a wall
+	revving_charge = TRUE
+	charge_ready = FALSE
+	walk(src, 0)
+	playsound(src, 'sound/effects/ordeals/brown/tentacle_before_explode.ogg', 150, 1)
+	SLEEP_CHECK_DEATH(delay)
+	if(!revving_charge) //to end charges prematurely
+		return
+	charging = TRUE
+	revving_charge = FALSE
+	walk_towards(src, T, charging_speed)
+	SLEEP_CHECK_DEATH(get_dist(src, T) * charging_speed)
+	EndCharge()
+
+/mob/living/simple_animal/hostile/ordeal/sin_wrath/proc/EndCharge(bump = FALSE)
+	if(!charging)
+		return
+	charging = FALSE
+	revving_charge = FALSE
+	walk(src, 0) // cancel the movement
+	ResetCharge()
+
+/mob/living/simple_animal/hostile/ordeal/sin_wrath/proc/ResetCharge()
+	charge_attack_cooldown = world.time + charge_attack_cooldown_time
+	charge_ready = TRUE //redundancy is good
+
+/mob/living/simple_animal/hostile/ordeal/sin_wrath/Bump(atom/A)
+	if(charging)
+		if(isliving(A))
+			var/mob/living/L = A
+			if(!faction_check_mob(L))
+				do_attack_animation(L, ATTACK_EFFECT_SLASH)
+				if(ishuman(L))
+					var/mob/living/carbon/human/H = L
+					H.apply_lc_burn(burn_stacks)
+				L.deal_damage(charge_damage, RED_DAMAGE)
+				if(L.health < 0)
+					L.gib()
+					playsound(src, 'sound/effects/ordeals/brown/tentacle_explode.ogg', 75, 1)
+				else
+					playsound(src, attack_sound, 125, 1)
+				EndCharge(TRUE)
+				ResetCharge()
+		else if(isvehicle(A))
+			var/obj/vehicle/V = A
+			V.take_damage(charge_damage*1.5, RED_DAMAGE)
+			for(var/mob/living/occupant in V.occupants)
+				to_chat(occupant, span_userdanger("Your [V.name] is bit by [src]!"))
+			EndCharge(FALSE)
+	return ..()

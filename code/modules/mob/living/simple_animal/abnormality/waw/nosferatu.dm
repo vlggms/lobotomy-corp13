@@ -31,7 +31,6 @@
 	chem_type = /datum/reagent/abnormality/sin/envy
 	attack_verb_continuous = "claws"
 	attack_verb_simple = "claw"
-	faction = list("hostile", "nosferatu") //avoids faction jank with his minions
 	attack_sound = 'sound/abnormalities/nosferatu/attack.ogg'
 	can_breach = TRUE
 	start_qliphoth = 3
@@ -223,7 +222,9 @@
 	else
 		bloodlust -= 1
 	AdjustThirst(40)
-	if(H.health < 0 && !SSmaptype.maptype == "limbus_labs"|| H.stat == DEAD && !SSmaptype.maptype == "limbus_labs")
+	if(SSmaptype.maptype == "limbus_labs")
+		return ..()
+	if(H.health < 0 || H.stat == DEAD)
 		H.Drain()
 	return ..()
 
@@ -254,7 +255,12 @@
 		var/obj/effect/temp_visual/smash_effect/bloodeffect =  new(T)
 		bloodeffect.color = "#b52e19"
 		for(var/mob/living/carbon/human/H in HurtInTurf(T, list(), banquet_damage, BLACK_DAMAGE, null, TRUE, FALSE, TRUE, FALSE, TRUE, TRUE))
-			if(H.health < 0 && !SSmaptype.maptype == "limbus_labs")
+			if(SSmaptype.maptype == "limbus_labs")
+				playsound(get_turf(src), 'sound/abnormalities/nosferatu/attack_special.ogg', 50, 0, 5)
+				SLEEP_CHECK_DEATH(3)
+				can_act = TRUE
+				return
+			if(H.health < 0)
 				H.Drain()
 	playsound(get_turf(src), 'sound/abnormalities/nosferatu/attack_special.ogg', 50, 0, 5)
 	SLEEP_CHECK_DEATH(3)
@@ -268,7 +274,6 @@
 	icon_state = "nosferatu_mob"
 	icon_living = "nosferatu_mob"
 	icon_dead = "nosferatu_mob"
-	faction = list("hostile", "nosferatu")
 	is_flying_animal = TRUE
 	density = FALSE
 	status_flags = MUST_HIT_PROJECTILE // Lets them be shot

@@ -32,3 +32,11 @@ Unused icons for new areas are "awaycontent1" ~ "awaycontent30"
 	var/pacifist = TRUE // if when you enter this zone, you become a pacifist or not
 	var/death = FALSE // if when you enter this zone, you die
 	network_root_id = "VR"
+
+/area/awaymission/enkr
+	name = "Fathoms of E.G.O"
+	icon_state = "awaycontent2"
+	requires_power = FALSE
+	has_gravity = STANDARD_GRAVITY
+	sound_environment = SOUND_AREA_STANDARD_STATION
+	dynamic_lighting = DYNAMIC_LIGHTING_FORCED

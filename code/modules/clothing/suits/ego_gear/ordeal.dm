@@ -116,16 +116,16 @@
 	desc = damage_list[current_damage][1]
 	switch(current_damage)
 		if("red")
-			src.armor = new(red = 80, white = 60, black = 0, pale = 60)
+			src.armor = getArmor(red = 80, white = 60, black = 0, pale = 60)
 			playsound(get_turf(src), 'sound/effects/ordeals/violet/midnight_red_attack.ogg', 50, FALSE, 32)
 		if("white")
-			src.armor = new(red = 60, white = 80, black = 60, pale = 0)
+			src.armor = getArmor(red = 60, white = 80, black = 60, pale = 0)
 			playsound(get_turf(src), 'sound/effects/ordeals/violet/midnight_white_attack.ogg', 50, FALSE, 32)
 		if("black")
-			src.armor = new(red = 0, white = 60, black = 80, pale = 60)
+			src.armor = getArmor(red = 0, white = 60, black = 80, pale = 60)
 			playsound(get_turf(src), 'sound/effects/ordeals/violet/midnight_black_attack1.ogg', 50, FALSE, 32)
 		if("pale")
-			src.armor = new(red = 60, white = 0, black = 60, pale = 80)
+			src.armor = getArmor(red = 60, white = 0, black = 60, pale = 80)
 			playsound(get_turf(src), 'sound/effects/ordeals/violet/midnight_pale_attack.ogg', 50, FALSE, 32)
 
 // Radial menu

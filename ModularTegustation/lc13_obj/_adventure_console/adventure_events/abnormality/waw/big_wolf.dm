@@ -5,7 +5,7 @@
 	*/
 /datum/adventure_event/big_wolf
 	name = "Big and Will Be Bad Wolf"
-	description = "YOUS SEE A WOLF IN THE MOONLIGHT"
+	desc = "YOUS SEE A WOLF IN THE MOONLIGHT"
 	require_abno = /mob/living/simple_animal/hostile/abnormality/big_wolf
 	adventure_cords = list(
 		"A pale silver moon illuminates the field.<br>\
@@ -64,7 +64,7 @@
 		if(3)
 			AdjustStatNum(WRATH_STAT, ADV_EVENT_STAT_EASY)
 		if(4)
-			AdjustHealth(-40)
+			AdjustHitPoint(-40)
 		if(5)
 			AdjustStatNum(WRATH_STAT, -2)
 			AdjustStatNum(PRIDE_STAT, 4)
