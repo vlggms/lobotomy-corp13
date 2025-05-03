@@ -1148,7 +1148,7 @@
 /datum/component/augment/fireproof/take_damage_effect(datum/source, damage, damagetype, def_zone)
 	. = ..()
 	var/missing_hp = ((human_parent.health - damage)/human_parent.maxHealth)
-	if(missing_hp <= 0.15 && damagetype == BURN)
+	if(human_parent.stat != DEAD && missing_hp <= 0.15 && damagetype == BURN)
 		human_parent.physiology.burn_mod -= 1
 		proofing_fire = TRUE
 		to_chat(human_parent, span_nicegreen("You ignore the BURN damage, due to being under or equal 15% health! Due to Fireproof"))
