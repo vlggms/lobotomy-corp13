@@ -135,8 +135,8 @@
 	if(item.force <= 0 || target.stat == DEAD)
 		return FALSE
 	inflict_cooldown = world.time + inflict_cooldown_time
-	to_chat(human_parent, span_nicegreen("You inflict 1 BLACK fragility to [target], Due to Armor Rend, RED!"))
-	target.apply_lc_black_fragile(1)
+	to_chat(human_parent, span_nicegreen("You inflict 3 BLACK fragility to [target], Due to Armor Rend, RED!"))
+	target.apply_lc_black_fragile(3)
 
 //Armor Rend, BLACK
 /datum/component/augment/ar_black
@@ -152,8 +152,8 @@
 	if(item.force <= 0 || target.stat == DEAD)
 		return FALSE
 	inflict_cooldown = world.time + inflict_cooldown_time
-	to_chat(human_parent, span_nicegreen("You inflict 1 RED fragility to [target], Due to Armor Rend, BLACK!"))
-	target.apply_lc_red_fragile(1)
+	to_chat(human_parent, span_nicegreen("You inflict 3 RED fragility to [target], Due to Armor Rend, BLACK!"))
+	target.apply_lc_red_fragile(3)
 
 //Shattering Mind, RED
 /datum/component/augment/shattering_mind_red
