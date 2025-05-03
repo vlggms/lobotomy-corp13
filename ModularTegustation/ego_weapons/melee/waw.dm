@@ -1358,6 +1358,9 @@
 	attack_verb_continuous = list("slams", "attacks")
 	attack_verb_simple = list("slam", "attack")
 	hitsound = 'sound/abnormalities/babayaga/attack.ogg'
+	usesound = 'sound/effects/picaxe1.ogg'
+	toolspeed = 0.3
+	tool_behaviour = TOOL_MINING
 	attribute_requirements = list(
 							FORTITUDE_ATTRIBUTE = 80
 							)

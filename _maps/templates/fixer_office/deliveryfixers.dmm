@@ -166,9 +166,8 @@
 "u" = (
 /obj/structure/table/wood/fancy/red,
 /obj/structure/railing,
-/obj/machinery/dish_drive{
-	pixel_y = 9;
-	density = 1
+/obj/structure/delivery_radio{
+	pixel_y = 3
 	},
 /turf/open/floor/pod/dark,
 /area/city/fixers)

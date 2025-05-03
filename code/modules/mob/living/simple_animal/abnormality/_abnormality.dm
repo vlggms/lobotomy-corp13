@@ -170,7 +170,7 @@
 	else
 		gift_message += "\nYou are granted a gift by [src]!"
 
-	if(secret_chance && (prob(1)))
+	if(secret_chance && (prob(1) || SSmaptype.chosen_trait == FACILITY_TRAIT_JOKE_ABNOS))
 		InitializeSecretIcon()
 
 	//Abnormalities have no name here. And we don't want nonsentient ones to breach
@@ -467,6 +467,9 @@
 	else // its a list, we gotta pick one
 		var/list/damage_types = work_damage_type
 		damage.icon_state = pick(damage_types)
+	var/damage_type = damage.icon_state
+	if(GLOB.damage_type_shuffler?.is_enabled && IsColorDamageType(damage_type))
+		damage.icon_state = GLOB.damage_type_shuffler.mapping_offense[damage_type]
 
 // Dictates whereas this type of work can be performed at the moment or not
 /mob/living/simple_animal/hostile/abnormality/proc/AttemptWork(mob/living/carbon/human/user, work_type)
@@ -584,6 +587,7 @@
 	C.icon_state = core_icon
 	C.contained_abno = src.type
 	C.threat_level = threat_level
+	C.ego_list += ego_list
 	switch(GetRiskLevel())
 		if(1)
 			return

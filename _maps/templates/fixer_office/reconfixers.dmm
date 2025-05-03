@@ -93,7 +93,6 @@
 /obj/item/gps,
 /obj/item/gps,
 /obj/item/gps,
-/obj/item/clothing/glasses/night,
 /obj/effect/turf_decal/tile/neutral{
 	dir = 4;
 	color = "#000000"
@@ -152,6 +151,7 @@
 /area/city/fixers)
 "w" = (
 /obj/structure/table/wood/fancy/green,
+/obj/item/recon_upgrader,
 /turf/open/floor/wood,
 /area/city/fixers)
 "y" = (

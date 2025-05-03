@@ -142,6 +142,45 @@
 	variable = TRUE
 	multiplicative_slowdown = 1.5
 
+/obj/projectile/clown_throw_rcorp
+	name = "blade"
+	desc = "A blade thrown maliciously"
+	icon_state = "clown"
+	damage_type = RED_DAMAGE
+	nodamage = TRUE
+	damage = 0
+	projectile_piercing = PASSMOB
+	ricochets_max = 2
+	ricochet_chance = 100
+	ricochet_decay_chance = 1
+	ricochet_decay_damage = 2
+	ricochet_auto_aim_range = 3
+	ricochet_incidence_leeway = 0
+
+/obj/projectile/clown_throw_rcorp/Initialize()
+	. = ..()
+	SpinAnimation()
+
+/obj/projectile/clown_throw_rcorp/check_ricochet_flag(atom/A)
+	if(istype(A, /turf/closed))
+		return TRUE
+	return FALSE
+
+/obj/projectile/clown_throw_rcorp/on_hit(atom/target, blocked = FALSE)
+	if(ishuman(target))
+		damage = 5
+		nodamage = FALSE
+		var/mob/living/carbon/human/H = target
+		H.apply_lc_bleed(6)
+		H.add_movespeed_modifier(/datum/movespeed_modifier/clowned)
+		addtimer(CALLBACK(H, TYPE_PROC_REF(/mob, remove_movespeed_modifier), /datum/movespeed_modifier/clowned), 1 SECONDS, TIMER_UNIQUE | TIMER_OVERRIDE)
+		qdel(src)
+
+	if(istype(target, /mob/living))
+		to_chat(target, "The [src] flies right passed you!")
+		return
+	..()
+
 /obj/projectile/bride_bolts
 	name = "mind bolts"
 	desc = "A magic white bolt, enchanted to protect or to avenge the sculptor."
@@ -230,8 +269,7 @@
 	icon = 'icons/obj/ego_weapons.dmi'
 	icon_state = "warring2_firey"
 	damage_type = BLACK_DAMAGE
-
-	damage = 45
+	damage = 20
 
 /obj/projectile/thunder_tomahawk/Initialize()
 	. = ..()

@@ -95,3 +95,6 @@
 
 	/// Boolean for working status
 	var/is_working = FALSE
+
+	/// Are you a part of an office?
+	var/assigned_office = null

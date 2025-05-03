@@ -1,6 +1,7 @@
 /obj/machinery/computer/abnormality_logs
 	name = "abnormality work logging console"
 	desc = "Used to view logs of work performed on abnormalities."
+	icon_screen = "work_logging"
 	resistance_flags = INDESTRUCTIBLE
 
 /obj/machinery/computer/abnormality_logs/ui_interact(mob/user)

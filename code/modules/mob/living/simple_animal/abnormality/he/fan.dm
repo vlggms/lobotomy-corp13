@@ -8,6 +8,8 @@
 	portrait = "fan"
 	maxHealth = 400
 	health = 400
+	speak_emote = list("states")
+	speech_span = SPAN_ROBOT
 	threat_level = HE_LEVEL
 	start_qliphoth = 1
 	work_chances = list(

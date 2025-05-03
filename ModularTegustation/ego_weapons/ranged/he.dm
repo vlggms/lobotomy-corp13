@@ -204,7 +204,6 @@
 	desc = "The past is far behind us."
 	icon_state = "songmini"
 	inhand_icon_state = "songmini"
-	special = "This weapon fires 3 pellets."
 	force = 12
 	damtype = WHITE_DAMAGE
 	pellets = 4

@@ -2,6 +2,7 @@
 	name = "abnormality queue console"
 	desc = "Used to select and view queued abnormality extraction process."
 	resistance_flags = INDESTRUCTIBLE
+	icon_screen = "queue"
 	var/locked = FALSE
 
 /obj/machinery/computer/abnormality_queue/Initialize()

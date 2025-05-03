@@ -8,6 +8,8 @@
 	health = 600
 	threat_level = ZAYIN_LEVEL
 	damage_coeff = list(RED_DAMAGE = 1.2, WHITE_DAMAGE = 1.2, BLACK_DAMAGE = 0.8, PALE_DAMAGE = 0.8)
+	speak_emote = list("advertises")
+	speech_span = SPAN_ROBOT
 	work_chances = list(
 		ABNORMALITY_WORK_INSTINCT = 70,
 		ABNORMALITY_WORK_INSIGHT = 70,
@@ -70,7 +72,11 @@
 /mob/living/simple_animal/hostile/abnormality/oceanicwaves/SuccessEffect(mob/living/carbon/human/user, work_type, pe)
 	. = ..()
 	//Randomize the soders then vend.
-	switch(rand(1, 10))
+	var/jcorp_modifier = 0
+	for(var/upgradecheck in GLOB.jcorp_upgrades)
+		if(upgradecheck == "Abno Luck")
+			jcorp_modifier = 1
+	switch(rand(1, 10)+jcorp_modifier)
 		if(1 to 2)
 			currentvend = pick(badsoders)
 		if(2 to 5)
@@ -83,7 +89,11 @@
 
 /mob/living/simple_animal/hostile/abnormality/oceanicwaves/NeutralEffect(mob/living/carbon/human/user, work_type, pe)
 	. = ..()
-	switch(rand(1, 10))
+	var/jcorp_modifier = 0
+	for(var/upgradecheck in GLOB.jcorp_upgrades)
+		if(upgradecheck == "Abno Luck")
+			jcorp_modifier = 2
+	switch(rand(1, 10)+jcorp_modifier)
 		if(1 to 4)
 			currentvend = pick(badsoders)
 		if(4 to 7)
@@ -96,7 +106,11 @@
 
 /mob/living/simple_animal/hostile/abnormality/oceanicwaves/FailureEffect(mob/living/carbon/human/user, work_type, pe)
 	. = ..()
-	switch(rand(1, 10))
+	var/jcorp_modifier = 0
+	for(var/upgradecheck in GLOB.jcorp_upgrades)
+		if(upgradecheck == "Abno Luck")
+			jcorp_modifier = 2
+	switch(rand(1, 10)+jcorp_modifier)
 		if(1 to 6)
 			currentvend = pick(badsoders)
 		if(6 to 9)

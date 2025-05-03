@@ -85,7 +85,7 @@
 	volume = 50
 	},
 /obj/effect/step_trigger/place_atom{
-	atom_path = /mob/living/simple_animal/hostile/ordeal/bigBirdEye;
+	atom_path = /mob/living/simple_animal/hostile/ordeal/bigbird_eye;
 	atom_rename = "featherbrained escapee";
 	spawn_dist_x = -2;
 	spawn_dist_y = -1;

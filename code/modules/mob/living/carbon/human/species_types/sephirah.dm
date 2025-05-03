@@ -3,6 +3,7 @@
 	id = "sephirah"
 	mutant_bodyparts = list()
 	changesource_flags = MIRROR_BADMIN | WABBAJACK | ERT_SPAWN
+	species_language_holder = /datum/language_holder/synthetic
 
 	inherent_biotypes = MOB_ROBOTIC
 	sexes = 0

@@ -12,7 +12,7 @@ GLOBAL_VAR_INIT(execution_enabled, FALSE)
 /obj/machinery/computer/camera_advanced/manager
 	name = "managerial camera console"
 	desc = "A computer used for remotely handling a facility."
-	icon_screen = "mechpad"
+	icon_screen = "camera3"
 	icon_keyboard = "generic_key"
 	resistance_flags = INDESTRUCTIBLE
 	var/datum/action/innate/cyclemanagerbullet/cycle
@@ -310,7 +310,10 @@ GLOBAL_VAR_INIT(execution_enabled, FALSE)
 
 		var/list/damage_types = list(RED_DAMAGE, WHITE_DAMAGE, BLACK_DAMAGE, PALE_DAMAGE)
 		for(var/i in damage_types)
-			var/resistance = SimpleResistanceToText(monster.damage_coeff.getCoeff(i))
+			var/damage_type = i
+			if(GLOB.damage_type_shuffler?.is_enabled)
+				damage_type = GLOB.damage_type_shuffler.mapping_defense[i]
+			var/resistance = SimpleResistanceToText(monster.damage_coeff.getCoeff(damage_type))
 			message += "\n[capitalize(i)]: [resistance]"
 
 		message += "</span>"
@@ -645,6 +648,7 @@ GLOBAL_VAR_INIT(execution_enabled, FALSE)
 
 /obj/machinery/computer/camera_advanced/manager/sephirah //crude and lazy but i think it may work.
 	name = "sephirah camera console"
+	icon_screen = "camera2"
 	ammo = 0
 
 /obj/machinery/computer/camera_advanced/manager/sephirah/Initialize(mapload)
@@ -699,7 +703,7 @@ GLOBAL_VAR_INIT(execution_enabled, FALSE)
 /obj/machinery/computer/camera_advanced/manager/representative
 	name = "representative camera console"
 	desc = "A computer used for remotely monitoring a facility."
-	icon_screen = "cameras"
+	icon_screen = "camera1"
 	icon_keyboard = "security_key"
 	light_color = COLOR_SOFT_RED
 	ammo = 0

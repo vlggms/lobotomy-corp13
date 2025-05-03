@@ -1,11 +1,11 @@
 //Curing
 /datum/action/cooldown/agent_healing
 	name = "Healing"
-	desc = "Heal all humans in a 5 tile radius (except the user) by 15 HP. Costs 10SP"
+	desc = "Heal all humans in a 5 tile radius (except the user) by 15 HP."
 	icon_icon = 'icons/hud/screen_skills.dmi'
 	button_icon_state = "healing"
 	cooldown_time = 30 SECONDS
-	var/healamount = 15
+	var/healamount = 0.1 //This is a %
 
 /datum/action/cooldown/agent_healing/Trigger()
 	. = ..()
@@ -19,9 +19,8 @@
 		if(H.stat >= HARD_CRIT)
 			continue
 		if(H == owner)
-			H.adjustSanityLoss(10)
 			continue
-		H.adjustBruteLoss(-healamount)
+		H.adjustBruteLoss(-H.maxHealth*healamount)
 		new /obj/effect/temp_visual/heal(get_turf(H), "#FF4444")
 	StartCooldown()
 

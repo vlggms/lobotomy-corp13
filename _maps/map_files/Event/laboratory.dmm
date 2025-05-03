@@ -1599,6 +1599,27 @@
 /obj/effect/spawner/structure/window/reinforced,
 /turf/open/floor/facility/dark,
 /area/centcom)
+"gV" = (
+/obj/structure/table/wood/bar,
+/obj/effect/turf_decal/siding/wood{
+	layer = 2.85
+	},
+/obj/machinery/door/poddoor/preopen{
+	id = "kitchen"
+	},
+/obj/item/storage/box/drinkingglasses{
+	pixel_x = 2;
+	pixel_y = 11
+	},
+/obj/item/reagent_containers/glass/rag{
+	pixel_x = 5;
+	pixel_y = 2
+	},
+/obj/item/reagent_containers/food/drinks/shaker{
+	pixel_x = -7
+	},
+/turf/open/floor/facility/dark,
+/area/centcom)
 "gX" = (
 /obj/effect/turf_decal/siding/yellow/corner{
 	dir = 4
@@ -2226,10 +2247,6 @@
 "jX" = (
 /obj/structure/window/reinforced/spawner{
 	dir = 4
-	},
-/obj/machinery/computer/med_data{
-	dir = 1;
-	pixel_x = -3
 	},
 /turf/open/floor/mineral/titanium/blue,
 /area/centcom)
@@ -3818,7 +3835,8 @@
 /obj/machinery/door/poddoor/preopen{
 	armor = list("melee" = 20, "bullet" = 100, "laser" = 100, "energy" = 100, "bomb" = 50, "bio" = 100, "rad" = 100, "fire" = 100, "acid" = 70);
 	max_integrity = 1800;
-	id = "mosb_containment3"
+	id = "mosb_containment3";
+	damage_deflection = 0
 	},
 /obj/effect/spawner/structure/window/reinforced{
 	max_integrity = 3000
@@ -5092,7 +5110,8 @@
 /obj/machinery/door/poddoor/preopen{
 	armor = list("melee" = 20, "bullet" = 100, "laser" = 100, "energy" = 100, "bomb" = 50, "bio" = 100, "rad" = 100, "fire" = 100, "acid" = 70);
 	max_integrity = 1800;
-	id = "emergency_lockdown1"
+	id = "emergency_lockdown1";
+	damage_deflection = 0
 	},
 /obj/effect/spawner/structure/window/reinforced{
 	max_integrity = 3000
@@ -7073,6 +7092,10 @@
 	resistance_flags = 115;
 	pixel_x = 2
 	},
+/obj/machinery/computer/med_data{
+	dir = 1;
+	pixel_x = 29
+	},
 /turf/open/floor/mineral/titanium/blue,
 /area/centcom)
 "CX" = (
@@ -7692,17 +7715,6 @@
 /turf/open/floor/pod/dark,
 /area/centcom)
 "FB" = (
-/obj/item/storage/box/drinkingglasses{
-	pixel_x = 2;
-	pixel_y = 11
-	},
-/obj/item/reagent_containers/food/drinks/shaker{
-	pixel_x = -7
-	},
-/obj/item/reagent_containers/glass/rag{
-	pixel_x = 5;
-	pixel_y = 2
-	},
 /obj/structure/table/wood/bar,
 /obj/effect/turf_decal/siding/wood{
 	layer = 2.85
@@ -7713,6 +7725,9 @@
 /obj/effect/turf_decal/tile/blue{
 	color = "#5269e9";
 	dir = 1
+	},
+/obj/machinery/microwave{
+	pixel_y = 5
 	},
 /turf/open/floor/plasteel/white,
 /area/centcom)
@@ -46435,7 +46450,7 @@ kL
 SY
 FB
 Si
-iq
+gV
 NF
 tn
 gA

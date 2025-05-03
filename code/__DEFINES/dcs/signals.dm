@@ -1099,3 +1099,6 @@
 // Crate signals
 #define COMSIG_CRATE_LOOTING_STARTED "looting_started"
 #define COMSIG_CRATE_LOOTING_ENDED "looting_ended"
+
+#define COMSIG_PARCEL_DELIVERED "parcel_delivered"
+#define COMSIG_ITEM_DELIVERED "item_delivered"

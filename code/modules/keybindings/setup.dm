@@ -32,9 +32,4 @@
 		var/command = macro_set[key]
 		winset(src, "default-[REF(key)]", "parent=default;name=[key];command=[command]")
 
-	if(prefs?.hotkeys)
-		winset(src, null, "input.focus=true input.background-color=[COLOR_INPUT_ENABLED]")
-	else
-		winset(src, null, "input.focus=true input.background-color=[COLOR_INPUT_DISABLED]")
-
 	update_special_keybinds()

@@ -25,10 +25,11 @@
 		//The office stuff
 		/obj/item/structurecapsule/fixer = 1,	//fishing
 		/obj/item/structurecapsule/fixer/combat = 2,
-		/obj/item/structurecapsule/fixer/protection = 2,
+		/obj/item/structurecapsule/fixer/delivery = 1,
 		/obj/item/structurecapsule/fixer/workshop = 1,
 		/obj/item/structurecapsule/fixer/recon = 1,
 		/obj/item/structurecapsule/fixer/peacekeeper = 1,
+		/obj/item/structurecapsule/fixer/contract = 1,
 
 		//Boxes cost you an extra 700
 		/obj/item/storage/box/fixer/wedge = 1,
@@ -123,6 +124,7 @@
 	products = list(
 		/obj/item/flashlight/seclite = 100,
 		/obj/item/attribute_increase/fixer = 1500,
+		/obj/item/attribute_increase/fixer/office = 1500,
 		/obj/item/radio/headset = 200,
 		/obj/item/crowbar = 100,
 		/obj/item/clothing/suit/armor/ego_gear/city/misc/lone = 100,
@@ -136,6 +138,7 @@
 		/obj/item/reagent_containers/hypospray/medipen/mental = 100,
 		/obj/item/reagent_containers/hypospray/medipen/salacid = 100,
 		/obj/item/gps/fixer = 100,
+		/obj/item/pinpointer/coordinate = 20,
 	)
 
 	premium = list(
@@ -252,7 +255,7 @@
 		/obj/item/organ/cyberimp/arm/briefcase = 100,
 		/obj/item/organ/cyberimp/arm/surgery = 100,
 		/obj/item/organ/cyberimp/arm/overdrive = 100,
-		/obj/item/organ/cyberimp/arm/observation = 100,
+		/obj/item/organ/eyes/robotic/infofixer = 100,
 		/obj/item/extra_arm = 100,
 		/obj/item/extra_arm/double = 100,
 	)
