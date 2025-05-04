@@ -1,0 +1,233 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"a" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/machinery/atmospherics/components/unary/tank/air,
+/turf/open/floor/plasteel/dark,
+/area/city/backstreets_room)
+"d" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/machinery/computer,
+/turf/open/floor/plasteel/dark,
+/area/city/backstreets_room)
+"g" = (
+/obj/machinery/button/sigsystem{
+	pixel_x = -24;
+	signaller_code = 255;
+	name = "cryo release button"
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/decal/cleanable/molten_object,
+/turf/open/floor/plasteel/dark,
+/area/city/backstreets_room)
+"h" = (
+/obj/machinery/atmospherics/components/unary/cryo_cell{
+	dir = 8
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/sign/warning/coldtemp{
+	pixel_x = -32
+	},
+/turf/open/floor/plasteel/dark,
+/area/city/backstreets_room)
+"j" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/sigsystem/deployer{
+	signaller_code = 255;
+	signaller_range = 5;
+	atom_path = /obj/effect/spawner/lootdrop/workshop_random;
+	pixel_y = 32;
+	deploy_sound = 'sound/machines/cryo_warning.ogg'
+	},
+/turf/open/floor/plasteel/freezer,
+/area/city/backstreets_room)
+"l" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/plasteel/dark,
+/area/city/backstreets_room)
+"m" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/machinery/computer,
+/turf/open/floor/plasteel/freezer,
+/area/city/backstreets_room)
+"q" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/sign/departments/w_corp{
+	pixel_x = -32
+	},
+/turf/open/floor/plasteel/dark,
+/area/city/backstreets_room)
+"s" = (
+/obj/machinery/atmospherics/components/unary/cryo_cell,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/plasteel/dark,
+/area/city/backstreets_room)
+"x" = (
+/turf/closed/indestructible/reinforced,
+/area/city/backstreets_room)
+"y" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/sigsystem/deployer{
+	signaller_code = 255;
+	signaller_range = 5;
+	atom_rename = "forgotten patient";
+	atom_path = /mob/living/simple_animal/hostile/lovetown/slasher;
+	pixel_y = 32;
+	spawn_flavor_text = "is released from cryo!";
+	deploy_sound = 'sound/machines/airlock.ogg'
+	},
+/obj/structure/sigsystem/deployer{
+	signaller_code = 255;
+	signaller_range = 5;
+	atom_path = /obj/effect/decal/cleanable/glass;
+	pixel_y = 25
+	},
+/turf/open/floor/plasteel/freezer,
+/area/city/backstreets_room)
+"E" = (
+/obj/structure/sign/warning/chemdiamond{
+	pixel_x = 32
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/machinery/atmospherics/components/unary/tank/air,
+/turf/open/floor/plasteel/dark,
+/area/city/backstreets_room)
+"H" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/machinery/door/airlock/medical,
+/turf/open/floor/plasteel/dark,
+/area/city/backstreets_room)
+"L" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/sigsystem/deployer{
+	signaller_code = 255;
+	signaller_range = 5;
+	atom_path = /obj/effect/spawner/lootdrop/workshop_random;
+	pixel_x = -19;
+	deploy_sound = 'sound/machines/cryo_warning.ogg'
+	},
+/obj/structure/sigsystem/deployer{
+	signaller_code = 255;
+	signaller_range = 5;
+	atom_rename = "forgotten patient";
+	atom_path = /mob/living/simple_animal/hostile/lovetown/slasher;
+	pixel_y = 2;
+	spawn_flavor_text = "is released from cryo!";
+	deploy_sound = 'sound/machines/airlock.ogg';
+	pixel_x = -32
+	},
+/obj/structure/sigsystem/deployer{
+	signaller_code = 255;
+	signaller_range = 5;
+	atom_path = /obj/effect/decal/cleanable/glass;
+	pixel_x = -32
+	},
+/turf/open/floor/plasteel/freezer,
+/area/city/backstreets_room)
+"M" = (
+/obj/machinery/atmospherics/components/unary/cryo_cell{
+	autoeject = 0
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/plasteel/dark,
+/area/city/backstreets_room)
+"P" = (
+/obj/machinery/atmospherics/components/unary/cryo_cell{
+	dir = 8
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/plasteel/dark,
+/area/city/backstreets_room)
+"S" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/decal/cleanable/molten_object,
+/turf/open/floor/plasteel/freezer,
+/area/city/backstreets_room)
+"U" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/decal/cleanable/molten_object,
+/turf/open/floor/plasteel/dark,
+/area/city/backstreets_room)
+"Y" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/plasteel/freezer,
+/area/city/backstreets_room)
+"Z" = (
+/obj/machinery/atmospherics/components/unary/cryo_cell{
+	dir = 4
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/plasteel/dark,
+/area/city/backstreets_room)
+
+(1,1,1) = {"
+x
+x
+x
+x
+x
+x
+x
+x
+x
+x
+"}
+(2,1,1) = {"
+x
+P
+g
+q
+l
+h
+d
+l
+l
+x
+"}
+(3,1,1) = {"
+x
+s
+j
+Y
+l
+L
+m
+U
+l
+x
+"}
+(4,1,1) = {"
+x
+M
+y
+S
+l
+Y
+Y
+l
+l
+x
+"}
+(5,1,1) = {"
+x
+Z
+l
+l
+a
+a
+E
+l
+l
+x
+"}
+(6,1,1) = {"
+x
+x
+x
+x
+x
+x
+x
+H
+H
+x
+"}
