@@ -227,6 +227,7 @@
 	var/spawn_progress = 10 //spawn ready to produce flies
 	var/list/spawned_mobs = list()
 	var/producing = FALSE
+	//TODO: Fix Cooldowns
 	var/chem_cooldown_timer
 	var/chem_cooldown = 3 MINUTES
 	var/chem_type = /datum/reagent/medicine/mental_stabilizator
@@ -594,3 +595,153 @@
 	new /mob/living/simple_animal/hostile/scarlet_rose/growing(get_turf(src))
 	to_chat(user, "You plant the [src] into the ground, and it quickly sprouts!")
 	qdel(src)
+
+/mob/living/simple_animal/hostile/clan/stone_keeper
+	name = "stone guardian"
+	desc = "A monstrous machine, with a glare of hatred."
+	icon = 'icons/mob/lavaland/96x96megafauna.dmi'
+	icon_state = "eva"
+	icon_living = "eva"
+	icon_dead = ""
+	pixel_x = -32
+	base_pixel_x = -32
+	maxHealth = 5000
+	health = 5000
+	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 0.6, WHITE_DAMAGE = 0.8, BLACK_DAMAGE = 1.2, PALE_DAMAGE = 1.5)
+	melee_damage_lower = 24
+	melee_damage_upper = 36
+	attack_verb_continuous = "slams"
+	attack_verb_simple = "slam"
+	attack_sound = 'sound/weapons/fixer/generic/spear2.ogg'
+	melee_queue_distance = 2 //since our attacks are AoEs, this makes it harder to kite us
+	move_to_delay = 6
+	ranged = TRUE
+	charge = 15
+	max_charge = 20
+	clan_charge_cooldown = 10 SECONDS
+	var/can_act = TRUE
+	var/shield_ready = FALSE
+	var/annihilation_ready = FALSE
+	var/attack_delay = 8
+	var/ranged_attack_delay = 2.5
+	var/tentacle_radius = 1
+	var/tentacle_damage = 50
+
+/mob/living/simple_animal/hostile/clan/stone_keeper/GainCharge()
+	. = ..()
+	charge = max_charge
+	playsound(src, 'sound/weapons/fixer/generic/energy3.ogg', 50, FALSE, 5)
+	manual_emote("electricity flows around [src]")
+
+/mob/living/simple_animal/hostile/clan/stone_keeper/ChargeUpdated()
+	if(charge >= 5)
+		ChangeResistances(list(RED_DAMAGE = 0.1, WHITE_DAMAGE = 0.1, BLACK_DAMAGE = 0.1, PALE_DAMAGE = 0.5))
+		shield_ready = TRUE
+	else
+		ChangeResistances(list(RED_DAMAGE = 0.8, WHITE_DAMAGE = 0.8, BLACK_DAMAGE = 1.2, PALE_DAMAGE = 1.5))
+		shield_ready = FALSE
+		return
+
+/mob/living/simple_animal/hostile/clan/stone_keeper/adjustHealth(amount, updating_health = TRUE, forced = FALSE)
+	. = ..()
+	if(shield_ready)
+		var/obj/effect/temp_visual/shock_shield/AT = new /obj/effect/temp_visual/shock_shield(loc, src)
+		var/random_x = rand(-25, 25)
+		AT.pixel_x += random_x
+
+		var/random_y = rand(5, 80)
+		AT.pixel_y += random_y
+	if(charge > 0)
+		charge--
+		ChargeUpdated()
+
+/mob/living/simple_animal/hostile/clan/stone_keeper/Move()
+	if(!can_act)
+		return FALSE
+	return ..()
+
+/mob/living/simple_animal/hostile/clan/stone_keeper/AttackingTarget(atom/attacked_target)
+	if(!can_act)
+		return FALSE
+
+	if(annihilation_ready)
+		return OpenFire(attacked_target)
+	return AoeAttack()
+
+/mob/living/simple_animal/hostile/clan/stone_keeper/OpenFire(target)
+	if(!can_act)
+		return
+
+	return AnnihilationBeam(target)
+
+
+/mob/living/simple_animal/hostile/clan/stone_keeper/proc/AoeAttack() //all attacks are an AoE when not dashing
+	can_act = FALSE
+	face_atom(target)
+	playsound(get_turf(src), 'sound/effects/ordeals/white/black_swing.ogg', 75, 0, 3)
+	icon_state = "eva_attack"
+	SLEEP_CHECK_DEATH(attack_delay)
+	for(var/turf/T in view(2, src))
+		new /obj/effect/temp_visual/pale_eye_attack(T)
+		HurtInTurf(T, list(), (rand(melee_damage_lower, melee_damage_upper)), PALE_DAMAGE, check_faction = TRUE, hurt_mechs = TRUE) //30~40 damage
+	playsound(get_turf(src), 'sound/abnormalities/mountain/slam.ogg', 75, 0, 3)
+	SLEEP_CHECK_DEATH(0.4 SECONDS)
+	icon_state = "eva"
+	can_act = TRUE
+
+/mob/living/simple_animal/hostile/clan/stone_keeper/proc/AnnihilationBeam(atom/target)
+	var/mob/living/cooler_target = target
+	if(cooler_target.stat == DEAD)
+		return
+	can_act = FALSE
+	icon_state = "eva_attack"
+	visible_message(span_danger("[src] levels one of its arms at [cooler_target]!"))
+	// cooler_target.apply_status_effect(/datum/status_effect/spirit_gun_target) // Re-used for visual indicator
+	dir = get_cardinal_dir(src, target)
+	var/datum/beam/B = src.Beam(cooler_target, "light_beam", time = (2.5 SECONDS))
+	B.visuals.color = LIGHT_COLOR_DARK_BLUE
+	SLEEP_CHECK_DEATH(ranged_attack_delay)
+	playsound(src, 'sound/effects/ordeals/white/red_beam.ogg', 75, FALSE, 32)
+	SLEEP_CHECK_DEATH(1.5 SECONDS)
+	playsound(src, 'sound/effects/ordeals/white/red_beam_fire.ogg', 100, FALSE, 32)
+	// cooler_target.remove_status_effect(/datum/status_effect/spirit_gun_target)
+	can_act = TRUE
+	annihilation_ready = FALSE
+	icon_state = "eva"
+	var/line_of_sight = getline(get_turf(src), get_turf(target)) //better simulates a projectile attack
+	for(var/turf/T in line_of_sight)
+		if(DensityCheck(T))
+			Fire(T)
+			return
+	Fire(cooler_target)
+
+/mob/living/simple_animal/hostile/clan/stone_keeper/proc/Fire(atom/target)
+	face_atom(target)
+	var/turf/beam_start = get_step(src, dir)
+	var/turf/beam_end = get_turf(target)
+	var/list/hitline = list()
+	for(var/turf/T in getline(beam_start, beam_end))
+		for(var/turf/open/TT in RANGE_TURFS(tentacle_radius, T))
+			hitline |= TT
+	if(!beam_end)
+		can_act = TRUE
+		return
+	var/datum/beam/B = beam_start.Beam(beam_end, "bsa_beam", time = 8)
+	var/matrix/M = matrix()
+	M.Scale(tentacle_radius * 3, 1)
+	B.visuals.transform = M
+	var/list/been_hit = list()
+	for(var/turf/T in hitline)
+		var/list/new_hits = HurtInTurf(T, been_hit, tentacle_damage, PALE_DAMAGE, check_faction = TRUE, hurt_mechs = TRUE, hurt_structure = TRUE) - been_hit
+		been_hit += new_hits
+		for(var/mob/living/L in new_hits)
+			to_chat(L, span_userdanger("A pale beam passes right through you!"))
+			new /obj/effect/temp_visual/dir_setting/bloodsplatter(get_turf(L), pick(GLOB.alldirs))
+
+/mob/living/simple_animal/hostile/clan/stone_keeper/proc/DensityCheck(turf/T) //TRUE if dense or airlocks closed
+	if(T.density)
+		return TRUE
+	for(var/obj/machinery/door/D in T.contents)
+		if(D.density)
+			return TRUE
+	return FALSE
