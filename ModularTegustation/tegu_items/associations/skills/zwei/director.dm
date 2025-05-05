@@ -3,7 +3,6 @@
 	icon_icon = 'icons/hud/screen_skills.dmi'
 	button_icon_state = "reflexslash"
 	cooldown_time = 5 MINUTES
-	var/damageamount = 10
 	var/range = 2
 	var/list/affected = list()
 
