@@ -99,6 +99,9 @@
 		log_world("map_file missing from json!")
 		return
 
+	if (json["pick_one"] && islist(map_file))
+		map_file = pick(map_file)
+
 	if (islist(json["shuttles"]))
 		var/list/L = json["shuttles"]
 		for(var/key in L)

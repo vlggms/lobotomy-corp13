@@ -3,8 +3,11 @@
 	"map_name": "City Of Light",
 	"map_path": "map_files/Event",
 	"map_file": [
-		"city.dmm"
+		"city.dmm",
+		"kcorp_nest_complete.dmm",
+		"ucorp_port_complete.dmm"
 	],
+	"pick_one": 0,
 	"traits": [
 		{
 			"Baseturf": "/turf/open/floor/plating/asteroid"
