@@ -194,7 +194,7 @@
 
 // Attacks
 /mob/living/simple_animal/hostile/abnormality/fairy_gentleman/proc/FairyJump(mob/living/target)
-	if(!istype(target) || !can_act)
+	if(!isliving(target) && !ismecha(target) || !can_act)
 		return
 	var/dist = get_dist(target, src)
 	if(dist > 1 && jump_cooldown < world.time)
@@ -229,6 +229,8 @@
 				L.deal_damage(jump_damage, BLACK_DAMAGE)
 				if(L.health < 0)
 					L.gib()
+			for(var/obj/vehicle/sealed/mecha/V in T)
+				V.take_damage(jump_damage, BLACK_DAMAGE)
 		var/wait_time = 0.5 SECONDS
 		if(target_drunk)
 			wait_time += 3.5 SECONDS

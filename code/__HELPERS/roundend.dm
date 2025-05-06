@@ -376,6 +376,9 @@
 	//PE Quota
 	if(SSmaptype.maptype == "standard")
 		parts += pe_report()
+	//Enkephalin Rush
+	if(SSmaptype.maptype == "enkephalin_rush")
+		parts += mining_report()
 
 	listclearnulls(parts)
 
@@ -387,7 +390,7 @@
 
 	if(GLOB.round_id)
 		var/statspage = CONFIG_GET(string/roundstatsurl)
-		var/info = statspage ? "<a href='?action=openLink&link=[url_encode(statspage)][GLOB.round_id]'>[GLOB.round_id]</a>" : GLOB.round_id
+		var/info = statspage ? "<a href='byond://?action=openLink&link=[url_encode(statspage)][GLOB.round_id]'>[GLOB.round_id]</a>" : GLOB.round_id
 		parts += "[FOURSPACES]Round ID: <b>[info]</b>"
 	parts += "[FOURSPACES]Shift Duration: <B>[DisplayTimeText(world.time - SSticker.round_start_time)]</B>"
 	parts += "[FOURSPACES]Facility Integrity: <B>[mode.station_was_nuked ? "<span class='redtext'>Destroyed</span>" : "[popcount["station_integrity"]]%"]</B>"
@@ -776,7 +779,7 @@
 	var/datum/action/report/R = new
 	C.player_details.player_actions += R
 	R.Grant(C.mob)
-	to_chat(C,"<a href='?src=[REF(R)];report=1'>Show roundend report again</a>")
+	to_chat(C,"<a href='byond://?src=[REF(R)];report=1'>Show roundend report again</a>")
 
 /datum/action/report
 	name = "Show roundend report"
@@ -906,3 +909,21 @@
 				return
 			qdel(query_update_everything_ranks)
 		qdel(query_check_everything_ranks)
+
+//enkephalin rush roundend stuff
+/datum/controller/subsystem/ticker/proc/mining_report()
+	. = list()
+	var/repaired_machines = (GLOB.lobotomy_repairs)
+	var/total_machines = (GLOB.lobotomy_damages)
+	var/facility_full_percentage = 100 * (repaired_machines / total_machines)
+	. += "<span class='header'>Site Recovery Report</span>"
+	. += "<div class='panel stationborder'>"
+	. += "[facility_full_percentage]% of the facility has been recovered!<br>"
+	if(facility_full_percentage >= 100)
+		. += "The facility is fully functional!<br>"
+	if(GLOB.bough_collected)
+		. += "The golden bough has been successfully retrieved!<br>"
+	else
+		. += "You have failed to collect the golden bough.<br>"
+	. += "</div>"
+	return

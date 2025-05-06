@@ -103,6 +103,8 @@
 	SLEEP_CHECK_DEATH(2 SECONDS)
 	playsound(get_turf(src), 'sound/abnormalities/judgementbird/ability.ogg', 75, 0, 7)
 	if(SSmaptype.maptype == "limbus_labs")
+		for(var/obj/structure/obstacle in view(2, src))
+			obstacle.take_damage(judgement_damage, PALE_DAMAGE)
 		for(var/mob/living/L in oview(judgement_range, src))//Listen I need jbird to not kill people through walls if hes going to play nice
 			if(faction_check_mob(L, FALSE))
 				continue
@@ -134,6 +136,15 @@
 					birdlist+=V
 					V = new(get_turf(L))
 					birdlist+=V
+
+	for(var/obj/vehicle/V in urange(judgement_range, src))
+		for(var/mob/living/occupant in V.occupants)
+			if(faction_check_mob(occupant, FALSE))
+				continue
+			if(occupant.stat == DEAD)
+				continue
+			new /obj/effect/temp_visual/judgement(get_turf(V))
+			occupant.deal_damage(judgement_damage, PALE_DAMAGE)
 
 	icon_state = icon_living
 	judging = FALSE
@@ -184,6 +195,7 @@
 	pass_flags = PASSTABLE
 	is_flying_animal = TRUE
 	density = FALSE
+	status_flags = MUST_HIT_PROJECTILE
 	health = 100
 	maxHealth = 100
 	melee_damage_lower = 5

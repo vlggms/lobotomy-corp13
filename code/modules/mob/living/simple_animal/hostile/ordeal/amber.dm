@@ -42,6 +42,8 @@
 	pixel_y = base_pixel_y
 	if(LAZYLEN(butcher_results)) //// It burrows in on spawn, spawned ones shouldn't
 		addtimer(CALLBACK(src, PROC_REF(BurrowOut), get_turf(src)))
+	if(SSmaptype == "lcorp_city")
+		can_burrow_solo = FALSE
 
 /mob/living/simple_animal/hostile/ordeal/amber_bug/death(gibbed)
 	alpha = 255
@@ -107,6 +109,11 @@
 	if(!T)
 		if(length(GLOB.xeno_spawn))
 			T = pick(GLOB.xeno_spawn)
+
+		else if(SSmaptype == "lcorp_city")
+			can_burrow_solo = FALSE
+			return
+
 		else
 			can_burrow_solo = FALSE
 			return
@@ -234,6 +241,8 @@
 	soundloop = new(list(src), TRUE)
 	if(LAZYLEN(butcher_results))
 		addtimer(CALLBACK(src, PROC_REF(BurrowOut), get_turf(src)))
+	if(SSmaptype == "lcorp_city")
+		can_burrow = FALSE
 
 /mob/living/simple_animal/hostile/ordeal/amber_dusk/OnDirChange(atom/thing, dir, newdir)
 	. = ..()

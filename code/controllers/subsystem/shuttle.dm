@@ -260,7 +260,7 @@ SUBSYSTEM_DEF(shuttle)
 		SSblackbox.record_feedback("text", "shuttle_reason", 1, "[call_reason]")
 		log_shuttle("Shuttle call reason: [call_reason]")
 		SSticker.emergency_reason = call_reason
-	message_admins("[ADMIN_LOOKUPFLW(user)] has called the shuttle. (<A HREF='?_src_=holder;[HrefToken()];trigger_centcom_recall=1'>TRIGGER CENTCOM RECALL</A>)")
+	message_admins("[ADMIN_LOOKUPFLW(user)] has called the shuttle. (<A HREF='byond://?_src_=holder;[HrefToken()];trigger_centcom_recall=1'>TRIGGER CENTCOM RECALL</A>)")
 
 /datum/controller/subsystem/shuttle/proc/centcom_recall(old_timer, admiral_message)
 	if(emergency.mode != SHUTTLE_CALL || emergency.timer != old_timer)
@@ -335,6 +335,9 @@ SUBSYSTEM_DEF(shuttle)
 		if(T && is_station_level(T.z))
 			callShuttle = FALSE
 			break
+
+	if(SSmaptype.maptype in SSmaptype.lc_maps || SSmaptype.maptype == "lcorp_city" || SSmaptype.maptype == "city")
+		callShuttle = FALSE
 
 	if(callShuttle)
 		if(EMERGENCY_IDLE_OR_RECALLED)

@@ -87,8 +87,8 @@
 	var/punishment_speed = 6
 	var/speed_duration = 60
 	var/weaken_duration = 30
-	var/min_dam_buff = 35
-	var/max_dam_buff = 40
+	var/min_dam_buff = 25
+	var/max_dam_buff = 30
 	var/min_dam_old
 	var/max_dam_old
 	var/old_speed

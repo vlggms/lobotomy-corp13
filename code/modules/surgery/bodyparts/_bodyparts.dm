@@ -37,6 +37,7 @@
 	var/stamina_dam = 0
 	var/max_stamina_damage = 0
 	var/max_damage = 0
+	var/max_damage_callback = 50
 
 	var/cremation_progress = 0 //Gradually increases while burning when at full damage, destroys the limb when at 100
 
@@ -97,6 +98,8 @@
 
 
 /obj/item/bodypart/Initialize(mapload)
+	if(SSmaptype.chosen_trait == FACILITY_TRAIT_CALLBACK)
+		max_damage = max_damage_callback
 	. = ..()
 	if(can_be_disabled)
 		RegisterSignal(src, SIGNAL_ADDTRAIT(TRAIT_PARALYSIS), PROC_REF(on_paralysis_trait_gain))

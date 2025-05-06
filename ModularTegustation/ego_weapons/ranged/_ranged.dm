@@ -20,6 +20,7 @@
 	item_flags = NEEDS_PERMIT
 	attack_verb_continuous = list("strikes", "hits", "bashes")
 	attack_verb_simple = list("strike", "hit", "bash")
+	is_ranged = TRUE
 
 	var/obj/item/firing_pin/pin = /obj/item/firing_pin/magic //standard firing pin for most guns
 	var/fire_sound = 'sound/weapons/emitter.ogg' //What sound should play when this ammo is fired
@@ -88,10 +89,6 @@
 	attack_speed = 0.5
 	force = 6
 
-/obj/item/ego_weapon/ranged/pistol/examine(mob/user)
-	. = ..()
-	. += span_notice("This weapon fits in an ego weapon belt.")
-
 /obj/item/ego_weapon/ranged/Initialize()
 	. = ..()
 	if(pin)
@@ -117,60 +114,86 @@
 /obj/item/ego_weapon/ranged/examine(mob/user)
 	. = ..()
 	. += GunAttackInfo()
-	if(reloadtime)
-		. += "Ammo Counter: [shotsleft]/[initial(shotsleft)]."
+	if(!reloadtime)
+		. += span_notice("This weapon has unlimited ammo.")
+	else if(shotsleft>0)
+		. += span_notice("Ammo Counter: [shotsleft]/[initial(shotsleft)].")
 	else
-		. += "This weapon has unlimited ammo."
+		. += span_danger("Ammo Counter: [shotsleft]/[initial(shotsleft)].")
 
 	if(reloadtime)
 		switch(reloadtime)
 			if(0 to 0.71 SECONDS)
-				. += span_notice("This weapon has a very fast reload.")
+				. += span_nicegreen("This weapon has a very fast reload.")
 			if(0.71 SECONDS to 1.21 SECONDS)
 				. += span_notice("This weapon has a fast reload.")
 			if(1.21 SECONDS to 1.71 SECONDS)
 				. += span_notice("This weapon has a normal reload speed.")
 			if(1.71 SECONDS to 2.51 SECONDS)
-				. += span_notice("This weapon has a slow reload.")
+				. += span_danger("This weapon has a slow reload.")
 			if(2.51 to INFINITY)
-				. += span_notice("This weapon has an extremely slow reload.")
+				. += span_danger("This weapon has an extremely slow reload.")
 
 	switch(weapon_weight)
 		if(WEAPON_HEAVY)
-			. += span_notice("This weapon requires both hands to fire.")
+			. += span_danger("This weapon requires both hands to fire.")
 		if(WEAPON_MEDIUM)
 			. += span_notice("This weapon can be fired with one hand.")
 		if(WEAPON_LIGHT)
-			. += span_notice("This weapon can be dual wielded.")
+			. += span_nicegreen("This weapon can be dual wielded.")
 
 	if(!autofire)
 		switch(fire_delay)
 			if(0 to 5)
-				. += span_notice("This weapon fires fast.")
+				. += span_nicegreen("This weapon fires fast.")
 			if(6 to 10)
 				. += span_notice("This weapon fires at a normal speed.")
 			if(11 to 15)
 				. += span_notice("This weapon fires slightly slower than usual.")
 			if(16 to 20)
-				. += span_notice("This weapon fires slowly.")
+				. += span_danger("This weapon fires slowly.")
 			else
-				. += span_notice("This weapon fires extremely slowly.")
+				. += span_danger("This weapon fires extremely slowly.")
 	else
 		//Give it to 'em in true rounds per minute, accurate to the 5s
 		var/rpm = 600 / autofire
 		rpm = round(rpm,5)
-		. += span_notice("This weapon is automatic.")
+		. += span_nicegreen("This weapon is automatic.")
 		. += span_notice("This weapon fires at [rpm] rounds per minute.")
 
+	. += span_notice("Examine this weapon more for melee information.")
+
 /obj/item/ego_weapon/ranged/EgoAttackInfo()
+	var/damage_type = damtype
+	var/damage = force
+	if(GLOB.damage_type_shuffler?.is_enabled && IsColorDamageType(damage_type))
+		var/datum/damage_type_shuffler/shuffler = GLOB.damage_type_shuffler
+		var/new_damage_type = shuffler.mapping_offense[damage_type]
+		if(new_damage_type == PALE_DAMAGE && damage_type != PALE_DAMAGE)
+			damage *= shuffler.pale_debuff
+		else if(new_damage_type != PALE_DAMAGE && damage_type == PALE_DAMAGE)
+			damage /= shuffler.pale_debuff
+		damage_type = new_damage_type
 	if(force_multiplier != 1)
-		return span_notice("It deals [round(force * force_multiplier, 0.1)] [damtype] damage in melee. (+ [(force_multiplier - 1) * 100]%)")
-	return span_notice("It deals [force] [damtype] damage in melee.")
+		return span_notice("It deals [round(damage * force_multiplier, 0.1)] [damage_type] damage in melee. (+ [(force_multiplier - 1) * 100]%)")
+	return span_notice("It deals [damage] [damage_type] damage in melee.")
 
 /obj/item/ego_weapon/ranged/proc/GunAttackInfo()
 	if(!last_projectile_damage || !last_projectile_type)
 		return span_userdanger("The bullet of this EGO gun has not properly initialized, report this to coders!")
-	return span_notice("Its bullets deal [round(last_projectile_damage, 0.1)] [last_projectile_type] damage.[projectile_damage_multiplier != 1 ? " (+ [(projectile_damage_multiplier - 1) * 100]%)" : ""]")
+	var/damage_type = last_projectile_type
+	var/damage = round(last_projectile_damage, 0.1)
+	if(GLOB.damage_type_shuffler?.is_enabled && IsColorDamageType(damage_type))
+		var/datum/damage_type_shuffler/shuffler = GLOB.damage_type_shuffler
+		var/new_damage_type = shuffler.mapping_offense[damage_type]
+		if(new_damage_type == PALE_DAMAGE && damage_type != PALE_DAMAGE)
+			damage = round(last_projectile_damage * shuffler.pale_debuff, 0.1)
+		else if(new_damage_type != PALE_DAMAGE && damage_type == PALE_DAMAGE)
+			damage = round(last_projectile_damage / shuffler.pale_debuff, 0.1)
+		damage_type = new_damage_type
+	if(pellets > 1)	//for shotguns
+		return span_notice("Its bullets deal [damage] x [pellets] [damage_type] damage.[projectile_damage_multiplier != 1 ? " (+ [(projectile_damage_multiplier - 1) * 100]%)" : ""]")
+	return span_notice("Its bullets deal [damage] [damage_type] damage.[projectile_damage_multiplier != 1 ? " (+ [(projectile_damage_multiplier - 1) * 100]%)" : ""]")
 
 /// Updates the damage/type of projectiles inside of the gun
 /obj/item/ego_weapon/ranged/proc/update_projectile_examine()
@@ -521,3 +544,75 @@
 		azoom.gun = src
 
 #undef DUALWIELD_PENALTY_EXTRA_MULTIPLIER
+
+//Least important part: Melee attack info
+//Has to be coded differently as an examine_more.
+//Shoot me now - Kitsunemitsu/Kirie
+/obj/item/ego_weapon/ranged/examine_more(mob/user)
+	var/list/msg = list(span_notice("This weapon deals [force] [damtype] damage in melee."))
+
+	if(reach>1)
+		msg += span_notice("This weapon has a reach of [reach].")
+
+	if(SSmaptype.chosen_trait == FACILITY_TRAIT_CRITICAL_HITS)
+		if(crit_multiplier!=1)
+			msg += span_notice("This weapon has a crit rate of [crit_multiplier]x  normal.")
+
+	if(crit_info)
+		msg += span_notice("[crit_info]")
+
+	if(throwforce>force)
+		msg += span_notice("This weapon deals [throwforce] [damtype] damage when thrown.")
+
+	switch(attack_speed)
+		if(-INFINITY to 0.39)
+			msg += span_notice("This weapon has a very fast attack speed.")
+
+		if(0.4 to 0.69) // nice
+			msg += span_notice("This weapon has a fast attack speed.")
+
+		if(0.7 to 0.99)
+			msg += span_notice("This weapon attacks slightly faster than normal.")
+
+		if(1.01 to 1.49)
+			msg += span_notice("This weapon attacks slightly slower than normal.")
+
+		if(1.5 to 1.99)
+			msg += span_notice("This weapon has a slow attack speed.")
+
+		if(2 to INFINITY)
+			msg += span_notice("This weapon attacks extremely slow.")
+
+	switch(swingstyle)
+		if(WEAPONSWING_LARGESWEEP)
+			msg += span_notice("This weapon can be swung in an arc instead of at a specific target.")
+
+		if(WEAPONSWING_THRUST)
+			msg += span_notice("This weapon can be thrust at tiles up to [reach] tiles away instead of a specific target.")
+
+	switch(stuntime)
+		if(1 to 2)
+			msg += span_notice("This weapon stuns you for a very short duration on hit.")
+		if(2 to 4)
+			msg += span_notice("This weapon stuns you for a short duration on hit.")
+		if(5 to 6)
+			msg += span_notice("This weapon stuns you for a moderate duration on hit.")
+		if(6 to 8)
+			msg += span_warning("CAUTION: This weapon stuns you for a long duration on hit.")
+		if(9 to INFINITY)
+			msg += span_warning("WARNING: This weapon stuns you for a very long duration on hit.")
+
+
+	switch(knockback)
+		if(KNOCKBACK_LIGHT)
+			msg += span_notice("This weapon has slight enemy knockback.")
+
+		if(KNOCKBACK_MEDIUM)
+			msg += span_notice("This weapon has decent enemy knockback.")
+
+		if(KNOCKBACK_HEAVY)
+			msg += span_notice("This weapon has neck-snapping enemy knockback.")
+
+		else if(knockback)
+			msg += span_notice("This weapon has [knockback >= 10 ? "neck-snapping": ""] enemy knockback.")
+	return msg

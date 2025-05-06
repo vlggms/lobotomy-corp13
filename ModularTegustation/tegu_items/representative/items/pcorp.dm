@@ -130,9 +130,11 @@
 	icon_state = "tackledolphin"
 	w_class = WEIGHT_CLASS_BULKY
 	drag_slowdown = 1
+	var/component_type = /datum/component/storage/concrete
 
 /obj/item/clothing/gloves/pcorp/ComponentInitialize()
 	. = ..()
+	AddComponent(component_type)
 	var/datum/component/storage/STR = GetComponent(/datum/component/storage)
 	STR.max_items = 3
 	STR.max_w_class = WEIGHT_CLASS_BULKY
@@ -146,17 +148,18 @@
 	icon_state = "pcorp"
 	w_class = WEIGHT_CLASS_BULKY
 	drag_slowdown = 1
+	var/component_type = /datum/component/storage/concrete
 
 /obj/item/clothing/gloves/pcorpbig/ComponentInitialize()
 	. = ..()
+	AddComponent(component_type)
 	var/datum/component/storage/STR = GetComponent(/datum/component/storage)
-	STR.max_items = 3
+	STR.max_items = 1
 	STR.max_w_class = WEIGHT_CLASS_BULKY
 	STR.max_combined_w_class = 100
-	STR.set_holdable(GLOB.small_ego)
-
-
-
+	STR.set_holdable(list(
+		/obj/item/ego_weapon,
+	))
 
 // Food
 /obj/item/food/canned/pcorp_icecream

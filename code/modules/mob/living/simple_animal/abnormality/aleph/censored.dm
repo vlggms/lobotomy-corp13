@@ -286,6 +286,8 @@
 	pixel_x = base_pixel_x
 	base_pixel_y = rand(-6,6)
 	pixel_y = base_pixel_y
+	if(SSmaptype.maptype == "rcorp")
+		density = TRUE
 
 /mob/living/simple_animal/hostile/mini_censored/Life()
 	. = ..()

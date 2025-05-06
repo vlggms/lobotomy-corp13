@@ -20,6 +20,9 @@
 		var/addition = rand(-20, 20)
 		if(user in gazers) // Why are you rerolling your stats twice!?
 			addition -= 10
+		for(var/upgradecheck in GLOB.jcorp_upgrades)
+			if(upgradecheck == "Tool Gacha")
+				addition += 5
 		user.adjust_attribute_level(attribute, addition)
 		total_addition += addition
 

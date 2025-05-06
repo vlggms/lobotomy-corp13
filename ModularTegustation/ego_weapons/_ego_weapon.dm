@@ -11,6 +11,7 @@
 	swingstyle = WEAPONSWING_SMALLSWEEP
 	var/list/attribute_requirements = list()
 	var/special
+	var/is_ranged //Is this a ranged weapon? Mostly deals with examines.
 
 	/// How much knockback does this weapon deal, if at all?
 	var/knockback = FALSE
@@ -99,24 +100,37 @@
 
 /obj/item/ego_weapon/examine(mob/user)
 	. = ..()
-	. += EgoAttackInfo(user)
+	if(!is_ranged)
+		. += EgoAttackInfo(user)
 	if(special)
 		. += span_notice("[special]")
+	if(tool_behaviour == TOOL_MINING)
+		. += span_notice("This weapon can be used to mine at a [(100/toolspeed)]% efficiency.")
+
 	if(LAZYLEN(attribute_requirements))
-		. += span_notice("It has <a href='?src=[REF(src)];list_attributes=1'>certain requirements</a> for the wearer.")
+		if(!ishuman(user))	//You get a notice if you are a ghost or otherwise
+			. += span_notice("It has <a href='byond://?src=[REF(src)];list_attributes=1'>certain requirements</a> for the wearer.")
+		else if(CanUseEgo(user))	//It's green if you can use it
+			. += span_nicegreen("It has <a href='byond://?src=[REF(src)];list_attributes=1'>certain requirements</a> for the wearer.")
+		else				//and red if you cannot use it
+			. += span_danger("You cannot use this EGO!")
+			. += span_danger("It has <a href='byond://?src=[REF(src)];list_attributes=1'>certain requirements</a> for the wearer.")
 
-	if(type in GLOB.small_ego)
-		. += span_notice("This weapon fits in an EGO belt.")
+	var/list/typecache_small = typecacheof(GLOB.small_ego)
+	if(is_type_in_typecache(src, typecache_small))
+		. += span_nicegreen("This weapon fits in an EGO belt.")
 
+	//Melee stuff is NOT shown on ranged lol
+	if(is_ranged)
+		return
 	if(reach>1)
 		. += span_notice("This weapon has a reach of [reach].")
-
 	if(SSmaptype.chosen_trait == FACILITY_TRAIT_CRITICAL_HITS)
 		if(crit_multiplier!=1)
 			. += span_notice("This weapon has a crit rate of [crit_multiplier]x  normal.")
 
-	if(crit_info)
-		. += span_notice("[crit_info]")
+		if(crit_info)
+			. += span_notice("[crit_info]")
 
 	if(throwforce>force)
 		. += span_notice("This weapon deals [throwforce] [damtype] damage when thrown.")
@@ -141,9 +155,6 @@
 			. += span_notice("This weapon attacks extremely slow.")
 
 	switch(swingstyle)
-		if(WEAPONSWING_SMALLSWEEP)
-			. += span_notice("This weapon can be swung at a single tile instead of a specific target.")
-
 		if(WEAPONSWING_LARGESWEEP)
 			. += span_notice("This weapon can be swung in an arc instead of at a specific target.")
 
@@ -158,9 +169,9 @@
 		if(5 to 6)
 			. += span_notice("This weapon stuns you for a moderate duration on hit.")
 		if(6 to 8)
-			. += span_warning("CAUTION: This weapon stuns you for a long duration on hit.")
+			. += span_danger("CAUTION: This weapon stuns you for a long duration on hit.")
 		if(9 to INFINITY)
-			. += span_warning("WARNING: This weapon stuns you for a very long duration on hit.")
+			. += span_danger("WARNING: This weapon stuns you for a very long duration on hit.")
 
 
 	switch(knockback)
@@ -176,13 +187,14 @@
 		else if(knockback)
 			. += span_notice("This weapon has [knockback >= 10 ? "neck-snapping": ""] enemy knockback.")
 
+
 /obj/item/ego_weapon/Topic(href, href_list)
 	. = ..()
 	if(href_list["list_attributes"])
-		var/display_text = span_warning("<b>It requires the following attributes:</b>")
+		var/display_text = span_danger("<b>It requires the following attributes:</b>")
 		for(var/atr in attribute_requirements)
 			if(attribute_requirements[atr] > 0)
-				display_text += "\n <span class='warning'>[atr]: [attribute_requirements[atr]].</span>"
+				display_text += "\n <span class='danger'>[atr]: [attribute_requirements[atr]].</span>"
 		display_text += SpecialGearRequirements()
 		to_chat(usr, display_text)
 
@@ -218,9 +230,19 @@
 	return
 
 /obj/item/ego_weapon/proc/EgoAttackInfo(mob/user)
+	var/damage_type = damtype
+	var/damage = force
+	if(GLOB.damage_type_shuffler?.is_enabled && IsColorDamageType(damage_type))
+		var/datum/damage_type_shuffler/shuffler = GLOB.damage_type_shuffler
+		var/new_damage_type = shuffler.mapping_offense[damage_type]
+		if(new_damage_type == PALE_DAMAGE && damage_type != PALE_DAMAGE)
+			damage *= shuffler.pale_debuff
+		else if(new_damage_type != PALE_DAMAGE && damage_type == PALE_DAMAGE)
+			damage /= shuffler.pale_debuff
+		damage_type = new_damage_type
 	if(force_multiplier != 1)
-		return span_notice("It deals [round(force * force_multiplier, 0.1)] [damtype] damage. (+ [(force_multiplier - 1) * 100]%)")
-	return span_notice("It deals [force] [damtype] damage.")
+		return span_notice("It deals [round(damage * force_multiplier, 0.1)] [damage_type] damage. (+ [(force_multiplier - 1) * 100]%)")
+	return span_notice("It deals [damage] [damage_type] damage.")
 
 /obj/item/ego_weapon/GetTarget(mob/user, list/potential_targets = list())
 	if(damtype != WHITE_DAMAGE)

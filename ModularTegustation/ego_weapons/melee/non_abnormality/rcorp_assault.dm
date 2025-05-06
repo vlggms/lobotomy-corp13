@@ -24,6 +24,9 @@
 		if(user.mind.assigned_role in banned_roles)
 			to_chat(user, span_notice("You are not trained to use Rcorp firearms!"))
 			return FALSE
+		if(user.mind.has_antag_datum(/datum/antagonist/wizard/arbiter/rcorp))
+			to_chat(user, span_notice("You wouldn't stoop so low as to use the weapons of those below you.")) //You are a arbiter not a super crazed gunman
+			return FALSE
 	..()
 
 /obj/item/gun/energy/e_gun/rabbitdash/white
