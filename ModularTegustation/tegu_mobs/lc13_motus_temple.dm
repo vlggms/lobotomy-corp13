@@ -29,7 +29,7 @@
 
 /mob/living/simple_animal/hostile/clan/stone_guard/ChargeUpdated()
 	if(charge <= 1 && can_act)
-		stagger()
+		return stagger()
 	if(charge >= 15)
 		ChangeResistances(list(RED_DAMAGE = 0.3, WHITE_DAMAGE = 0.3, BLACK_DAMAGE = 0.3, PALE_DAMAGE = 0.8))
 	else
@@ -109,21 +109,21 @@
 		SLEEP_CHECK_DEATH(0.15 SECONDS)
 	SLEEP_CHECK_DEATH(ability_delay)
 	playsound(src, 'sound/weapons/fixer/hana_pierce.ogg', 75, FALSE, 5)
+	var/hit_target = FALSE
 	for(var/turf/TT in turf_list)
 		var/obj/effect/temp_visual/thrust/AoE = new(T, COLOR_GRAY)
 		var/matrix/M = matrix(AoE.transform)
 		M.Turn(Get_Angle(src, T)-90)
 		AoE.transform = M
-		var/hit_target = FALSE
 		for(var/mob/living/L in HurtInTurf(TT, list(), ability_damage, RED_DAMAGE, null, TRUE, FALSE, TRUE, hurt_structure = TRUE))
 			hit_target = TRUE
 			var/datum/status_effect/stacking/lc_tremor/tremor = L.has_status_effect(/datum/status_effect/stacking/lc_tremor)
 			if(tremor)
 				tremor.TremorBurst()
-		if(!hit_target)
-			charge -= 5
-			playsound(src, 'sound/weapons/ego/devyat_overclock.ogg', 50, FALSE, 5)
-			ChargeUpdated()
+	if(!hit_target)
+		charge -= 5
+		playsound(src, 'sound/weapons/ego/devyat_overclock.ogg', 50, FALSE, 5)
+		ChargeUpdated()
 	can_act = TRUE
 
 //Mad Fly Swarm
