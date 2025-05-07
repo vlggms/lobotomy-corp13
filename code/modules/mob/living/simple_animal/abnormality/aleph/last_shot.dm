@@ -22,7 +22,9 @@ GLOBAL_LIST_EMPTY(meat_list)
 
 	work_damage_amount = 5		//Damage is low, could be doubled or quadrupled.
 	work_damage_type = RED_DAMAGE
-	chem_type = /datum/reagent/abnormality/sin/pride
+	chem_type = /datum/reagent/abnormality/last_shot
+	harvest_phrase = span_notice("You peel off some rotten flesh off the floor surrounding %ABNO and collect it in %VESSEL.")
+	harvest_phrase_third = "%PERSON harvest some rotten flesh surrounding %ABNO."
 	max_boxes = 27
 	damage_coeff = list(RED_DAMAGE = 1, WHITE_DAMAGE = 1, BLACK_DAMAGE = 1.5, PALE_DAMAGE = 2)
 	start_qliphoth = 2
@@ -405,3 +407,12 @@ GLOBAL_LIST_EMPTY(meat_list)
 		return FALSE
 	can_act = TRUE
 	return TRUE
+
+/datum/reagent/abnormality/last_shot
+	name = "Meat Moss"
+	description = "It reeks to high hell. Protects your body and emboldens your Fortitude."
+	metabolization_rate = 0.8 * REAGENTS_METABOLISM
+	color = "#3D0004"
+	stat_changes = list(10, 0, 0, 0)
+	damage_mods = list(0.8, 1, 1, 1) //Improves your fort and red resistance. It's an ALEPH so I feel like its chem being strong is fair.
+

@@ -39,6 +39,10 @@
 	gift_type = /datum/ego_gifts/desert
 	abnormality_origin = ABNORMALITY_ORIGIN_ORIGINAL
 
+	chem_type = /datum/reagent/abnormality/sirocco
+	harvest_phrase = span_notice("While %ABNO was distracted, you fill up %VESSEL with its sand. The sand continues to move long after being seperated from %ABNO.")
+	harvest_phrase_third = "While %ABNO was distracted, %PERSON fills %VESSEL with the sandstorm's sand."
+
 	observation_prompt = "Why is everyone here such a bore? <br>Why doesn't anyone want to play with me? <br>\
 		A young girl's voice cries out from somewhere within the storm. <br>\
 		\"Everyone keeps staring at the floor like life's a chore...is being an adult really that bad?\" <br.\
@@ -154,3 +158,11 @@
 /mob/living/simple_animal/hostile/abnormality/sirocco/Destroy()
 	grabbed_list = list()
 	. = ..()
+
+/datum/reagent/abnormality/sirocco
+	name = "Restless Sand"
+	description = "Looks like regular old sand. Tastes sweet going down."
+	color = "#FDEE73"
+	stat_changes = list(0, 3, 3, 5) //increases justice, fort and temperance
+	damage_mods = list(1.5, 1, 1, 1) //but makes you weaker to red.
+
