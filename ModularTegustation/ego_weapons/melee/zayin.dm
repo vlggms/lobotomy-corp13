@@ -99,7 +99,7 @@
 
 /obj/item/ego_weapon/support/wingbeat
 	name = "wingbeat"
-	desc = "If NAME can show that they are competent, then they may be able to draw Fairy Festival’s attention.."
+	desc = "If an agent can show that they are competent, then they may be able to draw Fairy Festival’s attention.."
 	icon_state = "wingbeat"
 	special = "Use this weapon in your hand when wearing matching armor to heal the HP of others nearby."
 	force = 14
@@ -437,3 +437,23 @@
 	if(T.target == user)
 		T.LoseTarget()
 		T.visible_message(span_nicegreen("[T] lost interest in [user]!"))
+
+/obj/item/ego_weapon/promise
+	name = "belief and promise"
+	desc = "If you make an attempt with an austere heart devoid of desire or expectation, you may receive an unexpected reward."
+	icon_state = "eclipse"
+	force = 14
+	damtype = WHITE_DAMAGE
+	attack_verb_continuous = list("slices", "slashes", "stabs")
+	attack_verb_simple = list("slice", "slash", "stab")
+	hitsound = 'sound/weapons/bladeslice.ogg'
+
+/obj/item/ego_weapon/mirror
+	name = "adjustment"
+	desc = "Those who face themselves in the mirror may appear the same, but in actuality, they have become completely different people."
+	icon_state = "eclipse"
+	force = 14
+	damtype = BLACK_DAMAGE
+	attack_verb_continuous = list("slices", "slashes", "stabs")
+	attack_verb_simple = list("slice", "slash", "stab")
+	hitsound = 'sound/weapons/bladeslice.ogg'
