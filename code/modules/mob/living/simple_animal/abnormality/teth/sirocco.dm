@@ -163,6 +163,6 @@
 	name = "Restless Sand"
 	description = "Looks like regular old sand. Tastes sweet going down."
 	color = "#FDEE73"
-	stat_changes = list(0, 3, 3, 5) //increases justice, fort and temperance
+	stat_changes = list(0, 3, 3, 5) //increases justice, prudence and temperance
 	damage_mods = list(1.5, 1, 1, 1) //but makes you weaker to red.
 
