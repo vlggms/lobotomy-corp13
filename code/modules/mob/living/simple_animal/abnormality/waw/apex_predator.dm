@@ -40,8 +40,8 @@
 	work_damage_amount = 10
 	work_damage_type = RED_DAMAGE
 	chem_type = /datum/reagent/abnormality/apex_predator
-	harvest_phrase = span_notice("A cloudly liquid leaks from %ABNO, stinking of burnt plastic. You collect it using %VESSEL.")
-	harvest_phrase_third = "%PERSON fills %VESSEL with a cloudly, foul smelling liquid that's leaking out of %ABNO."
+	harvest_phrase = span_notice("A cloudy liquid leaks from %ABNO, stinking of burnt plastic. You collect it using %VESSEL.")
+	harvest_phrase_third = "%PERSON fills %VESSEL with a cloudy, foul smelling liquid that's leaking out of %ABNO."
 
 	ego_list = list(
 		/datum/ego_datum/weapon/animalism,
@@ -224,7 +224,7 @@
 
 /datum/reagent/abnormality/apex_predator
 	name = "Plasticine Anesthesia"
-	description = "A clear liquid that reeks of plastic. It weakens the mind while surturing physical wounds."
+	description = "A cloudy liquid that reeks of plastic. It weakens the mind while surturing physical wounds."
 	color = "#e4ebf5"
 	health_restore = 4
 	stat_changes = list(0, -15, 0, 0)
