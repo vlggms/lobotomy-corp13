@@ -58,7 +58,7 @@ GLOBAL_LIST_EMPTY(heretic_puzzle)
 			correct_statue++
 	if(correct_statue >= 6)
 		visible_message(span_nicegreen("\The [src] suddenly produces a key and drops it on the groud, looks like you passed it's trial."))
-		new /obj/item/keycard/loot_room (get_turf(smart_pal))
+		new /obj/item/keycard/motus_medbay (get_turf(smart_pal))
 
 /mob/living/simple_animal/hostile/clan/stone_guard/dagger_puzzle/proc/check_assassination()
 	var/mob/living/simple_animal/hostile/clan/stone_guard/dagger_puzzle/king = null
@@ -195,7 +195,7 @@ GLOBAL_LIST_EMPTY(heretic_puzzle)
 			switch(key_type)
 				if("real")
 					to_chat(user, span_nicegreen("You collect the real key!"))
-					new /obj/item/keycard/motus_medbay (get_turf(user))
+					new /obj/item/keycard/motus_library (get_turf(user))
 					icon_state = "key_case_nokey"
 					return
 
@@ -268,3 +268,77 @@ GLOBAL_LIST_EMPTY(heretic_puzzle)
 	desc = "A library key. How fantastic. Looks like it belongs to a high security door."
 	puzzle_id = "motus_library"
 	icon_state = "golden_key"
+
+/obj/machinery/door/keycard/puzzle_riddles
+	desc = "This door appears to have a voice box attached to it, What could it be used for?"
+	var/current_riddle = 1
+	var/riddling = FALSE
+
+/obj/machinery/door/keycard/puzzle_riddles/try_to_activate_door(mob/user)
+	if(!riddling)
+		riddling = TRUE
+		if(current_riddle == 1)
+			riddle_1(user)
+			return
+		if(current_riddle == 2)
+			riddle_2(user)
+			return
+		if(current_riddle == 3)
+			riddle_3(user)
+			return
+		if(current_riddle >= 4)
+			open()
+		riddling = FALSE
+	. = ..()
+
+/obj/machinery/door/keycard/puzzle_riddles/proc/riddle_1(mob/user)
+	say("I don’t bite my nails, But I like to attack them. Headfirst and mouthless and clawing when required.")
+	var/riddle_ask = input("I don’t bite my nails, But I like to attack them. Headfirst and mouthless and clawing when required.", "What is this?") as text
+	if(riddle_ask == "Hammer" || riddle_ask == "hammer")
+		current_riddle++
+	else
+		playsound(get_turf(src), 'sound/machines/buzz-sigh.ogg', 40, TRUE)
+		if(ishuman(user))
+			var/mob/living/carbon/human/silly_person = user
+			silly_person.deal_damage(50, RED_DAMAGE)
+			to_chat(silly_person, "The door extends some sort of tool and bonks you on the head!")
+
+/obj/machinery/door/keycard/puzzle_riddles/proc/riddle_2(mob/user)
+	say("I can soar through the air with ease, But I’m not something you’ll want to seize.")
+	sleep(20)
+	say("My namesakes are scattered across the sky, If I catch your eye, it’s lights out - goodbye.")
+	var/riddle_ask = input("I can soar through the air with ease, But I’m not something you’ll want to seize. My namesakes are scattered across the sky, If I catch your eye, it’s lights out - goodbye.", "What is this?") as text
+	if(riddle_ask == "Throwing Star" || riddle_ask == "throwing star")
+		current_riddle++
+	else
+		playsound(get_turf(src), 'sound/machines/buzz-sigh.ogg', 40, TRUE)
+		if(ishuman(user))
+			var/mob/living/carbon/human/silly_person = user
+			var/starlanding = locate(src.x - 1, src.y, src.z)
+			var/obj/item/throwing_star/stamina/ninja/ninja_star = new(starlanding)
+			ninja_star.throw_at(silly_person)
+			to_chat(silly_person, "The door fires something at you!")
+
+/obj/machinery/door/keycard/puzzle_riddles/proc/riddle_3(mob/user)
+	say("I am the one that shifts between worlds, and hinders all who follow.")
+	sleep(20)
+	say("To name me is to speak of love, though what I block is hollow.")
+	var/riddle_ask = input("I am the one that shifts between worlds, and hinders all who follow. To name me is to speak of love, though what I block is hollow.", "What is this?") as text
+	if(riddle_ask == "Door" || riddle_ask == "door")
+		current_riddle++
+	else
+		playsound(get_turf(src), 'sound/machines/buzz-sigh.ogg', 40, TRUE)
+		if(ishuman(user))
+			var/mob/living/carbon/human/silly_person = user
+			var/turf/starting_turf = get_turf(src)
+			if(get_dist(src, silly_person) <= 2)
+				visible_message("<span class='danger'>[src] tips over and falls on [silly_person]!</span>")
+				silly_person.deal_damage(90, RED_DAMAGE)
+				silly_person.Paralyze(60)
+				silly_person.emote("scream")
+				playsound(silly_person, 'sound/effects/blobattack.ogg', 40, TRUE)
+				playsound(silly_person, 'sound/effects/splat.ogg', 50, TRUE)
+				throw_at(get_turf(silly_person), 1, 1, spin=FALSE, quickstart=FALSE)
+				sleep(20)
+				visible_message("<span class='danger'>[src] teleports back!</span>")
+				forceMove(starting_turf)
