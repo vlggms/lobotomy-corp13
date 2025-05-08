@@ -170,8 +170,101 @@ GLOBAL_LIST_EMPTY(heretic_puzzle)
 	icon_state = "stone_clean"
 	wanted_item = /obj/item/crown_dagger_puzzle/crown
 
-/obj/item/keycard/loot_room
-	name = "golden keycard"
-	desc = "A golden keycard. How fantastic. Looks like it belongs to a high security door."
-	color = "#ffca09"
-	puzzle_id = "loot_room"
+/obj/item/keycard/motus_medbay
+	name = "medbay keycard"
+	desc = "A medbay keycard. How fantastic. Looks like it belongs to a high security door."
+	color = "#0988ff"
+	puzzle_id = "motus_medbay"
+
+/obj/structure/puzzle_key_case
+	name = "strange keycase"
+	desc = "A case holding a key, however something feels off about it. If only you could test some items on it..."
+	icon = 'ModularTegustation/Teguicons/teaser_mobs.dmi'
+	icon_state = "key_case"
+	density = TRUE
+	anchored = TRUE
+	resistance_flags = INDESTRUCTIBLE | FIRE_PROOF | ACID_PROOF | LAVA_PROOF
+	var/key_type = "real"
+
+/obj/structure/puzzle_key_case/interact(mob/user, special_state)
+	. = ..()
+	if(ishuman(user))
+		var/mob/living/carbon/human/looter = user
+		to_chat(user, span_notice("You slowly start reaching out for the key..."))
+		if(do_after(user, 50, user))
+			switch(key_type)
+				if("real")
+					to_chat(user, span_nicegreen("You collect the real key!"))
+					new /obj/item/keycard/motus_medbay (get_turf(user))
+					icon_state = "key_case_nokey"
+					return
+
+				if("illusion")
+					visible_message(span_danger("The key was an illusion! Causing a cold chill to go down your spine!"))
+					looter.deal_damage(80, WHITE_DAMAGE)
+					playsound(get_turf(src), 'sound/hallucinations/veryfar_noise.ogg', 50, FALSE, 5)
+
+				if("monster")
+					visible_message(span_danger("The key was an mimic! Causing it to bite you!"))
+					playsound(get_turf(src), 'sound/abnormalities/fairyfestival/fairy_festival_bite.ogg', 50, FALSE, 5)
+					looter.deal_damage(80, BLACK_DAMAGE)
+
+				if("explosive")
+					visible_message(span_danger("The key was an explosive! Causing it to explode!"))
+					new /obj/effect/temp_visual/explosion(get_turf(src))
+					playsound(get_turf(src), 'sound/effects/ordeals/steel/gcorp_boom.ogg', 60, TRUE)
+					for(var/mob/living/L in view(2, src))
+						L.apply_damage(80, RED_DAMAGE, null, L.run_armor_check(null, RED_DAMAGE))
+
+		else
+			to_chat(user, span_nicegreen("You change your mind at the last second."))
+		shuffle_keys()
+		say("Keys shuffled, please try again.")
+
+/obj/structure/puzzle_key_case/proc/shuffle_keys()
+	var/list/nearby_cases = list()
+	for(var/obj/structure/puzzle_key_case/C in range(5, src))
+		nearby_cases += C
+	shuffle_inplace(nearby_cases)
+	case_shuffle(nearby_cases[1], "real")
+	case_shuffle(nearby_cases[2], "illusion")
+	case_shuffle(nearby_cases[3], "monster")
+	case_shuffle(nearby_cases[4], "explosive")
+
+/obj/structure/puzzle_key_case/proc/case_shuffle(obj/structure/case, newkey)
+	if(istype(case, /obj/structure/puzzle_key_case))
+		var/obj/structure/puzzle_key_case/shuffle_target = case
+		shuffle_target.key_type = newkey
+		shuffle_target.icon_state = "key_case"
+
+/obj/structure/puzzle_key_case/attacked_by(obj/item/I, mob/living/user)
+	. = ..()
+	if(istype(I, /obj/item/flashlight))
+		to_chat(user, span_notice("You start shining your [I.name] on the [src]"))
+		if(do_after(user, 30, user))
+			if(key_type == "illusion")
+				to_chat(user, span_warning("You don't see a shadow bellow the key!"))
+			else
+				to_chat(user, span_notice("You see a shadow bellow the key"))
+
+	if(istype(I, /obj/item/food))
+		to_chat(user, span_notice("You start hovering your [I.name] around [src]"))
+		if(do_after(user, 30, user))
+			if(key_type == "monster")
+				to_chat(user, span_warning("Notice the key slightly twitching!"))
+			else
+				to_chat(user, span_notice("Nothing happens"))
+
+	if(istype(I, /obj/item/lighter))
+		to_chat(user, span_notice("You start hovering your [I.name] around [src]"))
+		if(do_after(user, 30, user))
+			if(key_type == "explosive")
+				to_chat(user, span_warning("You hear a small sizzle bellow the key!"))
+			else
+				to_chat(user, span_notice("Nothing happens"))
+
+/obj/item/keycard/motus_library
+	name = "library key"
+	desc = "A library key. How fantastic. Looks like it belongs to a high security door."
+	puzzle_id = "motus_library"
+	icon_state = "golden_key"
