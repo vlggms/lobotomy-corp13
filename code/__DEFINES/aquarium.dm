@@ -28,5 +28,6 @@
 #define AQUARIUM_FLUID_SULPHWATEVER "Sulfuric Water"
 #define AQUARIUM_FLUID_AIR "Air"
 #define AQUARIUM_FLUID_ANADROMOUS "Adaptive to both Freshwater and Saltwater" // LC13 addition: MODULE ID: FISHING
+#define AQUARIUM_FLUID_ENKEPHALIN "Enkephalin"
 
 #define AQUARIUM_COMPANY "Aquatech Ltd." // LC13 addition: MODULE ID: FISHING
