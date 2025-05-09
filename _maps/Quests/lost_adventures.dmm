@@ -1,22 +1,19 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
 "ad" = (
 /obj/effect/decal/cleanable/dirt/dust,
-/obj/effect/decal/cleanable/xenoblood,
-/turf/open/floor/stone,
-/area/city/backstreets_room)
-"ao" = (
-/obj/structure/bookcase{
-	pixel_x = -32
-	},
-/obj/effect/decal/cleanable/dirt/dust,
-/turf/open/floor/carpet/black,
-/area/city/backstreets_room)
-"aB" = (
-/obj/effect/decal/cleanable/dirt/dust,
-/obj/structure/chair/sofa/right{
+/obj/structure/chair/pew/left{
 	dir = 1
 	},
-/obj/item/storage/book/bible,
+/turf/open/floor/holofloor/chapel{
+	dir = 1
+	},
+/area/city/backstreets_room)
+"aG" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/table/greyscale{
+	color = "#8a8a8a"
+	},
+/obj/item/crown_dagger_puzzle/spear,
 /turf/open/floor/carpet/black,
 /area/city/backstreets_room)
 "aO" = (
@@ -26,6 +23,12 @@
 /turf/open/floor/plating/asteroid{
 	name = "outskirts sand"
 	},
+/area/city/backstreets_room)
+"bp" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/fluff/empty_cryostasis_sleeper,
+/obj/effect/decal/cleanable/xenoblood/xgibs,
+/turf/open/indestructible/white,
 /area/city/backstreets_room)
 "bv" = (
 /obj/structure/bookcase{
@@ -40,54 +43,37 @@
 /obj/item/food/breadslice/moldy,
 /turf/open/floor/wood,
 /area/city/backstreets_room)
-"bL" = (
-/obj/structure/bed/maint,
+"bC" = (
 /obj/effect/decal/cleanable/dirt/dust,
-/mob/living/simple_animal/hostile/mad_fly_nest,
-/obj/effect/mob_spawn/human/corpse,
-/obj/effect/decal/cleanable/cobweb,
-/turf/open/floor/stone,
-/area/city/backstreets_room)
-"ce" = (
-/obj/structure/sign/departments/cargo,
-/turf/closed/indestructible/iron,
-/area/city/backstreets_room)
-"cj" = (
-/obj/effect/decal/cleanable/dirt/dust,
-/obj/effect/decal/cleanable/cobweb/cobweb2,
-/obj/structure/statue/silver/medborg,
-/obj/structure/fluff/oldturret{
-	density = 0;
-	layer = 2.8;
-	name = "pedestal";
-	desc = "A pedestal for a statue."
+/obj/structure/chair/pew/right{
+	dir = 1
 	},
-/turf/open/floor/stone,
+/turf/open/floor/holofloor/chapel{
+	dir = 4
+	},
 /area/city/backstreets_room)
-"cn" = (
-/obj/structure/sign/plaques/kiddie/library,
+"bJ" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/turf_decal/siding/wideplating/dark/corner{
+	dir = 8
+	},
+/obj/effect/turf_decal/siding/wideplating/dark{
+	dir = 1
+	},
+/turf/open/floor/plasteel/dark,
+/area/city/backstreets_room)
+"bX" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/decal/cleanable/xenoblood,
+/obj/effect/decal/remains/robot,
+/turf/open/indestructible/white,
+/area/city/backstreets_room)
+"co" = (
+/obj/structure/sign/departments/cargo,
 /turf/closed/indestructible/iron,
 /area/city/backstreets_room)
 "cO" = (
 /turf/closed/wall/mineral/gold,
-/area/city/backstreets_room)
-"cP" = (
-/obj/effect/decal/cleanable/dirt/dust,
-/obj/structure/chair/wood{
-	dir = 8
-	},
-/turf/open/floor/wood,
-/area/city/backstreets_room)
-"cU" = (
-/obj/effect/decal/cleanable/dirt/dust,
-/mob/living/simple_animal/hostile/clan/stone_guard/dagger_puzzle/crown,
-/obj/structure/fluff/oldturret{
-	density = 0;
-	layer = 2.8;
-	name = "pedestal";
-	desc = "A pedestal for a statue."
-	},
-/turf/open/floor/holofloor/chapel,
 /area/city/backstreets_room)
 "dc" = (
 /obj/effect/turf_decal/siding/wood{
@@ -100,54 +86,50 @@
 	name = "outskirts sand"
 	},
 /area/city/backstreets_room)
-"dq" = (
+"de" = (
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/structure/table/greyscale{
 	color = "#8a8a8a"
 	},
-/obj/item/crown_dagger_puzzle/spear,
+/obj/item/crown_dagger_puzzle/hammer,
 /turf/open/floor/carpet/black,
-/area/city/backstreets_room)
-"dH" = (
-/obj/effect/decal/cleanable/dirt/dust,
-/obj/structure/table/reinforced,
-/turf/open/floor/stone,
 /area/city/backstreets_room)
 "dX" = (
 /turf/open/ai_visible{
 	density = 1
 	},
 /area/city/backstreets_room)
+"dZ" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/table/glass,
+/obj/item/storage/backpack/duffelbag/med/surgery,
+/turf/open/floor/plasteel/showroomfloor,
+/area/city/backstreets_room)
 "eb" = (
 /obj/effect/decal/cleanable/dirt/dust,
 /turf/open/floor/light,
 /area/city/backstreets_room)
-"ed" = (
-/obj/structure/fence/door{
-	dir = 1
-	},
+"ee" = (
 /obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/fluff/paper/stack{
+	dir = 8
+	},
 /turf/open/floor/stone,
 /area/city/backstreets_room)
 "ex" = (
 /turf/closed/indestructible/rock,
 /area/city/backstreets_alley)
-"ey" = (
+"ez" = (
 /obj/effect/decal/cleanable/dirt/dust,
-/obj/structure/table/greyscale{
-	color = "#8a8a8a"
+/obj/effect/turf_decal/siding/wideplating/dark{
+	dir = 1
 	},
-/obj/item/crown_dagger_puzzle/scythe,
-/turf/open/floor/holofloor/chapel{
-	dir = 8
-	},
+/turf/open/floor/plasteel/dark,
 /area/city/backstreets_room)
-"eK" = (
+"eC" = (
 /obj/effect/decal/cleanable/dirt/dust,
-/obj/structure/fluff/paper/stack{
-	dir = 4
-	},
-/turf/open/floor/stone,
+/obj/structure/chair/wood,
+/turf/open/floor/wood,
 /area/city/backstreets_room)
 "eN" = (
 /turf/open/floor/plating/asteroid{
@@ -155,15 +137,35 @@
 	density = 1
 	},
 /area/city/backstreets_room)
-"fI" = (
+"eT" = (
 /obj/effect/decal/cleanable/dirt/dust,
-/obj/item/tape/resurgence/temple_of_motus,
+/obj/effect/landmark/portal_exit{
+	id = "temple_start"
+	},
+/turf/open/floor/plasteel/stairs/old{
+	dir = 1;
+	color = "#5e5e5e"
+	},
+/area/city/backstreets_room)
+"ft" = (
+/obj/structure/fence/door{
+	dir = 1
+	},
+/obj/effect/decal/cleanable/dirt/dust,
 /turf/open/floor/stone,
 /area/city/backstreets_room)
-"fJ" = (
+"fZ" = (
 /obj/effect/decal/cleanable/dirt/dust,
-/obj/item/chair/wood,
-/turf/open/floor/wood,
+/mob/living/simple_animal/hostile/clan/stone_guard/dagger_puzzle/scythe,
+/obj/structure/fluff/oldturret{
+	density = 0;
+	layer = 2.8;
+	name = "pedestal";
+	desc = "A pedestal for a statue."
+	},
+/turf/open/floor/holofloor/chapel{
+	dir = 1
+	},
 /area/city/backstreets_room)
 "gt" = (
 /obj/effect/turf_decal/trimline/red/filled/warning{
@@ -173,39 +175,60 @@
 	name = "outskirts sand"
 	},
 /area/city/backstreets_room)
-"gL" = (
+"gQ" = (
 /obj/effect/decal/cleanable/dirt/dust,
-/obj/effect/decal/cleanable/robot_debris,
-/turf/open/indestructible/white,
-/area/city/backstreets_room)
-"gO" = (
-/obj/effect/decal/cleanable/dirt/dust,
-/obj/structure/fluff/paper/stack{
-	dir = 8
+/obj/effect/portal/permanent/one_way{
+	id = "temple_start";
+	mouse_opacity = 0;
+	alpha = 0
 	},
-/turf/open/floor/stone,
+/turf/open/floor/plasteel/stairs/old{
+	dir = 1;
+	color = "#5e5e5e"
+	},
 /area/city/backstreets_room)
-"gW" = (
+"gT" = (
+/obj/structure/bookcase{
+	pixel_x = -32
+	},
 /obj/effect/decal/cleanable/dirt/dust,
-/obj/effect/decal/cleanable/cobweb,
+/obj/structure/chair/sofa/left{
+	dir = 4
+	},
 /turf/open/floor/carpet/black,
 /area/city/backstreets_room)
-"he" = (
+"gX" = (
 /obj/effect/decal/cleanable/dirt/dust,
-/obj/effect/turf_decal/siding/wideplating/dark{
-	dir = 1
-	},
-/turf/open/floor/plasteel/dark,
+/obj/structure/table/glass,
+/obj/item/book/manual/wiki/surgery,
+/obj/item/storage/organbox,
+/obj/item/storage/organbox,
+/obj/item/organ_storage,
+/obj/item/organ_storage,
+/turf/open/floor/plasteel/showroomfloor,
 /area/city/backstreets_room)
-"hs" = (
+"hw" = (
 /obj/effect/decal/cleanable/dirt/dust,
-/obj/effect/decal/cleanable/xenoblood/xsplatter,
+/obj/effect/decal/cleanable/xenoblood/xgibs,
 /turf/open/floor/stone,
 /area/city/backstreets_room)
 "hA" = (
 /obj/structure/bookcase/random/religion,
 /obj/effect/decal/cleanable/dirt/dust,
 /turf/closed/indestructible/wood,
+/area/city/backstreets_room)
+"hG" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/mob/living/simple_animal/hostile/clan/stone_guard/dagger_puzzle/dagger,
+/obj/structure/fluff/oldturret{
+	density = 0;
+	layer = 2.8;
+	name = "pedestal";
+	desc = "A pedestal for a statue."
+	},
+/turf/open/floor/holofloor/chapel{
+	dir = 8
+	},
 /area/city/backstreets_room)
 "hR" = (
 /obj/structure/bed/maint,
@@ -214,17 +237,19 @@
 /area/city/backstreets_room)
 "hU" = (
 /obj/effect/decal/cleanable/dirt/dust,
-/obj/effect/decal/cleanable/garbage,
+/obj/effect/decal/cleanable/xenoblood/xsplatter,
 /turf/open/floor/stone,
 /area/city/backstreets_room)
-"ic" = (
+"hV" = (
+/obj/structure/sign/departments/human,
+/turf/closed/indestructible/iron,
+/area/city/backstreets_room)
+"hZ" = (
 /obj/effect/decal/cleanable/dirt/dust,
-/obj/structure/chair/pew{
-	dir = 1
+/obj/structure/chair/sofa/corp/corner{
+	dir = 4
 	},
-/turf/open/floor/holofloor/chapel{
-	dir = 1
-	},
+/turf/open/floor/stone,
 /area/city/backstreets_room)
 "ik" = (
 /obj/effect/turf_decal/siding/wood{
@@ -234,194 +259,7 @@
 	name = "outskirts sand"
 	},
 /area/city/backstreets_room)
-"iv" = (
-/obj/structure/bookcase{
-	pixel_x = 32
-	},
-/obj/effect/decal/cleanable/dirt/dust,
-/obj/structure/chair/sofa/right{
-	dir = 8
-	},
-/turf/open/floor/carpet/black,
-/area/city/backstreets_room)
-"iS" = (
-/obj/effect/decal/cleanable/dirt/dust,
-/obj/structure/table/wood,
-/turf/open/floor/wood,
-/area/city/backstreets_room)
-"jq" = (
-/obj/structure/bookcase{
-	pixel_x = 32
-	},
-/obj/structure/bookcase{
-	pixel_y = 32
-	},
-/obj/effect/decal/cleanable/dirt/dust,
-/obj/structure/table/wood/fancy/purple,
-/obj/item/lighter/greyscale,
-/obj/effect/decal/cleanable/cobweb/cobweb2,
-/turf/open/floor/wood,
-/area/city/backstreets_room)
-"jv" = (
-/obj/effect/decal/cleanable/dirt/dust,
-/obj/structure/fluff/empty_cryostasis_sleeper,
-/obj/effect/decal/cleanable/xenoblood/xgibs,
-/turf/open/indestructible/white,
-/area/city/backstreets_room)
-"jz" = (
-/obj/structure/bed{
-	pixel_y = 15;
-	layer = 2.95;
-	can_buckle = 0;
-	name = "bunk beds";
-	density = 1
-	},
-/obj/structure/bed{
-	name = "bunk beds";
-	can_buckle = 0;
-	density = 1
-	},
-/obj/structure/ladder{
-	pixel_x = 4;
-	pixel_y = -5;
-	layer = 2.97;
-	mouse_opacity = 0
-	},
-/obj/item/bedsheet/hop{
-	desc = "Fancy cloth earned through good deeds.";
-	name = "old bedsheet";
-	layer = 2.94
-	},
-/obj/item/bedsheet/hop{
-	desc = "Fancy cloth earned through good deeds.";
-	name = "old bedsheet";
-	layer = 2.96;
-	pixel_y = 15
-	},
-/obj/effect/decal/cleanable/dirt/dust,
-/turf/open/floor/wood,
-/area/city/backstreets_room)
-"jG" = (
-/obj/effect/turf_decal/siding/wood/corner,
-/turf/open/floor/plating/asteroid{
-	name = "outskirts sand"
-	},
-/area/city/backstreets_room)
-"kd" = (
-/obj/effect/decal/cleanable/dirt/dust,
-/mob/living/simple_animal/hostile/mad_fly_swarm,
-/turf/open/indestructible/white,
-/area/city/backstreets_room)
-"kl" = (
-/obj/effect/decal/cleanable/dirt/dust,
-/turf/open/indestructible/white,
-/area/city/backstreets_room)
-"kE" = (
-/obj/effect/decal/cleanable/dirt/dust,
-/obj/effect/decal/cleanable/xenoblood/xgibs,
-/turf/open/indestructible/white,
-/area/city/backstreets_room)
-"la" = (
-/obj/effect/decal/cleanable/dirt/dust,
-/turf/open/floor/plasteel/stairs/old{
-	dir = 1;
-	color = "#5e5e5e"
-	},
-/area/city/backstreets_room)
-"lb" = (
-/obj/structure/table/optable,
-/obj/effect/decal/cleanable/blood,
-/obj/effect/mob_spawn/human/corpse,
-/turf/open/floor/plasteel/showroomfloor,
-/area/city/backstreets_room)
-"lr" = (
-/obj/effect/decal/cleanable/dirt/dust,
-/obj/structure/table/reinforced,
-/obj/effect/turf_decal/siding/wideplating/dark{
-	dir = 6
-	},
-/turf/open/floor/plasteel/dark,
-/area/city/backstreets_room)
-"lQ" = (
-/obj/structure/sign/directions/engineering{
-	dir = 4
-	},
-/turf/closed/indestructible/iron,
-/area/city/backstreets_room)
-"lU" = (
-/obj/effect/decal/cleanable/dirt/dust,
-/obj/structure/table/glass,
-/obj/item/reagent_containers/hypospray/medipen/mental,
-/obj/item/reagent_containers/hypospray/medipen/mental,
-/obj/item/reagent_containers/hypospray/medipen/mental,
-/obj/effect/decal/cleanable/xenoblood/xsplatter,
-/turf/open/indestructible/white,
-/area/city/backstreets_room)
-"lY" = (
-/obj/effect/decal/cleanable/dirt/dust,
-/obj/structure/table/glass,
-/obj/item/reagent_containers/hypospray/medipen/salacid,
-/turf/open/indestructible/white,
-/area/city/backstreets_room)
-"mA" = (
-/obj/effect/decal/cleanable/dirt/dust,
-/obj/structure/chair/pew/right{
-	dir = 1
-	},
-/turf/open/floor/carpet/black,
-/area/city/backstreets_room)
-"mB" = (
-/obj/effect/decal/cleanable/dirt/dust,
-/turf/open/floor/wood,
-/area/city/backstreets_room)
-"nf" = (
-/obj/structure/bookcase/random/nonfiction,
-/obj/effect/decal/cleanable/dirt/dust,
-/turf/closed/indestructible/wood,
-/area/city/backstreets_room)
-"no" = (
-/obj/effect/decal/cleanable/dirt/dust,
-/obj/structure/chair/pew{
-	dir = 1
-	},
-/turf/open/floor/holofloor/chapel{
-	dir = 4
-	},
-/area/city/backstreets_room)
-"nz" = (
-/obj/effect/turf_decal/siding/wood{
-	dir = 1
-	},
-/obj/structure/chair/wood,
-/turf/open/floor/plating/asteroid{
-	name = "outskirts sand"
-	},
-/area/city/backstreets_room)
-"nB" = (
-/obj/effect/decal/cleanable/dirt/dust,
-/obj/structure/chair/sofa/corp/right,
-/turf/open/floor/stone,
-/area/city/backstreets_room)
-"nC" = (
-/obj/effect/decal/cleanable/dirt/dust,
-/obj/effect/decal/cleanable/xenoblood/xgibs,
-/obj/effect/decal/cleanable/garbage,
-/turf/open/floor/stone,
-/area/city/backstreets_room)
-"nD" = (
-/obj/structure/statue/silver/md{
-	color = "#919191";
-	name = "statue of a human"
-	},
-/obj/effect/decal/cleanable/dirt/dust,
-/turf/open/floor/stone,
-/area/city/backstreets_room)
-"nU" = (
-/turf/open/floor/plating/asteroid{
-	name = "outskirts sand"
-	},
-/area/city/backstreets_room)
-"nW" = (
+"ip" = (
 /obj/structure/bed{
 	pixel_y = 15;
 	layer = 2.95;
@@ -455,14 +293,179 @@
 /obj/effect/gibspawner/robot,
 /turf/open/floor/wood,
 /area/city/backstreets_room)
+"jf" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/fluff/paper/stack{
+	dir = 8
+	},
+/obj/machinery/blackbox_recorder,
+/obj/effect/decal/cleanable/cobweb/cobweb2,
+/turf/open/floor/stone,
+/area/city/backstreets_room)
+"jq" = (
+/obj/structure/bookcase{
+	pixel_x = 32
+	},
+/obj/structure/bookcase{
+	pixel_y = 32
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/table/wood/fancy/purple,
+/obj/item/lighter/greyscale,
+/obj/effect/decal/cleanable/cobweb/cobweb2,
+/turf/open/floor/wood,
+/area/city/backstreets_room)
+"jv" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/chair/sofa/corp/right{
+	dir = 4
+	},
+/turf/open/floor/stone,
+/area/city/backstreets_room)
+"jG" = (
+/obj/effect/turf_decal/siding/wood/corner,
+/turf/open/floor/plating/asteroid{
+	name = "outskirts sand"
+	},
+/area/city/backstreets_room)
+"ks" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/table/glass,
+/obj/item/reagent_containers/hypospray/medipen/salacid,
+/obj/item/reagent_containers/hypospray/medipen/salacid,
+/turf/open/indestructible/white,
+/area/city/backstreets_room)
+"kK" = (
+/obj/structure/sign/directions/engineering{
+	dir = 4
+	},
+/turf/closed/indestructible/iron,
+/area/city/backstreets_room)
+"kM" = (
+/obj/structure/bookcase{
+	pixel_x = 32
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/carpet/black,
+/area/city/backstreets_room)
+"la" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/table/glass,
+/obj/item/reagent_containers/hypospray/medipen/mental,
+/obj/item/reagent_containers/hypospray/medipen/mental,
+/obj/item/reagent_containers/hypospray/medipen/mental,
+/obj/effect/decal/cleanable/xenoblood/xsplatter,
+/turf/open/indestructible/white,
+/area/city/backstreets_room)
+"lc" = (
+/obj/structure/bookcase{
+	pixel_x = -32
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/carpet/black,
+/area/city/backstreets_room)
+"ld" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/item/tape/resurgence/temple_of_motus,
+/turf/open/floor/stone,
+/area/city/backstreets_room)
+"lg" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/chair/sofa/right{
+	dir = 4
+	},
+/turf/open/floor/carpet/black,
+/area/city/backstreets_room)
+"ll" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/decal/cleanable/glass,
+/turf/open/floor/mineral/plastitanium,
+/area/city/backstreets_room)
+"lV" = (
+/obj/structure/bed/maint,
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/mob_spawn/human/corpse,
+/turf/open/floor/stone,
+/area/city/backstreets_room)
+"mk" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/decal/cleanable/cobweb/cobweb2,
+/obj/structure/statue/silver/medborg,
+/obj/structure/fluff/oldturret{
+	density = 0;
+	layer = 2.8;
+	name = "pedestal";
+	desc = "A pedestal for a statue."
+	},
+/turf/open/floor/stone,
+/area/city/backstreets_room)
+"mt" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/machinery/smartfridge/chemistry,
+/turf/open/indestructible/white,
+/area/city/backstreets_room)
+"mv" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/holofloor/chapel{
+	dir = 4
+	},
+/area/city/backstreets_room)
+"mB" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/carpet/black,
+/area/city/backstreets_room)
+"mC" = (
+/obj/structure/sign/departments/chemistry,
+/turf/closed/indestructible/iron,
+/area/city/backstreets_room)
+"nc" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/decal/cleanable/garbage,
+/turf/open/floor/wood,
+/area/city/backstreets_room)
+"nf" = (
+/obj/structure/bookcase/random/nonfiction,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/closed/indestructible/wood,
+/area/city/backstreets_room)
+"nz" = (
+/obj/effect/turf_decal/siding/wood{
+	dir = 1
+	},
+/obj/structure/chair/wood,
+/turf/open/floor/plating/asteroid{
+	name = "outskirts sand"
+	},
+/area/city/backstreets_room)
+"nD" = (
+/obj/structure/statue/silver/md{
+	color = "#919191";
+	name = "statue of a human"
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/stone,
+/area/city/backstreets_room)
+"nU" = (
+/turf/open/floor/plating/asteroid{
+	name = "outskirts sand"
+	},
+/area/city/backstreets_room)
+"nZ" = (
+/obj/structure/mineral_door/iron,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/wood,
+/area/city/backstreets_room)
 "of" = (
 /obj/structure/bookcase/random/fiction,
 /obj/effect/decal/cleanable/dirt/dust,
 /turf/closed/indestructible/wood,
 /area/city/backstreets_room)
-"oN" = (
+"oz" = (
 /obj/effect/decal/cleanable/dirt/dust,
-/mob/living/simple_animal/hostile/mad_fly_swarm,
+/obj/structure/table/greyscale{
+	color = "#8a8a8a"
+	},
+/obj/item/papercutter,
 /turf/open/floor/stone,
 /area/city/backstreets_room)
 "oR" = (
@@ -473,25 +476,22 @@
 /obj/effect/decal/cleanable/dirt/dust,
 /turf/closed/indestructible/wood,
 /area/city/backstreets_room)
-"oY" = (
+"pd" = (
 /obj/effect/decal/cleanable/dirt/dust,
-/obj/structure/chair/sofa/corp/corner{
-	dir = 4
-	},
-/turf/open/floor/stone,
+/turf/open/indestructible/white,
 /area/city/backstreets_room)
-"pf" = (
-/obj/effect/decal/cleanable/dirt/dust,
-/obj/structure/table/reinforced,
-/obj/effect/turf_decal/siding/wideplating/dark{
-	dir = 10
+"ph" = (
+/obj/structure/sign/directions/supply{
+	dir = 1
 	},
-/turf/open/floor/plasteel/dark,
+/turf/closed/indestructible/iron,
 /area/city/backstreets_room)
-"py" = (
-/obj/structure/bed/maint,
+"pJ" = (
 /obj/effect/decal/cleanable/dirt/dust,
-/turf/open/floor/stone,
+/obj/structure/chair/pew/left{
+	dir = 1
+	},
+/turf/open/floor/carpet/black,
 /area/city/backstreets_room)
 "pR" = (
 /obj/effect/turf_decal/trimline/red/filled/warning{
@@ -504,17 +504,36 @@
 "pW" = (
 /turf/closed/indestructible/iron,
 /area/city/backstreets_room)
-"qy" = (
+"pX" = (
 /obj/effect/decal/cleanable/dirt/dust,
-/obj/structure/table/greyscale{
-	color = "#8a8a8a"
+/obj/structure/table/reinforced,
+/obj/effect/turf_decal/siding/wideplating/dark{
+	dir = 10
 	},
-/obj/item/crown_dagger_puzzle/hammer,
-/turf/open/floor/carpet/black,
+/turf/open/floor/plasteel/dark,
 /area/city/backstreets_room)
-"qK" = (
+"qd" = (
 /obj/effect/decal/cleanable/dirt/dust,
-/mob/living/simple_animal/hostile/clan/stone_guard/dagger_puzzle/book,
+/obj/effect/decal/remains/robot,
+/turf/open/indestructible/white,
+/area/city/backstreets_room)
+"qe" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/chair/sofa/corp/right,
+/turf/open/floor/stone,
+/area/city/backstreets_room)
+"qJ" = (
+/obj/structure/bookcase{
+	pixel_y = 32
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/table/wood/fancy/purple,
+/obj/item/lighter/greyscale,
+/turf/open/floor/wood,
+/area/city/backstreets_room)
+"qR" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/mob/living/simple_animal/hostile/clan/stone_guard/dagger_puzzle/hammer,
 /obj/structure/fluff/oldturret{
 	density = 0;
 	layer = 2.8;
@@ -522,7 +541,7 @@
 	desc = "A pedestal for a statue."
 	},
 /turf/open/floor/holofloor/chapel{
-	dir = 4
+	dir = 1
 	},
 /area/city/backstreets_room)
 "ra" = (
@@ -530,6 +549,11 @@
 /turf/open/floor/plating/asteroid{
 	name = "outskirts sand"
 	},
+/area/city/backstreets_room)
+"rg" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/table/wood/fancy/royalblack,
+/turf/open/floor/carpet/black,
 /area/city/backstreets_room)
 "rh" = (
 /obj/effect/turf_decal/trimline/yellow/filled/line{
@@ -545,21 +569,37 @@
 /obj/item/food/canned/pcorp,
 /turf/open/floor/wood,
 /area/city/backstreets_room)
-"rJ" = (
+"rP" = (
 /obj/effect/decal/cleanable/dirt/dust,
-/obj/structure/table/greyscale{
-	color = "#8a8a8a"
+/mob/living/simple_animal/hostile/clan/stone_guard/dagger_puzzle/spear,
+/obj/structure/fluff/oldturret{
+	density = 0;
+	layer = 2.8;
+	name = "pedestal";
+	desc = "A pedestal for a statue."
 	},
-/obj/item/papercutter,
-/turf/open/floor/stone,
+/turf/open/floor/holofloor/chapel{
+	dir = 4
+	},
 /area/city/backstreets_room)
-"sF" = (
+"sn" = (
 /obj/structure/bookcase{
-	pixel_y = 32
+	pixel_x = 32
 	},
 /obj/effect/decal/cleanable/dirt/dust,
-/obj/structure/puzzle_key_case,
-/turf/open/floor/wood,
+/obj/structure/chair/sofa/corner{
+	dir = 8
+	},
+/turf/open/floor/carpet/black,
+/area/city/backstreets_room)
+"sT" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/chair/pew{
+	dir = 1
+	},
+/turf/open/floor/holofloor/chapel{
+	dir = 1
+	},
 /area/city/backstreets_room)
 "tA" = (
 /obj/effect/decal/cleanable/dirt/dust,
@@ -568,15 +608,23 @@
 	},
 /turf/open/floor/wood,
 /area/city/backstreets_room)
-"tB" = (
+"tC" = (
 /obj/effect/decal/cleanable/dirt/dust,
-/obj/effect/decal/cleanable/xenoblood/xgibs,
-/turf/open/floor/stone,
+/obj/item/crown_dagger_puzzle/crown,
+/obj/structure/sacrificealtar,
+/turf/open/floor/holofloor/chapel{
+	dir = 1
+	},
 /area/city/backstreets_room)
-"tH" = (
+"tK" = (
 /obj/effect/decal/cleanable/dirt/dust,
-/obj/machinery/bookbinder,
-/turf/open/floor/carpet/black,
+/obj/structure/table/wood,
+/turf/open/floor/wood,
+/area/city/backstreets_room)
+"tM" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/decal/cleanable/xenoblood,
+/turf/open/indestructible/white,
 /area/city/backstreets_room)
 "tR" = (
 /obj/effect/turf_decal/trimline/yellow/filled/line{
@@ -591,28 +639,25 @@
 	density = 1
 	},
 /area/city/backstreets_room)
-"tZ" = (
-/turf/closed/indestructible/rock,
-/area/city/backstreets_room)
-"uf" = (
+"ue" = (
 /obj/effect/decal/cleanable/dirt/dust,
-/turf/open/floor/holofloor/chapel{
-	dir = 1
-	},
-/area/city/backstreets_room)
-"ui" = (
-/obj/effect/decal/cleanable/dirt/dust,
-/obj/structure/statue/silver/sec,
-/obj/structure/fluff/oldturret{
-	density = 0;
-	layer = 2.8;
-	name = "pedestal";
-	desc = "A pedestal for a statue."
-	},
-/turf/open/floor/stone,
+/obj/structure/table/wood/fancy/royalblack,
+/obj/machinery/computer/bookmanagement,
+/turf/open/floor/carpet/black,
 /area/city/backstreets_room)
 "uu" = (
 /obj/structure/flora/ausbushes/fullgrass,
+/turf/open/floor/plating/asteroid{
+	name = "outskirts sand"
+	},
+/area/city/backstreets_room)
+"uy" = (
+/obj/effect/light_emitter{
+	light_power = 4;
+	light_range = 25;
+	set_cap = 3;
+	set_luminosity = 24
+	},
 /turf/open/floor/plating/asteroid{
 	name = "outskirts sand"
 	},
@@ -629,26 +674,60 @@
 	name = "outskirts sand"
 	},
 /area/city/backstreets_room)
-"vi" = (
-/obj/structure/bookcase{
-	pixel_x = -32
-	},
+"uS" = (
+/obj/structure/sign/departments/xenobio,
+/turf/closed/indestructible/iron,
+/area/city/backstreets_room)
+"uV" = (
 /obj/effect/decal/cleanable/dirt/dust,
-/obj/structure/chair/sofa/left{
+/obj/structure/table/greyscale{
+	color = "#8a8a8a"
+	},
+/obj/item/crown_dagger_puzzle/scythe,
+/turf/open/floor/holofloor/chapel{
+	dir = 8
+	},
+/area/city/backstreets_room)
+"vn" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/table/reinforced,
+/turf/open/floor/stone,
+/area/city/backstreets_room)
+"vE" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/chair/wood{
 	dir = 4
 	},
-/turf/open/floor/carpet/black,
+/turf/open/floor/wood,
 /area/city/backstreets_room)
-"vB" = (
+"vF" = (
 /obj/effect/decal/cleanable/dirt/dust,
-/turf/open/floor/carpet/black,
-/area/city/backstreets_room)
-"wu" = (
-/obj/effect/decal/cleanable/dirt/dust,
-/obj/machinery/door/keycard{
-	puzzle_id = "motus_medbay"
+/obj/structure/statue/silver/sec,
+/obj/structure/fluff/oldturret{
+	density = 0;
+	layer = 2.8;
+	name = "pedestal";
+	desc = "A pedestal for a statue."
 	},
-/turf/open/indestructible/white,
+/turf/open/floor/stone,
+/area/city/backstreets_room)
+"vG" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/landmark/portal_exit{
+	id = "temple_exit"
+	},
+/turf/open/floor/plasteel/stairs/old{
+	dir = 1;
+	color = "#5e5e5e"
+	},
+/area/city/backstreets_room)
+"wn" = (
+/obj/structure/sign/departments/medbay/alt,
+/turf/closed/indestructible/iron,
+/area/city/backstreets_room)
+"ws" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/closed/indestructible/iron,
 /area/city/backstreets_room)
 "wC" = (
 /obj/effect/decal/cleanable/dirt/dust,
@@ -672,6 +751,11 @@
 	name = "outskirts sand"
 	},
 /area/city/backstreets_room)
+"xa" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/dresser,
+/turf/open/floor/wood,
+/area/city/backstreets_room)
 "xg" = (
 /obj/structure/bookcase{
 	pixel_x = 32
@@ -685,45 +769,34 @@
 	name = "outskirts sand"
 	},
 /area/city/backstreets_room)
-"xo" = (
+"xt" = (
 /obj/effect/decal/cleanable/dirt/dust,
-/obj/structure/chair/pew/right{
-	dir = 1
-	},
-/turf/open/floor/holofloor/chapel{
-	dir = 4
-	},
+/obj/effect/decal/cleanable/xenoblood/xgibs,
+/turf/open/indestructible/white,
 /area/city/backstreets_room)
 "xK" = (
+/obj/structure/bookcase{
+	pixel_y = 32
+	},
 /obj/effect/decal/cleanable/dirt/dust,
-/obj/structure/chair/sofa/corp/left,
-/turf/open/floor/stone,
+/obj/structure/puzzle_key_case,
+/turf/open/floor/wood,
 /area/city/backstreets_room)
 "xS" = (
 /obj/structure/mineral_door/wood,
 /turf/open/floor/wood,
 /area/city/backstreets_room)
-"ye" = (
-/obj/structure/bed/maint,
+"xV" = (
 /obj/effect/decal/cleanable/dirt/dust,
-/obj/effect/mob_spawn/human/corpse,
-/turf/open/floor/stone,
+/obj/item/chair/wood,
+/turf/open/floor/wood,
 /area/city/backstreets_room)
-"ys" = (
+"xZ" = (
 /obj/effect/decal/cleanable/dirt/dust,
-/obj/effect/turf_decal/siding/wideplating/dark/corner,
-/obj/effect/turf_decal/siding/wideplating/dark{
-	dir = 1
-	},
-/turf/open/floor/plasteel/dark,
-/area/city/backstreets_room)
-"yE" = (
-/obj/effect/decal/cleanable/dirt/dust,
-/obj/item/crown_dagger_puzzle/book,
-/obj/structure/fluff/divine/convertaltar,
-/turf/open/floor/holofloor/chapel{
+/obj/structure/fluff/paper/stack{
 	dir = 4
 	},
+/turf/open/floor/stone,
 /area/city/backstreets_room)
 "yH" = (
 /obj/effect/turf_decal/siding/wood{
@@ -733,16 +806,23 @@
 	name = "outskirts sand"
 	},
 /area/city/backstreets_room)
-"zk" = (
+"yM" = (
 /obj/effect/decal/cleanable/dirt/dust,
-/obj/effect/decal/cleanable/garbage,
-/turf/open/floor/wood,
+/obj/machinery/door/window{
+	dir = 4;
+	resistance_flags = 115
+	},
+/obj/effect/turf_decal/siding/wideplating/dark/end{
+	dir = 8
+	},
+/obj/effect/decal/cleanable/generic,
+/turf/open/floor/plasteel/dark,
 /area/city/backstreets_room)
-"zp" = (
+"zy" = (
 /obj/effect/decal/cleanable/dirt/dust,
-/mob/living/simple_animal/hostile/scarlet_rose,
-/obj/effect/decal/cleanable/cobweb/cobweb2,
-/turf/open/floor/wood,
+/obj/effect/decal/cleanable/xenoblood/xgibs,
+/obj/effect/decal/cleanable/garbage,
+/turf/open/floor/stone,
 /area/city/backstreets_room)
 "zz" = (
 /obj/effect/decal/cleanable/dirt/dust,
@@ -755,6 +835,21 @@
 /turf/open/floor/plating/asteroid{
 	name = "outskirts sand"
 	},
+/area/city/backstreets_room)
+"zG" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/plasteel/showroomfloor,
+/area/city/backstreets_room)
+"zH" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/machinery/door/window{
+	dir = 8;
+	resistance_flags = 115
+	},
+/obj/effect/turf_decal/siding/wideplating/dark/end{
+	dir = 4
+	},
+/turf/open/floor/plasteel/dark,
 /area/city/backstreets_room)
 "zV" = (
 /obj/structure/closet/crate/wooden,
@@ -774,12 +869,7 @@
 /obj/item/grown/log/tree,
 /turf/open/floor/wood,
 /area/city/backstreets_room)
-"zY" = (
-/obj/effect/decal/cleanable/dirt/dust,
-/obj/structure/fluff/paper/stack,
-/turf/open/floor/stone,
-/area/city/backstreets_room)
-"zZ" = (
+"Ak" = (
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/structure/table/greyscale{
 	color = "#8a8a8a"
@@ -787,25 +877,64 @@
 /obj/item/crown_dagger_puzzle/dagger,
 /turf/open/floor/holofloor/chapel,
 /area/city/backstreets_room)
-"AU" = (
-/obj/structure/sign/departments/xenobio,
-/turf/closed/indestructible/iron,
+"Al" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/table/reinforced,
+/obj/effect/turf_decal/siding/wideplating/dark{
+	dir = 6
+	},
+/turf/open/floor/plasteel/dark,
+/area/city/backstreets_room)
+"Ar" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/decal/cleanable/generic,
+/turf/open/floor/stone,
+/area/city/backstreets_room)
+"Aw" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/chair/pew/right{
+	dir = 1
+	},
+/turf/open/floor/carpet/black,
+/area/city/backstreets_room)
+"AO" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/turf_decal/siding/wideplating/dark/corner,
+/obj/effect/turf_decal/siding/wideplating/dark{
+	dir = 1
+	},
+/turf/open/floor/plasteel/dark,
 /area/city/backstreets_room)
 "Bg" = (
 /obj/structure/fence/door,
 /obj/effect/decal/cleanable/dirt/dust,
 /turf/open/floor/stone,
 /area/city/backstreets_room)
-"Bl" = (
+"Bz" = (
 /obj/effect/decal/cleanable/dirt/dust,
-/turf/open/floor/plasteel/showroomfloor,
-/area/city/backstreets_room)
-"BC" = (
-/obj/structure/bookcase{
-	pixel_x = 32
+/mob/living/simple_animal/hostile/clan/stone_guard/dagger_puzzle/crown,
+/obj/structure/fluff/oldturret{
+	density = 0;
+	layer = 2.8;
+	name = "pedestal";
+	desc = "A pedestal for a statue."
 	},
+/turf/open/floor/holofloor/chapel,
+/area/city/backstreets_room)
+"BA" = (
 /obj/effect/decal/cleanable/dirt/dust,
-/turf/open/floor/carpet/black,
+/obj/structure/table/glass,
+/obj/item/reagent_containers/hypospray/medipen/mental,
+/obj/item/extra_arm,
+/turf/open/indestructible/white,
+/area/city/backstreets_room)
+"BD" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/table/greyscale{
+	color = "#8a8a8a"
+	},
+/obj/structure/fluff/paper/stack,
+/turf/open/floor/stone,
 /area/city/backstreets_room)
 "BU" = (
 /obj/effect/turf_decal/trimline/red/filled/warning{
@@ -815,144 +944,33 @@
 	name = "outskirts sand"
 	},
 /area/city/backstreets_room)
-"Cb" = (
-/obj/effect/decal/cleanable/dirt/dust,
-/obj/structure/table/greyscale{
-	color = "#8a8a8a"
-	},
-/obj/item/tape/resurgence/joshua,
-/turf/open/floor/stone,
-/area/city/backstreets_room)
-"CO" = (
-/obj/effect/decal/cleanable/dirt/dust,
-/obj/machinery/blackbox_recorder,
-/turf/open/floor/stone,
-/area/city/backstreets_room)
-"De" = (
+"Ca" = (
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/structure/table/glass,
-/obj/item/reagent_containers/hypospray/medipen/mental,
-/obj/item/extra_arm,
+/obj/item/reagent_containers/hypospray/medipen/salacid,
 /turf/open/indestructible/white,
 /area/city/backstreets_room)
-"Dh" = (
+"Ct" = (
 /obj/effect/decal/cleanable/dirt/dust,
-/obj/structure/fluff/paper/stack{
-	dir = 8
+/obj/structure/chair/sofa/left{
+	dir = 1
 	},
-/obj/machinery/blackbox_recorder,
-/obj/effect/decal/cleanable/cobweb/cobweb2,
-/turf/open/floor/stone,
+/turf/open/floor/carpet/black,
+/area/city/backstreets_room)
+"Db" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/holofloor/chapel{
+	dir = 1
+	},
 /area/city/backstreets_room)
 "Dt" = (
 /obj/effect/decal/cleanable/dirt/dust,
-/obj/effect/portal/permanent/one_way{
-	id = "temple_exit";
-	mouse_opacity = 0
-	},
 /turf/open/floor/plasteel/stairs/old{
 	dir = 1;
 	color = "#5e5e5e"
 	},
 /area/city/backstreets_room)
-"DG" = (
-/turf/open/floor/wood,
-/area/city/backstreets_room)
-"DI" = (
-/obj/effect/decal/cleanable/dirt/dust,
-/obj/structure/table/wood/fancy/royalblack,
-/obj/machinery/computer/bookmanagement,
-/turf/open/floor/carpet/black,
-/area/city/backstreets_room)
-"DR" = (
-/obj/structure/bed/maint,
-/obj/effect/decal/cleanable/dirt/dust,
-/obj/effect/mob_spawn/human/corpse,
-/obj/effect/gibspawner/human/bodypartless,
-/turf/open/floor/stone,
-/area/city/backstreets_room)
-"Eo" = (
-/obj/structure/filingcabinet,
-/obj/structure/filingcabinet{
-	pixel_x = 10
-	},
-/obj/structure/filingcabinet{
-	pixel_x = -10
-	},
-/turf/open/floor/wood,
-/area/city/backstreets_room)
-"EM" = (
-/obj/effect/decal/cleanable/dirt/dust,
-/obj/structure/chair/wood,
-/turf/open/floor/wood,
-/area/city/backstreets_room)
-"EP" = (
-/obj/structure/flora/stump,
-/turf/open/floor/plating/asteroid{
-	name = "outskirts sand"
-	},
-/area/city/backstreets_room)
-"Fh" = (
-/obj/effect/decal/cleanable/dirt/dust,
-/obj/effect/landmark/portal_exit{
-	id = "temple_exit"
-	},
-/turf/open/floor/plasteel/stairs/old{
-	dir = 1;
-	color = "#5e5e5e"
-	},
-/area/city/backstreets_room)
-"Fm" = (
-/obj/effect/decal/cleanable/dirt/dust,
-/obj/structure/spreading/scarlet_vine,
-/turf/open/floor/mineral/plastitanium,
-/area/city/backstreets_room)
-"FF" = (
-/obj/effect/decal/cleanable/oil/slippery,
-/turf/open/floor/wood,
-/area/city/backstreets_room)
-"FJ" = (
-/obj/structure/bookcase{
-	pixel_y = -32
-	},
-/obj/effect/decal/cleanable/dirt/dust,
-/turf/open/floor/wood,
-/area/city/backstreets_room)
-"FV" = (
-/obj/effect/decal/cleanable/dirt/dust,
-/obj/effect/decal/cleanable/cobweb/cobweb2,
-/turf/open/floor/stone,
-/area/city/backstreets_room)
-"Go" = (
-/obj/effect/decal/cleanable/dirt/dust,
-/obj/effect/portal/permanent/one_way{
-	id = "temple_start";
-	mouse_opacity = 0
-	},
-/turf/open/floor/plasteel/stairs/old{
-	dir = 1;
-	color = "#5e5e5e"
-	},
-/area/city/backstreets_room)
-"Gt" = (
-/obj/effect/turf_decal/trimline/red/filled/warning{
-	dir = 4
-	},
-/turf/open/floor/plating/asteroid{
-	name = "outskirts sand"
-	},
-/area/city/backstreets_room)
-"Ha" = (
-/obj/effect/decal/cleanable/dirt/dust,
-/obj/structure/chair/wood{
-	dir = 4
-	},
-/turf/open/floor/wood,
-/area/city/backstreets_room)
-"HG" = (
-/turf/closed/indestructible/wood,
-/area/city/backstreets_room)
-"Ij" = (
+"DE" = (
 /obj/effect/decal/cleanable/dirt/dust,
 /mob/living/simple_animal/hostile/clan/stone_guard/heretic_puzzle/armor{
 	dir = 8
@@ -965,17 +983,149 @@
 	},
 /turf/open/floor/stone,
 /area/city/backstreets_room)
-"Il" = (
+"DG" = (
+/turf/open/floor/wood,
+/area/city/backstreets_room)
+"DR" = (
+/obj/structure/bed/maint,
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/mob_spawn/human/corpse,
+/obj/effect/gibspawner/human/bodypartless,
+/turf/open/floor/stone,
+/area/city/backstreets_room)
+"Ed" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/decal/cleanable/garbage,
+/turf/open/indestructible/white,
+/area/city/backstreets_room)
+"Eo" = (
+/obj/structure/filingcabinet,
+/obj/structure/filingcabinet{
+	pixel_x = 10
+	},
+/obj/structure/filingcabinet{
+	pixel_x = -10
+	},
+/turf/open/floor/wood,
+/area/city/backstreets_room)
+"EP" = (
+/obj/structure/flora/stump,
+/turf/open/floor/plating/asteroid{
+	name = "outskirts sand"
+	},
+/area/city/backstreets_room)
+"EX" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/decal/cleanable/cobweb,
+/obj/machinery/computer/operating{
+	dir = 4
+	},
+/turf/open/floor/plasteel/showroomfloor,
+/area/city/backstreets_room)
+"Fh" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/mob/living/simple_animal/hostile/clan/stone_guard/heretic_puzzle/robes{
+	dir = 8
+	},
+/obj/structure/fluff/oldturret{
+	density = 0;
+	layer = 2.8;
+	name = "pedestal";
+	desc = "A pedestal for a statue."
+	},
+/turf/open/floor/stone,
+/area/city/backstreets_room)
+"Fj" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/table/reinforced,
+/obj/effect/turf_decal/siding/wideplating/dark,
+/turf/open/floor/plasteel/dark,
+/area/city/backstreets_room)
+"Fp" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/chair/wood{
+	dir = 8
+	},
+/turf/open/floor/wood,
+/area/city/backstreets_room)
+"FF" = (
+/obj/effect/decal/cleanable/oil/slippery,
+/turf/open/floor/wood,
+/area/city/backstreets_room)
+"FJ" = (
+/obj/structure/bookcase{
+	pixel_y = -32
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/wood,
+/area/city/backstreets_room)
+"FM" = (
+/obj/structure/sign/departments/holy,
+/turf/closed/indestructible/iron,
+/area/city/backstreets_room)
+"FN" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/machinery/smartfridge/organ,
+/turf/open/floor/plasteel/showroomfloor,
+/area/city/backstreets_room)
+"Go" = (
+/turf/closed/indestructible/rock,
+/area/city/backstreets_room)
+"Gt" = (
+/obj/effect/turf_decal/trimline/red/filled/warning{
+	dir = 4
+	},
+/turf/open/floor/plating/asteroid{
+	name = "outskirts sand"
+	},
+/area/city/backstreets_room)
+"GL" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/holofloor/chapel{
+	dir = 8
+	},
+/area/city/backstreets_room)
+"GO" = (
 /obj/structure/bed/maint,
 /obj/effect/decal/cleanable/dirt/dust,
 /mob/living/simple_animal/hostile/mad_fly_nest,
 /turf/open/floor/stone,
 /area/city/backstreets_room)
-"Is" = (
+"GP" = (
 /obj/effect/decal/cleanable/dirt/dust,
-/obj/structure/displaycase/labcage,
-/obj/structure/spreading/scarlet_vine,
-/turf/open/floor/mineral/plastitanium,
+/obj/structure/table/greyscale{
+	color = "#8a8a8a"
+	},
+/obj/item/tape/resurgence/joshua,
+/turf/open/floor/stone,
+/area/city/backstreets_room)
+"Ha" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/chair/pew/right{
+	dir = 1
+	},
+/turf/open/floor/holofloor/chapel{
+	dir = 1
+	},
+/area/city/backstreets_room)
+"Hk" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/chair/sofa/corner{
+	dir = 4
+	},
+/obj/effect/decal/cleanable/cobweb,
+/turf/open/floor/carpet/black,
+/area/city/backstreets_room)
+"Hz" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/table/greyscale{
+	color = "#8a8a8a"
+	},
+/obj/effect/decal/cleanable/cobweb/cobweb2,
+/turf/open/floor/stone,
+/area/city/backstreets_room)
+"HG" = (
+/turf/closed/indestructible/wood,
 /area/city/backstreets_room)
 "Iz" = (
 /obj/effect/turf_decal/trimline/yellow/filled/line{
@@ -1004,45 +1154,21 @@
 	name = "outskirts sand"
 	},
 /area/city/backstreets_room)
-"IY" = (
+"IX" = (
 /obj/effect/decal/cleanable/dirt/dust,
-/obj/effect/decal/cleanable/glass,
-/turf/open/floor/mineral/plastitanium,
-/area/city/backstreets_room)
-"Jo" = (
-/obj/effect/decal/cleanable/dirt/dust,
-/obj/effect/turf_decal/siding/wideplating/dark/corner{
-	dir = 8
-	},
-/obj/effect/turf_decal/siding/wideplating/dark{
+/obj/structure/chair/sofa{
 	dir = 1
 	},
-/turf/open/floor/plasteel/dark,
+/turf/open/floor/carpet/black,
 /area/city/backstreets_room)
-"Ju" = (
+"Jj" = (
 /obj/effect/decal/cleanable/dirt/dust,
-/mob/living/simple_animal/hostile/clan/stone_guard/dagger_puzzle/scythe,
-/obj/structure/fluff/oldturret{
-	density = 0;
-	layer = 2.8;
-	name = "pedestal";
-	desc = "A pedestal for a statue."
-	},
-/turf/open/floor/holofloor/chapel{
-	dir = 1
-	},
+/turf/open/floor/holofloor/chapel,
 /area/city/backstreets_room)
-"Jw" = (
-/obj/structure/sign/departments/examroom,
-/turf/closed/indestructible/iron,
-/area/city/backstreets_room)
-"Jx" = (
+"Jp" = (
 /obj/effect/decal/cleanable/dirt/dust,
-/obj/item/crown_dagger_puzzle/crown,
-/obj/structure/sacrificealtar,
-/turf/open/floor/holofloor/chapel{
-	dir = 1
-	},
+/obj/structure/fluff/empty_cryostasis_sleeper,
+/turf/open/indestructible/white,
 /area/city/backstreets_room)
 "JC" = (
 /obj/structure/bookcase{
@@ -1057,20 +1183,24 @@
 /obj/item/flashlight/pen,
 /turf/open/floor/wood,
 /area/city/backstreets_room)
+"JM" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/machinery/door/keycard{
+	puzzle_id = "motus_medbay"
+	},
+/turf/open/indestructible/white,
+/area/city/backstreets_room)
 "JQ" = (
 /obj/effect/decal/cleanable/dirt/dust,
-/obj/effect/landmark/portal_exit{
-	id = "temple_start"
-	},
-/turf/open/floor/plasteel/stairs/old{
-	dir = 1;
-	color = "#5e5e5e"
-	},
+/turf/open/floor/wood,
 /area/city/backstreets_room)
-"Kh" = (
+"Kp" = (
 /obj/effect/decal/cleanable/dirt/dust,
-/obj/machinery/smartfridge/chemistry,
-/turf/open/indestructible/white,
+/obj/structure/table/greyscale{
+	color = "#8a8a8a"
+	},
+/obj/item/paper_bin/bundlenatural,
+/turf/open/floor/stone,
 /area/city/backstreets_room)
 "Kr" = (
 /obj/structure/bookcase{
@@ -1079,12 +1209,19 @@
 /obj/effect/decal/cleanable/dirt/dust,
 /turf/open/floor/wood,
 /area/city/backstreets_room)
-"Kz" = (
+"Ks" = (
 /obj/effect/decal/cleanable/dirt/dust,
-/obj/effect/decal/cleanable/garbage,
-/turf/open/indestructible/white,
+/obj/item/detective_scanner,
+/obj/item/deepscanner,
+/obj/structure/table/glass,
+/turf/open/floor/plasteel/showroomfloor,
 /area/city/backstreets_room)
 "KE" = (
+/turf/open/floor/stone,
+/area/city/backstreets_room)
+"KI" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/grille/broken,
 /turf/open/floor/stone,
 /area/city/backstreets_room)
 "KJ" = (
@@ -1094,13 +1231,334 @@
 /obj/effect/decal/cleanable/dirt/dust,
 /turf/open/floor/stone,
 /area/city/backstreets_room)
-"KL" = (
+"Lu" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/mob/living/simple_animal/hostile/mad_fly_swarm,
+/turf/open/indestructible/white,
+/area/city/backstreets_room)
+"LC" = (
+/obj/structure/bookcase,
+/turf/closed/indestructible/iron,
+/area/city/backstreets_room)
+"LT" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/machinery/blackbox_recorder,
+/turf/open/floor/stone,
+/area/city/backstreets_room)
+"Mk" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/table/greyscale{
+	color = "#8a8a8a"
+	},
+/turf/open/floor/stone,
+/area/city/backstreets_room)
+"Mv" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/circuit,
+/area/city/backstreets_room)
+"Mx" = (
+/obj/effect/landmark,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/mineral/gold,
+/area/city/backstreets_room)
+"MP" = (
+/obj/structure/sign/departments/examroom,
+/turf/closed/indestructible/iron,
+/area/city/backstreets_room)
+"MZ" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/decal/cleanable/cobweb,
+/turf/open/floor/stone,
+/area/city/backstreets_room)
+"Na" = (
+/obj/effect/turf_decal/siding/wood,
+/obj/structure/chair/wood{
+	dir = 1
+	},
+/turf/open/floor/plating/asteroid{
+	name = "outskirts sand"
+	},
+/area/city/backstreets_room)
+"Nh" = (
+/obj/structure/table/optable,
+/obj/effect/decal/cleanable/blood,
+/obj/effect/mob_spawn/human/corpse,
+/turf/open/floor/plasteel/showroomfloor,
+/area/city/backstreets_room)
+"No" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/chair/sofa/corp/left{
+	dir = 8
+	},
+/turf/open/floor/stone,
+/area/city/backstreets_room)
+"NX" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/fluff/paper/stack,
+/turf/open/floor/stone,
+/area/city/backstreets_room)
+"Ok" = (
+/obj/structure/bookcase{
+	pixel_x = -32
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/chair/sofa/corner{
+	dir = 1
+	},
+/turf/open/floor/carpet/black,
+/area/city/backstreets_room)
+"On" = (
+/obj/structure/bed/maint,
+/obj/effect/decal/cleanable/dirt/dust,
+/mob/living/simple_animal/hostile/mad_fly_nest,
+/obj/effect/mob_spawn/human/corpse,
+/obj/effect/decal/cleanable/cobweb,
+/turf/open/floor/stone,
+/area/city/backstreets_room)
+"Ot" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/machinery/recharge_station,
+/turf/open/indestructible/white,
+/area/city/backstreets_room)
+"Ov" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/machinery/computer/operating{
+	dir = 4
+	},
+/turf/open/floor/plasteel/showroomfloor,
+/area/city/backstreets_room)
+"Ox" = (
+/obj/structure/mineral_door/wood,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/wood,
+/area/city/backstreets_room)
+"OA" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/machinery/door/keycard/puzzle_riddles,
+/turf/open/floor/stone,
+/area/city/backstreets_room)
+"OB" = (
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/structure/chair/sofa/corp/corner,
 /obj/effect/decal/cleanable/cobweb/cobweb2,
 /turf/open/floor/stone,
 /area/city/backstreets_room)
-"Ll" = (
+"OQ" = (
+/obj/structure/bookcase{
+	pixel_x = 32
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/chair/sofa/right{
+	dir = 8
+	},
+/turf/open/floor/carpet/black,
+/area/city/backstreets_room)
+"OV" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/chair/sofa/left,
+/turf/open/floor/carpet/black,
+/area/city/backstreets_room)
+"PA" = (
+/obj/structure/rack{
+	color = "#875300"
+	},
+/obj/item/flashlight/flare/torch,
+/obj/item/flashlight/flare/torch,
+/turf/open/floor/wood,
+/area/city/backstreets_room)
+"PK" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/mineral/titanium/yellow,
+/area/city/backstreets_room)
+"Qm" = (
+/obj/effect/turf_decal/siding/wood{
+	dir = 5
+	},
+/turf/open/floor/plating/asteroid{
+	name = "outskirts sand"
+	},
+/area/city/backstreets_room)
+"Qs" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/decal/cleanable/robot_debris,
+/turf/open/indestructible/white,
+/area/city/backstreets_room)
+"Qt" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/statue/silver/secborg,
+/obj/structure/fluff/oldturret{
+	density = 0;
+	layer = 2.8;
+	name = "pedestal";
+	desc = "A pedestal for a statue."
+	},
+/turf/open/floor/stone,
+/area/city/backstreets_room)
+"QK" = (
+/obj/structure/bookcase/random/adult,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/closed/indestructible/wood,
+/area/city/backstreets_room)
+"Rg" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/mob/living/simple_animal/hostile/clan/stone_guard/heretic_puzzle/intro{
+	dir = 4
+	},
+/obj/structure/fluff/oldturret{
+	density = 0;
+	layer = 2.8;
+	name = "pedestal";
+	desc = "A pedestal for a statue."
+	},
+/turf/open/floor/stone,
+/area/city/backstreets_room)
+"Rv" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/chair/sofa/right{
+	dir = 1
+	},
+/obj/item/storage/book/bible,
+/turf/open/floor/carpet/black,
+/area/city/backstreets_room)
+"RC" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/decal/cleanable/cobweb,
+/turf/open/floor/carpet/black,
+/area/city/backstreets_room)
+"RD" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/mineral/titanium/tiled/white{
+	color = "#03a113"
+	},
+/area/city/backstreets_room)
+"RF" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/mineral/titanium/tiled/white{
+	color = "#03a19e"
+	},
+/area/city/backstreets_room)
+"RU" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/mob/living/simple_animal/hostile/scarlet_rose,
+/obj/effect/decal/cleanable/cobweb/cobweb2,
+/turf/open/floor/wood,
+/area/city/backstreets_room)
+"RY" = (
+/obj/effect/landmark,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/stone,
+/area/city/backstreets_room)
+"Sf" = (
+/obj/effect/turf_decal/siding/wood/corner{
+	dir = 8
+	},
+/turf/open/floor/plating/asteroid{
+	name = "outskirts sand"
+	},
+/area/city/backstreets_room)
+"Si" = (
+/obj/structure/bookcase/random/reference,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/closed/indestructible/wood,
+/area/city/backstreets_room)
+"Su" = (
+/obj/effect/turf_decal/trimline/red/filled/warning{
+	dir = 5
+	},
+/turf/open/floor/plating/asteroid{
+	name = "outskirts sand"
+	},
+/area/city/backstreets_room)
+"SB" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/machinery/bookbinder,
+/turf/open/floor/carpet/black,
+/area/city/backstreets_room)
+"Te" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/mob/living/simple_animal/hostile/clan/stone_guard/dagger_puzzle/book,
+/obj/structure/fluff/oldturret{
+	density = 0;
+	layer = 2.8;
+	name = "pedestal";
+	desc = "A pedestal for a statue."
+	},
+/turf/open/floor/holofloor/chapel{
+	dir = 4
+	},
+/area/city/backstreets_room)
+"TW" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/mineral/titanium/tiled/white{
+	color = "#c40d00"
+	},
+/area/city/backstreets_room)
+"Ub" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/chair/sofa/corp/left,
+/turf/open/floor/stone,
+/area/city/backstreets_room)
+"Ui" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/spreading/scarlet_vine,
+/turf/open/floor/mineral/plastitanium,
+/area/city/backstreets_room)
+"Uw" = (
+/obj/effect/turf_decal/trimline/red/filled/warning,
+/obj/docking_port/stationary{
+	dwidth = 5;
+	height = 5;
+	id = "temple_floor";
+	name = "temple floor";
+	width = 10
+	},
+/turf/open/floor/plating/asteroid{
+	name = "outskirts sand"
+	},
+/area/city/backstreets_room)
+"Va" = (
+/obj/structure/flora/rock/pile,
+/turf/open/floor/plating/asteroid{
+	name = "outskirts sand"
+	},
+/area/city/backstreets_room)
+"Vu" = (
+/obj/structure/bonfire/prelit,
+/turf/open/floor/plating/asteroid{
+	name = "outskirts sand"
+	},
+/area/city/backstreets_room)
+"Vy" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/item/crown_dagger_puzzle/book,
+/obj/structure/fluff/divine/convertaltar,
+/turf/open/floor/holofloor/chapel{
+	dir = 4
+	},
+/area/city/backstreets_room)
+"VC" = (
+/obj/structure/bed/maint,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/stone,
+/area/city/backstreets_room)
+"VU" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/chair/pew{
+	dir = 1
+	},
+/turf/open/floor/holofloor/chapel{
+	dir = 4
+	},
+/area/city/backstreets_room)
+"Wk" = (
+/obj/effect/turf_decal/trimline/red/filled/warning{
+	dir = 6
+	},
+/turf/open/floor/plating/asteroid{
+	name = "outskirts sand"
+	},
+/area/city/backstreets_room)
+"WT" = (
 /obj/structure/bed{
 	pixel_y = 15;
 	layer = 2.95;
@@ -1131,497 +1589,25 @@
 	pixel_y = 15
 	},
 /obj/effect/decal/cleanable/dirt/dust,
-/obj/effect/gibspawner/robot,
-/obj/effect/decal/cleanable/cobweb,
 /turf/open/floor/wood,
 /area/city/backstreets_room)
-"Lp" = (
-/obj/effect/decal/cleanable/dirt/dust,
-/obj/structure/table/greyscale{
-	color = "#8a8a8a"
-	},
-/obj/item/paper_bin/bundlenatural,
-/turf/open/floor/stone,
-/area/city/backstreets_room)
-"LA" = (
-/obj/effect/decal/cleanable/dirt/dust,
-/obj/structure/table/greyscale{
-	color = "#8a8a8a"
-	},
-/obj/effect/decal/cleanable/cobweb/cobweb2,
-/turf/open/floor/stone,
-/area/city/backstreets_room)
-"LC" = (
-/obj/structure/bookcase,
-/turf/closed/indestructible/iron,
-/area/city/backstreets_room)
-"LD" = (
-/obj/structure/sign/departments/holy,
-/turf/closed/indestructible/iron,
-/area/city/backstreets_room)
-"LT" = (
-/obj/effect/decal/cleanable/dirt/dust,
-/turf/closed/indestructible/iron,
-/area/city/backstreets_room)
-"LY" = (
-/obj/effect/decal/cleanable/dirt/dust,
-/obj/effect/decal/cleanable/cobweb,
-/obj/machinery/computer/operating{
-	dir = 4
-	},
-/turf/open/floor/plasteel/showroomfloor,
-/area/city/backstreets_room)
-"Md" = (
-/obj/effect/decal/cleanable/dirt/dust,
-/obj/structure/statue/silver/secborg,
-/obj/structure/fluff/oldturret{
-	density = 0;
-	layer = 2.8;
-	name = "pedestal";
-	desc = "A pedestal for a statue."
-	},
-/turf/open/floor/stone,
-/area/city/backstreets_room)
-"Mo" = (
-/obj/structure/sign/directions/supply{
-	dir = 1
-	},
-/turf/closed/indestructible/iron,
-/area/city/backstreets_room)
-"Mv" = (
-/obj/effect/decal/cleanable/dirt/dust,
-/turf/open/floor/circuit,
-/area/city/backstreets_room)
-"Mx" = (
-/obj/effect/landmark,
-/obj/effect/decal/cleanable/dirt/dust,
-/turf/open/floor/mineral/gold,
-/area/city/backstreets_room)
-"MA" = (
-/obj/effect/decal/cleanable/dirt/dust,
-/mob/living/simple_animal/hostile/clan/stone_guard/dagger_puzzle/hammer,
-/obj/structure/fluff/oldturret{
-	density = 0;
-	layer = 2.8;
-	name = "pedestal";
-	desc = "A pedestal for a statue."
-	},
-/turf/open/floor/holofloor/chapel{
-	dir = 1
-	},
-/area/city/backstreets_room)
-"MR" = (
+"Xa" = (
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/effect/decal/cleanable/xenoblood,
-/turf/open/indestructible/white,
-/area/city/backstreets_room)
-"MX" = (
-/obj/effect/decal/cleanable/dirt/dust,
-/obj/structure/chair/sofa/corp/right{
-	dir = 4
-	},
 /turf/open/floor/stone,
-/area/city/backstreets_room)
-"Na" = (
-/obj/effect/turf_decal/siding/wood,
-/obj/structure/chair/wood{
-	dir = 1
-	},
-/turf/open/floor/plating/asteroid{
-	name = "outskirts sand"
-	},
-/area/city/backstreets_room)
-"Ns" = (
-/obj/effect/decal/cleanable/dirt/dust,
-/obj/structure/chair/pew/left{
-	dir = 1
-	},
-/turf/open/floor/holofloor/chapel{
-	dir = 1
-	},
-/area/city/backstreets_room)
-"NJ" = (
-/obj/effect/decal/cleanable/dirt/dust,
-/obj/structure/fluff/paper/stack{
-	dir = 1
-	},
-/turf/open/floor/stone,
-/area/city/backstreets_room)
-"NV" = (
-/obj/effect/decal/cleanable/dirt/dust,
-/obj/structure/table/glass,
-/obj/item/book/manual/wiki/surgery,
-/obj/item/storage/organbox,
-/obj/item/storage/organbox,
-/obj/item/organ_storage,
-/obj/item/organ_storage,
-/turf/open/floor/plasteel/showroomfloor,
-/area/city/backstreets_room)
-"Oc" = (
-/obj/effect/decal/cleanable/dirt/dust,
-/obj/machinery/computer/operating{
-	dir = 4
-	},
-/turf/open/floor/plasteel/showroomfloor,
-/area/city/backstreets_room)
-"Ox" = (
-/obj/structure/mineral_door/wood,
-/obj/effect/decal/cleanable/dirt/dust,
-/turf/open/floor/wood,
-/area/city/backstreets_room)
-"Oz" = (
-/obj/effect/decal/cleanable/dirt/dust,
-/obj/structure/chair/sofa/corner{
-	dir = 4
-	},
-/obj/effect/decal/cleanable/cobweb,
-/turf/open/floor/carpet/black,
-/area/city/backstreets_room)
-"OA" = (
-/obj/effect/decal/cleanable/dirt/dust,
-/obj/machinery/door/keycard/puzzle_riddles,
-/turf/open/floor/stone,
-/area/city/backstreets_room)
-"OB" = (
-/obj/effect/decal/cleanable/dirt/dust,
-/obj/structure/grille/broken,
-/turf/open/floor/stone,
-/area/city/backstreets_room)
-"OD" = (
-/obj/structure/bookcase{
-	pixel_y = 32
-	},
-/obj/effect/decal/cleanable/dirt/dust,
-/obj/structure/table/wood/fancy/purple,
-/obj/item/lighter/greyscale,
-/turf/open/floor/wood,
-/area/city/backstreets_room)
-"Pk" = (
-/obj/structure/bookcase{
-	pixel_x = 32
-	},
-/obj/effect/decal/cleanable/dirt/dust,
-/obj/structure/chair/sofa/corner{
-	dir = 8
-	},
-/turf/open/floor/carpet/black,
-/area/city/backstreets_room)
-"Pq" = (
-/obj/effect/decal/cleanable/dirt/dust,
-/obj/structure/chair/sofa/right{
-	dir = 4
-	},
-/turf/open/floor/carpet/black,
-/area/city/backstreets_room)
-"Ps" = (
-/obj/effect/decal/cleanable/dirt/dust,
-/obj/structure/chair/sofa/left,
-/turf/open/floor/carpet/black,
-/area/city/backstreets_room)
-"Px" = (
-/obj/structure/sign/departments/human,
-/turf/closed/indestructible/iron,
-/area/city/backstreets_room)
-"PA" = (
-/obj/structure/rack{
-	color = "#875300"
-	},
-/obj/item/flashlight/flare/torch,
-/obj/item/flashlight/flare/torch,
-/turf/open/floor/wood,
-/area/city/backstreets_room)
-"PC" = (
-/obj/effect/decal/cleanable/dirt/dust,
-/mob/living/simple_animal/hostile/clan/stone_guard/dagger_puzzle/spear,
-/obj/structure/fluff/oldturret{
-	density = 0;
-	layer = 2.8;
-	name = "pedestal";
-	desc = "A pedestal for a statue."
-	},
-/turf/open/floor/holofloor/chapel{
-	dir = 4
-	},
-/area/city/backstreets_room)
-"PK" = (
-/obj/effect/decal/cleanable/dirt/dust,
-/turf/open/floor/mineral/titanium/yellow,
-/area/city/backstreets_room)
-"PT" = (
-/obj/effect/decal/cleanable/dirt/dust,
-/mob/living/simple_animal/hostile/clan/stone_guard/dagger_puzzle/dagger,
-/obj/structure/fluff/oldturret{
-	density = 0;
-	layer = 2.8;
-	name = "pedestal";
-	desc = "A pedestal for a statue."
-	},
-/turf/open/floor/holofloor/chapel{
-	dir = 8
-	},
-/area/city/backstreets_room)
-"PZ" = (
-/obj/structure/mineral_door/iron,
-/obj/effect/decal/cleanable/dirt/dust,
-/turf/open/floor/wood,
-/area/city/backstreets_room)
-"Qm" = (
-/obj/effect/turf_decal/siding/wood{
-	dir = 5
-	},
-/turf/open/floor/plating/asteroid{
-	name = "outskirts sand"
-	},
-/area/city/backstreets_room)
-"QK" = (
-/obj/structure/bookcase/random/adult,
-/obj/effect/decal/cleanable/dirt/dust,
-/turf/closed/indestructible/wood,
-/area/city/backstreets_room)
-"QV" = (
-/obj/effect/decal/cleanable/dirt/dust,
-/obj/structure/chair/sofa/left{
-	dir = 1
-	},
-/turf/open/floor/carpet/black,
-/area/city/backstreets_room)
-"Re" = (
-/obj/effect/decal/cleanable/dirt/dust,
-/obj/structure/dresser,
-/turf/open/floor/wood,
-/area/city/backstreets_room)
-"Rn" = (
-/obj/effect/decal/cleanable/dirt/dust,
-/turf/open/floor/holofloor/chapel,
-/area/city/backstreets_room)
-"Rr" = (
-/obj/effect/decal/cleanable/dirt/dust,
-/obj/structure/table/glass,
-/obj/item/reagent_containers/hypospray/medipen/salacid,
-/obj/item/reagent_containers/hypospray/medipen/salacid,
-/turf/open/indestructible/white,
-/area/city/backstreets_room)
-"RD" = (
-/obj/effect/decal/cleanable/dirt/dust,
-/turf/open/floor/mineral/titanium/tiled/white{
-	color = "#03a113"
-	},
-/area/city/backstreets_room)
-"RF" = (
-/obj/effect/decal/cleanable/dirt/dust,
-/turf/open/floor/mineral/titanium/tiled/white{
-	color = "#03a19e"
-	},
-/area/city/backstreets_room)
-"RV" = (
-/obj/structure/sign/departments/chemistry,
-/turf/closed/indestructible/iron,
-/area/city/backstreets_room)
-"Sa" = (
-/obj/effect/decal/cleanable/dirt/dust,
-/obj/structure/table/greyscale{
-	color = "#8a8a8a"
-	},
-/obj/structure/fluff/paper/stack,
-/turf/open/floor/stone,
-/area/city/backstreets_room)
-"Sf" = (
-/obj/effect/turf_decal/siding/wood/corner{
-	dir = 8
-	},
-/turf/open/floor/plating/asteroid{
-	name = "outskirts sand"
-	},
-/area/city/backstreets_room)
-"Si" = (
-/obj/structure/bookcase/random/reference,
-/obj/effect/decal/cleanable/dirt/dust,
-/turf/closed/indestructible/wood,
-/area/city/backstreets_room)
-"So" = (
-/obj/effect/landmark,
-/obj/effect/decal/cleanable/dirt/dust,
-/turf/open/floor/stone,
-/area/city/backstreets_room)
-"Sr" = (
-/obj/effect/decal/cleanable/dirt/dust,
-/obj/structure/table/reinforced,
-/obj/effect/turf_decal/siding/wideplating/dark,
-/turf/open/floor/plasteel/dark,
-/area/city/backstreets_room)
-"Su" = (
-/obj/effect/turf_decal/trimline/red/filled/warning{
-	dir = 5
-	},
-/turf/open/floor/plating/asteroid{
-	name = "outskirts sand"
-	},
-/area/city/backstreets_room)
-"SI" = (
-/obj/effect/decal/cleanable/dirt/dust,
-/obj/machinery/recharge_station,
-/turf/open/indestructible/white,
-/area/city/backstreets_room)
-"SU" = (
-/obj/effect/decal/cleanable/dirt/dust,
-/obj/structure/chair/sofa/corp/left{
-	dir = 8
-	},
-/turf/open/floor/stone,
-/area/city/backstreets_room)
-"SY" = (
-/obj/effect/decal/cleanable/dirt/dust,
-/obj/machinery/smartfridge/organ,
-/turf/open/floor/plasteel/showroomfloor,
-/area/city/backstreets_room)
-"Tb" = (
-/obj/effect/decal/cleanable/dirt/dust,
-/obj/effect/decal/cleanable/xenoblood,
-/obj/effect/decal/remains/robot,
-/turf/open/indestructible/white,
-/area/city/backstreets_room)
-"Tk" = (
-/obj/effect/decal/cleanable/dirt/dust,
-/turf/open/floor/holofloor/chapel{
-	dir = 4
-	},
-/area/city/backstreets_room)
-"Tq" = (
-/obj/structure/sign/departments/medbay/alt,
-/turf/closed/indestructible/iron,
-/area/city/backstreets_room)
-"TB" = (
-/obj/effect/decal/cleanable/dirt/dust,
-/mob/living/simple_animal/hostile/clan/stone_guard/heretic_puzzle/robes{
-	dir = 8
-	},
-/obj/structure/fluff/oldturret{
-	density = 0;
-	layer = 2.8;
-	name = "pedestal";
-	desc = "A pedestal for a statue."
-	},
-/turf/open/floor/stone,
-/area/city/backstreets_room)
-"TW" = (
-/obj/effect/decal/cleanable/dirt/dust,
-/turf/open/floor/mineral/titanium/tiled/white{
-	color = "#c40d00"
-	},
-/area/city/backstreets_room)
-"Un" = (
-/obj/effect/decal/cleanable/dirt/dust,
-/obj/structure/chair/pew/right{
-	dir = 1
-	},
-/turf/open/floor/holofloor/chapel{
-	dir = 1
-	},
-/area/city/backstreets_room)
-"Uw" = (
-/obj/effect/turf_decal/trimline/red/filled/warning,
-/obj/docking_port/stationary{
-	dwidth = 5;
-	height = 5;
-	id = "temple_floor";
-	name = "temple floor";
-	width = 10
-	},
-/turf/open/floor/plating/asteroid{
-	name = "outskirts sand"
-	},
-/area/city/backstreets_room)
-"Ux" = (
-/obj/effect/decal/cleanable/dirt/dust,
-/obj/structure/chair/sofa{
-	dir = 1
-	},
-/turf/open/floor/carpet/black,
-/area/city/backstreets_room)
-"US" = (
-/obj/effect/decal/cleanable/dirt/dust,
-/obj/structure/chair/pew/left{
-	dir = 1
-	},
-/turf/open/floor/holofloor/chapel{
-	dir = 4
-	},
-/area/city/backstreets_room)
-"Va" = (
-/obj/structure/flora/rock/pile,
-/turf/open/floor/plating/asteroid{
-	name = "outskirts sand"
-	},
-/area/city/backstreets_room)
-"Vt" = (
-/obj/effect/decal/cleanable/dirt/dust,
-/obj/machinery/door/window{
-	dir = 8;
-	resistance_flags = 115
-	},
-/obj/effect/turf_decal/siding/wideplating/dark/end{
-	dir = 4
-	},
-/turf/open/floor/plasteel/dark,
-/area/city/backstreets_room)
-"Vu" = (
-/obj/structure/bonfire/prelit,
-/turf/open/floor/plating/asteroid{
-	name = "outskirts sand"
-	},
-/area/city/backstreets_room)
-"Vv" = (
-/obj/effect/decal/cleanable/dirt/dust,
-/turf/open/floor/holofloor/chapel{
-	dir = 8
-	},
-/area/city/backstreets_room)
-"Wk" = (
-/obj/effect/turf_decal/trimline/red/filled/warning{
-	dir = 6
-	},
-/turf/open/floor/plating/asteroid{
-	name = "outskirts sand"
-	},
-/area/city/backstreets_room)
-"WM" = (
-/obj/effect/decal/cleanable/dirt/dust,
-/mob/living/simple_animal/hostile/clan/stone_guard/heretic_puzzle/intro{
-	dir = 4
-	},
-/obj/structure/fluff/oldturret{
-	density = 0;
-	layer = 2.8;
-	name = "pedestal";
-	desc = "A pedestal for a statue."
-	},
-/turf/open/floor/stone,
-/area/city/backstreets_room)
-"WN" = (
-/obj/effect/decal/cleanable/dirt/dust,
-/obj/item/detective_scanner,
-/obj/item/deepscanner,
-/obj/structure/table/glass,
-/turf/open/floor/plasteel/showroomfloor,
-/area/city/backstreets_room)
-"WQ" = (
-/obj/effect/decal/cleanable/dirt/dust,
-/obj/effect/decal/remains/robot,
-/turf/open/indestructible/white,
 /area/city/backstreets_room)
 "Xb" = (
 /obj/structure/closet/crate/wooden,
 /turf/open/floor/wood,
 /area/city/backstreets_room)
-"Xi" = (
-/obj/structure/bookcase{
-	pixel_x = -32
-	},
+"Xg" = (
 /obj/effect/decal/cleanable/dirt/dust,
-/obj/structure/chair/sofa/corner{
+/obj/structure/chair/pew/left{
 	dir = 1
 	},
-/turf/open/floor/carpet/black,
+/turf/open/floor/holofloor/chapel{
+	dir = 4
+	},
 /area/city/backstreets_room)
 "Xn" = (
 /obj/effect/turf_decal/siding/wood/corner{
@@ -1631,26 +1617,32 @@
 	name = "outskirts sand"
 	},
 /area/city/backstreets_room)
-"XR" = (
+"Xt" = (
 /obj/effect/decal/cleanable/dirt/dust,
-/obj/structure/table/wood/fancy/royalblack,
-/turf/open/floor/carpet/black,
+/obj/effect/decal/cleanable/garbage,
+/turf/open/floor/stone,
 /area/city/backstreets_room)
-"XY" = (
+"XL" = (
 /obj/effect/decal/cleanable/dirt/dust,
-/obj/structure/chair/pew/left{
+/obj/structure/fluff/paper/stack{
 	dir = 1
 	},
-/turf/open/floor/carpet/black,
+/turf/open/floor/stone,
 /area/city/backstreets_room)
 "Ya" = (
 /turf/closed/mineral/ash_rock,
 /area/city/backstreets_room)
-"Yg" = (
+"Ye" = (
 /obj/effect/decal/cleanable/dirt/dust,
-/obj/structure/table/glass,
-/obj/item/storage/backpack/duffelbag/med/surgery,
-/turf/open/floor/plasteel/showroomfloor,
+/obj/effect/portal/permanent/one_way{
+	id = "temple_exit";
+	mouse_opacity = 0;
+	alpha = 0
+	},
+/turf/open/floor/plasteel/stairs/old{
+	dir = 1;
+	color = "#5e5e5e"
+	},
 /area/city/backstreets_room)
 "YD" = (
 /obj/effect/turf_decal/trimline/yellow/filled/line{
@@ -1664,11 +1656,6 @@
 	name = "outskirts sand"
 	},
 /area/city/backstreets_room)
-"YE" = (
-/obj/effect/decal/cleanable/dirt/dust,
-/obj/effect/decal/cleanable/cobweb,
-/turf/open/floor/stone,
-/area/city/backstreets_room)
 "YF" = (
 /obj/structure/bookcase{
 	pixel_x = -32
@@ -1676,10 +1663,9 @@
 /obj/effect/decal/cleanable/dirt/dust,
 /turf/open/floor/wood,
 /area/city/backstreets_room)
-"YI" = (
-/obj/effect/decal/cleanable/dirt/dust,
-/obj/structure/fluff/empty_cryostasis_sleeper,
-/turf/open/indestructible/white,
+"YG" = (
+/obj/structure/sign/plaques/kiddie/library,
+/turf/closed/indestructible/iron,
 /area/city/backstreets_room)
 "YP" = (
 /obj/structure/flora/rock,
@@ -1715,12 +1701,46 @@
 /obj/effect/decal/cleanable/cobweb,
 /turf/open/floor/wood,
 /area/city/backstreets_room)
-"ZA" = (
-/obj/effect/decal/cleanable/dirt/dust,
-/obj/structure/table/greyscale{
-	color = "#8a8a8a"
+"Zs" = (
+/obj/structure/bed{
+	pixel_y = 15;
+	layer = 2.95;
+	can_buckle = 0;
+	name = "bunk beds";
+	density = 1
 	},
-/turf/open/floor/stone,
+/obj/structure/bed{
+	name = "bunk beds";
+	can_buckle = 0;
+	density = 1
+	},
+/obj/structure/ladder{
+	pixel_x = 4;
+	pixel_y = -5;
+	layer = 2.97;
+	mouse_opacity = 0
+	},
+/obj/item/bedsheet/hop{
+	desc = "Fancy cloth earned through good deeds.";
+	name = "old bedsheet";
+	layer = 2.94
+	},
+/obj/item/bedsheet/hop{
+	desc = "Fancy cloth earned through good deeds.";
+	name = "old bedsheet";
+	layer = 2.96;
+	pixel_y = 15
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/gibspawner/robot,
+/obj/effect/decal/cleanable/cobweb,
+/turf/open/floor/wood,
+/area/city/backstreets_room)
+"ZC" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/displaycase/labcage,
+/obj/structure/spreading/scarlet_vine,
+/turf/open/floor/mineral/plastitanium,
 /area/city/backstreets_room)
 "ZG" = (
 /obj/effect/light_emitter{
@@ -1734,22 +1754,15 @@
 	density = 1
 	},
 /area/city/backstreets_room)
-"ZT" = (
+"ZM" = (
 /obj/effect/decal/cleanable/dirt/dust,
-/obj/effect/decal/cleanable/generic,
+/obj/effect/decal/cleanable/cobweb/cobweb2,
 /turf/open/floor/stone,
 /area/city/backstreets_room)
-"ZU" = (
+"ZS" = (
 /obj/effect/decal/cleanable/dirt/dust,
-/obj/machinery/door/window{
-	dir = 4;
-	resistance_flags = 115
-	},
-/obj/effect/turf_decal/siding/wideplating/dark/end{
-	dir = 8
-	},
-/obj/effect/decal/cleanable/generic,
-/turf/open/floor/plasteel/dark,
+/mob/living/simple_animal/hostile/mad_fly_swarm,
+/turf/open/floor/stone,
 /area/city/backstreets_room)
 "ZX" = (
 /obj/effect/turf_decal/trimline/yellow/filled/line{
@@ -1861,33 +1874,33 @@ ex
 ex
 ex
 ex
-tZ
-tZ
-tZ
-tZ
-tZ
-tZ
-tZ
-tZ
-tZ
-tZ
-tZ
-tZ
-tZ
-tZ
-tZ
-tZ
-tZ
-tZ
-tZ
-tZ
-tZ
-tZ
-tZ
-tZ
-tZ
-tZ
-tZ
+Go
+Go
+Go
+Go
+Go
+Go
+Go
+Go
+Go
+Go
+Go
+Go
+Go
+Go
+Go
+Go
+Go
+Go
+Go
+Go
+Go
+Go
+Go
+Go
+Go
+Go
+Go
 "}
 (2,1,1) = {"
 ex
@@ -1988,18 +2001,18 @@ ex
 ex
 ex
 ex
-tZ
-tZ
-tZ
-tZ
-tZ
-tZ
-tZ
-tZ
-tZ
-tZ
-tZ
-tZ
+Go
+Go
+Go
+Go
+Go
+Go
+Go
+Go
+Go
+Go
+Go
+Go
 Va
 nU
 nU
@@ -2008,13 +2021,13 @@ nU
 nU
 EP
 Va
-tZ
-tZ
-tZ
-tZ
-tZ
-tZ
-tZ
+Go
+Go
+Go
+Go
+Go
+Go
+Go
 "}
 (3,1,1) = {"
 ex
@@ -2115,14 +2128,14 @@ ex
 ex
 ex
 ex
-tZ
-tZ
-tZ
-tZ
-tZ
-tZ
-tZ
-tZ
+Go
+Go
+Go
+Go
+Go
+Go
+Go
+Go
 uu
 nU
 EP
@@ -2137,11 +2150,11 @@ nU
 nU
 uu
 nU
-tZ
-tZ
-tZ
-tZ
-tZ
+Go
+Go
+Go
+Go
+Go
 "}
 (4,1,1) = {"
 ex
@@ -2242,11 +2255,11 @@ ex
 ex
 ex
 ex
-tZ
-tZ
-tZ
-tZ
-tZ
+Go
+Go
+Go
+Go
+Go
 Va
 nU
 nU
@@ -2259,16 +2272,16 @@ nU
 nU
 nU
 nU
-nU
+uy
 nU
 nU
 nU
 nU
 nU
 EP
-tZ
-tZ
-tZ
+Go
+Go
+Go
 "}
 (5,1,1) = {"
 ex
@@ -2369,10 +2382,10 @@ ex
 ex
 ex
 ex
-tZ
-tZ
-tZ
-tZ
+Go
+Go
+Go
+Go
 nU
 nU
 ra
@@ -2394,8 +2407,8 @@ nU
 nU
 nU
 Va
-tZ
-tZ
+Go
+Go
 "}
 (6,1,1) = {"
 ex
@@ -2496,9 +2509,9 @@ ex
 ex
 ex
 ex
-tZ
-tZ
-tZ
+Go
+Go
+Go
 uu
 nU
 nU
@@ -2522,7 +2535,7 @@ nU
 nU
 nU
 YP
-tZ
+Go
 "}
 (7,1,1) = {"
 ex
@@ -2623,9 +2636,9 @@ ex
 ex
 ex
 ex
-tZ
-tZ
-tZ
+Go
+Go
+Go
 pW
 EP
 nU
@@ -2649,7 +2662,7 @@ HG
 HG
 nU
 nU
-tZ
+Go
 "}
 (8,1,1) = {"
 ex
@@ -2695,9 +2708,9 @@ YF
 YF
 YF
 YF
-ao
-vi
-Xi
+lc
+gT
+Ok
 Si
 YF
 YF
@@ -2750,9 +2763,9 @@ ex
 ex
 ex
 ex
-tZ
-tZ
-tZ
+Go
+Go
+Go
 pW
 pW
 YP
@@ -2776,7 +2789,7 @@ zV
 HG
 nU
 nU
-tZ
+Go
 "}
 (9,1,1) = {"
 ex
@@ -2814,24 +2827,24 @@ ex
 ex
 ex
 pW
-ZA
+Mk
 zz
 pW
-sF
-mB
-mB
-mB
+xK
+JQ
+JQ
+JQ
 hA
+JQ
 mB
-vB
-aB
+Rv
 Si
-mB
-mB
-mB
-mB
-mB
-mB
+JQ
+JQ
+JQ
+JQ
+JQ
+JQ
 FJ
 pW
 ex
@@ -2877,8 +2890,8 @@ ex
 ex
 ex
 ex
-tZ
-tZ
+Go
+Go
 pW
 pW
 pW
@@ -2903,7 +2916,7 @@ FF
 HG
 nU
 nU
-tZ
+Go
 "}
 (10,1,1) = {"
 ex
@@ -2944,21 +2957,21 @@ pW
 zz
 zz
 tA
-mB
-mB
-mB
+JQ
+JQ
+JQ
 hA
 hA
 hA
+JQ
 mB
-vB
-mB
-mB
-mB
+JQ
+JQ
+JQ
 hA
 hA
 hA
-mB
+JQ
 FJ
 pW
 pW
@@ -3004,8 +3017,8 @@ ex
 ex
 ex
 ex
-tZ
-tZ
+Go
+Go
 KE
 KE
 KE
@@ -3030,7 +3043,7 @@ Xb
 HG
 nU
 nU
-tZ
+Go
 "}
 (11,1,1) = {"
 ex
@@ -3068,38 +3081,38 @@ ex
 ex
 ex
 pW
-LA
+Hz
 zz
 pW
-sF
-mB
-mB
-mB
+xK
+JQ
+JQ
+JQ
 hA
-mB
-mB
-mB
-mB
-mB
-mB
+JQ
+JQ
+JQ
+JQ
+JQ
+JQ
 hA
-mB
-mB
-mB
+JQ
+JQ
+JQ
 FJ
 pW
-bL
+On
 DR
-py
-LT
-rJ
-Lp
-Cb
-Sa
-LT
+VC
+ws
+oz
+Kp
+GP
+BD
+ws
 DR
-py
-ye
+VC
+lV
 pW
 ex
 ex
@@ -3131,7 +3144,7 @@ ex
 ex
 ex
 ex
-tZ
+Go
 pW
 pW
 pW
@@ -3157,7 +3170,7 @@ HG
 HG
 nU
 nU
-tZ
+Go
 "}
 (12,1,1) = {"
 ex
@@ -3198,35 +3211,35 @@ pW
 pW
 pW
 pW
-sF
-mB
-mB
-mB
-mB
-mB
-mB
-mB
-mB
-mB
-mB
+xK
+JQ
+JQ
+JQ
+JQ
+JQ
+JQ
+JQ
+JQ
+JQ
+JQ
 hA
-zp
-mB
-mB
+RU
+JQ
+JQ
 FJ
 pW
 zz
 zz
-nC
+zy
 KJ
 zz
-NJ
-ad
+XL
+Xa
 zz
 KJ
 zz
-tB
-hU
+hw
+Xt
 pW
 ex
 ex
@@ -3258,7 +3271,7 @@ ex
 ex
 ex
 ex
-tZ
+Go
 KE
 KE
 KE
@@ -3283,8 +3296,8 @@ nU
 nU
 nU
 nU
-nU
-tZ
+uy
+Go
 "}
 (13,1,1) = {"
 ex
@@ -3327,29 +3340,29 @@ ex
 LC
 QK
 hA
-mB
-mB
-mB
-mB
-mB
-mB
-mB
-mB
+JQ
+JQ
+JQ
+JQ
+JQ
+JQ
+JQ
+JQ
 nf
 hA
 hA
 hA
-mB
+JQ
 FJ
 pW
-hs
+hU
 zz
 zz
 Bg
-NJ
+XL
 zz
 zz
-eK
+xZ
 KJ
 zz
 zz
@@ -3385,7 +3398,7 @@ ex
 ex
 ex
 ex
-tZ
+Go
 KE
 KE
 KE
@@ -3411,7 +3424,7 @@ nU
 nU
 nU
 nU
-tZ
+Go
 "}
 (14,1,1) = {"
 ex
@@ -3453,34 +3466,34 @@ ex
 ex
 pW
 Kr
-mB
-mB
+JQ
+JQ
 of
 of
 of
 of
 of
-mB
-mB
+JQ
+JQ
 nf
-tH
-Ux
+SB
+IX
 hA
-mB
+JQ
 FJ
 pW
 zz
 zz
 zz
 KJ
-gO
-oN
+ee
+ZS
 zz
 zz
 KJ
 zz
 zz
-ad
+Xa
 pW
 ex
 ex
@@ -3512,7 +3525,7 @@ ex
 ex
 ex
 ex
-tZ
+Go
 KE
 KE
 KE
@@ -3538,7 +3551,7 @@ nU
 nU
 nU
 nU
-tZ
+Go
 "}
 (15,1,1) = {"
 ex
@@ -3580,32 +3593,32 @@ ex
 ex
 pW
 Kr
-mB
-mB
+JQ
+JQ
 of
-Oz
-Pq
-vB
+Hk
+lg
 mB
+JQ
+JQ
+JQ
+JQ
 mB
-mB
-mB
-vB
-Ux
+IX
 hA
-mB
+JQ
 FJ
 pW
 zz
-tB
+hw
 zz
 KJ
-zY
-tB
-NJ
+NX
+hw
+XL
 zz
-ed
-hU
+ft
+Xt
 zz
 zz
 pW
@@ -3626,11 +3639,11 @@ ex
 ex
 ex
 ex
-ex
-ex
-ex
-ex
-ex
+pW
+pW
+pW
+pW
+pW
 pW
 pW
 pW
@@ -3665,7 +3678,7 @@ nU
 nU
 nU
 ra
-tZ
+Go
 "}
 (16,1,1) = {"
 ex
@@ -3707,40 +3720,35 @@ ex
 ex
 pW
 Kr
-mB
-mB
+JQ
+JQ
 of
-Ps
-DI
+OV
+ue
+JQ
+JQ
+JQ
+JQ
+JQ
 mB
-mB
-mB
-mB
-mB
-vB
-Ux
+IX
 hA
-mB
+JQ
 FJ
 pW
-hU
+Xt
 zz
 zz
 KJ
 zz
 zz
 zz
-gO
+ee
 KJ
 zz
-ad
+Xa
 zz
 pW
-ex
-ex
-ex
-ex
-ex
 ex
 ex
 ex
@@ -3764,13 +3772,18 @@ wH
 wH
 wH
 wH
-Go
-la
-la
-la
-la
-la
-la
+wH
+wH
+gQ
+Dt
+wH
+wH
+wH
+Dt
+Dt
+Dt
+Dt
+Dt
 zz
 zz
 pW
@@ -3792,7 +3805,7 @@ nU
 nU
 nU
 nU
-tZ
+Go
 "}
 (17,1,1) = {"
 ex
@@ -3834,40 +3847,35 @@ ex
 ex
 pW
 Kr
-mB
-mB
+JQ
+JQ
 of
-vB
 mB
+JQ
+JQ
 mB
-vB
 nf
-mB
-mB
+JQ
+JQ
 hA
 hA
 hA
-mB
+JQ
 FJ
 pW
 DR
-py
-py
-LT
-Dh
-ad
+VC
+VC
+ws
+jf
+Xa
 zz
-CO
 LT
-py
+ws
+VC
 DR
-Il
+GO
 pW
-ex
-ex
-ex
-ex
-ex
 ex
 ex
 ex
@@ -3891,13 +3899,18 @@ wH
 wH
 wH
 wH
-Go
-Fh
-la
-la
-la
-la
-la
+wH
+wH
+gQ
+vG
+wH
+wH
+wH
+Dt
+Dt
+Dt
+Dt
+Dt
 zz
 zz
 YQ
@@ -3919,7 +3932,7 @@ yH
 nU
 nU
 nU
-tZ
+Go
 "}
 (18,1,1) = {"
 ex
@@ -3960,21 +3973,21 @@ ex
 ex
 ex
 pW
-OD
-mB
-mB
-mB
-mB
-mB
-XR
-QV
+qJ
+JQ
+JQ
+JQ
+JQ
+JQ
+rg
+Ct
 nf
-mB
-mB
-mB
-mB
-mB
-mB
+JQ
+JQ
+JQ
+JQ
+JQ
+JQ
 FJ
 pW
 pW
@@ -4007,24 +4020,24 @@ ex
 ex
 ex
 ex
-ex
-ex
-ex
-ex
-ex
 pW
 wH
 wH
 wH
 wH
 wH
-Go
-la
-la
-la
-la
-la
-la
+wH
+wH
+gQ
+Dt
+wH
+wH
+wH
+Dt
+Dt
+Dt
+Dt
+Dt
 zz
 zz
 pW
@@ -4035,7 +4048,7 @@ nU
 nU
 nU
 nU
-nU
+uy
 nU
 nU
 nz
@@ -4046,7 +4059,7 @@ Na
 nU
 nU
 nU
-tZ
+Go
 "}
 (19,1,1) = {"
 ex
@@ -4092,12 +4105,12 @@ xg
 xg
 xg
 xg
-BC
-iv
-Pk
+kM
+OQ
+sn
 oR
-mB
-mB
+JQ
+JQ
 xg
 xg
 xg
@@ -4108,10 +4121,10 @@ ex
 ex
 ex
 ex
-AU
+uS
 zz
 zz
-AU
+uS
 ex
 ex
 ex
@@ -4134,11 +4147,11 @@ ex
 ex
 ex
 ex
-ex
-ex
-ex
-ex
-ex
+pW
+pW
+pW
+pW
+pW
 pW
 pW
 pW
@@ -4173,7 +4186,7 @@ ik
 nU
 nU
 nU
-tZ
+Go
 "}
 (20,1,1) = {"
 ex
@@ -4222,10 +4235,10 @@ pW
 pW
 pW
 pW
-cn
+YG
 Ox
 Ox
-cn
+YG
 pW
 pW
 pW
@@ -4236,7 +4249,7 @@ pW
 pW
 pW
 pW
-oN
+ZS
 zz
 pW
 ex
@@ -4274,7 +4287,7 @@ ex
 ex
 ex
 ex
-tZ
+Go
 KE
 KE
 KE
@@ -4300,7 +4313,7 @@ nU
 nU
 nU
 nU
-tZ
+Go
 "}
 (21,1,1) = {"
 ex
@@ -4346,25 +4359,25 @@ ex
 ex
 ex
 pW
-gW
-vB
-vB
-vB
-vB
-vB
-vB
-vB
-vB
-vB
+RC
+mB
+mB
+mB
+mB
+mB
+mB
+mB
+mB
+mB
 pW
-Kh
-jv
-YI
-YI
-YI
+mt
+bp
+Jp
+Jp
+Jp
 pW
 zz
-hs
+hU
 pW
 pW
 pW
@@ -4401,7 +4414,7 @@ ex
 ex
 ex
 ex
-tZ
+Go
 KE
 KE
 KE
@@ -4427,7 +4440,7 @@ nU
 nU
 nU
 nU
-tZ
+Go
 "}
 (22,1,1) = {"
 ex
@@ -4473,39 +4486,39 @@ ex
 ex
 ex
 pW
-vB
-vB
-vB
-uf
-Vv
-vB
-vB
-vB
-vB
-vB
+mB
+mB
+mB
+Db
+GL
+mB
+mB
+mB
+mB
+mB
 pW
-lU
-kd
-gL
-Tb
-Kz
+la
+Lu
+Qs
+bX
+Ed
 pW
 zz
 zz
 pW
-Ll
-zk
-mB
-jz
+Zs
+nc
+JQ
+WT
 pW
-nW
-mB
-mB
-jz
+ip
+JQ
+JQ
+WT
 pW
-tZ
-tZ
-tZ
+Go
+Go
+Go
 pW
 ex
 ex
@@ -4528,7 +4541,7 @@ ex
 ex
 ex
 ex
-tZ
+Go
 KE
 KE
 KE
@@ -4554,7 +4567,7 @@ nU
 nU
 nU
 nU
-tZ
+Go
 "}
 (23,1,1) = {"
 ex
@@ -4601,34 +4614,34 @@ ex
 ex
 pW
 pW
-MA
-Vv
-Tk
-Rn
-uf
+qR
+GL
+mv
+Jj
+Db
 pW
 pW
-vB
-vB
+mB
+mB
 pW
-De
-kl
-kl
-kl
-SI
+BA
+pd
+pd
+pd
+Ot
 pW
 zz
 zz
 pW
-mB
-mB
-mB
-Ha
+JQ
+JQ
+JQ
+vE
 pW
-Ha
-fJ
-mB
-mB
+vE
+xV
+JQ
+JQ
 pW
 Ya
 Ya
@@ -4655,7 +4668,7 @@ ex
 ex
 ex
 ex
-tZ
+Go
 pW
 pW
 pW
@@ -4681,7 +4694,7 @@ nU
 nU
 nU
 Va
-tZ
+Go
 "}
 (24,1,1) = {"
 ex
@@ -4728,34 +4741,34 @@ ex
 ex
 pW
 pW
-PC
-Rn
-uf
-Vv
-US
-zZ
-qy
-vB
-vB
+rP
+Jj
+Db
+GL
+Xg
+Ak
+de
+mB
+mB
 pW
-lY
-WQ
-kl
-kE
-kd
+Ca
+qd
+pd
+xt
+Lu
 pW
-hs
+hU
 zz
 pW
-mB
-fJ
-mB
-iS
+JQ
+xV
+JQ
+tK
 pW
-iS
-zk
-mB
-mB
+tK
+nc
+JQ
+JQ
 pW
 zz
 zz
@@ -4782,7 +4795,7 @@ ex
 ex
 ex
 ex
-tZ
+Go
 KE
 KE
 KE
@@ -4808,7 +4821,7 @@ nU
 nU
 nU
 nU
-tZ
+Go
 "}
 (25,1,1) = {"
 ex
@@ -4854,35 +4867,35 @@ ex
 ex
 ex
 pW
-vB
-uf
-Vv
-Tk
-Rn
-ic
-Vv
-XY
-vB
-vB
-pW
-Rr
-MR
-kl
-gL
-SI
-pW
-zz
-zz
-pW
-jz
+mB
+Db
+GL
+mv
+Jj
+sT
+GL
+pJ
 mB
 mB
-Re
 pW
-Re
-mB
-mB
-jz
+ks
+tM
+pd
+Qs
+Ot
+pW
+zz
+zz
+pW
+WT
+JQ
+JQ
+xa
+pW
+xa
+JQ
+JQ
+WT
 pW
 zz
 zz
@@ -4909,7 +4922,7 @@ ex
 ex
 ex
 ex
-tZ
+Go
 pW
 pW
 pW
@@ -4935,7 +4948,7 @@ nU
 nU
 uu
 nU
-tZ
+Go
 "}
 (26,1,1) = {"
 ex
@@ -4981,21 +4994,21 @@ pW
 pW
 pW
 pW
-vB
-Tk
-Rn
-uf
-Vv
-no
-Rn
-ic
-Vv
-vB
+mB
+mv
+Jj
+Db
+GL
+VU
+Jj
+sT
+GL
+mB
 pW
 pW
-RV
-wu
-Tq
+mC
+JM
+wn
 pW
 pW
 YQ
@@ -5003,11 +5016,11 @@ YQ
 pW
 pW
 pW
-PZ
+nZ
 pW
 pW
 pW
-PZ
+nZ
 pW
 pW
 pW
@@ -5036,7 +5049,7 @@ ex
 ex
 ex
 ex
-tZ
+Go
 pW
 pW
 nU
@@ -5062,7 +5075,7 @@ nU
 nU
 nU
 nU
-tZ
+Go
 "}
 (27,1,1) = {"
 ex
@@ -5107,18 +5120,18 @@ zz
 zz
 zz
 zz
-Mo
-vB
-uf
-PT
-yE
-Rn
-Un
-Vv
-xo
-Rn
-vB
-LD
+ph
+mB
+Db
+hG
+Vy
+Jj
+Ha
+GL
+bC
+Jj
+mB
+FM
 zz
 zz
 zz
@@ -5127,9 +5140,9 @@ zz
 zz
 zz
 zz
-ZT
+Ar
 zz
-oN
+ZS
 zz
 zz
 zz
@@ -5163,7 +5176,7 @@ ex
 ex
 ex
 ex
-tZ
+Go
 pW
 EP
 nU
@@ -5189,7 +5202,7 @@ nU
 nU
 nU
 nU
-tZ
+Go
 "}
 (28,1,1) = {"
 ex
@@ -5234,17 +5247,17 @@ zz
 zz
 zz
 zz
-So
-vB
-Tk
-cU
-Jx
-Vv
-US
-Rn
-Ns
-Vv
-vB
+RY
+mB
+mv
+Bz
+tC
+GL
+Xg
+Jj
+ad
+GL
+mB
 YQ
 zz
 zz
@@ -5261,7 +5274,7 @@ zz
 zz
 zz
 zz
-ZT
+Ar
 zz
 zz
 zz
@@ -5290,7 +5303,7 @@ ex
 ex
 ex
 ex
-tZ
+Go
 uu
 nU
 nU
@@ -5316,7 +5329,7 @@ nU
 nU
 nU
 nU
-tZ
+Go
 "}
 (29,1,1) = {"
 ex
@@ -5362,24 +5375,24 @@ zz
 zz
 zz
 pW
-vB
-uf
-Vv
-Tk
-Rn
-ic
-Vv
-no
-Rn
-vB
-LD
+mB
+Db
+GL
+mv
+Jj
+sT
+GL
+VU
+Jj
+mB
+FM
 zz
 zz
-oN
+ZS
 zz
 zz
 zz
-ZT
+Ar
 zz
 zz
 zz
@@ -5417,14 +5430,14 @@ ex
 ex
 ex
 ex
-tZ
+Go
 nU
 nU
 nU
 nU
 nU
 nU
-nU
+uy
 nU
 nU
 nU
@@ -5443,7 +5456,7 @@ nU
 nU
 nU
 nU
-tZ
+Go
 "}
 (30,1,1) = {"
 ex
@@ -5489,30 +5502,30 @@ pW
 pW
 pW
 pW
-vB
-Tk
-Rn
-uf
-Vv
-no
-Rn
-mA
-vB
-vB
+mB
+mv
+Jj
+Db
+GL
+VU
+Jj
+Aw
+mB
+mB
 pW
 pW
 pW
-PZ
+nZ
 pW
 pW
 pW
-PZ
+nZ
 pW
 pW
 pW
-AU
+uS
 YQ
-AU
+uS
 pW
 zz
 zz
@@ -5544,7 +5557,7 @@ ex
 ex
 ex
 ex
-tZ
+Go
 nU
 nU
 nU
@@ -5570,7 +5583,7 @@ nU
 nU
 nU
 nU
-tZ
+Go
 "}
 (31,1,1) = {"
 ex
@@ -5617,29 +5630,29 @@ ex
 ex
 pW
 pW
-Ju
-Vv
-Tk
-Rn
-Un
-ey
-dq
-vB
-vB
+fZ
+GL
+mv
+Jj
+Ha
+uV
+aG
+mB
+mB
 pW
-nW
-mB
-mB
-Re
+ip
+JQ
+JQ
+xa
 pW
-jz
-mB
-mB
-Re
+WT
+JQ
+JQ
+xa
 pW
-OB
-OB
-OB
+KI
+KI
+KI
 pW
 zz
 zz
@@ -5671,7 +5684,7 @@ ex
 ex
 ex
 ex
-tZ
+Go
 YP
 nU
 nU
@@ -5697,7 +5710,7 @@ nU
 nU
 nU
 ra
-tZ
+Go
 "}
 (32,1,1) = {"
 ex
@@ -5744,29 +5757,29 @@ ex
 ex
 pW
 pW
-qK
-Rn
-uf
-Vv
-Tk
+Te
+Jj
+Db
+GL
+mv
 pW
-pW
-vB
-vB
 pW
 mB
 mB
-EM
-iS
 pW
-mB
-mB
-mB
-iS
+JQ
+JQ
+eC
+tK
 pW
-Fm
-IY
-IY
+JQ
+JQ
+JQ
+tK
+pW
+Ui
+ll
+ll
 pW
 zz
 zz
@@ -5798,7 +5811,7 @@ ex
 ex
 ex
 ex
-tZ
+Go
 nU
 nU
 nU
@@ -5822,9 +5835,9 @@ nU
 nU
 nU
 nU
+uy
 nU
-nU
-tZ
+Go
 "}
 (33,1,1) = {"
 ex
@@ -5870,30 +5883,30 @@ ex
 ex
 ex
 pW
-gW
-vB
-vB
-Tk
-Rn
-vB
-vB
-vB
-vB
-vB
+RC
+mB
+mB
+mv
+Jj
+mB
+mB
+mB
+mB
+mB
 pW
-mB
-mB
-mB
-cP
+JQ
+JQ
+JQ
+Fp
 pW
-mB
-mB
-fJ
-cP
+JQ
+JQ
+xV
+Fp
 pW
-IY
-Is
-Fm
+ll
+ZC
+Ui
 pW
 zz
 zz
@@ -5925,7 +5938,7 @@ ex
 ex
 ex
 ex
-tZ
+Go
 nU
 nU
 nU
@@ -5942,7 +5955,7 @@ nU
 nU
 nU
 nU
-tZ
+Go
 nU
 nU
 nU
@@ -5951,7 +5964,7 @@ nU
 nU
 nU
 nU
-tZ
+Go
 "}
 (34,1,1) = {"
 ex
@@ -5997,26 +6010,26 @@ ex
 ex
 ex
 pW
-vB
-vB
-vB
-vB
-vB
-vB
-vB
-vB
-vB
-vB
+mB
+mB
+mB
+mB
+mB
+mB
+mB
+mB
+mB
+mB
 pW
-jz
-mB
-zk
-jz
+WT
+JQ
+nc
+WT
 pW
-jz
-mB
-mB
-nW
+WT
+JQ
+JQ
+ip
 pW
 pW
 pW
@@ -6052,7 +6065,7 @@ ex
 ex
 ex
 ex
-tZ
+Go
 Va
 nU
 nU
@@ -6068,8 +6081,8 @@ nU
 nU
 nU
 nU
-tZ
-tZ
+Go
+Go
 nU
 nU
 nU
@@ -6078,7 +6091,7 @@ nU
 nU
 nU
 nU
-tZ
+Go
 "}
 (35,1,1) = {"
 ex
@@ -6147,8 +6160,8 @@ pW
 pW
 ex
 pW
-oY
-MX
+hZ
+jv
 zz
 zz
 zz
@@ -6179,7 +6192,7 @@ ex
 ex
 ex
 ex
-tZ
+Go
 nU
 nU
 nU
@@ -6195,8 +6208,8 @@ nU
 nU
 nU
 Va
-tZ
-tZ
+Go
+Go
 wQ
 nU
 gt
@@ -6205,7 +6218,7 @@ pR
 nU
 nU
 nU
-tZ
+Go
 "}
 (36,1,1) = {"
 ex
@@ -6254,7 +6267,7 @@ ex
 ex
 ex
 pW
-YE
+MZ
 zz
 zz
 zz
@@ -6274,12 +6287,12 @@ ex
 ex
 ex
 pW
-xK
-dH
+Ub
+vn
 zz
 zz
 zz
-hU
+Xt
 pW
 ex
 ex
@@ -6306,7 +6319,7 @@ ex
 ex
 ex
 ex
-tZ
+Go
 nU
 nU
 nU
@@ -6321,9 +6334,9 @@ nU
 nU
 EP
 nU
-tZ
-tZ
-tZ
+Go
+Go
+Go
 nU
 aO
 nU
@@ -6332,7 +6345,7 @@ nU
 nU
 nU
 nU
-tZ
+Go
 "}
 (37,1,1) = {"
 ex
@@ -6433,7 +6446,7 @@ ex
 ex
 ex
 ex
-tZ
+Go
 ra
 nU
 Va
@@ -6448,9 +6461,9 @@ nU
 nU
 nU
 nU
-tZ
-tZ
-tZ
+Go
+Go
+Go
 BU
 YD
 nU
@@ -6459,7 +6472,7 @@ xi
 nU
 nU
 nU
-tZ
+Go
 "}
 (38,1,1) = {"
 ex
@@ -6528,7 +6541,7 @@ ex
 ex
 ex
 pW
-ZU
+yM
 pW
 zz
 zz
@@ -6560,7 +6573,7 @@ ex
 ex
 ex
 ex
-tZ
+Go
 EP
 nU
 nU
@@ -6574,10 +6587,10 @@ Va
 nU
 nU
 uu
-tZ
-tZ
-tZ
-tZ
+Go
+Go
+Go
+Go
 nU
 nU
 nU
@@ -6586,7 +6599,7 @@ nU
 nU
 nU
 Va
-tZ
+Go
 "}
 (39,1,1) = {"
 ex
@@ -6629,7 +6642,7 @@ ex
 ex
 ex
 ex
-tZ
+Go
 Ya
 Ya
 zz
@@ -6640,11 +6653,11 @@ zz
 zz
 zz
 pW
-LY
-lb
-Bl
-lb
-Oc
+EX
+Nh
+zG
+Nh
+Ov
 pW
 ex
 ex
@@ -6655,11 +6668,11 @@ ex
 ex
 ex
 pW
-Jo
-pf
+bJ
+pX
 zz
 zz
-ZT
+Ar
 zz
 pW
 ex
@@ -6687,8 +6700,8 @@ ex
 ex
 ex
 ex
-tZ
-tZ
+Go
+Go
 nU
 nU
 nU
@@ -6700,11 +6713,11 @@ nU
 nU
 nU
 nU
-tZ
-tZ
-tZ
-tZ
-tZ
+Go
+Go
+Go
+Go
+Go
 BU
 aO
 nU
@@ -6713,7 +6726,7 @@ Uw
 nU
 nU
 nU
-tZ
+Go
 "}
 (40,1,1) = {"
 ex
@@ -6756,7 +6769,7 @@ ex
 ex
 ex
 ex
-tZ
+Go
 Ya
 zz
 zz
@@ -6767,11 +6780,11 @@ zz
 zz
 zz
 pW
-Bl
-Bl
-Bl
-Bl
-Bl
+zG
+zG
+zG
+zG
+zG
 pW
 ex
 ex
@@ -6782,8 +6795,8 @@ ex
 ex
 ex
 pW
-he
-Sr
+ez
+Fj
 zz
 zz
 zz
@@ -6805,17 +6818,17 @@ pW
 pW
 pW
 pW
+pW
+pW
+pW
+pW
 ex
 ex
 ex
 ex
 ex
 ex
-ex
-ex
-ex
-ex
-tZ
+Go
 nU
 nU
 nU
@@ -6826,12 +6839,12 @@ EP
 nU
 nU
 nU
-tZ
-tZ
+Go
+Go
 ex
 ex
-tZ
-tZ
+Go
+Go
 nU
 YD
 nU
@@ -6840,7 +6853,7 @@ nU
 nU
 nU
 nU
-tZ
+Go
 "}
 (41,1,1) = {"
 ex
@@ -6883,7 +6896,7 @@ ex
 ex
 ex
 ex
-tZ
+Go
 Ya
 zz
 zz
@@ -6894,11 +6907,11 @@ zz
 zz
 zz
 pW
-Yg
-WN
-Bl
-SY
-NV
+dZ
+Ks
+zG
+FN
+gX
 pW
 ex
 ex
@@ -6909,22 +6922,26 @@ ex
 ex
 ex
 pW
-ys
-lr
+AO
+Al
 zz
 zz
 zz
 zz
-Px
+hV
 zz
 zz
-la
-la
-la
-la
-la
-la
 Dt
+Dt
+Dt
+Dt
+Dt
+Dt
+Dt
+Dt
+Dt
+Dt
+Ye
 wH
 wH
 wH
@@ -6938,11 +6955,7 @@ ex
 ex
 ex
 ex
-ex
-ex
-ex
-ex
-tZ
+Go
 YP
 nU
 EP
@@ -6953,12 +6966,12 @@ nU
 nU
 nU
 Va
-tZ
-tZ
+Go
+Go
 ex
 ex
-tZ
-tZ
+Go
+Go
 BU
 YD
 nU
@@ -6967,7 +6980,7 @@ xi
 nU
 nU
 nU
-tZ
+Go
 "}
 (42,1,1) = {"
 ex
@@ -7020,12 +7033,12 @@ zz
 zz
 zz
 zz
-Jw
+MP
 zz
 zz
 zz
 zz
-Md
+Qt
 pW
 ex
 ex
@@ -7036,7 +7049,7 @@ ex
 ex
 ex
 pW
-Vt
+zH
 pW
 zz
 zz
@@ -7045,13 +7058,17 @@ zz
 YQ
 zz
 zz
-la
-la
-la
-la
-la
-JQ
 Dt
+Dt
+Dt
+Dt
+Dt
+Dt
+Dt
+Dt
+Dt
+eT
+Ye
 wH
 wH
 wH
@@ -7065,27 +7082,23 @@ ex
 ex
 ex
 ex
+Go
+Go
+nU
+nU
+nU
+nU
+nU
+nU
+nU
+nU
+nU
+Go
+Go
 ex
 ex
-ex
-ex
-tZ
-tZ
-nU
-nU
-nU
-nU
-nU
-nU
-nU
-nU
-nU
-tZ
-tZ
-ex
-ex
-tZ
-tZ
+Go
+Go
 nU
 rh
 nU
@@ -7094,7 +7107,7 @@ nU
 nU
 nU
 nU
-tZ
+Go
 "}
 (43,1,1) = {"
 ex
@@ -7163,22 +7176,26 @@ ex
 ex
 ex
 pW
-hU
-fI
-ZT
+Xt
+ld
+Ar
 zz
 zz
 zz
-Px
+hV
 zz
 zz
-la
-la
-la
-la
-la
-la
 Dt
+Dt
+Dt
+Dt
+Dt
+Dt
+Dt
+Dt
+Dt
+Dt
+Ye
 wH
 wH
 wH
@@ -7193,35 +7210,31 @@ ex
 ex
 ex
 ex
+Go
+nU
+nU
+nU
+nU
+nU
+nU
+nU
+nU
+Go
+Go
 ex
 ex
 ex
-ex
-tZ
-nU
-nU
-nU
-nU
-nU
-nU
-nU
-nU
-tZ
-tZ
-ex
-ex
-ex
-tZ
-tZ
+Go
+Go
 Su
 YD
 Gt
 rh
 Wk
-tZ
+Go
 nU
 nU
-tZ
+Go
 "}
 (44,1,1) = {"
 ex
@@ -7278,7 +7291,7 @@ YQ
 zz
 zz
 zz
-WM
+Rg
 zz
 pW
 ex
@@ -7290,8 +7303,8 @@ ex
 ex
 ex
 pW
-nB
-dH
+qe
+vn
 zz
 zz
 zz
@@ -7313,6 +7326,10 @@ pW
 pW
 pW
 pW
+pW
+pW
+pW
+pW
 ex
 ex
 ex
@@ -7320,11 +7337,7 @@ ex
 ex
 ex
 ex
-ex
-ex
-ex
-ex
-tZ
+Go
 nU
 uu
 nU
@@ -7332,23 +7345,23 @@ nU
 nU
 nU
 nU
-tZ
-tZ
-tZ
+Go
+Go
+Go
 ex
 ex
 ex
-tZ
-tZ
+Go
+Go
 eN
 eN
 eN
 Iz
 eN
-tZ
+Go
 uA
 nU
-tZ
+Go
 "}
 (45,1,1) = {"
 ex
@@ -7401,8 +7414,8 @@ zz
 zz
 zz
 zz
-Jw
-ui
+MP
+vF
 zz
 zz
 zz
@@ -7417,8 +7430,8 @@ ex
 ex
 ex
 pW
-KL
-SU
+OB
+No
 zz
 zz
 zz
@@ -7451,31 +7464,31 @@ ex
 ex
 ex
 ex
-tZ
-tZ
+Go
+Go
+nU
+nU
+uy
 nU
 nU
 nU
-nU
-nU
-nU
-tZ
-tZ
-tZ
+Go
+Go
+Go
 ex
 ex
 ex
-tZ
-tZ
+Go
+Go
 eN
 Iz
 eN
 tR
 eN
-tZ
-tZ
+Go
+Go
 nU
-tZ
+Go
 "}
 (46,1,1) = {"
 ex
@@ -7529,11 +7542,11 @@ zz
 zz
 zz
 pW
-cj
+mk
 zz
-Ij
-TB
-TB
+DE
+Fh
+Fh
 pW
 ex
 ex
@@ -7546,7 +7559,7 @@ pW
 pW
 pW
 pW
-lQ
+kK
 YQ
 YQ
 pW
@@ -7578,31 +7591,31 @@ ex
 ex
 ex
 ex
-tZ
-tZ
+Go
+Go
 nU
 nU
 nU
 nU
 nU
 YP
-tZ
-tZ
-tZ
+Go
+Go
+Go
 ex
 ex
 ex
-tZ
-tZ
+Go
+Go
 eN
 tR
 eN
 tR
 ZG
-tZ
-tZ
+Go
+Go
 nU
-tZ
+Go
 "}
 (47,1,1) = {"
 ex
@@ -7707,29 +7720,29 @@ ex
 ex
 ex
 ex
-tZ
+Go
 Va
 nU
 nU
 EP
-tZ
-tZ
-tZ
+Go
+Go
+Go
 ex
 ex
 ex
 ex
-tZ
-tZ
+Go
+Go
 eN
 ZX
 eN
 ZX
 eN
-tZ
-tZ
+Go
+Go
 nU
-tZ
+Go
 "}
 (48,1,1) = {"
 ex
@@ -7834,29 +7847,29 @@ ex
 ex
 ex
 ex
-tZ
-tZ
-tZ
-tZ
-tZ
-tZ
-tZ
-tZ
+Go
+Go
+Go
+Go
+Go
+Go
+Go
+Go
 ex
 ex
 ex
 ex
-tZ
-tZ
+Go
+Go
 eN
 tR
 eN
 tR
 eN
-tZ
-tZ
+Go
+Go
 uu
-tZ
+Go
 "}
 (49,1,1) = {"
 ex
@@ -7973,17 +7986,17 @@ ex
 ex
 ex
 ex
-tZ
-tZ
+Go
+Go
 eN
 tR
 eN
 eN
 eN
-tZ
-tZ
+Go
+Go
 nU
-tZ
+Go
 "}
 (50,1,1) = {"
 ex
@@ -8033,9 +8046,9 @@ ex
 ex
 pW
 pW
-ce
+co
 OA
-ce
+co
 pW
 ex
 ex
@@ -8100,17 +8113,17 @@ ex
 ex
 ex
 ex
-tZ
-tZ
+Go
+Go
 eN
 ZX
 eN
 tR
 eN
-tZ
-tZ
-tZ
-tZ
+Go
+Go
+Go
+Go
 "}
 (51,1,1) = {"
 ex
@@ -8159,7 +8172,7 @@ ex
 ex
 ex
 pW
-YE
+MZ
 zz
 zz
 zz
@@ -8227,14 +8240,14 @@ ex
 ex
 ex
 ex
-tZ
-tZ
+Go
+Go
 eN
 tR
 eN
 ZX
 eN
-tZ
+Go
 ex
 ex
 ex
@@ -8304,7 +8317,7 @@ ex
 ex
 ex
 pW
-FV
+ZM
 zz
 zz
 zz
@@ -8354,14 +8367,14 @@ ex
 ex
 ex
 ex
-tZ
-tZ
+Go
+Go
 eN
 Iz
 eN
 tR
 eN
-tZ
+Go
 ex
 ex
 ex
@@ -8481,14 +8494,14 @@ ex
 ex
 ex
 ex
-tZ
-tZ
+Go
+Go
 eN
 eN
 eN
 tR
 eN
-tZ
+Go
 ex
 ex
 ex
@@ -8538,14 +8551,14 @@ ex
 ex
 ex
 pW
-ZA
+Mk
 zz
 zz
 zz
 zz
 zz
 zz
-ZA
+Mk
 pW
 ex
 ex
@@ -8608,14 +8621,14 @@ ex
 ex
 ex
 ex
-tZ
-tZ
+Go
+Go
 eN
 Iz
 eN
 ZX
 eN
-tZ
+Go
 ex
 ex
 ex
@@ -8665,14 +8678,14 @@ ex
 ex
 ex
 pW
-ZA
+Mk
 zz
 zz
 zz
 zz
 zz
 zz
-ZA
+Mk
 pW
 ex
 ex
@@ -8735,14 +8748,14 @@ ex
 ex
 ex
 ex
-tZ
-tZ
+Go
+Go
 eN
 tR
 eN
 tR
 eN
-tZ
+Go
 ex
 ex
 ex
@@ -8792,14 +8805,14 @@ ex
 ex
 ex
 pW
-ZA
+Mk
 zz
 zz
 zz
 zz
 zz
 zz
-ZA
+Mk
 pW
 ex
 ex
@@ -8862,14 +8875,14 @@ ex
 ex
 ex
 ex
-tZ
-tZ
+Go
+Go
 eN
 Iz
 eN
 Iz
 eN
-tZ
+Go
 ex
 ex
 ex
@@ -8919,14 +8932,14 @@ ex
 ex
 ex
 pW
-LA
+Hz
 zz
 zz
 zz
 zz
 zz
 zz
-ZA
+Mk
 pW
 ex
 ex
@@ -8989,14 +9002,14 @@ ex
 ex
 ex
 ex
-tZ
-tZ
+Go
+Go
 eN
 tR
 eN
 tR
 eN
-tZ
+Go
 ex
 ex
 ex
@@ -9116,14 +9129,14 @@ ex
 ex
 ex
 ex
-tZ
-tZ
+Go
+Go
 eN
 tR
 eN
 eN
 eN
-tZ
+Go
 ex
 ex
 ex
@@ -9175,10 +9188,10 @@ ex
 ex
 pW
 pW
-ZA
-ZA
-ZA
-ZA
+Mk
+Mk
+Mk
+Mk
 pW
 pW
 ex
@@ -9243,14 +9256,14 @@ ex
 ex
 ex
 ex
-tZ
-tZ
+Go
+Go
 eN
 tR
 eN
 Iz
 eN
-tZ
+Go
 ex
 ex
 ex
@@ -9370,14 +9383,14 @@ ex
 ex
 ex
 ex
-tZ
-tZ
+Go
+Go
 eN
 ZX
 eN
 tR
 eN
-tZ
+Go
 ex
 ex
 ex
@@ -9497,14 +9510,14 @@ ex
 ex
 ex
 ex
-tZ
-tZ
+Go
+Go
 eN
 tR
 eN
 Iz
 eN
-tZ
+Go
 ex
 ex
 ex
@@ -9624,14 +9637,14 @@ ex
 ex
 ex
 ex
-tZ
-tZ
+Go
+Go
 eN
 eN
 eN
 tR
 eN
-tZ
+Go
 ex
 ex
 ex
@@ -9751,14 +9764,14 @@ ex
 ex
 ex
 ex
-tZ
-tZ
+Go
+Go
 eN
 tR
 eN
 ZX
 eN
-tZ
+Go
 ex
 ex
 ex
@@ -9878,14 +9891,14 @@ ex
 ex
 ex
 ex
-tZ
-tZ
+Go
+Go
 eN
 ZX
 eN
 tR
 eN
-tZ
+Go
 ex
 ex
 ex
@@ -10005,14 +10018,14 @@ ex
 ex
 ex
 ex
-tZ
-tZ
+Go
+Go
 eN
 tR
 eN
 tR
 eN
-tZ
+Go
 ex
 ex
 ex
@@ -10132,14 +10145,14 @@ ex
 ex
 ex
 ex
-tZ
-tZ
+Go
+Go
 eN
 Iz
 eN
 eN
 eN
-tZ
+Go
 ex
 ex
 ex
@@ -10213,7 +10226,7 @@ ex
 ex
 ex
 pW
-FV
+ZM
 zz
 zz
 pW
@@ -10259,14 +10272,14 @@ ex
 ex
 ex
 ex
-tZ
-tZ
+Go
+Go
 eN
 tR
 eN
 tR
 eN
-tZ
+Go
 ex
 ex
 ex
@@ -10386,14 +10399,14 @@ ex
 ex
 ex
 ex
-tZ
-tZ
+Go
+Go
 eN
 ZX
 eN
 ZX
 eN
-tZ
+Go
 ex
 ex
 ex
@@ -10513,14 +10526,14 @@ ex
 ex
 ex
 ex
-tZ
-tZ
+Go
+Go
 eN
 tR
 eN
 tR
 eN
-tZ
+Go
 ex
 ex
 ex
@@ -10640,14 +10653,14 @@ ex
 ex
 ex
 ex
-tZ
-tZ
+Go
+Go
 eN
 eN
 eN
 Iz
 eN
-tZ
+Go
 ex
 ex
 ex
@@ -10767,14 +10780,14 @@ ex
 ex
 ex
 ex
-tZ
-tZ
+Go
+Go
 dX
 dX
 dX
 dX
 dX
-tZ
+Go
 ex
 ex
 ex
