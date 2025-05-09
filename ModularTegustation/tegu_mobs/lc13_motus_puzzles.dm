@@ -468,3 +468,9 @@ GLOBAL_LIST_EMPTY(heretic_puzzle)
 
 /area/city/backstreets_room/temple_motus/treasure_room
 	name = "Temple Treasure Room"
+
+/area/city/backstreets_room/temple_motus/outskirts
+	name = "Outskirts"
+
+/area/city/backstreets_room/temple_motus/medbay
+	name = "Temple Medbay"
