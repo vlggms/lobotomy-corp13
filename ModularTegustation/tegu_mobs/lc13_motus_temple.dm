@@ -162,9 +162,18 @@
 		return
 	devouring_cooldown = world.time + devouring_cooldown_time
 	if(nesting_target)
-		nesting_target.deal_damage(melee_damage_upper * 2, RED_DAMAGE)
-		playsound(get_turf(src), 'sound/abnormalities/fairyfestival/fairy_festival_bite.ogg', 50, FALSE, 5)
-		nesting_target.visible_message(span_danger("\The [src] devours [nesting_target]'s from the inside!"))
+		if(ishuman(nesting_target))
+			var/mob/living/carbon/human/devouring_target = nesting_target
+			if(devouring_target.sanity_lost)
+				devouring_target.deal_damage(melee_damage_upper * 2, RED_DAMAGE)
+				playsound(get_turf(src), 'sound/abnormalities/fairyfestival/fairy_festival_bite.ogg', 50, FALSE, 5)
+				devouring_target.visible_message(span_danger("\The [src] devours [devouring_target]'s from the inside!"))
+			else
+				devouring_target.visible_message(span_danger("[devouring_target]'s body throws up [src]!"))
+				UnregisterSignal(devouring_target, COMSIG_LIVING_DEATH)
+				var/target_turf = get_turf(src)
+				forceMove(target_turf)
+
 
 /mob/living/simple_animal/hostile/mad_fly_swarm/AttackingTarget(atom/attacked_target)
 	. = ..()
