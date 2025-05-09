@@ -12,7 +12,6 @@
 	attack_verb_continuous = "chops"
 	attack_verb_simple = "chop"
 	attack_sound = 'sound/abnormalities/woodsman/woodsman_attack.ogg'
-	stat_attack = DEAD
 	melee_damage_lower = 15
 	melee_damage_upper = 30
 	damage_coeff = list(RED_DAMAGE = 1.5, WHITE_DAMAGE = 0.8, BLACK_DAMAGE = 0.8, PALE_DAMAGE = 1)
@@ -410,10 +409,10 @@
 		GainRamping(10)
 
 /mob/living/simple_animal/hostile/abnormality/woodsman/CanAttack(atom/the_target)
-	if(isliving(target) && !ishuman(target))
-		var/mob/living/L = target
+	if(iscarbon(the_target))
+		var/mob/living/carbon/human/L = the_target
 		if(L.stat == DEAD)
-			return FALSE
+			return TRUE
 	return ..()
 
 /mob/living/simple_animal/hostile/abnormality/woodsman/OpenFire()
