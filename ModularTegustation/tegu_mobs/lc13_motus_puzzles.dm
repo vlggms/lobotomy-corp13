@@ -435,3 +435,36 @@ GLOBAL_LIST_EMPTY(heretic_puzzle)
 
 /mob/living/simple_animal/hostile/clan/stone_guard/heretic_puzzle/armor/puzzle_say()
 	say("I am the Heretic… Please stop me!")
+
+/area/city/backstreets_room/temple_motus
+	name = "Temple Reception"
+
+/area/city/backstreets_room/temple_motus/factory
+	name = "Temple Factory"
+
+/area/city/backstreets_room/temple_motus/dorms
+	name = "Temple Student Dorms"
+
+/area/city/backstreets_room/temple_motus/study_a
+	name = "Temple Study Room A"
+
+/area/city/backstreets_room/temple_motus/study_b
+	name = "Temple Study Room B"
+
+/area/city/backstreets_room/temple_motus/main
+	name = "Temple Main Hall"
+
+/area/city/backstreets_room/temple_motus/library
+	name = "Temple Library"
+
+/area/city/backstreets_room/temple_motus/storage
+	name = "Temple Storage"
+
+/area/city/backstreets_room/temple_motus/treasure_hallway
+	name = "Temple Treasure Hallway"
+
+/area/city/backstreets_room/temple_motus/treasure_entrance
+	name = "Temple Treasure Entrance"
+
+/area/city/backstreets_room/temple_motus/treasure_room
+	name = "Temple Treasure Room"
