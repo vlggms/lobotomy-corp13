@@ -62,7 +62,7 @@
 	var/rose_cooldown_time = 160 SECONDS
 	var/vine_cooldown
 	var/vine_cooldown_time = 45 SECONDS
-	var/can_act = TRUE
+
 
 //*** Basic Simple mob procs***//
 /mob/living/simple_animal/hostile/abnormality/rose_sign/Move()
@@ -436,7 +436,7 @@
 	health = 1000
 	ranged = TRUE
 	var/root_type = /obj/effect/roseRoot
-	var/can_act = TRUE
+
 
 /mob/living/simple_animal/hostile/rose_summoned/combat/CanAttack(atom/the_target)
 	if(prob(30))
