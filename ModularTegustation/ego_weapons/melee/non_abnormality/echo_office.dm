@@ -155,7 +155,7 @@
 	attack_speed = 1.5
 	reach = 2
 	stuntime = 5
-	damtype = RED_DAMAGE
+	damtype = WHITE_DAMAGE
 	var/inflict_burn = 2
 	attack_verb_continuous = list("pokes", "jabs", "tears", "lacerates", "gores")
 	attack_verb_simple = list("poke", "jab", "tear", "lacerate", "gore")
