@@ -186,6 +186,10 @@ GLOBAL_LIST_EMPTY(heretic_puzzle)
 	resistance_flags = INDESTRUCTIBLE | FIRE_PROOF | ACID_PROOF | LAVA_PROOF
 	var/key_type = "real"
 
+/obj/structure/puzzle_key_case/Initialize()
+	. = ..()
+	shuffle_keys()
+
 /obj/structure/puzzle_key_case/interact(mob/user, special_state)
 	. = ..()
 	if(ishuman(user))
@@ -226,10 +230,11 @@ GLOBAL_LIST_EMPTY(heretic_puzzle)
 	for(var/obj/structure/puzzle_key_case/C in range(5, src))
 		nearby_cases += C
 	shuffle_inplace(nearby_cases)
-	case_shuffle(nearby_cases[1], "real")
-	case_shuffle(nearby_cases[2], "illusion")
-	case_shuffle(nearby_cases[3], "monster")
-	case_shuffle(nearby_cases[4], "explosive")
+	if(nearby_cases.len >= 4)
+		case_shuffle(nearby_cases[1], "real")
+		case_shuffle(nearby_cases[2], "illusion")
+		case_shuffle(nearby_cases[3], "monster")
+		case_shuffle(nearby_cases[4], "explosive")
 
 /obj/structure/puzzle_key_case/proc/case_shuffle(obj/structure/case, newkey)
 	if(istype(case, /obj/structure/puzzle_key_case))
@@ -352,6 +357,8 @@ GLOBAL_LIST_EMPTY(heretic_puzzle)
 	attacked_line = "PROCEEDING WITH EXTERMINATION..."
 	starting_looting_line = "WARNING, AUTHORIZED LOOTING DETECTED. DROP THE CROWBAR"
 	ending_looting_line = "THEIR DETECTED, PROCEEDING WITH EXTERMINATION..."
+	var/heretic = FALSE
+	var/talking = FALSE
 
 /mob/living/simple_animal/hostile/clan/stone_guard/heretic_puzzle/Initialize()
 	. = ..()
@@ -359,3 +366,72 @@ GLOBAL_LIST_EMPTY(heretic_puzzle)
 	faction = list("neutral")
 
 /mob/living/simple_animal/hostile/clan/stone_guard/heretic_puzzle/attack_hand(mob/living/carbon/M)
+	. = ..()
+	if(!stat && M.a_intent == INTENT_HELP && !talking)
+		puzzle_say()
+
+/mob/living/simple_animal/hostile/clan/stone_guard/heretic_puzzle/proc/puzzle_say()
+	speaking = TRUE
+	say("Oh my de-ear students, You came at just the right ti-ime as it looks like we have an He-eretic here to hu-unt us down!")
+	sleep(50)
+	say("How-ever it a-appears that our Kni-ight is only able to tell lies...")
+	sleep(30)
+	say("Ou-ur Priest is only a-able to tell the truth...")
+	sleep(30)
+	say("and the He-eretic is a-able to say e-either!")
+	sleep(30)
+	say("Can you help me fi-igure out which one-e is the He-eretic?")
+	sleep(30)
+	say("Simply gi-ive them a good shake to ma-ake them give their alibi!")
+	speaking = FALSE
+
+/mob/living/simple_animal/hostile/clan/stone_guard/heretic_puzzle/attackby(obj/item/I, mob/living/user, params)
+	. = ..()
+	if(heretic)
+		clapping()
+		visible_message(span_nicegreen("[src] drops a small keycard right before falling apart!"))
+		new /obj/item/keycard/motus_medbay (get_turf(src))
+		dust()
+	else
+		turn_hostile(user)
+
+/mob/living/simple_animal/hostile/clan/stone_guard/heretic_puzzle/proc/clapping()
+	for(var/mob/living/simple_animal/hostile/clan/stone_guard/heretic_puzzle/S in urange(10, get_turf(src)))
+		if(S != src)
+			S.manual_emote("claps")
+	sleep(20)
+	for(var/mob/living/simple_animal/hostile/clan/stone_guard/heretic_puzzle/S in urange(10, get_turf(src)))
+		if(S != src)
+			S.say("Thank you dear students, for slaying this heretic!")
+
+/mob/living/simple_animal/hostile/clan/stone_guard/heretic_puzzle/proc/turn_hostile(mob/living/user)
+	for(var/mob/living/simple_animal/hostile/clan/stone_guard/heretic_puzzle/S in urange(10, get_turf(src)))
+		S.heretic = FALSE
+		S.say("You dare attack a civilian? We shall strike you down!")
+	glob_faction += user
+
+//The Statue that introduces the puzzle
+/mob/living/simple_animal/hostile/clan/stone_guard/heretic_puzzle/intro
+	name = "royal statue"
+
+//The Statue that is the target
+/mob/living/simple_animal/hostile/clan/stone_guard/heretic_puzzle/hood
+	name = "hooded statue"
+	heretic = TRUE
+	mark_once_attacked = FALSE
+
+/mob/living/simple_animal/hostile/clan/stone_guard/heretic_puzzle/hood/puzzle_say()
+	say("The one wearing robes is a Priest.")
+
+//Other statues for the puzzle.
+/mob/living/simple_animal/hostile/clan/stone_guard/heretic_puzzle/robes
+	name = "robed statue"
+
+/mob/living/simple_animal/hostile/clan/stone_guard/heretic_puzzle/robes/puzzle_say()
+	say("The one wearing armor is the Knight.")
+
+/mob/living/simple_animal/hostile/clan/stone_guard/heretic_puzzle/armor
+	name = "armored statue"
+
+/mob/living/simple_animal/hostile/clan/stone_guard/heretic_puzzle/armor/puzzle_say()
+	say("I am the Heretic… Please stop me!")
