@@ -141,7 +141,7 @@
 		else
 			return
 	else
-		manual_emote("looks away, avoiding [M]'s gaze...")
+		// manual_emote("looks away, avoiding [M]'s gaze...")
 	return ..()
 
 /mob/living/simple_animal/hostile/clan/proc/Speech(speech)

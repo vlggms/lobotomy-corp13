@@ -279,12 +279,15 @@ GLOBAL_LIST_EMPTY(heretic_puzzle)
 		riddling = TRUE
 		if(current_riddle == 1)
 			riddle_1(user)
+			riddling = FALSE
 			return
 		if(current_riddle == 2)
 			riddle_2(user)
+			riddling = FALSE
 			return
 		if(current_riddle == 3)
 			riddle_3(user)
+			riddling = FALSE
 			return
 		if(current_riddle >= 4)
 			open()
@@ -315,9 +318,8 @@ GLOBAL_LIST_EMPTY(heretic_puzzle)
 		playsound(get_turf(src), 'sound/machines/buzz-sigh.ogg', 40, TRUE)
 		if(ishuman(user))
 			var/mob/living/carbon/human/silly_person = user
-			var/starlanding = locate(src.x - 1, src.y, src.z)
-			var/obj/item/throwing_star/stamina/ninja/ninja_star = new(starlanding)
-			ninja_star.throw_at(silly_person)
+			var/obj/item/throwing_star/stamina/ninja/ninja_star = new(get_turf(src))
+			ninja_star.throw_at(silly_person, 10, 5)
 			to_chat(silly_person, span_warning("The door fires something at you!"))
 
 /obj/machinery/door/keycard/puzzle_riddles/proc/riddle_3(mob/user)
@@ -343,3 +345,17 @@ GLOBAL_LIST_EMPTY(heretic_puzzle)
 				sleep(20)
 				visible_message("<span class='danger'>[src] teleports back!</span>")
 				forceMove(starting_turf)
+
+/mob/living/simple_animal/hostile/clan/stone_guard/heretic_puzzle
+	mark_once_attacked = TRUE
+	return_to_origin = TRUE
+	attacked_line = "PROCEEDING WITH EXTERMINATION..."
+	starting_looting_line = "WARNING, AUTHORIZED LOOTING DETECTED. DROP THE CROWBAR"
+	ending_looting_line = "THEIR DETECTED, PROCEEDING WITH EXTERMINATION..."
+
+/mob/living/simple_animal/hostile/clan/stone_guard/heretic_puzzle/Initialize()
+	. = ..()
+	glob_faction = GLOB.heretic_puzzle
+	faction = list("neutral")
+
+/mob/living/simple_animal/hostile/clan/stone_guard/heretic_puzzle/attack_hand(mob/living/carbon/M)
