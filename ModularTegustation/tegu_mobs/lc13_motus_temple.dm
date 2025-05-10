@@ -16,8 +16,8 @@
 	attack_sound = 'sound/weapons/fixer/generic/spear2.ogg'
 	ranged = TRUE
 	charge = 5
-	max_charge = 30
-	clan_charge_cooldown = 0.5 SECONDS
+	max_charge = 20
+	clan_charge_cooldown = 1 SECONDS
 	var/attack_tremor = 3
 	var/can_act = TRUE
 	var/ability_damage = 40
@@ -30,7 +30,7 @@
 /mob/living/simple_animal/hostile/clan/stone_guard/ChargeUpdated()
 	if(charge <= 1 && can_act)
 		return stagger()
-	if(charge >= 15)
+	if(charge >= 10)
 		ChangeResistances(list(RED_DAMAGE = 0.3, WHITE_DAMAGE = 0.3, BLACK_DAMAGE = 0.3, PALE_DAMAGE = 0.8))
 	else
 		ChangeResistances(list(RED_DAMAGE = 0.6, WHITE_DAMAGE = 0.8, BLACK_DAMAGE = 1.2, PALE_DAMAGE = 1.5))
@@ -139,8 +139,8 @@
 	faction = list("madfly")
 	damage_coeff = list(RED_DAMAGE = 1.5, WHITE_DAMAGE = 0.4, BLACK_DAMAGE = 0.6, PALE_DAMAGE = 2)
 	melee_damage_type = WHITE_DAMAGE
-	melee_damage_lower = 2
-	melee_damage_upper = 4
+	melee_damage_lower = 1
+	melee_damage_upper = 1
 	attack_verb_continuous = "bites"
 	attack_verb_simple = "bite"
 	attack_sound = 'sound/abnormalities/fairyfestival/fairy_festival_bite.ogg'
