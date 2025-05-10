@@ -385,3 +385,4 @@
 /datum/ego_datum/armor/white_gossypium
 	item_path = /obj/item/clothing/suit/armor/ego_gear/teth/white_gossypium
 	cost = 20
+
