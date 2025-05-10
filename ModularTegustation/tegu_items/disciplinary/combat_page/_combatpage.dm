@@ -79,3 +79,10 @@ GLOBAL_VAR_INIT(combat_points, 0)
 
 	if(reward_pe)
 		SSlobotomy_corp.AdjustAvailableBoxes(reward_pe)
+
+
+/obj/effect/landmark/combat_page
+	name = "combat page spawner"
+	desc = "It spawns combat pages. Notify a coder. Thanks!"
+	icon = 'icons/effects/landmarks_static.dmi'
+	icon_state = "x3"
