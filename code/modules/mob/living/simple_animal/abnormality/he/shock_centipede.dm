@@ -41,6 +41,7 @@
 		/datum/ego_datum/weapon/aedd,
 		/datum/ego_datum/armor/aedd
 		)
+	gift_type = /datum/ego_gifts/aedd
 	abnormality_origin = ABNORMALITY_ORIGIN_LIMBUS
 
 	observation_prompt = "\"This centipede is capable of discharging a high voltage.\" <br>\
