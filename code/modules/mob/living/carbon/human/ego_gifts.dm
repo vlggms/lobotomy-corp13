@@ -539,7 +539,7 @@
 
 /datum/ego_gifts/white_gossypium //intentionally made to suck. Ties into the abno's future mechancics + jokes involving the gift from Limbus
 	name = "White Gossypium"
-	icon_state = "gossypium"
+	icon_state = "white_gossypium"
 	fortitude_bonus = 2
 	prudence_bonus = 2
 	temperance_bonus = -5
