@@ -537,6 +537,15 @@
 	temperance_bonus = 2
 	slot = EYE
 
+/datum/ego_gifts/white_gossypium //intentionally made to suck. Ties into the abno's future mechancics + jokes involving the gift from Limbus
+	name = "White Gossypium"
+	icon_state = "gossypium"
+	fortitude_bonus = 2
+	prudence_bonus = 2
+	temperance_bonus = -5
+	justice_bonus = 2
+	slot = BROOCH
+
 /**
  * HE EGO Gifts
  */

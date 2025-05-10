@@ -283,3 +283,10 @@ Any attempt to code risk class armor will result in a 10 day Github ban.*/
 	icon_state = "desert"
 	flags_inv = NONE
 	armor = list(RED_DAMAGE = 40, WHITE_DAMAGE = 0, BLACK_DAMAGE = -20, PALE_DAMAGE = -20, FIRE = 30) // 20
+
+/obj/item/clothing/suit/armor/ego_gear/teth/white_gossypium
+	name = "White Gossypium"
+	desc = "Made of strong, resilient cotton. It fills you with nostalgia."
+	icon_state = "gossypium"
+	armor = list(RED_DAMAGE = 30, WHITE_DAMAGE = 30, BLACK_DAMAGE = -40, PALE_DAMAGE = 0, FIRE = 0) // 20, it's made out of cotton so i made its fire resistance WAY worse
+
