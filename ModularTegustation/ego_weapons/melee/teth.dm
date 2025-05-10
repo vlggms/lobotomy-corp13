@@ -640,7 +640,7 @@
 /obj/item/ego_weapon/white_gossypium
 	name = "White Gossypium"
 	desc = "Like a straw, this vine seeks to suck the blood out of your veins."
-	icon_state = "gossypium"
+	icon_state = "white_gossypium"
 	force = 25
 	reach = 4 //Has 4 square reach
 	attack_speed = 2.2
