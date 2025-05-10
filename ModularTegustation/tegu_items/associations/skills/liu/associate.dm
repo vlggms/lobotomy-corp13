@@ -69,7 +69,7 @@
 			fuel.adjustSanityLoss(-1000)
 			fuel.adjustFireLoss(-1000)
 			fuel.adjustFireLoss(white_holder)
-			fuel.adjustSanityLoss(burn_holder)
+			fuel.adjustSanityLoss(burn_holder*2)
 	owner.visible_message(span_warning("[owner] fans the flames, the fire burns brighter than ever!"))
 
 	StartCooldown()
