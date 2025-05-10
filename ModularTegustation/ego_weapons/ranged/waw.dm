@@ -674,3 +674,199 @@
 			new /obj/effect/temp_visual/cloud_swirl(get_turf(L)) //placeholder
 			to_chat(creator, span_warning("You feel a itch towards [get_area(L)]."))
 			qdel(src)
+
+/obj/item/ego_weapon/ranged/fellbullet
+	name = "fell bullet"
+	desc = "A Lee-Einfeld bolt-action rifle that fires cursed bullets."
+	icon_state = "fell_bullet"
+	inhand_icon_state = "fell_bullet"
+	special = "This weapon fires extremely slowly. \
+		This weapon pierces all targets. \
+		Activate in your hand to create a portal, which can be fired into. \
+		Attempting to fire with an empty chamber will reload the weapon."
+	force = 28
+	damtype = RED_DAMAGE
+	projectile_path = /obj/projectile/ego_bullet/ego_fellbullet
+	weapon_weight = WEAPON_HEAVY
+	fire_delay = 20
+	shotsleft = 1
+	reloadtime = 0.5 SECONDS
+	fire_sound = 'sound/abnormalities/fluchschutze/fell_bullet.ogg'
+	var/portaling = FALSE
+	var/portal_cooldown
+	var/portal_cooldown_time = 15 SECONDS
+
+	attribute_requirements = list(
+							JUSTICE_ATTRIBUTE = 80
+							)
+
+/obj/item/ego_weapon/ranged/fellbullet/afterattack(atom/target, mob/living/user, flag, params)
+	if(!CanUseEgo(user))
+		return
+	if(portaling)
+		portaling = FALSE
+		if(!LAZYLEN(get_path_to(src,target, TYPE_PROC_REF(/turf, Distance), 0, 20)))
+			to_chat(user, span_notice("Target unreachable."))
+			return
+		var/obj/effect/portal/fellbullet/P1 = new(get_turf(user))
+		var/obj/effect/portal/fellbullet/P2 = new(get_turf(target))
+		P1.link_portal(P2)
+		P2.link_portal(P1)
+		playsound(src, 'sound/abnormalities/fluchschutze/fell_magic.ogg', 50, TRUE)
+		portal_cooldown = world.time + portal_cooldown_time
+		return
+	if(semicd)//stops firing speed anomalies
+		return
+	if(!can_shoot())
+		reload_ego(user)
+	..()
+
+/obj/item/ego_weapon/ranged/fellbullet/shoot_with_empty_chamber(mob/living/user as mob|obj)
+	//do nothing
+
+/obj/item/ego_weapon/ranged/fellbullet/attack_self(mob/user)
+	if(portaling)
+		portaling = FALSE
+		to_chat(user,span_notice("You will no longer create a circle."))
+		return
+	if(portal_cooldown > world.time)
+		to_chat(user,span_warning("You cannot create a magic circle yet!"))
+		return
+	portaling = TRUE
+	to_chat(user,span_notice("You will now create a magic circle at your target."))
+
+/obj/item/ego_weapon/ranged/fellbullet/reload_ego(mob/user)
+	if(is_reloading)
+		return
+	for(var/obj/effect/portal/fellbullet/P in view(2, user))
+		playsound(src, 'sound/abnormalities/fluchschutze/fell_portal.ogg', 50, FALSE)
+	is_reloading = TRUE
+	to_chat(user,span_notice("You chamber a round into [src]."))
+	playsound(src, 'sound/abnormalities/fluchschutze/fell_aim.ogg', 50, TRUE)
+	if(do_after(user, reloadtime, src)) //gotta reload
+		shotsleft = initial(shotsleft)
+		forced_melee = FALSE //no longer forced to resort to melee
+	is_reloading = FALSE
+
+/obj/effect/portal/fellbullet
+	name = "magic circle"
+	desc = "A circle of red magic featuring a six-pointed star "
+	icon = 'icons/effects/effects.dmi'
+	icon_state = "fellcircle"
+	teleport_channel = TELEPORT_CHANNEL_FREE
+
+/obj/effect/portal/fellbullet/teleport(atom/movable/M, force = FALSE)
+	if(!istype(M, /obj/projectile/ego_bullet/ego_fellbullet))
+		return
+	var/obj/projectile/ego_bullet/ego_fellbullet/B = M
+	if(B.damage > 80)
+		return
+	SpinAnimation(speed = 2, loops = 1, segments = 3, parallel = TRUE)//the abno version should always spin
+	B.damage *= 2
+	var/turf/real_target = get_link_target_turf()
+	for(var/obj/effect/portal/fellbullet/P in real_target)
+		P.SpinAnimation(speed = 5, loops = 1, segments = 3, parallel = TRUE)
+		playsound(P, 'sound/abnormalities/fluchschutze/fell_portal.ogg', 50, TRUE)
+		playsound(P, 'sound/abnormalities/fluchschutze/fell_bullet2.ogg', 50, TRUE)
+	..()
+
+/obj/effect/portal/fellbullet/attack_hand(mob/user)
+//the parent behavior will pull you towards it
+
+/obj/effect/portal/fellbullet/Initialize()
+	QDEL_IN(src, 10 SECONDS)//60% uptime
+	return ..()
+
+/obj/item/ego_weapon/ranged/fellscatter
+	name = "fell scatter"
+	desc = "A bolt-action rifle fitted with a wider barrel. It fires cursed shells."
+	icon_state = "fell_bullet"
+	inhand_icon_state = "fell_bullet"
+	special = "Activate in your hand to create a portal, which can be fired into. \
+	After passing the portal, damage will increase at the cost of range."
+	force = 28
+	damtype = RED_DAMAGE
+	projectile_path = /obj/projectile/ego_bullet/ego_fellscatter
+	weapon_weight = WEAPON_HEAVY
+	pellets = 7
+	variance = 10
+	fire_delay = 15
+	shotsleft = 4
+	reloadtime = 0.5 SECONDS
+	fire_sound = 'sound/abnormalities/fluchschutze/fell_scatter.ogg'
+	var/portaling = FALSE
+	var/portal_cooldown
+	var/portal_cooldown_time = 15 SECONDS
+
+	attribute_requirements = list(
+							JUSTICE_ATTRIBUTE = 80
+							)
+
+/obj/item/ego_weapon/ranged/fellscatter/afterattack(atom/target, mob/living/user, flag, params)
+	if(!CanUseEgo(user))
+		return
+	if(portaling)
+		portaling = FALSE
+		if(!LAZYLEN(get_path_to(src,target, TYPE_PROC_REF(/turf, Distance), 0, 20)))
+			to_chat(user, span_notice("Target unreachable."))
+			return
+		var/obj/effect/portal/fellscatter/P1 = new(get_turf(user))
+		var/obj/effect/portal/fellscatter/P2 = new(get_turf(target))
+		P2.pixel_y = 48
+		P1.link_portal(P2)
+		P2.link_portal(P1)
+		playsound(src, 'sound/abnormalities/fluchschutze/fell_magic.ogg', 50, TRUE)
+		portal_cooldown = world.time + portal_cooldown_time
+		return
+	if(semicd)//stops firing speed anomalies
+		return
+	if(!can_shoot())
+		reload_ego(user)
+		return
+	..()
+
+/obj/item/ego_weapon/ranged/fellscatter/reload_ego(mob/user)
+	if(shotsleft == initial(shotsleft))
+		return
+	is_reloading = TRUE
+	to_chat(user,"<span class='notice'>You start loading a bullet.</span>")
+	if(do_after(user, reloadtime, src)) //gotta reload
+		playsound(src, 'sound/weapons/gun/general/slide_lock_1.ogg', 50, TRUE)
+		shotsleft +=1
+		reload_ego(user)
+	is_reloading = FALSE
+
+/obj/item/ego_weapon/ranged/fellscatter/attack_self(mob/user)
+	if(portaling)
+		portaling = FALSE
+		to_chat(user,span_notice("You will no longer create a circle."))
+		return
+	if(portal_cooldown > world.time)
+		to_chat(user,span_warning("You cannot create a magic circle yet!"))
+		return
+	portaling = TRUE
+	to_chat(user,span_notice("You will now create a magic circle at your target."))
+
+/obj/effect/portal/fellscatter
+	name = "magic circle"
+	desc = "A circle of red magic featuring a six-pointed star "
+	icon = 'icons/effects/effects.dmi'
+	icon_state = "fellcircle"
+	teleport_channel = TELEPORT_CHANNEL_FREE
+
+/obj/effect/portal/fellscatter/teleport(atom/movable/M, force = FALSE)
+	if(!istype(M, /obj/projectile/ego_bullet/ego_fellscatter))
+		return
+	var/obj/projectile/ego_bullet/ego_fellscatter/B = M
+	if(B.damage < 8)
+		B.damage *= 2
+	B.yo = 48
+	//B.range = 3//make it aim at the ground
+	animate(B, pixel_y = 0, time = 1 SECONDS)
+	..()
+
+/obj/effect/portal/fellscatter/attack_hand(mob/user)
+
+/obj/effect/portal/fellscatter/Initialize()
+	QDEL_IN(src, 10 SECONDS)//60% uptime
+	return ..()
