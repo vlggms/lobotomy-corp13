@@ -1542,10 +1542,6 @@
 /obj/item/stack/spacecash/c100,
 /turf/open/floor/facility/dark,
 /area/city)
-"lJ" = (
-/obj/machinery/augment_fabricator,
-/turf/open/indestructible/white,
-/area/city)
 "lL" = (
 /obj/machinery/door/airlock/wood{
 	name = "fixer office"
@@ -5946,11 +5942,6 @@
 /obj/structure/fluff/beach_umbrella/security,
 /obj/effect/landmark/observer_start,
 /turf/open/floor/plating/beach/sand,
-/area/city)
-"Ru" = (
-/obj/structure/rack,
-/obj/item/augment_tester,
-/turf/open/indestructible/white,
 /area/city)
 "Rv" = (
 /obj/structure/table/wood,
@@ -31508,7 +31499,7 @@ lV
 OD
 OD
 OD
-Ru
+oe
 lf
 Pf
 OD
@@ -31766,7 +31757,7 @@ lV
 lV
 OD
 oe
-uU
+lf
 Pf
 KP
 Pf
@@ -32023,7 +32014,7 @@ lV
 lV
 OD
 Ry
-lJ
+lf
 Pf
 OD
 xC
