@@ -33,7 +33,8 @@
 	H.set_species(/datum/species/synth)
 	job_important = "You are allowed to enter the backstreets to hunt for silk. However, DO NOT LOOT THE WEAPONS, CASH OR ARMOR FROM THE BACKSTREETS! \
 			Your primary goal is to kill monsters in the backstreets and/or humans to weave silk so you can then sell it to the humans. \
-			You have a base on the left side of the nest."
+			You have a base on the left side of the nest. \
+			You are allowed to hunt down players in the backstreets, especially if they are by themselves! (However avoid spawn killing them, by waiting at the entrance.)"
 	..()
 
 /datum/outfit/job/carnival
