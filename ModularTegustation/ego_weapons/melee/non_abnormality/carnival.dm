@@ -3,7 +3,7 @@
 	desc = "A spear that the Carnival uses to hunt down their prey."
 	icon_state = "carnival_spear"
 	inhand_icon_state = "carnival_spear"
-	special = "Deal double damage to mobs of the backstreets. This weapon also stuns target humans, if the user and the target human are alone."
+	special = "Deal double damage to mobs of the backstreets."
 	force = 35
 	reach = 2
 	attack_speed = 1
@@ -39,20 +39,6 @@
 		force *= 2
 	..()
 	force = initial_force
-	if(ishuman(target))
-		var/mob/living/carbon/human/H = target
-		var/alone = TRUE
-		for(var/mob/living/carbon/human/O in range(7, H))
-			if(O == user || O == H)
-				continue
-			if(O.stat == DEAD || !O.client)
-				continue
-			else
-				alone = FALSE
-		if(alone)
-			H.Knockdown(20)
-			to_chat(user, span_nicegreen("You backstab [H.name], dropping them to the ground!"))
-			to_chat(H, span_danger("You are backstabed by [user.name], dropping you to the ground!"))
 
 /obj/item/ego_weapon/city/carnival_spear/weak
 	name = "Worn-down Carnival Spear"
