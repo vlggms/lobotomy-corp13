@@ -1508,10 +1508,6 @@
 	},
 /turf/open/floor/wood,
 /area/city/house)
-"oe" = (
-/obj/structure/rack,
-/turf/open/indestructible/white,
-/area/city)
 "oi" = (
 /obj/machinery/telecomms/server/presets/common,
 /turf/open/floor/circuit/telecomms/mainframe,
@@ -4901,6 +4897,10 @@
 /obj/structure/fluff/beach_umbrella/security,
 /obj/effect/landmark/observer_start,
 /turf/open/floor/plating/beach/sand,
+/area/city)
+"Ru" = (
+/obj/structure/rack,
+/turf/open/indestructible/white,
 /area/city)
 "Rv" = (
 /obj/structure/table/wood,
@@ -30182,7 +30182,7 @@ lV
 OD
 OD
 OD
-oe
+Ru
 lf
 Pf
 OD
@@ -30439,7 +30439,7 @@ lV
 lV
 lV
 OD
-oe
+Ru
 lf
 Pf
 KP
