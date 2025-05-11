@@ -719,3 +719,25 @@
 	revival_attribute_penalty = 0
 	cost_multiplier = 10
 	usable_roles = list("Association Section Director", "Association Veteran", "Association Fixer")
+
+/obj/item/kquick_revive
+	name = "k-corp quickfix ampule"
+	desc = "A syringe of kcorp healing nanobots. This one fixes any fallen bodies."
+	icon = 'ModularTegustation/Teguicons/teguitems.dmi'
+	icon_state = "kcorp_syringe2"
+	slot_flags = ITEM_SLOT_POCKETS
+	w_class = WEIGHT_CLASS_SMALL
+	var/heal_cooldown
+	var/heal_cooldown_time = 5 SECONDS
+
+/obj/item/kquick_revive/attack(mob/living/M, mob/user)
+	if(M.stat != DEAD)
+		to_chat(user, span_notice("This syringe only works on dead humans!"))
+		return
+
+	if(heal_cooldown <= world.time)
+		heal_cooldown = world.time + heal_cooldown_time
+		to_chat(user, span_nicegreen("You inject the syringe."))
+		M.adjustBruteLoss(-400, FALSE)
+	else
+		to_chat(user, span_warning("This syringe has not recharged yet!"))
