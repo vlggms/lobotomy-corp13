@@ -5943,6 +5943,10 @@
 /obj/effect/landmark/observer_start,
 /turf/open/floor/plating/beach/sand,
 /area/city)
+"Ru" = (
+/obj/structure/rack,
+/turf/open/indestructible/white,
+/area/city)
 "Rv" = (
 /obj/structure/table/wood,
 /obj/machinery/light/small,
@@ -31499,7 +31503,7 @@ lV
 OD
 OD
 OD
-oe
+Ru
 lf
 Pf
 OD
@@ -31756,7 +31760,7 @@ lV
 lV
 lV
 OD
-oe
+Ru
 lf
 Pf
 KP
