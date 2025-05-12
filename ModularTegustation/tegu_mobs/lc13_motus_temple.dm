@@ -608,9 +608,9 @@
 /mob/living/simple_animal/hostile/clan/stone_keeper
 	name = "stone guardian"
 	desc = "A monstrous machine, with a glare of hatred."
-	icon = 'icons/mob/lavaland/96x96megafauna.dmi'
-	icon_state = "eva"
-	icon_living = "eva"
+	icon = 'ModularTegustation/Teguicons/teaser_mobs.dmi'
+	icon_state = "stone_keeper"
+	icon_living = "stone_keeper"
 	icon_dead = ""
 	pixel_x = -32
 	base_pixel_x = -32
@@ -627,7 +627,7 @@
 	ranged = TRUE
 	charge = 15
 	max_charge = 20
-	clan_charge_cooldown = 10 SECONDS
+	clan_charge_cooldown = 20 SECONDS
 	var/can_act = TRUE
 	var/shield_ready = FALSE
 	var/annihilation_ready = FALSE
@@ -635,6 +635,8 @@
 	var/ranged_attack_delay = 2.5
 	var/tentacle_radius = 1
 	var/tentacle_damage = 50
+	var/taunt_cooldown = 60 SECONDS
+	var/last_taunt_update = 0
 
 /mob/living/simple_animal/hostile/clan/stone_keeper/GainCharge()
 	. = ..()
@@ -660,6 +662,9 @@
 
 		var/random_y = rand(5, 80)
 		AT.pixel_y += random_y
+		if (last_taunt_update < world.time - taunt_cooldown)
+			say("You call this an attack!? How pathetic...")
+			last_taunt_update = world.time
 	if(charge > 0)
 		charge--
 		ChargeUpdated()
@@ -688,14 +693,14 @@
 	can_act = FALSE
 	face_atom(target)
 	playsound(get_turf(src), 'sound/effects/ordeals/white/black_swing.ogg', 75, 0, 3)
-	icon_state = "eva_attack"
+	icon_state = "stone_keeper_attack"
 	SLEEP_CHECK_DEATH(attack_delay)
 	for(var/turf/T in view(2, src))
 		new /obj/effect/temp_visual/pale_eye_attack(T)
 		HurtInTurf(T, list(), (rand(melee_damage_lower, melee_damage_upper)), PALE_DAMAGE, check_faction = TRUE, hurt_mechs = TRUE) //30~40 damage
 	playsound(get_turf(src), 'sound/abnormalities/mountain/slam.ogg', 75, 0, 3)
 	SLEEP_CHECK_DEATH(0.4 SECONDS)
-	icon_state = "eva"
+	icon_state = "stone_keeper"
 	can_act = TRUE
 
 /mob/living/simple_animal/hostile/clan/stone_keeper/proc/AnnihilationBeam(atom/target)
@@ -703,8 +708,9 @@
 	if(cooler_target.stat == DEAD)
 		return
 	can_act = FALSE
-	icon_state = "eva_attack"
-	visible_message(span_danger("[src] levels one of its arms at [cooler_target]!"))
+	icon_state = "stone_keeper_attack"
+	visible_message(span_danger("[src] starts charging something at [cooler_target]!"))
+	say("Tinkerer's Order...")
 	// cooler_target.apply_status_effect(/datum/status_effect/spirit_gun_target) // Re-used for visual indicator
 	dir = get_cardinal_dir(src, target)
 	var/datum/beam/B = src.Beam(cooler_target, "light_beam", time = (2.5 SECONDS))
@@ -716,7 +722,8 @@
 	// cooler_target.remove_status_effect(/datum/status_effect/spirit_gun_target)
 	can_act = TRUE
 	annihilation_ready = FALSE
-	icon_state = "eva"
+	icon_state = "stone_keeper"
+	say("... Annihilation")
 	var/line_of_sight = getline(get_turf(src), get_turf(target)) //better simulates a projectile attack
 	for(var/turf/T in line_of_sight)
 		if(DensityCheck(T))
