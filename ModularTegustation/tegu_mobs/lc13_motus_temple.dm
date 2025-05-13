@@ -117,9 +117,7 @@
 		AoE.transform = M
 		for(var/mob/living/L in HurtInTurf(TT, list(), ability_damage, RED_DAMAGE, null, TRUE, FALSE, TRUE, hurt_structure = TRUE))
 			hit_target = TRUE
-			var/datum/status_effect/stacking/lc_tremor/tremor = L.has_status_effect(/datum/status_effect/stacking/lc_tremor)
-			if(tremor)
-				tremor.TremorBurst()
+			L.apply_lc_tremor(attack_tremor*2, 25)
 	if(!hit_target)
 		charge -= 5
 		playsound(src, 'sound/weapons/ego/devyat_overclock.ogg', 50, FALSE, 5)
@@ -608,7 +606,7 @@
 /mob/living/simple_animal/hostile/clan/stone_keeper
 	name = "stone guardian"
 	desc = "A monstrous machine, with a glare of hatred."
-	icon = 'ModularTegustation/Teguicons/teaser_mobs.dmi'
+	icon = 'ModularTegustation/Teguicons/teaser_mobs3.dmi'
 	icon_state = "stone_keeper"
 	icon_living = "stone_keeper"
 	icon_dead = ""
@@ -637,6 +635,8 @@
 	var/tentacle_damage = 50
 	var/taunt_cooldown = 60 SECONDS
 	var/last_taunt_update = 0
+	var/ability_cooldown
+	var/ability_cooldown_time = 20 SECONDS
 
 /mob/living/simple_animal/hostile/clan/stone_keeper/GainCharge()
 	. = ..()
@@ -678,15 +678,17 @@
 	if(!can_act)
 		return FALSE
 
-	if(annihilation_ready)
-		return OpenFire(attacked_target)
 	return AoeAttack()
 
 /mob/living/simple_animal/hostile/clan/stone_keeper/OpenFire(target)
 	if(!can_act)
 		return
 
-	return AnnihilationBeam(target)
+	if(ability_cooldown <= world.time)
+		ability_cooldown = world.time + ability_cooldown_time
+		return AnnihilationBeam(target)
+	else
+		return
 
 
 /mob/living/simple_animal/hostile/clan/stone_keeper/proc/AoeAttack() //all attacks are an AoE when not dashing
@@ -699,8 +701,8 @@
 		new /obj/effect/temp_visual/pale_eye_attack(T)
 		HurtInTurf(T, list(), (rand(melee_damage_lower, melee_damage_upper)), PALE_DAMAGE, check_faction = TRUE, hurt_mechs = TRUE) //30~40 damage
 	playsound(get_turf(src), 'sound/abnormalities/mountain/slam.ogg', 75, 0, 3)
-	SLEEP_CHECK_DEATH(0.4 SECONDS)
 	icon_state = "stone_keeper"
+	SLEEP_CHECK_DEATH(0.4 SECONDS)
 	can_act = TRUE
 
 /mob/living/simple_animal/hostile/clan/stone_keeper/proc/AnnihilationBeam(atom/target)
@@ -713,9 +715,9 @@
 	say("Tinkerer's Order...")
 	// cooler_target.apply_status_effect(/datum/status_effect/spirit_gun_target) // Re-used for visual indicator
 	dir = get_cardinal_dir(src, target)
-	var/datum/beam/B = src.Beam(cooler_target, "light_beam", time = (2.5 SECONDS))
+	var/datum/beam/B = src.Beam(cooler_target, "light_beam", time = ((ranged_attack_delay+1.5) SECONDS))
 	B.visuals.color = LIGHT_COLOR_DARK_BLUE
-	SLEEP_CHECK_DEATH(ranged_attack_delay)
+	SLEEP_CHECK_DEATH(ranged_attack_delay SECONDS)
 	playsound(src, 'sound/effects/ordeals/white/red_beam.ogg', 75, FALSE, 32)
 	SLEEP_CHECK_DEATH(1.5 SECONDS)
 	playsound(src, 'sound/effects/ordeals/white/red_beam_fire.ogg', 100, FALSE, 32)
