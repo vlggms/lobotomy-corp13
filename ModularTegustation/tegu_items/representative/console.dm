@@ -246,6 +246,7 @@
 /obj/structure/representative_console/proc/GoodieDelivery(our_corporation, mob/living/user)
 	//theres probably a super efficient method of doing this but Im following the method the console uses
 	var/corporationpick
+	var/msg = span_danger("Corporate personnel identified, a care package is on it's way. Corporation procedure reccomends you use these assets to build connections.")
 	switch(our_corporation)
 		if(K_CORP_REP)
 			corporationpick = /obj/item/storage/box/corporation/kcorp
@@ -265,7 +266,6 @@
 	var/obj/structure/closet/supplypod/bluespacepod/pod = new()
 	new corporationpick(pod)
 	pod.explosionSize = list(0,0,0,0)
-	var/msg = "<span class=danger>Corporate personnel identified, a care package is on it's way. Corporation procedure reccomends you use these assets to build connections.</span>"
 	to_chat(user, msg)
 	new /obj/effect/pod_landingzone(get_turf(user), pod)
 
