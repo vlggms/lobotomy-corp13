@@ -1,4 +1,3 @@
-
 //Represenative Accomadations Console
 #define ALL_REP_RESEARCH "~"
 #define K_CORP_REP "K corp"
@@ -277,11 +276,11 @@
 	name = "K-Corp care package"
 
 /obj/item/storage/box/corporation/kcorp/PopulateContents()
-	new /obj/item/grenade/spawnergrenade/khealing
-	new /obj/item/ksyringe
-	new /obj/item/ksyringe
-	new /obj/item/ksyringe
-	new /obj/item/toy/plush/bongy
+	new /obj/item/grenade/spawnergrenade/khealing(src)
+	new /obj/item/ksyringe(src)
+	new /obj/item/ksyringe(src)
+	new /obj/item/ksyringe(src)
+	new /obj/item/toy/plush/bongy(src)
 
 /obj/item/storage/box/corporation/lcorp
 	name = "L-Corp care package"
