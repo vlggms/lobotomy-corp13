@@ -1,3 +1,4 @@
+
 //Represenative Accomadations Console
 #define ALL_REP_RESEARCH "~"
 #define K_CORP_REP "K corp"
