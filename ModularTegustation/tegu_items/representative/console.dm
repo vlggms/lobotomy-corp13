@@ -278,11 +278,10 @@
 	name = "K-Corp care package"
 
 /obj/item/storage/box/corporation/kcorp/PopulateContents()
-	new /obj/item/grenade/spawnergrenade/khealing(src)
-	new /obj/item/ksyringe(src)
-	new /obj/item/ksyringe(src)
-	new /obj/item/ksyringe(src)
 	new /obj/item/toy/plush/bongy(src)
+	new /obj/item/grenade/spawnergrenade/khealing(src)
+	for(var/index in 1 to 3)
+		new /obj/item/ksyringe(src)
 
 /obj/item/storage/box/corporation/lcorp
 	name = "L-Corp care package"
@@ -298,11 +297,10 @@
 	name = "R-Corp care package"
 
 /obj/item/storage/box/corporation/rcorp/PopulateContents()
-	new /obj/item/gun/energy/e_gun/rabbitdash/small(src)
-	new /obj/item/gun/energy/e_gun/rabbitdash/small(src)
-	new /obj/item/gun/energy/e_gun/rabbitdash/small(src)
 	new /obj/item/clothing/head/beret/tegu/rcorp(src)
 	new /obj/item/clothing/neck/cloak/rcorp(src)
+	for(var/index in 1 to 3)
+		new /obj/item/gun/energy/e_gun/rabbitdash/small(src)
 
 /obj/item/storage/box/corporation/wcorp
 	name = "W-Corp care package"
@@ -340,9 +338,8 @@
 /obj/item/storage/box/corporation/jcorp/PopulateContents()
 	new /obj/item/a_gift/jcorp(src)
 	new /obj/item/a_gift/jcorp(src)
-	new /obj/item/coin/casino_token/wood(src)
-	new /obj/item/coin/casino_token/wood(src)
-	new /obj/item/coin/casino_token/wood(src)
+	for(var/index in 1 to 3)
+		new /obj/item/coin/casino_token/wood(src)
 
 /obj/structure/representative_console/proc/CustomizeOffice(obj/poster, obj/crate)
 	var/poster_place = get_turf(locate(/obj/effect/landmark/custom_office/poster) in GLOB.landmarks_list)
