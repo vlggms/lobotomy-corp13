@@ -53,7 +53,7 @@
 	var/courage_cooldown
 	var/courage_cooldown_time = 20 SECONDS
 	var/desperate = FALSE
-	var/can_act = TRUE
+
 	var/death_counter = 0
 	var/burn_mod = 1
 	var/icon_phase = "crying"

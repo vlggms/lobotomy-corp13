@@ -37,7 +37,7 @@
 	monolith_abnormality = /mob/living/simple_animal/hostile/abnormality/basilisoup
 	loot = list(/obj/item/documents/ncorporation)
 
-	var/can_act = TRUE
+
 	var/ding_delay = 1.5 SECONDS
 	var/throw_delay = 2 SECONDS
 	var/unit_list = list()

@@ -65,7 +65,7 @@
 	var/shelled
 	var/mob/living/disguise_ref
 	var/saved_appearance
-	var/can_act = TRUE
+
 	var/current_stage = 1
 	var/next_transform = null
 

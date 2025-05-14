@@ -57,6 +57,7 @@
 	)
 	gift_type =  /datum/ego_gifts/aroma
 	abnormality_origin = ABNORMALITY_ORIGIN_LOBOTOMY
+	can_act = FALSE
 
 /* Combat */
 

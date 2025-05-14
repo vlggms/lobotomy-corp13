@@ -63,7 +63,7 @@
 	)
 	gift_type = /datum/ego_gifts/frostcrown
 	abnormality_origin = ABNORMALITY_ORIGIN_LOBOTOMY
-	var/can_act = TRUE
+
 	//The purpose of this variable is to prevent people from ghosting in the arena and making snow queen unworkable.
 	var/arena_timer = 0
 	var/slash_cooldown = 0

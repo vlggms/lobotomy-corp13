@@ -23,7 +23,7 @@
 	move_to_delay = 8
 	var/jump_cooldown_time = 10 SECONDS
 	var/jump_cooldown
-	var/can_act = TRUE
+
 	var/jump_range = 7
 	var/jump_aoe = 1
 	var/jump_damage = 20
@@ -183,7 +183,7 @@
 	minimum_distance = 2 // Don't move all the way to melee
 	projectiletype = /obj/projectile/beam/water_jet
 	projectilesound = 'sound/effects/ordeals/brown/flea_attack.ogg'
-	var/can_act = TRUE
+
 	var/sinking_damage = 10
 
 /mob/living/simple_animal/hostile/ordeal/sin_gloom/Move()
@@ -388,7 +388,7 @@
 	guaranteed_butcher_results = list(/obj/item/food/meat/slab/sinnew = 1)
 	ranged = TRUE
 	var/block_chance = 10
-	var/can_act = TRUE
+
 	var/ability_damage = 25
 	var/ability_cooldown
 	var/ability_cooldown_time = 6 SECONDS

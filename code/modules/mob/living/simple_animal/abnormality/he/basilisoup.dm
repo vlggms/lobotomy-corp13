@@ -52,7 +52,7 @@
 
 	var/spit_cooldown
 	var/spit_cooldown_time = 12 SECONDS
-	var/can_act = TRUE
+
 	/// Actually it fires this amount thrice, so, multiply it by 3 to get actual amount
 	var/spit_amount = 9
 	/// Stolen charge code from KOG

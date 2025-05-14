@@ -121,7 +121,7 @@
 	var/safe
 	var/work_timer
 	//Breach Vars
-	var/can_act = TRUE
+
 	var/slam_damage = 200
 	var/slam_cooldown
 	var/slam_cooldown_time = 20 SECONDS
