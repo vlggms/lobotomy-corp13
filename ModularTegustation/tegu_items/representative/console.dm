@@ -246,20 +246,21 @@
 /obj/structure/representative_console/proc/GoodieDelivery(our_corporation, mob/living/user)
 	//theres probably a super efficient method of doing this but Im following the method the console uses
 	var/corporationpick
-	if(our_corporation == K_CORP_REP)
-		corporationpick = /obj/item/storage/box/corporation/kcorp
-	if(our_corporation == L_CORP_REP)
-		corporationpick = /obj/item/storage/box/corporation/lcorp
-	if(our_corporation == R_CORP_REP)
-		corporationpick = /obj/item/storage/box/corporation/rcorp
-	if(our_corporation == W_CORP_REP)
-		corporationpick = /obj/item/storage/box/corporation/wcorp
-	if(our_corporation == N_CORP_REP)
-		corporationpick = /obj/item/storage/box/corporation/ncorp
-	if(our_corporation == P_CORP_REP)
-		corporationpick = /obj/item/storage/box/corporation/pcorp
-	if(our_corporation == J_CORP_REP)
-		corporationpick = /obj/item/storage/box/corporation/jcorp
+	switch(our_corporation)
+		if(K_CORP_REP)
+			corporationpick = /obj/item/storage/box/corporation/kcorp
+		if(L_CORP_REP)
+			corporationpick = /obj/item/storage/box/corporation/lcorp
+		if(R_CORP_REP)
+			corporationpick = /obj/item/storage/box/corporation/rcorp
+		if(W_CORP_REP)
+			corporationpick = /obj/item/storage/box/corporation/wcorp
+		if(N_CORP_REP)
+			corporationpick = /obj/item/storage/box/corporation/ncorp
+		if(P_CORP_REP)
+			corporationpick = /obj/item/storage/box/corporation/pcorp
+		if(J_CORP_REP)
+			corporationpick = /obj/item/storage/box/corporation/jcorp
 	//sendingpackage
 	var/obj/structure/closet/supplypod/bluespacepod/pod = new()
 	new corporationpick(pod)
