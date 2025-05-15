@@ -197,3 +197,9 @@
 /datum/adventure_event/proc/RewardKey(key_identifier)
 	gamer.GiveKey(key_identifier)
 	temp_text += "[key_identifier] GAINED<br>"
+
+/datum/adventure_event/proc/AdjustDamageDice(newdice)
+	if(gamer.ChangeDice(newdice))
+		temp_text += "[newdice] WEAPON GAINED<br>"
+		return newdice
+	temp_text += "AdjustDamageDice ERROR<br>"
