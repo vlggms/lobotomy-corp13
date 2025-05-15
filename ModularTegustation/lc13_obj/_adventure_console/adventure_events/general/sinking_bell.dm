@@ -44,6 +44,8 @@
 		The pressure of the water slowly fades as your broken body is pushed up to the water.<br>\
 		When you awaken your on the shore unharmed.<br>\
 		As you look back you see a metal container with two eyes slowly sink below the waves.",
+
+		"Your different now.",
 		)
 
 /datum/adventure_event/sinking_bell/EventChoiceFormat(obj/machinery/M, mob/living/carbon/human/H)
@@ -60,6 +62,7 @@
 			return
 		if(4)
 			AdjustHitPoint(-20)
+			AdjustStatNum(GLOOM_STAT,3)
 		if(5)
 			BUTTON_FORMAT(2, "SURRENDER TO THE PULL", M)
 			BUTTON_FORMAT(6, "REACH FOR THE BELL", M)
@@ -79,4 +82,12 @@
 		if(8)
 			BUTTON_FORMAT(9, "REST", M)
 			return
+		if(9)
+			AdjustStatNum(SLOTH_STAT,1)
+			. += "THIS EVENT HAS CHANGED YOU<br>"
+			BUTTON_FORMAT(10, "SWAP [gamer.virtual_damage] for 1d7 DAMAGE DICE?", M)
+			BUTTON_FORMAT(0, "CONTINUE", M)
+			return
+		if(10)
+			AdjustDamageDice("1d7")
 	return ..()
