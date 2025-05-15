@@ -7,7 +7,7 @@
 	on_sale_pct = 1
 	markup_pct = 0
 
-/obj/machinery/augment_fabricator/proc/make_new_augment()
+/obj/machinery/augment_fabricator/make_new_augment()
 	return new /obj/item/augment/insurgence
 
 /obj/item/augment/insurgence

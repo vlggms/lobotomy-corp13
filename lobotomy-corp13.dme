@@ -4028,6 +4028,7 @@
 #include "ModularTegustation\ego_weapons\melee\non_abnormality\gradeone.dm"
 #include "ModularTegustation\ego_weapons\melee\non_abnormality\hana.dm"
 #include "ModularTegustation\ego_weapons\melee\non_abnormality\index.dm"
+#include "ModularTegustation\ego_weapons\melee\non_abnormality\insurgence.dm"
 #include "ModularTegustation\ego_weapons\melee\non_abnormality\jcorp.dm"
 #include "ModularTegustation\ego_weapons\melee\non_abnormality\jeong.dm"
 #include "ModularTegustation\ego_weapons\melee\non_abnormality\kcorp.dm"
