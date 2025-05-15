@@ -29,12 +29,12 @@
 			continue
 
 		new /obj/effect/temp_visual/cult/sparks(get_turf(victim))
-		victim.adjustBruteLoss(10)
-		skilluser.adjustBruteLoss(-4)
+		victim.adjustBruteLoss(20)
+		skilluser.adjustBruteLoss(-15)
 		if(ishuman(victim))
 			var/mob/living/carbon/human/double_victim = victim
-			double_victim.adjustSanityLoss(10)
-			skilluser.adjustSanityLoss(-4)
+			double_victim.adjustSanityLoss(20)
+			skilluser.adjustSanityLoss(-15)
 
 	owner.visible_message(span_userdanger("tiny cuts form on everyone around [owner], their blood flowing to [owner]'s injuries!"), span_warning("You absorb life from everyone around you!"))
 	new /obj/effect/temp_visual/heal(get_turf(skilluser), "#E2ED4A")
