@@ -403,6 +403,7 @@ GLOBAL_LIST_EMPTY(heretic_puzzle)
 	for(var/mob/living/simple_animal/hostile/clan/stone_guard/heretic_puzzle/S in urange(10, get_turf(src)))
 		if(S != src)
 			S.say("Thank you dear students, for slaying this heretic!")
+	sleep(20)
 
 /mob/living/simple_animal/hostile/clan/stone_guard/heretic_puzzle/proc/turn_hostile(mob/living/user)
 	for(var/mob/living/simple_animal/hostile/clan/stone_guard/heretic_puzzle/S in urange(10, get_turf(src)))

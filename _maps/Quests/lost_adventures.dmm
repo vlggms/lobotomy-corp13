@@ -80,6 +80,7 @@
 /area/city/backstreets_room/temple_motus)
 "bS" = (
 /obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/keeper_field,
 /turf/open/floor/stone,
 /area/city/backstreets_room/temple_motus/treasure_entrance)
 "bX" = (
@@ -119,6 +120,9 @@
 /obj/structure/chair/wood{
 	dir = 8
 	},
+/mob/living/simple_animal/hostile/ui_npc/elliot{
+	dir = 8
+	},
 /turf/open/floor/plating/asteroid{
 	name = "outskirts sand"
 	},
@@ -148,6 +152,7 @@
 /area/city/backstreets_room/temple_motus/study_b)
 "eb" = (
 /obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/keeper_field,
 /turf/open/floor/light,
 /area/city/backstreets_room/temple_motus/treasure_entrance)
 "ee" = (
@@ -209,7 +214,7 @@
 "eT" = (
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/effect/landmark/portal_exit{
-	id = "temple_start"
+	id = "temple_start2"
 	},
 /turf/open/floor/plasteel/stairs/old{
 	dir = 1;
@@ -239,6 +244,18 @@
 /obj/effect/decal/cleanable/dirt/dust,
 /turf/open/floor/stone,
 /area/city/backstreets_room/temple_motus/study_a)
+"fW" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/portal/permanent/one_way{
+	id = "temple_start2";
+	mouse_opacity = 0;
+	alpha = 0
+	},
+/turf/open/floor/plasteel/stairs/old{
+	dir = 1;
+	color = "#5e5e5e"
+	},
+/area/city/backstreets_room/temple_motus)
 "fZ" = (
 /obj/effect/decal/cleanable/dirt/dust,
 /mob/living/simple_animal/hostile/clan/stone_guard/dagger_puzzle/scythe,
@@ -263,7 +280,7 @@
 "gQ" = (
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/effect/portal/permanent/one_way{
-	id = "temple_start";
+	id = "temple_start3";
 	mouse_opacity = 0;
 	alpha = 0
 	},
@@ -397,6 +414,16 @@
 /obj/effect/gibspawner/robot,
 /turf/open/floor/wood,
 /area/city/backstreets_room/temple_motus/dorms)
+"iH" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/landmark/portal_exit{
+	id = "temple_exit3"
+	},
+/turf/open/floor/plasteel/stairs/old{
+	dir = 1;
+	color = "#5e5e5e"
+	},
+/area/city/backstreets_room/temple_motus)
 "jf" = (
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/structure/fluff/paper/stack{
@@ -406,6 +433,12 @@
 /obj/effect/decal/cleanable/cobweb/cobweb2,
 /turf/open/floor/stone,
 /area/city/backstreets_room/temple_motus/study_a)
+"jh" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/decal/cleanable/generic,
+/obj/effect/keeper_field,
+/turf/closed/indestructible/iron,
+/area/city/backstreets_room/temple_motus/treasure_entrance)
 "jp" = (
 /obj/structure/spacevine,
 /turf/closed/indestructible/iron,
@@ -546,6 +579,16 @@
 /obj/effect/mob_spawn/human/corpse,
 /turf/open/floor/stone,
 /area/city/backstreets_room/temple_motus/study_a)
+"mi" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/landmark/portal_exit{
+	id = "temple_start3"
+	},
+/turf/open/floor/plasteel/stairs/old{
+	dir = 1;
+	color = "#5e5e5e"
+	},
+/area/city/backstreets_room/temple_motus)
 "mk" = (
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/effect/decal/cleanable/cobweb/cobweb2,
@@ -762,6 +805,18 @@
 /obj/structure/sign/poster/official/do_not_question,
 /turf/closed/indestructible/iron,
 /area/city/backstreets_room/temple_motus/study_a)
+"qh" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/portal/permanent/one_way{
+	id = "temple_exit3";
+	mouse_opacity = 0;
+	alpha = 0
+	},
+/turf/open/floor/plasteel/stairs/old{
+	dir = 1;
+	color = "#5e5e5e"
+	},
+/area/city/backstreets_room/temple_motus)
 "qH" = (
 /obj/effect/decal/cleanable/dirt/dust,
 /turf/open/floor/stone,
@@ -855,6 +910,7 @@
 "sw" = (
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/effect/decal/cleanable/generic,
+/obj/effect/keeper_field,
 /turf/open/floor/stone,
 /area/city/backstreets_room/temple_motus/treasure_entrance)
 "sA" = (
@@ -1029,7 +1085,7 @@
 "vG" = (
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/effect/landmark/portal_exit{
-	id = "temple_exit"
+	id = "temple_exit2"
 	},
 /turf/open/floor/plasteel/stairs/old{
 	dir = 1;
@@ -1409,6 +1465,30 @@
 /obj/effect/decal/cleanable/cobweb/cobweb2,
 /turf/open/floor/stone,
 /area/city/backstreets_room/temple_motus/storage)
+"EH" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/portal/permanent/one_way{
+	id = "temple_start1";
+	mouse_opacity = 0;
+	alpha = 0
+	},
+/turf/open/floor/plasteel/stairs/old{
+	dir = 1;
+	color = "#5e5e5e"
+	},
+/area/city/backstreets_room/temple_motus)
+"EL" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/portal/permanent/one_way{
+	id = "temple_exit2";
+	mouse_opacity = 0;
+	alpha = 0
+	},
+/turf/open/floor/plasteel/stairs/old{
+	dir = 1;
+	color = "#5e5e5e"
+	},
+/area/city/backstreets_room/temple_motus)
 "EM" = (
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/effect/wall_vent{
@@ -1418,20 +1498,9 @@
 /area/city/backstreets_room/temple_motus/study_b)
 "EO" = (
 /obj/effect/decal/cleanable/dirt/dust,
-/obj/effect/step_trigger/place_atom{
-	atom_path = /mob/living/simple_animal/hostile/mad_fly_swarm;
-	atom_rename = "fly escapee";
-	spawn_dist_x = 2;
-	spawn_flavor_text = "emerges from a vent."
-	},
-/obj/effect/step_trigger/sound_effect{
-	extra_range = 4;
-	happens_once = 1;
-	sound = 'sound/machines/closet_open.ogg';
-	volume = 50
-	},
-/turf/open/floor/carpet/black,
-/area/city/backstreets_room/temple_motus/main)
+/obj/effect/keeper_field,
+/turf/closed/indestructible/iron,
+/area/city/backstreets_room/temple_motus/treasure_entrance)
 "EP" = (
 /obj/structure/flora/stump,
 /turf/open/floor/plating/asteroid{
@@ -1546,6 +1615,7 @@
 /area/city/backstreets_room/temple_motus/main)
 "GO" = (
 /obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/keeper_field,
 /turf/open/floor/circuit,
 /area/city/backstreets_room/temple_motus/treasure_entrance)
 "GP" = (
@@ -1592,6 +1662,16 @@
 /obj/structure/sign/poster/official/work_for_a_future,
 /turf/closed/indestructible/iron,
 /area/city/backstreets_room/temple_motus/treasure_hallway)
+"Ij" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/landmark/portal_exit{
+	id = "temple_start1"
+	},
+/turf/open/floor/plasteel/stairs/old{
+	dir = 1;
+	color = "#5e5e5e"
+	},
+/area/city/backstreets_room/temple_motus)
 "It" = (
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/effect/decal/cleanable/garbage,
@@ -1646,6 +1726,19 @@
 	},
 /turf/open/floor/carpet/black,
 /area/city/backstreets_room/temple_motus/library)
+"Jb" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/fluff/oldturret{
+	density = 0;
+	layer = 2.8;
+	name = "pedestal";
+	desc = "A pedestal for a statue."
+	},
+/mob/living/simple_animal/hostile/clan/stone_guard/heretic_puzzle/hood{
+	dir = 8
+	},
+/turf/open/floor/stone,
+/area/city/backstreets_room/temple_motus/study_b)
 "Jc" = (
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/effect/wall_vent{
@@ -1754,7 +1847,9 @@
 /area/city/backstreets_room/temple_motus/dorms)
 "Lu" = (
 /obj/effect/decal/cleanable/dirt/dust,
-/mob/living/simple_animal/hostile/mad_fly_swarm,
+/obj/effect/wall_vent{
+	pixel_y = -32
+	},
 /turf/open/indestructible/white,
 /area/city/backstreets_room/temple_motus/medbay)
 "LA" = (
@@ -1838,6 +1933,40 @@
 	},
 /turf/open/floor/stone,
 /area/city/backstreets_room/temple_motus)
+"Nv" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/landmark/portal_exit{
+	id = "temple_exit1"
+	},
+/turf/open/floor/plasteel/stairs/old{
+	dir = 1;
+	color = "#5e5e5e"
+	},
+/area/city/backstreets_room/temple_motus)
+"NK" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/step_trigger/sound_effect{
+	extra_range = 4;
+	happens_once = 1;
+	sound = 'sound/machines/closet_open.ogg';
+	volume = 50
+	},
+/obj/effect/step_trigger/place_atom{
+	atom_path = /mob/living/simple_animal/hostile/mad_fly_swarm;
+	atom_rename = "fly escapee";
+	spawn_dist_x = -1;
+	spawn_flavor_text = "emerges from a vent.";
+	spawn_dist_y = -2
+	},
+/obj/effect/step_trigger/place_atom{
+	atom_path = /mob/living/simple_animal/hostile/mad_fly_swarm;
+	atom_rename = "fly escapee";
+	spawn_dist_x = -1;
+	spawn_flavor_text = "emerges from a vent.";
+	spawn_dist_y = -2
+	},
+/turf/open/indestructible/white,
+/area/city/backstreets_room/temple_motus/medbay)
 "NX" = (
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/structure/fluff/paper/stack,
@@ -2322,7 +2451,7 @@
 "Ye" = (
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/effect/portal/permanent/one_way{
-	id = "temple_exit";
+	id = "temple_exit1";
 	mouse_opacity = 0;
 	alpha = 0
 	},
@@ -4199,7 +4328,7 @@ qH
 lU
 KJ
 ee
-ZS
+qH
 qH
 lU
 KJ
@@ -4486,8 +4615,8 @@ wH
 wH
 wH
 wH
-gQ
-Dt
+EH
+Nv
 Dt
 Dt
 Dt
@@ -4613,7 +4742,7 @@ wH
 wH
 wH
 wH
-gQ
+fW
 vG
 Dt
 Dt
@@ -4741,7 +4870,7 @@ wH
 wH
 wH
 gQ
-Dt
+iH
 Dt
 Dt
 Dt
@@ -5048,11 +5177,11 @@ LP
 bS
 bS
 GO
-bS
+EO
 bS
 bS
 sw
-bS
+EO
 GO
 bS
 bS
@@ -5175,11 +5304,11 @@ LP
 bS
 bS
 GO
+EO
 bS
 bS
 bS
-bS
-bS
+EO
 GO
 bS
 bS
@@ -5210,7 +5339,7 @@ mB
 mB
 Fw
 la
-Lu
+pd
 Qs
 bX
 Ed
@@ -5482,7 +5611,7 @@ nc
 RT
 RT
 yg
-aj
+Ar
 aj
 wp
 yg
@@ -5592,7 +5721,7 @@ mB
 Fw
 ks
 tM
-pd
+NK
 Qs
 Ot
 GB
@@ -5960,7 +6089,7 @@ tH
 Jf
 tH
 RY
-EO
+mB
 mv
 Bz
 tC
@@ -6826,11 +6955,11 @@ LP
 bS
 bS
 GO
-sw
+jh
 bS
 bS
 bS
-bS
+EO
 GO
 bS
 bS
@@ -6953,11 +7082,11 @@ LP
 bS
 bS
 GO
+EO
 bS
 bS
 bS
-bS
-bS
+EO
 GO
 bS
 bS
@@ -7613,7 +7742,7 @@ PE
 Cc
 dD
 dD
-dD
+kl
 dD
 dD
 dD
@@ -7652,7 +7781,7 @@ Dt
 Dt
 Dt
 Dt
-Dt
+Ij
 Ye
 wH
 wH
@@ -7780,7 +7909,7 @@ Dt
 Dt
 Dt
 eT
-Ye
+EL
 wH
 wH
 wH
@@ -7895,8 +8024,8 @@ ld
 ld
 ld
 hV
+ZO
 ld
-ld
 Dt
 Dt
 Dt
@@ -7906,8 +8035,8 @@ Dt
 Dt
 Dt
 Dt
-Dt
-Ye
+mi
+qh
 wH
 wH
 wH
@@ -8255,9 +8384,9 @@ dD
 dD
 cN
 mk
-UB
+TG
 DE
-Fh
+Jb
 Fh
 cN
 ex

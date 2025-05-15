@@ -134,7 +134,7 @@
 	maxHealth = 300
 	health = 300
 	move_to_delay = 1.6
-	faction = list("madfly")
+	faction = list("madfly", "hostile")
 	damage_coeff = list(RED_DAMAGE = 1.5, WHITE_DAMAGE = 0.4, BLACK_DAMAGE = 0.6, PALE_DAMAGE = 2)
 	melee_damage_type = WHITE_DAMAGE
 	melee_damage_lower = 1
@@ -223,7 +223,7 @@
 	icon_state = "egg"
 	icon_living = "egg"
 	icon_dead = "egg_hatched"
-	faction = list("madfly")
+	faction = list("madfly", "hostile")
 	gender = NEUTER
 	obj_damage = 0
 	maxHealth = 1000
@@ -316,7 +316,7 @@
 	maxHealth = 1500
 	health = 1500
 	del_on_death = FALSE
-	faction = list("scarletrose")
+	faction = list("scarletrose", "hostile")
 	gender = NEUTER
 	obj_damage = 0
 	death_message = "collapses into a pile of plantmatter."
@@ -393,6 +393,7 @@
 				W.VineAttack(pick(did_we_hit))
 			for(var/mob/living/carbon/human/H in did_we_hit)
 				H.apply_lc_bleed(5)
+				playsound(H, 'sound/abnormalities/rosesign/vinegrab_prep.ogg', 50, FALSE, 5)
 				to_chat(H, span_danger("Scarlet vines cuts into your legs!"))
 	if(ability_cooldown <= world.time)
 		ability_cooldown = world.time + ability_cooldown_time
@@ -625,7 +626,7 @@
 	ranged = TRUE
 	charge = 15
 	max_charge = 20
-	clan_charge_cooldown = 20 SECONDS
+	clan_charge_cooldown = 30 SECONDS
 	var/can_act = TRUE
 	var/shield_ready = FALSE
 	var/annihilation_ready = FALSE
@@ -637,6 +638,12 @@
 	var/last_taunt_update = 0
 	var/ability_cooldown
 	var/ability_cooldown_time = 20 SECONDS
+	var/list/locked_list = list()
+	var/list/locked_tiles_list = list()
+
+/mob/living/simple_animal/hostile/clan/stone_keeper/Initialize()
+	. = ..()
+	AcitvateChains()
 
 /mob/living/simple_animal/hostile/clan/stone_keeper/GainCharge()
 	. = ..()
@@ -690,6 +697,9 @@
 	else
 		return
 
+/mob/living/simple_animal/hostile/clan/stone_keeper/death(gibbed)
+	Unlock()
+	. = ..()
 
 /mob/living/simple_animal/hostile/clan/stone_keeper/proc/AoeAttack() //all attacks are an AoE when not dashing
 	can_act = FALSE
@@ -763,3 +773,96 @@
 		if(D.density)
 			return TRUE
 	return FALSE
+
+/mob/living/simple_animal/hostile/clan/stone_keeper/proc/AcitvateChains()
+	for(var/obj/effect/keeper_field/DF in range(20, src))
+		DF.activate(src)
+		locked_tiles_list += DF
+
+/mob/living/simple_animal/hostile/clan/stone_keeper/proc/Unlock()
+	for(var/obj/effect/keeper_field/DF in locked_tiles_list)
+		if (DF.keeper == src)
+			qdel(DF)
+	for(var/mob/living/L in locked_list)
+		var/datum/status_effect/keeper_chain/S = L.has_status_effect(/datum/status_effect/keeper_chain)
+		if (S)
+			L.remove_status_effect(/datum/status_effect/keeper_chain)
+	locked_list = list()
+	locked_tiles_list = list()
+
+/mob/living/simple_animal/hostile/clan/stone_keeper/proc/ApplyLock(mob/living/L)
+	if(!faction_check_mob(L, FALSE))
+		// apply status effect
+		var/datum/status_effect/keeper_chain/S = L.has_status_effect(/datum/status_effect/keeper_chain)
+		if(!S)
+			S = L.apply_status_effect(/datum/status_effect/keeper_chain)
+		if (!S.list_of_keeper.Find(src))
+			S.list_of_keeper += src
+			locked_list += L
+		// keep a list of everyone locked
+
+/obj/effect/keeper_field
+	name = "keeper's chain"
+	desc = "You shall not run from this fight... Elliot..."
+	icon = 'icons/turf/floors.dmi'
+	icon_state = "locked_down"
+	alpha = 0
+	mouse_opacity = FALSE
+	anchored = TRUE
+	var/mob/living/simple_animal/hostile/clan/stone_keeper/keeper
+	var/active = FALSE
+
+/obj/effect/keeper_field/Crossed(atom/movable/AM)
+	. = ..()
+	if(isliving(AM) && active)
+		var/mob/living/L = AM
+		keeper.ApplyLock(L)
+
+/obj/effect/keeper_field/proc/activate(mob/living/simple_animal/hostile/clan/stone_keeper/activater)
+	animate(src, alpha = 20, time = 1 SECONDS)
+	mouse_opacity = TRUE
+	active = TRUE
+	keeper = activater
+
+/datum/status_effect/keeper_chain
+	id = "keeper chain"
+	status_type = STATUS_EFFECT_UNIQUE
+	alert_type = /atom/movable/screen/alert/status_effect/keeper_chain
+	var/list/list_of_keeper = list()
+	var/turf/last_turf
+
+/atom/movable/screen/alert/status_effect/keeper_chain
+	name = "Keeper Chain"
+	desc = "You shall not run from this fight..."
+	icon = 'ModularTegustation/Teguicons/status_sprites.dmi'
+	icon_state = "locked"
+
+/datum/status_effect/keeper_chain/on_apply()
+	. = ..()
+	RegisterSignal(owner, COMSIG_MOVABLE_PRE_MOVE, PROC_REF(Moved))
+	last_turf = get_turf(owner)
+
+/datum/status_effect/keeper_chain/proc/Moved(mob/user, atom/new_location)
+	SIGNAL_HANDLER
+	var/turf/newloc_turf = get_turf(new_location)
+	var/turf/oldloc_turf = get_turf(user)
+	var/valid_tile = FALSE
+	var/standing_on_locked = FALSE
+
+	for(var/obj/effect/keeper_field/GR in oldloc_turf.contents)
+		standing_on_locked = TRUE
+
+	if (!standing_on_locked)
+		owner.forceMove(last_turf)
+
+	for(var/obj/effect/keeper_field/GR in newloc_turf.contents)
+		valid_tile = TRUE
+
+	if(!valid_tile)
+		return COMPONENT_MOVABLE_BLOCK_PRE_MOVE
+	else
+		last_turf = get_turf(owner)
+
+/datum/status_effect/keeper_chain/on_remove()
+	UnregisterSignal(owner, COMSIG_MOVABLE_PRE_MOVE)
+	return ..()
