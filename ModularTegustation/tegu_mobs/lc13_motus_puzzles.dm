@@ -6,6 +6,7 @@ GLOBAL_LIST_EMPTY(heretic_puzzle)
 	var/obj/item/crown_dagger_puzzle/wanted_item = null
 	var/has_item = FALSE
 	var/puzzle_fail = FALSE
+	loot = list(/obj/item/keycard/motus_medbay)
 	attacked_line = "PROCEEDING WITH EXTERMINATION..."
 	starting_looting_line = "WARNING, AUTHORIZED LOOTING DETECTED. DROP THE CROWBAR"
 	ending_looting_line = "THEIR DETECTED, PROCEEDING WITH EXTERMINATION..."
@@ -357,6 +358,7 @@ GLOBAL_LIST_EMPTY(heretic_puzzle)
 	attacked_line = "PROCEEDING WITH EXTERMINATION..."
 	starting_looting_line = "WARNING, AUTHORIZED LOOTING DETECTED. DROP THE CROWBAR"
 	ending_looting_line = "THEIR DETECTED, PROCEEDING WITH EXTERMINATION..."
+	loot = list(/obj/item/keycard/motus_medbay)
 	var/heretic = FALSE
 	var/talking = FALSE
 

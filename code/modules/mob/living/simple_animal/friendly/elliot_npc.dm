@@ -60,8 +60,8 @@
 
 /mob/living/simple_animal/hostile/ui_npc/elliot/Life()
 	if(..())
+		LosePatience()
 		if(!target) // If we have no target, we start following an ally
-			FindTarget()
 			density = TRUE
 			if(Leader)
 				if(Leader.z != z)
@@ -107,6 +107,7 @@
 		new /obj/effect/temp_visual/dir_setting/ninja/phase (get_turf(src))
 		playsound(src, 'sound/effects/contractorbatonhit.ogg', 100, FALSE, 9)
 		LoseTarget()
+		return
 
 /mob/living/simple_animal/hostile/ui_npc/elliot/AttackingTarget(atom/attacked_target)
 	if(!can_act)
