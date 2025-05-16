@@ -84,7 +84,7 @@
 /datum/status_effect/first_stand/tick() //if you die, you revive
 	. = ..()
 	var/mob/living/carbon/human/H = owner
-	if(H.stat == DEAD || if(H.sanity_lost)) //checks if youre going down
+	if(H.stat == DEAD || H.sanity_lost) //checks if youre going down
 		LastStand(owner)
 
 /datum/status_effect/first_stand/proc/LastStand(mob/living/carbon/human/H)
