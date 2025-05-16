@@ -315,7 +315,7 @@
 	icon_state = "rose_red"
 	maxHealth = 1500
 	health = 1500
-	del_on_death = FALSE
+	del_on_death = TRUE
 	faction = list("scarletrose", "hostile")
 	gender = NEUTER
 	obj_damage = 0
@@ -335,10 +335,7 @@
 	var/chem_yield = 15
 
 /mob/living/simple_animal/hostile/scarlet_rose/death(gibbed)
-	density = FALSE
 	new /obj/item/scarlet_rose(get_turf(src))
-	animate(src, alpha = 0, time = 5 SECONDS)
-	QDEL_IN(src, 5 SECONDS)
 	..()
 
 /mob/living/simple_animal/hostile/scarlet_rose/Destroy()
@@ -394,7 +391,7 @@
 			for(var/mob/living/carbon/human/H in did_we_hit)
 				H.apply_lc_bleed(5)
 				playsound(H, 'sound/abnormalities/rosesign/vinegrab_prep.ogg', 50, FALSE, 5)
-				to_chat(H, span_danger("Scarlet vines cuts into your legs!"))
+				to_chat(H, span_danger("Scarlet vines cut into your legs!"))
 	if(ability_cooldown <= world.time)
 		ability_cooldown = world.time + ability_cooldown_time
 	SpreadPlants()
@@ -613,8 +610,8 @@
 	icon_dead = ""
 	pixel_x = -32
 	base_pixel_x = -32
-	maxHealth = 5000
-	health = 5000
+	maxHealth = 4000
+	health = 4000
 	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 0.6, WHITE_DAMAGE = 0.8, BLACK_DAMAGE = 1.2, PALE_DAMAGE = 1.5)
 	melee_damage_lower = 24
 	melee_damage_upper = 36
@@ -707,9 +704,15 @@
 	playsound(get_turf(src), 'sound/effects/ordeals/white/black_swing.ogg', 75, 0, 3)
 	icon_state = "stone_keeper_attack"
 	SLEEP_CHECK_DEATH(attack_delay)
+	var/list/been_hit = list()
 	for(var/turf/T in view(2, src))
 		new /obj/effect/temp_visual/pale_eye_attack(T)
-		HurtInTurf(T, list(), (rand(melee_damage_lower, melee_damage_upper)), PALE_DAMAGE, check_faction = TRUE, hurt_mechs = TRUE) //30~40 damage
+		for(var/mob/living/simple_animal/hostile/ui_npc/elliot/victim in T.contents)
+			if(prob(90))
+				victim.SpinAnimation(7, 1)
+				been_hit += victim
+				victim.visible_message(span_notice("[victim] evades [src]'s attack!"))
+		HurtInTurf(T, been_hit, (rand(melee_damage_lower, melee_damage_upper)), PALE_DAMAGE, check_faction = TRUE, hurt_mechs = TRUE) //30~40 damage
 	playsound(get_turf(src), 'sound/abnormalities/mountain/slam.ogg', 75, 0, 3)
 	icon_state = "stone_keeper"
 	SLEEP_CHECK_DEATH(0.4 SECONDS)
@@ -719,6 +722,11 @@
 	var/mob/living/cooler_target = target
 	if(cooler_target.stat == DEAD)
 		return
+	if(istype(cooler_target, /mob/living/simple_animal/hostile/ui_npc/elliot))
+		var/mob/living/simple_animal/hostile/ui_npc/elliot/victim = cooler_target
+		victim.say("No... Get out of my head...")
+		victim.add_overlay(victim.guilt_icon)
+		victim.can_act = FALSE
 	can_act = FALSE
 	icon_state = "stone_keeper_attack"
 	visible_message(span_danger("[src] starts charging something at [cooler_target]!"))
@@ -736,6 +744,10 @@
 	annihilation_ready = FALSE
 	icon_state = "stone_keeper"
 	say("... Annihilation")
+	if(istype(cooler_target, /mob/living/simple_animal/hostile/ui_npc/elliot))
+		var/mob/living/simple_animal/hostile/ui_npc/elliot/victim = cooler_target
+		victim.cut_overlay(victim.guilt_icon)
+		victim.can_act = TRUE
 	var/line_of_sight = getline(get_turf(src), get_turf(target)) //better simulates a projectile attack
 	for(var/turf/T in line_of_sight)
 		if(DensityCheck(T))

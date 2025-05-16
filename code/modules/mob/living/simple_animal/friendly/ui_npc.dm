@@ -76,12 +76,6 @@
 		return TRUE
 	. = ..()
 
-/mob/living/simple_animal/hostile/ui_npc/attackby(obj/item/O, mob/user, params)
-	. = ..()
-	if(!user || !user.client)
-		return
-	ui_interact(user)
-
 // Enhanced ui_data method with player-specific variable processing
 /mob/living/simple_animal/hostile/ui_npc/ui_data(mob/user)
 	if(!user?.client)

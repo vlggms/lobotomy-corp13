@@ -5,6 +5,8 @@
 	health = 300
 	maxHealth = 300
 	damage_coeff = list(RED_DAMAGE = 0.5, WHITE_DAMAGE = 0.8, BLACK_DAMAGE = 1.5, PALE_DAMAGE = 2)
+	move_resist = MOVE_FORCE_VERY_WEAK // They kept stealing my abnormalities
+	pull_force = MOVE_FORCE_VERY_WEAK
 	density = FALSE
 	melee_damage_lower = 10
 	melee_damage_upper = 15
@@ -18,7 +20,6 @@
 	icon_living = "elliot"
 	icon_dead = "elliot_down"
 	attack_sound = "sound/weapons/fixer/generic/blade2.ogg"
-	ranged = TRUE
 	emote_delay = 4000
 	random_emotes = "looks around...;examines their blade carefuly;examines the floor..."
 	city_faction = FALSE
@@ -32,17 +33,45 @@
 	var/staying_cooldown = 20 SECONDS
 	var/standstorm_stance_update
 	var/standstorm_stance_cooldown = 20 SECONDS
+	var/teleport_update
+	var/teleport_cooldown = 10 SECONDS
+	var/mutable_appearance/guilt_icon
+	var/list/standstorm_stance_lines = list(
+		"Sandstorm Stance...",
+		"Follow my lead!",
+		"To strike them down...",
+		"No room for hesitation!",
+		"Shatter them...",
+	)
+	var/list/downed_lines = list(
+		"Agh, I lost my balance...",
+		"Shoot! Missed that-",
+		"Dammit, I got overwhelmed...",
+		"Such ferocity...",
+		"Ha... Could use a hand here.",
+	)
+	var/list/rise_lines = list(
+		"Back into the fight.",
+		"Thank you...",
+		"This will not be forgotten.",
+		"Alright, Let get back to it.",
+		"I rise once more...",
+	)
 
 /mob/living/simple_animal/hostile/ui_npc/elliot/Life()
 	if(..())
 		if(!target) // If we have no target, we start following an ally
+			FindTarget()
 			density = TRUE
 			if(Leader)
 				if(Leader.z != z)
 					Leader = null
 					return
-				// if(holding_still)
-				// 	holding_still = max(holding_still - 1, 0)
+				if(!can_see(src, Leader, vision_range))
+					if(teleport_update < world.time - teleport_cooldown)
+						TeleportToLeader()
+						teleport_update = world.time
+						return
 				if(!HAS_TRAIT(src, TRAIT_IMMOBILIZED) && isturf(loc))
 					step_to(src, Leader)
 					addtimer(CALLBACK(src, PROC_REF(follow_leader)), 5)
@@ -52,7 +81,32 @@
 			density = FALSE
 
 /mob/living/simple_animal/hostile/ui_npc/elliot/proc/follow_leader()
-	step_to(src, Leader)
+	if(Leader)
+		step_to(src, Leader)
+
+/mob/living/simple_animal/hostile/ui_npc/elliot/proc/TeleportToLeader()
+	if(!Leader)
+		return
+	var/turf/origin = get_turf(Leader)
+	var/list/all_turfs = RANGE_TURFS(2, origin)
+	for(var/turf/T in all_turfs)
+		if(T == origin)
+			continue
+		var/available_turf
+		var/list/leader_line = getline(T, Leader)
+		for(var/turf/line_turf in leader_line)
+			if(line_turf.is_blocked_turf(exclude_mobs = TRUE))
+				available_turf = FALSE
+				break
+			available_turf = TRUE
+		if(!available_turf)
+			continue
+		new /obj/effect/temp_visual/dir_setting/ninja/phase/out (get_turf(src))
+		playsound(src, 'sound/effects/contractorbatonhit.ogg', 100, FALSE, 9)
+		forceMove(T)
+		new /obj/effect/temp_visual/dir_setting/ninja/phase (get_turf(src))
+		playsound(src, 'sound/effects/contractorbatonhit.ogg', 100, FALSE, 9)
+		LoseTarget()
 
 /mob/living/simple_animal/hostile/ui_npc/elliot/AttackingTarget(atom/attacked_target)
 	if(!can_act)
@@ -75,7 +129,7 @@
 				tremor_target.apply_lc_tremor(attack_tremor, 40)
 			SLEEP_CHECK_DEATH(2)
 	if(standstorm_stance_update < world.time - standstorm_stance_cooldown)
-		say("Sandstorm Stance!")
+		say(pick(standstorm_stance_lines))
 		StandstormStance()
 		standstorm_stance_update = world.time
 
@@ -94,7 +148,7 @@
 /mob/living/simple_animal/hostile/ui_npc/elliot/proc/Downed()
 	can_act = FALSE
 	status_flags |= GODMODE
-	say("Dammit... I have taken too many hits.")
+	say(pick(downed_lines))
 	visible_message(span_warning("[src] falls down!"))
 	icon_state = "elliot_down"
 	density = FALSE
@@ -118,7 +172,7 @@
 	stunned = FALSE
 	icon_state = icon_living
 	adjustBruteLoss(-maxHealth, forced = TRUE)
-	say("Alright... Back into the fight.")
+	say(pick(rise_lines))
 	visible_message(span_warning("[src] gets back up!"))
 	can_act = TRUE
 
@@ -157,7 +211,7 @@
 	if(!ishuman(owner))
 		return
 	var/mob/living/carbon/human/status_holder = owner
-	to_chat(status_holder, span_userdanger("The sands slow down around you..."))
+	to_chat(status_holder, span_red("The sands slow down around you..."))
 	UnregisterSignal(status_holder, COMSIG_MOB_ITEM_ATTACK)
 
 /mob/living/simple_animal/hostile/ui_npc/elliot/proc/CheckSpace(mob/user, atom/new_location)
@@ -188,6 +242,7 @@
 /mob/living/simple_animal/hostile/ui_npc/elliot/Initialize()
 	. = ..()
 	RegisterSignal(src, COMSIG_MOVABLE_PRE_MOVE, PROC_REF(CheckSpace))
+	guilt_icon = mutable_appearance('ModularTegustation/Teguicons/tegu_effects.dmi', "guilt", -MUTATIONS_LAYER)
 
 	scene_manager.load_scenes(list(
 		//Intro to the NPC
