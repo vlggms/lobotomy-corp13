@@ -237,10 +237,109 @@
 			to_chat(usr, span_warning("ASSIGNMENT ERROR."))
 			playsound(get_turf(src), 'sound/machines/uplinkerror.ogg', 20, 1)
 			return
+	GoodieDelivery(our_corporation, user)
 	CreateResearchList(our_corporation)
 	name = "[our_corporation] corp representative console"
 	playsound(get_turf(src), 'sound/machines/terminal_success.ogg', 20, 1)
 	return
+
+/obj/structure/representative_console/proc/GoodieDelivery(our_corporation, mob/living/user)
+	//theres probably a super efficient method of doing this but Im following the method the console uses
+	var/corporationpick
+	var/msg = span_danger("Corporate personnel identified, a care package is on it's way. Corporation procedure reccomends you use these assets to build connections.")
+	switch(our_corporation)
+		if(K_CORP_REP)
+			corporationpick = /obj/item/storage/box/corporation/kcorp
+		if(L_CORP_REP)
+			corporationpick = /obj/item/storage/box/corporation/lcorp
+		if(R_CORP_REP)
+			corporationpick = /obj/item/storage/box/corporation/rcorp
+		if(W_CORP_REP)
+			corporationpick = /obj/item/storage/box/corporation/wcorp
+		if(N_CORP_REP)
+			corporationpick = /obj/item/storage/box/corporation/ncorp
+		if(P_CORP_REP)
+			corporationpick = /obj/item/storage/box/corporation/pcorp
+		if(J_CORP_REP)
+			corporationpick = /obj/item/storage/box/corporation/jcorp
+	//sendingpackage
+	var/obj/structure/closet/supplypod/bluespacepod/pod = new()
+	new corporationpick(pod)
+	pod.explosionSize = list(0,0,0,0)
+	to_chat(user, msg)
+	new /obj/effect/pod_landingzone(get_turf(user), pod)
+
+/obj/item/storage/box/corporation
+	name = "corporate care package"
+	desc = "A selection of items compressed into a box with P-Corp technology, to be used at the representative's discretion."
+	icon_state = "alienbox"
+
+/obj/item/storage/box/corporation/kcorp
+	name = "K-Corp care package"
+
+/obj/item/storage/box/corporation/kcorp/PopulateContents()
+	new /obj/item/toy/plush/bongy(src)
+	new /obj/item/grenade/spawnergrenade/khealing(src)
+	for(var/index in 1 to 3)
+		new /obj/item/ksyringe(src)
+
+/obj/item/storage/box/corporation/lcorp
+	name = "L-Corp care package"
+
+/obj/item/storage/box/corporation/lcorp/PopulateContents()
+	new /obj/item/work_console_upgrade/work_meltdown_screen(src)
+	new /obj/item/ego_gift_extractor(src)
+	new /obj/item/trait_injector/clerk_fear_immunity_injector(src)
+	new /obj/item/trait_injector/agent_workchance_trait_injector(src)
+	new /obj/item/trait_injector/officer_upgrade_injector(src)
+
+/obj/item/storage/box/corporation/rcorp
+	name = "R-Corp care package"
+
+/obj/item/storage/box/corporation/rcorp/PopulateContents()
+	new /obj/item/clothing/head/beret/tegu/rcorp(src)
+	new /obj/item/clothing/neck/cloak/rcorp(src)
+	for(var/index in 1 to 3)
+		new /obj/item/gun/energy/e_gun/rabbitdash/small(src)
+
+/obj/item/storage/box/corporation/wcorp
+	name = "W-Corp care package"
+
+/obj/item/storage/box/corporation/wcorp/PopulateContents()
+	new /obj/item/clothing/head/ego_hat/wcorp(src)
+	new /obj/item/clothing/head/ego_hat/wcorp(src)
+	new /obj/item/ego_weapon/city/wcorp(src)
+	new /obj/item/ego_weapon/city/wcorp(src)
+	new /obj/item/stack/tile/noslip/fifty(src)
+
+/obj/item/storage/box/corporation/ncorp
+	name = "N-Corp care package"
+
+/obj/item/storage/box/corporation/ncorp/PopulateContents()
+	new /obj/item/attribute_temporary/justicesmall(src)
+	new /obj/item/attribute_temporary/temperancesmall(src)
+	new /obj/item/attribute_temporary/fortitudesmall(src)
+	new /obj/item/attribute_temporary/prudencesmall(src)
+	new /obj/item/attribute_temporary/stattemporary(src)
+
+/obj/item/storage/box/corporation/pcorp
+	name = "P-Corp care package"
+
+/obj/item/storage/box/corporation/pcorp/PopulateContents()
+	new /obj/item/storage/pcorp_pocket(src)
+	new /obj/item/storage/pcorp_pocket(src)
+	new /obj/item/storage/pcorp_weapon(src)
+	new /obj/item/storage/pcorp_weapon(src)
+	new /obj/item/food/canned/pcorp_icecream(src)
+
+/obj/item/storage/box/corporation/jcorp
+	name = "J-Corp care package"
+
+/obj/item/storage/box/corporation/jcorp/PopulateContents()
+	new /obj/item/a_gift/jcorp(src)
+	new /obj/item/a_gift/jcorp(src)
+	for(var/index in 1 to 3)
+		new /obj/item/coin/casino_token/wood(src)
 
 /obj/structure/representative_console/proc/CustomizeOffice(obj/poster, obj/crate)
 	var/poster_place = get_turf(locate(/obj/effect/landmark/custom_office/poster) in GLOB.landmarks_list)

@@ -1,6 +1,6 @@
 //Kcorp Syringes
 /obj/item/ksyringe
-	name = "k-corp nanomachine ampule"
+	name = "K-corp nanomachine ampule"
 	desc = "A syringe of kcorp healing nanobots."
 	icon = 'ModularTegustation/Teguicons/teguitems.dmi'
 	icon_state = "kcorp_syringe"
@@ -20,7 +20,7 @@
 	qdel(src)
 
 /obj/item/krevive
-	name = "k-corp nanomachine ampule"
+	name = "K-corp nanomachine ampule"
 	desc = "A syringe of kcorp healing nanobots. This one revives any fallen bodies."
 	icon = 'ModularTegustation/Teguicons/teguitems.dmi'
 	icon_state = "kcorp_syringe2"
@@ -36,7 +36,7 @@
 	qdel(src)
 
 /obj/item/kcrit
-	name = "k-corp adrenaline shot"
+	name = "K-corp adrenaline shot"
 	desc = "A syringe of kcorp adrenaline. Increases crit threshold."
 	icon = 'ModularTegustation/Teguicons/teguitems.dmi'
 	icon_state = "kcorp_syringe3"
@@ -65,7 +65,7 @@
 	user.adjust_attribute_buff(FORTITUDE_ATTRIBUTE, 20)
 	qdel(src)
 
-// For Asset Reclimation
+// For Asset Reclamation
 /obj/item/grenade/spawnergrenade/kcorpdrone
 	name = "K-Corp Drone Assembly Grenade"
 	desc = "A quick and easy method of storing K-Corp drones for combat situations. It keeps its orignal programing, hopefully you're a part of K-Corp."
@@ -121,7 +121,7 @@
 				H.emote("scream")
 	return ..()
 
-// For Asset Reclimation
+// For Asset Reclamation
 /obj/item/grenade/spawnergrenade/khealing
 	name = "K-Corp Drone Assmebly Grenade"
 	desc = "A quick and easy method of storing K-Corp drones for combat situations. It keeps its orignal programing, hopefully you're a part of K-Corp."

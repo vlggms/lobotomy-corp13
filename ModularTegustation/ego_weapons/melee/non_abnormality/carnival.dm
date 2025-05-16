@@ -42,7 +42,7 @@
 	if(ishuman(target))
 		var/mob/living/carbon/human/H = target
 		var/alone = TRUE
-		for(var/mob/living/carbon/human/O in view(7, user))
+		for(var/mob/living/carbon/human/O in range(7, target))
 			if(O == user || O == H)
 				continue
 			if(O.stat == DEAD || !O.client)
