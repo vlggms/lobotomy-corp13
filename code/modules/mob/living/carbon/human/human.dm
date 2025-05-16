@@ -946,6 +946,11 @@
 /mob/living/carbon/human/wash(clean_types)
 	. = ..()
 
+	//LC13 Code: Funny Felinid Code
+	if(isfelinid(src))
+		adjustSanityLoss(50)
+		to_chat(src, span_warning("Ack! Water!"))
+
 	// Wash equipped stuff that cannot be covered
 	if(wear_suit?.wash(clean_types))
 		update_inv_wear_suit()
