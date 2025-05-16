@@ -62,7 +62,7 @@
 	satchel = /obj/item/storage/backpack/satchel/med
 	duffelbag = /obj/item/storage/backpack/duffelbag/med
 	box = /obj/item/storage/box/survival/medical
-	backpack_contents = list(/obj/item/kquick_revive=1)
+	backpack_contents = list()
 
 
 //Doctor assistants

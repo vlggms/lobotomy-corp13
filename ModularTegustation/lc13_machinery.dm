@@ -720,6 +720,7 @@
 	cost_multiplier = 10
 	usable_roles = list("Association Section Director", "Association Veteran", "Association Fixer")
 
+//Was planned to help out the clinic in CoL, now it is here for admin events.
 /obj/item/kquick_revive
 	name = "k-corp quickfix ampule"
 	desc = "A syringe of kcorp healing nanobots. This one fixes any fallen bodies."
@@ -727,10 +728,15 @@
 	icon_state = "kcorp_syringe2"
 	slot_flags = ITEM_SLOT_POCKETS
 	w_class = WEIGHT_CLASS_SMALL
+	var/usable_roles = list("Doctor")
 	var/heal_cooldown
 	var/heal_cooldown_time = 5 SECONDS
 
 /obj/item/kquick_revive/attack(mob/living/M, mob/user)
+	if(!(user?.mind?.assigned_role in usable_roles))
+		to_chat(user, span_danger("You cannot use this item."))
+		return
+
 	if(M.stat != DEAD)
 		to_chat(user, span_notice("This syringe only works on dead humans!"))
 		return
