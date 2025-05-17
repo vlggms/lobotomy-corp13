@@ -378,7 +378,7 @@
 	var/revival_attribute_penalty = -4
 	var/list/stored_bodies = list()
 	var/clone_delay_seconds = 120
-	var/cost_multiplier = 5
+	var/cost_multiplier = 2
 	var/list/usable_roles = list("Civilian", "Office Director", "Office Fixer",
 		"Subsidary Office Director", "Fixer")
 	resistance_flags = INDESTRUCTIBLE
