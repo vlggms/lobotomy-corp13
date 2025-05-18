@@ -63,9 +63,6 @@
 	},
 /area/city/backstreets_room)
 "bJ" = (
-/obj/item/slimepotion/slime/docility,
-/obj/item/slimepotion/slime/docility,
-/obj/item/slimepotion/slime/docility,
 /turf/open/floor/plasteel/white,
 /area/city/backstreets_room)
 "ci" = (
@@ -491,12 +488,6 @@
 	color = "#42f545"
 	},
 /area/city/backstreets_room)
-"np" = (
-/obj/machinery/processor/slime,
-/turf/open/floor/plasteel/shuttle{
-	color = "#42f545"
-	},
-/area/city/backstreets_room)
 "nt" = (
 /obj/effect/turf_decal/siding/green{
 	color = "#006400"
@@ -587,18 +578,9 @@
 	},
 /area/city/backstreets_room)
 "qj" = (
-/obj/machinery/computer/camera_advanced/xenobio{
-	dir = 1
-	},
 /obj/machinery/light{
 	color = "#32a852"
 	},
-/turf/open/floor/plasteel/shuttle{
-	color = "#42f545"
-	},
-/area/city/backstreets_room)
-"qq" = (
-/obj/machinery/monkey_recycler,
 /turf/open/floor/plasteel/shuttle{
 	color = "#42f545"
 	},
@@ -804,12 +786,6 @@
 	color = "#42f545"
 	},
 /area/city/backstreets_room)
-"xg" = (
-/obj/machinery/processor/slime,
-/turf/open/floor/plating{
-	color = "#42f545"
-	},
-/area/city/backstreets_room)
 "xh" = (
 /obj/effect/decal/cleanable/dirt/dust,
 /turf/open/floor/plating{
@@ -928,11 +904,6 @@
 	color = "#42f545"
 	},
 /area/city/backstreets_room)
-"AF" = (
-/obj/effect/decal/cleanable/dirt/dust,
-/mob/living/simple_animal/slime/random,
-/turf/open/floor/facility/dark,
-/area/city/backstreets_room)
 "AI" = (
 /obj/structure/grille/broken{
 	color = "#42f545"
@@ -999,14 +970,6 @@
 	color = "#32a852"
 	},
 /obj/structure/table/reinforced,
-/obj/item/storage/box/monkeycubes,
-/obj/item/storage/box/monkeycubes,
-/obj/item/storage/box/monkeycubes,
-/obj/item/storage/box/syringes,
-/obj/item/storage/box/syringes,
-/obj/item/stack/sheet/mineral/plasma,
-/obj/item/stack/sheet/mineral/plasma,
-/obj/item/stack/sheet/mineral/plasma,
 /obj/item/reagent_containers/glass/beaker/bluespace,
 /obj/item/reagent_containers/glass/beaker/bluespace,
 /obj/item/reagent_containers/glass/beaker/bluespace,
@@ -1019,8 +982,6 @@
 	color = "#32a852"
 	},
 /obj/structure/table/reinforced,
-/obj/item/storage/bag/chemistry,
-/obj/machinery/reagentgrinder,
 /turf/open/floor/plating{
 	color = "#42f545"
 	},
@@ -1302,12 +1263,6 @@
 /obj/machinery/processor/slime,
 /turf/open/floor/plating/asteroid/snow/airless,
 /area/city/backstreets_room)
-"LR" = (
-/obj/effect/decal/cleanable/dirt/dust,
-/obj/effect/turf_decal/bot,
-/mob/living/simple_animal/slime/random,
-/turf/open/floor/facility/dark,
-/area/city/backstreets_room)
 "MD" = (
 /obj/effect/turf_decal/siding/purple{
 	dir = 8
@@ -1452,7 +1407,6 @@
 /turf/open/floor/carpet/green,
 /area/city/backstreets_room)
 "PK" = (
-/obj/machinery/monkey_recycler,
 /obj/item/trash/energybar,
 /turf/open/floor/plating{
 	color = "#42f545"
@@ -1825,7 +1779,7 @@ fn
 fn
 ZV
 Px
-AF
+ZV
 Bk
 PV
 Fr
@@ -1917,7 +1871,7 @@ iP
 iP
 Ah
 iE
-xg
+Pb
 fn
 Th
 bJ
@@ -1956,7 +1910,7 @@ us
 (9,1,1) = {"
 us
 EQ
-LR
+Nx
 ZV
 jv
 xN
@@ -2071,7 +2025,7 @@ un
 gY
 Zx
 xh
-np
+wb
 fn
 Jl
 SM
@@ -2093,7 +2047,7 @@ Uq
 oX
 WC
 iE
-qq
+iE
 us
 GZ
 fn
@@ -2137,7 +2091,7 @@ ZV
 jv
 xa
 to
-wb
+yC
 us
 Tj
 cQ
@@ -2154,7 +2108,7 @@ us
 (18,1,1) = {"
 fn
 TP
-AF
+ZV
 ZV
 jv
 KD
