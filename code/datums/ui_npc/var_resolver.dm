@@ -272,6 +272,9 @@
 	if (var_name == "money")
 		return get_money()
 
+	if (var_name == "area")
+		return get_player_area()
+
 	// First check if it's a custom variable in our dictionary
 	var/custom_value = custom_vars.get_var(var_name)
 	if(!isnull(custom_value))
@@ -337,7 +340,7 @@
 		// For unknown categories, check in custom vars
 		return custom_vars.has_var(var_name)
 
-	if(var_name == "money")
+	if(var_name == "money" || var_name == "area")
 		return TRUE
 
 	// Direct check for non-nested paths
@@ -357,6 +360,10 @@
 
 	var/datum/bank_account/account = C.registered_account
 	return account.account_balance
+
+/datum/var_resolver/player/proc/get_player_area()
+	var/area/A = get_area(player_mob)
+	return A.name
 
 // The rest of the code remains the same as the original
 // (get_inventory_var, set_inventory_var, get_stats_var, etc.)

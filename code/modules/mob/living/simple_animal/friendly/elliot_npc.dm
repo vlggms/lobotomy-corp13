@@ -296,8 +296,36 @@
 				),
 				"guide" = list(
 					"text" = "Why are you out here?",
-					"default_scene" = "greeting1"
+					"default_scene" = "greeting1",
+					"transitions" = list(
+						list(
+							"expression" = "player.area = \"Outskirts\"",
+							"scene" = "outskirts"
+						),
+						list(
+							"expression" = "player.area = \"Temple Reception\"",
+							"scene" = "temple_reception"
+						)
+					)
 				),
+			)
+		),
+		"outskirts" = list(
+			"text" = "outskirts outskirtsoutskirts",
+			"actions" = list(
+				"..." = list(
+					"text" = "...",
+					"default_scene" = "main_screen"
+				)
+			)
+		),
+		"temple_reception" = list(
+			"text" = "temple_reception temple_reception temple_reception",
+			"actions" = list(
+				"..." = list(
+					"text" = "...",
+					"default_scene" = "main_screen"
+				)
 			)
 		),
 
