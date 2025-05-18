@@ -637,6 +637,7 @@
 	var/ability_cooldown_time = 20 SECONDS
 	var/list/locked_list = list()
 	var/list/locked_tiles_list = list()
+	var/summoned_pillar = FALSE
 
 /mob/living/simple_animal/hostile/clan/stone_keeper/Initialize()
 	. = ..()
@@ -672,6 +673,26 @@
 	if(charge > 0)
 		charge--
 		ChargeUpdated()
+	if(health <= maxHealth/2 && !summoned_pillar)
+		summoned_pillar = TRUE
+		addtimer(CALLBACK(src, PROC_REF(summon_piller)), 5)
+
+/mob/living/simple_animal/hostile/clan/stone_keeper/proc/summon_piller()
+	can_act = FALSE
+	say("I see...")
+	SLEEP_CHECK_DEATH(20)
+	say("You are not a pushover like last time.")
+	SLEEP_CHECK_DEATH(40)
+	say("However, I have been working on something new as well.")
+	SLEEP_CHECK_DEATH(40)
+	icon_state = "stone_keeper_attack"
+	say("Witness, one of many toys of the city...")
+	for(var/obj/effect/landmark/keeper_piller_spawn/KPS in range(20, src))
+		new /mob/living/simple_animal/hostile/keeper_piller(get_turf(KPS))
+	SLEEP_CHECK_DEATH(40)
+	say("The Horror of L-Corp...")
+	icon_state = "stone_keeper"
+	can_act = FALSE
 
 /mob/living/simple_animal/hostile/clan/stone_keeper/Move()
 	if(!can_act)
@@ -878,3 +899,83 @@
 /datum/status_effect/keeper_chain/on_remove()
 	UnregisterSignal(owner, COMSIG_MOVABLE_PRE_MOVE)
 	return ..()
+
+/obj/effect/landmark/keeper_piller_spawn
+	name = "keeper's piller spawn"
+
+/mob/living/simple_animal/hostile/keeper_piller
+	name = "mimic: pillar of the black sun"
+	desc = "A glowing pillar."
+	icon = 'ModularTegustation/Teguicons/32x64.dmi'
+	icon_state = "sun_pillar"
+	icon_living = "sun_pillar"
+	health = 2000
+	maxHealth = 2000
+	pixel_z = 128
+	alpha = 0
+	melee_damage_lower = 0
+	melee_damage_upper = 0
+	attack_sound = 'sound/weapons/fixer/generic/nail1.ogg'
+	mob_size = MOB_SIZE_TINY
+	del_on_death = TRUE
+	a_intent = INTENT_HARM
+	var/active = FALSE
+
+/mob/living/simple_animal/hostile/keeper_piller/Initialize()
+	..()
+	addtimer(CALLBACK(src, PROC_REF(piller_fall)), 0)
+
+/mob/living/simple_animal/hostile/keeper_piller/proc/piller_fall()
+	playsound(get_turf(src), 'sound/abnormalities/babayaga/charge.ogg', 100, 1)
+	pixel_z = 128
+	alpha = 0
+	density = FALSE
+	animate(src, pixel_z = 0, alpha = 255, time = 10)
+	SLEEP_CHECK_DEATH(10)
+	density = TRUE
+	visible_message(span_danger("[src] drops down from the ceiling!"))
+	playsound(get_turf(src), 'sound/abnormalities/babayaga/land.ogg', 100, FALSE, 20)
+	for(var/mob/living/L in view(4, src))
+		if(faction_check_mob(L, TRUE))
+			continue
+		var/dist = get_dist(src, L)
+		if(ishuman(L))
+			L.deal_damage(clamp((15 * (2 ** (8 - dist))), 15, 100), RED_DAMAGE)
+	SLEEP_CHECK_DEATH(30)
+	active = TRUE
+
+/mob/living/simple_animal/hostile/keeper_piller/AttackingTarget()
+	return FALSE
+
+/mob/living/simple_animal/hostile/keeper_piller/Move()
+	return FALSE
+
+/mob/living/simple_animal/hostile/keeper_piller/Life()
+	..()
+	if(active)
+		var/list/all_turfs = RANGE_TURFS(7, src)
+		for(var/turf/open/F in all_turfs)
+			if(prob(15))
+				addtimer(CALLBACK(src, PROC_REF(Firelaser), F), rand(1,30))
+
+/mob/living/simple_animal/hostile/keeper_piller/proc/Firelaser(turf/open/F)
+	new /obj/effect/temp_visual/keeper_laser(F)
+
+//Laser attack
+/obj/effect/temp_visual/keeper_laser
+	name = "keeper laser"
+	icon = 'ModularTegustation/Teguicons/32x64.dmi'
+	icon_state = "pillar_strike"
+	duration = 15
+
+/obj/effect/temp_visual/keeper_laser/Initialize()
+	..()
+	addtimer(CALLBACK(src, PROC_REF(blowup)), 10) //this is how long the animation takes
+
+/obj/effect/temp_visual/keeper_laser/proc/blowup()
+	playsound(src, 'sound/weapons/laser.ogg', 10, FALSE, 4)
+	for(var/mob/living/carbon/human/H in src.loc)
+		H.deal_damage(30, WHITE_DAMAGE)
+		H.deal_damage(15, PALE_DAMAGE)
+		if(H.sanity_lost)
+			H.deal_damage(60, PALE_DAMAGE)
