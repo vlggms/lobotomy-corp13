@@ -1309,7 +1309,7 @@
 	if(tp_cooldown > world.time)
 		return FALSE
 	tp_cooldown = world.time + tp_cooldown_time
-	human_parent.deal_damage(damage * repeat * 0.5, WHITE_DAMAGE)
+	human_parent.deal_damage(damage * repeat, WHITE_DAMAGE)
 	to_chat(human_parent, span_warning("You take [damage * repeat * 0.5] WHITE damage, as you take RED damage! Due to Algophobia"))
 
 //Weak Arms
@@ -1382,10 +1382,10 @@
 	if(gain_tremor_cooldown > world.time)
 		return FALSE
 	gain_tremor_cooldown = world.time + gain_tremor_cooldown_time
-	human_parent.apply_lc_tremor(2 * repeat, 55)
+	human_parent.apply_lc_tremor(2 * repeat, 50)
 	to_chat(human_parent, span_warning("As you take damage, you gain [2 * repeat] tremor! Due to Internal Vibrations"))
 	if(damagetype == WHITE_DAMAGE)
-		human_parent.apply_lc_tremor(2 * repeat, 55)
+		human_parent.apply_lc_tremor(2 * repeat, 50)
 		to_chat(human_parent, span_warning("As you take damage, you gain [2 * repeat] tremor! Due to Internal Vibrations"))
 
 //Scalding Skin
