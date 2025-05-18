@@ -512,7 +512,7 @@
 			"id" = "paranoid",
 			"name" = "Paranoid ",
 			"ahn_cost" = 50,
-			"ep_cost" = -4, // Negative EP cost signifies a downside, grants EP
+			"ep_cost" = -2, // Negative EP cost signifies a downside, grants EP
 			"desc" = "Whenever you take damage, you take an extra 10 WHITE damage if you don’t have any human insight.",
 			"component" = /datum/component/augment/paranoid
 		),
@@ -537,7 +537,7 @@
 			"id" = "thanatophobia",
 			"name" = "Thanatophobia",
 			"ahn_cost" = 25,
-			"ep_cost" = -4,
+			"ep_cost" = -2,
 			"desc" = "When you take damage while under 50% HP, take an extra 10 WHITE damage. Has a cooldown of 1 second.",
 			"component" = /datum/component/augment/thanatophobia
 		),
@@ -572,7 +572,7 @@
 			"name" = "Algophobia",
 			"ahn_cost" = 10,
 			"ep_cost" = -2,
-			"desc" = "When you take RED damage, take an extra (RED damage) * 0.5 * X WHITE damage. This has a cooldown of 1 second.",
+			"desc" = "When you take RED damage, take an extra (RED damage) * X WHITE damage. This has a cooldown of 1 second.",
 			"repeatable" = 3,
 			"component" = /datum/component/augment/algophobia
 		),
@@ -606,7 +606,7 @@
 			"name" = "Internal Vibrations",
 			"ahn_cost" = 10,
 			"ep_cost" = -2,
-			"desc" = "When you take damage, gain 2 * X TREMOR. Gain double the amount of TREMOR if the damage type was WHITE. (Has a cooldown of 0.5 second)",
+			"desc" = "When you take damage, gain 2 * X TREMOR. Gain double the amount of TREMOR if the damage type was WHITE. If you have 50 TREMOR, TREMOR BURST yourself. (Has a cooldown of 0.5 second)",
 			"repeatable" = 3,
 			"component" = /datum/component/augment/internal_vibrations
 		),
