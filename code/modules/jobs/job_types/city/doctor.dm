@@ -13,7 +13,16 @@
 	paycheck = PAYCHECK_MEDIUM
 	paycheck_department = ACCOUNT_MED
 
-	job_attribute_limit = 0
+	roundstart_attributes = list(
+								FORTITUDE_ATTRIBUTE = 40,
+								PRUDENCE_ATTRIBUTE = 40,
+								TEMPERANCE_ATTRIBUTE = 40,
+								JUSTICE_ATTRIBUTE = 40
+								)
+
+
+
+	job_attribute_limit = 40
 
 	liver_traits = list(TRAIT_MEDICAL_METABOLISM)
 	exp_requirements = 600
@@ -22,7 +31,6 @@
 	alt_titles = list("Surgeon")
 	maptype = list("wonderlabs", "city", "fixers", "lcorp_city", "enkephalin_rush")
 	job_important = "You are the town doctor, visit your clinic to the east of town and start healing peopl who come in. You must charge money for your services."
-	job_notice = "You are forbidden from reviving lobotomy corp employees."
 
 /datum/job/doctor/after_spawn(mob/living/carbon/human/H, mob/M, latejoin = FALSE)
 	..()
