@@ -7184,11 +7184,6 @@
 /obj/item/ego_weapon/shield/maneater,
 /turf/open/floor/facility/halls,
 /area/city/backstreets_room)
-"UE" = (
-/obj/machinery/vending/tool,
-/obj/effect/decal/cleanable/dirt/dust,
-/turf/open/floor/facility/halls,
-/area/city/backstreets_room)
 "UG" = (
 /obj/effect/turf_decal/siding/purple{
 	dir = 4
@@ -12955,7 +12950,7 @@ ne
 BU
 kJ
 xd
-UE
+GR
 GR
 qL
 PH
