@@ -1,11 +1,4 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
-"a" = (
-/obj/item/ego_weapon/justitia{
-	force = 0;
-	name = "Fancy Stick"
-	},
-/turf/open/floor/plating/asteroid/basalt,
-/area/city/backstreets_room)
 "t" = (
 /turf/open/floor/grass/snow/safe,
 /area/city/backstreets_room)
@@ -72,7 +65,7 @@ P
 (6,1,1) = {"
 U
 t
-a
+P
 R
 P
 "}

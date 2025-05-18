@@ -333,7 +333,6 @@
 /area/city/backstreets_room)
 "zh" = (
 /obj/structure/table/reinforced,
-/obj/effect/spawner/lootdrop/organ_spawner,
 /obj/effect/spawner/lootdrop/armory_contraband/cybersun,
 /turf/open/floor/stone,
 /area/city/backstreets_room)
@@ -367,14 +366,6 @@
 	pixel_x = -18
 	},
 /obj/structure/table/reinforced,
-/obj/effect/spawner/lootdrop/organ_spawner{
-	pixel_x = -4;
-	pixel_y = 6
-	},
-/obj/effect/spawner/lootdrop/organ_spawner{
-	pixel_x = 5;
-	pixel_y = -1
-	},
 /turf/open/floor/stone,
 /area/city/backstreets_room)
 "AE" = (
@@ -393,10 +384,6 @@
 /area/city/backstreets_room)
 "AO" = (
 /obj/structure/table/reinforced,
-/obj/effect/spawner/lootdrop/organ_spawner{
-	pixel_x = -6;
-	pixel_y = 8
-	},
 /obj/effect/spawner/lootdrop/maint_drugs{
 	pixel_x = 1;
 	pixel_y = 2
@@ -441,10 +428,6 @@
 /area/city/backstreets_room)
 "De" = (
 /obj/structure/table/reinforced,
-/obj/effect/spawner/lootdrop/organ_spawner{
-	pixel_x = 4;
-	pixel_y = 9
-	},
 /obj/effect/spawner/lootdrop/armory_contraband,
 /turf/open/floor/stone,
 /area/city/backstreets_room)
