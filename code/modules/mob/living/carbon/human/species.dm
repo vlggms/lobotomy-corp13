@@ -2069,7 +2069,7 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 	if(flying_species && H.movement_type & FLYING)
 		ToggleFlight(H)
 		flyslip(H)
-	. = amount
+	. = stunmod * H.physiology.stun_mod * amount
 
 //////////////
 //Space Move//
