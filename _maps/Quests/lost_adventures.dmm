@@ -579,6 +579,12 @@
 /obj/effect/mob_spawn/human/corpse,
 /turf/open/floor/stone,
 /area/city/backstreets_room/temple_motus/study_a)
+"lY" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/keeper_field,
+/obj/effect/keeper_piller_spawn,
+/turf/open/floor/light,
+/area/city/backstreets_room/temple_motus/treasure_entrance)
 "mi" = (
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/effect/landmark/portal_exit{
@@ -1704,12 +1710,6 @@
 /obj/effect/decal/cleanable/dirt/dust,
 /turf/open/floor/mineral/gold,
 /area/city/backstreets_room/temple_motus/treasure_room)
-"IR" = (
-/obj/effect/decal/cleanable/dirt/dust,
-/obj/effect/keeper_field,
-/obj/effect/landmark/keeper_piller_spawn,
-/turf/open/floor/light,
-/area/city/backstreets_room/temple_motus/treasure_entrance)
 "IS" = (
 /obj/structure/bookcase{
 	pixel_x = 32;
@@ -6074,7 +6074,7 @@ bS
 eb
 GO
 GO
-IR
+lY
 GO
 GO
 eb

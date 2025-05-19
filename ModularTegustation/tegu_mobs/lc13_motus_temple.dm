@@ -690,9 +690,10 @@
 	SLEEP_CHECK_DEATH(40)
 	icon_state = "stone_keeper_attack"
 	say("Witness, one of many toys of the city...")
-	// for(var/obj/effect/landmark/keeper_piller_spawn/piller in range(20, src))
-	// 	var/turf/spawn_turf = get_turf(piller)
-	new /mob/living/simple_animal/hostile/keeper_piller(get_turf(src))
+	var/list/found = range(20, src)
+	for(var/obj/effect/keeper_piller_spawn/piller in found)
+		var/turf/spawn_turf = get_turf(piller)
+		new /mob/living/simple_animal/hostile/keeper_piller(spawn_turf)
 	SLEEP_CHECK_DEATH(40)
 	say("The Horror of L-Corp...")
 	icon_state = "stone_keeper"
@@ -904,7 +905,7 @@
 	UnregisterSignal(owner, COMSIG_MOVABLE_PRE_MOVE)
 	return ..()
 
-/obj/effect/landmark/keeper_piller_spawn
+/obj/effect/keeper_piller_spawn
 	name = "keeper's piller spawn"
 
 /mob/living/simple_animal/hostile/keeper_piller
