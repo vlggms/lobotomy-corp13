@@ -610,8 +610,8 @@
 	icon_dead = ""
 	pixel_x = -32
 	base_pixel_x = -32
-	maxHealth = 4000
-	health = 4000
+	maxHealth = 3000
+	health = 3000
 	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 0.6, WHITE_DAMAGE = 0.8, BLACK_DAMAGE = 1.2, PALE_DAMAGE = 1.5)
 	melee_damage_lower = 24
 	melee_damage_upper = 36
@@ -667,7 +667,7 @@
 
 		var/random_y = rand(5, 80)
 		AT.pixel_y += random_y
-		if (last_taunt_update < world.time - taunt_cooldown)
+		if (last_taunt_update < world.time - taunt_cooldown && amount < 100)
 			say("You call this an attack!? How pathetic...")
 			last_taunt_update = world.time
 	if(charge > 0)
@@ -935,12 +935,12 @@
 
 /mob/living/simple_animal/hostile/keeper_piller
 	name = "mimic: pillar of the black sun"
-	desc = "A glowing pillar."
+	desc = "A glowing pillar, a mimic of a certain abnormality, created by the Tinkerer..."
 	icon = 'ModularTegustation/Teguicons/32x64.dmi'
 	icon_state = "sun_pillar"
 	icon_living = "sun_pillar"
-	health = 2000
-	maxHealth = 2000
+	health = 1000
+	maxHealth = 1000
 	pixel_z = 128
 	alpha = 0
 	melee_damage_lower = 0
