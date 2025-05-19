@@ -60,10 +60,9 @@ GLOBAL_LIST_EMPTY(spawned_clerks)
 			if(SSmaptype.chosen_trait == FACILITY_TRAIT_ABNO_BLITZ)
 				outfit_owner.set_attribute_limit(60)
 				outfit_owner.adjust_all_attribute_levels(60)
-
-			else
-				outfit_owner.set_attribute_limit(40)
-				outfit_owner.adjust_all_attribute_levels(40)
+				return
+			outfit_owner.set_attribute_limit(40)
+			outfit_owner.adjust_all_attribute_levels(40)
 
 	if(outfit_owner.ckey in GLOB.spawned_clerks)
 		return
