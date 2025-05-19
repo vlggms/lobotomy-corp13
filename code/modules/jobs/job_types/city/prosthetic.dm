@@ -13,7 +13,14 @@
 	paycheck = 700	//You need a lot of money
 	paycheck_department = ACCOUNT_MED
 
-	job_attribute_limit = 0
+	roundstart_attributes = list(
+								FORTITUDE_ATTRIBUTE = 40,
+								PRUDENCE_ATTRIBUTE = 40,
+								TEMPERANCE_ATTRIBUTE = 40,
+								JUSTICE_ATTRIBUTE = 40
+								)
+
+	job_attribute_limit = 40
 
 	liver_traits = list(TRAIT_MEDICAL_METABOLISM)
 	exp_requirements = 600
@@ -21,7 +28,6 @@
 	display_order = JOB_DISPLAY_ORDER_MISC
 	maptype = list("city", "fixers")
 	job_important = "You are the prosthetics surgeon, your clinic is in the Northwest alleys"
-	job_notice = "You are forbidden from reviving lobotomy corp employees."
 
 /datum/job/prosdoctor/after_spawn(mob/living/carbon/human/H, mob/M, latejoin = FALSE)
 	..()
