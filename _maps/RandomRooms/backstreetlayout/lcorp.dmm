@@ -145,8 +145,6 @@
 	density = 0;
 	health = 250;
 	damage_coeff = list("red" = 1.5, "white" = 1, "black" = 0.5, "pale" = 2, "stamina" = 1, "oxygen" = 1);
-	melee_damage_lower = 10;
-	melee_damage_upper = 15;
 	faction = list("hostile");
 	maxHealth = 250
 	},
@@ -183,8 +181,6 @@
 	density = 0;
 	health = 250;
 	damage_coeff = list("red" = 1.5, "white" = 1, "black" = 0.5, "pale" = 2, "stamina" = 1, "oxygen" = 1);
-	melee_damage_lower = 10;
-	melee_damage_upper = 15;
 	faction = list("hostile");
 	maxHealth = 250
 	},
@@ -518,8 +514,6 @@
 	density = 0;
 	health = 250;
 	damage_coeff = list("red" = 1.5, "white" = 1, "black" = 0.5, "pale" = 2, "stamina" = 1, "oxygen" = 1);
-	melee_damage_lower = 10;
-	melee_damage_upper = 15;
 	faction = list("hostile");
 	maxHealth = 250
 	},
@@ -566,8 +560,6 @@
 	density = 0;
 	health = 250;
 	damage_coeff = list("red" = 1.5, "white" = 1, "black" = 0.5, "pale" = 2, "stamina" = 1, "oxygen" = 1);
-	melee_damage_lower = 10;
-	melee_damage_upper = 15;
 	faction = list("hostile");
 	maxHealth = 250
 	},
@@ -607,8 +599,6 @@
 	density = 0;
 	health = 250;
 	damage_coeff = list("red" = 1.5, "white" = 1, "black" = 0.5, "pale" = 2, "stamina" = 1, "oxygen" = 1);
-	melee_damage_lower = 10;
-	melee_damage_upper = 15;
 	faction = list("hostile");
 	maxHealth = 250
 	},
@@ -652,8 +642,6 @@
 	density = 0;
 	health = 250;
 	damage_coeff = list("red" = 1.5, "white" = 1, "black" = 0.5, "pale" = 2, "stamina" = 1, "oxygen" = 1);
-	melee_damage_lower = 10;
-	melee_damage_upper = 15;
 	faction = list("hostile");
 	maxHealth = 250
 	},
@@ -1139,8 +1127,6 @@
 	density = 0;
 	health = 250;
 	damage_coeff = list("red" = 1.5, "white" = 1, "black" = 0.5, "pale" = 2, "stamina" = 1, "oxygen" = 1);
-	melee_damage_lower = 10;
-	melee_damage_upper = 15;
 	faction = list("hostile");
 	maxHealth = 250
 	},
@@ -1303,8 +1289,6 @@
 	density = 0;
 	health = 250;
 	damage_coeff = list("red" = 1.5, "white" = 1, "black" = 0.5, "pale" = 2, "stamina" = 1, "oxygen" = 1);
-	melee_damage_lower = 10;
-	melee_damage_upper = 15;
 	faction = list("hostile");
 	maxHealth = 250
 	},
@@ -1626,8 +1610,6 @@
 	density = 0;
 	health = 250;
 	damage_coeff = list("red" = 1.5, "white" = 1, "black" = 0.5, "pale" = 2, "stamina" = 1, "oxygen" = 1);
-	melee_damage_lower = 10;
-	melee_damage_upper = 15;
 	faction = list("hostile");
 	maxHealth = 250
 	},
@@ -1717,8 +1699,6 @@
 	density = 0;
 	health = 250;
 	damage_coeff = list("red" = 1.5, "white" = 1, "black" = 0.5, "pale" = 2, "stamina" = 1, "oxygen" = 1);
-	melee_damage_lower = 10;
-	melee_damage_upper = 15;
 	faction = list("hostile");
 	maxHealth = 250
 	},
@@ -1803,8 +1783,6 @@
 	density = 0;
 	health = 250;
 	damage_coeff = list("red" = 1.5, "white" = 1, "black" = 0.5, "pale" = 2, "stamina" = 1, "oxygen" = 1);
-	melee_damage_lower = 10;
-	melee_damage_upper = 15;
 	faction = list("hostile");
 	maxHealth = 250
 	},
@@ -2044,8 +2022,6 @@
 	density = 0;
 	health = 250;
 	damage_coeff = list("red" = 1.5, "white" = 1, "black" = 0.5, "pale" = 2, "stamina" = 1, "oxygen" = 1);
-	melee_damage_lower = 10;
-	melee_damage_upper = 15;
 	faction = list("hostile");
 	maxHealth = 250
 	},
@@ -2607,7 +2583,6 @@
 /area/centcom/supplypod)
 "Wl" = (
 /obj/structure/table/reinforced,
-/obj/item/storage/toolbox/syndicate,
 /obj/effect/decal/cleanable/dirt/dust,
 /turf/open/floor/plasteel/shuttle/red/syndicate,
 /area/city/backstreets_room)
@@ -2730,8 +2705,6 @@
 	density = 0;
 	health = 250;
 	damage_coeff = list("red" = 1.5, "white" = 1, "black" = 0.5, "pale" = 2, "stamina" = 1, "oxygen" = 1);
-	melee_damage_lower = 10;
-	melee_damage_upper = 15;
 	faction = list("hostile");
 	maxHealth = 250
 	},
