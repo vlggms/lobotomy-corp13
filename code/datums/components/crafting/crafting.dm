@@ -50,6 +50,8 @@
 	var/datum/action/innate/crafting/button
 	var/display_craftable_only = FALSE
 	var/display_compact = TRUE
+	var/display_repeat_value = 1
+	var/temp_repeat_value = 1
 
 /*	This is what procs do:
 	get_environment - gets a list of things accessable for crafting by user
@@ -77,6 +79,8 @@
 	for(var/requirement_path in R.reqs)
 		// Check we have the appropriate amount available in the contents list
 		var/needed_amount = R.reqs[requirement_path]
+		if(temp_repeat_value > 1)
+			needed_amount = needed_amount * temp_repeat_value
 		for(var/content_item_path in contents)
 			// Right path and not blacklisted
 			if(!ispath(content_item_path, requirement_path) || R.blacklist.Find(content_item_path))
@@ -351,6 +355,7 @@
 	data["subcategory"] = cur_subcategory
 	data["display_craftable_only"] = display_craftable_only
 	data["display_compact"] = display_compact
+	data["display_repeat_value"] = display_repeat_value
 
 	var/list/surroundings = get_surroundings(user)
 	var/list/craftability = list()
@@ -405,15 +410,19 @@
 			var/datum/crafting_recipe/TR = locate(params["recipe"]) in GLOB.crafting_recipes
 			busy = TRUE
 			ui_interact(user)
-			var/atom/movable/result = construct_item(user, TR)
-			if(!istext(result)) //We made an item and didn't get a fail message
-				if(ismob(user) && isitem(result)) //In case the user is actually possessing a non mob like a machine
-					user.put_in_hands(result)
+			temp_repeat_value = display_repeat_value
+			for (var/i = 1; i <= display_repeat_value; ++i)
+				var/atom/movable/result = construct_item(user, TR)
+				temp_repeat_value -= 1
+				if(!istext(result)) //We made an item and didn't get a fail message
+					if(ismob(user) && isitem(result)) //In case the user is actually possessing a non mob like a machine
+						user.put_in_hands(result)
+					else
+						result.forceMove(user.drop_location())
+					to_chat(user, "<span class='notice'>[TR.name] constructed.</span>")
 				else
-					result.forceMove(user.drop_location())
-				to_chat(user, "<span class='notice'>[TR.name] constructed.</span>")
-			else
-				to_chat(user, "<span class='warning'>Construction failed[result]</span>")
+					to_chat(user, "<span class='warning'>Construction failed[result]</span>")
+					break
 			busy = FALSE
 		if("toggle_recipes")
 			display_craftable_only = !display_craftable_only
@@ -421,10 +430,21 @@
 		if("toggle_compact")
 			display_compact = !display_compact
 			. = TRUE
+		if("substract_repeat")
+			if (display_repeat_value > 1)
+				display_repeat_value -= 1
+			. = TRUE
+		if("add_repeat")
+			display_repeat_value += 1
+			. = TRUE
+		if("repeat_value") //Ideally this would let the user set the number themselves, but right now it just resets it back to 1.
+			display_repeat_value = 1
+			. = TRUE
 		if("set_category")
 			cur_category = params["category"]
 			cur_subcategory = params["subcategory"] || ""
 			. = TRUE
+	temp_repeat_value = display_repeat_value
 
 /datum/component/personal_crafting/proc/build_recipe_data(datum/crafting_recipe/R)
 	var/list/data = list()
