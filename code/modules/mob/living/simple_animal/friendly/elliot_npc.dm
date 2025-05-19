@@ -35,6 +35,7 @@
 	var/standstorm_stance_cooldown = 20 SECONDS
 	var/teleport_update
 	var/teleport_cooldown = 10 SECONDS
+	var/guilt = FALSE
 	var/mutable_appearance/guilt_icon
 	var/list/standstorm_stance_lines = list(
 		"Sandstorm Stance...",
@@ -62,6 +63,7 @@
 	if(..())
 		LosePatience()
 		if(!target) // If we have no target, we start following an ally
+			speaking_on()
 			density = TRUE
 			if(Leader)
 				if(Leader.z != z)
@@ -78,6 +80,7 @@
 					addtimer(CALLBACK(src, PROC_REF(follow_leader)), 10)
 					addtimer(CALLBACK(src, PROC_REF(follow_leader)), 15)
 		else
+			speaking_off()
 			density = FALSE
 
 /mob/living/simple_animal/hostile/ui_npc/elliot/proc/follow_leader()
@@ -146,10 +149,14 @@
 	addtimer(CALLBACK(src, TYPE_PROC_REF(/mob/living/simple_animal/hostile/ui_npc/elliot, Unstun)), 10 MINUTES)
 	return FALSE
 
-/mob/living/simple_animal/hostile/ui_npc/elliot/proc/Downed()
+/mob/living/simple_animal/hostile/ui_npc/elliot/spawn_gibs()
+	new /obj/effect/gibspawner/scrap_metal(drop_location(), src)
+
+/mob/living/simple_animal/hostile/ui_npc/elliot/proc/Downed(say_line = TRUE)
 	can_act = FALSE
 	status_flags |= GODMODE
-	say(pick(downed_lines))
+	if(say_line)
+		say(pick(downed_lines))
 	visible_message(span_warning("[src] falls down!"))
 	icon_state = "elliot_down"
 	density = FALSE
@@ -165,15 +172,16 @@
 	Unstun()
 	return
 
-/mob/living/simple_animal/hostile/ui_npc/elliot/proc/Unstun()
+/mob/living/simple_animal/hostile/ui_npc/elliot/proc/Unstun(say_line = TRUE)
 	if(!stunned)
 		return
 	density = TRUE
 	status_flags &= ~GODMODE
 	stunned = FALSE
 	icon_state = icon_living
-	adjustBruteLoss(-maxHealth, forced = TRUE)
-	say(pick(rise_lines))
+	if(say_line)
+		adjustBruteLoss(-maxHealth, forced = TRUE)
+		say(pick(rise_lines))
 	visible_message(span_warning("[src] gets back up!"))
 	can_act = TRUE
 

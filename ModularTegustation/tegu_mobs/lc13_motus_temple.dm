@@ -695,7 +695,7 @@
 		var/turf/spawn_turf = get_turf(piller)
 		new /mob/living/simple_animal/hostile/keeper_piller(spawn_turf)
 	SLEEP_CHECK_DEATH(40)
-	say("The Horror of L-Corp...")
+	say("A fancy work of machinery and worship, is it not?")
 	icon_state = "stone_keeper"
 	can_act = TRUE
 
@@ -722,6 +722,8 @@
 
 /mob/living/simple_animal/hostile/clan/stone_keeper/death(gibbed)
 	Unlock()
+	for(var/mob/living/simple_animal/hostile/keeper_piller/piller in range(20, src))
+		qdel(piller)
 	. = ..()
 
 /mob/living/simple_animal/hostile/clan/stone_keeper/proc/AoeAttack() //all attacks are an AoE when not dashing
@@ -743,24 +745,36 @@
 	icon_state = "stone_keeper"
 	SLEEP_CHECK_DEATH(0.4 SECONDS)
 	can_act = TRUE
+	for(var/mob/living/simple_animal/hostile/ui_npc/elliot/victim in range(7, src))
+		if(ability_cooldown <= world.time && prob(20))
+			ability_cooldown = world.time + ability_cooldown_time
+			AnnihilationBeam(victim)
 
 /mob/living/simple_animal/hostile/clan/stone_keeper/proc/AnnihilationBeam(atom/target)
 	var/mob/living/cooler_target = target
 	if(cooler_target.stat == DEAD)
 		return
-	if(istype(cooler_target, /mob/living/simple_animal/hostile/ui_npc/elliot))
-		var/mob/living/simple_animal/hostile/ui_npc/elliot/victim = cooler_target
-		victim.say("No... Get out of my head...")
-		victim.add_overlay(victim.guilt_icon)
-		victim.can_act = FALSE
 	can_act = FALSE
 	icon_state = "stone_keeper_attack"
 	visible_message(span_danger("[src] starts charging something at [cooler_target]!"))
 	say("Tinkerer's Order...")
-	// cooler_target.apply_status_effect(/datum/status_effect/spirit_gun_target) // Re-used for visual indicator
+	var/mob/living/simple_animal/hostile/ui_npc/elliot/victim
+	if(istype(cooler_target, /mob/living/simple_animal/hostile/ui_npc/elliot))
+		victim = cooler_target
 	dir = get_cardinal_dir(src, target)
+	if(victim)
+		ranged_attack_delay += 3
 	var/datum/beam/B = src.Beam(cooler_target, "light_beam", time = ((ranged_attack_delay+1.5) SECONDS))
 	B.visuals.color = LIGHT_COLOR_DARK_BLUE
+	if(victim)
+		victim.guilt = TRUE
+		victim.ending = TRUE
+		victim.say("No... Get out of my head...")
+		victim.add_overlay(victim.guilt_icon)
+		INVOKE_ASYNC(victim, TYPE_PROC_REF(/mob/living/simple_animal/hostile/ui_npc/elliot, Downed), FALSE)
+		SLEEP_CHECK_DEATH(30)
+		victim.say("Please... Help me...")
+		ranged_attack_delay -= 3
 	SLEEP_CHECK_DEATH(ranged_attack_delay SECONDS)
 	playsound(src, 'sound/effects/ordeals/white/red_beam.ogg', 75, FALSE, 32)
 	SLEEP_CHECK_DEATH(1.5 SECONDS)
@@ -770,16 +784,22 @@
 	annihilation_ready = FALSE
 	icon_state = "stone_keeper"
 	say("... Annihilation")
-	if(istype(cooler_target, /mob/living/simple_animal/hostile/ui_npc/elliot))
-		var/mob/living/simple_animal/hostile/ui_npc/elliot/victim = cooler_target
-		victim.cut_overlay(victim.guilt_icon)
-		victim.can_act = TRUE
+	if(victim)
+		INVOKE_ASYNC(victim, TYPE_PROC_REF(/mob/living/simple_animal/hostile/ui_npc/elliot, Unstun), FALSE)
 	var/line_of_sight = getline(get_turf(src), get_turf(target)) //better simulates a projectile attack
 	for(var/turf/T in line_of_sight)
 		if(DensityCheck(T))
 			Fire(T)
+			if(victim)
+				victim.cut_overlay(victim.guilt_icon)
+				victim.guilt = FALSE
+				victim.ending = FALSE
 			return
 	Fire(cooler_target)
+	if(victim)
+		victim.cut_overlay(victim.guilt_icon)
+		victim.guilt = FALSE
+		victim.ending = FALSE
 
 /mob/living/simple_animal/hostile/clan/stone_keeper/proc/Fire(atom/target)
 	face_atom(target)
@@ -798,6 +818,11 @@
 	B.visuals.transform = M
 	var/list/been_hit = list()
 	for(var/turf/T in hitline)
+		for(var/mob/living/simple_animal/hostile/ui_npc/elliot/victim in T.contents)
+			if(victim.guilt == FALSE)
+				victim.SpinAnimation(7, 1)
+				been_hit += victim
+				victim.visible_message(span_notice("[victim] evades [src]'s attack!"))
 		var/list/new_hits = HurtInTurf(T, been_hit, tentacle_damage, PALE_DAMAGE, check_faction = TRUE, hurt_mechs = TRUE, hurt_structure = TRUE) - been_hit
 		been_hit += new_hits
 		for(var/mob/living/L in new_hits)
@@ -980,7 +1005,7 @@
 /obj/effect/temp_visual/keeper_laser/proc/blowup()
 	playsound(src, 'sound/weapons/laser.ogg', 10, FALSE, 4)
 	for(var/mob/living/carbon/human/H in src.loc)
-		H.deal_damage(30, WHITE_DAMAGE)
-		H.deal_damage(15, PALE_DAMAGE)
+		H.deal_damage(60, WHITE_DAMAGE)
+		H.deal_damage(30, PALE_DAMAGE)
 		if(H.sanity_lost)
 			H.deal_damage(60, PALE_DAMAGE)

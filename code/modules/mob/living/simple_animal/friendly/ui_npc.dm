@@ -25,10 +25,20 @@
 	var/emote_delay = 6000
 	var/random_emotes = "baa!"
 	var/bubble = "default2"
-	var/image/speech_bubble
-
+	var/mutable_appearance/speech_bubble
+	var/can_interact = FALSE
 	var/list/active_tgui_sessions = list()
 
+/mob/living/simple_animal/hostile/ui_npc/proc/speaking_on()
+	if(!can_interact)
+		add_overlay(speech_bubble)
+		can_interact = TRUE
+
+/mob/living/simple_animal/hostile/ui_npc/proc/speaking_off()
+	if(can_interact)
+		close_all_tgui()
+		cut_overlay(speech_bubble)
+		can_interact = FALSE
 
 /mob/living/simple_animal/hostile/ui_npc/Life()
 	. = ..()
@@ -39,12 +49,14 @@
 
 /mob/living/simple_animal/hostile/ui_npc/Initialize()
 	. = ..()
-
+	speech_bubble = mutable_appearance('icons/mob/talk.dmi', bubble, ABOVE_MOB_LAYER)
 	active_tgui_sessions = list()
 	// Original code
 	emote_list = splittext(random_emotes, ";")
 	last_emote = world.time + rand(0, emote_delay)
-	add_overlay(mutable_appearance('icons/mob/talk.dmi', bubble, ABOVE_MOB_LAYER))
+	speaking_on()
+
+	// add_overlay(mutable_appearance('icons/mob/talk.dmi', bubble, ABOVE_MOB_LAYER))
 
 	// Initialize NPC-specific variables (shared across all player interactions)
 	scene_manager.npc_vars.variables["name"] = name
@@ -90,6 +102,8 @@
 		if(!user || !user.client)
 			return
 		if(target)
+			return
+		if(!can_interact)
 			return
 		ui_interact(user)
 		return TRUE
@@ -197,5 +211,5 @@
 		active_tgui_sessions.Cut() // Clear the NPC's list as all relevant sessions are being told to close
 
 /mob/living/simple_animal/hostile/ui_npc/death(gibbed, message)
-	close_all_tgui()
+	speaking_off()
 	. = ..()
