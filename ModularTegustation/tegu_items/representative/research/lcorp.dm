@@ -129,10 +129,9 @@ GLOBAL_LIST_EMPTY(lcorp_upgrades)
 			if(SSmaptype.chosen_trait == FACILITY_TRAIT_ABNO_BLITZ)
 				H.set_attribute_limit(60)
 				H.adjust_all_attribute_levels(60)
-
-			else
-				H.set_attribute_limit(40)
-				H.adjust_all_attribute_levels(40)
+				return
+			H.set_attribute_limit(40)
+			H.adjust_all_attribute_levels(40)
 
 	GLOB.lcorp_upgrades += "Clerk Buff"
 	..()
