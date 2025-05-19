@@ -295,8 +295,8 @@
 					"default_scene" = "waiting"
 				),
 				"guide" = list(
-					"text" = "Why are you out here?",
-					"default_scene" = "greeting1",
+					"text" = "Do you know anything about this area?",
+					"default_scene" = "confused",
 					"transitions" = list(
 						list(
 							"expression" = "player.area = \"Outskirts\"",
@@ -305,9 +305,62 @@
 						list(
 							"expression" = "player.area = \"Temple Reception\"",
 							"scene" = "temple_reception"
+						),
+						list(
+							"expression" = "player.area = \"Temple Factory\"",
+							"scene" = "temple_factory"
+						),
+						list(
+							"expression" = "player.area = \"Temple Student Dorms\"",
+							"scene" = "temple_student_dorms"
+						),
+						list(
+							"expression" = "player.area = \"Temple Study Room A\"",
+							"scene" = "temple_study_room_a"
+						),
+						list(
+							"expression" = "player.area = \"Temple Study Room B\"",
+							"scene" = "temple_study_room_b"
+						),
+						list(
+							"expression" = "player.area = \"Temple Main Hall\"",
+							"scene" = "temple_main_hall"
+						),
+						list(
+							"expression" = "player.area = \"Temple Library\"",
+							"scene" = "temple_library"
+						),
+						list(
+							"expression" = "player.area = \"Temple Storage\"",
+							"scene" = "temple_storage"
+						),
+						list(
+							"expression" = "player.area = \"Temple Treasure Hallway\"",
+							"scene" = "temple_treasure_hallway"
+						),
+						list(
+							"expression" = "player.area = \"Temple Treasure Entrance\"",
+							"scene" = "temple_treasure_entrance"
+						),
+						list(
+							"expression" = "player.area = \"Temple Treasure Room\"",
+							"scene" = "temple_treasure_room"
+						),
+						list(
+							"expression" = "player.area = \"Temple Medbay\"",
+							"scene" = "temple_medbay"
 						)
 					)
 				),
+			)
+		),
+		"confused" = list(
+			"text" = "Oh, Sorry for my incompetence but I lack any knowledge of this area.",
+			"actions" = list(
+				"..." = list(
+					"text" = "...",
+					"default_scene" = "main_screen"
+				)
 			)
 		),
 		"outskirts" = list(
@@ -321,6 +374,116 @@
 		),
 		"temple_reception" = list(
 			"text" = "temple_reception temple_reception temple_reception",
+			"actions" = list(
+				"..." = list(
+					"text" = "...",
+					"default_scene" = "main_screen"
+				)
+			)
+		),
+
+		"temple_factory" = list(
+			"text" = "Oh, Sorry for my incompetence but I lack any knowledge of this area.",
+			"actions" = list(
+				"..." = list(
+					"text" = "...",
+					"default_scene" = "main_screen"
+				)
+			)
+		),
+
+		"temple_student_dorms" = list(
+			"text" = "Oh, Sorry for my incompetence but I lack any knowledge of this area.",
+			"actions" = list(
+				"..." = list(
+					"text" = "...",
+					"default_scene" = "main_screen"
+				)
+			)
+		),
+
+		"temple_study_room_a" = list(
+			"text" = "Oh, Sorry for my incompetence but I lack any knowledge of this area.",
+			"actions" = list(
+				"..." = list(
+					"text" = "...",
+					"default_scene" = "main_screen"
+				)
+			)
+		),
+
+		"temple_study_room_b" = list(
+			"text" = "Oh, Sorry for my incompetence but I lack any knowledge of this area.",
+			"actions" = list(
+				"..." = list(
+					"text" = "...",
+					"default_scene" = "main_screen"
+				)
+			)
+		),
+
+		"temple_main_hall" = list(
+			"text" = "Oh, Sorry for my incompetence but I lack any knowledge of this area.",
+			"actions" = list(
+				"..." = list(
+					"text" = "...",
+					"default_scene" = "main_screen"
+				)
+			)
+		),
+
+		"temple_library" = list(
+			"text" = "Oh, Sorry for my incompetence but I lack any knowledge of this area.",
+			"actions" = list(
+				"..." = list(
+					"text" = "...",
+					"default_scene" = "main_screen"
+				)
+			)
+		),
+
+		"temple_storage" = list(
+			"text" = "Oh, Sorry for my incompetence but I lack any knowledge of this area.",
+			"actions" = list(
+				"..." = list(
+					"text" = "...",
+					"default_scene" = "main_screen"
+				)
+			)
+		),
+
+		"temple_treasure_hallway" = list(
+			"text" = "Oh, Sorry for my incompetence but I lack any knowledge of this area.",
+			"actions" = list(
+				"..." = list(
+					"text" = "...",
+					"default_scene" = "main_screen"
+				)
+			)
+		),
+
+		"temple_treasure_entrance" = list(
+			"text" = "Oh, Sorry for my incompetence but I lack any knowledge of this area.",
+			"actions" = list(
+				"..." = list(
+					"text" = "...",
+					"default_scene" = "main_screen"
+				)
+			)
+		),
+
+		"temple_treasure_room" = list(
+			"text" = "Oh, Sorry for my incompetence but I lack any knowledge of this area.",
+			"actions" = list(
+				"..." = list(
+					"text" = "...",
+					"default_scene" = "main_screen"
+				)
+			)
+		),
+
+		"temple_medbay" = list(
+			"text" = "Oh, Sorry for my incompetence but I lack any knowledge of this area.",
 			"actions" = list(
 				"..." = list(
 					"text" = "...",

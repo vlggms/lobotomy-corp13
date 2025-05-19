@@ -679,20 +679,24 @@
 
 /mob/living/simple_animal/hostile/clan/stone_keeper/proc/summon_piller()
 	can_act = FALSE
+	adjustRedLoss(-5000)
 	say("I see...")
 	SLEEP_CHECK_DEATH(20)
+	can_act = FALSE
 	say("You are not a pushover like last time.")
 	SLEEP_CHECK_DEATH(40)
+	can_act = FALSE
 	say("However, I have been working on something new as well.")
 	SLEEP_CHECK_DEATH(40)
 	icon_state = "stone_keeper_attack"
 	say("Witness, one of many toys of the city...")
-	for(var/obj/effect/landmark/keeper_piller_spawn/KPS in range(20, src))
-		new /mob/living/simple_animal/hostile/keeper_piller(get_turf(KPS))
+	// for(var/obj/effect/landmark/keeper_piller_spawn/piller in range(20, src))
+	// 	var/turf/spawn_turf = get_turf(piller)
+	new /mob/living/simple_animal/hostile/keeper_piller(get_turf(src))
 	SLEEP_CHECK_DEATH(40)
 	say("The Horror of L-Corp...")
 	icon_state = "stone_keeper"
-	can_act = FALSE
+	can_act = TRUE
 
 /mob/living/simple_animal/hostile/clan/stone_keeper/Move()
 	if(!can_act)

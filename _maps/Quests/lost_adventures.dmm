@@ -1704,6 +1704,12 @@
 /obj/effect/decal/cleanable/dirt/dust,
 /turf/open/floor/mineral/gold,
 /area/city/backstreets_room/temple_motus/treasure_room)
+"IR" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/keeper_field,
+/obj/effect/landmark/keeper_piller_spawn,
+/turf/open/floor/light,
+/area/city/backstreets_room/temple_motus/treasure_entrance)
 "IS" = (
 /obj/structure/bookcase{
 	pixel_x = 32;
@@ -5049,13 +5055,13 @@ ex
 LP
 bS
 bS
+eb
 GO
 GO
 GO
 GO
 GO
-GO
-GO
+eb
 bS
 bS
 LP
@@ -5687,7 +5693,7 @@ bS
 GO
 GO
 GO
-GO
+eb
 GO
 GO
 GO
@@ -6065,13 +6071,13 @@ IP
 Mx
 bS
 bS
-GO
-GO
-GO
 eb
 GO
 GO
+IR
 GO
+GO
+eb
 bS
 bS
 Kn
@@ -6449,7 +6455,7 @@ bS
 GO
 GO
 GO
-GO
+eb
 GO
 GO
 GO
@@ -7208,13 +7214,13 @@ ex
 LP
 bS
 bS
+eb
 GO
 GO
 GO
 GO
 GO
-GO
-GO
+eb
 bS
 bS
 LP
