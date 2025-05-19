@@ -659,6 +659,7 @@
 #include "code\datums\diseases\parasitic_infection.dm"
 #include "code\datums\diseases\parrotpossession.dm"
 #include "code\datums\diseases\pierrot_throat.dm"
+#include "code\datums\diseases\porosity.dm"
 #include "code\datums\diseases\retrovirus.dm"
 #include "code\datums\diseases\rhumba_beat.dm"
 #include "code\datums\diseases\transformation.dm"
