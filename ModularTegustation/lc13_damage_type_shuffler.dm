@@ -15,7 +15,7 @@ GLOBAL_DATUM_INIT(damage_type_shuffler, /datum/damage_type_shuffler, new /datum/
 	var/list/mapping_defense = list(RED_DAMAGE = RED_DAMAGE, WHITE_DAMAGE = WHITE_DAMAGE, BLACK_DAMAGE = BLACK_DAMAGE, PALE_DAMAGE = PALE_DAMAGE)
 	///If a non pale damage type became pale then all new pale damage will be multiplied by this for a lil bit of balance.
 	///If pale damage turned into non pale damage it will be divided by this value.
-	var/pale_debuff = 0.75
+	var/pale_debuff = 0.55
 
 /datum/damage_type_shuffler/New()
 	. = ..()
