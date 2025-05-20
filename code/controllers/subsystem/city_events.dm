@@ -19,6 +19,8 @@ SUBSYSTEM_DEF(cityevents)
 	var/list/generated = list()	//Which ckeys have generated stats
 	var/wavetime 		//How many waves have spawned? each wave increases the # of enemies by about 5%. One wave is every 5 minutes
 
+	var/list/processing
+
 /datum/controller/subsystem/cityevents/Initialize(timeofday)
 
 	..()
@@ -59,10 +61,10 @@ SUBSYSTEM_DEF(cityevents)
 	total_events += pick(neutral_events)
 	total_events += pick("money")			//Always get money
 
+	processing = subtypesof(/mob/living/simple_animal/hostile/distortion)
 	//Set available distortion
-	var/list/processing = subtypesof(/mob/living/simple_animal/hostile/distortion)
 	for(var/mob/living/simple_animal/hostile/distortion/A in processing)
-		if(A.can_spawn == 0)
+		if(initial(A.can_spawn) == 0)
 			return
 		distortions_available += A
 
