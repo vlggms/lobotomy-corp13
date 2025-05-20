@@ -126,6 +126,10 @@ GLOBAL_LIST_EMPTY(lcorp_upgrades)
 /datum/data/lc13research/clerkbuff/ResearchEffect(obj/structure/representative_console/requester)
 	for(var/mob/living/carbon/human/H in GLOB.player_list)
 		if(H?.mind?.assigned_role in GLOB.service_positions)
+			if(SSmaptype.chosen_trait == FACILITY_TRAIT_ABNO_BLITZ)
+				H.set_attribute_limit(60)
+				H.adjust_all_attribute_levels(60)
+				return
 			H.set_attribute_limit(40)
 			H.adjust_all_attribute_levels(40)
 
