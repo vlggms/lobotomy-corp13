@@ -6,7 +6,7 @@ GLOBAL_LIST_EMPTY(heretic_puzzle)
 	var/obj/item/crown_dagger_puzzle/wanted_item = null
 	var/has_item = FALSE
 	var/puzzle_fail = FALSE
-	loot = list(/obj/item/keycard/motus_medbay)
+	loot = list(/obj/item/keycard/motus_storage)
 	attacked_line = "PROCEEDING WITH EXTERMINATION..."
 	starting_looting_line = "WARNING, AUTHORIZED LOOTING DETECTED. DROP THE CROWBAR"
 	ending_looting_line = "THEIR DETECTED, PROCEEDING WITH EXTERMINATION..."
@@ -59,7 +59,7 @@ GLOBAL_LIST_EMPTY(heretic_puzzle)
 			correct_statue++
 	if(correct_statue >= 6)
 		visible_message(span_nicegreen("\The [src] suddenly produces a key and drops it on the groud, looks like you passed it's trial."))
-		new /obj/item/keycard/motus_medbay (get_turf(smart_pal))
+		new /obj/item/keycard/motus_storage (get_turf(smart_pal))
 
 /mob/living/simple_animal/hostile/clan/stone_guard/dagger_puzzle/proc/check_assassination()
 	var/mob/living/simple_animal/hostile/clan/stone_guard/dagger_puzzle/king = null
@@ -176,6 +176,12 @@ GLOBAL_LIST_EMPTY(heretic_puzzle)
 	desc = "A medbay keycard. How fantastic. Looks like it belongs to a high security door."
 	color = "#0988ff"
 	puzzle_id = "motus_medbay"
+
+/obj/item/keycard/motus_storage
+	name = "storage keycard"
+	desc = "A storage keycard. How fantastic. Looks like it belongs to a high security door."
+	color = "#b622db"
+	puzzle_id = "motus_storage"
 
 /obj/structure/puzzle_key_case
 	name = "strange keycase"
@@ -422,6 +428,21 @@ GLOBAL_LIST_EMPTY(heretic_puzzle)
 	name = "hooded statue"
 	heretic = TRUE
 	mark_once_attacked = FALSE
+
+/obj/structure/drone_maker
+	name = "drone maker"
+	desc = "A machine with controls implying that this machine could make drones."
+	icon = 'ModularTegustation/Teguicons/teaser_mobs.dmi'
+	icon_state = "drone_maker"
+	anchored = TRUE
+	density = TRUE
+	resistance_flags = INDESTRUCTIBLE
+	var/active = FALSE
+
+/obj/structure/drone_maker/interact(mob/user, special_state)
+	if(interaction_flags_machine & INTERACT_MACHINE_SET_MACHINE)
+		user.set_machine(src)
+	. = ..()
 
 /mob/living/simple_animal/hostile/clan/stone_guard/heretic_puzzle/hood/puzzle_say()
 	say("The one wearing robes is a Priest.")
