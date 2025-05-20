@@ -622,6 +622,7 @@
 	move_to_delay = 6
 	ranged = TRUE
 	charge = 15
+	alpha = 0
 	max_charge = 20
 	clan_charge_cooldown = 30 SECONDS
 	var/can_act = TRUE
@@ -642,6 +643,28 @@
 /mob/living/simple_animal/hostile/clan/stone_keeper/Initialize()
 	. = ..()
 	AcitvateChains()
+	addtimer(CALLBACK(src, PROC_REF(entrance_fall)), 0)
+
+/mob/living/simple_animal/hostile/clan/stone_keeper/proc/entrance_fall()
+	playsound(get_turf(src), 'sound/abnormalities/babayaga/charge.ogg', 100, 1)
+	pixel_z = 128
+	alpha = 0
+	density = FALSE
+	can_act = FALSE
+	animate(src, pixel_z = 0, alpha = 255, time = 10)
+	SLEEP_CHECK_DEATH(10)
+	density = TRUE
+	visible_message(span_danger("[src] drops down from the ceiling!"))
+	playsound(get_turf(src), 'sound/abnormalities/babayaga/land.ogg', 100, FALSE, 20)
+	for(var/mob/living/L in view(4, src))
+		if(faction_check_mob(L, TRUE))
+			continue
+		var/dist = get_dist(src, L)
+		if(ishuman(L))
+			L.deal_damage(clamp((15 * (2 ** (8 - dist))), 15, 100), RED_DAMAGE)
+	SLEEP_CHECK_DEATH(30)
+	say("Extermination Order... Activated")
+	can_act = TRUE
 
 /mob/living/simple_animal/hostile/clan/stone_keeper/GainCharge()
 	. = ..()

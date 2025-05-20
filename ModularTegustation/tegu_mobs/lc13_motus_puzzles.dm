@@ -439,10 +439,10 @@ GLOBAL_LIST_EMPTY(heretic_puzzle)
 	resistance_flags = INDESTRUCTIBLE
 	var/active = FALSE
 
-/obj/structure/drone_maker/interact(mob/user, special_state)
-	if(interaction_flags_machine & INTERACT_MACHINE_SET_MACHINE)
-		user.set_machine(src)
-	. = ..()
+// /obj/structure/drone_maker/interact(mob/user, special_state)
+// 	if(interaction_flags_machine & INTERACT_MACHINE_SET_MACHINE)
+// 		user.set_machine(src)
+// 	. = ..()
 
 /mob/living/simple_animal/hostile/clan/stone_guard/heretic_puzzle/hood/puzzle_say()
 	say("The one wearing robes is a Priest.")

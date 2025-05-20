@@ -36,6 +36,7 @@
 	var/teleport_update
 	var/teleport_cooldown = 10 SECONDS
 	var/guilt = FALSE
+	var/entered_boss_room = FALSE
 	var/mutable_appearance/guilt_icon
 	var/list/standstorm_stance_lines = list(
 		"Sandstorm Stance...",
@@ -223,6 +224,13 @@
 	to_chat(status_holder, span_red("The sands slow down around you..."))
 	UnregisterSignal(status_holder, COMSIG_MOB_ITEM_ATTACK)
 
+/mob/living/simple_animal/hostile/ui_npc/elliot/proc/boss_alert()
+	say("We are getting close to the final obstacle...")
+	SLEEP_CHECK_DEATH(40)
+	say("Hey, With us getting there soon...")
+	SLEEP_CHECK_DEATH(25)
+	say("Can you speak with me? I think I might know how pass it.")
+
 /mob/living/simple_animal/hostile/ui_npc/elliot/proc/CheckSpace(mob/user, atom/new_location)
 	var/turf/newloc_turf = get_turf(new_location)
 	var/valid_tile = TRUE
@@ -230,6 +238,10 @@
 	var/area/new_area = get_area(newloc_turf)
 	if(istype(new_area, /area/shuttle/mining))
 		valid_tile = FALSE
+
+	if(istype(new_area, /area/city/backstreets_room/temple_motus/treasure_entrance) && !entered_boss_room)
+		entered_boss_room = TRUE
+		addtimer(CALLBACK(src, PROC_REF(boss_alert)), 5)
 
 	if(!valid_tile)
 		if(last_staying_update < world.time - staying_cooldown)
@@ -292,12 +304,12 @@
 				"dialog.first_meeting" = FALSE
 			),
 			"actions" = list(
-				"ruin" = list(
+				"follow" = list(
 					"text" = "Follow me, [src].",
 					"proc_callbacks" = list(CALLBACK(src, PROC_REF(make_leader))),
 					"default_scene" = "following"
 				),
-				"outpost" = list(
+				"wait" = list(
 					"text" = "Wait here, [src].",
 					"proc_callbacks" = list(CALLBACK(src, PROC_REF(remove_leader))),
 					"default_scene" = "waiting"
@@ -360,8 +372,70 @@
 						)
 					)
 				),
+				"final" = list(
+					"text" = "Can you open the final door?",
+					"visibility_expression" = "player.area = \"Temple Treasure Entrance\"",
+					"default_scene" = "starting_boss"
+				),
 			)
 		),
+
+		"starting_boss" = list(
+			"text" = "Yes, I believe I recognize this entrance and the mechanics around it.",
+			"actions" = list(
+				"..." = list(
+					"text" = "...",
+					"default_scene" = "starting_boss1"
+				)
+			)
+		),
+
+		"starting_boss1" = list(
+			"text" = "However, if what I belive is true, it could cause a particularly... Difficult defensive system to activate.",
+			"actions" = list(
+				"..." = list(
+					"text" = "...",
+					"default_scene" = "starting_boss2"
+				)
+			)
+		),
+
+		"starting_boss2" = list(
+			"text" = "This system, may block of the rest of the temple until we deal with it...",
+			"actions" = list(
+				"..." = list(
+					"text" = "...",
+					"default_scene" = "starting_boss3"
+				)
+			)
+		),
+
+		"starting_boss3" = list(
+			"text" = "Do you think you are ready to pass this final challenge?",
+			"actions" = list(
+				"start_boss" = list(
+					"text" = "Yes, I believe we are ready.",
+					"proc_callbacks" = list(CALLBACK(src, PROC_REF(start_boss_fight))),
+					"default_scene" = "main_screen"
+				),
+				"wait_boss" = list(
+					"text" = "Let's wait a little bit...",
+					"default_scene" = "starting_boss_leave"
+				)
+			)
+		),
+
+		"starting_boss_leave" = list(
+			"text" = "Understandable... We can't leave anything uninvestigated around here. *clutches their weapon tighter*",
+			"actions" = list(
+				"..." = list(
+					"text" = "...",
+					"default_scene" = "main_screen"
+				)
+			)
+		),
+
+//Extra Flavor Stuff, Asking about the lore of diffrent rooms.
 		"confused" = list(
 			"text" = "Oh, Sorry for my incompetence but I lack any knowledge of this area.",
 			"actions" = list(
@@ -533,6 +607,105 @@
 /mob/living/simple_animal/hostile/ui_npc/elliot/proc/remove_leader()
 	Leader = null
 
+/mob/living/simple_animal/hostile/ui_npc/elliot/proc/start_boss_fight()
+	Leader = null
+	close_all_tgui()
+	for(var/obj/effect/motus_final_door/final in range(10, src))
+		final.active = TRUE
+		var/turf/patrol_turf = get_turf(final)
+		patrol_to(patrol_turf)
+		break
+
+/obj/effect/motus_final_door
+	name = "motus_final_waypoint"
+	alpha = 0
+	mouse_opacity = FALSE
+	anchored = TRUE
+	var/active = FALSE
+
+/obj/effect/motus_final_door/Crossed(atom/movable/AM)
+	. = ..()
+	if(istype(AM, /mob/living/simple_animal/hostile/ui_npc/elliot) && active)
+		var/mob/living/simple_animal/hostile/ui_npc/elliot/elliot_target = AM
+		elliot_target.trigger_boss()
+		qdel(src)
+
+/mob/living/simple_animal/hostile/ui_npc/elliot/proc/trigger_boss()
+	playsound(get_turf(src), 'sound/machines/buzz-sigh.ogg', 40, TRUE)
+	SLEEP_CHECK_DEATH(10)
+	say("What... It didn't work...")
+	SLEEP_CHECK_DEATH(40)
+	say("It should work, It worked last time-")
+	for(var/obj/effect/keeper_piller_spawn/piller in range(20, src))
+		var/turf/spawn_turf = get_turf(piller)
+		new /mob/living/simple_animal/npc/tinkerer/elliot_taunt(spawn_turf)
+
+/obj/machinery/door/keycard/final_door
+	name = "heavily locked door"
+	desc = "This door only opens when a keycard is swiped. It looks virtually indestructable, looks like you will need someone else's help."
+	puzzle_id = "motus_treasure"
+
 /mob/living/simple_animal/hostile/ui_npc/elliot/Destroy()
 	Leader = null
 	return ..()
+
+/mob/living/simple_animal/npc/tinkerer/elliot_taunt
+	default_delay = 13
+	speech = list("Icon: tinker_d", "Icon: tinker", "At long last, we meet again...", "Elliot: Tinkerer... What the hell did you do to this place?!", "Oh? You are wondering what I did to this place?", "My cute little drone, don't you know better then anyone?", "Elliot: No... I moved past it...", "Oh did you? Dear Elliot...", "Elliot: I... discarded that name...", "Yet you still returned to this place...", "Aw, don't tell me... Do you still wish to live after all you have done?", "Elliot: I...", "HA! So much for your regrets over this place...", "Elliot: ... Please, I can't just...", "Ha... I have had enough with your excuses, Dear Elliot.", "Tonight, I shall finish what I have started...", "And ruin the last followers of Motus!", "... And rid you of your guilt, Elliot...", "Icon: tinker_u")
+	faction = list("city", "hostile", "neutral")
+	var/icon_amount = 0
+	var/elliot_change = FALSE
+	var/list/fear_affected = list()
+
+/mob/living/simple_animal/npc/tinkerer/elliot_taunt/Life()
+	. = ..()
+	FearEffect()
+
+/mob/living/simple_animal/npc/tinkerer/elliot_taunt/proc/FearEffect()
+	for(var/mob/living/carbon/human/H in ohearers(7, src))
+		if(H in fear_affected)
+			continue
+		if(H.stat == DEAD)
+			continue
+		fear_affected += H
+		var/sanity_damage = H.maxSanity*0.3
+		H.apply_status_effect(/datum/status_effect/panicked_lvl_2)
+		to_chat(H, span_danger("You are frozen in fear... As you witness something of pure hatred, for humanity."))
+		H.adjustSanityLoss(sanity_damage)
+		var/stun_time = speech.len
+		H.Immobilize((stun_time - 4) * (default_delay + 20), TRUE)
+
+/mob/living/simple_animal/npc/tinkerer/elliot_taunt/Speech()
+	for(var/mob/living/simple_animal/hostile/ui_npc/elliot/victim in range(20, src))
+		victim.can_act = FALSE
+		victim.speaking_off()
+	for (var/S in speech)
+		if (findtext(S, "Emote: ") == 1)
+			manual_emote(copytext(S, 8, length(S) + 1))
+		else if (findtext(S, "Move: ") == 1)
+			step(src, text2dir(copytext(S, 7, length(S) + 1)))
+		else if (findtext(S, "Icon: ") == 1)
+			icon_state = copytext(S, 7, length(S) + 1)
+			icon_amount++
+		else if (findtext(S, "Delay: ") == 1)
+			SLEEP_CHECK_DEATH(text2num(copytext(S, 8, length(S) + 1)))
+		else if (findtext(S, "Elliot: ") == 1)
+			for(var/mob/living/simple_animal/hostile/ui_npc/elliot/victim in range(20, src))
+				victim.face_atom(src)
+				victim.say("[copytext(S, 9, length(S) + 1)]")
+			SLEEP_CHECK_DEATH(20)
+		else
+			say(S)
+			if(S == "Oh did you? Dear Elliot...")
+				for(var/mob/living/simple_animal/hostile/ui_npc/elliot/victim in range(20, src))
+					victim.name = "Elliot"
+			SLEEP_CHECK_DEATH(20)
+		if(icon_amount == 3)
+			icon_amount = 0
+			for(var/obj/effect/keeper_piller_spawn/piller in range(20, src))
+				var/turf/spawn_turf = get_turf(piller)
+				new /mob/living/simple_animal/hostile/clan/stone_keeper(spawn_turf)
+		SLEEP_CHECK_DEATH(default_delay)
+	for(var/mob/living/simple_animal/hostile/ui_npc/elliot/victim in range(20, src))
+		victim.can_act = TRUE
+		victim.speaking_on()

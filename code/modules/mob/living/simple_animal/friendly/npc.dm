@@ -22,7 +22,7 @@
 	var/pulse_cooldown_time = 1 SECONDS
 	var/speaking = FALSE
 	var/default_delay = 15
-	var/speech = list("Hello", "This is a test.", "Emote: Emote", "Move: NORTH", "Goodbye", "Delay: 20", "Icon: priest_wings_open")
+	var/list/speech = list("Hello", "This is a test.", "Emote: Emote", "Move: NORTH", "Goodbye", "Delay: 20", "Icon: priest_wings_open")
 	wander = FALSE
 
 /mob/living/simple_animal/npc/Life()
