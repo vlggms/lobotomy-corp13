@@ -85,6 +85,10 @@
 			speaking_off()
 			density = FALSE
 
+/mob/living/simple_animal/hostile/ui_npc/elliot/toggle_ai(togglestatus)
+	if (togglestatus != AI_IDLE)
+		..()
+
 /mob/living/simple_animal/hostile/ui_npc/elliot/proc/follow_leader()
 	if(Leader)
 		step_to(src, Leader)
