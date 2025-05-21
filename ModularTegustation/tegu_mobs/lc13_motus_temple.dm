@@ -794,6 +794,7 @@
 		victim.ending = TRUE
 		victim.say("No... Get out of my head...")
 		victim.add_overlay(victim.guilt_icon)
+		victim.revive_time = 2 SECONDS
 		INVOKE_ASYNC(victim, TYPE_PROC_REF(/mob/living/simple_animal/hostile/ui_npc/elliot, Downed), FALSE)
 		SLEEP_CHECK_DEATH(30)
 		victim.say("Please... Help me...")
@@ -809,6 +810,7 @@
 	say("... Annihilation")
 	if(victim)
 		INVOKE_ASYNC(victim, TYPE_PROC_REF(/mob/living/simple_animal/hostile/ui_npc/elliot, Unstun), FALSE)
+		victim.revive_time = 2 SECONDS
 	var/line_of_sight = getline(get_turf(src), get_turf(target)) //better simulates a projectile attack
 	for(var/turf/T in line_of_sight)
 		if(DensityCheck(T))

@@ -31,6 +31,7 @@
 	var/attack_tremor = 3
 	var/last_staying_update
 	var/staying_cooldown = 20 SECONDS
+	var/revive_time = 4 SECONDS
 	var/standstorm_stance_update
 	var/standstorm_stance_cooldown = 20 SECONDS
 	var/teleport_update
@@ -167,7 +168,7 @@
 	if(!stunned)
 		return ..()
 	to_chat(M, span_warning("You lifting up [src]!"))
-	if(!do_after(M, 4 SECONDS, src) || !stunned)
+	if(!do_after(M, revive_time, src) || !stunned)
 		to_chat(M, span_warning("You let go before [src] gets back up!"))
 		return
 	Unstun()
@@ -185,6 +186,10 @@
 		say(pick(rise_lines))
 	visible_message(span_warning("[src] gets back up!"))
 	can_act = TRUE
+	if(guilt)
+		cut_overlay(guilt_icon)
+		guilt = FALSE
+		ending = FALSE
 
 /mob/living/simple_animal/hostile/ui_npc/elliot/proc/StandstormStance()
 	playsound(src, 'sound/weapons/purple_tear/change.ogg', 50, 1)
