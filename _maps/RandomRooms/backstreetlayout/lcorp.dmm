@@ -65,11 +65,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/centcom/supplypod)
-"by" = (
-/obj/effect/turf_decal/bot,
-/obj/machinery/telecomms/processor/preset_two,
-/turf/open/floor/circuit/telecomms/mainframe,
-/area/centcom/supplypod)
 "bB" = (
 /obj/structure/lootcrate/money,
 /turf/open/floor/grass/snow/safe,
@@ -173,8 +168,7 @@
 /turf/closed/wall/mineral/cult,
 /area/city/backstreets_room)
 "dD" = (
-/obj/machinery/telecomms/server/presets/security,
-/turf/open/floor/circuit/telecomms/mainframe,
+/turf/open/floor/circuit/green,
 /area/centcom/supplypod)
 "dX" = (
 /mob/living/simple_animal/hostile/poison/giant_spider{
@@ -391,10 +385,6 @@
 /obj/effect/gibspawner/human/bodypartless,
 /turf/open/floor/mineral/bananium,
 /area/city/backstreets_room)
-"jx" = (
-/obj/machinery/telecomms/message_server/preset,
-/turf/open/floor/circuit/telecomms/mainframe,
-/area/centcom/supplypod)
 "jB" = (
 /obj/structure/fluff/iced_abductor,
 /obj/structure/fluff/iced_abductor,
@@ -539,10 +529,8 @@
 	},
 /area/city/backstreets_room)
 "lT" = (
-/obj/machinery/telecomms/relay/preset/telecomms,
-/obj/structure/emergency_shield,
-/obj/effect/turf_decal/bot,
-/turf/open/floor/circuit/telecomms/mainframe,
+/obj/structure/fluff/oldturret,
+/turf/open/floor/circuit/green,
 /area/centcom/supplypod)
 "lV" = (
 /obj/item/food/grown/banana,
@@ -588,8 +576,9 @@
 /turf/open/floor/mineral/bananium,
 /area/city/backstreets_room)
 "mI" = (
-/obj/effect/turf_decal/bot,
-/obj/machinery/telecomms/receiver/preset_left,
+/obj/structure/railing{
+	dir = 4
+	},
 /turf/open/floor/circuit/telecomms/mainframe,
 /area/centcom/supplypod)
 "mK" = (
@@ -659,11 +648,6 @@
 	dir = 4
 	},
 /turf/open/floor/plasteel,
-/area/centcom/supplypod)
-"nQ" = (
-/obj/machinery/telecomms/server/presets/engineering,
-/obj/effect/turf_decal/bot,
-/turf/open/floor/circuit/telecomms/mainframe,
 /area/centcom/supplypod)
 "nS" = (
 /obj/structure/showcase/mecha/marauder,
@@ -766,9 +750,10 @@
 /turf/open/floor/plasteel,
 /area/city/backstreets_room)
 "pn" = (
-/obj/machinery/telecomms/server/presets/supply,
-/obj/effect/turf_decal/bot,
-/turf/open/floor/circuit/telecomms/mainframe,
+/obj/structure/fluff/empty_sleeper/nanotrasen{
+	dir = 1
+	},
+/turf/open/floor/circuit/green,
 /area/centcom/supplypod)
 "pq" = (
 /obj/effect/decal/cleanable/dirt/dust,
@@ -972,9 +957,9 @@
 /turf/open/floor/plasteel/shuttle/red/syndicate,
 /area/city/backstreets_room)
 "th" = (
-/obj/effect/turf_decal/bot,
-/obj/effect/decal/cleanable/dirt,
-/obj/machinery/telecomms/bus/preset_four,
+/obj/structure/railing/corner{
+	dir = 1
+	},
 /turf/open/floor/circuit/telecomms/mainframe,
 /area/centcom/supplypod)
 "tm" = (
@@ -1029,13 +1014,8 @@
 	},
 /turf/open/floor/plasteel,
 /area/centcom/supplypod)
-"ug" = (
-/obj/machinery/telecomms/server/presets/common,
-/turf/open/floor/circuit/telecomms/mainframe,
-/area/centcom/supplypod)
 "uh" = (
-/obj/effect/turf_decal/bot,
-/obj/machinery/telecomms/processor/preset_four,
+/obj/structure/railing,
 /turf/open/floor/circuit/telecomms/mainframe,
 /area/centcom/supplypod)
 "uk" = (
@@ -1062,11 +1042,6 @@
 /obj/effect/landmark/cratespawn,
 /turf/open/floor/plating/ashplanet/rocky,
 /area/city/backstreets_room)
-"uU" = (
-/obj/machinery/telecomms/server/presets/science,
-/obj/effect/turf_decal/bot,
-/turf/open/floor/circuit/telecomms/mainframe,
-/area/centcom/supplypod)
 "va" = (
 /obj/effect/landmark/backstreetspawneast,
 /turf/open/floor/plating/asteroid/basalt,
@@ -1080,13 +1055,6 @@
 	dir = 1
 	},
 /turf/open/floor/carpet/orange,
-/area/centcom/supplypod)
-"vf" = (
-/obj/machinery/telecomms/server/presets/command{
-	name = "Command Server"
-	},
-/obj/effect/turf_decal/bot,
-/turf/open/floor/circuit/telecomms/mainframe,
 /area/centcom/supplypod)
 "vi" = (
 /turf/open/floor/grass/snow/safe,
@@ -1591,11 +1559,6 @@
 /obj/item/food/grown/banana,
 /turf/open/floor/mineral/bananium,
 /area/city/backstreets_room)
-"Dl" = (
-/obj/effect/turf_decal/bot,
-/obj/machinery/telecomms/bus/preset_two,
-/turf/open/floor/circuit/telecomms/mainframe,
-/area/centcom/supplypod)
 "Dp" = (
 /obj/structure/mineral_door/wood,
 /turf/open/floor/carpet,
@@ -1635,9 +1598,9 @@
 /turf/open/floor/plating/ashplanet/rocky,
 /area/city/backstreets_room)
 "DT" = (
-/obj/effect/turf_decal/bot,
-/obj/effect/decal/cleanable/dirt,
-/obj/machinery/telecomms/bus/preset_one,
+/obj/structure/railing/corner{
+	dir = 4
+	},
 /turf/open/floor/circuit/telecomms/mainframe,
 /area/centcom/supplypod)
 "Ee" = (
@@ -1869,10 +1832,6 @@
 /obj/structure/flora/rock,
 /turf/open/floor/plating/ashplanet/rocky,
 /area/city/backstreets_room)
-"Jw" = (
-/obj/machinery/telecomms/server/presets/medical,
-/turf/open/floor/circuit/telecomms/mainframe,
-/area/centcom/supplypod)
 "JE" = (
 /turf/open/floor/grass/fakebasalt,
 /area/city/backstreets_room)
@@ -1955,12 +1914,6 @@
 	slowdown = 0
 	},
 /area/city/backstreets_alley)
-"LT" = (
-/obj/effect/turf_decal/bot,
-/obj/effect/decal/cleanable/dirt,
-/obj/machinery/telecomms/processor/preset_one,
-/turf/open/floor/circuit/telecomms/mainframe,
-/area/centcom/supplypod)
 "Md" = (
 /obj/structure/spider/stickyweb/genetic,
 /obj/structure/spider/cocoon/spider_bud,
@@ -2148,8 +2101,9 @@
 /turf/open/floor/mineral/bananium,
 /area/city/backstreets_room)
 "OO" = (
-/obj/effect/turf_decal/bot,
-/obj/machinery/telecomms/bus/preset_three,
+/obj/structure/railing{
+	dir = 1
+	},
 /turf/open/floor/circuit/telecomms/mainframe,
 /area/centcom/supplypod)
 "OW" = (
@@ -2288,14 +2242,10 @@
 /obj/structure/spider/cocoon/spider_bud,
 /turf/open/floor/plating/ashplanet/rocky,
 /area/city/backstreets_room)
-"RA" = (
-/obj/machinery/telecomms/broadcaster/preset_right,
-/obj/effect/turf_decal/bot,
-/turf/open/floor/circuit/telecomms/mainframe,
-/area/centcom/supplypod)
 "RF" = (
-/obj/effect/turf_decal/bot,
-/obj/machinery/telecomms/receiver/preset_right,
+/obj/structure/railing{
+	dir = 8
+	},
 /turf/open/floor/circuit/telecomms/mainframe,
 /area/centcom/supplypod)
 "RI" = (
@@ -2316,11 +2266,6 @@
 /obj/effect/decal/cleanable/dirt/dust,
 /turf/open/floor/plating/grass/jungle,
 /area/city/backstreets_room)
-"RS" = (
-/obj/machinery/telecomms/server/presets/service,
-/obj/effect/turf_decal/bot,
-/turf/open/floor/circuit/telecomms/mainframe,
-/area/centcom/supplypod)
 "Sc" = (
 /obj/effect/landmark/backstreetspawn,
 /turf/open/floor/plating/asteroid/basalt,
@@ -2409,8 +2354,6 @@
 /turf/open/floor/plating/ashplanet/rocky,
 /area/city/backstreets_room)
 "TQ" = (
-/obj/effect/turf_decal/bot,
-/obj/machinery/ntnet_relay,
 /turf/open/floor/circuit/telecomms/mainframe,
 /area/centcom/supplypod)
 "TZ" = (
@@ -2454,9 +2397,8 @@
 /turf/open/floor/grass/snow/safe,
 /area/city/backstreets_room)
 "US" = (
-/obj/effect/turf_decal/bot,
-/obj/effect/decal/cleanable/dirt,
-/obj/machinery/telecomms/processor/preset_three,
+/obj/structure/statue/diamond/ai2,
+/obj/structure/emergency_shield,
 /turf/open/floor/circuit/telecomms/mainframe,
 /area/centcom/supplypod)
 "UZ" = (
@@ -2508,8 +2450,9 @@
 /turf/open/indestructible/necropolis/air,
 /area/city/backstreets_room)
 "Vp" = (
-/obj/effect/turf_decal/bot,
-/obj/machinery/telecomms/relay/preset/telecomms,
+/obj/structure/railing/corner{
+	dir = 8
+	},
 /turf/open/floor/circuit/telecomms/mainframe,
 /area/centcom/supplypod)
 "Vs" = (
@@ -2563,11 +2506,6 @@
 	color = "#42f545"
 	},
 /area/city/backstreets_room)
-"VX" = (
-/obj/machinery/telecomms/broadcaster/preset_left,
-/obj/effect/turf_decal/bot,
-/turf/open/floor/circuit/telecomms/mainframe,
-/area/centcom/supplypod)
 "Wd" = (
 /obj/machinery/camera/autoname,
 /obj/machinery/light{
@@ -2637,8 +2575,7 @@
 /turf/open/floor/plating/asteroid/basalt,
 /area/city/backstreets_alley)
 "Xk" = (
-/obj/effect/turf_decal/bot,
-/obj/machinery/telecomms/hub/preset,
+/obj/structure/railing/corner,
 /turf/open/floor/circuit/telecomms/mainframe,
 /area/centcom/supplypod)
 "Xu" = (
@@ -29045,10 +28982,10 @@ iG
 OW
 QC
 no
-Jw
-jx
-no
-no
+lT
+dD
+dD
+lT
 no
 UZ
 "}
@@ -29155,11 +29092,11 @@ PI
 iG
 OW
 PI
-no
-by
-LT
-Dl
-uU
+iG
+TQ
+TQ
+TQ
+pn
 no
 UZ
 "}
@@ -29266,11 +29203,11 @@ Ey
 no
 Wd
 PI
-no
+iG
 Xk
 mI
 DT
-nQ
+pn
 no
 UZ
 "}
@@ -29377,7 +29314,7 @@ WW
 vc
 OW
 PI
-no
+iG
 uh
 US
 OO
@@ -29488,11 +29425,11 @@ Ey
 no
 Wd
 PI
-no
+iG
 Vp
 RF
 th
-RS
+pn
 no
 UZ
 "}
@@ -29599,11 +29536,11 @@ PI
 iG
 OW
 PI
-no
-VX
+iG
 TQ
-RA
-vf
+TQ
+TQ
+pn
 no
 UZ
 "}
@@ -29711,9 +29648,9 @@ iG
 OW
 QC
 no
-ug
+lT
 dD
-no
+dD
 lT
 no
 UZ
