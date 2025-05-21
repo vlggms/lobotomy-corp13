@@ -19,6 +19,12 @@
 	mentor_only = TRUE
 	alt_titles = list()
 
+/datum/job/agent/training_officer/after_spawn(mob/living/carbon/human/outfit_owner, mob/M)
+	ADD_TRAIT(outfit_owner, TRAIT_ATTRIBUTES_VISION, JOB_TRAIT)
+	outfit_owner.grant_language(/datum/language/bong, TRUE, FALSE, LANGUAGE_MIND)
+	. = ..()
+
+
 /datum/job/agent/training_officer/announce(mob/living/carbon/human/outfit_owner)
 	..()
 	var/displayed_rank = title // Handle alt titles
@@ -94,13 +100,12 @@
 		if(79 to 100) // ALEPHs around here (20 Abnormalities)
 			set_attribute *= 4
 
-	set_attribute += GetFacilityUpgradeValue(UPGRADE_AGENT_STATS)
+	set_attribute += GetFacilityUpgradeValue(UPGRADE_AGENT_STATS) + SSlobotomy_corp.ordeal_stats
 
-	//Set all stats to 0
+	//sets each attribute below set_attribute to 0, then raises them by that amount.
 	for(var/A in attribute_list)
 		var/processing = get_attribute_level(user, A)
-		user.adjust_attribute_level(A, -1*processing)
-
-	//Now we have to bring it back up
-	user.adjust_all_attribute_levels(set_attribute)
+		if(processing <= set_attribute)
+			user.adjust_attribute_level(A, -1*processing)
+			user.adjust_attribute_level(A, set_attribute)
 	to_chat(user, span_notice("You feel reset, and more ready for combat."))
