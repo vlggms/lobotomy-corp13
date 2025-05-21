@@ -627,6 +627,8 @@
 
 /obj/effect/motus_final_door
 	name = "motus_final_waypoint"
+	icon = 'icons/effects/landmarks_static.dmi'
+	icon_state = "city_of_cogs"
 	alpha = 0
 	mouse_opacity = FALSE
 	anchored = TRUE

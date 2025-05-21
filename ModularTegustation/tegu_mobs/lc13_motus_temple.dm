@@ -639,6 +639,16 @@
 	var/list/locked_list = list()
 	var/list/locked_tiles_list = list()
 	var/summoned_pillar = FALSE
+	var/list/shield_lines = list(
+		"Damage... Nullified...",
+		"Resistance... Raised...",
+		"Charge... Barrier...",
+		"Shield... Order...",
+		"Protection... Activated...",
+	)
+	var/ending = FALSE
+	var/detonating = FALSE
+	var/beep_time = 20
 
 /mob/living/simple_animal/hostile/clan/stone_keeper/Initialize()
 	. = ..()
@@ -661,8 +671,9 @@
 			continue
 		var/dist = get_dist(src, L)
 		if(ishuman(L))
-			L.deal_damage(clamp((15 * (2 ** (8 - dist))), 15, 100), RED_DAMAGE)
-	SLEEP_CHECK_DEATH(30)
+			L.deal_damage(clamp((15 * (2 ** (8 - dist))), 15, 30), RED_DAMAGE)
+	last_taunt_update = world.time
+	SLEEP_CHECK_DEATH(10)
 	say("Extermination Order... Activated")
 	can_act = TRUE
 
@@ -691,7 +702,7 @@
 		var/random_y = rand(5, 80)
 		AT.pixel_y += random_y
 		if (last_taunt_update < world.time - taunt_cooldown && amount < 100)
-			say("You call this an attack!? How pathetic...")
+			say(pick(shield_lines))
 			last_taunt_update = world.time
 	if(charge > 0)
 		charge--
@@ -702,6 +713,7 @@
 
 /mob/living/simple_animal/hostile/clan/stone_keeper/proc/summon_piller()
 	can_act = FALSE
+	GainCharge()
 	adjustRedLoss(-5000)
 	say("I see...")
 	SLEEP_CHECK_DEATH(20)
@@ -744,10 +756,50 @@
 		return
 
 /mob/living/simple_animal/hostile/clan/stone_keeper/death(gibbed)
-	Unlock()
-	for(var/mob/living/simple_animal/hostile/keeper_piller/piller in range(20, src))
-		qdel(piller)
-	. = ..()
+	if(ending)
+		Unlock()
+		return ..()
+	if(!detonating)
+		for(var/mob/living/simple_animal/hostile/keeper_piller/piller in range(20, src))
+			qdel(piller)
+		detonating = TRUE
+		INVOKE_ASYNC(src, PROC_REF(Self_Detonate_Timer))
+	return FALSE
+
+/mob/living/simple_animal/hostile/clan/stone_keeper/proc/Self_Detonate_Timer()
+	can_act = FALSE
+	status_flags |= GODMODE
+	say("Nasty little pests... I will not let you get away with this...")
+	addtimer(CALLBACK(src, PROC_REF(beep)), beep_time)
+	SLEEP_CHECK_DEATH(20)
+	manual_emote("slow beeps...")
+	SLEEP_CHECK_DEATH(30)
+	say("If I can't bring you down with this shell intact...")
+	SLEEP_CHECK_DEATH(20)
+	say("I WILL MAKE SURE NONE OF YOU WILL!!!")
+	SLEEP_CHECK_DEATH(20)
+	say("BURN IN HELL, HAHAHA!!!")
+	var/elliot_alive = FALSE
+	var/mob/living/simple_animal/hostile/ui_npc/elliot/hero
+	for(var/mob/living/simple_animal/hostile/ui_npc/elliot/victim in range(10, src))
+		elliot_alive = TRUE
+		hero = victim
+	if(elliot_alive)
+		say("DEBUG TEXT, ELLIOT ACTION HERE")
+	else
+		Self_Detonate()
+
+/mob/living/simple_animal/hostile/clan/stone_keeper/proc/Self_Detonate()
+	for(var/mob/living/hurt_targets in range(20, src))
+		hurt_targets.playsound_local(hurt_targets, "sound/effects/explosioncreak1.ogg", 100)
+		shake_camera(hurt_targets, 25, 4)
+		hurt_targets.deal_damage(600, RED_DAMAGE)
+	for(var/obj/effect/rubble_spawner/spawner in range(40, src))
+		new /turf/closed/mineral/ash_rock(get_turf(spawner))
+
+/mob/living/simple_animal/hostile/clan/stone_keeper/proc/beep()
+	playsound(src, 'sound/items/timer.ogg', 40, 3, 3)
+	addtimer(CALLBACK(src, PROC_REF(beep)), beep_time)
 
 /mob/living/simple_animal/hostile/clan/stone_keeper/proc/AoeAttack() //all attacks are an AoE when not dashing
 	can_act = FALSE
@@ -957,6 +1009,17 @@
 
 /obj/effect/keeper_piller_spawn
 	name = "keeper's piller spawn"
+	icon = 'icons/effects/landmarks_static.dmi'
+	icon_state = "tdome_t1"
+	alpha = 0
+	mouse_opacity = FALSE
+
+/obj/effect/rubble_spawner
+	name = "rubble spawner"
+	icon = 'icons/effects/landmarks_static.dmi'
+	icon_state = "tdome_admin"
+	alpha = 0
+	mouse_opacity = FALSE
 
 /mob/living/simple_animal/hostile/keeper_piller
 	name = "mimic: pillar of the black sun"
@@ -995,7 +1058,7 @@
 			continue
 		var/dist = get_dist(src, L)
 		if(ishuman(L))
-			L.deal_damage(clamp((15 * (2 ** (8 - dist))), 15, 100), RED_DAMAGE)
+			L.deal_damage(clamp((15 * (2 ** (8 - dist))), 15, 30), RED_DAMAGE)
 	SLEEP_CHECK_DEATH(30)
 	active = TRUE
 
