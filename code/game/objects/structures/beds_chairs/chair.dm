@@ -342,10 +342,10 @@
 		return
 	if(prob(break_chance))
 		user.visible_message("<span class='danger'>[user] smashes \the [src] to pieces against \the [target]</span>")
-		if(iscarbon(target))
-			var/mob/living/carbon/C = target
-			if(C.health < C.maxHealth*0.5)
-				C.Paralyze(20)
+		// if(iscarbon(target))
+		// 	var/mob/living/carbon/C = target
+		// 	if(C.health < C.maxHealth*0.5)
+		// 		C.Paralyze(20)
 		smash(user)
 
 /obj/item/chair/greyscale
