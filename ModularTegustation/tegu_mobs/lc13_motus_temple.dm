@@ -767,25 +767,29 @@
 	return FALSE
 
 /mob/living/simple_animal/hostile/clan/stone_keeper/proc/Self_Detonate_Timer()
-	can_act = FALSE
-	status_flags |= GODMODE
-	say("Nasty little pests... I will not let you get away with this...")
-	addtimer(CALLBACK(src, PROC_REF(beep)), beep_time)
-	SLEEP_CHECK_DEATH(20)
-	manual_emote("slow beeps...")
-	SLEEP_CHECK_DEATH(30)
-	say("If I can't bring you down with this shell intact...")
-	SLEEP_CHECK_DEATH(20)
-	say("I WILL MAKE SURE NONE OF YOU WILL!!!")
-	SLEEP_CHECK_DEATH(20)
-	say("BURN IN HELL, HAHAHA!!!")
 	var/elliot_alive = FALSE
 	var/mob/living/simple_animal/hostile/ui_npc/elliot/hero
 	for(var/mob/living/simple_animal/hostile/ui_npc/elliot/victim in range(10, src))
 		elliot_alive = TRUE
 		hero = victim
+		INVOKE_ASYNC(hero, TYPE_PROC_REF(/mob/living/simple_animal/hostile/ui_npc/elliot, Unstun), TRUE)
+	can_act = FALSE
+	status_flags |= GODMODE
+	say("Nasty little pests... I will not let you get away with this...")
+	addtimer(CALLBACK(src, PROC_REF(beep)), beep_time)
+	SLEEP_CHECK_DEATH(20)
+	can_act = FALSE
+	manual_emote("slow beeps...")
+	SLEEP_CHECK_DEATH(30)
+	can_act = FALSE
+	say("If I can't bring you down with this shell intact...")
+	SLEEP_CHECK_DEATH(20)
+	say("I WILL MAKE SURE NONE OF YOU WILL!!!")
+	SLEEP_CHECK_DEATH(20)
+	say("BURN IN HELL, HAHAHA!!!")
+	status_flags &= ~GODMODE
 	if(elliot_alive)
-		say("DEBUG TEXT, ELLIOT ACTION HERE")
+		hero.execute_keeper(src)
 	else
 		Self_Detonate()
 
@@ -862,7 +866,7 @@
 	say("... Annihilation")
 	if(victim)
 		INVOKE_ASYNC(victim, TYPE_PROC_REF(/mob/living/simple_animal/hostile/ui_npc/elliot, Unstun), FALSE)
-		victim.revive_time = 2 SECONDS
+		victim.revive_time = 4 SECONDS
 	var/line_of_sight = getline(get_turf(src), get_turf(target)) //better simulates a projectile attack
 	for(var/turf/T in line_of_sight)
 		if(DensityCheck(T))

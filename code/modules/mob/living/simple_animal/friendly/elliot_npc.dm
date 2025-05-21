@@ -38,6 +38,7 @@
 	var/teleport_cooldown = 10 SECONDS
 	var/guilt = FALSE
 	var/entered_boss_room = FALSE
+	var/can_attack = TRUE
 	var/mutable_appearance/guilt_icon
 	var/list/standstorm_stance_lines = list(
 		"Sandstorm Stance...",
@@ -73,7 +74,7 @@
 					return
 				if(!can_see(src, Leader, vision_range))
 					if(teleport_update < world.time - teleport_cooldown)
-						TeleportToLeader()
+						TeleportToSomeone(Leader)
 						teleport_update = world.time
 						return
 				if(!HAS_TRAIT(src, TRAIT_IMMOBILIZED) && isturf(loc))
@@ -93,16 +94,16 @@
 	if(Leader)
 		step_to(src, Leader)
 
-/mob/living/simple_animal/hostile/ui_npc/elliot/proc/TeleportToLeader()
-	if(!Leader)
+/mob/living/simple_animal/hostile/ui_npc/elliot/proc/TeleportToSomeone(mob/living/teleport_target)
+	if(!teleport_target)
 		return
-	var/turf/origin = get_turf(Leader)
+	var/turf/origin = get_turf(teleport_target)
 	var/list/all_turfs = RANGE_TURFS(2, origin)
 	for(var/turf/T in all_turfs)
 		if(T == origin)
 			continue
 		var/available_turf
-		var/list/leader_line = getline(T, Leader)
+		var/list/leader_line = getline(T, teleport_target)
 		for(var/turf/line_turf in leader_line)
 			if(line_turf.is_blocked_turf(exclude_mobs = TRUE))
 				available_turf = FALSE
@@ -119,7 +120,7 @@
 		return
 
 /mob/living/simple_animal/hostile/ui_npc/elliot/AttackingTarget(atom/attacked_target)
-	if(!can_act)
+	if(!can_act || !can_attack)
 		return FALSE
 	. = ..()
 	if(.)
@@ -720,3 +721,69 @@
 	for(var/mob/living/simple_animal/hostile/ui_npc/elliot/victim in range(20, src))
 		victim.can_act = TRUE
 		victim.speaking_on()
+
+/mob/living/simple_animal/hostile/ui_npc/elliot/proc/execute_keeper(mob/living/simple_animal/hostile/clan/stone_keeper/execute_target)
+	TeleportToSomeone(execute_target)
+	can_attack = FALSE
+	new /obj/effect/timestop(get_turf(src), 10, 60 SECONDS, list(src))
+	say("Historian's Protocol...")
+	SLEEP_CHECK_DEATH(30)
+	say("Golden Time...")
+	SLEEP_CHECK_DEATH(20)
+	manual_emote("sighs...")
+	SLEEP_CHECK_DEATH(30)
+	say("Once more... The tides of battle turn to their favor...")
+	SLEEP_CHECK_DEATH(30)
+	say("Everyone is fated to fall... As the sanctuary crumbles around me...") //while I use my core to escape this hellscape
+	SLEEP_CHECK_DEATH(30)
+	say("Last time, I let my fear consume me, abandoning my allies.")
+	SLEEP_CHECK_DEATH(40)
+	say("Even letting Joshua die in my stead...")
+	SLEEP_CHECK_DEATH(30)
+	say("... Yet, I shall not run tonight.")
+	SLEEP_CHECK_DEATH(30)
+	say("Curse this broken core of mine, even if this will end me.")
+	SLEEP_CHECK_DEATH(30)
+	say("I shall not let another set of humans under my care fall...")
+	SLEEP_CHECK_DEATH(50)
+	say("Goodbye, my dear companions...")
+	SLEEP_CHECK_DEATH(20)
+	var/turf/target_turf
+	var/turf/T
+	var/i
+	for(i = 0, i <= 10, i++)
+		dir = get_dir(src, execute_target)
+		target_turf = get_step(get_turf(execute_target), get_dir(src, execute_target))
+		dash(src, target_turf)
+		T = get_turf(execute_target)
+		new /obj/effect/temp_visual/smash_effect(T)
+		if(i <= 8)
+			playsound(src, 'sound/weapons/black_silence/shortsword.ogg', 100, 1)
+			sleep(1)
+		if(i <= 10)
+			playsound(src, 'sound/weapons/black_silence/axe.ogg', 100, 1)
+			sleep(3)
+	SLEEP_CHECK_DEATH(10)
+	new /obj/effect/temp_visual/justitia_effect(get_turf(execute_target))
+	execute_target.gib()
+	playsound(src, 'sound/weapons/black_silence/durandal_strong.ogg', 100, 1)
+	SLEEP_CHECK_DEATH(30)
+	say("Are you... At peace now?")
+	SLEEP_CHECK_DEATH(20)
+	say("Joshua?")
+	SLEEP_CHECK_DEATH(20)
+	gib()
+
+/mob/living/simple_animal/hostile/ui_npc/elliot/proc/dash(turf/target_turf)
+	var/list/line_turfs = list(get_turf(src))
+	for(var/turf/T in getline(src, target_turf))
+		line_turfs += T
+	forceMove(target_turf)
+	// "Movement" effect
+	for(var/i = 1 to line_turfs.len)
+		var/turf/T = line_turfs[i]
+		if(!istype(T))
+			continue
+		var/obj/effect/temp_visual/decoy/D = new /obj/effect/temp_visual/decoy(T, src)
+		D.alpha = min(150 + i*15, 255)
+		animate(D, alpha = 0, time = 2 + i*2)
