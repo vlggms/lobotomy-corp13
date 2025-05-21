@@ -649,6 +649,7 @@
 	var/ending = FALSE
 	var/detonating = FALSE
 	var/beep_time = 20
+	var/talking = FALSE
 
 /mob/living/simple_animal/hostile/clan/stone_keeper/Initialize()
 	. = ..()
@@ -657,6 +658,7 @@
 
 /mob/living/simple_animal/hostile/clan/stone_keeper/proc/entrance_fall()
 	playsound(get_turf(src), 'sound/abnormalities/babayaga/charge.ogg', 100, 1)
+	talking = TRUE
 	pixel_z = 128
 	alpha = 0
 	density = FALSE
@@ -666,7 +668,7 @@
 	density = TRUE
 	visible_message(span_danger("[src] drops down from the ceiling!"))
 	playsound(get_turf(src), 'sound/abnormalities/babayaga/land.ogg', 100, FALSE, 20)
-	for(var/mob/living/L in view(4, src))
+	for(var/mob/living/L in view(2, src))
 		if(faction_check_mob(L, TRUE))
 			continue
 		var/dist = get_dist(src, L)
@@ -675,6 +677,7 @@
 	last_taunt_update = world.time
 	SLEEP_CHECK_DEATH(10)
 	say("Extermination Order... Activated")
+	talking = FALSE
 	can_act = TRUE
 
 /mob/living/simple_animal/hostile/clan/stone_keeper/GainCharge()
@@ -701,9 +704,10 @@
 
 		var/random_y = rand(5, 80)
 		AT.pixel_y += random_y
-		if (last_taunt_update < world.time - taunt_cooldown && amount < 100)
-			say(pick(shield_lines))
-			last_taunt_update = world.time
+		if(!talking)
+			if (last_taunt_update < world.time - taunt_cooldown && amount < 100)
+				say(pick(shield_lines))
+				last_taunt_update = world.time
 	if(charge > 0)
 		charge--
 		ChargeUpdated()
@@ -712,6 +716,12 @@
 		addtimer(CALLBACK(src, PROC_REF(summon_piller)), 5)
 
 /mob/living/simple_animal/hostile/clan/stone_keeper/proc/summon_piller()
+	var/spanwer_near = FALSE
+	for(var/obj/effect/keeper_piller_spawn/piller in range(20, src))
+		spanwer_near = TRUE
+	if(!spanwer_near)
+		return
+	talking = TRUE
 	can_act = FALSE
 	GainCharge()
 	adjustRedLoss(-5000)
@@ -725,13 +735,13 @@
 	SLEEP_CHECK_DEATH(40)
 	icon_state = "stone_keeper_attack"
 	say("Witness, one of many toys of the city...")
-	var/list/found = range(20, src)
-	for(var/obj/effect/keeper_piller_spawn/piller in found)
+	for(var/obj/effect/keeper_piller_spawn/piller in range(20, src))
 		var/turf/spawn_turf = get_turf(piller)
 		new /mob/living/simple_animal/hostile/keeper_piller(spawn_turf)
 	SLEEP_CHECK_DEATH(40)
 	say("A fancy work of machinery and worship, is it not?")
 	icon_state = "stone_keeper"
+	talking = FALSE
 	can_act = TRUE
 
 /mob/living/simple_animal/hostile/clan/stone_keeper/Move()
@@ -755,9 +765,16 @@
 	else
 		return
 
+/mob/living/simple_animal/hostile/clan/stone_keeper/Destroy()
+	Unlock()
+	new /obj/item/keycard/motus_treasure(get_turf(src))
+	. = ..()
+
+
 /mob/living/simple_animal/hostile/clan/stone_keeper/death(gibbed)
 	if(ending)
 		Unlock()
+		new /obj/item/keycard/motus_treasure(get_turf(src))
 		return ..()
 	if(!detonating)
 		for(var/mob/living/simple_animal/hostile/keeper_piller/piller in range(20, src))
@@ -770,11 +787,15 @@
 	var/elliot_alive = FALSE
 	var/mob/living/simple_animal/hostile/ui_npc/elliot/hero
 	for(var/mob/living/simple_animal/hostile/ui_npc/elliot/victim in range(10, src))
-		elliot_alive = TRUE
-		hero = victim
-		INVOKE_ASYNC(hero, TYPE_PROC_REF(/mob/living/simple_animal/hostile/ui_npc/elliot, Unstun), TRUE)
+		if(victim.stat != DEAD)
+			elliot_alive = TRUE
+			hero = victim
+			INVOKE_ASYNC(hero, TYPE_PROC_REF(/mob/living/simple_animal/hostile/ui_npc/elliot, Unstun), TRUE)
 	can_act = FALSE
 	status_flags |= GODMODE
+	talking = TRUE
+	manual_emote("gasps...")
+	SLEEP_CHECK_DEATH(10)
 	say("Nasty little pests... I will not let you get away with this...")
 	addtimer(CALLBACK(src, PROC_REF(beep)), beep_time)
 	SLEEP_CHECK_DEATH(20)
@@ -797,9 +818,14 @@
 	for(var/mob/living/hurt_targets in range(20, src))
 		hurt_targets.playsound_local(hurt_targets, "sound/effects/explosioncreak1.ogg", 100)
 		shake_camera(hurt_targets, 25, 4)
+	SLEEP_CHECK_DEATH(10)
+	for(var/mob/living/hurt_targets in range(20, src))
 		hurt_targets.deal_damage(600, RED_DAMAGE)
 	for(var/obj/effect/rubble_spawner/spawner in range(40, src))
 		new /turf/closed/mineral/ash_rock(get_turf(spawner))
+	for(var/obj/effect/pickaxe_spawner/pick_spawner in range(40, src))
+		new /obj/item/pickaxe(get_turf(pick_spawner))
+	qdel(src)
 
 /mob/living/simple_animal/hostile/clan/stone_keeper/proc/beep()
 	playsound(src, 'sound/items/timer.ogg', 40, 3, 3)
@@ -823,6 +849,8 @@
 	playsound(get_turf(src), 'sound/abnormalities/mountain/slam.ogg', 75, 0, 3)
 	icon_state = "stone_keeper"
 	SLEEP_CHECK_DEATH(0.4 SECONDS)
+	if(talking)
+		return
 	can_act = TRUE
 	for(var/mob/living/simple_animal/hostile/ui_npc/elliot/victim in range(7, src))
 		if(ability_cooldown <= world.time && prob(20))
@@ -867,20 +895,18 @@
 	if(victim)
 		INVOKE_ASYNC(victim, TYPE_PROC_REF(/mob/living/simple_animal/hostile/ui_npc/elliot, Unstun), FALSE)
 		victim.revive_time = 4 SECONDS
+	if(talking)
+		return
 	var/line_of_sight = getline(get_turf(src), get_turf(target)) //better simulates a projectile attack
+	var/turf/last_turf = get_turf(src)
 	for(var/turf/T in line_of_sight)
 		if(DensityCheck(T))
-			Fire(T)
-			if(victim)
-				victim.cut_overlay(victim.guilt_icon)
-				victim.guilt = FALSE
-				victim.ending = FALSE
+			Fire(last_turf)
 			return
+		else
+			last_turf = T
+
 	Fire(cooler_target)
-	if(victim)
-		victim.cut_overlay(victim.guilt_icon)
-		victim.guilt = FALSE
-		victim.ending = FALSE
 
 /mob/living/simple_animal/hostile/clan/stone_keeper/proc/Fire(atom/target)
 	face_atom(target)
@@ -1020,6 +1046,13 @@
 
 /obj/effect/rubble_spawner
 	name = "rubble spawner"
+	icon = 'icons/effects/landmarks_static.dmi'
+	icon_state = "tdome_admin"
+	alpha = 0
+	mouse_opacity = FALSE
+
+/obj/effect/pickaxe_spawner
+	name = "pickaxe spawner"
 	icon = 'icons/effects/landmarks_static.dmi'
 	icon_state = "tdome_admin"
 	alpha = 0

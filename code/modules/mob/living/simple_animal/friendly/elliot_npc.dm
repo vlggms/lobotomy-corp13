@@ -657,6 +657,12 @@
 	desc = "This door only opens when a keycard is swiped. It looks virtually indestructable, looks like you will need someone else's help."
 	puzzle_id = "motus_treasure"
 
+/obj/item/keycard/motus_treasure
+	name = "treasure keycard"
+	desc = "A treasure keycard. How fantastic. Looks like it belongs to a high security door."
+	color = "#a58806"
+	puzzle_id = "motus_treasure"
+
 /mob/living/simple_animal/hostile/ui_npc/elliot/Destroy()
 	Leader = null
 	return ..()
@@ -725,7 +731,7 @@
 /mob/living/simple_animal/hostile/ui_npc/elliot/proc/execute_keeper(mob/living/simple_animal/hostile/clan/stone_keeper/execute_target)
 	TeleportToSomeone(execute_target)
 	can_attack = FALSE
-	new /obj/effect/timestop(get_turf(src), 10, 60 SECONDS, list(src))
+	new /obj/effect/timestop(get_turf(src), 20, 45 SECONDS, list(src))
 	say("Historian's Protocol...")
 	SLEEP_CHECK_DEATH(30)
 	say("Golden Time...")
@@ -751,9 +757,9 @@
 	var/turf/target_turf
 	var/turf/T
 	var/i
+	var/used_dir = get_dir(src, execute_target)
 	for(i = 0, i <= 10, i++)
-		dir = get_dir(src, execute_target)
-		target_turf = get_step(get_turf(execute_target), get_dir(src, execute_target))
+		target_turf = get_step(get_turf(execute_target), used_dir)
 		dash(src, target_turf)
 		T = get_turf(execute_target)
 		new /obj/effect/temp_visual/smash_effect(T)
@@ -763,7 +769,7 @@
 		if(i <= 10)
 			playsound(src, 'sound/weapons/black_silence/axe.ogg', 100, 1)
 			sleep(3)
-	SLEEP_CHECK_DEATH(10)
+	SLEEP_CHECK_DEATH(5)
 	new /obj/effect/temp_visual/justitia_effect(get_turf(execute_target))
 	execute_target.gib()
 	playsound(src, 'sound/weapons/black_silence/durandal_strong.ogg', 100, 1)
