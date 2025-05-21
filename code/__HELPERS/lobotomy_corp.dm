@@ -1,7 +1,7 @@
 /// Returns list of all living agents that can work (Also Suppression Agents if suppressioncount = TRUE)
 /proc/AllLivingAgents(suppressioncount = FALSE)
 	. = list()
-	var/suppression_roles = list("Emergency Response Agent", "Disciplinary Officer")
+	var/suppression_roles = list("Combat Research Agent", "Disciplinary Officer")
 	for(var/mob/living/carbon/human/H in GLOB.player_list)
 		if(H.stat == DEAD)
 			continue
