@@ -173,7 +173,7 @@
 /obj/item/ego_weapon/blood/priest
 	name = "hardblood staff"
 	desc = "Are you still thinking about blood?"
-	special = "When attacking with over 50% of your max HP, you gain bleed and create blood piles around you. At less then 50% max HP, you heal by the damage dealt * 0.25 \
+	special = "When attacking with over 50% of your max HP, you gain bleed and create blood piles around you. At less then 50% max HP, you heal by the 10% of the damage dealt.\
 		When you consume 200+ hardblood with your outfit, this weapon enters a 'Hardblood' state. \
 		While this weapon is in it's hardblood state, You can use this weapon in hand to convert it into a whip which has extra range at the cost of dealing less damage."
 	icon_state = "priest"
@@ -201,9 +201,10 @@
 		return
 	if(hardblood_mode)
 		if(!whip_mode)
+			stuntime = 10
 			whip_mode = TRUE
 			reach = 2
-			force = 90
+			force = 70
 			hitsound = 'sound/weapons/ego/priest_whip_attack.ogg'
 			to_chat(user, span_nicegreen("More, more blood...!"))
 			playsound(user, 'sound/weapons/ego/priest_strong_whip_attack.ogg', 50, FALSE, 9)
@@ -229,11 +230,11 @@
 	else
 		var/userjust = (get_attribute_level(user, JUSTICE_ATTRIBUTE))
 		var/justicemod = 1 + userjust/100
-		user.adjustBruteLoss(-force * justicemod * 0.25)
+		user.adjustBruteLoss(-force * justicemod * 0.10)
 		to_chat(user, span_nicegreen("How Bountiful..."))
 
 	if(whip_mode)
-		for(var/i = 1 to 3)
+		for(var/i = 1 to 2)
 			sleep(2)
 			if(target in view(reach,user))
 				playsound(loc, hitsound, get_clamped_volume(), TRUE, extrarange = stealthy_audio ? SILENCED_SOUND_EXTRARANGE : -1, falloff_distance = 0)
@@ -247,6 +248,7 @@
 	hardblood_mode = FALSE
 	if(whip_mode)
 		whip_mode = FALSE
+		stuntime = 0
 		reach = 1
 		force = 110
 		hitsound = 'sound/weapons/ego/priest_basic_attack.ogg'
