@@ -147,17 +147,15 @@
 	name = "Fixer Contract: Lost Expedition"
 	info = "<center><b>Lost Expedition</b></center><br>\
 	<br>\
-	Recommended Grade: 7-5 <br>\
-	Danger: Low <br>\
-	Possible Payment: 6800 ahn <br>\
-	Payment Type: Savaging <br>\
-	Brief Description: Grade 7 and 6 Fixers will be able to learn level 2 Skills, Which are your main utility, making gathering and looting easier. At this point and all higher grades, you will also be unable to learn skills of a lower level. So be cautious of over leveling.<br>\
+	Recommended Grade: </b>7-5</b> <br>\
+	Danger: <b>Low</b> <br>\
+	Possible Payment: <b>6800 ahn</b> <br>\
+	Payment Type: <b>Savaging</b> <br>\
+	Brief Description: <br>\
+	Greetings, Fixers of the City. You may call me Elliot, and Explorer of the Outskirts and Ruin. Today, I am sending out this contract to you because I am looking for assistance in exploring specific temple called, 'The Temple of Motus'. It is quite troubling to take care of it by myself.\
+	However, the rewards are said to be great and you have the freedom to loot anything you find there. I am just looking for a single artifact there. Also, make sure to speak with me once you get there. So we could venutre down into the temple together.<br>\
 	<br>\
-	Grade 5 Fixers will be able to learn level 3 Skill, Which are your passives, you are able too toggle them on and off to gain benefits and downsides while they are active. You are only able to learn one of this skill.<br>\
-	<br>\
-	Finaly, Grade 4 Fixers will be able to learn level 4 Skills, Which are your 'Ultimate' abilities. They hold powerful effects, but come at the cost off having very long cooldowns. You are only able to learn one of this skill.<br>\
-	<br>\
-	<i>Written by the Hana Association</i>"
+	<i>Written by the Joshua</i>"
 
 /obj/item/paper/fluff/sop
 	name = "paper- 'Standard Operating Procedure'"

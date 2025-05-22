@@ -328,23 +328,103 @@
 				"dialog.first_meeting" = TRUE
 			),
 			"actions" = list(
-				"outsider" = list(
-					"text" = "I am from outside this town.",
-					"default_scene" = "greeting1"
+				"contract?" = list(
+					"text" = "I just found a random ticket...",
+					"default_scene" = "greeting1-1"
 				),
-				"question" = list(
-					"text" = "Untouched? What do you mean?",
-					"default_scene" = "greeting1"
-				),
-				"built" = list(
-					"text" = "I am just built different.",
-					"default_scene" = "greeting1"
+				"contract" = list(
+					"text" = "So about the Contract.",
+					"default_scene" = "greeting1-2"
 				)
 			)
 		),
 
-		"greeting1" = list(
-			"text" = "Oh my... People are finally taking notice...",
+		"greeting1-1" = list(
+			"text" = "Oh, that is strange. But I guess it still works out.",
+			"actions" = list(
+				"..." = list(
+					"text" = "...",
+					"default_scene" = "greeting1-2"
+				)
+			)
+		),
+
+		"greeting1-2" = list(
+			"text" = "Right, so allow me to introduce myself. You may call me [src], an Explorer of the outskirts and ruins. Tonight, I am exploring this tarnished temple.",
+			"actions" = list(
+				"..." = list(
+					"text" = "...",
+					"default_scene" = "greeting1-3"
+				)
+			)
+		),
+
+		"greeting1-3" = list(
+			"text" = "It was called the Temple of Motus, at least in it's prime. It was ran by machines seeking to understand human emotions, 'What it means to truly be human', and so forth.",
+			"actions" = list(
+				"..." = list(
+					"text" = "...",
+					"default_scene" = "greeting1-4"
+				)
+			)
+		),
+
+		"greeting1-4" = list(
+			"text" = "However, It appears that some horrible event has happend there. With it now resting ruined and abandoned, and ready to be pilfered from.",
+			"actions" = list(
+				"..." = list(
+					"text" = "...",
+					"default_scene" = "greeting1-5"
+				)
+			)
+		),
+
+		"greeting1-5" = list(
+			"text" = "After all, if the machines that used to work here were able to build all of this. They must surely have a lot of treasurers...",
+			"actions" = list(
+				"..." = list(
+					"text" = "...",
+					"default_scene" = "greeting1-6"
+				)
+			)
+		),
+
+		"greeting1-6" = list(
+			"text" = "So, you are free to take any treasures or artifacts around here, I am only looking for a specific artifact.",
+			"actions" = list(
+				"..." = list(
+					"text" = "...",
+					"default_scene" = "main_screen"
+				),
+				"question" = list(
+					"text" = "How trustworthy is this info?",
+					"default_scene" = "greeting1-7"
+				)
+			)
+		),
+
+		"greeting1-7" = list(
+			"text" = "What can I say, good scout work truly delivers wonderful results.",
+			"actions" = list(
+				"..." = list(
+					"text" = "...",
+					"default_scene" = "greeting1-8"
+				)
+			)
+		),
+
+		"greeting1-8" = list(
+			"text" = "No need to worry about my info being incorrect, This not my first rodeo exploring old abandoned ruins.",
+			"actions" = list(
+				"..." = list(
+					"text" = "...",
+					"default_scene" = "greeting1-9"
+				)
+			)
+		),
+
+		"greeting1-9" = list(
+			"text" = "*[src] glances at the temple... before placing their arm on their chest...*.",
 			"actions" = list(
 				"..." = list(
 					"text" = "...",
@@ -354,7 +434,7 @@
 		),
 
 		"main_screen" = list(
-			"text" = "\[dialog.first_meeting?What do you want to know about this place?:Anything else you want to know about?\]",
+			"text" = "\[dialog.first_meeting?Well, got anything to ask of me?:Anything else you want to ask about?\]",
 			"on_enter" = list(
 				"dialog.first_meeting" = FALSE
 			),
@@ -501,7 +581,77 @@
 			)
 		),
 		"outskirts" = list(
-			"text" = "outskirts outskirtsoutskirts",
+			"text" = "Well, We are currently in the outskirts. To be more precise, the inner outskirts.",
+			"actions" = list(
+				"..." = list(
+					"text" = "Inner Outskirts?",
+					"default_scene" = "outskirts1"
+				)
+			)
+		),
+
+		"outskirts1" = list(
+			"text" = "Oh right, Cityfolk might be as not as wellversed in the terminology used around here...",
+			"actions" = list(
+				"..." = list(
+					"text" = "...",
+					"default_scene" = "outskirts2"
+				)
+			)
+		),
+
+		"outskirts2" = list(
+			"text" = "You see, the outskirts near the city can be split into 2 major sections. Inner and Outer Outskirts.",
+			"actions" = list(
+				"..." = list(
+					"text" = "...",
+					"default_scene" = "outskirts3"
+				)
+			)
+		),
+
+		"outskirts3" = list(
+			"text" = "The boundary between those 2 sections is guarded by what I can assume are the City's forces. After all, I heard rummors that they called themselves 'Z-Corp'.",
+			"actions" = list(
+				"..." = list(
+					"text" = "...",
+					"default_scene" = "outskirts4"
+				)
+			)
+		),
+
+		"outskirts4" = list(
+			"text" = "The inner outskirts hold some simple monsters and non-humans, stuff that just the walls of the City can prevent from getting in forcefully.",
+			"actions" = list(
+				"..." = list(
+					"text" = "...",
+					"default_scene" = "outskirts5"
+				)
+			)
+		),
+
+		"outskirts5" = list(
+			"text" = "While the outer outskirts... They are a whole different ordeal. They hold the rest of the monsters and non-humans in the world.",
+			"actions" = list(
+				"..." = list(
+					"text" = "...",
+					"default_scene" = "outskirts6"
+				)
+			)
+		),
+
+		"outskirts6" = list(
+			"text" = "Who knows how they look or act like, but there could even be whole civilizations of non-humans out there... But those are just random theories I have.",
+			"actions" = list(
+				"..." = list(
+					"text" = "...",
+					"default_scene" = "outskirts7"
+				)
+			)
+		),
+
+		"outskirts7" = list(
+			"text" = "Anyways, that is my short rundown on our terminology around here.",
 			"actions" = list(
 				"..." = list(
 					"text" = "...",
@@ -509,8 +659,53 @@
 				)
 			)
 		),
+
 		"temple_reception" = list(
-			"text" = "temple_reception temple_reception temple_reception",
+			"text" = "Well, we are currently in the temple's reception halls...",
+			"actions" = list(
+				"..." = list(
+					"text" = "...",
+					"default_scene" = "temple_reception1"
+				)
+			)
+		),
+
+		"temple_reception1" = list(
+			"text" = "Probably used to be a calm place, where the students around here could chitchat about their day...",
+			"actions" = list(
+				"..." = list(
+					"text" = "...",
+					"default_scene" = "main_screen"
+				)
+				"question" = list(
+					"text" = "Students?",
+					"default_scene" = "temple_reception2"
+				),
+			)
+		),
+
+		"temple_reception2" = list(
+			"text" = "Yep, what is weird abou- oh right, I forgot to tell you that this place was... Mostly likely structured as a school. ",
+			"actions" = list(
+				"..." = list(
+					"text" = "...",
+					"default_scene" = "temple_reception3"
+				)
+			)
+		),
+
+		"temple_reception3" = list(
+			"text" = "I mean, if they are learning about humanity around here, there are bound to be some experts who can act as 'Teachers' around here...",
+			"actions" = list(
+				"..." = list(
+					"text" = "...",
+					"default_scene" = "temple_reception4"
+				)
+			)
+		),
+
+		"temple_reception4" = list(
+			"text" = "Any-yways, I belive we can move on from here.",
 			"actions" = list(
 				"..." = list(
 					"text" = "...",
