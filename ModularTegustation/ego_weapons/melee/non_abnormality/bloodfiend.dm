@@ -54,16 +54,16 @@
 	if(!CanUseEgo(user))
 		return
 	if(open_cooldown > world.time)
-		to_chat(user, "<span class='warning'>Your scissors are still recharging!")
+		to_chat(user, span_warning("Your scissors are still recharging!"))
 		return
 	if(!open_scissor)
 		open_scissor = TRUE
-		to_chat(user, "<span class='nicegreen'>You open the blades!")
+		to_chat(user, span_nicegreen("You open the blades!"))
 		playsound(src, 'sound/weapons/ego/barber2.ogg', 50, FALSE, 9)
 	else
 		open_scissor = FALSE
 		open_cooldown = world.time + open_cooldown_time
-		to_chat(user, "<span class='nicegreen'>You close the blades!")
+		to_chat(user, span_nicegreen("You close the blades!"))
 	update_icon_state()
 
 /obj/item/ego_weapon/blood/barber/attack(mob/living/target, mob/living/carbon/human/user)
@@ -94,7 +94,7 @@
 				var/mob/living/carbon/human/wielder = user
 				var/obj/item/clothing/suit/armor/ego_gear/city/masquerade_cloak/S = wielder.get_item_by_slot(ITEM_SLOT_OCLOTHING)
 				S.bloodfeast += bloodfeast_increase
-				to_chat(user, "<span class='nicegreen'>You increase your outfit's bloodfeast!")
+				to_chat(user, span_nicegreen("You increase your outfit's bloodfeast!"))
 				if(vc_on && !(kill_cooldown > world.time))
 					kill_cooldown = world.time + kill_cooldown_time
 					playsound(src, 'sound/weapons/ego/barber_vc_kill.ogg', 50, FALSE, 9)
@@ -205,7 +205,7 @@
 			reach = 2
 			force = 90
 			hitsound = 'sound/weapons/ego/priest_whip_attack.ogg'
-			to_chat(user, "<span class='nicegreen'>More, more blood...!")
+			to_chat(user, span_nicegreen("More, more blood...!"))
 			playsound(user, 'sound/weapons/ego/priest_strong_whip_attack.ogg', 50, FALSE, 9)
 	update_icon_state()
 
@@ -214,7 +214,7 @@
 		return
 	..()
 	if(((user.health/user.maxHealth) >= 0.5))
-		to_chat(user, "<span class='warning'>The Deserved Penance...")
+		to_chat(user, span_warning("The Deserved Penance..."))
 		user.apply_lc_bleed(5)
 		var/turf/origin = get_turf(user)
 		var/list/all_turfs = RANGE_TURFS(1, origin)
@@ -230,7 +230,7 @@
 		var/userjust = (get_attribute_level(user, JUSTICE_ATTRIBUTE))
 		var/justicemod = 1 + userjust/100
 		user.adjustBruteLoss(-force * justicemod * 0.25)
-		to_chat(user, "<span class='nicegreen'>How Bountiful...")
+		to_chat(user, span_nicegreen("How Bountiful..."))
 
 	if(whip_mode)
 		for(var/i = 1 to 3)
