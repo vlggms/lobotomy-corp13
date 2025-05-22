@@ -5,7 +5,8 @@
 	icon_state = "thumb_soldato"
 	inhand_icon_state = "thumb_soldato"
 	force = 30
-	attack_speed = 1.5
+	reach = 2	//It's a spear.
+	attack_speed = 1.2
 	projectile_path = /obj/projectile/ego_bullet/tendamage	//Does 10 damage
 	weapon_weight = WEAPON_HEAVY
 	fire_sound = 'sound/weapons/gun/rifle/shot_alt.ogg'

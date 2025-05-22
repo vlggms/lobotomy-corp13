@@ -178,6 +178,9 @@
 	///How much we want to drop the embed_chance value, if we can embed, per tile, for falloff purposes
 	var/embed_falloff_tile
 
+	//Does this bullet ignore bulletproof?
+	var/ignore_bulletproof = FALSE			//Thumb literally cannot do anything against these goons.
+
 /obj/projectile/Initialize()
 	. = ..()
 	decayedRange = range

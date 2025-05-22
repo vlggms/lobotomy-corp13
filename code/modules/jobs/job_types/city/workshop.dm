@@ -6,7 +6,7 @@ Workshop employee
 	faction = "Station"
 	total_positions = 2
 	spawn_positions = 2
-	supervisors = "no one but god."
+	supervisors = "Hana Association"
 	selection_color = "#dddddd"
 	access = list(ACCESS_ENGINE, ACCESS_ENGINE_EQUIP)
 	minimal_access = list(ACCESS_ENGINE, ACCESS_ENGINE_EQUIP)
@@ -20,7 +20,7 @@ Workshop employee
 	job_attribute_limit = 0
 
 	allow_bureaucratic_error = FALSE
-	maptype = list("wonderlabs", "fixers")
+	maptype = list("wonderlabs", "fixers", "city")
 
 
 //My guy you work in a workshop

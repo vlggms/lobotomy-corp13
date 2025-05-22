@@ -147,3 +147,15 @@
 	REMOVE_TRAIT(user, TRAIT_NODEATH, "unrelenting")
 	REMOVE_TRAIT(user, TRAIT_NOHARDCRIT, "unrelenting")
 	REMOVE_TRAIT(user, TRAIT_NOSOFTCRIT, "unrelenting")
+
+
+/obj/item/ego_weapon/city/bladelineage/Initialize()
+	..()
+	if(SSmaptype.maptype == "city")
+
+		attribute_requirements = list(
+								FORTITUDE_ATTRIBUTE = 60,
+								PRUDENCE_ATTRIBUTE = 60,
+								TEMPERANCE_ATTRIBUTE = 60,
+								JUSTICE_ATTRIBUTE = 60
+								)
