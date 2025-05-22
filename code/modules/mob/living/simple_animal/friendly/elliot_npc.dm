@@ -61,6 +61,10 @@
 		"Alright, Let get back to it.",
 		"I rise once more...",
 	)
+	var/fly_alert = FALSE
+	var/rose_alert = FALSE
+	var/nest_alert = FALSE
+	var/pre_boss_alert = FALSE
 
 /mob/living/simple_animal/hostile/ui_npc/elliot/Life()
 	if(..())
@@ -123,6 +127,12 @@
 	if(!can_act || !can_attack)
 		return FALSE
 	. = ..()
+	if(istype(attacked_target, /mob/living/simple_animal/hostile/mad_fly_swarm) && !fly_alert)
+		fly_alert = TRUE
+		addtimer(CALLBACK(src, PROC_REF(mad_alert)), 5)
+	if(istype(attacked_target, /mob/living/simple_animal/hostile/mad_fly_nest) && !nest_alert)
+		nest_alert = TRUE
+		addtimer(CALLBACK(src, PROC_REF(mad_nest_alert)), 5)
 	if(.)
 		var/dir_to_target = get_dir(get_turf(src), get_turf(attacked_target))
 		for(var/i = 1 to 2)
@@ -241,6 +251,32 @@
 	SLEEP_CHECK_DEATH(25)
 	say("Can you speak with me? I think I might know how pass it.")
 
+/mob/living/simple_animal/hostile/ui_npc/elliot/proc/mad_alert()
+	say("The Mad Fly Swarm... Looks like they built a nest here.")
+	SLEEP_CHECK_DEATH(30)
+	say("Don't get overwhelmed by their attacks.")
+	SLEEP_CHECK_DEATH(25)
+	say("They are trying to make you act irrationally, and make you attack yourself.")
+
+/mob/living/simple_animal/hostile/ui_npc/elliot/proc/mad_nest_alert()
+	say("Looks like we found their nest...")
+	SLEEP_CHECK_DEATH(30)
+	say("Take it down as soon as possible if you don't wish to deal with more swarms.")
+
+/mob/living/simple_animal/hostile/ui_npc/elliot/proc/pre_boss_alert()
+	manual_emote("arm twitches...")
+	SLEEP_CHECK_DEATH(20)
+	whisper("Back here again... They, are gone now...")
+	SLEEP_CHECK_DEATH(20)
+	whisper("Gone now...")
+
+/mob/living/simple_animal/hostile/ui_npc/elliot/proc/rose_alert()
+	say("The Scarlet Rose, Quite a healthy looking one.")
+	SLEEP_CHECK_DEATH(40)
+	say("Just try to avoid moving too much in it's vines, and find their source.")
+	SLEEP_CHECK_DEATH(25)
+	say("It's just trying to make you stuggle and bleed yourself out.")
+
 /mob/living/simple_animal/hostile/ui_npc/elliot/proc/CheckSpace(mob/user, atom/new_location)
 	var/turf/newloc_turf = get_turf(new_location)
 	var/valid_tile = TRUE
@@ -249,9 +285,18 @@
 	if(istype(new_area, /area/shuttle/mining))
 		valid_tile = FALSE
 
-	if(istype(new_area, /area/city/backstreets_room/temple_motus/treasure_entrance) && !entered_boss_room)
+	for(var/obj/structure/spreading/scarlet_vine/vine in newloc_turf.contents)
+		if(!rose_alert)
+			rose_alert = TRUE
+			addtimer(CALLBACK(src, PROC_REF(rose_alert)), 5)
+
+	if(istype(new_area, /area/city/backstreets_room/temple_motus/treasure_hallway) && !entered_boss_room)
 		entered_boss_room = TRUE
 		addtimer(CALLBACK(src, PROC_REF(boss_alert)), 5)
+
+	if(istype(new_area, /area/city/backstreets_room/temple_motus/treasure_entrance) && !pre_boss_alert)
+		pre_boss_alert = TRUE
+		addtimer(CALLBACK(src, PROC_REF(pre_boss_alert)), 5)
 
 	if(!valid_tile)
 		if(last_staying_update < world.time - staying_cooldown)
@@ -278,7 +323,7 @@
 	scene_manager.load_scenes(list(
 		//Intro to the NPC
 		"intro" = list(
-			"text" = "Wait... Another human is here? Completely untouched?! How.. How did you survive for so long?",
+			"text" = "At long last, my contract has been taken...",
 			"on_enter" = list(
 				"dialog.first_meeting" = TRUE
 			),
