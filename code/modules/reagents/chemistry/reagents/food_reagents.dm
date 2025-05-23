@@ -112,11 +112,18 @@
 	description = "This fluid contains a microbiome of pathogens that reproduce through the raw consumption of its host."
 	taste_description = "popping and wriggling"
 	metabolization_rate = 1
-	var/list/microbiome = list(/datum/disease/parasite)
+	var/list/microbiome = list(
+		/datum/disease/parasite,
+		/datum/disease/muscular_parasites,
+		/datum/disease/bloodgut,
+		/datum/disease/dry_tongue,
+		/datum/disease/cold,
+		/datum/disease/warts,
+		)
 
 /datum/reagent/consumable/nutriment/vile_fluid/on_mob_life(mob/living/carbon/M)
 	. = ..()
-	if(prob(15 + (current_cycle * 5)))
+	if(prob(15))
 		var/datum/disease/D = pick(microbiome)
 		var/datum/disease/worms = new D()
 		M.ForceContractDisease(worms, FALSE, TRUE)
