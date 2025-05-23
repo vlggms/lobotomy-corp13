@@ -29,6 +29,24 @@
 	item_path = /obj/item/clothing/suit/armor/ego_gear/tools/plastic
 	cost = 12
 
+// Mirror of Adjustment
+/datum/ego_datum/weapon/mirror
+	item_path = /obj/item/ego_weapon/mirror
+	cost = 12
+
+/datum/ego_datum/armor/mirror
+	item_path = /obj/item/clothing/suit/armor/ego_gear/tools/mirror
+	cost = 12
+
+// Old Faith and Promise
+/datum/ego_datum/weapon/promise
+	item_path = /obj/item/ego_weapon/promise
+	cost = 12
+
+/datum/ego_datum/armor/promise
+	item_path = /obj/item/clothing/suit/armor/ego_gear/tools/promise
+	cost = 12
+
 ////////////
 //  TETH  //
 ////////////
@@ -41,6 +59,11 @@
 /datum/ego_datum/weapon/aspiration
 	item_path = /obj/item/ego_weapon/ranged/aspiration
 	cost = 20
+
+// TODO: Behavior Adjustment
+// TODO: Luminous Bracelet
+// TODO: Skin Prophet
+// TODO: Theresia
 
 //////////
 //  HE  //

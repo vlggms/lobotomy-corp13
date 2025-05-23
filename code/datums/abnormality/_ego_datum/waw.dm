@@ -516,3 +516,8 @@
 /datum/ego_datum/armor/heaven
 	item_path = /obj/item/clothing/suit/armor/ego_gear/waw/heaven
 	cost = 50
+
+// Spiral of Contempt - Contempt, Awe
+/datum/ego_datum/weapon/contempt
+	item_path = /obj/item/ego_weapon/contempt
+	cost = 50
