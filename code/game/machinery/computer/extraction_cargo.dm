@@ -168,7 +168,8 @@
 			//So we have to adjust the available boxes down but adjust the goal boxes up. Why?
 			//Adjusting the available boxes adjusts the goal. This is just the best way to do it
 			SSlobotomy_corp.AdjustAvailableBoxes(-1 * product_datum.cost)
-			SSlobotomy_corp.AdjustGoalBoxes(product_datum.cost)
+			if(!SSlobotomy_corp.goal_reached)	//Okay, funny bug, if you have your goal eached and add goal boxes, then it adds to available boxes.
+				SSlobotomy_corp.AdjustGoalBoxes(product_datum.cost)		//Normal
 			playsound(get_turf(src), 'sound/machines/terminal_prompt_confirm.ogg', 50, TRUE)
 			updateUsrDialog()
 			return TRUE
