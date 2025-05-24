@@ -8,6 +8,7 @@ export const PersonalCrafting = (props, context) => {
     busy,
     display_craftable_only,
     display_compact,
+    display_repeat_value,
   } = data;
   const crafting_recipes = data.crafting_recipes || {};
   // Sort everything into flat categories
@@ -80,6 +81,15 @@ export const PersonalCrafting = (props, context) => {
                 content="Craftable Only"
                 checked={display_craftable_only}
                 onClick={() => act('toggle_recipes')} />
+              <Button
+                content="-"
+                onClick={() => act('substract_repeat')} />
+              <Button
+                content={display_repeat_value}
+                onClick={() => act('repeat_value')} />
+              <Button
+                content="+"
+                onClick={() => act('add_repeat')} />
             </>
           )}>
           <Flex>
