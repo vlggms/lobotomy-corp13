@@ -1901,8 +1901,11 @@
 	. = ..()
 	if(!user)
 		return
-	current_holder = user
-	RegisterSignal(current_holder, COMSIG_MOVABLE_MOVED, PROC_REF(UserMoved))
+	if(slot != ITEM_SLOT_HANDS) //Clean up our slowdown and whatnot if we're storing the anchor somewhere on our person
+		dropped(user)
+	else
+		current_holder = user //If it's going into our hands, then we wanna register the signal and register as the holder
+		RegisterSignal(current_holder, COMSIG_MOVABLE_MOVED, PROC_REF(UserMoved))
 
 //Destroy setup
 /obj/item/ego_weapon/blind_obsession/Destroy(mob/user)
@@ -1921,7 +1924,8 @@
 	if(!user)
 		return
 	speed_slowdown = 0
-	UnregisterSignal(current_holder, COMSIG_MOVABLE_MOVED)
+	if(current_holder) //This check wouldn't need to exist but P Corp items call dropped() when we remove an item from them, and it will runtime if we don't check here
+		UnregisterSignal(current_holder, COMSIG_MOVABLE_MOVED)
 	if(!thrown)
 		PowerReset(user)
 	current_holder = null
