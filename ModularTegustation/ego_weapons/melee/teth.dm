@@ -637,3 +637,15 @@
 		return
 
 
+/obj/item/ego_weapon/white_gossypium
+	name = "White Gossypium"
+	desc = "Like a straw, this vine seeks to suck the blood out of your veins."
+	icon_state = "white_gossypium"
+	force = 25
+	reach = 4 //has 4 square reach
+	attack_speed = 2.2 //a TETH whip should probably be slower than Eris
+	damtype = RED_DAMAGE
+	attack_verb_continuous = list("whips", "lashes", "tears")
+	attack_verb_simple = list("whip", "lash", "tear")
+	hitsound = 'sound/weapons/whip.ogg'
+
