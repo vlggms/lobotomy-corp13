@@ -39,7 +39,7 @@
 		whitelist+=A
 	for(var/mob/living/carbon/human/L in GLOB.player_list)
 		playerscaling++
-	Breach_Loop()
+	addtimer(CALLBACK(src, PROC_REF(Breach_Loop)), 2 SECONDS)
 	for(var/i = 1 to 3)
 		Breach_Abno()
 
