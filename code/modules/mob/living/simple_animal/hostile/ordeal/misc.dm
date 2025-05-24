@@ -9,8 +9,8 @@
 	layer = LARGE_MOB_LAYER
 	pixel_x = -16
 	base_pixel_x = -16
-	maxHealth = 2000
-	health = 2000
+	maxHealth = 20000
+	health = 20000
 	melee_damage_type = PALE_DAMAGE
 	rapid_melee = 2
 	melee_damage_lower = 14
@@ -25,36 +25,66 @@
 				/mob/living/simple_animal/hostile/abnormality/nihil,
 				/mob/living/simple_animal/hostile/abnormality/hatred_queen,
 				/mob/living/simple_animal/hostile/abnormality/wrath_servant)
+	var/list/whitelist = list()
+	var/playerscaling
+	var/timescaling
 
 
 /mob/living/simple_animal/hostile/ordeal/pink_midnight/Initialize()
 	. = ..()
-	addtimer(CALLBACK(src, PROC_REF(Breach_All)), 5 SECONDS)
+	for(var/mob/living/simple_animal/hostile/abnormality/A in GLOB.abnormality_mob_list)
+		//These abnormalities kill everything else no matter what faction we set them to
+		if(A.type in blacklist)
+			continue
+		whitelist+=A
+	for(var/mob/living/carbon/human/L in GLOB.player_list)
+		playerscaling++
+	Breach_Loop()
+	for(var/i = 1 to 3)
+		Breach_Abno()
 
 /mob/living/simple_animal/hostile/ordeal/pink_midnight/death(gibbed)
 	animate(src, alpha = 0, time = 5 SECONDS)
 	QDEL_IN(src, 5 SECONDS)
 	..()
 
-//Funny drags everything to it
-/mob/living/simple_animal/hostile/ordeal/pink_midnight/proc/Breach_All()
-	for(var/mob/living/simple_animal/hostile/abnormality/A in GLOB.abnormality_mob_list)
-		//These two abnormalities kill everything else no matter what faction we set them to
-		if(A.type in blacklist)
-			continue
+/mob/living/simple_animal/hostile/ordeal/pink_midnight/proc/Breach_Loop()
+	if(!length(whitelist))
+		return
+	if(!src)
+		return
+	var/breachtime = min(0, 40-30*TOUGHER_TIMES(playerscaling*3)+timescaling)
+	addtimer(CALLBACK(src, PROC_REF(Breach_Loop)), breachtime*10)
+	timescaling++
+	Breach_Abno()
+	if(prob(50))
+		var/turf/T = pick(GLOB.department_centers)
+		sound_to_playing_players_on_level('sound/voice/human/womanlaugh.ogg', 50, zlevel = z)
+		SLEEP_CHECK_DEATH(20)
+		forceMove(T)
 
-		if(A.IsContained() && (A.z == z))
-			if(!A.BreachEffect(null, BREACH_PINK)) // We try breaching them our way!
-				continue // If they can't we just go home!
-			if(A.status_flags & GODMODE)
-				continue // Some special "breaches" don't stay breached!
-			A.faction += "pink_midnight"
-			/// This does a significant bit of trolling and fucks with the facility on a much wider range.
-			/// By making them walk there, certain ones like Blue Star are less centralized and can become a background threat,
-			/// While others like NT immediately are in the hallways being an active threat. Also solves the issue of wall-abnos.
-			var/turf/destination = pick(get_adjacent_open_turfs(src))
-			if(!destination)
-				destination = get_turf(src)
-			if(!A.patrol_to(destination))
-				A.forceMove(destination)
-			ordeal_reference.ordeal_mobs |= A
+//Funny drags everything to it
+/mob/living/simple_animal/hostile/ordeal/pink_midnight/proc/Breach_Abno()
+	if(!length(whitelist))
+		return
+
+	var/mob/living/simple_animal/hostile/abnormality/A = pick_n_take(whitelist)
+	if(A.IsContained() && (A.z == z))
+		if(!A.BreachEffect(null, BREACH_PINK)) // We try breaching them our way!
+			Breach_Abno()// If they can't we just go home!
+			return // If you don't succeed then try again
+
+		if(A.status_flags & GODMODE)
+			Breach_Abno()
+			return // Some special "breaches" don't stay breached!
+
+		A.faction += "pink_midnight"
+		/// This does a significant bit of trolling and fucks with the facility on a much wider range.
+		/// By making them walk there, certain ones like Blue Star are less centralized and can become a background threat,
+		/// While others like NT immediately are in the hallways being an active threat. Also solves the issue of wall-abnos.
+		var/turf/destination = pick(get_adjacent_open_turfs(src))
+		if(!destination)
+			destination = get_turf(src)
+		if(!A.patrol_to(destination))
+			A.forceMove(destination)
+		ordeal_reference.ordeal_mobs |= A
