@@ -43,6 +43,9 @@
 	var/laser_rotation_time = 2 SECONDS
 	/// Below that health the green midnight speeds up
 	var/next_health_mark = 0 // Initialize below
+	/// Amount of friendly mobs spawned during downtime
+	var/squad_size = 6
+	var/active_minions = 0
 
 /mob/living/simple_animal/hostile/ordeal/green_midnight/Initialize()
 	. = ..()
@@ -83,6 +86,8 @@
 		laser_spawn_delay = max(0.3 SECONDS, laser_spawn_delay - 0.1 SECONDS)
 		laser_rotation_time = max(0.5 SECONDS, laser_rotation_time - 0.2 SECONDS)
 		laser_cooldown_time = max(10 SECONDS, laser_cooldown_time - 1 SECONDS)
+		if(squad_size < 16)
+			squad_size += 2
 
 /mob/living/simple_animal/hostile/ordeal/green_midnight/CanAttack(atom/the_target)
 	return FALSE
@@ -204,9 +209,62 @@
 	CloseShell()
 	laser_cooldown = world.time + laser_cooldown_time
 	firing = FALSE
+	addtimer(CALLBACK(src, PROC_REF(DeployBotSquad)), 3 SECONDS)
+
+/mob/living/simple_animal/hostile/ordeal/green_midnight/proc/GenerateBotSquad()
+	var/list/squad = list()
+	var/remaining_squad_members = squad_size - active_minions
+	while(remaining_squad_members > 0)
+		if(remaining_squad_members >= (squad_size * 0.6))
+			squad += /mob/living/simple_animal/hostile/ordeal/green_bot_big
+		else
+			squad += pick(list(
+			/mob/living/simple_animal/hostile/ordeal/green_bot,
+			/mob/living/simple_animal/hostile/ordeal/green_bot/syringe,
+			/mob/living/simple_animal/hostile/ordeal/green_bot/fast))
+		remaining_squad_members--
+	return squad
+
+/mob/living/simple_animal/hostile/ordeal/green_midnight/proc/DeployBotSquad()
+	var/list/squad = GenerateBotSquad()
+
+	var/list/deployment_points = RANGE_TURFS(8, src)
+	for(var/turf/place in deployment_points)
+		if(!isInSight(src, place) || place.is_blocked_turf(TRUE))
+			deployment_points -= place
+	deployment_points -= get_turf(src)
+	deployment_points -= get_turf(locate(src.x-1, src.y, src.z))
+	deployment_points -= get_turf(locate(src.x-2, src.y, src.z))
+	deployment_points -= get_turf(locate(src.x+1, src.y, src.z))
+	deployment_points -= get_turf(locate(src.x+2, src.y, src.z))
+	deployment_points -= get_turf(locate(src.x, src.y+1, src.z))
+	deployment_points -= get_turf(locate(src.x, src.y+2, src.z))
+
+
+
+	for(var/mob in squad)
+		var/turf/chosen_deployment_point = pick(deployment_points)
+		var/obj/structure/closet/supplypod/helixpod/deployment_pod = new()
+		var/minion = new mob(deployment_pod)
+		active_minions++
+		RegisterSignal(minion, COMSIG_LIVING_DEATH, PROC_REF(UnlinkMinion))
+		new /obj/effect/pod_landingzone(chosen_deployment_point, deployment_pod)
+		deployment_points -= chosen_deployment_point
+		SLEEP_CHECK_DEATH(rand())
 
 /mob/living/simple_animal/hostile/ordeal/green_midnight/spawn_gibs()
 	new /obj/effect/gibspawner/scrap_metal(drop_location(), src)
 
 /mob/living/simple_animal/hostile/ordeal/green_midnight/spawn_dust()
 	return
+/mob/living/simple_animal/hostile/ordeal/green_midnight/proc/UnlinkMinion()
+	active_minions--
+
+/obj/structure/closet/supplypod/helixpod
+	name = "protocol of contemplation"
+	desc = "Things are about to get heated."
+	specialised = FALSE
+	style = STYLE_SYNDICATE
+	bluespace = TRUE
+	explosionSize = list(0,0,0,0)
+	delays = list(POD_TRANSIT = 3.5 SECONDS, POD_FALLING = 0.3 SECONDS, POD_OPENING = 1 SECONDS, POD_LEAVING = 0.7 SECONDS)
