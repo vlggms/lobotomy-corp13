@@ -65,10 +65,14 @@
 	var/rose_alert = FALSE
 	var/nest_alert = FALSE
 	var/pre_boss_alert = FALSE
+	var/obj/item/radio/headset/radio
+	var/alert_update = 0
+	var/alert_cooldown = 2 MINUTES
 
 /mob/living/simple_animal/hostile/ui_npc/elliot/Life()
 	if(..())
 		LosePatience()
+		alert_humans()
 		if(!target) // If we have no target, we start following an ally
 			speaking_on()
 			density = TRUE
@@ -213,6 +217,16 @@
 			L.apply_status_effect(/datum/status_effect/standstorm_stance)
 			new /obj/effect/temp_visual/turn_book(get_turf(L))
 
+/mob/living/simple_animal/hostile/ui_npc/elliot/proc/alert_humans()
+	if(alert_update < world.time - alert_cooldown)
+		for(var/mob/living/carbon/human/L in view(5, get_turf(src)))
+			if(L.stat == DEAD && L.mind)
+				alert_update = world.time
+				radio.talk_into(src, "Looks like [L] is down for the count, requesting the retrieval of them.", null)
+				SLEEP_CHECK_DEATH(20)
+				radio.talk_into(src, "You can find them in the Temple of Motus, use the bus to get there.", null)
+				break
+
 /datum/status_effect/standstorm_stance
 	id = "standstorm_stance"
 	duration = 10 SECONDS
@@ -319,6 +333,7 @@
 	. = ..()
 	RegisterSignal(src, COMSIG_MOVABLE_PRE_MOVE, PROC_REF(CheckSpace))
 	guilt_icon = mutable_appearance('ModularTegustation/Teguicons/tegu_effects.dmi', "guilt", -MUTATIONS_LAYER)
+	radio = new /obj/item/radio/headset/silicon/ai(src)
 
 	scene_manager.load_scenes(list(
 		//Intro to the NPC
@@ -676,11 +691,11 @@
 				"..." = list(
 					"text" = "...",
 					"default_scene" = "main_screen"
-				)
+				),
 				"question" = list(
 					"text" = "Students?",
 					"default_scene" = "temple_reception2"
-				),
+				)
 			)
 		),
 
@@ -715,7 +730,81 @@
 		),
 
 		"temple_factory" = list(
-			"text" = "Oh, Sorry for my incompetence but I lack any knowledge of this area.",
+			"text" = "This place appears to be their... Workshop room...",
+			"actions" = list(
+				"..." = list(
+					"text" = "...",
+					"default_scene" = "temple_factory1"
+				)
+			)
+		),
+
+		"temple_factory1" = list(
+			"text" = "Even if they tried to abandon their steel bodies and minds, they could not ignore it completely.",
+			"actions" = list(
+				"..." = list(
+					"text" = "...",
+					"default_scene" = "temple_factory2"
+				)
+			)
+		),
+
+		"temple_factory2" = list(
+			"text" = "*looks at the machine rubble*, They all have a core, the source of their thoughts and orders.",
+			"actions" = list(
+				"..." = list(
+					"text" = "...",
+					"default_scene" = "temple_factory3"
+				)
+			)
+		),
+
+		"temple_factory3" = list(
+			"text" = "While this has some benefits, such as being able to be rebuilt as long as the core is intact. They don't last forever without repairs.",
+			"actions" = list(
+				"..." = list(
+					"text" = "...",
+					"default_scene" = "temple_factory4"
+				)
+			)
+		),
+
+		"temple_factory4" = list(
+			"text" = "... And of course, only one of them knows the secret of these repairs.",
+			"actions" = list(
+				"one" = list(
+					"text" = "Only one of them?",
+					"default_scene" = "temple_factory5"
+				),
+				"..." = list(
+					"text" = "Do you know these machines?",
+					"default_scene" = "temple_factory7"
+				)
+			)
+		),
+
+		"temple_factory5" = list(
+			"text" = "O-oh, just my intuition. I mean, all of their cores would be intact if all of them knew it, right.",
+			"actions" = list(
+				"..." = list(
+					"text" = "...",
+					"default_scene" = "temple_factory6"
+				)
+			)
+		),
+
+		"temple_factory6" = list(
+			"text" = "*[src] quickly trails off as he starts examining the rest of the room, avoiding looking eye to eye with you.*",
+			"actions" = list(
+				"..." = list(
+					"text" = "...",
+					"default_scene" = "main_screen"
+				)
+			)
+		),
+
+		"temple_factory7" = list(
+			"text" = "O-oh, not at all. I am just making assumptions based on what I could see. I haven't being that active in the machine side of the outskirts...",
 			"actions" = list(
 				"..." = list(
 					"text" = "...",
@@ -725,7 +814,61 @@
 		),
 
 		"temple_student_dorms" = list(
-			"text" = "Oh, Sorry for my incompetence but I lack any knowledge of this area.",
+			"text" = "These appear to be the student dorms around here...",
+			"actions" = list(
+				"..." = list(
+					"text" = "...",
+					"default_scene" = "temple_student_dorms1"
+				)
+			)
+		),
+
+		"temple_student_dorms1" = list(
+			"text" = "Now I think about it, don't you think it is weird how these machines have dorms?",
+			"actions" = list(
+				"..." = list(
+					"text" = "...",
+					"default_scene" = "temple_student_dorms2"
+				)
+			)
+		),
+
+		"temple_student_dorms2" = list(
+			"text" = "They have no need to sleep or rest, yet they still partaken in this... 'Act of Sleeping'",
+			"actions" = list(
+				"..." = list(
+					"text" = "...",
+					"default_scene" = "temple_student_dorms3"
+				)
+			)
+		),
+
+		"temple_student_dorms3" = list(
+			"text" = "They must have wasted so much time, just lying around around their dorms, pretending to sleep...",
+			"actions" = list(
+				"question" = list(
+					"text" = "How do you know?",
+					"default_scene" = "temple_student_dorms4"
+				),
+				"..." = list(
+					"text" = "Anything to follow the illusion.",
+					"default_scene" = "temple_student_dorms5"
+				)
+			)
+		),
+
+		"temple_student_dorms4" = list(
+			"text" = "Well, you know... Why else would they have these dorms? Would be a waste of space if they had beds and did not use them.",
+			"actions" = list(
+				"..." = list(
+					"text" = "...",
+					"default_scene" = "main_screen"
+				)
+			)
+		),
+
+		"temple_student_dorms5" = list(
+			"text" = "Yes... Anything to uphold the illusion. Maybe they said something alonge those lines...",
 			"actions" = list(
 				"..." = list(
 					"text" = "...",
@@ -735,7 +878,81 @@
 		),
 
 		"temple_study_room_a" = list(
-			"text" = "Oh, Sorry for my incompetence but I lack any knowledge of this area.",
+			"text" = "Hell... They have been growing here, just how much have they been fed...",
+			"actions" = list(
+				"..." = list(
+					"text" = "...",
+					"default_scene" = "temple_study_room_a1"
+				)
+			)
+		),
+
+		"temple_study_room_a1" = list(
+			"text" = "Are they, still being fed?",
+			"actions" = list(
+				"..." = list(
+					"text" = "What?",
+					"default_scene" = "temple_study_room_a2"
+				)
+			)
+		),
+
+		"temple_study_room_a2" = list(
+			"text" = "I mean, do you see these fresh bodies? And I know for sure that information on this location has been a very well kept secret...",
+			"actions" = list(
+				"..." = list(
+					"text" = "...",
+					"default_scene" = "temple_study_room_a3"
+				)
+			)
+		),
+
+		"temple_study_room_a3" = list(
+			"text" = "Just... Who would be feding them?",
+			"actions" = list(
+				"question" = list(
+					"text" = "Why would people feed them?",
+					"default_scene" = "temple_study_room_a4"
+				),
+				"how" = list(
+					"text" = "How did you learn about the temple?",
+					"default_scene" = "temple_study_room_a6"
+				)
+			)
+		),
+
+		"temple_study_room_a4" = list(
+			"text" = "Oh, you see, the nests of these pests can be harvested to create mental stabilizers.",
+			"actions" = list(
+				"..." = list(
+					"text" = "...",
+					"default_scene" = "temple_study_room_a5"
+				)
+			)
+		),
+
+		"temple_study_room_a5" = list(
+			"text" = "Might be something related to how they are able to control their panicing targets to not attack them...",
+			"actions" = list(
+				"..." = list(
+					"text" = "...",
+					"default_scene" = "main_screen"
+				)
+			)
+		),
+
+		"temple_study_room_a6" = list(
+			"text" = "Well... You can sa-ay, I just happend to wander across it. Yep, I just got lucky with it...",
+			"actions" = list(
+				"..." = list(
+					"text" = "...",
+					"default_scene" = "temple_study_room_a7"
+				)
+			)
+		),
+
+		"temple_study_room_a7" = list(
+			"text" = "*straightens his posture and looks at the door*, anyways, it appears that this place doesn't have much else to loot, we can move on...",
 			"actions" = list(
 				"..." = list(
 					"text" = "...",
@@ -745,7 +962,27 @@
 		),
 
 		"temple_study_room_b" = list(
-			"text" = "Oh, Sorry for my incompetence but I lack any knowledge of this area.",
+			"text" = "Oh... This place...",
+			"actions" = list(
+				"..." = list(
+					"text" = "...",
+					"default_scene" = "temple_study_room_b1"
+				)
+			)
+		),
+
+		"temple_study_room_b1" = list(
+			"text" = "*[src] gazes at surgery tables, with an empty stare*.",
+			"actions" = list(
+				"..." = list(
+					"text" = "[src]?",
+					"default_scene" = "temple_study_room_b2"
+				)
+			)
+		),
+
+		"temple_study_room_b2" = list(
+			"text" = "Oh, sorry... I don't know much about this place...",
 			"actions" = list(
 				"..." = list(
 					"text" = "...",
@@ -755,7 +992,41 @@
 		),
 
 		"temple_main_hall" = list(
-			"text" = "Oh, Sorry for my incompetence but I lack any knowledge of this area.",
+			"text" = "Hm... This appears to be the main hall of sorts. With the altars, this could also serve as a church of sorts.",
+			"actions" = list(
+				"..." = list(
+					"text" = "...",
+					"default_scene" = "temple_main_hall1"
+				)
+			)
+		),
+
+		"temple_main_hall1" = list(
+			"text" = "Only makes sense with what is going on around here, if they wish to study or even become 'humans' they will need to have someone act as a preacher.",
+			"actions" = list(
+				"..." = list(
+					"text" = "...",
+					"default_scene" = "temple_main_hall2"
+				)
+			)
+		),
+
+		"temple_main_hall2" = list(
+			"text" = "How else will you keep everyone's faith strong as they try to achieve the impossible... What filthy charlatans.",
+			"actions" = list(
+				"..." = list(
+					"text" = "...",
+					"default_scene" = "main_screen"
+				),
+				"belief" = list(
+					"text" = "Belief can be used to give hope.",
+					"default_scene" = "temple_main_hall3"
+				)
+			)
+		),
+
+		"temple_main_hall3" = list(
+			"text" = "You may say that, but if that belief causes them to forgo basic logic. Something feels wrong about that, especially with what it could lead too...",
 			"actions" = list(
 				"..." = list(
 					"text" = "...",
@@ -765,7 +1036,51 @@
 		),
 
 		"temple_library" = list(
-			"text" = "Oh, Sorry for my incompetence but I lack any knowledge of this area.",
+			"text" = "A great library of the Temple, now mostly worthless for us. Any books of great value must have been burnt away...",
+			"actions" = list(
+				"..." = list(
+					"text" = "...",
+					"default_scene" = "temple_library1"
+				)
+			)
+		),
+
+		"temple_library1" = list(
+			"text" = "*[src] pulls out a book from their bag, and compares them to the other books in this library*",
+			"actions" = list(
+				"look" = list(
+					"text" = "*look at the cover of the book*",
+					"default_scene" = "temple_library2"
+				),
+				"question" = list(
+					"text" = "What is this book?",
+					"default_scene" = "temple_library3"
+				)
+			)
+		),
+
+		"temple_library2" = list(
+			"text" = "*You once the cover says ‘The Exploration of Love and Fear, By Elliot’*... Oh, don't worry about this too much.",
+			"actions" = list(
+				"..." = list(
+					"text" = "...",
+					"default_scene" = "temple_library4"
+				)
+			)
+		),
+
+		"temple_library3" = list(
+			"text" = "Oh, It's a book I... Found recently while traveling... Just thought that- hm, might be related to this place",
+			"actions" = list(
+				"..." = list(
+					"text" = "...",
+					"default_scene" = "temple_library4"
+				)
+			)
+		),
+
+		"temple_library4" = list(
+			"text" = "*[src] quickly puts away their book...*",
 			"actions" = list(
 				"..." = list(
 					"text" = "...",
@@ -815,7 +1130,37 @@
 		),
 
 		"temple_medbay" = list(
-			"text" = "Oh, Sorry for my incompetence but I lack any knowledge of this area.",
+			"text" = "Oh, this appears to be some sort of research or medbay like room. Although if it was a medbay room, it would be quite pointless...",
+			"actions" = list(
+				"..." = list(
+					"text" = "...",
+					"default_scene" = "main_screen"
+				)
+			)
+		),
+
+		"temple_medbay1" = list(
+			"text" = "These appear to be normal chemicals all over this room, and they would be pointless for machines...",
+			"actions" = list(
+				"..." = list(
+					"text" = "...",
+					"default_scene" = "main_screen"
+				)
+			)
+		),
+
+		"temple_medbay2" = list(
+			"text" = "What if they were selling them? But to how would they sell them to...",
+			"actions" = list(
+				"..." = list(
+					"text" = "...",
+					"default_scene" = "main_screen"
+				)
+			)
+		),
+
+		"temple_medbay3" = list(
+			"text" = "Or they were... *sighs*, mayhaps they did... At least they appear to be useful things to loot.",
 			"actions" = list(
 				"..." = list(
 					"text" = "...",
@@ -883,6 +1228,7 @@
 		qdel(src)
 
 /mob/living/simple_animal/hostile/ui_npc/elliot/proc/trigger_boss()
+	speaking_off()
 	playsound(get_turf(src), 'sound/machines/buzz-sigh.ogg', 40, TRUE)
 	SLEEP_CHECK_DEATH(10)
 	say("What... It didn't work...")
@@ -891,6 +1237,7 @@
 	for(var/obj/effect/keeper_piller_spawn/piller in range(20, src))
 		var/turf/spawn_turf = get_turf(piller)
 		new /mob/living/simple_animal/npc/tinkerer/elliot_taunt(spawn_turf)
+	speaking_on()
 
 /obj/machinery/door/keycard/final_door
 	name = "heavily locked door"
@@ -905,6 +1252,7 @@
 
 /mob/living/simple_animal/hostile/ui_npc/elliot/Destroy()
 	Leader = null
+	QDEL_NULL(radio)
 	return ..()
 
 /mob/living/simple_animal/npc/tinkerer/elliot_taunt
