@@ -28,6 +28,7 @@
 	var/list/whitelist = list()
 	var/playerscaling
 	var/timescaling
+	var/initial_breach = TRUE	//Linters scream at me for sleeping during initialize
 
 
 /mob/living/simple_animal/hostile/ordeal/pink_midnight/Initialize()
@@ -40,8 +41,6 @@
 	for(var/mob/living/carbon/human/L in GLOB.player_list)
 		playerscaling++
 	addtimer(CALLBACK(src, PROC_REF(Breach_Loop)), 2 SECONDS)
-	for(var/i = 1 to 3)
-		Breach_Abno()
 
 /mob/living/simple_animal/hostile/ordeal/pink_midnight/death(gibbed)
 	animate(src, alpha = 0, time = 5 SECONDS)
@@ -57,6 +56,10 @@
 	addtimer(CALLBACK(src, PROC_REF(Breach_Loop)), breachtime*10)
 	timescaling++
 	Breach_Abno()
+	if(initial_breach)
+		for(var/i = 1 to 3)
+			Breach_Abno()
+		initial_breach = FALSE
 	if(prob(50))
 		var/turf/T = pick(GLOB.department_centers)
 		sound_to_playing_players_on_level('sound/voice/human/womanlaugh.ogg', 50, zlevel = z)
