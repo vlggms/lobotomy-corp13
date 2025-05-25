@@ -25,7 +25,7 @@
 	damage_effect_scale = 1.25
 
 	var/laser_cooldown
-	var/laser_cooldown_time = 20 SECONDS
+	var/laser_cooldown_time = 23 SECONDS
 	var/obj/effect/greenmidnight_shell/left_shell
 	var/obj/effect/greenmidnight_shell/right/right_shell
 	/// Assoc list. Effect = Target turf
@@ -33,7 +33,7 @@
 	var/list/beams = list()
 	var/list/hit_line = list()
 	/// Amount of black damage per damage tick dealt to all living enemies
-	var/laser_damage = 75
+	var/laser_damage = 65
 	var/max_lasers = 6
 	/// Amount of damage ticks laser will do
 	var/max_laser_repeats = 40
@@ -43,9 +43,12 @@
 	var/laser_rotation_time = 2 SECONDS
 	/// Below that health the green midnight speeds up
 	var/next_health_mark = 0 // Initialize below
-	/// Amount of friendly mobs spawned during downtime
-	var/squad_size = 6
-	var/active_minions = 0
+
+	//These variables control how many bots are deployed during the no-lasers-phase and how the scaling for them works.
+	var/squad_size = 6 // How large our squad of deployed bots should be. Will attempt to deploy bots until we reach this size. This increases when losing enough HP.
+	var/active_minions = 0 // How many of our personally spawned bots are alive right now.
+	var/maximum_squad_size = 16 // We will never increase squad size past this. Adjusted by scaling
+	var/squad_size_increase_step = 2 // This variable controls how many bots are added to a squad per 10% HP lost. Adjusted by scaling
 
 /mob/living/simple_animal/hostile/ordeal/green_midnight/Initialize()
 	. = ..()
@@ -55,6 +58,7 @@
 	next_health_mark = maxHealth * 0.9
 	laserloop = new(list(src), FALSE)
 	addtimer(CALLBACK(src, PROC_REF(OpenShell)), 5 SECONDS)
+	HandleScaling()
 
 /mob/living/simple_animal/hostile/ordeal/green_midnight/Destroy()
 	QDEL_NULL(left_shell)
@@ -86,8 +90,9 @@
 		laser_spawn_delay = max(0.3 SECONDS, laser_spawn_delay - 0.1 SECONDS)
 		laser_rotation_time = max(0.5 SECONDS, laser_rotation_time - 0.2 SECONDS)
 		laser_cooldown_time = max(10 SECONDS, laser_cooldown_time - 1 SECONDS)
-		if(squad_size < 16)
-			squad_size += 2
+		//Increase our target squad size, but not beyond our maximum
+		if(squad_size + squad_size_increase_step <= maximum_squad_size)
+			squad_size += squad_size_increase_step
 
 /mob/living/simple_animal/hostile/ordeal/green_midnight/CanAttack(atom/the_target)
 	return FALSE
@@ -177,12 +182,15 @@
 /mob/living/simple_animal/hostile/ordeal/green_midnight/proc/LaserEffect()
 	if(stat == DEAD)
 		return
+	var/list/all_turfs = RANGE_TURFS(13, src)
+	var/list/danger_close_turfs = RANGE_TURFS(2, src)
+	var/list/minilaser_target_turfs = all_turfs - danger_close_turfs
 	laserloop.start()
 	for(var/i = 1 to max_laser_repeats)
 		//This basically fires a mini laser barrage on ticks 5, 10, 15, 20, 25 and 30.
 		//This follows the logic of the mini lasers raining down as the main lasers fire and continuing slightly after they've stopped (due to the timer on mini lasers)
 		if(i % 5 == 0 && i <= max_laser_repeats * 0.75)
-			FireMiniLaserBarrage()
+			FireMiniLaserBarrage(minilaser_target_turfs)
 		var/list/already_hit = list()
 		for(var/turf/T in hit_line)
 			for(var/mob/living/L in range(1, T))
@@ -214,16 +222,13 @@
 	laser_cooldown = world.time + laser_cooldown_time
 	firing = FALSE
 	//Now that we've stopped firing, let's prepare to deploy a squad of friendlies
-	addtimer(CALLBACK(src, PROC_REF(DeployBotSquad)), 3 SECONDS)
+	DeployBotSquad()
 
 // This proc is used to fire a barrage of mini lasers, it is called several times during the helix's lasers being active. An alternative way to do this would be
 // placing it on Life() like Waxing does, but I only wanted it to happen while the Helix was firing.
-/mob/living/simple_animal/hostile/ordeal/green_midnight/proc/FireMiniLaserBarrage()
+/mob/living/simple_animal/hostile/ordeal/green_midnight/proc/FireMiniLaserBarrage(var/list/valid_turfs)
 	//Lasers hit a huge range, except a mini-safe-spot directly south of Helix but it is likely hit by a bigger laser anyway. Also there's 10 gunbots on top of you
-	var/list/all_turfs = RANGE_TURFS(13, src)
-	var/list/danger_close_turfs = RANGE_TURFS(2, src)
-	all_turfs -= danger_close_turfs
-	for(var/turf/unfortunate_turf in all_turfs)
+	for(var/turf/unfortunate_turf in valid_turfs)
 		if(prob(22))
 			addtimer(CALLBACK(src, PROC_REF(FireMiniLaser), unfortunate_turf), rand(1, 50))
 
@@ -238,7 +243,7 @@
 	icon = 'ModularTegustation/Teguicons/32x64.dmi'
 	icon_state = "pillar_strike"
 	duration = 15
-	color = COLOR_LIME
+	color = "#7ac21f"
 
 /obj/effect/temp_visual/helix_minilaser/Initialize()
 	..()
@@ -269,24 +274,39 @@
 		remaining_spawn_budget--
 	return squad
 
-//This proc will deploy the remaining spawn budget (maximum squad size - currently active bots) through drop pods.
+//This proc will deploy the remaining spawn budget (squad size - currently active bots) through drop pods.
 /mob/living/simple_animal/hostile/ordeal/green_midnight/proc/DeployBotSquad()
 	//We get the types we want to spawn in a list here
 	var/list/squad = GenerateBotSquad()
+
+	if(squad.len <= 0)
+		return //I guess we're not doing anything.
+
 	//These are all the turfs around us.
 	var/list/deployment_points = RANGE_TURFS(8, src)
+	//These are the turfs especially close to us.
+	var/list/danger_close_turfs = RANGE_TURFS(2, src)
+
+	//Wait for the shells to close fully.
+	SLEEP_CHECK_DEATH(2 SECONDS)
+	//Animate firing the pods. This takes 1 second.
+	left_shell.icon_state = "greenmidnight_casel_firingpods"
+	right_shell.icon_state = "greenmidnight_caser_firingpods"
+	playsound(src, 'sound/items/fultext_launch.ogg', 90, TRUE, 10)
+	SLEEP_CHECK_DEATH(0.3 SECONDS)
+	playsound(src, 'sound/items/fultext_launch.ogg', 90, TRUE, 10)
+	SLEEP_CHECK_DEATH(0.7 SECONDS)
+	//Back to the normal icon.
+	left_shell.icon_state = "greenmidnight_casel"
+	right_shell.icon_state = "greenmidnight_caser"
+
+
 	for(var/turf/place in deployment_points)
 		//Don't deploy a bot in an obstructed turf, or somewhere we can't see
 		if(!isInSight(src, place) || place.is_blocked_turf(TRUE))
 			deployment_points -= place
-	//This is giga-jank but IDK how to do this properly. Helix of the End occupies 2 tiles north, west and east, and obviously its own tile. So we disregard them.
-	deployment_points -= get_turf(src)
-	deployment_points -= get_turf(locate(src.x-1, src.y, src.z))
-	deployment_points -= get_turf(locate(src.x-2, src.y, src.z))
-	deployment_points -= get_turf(locate(src.x+1, src.y, src.z))
-	deployment_points -= get_turf(locate(src.x+2, src.y, src.z))
-	deployment_points -= get_turf(locate(src.x, src.y+1, src.z))
-	deployment_points -= get_turf(locate(src.x, src.y+2, src.z))
+
+	deployment_points -= danger_close_turfs
 
 	for(var/mob in squad)
 		//If we actually have any valid turfs left, we can pick from them. If we ran out, I guess we're dropping them right beneath us
@@ -295,8 +315,9 @@
 		var/obj/structure/closet/supplypod/helixpod/deployment_pod = new()
 		var/mob/living/simple_animal/hostile/ordeal/minion = new mob(deployment_pod)
 		//Add them to Ordeal tracking
-		minion.ordeal_reference = src.ordeal_reference
-		src.ordeal_reference.ordeal_mobs += minion
+		if(ordeal_reference)
+			minion.ordeal_reference = src.ordeal_reference
+			src.ordeal_reference.ordeal_mobs += minion
 		//We register an active minion to prevent us from spawning a limbillion of them, and we ask them to tell us when they die so we can adjust our spawn budget
 		active_minions++
 		RegisterSignal(minion, COMSIG_LIVING_DEATH, PROC_REF(UnlinkMinion))
@@ -314,6 +335,33 @@
 /mob/living/simple_animal/hostile/ordeal/green_midnight/proc/UnlinkMinion()
 	active_minions--
 
+// This proc handles the scaling for this mob according to active agent+suppression agent count. The normal methods for handling scaling don't really work here
+// AND Ordeals normally scale off of GLOB.clients which is... unideal
+/mob/living/simple_animal/hostile/ordeal/green_midnight/proc/HandleScaling()
+	//This list should count all living Agents and ERAs + DO. This will need to be changed when CRAs are added, probably.
+	//This also doesn't account for nefarious RO/EO/Clerks that might want to "help", but I don't consider it a huge issue. AvailableAgentCount() is an alternative that
+	//counts dead Agents as well.
+	var/list/meaningful_enemies = AllLivingAgents(TRUE)
+	//These are our "base values" but bear in mind that, if we have any agents alive as it initializes, it will go up to 6/12/1.
+	squad_size = 6
+	maximum_squad_size = 10
+	squad_size_increase_step = 1
+	laser_cooldown_time = 24 SECONDS // You'll get more time to deal with mobs if you have less Agents
+
+	//This scaling should result in: 8/14/1 (initial/max/step) for 1 agent, 10/18/2 for 2 agents, 12/22/2 for 3 agents, up to a maximum of 10/24/3 at 4 agents.
+	//I'd wanna add more but that would get pretty laggy...
+	if(meaningful_enemies)
+		for(var/gremlin in meaningful_enemies)
+			squad_size += 2
+			maximum_squad_size += 4
+			squad_size_increase_step += 0.5
+			laser_cooldown_time -= 1 SECONDS
+
+		squad_size = min(squad_size, 10)
+		maximum_squad_size = min(maximum_squad_size, 24)
+		squad_size_increase_step = min(floor(squad_size_increase_step), 3)
+		laser_cooldown_time = max(laser_cooldown_time, 20 SECONDS)
+
 /obj/structure/closet/supplypod/helixpod
 	name = "protocol of contemplation"
 	desc = "Things are about to get heated."
@@ -321,4 +369,5 @@
 	style = STYLE_HELIX
 	bluespace = TRUE
 	explosionSize = list(0,0,0,0)
-	delays = list(POD_TRANSIT = 3.5 SECONDS, POD_FALLING = 0.3 SECONDS, POD_OPENING = 1 SECONDS, POD_LEAVING = 0.7 SECONDS)
+	max_integrity = 5000 //I'd rather the players not instakill the mobs by destroying the pods
+	delays = list(POD_TRANSIT = 3 SECONDS, POD_FALLING = 0.2 SECONDS, POD_OPENING = 2.5 SECONDS, POD_LEAVING = 0.7 SECONDS)
