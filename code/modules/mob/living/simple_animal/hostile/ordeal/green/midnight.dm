@@ -50,6 +50,12 @@
 	var/maximum_squad_size = 16 // We will never increase squad size past this. Adjusted by scaling
 	var/squad_size_increase_step = 2 // This variable controls how many bots are added to a squad per 10% HP lost. Adjusted by scaling
 
+	// I am placing these here because I don't want to calculate turfs in range 9 trillion times.
+	var/list/microbarrage_threatened_turfs = list()
+	var/list/macrolaser_threatened_turfs = list()
+	var/list/danger_close_turfs = list()
+	var/list/microbarrage_target_turfs = list()
+
 /mob/living/simple_animal/hostile/ordeal/green_midnight/Initialize()
 	. = ..()
 	left_shell = new(get_turf(src))
@@ -59,6 +65,11 @@
 	laserloop = new(list(src), FALSE)
 	addtimer(CALLBACK(src, PROC_REF(OpenShell)), 5 SECONDS)
 	HandleScaling()
+	//These lists of turfs are calculated here because I don't want to do it every time we fire lasers
+	microbarrage_threatened_turfs = RANGE_TURFS(12, src)
+	macrolaser_threatened_turfs = RANGE_TURFS(8, src)
+	danger_close_turfs = RANGE_TURFS(2, src)
+	microbarrage_target_turfs = microbarrage_threatened_turfs - danger_close_turfs
 
 /mob/living/simple_animal/hostile/ordeal/green_midnight/Destroy()
 	QDEL_NULL(left_shell)
@@ -182,15 +193,26 @@
 /mob/living/simple_animal/hostile/ordeal/green_midnight/proc/LaserEffect()
 	if(stat == DEAD)
 		return
-	var/list/all_turfs = RANGE_TURFS(13, src)
-	var/list/danger_close_turfs = RANGE_TURFS(2, src)
-	var/list/minilaser_target_turfs = all_turfs - danger_close_turfs
+
+	//The reason why we're calculating this list of turfs here instead of in Initialize like the rest, is because we're gonna pick and take from it
+	//So we can avoid macrolasers targeting the same turfs
+	var/list/macrolaser_target_turfs = list()
+	for(var/turf/possible_turf in macrolaser_threatened_turfs)
+		if(possible_turf.is_blocked_turf(TRUE))
+			continue
+		macrolaser_target_turfs += possible_turf
+	macrolaser_target_turfs -= danger_close_turfs
+
 	laserloop.start()
 	for(var/i = 1 to max_laser_repeats)
-		//This basically fires a mini laser barrage on ticks 5, 10, 15, 20, 25 and 30.
-		//This follows the logic of the mini lasers raining down as the main lasers fire and continuing slightly after they've stopped (due to the timer on mini lasers)
-		if(i % 5 == 0 && i <= max_laser_repeats * 0.75)
-			FireMiniLaserBarrage(minilaser_target_turfs)
+		//This following chunk of code basically fires a mini laser barrage on ticks 8, 16, 24 and 32. (6 barrages)
+		//It follows the logic of the mini lasers raining down as the main lasers fire and continuing slightly after they've stopped (due to the timer on mini lasers)
+		//We also fire a single macro laser on ticks 4, 8, 12, 16, 20, 24, 28, 32 and 36. (9 macro lasers)
+		if(i % 4 == 0 && i <= max_laser_repeats * 0.90)
+			FireMacroLaser(pick_n_take(macrolaser_target_turfs))
+		if(i % 8 == 0 && i <= max_laser_repeats * 0.80)
+			FireLaserBarrage(microbarrage_target_turfs)
+
 		var/list/already_hit = list()
 		for(var/turf/T in hit_line)
 			for(var/mob/living/L in range(1, T))
@@ -226,16 +248,18 @@
 
 // This proc is used to fire a barrage of mini lasers, it is called several times during the helix's lasers being active. An alternative way to do this would be
 // placing it on Life() like Waxing does, but I only wanted it to happen while the Helix was firing.
-/mob/living/simple_animal/hostile/ordeal/green_midnight/proc/FireMiniLaserBarrage(var/list/valid_turfs)
-	//Lasers hit a huge range, except a mini-safe-spot directly south of Helix but it is likely hit by a bigger laser anyway. Also there's 10 gunbots on top of you
+/mob/living/simple_animal/hostile/ordeal/green_midnight/proc/FireLaserBarrage(var/list/valid_turfs)
 	for(var/turf/unfortunate_turf in valid_turfs)
-		if(prob(22))
+		if(prob(6))
 			addtimer(CALLBACK(src, PROC_REF(FireMiniLaser), unfortunate_turf), rand(1, 50))
 
 
 // The mini-lasers are code taken from Waxing of the Black Sun with some minor statistical tweaks.
 /mob/living/simple_animal/hostile/ordeal/green_midnight/proc/FireMiniLaser(var/turf/target_turf)
 	new /obj/effect/temp_visual/helix_minilaser(target_turf)
+
+/mob/living/simple_animal/hostile/ordeal/green_midnight/proc/FireMacroLaser(var/turf/target_turf)
+	new /obj/effect/temp_visual/helix_macrolaser(target_turf)
 
 //They are mainly a nuisance that causes people stacking in tight spots to move and shuffle and get eachother killed. Encourages not dumping BLACK armour for the ordeal
 /obj/effect/temp_visual/helix_minilaser
@@ -250,10 +274,33 @@
 	addtimer(CALLBACK(src, PROC_REF(Blowup)), 10)
 
 /obj/effect/temp_visual/helix_minilaser/proc/Blowup()
-	playsound(src, 'sound/weapons/laser.ogg', 10, FALSE, 4)
+	playsound(src, 'sound/weapons/fixer/generic/rcorp4.ogg', 15, FALSE, 4)
 	for(var/mob/living/carbon/human/H in src.loc)
 		H.deal_damage(55, BLACK_DAMAGE)
 		to_chat(H, span_userdanger("You're hit by [src.name]!"))
+
+//This laser hits in a 3 tile radius (the epicenter and its adjacent tiles).
+/obj/effect/temp_visual/helix_macrolaser
+	name = "helix of the end macro-laser"
+	icon = 'icons/effects/96x96.dmi'
+	icon_state = "warning"
+	duration = 21
+	color = "#7ac21f"
+	pixel_x = -32
+	base_pixel_x = -32
+	pixel_y = -32
+	base_pixel_y = -32
+
+/obj/effect/temp_visual/helix_macrolaser/Initialize()
+	..()
+	addtimer(CALLBACK(src, PROC_REF(Blowup)), 20)
+
+/obj/effect/temp_visual/helix_macrolaser/proc/Blowup()
+	playsound(src, 'sound/abnormalities/crying_children/sorrow_shot.ogg', 20, FALSE, 4)
+	for(var/mob/living/carbon/human/H in range(1, src))
+		H.deal_damage(50, BLACK_DAMAGE)
+		to_chat(H, span_userdanger("You're hit by [src.name]!"))
+
 
 //This proc is called to return a list with all the types that should be spawned by the next deployment. DeployBotSquad() trusts whatever list is given to it, so we
 //make sure we don't generate too many mobs in this proc (else midnight could spawn infinite mobs)
