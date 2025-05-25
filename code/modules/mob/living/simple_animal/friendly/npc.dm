@@ -295,7 +295,7 @@
 /mob/living/simple_animal/npc/insurgence_grunt
 	name = "grade 1, transport agent"
 	desc = "A heavily augmented human, wearing bright red armor. A helmet is covering their face, replacing their face with a emotionless stare..."
-	icon = 'ModularTegustation/Teguicons/teaser_mobs.dmi'
+	icon = 'ModularTegustation/Teguicons/insurgence_32x32.dmi'
 	icon_state = "insurgence_grunt"
 	icon_living = "insurgence_grunt"
 	icon_dead = "none"
