@@ -1,4 +1,9 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"ac" = (
+/obj/machinery/telecomms/server/presets/engineering,
+/obj/effect/turf_decal/bot,
+/turf/open/floor/circuit/telecomms/mainframe,
+/area/facility_hallway/north)
 "ad" = (
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/structure/chair/pew/left{
@@ -14,22 +19,12 @@
 /area/city/backstreets_room/temple_motus/dorms)
 "ar" = (
 /obj/effect/decal/cleanable/dirt/dust,
-/obj/item/statuebust/hippocratic{
-	desc = "A humanoid looking statue wielding a spear... It appears to have 'Resurgence Clan' etched on their back...";
-	name = "stone statue";
-	icon = 'ModularTegustation/Teguicons/teaser_mobs.dmi';
-	icon_state = "stone_guard";
-	dir = 4
+/obj/structure/rack{
+	color = "#f8fc03"
 	},
-/obj/structure/fluff/oldturret{
-	density = 0;
-	layer = 2.8;
-	name = "pedestal";
-	desc = "A pedestal for a statue."
-	},
-/obj/effect/rubble_spawner,
-/turf/open/floor/light,
-/area/city/backstreets_room/temple_motus/treasure_hallway)
+/obj/structure/lootcrate/hana,
+/turf/open/floor/mineral/gold,
+/area/city/backstreets_room/temple_motus/treasure_room)
 "aG" = (
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/structure/table/greyscale{
@@ -87,6 +82,11 @@
 	dir = 4
 	},
 /area/city/backstreets_room/temple_motus/main)
+"bF" = (
+/obj/effect/turf_decal/bot,
+/obj/machinery/telecomms/bus/preset_two,
+/turf/open/floor/circuit/telecomms/mainframe,
+/area/facility_hallway/north)
 "bJ" = (
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/effect/turf_decal/siding/wideplating/dark/corner{
@@ -126,10 +126,6 @@
 /mob/living/simple_animal/hostile/scarlet_rose,
 /turf/open/floor/wood,
 /area/city/backstreets_room/temple_motus/library)
-"cC" = (
-/obj/effect/decal/cleanable/dirt/dust,
-/turf/open/floor/carpet/black,
-/area/city/backstreets_room/temple_motus/storage)
 "cK" = (
 /obj/effect/rubble_spawner,
 /turf/closed/indestructible/iron,
@@ -166,16 +162,6 @@
 /obj/effect/decal/cleanable/dirt/dust,
 /turf/open/floor/stone,
 /area/city/backstreets_room/temple_motus/main)
-"dG" = (
-/obj/effect/turf_decal/bot,
-/obj/machinery/telecomms/receiver/preset_left,
-/turf/open/floor/circuit/telecomms/mainframe,
-/area/facility_hallway/north)
-"dM" = (
-/obj/effect/turf_decal/bot,
-/obj/machinery/ntnet_relay,
-/turf/open/floor/circuit/telecomms/mainframe,
-/area/facility_hallway/north)
 "dX" = (
 /turf/open/ai_visible{
 	density = 1
@@ -225,6 +211,11 @@
 	},
 /turf/open/floor/carpet/black,
 /area/city/backstreets_room/temple_motus/storage)
+"eo" = (
+/obj/effect/turf_decal/bot,
+/obj/machinery/telecomms/processor/preset_four,
+/turf/open/floor/circuit/telecomms/mainframe,
+/area/facility_hallway/north)
 "ep" = (
 /obj/structure/spacevine,
 /turf/closed/indestructible/iron,
@@ -314,25 +305,6 @@
 	},
 /turf/open/floor/stone,
 /area/city/backstreets_room/temple_motus/study_b)
-"fj" = (
-/obj/effect/decal/cleanable/dirt/dust,
-/obj/structure/table/bronze,
-/obj/structure/window/bronze{
-	dir = 8
-	},
-/obj/structure/window/bronze{
-	dir = 4
-	},
-/obj/structure/window/bronze,
-/obj/structure/window/bronze{
-	dir = 1
-	},
-/turf/open/floor/mineral/gold,
-/area/city/backstreets_room/temple_motus/treasure_room)
-"fs" = (
-/obj/machinery/telecomms/message_server/preset,
-/turf/open/floor/circuit/telecomms/mainframe,
-/area/facility_hallway/north)
 "ft" = (
 /obj/structure/fence/door{
 	dir = 1
@@ -438,6 +410,11 @@
 /obj/effect/decal/cleanable/xenoblood/xgibs,
 /turf/open/floor/stone,
 /area/city/backstreets_room/temple_motus/study_a)
+"hx" = (
+/obj/machinery/telecomms/server/presets/service,
+/obj/effect/turf_decal/bot,
+/turf/open/floor/circuit/telecomms/mainframe,
+/area/facility_hallway/north)
 "hA" = (
 /obj/structure/bookcase/random/religion,
 /obj/effect/decal/cleanable/dirt/dust,
@@ -466,6 +443,24 @@
 /obj/effect/rubble_spawner,
 /turf/open/floor/stone,
 /area/city/backstreets_room/temple_motus/treasure_entrance)
+"hM" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/statue/bronze/marx{
+	icon = 'ModularTegustation/Teguicons/teaser_mobs.dmi';
+	icon_state = "stone_guard";
+	name = "stone statue";
+	desc = "A humanoid looking statue wielding a spear... It appears to have 'Resurgence Clan' etched on their back...";
+	dir = 8
+	},
+/obj/structure/fluff/oldturret{
+	density = 0;
+	layer = 2.8;
+	name = "pedestal";
+	desc = "A pedestal for a statue."
+	},
+/obj/effect/rubble_spawner,
+/turf/open/floor/light,
+/area/city/backstreets_room/temple_motus/treasure_hallway)
 "hR" = (
 /obj/structure/bed/maint,
 /obj/item/bedsheet/brown,
@@ -485,9 +480,6 @@
 /obj/structure/chair/sofa/corp/corner{
 	dir = 4
 	},
-/obj/effect/wall_vent{
-	pixel_x = -32
-	},
 /turf/open/floor/stone,
 /area/city/backstreets_room/temple_motus)
 "ii" = (
@@ -503,11 +495,6 @@
 	name = "outskirts sand"
 	},
 /area/city/backstreets_room/temple_motus/outskirts)
-"io" = (
-/obj/machinery/telecomms/server/presets/supply,
-/obj/effect/turf_decal/bot,
-/turf/open/floor/circuit/telecomms/mainframe,
-/area/facility_hallway/north)
 "ip" = (
 /obj/structure/bed{
 	pixel_y = 15;
@@ -612,6 +599,11 @@
 	name = "outskirts sand"
 	},
 /area/city/backstreets_room/temple_motus/outskirts)
+"jK" = (
+/obj/effect/turf_decal/bot,
+/obj/machinery/ntnet_relay,
+/turf/open/floor/circuit/telecomms/mainframe,
+/area/facility_hallway/north)
 "jT" = (
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/structure/chair/pew/right{
@@ -638,11 +630,12 @@
 /area/city/backstreets_room/temple_motus/main)
 "ks" = (
 /obj/effect/decal/cleanable/dirt/dust,
-/obj/structure/table/glass,
-/obj/item/reagent_containers/hypospray/medipen/salacid,
-/obj/item/reagent_containers/hypospray/medipen/salacid,
-/turf/open/indestructible/white,
-/area/city/backstreets_room/temple_motus/medbay)
+/obj/structure/spreading/scarlet_vine,
+/obj/effect/wall_vent{
+	pixel_x = 32
+	},
+/turf/open/floor/mineral/plastitanium,
+/area/city/backstreets_room/temple_motus/dorms)
 "kK" = (
 /obj/structure/sign/directions/engineering{
 	dir = 4
@@ -657,11 +650,6 @@
 /obj/effect/decal/cleanable/dirt/dust,
 /turf/open/floor/carpet/black,
 /area/city/backstreets_room/temple_motus/library)
-"kR" = (
-/obj/effect/turf_decal/bot,
-/obj/machinery/telecomms/bus/preset_two,
-/turf/open/floor/circuit/telecomms/mainframe,
-/area/facility_hallway/north)
 "kZ" = (
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/structure/chair/sofa/corp/corner{
@@ -672,8 +660,6 @@
 "la" = (
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/structure/table/glass,
-/obj/item/reagent_containers/hypospray/medipen/mental,
-/obj/item/reagent_containers/hypospray/medipen/mental,
 /obj/item/reagent_containers/hypospray/medipen/mental,
 /obj/effect/decal/cleanable/xenoblood/xsplatter,
 /turf/open/indestructible/white,
@@ -697,11 +683,6 @@
 	},
 /turf/open/floor/carpet/black,
 /area/city/backstreets_room/temple_motus/library)
-"lj" = (
-/obj/effect/turf_decal/bot,
-/obj/machinery/telecomms/processor/preset_two,
-/turf/open/floor/circuit/telecomms/mainframe,
-/area/facility_hallway/north)
 "ll" = (
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/effect/decal/cleanable/glass,
@@ -718,12 +699,6 @@
 /obj/structure/sign/poster/official/do_not_question,
 /turf/closed/indestructible/iron,
 /area/city/backstreets_room/temple_motus/factory)
-"lL" = (
-/obj/effect/turf_decal/bot,
-/obj/effect/decal/cleanable/dirt,
-/obj/machinery/telecomms/bus/preset_four,
-/turf/open/floor/circuit/telecomms/mainframe,
-/area/facility_hallway/north)
 "lU" = (
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/structure/glowshroom/single,
@@ -735,14 +710,6 @@
 /obj/effect/mob_spawn/human/corpse,
 /turf/open/floor/stone,
 /area/city/backstreets_room/temple_motus/study_a)
-"lW" = (
-/obj/effect/decal/cleanable/dirt/dust,
-/obj/structure/rack{
-	color = "#f8fc03"
-	},
-/obj/structure/lootcrate/hana,
-/turf/open/floor/mineral/gold,
-/area/city/backstreets_room/temple_motus/treasure_room)
 "lY" = (
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/effect/keeper_field,
@@ -776,20 +743,16 @@
 /obj/machinery/smartfridge/chemistry,
 /turf/open/indestructible/white,
 /area/city/backstreets_room/temple_motus/medbay)
-"mu" = (
-/obj/effect/decal/cleanable/dirt/dust,
-/obj/structure/lootcrate/workshopallas,
-/obj/structure/rack,
-/turf/open/floor/mineral/plastitanium,
-/area/city/backstreets_room/temple_motus/factory)
 "mv" = (
 /obj/effect/decal/cleanable/dirt/dust,
-/obj/structure/rack{
-	color = "#f8fc03"
+/obj/structure/chair/pew{
+	dir = 1
 	},
-/obj/structure/lootcrate/workshopallas,
-/turf/open/floor/mineral/gold,
-/area/city/backstreets_room/temple_motus/treasure_room)
+/obj/effect/rubble_spawner,
+/turf/open/floor/holofloor/chapel{
+	dir = 1
+	},
+/area/city/backstreets_room/temple_motus/main)
 "mB" = (
 /obj/effect/decal/cleanable/dirt/dust,
 /turf/open/floor/carpet/black,
@@ -804,8 +767,23 @@
 /turf/open/floor/holofloor/grass,
 /area/city/backstreets_room/temple_motus/factory)
 "mG" = (
-/turf/closed/indestructible/reinforced,
-/area/facility_hallway/north)
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/statue/bronze/marx{
+	icon = 'ModularTegustation/Teguicons/teaser_mobs.dmi';
+	icon_state = "stone_guard";
+	name = "stone statue";
+	desc = "A humanoid looking statue wielding a spear... It appears to have 'Resurgence Clan' etched on their back...";
+	dir = 4
+	},
+/obj/structure/fluff/oldturret{
+	density = 0;
+	layer = 2.8;
+	name = "pedestal";
+	desc = "A pedestal for a statue."
+	},
+/obj/effect/rubble_spawner,
+/turf/open/floor/light,
+/area/city/backstreets_room/temple_motus/treasure_hallway)
 "nc" = (
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/effect/decal/cleanable/garbage,
@@ -874,12 +852,6 @@
 /obj/effect/decal/cleanable/dirt/dust,
 /turf/closed/indestructible/wood,
 /area/city/backstreets_room/temple_motus/library)
-"ov" = (
-/obj/effect/decal/cleanable/dirt/dust,
-/obj/structure/lootcrate/workshopallas,
-/obj/structure/rack,
-/turf/open/floor/plating,
-/area/city/backstreets_room/temple_motus/factory)
 "oz" = (
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/structure/table/greyscale{
@@ -904,6 +876,11 @@
 /obj/effect/decal/cleanable/dirt/dust,
 /turf/closed/indestructible/wood,
 /area/city/backstreets_room/temple_motus/library)
+"oU" = (
+/obj/effect/turf_decal/bot,
+/obj/machinery/telecomms/bus/preset_three,
+/turf/open/floor/circuit/telecomms/mainframe,
+/area/facility_hallway/north)
 "pd" = (
 /obj/effect/decal/cleanable/dirt/dust,
 /turf/open/indestructible/white,
@@ -916,11 +893,11 @@
 /area/city/backstreets_room/temple_motus/main)
 "pl" = (
 /obj/effect/decal/cleanable/dirt/dust,
-/obj/item/statuebust/hippocratic{
-	desc = "A humanoid looking statue wielding a spear... It appears to have 'Resurgence Clan' etched on their back...";
-	name = "stone statue";
+/obj/structure/statue/bronze/marx{
 	icon = 'ModularTegustation/Teguicons/teaser_mobs.dmi';
 	icon_state = "stone_guard";
+	name = "stone statue";
+	desc = "A humanoid looking statue wielding a spear... It appears to have 'Resurgence Clan' etched on their back...";
 	dir = 1
 	},
 /obj/structure/fluff/oldturret{
@@ -931,13 +908,6 @@
 	},
 /turf/open/floor/mineral/plastitanium,
 /area/city/backstreets_room/temple_motus/factory)
-"pq" = (
-/obj/machinery/telecomms/server/presets/command{
-	name = "Command Server"
-	},
-/obj/effect/turf_decal/bot,
-/turf/open/floor/circuit/telecomms/mainframe,
-/area/facility_hallway/north)
 "pJ" = (
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/structure/chair/pew/left{
@@ -1001,6 +971,11 @@
 	color = "#5e5e5e"
 	},
 /area/city/backstreets_room/temple_motus)
+"qn" = (
+/obj/effect/turf_decal/bot,
+/obj/machinery/telecomms/receiver/preset_right,
+/turf/open/floor/circuit/telecomms/mainframe,
+/area/facility_hallway/north)
 "qH" = (
 /obj/effect/decal/cleanable/dirt/dust,
 /turf/open/floor/stone,
@@ -1016,6 +991,10 @@
 /obj/effect/rubble_spawner,
 /turf/open/floor/wood,
 /area/city/backstreets_room/temple_motus/library)
+"qO" = (
+/obj/machinery/telecomms/server/presets/common,
+/turf/open/floor/circuit/telecomms/mainframe,
+/area/facility_hallway/north)
 "qR" = (
 /obj/effect/decal/cleanable/dirt/dust,
 /mob/living/simple_animal/hostile/clan/stone_guard/dagger_puzzle/hammer,
@@ -1030,6 +1009,11 @@
 	dir = 1
 	},
 /area/city/backstreets_room/temple_motus/main)
+"qY" = (
+/obj/machinery/telecomms/server/presets/supply,
+/obj/effect/turf_decal/bot,
+/turf/open/floor/circuit/telecomms/mainframe,
+/area/facility_hallway/north)
 "ra" = (
 /obj/structure/flora/junglebush/c,
 /turf/open/floor/plating/asteroid{
@@ -1052,6 +1036,12 @@
 	name = "outskirts sand"
 	},
 /area/city/backstreets_room/temple_motus/outskirts)
+"rr" = (
+/obj/effect/turf_decal/bot,
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/telecomms/bus/preset_four,
+/turf/open/floor/circuit/telecomms/mainframe,
+/area/facility_hallway/north)
 "ru" = (
 /obj/structure/sign/poster/official/work_for_a_future,
 /turf/closed/wall/mineral/bronze,
@@ -1065,10 +1055,6 @@
 /obj/structure/sign/poster/official/smile,
 /turf/closed/indestructible/iron,
 /area/city/backstreets_room/temple_motus/main)
-"rJ" = (
-/obj/machinery/telecomms/server/presets/common,
-/turf/open/floor/circuit/telecomms/mainframe,
-/area/facility_hallway/north)
 "rP" = (
 /obj/effect/decal/cleanable/dirt/dust,
 /mob/living/simple_animal/hostile/clan/stone_guard/dagger_puzzle/spear,
@@ -1087,6 +1073,13 @@
 /obj/effect/decal/cleanable/dirt/dust,
 /turf/open/floor/stone,
 /area/city/backstreets_room/temple_motus/storage)
+"sd" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/table/greyscale{
+	color = "#8a8a8a"
+	},
+/turf/open/floor/carpet/black,
+/area/city/backstreets_room/temple_motus/storage)
 "sn" = (
 /obj/structure/bookcase{
 	pixel_x = 32;
@@ -1098,11 +1091,6 @@
 	},
 /turf/open/floor/carpet/black,
 /area/city/backstreets_room/temple_motus/library)
-"sp" = (
-/obj/effect/turf_decal/bot,
-/obj/machinery/telecomms/hub/preset,
-/turf/open/floor/circuit/telecomms/mainframe,
-/area/facility_hallway/north)
 "sw" = (
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/effect/decal/cleanable/generic,
@@ -1116,11 +1104,11 @@
 /area/city/backstreets_room/temple_motus/library)
 "sA" = (
 /obj/effect/decal/cleanable/dirt/dust,
-/obj/item/statuebust/hippocratic{
-	desc = "A humanoid looking statue wielding a spear... It appears to have 'Resurgence Clan' etched on their back...";
-	name = "stone statue";
+/obj/structure/statue/bronze/marx{
 	icon = 'ModularTegustation/Teguicons/teaser_mobs.dmi';
-	icon_state = "stone_guard"
+	icon_state = "stone_guard";
+	name = "stone statue";
+	desc = "A humanoid looking statue wielding a spear... It appears to have 'Resurgence Clan' etched on their back..."
 	},
 /obj/structure/fluff/oldturret{
 	density = 0;
@@ -1130,11 +1118,6 @@
 	},
 /turf/open/floor/stone,
 /area/city/backstreets_room/temple_motus/dorms)
-"sK" = (
-/obj/effect/turf_decal/bot,
-/obj/machinery/telecomms/processor/preset_four,
-/turf/open/floor/circuit/telecomms/mainframe,
-/area/facility_hallway/north)
 "sM" = (
 /obj/effect/decal/cleanable/dirt/dust,
 /mob/living/simple_animal/hostile/mad_fly_nest,
@@ -1207,28 +1190,30 @@
 	density = 1
 	},
 /area/city/backstreets_room/temple_motus/outskirts)
-"tW" = (
-/obj/machinery/telecomms/broadcaster/preset_right,
-/obj/effect/turf_decal/bot,
-/turf/open/floor/circuit/telecomms/mainframe,
-/area/facility_hallway/north)
-"tZ" = (
-/obj/effect/turf_decal/bot,
-/obj/machinery/telecomms/relay/preset/telecomms,
-/turf/open/floor/circuit/telecomms/mainframe,
-/area/facility_hallway/north)
 "ue" = (
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/structure/table/wood/fancy/royalblack,
 /obj/machinery/computer/bookmanagement,
 /turf/open/floor/carpet/black,
 /area/city/backstreets_room/temple_motus/library)
+"ui" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/rack{
+	color = "#f8fc03"
+	},
+/obj/structure/lootcrate/workshopallas,
+/turf/open/floor/mineral/gold,
+/area/city/backstreets_room/temple_motus/treasure_room)
 "uo" = (
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/effect/decal/cleanable/cobweb,
 /obj/effect/rubble_spawner,
 /turf/open/floor/carpet/black,
 /area/city/backstreets_room/temple_motus/main)
+"uq" = (
+/obj/machinery/telecomms/server/presets/security,
+/turf/open/floor/circuit/telecomms/mainframe,
+/area/facility_hallway/north)
 "uu" = (
 /obj/structure/flora/ausbushes/fullgrass,
 /turf/open/floor/plating/asteroid{
@@ -1274,11 +1259,11 @@
 /area/city/backstreets_room/temple_motus/dorms)
 "uT" = (
 /obj/effect/decal/cleanable/dirt/dust,
-/obj/item/statuebust/hippocratic{
-	desc = "A humanoid looking statue wielding a spear... It appears to have 'Resurgence Clan' etched on their back...";
-	name = "stone statue";
+/obj/structure/statue/bronze/marx{
 	icon = 'ModularTegustation/Teguicons/teaser_mobs.dmi';
 	icon_state = "stone_guard";
+	name = "stone statue";
+	desc = "A humanoid looking statue wielding a spear... It appears to have 'Resurgence Clan' etched on their back...";
 	dir = 8
 	},
 /obj/structure/fluff/oldturret{
@@ -1299,11 +1284,6 @@
 	dir = 8
 	},
 /area/city/backstreets_room/temple_motus/main)
-"uX" = (
-/obj/effect/turf_decal/bot,
-/obj/machinery/telecomms/receiver/preset_right,
-/turf/open/floor/circuit/telecomms/mainframe,
-/area/facility_hallway/north)
 "vn" = (
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/structure/table/reinforced,
@@ -1337,11 +1317,6 @@
 	color = "#5e5e5e"
 	},
 /area/city/backstreets_room/temple_motus)
-"vN" = (
-/obj/machinery/telecomms/server/presets/science,
-/obj/effect/turf_decal/bot,
-/turf/open/floor/circuit/telecomms/mainframe,
-/area/facility_hallway/north)
 "vW" = (
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/effect/wall_vent{
@@ -1353,16 +1328,11 @@
 /obj/structure/spacevine,
 /turf/closed/indestructible/iron,
 /area/city/backstreets_room/temple_motus/outskirts)
-"wm" = (
-/obj/effect/decal/cleanable/dirt/dust,
-/obj/structure/chair/pew{
-	dir = 1
-	},
-/obj/effect/rubble_spawner,
-/turf/open/floor/holofloor/chapel{
-	dir = 1
-	},
-/area/city/backstreets_room/temple_motus/main)
+"wf" = (
+/obj/effect/turf_decal/bot,
+/obj/machinery/telecomms/processor/preset_two,
+/turf/open/floor/circuit/telecomms/mainframe,
+/area/facility_hallway/north)
 "wn" = (
 /obj/structure/sign/departments/medbay/alt,
 /turf/closed/indestructible/iron,
@@ -1370,11 +1340,6 @@
 "wp" = (
 /turf/closed/mineral/ash_rock,
 /area/city/backstreets_room/temple_motus/dorms)
-"wq" = (
-/obj/effect/decal/cleanable/dirt/dust,
-/obj/effect/pickaxe_spawner,
-/turf/open/floor/carpet/black,
-/area/city/backstreets_room/temple_motus/main)
 "ws" = (
 /obj/effect/decal/cleanable/dirt/dust,
 /turf/closed/indestructible/iron,
@@ -1401,6 +1366,11 @@
 	name = "outskirts sand"
 	},
 /area/city/backstreets_room/temple_motus/outskirts)
+"wV" = (
+/obj/effect/turf_decal/bot,
+/obj/machinery/telecomms/hub/preset,
+/turf/open/floor/circuit/telecomms/mainframe,
+/area/facility_hallway/north)
 "wW" = (
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/structure/glowshroom/single,
@@ -1436,6 +1406,12 @@
 /obj/effect/rubble_spawner,
 /turf/open/floor/stone,
 /area/city/backstreets_room/temple_motus/treasure_hallway)
+"xI" = (
+/obj/effect/turf_decal/bot,
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/telecomms/processor/preset_three,
+/turf/open/floor/circuit/telecomms/mainframe,
+/area/facility_hallway/north)
 "xK" = (
 /obj/structure/bookcase{
 	pixel_y = 32;
@@ -1497,12 +1473,6 @@
 /obj/effect/decal/cleanable/generic,
 /turf/open/floor/plasteel/dark,
 /area/city/backstreets_room/temple_motus)
-"zc" = (
-/obj/effect/turf_decal/bot,
-/obj/effect/decal/cleanable/dirt,
-/obj/machinery/telecomms/bus/preset_one,
-/turf/open/floor/circuit/telecomms/mainframe,
-/area/facility_hallway/north)
 "zn" = (
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/effect/decal/cleanable/garbage,
@@ -1545,6 +1515,12 @@
 /obj/effect/decal/cleanable/dirt/dust,
 /turf/open/floor/holofloor/grass,
 /area/city/backstreets_room/temple_motus/study_a)
+"zP" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/lootcrate/workshopallas,
+/obj/structure/rack,
+/turf/open/floor/plating,
+/area/city/backstreets_room/temple_motus/factory)
 "zV" = (
 /obj/structure/closet/crate/wooden,
 /obj/item/grown/log/tree,
@@ -1563,6 +1539,11 @@
 /obj/item/grown/log/tree,
 /turf/open/floor/wood,
 /area/city/backstreets_room/temple_motus/outskirts)
+"Aj" = (
+/obj/effect/turf_decal/bot,
+/obj/machinery/telecomms/receiver/preset_left,
+/turf/open/floor/circuit/telecomms/mainframe,
+/area/facility_hallway/north)
 "Ak" = (
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/structure/table/greyscale{
@@ -1606,12 +1587,6 @@
 /obj/effect/decal/cleanable/dirt/dust,
 /turf/open/floor/stone,
 /area/city/backstreets_room/temple_motus/library)
-"AU" = (
-/obj/effect/turf_decal/bot,
-/obj/effect/decal/cleanable/dirt,
-/obj/machinery/telecomms/processor/preset_one,
-/turf/open/floor/circuit/telecomms/mainframe,
-/area/facility_hallway/north)
 "Bg" = (
 /obj/structure/fence/door,
 /obj/effect/decal/cleanable/dirt/dust,
@@ -1642,15 +1617,6 @@
 /obj/item/extra_arm,
 /turf/open/indestructible/white,
 /area/city/backstreets_room/temple_motus/medbay)
-"BC" = (
-/obj/effect/decal/cleanable/dirt/dust,
-/obj/structure/rack{
-	color = "#f8fc03"
-	},
-/obj/effect/landmark/cratespawn/corpo,
-/obj/effect/landmark/cratespawn/corpo,
-/turf/open/floor/mineral/gold,
-/area/city/backstreets_room/temple_motus/treasure_room)
 "BD" = (
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/structure/table/greyscale{
@@ -1659,6 +1625,13 @@
 /obj/structure/fluff/paper/stack,
 /turf/open/floor/stone,
 /area/city/backstreets_room/temple_motus/study_a)
+"BE" = (
+/obj/machinery/telecomms/server/presets/command{
+	name = "Command Server"
+	},
+/obj/effect/turf_decal/bot,
+/turf/open/floor/circuit/telecomms/mainframe,
+/area/facility_hallway/north)
 "BI" = (
 /obj/structure/spacevine,
 /turf/closed/wall/mineral/bronze,
@@ -1686,11 +1659,11 @@
 /area/city/backstreets_room/temple_motus/main)
 "Cn" = (
 /obj/effect/decal/cleanable/dirt/dust,
-/obj/item/statuebust/hippocratic{
-	desc = "A humanoid looking statue wielding a spear... It appears to have 'Resurgence Clan' etched on their back...";
-	name = "stone statue";
+/obj/structure/statue/bronze/marx{
 	icon = 'ModularTegustation/Teguicons/teaser_mobs.dmi';
-	icon_state = "stone_guard"
+	icon_state = "stone_guard";
+	name = "stone statue";
+	desc = "A humanoid looking statue wielding a spear... It appears to have 'Resurgence Clan' etched on their back..."
 	},
 /obj/structure/fluff/oldturret{
 	density = 0;
@@ -1711,6 +1684,11 @@
 /obj/structure/spacevine,
 /turf/closed/indestructible/iron,
 /area/city/backstreets_room/temple_motus)
+"CW" = (
+/obj/machinery/telecomms/broadcaster/preset_right,
+/obj/effect/turf_decal/bot,
+/turf/open/floor/circuit/telecomms/mainframe,
+/area/facility_hallway/north)
 "CX" = (
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/structure/sign/plaques/kiddie/library{
@@ -1721,22 +1699,8 @@
 /area/city/backstreets_room/temple_motus/main)
 "Db" = (
 /obj/effect/decal/cleanable/dirt/dust,
-/obj/item/statuebust/hippocratic{
-	desc = "A humanoid looking statue wielding a spear... It appears to have 'Resurgence Clan' etched on their back...";
-	name = "stone statue";
-	icon = 'ModularTegustation/Teguicons/teaser_mobs.dmi';
-	icon_state = "stone_guard";
-	dir = 8
-	},
-/obj/structure/fluff/oldturret{
-	density = 0;
-	layer = 2.8;
-	name = "pedestal";
-	desc = "A pedestal for a statue."
-	},
-/obj/effect/rubble_spawner,
-/turf/open/floor/light,
-/area/city/backstreets_room/temple_motus/treasure_hallway)
+/turf/open/floor/carpet/black,
+/area/city/backstreets_room/temple_motus/storage)
 "Dl" = (
 /turf/closed/indestructible/iron,
 /area/city/backstreets_room/temple_motus/treasure_hallway)
@@ -1751,10 +1715,6 @@
 	color = "#5e5e5e"
 	},
 /area/city/backstreets_room/temple_motus)
-"Du" = (
-/obj/machinery/telecomms/server/presets/security,
-/turf/open/floor/circuit/telecomms/mainframe,
-/area/facility_hallway/north)
 "DE" = (
 /obj/effect/decal/cleanable/dirt/dust,
 /mob/living/simple_animal/hostile/clan/stone_guard/heretic_puzzle/armor{
@@ -1778,6 +1738,11 @@
 /obj/effect/gibspawner/human/bodypartless,
 /turf/open/floor/holofloor/grass,
 /area/city/backstreets_room/temple_motus/study_a)
+"Ea" = (
+/obj/machinery/telecomms/broadcaster/preset_left,
+/obj/effect/turf_decal/bot,
+/turf/open/floor/circuit/telecomms/mainframe,
+/area/facility_hallway/north)
 "Ed" = (
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/effect/decal/cleanable/garbage,
@@ -1806,7 +1771,6 @@
 	color = "#8a8a8a"
 	},
 /obj/effect/decal/cleanable/cobweb/cobweb2,
-/obj/structure/lootcrate/workshopallas,
 /turf/open/floor/carpet/black,
 /area/city/backstreets_room/temple_motus/storage)
 "EH" = (
@@ -1850,10 +1814,11 @@
 /turf/open/floor/bronze,
 /area/city/backstreets_room/temple_motus/factory)
 "EO" = (
-/obj/effect/turf_decal/bot,
-/obj/machinery/telecomms/bus/preset_three,
-/turf/open/floor/circuit/telecomms/mainframe,
-/area/facility_hallway/north)
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/lootcrate/workshopallas,
+/obj/structure/rack,
+/turf/open/floor/mineral/plastitanium,
+/area/city/backstreets_room/temple_motus/factory)
 "EP" = (
 /obj/structure/flora/stump,
 /turf/open/floor/plating/asteroid{
@@ -1931,6 +1896,21 @@
 /obj/effect/decal/cleanable/dirt/dust,
 /turf/open/floor/wood,
 /area/city/backstreets_room/temple_motus/library)
+"FK" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/table/bronze,
+/obj/structure/window/bronze{
+	dir = 8
+	},
+/obj/structure/window/bronze{
+	dir = 4
+	},
+/obj/structure/window/bronze,
+/obj/structure/window/bronze{
+	dir = 1
+	},
+/turf/open/floor/mineral/gold,
+/area/city/backstreets_room/temple_motus/treasure_room)
 "FM" = (
 /obj/structure/sign/departments/holy,
 /turf/closed/indestructible/iron,
@@ -1995,15 +1975,8 @@
 /turf/closed/indestructible/iron,
 /area/city/backstreets_room/temple_motus/main)
 "Ha" = (
-/obj/machinery/telecomms/server/presets/engineering,
-/obj/effect/turf_decal/bot,
-/turf/open/floor/circuit/telecomms/mainframe,
+/turf/closed/indestructible/reinforced,
 /area/facility_hallway/north)
-"Hf" = (
-/obj/effect/decal/cleanable/dirt/dust,
-/obj/effect/decal/cleanable/generic,
-/turf/open/floor/carpet/black,
-/area/city/backstreets_room/temple_motus/storage)
 "Hk" = (
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/structure/chair/sofa/corner{
@@ -2018,7 +1991,6 @@
 	color = "#8a8a8a"
 	},
 /obj/effect/decal/cleanable/cobweb/cobweb2,
-/obj/structure/lootcrate/hana,
 /obj/structure/lootcrate/hana,
 /turf/open/floor/stone,
 /area/city/backstreets_room/temple_motus/library)
@@ -2115,13 +2087,24 @@
 /turf/open/floor/carpet/black,
 /area/city/backstreets_room/temple_motus/main)
 "Jf" = (
-/obj/machinery/telecomms/server/presets/medical,
-/turf/open/floor/circuit/telecomms/mainframe,
-/area/facility_hallway/north)
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/rack{
+	color = "#f8fc03"
+	},
+/obj/structure/lootcrate/money{
+	lootlist = list(/obj/item/stack/spacecash/c500);
+	rarechance = null
+	},
+/turf/open/floor/mineral/gold,
+/area/city/backstreets_room/temple_motus/treasure_room)
 "Jj" = (
 /obj/effect/decal/cleanable/dirt/dust,
 /turf/open/floor/holofloor/chapel,
 /area/city/backstreets_room/temple_motus/main)
+"Jm" = (
+/obj/machinery/telecomms/message_server/preset,
+/turf/open/floor/circuit/telecomms/mainframe,
+/area/facility_hallway/north)
 "Jp" = (
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/structure/fluff/empty_cryostasis_sleeper,
@@ -2158,11 +2141,6 @@
 /obj/structure/sign/plaques/kiddie/perfect_man,
 /turf/closed/indestructible/iron,
 /area/city/backstreets_room/temple_motus/dorms)
-"JP" = (
-/obj/machinery/telecomms/broadcaster/preset_left,
-/obj/effect/turf_decal/bot,
-/turf/open/floor/circuit/telecomms/mainframe,
-/area/facility_hallway/north)
 "JQ" = (
 /obj/effect/decal/cleanable/dirt/dust,
 /turf/open/floor/wood,
@@ -2190,6 +2168,12 @@
 /obj/item/clothing/suit/bronze,
 /turf/open/floor/bronze,
 /area/city/backstreets_room/temple_motus/factory)
+"Kk" = (
+/obj/machinery/telecomms/relay/preset/telecomms,
+/obj/structure/emergency_shield,
+/obj/effect/turf_decal/bot,
+/turf/open/floor/circuit/telecomms/mainframe,
+/area/facility_hallway/north)
 "Kn" = (
 /obj/structure/mineral_door/iron,
 /obj/effect/decal/cleanable/dirt/dust,
@@ -2255,6 +2239,20 @@
 	},
 /turf/open/floor/wood,
 /area/city/backstreets_room/temple_motus/dorms)
+"Le" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/pickaxe_spawner,
+/turf/open/floor/carpet/black,
+/area/city/backstreets_room/temple_motus/main)
+"Lo" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/rack{
+	color = "#f8fc03"
+	},
+/obj/effect/landmark/cratespawn/corpo,
+/obj/effect/landmark/cratespawn/corpo,
+/turf/open/floor/mineral/gold,
+/area/city/backstreets_room/temple_motus/treasure_room)
 "Lu" = (
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/effect/wall_vent{
@@ -2284,11 +2282,6 @@
 /obj/machinery/blackbox_recorder,
 /turf/open/floor/stone,
 /area/city/backstreets_room/temple_motus/study_a)
-"Mh" = (
-/obj/machinery/telecomms/server/presets/service,
-/obj/effect/turf_decal/bot,
-/turf/open/floor/circuit/telecomms/mainframe,
-/area/facility_hallway/north)
 "Mj" = (
 /turf/closed/indestructible/rock,
 /area/city/backstreets_room/temple_motus/factory)
@@ -2327,6 +2320,11 @@
 	},
 /turf/open/floor/stone,
 /area/city/backstreets_room/temple_motus/storage)
+"MF" = (
+/obj/effect/turf_decal/bot,
+/obj/machinery/telecomms/relay/preset/telecomms,
+/turf/open/floor/circuit/telecomms/mainframe,
+/area/facility_hallway/north)
 "MP" = (
 /obj/structure/sign/departments/examroom,
 /turf/closed/indestructible/iron,
@@ -2405,6 +2403,12 @@
 /obj/structure/glowshroom/single,
 /turf/open/floor/stone,
 /area/city/backstreets_room/temple_motus/study_a)
+"Og" = (
+/obj/effect/turf_decal/bot,
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/telecomms/bus/preset_one,
+/turf/open/floor/circuit/telecomms/mainframe,
+/area/facility_hallway/north)
 "Ok" = (
 /obj/structure/bookcase{
 	pixel_x = -32;
@@ -2416,12 +2420,6 @@
 	},
 /turf/open/floor/carpet/black,
 /area/city/backstreets_room/temple_motus/library)
-"Ol" = (
-/obj/machinery/telecomms/relay/preset/telecomms,
-/obj/structure/emergency_shield,
-/obj/effect/turf_decal/bot,
-/turf/open/floor/circuit/telecomms/mainframe,
-/area/facility_hallway/north)
 "On" = (
 /obj/structure/bed/maint,
 /obj/effect/decal/cleanable/dirt/dust,
@@ -2541,6 +2539,12 @@
 	},
 /turf/open/floor/stone,
 /area/city/backstreets_room/temple_motus/study_b)
+"Ri" = (
+/obj/effect/turf_decal/bot,
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/telecomms/processor/preset_one,
+/turf/open/floor/circuit/telecomms/mainframe,
+/area/facility_hallway/north)
 "Rl" = (
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/effect/decal/cleanable/xenoblood,
@@ -2676,11 +2680,11 @@
 /area/city/backstreets_room/temple_motus/factory)
 "TZ" = (
 /obj/effect/decal/cleanable/dirt/dust,
-/obj/item/statuebust/hippocratic{
-	desc = "A humanoid looking statue wielding a spear... It appears to have 'Resurgence Clan' etched on their back...";
-	name = "stone statue";
+/obj/structure/statue/bronze/marx{
 	icon = 'ModularTegustation/Teguicons/teaser_mobs.dmi';
 	icon_state = "stone_guard";
+	name = "stone statue";
+	desc = "A humanoid looking statue wielding a spear... It appears to have 'Resurgence Clan' etched on their back...";
 	dir = 1
 	},
 /obj/structure/fluff/oldturret{
@@ -2736,6 +2740,11 @@
 /obj/effect/decal/cleanable/dirt/dust,
 /turf/open/floor/stone,
 /area/city/backstreets_room/temple_motus/study_b)
+"UE" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/decal/cleanable/generic,
+/turf/open/floor/carpet/black,
+/area/city/backstreets_room/temple_motus/storage)
 "UG" = (
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/structure/chair/sofa/corp/corner{
@@ -2743,17 +2752,11 @@
 	},
 /turf/open/floor/stone,
 /area/city/backstreets_room/temple_motus)
-"UK" = (
-/obj/effect/decal/cleanable/dirt/dust,
-/obj/structure/rack{
-	color = "#f8fc03"
-	},
-/obj/structure/lootcrate/money{
-	lootlist = list(/obj/item/stack/spacecash/c500);
-	rarechance = null
-	},
-/turf/open/floor/mineral/gold,
-/area/city/backstreets_room/temple_motus/treasure_room)
+"UM" = (
+/obj/machinery/telecomms/server/presets/science,
+/obj/effect/turf_decal/bot,
+/turf/open/floor/circuit/telecomms/mainframe,
+/area/facility_hallway/north)
 "Va" = (
 /obj/structure/flora/rock/pile,
 /turf/open/floor/plating/asteroid{
@@ -2812,14 +2815,10 @@
 /obj/effect/rubble_spawner,
 /turf/open/floor/carpet/black,
 /area/city/backstreets_room/temple_motus/main)
-"Wr" = (
-/obj/effect/decal/cleanable/dirt/dust,
-/obj/structure/table/greyscale{
-	color = "#8a8a8a"
-	},
-/obj/structure/lootcrate/workshopallas,
-/turf/open/floor/carpet/black,
-/area/city/backstreets_room/temple_motus/storage)
+"WN" = (
+/obj/machinery/telecomms/server/presets/medical,
+/turf/open/floor/circuit/telecomms/mainframe,
+/area/facility_hallway/north)
 "WT" = (
 /obj/structure/bed{
 	pixel_y = 15;
@@ -2880,12 +2879,6 @@
 /obj/structure/closet/crate/wooden,
 /turf/open/floor/wood,
 /area/city/backstreets_room/temple_motus/outskirts)
-"Xe" = (
-/obj/effect/turf_decal/bot,
-/obj/effect/decal/cleanable/dirt,
-/obj/machinery/telecomms/processor/preset_three,
-/turf/open/floor/circuit/telecomms/mainframe,
-/area/facility_hallway/north)
 "Xg" = (
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/structure/chair/pew/left{
@@ -6245,13 +6238,13 @@ EF
 ed
 eF
 Kq
-wm
+mv
 ed
 pJ
 mB
-wq
+Le
 Fw
-ks
+Ca
 tM
 NK
 Qs
@@ -6336,10 +6329,10 @@ ex
 ex
 ex
 cO
-UK
+Jf
 IP
-mv
-mv
+ui
+ui
 LP
 ye
 GA
@@ -6353,14 +6346,14 @@ uD
 GA
 sw
 LP
-ar
+mG
 Mv
-ar
+mG
 Gg
 Mv
-ar
+mG
 Gg
-ar
+mG
 Dl
 Dl
 HV
@@ -6463,7 +6456,7 @@ ex
 ex
 ex
 cO
-BC
+Lo
 PK
 PK
 IP
@@ -6590,7 +6583,7 @@ ex
 ex
 ex
 cO
-fj
+FK
 PK
 PK
 IP
@@ -6717,7 +6710,7 @@ ex
 ex
 ex
 cO
-BC
+Lo
 PK
 PK
 IP
@@ -6753,7 +6746,7 @@ EF
 ed
 eF
 Kq
-wm
+mv
 ed
 VU
 Jj
@@ -6844,10 +6837,10 @@ ex
 ex
 ex
 cO
-UK
+Jf
 IP
-lW
-lW
+ar
+ar
 LP
 GA
 bS
@@ -6866,9 +6859,9 @@ Gg
 uT
 Mv
 Gg
-Db
+hM
 Gg
-Db
+hM
 Dl
 Dl
 Dl
@@ -6884,7 +6877,7 @@ es
 Kq
 Aw
 Wp
-wq
+Le
 Fw
 yg
 yg
@@ -7279,7 +7272,7 @@ Fp
 yg
 ll
 ZC
-Ui
+ks
 yg
 sA
 aj
@@ -9926,11 +9919,11 @@ ex
 ex
 nQ
 EG
-cC
+Db
 rV
 rV
-cC
-Wr
+Db
+sd
 nQ
 ex
 ex
@@ -10053,10 +10046,10 @@ ex
 ex
 nQ
 nQ
-cC
-cC
-Hf
-cC
+Db
+Db
+UE
+Db
 nQ
 nQ
 ex
@@ -10897,12 +10890,12 @@ ex
 "}
 (62,1,1) = {"
 ex
-mG
-mG
-mG
-mG
-mG
-mG
+Ha
+Ha
+Ha
+Ha
+Ha
+Ha
 ex
 ex
 ex
@@ -11024,12 +11017,12 @@ ex
 "}
 (63,1,1) = {"
 ex
-mG
-Jf
-fs
-mG
-mG
-mG
+Ha
+WN
+Jm
+Ha
+Ha
+Ha
 ex
 ex
 ex
@@ -11151,12 +11144,12 @@ ex
 "}
 (64,1,1) = {"
 ex
-mG
-lj
-AU
-kR
-vN
-mG
+Ha
+wf
+Ri
+bF
+UM
+Ha
 ex
 ex
 ex
@@ -11278,12 +11271,12 @@ ex
 "}
 (65,1,1) = {"
 ex
-mG
-sp
-dG
-zc
 Ha
-mG
+wV
+Aj
+Og
+ac
+Ha
 ex
 ex
 ex
@@ -11405,12 +11398,12 @@ ex
 "}
 (66,1,1) = {"
 ex
-mG
-sK
-Xe
-EO
-io
-mG
+Ha
+eo
+xI
+oU
+qY
+Ha
 ex
 ex
 ex
@@ -11474,7 +11467,7 @@ ex
 lm
 KV
 KV
-ov
+zP
 jp
 ex
 ex
@@ -11532,12 +11525,12 @@ ex
 "}
 (67,1,1) = {"
 ex
-mG
-tZ
-uX
-lL
-Mh
-mG
+Ha
+MF
+qn
+rr
+hx
+Ha
 ex
 ex
 ex
@@ -11601,7 +11594,7 @@ ex
 lm
 OY
 KV
-mu
+EO
 jp
 ex
 ex
@@ -11659,12 +11652,12 @@ ex
 "}
 (68,1,1) = {"
 ex
-mG
-JP
-dM
-tW
-pq
-mG
+Ha
+Ea
+jK
+CW
+BE
+Ha
 ex
 ex
 ex
@@ -11786,12 +11779,12 @@ ex
 "}
 (69,1,1) = {"
 ex
-mG
-rJ
-Du
-mG
-Ol
-mG
+Ha
+qO
+uq
+Ha
+Kk
+Ha
 ex
 ex
 ex
@@ -11913,12 +11906,12 @@ ex
 "}
 (70,1,1) = {"
 ex
-mG
-mG
-mG
-mG
-mG
-mG
+Ha
+Ha
+Ha
+Ha
+Ha
+Ha
 ex
 ex
 ex

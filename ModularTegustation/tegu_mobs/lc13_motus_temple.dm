@@ -313,8 +313,8 @@
 	desc = "A single blood red rose, connected to all nearby vines..."
 	icon = 'ModularTegustation/Teguicons/32x32.dmi'
 	icon_state = "rose_red"
-	maxHealth = 1500
-	health = 1500
+	maxHealth = 800
+	health = 800
 	del_on_death = TRUE
 	faction = list("scarletrose", "hostile")
 	gender = NEUTER
@@ -413,6 +413,7 @@
 	base_icon_state = "Med1"
 	color = "#800000"
 	max_integrity = 15
+	expand_cooldown = 4 SECONDS
 	resistance_flags = FLAMMABLE
 	pass_flags_self = LETPASSTHROW
 	armor = list(
@@ -551,8 +552,8 @@
 	desc = "A single blood red sprout, connected to all nearby vines... It appears to be still be growing..."
 	icon = 'icons/obj/hydroponics/harvest.dmi'
 	icon_state = "poppy"
-	maxHealth = 500
-	health = 500
+	maxHealth = 400
+	health = 400
 	color = "#fc0f03"
 	del_on_death = TRUE
 	damage_coeff = list(RED_DAMAGE = 1, WHITE_DAMAGE = 1, BLACK_DAMAGE = 1, PALE_DAMAGE = 1)

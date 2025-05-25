@@ -14,7 +14,7 @@ GLOBAL_LIST_EMPTY(heretic_puzzle)
 /mob/living/simple_animal/hostile/clan/stone_guard/dagger_puzzle/Initialize()
 	. = ..()
 	glob_faction = GLOB.dagger_puzzle
-	faction = list("neutral")
+	faction = list("neutral", "hostile")
 
 /mob/living/simple_animal/hostile/clan/stone_guard/dagger_puzzle/examine(mob/user)
 	. = ..()
@@ -283,6 +283,7 @@ GLOBAL_LIST_EMPTY(heretic_puzzle)
 
 /obj/machinery/door/keycard/puzzle_riddles
 	desc = "This door appears to have a voice box attached to it, What could it be used for?"
+	puzzle_id = "puzzle_door"
 	var/current_riddle = 1
 	var/riddling = FALSE
 
@@ -371,7 +372,7 @@ GLOBAL_LIST_EMPTY(heretic_puzzle)
 /mob/living/simple_animal/hostile/clan/stone_guard/heretic_puzzle/Initialize()
 	. = ..()
 	glob_faction = GLOB.heretic_puzzle
-	faction = list("neutral")
+	faction = list("neutral", "hostile")
 
 /mob/living/simple_animal/hostile/clan/stone_guard/heretic_puzzle/attack_hand(mob/living/carbon/M)
 	. = ..()
@@ -401,7 +402,8 @@ GLOBAL_LIST_EMPTY(heretic_puzzle)
 		new /obj/item/keycard/motus_medbay (get_turf(src))
 		dust()
 	else
-		turn_hostile(user)
+		if(!(user in glob_faction))
+			turn_hostile(user)
 
 /mob/living/simple_animal/hostile/clan/stone_guard/heretic_puzzle/proc/clapping()
 	for(var/mob/living/simple_animal/hostile/clan/stone_guard/heretic_puzzle/S in urange(10, get_turf(src)))
