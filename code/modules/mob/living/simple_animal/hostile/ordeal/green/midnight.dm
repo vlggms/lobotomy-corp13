@@ -15,8 +15,8 @@
 	faction = list("green_ordeal")
 	gender = NEUTER
 	mob_biotypes = MOB_ROBOTIC
-	maxHealth = 50000
-	health = 50000
+	maxHealth = 40000
+	health = 40000
 	damage_coeff = list(RED_DAMAGE = 0.5, WHITE_DAMAGE = 0.8, BLACK_DAMAGE = 1.2, PALE_DAMAGE = 1)
 	butcher_results = list(/obj/item/food/meat/slab/robot = 22)
 	guaranteed_butcher_results = list(/obj/item/food/meat/slab/robot = 16)
@@ -179,6 +179,10 @@
 		return
 	laserloop.start()
 	for(var/i = 1 to max_laser_repeats)
+		//This basically fires a mini laser barrage on ticks 5, 10, 15, 20, 25 and 30.
+		//This follows the logic of the mini lasers raining down as the main lasers fire and continuing slightly after they've stopped (due to the timer on mini lasers)
+		if(i % 5 == 0 && i <= max_laser_repeats * 0.75)
+			FireMiniLaserBarrage()
 		var/list/already_hit = list()
 		for(var/turf/T in hit_line)
 			for(var/mob/living/L in range(1, T))
@@ -209,29 +213,73 @@
 	CloseShell()
 	laser_cooldown = world.time + laser_cooldown_time
 	firing = FALSE
+	//Now that we've stopped firing, let's prepare to deploy a squad of friendlies
 	addtimer(CALLBACK(src, PROC_REF(DeployBotSquad)), 3 SECONDS)
 
+// This proc is used to fire a barrage of mini lasers, it is called several times during the helix's lasers being active. An alternative way to do this would be
+// placing it on Life() like Waxing does, but I only wanted it to happen while the Helix was firing.
+/mob/living/simple_animal/hostile/ordeal/green_midnight/proc/FireMiniLaserBarrage()
+	//Lasers hit a huge range, except a mini-safe-spot directly south of Helix but it is likely hit by a bigger laser anyway. Also there's 10 gunbots on top of you
+	var/list/all_turfs = RANGE_TURFS(13, src)
+	var/list/danger_close_turfs = RANGE_TURFS(2, src)
+	all_turfs -= danger_close_turfs
+	for(var/turf/unfortunate_turf in all_turfs)
+		if(prob(22))
+			addtimer(CALLBACK(src, PROC_REF(FireMiniLaser), unfortunate_turf), rand(1, 50))
+
+
+// The mini-lasers are code taken from Waxing of the Black Sun with some minor statistical tweaks.
+/mob/living/simple_animal/hostile/ordeal/green_midnight/proc/FireMiniLaser(var/turf/target_turf)
+	new /obj/effect/temp_visual/helix_minilaser(target_turf)
+
+//They are mainly a nuisance that causes people stacking in tight spots to move and shuffle and get eachother killed. Encourages not dumping BLACK armour for the ordeal
+/obj/effect/temp_visual/helix_minilaser
+	name = "helix of the end mini-laser"
+	icon = 'ModularTegustation/Teguicons/32x64.dmi'
+	icon_state = "pillar_strike"
+	duration = 15
+	color = COLOR_LIME
+
+/obj/effect/temp_visual/helix_minilaser/Initialize()
+	..()
+	addtimer(CALLBACK(src, PROC_REF(Blowup)), 10)
+
+/obj/effect/temp_visual/helix_minilaser/proc/Blowup()
+	playsound(src, 'sound/weapons/laser.ogg', 10, FALSE, 4)
+	for(var/mob/living/carbon/human/H in src.loc)
+		H.deal_damage(55, BLACK_DAMAGE)
+		to_chat(H, span_userdanger("You're hit by [src.name]!"))
+
+//This proc is called to return a list with all the types that should be spawned by the next deployment. DeployBotSquad() trusts whatever list is given to it, so we
+//make sure we don't generate too many mobs in this proc (else midnight could spawn infinite mobs)
 /mob/living/simple_animal/hostile/ordeal/green_midnight/proc/GenerateBotSquad()
 	var/list/squad = list()
-	var/remaining_squad_members = squad_size - active_minions
-	while(remaining_squad_members > 0)
-		if(remaining_squad_members >= (squad_size * 0.6))
-			squad += /mob/living/simple_animal/hostile/ordeal/green_bot_big
+	var/remaining_spawn_budget = squad_size - active_minions
+	while(remaining_spawn_budget > 0)
+		//We want the last 40% of our budget to be comprised of Green Noons. They are the priority spawn here
+		if(remaining_spawn_budget <= (squad_size * 0.4))
+			squad += /mob/living/simple_animal/hostile/ordeal/green_bot_big/factory
 		else
+		//If we have budget to spare, we can get one of these I guess. Honestly by this point in the shift, they are irrelevant, EXCEPT the Syringe Bots. They are lethal.
+		//These are specifically the /factory subtype because we don't want a lobillion dead bodies to be left behind.
 			squad += pick(list(
-			/mob/living/simple_animal/hostile/ordeal/green_bot,
-			/mob/living/simple_animal/hostile/ordeal/green_bot/syringe,
-			/mob/living/simple_animal/hostile/ordeal/green_bot/fast))
-		remaining_squad_members--
+			/mob/living/simple_animal/hostile/ordeal/green_bot/factory,
+			/mob/living/simple_animal/hostile/ordeal/green_bot/syringe/factory,
+			/mob/living/simple_animal/hostile/ordeal/green_bot/fast/factory))
+		remaining_spawn_budget--
 	return squad
 
+//This proc will deploy the remaining spawn budget (maximum squad size - currently active bots) through drop pods.
 /mob/living/simple_animal/hostile/ordeal/green_midnight/proc/DeployBotSquad()
+	//We get the types we want to spawn in a list here
 	var/list/squad = GenerateBotSquad()
-
+	//These are all the turfs around us.
 	var/list/deployment_points = RANGE_TURFS(8, src)
 	for(var/turf/place in deployment_points)
+		//Don't deploy a bot in an obstructed turf, or somewhere we can't see
 		if(!isInSight(src, place) || place.is_blocked_turf(TRUE))
 			deployment_points -= place
+	//This is giga-jank but IDK how to do this properly. Helix of the End occupies 2 tiles north, west and east, and obviously its own tile. So we disregard them.
 	deployment_points -= get_turf(src)
 	deployment_points -= get_turf(locate(src.x-1, src.y, src.z))
 	deployment_points -= get_turf(locate(src.x-2, src.y, src.z))
@@ -240,16 +288,22 @@
 	deployment_points -= get_turf(locate(src.x, src.y+1, src.z))
 	deployment_points -= get_turf(locate(src.x, src.y+2, src.z))
 
-
-
 	for(var/mob in squad)
-		var/turf/chosen_deployment_point = pick(deployment_points)
+		//If we actually have any valid turfs left, we can pick from them. If we ran out, I guess we're dropping them right beneath us
+		var/turf/chosen_deployment_point = deployment_points.len > 0 ? pick(deployment_points) : locate(src.x, src.y-1, src.z)
+		//We need a supply pod to drop our bot in. Then we'll put our minion inside
 		var/obj/structure/closet/supplypod/helixpod/deployment_pod = new()
-		var/minion = new mob(deployment_pod)
+		var/mob/living/simple_animal/hostile/ordeal/minion = new mob(deployment_pod)
+		//Add them to Ordeal tracking
+		minion.ordeal_reference = src.ordeal_reference
+		src.ordeal_reference.ordeal_mobs += minion
+		//We register an active minion to prevent us from spawning a limbillion of them, and we ask them to tell us when they die so we can adjust our spawn budget
 		active_minions++
 		RegisterSignal(minion, COMSIG_LIVING_DEATH, PROC_REF(UnlinkMinion))
+		//Make them deploy and remove their spot from the available deployment pool
 		new /obj/effect/pod_landingzone(chosen_deployment_point, deployment_pod)
 		deployment_points -= chosen_deployment_point
+		//They shouldn't arrive all at the same time, it would feel too un-natural. This will stagger their arrival a tiny bit and make it look better
 		SLEEP_CHECK_DEATH(rand())
 
 /mob/living/simple_animal/hostile/ordeal/green_midnight/spawn_gibs()
@@ -264,7 +318,7 @@
 	name = "protocol of contemplation"
 	desc = "Things are about to get heated."
 	specialised = FALSE
-	style = STYLE_SYNDICATE
+	style = STYLE_HELIX
 	bluespace = TRUE
 	explosionSize = list(0,0,0,0)
 	delays = list(POD_TRANSIT = 3.5 SECONDS, POD_FALLING = 0.3 SECONDS, POD_OPENING = 1 SECONDS, POD_LEAVING = 0.7 SECONDS)
