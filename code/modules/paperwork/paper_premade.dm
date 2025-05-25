@@ -152,7 +152,7 @@
 	Possible Payment: <b>6800 ahn</b> <br>\
 	Payment Type: <b>Savaging</b> <br>\
 	Brief Description: <br>\
-	Greetings, Fixers of the City. You may call me Elliot, and Explorer of the Outskirts and Ruin. Today, I am sending out this contract to you because I am looking for assistance in exploring specific temple called, 'The Temple of Motus'. It is quite troubling to take care of it by myself.\
+	Greetings, Fixers of the City. You may call me Joshua, and Explorer of the Outskirts and Ruin. Today, I am sending out this contract to you because I am looking for assistance in exploring specific temple called, 'The Temple of Motus'. It is quite troubling to take care of it by myself.\
 	However, the rewards are said to be great and you have the freedom to loot anything you find there. I am just looking for a single artifact there. Also, make sure to speak with me once you get there. So we could venutre down into the temple together.<br>\
 	<br>\
 	<i>Written by the Joshua</i>"
