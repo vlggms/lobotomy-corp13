@@ -27,6 +27,8 @@
 	if(istype(O))
 		var/response = alert(usr,"Will you extract [src]?","This cannot be reversed.","Yes","No")
 		if(response == "Yes" && do_after(usr, 10, O))
+			forceMove(get_turf(O))
+			O.GrabAnimation()
 			Extract()
 		return
 	var/obj/structure/itemselling/I = over_object//item selling machine
@@ -89,9 +91,19 @@
 /obj/machinery/abno_core_extractor
 	name = "abnormality core containment unit"
 	desc = "A device used to transfer abnormalities into containment cells."
-	icon = 'icons/obj/machines/sleeper.dmi'
-	icon_state = "sleeper"
-	density = TRUE
+	icon = 'ModularTegustation/Teguicons/lc13_structures_64x64.dmi'
+	icon_state = "extraction"
+	pixel_x = -16
+	base_pixel_x = -16
+	pixel_y = 16
+	base_pixel_y = 16
+	density = FALSE
+	layer = ABOVE_ALL_MOB_LAYER
+
+/obj/machinery/abno_core_extractor/proc/GrabAnimation()
+	flick("extraction_closed", src)
+	animate(src, pixel_y = 56, time = 3 SECONDS, loop = 1, ANIMATION_RELATIVE)
+	animate(pixel_y = initial(pixel_y), time = 1 SECONDS, ANIMATION_RELATIVE)
 
 /obj/machinery/abno_core_seller
 	name = "abnormality core telepad"

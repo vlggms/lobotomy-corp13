@@ -26,6 +26,7 @@
 	white_bonus = 20
 	black_bonus = 20
 	pale_bonus = 20
+	custom_price = 750
 
 /obj/item/egoshard/bad/white
 	name = "white egoshard"
@@ -35,6 +36,7 @@
 	white_bonus = 60
 	black_bonus = 20
 	pale_bonus = 20
+	custom_price = 750
 
 /obj/item/egoshard/bad/black
 	name = "black egoshard"
@@ -44,6 +46,7 @@
 	white_bonus = 20
 	black_bonus = 60
 	pale_bonus = 20
+	custom_price = 750
 
 /obj/item/egoshard/good
 	name = "red egoshard"
@@ -55,6 +58,7 @@
 	white_bonus = 30
 	black_bonus = 40
 	pale_bonus = 40
+	custom_price = 2000
 
 /obj/item/egoshard/good/white
 	name = "white egoshard"
@@ -64,6 +68,7 @@
 	white_bonus = 70
 	black_bonus = 30
 	pale_bonus = 40
+	custom_price = 2000
 
 /obj/item/egoshard/good/black
 	name = "black egoshard"
@@ -73,6 +78,7 @@
 	white_bonus = 40
 	black_bonus = 70
 	pale_bonus = 30
+	custom_price = 2000
 
 /obj/item/egoshard/good/pale
 	name = "pale egoshard"
@@ -83,6 +89,7 @@
 	white_bonus = 30
 	black_bonus = 40
 	pale_bonus = 70
+	custom_price = 2000
 
 /obj/item/egoshard/great
 	name = "flawless red egoshard"
@@ -94,6 +101,7 @@
 	white_bonus = 60
 	black_bonus = 40
 	pale_bonus = 60
+	custom_price = 4000
 
 /obj/item/egoshard/great/white
 	name = "flawless white egoshard"
@@ -103,6 +111,7 @@
 	white_bonus = 80
 	black_bonus = 60
 	pale_bonus = 60
+	custom_price = 4000
 
 /obj/item/egoshard/great/black
 	name = "flawless black egoshard"
@@ -112,6 +121,7 @@
 	white_bonus = 60
 	black_bonus = 80
 	pale_bonus = 60
+	custom_price = 4000
 
 /obj/item/egoshard/great/pale
 	name = "flawless pale egoshard"
@@ -122,6 +132,7 @@
 	white_bonus = 60
 	black_bonus = 60
 	pale_bonus = 80
+	custom_price = 4000
 
 //These exist, but I'm not sure where I would put ALEPH++ tier egoshards in terms of loot
 /obj/item/egoshard/excellent

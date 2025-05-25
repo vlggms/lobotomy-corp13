@@ -137,7 +137,7 @@
 		)
 
 /obj/effect/spawner/mobspawner/brown_dawn/noon
-	max_spawns = 2
+	max_spawns = 1
 	mobspawn_table = list(
 		/mob/living/simple_animal/hostile/ordeal/sin_sloth/noon = 1,
 		/mob/living/simple_animal/hostile/ordeal/sin_gluttony/noon = 1,
@@ -148,7 +148,7 @@
 		)
 
 /obj/effect/spawner/mobspawner/brown_dawn/dusk
-	max_spawns = 4
+	max_spawns = 2
 	mobspawn_table = list(
 		/mob/living/simple_animal/hostile/ordeal/sin_sloth/noon = 1,
 		/mob/living/simple_animal/hostile/ordeal/sin_gluttony/noon = 1,
@@ -159,7 +159,7 @@
 		)
 
 /obj/effect/spawner/mobspawner/brown_dawn/midnight
-	max_spawns = 6
+	max_spawns = 4
 	mobspawn_table = list(
 		/mob/living/simple_animal/hostile/ordeal/sin_sloth/noon = 1,
 		/mob/living/simple_animal/hostile/ordeal/sin_gluttony/noon = 1,
@@ -252,7 +252,7 @@
 		/mob/living/simple_animal/hostile/meatblob/gunner = 5,
 		/mob/living/simple_animal/hostile/meatblob/gunner/shotgun = 5,
 		/mob/living/simple_animal/hostile/meatblob/gunner/sniper = 5,
-		/mob/living/simple_animal/hostile/slime/big = 2//ML's chosen
+		/mob/living/simple_animal/hostile/slime/big = 2,//ML's chosen
 		)
 
 //Steel Singles
@@ -263,21 +263,23 @@
 	max_spawns = 1
 	mobspawn_table = list(
 		/mob/living/simple_animal/hostile/ordeal/steel_dawn/steel_noon = 3,
-		/mob/living/simple_animal/hostile/ordeal/steel_dawn/steel_noon/flying = 1
+		/mob/living/simple_animal/hostile/ordeal/steel_dawn/steel_noon/flying = 1,
 		)
 
-/obj/effect/spawner/mobspawner/steel_noon/duo
+/obj/effect/spawner/mobspawner/steel_noon/duo//dusk
 	max_spawns = 2
 	mobspawn_table = list(
-		/mob/living/simple_animal/hostile/ordeal/steel_dawn/steel_noon = 3,
-		/mob/living/simple_animal/hostile/ordeal/steel_dawn/steel_noon/flying = 1
+		/mob/living/simple_animal/hostile/ordeal/steel_dawn/steel_noon = 5,
+		/mob/living/simple_animal/hostile/ordeal/steel_dawn/steel_noon/flying = 3,
+		/mob/living/simple_animal/hostile/ordeal/steel_dusk = 1,
 		)
 
-/obj/effect/spawner/mobspawner/steel_noon/quartet
+/obj/effect/spawner/mobspawner/steel_noon/quartet//midnight
 	max_spawns = 4
 	mobspawn_table = list(
-		/mob/living/simple_animal/hostile/ordeal/steel_dawn/steel_noon = 3,
-		/mob/living/simple_animal/hostile/ordeal/steel_dawn/steel_noon/flying = 1
+		/mob/living/simple_animal/hostile/ordeal/steel_dawn/steel_noon = 5,
+		/mob/living/simple_animal/hostile/ordeal/steel_dawn/steel_noon/flying = 5,
+		/mob/living/simple_animal/hostile/ordeal/steel_dusk = 1,
 		)
 
 //Green Singles (unused)
@@ -291,7 +293,7 @@
 	max_spawns = 1
 	mobspawn_table = list(/mob/living/simple_animal/hostile/ordeal/green_dusk = 1)
 
-/obj/effect/spawner/mobspawner/green_dusk/duo
+/obj/effect/spawner/mobspawner/green_dusk/duo//midnight
 	max_spawns = 2
 	mobspawn_table = list(/mob/living/simple_animal/hostile/ordeal/green_dusk = 1)
 
@@ -302,7 +304,7 @@
 /obj/effect/spawner/mobspawner/indigo_noon/solo
 	max_spawns = 1
 
-/obj/effect/spawner/mobspawner/indigo_dusk/duo
+/obj/effect/spawner/mobspawner/indigo_dusk/duo//dusk
 	max_spawns = 2
 	mobspawn_table = list(
 	/mob/living/simple_animal/hostile/ordeal/indigo_noon = 10,
@@ -312,7 +314,7 @@
 	/mob/living/simple_animal/hostile/ordeal/indigo_dusk/pale = 1,
 	)
 
-/obj/effect/spawner/mobspawner/indigo_dusk/quartet
+/obj/effect/spawner/mobspawner/indigo_dusk/quartet//midnight
 	max_spawns = 4
 	mobspawn_table = list(
 	/mob/living/simple_animal/hostile/ordeal/indigo_noon = 5,

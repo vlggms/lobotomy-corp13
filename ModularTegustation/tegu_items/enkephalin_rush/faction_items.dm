@@ -113,3 +113,14 @@
 			user.adjust_attribute_level(A, -1*processing)
 			user.adjust_attribute_level(A, set_attribute)
 	to_chat(user, span_notice("You feel ready for combat."))
+
+
+//***Pickaxes***
+/obj/item/pickaxe/lcorp
+	name = "lobotomy corp pickaxe"
+	desc = "A modern pickaxe distributed by Lobotomy Corporation. It mines 20% faster than a regular pickaxe."
+	icon = 'icons/obj/mining.dmi'
+	icon_state = "lcorp"//todo: make new inhands for these; currently uses the base type
+	w_class = WEIGHT_CLASS_BULKY//
+	toolspeed = 0.8//refer to mining_tools.dm for other picks
+	custom_price = 200

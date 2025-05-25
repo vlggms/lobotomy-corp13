@@ -18,6 +18,7 @@
 							TEMPERANCE_ATTRIBUTE = 20,
 							JUSTICE_ATTRIBUTE = 20
 							)
+	custom_price = 100
 	var/installed_shard
 	var/equipped
 

@@ -55,3 +55,28 @@
 	attack_verb_continuous = list("bashes", "clubs")
 	attack_verb_simple = list("bashes", "clubs")
 	hitsound = 'sound/weapons/fixer/generic/club1.ogg'
+
+/obj/item/ego_weapon/city/fixerpen
+	name = "fixer pen"
+	desc = "Mightier than the sword."
+	icon = 'icons/obj/bureaucracy.dmi'
+	icon_state = "pen"
+	force = 0
+	attack_speed = 0.9
+	damtype = RED_DAMAGE
+
+	attack_verb_continuous = list("pokes", "jabs", "tears", "lacerates", "gores")
+	attack_verb_simple = list("poke", "jab", "tear", "lacerate", "gore")
+	hitsound = 'sound/weapons/ego/spear1.ogg'
+	var/mode = 0
+
+/obj/item/ego_weapon/city/fixerpen/attack_self(mob/living/user)
+	playsound(user, mode ? 'sound/weapons/magin.ogg' : 'sound/weapons/magout.ogg', 40, TRUE)
+	if(mode == 0)
+		mode = 1
+		force = 21
+		icon = 'ModularTegustation/Teguicons/lc13_weapons.dmi'
+		return
+	mode = 0
+	force = initial(force)
+	icon = initial(icon)
