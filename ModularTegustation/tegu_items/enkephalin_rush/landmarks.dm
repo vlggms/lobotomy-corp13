@@ -2,12 +2,14 @@
 GLOBAL_LIST_INIT(assiyah, list(//HE's and TETHs
 //	/mob/living/simple_animal/hostile/abnormality/puss_in_boots,//difficulty needs testing
 //	/mob/living/simple_animal/hostile/abnormality/red_shoes,//re-introduce after breach rework
+//	/mob/living/simple_animal/hostile/abnormality/der_freischutz,//buff its firing speed or range in #2723
 	/mob/living/simple_animal/hostile/abnormality/golden_apple,
 	/mob/living/simple_animal/hostile/abnormality/shock_centipede,
 	/mob/living/simple_animal/hostile/abnormality/ardor_moth,
 	/mob/living/simple_animal/hostile/abnormality/porccubus,
 	/mob/living/simple_animal/hostile/abnormality/funeral,
 	/mob/living/simple_animal/hostile/abnormality/kqe,
+	/mob/living/simple_animal/hostile/abnormality/snow_queen,
 ))
 
 GLOBAL_LIST_INIT(briah, list(//WAW
