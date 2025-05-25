@@ -1083,13 +1083,13 @@
 	id = "outskirtslockdown";
 	name = "Outskirts Lockdown Button";
 	pixel_y = 7;
-	req_access_txt = "20"
+	req_access_txt = "59"
 	},
 /obj/machinery/button/door/indestructible{
 	id = "citycheckpoint";
 	name = "Outskirts - Facility Checkpoint Button";
 	pixel_y = -3;
-	req_access_txt = "20"
+	req_access_txt = "59"
 	},
 /turf/open/floor/carpet/blue,
 /area/city/fixers)
