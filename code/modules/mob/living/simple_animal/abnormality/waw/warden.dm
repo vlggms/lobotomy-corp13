@@ -24,7 +24,7 @@
 	del_on_death = FALSE
 	can_breach = TRUE
 	threat_level = WAW_LEVEL
-	start_qliphoth = 2
+	start_qliphoth = 3
 	work_chances = list(
 		ABNORMALITY_WORK_INSTINCT = 40,
 		ABNORMALITY_WORK_INSIGHT = 15,
@@ -56,19 +56,23 @@
 
 	var/finishing = FALSE
 	var/KidnapThreshold = 0.25
+	var/KidnapStuntime = 9999
 
 	var/contained_people = 0
 	var/captured_souls = 0
 	var/indoctrinated_morons = list()
 	var/digestion_modifier = 0.2
-	var/consumed_soul_modifier = 0.3
+	var/consumed_soul_modifier = 0.1
+	var/resistance_cap = 0.1
+	var/lower_damage_cap = 20
+	var/upper_damage_cap = 30
 
 	var/resistance_decrease = 0.2
 
 	var/damage_down = 15
 	var/damage_degradation = 10
 
-/mob/living/simple_animal/hostile/abnormality/warden/Login()
+/mob/living/simple_animal/hostile/abnormality/warden/Login() // I need to fully revamp this, ouuuuuuggghhhhh
 	. = ..()
 	to_chat(src, "<h1>You are Warden, A Tank Role Abnormality.</h1><br>\
 		<b>|Soul Guard|: You are immune to all projectiles.<br>\
@@ -82,6 +86,33 @@
 
 /mob/living/simple_animal/hostile/abnormality/warden/Destroy()
 	UnregisterSignal(SSdcs, COMSIG_GLOB_ABNORMALITY_BREACH)
+	return ..()
+
+/mob/living/simple_animal/hostile/abnormality/warden/PickTarget(list/Targets) // Shamelessly stolen from MoSB
+	var/list/rulebreakers = list()
+	var/list/highest_priority = list()
+	var/list/lower_priority = list()
+	for(var/mob/living/L in Targets)
+		if(!CanAttack(L))
+			continue
+		if(L.stat == DEAD)
+			continue
+		if(ishuman(L))
+			var/mob/living/carbon/human/rascal = L
+			if(rascal.health <= (rascal.maxHealth * KidnapThreshold) || rascal.sanity_lost) // KIDNAP THEM, KIDNAP THEM NOOOOOW!!!
+				highest_priority += rascal
+			else if(rascal.health < (rascal.maxHealth * (KidnapThreshold * 1.5))) // You are awfully close to getting kidnapped, pal.
+				lower_priority += rascal
+		if(istype(L, /mob/living/simple_animal/hostile/abnormality)) // Are you a weakling breach, perchance?
+			var/mob/living/simple_animal/hostile/abnormality/prisoner = L
+			if(!prisoner.IsContained() && prisoner.threat_level == TETH_LEVEL)
+				rulebreakers += L // AAAAIIIEEEEEEE GO BACK TO YOUR CEEEEEEELL
+	if(rulebreakers)
+		return pick(rulebreakers)
+	if(highest_priority)
+		return pick(highest_priority)
+	if(lower_priority)
+		return pick(lower_priority)
 	return ..()
 
 /mob/living/simple_animal/hostile/abnormality/warden/AttackingTarget(atom/attacked_target)
@@ -98,6 +129,10 @@
 			to_chat(H, span_userdanger("Oh no."))
 			playsound(get_turf(src), 'sound/hallucinations/wail.ogg', 75, 1)
 			SLEEP_CHECK_DEATH(5)
+			if(!targets_from.Adjacent(H) || QDELETED(H)) // They can still be saved if you move them away
+				icon_state = "warden"
+				finishing = FALSE
+				return
 			Kidnap(H) // It will now try to take your soul and leave your skin. You will become an eternal prisoner under her skirt in GBJ
 			finishing = FALSE
 			icon_state = "warden"
@@ -147,6 +182,7 @@
 			var/mob/living/L = i
 			L.remove_status_effect(STATUS_EFFECT_SOULDRAIN)
 			contained_people--
+			RevertWeakness(digestion_modifier)
 		i.forceMove(freedom)
 
 /mob/living/simple_animal/hostile/abnormality/warden/proc/Indoctrination(mob/living/loser)
@@ -159,38 +195,48 @@
 	indoctrinated_morons += L
 	contained_people--
 	captured_souls++
+	RevertWeakness(digestion_modifier)
 	Strengthen(consumed_soul_modifier)
 
 /mob/living/simple_animal/hostile/abnormality/warden/proc/Weaken(VulnerabilityFactor)
+	DamageAlteration(damage_down)
 	ResistanceAlteration(VulnerabilityFactor)
-	ChangeMoveToDelayBy(1.33, TRUE)
-	if(melee_damage_lower > 20)
-		melee_damage_lower -= damage_down
-	if(IsCombatMap())
-		if(melee_damage_upper > 30)
-			melee_damage_upper -= damage_down
+	ChangeMoveToDelayBy(1.25, TRUE)
+
+/mob/living/simple_animal/hostile/abnormality/warden/proc/RevertWeakness(VulnerabilityFactor) // Inverse function of Weaken()
+	DamageAlteration(-(damage_down))
+	ResistanceAlteration(-(VulnerabilityFactor))
+	ChangeMoveToDelayBy(0.8, TRUE)
 
 /mob/living/simple_animal/hostile/abnormality/warden/proc/Strengthen(StrengthenFactor)
-	// Because you always weaken before you strengthen, the net resistance change is only -0.1 (0.2 - 0.3)
-	ResistanceAlteration(-StrengthenFactor)
-	ChangeMoveToDelayBy(0.67, TRUE) // Because you always weaken before you strengthen, the final multiplier ends up being 0.9 (1.33 * 0.67)
-	adjustBruteLoss(-(maxHealth*0.2)) // Heals 20% HP, fuck you that's why.
 	// A tiny bit of damage degradation for each soul consumed, capped at 20 lower damage and 30 upper damage.
-	if(melee_damage_lower > 20)
-		melee_damage_lower += (damage_down - damage_degradation)
-	if(IsCombatMap())
-		if(melee_damage_upper > 30)
-			melee_damage_upper += (damage_down - round(damage_degradation/2))
+	DamageAlteration(damage_degradation)
+	ResistanceAlteration(-StrengthenFactor)
+	ChangeMoveToDelayBy(0.9, TRUE)
+	adjustBruteLoss(-(maxHealth*0.2)) // Heals 20% HP, fuck you that's why.
 
-/mob/living/simple_animal/hostile/abnormality/warden/proc/ResistanceAlteration(Factor)
+/mob/living/simple_animal/hostile/abnormality/warden/proc/ResistanceAlteration(factor)
 	// TODO: Make it so Burn and Brute resistances are not affected (Especially Brute)
 	var/list/defenses = damage_coeff.getList()
 	for(var/damtype in defenses)
-		if(defenses[damtype] <= 0.1)
-			defenses[damtype] = 0.1
+		if(defenses[damtype] == resistance_cap)
 			continue
-		defenses[damtype] += Factor
+		if(defenses[damtype] < resistance_cap)
+			defenses[damtype] = resistance_cap
+			continue
+		defenses[damtype] += factor
 	ChangeResistances(defenses)
+
+/mob/living/simple_animal/hostile/abnormality/warden/proc/DamageAlteration(factor) // The alteration is negative when the factor is positive and viceversa.
+	if(melee_damage_lower > lower_damage_cap + factor)
+		melee_damage_lower -= factor
+	else
+		melee_damage_lower = lower_damage_cap
+	if(IsCombatMap())
+		if(melee_damage_upper > upper_damage_cap + factor)
+			melee_damage_upper -= factor
+		else
+			melee_damage_upper = upper_damage_cap
 
 /mob/living/simple_animal/hostile/abnormality/warden/proc/CombatMapTweaks()
 	return
@@ -243,7 +289,8 @@
 
 /datum/status_effect/souldrain/on_apply()
 	var/mob/living/carbon/human/status_holder = owner
-	status_holder.Stun(10 MINUTES) // You gotta get saved by another person, nerd.
+	var/mob/living/simple_animal/hostile/abnormality/warden/master = warden
+	status_holder.Stun(master.KidnapStuntime) // You gotta get saved by another person, nerd.
 	ADD_TRAIT(status_holder, TRAIT_NOBREATH, type)
 	status_holder.adjust_attribute_bonus(PRUDENCE_ATTRIBUTE, -20)
 	collected_soul += 20
@@ -266,10 +313,8 @@
 			master.Indoctrination(status_holder)
 	else // If not, then congrats you have mastered the art of teleportation (And you are safe, for now.)
 		to_chat(owner, span_nicegreen("That thing is still alive, but you have somehow managed to escape from its grasp."))
-		// Patchwork way to not leave the Warden permanently weakened. Might move this to its own proc soon(tm)
-		master.ResistanceAlteration(-(master.digestion_modifier))
-		master.melee_damage_lower += master.damage_down
-		master.ChangeMoveToDelayBy(0.75, TRUE)
+		master.RevertWeakness(master.digestion_modifier)
+		master.contained_people--
 		qdel(src)
 
 /datum/status_effect/souldrain/on_remove()
