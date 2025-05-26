@@ -56,6 +56,9 @@
 			She gets closer and lifts her skirt(?) and I'm thrust underneath, my colleagues are here- they're alive and well! <br>\
 			But, they seem despondent. <br>One looks at me says simply; \"In here, you're with us. Forever.\""),
 	)
+	var/normal_sprite = "warden"
+	var/finisher_sprite = "warden_attack"
+
 	var/combatmap = FALSE
 
 	var/finishing = FALSE
@@ -89,9 +92,11 @@
 	var/release_damage // Keeps track of damage received after consuming someone on weakjail mode.
 	var/jailbreak_threshold = 525 // Amount of damage required for Warden to surrender the goodies (Kidnapped people)
 
-
-	var/debug
-	var/debug_list = list()
+	var/overfilled_threshold = 3
+	var/overfilled = FALSE // Funny.
+	var/soul_names = list() // Funny 2.
+	var/lastcreepysound = 0
+	var/creepysoundcooldown = 20 SECONDS
 
 /mob/living/simple_animal/hostile/abnormality/warden/Login() // I need to fully revamp this, ouuuuuuggghhhhh
 	. = ..()
@@ -153,19 +158,19 @@
 			return FALSE
 		if(H.health < (H.maxHealth * KidnapThreshold) || H.sanity_lost)
 			finishing = TRUE
-			icon_state = "warden_attack"
+			icon_state = finisher_sprite
 			playsound(get_turf(src), 'sound/hallucinations/growl1.ogg', 75, 1)
 			H.Stun(6)
 			to_chat(H, span_userdanger("Oh no."))
 			SLEEP_CHECK_DEATH(5)
 			if(!targets_from.Adjacent(H) || QDELETED(H)) // They can still be saved if you move them away
-				icon_state = "warden"
+				icon_state = normal_sprite
 				to_chat(H, span_nicegreen("That was far too close."))
 				finishing = FALSE
 				return
 			Kidnap(H) // It will now try to take your soul and leave your skin. You will become an eternal prisoner under her skirt in GBJ
 			finishing = FALSE
-			icon_state = "warden"
+			icon_state = normal_sprite
 			if(combatmap)
 				return // WIP
 			return
@@ -177,12 +182,12 @@
 			return FALSE
 		if(!fugitive.IsContained() && fugitive.threat_level == TETH_LEVEL && fugitive.datum_reference)
 			finishing = TRUE
-			icon_state = "warden_attack"
+			icon_state = finisher_sprite
 			fugitive.adjustBruteLoss(fugitive.maxHealth) // OBLITERATION!!!
 			qdel(fugitive)
 			playsound(get_turf(src), 'sound/hallucinations/growl1.ogg', 75, 1)
 			SLEEP_CHECK_DEATH(5)
-			icon_state = "warden"
+			icon_state = normal_sprite
 			DamageAlteration(-damage_up, TRUE) // Placeholder bonus for containing an abno
 			HuntFugitives() // Let's try to keep the combo going.
 			finishing = FALSE
@@ -247,6 +252,7 @@
 	dropHardClothing(loser, get_turf(src))
 	var/mob/living/simple_animal/hostile/soulless/L = new(notquitefreedom)
 	qdel(loser) // Lol, lmao.
+	soul_names += loser.real_name
 	L.name = "[loser.real_name]"
 	L.desc = "Is that [loser.real_name]? [loser.p_their(TRUE)] face is drained of colour and [loser.p_their()] eyes look glassy and unfocused."
 	indoctrinated_morons += L
@@ -270,7 +276,15 @@
 	DamageAlteration(damage_degradation)
 	ResistanceAlteration(-StrengthenFactor)
 	ChangeMoveToDelayBy(0.9, TRUE)
+	UpdatePhase()
 	adjustBruteLoss(-(maxHealth*consumed_soul_heal)) // Heals a % of her max HP, fuck you that's why.
+
+/mob/living/simple_animal/hostile/abnormality/warden/proc/UpdatePhase() // WIP, REMEMBER TO USE IP SPRITES
+	if(overfilled)
+		return
+	if(captured_souls > overfilled_threshold && !overfilled)
+		overfilled = TRUE
+		// Add here the changes to both sprite variables
 
 /mob/living/simple_animal/hostile/abnormality/warden/proc/ResistanceAlteration(factor)
 	// TODO: Make it so Burn and Brute resistances are not affected (Especially Brute)
@@ -323,7 +337,6 @@
 		if(!A.current.IsContained() && A.current.threat_level == TETH_LEVEL)
 			breached_abnos += A.current
 	if(LAZYLEN(breached_abnos))
-		debug_list = breached_abnos
 		var/mob/living/simple_animal/hostile/abnormality/escapee = pick(breached_abnos)
 		Lock_in(escapee)
 		return TRUE
@@ -363,6 +376,24 @@
 	if(!locked_in) // We didn't manage to find any rulebreakers? Snap the knees of the agent in front of you.
 		GiveTarget(user)
 
+/mob/living/simple_animal/hostile/abnormality/warden/Life()
+	. = ..()
+	if(world.time > lastcreepysound + creepysoundcooldown)
+		if(prob(1 + (captured_souls * 2))) // Add creepy whispers scaling with captured souls and upgrade to screams if Warden is overfilled.
+			if(overfilled)
+				var/message = "You hear a horrible cacophony of discordant voices coming from [src]'s dress."
+				if(LAZYLEN(soul_names))
+					var/dumbidiot = pick(soul_names)
+					message += " You think you can hear [dumbidiot] screaming in there too."
+				visible_message("[message]")
+				playsound(get_turf(src), 'sound/creatures/legion_spawn.ogg', 30, 0, 8)
+				lastcreepysound = world.time
+			else
+				visible_message("You hear strange sounds coming from beneath [src]'s dress.")
+				playsound(get_turf(src), 'sound/spookoween/ghost_whisper.ogg', 30, 0, 8)
+				lastcreepysound = world.time
+		return
+
 /mob/living/simple_animal/hostile/abnormality/warden/CanAttack(atom/the_target)
 	if(finishing)
 		return FALSE
@@ -373,7 +404,7 @@
 		return FALSE
 	return ..()
 
-/mob/living/simple_animal/hostile/abnormality/warden/apply_damage(damage, damagetype)
+/mob/living/simple_animal/hostile/abnormality/warden/apply_damage(damage, damagetype, def_zone, blocked, forced, spread_damage, wound_bonus, bare_wound_bonus, sharpness, white_healable)
 	. = ..()
 	if(weakjail)
 		release_damage += damage
