@@ -22,6 +22,27 @@
 	resistance_flags = FIRE_PROOF
 	silent = TRUE
 	hearing_range = 0
+	//Alter this to limit the range of devices that can ping this signaller
+	var/effective_range = 15
+
+/obj/item/assembly/signaler/system/signal()
+	if(!radio_connection)
+		return
+
+	var/time = time2text(world.realtime,"hh:mm:ss")
+	var/turf/T = get_turf(src)
+	var/coords = "???"
+	if(T)
+		coords = "[T.x],[T.y],[T.z]"
+
+	var/logging_data
+	if(usr)
+		logging_data = "[time] <B>:</B> [usr.key] used [src] @ location ([coords]) <B>:</B> [format_frequency(frequency)]/[code]"
+		GLOB.lastsignalers.Add(logging_data)
+
+	var/datum/signal/signal = new(list("code" = code), logging_data = logging_data)
+	radio_connection.post_signal(src, signal, range = effective_range)
+
 
 /obj/item/assembly/signaler/system/receive_signal(datum/signal/signal)
 	if(!signal)
@@ -30,5 +51,5 @@
 		return FALSE
 	//Shameful Code
 	for(var/obj/structure/sigsystem/A in get_turf(src))
-		A.pulse()
+		A.pulse(code)
 	return TRUE

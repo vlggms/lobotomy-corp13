@@ -22,7 +22,7 @@
 	mappath = "_maps/RandomRooms/backstreets/medium_west/butcher_medium.dmm"
 	stock = 1
 
-/datum/map_template/random_room/backstreets/medium_east/office_kcorp
+/datum/map_template/random_room/backstreets/medium_west/office_kcorp
 	name = "KCorp Office - Medium West"
 	room_id = "office_kcorp_me"
 	mappath = "_maps/RandomRooms/backstreets/medium_west/office_kcorp.dmm"
@@ -72,6 +72,11 @@
 	name = "Mini Beach - Medium West"
 	room_id = "mini_beach"
 	mappath = "_maps/RandomRooms/backstreets/medium_west/mini_beach.dmm"
+
+/datum/map_template/random_room/backstreets/medium_west/cryo_lab
+	name = "Cryo Lab - Medium West"
+	room_id = "cryo_lab"
+	mappath = "_maps/RandomRooms/backstreets/medium_west/cryo_lab.dmm"
 
 /datum/map_template/random_room/backstreets/medium_west/chicken_coop
 	name = "Chicken - Medium West"
