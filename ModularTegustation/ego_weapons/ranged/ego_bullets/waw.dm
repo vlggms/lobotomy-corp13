@@ -345,3 +345,20 @@
 	name = "super shotgun"
 	damage = 10
 	damage_type = RED_DAMAGE
+
+/obj/projectile/ego_bullet/ego_fellbullet
+	name = "fell bullet"
+	icon_state = "fell_bullet"
+	damage = 40
+	speed = 0.1
+	damage_type = RED_DAMAGE
+	projectile_piercing = PASSMOB
+	range = 36
+	hit_nondense_targets = TRUE
+
+/obj/projectile/ego_bullet/ego_fellscatter
+	name = "fell pellet"
+	icon_state = "fell_pellet"
+	damage = 4//13 pellets, +2 in a portal
+	damage_type = RED_DAMAGE
+	spread = 50
