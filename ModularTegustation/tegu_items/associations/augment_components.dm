@@ -130,7 +130,7 @@
 	. = ..()
 	if(inflict_cooldown > world.time)
 		return FALSE
-	if(item.damtype != BLACK_DAMAGE)
+	if(item.damtype != RED_DAMAGE)
 		return FALSE
 	if(item.force <= 0 || target.stat == DEAD)
 		return FALSE
@@ -147,7 +147,7 @@
 	. = ..()
 	if(inflict_cooldown > world.time)
 		return FALSE
-	if(item.damtype != RED_DAMAGE)
+	if(item.damtype != BLACK_DAMAGE)
 		return FALSE
 	if(item.force <= 0 || target.stat == DEAD)
 		return FALSE
