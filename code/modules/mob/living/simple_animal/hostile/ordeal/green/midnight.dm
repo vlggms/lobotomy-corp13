@@ -205,13 +205,13 @@
 
 	laserloop.start()
 	for(var/i = 1 to max_laser_repeats)
-		//This following chunk of code basically fires a mini laser barrage on ticks 8, 16, 24 and 32. (6 barrages)
+		//There are 40 ticks in the laser phase. This following chunk of code basically fires a mini laser barrage on ticks 8, 16, 24 and 32. (4 barrages)
 		//It follows the logic of the mini lasers raining down as the main lasers fire and continuing slightly after they've stopped (due to the timer on mini lasers)
 		//We also fire a single macro laser on ticks 4, 8, 12, 16, 20, 24, 28, 32 and 36. (9 macro lasers)
-		if(i % 4 == 0 && i <= max_laser_repeats * 0.90)
-			FireMacroLaser(pick_n_take(macrolaser_target_turfs))
 		if(i % 8 == 0 && i <= max_laser_repeats * 0.80)
 			FireLaserBarrage(microbarrage_target_turfs)
+		if(i % 4 == 0 && i <= max_laser_repeats * 0.90)
+			FireMacroLaser(pick_n_take(macrolaser_target_turfs))
 
 		var/list/already_hit = list()
 		for(var/turf/T in hit_line)
@@ -389,7 +389,7 @@
 	//This also doesn't account for nefarious RO/EO/Clerks that might want to "help", but I don't consider it a huge issue. AvailableAgentCount() is an alternative that
 	//counts dead Agents as well.
 	var/list/meaningful_enemies = AllLivingAgents(TRUE)
-	//These are our "base values" but bear in mind that, if we have any agents alive as it initializes, it will go up to 6/12/1.
+	//These are our "base values" but bear in mind that, if we have any agents alive as it initializes, which we should have at least 1, it will at least go up to 8/14/1.
 	squad_size = 6
 	maximum_squad_size = 10
 	squad_size_increase_step = 1
