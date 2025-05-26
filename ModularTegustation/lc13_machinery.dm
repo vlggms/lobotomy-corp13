@@ -389,7 +389,7 @@
 	if(SSmaptype.maptype == "office")
 		public_use = TRUE
 		clone_delay_seconds = 60
-		revival_attribute_penalty = -2
+		revival_attribute_penalty = 0
 		cost_multiplier = 2
 
 /obj/machinery/body_preservation_unit/attackby(obj/item/I, mob/user, params)
@@ -423,7 +423,7 @@
 	dat += "<b>FUNDS: [stored_money]</b><br>----------------------<br>"
 
 	if (!public_use && !(user?.mind?.assigned_role in usable_roles))
-		dat += "<b>Only civilians can use this machine</b><br>"
+		dat += "<b>You are unable to use this BPU!</b><br>"
 	else
 		if(ishuman(user))
 			var/mob/living/carbon/human/H = user
