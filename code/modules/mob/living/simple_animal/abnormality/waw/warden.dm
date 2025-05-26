@@ -18,11 +18,14 @@
 	melee_damage_upper = 70
 	melee_damage_type = BLACK_DAMAGE
 	stat_attack = HARD_CRIT
+	attack_same = 1 // We are doing what is called a pro-gamer move (Friendly Fire)
 	attack_sound = 'sound/weapons/slashmiss.ogg'
 	attack_verb_continuous = "claws"
 	attack_verb_simple = "claws"
 	del_on_death = FALSE
 	can_breach = TRUE
+	can_patrol = TRUE
+	patrol_cooldown_time = 5 SECONDS
 	threat_level = WAW_LEVEL
 	start_qliphoth = 3
 	work_chances = list(
@@ -53,24 +56,35 @@
 			She gets closer and lifts her skirt(?) and I'm thrust underneath, my colleagues are here- they're alive and well! <br>\
 			But, they seem despondent. <br>One looks at me says simply; \"In here, you're with us. Forever.\""),
 	)
+	var/combatmap = FALSE
 
 	var/finishing = FALSE
-	var/KidnapThreshold = 0.25
-	var/KidnapStuntime = 9999
+	var/locked_in = FALSE
+	var/mob/living/hooligan
+	var/KidnapThreshold = 0.2 // If an employee has less than this % of HP left, Warden will kidnap them.
+	var/KidnapStuntime = 999 // By default extremely high, you are supposed to be freed by other employees.
 
 	var/contained_people = 0
 	var/captured_souls = 0
 	var/indoctrinated_morons = list()
-	var/digestion_modifier = 0.2
-	var/consumed_soul_modifier = 0.1
-	var/resistance_cap = 0.1
+	// Resistance modifiers when Warden is eating/has fully eaten someone's soul.
+	var/digestion_modifier = 0.2 // This one is weakening factor.
+	var/consumed_soul_modifier = 0.1 // This one is strengthening factor.
+
+	var/resistance_cap = 0.1 // Maximum level of resistances that Warden can get by eating people.
+	var/consumed_soul_heal = 0.2 // This is the % of max HP that Warden heals after fully consuming someone.
+
 	var/lower_damage_cap = 20
 	var/upper_damage_cap = 30
 
 	var/resistance_decrease = 0.2
 
-	var/damage_down = 15
-	var/damage_degradation = 10
+	var/damage_down = 15 // Temporary damage down (by default, only affects lower_damage) while digesting someone's soul.
+	var/damage_up = 5 // PERMANENT damage up (lower and upper) when Warden contains a low-risk abnormality.
+	var/damage_degradation = 10 // PERMANENT damage down (by default, only affects lower_damage) after fully eating someone.
+
+	var/debug
+	var/debug_list = list()
 
 /mob/living/simple_animal/hostile/abnormality/warden/Login() // I need to fully revamp this, ouuuuuuggghhhhh
 	. = ..()
@@ -83,6 +97,8 @@
 /mob/living/simple_animal/hostile/abnormality/warden/Initialize()
 	. = ..()
 	RegisterSignal(SSdcs, COMSIG_GLOB_ABNORMALITY_BREACH, PROC_REF(OnAbnoBreach))
+	if(IsCombatMap())
+		CombatMapTweaks()
 
 /mob/living/simple_animal/hostile/abnormality/warden/Destroy()
 	UnregisterSignal(SSdcs, COMSIG_GLOB_ABNORMALITY_BREACH)
@@ -105,14 +121,20 @@
 				lower_priority += rascal
 		if(istype(L, /mob/living/simple_animal/hostile/abnormality)) // Are you a weakling breach, perchance?
 			var/mob/living/simple_animal/hostile/abnormality/prisoner = L
-			if(!prisoner.IsContained() && prisoner.threat_level == TETH_LEVEL)
+			if(!prisoner.IsContained() && prisoner.threat_level == TETH_LEVEL && prisoner.datum_reference)
 				rulebreakers += L // AAAAIIIEEEEEEE GO BACK TO YOUR CEEEEEEELL
-	if(rulebreakers)
+			else
+				continue
+	if(LAZYLEN(rulebreakers))
 		return pick(rulebreakers)
-	if(highest_priority)
+	if(locked_in) // If locked in, ignore anything that is not an abno.
+		return FALSE
+	if(LAZYLEN(highest_priority))
 		return pick(highest_priority)
-	if(lower_priority)
+	if(LAZYLEN(lower_priority))
 		return pick(lower_priority)
+	if(faction_check()) // So that we do not absolutely insane with the friendly fire
+		return FALSE
 	return ..()
 
 /mob/living/simple_animal/hostile/abnormality/warden/AttackingTarget(atom/attacked_target)
@@ -125,19 +147,38 @@
 		if(H.health < (H.maxHealth * KidnapThreshold) || H.sanity_lost)
 			finishing = TRUE
 			icon_state = "warden_attack"
-			H.Stun(5)
+			playsound(get_turf(src), 'sound/hallucinations/growl1.ogg', 75, 1)
+			H.Stun(6)
 			to_chat(H, span_userdanger("Oh no."))
-			playsound(get_turf(src), 'sound/hallucinations/wail.ogg', 75, 1)
 			SLEEP_CHECK_DEATH(5)
 			if(!targets_from.Adjacent(H) || QDELETED(H)) // They can still be saved if you move them away
 				icon_state = "warden"
+				to_chat(H, span_nicegreen("That was far too close."))
 				finishing = FALSE
 				return
 			Kidnap(H) // It will now try to take your soul and leave your skin. You will become an eternal prisoner under her skirt in GBJ
 			finishing = FALSE
 			icon_state = "warden"
-			if(IsCombatMap())
-				CombatMapTweaks()
+			if(combatmap)
+				return // WIP
+			return
+	if(istype(attacked_target, /mob/living/simple_animal/hostile/abnormality))
+		if(combatmap)
+			return FALSE
+		var/mob/living/simple_animal/hostile/abnormality/fugitive = attacked_target
+		if(fugitive.stat == DEAD)
+			return FALSE
+		if(!fugitive.IsContained() && fugitive.threat_level == TETH_LEVEL && fugitive.datum_reference)
+			finishing = TRUE
+			icon_state = "warden_attack"
+			fugitive.adjustBruteLoss(fugitive.maxHealth) // OBLITERATION!!!
+			qdel(fugitive)
+			playsound(get_turf(src), 'sound/hallucinations/growl1.ogg', 75, 1)
+			SLEEP_CHECK_DEATH(5)
+			icon_state = "warden"
+			DamageAlteration(-damage_up, TRUE) // Placeholder bonus for containing an abno
+			HuntFugitives() // Let's try to keep the combo going.
+			finishing = FALSE
 			return
 	..()
 
@@ -166,6 +207,7 @@
 /mob/living/simple_animal/hostile/abnormality/warden/proc/Kidnap(mob/living/rulebreaker)
 	if(!rulebreaker)
 		return FALSE
+	rulebreaker.Stun(KidnapStuntime) // You gotta get saved by another person, nerd.
 	rulebreaker.forceMove(src)
 	rulebreaker.apply_status_effect(STATUS_EFFECT_SOULDRAIN)
 	var/datum/status_effect/souldrain/S = rulebreaker.has_status_effect(/datum/status_effect/souldrain)
@@ -213,37 +255,84 @@
 	DamageAlteration(damage_degradation)
 	ResistanceAlteration(-StrengthenFactor)
 	ChangeMoveToDelayBy(0.9, TRUE)
-	adjustBruteLoss(-(maxHealth*0.2)) // Heals 20% HP, fuck you that's why.
+	adjustBruteLoss(-(maxHealth*consumed_soul_heal)) // Heals a % of her max HP, fuck you that's why.
 
 /mob/living/simple_animal/hostile/abnormality/warden/proc/ResistanceAlteration(factor)
 	// TODO: Make it so Burn and Brute resistances are not affected (Especially Brute)
 	var/list/defenses = damage_coeff.getList()
 	for(var/damtype in defenses)
+		if(damtype == "brute" || damtype == "burn")
+			continue
 		if(defenses[damtype] == resistance_cap)
 			continue
-		if(defenses[damtype] < resistance_cap)
-			defenses[damtype] = resistance_cap
+		if(defenses[damtype] < resistance_cap) // Yes, if you set the resistance cap too high (> 0.4) this will actually weaken certain Warden resistances.
+			defenses[damtype] = resistance_cap // Why would you do that though?
 			continue
 		defenses[damtype] += factor
 	ChangeResistances(defenses)
 
-/mob/living/simple_animal/hostile/abnormality/warden/proc/DamageAlteration(factor) // The alteration is negative when the factor is positive and viceversa.
+/mob/living/simple_animal/hostile/abnormality/warden/proc/DamageAlteration(factor, affects_upper = FALSE) // The alteration is negative when the factor is positive and viceversa.
 	if(melee_damage_lower > lower_damage_cap + factor)
 		melee_damage_lower -= factor
 	else
 		melee_damage_lower = lower_damage_cap
-	if(IsCombatMap())
+	if(combatmap || affects_upper)
 		if(melee_damage_upper > upper_damage_cap + factor)
 			melee_damage_upper -= factor
 		else
 			melee_damage_upper = upper_damage_cap
 
-/mob/living/simple_animal/hostile/abnormality/warden/proc/CombatMapTweaks()
+/mob/living/simple_animal/hostile/abnormality/warden/proc/CombatMapTweaks() // WIP
+	combatmap = TRUE
 	return
+
+/mob/living/simple_animal/hostile/abnormality/warden/proc/HuntFugitives()
+	var/list/breached_abnos = list()
+	for(var/datum/abnormality/A in SSlobotomy_corp.all_abnormality_datums)
+		if(!A.current)
+			continue
+		if(!A.current.IsContained() && A.current.threat_level == TETH_LEVEL)
+			breached_abnos += A.current
+	if(LAZYLEN(breached_abnos))
+		debug_list = breached_abnos
+		var/mob/living/simple_animal/hostile/abnormality/escapee = pick(breached_abnos)
+		Lock_in(escapee)
+		return TRUE
+	else
+		Lock_out()
+
+/mob/living/simple_animal/hostile/abnormality/warden/proc/Lock_in(mob/living/condemned) // There is no escape for the wicked.
+	hooligan = condemned
+	patrol_reset()
+	if(!locked_in)
+		lose_patience_timeout *= 4 // 24 (60 * 4 deciseconds) seconds of its full and unwavering attention.
+		target_switch_resistance *= 4 // The idea is that nothing you do can distract it.
+		ChangeMoveToDelayBy(0.5, TRUE)
+		density = FALSE // I AM COMING FOR YOU.
+		locked_in = TRUE
+	// TODO: Create some sort of fallback in case that Warden cannot reach its target, even if it exists.
+
+/mob/living/simple_animal/hostile/abnormality/warden/proc/Lock_out() // Mission accomplished, let's head ba- Sike! Time to kill agents.
+	if(locked_in)
+		lose_patience_timeout /= 4
+		target_switch_resistance /= 4
+		ChangeMoveToDelayBy(2, TRUE)
+		density = TRUE
+		locked_in = FALSE
+	SLEEP_CHECK_DEATH(5)
+
+/mob/living/simple_animal/hostile/abnormality/warden/patrol_select()
+	if(hooligan)
+		var/turf/target_turf = get_turf(hooligan)
+		patrol_path = get_path_to(src, target_turf, /turf/proc/Distance_cardinal, 0, 200)
+		return
+	return ..()
 
 /mob/living/simple_animal/hostile/abnormality/warden/BreachEffect(mob/living/carbon/human/user, breach_type)
 	. = ..()
-	GiveTarget(user)
+	HuntFugitives()
+	if(!locked_in) // We didn't manage to find any rulebreakers? Snap the knees of the agent in front of you.
+		GiveTarget(user)
 
 /mob/living/simple_animal/hostile/abnormality/warden/CanAttack(atom/the_target)
 	if(finishing)
@@ -289,8 +378,6 @@
 
 /datum/status_effect/souldrain/on_apply()
 	var/mob/living/carbon/human/status_holder = owner
-	var/mob/living/simple_animal/hostile/abnormality/warden/master = warden
-	status_holder.Stun(master.KidnapStuntime) // You gotta get saved by another person, nerd.
 	ADD_TRAIT(status_holder, TRAIT_NOBREATH, type)
 	status_holder.adjust_attribute_bonus(PRUDENCE_ATTRIBUTE, -20)
 	collected_soul += 20
