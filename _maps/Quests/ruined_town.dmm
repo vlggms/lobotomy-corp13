@@ -143,10 +143,13 @@
 "aX" = (
 /obj/structure/table_frame/wood,
 /obj/item/food/breadslice/moldy,
+/obj/effect/decal/cleanable/blood/footprints,
 /turf/open/floor/wood,
 /area/city/shop)
 "aZ" = (
-/obj/structure/spider/cocoon,
+/obj/structure/spider/cocoon{
+	resistance_flags = 64
+	},
 /obj/effect/landmark/npc_reveal_sensor{
 	sensor_id = "ambush";
 	cooldown_duration = 6000
@@ -276,7 +279,10 @@
 	},
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/item/ego_weapon/city/fixergreatsword,
-/obj/item/stack/spacecash/c100,
+/obj/structure/lootcrate/money{
+	lootlist = list(/obj/item/stack/spacecash/c200);
+	rareloot = list(/obj/item/stack/spacecash/c200)
+	},
 /turf/open/floor/wood,
 /area/city)
 "cm" = (
@@ -527,6 +533,18 @@
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/item/keycard/office,
 /obj/effect/mob_spawn/human/corpse/russian,
+/mob/living/simple_animal/hostile/mutant_clown{
+	name = "'Mother?'";
+	icon_state = "glutton";
+	base_pixel_x = -16;
+	pixel_x = -16;
+	scream_damage = 40;
+	maxHealth = 1000;
+	melee_damage_lower = 40;
+	melee_damage_upper = 40;
+	color = "#f194f2";
+	return_to_origin = 1
+	},
 /turf/open/indestructible/necropolis,
 /area/city/shop)
 "dD" = (
@@ -751,7 +769,10 @@
 	},
 /obj/effect/spawner/lootdrop/garbage_spawner,
 /obj/effect/decal/cleanable/dirt/dust,
-/obj/structure/lootcrate/money,
+/obj/structure/lootcrate/money{
+	lootlist = list(/obj/item/stack/spacecash/c200);
+	rareloot = list(/obj/item/stack/spacecash/c200)
+	},
 /turf/open/floor/plating/rust,
 /area/city/house)
 "eO" = (
@@ -793,7 +814,10 @@
 	},
 /obj/item/modular_computer/laptop/preset/fixer,
 /obj/effect/decal/cleanable/dirt/dust,
-/obj/structure/lootcrate/money,
+/obj/structure/lootcrate/money{
+	lootlist = list(/obj/item/stack/spacecash/c200);
+	rareloot = list(/obj/item/stack/spacecash/c200)
+	},
 /turf/open/floor/plating/rust,
 /area/city/house)
 "fa" = (
@@ -980,6 +1004,7 @@
 	color = "#875300"
 	},
 /obj/effect/decal/cleanable/cobweb,
+/obj/item/stack/spacecash/c500,
 /turf/open/floor/wood,
 /area/city/fixers)
 "fZ" = (
@@ -1248,7 +1273,6 @@
 /turf/open/floor/plating,
 /area/city/fixers)
 "if" = (
-/obj/structure/lootcrate/hana,
 /obj/structure/barricade/meatbags,
 /obj/structure/lootcrate/hana,
 /turf/open/indestructible/necropolis,
@@ -1362,6 +1386,10 @@
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/item/ego_weapon/city/rats/knife,
 /obj/item/food/breadslice/moldy,
+/obj/structure/lootcrate/money{
+	lootlist = list(/obj/item/stack/spacecash/c200);
+	rareloot = list(/obj/item/stack/spacecash/c200)
+	},
 /turf/open/floor/wood,
 /area/city)
 "iR" = (
@@ -1379,7 +1407,9 @@
 /area/city)
 "iS" = (
 /obj/structure/spider/stickyweb,
-/obj/structure/spider/cocoon,
+/obj/structure/spider/cocoon{
+	resistance_flags = 64
+	},
 /obj/effect/landmark/npc_reveal_spawn{
 	mobtype = /mob/living/simple_animal/hostile/poison/giant_spider;
 	sensor_id = "ambush"
@@ -1705,7 +1735,6 @@
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/item/ego_weapon/city/rats/knife,
 /obj/item/food/breadslice/moldy,
-/obj/item/stack/spacecash/c100,
 /turf/open/floor/wood,
 /area/city)
 "lo" = (
@@ -1845,7 +1874,10 @@
 "mm" = (
 /obj/structure/table_frame/wood,
 /obj/item/flashlight/lamp,
-/obj/structure/lootcrate/money,
+/obj/structure/lootcrate/money{
+	lootlist = list(/obj/item/stack/spacecash/c200);
+	rareloot = list(/obj/item/stack/spacecash/c200)
+	},
 /obj/effect/decal/cleanable/glitter/pink,
 /turf/open/indestructible/necropolis,
 /area/city)
@@ -2093,7 +2125,10 @@
 /turf/open/floor/wood,
 /area/city)
 "nV" = (
-/obj/structure/lootcrate/money,
+/obj/structure/lootcrate/money{
+	lootlist = list(/obj/item/stack/spacecash/c200);
+	rareloot = list(/obj/item/stack/spacecash/c200)
+	},
 /turf/open/indestructible/necropolis,
 /area/city)
 "nX" = (
@@ -2365,7 +2400,10 @@
 	},
 /obj/effect/mob_spawn/human/corpse/charredskeleton,
 /obj/effect/decal/cleanable/dirt/dust,
-/obj/structure/lootcrate/money,
+/obj/structure/lootcrate/money{
+	lootlist = list(/obj/item/stack/spacecash/c200);
+	rareloot = list(/obj/item/stack/spacecash/c200)
+	},
 /turf/open/floor/plating/rust,
 /area/city/house)
 "pT" = (
@@ -2391,9 +2429,22 @@
 /obj/structure/table/reinforced{
 	color = "#875300"
 	},
-/obj/structure/lootcrate/hana,
-/obj/structure/lootcrate/hana,
-/obj/structure/lootcrate/hana,
+/obj/structure/lootcrate/seven{
+	rareloot = list(/obj/item/clothing/suit/armor/ego_gear/city/devyat_suit, /obj/item/ego_weapon/city/devyat_trunk);
+	lootlist = list(/obj/item/clothing/suit/armor/ego_gear/city/devyat_suit/weak);
+	veryrareloot = list(/obj/item/ego_weapon/city/devyat_trunk/demo);
+	name = "Devyat Association Crate";
+	desc = "A crate recieved from devyat association. Open with a Crowbar.";
+	color = "#017821"
+	},
+/obj/structure/lootcrate/seven{
+	rareloot = list(/obj/item/clothing/suit/armor/ego_gear/city/devyat_suit, /obj/item/ego_weapon/city/devyat_trunk);
+	lootlist = list(/obj/item/clothing/suit/armor/ego_gear/city/devyat_suit/weak);
+	veryrareloot = list(/obj/item/ego_weapon/city/devyat_trunk/demo);
+	name = "Devyat Association Crate";
+	desc = "A crate recieved from devyat association. Open with a Crowbar.";
+	color = "#017821"
+	},
 /turf/open/floor/wood,
 /area/city)
 "qc" = (
@@ -2409,7 +2460,9 @@
 /turf/open/floor/plating/rust,
 /area/city/shop)
 "qg" = (
-/obj/structure/spider/cocoon,
+/obj/structure/spider/cocoon{
+	resistance_flags = 64
+	},
 /obj/effect/landmark/npc_reveal_sensor{
 	sensor_id = "ambush";
 	cooldown_duration = 6000
@@ -2451,7 +2504,9 @@
 	mobtype = /mob/living/simple_animal/hostile/poison/giant_spider;
 	sensor_id = "ambush"
 	},
-/obj/structure/spider/cocoon,
+/obj/structure/spider/cocoon{
+	resistance_flags = 64
+	},
 /turf/open/floor/plating/rust,
 /area/city/house)
 "qv" = (
@@ -2520,7 +2575,6 @@
 	color = "#875300"
 	},
 /obj/item/fish_feed,
-/obj/structure/lootcrate/money,
 /turf/open/floor/wood,
 /area/city/house)
 "qN" = (
@@ -2649,7 +2703,10 @@
 /obj/item/flashlight/lamp,
 /obj/effect/decal/cleanable/cobweb/cobweb2,
 /obj/effect/decal/cleanable/dirt/dust,
-/obj/structure/lootcrate/money,
+/obj/structure/lootcrate/money{
+	lootlist = list(/obj/item/stack/spacecash/c200);
+	rareloot = list(/obj/item/stack/spacecash/c200)
+	},
 /turf/open/floor/plating/rust,
 /area/city/house)
 "rp" = (
@@ -2683,14 +2740,21 @@
 /turf/open/floor/plating/rust,
 /area/city/fixers)
 "rA" = (
-/obj/structure/spider/stickyweb,
-/obj/effect/landmark/npc_reveal_spawn{
-	mobtype = /mob/living/simple_animal/hostile/poison/giant_spider;
-	sensor_id = "ambush"
+/obj/effect/decal/cleanable/greenglow{
+	light_color = "#ff0037";
+	color = "#ff0037"
 	},
-/obj/structure/spider/cocoon,
-/turf/open/floor/plating/rust,
-/area/city/house)
+/obj/structure/lootcrate/money{
+	lootlist = list(/obj/item/stack/spacecash/c200);
+	rareloot = list(/obj/item/stack/spacecash/c200)
+	},
+/obj/structure/lootcrate/money{
+	lootlist = list(/obj/item/stack/spacecash/c200);
+	rareloot = list(/obj/item/stack/spacecash/c200)
+	},
+/obj/item/stack/spacecash/c500,
+/turf/open/indestructible/necropolis,
+/area/city)
 "rF" = (
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/structure/table/reinforced{
@@ -2810,6 +2874,7 @@
 /obj/machinery/door/airlock/wood{
 	name = "The Bistro"
 	},
+/obj/effect/decal/cleanable/blood/footprints,
 /turf/open/floor/wood,
 /area/city/shop)
 "st" = (
@@ -3064,6 +3129,7 @@
 	mouse_opacity = 0;
 	alpha = 0
 	},
+/mob/living/simple_animal/hostile/netherworld/migo,
 /turf/open/floor/plating/asteroid/basalt/wasteland,
 /area/city)
 "tV" = (
@@ -3142,7 +3208,9 @@
 /area/city/fixers)
 "ui" = (
 /obj/structure/spider/stickyweb,
-/obj/structure/spider/cocoon,
+/obj/structure/spider/cocoon{
+	resistance_flags = 64
+	},
 /obj/effect/landmark/npc_reveal_spawn{
 	mobtype = /mob/living/simple_animal/hostile/poison/giant_spider;
 	sensor_id = "ambush"
@@ -3244,7 +3312,10 @@
 	},
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/item/ego_weapon/city/fixerblade,
-/obj/item/stack/spacecash/c100,
+/obj/structure/lootcrate/money{
+	lootlist = list(/obj/item/stack/spacecash/c200);
+	rareloot = list(/obj/item/stack/spacecash/c200)
+	},
 /turf/open/floor/wood,
 /area/city)
 "uI" = (
@@ -3329,21 +3400,6 @@
 	dir = 1
 	},
 /turf/open/floor/wood,
-/area/city/shop)
-"vi" = (
-/obj/effect/decal/cleanable/dirt/dust,
-/mob/living/simple_animal/hostile/mutant_clown{
-	name = "'Mother?'";
-	icon_state = "glutton";
-	base_pixel_x = -16;
-	pixel_x = -16;
-	scream_damage = 40;
-	maxHealth = 1000;
-	melee_damage_lower = 40;
-	melee_damage_upper = 40;
-	color = "#f194f2"
-	},
-/turf/open/indestructible/necropolis,
 /area/city/shop)
 "vj" = (
 /obj/machinery/light/small,
@@ -3872,7 +3928,10 @@
 /obj/structure/bed/maint,
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/spawner/lootdrop/maintenance,
-/obj/structure/lootcrate/money,
+/obj/structure/lootcrate/money{
+	lootlist = list(/obj/item/stack/spacecash/c200);
+	rareloot = list(/obj/item/stack/spacecash/c200)
+	},
 /turf/open/floor/wood,
 /area/city/house)
 "yF" = (
@@ -3933,6 +3992,10 @@
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/effect/decal/cleanable/cobweb,
 /obj/item/ego_weapon/city/fixerblade,
+/obj/structure/lootcrate/money{
+	lootlist = list(/obj/item/stack/spacecash/c200);
+	rareloot = list(/obj/item/stack/spacecash/c200)
+	},
 /turf/open/floor/wood,
 /area/city)
 "yQ" = (
@@ -4099,7 +4162,10 @@
 /obj/structure/bed/maint,
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/spawner/lootdrop/maintenance,
-/obj/structure/lootcrate/money,
+/obj/structure/lootcrate/money{
+	lootlist = list(/obj/item/stack/spacecash/c200);
+	rareloot = list(/obj/item/stack/spacecash/c200)
+	},
 /obj/item/food/cheesewedge,
 /turf/open/floor/wood{
 	icon_state = "wood-broken"
@@ -4224,7 +4290,10 @@
 "AD" = (
 /obj/structure/table_frame/wood,
 /obj/item/flashlight/lamp,
-/obj/structure/lootcrate/money,
+/obj/structure/lootcrate/money{
+	lootlist = list(/obj/item/stack/spacecash/c200);
+	rareloot = list(/obj/item/stack/spacecash/c200)
+	},
 /turf/open/floor/plating/rust,
 /area/city/house)
 "AI" = (
@@ -4579,7 +4648,10 @@
 /obj/structure/table_frame/wood,
 /obj/item/flashlight/lamp,
 /obj/effect/decal/cleanable/dirt/dust,
-/obj/structure/lootcrate/money,
+/obj/structure/lootcrate/money{
+	lootlist = list(/obj/item/stack/spacecash/c200);
+	rareloot = list(/obj/item/stack/spacecash/c200)
+	},
 /turf/open/floor/wood,
 /area/city/house)
 "DG" = (
@@ -4719,7 +4791,10 @@
 /area/city/house)
 "EC" = (
 /obj/effect/turf_decal/trimline/red/filled/line,
-/obj/structure/lootcrate/money,
+/obj/structure/lootcrate/money{
+	lootlist = list(/obj/item/stack/spacecash/c200);
+	rareloot = list(/obj/item/stack/spacecash/c200)
+	},
 /obj/structure/table/reinforced{
 	color = "#875300"
 	},
@@ -5524,7 +5599,10 @@
 /area/city/shop)
 "JQ" = (
 /obj/effect/decal/cleanable/dirt,
-/obj/structure/lootcrate/money,
+/obj/structure/lootcrate/money{
+	lootlist = list(/obj/item/stack/spacecash/c200);
+	rareloot = list(/obj/item/stack/spacecash/c200)
+	},
 /obj/item/food/cheesewheel,
 /turf/open/floor/wood,
 /area/city/house)
@@ -5691,21 +5769,11 @@
 /turf/open/floor/plating/rust,
 /area/city/fixers)
 "KW" = (
-/obj/structure/toilet{
-	dir = 4;
-	color = "#875300"
+/obj/effect/decal/cleanable/blood/footprints,
+/turf/open/floor/wood{
+	icon_state = "wood-broken"
 	},
-/obj/machinery/light{
-	dir = 1
-	},
-/obj/structure/spider/stickyweb,
-/obj/structure/spider/cocoon,
-/obj/effect/landmark/npc_reveal_sensor{
-	sensor_id = "ambush";
-	cooldown_duration = 6000
-	},
-/turf/open/floor/plating/rust,
-/area/city/house)
+/area/city/shop)
 "KZ" = (
 /turf/closed/mineral/ash_rock,
 /area/city)
@@ -5735,8 +5803,6 @@
 	color = "#875300"
 	},
 /obj/effect/decal/cleanable/dirt/dust,
-/obj/structure/lootcrate/hana,
-/obj/structure/lootcrate/hana,
 /obj/structure/lootcrate/hana,
 /obj/structure/lootcrate/hana,
 /turf/open/indestructible/necropolis,
@@ -5985,7 +6051,10 @@
 /obj/item/modular_computer/laptop/preset/fixer,
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/effect/turf_decal/sand,
-/obj/structure/lootcrate/money,
+/obj/structure/lootcrate/money{
+	lootlist = list(/obj/item/stack/spacecash/c200);
+	rareloot = list(/obj/item/stack/spacecash/c200)
+	},
 /turf/open/floor/plating/rust,
 /area/city/house)
 "MR" = (
@@ -6083,10 +6152,9 @@
 /turf/open/floor/plating/rust,
 /area/city/house)
 "ND" = (
-/obj/effect/decal/cleanable/dirt,
-/mob/living/simple_animal/hostile/regalrat,
-/turf/open/floor/wood,
-/area/city/house)
+/obj/effect/decal/cleanable/blood/gibs/up,
+/turf/open/floor/plating/asteroid,
+/area/city)
 "NH" = (
 /obj/structure/fluff/bus/dense{
 	icon_state = "frontwallbottom"
@@ -6463,13 +6531,9 @@
 /turf/open/floor/plating/rust,
 /area/city)
 "PZ" = (
-/obj/structure/table/reinforced{
-	color = "#875300"
-	},
-/obj/effect/decal/cleanable/dirt/dust,
-/obj/structure/lootcrate/money,
-/turf/open/floor/plating/rust,
-/area/city/house)
+/obj/effect/decal/cleanable/blood/footprints,
+/turf/open/floor/plating/asteroid,
+/area/city)
 "Qc" = (
 /mob/living/simple_animal/mouse/brown{
 	faction = list("neutral")
@@ -6711,19 +6775,6 @@
 	},
 /turf/open/indestructible/necropolis,
 /area/city/backstreets_room)
-"RN" = (
-/obj/structure/sink/kitchen{
-	dir = 4;
-	pixel_x = -11
-	},
-/obj/structure/spider/stickyweb,
-/obj/structure/spider/cocoon,
-/obj/effect/landmark/npc_reveal_sensor{
-	sensor_id = "ambush";
-	cooldown_duration = 6000
-	},
-/turf/open/floor/plating/rust,
-/area/city/house)
 "RP" = (
 /obj/structure/table_frame,
 /obj/item/reagent_containers/glass/bottle/formaldehyde,
@@ -6785,10 +6836,8 @@
 /turf/open/floor/wood,
 /area/city/shop)
 "Se" = (
-/obj/structure/meatfloor,
-/obj/structure/lootcrate/hana,
 /obj/structure/barricade/meatbags,
-/obj/structure/lootcrate/hana,
+/obj/effect/landmark/cratespawn/corpo,
 /turf/open/indestructible/necropolis,
 /area/city)
 "Sf" = (
@@ -6900,7 +6949,10 @@
 /obj/structure/table/reinforced{
 	color = "#875300"
 	},
-/obj/structure/lootcrate/money,
+/obj/structure/lootcrate/money{
+	lootlist = list(/obj/item/stack/spacecash/c200);
+	rareloot = list(/obj/item/stack/spacecash/c200)
+	},
 /obj/structure/spider/stickyweb,
 /turf/open/floor/plating/rust,
 /area/city/house)
@@ -7007,7 +7059,6 @@
 /obj/effect/turf_decal/trimline/red/filled/line{
 	dir = 10
 	},
-/obj/structure/lootcrate/money,
 /obj/effect/decal/cleanable/greenglow{
 	light_color = "#ff0037";
 	color = "#ff0037"
@@ -7135,7 +7186,10 @@
 /obj/item/reagent_containers/glass/bottle/nutrient,
 /obj/item/reagent_containers/glass/bottle/nutrient,
 /obj/item/reagent_containers/glass/bottle/nutrient,
-/obj/structure/lootcrate/money,
+/obj/structure/lootcrate/money{
+	lootlist = list(/obj/item/stack/spacecash/c200);
+	rareloot = list(/obj/item/stack/spacecash/c200)
+	},
 /turf/open/floor/wood,
 /area/city/house)
 "TZ" = (
@@ -7145,23 +7199,6 @@
 /obj/effect/spawner/lootdrop/garbage_spawner,
 /obj/effect/decal/cleanable/dirt/dust,
 /turf/open/floor/wood,
-/area/city/house)
-"Ub" = (
-/obj/structure/sink{
-	pixel_y = 16;
-	color = "#875300"
-	},
-/obj/structure/mirror{
-	pixel_x = -1;
-	pixel_y = 34
-	},
-/obj/structure/spider/cocoon,
-/obj/structure/spider/stickyweb,
-/obj/effect/landmark/npc_reveal_sensor{
-	sensor_id = "ambush";
-	cooldown_duration = 6000
-	},
-/turf/open/floor/plating/rust,
 /area/city/house)
 "Ud" = (
 /obj/effect/decal/cleanable/dirt/dust,
@@ -7324,7 +7361,10 @@
 /obj/structure/table_frame/wood,
 /obj/item/poster/random_contraband,
 /obj/effect/decal/cleanable/dirt/dust,
-/obj/structure/lootcrate/money,
+/obj/structure/lootcrate/money{
+	lootlist = list(/obj/item/stack/spacecash/c200);
+	rareloot = list(/obj/item/stack/spacecash/c200)
+	},
 /turf/open/indestructible/necropolis,
 /area/city)
 "UW" = (
@@ -7473,7 +7513,10 @@
 /obj/structure/table/reinforced{
 	color = "#875300"
 	},
-/obj/structure/lootcrate/money,
+/obj/structure/lootcrate/money{
+	lootlist = list(/obj/item/stack/spacecash/c200);
+	rareloot = list(/obj/item/stack/spacecash/c200)
+	},
 /turf/open/floor/plating/rust,
 /area/city/house)
 "VU" = (
@@ -7533,15 +7576,6 @@
 /mob/living/simple_animal/hostile/humanoid/rat/zippy/scavenger{
 	dir = 1
 	},
-/turf/open/floor/wood,
-/area/city)
-"Wu" = (
-/obj/structure/table/reinforced{
-	color = "#875300"
-	},
-/obj/effect/decal/cleanable/dirt/dust,
-/obj/item/food/freshfish/rotten,
-/obj/item/stack/spacecash/c100,
 /turf/open/floor/wood,
 /area/city)
 "Wv" = (
@@ -7627,7 +7661,10 @@
 	dir = 1
 	},
 /obj/effect/decal/cleanable/cobweb,
-/obj/structure/lootcrate/money,
+/obj/structure/lootcrate/money{
+	lootlist = list(/obj/item/stack/spacecash/c200);
+	rareloot = list(/obj/item/stack/spacecash/c200)
+	},
 /turf/open/floor/plating/rust,
 /area/city/house)
 "Xe" = (
@@ -8088,7 +8125,6 @@
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/item/food/breadslice/moldy,
 /obj/item/food/breadslice/moldy,
-/obj/item/stack/spacecash/c100,
 /turf/open/floor/wood,
 /area/city)
 "ZI" = (
@@ -8283,8 +8319,8 @@ kC
 io
 Eh
 Se
-if
-if
+Se
+Se
 dI
 dI
 kC
@@ -8549,7 +8585,7 @@ kC
 oY
 oY
 kC
-if
+Se
 dI
 Eh
 Eh
@@ -8822,9 +8858,9 @@ kC
 kC
 Ux
 dI
-if
-if
-if
+Se
+Se
+Se
 Eh
 io
 kC
@@ -9328,7 +9364,7 @@ oY
 "}
 (14,1,1) = {"
 Vr
-Ux
+rA
 mM
 dI
 Eh
@@ -10526,7 +10562,7 @@ GK
 lX
 es
 oQ
-ND
+lX
 Dr
 Aa
 ew
@@ -12547,7 +12583,7 @@ Vr
 oY
 oY
 ej
-Wu
+nk
 MZ
 jV
 ej
@@ -13136,10 +13172,10 @@ Hj
 Hj
 ka
 ew
-KW
+Xg
 bP
 eO
-RN
+IX
 dn
 fo
 Su
@@ -13767,7 +13803,7 @@ ew
 ka
 ew
 Xg
-qr
+bP
 Ut
 IX
 yc
@@ -13856,7 +13892,7 @@ sa
 ew
 ka
 ew
-Ub
+za
 eO
 eO
 ui
@@ -14127,7 +14163,7 @@ bw
 ka
 ew
 xa
-rA
+eO
 eO
 eO
 aZ
@@ -14964,7 +15000,7 @@ bw
 ew
 qQ
 dp
-PZ
+wE
 NU
 oc
 op
@@ -15096,7 +15132,7 @@ Fx
 Ql
 HS
 Tb
-Hw
+KW
 Tb
 aX
 Tb
@@ -15189,10 +15225,10 @@ uU
 Fx
 cm
 He
-Hw
+KW
 ss
-bw
-bw
+PZ
+ND
 bw
 bw
 lx
@@ -16083,7 +16119,7 @@ oY
 oY
 nN
 wH
-vi
+kb
 dB
 TC
 ab
@@ -17276,7 +17312,7 @@ wY
 rH
 rH
 fk
-fd
+aq
 Vr
 bw
 Vr
@@ -18464,7 +18500,7 @@ ka
 ka
 ka
 vx
-vx
+ka
 bw
 xR
 Ei
@@ -18553,7 +18589,7 @@ ka
 bw
 bw
 ka
-vx
+ka
 ka
 ka
 ka
