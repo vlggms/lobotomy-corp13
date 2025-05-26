@@ -248,17 +248,17 @@
 
 // This proc is used to fire a barrage of mini lasers, it is called several times during the helix's lasers being active. An alternative way to do this would be
 // placing it on Life() like Waxing does, but I only wanted it to happen while the Helix was firing.
-/mob/living/simple_animal/hostile/ordeal/green_midnight/proc/FireLaserBarrage(var/list/valid_turfs)
+/mob/living/simple_animal/hostile/ordeal/green_midnight/proc/FireLaserBarrage(list/valid_turfs)
 	for(var/turf/unfortunate_turf in valid_turfs)
 		if(prob(6))
 			addtimer(CALLBACK(src, PROC_REF(FireMiniLaser), unfortunate_turf), rand(1, 50))
 
 
 // The mini-lasers are code taken from Waxing of the Black Sun with some minor statistical tweaks.
-/mob/living/simple_animal/hostile/ordeal/green_midnight/proc/FireMiniLaser(var/turf/target_turf)
+/mob/living/simple_animal/hostile/ordeal/green_midnight/proc/FireMiniLaser(turf/target_turf)
 	new /obj/effect/temp_visual/helix_minilaser(target_turf)
 
-/mob/living/simple_animal/hostile/ordeal/green_midnight/proc/FireMacroLaser(var/turf/target_turf)
+/mob/living/simple_animal/hostile/ordeal/green_midnight/proc/FireMacroLaser(turf/target_turf)
 	new /obj/effect/temp_visual/helix_macrolaser(target_turf)
 
 //They are mainly a nuisance that causes people stacking in tight spots to move and shuffle and get eachother killed. Encourages not dumping BLACK armour for the ordeal
