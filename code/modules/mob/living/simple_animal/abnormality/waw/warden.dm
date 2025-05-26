@@ -1,3 +1,4 @@
+#define STATUS_EFFECT_SOULDRAIN /datum/status_effect/souldrain
 /mob/living/simple_animal/hostile/abnormality/warden
 	name = "The Warden"
 	desc = "An abnormality that takes the form of a fleshy stick wearing a dress and eyes. You don't want to know what's under that dress."
@@ -54,22 +55,18 @@
 	)
 
 	var/finishing = FALSE
+	var/KidnapThreshold = 0.25
 
+	var/contained_people = 0
 	var/captured_souls = 0
+	var/indoctrinated_morons = list()
+	var/digestion_modifier = 0.2
+	var/consumed_soul_modifier = 0.3
 
 	var/resistance_decrease = 0.2
 
-	var/base_red_resistance = 0.7
-	var/base_white_resistance = 1.2
-	var/base_black_resistance = 0.4
-	var/base_pale_resistance = 1.5
-
-	var/new_red_resistance = 0.7
-	var/new_white_resistance = 1.2
-	var/new_black_resistance = 0.4
-	var/new_pale_resistance = 1.5
-
-	var/damage_down = 5
+	var/damage_down = 15
+	var/damage_degradation = 10
 
 /mob/living/simple_animal/hostile/abnormality/warden/Login()
 	. = ..()
@@ -79,47 +76,35 @@
 		|Soul Warden|: If you attack a corpse, you will dust it, heal and gain a stack of “Captured Soul”<br>\
 		For each stack of “Captured Soul”, you become faster, deal 10 less melee damage and take 50% more damage.</b>")
 
-/mob/living/simple_animal/hostile/abnormality/warden/AttackingTarget(atom/attacked_target)
+/mob/living/simple_animal/hostile/abnormality/warden/Initialize()
 	. = ..()
-	if(.)
-		if(finishing)
-			return FALSE
-		if(!istype(attacked_target, /mob/living/carbon/human))
-			return
+	RegisterSignal(SSdcs, COMSIG_GLOB_ABNORMALITY_BREACH, PROC_REF(OnAbnoBreach))
+
+/mob/living/simple_animal/hostile/abnormality/warden/Destroy()
+	UnregisterSignal(SSdcs, COMSIG_GLOB_ABNORMALITY_BREACH)
+	return ..()
+
+/mob/living/simple_animal/hostile/abnormality/warden/AttackingTarget(atom/attacked_target)
+	if(finishing)
+		return FALSE
+	if(ishuman(attacked_target))
 		var/mob/living/carbon/human/H = attacked_target
-
-		if(H.health < 0)
-
+		if(H.stat == DEAD)
+			return FALSE
+		if(H.health < (H.maxHealth * KidnapThreshold) || H.sanity_lost)
 			finishing = TRUE
 			icon_state = "warden_attack"
-			playsound(get_turf(src), 'sound/hallucinations/wail.ogg', 50, 1)
+			H.Stun(5)
+			to_chat(H, span_userdanger("Oh no."))
+			playsound(get_turf(src), 'sound/hallucinations/wail.ogg', 75, 1)
 			SLEEP_CHECK_DEATH(5)
-
-			//Takes your skin and leaves your bone. You are now a flesh servant under her skirt in GBJ
-			H.dust()
-
-			// it gets faster.
-
-			if(IsCombatMap())
-				captured_souls++
-				new_red_resistance = (base_red_resistance + resistance_decrease * captured_souls)
-				new_white_resistance = (base_white_resistance + resistance_decrease * captured_souls)
-				new_black_resistance = (base_black_resistance + resistance_decrease * captured_souls)
-				new_pale_resistance = (base_pale_resistance + resistance_decrease * captured_souls)
-				ChangeResistances(list(RED_DAMAGE = new_red_resistance, WHITE_DAMAGE = new_white_resistance, BLACK_DAMAGE = new_black_resistance, PALE_DAMAGE = new_pale_resistance))
-				to_chat(src, span_warning("As you capture a soul, you feel that you are growing more... Fragile."))
-
-			if(move_to_delay>1)
-				ChangeMoveToDelayBy(0.75, TRUE)
-				if(melee_damage_lower > 30)
-					melee_damage_lower -= damage_down
-				if(IsCombatMap())
-					if(melee_damage_upper > 30)
-						melee_damage_upper -= damage_down
-			adjustBruteLoss(-(maxHealth*0.2)) // Heals 20% HP, fuck you that's why. Still not as bad as judgement or big bird
-
+			Kidnap(H) // It will now try to take your soul and leave your skin. You will become an eternal prisoner under her skirt in GBJ
 			finishing = FALSE
 			icon_state = "warden"
+			if(IsCombatMap())
+				CombatMapTweaks()
+			return
+	..()
 
 /mob/living/simple_animal/hostile/abnormality/warden/FailureEffect(mob/living/carbon/human/user, work_type, pe)
 	. = ..()
@@ -129,6 +114,85 @@
 /mob/living/simple_animal/hostile/abnormality/warden/PostWorkEffect(mob/living/carbon/human/user, work_type, pe, work_time)
 	if(get_attribute_level(user, JUSTICE_ATTRIBUTE) < 80 && get_attribute_level(user, FORTITUDE_ATTRIBUTE) < 80)
 		datum_reference.qliphoth_change(-1)
+	return
+
+/mob/living/simple_animal/hostile/abnormality/warden/proc/OnAbnoBreach(datum/source, mob/living/simple_animal/hostile/abnormality/abno)
+	SIGNAL_HANDLER
+	// TODO: Make the Warden actually search and contain low-risk abnos quickly/instantly, and maybe buff her slightly each time she does it.
+	if(!IsContained())
+		return
+	if(istype(abno, /mob/living/simple_animal/hostile/abnormality/punishing_bird))
+		return
+	if(istype(abno, /mob/living/simple_animal/hostile/abnormality/training_rabbit))
+		return
+	if(abno.threat_level != ALEPH_LEVEL) //Local Warden too scared to ¿fistfight? (Does it even have fists?) WhiteNight
+		datum_reference.qliphoth_change(-1)
+
+/mob/living/simple_animal/hostile/abnormality/warden/proc/Kidnap(mob/living/rulebreaker)
+	if(!rulebreaker)
+		return FALSE
+	rulebreaker.forceMove(src)
+	rulebreaker.apply_status_effect(STATUS_EFFECT_SOULDRAIN)
+	var/datum/status_effect/souldrain/S = rulebreaker.has_status_effect(/datum/status_effect/souldrain)
+	S.warden = src
+	contained_people++
+	Weaken(digestion_modifier)
+	return TRUE
+
+/mob/living/simple_animal/hostile/abnormality/warden/proc/Jailbreak()
+	var/freedom = pick(get_adjacent_open_turfs(src))
+	playsound(get_turf(src), 'sound/effects/limbus_death.ogg', 75, 1)
+	for(var/atom/movable/i in contents)
+		if(isliving(i))
+			var/mob/living/L = i
+			L.remove_status_effect(STATUS_EFFECT_SOULDRAIN)
+			contained_people--
+		i.forceMove(freedom)
+
+/mob/living/simple_animal/hostile/abnormality/warden/proc/Indoctrination(mob/living/loser)
+	var/notquitefreedom = pick(get_adjacent_open_turfs(src))
+	dropHardClothing(loser, get_turf(src))
+	var/mob/living/simple_animal/hostile/soulless/L = new(notquitefreedom)
+	qdel(loser) // Lol, lmao.
+	L.name = "[loser.real_name]"
+	L.desc = "Is that [loser.real_name]? [loser.p_their(TRUE)] face is drained of colour and [loser.p_their()] eyes look glassy and unfocused."
+	indoctrinated_morons += L
+	contained_people--
+	captured_souls++
+	Strengthen(consumed_soul_modifier)
+
+/mob/living/simple_animal/hostile/abnormality/warden/proc/Weaken(VulnerabilityFactor)
+	ResistanceAlteration(VulnerabilityFactor)
+	ChangeMoveToDelayBy(1.33, TRUE)
+	if(melee_damage_lower > 20)
+		melee_damage_lower -= damage_down
+	if(IsCombatMap())
+		if(melee_damage_upper > 30)
+			melee_damage_upper -= damage_down
+
+/mob/living/simple_animal/hostile/abnormality/warden/proc/Strengthen(StrengthenFactor)
+	// Because you always weaken before you strengthen, the net resistance change is only -0.1 (0.2 - 0.3)
+	ResistanceAlteration(-StrengthenFactor)
+	ChangeMoveToDelayBy(0.67, TRUE) // Because you always weaken before you strengthen, the final multiplier ends up being 0.9 (1.33 * 0.67)
+	adjustBruteLoss(-(maxHealth*0.2)) // Heals 20% HP, fuck you that's why.
+	// A tiny bit of damage degradation for each soul consumed, capped at 20 lower damage and 30 upper damage.
+	if(melee_damage_lower > 20)
+		melee_damage_lower += (damage_down - damage_degradation)
+	if(IsCombatMap())
+		if(melee_damage_upper > 30)
+			melee_damage_upper += (damage_down - round(damage_degradation/2))
+
+/mob/living/simple_animal/hostile/abnormality/warden/proc/ResistanceAlteration(Factor)
+	// TODO: Make it so Burn and Brute resistances are not affected (Especially Brute)
+	var/list/defenses = damage_coeff.getList()
+	for(var/damtype in defenses)
+		if(defenses[damtype] <= 0.1)
+			defenses[damtype] = 0.1
+			continue
+		defenses[damtype] += Factor
+	ChangeResistances(defenses)
+
+/mob/living/simple_animal/hostile/abnormality/warden/proc/CombatMapTweaks()
 	return
 
 /mob/living/simple_animal/hostile/abnormality/warden/BreachEffect(mob/living/carbon/human/user, breach_type)
@@ -149,9 +213,95 @@
 	density = FALSE
 	animate(src, alpha = 0, time = 10 SECONDS)
 	QDEL_IN(src, 10 SECONDS)
+	for(var/mob/living/carbon/human/L in GLOB.player_list) // cleanse debuffs
+		if(faction_check_mob(L, FALSE) || L.stat == DEAD) // Dead? Fuck them
+			continue
+		var/datum/status_effect/S = L.has_status_effect(/datum/status_effect/souldrain)
+		if(S)
+			qdel(S)
 	..()
 
 /mob/living/simple_animal/hostile/abnormality/warden/bullet_act(obj/projectile/P)
 	visible_message(span_userdanger("[src] is unfazed by \the [P]!"))
 	new /obj/effect/temp_visual/healing/no_dam(get_turf(src))
 	P.Destroy()
+
+/datum/status_effect/souldrain
+	id = "souldrain"
+	status_type = STATUS_EFFECT_UNIQUE
+	duration = -1
+	tick_interval = 6 SECONDS
+	alert_type = /atom/movable/screen/alert/status_effect/souldrain
+	var/collected_soul
+	var/warden
+
+/atom/movable/screen/alert/status_effect/souldrain
+	name = "Soul Drain"
+	desc = "Your identity is slipping through the pores of your skin."
+	icon = 'icons/mob/actions/actions_spells.dmi'
+	icon_state = "void_magnet"
+
+/datum/status_effect/souldrain/on_apply()
+	var/mob/living/carbon/human/status_holder = owner
+	status_holder.Stun(10 MINUTES) // You gotta get saved by another person, nerd.
+	ADD_TRAIT(status_holder, TRAIT_NOBREATH, type)
+	status_holder.adjust_attribute_bonus(PRUDENCE_ATTRIBUTE, -20)
+	collected_soul += 20
+	if(!status_holder.sanity_lost || status_holder.stat != DEAD)
+		status_holder.adjustSanityLoss(-(status_holder.maxSanity*0.1)) // Heal 10% of their max sanity after prudence modifier, just to give them a bit more leeway to escape.
+	return ..()
+
+/datum/status_effect/souldrain/tick()
+	. = ..()
+	var/mob/living/carbon/human/status_holder = owner
+	var/mob/living/simple_animal/hostile/abnormality/warden/master = warden
+	var/soulless = get_turf(owner)
+	var/girlboss = get_turf(master)
+	if(soulless == girlboss) // Are you still inside the Warden? If yes then get ready to get spiritually husked bucko
+		status_holder.adjustBruteLoss(-(status_holder.maxHealth*0.025)) // It cares for your fleshy form while sucking out your soul.
+		status_holder.adjust_attribute_bonus(PRUDENCE_ATTRIBUTE, -10) // This lowers your maximum sanity
+		status_holder.adjustSanityLoss(round(collected_soul*0.1)) // Somehow people can have negative max sanity without insanning if they do not receive damage.
+		collected_soul += 10 // Every 6 seconds the sanity damage increases by one.
+		if(status_holder.sanity_lost || status_holder.stat == DEAD)
+			master.Indoctrination(status_holder)
+	else // If not, then congrats you have mastered the art of teleportation (And you are safe, for now.)
+		to_chat(owner, span_nicegreen("That thing is still alive, but you have somehow managed to escape from its grasp."))
+		// Patchwork way to not leave the Warden permanently weakened. Might move this to its own proc soon(tm)
+		master.ResistanceAlteration(-(master.digestion_modifier))
+		master.melee_damage_lower += master.damage_down
+		master.ChangeMoveToDelayBy(0.75, TRUE)
+		qdel(src)
+
+/datum/status_effect/souldrain/on_remove()
+	var/mob/living/carbon/human/status_holder = owner
+	if(status_holder.IsStun())
+		status_holder.SetStun(0)
+	status_holder.adjust_attribute_bonus(PRUDENCE_ATTRIBUTE, collected_soul)
+	status_holder.adjustSanityLoss(-collected_soul)
+	return ..()
+
+
+// The mob that spawns when someone's soul gets fully consumed.
+/mob/living/simple_animal/hostile/soulless
+	name = "Soulless husk"
+	desc = "A flesh automaton animated only by neurotransmitters after having their divine light severed."
+	icon = 'ModularTegustation/Teguicons/32x32.dmi'
+	icon_state = "wellcheers_kidnap" // Obviously placeholder, but its funny.
+	icon_living = "wellcheers_kidnap"
+	speak_emote = list("screeches")
+	attack_verb_continuous = "attacks"
+	attack_verb_simple = "attack"
+	attack_sound = 'sound/creatures/lc13/lovetown/slam.ogg'
+	/* Stats */
+	health = 600
+	maxHealth = 600
+	damage_coeff = list(RED_DAMAGE = 2, WHITE_DAMAGE = 0.2, BLACK_DAMAGE = 0.5, PALE_DAMAGE = 0)
+	melee_damage_type = BLACK_DAMAGE
+	melee_damage_lower = 15
+	melee_damage_upper = 30
+	speed = 2
+	move_to_delay = 2
+	robust_searching = TRUE
+	stat_attack = HARD_CRIT
+	del_on_death = TRUE
+	density = FALSE
