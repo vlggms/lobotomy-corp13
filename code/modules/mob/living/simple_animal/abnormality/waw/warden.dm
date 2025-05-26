@@ -83,6 +83,13 @@
 	var/damage_up = 5 // PERMANENT damage up (lower and upper) when Warden contains a low-risk abnormality.
 	var/damage_degradation = 10 // PERMANENT damage down (by default, only affects lower_damage) after fully eating someone.
 
+	var/weakjailthreshold = 2 // If available agents with a level higher than the level threshold is less than this var, then activate weakjail
+	var/weaklevelthreshold = 3
+	var/weakjail = FALSE // If this is true then Warden can be popped open like a piñata with enough damage (normally it's only on-kill), and also it does not stun those it consumes.
+	var/release_damage // Keeps track of damage received after consuming someone on weakjail mode.
+	var/jailbreak_threshold = 525 // Amount of damage required for Warden to surrender the goodies (Kidnapped people)
+
+
 	var/debug
 	var/debug_list = list()
 
@@ -207,7 +214,11 @@
 /mob/living/simple_animal/hostile/abnormality/warden/proc/Kidnap(mob/living/rulebreaker)
 	if(!rulebreaker)
 		return FALSE
-	rulebreaker.Stun(KidnapStuntime) // You gotta get saved by another person, nerd.
+	SoloCheck() // Ok sure lets throw you a bone here.
+	if(KidnapStuntime)
+		rulebreaker.Stun(KidnapStuntime) // You gotta get saved by another person, nerd.
+	else
+		KidnapStuntime = 999 // Reset the var for future kidnappings
 	rulebreaker.forceMove(src)
 	rulebreaker.apply_status_effect(STATUS_EFFECT_SOULDRAIN)
 	var/datum/status_effect/souldrain/S = rulebreaker.has_status_effect(/datum/status_effect/souldrain)
@@ -226,6 +237,10 @@
 			contained_people--
 			RevertWeakness(digestion_modifier)
 		i.forceMove(freedom)
+	// Just reset the variables after popping.
+	weakjail = FALSE
+	release_damage = 0
+	SLEEP_CHECK_DEATH(50) // 5 whole seconds of stun, you should be grateful.
 
 /mob/living/simple_animal/hostile/abnormality/warden/proc/Indoctrination(mob/living/loser)
 	var/notquitefreedom = pick(get_adjacent_open_turfs(src))
@@ -261,7 +276,7 @@
 	// TODO: Make it so Burn and Brute resistances are not affected (Especially Brute)
 	var/list/defenses = damage_coeff.getList()
 	for(var/damtype in defenses)
-		if(damtype == "brute" || damtype == "burn")
+		if(damtype == "brute" || damtype == "fire")
 			continue
 		if(defenses[damtype] == resistance_cap)
 			continue
@@ -281,6 +296,20 @@
 			melee_damage_upper -= factor
 		else
 			melee_damage_upper = upper_damage_cap
+
+/mob/living/simple_animal/hostile/abnormality/warden/proc/SoloCheck()
+	if(combatmap)
+		return
+	var/vandals = 0
+	for(var/mob/living/carbon/human/L in GLOB.player_list)
+		if(L.stat >= HARD_CRIT || L.sanity_lost || z != L.z) // Dead or in hard crit, insane, or on a different Z level.
+			continue
+		if(get_user_level(L) <= weaklevelthreshold)	// If their pals are too weak, lets throw the kidnapped agent a bone.
+			continue
+		vandals += 1
+	if(vandals <= weakjailthreshold) // Let's not talk about how a "Solo" check applies to a duo by default, I do not want to hear it.
+		KidnapStuntime = 0
+		weakjail = TRUE
 
 /mob/living/simple_animal/hostile/abnormality/warden/proc/CombatMapTweaks() // WIP
 	combatmap = TRUE
@@ -343,6 +372,13 @@
 	if(finishing)
 		return FALSE
 	return ..()
+
+/mob/living/simple_animal/hostile/abnormality/warden/apply_damage(damage, damagetype)
+	. = ..()
+	if(weakjail)
+		release_damage += damage
+		if(release_damage >= jailbreak_threshold)
+			Jailbreak()
 
 /mob/living/simple_animal/hostile/abnormality/warden/death(gibbed)
 	density = FALSE
