@@ -104,7 +104,7 @@
 
 //Blade Lineage
 /obj/item/ego_weapon/city/bladelineage/city
-	special = "Use this weapon in hand to immobilize yourself for 3 seconds and deal 3x damage on the next attack within 5 seconds."
+	special = "Use this weapon in hand to immobilize yourself for 3 seconds and deal 3x damage on the next attack within 5 seconds. This empowered attack also deals 2% more damage per 1% of your missing HP, on top of the 3x damage."
 	force = 30
 	attribute_requirements = list(
 		FORTITUDE_ATTRIBUTE = 60,
