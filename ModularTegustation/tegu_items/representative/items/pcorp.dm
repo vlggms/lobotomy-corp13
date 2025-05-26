@@ -233,8 +233,9 @@
 	. = ..()
 	var/mob/living/carbon/human/H = owner
 	var/dangersanity = (H.maxSanity * 0.2)
-	if(H.sanityhealth <= dangersanity || H.health <= HEALTH_THRESHOLD_CRIT) //checks if youre going down
-		Preserve(H)
+	if(!H.is_working)
+		if(H.sanityhealth <= dangersanity || H.health <= HEALTH_THRESHOLD_CRIT) //checks if youre going down
+			Preserve(H)
 
 /datum/status_effect/pbeacon/proc/BeaconList()
 	var/list/beaconspots = list()

@@ -138,6 +138,6 @@
 	corp = P_CORP_REP
 	required_research = /datum/data/lc13research/pcorpbackpack
 
-/datum/data/lc13research/locationpreservation
+/datum/data/lc13research/locationpreservation/ResearchEffect(obj/structure/representative_console/requester)
 	ItemUnlock(requester.order_list, "Lifevest Safety Beacon",	/obj/item/pcorp_beacon, 500)
 	..()
