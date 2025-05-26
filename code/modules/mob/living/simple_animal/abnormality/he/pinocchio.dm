@@ -152,6 +152,8 @@
 	ADD_TRAIT(realboy, TRAIT_WORK_FORBIDDEN, "Abnormality")
 	ADD_TRAIT(realboy, TRAIT_IGNOREDAMAGESLOWDOWN, "Abnormality")
 	ADD_TRAIT(realboy, TRAIT_NODROP, "Abnormality")
+	ADD_TRAIT(realboy, TRAIT_STUNIMMUNE, "Abnormality")
+	ADD_TRAIT(realboy, TRAIT_PUSHIMMUNE, "Abnormality")
 	realboy.update_icon()
 
 	//--Side Gamemodes stuff--
