@@ -87,8 +87,6 @@
 	var/lower_damage_cap = 20
 	var/upper_damage_cap = 30
 
-	var/resistance_decrease = 0.2
-
 	// Temporary damage down (by default, only affects lower_damage) while digesting someone's soul.
 	var/damage_down = 15
 	// PERMANENT damage up (lower and upper) when Warden contains a low-risk abnormality.
@@ -135,10 +133,38 @@
 /mob/living/simple_animal/hostile/abnormality/warden/Destroy()
 	UnregisterSignal(SSdcs, COMSIG_GLOB_ABNORMALITY_BREACH)
 	QDEL_NULL(soul_names) // It WOULD be fun if Warden saved all soul names that it has consumed but I cannot be assed to figure that out.
+	for(var/mob/living/carbon/human/L in GLOB.player_list) // cleanse debuffs
+		if(faction_check_mob(L, FALSE) || L.stat == DEAD) // Dead? Fuck them
+			continue
+		var/datum/status_effect/S = L.has_status_effect(/datum/status_effect/souldrain)
+		if(S)
+			qdel(S)
 	for(var/mob/living/L in indoctrinated_morons)
 		indoctrinated_morons -= L
 		L.dust()
 	return ..()
+
+/mob/living/simple_animal/hostile/abnormality/warden/death(gibbed)
+	density = FALSE
+	animate(src, alpha = 0, time = 10 SECONDS)
+	QDEL_IN(src, 10 SECONDS)
+	..()
+
+/mob/living/simple_animal/hostile/abnormality/warden/CanAttack(atom/the_target)
+	if(finishing)
+		return FALSE
+	return ..()
+
+/mob/living/simple_animal/hostile/abnormality/warden/Move()
+	if(finishing)
+		return FALSE
+	return ..()
+
+// Lets try something, lets see if we can limit hardcoding the RCA tweaks.
+/mob/living/simple_animal/hostile/abnormality/warden/proc/CombatMapTweaks() // WIP
+	combatmap = TRUE
+	weakjail = TRUE
+	return
 
 /mob/living/simple_animal/hostile/abnormality/warden/PickTarget(list/Targets) // Shamelessly stolen from MoSB
 	var/list/rulebreakers = list()
@@ -223,27 +249,6 @@
 			finishing = FALSE
 			return
 	..()
-
-/mob/living/simple_animal/hostile/abnormality/warden/FailureEffect(mob/living/carbon/human/user, work_type, pe)
-	. = ..()
-	datum_reference.qliphoth_change(-1)
-	return
-
-/mob/living/simple_animal/hostile/abnormality/warden/PostWorkEffect(mob/living/carbon/human/user, work_type, pe, work_time)
-	if(get_attribute_level(user, JUSTICE_ATTRIBUTE) < 80 && get_attribute_level(user, FORTITUDE_ATTRIBUTE) < 80)
-		datum_reference.qliphoth_change(-1)
-	return
-
-/mob/living/simple_animal/hostile/abnormality/warden/proc/OnAbnoBreach(datum/source, mob/living/simple_animal/hostile/abnormality/abno)
-	SIGNAL_HANDLER
-	if(!IsContained())
-		return
-	if(istype(abno, /mob/living/simple_animal/hostile/abnormality/punishing_bird))
-		return
-	if(istype(abno, /mob/living/simple_animal/hostile/abnormality/training_rabbit))
-		return
-	if(abno.threat_level != ALEPH_LEVEL) //Local Warden too scared to ¿fistfight? (Does it even have fists?) WhiteNight
-		datum_reference.qliphoth_change(-1)
 
 /mob/living/simple_animal/hostile/abnormality/warden/proc/Kidnap(mob/living/carbon/human/rulebreaker)
 	if(!rulebreaker)
@@ -367,12 +372,6 @@
 		KidnapStuntime = 0
 		weakjail = TRUE
 
-// Lets try something, lets see if we can limit hardcoding the RCA tweaks.
-/mob/living/simple_animal/hostile/abnormality/warden/proc/CombatMapTweaks() // WIP
-	combatmap = TRUE
-	weakjail = TRUE
-	return
-
 /mob/living/simple_animal/hostile/abnormality/warden/proc/HuntFugitives()
 	var/list/breached_abnos = list()
 	for(var/datum/abnormality/A in SSlobotomy_corp.all_abnormality_datums)
@@ -429,12 +428,6 @@
 		return
 	return ..()
 
-/mob/living/simple_animal/hostile/abnormality/warden/BreachEffect(mob/living/carbon/human/user, breach_type)
-	. = ..()
-	HuntFugitives()
-	if(!locked_in) // We didn't manage to find any rulebreakers? Snap the knees of the agent in front of you.
-		GiveTarget(user)
-
 /mob/living/simple_animal/hostile/abnormality/warden/Life()
 	. = ..()
 	if(world.time > lastcreepysound + creepysoundcooldown)
@@ -454,15 +447,32 @@
 			WakeUpBraindeads()
 		return
 
-/mob/living/simple_animal/hostile/abnormality/warden/CanAttack(atom/the_target)
-	if(finishing)
-		return FALSE
-	return ..()
+/mob/living/simple_animal/hostile/abnormality/warden/FailureEffect(mob/living/carbon/human/user, work_type, pe)
+	. = ..()
+	datum_reference.qliphoth_change(-1)
+	return
 
-/mob/living/simple_animal/hostile/abnormality/warden/Move()
-	if(finishing)
-		return FALSE
-	return ..()
+/mob/living/simple_animal/hostile/abnormality/warden/PostWorkEffect(mob/living/carbon/human/user, work_type, pe, work_time)
+	if(get_attribute_level(user, JUSTICE_ATTRIBUTE) < 80 && get_attribute_level(user, FORTITUDE_ATTRIBUTE) < 80)
+		datum_reference.qliphoth_change(-1)
+	return
+
+/mob/living/simple_animal/hostile/abnormality/warden/proc/OnAbnoBreach(datum/source, mob/living/simple_animal/hostile/abnormality/abno)
+	SIGNAL_HANDLER
+	if(!IsContained())
+		return
+	if(istype(abno, /mob/living/simple_animal/hostile/abnormality/punishing_bird))
+		return
+	if(istype(abno, /mob/living/simple_animal/hostile/abnormality/training_rabbit))
+		return
+	if(abno.threat_level != ALEPH_LEVEL) //Local Warden too scared to ¿fistfight? (Does it even have fists?) WhiteNight
+		datum_reference.qliphoth_change(-1)
+
+/mob/living/simple_animal/hostile/abnormality/warden/BreachEffect(mob/living/carbon/human/user, breach_type)
+	. = ..()
+	HuntFugitives()
+	if(!locked_in) // We didn't manage to find any rulebreakers? Snap the knees of the agent in front of you.
+		GiveTarget(user)
 
 /mob/living/simple_animal/hostile/abnormality/warden/apply_damage(damage, damagetype, def_zone, blocked, forced, spread_damage, wound_bonus, bare_wound_bonus, sharpness, white_healable)
 	. = ..()
@@ -470,18 +480,6 @@
 		release_damage += damage
 		if(release_damage >= jailbreak_threshold)
 			Jailbreak()
-
-/mob/living/simple_animal/hostile/abnormality/warden/death(gibbed)
-	density = FALSE
-	animate(src, alpha = 0, time = 10 SECONDS)
-	QDEL_IN(src, 10 SECONDS)
-	for(var/mob/living/carbon/human/L in GLOB.player_list) // cleanse debuffs
-		if(faction_check_mob(L, FALSE) || L.stat == DEAD) // Dead? Fuck them
-			continue
-		var/datum/status_effect/S = L.has_status_effect(/datum/status_effect/souldrain)
-		if(S)
-			qdel(S)
-	..()
 
 /mob/living/simple_animal/hostile/abnormality/warden/bullet_act(obj/projectile/P)
 	visible_message(span_userdanger("[src] is unfazed by \the [P]!"))
