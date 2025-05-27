@@ -84,6 +84,11 @@
 		QDEL_NULL(A)
 	for(var/datum/beam/B in beams)
 		QDEL_NULL(B)
+	/// Apparently these lists need to be set to null to avoid hard deletes later on, since they are referencing existing turfs
+	microbarrage_threatened_turfs = null
+	macrolaser_threatened_turfs = null
+	danger_close_turfs = null
+	microbarrage_target_turfs = null
 	return ..()
 
 /mob/living/simple_animal/hostile/ordeal/green_midnight/death()
@@ -312,9 +317,9 @@
 /mob/living/simple_animal/hostile/ordeal/green_midnight/proc/GenerateBotSquad()
 	var/list/squad = list()
 	var/remaining_spawn_budget = squad_size - active_minions
-	while(remaining_spawn_budget > 0)
+	for(var/i = 1 to remaining_spawn_budget)
 		//We want the last 40% of our budget to be comprised of Green Noons. They are the priority spawn here
-		if(remaining_spawn_budget <= (squad_size * 0.4))
+		if(i <= (squad_size * 0.4))
 			squad += /mob/living/simple_animal/hostile/ordeal/green_bot_big/factory
 		else
 		//If we have budget to spare, we can get one of these I guess. Honestly by this point in the shift, they are irrelevant, EXCEPT the Syringe Bots. They are lethal.
@@ -324,7 +329,6 @@
 				/mob/living/simple_animal/hostile/ordeal/green_bot/syringe/factory,
 				/mob/living/simple_animal/hostile/ordeal/green_bot/fast/factory,
 			))
-		remaining_spawn_budget--
 	return squad
 
 //This proc will deploy the remaining spawn budget (squad size - currently active bots) through drop pods.
