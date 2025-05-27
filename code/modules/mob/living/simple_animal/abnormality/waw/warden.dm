@@ -18,13 +18,13 @@
 	melee_damage_upper = 70
 	melee_damage_type = BLACK_DAMAGE
 	stat_attack = HARD_CRIT
-	attack_same = 1 // We are doing what is called a pro-gamer move (Friendly Fire)
 	attack_sound = 'sound/weapons/slashmiss.ogg'
 	attack_verb_continuous = "claws"
 	attack_verb_simple = "claws"
 	del_on_death = FALSE
 	can_breach = TRUE
 	can_patrol = TRUE
+	move_resist = MOVE_FORCE_OVERPOWERING
 	patrol_cooldown_time = 5 SECONDS
 	threat_level = WAW_LEVEL
 	start_qliphoth = 3
@@ -64,36 +64,52 @@
 	var/finishing = FALSE
 	var/locked_in = FALSE
 	var/mob/living/hooligan
-	var/KidnapThreshold = 0.2 // If an employee has less than this % of HP left, Warden will kidnap them.
-	var/KidnapStuntime = 999 // By default extremely high, you are supposed to be freed by other employees.
+	// If an employee has less than this % of HP left, Warden will kidnap them.
+	var/KidnapThreshold = 0.25
+	// By default extremely high, you are supposed to be freed by other employees.
+	var/KidnapStuntime = 999
 
 	var/contained_people = 0
 	var/captured_souls = 0
 	var/indoctrinated_morons = list()
 	// Resistance modifiers when Warden is eating/has fully eaten someone's soul.
-	var/digestion_modifier = 0.2 // This one is weakening factor.
-	var/consumed_soul_modifier = 0.1 // This one is strengthening factor.
 
-	var/resistance_cap = 0.1 // Maximum level of resistances that Warden can get by eating people.
-	var/consumed_soul_heal = 0.2 // This is the % of max HP that Warden heals after fully consuming someone.
+	// How much does Warden's resistances degrade while digesting someone.
+	var/digestion_modifier = 0.2
+	// How much does Warden's resistances increase after fully eating someone.
+	var/consumed_soul_modifier = 0.1
+
+	// Maximum resistance level that Warden can get by eating people. (if 0.1 then Warden can be 0.1/0.1/0.1/0.1 at maximum)
+	var/resistance_cap = 0.2
+	// This is the % of max HP that Warden heals after fully consuming someone.
+	var/consumed_soul_heal = 0.2
 
 	var/lower_damage_cap = 20
 	var/upper_damage_cap = 30
 
 	var/resistance_decrease = 0.2
 
-	var/damage_down = 15 // Temporary damage down (by default, only affects lower_damage) while digesting someone's soul.
-	var/damage_up = 5 // PERMANENT damage up (lower and upper) when Warden contains a low-risk abnormality.
-	var/damage_degradation = 10 // PERMANENT damage down (by default, only affects lower_damage) after fully eating someone.
+	// Temporary damage down (by default, only affects lower_damage) while digesting someone's soul.
+	var/damage_down = 15
+	// PERMANENT damage up (lower and upper) when Warden contains a low-risk abnormality.
+	var/damage_up = 5
+	// PERMANENT damage down (by default, only affects lower_damage) after fully eating someone.
+	var/damage_degradation = 10
 
-	var/weakjailthreshold = 2 // If available agents with a level higher than the level threshold is less than this var, then activate weakjail
+	// If available agents with a level higher than the level threshold is less than this var, then activate weakjail
+	var/weakjailthreshold = 2
+	// This is the level threshold to activate weakjail
 	var/weaklevelthreshold = 3
-	var/weakjail = FALSE // If this is true then Warden can be popped open like a piñata with enough damage (normally it's only on-kill), and also it does not stun those it consumes.
-	var/release_damage // Keeps track of damage received after consuming someone on weakjail mode.
-	var/jailbreak_threshold = 525 // Amount of damage required for Warden to surrender the goodies (Kidnapped people)
+	// If this is true then Warden can be popped open like a piñata with enough damage (normally it's only on-kill), and also it does not stun those it consumes.
+	var/weakjail = FALSE
+	// Keeps track of damage received after consuming someone on weakjail mode.
+	var/release_damage
+	// Amount of damage required for Warden to surrender the goodies (Kidnapped people)
+	var/jailbreak_threshold = 525
 
 	var/overfilled_threshold = 3
 	var/overfilled = FALSE // Funny.
+	var/agony = FALSE
 	var/soul_names = list() // Funny 2.
 	var/lastcreepysound = 0
 	var/creepysoundcooldown = 20 SECONDS
@@ -114,6 +130,10 @@
 
 /mob/living/simple_animal/hostile/abnormality/warden/Destroy()
 	UnregisterSignal(SSdcs, COMSIG_GLOB_ABNORMALITY_BREACH)
+	QDEL_NULL(soul_names) // It WOULD be fun if Warden saved all soul names that it has consumed but I cannot be assed to figure that out.
+	for(var/mob/living/L in indoctrinated_morons)
+		QDEL_IN(L, rand(3) SECONDS)
+		indoctrinated_morons -= L
 	return ..()
 
 /mob/living/simple_animal/hostile/abnormality/warden/PickTarget(list/Targets) // Shamelessly stolen from MoSB
@@ -145,8 +165,6 @@
 		return pick(highest_priority)
 	if(LAZYLEN(lower_priority))
 		return pick(lower_priority)
-	if(faction_check()) // So that we do not absolutely insane with the friendly fire
-		return FALSE
 	return ..()
 
 /mob/living/simple_animal/hostile/abnormality/warden/AttackingTarget(atom/attacked_target)
@@ -168,7 +186,11 @@
 				to_chat(H, span_nicegreen("That was far too close."))
 				finishing = FALSE
 				return
+			if(H.stat == DEAD)
+				H.dust()
+				return
 			Kidnap(H) // It will now try to take your soul and leave your skin. You will become an eternal prisoner under her skirt in GBJ
+			LoseTarget(H)
 			finishing = FALSE
 			icon_state = normal_sprite
 			if(combatmap)
@@ -183,13 +205,17 @@
 		if(!fugitive.IsContained() && fugitive.threat_level == TETH_LEVEL && fugitive.datum_reference)
 			finishing = TRUE
 			icon_state = finisher_sprite
-			fugitive.adjustBruteLoss(fugitive.maxHealth) // OBLITERATION!!!
-			qdel(fugitive)
 			playsound(get_turf(src), 'sound/hallucinations/growl1.ogg', 75, 1)
+			fugitive.adjustBruteLoss(fugitive.maxHealth) // OBLITERATION!!!
+			fugitive.forceMove(src)
+			LoseTarget(fugitive)
+			if(hooligan && fugitive == hooligan) // If it was our intended target.
+				hooligan = null
+				patrol_reset()
+				HuntFugitives() // Let's try to keep the combo going.
 			SLEEP_CHECK_DEATH(5)
 			icon_state = normal_sprite
-			DamageAlteration(-damage_up, TRUE) // Placeholder bonus for containing an abno
-			HuntFugitives() // Let's try to keep the combo going.
+			DamageAlteration(damage_up, TRUE) // Placeholder bonus for containing an abno
 			finishing = FALSE
 			return
 	..()
@@ -206,7 +232,6 @@
 
 /mob/living/simple_animal/hostile/abnormality/warden/proc/OnAbnoBreach(datum/source, mob/living/simple_animal/hostile/abnormality/abno)
 	SIGNAL_HANDLER
-	// TODO: Make the Warden actually search and contain low-risk abnos quickly/instantly, and maybe buff her slightly each time she does it.
 	if(!IsContained())
 		return
 	if(istype(abno, /mob/living/simple_animal/hostile/abnormality/punishing_bird))
@@ -216,10 +241,11 @@
 	if(abno.threat_level != ALEPH_LEVEL) //Local Warden too scared to ¿fistfight? (Does it even have fists?) WhiteNight
 		datum_reference.qliphoth_change(-1)
 
-/mob/living/simple_animal/hostile/abnormality/warden/proc/Kidnap(mob/living/rulebreaker)
+/mob/living/simple_animal/hostile/abnormality/warden/proc/Kidnap(mob/living/carbon/human/rulebreaker)
 	if(!rulebreaker)
 		return FALSE
-	SoloCheck() // Ok sure lets throw you a bone here.
+	if(!rulebreaker.sanity_lost)
+		SoloCheck() // Ok sure lets throw you a bone here.
 	if(KidnapStuntime)
 		rulebreaker.Stun(KidnapStuntime) // You gotta get saved by another person, nerd.
 	else
@@ -262,32 +288,43 @@
 	Strengthen(consumed_soul_modifier)
 
 /mob/living/simple_animal/hostile/abnormality/warden/proc/Weaken(VulnerabilityFactor)
-	DamageAlteration(damage_down)
+	DamageAlteration(-damage_down)
 	ResistanceAlteration(VulnerabilityFactor)
 	ChangeMoveToDelayBy(1.25, TRUE)
+	UpdatePhase()
 
 /mob/living/simple_animal/hostile/abnormality/warden/proc/RevertWeakness(VulnerabilityFactor) // Inverse function of Weaken()
-	DamageAlteration(-(damage_down))
+	DamageAlteration(damage_down)
 	ResistanceAlteration(-(VulnerabilityFactor))
 	ChangeMoveToDelayBy(0.8, TRUE)
+	UpdatePhase()
 
 /mob/living/simple_animal/hostile/abnormality/warden/proc/Strengthen(StrengthenFactor)
 	// A tiny bit of damage degradation for each soul consumed, capped at 20 lower damage and 30 upper damage.
-	DamageAlteration(damage_degradation)
+	DamageAlteration(-damage_degradation)
 	ResistanceAlteration(-StrengthenFactor)
 	ChangeMoveToDelayBy(0.9, TRUE)
-	UpdatePhase()
 	adjustBruteLoss(-(maxHealth*consumed_soul_heal)) // Heals a % of her max HP, fuck you that's why.
+	// UpdatePhase() Might not be necessary here.
 
-/mob/living/simple_animal/hostile/abnormality/warden/proc/UpdatePhase() // WIP, REMEMBER TO USE IP SPRITES
-	if(overfilled)
+/mob/living/simple_animal/hostile/abnormality/warden/proc/UpdatePhase()
+	if(captured_souls < overfilled_threshold)
 		return
-	if(captured_souls > overfilled_threshold && !overfilled)
-		overfilled = TRUE
-		// Add here the changes to both sprite variables
+	else
+		if(!overfilled)
+			overfilled = TRUE
+			normal_sprite = "warden_suffering"
+			finisher_sprite = "warden_agonize"
+			return
+		if(contained_people && !agony)
+			normal_sprite = "warden_agony"
+			agony = TRUE
+		else
+			normal_sprite = "warden_suffering"
+			agony = FALSE
+
 
 /mob/living/simple_animal/hostile/abnormality/warden/proc/ResistanceAlteration(factor)
-	// TODO: Make it so Burn and Brute resistances are not affected (Especially Brute)
 	var/list/defenses = damage_coeff.getList()
 	for(var/damtype in defenses)
 		if(damtype == "brute" || damtype == "fire")
@@ -300,14 +337,14 @@
 		defenses[damtype] += factor
 	ChangeResistances(defenses)
 
-/mob/living/simple_animal/hostile/abnormality/warden/proc/DamageAlteration(factor, affects_upper = FALSE) // The alteration is negative when the factor is positive and viceversa.
-	if(melee_damage_lower > lower_damage_cap + factor)
-		melee_damage_lower -= factor
+/mob/living/simple_animal/hostile/abnormality/warden/proc/DamageAlteration(factor, affects_upper = FALSE) // Just you know, this was a bit cursed in the first iteration.
+	if(melee_damage_lower  + factor < lower_damage_cap)
+		melee_damage_lower += factor
 	else
 		melee_damage_lower = lower_damage_cap
 	if(combatmap || affects_upper)
-		if(melee_damage_upper > upper_damage_cap + factor)
-			melee_damage_upper -= factor
+		if(melee_damage_upper  + factor < upper_damage_cap)
+			melee_damage_upper += factor
 		else
 			melee_damage_upper = upper_damage_cap
 
@@ -334,8 +371,11 @@
 	for(var/datum/abnormality/A in SSlobotomy_corp.all_abnormality_datums)
 		if(!A.current)
 			continue
-		if(!A.current.IsContained() && A.current.threat_level == TETH_LEVEL)
-			breached_abnos += A.current
+		var/mob/living/simple_animal/hostile/abnormality/possible_escapee = A.current
+		if(z != possible_escapee.z || possible_escapee.stat == DEAD)
+			continue
+		if(!possible_escapee.IsContained() && possible_escapee.threat_level == TETH_LEVEL)
+			breached_abnos += possible_escapee
 	if(LAZYLEN(breached_abnos))
 		var/mob/living/simple_animal/hostile/abnormality/escapee = pick(breached_abnos)
 		Lock_in(escapee)
@@ -345,28 +385,35 @@
 
 /mob/living/simple_animal/hostile/abnormality/warden/proc/Lock_in(mob/living/condemned) // There is no escape for the wicked.
 	hooligan = condemned
-	patrol_reset()
+	patrol_select()
 	if(!locked_in)
-		lose_patience_timeout *= 4 // 24 (60 * 4 deciseconds) seconds of its full and unwavering attention.
-		target_switch_resistance *= 4 // The idea is that nothing you do can distract it.
+		// lose_patience_timeout *= 4
+		// target_switch_resistance *= 4
 		ChangeMoveToDelayBy(0.5, TRUE)
 		density = FALSE // I AM COMING FOR YOU.
 		locked_in = TRUE
+		rapid_melee = 3
+		attack_same = 1 // We are doing what is called a pro-gamer move (Friendly Fire)
 	// TODO: Create some sort of fallback in case that Warden cannot reach its target, even if it exists.
 
 /mob/living/simple_animal/hostile/abnormality/warden/proc/Lock_out() // Mission accomplished, let's head ba- Sike! Time to kill agents.
+	hooligan = null
 	if(locked_in)
-		lose_patience_timeout /= 4
-		target_switch_resistance /= 4
+		// lose_patience_timeout /= 4
+		// target_switch_resistance /= 4
 		ChangeMoveToDelayBy(2, TRUE)
 		density = TRUE
 		locked_in = FALSE
+		rapid_melee = 1
+		attack_same = 0 // Killing other abnos is out of fashion, killing agents is the new black.
 	SLEEP_CHECK_DEATH(5)
 
 /mob/living/simple_animal/hostile/abnormality/warden/patrol_select()
-	if(hooligan)
-		var/turf/target_turf = get_turf(hooligan)
-		patrol_path = get_path_to(src, target_turf, /turf/proc/Distance_cardinal, 0, 200)
+	if(hooligan) // Lets just fucking copy this from NI, I am tired.
+		var/turf/trytorun = get_turf(hooligan)
+		SEND_SIGNAL(src, COMSIG_PATROL_START, src, trytorun) //Overrides the usual proc to target a specific tile
+		SEND_GLOBAL_SIGNAL(src, COMSIG_GLOB_PATROL_START, src, trytorun)
+		patrol_to(trytorun)
 		return
 	return ..()
 
@@ -381,16 +428,16 @@
 	if(world.time > lastcreepysound + creepysoundcooldown)
 		if(prob(1 + (captured_souls * 2))) // Add creepy whispers scaling with captured souls and upgrade to screams if Warden is overfilled.
 			if(overfilled)
-				var/message = "You hear a horrible cacophony of discordant voices coming from [src]'s dress."
+				var/message = "A horrible cacophony of discordant voices comes from [src]'s dress."
 				if(LAZYLEN(soul_names))
 					var/dumbidiot = pick(soul_names)
 					message += " You think you can hear [dumbidiot] screaming in there too."
 				visible_message("[message]")
-				playsound(get_turf(src), 'sound/creatures/legion_spawn.ogg', 30, 0, 8)
+				playsound(get_turf(src), 'sound/creatures/legion_spawn.ogg', 60, 0, 8)
 				lastcreepysound = world.time
 			else
 				visible_message("You hear strange sounds coming from beneath [src]'s dress.")
-				playsound(get_turf(src), 'sound/spookoween/ghost_whisper.ogg', 30, 0, 8)
+				playsound(get_turf(src), 'sound/spookoween/ghost_whisper.ogg', 60, 0, 8)
 				lastcreepysound = world.time
 		return
 
