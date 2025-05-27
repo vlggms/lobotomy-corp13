@@ -14,7 +14,7 @@ SUBSYSTEM_DEF(cityevents)
 	var/list/total_events = list()
 	var/list/distortions_available = list()
 	var/helpful_events = list("chickens", "money", "tresmetal", "hppens", "sppens")
-	var/harmful_events = list("drones", "beaks", "shrimps", "lovetowneasy", "lovetownhard")
+	var/harmful_events = list("drones", "shrimps", "lovetowneasy", "lovetownhard")
 	var/ordeal_events = list("sweepers", "scouts", "bots", "gbugs", "bloodbag", "clan") //Harmful Events, but they give meat?
 	var/neutral_events = list("swag")
 	var/boss_events = list("sweeper", "lovetown", "factory", "gcorp")
@@ -74,14 +74,13 @@ SUBSYSTEM_DEF(cityevents)
 /datum/controller/subsystem/cityevents/proc/Event()
 	addtimer(CALLBACK(src, PROC_REF(Event)), 5 MINUTES)
 	var/chosen_event
-	chosen_event = pick(total_events)
 	if(wavetime == 10 && wavetime !=0)	//after 50 minutes
 		chosen_event = Boss()
 	else
 		chosen_event = pick(total_events)
 
 	switch (chosen_event)
-		//Harmful events
+		//Ordeal events
 		if("sweepers")
 			spawnatlandmark(/mob/living/simple_animal/hostile/ordeal/indigo_noon, 20)
 		if("scouts")
@@ -98,8 +97,6 @@ SUBSYSTEM_DEF(cityevents)
 		//Harmful events
 		if("shrimps")
 			spawnatlandmark(/mob/living/simple_animal/hostile/shrimp, 20)
-		if("beaks")
-			spawnatlandmark(/mob/living/simple_animal/hostile/ordeal/bigBirdEye, 10)
 		if("drones")
 			spawnatlandmark(/mob/living/simple_animal/hostile/kcorp/drone, -10)//extremely low chance
 		if("lovetowneasy")
@@ -206,7 +203,7 @@ SUBSYSTEM_DEF(cityevents)
 				deadchat_broadcast("A Backstreet Butcher job slot has just opened, respawn to play.", message_type=DEADCHAT_ANNOUNCEMENT)
 
 /datum/controller/subsystem/cityevents/proc/Boss()
-	minor_announce("Warning, large hostile. Suppression required.", "Local Activity Alert:", TRUE)
+	minor_announce("Warning, large hostile detected. Suppression required.", "Local Activity Alert:", TRUE)
 	var/T = pick(spawners)
 	var/chosen_boss = pick(boss_events)
 	var/chosen_event
@@ -239,7 +236,7 @@ SUBSYSTEM_DEF(cityevents)
 		return
 
 	if(globalillumination >= 1.1)	//Go back down.
-		addtimer(CALLBACK(src, PROC_REF(Daynight)), 1 MINUTES)
+		addtimer(CALLBACK(src, PROC_REF(Daynight)), 5 MINUTES)
 		daystatus = TRUE
 		globalillumination = 1.08	//Ship it back down
 		return
