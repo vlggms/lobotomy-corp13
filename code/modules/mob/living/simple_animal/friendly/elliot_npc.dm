@@ -69,10 +69,17 @@
 	var/alert_update = 0
 	var/alert_cooldown = 2 MINUTES
 
+	var/puzzle_key = FALSE
+	var/puzzle_dagger = FALSE
+	var/puzzle_riddle = FALSE
+	var/puzzle_heretic = FALSE
+	var/turf/emergency_escape
+
 /mob/living/simple_animal/hostile/ui_npc/elliot/Life()
 	if(..())
 		LosePatience()
 		alert_humans()
+		PuzzleScan()
 		if(!target) // If we have no target, we start following an ally
 			speaking_on()
 			density = TRUE
@@ -93,6 +100,66 @@
 		else
 			speaking_off()
 			density = FALSE
+
+/mob/living/simple_animal/hostile/ui_npc/elliot/proc/PuzzleScan()
+	if(!emergency_escape)
+		for(var/obj/effect/motus_emergency_escape/escape in range(10, src))
+			emergency_escape = get_turf(escape)
+			break
+
+	if(!puzzle_key)
+		for(var/obj/structure/puzzle_key_case/key in view(7, src))
+			puzzle_key = TRUE
+			pointed(key)
+			addtimer(CALLBACK(src, PROC_REF(mad_alert)), 5)
+			break
+
+	if(!puzzle_dagger)
+		for(var/mob/living/simple_animal/hostile/clan/stone_guard/dagger_puzzle/dagger in view(7, src))
+			puzzle_dagger = TRUE
+			pointed(dagger)
+			addtimer(CALLBACK(src, PROC_REF(mad_alert)), 5)
+			break
+
+	if(!puzzle_riddle)
+		for(var/obj/machinery/door/keycard/puzzle_riddles/riddle in view(7, src))
+			puzzle_riddle = TRUE
+			pointed(riddle)
+			addtimer(CALLBACK(src, PROC_REF(mad_alert)), 5)
+			break
+
+	if(!puzzle_heretic)
+		for(var/mob/living/simple_animal/hostile/clan/stone_guard/heretic_puzzle/heretic in view(7, src))
+			puzzle_heretic = TRUE
+			pointed(heretic)
+			addtimer(CALLBACK(src, PROC_REF(mad_alert)), 5)
+			break
+
+/mob/living/simple_animal/hostile/ui_npc/elliot/proc/key_hint()
+	say("Hey, these keys look a bit suspicious...")
+	SLEEP_CHECK_DEATH(30)
+	say("You could pick one up right away, but...")
+	SLEEP_CHECK_DEATH(25)
+	say("I think it would be wise to test these keys somehow.")
+
+/mob/living/simple_animal/hostile/ui_npc/elliot/proc/dagger_hint()
+	say("Hm... don't these statues look weird?")
+	SLEEP_CHECK_DEATH(30)
+	say("With different colored hands...")
+	SLEEP_CHECK_DEATH(25)
+	say("It appears that they want something.")
+
+/mob/living/simple_animal/hostile/ui_npc/elliot/proc/riddle_hint()
+	say("Oh, that door appears to have some sort of voice box.")
+	SLEEP_CHECK_DEATH(30)
+	say("What if, you try to open this door?")
+
+/mob/living/simple_animal/hostile/ui_npc/elliot/proc/heretic_hint()
+	say("What strange statues...")
+	SLEEP_CHECK_DEATH(30)
+	say("They appear to have some sort of motion detector on them...")
+	SLEEP_CHECK_DEATH(25)
+	say("What would happen if you would poke them?")
 
 /mob/living/simple_animal/hostile/ui_npc/elliot/toggle_ai(togglestatus)
 	if (togglestatus != AI_IDLE)
@@ -205,6 +272,8 @@
 		say(pick(rise_lines))
 	visible_message(span_warning("[src] gets back up!"))
 	can_act = TRUE
+
+/mob/living/simple_animal/hostile/ui_npc/elliot/proc/Unguilt()
 	if(guilt)
 		cut_overlay(guilt_icon)
 		guilt = FALSE
@@ -1211,6 +1280,15 @@
 		patrol_to(patrol_turf)
 		break
 
+/obj/effect/motus_emergency_escape
+	name = "motus_emergency_escape"
+	icon = 'icons/effects/landmarks_static.dmi'
+	icon_state = "city_of_cogs"
+	alpha = 0
+	mouse_opacity = FALSE
+	anchored = TRUE
+	var/active = FALSE
+
 /obj/effect/motus_final_door
 	name = "motus_final_waypoint"
 	icon = 'icons/effects/landmarks_static.dmi'
@@ -1359,6 +1437,7 @@
 			sleep(3)
 	SLEEP_CHECK_DEATH(5)
 	new /obj/effect/temp_visual/justitia_effect(get_turf(execute_target))
+	new /obj/item/keycard/motus_treasure(get_turf(execute_target))
 	execute_target.gib()
 	playsound(src, 'sound/weapons/black_silence/durandal_strong.ogg', 100, 1)
 	SLEEP_CHECK_DEATH(30)

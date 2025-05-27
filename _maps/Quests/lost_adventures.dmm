@@ -738,6 +738,11 @@
 	},
 /turf/open/floor/stone,
 /area/city/backstreets_room/temple_motus/study_b)
+"mn" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/item/reagent_containers/glass/beaker,
+/turf/open/floor/wood,
+/area/city/backstreets_room/temple_motus/library)
 "mt" = (
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/machinery/smartfridge/chemistry,
@@ -1473,6 +1478,13 @@
 /obj/effect/decal/cleanable/generic,
 /turf/open/floor/plasteel/dark,
 /area/city/backstreets_room/temple_motus)
+"yR" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/turf_decal/loading_area/red{
+	dir = 4
+	},
+/turf/open/floor/stone,
+/area/city/backstreets_room/temple_motus/main)
 "zn" = (
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/effect/decal/cleanable/garbage,
@@ -1515,6 +1527,15 @@
 /obj/effect/decal/cleanable/dirt/dust,
 /turf/open/floor/holofloor/grass,
 /area/city/backstreets_room/temple_motus/study_a)
+"zO" = (
+/obj/structure/bookcase{
+	pixel_x = -32;
+	density = 0
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/item/reagent_containers/glass/beaker,
+/turf/open/floor/wood,
+/area/city/backstreets_room/temple_motus/library)
 "zP" = (
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/structure/lootcrate/workshopallas,
@@ -1623,6 +1644,9 @@
 	color = "#8a8a8a"
 	},
 /obj/structure/fluff/paper/stack,
+/obj/item/reagent_containers/glass/beaker,
+/obj/item/reagent_containers/glass/beaker,
+/obj/item/reagent_containers/glass/beaker,
 /turf/open/floor/stone,
 /area/city/backstreets_room/temple_motus/study_a)
 "BE" = (
@@ -2447,7 +2471,10 @@
 /area/city/backstreets_room/temple_motus/library)
 "OA" = (
 /obj/effect/decal/cleanable/dirt/dust,
-/obj/machinery/door/keycard/puzzle_riddles,
+/obj/machinery/door/keycard/puzzle_riddles{
+	icon = 'icons/obj/doors/airlocks/highsec/highsec.dmi';
+	icon_state = "closed"
+	},
 /turf/open/floor/stone,
 /area/city/backstreets_room/temple_motus/storage)
 "OB" = (
@@ -2590,7 +2617,6 @@
 /obj/structure/chair/sofa/right{
 	dir = 1
 	},
-/obj/item/storage/book/bible,
 /turf/open/floor/carpet/black,
 /area/city/backstreets_room/temple_motus/library)
 "RC" = (
@@ -4072,7 +4098,7 @@ YG
 Zd
 YF
 YF
-YF
+zO
 YF
 lc
 gT
@@ -4325,7 +4351,7 @@ ew
 tA
 sz
 sz
-JQ
+mn
 hA
 hA
 hA
@@ -9286,7 +9312,7 @@ ex
 LM
 ch
 ZV
-kl
+yR
 dD
 Fw
 ex

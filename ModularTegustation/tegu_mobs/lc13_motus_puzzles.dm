@@ -368,9 +368,12 @@ GLOBAL_LIST_EMPTY(heretic_puzzle)
 	loot = list(/obj/item/keycard/motus_medbay)
 	var/heretic = FALSE
 	var/talking = FALSE
+	var/mutable_appearance/speech_bubble
 
 /mob/living/simple_animal/hostile/clan/stone_guard/heretic_puzzle/Initialize()
 	. = ..()
+	speech_bubble = mutable_appearance('icons/mob/talk.dmi', "default2", ABOVE_MOB_LAYER)
+	add_overlay(speech_bubble)
 	glob_faction = GLOB.heretic_puzzle
 	faction = list("neutral", "hostile")
 

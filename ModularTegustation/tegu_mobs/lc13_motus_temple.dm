@@ -131,14 +131,15 @@
 	icon = 'ModularTegustation/Teguicons/teaser_mobs.dmi'
 	icon_state = "mad_fly_swarm"
 	icon_living = "mad_fly_swarm"
-	maxHealth = 300
-	health = 300
+	maxHealth = 200
+	health = 200
 	move_to_delay = 1.6
 	faction = list("madfly", "hostile")
 	damage_coeff = list(RED_DAMAGE = 1.5, WHITE_DAMAGE = 0.4, BLACK_DAMAGE = 0.6, PALE_DAMAGE = 2)
 	melee_damage_type = WHITE_DAMAGE
 	melee_damage_lower = 1
 	melee_damage_upper = 1
+	obj_damage = 0
 	attack_verb_continuous = "bites"
 	attack_verb_simple = "bite"
 	attack_sound = 'sound/abnormalities/fairyfestival/fairy_festival_bite.ogg'
@@ -226,8 +227,8 @@
 	faction = list("madfly", "hostile")
 	gender = NEUTER
 	obj_damage = 0
-	maxHealth = 1000
-	health = 1000
+	maxHealth = 800
+	health = 800
 	damage_coeff = list(RED_DAMAGE = 1, WHITE_DAMAGE = 0.2, BLACK_DAMAGE = 0.5, PALE_DAMAGE = 1.5)
 	butcher_results = list(/obj/item/food/meat/slab/xeno = 3)
 	death_sound = 'sound/effects/ordeals/crimson/dusk_dead.ogg'
@@ -412,7 +413,7 @@
 	icon_state = "Med1"
 	base_icon_state = "Med1"
 	color = "#800000"
-	max_integrity = 15
+	max_integrity = 5
 	expand_cooldown = 4 SECONDS
 	resistance_flags = FLAMMABLE
 	pass_flags_self = LETPASSTHROW
@@ -768,7 +769,6 @@
 
 /mob/living/simple_animal/hostile/clan/stone_keeper/Destroy()
 	Unlock()
-	new /obj/item/keycard/motus_treasure(get_turf(src))
 	. = ..()
 
 
@@ -903,11 +903,14 @@
 	for(var/turf/T in line_of_sight)
 		if(DensityCheck(T))
 			Fire(last_turf)
+			if(victim)
+				victim.Unguilt()
 			return
 		else
 			last_turf = T
-
 	Fire(cooler_target)
+	if(victim)
+		victim.Unguilt()
 
 /mob/living/simple_animal/hostile/clan/stone_keeper/proc/Fire(atom/target)
 	face_atom(target)
@@ -944,6 +947,88 @@
 		if(D.density)
 			return TRUE
 	return FALSE
+
+/mob/living/simple_animal/hostile/clan/stone_keeper/proc/EveryoneDead_Check()
+	var/everyone_dead = TRUE
+	for(var/mob/living/L in locked_list)
+		if(istype(L, /mob/living/simple_animal/hostile/ui_npc/elliot))
+			continue
+		if(L.stat != DEAD && !faction_check_mob(L, FALSE))
+			everyone_dead = FALSE
+	if(everyone_dead)
+		StealElliot()
+
+/mob/living/simple_animal/hostile/clan/stone_keeper/proc/StealElliot()
+	var/mob/living/simple_animal/hostile/ui_npc/elliot/victim
+	for(var/mob/living/simple_animal/hostile/ui_npc/elliot/steal_target in range(20, src))
+		victim = steal_target
+		break
+	status_flags |= GODMODE
+	can_act = FALSE
+	talking = TRUE
+	if(victim)
+		victim.can_act = FALSE
+		say("Well, well, well...")
+		SLEEP_CHECK_DEATH(30)
+		say("It appears all have fallen... Dear Elliot.")
+		SLEEP_CHECK_DEATH(30)
+		say("Now, it's time for you to return...")
+		SLEEP_CHECK_DEATH(30)
+		say("And fight for the right side of history...")
+		SLEEP_CHECK_DEATH(30)
+		if(victim.stat != DEAD)
+			victim.say("Ha... Dear Tinkerer...")
+			SLEEP_CHECK_DEATH(30)
+			victim.say("I... Understand the pain you went through...")
+			SLEEP_CHECK_DEATH(30)
+			victim.say("I learned the same once I ran away...")
+			SLEEP_CHECK_DEATH(30)
+			victim.say("The nightmare that was the city... The monsters that humans can be...")
+			SLEEP_CHECK_DEATH(30)
+			say("HAHA, So you do see... How we must exterminate them... Right?")
+			SLEEP_CHECK_DEATH(30)
+			victim.say("I wish I could join you so easily...")
+			SLEEP_CHECK_DEATH(30)
+			victim.say("But... Not all humans are a part of this nightmare...")
+			SLEEP_CHECK_DEATH(30)
+			victim.say("Like Joshua, or the humans in the outskirts...")
+			SLEEP_CHECK_DEATH(30)
+			victim.say("They showed me the kindness that can be within a human...")
+			SLEEP_CHECK_DEATH(30)
+			say("... What utter lies, humans can't be excused that easily...")
+			SLEEP_CHECK_DEATH(30)
+			victim.say("I know, but... I think I should give them a chance.")
+			SLEEP_CHECK_DEATH(30)
+			victim.say("For the kindness that they showed me...")
+			SLEEP_CHECK_DEATH(30)
+		for(var/mob/living/carbon/human/L in locked_list)
+			new /obj/effect/temp_visual/dir_setting/ninja/phase/out (get_turf(L))
+			playsound(L, 'sound/effects/contractorbatonhit.ogg', 100, FALSE, 9)
+			L.forceMove(victim.emergency_escape)
+			new /obj/effect/temp_visual/dir_setting/ninja/phase (get_turf(L))
+			playsound(L, 'sound/effects/contractorbatonhit.ogg', 100, FALSE, 9)
+		Unlock()
+		victim.gib()
+		SLEEP_CHECK_DEATH(30)
+		say("I see... Dear Elliot...")
+		SLEEP_CHECK_DEATH(30)
+		say("So you did have a plan for them if something like this happened...")
+		SLEEP_CHECK_DEATH(30)
+		say("Clever, Little Elliot... Even if it costed your Core...")
+		SLEEP_CHECK_DEATH(30)
+		new /obj/effect/temp_visual/dir_setting/ninja/phase/out (get_turf(src))
+		playsound(src, 'sound/effects/contractorbatonhit.ogg', 100, FALSE, 9)
+		qdel(src)
+	else
+		say("Well, It appears that everyone has been taken care of...")
+		SLEEP_CHECK_DEATH(30)
+		say("However, that little drone got away...")
+		SLEEP_CHECK_DEATH(30)
+		say("Annoying, But I guess I can let them go for now...")
+		SLEEP_CHECK_DEATH(30)
+		new /obj/effect/temp_visual/dir_setting/ninja/phase/out (get_turf(src))
+		playsound(src, 'sound/effects/contractorbatonhit.ogg', 100, FALSE, 9)
+		qdel(src)
 
 /mob/living/simple_animal/hostile/clan/stone_keeper/proc/AcitvateChains()
 	for(var/obj/effect/keeper_field/DF in range(20, src))
