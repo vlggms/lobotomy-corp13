@@ -112,15 +112,19 @@
 	var/agony = FALSE
 	var/soul_names = list() // Funny 2.
 	var/lastcreepysound = 0
+	// Controls both the creepy sound and the soulless agitation cooldown.
 	var/creepysoundcooldown = 20 SECONDS
 
-/mob/living/simple_animal/hostile/abnormality/warden/Login() // I need to fully revamp this, ouuuuuuggghhhhh
+/mob/living/simple_animal/hostile/abnormality/warden/Login() // VERY WIP, when the RCA tweaks actually get made then this can be changed.
 	. = ..()
 	to_chat(src, "<h1>You are Warden, A Tank Role Abnormality.</h1><br>\
 		<b>|Soul Guard|: You are immune to all projectiles.<br>\
 		<br>\
-		|Soul Warden|: If you attack a corpse, you will dust it, heal and gain a stack of “Captured Soul”<br>\
-		For each stack of “Captured Soul”, you become faster, deal 10 less melee damage and take 50% more damage.</b>")
+		|Soul Warden|: If you attack a human with less than [KidnapThreshold * 100]% HP, you will kidnap them and begin to devour their soul.<br>\
+		While devouring someone's soul, you will be slower, weaker and more frail than usual. <br>\
+		If you successfully devour a soul you will heal [consumed_soul_heal * 100]% of your HP and you will spawn a subordinate mob. <br>\
+		For each soul consumed, you will become faster and more resilient, but your damage will decrease by [damage_degradation].<br>\
+		If you receive [jailbreak_threshold] pre-reduction damage while in the process of devouring a soul, you will get stunned and puke every single human currently inside of you </b>")
 
 /mob/living/simple_animal/hostile/abnormality/warden/Initialize()
 	. = ..()
@@ -132,8 +136,8 @@
 	UnregisterSignal(SSdcs, COMSIG_GLOB_ABNORMALITY_BREACH)
 	QDEL_NULL(soul_names) // It WOULD be fun if Warden saved all soul names that it has consumed but I cannot be assed to figure that out.
 	for(var/mob/living/L in indoctrinated_morons)
-		QDEL_IN(L, rand(3) SECONDS)
 		indoctrinated_morons -= L
+		L.dust()
 	return ..()
 
 /mob/living/simple_animal/hostile/abnormality/warden/PickTarget(list/Targets) // Shamelessly stolen from MoSB
@@ -269,7 +273,8 @@
 			RevertWeakness(digestion_modifier)
 		i.forceMove(freedom)
 	// Just reset the variables after popping.
-	weakjail = FALSE
+	if(!combatmap)
+		weakjail = FALSE
 	release_damage = 0
 	SLEEP_CHECK_DEATH(50) // 5 whole seconds of stun, you should be grateful.
 
@@ -280,7 +285,7 @@
 	qdel(loser) // Lol, lmao.
 	soul_names += loser.real_name
 	L.name = "[loser.real_name]"
-	L.desc = "Is that [loser.real_name]? [loser.p_their(TRUE)] face is drained of colour and [loser.p_their()] eyes look glassy and unfocused."
+	L.desc = "[loser.real_name] face is drained of colour and [loser.p_their()] eyes look glassy and unfocused."
 	indoctrinated_morons += L
 	contained_people--
 	captured_souls++
@@ -362,8 +367,10 @@
 		KidnapStuntime = 0
 		weakjail = TRUE
 
+// Lets try something, lets see if we can limit hardcoding the RCA tweaks.
 /mob/living/simple_animal/hostile/abnormality/warden/proc/CombatMapTweaks() // WIP
 	combatmap = TRUE
+	weakjail = TRUE
 	return
 
 /mob/living/simple_animal/hostile/abnormality/warden/proc/HuntFugitives()
@@ -408,6 +415,11 @@
 		attack_same = 0 // Killing other abnos is out of fashion, killing agents is the new black.
 	SLEEP_CHECK_DEATH(5)
 
+/mob/living/simple_animal/hostile/abnormality/warden/proc/WakeUpBraindeads()
+	if(LAZYLEN(indoctrinated_morons))
+		for(var/mob/living/simple_animal/hostile/soulless/husk in indoctrinated_morons)
+			husk.Agitate(rand(4, 15))
+
 /mob/living/simple_animal/hostile/abnormality/warden/patrol_select()
 	if(hooligan) // Lets just fucking copy this from NI, I am tired.
 		var/turf/trytorun = get_turf(hooligan)
@@ -439,6 +451,7 @@
 				visible_message("You hear strange sounds coming from beneath [src]'s dress.")
 				playsound(get_turf(src), 'sound/spookoween/ghost_whisper.ogg', 60, 0, 8)
 				lastcreepysound = world.time
+			WakeUpBraindeads()
 		return
 
 /mob/living/simple_animal/hostile/abnormality/warden/CanAttack(atom/the_target)
@@ -486,7 +499,7 @@
 
 /atom/movable/screen/alert/status_effect/souldrain
 	name = "Soul Drain"
-	desc = "Your identity is slipping through the pores of your skin."
+	desc = "Thoughts, feelings, memories...everything is slipping away..."
 	icon = 'icons/mob/actions/actions_spells.dmi'
 	icon_state = "void_magnet"
 
@@ -532,8 +545,8 @@
 	name = "Soulless husk"
 	desc = "A flesh automaton animated only by neurotransmitters after having their divine light severed."
 	icon = 'ModularTegustation/Teguicons/32x32.dmi'
-	icon_state = "wellcheers_kidnap" // Obviously placeholder, but its funny.
-	icon_living = "wellcheers_kidnap"
+	icon_state = "soulless_husk" // Whatever! Go my codersprite!
+	icon_living = "soulless_husk"
 	speak_emote = list("screeches")
 	attack_verb_continuous = "attacks"
 	attack_verb_simple = "attack"
@@ -551,3 +564,40 @@
 	stat_attack = HARD_CRIT
 	del_on_death = TRUE
 	density = FALSE
+
+	var/catatonic = TRUE
+
+/mob/living/simple_animal/hostile/soulless/Initialize()
+	. = ..()
+	if(IsCombatMap())
+		catatonic = FALSE
+
+/mob/living/simple_animal/hostile/soulless/CanAttack(atom/the_target)
+	if(catatonic)
+		return FALSE
+	return ..()
+
+/mob/living/simple_animal/hostile/soulless/Move()
+	if(catatonic)
+		return FALSE
+	return ..()
+
+/mob/living/simple_animal/hostile/soulless/AttackingTarget(atom/attacked_target)
+	if(catatonic)
+		return FALSE
+	return ..()
+
+/mob/living/simple_animal/hostile/soulless/Life()
+	. = ..()
+	if(catatonic)
+		if(prob(20))
+			emote("twitch")
+
+/mob/living/simple_animal/hostile/soulless/proc/Agitate(WakeUpTime)
+	SLEEP_CHECK_DEATH(WakeUpTime)
+	emote("scream")
+	if(catatonic)
+		catatonic = FALSE
+		return
+	melee_damage_upper += 5
+

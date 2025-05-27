@@ -5,9 +5,19 @@
 	abno_info = list(
 		"When employees with both Justice Level 3 or lower and Fortitude Level 3 or lower finished working, the Qliphoth Counter lowered.",
 		"When the work result was Bad, the Qliphoth Counter lowered.",
-		"When The Warden was escaping and killed an employee, it dragged their soul under its dress and began to move faster.",
-		"The Warden was unaffected by any projectiles hitting it.",
-		"NOTICE: The Warden is most effectively suppressed by groups.")
+		"The Warden's Qliphoth Counter decreased every time an Abnormality breached containment.",
+		"NOTICE: This behaviour did not seem to be present if the breaching Abnormality was of exceptionally high risk.",
+		"When The Warden breached containment it prioritized searching for escaped low-risk Abnormalities and <Redacted>, effectively supressing them.",
+		"WARNING: Supression of The Warden grew increasingly difficult with each Abnormality that it managed to <Redacted>.",
+		"While being suppressed, The Warden prioritized severily hurt employees and engulfed them with its dress. Rescued employees reported an overwhelming feeling of 'impending doom' while trapped inside the abnormality.",
+		"NOTICE: Researchers have found a strong correlation between higher levels of Prudence among employees and higher survival rates following abduction by The Warden.",
+		"If an employee is not rescued from The Warden before their mind crumbles, The Warden will proceed to <Redacted>, freeing the employee shortly afterwards.",
+		"WARNING: Employees are not to interact with unresponsive ex-coworkers (T-01-114-1) left behind by the Abnormality. Instances of T-01-114-1 are capable of becoming aggresive without warning.",
+		"The Warden has been found to become considerably weaker with each employee trapped by it. However, this weakness has been observed to be temporary.",
+		"IMPORTANT WARNING: The Warden has been observed to grow significantly harder to suppress with each employee that it <Redacted>.",
+		"The Warden was unaffected by any projectiles hitting it.")
+	abno_breach_damage_type = "Black"
+	abno_breach_damage_count = "Very High"
 
 //Bee
 /obj/item/paper/fluff/info/waw/queenbee
