@@ -10,7 +10,7 @@
 	health = 1000
 	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 0.6, WHITE_DAMAGE = 0.8, BLACK_DAMAGE = 1.2, PALE_DAMAGE = 1.5)
 	melee_damage_lower = 14
-	melee_damage_upper = 18
+	melee_damage_upper = 17
 	attack_verb_continuous = "stabs"
 	attack_verb_simple = "stab"
 	attack_sound = 'sound/weapons/fixer/generic/spear2.ogg'
