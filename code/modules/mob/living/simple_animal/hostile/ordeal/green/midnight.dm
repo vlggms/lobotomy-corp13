@@ -45,10 +45,15 @@
 	var/next_health_mark = 0 // Initialize below
 
 	//These variables control how many bots are deployed during the no-lasers-phase and how the scaling for them works.
-	var/squad_size = 6 // How large our squad of deployed bots should be. Will attempt to deploy bots until we reach this size. This increases when losing enough HP.
-	var/active_minions = 0 // How many of our personally spawned bots are alive right now.
-	var/maximum_squad_size = 16 // We will never increase squad size past this. Adjusted by scaling
-	var/squad_size_increase_step = 2 // This variable controls how many bots are added to a squad per 10% HP lost. Adjusted by scaling
+	/// How large our squad of deployed bots should be.
+	/// Will attempt to deploy bots until we reach this size. This increases when losing enough HP.
+	var/squad_size = 6
+	/// How many of our personally spawned bots are alive right now.
+	var/active_minions = 0
+	/// We will never increase squad size past this. Adjusted by scaling
+	var/maximum_squad_size = 16
+	/// Controls how many bots are added to a squad per 10% HP lost. Adjusted by scaling
+	var/squad_size_increase_step = 2
 
 	// I am placing these here because I don't want to calculate turfs in range 9 trillion times.
 	var/list/microbarrage_threatened_turfs = list()
@@ -270,7 +275,7 @@
 	color = "#7ac21f"
 
 /obj/effect/temp_visual/helix_minilaser/Initialize()
-	..()
+	. = ..()
 	addtimer(CALLBACK(src, PROC_REF(Blowup)), 10)
 
 /obj/effect/temp_visual/helix_minilaser/proc/Blowup()
@@ -292,7 +297,7 @@
 	base_pixel_y = -32
 
 /obj/effect/temp_visual/helix_macrolaser/Initialize()
-	..()
+	. = ..()
 	addtimer(CALLBACK(src, PROC_REF(Blowup)), 20)
 
 /obj/effect/temp_visual/helix_macrolaser/proc/Blowup()
@@ -315,9 +320,10 @@
 		//If we have budget to spare, we can get one of these I guess. Honestly by this point in the shift, they are irrelevant, EXCEPT the Syringe Bots. They are lethal.
 		//These are specifically the /factory subtype because we don't want a lobillion dead bodies to be left behind.
 			squad += pick(list(
-			/mob/living/simple_animal/hostile/ordeal/green_bot/factory,
-			/mob/living/simple_animal/hostile/ordeal/green_bot/syringe/factory,
-			/mob/living/simple_animal/hostile/ordeal/green_bot/fast/factory))
+				/mob/living/simple_animal/hostile/ordeal/green_bot/factory,
+				/mob/living/simple_animal/hostile/ordeal/green_bot/syringe/factory,
+				/mob/living/simple_animal/hostile/ordeal/green_bot/fast/factory,
+			))
 		remaining_spawn_budget--
 	return squad
 
@@ -326,7 +332,7 @@
 	//We get the types we want to spawn in a list here
 	var/list/squad = GenerateBotSquad()
 
-	if(squad.len <= 0)
+	if(length(squad) <= 0)
 		return //I guess we're not doing anything.
 
 	//These are all the turfs around us.
