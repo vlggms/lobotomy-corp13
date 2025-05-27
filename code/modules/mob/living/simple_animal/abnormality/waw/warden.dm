@@ -329,7 +329,7 @@
 		if(contained_people && !agony)
 			normal_sprite = "warden_agony"
 			agony = TRUE
-		else
+		else if(!contained_people)
 			normal_sprite = "warden_suffering"
 			agony = FALSE
 
