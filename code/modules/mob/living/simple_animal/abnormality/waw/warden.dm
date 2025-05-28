@@ -69,9 +69,12 @@
 	// By default extremely high, you are supposed to be freed by other employees.
 	var/KidnapStuntime = 999
 
-	var/contained_people = 0
-	var/captured_souls = 0
+	var/contained_people
+	var/captured_souls
 	var/indoctrinated_morons = list()
+	// This is the flat amount of max sanity decrease that kidnapped people get every 6 seconds.
+	var/soul_consume_rate = 10
+
 	// Resistance modifiers when Warden is eating/has fully eaten someone's soul.
 
 	// How much does Warden's resistances degrade while digesting someone.
@@ -109,7 +112,7 @@
 	var/overfilled = FALSE // Funny.
 	var/agony = FALSE
 	var/soul_names = list() // Funny 2.
-	var/lastcreepysound = 0
+	var/lastcreepysound
 	// Controls both the creepy sound and the soulless agitation cooldown.
 	var/creepysoundcooldown = 20 SECONDS
 
@@ -258,7 +261,7 @@
 	if(KidnapStuntime)
 		rulebreaker.Stun(KidnapStuntime) // You gotta get saved by another person, nerd.
 	else
-		KidnapStuntime = 999 // Reset the var for future kidnappings
+		KidnapStuntime = initial(KidnapStuntime) // Reset the var for future kidnappings
 	rulebreaker.forceMove(src)
 	rulebreaker.apply_status_effect(STATUS_EFFECT_SOULDRAIN)
 	var/datum/status_effect/souldrain/S = rulebreaker.has_status_effect(/datum/status_effect/souldrain)
@@ -494,6 +497,7 @@
 	alert_type = /atom/movable/screen/alert/status_effect/souldrain
 	var/collected_soul
 	var/warden
+	var/soul_degradation
 
 /atom/movable/screen/alert/status_effect/souldrain
 	name = "Soul Drain"
@@ -506,7 +510,7 @@
 	ADD_TRAIT(status_holder, TRAIT_NOBREATH, type)
 	status_holder.adjust_attribute_bonus(PRUDENCE_ATTRIBUTE, -20)
 	collected_soul += 20
-	if(!status_holder.sanity_lost || status_holder.stat != DEAD)
+	if(!status_holder.sanity_lost && status_holder.stat != DEAD)
 		status_holder.adjustSanityLoss(-(status_holder.maxSanity*0.1)) // Heal 10% of their max sanity after prudence modifier, just to give them a bit more leeway to escape.
 	return ..()
 
@@ -516,11 +520,13 @@
 	var/mob/living/simple_animal/hostile/abnormality/warden/master = warden
 	var/soulless = get_turf(owner)
 	var/girlboss = get_turf(master)
+	if(!soul_degradation)
+		soul_degradation = master.soul_consume_rate
 	if(soulless == girlboss) // Are you still inside the Warden? If yes then get ready to get spiritually husked bucko
 		status_holder.adjustBruteLoss(-(status_holder.maxHealth*0.025)) // It cares for your fleshy form while sucking out your soul.
-		status_holder.adjust_attribute_bonus(PRUDENCE_ATTRIBUTE, -10) // This lowers your maximum sanity
+		status_holder.adjust_attribute_bonus(PRUDENCE_ATTRIBUTE, -soul_degradation) // This lowers your maximum sanity
 		status_holder.adjustSanityLoss(round(collected_soul*0.1)) // Somehow people can have negative max sanity without insanning if they do not receive damage.
-		collected_soul += 10 // Every 6 seconds the sanity damage increases by one.
+		collected_soul += soul_degradation // The sanity damage increases every tick.
 		if(status_holder.sanity_lost || status_holder.stat == DEAD)
 			master.Indoctrination(status_holder)
 	else // If not, then congrats you have mastered the art of teleportation (And you are safe, for now.)
