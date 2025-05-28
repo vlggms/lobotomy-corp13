@@ -1873,6 +1873,12 @@
 	},
 /turf/open/floor/plasteel/showroomfloor,
 /area/city/backstreets_room/temple_motus/study_b)
+"Fe" = (
+/obj/effect/motus_emergency_escape,
+/turf/open/floor/plating/asteroid{
+	name = "outskirts sand"
+	},
+/area/city/backstreets_room/temple_motus/outskirts)
 "Fh" = (
 /obj/effect/decal/cleanable/dirt/dust,
 /mob/living/simple_animal/hostile/clan/stone_guard/heretic_puzzle/robes{
@@ -2471,10 +2477,7 @@
 /area/city/backstreets_room/temple_motus/library)
 "OA" = (
 /obj/effect/decal/cleanable/dirt/dust,
-/obj/machinery/door/keycard/puzzle_riddles{
-	icon = 'icons/obj/doors/airlocks/highsec/highsec.dmi';
-	icon_state = "closed"
-	},
+/obj/machinery/door/keycard/puzzle_riddles,
 /turf/open/floor/stone,
 /area/city/backstreets_room/temple_motus/storage)
 "OB" = (
@@ -5314,7 +5317,7 @@ nU
 nU
 nU
 nU
-nU
+Fe
 nU
 nz
 nU

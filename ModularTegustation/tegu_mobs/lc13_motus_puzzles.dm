@@ -284,6 +284,7 @@ GLOBAL_LIST_EMPTY(heretic_puzzle)
 /obj/machinery/door/keycard/puzzle_riddles
 	desc = "This door appears to have a voice box attached to it, What could it be used for?"
 	puzzle_id = "puzzle_door"
+	color = "#fc7703"
 	var/current_riddle = 1
 	var/riddling = FALSE
 

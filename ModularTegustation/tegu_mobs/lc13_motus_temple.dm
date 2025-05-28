@@ -850,6 +850,7 @@
 	playsound(get_turf(src), 'sound/abnormalities/mountain/slam.ogg', 75, 0, 3)
 	icon_state = "stone_keeper"
 	SLEEP_CHECK_DEATH(0.4 SECONDS)
+	EveryoneDead_Check()
 	if(talking)
 		return
 	can_act = TRUE
@@ -1004,7 +1005,10 @@
 		for(var/mob/living/carbon/human/L in locked_list)
 			new /obj/effect/temp_visual/dir_setting/ninja/phase/out (get_turf(L))
 			playsound(L, 'sound/effects/contractorbatonhit.ogg', 100, FALSE, 9)
-			L.forceMove(victim.emergency_escape)
+			var/turf/target_turf = get_turf(victim)
+			if(victim.emergency_escape)
+				target_turf = victim.emergency_escape
+			L.forceMove(target_turf)
 			new /obj/effect/temp_visual/dir_setting/ninja/phase (get_turf(L))
 			playsound(L, 'sound/effects/contractorbatonhit.ogg', 100, FALSE, 9)
 		Unlock()

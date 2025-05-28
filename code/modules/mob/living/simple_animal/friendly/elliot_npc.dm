@@ -108,31 +108,31 @@
 			break
 
 	if(!puzzle_key)
-		for(var/obj/structure/puzzle_key_case/key in view(7, src))
+		for(var/obj/structure/puzzle_key_case/key in range(3, src))
 			puzzle_key = TRUE
 			pointed(key)
-			addtimer(CALLBACK(src, PROC_REF(mad_alert)), 5)
+			addtimer(CALLBACK(src, PROC_REF(key_hint)), 5)
 			break
 
 	if(!puzzle_dagger)
-		for(var/mob/living/simple_animal/hostile/clan/stone_guard/dagger_puzzle/dagger in view(7, src))
+		for(var/mob/living/simple_animal/hostile/clan/stone_guard/dagger_puzzle/dagger in range(3, src))
 			puzzle_dagger = TRUE
 			pointed(dagger)
-			addtimer(CALLBACK(src, PROC_REF(mad_alert)), 5)
+			addtimer(CALLBACK(src, PROC_REF(dagger_hint)), 5)
 			break
 
 	if(!puzzle_riddle)
-		for(var/obj/machinery/door/keycard/puzzle_riddles/riddle in view(7, src))
+		for(var/obj/machinery/door/keycard/puzzle_riddles/riddle in range(3, src))
 			puzzle_riddle = TRUE
 			pointed(riddle)
-			addtimer(CALLBACK(src, PROC_REF(mad_alert)), 5)
+			addtimer(CALLBACK(src, PROC_REF(riddle_hint)), 5)
 			break
 
 	if(!puzzle_heretic)
-		for(var/mob/living/simple_animal/hostile/clan/stone_guard/heretic_puzzle/heretic in view(7, src))
+		for(var/mob/living/simple_animal/hostile/clan/stone_guard/heretic_puzzle/heretic in range(3, src))
 			puzzle_heretic = TRUE
 			pointed(heretic)
-			addtimer(CALLBACK(src, PROC_REF(mad_alert)), 5)
+			addtimer(CALLBACK(src, PROC_REF(heretic_hint)), 5)
 			break
 
 /mob/living/simple_animal/hostile/ui_npc/elliot/proc/key_hint()
