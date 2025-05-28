@@ -91,19 +91,25 @@
 		However, if the umbrellas are broken you will lose 5% for each umbrella broken.<br></b>")
 
 /mob/living/simple_animal/hostile/abnormality/drifting_fox/funpet(mob/petter)
-	pet += petter
+	pet |= petter
 	return ..()
+
+/mob/living/simple_animal/hostile/abnormality/drifting_fox/AttemptWork(mob/living/carbon/human/user, work_type)
+	if(user in pet)
+		if(work_type == ABNORMALITY_WORK_ATTACHMENT)
+			to_chat(user, span_notice("The abnormality seems to like this type of work more than usual!"))
+		else
+			to_chat(user, span_warning("The abnormality does not seem happy with your choice of work."))
+	. = ..()
 
 /mob/living/simple_animal/hostile/abnormality/drifting_fox/WorkChance(mob/living/carbon/human/user, chance, work_type)
 	if(user in pet)
 		if(work_type == ABNORMALITY_WORK_ATTACHMENT)
 			chance += 30
-			pet -= user
-			to_chat(user, span_notice("The abnormality seems to like this type of work more than usual!"))
 		else
 			chance -= 10
-			to_chat(user, span_warning("The abnormality does not seem happy with your choice of work."))
 		return chance
+	. = ..()
 
 /mob/living/simple_animal/hostile/abnormality/drifting_fox/PostWorkEffect(mob/living/carbon/human/user, work_type, pe, work_time)
 	if(user in pet)
