@@ -234,7 +234,7 @@
 	if (istype(M, /mob/living/simple_animal/hostile/abnormality))
 		try_heal(M, user)
 	else
-		to_chat(user, "span_warning("You can't use [src] on [M]!"))
+		to_chat(user, "span_warning("You can't use [src] on [M]!")")
 
 /obj/item/stack/medical/suture/emergency
 	name = "emergency suture"
