@@ -21,20 +21,21 @@
 
 /mob/living/carbon/human/species/cuckoospawn
 	race = /datum/species/cuckoospawn
-	melee_damage_lower = 23
-	melee_damage_upper = 30
+	faction = list("hostile", "cuckoospawn", "city")
 
-/mob/living/carbon/human/species/cuckoospawn/harm(mob/living/carbon/human/user, mob/living/carbon/human/target, datum/martial_art/attacker_style)
-	. = ..()
-	if(target)
+/datum/species/cuckoospawn/harm(mob/living/carbon/human/user, mob/living/carbon/human/target, datum/martial_art/attacker_style)
+	if(ishuman(target))
 		var/obj/item/bodypart/chest/LC = target.get_bodypart(BODY_ZONE_CHEST)
-		if((!LC || LC.status != BODYPART_ROBOTIC) && !target.getorgan(/obj/item/organ/body_egg/alien_embryo))
-			new /obj/item/organ/body_egg/alien_embryo(target)
+		if((!LC || LC.status != BODYPART_ROBOTIC) && !target.getorgan(/obj/item/organ/body_egg/cuckoospawn_embryo))
+			new /obj/item/organ/body_egg/cuckoospawn_embryo(target)
 			var/turf/T = get_turf(target)
-			log_game("[key_name(target)] was impregnated by a facehugger at [loc_name(T)]")
+			log_game("[key_name(target)] was impregnated by a cockoospawn at [loc_name(T)]")
+	. = ..()
 
 /mob/living/carbon/human/species/cuckoospawn/Initialize()
 	. = ..()
+	melee_damage_lower = 23
+	melee_damage_upper = 30
 	AddComponent(/datum/component/footstep, FOOTSTEP_MOB_CLAW, 1, -6)
 
 /mob/living/carbon/human/species/cuckoospawn/attack_ghost(mob/dead/observer/ghost)
