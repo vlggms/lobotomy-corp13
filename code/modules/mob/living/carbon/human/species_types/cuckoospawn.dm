@@ -9,15 +9,20 @@
 	species_traits = list(NO_UNDERWEAR, NOEYESPRITES)
 	inherent_traits = list(TRAIT_PERFECT_ATTACKER, TRAIT_BRUTEPALE, TRAIT_BRUTESANITY, TRAIT_SANITYIMMUNE, TRAIT_GENELESS, TRAIT_COMBATFEAR_IMMUNE)
 	use_skintones = FALSE
+	species_language_holder = /datum/language_holder/cuckoospawn
 	limbs_id = "cuckoo"
-	no_equip = list(ITEM_SLOT_EYES, ITEM_SLOT_MASK)
+	no_equip = list(ITEM_SLOT_EYES, ITEM_SLOT_MASK, ITEM_SLOT_FEET)
 	changesource_flags = MIRROR_BADMIN | WABBAJACK
+	liked_food = MEAT | RAW
+	disliked_food = VEGETABLES | DAIRY
+	attack_sound = 'sound/abnormalities/big_wolf/Wolf_Scratch.ogg'
+	punchdamagelow = 24
+	punchdamagehigh = 27
+	speedmod = -1
+	payday_modifier = 0
 
-// /datum/species/cuckoospawn/random_name(gender,unique,lastname)
-// 	var/shrimp_name = pick(special_names)
-// 	if(prob(human_name_chance))
-// 		shrimp_name = pick(GLOB.last_names)
-// 	return shrimp_name // 95% chance to pick a shrimp name, 5% to pick a human lastname. These guys only use one name
+/datum/species/cuckoospawn/random_name(gender,unique,lastname)
+	return "Jiajiaren"
 
 /mob/living/carbon/human/species/cuckoospawn
 	race = /datum/species/cuckoospawn
@@ -34,9 +39,9 @@
 
 /mob/living/carbon/human/species/cuckoospawn/Initialize()
 	. = ..()
-	melee_damage_lower = 23
-	melee_damage_upper = 30
 	AddComponent(/datum/component/footstep, FOOTSTEP_MOB_CLAW, 1, -6)
+	adjust_attribute_buff(FORTITUDE_ATTRIBUTE, 250)
+	adjust_attribute_buff(PRUDENCE_ATTRIBUTE, 200)
 
 /mob/living/carbon/human/species/cuckoospawn/attack_ghost(mob/dead/observer/ghost)
 	if(key)

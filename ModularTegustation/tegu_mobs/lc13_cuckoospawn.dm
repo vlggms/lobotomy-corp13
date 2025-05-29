@@ -1,5 +1,5 @@
 /mob/living/simple_animal/hostile/cuckoospawn
-	name = "cuckoospawn"
+	name = "jiajiaren"
 	desc = "A tall humaniod looking bird, with eyes glaring anything moving around it."
 	icon = 'icons/mob/cuckoospawn_big.dmi'
 	icon_state = "evil_ass_bird"
@@ -47,13 +47,15 @@
 			bursting_embryo.AttemptGrow()
 
 /mob/living/simple_animal/hostile/cuckoospawn_parasite
-	name = "cuckoospawn parasite"
+	name = "jiajiaren parasite"
 	icon = 'icons/mob/cuckoospawn.dmi'
 	icon_state = "skrinkly_bird"
+	desc = "A nastly little bird worm thing, it appears to be growing quickly!"
 	damage_coeff = list(RED_DAMAGE = 1.5, WHITE_DAMAGE = 0, BLACK_DAMAGE = 0.5, PALE_DAMAGE = 2)
 	pass_flags = PASSTABLE | PASSMOB
 	mob_size = MOB_SIZE_SMALL
 	density = FALSE
+	layer = ABOVE_NORMAL_TURF_LAYER
 	melee_damage_lower = 1
 	melee_damage_upper = 3
 	maxHealth = 50
