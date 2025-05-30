@@ -26,6 +26,28 @@
 	blood_volume = BLOOD_VOLUME_NORMAL
 	mob_size = MOB_SIZE_HUGE
 	a_intent = INTENT_HARM
+	var/attempted_crosses = 0
+
+/mob/living/simple_animal/hostile/cuckoospawn/Initialize()
+	. = ..()
+	RegisterSignal(src, COMSIG_MOVABLE_PRE_MOVE, PROC_REF(CheckSpace))
+
+/mob/living/simple_animal/hostile/cuckoospawn/proc/CheckSpace(mob/user, atom/new_location)
+	var/turf/newloc_turf = get_turf(new_location)
+	var/valid_tile = TRUE
+
+	var/area/new_area = get_area(newloc_turf)
+	if(istype(new_area, /area/city))
+		var/area/city/city_area = new_area
+		if(city_area.in_city)
+			if(attempted_crosses > 10)
+				executed_claw()
+			attempted_crosses++
+			to_chat(src, span_danger("You feel a shiver down your spine, the city will not allow you to enter..."))
+			valid_tile = FALSE
+
+	if(!valid_tile)
+		return COMPONENT_MOVABLE_BLOCK_PRE_MOVE
 
 /mob/living/simple_animal/hostile/cuckoospawn/AttackingTarget(atom/attacked_target)
 	var/mob/living/carbon/human/human_target
@@ -45,6 +67,17 @@
 		var/obj/item/organ/body_egg/cuckoospawn_embryo/bursting_embryo = human_target.getorgan(/obj/item/organ/body_egg/cuckoospawn_embryo)
 		if(bursting_embryo)
 			bursting_embryo.AttemptGrow()
+
+/mob/living/simple_animal/hostile/cuckoospawn/proc/executed_claw()
+	var/turf/origin = get_turf(src)
+	var/list/all_turfs = origin.GetAtmosAdjacentTurfs(1)
+	for(var/turf/T in all_turfs)
+		if(T == origin)
+			continue
+		new /obj/effect/temp_visual/dir_setting/claw_appears (T)
+		break
+	new /obj/effect/temp_visual/justitia_effect(get_turf(src))
+	gib()
 
 /mob/living/simple_animal/hostile/cuckoospawn_parasite
 	name = "jiajiaren parasite"
@@ -107,3 +140,20 @@
 		mind.transfer_to(C)
 	playsound(get_turf(src), 'sound/abnormalities/nothingthere/growl.ogg', 30, 1)
 	qdel(src)
+
+/obj/effect/temp_visual/dir_setting/claw_appears
+	name = "Claw"
+	desc = "A strange humanoid creature with several gadgets attached to it."
+	icon = 'ModularTegustation/Teguicons/48x48.dmi'
+	icon_state = "claw_dash"
+	duration = 5
+
+/obj/effect/temp_visual/dir_setting/claw_appears/Initialize()
+	. = ..()
+	new /obj/effect/temp_visual/dir_setting/ninja/phase (get_turf(src))
+	playsound(src, 'sound/effects/contractorbatonhit.ogg', 100, FALSE, 9)
+
+/obj/effect/temp_visual/dir_setting/claw_appears/Destroy()
+	new /obj/effect/temp_visual/dir_setting/ninja/phase/out (get_turf(src))
+	playsound(src, 'ModularTegustation/Tegusounds/claw/death.ogg', 50, TRUE)
+	. = ..()

@@ -35,6 +35,7 @@
 	race = /datum/species/cuckoospawn
 	faction = list("hostile", "cuckoospawn", "city")
 	var/datum/martial_art/cuckoopunch/cuckoopunch
+	var/attempted_crosses = 0
 
 /mob/living/carbon/human/species/cuckoospawn/Login()
 	. = ..()
@@ -47,6 +48,43 @@
 	AddComponent(/datum/component/footstep, FOOTSTEP_MOB_CLAW, 1, -6)
 	adjust_attribute_buff(FORTITUDE_ATTRIBUTE, 250)
 	adjust_attribute_buff(PRUDENCE_ATTRIBUTE, 200)
+	RegisterSignal(src, COMSIG_MOVABLE_PRE_MOVE, PROC_REF(CheckSpace))
+
+/mob/living/carbon/human/species/cuckoospawn/start_pulling(atom/movable/AM, state, force = pull_force, supress_message = FALSE)
+	if(ishostile(AM))
+		var/mob/living/simple_animal/hostile/hostile_friend = AM
+		if(!faction_check_mob(hostile_friend, TRUE))
+			to_chat(src, span_notice("They are dealing with their own thing, don't bother them."))
+			return FALSE
+	. = ..()
+
+/mob/living/carbon/human/species/cuckoospawn/proc/CheckSpace(mob/user, atom/new_location)
+	var/turf/newloc_turf = get_turf(new_location)
+	var/valid_tile = TRUE
+
+	var/area/new_area = get_area(newloc_turf)
+	if(istype(new_area, /area/city))
+		var/area/city/city_area = new_area
+		if(city_area.in_city)
+			if(attempted_crosses > 10)
+				executed_claw()
+			attempted_crosses++
+			to_chat(src, span_danger("You feel a shiver down your spine, the city will not allow you to enter..."))
+			valid_tile = FALSE
+
+	if(!valid_tile)
+		return COMPONENT_MOVABLE_BLOCK_PRE_MOVE
+
+/mob/living/carbon/human/species/cuckoospawn/proc/executed_claw()
+	var/turf/origin = get_turf(src)
+	var/list/all_turfs = origin.GetAtmosAdjacentTurfs(1)
+	for(var/turf/T in all_turfs)
+		if(T == origin)
+			continue
+		new /obj/effect/temp_visual/dir_setting/claw_appears (T)
+		break
+	new /obj/effect/temp_visual/justitia_effect(get_turf(src))
+	qdel(src)
 
 /mob/living/carbon/human/species/cuckoospawn/attack_ghost(mob/dead/observer/ghost)
 	if(key)

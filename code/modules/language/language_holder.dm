@@ -387,8 +387,8 @@ Key procs
 							/datum/language/shadowtongue = list(LANGUAGE_ATOM))
 
 /datum/language_holder/cuckoospawn
-	understood_languages = list(/datum/language/cuckoo = list(LANGUAGE_ATOM))
-	spoken_languages = list(/datum/language/cuckoo = list(LANGUAGE_ATOM))
+	understood_languages = list(/datum/language/uncommon = list(LANGUAGE_ATOM))
+	spoken_languages = list(/datum/language/uncommon = list(LANGUAGE_ATOM))
 
 /datum/language_holder/empty
 	understood_languages = list()

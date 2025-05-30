@@ -90,3 +90,10 @@
 		D.apply_damage(rand(150), RED_DAMAGE)
 	if(atk_verb)
 		log_combat(A, D, "[atk_verb] (Cuckoo Punch)")
+
+/datum/martial_art/cuckoopunch/disarm_act(mob/living/A, mob/living/D)
+	if(ishostile(D))
+		var/mob/living/simple_animal/hostile/hostile_friend = D
+		if(!A.faction_check_mob(hostile_friend, TRUE))
+			to_chat(src, span_notice("They are dealing with their own thing, don't bother them."))
+			return FALSE
