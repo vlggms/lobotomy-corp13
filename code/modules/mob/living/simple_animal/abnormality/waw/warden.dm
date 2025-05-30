@@ -490,7 +490,7 @@
 	P.Destroy()
 
 /mob/living/simple_animal/hostile/abnormality/warden/proc/ApplySouldrain(mob/living/carbon/human/victim)
-	victim.adjustSanityLoss(-(status_holder.maxSanity*0.15)) // 15% of your max sanity back, to give a bit more leeway to escape.
+	victim.adjustSanityLoss(-(victim.maxSanity*0.15)) // 15% of your max sanity back, to give a bit more leeway to escape.
 	victim.apply_status_effect(STATUS_EFFECT_SOULDRAIN)
 	var/datum/status_effect/souldrain/S = victim.has_status_effect(STATUS_EFFECT_SOULDRAIN)
 	S.warden = src
@@ -562,14 +562,14 @@
 	/* Stats */
 	health = 600
 	maxHealth = 600
-	damage_coeff = list(RED_DAMAGE = 2, WHITE_DAMAGE = 0.2, BLACK_DAMAGE = 0.5, PALE_DAMAGE = 0)
-	melee_damage_type = BLACK_DAMAGE
-	melee_damage_lower = 15
+	damage_coeff = list(RED_DAMAGE = 2.2, WHITE_DAMAGE = 0.2, BLACK_DAMAGE = 0.6, PALE_DAMAGE = 0) // No soul all meat, no PALE but extremely weak to RED.
+	melee_damage_type = RED_DAMAGE
+	melee_damage_lower = 20
 	melee_damage_upper = 30
 	speed = 2
 	move_to_delay = 2
 	robust_searching = TRUE
-	stat_attack = HARD_CRIT
+	stat_attack = SOFT_CRIT // They do not kill, or Warden would have a hard time kidnapping people once she snowballs.
 	del_on_death = TRUE
 	density = FALSE
 
@@ -605,6 +605,7 @@
 	SLEEP_CHECK_DEATH(WakeUpTime)
 	emote("scream")
 	if(catatonic)
+		desc += " [p_their(TRUE)] limbs seem to be moving erratically, as if controlled by some unseen force."
 		catatonic = FALSE
 		return
 	melee_damage_upper += 5
