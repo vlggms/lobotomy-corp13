@@ -4,6 +4,7 @@
 	desc = "An egoshard in a pathetic, but still usable state."
 	icon = 'ModularTegustation/Teguicons/teguitems.dmi'
 	icon_state = "egoshard_r"
+	custom_price = 300
 	var/stat_requirement = 60 //Stat requirements should match the E.G.O. tier +20, similar to city equipment
 	//Weapon stats
 	var/damage_type = RED_DAMAGE
