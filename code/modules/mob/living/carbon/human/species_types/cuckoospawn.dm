@@ -10,15 +10,22 @@
 	inherent_traits = list(TRAIT_PERFECT_ATTACKER, TRAIT_BRUTEPALE, TRAIT_BRUTESANITY, TRAIT_SANITYIMMUNE, TRAIT_GENELESS, TRAIT_COMBATFEAR_IMMUNE)
 	use_skintones = FALSE
 	species_language_holder = /datum/language_holder/cuckoospawn
+	mutanteyes = /obj/item/organ/eyes/night_vision/cuckoo
 	limbs_id = "cuckoo"
-	no_equip = list(ITEM_SLOT_EYES, ITEM_SLOT_MASK, ITEM_SLOT_FEET)
+	say_mod = "chrips"
+	no_equip = list(ITEM_SLOT_EYES, ITEM_SLOT_MASK, ITEM_SLOT_FEET, ITEM_SLOT_OCLOTHING)
 	changesource_flags = MIRROR_BADMIN | WABBAJACK
 	liked_food = MEAT | RAW
 	disliked_food = VEGETABLES | DAIRY
 	attack_sound = 'sound/abnormalities/big_wolf/Wolf_Scratch.ogg'
 	punchdamagelow = 24
 	punchdamagehigh = 27
-	speedmod = -1
+	stunmod = 0.5
+	redmod = 0.4
+	whitemod = 0.1
+	blackmod = 0.2
+	palemod = 0.5
+	speedmod = -0.5
 	payday_modifier = 0
 
 /datum/species/cuckoospawn/random_name(gender,unique,lastname)
@@ -27,15 +34,13 @@
 /mob/living/carbon/human/species/cuckoospawn
 	race = /datum/species/cuckoospawn
 	faction = list("hostile", "cuckoospawn", "city")
+	var/datum/martial_art/cuckoopunch/cuckoopunch
 
-/datum/species/cuckoospawn/harm(mob/living/carbon/human/user, mob/living/carbon/human/target, datum/martial_art/attacker_style)
-	if(ishuman(target))
-		var/obj/item/bodypart/chest/LC = target.get_bodypart(BODY_ZONE_CHEST)
-		if((!LC || LC.status != BODYPART_ROBOTIC) && !target.getorgan(/obj/item/organ/body_egg/cuckoospawn_embryo))
-			new /obj/item/organ/body_egg/cuckoospawn_embryo(target)
-			var/turf/T = get_turf(target)
-			log_game("[key_name(target)] was impregnated by a cockoospawn at [loc_name(T)]")
+/mob/living/carbon/human/species/cuckoospawn/Login()
 	. = ..()
+	if(mind) //Just a back up, if somehow this proc gets triggered without a mind.
+		cuckoopunch = new(null)
+		cuckoopunch.teach(src)
 
 /mob/living/carbon/human/species/cuckoospawn/Initialize()
 	. = ..()
@@ -58,3 +63,7 @@
 
 	ckey = ghost.client.ckey
 	to_chat(src, span_info("You are a Cuckoospawn, you only have one goal in mind. Expand and Multiply. Your melee attack have a chance of infecting your target with a Cuckoospawn Larva"))
+
+/obj/item/organ/eyes/night_vision/cuckoo
+	name = "bird-eye"
+	desc = "Bright open, always looking for their new prey in the dark..."
