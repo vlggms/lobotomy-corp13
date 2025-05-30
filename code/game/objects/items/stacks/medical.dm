@@ -219,6 +219,23 @@
 	grind_results = list(/datum/reagent/medicine/spaceacillin = 2)
 	merge_type = /obj/item/stack/medical/suture
 
+/obj/item/stack/medical/suture/abno
+	name = "abno suture"
+	desc = "sutures used to heal abno wounds."
+	heal_brute = 100
+	amount = 1
+	max_amount = 1
+	merge_type = /obj/item/stack/medical/suture/abno
+
+/obj/item/stack/medical/suture/abno/use()
+	return
+
+/obj/item/stack/medical/suture/abno/attack(mob/living/M, mob/user)
+	if (istype(M, /mob/living/simple_animal/hostile/abnormality))
+		try_heal(M, user)
+	else
+		to_chat(user, span_warning("You can't use [src] on [M]!"))
+
 /obj/item/stack/medical/suture/emergency
 	name = "emergency suture"
 	desc = "A value pack of cheap sutures, not very good at repairing damage, but still decent at stopping bleeding."
