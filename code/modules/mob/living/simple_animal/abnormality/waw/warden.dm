@@ -261,11 +261,11 @@
 	if(KidnapStuntime)
 		rulebreaker.Stun(KidnapStuntime) // You gotta get saved by another person, nerd.
 	else
+		to_chat(rulebreaker, span_userdanger("You can still move, attack [src] to escape!!")) // If there is no stun, then weakjail (should) be TRUE.
 		KidnapStuntime = initial(KidnapStuntime) // Reset the var for future kidnappings
 	rulebreaker.forceMove(src)
-	rulebreaker.apply_status_effect(STATUS_EFFECT_SOULDRAIN)
-	var/datum/status_effect/souldrain/S = rulebreaker.has_status_effect(/datum/status_effect/souldrain)
-	S.warden = src
+	ADD_TRAIT(rulebreaker, TRAIT_NOBREATH, type)
+	ApplySouldrain(rulebreaker)
 	contained_people++
 	Weaken(digestion_modifier)
 	return TRUE
@@ -351,12 +351,12 @@
 	ChangeResistances(defenses)
 
 /mob/living/simple_animal/hostile/abnormality/warden/proc/DamageAlteration(factor, affects_upper = FALSE) // Just you know, this was a bit cursed in the first iteration.
-	if(melee_damage_lower  + factor < lower_damage_cap)
+	if(melee_damage_lower  + factor > lower_damage_cap)
 		melee_damage_lower += factor
 	else
 		melee_damage_lower = lower_damage_cap
 	if(combatmap || affects_upper)
-		if(melee_damage_upper  + factor < upper_damage_cap)
+		if(melee_damage_upper  + factor > upper_damage_cap)
 			melee_damage_upper += factor
 		else
 			melee_damage_upper = upper_damage_cap
@@ -489,6 +489,13 @@
 	new /obj/effect/temp_visual/healing/no_dam(get_turf(src))
 	P.Destroy()
 
+/mob/living/simple_animal/hostile/abnormality/warden/proc/ApplySouldrain(mob/living/carbon/human/victim)
+	victim.adjustSanityLoss(-(status_holder.maxSanity*0.15)) // 15% of your max sanity back, to give a bit more leeway to escape.
+	victim.apply_status_effect(STATUS_EFFECT_SOULDRAIN)
+	var/datum/status_effect/souldrain/S = victim.has_status_effect(STATUS_EFFECT_SOULDRAIN)
+	S.warden = src
+	S.soul_degradation = soul_consume_rate
+
 /datum/status_effect/souldrain
 	id = "souldrain"
 	status_type = STATUS_EFFECT_UNIQUE
@@ -507,21 +514,18 @@
 
 /datum/status_effect/souldrain/on_apply()
 	var/mob/living/carbon/human/status_holder = owner
-	ADD_TRAIT(status_holder, TRAIT_NOBREATH, type)
 	status_holder.adjust_attribute_bonus(PRUDENCE_ATTRIBUTE, -20)
 	collected_soul += 20
-	if(!status_holder.sanity_lost && status_holder.stat != DEAD)
-		status_holder.adjustSanityLoss(-(status_holder.maxSanity*0.1)) // Heal 10% of their max sanity after prudence modifier, just to give them a bit more leeway to escape.
 	return ..()
 
 /datum/status_effect/souldrain/tick()
 	. = ..()
 	var/mob/living/carbon/human/status_holder = owner
 	var/mob/living/simple_animal/hostile/abnormality/warden/master = warden
+	if(!master) // If somehow the Warden doesnt delete your status effect after dying, this will.
+		qdel(src)
 	var/soulless = get_turf(owner)
 	var/girlboss = get_turf(master)
-	if(!soul_degradation)
-		soul_degradation = master.soul_consume_rate
 	if(soulless == girlboss) // Are you still inside the Warden? If yes then get ready to get spiritually husked bucko
 		status_holder.adjustBruteLoss(-(status_holder.maxHealth*0.025)) // It cares for your fleshy form while sucking out your soul.
 		status_holder.adjust_attribute_bonus(PRUDENCE_ATTRIBUTE, -soul_degradation) // This lowers your maximum sanity
