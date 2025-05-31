@@ -11,7 +11,6 @@
 		/datum/action/cooldown/dash = 1,
 		/datum/action/cooldown/dash/back = 1,
 		/datum/action/cooldown/smokedash = 1,
-		/datum/action/cooldown/skulk = 1,
 		/datum/action/cooldown/assault = 1,
 		/datum/action/cooldown/retreat = 1,
 		/datum/action/cooldown/healing = 1,
@@ -20,13 +19,16 @@
 		/datum/action/cooldown/firstaid = 1,
 		/datum/action/cooldown/meditation = 1,
 		/datum/action/cooldown/hunkerdown = 1,
+		/datum/action/cooldown/mark = 1,
+		/datum/action/cooldown/light = 1,
 
-		/datum/action/cooldown/shockwave = 2,
 		/datum/action/cooldown/butcher = 2,
 		/datum/action/cooldown/solarflare = 2,
 		/datum/action/cooldown/confusion = 2,
 		/datum/action/cooldown/lockpick = 2,
 		/datum/action/cooldown/lifesteal = 2,
+		/datum/action/cooldown/skulk = 2,
+		/datum/action/cooldown/autoloader = 2,
 
 		/datum/action/innate/healthhud = 3,
 		/datum/action/innate/bulletproof = 3,
@@ -34,11 +36,12 @@
 		/datum/action/innate/fleetfoot = 3,
 
 		/datum/action/cooldown/timestop = 4,
-		/datum/action/cooldown/reraise = 4,
 		/datum/action/cooldown/dismember = 4,
+		/datum/action/cooldown/shockwave = 4,
 		/datum/action/cooldown/warbanner = 4,
 		/datum/action/cooldown/warcry = 4,
 		/datum/action/cooldown/nuke = 4,
+		/datum/action/cooldown/reraise = 4,
 
 		//These are all fishing skills
 		/datum/action/cooldown/fishing/detect = 1,

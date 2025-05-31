@@ -24,6 +24,6 @@
 	for(var/mob/living/M in view(7, get_turf(src)))
 		if(M.stat != DEAD && M!=owner)
 			to_chat(M, span_userdanger("[owner] emits a blinding white light!"))
-			M.adjust_blindness(2)
+			M.adjust_blindness(5)
 	StartCooldown()
 
