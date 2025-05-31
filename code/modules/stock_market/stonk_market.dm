@@ -15,7 +15,7 @@
 	/*
 	* Company Standard Stonk Time
 	*/
-	var/static/last_login = 0
+	var/static/last_check = 0
 	/*
 	* Your stonks!
 	*/
@@ -191,6 +191,6 @@ a.updated {
 	return public_companies[company]
 
 /datum/stonk_investor/proc/CatchUp()
-	if(last_login)
+	if(last_check)
 		return
-	last_login = world.time
+	last_check = world.time

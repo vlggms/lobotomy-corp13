@@ -15,7 +15,6 @@
 
 	var/disp_value_change = 0
 	var/optimism = 0
-	var/last_unification = 0
 	var/average_shares = 100
 	var/outside_shareholders = 10		// The amount of offstation people holding shares in this company. The higher it is, the more fluctuation it causes.
 	var/available_shares = 100
@@ -28,11 +27,10 @@
 	history = list(company_value)
 
 /datum/stonk_company/proc/companyInfo(obj/machinery/interfacer, datum/stonk_investor/investor, mob/living/carbon/human/viewer)
-	. = "|[name]<br>\
-		|Product:[product]<br>\
-		|Value:[value]<br>\
-		|Shares:[investor.ReturnStonkValue(src)]<br>\
-		|"
+	. = "[name]<br>\
+		Product:[product]<br>\
+		Value:[value]<br>\
+		Shares:[investor.ReturnStonkValue(src)]<br>"
 	GENERAL_BUTTON(REF(interfacer),"buyshares",REF(src),"Buy")
 	. += " "
 	GENERAL_BUTTON(REF(interfacer),"sellshares",REF(src),"Sell")
