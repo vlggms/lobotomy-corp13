@@ -111,7 +111,7 @@
 		new_cuckoo.invisibility = 0
 	else
 		new_cuckoo.visible_message(span_danger("[new_cuckoo] wriggles out of [owner]!"), span_userdanger("You exit [owner], your previous host."))
-		owner.adjustBruteLoss(40)
+		owner.adjustBruteLoss(120)
 	owner.cut_overlay(overlay)
 
 /obj/item/organ/body_egg/cuckoospawn_embryo/proc/GrowingCarbon(mob/dead/observer/newclient)
