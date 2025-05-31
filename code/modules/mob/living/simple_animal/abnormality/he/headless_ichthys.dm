@@ -53,7 +53,7 @@
 			The creature notices you, and prepares an attack. <br>It is impossible to evade, and you are torn to shreds."),
 	)
 
-	var/can_act = TRUE
+
 	var/jump_cooldown = 0
 	var/jump_cooldown_time = 8 SECONDS
 	var/jump_damage = 50

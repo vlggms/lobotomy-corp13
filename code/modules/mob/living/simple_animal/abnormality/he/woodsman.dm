@@ -65,7 +65,7 @@
 	var/flurry_big = 60 // It was requested that he beats their ass harder
 	var/flurry_length = 3
 	var/flurry_width = 2
-	var/can_act = TRUE
+
 
 	// Combat map check
 	var/combat_map = FALSE

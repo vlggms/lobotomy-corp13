@@ -46,7 +46,7 @@
 		/datum/action/innate/abnormality_attack/rudolta_buff_slam,
 	)
 
-	var/can_act = TRUE
+
 	// Onrush vars
 	var/onrush_cooldown
 	var/onrush_cooldown_time = 10 SECONDS

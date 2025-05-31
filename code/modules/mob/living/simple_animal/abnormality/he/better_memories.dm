@@ -129,7 +129,7 @@
 	attack_verb_simple = "jab"
 	can_patrol = TRUE
 	patrol_cooldown_time = 10 SECONDS
-	var/can_act = TRUE
+
 	//For when the creature is fleeing
 	var/fleeing_now = FALSE
 	//Variables used to keep track of who each memory is hunting
