@@ -86,13 +86,13 @@
 	return ..()
 
 /mob/living/simple_animal/hostile/ordeal/indigo_noon/lanky
-	health = 250
-	maxHealth = 250
+	health = 280
+	maxHealth = 280
 	icon = 'ModularTegustation/Teguicons/32x48.dmi'
 	icon_state = "sweeper_limbus"
 	icon_living = "sweeper_limbus"
 	desc = "A humanoid creature wearing metallic armor. It has bloodied hooks in its hands.\nThis one seems to move with far more agility than its peers."
-	move_to_delay = 2.7
+	move_to_delay = 3.2
 	rapid_melee = 2
 	melee_damage_lower = 11
 	melee_damage_upper = 13
@@ -104,8 +104,11 @@
 	var/can_move = TRUE
 	/// Holds the next moment that this mob will be allowed to dash
 	var/dash_cooldown
-	/// This is the amount of time added by its dash attack (Sweep the Backstreets) on use onto its cooldown
-	var/dash_cooldown_time = 12 SECONDS
+	/// This is the amount of time added by its dash attack (Sweep the Backstreets) on use onto its cooldown.
+	/// It should be fairly long so you can bait it and have a safe window to deal with sweepers in the usual, wagie way of funneling them.
+	var/dash_cooldown_time = 25 SECONDS
+	/// Sweep the Backstreets range in tiles
+	var/dash_range = 3
 
 /mob/living/simple_animal/hostile/ordeal/indigo_noon/lanky/Initialize()
 	. = ..()
@@ -116,11 +119,17 @@
 /mob/living/simple_animal/hostile/ordeal/indigo_noon/lanky/AttackingTarget(atom/attacked_target)
 	if(!can_act)
 		return FALSE
-	/// Okay so. I want them to attempt to dash whenever it's off cooldown, but if we call the parent proc before this, it'll queue up a hit that lands at any range.
-	/// So we'll try to dash. If the dash actually goes through, we return false here because we don't want to land an auto-hit on the target. Otherwise we proceed as usual.
-	if (SweepTheBackstreets(attacked_target))
-		return FALSE
 	. = ..()
+
+/mob/living/simple_animal/hostile/ordeal/indigo_noon/lanky/Life()
+	. = ..()
+	/// I know this looks weird, but I don't want to put this on AttackingTarget() because that restricts only sweepers in melee to be able to use the dash.
+	/// This is bad because we could have like 3 lanky sweepers waiting to dash but they're stuck behind a chunky sweeper.
+	/// This code makes them attempt to dash at targets in range. The check for distance happens in the actual proc, and only after checking cooldown.
+	if(target && can_act)
+		if(prob(50))
+			SweepTheBackstreets(target)
+
 
 /mob/living/simple_animal/hostile/ordeal/indigo_noon/lanky/Move(atom/newloc, dir, step_x, step_y)
 	if(!can_move)
@@ -133,10 +142,12 @@
 /mob/living/simple_animal/hostile/ordeal/indigo_noon/lanky/proc/SweepTheBackstreets(atom/target)
 	if(dash_cooldown > world.time)
 		return FALSE
+	if(get_dist(src, target) > dash_range)
+		return FALSE
 	dash_cooldown = world.time + dash_cooldown_time
 
 	var/turf/dash_start_turf = get_turf(src)
-	var/turf/dash_target_turf = get_ranged_target_turf_direct(src, target, 3)
+	var/turf/dash_target_turf = get_ranged_target_turf_direct(src, target, dash_range)
 	var/list/dash_turfs_hit_line = getline(dash_start_turf, dash_target_turf)
 	can_act = FALSE
 	can_move = FALSE
@@ -151,10 +162,12 @@
 	for(var/turf/hit_turf in dash_turfs_hit_line)
 		for(var/mob/living/hit_mob in HurtInTurf(hit_turf, list(), melee_damage_upper * 1.5, melee_damage_type, check_faction = TRUE, hurt_mechs = TRUE, hurt_structure = TRUE))
 			to_chat(hit_mob, span_userdanger("The [src.name] viciously slashes you as it dashes past!"))
-			new /obj/effect/gibspawner/generic(get_turf(hit_mob))
+			/// We spawn some gibs and heal if the target hit is human.
+			if(istype(hit_mob, /mob/living/carbon/human))
+				new /obj/effect/gibspawner/generic(get_turf(hit_mob))
+				src.adjustBruteLoss(-50)
+				new /obj/effect/temp_visual/heal(get_turf(src), "#70f54f")
 			playsound(hit_mob, attack_sound, 100)
-			src.adjustBruteLoss(-50)
-			new /obj/effect/temp_visual/heal(get_turf(src), "#70f54f")
 	/// This part is for some visual/audio feedback.
 	var/datum/beam/really_temporary_beam = dash_start_turf.Beam(dash_target_turf, icon_state = "1-full", time = 3)
 	really_temporary_beam.visuals.color = "#FE5343"
@@ -190,17 +203,96 @@
 	color = "#FE5343"
 
 /mob/living/simple_animal/hostile/ordeal/indigo_noon/chunky
-	health = 600
-	maxHealth = 600
+	health = 750
+	maxHealth = 750
 	icon = 'ModularTegustation/Teguicons/32x32.dmi'
 	icon_state = "sweeper_limbus"
 	icon_living = "sweeper_limbus"
-	desc = "A humanoid creature wearing metallic armor. It has bloodied hooks in its hands.\nThis one has more bulk than its peers - it wouldn't be difficult for it to pin you down."
+	desc = "A humanoid creature wearing metallic armor. It has bloodied hooks in its hands.\nThis one has more bulk than its peers - it won't go down easy."
+	/// They're slow.
 	move_to_delay = 5
+	/// These sweepers have a slower, but slightly stronger melee. Easier to parry if anything.
 	rapid_melee = 0.8
+	melee_damage_lower = 24
+	melee_damage_upper = 26
+	/// Holds the next moment when this sweeper can use Extract Fuel (lifesteal hit)
+	var/extract_fuel_cooldown
+	/// Holds the cooldown time between Extract Fuel uses
+	var/extract_fuel_cooldown_time = 10 SECONDS
+	/// Extract Fuel will hit for this much additional BLACK damage
+	var/extract_fuel_extra_damage = 10
+	/// Extract Fuel will heal the sweeper for this much health
+	var/extract_fuel_healing = 100
+	/// This controls whether the next hit actually sets off Extract Fuel's additional effects
+	var/extract_fuel_active = FALSE
+	/// We store the timer we use for cancelling Extract Fuel so we can delete it early if we've already used it
+	var/extract_fuel_ongoing_timer
 
 /mob/living/simple_animal/hostile/ordeal/indigo_noon/chunky/Initialize()
 	. = ..()
 	icon_living = "sweeper_limbus"
 	icon_state = icon_living
 	attack_sound = 'sound/effects/ordeals/indigo/stab_1.ogg'
+
+
+/mob/living/simple_animal/hostile/ordeal/indigo_noon/chunky/attacked_by(obj/item/I, mob/living/user)
+	. = ..()
+	/// I'm making them only fire it off with a chance to keep players guessing, instead of having them act too predictably.
+	if(extract_fuel_cooldown <= world.time && prob(60))
+		PrepareExtractFuel()
+		/// We're gonna sleep them because otherwise someone could hit the sweeper the DECISECOND before it's gonna attack and get slapped by a huge hit
+		/// This gives them enough margin to run away or parry
+		SLEEP_CHECK_DEATH(0.4 SECONDS)
+
+/// The following few code chunks are dedicated to the Extract Fuel mechanic specific to this sweeper. Basically, it's a lifesteal hit they can use every once in a bit.
+/// When the sweeper takes a hit, if it's off cooldown, it'll buff itself for its next hit and warn the player, giving them a brief grace period to disengage or prepare
+/// If they don't get away in time, they'll be hit by an empowered attack that also heals the sweeper for a good chunk and spawns some gibs for extra flashiness
+/// The buff goes away in 2.5 seconds or after landing the hit.
+
+/mob/living/simple_animal/hostile/ordeal/indigo_noon/chunky/AttackingTarget(atom/attacked_target)
+	. = ..()
+	if(. && extract_fuel_active && istype(attacked_target, /mob/living/carbon/human))
+		CancelExtractFuel(TRUE)
+		new /obj/effect/gibspawner/generic(get_turf(attacked_target))
+		src.adjustBruteLoss(-extract_fuel_healing)
+		new /obj/effect/temp_visual/heal(get_turf(src), "#70f54f")
+		visible_message(span_danger("The [src.name] tears into [attacked_target.name] and refuels itself with some of their viscera!"))
+
+/mob/living/simple_animal/hostile/ordeal/indigo_noon/chunky/proc/PrepareExtractFuel()
+	/// I have no idea what could cause this, but just in case
+	if(extract_fuel_active)
+		return FALSE
+	/// Go on cooldown.
+	extract_fuel_cooldown = world.time + extract_fuel_cooldown_time
+	/// Make our attack scary.
+	melee_damage_lower += extract_fuel_extra_damage
+	melee_damage_upper += extract_fuel_extra_damage
+	attack_sound = 'sound/weapons/fixer/generic/finisher1.ogg'
+	extract_fuel_active = TRUE
+	/// Warn the players so they can back off or get ready to parry.
+	say("+3872 6739.+")
+	visible_message(span_danger("The [src.name] winds up for a devastating blow!"), span_info("You prepare to extract fuel from your victim."))
+	animate(src, 1.5 SECONDS, color = "#FE5343")
+	/// If we haven't landed the hit in the following few seconds, we will lose the buff.
+	extract_fuel_ongoing_timer = addtimer(CALLBACK(src, PROC_REF(CancelExtractFuel), FALSE), 2.5 SECONDS, TIMER_STOPPABLE)
+
+/mob/living/simple_animal/hostile/ordeal/indigo_noon/chunky/proc/CancelExtractFuel(early)
+	/// Timer cleanup
+	ExtractFuelTimerCleanup()
+
+	/// We go back to normal.
+	melee_damage_lower = initial(melee_damage_lower)
+	melee_damage_upper = initial(melee_damage_upper)
+	attack_sound = 'sound/effects/ordeals/indigo/stab_1.ogg'
+	extract_fuel_active = FALSE
+	animate(src, 0.6 SECONDS, color = initial(color))
+	if(!early)
+		visible_message(span_danger("The [src.name] lowers its aggressive stance."), span_info("You give up on the fuel extraction attempt."))
+
+/// This cleanup exists because if we land a hit with Extract Fuel, we want to turn it off, but there's still an ongoing timer that'll call CancelExtractFuel
+/mob/living/simple_animal/hostile/ordeal/indigo_noon/chunky/proc/ExtractFuelTimerCleanup()
+	if(extract_fuel_ongoing_timer)
+		deltimer(extract_fuel_ongoing_timer)
+		extract_fuel_ongoing_timer = null
+
+
