@@ -187,6 +187,7 @@
 /obj/structure/stone_tile/block/cracked{
 	dir = 1
 	},
+/obj/effect/mob_spawn/human/cuckoo_spawner,
 /turf/open/floor/plating/asteroid/basalt/lava_land_surface,
 /area/city/backstreets_alley)
 "cV" = (
@@ -961,6 +962,7 @@
 /obj/structure/stone_tile/block{
 	dir = 4
 	},
+/obj/effect/mob_spawn/human/cuckoo_spawner,
 /turf/open/floor/plating/asteroid/basalt/lava_land_surface,
 /area/city/backstreets_alley)
 "rS" = (
@@ -1371,6 +1373,7 @@
 /area/centcom/supplypod)
 "yz" = (
 /obj/structure/stone_tile/block/cracked,
+/obj/effect/mob_spawn/human/cuckoo_spawner,
 /turf/open/floor/plating/asteroid/basalt/lava_land_surface,
 /area/city/backstreets_alley)
 "yA" = (
@@ -2572,6 +2575,7 @@
 /obj/structure/stone_tile/block{
 	dir = 8
 	},
+/obj/effect/mob_spawn/human/cuckoo_spawner,
 /turf/open/floor/plating/asteroid/basalt/lava_land_surface,
 /area/city/backstreets_alley)
 "SK" = (

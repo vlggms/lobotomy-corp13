@@ -234,6 +234,7 @@
 /obj/structure/stone_tile/block{
 	dir = 4
 	},
+/obj/effect/mob_spawn/human/cuckoo_spawner,
 /turf/open/floor/plating/asteroid/basalt/lava_land_surface,
 /area/city/backstreets_alley)
 "qO" = (
@@ -326,6 +327,7 @@
 /area/city/backstreets_room)
 "vJ" = (
 /obj/structure/stone_tile/block/cracked,
+/obj/effect/mob_spawn/human/cuckoo_spawner,
 /turf/open/floor/plating/asteroid/basalt/lava_land_surface,
 /area/city/backstreets_alley)
 "vZ" = (
@@ -451,6 +453,7 @@
 /obj/structure/stone_tile/block/cracked{
 	dir = 1
 	},
+/obj/effect/mob_spawn/human/cuckoo_spawner,
 /turf/open/floor/plating/asteroid/basalt/lava_land_surface,
 /area/city/backstreets_alley)
 "GH" = (
@@ -539,6 +542,7 @@
 /obj/structure/stone_tile/block{
 	dir = 8
 	},
+/obj/effect/mob_spawn/human/cuckoo_spawner,
 /turf/open/floor/plating/asteroid/basalt/lava_land_surface,
 /area/city/backstreets_alley)
 "Nn" = (

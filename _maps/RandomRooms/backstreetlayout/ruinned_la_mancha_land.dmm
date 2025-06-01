@@ -178,6 +178,7 @@
 /area/city/backstreets_alley)
 "dC" = (
 /obj/structure/stone_tile/block/cracked,
+/obj/effect/mob_spawn/human/cuckoo_spawner,
 /turf/open/floor/plating/asteroid/basalt/lava_land_surface,
 /area/city/backstreets_alley)
 "dI" = (
@@ -205,6 +206,7 @@
 /obj/structure/stone_tile/block{
 	dir = 8
 	},
+/obj/effect/mob_spawn/human/cuckoo_spawner,
 /turf/open/floor/plating/asteroid/basalt/lava_land_surface,
 /area/city/backstreets_alley)
 "ee" = (
@@ -1681,6 +1683,7 @@
 /obj/structure/stone_tile/block{
 	dir = 4
 	},
+/obj/effect/mob_spawn/human/cuckoo_spawner,
 /turf/open/floor/plating/asteroid/basalt/lava_land_surface,
 /area/city/backstreets_alley)
 "JV" = (
@@ -1758,6 +1761,7 @@
 /obj/structure/stone_tile/block/cracked{
 	dir = 1
 	},
+/obj/effect/mob_spawn/human/cuckoo_spawner,
 /turf/open/floor/plating/asteroid/basalt/lava_land_surface,
 /area/city/backstreets_alley)
 "Lh" = (

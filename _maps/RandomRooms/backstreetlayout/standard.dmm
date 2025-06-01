@@ -377,6 +377,7 @@
 /area/city/backstreets_room)
 "qC" = (
 /obj/structure/stone_tile/block/cracked,
+/obj/effect/mob_spawn/human/cuckoo_spawner,
 /turf/open/floor/plating/asteroid/basalt/lava_land_surface,
 /area/city/backstreets_alley)
 "qG" = (
@@ -794,6 +795,7 @@
 /obj/structure/stone_tile/block{
 	dir = 4
 	},
+/obj/effect/mob_spawn/human/cuckoo_spawner,
 /turf/open/floor/plating/asteroid/basalt/lava_land_surface,
 /area/city/backstreets_alley)
 "Gg" = (
@@ -1099,6 +1101,7 @@
 /obj/structure/stone_tile/block/cracked{
 	dir = 1
 	},
+/obj/effect/mob_spawn/human/cuckoo_spawner,
 /turf/open/floor/plating/asteroid/basalt/lava_land_surface,
 /area/city/backstreets_alley)
 "RJ" = (
@@ -1185,6 +1188,7 @@
 /obj/structure/stone_tile/block{
 	dir = 8
 	},
+/obj/effect/mob_spawn/human/cuckoo_spawner,
 /turf/open/floor/plating/asteroid/basalt/lava_land_surface,
 /area/city/backstreets_alley)
 "Uc" = (
