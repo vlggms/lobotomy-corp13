@@ -26,8 +26,8 @@
 	if(!LAZYLEN(GLOB.xeno_spawn))
 		message_admins("No xeno spawns found when spawning in ordeal!")
 		return
-	var/boss_player_mod = round(GLOB.clients.len * boss_player_multiplicator)
-	var/grunt_player_mod = round(GLOB.clients.len * grunt_player_multiplicator)
+	var/boss_player_mod = round(length(AllLivingAgents(TRUE)) * boss_player_multiplicator)
+	var/grunt_player_mod = round(length(AllLivingAgents(TRUE)) * grunt_player_multiplicator)
 	var/list/available_locs = GLOB.xeno_spawn.Copy()
 
 	for(var/i = 1 to round(boss_amount + boss_player_mod)) // Run the usual simplecommander code
@@ -71,8 +71,8 @@
 	if(!LAZYLEN(GLOB.xeno_spawn))
 		message_admins("No xeno spawns found when spawning in ordeal!")
 		return
-	var/boss_player_mod = round(GLOB.clients.len * boss_player_multiplicator)
-	var/grunt_player_mod = round(GLOB.clients.len * grunt_player_multiplicator)
+	var/boss_player_mod = round(length(AllLivingAgents(TRUE)) * boss_player_multiplicator)
+	var/grunt_player_mod = round(length(AllLivingAgents(TRUE)) * grunt_player_multiplicator)
 	var/list/available_locs = GLOB.xeno_spawn.Copy()
 	for(var/i = 1 to round(roamer_amount + boss_player_mod)) // we spawn single roamers using boss slots as a base
 		var/turf/T = pick(available_locs)
@@ -150,8 +150,8 @@
 	if(!LAZYLEN(GLOB.xeno_spawn))
 		message_admins("No xeno spawns found when spawning in ordeal!")
 		return
-	var/boss_player_mod = round(GLOB.clients.len * boss_player_multiplicator)
-	var/grunt_player_mod = round(GLOB.clients.len * grunt_player_multiplicator)
+	var/boss_player_mod = round(length(AllLivingAgents(TRUE)) * boss_player_multiplicator)
+	var/grunt_player_mod = round(length(AllLivingAgents(TRUE)) * grunt_player_multiplicator)
 	var/list/available_locs = GLOB.xeno_spawn.Copy()
 
 	for(var/i = 1 to round(boss_amount + boss_player_mod))

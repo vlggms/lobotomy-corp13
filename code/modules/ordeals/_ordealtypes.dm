@@ -29,8 +29,8 @@
 
 /datum/ordeal/simplespawn/Run()
 	..()
-	var/place_player_mod = round(GLOB.clients.len * place_player_multiplicator) // Ten players add a new spot
-	var/spawn_player_mod = round(GLOB.clients.len * spawn_player_multiplicator)
+	var/place_player_mod = round(length(AllLivingAgents(TRUE)) * place_player_multiplicator) // Ten players add a new spot
+	var/spawn_player_mod = round(length(AllLivingAgents(TRUE)) * spawn_player_multiplicator)
 	if(!LAZYLEN(GLOB.xeno_spawn))
 		message_admins("No xeno spawns found when spawning in ordeal!")
 		return
@@ -82,8 +82,8 @@
 	if(!LAZYLEN(GLOB.xeno_spawn))
 		message_admins("No xeno spawns found when spawning in ordeal!")
 		return
-	var/boss_player_mod = round(GLOB.clients.len * boss_player_multiplicator)
-	var/grunt_player_mod = round(GLOB.clients.len * grunt_player_multiplicator)
+	var/boss_player_mod = round(length(AllLivingAgents(TRUE)) * boss_player_multiplicator)
+	var/grunt_player_mod = round(length(AllLivingAgents(TRUE)) * grunt_player_multiplicator)
 	var/list/available_locs = GLOB.xeno_spawn.Copy()
 	for(var/i = 1 to round(boss_amount + boss_player_mod))
 		var/turf/T = pick(available_locs)
