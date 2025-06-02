@@ -1,3 +1,4 @@
+#define STATUS_EFFECT_PERSISTENCE /datum/status_effect/stacking/sweeper_persistence
 /mob/living/simple_animal/hostile/ordeal/indigo_noon
 	name = "sweeper"
 	desc = "A humanoid creature wearing metallic armor. It has bloodied hooks in its hands."
@@ -60,6 +61,11 @@
 	else
 		adjustBruteLoss(-(maxHealth/2))
 	L.gib()
+	var/datum/status_effect/stacking/sweeper_persistence/locked_in = src.has_status_effect(STATUS_EFFECT_PERSISTENCE)
+	if(!locked_in)
+		src.apply_status_effect(STATUS_EFFECT_PERSISTENCE)
+	else
+		locked_in.add_stacks(1)
 	return TRUE
 
 /mob/living/simple_animal/hostile/ordeal/indigo_noon/PickTarget(list/Targets)
@@ -85,6 +91,8 @@
 		return pick(lower_priority)
 	return ..()
 
+/// This subtype moves faster, attacks faster, deals less damage per hit, and has access to a dash attack.
+/// Uses the lanky sweeper sprite made by insiteparaful.
 /mob/living/simple_animal/hostile/ordeal/indigo_noon/lanky
 	health = 280
 	maxHealth = 280
@@ -102,16 +110,18 @@
 	var/can_act = TRUE
 	/// Placeholder here until the main PR for can_act and can_move is merged.
 	var/can_move = TRUE
-	/// Holds the next moment that this mob will be allowed to dash
+	/// Holds the next moment that this mob will be allowed to dash.
 	var/dash_cooldown
 	/// This is the amount of time added by its dash attack (Sweep the Backstreets) on use onto its cooldown.
 	/// It should be fairly long so you can bait it and have a safe window to deal with sweepers in the usual, wagie way of funneling them.
 	var/dash_cooldown_time = 25 SECONDS
-	/// Sweep the Backstreets range in tiles
+	/// Sweep the Backstreets ability range in tiles.
 	var/dash_range = 3
 
 /mob/living/simple_animal/hostile/ordeal/indigo_noon/lanky/Initialize()
 	. = ..()
+	/// I know this is weird but I don't know how to ONLY override Initialize() for indigo_noon without getting rid of the code from simple_animal and whatnot.
+	/// I have to set these things here because normal indigo_noon initialization sets them.
 	icon_living = "sweeper_limbus"
 	icon_state = icon_living
 	attack_sound = 'sound/effects/ordeals/indigo/stab_2.ogg'
@@ -202,6 +212,11 @@
 	duration = 0.6 SECONDS
 	color = "#FE5343"
 
+/// As of June 2025 Indigo Noon is being updated to have some variants.
+/// These two subtypes will show up alongside the normal old sweepers for the ordeal. They could also be reused in Dusk and Midnight.
+
+/// This subtype moves slower, attacks slower, deals a bit more damage per hit, and has access to an empowered lifesteal attack every once in a while after being hit.
+/// Uses the chunky sweeper sprite made by insiteparaful.
 /mob/living/simple_animal/hostile/ordeal/indigo_noon/chunky
 	health = 750
 	maxHealth = 750
@@ -230,6 +245,8 @@
 
 /mob/living/simple_animal/hostile/ordeal/indigo_noon/chunky/Initialize()
 	. = ..()
+	/// I know this is weird but I don't know how to ONLY override Initialize() for indigo_noon without getting rid of the code from simple_animal and whatnot.
+	/// I have to set these things here because normal indigo_noon initialization sets them.
 	icon_living = "sweeper_limbus"
 	icon_state = icon_living
 	attack_sound = 'sound/effects/ordeals/indigo/stab_1.ogg'
@@ -244,10 +261,12 @@
 		/// This gives them enough margin to run away or parry
 		SLEEP_CHECK_DEATH(0.4 SECONDS)
 
-/// The following few code chunks are dedicated to the Extract Fuel mechanic specific to this sweeper. Basically, it's a lifesteal hit they can use every once in a bit.
-/// When the sweeper takes a hit, if it's off cooldown, it'll buff itself for its next hit and warn the player, giving them a brief grace period to disengage or prepare
-/// If they don't get away in time, they'll be hit by an empowered attack that also heals the sweeper for a good chunk and spawns some gibs for extra flashiness
+/// The following few code chunks are dedicated to the Extract Fuel mechanic specific to this sweeper type. Basically, it's a lifesteal hit they can use every once in a bit.
+/// When the sweeper takes a hit, if it's off cooldown, it'll buff itself for its next hit and warn the player, giving them a brief grace period to disengage or prepare.
+/// If they don't get away in time, they'll be hit by an empowered attack that also heals the sweeper for a good chunk and spawns some gibs for extra flashiness.
 /// The buff goes away in 2.5 seconds or after landing the hit.
+/// Extract Fuel doesn't get activated by ranged hits, but like, even if it did, it'd be useless. These things are REALLY slow and easy to kite.
+/// But I don't have any intention of giving them some sort of countermeasure, it's just a Noon Ordeal...
 
 /mob/living/simple_animal/hostile/ordeal/indigo_noon/chunky/AttackingTarget(atom/attacked_target)
 	. = ..()
@@ -270,7 +289,7 @@
 	attack_sound = 'sound/weapons/fixer/generic/finisher1.ogg'
 	extract_fuel_active = TRUE
 	/// Warn the players so they can back off or get ready to parry.
-	say("+3872 6739.+")
+	say("+38725 619.+")
 	visible_message(span_danger("The [src.name] winds up for a devastating blow!"), span_info("You prepare to extract fuel from your victim."))
 	animate(src, 1.5 SECONDS, color = "#FE5343")
 	/// If we haven't landed the hit in the following few seconds, we will lose the buff.
@@ -289,10 +308,90 @@
 	if(!early)
 		visible_message(span_danger("The [src.name] lowers its aggressive stance."), span_info("You give up on the fuel extraction attempt."))
 
-/// This cleanup exists because if we land a hit with Extract Fuel, we want to turn it off, but there's still an ongoing timer that'll call CancelExtractFuel
+/// This cleanup exists because if we land a hit with Extract Fuel, we want to turn it off, but there's still an ongoing timer it will call CancelExtractFuel
 /mob/living/simple_animal/hostile/ordeal/indigo_noon/chunky/proc/ExtractFuelTimerCleanup()
 	if(extract_fuel_ongoing_timer)
 		deltimer(extract_fuel_ongoing_timer)
 		extract_fuel_ongoing_timer = null
 
+/// Persistence Status Effect
+/// It allows them to avoid death when struck, with some VFX/SFX indicating that it was activated
+/// Every time it activates, it loses a stack, but it can also time out over a long period of time.
+/// All Sweepers gain a stack of Persistence when eating corpses. Chunky Sweepers can give themselves several stacks when on low health.
 
+/datum/status_effect/stacking/sweeper_persistence
+	id = "persistence"
+	status_type = STATUS_EFFECT_MULTIPLE
+	duration = 30 SECONDS
+	alert_type = null
+	var/mutable_appearance/overlay
+	stacks = 1
+	max_stacks = 5
+	stack_decay = 0
+	consumed_on_threshold = FALSE
+	var/base_chance = 30
+	var/health_recovery_per_stack = 20
+
+/// I need dead mobs to be able to have the status, so...
+/datum/status_effect/stacking/sweeper_persistence/can_have_status()
+	return istype(owner, /mob/living/simple_animal/hostile/ordeal/indigo_noon)
+
+/// I am nuking the tick.
+/datum/status_effect/stacking/sweeper_persistence/tick()
+
+/datum/status_effect/stacking/sweeper_persistence/on_apply()
+	. = ..()
+	if(!owner)
+		return
+	RegisterSignal(owner, COMSIG_MOB_APPLY_DAMGE, PROC_REF(CheckDeath))
+	owner.say("Persistence gained.")
+
+/datum/status_effect/stacking/sweeper_persistence/add_stacks(stacks_added)
+	. = ..()
+	owner.say("Persistence stacks: [src.stacks]")
+	/// I don't think I have to do any further cleanup, it should get qdel'd by Process() right?
+	if(stacks <= 0)
+		owner.remove_status_effect(STATUS_EFFECT_PERSISTENCE)
+
+/datum/status_effect/stacking/sweeper_persistence/on_remove()
+	. = ..()
+	if(!owner)
+		return
+	UnregisterSignal(src, COMSIG_MOB_APPLY_DAMGE)
+	owner.say("Persistence lost.")
+
+/// This check was taken from Welfare Core's code. Altered to work on simplemobs instead.
+/datum/status_effect/stacking/sweeper_persistence/proc/CheckDeath(datum_source, amount, damagetype, def_zone)
+	SIGNAL_HANDLER
+
+	if(!owner)
+		return
+
+	var/mob/living/simple_animal/hostile/ordeal/indigo_noon/neighbor = owner
+	/// We get the resistance from the sweeper's resistances datum.
+	var/damage_coefficient = neighbor.damage_coeff.getCoeff(damagetype)
+	/// The original damage received is given to us by the signal we're handling.
+	var/damage_taken = amount * damage_coefficient
+	/// No point in doing anything if the damage wouldn't kill the sweeper.
+	if(damage_taken <= 0)
+		return
+
+	/// Chance to proc Persistence is calculated here based on stacks. It can't be higher than 100 because... I don't know what happens if it's higher.
+	/// Chances should be as follows (%, stack amt.): 44, 1 | 58, 2 | 72, 3 | 86, 4 | 100, 5
+	var/chance = min(base_chance + stacks*14, 100)
+	if(damage_taken >= neighbor.health)
+		/// But it refused. Persistence goes off, we heal a tiny bit and lose a stack
+		if(prob(chance))
+			playsound(neighbor, 'sound/misc/compiler-failure.ogg', 60)
+			src.add_stacks(-1)
+			neighbor.adjustBruteLoss(-20)
+			return COMPONENT_MOB_DENY_DAMAGE
+		/// Tough luck neighbor. Persistence didn't go off so the sweeper dies here.
+		else
+			playsound(neighbor, 'sound/misc/splort.ogg', 90)
+	return
+
+
+//////////////////////TODO: MAKE SWEEPERHEALING() PROC TO AVOID DUPLICATE CODE!!!
+
+#undef STATUS_EFFECT_PERSISTENCE
