@@ -110,6 +110,7 @@
 	icon = 'icons/mob/cuckoospawn.dmi'
 	icon_state = "skrinkly_bird"
 	desc = "A nastly little bird worm thing, it appears to be growing quickly!"
+	faction = list("cuckoospawn")
 	damage_coeff = list(RED_DAMAGE = 1.5, WHITE_DAMAGE = 0, BLACK_DAMAGE = 0.5, PALE_DAMAGE = 2)
 	pass_flags = PASSTABLE | PASSMOB
 	mob_size = MOB_SIZE_SMALL

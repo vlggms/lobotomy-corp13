@@ -2866,6 +2866,7 @@
 /area/city/backstreets_alley)
 "Wy" = (
 /obj/structure/stone_tile/slab,
+/obj/structure/bird_statue,
 /turf/open/floor/plating/asteroid/basalt,
 /area/city/backstreets_alley)
 "WG" = (

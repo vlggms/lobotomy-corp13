@@ -27,8 +27,9 @@
 /obj/structure/bird_statue
 	name = "gray bird statue"
 	desc = "An statue of great worship, it appears to have sinister around it..."
-	icon = 'icons/mob/cuckoo_statue.dmi'
-	icon_state = "long_statue"
+	icon = 'ModularTegustation/Teguicons/64x64.dmi'
+	icon_state = "thunderbird_altar"
+	max_integrity = 500
 	anchored = TRUE
 	var/collected_meat = 0
 
@@ -47,7 +48,7 @@
 
 /obj/structure/bird_statue/attack_hand(mob/user)
 	. = ..()
-	var/statue_ask = alert("Pray to the Gray Statue", "[src] awaits your demand.", "cuckoo salve (6 Meat)", "host stabilizer (4 Meat)", "child (15 Meat)", "Cancel")
+	var/statue_ask = alert("[src] awaits your demand.", "Oh dear ancient elder... If you can grant us a", "cuckoo salve (6 Meat)", "host stabilizer (4 Meat)", "cuckoo revive (15 Meat)", "Cancel")
 	if(statue_ask == "cuckoo salve (6 Meat)")
 		if(collected_meat >= 6)
 			to_chat(user, span_nicegreen("[src] understands your request, and grants your request!"))
@@ -62,11 +63,11 @@
 			new /obj/item/cuckoo_stabilizer (get_turf(user))
 		else
 			to_chat(user, span_warning("[src] deines your request, it demands more flesh!"))
-	else if(statue_ask == "child (15 Meat)")
+	else if(statue_ask == "cuckoo revive (15 Meat)")
 		if(collected_meat >= 15)
 			to_chat(user, span_nicegreen("[src] understands your request, and grants your request!"))
 			collected_meat -= 15
-			new /mob/living/simple_animal/hostile/cuckoospawn_parasite (get_turf(user))
+			new /obj/item/cuckoo_revive (get_turf(user))
 		else
 			to_chat(user, span_warning("[src] deines your request, it demands more flesh!"))
 
@@ -91,8 +92,8 @@
 
 /obj/item/cuckoo_stabilizer
 	name = "cuckoo stabilizer"
-	desc = "Strange object... It would allow the cukoo birds to stabilizes their hosts!"
-	icon_state = "meatproduct"
+	desc = "Strange object... It would allow some birds to stabilizes their hosts!"
+	icon_state = "meatproductsteak"
 	icon = 'icons/obj/food/food.dmi'
 	w_class = WEIGHT_CLASS_SMALL
 
@@ -119,3 +120,50 @@
 				to_chat(user, span_nicegreen("[human_target] suddenly shakes awake!"))
 				to_chat(human_target, span_nicegreen("You suddenly wake up, as some cool liquid sinks into your body..."))
 				qdel(src)
+
+/obj/item/cuckoo_revive
+	name = "cuckoo bolus"
+	desc = "Strange round object... It would allow the cukoo birds revive their fallen members!"
+	icon_state = "egg-mime"
+	color = "#292929"
+	icon = 'icons/obj/food/food.dmi'
+	w_class = WEIGHT_CLASS_SMALL
+
+/obj/item/cuckoo_revive/attack(mob/M, mob/user)
+	. = ..()
+	if(ishuman(M))
+		var/mob/living/carbon/human/human_target = M
+		if(!istype(user, /mob/living/carbon/human/species/cuckoospawn))
+			to_chat(user, span_notice("You have no idea on how to apply it!"))
+			return FALSE
+		if(istype(M, /mob/living/carbon/human/species/cuckoospawn))
+			var/mob/living/carbon/human/species/cuckoospawn/new_bird = M
+			to_chat(user, span_nicegreen("You start applying [src] to [new_bird]..."))
+			if(do_after(user, 60, new_bird))
+				new_bird.adjustOxyLoss(-new_bird.maxHealth)
+				new_bird.adjustToxLoss(-new_bird.maxHealth)
+				new_bird.adjustFireLoss(-new_bird.maxHealth)
+				new_bird.adjustBruteLoss(-new_bird.maxHealth)
+				new_bird.updatehealth()
+				playsound(get_turf(src), 'sound/magic/enter_blood.ogg', 30, 1)
+				new_bird.revive(full_heal = FALSE, admin_revive = FALSE)
+				new_bird.emote("gasps")
+				new_bird.Jitter(100)
+				new_bird.Paralyze(75)
+				to_chat(user, span_nicegreen("[new_bird] suddenly shakes awake!"))
+				to_chat(new_bird, span_nicegreen("You suddenly wake up, as something warm enters your mouth..."))
+				qdel(src)
+		else
+			to_chat(user, span_notice("The target is not compatible with this bolus!"))
+
+/obj/item/cuckoo_revive/attack_self(mob/user)
+	. = ..()
+	if(istype(user, /mob/living/carbon/human/species/cuckoospawn))
+		var/mob/living/carbon/human/species/cuckoospawn/bird_owner = user
+		to_chat(user, span_nicegreen("You start applying [src] to [bird_owner]..."))
+		if(do_after(user, 60, src))
+			bird_owner.adjustBruteLoss(-bird_owner.maxHealth)
+			to_chat(bird_owner, span_nicegreen("You feel your wounds recover as you devour the bolus!"))
+			qdel(src)
+	else
+		to_chat(user, span_notice("You don't think it would be a good idea to eat it..."))

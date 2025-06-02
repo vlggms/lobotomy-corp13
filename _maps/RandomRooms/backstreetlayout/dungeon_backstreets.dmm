@@ -117,6 +117,7 @@
 /area/city/backstreets_alley)
 "gR" = (
 /obj/structure/stone_tile/slab,
+/obj/structure/bird_statue,
 /turf/open/floor/plating/asteroid/basalt,
 /area/city/backstreets_alley)
 "gU" = (
