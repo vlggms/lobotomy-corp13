@@ -23,3 +23,99 @@
 	var/area/A = get_area(src)
 	if(A)
 		notify_ghosts("An cuckoo egg is ready to hatch in \the [A.name].", source = src, action=NOTIFY_ATTACK, flashwindow = FALSE, ignore_key = POLL_IGNORE_ASHWALKER)
+
+/obj/structure/bird_statue
+	name = "gray bird statue"
+	desc = "An statue of great worship, it appears to have sinister around it..."
+	icon = 'icons/mob/cuckoo_statue.dmi'
+	icon_state = "long_statue"
+	anchored = TRUE
+	var/collected_meat = 0
+
+/obj/structure/bird_statue/attacked_by(obj/item/I, mob/living/user)
+	. = ..()
+	if(istype(I, /obj/item/food/meat/slab) && istype(user, /mob/living/carbon/human/species/cuckoospawn)) //How would humans understand?
+		playsound(get_turf(src), 'sound/magic/enter_blood.ogg', 30, 1)
+		to_chat(user, span_nicegreen("[src] happily accepts your offering!"))
+		collected_meat++
+		qdel(I)
+
+/obj/structure/bird_statue/examine(mob/user)
+	. = ..()
+	if(istype(user, /mob/living/carbon/human/species/cuckoospawn))
+		. += span_notice("[src] currently has [collected_meat] meat stored inside of it!") // Only the birds are able to understand the bird statue.
+
+/obj/structure/bird_statue/attack_hand(mob/user)
+	. = ..()
+	var/statue_ask = alert("Pray to the Gray Statue", "[src] awaits your demand.", "cuckoo salve (6 Meat)", "host stabilizer (4 Meat)", "child (15 Meat)", "Cancel")
+	if(statue_ask == "cuckoo salve (6 Meat)")
+		if(collected_meat >= 6)
+			to_chat(user, span_nicegreen("[src] understands your request, and grants your request!"))
+			collected_meat -= 6
+			new /obj/item/cuckoo_healing (get_turf(user))
+		else
+			to_chat(user, span_warning("[src] deines your request, it demands more flesh!"))
+	else if(statue_ask == "host stabilizer (4 Meat)")
+		if(collected_meat >= 4)
+			to_chat(user, span_nicegreen("[src] understands your request, and grants your request!"))
+			collected_meat -= 4
+			new /obj/item/cuckoo_stabilizer (get_turf(user))
+		else
+			to_chat(user, span_warning("[src] deines your request, it demands more flesh!"))
+	else if(statue_ask == "child (15 Meat)")
+		if(collected_meat >= 15)
+			to_chat(user, span_nicegreen("[src] understands your request, and grants your request!"))
+			collected_meat -= 15
+			new /mob/living/simple_animal/hostile/cuckoospawn_parasite (get_turf(user))
+		else
+			to_chat(user, span_warning("[src] deines your request, it demands more flesh!"))
+
+/obj/item/cuckoo_healing
+	name = "cuckoo salve"
+	desc = "Strange pile of meat, it appears that some birds could eat it to recover..."
+	icon_state = "meatproduct"
+	icon = 'icons/obj/food/food.dmi'
+	w_class = WEIGHT_CLASS_SMALL
+
+/obj/item/cuckoo_healing/attack_self(mob/user)
+	. = ..()
+	if(istype(user, /mob/living/carbon/human/species/cuckoospawn))
+		var/mob/living/carbon/human/species/cuckoospawn/bird_owner = user
+		to_chat(bird_owner, span_notice("You start applying the [src] on your wounds..."))
+		if(do_after(bird_owner, 30, src))
+			bird_owner.adjustBruteLoss(-75)
+			to_chat(bird_owner, span_nicegreen("You feel your wounds recover as the salve molds into your flesh!"))
+			qdel(src)
+	else
+		to_chat(user, span_notice("You have no idea on how to apply it!"))
+
+/obj/item/cuckoo_stabilizer
+	name = "cuckoo stabilizer"
+	desc = "Strange object... It would allow the cukoo birds to stabilizes their hosts!"
+	icon_state = "meatproduct"
+	icon = 'icons/obj/food/food.dmi'
+	w_class = WEIGHT_CLASS_SMALL
+
+/obj/item/cuckoo_stabilizer/attack(mob/M, mob/user)
+	. = ..()
+	if(ishuman(M))
+		var/mob/living/carbon/human/human_target = M
+		if(!istype(user, /mob/living/carbon/human/species/cuckoospawn))
+			to_chat(user, span_notice("You have no idea on how to apply it!"))
+			return FALSE
+		if(human_target.stat == DEAD && human_target.getorgan(/obj/item/organ/body_egg/cuckoospawn_embryo))
+			to_chat(user, span_nicegreen("You start applying [src] to [human_target]..."))
+			if(do_after(user, 40, human_target))
+				human_target.adjustOxyLoss(-human_target.maxHealth)
+				human_target.adjustToxLoss(-human_target.maxHealth)
+				human_target.adjustFireLoss(-human_target.maxHealth)
+				human_target.adjustBruteLoss(-human_target.maxHealth)
+				human_target.updatehealth() // Previous "adjust" procs don't update health, so we do it manually.
+				playsound(get_turf(src), 'sound/magic/enter_blood.ogg', 30, 1)
+				human_target.revive(full_heal = FALSE, admin_revive = FALSE)
+				human_target.emote("gasps")
+				human_target.Jitter(100)
+				human_target.Paralyze(75)
+				to_chat(user, span_nicegreen("[human_target] suddenly shakes awake!"))
+				to_chat(human_target, span_nicegreen("You suddenly wake up, as some cool liquid sinks into your body..."))
+				qdel(src)

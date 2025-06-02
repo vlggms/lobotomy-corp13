@@ -69,6 +69,11 @@
 		if(bursting_embryo)
 			bursting_embryo.AttemptGrow()
 
+/mob/living/simple_animal/hostile/cuckoospawn/attackby(obj/item/O, mob/user, params)
+	. = ..()
+	if(faction.Find("neutral") && user.faction.Find("neutral"))
+		faction -= "neutral"
+
 /mob/living/simple_animal/hostile/cuckoospawn/attack_hand(mob/living/carbon/M)
 	if(!stat && M.a_intent == INTENT_HELP && !client && istype(M, /mob/living/carbon/human/species/cuckoospawn))
 		var/bird_ask = alert("select command", "[src] recognizes your authority.", "Follow", "Stay", "Change Aggro", "Cancel")
@@ -79,6 +84,12 @@
 			walk(src, 0)
 			return
 		if(bird_ask == "Change Aggro")
+			if(faction.Find("neutral"))
+				to_chat(M, span_notice("[src] will now attack humans on sight."))
+				faction -= "neutral"
+			else
+				to_chat(M, span_notice("[src] will now not attack humans on sight."))
+				faction += "neutral"
 			return //This will add or remove the neutral faction.
 		return
 	return ..()

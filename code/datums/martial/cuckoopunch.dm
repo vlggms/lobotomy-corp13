@@ -51,12 +51,11 @@
 		bonus_damage += 10
 		picked_hit_type = "stomp"
 	D.apply_damage(rand(24,27) + bonus_damage, RED_DAMAGE, affecting, armor_block)
+	playsound(get_turf(D), 'sound/abnormalities/big_wolf/Wolf_Scratch.ogg', 50, TRUE, -1)
 	if(picked_hit_type == "kick" || picked_hit_type == "stomp")
 		A.do_attack_animation(D, ATTACK_EFFECT_KICK)
-		playsound(get_turf(D), 'sound/effects/hit_kick.ogg', 50, TRUE, -1)
 	else
 		A.do_attack_animation(D, ATTACK_EFFECT_PUNCH)
-		playsound(get_turf(D), 'sound/abnormalities/big_wolf/Wolf_Scratch.ogg', 50, TRUE, -1)
 	D.visible_message(span_danger("[A] [picked_hit_type]s [D]!"), \
 					span_userdanger("You're [picked_hit_type]ed by [A]!"), span_hear("You hear a sickening sound of flesh hitting flesh!"), COMBAT_MESSAGE_RANGE, A)
 	to_chat(A, span_danger("You [picked_hit_type] [D]!"))
@@ -78,7 +77,7 @@
 	playsound(D, 'sound/effects/meteorimpact.ogg', 25, TRUE, -1)
 	var/throwtarget = get_edge_target_turf(A, get_dir(A, get_step_away(D, A)))
 	D.throw_at(throwtarget, 4, 2, A)//So stuff gets tossed around at the same time.
-	if(ishuman(D))
+	if(ishuman(D) && D.stat != DEAD)
 		var/mob/living/carbon/human/human_target = D
 		var/obj/item/bodypart/chest/LC = human_target.get_bodypart(BODY_ZONE_CHEST)
 		if((!LC || LC.status != BODYPART_ROBOTIC) && !human_target.getorgan(/obj/item/organ/body_egg/cuckoospawn_embryo))
