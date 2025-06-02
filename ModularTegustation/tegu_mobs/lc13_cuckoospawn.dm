@@ -7,7 +7,8 @@
 	maxHealth = 700
 	health = 700
 	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 1.2, WHITE_DAMAGE = 0.2, BLACK_DAMAGE = 0.6, PALE_DAMAGE = 1.5)
-	faction = list("hostile", "cuckoospawn")
+	faction = list("cuckoospawn")
+	city_faction = FALSE
 	stat_attack = HARD_CRIT
 	melee_damage_type = RED_DAMAGE
 	melee_damage_lower = 20
@@ -67,6 +68,20 @@
 		var/obj/item/organ/body_egg/cuckoospawn_embryo/bursting_embryo = human_target.getorgan(/obj/item/organ/body_egg/cuckoospawn_embryo)
 		if(bursting_embryo)
 			bursting_embryo.AttemptGrow()
+
+/mob/living/simple_animal/hostile/cuckoospawn/attack_hand(mob/living/carbon/M)
+	if(!stat && M.a_intent == INTENT_HELP && !client && istype(M, /mob/living/carbon/human/species/cuckoospawn))
+		var/bird_ask = alert("select command", "[src] recognizes your authority.", "Follow", "Stay", "Change Aggro", "Cancel")
+		if(bird_ask == "Follow")
+			walk_to(src, M, 2, move_to_delay)
+			return
+		if(bird_ask == "Stay")
+			walk(src, 0)
+			return
+		if(bird_ask == "Change Aggro")
+			return //This will add or remove the neutral faction.
+		return
+	return ..()
 
 /mob/living/simple_animal/hostile/cuckoospawn/proc/executed_claw()
 	var/turf/origin = get_turf(src)

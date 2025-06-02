@@ -33,7 +33,7 @@
 
 /mob/living/carbon/human/species/cuckoospawn
 	race = /datum/species/cuckoospawn
-	faction = list("hostile", "cuckoospawn", "city")
+	faction = list("cuckoospawn")
 	var/datum/martial_art/cuckoopunch/cuckoopunch
 	var/attempted_crosses = 0
 
