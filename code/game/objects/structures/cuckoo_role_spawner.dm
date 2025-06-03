@@ -20,8 +20,6 @@
 
 /obj/effect/mob_spawn/cuckoo_spawner/Initialize()
 	. = ..()
-/obj/structure/lavaland/ash_walker/Initialize()
-	.=..()
 	var/area/A = get_area(src)
 	if(A)
 		notify_ghosts("An cuckoo egg is ready to hatch in \the [A.name].", source = src, action=NOTIFY_ATTACK, flashwindow = FALSE, ignore_key = POLL_IGNORE_ASHWALKER)
