@@ -100,7 +100,7 @@
 		return
 
 	ckey = ghost.client.ckey
-	to_chat(src, span_info("You are a Cuckoospawn, you only have one goal in mind. Expand and Multiply. Your melee attack have a chance of infecting your target with a Cuckoospawn Larva"))
+	to_chat(src, span_info("You are a Cuckoospawn, you only have one goal in mind. Expand and Multiply. Use your 'Implant' skill to infect people."))
 
 /obj/item/organ/eyes/night_vision/cuckoo
 	name = "bird-eye"

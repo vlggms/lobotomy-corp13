@@ -699,10 +699,6 @@
 	color = "#42f545"
 	},
 /area/city/backstreets_room)
-"mU" = (
-/obj/item/keycard/cuckoo_jail,
-/turf/open/floor/plating/asteroid/basalt,
-/area/city/backstreets_alley)
 "mX" = (
 /turf/open/floor/plating/dirt/jungle/wasteland,
 /area/city/backstreets_room)
@@ -857,6 +853,11 @@
 /obj/item/paper/crumpled/retired_designs,
 /turf/open/floor/plasteel,
 /area/city/backstreets_room)
+"pk" = (
+/obj/effect/mob_spawn/human/corpse/damaged,
+/obj/item/clothing/head/crown,
+/turf/open/floor/plating/asteroid/basalt,
+/area/city/backstreets_alley)
 "pn" = (
 /obj/structure/fluff/empty_sleeper/nanotrasen{
 	dir = 1
@@ -964,6 +965,17 @@
 /mob/living/simple_animal/pet/penguin/baby,
 /turf/open/floor/grass/snow/safe,
 /area/city/backstreets_room)
+"ra" = (
+/obj/structure/stone_tile/block{
+	dir = 1
+	},
+/obj/structure/stone_tile/cracked,
+/obj/structure/stone_tile{
+	dir = 8
+	},
+/obj/machinery/door/keycard/cuckoo_nest,
+/turf/open/indestructible/boss/air,
+/area/city/backstreets_alley)
 "rs" = (
 /turf/open/floor/plating/ice,
 /area/city/backstreets_room)
@@ -1919,6 +1931,7 @@
 /obj/item/restraints/handcuffs/cable/sinew,
 /obj/item/restraints/handcuffs/cable/sinew,
 /obj/item/restraints/handcuffs/cable/sinew,
+/obj/item/storage/bag/meat,
 /turf/open/floor/plating/asteroid/basalt,
 /area/city/backstreets_alley)
 "Gp" = (
@@ -2150,17 +2163,6 @@
 /obj/effect/spawner/room/backstreets/small_west,
 /turf/closed/indestructible/reinforced,
 /area/city/backstreets_room)
-"KZ" = (
-/obj/structure/stone_tile/block{
-	dir = 1
-	},
-/obj/structure/stone_tile/cracked,
-/obj/structure/stone_tile{
-	dir = 8
-	},
-/obj/structure/bed/maint,
-/turf/open/indestructible/boss/air,
-/area/city/backstreets_alley)
 "Lr" = (
 /obj/structure/chair/sofa/corp/corner,
 /turf/open/floor/carpet/black,
@@ -2204,6 +2206,10 @@
 /turf/open/floor/plating/dirt/jungle/dark{
 	slowdown = 0
 	},
+/area/city/backstreets_alley)
+"LO" = (
+/obj/item/keycard/cuckoo_jail,
+/turf/open/floor/plating/asteroid/basalt,
 /area/city/backstreets_alley)
 "Md" = (
 /obj/structure/spider/stickyweb/genetic,
@@ -2533,17 +2539,6 @@
 /obj/item/kirbyplants/random,
 /turf/open/floor/carpet/black,
 /area/centcom/supplypod)
-"QJ" = (
-/obj/structure/stone_tile/block{
-	dir = 1
-	},
-/obj/structure/stone_tile/cracked,
-/obj/structure/stone_tile{
-	dir = 8
-	},
-/obj/machinery/door/keycard/cuckoo_nest,
-/turf/open/indestructible/boss/air,
-/area/city/backstreets_alley)
 "QK" = (
 /obj/effect/decal/cleanable/cobweb/cobweb2,
 /turf/open/floor/plating/ashplanet/rocky,
@@ -2604,6 +2599,17 @@
 	},
 /turf/open/indestructible/necropolis/air,
 /area/city/backstreets_room)
+"RJ" = (
+/obj/structure/stone_tile/block{
+	dir = 1
+	},
+/obj/structure/stone_tile/cracked,
+/obj/structure/stone_tile{
+	dir = 8
+	},
+/obj/structure/bed/maint,
+/turf/open/indestructible/boss/air,
+/area/city/backstreets_alley)
 "RK" = (
 /mob/living/simple_animal/hostile/jungle/mook{
 	health = 250;
@@ -23278,7 +23284,7 @@ UA
 bP
 OA
 HF
-Yb
+pk
 ed
 UZ
 UZ
@@ -23383,7 +23389,7 @@ TI
 Wy
 VJ
 Xj
-mU
+LO
 Xj
 Xj
 dA
@@ -23493,7 +23499,7 @@ UZ
 TI
 jy
 Im
-mU
+LO
 jy
 OB
 OB
@@ -23605,7 +23611,7 @@ TI
 Ge
 ed
 ed
-QJ
+ra
 cg
 nN
 ed
@@ -23939,7 +23945,7 @@ ed
 ed
 Tl
 cy
-KZ
+RJ
 py
 ed
 ed

@@ -173,17 +173,6 @@
 /obj/structure/mineral_door/iron,
 /turf/open/floor/plasteel/dark,
 /area/city/backstreets_alley)
-"dw" = (
-/obj/structure/stone_tile/block{
-	dir = 1
-	},
-/obj/structure/stone_tile/cracked,
-/obj/structure/stone_tile{
-	dir = 8
-	},
-/obj/structure/bed/maint,
-/turf/open/indestructible/boss/air,
-/area/city/backstreets_alley)
 "dA" = (
 /turf/open/indestructible/necropolis/air,
 /area/city/backstreets_alley)
@@ -233,6 +222,7 @@
 /obj/item/restraints/handcuffs/cable/sinew,
 /obj/item/restraints/handcuffs/cable/sinew,
 /obj/item/restraints/handcuffs/cable/sinew,
+/obj/item/storage/bag/meat,
 /turf/open/floor/plating/asteroid/basalt,
 /area/city/backstreets_alley)
 "en" = (
@@ -883,17 +873,6 @@
 	dir = 1
 	},
 /area/city/backstreets_alley)
-"rx" = (
-/obj/structure/stone_tile/block{
-	dir = 1
-	},
-/obj/structure/stone_tile/cracked,
-/obj/structure/stone_tile{
-	dir = 8
-	},
-/obj/machinery/door/keycard/cuckoo_nest,
-/turf/open/indestructible/boss/air,
-/area/city/backstreets_alley)
 "ry" = (
 /obj/effect/decal/cleanable/dirt/dust,
 /turf/open/floor/plasteel/chapel,
@@ -958,10 +937,6 @@
 /obj/structure/bed/pod,
 /obj/item/bedsheet/hos,
 /turf/open/floor/carpet/red,
-/area/city/backstreets_alley)
-"sp" = (
-/obj/item/keycard/cuckoo_jail,
-/turf/open/floor/plating/asteroid/basalt,
 /area/city/backstreets_alley)
 "st" = (
 /obj/machinery/hydroponics/soil,
@@ -1234,6 +1209,11 @@
 /turf/open/floor/plasteel/chapel{
 	dir = 4
 	},
+/area/city/backstreets_alley)
+"yE" = (
+/obj/effect/mob_spawn/human/corpse/damaged,
+/obj/item/clothing/head/crown,
+/turf/open/floor/plating/asteroid/basalt,
 /area/city/backstreets_alley)
 "yG" = (
 /obj/structure/stone_tile/surrounding_tile,
@@ -1658,6 +1638,10 @@
 /obj/effect/decal/cleanable/dirt/dust,
 /turf/open/floor/carpet/purple,
 /area/city/backstreets_alley)
+"Ib" = (
+/obj/item/keycard/cuckoo_jail,
+/turf/open/floor/plating/asteroid/basalt,
+/area/city/backstreets_alley)
 "Ic" = (
 /obj/structure/chair/plastic{
 	dir = 4
@@ -2003,6 +1987,17 @@
 /obj/effect/decal/cleanable/dirt/dust,
 /mob/living/simple_animal/hostile/humanoid/blood/bag,
 /turf/open/floor/plasteel/dark,
+/area/city/backstreets_alley)
+"Oh" = (
+/obj/structure/stone_tile/block{
+	dir = 1
+	},
+/obj/structure/stone_tile/cracked,
+/obj/structure/stone_tile{
+	dir = 8
+	},
+/obj/machinery/door/keycard/cuckoo_nest,
+/turf/open/indestructible/boss/air,
 /area/city/backstreets_alley)
 "Oo" = (
 /obj/structure/fluff/paper/stack,
@@ -2459,6 +2454,17 @@
 "ZC" = (
 /obj/effect/decal/cleanable/blood,
 /turf/open/floor/plating/asteroid/basalt,
+/area/city/backstreets_alley)
+"ZW" = (
+/obj/structure/stone_tile/block{
+	dir = 1
+	},
+/obj/structure/stone_tile/cracked,
+/obj/structure/stone_tile{
+	dir = 8
+	},
+/obj/structure/bed/maint,
+/turf/open/indestructible/boss/air,
 /area/city/backstreets_alley)
 
 (1,1,1) = {"
@@ -3918,7 +3924,7 @@ kA
 ee
 Jh
 Bp
-ix
+yE
 wO
 YG
 YG
@@ -4023,7 +4029,7 @@ kb
 Hf
 tz
 hf
-sp
+Ib
 hf
 hf
 qQ
@@ -4133,7 +4139,7 @@ YG
 kb
 fb
 hw
-sp
+Ib
 fb
 aE
 aE
@@ -4245,7 +4251,7 @@ kb
 ZC
 wO
 wO
-rx
+Oh
 Wz
 dK
 wO
@@ -4579,7 +4585,7 @@ wO
 wO
 sf
 mT
-dw
+ZW
 lj
 wO
 wO

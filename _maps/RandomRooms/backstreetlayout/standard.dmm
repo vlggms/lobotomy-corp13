@@ -38,6 +38,7 @@
 /obj/item/restraints/handcuffs/cable/sinew,
 /obj/item/restraints/handcuffs/cable/sinew,
 /obj/item/restraints/handcuffs/cable/sinew,
+/obj/item/storage/bag/meat,
 /turf/open/floor/plating/asteroid/basalt,
 /area/city/backstreets_alley)
 "aR" = (
@@ -194,10 +195,6 @@
 /obj/effect/mob_spawn/human/corpse,
 /turf/open/floor/plating/rust,
 /area/city/backstreets_room)
-"hB" = (
-/obj/item/keycard/cuckoo_jail,
-/turf/open/floor/plating/asteroid/basalt,
-/area/city/backstreets_alley)
 "ii" = (
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/effect/portal/permanent{
@@ -583,17 +580,6 @@
 "vE" = (
 /turf/closed/indestructible/rock,
 /area/city/backstreets_alley)
-"vG" = (
-/obj/structure/stone_tile/block{
-	dir = 1
-	},
-/obj/structure/stone_tile/cracked,
-/obj/structure/stone_tile{
-	dir = 8
-	},
-/obj/machinery/door/keycard/cuckoo_nest,
-/turf/open/indestructible/boss/air,
-/area/city/backstreets_alley)
 "vL" = (
 /obj/effect/portal/permanent{
 	icon_state = "wooden_tv_broken";
@@ -616,6 +602,11 @@
 	},
 /turf/open/floor/plating/asteroid/basalt,
 /area/city/backstreets_alley)
+"ws" = (
+/obj/effect/mob_spawn/human/corpse/damaged,
+/obj/item/clothing/head/crown,
+/turf/open/floor/plating/asteroid/basalt,
+/area/city/backstreets_alley)
 "wv" = (
 /obj/item/stack/sheet/mineral/wood,
 /turf/open/floor/plating/dirt/jungle/dark{
@@ -632,6 +623,17 @@
 /obj/effect/turf_decal/weather/dirt,
 /obj/effect/landmark/backstreetspawneast,
 /turf/open/floor/plating/asteroid/basalt,
+/area/city/backstreets_alley)
+"wR" = (
+/obj/structure/stone_tile/block{
+	dir = 1
+	},
+/obj/structure/stone_tile/cracked,
+/obj/structure/stone_tile{
+	dir = 8
+	},
+/obj/machinery/door/keycard/cuckoo_nest,
+/turf/open/indestructible/boss/air,
 /area/city/backstreets_alley)
 "wX" = (
 /obj/effect/turf_decal/weather/dirt{
@@ -1083,6 +1085,17 @@
 /obj/effect/decal/cleanable/blood,
 /turf/open/floor/plating/asteroid/basalt,
 /area/city/backstreets_alley)
+"Mw" = (
+/obj/structure/stone_tile/block{
+	dir = 1
+	},
+/obj/structure/stone_tile/cracked,
+/obj/structure/stone_tile{
+	dir = 8
+	},
+/obj/structure/bed/maint,
+/turf/open/indestructible/boss/air,
+/area/city/backstreets_alley)
 "MX" = (
 /obj/structure/spider/stickyweb/genetic,
 /obj/structure/spider/stickyweb/genetic,
@@ -1103,17 +1116,6 @@
 /obj/effect/decal/cleanable/dirt/dust,
 /turf/open/floor/plating/rust,
 /area/city/backstreets_room)
-"NC" = (
-/obj/structure/stone_tile/block{
-	dir = 1
-	},
-/obj/structure/stone_tile/cracked,
-/obj/structure/stone_tile{
-	dir = 8
-	},
-/obj/structure/bed/maint,
-/turf/open/indestructible/boss/air,
-/area/city/backstreets_alley)
 "NE" = (
 /obj/effect/portal/permanent{
 	icon_state = "wooden_tv_broken";
@@ -1203,6 +1205,10 @@
 /obj/structure/stone_tile/slab/cracked,
 /obj/effect/decal/cleanable/dirt/dust,
 /turf/open/indestructible/boss/air,
+/area/city/backstreets_alley)
+"Rj" = (
+/obj/item/keycard/cuckoo_jail,
+/turf/open/floor/plating/asteroid/basalt,
 /area/city/backstreets_alley)
 "Rx" = (
 /obj/structure/stone_tile/block/cracked{
@@ -28009,7 +28015,7 @@ Cq
 HP
 qL
 ww
-Mk
+ws
 HY
 UZ
 iW
@@ -28114,7 +28120,7 @@ Sd
 Jf
 HD
 Xj
-hB
+Rj
 Xj
 Xj
 zt
@@ -28224,7 +28230,7 @@ UZ
 Sd
 rY
 AE
-hB
+Rj
 rY
 Wn
 Wn
@@ -28336,7 +28342,7 @@ Sd
 Mn
 HY
 HY
-vG
+wR
 Ex
 mK
 HY
@@ -28670,7 +28676,7 @@ HY
 HY
 uF
 BE
-NC
+Mw
 qa
 HY
 HY

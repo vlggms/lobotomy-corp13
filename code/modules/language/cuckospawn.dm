@@ -1,4 +1,4 @@
-/datum/language/cuckoo
+/datum/language/cuckoo //It appears that it does not work on local, I will need to test it on main.
 	name = "Cuckoochirp"
 	desc = "The language of the cuckoobird people."
 	key = "c"

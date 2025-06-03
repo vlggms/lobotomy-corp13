@@ -1,6 +1,6 @@
 //The Same thing as the mushroom punch, but now with the cuckoo bird infection.
 /datum/martial_art/cuckoopunch
-	name = "Cuckoo Brutality"
+	name = "jiajiaren Brutality"
 	id = MARTIALART_CUCKOOPUNCH
 	var/datum/action/cuckoo_implant/implant = new/datum/action/cuckoo_implant()
 
@@ -15,7 +15,7 @@
 	implant.Remove(owner)
 
 /datum/action/cuckoo_implant
-	name = "Cuckoo Implant - After a delay, knock the target back and if they are human, implant them with a Cuckoo Parasite. If they are a mob, deal extra damage."
+	name = "Jiajiaren Implant - After a delay, knock the target back and if they are human, implant them with a Jiajiaren Parasite. If they are a mob, deal extra damage."
 	icon_icon = 'icons/mob/actions/actions_items.dmi'
 	button_icon_state = "lungpunch"
 
@@ -81,10 +81,10 @@
 		var/mob/living/carbon/human/human_target = D
 		var/obj/item/bodypart/chest/LC = human_target.get_bodypart(BODY_ZONE_CHEST)
 		if((!LC || LC.status != BODYPART_ROBOTIC) && !human_target.getorgan(/obj/item/organ/body_egg/cuckoospawn_embryo))
-			to_chat(A, span_danger("You implant [D], soon a new cuckoo bird shall grow..."))
+			to_chat(A, span_danger("You implant [D], soon a new jiajiaren bird shall grow..."))
 			new /obj/item/organ/body_egg/cuckoospawn_embryo(human_target)
 			var/turf/T = get_turf(human_target)
-			log_game("[key_name(human_target)] was impregnated by a cockoospawn at [loc_name(T)]")
+			log_game("[key_name(human_target)] was impregnated by a jiajiaren at [loc_name(T)]")
 	if(isanimal(D))
 		D.apply_damage(rand(150), RED_DAMAGE)
 	if(atk_verb)

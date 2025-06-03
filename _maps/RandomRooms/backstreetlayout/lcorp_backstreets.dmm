@@ -1384,6 +1384,17 @@
 /obj/effect/decal/cleanable/dirt/dust,
 /turf/open/floor/plasteel/white,
 /area/city/backstreets_room)
+"in" = (
+/obj/structure/stone_tile/block{
+	dir = 1
+	},
+/obj/structure/stone_tile/cracked,
+/obj/structure/stone_tile{
+	dir = 8
+	},
+/obj/structure/bed/maint,
+/turf/open/indestructible/boss/air,
+/area/city/backstreets_alley)
 "io" = (
 /obj/structure/fluff/arc,
 /turf/open/floor/light,
@@ -1441,17 +1452,6 @@
 /obj/effect/decal/cleanable/vomit/old,
 /turf/open/floor/carpet/green,
 /area/city/backstreets_room)
-"iJ" = (
-/obj/structure/stone_tile/block{
-	dir = 1
-	},
-/obj/structure/stone_tile/cracked,
-/obj/structure/stone_tile{
-	dir = 8
-	},
-/obj/structure/bed/maint,
-/turf/open/indestructible/boss/air,
-/area/city/backstreets_alley)
 "iM" = (
 /obj/effect/turf_decal/siding/brown{
 	dir = 10
@@ -2085,17 +2085,6 @@
 /obj/structure/closet/crate/bin,
 /turf/open/floor/facility/halls,
 /area/city/backstreets_room)
-"mE" = (
-/obj/structure/stone_tile/block{
-	dir = 1
-	},
-/obj/structure/stone_tile/cracked,
-/obj/structure/stone_tile{
-	dir = 8
-	},
-/obj/machinery/door/keycard/cuckoo_nest,
-/turf/open/indestructible/boss/air,
-/area/city/backstreets_alley)
 "mF" = (
 /obj/structure/chair/sofa/right{
 	dir = 8
@@ -2501,10 +2490,6 @@
 	},
 /turf/open/floor/facility/dark,
 /area/city/backstreets_room)
-"pm" = (
-/obj/item/keycard/cuckoo_jail,
-/turf/open/floor/plating/asteroid/basalt,
-/area/city/backstreets_alley)
 "pn" = (
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/structure/cable/layer3,
@@ -4476,6 +4461,17 @@
 /obj/structure/lootcrate/money,
 /turf/open/floor/plating/ashplanet/rocky,
 /area/city/backstreets_alley)
+"Bo" = (
+/obj/structure/stone_tile/block{
+	dir = 1
+	},
+/obj/structure/stone_tile/cracked,
+/obj/structure/stone_tile{
+	dir = 8
+	},
+/obj/machinery/door/keycard/cuckoo_nest,
+/turf/open/indestructible/boss/air,
+/area/city/backstreets_alley)
 "Bp" = (
 /obj/machinery/modular_computer/console/preset/research,
 /obj/effect/decal/cleanable/dirt/dust,
@@ -5614,6 +5610,11 @@
 /obj/effect/decal/cleanable/dirt/dust,
 /turf/open/floor/facility/halls,
 /area/city/backstreets_room)
+"Ib" = (
+/obj/effect/mob_spawn/human/corpse/damaged,
+/obj/item/clothing/head/crown,
+/turf/open/floor/plating/asteroid/basalt,
+/area/city/backstreets_alley)
 "If" = (
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/item/coin/gold,
@@ -7231,6 +7232,10 @@
 	},
 /turf/open/floor/plating/dirt,
 /area/city/backstreets_alley)
+"Sf" = (
+/obj/item/keycard/cuckoo_jail,
+/turf/open/floor/plating/asteroid/basalt,
+/area/city/backstreets_alley)
 "Sg" = (
 /obj/effect/decal/cleanable/cobweb/cobweb2,
 /turf/open/floor/plasteel/elevatorshaft,
@@ -7513,6 +7518,7 @@
 /obj/item/restraints/handcuffs/cable/sinew,
 /obj/item/restraints/handcuffs/cable/sinew,
 /obj/item/restraints/handcuffs/cable/sinew,
+/obj/item/storage/bag/meat,
 /turf/open/floor/plating/asteroid/basalt,
 /area/city/backstreets_alley)
 "Ua" = (
@@ -17077,7 +17083,7 @@ Il
 ys
 fe
 iB
-Sy
+Ib
 PB
 iY
 Pz
@@ -17182,7 +17188,7 @@ Ze
 PT
 mL
 bF
-pm
+Sf
 bF
 bF
 rM
@@ -17292,7 +17298,7 @@ kI
 Ze
 LD
 aH
-pm
+Sf
 LD
 Nj
 Nj
@@ -17404,7 +17410,7 @@ Ze
 rC
 PB
 PB
-mE
+Bo
 Wp
 Oi
 PB
@@ -17738,7 +17744,7 @@ PB
 PB
 Dn
 Fx
-iJ
+in
 Nt
 PB
 PB

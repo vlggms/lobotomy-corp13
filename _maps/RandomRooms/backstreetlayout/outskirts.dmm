@@ -170,17 +170,6 @@
 "em" = (
 /turf/closed/indestructible/rock,
 /area/space)
-"en" = (
-/obj/structure/stone_tile/block{
-	dir = 1
-	},
-/obj/structure/stone_tile/cracked,
-/obj/structure/stone_tile{
-	dir = 8
-	},
-/obj/machinery/door/keycard/cuckoo_nest,
-/turf/open/indestructible/boss/air,
-/area/city/backstreets_alley)
 "eo" = (
 /obj/structure/chair/wood{
 	dir = 1
@@ -474,6 +463,17 @@
 /obj/machinery/hydroponics/soil,
 /turf/open/floor/plating/asteroid/basalt,
 /area/city/backstreets_alley)
+"lf" = (
+/obj/structure/stone_tile/block{
+	dir = 1
+	},
+/obj/structure/stone_tile/cracked,
+/obj/structure/stone_tile{
+	dir = 8
+	},
+/obj/machinery/door/keycard/cuckoo_nest,
+/turf/open/indestructible/boss/air,
+/area/city/backstreets_alley)
 "lx" = (
 /obj/structure/flora/junglebush/c,
 /turf/open/floor/plating/dirt/jungle/wasteland{
@@ -676,6 +676,10 @@
 /obj/structure/curtain/cloth,
 /turf/closed/indestructible/fakeglass,
 /area/city/backstreets_room/resurgence_village)
+"qZ" = (
+/obj/item/keycard/cuckoo_jail,
+/turf/open/floor/plating/asteroid/basalt,
+/area/city/backstreets_alley)
 "rb" = (
 /obj/effect/turf_decal/siding/wood{
 	dir = 4
@@ -781,6 +785,11 @@
 "tB" = (
 /obj/effect/mob_spawn/human/corpse,
 /turf/open/floor/plating/ashplanet/wateryrock,
+/area/city/backstreets_alley)
+"tI" = (
+/obj/effect/mob_spawn/human/corpse/damaged,
+/obj/item/clothing/head/crown,
+/turf/open/floor/plating/asteroid/basalt,
 /area/city/backstreets_alley)
 "tM" = (
 /obj/structure/table/wood,
@@ -904,6 +913,17 @@
 	},
 /turf/open/floor/plating/ironsand,
 /area/city/backstreets_room/resurgence_village)
+"wl" = (
+/obj/structure/stone_tile/block{
+	dir = 1
+	},
+/obj/structure/stone_tile/cracked,
+/obj/structure/stone_tile{
+	dir = 8
+	},
+/obj/structure/bed/maint,
+/turf/open/indestructible/boss/air,
+/area/city/backstreets_alley)
 "wF" = (
 /obj/structure/stone_tile/cracked{
 	dir = 8
@@ -1107,10 +1127,6 @@
 /obj/effect/spawner/room/backstreets/small_north,
 /turf/closed/indestructible/reinforced,
 /area/city/backstreets_room)
-"Eh" = (
-/obj/item/keycard/cuckoo_jail,
-/turf/open/floor/plating/asteroid/basalt,
-/area/city/backstreets_alley)
 "Fp" = (
 /obj/effect/turf_decal/siding/wood{
 	dir = 10
@@ -1284,6 +1300,7 @@
 /obj/item/restraints/handcuffs/cable/sinew,
 /obj/item/restraints/handcuffs/cable/sinew,
 /obj/item/restraints/handcuffs/cable/sinew,
+/obj/item/storage/bag/meat,
 /turf/open/floor/plating/asteroid/basalt,
 /area/city/backstreets_alley)
 "Lb" = (
@@ -1775,17 +1792,6 @@
 	dir = 1
 	},
 /turf/open/floor/plating/asteroid/basalt,
-/area/city/backstreets_alley)
-"XF" = (
-/obj/structure/stone_tile/block{
-	dir = 1
-	},
-/obj/structure/stone_tile/cracked,
-/obj/structure/stone_tile{
-	dir = 8
-	},
-/obj/structure/bed/maint,
-/turf/open/indestructible/boss/air,
 /area/city/backstreets_alley)
 "XR" = (
 /obj/effect/decal/cleanable/blood/splatter,
@@ -3033,7 +3039,7 @@ XE
 aT
 Ms
 wc
-ZJ
+tI
 qA
 em
 Jc
@@ -3138,7 +3144,7 @@ nl
 AC
 Ym
 hn
-Eh
+qZ
 hn
 hn
 Ov
@@ -3248,7 +3254,7 @@ em
 nl
 DD
 ko
-Eh
+qZ
 DD
 Il
 Il
@@ -3360,7 +3366,7 @@ nl
 ZD
 qA
 qA
-en
+lf
 ga
 re
 qA
@@ -3694,7 +3700,7 @@ qA
 qA
 eF
 NW
-XF
+wl
 vA
 qA
 qA

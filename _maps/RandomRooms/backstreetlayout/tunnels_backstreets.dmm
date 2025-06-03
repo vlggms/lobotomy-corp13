@@ -26,17 +26,6 @@
 /obj/effect/spawner/room/backstreets/small_south,
 /turf/closed/indestructible/reinforced,
 /area/city/backstreets_room)
-"cu" = (
-/obj/structure/stone_tile/block{
-	dir = 1
-	},
-/obj/structure/stone_tile/cracked,
-/obj/structure/stone_tile{
-	dir = 8
-	},
-/obj/machinery/door/keycard/cuckoo_nest,
-/turf/open/indestructible/boss/air,
-/area/city/backstreets_alley)
 "dz" = (
 /obj/item/stack/spacecash/c10,
 /turf/open/water/jungle,
@@ -89,6 +78,10 @@
 	density = 1
 	},
 /turf/closed/indestructible/reinforced,
+/area/city/backstreets_alley)
+"gd" = (
+/obj/item/keycard/cuckoo_jail,
+/turf/open/floor/plating/asteroid/basalt,
 /area/city/backstreets_alley)
 "gv" = (
 /obj/effect/portal/permanent{
@@ -481,17 +474,6 @@
 /obj/structure/stone_tile/center,
 /turf/open/floor/plating/asteroid/basalt,
 /area/city/backstreets_alley)
-"Fz" = (
-/obj/structure/stone_tile/block{
-	dir = 1
-	},
-/obj/structure/stone_tile/cracked,
-/obj/structure/stone_tile{
-	dir = 8
-	},
-/obj/structure/bed/maint,
-/turf/open/indestructible/boss/air,
-/area/city/backstreets_alley)
 "Ge" = (
 /obj/structure/stone_tile/surrounding_tile{
 	dir = 8
@@ -612,10 +594,6 @@
 /obj/structure/flora/rock/pile,
 /turf/open/floor/plating/ashplanet/wateryrock,
 /area/city/backstreets_alley)
-"NS" = (
-/obj/item/keycard/cuckoo_jail,
-/turf/open/floor/plating/asteroid/basalt,
-/area/city/backstreets_alley)
 "NW" = (
 /obj/structure/water_source/puddle{
 	pixel_x = -3;
@@ -650,6 +628,11 @@
 	},
 /obj/structure/window/bronze/fulltile,
 /turf/open/indestructible/boss/air,
+/area/city/backstreets_alley)
+"OL" = (
+/obj/effect/mob_spawn/human/corpse/damaged,
+/obj/item/clothing/head/crown,
+/turf/open/floor/plating/asteroid/basalt,
 /area/city/backstreets_alley)
 "OT" = (
 /obj/structure/stone_tile/cracked{
@@ -742,6 +725,7 @@
 /obj/item/restraints/handcuffs/cable/sinew,
 /obj/item/restraints/handcuffs/cable/sinew,
 /obj/item/restraints/handcuffs/cable/sinew,
+/obj/item/storage/bag/meat,
 /turf/open/floor/plating/asteroid/basalt,
 /area/city/backstreets_alley)
 "Uw" = (
@@ -779,10 +763,32 @@
 /obj/item/seeds/tower,
 /turf/open/floor/plating/asteroid/basalt,
 /area/city/backstreets_alley)
+"WI" = (
+/obj/structure/stone_tile/block{
+	dir = 1
+	},
+/obj/structure/stone_tile/cracked,
+/obj/structure/stone_tile{
+	dir = 8
+	},
+/obj/structure/bed/maint,
+/turf/open/indestructible/boss/air,
+/area/city/backstreets_alley)
 "Xb" = (
 /obj/effect/spawner/room/village_spawner,
 /turf/closed/indestructible/reinforced,
 /area/city/backstreets_room)
+"Xr" = (
+/obj/structure/stone_tile/block{
+	dir = 1
+	},
+/obj/structure/stone_tile/cracked,
+/obj/structure/stone_tile{
+	dir = 8
+	},
+/obj/machinery/door/keycard/cuckoo_nest,
+/turf/open/indestructible/boss/air,
+/area/city/backstreets_alley)
 "Yi" = (
 /obj/structure/stone_tile{
 	dir = 1
@@ -15168,7 +15174,7 @@ aK
 Km
 br
 iO
-jv
+OL
 ip
 BD
 BD
@@ -15273,7 +15279,7 @@ eP
 cd
 Tr
 kn
-NS
+gd
 kn
 kn
 DA
@@ -15383,7 +15389,7 @@ hv
 eP
 PU
 ir
-NS
+gd
 PU
 nB
 nB
@@ -15495,7 +15501,7 @@ eP
 kA
 ip
 ip
-cu
+Xr
 OI
 Gk
 ip
@@ -15829,7 +15835,7 @@ ip
 ip
 ZS
 PB
-Fz
+WI
 OC
 ip
 ip

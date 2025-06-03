@@ -1,15 +1,4 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
-"ar" = (
-/obj/structure/stone_tile/block{
-	dir = 1
-	},
-/obj/structure/stone_tile/cracked,
-/obj/structure/stone_tile{
-	dir = 8
-	},
-/obj/machinery/door/keycard/cuckoo_nest,
-/turf/open/indestructible/boss/air,
-/area/city/backstreets_alley)
 "au" = (
 /obj/structure/stone_tile/cracked,
 /turf/open/floor/plating/asteroid/basalt,
@@ -68,10 +57,6 @@
 	},
 /obj/structure/stone_tile/center,
 /obj/effect/decal/cleanable/blood,
-/turf/open/floor/plating/asteroid/basalt,
-/area/city/backstreets_alley)
-"dq" = (
-/obj/item/keycard/cuckoo_jail,
 /turf/open/floor/plating/asteroid/basalt,
 /area/city/backstreets_alley)
 "ez" = (
@@ -216,6 +201,17 @@
 	},
 /turf/open/floor/plating/asteroid/basalt,
 /area/city/backstreets_alley)
+"kN" = (
+/obj/structure/stone_tile/block{
+	dir = 1
+	},
+/obj/structure/stone_tile/cracked,
+/obj/structure/stone_tile{
+	dir = 8
+	},
+/obj/structure/bed/maint,
+/turf/open/indestructible/boss/air,
+/area/city/backstreets_alley)
 "lr" = (
 /obj/effect/spawner/room/backstreets/large_south,
 /turf/closed/indestructible/reinforced,
@@ -298,6 +294,11 @@
 	slowdown = 0
 	},
 /area/city/backstreets_alley)
+"rt" = (
+/obj/effect/mob_spawn/human/corpse/damaged,
+/obj/item/clothing/head/crown,
+/turf/open/floor/plating/asteroid/basalt,
+/area/city/backstreets_alley)
 "rW" = (
 /obj/effect/landmark/backstreetspawneast,
 /turf/open/floor/plating/dirt/jungle/dark{
@@ -338,17 +339,6 @@
 	},
 /turf/open/floor/plating/asteroid/basalt,
 /area/city/backstreets_alley)
-"vY" = (
-/obj/structure/stone_tile/block{
-	dir = 1
-	},
-/obj/structure/stone_tile/cracked,
-/obj/structure/stone_tile{
-	dir = 8
-	},
-/obj/structure/bed/maint,
-/turf/open/indestructible/boss/air,
-/area/city/backstreets_alley)
 "wl" = (
 /obj/structure/table/wood{
 	color = "#2b0300"
@@ -358,6 +348,7 @@
 /obj/item/restraints/handcuffs/cable/sinew,
 /obj/item/restraints/handcuffs/cable/sinew,
 /obj/item/restraints/handcuffs/cable/sinew,
+/obj/item/storage/bag/meat,
 /turf/open/floor/plating/asteroid/basalt,
 /area/city/backstreets_alley)
 "wo" = (
@@ -400,6 +391,17 @@
 	},
 /obj/effect/mob_spawn/cuckoo_spawner,
 /turf/open/floor/plating/asteroid/basalt,
+/area/city/backstreets_alley)
+"Aq" = (
+/obj/structure/stone_tile/block{
+	dir = 1
+	},
+/obj/structure/stone_tile/cracked,
+/obj/structure/stone_tile{
+	dir = 8
+	},
+/obj/machinery/door/keycard/cuckoo_nest,
+/turf/open/indestructible/boss/air,
 /area/city/backstreets_alley)
 "Bq" = (
 /obj/structure/stone_tile/cracked{
@@ -598,6 +600,10 @@
 "Wr" = (
 /obj/item/flashlight/lantern,
 /obj/structure/stone_tile/center,
+/turf/open/floor/plating/asteroid/basalt,
+/area/city/backstreets_alley)
+"Wu" = (
+/obj/item/keycard/cuckoo_jail,
 /turf/open/floor/plating/asteroid/basalt,
 /area/city/backstreets_alley)
 "XN" = (
@@ -11950,7 +11956,7 @@ xS
 bg
 au
 VH
-gU
+rt
 bH
 wJ
 wJ
@@ -12055,7 +12061,7 @@ Lp
 gR
 sn
 Fz
-dq
+Wu
 Fz
 Fz
 Jx
@@ -12165,7 +12171,7 @@ wJ
 Lp
 cK
 Pw
-dq
+Wu
 cK
 od
 od
@@ -12277,7 +12283,7 @@ Lp
 ge
 bH
 bH
-ar
+Aq
 pc
 bw
 bH
@@ -12611,7 +12617,7 @@ bH
 bH
 mT
 fN
-vY
+kN
 bW
 bH
 bH
