@@ -74,6 +74,11 @@
 	if(faction.Find("neutral") && user.faction.Find("neutral"))
 		faction -= "neutral"
 
+/mob/living/simple_animal/hostile/cuckoospawn/examine(mob/user)
+	. = ..()
+	if(istype(user, /mob/living/carbon/human/species/cuckoospawn))
+		to_chat(user, span_nicegreen("They are ready to follow your orders!"))
+
 /mob/living/simple_animal/hostile/cuckoospawn/attack_hand(mob/living/carbon/M)
 	if(!stat && M.a_intent == INTENT_HELP && !client && istype(M, /mob/living/carbon/human/species/cuckoospawn))
 		var/bird_ask = alert("select command", "[src] recognizes your authority.", "Follow", "Stay", "Change Aggro", "Cancel")

@@ -52,6 +52,9 @@
 
 /// Controls Xenomorph Embryo growth. If embryo is fully grown (or overgrown), stop the proc. If not, increase the stage by one and if it's not fully grown (stage 6), add a timer to do this proc again after however long the growth time variable is.
 /obj/item/organ/body_egg/cuckoospawn_embryo/proc/advance_embryo_stage()
+	if(owner == DEAD)
+		addtimer(CALLBACK(src, PROC_REF(advance_embryo_stage)), growth_time)
+		return
 	if(stage >= 6)
 		return
 	if(++stage < 6)
@@ -141,7 +144,7 @@
 
 	else
 		new_cuckoo.visible_message(span_danger("[new_cuckoo] wriggles out of [owner]!"), span_userdanger("You exit [owner], your previous host."))
-		owner.adjustBruteLoss(40)
+		owner.adjustBruteLoss(200)
 	owner.cut_overlay(overlay)
 
 /*----------------------------------------

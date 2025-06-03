@@ -13,33 +13,51 @@
 	flavour_text = "You wake up in this strange location... Filled with unfamiliar sounds... \
 	You have seen lights in the distance... they foreshadow the arrival of humans... Humans? In your sacred domain?! \
 	Looks like you found some new hosts for your children..."
-	//TODO: Add a statue which cuckoo birds can feed meat, to unlock heals, human heals, and one more thing.
-	//TODO: Add a checker for implant, not letting dead people be planted, and the embryo does not grow if the user is dead.
+	//TODO: Add a statue which cuckoo birds can feed meat, to unlock heals, human heals, and one more thing. DONE
+	//TODO: Add a checker for implant, not letting dead people be planted, and the embryo does not grow if the user is dead. UNCHECKED
 	//TODO: Make it so cuckoo birds have a knock out skill, which only works on targets with 20% or less HP, and NPC cuckoo birds don't kill. Only into crit.
 	//TODO: Add a cage to the cuckoo bird lair, which cuffs and key door. Along with that, embryo stuns the user when they leave.
 
 /obj/effect/mob_spawn/cuckoo_spawner/Initialize()
 	. = ..()
+/obj/structure/lavaland/ash_walker/Initialize()
+	.=..()
 	var/area/A = get_area(src)
 	if(A)
 		notify_ghosts("An cuckoo egg is ready to hatch in \the [A.name].", source = src, action=NOTIFY_ATTACK, flashwindow = FALSE, ignore_key = POLL_IGNORE_ASHWALKER)
 
 /obj/structure/bird_statue
-	name = "gray bird statue"
+	name = "old bird statue"
 	desc = "An statue of great worship, it appears to have sinister around it..."
 	icon = 'ModularTegustation/Teguicons/64x64.dmi'
 	icon_state = "thunderbird_altar"
+	pixel_x = -16
+	base_pixel_x = -16
+	light_color = LIGHT_COLOR_BLOOD_MAGIC
+	light_range = 5
+	light_power = 7
 	max_integrity = 500
 	anchored = TRUE
 	var/collected_meat = 0
 
 /obj/structure/bird_statue/attacked_by(obj/item/I, mob/living/user)
 	. = ..()
-	if(istype(I, /obj/item/food/meat/slab) && istype(user, /mob/living/carbon/human/species/cuckoospawn)) //How would humans understand?
+	if(!istype(user, /mob/living/carbon/human/species/cuckoospawn))
+		to_chat(user, span_warning("You have no idea how this works!"))
+		return FALSE
+	if(istype(I, /obj/item/food/meat/slab)) //How would humans understand?
 		playsound(get_turf(src), 'sound/magic/enter_blood.ogg', 30, 1)
 		to_chat(user, span_nicegreen("[src] happily accepts your offering!"))
 		collected_meat++
 		qdel(I)
+	if(istype(I, /obj/item/storage)) // Code for storage dumping
+		var/obj/item/storage/S = I
+		for(var/obj/item/IT in S)
+			if(istype(IT, /obj/item/food/meat/slab))
+				playsound(get_turf(src), 'sound/magic/enter_blood.ogg', 30, 1)
+				to_chat(user, span_nicegreen("[src] happily accepts your offering!"))
+				collected_meat++
+				qdel(IT)
 
 /obj/structure/bird_statue/examine(mob/user)
 	. = ..()
@@ -131,30 +149,28 @@
 
 /obj/item/cuckoo_revive/attack(mob/M, mob/user)
 	. = ..()
-	if(ishuman(M))
-		var/mob/living/carbon/human/human_target = M
-		if(!istype(user, /mob/living/carbon/human/species/cuckoospawn))
-			to_chat(user, span_notice("You have no idea on how to apply it!"))
-			return FALSE
-		if(istype(M, /mob/living/carbon/human/species/cuckoospawn))
-			var/mob/living/carbon/human/species/cuckoospawn/new_bird = M
-			to_chat(user, span_nicegreen("You start applying [src] to [new_bird]..."))
-			if(do_after(user, 60, new_bird))
-				new_bird.adjustOxyLoss(-new_bird.maxHealth)
-				new_bird.adjustToxLoss(-new_bird.maxHealth)
-				new_bird.adjustFireLoss(-new_bird.maxHealth)
-				new_bird.adjustBruteLoss(-new_bird.maxHealth)
-				new_bird.updatehealth()
-				playsound(get_turf(src), 'sound/magic/enter_blood.ogg', 30, 1)
-				new_bird.revive(full_heal = FALSE, admin_revive = FALSE)
-				new_bird.emote("gasps")
-				new_bird.Jitter(100)
-				new_bird.Paralyze(75)
-				to_chat(user, span_nicegreen("[new_bird] suddenly shakes awake!"))
-				to_chat(new_bird, span_nicegreen("You suddenly wake up, as something warm enters your mouth..."))
-				qdel(src)
-		else
-			to_chat(user, span_notice("The target is not compatible with this bolus!"))
+	if(!istype(user, /mob/living/carbon/human/species/cuckoospawn))
+		to_chat(user, span_notice("You have no idea on how to apply it!"))
+		return FALSE
+	if(istype(M, /mob/living/carbon/human/species/cuckoospawn))
+		var/mob/living/carbon/human/species/cuckoospawn/new_bird = M
+		to_chat(user, span_nicegreen("You start applying [src] to [new_bird]..."))
+		if(do_after(user, 60, new_bird))
+			new_bird.adjustOxyLoss(-new_bird.maxHealth)
+			new_bird.adjustToxLoss(-new_bird.maxHealth)
+			new_bird.adjustFireLoss(-new_bird.maxHealth)
+			new_bird.adjustBruteLoss(-new_bird.maxHealth)
+			new_bird.updatehealth()
+			playsound(get_turf(src), 'sound/magic/enter_blood.ogg', 30, 1)
+			new_bird.revive(full_heal = FALSE, admin_revive = FALSE)
+			new_bird.emote("gasps")
+			new_bird.Jitter(100)
+			new_bird.Paralyze(75)
+			to_chat(user, span_nicegreen("[new_bird] suddenly shakes awake!"))
+			to_chat(new_bird, span_nicegreen("You suddenly wake up, as something warm enters your mouth..."))
+			qdel(src)
+	else
+		to_chat(user, span_notice("The target is not compatible with this bolus!"))
 
 /obj/item/cuckoo_revive/attack_self(mob/user)
 	. = ..()
@@ -167,3 +183,26 @@
 			qdel(src)
 	else
 		to_chat(user, span_notice("You don't think it would be a good idea to eat it..."))
+
+/obj/machinery/door/keycard/cuckoo_nest
+	desc = "A dusty, scratched door with a thick lock attached."
+	icon = 'icons/obj/doors/puzzledoor/wood.dmi'
+	puzzle_id = "cuckoo_jail"
+	open_message = "The door opens with a loud creak."
+	armor = list(MELEE = 50, BULLET = 50, LASER = 50, ENERGY = 50, BOMB = 50, BIO = 50, RAD = 50, FIRE = 50, ACID = 50)
+	resistance_flags = FIRE_PROOF | ACID_PROOF | LAVA_PROOF
+
+/obj/machinery/door/keycard/cuckoo_nest/attackby(obj/item/I, mob/user, params)
+	if(istype(I,/obj/item/keycard))
+		var/obj/item/keycard/key = I
+		if((!puzzle_id || puzzle_id == key.puzzle_id) && !density)
+			to_chat(user, span_notice("This door closes shut."))
+			close()
+			return
+	. = ..()
+
+/obj/item/keycard/cuckoo_jail
+	name = "golden key"
+	desc = "A dull, golden key."
+	icon_state = "golden_key"
+	puzzle_id = "cuckoo_jail"

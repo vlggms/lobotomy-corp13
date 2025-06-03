@@ -123,6 +123,17 @@
 /obj/effect/decal/cleanable/cobweb,
 /turf/open/floor/plating/ashplanet/wateryrock,
 /area/city/backstreets_room)
+"cg" = (
+/obj/structure/stone_tile/block,
+/obj/structure/stone_tile/cracked{
+	dir = 1
+	},
+/obj/structure/stone_tile{
+	dir = 4
+	},
+/obj/structure/window/bronze/fulltile,
+/turf/open/indestructible/boss/air,
+/area/city/backstreets_alley)
 "cm" = (
 /obj/structure/flora/icestalactite,
 /turf/open/floor/grass/snow/safe,
@@ -139,19 +150,14 @@
 /turf/open/floor/grass/snow/safe,
 /area/city/backstreets_room)
 "cy" = (
-/obj/structure/stone_tile/block{
+/obj/structure/stone_tile/block,
+/obj/structure/stone_tile/cracked{
 	dir = 1
 	},
-/obj/structure/stone_tile/cracked,
 /obj/structure/stone_tile{
-	dir = 8
+	dir = 4
 	},
-/obj/structure/closet/crate/wooden,
-/obj/item/seeds/glowshroom,
-/obj/item/seeds/glowshroom,
-/obj/item/seeds/glowshroom,
-/obj/item/lighter,
-/obj/item/lighter,
+/obj/effect/decal/cleanable/dirt/dust,
 /turf/open/indestructible/boss/air,
 /area/city/backstreets_alley)
 "cF" = (
@@ -187,6 +193,7 @@
 /obj/structure/stone_tile/block/cracked{
 	dir = 1
 	},
+/mob/living/simple_animal/hostile/cuckoospawn,
 /turf/open/floor/plating/asteroid/basalt,
 /area/city/backstreets_alley)
 "cV" = (
@@ -385,6 +392,16 @@
 /obj/structure/lootcrate/money,
 /turf/open/floor/grass/snow/safe,
 /area/city/backstreets_room)
+"io" = (
+/obj/structure/stone_tile/cracked,
+/obj/structure/closet/crate/wooden,
+/obj/item/storage/bag/plants/portaseeder,
+/obj/item/seeds/tower,
+/obj/item/seeds/tower,
+/obj/item/seeds/tower,
+/obj/item/seeds/tower,
+/turf/open/floor/plating/asteroid/basalt,
+/area/city/backstreets_alley)
 "is" = (
 /obj/structure/showcase/perfect_employee,
 /turf/open/floor/bluespace,
@@ -682,6 +699,10 @@
 	color = "#42f545"
 	},
 /area/city/backstreets_room)
+"mU" = (
+/obj/item/keycard/cuckoo_jail,
+/turf/open/floor/plating/asteroid/basalt,
+/area/city/backstreets_alley)
 "mX" = (
 /turf/open/floor/plating/dirt/jungle/wasteland,
 /area/city/backstreets_room)
@@ -722,6 +743,11 @@
 /obj/item/toy/plush/nihil,
 /turf/open/floor/plasteel,
 /area/centcom/supplypod)
+"nN" = (
+/obj/structure/stone_tile/slab/cracked,
+/obj/structure/window/bronze/fulltile,
+/turf/open/indestructible/boss/air,
+/area/city/backstreets_alley)
 "nP" = (
 /obj/machinery/light{
 	dir = 8
@@ -853,7 +879,9 @@
 /obj/structure/stone_tile{
 	dir = 4
 	},
-/obj/structure/kitchenspike,
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/mob_spawn/human/corpse/damaged,
+/obj/structure/bed/maint,
 /turf/open/indestructible/boss/air,
 /area/city/backstreets_alley)
 "pH" = (
@@ -949,6 +977,10 @@
 	},
 /turf/open/floor/plasteel,
 /area/centcom/supplypod)
+"rI" = (
+/obj/structure/stone_tile/slab/cracked,
+/turf/open/indestructible/boss/air,
+/area/city/backstreets_alley)
 "rO" = (
 /obj/structure/rack,
 /obj/effect/decal/cleanable/dirt/dust,
@@ -1135,6 +1167,11 @@
 /obj/item/food/grown/banana,
 /turf/open/floor/mineral/bananium,
 /area/city/backstreets_room)
+"tZ" = (
+/obj/structure/stone_tile/slab/cracked,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/indestructible/boss/air,
+/area/city/backstreets_alley)
 "uf" = (
 /obj/effect/turf_decal/siding/brown{
 	dir = 8
@@ -1518,6 +1555,15 @@
 /obj/item/clothing/suit/armor/ego_gear/zayin/letter_opener,
 /turf/open/floor/wood,
 /area/city/backstreets_room)
+"An" = (
+/obj/item/restraints/legcuffs/bola/watcher,
+/obj/item/restraints/legcuffs/bola/watcher,
+/obj/item/restraints/legcuffs/bola/watcher,
+/obj/structure/table/wood{
+	color = "#2b0300"
+	},
+/turf/open/floor/plating/asteroid/basalt,
+/area/city/backstreets_alley)
 "As" = (
 /obj/machinery/computer/camera_advanced/shuttle_docker/syndicate{
 	dir = 8
@@ -1608,6 +1654,15 @@
 /obj/structure/bed,
 /turf/open/floor/carpet,
 /area/city/backstreets_room)
+"Cd" = (
+/obj/structure/closet/crate/wooden,
+/obj/item/seeds/glowshroom,
+/obj/item/seeds/glowshroom,
+/obj/item/seeds/glowshroom,
+/obj/item/lighter,
+/obj/item/lighter,
+/turf/open/floor/plating/asteroid/basalt,
+/area/city/backstreets_alley)
 "Cg" = (
 /obj/effect/decal/cleanable/dirt/dust,
 /turf/closed/indestructible/rock/snow/ice/ore,
@@ -1856,20 +1911,15 @@
 /turf/open/floor/plating/asteroid/basalt,
 /area/city/backstreets_alley)
 "Gk" = (
-/obj/structure/stone_tile/block{
-	dir = 1
+/obj/structure/table/wood{
+	color = "#2b0300"
 	},
-/obj/structure/stone_tile/cracked,
-/obj/structure/stone_tile{
-	dir = 8
-	},
-/obj/structure/closet/crate/wooden,
-/obj/item/storage/bag/plants/portaseeder,
-/obj/item/seeds/tower,
-/obj/item/seeds/tower,
-/obj/item/seeds/tower,
-/obj/item/seeds/tower,
-/turf/open/indestructible/boss/air,
+/obj/item/restraints/handcuffs/cable/sinew,
+/obj/item/restraints/handcuffs/cable/sinew,
+/obj/item/restraints/handcuffs/cable/sinew,
+/obj/item/restraints/handcuffs/cable/sinew,
+/obj/item/restraints/handcuffs/cable/sinew,
+/turf/open/floor/plating/asteroid/basalt,
 /area/city/backstreets_alley)
 "Gp" = (
 /obj/effect/decal/cleanable/cobweb,
@@ -1995,6 +2045,7 @@
 /obj/structure/stone_tile{
 	dir = 8
 	},
+/mob/living/simple_animal/hostile/cuckoospawn,
 /turf/open/floor/plating/asteroid/basalt,
 /area/city/backstreets_alley)
 "Iy" = (
@@ -2099,6 +2150,17 @@
 /obj/effect/spawner/room/backstreets/small_west,
 /turf/closed/indestructible/reinforced,
 /area/city/backstreets_room)
+"KZ" = (
+/obj/structure/stone_tile/block{
+	dir = 1
+	},
+/obj/structure/stone_tile/cracked,
+/obj/structure/stone_tile{
+	dir = 8
+	},
+/obj/structure/bed/maint,
+/turf/open/indestructible/boss/air,
+/area/city/backstreets_alley)
 "Lr" = (
 /obj/structure/chair/sofa/corp/corner,
 /turf/open/floor/carpet/black,
@@ -2194,6 +2256,10 @@
 	color = "#42f545"
 	},
 /area/city/backstreets_room)
+"MS" = (
+/mob/living/simple_animal/hostile/cuckoospawn,
+/turf/open/floor/plating/asteroid/basalt,
+/area/city/backstreets_alley)
 "Nh" = (
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/structure/closet/secure_closet/freezer/fridge/open,
@@ -2441,6 +2507,17 @@
 /obj/effect/decal/cleanable/dirt/dust,
 /turf/closed/wall/mineral/iron,
 /area/city/backstreets_room)
+"Qv" = (
+/obj/structure/stone_tile/block{
+	dir = 1
+	},
+/obj/structure/stone_tile/cracked,
+/obj/structure/stone_tile{
+	dir = 8
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/indestructible/boss/air,
+/area/city/backstreets_alley)
 "QB" = (
 /turf/open/floor/carpet/red,
 /area/city/backstreets_room)
@@ -2456,6 +2533,17 @@
 /obj/item/kirbyplants/random,
 /turf/open/floor/carpet/black,
 /area/centcom/supplypod)
+"QJ" = (
+/obj/structure/stone_tile/block{
+	dir = 1
+	},
+/obj/structure/stone_tile/cracked,
+/obj/structure/stone_tile{
+	dir = 8
+	},
+/obj/machinery/door/keycard/cuckoo_nest,
+/turf/open/indestructible/boss/air,
+/area/city/backstreets_alley)
 "QK" = (
 /obj/effect/decal/cleanable/cobweb/cobweb2,
 /turf/open/floor/plating/ashplanet/rocky,
@@ -2610,11 +2698,28 @@
 /area/city/backstreets_room)
 "Tl" = (
 /obj/structure/stone_tile/slab/cracked,
-/obj/structure/kitchenspike,
+/obj/structure/table/wood{
+	color = "#2b0300"
+	},
+/obj/item/food/cake/bbird,
 /turf/open/indestructible/boss/air,
 /area/city/backstreets_alley)
 "Tn" = (
 /turf/closed/indestructible/necropolis,
+/area/city/backstreets_alley)
+"Tz" = (
+/obj/structure/stone_tile/block{
+	dir = 1
+	},
+/obj/structure/stone_tile/cracked,
+/obj/structure/stone_tile{
+	dir = 8
+	},
+/obj/structure/table/wood{
+	color = "#2b0300"
+	},
+/obj/item/food/cake/bbird,
+/turf/open/indestructible/boss/air,
 /area/city/backstreets_alley)
 "TC" = (
 /mob/living/simple_animal/hostile/ooze/gelatinous{
@@ -2773,6 +2878,11 @@
 	},
 /turf/open/floor/wood,
 /area/city/backstreets_room)
+"Vu" = (
+/obj/effect/mob_spawn/human/corpse/damaged,
+/obj/item/toy/plush/bigbird,
+/turf/open/floor/plating/asteroid/basalt,
+/area/city/backstreets_alley)
 "Vx" = (
 /obj/structure/flora/rock/pile,
 /obj/structure/lootcrate/money,
@@ -22607,7 +22717,7 @@ UZ
 UZ
 ed
 ed
-Xj
+MS
 Xj
 Xj
 YC
@@ -22717,7 +22827,7 @@ UZ
 UZ
 UZ
 ed
-Xj
+io
 Xj
 kR
 wm
@@ -22828,14 +22938,14 @@ UZ
 UZ
 UZ
 ed
-Xj
+Cd
 Xj
 UD
 gj
 rQ
 UG
 ZH
-Xj
+An
 TI
 UZ
 UZ
@@ -22946,7 +23056,7 @@ yz
 sV
 cT
 IW
-Xj
+Gk
 TI
 UZ
 UZ
@@ -23273,7 +23383,7 @@ TI
 Wy
 VJ
 Xj
-Xj
+mU
 Xj
 Xj
 dA
@@ -23383,8 +23493,8 @@ UZ
 TI
 jy
 Im
-Xj
-OB
+mU
+jy
 OB
 OB
 dA
@@ -23495,9 +23605,9 @@ TI
 Ge
 ed
 ed
-sQ
-ed
-ed
+QJ
+cg
+nN
 ed
 Xj
 Ny
@@ -23603,12 +23713,12 @@ UZ
 UZ
 UZ
 ed
-Yb
+Vu
 ed
-Tl
+tZ
 sQ
-sQ
-Tl
+Qv
+rI
 ed
 uG
 Xj
@@ -23716,7 +23826,7 @@ UZ
 ed
 ed
 ed
-sQ
+Tz
 VO
 sQ
 sQ
@@ -23829,7 +23939,7 @@ ed
 ed
 Tl
 cy
-Gk
+KZ
 py
 ed
 ed
