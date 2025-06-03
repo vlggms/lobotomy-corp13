@@ -436,11 +436,11 @@
 	extract_fuel_cooldown = world.time + extract_fuel_cooldown_time
 	/// Warn the players so they can back off or get ready to parry.
 	say("+38725 619.+")
+	animate(src, 2 SECONDS, color = "#FE5343")
+	visible_message(span_danger("The [src.name] winds up for a devastating blow!"), span_info("You prepare to extract fuel from your victim."))
 	/// We're gonna sleep them because otherwise someone could hit the sweeper the DECISECOND before it's gonna attack and get slapped by a huge hit
 	/// This gives them enough margin to run away or parry
 	SLEEP_CHECK_DEATH(0.5 SECONDS)
-	visible_message(span_danger("The [src.name] winds up for a devastating blow!"), span_info("You prepare to extract fuel from your victim."))
-	animate(src, 1.5 SECONDS, color = "#FE5343")
 	/// Make our attack scary.
 	melee_damage_lower += extract_fuel_extra_damage
 	melee_damage_upper += extract_fuel_extra_damage
