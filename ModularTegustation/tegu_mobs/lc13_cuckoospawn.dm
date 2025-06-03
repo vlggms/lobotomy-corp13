@@ -28,6 +28,7 @@
 	mob_size = MOB_SIZE_HUGE
 	a_intent = INTENT_HARM
 	var/attempted_crosses = 0
+	var/bird_watching = FALSE //Time to remake Canto 8 Peak
 
 /mob/living/simple_animal/hostile/cuckoospawn/Initialize()
 	. = ..()
@@ -40,7 +41,7 @@
 	var/area/new_area = get_area(newloc_turf)
 	if(istype(new_area, /area/city))
 		var/area/city/city_area = new_area
-		if(city_area.in_city)
+		if(city_area.in_city && !bird_watching)
 			if(attempted_crosses > 10)
 				executed_claw()
 			attempted_crosses++
@@ -64,7 +65,7 @@
 			new /obj/item/organ/body_egg/cuckoospawn_embryo(human_target)
 			var/turf/T = get_turf(human_target)
 			log_game("[key_name(human_target)] was impregnated by a cockoospawn at [loc_name(T)]")
-	if(alive && human_target.stat == DEAD)
+	if(bird_watching && alive && human_target.stat == DEAD)
 		var/obj/item/organ/body_egg/cuckoospawn_embryo/bursting_embryo = human_target.getorgan(/obj/item/organ/body_egg/cuckoospawn_embryo)
 		if(bursting_embryo)
 			bursting_embryo.AttemptGrow()
