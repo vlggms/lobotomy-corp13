@@ -20,7 +20,7 @@
 	color = "#3F00FF"
 
 // Noon
-/datum/ordeal/simplespawn/indigo_noon
+/datum/ordeal/simplecommander/indigo_noon
 	name = "The Noon of Indigo"
 	flavor_name = "The Sweepers"
 	announce_text = "When night falls in the Backstreets, they will come."
@@ -29,12 +29,20 @@
 	end_sound = 'sound/effects/ordeals/indigo_end.ogg'
 	level = 2
 	reward_percent = 0.15
-	spawn_places = 4
-	spawn_amount = 3
-	spawn_type = /mob/living/simple_animal/hostile/ordeal/indigo_noon
-	place_player_multiplicator = 0.08
-	spawn_player_multiplicator = 0
+	boss_type = list(/mob/living/simple_animal/hostile/ordeal/indigo_noon/chunky, /mob/living/simple_animal/hostile/ordeal/indigo_noon/lanky)
+	grunt_type = list(/mob/living/simple_animal/hostile/ordeal/indigo_noon)
+	boss_amount = 4
+	grunt_amount = 3
+	boss_player_multiplicator = 0.1
+	grunt_player_multiplicator = 0.1
 	color = "#3F00FF"
+
+/datum/ordeal/simplecommander/indigo_noon/Run()
+	/// If you have three or more agents/ERA/DO then you're getting an extra special sweeper per pack. Yippee!
+	if(length(AllLivingAgents(TRUE)) > 2)
+		boss_type += pick(/mob/living/simple_animal/hostile/ordeal/indigo_noon/chunky, /mob/living/simple_animal/hostile/ordeal/indigo_noon/lanky)
+	. = ..()
+
 
 // Dusk
 /datum/ordeal/specificcommanders/indigo_dusk

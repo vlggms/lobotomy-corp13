@@ -112,13 +112,13 @@
 /// This subtype moves faster, attacks faster, deals less damage per hit, and has access to a dash attack.
 /// Uses the lanky sweeper sprite made by insiteparaful.
 /mob/living/simple_animal/hostile/ordeal/indigo_noon/lanky
-	health = 280
-	maxHealth = 280
+	health = 260
+	maxHealth = 260
 	icon = 'ModularTegustation/Teguicons/32x48.dmi'
 	icon_state = "sweeper_limbus"
 	icon_living = "sweeper_limbus"
 	desc = "A humanoid creature wearing metallic armor. It has bloodied hooks in its hands.\nThis one seems to move with far more agility than its peers."
-	move_to_delay = 3.2
+	move_to_delay = 2.7
 	rapid_melee = 2
 	melee_damage_lower = 11
 	melee_damage_upper = 13
@@ -133,10 +133,10 @@
 	/// Holds the next moment that this mob will be allowed to dash.
 	var/dash_cooldown
 	/// This is the amount of time added by its dash attack (Sweep the Backstreets) on use onto its cooldown.
-	/// It should be fairly long so you can bait it and have a safe window to deal with sweepers in the usual, wagie way of funneling them.
-	var/dash_cooldown_time = 25 SECONDS
+	/// While the cooldown may seem fairly short, every human it hits will increase it by a fair bit.
+	var/dash_cooldown_time = 7 SECONDS
 	/// Sweep the Backstreets ability range in tiles.
-	var/dash_range = 4
+	var/dash_range = 3
 	/// Sweep the Backstreets healing per human hit.
 	var/dash_healing = 60
 	/// Are we currently during the dash windup phase?
@@ -176,7 +176,7 @@
 		if(client)
 			SweepTheBackstreets(A)
 			return
-		else if(prob(40))
+		else if(prob(50))
 			SweepTheBackstreets(A)
 			return
 
@@ -199,6 +199,7 @@
 /// During the dash, the sweeper can go through mobs and tables. But not railings.
 /// The first turf the sweeper moves into will be ignored for diagonal dashing because of how weird it feels to be hit in certain gameplay situations.
 /// Any humans hit will heal the sweeper for var/dash_healing, and give it a stack of persistence.
+/// Hitting a human will up the cooldown on the dash. Missing entirely means the dash comes off cooldown sooner.
 /mob/living/simple_animal/hostile/ordeal/indigo_noon/lanky/proc/SweepTheBackstreets(atom/prospective_fuel = target)
 	if(stat == DEAD)
 		return FALSE
@@ -268,9 +269,9 @@
 				SweeperHealing(dash_healing)
 				GainPersistence(1)
 				playsound(hit_mob, attack_sound, 100)
-/*
-
-*/
+				/// Dash will come off cooldown faster if it doesn't hit anyone.
+				/// This sounds counter intuitive but I want it to be used more often if players bait them into wasting it early.
+				dash_cooldown += 6 SECONDS
 
 /// Called when we're entering a dash (passed all the checks).
 /mob/living/simple_animal/hostile/ordeal/indigo_noon/lanky/proc/PrepareDash()
@@ -315,7 +316,7 @@
 		move_to_delay = 1.8
 	/// Possessed sweepers get a smaller movement speed buff.
 	else
-		move_to_delay = 2.4
+		move_to_delay = 2.3
 
 /mob/living/simple_animal/hostile/ordeal/indigo_noon/lanky/proc/DisableEvasiveMode()
 	dodging = initial(dodging)
@@ -349,7 +350,7 @@
 	/// Holds the cooldown time between Extract Fuel uses
 	var/extract_fuel_cooldown_time = 10 SECONDS
 	/// Extract Fuel will hit for this much additional BLACK damage
-	var/extract_fuel_extra_damage = 10
+	var/extract_fuel_extra_damage = 15
 	/// Extract Fuel will heal the sweeper for this much health
 	var/extract_fuel_healing = 100
 	/// This controls whether the next hit actually sets off Extract Fuel's additional effects
@@ -367,26 +368,32 @@
 	icon_state = icon_living
 	attack_sound = 'sound/effects/ordeals/indigo/stab_1.ogg'
 
-
 /mob/living/simple_animal/hostile/ordeal/indigo_noon/chunky/attacked_by(obj/item/I, mob/living/user)
 	. = ..()
 	/// If we've dropped to or below 40% health, we may gain Persistence because we are evil and tough to put down.
-	if(health <= maxHealth * 0.40 && prob(60) && !used_last_stand)
-		used_last_stand = TRUE
-		say("+333... 1973.+")
-		GainPersistence(3)
+	if(!used_last_stand && health <= maxHealth * 0.40 && prob(60))
+		LastStand()
 		return
 	/// Next is the Extract Fuel trigger. I don't want them both to happen on the same hit so there's an early return in the previous block.
 	/// I'm making them only fire it off with a chance to keep players guessing, instead of having them act too predictably.
 	if(extract_fuel_cooldown <= world.time && prob(60))
 		PrepareExtractFuel()
-		/// We're gonna sleep them because otherwise someone could hit the sweeper the DECISECOND before it's gonna attack and get slapped by a huge hit
-		/// This gives them enough margin to run away or parry
-		SLEEP_CHECK_DEATH(0.4 SECONDS)
+
+/mob/living/simple_animal/hostile/ordeal/indigo_noon/chunky/bullet_act(obj/projectile/P)
+	. = ..()
+	if(!used_last_stand && health <= maxHealth * 0.40 && prob(60))
+		LastStand()
+		return
+
+/// This ability is basically "333... 1973". It gives the chunky sweeper 3 persistence stacks, that's all.
+/mob/living/simple_animal/hostile/ordeal/indigo_noon/chunky/proc/LastStand()
+	used_last_stand = TRUE
+	say("+333... 1973.+")
+	GainPersistence(3)
 
 /// The following few code chunks are dedicated to the Extract Fuel mechanic specific to this sweeper type. Basically, it's a lifesteal hit they can use every once in a bit.
 /// When the sweeper takes a hit, if it's off cooldown, it'll buff itself for its next hit and warn the player, giving them a brief grace period to disengage or prepare.
-/// If they don't get away in time, they'll be hit by an empowered attack that also heals the sweeper for a good chunk and spawns some gibs for extra flashiness.
+/// If they don't get away in time, they'll be hit by an empowered attack that gives persistence, heals the sweeper for a good chunk and spawns some gibs as VFX.
 /// The buff goes away in 2.5 seconds or after landing the hit.
 /// Extract Fuel doesn't get activated by ranged hits, but like, even if it did, it'd be useless. These things are REALLY slow and easy to kite.
 /// But I don't have any intention of giving them some sort of countermeasure, it's just a Noon Ordeal...
@@ -397,6 +404,7 @@
 		CancelExtractFuel(TRUE)
 		new /obj/effect/gibspawner/generic(get_turf(attacked_target))
 		SweeperHealing(extract_fuel_healing)
+		GainPersistence(1)
 		visible_message(span_danger("The [src.name] tears into [attacked_target.name] and refuels itself with some of their viscera!"))
 
 /mob/living/simple_animal/hostile/ordeal/indigo_noon/chunky/proc/PrepareExtractFuel()
@@ -405,15 +413,18 @@
 		return FALSE
 	/// Go on cooldown.
 	extract_fuel_cooldown = world.time + extract_fuel_cooldown_time
+	/// Warn the players so they can back off or get ready to parry.
+	say("+38725 619.+")
+	/// We're gonna sleep them because otherwise someone could hit the sweeper the DECISECOND before it's gonna attack and get slapped by a huge hit
+	/// This gives them enough margin to run away or parry
+	SLEEP_CHECK_DEATH(0.5 SECONDS)
+	visible_message(span_danger("The [src.name] winds up for a devastating blow!"), span_info("You prepare to extract fuel from your victim."))
+	animate(src, 1.5 SECONDS, color = "#FE5343")
 	/// Make our attack scary.
 	melee_damage_lower += extract_fuel_extra_damage
 	melee_damage_upper += extract_fuel_extra_damage
 	attack_sound = 'sound/weapons/fixer/generic/finisher1.ogg'
 	extract_fuel_active = TRUE
-	/// Warn the players so they can back off or get ready to parry.
-	say("+38725 619.+")
-	visible_message(span_danger("The [src.name] winds up for a devastating blow!"), span_info("You prepare to extract fuel from your victim."))
-	animate(src, 1.5 SECONDS, color = "#FE5343")
 	/// If we haven't landed the hit in the following few seconds, we will lose the buff.
 	extract_fuel_ongoing_timer = addtimer(CALLBACK(src, PROC_REF(CancelExtractFuel), FALSE), 2.5 SECONDS, TIMER_STOPPABLE)
 
@@ -478,7 +489,8 @@
 	. = ..()
 	/// I don't think I have to do any further cleanup, it should get qdel'd by Process() right?
 	if(stacks <= 0)
-		owner.remove_status_effect(STATUS_EFFECT_PERSISTENCE)
+		if(owner)
+			owner.remove_status_effect(STATUS_EFFECT_PERSISTENCE)
 		return
 	/// Refresh the duration on Persistence after gaining or losing a stack.
 	duration = initial(duration) + world.time
@@ -518,15 +530,14 @@
 
 	var/trigger_healing = health_recovery_per_stack*stacks
 	if(damage_taken >= neighbor.health)
-		log_world("Sweeper taken fatal damage. Normal chance: [chance], overkill damage: [overkill_damage], final chance: [final_chance].")
 		/// But it refused. Persistence goes off, we heal a tiny bit and lose a stack
 		if(prob(final_chance))
-			playsound(neighbor, 'sound/misc/compiler-failure.ogg', 60)
+			playsound(neighbor, 'sound/effects/ordeals/indigo_start.ogg', 33)
 			INVOKE_ASYNC(neighbor, TYPE_PROC_REF(/mob/living/simple_animal/hostile/ordeal/indigo_noon, SweeperHealing), trigger_healing)
 			INVOKE_ASYNC(neighbor, TYPE_PROC_REF(/atom, visible_message), span_danger("The [neighbor.name] endures a fatal hit, some of the fuel being drained from its tank!"), span_userdanger("You suffer a lethal strike, losing some of your fuel!"))
 			src.add_stacks(-1)
 			return COMPONENT_MOB_DENY_DAMAGE
-		/// Tough luck neighbor. Persistence didn't go off so the sweeper dies here.
+		/// Tough luck neighbor. Persistence didn't go off so the sweeper dies here. Status should get cleaned up next time it ticks.
 		else
 			playsound(neighbor, 'sound/misc/splort.ogg', 100)
 	return
