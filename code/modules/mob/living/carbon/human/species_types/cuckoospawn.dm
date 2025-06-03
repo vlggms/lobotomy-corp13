@@ -21,8 +21,8 @@
 	punchdamagelow = 24
 	punchdamagehigh = 27
 	stunmod = 0.5
-	redmod = 0.4
-	whitemod = 0.1
+	redmod = 0.3
+	whitemod = 0.6
 	blackmod = 0.2
 	palemod = 0.5
 	speedmod = -0.5
