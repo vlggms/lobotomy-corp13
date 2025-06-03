@@ -56,8 +56,8 @@
 	visible_message(
 		span_danger("[src] devours [L]!"),
 		span_userdanger("You feast on [L], restoring your health!"))
-	if(istype(L, SWEEPER_TYPES))
-		adjustBruteLoss(-20)
+	if(faction_check_mob(L))
+		adjustBruteLoss(-40)
 	else
 		adjustBruteLoss(-(maxHealth/2))
 		GainPersistence(1)
@@ -87,6 +87,15 @@
 	if(LAZYLEN(lower_priority))
 		return pick(lower_priority)
 	return ..()
+
+/// This may or may not be expensive but it's the most orderly way I could think of to allow them to eat dead sweeper corpses.
+/mob/living/simple_animal/hostile/ordeal/indigo_noon/PossibleThreats(max_range, consider_attack_condition)
+	. = ..()
+	if(health <= maxHealth * 0.8)
+		for(var/turf/adjacent_turf in orange(1, src))
+			for(var/mob/maybe_sweeper_corpse in adjacent_turf)
+				if(faction_check_mob(maybe_sweeper_corpse) && maybe_sweeper_corpse.stat == DEAD)
+					. |= maybe_sweeper_corpse
 
 /// These two procs are being added in June 2025 as part of an Indigo Noon update, not part of original Indigo Noon code.
 /// This one is called whenever a sweeper has to gain X amount of Persistence stacks, because I didn't want to duplicate the code checking if they already had it a bunch of times.
@@ -160,26 +169,34 @@
 	icon_state = icon_living
 	attack_sound = 'sound/effects/ordeals/indigo/stab_2.ogg'
 
+/mob/living/simple_animal/hostile/ordeal/indigo_noon/lanky/Destroy()
+	/// To avoid a hard delete.
+	dash_hitlist = null
+	dash_hitlist_turfs = null
+	. = ..()
+
 /// When meleeing a target, will attempt to dash if it's available (and has some RNG thrown into it to keep them less predictable). Won't dash on melee if it's a possessed sweeper.
 /mob/living/simple_animal/hostile/ordeal/indigo_noon/lanky/AttackingTarget(atom/attacked_target)
 	if(!can_act)
 		return FALSE
-	if(dash_cooldown <= world.time && !dash_dashing && !dash_preparing)
-		if(!client && prob(60))
-			SweepTheBackstreets(attacked_target)
+	if(dash_cooldown > world.time || dash_dashing || dash_preparing)
+		return ..()
+	if(!client && prob(60))
+		SweepTheBackstreets(attacked_target)
+		return
 	. = ..()
 
 /// OpenFire() is gonna be called fairly often since it's set as a ranged unit, we want this so they'll dash even if they're stuck behind other sweepers in a "traffic jam". Also lets possessed sweepers dash at will.
 /// Whole proc is overridden.
 /mob/living/simple_animal/hostile/ordeal/indigo_noon/lanky/OpenFire(atom/A)
-	if(!dash_preparing && !dash_dashing && dash_cooldown <= world.time)
-		if(client)
-			SweepTheBackstreets(A)
-			return
-		else if(prob(50))
-			SweepTheBackstreets(A)
-			return
-
+	if(dash_cooldown > world.time || dash_dashing || dash_preparing)
+		return
+	if(client)
+		SweepTheBackstreets(A)
+		return
+	else if(prob(50))
+		SweepTheBackstreets(A)
+		return
 
 /mob/living/simple_animal/hostile/ordeal/indigo_noon/lanky/Move(atom/newloc, dir, step_x, step_y)
 	if(dash_preparing)
@@ -201,7 +218,7 @@
 /// Any humans hit will heal the sweeper for var/dash_healing, and give it a stack of persistence.
 /// Hitting a human will up the cooldown on the dash. Missing entirely means the dash comes off cooldown sooner.
 /mob/living/simple_animal/hostile/ordeal/indigo_noon/lanky/proc/SweepTheBackstreets(atom/prospective_fuel = target)
-	if(stat == DEAD)
+	if(stat == DEAD || !can_act)
 		return FALSE
 	if(dash_cooldown > world.time || dash_dashing || dash_preparing)
 		return FALSE
@@ -248,15 +265,15 @@
 	SweepTheBackstreetsHit(dash_hitlist_turfs)
 	/// Give the players a tiny bit of time to not instantly get auto hit by the sweeper after it dashes.
 	SLEEP_CHECK_DEATH(0.4 SECONDS)
-	/// Re-target our old target.
-	if(!client)
-		GiveTarget(prospective_fuel)
-	can_act = TRUE
 	/// We'll have them sometimes enter Evasive Mode after this dash. If there's a client in the sweeper, it always will.
 	if(client)
 		EvasiveMode()
 	else if(prob(60))
 		EvasiveMode()
+	/// Re-target our old target.
+	if(!client)
+		GiveTarget(prospective_fuel)
+	can_act = TRUE
 	return TRUE
 
 /mob/living/simple_animal/hostile/ordeal/indigo_noon/lanky/proc/SweepTheBackstreetsHit(list/turfs)
@@ -313,7 +330,7 @@
 		minimum_distance = 1
 		retreat_distance = 2
 		sidestep_per_cycle = 2
-		move_to_delay = 1.8
+		move_to_delay = 2
 	/// Possessed sweepers get a smaller movement speed buff.
 	else
 		move_to_delay = 2.3
@@ -387,6 +404,8 @@
 
 /// This ability is basically "333... 1973". It gives the chunky sweeper 3 persistence stacks, that's all.
 /mob/living/simple_animal/hostile/ordeal/indigo_noon/chunky/proc/LastStand()
+	if(stat == DEAD)
+		return FALSE
 	used_last_stand = TRUE
 	say("+333... 1973.+")
 	GainPersistence(3)
@@ -411,6 +430,8 @@
 	/// I have no idea what could cause this, but just in case
 	if(extract_fuel_active)
 		return FALSE
+	if(stat == DEAD)
+		return FALSE
 	/// Go on cooldown.
 	extract_fuel_cooldown = world.time + extract_fuel_cooldown_time
 	/// Warn the players so they can back off or get ready to parry.
@@ -431,7 +452,6 @@
 /mob/living/simple_animal/hostile/ordeal/indigo_noon/chunky/proc/CancelExtractFuel(early)
 	/// Timer cleanup
 	ExtractFuelTimerCleanup()
-
 	/// We go back to normal.
 	melee_damage_lower = initial(melee_damage_lower)
 	melee_damage_upper = initial(melee_damage_upper)
@@ -503,14 +523,10 @@
 	UnregisterSignal(src, COMSIG_MOB_APPLY_DAMGE)
 
 /// This check was taken from Welfare Core's code. Altered to work on simplemobs instead.
-/// VSC is yelling at me because some bloodfiend DM file that is entirely unrelated to this calls SLEEP() somewhere in its code and I guess it doesn't like that because...
-/// signals?
 /datum/status_effect/stacking/sweeper_persistence/proc/CheckDeath(datum_source, amount, damagetype, def_zone)
 	SIGNAL_HANDLER
-
 	if(!owner)
 		return
-
 	var/mob/living/simple_animal/hostile/ordeal/indigo_noon/neighbor = owner
 	/// We get the resistance from the sweeper's resistances datum.
 	var/damage_coefficient = neighbor.damage_coeff.getCoeff(damagetype)
@@ -540,6 +556,8 @@
 		/// Tough luck neighbor. Persistence didn't go off so the sweeper dies here. Status should get cleaned up next time it ticks.
 		else
 			playsound(neighbor, 'sound/misc/splort.ogg', 100)
+			owner.cut_overlay(overlay)
+
 	return
 
 #undef STATUS_EFFECT_PERSISTENCE
