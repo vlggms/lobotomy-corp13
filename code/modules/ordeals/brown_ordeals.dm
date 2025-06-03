@@ -25,8 +25,8 @@
 
 /datum/ordeal/brown_dawn/Run() // So basically we want to spawn a crap ton of enemies - Identical to simplespawn, but one type per group
 	..()
-	var/place_player_mod = round(GLOB.clients.len * place_player_multiplicator) // Ten players add a new spot
-	var/spawn_player_mod = round(GLOB.clients.len * spawn_player_multiplicator)
+	var/place_player_mod = round(length(AllLivingAgents(TRUE)) * place_player_multiplicator) // Ten players add a new spot
+	var/spawn_player_mod = round(length(AllLivingAgents(TRUE)) * spawn_player_multiplicator)
 	if(!LAZYLEN(GLOB.xeno_spawn))
 		message_admins("No xeno spawns found when spawning in ordeal!")
 		return
