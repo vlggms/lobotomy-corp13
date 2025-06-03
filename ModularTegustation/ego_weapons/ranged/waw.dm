@@ -107,7 +107,7 @@
 	if(istype(Z))
 		cached_multiplier = projectile_damage_multiplier
 		projectile_damage_multiplier *= 2.5
-		fire_delay = 15
+		fire_delay = 8
 	..()
 
 
@@ -298,11 +298,11 @@
 	desc = "All the power of magic bullet, in a smaller package."
 	icon_state = "magic_pistol"
 	inhand_icon_state = "magic_pistol"
-	special = "This weapon pierces all targets. This weapon fires faster with the matching armor"
+	special = "This weapon pierces most targets. This weapon fires and reloads faster with the matching armor"
 	force = 17
 	damtype = BLACK_DAMAGE
 	projectile_path = /obj/projectile/ego_bullet/ego_magicpistol
-	fire_delay = 6
+	fire_delay = 7
 	shotsleft = 7
 	reloadtime = 1.2 SECONDS
 	fire_sound = 'sound/abnormalities/freischutz/shoot.ogg'
@@ -319,11 +319,20 @@
 	var/obj/item/clothing/suit/armor/ego_gear/he/magicbullet/Y = myman.get_item_by_slot(ITEM_SLOT_OCLOTHING)
 	var/obj/item/clothing/suit/armor/ego_gear/realization/bigiron/Z = myman.get_item_by_slot(ITEM_SLOT_OCLOTHING)
 	if(istype(Y))
-		fire_delay = 8
+		fire_delay = 5
 	if(istype(Z))
 		cached_multiplier = projectile_damage_multiplier
 		projectile_damage_multiplier *= 2.5
-		fire_delay = 8
+		fire_delay = 5
+	..()
+
+/obj/item/ego_weapon/ranged/pistol/magic_pistol/reload_ego(mob/user)
+	var/mob/living/carbon/human/myman = user
+	var/obj/item/clothing/suit/armor/ego_gear/he/magicbullet/Y = myman.get_item_by_slot(ITEM_SLOT_OCLOTHING)
+	var/obj/item/clothing/suit/armor/ego_gear/realization/bigiron/Z = myman.get_item_by_slot(ITEM_SLOT_OCLOTHING)
+	reloadtime = initial(reloadtime)
+	if(istype(Y) || istype(Z))
+		reloadtime = 0.8 SECONDS
 	..()
 
 /obj/item/ego_weapon/ranged/pistol/laststop
