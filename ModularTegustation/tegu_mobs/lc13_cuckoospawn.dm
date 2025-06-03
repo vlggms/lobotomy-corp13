@@ -1,5 +1,5 @@
 /mob/living/simple_animal/hostile/cuckoospawn
-	name = "jiajiaren"
+	name = "niaojia-ren"
 	desc = "A tall humaniod looking bird, with eyes glaring anything moving around it."
 	icon = 'icons/mob/cuckoospawn_big.dmi'
 	icon_state = "evil_ass_bird"
@@ -112,7 +112,7 @@
 	gib()
 
 /mob/living/simple_animal/hostile/cuckoospawn_parasite
-	name = "jiajiaren parasite"
+	name = "niaojia-ren parasite"
 	icon = 'icons/mob/cuckoospawn.dmi'
 	icon_state = "skrinkly_bird"
 	desc = "A nastly little bird worm thing, it appears to be growing quickly!"

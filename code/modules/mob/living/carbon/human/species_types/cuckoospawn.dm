@@ -29,7 +29,7 @@
 	payday_modifier = 0
 
 /datum/species/cuckoospawn/random_name(gender,unique,lastname)
-	return "Jiajiaren"
+	return "niaojia-ren"
 
 /mob/living/carbon/human/species/cuckoospawn
 	race = /datum/species/cuckoospawn

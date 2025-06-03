@@ -2,14 +2,14 @@
 	mob_type = 	/mob/living/carbon/human/species/cuckoospawn
 	name = "strange egg"
 	desc = "A man-sized yellow egg, spawned from some unfathomable creature. A humanoid silhouette lurks within."
-	mob_name = "Jiajiaren"
+	mob_name = "Niaojia-ren"
 	icon = 'icons/mob/lavaland/lavaland_monsters.dmi'
 	icon_state = "large_egg"
 	roundstart = FALSE
 	death = FALSE
 	move_resist = MOVE_FORCE_NORMAL
 	density = FALSE
-	short_desc = "You are an jiajiaren. You must raise your numbers by infecting humans and exexterminating humans who enter your home..."
+	short_desc = "You are an niaojia-ren. You must raise your numbers by infecting humans and exexterminating humans who enter your home..."
 	flavour_text = "You wake up in this strange location... Filled with unfamiliar sounds... \
 	You have seen lights in the distance... they foreshadow the arrival of humans... Humans? In your sacred domain?! \
 	Looks like you found some new hosts for your children..."
@@ -64,8 +64,8 @@
 
 /obj/structure/bird_statue/attack_hand(mob/user)
 	. = ..()
-	var/statue_ask = alert("[src] awaits your demand.", "Oh dear ancient elder... If you can grant us a", "jiajiaren salve (6 Meat)", "host stabilizer (4 Meat)", "jiajiaren revive (15 Meat)", "Cancel")
-	if(statue_ask == "jiajiaren salve (6 Meat)")
+	var/statue_ask = alert("[src] awaits your demand.", "Oh dear ancient elder... If you can grant us a", "niaojia-ren salve (6 Meat)", "host stabilizer (4 Meat)", "niaojia-ren revive (15 Meat)", "Cancel")
+	if(statue_ask == "niaojia-ren salve (6 Meat)")
 		if(collected_meat >= 6)
 			to_chat(user, span_nicegreen("[src] understands your request, and grants your request!"))
 			collected_meat -= 6
@@ -79,7 +79,7 @@
 			new /obj/item/cuckoo_stabilizer (get_turf(user))
 		else
 			to_chat(user, span_warning("[src] deines your request, it demands more flesh!"))
-	else if(statue_ask == "jiajiaren revive (15 Meat)")
+	else if(statue_ask == "niaojia-ren revive (15 Meat)")
 		if(collected_meat >= 15)
 			to_chat(user, span_nicegreen("[src] understands your request, and grants your request!"))
 			collected_meat -= 15
@@ -88,7 +88,7 @@
 			to_chat(user, span_warning("[src] deines your request, it demands more flesh!"))
 
 /obj/item/cuckoo_healing
-	name = "jiajiaren salve"
+	name = "niaojia-ren salve"
 	desc = "Strange pile of meat, it appears that some birds could eat it to recover..."
 	icon_state = "meatproduct"
 	icon = 'icons/obj/food/food.dmi'
@@ -107,7 +107,7 @@
 		to_chat(user, span_notice("You have no idea on how to apply it!"))
 
 /obj/item/cuckoo_stabilizer
-	name = "jiajiaren stabilizer"
+	name = "niaojia-ren stabilizer"
 	desc = "Strange object... It would allow some birds to stabilizes their hosts!"
 	icon_state = "meatproductsteak"
 	icon = 'icons/obj/food/food.dmi'
@@ -138,7 +138,7 @@
 				qdel(src)
 
 /obj/item/cuckoo_revive
-	name = "jiajiaren bolus"
+	name = "niaojia-ren bolus"
 	desc = "Strange round object... It would allow the cukoo birds revive their fallen members!"
 	icon_state = "egg-mime"
 	color = "#292929"

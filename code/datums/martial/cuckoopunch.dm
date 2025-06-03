@@ -1,6 +1,6 @@
 //The Same thing as the mushroom punch, but now with the cuckoo bird infection.
 /datum/martial_art/cuckoopunch
-	name = "jiajiaren Brutality"
+	name = "Niaojia-ren Brutality"
 	id = MARTIALART_CUCKOOPUNCH
 	var/datum/action/cuckoo_implant/implant = new/datum/action/cuckoo_implant()
 
@@ -15,7 +15,7 @@
 	implant.Remove(owner)
 
 /datum/action/cuckoo_implant
-	name = "Jiajiaren Implant - After a delay, knock the target back and if they are human, implant them with a Jiajiaren Parasite. If they are a mob, deal extra damage."
+	name = "Niaojia-ren Implant - After a delay, knock the target back and if they are human, implant them with a Niaojia-ren Parasite. If they are a mob, deal extra damage."
 	icon_icon = 'icons/mob/actions/actions_items.dmi'
 	button_icon_state = "lungpunch"
 
@@ -66,7 +66,7 @@
 	to_chat(A, span_spiderbroodmother("You begin to wind up an attack..."))
 	if(!do_after(A, 10, target = D))
 		to_chat(A, span_spiderbroodmother("<b>Your attack was interrupted!</b>"))
-		return TRUE //martial art code was a mistake
+		return TRUE
 	var/atk_verb
 	A.do_attack_animation(D, ATTACK_EFFECT_PUNCH)
 	atk_verb = pick("punch", "smash", "crack")
@@ -81,18 +81,11 @@
 		var/mob/living/carbon/human/human_target = D
 		var/obj/item/bodypart/chest/LC = human_target.get_bodypart(BODY_ZONE_CHEST)
 		if((!LC || LC.status != BODYPART_ROBOTIC) && !human_target.getorgan(/obj/item/organ/body_egg/cuckoospawn_embryo))
-			to_chat(A, span_danger("You implant [D], soon a new jiajiaren bird shall grow..."))
+			to_chat(A, span_danger("You implant [D], soon a new niaojia-ren bird shall grow..."))
 			new /obj/item/organ/body_egg/cuckoospawn_embryo(human_target)
 			var/turf/T = get_turf(human_target)
-			log_game("[key_name(human_target)] was impregnated by a jiajiaren at [loc_name(T)]")
+			log_game("[key_name(human_target)] was impregnated by a niaojia-ren at [loc_name(T)]")
 	if(isanimal(D))
 		D.apply_damage(rand(150), RED_DAMAGE)
 	if(atk_verb)
 		log_combat(A, D, "[atk_verb] (Cuckoo Punch)")
-
-/datum/martial_art/cuckoopunch/disarm_act(mob/living/A, mob/living/D)
-	if(ishostile(D))
-		var/mob/living/simple_animal/hostile/hostile_friend = D
-		if(!A.faction_check_mob(hostile_friend, TRUE))
-			to_chat(src, span_notice("They are dealing with their own thing, don't bother them."))
-			return FALSE
