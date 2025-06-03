@@ -35,7 +35,7 @@
 
 /mob/living/simple_animal/hostile/cuckoospawn/proc/CheckSpace(mob/user, atom/new_location)
 	var/turf/newloc_turf = get_turf(new_location)
-	var/valid_tile = TRUE
+	// var/valid_tile = TRUE
 
 	var/area/new_area = get_area(newloc_turf)
 	if(istype(new_area, /area/city))
@@ -45,10 +45,10 @@
 				executed_claw()
 			attempted_crosses++
 			to_chat(src, span_danger("You feel a shiver down your spine, the city will not allow you to enter..."))
-			valid_tile = FALSE
+			// valid_tile = FALSE
 
-	if(!valid_tile)
-		return COMPONENT_MOVABLE_BLOCK_PRE_MOVE
+	// if(!valid_tile)
+	// 	return COMPONENT_MOVABLE_BLOCK_PRE_MOVE
 
 /mob/living/simple_animal/hostile/cuckoospawn/AttackingTarget(atom/attacked_target)
 	var/mob/living/carbon/human/human_target
