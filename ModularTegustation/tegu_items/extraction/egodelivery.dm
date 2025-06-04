@@ -112,6 +112,9 @@
 		var/datum/abnormality/A = E.linked_abno
 		if(!E || !A)
 			return FALSE
+		if(stored_item)
+			to_chat(usr, span_warning("Dispense the item currently stored in the [src] first."))
+			return FALSE
 		if(A.stored_boxes < E.cost)
 			to_chat(usr, span_warning("Not enough PE boxes stored for this operation."))
 			playsound(get_turf(src), 'sound/machines/terminal_prompt_deny.ogg', 50, TRUE)
