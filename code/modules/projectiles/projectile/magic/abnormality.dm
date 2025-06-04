@@ -434,3 +434,25 @@
 	. = ..()
 	hitsound = "sound/weapons/ego/rapier[pick(1,2)].ogg"
 	animate(src, alpha = 255, time = 3)
+
+/obj/projectile/nosferatu_bat
+	name = "bat"
+	icon_state = "bat"
+	damage = 25
+	hitsound = 'sound/abnormalities/nosferatu/bat_attack.ogg'
+	var/mob/living/simple_animal/hostile/abnormality/nosferatu/owner = null
+
+/obj/projectile/nosferatu_bat/on_hit(atom/target, blocked = FALSE)
+	. = ..()
+	var/guaranteed_spawn = FALSE
+	if(ishuman(target))
+		var/mob/living/carbon/human/H = target
+		if(H.stat == DEAD)
+			return
+		var/obj/effect/decal/cleanable/blood/B = new(get_turf(src))
+		B.bloodiness = 200 // 200 Blood for nosferatu or its minions to collect
+		guaranteed_spawn = TRUE
+	if(owner)
+		if(!guaranteed_spawn && prob(75))
+			return
+		owner.BatSpawn(target)
