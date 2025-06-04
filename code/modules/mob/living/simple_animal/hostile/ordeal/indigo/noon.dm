@@ -155,7 +155,7 @@
 	/// The speed at which we dash in deciseconds.
 	var/dash_speed = 0.4
 	/// The windup duration for the dash.
-	var/dash_windup = 0.6 SECONDS
+	var/dash_windup = 0.7 SECONDS
 	/// We need this to not hit multiple people due to the implementation I used for the dash. Stores every mob hit by the dash, cleared on each dash.
 	var/list/dash_hitlist = list()
 	/// This one is so we can hit all the turfs with the dash at once, to avoid people dodging it by moving inside of it.
@@ -440,14 +440,14 @@
 	visible_message(span_danger("The [src.name] winds up for a devastating blow!"), span_info("You prepare to extract fuel from your victim."))
 	/// We're gonna sleep them because otherwise someone could hit the sweeper the DECISECOND before it's gonna attack and get slapped by a huge hit
 	/// This gives them enough margin to run away or parry
-	SLEEP_CHECK_DEATH(0.5 SECONDS)
+	SLEEP_CHECK_DEATH(0.6 SECONDS)
 	/// Make our attack scary.
 	melee_damage_lower += extract_fuel_extra_damage
 	melee_damage_upper += extract_fuel_extra_damage
 	attack_sound = 'sound/weapons/fixer/generic/finisher1.ogg'
 	extract_fuel_active = TRUE
 	/// If we haven't landed the hit in the following few seconds, we will lose the buff.
-	extract_fuel_ongoing_timer = addtimer(CALLBACK(src, PROC_REF(CancelExtractFuel), FALSE), 2.5 SECONDS, TIMER_STOPPABLE)
+	extract_fuel_ongoing_timer = addtimer(CALLBACK(src, PROC_REF(CancelExtractFuel), FALSE), 2.6 SECONDS, TIMER_STOPPABLE)
 
 /mob/living/simple_animal/hostile/ordeal/indigo_noon/chunky/proc/CancelExtractFuel(early)
 	/// Timer cleanup
@@ -457,7 +457,7 @@
 	melee_damage_upper = initial(melee_damage_upper)
 	attack_sound = 'sound/effects/ordeals/indigo/stab_1.ogg'
 	extract_fuel_active = FALSE
-	animate(src, 0.6 SECONDS, color = initial(color))
+	animate(src, 0.5 SECONDS, color = initial(color))
 	if(!early)
 		visible_message(span_danger("The [src.name] lowers its aggressive stance."), span_info("You give up on the fuel extraction attempt."))
 
