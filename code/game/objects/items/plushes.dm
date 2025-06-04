@@ -666,3 +666,29 @@
 	icon = 'icons/obj/plushes.dmi'
 	icon_state = "bongy"
 	squeak_override = list('sound/creatures/lc13/bongy/kweh.ogg'=1)
+
+// Absolute Pride Reson Plushies
+/obj/item/toy/plush/ayin/pride
+	desc = "A recently made plushie with the colours of a pride flag."
+	icon_state = "ayinfluid"
+	unique_pet = "You pet the ayin plushie. Genderfluid rights."
+
+/obj/item/toy/plush/benjamin/pride
+	desc = "A recently made plushie with the colours of a pride flag."
+	icon_state = "benjamingay"
+	unique_pet = "You pet the benjamin plushie. Gay rights."
+
+/obj/item/toy/plush/bong/pride
+	desc = "A recently made plushie with the colours of a pride flag."
+	icon_state = "bongtrans"
+	unique_pet = "You pet the bong plushie. Trans rights."
+
+/obj/item/toy/plush/angela/pride
+	desc = "A recently made plushie with the colours of a pride flag."
+	icon_state = "angelaroace"
+	unique_pet = "You pet the angela plushie. Aro Ace rights."
+
+/obj/item/toy/plush/myo/pride
+	desc = "A recently made plushie with the colours of a pride flag."
+	icon_state = "myolesbian"
+	unique_pet = "You pet the myo plushie. Lesbian rights, yem."
