@@ -121,8 +121,8 @@
 /// This subtype moves faster, attacks faster, deals less damage per hit, and has access to a dash attack.
 /// Uses the lanky sweeper sprite made by insiteparaful.
 /mob/living/simple_animal/hostile/ordeal/indigo_noon/lanky
-	health = 260
-	maxHealth = 260
+	health = 300
+	maxHealth = 300
 	icon = 'ModularTegustation/Teguicons/32x48.dmi'
 	icon_state = "sweeper_limbus"
 	icon_living = "sweeper_limbus"
@@ -143,11 +143,11 @@
 	var/dash_cooldown
 	/// This is the amount of time added by its dash attack (Sweep the Backstreets) on use onto its cooldown.
 	/// While the cooldown may seem fairly short, every human it hits will increase it by a fair bit.
-	var/dash_cooldown_time = 7 SECONDS
+	var/dash_cooldown_time = 4 SECONDS
 	/// Sweep the Backstreets ability range in tiles.
 	var/dash_range = 3
 	/// Sweep the Backstreets healing per human hit.
-	var/dash_healing = 60
+	var/dash_healing = 80
 	/// Are we currently during the dash windup phase?
 	var/dash_preparing = FALSE
 	/// Are we currently dashing?
@@ -267,11 +267,9 @@
 	SweepTheBackstreetsHit(dash_hitlist_turfs)
 	/// Give the players a tiny bit of time to not instantly get auto hit by the sweeper after it dashes.
 	SLEEP_CHECK_DEATH(0.4 SECONDS)
-	/// We'll have them sometimes enter Evasive Mode after this dash. If there's a client in the sweeper, it always will.
-	if(client)
-		EvasiveMode()
-	else if(prob(60))
-		EvasiveMode()
+	/// We'll have them enter Evasive Mode after this dash.
+	EvasiveMode()
+
 	/// Re-target our old target.
 	if(!client)
 		GiveTarget(prospective_fuel)
@@ -326,16 +324,16 @@
 
 /// Sweeper will sometimes enter Evasive Mode after a dash. Just a big mobility steroid and makes unpossessed sweepers move erratically - kind of like GWSS.
 /mob/living/simple_animal/hostile/ordeal/indigo_noon/lanky/proc/EvasiveMode()
-	addtimer(CALLBACK(src, PROC_REF(DisableEvasiveMode)), 4 SECONDS)
+	addtimer(CALLBACK(src, PROC_REF(DisableEvasiveMode)), 3 SECONDS)
 	if(!client)
 		dodging = TRUE
 		minimum_distance = 1
 		retreat_distance = 2
 		sidestep_per_cycle = 2
-		move_to_delay = 2
+		move_to_delay = 2.2
 	/// Possessed sweepers get a smaller movement speed buff.
 	else
-		move_to_delay = 2.3
+		move_to_delay = 2.4
 
 /mob/living/simple_animal/hostile/ordeal/indigo_noon/lanky/proc/DisableEvasiveMode()
 	dodging = initial(dodging)
@@ -485,7 +483,7 @@
 	stack_decay = 0
 	consumed_on_threshold = FALSE
 	var/base_chance = 25
-	var/health_recovery_per_stack = 35
+	var/health_recovery_per_stack = 40
 
 /// I don't really want it to decay, so
 /datum/status_effect/stacking/sweeper_persistence/tick()
