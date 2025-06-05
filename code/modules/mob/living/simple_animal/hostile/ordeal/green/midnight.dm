@@ -47,13 +47,13 @@
 	//These variables control how many bots are deployed during the no-lasers-phase and how the scaling for them works.
 	/// How large our squad of deployed bots should be.
 	/// Will attempt to deploy bots until we reach this size. This increases when losing enough HP.
-	var/squad_size = 6
+	var/squad_size = 4
 	/// How many of our personally spawned bots are alive right now.
 	var/active_minions = 0
 	/// We will never increase squad size past this. Adjusted by scaling
-	var/maximum_squad_size = 16
+	var/maximum_squad_size = 14
 	/// Controls how many bots are added to a squad per 10% HP lost. Adjusted by scaling
-	var/squad_size_increase_step = 2
+	var/squad_size_increase_step = 1
 
 	// I am placing these here because I don't want to calculate turfs in range 9 trillion times.
 	var/list/microbarrage_threatened_turfs = list()
@@ -295,7 +295,7 @@
 	icon = 'icons/effects/96x96.dmi'
 	icon_state = "warning"
 	duration = 21
-	color = "#7ac21f"
+	color = "#d82d21"
 	pixel_x = -32
 	base_pixel_x = -32
 	pixel_y = -32
@@ -303,14 +303,26 @@
 
 /obj/effect/temp_visual/helix_macrolaser/Initialize()
 	. = ..()
-	addtimer(CALLBACK(src, PROC_REF(Blowup)), 20)
+	addtimer(CALLBACK(src, PROC_REF(Blowup)), 18)
 
 /obj/effect/temp_visual/helix_macrolaser/proc/Blowup()
-	playsound(src, 'sound/abnormalities/crying_children/sorrow_shot.ogg', 20, FALSE, 4)
-	for(var/mob/living/carbon/human/H in range(1, src))
-		H.deal_damage(50, BLACK_DAMAGE)
-		to_chat(H, span_userdanger("You're hit by [src.name]!"))
+	icon_state = "beamin"
+	color = "#7ac21f"
+	transform *= 2.5
+	pixel_y += 80
+	playsound(src, 'sound/abnormalities/crying_children/sorrow_shot.ogg', 65, TRUE, 4)
+	for(var/mob/living/carbon/human/H in range(3, src))
+		var/distance = get_dist(src, H)
+		if(distance < 2)
+			H.deal_damage(50, BLACK_DAMAGE)
+			shake_camera(H, 6, 1.5)
+			to_chat(H, span_userdanger("You're hit by [src.name]!"))
+		else
+			shake_camera(H, 4, 0.7)
 
+	var/datum/effect_system/spark_spread/explosion_sparks = new /datum/effect_system/spark_spread
+	explosion_sparks.set_up(7, 0, loc)
+	explosion_sparks.start()
 
 //This proc is called to return a list with all the types that should be spawned by the next deployment. DeployBotSquad() trusts whatever list is given to it, so we
 //make sure we don't generate too many mobs in this proc (else midnight could spawn infinite mobs)
@@ -359,8 +371,8 @@
 
 
 	for(var/turf/place in deployment_points)
-		//Don't deploy a bot in an obstructed turf, or somewhere we can't see
-		if(!isInSight(src, place) || place.is_blocked_turf(TRUE))
+		//Don't deploy a bot in an obstructed turf, or somewhere we can't see, or in... lava? Yes, we have maps with lava apparently.
+		if(!isInSight(src, place) || place.is_blocked_turf(TRUE) || istype(place, /turf/open/lava))
 			deployment_points -= place
 
 	deployment_points -= danger_close_turfs
@@ -399,23 +411,29 @@
 	//This also doesn't account for nefarious RO/EO/Clerks that might want to "help", but I don't consider it a huge issue. AvailableAgentCount() is an alternative that
 	//counts dead Agents as well.
 	var/list/meaningful_enemies = AllLivingAgents(TRUE)
-	//These are our "base values" but bear in mind that, if we have any agents alive as it initializes, which we should have at least 1, it will at least go up to 8/14/1.
-	squad_size = 6
-	maximum_squad_size = 10
+	//These are our "base values" but bear in mind that, if we have any agents alive as it initializes, which we should have at least 1, it will apply scaling to it.
+	squad_size = 4
+	maximum_squad_size = 9
 	squad_size_increase_step = 1
-	laser_cooldown_time = 24 SECONDS // You'll get more time to deal with mobs if you have less Agents
+	laser_cooldown_time = 25 SECONDS // You'll get more time to deal with mobs if you have less Agents
 
-	//This scaling should result in: 8/14/1 (initial/max/step) for 1 agent, 10/18/2 for 2 agents, 12/22/2 for 3 agents, up to a maximum of 10/24/3 at 4 agents.
-	//I'd wanna add more but that would get pretty laggy...
+	/// SCALING AS OF LATEST UPDATE: (Agents, ERAs and DOs are factored into scaling. Agents that exist through un-natural means may not be factored)
+	/// 0 Agents (huh?): 4 initial bots / 9 maximum bots / +1 bot per 10% hp missing / 25s laser CD
+	/// 1 Agent: 6 initial bots / 12 maximum bots / +1 bot per 10% hp missing / 24s laser CD
+	/// 2 Agents: 8 initial bots / 15 maximum bots / +1 bot per 10% hp missing / 23s laser CD
+	/// 3 Agents: 10 initial bots / 18 maximum bots / +2 bots per 10% hp missing / 22s laser CD
+	/// 4 Agents: 10 initial bots / 20 maximum bots / +2 bots per 10% hp missing / 21s laser CD
+	/// Do remember that not all bots spawned are Noons.
+
 	if(meaningful_enemies)
 		for(var/gremlin in meaningful_enemies)
 			squad_size += 2
-			maximum_squad_size += 4
-			squad_size_increase_step += 0.5
+			maximum_squad_size += 3
+			squad_size_increase_step += 0.34
 			laser_cooldown_time -= 1 SECONDS
 
 		squad_size = min(squad_size, 10)
-		maximum_squad_size = min(maximum_squad_size, 24)
+		maximum_squad_size = min(maximum_squad_size, 20)
 		squad_size_increase_step = min(floor(squad_size_increase_step), 3)
 		laser_cooldown_time = max(laser_cooldown_time, 20 SECONDS)
 
