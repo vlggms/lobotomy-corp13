@@ -259,9 +259,11 @@
 	if(!moved_cardinals)
 		if(length(dash_hitlist_turfs) > 0)
 			dash_hitlist_turfs -= dash_hitlist_turfs[1]
+	/// The Sweeper won't have added the final turf onto its hit list, so we add it here.
+	/// Yes it needs to get slept for 0.1 second here because... it hasn't finished moving or something. I've tested it. Trust me.
+	SLEEP_CHECK_DEATH(0.1 SECONDS)
 	CancelDash()
-	/// The Sweeper won't have added the target turf onto its hit list, so we add it here.
-	dash_hitlist_turfs |= dash_target_turf
+	dash_hitlist_turfs |= get_turf(src)
 	SweepTheBackstreetsHit(dash_hitlist_turfs)
 	/// Give the players a tiny bit of time to not instantly get auto hit by the sweeper after it dashes.
 	SLEEP_CHECK_DEATH(0.4 SECONDS)
