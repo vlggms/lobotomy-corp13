@@ -1309,37 +1309,21 @@
 				L.throw_at(throw_target, rand(1, 2), whack_speed, user)
 	spin_reset()
 
-/obj/item/ego_weapon/discord
+/obj/item/ego_weapon/wield/discord
 	name = "discord"
-	desc = "The existance of evil proves the existance of good, just as light proves the existance of darkness."
-	special = "This weapon can be two-handed, and attacks thrice in rapid succession when doing so.\n Attacks with this weapon will heal a nearby ally using Assonance."
+	desc = "The existence of evil proves the existence of good, just as light proves the existence of darkness."
+	special = "This weapon attacks thrice in rapid succession when being wielded.\nAttacks with this weapon will heal a nearby ally using Assonance."
 	icon_state = "discord"
-	force = 28
+	force = 30
+	wielded_force = 27
 	attack_speed = 0.8
+	wielded_attack_speed = 0.8
 	attribute_requirements = list(
 							FORTITUDE_ATTRIBUTE = 80
 							)
 	damtype = BLACK_DAMAGE
-	var/wielded = FALSE
 
-/obj/item/ego_weapon/discord/Initialize()
-	. = ..()
-	RegisterSignal(src, COMSIG_TWOHANDED_WIELD, PROC_REF(OnWield))
-	RegisterSignal(src, COMSIG_TWOHANDED_UNWIELD, PROC_REF(on_unwield))
-
-/obj/item/ego_weapon/discord/ComponentInitialize()
-	. = ..()
-	AddComponent(/datum/component/two_handed, force_unwielded=30, force_wielded=20)
-
-/obj/item/ego_weapon/discord/proc/OnWield(obj/item/source, mob/user)
-	SIGNAL_HANDLER
-	wielded = TRUE
-
-/obj/item/ego_weapon/discord/proc/on_unwield(obj/item/source, mob/user)
-	SIGNAL_HANDLER
-	wielded = FALSE
-
-/obj/item/ego_weapon/discord/attack(mob/living/target, mob/living/carbon/human/user)
+/obj/item/ego_weapon/wield/discord/attack(mob/living/target, mob/living/carbon/human/user)
 	if(!..())
 		return FALSE
 	if(!ishostile(target))
@@ -1349,11 +1333,11 @@
 	Harmony(user)
 	if(!wielded)
 		return
-	user.changeNext_move(CLICK_CD_MELEE*attack_speed*2.5)
+	user.changeNext_move(CLICK_CD_MELEE*wielded_attack_speed*2.5)
 	for(var/i = 1 to 2)
 		addtimer(CALLBACK(src, PROC_REF(MultiSwing), target, user), CLICK_CD_MELEE * 0.6 * i)
 
-/obj/item/ego_weapon/discord/proc/MultiSwing(mob/living/target, mob/living/carbon/human/user)
+/obj/item/ego_weapon/wield/discord/proc/MultiSwing(mob/living/target, mob/living/carbon/human/user)
 	if(get_dist(target, user) > 1)
 		return
 	if(src != user.get_active_held_item())
@@ -1364,10 +1348,9 @@
 	playsound(loc, hitsound, get_clamped_volume(), TRUE, extrarange = stealthy_audio ? SILENCED_SOUND_EXTRARANGE : -1, falloff_distance = 0)
 	user.do_attack_animation(target)
 	target.attacked_by(src, user)
-
 	log_combat(user, target, pick(attack_verb_continuous), src.name, "(INTENT: [uppertext(user.a_intent)]) (DAMTYPE: [uppertext(damtype)])")
 
-/obj/item/ego_weapon/discord/proc/Harmony(mob/living/carbon/human/user)
+/obj/item/ego_weapon/wield/discord/proc/Harmony(mob/living/carbon/human/user)
 	var/heal_amount = 5
 	if(wielded)
 		heal_amount = 4

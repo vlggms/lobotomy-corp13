@@ -351,7 +351,7 @@
 	cost = 50
 
 /datum/ego_datum/weapon/discord
-	item_path = /obj/item/ego_weapon/discord
+	item_path = /obj/item/ego_weapon/wield/discord
 	cost = 50
 
 // Little Red Riding Hood Mercenary - Crimson Scar & Crimson Claw

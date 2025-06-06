@@ -212,8 +212,8 @@
 	if(H.stat == DEAD || H.status_flags & GODMODE)
 		return
 	for(var/mob/living/carbon/human/Yin in view(7, H))
-		var/obj/item/ego_weapon/discord/D = Yin.get_active_held_item()
-		if(istype(D, /obj/item/ego_weapon/discord))
+		var/obj/item/ego_weapon/wield/discord/D = Yin.get_active_held_item()
+		if(istype(D, /obj/item/ego_weapon/wield/discord))
 			if(!D.CanUseEgo(Yin))
 				continue
 			Yin.adjustBruteLoss(-10)
