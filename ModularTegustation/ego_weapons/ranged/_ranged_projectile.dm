@@ -25,6 +25,16 @@
 	if(HAS_TRAIT(user, TRAIT_BETTER_GUNS))
 		projectile.damage += projectile.damage*get_attribute_level(user, JUSTICE_ATTRIBUTE)/130*0.50
 
+	projectile.damage *= (1 + (user.extra_damage / 100))
+	if(projectile.damage_type == RED_DAMAGE)
+		projectile.damage *= (1 + (user.extra_damage_red / 100))
+	if(projectile.damage_type == WHITE_DAMAGE)
+		projectile.damage *= (1 + (user.extra_damage_white / 100))
+	if(projectile.damage_type == BLACK_DAMAGE)
+		projectile.damage *= (1 + (user.extra_damage_black / 100))
+	if(projectile.damage_type == PALE_DAMAGE)
+		projectile.damage *= (1 + (user.extra_damage_pale / 100))
+
 	if(temporary_damage_multiplier)
 		projectile.damage *= temporary_damage_multiplier
 
