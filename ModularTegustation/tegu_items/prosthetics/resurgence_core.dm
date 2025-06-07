@@ -41,3 +41,25 @@
 			to_chat(human, span_danger("WARNING: Echo Step destination is not visible, increasing power usage by 1000%."))
 		human.loc = T
 		new /obj/effect/temp_visual/dir_setting/ninja/phase (get_turf(owner))
+
+/obj/item/organ/cyberimp/chest/resurgence_sandstorm
+	name = "Resurgence Clan Augment: Sandstorm"
+	desc = "An augment designed by the resurgence clan, which lets the user buff themselves and their allies to inflict 3 TREMOR on hit at the cost of spending some sanity."
+	syndicate_implant = TRUE
+	actions_types = list(/datum/action/item_action/organ_action/use/resurgence_sandstorm)
+	implant_overlay = "chest_resurgence_core"
+
+/datum/action/item_action/organ_action/use/resurgence_sandstorm
+	var/buff_range = 5
+
+/datum/action/item_action/organ_action/use/resurgence_sandstorm/Trigger()
+	if(!IsAvailable())
+		return
+	playsound(src, 'sound/weapons/purple_tear/change.ogg', 50, 1)
+	if (ishuman(owner))
+		var/mob/living/carbon/human/human = owner
+		human.adjustSanityLoss(human.maxSanity * 0.05)
+	for(var/mob/living/carbon/human/L in orange(5, get_turf(src)))
+		if(L.stat != DEAD)
+			L.apply_status_effect(/datum/status_effect/standstorm_stance)
+			new /obj/effect/temp_visual/turn_book(get_turf(L))

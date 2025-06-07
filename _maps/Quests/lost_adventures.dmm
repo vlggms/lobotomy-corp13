@@ -1939,6 +1939,7 @@
 /obj/structure/window/bronze{
 	dir = 1
 	},
+/obj/item/organ/cyberimp/chest/resurgence_sandstorm,
 /turf/open/floor/mineral/gold,
 /area/city/backstreets_room/temple_motus/treasure_room)
 "FM" = (
