@@ -807,7 +807,7 @@
 	say("If I can't bring you down with this shell intact...")
 	SLEEP_CHECK_DEATH(20)
 	say("I WILL MAKE SURE NONE OF YOU WILL!!!")
-	SLEEP_CHECK_DEATH(20)
+	SLEEP_CHECK_DEATH(20) //shuffle_inplace(nearby_cases)
 	say("BURN IN HELL, HAHAHA!!!")
 	status_flags &= ~GODMODE
 	if(elliot_alive)

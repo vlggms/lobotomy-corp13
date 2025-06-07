@@ -1396,6 +1396,15 @@
 
 /mob/living/simple_animal/hostile/ui_npc/elliot/proc/execute_keeper(mob/living/simple_animal/hostile/clan/stone_keeper/execute_target)
 	TeleportToSomeone(execute_target)
+	var/list/human_list = list()
+	for(var/mob/living/carbon/human/nearby_humans in range(10, src))
+		human_list += nearby_humans
+	var/list/turf_list = list()
+	for(var/turf/open/nearby_turf in view(3, src))
+		turf_list += nearby_turf
+	shuffle_inplace(turf_list)
+	for(var/mob/living/carbon/human/watcher in human_list)
+		watcher.forceMove(pick(turf_list))
 	can_attack = FALSE
 	new /obj/effect/timestop(get_turf(src), 20, 45 SECONDS, list(src))
 	say("Historian's Protocol...")

@@ -91,7 +91,7 @@ GLOBAL_LIST_EMPTY(heretic_puzzle)
 
 /obj/item/crown_dagger_puzzle
 	name = "puzzle item"
-	desc = "You think you could give this to one of the status around here..."
+	desc = "A strange item... You could offer it to one of the statues around here..."
 	w_class = WEIGHT_CLASS_SMALL
 
 /obj/item/crown_dagger_puzzle/book
@@ -216,7 +216,7 @@ GLOBAL_LIST_EMPTY(heretic_puzzle)
 					playsound(get_turf(src), 'sound/hallucinations/veryfar_noise.ogg', 50, FALSE, 5)
 
 				if("monster")
-					visible_message(span_danger("The key was an mimic! Causing it to bite you!"))
+					visible_message(span_danger("The key was a mimic! Causing it to bite you!"))
 					playsound(get_turf(src), 'sound/abnormalities/fairyfestival/fairy_festival_bite.ogg', 50, FALSE, 5)
 					looter.deal_damage(80, BLACK_DAMAGE)
 
