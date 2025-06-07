@@ -3,16 +3,19 @@
 	name = "Niaojia-ren Brutality"
 	id = MARTIALART_CUCKOOPUNCH
 	var/datum/action/cuckoo_implant/implant = new/datum/action/cuckoo_implant()
+	var/datum/action/cuckoo_rush/rush = new/datum/action/cuckoo_rush()
 
 /datum/martial_art/cuckoopunch/teach(mob/living/owner, make_temporary=FALSE)
 	if(..())
 		to_chat(owner, span_nicegreen("You know the arts of [name]!"))
 		to_chat(owner, span_danger("Place your cursor over a move at the top of the screen to see what it does."))
 		implant.Grant(owner)
+		rush.Grant(owner)
 
 /datum/martial_art/cuckoopunch/on_remove(mob/living/owner)
 	to_chat(owner, span_userdanger("You suddenly forget the arts of [name]..."))
 	implant.Remove(owner)
+	rush.Remove(owner)
 
 /datum/action/cuckoo_implant
 	name = "Niaojia-ren Implant - After a delay, knock the target back and if they are human, implant them with a Niaojia-ren Parasite. If they are a mob, deal extra damage."
@@ -29,6 +32,22 @@
 	else
 		owner.visible_message(span_danger("[owner] assumes the threatening stance!"), "<b><i>Your next attack will be a Cuckoo Implant.</i></b>")
 		owner.mind.martial_art.streak = "cuckoo_implant"
+
+/datum/action/cuckoo_rush
+	name = "Niaojia-ren Rush - After a delay, knock the target back and if they are human, implant them with a Niaojia-ren Parasite. If they are a mob, deal extra damage."
+	icon_icon = 'icons/mob/actions/actions_items.dmi'
+	button_icon_state = "lungpunch"
+
+/datum/action/cuckoo_rush/Trigger()
+	if(owner.incapacitated())
+		to_chat(owner, span_warning("You can't use [name] while you're incapacitated."))
+		return
+	if (owner.mind.martial_art.streak == "cuckoo_rush")
+		owner.visible_message(span_danger("[owner] assumes a neutral stance."), "<b><i>Your next attack is cleared.</i></b>")
+		owner.mind.martial_art.streak = ""
+	else
+		owner.visible_message(span_danger("[owner] assumes the threatening stance!"), "<b><i>Your next attack will be a Cuckoo Implant.</i></b>")
+		owner.mind.martial_art.streak = "cuckoo_rush"
 
 /datum/martial_art/cuckoopunch/proc/check_streak(mob/living/A, mob/living/D)
 	switch(streak)

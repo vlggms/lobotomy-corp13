@@ -7,7 +7,7 @@
 
 	nojumpsuit = TRUE
 	species_traits = list(NO_UNDERWEAR, NOEYESPRITES)
-	inherent_traits = list(TRAIT_PERFECT_ATTACKER, TRAIT_BRUTEPALE, TRAIT_BRUTESANITY, TRAIT_SANITYIMMUNE, TRAIT_GENELESS, TRAIT_COMBATFEAR_IMMUNE)
+	inherent_traits = list(TRAIT_PERFECT_ATTACKER, TRAIT_BRUTEPALE, TRAIT_BRUTESANITY, TRAIT_SANITYIMMUNE, TRAIT_GENELESS, TRAIT_COMBATFEAR_IMMUNE, TRAIT_NOGUNS)
 	use_skintones = FALSE
 	species_language_holder = /datum/language_holder/cuckoospawn
 	mutanteyes = /obj/item/organ/eyes/night_vision/cuckoo
@@ -29,34 +29,49 @@
 	payday_modifier = 0
 
 /datum/species/cuckoospawn/random_name(gender,unique,lastname)
-	return "niaojia-ren"
+	return "Niaojia-ren"
 
 /mob/living/carbon/human/species/cuckoospawn
 	race = /datum/species/cuckoospawn
 	faction = list("cuckoospawn")
 	var/datum/martial_art/cuckoopunch/cuckoopunch
+	// var/datum/martial_art/wrestling/cuckoowrestling
 	var/attempted_crosses = 0
+	/// For storing our tackler datum so we can remove it after
+	var/datum/component/tackler
+	/// See: [/datum/component/tackler/var/stamina_cost]
+	var/tackle_stam_cost = 50
+	/// See: [/datum/component/tackler/var/base_knockdown]
+	var/base_knockdown = 1 SECONDS
+	/// See: [/datum/component/tackler/var/range]
+	var/tackle_range = 8
+	/// See: [/datum/component/tackler/var/min_distance]
+	var/min_distance = 0
+	/// See: [/datum/component/tackler/var/speed]
+	var/tackle_speed = 1.5
+	/// See: [/datum/component/tackler/var/skill_mod]
+	var/skill_mod = 0
 
 /mob/living/carbon/human/species/cuckoospawn/Login()
 	. = ..()
 	if(mind) //Just a back up, if somehow this proc gets triggered without a mind.
 		cuckoopunch = new(null)
 		cuckoopunch.teach(src)
+		// cuckoowrestling = new(null)
+		// cuckoowrestling.teach(src)
+	to_chat(src, span_info("<b>You are a Niaojia-ren, the vulture of the ruins.</b> <br>\
+		Your job is to hunt down humans who enter your domain, and to infect them with your skills. <br>\
+		Using your tackle and charged attack, infects humans with your embryo. Make sure that the host is alive for it to grow. <br>\
+		However, this land is also infested with other simple minded creatures... Exterminate them as well.<br>\
+		DO NOT LEAVE THE RUINS... The head is watching you, and will exterminate you if you enter the land of the humans."))
 
 /mob/living/carbon/human/species/cuckoospawn/Initialize()
 	. = ..()
 	AddComponent(/datum/component/footstep, FOOTSTEP_MOB_CLAW, 1, -6)
-	adjust_attribute_buff(FORTITUDE_ATTRIBUTE, 250)
+	adjust_attribute_buff(FORTITUDE_ATTRIBUTE, 200)
 	adjust_attribute_buff(PRUDENCE_ATTRIBUTE, 200)
 	RegisterSignal(src, COMSIG_MOVABLE_PRE_MOVE, PROC_REF(CheckSpace))
-
-/mob/living/carbon/human/species/cuckoospawn/start_pulling(atom/movable/AM, state, force = pull_force, supress_message = FALSE)
-	if(ishostile(AM))
-		var/mob/living/simple_animal/hostile/hostile_friend = AM
-		if(!faction_check_mob(hostile_friend, TRUE))
-			to_chat(src, span_notice("They are dealing with their own thing, don't bother them."))
-			return FALSE
-	. = ..()
+	AddComponent(/datum/component/tackler/cuckoo, stamina_cost=tackle_stam_cost, base_knockdown = base_knockdown, range = tackle_range, speed = tackle_speed, skill_mod = skill_mod, min_distance = min_distance)
 
 /mob/living/carbon/human/species/cuckoospawn/proc/CheckSpace(mob/user, atom/new_location)
 	var/turf/newloc_turf = get_turf(new_location)
@@ -69,7 +84,7 @@
 			if(attempted_crosses > 10)
 				executed_claw()
 			attempted_crosses++
-			to_chat(src, span_danger("You feel a shiver down your spine, the city will not allow you to enter..."))
+			to_chat(src, span_warning("You feel a shiver down your spine, the city will not allow you to enter..."))
 			// valid_tile = FALSE
 
 	// if(!valid_tile)
@@ -100,8 +115,105 @@
 		return
 
 	ckey = ghost.client.ckey
-	to_chat(src, span_info("You are a Cuckoospawn, you only have one goal in mind. Expand and Multiply. Use your 'Implant' skill to infect people."))
 
 /obj/item/organ/eyes/night_vision/cuckoo
 	name = "bird-eye"
 	desc = "Bright open, always looking for their new prey in the dark..."
+
+//I did not know how to add the infection without overiding the whole proc, so I am overiding it completely.
+/datum/component/tackler/cuckoo/sack(mob/living/carbon/user, atom/hit)
+	SIGNAL_HANDLER_DOES_SLEEP
+
+	if(!tackling || !tackle)
+		return
+
+	user.toggle_throw_mode()
+	if(!iscarbon(hit))
+		if(hit.density)
+			return splat(user, hit)
+		return
+
+	var/mob/living/carbon/target = hit
+	var/mob/living/carbon/human/T = target
+	var/mob/living/carbon/human/S = user
+	var/tackle_word = isfelinid(user) ? "pounce" : "tackle" //If cat, "pounce" instead of "tackle".
+
+	var/roll = rollTackle(target)
+	tackling = FALSE
+	tackle.gentle = TRUE
+
+	if(T.stat != DEAD && prob(20) && (roll >= 0))
+		var/obj/item/bodypart/chest/LC = T.get_bodypart(BODY_ZONE_CHEST)
+		if((!LC || LC.status != BODYPART_ROBOTIC) && !T.getorgan(/obj/item/organ/body_egg/cuckoospawn_embryo))
+			to_chat(S, span_danger("You implant [T], soon a new niaojia-ren bird shall grow..."))
+			new /obj/item/organ/body_egg/cuckoospawn_embryo(T)
+			var/turf/TT = get_turf(T)
+			log_game("[key_name(T)] was impregnated by a niaojia-ren at [loc_name(TT)]")
+
+	switch(roll)
+		if(-INFINITY to -5)
+			user.visible_message("<span class='danger'>[user] botches [user.p_their()] [tackle_word] and slams [user.p_their()] head into [target], knocking [user.p_them()]self silly!</span>", "<span class='userdanger'>You botch your [tackle_word] and slam your head into [target], knocking yourself silly!</span>", ignored_mobs = target)
+			to_chat(target, "<span class='userdanger'>[user] botches [user.p_their()] [tackle_word] and slams [user.p_their()] head into you, knocking [user.p_them()]self silly!</span>")
+
+			user.Paralyze(30)
+			var/obj/item/bodypart/head/hed = user.get_bodypart(BODY_ZONE_HEAD)
+			if(hed)
+				hed.receive_damage(brute=15, updating_health=TRUE, wound_bonus = CANT_WOUND)
+			user.gain_trauma(/datum/brain_trauma/mild/concussion)
+
+		if(-4 to -2) // glancing blow at best
+			user.visible_message("<span class='warning'>[user] lands a weak [tackle_word] on [target], briefly knocking [target.p_them()] off-balance!</span>", "<span class='userdanger'>You land a weak [tackle_word] on [target], briefly knocking [target.p_them()] off-balance!</span>", ignored_mobs = target)
+			to_chat(target, "<span class='userdanger'>[user] lands a weak [tackle_word] on you, briefly knocking you off-balance!</span>")
+
+			user.Knockdown(30)
+			if(ishuman(target) && !T.has_movespeed_modifier(/datum/movespeed_modifier/shove))
+				T.add_movespeed_modifier(/datum/movespeed_modifier/shove) // maybe define a slightly more severe/longer slowdown for this
+				addtimer(CALLBACK(T, TYPE_PROC_REF(/mob/living/carbon, clear_shove_slowdown)), SHOVE_SLOWDOWN_LENGTH * 2)
+
+		if(-1 to 0) // decent hit, both parties are about equally inconvenienced
+			user.visible_message("<span class='warning'>[user] lands a passable [tackle_word] on [target], sending them both tumbling!</span>", "<span class='userdanger'>You land a passable [tackle_word] on [target], sending you both tumbling!</span>", ignored_mobs = target)
+			to_chat(target, "<span class='userdanger'>[user] lands a passable [tackle_word] on you, sending you both tumbling!</span>")
+
+			target.adjustStaminaLoss(stamina_cost)
+			target.Paralyze(5)
+			user.Knockdown(20)
+			target.Knockdown(25)
+
+		if(1 to 2) // solid hit, tackler has a slight advantage
+			user.visible_message("<span class='warning'>[user] lands a solid [tackle_word] on [target], knocking them both down hard!</span>", "<span class='userdanger'>You land a solid [tackle_word] on [target], knocking you both down hard!</span>", ignored_mobs = target)
+			to_chat(target, "<span class='userdanger'>[user] lands a solid [tackle_word] on you, knocking you both down hard!</span>")
+
+			target.adjustStaminaLoss(30)
+			target.Paralyze(5)
+			user.Knockdown(10)
+			target.Knockdown(20)
+
+		if(3 to 4) // really good hit, the target is definitely worse off here. Without positive modifiers, this is as good a tackle as you can land
+			user.visible_message("<span class='warning'>[user] lands an expert [tackle_word] on [target], knocking [target.p_them()] down hard while landing on [user.p_their()] feet with a passive grip!</span>", "<span class='userdanger'>You land an expert [tackle_word] on [target], knocking [target.p_them()] down hard while landing on your feet with a passive grip!</span>", ignored_mobs = target)
+			to_chat(target, "<span class='userdanger'>[user] lands an expert [tackle_word] on you, knocking you down hard and maintaining a passive grab!</span>")
+
+			user.SetKnockdown(0)
+			user.get_up(TRUE)
+			user.forceMove(get_turf(target))
+			target.adjustStaminaLoss(40)
+			target.Paralyze(5)
+			target.Knockdown(30)
+			if(ishuman(target) && ishuman(user))
+				S.dna.species.grab(S, T)
+				S.setGrabState(GRAB_PASSIVE)
+
+		if(5 to INFINITY) // absolutely BODIED
+			user.visible_message("<span class='warning'>[user] lands a monster [tackle_word] on [target], knocking [target.p_them()] senseless and applying an aggressive pin!</span>", "<span class='userdanger'>You land a monster [tackle_word] on [target], knocking [target.p_them()] senseless and applying an aggressive pin!</span>", ignored_mobs = target)
+			to_chat(target, "<span class='userdanger'>[user] lands a monster [tackle_word] on you, knocking you senseless and aggressively pinning you!</span>")
+
+			user.SetKnockdown(0)
+			user.get_up(TRUE)
+			user.forceMove(get_turf(target))
+			target.adjustStaminaLoss(40)
+			target.Paralyze(5)
+			target.Knockdown(30)
+			if(ishuman(target) && ishuman(user))
+				S.dna.species.grab(S, T)
+				S.setGrabState(GRAB_AGGRESSIVE)
+
+	return COMPONENT_MOVABLE_IMPACT_FLIP_HITPUSH

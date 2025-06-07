@@ -181,12 +181,6 @@
 	icon_state = "claw_dash"
 	duration = 5
 
-/obj/effect/temp_visual/dir_setting/claw_appears/Initialize()
-	. = ..()
-	new /obj/effect/temp_visual/dir_setting/ninja/phase (get_turf(src))
-	playsound(src, 'sound/effects/contractorbatonhit.ogg', 100, FALSE, 9)
-
 /obj/effect/temp_visual/dir_setting/claw_appears/Destroy()
-	new /obj/effect/temp_visual/dir_setting/ninja/phase/out (get_turf(src))
 	playsound(src, 'ModularTegustation/Tegusounds/claw/death.ogg', 50, TRUE)
 	. = ..()
