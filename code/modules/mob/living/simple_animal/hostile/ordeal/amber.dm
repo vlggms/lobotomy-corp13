@@ -33,6 +33,7 @@
 	var/burrowing = FALSE
 
 	var/can_burrow_solo = TRUE // False for amber dawns spawned by dusks that are still alive
+	var/can_infect = TRUE // False for the hungriest one. Maybe also set this to false for city or dusk spawn if it ever becomes an issue.
 
 /mob/living/simple_animal/hostile/ordeal/amber_bug/Initialize()
 	. = ..()
@@ -98,6 +99,15 @@
 			for(var/obj/machinery/door/D in T.contents)
 				if(D.density)
 					return
+			if(ishuman(attacked_target) && can_infect)
+				var/mob/living/carbon/human/H = attacked_target
+				var/parasite_slot = H.getorganslot(ORGAN_SLOT_PARASITE_EGG)
+				if(H.stat != CONSCIOUS && !parasite_slot) //Only infect people in crit/dead and that don't have a parasite of some kind already.
+					var/obj/item/organ/amber_bug/amber_parasite = new(H)
+					amber_parasite.ordeal_reference = ordeal_reference
+					playsound(get_turf(src), 'sound/effects/ordeals/amber/dawn_dig_in.ogg', 25, 1)
+					to_chat(H, span_danger("The bug is eating its way inside your chest!"))
+					qdel(src)
 			forceMove(T)
 			SLEEP_CHECK_DEATH(2)
 
@@ -146,7 +156,7 @@
 	burrow_cooldown = world.time + burrow_cooldown_time
 	burrowing = FALSE
 
-//Amber dawn spawned from dusk
+//Amber dawn spawned from dusk and hungriest one.
 /mob/living/simple_animal/hostile/ordeal/amber_bug/spawned
 	can_burrow_solo = FALSE
 	butcher_results = list()
@@ -168,6 +178,140 @@
 		bug_mommy.spawned_mobs -= src
 	bug_mommy = null
 	return ..()
+
+//A variation of the amber dawn that will eat corpses to grow stronger.
+/mob/living/simple_animal/hostile/ordeal/amber_bug/hungriest_one
+	name = "Hungriest One"
+	desc = "This one looks like it'll eat anything that moves."
+	maxHealth = 150
+	health = 150
+	melee_damage_lower = 9
+	melee_damage_upper = 12
+	color = "#a51f08"
+	can_infect = FALSE
+	stat_attack = DEAD
+	can_burrow_solo = FALSE
+	var/feeding_count = 0
+
+/mob/living/simple_animal/hostile/ordeal/amber_bug/hungriest_one/Initialize()
+	. = ..()
+	faction = list() //Removes all original allegiances of the bug on spawn. It's everyone's problem now.
+
+/mob/living/simple_animal/hostile/ordeal/amber_bug/hungriest_one/AttackingTarget(atom/attacked_target)
+	. = ..()
+	if(!. || !isliving(attacked_target))
+		return
+
+	var/mob/living/meal = attacked_target
+	if(istype(attacked_target, /mob/living/simple_animal/hostile/ordeal/amber_bug))
+		meal.adjustBruteLoss(200) //Should one shot every bug, but not other hugriest one.
+		visible_message(span_warning("[meal] is torn to shred by [src]!"))
+
+	if(meal.stat != DEAD)
+		return
+
+	var/turf/T = get_turf(src)
+	if(ishuman(meal))
+		for(var/i = 0, i < 3, i++)
+			new /mob/living/simple_animal/hostile/ordeal/amber_bug/spawned(T) //Every corpse is worth as much feeding count, but human ones lets it spawn more bugs to eat.
+			adjustBruteLoss(-maxHealth*0.5)
+	feeding_count += 1
+
+	if(feeding_count >= 10)
+		gib()
+		for(var/i = 0, i < 30, i++)
+			new /mob/living/simple_animal/hostile/ordeal/amber_bug/spawned(T) //TODO: make it evolve into a unique dusk that spawns more or something. Right now it just makes 30 of them.
+	else
+		setMaxHealth(maxHealth*1.3) //Exponential growth. It should be stopped by the eventual feeding count cap.
+		adjustBruteLoss(-maxHealth*0.2)
+		melee_damage_lower += 3
+		melee_damage_upper += 3 //Should go up to 40~ damage total before it explodes.
+
+	meal.gib()
+
+/* DAWN AMBER ORGAN */
+/obj/item/organ/amber_bug
+	name = "hungry mass"
+	zone = BODY_ZONE_CHEST
+	slot = ORGAN_SLOT_PARASITE_EGG
+	icon_state = "tonguetied"
+	color = "gold"
+	var/physical_symptoms = FALSE
+	var/feeding_stage = 0
+	var/max_feeding_stage = 3
+	var/feeding_duration
+	var/cured = FALSE
+	var/datum/ordeal/ordeal_reference
+
+/obj/item/organ/amber_bug/Initialize()
+	. = ..()
+	if(ishuman(loc))
+		feeding_duration = world.time + (1.5 MINUTES)
+		Insert(loc)
+
+/obj/item/organ/amber_bug/on_find(mob/living/finder)
+	. = ..()
+	to_chat(finder, span_warning("You find something eating [owner]'s insides!"))
+
+/obj/item/organ/amber_bug/Remove(mob/living/carbon/human/M, special = 0)
+	if(M && !cured)
+		visible_message(span_warning("A bug leaps out of [M]!"))
+		SpawnBug(1)
+	. = ..()
+
+/obj/item/organ/amber_bug/on_life()
+	. = ..()
+	growProcess()
+
+/obj/item/organ/amber_bug/on_death()
+	. = ..()
+	growProcess() //Keeps eating even if they're dead.
+
+/obj/item/organ/amber_bug/proc/SpawnBug(bug_spawned)
+	var/turf/T = get_turf(owner)
+	for(var/i = 0, i < bug_spawned, i++)
+		var/mob/living/simple_animal/hostile/ordeal/amber_bug/bug = new(T)
+		if(ordeal_reference)
+			bug.ordeal_reference = ordeal_reference
+			ordeal_reference.ordeal_mobs += bug
+
+/obj/item/organ/amber_bug/proc/growProcess()
+	if(!src || QDELETED(src))
+		return //Here to fix a bug where it'd spawn two worms for some reason.
+
+	if(!owner)
+		qdel(src)
+		return
+
+	var/mob/living/carbon/human/H = owner
+	var/turf/T = get_turf(H)
+
+	if(H?.reagents?.has_reagent(/datum/reagent/amber)) //The 'cure' is amber bug meat.
+		to_chat(H, span_warning("The bug, tricked into eating the meat of its own kind, finds its way out of your body!"))
+		var/mob/living/simple_animal/hostile/ordeal/amber_bug/hungriest_one/bug = new(T)
+		if(ordeal_reference)
+			bug.ordeal_reference = ordeal_reference
+			ordeal_reference.ordeal_mobs += bug
+		cured = TRUE
+		qdel(src)
+		return
+
+	if(world.time <= feeding_duration)
+		return
+
+	var/bug_spawned = feeding_stage + 2 //Should go 3,4,5 bugs then explode, for a total of 12 bugs per body over 4.5 minutes.
+	feeding_duration = world.time + (1.5 MINUTES)
+	feeding_stage++
+	H.apply_damage(feeding_stage * 10, RED_DAMAGE, null, H.run_armor_check(null, RED_DAMAGE), spread_damage = TRUE)
+	visible_message(span_danger("[feeding_stage] bugs eat their way out of [H]'s body!"))
+	playsound(get_turf(src), 'sound/effects/ordeals/amber/dawn_dig_out.ogg', 25, 1)
+	if(H.stat != DEAD)
+		H.emote("scream")
+	SpawnBug(bug_spawned)
+	if(feeding_stage >= max_feeding_stage)
+		if(H.stat == DEAD)
+			H.gib()
+		qdel(src)
 
 // Amber dusk
 /mob/living/simple_animal/hostile/ordeal/amber_dusk
