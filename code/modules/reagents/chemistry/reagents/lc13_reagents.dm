@@ -81,3 +81,13 @@
 	name = "Concentrated Pale Toxin"
 	damage = 5
 	toxpwr = 0.5
+
+///I don't know if this is supposed to be here but whatever. Extracted from Amber ordeals meat, only serves to get the parasite out at the moment.
+/datum/reagent/amber
+	name = "Amber Extract"
+	description = "It tastes awful, yet you want more."
+	glass_name = "glass of Amber Extract"
+	glass_desc = "The liquid shifts with hunger."
+	color = "#5c462d"
+	taste_description = "starvation"
+	can_synth = FALSE
