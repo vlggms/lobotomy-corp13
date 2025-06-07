@@ -1699,7 +1699,10 @@
 /obj/structure/stone_tile/block/cracked{
 	dir = 1
 	},
-/mob/living/simple_animal/hostile/morsel,
+/mob/living/simple_animal/hostile/morsel{
+	faction = list("amber_ordeal","neutral", "cuckoospawn");
+	name = "captive morsel"
+	},
 /turf/open/floor/plating/asteroid/basalt,
 /area/city/backstreets_alley)
 "Up" = (

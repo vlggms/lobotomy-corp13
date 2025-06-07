@@ -31,6 +31,7 @@
 	light_range = 5
 	light_power = 7
 	max_integrity = 500
+	density = TRUE
 	anchored = TRUE
 	can_buckle = TRUE
 	var/collected_meat = 0
@@ -80,11 +81,14 @@
 
 /obj/structure/bird_statue/attack_hand(mob/user)
 	. = ..()
-	var/statue_ask = alert("[src] awaits your demand.", "Oh dear ancient elder... If you can grant us a", "niaojia-ren salve (6 Meat)", "host stabilizer (4 Meat)", "niaojia-ren revive (15 Meat)", "Cancel")
-	if(statue_ask == "niaojia-ren salve (6 Meat)")
-		if(collected_meat >= 6)
+	if(!istype(user, /mob/living/carbon/human/species/cuckoospawn))
+		to_chat(user, span_warning("You have no idea how this works!"))
+		return FALSE
+	var/statue_ask = alert("[src] awaits your demand.", "Oh dear ancient elder... If you can grant us a", "niaojia-ren salve (4 Meat)", "host stabilizer (4 Meat)", "niaojia-ren revive (15 Meat)", "Cancel")
+	if(statue_ask == "niaojia-ren salve (4 Meat)")
+		if(collected_meat >= 4)
 			to_chat(user, span_nicegreen("[src] understands your request, and grants your request!"))
-			collected_meat -= 6
+			collected_meat -= 4
 			new /obj/item/cuckoo_healing (get_turf(user))
 		else
 			to_chat(user, span_warning("[src] deines your request, it demands more flesh!"))
@@ -116,7 +120,7 @@
 		var/mob/living/carbon/human/species/cuckoospawn/bird_owner = user
 		to_chat(bird_owner, span_notice("You start applying the [src] on your wounds..."))
 		if(do_after(bird_owner, 30, src))
-			bird_owner.adjustBruteLoss(-75)
+			bird_owner.adjustBruteLoss(-100)
 			to_chat(bird_owner, span_nicegreen("You feel your wounds recover as the salve molds into your flesh!"))
 			qdel(src)
 	else

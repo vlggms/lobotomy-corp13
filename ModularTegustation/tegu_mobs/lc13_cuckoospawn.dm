@@ -3,9 +3,9 @@
 	desc = "A tall humaniod looking bird, with eyes glaring anything moving around it."
 	icon = 'icons/mob/cuckoospawn_big.dmi'
 	icon_state = "evil_ass_bird"
-	icon_living = "evil_ass_corpse"
-	maxHealth = 700
-	health = 700
+	icon_dead = "evil_ass_corpse"
+	maxHealth = 300
+	health = 300
 	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 1.2, WHITE_DAMAGE = 0.2, BLACK_DAMAGE = 0.6, PALE_DAMAGE = 1.5)
 	faction = list("cuckoospawn")
 	city_faction = FALSE

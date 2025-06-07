@@ -112,9 +112,8 @@
 		REMOVE_TRAIT(new_cuckoo, TRAIT_HANDS_BLOCKED, type)
 		new_cuckoo.notransform = 0
 		new_cuckoo.invisibility = 0
-	else
-		new_cuckoo.visible_message(span_danger("[new_cuckoo] wriggles out of [owner]!"), span_userdanger("You exit [owner], your previous host."))
-		owner.adjustBruteLoss(120)
+	new_cuckoo.visible_message(span_danger("[new_cuckoo] wriggles out of [owner]!"), span_userdanger("You exit [owner], your previous host."))
+	owner.adjustBruteLoss(240)
 	owner.cut_overlay(overlay)
 
 /obj/item/organ/body_egg/cuckoospawn_embryo/proc/GrowingCarbon(mob/dead/observer/newclient)
@@ -142,9 +141,8 @@
 		new_cuckoo.notransform = 0
 		new_cuckoo.invisibility = 0
 
-	else
-		new_cuckoo.visible_message(span_danger("[new_cuckoo] wriggles out of [owner]!"), span_userdanger("You exit [owner], your previous host."))
-		owner.adjustBruteLoss(200)
+	new_cuckoo.visible_message(span_danger("[new_cuckoo] wriggles out of [owner]!"), span_userdanger("You exit [owner], your previous host."))
+	owner.adjustBruteLoss(240)
 	owner.cut_overlay(overlay)
 
 /*----------------------------------------

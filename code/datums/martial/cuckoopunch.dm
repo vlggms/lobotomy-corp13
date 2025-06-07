@@ -86,6 +86,6 @@
 			var/turf/T = get_turf(human_target)
 			log_game("[key_name(human_target)] was impregnated by a niaojia-ren at [loc_name(T)]")
 	if(isanimal(D))
-		D.apply_damage(rand(150), RED_DAMAGE)
+		D.apply_damage(75, RED_DAMAGE)
 	if(atk_verb)
 		log_combat(A, D, "[atk_verb] (Cuckoo Punch)")
