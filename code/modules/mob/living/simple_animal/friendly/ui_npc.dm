@@ -25,8 +25,20 @@
 	var/emote_delay = 6000
 	var/random_emotes = "baa!"
 	var/bubble = "default2"
-	var/image/speech_bubble
+	var/mutable_appearance/speech_bubble
+	var/can_interact = FALSE
+	var/list/active_tgui_sessions = list()
 
+/mob/living/simple_animal/hostile/ui_npc/proc/speaking_on()
+	if(!can_interact)
+		add_overlay(speech_bubble)
+		can_interact = TRUE
+
+/mob/living/simple_animal/hostile/ui_npc/proc/speaking_off()
+	if(can_interact)
+		close_all_tgui()
+		cut_overlay(speech_bubble)
+		can_interact = FALSE
 
 /mob/living/simple_animal/hostile/ui_npc/Life()
 	. = ..()
@@ -37,11 +49,14 @@
 
 /mob/living/simple_animal/hostile/ui_npc/Initialize()
 	. = ..()
-
+	speech_bubble = mutable_appearance('icons/mob/talk.dmi', bubble, ABOVE_MOB_LAYER)
+	active_tgui_sessions = list()
 	// Original code
 	emote_list = splittext(random_emotes, ";")
 	last_emote = world.time + rand(0, emote_delay)
-	add_overlay(mutable_appearance('icons/mob/talk.dmi', bubble, ABOVE_MOB_LAYER))
+	speaking_on()
+
+	// add_overlay(mutable_appearance('icons/mob/talk.dmi', bubble, ABOVE_MOB_LAYER))
 
 	// Initialize NPC-specific variables (shared across all player interactions)
 	scene_manager.npc_vars.variables["name"] = name
@@ -55,14 +70,30 @@
 /mob/living/simple_animal/hostile/ui_npc/ui_static_data(mob/user)
 	return list()
 
-// Called periodically if autoupdate=TRUE. If you need periodic refreshes, do them here.
 /mob/living/simple_animal/hostile/ui_npc/ui_interact(mob/user, datum/tgui/ui)
 	user << browse_rsc(file("[portrait_folder][portrait]"))
-	. = ..()
-	ui = SStgui.try_update_ui(user, src, ui)
-	if(!ui)
-		ui = new(user, src, "SpeakingNpc")
-		ui.open()
+	. = ..() // Call parent's ui_interact as in original code
+
+	// SStgui.try_update_ui will:
+	// 1. Use 'ui' (if provided from args) and if it's valid for this user/src/"SpeakingNpc".
+	// 2. Else, try to find an existing tgui datum for user/src/"SpeakingNpc".
+	// 3. Else, return null.
+	// It updates the UI's content if a tgui datum is found/used.
+	var/datum/tgui/current_tgui_instance = SStgui.try_update_ui(user, src, ui)
+
+	if(!current_tgui_instance) // If no existing UI, or 'ui' arg was not suitable
+		current_tgui_instance = new(user, src, "SpeakingNpc") // owner is src (the NPC), key is "SpeakingNpc"
+		current_tgui_instance.open()
+
+	// Ensure this tgui instance is tracked
+	if(current_tgui_instance)
+		if(!active_tgui_sessions) // Should have been initialized, but for safety
+			active_tgui_sessions = list()
+		if(!(current_tgui_instance in active_tgui_sessions))
+			active_tgui_sessions.Add(current_tgui_instance)
+
+	return current_tgui_instance // SStgui expects the datum/tgui instance to be returned
+
 
 /mob/living/simple_animal/hostile/ui_npc/attack_hand(mob/living/carbon/user)
 	if(!stat && user.a_intent == INTENT_HELP && !client)
@@ -72,15 +103,11 @@
 			return
 		if(target)
 			return
+		if(!can_interact)
+			return
 		ui_interact(user)
 		return TRUE
 	. = ..()
-
-/mob/living/simple_animal/hostile/ui_npc/attackby(obj/item/O, mob/user, params)
-	. = ..()
-	if(!user || !user.client)
-		return
-	ui_interact(user)
 
 // Enhanced ui_data method with player-specific variable processing
 /mob/living/simple_animal/hostile/ui_npc/ui_data(mob/user)
@@ -162,12 +189,27 @@
 
 	return FALSE
 
-// Handle UI closing - clear conversation state
 /mob/living/simple_animal/hostile/ui_npc/ui_close(mob/user)
 	user.stop_sound_channel(CHANNEL_MUMBLE)
 
-	// Clear dialog state when UI closes
 	if(user)
 		scene_manager.clear_conversation(user)
+		var/datum/tgui/session_to_remove = SStgui.get_open_ui(user, src, "SpeakingNpc")
 
-	return
+		if(session_to_remove)
+			if(active_tgui_sessions && (session_to_remove in active_tgui_sessions))
+				active_tgui_sessions.Remove(session_to_remove)
+
+
+/mob/living/simple_animal/hostile/ui_npc/proc/close_all_tgui()
+	if(active_tgui_sessions && active_tgui_sessions.len > 0)
+		// Iterate over a copy, as closing a session might trigger this NPC's ui_close(), modifying the original list
+		var/list/sessions_to_close = active_tgui_sessions.Copy()
+		for(var/datum/tgui/session in sessions_to_close)
+			if(session && session.user && session.user.client) // Ensure session and its user/client are valid
+				session.close() // This should initiate the TGUI close process for that user's window
+		active_tgui_sessions.Cut() // Clear the NPC's list as all relevant sessions are being told to close
+
+/mob/living/simple_animal/hostile/ui_npc/death(gibbed, message)
+	speaking_off()
+	. = ..()
