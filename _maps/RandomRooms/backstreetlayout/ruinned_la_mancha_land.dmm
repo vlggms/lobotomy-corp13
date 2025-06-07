@@ -2168,6 +2168,14 @@
 /obj/effect/decal/cleanable/dirt/dust,
 /turf/open/floor/carpet/black,
 /area/city/backstreets_alley)
+"SC" = (
+/obj/structure/stone_tile/block,
+/obj/structure/stone_tile/block/cracked{
+	dir = 1
+	},
+/mob/living/simple_animal/hostile/morsel,
+/turf/open/floor/plating/asteroid/basalt,
+/area/city/backstreets_alley)
 "SJ" = (
 /turf/closed/indestructible/rock,
 /area/space)
@@ -4143,7 +4151,7 @@ Ib
 fb
 aE
 aE
-qQ
+SC
 NX
 xS
 jS

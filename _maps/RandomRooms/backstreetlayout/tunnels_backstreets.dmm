@@ -177,6 +177,14 @@
 /obj/effect/mob_spawn/human/corpse/damaged,
 /turf/open/floor/plating/asteroid/basalt,
 /area/city/backstreets_alley)
+"jw" = (
+/obj/structure/stone_tile/block,
+/obj/structure/stone_tile/block/cracked{
+	dir = 1
+	},
+/mob/living/simple_animal/hostile/morsel,
+/turf/open/floor/plating/asteroid/basalt,
+/area/city/backstreets_alley)
 "kn" = (
 /turf/open/floor/plating/asteroid/basalt,
 /area/city/backstreets_alley)
@@ -15393,7 +15401,7 @@ gd
 PU
 nB
 nB
-DA
+jw
 dI
 Zu
 vZ

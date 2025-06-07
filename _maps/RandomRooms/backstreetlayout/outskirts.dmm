@@ -1694,6 +1694,14 @@
 /obj/structure/stone_tile/center,
 /turf/open/floor/plating/asteroid/basalt,
 /area/city/backstreets_alley)
+"Uj" = (
+/obj/structure/stone_tile/block,
+/obj/structure/stone_tile/block/cracked{
+	dir = 1
+	},
+/mob/living/simple_animal/hostile/morsel,
+/turf/open/floor/plating/asteroid/basalt,
+/area/city/backstreets_alley)
 "Up" = (
 /turf/open/floor/carpet/royalblack,
 /area/city/backstreets_room/resurgence_village)
@@ -3258,7 +3266,7 @@ qZ
 DD
 Il
 Il
-Ov
+Uj
 TZ
 YZ
 jA

@@ -10,6 +10,7 @@
 	faction = list("cuckoospawn")
 	city_faction = FALSE
 	stat_attack = HARD_CRIT
+	stat_attack = HARD_CRIT
 	melee_damage_type = RED_DAMAGE
 	melee_damage_lower = 20
 	melee_damage_upper = 24
@@ -29,27 +30,31 @@
 	a_intent = INTENT_HARM
 	var/attempted_crosses = 0
 	var/bird_watching = FALSE //Time to remake Canto 8 Peak
+	var/head_immunity_start
+	var/head_immunity_duration = 1 MINUTES
 
 /mob/living/simple_animal/hostile/cuckoospawn/Initialize()
 	. = ..()
+	head_immunity_start = world.time + head_immunity_duration
 	RegisterSignal(src, COMSIG_MOVABLE_PRE_MOVE, PROC_REF(CheckSpace))
 
 /mob/living/simple_animal/hostile/cuckoospawn/proc/CheckSpace(mob/user, atom/new_location)
-	var/turf/newloc_turf = get_turf(new_location)
-	// var/valid_tile = TRUE
+	if(head_immunity_start < world.time)
+		var/turf/newloc_turf = get_turf(new_location)
+		// var/valid_tile = TRUE
 
-	var/area/new_area = get_area(newloc_turf)
-	if(istype(new_area, /area/city))
-		var/area/city/city_area = new_area
-		if(city_area.in_city && !bird_watching)
-			if(attempted_crosses > 10)
-				executed_claw()
-			attempted_crosses++
-			to_chat(src, span_danger("You feel a shiver down your spine, the city will not allow you to enter..."))
-			// valid_tile = FALSE
+		var/area/new_area = get_area(newloc_turf)
+		if(istype(new_area, /area/city))
+			var/area/city/city_area = new_area
+			if(city_area.in_city && !bird_watching)
+				if(attempted_crosses > 10)
+					executed_claw()
+				attempted_crosses++
+				to_chat(src, span_danger("You feel a shiver down your spine, the city will not allow you to enter..."))
+				// valid_tile = FALSE
 
-	// if(!valid_tile)
-	// 	return COMPONENT_MOVABLE_BLOCK_PRE_MOVE
+		// if(!valid_tile)
+		// 	return COMPONENT_MOVABLE_BLOCK_PRE_MOVE
 
 /mob/living/simple_animal/hostile/cuckoospawn/AttackingTarget(atom/attacked_target)
 	var/mob/living/carbon/human/human_target

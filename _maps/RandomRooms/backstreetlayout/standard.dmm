@@ -1388,6 +1388,14 @@
 	},
 /turf/open/floor/plating/rust,
 /area/city/backstreets_room)
+"XO" = (
+/obj/structure/stone_tile/block,
+/obj/structure/stone_tile/block/cracked{
+	dir = 1
+	},
+/mob/living/simple_animal/hostile/morsel,
+/turf/open/floor/plating/asteroid/basalt,
+/area/city/backstreets_alley)
 "XV" = (
 /obj/effect/turf_decal/weather/dirt{
 	dir = 1
@@ -28234,7 +28242,7 @@ Rj
 rY
 Wn
 Wn
-zt
+XO
 Qw
 cW
 Zq

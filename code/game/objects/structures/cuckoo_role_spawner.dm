@@ -13,10 +13,6 @@
 	flavour_text = "You wake up in this strange location... Filled with unfamiliar sounds... \
 	You have seen lights in the distance... they foreshadow the arrival of humans... Humans? In your sacred domain?! \
 	Looks like you found some new hosts for your children..."
-	//TODO: Add a statue which cuckoo birds can feed meat, to unlock heals, human heals, and one more thing. DONE
-	//TODO: Add a checker for implant, not letting dead people be planted, and the embryo does not grow if the user is dead. UNCHECKED
-	//TODO: Make it so cuckoo birds have a knock out skill, which only works on targets with 20% or less HP, and NPC cuckoo birds don't kill. Only into crit.
-	//TODO: Add a cage to the cuckoo bird lair, which cuffs and key door. Along with that, embryo stuns the user when they leave.
 
 /obj/effect/mob_spawn/cuckoo_spawner/Initialize()
 	. = ..()
@@ -26,7 +22,7 @@
 
 /obj/structure/bird_statue
 	name = "old bird statue"
-	desc = "An statue of great worship, it appears to have sinister around it..."
+	desc = "An statue of great worship, it appears to have sinister around it... If you understood what it means, you could offer stuff to it..."
 	icon = 'ModularTegustation/Teguicons/64x64.dmi'
 	icon_state = "thunderbird_altar"
 	pixel_x = -16
@@ -36,7 +32,27 @@
 	light_power = 7
 	max_integrity = 500
 	anchored = TRUE
+	can_buckle = TRUE
 	var/collected_meat = 0
+
+/obj/structure/bird_statue/user_buckle_mob(mob/living/M, mob/user, check_loc)
+	if(M.stat != DEAD)
+		return FALSE
+	if(!istype(user, /mob/living/carbon/human/species/cuckoospawn))
+		to_chat(user, span_warning("You have no idea how this works!"))
+		return FALSE
+	to_chat(user, span_notice("You start offering [M] to your god..."))
+	if(do_after(user, 20, target = M))
+		if(!istype(M, /mob/living/simple_animal))
+			to_chat(user, span_warning("[src] rejects your offering!"))
+			return
+		to_chat(user, span_nicegreen("[src] is proud of your offering!"))
+		playsound(get_turf(M), 'sound/abnormalities/thunderbird/tbird_bolt.ogg', 50, 0, 8)
+		new /obj/effect/temp_visual/tbirdlightning(get_turf(M))
+		var/datum/effect_system/smoke_spread/S = new
+		S.set_up(0, get_turf(M))	//Smoke shouldn't really obstruct your vision
+		S.start()
+		M.gib()
 
 /obj/structure/bird_statue/attacked_by(obj/item/I, mob/living/user)
 	. = ..()
@@ -180,7 +196,15 @@
 			to_chat(bird_owner, span_nicegreen("You feel your wounds recover as you devour the bolus!"))
 			qdel(src)
 	else
-		to_chat(user, span_notice("You don't think it would be a good idea to eat it..."))
+		if(ishuman(user))
+			var/mob/living/carbon/human/implanted_human = user
+			implanted_human.adjustBruteLoss(-implanted_human.maxHealth)
+			to_chat(implanted_human, span_info("It has a strange taste..."))
+			var/obj/item/bodypart/chest/LC = implanted_human.get_bodypart(BODY_ZONE_CHEST)
+			if((!LC || LC.status != BODYPART_ROBOTIC) && !implanted_human.getorgan(/obj/item/organ/body_egg/cuckoospawn_embryo) && prob(75))
+				new /obj/item/organ/body_egg/cuckoospawn_embryo(implanted_human)
+				var/turf/TT = get_turf(implanted_human)
+				log_game("[key_name(implanted_human)] was impregnated by [src] at [loc_name(TT)]")
 
 /obj/machinery/door/keycard/cuckoo_nest
 	desc = "A dusty, scratched door with a thick lock attached."

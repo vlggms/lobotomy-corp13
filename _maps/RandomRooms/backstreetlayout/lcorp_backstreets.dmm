@@ -4628,8 +4628,13 @@
 /turf/open/floor/carpet/red,
 /area/city/backstreets_room)
 "Cm" = (
-/turf/closed/indestructible/reinforced,
-/area/space)
+/obj/structure/stone_tile/block,
+/obj/structure/stone_tile/block/cracked{
+	dir = 1
+	},
+/mob/living/simple_animal/hostile/morsel,
+/turf/open/floor/plating/asteroid/basalt,
+/area/city/backstreets_alley)
 "Cn" = (
 /obj/effect/landmark/backstreetspawneast,
 /turf/open/floor/plating/asteroid/basalt,
@@ -17302,7 +17307,7 @@ Sf
 LD
 Nj
 Nj
-rM
+Cm
 Vo
 cC
 Xm
@@ -18304,7 +18309,7 @@ JE
 JE
 iY
 iY
-Cm
+Ux
 kI
 kI
 kI
@@ -18415,7 +18420,7 @@ JE
 JE
 iY
 Pz
-Cm
+Ux
 kI
 kI
 kI
@@ -18526,7 +18531,7 @@ JE
 JE
 iY
 iY
-Cm
+Ux
 kI
 kI
 kI
@@ -18637,7 +18642,7 @@ JE
 JE
 iY
 iY
-Cm
+Ux
 kI
 kI
 JE
@@ -18748,7 +18753,7 @@ JE
 JE
 iY
 iY
-Cm
+Ux
 kI
 kI
 JE
@@ -18859,7 +18864,7 @@ JE
 JE
 iY
 iY
-Cm
+Ux
 kI
 kI
 JE
@@ -18970,7 +18975,7 @@ JE
 JE
 iY
 iY
-Cm
+Ux
 kI
 kI
 JE
@@ -19081,7 +19086,7 @@ JE
 JE
 iY
 iY
-Cm
+Ux
 kI
 kI
 JE
@@ -19192,7 +19197,7 @@ JE
 JE
 iY
 iY
-Cm
+Ux
 kI
 kI
 JE
@@ -19303,7 +19308,7 @@ JE
 JE
 iY
 iY
-Cm
+Ux
 kI
 kI
 JE
@@ -19414,7 +19419,7 @@ JE
 JE
 iY
 iY
-Cm
+Ux
 kI
 kI
 kI
@@ -19525,7 +19530,7 @@ JE
 JE
 iY
 iY
-Cm
+Ux
 kI
 kI
 kI
@@ -19636,7 +19641,7 @@ JE
 JE
 iY
 iY
-Cm
+Ux
 kI
 kI
 kI
@@ -19747,7 +19752,7 @@ JE
 JE
 iY
 iY
-Cm
+Ux
 kI
 kI
 kI
@@ -19858,7 +19863,7 @@ JE
 JE
 iY
 iY
-Cm
+Ux
 kI
 kI
 JE
@@ -19969,7 +19974,7 @@ kI
 Ux
 iY
 iY
-Cm
+Ux
 kI
 kI
 JE
@@ -20080,7 +20085,7 @@ kI
 Ux
 iY
 iY
-Cm
+Ux
 kI
 kI
 JE
@@ -20191,7 +20196,7 @@ kI
 Ux
 iY
 iY
-Cm
+Ux
 kI
 kI
 JE
@@ -20302,7 +20307,7 @@ kI
 Ux
 iY
 iY
-Cm
+Ux
 kI
 kI
 JE
@@ -20413,7 +20418,7 @@ kI
 Ux
 iY
 iY
-Cm
+Ux
 kI
 kI
 JE
@@ -20524,7 +20529,7 @@ kI
 Ux
 iY
 iY
-Cm
+Ux
 kI
 kI
 JE
@@ -20635,7 +20640,7 @@ kI
 Ux
 iY
 iY
-Cm
+Ux
 kI
 kI
 kI
@@ -20746,7 +20751,7 @@ kI
 Ux
 iY
 iY
-Cm
+Ux
 kI
 kI
 kI
@@ -20857,7 +20862,7 @@ kI
 Ux
 iY
 iY
-JE
+Ux
 JE
 JE
 JE
@@ -20968,7 +20973,7 @@ kI
 Ux
 iY
 iY
-JE
+Ux
 JE
 JE
 JE
@@ -21079,7 +21084,7 @@ kI
 Ux
 iY
 Pz
-JE
+Ux
 JE
 JE
 JE
@@ -21190,7 +21195,7 @@ kI
 Ux
 iY
 iY
-JE
+Ux
 JE
 JE
 JE
@@ -21301,7 +21306,7 @@ kI
 Ux
 iY
 iY
-JE
+Ux
 JE
 JE
 JE
@@ -21412,7 +21417,7 @@ kI
 Ux
 iY
 iY
-JE
+Ux
 JE
 JE
 JE
@@ -21523,7 +21528,7 @@ kI
 Ux
 iY
 iY
-JE
+Ux
 JE
 JE
 JE
@@ -21634,7 +21639,7 @@ kI
 Ux
 iY
 iY
-Cm
+Ux
 kI
 kI
 kI
@@ -21745,7 +21750,7 @@ kI
 Ux
 iY
 iY
-Cm
+Ux
 kI
 kI
 kI
@@ -21856,7 +21861,7 @@ JE
 hK
 iY
 iY
-Cm
+Ux
 kI
 kI
 kI
@@ -21967,7 +21972,7 @@ JE
 JE
 iY
 iY
-Cm
+Ux
 kI
 kI
 kI
@@ -22078,7 +22083,7 @@ JE
 JE
 iY
 iY
-Cm
+Ux
 kI
 JE
 JE
@@ -22189,7 +22194,7 @@ JE
 JE
 iY
 iY
-Cm
+Ux
 kI
 JE
 JE
@@ -22300,7 +22305,7 @@ JE
 JE
 iY
 iY
-Cm
+Ux
 kI
 JE
 JE
@@ -22411,7 +22416,7 @@ JE
 JE
 iY
 iY
-Cm
+Ux
 kI
 JE
 JE
@@ -22522,7 +22527,7 @@ JE
 JE
 iY
 iY
-Cm
+Ux
 kI
 JE
 JE

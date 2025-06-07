@@ -466,6 +466,14 @@
 /obj/effect/gibspawner/human/bodypartless,
 /turf/open/floor/mineral/bananium,
 /area/city/backstreets_room)
+"jr" = (
+/obj/structure/stone_tile/block,
+/obj/structure/stone_tile/block/cracked{
+	dir = 1
+	},
+/mob/living/simple_animal/hostile/morsel,
+/turf/open/floor/plating/asteroid/basalt,
+/area/city/backstreets_alley)
 "jy" = (
 /obj/structure/stone_tile/surrounding_tile{
 	dir = 4
@@ -23503,7 +23511,7 @@ LO
 jy
 OB
 OB
-dA
+jr
 KK
 zL
 tB

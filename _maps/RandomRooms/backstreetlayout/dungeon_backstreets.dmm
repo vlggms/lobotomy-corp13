@@ -140,6 +140,14 @@
 /obj/effect/spawner/room/backstreets/small_east,
 /turf/closed/indestructible/reinforced,
 /area/city/backstreets_room)
+"hr" = (
+/obj/structure/stone_tile/block,
+/obj/structure/stone_tile/block/cracked{
+	dir = 1
+	},
+/mob/living/simple_animal/hostile/morsel,
+/turf/open/floor/plating/asteroid/basalt,
+/area/city/backstreets_alley)
 "hF" = (
 /obj/structure/stone_tile/block/cracked{
 	dir = 4
@@ -12175,7 +12183,7 @@ Wu
 cK
 od
 od
-Jx
+hr
 Gm
 Qf
 nv
