@@ -103,6 +103,9 @@
 		new /obj/effect/temp_visual/dir_setting/claw_appears (T)
 		break
 	new /obj/effect/temp_visual/justitia_effect(get_turf(src))
+	for(var/obj/item/W in contents)
+		if(!dropItemToGround(W))
+			qdel(W)
 	qdel(src)
 
 /mob/living/carbon/human/species/cuckoospawn/attack_ghost(mob/dead/observer/ghost)
