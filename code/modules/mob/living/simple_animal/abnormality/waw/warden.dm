@@ -222,6 +222,8 @@
 				return
 			if(H.stat == DEAD)
 				H.dust()
+				finishing = FALSE
+				icon_state = normal_sprite
 				return
 			Kidnap(H) // It will now try to take your soul and leave your skin. You will become an eternal prisoner under her skirt in GBJ
 			LoseTarget(H)
