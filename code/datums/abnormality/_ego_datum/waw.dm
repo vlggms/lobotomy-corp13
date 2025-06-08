@@ -516,3 +516,15 @@
 /datum/ego_datum/armor/heaven
 	item_path = /obj/item/clothing/suit/armor/ego_gear/waw/heaven
 	cost = 50
+
+// Adult Who Tells Lies - False Throne
+// This Abnormality also does not exist, yet. Though I think it has a decent chance of being added before Burrowing Heaven...
+/datum/ego_datum/armor/throne
+	item_path = /obj/item/clothing/suit/armor/ego_gear/waw/throne
+	cost = 50
+
+// Unknown Little Prince Aberration - Tiara
+// This will probably never have an Abnormality attached to it...? Still, shouldn't let the sprite go to waste, so into the Well it goes.
+/datum/ego_datum/armor/tiara
+	item_path = /obj/item/clothing/suit/armor/ego_gear/waw/tiara
+	cost = 50
