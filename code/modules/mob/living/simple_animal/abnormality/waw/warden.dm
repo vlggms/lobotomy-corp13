@@ -168,6 +168,8 @@
 /mob/living/simple_animal/hostile/abnormality/warden/proc/CombatMapTweaks() // WIP
 	combatmap = TRUE
 	weakjail = TRUE
+	var/datum/atom_hud/medsensor = GLOB.huds[DATA_HUD_MEDICAL_ADVANCED] // Placeholder.
+	medsensor.add_hud_to(src) // My crazy idea would be giving it a HUD that puts special effects around vulnerable mobs, but for now this will do.
 	return
 
 /mob/living/simple_animal/hostile/abnormality/warden/PickTarget(list/Targets) // Shamelessly stolen from MoSB
