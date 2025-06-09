@@ -26,6 +26,17 @@
 
 /mob/living/simple_animal/hostile/ordeal/indigo_noon/Initialize()
 	. = ..()
+	/// If we're on COL, some of the Indigo Noons that spawn on it have a chance to become variant sweepers at random.
+	/// If you want this behaviour on another gamemode, feel free to append an OR onto the conditional I suppose but be careful to rebalance them for it.
+	/// As for that parent_type check, the variant sweepers are subtypes and thus inherit this behaviour on initialize. I don't want a spawned Lanky Sweeper to accidentally
+	/// reroll into a Chunky, for example. It'd just be weird jank.
+	if(SSmaptype.maptype == "city" && parent_type == /mob/living/simple_animal/hostile/ordeal)
+		if(prob(23))
+			var/selected_type = pick(/mob/living/simple_animal/hostile/ordeal/indigo_noon/chunky, /mob/living/simple_animal/hostile/ordeal/indigo_noon/lanky)
+			new selected_type(loc)
+			qdel(src)
+			return
+
 	attack_sound = "sound/effects/ordeals/indigo/stab_[pick(1,2)].ogg"
 	icon_living = "sweeper_[pick(1,2)]"
 	icon_state = icon_living
@@ -168,6 +179,10 @@
 	icon_living = "sweeper_limbus"
 	icon_state = icon_living
 	attack_sound = 'sound/effects/ordeals/indigo/stab_2.ogg'
+
+	/// COL Rebalancing
+	if(SSmaptype.maptype == "city")
+		dash_cooldown_time += 3 SECONDS
 
 /mob/living/simple_animal/hostile/ordeal/indigo_noon/lanky/Destroy()
 	/// To avoid a hard delete.
@@ -376,6 +391,8 @@
 	var/extract_fuel_ongoing_timer
 	/// If we've already used 333... 1973 before, we don't want to use it ever again
 	var/used_last_stand = FALSE
+	/// Amount of Persistence stacks gained when using 333... 1973.
+	var/last_stand_stack_gain = 3
 
 /mob/living/simple_animal/hostile/ordeal/indigo_noon/chunky/Initialize()
 	. = ..()
@@ -384,6 +401,14 @@
 	icon_living = "sweeper_limbus"
 	icon_state = icon_living
 	attack_sound = 'sound/effects/ordeals/indigo/stab_1.ogg'
+
+	/// COL Rebalancing
+	if(SSmaptype.maptype == "city")
+		maxHealth = 625
+		health = 625
+		extract_fuel_cooldown_time += 2 SECONDS
+		extract_fuel_extra_damage -= 5
+		last_stand_stack_gain -= 1
 
 /mob/living/simple_animal/hostile/ordeal/indigo_noon/chunky/attacked_by(obj/item/I, mob/living/user)
 	. = ..()
@@ -408,7 +433,7 @@
 		return FALSE
 	used_last_stand = TRUE
 	say("+333... 1973.+")
-	GainPersistence(3)
+	GainPersistence(last_stand_stack_gain)
 
 /// The following few code chunks are dedicated to the Extract Fuel mechanic specific to this sweeper type. Basically, it's a lifesteal hit they can use every once in a bit.
 /// When the sweeper takes a hit, if it's off cooldown, it'll buff itself for its next hit and warn the player, giving them a brief grace period to disengage or prepare.
