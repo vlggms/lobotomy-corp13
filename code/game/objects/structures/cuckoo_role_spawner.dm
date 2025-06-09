@@ -20,6 +20,18 @@
 	if(A)
 		notify_ghosts("An cuckoo egg is ready to hatch in \the [A.name].", source = src, action=NOTIFY_ATTACK, flashwindow = FALSE, ignore_key = POLL_IGNORE_ASHWALKER)
 
+//TODO: Make it so niaojia-ren can't shove, pull or strip humans
+//TODO: Replace the host revi with the banner for territory gimmick
+//TODO: Add a skill to the niaojia-ren which gives them a message about how they work.
+//TODO: Add a territory gimmick where they can place down banners where they need to be within 12x12 range of another banner to statue to be placed down
+//And they can't be within a 5x5 range of another banner. Birds within a 12x12 range of a banner get a buff and outside of it they are weak without it
+//Humans get the foggy vision like with GoS
+//TODO: Fix simple mobs being immune to hostile mobs
+//TODO: Make the statue value amber meat at 50% less and doubt meat 100% more
+//TODO: Make the niaojia-ren immune to glass shards
+//TODO: Make it so niaojia-ren can't wear outfits.
+//TODO: Make it so they can't infect people with the XENO_IMMUNE TRAIT
+
 /obj/structure/bird_statue
 	name = "old bird statue"
 	desc = "An statue of great worship, it appears to have sinister around it... If you understood what it means, you could offer stuff to it..."
