@@ -71,8 +71,6 @@
 	. = ..()
 	head_immunity_start = world.time + head_immunity_duration
 	AddComponent(/datum/component/footstep, FOOTSTEP_MOB_CLAW, 1, -6)
-	adjust_attribute_buff(FORTITUDE_ATTRIBUTE, 200)
-	adjust_attribute_buff(PRUDENCE_ATTRIBUTE, 200)
 	RegisterSignal(src, COMSIG_MOVABLE_PRE_MOVE, PROC_REF(CheckSpace))
 	AddComponent(/datum/component/tackler/cuckoo, stamina_cost=tackle_stam_cost, base_knockdown = base_knockdown, range = tackle_range, speed = tackle_speed, skill_mod = skill_mod, min_distance = min_distance)
 
@@ -149,7 +147,7 @@
 	tackling = FALSE
 	tackle.gentle = TRUE
 
-	if(T.stat != DEAD && prob(20) && (roll >= 0))
+	if(T.stat != DEAD && prob(5) && (roll >= 0))
 		var/obj/item/bodypart/chest/LC = T.get_bodypart(BODY_ZONE_CHEST)
 		if((!LC || LC.status != BODYPART_ROBOTIC) && !T.getorgan(/obj/item/organ/body_egg/cuckoospawn_embryo))
 			to_chat(S, span_nicegreen("You implant [T], soon a new niaojia-ren bird shall grow..."))

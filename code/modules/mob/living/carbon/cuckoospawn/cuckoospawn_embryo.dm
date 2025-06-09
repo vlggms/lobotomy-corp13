@@ -8,7 +8,7 @@
 	/// Are we bursting out of the poor sucker who's the xeno mom?
 	var/bursting = FALSE
 	/// How long does it take to advance one stage? Growth time * 5 = how long till we make a Larva!
-	var/growth_time = 45 SECONDS
+	var/growth_time = 2 MINUTES
 
 /obj/item/organ/body_egg/cuckoospawn_embryo/Initialize()
 	. = ..()

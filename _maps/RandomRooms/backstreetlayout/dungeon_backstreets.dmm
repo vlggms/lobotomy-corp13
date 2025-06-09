@@ -41,8 +41,7 @@
 	dir = 4
 	},
 /obj/effect/decal/cleanable/dirt/dust,
-/obj/effect/mob_spawn/human/corpse/damaged,
-/obj/structure/bed/maint,
+/obj/item/keycard/cuckoo_jail,
 /turf/open/indestructible/boss/air,
 /area/city/backstreets_alley)
 "cK" = (
@@ -107,6 +106,8 @@
 	dir = 4
 	},
 /obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/mob_spawn/cuckoo_spawner,
+/obj/structure/bed/nest,
 /turf/open/indestructible/boss/air,
 /area/city/backstreets_alley)
 "ge" = (
@@ -177,6 +178,8 @@
 "im" = (
 /obj/structure/stone_tile/slab/cracked,
 /obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/mob_spawn/cuckoo_spawner,
+/obj/structure/bed/nest,
 /turf/open/indestructible/boss/air,
 /area/city/backstreets_alley)
 "iv" = (
@@ -220,7 +223,7 @@
 /obj/structure/stone_tile{
 	dir = 8
 	},
-/obj/structure/bed/maint,
+/obj/item/keycard/cuckoo_jail,
 /turf/open/indestructible/boss/air,
 /area/city/backstreets_alley)
 "lr" = (
@@ -354,11 +357,6 @@
 /obj/structure/table/wood{
 	color = "#2b0300"
 	},
-/obj/item/restraints/handcuffs/cable/sinew,
-/obj/item/restraints/handcuffs/cable/sinew,
-/obj/item/restraints/handcuffs/cable/sinew,
-/obj/item/restraints/handcuffs/cable/sinew,
-/obj/item/restraints/handcuffs/cable/sinew,
 /obj/item/storage/bag/meat,
 /turf/open/floor/plating/asteroid/basalt,
 /area/city/backstreets_alley)
@@ -366,7 +364,6 @@
 /obj/structure/stone_tile/block{
 	dir = 8
 	},
-/obj/effect/mob_spawn/cuckoo_spawner,
 /turf/open/floor/plating/asteroid/basalt,
 /area/city/backstreets_alley)
 "wJ" = (
@@ -400,7 +397,6 @@
 /obj/structure/stone_tile/block{
 	dir = 4
 	},
-/obj/effect/mob_spawn/cuckoo_spawner,
 /turf/open/floor/plating/asteroid/basalt,
 /area/city/backstreets_alley)
 "Aq" = (
@@ -421,9 +417,6 @@
 /turf/open/floor/plating/asteroid/basalt,
 /area/city/backstreets_alley)
 "BW" = (
-/obj/item/restraints/legcuffs/bola/watcher,
-/obj/item/restraints/legcuffs/bola/watcher,
-/obj/item/restraints/legcuffs/bola/watcher,
 /obj/structure/table/wood{
 	color = "#2b0300"
 	},
@@ -494,7 +487,6 @@
 /area/city/backstreets_alley)
 "Kk" = (
 /obj/structure/stone_tile/block/cracked,
-/obj/effect/mob_spawn/cuckoo_spawner,
 /turf/open/floor/plating/asteroid/basalt,
 /area/city/backstreets_alley)
 "KH" = (
@@ -613,12 +605,10 @@
 /obj/structure/stone_tile/center,
 /turf/open/floor/plating/asteroid/basalt,
 /area/city/backstreets_alley)
-"Wu" = (
-/obj/item/keycard/cuckoo_jail,
-/turf/open/floor/plating/asteroid/basalt,
-/area/city/backstreets_alley)
 "XN" = (
 /obj/structure/stone_tile/slab/cracked,
+/obj/effect/mob_spawn/cuckoo_spawner,
+/obj/structure/bed/nest,
 /turf/open/indestructible/boss/air,
 /area/city/backstreets_alley)
 "XP" = (
@@ -12072,7 +12062,7 @@ Lp
 gR
 sn
 Fz
-Wu
+Fz
 Fz
 Fz
 Jx
@@ -12182,7 +12172,7 @@ wJ
 Lp
 cK
 Pw
-Wu
+Fz
 cK
 od
 od
@@ -12517,7 +12507,7 @@ bH
 bH
 UN
 jq
-hI
+kN
 hI
 bH
 bH
@@ -12628,7 +12618,7 @@ bH
 bH
 mT
 fN
-kN
+hI
 bW
 bH
 bH
