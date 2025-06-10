@@ -50,7 +50,10 @@
 	if(D.body_position == LYING_DOWN)
 		bonus_damage += 10
 		picked_hit_type = "stomp"
-	D.apply_damage(rand(24,27) + bonus_damage, RED_DAMAGE, affecting, armor_block)
+	if(A.has_status_effect(STATUS_EFFECT_HUNTER))
+		D.apply_damage(rand(24,27) + bonus_damage, RED_DAMAGE, affecting, armor_block)
+	else
+		D.apply_damage(rand(12,14) + bonus_damage, RED_DAMAGE, affecting, armor_block)
 	playsound(get_turf(D), 'sound/abnormalities/big_wolf/Wolf_Scratch.ogg', 50, TRUE, -1)
 	if(picked_hit_type == "kick" || picked_hit_type == "stomp")
 		A.do_attack_animation(D, ATTACK_EFFECT_KICK)
@@ -70,22 +73,31 @@
 	var/atk_verb
 	A.do_attack_animation(D, ATTACK_EFFECT_PUNCH)
 	atk_verb = pick("punch", "smash", "crack")
-	D.visible_message(span_danger("[A] [atk_verb]ed [D] with such inhuman strength that it sends [D.p_them()] flying backwards!"), \
-					span_userdanger("You're [atk_verb]ed by [A] with such inhuman strength that it sends you flying backwards!"), span_hear("You hear a sickening sound of flesh hitting flesh!"), null, A)
-	to_chat(A, span_danger("You [atk_verb] [D] with such inhuman strength that it sends [D.p_them()] flying backwards!"))
-	D.apply_damage(rand(40, 50), RED_DAMAGE)
+	D.visible_message(span_danger("[A] [atk_verb]ed [D] with such inhuman strength!"), \
+					span_userdanger("You're [atk_verb]ed by [A] with such inhuman strength!"), span_hear("You hear a sickening sound of flesh hitting flesh!"), null, A)
+	to_chat(A, span_danger("You [atk_verb] [D] with such inhuman strength!"))
 	playsound(D, 'sound/effects/meteorimpact.ogg', 25, TRUE, -1)
-	var/throwtarget = get_edge_target_turf(A, get_dir(A, get_step_away(D, A)))
-	D.throw_at(throwtarget, 4, 2, A)//So stuff gets tossed around at the same time.
 	if(ishuman(D) && D.stat != DEAD)
 		var/mob/living/carbon/human/human_target = D
 		var/obj/item/bodypart/chest/LC = human_target.get_bodypart(BODY_ZONE_CHEST)
-		if((!LC || LC.status != BODYPART_ROBOTIC) && !human_target.getorgan(/obj/item/organ/body_egg/cuckoospawn_embryo))
+		if((!LC || LC.status != BODYPART_ROBOTIC) && !human_target.getorgan(/obj/item/organ/body_egg/cuckoospawn_embryo) && !HAS_TRAIT(LC, TRAIT_XENO_IMMUNE))
 			to_chat(A, span_danger("You implant [D], soon a new niaojia-ren bird shall grow..."))
 			new /obj/item/organ/body_egg/cuckoospawn_embryo(human_target)
 			var/turf/T = get_turf(human_target)
-			log_game("[key_name(human_target)] was impregnated by a niaojia-ren at [loc_name(T)]")
+			log_game("[key_name(human_target)] was infected by a niaojia-ren at [loc_name(T)]")
 	if(isanimal(D))
-		D.apply_damage(75, RED_DAMAGE)
+		D.apply_damage(120, RED_DAMAGE)
 	if(atk_verb)
 		log_combat(A, D, "[atk_verb] (Cuckoo Punch)")
+
+/datum/martial_art/cuckoopunch/grab_act(mob/living/A, mob/living/D)
+	if(ishuman(D) && D.stat == DEAD)
+		to_chat(src, span_warning("They are already dead, they are of no use to you."))
+		return FALSE
+	. = ..()
+
+/datum/martial_art/cuckoopunch/disarm_act(mob/living/A, mob/living/D)
+	if(ishuman(D) && D.stat == DEAD)
+		to_chat(src, span_warning("They are already dead, they are of no use to you."))
+		return FALSE
+	. = ..()

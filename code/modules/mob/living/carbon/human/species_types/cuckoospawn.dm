@@ -7,13 +7,13 @@
 
 	nojumpsuit = TRUE
 	species_traits = list(NO_UNDERWEAR, NOEYESPRITES)
-	inherent_traits = list(TRAIT_PERFECT_ATTACKER, TRAIT_BRUTEPALE, TRAIT_BRUTESANITY, TRAIT_SANITYIMMUNE, TRAIT_GENELESS, TRAIT_COMBATFEAR_IMMUNE, TRAIT_NOGUNS)
+	inherent_traits = list(TRAIT_PERFECT_ATTACKER, TRAIT_BRUTEPALE, TRAIT_BRUTESANITY, TRAIT_SANITYIMMUNE, TRAIT_GENELESS, TRAIT_COMBATFEAR_IMMUNE, TRAIT_NOGUNS, TRAIT_PIERCEIMMUNE, TRAIT_NOEGOWEAPONS)
 	use_skintones = FALSE
 	species_language_holder = /datum/language_holder/cuckoospawn
 	mutanteyes = /obj/item/organ/eyes/night_vision/cuckoo
 	limbs_id = "cuckoo"
 	say_mod = "chrips"
-	no_equip = list(ITEM_SLOT_EYES, ITEM_SLOT_MASK, ITEM_SLOT_FEET, ITEM_SLOT_OCLOTHING)
+	no_equip = list(ITEM_SLOT_EYES, ITEM_SLOT_MASK, ITEM_SLOT_FEET, ITEM_SLOT_OCLOTHING, ITEM_SLOT_ICLOTHING)
 	changesource_flags = MIRROR_BADMIN | WABBAJACK
 	liked_food = MEAT | RAW
 	disliked_food = VEGETABLES | DAIRY
@@ -92,6 +92,18 @@
 		// if(!valid_tile)
 		// 	return COMPONENT_MOVABLE_BLOCK_PRE_MOVE
 
+/mob/living/carbon/human/species/cuckoospawn/stripPanelUnequip(obj/item/what, mob/who)
+	to_chat(src, span_warning("You don't have the dexterity to do this!"))
+	return
+
+/mob/living/carbon/human/species/cuckoospawn/start_pulling(atom/movable/AM, state, force = pull_force, supress_message = FALSE)
+	if(istype(AM, /mob/living/carbon/human/species))
+		var/mob/living/carbon/human/species/possible_human
+		if(!possible_human.race && possible_human.stat == DEAD)
+			to_chat(src, span_warning("They are already dead, they are of no use to you."))
+			return FALSE
+	. = ..()
+
 /mob/living/carbon/human/species/cuckoospawn/proc/executed_claw()
 	var/turf/origin = get_turf(src)
 	var/list/all_turfs = origin.GetAtmosAdjacentTurfs(1)
@@ -149,11 +161,11 @@
 
 	if(T.stat != DEAD && prob(5) && (roll >= 0))
 		var/obj/item/bodypart/chest/LC = T.get_bodypart(BODY_ZONE_CHEST)
-		if((!LC || LC.status != BODYPART_ROBOTIC) && !T.getorgan(/obj/item/organ/body_egg/cuckoospawn_embryo))
+		if((!LC || LC.status != BODYPART_ROBOTIC) && !T.getorgan(/obj/item/organ/body_egg/cuckoospawn_embryo) && !HAS_TRAIT(LC, TRAIT_XENO_IMMUNE))
 			to_chat(S, span_nicegreen("You implant [T], soon a new niaojia-ren bird shall grow..."))
 			new /obj/item/organ/body_egg/cuckoospawn_embryo(T)
 			var/turf/TT = get_turf(T)
-			log_game("[key_name(T)] was impregnated by a niaojia-ren at [loc_name(TT)]")
+			log_game("[key_name(T)] was infected by a niaojia-ren at [loc_name(TT)]")
 
 	switch(roll)
 		if(-INFINITY to -5)
