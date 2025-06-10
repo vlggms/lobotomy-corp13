@@ -50,9 +50,10 @@
 	if(D.body_position == LYING_DOWN)
 		bonus_damage += 10
 		picked_hit_type = "stomp"
-	if(A.has_status_effect(STATUS_EFFECT_HUNTER))
+	if(A.has_status_effect(/datum/status_effect/hunter))
 		D.apply_damage(rand(24,27) + bonus_damage, RED_DAMAGE, affecting, armor_block)
 	else
+		to_chat(A, span_warning("You attack pathetically, re-enter your territory!"))
 		D.apply_damage(rand(12,14) + bonus_damage, RED_DAMAGE, affecting, armor_block)
 	playsound(get_turf(D), 'sound/abnormalities/big_wolf/Wolf_Scratch.ogg', 50, TRUE, -1)
 	if(picked_hit_type == "kick" || picked_hit_type == "stomp")
@@ -86,7 +87,11 @@
 			var/turf/T = get_turf(human_target)
 			log_game("[key_name(human_target)] was infected by a niaojia-ren at [loc_name(T)]")
 	if(isanimal(D))
-		D.apply_damage(120, RED_DAMAGE)
+		if(A.has_status_effect(/datum/status_effect/hunter))
+			D.apply_damage(120, RED_DAMAGE)
+		else
+			D.apply_damage(50, RED_DAMAGE)
+			to_chat(A, span_warning("You attack pathetically, re-enter your territory!"))
 	if(atk_verb)
 		log_combat(A, D, "[atk_verb] (Cuckoo Punch)")
 

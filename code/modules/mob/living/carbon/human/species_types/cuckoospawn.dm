@@ -21,10 +21,10 @@
 	punchdamagelow = 24
 	punchdamagehigh = 27
 	stunmod = 0.5
-	redmod = 0.4
-	whitemod = 0.7
-	blackmod = 0.4
-	palemod = 0.7
+	redmod = 0.7
+	whitemod = 1
+	blackmod = 0.7
+	palemod = 1.5
 	speedmod = -0.5
 	payday_modifier = 0
 

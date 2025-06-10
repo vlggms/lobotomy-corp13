@@ -206,7 +206,7 @@
 		return TRUE
 
 	if(HAS_TRAIT(user, TRAIT_NOEGOWEAPONS))
-		to_chat(H, span_notice("You cannot use [src]!"))
+		to_chat(user, span_notice("You cannot use [src]!"))
 		return FALSE
 
 	if(!ishuman(user))

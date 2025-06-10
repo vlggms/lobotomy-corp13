@@ -266,7 +266,7 @@
 /datum/status_effect/prey
 	id = "prey"
 	status_type = STATUS_EFFECT_UNIQUE
-	duration = 60 SECONDS
+	duration = -1
 	alert_type = /atom/movable/screen/alert/status_effect/fogbound
 
 /atom/movable/screen/alert/status_effect/prey
@@ -298,7 +298,7 @@
 /datum/status_effect/hunter
 	id = "hunter"
 	status_type = STATUS_EFFECT_UNIQUE
-	duration = 60 SECONDS
+	duration = -1
 	alert_type = /atom/movable/screen/alert/status_effect/hunter
 	var/client/C
 	var/initial_color
@@ -320,6 +320,13 @@
 	if(!istype(C))
 		return
 
+	if(istype(owner, /mob/living/carbon/human/species/cuckoospawn))
+		var/mob/living/carbon/human/species/cuckoospawn/bird_hunter = owner
+		bird_hunter.physiology.armor.setRating(red=0.2)
+		bird_hunter.physiology.armor.setRating(white=0.5)
+		bird_hunter.physiology.armor.setRating(black=0.2)
+		bird_hunter.physiology.armor.setRating(pale=0.5)
+		to_chat(bird_hunter, span_nicegreen("As you enter your territory, you feel yourself strengthened..."))
 	initial_color = C.color
 	C.color = "#ffd1d1ff"
 	RegisterSignal(owner, COMSIG_MOVABLE_PRE_MOVE, PROC_REF(Moved))
@@ -337,12 +344,18 @@
 
 /datum/status_effect/hunter/on_remove()
 	C.color = initial_color
+	if(istype(owner, /mob/living/carbon/human/species/cuckoospawn))
+		var/mob/living/carbon/human/species/cuckoospawn/bird_hunter = owner
+		bird_hunter.physiology.armor.setRating(red=0.7)
+		bird_hunter.physiology.armor.setRating(white=1)
+		bird_hunter.physiology.armor.setRating(black=0.7)
+		bird_hunter.physiology.armor.setRating(pale=1.5)
+		to_chat(bird_hunter, span_warning("As you leave your territory, you feel yourself weaken..."))
 	UnregisterSignal(owner, COMSIG_MOVABLE_PRE_MOVE)
 	return ..()
 
 #undef STATUS_EFFECT_HUNTER
 #undef STATUS_EFFECT_PREY
-
 
 /obj/item/cuckoo_revive
 	name = "niaojia-ren bolus"
