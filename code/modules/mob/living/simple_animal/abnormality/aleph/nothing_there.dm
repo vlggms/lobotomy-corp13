@@ -138,7 +138,7 @@
 	breachloop = new(list(src), FALSE)
 
 /mob/living/simple_animal/hostile/abnormality/nothing_there/Destroy()
-	TransferVar(1, heard_words)
+	TransferVar("mimicry", heard_words)
 	QDEL_NULL(soundloop)
 	QDEL_NULL(heartbeat)
 	QDEL_NULL(disguiseloop)
@@ -147,7 +147,7 @@
 
 /mob/living/simple_animal/hostile/abnormality/nothing_there/PostSpawn()
 	. = ..()
-	var/list/old_heard = RememberVar(1)
+	var/list/old_heard = RememberVar("mimicry")
 	if(islist(old_heard) && LAZYLEN(old_heard))
 		heard_words = old_heard
 	soundloop.start() // We only play the ambience if we're spawned in containment

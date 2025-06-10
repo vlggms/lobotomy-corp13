@@ -370,11 +370,12 @@
 	datum_reference.connected_structures[A] = list(x_offset, y_offset)
 	return A
 
-// transfers a var to the datum to be used later
+/* Transfers a var to the datum to be used later
+The variable's index needs to be a non-numerical value.*/
 /mob/living/simple_animal/hostile/abnormality/proc/TransferVar(index, value)
 	if(isnull(datum_reference))
 		return
-	LAZYSET(datum_reference.transferable_var, value, index)
+	LAZYSET(datum_reference.transferable_var, index, value)
 
 // Access an item in the "transferable_var" list of the abnormality's datum
 /mob/living/simple_animal/hostile/abnormality/proc/RememberVar(index)
