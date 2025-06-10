@@ -3,16 +3,19 @@
 	name = "Niaojia-ren Brutality"
 	id = MARTIALART_CUCKOOPUNCH
 	var/datum/action/cuckoo_implant/implant = new/datum/action/cuckoo_implant()
+	var/datum/action/cuckoo_remember/remember = new/datum/action/cuckoo_remember()
 
 /datum/martial_art/cuckoopunch/teach(mob/living/owner, make_temporary=FALSE)
 	if(..())
 		to_chat(owner, span_nicegreen("You know the arts of [name]!"))
 		to_chat(owner, span_danger("Place your cursor over a move at the top of the screen to see what it does."))
 		implant.Grant(owner)
+		remember.Grant(owner)
 
 /datum/martial_art/cuckoopunch/on_remove(mob/living/owner)
 	to_chat(owner, span_userdanger("You suddenly forget the arts of [name]..."))
 	implant.Remove(owner)
+	remember.Remove(owner)
 
 /datum/action/cuckoo_implant
 	name = "Niaojia-ren Implant - After a delay, knock the target back and if they are human, implant them with a Niaojia-ren Parasite. If they are a mob, deal extra damage."
@@ -29,6 +32,36 @@
 	else
 		owner.visible_message(span_danger("[owner] assumes the threatening stance!"), "<b><i>Your next attack will be a Cuckoo Implant.</i></b>")
 		owner.mind.martial_art.streak = "cuckoo_implant"
+
+/datum/action/cuckoo_remember
+	name = "Niaojia-ren Info - Remember info about how to play as the Niaojia-ren."
+	icon_icon = 'icons/mob/cuckoospawn.dmi'
+	button_icon_state = "bigolredeyes"
+
+/datum/action/cuckoo_remember/Trigger()
+	to_chat(owner, span_info("You are a Niaojia-ren, the vulture of the ruins.<br><br>\
+		<b>OFFERINGS</b><br>\
+		You have a statue in your nest, you are able to offer it meat to gain your god's favor, which you can then use to gather new items by touching the statue.<br>\
+		You can also directly offer the bodies to your god, by draging them onto your statue. This will generate extra meat for your god.<br>\
+		The 3 items that you can get from the statue are healing salves, banners, and boluses which and bring back fallen Niaojia-rens.<br>\
+		<b>TERRITORY</b><br>\
+		You are a territorial species, and you are stronger while within it. You are able to gather banners from your statue, which you can place down on your existing territory.<br>\
+		You can tell if you are in your territory when your vision grows RED and you get a status effect called 'Hunter'<br>\
+		<b>COMBAT</b><br>\
+		You have a Niaojia-ren Implant skill which when activated, will cause your next attack to have a delay, but it will deal MASSIVE damage to non-humans.<br>\
+		You can also tackle humans. You can initiate a tackle by entering throw mode and then clicking on a human with an empty hand. This will inflict tremor, which will build up to a stun.<br>\
+		<b>INFECTION</b><br>\
+		You are able to grow your numbers by infecting humans with your embryo. There are 3 ways of infecting humans.<br>\
+		1. You can use your 'Niaojia-ren Implant' skill and then click a living human to infect them. This has a short delay.<br>\
+		2. You can tackle humans for a very small chance of infecting them.<br>\
+		3. You are able to create bolus from your statue. If a human eats one of them, they will fully heal but have a chance at becoming infected.<br>\
+		It takes 10 minutes for a person to birth a new niaojia-ren, and this timer stops while they are dead.<br>\
+		<b>ORDERING</b><br>\
+		You are able to order simple minded niaojia-ren to follow you around by touching them with your hand.<br>\
+		You can also tell them to avoid attacking humans, allowing you to set up ambushes.<br>\
+		<b>HUMANS</b><br>\
+		Your prey, your job is to purely to hunt them down. Don't mess with their bodies, there is no need.<br>\
+		DO NOT enter their home past the gates, the head is always watching and will kill you if you enter."))
 
 /datum/martial_art/cuckoopunch/proc/check_streak(mob/living/A, mob/living/D)
 	switch(streak)
@@ -97,12 +130,12 @@
 
 /datum/martial_art/cuckoopunch/grab_act(mob/living/A, mob/living/D)
 	if(ishuman(D) && D.stat == DEAD)
-		to_chat(src, span_warning("They are already dead, they are of no use to you."))
-		return FALSE
+		to_chat(A, span_warning("They are already dead, they are of no use to you."))
+		return TRUE
 	. = ..()
 
 /datum/martial_art/cuckoopunch/disarm_act(mob/living/A, mob/living/D)
 	if(ishuman(D) && D.stat == DEAD)
-		to_chat(src, span_warning("They are already dead, they are of no use to you."))
-		return FALSE
+		to_chat(A, span_warning("They are already dead, they are of no use to you."))
+		return TRUE
 	. = ..()
