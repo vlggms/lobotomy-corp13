@@ -371,17 +371,17 @@
 	return A
 
 /* Transfers a var to the datum to be used later
-The variable's index needs to be a non-numerical value.*/
-/mob/living/simple_animal/hostile/abnormality/proc/TransferVar(index, value)
+The variable's key needs to be non-numerical.*/
+/mob/living/simple_animal/hostile/abnormality/proc/TransferVar(key, value)
 	if(isnull(datum_reference))
 		return
-	LAZYSET(datum_reference.transferable_var, index, value)
+	LAZYSET(datum_reference.transferable_var, key, value)
 
 // Access an item in the "transferable_var" list of the abnormality's datum
-/mob/living/simple_animal/hostile/abnormality/proc/RememberVar(index)
+/mob/living/simple_animal/hostile/abnormality/proc/RememberVar(key)
 	if(isnull(datum_reference))
 		return
-	return LAZYACCESS(datum_reference.transferable_var, index)
+	return LAZYACCESS(datum_reference.transferable_var, key)
 
 // Modifiers for work chance
 /mob/living/simple_animal/hostile/abnormality/proc/WorkChance(mob/living/carbon/human/user, chance, work_type)
