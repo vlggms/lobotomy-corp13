@@ -1038,6 +1038,8 @@
 /obj/structure/table/wood,
 /obj/item/stack/spacecash/c10000,
 /obj/item/radio/headset,
+/obj/item/paper/fluff/lost_expedition,
+/obj/item/quest_ticket/temple_motus,
 /turf/open/floor/carpet/black,
 /area/city/house)
 "ee" = (
