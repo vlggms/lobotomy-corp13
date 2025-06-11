@@ -182,6 +182,8 @@
 //This proc removes the need to copypaste every single armor and weapon into a list.
 /obj/structure/toolabnormality/wishwell/Initialize()
 	. = ..()
+	if(!GLOB.wishwell)
+		GLOB.wishwell = src
 
 	//Sorts them into their lists
 	for(var/path in subtypesof(/datum/ego_datum))
