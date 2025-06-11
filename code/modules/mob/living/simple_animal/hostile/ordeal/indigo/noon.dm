@@ -150,6 +150,8 @@
 	projectiletype = null
 	/// Placeholder here until the main PR for can_act and can_move is merged.
 	var/can_act = TRUE
+	/// The default movement speed this Sweeper should have. I have to store it here because initial() won't work for my purposes, since it gets the compiletime value.
+	var/movespeed = 2.7
 	/// Holds the next moment that this mob will be allowed to dash.
 	var/dash_cooldown
 	/// This is the amount of time added by its dash attack (Sweep the Backstreets) on use onto its cooldown.
@@ -167,6 +169,12 @@
 	var/dash_speed = 0.4
 	/// The windup duration for the dash.
 	var/dash_windup = 0.7 SECONDS
+	/// The duration of Evasive Mode after a dash.
+	var/dash_evasivemode_duration = 3 SECONDS
+	/// The buffed movement speed this Sweeper has during Evasive Mode, if it has no client.
+	var/dash_evasivemode_noclient_speed = 2.2
+	/// The buffed movement speed this Sweeper has during Evasive Mode if it has a client.
+	var/dash_evasivemode_client_speed = 2.4
 	/// We need this to not hit multiple people due to the implementation I used for the dash. Stores every mob hit by the dash, cleared on each dash.
 	var/list/dash_hitlist = list()
 	/// This one is so we can hit all the turfs with the dash at once, to avoid people dodging it by moving inside of it.
@@ -182,7 +190,12 @@
 
 	/// COL Rebalancing
 	if(SSmaptype.maptype == "city")
+		move_to_delay = 2.9
+		movespeed = move_to_delay
 		dash_cooldown_time += 3 SECONDS
+		dash_evasivemode_duration -= 1 SECONDS
+		dash_evasivemode_client_speed += 0.2
+		dash_evasivemode_noclient_speed += 0.2
 
 /mob/living/simple_animal/hostile/ordeal/indigo_noon/lanky/Destroy()
 	/// To avoid a hard delete.
@@ -339,22 +352,22 @@
 
 /// Sweeper will sometimes enter Evasive Mode after a dash. Just a big mobility steroid and makes unpossessed sweepers move erratically - kind of like GWSS.
 /mob/living/simple_animal/hostile/ordeal/indigo_noon/lanky/proc/EvasiveMode()
-	addtimer(CALLBACK(src, PROC_REF(DisableEvasiveMode)), 3 SECONDS)
+	addtimer(CALLBACK(src, PROC_REF(DisableEvasiveMode)), dash_evasivemode_duration)
 	if(!client)
 		dodging = TRUE
 		minimum_distance = 1
 		retreat_distance = 2
 		sidestep_per_cycle = 2
-		move_to_delay = 2.2
+		move_to_delay = dash_evasivemode_noclient_speed
 	/// Possessed sweepers get a smaller movement speed buff.
 	else
-		move_to_delay = 2.4
+		move_to_delay = dash_evasivemode_client_speed
 
 /mob/living/simple_animal/hostile/ordeal/indigo_noon/lanky/proc/DisableEvasiveMode()
 	dodging = initial(dodging)
 	minimum_distance = initial(minimum_distance)
 	retreat_distance = initial(retreat_distance)
-	move_to_delay = initial(move_to_delay)
+	move_to_delay = movespeed
 	sidestep_per_cycle = initial(sidestep_per_cycle)
 
 /// I just want to make the telegraphing match properly, so we need a different duration for these than the normal 10 deciseconds
