@@ -133,7 +133,7 @@ SUBSYSTEM_DEF(cityevents)
 	if(prob(50))
 		JobAddition()
 
-//Spawning Mobs, always spawns 3.
+//Spawning Mobs, can spawn up to 3
 /datum/controller/subsystem/cityevents/proc/spawnatlandmark(mob/living/L, chance)
 	chance += wavetime*2
 	if(chance > 90)
@@ -145,26 +145,27 @@ SUBSYSTEM_DEF(cityevents)
 		sleep(10)
 		//This is less intensive than a loop
 
-//TODO: Fix this, Get this check if the mob is hostile. If they are, give them loot of c100 ahn
 		var/mob/living/mob1 = new L (get_turf(J))
 		if(ishostile(mob1))
 			var/mob/living/simple_animal/hostile/hostilemob1 = mob1
 			hostilemob1.guaranteed_butcher_results += /obj/item/stack/spacecash/c100
 			active_raiders += hostilemob1
 
-		var/mob/living/mob2 = new L (get_turf(J))
-		if(ishostile(mob2))
-			var/mob/living/simple_animal/hostile/hostilemob2 = mob2
-			hostilemob2.guaranteed_butcher_results += /obj/item/stack/spacecash/c100
-			active_raiders += hostilemob2
+		if(prob(75))
+			var/mob/living/mob2 = new L (get_turf(J))
+			if(ishostile(mob2))
+				var/mob/living/simple_animal/hostile/hostilemob2 = mob2
+				hostilemob2.guaranteed_butcher_results += /obj/item/stack/spacecash/c100
+				active_raiders += hostilemob2
 
-		var/mob/living/mob3 = new L (get_turf(J))
-		if(ishostile(mob3))
-			var/mob/living/simple_animal/hostile/hostilemob3 = mob3
-			hostilemob3.guaranteed_butcher_results += /obj/item/stack/spacecash/c100
-			active_raiders += hostilemob3
+		if(prob(50))
+			var/mob/living/mob3 = new L (get_turf(J))
+			if(ishostile(mob3))
+				var/mob/living/simple_animal/hostile/hostilemob3 = mob3
+				hostilemob3.guaranteed_butcher_results += /obj/item/stack/spacecash/c100
+				active_raiders += hostilemob3
 
-		addtimer(CALLBACK(src, PROC_REF(remove_raiders)), 3 MINUTES)
+	addtimer(CALLBACK(src, PROC_REF(remove_raiders)), 3 MINUTES)
 
 /datum/controller/subsystem/cityevents/proc/remove_raiders()
 	for(var/mob/living/L in active_raiders)
