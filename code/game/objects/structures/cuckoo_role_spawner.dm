@@ -192,6 +192,9 @@
 
 /obj/item/cuckoo_banner/attack_self(mob/user)
 	. = ..()
+	if(!istype(user, /mob/living/carbon/human/species/cuckoospawn))
+		to_chat(user, span_warning("You have no idea how this works!"))
+		return FALSE
 	for(var/obj/structure/destructible/cuckoo_banner/nearby_banner in range(5, src))
 		to_chat(user, span_warning("You are too close to another banner, get father away from your banner!"))
 		return
@@ -225,6 +228,9 @@
 
 /obj/structure/destructible/cuckoo_banner/attack_hand(mob/user)
 	. = ..()
+	if(!istype(user, /mob/living/carbon/human/species/cuckoospawn))
+		to_chat(user, span_warning("You have no idea how this works!"))
+		return FALSE
 	to_chat(user, span_nicegreen("You touch the banner, causing it to update it's territory"))
 	create_territory()
 
@@ -346,10 +352,10 @@
 	C.color = initial_color
 	if(istype(owner, /mob/living/carbon/human/species/cuckoospawn))
 		var/mob/living/carbon/human/species/cuckoospawn/bird_hunter = owner
-		bird_hunter.physiology.armor.red_mod = 0.7
-		bird_hunter.physiology.armor.white_mod = 1
-		bird_hunter.physiology.armor.black_mod = 0.7
-		bird_hunter.physiology.armor.pale_mod = 1.5
+		bird_hunter.physiology.red_mod = 0.7
+		bird_hunter.physiology.white_mod = 1
+		bird_hunter.physiology.black_mod = 0.7
+		bird_hunter.physiology.pale_mod = 1.5
 		to_chat(bird_hunter, span_warning("As you leave your territory, you feel yourself weaken..."))
 	UnregisterSignal(owner, COMSIG_MOVABLE_PRE_MOVE)
 	return ..()

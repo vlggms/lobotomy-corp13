@@ -435,7 +435,7 @@
 /area/city/backstreets_alley)
 "RD" = (
 /turf/closed/indestructible/rock,
-/area/space)
+/area/city/backstreets_alley)
 "Ud" = (
 /obj/structure/stone_tile/block{
 	dir = 1

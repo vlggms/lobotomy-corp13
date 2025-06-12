@@ -89,24 +89,26 @@
 		to_chat(user, span_nicegreen("They are ready to follow your orders!"))
 
 /mob/living/simple_animal/hostile/cuckoospawn/attack_hand(mob/living/carbon/M)
-	if(!stat && M.a_intent == INTENT_HELP && !client && istype(M, /mob/living/carbon/human/species/cuckoospawn))
+	if(stat || M.a_intent != INTENT_HELP || client || !istype(M, /mob/living/carbon/human/species/cuckoospawn))
+		return ..()
+	else
 		var/bird_ask = alert("select command", "[src] recognizes your authority.", "Follow", "Stay", "Change Aggro", "Cancel")
-		if(bird_ask == "Follow")
-			walk_to(src, M, 2, move_to_delay)
-			return
-		if(bird_ask == "Stay")
-			walk(src, 0)
-			return
-		if(bird_ask == "Change Aggro")
-			if(faction.Find("neutral"))
-				to_chat(M, span_notice("[src] will now attack humans on sight."))
-				faction -= "neutral"
-			else
-				to_chat(M, span_notice("[src] will now not attack humans on sight."))
-				faction += "neutral"
-			return //This will add or remove the neutral faction.
+		switch(bird_ask)
+			if("Follow")
+				walk_to(src, M, 2, move_to_delay)
+				return
+			if("Stay")
+				walk(src, 0)
+				return
+			if("Change Aggro")
+				if(faction.Find("neutral"))
+					to_chat(M, span_notice("[src] will now attack humans on sight."))
+					faction -= "neutral"
+				else
+					to_chat(M, span_notice("[src] will now not attack humans on sight."))
+					faction += "neutral"
+				return //This will add or remove the neutral faction.
 		return
-	return ..()
 
 /mob/living/simple_animal/hostile/cuckoospawn/proc/executed_claw()
 	var/turf/origin = get_turf(src)
