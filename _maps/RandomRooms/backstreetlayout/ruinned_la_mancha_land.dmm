@@ -10,32 +10,18 @@
 /turf/open/floor/carpet/red,
 /area/city/backstreets_alley)
 "au" = (
-/obj/structure/stone_tile/cracked{
-	dir = 4
-	},
-/turf/open/floor/plating/asteroid/basalt,
+/obj/effect/spawner/room/cuckoo_spawner,
+/turf/closed/indestructible/rock,
 /area/city/backstreets_alley)
 "ay" = (
 /turf/closed/indestructible/reinforced{
 	color = "#c963ff"
 	},
 /area/city/backstreets_alley)
-"aE" = (
-/obj/structure/stone_tile/block,
-/obj/structure/stone_tile/block{
-	dir = 1
-	},
-/turf/open/floor/plating/asteroid/basalt,
-/area/city/backstreets_alley)
 "aL" = (
 /obj/structure/closet/crate/bin,
 /obj/effect/decal/cleanable/dirt/dust,
 /turf/open/floor/plasteel/sepia,
-/area/city/backstreets_alley)
-"aM" = (
-/obj/structure/stone_tile/center,
-/obj/structure/bonfire/dense,
-/turf/open/floor/plating/asteroid/basalt,
 /area/city/backstreets_alley)
 "aQ" = (
 /obj/effect/decal/cleanable/dirt/dust,
@@ -122,10 +108,6 @@
 /obj/structure/lootcrate/money,
 /turf/open/floor/stone,
 /area/city/backstreets_alley)
-"bZ" = (
-/obj/machinery/hydroponics/soil,
-/turf/open/floor/plating/asteroid/basalt,
-/area/city/backstreets_alley)
 "cb" = (
 /obj/machinery/iv_drip,
 /obj/effect/decal/cleanable/dirt/dust,
@@ -176,32 +158,10 @@
 "dA" = (
 /turf/open/indestructible/necropolis/air,
 /area/city/backstreets_alley)
-"dC" = (
-/obj/structure/stone_tile/block/cracked,
-/turf/open/floor/plating/asteroid/basalt,
-/area/city/backstreets_alley)
 "dI" = (
 /obj/structure/fluff/paper/stack,
 /obj/structure/table/wood/fancy/black,
 /turf/open/floor/plasteel/chapel,
-/area/city/backstreets_alley)
-"dK" = (
-/obj/structure/stone_tile/slab/cracked,
-/obj/structure/window/bronze/fulltile,
-/turf/open/indestructible/boss/air,
-/area/city/backstreets_alley)
-"dO" = (
-/obj/structure/stone_tile/block{
-	dir = 8
-	},
-/turf/open/floor/plating/asteroid/basalt,
-/area/city/backstreets_alley)
-"ee" = (
-/obj/structure/stone_tile/block/cracked,
-/obj/structure/stone_tile/block{
-	dir = 1
-	},
-/turf/open/floor/plating/asteroid/basalt,
 /area/city/backstreets_alley)
 "ef" = (
 /obj/machinery/door/poddoor{
@@ -210,13 +170,6 @@
 	color = "#990012"
 	},
 /turf/open/floor/stone,
-/area/city/backstreets_alley)
-"eh" = (
-/obj/structure/table/wood{
-	color = "#2b0300"
-	},
-/obj/item/storage/bag/meat,
-/turf/open/floor/plating/asteroid/basalt,
 /area/city/backstreets_alley)
 "en" = (
 /obj/structure/railing,
@@ -249,20 +202,6 @@
 	},
 /turf/open/floor/mineral/plastitanium/red,
 /area/city/backstreets_alley)
-"fb" = (
-/obj/structure/stone_tile/surrounding_tile{
-	dir = 4
-	},
-/obj/structure/stone_tile/surrounding_tile{
-	dir = 1
-	},
-/obj/structure/stone_tile/surrounding_tile/cracked{
-	dir = 8
-	},
-/obj/structure/stone_tile/center,
-/obj/effect/decal/cleanable/blood,
-/turf/open/floor/plating/asteroid/basalt,
-/area/city/backstreets_alley)
 "fk" = (
 /obj/structure/chair/pew,
 /mob/living/simple_animal/hostile/humanoid/blood/fiend,
@@ -279,16 +218,6 @@
 /turf/open/floor/plasteel/showroomfloor{
 	color = "#e29eff"
 	},
-/area/city/backstreets_alley)
-"fH" = (
-/obj/structure/stone_tile/block{
-	dir = 1
-	},
-/obj/structure/stone_tile/cracked,
-/obj/structure/stone_tile{
-	dir = 8
-	},
-/turf/open/indestructible/boss/air,
 /area/city/backstreets_alley)
 "fO" = (
 /obj/structure/chair/pew/left{
@@ -346,12 +275,6 @@
 	},
 /turf/open/floor/plasteel/showroomfloor,
 /area/city/backstreets_alley)
-"gA" = (
-/obj/structure/stone_tile{
-	dir = 1
-	},
-/turf/open/floor/plating/asteroid/basalt,
-/area/city/backstreets_alley)
 "gB" = (
 /obj/structure/safe,
 /obj/item/folder/syndicate/blue,
@@ -380,17 +303,6 @@
 /obj/effect/spawner/room/backstreets/medium_east,
 /turf/closed/indestructible/necropolis,
 /area/city/backstreets_alley)
-"hf" = (
-/turf/open/floor/plating/asteroid/basalt,
-/area/city/backstreets_alley)
-"hw" = (
-/obj/structure/stone_tile,
-/obj/structure/stone_tile{
-	dir = 8
-	},
-/mob/living/simple_animal/hostile/cuckoospawn,
-/turf/open/floor/plating/asteroid/basalt,
-/area/city/backstreets_alley)
 "hA" = (
 /turf/open/floor/plasteel/dark,
 /area/city/backstreets_alley)
@@ -410,12 +322,6 @@
 /obj/item/clothing/gloves/color/purple,
 /obj/item/clothing/gloves/color/purple,
 /turf/open/floor/carpet/purple,
-/area/city/backstreets_alley)
-"hV" = (
-/obj/structure/table/wood{
-	color = "#2b0300"
-	},
-/turf/open/floor/plating/asteroid/basalt,
 /area/city/backstreets_alley)
 "ic" = (
 /obj/effect/decal/cleanable/blood/tracks{
@@ -455,10 +361,6 @@
 "iw" = (
 /mob/living/simple_animal/hostile/humanoid/blood/fiend,
 /turf/open/floor/carpet/red,
-/area/city/backstreets_alley)
-"ix" = (
-/obj/effect/mob_spawn/human/corpse/damaged,
-/turf/open/floor/plating/asteroid/basalt,
 /area/city/backstreets_alley)
 "iA" = (
 /obj/structure/chair/pew{
@@ -504,33 +406,10 @@
 /obj/machinery/modular_computer/console/preset/research,
 /turf/open/floor/stone,
 /area/city/backstreets_alley)
-"jP" = (
-/obj/effect/mob_spawn/human/corpse/damaged,
-/obj/item/toy/plush/bigbird,
-/turf/open/floor/plating/asteroid/basalt,
-/area/city/backstreets_alley)
-"jS" = (
-/obj/machinery/hydroponics/soil,
-/obj/structure/stone_tile/surrounding_tile/cracked{
-	dir = 1
-	},
-/obj/structure/stone_tile/surrounding_tile,
-/obj/structure/stone_tile/surrounding_tile{
-	dir = 4
-	},
-/obj/structure/stone_tile/center,
-/turf/open/floor/plating/asteroid/basalt,
-/area/city/backstreets_alley)
 "jU" = (
 /obj/effect/gibspawner/human/bodypartless,
 /mob/living/simple_animal/hostile/humanoid/blood/bag,
 /turf/open/floor/carpet/red,
-/area/city/backstreets_alley)
-"kb" = (
-/obj/structure/spacevine{
-	name = "old vines"
-	},
-/turf/closed/indestructible/riveted/boss,
 /area/city/backstreets_alley)
 "kg" = (
 /obj/effect/rune,
@@ -552,12 +431,6 @@
 /turf/open/floor/plasteel/sepia{
 	color = "#da82ff"
 	},
-/area/city/backstreets_alley)
-"kA" = (
-/obj/structure/stone_tile/cracked{
-	dir = 1
-	},
-/turf/open/floor/plating/asteroid/basalt,
 /area/city/backstreets_alley)
 "kI" = (
 /obj/structure/curtain,
@@ -590,18 +463,6 @@
 /obj/structure/lootcrate/limbus,
 /turf/open/floor/plasteel/dark,
 /area/city/backstreets_alley)
-"lj" = (
-/obj/structure/stone_tile/block,
-/obj/structure/stone_tile/cracked{
-	dir = 1
-	},
-/obj/structure/stone_tile{
-	dir = 4
-	},
-/obj/effect/decal/cleanable/dirt/dust,
-/obj/item/keycard/cuckoo_jail,
-/turf/open/indestructible/boss/air,
-/area/city/backstreets_alley)
 "lE" = (
 /obj/effect/spawner/structure/window/plasma/reinforced,
 /obj/effect/mine/explosive,
@@ -624,23 +485,6 @@
 "mc" = (
 /obj/effect/spawner/structure/window/reinforced,
 /turf/open/floor/plating,
-/area/city/backstreets_alley)
-"me" = (
-/obj/structure/stone_tile/cracked{
-	dir = 4
-	},
-/obj/structure/stone_tile/cracked{
-	dir = 8
-	},
-/turf/open/floor/plating/asteroid/basalt,
-/area/city/backstreets_alley)
-"mg" = (
-/obj/structure/stone_tile/block/cracked,
-/obj/structure/stone_tile/block{
-	dir = 1
-	},
-/obj/item/spear/bonespear,
-/turf/open/floor/plating/asteroid/basalt,
 /area/city/backstreets_alley)
 "mh" = (
 /turf/open/floor/plasteel/sepia{
@@ -695,23 +539,6 @@
 /obj/effect/spawner/randomcolavend,
 /turf/open/floor/plasteel/sepia,
 /area/city/backstreets_alley)
-"mT" = (
-/obj/structure/stone_tile/block,
-/obj/structure/stone_tile/cracked{
-	dir = 1
-	},
-/obj/structure/stone_tile{
-	dir = 4
-	},
-/obj/effect/decal/cleanable/dirt/dust,
-/obj/effect/mob_spawn/cuckoo_spawner,
-/obj/structure/bed/nest,
-/turf/open/indestructible/boss/air,
-/area/city/backstreets_alley)
-"mU" = (
-/obj/structure/stone_tile,
-/turf/open/floor/plating/asteroid/basalt,
-/area/city/backstreets_alley)
 "mX" = (
 /obj/machinery/iv_drip,
 /obj/effect/decal/cleanable/dirt/dust,
@@ -763,17 +590,6 @@
 /obj/structure/dresser,
 /turf/open/floor/carpet/purple,
 /area/city/backstreets_alley)
-"pm" = (
-/obj/structure/stone_tile/surrounding_tile{
-	dir = 8
-	},
-/obj/structure/stone_tile/surrounding_tile,
-/obj/structure/stone_tile/center/cracked,
-/obj/structure/stone_tile/surrounding_tile/cracked{
-	dir = 4
-	},
-/turf/open/floor/plating/asteroid/basalt,
-/area/city/backstreets_alley)
 "pF" = (
 /obj/structure/chair/pew/right{
 	dir = 8
@@ -817,25 +633,11 @@
 	color = "#f06979"
 	},
 /area/city/backstreets_alley)
-"qu" = (
-/obj/structure/water_source/puddle{
-	pixel_x = -3;
-	pixel_y = 1
-	},
-/turf/open/floor/plating/asteroid/basalt,
-/area/city/backstreets_alley)
 "qJ" = (
 /obj/structure/curtain,
 /turf/open/floor/plasteel/sepia{
 	color = "#990012"
 	},
-/area/city/backstreets_alley)
-"qQ" = (
-/obj/structure/stone_tile/block,
-/obj/structure/stone_tile/block/cracked{
-	dir = 1
-	},
-/turf/open/floor/plating/asteroid/basalt,
 /area/city/backstreets_alley)
 "qU" = (
 /obj/effect/decal/cleanable/dirt/dust,
@@ -868,24 +670,6 @@
 /obj/effect/decal/cleanable/dirt/dust,
 /turf/open/floor/plasteel/chapel,
 /area/city/backstreets_alley)
-"rF" = (
-/obj/structure/stone_tile/block,
-/obj/structure/stone_tile/cracked{
-	dir = 1
-	},
-/obj/structure/stone_tile{
-	dir = 4
-	},
-/turf/open/indestructible/boss/air,
-/area/city/backstreets_alley)
-"rG" = (
-/obj/structure/stone_tile{
-	dir = 8
-	},
-/obj/structure/stone_tile/cracked,
-/obj/effect/decal/cleanable/blood,
-/turf/open/floor/plating/asteroid/basalt,
-/area/city/backstreets_alley)
 "rM" = (
 /obj/effect/spawner/room/backstreets/large_south,
 /turf/closed/wall/mineral/iron,
@@ -910,14 +694,6 @@
 	color = "#f06979"
 	},
 /area/city/backstreets_alley)
-"sf" = (
-/obj/structure/stone_tile/slab/cracked,
-/obj/structure/table/wood{
-	color = "#2b0300"
-	},
-/obj/item/food/cake/bbird,
-/turf/open/indestructible/boss/air,
-/area/city/backstreets_alley)
 "sl" = (
 /obj/structure/table/reinforced,
 /obj/item/organ_storage,
@@ -928,14 +704,6 @@
 /obj/structure/bed/pod,
 /obj/item/bedsheet/hos,
 /turf/open/floor/carpet/red,
-/area/city/backstreets_alley)
-"st" = (
-/obj/machinery/hydroponics/soil,
-/obj/structure/stone_tile/block/cracked{
-	dir = 1
-	},
-/obj/item/cultivator/rake,
-/turf/open/floor/plating/asteroid/basalt,
 /area/city/backstreets_alley)
 "sw" = (
 /obj/structure/table/wood/fancy/red,
@@ -956,15 +724,6 @@
 /turf/open/floor/plating/ashplanet/ash{
 	color = "#da82ff"
 	},
-/area/city/backstreets_alley)
-"tz" = (
-/obj/structure/stone_tile/block{
-	dir = 8
-	},
-/obj/structure/stone_tile/block/cracked{
-	dir = 4
-	},
-/turf/open/floor/plating/asteroid/basalt,
 /area/city/backstreets_alley)
 "tC" = (
 /obj/structure/chair/pew/right{
@@ -1077,15 +836,6 @@
 	color = "#990012"
 	},
 /area/city/backstreets_alley)
-"vU" = (
-/obj/structure/stone_tile/block/cracked{
-	dir = 4
-	},
-/obj/structure/stone_tile/block{
-	dir = 8
-	},
-/turf/open/floor/plating/asteroid/basalt,
-/area/city/backstreets_alley)
 "wi" = (
 /turf/open/floor/carpet/purple,
 /area/city/backstreets_alley)
@@ -1106,26 +856,6 @@
 /turf/open/floor/stone{
 	color = "#f06979"
 	},
-/area/city/backstreets_alley)
-"wE" = (
-/obj/effect/decal/cleanable/blood,
-/obj/structure/stone_tile/cracked{
-	dir = 8
-	},
-/obj/structure/stone_tile/cracked{
-	dir = 4
-	},
-/turf/open/floor/plating/asteroid/basalt,
-/area/city/backstreets_alley)
-"wO" = (
-/turf/closed/indestructible/riveted/boss,
-/area/city/backstreets_alley)
-"xf" = (
-/obj/structure/stone_tile/slab/cracked,
-/obj/effect/decal/cleanable/dirt/dust,
-/obj/effect/mob_spawn/cuckoo_spawner,
-/obj/structure/bed/nest,
-/turf/open/indestructible/boss/air,
 /area/city/backstreets_alley)
 "xg" = (
 /obj/structure/railing{
@@ -1161,26 +891,6 @@
 	color = "#990012"
 	},
 /area/city/backstreets_alley)
-"xS" = (
-/obj/structure/stone_tile/block/cracked{
-	dir = 4
-	},
-/obj/item/reagent_containers/glass/bucket/wooden,
-/turf/open/floor/plating/asteroid/basalt,
-/area/city/backstreets_alley)
-"xV" = (
-/obj/structure/stone_tile/surrounding_tile{
-	dir = 8
-	},
-/obj/structure/stone_tile/center,
-/obj/structure/stone_tile/surrounding_tile/cracked{
-	dir = 1
-	},
-/obj/structure/stone_tile/surrounding_tile/cracked{
-	dir = 4
-	},
-/turf/open/floor/plating/asteroid/basalt,
-/area/city/backstreets_alley)
 "xZ" = (
 /obj/effect/decal/cleanable/blood/tracks{
 	dir = 4
@@ -1202,22 +912,6 @@
 /turf/open/floor/plasteel/chapel{
 	dir = 4
 	},
-/area/city/backstreets_alley)
-"yE" = (
-/obj/effect/mob_spawn/human/corpse/damaged,
-/obj/item/clothing/head/crown,
-/turf/open/floor/plating/asteroid/basalt,
-/area/city/backstreets_alley)
-"yG" = (
-/obj/structure/stone_tile/surrounding_tile,
-/obj/structure/stone_tile/center/cracked,
-/obj/structure/stone_tile/surrounding_tile/cracked{
-	dir = 1
-	},
-/obj/structure/stone_tile/surrounding_tile/cracked{
-	dir = 8
-	},
-/turf/open/floor/plating/asteroid/basalt,
 /area/city/backstreets_alley)
 "yK" = (
 /obj/structure/rack,
@@ -1393,12 +1087,6 @@
 /mob/living/simple_animal/hostile/humanoid/blood/bag,
 /turf/open/floor/carpet/red,
 /area/city/backstreets_alley)
-"Bp" = (
-/obj/structure/stone_tile{
-	dir = 4
-	},
-/turf/open/floor/plating/asteroid/basalt,
-/area/city/backstreets_alley)
 "Br" = (
 /obj/machinery/door/airlock/wood,
 /turf/open/floor/carpet/purple,
@@ -1442,15 +1130,6 @@
 	dir = 4
 	},
 /turf/open/floor/plasteel/showroomfloor,
-/area/city/backstreets_alley)
-"Cv" = (
-/obj/structure/closet/crate/wooden,
-/obj/item/seeds/glowshroom,
-/obj/item/seeds/glowshroom,
-/obj/item/seeds/glowshroom,
-/obj/item/lighter,
-/obj/item/lighter,
-/turf/open/floor/plating/asteroid/basalt,
 /area/city/backstreets_alley)
 "CB" = (
 /obj/structure/chair/pew/left{
@@ -1560,10 +1239,6 @@
 	color = "#990012"
 	},
 /area/city/backstreets_alley)
-"Gb" = (
-/mob/living/simple_animal/hostile/cuckoospawn,
-/turf/open/floor/plating/asteroid/basalt,
-/area/city/backstreets_alley)
 "Gk" = (
 /obj/machinery/door/poddoor{
 	id = "area4";
@@ -1593,25 +1268,9 @@
 	dir = 8
 	},
 /area/city/backstreets_alley)
-"GC" = (
-/obj/item/flashlight/lantern,
-/obj/structure/stone_tile/center,
-/turf/open/floor/plating/asteroid/basalt,
-/area/city/backstreets_alley)
 "Ha" = (
 /obj/structure/spirit_board,
 /turf/open/floor/carpet/red,
-/area/city/backstreets_alley)
-"Hf" = (
-/obj/structure/stone_tile/slab,
-/obj/structure/bird_statue,
-/turf/open/floor/plating/asteroid/basalt,
-/area/city/backstreets_alley)
-"Hi" = (
-/obj/structure/stone_tile/cracked{
-	dir = 8
-	},
-/turf/open/floor/plating/asteroid/basalt,
 /area/city/backstreets_alley)
 "Hs" = (
 /obj/effect/decal/cleanable/blood/tracks{
@@ -1631,17 +1290,6 @@
 /obj/effect/decal/cleanable/dirt/dust,
 /turf/open/floor/carpet/purple,
 /area/city/backstreets_alley)
-"Ib" = (
-/obj/structure/stone_tile/block{
-	dir = 1
-	},
-/obj/structure/stone_tile/cracked,
-/obj/structure/stone_tile{
-	dir = 8
-	},
-/obj/item/keycard/cuckoo_jail,
-/turf/open/indestructible/boss/air,
-/area/city/backstreets_alley)
 "Ic" = (
 /obj/structure/chair/plastic{
 	dir = 4
@@ -1655,35 +1303,11 @@
 /obj/structure/dresser,
 /turf/open/floor/carpet/red,
 /area/city/backstreets_alley)
-"Ij" = (
-/obj/structure/stone_tile/block{
-	dir = 1
-	},
-/obj/structure/stone_tile/cracked,
-/obj/structure/stone_tile{
-	dir = 8
-	},
-/obj/structure/table/wood{
-	color = "#2b0300"
-	},
-/obj/item/food/cake/bbird,
-/turf/open/indestructible/boss/air,
-/area/city/backstreets_alley)
 "It" = (
 /mob/living/simple_animal/hostile/humanoid/blood/bag,
 /turf/open/floor/stone{
 	color = "#e29eff"
 	},
-/area/city/backstreets_alley)
-"IE" = (
-/obj/structure/stone_tile/cracked,
-/obj/structure/closet/crate/wooden,
-/obj/item/storage/bag/plants/portaseeder,
-/obj/item/seeds/tower,
-/obj/item/seeds/tower,
-/obj/item/seeds/tower,
-/obj/item/seeds/tower,
-/turf/open/floor/plating/asteroid/basalt,
 /area/city/backstreets_alley)
 "IN" = (
 /obj/structure/closet/crate/freezer/blood,
@@ -1697,10 +1321,6 @@
 "Jf" = (
 /obj/structure/chair/pew/right,
 /turf/open/floor/material,
-/area/city/backstreets_alley)
-"Jh" = (
-/obj/structure/stone_tile/cracked,
-/turf/open/floor/plating/asteroid/basalt,
 /area/city/backstreets_alley)
 "Jj" = (
 /turf/open/floor/plasteel/chapel{
@@ -1723,17 +1343,6 @@
 	color = "#e29eff"
 	},
 /area/city/backstreets_alley)
-"Jp" = (
-/obj/structure/necropolis_gate,
-/obj/structure/stone_tile/block{
-	dir = 4
-	},
-/obj/structure/stone_tile/block/cracked{
-	dir = 8
-	},
-/obj/effect/decal/cleanable/blood,
-/turf/open/indestructible/boss/air,
-/area/city/backstreets_alley)
 "Jt" = (
 /obj/effect/decal/cleanable/blood/tracks{
 	dir = 5
@@ -1743,12 +1352,6 @@
 "JJ" = (
 /obj/structure/chair/pew,
 /turf/open/floor/material,
-/area/city/backstreets_alley)
-"JM" = (
-/obj/structure/stone_tile/block{
-	dir = 4
-	},
-/turf/open/floor/plating/asteroid/basalt,
 /area/city/backstreets_alley)
 "JV" = (
 /mob/living/simple_animal/hostile/humanoid/blood/bag,
@@ -1775,12 +1378,6 @@
 	color = "#990012"
 	},
 /area/city/backstreets_alley)
-"Kp" = (
-/obj/structure/stone_tile{
-	dir = 8
-	},
-/turf/open/floor/plating/asteroid/basalt,
-/area/city/backstreets_alley)
 "KM" = (
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/structure/mineral_door/iron,
@@ -1805,17 +1402,6 @@
 	color = "#da82ff"
 	},
 /area/city/backstreets_alley)
-"Lb" = (
-/obj/structure/stone_tile/block{
-	dir = 1
-	},
-/obj/structure/stone_tile/cracked,
-/obj/structure/stone_tile{
-	dir = 8
-	},
-/obj/effect/decal/cleanable/dirt/dust,
-/turf/open/indestructible/boss/air,
-/area/city/backstreets_alley)
 "Ld" = (
 /obj/effect/decal/cleanable/blood,
 /turf/open/floor/mineral/plastitanium/red,
@@ -1831,13 +1417,6 @@
 /turf/open/floor/plasteel/dark/side{
 	dir = 4
 	},
-/area/city/backstreets_alley)
-"Lg" = (
-/obj/structure/stone_tile/block/cracked{
-	dir = 1
-	},
-/mob/living/simple_animal/hostile/cuckoospawn,
-/turf/open/floor/plating/asteroid/basalt,
 /area/city/backstreets_alley)
 "Lh" = (
 /obj/effect/spawner/room/backstreets/small_south,
@@ -1960,17 +1539,6 @@
 	},
 /turf/open/floor/plasteel/chapel,
 /area/city/backstreets_alley)
-"NX" = (
-/obj/structure/stone_tile/surrounding_tile/cracked,
-/obj/structure/stone_tile/surrounding_tile/cracked{
-	dir = 1
-	},
-/obj/structure/stone_tile/surrounding_tile{
-	dir = 8
-	},
-/obj/structure/stone_tile/center,
-/turf/open/floor/plating/asteroid/basalt,
-/area/city/backstreets_alley)
 "Oa" = (
 /obj/structure/bed/pod,
 /obj/item/bedsheet/rd,
@@ -1986,17 +1554,6 @@
 /obj/effect/decal/cleanable/dirt/dust,
 /mob/living/simple_animal/hostile/humanoid/blood/bag,
 /turf/open/floor/plasteel/dark,
-/area/city/backstreets_alley)
-"Oh" = (
-/obj/structure/stone_tile/block{
-	dir = 1
-	},
-/obj/structure/stone_tile/cracked,
-/obj/structure/stone_tile{
-	dir = 8
-	},
-/obj/machinery/door/keycard/cuckoo_nest,
-/turf/open/indestructible/boss/air,
 /area/city/backstreets_alley)
 "Oo" = (
 /obj/structure/fluff/paper/stack,
@@ -2072,12 +1629,6 @@
 /obj/effect/decal/cleanable/glass,
 /turf/open/floor/material,
 /area/city/backstreets_alley)
-"Qj" = (
-/obj/structure/stone_tile/slab/cracked,
-/obj/effect/mob_spawn/cuckoo_spawner,
-/obj/structure/bed/nest,
-/turf/open/indestructible/boss/air,
-/area/city/backstreets_alley)
 "QA" = (
 /mob/living/simple_animal/hostile/humanoid/blood/fiend/boss,
 /turf/open/floor/plasteel/chapel{
@@ -2094,17 +1645,6 @@
 "QR" = (
 /obj/structure/curtain/bounty,
 /turf/open/floor/carpet/black,
-/area/city/backstreets_alley)
-"QY" = (
-/obj/structure/stone_tile/surrounding_tile{
-	dir = 4
-	},
-/obj/structure/stone_tile/center/cracked,
-/obj/structure/stone_tile/surrounding_tile/cracked,
-/obj/structure/stone_tile/surrounding_tile/cracked{
-	dir = 1
-	},
-/turf/open/floor/plating/asteroid/basalt,
 /area/city/backstreets_alley)
 "Rh" = (
 /obj/machinery/door/airlock/wood,
@@ -2168,17 +1708,6 @@
 /obj/structure/table/wood/fancy/royalblack,
 /obj/effect/decal/cleanable/dirt/dust,
 /turf/open/floor/carpet/black,
-/area/city/backstreets_alley)
-"SC" = (
-/obj/structure/stone_tile/block,
-/obj/structure/stone_tile/block/cracked{
-	dir = 1
-	},
-/mob/living/simple_animal/hostile/morsel{
-	faction = list("amber_ordeal","neutral", "cuckoospawn");
-	name = "captive morsel"
-	},
-/turf/open/floor/plating/asteroid/basalt,
 /area/city/backstreets_alley)
 "SJ" = (
 /turf/closed/indestructible/rock,
@@ -2302,17 +1831,6 @@
 /obj/machinery/door/airlock/survival_pod/glass,
 /turf/open/floor/stone,
 /area/city/backstreets_alley)
-"Wz" = (
-/obj/structure/stone_tile/block,
-/obj/structure/stone_tile/cracked{
-	dir = 1
-	},
-/obj/structure/stone_tile{
-	dir = 4
-	},
-/obj/structure/window/bronze/fulltile,
-/turf/open/indestructible/boss/air,
-/area/city/backstreets_alley)
 "WD" = (
 /obj/effect/decal/cleanable/dirt/dust,
 /turf/open/floor/plasteel/dark,
@@ -2429,17 +1947,6 @@
 	color = "#787878"
 	},
 /area/city/backstreets_alley)
-"YV" = (
-/obj/structure/stone_tile/surrounding_tile,
-/obj/structure/stone_tile/surrounding_tile{
-	dir = 1
-	},
-/obj/structure/stone_tile/surrounding_tile/cracked{
-	dir = 4
-	},
-/obj/structure/stone_tile/center,
-/turf/open/floor/plating/asteroid/basalt,
-/area/city/backstreets_alley)
 "Zc" = (
 /obj/structure/closet/crate/bin,
 /obj/effect/decal/cleanable/dirt/dust,
@@ -2462,10 +1969,6 @@
 	dir = 1
 	},
 /turf/open/floor/material,
-/area/city/backstreets_alley)
-"ZC" = (
-/obj/effect/decal/cleanable/blood,
-/turf/open/floor/plating/asteroid/basalt,
 /area/city/backstreets_alley)
 
 (1,1,1) = {"
@@ -2817,7 +2320,7 @@ YG
 YG
 YG
 vm
-YG
+vm
 YG
 YG
 YG
@@ -2916,19 +2419,19 @@ SJ
 aU
 aU
 aU
-YG
-YG
-YG
-YG
-YG
-YG
-wO
-kb
-kb
-kb
-wO
 gv
-zJ
+gv
+gv
+gv
+gv
+gv
+gv
+gv
+gv
+gv
+gv
+au
+vm
 YG
 DC
 DC
@@ -3027,19 +2530,19 @@ SJ
 aU
 aU
 YG
-YG
-YG
-YG
-YG
-YG
-wO
-wO
-ZC
-hf
-hf
-wO
-wO
-YG
+gv
+gv
+gv
+gv
+gv
+gv
+gv
+gv
+gv
+gv
+gv
+vm
+vm
 Uj
 DC
 DC
@@ -3138,18 +2641,18 @@ SJ
 aU
 aU
 YG
-YG
-YG
-YG
-YG
-wO
-wO
-hf
-hf
-hf
-hf
-hf
-wO
+gv
+gv
+gv
+gv
+gv
+gv
+gv
+gv
+gv
+gv
+gv
+vm
 DC
 DC
 DC
@@ -3249,18 +2752,18 @@ SJ
 aU
 aU
 YG
-YG
-YG
-YG
-wO
-wO
-ix
-hf
-hf
-vU
-vU
-vU
-Jp
+gv
+gv
+gv
+gv
+gv
+gv
+gv
+gv
+gv
+gv
+gv
+vm
 DC
 DC
 DC
@@ -3360,18 +2863,18 @@ SJ
 aU
 aU
 YG
-YG
-YG
-wO
-wO
-Gb
-hf
-hf
-vU
-vU
-hf
-hf
-wO
+gv
+gv
+gv
+gv
+gv
+gv
+gv
+gv
+gv
+gv
+gv
+vm
 DC
 DC
 DC
@@ -3471,19 +2974,19 @@ SJ
 aU
 aU
 YG
-YG
-YG
-wO
-IE
-hf
-mU
-au
-mg
-Hi
-Hi
-hf
-wO
-YG
+gv
+gv
+gv
+gv
+gv
+gv
+gv
+gv
+gv
+gv
+gv
+vm
+vm
 Uj
 DC
 DC
@@ -3582,19 +3085,19 @@ SJ
 aU
 aU
 YG
-YG
-YG
-wO
-Cv
-hf
-me
-yG
-JM
-QY
-Kp
-hV
-kb
-YG
+gv
+gv
+gv
+gv
+gv
+gv
+gv
+gv
+gv
+gv
+gv
+gv
+vm
 YG
 DC
 DC
@@ -3693,19 +3196,19 @@ SJ
 aU
 YG
 YG
-YG
-wO
-wO
-hf
-hf
-vU
-dC
-aM
-Lg
-rG
-eh
-kb
-YG
+gv
+gv
+gv
+gv
+gv
+gv
+gv
+gv
+gv
+gv
+gv
+gv
+vm
 YG
 DC
 DC
@@ -3804,19 +3307,19 @@ SJ
 aU
 YG
 YG
-wO
-wO
-hf
-ZC
-hf
-gA
-pm
-dO
-xV
-mU
-hf
-wO
-YG
+gv
+gv
+gv
+gv
+gv
+gv
+gv
+gv
+gv
+gv
+gv
+gv
+vm
 YG
 DC
 DC
@@ -3915,19 +3418,19 @@ SJ
 aU
 YG
 YG
-kb
-YV
-hw
-hf
-hf
-wE
-kA
-ee
-Jh
-Bp
-yE
-wO
-YG
+gv
+gv
+gv
+gv
+gv
+gv
+gv
+gv
+gv
+gv
+gv
+gv
+vm
 YG
 DC
 DC
@@ -4026,19 +3529,19 @@ SJ
 aU
 YG
 YG
-kb
-Hf
-tz
-hf
-hf
-hf
-hf
-qQ
-hf
-hf
-ZC
-wO
-YG
+gv
+gv
+gv
+gv
+gv
+gv
+gv
+gv
+gv
+gv
+gv
+gv
+vm
 YG
 DC
 DC
@@ -4137,19 +3640,19 @@ SJ
 aU
 YG
 YG
-kb
-fb
-hw
-hf
-fb
-aE
-aE
-SC
-NX
-xS
-jS
-wO
-YG
+gv
+gv
+gv
+gv
+gv
+gv
+gv
+gv
+gv
+gv
+gv
+gv
+vm
 YG
 DC
 DC
@@ -4248,19 +3751,19 @@ SJ
 aU
 YG
 YG
-kb
-ZC
-wO
-wO
-Oh
-Wz
-dK
-wO
-hf
-GC
-st
-wO
-YG
+gv
+gv
+gv
+gv
+gv
+gv
+gv
+gv
+gv
+gv
+gv
+gv
+vm
 YG
 DC
 DC
@@ -4359,19 +3862,19 @@ SJ
 aU
 YG
 YG
-wO
-jP
-wO
-xf
-fH
-Lb
-Qj
-wO
-qu
-hf
-bZ
-wO
-YG
+gv
+gv
+gv
+gv
+gv
+gv
+gv
+gv
+gv
+gv
+gv
+gv
+vm
 YG
 DC
 DC
@@ -4470,19 +3973,19 @@ SJ
 aU
 YG
 YG
-wO
-wO
-wO
-Ij
-rF
-Ib
-fH
-wO
-wO
-wO
-wO
-wO
-YG
+gv
+gv
+gv
+gv
+gv
+gv
+gv
+gv
+gv
+gv
+gv
+gv
+vm
 YG
 DC
 DC
@@ -4581,19 +4084,19 @@ SJ
 aU
 YG
 YG
+gv
+gv
+gv
+gv
+gv
+gv
+gv
+gv
+gv
+gv
+gv
+gv
 vm
-wO
-wO
-sf
-mT
-fH
-lj
-wO
-wO
-YG
-YG
-YG
-YG
 YG
 DC
 DC
@@ -4692,19 +4195,19 @@ SJ
 aU
 YG
 YG
+gv
+gv
+gv
+gv
+gv
+gv
+gv
+gv
+gv
+gv
+gv
+gv
 vm
-YG
-wO
-wO
-wO
-wO
-wO
-wO
-YG
-YG
-YG
-YG
-YG
 YG
 DC
 DC
@@ -4804,19 +4307,19 @@ aU
 YG
 zJ
 vm
+vm
+vm
+vm
+vm
+vm
+vm
+vm
+vm
+vm
+vm
+vm
+vm
 YG
-DC
-DC
-DC
-DC
-DC
-DC
-DC
-DC
-DC
-DC
-DC
-DC
 DC
 DC
 DC
@@ -4916,18 +4419,18 @@ YG
 YG
 vm
 YG
-DC
-DC
-DC
-DC
-DC
-DC
-DC
-DC
-DC
-DC
-DC
-DC
+YG
+YG
+YG
+YG
+YG
+YG
+YG
+YG
+YG
+YG
+YG
+YG
 ns
 DC
 DC

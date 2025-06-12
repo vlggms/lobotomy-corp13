@@ -1,22 +1,7 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
-"aK" = (
-/obj/structure/stone_tile/cracked{
-	dir = 1
-	},
-/turf/open/floor/plating/asteroid/basalt,
-/area/city/backstreets_alley)
 "bm" = (
 /obj/effect/landmark/cratespawn,
 /turf/open/floor/plating/ashplanet/wateryrock,
-/area/city/backstreets_alley)
-"br" = (
-/obj/structure/stone_tile/cracked,
-/turf/open/floor/plating/asteroid/basalt,
-/area/city/backstreets_alley)
-"cd" = (
-/obj/structure/stone_tile/slab,
-/obj/structure/bird_statue,
-/turf/open/floor/plating/asteroid/basalt,
 /area/city/backstreets_alley)
 "cj" = (
 /obj/effect/spawner/room/backstreets/medium_east,
@@ -29,49 +14,6 @@
 "dz" = (
 /obj/item/stack/spacecash/c10,
 /turf/open/water/jungle,
-/area/city/backstreets_alley)
-"dE" = (
-/obj/item/flashlight/lantern,
-/obj/structure/stone_tile/center,
-/turf/open/floor/plating/asteroid/basalt,
-/area/city/backstreets_alley)
-"dI" = (
-/obj/structure/stone_tile/surrounding_tile/cracked,
-/obj/structure/stone_tile/surrounding_tile/cracked{
-	dir = 1
-	},
-/obj/structure/stone_tile/surrounding_tile{
-	dir = 8
-	},
-/obj/structure/stone_tile/center,
-/turf/open/floor/plating/asteroid/basalt,
-/area/city/backstreets_alley)
-"eg" = (
-/obj/machinery/hydroponics/soil,
-/turf/open/floor/plating/asteroid/basalt,
-/area/city/backstreets_alley)
-"eP" = (
-/obj/structure/spacevine{
-	name = "old vines"
-	},
-/turf/closed/indestructible/riveted/boss,
-/area/city/backstreets_alley)
-"fm" = (
-/obj/structure/necropolis_gate,
-/obj/structure/stone_tile/block{
-	dir = 4
-	},
-/obj/structure/stone_tile/block/cracked{
-	dir = 8
-	},
-/obj/effect/decal/cleanable/blood,
-/turf/open/indestructible/boss/air,
-/area/city/backstreets_alley)
-"fz" = (
-/obj/structure/stone_tile{
-	dir = 8
-	},
-/turf/open/floor/plating/asteroid/basalt,
 /area/city/backstreets_alley)
 "fV" = (
 /obj/structure/delivery_door{
@@ -92,19 +34,6 @@
 /obj/structure/flora/rock/jungle,
 /turf/open/water/jungle,
 /area/city/backstreets_alley)
-"gW" = (
-/obj/structure/stone_tile/surrounding_tile{
-	dir = 8
-	},
-/obj/structure/stone_tile/center,
-/obj/structure/stone_tile/surrounding_tile/cracked{
-	dir = 1
-	},
-/obj/structure/stone_tile/surrounding_tile/cracked{
-	dir = 4
-	},
-/turf/open/floor/plating/asteroid/basalt,
-/area/city/backstreets_alley)
 "ho" = (
 /obj/effect/landmark/backstreetspawnwest,
 /turf/open/floor/plating/ashplanet/wateryrock,
@@ -118,17 +47,6 @@
 /area/city/backstreets_room)
 "ij" = (
 /turf/open/water/jungle,
-/area/city/backstreets_alley)
-"ip" = (
-/turf/closed/indestructible/riveted/boss,
-/area/city/backstreets_alley)
-"ir" = (
-/obj/structure/stone_tile,
-/obj/structure/stone_tile{
-	dir = 8
-	},
-/mob/living/simple_animal/hostile/cuckoospawn,
-/turf/open/floor/plating/asteroid/basalt,
 /area/city/backstreets_alley)
 "it" = (
 /turf/open/floor/plating/dirt/jungle/dark{
@@ -151,46 +69,15 @@
 	},
 /turf/open/floor/plasteel/rockvault,
 /area/city/backstreets_room)
-"iO" = (
-/obj/structure/stone_tile{
-	dir = 4
-	},
-/turf/open/floor/plating/asteroid/basalt,
-/area/city/backstreets_alley)
 "iZ" = (
 /obj/effect/landmark/backstreetspawn,
 /turf/open/floor/plating/asteroid/basalt,
-/area/city/backstreets_alley)
-"jc" = (
-/obj/structure/stone_tile/slab/cracked,
-/obj/effect/mob_spawn/cuckoo_spawner,
-/obj/structure/bed/nest,
-/turf/open/indestructible/boss/air,
 /area/city/backstreets_alley)
 "jg" = (
 /obj/structure/flora/rock/jungle,
 /turf/closed/indestructible/rock,
 /area/city/backstreets_alley)
-"jv" = (
-/obj/effect/mob_spawn/human/corpse/damaged,
-/turf/open/floor/plating/asteroid/basalt,
-/area/city/backstreets_alley)
-"jw" = (
-/obj/structure/stone_tile/block,
-/obj/structure/stone_tile/block/cracked{
-	dir = 1
-	},
-/mob/living/simple_animal/hostile/morsel{
-	faction = list("amber_ordeal","neutral", "cuckoospawn");
-	name = "captive morsel"
-	},
-/turf/open/floor/plating/asteroid/basalt,
-/area/city/backstreets_alley)
 "kn" = (
-/turf/open/floor/plating/asteroid/basalt,
-/area/city/backstreets_alley)
-"kA" = (
-/obj/effect/decal/cleanable/blood,
 /turf/open/floor/plating/asteroid/basalt,
 /area/city/backstreets_alley)
 "kN" = (
@@ -205,60 +92,21 @@
 /obj/effect/spawner/room/backstreets/connector,
 /turf/closed/indestructible/reinforced,
 /area/city/backstreets_room)
-"mB" = (
-/obj/machinery/hydroponics/soil,
-/obj/structure/stone_tile/block/cracked{
-	dir = 1
-	},
-/obj/item/cultivator/rake,
-/turf/open/floor/plating/asteroid/basalt,
-/area/city/backstreets_alley)
 "ne" = (
 /obj/structure/table/reinforced,
 /obj/item/paper/fluff/awaymissions/caves/safety_notice,
 /turf/open/floor/plasteel/rockvault,
 /area/city/backstreets_room)
-"nB" = (
-/obj/structure/stone_tile/block,
-/obj/structure/stone_tile/block{
-	dir = 1
-	},
-/turf/open/floor/plating/asteroid/basalt,
-/area/city/backstreets_alley)
 "nQ" = (
 /obj/effect/spawner/room/backstreets/small_north,
 /turf/closed/indestructible/reinforced,
 /area/city/backstreets_room)
-"ow" = (
-/obj/structure/stone_tile/surrounding_tile,
-/obj/structure/stone_tile/center/cracked,
-/obj/structure/stone_tile/surrounding_tile/cracked{
-	dir = 1
-	},
-/obj/structure/stone_tile/surrounding_tile/cracked{
-	dir = 8
-	},
-/turf/open/floor/plating/asteroid/basalt,
-/area/city/backstreets_alley)
 "pl" = (
-/obj/structure/stone_tile/block{
-	dir = 1
-	},
-/obj/structure/stone_tile/cracked,
-/obj/structure/stone_tile{
-	dir = 8
-	},
-/obj/effect/decal/cleanable/dirt/dust,
-/turf/open/indestructible/boss/air,
+/obj/effect/spawner/room/cuckoo_spawner,
+/turf/closed/indestructible/rock,
 /area/city/backstreets_alley)
 "qo" = (
 /obj/effect/landmark/backstreetspawnwest,
-/turf/open/floor/plating/asteroid/basalt,
-/area/city/backstreets_alley)
-"qq" = (
-/obj/structure/stone_tile/block{
-	dir = 4
-	},
 /turf/open/floor/plating/asteroid/basalt,
 /area/city/backstreets_alley)
 "qO" = (
@@ -266,16 +114,6 @@
 /turf/open/floor/plating/dirt/jungle/dark{
 	slowdown = 0
 	},
-/area/city/backstreets_alley)
-"qQ" = (
-/obj/structure/stone_tile/block,
-/obj/structure/stone_tile/cracked{
-	dir = 1
-	},
-/obj/structure/stone_tile{
-	dir = 4
-	},
-/turf/open/indestructible/boss/air,
 /area/city/backstreets_alley)
 "re" = (
 /obj/structure/table/reinforced,
@@ -297,11 +135,6 @@
 	},
 /turf/open/floor/mineral/titanium/tiled,
 /area/city/backstreets_room)
-"sa" = (
-/obj/effect/mob_spawn/human/corpse/damaged,
-/obj/item/toy/plush/bigbird,
-/turf/open/floor/plating/asteroid/basalt,
-/area/city/backstreets_alley)
 "sb" = (
 /obj/effect/spawner/room/backstreets/pointofinterest,
 /turf/closed/indestructible/reinforced,
@@ -338,59 +171,12 @@
 /obj/item/stack/spacecash/c100,
 /turf/open/floor/plating/ashplanet/wateryrock,
 /area/city/backstreets_alley)
-"vk" = (
-/obj/effect/decal/cleanable/blood,
-/obj/structure/stone_tile/cracked{
-	dir = 8
-	},
-/obj/structure/stone_tile/cracked{
-	dir = 4
-	},
-/turf/open/floor/plating/asteroid/basalt,
-/area/city/backstreets_alley)
 "vm" = (
 /turf/open/floor/plating/foam,
 /area/city/backstreets_room)
-"vJ" = (
-/obj/structure/stone_tile/block/cracked,
-/turf/open/floor/plating/asteroid/basalt,
-/area/city/backstreets_alley)
-"vZ" = (
-/obj/machinery/hydroponics/soil,
-/obj/structure/stone_tile/surrounding_tile/cracked{
-	dir = 1
-	},
-/obj/structure/stone_tile/surrounding_tile,
-/obj/structure/stone_tile/surrounding_tile{
-	dir = 4
-	},
-/obj/structure/stone_tile/center,
-/turf/open/floor/plating/asteroid/basalt,
-/area/city/backstreets_alley)
-"wa" = (
-/obj/structure/closet/crate/wooden,
-/obj/item/seeds/glowshroom,
-/obj/item/seeds/glowshroom,
-/obj/item/seeds/glowshroom,
-/obj/item/lighter,
-/obj/item/lighter,
-/turf/open/floor/plating/asteroid/basalt,
-/area/city/backstreets_alley)
-"wV" = (
-/obj/structure/stone_tile,
-/turf/open/floor/plating/asteroid/basalt,
-/area/city/backstreets_alley)
 "xk" = (
 /obj/structure/sign/warning/securearea,
 /turf/closed/indestructible/reinforced,
-/area/city/backstreets_alley)
-"xU" = (
-/obj/structure/stone_tile/block/cracked,
-/obj/structure/stone_tile/block{
-	dir = 1
-	},
-/obj/item/spear/bonespear,
-/turf/open/floor/plating/asteroid/basalt,
 /area/city/backstreets_alley)
 "yP" = (
 /obj/structure/lootcrate/money,
@@ -423,29 +209,10 @@
 "Df" = (
 /turf/closed/indestructible/reinforced,
 /area/space)
-"Dq" = (
-/obj/structure/stone_tile/cracked{
-	dir = 8
-	},
-/turf/open/floor/plating/asteroid/basalt,
-/area/city/backstreets_alley)
-"Dr" = (
-/obj/structure/table/wood{
-	color = "#2b0300"
-	},
-/turf/open/floor/plating/asteroid/basalt,
-/area/city/backstreets_alley)
 "Dv" = (
 /obj/machinery/door/airlock/survival_pod,
 /turf/open/floor/mineral/titanium/tiled,
 /area/city/backstreets_room)
-"DA" = (
-/obj/structure/stone_tile/block,
-/obj/structure/stone_tile/block/cracked{
-	dir = 1
-	},
-/turf/open/floor/plating/asteroid/basalt,
-/area/city/backstreets_alley)
 "DF" = (
 /obj/item/stack/spacecash/c200,
 /turf/open/floor/plating/ashplanet/wateryrock,
@@ -467,50 +234,12 @@
 /obj/effect/spawner/room/backstreets/small_west,
 /turf/closed/indestructible/reinforced,
 /area/city/backstreets_room)
-"Fa" = (
-/obj/structure/stone_tile/surrounding_tile,
-/obj/structure/stone_tile/surrounding_tile{
-	dir = 1
-	},
-/obj/structure/stone_tile/surrounding_tile/cracked{
-	dir = 4
-	},
-/obj/structure/stone_tile/center,
-/turf/open/floor/plating/asteroid/basalt,
-/area/city/backstreets_alley)
-"Ge" = (
-/obj/structure/stone_tile/surrounding_tile{
-	dir = 8
-	},
-/obj/structure/stone_tile/surrounding_tile,
-/obj/structure/stone_tile/center/cracked,
-/obj/structure/stone_tile/surrounding_tile/cracked{
-	dir = 4
-	},
-/turf/open/floor/plating/asteroid/basalt,
-/area/city/backstreets_alley)
-"Gh" = (
-/obj/structure/stone_tile/block/cracked{
-	dir = 1
-	},
-/mob/living/simple_animal/hostile/cuckoospawn,
-/turf/open/floor/plating/asteroid/basalt,
-/area/city/backstreets_alley)
-"Gk" = (
-/obj/structure/stone_tile/slab/cracked,
-/obj/structure/window/bronze/fulltile,
-/turf/open/indestructible/boss/air,
-/area/city/backstreets_alley)
 "GH" = (
 /obj/structure/table/reinforced,
 /obj/item/pickaxe/drill/diamonddrill,
 /obj/item/pickaxe/drill/diamonddrill,
 /turf/open/floor/plating/rust,
 /area/city/backstreets_room)
-"GY" = (
-/mob/living/simple_animal/hostile/cuckoospawn,
-/turf/open/floor/plating/asteroid/basalt,
-/area/city/backstreets_alley)
 "HU" = (
 /obj/structure/table/reinforced,
 /obj/item/pickaxe/drill/diamonddrill,
@@ -528,151 +257,38 @@
 /obj/effect/landmark/backstreetspawnwest,
 /turf/open/water/jungle,
 /area/city/backstreets_alley)
-"JH" = (
-/obj/structure/stone_tile/cracked{
-	dir = 4
-	},
-/obj/structure/stone_tile/cracked{
-	dir = 8
-	},
-/turf/open/floor/plating/asteroid/basalt,
-/area/city/backstreets_alley)
 "JJ" = (
 /obj/structure/table/reinforced,
 /obj/item/pickaxe/drill/diamonddrill,
 /obj/item/pickaxe/drill/diamonddrill,
 /turf/open/floor/plasteel/rockvault,
 /area/city/backstreets_room)
-"JY" = (
-/obj/structure/stone_tile/block{
-	dir = 1
-	},
-/obj/structure/stone_tile/cracked,
-/obj/structure/stone_tile{
-	dir = 8
-	},
-/turf/open/indestructible/boss/air,
-/area/city/backstreets_alley)
-"Km" = (
-/obj/structure/stone_tile/block/cracked,
-/obj/structure/stone_tile/block{
-	dir = 1
-	},
-/turf/open/floor/plating/asteroid/basalt,
-/area/city/backstreets_alley)
 "Kv" = (
 /obj/effect/landmark/distortion,
-/turf/open/floor/plating/asteroid/basalt,
-/area/city/backstreets_alley)
-"KL" = (
-/obj/structure/stone_tile/center,
-/obj/structure/bonfire/dense,
 /turf/open/floor/plating/asteroid/basalt,
 /area/city/backstreets_alley)
 "KM" = (
 /obj/effect/spawner/room/backstreets/large_north,
 /turf/closed/indestructible/reinforced,
 /area/city/backstreets_room)
-"KN" = (
-/obj/structure/stone_tile{
-	dir = 8
-	},
-/obj/structure/stone_tile/cracked,
-/obj/effect/decal/cleanable/blood,
-/turf/open/floor/plating/asteroid/basalt,
-/area/city/backstreets_alley)
 "Ln" = (
 /turf/open/floor/mineral/titanium/tiled,
 /area/city/backstreets_room)
 "MW" = (
 /turf/closed/indestructible/reinforced,
 /area/city/backstreets_alley)
-"Nf" = (
-/obj/structure/stone_tile/block{
-	dir = 8
-	},
-/turf/open/floor/plating/asteroid/basalt,
-/area/city/backstreets_alley)
 "Nn" = (
 /obj/structure/flora/rock/pile,
 /turf/open/floor/plating/ashplanet/wateryrock,
-/area/city/backstreets_alley)
-"NW" = (
-/obj/structure/water_source/puddle{
-	pixel_x = -3;
-	pixel_y = 1
-	},
-/turf/open/floor/plating/asteroid/basalt,
 /area/city/backstreets_alley)
 "Oe" = (
 /obj/effect/spawner/room/backstreets/medium_south,
 /turf/closed/indestructible/reinforced,
 /area/city/backstreets_room)
-"OC" = (
-/obj/structure/stone_tile/block,
-/obj/structure/stone_tile/cracked{
-	dir = 1
-	},
-/obj/structure/stone_tile{
-	dir = 4
-	},
-/obj/effect/decal/cleanable/dirt/dust,
-/obj/item/keycard/cuckoo_jail,
-/turf/open/indestructible/boss/air,
-/area/city/backstreets_alley)
-"OI" = (
-/obj/structure/stone_tile/block,
-/obj/structure/stone_tile/cracked{
-	dir = 1
-	},
-/obj/structure/stone_tile{
-	dir = 4
-	},
-/obj/structure/window/bronze/fulltile,
-/turf/open/indestructible/boss/air,
-/area/city/backstreets_alley)
-"OL" = (
-/obj/effect/mob_spawn/human/corpse/damaged,
-/obj/item/clothing/head/crown,
-/turf/open/floor/plating/asteroid/basalt,
-/area/city/backstreets_alley)
-"OT" = (
-/obj/structure/stone_tile/cracked{
-	dir = 4
-	},
-/turf/open/floor/plating/asteroid/basalt,
-/area/city/backstreets_alley)
 "Pz" = (
 /obj/effect/spawner/room/backstreets/large_south,
 /turf/closed/indestructible/reinforced,
 /area/city/backstreets_room)
-"PB" = (
-/obj/structure/stone_tile/block,
-/obj/structure/stone_tile/cracked{
-	dir = 1
-	},
-/obj/structure/stone_tile{
-	dir = 4
-	},
-/obj/effect/decal/cleanable/dirt/dust,
-/obj/effect/mob_spawn/cuckoo_spawner,
-/obj/structure/bed/nest,
-/turf/open/indestructible/boss/air,
-/area/city/backstreets_alley)
-"PU" = (
-/obj/structure/stone_tile/surrounding_tile{
-	dir = 4
-	},
-/obj/structure/stone_tile/surrounding_tile{
-	dir = 1
-	},
-/obj/structure/stone_tile/surrounding_tile/cracked{
-	dir = 8
-	},
-/obj/structure/stone_tile/center,
-/obj/effect/decal/cleanable/blood,
-/turf/open/floor/plating/asteroid/basalt,
-/area/city/backstreets_alley)
 "Qk" = (
 /obj/effect/landmark/backstreetspawneast,
 /turf/open/floor/plating/asteroid/basalt,
@@ -683,26 +299,6 @@
 	slowdown = 0
 	},
 /area/city/backstreets_alley)
-"Rp" = (
-/obj/structure/stone_tile/block/cracked{
-	dir = 4
-	},
-/obj/structure/stone_tile/block{
-	dir = 8
-	},
-/turf/open/floor/plating/asteroid/basalt,
-/area/city/backstreets_alley)
-"Rq" = (
-/obj/structure/stone_tile/surrounding_tile{
-	dir = 4
-	},
-/obj/structure/stone_tile/center/cracked,
-/obj/structure/stone_tile/surrounding_tile/cracked,
-/obj/structure/stone_tile/surrounding_tile/cracked{
-	dir = 1
-	},
-/turf/open/floor/plating/asteroid/basalt,
-/area/city/backstreets_alley)
 "RN" = (
 /turf/open/floor/plasteel/rockvault,
 /area/city/backstreets_room)
@@ -711,22 +307,6 @@
 /obj/structure/statue/custom,
 /turf/open/floor/mineral/titanium/tiled,
 /area/city/backstreets_room)
-"Tr" = (
-/obj/structure/stone_tile/block{
-	dir = 8
-	},
-/obj/structure/stone_tile/block/cracked{
-	dir = 4
-	},
-/turf/open/floor/plating/asteroid/basalt,
-/area/city/backstreets_alley)
-"Tt" = (
-/obj/structure/table/wood{
-	color = "#2b0300"
-	},
-/obj/item/storage/bag/meat,
-/turf/open/floor/plating/asteroid/basalt,
-/area/city/backstreets_alley)
 "Uw" = (
 /obj/structure/table/reinforced,
 /obj/item/pickaxe/drill/diamonddrill,
@@ -752,55 +332,10 @@
 /obj/effect/spawner/room/backstreets/bossroom,
 /turf/closed/indestructible/reinforced,
 /area/city/backstreets_room)
-"WC" = (
-/obj/structure/stone_tile/cracked,
-/obj/structure/closet/crate/wooden,
-/obj/item/storage/bag/plants/portaseeder,
-/obj/item/seeds/tower,
-/obj/item/seeds/tower,
-/obj/item/seeds/tower,
-/obj/item/seeds/tower,
-/turf/open/floor/plating/asteroid/basalt,
-/area/city/backstreets_alley)
-"WI" = (
-/obj/structure/stone_tile/block{
-	dir = 1
-	},
-/obj/structure/stone_tile/cracked,
-/obj/structure/stone_tile{
-	dir = 8
-	},
-/obj/item/keycard/cuckoo_jail,
-/turf/open/indestructible/boss/air,
-/area/city/backstreets_alley)
 "Xb" = (
 /obj/effect/spawner/room/village_spawner,
 /turf/closed/indestructible/reinforced,
 /area/city/backstreets_room)
-"Xr" = (
-/obj/structure/stone_tile/block{
-	dir = 1
-	},
-/obj/structure/stone_tile/cracked,
-/obj/structure/stone_tile{
-	dir = 8
-	},
-/obj/machinery/door/keycard/cuckoo_nest,
-/turf/open/indestructible/boss/air,
-/area/city/backstreets_alley)
-"Yi" = (
-/obj/structure/stone_tile{
-	dir = 1
-	},
-/turf/open/floor/plating/asteroid/basalt,
-/area/city/backstreets_alley)
-"Za" = (
-/obj/structure/stone_tile/slab/cracked,
-/obj/effect/decal/cleanable/dirt/dust,
-/obj/effect/mob_spawn/cuckoo_spawner,
-/obj/structure/bed/nest,
-/turf/open/indestructible/boss/air,
-/area/city/backstreets_alley)
 "Zj" = (
 /obj/structure/table/reinforced,
 /obj/item/pickaxe/mini,
@@ -810,39 +345,10 @@
 /obj/machinery/light,
 /turf/open/floor/plasteel/rockvault,
 /area/city/backstreets_room)
-"Zu" = (
-/obj/structure/stone_tile/block/cracked{
-	dir = 4
-	},
-/obj/item/reagent_containers/glass/bucket/wooden,
-/turf/open/floor/plating/asteroid/basalt,
-/area/city/backstreets_alley)
 "ZH" = (
 /obj/effect/spawner/room/backstreets/medium_north,
 /turf/closed/indestructible/reinforced,
 /area/city/backstreets_room)
-"ZR" = (
-/obj/structure/stone_tile/block{
-	dir = 1
-	},
-/obj/structure/stone_tile/cracked,
-/obj/structure/stone_tile{
-	dir = 8
-	},
-/obj/structure/table/wood{
-	color = "#2b0300"
-	},
-/obj/item/food/cake/bbird,
-/turf/open/indestructible/boss/air,
-/area/city/backstreets_alley)
-"ZS" = (
-/obj/structure/stone_tile/slab/cracked,
-/obj/structure/table/wood{
-	color = "#2b0300"
-	},
-/obj/item/food/cake/bbird,
-/turf/open/indestructible/boss/air,
-/area/city/backstreets_alley)
 
 (1,1,1) = {"
 hv
@@ -14172,12 +13678,12 @@ BD
 BD
 BD
 BD
-ip
-eP
-eP
-eP
-ip
 BD
+BD
+BD
+BD
+BD
+pl
 BD
 ij
 Es
@@ -14282,13 +13788,13 @@ BD
 BD
 BD
 BD
-ip
-ip
-kA
-kn
-kn
-ip
-ip
+BD
+BD
+BD
+BD
+BD
+BD
+BD
 BD
 Es
 Es
@@ -14392,14 +13898,14 @@ BD
 BD
 BD
 BD
-ip
-ip
-kn
-kn
-kn
-kn
-kn
-ip
+BD
+BD
+BD
+BD
+BD
+BD
+BD
+BD
 ij
 ij
 ij
@@ -14502,15 +14008,15 @@ hv
 BD
 BD
 BD
-ip
-ip
-jv
-kn
-kn
-Rp
-Rp
-Rp
-fm
+BD
+BD
+BD
+BD
+BD
+BD
+BD
+BD
+BD
 ij
 ij
 ij
@@ -14612,16 +14118,16 @@ BD
 hv
 BD
 BD
-ip
-ip
-GY
-kn
-kn
-Rp
-Rp
-kn
-kn
-ip
+BD
+BD
+BD
+BD
+BD
+BD
+BD
+BD
+BD
+BD
 ij
 ij
 dz
@@ -14721,18 +14227,18 @@ BD
 "}
 (126,1,1) = {"
 hv
-hv
-hv
-ip
-WC
-kn
-wV
-OT
-xU
-Dq
-Dq
-kn
-ip
+BD
+BD
+BD
+BD
+BD
+BD
+BD
+BD
+BD
+BD
+BD
+BD
 BD
 BD
 Ig
@@ -14832,18 +14338,18 @@ BD
 "}
 (127,1,1) = {"
 hv
-hv
-hv
-ip
-wa
-kn
-JH
-ow
-qq
-Rq
-fz
-Dr
-eP
+BD
+BD
+BD
+BD
+BD
+BD
+BD
+BD
+BD
+BD
+BD
+BD
 ij
 ij
 ij
@@ -14943,18 +14449,18 @@ BD
 "}
 (128,1,1) = {"
 hv
-hv
-ip
-ip
-kn
-kn
-Rp
-vJ
-KL
-Gh
-KN
-Tt
-eP
+BD
+BD
+BD
+BD
+BD
+BD
+BD
+BD
+BD
+BD
+BD
+BD
 ij
 ij
 ij
@@ -15054,18 +14560,18 @@ hv
 "}
 (129,1,1) = {"
 hv
-ip
-ip
-kn
-kA
-kn
-Yi
-Ge
-Nf
-gW
-wV
-kn
-ip
+BD
+BD
+BD
+BD
+BD
+BD
+BD
+BD
+BD
+BD
+BD
+BD
 BD
 BD
 BD
@@ -15165,18 +14671,18 @@ hv
 "}
 (130,1,1) = {"
 hv
-eP
-Fa
-ir
-kn
-kn
-vk
-aK
-Km
-br
-iO
-OL
-ip
+BD
+BD
+BD
+BD
+BD
+BD
+BD
+BD
+BD
+BD
+BD
+BD
 BD
 BD
 BD
@@ -15276,18 +14782,18 @@ hv
 "}
 (131,1,1) = {"
 hv
-eP
-cd
-Tr
-kn
-kn
-kn
-kn
-DA
-kn
-kn
-kA
-ip
+BD
+BD
+BD
+BD
+BD
+BD
+BD
+BD
+BD
+BD
+BD
+BD
 Ig
 BD
 BD
@@ -15387,18 +14893,18 @@ hv
 "}
 (132,1,1) = {"
 hv
-eP
-PU
-ir
-kn
-PU
-nB
-nB
-jw
-dI
-Zu
-vZ
-ip
+BD
+BD
+BD
+BD
+BD
+BD
+BD
+BD
+BD
+BD
+BD
+BD
 ij
 ij
 Es
@@ -15498,18 +15004,18 @@ hv
 "}
 (133,1,1) = {"
 hv
-eP
-kA
-ip
-ip
-Xr
-OI
-Gk
-ip
-kn
-dE
-mB
-ip
+BD
+BD
+BD
+BD
+BD
+BD
+BD
+BD
+BD
+BD
+BD
+BD
 ij
 ij
 ij
@@ -15609,18 +15115,18 @@ hv
 "}
 (134,1,1) = {"
 hv
-ip
-sa
-ip
-Za
-JY
-pl
-jc
-ip
-NW
-kn
-eg
-ip
+BD
+BD
+BD
+BD
+BD
+BD
+BD
+BD
+BD
+BD
+BD
+BD
 BD
 BD
 BD
@@ -15720,18 +15226,18 @@ hv
 "}
 (135,1,1) = {"
 hv
-ip
-ip
-ip
-ZR
-qQ
-WI
-JY
-ip
-ip
-ip
-ip
-ip
+BD
+BD
+BD
+BD
+BD
+BD
+BD
+BD
+BD
+BD
+BD
+BD
 hv
 hv
 hv
@@ -15831,18 +15337,18 @@ hv
 "}
 (136,1,1) = {"
 hv
-hv
-ip
-ip
-ZS
-PB
-JY
-OC
-ip
-ip
-hv
-hv
-hv
+BD
+BD
+BD
+BD
+BD
+BD
+BD
+BD
+BD
+BD
+BD
+BD
 hv
 hv
 hv
@@ -15942,18 +15448,18 @@ hv
 "}
 (137,1,1) = {"
 hv
-hv
-hv
-ip
-ip
-ip
-ip
-ip
-ip
-hv
-hv
-hv
-hv
+BD
+BD
+BD
+BD
+BD
+BD
+BD
+BD
+BD
+BD
+BD
+BD
 hv
 hv
 hv

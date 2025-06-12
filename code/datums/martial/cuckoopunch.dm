@@ -4,6 +4,7 @@
 	id = MARTIALART_CUCKOOPUNCH
 	var/datum/action/cuckoo_implant/implant = new/datum/action/cuckoo_implant()
 	var/datum/action/cuckoo_remember/remember = new/datum/action/cuckoo_remember()
+	var/datum/action/cooldown/cuckoo_retreat/retreat = new/datum/action/cooldown/cuckoo_retreat()
 
 /datum/martial_art/cuckoopunch/teach(mob/living/owner, make_temporary=FALSE)
 	if(..())
@@ -11,11 +12,13 @@
 		to_chat(owner, span_danger("Place your cursor over a move at the top of the screen to see what it does."))
 		implant.Grant(owner)
 		remember.Grant(owner)
+		retreat.Grant(owner)
 
 /datum/martial_art/cuckoopunch/on_remove(mob/living/owner)
 	to_chat(owner, span_userdanger("You suddenly forget the arts of [name]..."))
 	implant.Remove(owner)
 	remember.Remove(owner)
+	retreat.Remove(owner)
 
 /datum/action/cuckoo_implant
 	name = "Niaojia-ren Implant - After a delay, knock the target back and if they are human, implant them with a Niaojia-ren Parasite. If they are a mob, deal extra damage."
@@ -50,11 +53,13 @@
 		<b>COMBAT</b><br>\
 		You have a Niaojia-ren Implant skill which when activated, will cause your next attack to have a delay, but it will deal MASSIVE damage to non-humans.<br>\
 		You can also tackle humans. You can initiate a tackle by entering throw mode and then clicking on a human with an empty hand. This will inflict tremor, which will build up to a stun.<br>\
+		You can activate your Retreat skill, which will give you a burst of speed. At the cost of being slowed down if they are spotted by humans after the speed wears off.<br>\
 		<b>INFECTION</b><br>\
-		You are able to grow your numbers by infecting humans with your embryo. There are 3 ways of infecting humans.<br>\
+		You are able to grow your numbers by infecting humans with your embryo. There are 4 ways of infecting humans.<br>\
 		1. You can use your 'Niaojia-ren Implant' skill and then click a living human to infect them. This has a short delay.<br>\
-		2. You can tackle humans for a very small chance of infecting them.<br>\
-		3. You are able to create bolus from your statue. If a human eats one of them, they will fully heal but have a chance at becoming infected.<br>\
+		2. You can tackle humans for a decent chance (30%) of infecting them.<br>\
+		3. You can melee attack humans for a low chance (5%) of infecting them.<br>\
+		4. You are able to create bolus from your statue. If a human eats one of them, they will fully heal but have a chance at becoming infected.<br>\
 		It takes 10 minutes for a person to birth a new niaojia-ren, and this timer stops while they are dead.<br>\
 		<b>ORDERING</b><br>\
 		You are able to order simple minded niaojia-ren to follow you around by touching them with your hand.<br>\
@@ -62,6 +67,49 @@
 		<b>HUMANS</b><br>\
 		Your prey, your job is to purely to hunt them down. Don't mess with their bodies, there is no need.<br>\
 		DO NOT enter their home past the gates, the head is always watching and will kill you if you enter."))
+
+/datum/action/cooldown/cuckoo_retreat
+	cooldown_time = 40 SECONDS
+	name = "Niaojia-ren - Retreat"
+	desc = "Greatly increase movespeed for 5 seconds, if there are humans nearby after 5 seconds, become GREATLY slowed down."
+	icon_icon = 'icons/hud/screen_skills.dmi'
+	button_icon_state = "assault"
+
+/datum/action/cooldown/cuckoo_retreat/Trigger()
+	. = ..()
+	if(!.)
+		return FALSE
+	if (ishuman(owner))
+		var/mob/living/carbon/human/human = owner
+		human.add_movespeed_modifier(/datum/movespeed_modifier/cuckoo_retreat)
+		to_chat(human, span_nicegreen("You get a burst of adrenaline... You better retreat now!"))
+		addtimer(CALLBACK(human, TYPE_PROC_REF(/mob, remove_movespeed_modifier), /datum/movespeed_modifier/cuckoo_retreat), 4 SECONDS, TIMER_UNIQUE | TIMER_OVERRIDE)
+		addtimer(CALLBACK(src, PROC_REF(slowdown_check)), 4.1 SECONDS)
+		StartCooldown()
+
+/datum/action/cooldown/cuckoo_retreat/proc/slowdown_check()
+	var/spotted = FALSE
+	for(var/mob/living/carbon/human/nearby_human in range(5, owner))
+		if(istype(nearby_human, /mob/living/carbon/human/species/cuckoospawn))
+			continue
+		else
+			if(nearby_human.stat != DEAD)
+				spotted = TRUE
+				break
+	if(spotted)
+		if(ishuman(owner))
+			to_chat(owner, span_danger("There are nearby humans after your retreat, you are now slowed down..."))
+			var/mob/living/carbon/human/human = owner
+			human.add_movespeed_modifier(/datum/movespeed_modifier/cuckoo_spotted)
+			addtimer(CALLBACK(human, TYPE_PROC_REF(/mob, remove_movespeed_modifier), /datum/movespeed_modifier/cuckoo_spotted), 4 SECONDS, TIMER_UNIQUE | TIMER_OVERRIDE)
+
+/datum/movespeed_modifier/cuckoo_retreat
+	variable = TRUE
+	multiplicative_slowdown = -1.5
+
+/datum/movespeed_modifier/cuckoo_spotted
+	variable = TRUE
+	multiplicative_slowdown = 1
 
 /datum/martial_art/cuckoopunch/proc/check_streak(mob/living/A, mob/living/D)
 	switch(streak)
@@ -84,10 +132,18 @@
 		bonus_damage += 10
 		picked_hit_type = "stomp"
 	if(A.has_status_effect(/datum/status_effect/hunter))
-		D.apply_damage(rand(24,27) + bonus_damage, RED_DAMAGE, affecting, armor_block)
+		D.apply_damage(rand(15,20) + bonus_damage, RED_DAMAGE, affecting, armor_block)
+		if(ishuman(D) && D.stat != DEAD && prob(5))
+			var/mob/living/carbon/human/human_target = D
+			var/obj/item/bodypart/chest/LC = human_target.get_bodypart(BODY_ZONE_CHEST)
+			if((!LC || LC.status != BODYPART_ROBOTIC) && !human_target.getorgan(/obj/item/organ/body_egg/cuckoospawn_embryo) && !HAS_TRAIT(LC, TRAIT_XENO_IMMUNE))
+				to_chat(A, span_danger("You implant [D], soon a new niaojia-ren bird shall grow..."))
+				new /obj/item/organ/body_egg/cuckoospawn_embryo(human_target)
+				var/turf/T = get_turf(human_target)
+				log_game("[key_name(human_target)] was infected by a niaojia-ren at [loc_name(T)]")
 	else
 		to_chat(A, span_warning("You attack pathetically, re-enter your territory!"))
-		D.apply_damage(rand(12,14) + bonus_damage, RED_DAMAGE, affecting, armor_block)
+		D.apply_damage(rand(10,14) + bonus_damage, RED_DAMAGE, affecting, armor_block)
 	playsound(get_turf(D), 'sound/abnormalities/big_wolf/Wolf_Scratch.ogg', 50, TRUE, -1)
 	if(picked_hit_type == "kick" || picked_hit_type == "stomp")
 		A.do_attack_animation(D, ATTACK_EFFECT_KICK)

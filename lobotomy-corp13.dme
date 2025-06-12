@@ -1111,6 +1111,7 @@
 #include "code\game\objects\effects\spawners\arcade.dm"
 #include "code\game\objects\effects\spawners\bombspawner.dm"
 #include "code\game\objects\effects\spawners\bundle.dm"
+#include "code\game\objects\effects\spawners\cuckoo_spawner.dm"
 #include "code\game\objects\effects\spawners\decals.dm"
 #include "code\game\objects\effects\spawners\gibspawner.dm"
 #include "code\game\objects\effects\spawners\lootdrop.dm"

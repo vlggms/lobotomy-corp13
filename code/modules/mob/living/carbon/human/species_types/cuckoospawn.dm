@@ -25,7 +25,6 @@
 	whitemod = 1
 	blackmod = 0.7
 	palemod = 1.5
-	speedmod = -0.5
 	payday_modifier = 0
 
 /datum/species/cuckoospawn/random_name(gender,unique,lastname)
@@ -70,6 +69,7 @@
 /mob/living/carbon/human/species/cuckoospawn/Initialize()
 	. = ..()
 	head_immunity_start = world.time + head_immunity_duration
+	adjust_attribute_buff(FORTITUDE_ATTRIBUTE, 100)
 	AddComponent(/datum/component/footstep, FOOTSTEP_MOB_CLAW, 1, -6)
 	RegisterSignal(src, COMSIG_MOVABLE_PRE_MOVE, PROC_REF(CheckSpace))
 	AddComponent(/datum/component/tackler/cuckoo, stamina_cost=tackle_stam_cost, base_knockdown = base_knockdown, range = tackle_range, speed = tackle_speed, skill_mod = skill_mod, min_distance = min_distance)
@@ -159,7 +159,7 @@
 	tackling = FALSE
 	tackle.gentle = TRUE
 
-	if(T.stat != DEAD && prob(5) && (roll >= 0))
+	if(T.stat != DEAD && prob(30))
 		var/obj/item/bodypart/chest/LC = T.get_bodypart(BODY_ZONE_CHEST)
 		if((!LC || LC.status != BODYPART_ROBOTIC) && !T.getorgan(/obj/item/organ/body_egg/cuckoospawn_embryo) && !HAS_TRAIT(LC, TRAIT_XENO_IMMUNE))
 			to_chat(S, span_nicegreen("You implant [T], soon a new niaojia-ren bird shall grow..."))
@@ -182,22 +182,22 @@
 			user.visible_message("<span class='warning'>[user] lands a weak [tackle_word] on [target], briefly knocking [target.p_them()] off-balance!</span>", "<span class='userdanger'>You land a weak [tackle_word] on [target], briefly knocking [target.p_them()] off-balance!</span>", ignored_mobs = target)
 			to_chat(target, "<span class='userdanger'>[user] lands a weak [tackle_word] on you, briefly knocking you off-balance!</span>")
 
-			user.Knockdown(30)
-			target.apply_lc_tremor(5, 40)
+			user.Knockdown(10)
+			target.apply_lc_tremor(10, 40)
 
 		if(-1 to 0) // decent hit, both parties are about equally inconvenienced
 			user.visible_message("<span class='warning'>[user] lands a passable [tackle_word] on [target], sending them both tumbling!</span>", "<span class='userdanger'>You land a passable [tackle_word] on [target], sending you both tumbling!</span>", ignored_mobs = target)
 			to_chat(target, "<span class='userdanger'>[user] lands a passable [tackle_word] on you, sending you both tumbling!</span>")
 
 			user.Knockdown(10)
-			target.apply_lc_tremor(10, 40)
+			target.apply_lc_tremor(15, 40)
 
 		if(1 to 2) // solid hit, tackler has a slight advantage
 			user.visible_message("<span class='warning'>[user] lands a solid [tackle_word] on [target], knocking them both down hard!</span>", "<span class='userdanger'>You land a solid [tackle_word] on [target], knocking you both down hard!</span>", ignored_mobs = target)
 			to_chat(target, "<span class='userdanger'>[user] lands a solid [tackle_word] on you, knocking you both down hard!</span>")
 
 			user.Knockdown(10)
-			target.apply_lc_tremor(15, 40)
+			target.apply_lc_tremor(20, 40)
 
 		if(3 to 4) // really good hit, the target is definitely worse off here. Without positive modifiers, this is as good a tackle as you can land
 			user.visible_message("<span class='warning'>[user] lands an expert [tackle_word] on [target], knocking [target.p_them()] down hard while landing on [user.p_their()] feet with a passive grip!</span>", "<span class='userdanger'>You land an expert [tackle_word] on [target], knocking [target.p_them()] down hard while landing on your feet with a passive grip!</span>", ignored_mobs = target)
@@ -206,7 +206,7 @@
 			user.SetKnockdown(0)
 			user.get_up(TRUE)
 			user.forceMove(get_turf(target))
-			target.apply_lc_tremor(25, 40)
+			target.apply_lc_tremor(30, 40)
 			if(ishuman(target) && ishuman(user))
 				S.dna.species.grab(S, T)
 				S.setGrabState(GRAB_PASSIVE)
