@@ -696,3 +696,212 @@
 			new /obj/effect/temp_visual/cloud_swirl(get_turf(L)) //placeholder
 			to_chat(creator, span_warning("You feel a itch towards [get_area(L)]."))
 			qdel(src)
+
+/obj/item/ego_weapon/ranged/fellbullet
+	name = "fell bullet"
+	desc = "A Lee-Einfeld bolt-action rifle that fires cursed bullets."
+	icon_state = "fell_bullet"
+	inhand_icon_state = "fell_bullet"
+	special = "This weapon fires extremely slowly. \
+		This weapon pierces all targets. \
+		Activate in your hand to create a portal, which can be fired into. \
+		Attempting to fire with an empty chamber will reload the weapon. \
+		You can manually reload this weapon by pressing ALT + left mouse button."
+	force = 28
+	damtype = RED_DAMAGE
+	projectile_path = /obj/projectile/ego_bullet/ego_fellbullet
+	weapon_weight = WEAPON_HEAVY
+	fire_delay = 20
+	shotsleft = 1
+	reloadtime = 0.5 SECONDS
+	fire_sound = 'sound/abnormalities/fluchschutze/fell_bullet.ogg'
+	var/portaling = FALSE
+	var/portal_cooldown
+	var/portal_cooldown_time = 15 SECONDS
+	var/obj/effect/portal/myportal
+
+	attribute_requirements = list(
+							JUSTICE_ATTRIBUTE = 80
+							)
+
+/obj/item/ego_weapon/ranged/fellbullet/AltClick(mob/user)
+	..()
+	if(semicd)
+		return
+	return reload_ego(user)
+
+/obj/item/ego_weapon/ranged/fellbullet/afterattack(atom/target, mob/living/user, flag, params)
+	if(!CanUseEgo(user))
+		return
+	if(portaling)
+		portaling = FALSE
+		if(!LAZYLEN(get_path_to(src,target, TYPE_PROC_REF(/turf, Distance), 0, 24)))
+			to_chat(user, span_notice("Target unreachable."))
+			return
+		var/obj/effect/portal/fellbullet/P1 = new(user)
+		var/obj/effect/portal/fellbullet/P2 = new(get_turf(target))
+		P1.link_portal(P2)
+		P2.link_portal(P1)
+		playsound(src, 'sound/abnormalities/fluchschutze/fell_magic.ogg', 50, TRUE)
+		portal_cooldown = world.time + portal_cooldown_time
+		myportal = P1
+		return
+	if(semicd)//stops firing speed anomalies
+		return
+	if(!can_shoot())
+		reload_ego(user)
+	..()
+	if(!myportal)//If myportal hasn't initialized yet, this prevents it from runtiming.
+		return
+	if(myportal.loc && !is_reloading)//hide the portal
+		myportal.forceMove(user)
+
+/obj/item/ego_weapon/ranged/fellbullet/shoot_with_empty_chamber(mob/living/user as mob|obj)
+	//do nothing
+
+/obj/item/ego_weapon/ranged/fellbullet/attack_self(mob/user)
+	if(portaling)
+		portaling = FALSE
+		to_chat(user,span_notice("You will no longer create a circle."))
+		return
+	if(portal_cooldown > world.time)
+		to_chat(user,span_warning("You cannot create a magic circle yet!"))
+		return
+	portaling = TRUE
+	to_chat(user,span_notice("You will now create a magic circle at your target."))
+
+/obj/item/ego_weapon/ranged/fellbullet/reload_ego(mob/user)
+	if(is_reloading)
+		return
+	if(myportal in user)//is it not qdeleted?
+		myportal.forceMove(get_turf(user))//move the portal to your turf, line 733 removes it later.
+		playsound(src, 'sound/abnormalities/fluchschutze/fell_portal.ogg', 50, FALSE)
+	is_reloading = TRUE
+	to_chat(user,span_notice("You chamber a round into [src]."))
+	playsound(src, 'sound/abnormalities/fluchschutze/fell_aim.ogg', 50, TRUE)
+	if(do_after(user, reloadtime, src)) //gotta reload
+		shotsleft = initial(shotsleft)
+		forced_melee = FALSE //no longer forced to resort to melee
+	is_reloading = FALSE
+
+/obj/effect/portal/fellbullet
+	name = "magic circle"
+	desc = "A circle of red magic featuring a six-pointed star "
+	icon = 'icons/effects/effects.dmi'
+	icon_state = "fellcircle"
+	teleport_channel = TELEPORT_CHANNEL_FREE
+
+/obj/effect/portal/fellbullet/teleport(atom/movable/M, force = FALSE)
+	if(!istype(M, /obj/projectile/ego_bullet/ego_fellbullet))
+		return
+	var/obj/projectile/ego_bullet/ego_fellbullet/B = M
+	if(B.damage > 80)
+		return
+	SpinAnimation(speed = 2, loops = 1, segments = 3, parallel = TRUE)//the abno version should always spin
+	B.damage *= 2
+	var/turf/real_target = get_link_target_turf()
+	for(var/obj/effect/portal/fellbullet/P in real_target)
+		P.SpinAnimation(speed = 5, loops = 1, segments = 3, parallel = TRUE)
+		playsound(P, 'sound/abnormalities/fluchschutze/fell_portal.ogg', 50, TRUE)
+		playsound(P, 'sound/abnormalities/fluchschutze/fell_bullet2.ogg', 50, TRUE)
+	..()
+
+/obj/effect/portal/fellbullet/attack_hand(mob/user)
+//the parent behavior will pull you towards it
+
+/obj/effect/portal/fellbullet/Initialize()
+	INVOKE_ASYNC(src, PROC_REF(DoAnimation))//60% uptime
+	return ..()
+
+/obj/effect/portal/fellbullet/proc/DoAnimation()
+	sleep(10 SECONDS)
+	animate(src, alpha = 0, time = 1 SECONDS)
+	QDEL_IN(src, 1 SECONDS)
+
+/obj/item/ego_weapon/ranged/fellscatter
+	name = "fell scatter"
+	desc = "A bolt-action rifle fitted with a wider barrel. It fires cursed shells."
+	icon_state = "fell_scatter"
+	//TODO: inhands
+	special = "Activate in your hand to load a magical slug. \
+	The slug will penetrate most targets. Shooting a human will deal half damage and produce a special effect. \
+	You can manually reload this weapon by pressing ALT + left mouse button."
+	force = 28
+	damtype = RED_DAMAGE
+	projectile_path = /obj/projectile/ego_bullet/ego_fellscatter
+	weapon_weight = WEAPON_HEAVY
+	pellets = 7
+	variance = 10
+	fire_delay = 15
+	shotsleft = 4
+	reloadtime = 0.5 SECONDS
+	fire_sound = 'sound/abnormalities/fluchschutze/fell_scatter.ogg'
+	var/special_ammo = FALSE
+	var/portal_cooldown
+	var/portal_cooldown_time = 15 SECONDS
+	var/ammo_2 = /obj/projectile/ego_bullet/special_fellbullet
+
+	attribute_requirements = list(
+							JUSTICE_ATTRIBUTE = 80
+							)
+
+/obj/item/ego_weapon/ranged/fellscatter/AltClick(mob/user)
+	..()
+	if(semicd)
+		return
+	return reload_ego(user)
+
+/obj/item/ego_weapon/ranged/fellscatter/afterattack(atom/target, mob/living/user, flag, params)
+	if(!CanUseEgo(user))
+		return
+	if(semicd)//stops firing speed anomalies
+		return
+	if(!can_shoot())
+		reload_ego(user)
+		return
+	..()
+	if(special_ammo)
+		ChangeAmmo(user, special_ammo = TRUE)
+		special_ammo = FALSE
+
+/obj/item/ego_weapon/ranged/fellscatter/reload_ego(mob/user)
+	if(shotsleft == initial(shotsleft))
+		return
+	is_reloading = TRUE
+	to_chat(user,"<span class='notice'>You start loading a bullet.</span>")
+	if(do_after(user, reloadtime, src)) //gotta reload
+		playsound(src, 'sound/weapons/gun/shotgun/insert_shell.ogg', 50, TRUE)
+		shotsleft +=1
+		reload_ego(user)
+	is_reloading = FALSE
+
+/obj/item/ego_weapon/ranged/fellscatter/attack_self(mob/user)
+	if(special_ammo)
+		to_chat(user,span_notice("You remove the slug from [src]."))
+		ChangeAmmo(special_ammo = TRUE)
+		special_ammo = FALSE
+		return
+	if(shotsleft > 1)
+		playsound(user, 'sound/weapons/gun/general/mag_bullet_remove.ogg', 50, TRUE)
+		to_chat(user,span_notice("You discard your shells."))
+		shotsleft = 0
+	ChangeAmmo(user, special_ammo = FALSE)
+	special_ammo = TRUE
+	to_chat(user,span_notice("You will now fire a magical slug."))
+
+/obj/item/ego_weapon/ranged/fellscatter/proc/ChangeAmmo(mob/living/user, special_ammo)
+	if(special_ammo)
+		fire_sound = initial(fire_sound)
+		shotsleft = 0
+		pellets = initial(pellets)
+		variance = initial(variance)
+		projectile_path = initial(projectile_path)
+	else
+		if(!do_after(user, 2 SECONDS, src))
+			return
+		fire_sound = 'sound/abnormalities/fluchschutze/fell_bullet.ogg'
+		pellets = 1
+		variance  = 0
+		shotsleft = 1
+		projectile_path = ammo_2
+		playsound(src, 'sound/abnormalities/fluchschutze/fell_aim.ogg', 50, TRUE)
