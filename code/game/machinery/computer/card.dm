@@ -17,7 +17,7 @@ GLOBAL_VAR_INIT(time_last_changed_position, 0)
 	light_color = LIGHT_COLOR_BLUE
 	var/mode = 0
 	var/printing = null
-	var/target_dept = 0 //Which department this computer has access to. 0=all departments
+	var/target_dept = 6 //Which department this computer has access to. 0=all departments
 
 	//Cooldown for closing positions in seconds
 	//if set to -1: No cooldown... probably a bad idea
@@ -34,7 +34,8 @@ GLOBAL_VAR_INIT(time_last_changed_position, 0)
 		"Chief Engineer",
 		"Research Director",
 		"Chief Medical Officer",
-		"Prisoner")
+		"Prisoner",
+		"Rat")
 
 	//The scaling factor of max total positions in relation to the total amount of people on board the station in %
 	var/max_relative_positions = 30 //30%: Seems reasonable, limit of 6 @ 20 players
@@ -46,7 +47,6 @@ GLOBAL_VAR_INIT(time_last_changed_position, 0)
 	var/obj/item/card/id/inserted_modify_id
 	var/list/region_access = null
 	var/list/head_subordinates = null
-
 
 /obj/machinery/computer/card/proc/get_jobs()
 	return get_all_jobs()
@@ -184,173 +184,7 @@ GLOBAL_VAR_INIT(time_last_changed_position, 0)
 
 /obj/machinery/computer/card/ui_interact(mob/user)
 	. = ..()
-	var/list/dat = list()
-	if (mode == 1) // accessing crew manifest
-		dat += "<tt><b>Crew Manifest:</b><br>Please use security record computer to modify entries.<br><br>"
-		for(var/datum/data/record/t in sortRecord(GLOB.data_core.general))
-			dat += {"[t.fields["name"]] - [t.fields["rank"]]<br>"}
-		dat += "<a href='byond://?src=[REF(src)];choice=print'>Print</a><br><br><a href='byond://?src=[REF(src)];choice=mode;mode_target=0'>Access ID modification console.</a><br></tt>"
-
-	else if(mode == 2)
-		// JOB MANAGEMENT
-		dat += {"<a href='byond://?src=[REF(src)];choice=return'>Return</a>
-		<table><tr><td style='width:25%'><b>Job</b></td><td style='width:25%'><b>Slots</b></td>
-		<td style='width:25%'><b>Open job</b></td><td style='width:25%'><b>Close job</b><td style='width:25%'><b>Prioritize</b></td></td></tr>"}
-		for(var/datum/job/job in SSjob.occupations)
-			dat += "<tr>"
-			if(job.title in blacklisted)
-				continue
-			dat += {"<td>[job.title]</td>
-				<td>[job.current_positions]/[job.total_positions]</td>
-				<td>"}
-			switch(can_open_job(job))
-				if(JOB_ALLOWED)
-					if(authenticated == 2)
-						dat += "<a href='byond://?src=[REF(src)];choice=make_job_available;job=[job.title]'>Open Position</a><br>"
-					else
-						dat += "Open Position"
-				if(JOB_COOLDOWN)
-					var/time_to_wait = round(change_position_cooldown - ((world.time / 10) - GLOB.time_last_changed_position), 1)
-					var/mins = round(time_to_wait / 60)
-					var/seconds = time_to_wait - (60*mins)
-					dat += "Cooldown ongoing: [mins]:[(seconds < 10) ? "0[seconds]" : "[seconds]"]"
-				else
-					dat += "Denied"
-			dat += "</td><td>"
-			switch(can_close_job(job))
-				if(JOB_ALLOWED)
-					if(authenticated == 2)
-						dat += "<a href='byond://?src=[REF(src)];choice=make_job_unavailable;job=[job.title]'>Close Position</a>"
-					else
-						dat += "Close Position"
-				if(JOB_COOLDOWN)
-					var/time_to_wait = round(change_position_cooldown - ((world.time / 10) - GLOB.time_last_changed_position), 1)
-					var/mins = round(time_to_wait / 60)
-					var/seconds = time_to_wait - (60*mins)
-					dat += "Cooldown ongoing: [mins]:[(seconds < 10) ? "0[seconds]" : "[seconds]"]"
-				else
-					dat += "Denied"
-			dat += "</td><td>"
-			switch(job.total_positions)
-				if(0)
-					dat += "Denied"
-				else
-					if(authenticated == 2)
-						if(job in SSjob.prioritized_jobs)
-							dat += "<a href='byond://?src=[REF(src)];choice=prioritize_job;job=[job.title]'>Deprioritize</a>"
-						else
-							if(SSjob.prioritized_jobs.len < 5)
-								dat += "<a href='byond://?src=[REF(src)];choice=prioritize_job;job=[job.title]'>Prioritize</a>"
-							else
-								dat += "Denied"
-					else
-						dat += "Prioritize"
-
-			dat += "</td></tr>"
-		dat += "</table>"
-	else
-		var/list/header = list()
-
-		var/scan_name = inserted_scan_id ? html_encode(inserted_scan_id.name) : "--------"
-		var/target_name = inserted_modify_id ? html_encode(inserted_modify_id.name) : "--------"
-		var/target_owner = (inserted_modify_id?.registered_name) ? html_encode(inserted_modify_id.registered_name) : "--------"
-		var/target_rank = (inserted_modify_id?.assignment) ? html_encode(inserted_modify_id.assignment) : "Unassigned"
-		var/target_age = (inserted_modify_id?.registered_age) ? html_encode(inserted_modify_id.registered_age) : "--------"
-
-		if(!authenticated)
-			header += {"<br><i>Please insert the cards into the slots</i><br>
-				Target: <a href='byond://?src=[REF(src)];choice=inserted_modify_id'>[target_name]</a><br>
-				Confirm Identity: <a href='byond://?src=[REF(src)];choice=inserted_scan_id'>[scan_name]</a><br>"}
-		else
-			header += {"<div align='center'><br>
-				Target: <a href='byond://?src=[REF(src)];choice=inserted_modify_id'>Remove [target_name]</a> ||
-				Confirm Identity: <a href='byond://?src=[REF(src)];choice=inserted_scan_id'>Remove [scan_name]</a><br>
-				<a href='byond://?src=[REF(src)];choice=mode;mode_target=1'>Access Crew Manifest</a><br>
-				[!target_dept ? "<a href='byond://?src=[REF(src)];choice=mode;mode_target=2'>Job Management</a><br>" : ""]
-				<a href='byond://?src=[REF(src)];choice=logout'>Log Out</a></div>"}
-
-		header += "<hr>"
-
-		var/body
-
-		if (authenticated && inserted_modify_id)
-			var/list/carddesc = list()
-			var/list/jobs = list()
-			if (authenticated == 2)
-				var/list/jobs_all = list()
-				for(var/job in (list("Unassigned") + get_jobs() + "Custom"))
-					jobs_all += "<a href='byond://?src=[REF(src)];choice=assign;assign_target=[job]'>[replacetext(job, " ", "&nbsp;")]</a> " //make sure there isn't a line break in the middle of a job
-				carddesc += {"<script type="text/javascript">
-									function markRed(){
-										var nameField = document.getElementById('namefield');
-										nameField.style.backgroundColor = "#FFDDDD";
-									}
-									function markGreen(){
-										var nameField = document.getElementById('namefield');
-										nameField.style.backgroundColor = "#DDFFDD";
-									}
-									function showAll(){
-										var allJobsSlot = document.getElementById('alljobsslot');
-										allJobsSlot.innerHTML = "<a href='#' onclick='hideAll()'>hide</a><br>"+ "[jobs_all.Join()]";
-									}
-									function hideAll(){
-										var allJobsSlot = document.getElementById('alljobsslot');
-										allJobsSlot.innerHTML = "<a href='#' onclick='showAll()'>show</a>";
-									}
-								</script>"}
-				carddesc += {"<form name='cardcomp' action='?src=[REF(src)]' method='get'>
-					<input type='hidden' name='src' value='[REF(src)]'>
-					<input type='hidden' name='choice' value='reg'>
-					<b>registered name:</b> <input type='text' id='namefield' name='reg' value='[target_owner]' style='width:250px; background-color:white;' onchange='markRed()'>
-					<b>registered age:</b> <input type='number' id='namefield' name='setage' value='[target_age]' style='width:50px; background-color:white;' onchange='markRed()'>
-					<input type='submit' value='Submit' onclick='markGreen()'>
-					</form>
-					<b>Assignment:</b> "}
-
-				jobs += "<span id='alljobsslot'><a href='#' onclick='showAll()'>[target_rank]</a></span>" //CHECK THIS
-
-			else
-				carddesc += "<b>registered_name:</b> [target_owner]</span>"
-				jobs += "<b>Assignment:</b> [target_rank] (<a href='byond://?src=[REF(src)];choice=demote'>Demote</a>)</span>"
-
-			var/list/accesses = list()
-			if(istype(src, /obj/machinery/computer/card/centcom)) // REE
-				accesses += "<h5>Central Command:</h5>"
-				for(var/A in get_all_centcom_access())
-					if(A in inserted_modify_id.access)
-						accesses += "<a href='byond://?src=[REF(src)];choice=access;access_target=[A];allowed=0'><font color=\"6bc473\">[replacetext(get_centcom_access_desc(A), " ", "&nbsp")]</font></a> "
-					else
-						accesses += "<a href='byond://?src=[REF(src)];choice=access;access_target=[A];allowed=1'>[replacetext(get_centcom_access_desc(A), " ", "&nbsp")]</a> "
-			else
-				accesses += {"<div align='center'><b>Access</b></div>
-					<table style='width:100%'>
-					<tr>"}
-				for(var/i = 1; i <= 7; i++)
-					if(authenticated == 1 && !(i in region_access))
-						continue
-					accesses += "<td style='width:14%'><b>[get_region_accesses_name(i)]:</b></td>"
-				accesses += "</tr><tr>"
-				for(var/i = 1; i <= 7; i++)
-					if(authenticated == 1 && !(i in region_access))
-						continue
-					accesses += "<td style='width:14%' valign='top'>"
-					for(var/A in get_region_accesses(i))
-						if(A in inserted_modify_id.access)
-							accesses += "<a href='byond://?src=[REF(src)];choice=access;access_target=[A];allowed=0'><font color=\"6bc473\">[replacetext(get_access_desc(A), " ", "&nbsp")]</font></a> "
-						else
-							accesses += "<a href='byond://?src=[REF(src)];choice=access;access_target=[A];allowed=1'>[replacetext(get_access_desc(A), " ", "&nbsp")]</a> "
-						accesses += "<br>"
-					accesses += "</td>"
-				accesses += "</tr></table>"
-			body = "[carddesc.Join()]<br>[jobs.Join()]<br><br>[accesses.Join()]<hr>" //CHECK THIS
-
-		else if (!authenticated)
-			body = {"<a href='byond://?src=[REF(src)];choice=auth'>Log In</a><br><hr>
-				<a href='byond://?src=[REF(src)];choice=mode;mode_target=1'>Access Crew Manifest</a><br><hr>"}
-			if(!target_dept)
-				body += "<a href='byond://?src=[REF(src)];choice=mode;mode_target=2'>Job Management</a><hr>"
-
-		dat = list("<tt>", header.Join(), body, "<br></tt>")
+	var/list/dat = ReturnUI()
 	var/datum/browser/popup = new(user, "id_com", src.name, 900, 620)
 	popup.set_content(dat.Join())
 	popup.open()
@@ -402,7 +236,7 @@ GLOBAL_VAR_INIT(time_last_changed_position, 0)
 					region_access = list()
 					head_subordinates = list()
 					if(ACCESS_CHANGE_IDS in inserted_scan_id.access)
-						if(target_dept)
+						if(target_dept && target_dept < 6)
 							head_subordinates = get_all_jobs()
 							region_access |= target_dept
 							authenticated = 1
@@ -603,6 +437,149 @@ GLOBAL_VAR_INIT(time_last_changed_position, 0)
 	for(var/datum/job/job in SSjob.occupations)
 		if(rank in job.department_head)
 			head_subordinates += job.title
+
+/obj/machinery/computer/card/proc/ReturnUI()
+	var/list/dat = list()
+	switch(mode)
+		if(1)
+			// accessing crew manifest
+			dat += "<tt><b>Crew Manifest:</b><br>Please use security record computer to modify entries.<br><br>"
+			for(var/datum/data/record/t in sortRecord(GLOB.data_core.general))
+				dat += {"[t.fields["name"]] - [t.fields["rank"]]<br>"}
+			dat += "<a href='byond://?src=[REF(src)];choice=print'>Print</a><br><br><a href='byond://?src=[REF(src)];choice=mode;mode_target=0'>Access ID modification console.</a><br></tt>"
+
+		if(2)
+			// JOB MANAGEMENT
+			dat += {"<a href='byond://?src=[REF(src)];choice=return'>Return</a>
+			<table><tr><td style='width:25%'><b>Job</b></td><td style='width:25%'><b>Slots</b></td>
+			<td style='width:25%'><b>Open job</b></td><td style='width:25%'><b>Close job</b><td style='width:25%'><b>Prioritize</b></td></td></tr>"}
+			for(var/datum/job/job in SSjob.occupations)
+				dat += "<tr>"
+				if(job.title in blacklisted)
+					continue
+				dat += {"<td>[job.title]</td>
+					<td>[job.current_positions]/[job.total_positions]</td>
+					<td>"}
+				switch(can_open_job(job))
+					if(JOB_ALLOWED)
+						if(authenticated == 2)
+							dat += "<a href='byond://?src=[REF(src)];choice=make_job_available;job=[job.title]'>Open Position</a><br>"
+						else
+							dat += "Open Position"
+					if(JOB_COOLDOWN)
+						var/time_to_wait = round(change_position_cooldown - ((world.time / 10) - GLOB.time_last_changed_position), 1)
+						var/mins = round(time_to_wait / 60)
+						var/seconds = time_to_wait - (60*mins)
+						dat += "Cooldown ongoing: [mins]:[(seconds < 10) ? "0[seconds]" : "[seconds]"]"
+					else
+						dat += "Denied"
+				dat += "</td><td>"
+				switch(can_close_job(job))
+					if(JOB_ALLOWED)
+						if(authenticated == 2)
+							dat += "<a href='byond://?src=[REF(src)];choice=make_job_unavailable;job=[job.title]'>Close Position</a>"
+						else
+							dat += "Close Position"
+					if(JOB_COOLDOWN)
+						var/time_to_wait = round(change_position_cooldown - ((world.time / 10) - GLOB.time_last_changed_position), 1)
+						var/mins = round(time_to_wait / 60)
+						var/seconds = time_to_wait - (60*mins)
+						dat += "Cooldown ongoing: [mins]:[(seconds < 10) ? "0[seconds]" : "[seconds]"]"
+					else
+						dat += "Denied"
+				dat += "</td><td>"
+				switch(job.total_positions)
+					if(0)
+						dat += "Denied"
+					else
+						if(authenticated == 2)
+							if(job in SSjob.prioritized_jobs)
+								dat += "<a href='byond://?src=[REF(src)];choice=prioritize_job;job=[job.title]'>Deprioritize</a>"
+							else
+								if(SSjob.prioritized_jobs.len < 5)
+									dat += "<a href='byond://?src=[REF(src)];choice=prioritize_job;job=[job.title]'>Prioritize</a>"
+								else
+									dat += "Denied"
+						else
+							dat += "Prioritize"
+
+				dat += "</td></tr>"
+			dat += "</table>"
+		else
+			//ID editing
+			var/list/header = list()
+
+			var/scan_name = inserted_scan_id ? html_encode(inserted_scan_id.name) : "--------"
+			var/target_name = inserted_modify_id ? html_encode(inserted_modify_id.name) : "--------"
+			var/target_owner = (inserted_modify_id?.registered_name) ? html_encode(inserted_modify_id.registered_name) : "--------"
+			var/target_rank = (inserted_modify_id?.assignment) ? html_encode(inserted_modify_id.assignment) : "Unassigned"
+			var/target_age = (inserted_modify_id?.registered_age) ? html_encode(inserted_modify_id.registered_age) : "--------"
+
+			if(!authenticated)
+				header += {"<br><i>Please insert the cards into the slots</i><br>
+					Target: <a href='byond://?src=[REF(src)];choice=inserted_modify_id'>[target_name]</a><br>
+					Confirm Identity: <a href='byond://?src=[REF(src)];choice=inserted_scan_id'>[scan_name]</a><br>"}
+			else
+				header += {"<div align='center'><br>
+					Target: <a href='byond://?src=[REF(src)];choice=inserted_modify_id'>Remove [target_name]</a> ||
+					Confirm Identity: <a href='byond://?src=[REF(src)];choice=inserted_scan_id'>Remove [scan_name]</a><br>
+					<a href='byond://?src=[REF(src)];choice=mode;mode_target=1'>Access Crew Manifest</a><br>
+					[!target_dept ? "<a href='byond://?src=[REF(src)];choice=mode;mode_target=2'>Job Management</a><br>" : ""]
+					<a href='byond://?src=[REF(src)];choice=logout'>Log Out</a></div>"}
+
+			header += "<hr>"
+
+			var/body
+
+			if (authenticated && inserted_modify_id)
+				var/list/carddesc = list()
+				var/list/jobs = list()
+				if (authenticated == 2)
+					var/list/jobs_all = list()
+					for(var/job in (list("Custom")))
+						jobs_all += "<a href='byond://?src=[REF(src)];choice=assign;assign_target=[job]'>[replacetext(job, " ", "&nbsp;")]</a> " //make sure there isn't a line break in the middle of a job
+					carddesc += {"<script type="text/javascript">
+										function markRed(){
+											var nameField = document.getElementById('namefield');
+											nameField.style.backgroundColor = "#FFDDDD";
+										}
+										function markGreen(){
+											var nameField = document.getElementById('namefield');
+											nameField.style.backgroundColor = "#DDFFDD";
+										}
+										function showAll(){
+											var allJobsSlot = document.getElementById('alljobsslot');
+											allJobsSlot.innerHTML = "<a href='#' onclick='hideAll()'>hide</a><br>"+ "[jobs_all.Join()]";
+										}
+										function hideAll(){
+											var allJobsSlot = document.getElementById('alljobsslot');
+											allJobsSlot.innerHTML = "<a href='#' onclick='showAll()'>show</a>";
+										}
+									</script>"}
+					carddesc += {"<form name='cardcomp' action='?src=[REF(src)]' method='get'>
+						<input type='hidden' name='src' value='[REF(src)]'>
+						<input type='hidden' name='choice' value='reg'>
+						<b>registered name:</b> <input type='text' id='namefield' name='reg' value='[target_owner]' style='width:250px; background-color:white;' onchange='markRed()'>
+						<b>registered age:</b> <input type='number' id='namefield' name='setage' value='[target_age]' style='width:50px; background-color:white;' onchange='markRed()'>
+						<input type='submit' value='Submit' onclick='markGreen()'>
+						</form>
+						<b>Assignment:</b> "}
+
+					jobs += "<span id='alljobsslot'><a href='#' onclick='showAll()'>[target_rank]</a></span>" //CHECK THIS
+
+				else
+					carddesc += "<b>registered_name:</b> [target_owner]</span>"
+					jobs += "<b>Assignment:</b> [target_rank]"
+				body = "[carddesc.Join()]<br>[jobs.Join()]<br><br><hr>" //CHECK THIS
+
+			else if (!authenticated)
+				body = {"<a href='byond://?src=[REF(src)];choice=auth'>Log In</a><br><hr>
+					<a href='byond://?src=[REF(src)];choice=mode;mode_target=1'>Access Crew Manifest</a><br><hr>"}
+				if(!target_dept)
+					body += "<a href='byond://?src=[REF(src)];choice=mode;mode_target=2'>Job Management</a><hr>"
+
+			dat = list("<tt>", header.Join(), body, "<br></tt>")
+	return dat
 
 /obj/machinery/computer/card/centcom
 	name = "\improper CentCom identification console"
