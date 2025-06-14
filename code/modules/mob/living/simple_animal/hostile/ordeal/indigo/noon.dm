@@ -178,7 +178,7 @@
 	attack_sound = 'sound/effects/ordeals/indigo/stab_2.ogg'
 
 	/// COL Rebalancing
-	if(SSmaptype.maptype == "city")
+	if(SSmaptype.maptype in SSmaptype.citymaps)
 		move_to_delay = 2.9
 		movespeed = move_to_delay
 		dash_cooldown_time += 3 SECONDS
@@ -405,7 +405,7 @@
 	attack_sound = 'sound/effects/ordeals/indigo/stab_1.ogg'
 
 	/// COL Rebalancing
-	if(SSmaptype.maptype == "city")
+	if(SSmaptype.maptype in SSmaptype.citymaps)
 		maxHealth = 625
 		health = 625
 		extract_fuel_cooldown_time += 2 SECONDS
