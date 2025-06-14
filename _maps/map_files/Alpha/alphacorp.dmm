@@ -148,6 +148,10 @@
 	},
 /turf/open/floor/facility/dark,
 /area/department_main/training)
+"aZ" = (
+/obj/structure/sign/departments/chemistry/pharmacy,
+/turf/closed/indestructible/reinforced,
+/area/department_main/safety)
 "bb" = (
 /turf/closed/indestructible/fakeglass,
 /area/department_main/information)
@@ -573,6 +577,13 @@
 	},
 /turf/open/floor/carpet/red,
 /area/department_main/control)
+"ei" = (
+/obj/structure/table/glass,
+/obj/machinery/light,
+/obj/item/storage/box/pillbottles,
+/obj/item/storage/box/pillbottles,
+/turf/open/floor/plasteel/white,
+/area/department_main/safety)
 "et" = (
 /obj/effect/turf_decal/siding/yellow{
 	dir = 4
@@ -928,6 +939,14 @@
 	},
 /turf/open/floor/carpet/orange,
 /area/department_main/training)
+"hg" = (
+/obj/structure/closet/crate/science/abnochem_startercrate,
+/obj/item/clothing/suit/armor/ego_gear/limbus_labs/chem{
+	name = "chemist labcoat"
+	},
+/obj/item/clothing/head/beret/tegu/chem,
+/turf/open/floor/plasteel/white,
+/area/department_main/safety)
 "hh" = (
 /obj/structure/rack,
 /obj/item/reagent_containers/spray/cleaner,
@@ -1214,6 +1233,11 @@
 	},
 /turf/open/floor/plasteel,
 /area/facility_hallway/north)
+"ji" = (
+/obj/structure/table/glass,
+/obj/item/storage/bag/chemistry,
+/turf/open/floor/plasteel/white,
+/area/department_main/safety)
 "jl" = (
 /turf/open/floor/plasteel/white,
 /area/department_main/safety)
@@ -1406,6 +1430,16 @@
 "kD" = (
 /turf/open/floor/plasteel,
 /area/department_main/control)
+"kG" = (
+/obj/structure/table/glass,
+/obj/item/hand_labeler,
+/obj/item/hand_labeler_refill,
+/obj/item/hand_labeler_refill,
+/obj/item/clothing/glasses/science{
+	pixel_y = -3
+	},
+/turf/open/floor/plasteel/white,
+/area/department_main/safety)
 "kI" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/rack,
@@ -2191,9 +2225,6 @@
 "qd" = (
 /obj/machinery/light,
 /obj/structure/table/glass,
-/obj/machinery/status_display{
-	pixel_y = -32
-	},
 /turf/open/floor/carpet/green,
 /area/department_main/safety)
 "qe" = (
@@ -2216,6 +2247,12 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/department_main/control)
+"qn" = (
+/obj/machinery/computer/extraction_cargo/chemistry{
+	dir = 8
+	},
+/turf/open/floor/plasteel/white,
+/area/department_main/safety)
 "qo" = (
 /obj/effect/landmark/start{
 	pixel_x = 3
@@ -3069,6 +3106,13 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/department_main/safety)
+"wC" = (
+/obj/structure/closet,
+/obj/item/storage/box/syringes,
+/obj/item/storage/box/syringes,
+/obj/item/storage/box/beakers,
+/turf/open/floor/plasteel/white,
+/area/department_main/safety)
 "wD" = (
 /turf/open/floor/plasteel/elevatorshaft,
 /area/department_main/control)
@@ -3101,6 +3145,10 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/wood,
 /area/facility_hallway/east)
+"wR" = (
+/obj/machinery/chem_master,
+/turf/open/floor/plasteel/white,
+/area/department_main/safety)
 "wU" = (
 /obj/structure/sign/poster/official/science{
 	pixel_x = -32
@@ -3669,12 +3717,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/facility_hallway/east)
-"BD" = (
-/obj/structure/rack,
-/obj/item/reagent_containers/hypospray/medipen/salacid,
-/obj/item/reagent_containers/hypospray/medipen/salacid,
-/turf/open/floor/carpet/green,
-/area/department_main/safety)
 "BE" = (
 /obj/effect/turf_decal/siding/brown{
 	dir = 1
@@ -4096,6 +4138,12 @@
 /area/facility_hallway/south)
 "Fk" = (
 /turf/open/floor/plasteel/dark,
+/area/department_main/safety)
+"Fn" = (
+/obj/machinery/door/airlock/glass{
+	name = "chemistry"
+	},
+/turf/open/floor/plasteel/white,
 /area/department_main/safety)
 "Ft" = (
 /obj/effect/decal/cleanable/dirt,
@@ -4858,10 +4906,6 @@
 /obj/item/papercutter,
 /turf/open/floor/carpet/orange,
 /area/department_main/training)
-"LG" = (
-/obj/machinery/chem_master,
-/turf/open/floor/carpet/green,
-/area/department_main/safety)
 "LI" = (
 /turf/open/floor/plasteel,
 /area/facility_hallway/central)
@@ -5315,6 +5359,9 @@
 /area/facility_hallway/central)
 "Pw" = (
 /obj/structure/table/glass,
+/obj/machinery/status_display{
+	pixel_y = -32
+	},
 /turf/open/floor/carpet/green,
 /area/department_main/safety)
 "Px" = (
@@ -5477,18 +5524,6 @@
 	},
 /turf/open/floor/carpet/red,
 /area/department_main/control)
-"Qy" = (
-/obj/structure/rack,
-/obj/machinery/camera/autoname{
-	dir = 1
-	},
-/obj/machinery/newscaster{
-	pixel_y = -32
-	},
-/obj/item/reagent_containers/hypospray/medipen/mental,
-/obj/item/reagent_containers/hypospray/medipen/mental,
-/turf/open/floor/carpet/green,
-/area/department_main/safety)
 "QB" = (
 /obj/effect/turf_decal/siding/green{
 	dir = 1
@@ -5592,6 +5627,12 @@
 	},
 /turf/open/floor/plasteel,
 /area/facility_hallway/central)
+"Rk" = (
+/obj/structure/rack,
+/obj/item/reagent_containers/hypospray/medipen/salacid,
+/obj/item/reagent_containers/hypospray/medipen/salacid,
+/turf/open/floor/plasteel/white,
+/area/department_main/safety)
 "Rl" = (
 /obj/effect/turf_decal/siding/green/corner,
 /turf/open/floor/facility,
@@ -6251,6 +6292,12 @@
 "VY" = (
 /obj/structure/rack,
 /obj/item/storage/box/masks,
+/obj/machinery/newscaster{
+	pixel_y = -32
+	},
+/obj/machinery/camera/autoname{
+	dir = 1
+	},
 /turf/open/floor/carpet/green,
 /area/department_main/safety)
 "Wb" = (
@@ -6603,6 +6650,19 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plating,
 /area/department_main/training)
+"YD" = (
+/obj/structure/rack,
+/obj/machinery/camera/autoname{
+	dir = 1
+	},
+/obj/machinery/newscaster{
+	pixel_y = -32
+	},
+/obj/item/reagent_containers/hypospray/medipen/mental,
+/obj/item/reagent_containers/hypospray/medipen/mental,
+/obj/machinery/light,
+/turf/open/floor/plasteel/white,
+/area/department_main/safety)
 "YG" = (
 /obj/effect/turf_decal/siding/white{
 	dir = 8
@@ -31658,10 +31718,10 @@ Op
 Gh
 zy
 cu
-ZL
-ZL
-ZL
-ZL
+cu
+cu
+cu
+cu
 ZL
 ZL
 ZL
@@ -31915,11 +31975,11 @@ YJ
 PU
 VY
 cu
-ZL
-ZL
-ZL
-ZL
-ZL
+hg
+Rk
+YD
+cu
+cu
 ZL
 ZL
 ZL
@@ -32170,13 +32230,13 @@ fa
 Zd
 OD
 PU
-BD
+gz
+xF
+jl
+jl
+jl
+wC
 cu
-ZL
-ZL
-ZL
-ZL
-ZL
 ZL
 ZL
 ZL
@@ -32427,13 +32487,13 @@ SF
 lr
 OD
 PU
-Qy
+gz
+Fn
+jl
+jl
+jl
+ji
 cu
-ZL
-ZL
-ZL
-ZL
-ZL
 ZL
 ZL
 ZL
@@ -32685,12 +32745,12 @@ gI
 OD
 PU
 fZ
+xF
+jl
+jl
+jl
+kG
 cu
-ZL
-ZL
-ZL
-ZL
-ZL
 ZL
 ZL
 ZL
@@ -32941,13 +33001,13 @@ Op
 sl
 ww
 PU
-VY
+gz
+xF
+qn
+wR
+ei
 cu
-ZL
-ZL
-ZL
-ZL
-ZL
+cu
 ZL
 ZL
 ZL
@@ -33199,11 +33259,11 @@ NN
 NN
 aq
 qd
+aZ
 cu
-ZL
-ZL
-ZL
-ZL
+cu
+cu
+cu
 ZL
 ZL
 ZL
@@ -33450,7 +33510,7 @@ gz
 QO
 oW
 gI
-LG
+gI
 gI
 Yv
 JX

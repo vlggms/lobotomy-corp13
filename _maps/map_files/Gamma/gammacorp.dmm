@@ -417,6 +417,12 @@
 	},
 /turf/open/floor/carpet/royalblue,
 /area/department_main/welfare)
+"da" = (
+/obj/structure/table/glass,
+/obj/item/storage/box/pillbottles,
+/obj/item/storage/box/pillbottles,
+/turf/open/floor/facility,
+/area/department_main/safety)
 "dc" = (
 /obj/machinery/computer/cryopod{
 	pixel_y = 32
@@ -1135,6 +1141,10 @@
 	},
 /turf/open/floor/facility/white,
 /area/department_main/command)
+"iS" = (
+/obj/structure/sign/departments/chemistry/pharmacy,
+/turf/closed/indestructible/reinforced,
+/area/department_main/safety)
 "iT" = (
 /obj/structure/chair/comfy/black{
 	dir = 4
@@ -3175,7 +3185,6 @@
 	},
 /obj/item/toy/plush/netzach,
 /obj/item/clothing/neck/stripedgreenscarf,
-/obj/item/reagent_containers/hypospray/emais,
 /turf/open/floor/facility,
 /area/department_main/safety)
 "uP" = (
@@ -4406,11 +4415,11 @@
 /turf/open/floor/plasteel,
 /area/facility_hallway/architecture)
 "Df" = (
-/obj/structure/table,
-/obj/machinery/light{
-	dir = 1
+/obj/structure/closet/crate/science/abnochem_startercrate,
+/obj/item/clothing/suit/armor/ego_gear/limbus_labs/chem{
+	name = "chemist labcoat"
 	},
-/obj/machinery/computer/med_data/laptop,
+/obj/item/clothing/head/beret/tegu/chem,
 /turf/open/floor/facility,
 /area/department_main/safety)
 "Dh" = (
@@ -4566,12 +4575,13 @@
 /turf/open/floor/plasteel/white,
 /area/department_main/training)
 "DY" = (
-/obj/structure/closet/secure_closet/personal{
-	anchored = 1
+/obj/structure/table/glass,
+/obj/item/hand_labeler,
+/obj/item/hand_labeler_refill,
+/obj/item/hand_labeler_refill,
+/obj/item/clothing/glasses/science{
+	pixel_y = -3
 	},
-/obj/item/toy/plush/netzach,
-/obj/item/clothing/neck/stripedgreenscarf,
-/obj/item/reagent_containers/hypospray/emais,
 /obj/machinery/light,
 /turf/open/floor/facility,
 /area/department_main/safety)
@@ -4902,17 +4912,9 @@
 /turf/open/floor/facility/dark,
 /area/department_main/welfare)
 "Gt" = (
-/obj/structure/table,
-/obj/item/roller,
-/obj/item/roller,
-/obj/item/roller,
-/obj/item/roller,
-/obj/item/roller,
-/obj/item/roller,
-/obj/item/roller,
-/obj/item/roller,
-/obj/item/roller,
-/obj/item/roller,
+/obj/machinery/computer/extraction_cargo/chemistry{
+	dir = 4
+	},
 /turf/open/floor/facility,
 /area/department_main/safety)
 "Gy" = (
@@ -7106,6 +7108,7 @@
 /area/facility_hallway/training)
 "Ug" = (
 /obj/structure/table,
+/obj/item/reagent_containers/hypospray/emais,
 /turf/open/floor/facility,
 /area/department_main/safety)
 "Uh" = (
@@ -7760,8 +7763,8 @@
 /turf/open/floor/carpet/stellar,
 /area/department_main/command)
 "YU" = (
-/obj/structure/table,
-/obj/item/reagent_containers/spray/cleaner,
+/obj/structure/table/glass,
+/obj/item/storage/bag/chemistry,
 /turf/open/floor/facility,
 /area/department_main/safety)
 "YY" = (
@@ -7895,11 +7898,7 @@
 /turf/open/floor/facility,
 /area/department_main/control)
 "ZM" = (
-/obj/structure/table,
-/obj/item/reagent_containers/hypospray/emais,
-/obj/structure/sign/poster/lobotomycorp/random{
-	pixel_x = -32
-	},
+/obj/machinery/chem_master,
 /turf/open/floor/facility,
 /area/department_main/safety)
 "ZN" = (
@@ -26585,7 +26584,7 @@ Oq
 VK
 Oq
 Oq
-Oq
+iS
 Oq
 Oq
 PD
@@ -27099,7 +27098,7 @@ uI
 wP
 uI
 VM
-QM
+da
 uJ
 YU
 Oq
