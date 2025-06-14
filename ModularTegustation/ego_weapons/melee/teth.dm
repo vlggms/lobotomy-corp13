@@ -649,3 +649,24 @@
 	attack_verb_simple = list("whip", "lash", "tear")
 	hitsound = 'sound/weapons/whip.ogg'
 
+/obj/item/ego_weapon/philia
+	name = "philia"
+	desc = "Everything will be okay in the end."
+	special = "This weapon heals a small amount of your sanity on hit."
+	icon_state = "philia"
+	force = 19
+	damtype = WHITE_DAMAGE
+	attack_verb_continuous = list("smacks", "hammers", "beats")
+	attack_verb_simple = list("smack", "hammer", "beat")
+
+/obj/item/ego_weapon/philia/attack(mob/living/target, mob/living/carbon/human/user)
+	if(!(target.status_flags & GODMODE) && target.stat != DEAD)
+		var/heal_amt = force*0.05
+		if(isanimal(target))
+			var/mob/living/simple_animal/S = target
+			if(S.damage_coeff.getCoeff(damtype) > 0)
+				heal_amt *= S.damage_coeff.getCoeff(damtype)
+			else
+				heal_amt = 0
+		user.adjustSanityLoss(-heal_amt)
+	..()

@@ -279,7 +279,7 @@ Any attempt to code risk class armor will result in a 10 day Github ban.*/
 	name = "Seasons Greetings"
 	desc = "This is a placeholder."
 	icon_state = "spring"
-	armor = list(RED_DAMAGE = 60, WHITE_DAMAGE = 60, BLACK_DAMAGE = 60, PALE_DAMAGE = 60, FIRE = 60) // 240
+	armor = list(RED_DAMAGE = 60, WHITE_DAMAGE = 60, BLACK_DAMAGE = 60, PALE_DAMAGE = 60, FIRE = 60) // Placeholder values, changed later.
 	attribute_requirements = list(
 							FORTITUDE_ATTRIBUTE = 80,
 							PRUDENCE_ATTRIBUTE = 100,
@@ -454,5 +454,17 @@ Any attempt to code risk class armor will result in a 10 day Github ban.*/
 							FORTITUDE_ATTRIBUTE = 100,
 							PRUDENCE_ATTRIBUTE = 80,
 							TEMPERANCE_ATTRIBUTE = 80,
+							JUSTICE_ATTRIBUTE = 80
+							)
+
+/obj/item/clothing/suit/armor/ego_gear/aleph/throne
+	name = "false throne"
+	desc = "And here I sit upon a throne of lies."
+	icon_state = "throne"
+	armor = list(RED_DAMAGE = 60, WHITE_DAMAGE = 60, BLACK_DAMAGE = 60, PALE_DAMAGE = 60) // 240 - Maybe do something special with this one in the future.
+	attribute_requirements = list(
+							FORTITUDE_ATTRIBUTE = 80,
+							PRUDENCE_ATTRIBUTE = 80,
+							TEMPERANCE_ATTRIBUTE = 100,
 							JUSTICE_ATTRIBUTE = 80
 							)
