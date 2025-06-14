@@ -39,4 +39,7 @@
 
 /datum/martial_art/bulletproof/on_projectile_hit(mob/living/A, obj/projectile/P, def_zone)
 	to_chat(A, span_notice("You blocked a bullet."))
-	return BULLET_ACT_BLOCK
+	if(!P.ignore_bulletproof)
+		return BULLET_ACT_BLOCK
+	to_chat(A, span_userdanger("Your armor has been pierced!"))
+	..()
