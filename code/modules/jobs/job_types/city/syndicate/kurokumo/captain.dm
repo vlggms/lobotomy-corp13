@@ -41,8 +41,8 @@
 		if(istype(processing, /datum/job/kurowakashu))
 			processing.total_positions = 4
 
-		if(istype(processing, /datum/job/ronin))
-			processing.total_positions = 1
+		if(istype(processing, /datum/job/roamingsalsu))
+			processing.total_positions ++
 	. = ..()
 
 
