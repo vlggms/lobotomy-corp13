@@ -492,3 +492,13 @@ Any attempt to code risk class armor will result in a 10 day Github ban.*/
 	attribute_requirements = list(
 							FORTITUDE_ATTRIBUTE = 40
 							)
+
+/obj/item/clothing/suit/armor/ego_gear/he/fellbullet
+	name = "fell bullet"
+	desc = "During a gory war, the devil approached a man with a deal. A shotgun that would blast anyone into fireworks, as if fired at point blank. However, the last shell would land on his beloved."
+	icon_state = "fell_bullet"
+	//no special ability here.
+	armor = list(RED_DAMAGE = 40, WHITE_DAMAGE = -10, BLACK_DAMAGE = 20, PALE_DAMAGE = 20) // 70
+	attribute_requirements = list(
+							JUSTICE_ATTRIBUTE = 40
+							)
