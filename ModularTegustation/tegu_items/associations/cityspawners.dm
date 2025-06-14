@@ -95,6 +95,8 @@ GLOBAL_VAR_INIT(city_east_enemies, FALSE)
 			spawning = /mob/living/simple_animal/hostile/ordeal/indigo_noon
 			if(prob(30))
 				spawning = /mob/living/simple_animal/hostile/ordeal/indigo_dawn
+			else if(prob(25))
+				spawning = pick(/mob/living/simple_animal/hostile/ordeal/indigo_noon/lanky, /mob/living/simple_animal/hostile/ordeal/indigo_noon/chunky)
 
 		if("bots")
 			spawning = /mob/living/simple_animal/hostile/ordeal/green_bot
@@ -136,6 +138,8 @@ GLOBAL_VAR_INIT(city_east_enemies, FALSE)
 			spawning = /mob/living/simple_animal/hostile/ordeal/indigo_noon
 			if(prob(30))
 				spawning = /mob/living/simple_animal/hostile/ordeal/indigo_dawn
+			else if(prob(25))
+				spawning = pick(/mob/living/simple_animal/hostile/ordeal/indigo_noon/lanky, /mob/living/simple_animal/hostile/ordeal/indigo_noon/chunky)
 
 		if("bots")
 			spawning = /mob/living/simple_animal/hostile/ordeal/green_bot
@@ -177,6 +181,8 @@ GLOBAL_VAR_INIT(city_east_enemies, FALSE)
 			spawning = /mob/living/simple_animal/hostile/ordeal/indigo_noon
 			if(prob(30))
 				spawning = /mob/living/simple_animal/hostile/ordeal/indigo_dawn
+			else if(prob(25))
+				spawning = pick(/mob/living/simple_animal/hostile/ordeal/indigo_noon/lanky, /mob/living/simple_animal/hostile/ordeal/indigo_noon/chunky)
 
 		if("bots")
 			spawning = /mob/living/simple_animal/hostile/ordeal/green_bot

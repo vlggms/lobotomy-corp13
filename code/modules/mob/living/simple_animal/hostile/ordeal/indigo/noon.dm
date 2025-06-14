@@ -26,17 +26,6 @@
 
 /mob/living/simple_animal/hostile/ordeal/indigo_noon/Initialize()
 	. = ..()
-	/// If we're on COL, some of the Indigo Noons that spawn on it have a chance to become variant sweepers at random.
-	/// If you want this behaviour on another gamemode, feel free to append an OR onto the conditional I suppose but be careful to rebalance them for it.
-	/// As for that parent_type check, the variant sweepers are subtypes and thus inherit this behaviour on initialize. I don't want a spawned Lanky Sweeper to accidentally
-	/// reroll into a Chunky, for example. It'd just be weird jank.
-	if(SSmaptype.maptype == "city" && parent_type == /mob/living/simple_animal/hostile/ordeal)
-		if(prob(23))
-			var/selected_type = pick(/mob/living/simple_animal/hostile/ordeal/indigo_noon/chunky, /mob/living/simple_animal/hostile/ordeal/indigo_noon/lanky)
-			new selected_type(loc)
-			qdel(src)
-			return
-
 	attack_sound = "sound/effects/ordeals/indigo/stab_[pick(1,2)].ogg"
 	icon_living = "sweeper_[pick(1,2)]"
 	icon_state = icon_living
