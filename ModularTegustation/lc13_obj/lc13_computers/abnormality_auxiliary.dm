@@ -63,8 +63,9 @@
 			var/list/upgrades_per_category = list(
 				"Bullets" = list(),
 				"Bullet Upgrades" = list(),
-				"Agent" = list(),
-				"Abnormalities" = list(),
+				"Facility" = list(),
+				"Higher-Up Specialization Tier 1" = list(),
+				"Higher-Up Specialization Tier 2" = list(),
 				"Unsorted" = list(),
 			)
 			for(var/datum/facility_upgrade/F in SSlobotomy_corp.upgrades)
@@ -79,7 +80,12 @@
 					continue
 				dat += "<b>[cat]</b><br>"
 				for(var/datum/facility_upgrade/F in upgrades_per_category[cat])
-					dat += "- [F.CanUpgrade() ? "<A href='byond://?src=[REF(src)];upgrade=[F.name]'>Upgrade \[[F.cost]\]</A> " : (F.value >= F.max_value ? "" : "\[[F.cost]\] ")]<b>[F.name]</b>: [F.DisplayValue()]<br>"
+					dat += "- [F.CanUpgrade() ? "<A href='byond://?src=[REF(src)];upgrade=[F.name]'>Upgrade \[[F.cost]\]</A> " : (F.value >= F.max_value ? "" : "\[[F.cost]\] ")]<b>[F.name]</b>: [F.DisplayValue()]"
+					var/info = html_encode(F.PrintOutInfo())
+					if(F.info)
+						dat += " - <A href='byond://?src=[REF(src)];info=[info]'>Info</A> <br>"
+					else
+						dat += "<br>"
 				if(i != length(upgrades_per_category))
 					dat += "<hr>"
 	var/datum/browser/popup = new(user, "abno_auxiliary", "Auxiliary Managerial Console", 480, 640)
@@ -132,6 +138,10 @@
 				to_chat(usr, span_warning("A core suppression is already in the progress!"))
 				selected_core_type = null
 				return FALSE
+			if(usr.mind.assigned_role != "Manager")
+				to_chat(usr, span_warning("Only the Manager can start a Core Suppression!"))
+				playsound(get_turf(src), 'sound/machines/terminal_prompt_deny.ogg', 50, TRUE)
+				return FALSE
 			SSlobotomy_corp.core_suppression = new selected_core_type
 			SSlobotomy_corp.core_suppression.legitimate = TRUE
 			SSlobotomy_corp.available_core_suppressions = list()
@@ -148,11 +158,21 @@
 			if(!istype(U) || !U.CanUpgrade())
 				updateUsrDialog()
 				return FALSE
+			if(U.name == UPGRADE_ARCHITECT_1 || U.name == UPGRADE_ARCHITECT_2)
+				if(usr.mind.assigned_role != "Manager")
+					to_chat(usr, span_warning("Only the Manager can buy this."))
+					playsound(get_turf(src), 'sound/machines/terminal_prompt_deny.ogg', 50, TRUE)
+					return FALSE
 			U.Upgrade()
 			playsound(get_turf(src), 'sound/machines/terminal_prompt_confirm.ogg', 50, TRUE)
 			updateUsrDialog()
 			return TRUE
-
+		if(href_list["info"])
+			var/dat = html_decode(href_list["info"])
+			var/datum/browser/popup = new(usr, "upgrade_info", "Auxiliary Managerial Console", 340, 400)
+			popup.set_content(dat)
+			popup.open()
+			return
 #undef CORE_SUPPRESSIONS
 #undef FACILITY_UPGRADES
 
@@ -242,7 +262,7 @@
 			if("Agent")
 				agent_upgrades += upgrade_data
 
-			if("Abnormalities")
+			if("Facility")
 				abnormality_upgrades += upgrade_data
 
 			else

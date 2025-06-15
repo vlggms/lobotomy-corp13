@@ -280,7 +280,7 @@ SUBSYSTEM_DEF(lobotomy_corp)
 	var/suppression_modifier = 1
 	if(player_count != total_count)
 		suppression_modifier = 1.3
-	qliphoth_max = round((player_count > 1 ? 4 : 3) + player_count*1.5*suppression_modifier + GLOB.Sephirahordealspeed) // Some extra help on non solo rounds
+	qliphoth_max = round((player_count > 1 ? 4 : 3) + player_count*1.5*suppression_modifier + GLOB.Sephirahordealspeed + GetFacilityUpgradeValue(UPGRADE_MELTDOWN_INCREASE)) // Some extra help on non solo rounds
 	qliphoth_state += 1
 	for(var/datum/abnormality/A in all_abnormality_datums)
 		if(istype(A.current))

@@ -70,9 +70,10 @@
 			continue
 		if(H.health < 0 && !critical_heal)
 			continue
-		H.adjustBruteLoss(-H.maxHealth * ((regen_amt+hp_bonus)/100))
-		H.adjustFireLoss(-H.maxHealth * ((regen_amt+hp_bonus)/1000))	//Heals at 1/10th speed. Supposed to be slower healing than brute and sanity
-		H.adjustSanityLoss(-H.maxSanity * ((regen_amt+sp_bonus)/100))
+		//A bit stupid to do it like this but it'll work - Crabby
+		H.adjustBruteLoss(-H.maxHealth * ((regen_amt+hp_bonus * (0.8 * GetFacilityUpgradeValue(UPGRADE_REGENERATOR_HEALING)))/100))
+		H.adjustFireLoss(-H.maxHealth * ((regen_amt+hp_bonus * (0.8 * GetFacilityUpgradeValue(UPGRADE_REGENERATOR_HEALING)))/1000))	//Heals at 1/10th speed. Supposed to be slower healing than brute and sanity
+		H.adjustSanityLoss(-H.maxSanity * ((regen_amt+sp_bonus * (0.8 * GetFacilityUpgradeValue(UPGRADE_REGENERATOR_HEALING)))/100))
 	if(icon_state != "regen" && !Threat)
 		icon_state = initial(icon_state)
 
