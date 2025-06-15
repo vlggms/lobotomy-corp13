@@ -216,6 +216,7 @@
 	icon_state = "banner_cuckoo"
 	anchored = TRUE
 	density = FALSE
+	layer = 3.1
 	max_integrity = 50
 	break_message = span_notice("The banner falls apart!")
 	break_sound = 'sound/items/wirecutter.ogg'

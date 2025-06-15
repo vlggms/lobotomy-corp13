@@ -97,6 +97,9 @@
 	return
 
 /mob/living/carbon/human/species/cuckoospawn/start_pulling(atom/movable/AM, state, force = pull_force, supress_message = FALSE)
+	if(istype(AM, /mob/living/carbon/human/species/cuckoospawn))
+		return ..()
+
 	if(istype(AM, /mob/living/carbon/human/species))
 		var/mob/living/carbon/human/species/possible_human
 		if(!possible_human.race && possible_human.stat == DEAD)
@@ -117,21 +120,6 @@
 		if(!dropItemToGround(W))
 			qdel(W)
 	qdel(src)
-
-/mob/living/carbon/human/species/cuckoospawn/attack_ghost(mob/dead/observer/ghost)
-	if(key)
-		to_chat(ghost, span_notice("Somebody is already controlling this bird."))
-		return
-
-	var/response = alert(ghost, "Do you want to take over this bird?", "Soul transfer", "Yes", "No")
-	if(response == "No")
-		return
-
-	if(key)
-		to_chat(ghost, span_notice("Somebody has taken this bird whilst you were busy selecting!"))
-		return
-
-	ckey = ghost.client.ckey
 
 /obj/item/organ/eyes/night_vision/cuckoo
 	name = "bird-eye"

@@ -129,6 +129,8 @@
 		new_cuckoo.notransform = 0
 		new_cuckoo.invisibility = 0
 	new_cuckoo.visible_message(span_danger("[new_cuckoo] wriggles out of [owner]!"), span_userdanger("You exit [owner], your previous host."))
+	playsound(owner, 'sound/magic/exit_blood.ogg', 50)
+	new /obj/effect/gibspawner/generic(get_turf(owner))
 	owner.adjustBruteLoss(240)
 	owner.cut_overlay(overlay)
 
@@ -158,6 +160,8 @@
 		new_cuckoo.invisibility = 0
 
 	new_cuckoo.visible_message(span_danger("[new_cuckoo] wriggles out of [owner]!"), span_userdanger("You exit [owner], your previous host."))
+	playsound(owner, 'sound/magic/exit_blood.ogg', 50)
+	new /obj/effect/gibspawner/generic(get_turf(owner))
 	owner.adjustBruteLoss(240)
 	owner.cut_overlay(overlay)
 
