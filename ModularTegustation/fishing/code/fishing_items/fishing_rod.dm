@@ -59,12 +59,15 @@
 	return ..()
 
 /obj/item/fishing_rod/afterattack(atom/target, mob/user, proximity_flag)
-	if(istype(target, /turf/open/water/deep) && isliving(user) && !isfishing && user.z == target.z)
+	if(istype(target, /turf/open/water/deep) || istype(target, /obj/structure/toolabnormality/wishwell) && isliving(user) && !isfishing && user.z == target.z)
 		if(istype(user.get_inactive_held_item(), /obj/item/fishing_rod))
 			to_chat(user, span_notice("You attempt to cast two lines at once but they get tangled together."))
 			return
 		//Multicasting is too chaotic
 		if(isfishing == TRUE)
+			return
+		if(istype(target, /obj/structure/toolabnormality/wishwell))
+			StartAbnoFishing(user, target)
 			return
 		if(!BobberThrow(user, target))
 			return
@@ -72,7 +75,7 @@
 		return
 	return ..()
 
-/obj/item/fishing_rod/proc/StartFishing(mob/living/user, turf/open/water/deep/fishing_spot)
+/obj/item/fishing_rod/proc/StartFishing(mob/living/carbon/user, turf/open/water/deep/fishing_spot)
 	isfishing = TRUE
 	user.visible_message(span_notice("[user] begins fishing in [fishing_spot]."), span_notice("You begin fishing."))
 	playsound(get_turf(fishing_spot), 'sound/abnormalities/piscinemermaid/bigsplash.ogg', 20, 0, 3)
@@ -96,6 +99,20 @@
 		things_to_fish = ReturnLootTable(user, fishing_spot)
 
 	return StopFishing()
+
+/obj/item/fishing_rod/proc/StartAbnoFishing(mob/living/carbon/user, obj/structure/toolabnormality/wishwell/well)
+	isfishing = TRUE
+	user.visible_message(span_notice("[user] begins fishing in [well]."), span_notice("You begin fishing."))
+	playsound(get_turf(well), 'sound/abnormalities/piscinemermaid/bigsplash.ogg', 20, 0, 3)
+	var/things_to_fish = ReturnAbnoLootTable(user, well)
+
+	for(var/i = 1 to 100)
+		if(!FishCycle(user, well, things_to_fish))
+			break
+		things_to_fish = ReturnAbnoLootTable(user, well)
+
+	isfishing = FALSE
+	return
 
 /* FishCycle is one cycle of fishing. You catch a fish
 	when this is over and then cycle to this proc again.
@@ -135,10 +152,15 @@
 	return TRUE
 
 //Proc for returning loot table chances.
-/obj/item/fishing_rod/proc/ReturnLootTable(mob/living/wielder, turf/open/water/deep/water_turf)
+/obj/item/fishing_rod/proc/ReturnLootTable(mob/living/carbon/wielder, turf/open/water/deep/water_turf)
 	var/fishing_power = ReturnRodPower(wielder)
 	fishing_power *= (SSfishing.moonphase-0.5)*0.5
 	return water_turf.ReturnChanceList(fishing_power)
+
+/obj/item/fishing_rod/proc/ReturnAbnoLootTable(mob/living/carbon/wielder, obj/structure/toolabnormality/wishwell/well)
+	var/fishing_power = ReturnRodPower(wielder)
+	fishing_power *= (SSfishing.moonphase-0.5)*0.5
+	return well.ReturnChanceList(wielder, fishing_power)
 
 /*Tgstation uses signals and projectiles for their fishing rods
 	but im not too familiar with signals so for now
