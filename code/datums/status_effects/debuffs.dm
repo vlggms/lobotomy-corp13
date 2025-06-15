@@ -1005,6 +1005,26 @@
 	owner.cut_overlay(statuseffectvisual)
 	return ..()
 
+
+#define MOB_HALFSPEEDDEFENSE /datum/movespeed_modifier/qliphothshred
+/datum/status_effect/qliphothshred
+	id = "qliphoth intervention field +"
+	duration = 15 SECONDS
+	alert_type = null
+	status_type = STATUS_EFFECT_REFRESH
+	var/statuseffectvisual
+
+/datum/status_effect/qliphothshred/on_apply()
+	. = ..()
+	var/mob/living/simple_animal/M = owner
+	M.AddModifier(/datum/dc_change/qliphothshred)
+
+/datum/status_effect/qliphothshred/on_remove()
+	if(isanimal(owner))
+		var/mob/living/simple_animal/M = owner
+		M.RemoveModifier(/datum/dc_change/qliphothshred)
+	return ..()
+
 #define MOB_QUARTERSPEED /datum/movespeed_modifier/bloodhold
 /datum/status_effect/bloodhold
 	id = "bloodhold"

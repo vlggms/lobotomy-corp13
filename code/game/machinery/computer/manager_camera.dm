@@ -6,7 +6,9 @@
 #define MANAGER_BLACK_BULLET 5
 #define MANAGER_PALE_BULLET 6
 #define MANAGER_YELLOW_BULLET 7
-#define MANAGER_KILL_BULLET 8
+#define MANAGER_DUAL_BULLET 8
+#define MANAGER_QUAD_BULLET 9
+#define MANAGER_KILL_BULLET 10
 GLOBAL_VAR_INIT(execution_enabled, FALSE)
 
 /obj/machinery/computer/camera_advanced/manager
@@ -39,6 +41,10 @@ GLOBAL_VAR_INIT(execution_enabled, FALSE)
 		/obj/effect/temp_visual/holo_command/command_fight_a,
 		/obj/effect/temp_visual/holo_command/command_fight_b,
 	)
+
+	///Costs for the bullets
+	var/list/bullet_cost = list(1,1,1,1,1,1,1,1.75,3,1,)
+
 	/// Used for radial menu; Type = list(name, desc, icon_state)
 	/// List of bullets available for use are defined in lobotomy_corp subsystem
 	var/list/bullet_types = list(
@@ -53,6 +59,7 @@ GLOBAL_VAR_INIT(execution_enabled, FALSE)
 			"desc" = "Bullets that inject an employee with diluted Enkephalin.",
 			"icon_state" = "blue",
 		),
+
 
 		MANAGER_RED_BULLET = list(
 			"name" = RED_BULLET,
@@ -82,6 +89,18 @@ GLOBAL_VAR_INIT(execution_enabled, FALSE)
 			"name" = YELLOW_BULLET,
 			"desc" = "Overload a abnormalities Qliphoth Control to reduce their movement speed.",
 			"icon_state" = "yellow",
+		),
+
+		MANAGER_DUAL_BULLET = list(
+			"name" = DUAL_BULLET,
+			"desc" = "These bullets speed up the recovery of an employee's HP and SP.",
+			"icon_state" = "cyan",
+		),
+
+		MANAGER_QUAD_BULLET = list(
+			"name" = QUAD_BULLET,
+			"desc" = "Attach a durable forcefield that blocks all 4 damage types onto a employee.",
+			"icon_state" = "rainbow",
 		),
 
 		MANAGER_KILL_BULLET = list(
@@ -179,7 +198,7 @@ GLOBAL_VAR_INIT(execution_enabled, FALSE)
 		return
 
 	// No bullets :(
-	if(!ammo)
+	if(ammo < bullet_cost[bullet_type])
 		playsound(get_turf(src), 'sound/weapons/empty.ogg', 10, 0, 3)
 		to_chat(source, span_warning("AMMO RESERVE EMPTY."))
 		return
@@ -195,17 +214,17 @@ GLOBAL_VAR_INIT(execution_enabled, FALSE)
 				ClickedAbno(source, L)
 				success = TRUE
 		if(success)
-			ammo--
+			ammo -= bullet_cost[bullet_type]
 			to_chat(source, span_warning("<b>[ammo]</b> bullets remaining."))
 		return
 
 	// Non-AOE
 	if(ishuman(clicked_atom) && ClickedEmployee(source, clicked_atom))
-		ammo--
+		ammo -= bullet_cost[bullet_type]
 		to_chat(source, span_warning("<b>[ammo]</b> bullets remaining."))
 		return
 	if(ishostile(clicked_atom) && ClickedAbno(source, clicked_atom))
-		ammo--
+		ammo -= bullet_cost[bullet_type]
 		to_chat(source, span_warning("<b>[ammo]</b> bullets remaining."))
 		return
 
@@ -219,8 +238,16 @@ GLOBAL_VAR_INIT(execution_enabled, FALSE)
 			H.adjustBruteLoss(-GetFacilityUpgradeValue(UPGRADE_BULLET_HEAL)*H.maxHealth)
 		if(MANAGER_SP_BULLET)
 			if(H.sanity_lost)
+				playsound(get_turf(src), 'sound/weapons/empty.ogg', 10, 0, 3)
 				to_chat(owner, span_warning("ERROR: TARGET'S MIND IS TOO UNSTABLE."))
 				return FALSE
+			H.adjustSanityLoss(-GetFacilityUpgradeValue(UPGRADE_BULLET_HEAL)*H.maxSanity)
+		if(MANAGER_DUAL_BULLET)
+			if(H.sanity_lost)
+				playsound(get_turf(src), 'sound/weapons/empty.ogg', 10, 0, 3)
+				to_chat(owner, span_warning("ERROR: TARGET'S MIND IS TOO UNSTABLE."))
+				return FALSE
+			H.adjustBruteLoss(-GetFacilityUpgradeValue(UPGRADE_BULLET_HEAL)*H.maxHealth)
 			H.adjustSanityLoss(-GetFacilityUpgradeValue(UPGRADE_BULLET_HEAL)*H.maxSanity)
 		if(MANAGER_RED_BULLET)
 			H.apply_status_effect(/datum/status_effect/interventionshield)
@@ -230,9 +257,17 @@ GLOBAL_VAR_INIT(execution_enabled, FALSE)
 			H.apply_status_effect(/datum/status_effect/interventionshield/black)
 		if(MANAGER_PALE_BULLET)
 			H.apply_status_effect(/datum/status_effect/interventionshield/pale)
+		if(MANAGER_QUAD_BULLET)
+			if (H.has_status_effect(/datum/status_effect/interventionshield))
+				playsound(get_turf(src), 'sound/weapons/empty.ogg', 10, 0, 3)
+				to_chat(owner, span_warning("ERROR: TARGET HAS A SHIELD ALREADY."))
+				return FALSE
+			H.apply_status_effect(/datum/status_effect/interventionshield/quad)
 		if(MANAGER_YELLOW_BULLET)
 			if(!owner.faction_check_mob(H))
 				H.apply_status_effect(/datum/status_effect/qliphothoverload)
+				if (GetFacilityUpgradeValue(UPGRADE_YELLOW_BULLET))
+					H.apply_status_effect(/datum/status_effect/qliphothshred)
 			else
 				to_chat(owner, span_warning("WELFARE SAFETY SYSTEM ERROR: TARGET SHARES CORPORATE FACTION."))
 				return FALSE
@@ -281,8 +316,10 @@ GLOBAL_VAR_INIT(execution_enabled, FALSE)
 		to_chat(owner, span_warning("NO VALID TARGET."))
 		return FALSE
 
-	if(bullet_type == 7)
+	if(bullet_type == MANAGER_YELLOW_BULLET)
 		H.apply_status_effect(/datum/status_effect/qliphothoverload)
+		if (GetFacilityUpgradeValue(UPGRADE_YELLOW_BULLET))
+			H.apply_status_effect(/datum/status_effect/qliphothshred)
 		playsound(get_turf(src), 'ModularTegustation/Tegusounds/weapons/guns/manager_bullet_fire.ogg', 10, 0, 3)
 		playsound(get_turf(H), 'ModularTegustation/Tegusounds/weapons/guns/manager_bullet_fire.ogg', 10, 0, 3)
 		to_chat(owner, span_warning("<b>[ammo]</b> bullets remaining."))
@@ -296,6 +333,10 @@ GLOBAL_VAR_INIT(execution_enabled, FALSE)
 
 	if(ishuman(clicked_atom))
 		var/mob/living/carbon/human/H = clicked_atom
+
+		if (GetFacilityUpgradeValue(UPGRADE_ARCHITECT_2))
+			to_chat(user, span_notice("Agent health [H.health]."))
+			to_chat(user, span_notice("Agent sanity [H.sanityhealth]."))
 		to_chat(user, span_notice("Agent level [get_user_level(H)]."))
 		to_chat(user, span_notice("Fortitude level [get_attribute_level(H, FORTITUDE_ATTRIBUTE)]."))
 		to_chat(user, span_notice("Prudence level [get_attribute_level(H, PRUDENCE_ATTRIBUTE)]."))
@@ -305,7 +346,21 @@ GLOBAL_VAR_INIT(execution_enabled, FALSE)
 
 	if(istype(clicked_atom, /mob/living/simple_animal))
 		var/mob/living/simple_animal/monster = clicked_atom
+		if (GetFacilityUpgradeValue(UPGRADE_ARCHITECT_2))
+			var/message = "<span class='notice'>[clicked_atom]'s current health is : [monster.health] \n[clicked_atom]'s resistances are :"
 
+			var/list/damage_types = list(RED_DAMAGE, WHITE_DAMAGE, BLACK_DAMAGE, PALE_DAMAGE)
+			for(var/i in damage_types)
+				var/damage_type = i
+				if(GLOB.damage_type_shuffler?.is_enabled)
+					damage_type = GLOB.damage_type_shuffler.mapping_defense[i]
+				var/resistance = monster.damage_coeff.getCoeff(damage_type)
+				message += "\n[capitalize(i)]: [resistance]x"
+
+			message += "</span>"
+
+			to_chat(user, message)
+			return
 		var/message = "<span class='notice'>[clicked_atom]'s resistances are :"
 
 		var/list/damage_types = list(RED_DAMAGE, WHITE_DAMAGE, BLACK_DAMAGE, PALE_DAMAGE)

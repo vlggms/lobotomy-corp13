@@ -31,7 +31,10 @@
 			*/
 			if(CA.can_meltdown && CA.meltdown && CA.meltdown_time > 0)
 				//The watch itself has the time increase, we grab it and add that (in seconds)
-				CA.meltdown_time += meltdowntimer_increase
+				var/fake_meltdowntimer_increase = meltdowntimer_increase
+				if (GetFacilityUpgradeValue(UPGRADE_RECORDS_1))
+					fake_meltdowntimer_increase *= 2
+				CA.meltdown_time += fake_meltdowntimer_increase
 				//Give feedback and tell the user how much time left
 				to_chat(user, span_warning("You increase the time left untill a meltdown to: [CA.meltdown_time] on [CA.datum_reference.name]'s console."))
 				//This was a successful use of the watch, add it to the console counter

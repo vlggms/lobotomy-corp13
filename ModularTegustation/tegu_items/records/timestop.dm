@@ -9,6 +9,10 @@
 /obj/item/records/timestop/watch_action(mob/user)
 	//First we spawn a timestop affect, freezing the area around are user, for 10 seconds
 	new /obj/effect/timestop(get_turf(user), 3, 110, list(user))
-	//Next we move back to are parrent, so that we give are stopwatch cooldowns.
-	..()
+	if(records_cooldown_timer)
+		var cooldown = records_cooldown_timer
+		if (GetFacilityUpgradeValue(UPGRADE_RECORDS_1))
+			cooldown /= 2
+		addtimer(CALLBACK(src, PROC_REF(reset)), cooldown)
+		usable = FALSE
 

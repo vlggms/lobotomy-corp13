@@ -19,7 +19,10 @@
 	M.adjustBruteLoss(gambling_number-1)	//Just in case we get weird rounding shit
 
 	//So you can't actually use it repeatedly, have a min health of 20
-	if(prob(gambling_number-20))
+	var/multi = 1
+	if (GetFacilityUpgradeValue(UPGRADE_EXTRACTION_1))
+		multi = 1.5 //50% more likely
+	if(prob(gambling_number-20 * multi))
 		to_chat(M, span_notice("Refining success."))
 		playsound(get_turf(src), 'sound/machines/terminal_prompt_confirm.ogg', 50, TRUE)
 		new /obj/item/refinedpe(get_turf(src))

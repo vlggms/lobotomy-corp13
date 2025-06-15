@@ -15,5 +15,9 @@
 	//We grab are SubSystem for abnormality spawning and go to the spawn timer, and add the offset time to it directly.
 	SSabnormality_queue.next_abno_spawn += next_abno_spawn_offset
 	//Next we move back to are parrent, so that we give are stopwatch cooldowns.
-	..()
-
+	if(records_cooldown_timer)
+		var cooldown = records_cooldown_timer
+		if (GetFacilityUpgradeValue(UPGRADE_RECORDS_1))
+			cooldown /= 2
+		addtimer(CALLBACK(src, PROC_REF(reset)), cooldown)
+		usable = FALSE

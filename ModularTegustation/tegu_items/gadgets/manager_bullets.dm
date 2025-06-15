@@ -121,8 +121,16 @@
 	statuseffectvisual = icon('ModularTegustation/Teguicons/tegu_effects.dmi', "manager_shield")
 	respectivedamage = list(RED_DAMAGE, WHITE_DAMAGE, BLACK_DAMAGE, PALE_DAMAGE)
 
+/datum/status_effect/interventionshield/quad
+	id = "quad shield"
+	statuseffectvisual = icon('ModularTegustation/Teguicons/tegu_effects.dmi', "quad_shield")
+	respectivedamage = list(RED_DAMAGE, WHITE_DAMAGE, BLACK_DAMAGE, PALE_DAMAGE)
 
-	//other bullets
+/datum/status_effect/interventionshield/quad/on_apply()
+	. = ..()
+	shieldhealth = GetFacilityUpgradeValue(UPGRADE_BULLET_SHIELD_HEALTH) * 2
+
+//other bullets
 /obj/item/managerbullet/red
 	name = "red manager bullet"
 	desc = "A bullet used in a manager console."
@@ -192,3 +200,14 @@
 	if(!ishuman(L))
 		return
 	L.apply_status_effect(/datum/status_effect/interventionshield/perfect)
+
+/obj/item/managerbullet/quad
+	name = "quad manager bullet"
+	desc = "A bullet used in a manager console."
+	icon = 'icons/obj/ammo.dmi'
+	icon_state = "sleeper-live"
+
+/obj/item/managerbullet/quad/bulletshatter(mob/living/L)
+	if(!ishuman(L))
+		return
+	L.apply_status_effect(/datum/status_effect/interventionshield/quad)
