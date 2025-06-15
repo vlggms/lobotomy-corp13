@@ -7,7 +7,7 @@
 
 	nojumpsuit = TRUE
 	species_traits = list(NO_UNDERWEAR, NOEYESPRITES)
-	inherent_traits = list(TRAIT_PERFECT_ATTACKER, TRAIT_BRUTEPALE, TRAIT_BRUTESANITY, TRAIT_SANITYIMMUNE, TRAIT_GENELESS, TRAIT_COMBATFEAR_IMMUNE, TRAIT_NOGUNS, TRAIT_PIERCEIMMUNE, TRAIT_NOEGOWEAPONS)
+	inherent_traits = list(TRAIT_PERFECT_ATTACKER, TRAIT_BRUTEPALE, TRAIT_BRUTESANITY, TRAIT_SANITYIMMUNE, TRAIT_GENELESS, TRAIT_COMBATFEAR_IMMUNE, TRAIT_NOGUNS, TRAIT_PIERCEIMMUNE, TRAIT_NOEGOWEAPONS, TRAIT_XENO_IMMUNE)
 	use_skintones = FALSE
 	species_language_holder = /datum/language_holder/cuckoospawn
 	mutanteyes = /obj/item/organ/eyes/night_vision/cuckoo
@@ -39,7 +39,7 @@
 	/// For storing our tackler datum so we can remove it after
 	var/datum/component/tackler
 	/// See: [/datum/component/tackler/var/stamina_cost]
-	var/tackle_stam_cost = 50
+	var/tackle_stam_cost = 75
 	/// See: [/datum/component/tackler/var/base_knockdown]
 	var/base_knockdown = 1 SECONDS
 	/// See: [/datum/component/tackler/var/range]
@@ -47,7 +47,7 @@
 	/// See: [/datum/component/tackler/var/min_distance]
 	var/min_distance = 0
 	/// See: [/datum/component/tackler/var/speed]
-	var/tackle_speed = 1.5
+	var/tackle_speed = 2
 	/// See: [/datum/component/tackler/var/skill_mod]
 	var/skill_mod = 0
 	var/head_immunity_start
@@ -161,7 +161,7 @@
 
 	if(T.stat != DEAD && prob(30))
 		var/obj/item/bodypart/chest/LC = T.get_bodypart(BODY_ZONE_CHEST)
-		if((!LC || LC.status != BODYPART_ROBOTIC) && !T.getorgan(/obj/item/organ/body_egg/cuckoospawn_embryo) && !HAS_TRAIT(LC, TRAIT_XENO_IMMUNE))
+		if((!LC || LC.status != BODYPART_ROBOTIC) && !T.getorgan(/obj/item/organ/body_egg/cuckoospawn_embryo) && !HAS_TRAIT(target, TRAIT_XENO_IMMUNE))
 			to_chat(S, span_nicegreen("You implant [T], soon a new niaojia-ren bird shall grow..."))
 			new /obj/item/organ/body_egg/cuckoospawn_embryo(T)
 			var/turf/TT = get_turf(T)
@@ -225,3 +225,97 @@
 				S.setGrabState(GRAB_AGGRESSIVE)
 
 	return COMPONENT_MOVABLE_IMPACT_FLIP_HITPUSH
+
+/datum/component/tackler/cuckoo/splat(mob/living/carbon/user, atom/hit)
+	if(istype(hit, /obj/machinery/vending)) // before we do anything else-
+		var/obj/machinery/vending/darth_vendor = hit
+		darth_vendor.tilt(user, TRUE)
+		return
+	else if(istype(hit, /obj/structure/window))
+		var/obj/structure/window/W = hit
+		splatWindow(user, W)
+		if(QDELETED(W))
+			return COMPONENT_MOVABLE_IMPACT_NEVERMIND
+		return
+
+	var/oopsie_mod = 0
+	var/danger_zone = (speed - 1) * 13 // for every extra speed we have over 1, take away 13 of the safest chance
+	danger_zone = max(min(danger_zone, 100), 1)
+
+	if(ishuman(user))
+		var/mob/living/carbon/human/S = user
+		var/head_slot = S.get_item_by_slot(ITEM_SLOT_HEAD)
+		var/suit_slot = S.get_item_by_slot(ITEM_SLOT_OCLOTHING)
+		if(head_slot && (istype(head_slot,/obj/item/clothing/head/helmet) || istype(head_slot,/obj/item/clothing/head/hardhat)))
+			oopsie_mod -= 6
+		if(suit_slot && (istype(suit_slot,/obj/item/clothing/suit/armor/riot)))
+			oopsie_mod -= 6
+
+	if(HAS_TRAIT(user, TRAIT_CLUMSY))
+		oopsie_mod += 6 //honk!
+
+	var/oopsie = rand(danger_zone, 100)
+	if(oopsie >= 94 && oopsie_mod < 0) // good job avoiding getting paralyzed! gold star!
+		to_chat(user, "<span class='usernotice'>You're really glad you're wearing protection!</span>")
+	oopsie += oopsie_mod
+
+	switch(oopsie)
+		if(99 to INFINITY)
+			// can you imagine standing around minding your own business when all of the sudden some guy fucking launches himself into a wall at full speed and irreparably paralyzes himself?
+			user.visible_message("<span class='danger'>[user] slams face-first into [hit] at an awkward angle, severing [user.p_their()] spinal column with a sickening crack! Fucking shit!</span>", "<span class='userdanger'>You slam face-first into [hit] at an awkward angle, severing your spinal column with a sickening crack! Fucking shit!</span>")
+			var/obj/item/bodypart/head/hed = user.get_bodypart(BODY_ZONE_HEAD)
+			if(hed)
+				hed.receive_damage(brute=40, updating_health=FALSE, wound_bonus = 40)
+			else
+				user.adjustBruteLoss(40, updating_health=FALSE)
+			user.adjustStaminaLoss(30)
+			playsound(user, 'sound/effects/blobattack.ogg', 60, TRUE)
+			playsound(user, 'sound/effects/splat.ogg', 70, TRUE)
+			playsound(user, 'sound/effects/wounds/crack2.ogg', 70, TRUE)
+			user.emote("scream")
+			shake_camera(user, 7, 7)
+
+		if(97 to 98)
+			user.visible_message("<span class='danger'>[user] slams skull-first into [hit] with a sound like crumpled paper, revealing a horrifying breakage in [user.p_their()] cranium! Holy shit!</span>", "<span class='userdanger'>You slam skull-first into [hit] and your senses are filled with warm goo flooding across your face! Your skull is open!</span>")
+			var/obj/item/bodypart/head/hed = user.get_bodypart(BODY_ZONE_HEAD)
+			if(hed)
+				hed.receive_damage(brute=30, updating_health=FALSE, wound_bonus = 25)
+			else
+				user.adjustBruteLoss(40, updating_health=FALSE)
+			user.adjustStaminaLoss(30)
+			playsound(user, 'sound/effects/blobattack.ogg', 60, TRUE)
+			playsound(user, 'sound/effects/splat.ogg', 70, TRUE)
+			user.emote("gurgle")
+			shake_camera(user, 7, 7)
+
+		if(93 to 96)
+			user.visible_message("<span class='danger'>[user] slams face-first into [hit] with a concerning squish, immediately going limp!</span>", "<span class='userdanger'>You slam face-first into [hit], and immediately lose consciousness!</span>")
+			user.adjustStaminaLoss(30)
+			user.adjustBruteLoss(30)
+			user.Unconscious(100)
+			shake_camera(user, 6, 6)
+
+		if(86 to 92)
+			user.visible_message("<span class='danger'>[user] slams head-first into [hit], suffering major cranial trauma!</span>", "<span class='userdanger'>You slam head-first into [hit], and the world explodes around you!</span>")
+			user.adjustStaminaLoss(30, updating_health=FALSE)
+			user.adjustBruteLoss(30)
+			user.add_confusion(15)
+			user.Knockdown(40)
+			shake_camera(user, 5, 5)
+
+		if(68 to 85)
+			user.visible_message("<span class='danger'>[user] slams hard into [hit], knocking [user.p_them()] senseless!</span>", "<span class='userdanger'>You slam hard into [hit], knocking yourself senseless!</span>")
+			user.adjustStaminaLoss(30, updating_health=FALSE)
+			user.adjustBruteLoss(10)
+			user.add_confusion(10)
+			user.Knockdown(30)
+			shake_camera(user, 3, 4)
+
+		if(1 to 67)
+			user.visible_message("<span class='danger'>[user] slams into [hit]!</span>", "<span class='userdanger'>You slam into [hit]!</span>")
+			user.adjustStaminaLoss(20, updating_health=FALSE)
+			user.adjustBruteLoss(10)
+			user.Knockdown(20)
+			shake_camera(user, 2, 2)
+
+	playsound(user, 'sound/weapons/smash.ogg', 70, TRUE)

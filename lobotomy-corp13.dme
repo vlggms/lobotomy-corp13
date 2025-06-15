@@ -1604,6 +1604,7 @@
 #include "code\modules\admin\smites\brain_damage.dm"
 #include "code\modules\admin\smites\bread.dm"
 #include "code\modules\admin\smites\bsa.dm"
+#include "code\modules\admin\smites\claw_execute.dm"
 #include "code\modules\admin\smites\distort.dm"
 #include "code\modules\admin\smites\dock_pay.dm"
 #include "code\modules\admin\smites\fake_bwoink.dm"

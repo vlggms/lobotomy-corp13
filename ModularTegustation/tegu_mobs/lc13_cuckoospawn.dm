@@ -178,10 +178,11 @@
 	growing_time = 60 SECONDS
 
 /mob/living/simple_animal/hostile/cuckoospawn_parasite/intelligent/Growup()
-	var/mob/living/carbon/human/species/cuckoospawn/C = new(get_turf(src))
-	if(mind)
-		mind.transfer_to(C)
-	playsound(get_turf(src), 'sound/abnormalities/nothingthere/growl.ogg', 30, 1)
+	if(stat != DEAD)
+		var/mob/living/carbon/human/species/cuckoospawn/C = new(get_turf(src))
+		if(mind)
+			mind.transfer_to(C)
+		playsound(get_turf(src), 'sound/abnormalities/nothingthere/growl.ogg', 30, 1)
 	qdel(src)
 
 /obj/effect/temp_visual/dir_setting/claw_appears

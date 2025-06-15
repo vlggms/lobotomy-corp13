@@ -47,6 +47,7 @@
 		You have a statue in your nest, you are able to offer it meat to gain your god's favor, which you can then use to gather new items by touching the statue.<br>\
 		You can also directly offer the bodies to your god, by draging them onto your statue. This will generate extra meat for your god.<br>\
 		The 3 items that you can get from the statue are healing salves, banners, and boluses which and bring back fallen Niaojia-rens.<br>\
+		However, you don't need to offer all of your meat. You should keep some, you do need to eat...<br>\
 		<b>TERRITORY</b><br>\
 		You are a territorial species, and you are stronger while within it. You are able to gather banners from your statue, which you can place down on your existing territory.<br>\
 		You can tell if you are in your territory when your vision grows RED and you get a status effect called 'Hunter'<br>\
@@ -55,11 +56,10 @@
 		You can also tackle humans. You can initiate a tackle by entering throw mode and then clicking on a human with an empty hand. This will inflict tremor, which will build up to a stun.<br>\
 		You can activate your Retreat skill, which will give you a burst of speed. At the cost of being slowed down if they are spotted by humans after the speed wears off.<br>\
 		<b>INFECTION</b><br>\
-		You are able to grow your numbers by infecting humans with your embryo. There are 4 ways of infecting humans.<br>\
-		1. You can use your 'Niaojia-ren Implant' skill and then click a living human to infect them. This has a short delay.<br>\
-		2. You can tackle humans for a decent chance (30%) of infecting them.<br>\
-		3. You can melee attack humans for a low chance (5%) of infecting them.<br>\
-		4. You are able to create bolus from your statue. If a human eats one of them, they will fully heal but have a chance at becoming infected.<br>\
+		You are able to grow your numbers by infecting humans with your embryo. There are 3 ways of infecting humans.<br>\
+		1. You can tackle humans for a decent chance (30%) of infecting them.<br>\
+		2. You can melee attack humans for a low chance (5%) of infecting them.<br>\
+		3. You are able to create bolus from your statue. If a human eats one of them, they will fully heal but have a chance at becoming infected.<br>\
 		It takes 10 minutes for a person to birth a new niaojia-ren, and this timer stops while they are dead.<br>\
 		<b>ORDERING</b><br>\
 		You are able to order simple minded niaojia-ren to follow you around by touching them with your hand.<br>\
@@ -102,6 +102,7 @@
 			var/mob/living/carbon/human/human = owner
 			human.add_movespeed_modifier(/datum/movespeed_modifier/cuckoo_spotted)
 			addtimer(CALLBACK(human, TYPE_PROC_REF(/mob, remove_movespeed_modifier), /datum/movespeed_modifier/cuckoo_spotted), 4 SECONDS, TIMER_UNIQUE | TIMER_OVERRIDE)
+			human.adjustStaminaLoss(150)
 
 /datum/movespeed_modifier/cuckoo_retreat
 	variable = TRUE
@@ -132,11 +133,11 @@
 		bonus_damage += 10
 		picked_hit_type = "stomp"
 	if(A.has_status_effect(/datum/status_effect/hunter))
-		D.apply_damage(rand(15,20) + bonus_damage, RED_DAMAGE, affecting, armor_block)
+		D.apply_damage(rand(25,30) + bonus_damage, RED_DAMAGE, affecting, armor_block)
 		if(ishuman(D) && D.stat != DEAD && prob(5))
 			var/mob/living/carbon/human/human_target = D
 			var/obj/item/bodypart/chest/LC = human_target.get_bodypart(BODY_ZONE_CHEST)
-			if((!LC || LC.status != BODYPART_ROBOTIC) && !human_target.getorgan(/obj/item/organ/body_egg/cuckoospawn_embryo) && !HAS_TRAIT(LC, TRAIT_XENO_IMMUNE))
+			if((!LC || LC.status != BODYPART_ROBOTIC) && !human_target.getorgan(/obj/item/organ/body_egg/cuckoospawn_embryo) && !HAS_TRAIT(human_target, TRAIT_XENO_IMMUNE))
 				to_chat(A, span_danger("You implant [D], soon a new niaojia-ren bird shall grow..."))
 				new /obj/item/organ/body_egg/cuckoospawn_embryo(human_target)
 				var/turf/T = get_turf(human_target)
@@ -156,33 +157,28 @@
 	return TRUE
 
 /datum/martial_art/cuckoopunch/proc/cuckoo_implant(mob/living/A, mob/living/D)
-	to_chat(A, span_spiderbroodmother("You begin to wind up an attack..."))
-	if(!do_after(A, 10, target = D))
-		to_chat(A, span_spiderbroodmother("<b>Your attack was interrupted!</b>"))
+	if(!isanimal(D))
+		to_chat(A, span_spiderbroodmother("You wish to not kill this prey..."))
 		return TRUE
-	var/atk_verb
-	A.do_attack_animation(D, ATTACK_EFFECT_PUNCH)
-	atk_verb = pick("punch", "smash", "crack")
-	D.visible_message(span_danger("[A] [atk_verb]ed [D] with such inhuman strength!"), \
-					span_userdanger("You're [atk_verb]ed by [A] with such inhuman strength!"), span_hear("You hear a sickening sound of flesh hitting flesh!"), null, A)
-	to_chat(A, span_danger("You [atk_verb] [D] with such inhuman strength!"))
-	playsound(D, 'sound/effects/meteorimpact.ogg', 25, TRUE, -1)
-	if(ishuman(D) && D.stat != DEAD)
-		var/mob/living/carbon/human/human_target = D
-		var/obj/item/bodypart/chest/LC = human_target.get_bodypart(BODY_ZONE_CHEST)
-		if((!LC || LC.status != BODYPART_ROBOTIC) && !human_target.getorgan(/obj/item/organ/body_egg/cuckoospawn_embryo) && !HAS_TRAIT(LC, TRAIT_XENO_IMMUNE))
-			to_chat(A, span_danger("You implant [D], soon a new niaojia-ren bird shall grow..."))
-			new /obj/item/organ/body_egg/cuckoospawn_embryo(human_target)
-			var/turf/T = get_turf(human_target)
-			log_game("[key_name(human_target)] was infected by a niaojia-ren at [loc_name(T)]")
-	if(isanimal(D))
+	else
+		to_chat(A, span_spiderbroodmother("You begin to wind up an attack..."))
+		if(!do_after(A, 10, target = D))
+			to_chat(A, span_spiderbroodmother("<b>Your attack was interrupted!</b>"))
+			return TRUE
+		var/atk_verb
+		A.do_attack_animation(D, ATTACK_EFFECT_PUNCH)
+		atk_verb = pick("punch", "smash", "crack")
+		D.visible_message(span_danger("[A] [atk_verb]ed [D] with such inhuman strength!"), \
+						span_userdanger("You're [atk_verb]ed by [A] with such inhuman strength!"), span_hear("You hear a sickening sound of flesh hitting flesh!"), null, A)
+		to_chat(A, span_danger("You [atk_verb] [D] with such inhuman strength!"))
+		playsound(D, 'sound/effects/meteorimpact.ogg', 25, TRUE, -1)
 		if(A.has_status_effect(/datum/status_effect/hunter))
-			D.apply_damage(120, RED_DAMAGE)
+			D.apply_damage(150, RED_DAMAGE)
 		else
-			D.apply_damage(50, RED_DAMAGE)
+			D.apply_damage(75, RED_DAMAGE)
 			to_chat(A, span_warning("You attack pathetically, re-enter your territory!"))
-	if(atk_verb)
-		log_combat(A, D, "[atk_verb] (Cuckoo Punch)")
+		if(atk_verb)
+			log_combat(A, D, "[atk_verb] (Cuckoo Punch)")
 
 /datum/martial_art/cuckoopunch/grab_act(mob/living/A, mob/living/D)
 	if(ishuman(D) && D.stat == DEAD)

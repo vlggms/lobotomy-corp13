@@ -36,7 +36,7 @@
 
 /obj/structure/bird_statue
 	name = "old bird statue"
-	desc = "An statue of great worship, it appears to have sinister around it... If you understood what it means, you could offer stuff to it..."
+	desc = "A statue of great worship, it appears to have sinister aura around it... If you understood what it means, you could offer stuff to it..."
 	icon = 'ModularTegustation/Teguicons/64x64.dmi'
 	icon_state = "thunderbird_altar"
 	pixel_x = -16
@@ -273,7 +273,7 @@
 	id = "prey"
 	status_type = STATUS_EFFECT_UNIQUE
 	duration = -1
-	alert_type = /atom/movable/screen/alert/status_effect/fogbound
+	alert_type = /atom/movable/screen/alert/status_effect/prey
 
 /atom/movable/screen/alert/status_effect/prey
 	name = "Prey"
@@ -380,19 +380,16 @@
 		var/mob/living/carbon/human/species/cuckoospawn/new_bird = M
 		to_chat(user, span_nicegreen("You start applying [src] to [new_bird]..."))
 		if(do_after(user, 60, new_bird))
-			new_bird.adjustOxyLoss(-new_bird.maxHealth)
-			new_bird.adjustToxLoss(-new_bird.maxHealth)
-			new_bird.adjustFireLoss(-new_bird.maxHealth)
-			new_bird.adjustBruteLoss(-new_bird.maxHealth)
-			new_bird.updatehealth()
-			playsound(get_turf(src), 'sound/magic/enter_blood.ogg', 30, 1)
-			new_bird.revive(full_heal = FALSE, admin_revive = FALSE)
-			new_bird.emote("gasps")
-			new_bird.Jitter(100)
-			new_bird.Paralyze(75)
-			to_chat(user, span_nicegreen("[new_bird] suddenly shakes awake!"))
-			to_chat(new_bird, span_nicegreen("You suddenly wake up, as something warm enters your mouth..."))
-			qdel(src)
+			if(new_bird.revive(full_heal = TRUE, admin_revive = TRUE))
+				new_bird.revive(full_heal = TRUE, admin_revive = TRUE)
+				new_bird.grab_ghost(force = TRUE) // even suicides
+				playsound(get_turf(src), 'sound/magic/enter_blood.ogg', 30, 1)
+				new_bird.emote("gasps")
+				new_bird.Jitter(100)
+				new_bird.Paralyze(75)
+				to_chat(user, span_nicegreen("[new_bird] suddenly shakes awake!"))
+				to_chat(new_bird, span_nicegreen("You suddenly wake up, as something warm enters your mouth..."))
+				qdel(src)
 	else
 		to_chat(user, span_notice("The target is not compatible with this bolus!"))
 
@@ -415,6 +412,7 @@
 				new /obj/item/organ/body_egg/cuckoospawn_embryo(implanted_human)
 				var/turf/TT = get_turf(implanted_human)
 				log_game("[key_name(implanted_human)] was impregnated by [src] at [loc_name(TT)]")
+			qdel(src)
 
 /obj/machinery/door/keycard/cuckoo_nest
 	desc = "A dusty, scratched door with a thick lock attached."

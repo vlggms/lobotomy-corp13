@@ -1,7 +1,9 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
 "an" = (
-/obj/effect/mob_spawn/human/corpse/damaged,
 /obj/item/clothing/head/crown,
+/obj/item/clothing/head/ushanka,
+/obj/item/clothing/mask/gas/owl_mask,
+/obj/item/clothing/mask/gas/tiki_mask,
 /turf/open/floor/plating/asteroid/basalt,
 /area/city/backstreets_alley)
 "aR" = (
@@ -32,6 +34,8 @@
 /obj/structure/table/wood{
 	color = "#2b0300"
 	},
+/obj/item/clothing/head/helmet/skull,
+/obj/item/clothing/head/helmet/skull,
 /turf/open/floor/plating/asteroid/basalt,
 /area/city/backstreets_alley)
 "cf" = (
@@ -139,6 +143,12 @@
 /mob/living/simple_animal/hostile/cuckoospawn,
 /turf/open/floor/plating/asteroid/basalt,
 /area/city/backstreets_alley)
+"oS" = (
+/obj/item/clothing/head/papersack/smiley,
+/obj/item/clothing/head/papersack/smiley,
+/obj/item/clothing/mask/joy,
+/turf/open/floor/plating/asteroid/basalt,
+/area/city/backstreets_alley)
 "px" = (
 /obj/structure/stone_tile,
 /obj/structure/stone_tile{
@@ -184,7 +194,11 @@
 /obj/structure/table/wood{
 	color = "#2b0300"
 	},
-/obj/item/food/cake/bbird,
+/mob/living/simple_animal/chicken{
+	name = "\improper tamed chicken";
+	faction = list("neutral", "cuckoospawn")
+	},
+/obj/item/food/fried_chicken,
 /turf/open/indestructible/boss/air,
 /area/city/backstreets_alley)
 "ts" = (
@@ -276,6 +290,11 @@
 /obj/item/seeds/glowshroom,
 /obj/item/lighter,
 /obj/item/lighter,
+/obj/item/seeds/carrot,
+/obj/item/seeds/carrot,
+/obj/item/seeds/carrot,
+/obj/item/seeds/carrot,
+/obj/item/seeds/carrot,
 /turf/open/floor/plating/asteroid/basalt,
 /area/city/backstreets_alley)
 "xR" = (
@@ -357,6 +376,12 @@
 /obj/structure/stone_tile,
 /turf/open/floor/plating/asteroid/basalt,
 /area/city/backstreets_alley)
+"Fc" = (
+/obj/item/clothing/head/bearpelt,
+/obj/item/clothing/head/bandana,
+/obj/item/clothing/mask/scarecrow,
+/turf/open/floor/plating/asteroid/basalt,
+/area/city/backstreets_alley)
 "FY" = (
 /obj/structure/table/wood{
 	color = "#2b0300"
@@ -400,7 +425,6 @@
 /turf/open/floor/plating/asteroid/basalt,
 /area/city/backstreets_alley)
 "Jh" = (
-/obj/effect/mob_spawn/human/corpse/damaged,
 /obj/item/toy/plush/bigbird,
 /turf/open/floor/plating/asteroid/basalt,
 /area/city/backstreets_alley)
@@ -420,8 +444,15 @@
 /turf/open/floor/plating/asteroid/basalt,
 /area/city/backstreets_alley)
 "OU" = (
-/obj/effect/mob_spawn/human/corpse/damaged,
-/turf/open/floor/plating/asteroid/basalt,
+/obj/structure/stone_tile/block{
+	dir = 1
+	},
+/obj/structure/stone_tile/cracked,
+/obj/structure/stone_tile{
+	dir = 8
+	},
+/obj/item/clothing/neck/cloak,
+/turf/open/indestructible/boss/air,
 /area/city/backstreets_alley)
 "PL" = (
 /obj/effect/decal/cleanable/blood,
@@ -436,6 +467,12 @@
 "RD" = (
 /turf/closed/indestructible/rock,
 /area/city/backstreets_alley)
+"TE" = (
+/obj/effect/decal/cleanable/blood,
+/obj/item/clothing/head/collectable/tophat,
+/obj/item/clothing/head/rice_hat,
+/turf/open/floor/plating/asteroid/basalt,
+/area/city/backstreets_alley)
 "Ud" = (
 /obj/structure/stone_tile/block{
 	dir = 1
@@ -443,6 +480,20 @@
 /obj/structure/stone_tile/cracked,
 /obj/structure/stone_tile{
 	dir = 8
+	},
+/turf/open/indestructible/boss/air,
+/area/city/backstreets_alley)
+"UI" = (
+/obj/structure/stone_tile/block{
+	dir = 1
+	},
+/obj/structure/stone_tile/cracked,
+/obj/structure/stone_tile{
+	dir = 8
+	},
+/mob/living/simple_animal/chicken{
+	name = "\improper tamed chicken";
+	faction = list("neutral", "cuckoospawn")
 	},
 /turf/open/indestructible/boss/air,
 /area/city/backstreets_alley)
@@ -468,7 +519,11 @@
 /obj/structure/table/wood{
 	color = "#2b0300"
 	},
-/obj/item/food/cake/bbird,
+/mob/living/simple_animal/chicken{
+	name = "\improper tamed chicken";
+	faction = list("neutral", "cuckoospawn")
+	},
+/obj/item/food/fried_chicken,
 /turf/open/indestructible/boss/air,
 /area/city/backstreets_alley)
 "XQ" = (
@@ -552,7 +607,7 @@ RD
 RD
 gQ
 gQ
-OU
+Op
 Op
 Op
 ey
@@ -585,7 +640,7 @@ Ys
 vO
 lx
 lx
-Op
+oS
 gQ
 "}
 (7,1,1) = {"
@@ -627,7 +682,7 @@ yX
 ft
 mn
 Dq
-Op
+Fc
 gQ
 "}
 (10,1,1) = {"
@@ -655,7 +710,7 @@ Op
 LF
 Op
 Op
-PL
+TE
 gQ
 "}
 (12,1,1) = {"
@@ -707,7 +762,7 @@ gQ
 tb
 aR
 Dj
-Ud
+OU
 gQ
 gQ
 gQ
@@ -720,7 +775,7 @@ gQ
 gQ
 Xl
 wE
-Ud
+UI
 ts
 gQ
 gQ

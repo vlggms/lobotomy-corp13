@@ -8,7 +8,7 @@
 	/// Are we bursting out of the poor sucker who's the xeno mom?
 	var/bursting = FALSE
 	/// How long does it take to advance one stage? Growth time * 5 = how long till we make a Larva!
-	var/growth_time = 2 MINUTES
+	var/growth_time = 1.2 MINUTES
 
 /obj/item/organ/body_egg/cuckoospawn_embryo/Initialize()
 	. = ..()
@@ -26,7 +26,7 @@
 /obj/item/organ/body_egg/cuckoospawn_embryo/on_life()
 	. = ..()
 	switch(stage)
-		if(3, 4)
+		if(2, 3)
 			if(prob(2))
 				owner.emote("sneeze")
 			if(prob(2))
@@ -35,10 +35,10 @@
 				to_chat(owner, span_danger("Your throat feels sore."))
 			if(prob(2))
 				to_chat(owner, span_danger("Mucous runs down the back of your throat."))
-		if(5)
-			if(prob(2))
+		if(4)
+			if(prob(4))
 				owner.emote("sneeze")
-			if(prob(2))
+			if(prob(4))
 				owner.emote("cough")
 			if(prob(4))
 				to_chat(owner, span_danger("Your muscles ache."))
@@ -46,9 +46,25 @@
 					owner.take_bodypart_damage(1)
 			if(prob(4))
 				to_chat(owner, span_danger("Your stomach hurts."))
+		if(5)
+			if(prob(4))
+				owner.emote("sneeze")
+			if(prob(4))
+				owner.emote("cough")
+			if(prob(8))
+				to_chat(owner, span_danger("Your muscles ache."))
+				if(prob(50))
+					owner.take_bodypart_damage(5)
+			if(prob(10))
+				to_chat(owner, span_danger("Your stomach heavily hurts."))
+				if(ishuman(owner))
+					var/mob/living/carbon/human/pained_human = owner
+					pained_human.adjustStaminaLoss(5)
 		if(6)
 			to_chat(owner, span_danger("You feel something tearing its way out of your chest..."))
-			owner.take_bodypart_damage(5)
+			owner.take_bodypart_damage(10)
+			if(prob(10))
+				owner.emote("stomach unnaturally chirps")
 
 /// Controls Xenomorph Embryo growth. If embryo is fully grown (or overgrown), stop the proc. If not, increase the stage by one and if it's not fully grown (stage 6), add a timer to do this proc again after however long the growth time variable is.
 /obj/item/organ/body_egg/cuckoospawn_embryo/proc/advance_embryo_stage()
