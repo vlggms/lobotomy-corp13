@@ -137,6 +137,13 @@
 	extra_range = 40
 	channel = CHANNEL_MFE
 
+/datum/looping_sound/pianist
+	mid_sounds = 'sound/distortions/pianist_theme.ogg'
+	mid_length = 275 SECONDS
+	volume = 50
+	extra_range = 40
+	channel = CHANNEL_PIANIST
+
 // Ordeals
 /datum/looping_sound/amberdusk
 	mid_sounds = 'sound/effects/ordeals/amber/dusk_ambience.ogg'

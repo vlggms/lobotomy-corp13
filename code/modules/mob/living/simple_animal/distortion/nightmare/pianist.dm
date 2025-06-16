@@ -27,7 +27,7 @@ Based on the design document in ThePianistDesignDoc.md
 	occupied_tiles_right = 3
 	occupied_tiles_up = 3
 	occupied_tiles_down = 3
-	damage_coeff = list(RED_DAMAGE = 1, WHITE_DAMAGE = 1, BLACK_DAMAGE = 1, PALE_DAMAGE = 1)
+	damage_coeff = list(RED_DAMAGE = 0, WHITE_DAMAGE = 0, BLACK_DAMAGE = 0, PALE_DAMAGE = 0)
 	move_to_delay = 6
 	ranged = TRUE
 	speed = 0
@@ -48,7 +48,6 @@ Based on the design document in ThePianistDesignDoc.md
 	fear_level = ALEPH_LEVEL
 
 	del_on_death = FALSE
-	death_sound = 'sound/voice/liveagain.ogg'
 
 	// Ego equipment - to be implemented
 	ego_list = list()
@@ -71,9 +70,14 @@ Based on the design document in ThePianistDesignDoc.md
 	var/base_aoe_damage = 30
 	var/list/melody_visuals = list()
 
+	var/datum/looping_sound/pianist/soundloop
+
 /mob/living/simple_animal/hostile/distortion/pianist/Initialize()
 	. = ..()
 	current_aoe_pattern = shuffle(current_aoe_pattern)
+	addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(show_global_blurb), 20, "O sorrow, I have ended, you see, by respecting you.", 25))
+	soundloop = new(list(src), FALSE)
+	soundloop.start()
 
 /mob/living/simple_animal/hostile/distortion/pianist/Move()
 	return FALSE
@@ -110,7 +114,7 @@ Based on the design document in ThePianistDesignDoc.md
 		return FALSE
 
 	// Increase damage based on reverting song stacks
-	var/damage_mod = song_effect.stacks * 0.1
+	var/damage_mod = 0.2 * (1 + song_effect.stacks * 0.1)
 	ChangeResistances(list(RED_DAMAGE = damage_mod, WHITE_DAMAGE = damage_mod, BLACK_DAMAGE = damage_mod, PALE_DAMAGE = damage_mod))
 	return ..()
 
@@ -127,11 +131,13 @@ Based on the design document in ThePianistDesignDoc.md
 		playsound(src, 'sound/effects/attackblob.ogg', 50, TRUE)
 		return BULLET_ACT_BLOCK
 
-	var/damage_mod = song_effect.stacks * 0.1
+	var/damage_mod = 0.2 * (1 + song_effect.stacks * 0.1)
 	ChangeResistances(list(RED_DAMAGE = damage_mod, WHITE_DAMAGE = damage_mod, BLACK_DAMAGE = damage_mod, PALE_DAMAGE = damage_mod))
 	. = ..()
 
 /mob/living/simple_animal/hostile/distortion/pianist/death(gibbed)
+	QDEL_NULL(soundloop)
+	addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(show_global_blurb), 20, "You will be there, lying in my sheets, O sorrow.", 25))
 	// Drop all absorbed bodies
 	for(var/mob/living/carbon/human/H in absorbed_bodies)
 		H.forceMove(get_turf(src))
@@ -203,7 +209,7 @@ Based on the design document in ThePianistDesignDoc.md
 		for(var/mob/living/L in T)
 			if(L.z != z)
 				continue
-			L.apply_damage(25, WHITE_DAMAGE, null, L.run_armor_check(null, WHITE_DAMAGE), spread_damage = TRUE)
+			L.apply_damage(20, WHITE_DAMAGE, null, L.run_armor_check(null, WHITE_DAMAGE), spread_damage = TRUE)
 			if(ishuman(L))
 				var/mob/living/carbon/human/H = L
 				if(H.sanity_lost)
@@ -300,8 +306,6 @@ Based on the design document in ThePianistDesignDoc.md
 		var/sanity_result = clamp(fear_level - get_user_level(H), -1, 5)
 		if(H.sanity_lost) // Only apply musical fascination to high panic + already panicked
 			H.apply_status_effect(/datum/status_effect/musical_fascination, src)
-			if(prob(10))
-				H.gain_trauma(/datum/brain_trauma/special/musical_corruption)
 		else
 			// Normal fear handling for parent proc
 			var/sanity_damage = 0
