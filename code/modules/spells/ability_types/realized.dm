@@ -1,3 +1,66 @@
+/* E.G.O assimilation */
+/obj/effect/proc_holder/ability/ego_assimilation
+	name = "E.G.O assimilation"
+	desc = "Convert an ALEPH E.G.O into a weapon comptaible with your suit. Can only be used once."
+	action_icon = 'icons/obj/ego_weapons.dmi'
+	action_icon_state = ""
+	base_icon_state = "template"
+	var/target_type = /obj/item/ego_weapon/mimicry
+	var/obj/structure/toolabnormality/wishwell/linked_structure
+
+/obj/effect/proc_holder/ability/ego_assimilation/Perform(atom/target, user)
+	..()
+	target = FindItems(user)//take the return value of the FindItems() proc here
+	if(!target)
+		to_chat(user, span_notice("There are no E.G.O weapons nearby."))
+		return
+	if(!istype(target, /obj/item/ego_weapon))
+		to_chat(user, span_notice("That is not an E.G.O weapon."))
+		return
+	if(!linked_structure)//Refer to wishing well for a list of all ALEPH E.G.O
+		linked_structure = GLOB.wishwell
+		if(!linked_structure)
+			to_chat(user, span_notice("This ability is currently unavailable."))
+			return
+	if(target.type in linked_structure.alephitem)//"alephitem" is a list
+		new target_type(get_turf(target))
+		qdel(target)
+		DeleteAbility(user)//Deletes the ability and removes it from the ego suit
+		return
+	to_chat(user, span_notice("Target's risk level is too low."))
+
+/obj/effect/proc_holder/ability/ego_assimilation/proc/FindItems(user)
+	var/list/stufflist = list()
+	var/obj/item/ego_weapon/chosen_ego
+	for(var/obj/item/ego_weapon/i in view(2, user))
+		stufflist += i
+	chosen_ego = input(user, "Which E.G.O will you assimilate?") as null|anything in stufflist
+	if(!chosen_ego)
+		return
+	return chosen_ego
+
+/obj/effect/proc_holder/ability/ego_assimilation/proc/DeleteAbility(mob/living/carbon/human/user)
+	var/obj/item/clothing/suit/armor/ego_gear/realization/mysuit = user.get_item_by_slot(ITEM_SLOT_OCLOTHING)
+	if(!istype(mysuit))
+		return
+	mysuit.realized_ability = null//sets it to a null value
+	qdel(src)
+
+/obj/effect/proc_holder/ability/ego_assimilation/farmwatch
+	base_icon_state = "farmwatch"
+	action_icon_state = "farmwatch"
+	target_type = /obj/item/ego_weapon/farmwatch
+
+/obj/effect/proc_holder/ability/ego_assimilation/spicebush
+	base_icon_state = "spicebush"
+	action_icon_state = "spicebush"
+	target_type = /obj/item/ego_weapon/spicebush
+
+/obj/effect/proc_holder/ability/ego_assimilation/gasharpoon
+	base_icon_state = "gasharpoon"
+	action_icon_state = "gasharpoon"
+	target_type = /obj/item/ego_weapon/shield/gasharpoon
+
 /* Fragment of the Universe - One with the Universe */
 /obj/effect/proc_holder/ability/universe_song
 	name = "Song of the Universe"
