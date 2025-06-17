@@ -143,3 +143,17 @@
 	damage_type = WHITE_DAMAGE
 
 
+/obj/projectile/ego_bullet/ego_adjustment
+	name = "magic beam"
+	icon_state = "antimagic"
+	damage_type = WHITE_DAMAGE
+	damage = 10
+	spread = 10
+
+/obj/projectile/ego_bullet/ego_adjustment/on_hit(atom/target, blocked = FALSE)
+	if(ishuman(target))
+		var/mob/living/carbon/human/H = target
+		if(H.sanity_lost)
+			H.adjustSanityLoss((-damage * 0.5), FALSE) // deal fixed white damage to panicked employees, ignoring armor
+			new /obj/effect/temp_visual/damage_effect/sinking(get_turf(H))
+	..()

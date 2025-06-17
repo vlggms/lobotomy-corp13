@@ -29,6 +29,24 @@
 	item_path = /obj/item/clothing/suit/armor/ego_gear/tools/plastic
 	cost = 12
 
+// Mirror of Adjustment
+/datum/ego_datum/weapon/mirror
+	item_path = /obj/item/ego_weapon/mirror
+	cost = 12
+
+/datum/ego_datum/armor/mirror
+	item_path = /obj/item/clothing/suit/armor/ego_gear/tools/mirror
+	cost = 12
+
+// Old Faith and Promise
+/datum/ego_datum/weapon/promise
+	item_path = /obj/item/ego_weapon/promise
+	cost = 12
+
+/datum/ego_datum/armor/promise
+	item_path = /obj/item/clothing/suit/armor/ego_gear/tools/promise
+	cost = 12
+
 ////////////
 //  TETH  //
 ////////////
@@ -41,6 +59,35 @@
 /datum/ego_datum/weapon/aspiration
 	item_path = /obj/item/ego_weapon/ranged/aspiration
 	cost = 20
+
+// Behavior Adjustment - Adjustment
+/datum/ego_datum/weapon/adjustment
+	item_path = /obj/item/ego_weapon/ranged/adjustment
+	cost = 20
+
+/datum/ego_datum/armor/adjustment
+	item_path = /obj/item/clothing/suit/armor/ego_gear/tools/adjustment
+	cost = 20
+
+// Theresia - Philia
+/datum/ego_datum/armor/philia
+	item_path = /obj/item/clothing/suit/armor/ego_gear/tools/philia
+	cost = 20
+
+/datum/ego_datum/weapon/philia
+	item_path = /obj/item/ego_weapon/philia
+	cost = 20
+
+// Luminous Bracelet
+/datum/ego_datum/armor/luminosity
+	item_path = /obj/item/clothing/suit/armor/ego_gear/tools/luminosity
+	cost = 20
+
+/datum/ego_datum/weapon/luminosity
+	item_path = /obj/item/ego_weapon/luminosity
+	cost = 20
+
+// TODO: Skin Prophecy - Just uses skin prophet ego for now
 
 //////////
 //  HE  //

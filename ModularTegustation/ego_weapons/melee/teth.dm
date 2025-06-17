@@ -649,3 +649,91 @@
 	attack_verb_simple = list("whip", "lash", "tear")
 	hitsound = 'sound/weapons/whip.ogg'
 
+/obj/item/ego_weapon/philia
+	name = "philia"
+	desc = "Everything will be okay in the end."
+	special = "This weapon heals sanity in a small area on hit."
+	icon_state = "philia"
+	force = 19
+	damtype = WHITE_DAMAGE
+	attack_verb_continuous = list("smacks", "hammers", "beats")
+	attack_verb_simple = list("smack", "hammer", "beat")
+
+/obj/item/ego_weapon/philia/attack(mob/living/target, mob/living/carbon/human/user)
+	var/turf/target_turf = get_turf(target)
+	. = ..()
+	if(!.)
+		return FALSE
+	if(target.status_flags & GODMODE || (target.stat == DEAD))
+		return
+	for(var/mob/living/L in hearers(2, target_turf))
+		var/heal_amt = force*0.025
+		var/userjust = (get_modified_attribute_level(user, JUSTICE_ATTRIBUTE))
+		var/justicemod = 1 + userjust / 100
+		heal_amt *= justicemod
+		heal_amt *= force_multiplier
+		if(!ishuman(L))
+			continue
+		var/mob/living/carbon/human/H = L
+		H.adjustSanityLoss(-heal_amt)
+		new /obj/effect/temp_visual/small_smoke/halfsecond(get_turf(L))
+
+
+/obj/item/ego_weapon/luminosity
+	name = "luminosity"
+	desc = "A weapon that is hard to use even in the best of circumstances."
+	special = "This weapon has a combo system. To turn off this combo system, use in hand. \
+			This weapon has a fast attack speed. The combo finisher heals humans in a small area."
+	icon_state = "luminosity"
+	force = 12
+	hitsound = 'sound/weapons/fixer/generic/club2.ogg'
+	damtype = RED_DAMAGE
+	attack_verb_continuous = list("smacks", "hammers", "beats")
+	attack_verb_simple = list("smack", "hammer", "beat")
+	var/combo = 0
+	var/combo_time
+	var/combo_wait = 10
+	var/combo_on = TRUE
+
+/obj/item/ego_weapon/luminosity/attack_self(mob/user)
+	..()
+	if(combo_on)
+		to_chat(user,span_warning("You swap your grip, and will no longer perform a finisher."))
+		combo_on = FALSE
+		return
+	if(!combo_on)
+		to_chat(user,span_warning("You swap your grip, and will now perform a finisher."))
+		combo_on =TRUE
+		return
+
+/obj/item/ego_weapon/luminosity/attack(mob/living/M, mob/living/user)
+	if(!CanUseEgo(user))
+		return
+	if(world.time > combo_time || !combo_on)	//or you can turn if off I guess
+		combo = 0
+	combo_time = world.time + combo_wait
+	if(combo==4)
+		hitsound = 'sound/weapons/ego/farmwatch.ogg'
+		combo = 0
+		user.changeNext_move(CLICK_CD_MELEE * 2)
+		force *= 5	// Should actually keep up with normal damage.
+		to_chat(user,span_warning("You are offbalance, you take a moment to reset your stance."))
+		if(!(M.status_flags & GODMODE) && M.stat != DEAD)
+			var/turf/target_turf = get_turf(M)
+			for(var/mob/living/L in hearers(2, target_turf))
+				var/heal_amt = force*0.05
+				var/userjust = (get_modified_attribute_level(user, JUSTICE_ATTRIBUTE))
+				var/justicemod = 1 + userjust / 100
+				heal_amt *= justicemod
+				heal_amt *= force_multiplier
+				if(!ishuman(L))
+					continue
+				var/mob/living/carbon/human/H = L
+				H.adjustBruteLoss(-heal_amt)
+				new /obj/effect/temp_visual/small_smoke/halfsecond(get_turf(L))
+	else
+		user.changeNext_move(CLICK_CD_MELEE * 0.4)
+	..()
+	combo += 1
+	force = initial(force)
+	hitsound = initial(hitsound)

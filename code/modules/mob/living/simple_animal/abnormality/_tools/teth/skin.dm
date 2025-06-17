@@ -3,11 +3,15 @@
 	name = "skin prophecy"
 	desc = "A book that seems to be made out of skin. Something is written on it."
 	icon_state = "skin_prophecy"
-
 	given_attribute = PRUDENCE_ATTRIBUTE
 	given_status_effect = STATUS_EFFECT_SKIN
 	feedback_message = "You read the book, and take the time to burn these passages into your brain."
 	full_boost_message = "You've learned all that you could."
+
+	ego_list = list(
+		/datum/ego_datum/weapon/visions,
+		/datum/ego_datum/armor/visions,
+	)
 
 /obj/structure/toolabnormality/attribute_giver/skin/attack_hand(mob/living/carbon/human/user)
 	. = ..()
