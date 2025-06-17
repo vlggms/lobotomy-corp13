@@ -334,7 +334,7 @@ GLOBAL_VAR_INIT(execution_enabled, FALSE)
 	if(ishuman(clicked_atom))
 		var/mob/living/carbon/human/H = clicked_atom
 
-		if (GetFacilityUpgradeValue(UPGRADE_ARCHITECT_2))
+		if (user.mind.assigned_role == "Manager" && GetFacilityUpgradeValue(UPGRADE_ARCHITECT_2))
 			to_chat(user, span_notice("Agent health [H.health]."))
 			to_chat(user, span_notice("Agent sanity [H.sanityhealth]."))
 		to_chat(user, span_notice("Agent level [get_user_level(H)]."))
@@ -346,7 +346,7 @@ GLOBAL_VAR_INIT(execution_enabled, FALSE)
 
 	if(istype(clicked_atom, /mob/living/simple_animal))
 		var/mob/living/simple_animal/monster = clicked_atom
-		if (GetFacilityUpgradeValue(UPGRADE_ARCHITECT_2))
+		if (user.mind.assigned_role == "Manager" && GetFacilityUpgradeValue(UPGRADE_ARCHITECT_2))
 			var/message = "<span class='notice'>[clicked_atom]'s current health is : [monster.health] \n[clicked_atom]'s resistances are :"
 
 			var/list/damage_types = list(RED_DAMAGE, WHITE_DAMAGE, BLACK_DAMAGE, PALE_DAMAGE)

@@ -212,6 +212,7 @@
 	category = "Bullet Upgrades"
 	display_true = "PURCHASED"
 	display_false = "NOT PURCHASED" // Honestly quite weird, but whatever
+	requires_one_of = list(YELLOW_BULLET)
 	info = " - This upgrade causes Qliphoth Intervention Bullets to weaken the resistances of the Abnormality/Ordeal shot at by 20%."
 
 /datum/facility_upgrade/yellow_bullet_buff/Upgrade()

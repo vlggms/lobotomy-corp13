@@ -225,6 +225,8 @@
 	var/list/real_bullet_upgrades = list()
 	var/list/agent_upgrades = list()
 	var/list/abnormality_upgrades = list()
+	var/list/lvl_1_special_upgrades = list()
+	var/list/lvl_2_special_upgrades = list()
 	var/list/you_didnt_give_it_a_proper_category_dammit_upgrades = list()
 
 	for(var/thing in SSlobotomy_corp.upgrades)
@@ -264,7 +266,10 @@
 
 			if("Facility")
 				abnormality_upgrades += upgrade_data
-
+			if("Higher-Up Specialization Tier 1")
+				lvl_1_special_upgrades += upgrade_data
+			if("Higher-Up Specialization Tier 2")
+				lvl_2_special_upgrades += upgrade_data
 			else
 				you_didnt_give_it_a_proper_category_dammit_upgrades += upgrade_data
 
@@ -272,6 +277,8 @@
 	data["real_bullet_upgrades"] = real_bullet_upgrades
 	data["agent_upgrades"] = agent_upgrades
 	data["abnormality_upgrades"] = abnormality_upgrades
+	data["lvl1_upgrades"] = lvl_1_special_upgrades
+	data["lvl2_upgrades"] = lvl_2_special_upgrades
 	data["misc_upgrades"] = you_didnt_give_it_a_proper_category_dammit_upgrades
 	// end facility upgrade info
 
@@ -408,7 +415,10 @@
 				return
 			if(istype(SSlobotomy_corp.core_suppression))
 				CRASH("[src] has attempted to activate a core suppression via TGUI whilst its not possible!")
-
+			if(usr.mind.assigned_role != "Manager")
+				to_chat(usr, span_warning("Only the Manager can start a Core Suppression!"))
+				playsound(get_turf(src), 'sound/machines/terminal_prompt_deny.ogg', 50, TRUE)
+				return
 			log_action(usr,
 				message_override = "[usr] has started the [initial(selected_core_type.name)] core suppression"
 			)
@@ -426,13 +436,25 @@
 			var/datum/facility_upgrade/U = locate(params["selected_upgrade"]) in SSlobotomy_corp.upgrades
 			if(!istype(U) || !U.CanUpgrade())
 				return
-
+			if(U.name == UPGRADE_ARCHITECT_1 || U.name == UPGRADE_ARCHITECT_2)
+				if(usr.mind.assigned_role != "Manager")
+					to_chat(usr, span_warning("Only the Manager can buy this."))
+					playsound(get_turf(src), 'sound/machines/terminal_prompt_deny.ogg', 50, TRUE)
+					return
 			log_action(usr,
 				message_override = "[usr] has purchased the [U.name] facility upgrade"
 			)
 			U.Upgrade()
 			playsound(get_turf(src), 'sound/machines/terminal_prompt_confirm.ogg', 50, TRUE)
-
+		if("Info")
+			var/datum/facility_upgrade/U = locate(params["selected_upgrade"]) in SSlobotomy_corp.upgrades
+			if(!istype(U) || !U.CanUpgrade())
+				return
+			var/dat = U.PrintOutInfo()
+			var/datum/browser/popup = new(usr, "upgrade_info", "Auxiliary Managerial Console", 340, 400)
+			popup.set_content(dat)
+			popup.open()
+			return
 		// admin-only actions, remember to put a if(!log_action) check with a proper return
 		if("Unlock Core Suppressions")
 			if(!log_action(usr, admin_action = TRUE,

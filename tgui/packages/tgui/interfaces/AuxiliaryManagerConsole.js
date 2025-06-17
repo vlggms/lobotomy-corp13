@@ -17,29 +17,45 @@ export const AuxiliaryManagerConsole = (props, context) => {
             lineHeight="23px"
             selected={tab === 1}
             onClick={() => setTab(1)}>
-            Facility Upgrade system
+            Bullet Upgrade System
           </Tabs.Tab>
           <Tabs.Tab
             icon="list"
             lineHeight="23px"
             selected={tab === 2}
             onClick={() => setTab(2)}>
+            Facility Upgrade System
+          </Tabs.Tab>
+          <Tabs.Tab
+            icon="list"
+            lineHeight="23px"
+            selected={tab === 3}
+            onClick={() => setTab(3)}>
+            Higher-up Specialization Upgrade System
+          </Tabs.Tab>
+          <Tabs.Tab
+            icon="list"
+            lineHeight="23px"
+            selected={tab === 4}
+            onClick={() => setTab(4)}>
             Core Suppression system
           </Tabs.Tab>
         </Tabs>
-        {tab === 1 && <FacilityUpgrades />}
-        {tab === 2 && <CoreSuppressionSelector />}
+        {tab === 1 && <BulletFacilityUpgrades />}
+        {tab === 2 && <FacilityUpgrades />}
+        {tab === 3 && <SpecialUpgrades />}
+        {tab === 4 && <CoreSuppressionSelector />}
       </Window.Content>
     </Window>
   );
 };
 
-const FacilityUpgrades = (props, context) => {
+const BulletFacilityUpgrades = (props, context) => {
   const { act, data } = useBackend(context);
   const { Upgrade_points, is_admin } = data;
 
   return (
-    <Section title="Master facility upgrade systems">
+    <Section title="Master bullet upgrade system">
       {is_admin === 1 && (
         <NoticeBox danger bold textAlign="center">
           !! Due to being adminned,
@@ -112,7 +128,7 @@ const FacilityUpgrades = (props, context) => {
           label="available LOB points"
           buttons={
             <Button
-              content={'Switch style to UI'}
+              content={'Switch style to UI (Upgrade info is on the non tgui version)'}
               color={'blue'}
               onClick={() => act('Switch Style')}
             />
@@ -136,14 +152,212 @@ const FacilityUpgrades = (props, context) => {
         Available bullet upgrades:
       </Box>
       <MoreBulletUpgrades />
+    </Section>
+  );
+};
 
+const SpecialUpgrades = (props, context) => {
+  const { act, data } = useBackend(context);
+  const { Upgrade_points, is_admin } = data;
+
+  return (
+    <Section title="Master higher-up specialization upgrade system">
+      {is_admin === 1 && (
+        <NoticeBox danger bold textAlign="center">
+          !! Due to being adminned,
+          your proximity and living checks are bypassed !!
+        </NoticeBox>
+      )}
+      {is_admin === 1 && (
+        <Box mt="0.5em" backgroundColor="purple">
+          (ADMIN ONLY) Add/Subtract LOB points:
+          <Button
+            content={'-100'}
+            color={'red'}
+            onClick={() => act('Change LOB Points', {
+              LOB_amount: -100,
+            })}
+          />
+          <Button
+            content={'-10'}
+            color={'red'}
+            onClick={() => act('Change LOB Points', {
+              LOB_amount: -10,
+            })}
+          />
+          <Button
+            content={'-5'}
+            color={'red'}
+            onClick={() => act('Change LOB Points', {
+              LOB_amount: -5,
+            })}
+          />
+          <Button
+            content={'-1'}
+            color={'red'}
+            onClick={() => act('Change LOB Points', {
+              LOB_amount: -1,
+            })}
+          />
+          <Button
+            content={'+1'}
+            color={'green'}
+            onClick={() => act('Change LOB Points', {
+              LOB_amount: 1,
+            })}
+          />
+          <Button
+            content={'+5'}
+            color={'green'}
+            onClick={() => act('Change LOB Points', {
+              LOB_amount: 5,
+            })}
+          />
+          <Button
+            content={'+10'}
+            color={'green'}
+            onClick={() => act('Change LOB Points', {
+              LOB_amount: 10,
+            })}
+          />
+          <Button
+            content={'+100'}
+            color={'green'}
+            onClick={() => act('Change LOB Points', {
+              LOB_amount: 100,
+            })}
+          />
+        </Box>
+      )}
+      <LabeledList>
+        <LabeledList.Item
+          label="available LOB points"
+          buttons={
+            <Button
+              content={'Switch style to UI (Upgrade info is on the non tgui version)'}
+              color={'blue'}
+              onClick={() => act('Switch Style')}
+            />
+          }
+        >
+          {Upgrade_points}
+        </LabeledList.Item>
+      </LabeledList>
+
+      {/*
+      All of the upgrade parts are basically the same,
+      except they have different mapping variables so we can sort out categories
+      Surelly there's a better way to do this
+      */}
       <Box textColor="blue" mt="1em" fontSize="20px" nowrap>
-        Available agent upgrades:
+        Available higher-Up specialization tier 1 upgrades:
       </Box>
-      <AgentUpgrades />
+      <Lvl1Upgrades />
 
       <Box textColor="blue" mt="1em" fontSize="20px" nowrap>
-        Available abnormality cell upgrades:
+        Available higher-Up specialization tier 2 upgrades:
+      </Box>
+      <Lvl2Upgrades />
+    </Section>
+  );
+};
+
+
+const FacilityUpgrades = (props, context) => {
+  const { act, data } = useBackend(context);
+  const { Upgrade_points, is_admin } = data;
+
+  return (
+    <Section title="Master facility upgrade system">
+      {is_admin === 1 && (
+        <NoticeBox danger bold textAlign="center">
+          !! Due to being adminned,
+          your proximity and living checks are bypassed !!
+        </NoticeBox>
+      )}
+      {is_admin === 1 && (
+        <Box mt="0.5em" backgroundColor="purple">
+          (ADMIN ONLY) Add/Subtract LOB points:
+          <Button
+            content={'-100'}
+            color={'red'}
+            onClick={() => act('Change LOB Points', {
+              LOB_amount: -100,
+            })}
+          />
+          <Button
+            content={'-10'}
+            color={'red'}
+            onClick={() => act('Change LOB Points', {
+              LOB_amount: -10,
+            })}
+          />
+          <Button
+            content={'-5'}
+            color={'red'}
+            onClick={() => act('Change LOB Points', {
+              LOB_amount: -5,
+            })}
+          />
+          <Button
+            content={'-1'}
+            color={'red'}
+            onClick={() => act('Change LOB Points', {
+              LOB_amount: -1,
+            })}
+          />
+          <Button
+            content={'+1'}
+            color={'green'}
+            onClick={() => act('Change LOB Points', {
+              LOB_amount: 1,
+            })}
+          />
+          <Button
+            content={'+5'}
+            color={'green'}
+            onClick={() => act('Change LOB Points', {
+              LOB_amount: 5,
+            })}
+          />
+          <Button
+            content={'+10'}
+            color={'green'}
+            onClick={() => act('Change LOB Points', {
+              LOB_amount: 10,
+            })}
+          />
+          <Button
+            content={'+100'}
+            color={'green'}
+            onClick={() => act('Change LOB Points', {
+              LOB_amount: 100,
+            })}
+          />
+        </Box>
+      )}
+      <LabeledList>
+        <LabeledList.Item
+          label="available LOB points"
+          buttons={
+            <Button
+              content={'Switch style to UI (Upgrade info is on the non tgui version)'}
+              color={'blue'}
+              onClick={() => act('Switch Style')}
+            />
+          }
+        >
+          {Upgrade_points}
+        </LabeledList.Item>
+      </LabeledList>
+
+      {/*
+      All of the upgrade parts are basically the same,
+      except they have different mapping variables so we can sort out categories
+      Surelly there's a better way to do this
+      */}
+      <Box textColor="blue" mt="1em" fontSize="20px" nowrap>
+        Available facility upgrades:
       </Box>
       <AbnormalityUpgrades />
 
@@ -154,6 +368,7 @@ const FacilityUpgrades = (props, context) => {
     </Section>
   );
 };
+
 
 const CoreSuppressionSelector = (props, context) => {
   const { act, data } = useBackend(context);
@@ -367,47 +582,6 @@ const MoreBulletUpgrades = (props, context) => {
   );
 };
 
-const AgentUpgrades = (props, context) => {
-  const { act, data } = useBackend(context);
-  const { Upgrade_points, agent_upgrades } = data;
-
-  if (agent_upgrades.length < 1) {
-    return;
-  }
-
-  return (
-    <LabeledList>
-      {agent_upgrades.map(agent_upgrades => (
-        <LabeledList.Item
-          key={agent_upgrades.name}
-          label={agent_upgrades.name}
-          buttons={
-            <Button
-              content={
-                agent_upgrades.available === 1
-                  ? 'Purchase the agent upgrade for '
-                  + agent_upgrades.cost
-                  + ' LOB points'
-                  : 'UPGRADE PURCHASED'
-              }
-              color={
-                Upgrade_points >= agent_upgrades.cost
-                && agent_upgrades.available === 1
-                  ? 'green'
-                  : 'red'
-              }
-              onClick={() =>
-                act('Buy Upgrade', {
-                  selected_upgrade: agent_upgrades.ref,
-                })}
-            />
-          }
-        />
-      ))}
-    </LabeledList>
-  );
-};
-
 const AbnormalityUpgrades = (props, context) => {
   const { act, data } = useBackend(context);
   const { Upgrade_points, abnormality_upgrades } = data;
@@ -426,7 +600,7 @@ const AbnormalityUpgrades = (props, context) => {
             <Button
               content={
                 abnormality_upgrades.available === 1
-                  ? 'Purchase the abnormality cell upgrade for '
+                  ? 'Purchase the facility upgrade for '
                   + abnormality_upgrades.cost
                   + ' LOB points'
                   : 'UPGRADE PURCHASED'
@@ -448,6 +622,89 @@ const AbnormalityUpgrades = (props, context) => {
     </LabeledList>
   );
 };
+
+const Lvl1Upgrades = (props, context) => {
+  const { act, data } = useBackend(context);
+  const { Upgrade_points, lvl1_upgrades } = data;
+
+  if (lvl1_upgrades.length < 1) {
+    return;
+  }
+
+  return (
+    <LabeledList>
+      {lvl1_upgrades.map(lvl1_upgrades => (
+        <LabeledList.Item
+          key={lvl1_upgrades.name}
+          label={lvl1_upgrades.name}
+          buttons={
+            <Button
+              content={
+                lvl1_upgrades.available === 1
+                  ? 'Purchase the upgrade for '
+                  + lvl1_upgrades.cost
+                  + ' LOB points'
+                  : 'UPGRADE PURCHASED'
+              }
+              color={
+                Upgrade_points >= lvl1_upgrades.cost
+                && lvl1_upgrades.available === 1
+                  ? 'green'
+                  : 'red'
+              }
+              onClick={() =>
+                act('Buy Upgrade', {
+                  selected_upgrade: lvl1_upgrades.ref,
+                })}
+            />
+          }
+        />
+      ))}
+    </LabeledList>
+  );
+};
+
+const Lvl2Upgrades = (props, context) => {
+  const { act, data } = useBackend(context);
+  const { Upgrade_points, lvl2_upgrades } = data;
+
+  if (lvl2_upgrades.length < 1) {
+    return;
+  }
+
+  return (
+    <LabeledList>
+      {lvl2_upgrades.map(lvl2_upgrades => (
+        <LabeledList.Item
+          key={lvl2_upgrades.name}
+          label={lvl2_upgrades.name}
+          buttons={
+            <Button
+              content={
+                lvl2_upgrades.available === 1
+                  ? 'Purchase the upgrade for '
+                  + lvl2_upgrades.cost
+                  + ' LOB points'
+                  : 'UPGRADE PURCHASED'
+              }
+              color={
+                Upgrade_points >= lvl2_upgrades.cost
+                && lvl2_upgrades.available === 1
+                  ? 'green'
+                  : 'red'
+              }
+              onClick={() =>
+                act('Buy Upgrade', {
+                  selected_upgrade: lvl2_upgrades.ref,
+                })}
+            />
+          }
+        />
+      ))}
+    </LabeledList>
+  );
+};
+
 
 const MiscUpgrades = (props, context) => {
   const { act, data } = useBackend(context);
