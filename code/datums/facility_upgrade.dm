@@ -133,7 +133,7 @@
 	cost = 1.5
 	name = QUAD_BULLET
 	requires_all_of = list(RED_BULLET, WHITE_BULLET, BLACK_BULLET, PALE_BULLET)
-	info = " - This type of bullet when fired applies a shield of an employee that blocks all <b>4</b> damage types and has twice the <b>HP</b>.<br> - Costs 3 Bullets to use.<br>  - <b>WARNING</b> Doesn't work when the employee shot at has a sheild already.<b>WARNING</b>"
+	info = " - This type of bullet when fired applies a shield of an employee that blocks all <b>4</b> damage types and has twice the <b>HP</b>.<br> - Costs 3 Bullets to use."
 
 /datum/facility_upgrade/bullet/yellow
 	name = YELLOW_BULLET
