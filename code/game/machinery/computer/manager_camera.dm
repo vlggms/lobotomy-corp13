@@ -258,10 +258,6 @@ GLOBAL_VAR_INIT(execution_enabled, FALSE)
 		if(MANAGER_PALE_BULLET)
 			H.apply_status_effect(/datum/status_effect/interventionshield/pale)
 		if(MANAGER_QUAD_BULLET)
-			if (H.has_status_effect(/datum/status_effect/interventionshield))
-				playsound(get_turf(src), 'sound/weapons/empty.ogg', 10, 0, 3)
-				to_chat(owner, span_warning("ERROR: TARGET HAS A SHIELD ALREADY."))
-				return FALSE
 			H.apply_status_effect(/datum/status_effect/interventionshield/quad)
 		if(MANAGER_YELLOW_BULLET)
 			if(!owner.faction_check_mob(H))
@@ -347,7 +343,7 @@ GLOBAL_VAR_INIT(execution_enabled, FALSE)
 	if(istype(clicked_atom, /mob/living/simple_animal))
 		var/mob/living/simple_animal/monster = clicked_atom
 		if (user.mind.assigned_role == "Manager" && GetFacilityUpgradeValue(UPGRADE_ARCHITECT_2))
-			var/message = "<span class='notice'>[clicked_atom]'s current health is : [monster.health] \n[clicked_atom]'s resistances are :"
+			var/message = "[clicked_atom]'s current health is : [monster.health] \n[clicked_atom]'s resistances are :"
 
 			var/list/damage_types = list(RED_DAMAGE, WHITE_DAMAGE, BLACK_DAMAGE, PALE_DAMAGE)
 			for(var/i in damage_types)
@@ -357,11 +353,9 @@ GLOBAL_VAR_INIT(execution_enabled, FALSE)
 				var/resistance = monster.damage_coeff.getCoeff(damage_type)
 				message += "\n[capitalize(i)]: [resistance]x"
 
-			message += "</span>"
-
-			to_chat(user, message)
+			to_chat(user, span_notice(message))
 			return
-		var/message = "<span class='notice'>[clicked_atom]'s resistances are :"
+		var/message = "[clicked_atom]'s resistances are :"
 
 		var/list/damage_types = list(RED_DAMAGE, WHITE_DAMAGE, BLACK_DAMAGE, PALE_DAMAGE)
 		for(var/i in damage_types)
@@ -371,9 +365,7 @@ GLOBAL_VAR_INIT(execution_enabled, FALSE)
 			var/resistance = SimpleResistanceToText(monster.damage_coeff.getCoeff(damage_type))
 			message += "\n[capitalize(i)]: [resistance]"
 
-		message += "</span>"
-
-		to_chat(user, message)
+		to_chat(user, span_notice(message))
 
 /obj/machinery/computer/camera_advanced/manager/proc/OnAltClick(mob/living/user, turf/open/T)
 	var/mob/living/C = user
