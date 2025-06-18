@@ -22,6 +22,8 @@
 		return FALSE
 
 	for(var/mob/living/carbon/human/H in view(2, get_turf(src)))
+		if(H == owner)
+			continue
 		if(H.stat >= HARD_CRIT)
 			continue
 		H.adjustBruteLoss(-healamount)	//Healing for those around.
@@ -52,6 +54,8 @@
 		return FALSE
 
 	for(var/mob/living/carbon/human/H in view(2, get_turf(src)))
+		if(H == owner)
+			continue
 		if(H.stat >= HARD_CRIT)
 			continue
 		H.adjustSanityLoss(-healamount)	//Healing for those around.
@@ -83,6 +87,8 @@
 		return FALSE
 
 	for(var/mob/living/carbon/human/H in view(2, get_turf(src)))
+		if(H == owner)
+			continue
 		if(H.stat >= HARD_CRIT)
 			continue
 		H.adjustSanityLoss(-healamount)	//Healing for those around.
