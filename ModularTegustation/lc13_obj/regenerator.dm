@@ -70,8 +70,8 @@
 			continue
 		if(H.health < 0 && !critical_heal)
 			continue
-		var/hp_amt = (regen_amt+hp_bonus * (0.8 * GetFacilityUpgradeValue(UPGRADE_REGENERATOR_HEALING))
-		var/sp_amt = (regen_amt+sp_bonus * (0.8 * GetFacilityUpgradeValue(UPGRADE_REGENERATOR_HEALING))
+		var/hp_amt = regen_amt+hp_bonus * (0.8 * GetFacilityUpgradeValue(UPGRADE_REGENERATOR_HEALING))
+		var/sp_amt = regen_amt+sp_bonus * (0.8 * GetFacilityUpgradeValue(UPGRADE_REGENERATOR_HEALING))
 		H.adjustBruteLoss(-H.maxHealth * (hp_amt/100))
 		H.adjustFireLoss(-H.maxHealth * (hp_amt/1000))	//Heals at 1/10th speed. Supposed to be slower healing than brute and sanity
 		H.adjustSanityLoss(-H.maxSanity * (sp_amt/100))
