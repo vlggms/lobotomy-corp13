@@ -58,7 +58,7 @@
 					dat += "[initial(S.name)]: <A href='byond://?src=[REF(src)];choose_suppression=[core_type]'>Select</A><br>"
 
 		if(FACILITY_UPGRADES)
-			dat += "<b>LOB Points:</b> [round(SSlobotomy_corp.lob_points, 0.1)]"
+			dat += "<b>LOB Points:</b> [round(SSlobotomy_corp.lob_points, 0.001)]"
 			dat += "<hr>"
 			var/list/upgrades_per_category = list(
 				"Bullets" = list(),
@@ -217,7 +217,7 @@
 	var/list/data = list()
 
 	// start facility upgrade info
-	data["Upgrade_points"] = round(SSlobotomy_corp.lob_points, 0.1)
+	data["Upgrade_points"] = round(SSlobotomy_corp.lob_points, 0.001)
 
 	// preferably this would be in static, but the cost and avaibility needs to be updated whenever an action is performed
 
