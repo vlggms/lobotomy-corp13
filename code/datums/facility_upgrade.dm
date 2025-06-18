@@ -35,11 +35,6 @@
 	var/display_false = null
 	// Infomation about the upgrade
 	var/info
-	/// All the data needed for displaying information on LOB console
-	var/list/information = list()
-
-/datum/facility_upgrade/New()
-	. = ..()
 
 /datum/facility_upgrade/proc/PrintOutInfo()
 	var/dat = "[capitalize(name)]<br><br>"
@@ -275,6 +270,7 @@
 	value = 2
 	max_value = 4
 	info = " - This upgrade inceases the amount of <b>Abnormalities</b> the manager can select by 1 per upgrade."
+
 /datum/facility_upgrade/picking_abno_amount/Upgrade()
 	value = min(max_value, value + 1)
 	. = ..()
