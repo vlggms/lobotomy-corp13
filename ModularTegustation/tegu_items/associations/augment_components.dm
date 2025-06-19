@@ -585,15 +585,15 @@
 //Stalwart Form
 /datum/component/augment/stalwart_form/Initialize()
 	. = ..()
-	human_parent.physiology.stun_mod -= 0.9
-	human_parent.physiology.red_mod += 0.15
-	human_parent.physiology.black_mod += 0.15
+	human_parent.physiology.stun_mod *= 0.1
+	human_parent.physiology.red_mod *= 1.15
+	human_parent.physiology.black_mod *= 1.15
 
 /datum/component/augment/stalwart_form/Destroy()
 	. = ..()
-	human_parent.physiology.stun_mod += 0.9
-	human_parent.physiology.red_mod -= 0.15
-	human_parent.physiology.black_mod -= 0.15
+	human_parent.physiology.stun_mod /= 0.1
+	human_parent.physiology.red_mod /= 1.15
+	human_parent.physiology.black_mod /= 1.15
 
 ///Status
 
