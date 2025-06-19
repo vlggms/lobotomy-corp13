@@ -58,8 +58,8 @@
 	if(isnull(scene_manager.get_var(user, "player.is_worker")))
 		scene_manager.set_var(user, "player.is_worker", FALSE)
 
-	// if(isnull(scene_manager.get_var(user, "player.collected_parcels")))
-	// 	scene_manager.set_var(user, "player.collected_parcels", 0)
+	if(isnull(scene_manager.get_var(user, "player.collected_parcels")))
+		scene_manager.set_var(user, "player.collected_parcels", 0)
 
 	// Check if player has the briefcase
 	var/has_briefcase = briefcase_check(user)
@@ -290,9 +290,10 @@
 		"actions" = list(
 			"..." = list(
 				"text" = "...",
-				// "var_updates" = list(
-				// 	"player.collected_parcels" = "{player.collected_parcels++}",
-				// ),
+				"var_updates" = list(
+					"player.collected_parcels" = "{player.collected_parcels++}",
+				),
+				"proc_callbacks" = list(CALLBACK(src, PROC_REF(check_parcel_achievement))),
 				"default_scene" = "job"
 			)
 		)
@@ -698,6 +699,8 @@
 	if(isliving(usr))
 		var/mob/living/L = usr
 		new /obj/item/quest_ticket (get_turf(L))
+		if(L.client)
+			L.client.give_award(/datum/award/achievement/lc13/eric_quest_accept, L)
 		for(var/obj/machinery/computer/communications/C in GLOB.machines)
 			if(!(C.machine_stat & (BROKEN|NOPOWER)) && is_station_level(C.z))
 				C.say(L.name + " has accepted the 'Dilapidated Town', breifcase retrieval contract.")
@@ -733,6 +736,8 @@
 				new /obj/item/stack/spacecash/c1000 (get_turf(L))
 				new /obj/item/stack/spacecash/c1000 (get_turf(L))
 				playsound(get_turf(src), 'sound/effects/cashregister.ogg', 35, 3, 3)
+				if(L.client)
+					L.client.give_award(/datum/award/achievement/lc13/eric_quest_complete, L)
 				for(var/obj/machinery/computer/communications/C in GLOB.machines)
 					if(!(C.machine_stat & (BROKEN|NOPOWER)) && is_station_level(C.z))
 						C.say(L.name + " has completed the 'Dilapidated Town', breifcase retrieval contract. Remember this for their grading.")
@@ -813,6 +818,14 @@
 	manual_emote("wipes their gloves clean...")
 	sleep(45)
 	say("Anyone else wants to bother me?")
+
+/mob/living/simple_animal/hostile/ui_npc/eric_t/proc/check_parcel_achievement()
+	if(!usr || !usr.client)
+		return
+
+	var/parcels = scene_manager.get_var(usr, "player.collected_parcels")
+	if(parcels >= 10)
+		usr.client.give_award(/datum/award/achievement/lc13/parcel_delivery, usr)
 
 // The briefcase item remains the same
 /obj/item/eric_briefcase
