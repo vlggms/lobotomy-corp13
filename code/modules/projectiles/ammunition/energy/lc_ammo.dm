@@ -21,7 +21,7 @@
 	select_icon_name = "disable"
 
 /obj/item/ammo_casing/energy/laser/red/shotgun
-	pellets = 3
+	pellets = 5
 	variance = 16
 
 /obj/item/ammo_casing/energy/laser/red/beam
@@ -34,6 +34,9 @@
 /obj/item/ammo_casing/energy/laser/red/iff
 	projectile_type = /obj/projectile/beam/laser/iff
 
+
+/obj/item/ammo_casing/energy/laser/red/iff/sniper
+	projectile_type = /obj/projectile/beam/laser/iff/fast
 
 /obj/item/ammo_casing/energy/laser/white/iff
 	projectile_type = /obj/projectile/beam/laser/iff/white
