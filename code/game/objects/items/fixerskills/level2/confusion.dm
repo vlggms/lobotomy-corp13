@@ -8,6 +8,7 @@
 
 /datum/action/cooldown/confusion
 	name = "Confusion"
+	desc = "Confuses all humans on the screen, making them easier to kill."
 	icon_icon = 'icons/hud/screen_skills.dmi'
 	button_icon_state = "confusion"
 	cooldown_time = 50 SECONDS

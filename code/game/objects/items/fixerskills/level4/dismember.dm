@@ -8,6 +8,7 @@
 
 /datum/action/cooldown/dismember
 	name = "Dismember"
+	desc = "Dismemebr an arm from adjacent humans."
 	icon_icon = 'icons/hud/screen_skills.dmi'
 	button_icon_state = "dismember"
 	cooldown_time = 10 MINUTES

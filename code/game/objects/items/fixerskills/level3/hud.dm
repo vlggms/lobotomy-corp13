@@ -7,6 +7,7 @@
 
 /datum/action/innate/healthhud
 	name = "Healthsight"
+	desc = "Visualize the Health and Sanity of all living beings."
 	icon_icon = 'icons/hud/screen_skills.dmi'
 
 /datum/action/innate/healthhud/Activate()

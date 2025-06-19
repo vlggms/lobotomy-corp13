@@ -6,6 +6,8 @@
 	custom_premium_price = 2400
 
 /datum/action/cooldown/timestop
+	name = "Timestop"
+	desc = "Stop all mobs in range for 1.5 seconds."
 	icon_icon = 'icons/hud/screen_skills.dmi'
 	button_icon_state = "timestop"
 	cooldown_time = 10 MINUTES

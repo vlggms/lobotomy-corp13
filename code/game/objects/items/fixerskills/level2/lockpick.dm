@@ -8,6 +8,7 @@
 
 /datum/action/cooldown/lockpick
 	name = "Lockpick"
+	desc = "Opens any door you do not have access to."
 	icon_icon = 'icons/hud/screen_skills.dmi'
 	button_icon_state = "lockpick"
 	cooldown_time = 1 MINUTES

@@ -8,6 +8,7 @@
 
 /datum/action/cooldown/nuke
 	name = "Nuke"
+	desc = "Blow up, damaging all humans in radius."
 	icon_icon = 'icons/hud/screen_skills.dmi'
 	button_icon_state = "nuke"
 	cooldown_time = 20 MINUTES
