@@ -607,12 +607,12 @@
 	if(!owner)
 		return
 	var/mob/living/carbon/human/H = owner
-	physiology_mod = ((stacks / 10)*protection)//up to 2.16 to physiology
+	physiology_mod = (1 - protection * (stacks / 10))//up to 2.16 to physiology (1-s/10) 1->90 9 ->10 , 1->1.1 9->1.0
 	if(ishuman(H))
-		H.physiology.red_mod -= physiology_mod
-		H.physiology.white_mod -= physiology_mod
-		H.physiology.black_mod -= physiology_mod
-		H.physiology.pale_mod -= physiology_mod
+		H.physiology.red_mod *= physiology_mod
+		H.physiology.white_mod *= physiology_mod
+		H.physiology.black_mod *= physiology_mod
+		H.physiology.pale_mod *= physiology_mod
 		return
 	if(!isanimal(owner))
 		return
@@ -630,15 +630,15 @@
 	var/mob/living/carbon/human/H = owner
 	if(ishuman(H))
 		if(physiology_mod)//removes the existing protection modifier, before the damage modifier is updated
-			H.physiology.red_mod += physiology_mod
-			H.physiology.white_mod += physiology_mod
-			H.physiology.black_mod += physiology_mod
-			H.physiology.pale_mod += physiology_mod
+			H.physiology.red_mod /= physiology_mod
+			H.physiology.white_mod /= physiology_mod
+			H.physiology.black_mod /= physiology_mod
+			H.physiology.pale_mod /= physiology_mod
 		physiology_mod = (stacks / 10)*protection
-		H.physiology.red_mod -= physiology_mod
-		H.physiology.white_mod -= physiology_mod
-		H.physiology.black_mod -= physiology_mod
-		H.physiology.pale_mod -= physiology_mod
+		H.physiology.red_mod *= physiology_mod
+		H.physiology.white_mod *= physiology_mod
+		H.physiology.black_mod *= physiology_mod
+		H.physiology.pale_mod *= physiology_mod
 		return
 	if(!isanimal(owner))
 		return
@@ -653,10 +653,10 @@
 		return
 	var/mob/living/carbon/human/H = owner
 	if(ishuman(H))
-		H.physiology.red_mod += physiology_mod
-		H.physiology.white_mod += physiology_mod
-		H.physiology.black_mod += physiology_mod
-		H.physiology.pale_mod += physiology_mod
+		H.physiology.red_mod /= physiology_mod
+		H.physiology.white_mod /= physiology_mod
+		H.physiology.black_mod /= physiology_mod
+		H.physiology.pale_mod /= physiology_mod
 		return
 	var/mob/living/simple_animal/A = owner
 	if(A.HasDamageMod(protection_mod))
@@ -703,16 +703,16 @@
 	if(!owner)
 		return
 	var/mob/living/carbon/human/H = owner
-	physiology_mod = ((stacks / 10)*protection)
+	physiology_mod = (1 - protection * (stacks / 10))
 	if(ishuman(H))
 		if(damage_type == RED_DAMAGE)
-			H.physiology.red_mod -= physiology_mod
+			H.physiology.red_mod *= physiology_mod
 		if(damage_type == WHITE_DAMAGE)
-			H.physiology.white_mod -= physiology_mod
+			H.physiology.white_mod *= physiology_mod
 		if(damage_type == BLACK_DAMAGE)
-			H.physiology.black_mod -= physiology_mod
+			H.physiology.black_mod *= physiology_mod
 		if(damage_type == PALE_DAMAGE)
-			H.physiology.pale_mod -= physiology_mod
+			H.physiology.pale_mod *= physiology_mod
 		return
 	if(!isanimal(owner))
 		return
@@ -731,22 +731,22 @@
 	if(ishuman(H))
 		if(physiology_mod)//removes the existing protection modifier, before the damage modifier is updated
 			if(damage_type == RED_DAMAGE)
-				H.physiology.red_mod += physiology_mod
+				H.physiology.red_mod /= physiology_mod
 			if(damage_type == WHITE_DAMAGE)
-				H.physiology.white_mod += physiology_mod
+				H.physiology.white_mod /= physiology_mod
 			if(damage_type == BLACK_DAMAGE)
-				H.physiology.black_mod += physiology_mod
+				H.physiology.black_mod /= physiology_mod
 			if(damage_type == PALE_DAMAGE)
-				H.physiology.pale_mod += physiology_mod
+				H.physiology.pale_mod /= physiology_mod
 		physiology_mod = (stacks / 10)*protection
 		if(damage_type == RED_DAMAGE)
-			H.physiology.red_mod -= physiology_mod
+			H.physiology.red_mod *= physiology_mod
 		if(damage_type == WHITE_DAMAGE)
-			H.physiology.white_mod -= physiology_mod
+			H.physiology.white_mod *= physiology_mod
 		if(damage_type == BLACK_DAMAGE)
-			H.physiology.black_mod -= physiology_mod
+			H.physiology.black_mod *= physiology_mod
 		if(damage_type == PALE_DAMAGE)
-			H.physiology.pale_mod -= physiology_mod
+			H.physiology.pale_mod *= physiology_mod
 		return
 	if(!isanimal(owner))
 		return
@@ -762,13 +762,13 @@
 	var/mob/living/carbon/human/H = owner
 	if(ishuman(H))
 		if(damage_type == RED_DAMAGE)
-			H.physiology.red_mod += physiology_mod
+			H.physiology.red_mod /= physiology_mod
 		if(damage_type == WHITE_DAMAGE)
-			H.physiology.white_mod += physiology_mod
+			H.physiology.white_mod /= physiology_mod
 		if(damage_type == BLACK_DAMAGE)
-			H.physiology.black_mod += physiology_mod
+			H.physiology.black_mod /= physiology_mod
 		if(damage_type == PALE_DAMAGE)
-			H.physiology.pale_mod += physiology_mod
+			H.physiology.pale_mod /= physiology_mod
 		return
 	var/mob/living/simple_animal/A = owner
 	if(A.HasDamageMod(protection_mod))
@@ -887,7 +887,7 @@
 	if(isliving(owner))
 		var/mob/living/L = owner
 		damage_increase = ((stacks * 10) * damage_mode)
-		L.extra_damage += damage_increase
+		L.extra_damage /= damage_increase
 
 /datum/status_effect/stacking/damage_up/add_stacks(stacks_added)//update your weaknesses
 	. = ..()
@@ -896,9 +896,9 @@
 	linked_alert.desc = initial(linked_alert.desc)+"[stacks*10]%!"
 	if(isliving(owner))
 		var/mob/living/L = owner
-		L.extra_damage -= damage_increase
+		L.extra_damage *= damage_increase
 		damage_increase = ((stacks * 10) * damage_mode)
-		L.extra_damage += damage_increase
+		L.extra_damage /= damage_increase
 
 /datum/status_effect/stacking/damage_up/on_remove()
 	. = ..()
@@ -906,7 +906,7 @@
 		return
 	if(isliving(owner))
 		var/mob/living/L = owner
-		L.extra_damage -= damage_increase
+		L.extra_damage *= damage_increase
 
 /datum/status_effect/stacking/damage_up/tick()
 	if(!can_have_status())
@@ -951,13 +951,13 @@
 		var/mob/living/L = owner
 		damage_increase = ((stacks * 10) * damage_mode)
 		if(damage_type == RED_DAMAGE)
-			L.extra_damage_red += damage_increase
+			L.extra_damage_red /= damage_increase
 		if(damage_type == WHITE_DAMAGE)
-			L.extra_damage_white += damage_increase
+			L.extra_damage_white /= damage_increase
 		if(damage_type == BLACK_DAMAGE)
-			L.extra_damage_black += damage_increase
+			L.extra_damage_black /= damage_increase
 		if(damage_type == PALE_DAMAGE)
-			L.extra_damage_pale += damage_increase
+			L.extra_damage_pale /= damage_increase
 
 /datum/status_effect/stacking/damtype_damage_up/add_stacks(stacks_added)
 	. = ..()
@@ -967,22 +967,22 @@
 	if(isliving(owner))
 		var/mob/living/L = owner
 		if(damage_type == RED_DAMAGE)
-			L.extra_damage_red -= damage_increase
+			L.extra_damage_red *= damage_increase
 		if(damage_type == WHITE_DAMAGE)
-			L.extra_damage_white -= damage_increase
+			L.extra_damage_white *= damage_increase
 		if(damage_type == BLACK_DAMAGE)
-			L.extra_damage_black -= damage_increase
+			L.extra_damage_black *= damage_increase
 		if(damage_type == PALE_DAMAGE)
-			L.extra_damage_pale -= damage_increase
+			L.extra_damage_pale *= damage_increase
 		damage_increase = ((stacks * 10) * damage_mode)
 		if(damage_type == RED_DAMAGE)
-			L.extra_damage_red += damage_increase
+			L.extra_damage_red /= damage_increase
 		if(damage_type == WHITE_DAMAGE)
-			L.extra_damage_white += damage_increase
+			L.extra_damage_white /= damage_increase
 		if(damage_type == BLACK_DAMAGE)
-			L.extra_damage_black += damage_increase
+			L.extra_damage_black /= damage_increase
 		if(damage_type == PALE_DAMAGE)
-			L.extra_damage_pale += damage_increase
+			L.extra_damage_pale /= damage_increase
 
 /datum/status_effect/stacking/damtype_damage_up/on_remove()
 	. = ..()
@@ -991,13 +991,13 @@
 	if(isliving(owner))
 		var/mob/living/L = owner
 		if(damage_type == RED_DAMAGE)
-			L.extra_damage_red -= damage_increase
+			L.extra_damage_red *= damage_increase
 		if(damage_type == WHITE_DAMAGE)
-			L.extra_damage_white -= damage_increase
+			L.extra_damage_white *= damage_increase
 		if(damage_type == BLACK_DAMAGE)
-			L.extra_damage_black -= damage_increase
+			L.extra_damage_black *= damage_increase
 		if(damage_type == PALE_DAMAGE)
-			L.extra_damage_pale -= damage_increase
+			L.extra_damage_pale *= damage_increase
 
 /datum/status_effect/stacking/damtype_damage_up/tick()
 	if(!can_have_status())
