@@ -117,7 +117,7 @@
 
 /datum/award/achievement/lc13/clan_genocide
 	name = "Silent Machines"
-	desc = "You've eliminated all Resurgence Clan members."
+	desc = "You've eliminated all Resurgence Clan civilians within the village."
 	database_id = MEDAL_CLAN_GENOCIDE
 	icon = "clan_genocide"
 
