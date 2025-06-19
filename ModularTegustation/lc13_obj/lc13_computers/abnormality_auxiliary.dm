@@ -169,6 +169,7 @@
 			return TRUE
 		if(href_list["info"])
 			var/dat = html_decode(href_list["info"])
+			playsound(get_turf(src), 'sound/machines/terminal_prompt_confirm.ogg', 50, TRUE)
 			var/datum/browser/popup = new(usr, "upgrade_info", "Auxiliary Managerial Console", 340, 400)
 			popup.set_content(dat)
 			popup.open()
@@ -242,7 +243,7 @@
 		if(upgrade.value == 0) // if the upgrade is just a toggle, there's no point in showing its value now, is there?
 			modified_upgrade_name = upgrade.name
 		else
-			modified_upgrade_name = "[upgrade.name] ([upgrade.value])"
+			modified_upgrade_name = "[upgrade.name] ([upgrade.DisplayValue() ? upgrade.DisplayValue() :upgrade.value])"
 
 
 		var/list/upgrade_data = list(list(
@@ -448,12 +449,13 @@
 			playsound(get_turf(src), 'sound/machines/terminal_prompt_confirm.ogg', 50, TRUE)
 		if("Info")
 			var/datum/facility_upgrade/U = locate(params["selected_upgrade"]) in SSlobotomy_corp.upgrades
-			if(!istype(U) || !U.CanUpgrade())
+			if(!istype(U))
 				return
 			var/dat = U.PrintOutInfo()
 			var/datum/browser/popup = new(usr, "upgrade_info", "Auxiliary Managerial Console", 340, 400)
 			popup.set_content(dat)
 			popup.open()
+			playsound(get_turf(src), 'sound/machines/terminal_prompt_confirm.ogg', 50, TRUE)
 			return
 		// admin-only actions, remember to put a if(!log_action) check with a proper return
 		if("Unlock Core Suppressions")
@@ -508,7 +510,7 @@
 			))
 				update_static_data_for_all_viewers()
 				return
-
+			playsound(get_turf(src), 'sound/machines/terminal_prompt_confirm.ogg', 50, TRUE)
 			SSlobotomy_corp.lob_points += amount
 
 		else // something bad happened, refresh the data and it hopefully fixes itself
