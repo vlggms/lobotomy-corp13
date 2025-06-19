@@ -8,6 +8,7 @@
 
 /datum/action/cooldown/smokedash
 	name = "Smokedash"
+	desc = "Increases movement speed and drops a smoke bomb at your feet."
 	icon_icon = 'icons/hud/screen_skills.dmi'
 	button_icon_state = "smokedash"
 	cooldown_time = 30 SECONDS
@@ -39,10 +40,11 @@
 	actionname = "Mark"
 	name = "Level 1 Skill: Mark"
 	level = 1
-	custom_premium_price = 600
+	custom_premium_price = 0
 
 /datum/action/cooldown/mark
 	name = "Mark"
+	desc = "Drops a small marker at your feet."
 	icon_icon = 'icons/hud/screen_skills.dmi'
 	button_icon_state = "mark"
 	cooldown_time = 7 SECONDS
@@ -69,6 +71,7 @@
 
 /datum/action/cooldown/light
 	name = "Light"
+	desc = "Create a flare to give you light."
 	icon_icon = 'icons/hud/screen_skills.dmi'
 	button_icon_state = "light"
 	cooldown_time = 30 SECONDS

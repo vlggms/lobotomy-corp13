@@ -8,6 +8,7 @@
 
 /datum/action/cooldown/healing
 	name = "Healing"
+	desc = "Heals all other humans around you by [healamount]HP."
 	icon_icon = 'icons/hud/screen_skills.dmi'
 	button_icon_state = "healing"
 	cooldown_time = 30 SECONDS
@@ -40,6 +41,7 @@
 
 /datum/action/cooldown/soothing
 	name = "Soothing"
+	desc = "Heals all other humans around you by [healamount]SP."
 	icon_icon = 'icons/hud/screen_skills.dmi'
 	button_icon_state = "soothing"
 	cooldown_time = 30 SECONDS
@@ -73,6 +75,7 @@
 
 /datum/action/cooldown/curing
 	name = "Curing"
+	desc = "Heals all other humans around you by [healamount]HP and SP."
 	icon_icon = 'icons/hud/screen_skills.dmi'
 	button_icon_state = "curing"
 	cooldown_time = 30 SECONDS

@@ -9,6 +9,7 @@
 
 /datum/action/cooldown/skulk
 	name = "Skulk"
+	desc = "Make yourself nearly invisible for 10 seconds."
 	icon_icon = 'icons/hud/screen_skills.dmi'
 	button_icon_state = "skulk"
 	cooldown_time = 30 SECONDS
@@ -22,7 +23,7 @@
 		return FALSE
 
 	//become invisible
-	owner.alpha = 25
+	owner.alpha = 35
 	addtimer(CALLBACK(src, PROC_REF(Recall),), 10 SECONDS, TIMER_UNIQUE | TIMER_OVERRIDE)
 	StartCooldown()
 

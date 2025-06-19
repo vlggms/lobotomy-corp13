@@ -7,6 +7,7 @@
 
 /datum/action/innate/bulletproof
 	name = "Bulletproof"
+	desc = "Make yourself immune to most bullets, but take more physical damage."
 	icon_icon = 'icons/hud/screen_skills.dmi'
 	button_icon_state = "shield_off"
 	var/datum/martial_art/bulletproof/MA = new /datum/martial_art/bulletproof

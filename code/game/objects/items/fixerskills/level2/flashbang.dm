@@ -8,6 +8,7 @@
 
 /datum/action/cooldown/solarflare
 	name = "Solar Flare"
+	desc = "Blinds all humans on the screen, making it harder for them to attack you."
 	icon_icon = 'icons/hud/screen_skills.dmi'
 	button_icon_state = "solarflare"
 	cooldown_time = 50 SECONDS

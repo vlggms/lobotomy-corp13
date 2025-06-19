@@ -50,6 +50,7 @@
 
 /datum/action/cooldown/dash/back
 	name = "Backstep"
+	desc = "Dash backwards a few tiles. Costs stamina."
 	icon_icon = 'icons/hud/screen_skills.dmi'
 	button_icon_state = "backstep"
 	direction = -1
@@ -63,6 +64,8 @@
 	custom_premium_price = 600
 
 /datum/action/cooldown/assault
+	name = "Assault"
+	desc = "Increase movement speed slightly for 10 seconds."
 	cooldown_time = 20 SECONDS
 	icon_icon = 'icons/hud/screen_skills.dmi'
 	button_icon_state = "assault"
@@ -91,6 +94,8 @@
 	custom_premium_price = 600
 
 /datum/action/cooldown/retreat
+	name = "Retreat"
+	desc = "Increase movement speed and decrease defense for 5 seconds."
 	icon_icon = 'icons/hud/screen_skills.dmi'
 	button_icon_state = "retreat"
 	cooldown_time = 20 SECONDS
