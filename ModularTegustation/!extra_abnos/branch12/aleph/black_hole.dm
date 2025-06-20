@@ -49,7 +49,7 @@
 
 /mob/living/simple_animal/hostile/abnormality/branch12/black_hole/Life()
 	..()
-	if(!IsContained())
+	if(IsContained())
 		return
 	goonchem_vortex(get_turf(src), 0, 3)
 	for(var/mob/living/H in range(1, src))
