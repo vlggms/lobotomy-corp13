@@ -69,7 +69,7 @@
 		easy_target.deal_damage(melee_damage_upper * 3, RED_DAMAGE)
 	if(human_target.stat != DEAD && prob(5))
 		var/obj/item/bodypart/chest/LC = human_target.get_bodypart(BODY_ZONE_CHEST)
-		if((!LC || LC.status != BODYPART_ROBOTIC) && !human_target.getorgan(/obj/item/organ/body_egg/cuckoospawn_embryo))
+		if((!LC || LC.status != BODYPART_ROBOTIC) && !human_target.getorgan(/obj/item/organ/body_egg/cuckoospawn_embryo) && !HAS_TRAIT(human_target, TRAIT_XENO_IMMUNE))
 			new /obj/item/organ/body_egg/cuckoospawn_embryo(human_target)
 			var/turf/T = get_turf(human_target)
 			log_game("[key_name(human_target)] was impregnated by a cockoospawn at [loc_name(T)]")
