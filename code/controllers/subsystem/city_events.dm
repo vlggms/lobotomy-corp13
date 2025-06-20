@@ -148,21 +148,21 @@ SUBSYSTEM_DEF(cityevents)
 		var/mob/living/mob1 = new L (get_turf(J))
 		if(ishostile(mob1))
 			var/mob/living/simple_animal/hostile/hostilemob1 = mob1
-			hostilemob1.guaranteed_butcher_results += /obj/item/stack/spacecash/c100
+			hostilemob1.guaranteed_butcher_results[/obj/item/stack/spacecash/c100] = 2
 			active_raiders += hostilemob1
 
 		if(prob(75))
 			var/mob/living/mob2 = new L (get_turf(J))
 			if(ishostile(mob2))
 				var/mob/living/simple_animal/hostile/hostilemob2 = mob2
-				hostilemob2.guaranteed_butcher_results += /obj/item/stack/spacecash/c100
+				hostilemob2.guaranteed_butcher_results[/obj/item/stack/spacecash/c100] = 2
 				active_raiders += hostilemob2
 
 		if(prob(50))
 			var/mob/living/mob3 = new L (get_turf(J))
 			if(ishostile(mob3))
 				var/mob/living/simple_animal/hostile/hostilemob3 = mob3
-				hostilemob3.guaranteed_butcher_results += /obj/item/stack/spacecash/c100
+				hostilemob3.guaranteed_butcher_results[/obj/item/stack/spacecash/c100] = 2
 				active_raiders += hostilemob3
 
 	addtimer(CALLBACK(src, PROC_REF(remove_raiders)), 3 MINUTES)
