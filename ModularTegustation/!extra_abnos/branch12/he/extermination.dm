@@ -32,6 +32,7 @@
 	datum_reference.qliphoth_change(-1)
 
 /mob/living/simple_animal/hostile/abnormality/branch12/extermination/ZeroQliphoth()
+	datum_reference.qliphoth_change(3)
 	var/list/damage_these = list()
 	var/list/possible_breachers = list()
 	for(var/mob/living/simple_animal/hostile/abnormality/V in GLOB.abnormality_mob_list)

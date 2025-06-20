@@ -43,6 +43,7 @@
 
 /mob/living/simple_animal/hostile/abnormality/branch12/passion/ZeroQliphoth()
 	..()
+	datum_reference.qliphoth_change(2)
 	//Okay we're gonna make everyone go murder insane for like 5 seconds
 	for(var/mob/living/carbon/human/H in GLOB.player_list)
 		if(!H.sanity_lost)
