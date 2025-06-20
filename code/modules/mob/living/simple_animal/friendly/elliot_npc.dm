@@ -135,31 +135,42 @@
 			addtimer(CALLBACK(src, PROC_REF(heretic_hint)), 5)
 			break
 
+// Generic hint system to reduce code duplication
+/mob/living/simple_animal/hostile/ui_npc/elliot/proc/give_hint(list/messages, list/delays = null)
+	if(!delays)
+		delays = list(30, 25) // default delays between messages
+	
+	for(var/i = 1 to messages.len)
+		say(messages[i])
+		if(i < messages.len && i <= delays.len)
+			SLEEP_CHECK_DEATH(delays[i])
+
 /mob/living/simple_animal/hostile/ui_npc/elliot/proc/key_hint()
-	say("Hey, these keys look a bit suspicious...")
-	SLEEP_CHECK_DEATH(30)
-	say("You could pick one up right away, but...")
-	SLEEP_CHECK_DEATH(25)
-	say("I think it would be wise to test these keys somehow.")
+	give_hint(list(
+		"Hey, these keys look a bit suspicious...",
+		"You could pick one up right away, but...",
+		"I think it would be wise to test these keys somehow."
+	))
 
 /mob/living/simple_animal/hostile/ui_npc/elliot/proc/dagger_hint()
-	say("Hm... don't these statues look weird?")
-	SLEEP_CHECK_DEATH(30)
-	say("With different colored hands...")
-	SLEEP_CHECK_DEATH(25)
-	say("It appears that they want something.")
+	give_hint(list(
+		"Hm... don't these statues look weird?",
+		"With different colored hands...",
+		"It appears that they want something."
+	))
 
 /mob/living/simple_animal/hostile/ui_npc/elliot/proc/riddle_hint()
-	say("Oh, that door appears to have some sort of voice box.")
-	SLEEP_CHECK_DEATH(30)
-	say("What if, you try to open this door?")
+	give_hint(list(
+		"Oh, that door appears to have some sort of voice box.",
+		"What if, you try to open this door?"
+	), list(30))
 
 /mob/living/simple_animal/hostile/ui_npc/elliot/proc/heretic_hint()
-	say("What strange statues...")
-	SLEEP_CHECK_DEATH(30)
-	say("They appear to have some sort of motion detector on them...")
-	SLEEP_CHECK_DEATH(25)
-	say("What would happen if you would poke them?")
+	give_hint(list(
+		"What strange statues...",
+		"They appear to have some sort of motion detector on them...",
+		"What would happen if you would poke them?"
+	))
 
 /mob/living/simple_animal/hostile/ui_npc/elliot/toggle_ai(togglestatus)
 	if (togglestatus != AI_IDLE)
@@ -360,6 +371,12 @@
 	SLEEP_CHECK_DEATH(25)
 	say("It's just trying to make you stuggle and bleed yourself out.")
 
+// Generic alert triggering system to reduce code duplication
+/mob/living/simple_animal/hostile/ui_npc/elliot/proc/check_and_trigger_alert(condition, alert_var, alert_proc, delay = 5)
+	if(condition && !vars[alert_var])
+		vars[alert_var] = TRUE
+		addtimer(CALLBACK(src, alert_proc), delay)
+
 /mob/living/simple_animal/hostile/ui_npc/elliot/proc/CheckSpace(mob/user, atom/new_location)
 	var/turf/newloc_turf = get_turf(new_location)
 	var/valid_tile = TRUE
@@ -368,18 +385,23 @@
 	if(istype(new_area, /area/shuttle/mining))
 		valid_tile = FALSE
 
+	// Check for scarlet vines
 	for(var/obj/structure/spreading/scarlet_vine/vine in newloc_turf.contents)
-		if(!rose_alert)
-			rose_alert = TRUE
-			addtimer(CALLBACK(src, PROC_REF(rose_alert)), 5)
+		check_and_trigger_alert(TRUE, "rose_alert", PROC_REF(rose_alert))
+		break
 
-	if(istype(new_area, /area/city/backstreets_room/temple_motus/treasure_hallway) && !entered_boss_room)
-		entered_boss_room = TRUE
-		addtimer(CALLBACK(src, PROC_REF(boss_alert)), 5)
-
-	if(istype(new_area, /area/city/backstreets_room/temple_motus/treasure_entrance) && !pre_boss_alert)
-		pre_boss_alert = TRUE
-		addtimer(CALLBACK(src, PROC_REF(pre_boss_alert)), 5)
+	// Check for boss room areas
+	check_and_trigger_alert(
+		istype(new_area, /area/city/backstreets_room/temple_motus/treasure_hallway),
+		"entered_boss_room",
+		PROC_REF(boss_alert)
+	)
+	
+	check_and_trigger_alert(
+		istype(new_area, /area/city/backstreets_room/temple_motus/treasure_entrance),
+		"pre_boss_alert",
+		PROC_REF(pre_boss_alert)
+	)
 
 	if(!valid_tile)
 		if(last_staying_update < world.time - staying_cooldown)

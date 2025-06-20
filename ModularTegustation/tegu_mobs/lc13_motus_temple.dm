@@ -1,3 +1,61 @@
+// Helper proc for checking if a mob is elliot type
+/proc/is_elliot(mob/living/L)
+	return istype(L, /mob/living/simple_animal/hostile/ui_npc/elliot)
+
+// Chemical Harvesting Component - shared between mad_fly_nest and scarlet_rose
+/datum/component/chemical_harvest
+	var/chem_type
+	var/chem_yield
+	var/chem_cooldown
+	var/chem_cooldown_timer
+
+/datum/component/chemical_harvest/Initialize(chem_type = /datum/reagent/medicine/mental_stabilizator, chem_yield = 5, chem_cooldown = 3 MINUTES)
+	if(!ismob(parent))
+		return COMPONENT_INCOMPATIBLE
+	
+	src.chem_type = chem_type
+	src.chem_yield = chem_yield
+	src.chem_cooldown = chem_cooldown
+	src.chem_cooldown_timer = 0
+
+/datum/component/chemical_harvest/RegisterWithParent()
+	RegisterSignal(parent, COMSIG_PARENT_EXAMINE, PROC_REF(on_examine))
+	RegisterSignal(parent, COMSIG_PARENT_ATTACKBY, PROC_REF(on_attackby))
+
+/datum/component/chemical_harvest/UnregisterFromParent()
+	UnregisterSignal(parent, list(COMSIG_PARENT_EXAMINE, COMSIG_PARENT_ATTACKBY))
+
+/datum/component/chemical_harvest/proc/on_examine(datum/source, mob/user, list/examine_list)
+	SIGNAL_HANDLER
+	if(world.time < chem_cooldown_timer)
+		examine_list += span_red("[parent] is not ready to be harvested.")
+	else
+		examine_list += span_nicegreen("[parent] is ready to be harvested.")
+
+/datum/component/chemical_harvest/proc/on_attackby(datum/source, obj/item/O, mob/user, params)
+	if(!istype(O, /obj/item/reagent_containers))
+		return // Let non-reagent containers be handled normally
+	
+	if(world.time < chem_cooldown_timer)
+		to_chat(user, span_notice("You may need to wait a bit longer."))
+		return COMPONENT_CANCEL_ATTACK_CHAIN
+	
+	var/obj/item/reagent_containers/my_container = O
+	var/mob/living/harvester = parent
+	harvester.visible_message("[user] starts extracting some reagents from [harvester]...")
+	
+	if(do_after(user, 10 SECONDS, harvester))
+		perform_harvest(my_container, user)
+	
+	return COMPONENT_CANCEL_ATTACK_CHAIN
+
+/datum/component/chemical_harvest/proc/perform_harvest(obj/item/reagent_containers/C, mob/user)
+	var/mob/living/harvester = parent
+	harvester.visible_message("[user] uses [C] to extract some reagents from [harvester]")
+	if(chem_type)
+		C.reagents.add_reagent(chem_type, chem_yield)
+	chem_cooldown_timer = world.time + chem_cooldown
+
 //Stone Guard
 /mob/living/simple_animal/hostile/clan/stone_guard
 	name = "stone statue"
@@ -235,11 +293,11 @@
 	var/spawn_progress = 10 //spawn ready to produce flies
 	var/list/spawned_mobs = list()
 	var/producing = FALSE
-	//TODO: Fix Cooldowns
-	var/chem_cooldown_timer
-	var/chem_cooldown = 3 MINUTES
-	var/chem_type = /datum/reagent/medicine/mental_stabilizator
-	var/chem_yield = 5
+	// Chemical harvesting handled by component
+
+/mob/living/simple_animal/hostile/mad_fly_nest/Initialize()
+	. = ..()
+	AddComponent(/datum/component/chemical_harvest, /datum/reagent/medicine/mental_stabilizator, 5, 3 MINUTES)
 
 /mob/living/simple_animal/hostile/mad_fly_nest/CanAttack(atom/the_target)
 	return FALSE
@@ -250,30 +308,6 @@
 /mob/living/simple_animal/hostile/mad_fly_nest/death(gibbed)
 	new /obj/effect/gibspawner/xeno/bodypartless(get_turf(src))
 	. = ..()
-
-/mob/living/simple_animal/hostile/mad_fly_nest/examine(mob/user)
-	. = ..()
-	if(world.time < chem_cooldown_timer)
-		. += span_red("[src] is not ready to be harvensted.")
-	else
-		. += span_nicegreen("[src] is ready to be harvensted.")
-
-/mob/living/simple_animal/hostile/mad_fly_nest/attackby(obj/O, mob/user, params)
-	if(!istype(O, /obj/item/reagent_containers))
-		return ..()
-	if(world.time < chem_cooldown_timer)
-		to_chat(user, span_notice("You may need to wait a bit longer."))
-		return
-	var/obj/item/reagent_containers/my_container = O
-	visible_message("[user] starts extracting some reagents from [src]...")
-	if(do_after(user, 10 SECONDS, src))
-		HarvestChem(my_container, user)
-
-/mob/living/simple_animal/hostile/mad_fly_nest/proc/HarvestChem(obj/item/reagent_containers/C, mob/user)
-	visible_message("[user] uses [C] to extract some reagents from [src]")
-	if(chem_type)
-		C.reagents.add_reagent(chem_type, chem_yield)
-	chem_cooldown_timer = world.time + chem_cooldown
 
 /mob/living/simple_animal/hostile/mad_fly_nest/Life()
 	. = ..()
@@ -330,10 +364,11 @@
 	var/ability_cooldown_time = 4 SECONDS
 	//All iterations share this list between eachother.
 	var/static/list/vine_list = list()
-	var/chem_cooldown_timer
-	var/chem_cooldown = 3 MINUTES
-	var/chem_type = /datum/reagent/medicine/sal_acid
-	var/chem_yield = 15
+	// Chemical harvesting handled by component
+
+/mob/living/simple_animal/hostile/scarlet_rose/Initialize()
+	. = ..()
+	AddComponent(/datum/component/chemical_harvest, /datum/reagent/medicine/sal_acid, 15, 3 MINUTES)
 
 /mob/living/simple_animal/hostile/scarlet_rose/death(gibbed)
 	new /obj/item/scarlet_rose(get_turf(src))
@@ -347,30 +382,6 @@
 		QDEL_IN(vine, del_time SECONDS)
 	vine_list.Cut()
 	return ..()
-
-/mob/living/simple_animal/hostile/scarlet_rose/examine(mob/user)
-	. = ..()
-	if(world.time < chem_cooldown_timer)
-		. += span_red("[src] is not ready to be harvensted.")
-	else
-		. += span_nicegreen("[src] is ready to be harvensted.")
-
-/mob/living/simple_animal/hostile/scarlet_rose/attackby(obj/O, mob/user, params)
-	if(!istype(O, /obj/item/reagent_containers))
-		return ..()
-	if(world.time < chem_cooldown_timer)
-		to_chat(user, span_notice("You may need to wait a bit longer."))
-		return
-	var/obj/item/reagent_containers/my_container = O
-	visible_message("[user] starts extracting some reagents from [src]...")
-	if(do_after(user, 10 SECONDS, src))
-		HarvestChem(my_container, user)
-
-/mob/living/simple_animal/hostile/scarlet_rose/proc/HarvestChem(obj/item/reagent_containers/C, mob/user)
-	visible_message("[user] uses [C] to extract some reagents from [src]")
-	if(chem_type)
-		C.reagents.add_reagent(chem_type, chem_yield)
-	chem_cooldown_timer = world.time + chem_cooldown
 
 /mob/living/simple_animal/hostile/scarlet_rose/CanAttack(atom/the_target)
 	return FALSE
@@ -559,12 +570,17 @@
 	del_on_death = TRUE
 	damage_coeff = list(RED_DAMAGE = 1, WHITE_DAMAGE = 1, BLACK_DAMAGE = 1, PALE_DAMAGE = 1)
 	vine_range = 3
-	chem_yield = 5
 	ability_cooldown_time = 30 SECONDS
 	var/growing_counter
 	var/growing_cooldown = 30 SECONDS
 	var/growing_cooldown_time
 	var/growing_counter_max = 40
+
+/mob/living/simple_animal/hostile/scarlet_rose/growing/Initialize()
+	. = ..()
+	// Override parent's chemical harvest component with lower yield
+	qdel(GetComponent(/datum/component/chemical_harvest))
+	AddComponent(/datum/component/chemical_harvest, /datum/reagent/medicine/sal_acid, 5, 3 MINUTES)
 
 /mob/living/simple_animal/hostile/scarlet_rose/growing/Life()
 	. = ..()
@@ -868,7 +884,7 @@
 	visible_message(span_danger("[src] starts charging something at [cooler_target]!"))
 	say("Tinkerer's Order...")
 	var/mob/living/simple_animal/hostile/ui_npc/elliot/victim
-	if(istype(cooler_target, /mob/living/simple_animal/hostile/ui_npc/elliot))
+	if(is_elliot(cooler_target))
 		victim = cooler_target
 	dir = get_cardinal_dir(src, target)
 	if(victim)
@@ -952,7 +968,7 @@
 /mob/living/simple_animal/hostile/clan/stone_keeper/proc/EveryoneDead_Check()
 	var/everyone_dead = TRUE
 	for(var/mob/living/L in locked_list)
-		if(istype(L, /mob/living/simple_animal/hostile/ui_npc/elliot))
+		if(is_elliot(L))
 			continue
 		if(L.stat != DEAD && !faction_check_mob(L, FALSE))
 			everyone_dead = FALSE
