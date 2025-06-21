@@ -489,37 +489,39 @@ const BulletUpgrades = (props, context) => {
 
   return (
     <>
-    <Box textColor="blue" mt="1em" fontSize="20px" nowrap>
-      Available bullet upgrades:
-    </Box>
-    <LabeledList>
-      {bullet_upgrades.map(bullet_upgrades => (
-        <LabeledList.Item
-          key={bullet_upgrades.name}
-          label={bullet_upgrades.name}
-          buttons={<>
-            <Button
-            content={bullet_upgrades.available === 1
-              ? 'Purchase the bullet for '
-              + bullet_upgrades.cost
-              + ' LOB points'
-              : 'UPGRADE PURCHASED'}
-            color={Upgrade_points >= bullet_upgrades.cost
-              && bullet_upgrades.available === 1
-              ? 'green'
-              : 'red'}
-            onClick={() => act('Buy Upgrade', {
-              selected_upgrade: bullet_upgrades.ref,
-            })} />
-            <Button
-              content={"Info"}
-              color={"blue"}
-              onClick={() => act('Info', {
-                selected_upgrade: bullet_upgrades.ref,
-              })} />
-          </>} />
-        ))}
-    </LabeledList>
+      <Box textColor="blue" mt="1em" fontSize="20px" nowrap>
+        Available bullet upgrades:
+      </Box>
+      <LabeledList>
+        {bullet_upgrades.map(bullet_upgrades => (
+          <LabeledList.Item
+            key={bullet_upgrades.name}
+            label={bullet_upgrades.name}
+            buttons={
+              <>
+              <Button
+                content={bullet_upgrades.available === 1
+                  ? 'Purchase the bullet for '
+                  + bullet_upgrades.cost
+                  + ' LOB points'
+                  : 'UPGRADE PURCHASED'}
+                color={Upgrade_points >= bullet_upgrades.cost
+                  && bullet_upgrades.available === 1
+                  ? 'green'
+                  : 'red'}
+                onClick={() => act('Buy Upgrade', {
+                  selected_upgrade: bullet_upgrades.ref,
+               })} />
+                <Button
+                  content={"Info"}
+                  color={"blue"}
+                  onClick={() => act('Info', {
+                    selected_upgrade: bullet_upgrades.ref,
+                })} />
+              </>
+            } />
+          ))}
+      </LabeledList>
     </>
   );
 };
