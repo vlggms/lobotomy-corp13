@@ -490,7 +490,7 @@ const BulletUpgrades = (props, context) => {
   return (
     <>
       <Box textColor="blue" mt="1em" fontSize="20px" nowrap>
-        Available bullet upgrades:
+        Available unlockable bullets:
       </Box>
       <LabeledList>
         {bullet_upgrades.map(bullet_upgrades => (
@@ -499,25 +499,25 @@ const BulletUpgrades = (props, context) => {
             label={bullet_upgrades.name}
             buttons={
               <>
-              <Button
-                content={bullet_upgrades.available === 1
-                  ? 'Purchase the bullet for '
-                  + bullet_upgrades.cost
-                  + ' LOB points'
-                  : 'UPGRADE PURCHASED'}
-                color={Upgrade_points >= bullet_upgrades.cost
-                  && bullet_upgrades.available === 1
-                  ? 'green'
-                  : 'red'}
-                onClick={() => act('Buy Upgrade', {
-                  selected_upgrade: bullet_upgrades.ref,
-               })} />
+                <Button
+                  content={bullet_upgrades.available === 1
+                    ? 'Purchase the bullet for '
+                    + bullet_upgrades.cost
+                    + ' LOB points'
+                    : 'UPGRADE PURCHASED'}
+                  color={Upgrade_points >= bullet_upgrades.cost
+                    && bullet_upgrades.available === 1
+                    ? 'green'
+                    : 'red'}
+                  onClick={() => act('Buy Upgrade', {
+                    selected_upgrade: bullet_upgrades.ref,
+                  })} />
                 <Button
                   content={"Info"}
                   color={"blue"}
                   onClick={() => act('Info', {
                     selected_upgrade: bullet_upgrades.ref,
-                })} />
+                  })} />
               </>
             } />
           ))}
@@ -535,34 +535,41 @@ const MoreBulletUpgrades = (props, context) => {
   }
 
   return (
-    <><Box textColor="blue" mt="1em" fontSize="20px" nowrap>
-      Available bullet upgrades:
-    </Box><LabeledList>
+    <>
+      <Box textColor="blue" mt="1em" fontSize="20px" nowrap>
+        Available bullet upgrades:
+      </Box>
+      <LabeledList>
         {real_bullet_upgrades.map(real_bullet_upgrades => (
           <LabeledList.Item
             key={real_bullet_upgrades.name}
             label={real_bullet_upgrades.name}
-            ml="1em"
-            buttons={<><Button
-              content={real_bullet_upgrades.available === 1
-                ? 'Purchase the bullet upgrade for '
-                + real_bullet_upgrades.cost
-                + ' LOB points'
-                : 'UPGRADE PURCHASED'}
-              color={Upgrade_points >= real_bullet_upgrades.cost
-                && real_bullet_upgrades.available === 1
-                ? 'green'
-                : 'red'}
-              onClick={() => act('Buy Upgrade', {
-                selected_upgrade: real_bullet_upgrades.ref,
-              })} /><Button
-                content={"Info"}
-                color={"blue"}
-                onClick={() => act('Info', {
-                  selected_upgrade: real_bullet_upgrades.ref,
-                })} /></>} />
-        ))}
-      </LabeledList></>
+            buttons={
+              <>
+                <Button
+                  content={real_bullet_upgrades.available === 1
+                    ? 'Purchase the upgrade for '
+                    + real_bullet_upgrades.cost
+                    + ' LOB points'
+                    : 'UPGRADE PURCHASED'}
+                  color={Upgrade_points >= real_bullet_upgrades.cost
+                    && real_bullet_upgrades.available === 1
+                    ? 'green'
+                    : 'red'}
+                  onClick={() => act('Buy Upgrade', {
+                    selected_upgrade: real_bullet_upgrades.ref,
+                  })} />
+                <Button
+                  content={"Info"}
+                  color={"blue"}
+                  onClick={() => act('Info', {
+                    selected_upgrade: real_bullet_upgrades.ref,
+                  })} />
+              </>
+            } />
+          ))}
+      </LabeledList>
+    </>
   );
 };
 
@@ -575,33 +582,41 @@ const AbnormalityUpgrades = (props, context) => {
   }
 
   return (
-    <><Box textColor="blue" mt="1em" fontSize="20px" nowrap>
-      Available facility upgrades:
-    </Box><LabeledList>
+    <>
+      <Box textColor="blue" mt="1em" fontSize="20px" nowrap>
+        Available facility upgrades:
+      </Box>
+      <LabeledList>
         {abnormality_upgrades.map(abnormality_upgrades => (
           <LabeledList.Item
             key={abnormality_upgrades.name}
             label={abnormality_upgrades.name}
-            buttons={<><Button
-              content={abnormality_upgrades.available === 1
-                ? 'Purchase the facility upgrade for '
-                + abnormality_upgrades.cost
-                + ' LOB points'
-                : 'UPGRADE PURCHASED'}
-              color={Upgrade_points >= abnormality_upgrades.cost
-                && abnormality_upgrades.available === 1
-                ? 'green'
-                : 'red'}
-              onClick={() => act('Buy Upgrade', {
-                selected_upgrade: abnormality_upgrades.ref,
-              })} /><Button
-                content={"Info"}
-                color={"blue"}
-                onClick={() => act('Info', {
-                  selected_upgrade: abnormality_upgrades.ref,
-                })} /></>} />
-        ))}
-      </LabeledList></>
+            buttons={
+              <>
+                <Button
+                  content={abnormality_upgrades.available === 1
+                    ? 'Purchase the upgrade for '
+                    + abnormality_upgrades.cost
+                    + ' LOB points'
+                    : 'UPGRADE PURCHASED'}
+                  color={Upgrade_points >= abnormality_upgrades.cost
+                    && abnormality_upgrades.available === 1
+                    ? 'green'
+                    : 'red'}
+                  onClick={() => act('Buy Upgrade', {
+                    selected_upgrade: abnormality_upgrades.ref,
+                  })} />
+                <Button
+                  content={"Info"}
+                  color={"blue"}
+                  onClick={() => act('Info', {
+                    selected_upgrade: abnormality_upgrades.ref,
+                  })} />
+              </>
+            } />
+          ))}
+      </LabeledList>
+    </>
   );
 };
 
@@ -614,75 +629,90 @@ const Lvl1Upgrades = (props, context) => {
   }
 
   return (
-    <><Box textColor="blue" mt="1em" fontSize="20px" nowrap>
-      Available higher-Up specialization tier 1 upgrades:
-    </Box><LabeledList>
+    <>
+      <Box textColor="blue" mt="1em" fontSize="20px" nowrap>
+        Available specialization tier 1 upgrades:
+      </Box>
+      <LabeledList>
         {lvl1_upgrades.map(lvl1_upgrades => (
           <LabeledList.Item
             key={lvl1_upgrades.name}
             label={lvl1_upgrades.name}
-            buttons={<><Button
-              content={lvl1_upgrades.available === 1
-                ? 'Purchase the upgrade for '
-                + lvl1_upgrades.cost
-                + ' LOB points'
-                : 'UPGRADE PURCHASED'}
-              color={Upgrade_points >= lvl1_upgrades.cost
-                && lvl1_upgrades.available === 1
-                ? 'green'
-                : 'red'}
-              onClick={() => act('Buy Upgrade', {
-                selected_upgrade: lvl1_upgrades.ref,
-              })} /><Button
-                content={"Info"}
-                color={"blue"}
-                onClick={() => act('Info', {
-                  selected_upgrade: lvl1_upgrades.ref,
-                })} /></>} />
-        ))}
-      </LabeledList></>
+            buttons={
+              <>
+                <Button
+                  content={lvl1_upgrades.available === 1
+                    ? 'Purchase the upgrade for '
+                    + lvl1_upgrades.cost
+                    + ' LOB points'
+                    : 'UPGRADE PURCHASED'}
+                  color={Upgrade_points >= lvl1_upgrades.cost
+                    && lvl1_upgrades.available === 1
+                    ? 'green'
+                    : 'red'}
+                  onClick={() => act('Buy Upgrade', {
+                    selected_upgrade: lvl1_upgrades.ref,
+                  })} />
+                <Button
+                  content={"Info"}
+                  color={"blue"}
+                  onClick={() => act('Info', {
+                    selected_upgrade: lvl1_upgrades.ref,
+                  })} />
+              </>
+            } />
+          ))}
+      </LabeledList>
+    </>
   );
 };
 
 const Lvl2Upgrades = (props, context) => {
   const { act, data } = useBackend(context);
-  const { Upgrade_points, lvl2_upgrades } = data;
+  const { Upgrade_points, misc_upgrades } = data;
 
-  if (lvl2_upgrades.length < 1) {
+  if (misc_upgrades.length < 1) {
     return;
   }
 
   return (
-    <><Box textColor="blue" mt="1em" fontSize="20px" nowrap>
-      Available higher-Up specialization tier 2 upgrades:
-    </Box><LabeledList>
-        {lvl2_upgrades.map(lvl2_upgrades => (
+    <>
+      <Box textColor="blue" mt="1em" fontSize="20px" nowrap>
+        Available uncategorized upgrades:
+      </Box>
+      <LabeledList>
+        {misc_upgrades.map(misc_upgrades => (
           <LabeledList.Item
-            key={lvl2_upgrades.name}
-            label={lvl2_upgrades.name}
-            buttons={<><Button
-              content={lvl2_upgrades.available === 1
-                ? 'Purchase the upgrade for '
-                + lvl2_upgrades.cost
-                + ' LOB points'
-                : 'UPGRADE PURCHASED'}
-              color={Upgrade_points >= lvl2_upgrades.cost
-                && lvl2_upgrades.available === 1
-                ? 'green'
-                : 'red'}
-              onClick={() => act('Buy Upgrade', {
-                selected_upgrade: lvl2_upgrades.ref,
-              })} /><Button
-                content={"Info"}
-                color={"blue"}
-                onClick={() => act('Info', {
-                  selected_upgrade: lvl2_upgrades.ref,
-                })} /></>} />
-        ))}
-      </LabeledList></>
+            key={misc_upgrades.name}
+            label={misc_upgrades.name}
+            buttons={
+              <>
+                <Button
+                  content={misc_upgrades.available === 1
+                    ? 'Purchase the upgrade for '
+                    + misc_upgrades.cost
+                    + ' LOB points'
+                    : 'UPGRADE PURCHASED'}
+                  color={Upgrade_points >= misc_upgrades.cost
+                    && misc_upgrades.available === 1
+                    ? 'green'
+                    : 'red'}
+                  onClick={() => act('Buy Upgrade', {
+                    selected_upgrade: misc_upgrades.ref,
+                  })} />
+                <Button
+                  content={"Info"}
+                  color={"blue"}
+                  onClick={() => act('Info', {
+                    selected_upgrade: misc_upgrades.ref,
+                  })} />
+              </>
+            } />
+          ))}
+      </LabeledList>
+    </>
   );
 };
-
 
 const MiscUpgrades = (props, context) => {
   const { act, data } = useBackend(context);
@@ -693,33 +723,41 @@ const MiscUpgrades = (props, context) => {
   }
 
   return (
-    <><Box textColor="blue" mt="1em" fontSize="20px" nowrap>
-      Available uncategorized upgrades:
-    </Box><LabeledList>
+    <>
+      <Box textColor="blue" mt="1em" fontSize="20px" nowrap>
+        Available uncategorized upgrades:
+      </Box>
+      <LabeledList>
         {misc_upgrades.map(misc_upgrades => (
           <LabeledList.Item
             key={misc_upgrades.name}
             label={misc_upgrades.name}
-            buttons={<><Button
-              content={misc_upgrades.available === 1
-                ? 'Purchase the upgrade for '
-                + misc_upgrades.cost
-                + ' LOB points'
-                : 'UPGRADE PURCHASED'}
-              color={Upgrade_points >= misc_upgrades.cost
-                && misc_upgrades.available === 1
-                ? 'green'
-                : 'red'}
-              onClick={() => act('Buy Upgrade', {
-                selected_upgrade: misc_upgrades.ref,
-              })} /><Button
-                content={"Info"}
-                color={"blue"}
-                onClick={() => act('Info', {
-                  selected_upgrade: misc_upgrades.ref,
-                })} /></>} />
-        ))}
-      </LabeledList></>
+            buttons={
+              <>
+                <Button
+                  content={misc_upgrades.available === 1
+                    ? 'Purchase the upgrade for '
+                    + misc_upgrades.cost
+                    + ' LOB points'
+                    : 'UPGRADE PURCHASED'}
+                  color={Upgrade_points >= misc_upgrades.cost
+                    && misc_upgrades.available === 1
+                    ? 'green'
+                    : 'red'}
+                  onClick={() => act('Buy Upgrade', {
+                    selected_upgrade: misc_upgrades.ref,
+                  })} />
+                <Button
+                  content={"Info"}
+                  color={"blue"}
+                  onClick={() => act('Info', {
+                    selected_upgrade: misc_upgrades.ref,
+                  })} />
+              </>
+            } />
+          ))}
+      </LabeledList>
+    </>
   );
 };
 
