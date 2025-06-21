@@ -23,9 +23,11 @@
 		to_chat(user, span_warning("Only EGO is accepted by the machine."))
 		playsound(get_turf(src), 'sound/machines/terminal_prompt_deny.ogg', 50, TRUE)
 		return
-
+	var/fail_chance = 50
+	if (GetFacilityUpgradeValue(UPGRADE_EXTRACTION_1))
+		fail_chance = 30
 	qdel(I)
-	if(prob(50))
+	if(prob(fail_chance))
 		playsound(get_turf(src), 'sound/machines/terminal_prompt_deny.ogg', 50, TRUE)
 		to_chat(user, span_warning("Refining failure. Please try again."))
 		return

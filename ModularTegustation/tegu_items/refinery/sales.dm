@@ -34,6 +34,9 @@
 		to_chat(user, span_notice("You need to refine this first!."))
 
 	else if(istype(I, /obj/item/refinedpe) && !generating)
+		if (GetFacilityUpgradeValue(UPGRADE_EXTRACTION_2))
+			power_timer = round(initial(power_timer) * 0.5)
+			crate_timer = round(initial(crate_timer) * 0.5)
 		generating = TRUE
 		to_chat(user, span_notice("You load PE into the machine."))
 		qdel(I)
