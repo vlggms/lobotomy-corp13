@@ -520,7 +520,7 @@ const BulletUpgrades = (props, context) => {
                   })} />
               </>
             } />
-          ))}
+        ))}
       </LabeledList>
     </>
   );
@@ -567,7 +567,7 @@ const MoreBulletUpgrades = (props, context) => {
                   })} />
               </>
             } />
-          ))}
+        ))}
       </LabeledList>
     </>
   );
@@ -614,7 +614,7 @@ const AbnormalityUpgrades = (props, context) => {
                   })} />
               </>
             } />
-          ))}
+        ))}
       </LabeledList>
     </>
   );
@@ -661,7 +661,7 @@ const Lvl1Upgrades = (props, context) => {
                   })} />
               </>
             } />
-          ))}
+        ))}
       </LabeledList>
     </>
   );
@@ -708,7 +708,7 @@ const Lvl2Upgrades = (props, context) => {
                   })} />
               </>
             } />
-          ))}
+        ))}
       </LabeledList>
     </>
   );
@@ -755,7 +755,7 @@ const MiscUpgrades = (props, context) => {
                   })} />
               </>
             } />
-          ))}
+        ))}
       </LabeledList>
     </>
   );
