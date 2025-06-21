@@ -488,7 +488,7 @@ const BulletUpgrades = (props, context) => {
   }
 
   return (
-      <><Box textColor="blue" mt="1em" fontSize="20px" nowrap>
+    <><Box textColor="blue" mt="1em" fontSize="20px" nowrap>
       Available bullet upgrades:
     </Box><LabeledList>
         {bullet_upgrades.map(bullet_upgrades => (
@@ -567,7 +567,7 @@ const AbnormalityUpgrades = (props, context) => {
   }
 
   return (
-        <><Box textColor="blue" mt="1em" fontSize="20px" nowrap>
+    <><Box textColor="blue" mt="1em" fontSize="20px" nowrap>
       Available facility upgrades:
     </Box><LabeledList>
         {abnormality_upgrades.map(abnormality_upgrades => (
@@ -606,7 +606,7 @@ const Lvl1Upgrades = (props, context) => {
   }
 
   return (
-      <><Box textColor="blue" mt="1em" fontSize="20px" nowrap>
+    <><Box textColor="blue" mt="1em" fontSize="20px" nowrap>
       Available higher-Up specialization tier 1 upgrades:
     </Box><LabeledList>
         {lvl1_upgrades.map(lvl1_upgrades => (
@@ -645,7 +645,7 @@ const Lvl2Upgrades = (props, context) => {
   }
 
   return (
-      <><Box textColor="blue" mt="1em" fontSize="20px" nowrap>
+    <><Box textColor="blue" mt="1em" fontSize="20px" nowrap>
       Available higher-Up specialization tier 2 upgrades:
     </Box><LabeledList>
         {lvl2_upgrades.map(lvl2_upgrades => (
@@ -685,7 +685,7 @@ const MiscUpgrades = (props, context) => {
   }
 
   return (
-      <><Box textColor="blue" mt="1em" fontSize="20px" nowrap>
+    <><Box textColor="blue" mt="1em" fontSize="20px" nowrap>
       Available uncategorized upgrades:
     </Box><LabeledList>
         {misc_upgrades.map(misc_upgrades => (
