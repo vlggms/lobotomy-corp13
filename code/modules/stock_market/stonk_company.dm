@@ -7,8 +7,8 @@
 	var/name
 	var/desc = "An upstart company formed from a group of \"reformed\" rats from the backstreets."
 	var/product = "Scrap & Guts"
-	var/current_value = 10
-	var/last_value = 10
+	var/current_value = 100
+	var/last_value = 100
 
 	// The current performance of the company. Tends itself to 0 when no events happen.
 	var/performance = 0
@@ -40,7 +40,7 @@
 	var/optimism = 0
 	var/last_unification = 0
 	var/average_shares = 100
-	var/outside_shareholders = 10
+	var/outside_shareholders = 5
 	var/available_shares = 100
 	var/fluctuation_rate = 15
 	var/fluctuation_counter = 0
@@ -56,7 +56,8 @@
 		current_value = company_value
 		values = list(company_value)
 	else
-		current_value = rand(10, 100)
+		//Gimme a value that is 10% to 100% of default value.
+		current_value = current_value * rand(0.1, 1)
 	if(company_desc)
 		desc = company_desc
 
@@ -176,8 +177,9 @@
 /datum/stonk_company/proc/Bankrupt()
 	bankrupt = TRUE
 	optimism = 0
+	current_value = 25
 	average_shares = 100
-	outside_shareholders = 10
+	outside_shareholders = 5
 	available_shares = 100
 	shareholders = list()
 
@@ -306,7 +308,7 @@
 		values.Cut(1,2)
 	values += current_value
 
-	if (current_value < 10)
+	if (current_value < 10 && last_unification < world.time + (30 SECONDS))
 		unifyShares()
 
 	last_trend = current_trend
