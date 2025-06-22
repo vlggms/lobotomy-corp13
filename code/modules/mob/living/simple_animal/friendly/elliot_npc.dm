@@ -139,7 +139,7 @@
 /mob/living/simple_animal/hostile/ui_npc/elliot/proc/give_hint(list/messages, list/delays = null)
 	if(!delays)
 		delays = list(30, 25) // default delays between messages
-	
+
 	for(var/i = 1 to messages.len)
 		say(messages[i])
 		if(i < messages.len && i <= delays.len)
@@ -396,7 +396,7 @@
 		"entered_boss_room",
 		PROC_REF(boss_alert)
 	)
-	
+
 	check_and_trigger_alert(
 		istype(new_area, /area/city/backstreets_room/temple_motus/treasure_entrance),
 		"pre_boss_alert",
@@ -594,18 +594,6 @@
 						list(
 							"expression" = "player.area = \"Temple Storage\"",
 							"scene" = "temple_storage"
-						),
-						list(
-							"expression" = "player.area = \"Temple Treasure Hallway\"",
-							"scene" = "temple_treasure_hallway"
-						),
-						list(
-							"expression" = "player.area = \"Temple Treasure Entrance\"",
-							"scene" = "temple_treasure_entrance"
-						),
-						list(
-							"expression" = "player.area = \"Temple Treasure Room\"",
-							"scene" = "temple_treasure_room"
 						),
 						list(
 							"expression" = "player.area = \"Temple Medbay\"",
@@ -1181,37 +1169,7 @@
 		),
 
 		"temple_storage" = list(
-			"text" = "Oh, Sorry for my incompetence but I lack any knowledge of this area.",
-			"actions" = list(
-				"..." = list(
-					"text" = "...",
-					"default_scene" = "main_screen"
-				)
-			)
-		),
-
-		"temple_treasure_hallway" = list(
-			"text" = "Oh, Sorry for my incompetence but I lack any knowledge of this area.",
-			"actions" = list(
-				"..." = list(
-					"text" = "...",
-					"default_scene" = "main_screen"
-				)
-			)
-		),
-
-		"temple_treasure_entrance" = list(
-			"text" = "Oh, Sorry for my incompetence but I lack any knowledge of this area.",
-			"actions" = list(
-				"..." = list(
-					"text" = "...",
-					"default_scene" = "main_screen"
-				)
-			)
-		),
-
-		"temple_treasure_room" = list(
-			"text" = "Oh, Sorry for my incompetence but I lack any knowledge of this area.",
+			"text" = "Well, This appears to be a simple storage area of this temple. To store their supplies for what ever they were doing in here...",
 			"actions" = list(
 				"..." = list(
 					"text" = "...",
