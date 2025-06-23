@@ -138,7 +138,7 @@
 /obj/projectile/ego_bullet/citythumb
 	damage = 30
 	damage_type = RED_DAMAGE
-	armour_penetration = 100 //True Damage. Ignore armor
+	armour_penetration = 50 //50% True Damage. Ignores 50% of armor
 	ignore_bulletproof = TRUE
 
 //Capo
