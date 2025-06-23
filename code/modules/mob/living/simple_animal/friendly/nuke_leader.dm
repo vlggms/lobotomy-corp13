@@ -548,7 +548,7 @@
 				
 				// Award achievement for completing the quest
 				if(L.client)
-					L.client.give_award(/datum/award/achievement/lc13/rat_leader_quest, L)
+					L.client.give_award(/datum/award/achievement/lc13/city/rat_leader_quest, L)
 				
 				return TRUE
 	return FALSE

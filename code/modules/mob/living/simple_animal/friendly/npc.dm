@@ -147,7 +147,7 @@
 /mob/living/simple_animal/npc/tinkerer/proc/AwardTinkererAchievement()
 	for(var/mob/living/carbon/human/L in livinginview(5, src))
 		if(L.ckey && L.client)
-			L.client.give_award(/datum/award/achievement/lc13/tinkerer_encounter, L)
+			L.client.give_award(/datum/award/achievement/lc13/city/tinkerer_encounter, L)
 
 /mob/living/simple_animal/npc/tinkerer/Move()
 	return FALSE
@@ -180,7 +180,7 @@
 /mob/living/simple_animal/npc/tinkerer_speech/proc/AwardTinkererAchievement()
 	for(var/mob/living/carbon/human/L in view(5, src))
 		if(L.ckey && L.client)
-			L.client.give_award(/datum/award/achievement/lc13/tinkerer_encounter, L)
+			L.client.give_award(/datum/award/achievement/lc13/city/tinkerer_encounter, L)
 
 /mob/living/simple_animal/npc/tinkerer_speech/Move()
 	return FALSE

@@ -85,7 +85,7 @@
 		// Award achievement to all players who participated in killing clan NPCs
 		for(var/mob/living/L in GLOB.clan_npc_killers)
 			if(L.client)
-				L.client.give_award(/datum/award/achievement/lc13/clan_genocide, L)
+				L.client.give_award(/datum/award/achievement/lc13/city/clan_genocide, L)
 		// Clear the killers list after awarding
 		GLOB.clan_npc_killers.Cut()
 

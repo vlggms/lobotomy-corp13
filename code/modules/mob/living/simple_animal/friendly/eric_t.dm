@@ -700,7 +700,7 @@
 		var/mob/living/L = usr
 		new /obj/item/quest_ticket (get_turf(L))
 		if(L.client)
-			L.client.give_award(/datum/award/achievement/lc13/eric_quest_accept, L)
+			L.client.give_award(/datum/award/achievement/lc13/city/eric_quest_accept, L)
 		for(var/obj/machinery/computer/communications/C in GLOB.machines)
 			if(!(C.machine_stat & (BROKEN|NOPOWER)) && is_station_level(C.z))
 				C.say(L.name + " has accepted the 'Dilapidated Town', breifcase retrieval contract.")
@@ -737,7 +737,7 @@
 				new /obj/item/stack/spacecash/c1000 (get_turf(L))
 				playsound(get_turf(src), 'sound/effects/cashregister.ogg', 35, 3, 3)
 				if(L.client)
-					L.client.give_award(/datum/award/achievement/lc13/eric_quest_complete, L)
+					L.client.give_award(/datum/award/achievement/lc13/city/eric_quest_complete, L)
 				for(var/obj/machinery/computer/communications/C in GLOB.machines)
 					if(!(C.machine_stat & (BROKEN|NOPOWER)) && is_station_level(C.z))
 						C.say(L.name + " has completed the 'Dilapidated Town', breifcase retrieval contract. Remember this for their grading.")
@@ -825,7 +825,7 @@
 
 	var/parcels = scene_manager.get_var(usr, "player.collected_parcels")
 	if(parcels >= 10)
-		usr.client.give_award(/datum/award/achievement/lc13/parcel_delivery, usr)
+		usr.client.give_award(/datum/award/achievement/lc13/city/parcel_delivery, usr)
 
 // The briefcase item remains the same
 /obj/item/eric_briefcase

@@ -201,7 +201,7 @@ GLOBAL_LIST_EMPTY(marked_players)
 			// Award achievement to all players who participated in killing nuke rats
 			for(var/mob/living/L in GLOB.nuke_rats_killers)
 				if(L.client)
-					L.client.give_award(/datum/award/achievement/lc13/nuke_rats_genocide, L)
+					L.client.give_award(/datum/award/achievement/lc13/city/nuke_rats_genocide, L)
 			// Clear the killers list after awarding
 			GLOB.nuke_rats_killers.Cut()
 	

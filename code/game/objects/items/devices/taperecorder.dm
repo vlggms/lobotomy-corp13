@@ -197,7 +197,7 @@
 	playsound(src, 'sound/items/taperecorder/taperecorder_play.ogg', 50, FALSE)
 	// Award achievement for resurgence tapes
 	if(istype(mytape, /obj/item/tape/resurgence) && usr.client)
-		usr.client.give_award(/datum/award/achievement/lc13/resurgence_tape, usr)
+		usr.client.give_award(/datum/award/achievement/lc13/city/resurgence_tape, usr)
 	var/used = mytape.used_capacity	//to stop runtimes when you eject the tape
 	var/max = mytape.max_capacity
 	for(var/i = 1, used <= max, sleep(10 * playsleepseconds))
