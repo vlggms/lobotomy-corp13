@@ -631,7 +631,7 @@ const Lvl1Upgrades = (props, context) => {
   return (
     <>
       <Box textColor="blue" mt="1em" fontSize="20px" nowrap>
-        Available specialization tier 1 upgrades:
+        Available tier 1 specialization upgrades:
       </Box>
       <LabeledList>
         {lvl1_upgrades.map(lvl1_upgrades => (
@@ -669,42 +669,42 @@ const Lvl1Upgrades = (props, context) => {
 
 const Lvl2Upgrades = (props, context) => {
   const { act, data } = useBackend(context);
-  const { Upgrade_points, misc_upgrades } = data;
+  const { Upgrade_points, lvl2_upgrades } = data;
 
-  if (misc_upgrades.length < 1) {
+  if (lvl2_upgrades.length < 1) {
     return;
   }
 
   return (
     <>
       <Box textColor="blue" mt="1em" fontSize="20px" nowrap>
-        Available uncategorized upgrades:
+        Available tier 2 specialization upgrades:
       </Box>
       <LabeledList>
-        {misc_upgrades.map(misc_upgrades => (
+        {lvl2_upgrades.map(lvl2_upgrades => (
           <LabeledList.Item
-            key={misc_upgrades.name}
-            label={misc_upgrades.name}
+            key={lvl2_upgrades.name}
+            label={lvl2_upgrades.name}
             buttons={
               <>
                 <Button
-                  content={misc_upgrades.available === 1
+                  content={lvl2_upgrades.available === 1
                     ? 'Purchase the upgrade for '
-                    + misc_upgrades.cost
+                    + lvl2_upgrades.cost
                     + ' LOB points'
                     : 'UPGRADE PURCHASED'}
-                  color={Upgrade_points >= misc_upgrades.cost
-                    && misc_upgrades.available === 1
+                  color={Upgrade_points >= lvl2_upgrades.cost
+                    && lvl2_upgrades.available === 1
                     ? 'green'
                     : 'red'}
                   onClick={() => act('Buy Upgrade', {
-                    selected_upgrade: misc_upgrades.ref,
+                    selected_upgrade: lvl2_upgrades.ref,
                   })} />
                 <Button
                   content={"Info"}
                   color={"blue"}
                   onClick={() => act('Info', {
-                    selected_upgrade: misc_upgrades.ref,
+                    selected_upgrade: lvl2_upgrades.ref,
                   })} />
               </>
             } />

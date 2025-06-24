@@ -218,16 +218,16 @@
 /datum/facility_upgrade/regnenerator_healing
 	name = UPGRADE_REGENERATOR_HEALING
 	category = "Facility"
-	cost = 0.5
+	cost = 2
 	value = 1
-	max_value = 1.75
-	var/value_increase = 0.25
-	info = " - This upgrade inceases the healing multiplier of <b>Regenerators</b> by +25% per upgrade."
+	max_value = 1.6
+	var/value_increase = 0.2
+	info = " - This upgrade inceases the healing multiplier of <b>Regenerators</b> by +20% per upgrade."
 
 /datum/facility_upgrade/regnenerator_healing/Upgrade()
 	value = min(max_value, value + value_increase)
 	. = ..()
-	cost += 1.5
+	cost += 1
 /datum/facility_upgrade/regnenerator_healing/DisplayValue()
 	return "[value] times"
 
