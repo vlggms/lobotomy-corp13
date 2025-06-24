@@ -57,7 +57,7 @@
 	if (owner.stat == DEAD)
 		return FALSE
 
-	new /obj/structure/marker_beacon (get_turf(src))
+	new /obj/structure/marker_beacon (get_turf(owner))
 	StartCooldown()
 
 
@@ -84,7 +84,7 @@
 	if (owner.stat == DEAD)
 		return FALSE
 
-	var/obj/item/flashlight/flare/F = new (get_turf(src))
+	var/obj/item/flashlight/flare/F = new (get_turf(owner))
 	F.attack_self(owner)
 	StartCooldown()
 
