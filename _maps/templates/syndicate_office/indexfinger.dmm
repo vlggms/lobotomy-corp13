@@ -1278,11 +1278,6 @@
 	pixel_x = -9;
 	pixel_y = 4
 	},
-/obj/item/ego_weapon/city/bladelineage{
-	name = "prestigious blade lineage katana";
-	desc = "This blade shimmers in city light despite its bloody past. Claim their lives swordman.";
-	force = 50
-	},
 /obj/item/stack/spacecash/c10000,
 /turf/open/floor/mineral/titanium/tiled/white,
 /area/city/backstreets_room)
