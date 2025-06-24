@@ -18,6 +18,11 @@
 	var/pulse_heal = 10
 	var/pulse_damage = 20
 
+	ego_list = list(
+		/datum/ego_datum/weapon/philia,
+		/datum/ego_datum/armor/philia,
+	)
+
 /obj/structure/toolabnormality/theresia/attack_hand(mob/user) //defines activator as user.
 	if(activation_cooldown > world.time)
 		to_chat(user, span_warning("You cannot [activated ? "stop" : "start"] \the [src] just yet!"))

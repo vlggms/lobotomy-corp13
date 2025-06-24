@@ -4,6 +4,11 @@
 	icon_state = "promise"
 	var/processing = FALSE
 
+	ego_list = list(
+		/datum/ego_datum/weapon/promise,
+		/datum/ego_datum/armor/promise,
+	)
+
 /obj/structure/toolabnormality/promise/attackby(obj/item/I, mob/living/carbon/human/user)
 	. = ..()
 	if(!do_after(user, 0.5 SECONDS))

@@ -1800,12 +1800,11 @@
 	damtype = RED_DAMAGE
 	attack_verb_continuous = list("punches", "slaps", "scratches")
 	attack_verb_simple = list("punch", "slap", "scratch")
-	hitsound = 'sound/effects/hit_kick.ogg'
+	hitsound = 'sound/weapons/fixer/generic/knife2.ogg'
 	attribute_requirements = list(
 							FORTITUDE_ATTRIBUTE = 60,
 							PRUDENCE_ATTRIBUTE = 60
 							)
-	var/list/attack_styles = list("red", "white", "black")
 	var/chosen_style
 	var/transformed = FALSE
 
@@ -1813,41 +1812,68 @@
 	. = ..()
 	AddElement(/datum/element/update_icon_updates_onmob)
 
+/obj/item/ego_weapon/hyde/get_clamped_volume()
+	return 40
+
+/obj/item/ego_weapon/hyde/proc/Transform(mob/living/carbon/human/user)
+	user.emote("scream")
+	playsound(get_turf(src),'sound/effects/limbus_death.ogg', 75, 1)//YEOWCH!
+	icon_state = ("hyde_" + chosen_style)
+	update_icon_state()
+	force = 42
+	switch(chosen_style)
+		if("red")
+			user.apply_damage(50, RED_DAMAGE, null, user.run_armor_check(null, RED_DAMAGE), spread_damage = TRUE)
+			damtype = RED_DAMAGE
+			to_chat(user, span_notice("Your bones are painfully sculpted to fit a muscular claw."))
+			hitsound = 'sound/weapons/bladeslice.ogg'
+		if("white")
+			user.apply_damage(50, WHITE_DAMAGE, null, user.run_armor_check(null, WHITE_DAMAGE), spread_damage = TRUE)
+			damtype = WHITE_DAMAGE
+			to_chat(user, span_notice("Your angst is plastered onto your arm."))
+			hitsound = 'sound/effects/hit_kick.ogg'
+		if("black")
+			user.apply_damage(50, BLACK_DAMAGE, null, user.run_armor_check(null, BLACK_DAMAGE), spread_damage = TRUE)
+			damtype = BLACK_DAMAGE
+			to_chat(user, span_notice("Bristles are painfully ejected from your arm, filled with hate."))
+			hitsound = 'sound/weapons/ego/spear1.ogg'
+	ADD_TRAIT(src, TRAIT_NODROP, HAND_REPLACEMENT_TRAIT)
+	user.update_inv_hands()
+	transformed = TRUE
+	addtimer(CALLBACK(src, PROC_REF(ResetTimer), user), 600)
+
 /obj/item/ego_weapon/hyde/attack_self(mob/living/carbon/human/user)
 	if(transformed)
 		return
 	if(!CanUseEgo(user))
 		return
-	chosen_style = input(user, "Which syringe will you use?") as null|anything in attack_styles
-	if(!chosen_style)
+	SwitchForm(user)
+
+// Radial menu
+/obj/item/ego_weapon/hyde/proc/CheckMenu(mob/living/carbon/human/user)
+	if(!istype(user))
+		return FALSE
+	if(QDELETED(src))
+		return FALSE
+	if(user.incapacitated() || !user.is_holding(src))
+		return FALSE
+	return TRUE
+
+/obj/item/ego_weapon/hyde/proc/SwitchForm(mob/living/carbon/human/user)
+	var/list/armament_icons = list(
+		"red" = image(icon = 'icons/obj/ego_weapons.dmi', icon_state = "hyde_red_indicator"),
+		"white"  = image(icon = 'icons/obj/ego_weapons.dmi', icon_state = "hyde_white_indicator"),
+		"black"  = image(icon = 'icons/obj/ego_weapons.dmi', icon_state = "hyde_black_indicator"),
+	)
+	armament_icons = sortList(armament_icons)
+	var/choice = show_radial_menu(user, src , armament_icons, custom_check = CALLBACK(src, PROC_REF(CheckMenu), user), radius = 42, require_near = TRUE)
+	if(!choice || !CheckMenu(user))
 		return
 	if(do_after(user, 10, src, IGNORE_USER_LOC_CHANGE))
-		user.emote("scream")
-		playsound(get_turf(src),'sound/effects/limbus_death.ogg', 75, 1)//YEOWCH!
-		icon_state = ("hyde_" + chosen_style)
-		force = 42
-		switch(chosen_style)
-			if("red")
-				user.apply_damage(50, RED_DAMAGE, null, user.run_armor_check(null, RED_DAMAGE), spread_damage = TRUE)
-				damtype = RED_DAMAGE
-				to_chat(user, span_notice("Your bones are painfully sculpted to fit a muscular claw."))
-				hitsound = 'sound/weapons/bladeslice.ogg'
-			if("white")
-				user.apply_damage(50, WHITE_DAMAGE, null, user.run_armor_check(null, WHITE_DAMAGE), spread_damage = TRUE)
-				damtype = WHITE_DAMAGE
-				to_chat(user, span_notice("Your angst is plastered onto your arm."))
-			if("black")
-				user.apply_damage(50, BLACK_DAMAGE, null, user.run_armor_check(null, BLACK_DAMAGE), spread_damage = TRUE)
-				damtype = BLACK_DAMAGE
-				to_chat(user, span_notice("Bristles are painfully ejected from your arm, filled with hate."))
-				hitsound = 'sound/weapons/ego/spear1.ogg'
-		ADD_TRAIT(src, TRAIT_NODROP, null)
-		user.update_inv_hands()
-		transformed = TRUE
-		addtimer(CALLBACK(src, PROC_REF(Reset_Timer)), 600)
-	return
+		chosen_style = choice
+		Transform(user)
 
-/obj/item/ego_weapon/hyde/proc/Reset_Timer(mob/living/carbon/human/user)
+/obj/item/ego_weapon/hyde/proc/ResetTimer(mob/living/carbon/human/user)
 	if(!transformed)
 		return
 	icon_state = "hyde"
@@ -1855,10 +1881,11 @@
 	hitsound = initial(hitsound)
 	damtype = initial(damtype)
 	transformed = FALSE
-	REMOVE_TRAIT(src, TRAIT_NODROP, null)
+	REMOVE_TRAIT(src, TRAIT_NODROP, HAND_REPLACEMENT_TRAIT)
 	if(user)
 		user.update_inv_hands()
 		to_chat(user, span_notice("Your arm returns to normal."))
+		playsound(get_turf(src),'sound/effects/attackblob.ogg', 75, 1)
 
 /obj/item/ego_weapon/hyde/on_thrown(mob/living/carbon/user, atom/target)//you can't throw it. bleh
 	if(transformed)

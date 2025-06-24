@@ -190,15 +190,6 @@ Any attempt to code risk class armor will result in a 10 day Github ban.*/
 	attribute_requirements = list(
 							TEMPERANCE_ATTRIBUTE = 80)
 
-/obj/item/clothing/suit/armor/ego_gear/waw/throne
-	name = "false throne"
-	desc = "And here I sit upon a throne of lies."
-	icon_state = "throne"
-	armor = list(RED_DAMAGE = 30, WHITE_DAMAGE = 0, BLACK_DAMAGE = 40, PALE_DAMAGE = 70)
-	attribute_requirements = list(
-							PRUDENCE_ATTRIBUTE = 60,
-							JUSTICE_ATTRIBUTE = 60)
-
 /obj/item/clothing/suit/armor/ego_gear/waw/intentions
 	name = "good intentions"
 	desc = "All aboard!"

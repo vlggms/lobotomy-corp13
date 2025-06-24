@@ -99,7 +99,7 @@
 
 /obj/item/ego_weapon/support/wingbeat
 	name = "wingbeat"
-	desc = "If NAME can show that they are competent, then they may be able to draw Fairy Festival’s attention.."
+	desc = "If an agent can show that they are competent, then they may be able to draw Fairy Festival’s attention.."
 	icon_state = "wingbeat"
 	special = "Use this weapon in your hand when wearing matching armor to heal the HP of others nearby."
 	force = 14
@@ -437,3 +437,33 @@
 	if(T.target == user)
 		T.LoseTarget()
 		T.visible_message(span_nicegreen("[T] lost interest in [user]!"))
+
+/obj/item/ego_weapon/promise
+	name = "belief and promise"
+	desc = "If you make an attempt with an austere heart devoid of desire or expectation, you may receive an unexpected reward."
+	icon_state = "promise"
+	force = 14
+	throwforce = 25
+	damtype = WHITE_DAMAGE
+	attack_verb_continuous = list("slices", "slashes", "stabs")
+	attack_verb_simple = list("slice", "slash", "stab")
+	hitsound = 'sound/weapons/bladeslice.ogg'
+
+/obj/item/ego_weapon/promise/throw_impact(atom/hit_atom, datum/thrownthing/throwingdatum)
+	var/caught = hit_atom.hitby(src, FALSE, FALSE, throwingdatum=throwingdatum)
+	if(thrownby && !caught)
+		addtimer(CALLBACK(src, TYPE_PROC_REF(/atom/movable, throw_at), thrownby, throw_range+2, throw_speed, null, TRUE), 1)
+	if(caught)
+		return
+	else
+		return ..()
+
+/obj/item/ego_weapon/mirror
+	name = "mirror"
+	desc = "Those who face themselves in the mirror may appear the same, but in actuality, they have become completely different people."
+	icon_state = "mirror"
+	force = 14
+	damtype = WHITE_DAMAGE
+	attack_verb_continuous = list("slices", "slashes", "stabs")
+	attack_verb_simple = list("slice", "slash", "stab")
+	hitsound = 'sound/weapons/fixer/generic/wcorp4.ogg'
