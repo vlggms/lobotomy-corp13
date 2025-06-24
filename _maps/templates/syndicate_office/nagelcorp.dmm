@@ -3,18 +3,6 @@
 /obj/item/flashlight/flare/torch,
 /turf/open/floor/stone,
 /area/city/backstreets_room)
-"ee" = (
-/obj/effect/decal/cleanable/blood/tracks{
-	dir = 8
-	},
-/obj/effect/decal/cleanable/blood/tracks{
-	dir = 10
-	},
-/obj/effect/decal/cleanable/oil,
-/turf/open/floor/plasteel/stairs{
-	dir = 4
-	},
-/area/city/backstreets_room)
 "et" = (
 /obj/item/food/canned/pcorp,
 /obj/item/food/canned/pcorp,
@@ -62,20 +50,6 @@
 	name = "crucifixion spike";
 	density = 0
 	},
-/obj/structure/barricade/wooden/crude{
-	density = 0;
-	pixel_y = -32
-	},
-/obj/structure/barricade/wooden{
-	density = 0;
-	name = "wooden scaffold";
-	desc = "despite its appearance its sturdy. Surpringly, it can hold a whole adult weigh confortably.";
-	pixel_y = -32
-	},
-/obj/structure/barricade/wooden/crude{
-	density = 0;
-	pixel_y = -32
-	},
 /turf/open/floor/stone,
 /area/city/backstreets_room)
 "gr" = (
@@ -107,44 +81,12 @@
 /obj/item/flashlight/flare/torch,
 /turf/open/floor/wood,
 /area/city/backstreets_room)
-"hA" = (
-/obj/structure/barricade/wooden/crude{
-	density = 0;
-	name = "crude plank bridge";
-	desc = "haphazard is the first thought when crossing such planks. Fret not, they have proven trustworthy many treks to and fro"
-	},
-/turf/open/water/deep/saltwater/safe{
-	color = "GREEN"
-	},
-/area/city/backstreets_room)
 "ib" = (
-/obj/effect/decal/cleanable/ash/large,
 /obj/machinery/light/small{
 	dir = 1;
 	pixel_y = 19
 	},
 /turf/open/floor/stone,
-/area/city/backstreets_room)
-"iw" = (
-/obj/structure/barricade/wooden/crude{
-	density = 0;
-	name = "crude plank bridge";
-	desc = "haphazard is the first thought when crossing such planks. Fret not, they have proven trustworthy many treks to and fro"
-	},
-/obj/structure/barricade/wooden{
-	density = 0;
-	name = "wooden scaffold";
-	desc = "despite its appearance its sturdy. Surpringly, it can hold a whole adult weigh confortably."
-	},
-/turf/open/floor/plating/ashplanet/wateryrock,
-/area/city/backstreets_room)
-"iQ" = (
-/obj/structure/lattice/lava{
-	name = "sewer catwalk"
-	},
-/turf/open/water/deep/saltwater/safe{
-	color = "GREEN"
-	},
 /area/city/backstreets_room)
 "jo" = (
 /obj/structure/curtain/cloth/fancy,
@@ -163,22 +105,6 @@
 	density = 0
 	},
 /obj/effect/decal/cleanable/blood/gibs/down,
-/obj/structure/barricade/wooden/crude{
-	pixel_x = 32;
-	density = 0
-	},
-/obj/structure/barricade/wooden{
-	pixel_x = 32;
-	density = 0
-	},
-/obj/structure/barricade/wooden{
-	pixel_x = 32;
-	density = 0
-	},
-/obj/structure/barricade/wooden/crude{
-	pixel_x = 32;
-	density = 0
-	},
 /turf/open/floor/stone,
 /area/city/backstreets_room)
 "kd" = (
@@ -204,65 +130,13 @@
 "kU" = (
 /obj/effect/decal/cleanable/oil/streak,
 /obj/effect/turf_decal/siding/thinplating/dark,
-/obj/effect/decal/cleanable/oil,
-/obj/effect/decal/cleanable/blood/gibs,
 /turf/open/floor/stone,
-/area/city/backstreets_room)
-"lG" = (
-/obj/structure/barricade/wooden/crude{
-	density = 0;
-	resistance_flags = 115;
-	pixel_y = 32
-	},
-/obj/structure/barricade/wooden{
-	density = 0;
-	resistance_flags = 115;
-	pixel_y = 32
-	},
-/obj/structure/barricade/wooden/crude{
-	density = 0;
-	resistance_flags = 115;
-	pixel_y = 32
-	},
-/obj/structure/barricade/wooden/crude{
-	density = 0;
-	name = "crude plank bridge";
-	desc = "haphazard is the first thought when crossing such planks. Fret not, they have proven trustworthy many treks to and fro"
-	},
-/obj/structure/barricade/wooden{
-	density = 0;
-	name = "wooden scaffold";
-	desc = "despite its appearance its sturdy. Surpringly, it can hold a whole adult weigh confortably."
-	},
-/turf/open/water/deep/saltwater/safe{
-	color = "GREEN"
-	},
 /area/city/backstreets_room)
 "mg" = (
 /obj/effect/turf_decal/siding/thinplating/dark{
 	dir = 4
 	},
-/obj/effect/decal/cleanable/oil/streak,
 /obj/item/flashlight/flare/torch,
-/turf/open/floor/stone,
-/area/city/backstreets_room)
-"mx" = (
-/obj/structure/barricade/wooden{
-	density = 0;
-	name = "wooden scaffold";
-	desc = "despite its appearance its sturdy. Surpringly, it can hold a whole adult weigh confortably."
-	},
-/turf/open/floor/plating/ashplanet/wateryrock,
-/area/city/backstreets_room)
-"nf" = (
-/obj/effect/decal/cleanable/oil/streak,
-/obj/effect/turf_decal/siding/thinplating/dark{
-	dir = 4
-	},
-/obj/effect/decal/cleanable/blood/tracks{
-	dir = 6
-	},
-/obj/effect/decal/cleanable/ash/large,
 /turf/open/floor/stone,
 /area/city/backstreets_room)
 "ng" = (
@@ -270,7 +144,7 @@
 	dir = 1
 	},
 /obj/structure/curtain/cloth,
-/turf/open/floor/plating/ashplanet/wateryrock,
+/turf/open/floor/wood,
 /area/city/backstreets_room)
 "pf" = (
 /obj/effect/decal/cleanable/blood/tracks,
@@ -283,24 +157,7 @@
 	color = "#55391A"
 	},
 /obj/structure/curtain/cloth,
-/turf/open/floor/plating/ashplanet/wateryrock,
-/area/city/backstreets_room)
-"rY" = (
-/obj/effect/turf_decal/siding/brown{
-	dir = 1;
-	color = "#55391A"
-	},
-/obj/structure/barricade/wooden/crude{
-	density = 0;
-	name = "crude plank bridge";
-	desc = "haphazard is the first thought when crossing such planks. Fret not, they have proven trustworthy many treks to and fro"
-	},
-/obj/structure/barricade/wooden{
-	density = 0;
-	name = "wooden scaffold";
-	desc = "despite its appearance its sturdy. Surpringly, it can hold a whole adult weigh confortably."
-	},
-/turf/open/floor/plating/ashplanet/wateryrock,
+/turf/open/floor/wood,
 /area/city/backstreets_room)
 "sn" = (
 /obj/effect/turf_decal/siding/thinplating/dark{
@@ -336,9 +193,6 @@
 	},
 /turf/open/floor/stone,
 /area/city/backstreets_room)
-"sA" = (
-/turf/closed/wall/mineral/iron,
-/area/city/backstreets_room)
 "sO" = (
 /obj/machinery/door/airlock/grunge{
 	name = "sewer control room"
@@ -352,21 +206,6 @@
 /obj/item/clothing/suit/armor/ego_gear/city/grosshammmer,
 /obj/effect/turf_decal/siding/thinplating/dark{
 	dir = 4
-	},
-/obj/structure/barricade/wooden/crude{
-	density = 0;
-	resistance_flags = 115;
-	pixel_y = 32
-	},
-/obj/structure/barricade/wooden{
-	density = 0;
-	resistance_flags = 115;
-	pixel_y = 32
-	},
-/obj/structure/barricade/wooden/crude{
-	density = 0;
-	resistance_flags = 115;
-	pixel_y = 32
 	},
 /obj/structure/closet/crate/wooden{
 	name = "grosshammer crate";
@@ -393,17 +232,12 @@
 /turf/open/floor/carpet/cyan,
 /area/city/backstreets_room)
 "us" = (
-/obj/structure/lattice/lava{
-	name = "sewer catwalk"
-	},
 /obj/structure/curtain/cloth,
 /obj/machinery/door/airlock/wood{
 	name = "grosshammer quarters";
 	req_access_txt = "150"
 	},
-/turf/open/water/deep/saltwater/safe{
-	color = "GREEN"
-	},
+/turf/open/floor/wood,
 /area/city/backstreets_room)
 "uS" = (
 /obj/item/clothing/suit/armor/ego_gear/city/ncorp/vet,
@@ -430,7 +264,7 @@
 	name = "mittlehammer quarters";
 	req_access_txt = "150"
 	},
-/turf/open/floor/plating/ashplanet/rocky,
+/turf/open/floor/wood,
 /area/city/backstreets_room)
 "vP" = (
 /obj/item/ego_weapon/city/ncorp_brassnail,
@@ -457,17 +291,12 @@
 	name = "ncorp recruit equipment crate";
 	opened = 1
 	},
-/turf/open/floor/stone,
-/area/city/backstreets_room)
-"wu" = (
-/obj/effect/turf_decal/siding/thinplating/dark{
-	dir = 4
-	},
-/obj/effect/decal/cleanable/blood/gibs/down,
-/obj/structure/kitchenspike{
-	name = "crucifixion spike";
-	density = 0
-	},
+/obj/item/clothing/suit/armor/ego_gear/city/ncorp/weak,
+/obj/item/clothing/suit/armor/ego_gear/city/ncorp/weak,
+/obj/item/clothing/suit/armor/ego_gear/city/ncorp/weak,
+/obj/item/clothing/suit/armor/ego_gear/city/ncorp/weak,
+/obj/item/clothing/suit/armor/ego_gear/city/ncorp/weak,
+/obj/item/clothing/suit/armor/ego_gear/city/ncorp/weak,
 /turf/open/floor/stone,
 /area/city/backstreets_room)
 "xs" = (
@@ -491,9 +320,6 @@
 /obj/item/storage/belt/ego,
 /obj/item/shears,
 /obj/structure/closet/cabinet,
-/obj/item/stack/spacecash/c10000,
-/obj/item/stack/spacecash/c10000,
-/obj/item/stack/spacecash/c10000,
 /turf/open/floor/wood,
 /area/city/backstreets_room)
 "xF" = (
@@ -521,23 +347,12 @@
 /turf/open/floor/stone,
 /area/city/backstreets_room)
 "Af" = (
-/obj/effect/decal/cleanable/blood/tracks{
-	dir = 8
-	},
-/obj/item/bodypart/head/robot{
-	anchored = 1;
-	pixel_y = 30;
-	name = "sinner's head";
-	desc = "the head of a filthy sinner. Their sin? Accepting prothestics into their once pure body."
-	},
-/obj/effect/decal/cleanable/oil,
 /turf/open/floor/plasteel/stairs{
 	dir = 4
 	},
 /area/city/backstreets_room)
 "AH" = (
 /obj/effect/turf_decal/siding/thinplating/dark,
-/obj/effect/decal/cleanable/oil/streak,
 /obj/item/flashlight/flare/torch,
 /turf/open/floor/stone,
 /area/city/backstreets_room)
@@ -579,20 +394,6 @@
 	name = "sinner's head";
 	pixel_x = 24;
 	desc = "the head of a filthy sinner. Their sin? Accepting prothestics into their once pure body."
-	},
-/obj/structure/barricade/wooden/crude{
-	density = 0;
-	pixel_y = -32
-	},
-/obj/structure/barricade/wooden{
-	density = 0;
-	name = "wooden scaffold";
-	desc = "despite its appearance its sturdy. Surpringly, it can hold a whole adult weigh confortably.";
-	pixel_y = -32
-	},
-/obj/structure/barricade/wooden/crude{
-	density = 0;
-	pixel_y = -32
 	},
 /turf/open/floor/stone,
 /area/city/backstreets_room)
@@ -638,9 +439,6 @@
 	dir = 4
 	},
 /obj/effect/turf_decal/siding/thinplating/dark/corner,
-/obj/effect/decal/cleanable/oil,
-/obj/effect/decal/cleanable/oil/streak,
-/obj/effect/decal/cleanable/blood/gibs,
 /turf/open/floor/stone,
 /area/city/backstreets_room)
 "Fq" = (
@@ -684,21 +482,6 @@
 /turf/open/floor/stone,
 /area/city/backstreets_room)
 "Gt" = (
-/obj/structure/barricade/wooden/crude{
-	density = 0;
-	resistance_flags = 115;
-	pixel_y = 32
-	},
-/obj/structure/barricade/wooden{
-	density = 0;
-	resistance_flags = 115;
-	pixel_y = 32
-	},
-/obj/structure/barricade/wooden/crude{
-	density = 0;
-	resistance_flags = 115;
-	pixel_y = 32
-	},
 /obj/effect/turf_decal/siding/thinplating/dark{
 	dir = 8
 	},
@@ -723,19 +506,7 @@
 /obj/effect/turf_decal/siding/thinplating{
 	dir = 1
 	},
-/obj/structure/barricade/wooden/crude{
-	density = 0;
-	name = "crude plank bridge";
-	desc = "haphazard is the first thought when crossing such planks. Fret not, they have proven trustworthy many treks to and fro"
-	},
-/obj/structure/barricade/wooden{
-	density = 0;
-	name = "wooden scaffold";
-	desc = "despite its appearance its sturdy. Surpringly, it can hold a whole adult weigh confortably."
-	},
-/turf/open/water/deep/saltwater/safe{
-	color = "GREEN"
-	},
+/turf/open/floor/wood,
 /area/city/backstreets_room)
 "IP" = (
 /obj/effect/turf_decal/siding/thinplating/dark{
@@ -748,7 +519,6 @@
 	anchored = 1;
 	desc = "a head of a supporter. Who did they support? Those who are impure in body and thus mind."
 	},
-/obj/effect/decal/cleanable/ash/large,
 /turf/open/floor/stone,
 /area/city/backstreets_room)
 "IX" = (
@@ -762,7 +532,6 @@
 	pixel_x = 24;
 	desc = "the head of a filthy sinner. Their sin? Accepting prothestics into their once pure body."
 	},
-/obj/effect/decal/cleanable/ash/large,
 /obj/item/flashlight/flare/torch,
 /turf/open/floor/stone,
 /area/city/backstreets_room)
@@ -782,46 +551,7 @@
 /obj/structure/closet/cabinet,
 /turf/open/floor/wood,
 /area/city/backstreets_room)
-"JG" = (
-/obj/effect/decal/cleanable/blood/tracks{
-	dir = 8
-	},
-/obj/item/bodypart/head{
-	pixel_y = 30;
-	name = "sinner's head";
-	anchored = 1;
-	desc = "a head of a supporter. Who did they support? Those who are impure in body and thus mind."
-	},
-/obj/effect/decal/cleanable/oil/streak,
-/turf/open/floor/plasteel/stairs{
-	dir = 4
-	},
-/area/city/backstreets_room)
-"Lj" = (
-/obj/effect/turf_decal/siding/brown{
-	dir = 1;
-	color = "#55391A"
-	},
-/turf/open/floor/plating/ashplanet/wateryrock,
-/area/city/backstreets_room)
-"Lx" = (
-/turf/open/water/deep/saltwater/safe{
-	color = "GREEN"
-	},
-/area/city/backstreets_room)
 "LK" = (
-/obj/structure/barricade/wooden/crude{
-	pixel_x = 32;
-	density = 0
-	},
-/obj/structure/barricade/wooden{
-	pixel_x = 32;
-	density = 0
-	},
-/obj/structure/barricade/wooden/crude{
-	pixel_x = 32;
-	density = 0
-	},
 /obj/effect/turf_decal/siding/thinplating/dark,
 /obj/item/bodypart/head{
 	pixel_y = 30;
@@ -845,10 +575,6 @@
 /obj/item/organ/tongue/robot{
 	pixel_x = -10;
 	pixel_y = 6
-	},
-/obj/item/bodypart/chest/robot{
-	pixel_x = -4;
-	pixel_y = 3
 	},
 /obj/item/bodypart/r_arm/robot{
 	pixel_x = -15
@@ -888,7 +614,6 @@
 /obj/effect/turf_decal/siding/thinplating/dark{
 	dir = 4
 	},
-/obj/effect/decal/cleanable/oil/streak,
 /turf/open/floor/stone,
 /area/city/backstreets_room)
 "OR" = (
@@ -950,11 +675,6 @@
 /turf/open/floor/wood,
 /area/city/backstreets_room)
 "QO" = (
-/obj/effect/decal/cleanable/blood/tracks{
-	dir = 8
-	},
-/obj/effect/decal/cleanable/oil/streak,
-/obj/item/flashlight/flare/torch,
 /obj/machinery/light/small{
 	dir = 1;
 	pixel_y = 19
@@ -970,7 +690,6 @@
 /obj/effect/turf_decal/siding/thinplating/dark/corner{
 	dir = 8
 	},
-/obj/effect/decal/cleanable/blood/gibs/torso,
 /obj/machinery/light/small{
 	dir = 4;
 	pixel_x = 8;
@@ -982,14 +701,6 @@
 	},
 /turf/open/floor/stone,
 /area/city/backstreets_room)
-"QX" = (
-/obj/effect/turf_decal/siding/thinplating{
-	dir = 1
-	},
-/turf/open/water/deep/saltwater/safe{
-	color = "GREEN"
-	},
-/area/city/backstreets_room)
 "QY" = (
 /obj/structure/dresser,
 /turf/open/floor/carpet/cyan,
@@ -998,7 +709,6 @@
 /obj/effect/turf_decal/siding/thinplating/dark{
 	dir = 4
 	},
-/obj/effect/decal/cleanable/blood/gibs/torso,
 /obj/machinery/light/small{
 	dir = 8;
 	pixel_y = 4;
@@ -1029,18 +739,12 @@
 	pixel_y = -6;
 	pixel_x = -8
 	},
+/obj/item/stack/spacecash/c1000,
+/obj/item/stack/spacecash/c1000,
+/obj/item/stack/spacecash/c1000,
+/obj/item/stack/spacecash/c1000,
+/obj/item/stack/spacecash/c1000,
 /turf/open/floor/wood,
-/area/city/backstreets_room)
-"Rs" = (
-/obj/effect/turf_decal/siding/thinplating/dark{
-	dir = 4
-	},
-/obj/effect/decal/cleanable/blood/gibs/torso,
-/obj/structure/kitchenspike{
-	name = "crucifixion spike";
-	density = 0
-	},
-/turf/open/floor/stone,
 /area/city/backstreets_room)
 "RD" = (
 /obj/effect/decal/cleanable/blood/tracks{
@@ -1053,40 +757,6 @@
 /obj/item/bedsheet/black,
 /turf/open/floor/wood,
 /area/city/backstreets_room)
-"St" = (
-/obj/structure/barricade/wooden{
-	density = 0;
-	name = "wooden scaffold";
-	desc = "despite its appearance its sturdy. Surpringly, it can hold a whole adult weigh confortably."
-	},
-/obj/structure/curtain/cloth,
-/turf/open/floor/plating/ashplanet/wateryrock,
-/area/city/backstreets_room)
-"Tg" = (
-/obj/effect/turf_decal/siding/thinplating{
-	dir = 1
-	},
-/obj/structure/barricade/wooden/crude{
-	density = 0;
-	name = "crude plank bridge";
-	desc = "haphazard is the first thought when crossing such planks. Fret not, they have proven trustworthy many treks to and fro"
-	},
-/obj/structure/barricade/wooden/crude{
-	pixel_x = 32;
-	density = 0
-	},
-/obj/structure/barricade/wooden{
-	pixel_x = 32;
-	density = 0
-	},
-/obj/structure/barricade/wooden/crude{
-	pixel_x = 32;
-	density = 0
-	},
-/turf/open/water/deep/saltwater/safe{
-	color = "GREEN"
-	},
-/area/city/backstreets_room)
 "TM" = (
 /obj/effect/decal/cleanable/blood/tracks{
 	dir = 5
@@ -1098,8 +768,6 @@
 /obj/effect/turf_decal/siding/thinplating/dark{
 	dir = 1
 	},
-/obj/effect/decal/cleanable/oil,
-/obj/effect/decal/cleanable/blood/gibs/core,
 /turf/open/floor/stone,
 /area/city/backstreets_room)
 "Ue" = (
@@ -1113,50 +781,6 @@
 	pixel_x = 24;
 	desc = "the head of a filthy sinner. Their sin? Accepting prothestics into their once pure body."
 	},
-/obj/effect/decal/cleanable/blood/gibs,
-/obj/effect/decal/cleanable/oil/streak,
-/obj/effect/decal/cleanable/oil,
-/turf/open/floor/stone,
-/area/city/backstreets_room)
-"Uf" = (
-/obj/structure/barricade/wooden/crude{
-	density = 0;
-	name = "crude plank bridge";
-	desc = "haphazard is the first thought when crossing such planks. Fret not, they have proven trustworthy many treks to and fro"
-	},
-/obj/structure/barricade/wooden{
-	density = 0;
-	name = "wooden scaffold";
-	desc = "despite its appearance its sturdy. Surpringly, it can hold a whole adult weigh confortably."
-	},
-/turf/open/water/deep/saltwater/safe{
-	color = "GREEN"
-	},
-/area/city/backstreets_room)
-"Ui" = (
-/obj/structure/barricade/wooden/crude{
-	density = 0;
-	pixel_y = -32
-	},
-/obj/structure/barricade/wooden{
-	density = 0;
-	name = "wooden scaffold";
-	desc = "despite its appearance its sturdy. Surpringly, it can hold a whole adult weigh confortably.";
-	pixel_y = -32
-	},
-/obj/structure/barricade/wooden/crude{
-	density = 0;
-	pixel_y = -32
-	},
-/turf/open/water/deep/saltwater/safe{
-	color = "GREEN"
-	},
-/area/city/backstreets_room)
-"Wv" = (
-/obj/effect/turf_decal/siding/thinplating/dark{
-	dir = 1
-	},
-/obj/effect/decal/cleanable/ash/large,
 /turf/open/floor/stone,
 /area/city/backstreets_room)
 "WZ" = (
@@ -1169,9 +793,9 @@ xF
 vP
 LW
 et
-sA
+DG
 Af
-sA
+DG
 gR
 hb
 PN
@@ -1182,12 +806,12 @@ Dk
 xJ
 pf
 FO
-sA
+DG
 QO
-sA
+DG
 Eh
-Lj
-iw
+Jp
+Jp
 Eb
 "}
 (3,1,1) = {"
@@ -1196,33 +820,33 @@ FU
 FU
 TM
 sO
-ee
-sA
+Af
+DG
 hb
-mx
+Jp
 Cc
-Lj
+Jp
 "}
 (4,1,1) = {"
-sA
+DG
 xs
 xs
-sA
-sA
-JG
-sA
+DG
+DG
+Af
+DG
 ng
 WZ
 qd
-St
+WZ
 "}
 (5,1,1) = {"
 tD
-wu
-Rs
+fb
+fb
 DG
 OR
-nf
+Oa
 Rj
 Fc
 mg
@@ -1230,17 +854,17 @@ Oa
 fb
 "}
 (6,1,1) = {"
-lG
-Uf
-Uf
+Jp
+Jp
+Jp
 us
-hA
-hA
-Lx
-iQ
-Uf
-hA
-Ui
+Jp
+Jp
+Jp
+Jp
+Jp
+Jp
+Jp
 "}
 (7,1,1) = {"
 Gt
@@ -1256,39 +880,39 @@ Ue
 Bn
 "}
 (8,1,1) = {"
-sA
-sA
-sA
-sA
+DG
+DG
+DG
+DG
 ib
-iQ
+Jp
 bX
-sA
-sA
-sA
-sA
+DG
+DG
+DG
+DG
 "}
 (9,1,1) = {"
 uS
-Lj
+Jp
 kd
-sA
+DG
 kU
-QX
+If
 TS
-sA
+DG
 xA
 Jy
 Rp
 "}
 (10,1,1) = {"
 Jp
-rY
+Jp
 Jp
 vg
 AH
 If
-Wv
+TS
 jo
 RD
 MG
@@ -1297,12 +921,12 @@ tM
 (11,1,1) = {"
 RQ
 RQ
-Lj
-sA
+Jp
+DG
 LK
-Tg
+If
 ka
-sA
+DG
 gr
 up
 QY

@@ -136,7 +136,12 @@
 
 	minor_announce("Hana has issued a kill request on an unknown distortion. Payment will be given upon quest completion", "Hana Assignment:", TRUE)
 	var/T = pick(SScityevents.distortion)
+	if(T)
+		minor_announce("Found location", "Hana Assignment:", TRUE)
 	new /obj/effect/bloodpool(get_turf(T))
 	sleep(10)
 	var/spawning = pick(SScityevents.distortions_available)
 	new spawning (get_turf(T))
+	if(spawning)
+		minor_announce("Spawned enemy", "Hana Assignment:", TRUE)
+

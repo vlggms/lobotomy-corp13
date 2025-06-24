@@ -5,6 +5,7 @@
 	var/explosion_damage_type = RED_DAMAGE
 	var/explosion_damage = 200
 	var/explosion_range = 2
+	var/carbon_damagemod = 0.1
 
 /obj/item/grenade/r_corp/attack_self(mob/user)
 	if(user.mind)
@@ -22,7 +23,7 @@
 	for(var/mob/living/simple_animal/H in view(explosion_range, src))
 		H.apply_damage(explosion_damage, explosion_damage_type, null, H.run_armor_check(null, RED_DAMAGE))
 	for(var/mob/living/carbon/C in view(explosion_range, src))
-		C.apply_damage(C == aThrower ? explosion_damage * 0.5 : explosion_damage * 0.1, explosion_damage_type, null, C.run_armor_check(null, RED_DAMAGE))
+		C.apply_damage(C == aThrower ? explosion_damage * 0.5 : explosion_damage * carbon_damagemod, explosion_damage_type, null, C.run_armor_check(null, RED_DAMAGE))
 	qdel(src)
 
 /obj/item/grenade/r_corp/white
@@ -43,9 +44,12 @@
 
 /obj/item/grenade/r_corp/thumb
 	name = "frag grenade"
-	desc = "An anti-personnel fragmentation grenade, this weapon is used by a select few Capos of the Thumb."
+	desc = "An anti-personnel fragmentation grenade, this weapon is used by the Thumb."
 	icon_state = "frag"
-	explosion_damage = 550
+	explosion_damage = 200	//Dude if you get hit by this you dumb as fuck
+	carbon_damagemod = 1
+	det_time = 20
+
 
 /obj/effect/spawner/lootdrop/grenade
 	name = "rcorp grenade spawner"

@@ -7,8 +7,7 @@
 /obj/machinery/door/window/survival_pod{
 	dir = 4;
 	name = "capo quarters";
-	req_access_txt = "150";
-	opacity = 1
+	req_access_txt = "150"
 	},
 /turf/open/floor/wood,
 /area/city/backstreets_room)
@@ -59,7 +58,6 @@
 	pixel_x = -32
 	},
 /obj/structure/window/reinforced/survival_pod{
-	opacity = 1;
 	name = "tinted window";
 	dir = 4
 	},
@@ -212,7 +210,6 @@
 	density = 0
 	},
 /obj/structure/window/reinforced/survival_pod{
-	opacity = 1;
 	name = "tinted window";
 	dir = 4
 	},
@@ -295,13 +292,13 @@
 	},
 /obj/item/clothing/suit/armor/ego_gear/city/thumb,
 /obj/item/clothing/suit/armor/ego_gear/city/thumb,
-/obj/item/ego_weapon/ranged/city/thumb/weak,
-/obj/item/ego_weapon/ranged/city/thumb/weak,
 /obj/machinery/light{
 	dir = 4;
 	pixel_x = 9;
 	pixel_y = 4
 	},
+/obj/item/ego_weapon/ranged/city/thumb/city,
+/obj/item/ego_weapon/ranged/city/thumb/city,
 /turf/open/floor/wood,
 /area/city/backstreets_room)
 "pE" = (
@@ -310,15 +307,14 @@
 	color = "#440000";
 	dir = 1
 	},
-/obj/item/ego_weapon/ranged/city/thumb/capo/weak,
 /obj/item/clothing/suit/armor/ego_gear/city/thumb_capo,
 /obj/item/ego_weapon/city/thumbmelee/weak,
 /obj/structure/window/reinforced/tinted{
 	dir = 1
 	},
-/obj/item/grenade/r_corp/thumb,
-/obj/item/grenade/r_corp/thumb,
-/obj/item/grenade/r_corp/thumb,
+/obj/item/clothing/suit/armor/ego_gear/city/thumb_capo/city,
+/obj/item/ego_weapon/ranged/city/thumb/capo/city,
+/obj/item/restraints/handcuffs,
 /turf/open/floor/carpet/red,
 /area/city/backstreets_room)
 "qC" = (
@@ -373,6 +369,14 @@
 	},
 /turf/open/floor/carpet,
 /area/city/backstreets_room)
+"ta" = (
+/obj/machinery/door/window/survival_pod{
+	name = "sottocapo bedroom";
+	req_access_txt = "151";
+	dir = 4
+	},
+/turf/open/floor/wood,
+/area/city/backstreets_room)
 "tz" = (
 /obj/structure/chair/comfy/brown{
 	dir = 4
@@ -388,8 +392,6 @@
 	pixel_y = 4
 	},
 /obj/structure/window/reinforced/survival_pod{
-	opacity = 1;
-	name = "tinted window";
 	dir = 4
 	},
 /turf/open/floor/wood,
@@ -463,7 +465,6 @@
 /area/city/backstreets_room)
 "Ds" = (
 /obj/machinery/door/window/survival_pod{
-	opacity = 1;
 	name = "thumb meeting room";
 	req_access_txt = "150"
 	},
@@ -541,6 +542,26 @@
 	dir = 1;
 	pixel_y = 19
 	},
+/obj/item/shears,
+/obj/item/grenade/r_corp/thumb{
+	det_time = 20
+	},
+/obj/item/grenade/r_corp/thumb{
+	det_time = 20
+	},
+/obj/item/grenade/r_corp/thumb{
+	det_time = 20
+	},
+/obj/item/grenade/r_corp/thumb{
+	det_time = 20
+	},
+/obj/item/grenade/r_corp/thumb{
+	det_time = 20
+	},
+/obj/item/grenade/r_corp/thumb{
+	det_time = 20
+	},
+/obj/item/restraints/handcuffs,
 /turf/open/floor/wood,
 /area/city/backstreets_room)
 "HY" = (
@@ -662,9 +683,11 @@
 	},
 /obj/structure/table/wood,
 /obj/item/modular_computer/laptop,
-/obj/item/stack/spacecash/c10000,
-/obj/item/stack/spacecash/c10000,
-/obj/item/stack/spacecash/c10000,
+/obj/item/stack/spacecash/c1000,
+/obj/item/stack/spacecash/c1000,
+/obj/item/stack/spacecash/c1000,
+/obj/item/stack/spacecash/c1000,
+/obj/item/stack/spacecash/c1000,
 /turf/open/floor/carpet/red,
 /area/city/backstreets_room)
 "Ng" = (
@@ -672,6 +695,8 @@
 /obj/structure/railing{
 	dir = 1
 	},
+/obj/item/ego_weapon/ranged/city/thumb/sottocapo/city,
+/obj/item/ego_weapon/city/thumbcane/weak,
 /turf/open/floor/wood,
 /area/city/backstreets_room)
 "Oy" = (
@@ -707,13 +732,13 @@
 	},
 /obj/item/clothing/suit/armor/ego_gear/city/thumb,
 /obj/item/clothing/suit/armor/ego_gear/city/thumb,
-/obj/item/ego_weapon/ranged/city/thumb/weak,
-/obj/item/ego_weapon/ranged/city/thumb/weak,
 /obj/machinery/light{
 	dir = 4;
 	pixel_x = 9;
 	pixel_y = 4
 	},
+/obj/item/ego_weapon/ranged/city/thumb/city,
+/obj/item/ego_weapon/ranged/city/thumb/city,
 /turf/open/floor/wood,
 /area/city/backstreets_room)
 "OZ" = (
@@ -733,8 +758,6 @@
 "Qj" = (
 /obj/machinery/door/window/survival_pod{
 	name = "sottocapo bedroom";
-	opacity = 1;
-	req_access_txt = "151";
 	dir = 4
 	},
 /turf/open/floor/wood,
@@ -762,8 +785,6 @@
 /area/city/backstreets_room)
 "Sl" = (
 /obj/structure/closet/cabinet,
-/obj/item/ego_weapon/city/thumbcane/weak,
-/obj/item/ego_weapon/ranged/city/thumb/sottocapo/weak,
 /obj/item/clothing/suit/armor/ego_gear/city/thumb_sottocapo,
 /obj/structure/window/reinforced/tinted{
 	dir = 1
@@ -776,12 +797,31 @@
 	color = "#440000";
 	dir = 1
 	},
-/obj/item/ego_weapon/ranged/city/thumb/capo/weak,
 /obj/item/clothing/suit/armor/ego_gear/city/thumb_capo,
-/obj/item/ego_weapon/city/thumbmelee/weak,
-/obj/item/grenade/r_corp/thumb,
-/obj/item/grenade/r_corp/thumb,
-/obj/item/grenade/r_corp/thumb,
+/obj/item/clothing/suit/armor/ego_gear/city/thumb_capo/city,
+/obj/item/ego_weapon/ranged/city/thumb/capo/city,
+/obj/item/storage/belt/grenade,
+/obj/item/grenade/r_corp/thumb{
+	det_time = 20
+	},
+/obj/item/grenade/r_corp/thumb{
+	det_time = 20
+	},
+/obj/item/grenade/r_corp/thumb{
+	det_time = 20
+	},
+/obj/item/grenade/r_corp/thumb{
+	det_time = 20
+	},
+/obj/item/grenade/r_corp/thumb{
+	det_time = 20
+	},
+/obj/item/grenade/r_corp/thumb{
+	det_time = 20
+	},
+/obj/item/grenade/r_corp/thumb{
+	det_time = 20
+	},
 /turf/open/floor/carpet/red,
 /area/city/backstreets_room)
 "Us" = (
@@ -1061,7 +1101,7 @@ gq
 Vm
 bp
 tZ
-Qj
+ta
 tZ
 Qj
 "}
