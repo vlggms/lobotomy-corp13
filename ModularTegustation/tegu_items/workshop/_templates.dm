@@ -22,8 +22,7 @@
 	var/true_force = 0
 
 	var/weapon_xp = 0
-	var/level_xp = 30
-	var/weapon_lv = 1
+	var/level_xp = 100
 
 /obj/item/ego_weapon/template/Initialize(mob/living/target, mob/living/carbon/human/user)
 	true_force = force
@@ -102,7 +101,7 @@
 /obj/item/ego_weapon/template/examine(mob/user)
 	. = ..()
 
-	if(weapon_lv == 5)
+	if(level_xp == 600)
 		. += "This weapon is fully upgraded!"
 		return
 
@@ -120,7 +119,7 @@
 			to_chat(user, span_warning("You need this to be on an anvil to work it."))
 			return
 
-		if(weapon_lv == 5)
+		if(level_xp == 600)
 			to_chat(user, span_warning("This weapon cannot be upgraded."))
 			return
 
@@ -128,9 +127,11 @@
 			to_chat(user, span_warning("This weapon does not have enough XP to level up yet."))
 			return
 
-		weapon_lv ++
+		if(!do_after(user, 10 SECONDS))
+			return
+
 		weapon_xp = 0
-		level_xp = weapon_lv * initial(level_xp)
+		level_xp += 100
 		force *= 1.1
 		true_force *= 1.1
 
