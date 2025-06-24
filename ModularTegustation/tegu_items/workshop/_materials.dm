@@ -62,6 +62,8 @@
 	var/force_bonus = 0
 	var/force_mod = 1
 	var/attack_mult = 1
+	var/xp_requirements = 50
+	var/max_lv = 5
 	var/type_override = FALSE // Replace with damage type if overwriting.
 	var/hitsound_override = FALSE // Replace with audio string if overwriting. Ex. "sound/effects/clownstep1.ogg"
 	var/obj/item/tresmetal/original_mat = /obj/item/tresmetal
@@ -135,8 +137,10 @@
 	if(!istype(creation))
 		return FALSE
 	creation.force *= force_mod
-	creation.force += force_bonus
+	creation.forcebonus += force_bonus
 	creation.attack_speed *= attack_mult
+	creation.xp_per_level = xp_requirements
+	creation.max_lv = max_lv
 	if(type_override)
 		creation.damtype = type_override
 		creation.type_overriden = TRUE

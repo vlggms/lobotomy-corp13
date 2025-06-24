@@ -12,7 +12,6 @@
 	var/damagetype = RED_DAMAGE
 	var/specialmod
 	var/overlay
-	var/toggle = TRUE
 
 /* Effects that proc on the installation of the mod.
 	Remember to override this for subtypes.*/
@@ -22,10 +21,3 @@
 //Effects that proc on the activation of the mod.
 /obj/item/workshop_mod/proc/ActivateEffect(obj/item/ego_weapon/template/T, special_count = 0, mob/living/target, mob/living/carbon/human/user)
 	return
-
-/obj/item/workshop_mod/proc/Toggle()
-	toggle = !toggle
-	if (toggle)
-		to_chat(src, span_nicegreen("Safety ON"))
-	else
-		to_chat(src, span_warning("Safety OFF"))
