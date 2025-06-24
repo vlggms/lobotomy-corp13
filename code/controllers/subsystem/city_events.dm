@@ -109,11 +109,14 @@ SUBSYSTEM_DEF(cityevents)
 			spawnitem(/obj/item/stack/spacecash/c50, 50)
 		if("tresmetal")
 			spawnitem(pick(
-			/obj/item/tresmetal/crimson,
-			/obj/item/tresmetal/violet,
-			/obj/item/tresmetal/human,
-			/obj/item/tresmetal/indigo,
-			/obj/item/tresmetal/amber), 10)	//Metal that can upgrade peacekeepers
+			/obj/item/tresmetal/steel,
+			/obj/item/tresmetal/cobalt,
+			/obj/item/tresmetal/copper,
+			/obj/item/tresmetal/bloodiron,
+			/obj/item/tresmetal/goldsteel,
+			/obj/item/tresmetal/silversteel,
+			/obj/item/tresmetal/electrum,
+			/obj/item/tresmetal/darksteel), 5)	//Metal that can upgrade peacekeepers
 		if("hppens")
 			spawnitem(/obj/item/reagent_containers/hypospray/medipen/salacid, 50)
 		if("sppens")

@@ -109,7 +109,7 @@
 /obj/item/ego_weapon/template/examine(mob/user)
 	. = ..()
 	if(forcebonus)
-	. += "This weapon will gain +[forcebonus] damage on creation."
+		. += "This weapon will gain +[forcebonus] damage on creation."
 
 	. += "Weapon LV : [weapon_lv]/[max_lv]."
 	if(weapon_lv == 5)
