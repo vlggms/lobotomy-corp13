@@ -52,7 +52,7 @@
 
 /datum/action/cooldown/firstaid
 	name = "First Aid"
-	desc = "Increases armor and immobilizes you for 5 seconds, then heals for [healamount]HP."
+	desc = "Increases armor and immobilizes you for 5 seconds, then heals for HP."
 	cooldown_time = 1 MINUTES
 	icon_icon = 'icons/hud/screen_skills.dmi'
 	button_icon_state = "firstaid"
@@ -94,7 +94,7 @@
 
 /datum/action/cooldown/meditation
 	name = "Meditation"
-	desc = "Increases armor and immobilizes you for 5 seconds, then heals for [healamount]SP."
+	desc = "Increases armor and immobilizes you for 5 seconds, then heals for SP."
 	cooldown_time = 1 MINUTES
 	icon_icon = 'icons/hud/screen_skills.dmi'
 	button_icon_state = "meditation"
