@@ -4208,6 +4208,8 @@
 #include "ModularTegustation\tegu_chemistry\recipes.dm"
 #include "ModularTegustation\tegu_chemistry\abnochem\_abnochem.dm"
 #include "ModularTegustation\tegu_chemistry\abnochem\advanced.dm"
+#include "ModularTegustation\tegu_chemistry\abnochem\bottles.dm"
+#include "ModularTegustation\tegu_chemistry\abnochem\chem_cargo.dm"
 #include "ModularTegustation\tegu_chemistry\abnochem\generic.dm"
 #include "ModularTegustation\tegu_chemistry\abnochem\syrups.dm"
 #include "ModularTegustation\tegu_chemistry\abnochem\neo_abnochem\neo_recipes.dm"
