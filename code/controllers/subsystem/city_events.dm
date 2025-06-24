@@ -60,6 +60,7 @@ SUBSYSTEM_DEF(cityevents)
 	total_events += pick(neutral_events)
 	total_events += pick(neutral_events)
 	total_events += pick("money")			//Always get money
+	total_events += pick("tresmetal")		//Materials for the peacekeepers to upgrade
 
 	processing = subtypesof(/mob/living/simple_animal/hostile/distortion)
 	//Set available distortion
@@ -107,7 +108,12 @@ SUBSYSTEM_DEF(cityevents)
 		if("money")
 			spawnitem(/obj/item/stack/spacecash/c50, 50)
 		if("tresmetal")
-			spawnitem(/obj/item/tresmetal, 10)	//very rare, could fetch you a good price.
+			spawnitem(pick(
+			/obj/item/tresmetal/crimson,
+			/obj/item/tresmetal/violet,
+			/obj/item/tresmetal/human,
+			/obj/item/tresmetal/indigo,
+			/obj/item/tresmetal/amber), 10)	//Metal that can upgrade peacekeepers
 		if("hppens")
 			spawnitem(/obj/item/reagent_containers/hypospray/medipen/salacid, 50)
 		if("sppens")
