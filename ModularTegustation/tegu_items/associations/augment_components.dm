@@ -423,32 +423,37 @@
 			return
 
 		// if mod < 5% - DO NOT CHANGE IT
-		// IF mod - res < 5% change mod to 5% and remember the res
+		// IF mod * res < 5% change mod to 5% and remember the res
+		var/physiology_multiplier = (1 - total_damage_resist)
 		switch(damagetype)
 			if (RED_DAMAGE)
 				if (human_parent.physiology.red_mod < 0.05)
 					total_damage_resist = 0
-				else if((human_parent.physiology.red_mod - total_damage_resist) < 0.05)
-					total_damage_resist = human_parent.physiology.red_mod - 0.05
-				human_parent.physiology.red_mod -= total_damage_resist
+				else if((human_parent.physiology.red_mod * physiology_multiplier) < 0.05)
+					physiology_multiplier = 0.05 / human_parent.physiology.red_mod
+					total_damage_resist = 1 - physiology_multiplier
+				human_parent.physiology.red_mod *= physiology_multiplier
 			if (WHITE_DAMAGE)
 				if (human_parent.physiology.white_mod < 0.05)
 					total_damage_resist = 0
-				else if((human_parent.physiology.white_mod - total_damage_resist) < 0.05)
-					total_damage_resist = human_parent.physiology.white_mod - 0.05
-				human_parent.physiology.white_mod -= total_damage_resist
+				else if((human_parent.physiology.white_mod * physiology_multiplier) < 0.05)
+					physiology_multiplier = 0.05 / human_parent.physiology.white_mod
+					total_damage_resist = 1 - physiology_multiplier
+				human_parent.physiology.white_mod *= physiology_multiplier
 			if (BLACK_DAMAGE)
 				if (human_parent.physiology.black_mod < 0.05)
 					total_damage_resist = 0
-				else if((human_parent.physiology.black_mod - total_damage_resist) < 0.05)
-					total_damage_resist = human_parent.physiology.black_mod - 0.05
-				human_parent.physiology.black_mod -= total_damage_resist
+				else if((human_parent.physiology.black_mod * physiology_multiplier) < 0.05)
+					physiology_multiplier = 0.05 / human_parent.physiology.black_mod
+					total_damage_resist = 1 - physiology_multiplier
+				human_parent.physiology.black_mod *= physiology_multiplier
 			if (PALE_DAMAGE)
 				if (human_parent.physiology.pale_mod < 0.05)
 					total_damage_resist = 0
-				else if((human_parent.physiology.pale_mod - total_damage_resist) < 0.05)
-					total_damage_resist = human_parent.physiology.pale_mod - 0.05
-				human_parent.physiology.pale_mod -= total_damage_resist
+				else if((human_parent.physiology.pale_mod * physiology_multiplier) < 0.05)
+					physiology_multiplier = 0.05 / human_parent.physiology.pale_mod
+					total_damage_resist = 1 - physiology_multiplier
+				human_parent.physiology.pale_mod *= physiology_multiplier
 
 /datum/component/augment/resisting_augment/after_take_damage_effect(datum/source, damage, damagetype, def_zone)
 	. = ..()
@@ -466,15 +471,17 @@
 		can_update_armor = TRUE
 		return
 
-	switch(damagetype)
-		if (RED_DAMAGE)
-			human_parent.physiology.red_mod += total_damage_resist
-		if (WHITE_DAMAGE)
-			human_parent.physiology.white_mod += total_damage_resist
-		if (BLACK_DAMAGE)
-			human_parent.physiology.black_mod += total_damage_resist
-		if (PALE_DAMAGE)
-			human_parent.physiology.pale_mod += total_damage_resist
+	var/physiology_divisor = (1 - total_damage_resist)
+	if(physiology_divisor > 0) // Prevent division by zero
+		switch(damagetype)
+			if (RED_DAMAGE)
+				human_parent.physiology.red_mod /= physiology_divisor
+			if (WHITE_DAMAGE)
+				human_parent.physiology.white_mod /= physiology_divisor
+			if (BLACK_DAMAGE)
+				human_parent.physiology.black_mod /= physiology_divisor
+			if (PALE_DAMAGE)
+				human_parent.physiology.pale_mod /= physiology_divisor
 	can_update_armor = TRUE
 
 //Struggling Defense
