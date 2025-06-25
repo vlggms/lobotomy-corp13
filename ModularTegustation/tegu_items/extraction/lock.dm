@@ -9,9 +9,9 @@
 	itemname = "Lock"
 
 /obj/item/extraction/lock/examine(mob/user)
-	if (GetFacilityUpgradeValue(UPGRADE_EXTRACTION_1))
-		desc = "Use on a work console to raise the qliphoth suppression field of the abnormality cell, slowing down work but increases work chance."
 	. = ..()
+	if (GetFacilityUpgradeValue(UPGRADE_EXTRACTION_1))
+		. += span_notice("Use on a work console to raise the qliphoth suppression field of the abnormality cell, slowing down work but increases work chance.")
 
 /obj/item/extraction/key/lock/update_icon()
 	if(!archived_console)
