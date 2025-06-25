@@ -5,9 +5,9 @@
 	extraction_cost = 25
 
 /obj/structure/altrefiner/chance/examine(mob/user)
-	if (GetFacilityUpgradeValue(UPGRADE_EXTRACTION_1))
-		desc = "A machine used by the Extraction Officer to 2 coinflips for a PE box. Costs 25 cargo PE."
 	. = ..()
+	if (GetFacilityUpgradeValue(UPGRADE_EXTRACTION_1))
+		. += span_notice("A machine used by the Extraction Officer to 2 coinflips and picks one for a PE box. Costs 25 cargo PE.")
 
 /obj/structure/altrefiner/chance/attack_hand(mob/living/carbon/M)
 	. = ..()

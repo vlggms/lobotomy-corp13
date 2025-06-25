@@ -10,9 +10,9 @@
 	var/ego_array
 
 /obj/item/extraction/tool_extractor/examine(mob/user)
-	if (GetFacilityUpgradeValue(UPGRADE_EXTRACTION_1))
-		desc = "A specialized tool that allows E.G.O extraction from tool Abnormalities at reduced costs."
 	. = ..()
+	if (GetFacilityUpgradeValue(UPGRADE_EXTRACTION_1))
+		. += span_notice("A specialized tool that allows E.G.O extraction from tool Abnormalities at reduced costs.")
 
 /obj/item/extraction/tool_extractor/Initialize()
 	. = ..()
