@@ -15,6 +15,11 @@
 	*/
 	var/meltdowntimer_increase = 30
 
+/obj/item/records/meltdown_extend/examine(mob/user)
+	. = ..()
+	if (GetFacilityUpgradeValue(UPGRADE_RECORDS_1))
+		. += span_notice("This watch seems to be upgraded, its additional meltdown time is doubled.")
+
 /obj/item/records/meltdown_extend/watch_action(mob/user)
 	//Shadow var to count if we were successful in getting a computer in are view
 	var/CA_count = 0
