@@ -318,7 +318,6 @@ GLOBAL_VAR_INIT(execution_enabled, FALSE)
 			H.apply_status_effect(/datum/status_effect/qliphothshred)
 		playsound(get_turf(src), 'ModularTegustation/Tegusounds/weapons/guns/manager_bullet_fire.ogg', 10, 0, 3)
 		playsound(get_turf(H), 'ModularTegustation/Tegusounds/weapons/guns/manager_bullet_fire.ogg', 10, 0, 3)
-		to_chat(owner, span_warning("<b>[ammo]</b> bullets remaining."))
 		return TRUE
 
 	to_chat(owner, span_warning("ERROR: BULLET INITIALIZATION FAILURE."))
