@@ -41,9 +41,53 @@
 	mark_once_attacked = TRUE
 	density = FALSE
 
+/mob/living/simple_animal/hostile/clan_npc/Initialize()
+	. = ..()
+	GLOB.clan_npc_list += src
+
+/mob/living/simple_animal/hostile/clan_npc/Destroy()
+	GLOB.clan_npc_list -= src
+	return ..()
+
+/mob/living/simple_animal/hostile/clan_npc/attackby(obj/item/I, mob/living/user, params)
+	. = ..()
+	// Track who damaged this clan NPC
+	if(user && user.client && !(user in GLOB.clan_npc_killers))
+		GLOB.clan_npc_killers += user
+
 /mob/living/simple_animal/hostile/clan_npc/attack_hand(mob/living/carbon/M)
 	if(!stat && M.a_intent == INTENT_HELP && !client)
 		manual_emote("looks away, avoiding [M]'s gaze...")
+		return
+	. = ..()
+	// Track who damaged this clan NPC
+	if(M && M.client && M.a_intent == INTENT_HARM && !(M in GLOB.clan_npc_killers))
+		GLOB.clan_npc_killers += M
+
+/mob/living/simple_animal/hostile/clan_npc/bullet_act(obj/projectile/P, def_zone, piercing_hit = FALSE)
+	. = ..()
+	// Track who shot this clan NPC
+	if(P.firer && isliving(P.firer))
+		var/mob/living/L = P.firer
+		if(L.client && !(L in GLOB.clan_npc_killers))
+			GLOB.clan_npc_killers += L
+
+/mob/living/simple_animal/hostile/clan_npc/death(gibbed)
+	. = ..()
+	// Check if all clan NPCs are dead
+	var/all_dead = TRUE
+	for(var/mob/living/simple_animal/hostile/clan_npc/C in GLOB.clan_npc_list)
+		if(C != src && C.stat != DEAD)
+			all_dead = FALSE
+			break
+	
+	if(all_dead && GLOB.clan_npc_killers.len)
+		// Award achievement to all players who participated in killing clan NPCs
+		for(var/mob/living/L in GLOB.clan_npc_killers)
+			if(L.client)
+				L.client.give_award(/datum/award/achievement/lc13/city/clan_genocide, L)
+		// Clear the killers list after awarding
+		GLOB.clan_npc_killers.Cut()
 
 /mob/living/simple_animal/hostile/clan_npc/info
 	name = "Talkative Citzen?"
