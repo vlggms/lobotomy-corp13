@@ -4,6 +4,11 @@
 	icon_state = "dominator-yellow"
 	requires_item = TRUE
 
+/obj/structure/altrefiner/quick/examine(mob/user)
+	. = ..()
+	if (GetFacilityUpgradeValue(UPGRADE_EXTRACTION_1))
+		. += span_notice( "This machine seems to be upgraded, reducing the time to refine by 12 seconds.")
+
 /obj/structure/altrefiner/quick/attackby(obj/item/I, mob/living/user, params)
 	. = ..()
 	if(!.)

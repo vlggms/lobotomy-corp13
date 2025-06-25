@@ -4,6 +4,12 @@
 	icon_state = "dominator-red"
 	extraction_cost = 75
 
+/obj/structure/weapon/blood/examine(mob/user)
+	. = ..()
+	if (GetFacilityUpgradeValue(UPGRADE_EXTRACTION_1))
+		. += span_notice( "This machine seems to be upgraded, decreasing fail chance.")
+
+
 /obj/structure/altrefiner/blood/attack_hand(mob/living/carbon/M)
 	if(M.health <= 20)
 		to_chat(M, span_warning("You have no more blood to give."))

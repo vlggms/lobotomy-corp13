@@ -12,7 +12,7 @@
 /obj/item/extraction/tool_extractor/examine(mob/user)
 	. = ..()
 	if (GetFacilityUpgradeValue(UPGRADE_EXTRACTION_1))
-		. += span_notice("A specialized tool that allows E.G.O extraction from tool Abnormalities at reduced costs.")
+		. += span_notice( "This tool seems to be upgraded, reducing the cost needed to extract by 20%.")
 
 /obj/item/extraction/tool_extractor/Initialize()
 	. = ..()

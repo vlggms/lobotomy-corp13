@@ -11,6 +11,11 @@
 	var/itemname = "Key"
 	var/howtouse = "This tool can only be used on a containment cell that has not reached 50% understanding, and will expire when understanding reaches 50%. This does NOT affect Qliphoth Counter."
 
+/obj/item/extraction/key/examine(mob/user)
+	. = ..()
+	if (GetFacilityUpgradeValue(UPGRADE_EXTRACTION_1))
+		. += span_notice("This tool seems to be upgraded, increases work speed even more.")
+
 /obj/item/extraction/key/proc/UserDeath()
 	if(archived_console)
 		archived_console.ApplyEOTool(passed_variable, TRUE, src)

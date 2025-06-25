@@ -8,7 +8,7 @@
 /obj/structure/altrefiner/timed/examine(mob/user)
 	. = ..()
 	if (GetFacilityUpgradeValue(UPGRADE_EXTRACTION_1))
-		. += span_notice("A machine used by the Extraction Officer to automatically refine PE at the rate of 5 boxes every 3 minutes.")
+		. += span_notice( "This machine seems to be upgraded, reducing its time to produce boxes by 2 minute")
 
 /obj/structure/altrefiner/timed/proc/reset()
 	playsound(get_turf(src), 'sound/machines/terminal_prompt_confirm.ogg', 50, TRUE)

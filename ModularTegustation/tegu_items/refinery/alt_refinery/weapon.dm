@@ -5,6 +5,11 @@
 	requires_item = TRUE
 	var/list/meltable
 
+/obj/structure/weapon/quick/examine(mob/user)
+	. = ..()
+	if (GetFacilityUpgradeValue(UPGRADE_EXTRACTION_1))
+		. += span_notice( "This machine seems to be upgraded, decreasing fail chance.")
+
 /obj/structure/altrefiner/weapon/Initialize(mapload)
 	var/list/processing = list(/obj/item/ego_weapon, /obj/item/ego_weapon/ranged, /obj/item/clothing/suit/armor/ego_gear)
 	var/list/banned = list(/obj/item/ego_weapon/city/ncorp_mark)
