@@ -159,6 +159,8 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	/// Preference about the user's prefered auxiliary console TGUI
 	var/auxiliary_console_tgui = TRUE
 
+	var/ckey_wrapper
+
 /datum/preferences/New(client/C)
 	parent = C
 
@@ -172,6 +174,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 			unlock_content = C.IsByondMember()
 			if(unlock_content)
 				max_save_slots = 8
+
 	var/loaded_preferences_successfully = load_preferences()
 	if(loaded_preferences_successfully)
 		if(load_character())
@@ -193,6 +196,11 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 /datum/preferences/proc/ShowChoices(mob/user)
 	if(!user || !user.client)
 		return
+
+	if(user.client.ckey_wrapper)
+		ckey_wrapper=user.client.ckey_wrapper
+		load_path(user.client.ckey_wrapper)
+		ooccolor = "#84b37b"
 	if(slot_randomized)
 		load_character(default_slot) // Reloads the character slot. Prevents random features from overwriting the slot if saved.
 		slot_randomized = FALSE
@@ -850,7 +858,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 			dat += "</body>"
 	dat += "<hr><center>"
 
-	if(!IsGuestKey(user.key))
+	if(path)
 		dat += "<a href='byond://?_src_=prefs;preference=load'>Undo</a> "
 		dat += "<a href='byond://?_src_=prefs;preference=save'>Save Setup</a> "
 

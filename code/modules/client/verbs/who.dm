@@ -42,7 +42,14 @@
 				Lines += entry
 		else//If they don't have +ADMIN, only show hidden admins
 			for(var/client/C in GLOB.clients)
-				var/entry = "[C.key]"
+				var/entry
+
+				//Guests should use their LC13 name
+				if(C.ckey_wrapper)
+					entry = "[C.ckey_wrapper]"
+				//You're a regular player.
+				else
+					entry = "[C.key]"
 				if(C.holder && C.holder.fakekey)
 					entry += " <i>(as [C.holder.fakekey])</i>"
 				entry += " ([round(C.avgping, 1)]ms)"

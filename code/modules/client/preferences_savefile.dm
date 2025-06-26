@@ -133,8 +133,10 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 
 
 /datum/preferences/proc/load_path(ckey,filename="preferences.sav")
-	if(!ckey)
-		return
+	if(ckey_wrapper)
+		path = "data/player_saves/lc13_saves/[ckey_wrapper]/[filename]"
+	return
+
 	path = "data/player_saves/[ckey[1]]/[ckey]/[filename]"
 
 /datum/preferences/proc/load_preferences()

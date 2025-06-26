@@ -53,18 +53,24 @@
 	var/list/output = list("<center><p><a href='byond://?src=[REF(src)];show_preferences=1'>[TeguTranslate("Setup Character", src)]</a></p>")
 
 	if(SSticker.current_state <= GAME_STATE_PREGAME)
-		switch(ready)
-			if(PLAYER_NOT_READY)
-				output += "<p>\[ [LINKIFY_READY(TeguTranslate("Ready", src), PLAYER_READY_TO_PLAY)] | <b>[TeguTranslate("Not Ready", src)]</b> | [LINKIFY_READY(TeguTranslate("Observe", src), PLAYER_READY_TO_OBSERVE)] \]</p>"
-			if(PLAYER_READY_TO_PLAY)
-				output += "<p>\[ <b>[TeguTranslate("Ready", src)]</b> | [LINKIFY_READY(TeguTranslate("Not Ready", src), PLAYER_NOT_READY)] | [LINKIFY_READY(TeguTranslate("Observe", src), PLAYER_READY_TO_OBSERVE)] \]</p>"
-			if(PLAYER_READY_TO_OBSERVE)
-				output += "<p>\[ [LINKIFY_READY(TeguTranslate("Ready", src), PLAYER_READY_TO_PLAY)] | [LINKIFY_READY(TeguTranslate("Not Ready", src), PLAYER_NOT_READY)] | <b> [TeguTranslate("Observe", src)] </b> \]</p>"
+		if(IsGuestKey(key))
+			output += "Please Log In"
+			output += "<p><a href='byond://?src=[REF(src)];lc13login=1'>LC13 Login</a></p>"
+		else
+			switch(ready)
+				if(PLAYER_NOT_READY)
+					output += "<p>\[ [LINKIFY_READY(TeguTranslate("Ready", src), PLAYER_READY_TO_PLAY)] | <b>[TeguTranslate("Not Ready", src)]</b> | [LINKIFY_READY(TeguTranslate("Observe", src), PLAYER_READY_TO_OBSERVE)] \]</p>"
+				if(PLAYER_READY_TO_PLAY)
+					output += "<p>\[ <b>[TeguTranslate("Ready", src)]</b> | [LINKIFY_READY(TeguTranslate("Not Ready", src), PLAYER_NOT_READY)] | [LINKIFY_READY(TeguTranslate("Observe", src), PLAYER_READY_TO_OBSERVE)] \]</p>"
+				if(PLAYER_READY_TO_OBSERVE)
+					output += "<p>\[ [LINKIFY_READY(TeguTranslate("Ready", src), PLAYER_READY_TO_PLAY)] | [LINKIFY_READY(TeguTranslate("Not Ready", src), PLAYER_NOT_READY)] | <b> [TeguTranslate("Observe", src)] </b> \]</p>"
 	else
 		output += "<p><a href='byond://?src=[REF(src)];manifest=1'>[TeguTranslate("View the Crew Manifest", src)]</a></p>"
 		output += "<p><a href='byond://?src=[REF(src)];late_join=1'>[TeguTranslate("Join Game!", src)]</a></p>"
 		output += "<p>[LINKIFY_READY(TeguTranslate("Observe", src), PLAYER_READY_TO_OBSERVE)]</p>"
 		output += "<p><a href='byond://?src=[REF(src)];tutorial=1'>[TeguTranslate("Tutorial", src)]</a></p>"
+		if(IsGuestKey(key))
+			output += "<p><a href='byond://?src=[REF(src)];lc13login=1'>LC13 Login</a></p>"
 
 	if(!IsGuestKey(src.key))
 		output += playerpolls()
@@ -174,6 +180,9 @@
 		new_player_panel()
 
 	if(href_list["late_join"])
+		if(IsGuestKey(key) && !client.ckey_wrapper)
+			to_chat(usr, "<span class='boldwarning'>You must log in to join the round!</span>")
+			return
 		if(!SSticker?.IsRoundInProgress())
 			to_chat(usr, "<span class='boldwarning'>[TeguTranslate("The round is either not ready, or has already finished...", src)]</span>")
 			return
@@ -198,6 +207,38 @@
 
 	if(href_list["manifest"])
 		ViewManifest()
+
+	if(href_list["lc13login"])
+		//Make sure you don't have a wrapper
+		if(client.ckey_wrapper)
+			to_chat(src, "You are Logged in!")
+			return
+
+		//Aight let's ask them for a ckey wrapper
+		client.ckey_wrapper = input(src,"What is your Username?","Username",null) as text|null
+		//What are you trying to pull here?
+		if(GLOB.admin_datums[client.ckey_wrapper] || GLOB.deadmins[client.ckey_wrapper])
+			to_chat(src, "Using an Admin's Ckey as your Username is forbidden.")
+			client.ckey_wrapper = FALSE
+			qdel(client)
+			return
+
+		//Okay you can't be that big of a jokester
+		if(client.ckey_wrapper in GLOB.directory[ckey])
+			to_chat(src, "Using another player's Ckey as your Username is forbidden.")
+			client.ckey_wrapper = FALSE
+			qdel(client)
+			return
+
+		if(!client.ckey_wrapper)
+			to_chat(src, "Error Occurred! No Login Detected!")
+			client.ckey_wrapper = FALSE
+			qdel(client)
+			return
+
+		//Add this at the end as a finalization.
+		client.ckey_wrapper += " - LC13"
+
 
 	if(href_list["SelectedJob"])
 		if(!SSticker?.IsRoundInProgress())
