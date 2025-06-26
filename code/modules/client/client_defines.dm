@@ -213,3 +213,6 @@
 
 	/// If the client is currently under the restrictions of the interview system
 	var/interviewee = FALSE
+
+	/// What's your ckey or LC13 login?
+	var/ckey_wrapper
