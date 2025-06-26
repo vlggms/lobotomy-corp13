@@ -19,6 +19,8 @@
 				var/entry = "\t[C.key]"
 				if(C.holder && C.holder.fakekey)
 					entry += " <i>(as [C.holder.fakekey])</i>"
+				if(C.holder && C.ckey_wrapper)
+					entry += " <i>(as [C.ckey_wrapper])</i>"
 				if (isnewplayer(C.mob))
 					entry += " - <font color='darkgray'><b>In Lobby</b></font>"
 				else
@@ -58,6 +60,8 @@
 		for(var/client/C in GLOB.clients)
 			if(C.holder && C.holder.fakekey)
 				Lines += "[C.holder.fakekey] ([round(C.avgping, 1)]ms)"
+			if(C.ckey_wrapper)
+				Lines += "[C.ckey_wrapper] ([round(C.avgping, 1)]ms)"
 			else
 				Lines += "[C.key] ([round(C.avgping, 1)]ms)"
 
