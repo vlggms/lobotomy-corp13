@@ -5,7 +5,7 @@
 	requires_item = TRUE
 	var/list/meltable
 
-/obj/structure/weapon/quick/examine(mob/user)
+/obj/structure/altrefiner/weapon/examine(mob/user)
 	. = ..()
 	if (GetFacilityUpgradeValue(UPGRADE_EXTRACTION_1))
 		. += span_notice( "This machine seems to be upgraded, decreasing fail chance.")

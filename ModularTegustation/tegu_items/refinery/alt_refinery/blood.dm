@@ -4,7 +4,7 @@
 	icon_state = "dominator-red"
 	extraction_cost = 75
 
-/obj/structure/weapon/blood/examine(mob/user)
+/obj/structure/altrefiner/blood/examine(mob/user)
 	. = ..()
 	if (GetFacilityUpgradeValue(UPGRADE_EXTRACTION_1))
 		. += span_notice( "This machine seems to be upgraded, decreasing fail chance.")
