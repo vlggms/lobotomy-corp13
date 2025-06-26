@@ -7,7 +7,7 @@
 /obj/structure/altrefiner/chance/examine(mob/user)
 	. = ..()
 	if (GetFacilityUpgradeValue(UPGRADE_EXTRACTION_1))
-		. += span_notice( "This machine seems to be upgraded, increasing its chance to 75%")
+		. += span_notice( "This machine seems to be upgraded, increasing its chance to 75%.")
 
 /obj/structure/altrefiner/chance/attack_hand(mob/living/carbon/M)
 	. = ..()
