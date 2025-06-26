@@ -73,6 +73,7 @@ GLOBAL_LIST_INIT(unspawned_refiners, list(
 	/obj/structure/altrefiner/quick,
 	/obj/structure/altrefiner/timed,
 	/obj/structure/altrefiner/weapon,
+	/obj/structure/altrefiner/chance,
 ))
 
 /obj/effect/landmark/refinerspawn
