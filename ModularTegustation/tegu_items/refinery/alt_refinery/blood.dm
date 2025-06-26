@@ -7,7 +7,7 @@
 /obj/structure/altrefiner/blood/examine(mob/user)
 	. = ..()
 	if (GetFacilityUpgradeValue(UPGRADE_EXTRACTION_1))
-		. += span_notice( "This machine seems to be upgraded, decreasing fail chance.")
+		. += span_notice( "This machine seems to be upgraded, decreasing damage done.")
 
 
 /obj/structure/altrefiner/blood/attack_hand(mob/living/carbon/M)
@@ -22,13 +22,14 @@
 
 	//Gamble it
 	var/gambling_number = (M.health - 1)
+	if (GetFacilityUpgradeValue(UPGRADE_EXTRACTION_1))
+		gambling_number = gambling_number/2
 	M.adjustBruteLoss(gambling_number-1)	//Just in case we get weird rounding shit
 
 	//So you can't actually use it repeatedly, have a min health of 20
-	var/multi = 1
 	if (GetFacilityUpgradeValue(UPGRADE_EXTRACTION_1))
-		multi = 1.5 //50% more likely
-	if(prob(gambling_number-20 * multi))
+		gambling_number *= 2
+	if(prob(gambling_number - 20))
 		to_chat(M, span_notice("Refining success."))
 		playsound(get_turf(src), 'sound/machines/terminal_prompt_confirm.ogg', 50, TRUE)
 		new /obj/item/refinedpe(get_turf(src))
