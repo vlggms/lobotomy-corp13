@@ -8,7 +8,7 @@
 /obj/structure/altrefiner/timed/examine(mob/user)
 	. = ..()
 	if (GetFacilityUpgradeValue(UPGRADE_EXTRACTION_1))
-		. += span_notice( "This machine seems to be upgraded, reducing its time to produce boxes by 2 minute")
+		. += span_notice( "This machine seems to be upgraded, reducing its time to produce boxes by 2 minutes.")
 
 /obj/structure/altrefiner/timed/proc/reset()
 	playsound(get_turf(src), 'sound/machines/terminal_prompt_confirm.ogg', 50, TRUE)
