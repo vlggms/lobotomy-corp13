@@ -219,17 +219,18 @@
 	name = UPGRADE_REGENERATOR_HEALING
 	category = "Facility"
 	cost = 2
-	value = 1
-	max_value = 1.6
-	var/value_increase = 0.2
-	info = " - This upgrade inceases the healing multiplier of <b>Regenerators</b> by +20% per upgrade."
+	value = 0
+	max_value = 1.5
+	var/value_increase = 0.5
+	info = " - This upgrade inceases the healing of <b>Regenerators</b> by a flat +0.5% per upgrade.<br> - The additional healing does not get decreased when theres an <b>Abnormality/Ordeal</b> in the regenerator's deparment."
 
 /datum/facility_upgrade/regnenerator_healing/Upgrade()
 	value = min(max_value, value + value_increase)
 	. = ..()
 	cost += 1
+
 /datum/facility_upgrade/regnenerator_healing/DisplayValue()
-	return "[value] times"
+	return "+[value]% healing"
 
 /datum/facility_upgrade/meltdown_increase
 	name = UPGRADE_MELTDOWN_INCREASE
@@ -237,6 +238,7 @@
 	value = 0
 	max_value = 3
 	info = " - This upgrade inceases the amount of <b>Works</b> needed for a Qliphoth Meltdown by 1 per upgrade.<br> - This upgrade additionally increases the time limit of <b>Post Midnight Core Suppressions</b> by 20 Minutes per upgrade."
+
 /datum/facility_upgrade/meltdown_increase/Upgrade()
 	value = min(max_value, value + 1)
 	. = ..()
@@ -244,8 +246,8 @@
 
 /datum/facility_upgrade/meltdown_increase/DisplayValue()
 	if (value > 1)
-		return "+ [value] extra works"
-	return "+ [value] extra work"
+		return "+[value] extra works"
+	return "+[value] extra work"
 
 /datum/facility_upgrade/agent_spawn_stats_bonus
 	name = UPGRADE_AGENT_STATS
@@ -253,7 +255,10 @@
 	value = 0
 	max_value = 30
 	var/value_increase = 5
-	info = " - This upgrade inceases the amount of stats all Agents have by 5 per upgrade."
+	info = " - This upgrade inceases the amount of stats all Agents have by +5 per upgrade."
+
+/datum/facility_upgrade/agent_spawn_stats_bonus/DisplayValue()
+	return "+[value]"
 
 /datum/facility_upgrade/agent_spawn_stats_bonus/Upgrade()
 	value = min(max_value, value + value_increase)
@@ -282,6 +287,7 @@
 	value = 0
 	max_value = 60
 	info = " - This upgrade inceases the duration of an Abnormality's <b>Meltsdown Timer</b> by 10 seconds per upgrade."
+
 /datum/facility_upgrade/abno_melt_time/Upgrade()
 	value = min(max_value, value + 10)
 	. = ..()
