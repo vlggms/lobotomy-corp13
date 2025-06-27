@@ -631,7 +631,7 @@ const Lvl1Upgrades = (props, context) => {
   return (
     <>
       <Box textColor="blue" mt="1em" fontSize="20px" nowrap>
-        Available tier 1 specialization upgrades:
+        Available tier 1 higher-up specialization upgrades:
       </Box>
       <LabeledList>
         {lvl1_upgrades.map(lvl1_upgrades => (
@@ -678,7 +678,7 @@ const Lvl2Upgrades = (props, context) => {
   return (
     <>
       <Box textColor="blue" mt="1em" fontSize="20px" nowrap>
-        Available tier 2 specialization upgrades:
+        Available tier 2 higher-up specialization upgrades:
       </Box>
       <LabeledList>
         {lvl2_upgrades.map(lvl2_upgrades => (
