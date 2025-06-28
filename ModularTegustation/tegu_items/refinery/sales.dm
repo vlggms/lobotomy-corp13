@@ -12,6 +12,7 @@
 	var/crate_timer = 180	//How much time until a crate?
 	var/crates_per_box		//Just used to calculate examine text
 	var/our_corporation		// Whatever Representative we may be linked to
+	var/boosted = FALSE
 
 	var/generating
 	var/icon_full = "machinelcb_full"
@@ -34,13 +35,16 @@
 		to_chat(user, span_notice("You need to refine this first!."))
 
 	else if(istype(I, /obj/item/refinedpe) && !generating)
-		if (GetFacilityUpgradeValue(UPGRADE_EXTRACTION_2))
-			power_timer = round(initial(power_timer) * 0.5)
-			crate_timer = round(initial(crate_timer) * 0.5)
 		generating = TRUE
 		to_chat(user, span_notice("You load PE into the machine."))
 		qdel(I)
+		if (GetFacilityUpgradeValue(UPGRADE_EXTRACTION_2))
+			power_timer = round(power_timer * 0.5)
+			if(!boosted)//prevents wierd jank and desycing
+				boosted = TRUE
+				crate_timer = round(crate_timer * 0.5)
 		counter()
+
 		add_overlay("full")
 	else if(generating)
 		to_chat(user, span_notice("This is already sending power!"))
@@ -72,6 +76,8 @@
 	//gacha time
 	if(crate_timer  <= 0)
 		crate_timer = initial(crate_timer)
+		if (GetFacilityUpgradeValue(UPGRADE_EXTRACTION_2))
+			crate_timer = round(crate_timer * 0.5)
 		new crate(get_turf(src))
 
 	if(generating == TRUE)
