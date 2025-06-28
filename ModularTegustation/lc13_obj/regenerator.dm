@@ -60,6 +60,7 @@
 				icon_state = alert_icon
 				Threat = TRUE
 			break
+	regen_amt += GetFacilityUpgradeValue(UPGRADE_REGENERATOR_HEALING)
 	if(burst)
 		regen_amt *= 7.5
 		burst = FALSE
@@ -70,9 +71,11 @@
 			continue
 		if(H.health < 0 && !critical_heal)
 			continue
-		H.adjustBruteLoss(-H.maxHealth * ((regen_amt+hp_bonus)/100))
-		H.adjustFireLoss(-H.maxHealth * ((regen_amt+hp_bonus)/1000))	//Heals at 1/10th speed. Supposed to be slower healing than brute and sanity
-		H.adjustSanityLoss(-H.maxSanity * ((regen_amt+sp_bonus)/100))
+		var/hp_amt = regen_amt+hp_bonus
+		var/sp_amt = regen_amt+sp_bonus
+		H.adjustBruteLoss(-H.maxHealth * (hp_amt/100))
+		H.adjustFireLoss(-H.maxHealth * (hp_amt/1000))	//Heals at 1/10th speed. Supposed to be slower healing than brute and sanity
+		H.adjustSanityLoss(-H.maxSanity * (sp_amt/100))
 	if(icon_state != "regen" && !Threat)
 		icon_state = initial(icon_state)
 
