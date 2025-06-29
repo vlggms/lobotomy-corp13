@@ -7,6 +7,7 @@
 	exp_requirements = 120
 	supervisors = "the rabbit team captain and the commander"
 	selection_color = "#d9b555"
+	paycheck = 0
 
 	outfit = /datum/outfit/job/rabbit
 	display_order = 9
