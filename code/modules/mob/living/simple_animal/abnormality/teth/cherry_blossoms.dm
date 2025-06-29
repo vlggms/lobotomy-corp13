@@ -43,6 +43,11 @@
 
 	var/number_of_marks = 5
 
+/mob/living/simple_animal/hostile/abnormality/cherry_blossoms/Move()
+	return FALSE
+
+/mob/living/simple_animal/hostile/abnormality/cherry_blossoms/CanAttack(atom/the_target)
+	return FALSE
 
 /mob/living/simple_animal/hostile/abnormality/cherry_blossoms/PostWorkEffect(mob/living/carbon/human/user, work_type, pe, work_time)
 	if(user.sanity_lost)

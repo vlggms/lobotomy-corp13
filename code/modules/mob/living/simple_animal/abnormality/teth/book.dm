@@ -115,9 +115,9 @@
 	if(summon_count > 10)
 		qdel(src)
 		return
-	if((meltdown_cooldown < world.time) && !(status_flags & GODMODE))
-		MeltdownEffect()
+	if(meltdown_cooldown < world.time)
 		meltdown_cooldown = world.time + meltdown_cooldown_time
+		MeltdownEffect(null, 2)
 
 /mob/living/simple_animal/hostile/abnormality/book/Move()
 	return FALSE
@@ -167,9 +167,10 @@
 	MeltdownEffect()
 	return
 
-/mob/living/simple_animal/hostile/abnormality/book/proc/MeltdownEffect(mob/living/carbon/human/user)
+/mob/living/simple_animal/hostile/abnormality/book/proc/MeltdownEffect(mob/living/carbon/human/user, spawn_num)
 	var/mob/living/simple_animal/newspawn
-	var/spawn_num = rand(3,5)
+	if(!spawn_num)
+		spawn_num = rand(3,5)
 	for(var/i=1, i<=spawn_num, i++)
 		sleep(0.5 SECONDS)
 		newspawn = pick(nasties)
