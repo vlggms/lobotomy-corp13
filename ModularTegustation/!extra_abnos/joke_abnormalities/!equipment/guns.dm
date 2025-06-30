@@ -4,7 +4,7 @@
 	name = "mcrib"
 	desc = "Try a mcrib at your nearest McDonalds!"
 	special = "Use this weapon in your hand when wearing matching armor to create food for people nearby."
-	icon = 'code/modules/mob/living/simple_animal/abnormality/_auxiliary_modes/joke/!icons/ego_weapons.dmi'
+	icon = 'ModularTegustation/Teguicons/joke_abnos/joke_weapons.dmi'
 	icon_state = "mcrib"
 	force = 6
 	projectile_path = /obj/projectile/ego_bullet/ego_mcrib
@@ -49,7 +49,7 @@
 /obj/item/ego_weapon/ranged/anti_skub
 	name = "anti-skub"
 	desc = "A weapon easily created from schematics posted on illicit internet forums."
-	icon = 'code/modules/mob/living/simple_animal/abnormality/_auxiliary_modes/joke/!icons/ego_weapons.dmi'
+	icon = 'ModularTegustation/Teguicons/joke_abnos/joke_weapons.dmi'
 	icon_state = "anti_skub"
 	lefthand_file = 'icons/mob/inhands/misc/food_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/misc/food_righthand.dmi'
@@ -68,7 +68,7 @@
 
 /obj/projectile/ego_bullet/skub
 	name = "skub cocktail"
-	icon = 'code/modules/mob/living/simple_animal/abnormality/_auxiliary_modes/joke/!icons/ego_weapons.dmi'
+	icon = 'ModularTegustation/Teguicons/joke_abnos/joke_weapons.dmi'
 	icon_state = "anti_skub2"
 	damage = 45
 	damage_type = RED_DAMAGE
