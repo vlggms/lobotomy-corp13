@@ -21,7 +21,7 @@
 	core_enabled = FALSE
 
 
-// Has a dawn and a midnight
+
 /datum/ordeal/boss/branch12/kim
 	name = "Memory of a Broken Sword"
 	flavor_name = "Bamboo Hatted Kim"

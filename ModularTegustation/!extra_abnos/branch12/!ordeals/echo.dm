@@ -23,6 +23,7 @@
 	melee_damage_upper = 12
 	burn_stacks = 1
 
+
 /datum/ordeal/boss/branch12/metal_fixer
 	name = "Memory of a Wandering Soul"
 	flavor_name = "Memory Forger"
@@ -47,6 +48,7 @@
 	melee_damage_lower = 6
 	melee_damage_upper = 8
 	self_damage_statue = 750
+
 
 /datum/ordeal/boss/branch12/duo_fixers
 	name = "Memory of the Dyad Igneous"
