@@ -9,13 +9,13 @@ SUBSYSTEM_DEF(events)
 
 	var/scheduled = 0			//The next world.time that a naturally occuring random event can be selected.
 	var/frequency_lower = 1800	//3 minutes lower bound.
-	var/frequency_upper = 6000	//10 minutes upper bound. Basically an event will happen every 3 to 10 minutes.
+	var/frequency_upper = 6000	//10 minutes upper bound. Basically an event will happen every 3 to 10 minutes by default.
 
 	var/list/holidays			//List of all holidays occuring today or null if no holidays
 	var/wizardmode = FALSE
 
 /datum/controller/subsystem/events/Initialize(time, zlevel)
-	for(var/type in typesof(/datum/round_event_control))
+	for(var/type in typesof(/datum/round_event_control/lc13))
 		var/datum/round_event_control/E = new type()
 		if(!E.typepath)
 			continue				//don't want this one! leave it for the garbage collector
@@ -49,14 +49,23 @@ SUBSYSTEM_DEF(events)
 		spawnEvent()
 		reschedule()
 
-//decides which world.time we should select another random event at.
+//decides which world.time we should select another random event at, and check the player count.
 /datum/controller/subsystem/events/proc/reschedule()
+	if(length(GLOB.player_list) > 5)
+		//Low player counts give less events by leaps and bounds, between 3 and 30 minutes.
+		frequency_upper = 18000 - GLOB.player_list * 2400
+	else
+		frequency_upper = 6000
 	scheduled = world.time + rand(frequency_lower, max(frequency_lower,frequency_upper))
 
 //selects a random event based on whether it can occur and it's 'weight'(probability)
 /datum/controller/subsystem/events/proc/spawnEvent()
 	set waitfor = FALSE	//for the admin prompt
-	if(!CONFIG_GET(flag/allow_random_events))
+	//if(!CONFIG_GET(flag/allow_random_events))
+	//	return
+
+	//These are LC13 Specifc Events.
+	if(!(SSmaptype.maptype in SSmaptype.lc_maps))
 		return
 
 	var/gamemode = SSticker.mode.config_tag

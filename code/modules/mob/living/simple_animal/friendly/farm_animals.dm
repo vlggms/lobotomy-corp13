@@ -207,7 +207,7 @@
 	visible_message(span_notice("[external]"),
 		span_revennotice("[internal]"))
 
-///Wisdom cow, gives XP to a random skill and speaks wisdoms
+///Wisdom cow, gives 2 of each stat
 /mob/living/simple_animal/cow/wisdom
 	name = "wisdom cow"
 	desc = "Known for its wisdom, shares it with all."
@@ -221,10 +221,10 @@
 	speak = GLOB.wisdoms //Done here so it's setup properly
 
 ///Give intense wisdom to the attacker if they're being friendly about it
-/mob/living/simple_animal/cow/wisdom/attack_hand(mob/living/carbon/M)
+/mob/living/simple_animal/cow/wisdom/attack_hand(mob/living/carbon/human/M)
 	if(!stat && M.a_intent == INTENT_HELP)
 		to_chat(M, span_nicegreen("[src] whispers you some intense wisdoms and then disappears!"))
-		M.mind?.adjust_experience(pick(GLOB.skill_types), 500)
+		M.adjust_all_attribute_levels(2)
 		do_smoke(1, get_turf(src))
 		qdel(src)
 		return
