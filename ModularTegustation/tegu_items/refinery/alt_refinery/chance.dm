@@ -1,6 +1,6 @@
 /obj/structure/altrefiner/chance
 	name = "Chance Refinery"
-	desc = "A machine used by the Extraction Officer to coinflip for a PE box. Costs 25 cargo PE."
+	desc = "A machine used by the Extraction Officer to coinflip for a refined PE box. Costs 25 cargo PE."
 	icon_state = "dominator-purple"
 	extraction_cost = 25
 
