@@ -45,9 +45,9 @@
 	var/next_health_mark = 0 // Initialize below
 
 	//These variables control how many bots are deployed during the no-lasers-phase and how the scaling for them works.
-	/// How large our squad of deployed bots should be.
+	/// This variable represents the initial value for how large our squad of deployed bots should be.
 	/// Will attempt to deploy bots until we reach this size. This increases when losing enough HP.
-	var/squad_size = 4
+	var/base_squad_size = 4
 	/// How many of our personally spawned bots are alive right now.
 	var/active_minions = 0
 	/// We will never increase squad size past this. Adjusted by scaling
@@ -55,11 +55,14 @@
 	/// Controls how many bots are added to a squad per 10% HP lost. Adjusted by scaling
 	var/squad_size_increase_step = 1
 
-	// I am placing these here because I don't want to calculate turfs in range 9 trillion times.
+	// I am placing these here because I don't want to calculate turfs in range 9 trillion times. These will only be calculated once,
+	// then once again every time the Helix moves for some reason (like adminbus)
 	var/list/microbarrage_threatened_turfs = list()
 	var/list/macrolaser_threatened_turfs = list()
 	var/list/danger_close_turfs = list()
 	var/list/microbarrage_target_turfs = list()
+	/// This variable holds the last location of the Helix. It's so we can check if it has moved since the last time it fired its lasers and update target turfs if so.
+	var/entrenched_at
 
 /mob/living/simple_animal/hostile/ordeal/green_midnight/Initialize()
 	. = ..()
@@ -70,11 +73,8 @@
 	laserloop = new(list(src), FALSE)
 	addtimer(CALLBACK(src, PROC_REF(OpenShell)), 5 SECONDS)
 	HandleScaling()
-	//These lists of turfs are calculated here because I don't want to do it every time we fire lasers
-	microbarrage_threatened_turfs = RANGE_TURFS(12, src)
-	macrolaser_threatened_turfs = RANGE_TURFS(8, src)
-	danger_close_turfs = RANGE_TURFS(2, src)
-	microbarrage_target_turfs = microbarrage_threatened_turfs - danger_close_turfs
+	/// The below proc populates those turf lists in lines 59-62.
+	CheckIfMoved()
 
 /mob/living/simple_animal/hostile/ordeal/green_midnight/Destroy()
 	QDEL_NULL(left_shell)
@@ -89,6 +89,7 @@
 	macrolaser_threatened_turfs = null
 	danger_close_turfs = null
 	microbarrage_target_turfs = null
+	entrenched_at = null
 	return ..()
 
 /mob/living/simple_animal/hostile/ordeal/green_midnight/death()
@@ -111,9 +112,6 @@
 		laser_spawn_delay = max(0.3 SECONDS, laser_spawn_delay - 0.1 SECONDS)
 		laser_rotation_time = max(0.5 SECONDS, laser_rotation_time - 0.2 SECONDS)
 		laser_cooldown_time = max(10 SECONDS, laser_cooldown_time - 1 SECONDS)
-		//Increase our target squad size, but not beyond our maximum
-		if(squad_size + squad_size_increase_step <= maximum_squad_size)
-			squad_size += squad_size_increase_step
 
 /mob/living/simple_animal/hostile/ordeal/green_midnight/CanAttack(atom/the_target)
 	return FALSE
@@ -141,6 +139,8 @@
 	playsound(get_turf(src), 'sound/effects/ordeals/green/midnight_gears_fast.ogg', 50, FALSE, 7)
 
 /mob/living/simple_animal/hostile/ordeal/green_midnight/proc/SetupLaser()
+	/// This proc is just to make sure we're actually targeting the turfs currently next to us for the macrolasers and minilasers.
+	CheckIfMoved()
 	firing = TRUE
 	OpenShell()
 	SLEEP_CHECK_DEATH(2 SECONDS)
@@ -285,16 +285,18 @@
 
 /obj/effect/temp_visual/helix_minilaser/proc/Blowup()
 	playsound(src, 'sound/weapons/fixer/generic/rcorp4.ogg', 15, FALSE, 4)
-	for(var/mob/living/carbon/human/H in src.loc)
-		H.deal_damage(55, BLACK_DAMAGE)
-		to_chat(H, span_userdanger("You're hit by [src.name]!"))
+	for(var/mob/living/H in src.loc)
+		if(!faction_check(H.faction, list("green_ordeal")))
+			H.apply_damage(55, BLACK_DAMAGE, null, H.run_armor_check(null, BLACK_DAMAGE))
+			to_chat(H, span_userdanger("You're hit by [src.name]!"))
 
-//This laser hits in a 3 tile radius (the epicenter and its adjacent tiles).
+/// This laser hits in a 3 tile radius (the epicenter and its adjacent tiles).
+/// First, a warning appears. 1.6s after the warning appears, the actual laser hits.
 /obj/effect/temp_visual/helix_macrolaser
 	name = "helix of the end macro-laser"
 	icon = 'icons/effects/96x96.dmi'
 	icon_state = "warning"
-	duration = 21
+	duration = 30
 	color = "#d82d21"
 	pixel_x = -32
 	base_pixel_x = -32
@@ -303,7 +305,7 @@
 
 /obj/effect/temp_visual/helix_macrolaser/Initialize()
 	. = ..()
-	addtimer(CALLBACK(src, PROC_REF(Blowup)), 18)
+	addtimer(CALLBACK(src, PROC_REF(Blowup)), 16)
 
 /obj/effect/temp_visual/helix_macrolaser/proc/Blowup()
 	icon_state = "beamin"
@@ -311,15 +313,16 @@
 	transform *= 2.5
 	pixel_y += 80
 	playsound(src, 'sound/abnormalities/crying_children/sorrow_shot.ogg', 65, TRUE, 4)
-	for(var/mob/living/carbon/human/H in range(3, src))
+	for(var/mob/living/H in range(3, src))
 		var/distance = get_dist(src, H)
 		if(distance < 2)
-			H.deal_damage(50, BLACK_DAMAGE)
+			if(!faction_check(H.faction, list("green_ordeal")))
+				H.apply_damage(50, BLACK_DAMAGE, null, H.run_armor_check(null, BLACK_DAMAGE))
+				to_chat(H, span_userdanger("You're hit by [src.name]!"))
 			shake_camera(H, 6, 1.5)
-			to_chat(H, span_userdanger("You're hit by [src.name]!"))
+
 		else
 			shake_camera(H, 4, 0.7)
-
 	var/datum/effect_system/spark_spread/explosion_sparks = new /datum/effect_system/spark_spread
 	explosion_sparks.set_up(7, 0, loc)
 	explosion_sparks.start()
@@ -328,6 +331,10 @@
 //make sure we don't generate too many mobs in this proc (else midnight could spawn infinite mobs)
 /mob/living/simple_animal/hostile/ordeal/green_midnight/proc/GenerateBotSquad()
 	var/list/squad = list()
+	/// Increase our target squad size, but not beyond our maximum.
+	var/health_lost = maxHealth - health
+	var/health_thresholds_passed = floor(health_lost / (maxHealth * 0.1))
+	var/squad_size = min(base_squad_size + (squad_size_increase_step * health_thresholds_passed), maximum_squad_size)
 	var/remaining_spawn_budget = squad_size - active_minions
 	for(var/i = 1 to remaining_spawn_budget)
 		//We want the last 40% of our budget to be comprised of Green Noons. They are the priority spawn here
@@ -345,6 +352,8 @@
 
 //This proc will deploy the remaining spawn budget (squad size - currently active bots) through drop pods.
 /mob/living/simple_animal/hostile/ordeal/green_midnight/proc/DeployBotSquad()
+	/// First, check if we moved because of whatever weird stuff.
+	CheckIfMoved()
 	//We get the types we want to spawn in a list here
 	var/list/squad = GenerateBotSquad()
 
@@ -379,7 +388,7 @@
 
 	for(var/mob in squad)
 		//If we actually have any valid turfs left, we can pick from them. If we ran out, I guess we're dropping them right beneath us
-		var/turf/chosen_deployment_point = deployment_points.len > 0 ? pick(deployment_points) : locate(src.x, src.y-1, src.z)
+		var/turf/chosen_deployment_point = length(deployment_points) > 0 ? pick(deployment_points) : locate(src.x, src.y-1, src.z)
 		//We need a supply pod to drop our bot in. Then we'll put our minion inside
 		var/obj/structure/closet/supplypod/helixpod/deployment_pod = new()
 		var/mob/living/simple_animal/hostile/ordeal/minion = new mob(deployment_pod)
@@ -412,7 +421,7 @@
 	//counts dead Agents as well.
 	var/list/meaningful_enemies = AllLivingAgents(TRUE)
 	//These are our "base values" but bear in mind that, if we have any agents alive as it initializes, which we should have at least 1, it will apply scaling to it.
-	squad_size = 4
+	base_squad_size = 4
 	maximum_squad_size = 9
 	squad_size_increase_step = 1
 	laser_cooldown_time = 25 SECONDS // You'll get more time to deal with mobs if you have less Agents
@@ -427,15 +436,28 @@
 
 	if(meaningful_enemies)
 		for(var/gremlin in meaningful_enemies)
-			squad_size += 2
+			base_squad_size += 2
 			maximum_squad_size += 3
 			squad_size_increase_step += 0.34
 			laser_cooldown_time -= 1 SECONDS
 
-		squad_size = min(squad_size, 10)
+		base_squad_size = min(base_squad_size, 10)
 		maximum_squad_size = min(maximum_squad_size, 20)
 		squad_size_increase_step = min(floor(squad_size_increase_step), 3)
 		laser_cooldown_time = max(laser_cooldown_time, 20 SECONDS)
+
+/// This proc is called every time the Helix is about to fire its lasers. It's responsible for populating the list of target turfs for its laser barrages.
+/// Why does this exist? On the off chance someone does something EXTREMELY cursed with a W Corp teleporter OR an admin moves it somewhere forcibly.
+/// This proc will ensure the Helix is always firing lasers in the correct general area, and it will also move the shell objects to it to make sure it looks right.
+/mob/living/simple_animal/hostile/ordeal/green_midnight/proc/CheckIfMoved()
+	if(src.loc != entrenched_at)
+		entrenched_at = src.loc
+		left_shell.forceMove(entrenched_at)
+		right_shell.forceMove(entrenched_at)
+		microbarrage_threatened_turfs = RANGE_TURFS(12, src)
+		macrolaser_threatened_turfs = RANGE_TURFS(8, src)
+		danger_close_turfs = RANGE_TURFS(2, src)
+		microbarrage_target_turfs = microbarrage_threatened_turfs - danger_close_turfs
 
 /obj/structure/closet/supplypod/helixpod
 	name = "protocol of contemplation"
