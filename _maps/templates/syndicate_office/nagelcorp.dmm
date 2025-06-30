@@ -739,6 +739,7 @@
 	pixel_y = -6;
 	pixel_x = -8
 	},
+/obj/item/ncorp_augment_tester,
 /obj/item/stack/spacecash/c1000,
 /obj/item/stack/spacecash/c1000,
 /obj/item/stack/spacecash/c1000,
