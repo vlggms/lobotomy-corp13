@@ -44,6 +44,9 @@ GLOBAL_LIST_EMPTY(suit_sensors_list)			//all people with suit sensors on
 GLOBAL_LIST_EMPTY(nanite_sensors_list)			//app people with nanite monitoring program
 ///underages who have been reported to security for trying to buy things they shouldn't, so they can't spam
 GLOBAL_LIST_EMPTY(narcd_underages)
+GLOBAL_LIST_EMPTY(clan_npc_list)				//all resurgence clan NPCs
+GLOBAL_LIST_EMPTY(clan_npc_killers)			//all players who have damaged clan NPCs
+GLOBAL_LIST_EMPTY(nuke_rats_killers)			//all players who have damaged nuke rats
 
 GLOBAL_LIST_EMPTY(language_datum_instances)
 GLOBAL_LIST_EMPTY(all_languages)

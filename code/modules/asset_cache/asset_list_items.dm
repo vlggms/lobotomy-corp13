@@ -277,6 +277,16 @@
 		"twilight" = 'icons/UI_Icons/Achievements/lobotomycorp13/twlight.png',
 		"violet" = 'icons/UI_Icons/Achievements/lobotomycorp13/violet.png',
 		"whitenight" = 'icons/UI_Icons/Achievements/lobotomycorp13/whitenight.png',
+		"tinkerer" = 'icons/UI_Icons/Achievements/lobotomycorp13/tinkerer.png',
+		"tape" = 'icons/UI_Icons/Achievements/lobotomycorp13/tape.png',
+		"village" = 'icons/UI_Icons/Achievements/lobotomycorp13/village.png',
+		"parcel" = 'icons/UI_Icons/Achievements/lobotomycorp13/parcel.png',
+		"briefcase" = 'icons/UI_Icons/Achievements/lobotomycorp13/briefcase.png',
+		"briefcase_gold" = 'icons/UI_Icons/Achievements/lobotomycorp13/briefcase_gold.png',
+		"clown_boss" = 'icons/UI_Icons/Achievements/lobotomycorp13/clown_boss.png',
+		"rat_quest" = 'icons/UI_Icons/Achievements/lobotomycorp13/rat_quest.png',
+		"clan_genocide" = 'icons/UI_Icons/Achievements/lobotomycorp13/clan_genocide.png',
+		"rats_genocide" = 'icons/UI_Icons/Achievements/lobotomycorp13/rats_genocide.png',
 	)
 
 /datum/asset/spritesheet/simple/pills
