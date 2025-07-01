@@ -176,6 +176,7 @@
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/structure/table/glass,
 /obj/item/storage/backpack/duffelbag/med/surgery,
+/obj/item/tape/resurgence/joshua,
 /turf/open/floor/plasteel/showroomfloor,
 /area/city/backstreets_room/temple_motus/study_b)
 "eb" = (
@@ -950,6 +951,12 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/city/backstreets_room/temple_motus)
+"qa" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/decal/cleanable/glass,
+/obj/item/tape/resurgence/rose_research2,
+/turf/open/floor/mineral/plastitanium,
+/area/city/backstreets_room/temple_motus/dorms)
 "qd" = (
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/effect/decal/remains/robot,
@@ -1795,6 +1802,7 @@
 	color = "#8a8a8a"
 	},
 /obj/effect/decal/cleanable/cobweb/cobweb2,
+/obj/item/tape/resurgence/shared_dreams,
 /turf/open/floor/carpet/black,
 /area/city/backstreets_room/temple_motus/storage)
 "EH" = (
@@ -1940,6 +1948,7 @@
 	dir = 1
 	},
 /obj/item/organ/cyberimp/chest/resurgence_sandstorm,
+/obj/item/tape/resurgence/morning_raid,
 /turf/open/floor/mineral/gold,
 /area/city/backstreets_room/temple_motus/treasure_room)
 "FM" = (
@@ -1982,6 +1991,13 @@
 "GB" = (
 /turf/closed/indestructible/iron,
 /area/city/backstreets_room/temple_motus/study_a)
+"GK" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/table/glass,
+/obj/item/reagent_containers/hypospray/medipen/salacid,
+/obj/item/tape/resurgence/dying_machine,
+/turf/open/indestructible/white,
+/area/city/backstreets_room/temple_motus/medbay)
 "GL" = (
 /obj/effect/decal/cleanable/dirt/dust,
 /turf/open/floor/holofloor/chapel{
@@ -1998,7 +2014,7 @@
 /obj/structure/table/greyscale{
 	color = "#8a8a8a"
 	},
-/obj/item/tape/resurgence/joshua,
+/obj/item/tape/resurgence/fly_research,
 /turf/open/floor/stone,
 /area/city/backstreets_room/temple_motus/study_a)
 "GW" = (
@@ -2216,6 +2232,7 @@
 	color = "#8a8a8a"
 	},
 /obj/item/paper_bin/bundlenatural,
+/obj/item/tape/resurgence/fly_research2,
 /turf/open/floor/stone,
 /area/city/backstreets_room/temple_motus/study_a)
 "Kq" = (
@@ -2793,6 +2810,12 @@
 	name = "outskirts sand"
 	},
 /area/city/backstreets_room/temple_motus/outskirts)
+"Vk" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/decal/cleanable/glass,
+/obj/item/tape/resurgence/rose_research,
+/turf/open/floor/mineral/plastitanium,
+/area/city/backstreets_room/temple_motus/dorms)
 "Vu" = (
 /obj/structure/bonfire/prelit,
 /turf/open/floor/plating/asteroid{
@@ -6274,7 +6297,7 @@ pJ
 mB
 Le
 Fw
-Ca
+GK
 tM
 NK
 Qs
@@ -7175,7 +7198,7 @@ tK
 yg
 Ui
 ll
-ll
+qa
 yg
 Ar
 aj
@@ -7300,7 +7323,7 @@ RT
 xV
 Fp
 yg
-ll
+Vk
 ZC
 ks
 yg

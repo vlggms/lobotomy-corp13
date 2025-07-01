@@ -12,7 +12,7 @@
 /datum/component/chemical_harvest/Initialize(chem_type = /datum/reagent/medicine/mental_stabilizator, chem_yield = 5, chem_cooldown = 3 MINUTES)
 	if(!ismob(parent))
 		return COMPONENT_INCOMPATIBLE
-	
+
 	src.chem_type = chem_type
 	src.chem_yield = chem_yield
 	src.chem_cooldown = chem_cooldown
@@ -35,18 +35,18 @@
 /datum/component/chemical_harvest/proc/on_attackby(datum/source, obj/item/O, mob/user, params)
 	if(!istype(O, /obj/item/reagent_containers))
 		return // Let non-reagent containers be handled normally
-	
+
 	if(world.time < chem_cooldown_timer)
 		to_chat(user, span_notice("You may need to wait a bit longer."))
 		return COMPONENT_CANCEL_ATTACK_CHAIN
-	
+
 	var/obj/item/reagent_containers/my_container = O
 	var/mob/living/harvester = parent
 	harvester.visible_message("[user] starts extracting some reagents from [harvester]...")
-	
+
 	if(do_after(user, 10 SECONDS, harvester))
 		perform_harvest(my_container, user)
-	
+
 	return COMPONENT_CANCEL_ATTACK_CHAIN
 
 /datum/component/chemical_harvest/proc/perform_harvest(obj/item/reagent_containers/C, mob/user)
@@ -297,7 +297,7 @@
 
 /mob/living/simple_animal/hostile/mad_fly_nest/Initialize()
 	. = ..()
-	AddComponent(/datum/component/chemical_harvest, /datum/reagent/medicine/mental_stabilizator, 5, 3 MINUTES)
+	AddComponent(/datum/component/chemical_harvest, /datum/reagent/medicine/mental_stabilizator, 5, 1 MINUTES)
 
 /mob/living/simple_animal/hostile/mad_fly_nest/CanAttack(atom/the_target)
 	return FALSE
@@ -368,7 +368,7 @@
 
 /mob/living/simple_animal/hostile/scarlet_rose/Initialize()
 	. = ..()
-	AddComponent(/datum/component/chemical_harvest, /datum/reagent/medicine/sal_acid, 15, 3 MINUTES)
+	AddComponent(/datum/component/chemical_harvest, /datum/reagent/medicine/sal_acid, 15, 1 MINUTES)
 
 /mob/living/simple_animal/hostile/scarlet_rose/death(gibbed)
 	new /obj/item/scarlet_rose(get_turf(src))
@@ -580,7 +580,7 @@
 	. = ..()
 	// Override parent's chemical harvest component with lower yield
 	qdel(GetComponent(/datum/component/chemical_harvest))
-	AddComponent(/datum/component/chemical_harvest, /datum/reagent/medicine/sal_acid, 5, 3 MINUTES)
+	AddComponent(/datum/component/chemical_harvest, /datum/reagent/medicine/sal_acid, 5, 1 MINUTES)
 
 /mob/living/simple_animal/hostile/scarlet_rose/growing/Life()
 	. = ..()
@@ -668,6 +668,7 @@
 	var/detonating = FALSE
 	var/beep_time = 20
 	var/talking = FALSE
+	var/elliot_killed_once = FALSE
 
 /mob/living/simple_animal/hostile/clan/stone_keeper/Initialize()
 	. = ..()
@@ -823,7 +824,7 @@
 	say("If I can't bring you down with this shell intact...")
 	SLEEP_CHECK_DEATH(20)
 	say("I WILL MAKE SURE NONE OF YOU WILL!!!")
-	SLEEP_CHECK_DEATH(20) //shuffle_inplace(nearby_cases)
+	SLEEP_CHECK_DEATH(20)
 	say("BURN IN HELL, HAHAHA!!!")
 	status_flags &= ~GODMODE
 	if(elliot_alive)
@@ -832,16 +833,26 @@
 		Self_Detonate()
 
 /mob/living/simple_animal/hostile/clan/stone_keeper/proc/Self_Detonate()
-	for(var/mob/living/hurt_targets in range(20, src))
-		hurt_targets.playsound_local(hurt_targets, "sound/effects/explosioncreak1.ogg", 100)
-		shake_camera(hurt_targets, 25, 4)
+	new /obj/effect/temp_visual/explosion(get_turf(src))
+	for(var/mob/living/L in view(8, src))
+		var/dist = get_dist(src, L)
+		if(L == src)
+			continue
+		if(ishuman(L)) //Different damage formulae for humans vs mobs
+			L.deal_damage(clamp((15 * (2 ** (8 - dist))), 100, 4000), RED_DAMAGE)
+		if(L.health < 0)
+			L.gib()
+	for(var/mob/hurt_targets in range(20, src))
+		if(hurt_targets.client)
+			hurt_targets.playsound_local(hurt_targets, "sound/effects/explosioncreak1.ogg", 100)
+			shake_camera(hurt_targets, 25, 4)
 	SLEEP_CHECK_DEATH(10)
-	for(var/mob/living/hurt_targets in range(20, src))
-		hurt_targets.deal_damage(600, RED_DAMAGE)
+	// Trigger rubble spawners to handle their own spawning
 	for(var/obj/effect/rubble_spawner/spawner in range(40, src))
-		new /turf/closed/mineral/ash_rock(get_turf(spawner))
+		spawner.StartSpawning()
 	for(var/obj/effect/pickaxe_spawner/pick_spawner in range(40, src))
 		new /obj/item/pickaxe(get_turf(pick_spawner))
+	// Delete self immediately
 	qdel(src)
 
 /mob/living/simple_animal/hostile/clan/stone_keeper/proc/beep()
@@ -956,6 +967,21 @@
 		for(var/mob/living/L in new_hits)
 			to_chat(L, span_userdanger("A pale beam passes right through you!"))
 			new /obj/effect/temp_visual/dir_setting/bloodsplatter(get_turf(L), pick(GLOB.alldirs))
+			// Check if we killed Elliot for the first time
+			if(is_elliot(L) && L.stat == DEAD && !elliot_killed_once)
+				elliot_killed_once = TRUE
+				var/mob/living/simple_animal/hostile/ui_npc/elliot/elliot_victim = L
+				addtimer(CALLBACK(src, PROC_REF(revive_elliot), elliot_victim), 2 SECONDS)
+
+/mob/living/simple_animal/hostile/clan/stone_keeper/proc/revive_elliot(mob/living/simple_animal/hostile/ui_npc/elliot/elliot_victim)
+	if(!elliot_victim || QDELETED(elliot_victim))
+		return
+	// Revive Elliot
+	elliot_victim.revive(full_heal = TRUE, admin_revive = TRUE)
+	elliot_victim.say("Agh... Their next shot could end me...")
+	// Make sure they're standing and can act
+	if(elliot_victim.stunned)
+		elliot_victim.Unstun(FALSE)
 
 /mob/living/simple_animal/hostile/clan/stone_keeper/proc/DensityCheck(turf/T) //TRUE if dense or airlocks closed
 	if(T.density)
@@ -1156,6 +1182,31 @@
 	icon_state = "tdome_admin"
 	alpha = 0
 	mouse_opacity = FALSE
+
+/obj/effect/rubble_spawner/proc/StartSpawning()
+	var/delay = rand(15, 200) // 1.5 to 20 seconds delay
+	addtimer(CALLBACK(src, PROC_REF(SpawnRubble)), delay)
+
+/obj/effect/rubble_spawner/proc/SpawnRubble()
+	var/turf/T = get_turf(src)
+	if(!T)
+		qdel(src)
+		return
+
+	// 15% chance for cave-in effect
+	if(prob(15))
+		// Cave-in effect similar to MiningEvent
+		visible_message(span_danger("Chunks of rubble cave in!"))
+		playsound(T, 'sound/effects/lc13_environment/day_50/Shake_Start.ogg', 60, TRUE)
+		for(var/turf/cave_turf in view(4, T))
+			if(prob(80)) // 20% chance per tile
+				continue
+			var/obj/effect/rock_fall/R = new(cave_turf)
+			R.boom_damage = 90 // Reasonable damage instead of instakill
+
+	// Spawn the ash rock
+	new /turf/closed/mineral/ash_rock(T)
+	qdel(src)
 
 /obj/effect/pickaxe_spawner
 	name = "pickaxe spawner"

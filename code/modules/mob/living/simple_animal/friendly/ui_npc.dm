@@ -12,7 +12,7 @@
 	var/portrait_folder = "icons/UI_Icons/NPC_Portraits/"
 	var/portrait = "the-goat.PNG"
 	var/sound/talking = sound('sound/creatures/lc13/mailman.ogg', repeat = TRUE)
-	var/datum/ui_npc/scene_manager/scene_manager = new()
+	var/datum/ui_npc/scene_manager/scene_manager
 	var/start_scene_id = "intro"
 	var/typing_interval = 100
 	var/typing_volume = 30
@@ -28,6 +28,9 @@
 	var/mutable_appearance/speech_bubble
 	var/can_interact = FALSE
 	var/list/active_tgui_sessions = list()
+	var/speak_scenes = FALSE // Toggle for speaking scene text
+	var/last_scene_speak = 0 // Last time we spoke a scene
+	var/scene_speak_cooldown = 40 // 4 second cooldown in deciseconds
 
 /mob/living/simple_animal/hostile/ui_npc/proc/speaking_on()
 	if(!can_interact)
@@ -57,6 +60,10 @@
 	speaking_on()
 
 	// add_overlay(mutable_appearance('icons/mob/talk.dmi', bubble, ABOVE_MOB_LAYER))
+
+	// Initialize scene manager with parent reference
+	scene_manager = new()
+	scene_manager.parent_npc = src
 
 	// Initialize NPC-specific variables (shared across all player interactions)
 	scene_manager.npc_vars.variables["name"] = name
@@ -209,6 +216,30 @@
 			if(session && session.user && session.user.client) // Ensure session and its user/client are valid
 				session.close() // This should initiate the TGUI close process for that user's window
 		active_tgui_sessions.Cut() // Clear the NPC's list as all relevant sessions are being told to close
+
+/mob/living/simple_animal/hostile/ui_npc/proc/speak_scene_text(scene_text)
+	if(!speak_scenes)
+		return
+
+	// Check cooldown
+	if(world.time < last_scene_speak + scene_speak_cooldown)
+		return
+
+	// Strip HTML tags and process text
+	var/clean_text = strip_html_simple(scene_text)
+
+	// Remove variable markers like {player.name}
+	var/regex/var_pattern = regex(@"\{[^}]+\}", "g")
+	clean_text = var_pattern.Replace(clean_text, "")
+
+	// Limit text length to avoid spam
+	if(length(clean_text) > 150)
+		clean_text = copytext(clean_text, 1, 150) + "..."
+
+	// Speak the text
+	if(clean_text && length(clean_text) > 0)
+		say(clean_text)
+		last_scene_speak = world.time
 
 /mob/living/simple_animal/hostile/ui_npc/death(gibbed, message)
 	speaking_off()

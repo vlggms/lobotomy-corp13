@@ -93,7 +93,7 @@
 						teleport_update = world.time
 						return
 				if(!HAS_TRAIT(src, TRAIT_IMMOBILIZED) && isturf(loc))
-					step_to(src, Leader)
+					follow_leader()
 					addtimer(CALLBACK(src, PROC_REF(follow_leader)), 5)
 					addtimer(CALLBACK(src, PROC_REF(follow_leader)), 10)
 					addtimer(CALLBACK(src, PROC_REF(follow_leader)), 15)
@@ -179,6 +179,8 @@
 /mob/living/simple_animal/hostile/ui_npc/elliot/proc/follow_leader()
 	if(Leader)
 		step_to(src, Leader)
+	if(Leader.stat == DEAD)
+		Leader = null
 
 /mob/living/simple_animal/hostile/ui_npc/elliot/proc/TeleportToSomeone(mob/living/teleport_target)
 	if(!teleport_target)
@@ -394,13 +396,13 @@
 	check_and_trigger_alert(
 		istype(new_area, /area/city/backstreets_room/temple_motus/treasure_hallway),
 		"entered_boss_room",
-		PROC_REF(boss_alert)
+		PROC_REF(pre_boss_alert)
 	)
 
 	check_and_trigger_alert(
 		istype(new_area, /area/city/backstreets_room/temple_motus/treasure_entrance),
 		"pre_boss_alert",
-		PROC_REF(pre_boss_alert)
+		PROC_REF(boss_alert)
 	)
 
 	if(!valid_tile)
@@ -1295,7 +1297,6 @@
 	for(var/obj/effect/keeper_piller_spawn/piller in range(20, src))
 		var/turf/spawn_turf = get_turf(piller)
 		new /mob/living/simple_animal/npc/tinkerer/elliot_taunt(spawn_turf)
-	speaking_on()
 
 /obj/machinery/door/keycard/final_door
 	name = "heavily locked door"
@@ -1372,7 +1373,6 @@
 		SLEEP_CHECK_DEATH(default_delay)
 	for(var/mob/living/simple_animal/hostile/ui_npc/elliot/victim in range(20, src))
 		victim.can_act = TRUE
-		victim.speaking_on()
 
 /mob/living/simple_animal/hostile/ui_npc/elliot/proc/execute_keeper(mob/living/simple_animal/hostile/clan/stone_keeper/execute_target)
 	TeleportToSomeone(execute_target)
