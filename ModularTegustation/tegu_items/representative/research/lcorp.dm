@@ -160,7 +160,7 @@ GLOBAL_LIST_EMPTY(lcorp_upgrades)
 /datum/data/lc13research/plushie_extractor/ResearchEffect(obj/structure/representative_console/requester)
 	if(repeat_cooldown > world.time)
 		return
-	new /obj/item/device/Plushie_Extractor(get_turf(requester))
+	new /obj/item/device/plushie_extractor(get_turf(requester))
 	requester.visible_message(span_notice("The [requester] lights up as it teleports in the Extractor."))
 	repeat_cooldown = world.time + (10 SECONDS)
 
