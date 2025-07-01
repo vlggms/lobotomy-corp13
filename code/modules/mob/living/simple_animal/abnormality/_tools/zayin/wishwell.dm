@@ -179,6 +179,32 @@
 		/mob/living/simple_animal/hostile/ordeal/sin_wrath,
 	)
 
+	var/list/fishies = list(
+		/obj/item/food/fish/abnofish,
+		/obj/item/food/fish/abnofish/anfish,
+	)
+
+	var/list/fishies_zayin = list(
+		/obj/item/food/fish/abnofish/onefish,
+	)
+
+	var/list/fishies_teth = list(
+		/obj/item/food/fish/abnofish/hairfish,
+	)
+
+	var/list/fishies_he = list(
+		/obj/item/food/fish/abnofish/freifisch,
+		/obj/item/food/fish/abnofish/sirenfish,
+	)
+
+	var/list/fishies_waw = list(
+		/obj/item/food/fish/abnofish/hatefish,
+	)
+
+	var/list/fishies_aleph = list(
+		/obj/item/food/fish/abnofish/nothingfishy,
+	)
+
 //This proc removes the need to copypaste every single armor and weapon into a list.
 /obj/structure/toolabnormality/wishwell/Initialize()
 	. = ..()
@@ -202,11 +228,64 @@
 			if(0 to 20)
 				zayinitem += initial(ego.item_path)
 
+/obj/structure/toolabnormality/wishwell/proc/ReturnChanceList(mob/living/carbon/wielder, skill_amount)
+	var/thefishnumber = ItemHowRare(skill_amount)
+
+	switch(thefishnumber)
+		if(0 to 4)
+			return dusk.Copy()
+		if(5 to 9)
+			return noon.Copy()
+		if(10 to 14)
+			return dawn.Copy()
+		if(15 to 19)
+			return fishies_zayin.Copy()
+		if(20 to 29)
+			return fishies_teth.Copy()
+		if(30 to 49)
+			return fishies_he.Copy()
+		if(50 to 69)
+			return fishies_waw.Copy()
+		if(70 to 105)
+			return fishies_aleph.Copy()
+		if(106 to INFINITY)
+			return fishies.Copy()
+
+/obj/structure/toolabnormality/wishwell/proc/ItemHowRare(mob/living/carbon/wielder, scaling = 1)
+	. = 0
+	var/hat_level = 0
+	if(wielder.head && istype(wielder.head, /obj/item/clothing/head/beret/fishing_hat))
+		var/obj/item/clothing/head/beret/fishing_hat/hat = wielder.head
+		hat_level = hat.amount
+	else
+		to_chat(wielder, span_danger("Come back when you have a fancier hat..."))
+		return
+
+	var/successes = 0
+	for(var/i = 0, i < hat_level, i++)
+		if(prob(60))
+			successes += 1
+
+	if(!successes)
+		return
+
+	// This is designed to be Zayin at 5 Hat Stacks and Aleph at 20, with a minor chance of the meme hats at 20 hats
+	// Also rod strength of 1.6 which is the normal maximum. Better parts obviously make for far better fishing.
+	// The formula in Desmos notation:
+	// f\left(x\right)=\left(3\log\left(i\right)s\right)^{\log x}10
+	// 1 < s < 3, 0.1 step
+	// 1 < i < 20, 1 step
+	. = ((3 * log(hat_level) * scaling) ** log(successes)) * 10
+
+	return
+
 //End of loot lists
 /obj/structure/toolabnormality/wishwell/attackby(obj/item/I, mob/living/carbon/human/user)
 	//Accepts money, any EGO item except realized armor & clerk pistols and compares them to the lists
 	if(istype(I, /obj/item/extraction/tool_extractor))
 		return ..()
+	if(istype(I, /obj/item/fishing_rod))
+		return
 	if(!do_after(user, 0.5 SECONDS))
 		return
 	if(QDELETED(I)) // Should prevent weird runtimes and other weirdness
