@@ -696,6 +696,12 @@
 /obj/structure/sign/poster/official/do_not_question,
 /turf/closed/indestructible/iron,
 /area/city/backstreets_room/temple_motus/main)
+"lE" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/decal/cleanable/glass,
+/obj/item/tape/resurgence/rose_research,
+/turf/open/floor/mineral/plastitanium,
+/area/city/backstreets_room/temple_motus/dorms)
 "lG" = (
 /obj/structure/sign/poster/official/do_not_question,
 /turf/closed/indestructible/iron,
@@ -951,12 +957,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/city/backstreets_room/temple_motus)
-"qa" = (
-/obj/effect/decal/cleanable/dirt/dust,
-/obj/effect/decal/cleanable/glass,
-/obj/item/tape/resurgence/rose_research2,
-/turf/open/floor/mineral/plastitanium,
-/area/city/backstreets_room/temple_motus/dorms)
 "qd" = (
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/effect/decal/remains/robot,
@@ -1991,13 +1991,6 @@
 "GB" = (
 /turf/closed/indestructible/iron,
 /area/city/backstreets_room/temple_motus/study_a)
-"GK" = (
-/obj/effect/decal/cleanable/dirt/dust,
-/obj/structure/table/glass,
-/obj/item/reagent_containers/hypospray/medipen/salacid,
-/obj/item/tape/resurgence/dying_machine,
-/turf/open/indestructible/white,
-/area/city/backstreets_room/temple_motus/medbay)
 "GL" = (
 /obj/effect/decal/cleanable/dirt/dust,
 /turf/open/floor/holofloor/chapel{
@@ -2039,6 +2032,7 @@
 	},
 /obj/effect/decal/cleanable/cobweb/cobweb2,
 /obj/structure/lootcrate/hana,
+/obj/item/tape/resurgence/temple_tour,
 /turf/open/floor/stone,
 /area/city/backstreets_room/temple_motus/library)
 "HG" = (
@@ -2810,12 +2804,6 @@
 	name = "outskirts sand"
 	},
 /area/city/backstreets_room/temple_motus/outskirts)
-"Vk" = (
-/obj/effect/decal/cleanable/dirt/dust,
-/obj/effect/decal/cleanable/glass,
-/obj/item/tape/resurgence/rose_research,
-/turf/open/floor/mineral/plastitanium,
-/area/city/backstreets_room/temple_motus/dorms)
 "Vu" = (
 /obj/structure/bonfire/prelit,
 /turf/open/floor/plating/asteroid{
@@ -2942,6 +2930,12 @@
 	dir = 4
 	},
 /area/city/backstreets_room/temple_motus/main)
+"Xl" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/decal/cleanable/glass,
+/obj/item/tape/resurgence/rose_research2,
+/turf/open/floor/mineral/plastitanium,
+/area/city/backstreets_room/temple_motus/dorms)
 "Xn" = (
 /obj/effect/turf_decal/siding/wood/corner{
 	dir = 1
@@ -2967,6 +2961,13 @@
 	},
 /turf/open/floor/carpet/black,
 /area/city/backstreets_room/temple_motus/main)
+"XG" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/table/glass,
+/obj/item/reagent_containers/hypospray/medipen/salacid,
+/obj/item/tape/resurgence/dying_machine,
+/turf/open/indestructible/white,
+/area/city/backstreets_room/temple_motus/medbay)
 "XL" = (
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/structure/fluff/paper/stack{
@@ -6297,7 +6298,7 @@ pJ
 mB
 Le
 Fw
-GK
+XG
 tM
 NK
 Qs
@@ -7198,7 +7199,7 @@ tK
 yg
 Ui
 ll
-qa
+Xl
 yg
 Ar
 aj
@@ -7323,7 +7324,7 @@ RT
 xV
 Fp
 yg
-Vk
+lE
 ZC
 ks
 yg
