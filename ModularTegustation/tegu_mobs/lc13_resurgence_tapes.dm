@@ -11,23 +11,23 @@
 /obj/item/tape/resurgence/first
 	name = "Tinkerer's Log: Moving Out"
 	icon_state = "tape_red"
-	desc = "A magnetic tape that can hold up to ten minutes of content. It appears to have 'Resurgence Clan's first move.' written on it's back."
+	desc = "A magnetic tape that can hold up to ten minutes of content. It appears to have 'Resurgence Clan's first move.' written on its back."
 
 	storedinfo = list(
-		"Loud sounds of machinery and humans screams could be heard in the background...",
+		"Loud sounds of machinery and human screams could be heard in the background...",
 		span_game_say(span_name("Unknown Robotic Voice") + span_message(" yells,") + " \"Dammit... WHY CAN’T YOU JUST SHUT UP!!!\""),
 		span_game_say(span_name("Human Voice") + span_message(" coughs")),
 		span_game_say(span_name("Human Voice") + span_message(" weakly says,") + " \"Who- What the hell are you-u... I ju-ust wanted to\""),
 		span_game_say(span_name("Human Voice") + span_message(" coughs loudly yet weakly")),
-		span_game_say(span_name("Human Voice ") + span_message(" weakly says,") + " \"Pass by thi-is town... Please, My family is waiting for me...\""),
+		span_game_say(span_name("Human Voice") + span_message(" weakly says,") + " \"Pass by thi-is town... Please, My family is waiting for me...\""),
 		span_game_say(span_name("Unknown Robotic Voice") + span_message(" says,") + " \"Oh, There are more of you meatbags nearby? Pleasurable to know... \""),
 		span_game_say(span_name("Unknown Robotic Voice") + span_message(" yells,") + " \"HEY YOU, YES YOU. THE SCOUT IN THE BACK, PASS OVER THE DRILL.\""),
 		span_game_say(span_name("Scout") + span_message(" says,") + " \"Ye-es Tinke-er.\""),
-		span_game_say(span_name("Human Voice ") + span_message(" weakly says,") + " \"Wha-at are you doing... Wait! I can still provide something for you! Do you need gears or me-\""),
-		span_game_say(span_name("Human Voice") + span_message("  screams")),
+		span_game_say(span_name("Human Voice") + span_message(" weakly says,") + " \"Wha-at are you doing... Wait! I can still provide something for you! Do you need gears or me-\""),
+		span_game_say(span_name("Human Voice") + span_message(" screams")),
 		"Sounds of drills and saws tearing into flesh are heard before a heavy door is heard screeching open…",
 		span_game_say(span_name("Slow Robotic Voice") + span_message(" says,") + " \"Dear Tinkerer... Was this why you wanted me to give you this new human to you?\""),
-		span_game_say(span_name("Slow Robotic Voice") + span_message(" says,") + " \"At least I could of woven them into something much more valuable than fresh gibs…\""),
+		span_game_say(span_name("Slow Robotic Voice") + span_message(" says,") + " \"At least I could have woven them into something much more valuable than fresh gibs…\""),
 		"The sounds of drills and saws slowly slowed down...",
 		span_game_say(span_name("The Tinkerer") + span_message(" says,") + " \"Oh? Didn’t expect you to arrive here today Mister Weaver, Were you this worried about this human?\""),
 		span_game_say(span_name("The Weaver") + span_message(" says,") + " \"No, With the recent events that occurred here with the... FLS members and my citizens have been much more opposed to using humans as materials.\""),
@@ -37,7 +37,7 @@
 		span_game_say(span_name("The Weaver") + span_message(" says,") + " \"Yet, It has to be said. After discussing this with the Historian, We have decided that this town is no place for you.\""),
 		span_game_say(span_name("The Weaver") + span_message(" says,") + " \"So I kindly ask you to kindly leave this town soon...\""),
 		"A loud fleshy crunch is heard coming from the human head...",
-		span_game_say(span_name("The Tinkerer") + span_message(" whispers,") + " \"I really should of seen that one coming yet...\""),
+		span_game_say(span_name("The Tinkerer") + span_message(" whispers,") + " \"I really should have seen that one coming yet...\""),
 		span_game_say(span_name("The Tinkerer") + span_message(" says,") + " \"No big deal, I can start moving tomorrow. This place was quite limiting after all.\""),
 		span_game_say(span_name("The Weaver") + span_message(" says,") + " \"Thank you for understanding our decision, as it was not an easy one we ma-\""),
 		span_game_say(span_name("The Tinkerer") + span_message(" says,") + " \"Yada yada... No need to exaggerate this. This ‘difficult decision’ only took you like, 12 hours to make.\""),
@@ -50,9 +50,9 @@
 
 /obj/item/tape/resurgence/podcast_seven
 	name = "Historians Podcast: Seven Association"
-	desc = "A magnetic tape that can hold up to ten minutes of content. It appears to have 'Episode 1' written on it's back."
+	desc = "A magnetic tape that can hold up to ten minutes of content. It appears to have 'Episode 1' written on its back."
 	storedinfo = list(
-		span_game_say(span_name("Soft Robotic Voice") + span_message(" says,") + " \"Is everything ready? The Podcast is starting in 3 secon- Oh!\"</span></span></span>,"),
+		span_game_say(span_name("Soft Robotic Voice") + span_message(" says,") + " \"Is everything ready? The Podcast is starting in 3 secon- Oh!\""),
 		"Lights start flickering on as a jingle plays in the background...",
 		span_game_say(span_name("Soft Robotic Voice") + span_message(" whispers,") + " \"Wait, I am still not ready for this... Oh dear, Um...\""),
 		span_game_say(span_name("The Historian") + span_message(" exclaims,") + " \"Well, Hello my dear Citizens! What a brilliant new day in the outskirts as I, the Historian of district H will be teaching you about the different associations in the City today!\""),
@@ -74,7 +74,7 @@
 
 /obj/item/tape/resurgence/temple_of_motus
 	name = "Expedition Log #32"
-	desc = "A magnetic tape that can hold up to ten minutes of content. It appears to have 'Our Temple...' written on it's back."
+	desc = "A magnetic tape that can hold up to ten minutes of content. It appears to have 'Our Temple...' written on its back."
 	storedinfo = list(
 		"Mechanical Footsteps are heard moving across an empty desert, along with the sounds of wheels moving behind them…",
 		span_game_say(span_name("Rusty Robotic Voice") + span_message(" asks,") + " \"Hey, Head Priest. Do you have any idea of how much time is left until we reach this Temple…\""),
@@ -82,7 +82,7 @@
 		span_game_say(span_name("Old Robotic Voice") + span_message(" says,") + " \"We will arrive there in time, after all the Historian did say that this would be a long journey.\""),
 		span_game_say(span_name("Rusty Robotic Voice") + span_message(" asks,") + " \"Alright, Can you at least us what we will be doing there?\""),
 		span_game_say(span_name("Rusty Robotic Voice") + span_message(" says,") + " \"I think that we have already proven that we are dedicated to this project.\""),
-		"Flipping of pages comes from the “Old Robotic Voice…”",
+		"Flipping of pages comes from the Old Robotic Voice…",
 		span_game_say(span_name("Old Robotic Voice") + span_message(" asks,") + " \"Scholar, Do you recognize this book?\""),
 		span_game_say(span_name("Rusty Robotic Voice") + span_message(" says,") + " \"Of course I do! This is ‘The Exploration of Love and Fear,’ written by you. Any Scholar should know it by soul if they wish to pass the first class.\""),
 		span_game_say(span_name("Old Robotic Voice") + span_message(" asks,") + " \"Good, and how do you think I was able to explore those emotions I wrote about?\""),
@@ -92,10 +92,10 @@
 		span_game_say(span_name("Old Robotic Voice") + span_message(" says,") + " \"You need to get close to humans, to study them to learn how they interact with those emotions.\""),
 		span_game_say(span_name("Rusty Robotic Voice") + span_message(" says,") + " \"Okay, But it is not like we get to see them all that often, most of the time they either run away or attack us on sight…\""),
 		span_game_say(span_name("Old Robotic Voice") + span_message(" says,") + " \"And that's where our Temple comes in.\""),
-		span_game_say(span_name("Old Robotic Voice") + span_message(" says,") + " \"This temple is our  closest contact to humans without being detected. Along with holding all of the tools we need to study them.\""),
+		span_game_say(span_name("Old Robotic Voice") + span_message(" says,") + " \"This temple is our closest contact to humans without being detected. Along with holding all of the tools we need to study them.\""),
 		"The Mechanical footsteps stop.",
 		span_game_say(span_name("Rusty Robotic Voice") + span_message(" asks,") + " \"Um, Head Priest. Are we stopping now? There is still around 10 hours until the sun goes down.\""),
-		"4 small knocks come from the “Old Robotic Voice”",
+		"4 small knocks come from the Old Robotic Voice",
 		"The ground begins to rumble… as crumbling rocks and shifting gears rises from the ground, before ending in a thud.",
 		span_game_say(span_name("Rusty Robotic Voice") + span_message(" stutters,") + " \"How… how could it all be hidden that easily…\""),
 		span_game_say(span_name("Old Robotic Voice") + span_message(" says,") + " \"Now, Dear Scholar. Welcome to the Temple of Motus.\"")
@@ -105,18 +105,18 @@
 
 /obj/item/tape/resurgence/new_library
 	name = "Temple Log #1"
-	desc = "A magnetic tape that can hold up to ten minutes of content. It appears to have 'The Library' written on it's back."
+	desc = "A magnetic tape that can hold up to ten minutes of content. It appears to have 'The Library' written on its back."
 	storedinfo = list(
 	"Sounds of shifting machinery and distant conversations",
 	span_game_say(span_name("Old Robotic Voice") + span_message(" says,") + " \"Scholar, How is progress on getting everyone settled in?\""),
-	span_game_say(span_name("Rusty Robotic Voice") + span_message(" says,") + " \"All great sir! It everyone has been able to find their rooms in the temple and we are about to offload all of our supplies!\""),
+	span_game_say(span_name("Rusty Robotic Voice") + span_message(" says,") + " \"All great sir! Everyone has been able to find their rooms in the temple and we are about to offload all of our supplies!\""),
 	span_game_say(span_name("Old Robotic Voice") + span_message(" says,") + " \"Understood, It appears that I will need to speak with the Historian soon… I can give you a basic rundown of your duties before I go.\""),
 	span_game_say(span_name("Rusty Robotic Voice") + span_message(" asks,") + " \"Got it sir. Where shall we begin?\""),
 	"A pair of mechanical footsteps, then a heavy door slides open…",
 	span_game_say(span_name("Old Robotic Voice") + span_message(" says,") + " \"One of the basic responsibilities you will hold in this temple is to keep our library up to date. As studies are completed, it may cause some books to become outdated.\""),
-	span_game_say(span_name("Old Robotic Voice") + span_message(" says,") + " \"Either way you will not be parting in the studies for now since you are new, but at least you will be tasked with watching them and taking notes.\""),
+	span_game_say(span_name("Old Robotic Voice") + span_message(" says,") + " \"Either way you will not be taking part in the studies for now since you are new, but at least you will be tasked with watching them and taking notes.\""),
 	span_game_say(span_name("Old Robotic Voice") + span_message(" says,") + " \"Please use those opportunities to learn our ways around here...\""),
-	"The “Old Robotic Voice” slows down.",
+	"The Old Robotic Voice slows down.",
 	span_game_say(span_name("Old Robotic Voice") + span_message(" says,") + " \"Now now, I know you are interested in what studies these books hold but we still need to get over your duties.\""),
 	span_game_say(span_name("Rusty Robotic Voice") + span_message(" says,") + " \"Oh, Sorry Sir. You need to understand what a change this is, Back at the town I got access to only like… 2 books a month?\""),
 	span_game_say(span_name("Rusty Robotic Voice") + span_message(" says,") + " \"Now I have the whole library open! Holding so many new experiences! Like “Aversion” or “Contentment…”\""),
@@ -129,13 +129,13 @@
 
 /obj/item/tape/resurgence/joshua
 	name = "Temple Log #15"
-	desc = "A magnetic tape that can hold up to ten minutes of content. It appears to have 'New Friend?' written on it's back."
+	desc = "A magnetic tape that can hold up to ten minutes of content. It appears to have 'New Friend?' written on its back."
 	storedinfo = list(
 	"Sounds of distant conversations slowly moving away...",
 	span_game_say(span_name("Rusty Robotic Voice") + span_message(" says,") + " \"That was quite a procedure! Fascinating how the human brain is able to produce such emotions. \""),
 	span_game_say(span_name("Rusty Robotic Voice") + span_message(" says,") + " \"Thank the Historian that I was able to record all of...\""),
 	span_game_say(span_name("Rusty Robotic Voice") + span_message(" says,") + " \"Wait, Shoot... Don't tell me that it was off the whole time...\""),
-	span_game_say(span_name("Rusty Robotic Voice") + span_message(" asks,") + " \"Well one of my seniors must have have left one spare recording here...\""),
+	span_game_say(span_name("Rusty Robotic Voice") + span_message(" asks,") + " \"Well one of my seniors must have left one spare recording here...\""),
 	span_game_say(span_name("Distant Robotic Voice") + span_message(" says,") + " \"Hey! Elliot! Are you still in the study room?\""),
 	span_game_say(span_name("Elliot") + span_message(" says,") + " \"Yes-s. Just give me just a moment, I think I have forgotten something here...\""),
 	span_game_say(span_name("Distant Robotic Voice") + span_message(" says,") + " \"Okay... Just get out of there soon, other scholars will be using it soon.\""),
@@ -164,11 +164,11 @@
 
 /obj/item/tape/resurgence/backstage
 	name = "Historians Podcast: Backstage Records"
-	desc = "A magnetic tape that can hold up to ten minutes of content. It appears to have 'Backstage Records' written on it's back."
+	desc = "A magnetic tape that can hold up to ten minutes of content. It appears to have 'Backstage Records' written on its back."
 	storedinfo = list(
 	"Sounds of robotic laughter in the background along with some clapping.",
 	span_game_say(span_name("Soft Robotic Voice") + span_message(" says,") + " \"Thank you all for tuning in for tonight's episode! All of you learned a good amount about the Liu today!\""),
-	span_game_say(span_name("The Historian") + span_message(" says,") + " \"It was been the Historian speaking today and see you all, Next week!\""),
+	span_game_say(span_name("The Historian") + span_message(" says,") + " \"It has been the Historian speaking today and see you all, Next week!\""),
 	"Suddenly all of the clapping stops as a screen shuts down...",
 	span_game_say(span_name("The Historian") + span_message(" sighs")),
 	span_game_say(span_name("Robotic Voice") + span_message(" says,") + " \"Cut! You did great, dear Historian! You followed your script perfectly.\""),
@@ -190,17 +190,17 @@
 	span_game_say(span_name("The Historian") + span_message(" says,") + " \"But what happens if they learn how those dreams are...\""),
 	span_game_say(span_name("The Historian") + span_message(" says,") + " \"Flawed...\""),
 	span_game_say(span_name("The Weaver") + span_message(" says,") + " \"...\""),
-	span_game_say(span_name("The Historian") + span_message(" says,") + " \"Nothing good, Nothing good will happen. I can't that happen.\""),
+	span_game_say(span_name("The Historian") + span_message(" says,") + " \"Nothing good, Nothing good will happen. I can't let that happen.\""),
 	span_game_say(span_name("The Historian") + span_message(" says,") + " \"But...\""),
 	span_game_say(span_name("The Historian") + span_message(" says,") + " \"How long can I hide this truth from them...\""),
 	span_game_say(span_name("The Historian") + span_message(" says,") + " \"They are all so innocent, They will eventually start making plans to fulfill their dreams.\""),
-	span_game_say(span_name("The Historian") + span_message(" says,") + " \"They will all start leaving with a happy simile...\""),
+	span_game_say(span_name("The Historian") + span_message(" says,") + " \"They will all start leaving with a happy smile...\""),
 	span_game_say(span_name("The Historian") + span_message(" says,") + " \"“I will finally reach it, we can leave this harrowing life to rejoice in this paradise...”\""),
-	span_game_say(span_name("The Historian") + span_message(" says,") + " \"Then they will learn it's true nature, it's heartless nature...\""),
+	span_game_say(span_name("The Historian") + span_message(" says,") + " \"Then they will learn its true nature, its heartless nature...\""),
 	span_game_say(span_name("The Historian") + span_message(" says,") + " \"They will even learn how he-\""),
 	span_game_say(span_name("The Historian") + span_message(" says,") + " \"died for nothing...\""),
-	span_game_say(span_name("The Weaver") + span_message(" says,") + " \"I... Wish I had a answer for that...\""),
-	span_game_say(span_name("The Historian") + span_message(" says,") + " \"Sorry Weaver... I just had no else to talk too.\""),
+	span_game_say(span_name("The Weaver") + span_message(" says,") + " \"I... Wish I had an answer for that...\""),
+	span_game_say(span_name("The Historian") + span_message(" says,") + " \"Sorry Weaver... I just had no one else to talk to.\""),
 	span_game_say(span_name("The Historian") + span_message(" says,") + " \"We should return to our duties. The citizens need us.\""),
 	span_game_say(span_name("The Weaver") + span_message(" says,") + " \"We shall do our best for them...\""),
 	"The tape ends after a beep is heard from a device.",
@@ -210,7 +210,7 @@
 
 /obj/item/tape/resurgence/gateway
 	name = "Tinkerer's Logs: New Invention"
-	desc = "A magnetic tape that can hold up to ten minutes of content. It appears to have 'New Invention' written on it's back."
+	desc = "A magnetic tape that can hold up to ten minutes of content. It appears to have 'New Invention' written on its back."
 	storedinfo = list(
 	"Sounds of mechanical drilling and machinery clicking.",
 	"In the background, a heavy door starts sliding open... 2 pairs of footsteps walking closer",
@@ -260,14 +260,14 @@
 
 /obj/item/tape/resurgence/solution
 	name = "Historians's Logs: The Solution"
-	desc = "A magnetic tape that can hold up to ten minutes of content. It appears to have 'The Solution' written on it's back."
+	desc = "A magnetic tape that can hold up to ten minutes of content. It appears to have 'The Solution' written on its back."
 	storedinfo = list(
 	"The rustling of papers, along with a deep mechanical sigh.",
 	span_game_say(span_name("Soft Robotic Voice") + span_message(" says,") + " \"They... Have been planning for this all along...\""),
 	span_game_say(span_name("Soft Robotic Voice") + span_message(" says,") + " \"The Gateway... They were never planning on using it to teach our citizens.\""),
 	span_game_say(span_name("Soft Robotic Voice") + span_message(" says,") + " \"How could I be so naive...\""),
-	span_game_say(span_name("Slow Robotic Voice") + span_message(" says,") + " \"That is now in the past... The are now no longer here, and we need to pick ourselves back up.\""),
-	span_game_say(span_name("Slow Robotic Voice") + span_message(" says,") + " \"Moral is not looking well right now, especially after the incident caused by The Tinkerer.\""),
+	span_game_say(span_name("Slow Robotic Voice") + span_message(" says,") + " \"That is now in the past... They are now no longer here, and we need to pick ourselves back up.\""),
+	span_game_say(span_name("Slow Robotic Voice") + span_message(" says,") + " \"Morale is not looking well right now, especially after the incident caused by The Tinkerer.\""),
 	span_game_say(span_name("Soft Robotic Voice") + span_message(" says,") + " \"... We could try to finally start this project, now that we have access to his blueprints.\""),
 	span_game_say(span_name("Slow Robotic Voice") + span_message(" says,") + " \"That is a risky maneuver, we have not ever tried to use this tech without the Tinkerer’s assistance.\""),
 	span_game_say(span_name("Slow Robotic Voice") + span_message(" says,") + " \"And we don’t even know if this plan will work in the first place.\""),
@@ -290,7 +290,7 @@
 
 /obj/item/tape/resurgence/his_dream
 	name = "Weavers's Logs: His Dream"
-	desc = "A magnetic tape that can hold up to ten minutes of content. It appears to have 'His Dream' written on it's back."
+	desc = "A magnetic tape that can hold up to ten minutes of content. It appears to have 'His Dream' written on its back."
 	storedinfo = list(
 	"Quiet gust of wind, clicking and taps from a typewriter.",
 	"Slow and loud mechanical footsteps moving closer to the typewriter sounds.",
@@ -337,7 +337,7 @@
 	storedinfo = list(
 	"Hundreds, upon hundreds of metallic footsteps heaving through heavy sand, with small robotic chatter between the crowd... Heavier pair of footsteps in front of all the rest...",
 	"A heavy voice heard much higher than all the rest",
-	span_game_say(span_name("Mighty Robotic Voice") + span_message(" asks,") + " \"Dear Tinkerer, What is our current statues on reaching the first checkpoint...\""),
+	span_game_say(span_name("Mighty Robotic Voice") + span_message(" asks,") + " \"Dear Tinkerer, What is our current status on reaching the first checkpoint...\""),
 	span_game_say(span_name("The Tinkerer") + span_message(" says,") + " \"According to my scouts... It appears that the first checkpoint is only 4 miles away from us.\""),
 	span_game_say(span_name("The Tinkerer") + span_message(" says,") + " \"We only have a few hours before approaching it.\""),
 	span_game_say(span_name("Soft Robotic Voice") + span_message(" says,") + " \"To think... That after this whole time, we are fi-inally this close to the fa-abled City...\""),
@@ -398,7 +398,7 @@
 
 /obj/item/tape/resurgence/fly_research
 	name = "Temple Log #47"
-	desc = "A magnetic tape that can hold up to ten minutes of content. It appears to have 'Parasite Study' written on it's back."
+	desc = "A magnetic tape that can hold up to ten minutes of content. It appears to have 'Parasite Study' written on its back."
 	storedinfo = list(
 	"Sounds of buzzing insects and bubbling liquids in the background...",
 	span_game_say(span_name("Old Robotic Voice") + span_message(" says,") + " \"Research log forty-seven, studying the peculiar insects that have infested Study Room A.\""),
@@ -432,7 +432,7 @@
 
 /obj/item/tape/resurgence/fly_research2
 	name = "Temple Log #48"
-	desc = "A magnetic tape that can hold up to ten minutes of content. It appears to have 'Parasite Study Follow-up' written on it's back."
+	desc = "A magnetic tape that can hold up to ten minutes of content. It appears to have 'Parasite Study Follow-up' written on its back."
 	storedinfo = list(
 	"Sounds of distant screaming and buzzing...",
 	span_game_say(span_name("Old Robotic Voice") + span_message(" urgently says,") + " \"Research log forty-eight, emergency addendum to the mad fly studies.\""),
@@ -463,7 +463,7 @@
 
 /obj/item/tape/resurgence/rose_research
 	name = "Temple Log #52"
-	desc = "A magnetic tape that can hold up to ten minutes of content. It appears to have 'Botanical Study' written on it's back."
+	desc = "A magnetic tape that can hold up to ten minutes of content. It appears to have 'Botanical Study' written on its back."
 	storedinfo = list(
 	"Sounds of rustling vines and dripping liquids...",
 	span_game_say(span_name("Old Robotic Voice") + span_message(" says,") + " \"Research log fifty-two, examining the peculiar flora that has brought in for examination.\""),
@@ -499,7 +499,7 @@
 
 /obj/item/tape/resurgence/rose_research2
 	name = "Temple Log #53"
-	desc = "A magnetic tape that can hold up to ten minutes of content. It appears to have 'Botanical Study - Human Testing' written on it's back."
+	desc = "A magnetic tape that can hold up to ten minutes of content. It appears to have 'Botanical Study - Human Testing' written on its back."
 	storedinfo = list(
 	"Sounds of struggling and vine movement...",
 	span_game_say(span_name("Old Robotic Voice") + span_message(" says,") + " \"Research log fifty-three, testing scarlet rose interaction with human subjects.\""),
@@ -530,11 +530,11 @@
 
 /obj/item/tape/resurgence/temple_tour
 	name = "Temple Log #85"
-	desc = "A magnetic tape that can hold up to ten minutes of content. It appears to have 'Unusual Behavior' written on it's back."
+	desc = "A magnetic tape that can hold up to ten minutes of content. It appears to have 'Unusual Behavior' written on its back."
 	storedinfo = list(
 	"Sounds of mechanical footsteps and chains dragging across stone...",
 	span_game_say(span_name("Rusty Robotic Voice") + span_message(" excitedly says,") + " \"Joshua! I got permission to show you around the temple today!\""),
-	span_game_say(span_name("Joshua") + span_message(" confused,") + " \"Again... What are you gaining out of this? Draging me around this temple?\""),
+	span_game_say(span_name("Joshua") + span_message(" confused,") + " \"Again... What are you gaining out of this? Dragging me around this temple?\""),
 	span_game_say(span_name("Rusty Robotic Voice") + span_message(" says,") + " \"Well, you see... It is fascinating to hear your perspective on this temple!\""),
 	span_game_say(span_name("Rusty Robotic Voice") + span_message(" says,") + " \"After all, it is best to hear from the source!\""),
 	span_game_say(span_name("Robotic Voice") + span_message(" asks,") + " \"Elliot, why are you speaking to the test subject like that?\""),
@@ -553,8 +553,8 @@
 	"Heavy mechanical footsteps approach...",
 	span_game_say(span_name("Robotic Voice") + span_message(" sternly,") + " \"Scholar Elliot, why is this human not in restraints?\""),
 	span_game_say(span_name("Elliot") + span_message(" nervously,") + " \"Oh! I, um, removed them for better observations! They told me that they were quite uncomfortable!\""),
-	span_game_say(span_name("Joshua") + span_message(" whispers,") + " \"Elliot, you should of not said that...\""),
-	span_game_say(span_name("Elliot") + span_message(" whispers,") + " \"What is wrong, I am just being honsest...\""),
+	span_game_say(span_name("Joshua") + span_message(" whispers,") + " \"Elliot, you should not have said that...\""),
+	span_game_say(span_name("Elliot") + span_message(" whispers,") + " \"What is wrong, I am just being honest...\""),
 	span_game_say(span_name("Robotic Voice") + span_message(" says,") + " \"The Head Priest will hear about this irregularity.\""),
 	span_game_say(span_name("Elliot") + span_message(" pleading,") + " \"Please, we're almost done! Just the Study Room B left!\""),
 	span_game_say(span_name("Joshua") + span_message(" says,") + " \"Elliot, please don't cause any more problems for them...\""),
@@ -566,7 +566,7 @@
 
 /obj/item/tape/resurgence/dying_machine
 	name = "Temple Log #92"
-	desc = "A magnetic tape that can hold up to ten minutes of content. It appears to have 'Core Failure Incident' written on it's back."
+	desc = "A magnetic tape that can hold up to ten minutes of content. It appears to have 'Core Failure Incident' written on its back."
 	storedinfo = list(
 	"Sounds of workshop machinery and footsteps entering...",
 	span_game_say(span_name("Elliot") + span_message(" says,") + " \"And this is where we perform basic maintenance and—oh no...\""),
@@ -608,7 +608,7 @@
 
 /obj/item/tape/resurgence/shared_dreams
 	name = "Temple Log #102"
-	desc = "A magnetic tape that can hold up to ten minutes of content. It appears to have 'Forbidden Meeting' written on it's back."
+	desc = "A magnetic tape that can hold up to ten minutes of content. It appears to have 'Forbidden Meeting' written on its back."
 	storedinfo = list(
 	"Wind rustling through desert sands, footsteps on stone outside the temple walls...",
 	span_game_say(span_name("Elliot") + span_message(" whispers,") + " \"Joshua! You actually came... I was worried the guards would notice.\""),
@@ -628,9 +628,9 @@
 	span_game_say(span_name("Joshua") + span_message(" says,") + " \"Human, yes. But undocumented. No papers, no citizen ID, no district registration.\""),
 	span_game_say(span_name("Joshua") + span_message(" continues,") + " \"To the City, I don't exist...\""),
 	"Sound of laugher from Joshua in the distance...",
-	span_game_say(span_name("Joshua") + span_message(" continues,") + " \"You know, it is funny how this City belives in this age of 'Humanity', let they avoid helping out any humans out here, in the outskirts.\""),
-	span_game_say(span_name("Joshua") + span_message(" continues,") + " \"I am unlucky enough to be born in a village that didn't specialize in learning the immigration processe...\""),
-	span_game_say(span_name("Joshua") + span_message(" says,") + " \"So, that dream is still far away from me. It was wise for me to give but early.\""),
+	span_game_say(span_name("Joshua") + span_message(" continues,") + " \"You know, it is funny how this City believes in this age of 'Humanity', yet they avoid helping out any humans out here, in the outskirts.\""),
+	span_game_say(span_name("Joshua") + span_message(" continues,") + " \"I am unlucky enough to be born in a village that didn't specialize in learning the immigration process...\""),
+	span_game_say(span_name("Joshua") + span_message(" says,") + " \"So, that dream is still far away from me. It was wise for me to give up early.\""),
 	span_game_say(span_name("Elliot") + span_message(" finishes,") + " \"Oh, Joshua...\""),
 	"Sound of Joshua sitting down next to Elliot...",
 	span_game_say(span_name("Joshua") + span_message(" asks,") + " \"So we both dream of a place that doesn't want or care for us. Why do you keep trying?\""),
@@ -658,7 +658,7 @@
 	"Two sets of footsteps heading back toward the Temple, their shared unease binding them in silence..."
 	)
 
-	timestamp = list(2, 6, 10, 14, 18, 22, 26, 30, 34, 38, 42, 46, 50, 54, 58, 62, 66, 70, 74, 78, 82, 86, 90, 94, 98, 102, 106, 110, 114, 118, 122, 126, 130, 134, 138, 142, 146, 150, 154, 158, 162, 166, 170, 174, 178)
+	timestamp = list(2, 6, 10, 14, 18, 22, 26, 30, 34, 38, 42, 46, 50, 54, 58, 62, 66, 70, 74, 78, 82, 86, 90, 94, 98, 102, 106, 110, 114, 118, 122, 126, 130, 134, 138, 142, 146, 150, 154, 158, 162, 166, 170, 174, 178, 182)
 
 /obj/item/tape/resurgence/morning_raid
 	name = "Temple Log #103"
