@@ -2,24 +2,30 @@
 GLOBAL_LIST_INIT(assiyah, list(//HE's and TETHs
 //	/mob/living/simple_animal/hostile/abnormality/puss_in_boots,//difficulty needs testing
 //	/mob/living/simple_animal/hostile/abnormality/red_shoes,//re-introduce after breach rework
+//	/mob/living/simple_animal/hostile/abnormality/der_freischutz,//buff its firing speed or range in #2723
 	/mob/living/simple_animal/hostile/abnormality/golden_apple,
 	/mob/living/simple_animal/hostile/abnormality/shock_centipede,
 	/mob/living/simple_animal/hostile/abnormality/ardor_moth,
 	/mob/living/simple_animal/hostile/abnormality/porccubus,
 	/mob/living/simple_animal/hostile/abnormality/funeral,
 	/mob/living/simple_animal/hostile/abnormality/kqe,
+	/mob/living/simple_animal/hostile/abnormality/snow_queen,
 ))
 
 GLOBAL_LIST_INIT(briah, list(//WAW
-	/mob/living/simple_animal/hostile/abnormality/big_bird,
-//	/mob/living/simple_animal/hostile/abnormality/dreaming_current,//seems to have issues with pathing
-	/mob/living/simple_animal/hostile/abnormality/dimensional_refraction,
+	/mob/living/simple_animal/hostile/abnormality/apex_predator,
+	/mob/living/simple_animal/hostile/abnormality/ebony_queen,
+	/mob/living/simple_animal/hostile/abnormality/sphinx,
+	/mob/living/simple_animal/hostile/abnormality/warden,
 	/mob/living/simple_animal/hostile/abnormality/red_hood,
+	null,
 ))
 
 GLOBAL_LIST_INIT(atziluth, list(//ALEPH
 	/mob/living/simple_animal/hostile/abnormality/nothing_there,
 	/mob/living/simple_animal/hostile/abnormality/nobody_is,
+	null,//District4 has four of these spawn points. Only two abnormalities will appear.
+	null,
 ))
 
 /obj/effect/landmark/abnospawn/enkephalin_rush

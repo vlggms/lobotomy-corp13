@@ -8,6 +8,8 @@
 	faction = list("gold_ordeal")
 	maxHealth = 200
 	health = 200
+	ranged = TRUE
+	ranged_cooldown_time = 5 SECONDS
 	melee_damage_type = WHITE_DAMAGE
 	melee_damage_lower = 7
 	melee_damage_upper = 14
@@ -16,6 +18,19 @@
 	attack_sound = 'sound/abnormalities/doomsdaycalendar/Doomsday_Slash.ogg'
 	damage_coeff = list(RED_DAMAGE = 1.5, WHITE_DAMAGE = 1, BLACK_DAMAGE = 1.5, PALE_DAMAGE = 2)
 	butcher_results = list(/obj/item/stack/sheet/mineral/wood = 5)
+	var/list/spells = list(
+	"Animation", "Summon", "Grease", "Fear", "Death", "Magic Missle"
+	)
+	var/list/cantrips = list(
+	"Magic Bomb", "Gust", "Thorn Whip"
+	)
+	var/slotted_spells = 3
+	var/casting
+
+/mob/living/simple_animal/hostile/ordeal/dragonskull_corrosion/OpenFire()
+	if(slotted_spells)
+		ActivateSpell(target)
+	ActivateSpell(target/*, cantrip*/)
 
 /mob/living/simple_animal/hostile/ordeal/dragonskull_corrosion/death()
 	playsound(src, 'sound/abnormalities/faelantern/faelantern_breach.ogg', 100)
@@ -31,6 +46,9 @@
 	if(H.sanity_lost)
 		playsound(get_turf(H), 'sound/abnormalities/faelantern/faelantern_breach.ogg', 200, 1)
 		H.petrify(480, list(rgb(145,116,60)), "A distorted and screaming wooden statue.")
+
+/mob/living/simple_animal/hostile/ordeal/dragonskull_corrosion/proc/ActivateSpell()//put a do-after thingy here
+	casting = TRUE
 
 /mob/living/simple_animal/hostile/ordeal/tsa_corrosion
 	name = "Creek Transporation Agent"
