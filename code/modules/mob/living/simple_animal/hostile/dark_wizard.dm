@@ -36,5 +36,5 @@
 	name = "earth bolt"
 	icon_state = "declone"
 	damage = 4
-	damage_type = BURN
+	damage_type = FIRE
 	temperature = -100 // closer to the old temp loss

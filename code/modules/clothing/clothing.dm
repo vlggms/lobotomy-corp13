@@ -188,7 +188,7 @@
  * Arguments:
  * * def_zone: The bodypart zone in question
  * * damage_amount: Incoming damage
- * * damage_type: BRUTE or BURN
+ * * damage_type: BRUTE or FIRE
  * * armour_penetration: If the attack had armour_penetration
  */
 /obj/item/clothing/proc/take_damage_zone(def_zone, damage_amount, damage_type, armour_penetration)

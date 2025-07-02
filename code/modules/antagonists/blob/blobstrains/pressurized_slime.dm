@@ -13,7 +13,7 @@
 	reagent = /datum/reagent/blob/pressurized_slime
 
 /datum/blobstrain/reagent/pressurized_slime/damage_reaction(obj/structure/blob/B, damage, damage_type)
-	if((damage_type in list(MELEE, BULLET, LASER)) || damage_type != BURN)
+	if((damage_type in list(MELEE, BULLET, LASER)) || damage_type != FIRE)
 		extinguisharea(B, damage)
 	if(damage_type == BRUTE)
 		return damage * 0.5

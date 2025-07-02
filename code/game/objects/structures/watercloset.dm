@@ -699,7 +699,7 @@
 				playsound(src.loc, 'sound/weapons/slash.ogg', 80, TRUE)
 			else
 				playsound(loc, 'sound/weapons/tap.ogg', 50, TRUE)
-		if(BURN)
+		if(FIRE)
 			playsound(loc, 'sound/items/welder.ogg', 80, TRUE)
 
 /obj/structure/curtain/bounty

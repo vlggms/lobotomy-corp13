@@ -29,4 +29,4 @@
 	if(prob(reac_volume*2))
 		exposed_mob.emp_act(EMP_LIGHT)
 	if(exposed_mob)
-		exposed_mob.apply_damage(reac_volume, BURN, wound_bonus=CANT_WOUND)
+		exposed_mob.apply_damage(reac_volume, FIRE, wound_bonus=CANT_WOUND)

@@ -243,7 +243,7 @@
 
 /mob/living/simple_animal/slime/bullet_act(obj/projectile/Proj, def_zone, piercing_hit = FALSE)
 	attacked += 10
-	if((Proj.damage_type == BURN))
+	if((Proj.damage_type == FIRE))
 		adjustBruteLoss(-abs(Proj.damage)) //fire projectiles heals slimes.
 		Proj.on_hit(src, 0, piercing_hit)
 	else

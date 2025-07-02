@@ -244,7 +244,7 @@
 				playsound(src, hitsound, 75, TRUE)
 			else
 				playsound(src, 'sound/weapons/tap.ogg', 50, TRUE)
-		if(BURN)
+		if(FIRE)
 			playsound(src, 'sound/items/Welder.ogg', 100, TRUE)
 
 
@@ -339,7 +339,7 @@
 	return exposed_temperature > T0C + heat_resistance
 
 /obj/structure/window/atmos_expose(datum/gas_mixture/air, exposed_temperature)
-	take_damage(round(air.return_volume() / 100), BURN, 0)
+	take_damage(round(air.return_volume() / 100), FIRE, 0)
 
 /obj/structure/window/get_dumping_location(obj/item/storage/source,mob/user)
 	return null

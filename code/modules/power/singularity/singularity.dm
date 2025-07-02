@@ -82,7 +82,7 @@
 	if(jedi.stat == DEAD)
 		jedi.ghostize()
 		var/obj/item/bodypart/head/rip_u = jedi.get_bodypart(BODY_ZONE_HEAD)
-		rip_u.dismember(BURN) //nice try jedi
+		rip_u.dismember(FIRE) //nice try jedi
 		qdel(rip_u)
 		return
 	addtimer(CALLBACK(src, PROC_REF(carbon_tk_part_two), jedi), 0.1 SECONDS)
@@ -99,7 +99,7 @@
 		jedi.ghostize()
 		var/obj/item/bodypart/head/rip_u = jedi.get_bodypart(BODY_ZONE_HEAD)
 		if(rip_u)
-			rip_u.dismember(BURN)
+			rip_u.dismember(FIRE)
 			qdel(rip_u)
 		return
 	addtimer(CALLBACK(src, PROC_REF(carbon_tk_part_three), jedi), 0.1 SECONDS)
@@ -115,7 +115,7 @@
 	jedi.ghostize()
 	var/obj/item/bodypart/head/rip_u = jedi.get_bodypart(BODY_ZONE_HEAD)
 	if(rip_u)
-		rip_u.dismember(BURN)
+		rip_u.dismember(FIRE)
 		qdel(rip_u)
 
 /obj/singularity/ex_act(severity, target)

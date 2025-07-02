@@ -565,7 +565,7 @@
 	heat = 3800 //this thing is intended for metal-shaping, so it's the same temperature as a lit welder
 	resistance_flags = FIRE_PROOF //if it's channeling a cyborg's excess heat, it's probably fireproof
 	force = 5
-	damtype = BURN
+	damtype = FIRE
 	usesound = list('sound/items/welder.ogg', 'sound/items/welder2.ogg') //the usesounds of a lit welder
 	hitsound = 'sound/items/welder.ogg' //the hitsound of a lit welder
 

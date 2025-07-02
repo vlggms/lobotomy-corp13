@@ -115,12 +115,12 @@
 		"winter" = list(RED_DAMAGE = 1.5, WHITE_DAMAGE = 1, BLACK_DAMAGE = 0.8, PALE_DAMAGE = 0.2)
 		)
 
-	//Work Vars
+	// Work Vars
 	var/current_season = "winter"
 	var/downgraded
 	var/safe
 	var/work_timer
-	//Breach Vars
+	// Breach Vars
 	var/can_act = TRUE
 	var/slam_damage = 200
 	var/slam_cooldown
@@ -131,8 +131,10 @@
 	var/pulse_cooldown
 	var/pulse_cooldown_time = 4 SECONDS
 	var/pulse_damage = 15
+	// Turf Tracker
+	var/list/spawned_turfs = list()
 
-	//PLAYABLES ATTACKS
+	// PLAYABLES ATTACKS
 	attack_action_types = list(
 		/datum/action/cooldown/seasons_slam,
 		/datum/action/innate/abnormality_attack/toggle/seasons_cone_toggle,
@@ -316,11 +318,16 @@
 		StartWeather()
 
 /mob/living/simple_animal/hostile/abnormality/seasons/death(gibbed)
-	EndWeather()
 	density = FALSE
 	animate(src, alpha = 0, time = 10 SECONDS)
 	QDEL_IN(src, 10 SECONDS)
 	..()
+
+/mob/living/simple_animal/hostile/abnormality/seasons/Destroy()
+	EndWeather()
+	for(var/obj/effect/season_turf/newturf in spawned_turfs)
+		newturf.DoDelete()
+	return ..()
 
 /mob/living/simple_animal/hostile/abnormality/seasons/BreachEffect(mob/living/carbon/human/user, breach_type)
 	if(downgraded)
@@ -394,9 +401,10 @@
 	for(var/turf/open/O in range(1, src))
 		if(!isturf(O) || isspaceturf(O))
 			continue
-		if(locate(/obj/effect/season_turf/temporary) in O)
+		if(locate(/obj/effect/season_turf) in O)
 			continue
-		new /obj/effect/season_turf/temporary(O)
+		var/obj/effect/season_turf/newturf = new(O)
+		spawned_turfs += newturf
 	..()
 
 
@@ -433,7 +441,9 @@
 	for(var/turf/T in turfs)
 		if(istype(T, /turf/closed))
 			break
-		new attacktype(T)
+		var/obj/effect/season_effect/the_attack = new attacktype(T)
+		if (istype(the_attack, /obj/effect/season_effect))
+			the_attack.source = src
 		for(var/mob/living/L in T.contents)
 			if(L in hit_list || istype(L, type))
 				continue
@@ -459,7 +469,9 @@
 	for(var/turf/T in view(7, src))
 		if((get_dist(src, T) % 2 != 1))
 			continue
-		new attacktype(T)
+		var/obj/effect/season_effect/the_attack = new attacktype(T)
+		if (istype(the_attack, /obj/effect/season_effect))
+			the_attack.source = src
 		for(var/mob/living/L in T)
 			if(faction_check_mob(L))
 				continue
@@ -488,8 +500,9 @@
 	new attacktype(T)
 
 /mob/living/simple_animal/hostile/abnormality/seasons/proc/PulseHit(turf/T)
-	if(!locate(/obj/effect/season_turf/temporary) in T)
-		new /obj/effect/season_turf/temporary(T)
+	if(!locate(/obj/effect/season_turf) in T)
+		var/obj/effect/season_turf/newturf = new(T)
+		spawned_turfs += newturf
 	for(var/mob/living/L in T)
 		if(faction_check_mob(L))
 			continue
@@ -582,7 +595,7 @@
 		if(prob(10))
 			if(prob(66))
 				sleep(rand(1,5))
-			new /obj/structure/turf_fire(T)
+			new /obj/effect/turf_fire(T)
 
 /datum/weather/fog //Fall weather, causes nearsightedness.
 	name = "fog"
@@ -696,7 +709,7 @@
 	variable = TRUE
 
 //Misc. Objects
-/obj/effect/season_turf //Modular turf that spawnes under the abnormality with Upgrade(). This version never despawns.
+/obj/effect/season_turf //Modular turf that spawnes under the abnormality with Upgrade().
 	name = "grass"
 	desc = "A thick layer of foilage that never seems to die down."
 	icon = 'icons/turf/floors.dmi'
@@ -710,6 +723,12 @@
 		"winter" = list("snow","A patch of snow."),
 	)
 	var/current_season
+	var/area_affected
+	var/damaging
+	var/list/viable_landmarks = list(
+		/obj/effect/landmark/xeno_spawn,
+		/obj/effect/landmark/department_center
+		)
 
 /obj/effect/season_turf/Initialize()
 	. = ..()
@@ -721,22 +740,36 @@
 	icon = 'icons/turf/floors.dmi'
 	name = season_list[current_season][1]
 	desc = season_list[current_season][2]
+	for(var/X in GLOB.department_centers) // It would make sense to check xeno spawns in an area, but that actually loops through every turf in the world.
+		var/turf/T = X
+		if(get_dist(T, src) < 4)
+			area_affected = TRUE
+			break
+	if(!area_affected)
+		for(var/Y in GLOB.xeno_spawn)
+			var/turf/F = Y
+			if(get_dist(F, src) < 2)
+				area_affected = TRUE
+				break
 	switch(current_season)
 		if("spring")
+			if(area_affected)
+				icon_state = "fairygrass[rand(0,3)]"
+				return
 			icon_state = "grass[rand(0,3)]"
 		if("summer")
-			if(prob(15))
+			if(area_affected)
 				icon_state = "lava"
 				return
 			icon_state = "basalt[rand(0,3)]"
 		if("fall")
-			if(prob(50))
+			if(area_affected)
 				icon_state = "junglegrass"
 				return
 			icon_state = "wasteland[rand(8,11)]"
 		if("winter")
 			icon = 'icons/turf/snow.dmi'
-			if(prob(15))
+			if(area_affected)
 				icon_state = "ice"
 				name = "ice"
 				desc = "A patch of slippery ice."
@@ -751,37 +784,50 @@
 	BumpEffect(H)
 
 /obj/effect/season_turf/proc/BumpEffect(mob/living/carbon/human/H)
+	if(!area_affected)
+		return
 	switch(current_season)
 		if("spring")
-			if(prob(5))
-				to_chat(H, span_warning("Your legs are cut by brambles in the grass!"))
-				H.apply_damage(5, BLACK_DAMAGE, null, H.run_armor_check(null, WHITE_DAMAGE), spread_damage = FALSE)
+			to_chat(H, span_warning("You are stung by nettles as you pass through!"))
+			DoDamage()
 		if("summer")
-			if(icon_state == "lava")
-				to_chat(H, span_warning("You stumbled into a pool of lava!"))
-				H.adjust_fire_stacks(rand(0.1, 1))
-				H.IgniteMob()
+			to_chat(H, span_warning("You stumbled into a pool of lava!"))
+			DoDamage()
 		if("fall")
-			if(prob(5))
-				to_chat(H, span_warning("You sink into the marsh!"))
-				animate(H, alpha = 255,pixel_x = 0, pixel_z = -3, time = 0.5 SECONDS)
-				H.pixel_z = -3
-				H.Immobilize(0.5 SECONDS)
-				animate(H, alpha = 255,pixel_x = 0, pixel_z = 3, time = 0.5 SECONDS)
-				H.pixel_z = 0
+			to_chat(H, span_warning("You sink into the marsh!"))
+			animate(H, alpha = 255,pixel_x = 0, pixel_z = -3, time = 0.5 SECONDS)
+			H.pixel_z = -3
+			H.Immobilize(0.5 SECONDS)
+			animate(H, alpha = 255,pixel_x = 0, pixel_z = 3, time = 0.5 SECONDS)
+			H.pixel_z = 0
 		if("winter")
-			if(icon_state == "ice")
-				if(prob(25))
-					to_chat(H, span_warning("You slip on the ice!"))
-					H.slip(0, null, SLIDE_ICE, 0, FALSE) //might need to replace this as stuns are pretty annoying...
-					H.Immobilize(0.5 SECONDS)
+			if(prob(25))
+				to_chat(H, span_warning("You slip on the ice!"))
+				H.slip(0, null, SLIDE_ICE, 0, FALSE) //might need to replace this as stuns are pretty annoying...
+				H.Immobilize(0.5 SECONDS)
+				return
+			to_chat(H, notice("You manage to keep your balance on the slippery ice."))
 
-/obj/effect/season_turf/temporary //Season_turf but despawns, spawned by most of the abnormality's attacks.
+/obj/effect/season_turf/proc/DoDamage()
+	var/dealt_damage = FALSE
+	for(var/mob/living/L in get_turf(src))
+		if(ishuman(L))
+			var/mob/living/carbon/human/H = L
+			if(current_season == "summer")
+				H.deal_damage(6, FIRE)
+				H.apply_lc_burn(3)
+				dealt_damage = TRUE
+			else if(current_season == "spring")
+				H.apply_damage(10, WHITE_DAMAGE, null, H.run_armor_check(null, WHITE_DAMAGE), spread_damage = FALSE)
+	if(!dealt_damage)
+		damaging = FALSE
+		return
+	addtimer(CALLBACK(src, PROC_REF(DoDamage)), 4)
 
-/obj/effect/season_turf/temporary/Initialize()
-	. = ..()
-	animate(src, alpha = 150, time = 10 SECONDS)
-	QDEL_IN(src, 10 SECONDS)
+/obj/effect/season_turf/proc/DoDelete()
+	var/randomtimer = rand(3,15)
+	animate(src, alpha = 150, time = randomtimer SECONDS)
+	QDEL_IN(src, randomtimer SECONDS)
 
 //Effects
 /obj/effect/season_warn //warning for attacks
@@ -823,23 +869,29 @@
 	name = "weather warning"
 	desc = "Watch out!"
 	layer = POINT_LAYER
+	var/mob/living/simple_animal/hostile/abnormality/seasons/source
 
 /obj/effect/season_effect/Initialize()
 	. = ..()
 	addtimer(CALLBACK(src, PROC_REF(pop)), 0.5 SECONDS)
 
 /obj/effect/season_effect/proc/pop()
-	if(!locate(/obj/effect/season_turf/temporary) in get_turf(src))
-		new /obj/effect/season_turf/temporary(get_turf(src))
+	if(!source)
+		QDEL_IN(src, 0.5 SECONDS)
+		return
+	if(!locate(/obj/effect/season_turf) in get_turf(src))
+		var/obj/effect/season_turf/newturf = new(get_turf(src))
+		source.spawned_turfs += newturf
 	if(prob(5))
 		var/list/spawn_area = range(1, get_turf(src))
 		for(var/turf/open/O in spawn_area)
 			if(!isturf(O) || isspaceturf(O))
 				continue
-			var/obj/effect/season_turf/temporary/G = (locate(/obj/effect/season_turf/temporary) in O)
+			var/obj/effect/season_turf/G = (locate(/obj/effect/season_turf) in O)
 			if(G)
 				qdel(G)
-			new /obj/effect/season_turf/temporary(O)
+			var/obj/effect/season_turf/anewturf = new(O)
+			source.spawned_turfs += anewturf
 	QDEL_IN(src, 0.5 SECONDS)
 
 /obj/effect/season_effect/summer
@@ -864,7 +916,8 @@
 
 /obj/effect/season_effect/breath/pop()
 	if(prob(75))
-		new /obj/effect/season_turf/temporary(get_turf(src))
+		..()
+		return
 	QDEL_IN(src, 0.5 SECONDS)
 
 /obj/effect/season_effect/breath/summer
