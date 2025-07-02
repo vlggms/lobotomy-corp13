@@ -1,0 +1,299 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"a" = (
+/turf/open/floor/plating,
+/area/city/backstreets_room)
+"b" = (
+/turf/open/floor/plating/foam,
+/area/city/backstreets_room)
+"d" = (
+/turf/open/floor/plastic,
+/area/city/backstreets_room)
+"e" = (
+/obj/structure/cavein_door{
+	pixel_y = -39
+	},
+/turf/open/floor/plastic,
+/area/city/backstreets_room)
+"f" = (
+/obj/structure/sigsystem/deployer{
+	signaller_code = 330;
+	happens_once = 0;
+	atom_path = /mob/living/simple_animal/hostile/ordeal/indigo_noon;
+	atom_rename = "homebound sweeper";
+	deploy_sound = /sound/machines/airlockforced.ogg;
+	spawn_dist_x = -10;
+	spawn_dist_y = 1;
+	pixel_y = -3;
+	pixel_x = -2
+	},
+/turf/closed/wall/rust,
+/area/city/backstreets_room)
+"i" = (
+/turf/closed/indestructible/fakedoor{
+	name = "Locked Door"
+	},
+/area/city/backstreets_room)
+"j" = (
+/obj/structure/sigsystem/deployer{
+	signaller_code = 338;
+	happens_once = 0;
+	atom_path = /mob/living/simple_animal/hostile/ordeal/indigo_noon;
+	atom_rename = "homebound sweeper";
+	deploy_sound = /sound/machines/airlockforced.ogg;
+	spawn_dist_x = 9;
+	spawn_dist_y = -2;
+	pixel_y = 7;
+	pixel_x = 5;
+	signaller_range = 3;
+	spawn_flavor_text = "[span_warning("is awakened by an alarm")]"
+	},
+/turf/closed/wall/rust,
+/area/city/backstreets_room)
+"k" = (
+/obj/structure/closet/crate/freezer{
+	anchored = 1
+	},
+/obj/item/tresmetal/indigo,
+/turf/open/floor/plating/foam,
+/area/city/backstreets_room)
+"l" = (
+/obj/structure/sigsystem/circuit{
+	signaller_code = 330;
+	signaller_range = 3;
+	repeat_amt = 4;
+	duo_signaller_code = 332;
+	sig_delay = 50
+	},
+/turf/closed/wall/rust,
+/area/city/backstreets_room)
+"n" = (
+/obj/structure/fence/door/opened,
+/turf/open/floor/plating/rust,
+/area/city/backstreets_room)
+"p" = (
+/obj/item/food/soup/sweepersoup,
+/obj/structure/closet/secure_closet/freezer{
+	anchored = 1;
+	secure = 0;
+	name = "emergency rations locker";
+	divable = 0;
+	locked = 0
+	},
+/turf/open/floor/plastic,
+/area/city/backstreets_room)
+"r" = (
+/obj/structure/closet/secure_closet/freezer{
+	anchored = 1;
+	secure = 0;
+	name = "emergency rations locker";
+	divable = 0;
+	locked = 0
+	},
+/obj/item/food/soup/sweepersoup,
+/obj/structure/cable,
+/turf/open/floor/plating,
+/area/city/backstreets_room)
+"v" = (
+/turf/open/floor/plating/rust,
+/area/city/backstreets_room)
+"x" = (
+/obj/structure/sigsystem/circuit{
+	signaller_code = 338;
+	signaller_range = 5;
+	repeat_amt = 4;
+	duo_signaller_code = 332;
+	sig_delay = 85
+	},
+/turf/closed/wall/rust,
+/area/city/backstreets_room)
+"y" = (
+/turf/closed/wall/rust,
+/area/city/backstreets_room)
+"E" = (
+/obj/structure/closet/crate/sigsystem{
+	signaller_code = 332;
+	name = "sweeper storage crate"
+	},
+/obj/item/tresmetal/indigo,
+/obj/item/ego_weapon/city/sweeper,
+/turf/open/floor/plating/foam,
+/area/city/backstreets_room)
+"L" = (
+/turf/closed/indestructible/reinforced,
+/area/city/backstreets_room)
+"O" = (
+/turf/open/floor/circuit/off,
+/area/city/backstreets_room)
+"P" = (
+/obj/structure/cable,
+/turf/open/floor/plating/foam,
+/area/city/backstreets_room)
+"S" = (
+/obj/structure/cable,
+/turf/open/floor/plating,
+/area/city/backstreets_room)
+"T" = (
+/obj/structure/cable,
+/turf/open/floor/circuit/off,
+/area/city/backstreets_room)
+
+(1,1,1) = {"
+L
+L
+L
+L
+L
+L
+L
+L
+"}
+(2,1,1) = {"
+L
+a
+d
+e
+y
+L
+L
+L
+"}
+(3,1,1) = {"
+n
+v
+a
+v
+y
+L
+L
+L
+"}
+(4,1,1) = {"
+n
+v
+a
+v
+b
+T
+i
+L
+"}
+(5,1,1) = {"
+L
+y
+b
+b
+O
+T
+L
+L
+"}
+(6,1,1) = {"
+L
+i
+T
+b
+T
+S
+O
+L
+"}
+(7,1,1) = {"
+L
+y
+r
+O
+S
+O
+O
+L
+"}
+(8,1,1) = {"
+L
+b
+S
+S
+P
+O
+d
+L
+"}
+(9,1,1) = {"
+L
+b
+v
+a
+P
+b
+d
+L
+"}
+(10,1,1) = {"
+L
+b
+v
+v
+P
+P
+b
+L
+"}
+(11,1,1) = {"
+L
+y
+p
+p
+P
+b
+y
+L
+"}
+(12,1,1) = {"
+L
+y
+y
+y
+S
+y
+y
+L
+"}
+(13,1,1) = {"
+L
+y
+y
+b
+S
+y
+y
+L
+"}
+(14,1,1) = {"
+L
+y
+x
+k
+E
+l
+f
+L
+"}
+(15,1,1) = {"
+L
+y
+j
+y
+y
+y
+y
+L
+"}
+(16,1,1) = {"
+L
+L
+L
+L
+L
+L
+L
+L
+"}
