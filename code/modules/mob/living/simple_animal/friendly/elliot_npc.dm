@@ -67,7 +67,7 @@
 	var/pre_boss_alert = FALSE
 	var/obj/item/radio/headset/radio
 	var/alert_update = 0
-	var/alert_cooldown = 2 MINUTES
+	var/alert_cooldown = 6 MINUTES
 
 	var/puzzle_key = FALSE
 	var/puzzle_dagger = FALSE
