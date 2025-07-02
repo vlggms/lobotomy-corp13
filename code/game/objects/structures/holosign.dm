@@ -35,7 +35,7 @@
 	switch(damage_type)
 		if(BRUTE)
 			playsound(loc, 'sound/weapons/egloves.ogg', 80, TRUE)
-		if(BURN)
+		if(FIRE)
 			playsound(loc, 'sound/weapons/egloves.ogg', 80, TRUE)
 
 /obj/structure/holosign/wetsign

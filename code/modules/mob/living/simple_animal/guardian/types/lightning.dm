@@ -8,9 +8,9 @@
 	melee_damage_upper = 7
 	attack_verb_continuous = "shocks"
 	attack_verb_simple = "shock"
-	melee_damage_type = BURN
+	melee_damage_type = FIRE
 	attack_sound = 'sound/machines/defib_zap.ogg'
-	damage_coeff = list(BRUTE = 0.7, BURN = 0.7, TOX = 0.7, CLONE = 0.7, STAMINA = 0, OXY = 0.7)
+	damage_coeff = list(BRUTE = 0.7, FIRE = 0.7, TOX = 0.7, CLONE = 0.7, STAMINA = 0, OXY = 0.7)
 	range = 7
 	playstyle_string = span_holoparasite("As a <b>lightning</b> type, you will apply lightning chains to targets on attack and have a lightning chain to your summoner. Lightning chains will shock anyone near them.")
 	magic_fluff_string = span_holoparasite("..And draw the Tesla, a shocking, lethal source of power.")

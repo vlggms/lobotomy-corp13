@@ -12,12 +12,12 @@
 	AddElement(/datum/element/atmos_sensitive)
 
 /obj/structure/spider/play_attack_sound(damage_amount, damage_type = BRUTE)
-	if(damage_type == BURN)//the stickiness of the web mutes all attack sounds except fire damage type
+	if(damage_type == FIRE)//the stickiness of the web mutes all attack sounds except fire damage type
 		playsound(loc, 'sound/items/welder.ogg', 100, TRUE)
 
 /obj/structure/spider/run_obj_armor(damage_amount, damage_type, attack_dir)
 	switch(damage_type)
-		if(BURN)
+		if(FIRE)
 			damage_amount *= 2
 		if(BRUTE)
 			damage_amount *= 0.25
@@ -27,7 +27,7 @@
 	return exposed_temperature > 300
 
 /obj/structure/spider/atmos_expose(datum/gas_mixture/air, exposed_temperature)
-	take_damage(5, BURN, 0)
+	take_damage(5, FIRE, 0)
 
 /obj/structure/spider/stickyweb
 	var/genetic = FALSE

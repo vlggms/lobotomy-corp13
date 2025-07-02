@@ -585,7 +585,7 @@
 	staminaloss = round(total_stamina, DAMAGE_PRECISION)
 	update_stat()
 	if(((maxHealth - total_burn) < death_threshold*2) && stat == DEAD )
-		become_husk(BURN)
+		become_husk(FIRE)
 
 	med_hud_set_health()
 

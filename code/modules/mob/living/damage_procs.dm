@@ -6,7 +6,7 @@
  *
  * Arguuments:
  * * damage - amount of damage
- * * damagetype - one of [BRUTE], [BURN], [TOX], [OXY], [CLONE], [STAMINA]
+ * * damagetype - one of [BRUTE], [FIRE], [TOX], [OXY], [CLONE], [STAMINA]
  * * def_zone - zone that is being hit if any
  * * blocked - armor value applied
  * * forced - bypass hit percentage
@@ -31,7 +31,7 @@
 		return FALSE
 	var/damage_amount =  forced ? damage : damage * hit_percent
 	switch(damagetype)
-		if(BURN)
+		if(FIRE)
 			adjustFireLoss(damage_amount, forced = forced)
 		if(TOX)
 			adjustToxLoss(damage_amount, forced = forced)
@@ -58,7 +58,7 @@
 	switch(damagetype)
 		if(BRUTE)
 			return adjustBruteLoss(damage)
-		if(BURN)
+		if(FIRE)
 			return adjustFireLoss(damage)
 		if(TOX)
 			return adjustToxLoss(damage)
@@ -82,7 +82,7 @@
 	switch(damagetype)
 		if(BRUTE)
 			return getBruteLoss()
-		if(BURN)
+		if(FIRE)
 			return getFireLoss()
 		if(TOX)
 			return getToxLoss()
@@ -100,7 +100,7 @@
 	if(brute)
 		apply_damage(brute, BRUTE, def_zone, blocked)
 	if(burn)
-		apply_damage(burn, BURN, def_zone, blocked)
+		apply_damage(burn, FIRE, def_zone, blocked)
 	if(tox)
 		apply_damage(tox, TOX, def_zone, blocked)
 	if(oxy)

@@ -153,7 +153,7 @@
 		playsound(T, 'sound/weapons/fixer/generic/fire3.ogg', 30, TRUE, 3)
 		new /obj/effect/temp_visual/smash_effect(T)
 		new /obj/effect/temp_visual/fire/fast(T)
-		been_hit = user.HurtInTurf(T, been_hit, aoe_damage, BURN, check_faction = TRUE)
+		been_hit = user.HurtInTurf(T, been_hit, aoe_damage, FIRE, check_faction = TRUE)
 
 /obj/item/ego_weapon/sunspit/get_clamped_volume()
 	return 40

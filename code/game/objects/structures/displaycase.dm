@@ -71,7 +71,7 @@
 	switch(damage_type)
 		if(BRUTE)
 			playsound(src, 'sound/effects/glasshit.ogg', 75, TRUE)
-		if(BURN)
+		if(FIRE)
 			playsound(src, 'sound/items/welder.ogg', 100, TRUE)
 
 /obj/structure/displaycase/deconstruct(disassembled = TRUE)

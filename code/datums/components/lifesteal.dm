@@ -1,6 +1,6 @@
 /datum/component/lifesteal
 	var/flat_heal // heals a constant amount every time a hit occurs
-	var/static/list/damage_heal_order = list(BRUTE, BURN, OXY)
+	var/static/list/damage_heal_order = list(BRUTE, FIRE, OXY)
 
 /datum/component/lifesteal/Initialize(flat_heal=0)
 	if(!isitem(parent) && !ishostile(parent) && !isgun(parent))

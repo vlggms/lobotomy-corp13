@@ -337,7 +337,7 @@
 	return crowbar_door(user, I)
 
 /obj/structure/mineral_door/paperframe/attackby(obj/item/I, mob/living/user)
-	if(I.get_temperature()) //BURN IT ALL DOWN JIM
+	if(I.get_temperature()) //FIRE IT ALL DOWN JIM
 		fire_act(I.get_temperature())
 		return
 

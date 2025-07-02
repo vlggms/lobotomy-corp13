@@ -238,14 +238,14 @@
 				playsound(src.loc, 'sound/effects/attackblob.ogg', 50, TRUE)
 			else
 				playsound(src, 'sound/weapons/tap.ogg', 50, TRUE)
-		if(BURN)
+		if(FIRE)
 			playsound(src.loc, 'sound/items/welder.ogg', 100, TRUE)
 
 /obj/structure/blob/run_obj_armor(damage_amount, damage_type, attack_dir)
 	switch(damage_type)
 		if(BRUTE)
 			damage_amount *= brute_resist
-		if(BURN)
+		if(FIRE)
 			damage_amount *= fire_resist
 		if(CLONE)
 		else

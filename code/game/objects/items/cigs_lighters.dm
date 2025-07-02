@@ -43,7 +43,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 		playsound(src, 'sound/items/match_strike.ogg', 15, TRUE)
 		lit = TRUE
 		icon_state = "match_lit"
-		damtype = BURN
+		damtype = FIRE
 		force = 3
 		hitsound = 'sound/items/welder.ogg'
 		inhand_icon_state = "cigon"
@@ -192,7 +192,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 	attack_verb_continuous = string_list(list("burns", "sings"))
 	attack_verb_simple = string_list(list("burn", "sing"))
 	hitsound = 'sound/items/welder.ogg'
-	damtype = BURN
+	damtype = FIRE
 	force = 4
 	/* LOBOTOMYCORPORATION REMOVAL -- This was used to blatantly grief
 	if(reagents.get_reagent_amount(/datum/reagent/toxin/plasma)) // the plasma explodes when exposed to fire
@@ -681,7 +681,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 	lit = new_lit
 	if(lit)
 		force = 5
-		damtype = BURN
+		damtype = FIRE
 		hitsound = 'sound/items/welder.ogg'
 		attack_verb_continuous = string_list(list("burns", "sings"))
 		attack_verb_simple = string_list(list("burn", "sing"))
@@ -719,7 +719,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 					user.visible_message("<span class='notice'>After a few attempts, [user] manages to light [src].</span>", "<span class='notice'>After a few attempts, you manage to light [src].</span>")
 				else
 					var/hitzone = user.held_index_to_dir(user.active_hand_index) == "r" ? BODY_ZONE_PRECISE_R_HAND : BODY_ZONE_PRECISE_L_HAND
-					user.apply_damage(5, BURN, hitzone)
+					user.apply_damage(5, FIRE, hitzone)
 					user.visible_message("<span class='warning'>After a few attempts, [user] manages to light [src] - however, [user.p_they()] burn [user.p_their()] finger in the process.</span>", "<span class='warning'>You burn yourself while lighting the lighter!</span>")
 
 		else
@@ -998,7 +998,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 		vapetime -= vapedelay
 		if(prob(5))//small chance for the vape to break and deal damage if it's emagged
 			playsound(get_turf(src), 'sound/effects/pop_expl.ogg', 50, FALSE)
-			M.apply_damage(20, BURN, BODY_ZONE_HEAD)
+			M.apply_damage(20, FIRE, BODY_ZONE_HEAD)
 			M.Paralyze(300)
 			var/datum/effect_system/spark_spread/sp = new /datum/effect_system/spark_spread
 			sp.set_up(5, 1, src)
