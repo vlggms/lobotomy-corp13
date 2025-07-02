@@ -187,7 +187,8 @@
 			continue
 		to_chat(L, span_userdanger("You're boiling alive from the heat of a miniature sun!"))
 		playsound(L, 'sound/abnormalities/crying_children/attack_aoe.ogg', 50, TRUE)
-		L.deal_damage(300, RED_DAMAGE)
+		L.deal_damage(175, RED_DAMAGE)
+		L.deal_damage(75, FIRE)
 		L.apply_lc_burn(50)
 		new /obj/effect/temp_visual/fire/fast(get_turf(L))
 
