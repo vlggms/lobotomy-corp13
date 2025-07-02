@@ -1628,7 +1628,7 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 					H.update_damage_overlays()
 			else//no bodypart, we deal damage with a more general method.
 				H.adjustBruteLoss(damage_amount)
-		if(BURN, FIRE, LASER, ENERGY, RAD)
+		if(BURN, FIRE, LASER, ENERGY, RAD) // TODO: Changes
 			H.damageoverlaytemp = 20
 			var/damage_amount = forced ? damage : damage * hit_percent * burnmod * H.physiology.burn_mod
 			if(BP)
