@@ -20,7 +20,7 @@
 		'sound/weapons/sear.ogg',
 	)
 
-/obj/item/extraction/key/examine(mob/user)
+/obj/item/extraction/upgrade_tool/examine(mob/user)
 	. = ..()
 	if (GetFacilityUpgradeValue(UPGRADE_EXTRACTION_1))
 		. += span_notice("This tool seems to be upgraded, increases the total damage gain to +20%.")
