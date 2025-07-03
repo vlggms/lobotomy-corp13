@@ -179,7 +179,7 @@
 /obj/structure/potential/Initialize()
 	. = ..()
 	new /obj/item/paper/fluff/fixer_skills (get_turf(src))
-	new /obj/item/paper/fluff/fixer_skills (get_turf(src))
+	new /obj/item/paper/fluff/fixer_skills_catalog (get_turf(src))
 
 //Very dumb way to implement "empty hand AND full hand."
 //These two code blocks are the same except for their triggers - if you've got a better idea, please use it.

@@ -22,6 +22,29 @@
 		/datum/action/cooldown/mark = 1,
 		/datum/action/cooldown/light = 1,
 
+		//Status Effect Skills - Level 1
+		//Bleed Support/Control
+		/datum/action/cooldown/bleed/lacerate = 1,
+		/datum/action/cooldown/bleed/sanguine_chain = 1,
+		/datum/action/cooldown/bleed/bloodletting_strike = 1,
+		/datum/action/cooldown/bleed/sanguine_feast = 1,
+		/datum/action/cooldown/bleed/blood_pool = 1,
+		/datum/action/cooldown/bleed/crimson_repulsion = 1,
+		//Overheat Support/Control
+		/datum/action/cooldown/skill/heat_transfer = 1,
+		/datum/action/cooldown/skill/ignition_burst = 1,
+		/datum/action/cooldown/skill/flame_lance = 1,
+		/datum/action/cooldown/skill/cauterize = 1,
+		/datum/action/cooldown/skill/spreading_ashes = 1,
+		/datum/action/cooldown/skill/feeding_embers = 1,
+		//Tremor Support/Control
+		/datum/action/cooldown/skill/aftershock = 1,
+		/datum/action/cooldown/skill/seismic_wave = 1,
+		/datum/action/cooldown/skill/shattered_resentment = 1,
+		/datum/action/cooldown/skill/stabilizing_stance = 1,
+		/datum/action/cooldown/skill/tectonic_shift = 1,
+		/datum/action/cooldown/skill/repelling_motion = 1,
+
 		/datum/action/cooldown/butcher = 2,
 		/datum/action/cooldown/solarflare = 2,
 		/datum/action/cooldown/confusion = 2,
@@ -29,6 +52,20 @@
 		/datum/action/cooldown/lifesteal = 2,
 		/datum/action/cooldown/skulk = 2,
 		/datum/action/cooldown/autoloader = 2,
+
+		//Status Effect Skills - Level 2
+		//Bleed Damage
+		/datum/action/cooldown/skill/hemorrhage = 2,
+		/datum/action/cooldown/skill/crimson_cleave = 2,
+		/datum/action/cooldown/skill/blood_spike = 2,
+		//Overheat Damage
+		/datum/action/cooldown/skill/overheat_detonation = 2,
+		/datum/action/cooldown/skill/molten_strike = 2,
+		/datum/action/cooldown/skill/inferno_dash = 2,
+		//Tremor Damage
+		/datum/action/cooldown/skill/seismic_slam = 2,
+		/datum/action/cooldown/skill/resonant_strike = 2,
+		/datum/action/cooldown/skill/earthbound_hammer = 2,
 
 		/datum/action/innate/healthhud = 3,
 		/datum/action/innate/bulletproof = 3,
@@ -69,8 +106,6 @@
 /obj/item/book/granter/action/skill/on_reading_finished(mob/user)
 	if (ishuman(user))
 		var/mob/living/carbon/human/human = user
-		var/user_level = get_civilian_level(human)
-		var/allowed_level1_skills = 3
 		var/list/stats = list(
 			FORTITUDE_ATTRIBUTE,
 			PRUDENCE_ATTRIBUTE,
@@ -84,40 +119,71 @@
 		stattotal /= 4	// Potential is an average of stats
 		grade = round((stattotal) / 20)	// Get the average level-20, divide by 20
 
-		if ((level != user_level && level != -1) )
-			if(user_level == 0 && level==1)	//Specific check for Grade 9s, throw these bastards a bone
-				to_chat(user, span_notice("Your are able to get 5 skills of this level."))
-				allowed_level1_skills = 5
+		// Calculate actual grade (10 - grade value, with minimum of 1)
+		var/actual_grade = max(10 - grade, 1)
 
+		// Define allowed skills per grade
+		var/list/allowed_skills = list(0, 0, 0, 0)
+		switch(actual_grade)
+			if(9)
+				allowed_skills[1] = 5
+			if(8)
+				allowed_skills[1] = 3
+			if(7)
+				allowed_skills[1] = 1
+				allowed_skills[2] = 1
+			if(6)
+				allowed_skills[2] = 2
+			if(5)
+				allowed_skills[3] = 1
+			if(4)
+				allowed_skills[4] = 1
 			else
-				wrong_grade_info(grade)
+				to_chat(user, span_notice("Your grade is too low or too high to use skill books!"))
 				return FALSE
+
+		// Check if this skill level is allowed for the user's grade
+		if(level == -1)
+			to_chat(user, span_notice("This book is easy to read!")) //This is for debuging, letting you learn a skill at any level.
+		else if(level < 1 || level > 4 || allowed_skills[level] == 0)
+			wrong_grade_info(actual_grade, user)
+			return FALSE
+
 		if (!(user?.mind?.assigned_role in usable_roles))
 			to_chat(user, span_notice("Only Civilians can use this book!"))
 			return FALSE
 
+		// Count existing skills by level
+		var/list/current_skills = list(0, 0, 0, 0)
 		for(var/datum/action/A in user.actions)
-			if (actions_levels[A.type] == level && level == 1)
-				allowed_level1_skills -= 1
-				if(allowed_level1_skills == 0)
-					to_chat(user, span_notice("You are out of skills for this level!"))
-					return FALSE
+			var/skill_level = actions_levels[A.type]
+			if(skill_level)
+				if(!(skill_level in current_skills))
+					current_skills[skill_level] = 0
+				current_skills[skill_level]++
 
-			if (actions_levels[A.type] == level && level != 1)
-				to_chat(user, span_notice("You already have a skill of this level!"))
+		// Check if user can learn this skill
+		if(level != -1)
+			var/current_count = current_skills[level]
+			var/allowed_count = allowed_skills[level]
+
+			if(current_count >= allowed_count)
+				to_chat(user, span_notice("You already have the maximum number of level [level] skills for Grade [actual_grade]!"))
 				return FALSE
 
+			var/remaining = allowed_count - current_count
+			to_chat(user, span_notice("You can learn [remaining] more level [level] skill\s."))
 
 		to_chat(user,span_warning("[src] suddenly vanishes!"))
 		qdel(src)
 	..()
 
-/obj/item/book/granter/action/skill/proc/wrong_grade_info(grade)
+/obj/item/book/granter/action/skill/proc/wrong_grade_info(grade, mob/reader)
 	if(level==1)
-		to_chat(user, span_notice("You are Grade [max(10-grade, 1)]. Only Grade 9 and 8 Fixers are able to read this book!"))
+		to_chat(reader, span_notice("You are Grade [grade]. Only Grade 9, 8, and 7 Fixers are able to read this book!"))
 	else if(level == 2)
-		to_chat(user, span_notice("You are Grade [max(10-grade, 1)]. Only Grade 7 and 6 Fixers are able to read this book!"))
+		to_chat(reader, span_notice("You are Grade [grade]. Only Grade 7 and 6 Fixers are able to read this book!"))
 	else if(level == 3)
-		to_chat(user, span_notice("You are Grade [max(10-grade, 1)]. Only Grade 5 Fixers are able to read this book!"))
+		to_chat(reader, span_notice("You are Grade [grade]. Only Grade 5 Fixers are able to read this book!"))
 	else if(level == 4)
-		to_chat(user, span_notice("You are Grade [max(10-grade, 1)]. Only Grade 4 Fixers are able to read this book!"))
+		to_chat(reader, span_notice("You are Grade [grade]. Only Grade 4 Fixers are able to read this book!"))
