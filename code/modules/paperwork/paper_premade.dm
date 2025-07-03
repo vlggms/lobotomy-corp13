@@ -129,12 +129,6 @@
 	name = "Fixer Skills Guide"
 	info = "<center><b>Fixer Skills - A Comprehensive Guide</b></center><br>\
 	<br>\
-	<b>Grade Calculation:</b><br>\
-	Your Fixer Grade is determined by your attributes. The average of your Fortitude, Prudence, Temperance, and Justice is divided by 20, then subtracted from 10. Higher attributes mean a lower (better) grade.<br>\
-	<br>\
-	<b>Who Can Learn Skills:</b><br>\
-	Only those with the following roles can use skill books: Civilian, Office Director, Office Fixer, Subsidary Office Director, and Fixer.<br>\
-	<br>\
 	<b>Skill Learning by Grade:</b><br>\
 	<br>\
 	<b>Grade 9 Fixers:</b> Can learn up to 5 Level 1 skills<br>\
