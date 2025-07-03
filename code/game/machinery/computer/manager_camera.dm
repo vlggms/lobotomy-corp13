@@ -744,6 +744,8 @@ GLOBAL_VAR_INIT(execution_enabled, FALSE)
 #undef MANAGER_BLACK_BULLET
 #undef MANAGER_PALE_BULLET
 #undef MANAGER_YELLOW_BULLET
+#undef MANAGER_DUAL_BULLET
+#undef MANAGER_QUAD_BULLET
 #undef MANAGER_KILL_BULLET
 
 /obj/machinery/computer/camera_advanced/manager/representative
