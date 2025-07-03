@@ -84,7 +84,7 @@
 	if(burst_cooldown)
 		. += span_warning("[src] is currently offline!")
 		return
-	. += span_info("[src] restores [regeneration_amount+hp_bonus]% HP and [regeneration_amount+sp_bonus]% SP every 2 seconds.")
+	. += span_info("[src] restores [regeneration_amount+hp_bonus+GetFacilityUpgradeValue(UPGRADE_REGENERATOR_HEALING)]% HP and [regeneration_amount+sp_bonus+GetFacilityUpgradeValue(UPGRADE_REGENERATOR_HEALING)]% SP every 2 seconds.")
 
 /obj/machinery/regenerator/proc/ProduceIcon(Icon_Color, Type) //Used to be called ProduceGas but due to me using it for a button i had to change it. ProduceGas was a cooler name. -IP
 	var/mutable_appearance/colored_overlay = mutable_appearance(icon, Type)
