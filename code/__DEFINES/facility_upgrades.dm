@@ -20,7 +20,7 @@
 #define UPGRADE_YELLOW_BULLET "Qliphoth Shredder"
 
 // Facility upgrades
-#define UPGRADE_REGENERATOR_HEALING "Regenerator Healing Multiplier"
+#define UPGRADE_REGENERATOR_HEALING "Regenerator Bonus Healing"
 #define UPGRADE_AGENT_STATS "Agent Starting Attributes Bonus"
 #define UPGRADE_MELTDOWN_INCREASE "Qliphoth Meltdown Suppressor"
 #define UPGRADE_ABNO_QUEUE_COUNT "Abnormality Extraction Amount"
