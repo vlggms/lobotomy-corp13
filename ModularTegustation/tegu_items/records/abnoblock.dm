@@ -9,11 +9,20 @@
 	//How much time we offset the next abnormality spawn
 	var/next_abno_spawn_offset = 5 MINUTES
 
+/obj/item/records/abnodelay/examine(mob/user)
+	. = ..()
+	if (GetFacilityUpgradeValue(UPGRADE_RECORDS_1))
+		. += span_notice("This watch seems to be upgraded, its cooldown is reduced by 15 minutes.")
+
 /obj/item/records/abnodelay/watch_action(mob/user)
 	//We succesfully used are watch, give the player feedback and some fluff
 	to_chat(user, span_notice("You check your watch. It's not time for the next abnormality to arrive yet."))
 	//We grab are SubSystem for abnormality spawning and go to the spawn timer, and add the offset time to it directly.
 	SSabnormality_queue.next_abno_spawn += next_abno_spawn_offset
 	//Next we move back to are parrent, so that we give are stopwatch cooldowns.
-	..()
-
+	if(records_cooldown_timer)
+		var cooldown = records_cooldown_timer
+		if (GetFacilityUpgradeValue(UPGRADE_RECORDS_1))
+			cooldown /= 2
+		addtimer(CALLBACK(src, PROC_REF(reset)), cooldown)
+		usable = FALSE

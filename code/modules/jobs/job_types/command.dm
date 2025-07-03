@@ -54,7 +54,7 @@
 	ADD_TRAIT(outfit_owner, TRAIT_ATTRIBUTES_VISION, JOB_TRAIT)
 	outfit_owner.grant_language(/datum/language/bong, TRUE, FALSE, LANGUAGE_MIND) //So they can understand the bong-bong but not speak it
 	if(SSmaptype.chosen_trait == FACILITY_TRAIT_ABNO_BLITZ)
-		outfit_owner.adjust_all_attribute_levels(60)
+		outfit_owner.adjust_all_attribute_levels(40)//was at 60 but that causes some jank with it spawning with higher than 60 stats
 
 /datum/outfit/job/command/extraction
 	name = "Extraction Officer"
