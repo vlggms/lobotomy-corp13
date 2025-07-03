@@ -379,7 +379,7 @@
 	addtimer(CALLBACK(src, PROC_REF(NotifyEscape), abno), 1 SECONDS)
 
 /datum/facility_upgrade/specialization/architect/proc/NotifyEscape(mob/living/simple_animal/hostile/abnormality/abno)
-	if(QDELETED(abno) || abno.stat == DEAD)
+	if(QDELETED(abno) || abno.stat == DEAD || is_tutorial_level(abno.z) || istype(abno, /mob/living/simple_animal/hostile/abnormality/training_rabbit))
 		return
 	for(var/mob/living/carbon/human/H in GLOB.human_list)
 		if(!H.ckey)
