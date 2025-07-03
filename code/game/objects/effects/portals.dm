@@ -29,6 +29,7 @@
 	var/innate_accuracy_penalty = 0
 	var/last_effect = 0
 	var/force_teleport = FALSE
+	var/sparks = TRUE
 
 /obj/effect/portal/anom
 	name = "wormhole"
@@ -162,7 +163,7 @@
 		no_effect = TRUE
 	else
 		last_effect = world.time
-	if(do_teleport(M, real_target, innate_accuracy_penalty, no_effects = no_effect, channel = teleport_channel, forced = force_teleport))
+	if(do_teleport(M, real_target, innate_accuracy_penalty, no_effects = no_effect, channel = teleport_channel, forced = force_teleport, asoundin=null, asoundout=null, no_effects=sparks, channel=TELEPORT_CHANNEL_BLUESPACE, forced = FALSE))
 		if(istype(M, /obj/projectile))
 			var/obj/projectile/P = M
 			P.ignore_source_check = TRUE
