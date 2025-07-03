@@ -127,21 +127,157 @@
 
 /obj/item/paper/fluff/fixer_skills
 	name = "Fixer Skills Guide"
-	info = "<center><b>Well, This will be a short one, but it should be enough to teach new Fixers on how to learn new skills in this line of work.</b></center><br>\
+	info = "<center><b>Fixer Skills - A Comprehensive Guide</b></center><br>\
 	<br>\
-	<i>In total, there are 4 levels of skills you can learn. And depending on your grade you will be able to learn some skills, or become unable to learn others.</i><br>\
+	<b>Grade Calculation:</b><br>\
+	Your Fixer Grade is determined by your attributes. The average of your Fortitude, Prudence, Temperance, and Justice is divided by 20, then subtracted from 10. Higher attributes mean a lower (better) grade.<br>\
 	<br>\
-	Grade 9 Fixers will be able to learn level 1 Skills, Which are your main abilities for surviving in the backstreets ranging from healing and movement. You are also able to learn 5 of them at this level.<br>\
+	<b>Who Can Learn Skills:</b><br>\
+	Only those with the following roles can use skill books: Civilian, Office Director, Office Fixer, Subsidary Office Director, and Fixer.<br>\
 	<br>\
-	Grade 8 Fixers are also able to learn level 1 Skills, but they are only able to learn 3 level 1 Skills. However, if they already knew 5 level 1 skills they will keep those skills.<br>\
+	<b>Skill Learning by Grade:</b><br>\
 	<br>\
-	Grade 7 and 6 Fixers will be able to learn level 2 Skills, Which are your main utility, making gathering and looting easier. At this point and all higher grades, you will also be unable to learn skills of a lower level. So be cautious of over leveling.<br>\
+	<b>Grade 9 Fixers:</b> Can learn up to 5 Level 1 skills<br>\
+	- Level 1 skills include movement abilities (dashes, retreats), healing skills, and basic status effect skills<br>\
 	<br>\
-	Grade 5 Fixers will be able to learn level 3 Skill, Which are your passives, you are able too toggle them on and off to gain benefits and downsides while they are active. You are only able to learn one of this skill.<br>\
+	<b>Grade 8 Fixers:</b> Can learn up to 3 Level 1 skills<br>\
+	- Same skill pool as Grade 9, but more limited capacity<br>\
 	<br>\
-	Finaly, Grade 4 Fixers will be able to learn level 4 Skills, Which are your 'Ultimate' abilities. They hold powerful effects, but come at the cost off having very long cooldowns. You are only able to learn one of this skill.<br>\
+	<b>Grade 7 Fixers:</b> Can learn 1 Level 1 skill AND 1 Level 2 skill<br>\
+	- Level 2 skills include combat utilities, advanced status effect skills, and specialized abilities<br>\
+	<br>\
+	<b>Grade 6 Fixers:</b> Can learn up to 2 Level 2 skills<br>\
+	- Focus shifts entirely to Level 2 abilities<br>\
+	<br>\
+	<b>Grade 5 Fixers:</b> Can learn 1 Level 3 skill<br>\
+	- Level 3 skills are passive abilities that can be toggled on/off<br>\
+	<br>\
+	<b>Grade 4 Fixers:</b> Can learn 1 Level 4 skill<br>\
+	- Level 4 skills are powerful 'ultimate' abilities with long cooldowns<br>\
+	<br>\
+	<i>Remember: Your grade improves as your attributes increase. Plan your skill choices carefully!</i><br>\
 	<br>\
 	<i>Written by the Hana Association</i>"
+
+/obj/item/paper/fluff/fixer_skills_catalog
+	name = "Complete Fixer Skills Catalog"
+	info = "<center><b>COMPLETE FIXER SKILLS CATALOG</b></center><br>\
+	<center><i>Every skill available to City Fixers</i></center><br>\
+	<br>\
+	<b>=== LEVEL 1 SKILLS (Grades 9, 8, 7) ===</b><br>\
+	<br>\
+	<u>STANDARD SKILLS</u><br>\
+	• <b>Dash:</b> Dash forward 2 tiles instantly.<br>\
+	• <b>Dash Back:</b> Dash backward 2 tiles instantly.<br>\
+	• <b>Smoke Dash:</b> Create obscuring smoke at your feet, then gain a speed boost.<br>\
+	• <b>Assault:</b> Increase movement speed slightly for 10 seconds.<br>\
+	• <b>Retreat:</b> Increase movement speed greatly and decrease defense for 5 seconds.<br>\
+	• <b>Healing:</b> Heal decent amount of HP of all allies in a 5x5 view.<br>\
+	• <b>Soothing:</b> Heal decent amount of SP of all allies in a 5x5 view.<br>\
+	• <b>Curing:</b> Heal small amount of HP and SP of all allies in a 5x5 view.<br>\
+	• <b>First Aid:</b> Immobilize yourself for 5 second to then heal HP.<br>\
+	• <b>Meditation:</b> Immobilize yourself for 5 second to then heal SP.<br>\
+	• <b>Hunker Down:</b> Gain massive damage resistance but become immobile for 5 seconds.<br>\
+	• <b>Mark:</b> Create a stationery light.<br>\
+	• <b>Light:</b> Create a flare.<br>\
+	<br>\
+	<u>STATUS EFFECT SUPPORT SKILLS</u><br>\
+	<i>Bleed Control:</i><br>\
+	• <b>Lacerate:</b> Next 3 melee attacks apply 8 Bleed stacks.<br>\
+	• <b>Sanguine Chain:</b> Link two targets to share Bleed stacks for 10 seconds.<br>\
+	• <b>Bloodletting Strike:</b> Transfer up to 15 Bleed stacks from yourself to target.<br>\
+	• <b>Sanguine Feast:</b> Remove all Bleed from ally and heal them based on stacks removed.<br>\
+	• <b>Blood Pool:</b> Create 3x3 area that applies 5 Bleed per 2 seconds for 15 seconds.<br>\
+	• <b>Crimson Repulsion:</b> Repel bleeding targets (5+ stacks) and slow them.<br>\
+	<br>\
+	<i>Overheat Control:</i><br>\
+	• <b>Heat Transfer:</b> Two-stage: absorb up to 15 Overheat, then transfer to another target.<br>\
+	• <b>Ignition Burst:</b> Apply 15 Overheat stacks to all enemies in 3x3 area.<br>\
+	• <b>Flame Lance:</b> Fire piercing projectile applying 20 Overheat to all hit.<br>\
+	• <b>Cauterize:</b> Remove all Overheat from target and heal them based on stacks.<br>\
+	• <b>Spreading Ashes:</b> Create 3x3 slow field that applies Overheat to Overheated targets.<br>\
+	• <b>Feeding the Embers:</b> Next attack inflicts 25 Overheat if target has 15+ stacks, otherwise 5.<br>\
+	<br>\
+	<i>Tremor Control:</i><br>\
+	• <b>Aftershock:</b> Your next 3 melee attacks apply 5 Tremor stacks to all mobs in a 3x3 AoE centered on the target.<br>\
+	• <b>Seismic Wave:</b> Send a piercing projectile that applies tiles traveled * 5 Tremor stacks to all it hits (max 10 tiles).<br>\
+	• <b>Shattered Resentment:</b> Trigger the target to gain 20 Tremor.<br>\
+	• <b>Stabilizing Stance:</b> Remove all Tremor from yourself and allies in 3x3 area. Allies who had tremor gain 50% speed for 3 seconds.<br>\
+	• <b>Tectonic Shift:</b> Create 3x3 terrain that applies 4 Tremor every 2 seconds to targets. MOBs only gain tremor if they have 15+ already.<br>\
+	• <b>Repelling Motion:</b> For 10 seconds, every second throw all mobs in 3x3 area 3 tiles away and inflict 3 Tremor if they have less than 15.<br>\
+	<br>\
+	<u>FISHING SKILLS</u><br>\
+	• <b>Detect:</b> You check if there's fish nearby.<br>\
+	• <b>Scry:</b> Check your devotion, current moon phase and the planets in alignment with earth.<br>\
+	• <b>Planet:</b> You shift the movement of your aligned planet by 1.<br>\
+	• <b>Planet2:</b> You shift the movement of a planet of your choice by 1.<br>\
+	• <b>Prayer:</b> Heal HP/SP of all humans within a 5x5 view..<br>\
+	• <b>Sacred Word:</b> Speak with your god to gain devotion.<br>\
+	• <b>Love:</b> Heal HP/SP of all humans within a 5x5 view. Grows more powerful with each use.<br>\
+	• <b>Moon Move:</b> You speed up the moon phases.<br>\
+	• <b>Commune:</b> Send a message to all humans who worship the same god as you.<br>\
+	• <b>Fish Lockpick:</b> Open locked doors with a fish lock.<br>\
+	• <b>Fish Telepathy:</b> Communicate with distant allies... Glub<br>\
+	<br>\
+	<b>=== LEVEL 2 SKILLS (Grades 7, 6) ===</b><br>\
+	<br>\
+	<u>STANDARD SKILLS</u><br>\
+	• <b>Butcher:</b> Gib all dead mobs in a 3x3 view, using your butchering tool if you have one.<br>\
+	• <b>Solar Flare:</b> Blind all humans in large area.<br>\
+	• <b>Confusion:</b> Blur and randomize the controls of all nearby humans.<br>\
+	• <b>Lockpick:</b> Open any locked door.<br>\
+	• <b>Life Steal:</b> Drain health from nearby mobs to heal yourself.<br>\
+	• <b>Skulk:</b> Become invisible for extended period and gain a speed boost.<br>\
+	• <b>Autoloader:</b> Weapons automatically reload and gain damage bonus.<br>\
+	<br>\
+	<u>STATUS EFFECT DAMAGE SKILLS</u><br>\
+	<i>Bleed Damage:</i><br>\
+	• <b>Hemorrhage:</b> Teleport to target and trigger stacks * 10 RED damage, removing all Bleed.<br>\
+	• <b>Crimson Cleave:</b> Wide slash dealing 30 + bleed*10 RED damage, reducing Bleed by 5.<br>\
+	• <b>Blood Spike:</b> Launch projectile dealing 10 + bleed*5 RED damage in 3x3 area.<br>\
+	<br>\
+	<i>Overheat Damage:</i><br>\
+	• <b>Thermal Detonation:</b> Next attack consumes Overheat for massive WHITE damage in 3x3.<br>\
+	• <b>Molten Strike:</b> Next attack deals bonus WHITE damage and reduces Overheat by 5.<br>\
+	• <b>Inferno Dash:</b> Dash dealing 50 WHITE damage, refresh on 15+ Overheat hit.<br>\
+	<br>\
+	<i>Tremor Damage:</i><br>\
+	• <b>Seismic Slam:</b> Ground slam dealing 20 + total tremor*2 BLACK damage in 5x5.<br>\
+	• <b>Resonant Strike:</b> Next attack deals stacks*3 bonus BLACK damage, reduces Tremor by 50%.<br>\
+	• <b>Earthbound Hammer:</b> Teleport slam dealing your tremor*5 BLACK damage, reduces your tremor by 75%.<br>\
+	<br>\
+	<u>FISHING SKILLS</u><br>\
+	• <b>Smite:</b> Call down divine lightning to all who don't worship your god in a 7x7 view.<br>\
+	• <b>Might:</b> Gain damage bonus depended on the moon phase for limited time.<br>\
+	• <b>Awe:</b> Stun all humans in a 9x9 view who don't worship your god.<br>\
+	• <b>Chakra:</b> Deal WHITE damage to all who are not aligned with their gods in a 7x7 view, gibbing them if they don't have their gods planet.<br>\
+	<br>\
+	<b>=== LEVEL 3 SKILLS (Grade 5) ===</b><br>\
+	<br>\
+	<u>PASSIVE SKILLS (Toggle On/Off)</u><br>\
+	• <b>Health HUD:</b> See health bars above all creatures.<br>\
+	• <b>Bulletproof:</b> Immunity to projectile damage but vulnerability to melee.<br>\
+	• <b>Battle Ready:</b> Increase your resistances.br>\
+	• <b>Fleet Foot:</b> Movement speed increase.<br>\
+	<br>\
+	<b>=== LEVEL 4 SKILLS (Grade 4) ===</b><br>\
+	<br>\
+	<u>ULTIMATE SKILLS</u><br>\
+	• <b>Timestop:</b> Freeze time in a 3x3 range for 1.5 seconds.<br>\
+	• <b>Dismember:</b> Instantly remove a limb from target.<br>\
+	• <b>Shockwave:</b> Devastating area attack that throws everyone away from you.<br>\
+	• <b>War Banner:</b> Buffs the resistances of allies in a 5x5 range.<br>\
+	• <b>War Cry:</b> Boost movement speed of all allies in a 5x5 range.<br>\
+	• <b>Nuke:</b> Massive delayed explosion dealing extreme damage.<br>\
+	<br>\
+	<u>FISHING ULTIMATE SKILLS</u><br>\
+	• <b>Supernova:</b> Destroy a planet in the sky.<br>\
+	• <b>Alignment:</b> You shift your deity's planet to align with earth.<br>\
+	• <b>A Moment in Time:</b> Halts the planets in their place.<br>\
+	<br>\
+	<center><i>Remember: Choose wisely based on your role and fighting style!</i></center><br>\
+	<br>\
+	<i>Compiled by the Hana Association Intelligence Division</i>"
 
 /obj/item/paper/fluff/sop
 	name = "paper- 'Standard Operating Procedure'"

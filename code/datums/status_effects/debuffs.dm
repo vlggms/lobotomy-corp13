@@ -1390,7 +1390,7 @@
 
 /datum/status_effect/stacking/lc_tremor/add_stacks(stacks)
 	. = ..()
-	owner.add_or_update_variable_movespeed_modifier(/datum/movespeed_modifier/tremor, multiplicative_slowdown = stacks * 0.4)
+	owner.add_or_update_variable_movespeed_modifier(/datum/movespeed_modifier/tremor, multiplicative_slowdown = src.stacks * 0.4)
 
 /datum/status_effect/stacking/lc_tremor/can_have_status()
 	return (owner.stat != DEAD || !(owner.status_flags & GODMODE))
