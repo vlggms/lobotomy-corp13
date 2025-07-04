@@ -267,6 +267,8 @@
 	// Remove tremor from allies and grant speed
 	var/allies_helped = 0
 	for(var/mob/living/carbon/human/H in range(1, center))
+		if(H == owner)
+			continue
 		var/datum/status_effect/stacking/lc_tremor/tremor = H.has_status_effect(/datum/status_effect/stacking/lc_tremor)
 		if(tremor)
 			tremor.stacks = 0
