@@ -1,26 +1,24 @@
 /obj/item/ego_weapon/city/insurgence_baton
 	name = "insurgence baton"
 	desc = "A gray baton used by transport agents."
-	special = "This weapon inflicts 3 tremor on hit, and tremor bursts when the target has 40+ tremor"
+	special = "This weapon inflicts 5 tremor on hit, and tremor bursts when the target has 40+ tremor"
 	icon_state = "kbatong"
 	inhand_icon_state = "kbatong"
-	force = 30
-	damtype = RED_DAMAGE
+	force = 32
+	damtype = BLACK_DAMAGE
 	attack_verb_continuous = list("bashes", "crushes")
 	attack_verb_simple = list("bash", "crush")
+	attack_speed = 1.25
 	attribute_requirements = list(
 							FORTITUDE_ATTRIBUTE = 60,
 							PRUDENCE_ATTRIBUTE = 60,
 							TEMPERANCE_ATTRIBUTE = 60,
 							JUSTICE_ATTRIBUTE = 60
 							)
-	var/inflicted_tremor = 3
-	var/tremor_update
-	var/tremor_cooldown = 5 SECONDS
 
 /obj/item/ego_weapon/city/insurgence_baton/attack(mob/living/target, mob/living/user)
 	. = ..()
-	target.apply_lc_tremor(3, 40)
+	target.apply_lc_tremor(5, 40)
 
 /obj/item/ego_weapon/shield/insurgence_shield
 	name = "insurgence energy shield"
@@ -81,3 +79,67 @@
 		playsound(user, 'sound/weapons/saberoff.ogg', 35, TRUE)
 		to_chat(user, span_notice("[src] can now be concealed."))
 		icon_state = "[base_icon_state][active]"
+
+/obj/item/ego_weapon/shield/insurgence_shield/hit_reaction(mob/living/carbon/human/owner, atom/movable/hitby, attack_text = "the attack", final_block_chance = 0, damage = 0, attack_type = MELEE_ATTACK)
+	. = ..()
+	if(. && istype(hitby, /obj/item/ego_weapon/city/insurgence_baton))
+		playsound(src, 'sound/weapons/sonic_jackhammer.ogg', 50, TRUE)
+		visible_message(span_warning("[src] emits an intimidating sound as it's struck!"))
+
+/obj/item/ego_weapon/city/insurgence_nightwatch
+	name = "nightwatch blade"
+	desc = "A specialized blade used by insurgence nightwatch agents."
+	special = "If the target has 15+ tremor, tremor burst twice. Deals 20% more damage to targets above 50% HP."
+	icon_state = "hfrequency1"
+	inhand_icon_state = "hfrequency1"
+	icon = 'icons/obj/items_and_weapons.dmi'
+	lefthand_file = 'icons/mob/inhands/weapons/swords_lefthand.dmi'
+	righthand_file = 'icons/mob/inhands/weapons/swords_righthand.dmi'
+	force = 49
+	damtype = BLACK_DAMAGE
+	attack_verb_continuous = list("slashes", "cleaves")
+	attack_verb_simple = list("slash", "cleave")
+	attack_speed = 0.75
+	attribute_requirements = list(
+							FORTITUDE_ATTRIBUTE = 100,
+							PRUDENCE_ATTRIBUTE = 100,
+							TEMPERANCE_ATTRIBUTE = 100,
+							JUSTICE_ATTRIBUTE = 100
+							)
+	var/burst_cooldown = 0
+	var/burst_cooldown_time = 20 SECONDS
+
+/obj/item/ego_weapon/city/insurgence_nightwatch/attack(mob/living/target, mob/living/user)
+	var/force_mod = 1
+	if(target.health > target.maxHealth * 0.5)
+		force_mod = 1.2
+
+	// Check if user is wearing nightwatch armor with cloak active
+	if(ishuman(user))
+		var/mob/living/carbon/human/H = user
+		var/obj/item/clothing/suit/armor/ego_gear/city/insurgence_nightwatch/armor = H.wear_suit
+		if(istype(armor))
+			force_mod *= armor.GetDamageModifier()
+
+	force = initial(force) * force_mod
+	. = ..()
+	force = initial(force)
+
+	if(!istype(target))
+		return
+
+	var/datum/status_effect/stacking/lc_tremor/T = target.has_status_effect(/datum/status_effect/stacking/lc_tremor)
+	if(T && T.stacks >= 15 && world.time > burst_cooldown)
+		burst_cooldown = world.time + burst_cooldown_time
+		to_chat(user, span_notice("Your blade resonates with [target]'s trembling form!"))
+		var/old_tremor_stack = T.stacks
+		T.TremorBurst()
+		target.apply_lc_tremor(old_tremor_stack, 55)
+		addtimer(CALLBACK(src, PROC_REF(SecondBurst), target), 5)
+
+/obj/item/ego_weapon/city/insurgence_nightwatch/proc/SecondBurst(mob/living/target)
+	if(!target || QDELETED(target))
+		return
+	var/datum/status_effect/stacking/lc_tremor/T = target.has_status_effect(/datum/status_effect/stacking/lc_tremor)
+	if(T)
+		T.TremorBurst()

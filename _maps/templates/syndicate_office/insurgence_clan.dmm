@@ -1,0 +1,875 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"ad" = (
+/obj/effect/turf_decal/raven{
+	dir = 10
+	},
+/obj/machinery/stasis/survival_pod,
+/turf/open/floor/pod/dark,
+/area/city/backstreets_room)
+"aq" = (
+/obj/effect/turf_decal/raven{
+	dir = 1
+	},
+/obj/effect/decal/cleanable/ash/large,
+/obj/structure/chair/office{
+	dir = 4
+	},
+/turf/open/floor/pod/dark,
+/area/city/backstreets_room)
+"bg" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/turf_decal/tile/neutral{
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/neutral{
+	dir = 1
+	},
+/turf/open/floor/mineral/plastitanium/red,
+/area/city/backstreets_room)
+"bp" = (
+/obj/effect/turf_decal/siding/red{
+	color = "#440000";
+	dir = 8
+	},
+/obj/machinery/light{
+	dir = 8;
+	pixel_x = -9;
+	pixel_y = 4
+	},
+/turf/open/floor/mineral/plastitanium,
+/area/city/backstreets_room)
+"bR" = (
+/obj/machinery/light{
+	dir = 8;
+	pixel_x = -9;
+	pixel_y = 4
+	},
+/obj/structure/table/reinforced,
+/obj/item/flashlight/lamp{
+	pixel_y = 10;
+	pixel_x = -5
+	},
+/obj/item/paper_bin/carbon,
+/obj/item/pen/fountain/captain,
+/obj/item/pen/fountain/captain,
+/turf/open/floor/mineral/plastitanium/red,
+/area/city/backstreets_room)
+"cC" = (
+/obj/structure/chair/sofa/corp/left{
+	name = "stolen corporate sofa";
+	desc = "Soft and cushy. Just liked the poor feather who couldnt pay his protection fee.";
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/bar,
+/obj/effect/turf_decal/tile/bar{
+	dir = 1
+	},
+/turf/open/floor/mineral/plastitanium,
+/area/city/backstreets_room)
+"cX" = (
+/obj/effect/turf_decal/siding/red{
+	color = "#440000";
+	dir = 4
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/mineral/plastitanium,
+/area/city/backstreets_room)
+"dl" = (
+/obj/structure/window/shuttle/survival_pod,
+/turf/open/floor/pod/dark,
+/area/city/backstreets_room)
+"dY" = (
+/obj/structure/closet/syndicate/insurgence/nightwatch,
+/turf/open/floor/mineral/plastitanium/red,
+/area/city/backstreets_room)
+"ek" = (
+/obj/effect/turf_decal/siding/red{
+	color = "#440000";
+	dir = 8
+	},
+/turf/open/floor/mineral/plastitanium,
+/area/city/backstreets_room)
+"ew" = (
+/obj/machinery/door/airlock/survival_pod{
+	name = "insurgence entrance";
+	req_access_txt = "150"
+	},
+/obj/effect/turf_decal/tile/bar{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/bar{
+	dir = 4
+	},
+/turf/open/floor/mineral/plastitanium,
+/area/city/backstreets_room)
+"gT" = (
+/obj/effect/turf_decal/raven{
+	dir = 4
+	},
+/obj/structure/table/reinforced,
+/obj/item/storage/firstaid/regular,
+/obj/item/augment_tester,
+/obj/item/stack/cable_coil{
+	pixel_x = 3;
+	pixel_y = 3
+	},
+/obj/item/stack/cable_coil{
+	pixel_x = 2;
+	pixel_y = -2
+	},
+/obj/item/stack/cable_coil{
+	pixel_x = -3;
+	pixel_y = 3
+	},
+/obj/item/stack/cable_coil,
+/turf/open/floor/pod/dark,
+/area/city/backstreets_room)
+"hb" = (
+/obj/effect/turf_decal/tile/bar,
+/obj/effect/turf_decal/tile/bar{
+	dir = 1
+	},
+/obj/machinery/light{
+	dir = 8;
+	pixel_x = -9;
+	pixel_y = 4
+	},
+/turf/open/floor/mineral/plastitanium,
+/area/city/backstreets_room)
+"hE" = (
+/obj/effect/turf_decal/siding/red{
+	color = "#440000";
+	dir = 5
+	},
+/turf/open/floor/mineral/plastitanium,
+/area/city/backstreets_room)
+"hO" = (
+/obj/structure/closet/syndicate/insurgence,
+/obj/effect/turf_decal/tile/bar,
+/obj/effect/turf_decal/tile/bar{
+	dir = 1
+	},
+/turf/open/floor/mineral/plastitanium,
+/area/city/backstreets_room)
+"hV" = (
+/obj/effect/turf_decal/raven{
+	dir = 8
+	},
+/obj/effect/decal/cleanable/oil,
+/turf/open/floor/pod/dark,
+/area/city/backstreets_room)
+"ii" = (
+/obj/effect/turf_decal/tile/neutral{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/neutral,
+/obj/effect/turf_decal/tile/neutral{
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/neutral{
+	dir = 4
+	},
+/turf/open/floor/mineral/plastitanium/red,
+/area/city/backstreets_room)
+"iw" = (
+/obj/effect/turf_decal/tile/bar{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/bar,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/mineral/plastitanium,
+/area/city/backstreets_room)
+"jb" = (
+/obj/effect/turf_decal/raven{
+	dir = 8
+	},
+/turf/open/floor/pod/dark,
+/area/city/backstreets_room)
+"lk" = (
+/obj/effect/turf_decal/tile/bar,
+/obj/effect/turf_decal/tile/bar{
+	dir = 1
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/closet/crate{
+	anchored = 1;
+	opened = 1;
+	pixel_y = 5
+	},
+/obj/item/food/canned/pcorp,
+/obj/item/food/canned/pcorp,
+/obj/item/food/canned/pcorp,
+/obj/item/food/canned/pcorp,
+/obj/item/food/canned/pcorp,
+/obj/item/food/canned/pcorp,
+/obj/item/food/canned/pcorp,
+/obj/item/food/canned/pcorp,
+/turf/open/floor/mineral/plastitanium,
+/area/city/backstreets_room)
+"lB" = (
+/obj/effect/turf_decal/tile/neutral,
+/obj/structure/chair/office{
+	dir = 8
+	},
+/turf/open/floor/mineral/plastitanium/red,
+/area/city/backstreets_room)
+"nj" = (
+/obj/structure/closet/syndicate/insurgence,
+/obj/effect/turf_decal/tile/bar,
+/obj/effect/turf_decal/tile/bar{
+	dir = 1
+	},
+/obj/machinery/light{
+	dir = 1;
+	pixel_y = 19
+	},
+/turf/open/floor/mineral/plastitanium,
+/area/city/backstreets_room)
+"nQ" = (
+/obj/effect/turf_decal/raven{
+	dir = 9
+	},
+/obj/machinery/light/floor,
+/obj/machinery/light{
+	dir = 8;
+	pixel_x = -9;
+	pixel_y = 4
+	},
+/turf/open/floor/pod/dark,
+/area/city/backstreets_room)
+"ph" = (
+/obj/structure/table/reinforced,
+/obj/machinery/light{
+	dir = 4;
+	pixel_x = 9;
+	pixel_y = 4
+	},
+/obj/effect/spawner/lootdrop/donkpockets,
+/obj/effect/spawner/lootdrop/donkpockets,
+/obj/effect/spawner/lootdrop/donkpockets,
+/obj/item/flashlight/lamp{
+	pixel_y = 10;
+	pixel_x = -5
+	},
+/turf/open/floor/mineral/plastitanium/red,
+/area/city/backstreets_room)
+"pU" = (
+/obj/machinery/door/airlock/survival_pod{
+	name = "transport quarters";
+	req_access_txt = "150"
+	},
+/turf/open/floor/mineral/plastitanium/red,
+/area/city/backstreets_room)
+"qj" = (
+/obj/effect/turf_decal/raven{
+	dir = 4
+	},
+/obj/structure/table/reinforced,
+/obj/item/storage/firstaid/revival,
+/obj/item/storage/backpack/duffelbag/med/surgery{
+	pixel_y = 5
+	},
+/turf/open/floor/pod/dark,
+/area/city/backstreets_room)
+"to" = (
+/obj/effect/turf_decal/siding/red{
+	color = "#440000";
+	dir = 4
+	},
+/turf/open/floor/mineral/plastitanium,
+/area/city/backstreets_room)
+"tp" = (
+/turf/open/floor/mineral/plastitanium/red,
+/area/city/backstreets_room)
+"uf" = (
+/obj/effect/decal/cleanable/oil,
+/turf/open/floor/pod/dark,
+/area/city/backstreets_room)
+"uA" = (
+/obj/machinery/door/airlock/survival_pod{
+	name = "insurgence augmentation unit";
+	req_access_txt = "150"
+	},
+/turf/open/floor/mineral/plastitanium,
+/area/city/backstreets_room)
+"uH" = (
+/obj/effect/turf_decal/raven{
+	dir = 4
+	},
+/obj/structure/table/reinforced,
+/obj/item/storage/firstaid/revival,
+/obj/item/augment_remover,
+/turf/open/floor/pod/dark,
+/area/city/backstreets_room)
+"xL" = (
+/obj/effect/turf_decal/tile/bar,
+/obj/effect/turf_decal/tile/bar{
+	dir = 1
+	},
+/obj/machinery/light{
+	dir = 4;
+	pixel_x = 9;
+	pixel_y = 4
+	},
+/turf/open/floor/mineral/plastitanium,
+/area/city/backstreets_room)
+"yI" = (
+/obj/machinery/light{
+	dir = 4;
+	pixel_x = 9;
+	pixel_y = 4
+	},
+/obj/effect/turf_decal/tile/neutral,
+/obj/effect/turf_decal/tile/neutral{
+	dir = 8
+	},
+/turf/open/floor/mineral/plastitanium/red,
+/area/city/backstreets_room)
+"AC" = (
+/obj/machinery/door/airlock/survival_pod{
+	name = "insurgence storage unit";
+	req_access_txt = "150"
+	},
+/obj/effect/turf_decal/tile/bar{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/bar,
+/turf/open/floor/mineral/plastitanium,
+/area/city/backstreets_room)
+"Cm" = (
+/obj/structure/table/survival_pod,
+/obj/effect/turf_decal/tile/bar{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/bar,
+/obj/structure/fluff/paper/stack,
+/turf/open/floor/mineral/plastitanium,
+/area/city/backstreets_room)
+"Cs" = (
+/obj/structure/window/shuttle/survival_pod,
+/turf/open/floor/mineral/plastitanium,
+/area/city/backstreets_room)
+"Dc" = (
+/obj/effect/turf_decal/siding/red{
+	color = "#440000";
+	dir = 8
+	},
+/obj/machinery/light{
+	dir = 8;
+	pixel_x = -9;
+	pixel_y = 4
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/mineral/plastitanium,
+/area/city/backstreets_room)
+"DF" = (
+/obj/machinery/light{
+	dir = 8;
+	pixel_x = -9;
+	pixel_y = 4
+	},
+/obj/effect/turf_decal/tile/neutral{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/neutral,
+/obj/effect/turf_decal/tile/neutral{
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/neutral{
+	dir = 4
+	},
+/turf/open/floor/mineral/plastitanium/red,
+/area/city/backstreets_room)
+"DK" = (
+/obj/effect/turf_decal/tile/neutral{
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/neutral{
+	dir = 1
+	},
+/turf/open/floor/mineral/plastitanium/red,
+/area/city/backstreets_room)
+"Ea" = (
+/obj/effect/turf_decal/raven{
+	dir = 6
+	},
+/obj/effect/decal/cleanable/ash/large,
+/obj/machinery/augment_fabricator/insurgence,
+/turf/open/floor/pod/dark,
+/area/city/backstreets_room)
+"EC" = (
+/obj/effect/turf_decal/siding/red{
+	color = "#440000";
+	dir = 9
+	},
+/turf/open/floor/mineral/plastitanium,
+/area/city/backstreets_room)
+"FR" = (
+/obj/structure/table/reinforced,
+/obj/machinery/microwave{
+	pixel_y = 7
+	},
+/turf/open/floor/mineral/plastitanium/red,
+/area/city/backstreets_room)
+"GB" = (
+/obj/machinery/stasis/survival_pod,
+/obj/structure/window/reinforced/survival_pod{
+	opacity = 1;
+	name = "tinted window";
+	dir = 8
+	},
+/turf/open/floor/mineral/plastitanium/red,
+/area/city/backstreets_room)
+"GD" = (
+/obj/effect/turf_decal/siding/red{
+	color = "#440000";
+	dir = 4
+	},
+/obj/machinery/light{
+	dir = 4;
+	pixel_x = 9;
+	pixel_y = 4
+	},
+/turf/open/floor/mineral/plastitanium,
+/area/city/backstreets_room)
+"Hv" = (
+/obj/machinery/stasis/survival_pod,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/mineral/plastitanium/red,
+/area/city/backstreets_room)
+"Hx" = (
+/obj/machinery/stasis/survival_pod,
+/obj/structure/window/reinforced/survival_pod{
+	opacity = 1;
+	name = "tinted window";
+	dir = 8
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/mineral/plastitanium/red,
+/area/city/backstreets_room)
+"IK" = (
+/obj/effect/turf_decal/tile/bar,
+/obj/effect/turf_decal/tile/bar{
+	dir = 1
+	},
+/obj/machinery/door/window/survival_pod{
+	name = "insurgence entrance";
+	opacity = 1;
+	req_access_txt = "150";
+	dir = 8
+	},
+/turf/open/floor/mineral/plastitanium,
+/area/city/backstreets_room)
+"Jk" = (
+/obj/structure/table/reinforced,
+/obj/item/stack/spacecash/c10000,
+/obj/item/stack/spacecash/c10000,
+/obj/item/stack/spacecash/c10000,
+/obj/item/modular_computer/laptop/preset/civilian,
+/turf/open/floor/mineral/plastitanium/red,
+/area/city/backstreets_room)
+"Kh" = (
+/obj/effect/turf_decal/tile/bar,
+/obj/effect/turf_decal/tile/bar{
+	dir = 1
+	},
+/obj/structure/closet/crate{
+	anchored = 1;
+	opened = 1;
+	pixel_y = 5
+	},
+/obj/item/bodypart/chest/robot,
+/obj/item/bodypart/chest/robot,
+/obj/item/bodypart/chest/robot,
+/obj/item/bodypart/chest/robot,
+/obj/item/bodypart/head/robot,
+/obj/item/bodypart/head/robot,
+/obj/item/bodypart/head/robot,
+/obj/item/bodypart/head/robot,
+/obj/item/bodypart/l_arm/robot,
+/obj/item/bodypart/l_arm/robot,
+/obj/item/bodypart/l_arm/robot,
+/obj/item/bodypart/l_arm/robot,
+/obj/item/bodypart/l_leg/robot,
+/obj/item/bodypart/l_leg/robot,
+/obj/item/bodypart/l_leg/robot,
+/obj/item/bodypart/l_leg/robot,
+/obj/item/bodypart/r_arm/robot,
+/obj/item/bodypart/r_arm/robot,
+/obj/item/bodypart/r_arm/robot,
+/obj/item/bodypart/r_arm/robot,
+/obj/item/bodypart/r_leg/robot,
+/obj/item/bodypart/r_leg/robot,
+/obj/item/bodypart/r_leg/robot,
+/obj/item/bodypart/r_leg/robot,
+/obj/item/weldingtool/experimental,
+/obj/item/weldingtool/experimental,
+/turf/open/floor/mineral/plastitanium,
+/area/city/backstreets_room)
+"Kn" = (
+/obj/effect/turf_decal/raven,
+/turf/open/floor/pod/dark,
+/area/city/backstreets_room)
+"KI" = (
+/obj/effect/turf_decal/siding/red{
+	color = "#440000";
+	dir = 10
+	},
+/turf/open/floor/mineral/plastitanium,
+/area/city/backstreets_room)
+"Lb" = (
+/obj/effect/turf_decal/tile/bar,
+/obj/effect/turf_decal/tile/bar{
+	dir = 1
+	},
+/obj/structure/closet/crate/bin{
+	pixel_y = 2
+	},
+/turf/open/floor/mineral/plastitanium,
+/area/city/backstreets_room)
+"Mp" = (
+/obj/effect/turf_decal/raven{
+	dir = 4
+	},
+/obj/machinery/light{
+	dir = 4;
+	pixel_x = 9;
+	pixel_y = 4
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/pod/dark,
+/area/city/backstreets_room)
+"MK" = (
+/obj/effect/turf_decal/tile/bar,
+/obj/effect/turf_decal/tile/bar{
+	dir = 1
+	},
+/turf/open/floor/mineral/plastitanium,
+/area/city/backstreets_room)
+"Ni" = (
+/obj/structure/table/survival_pod,
+/obj/item/paper_bin/carbon,
+/obj/item/pen/fountain/captain,
+/obj/item/pen/fountain/captain,
+/obj/effect/turf_decal/tile/bar,
+/obj/effect/turf_decal/tile/bar{
+	dir = 1
+	},
+/turf/open/floor/mineral/plastitanium,
+/area/city/backstreets_room)
+"NZ" = (
+/obj/effect/turf_decal/raven{
+	dir = 4
+	},
+/obj/machinery/computer/insurgence_tracker{
+	dir = 8
+	},
+/obj/machinery/light{
+	dir = 4;
+	pixel_x = 9;
+	pixel_y = 4
+	},
+/turf/open/floor/pod/dark,
+/area/city/backstreets_room)
+"Pg" = (
+/obj/machinery/door/airlock/survival_pod{
+	name = "nightwatch office";
+	req_access_txt = "151"
+	},
+/turf/open/floor/mineral/plastitanium/red,
+/area/city/backstreets_room)
+"QZ" = (
+/obj/effect/turf_decal/tile/bar{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/bar,
+/obj/structure/chair/sofa/corp/right{
+	name = "stolen corporate sofa";
+	desc = "Soft and cushy. Just liked the poor feather who couldnt pay his protection fee.";
+	dir = 4
+	},
+/turf/open/floor/mineral/plastitanium,
+/area/city/backstreets_room)
+"Sd" = (
+/obj/effect/turf_decal/raven{
+	dir = 8
+	},
+/obj/machinery/light{
+	dir = 8;
+	pixel_x = -9;
+	pixel_y = 4
+	},
+/obj/machinery/stasis/survival_pod,
+/turf/open/floor/pod/dark,
+/area/city/backstreets_room)
+"Sf" = (
+/obj/effect/turf_decal/siding/red{
+	color = "#440000";
+	dir = 6
+	},
+/turf/open/floor/mineral/plastitanium,
+/area/city/backstreets_room)
+"Sq" = (
+/turf/open/floor/pod/dark,
+/area/city/backstreets_room)
+"SD" = (
+/obj/structure/chair/sofa/corp/right{
+	name = "stolen corporate sofa";
+	desc = "Soft and cushy. Just liked the poor feather who couldnt pay his protection fee.";
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/bar,
+/obj/effect/turf_decal/tile/bar{
+	dir = 1
+	},
+/obj/machinery/light{
+	dir = 4;
+	pixel_x = 9;
+	pixel_y = 4
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/mineral/plastitanium,
+/area/city/backstreets_room)
+"SL" = (
+/obj/effect/turf_decal/tile/neutral,
+/obj/effect/turf_decal/tile/neutral{
+	dir = 4
+	},
+/turf/open/floor/mineral/plastitanium/red,
+/area/city/backstreets_room)
+"TP" = (
+/obj/effect/turf_decal/raven{
+	dir = 8
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/decal/cleanable/ash/large,
+/turf/open/floor/pod/dark,
+/area/city/backstreets_room)
+"TQ" = (
+/obj/item/organ/ears/cybernetic,
+/obj/item/organ/ears/cybernetic,
+/obj/item/organ/ears/cybernetic,
+/obj/item/organ/heart/cybernetic/tier2,
+/obj/item/organ/heart/cybernetic/tier2,
+/obj/item/organ/heart/cybernetic/tier2,
+/obj/item/organ/liver/cybernetic,
+/obj/item/organ/liver/cybernetic,
+/obj/item/organ/liver/cybernetic,
+/obj/item/organ/lungs/cybernetic/tier2,
+/obj/item/organ/lungs/cybernetic/tier2,
+/obj/item/organ/lungs/cybernetic/tier2,
+/obj/item/organ/stomach/cybernetic/tier2,
+/obj/item/organ/stomach/cybernetic/tier2,
+/obj/item/organ/stomach/cybernetic/tier2,
+/obj/effect/turf_decal/tile/bar,
+/obj/effect/turf_decal/tile/bar{
+	dir = 1
+	},
+/obj/structure/closet/crate{
+	anchored = 1;
+	opened = 1;
+	pixel_y = 5
+	},
+/turf/open/floor/mineral/plastitanium,
+/area/city/backstreets_room)
+"Vl" = (
+/turf/closed/wall/mineral/plastitanium/nodiagonal,
+/area/city/backstreets_room)
+"VI" = (
+/obj/effect/turf_decal/tile/bar,
+/obj/effect/turf_decal/tile/bar{
+	dir = 1
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/mineral/plastitanium,
+/area/city/backstreets_room)
+"VY" = (
+/obj/effect/turf_decal/siding/red{
+	color = "#440000";
+	dir = 8
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/mineral/plastitanium,
+/area/city/backstreets_room)
+"Wj" = (
+/obj/effect/decal/cleanable/oil/streak,
+/turf/open/floor/pod/dark,
+/area/city/backstreets_room)
+"Zn" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/decal/cleanable/oil/streak,
+/obj/structure/chair/office{
+	dir = 4
+	},
+/turf/open/floor/pod/dark,
+/area/city/backstreets_room)
+"Zv" = (
+/obj/effect/turf_decal/tile/bar,
+/obj/effect/turf_decal/tile/bar{
+	dir = 1
+	},
+/obj/structure/chair/sofa/corp/left{
+	name = "stolen corporate sofa";
+	desc = "Soft and cushy. Just liked the poor feather who couldnt pay his protection fee.";
+	dir = 4
+	},
+/turf/open/floor/mineral/plastitanium,
+/area/city/backstreets_room)
+"ZA" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/mineral/plastitanium/red,
+/area/city/backstreets_room)
+"ZL" = (
+/obj/effect/turf_decal/raven{
+	dir = 5
+	},
+/obj/machinery/light/floor,
+/obj/machinery/computer/insurgence_tracker{
+	dir = 8
+	},
+/turf/open/floor/pod/dark,
+/area/city/backstreets_room)
+
+(1,1,1) = {"
+GB
+DF
+Hx
+Vl
+hb
+iw
+hb
+Vl
+nj
+VI
+Lb
+"}
+(2,1,1) = {"
+GB
+ii
+GB
+Vl
+Zv
+QZ
+MK
+Vl
+hO
+MK
+Kh
+"}
+(3,1,1) = {"
+DK
+bg
+DK
+Vl
+Ni
+Cm
+IK
+Vl
+hO
+MK
+TQ
+"}
+(4,1,1) = {"
+tp
+ph
+FR
+Vl
+SD
+cC
+xL
+Vl
+nj
+MK
+lk
+"}
+(5,1,1) = {"
+pU
+Vl
+Vl
+Vl
+Vl
+ew
+Vl
+Vl
+Cs
+AC
+Cs
+"}
+(6,1,1) = {"
+EC
+Dc
+ek
+ek
+bp
+ek
+Dc
+ek
+ek
+VY
+KI
+"}
+(7,1,1) = {"
+hE
+GD
+to
+cX
+GD
+to
+to
+to
+to
+GD
+Sf
+"}
+(8,1,1) = {"
+Pg
+Vl
+Vl
+Vl
+Vl
+dl
+uA
+dl
+Vl
+Vl
+Vl
+"}
+(9,1,1) = {"
+tp
+bR
+Jk
+Vl
+nQ
+jb
+hV
+TP
+jb
+Sd
+ad
+"}
+(10,1,1) = {"
+ZA
+lB
+SL
+Vl
+aq
+Zn
+Sq
+Wj
+Sq
+uf
+Kn
+"}
+(11,1,1) = {"
+dY
+yI
+Hv
+Vl
+ZL
+NZ
+qj
+gT
+uH
+Mp
+Ea
+"}

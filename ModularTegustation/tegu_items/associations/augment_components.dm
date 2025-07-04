@@ -1476,3 +1476,171 @@
 /datum/dc_change/pale_fragility
 	potency = 1
 	damage_type = list(PALE_DAMAGE)
+
+//Mental Corrosion - Insurgence Clan augment effect
+/datum/component/augment/mental_corrosion
+	var/corrosion_level = 0
+	var/next_corrosion_increase = 0
+	var/list/bonds = list() // List of humans who reduce corrosion
+	var/list/human_interaction_count = list() // Track time spent with humans
+	var/interaction_threshold = 5 // Times needed to form a bond
+	var/max_bonds = 3 // Maximum bonds allowed
+	var/voices_cooldown = 0
+	var/water_seek_cooldown = 0
+	var/processing = FALSE
+
+/datum/component/augment/mental_corrosion/Initialize(_repeat = 1)
+	. = ..()
+	if(!processing)
+		START_PROCESSING(SSprocessing, src)
+		processing = TRUE
+	next_corrosion_increase = world.time + 120 SECONDS
+
+/datum/component/augment/mental_corrosion/RegisterWithParent()
+	. = ..()
+	RegisterSignal(parent, COMSIG_MOVABLE_MOVED, PROC_REF(on_move))
+
+/datum/component/augment/mental_corrosion/UnregisterFromParent()
+	. = ..()
+	UnregisterSignal(parent, COMSIG_MOVABLE_MOVED)
+	if(processing)
+		STOP_PROCESSING(SSprocessing, src)
+		processing = FALSE
+
+/datum/component/augment/mental_corrosion/process(delta_time)
+	if(!human_parent || human_parent.stat == DEAD)
+		return PROCESS_KILL
+
+	// Track nearby humans and update interaction counts
+	var/list/nearby_humans = list()
+	var/insurgence_nearby = FALSE
+	var/bonded_humans_nearby = 0
+
+	for(var/mob/living/carbon/human/H in view(7, human_parent))
+		if(H == human_parent || H.stat == DEAD)
+			continue
+
+		// Check if they're Insurgence members
+		if(H.mind && (H.mind.assigned_role in list("Insurgence Transport Agent", "Insurgence Nightwatch Agent")))
+			insurgence_nearby = TRUE
+			continue
+
+		nearby_humans += H
+
+		// Check if this human is already bonded
+		if(H in bonds)
+			bonded_humans_nearby++
+			continue
+
+		// Track interactions with non-bonded humans
+		if(!(H in human_interaction_count))
+			human_interaction_count[H] = 0
+		human_interaction_count[H]++
+
+		// Check if they can form a bond
+		if(human_interaction_count[H] >= interaction_threshold && length(bonds) < max_bonds)
+			form_bond(H)
+
+	// Calculate corrosion rate based on nearby humans and bonds
+	var/corrosion_rate = 1.0
+	if(insurgence_nearby)
+		corrosion_rate = 1.25 // Insurgence members speed up corrosion
+	else if(bonded_humans_nearby > 0)
+		corrosion_rate = -bonded_humans_nearby * 0.01 // Each bond reduces corrosion by 1%
+	else if(length(nearby_humans) >= 3)
+		corrosion_rate = 0.25 // Multiple humans reduce it significantly
+	else if(length(nearby_humans) >= 1)
+		corrosion_rate = 0.5 // One human slows it down
+
+	// Increase/decrease corrosion every 2 minutes
+	if(world.time >= next_corrosion_increase)
+		var/old_corrosion = corrosion_level
+		corrosion_level = clamp(corrosion_level + (5 * corrosion_rate), 0, 100)
+		next_corrosion_increase = world.time + 120 SECONDS
+
+		// Notify user if corrosion decreased due to bonds
+		if(bonded_humans_nearby > 0 && corrosion_level < old_corrosion)
+			to_chat(human_parent, span_nicegreen("Your close relationships help stabilize your mind... (-[old_corrosion - corrosion_level]% Mental Corrosion)")) //DEBUG STUFF
+
+		// Update HUD if needed
+		if(corrosion_level >= 20)
+			human_parent.hud_used?.lingchemdisplay?.invisibility = 0
+			human_parent.hud_used?.lingchemdisplay?.maptext = MAPTEXT("<div align='center' valign='middle' style='position:relative; top:0px; left:6px'><font color='#dd66dd'>[round(corrosion_level)]%</font></div>") //DEBUG STUFF
+
+	// Apply effects based on corrosion level
+	if(corrosion_level >= 20 && corrosion_level < 60)
+		// Voices from the Elder One
+		if(voices_cooldown < world.time)
+			voices_cooldown = world.time + rand(30, 60) SECONDS
+			to_chat(human_parent, span_purple("<i>You hear whispers from beyond...</i>"))
+			human_parent.playsound_local(human_parent, 'sound/abnormalities/whitenight/whisper.ogg', 15, TRUE)
+
+	else if(corrosion_level >= 60 && corrosion_level < 75)
+		// Suggestion to jump into the lake
+		if(voices_cooldown < world.time)
+			voices_cooldown = world.time + rand(20, 40) SECONDS
+			to_chat(human_parent, span_purple("<b>The voice suggests you seek the Great Lake... The water calls to you...</b>"))
+			human_parent.playsound_local(human_parent, 'sound/hallucinations/over_here1.ogg', 15, TRUE)
+			human_parent.adjustSanityLoss(5)
+
+	else if(corrosion_level >= 75 && corrosion_level < 90)
+		// Vision impairment
+		human_parent.overlay_fullscreen("mental_corrosion", /atom/movable/screen/fullscreen/impaired, 1 + (corrosion_level - 75) / 10)
+		if(voices_cooldown < world.time)
+			voices_cooldown = world.time + rand(15, 30) SECONDS
+			to_chat(human_parent, span_purple("<b>THE LAKE AWAITS. EMBRACE THE DEPTHS.</b>"))
+			human_parent.adjustSanityLoss(10)
+
+	else if(corrosion_level >= 90)
+		// Force water-seeking behavior
+		if(water_seek_cooldown < world.time)
+			water_seek_cooldown = world.time + 10 SECONDS
+			seek_water()
+
+/datum/component/augment/mental_corrosion/proc/seek_water()
+	// Find nearest water turf
+	var/turf/nearest_water
+	var/min_distance = INFINITY
+	for(var/turf/open/water/deep/W in view(7, human_parent))
+		var/dist = get_dist(human_parent, W)
+		if(dist < min_distance)
+			min_distance = dist
+			nearest_water = W
+
+	if(nearest_water)
+		to_chat(human_parent, span_purple("<b>YOU MUST REACH THE WATER!</b>"))
+		human_parent.set_confusion(20)
+		// Force movement towards water
+		if(human_parent.stat == CONSCIOUS && human_parent.mobility_flags & MOBILITY_MOVE)
+			step_towards(human_parent, nearest_water)
+			if(DT_PROB(30, 1))
+				human_parent.emote("scream")
+
+/datum/component/augment/mental_corrosion/proc/on_move(datum/source, atom/old_loc, dir, forced)
+	SIGNAL_HANDLER
+	// Check if we entered water
+	var/turf/T = get_turf(human_parent)
+	if(istype(T, /turf/open/water/deep))
+		// Reset corrosion
+		corrosion_level = 0
+		human_parent.clear_fullscreen("mental_corrosion")
+		to_chat(human_parent, span_notice("The cool water washes away your troubles... but something feels different."))
+		// This is where the conversion would happen in the full implementation
+
+/datum/component/augment/mental_corrosion/proc/form_bond(mob/living/carbon/human/H)
+	if(!H || H.stat == DEAD)
+		return
+	if(H in bonds)
+		return
+	if(length(bonds) >= max_bonds)
+		return
+	if(H.mind && (H.mind.assigned_role in list("Insurgence Transport Agent", "Insurgence Nightwatch Agent")))
+		return // Insurgence members cannot become bonds
+
+	bonds += H
+	to_chat(human_parent, span_nicegreen("You feel a deep connection forming with [H.real_name]... They seem to understand you."))
+	to_chat(H, span_notice("You feel a strange connection to [human_parent.real_name]... Something about them draws you in."))
+
+	// Play a subtle sound effect
+	human_parent.playsound_local(human_parent, 'sound/magic/charge.ogg', 25, TRUE)
+	H.playsound_local(H, 'sound/magic/charge.ogg', 15, TRUE)

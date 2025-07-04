@@ -21,6 +21,7 @@ GLOBAL_LIST_INIT(command_positions, list(
 	"Grand Inquisitor",
 	"Thumb Sottocapo",
 	"Kurokumo Kashira",
+	"Insurgence Nightwatch Agent",
 
 	// R-corp Fourth Pack
 	"Ground Commander",
@@ -243,6 +244,9 @@ GLOBAL_LIST_INIT(city_antagonist_positions, list(
 	"Kurokumo Kashira",
 	"Kurokumo Hosa",
 	"Kurokumo Wakashu",
+
+	"Insurgence Nightwatch Agent",
+	"Insurgence Transport Agent",
 ))
 
 

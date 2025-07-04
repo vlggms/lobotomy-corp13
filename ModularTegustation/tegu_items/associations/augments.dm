@@ -536,6 +536,14 @@
 			"component" = /datum/component/augment/overheated
 		),
 		list(
+			"id" = "mental_corrosion",
+			"name" = "Mental Corrosion",
+			"ahn_cost" = 0,
+			"ep_cost" = -6,
+			"desc" = "Your mind slowly corrodes over time. Being near other humans slows the process, but something calls you to the water...",
+			"component" = /datum/component/augment/mental_corrosion
+		),
+		list(
 			"id" = "thanatophobia",
 			"name" = "Thanatophobia",
 			"ahn_cost" = 25,

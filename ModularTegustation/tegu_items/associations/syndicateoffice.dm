@@ -32,6 +32,10 @@
 	name = "Kurokumo Capsule"
 	template_id = "kurokumo_base"
 
+/obj/item/structurecapsule/syndicate/insurgence
+	name = "insurgence base capsule"
+	desc = "Contains equipment for establishing an Insurgence Clan outpost."
+	template_id = "insurgence_base"
 
 
 
@@ -66,3 +70,8 @@
 	description = "A place for the Kurokumo Clan."
 	mappath = "_maps/templates/syndicate_office/kurokumosake.dmm"
 
+/datum/map_template/shelter/insurgence
+	name = "Insurgence Base"
+	shelter_id = "insurgence_base"
+	description = "A place for the Insurgence Clan."
+	mappath = "_maps/templates/syndicate_office/insurgence_clan.dmm"
