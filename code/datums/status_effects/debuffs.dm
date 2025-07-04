@@ -1100,7 +1100,10 @@
 
 #undef MOB_HALFSPEED
 
-#define STATUS_EFFECT_LCBURN /datum/status_effect/stacking/lc_burn // Deals true damage every 5 sec, can't be applied to godmode (contained abos)
+/* Deals resistable burn damage every 5 sec, can't be applied to godmode (contained abos)
+   1 stack = 1.5 burn damage. Without resistance to fire, burn damage is reduced by red armor, but ignores 50% of that armor.
+   Remember that refreshing the stack also refreshes the duration! Very large amounts of damage can be dealt this way! */
+#define STATUS_EFFECT_LCBURN /datum/status_effect/stacking/lc_burn
 /datum/status_effect/stacking/lc_burn
 	id = "lc_burn"
 	alert_type = /atom/movable/screen/alert/status_effect/lc_burn
@@ -1112,7 +1115,7 @@
 
 /atom/movable/screen/alert/status_effect/lc_burn
 	name = "Burning"
-	desc = "You're on fire!!"
+	desc = "You're on fire!"
 	icon = 'ModularTegustation/Teguicons/status_sprites.dmi'
 	icon_state = "lc_burn"
 
@@ -1128,12 +1131,10 @@
 /datum/status_effect/stacking/lc_burn/tick()
 	if(!can_have_status())
 		qdel(src)
-	to_chat(owner, "<span class='warning'>The flame consumes you!!</span>")
+	to_chat(owner, "<span class='warning'>The flame consumes you!</span>")
 	owner.playsound_local(owner, 'sound/effects/burn.ogg', 50, TRUE)
 	if(ishuman(owner))
 		owner.apply_damage(stacks, BURN, null, owner.run_armor_check(null, BURN))
-	else
-		owner.apply_damage(stacks*4, BURN, null, owner.run_armor_check(null, BURN)) // x4 on non humans (Average burn stack is 20. 80/5 sec, extra 16 pure dps)
 
 	//Deletes itself after 2 tick if no new burn stack was given
 	if(safety)
