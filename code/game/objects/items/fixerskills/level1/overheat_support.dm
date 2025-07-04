@@ -352,6 +352,10 @@
 	var/mob/living/L = target
 	var/datum/status_effect/stacking/lc_overheat/overheat = L.has_status_effect(/datum/status_effect/stacking/lc_overheat)
 
+	if(L == source)
+		to_chat(source, span_warning("Can't target self!"))
+		return
+
 	if(!overheat)
 		to_chat(source, span_warning("[target] has no overheat to cauterize!"))
 		return

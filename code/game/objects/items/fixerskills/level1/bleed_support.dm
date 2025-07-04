@@ -259,6 +259,10 @@
 		to_chat(source, span_warning("[L] is already dead!"))
 		return
 
+	if(L == source)
+		to_chat(source, span_warning("Can't target self!"))
+		return
+
 	if(get_dist(source, L) > 4)
 		to_chat(source, span_warning("[L] is too far away!"))
 		return
