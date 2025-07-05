@@ -32,6 +32,8 @@
 	var/cloak_active = FALSE
 	var/cloak_alpha = 255
 	var/damage_modifier = 1
+	var/cloak_cooldown = 0
+	var/cloak_cooldown_time = 30 SECONDS
 	actions_types = list(/datum/action/item_action/nightwatch_cloak, /datum/action/item_action/corrupted_whisper)
 
 /obj/item/clothing/suit/armor/ego_gear/city/insurgence_nightwatch/proc/ToggleCloak(mob/living/user)
@@ -44,6 +46,10 @@
 		return
 
 	if(!cloak_active)
+		if(world.time < cloak_cooldown)
+			var/remaining = round((cloak_cooldown - world.time) / 10)
+			to_chat(user, span_warning("Cloaking systems recharging. Ready in [remaining] seconds."))
+			return
 		ActivateCloak(user)
 	else
 		DeactivateCloak(user)
@@ -57,7 +63,7 @@
 	addtimer(CALLBACK(src, PROC_REF(FullCloak), user), 5 SECONDS)
 
 /obj/item/clothing/suit/armor/ego_gear/city/insurgence_nightwatch/proc/FullCloak(mob/living/user)
-	if(!cloak_active || user.loc != loc)
+	if(!cloak_active)
 		return
 	user.density = FALSE
 	user.invisibility = INVISIBILITY_OBSERVER
@@ -65,6 +71,7 @@
 
 /obj/item/clothing/suit/armor/ego_gear/city/insurgence_nightwatch/proc/DeactivateCloak(mob/living/user)
 	cloak_active = FALSE
+	cloak_cooldown = world.time + cloak_cooldown_time
 	to_chat(user, span_warning("Your cloaking field deactivates!"))
 	playsound(user, 'sound/effects/stealthoff.ogg', 30, TRUE)
 	damage_modifier = 1
@@ -132,47 +139,47 @@
 /obj/item/clothing/suit/armor/ego_gear/city/insurgence_nightwatch/proc/CorruptedWhisper(mob/living/user)
 	if(!ishuman(user))
 		return
-	
+
 	var/mob/living/carbon/human/H = user
 	if(!H.mind || H.mind.assigned_role != "Insurgence Nightwatch Agent")
 		to_chat(user, span_warning("This armor's systems do not recognize you."))
 		return
-	
+
 	// Find all humans with mental corrosion within range
 	var/list/possible_targets = list()
 	for(var/mob/living/carbon/human/target in view(7, user))
 		if(target == user || target.stat == DEAD)
 			continue
-		
+
 		// Check if they have mental corrosion
 		var/has_corrosion = FALSE
 		for(var/datum/component/augment/mental_corrosion/MC in target.GetComponents(/datum/component/augment/mental_corrosion))
 			has_corrosion = TRUE
 			break
-		
+
 		if(has_corrosion)
 			possible_targets += target
-	
+
 	if(!length(possible_targets))
 		to_chat(user, span_warning("There are no corrupted minds within range."))
 		return
-	
+
 	// Select target
 	var/mob/living/carbon/human/chosen_target = input(user, "Choose a corrupted mind to whisper to:", "Corrupted Whisper") as null|anything in possible_targets
 	if(!chosen_target || get_dist(user, chosen_target) > 7)
 		return
-	
+
 	// Get message
 	var/msg = stripped_input(user, "What corruption do you wish to whisper to [chosen_target]?", "Corrupted Whisper", "")
 	if(!msg)
 		return
-	
+
 	// Log the communication
 	log_directed_talk(user, chosen_target, msg, LOG_SAY, "Corrupted Whisper")
-	
+
 	// Send to user
 	to_chat(user, span_boldnotice("You send a corrupted whisper to [chosen_target]:") + span_notice(" [msg]"))
-	
+
 	// Send to target using show_blurb like mental corrosion
 	if(chosen_target.client)
 		// Random position matching mental_corrosion style
@@ -182,7 +189,7 @@
 		var/pixel_y = rand(-16, 16)
 		show_blurb(chosen_target.client, 50, msg, 10, "#ff4848", "black", "center", "[tile_x]:[pixel_x],[tile_y]:[pixel_y]")
 		chosen_target.playsound_local(chosen_target, 'sound/abnormalities/whitenight/whisper.ogg', 25, TRUE)
-	
+
 	// Notify ghosts
 	for(var/mob/dead/observer/ghost in GLOB.dead_mob_list)
 		var/follow_insurgent = FOLLOW_LINK(ghost, user)
