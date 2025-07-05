@@ -43,6 +43,5 @@
 	glasses = /obj/item/clothing/glasses/sunglasses
 	shoes = /obj/item/clothing/shoes/laceup
 	backpack_contents = list(
-		/obj/item/structurecapsule/syndicate = 1,
 		/obj/item/paper/fluff/insurgence_instructions = 1
 	)
