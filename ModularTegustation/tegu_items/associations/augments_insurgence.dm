@@ -110,7 +110,7 @@
 
 	var/dat = "<h3>Augment User Tracking</h3><hr>"
 	dat += "<table border='1' style='width:100%'>"
-	dat += "<tr><th>Subject</th><th>Location</th><th>Health</th><th>Corrosion</th><th>Bonds</th></tr>"
+	dat += "<tr><th>Subject</th><th>Location</th><th>Health</th><th>Corrosion</th><th>Bonds</th><th>Kidnap Ready</th></tr>"
 
 	// Find all humans with mental corrosion
 	for(var/mob/living/carbon/human/target in GLOB.alive_mob_list)
@@ -134,6 +134,12 @@
 			else
 				bonds_text = "None"
 			dat += "<td>[bonds_text]</td>"
+
+			// Kidnap eligibility
+			if(MC.kidnap_eligible)
+				dat += "<td><b><font color='red'>YES</font></b></td>"
+			else
+				dat += "<td>No</td>"
 			dat += "</tr>"
 
 	dat += "</table>"

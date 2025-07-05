@@ -19,7 +19,7 @@
 			As the leader, you coordinate the Transport Agents in distributing custom augments with Mental Corrosion. \
 			Your goal is to track augment users and ensure they reach 60% Mental Corrosion, then convince or force them into the Great Lake. \
 			You have access to a special cloaking ability through your armor. \
-			Your base contains a console to track all augment users - establish it somewhere hidden in the city."
+			Your base is hidden in the alleyway in the east behind the NO ENTRY Door."
 	job_notice = "This is an RP-focused antagonist role. Focus on psychological manipulation and converting humans rather than killing. \
 			Only use violence when necessary to complete your objectives. Remember: 'For the Order of the Elder one...'"
 

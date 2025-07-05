@@ -17,7 +17,7 @@
 	job_important = "You are a Transport Agent for the Insurgence Clan. You are not inherently hostile. \
 			Your goal is to distribute custom augments to civilians and track their Mental Corrosion levels. \
 			Work with other agents to isolate targets and convince them to enter the Great Lake once they reach 60% Mental Corrosion. \
-			Your base is hidden somewhere in the city - coordinate with the Nightwatch Agent to locate it."
+			Your base is hidden in the alleyway in the east behind the NO ENTRY Door."
 	job_notice = "This is an RP-focused antagonist role. Avoid killing other players without reason. \
 			Focus on psychological manipulation and augment distribution rather than direct violence."
 

@@ -1,0 +1,515 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"a" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/mineral/plastitanium{
+	slowdown = 0.75
+	},
+/area/tinkerer_factory)
+"b" = (
+/obj/effect/turf_decal/siding/thinplating/dark{
+	dir = 5
+	},
+/turf/open/floor/mineral/plastitanium/red{
+	slowdown = 0.75
+	},
+/area/tinkerer_factory)
+"c" = (
+/turf/open/floor/plasteel/stairs/left{
+	slowdown = 0.75
+	},
+/area/tinkerer_factory)
+"e" = (
+/obj/effect/turf_decal/siding/thinplating/dark{
+	dir = 9
+	},
+/turf/open/floor/mineral/plastitanium/red{
+	slowdown = 0.75
+	},
+/area/tinkerer_factory)
+"f" = (
+/obj/structure/fluff/clockwork/alloy_shards,
+/turf/open/floor/circuit/red{
+	slowdown = 0.75
+	},
+/area/tinkerer_factory)
+"g" = (
+/turf/open/floor/mineral/plastitanium{
+	slowdown = 0.75
+	},
+/area/tinkerer_factory)
+"h" = (
+/obj/effect/decal/cleanable/blood/tracks,
+/turf/open/floor/mineral/plastitanium{
+	slowdown = 0.75
+	},
+/area/tinkerer_factory)
+"i" = (
+/turf/open/floor/plasteel/stairs/medium{
+	slowdown = 0.75
+	},
+/area/tinkerer_factory)
+"j" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/fluff/clockwork/alloy_shards,
+/turf/open/floor/circuit/red{
+	slowdown = 0.75
+	},
+/area/tinkerer_factory)
+"l" = (
+/obj/effect/turf_decal/siding/thinplating/dark{
+	dir = 8
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/mineral/plastitanium/red{
+	slowdown = 0.75
+	},
+/area/tinkerer_factory)
+"m" = (
+/turf/open/floor/mineral/plastitanium/red{
+	slowdown = 0.75
+	},
+/area/tinkerer_factory)
+"n" = (
+/obj/structure/fluff/clockwork/fallen_armor,
+/turf/open/floor/circuit/red{
+	slowdown = 0.75
+	},
+/area/tinkerer_factory)
+"o" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/mineral/plastitanium/red{
+	slowdown = 0.75
+	},
+/area/tinkerer_factory)
+"p" = (
+/obj/effect/turf_decal/siding/thinplating/dark{
+	dir = 4
+	},
+/obj/machinery/light/red{
+	dir = 4
+	},
+/turf/open/floor/mineral/plastitanium/red{
+	slowdown = 0.75
+	},
+/area/tinkerer_factory)
+"q" = (
+/obj/structure/sign/poster/contraband/borg_fancy_1,
+/turf/closed/wall/mineral/titanium/survival/pod,
+/area/tinkerer_factory)
+"r" = (
+/obj/effect/turf_decal/siding/thinplating/dark{
+	dir = 4
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/mineral/plastitanium/red{
+	slowdown = 0.75
+	},
+/area/tinkerer_factory)
+"s" = (
+/obj/effect/turf_decal/siding/thinplating/dark{
+	dir = 8
+	},
+/obj/machinery/light/red{
+	dir = 8
+	},
+/turf/open/floor/mineral/plastitanium/red{
+	slowdown = 0.75
+	},
+/area/tinkerer_factory)
+"t" = (
+/obj/effect/gibspawner/generic/silent,
+/turf/open/floor/circuit/red{
+	slowdown = 0.75
+	},
+/area/tinkerer_factory)
+"u" = (
+/obj/effect/turf_decal/siding/thinplating/dark{
+	dir = 1
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/mineral/plastitanium/red{
+	slowdown = 0.75
+	},
+/area/tinkerer_factory)
+"v" = (
+/obj/effect/turf_decal/siding/red{
+	dir = 8
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/mineral/plastitanium{
+	slowdown = 0.75
+	},
+/area/tinkerer_factory)
+"x" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/fluff/clockwork/fallen_armor,
+/turf/open/floor/circuit/red{
+	slowdown = 0.75
+	},
+/area/tinkerer_factory)
+"z" = (
+/turf/closed/wall/mineral/titanium/survival/pod,
+/area/tinkerer_factory)
+"A" = (
+/obj/effect/turf_decal/caution/stand_clear/red,
+/obj/effect/landmark/conversion_spawn,
+/obj/item/flashlight/spotlight,
+/turf/open/floor/mineral/plastitanium{
+	slowdown = 0.75
+	},
+/area/tinkerer_factory)
+"C" = (
+/obj/structure/sign/poster/contraband/borg_fancy_2,
+/turf/closed/wall/mineral/titanium/survival/pod,
+/area/tinkerer_factory)
+"E" = (
+/obj/structure/fluff/clockwork/alloy_shards,
+/obj/effect/gibspawner/generic/silent,
+/turf/open/floor/circuit/red{
+	slowdown = 0.75
+	},
+/area/tinkerer_factory)
+"F" = (
+/turf/closed/indestructible/fakedoor,
+/area/tinkerer_factory)
+"G" = (
+/obj/effect/turf_decal/siding/red{
+	dir = 8
+	},
+/turf/open/floor/mineral/plastitanium{
+	slowdown = 0.75
+	},
+/area/tinkerer_factory)
+"H" = (
+/obj/structure/sign/poster/contraband/free_drone,
+/turf/closed/wall/mineral/titanium/survival/pod,
+/area/tinkerer_factory)
+"J" = (
+/obj/effect/decal/cleanable/blood/tracks,
+/obj/item/flashlight/spotlight,
+/turf/open/floor/mineral/plastitanium{
+	slowdown = 0.75
+	},
+/area/tinkerer_factory)
+"K" = (
+/obj/effect/decal/cleanable/blood/tracks,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/mineral/plastitanium{
+	slowdown = 0.75
+	},
+/area/tinkerer_factory)
+"L" = (
+/turf/open/floor/plasteel/stairs/right{
+	slowdown = 0.75
+	},
+/area/tinkerer_factory)
+"M" = (
+/obj/structure/sign/plaques/kiddie/perfect_man{
+	desc = "A guide to the exhibit, explaining how recent developments in mindshield implant and cloning technologies by Nanotrasen Corporation have led to the development and the effective immortality of the 'perfect man', the loyal Servant of the Tinkerer."
+	},
+/turf/closed/wall/mineral/titanium/survival/pod,
+/area/tinkerer_factory)
+"N" = (
+/mob/living/simple_animal/hostile/ui_npc/tinkerer,
+/obj/item/flashlight/spotlight,
+/turf/open/floor/mineral/plastitanium/red{
+	slowdown = 0.75
+	},
+/area/tinkerer_factory)
+"P" = (
+/obj/effect/turf_decal/siding/red{
+	dir = 4
+	},
+/turf/open/floor/mineral/plastitanium{
+	slowdown = 0.75
+	},
+/area/tinkerer_factory)
+"Q" = (
+/obj/effect/turf_decal/siding/thinplating/dark{
+	dir = 1
+	},
+/turf/open/floor/mineral/plastitanium/red{
+	slowdown = 0.75
+	},
+/area/tinkerer_factory)
+"S" = (
+/obj/structure/sign/poster/official/do_not_question,
+/turf/closed/wall/mineral/titanium/survival/pod,
+/area/tinkerer_factory)
+"T" = (
+/obj/structure/fluff/clockwork/clockgolem_remains,
+/turf/open/floor/circuit/red{
+	slowdown = 0.75
+	},
+/area/tinkerer_factory)
+"U" = (
+/obj/structure/sign/plaques/kiddie/perfect_drone,
+/turf/closed/wall/mineral/titanium/survival/pod,
+/area/tinkerer_factory)
+"V" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/circuit/red{
+	slowdown = 0.75
+	},
+/area/tinkerer_factory)
+"W" = (
+/obj/effect/turf_decal/siding/red{
+	dir = 4
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/mineral/plastitanium{
+	slowdown = 0.75
+	},
+/area/tinkerer_factory)
+"X" = (
+/turf/open/floor/circuit/red{
+	slowdown = 0.75
+	},
+/area/tinkerer_factory)
+"Y" = (
+/obj/item/flashlight/spotlight,
+/turf/open/floor/mineral/plastitanium{
+	slowdown = 0.75
+	},
+/area/tinkerer_factory)
+"Z" = (
+/obj/structure/fluff/big_chain,
+/turf/open/floor/circuit/red{
+	slowdown = 0.75
+	},
+/area/tinkerer_factory)
+
+(1,1,1) = {"
+z
+z
+z
+z
+z
+z
+z
+z
+z
+S
+z
+z
+z
+z
+H
+z
+z
+z
+z
+z
+C
+z
+z
+z
+"}
+(2,1,1) = {"
+z
+z
+z
+z
+z
+z
+z
+Z
+T
+E
+X
+X
+X
+X
+V
+n
+X
+X
+f
+X
+t
+n
+Z
+z
+"}
+(3,1,1) = {"
+z
+M
+e
+s
+l
+c
+c
+G
+G
+v
+G
+G
+G
+G
+G
+G
+G
+G
+G
+G
+G
+G
+v
+z
+"}
+(4,1,1) = {"
+z
+z
+Q
+o
+m
+i
+i
+g
+g
+g
+g
+g
+g
+g
+g
+a
+g
+g
+g
+g
+g
+g
+g
+z
+"}
+(5,1,1) = {"
+z
+z
+Q
+N
+m
+i
+i
+h
+h
+Y
+g
+g
+a
+a
+g
+J
+h
+h
+g
+g
+g
+g
+A
+F
+"}
+(6,1,1) = {"
+z
+z
+u
+m
+m
+i
+i
+g
+g
+g
+h
+h
+K
+g
+g
+g
+g
+a
+g
+h
+h
+h
+g
+z
+"}
+(7,1,1) = {"
+z
+U
+b
+p
+r
+L
+L
+W
+P
+W
+P
+P
+P
+P
+P
+P
+P
+P
+P
+P
+P
+P
+P
+z
+"}
+(8,1,1) = {"
+z
+z
+z
+z
+z
+z
+z
+Z
+X
+x
+X
+X
+X
+t
+f
+X
+X
+V
+T
+X
+X
+j
+Z
+z
+"}
+(9,1,1) = {"
+z
+z
+z
+z
+z
+z
+z
+z
+z
+z
+z
+q
+z
+z
+z
+S
+z
+z
+z
+z
+H
+z
+z
+z
+"}

@@ -35,15 +35,17 @@ The water cleanses. The machine perfects. The Elder One awaits.<br>
 	new /obj/item/ego_weapon/city/insurgence_baton(src)
 	new /obj/item/ego_weapon/shield/insurgence_shield(src)
 
-/obj/structure/closet/syndicate/insurgence/nightwatch
+/obj/structure/closet/syndicate/nightwatch
 	name = "insurgence nightwatch equipment locker"
 	desc = "Contains supplies for the Insurgence Nightwatch Agents."
 	icon_state = "abductor"
 
-/obj/structure/closet/syndicate/insurgence/PopulateContents()
+/obj/structure/closet/syndicate/nightwatch/PopulateContents()
 	..()
 	new /obj/item/paper/fluff/insurgence_instructions(src)
 	new /obj/item/clothing/suit/armor/ego_gear/city/insurgence_nightwatch(src)
 	new /obj/item/ego_weapon/city/insurgence_nightwatch(src)
 	new /obj/item/storage/box/rxglasses/spyglasskit(src)
 	new /obj/item/binoculars(src)
+
+//TODO: Add new /obj/item/bodypart/r_arm/robot that are better in some way but speed up corruption.

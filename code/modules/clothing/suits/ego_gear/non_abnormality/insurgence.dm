@@ -32,7 +32,7 @@
 	var/cloak_active = FALSE
 	var/cloak_alpha = 255
 	var/damage_modifier = 1
-	actions_types = list(/datum/action/item_action/nightwatch_cloak)
+	actions_types = list(/datum/action/item_action/nightwatch_cloak, /datum/action/item_action/corrupted_whisper)
 
 /obj/item/clothing/suit/armor/ego_gear/city/insurgence_nightwatch/proc/ToggleCloak(mob/living/user)
 	if(!ishuman(user))
@@ -77,16 +77,24 @@
 	if(slot != ITEM_SLOT_OCLOTHING)
 		return
 	RegisterSignal(user, COMSIG_MOB_ITEM_ATTACK, PROC_REF(OnAttack))
+	RegisterSignal(user, COMSIG_MOB_APPLY_DAMAGE, PROC_REF(OnDamage))
 
 /obj/item/clothing/suit/armor/ego_gear/city/insurgence_nightwatch/dropped(mob/living/user)
 	. = ..()
 	UnregisterSignal(user, COMSIG_MOB_ITEM_ATTACK)
+	UnregisterSignal(user, COMSIG_MOB_APPLY_DAMAGE)
 	if(cloak_active)
 		DeactivateCloak(user)
 
 /obj/item/clothing/suit/armor/ego_gear/city/insurgence_nightwatch/proc/OnAttack(mob/living/user)
 	SIGNAL_HANDLER
 	if(cloak_active)
+		DeactivateCloak(user)
+
+/obj/item/clothing/suit/armor/ego_gear/city/insurgence_nightwatch/proc/OnDamage(mob/living/user, damage, damagetype, def_zone)
+	SIGNAL_HANDLER
+	if(cloak_active && damage > 0)
+		to_chat(user, span_warning("Your cloak flickers and fails as you take damage!"))
 		DeactivateCloak(user)
 
 /obj/item/clothing/suit/armor/ego_gear/city/insurgence_nightwatch/proc/GetDamageModifier()
@@ -108,3 +116,75 @@
 	name = "grade 1 nightwatch helmet"
 	desc = "A helmet worn by insurgence clan nightwatch agents."
 	icon_state = "nightwatch"
+
+/datum/action/item_action/corrupted_whisper
+	name = "Corrupted Whisper"
+	desc = "Send a telepathic message to those touched by the Elder One's corruption."
+	button_icon_state = "r_transmit"
+	icon_icon = 'icons/mob/actions/actions_revenant.dmi'
+
+/datum/action/item_action/corrupted_whisper/Trigger()
+	if(!istype(target, /obj/item/clothing/suit/armor/ego_gear/city/insurgence_nightwatch))
+		return
+	var/obj/item/clothing/suit/armor/ego_gear/city/insurgence_nightwatch/N = target
+	N.CorruptedWhisper(owner)
+
+/obj/item/clothing/suit/armor/ego_gear/city/insurgence_nightwatch/proc/CorruptedWhisper(mob/living/user)
+	if(!ishuman(user))
+		return
+	
+	var/mob/living/carbon/human/H = user
+	if(!H.mind || H.mind.assigned_role != "Insurgence Nightwatch Agent")
+		to_chat(user, span_warning("This armor's systems do not recognize you."))
+		return
+	
+	// Find all humans with mental corrosion within range
+	var/list/possible_targets = list()
+	for(var/mob/living/carbon/human/target in view(7, user))
+		if(target == user || target.stat == DEAD)
+			continue
+		
+		// Check if they have mental corrosion
+		var/has_corrosion = FALSE
+		for(var/datum/component/augment/mental_corrosion/MC in target.GetComponents(/datum/component/augment/mental_corrosion))
+			has_corrosion = TRUE
+			break
+		
+		if(has_corrosion)
+			possible_targets += target
+	
+	if(!length(possible_targets))
+		to_chat(user, span_warning("There are no corrupted minds within range."))
+		return
+	
+	// Select target
+	var/mob/living/carbon/human/chosen_target = input(user, "Choose a corrupted mind to whisper to:", "Corrupted Whisper") as null|anything in possible_targets
+	if(!chosen_target || get_dist(user, chosen_target) > 7)
+		return
+	
+	// Get message
+	var/msg = stripped_input(user, "What corruption do you wish to whisper to [chosen_target]?", "Corrupted Whisper", "")
+	if(!msg)
+		return
+	
+	// Log the communication
+	log_directed_talk(user, chosen_target, msg, LOG_SAY, "Corrupted Whisper")
+	
+	// Send to user
+	to_chat(user, span_boldnotice("You send a corrupted whisper to [chosen_target]:") + span_notice(" [msg]"))
+	
+	// Send to target using show_blurb like mental corrosion
+	if(chosen_target.client)
+		// Random position matching mental_corrosion style
+		var/tile_x = rand(3, 11)
+		var/tile_y = rand(3, 11)
+		var/pixel_x = rand(-16, 16)
+		var/pixel_y = rand(-16, 16)
+		show_blurb(chosen_target.client, 50, msg, 10, "#ff4848", "black", "center", "[tile_x]:[pixel_x],[tile_y]:[pixel_y]")
+		chosen_target.playsound_local(chosen_target, 'sound/abnormalities/whitenight/whisper.ogg', 25, TRUE)
+	
+	// Notify ghosts
+	for(var/mob/dead/observer/ghost in GLOB.dead_mob_list)
+		var/follow_insurgent = FOLLOW_LINK(ghost, user)
+		var/follow_target = FOLLOW_LINK(ghost, chosen_target)
+		to_chat(ghost, "[follow_insurgent] <span class='boldnotice'>[user] Corrupted Whisper:</span> <span class='notice'>\"[msg]\" to</span> [follow_target] [span_name("[chosen_target]")]")

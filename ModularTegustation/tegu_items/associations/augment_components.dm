@@ -1488,6 +1488,7 @@
 	var/voices_cooldown = 0
 	var/water_seek_cooldown = 0
 	var/processing = FALSE
+	var/kidnap_eligible = FALSE // Once true at 80% corrosion, never goes back
 
 /datum/component/augment/mental_corrosion/Initialize(_repeat = 1)
 	. = ..()
@@ -1509,6 +1510,9 @@
 
 /datum/component/augment/mental_corrosion/process(delta_time)
 	if(!human_parent || human_parent.stat == DEAD)
+		return PROCESS_KILL
+
+	if(human_parent.mind.assigned_role in list("Insurgence Transport Agent", "Insurgence Nightwatch Agent"))
 		return PROCESS_KILL
 
 	// Track nearby humans and update interaction counts
@@ -1555,13 +1559,17 @@
 	// Increase/decrease corrosion every 2 minutes
 	if(world.time >= next_corrosion_increase)
 		var/old_corrosion = corrosion_level
-		corrosion_level = clamp(corrosion_level + (5 * corrosion_rate), 0, 100)
+		corrosion_level = clamp(corrosion_level + (4 * corrosion_rate), 0, 100)
 		next_corrosion_increase = world.time + 120 SECONDS
 
 		// Notify user if corrosion decreased due to bonds
 		if(bonded_humans_nearby > 0 && corrosion_level < old_corrosion)
 			to_chat(human_parent, span_nicegreen("Your close relationships help stabilize your mind... (-[old_corrosion - corrosion_level]% Mental Corrosion)")) //DEBUG STUFF
 
+		// Check for kidnap eligibility
+		if(corrosion_level >= 80 && !kidnap_eligible)
+			kidnap_eligible = TRUE
+			
 		// Update HUD if needed
 		if(corrosion_level >= 20)
 			human_parent.hud_used?.lingchemdisplay?.invisibility = 0
@@ -1571,24 +1579,38 @@
 	if(corrosion_level >= 20 && corrosion_level < 60)
 		// Voices from the Elder One
 		if(voices_cooldown < world.time)
-			voices_cooldown = world.time + rand(30, 60) SECONDS
-			to_chat(human_parent, span_purple("<i>You hear whispers from beyond...</i>"))
+			voices_cooldown = world.time + rand(120, 180) SECONDS
+			// Random position: screen is typically 15x15 tiles, randomize within reasonable bounds
+			var/tile_x = rand(3, 11) // Keep away from edges
+			var/tile_y = rand(3, 11)
+			var/pixel_x = rand(-16, 16)
+			var/pixel_y = rand(-16, 16)
+			show_blurb(human_parent.client, 40, "You hear a whisper <br> from beyond...", 10, "#ff4848", "black", "center", "[tile_x]:[pixel_x],[tile_y]:[pixel_y]")
 			human_parent.playsound_local(human_parent, 'sound/abnormalities/whitenight/whisper.ogg', 15, TRUE)
 
 	else if(corrosion_level >= 60 && corrosion_level < 75)
 		// Suggestion to jump into the lake
 		if(voices_cooldown < world.time)
-			voices_cooldown = world.time + rand(20, 40) SECONDS
-			to_chat(human_parent, span_purple("<b>The voice suggests you seek the Great Lake... The water calls to you...</b>"))
+			voices_cooldown = world.time + rand(120, 140) SECONDS
+			// Random position: screen is typically 15x15 tiles, randomize within reasonable bounds
+			var/tile_x = rand(3, 11) // Keep away from edges
+			var/tile_y = rand(3, 11)
+			var/pixel_x = rand(-16, 16)
+			var/pixel_y = rand(-16, 16)
+			show_blurb(human_parent.client, 50, "A voice suggests you seek <br> the Great Lake... <br> The water calls to you...", 10, "#ff4848", "black", "center", "[tile_x]:[pixel_x],[tile_y]:[pixel_y]")
 			human_parent.playsound_local(human_parent, 'sound/hallucinations/over_here1.ogg', 15, TRUE)
-			human_parent.adjustSanityLoss(5)
 
 	else if(corrosion_level >= 75 && corrosion_level < 90)
 		// Vision impairment
 		human_parent.overlay_fullscreen("mental_corrosion", /atom/movable/screen/fullscreen/impaired, 1 + (corrosion_level - 75) / 10)
 		if(voices_cooldown < world.time)
-			voices_cooldown = world.time + rand(15, 30) SECONDS
-			to_chat(human_parent, span_purple("<b>THE LAKE AWAITS. EMBRACE THE DEPTHS.</b>"))
+			voices_cooldown = world.time + rand(60, 120) SECONDS
+			// Random position: screen is typically 15x15 tiles, randomize within reasonable bounds
+			var/tile_x = rand(3, 11) // Keep away from edges
+			var/tile_y = rand(3, 11)
+			var/pixel_x = rand(-16, 16)
+			var/pixel_y = rand(-16, 16)
+			show_blurb(human_parent.client, 40, "THE LAKE AWAITS. <br> EMBRACE THE DEPTHS.", 10, "#ff4848", "black", "center", "[tile_x]:[pixel_x],[tile_y]:[pixel_y]")
 			human_parent.adjustSanityLoss(10)
 
 	else if(corrosion_level >= 90)
@@ -1621,11 +1643,21 @@
 	// Check if we entered water
 	var/turf/T = get_turf(human_parent)
 	if(istype(T, /turf/open/water/deep))
-		// Reset corrosion
-		corrosion_level = 0
-		human_parent.clear_fullscreen("mental_corrosion")
-		to_chat(human_parent, span_notice("The cool water washes away your troubles... but something feels different."))
-		// This is where the conversion would happen in the full implementation
+		// Check corrosion level for conversion
+		if(corrosion_level >= 60)
+			// Initiate conversion sequence
+			INVOKE_ASYNC(src, PROC_REF(begin_water_conversion))
+
+/datum/component/augment/mental_corrosion/proc/begin_water_conversion()
+	if(!human_parent || human_parent.stat == DEAD)
+		return
+
+	// Prevent multiple conversions
+	if(human_parent.has_status_effect(/datum/status_effect/conversion_locked))
+		return
+
+	// Call the global conversion proc
+	enter_conversion_realm(human_parent)
 
 /datum/component/augment/mental_corrosion/proc/form_bond(mob/living/carbon/human/H)
 	if(!H || H.stat == DEAD)
@@ -1638,9 +1670,3 @@
 		return // Insurgence members cannot become bonds
 
 	bonds += H
-	to_chat(human_parent, span_nicegreen("You feel a deep connection forming with [H.real_name]... They seem to understand you."))
-	to_chat(H, span_notice("You feel a strange connection to [human_parent.real_name]... Something about them draws you in."))
-
-	// Play a subtle sound effect
-	human_parent.playsound_local(human_parent, 'sound/magic/charge.ogg', 25, TRUE)
-	H.playsound_local(H, 'sound/magic/charge.ogg', 15, TRUE)

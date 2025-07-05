@@ -2,8 +2,8 @@
 	name = "insurgence baton"
 	desc = "A gray baton used by transport agents."
 	special = "This weapon inflicts 5 tremor on hit, and tremor bursts when the target has 40+ tremor"
-	icon_state = "kbatong"
-	inhand_icon_state = "kbatong"
+	icon_state = "ibatong"
+	inhand_icon_state = "ibatong"
 	force = 32
 	damtype = BLACK_DAMAGE
 	attack_verb_continuous = list("bashes", "crushes")
@@ -80,10 +80,10 @@
 		to_chat(user, span_notice("[src] can now be concealed."))
 		icon_state = "[base_icon_state][active]"
 
-/obj/item/ego_weapon/shield/insurgence_shield/hit_reaction(mob/living/carbon/human/owner, atom/movable/hitby, attack_text = "the attack", final_block_chance = 0, damage = 0, attack_type = MELEE_ATTACK)
+/obj/item/ego_weapon/shield/insurgence_shield/attackby(obj/item/I, mob/living/user, params)
 	. = ..()
-	if(. && istype(hitby, /obj/item/ego_weapon/city/insurgence_baton))
-		playsound(src, 'sound/weapons/sonic_jackhammer.ogg', 50, TRUE)
+	if(. && istype(I, /obj/item/ego_weapon/city/insurgence_baton))
+		playsound(src, 'sound/weapons/ego/gasharpoon_queeblock.ogg', 50, TRUE)
 		visible_message(span_warning("[src] emits an intimidating sound as it's struck!"))
 
 /obj/item/ego_weapon/city/insurgence_nightwatch
