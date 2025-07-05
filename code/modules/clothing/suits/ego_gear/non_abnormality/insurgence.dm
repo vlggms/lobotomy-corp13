@@ -77,12 +77,12 @@
 	if(slot != ITEM_SLOT_OCLOTHING)
 		return
 	RegisterSignal(user, COMSIG_MOB_ITEM_ATTACK, PROC_REF(OnAttack))
-	RegisterSignal(user, COMSIG_MOB_APPLY_DAMAGE, PROC_REF(OnDamage))
+	RegisterSignal(user, COMSIG_MOB_APPLY_DAMGE, PROC_REF(OnDamage))
 
 /obj/item/clothing/suit/armor/ego_gear/city/insurgence_nightwatch/dropped(mob/living/user)
 	. = ..()
 	UnregisterSignal(user, COMSIG_MOB_ITEM_ATTACK)
-	UnregisterSignal(user, COMSIG_MOB_APPLY_DAMAGE)
+	UnregisterSignal(user, COMSIG_MOB_APPLY_DAMGE)
 	if(cloak_active)
 		DeactivateCloak(user)
 
