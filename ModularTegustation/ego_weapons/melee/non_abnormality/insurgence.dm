@@ -2,6 +2,9 @@
 	name = "insurgence baton"
 	desc = "A gray baton used by transport agents."
 	special = "This weapon inflicts 5 tremor on hit, and tremor bursts when the target has 40+ tremor"
+	icon = 'ModularTegustation/Teguicons/lc13_insurgence.dmi'
+	lefthand_file = 'ModularTegustation/Teguicons/lc13_insurgence_left.dmi'
+	righthand_file = 'ModularTegustation/Teguicons/lc13_insurgence_right.dmi'
 	icon_state = "ibatong"
 	inhand_icon_state = "ibatong"
 	force = 32
