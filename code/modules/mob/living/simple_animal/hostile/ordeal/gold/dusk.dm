@@ -480,9 +480,10 @@
 		var/mob/living/simple_animal/hostile/ordeal/thunderbird_corrosion/targetmob = L // It might not always be this type, but we need to call their proc
 		targetmob.AdjustCharge(20) // A full battery. Oh no.
 	to_chat(L, span_notice("You feel energized!"))
+	if(L.bruteloss > L.maxHealth)
+		L.adjustBruteLoss(-(L.maxHealth * 0.2) - (L.bruteloss - L.maxHealth)) // recover 20% of hp on revive
+		L.revive(full_heal = FALSE, admin_revive = TRUE)
 	L.adjustBruteLoss(-100)
-	if(L.revive(full_heal = FALSE, admin_revive = TRUE))
-		L.adjustBruteLoss(-(L.maxHealth * 0.2)) // recover 20% of hp on revive
 	playsound(get_turf(L), 'sound/abnormalities/thunderbird/tbird_charge.ogg', 15, 1, 4)
 	L.add_overlay(icon('icons/effects/effects.dmi', "electricity"))
 	addtimer(CALLBACK(L, TYPE_PROC_REF(/atom, cut_overlay), \
