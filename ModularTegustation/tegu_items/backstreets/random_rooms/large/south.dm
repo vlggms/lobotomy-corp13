@@ -37,6 +37,11 @@
 	room_id = "supermarket"
 	mappath = "_maps/RandomRooms/backstreets/large_south/supermarket.dmm"
 
+/datum/map_template/random_room/backstreets/large_south/sweeper_nestsmall
+	name = "Lesser Sweeper Nest - Large South"
+	room_id = "sweeper_nestsmall"
+	mappath = "_maps/RandomRooms/backstreets/large_south/sweeper_nestsmall.dmm"
+
 /datum/map_template/random_room/backstreets/large_south/shotgun_exam
 	name = "ShotgunExam - Large South"
 	room_id = "shotgun_exam"
