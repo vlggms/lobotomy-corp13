@@ -78,6 +78,8 @@
 	// Move them
 	target.forceMove(spawn_point)
 
+	target.revive(TRUE, TRUE)
+
 	// Arrival effects
 	new /obj/effect/temp_visual/dir_setting/cult/phase(get_turf(target))
 	playsound(get_turf(target), 'sound/magic/exit_blood.ogg', 100, TRUE)
