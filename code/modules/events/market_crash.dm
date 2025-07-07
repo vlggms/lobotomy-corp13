@@ -1,29 +1,60 @@
-/datum/round_event_control/lc13/market_crash
-	name = "Market Crash"
-	typepath = /datum/round_event/market_crash
-	max_occurrences = 1
-	weight = 30	//Very common but you get 1 break.
+/datum/round_event_control/lc13/company_crash
+	name = "Company Crash"
+	typepath = /datum/round_event/company_crash
+	max_occurrences = 2
+	weight = 5
 	earliest_start = 30 MINUTES
 
-/datum/round_event/market_crash
+/datum/round_event/company_crash
 	announceWhen = 1
-	endWhen = 200
+	endWhen = 10000
 
-/datum/round_event/market_crash/announce()
-	priority_announce("Welfare HQ is notifying this facility's Manager that you are on your (optional) 2 minute break. \
-	We have notified Extraction HQ to delay the abnormality arrival by the said amount of time. \
-	However, Records and Information would like to remind you that certain abnormalities will not respect your break time.",
+	//Only companies can get their price increased/decreased.
+	var/list/viable_sales
+
+	var/obj/structure/pe_sales/chosen_sales
+	var/list/possible_sales = list()
+
+/datum/round_event/company_crash/setup()
+	endWhen = rand(200, 24000)	//Who knows when it will end?
+	..()
+
+/datum/round_event/company_crash/start()
+	var/list/viable_sales = typecacheof(list(
+		/obj/structure/pe_sales/l_corp,
+		/obj/structure/pe_sales/k_corp,
+		/obj/structure/pe_sales/r_corp,
+		/obj/structure/pe_sales/s_corp,
+		/obj/structure/pe_sales/w_corp,
+		/obj/structure/pe_sales/n_corp))
+
+
+	//Grab all possible
+	for(var/obj/structure/pe_sales/P in GLOB.lobotomy_devices)
+		if(P.type in viable_sales)
+			possible_sales += P
+	..()
+
+/datum/round_event/company_crash/announce()
+	if(!length(possible_sales))
+		var/fake_company = list("Love Company", "Leyla Conglomerate", "Enix Corporation")
+		priority_announce("Control HQ has received word that [pick(fake_company)] has gone under, and as such, all contracts with them have been terminated.",
+		sound = 'sound/misc/notice2.ogg',
+		sender_override = "HQ Control")
+		return
+
+	chosen_sales = pick(possible_sales)
+
+	priority_announce("Control HQ has received word that there has been big moves in the wings. As such, this facility's [chosen_sales.name] will pay out significantly less.",
 	sound = 'sound/misc/notice2.ogg',
-	sender_override = "HQ Welfare")
-
-	SSabnormality_queue.next_abno_spawn += 2 MINUTES
-	for(var/V in GLOB.player_list)
-		var/mob/M = V
-		if((M.client.prefs.toggles & SOUND_MIDI) && is_station_level(M.z))
-			M.playsound_local(M, 'sound/ambience/aurora_caelus.ogg', 20, FALSE, pressure_affected = FALSE)
+	sender_override = "HQ Control")
+	chosen_sales.ahn_amount /= 4
 
 
-/datum/round_event/market_crash/end()
-	priority_announce("Welfare HQ is notifying this facility's Manager that the allotted 2 minute break has ended.",
+/datum/round_event/company_crash/end()
+	priority_announce("The company's crash has ended. [chosen_sales.name]'s prices have returned to normal.",
 	sound = 'sound/misc/notice2.ogg',
-	sender_override = "HQ Welfare")
+	sender_override = "HQ Control")
+	chosen_sales.ahn_amount *= 4
+
+

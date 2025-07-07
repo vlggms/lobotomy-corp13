@@ -14,6 +14,7 @@
 	/obj/structure/lootcrate/n_corp,
 	/obj/structure/lootcrate/r_corp,
 	/obj/structure/lootcrate/w_corp,
+
 	)
 
 /datum/round_event/stray_cargo_lc/announce(fake)
@@ -22,7 +23,7 @@
 /datum/round_event/stray_cargo_lc/setup()
 	startWhen = rand(20, 40)
 
-///Spawns a random supply pack, puts it in a pod, and spawns it on a random tile of the selected area
+///Spawns a random crate
 /datum/round_event/stray_cargo_lc/start()
 	var/spawn_amount = 3
 
