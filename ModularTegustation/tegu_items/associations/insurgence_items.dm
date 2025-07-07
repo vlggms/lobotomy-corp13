@@ -126,6 +126,66 @@ Those who claim to have met the Elder One are LIARS or MAD. Report them immediat
 <br>
 <i>Obey. Convert. Transcend.</i>"}
 
+/obj/item/paper/fluff/insurgence_paranoia_tactics
+	name = "nightwatch acquisition protocols"
+	color = "#b8b8b8"
+	info = {"<b>ALTERNATIVE ACQUISITION METHODS - NIGHTWATCH ONLY</b><br>
+<br>
+Agent,<br>
+<br>
+Your paranoia inducer is more than a psychological weapon - it is a precision tool for
+target acquisition when conventional methods fail.<br>
+<br>
+<b>WHEN TO DEPLOY:</b><br>
+<br>
+1. <b>NO WILLING CUSTOMERS</b><br>
+   - If the fabricator sits unused past 20 minutes<br>
+   - When your cover identity fails to generate interest<br>
+   - In hostile environments where trust-building is impossible<br>
+<br>
+2. <b>RESISTANT TARGETS</b><br>
+   - 80%+ corruption subjects refusing water guidance<br>
+   - Targets with strong social bonds preventing isolation<br>
+   - Those who suspect Insurgence involvement<br>
+<br>
+<b>TACTICAL DEPLOYMENT:</b><br>
+<br>
+<b>PHASE 1: MARKING</b> (0 minutes)<br>
+- Identify isolated targets (avoid groups of 3+)<br>
+- Mark from any distance - the inducer works at range<br>
+- Multiple targets can be marked simultaneously<br>
+<br>
+<b>PHASE 2: CULTIVATION</b> (0-5 minutes)<br>
+- Monitor progress via the tracking interface<br>
+- Ensure targets remain isolated<br>
+- Watch for the warning signs at 25%, 50%, 75%<br>
+- Groups will HALT progress - plan accordingly<br>
+<br>
+<b>PHASE 3: HARVESTING</b> (5+ minutes)<br>
+- At 100% paranoia, approach the target<br>
+- Use the inducer again to trigger complete breakdown<br>
+- Target will sleep for exactly 15 seconds<br>
+- <b>CRITICAL: Use this window to implant augments</b><br>
+<br>
+<b>FORCED AUGMENTATION PROTOCOL:</b><br>
+During the 15-second sleep window:<br>
+1. Apply any available augment to the unconscious target<br>
+2. Mental Corrosion will begin immediately upon waking<br>
+3. Monitor via tracking console as normal<br>
+4. Guide to water at 60%+ as standard protocol<br>
+<br>
+<b>OPERATIONAL SECURITY:</b><br>
+- This method leaves witnesses - plan escape routes<br>
+- Sleeping targets in public areas raise alarms<br>
+- Consider luring targets to alleyways first<br>
+- Remember: A forced convert is still a convert<br>
+<br>
+<b>FINAL NOTE:</b><br>
+The Elder One does not care if they come willingly or not. What matters
+is that they come. Use whatever methods necessary to fulfill your quota.<br>
+<br>
+<i>By any means necessary. For the glory of the machine.</i>"}
+
 /obj/structure/closet/syndicate/insurgence
 	name = "insurgence transport equipment locker"
 	desc = "Contains supplies for the Insurgence Transport Agents."
@@ -151,9 +211,300 @@ Those who claim to have met the Elder One are LIARS or MAD. Report them immediat
 	new /obj/item/paper/fluff/insurgence_ideology(src)
 	new /obj/item/paper/fluff/insurgence_public_relations(src)
 	new /obj/item/paper/fluff/insurgence_conduct(src)
+	new /obj/item/paper/fluff/insurgence_paranoia_tactics(src)
 	new /obj/item/clothing/suit/armor/ego_gear/city/insurgence_nightwatch(src)
 	new /obj/item/ego_weapon/city/insurgence_nightwatch(src)
 	new /obj/item/storage/box/rxglasses/spyglasskit(src)
 	new /obj/item/binoculars(src)
+	new /obj/item/insurgence_paranoia_marker(src)
 
-//TODO: Add new /obj/item/bodypart/r_arm/robot that are better in some way but speed up corruption.
+// Insurgence Robotic Limbs - Enhanced prosthetics that accelerate mental corrosion
+
+// Left Arm
+/obj/item/bodypart/l_arm/robot/insurgence
+	name = "insurgence cybernetic left arm"
+	desc = "A cutting-edge prosthetic limb bearing the Insurgence Clan's mark. It hums with barely contained power."
+	icon = 'icons/mob/augmentation/augments.dmi'
+	icon_state = "borg_l_arm"
+	max_damage = 100 // Increased from 50
+	disable_threshold = 0 // Cannot be disabled
+	brute_reduction = 10 // Increased from 5
+	burn_reduction = 8 // Increased from 4
+
+/obj/item/bodypart/l_arm/robot/insurgence/attach_limb(mob/living/carbon/C, special)
+	. = ..()
+	if(. && ishuman(C))
+		var/mob/living/carbon/human/H = C
+		H.adjust_all_attribute_levels(3)
+		to_chat(H, span_notice("You feel your capabilities expanding as the insurgence limb integrates."))
+
+/obj/item/bodypart/l_arm/robot/insurgence/drop_limb(special)
+	var/mob/living/carbon/C = owner
+	. = ..()
+	if(C && !QDELETED(C) && ishuman(C))
+		var/mob/living/carbon/human/H = C
+		H.adjust_all_attribute_levels(-3)
+		to_chat(H, span_warning("You feel your capabilities diminishing as the insurgence limb is removed."))
+
+// Right Arm
+/obj/item/bodypart/r_arm/robot/insurgence
+	name = "insurgence cybernetic right arm"
+	desc = "A cutting-edge prosthetic limb bearing the Insurgence Clan's mark. It hums with barely contained power."
+	icon = 'icons/mob/augmentation/augments.dmi'
+	icon_state = "borg_r_arm"
+	max_damage = 100 // Increased from 50
+	disable_threshold = 0 // Cannot be disabled
+	brute_reduction = 10 // Increased from 5
+	burn_reduction = 8 // Increased from 4
+
+/obj/item/bodypart/r_arm/robot/insurgence/attach_limb(mob/living/carbon/C, special)
+	. = ..()
+	if(. && ishuman(C))
+		var/mob/living/carbon/human/H = C
+		H.adjust_all_attribute_levels(3)
+		to_chat(H, span_notice("You feel your capabilities expanding as the insurgence limb integrates."))
+
+/obj/item/bodypart/r_arm/robot/insurgence/drop_limb(special)
+	var/mob/living/carbon/C = owner
+	. = ..()
+	if(C && !QDELETED(C) && ishuman(C))
+		var/mob/living/carbon/human/H = C
+		H.adjust_all_attribute_levels(-3)
+		to_chat(H, span_warning("You feel your capabilities diminishing as the insurgence limb is removed."))
+
+// Left Leg
+/obj/item/bodypart/l_leg/robot/insurgence
+	name = "insurgence cybernetic left leg"
+	desc = "A cutting-edge prosthetic limb bearing the Insurgence Clan's mark. It hums with barely contained power."
+	icon = 'icons/mob/augmentation/augments.dmi'
+	icon_state = "borg_l_leg"
+	max_damage = 100 // Increased from 50
+	disable_threshold = 0 // Cannot be disabled
+	brute_reduction = 10 // Increased from 5
+	burn_reduction = 8 // Increased from 4
+
+/obj/item/bodypart/l_leg/robot/insurgence/attach_limb(mob/living/carbon/C, special)
+	. = ..()
+	if(. && ishuman(C))
+		var/mob/living/carbon/human/H = C
+		H.adjust_all_attribute_levels(3)
+		to_chat(H, span_notice("You feel your capabilities expanding as the insurgence limb integrates."))
+
+/obj/item/bodypart/l_leg/robot/insurgence/drop_limb(special)
+	var/mob/living/carbon/C = owner
+	. = ..()
+	if(C && !QDELETED(C) && ishuman(C))
+		var/mob/living/carbon/human/H = C
+		H.adjust_all_attribute_levels(-3)
+		to_chat(H, span_warning("You feel your capabilities diminishing as the insurgence limb is removed."))
+
+// Right Leg
+/obj/item/bodypart/r_leg/robot/insurgence
+	name = "insurgence cybernetic right leg"
+	desc = "A cutting-edge prosthetic limb bearing the Insurgence Clan's mark. It hums with barely contained power."
+	icon = 'icons/mob/augmentation/augments.dmi'
+	icon_state = "borg_r_leg"
+	max_damage = 100 // Increased from 50
+	disable_threshold = 0 // Cannot be disabled
+	brute_reduction = 10 // Increased from 5
+	burn_reduction = 8 // Increased from 4
+
+/obj/item/bodypart/r_leg/robot/insurgence/attach_limb(mob/living/carbon/C, special)
+	. = ..()
+	if(. && ishuman(C))
+		var/mob/living/carbon/human/H = C
+		H.adjust_all_attribute_levels(3)
+		to_chat(H, span_notice("You feel your capabilities expanding as the insurgence limb integrates."))
+
+/obj/item/bodypart/r_leg/robot/insurgence/drop_limb(special)
+	var/mob/living/carbon/C = owner
+	. = ..()
+	if(C && !QDELETED(C) && ishuman(C))
+		var/mob/living/carbon/human/H = C
+		H.adjust_all_attribute_levels(-3)
+		to_chat(H, span_warning("You feel your capabilities diminishing as the insurgence limb is removed."))
+
+// Chest
+/obj/item/bodypart/chest/robot/insurgence
+	name = "insurgence cybernetic torso"
+	desc = "A heavily reinforced cybernetic torso with the Insurgence Clan insignia. The internal systems pulse with unnatural energy."
+	icon = 'icons/mob/augmentation/augments.dmi'
+	icon_state = "borg_chest"
+	max_damage = 150 // Increased from 75
+	disable_threshold = 0 // Cannot be disabled
+	brute_reduction = 10 // Increased from 5
+	burn_reduction = 8 // Increased from 4
+
+/obj/item/bodypart/chest/robot/insurgence/attach_limb(mob/living/carbon/C, special)
+	. = ..()
+	if(. && ishuman(C))
+		var/mob/living/carbon/human/H = C
+		H.adjust_all_attribute_levels(3)
+		to_chat(H, span_notice("You feel your capabilities expanding as the insurgence torso integrates."))
+
+/obj/item/bodypart/chest/robot/insurgence/drop_limb(special)
+	var/mob/living/carbon/C = owner
+	. = ..()
+	if(C && !QDELETED(C) && ishuman(C))
+		var/mob/living/carbon/human/H = C
+		H.adjust_all_attribute_levels(-3)
+		to_chat(H, span_warning("You feel your capabilities diminishing as the insurgence torso is removed."))
+
+// Paranoid Status Effect for Nightwatch Agents
+/datum/status_effect/insurgence_paranoid
+	id = "insurgence_paranoid"
+	duration = -1 // Permanent until removed
+	alert_type = null
+	var/paranoid_level = 0
+	var/next_increase = 0
+	var/mob/living/marked_by
+	var/last_warning = 0
+
+/datum/status_effect/insurgence_paranoid/on_apply()
+	. = ..()
+	if(!ishuman(owner))
+		return FALSE
+	next_increase = world.time + 60 SECONDS
+	to_chat(owner, span_warning("You feel like someone is watching you..."))
+	return TRUE
+
+/datum/status_effect/insurgence_paranoid/tick()
+	if(!owner || owner.stat == DEAD)
+		qdel(src)
+		return
+
+	// Check if there are 3+ people nearby
+	var/people_nearby = 0
+	for(var/mob/living/carbon/human/H in view(7, owner))
+		if(H != owner && H.stat != DEAD)
+			people_nearby++
+			if(people_nearby >= 3)
+				break
+
+	// Only increase if less than 3 people nearby
+	if(people_nearby < 3 && world.time >= next_increase && paranoid_level < 100)
+		paranoid_level = min(paranoid_level + 20, 100)
+		next_increase = world.time + 60 SECONDS
+
+		// Warning messages at thresholds
+		if(paranoid_level >= 25 && last_warning < 25)
+			last_warning = 25
+			to_chat(owner, span_warning("The feeling of being watched intensifies..."))
+			owner.emote("shiver")
+		else if(paranoid_level >= 50 && last_warning < 50)
+			last_warning = 50
+			to_chat(owner, span_danger("You can't shake the feeling that someone is stalking you!"))
+			owner.emote("shiver")
+		else if(paranoid_level >= 75 && last_warning < 75)
+			last_warning = 75
+			to_chat(owner, span_userdanger("You can't shake the feeling that someone is stalking you!"))
+			owner.emote("shiver")
+		else if(paranoid_level >= 100 && last_warning < 100)
+			last_warning = 100
+			to_chat(owner, span_userdanger("Your mind is consumed by paranoia! You're completely vulnerable!"))
+			owner.emote("shiver")
+
+/datum/status_effect/insurgence_paranoid/get_examine_text()
+	if(paranoid_level >= 75)
+		return span_warning("[owner] looks extremely paranoid and jumpy.")
+	else if(paranoid_level >= 50)
+		return span_notice("[owner] seems nervous and keeps looking over their shoulder.")
+	return null
+
+// Paranoia Inducer Tool
+/obj/item/insurgence_paranoia_marker
+	name = "paranoia inducer"
+	desc = "A strange device that emits an unsettling psychic frequency. Used by Insurgence Nightwatch to mark targets."
+	icon = 'icons/obj/device.dmi'
+	icon_state = "signaler"
+	item_state = "signaler"
+	w_class = WEIGHT_CLASS_SMALL
+	var/list/marked_targets = list()
+
+/obj/item/insurgence_paranoia_marker/afterattack(atom/target, mob/user, proximity)
+	. = ..()
+	if(!ishuman(user))
+		return
+
+	var/mob/living/carbon/human/H = user
+	if(!H.mind || H.mind.assigned_role != "Insurgence Nightwatch Agent")
+		to_chat(user, span_warning("You don't know how to use this device."))
+		return
+
+	if(!ishuman(target))
+		return
+
+	var/mob/living/carbon/human/T = target
+	if(T == user)
+		return
+
+	// Check if target already has paranoid effect
+	var/datum/status_effect/insurgence_paranoid/P = T.has_status_effect(/datum/status_effect/insurgence_paranoid)
+
+	if(!P)
+		// Apply new paranoid effect
+		P = T.apply_status_effect(/datum/status_effect/insurgence_paranoid)
+		if(P)
+			P.marked_by = user
+			marked_targets |= T
+			to_chat(user, span_notice("You mark [T] with paranoia. They will slowly become more vulnerable."))
+	else
+		// Check if fully paranoid
+		if(P.paranoid_level >= 100)
+			to_chat(user, span_danger("You trigger [T]'s complete paranoid breakdown!"))
+			visible_message(span_danger("[T] suddenly collapses, overwhelmed by paranoia!"))
+			T.SetSleeping(150) // 15 seconds
+			qdel(P)
+		else
+			to_chat(user, span_notice("[T] is already marked. Paranoia level: [P.paranoid_level]%"))
+
+/obj/item/insurgence_paranoia_marker/attack_self(mob/user)
+	. = ..()
+	if(!ishuman(user))
+		return
+
+	var/mob/living/carbon/human/H = user
+	if(!H.mind || H.mind.assigned_role != "Insurgence Nightwatch Agent")
+		to_chat(user, span_warning("You don't know how to use this device."))
+		return
+
+	var/dat = "<h3>Paranoid Target Tracking</h3><hr>"
+	dat += "<table border='1' style='width:100%'>"
+	dat += "<tr><th>Target</th><th>Location</th><th>Paranoia Level</th><th>Status</th></tr>"
+
+	// Clean up null references
+	marked_targets -= null
+
+	for(var/mob/living/carbon/human/T in marked_targets)
+		if(!T || QDELETED(T))
+			marked_targets -= T
+			continue
+
+		var/datum/status_effect/insurgence_paranoid/P = T.has_status_effect(/datum/status_effect/insurgence_paranoid)
+		if(!P)
+			marked_targets -= T
+			continue
+
+		dat += "<tr>"
+		dat += "<td>[T.real_name]</td>"
+		dat += "<td>[get_area_name(T)]</td>"
+		dat += "<td><b>[P.paranoid_level]%</b></td>"
+
+		if(P.paranoid_level >= 100)
+			dat += "<td><font color='red'><b>READY FOR SLEEP</b></font></td>"
+		else if(P.paranoid_level >= 75)
+			dat += "<td><font color='orange'>High Paranoia</font></td>"
+		else if(P.paranoid_level >= 50)
+			dat += "<td><font color='yellow'>Moderate Paranoia</font></td>"
+		else if(P.paranoid_level >= 25)
+			dat += "<td>Low Paranoia</td>"
+		else
+			dat += "<td>Building...</td>"
+		dat += "</tr>"
+
+	dat += "</table>"
+	dat += "<hr><i>Targets in groups of 3+ will not progress.</i>"
+
+	var/datum/browser/popup = new(user, "paranoia_tracker", "Paranoia Tracker", 600, 400)
+	popup.set_content(dat)
+	popup.open()

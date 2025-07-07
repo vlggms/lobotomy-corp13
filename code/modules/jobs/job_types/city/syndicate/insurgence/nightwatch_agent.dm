@@ -19,6 +19,7 @@
 			As the leader, you coordinate the Transport Agents in distributing custom augments with Mental Corrosion. \
 			Your goal is to track augment users and ensure they reach 60% Mental Corrosion, then convince or force them into the Great Lake. \
 			You have access to a special cloaking ability through your armor. \
+			Lead your Transport Agents to deliver augments, however if they reveal their true nature, feel free to execute them.\
 			Your base is hidden in the alleyway in the east behind the NO ENTRY Door."
 	job_notice = "This is an RP-focused antagonist role. Focus on psychological manipulation and converting humans rather than killing. \
 			Only use violence when necessary to complete your objectives. Remember: 'For the Order of the Elder one...'"
@@ -46,7 +47,8 @@
 	belt = /obj/item/pda/security
 	ears = /obj/item/radio/headset/syndicatecity
 	uniform = /obj/item/clothing/under/suit/lobotomy/plain
-	glasses = /obj/item/clothing/glasses/sunglasses
+	mask = /obj/item/clothing/mask/gas/syndicate
+	glasses = /obj/item/clothing/glasses/hud/health/night
 	shoes = /obj/item/clothing/shoes/laceup
 	backpack_contents = list(
 		/obj/item/structurecapsule/syndicate/insurgence = 1,

@@ -112,7 +112,7 @@
 /obj/item/ego_weapon/city/insurgence_nightwatch
 	name = "nightwatch blade"
 	desc = "A specialized blade used by insurgence nightwatch agents."
-	special = "If the target has 15+ tremor, tremor burst twice. Deals 20% more damage to targets above 50% HP. This weapon deals triple damage to hostile mobs. Tremor Bursts by this weapon cause a 6 second stun."
+	special = "If the target has 15+ tremor, tremor burst twice. Deals 20% more damage to targets above 50% HP. This weapon deals triple damage to hostile mobs. Tremor Bursts by this weapon cause a 6 second stun. Can toggle execution mode to instantly execute Insurgence Transport Agents."
 	icon_state = "hfrequency1"
 	inhand_icon_state = "hfrequency1"
 	icon = 'icons/obj/items_and_weapons.dmi'
@@ -131,8 +131,32 @@
 							)
 	var/burst_cooldown = 0
 	var/burst_cooldown_time = 20 SECONDS
+	var/execution_mode = FALSE
+
+/obj/item/ego_weapon/city/insurgence_nightwatch/attack_self(mob/user)
+	. = ..()
+	if(!CanUseEgo(user))
+		to_chat(user, span_warning("You can't use [src]!"))
+		return FALSE
+
+	execution_mode = !execution_mode
+	if(execution_mode)
+		playsound(user, 'sound/weapons/saberon.ogg', 35, TRUE)
+		to_chat(user, span_danger("[src]'s execution mode is now active. Transport Agents will be eliminated on contact."))
+	else
+		playsound(user, 'sound/weapons/saberoff.ogg', 35, TRUE)
+		to_chat(user, span_notice("[src]'s execution mode is now deactivated."))
 
 /obj/item/ego_weapon/city/insurgence_nightwatch/attack(mob/living/target, mob/living/user)
+	// Check for execution mode first
+	if(execution_mode && ishuman(target))
+		var/mob/living/carbon/human/H = target
+		if(H.mind && H.mind.assigned_role == "Insurgence Transport Agent")
+			visible_message(span_userdanger("[user] executes [H] with [src]!"))
+			playsound(target, 'sound/effects/gore/heavysplat.ogg', 80, TRUE)
+			H.deal_damage(150, PALE_DAMAGE)
+			return TRUE // Skip normal attack
+
 	var/force_mod = 1
 	if(target.health > target.maxHealth * 0.5)
 		force_mod = 1.2

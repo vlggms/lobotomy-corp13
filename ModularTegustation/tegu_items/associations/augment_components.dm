@@ -1483,7 +1483,7 @@
 	var/next_corrosion_increase = 0
 	var/list/bonds = list() // List of humans who reduce corrosion
 	var/list/human_interaction_count = list() // Track time spent with humans
-	var/interaction_threshold = 5 // Times needed to form a bond
+	var/interaction_threshold = 50 // Times needed to form a bond
 	var/max_bonds = 3 // Maximum bonds allowed
 	var/voices_cooldown = 0
 	var/water_seek_cooldown = 0
@@ -1546,6 +1546,16 @@
 		if(human_interaction_count[H] >= interaction_threshold && length(bonds) < max_bonds)
 			form_bond(H)
 
+	// Check for insurgence robotic limbs
+	var/insurgence_limb_count = 0
+	for(var/obj/item/bodypart/BP in human_parent.bodyparts)
+		if(istype(BP, /obj/item/bodypart/l_arm/robot/insurgence) || \
+		   istype(BP, /obj/item/bodypart/r_arm/robot/insurgence) || \
+		   istype(BP, /obj/item/bodypart/l_leg/robot/insurgence) || \
+		   istype(BP, /obj/item/bodypart/r_leg/robot/insurgence) || \
+		   istype(BP, /obj/item/bodypart/chest/robot/insurgence))
+			insurgence_limb_count++
+
 	// Calculate corrosion rate based on nearby humans and bonds
 	var/corrosion_rate = 1.0
 	if(insurgence_nearby)
@@ -1554,6 +1564,9 @@
 		corrosion_rate = -bonded_humans_nearby * 0.5 // Each bond reduces corrosion by 0.5
 	else if(length(nearby_humans) >= 3)
 		corrosion_rate = 0.5 // Multiple humans reduce it significantly
+	
+	// Each insurgence limb increases corrosion rate by 0.5
+	corrosion_rate += insurgence_limb_count * 0.5
 
 	// Increase/decrease corrosion every 2 minutes
 	if(world.time >= next_corrosion_increase)

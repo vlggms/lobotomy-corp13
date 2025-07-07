@@ -40,6 +40,7 @@
 	belt = /obj/item/pda/security
 	ears = /obj/item/radio/headset/syndicatecity
 	uniform = /obj/item/clothing/under/suit/lobotomy/plain
+	mask = /obj/item/clothing/mask/gas/syndicate
 	glasses = /obj/item/clothing/glasses/sunglasses
 	shoes = /obj/item/clothing/shoes/laceup
 	backpack_contents = list(
