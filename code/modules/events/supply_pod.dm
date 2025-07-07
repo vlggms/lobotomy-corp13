@@ -3,7 +3,7 @@
 	name = "Stray Cargo Crate"
 	typepath = /datum/round_event/stray_cargo_lc
 	weight = 20
-	max_occurrences = 4
+	max_occurrences = 10
 	earliest_start = 10 MINUTES
 
 ///Spawns a cargo pod containing a random refinery crate
