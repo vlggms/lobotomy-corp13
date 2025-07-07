@@ -2,7 +2,7 @@
 	name = "Quota Recalculation"
 	typepath = /datum/round_event/quota_recalculation
 	weight = 4
-	max_occurrences = 1
+	max_occurrences = 3
 	earliest_start = 20 MINUTES
 
 /datum/round_event/quota_recalculation
