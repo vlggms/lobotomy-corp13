@@ -51,7 +51,7 @@ SUBSYSTEM_DEF(events)
 
 //decides which world.time we should select another random event at, and check the player count.
 /datum/controller/subsystem/events/proc/reschedule()
-	if(length(GLOB.player_list) < 5)
+	if(get_active_player_count(alive_check = 1, afk_check = 1, human_check = 1) < 5)
 		//Low player counts give less events by leaps and bounds, between 3 and 30 minutes.
 		frequency_upper = 18000 - GLOB.player_list * 2400
 	else
