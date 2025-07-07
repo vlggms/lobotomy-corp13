@@ -830,7 +830,7 @@
 	else
 		. += span_notice("It is currently recharging.")
 /// I'm unsure if this is necessary, but just to be safe, I want to delete the timer when the object is destroyed.
-/obj/item/device/plushie_extractor/Destroy()
+/obj/item/device/plushie_extractor/Destroy(force)
 	deltimer(charge_timer)
 	charge_timer = null
 	return ..()
