@@ -1526,7 +1526,8 @@
 
 		// Check if they're Insurgence members
 		if(H.mind && (H.mind.assigned_role in list("Insurgence Transport Agent", "Insurgence Nightwatch Agent")))
-			insurgence_nearby = TRUE
+			if(H.invisibility != INVISIBILITY_OBSERVER)
+				insurgence_nearby = TRUE
 			continue
 
 		nearby_humans += H
@@ -1548,32 +1549,30 @@
 	// Calculate corrosion rate based on nearby humans and bonds
 	var/corrosion_rate = 1.0
 	if(insurgence_nearby)
-		corrosion_rate = 1.25 // Insurgence members speed up corrosion
+		corrosion_rate = 2 // Insurgence members speed up corrosion
 	else if(bonded_humans_nearby > 0)
-		corrosion_rate = -bonded_humans_nearby * 0.01 // Each bond reduces corrosion by 1%
+		corrosion_rate = -bonded_humans_nearby * 0.5 // Each bond reduces corrosion by 0.5
 	else if(length(nearby_humans) >= 3)
-		corrosion_rate = 0.25 // Multiple humans reduce it significantly
-	else if(length(nearby_humans) >= 1)
-		corrosion_rate = 0.5 // One human slows it down
+		corrosion_rate = 0.5 // Multiple humans reduce it significantly
 
 	// Increase/decrease corrosion every 2 minutes
 	if(world.time >= next_corrosion_increase)
 		var/old_corrosion = corrosion_level
-		corrosion_level = clamp(corrosion_level + (4 * corrosion_rate), 0, 100)
+		corrosion_level = clamp(corrosion_level + (6 * corrosion_rate), 0, 100)
 		next_corrosion_increase = world.time + 120 SECONDS
 
-		// Notify user if corrosion decreased due to bonds
-		if(bonded_humans_nearby > 0 && corrosion_level < old_corrosion)
-			to_chat(human_parent, span_nicegreen("Your close relationships help stabilize your mind... (-[old_corrosion - corrosion_level]% Mental Corrosion)")) //DEBUG STUFF
+		// // Notify user if corrosion decreased due to bonds
+		// if(bonded_humans_nearby > 0 && corrosion_level < old_corrosion)
+		// 	to_chat(human_parent, span_nicegreen("Your close relationships help stabilize your mind... (-[old_corrosion - corrosion_level]% Mental Corrosion)")) //DEBUG STUFF
 
 		// Check for kidnap eligibility
 		if(corrosion_level >= 80 && !kidnap_eligible)
 			kidnap_eligible = TRUE
-			
-		// Update HUD if needed
-		if(corrosion_level >= 20)
-			human_parent.hud_used?.lingchemdisplay?.invisibility = 0
-			human_parent.hud_used?.lingchemdisplay?.maptext = MAPTEXT("<div align='center' valign='middle' style='position:relative; top:0px; left:6px'><font color='#dd66dd'>[round(corrosion_level)]%</font></div>") //DEBUG STUFF
+
+		// // Update HUD if needed
+		// if(corrosion_level >= 20)
+		// 	human_parent.hud_used?.lingchemdisplay?.invisibility = 0
+		// 	human_parent.hud_used?.lingchemdisplay?.maptext = MAPTEXT("<div align='center' valign='middle' style='position:relative; top:0px; left:6px'><font color='#dd66dd'>[round(corrosion_level)]%</font></div>") //DEBUG STUFF
 
 	// Apply effects based on corrosion level
 	if(corrosion_level >= 20 && corrosion_level < 60)
@@ -1623,7 +1622,7 @@
 	// Find nearest water turf
 	var/turf/nearest_water
 	var/min_distance = INFINITY
-	for(var/turf/open/water/deep/W in view(7, human_parent))
+	for(var/turf/open/water/deep/W in range(14, human_parent))
 		var/dist = get_dist(human_parent, W)
 		if(dist < min_distance)
 			min_distance = dist

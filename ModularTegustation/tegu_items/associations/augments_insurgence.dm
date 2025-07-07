@@ -64,13 +64,6 @@
 	else
 		. += span_nicegreen("The system is fully operational.")
 
-/obj/machinery/augment_fabricator/insurgence/update_icon()
-	. = ..()
-	if(locked)
-		icon_state = "protolathe"
-	else
-		icon_state = "protolathe_n"
-
 /obj/machinery/augment_fabricator/insurgence/make_new_augment()
 	return new /obj/item/augment/insurgence
 
@@ -79,6 +72,7 @@
 	desc = "This augment seems to have been modified with additional components. The modifications are seamlessly integrated."
 	rankAttributeReqs = list(0, 20, 40, 60, 80) // 20 reduction as stated in the MD
 	roles = list("Insurgence Transport Agent", "Insurgence Nightwatch Agent")
+	var/datum/component/augment/mental_corrosion/corrosion_component // Track the mental corrosion component
 
 /obj/item/augment/insurgence/ApplyEffects(mob/living/carbon/human/H)
 	. = ..()
@@ -86,11 +80,17 @@
 	var/has_corrosion = FALSE
 	for(var/datum/component/augment/mental_corrosion/MC in H.GetComponents(/datum/component/augment/mental_corrosion))
 		has_corrosion = TRUE
+		corrosion_component = MC // Store reference to existing component
 		break
 
 	if(!has_corrosion)
-		H.AddComponent(/datum/component/augment/mental_corrosion, 1)
+		corrosion_component = H.AddComponent(/datum/component/augment/mental_corrosion, 1) // Store reference to new component
 		to_chat(H, span_notice("The augment integrates seamlessly with your body... though something feels different."))
+
+/obj/item/augment/insurgence/proc/get_corrosion_level()
+	if(!corrosion_component || QDELETED(corrosion_component))
+		return 0
+	return corrosion_component.corrosion_level
 
 // Tracking console for Insurgence Clan
 /obj/machinery/computer/insurgence_tracker

@@ -1129,6 +1129,49 @@
 
 	to_chat(user, span_notice("No human identified."))
 
+/obj/item/insurgence_augment_tester
+	name = "Insurgence Augment Tester"
+	desc = "A device that can check what types of augments the target can use."
+	icon = 'ModularTegustation/Teguicons/teguitems.dmi'
+	icon_state = "records_stats"
+	slot_flags = ITEM_SLOT_BELT | ITEM_SLOT_POCKETS
+	w_class = WEIGHT_CLASS_SMALL
+	var/list/stats = list(
+		FORTITUDE_ATTRIBUTE,
+		PRUDENCE_ATTRIBUTE,
+		TEMPERANCE_ATTRIBUTE,
+		JUSTICE_ATTRIBUTE,
+	)
+
+/obj/item/augment_tester/afterattack(atom/target, mob/user, proximity_flag)
+	. = ..()
+	if(ishuman(target))
+		playsound(get_turf(src), 'sound/machines/cryo_warning.ogg', 50, TRUE, -1)
+		var/mob/living/carbon/human/H = target
+
+		var/obj/item/augment/A = null
+		for(var/atom/movable/i in H.contents)
+			if (istype(i, /obj/item/augment))
+				A = i
+		if(A)
+			to_chat(user, span_notice("The target current has the [A.name] augment."))
+
+		var/stattotal
+		for(var/attribute in stats)
+			stattotal+=get_attribute_level(H, attribute)
+		stattotal /= 4	//Potential is an average of stats
+		var/best_augment = round(stattotal/20)
+		best_augment += 1
+		if(best_augment > 5)
+			best_augment = 5
+		if(best_augment < 1)
+			to_chat(user, span_notice("The target is unable to use any augments."))
+			return
+		to_chat(user, span_notice("The target is able to use rank [best_augment] or lower augments."))
+		return
+
+	to_chat(user, span_notice("No human identified."))
+
 /obj/item/ncorp_augment_tester
 	name = "N-Corp Augment Tester"
 	desc = "A device that can check if a target has an augment."
@@ -1163,7 +1206,7 @@
 	icon_state = "gadget1"
 	slot_flags = ITEM_SLOT_BELT | ITEM_SLOT_POCKETS
 	w_class = WEIGHT_CLASS_SMALL
-	var/list/roles = list("Prosthetics Surgeon", "Office Director", "Office Fixer", "Doctor")
+	var/list/roles = list("Prosthetics Surgeon", "Office Director", "Office Fixer", "Doctor", "Insurgence Transport Agent", "Insurgence Nightwatch Agent")
 
 /obj/item/augment_remover/attack(mob/M, mob/user)
 	if (!CanRemoveAugment(user))

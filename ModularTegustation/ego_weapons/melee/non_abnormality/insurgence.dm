@@ -1,7 +1,7 @@
 /obj/item/ego_weapon/city/insurgence_baton
 	name = "insurgence baton"
 	desc = "A gray baton used by transport agents."
-	special = "This weapon inflicts 5 tremor on hit, and tremor bursts when the target has 40+ tremor"
+	special = "This weapon inflicts 5 tremor on hit, and tremor bursts when the target has 40+ tremor. This weapon deals triple damage to hostile mobs. Tremor Bursts by this weapon cause a 6 second stun."
 	icon = 'ModularTegustation/Teguicons/lc13_insurgence.dmi'
 	lefthand_file = 'ModularTegustation/Teguicons/lc13_insurgence_left.dmi'
 	righthand_file = 'ModularTegustation/Teguicons/lc13_insurgence_right.dmi'
@@ -20,8 +20,28 @@
 							)
 
 /obj/item/ego_weapon/city/insurgence_baton/attack(mob/living/target, mob/living/user)
+	// Triple damage against animals
+	if(isanimal(target))
+		force = initial(force) * 3
+
 	. = ..()
-	target.apply_lc_tremor(5, 40)
+
+	// Reset force after attack
+	force = initial(force)
+
+	if(.)
+		// Check current tremor before applying new
+		var/datum/status_effect/stacking/lc_tremor/T = target.has_status_effect(/datum/status_effect/stacking/lc_tremor)
+		var/will_burst = FALSE
+		if(T && (T.stacks + 5) >= 40)
+			will_burst = TRUE
+
+		// Apply tremor
+		target.apply_lc_tremor(5, 40)
+
+		// If tremor burst happened and target is human, stun them
+		if(will_burst && ishuman(target))
+			target.Stun(60) // 6 seconds = 60 deciseconds
 
 /obj/item/ego_weapon/shield/insurgence_shield
 	name = "insurgence energy shield"
@@ -92,7 +112,7 @@
 /obj/item/ego_weapon/city/insurgence_nightwatch
 	name = "nightwatch blade"
 	desc = "A specialized blade used by insurgence nightwatch agents."
-	special = "If the target has 15+ tremor, tremor burst twice. Deals 20% more damage to targets above 50% HP."
+	special = "If the target has 15+ tremor, tremor burst twice. Deals 20% more damage to targets above 50% HP. This weapon deals triple damage to hostile mobs. Tremor Bursts by this weapon cause a 6 second stun."
 	icon_state = "hfrequency1"
 	inhand_icon_state = "hfrequency1"
 	icon = 'icons/obj/items_and_weapons.dmi'
@@ -117,6 +137,10 @@
 	if(target.health > target.maxHealth * 0.5)
 		force_mod = 1.2
 
+	// Triple damage against animals
+	if(isanimal(target))
+		force_mod *= 3
+
 	// Check if user is wearing nightwatch armor with cloak active
 	if(ishuman(user))
 		var/mob/living/carbon/human/H = user
@@ -135,6 +159,11 @@
 	if(T && T.stacks >= 15 && world.time > burst_cooldown)
 		burst_cooldown = world.time + burst_cooldown_time
 		to_chat(user, span_notice("Your blade resonates with [target]'s trembling form!"))
+
+		// If target is human, stun them when burst happens
+		if(ishuman(target))
+			target.Stun(60) // 6 seconds = 60 deciseconds
+
 		var/old_tremor_stack = T.stacks
 		T.TremorBurst()
 		target.apply_lc_tremor(old_tremor_stack, 55)
@@ -145,4 +174,7 @@
 		return
 	var/datum/status_effect/stacking/lc_tremor/T = target.has_status_effect(/datum/status_effect/stacking/lc_tremor)
 	if(T)
+		// If target is human, stun them on second burst too
+		if(ishuman(target))
+			target.Stun(60) // 6 seconds = 60 deciseconds
 		T.TremorBurst()
