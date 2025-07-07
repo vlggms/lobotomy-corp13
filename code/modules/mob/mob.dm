@@ -713,6 +713,11 @@
 			to_chat(usr, "<span class='boldnotice'>You must wait for [round((mind.respawn_cooldown - world.time)/10)] more seconds before respawning!</span>")
 			return
 
+	if(SSmaptype.maptype in SSmaptype.combatmaps)
+		if(!(SSmaptype.maptype in SSmaptype.citymaps))
+			to_chat(usr, "<span class='boldnotice'>Respawn is Disabled.</span>")
+			return
+
 	log_game("[key_name(usr)] respawned.")
 
 	to_chat(usr, "<span class='boldnotice'>Please roleplay correctly!</span>")
