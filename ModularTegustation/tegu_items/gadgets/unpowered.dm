@@ -833,7 +833,7 @@
 /obj/item/device/plushie_extractor/Destroy()
 	deltimer(charge_timer)
 	charge_timer = null
-	. = ..()
+	return ..()
 
 /obj/item/device/plushie_extractor/proc/Recharge()
 	if(!charged)
