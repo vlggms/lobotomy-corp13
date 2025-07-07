@@ -1,41 +1,60 @@
-/**
- * An event which decreases the station target temporarily, causing the inflation var to increase heavily.
- *
- * Done by decreasing the station_target by a high value per crew member, resulting in the station total being much higher than the target, and causing artificial inflation.
- */
-/datum/round_event_control/market_crash
-	name = "Market Crash"
-	typepath = /datum/round_event/market_crash
-	weight = 10
+/datum/round_event_control/lc13/company_crash
+	name = "Company Crash"
+	typepath = /datum/round_event/company_crash
+	max_occurrences = 2
+	weight = 5
+	earliest_start = 30 MINUTES
 
-/datum/round_event/market_crash
-	var/market_dip = 0
+/datum/round_event/company_crash
+	announceWhen = 1
+	endWhen = 10000
 
-/datum/round_event/market_crash/setup()
-	startWhen = 1
-	endWhen = rand(25, 50)
-	announceWhen = 2
+	//Only companies can get their price increased/decreased.
+	var/list/viable_sales
 
-/datum/round_event/market_crash/announce(fake)
-	var/list/poss_reasons = list("the alignment of the moon and the sun",\
-		"some risky housing market outcomes",\
-		"The B.E.P.I.S. team's untimely downfall",\
-		"speculative city grants backfiring",\
-		"greatly exaggerated reports of Lobotomy Corporation accountancy personnel committing mass suicide")
-	var/reason = pick(poss_reasons)
-	priority_announce("Due to [reason], prices for on-site vendors will be increased for a short period.", "Lobotomy Corporation Accounting Division")
+	var/obj/structure/pe_sales/chosen_sales
+	var/list/possible_sales = list()
 
-/datum/round_event/market_crash/start()
-	. = ..()
-	market_dip = rand(1000,10000) * length(SSeconomy.bank_accounts_by_id)
-	SSeconomy.station_target = max(SSeconomy.station_target - market_dip, 1)
-	SSeconomy.price_update()
-	SSeconomy.market_crashing = TRUE
+/datum/round_event/company_crash/setup()
+	endWhen = rand(200, 24000)	//Who knows when it will end?
+	..()
 
-/datum/round_event/market_crash/end()
-	. = ..()
-	SSeconomy.station_target += market_dip
-	SSeconomy.market_crashing = FALSE
-	SSeconomy.price_update()
-	priority_announce("Prices for on-site vendors have now stabilized.", "Lobotomy Corporation Accounting Division")
+/datum/round_event/company_crash/start()
+	var/list/viable_sales = typecacheof(list(
+		/obj/structure/pe_sales/l_corp,
+		/obj/structure/pe_sales/k_corp,
+		/obj/structure/pe_sales/r_corp,
+		/obj/structure/pe_sales/s_corp,
+		/obj/structure/pe_sales/w_corp,
+		/obj/structure/pe_sales/n_corp))
+
+
+	//Grab all possible
+	for(var/obj/structure/pe_sales/P in GLOB.lobotomy_devices)
+		if(P.type in viable_sales)
+			possible_sales += P
+	..()
+
+/datum/round_event/company_crash/announce()
+	if(!length(possible_sales))
+		var/fake_company = list("Love Company", "Leyla Conglomerate", "Enix Corporation")
+		priority_announce("Control HQ has received word that [pick(fake_company)] has gone under, and as such, all contracts with them have been terminated.",
+		sound = 'sound/misc/notice2.ogg',
+		sender_override = "HQ Control")
+		return
+
+	chosen_sales = pick(possible_sales)
+
+	priority_announce("Control HQ has received word that there has been big moves in the wings. As such, this facility's [chosen_sales.name] will pay out significantly less.",
+	sound = 'sound/misc/notice2.ogg',
+	sender_override = "HQ Control")
+	chosen_sales.ahn_amount /= 4
+
+
+/datum/round_event/company_crash/end()
+	priority_announce("The company's crash has ended. [chosen_sales.name]'s prices have returned to normal.",
+	sound = 'sound/misc/notice2.ogg',
+	sender_override = "HQ Control")
+	chosen_sales.ahn_amount *= 4
+
 

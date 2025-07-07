@@ -1,0 +1,21 @@
+/datum/round_event_control/extraction_failure
+	name = "Camera Failure"
+	typepath = /datum/round_event/camera_failure
+	weight = 50
+	max_occurrences = 5
+	//The RO should probably see this happening.
+
+/datum/round_event/camera_failure
+	fakeable = FALSE
+
+/datum/round_event/camera_failure/start()
+	var/iterations = 1
+	var/list/cameras = GLOB.cameranet.cameras.Copy()
+	var/obj/machinery/camera/C = pick_n_take(cameras)
+	if (!C)
+		break
+	if (!("ss13" in C.network))
+		continue
+	if(C.status)
+		C.toggle_cam(null, 0)
+	iterations *= 2.5
