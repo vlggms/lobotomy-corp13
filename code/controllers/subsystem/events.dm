@@ -53,7 +53,7 @@ SUBSYSTEM_DEF(events)
 /datum/controller/subsystem/events/proc/reschedule()
 	if(get_active_player_count(alive_check = 1, afk_check = 1, human_check = 1) < 5)
 		//Low player counts give less events by leaps and bounds, between 3 and 30 minutes.
-		frequency_upper = 18000 - GLOB.player_list * 2400
+		frequency_upper = 18000 - get_active_player_count(alive_check = 1, afk_check = 1, human_check = 1) * 2400
 	else
 		frequency_upper = 6000
 	scheduled = world.time + rand(frequency_lower, max(frequency_lower,frequency_upper))

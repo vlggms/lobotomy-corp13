@@ -3,7 +3,7 @@
 	typepath = /datum/round_event/break_time
 	max_occurrences = 1
 	weight = 30	//Very common but you get 1 break.
-	earliest_start = 30 MINUTES
+	earliest_start = 45 MINUTES
 
 /datum/round_event/break_time
 	announceWhen = 1
