@@ -4,7 +4,7 @@
 	name = "Abnormality Roll"
 	typepath = /datum/round_event/sephirah_yellow_roll
 	weight = 1
-	max_occurrences = 10
+	max_occurrences = 2
 	earliest_start = 20 MINUTES
 	alert_observers = FALSE	//Sadly can't. Don't want the RO to know either.
 
