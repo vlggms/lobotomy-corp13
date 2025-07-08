@@ -75,7 +75,7 @@
 		return TRUE
 
 	if(href_list["new_profile"])
-		if(!profile_list.len)
+		if(!length(profile_list))
 			to_chat(usr, "FIRST PROFILE IS ALWAYS A PUBLIC ACCOUNT")
 		NewProfile()
 		updateUsrDialog()
@@ -180,7 +180,7 @@
 		<tt>-----------------</tt>"
 
 /obj/machinery/stonkmarket/proc/NewProfile(debug_profile = FALSE)
-	if(profile_list.len > 4)
+	if(length(profile_list) > 4)
 		to_chat(usr, span_notice("MAXIMUM PROFILES REACHED"))
 		return
 	var/new_profile = new /datum/stonk_investor(debug_profile)

@@ -107,8 +107,8 @@ a.updated {
 	GENERAL_BUTTON(REF(requester),"reclaimAhn",REF(src),"WITHDRAWL AHN")
 	. += "	BUDGET:[budget]|STONKTIME:[TimeUntilUpdate(0.01)]/[COMPANY_DELAY] MINUTES<br>"
 
-	for(var/mode_option = STONKUI_MAIN to STONKUI_EXPLAIN)
-		if(mode_option == STONKUI_FOCUS & !focused_company)
+	for(var/mode_option = 1 to 4)
+		if(mode_option == STONKUI_FOCUS && !focused_company)
 			continue
 		GENERAL_BUTTON(REF(requester),"set_display",mode_option,"[mode_option == display_mode ? "<b><u>[nameMenu(mode_option)]</u></b>" : "[nameMenu(mode_option)]"]")
 	GENERAL_BUTTON(REF(requester),"rename","rename","RENAME USER")
@@ -272,7 +272,7 @@ a.updated {
 	\---------*/
 
 /datum/stonk_investor/proc/addToNews(company_name = "ERROR", txt = "")
-	if(company_history.len >= 10)
+	if(length(company_history) >= 10)
 		company_history.Cut(1,2)
 	company_history += "([company_name])[txt]<br>"
 
