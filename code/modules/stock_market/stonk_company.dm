@@ -167,7 +167,7 @@
 		affectPublicOpinion(opinion_effect)
 	if(investee)
 		investee.addToNews(name, txt)
-	if(news.len >= 10)
+	if(length(news) >= 10)
 		news.Cut(1,2)
 	news += "[txt]<br>"
 	news_notif = TRUE
@@ -337,7 +337,7 @@
 	disp_value_change = (cv < current_value) ? 1 : ((cv > current_value) ? -1 : 0)
 	last_value = current_value
 	//TOO MANY VALUES THROW THE OLDEST OUT
-	if (values.len >= 50)
+	if (length(values) >= 50)
 		values.Cut(1,2)
 	values += current_value
 
@@ -383,7 +383,7 @@
 	//Visual UI for a bar graph based on the values of a list.
 /datum/stonk_company/proc/plotBarGraph(list/points, base_text, width=400, height=400)
 	var/output = "<table style='border:1px solid black; border-collapse: collapse; width: [width]px; height: [height]px'>"
-	if (points.len && height > 20 && width > 20)
+	if (length(points) && height > 20 && width > 20)
 		var/min = points[1]
 		var/max = points[1]
 		for (var/v in points)
@@ -401,13 +401,13 @@
 		diff = max - min
 		ost = diff / cells
 		var/cval = max
-		var/cwid = width / (points.len + 1)
+		var/cwid = width / (length(points) + 1)
 		for (var/y = cells, y > 0, y--)
 			if (y == cells)
 				output += "<tr>"
 			else
 				output += "<tr style='border:none; border-top:1px solid #00ff00; height: 20px'>"
-			for (var/x = 0, x <= points.len, x++)
+			for (var/x = 0, x <= length(points), x++)
 				if (x == 0)
 					output += "<td style='border:none; height: 20px; width: [cwid]px; font-size:10px; color:#00ff00; background:black; text-align:right; vertical-align:bottom'>[round(cval - ost)]</td>"
 				else
@@ -418,7 +418,7 @@
 						output += "<td style='border:none; height: 20px; width: [cwid]px; background:black'>&nbsp;</td>"
 			output += "</tr>"
 			cval -= ost
-		output += "<tr><td style='font-size:10px; height: 20px; width: 100%; background:black; color:green; text-align:center' colspan='[points.len + 1]'>[base_text]</td></tr>"
+		output += "<tr><td style='font-size:10px; height: 20px; width: 100%; background:black; color:green; text-align:center' colspan='[length(points) + 1]'>[base_text]</td></tr>"
 	else
 		output += "<tr><td style='width:[width]px; height:[height]px; background: black'></td></tr>"
 		output += "<tr><td style='font-size:10px; background:black; color:green; text-align:center'>[base_text]</td></tr>"
