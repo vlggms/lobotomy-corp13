@@ -17,7 +17,7 @@
 	abnormality_origin = ABNORMALITY_ORIGIN_BRANCH12
 	var/ready = TRUE
 	ego_list = list(
-		//datum/ego_datum/weapon/branch12/loving_memory,
+		/datum/ego_datum/weapon/branch12/loving_memory,
 		/datum/ego_datum/armor/branch12/loving_memory,
 	)
 

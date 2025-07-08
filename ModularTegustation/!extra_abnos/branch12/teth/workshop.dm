@@ -17,6 +17,7 @@
 
 	ego_list = list(
 	//the weapons are the EGO
+	/datum/ego_datum/armor/branch12/workshopping
 	)
 	//gift_type =  /datum/ego_gifts/signal
 

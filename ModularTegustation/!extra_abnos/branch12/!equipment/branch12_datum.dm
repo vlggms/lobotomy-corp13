@@ -13,10 +13,12 @@
 	item_path = /obj/item/clothing/suit/armor/ego_gear/branch12/signal
 	cost = 10
 
+
 // Statue Of Forgiveness - Serenity
 /datum/ego_datum/weapon/branch12/serenity
 	item_path = /obj/item/ego_weapon/branch12/mini/serenity
 	cost = 10
+
 
 // You Can Become Better - Becoming
 /datum/ego_datum/weapon/branch12/becoming
@@ -25,6 +27,16 @@
 
 /datum/ego_datum/armor/branch12/becoming
 	item_path = /obj/item/clothing/suit/armor/ego_gear/branch12/becoming
+	cost = 10
+
+
+// Your Friends Need You - Needing
+/datum/ego_datum/weapon/branch12/needing
+	item_path = /obj/item/ego_weapon/branch12/needing
+	cost = 10
+
+/datum/ego_datum/armor/branch12/needing
+	item_path = /obj/item/clothing/suit/armor/ego_gear/branch12/needing
 	cost = 10
 
 
@@ -89,10 +101,24 @@
 	item_path = /obj/item/ego_weapon/shield/branch12/mini/black_lotus
 	cost = 20
 
+/datum/ego_datum/armor/branch12/white_lotus
+	item_path = /obj/item/clothing/suit/armor/ego_gear/branch12/white_lotus
+	cost = 20
+
 
 // Whiff Of Nostalgia - In Loving Memory
+/datum/ego_datum/weapon/branch12/loving_memory
+	item_path = /obj/item/ego_weapon/branch12/mini/loving_memory
+	cost = 20
+
 /datum/ego_datum/armor/branch12/loving_memory
 	item_path = /obj/item/clothing/suit/armor/ego_gear/branch12/loving_memory
+	cost = 20
+
+
+// Ulies Workshop - Workshopping
+/datum/ego_datum/armor/branch12/workshopping
+	item_path = /obj/item/clothing/suit/armor/ego_gear/branch12/workshopping
 	cost = 20
 
 
@@ -114,6 +140,10 @@
 //Golden Weave - Gold Needle
 /datum/ego_datum/weapon/branch12/needle
 	item_path = /obj/item/ego_weapon/branch12/mini/gold_needle
+	cost = 35
+
+/datum/ego_datum/armor/branch12/needle
+	item_path = /obj/item/clothing/suit/armor/ego_gear/branch12/needle
 	cost = 35
 
 //Long Bird - Egoification!

@@ -258,6 +258,9 @@
 	reloadtime = 1.2 SECONDS
 	fire_sound = 'sound/weapons/gun/smg/mp7.ogg'
 	var/inflicted_decay = 1
+	attribute_requirements = list(
+							JUSTICE_ATTRIBUTE = 40
+							)
 
 /obj/item/ego_weapon/ranged/branch12/mini/exterminator/before_firing(atom/target, mob/user)
 	if(shotsleft == initial(shotsleft))

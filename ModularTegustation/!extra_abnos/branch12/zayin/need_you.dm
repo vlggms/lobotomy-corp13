@@ -19,6 +19,10 @@
 
 	abnormality_origin = ABNORMALITY_ORIGIN_BRANCH12
 
+	ego_list = list(
+		/datum/ego_datum/weapon/branch12/needing,
+		/datum/ego_datum/armor/branch12/needing,
+	)
 	var/list/nerds = list()
 
 /mob/living/simple_animal/hostile/abnormality/branch12/need_you/AttemptWork(mob/living/carbon/human/user, work_type)

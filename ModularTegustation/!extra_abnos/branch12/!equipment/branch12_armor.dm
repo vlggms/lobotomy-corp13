@@ -19,6 +19,12 @@
 	icon_state = "becoming"
 	armor = list(RED_DAMAGE = 0, WHITE_DAMAGE = 10, BLACK_DAMAGE = 0, PALE_DAMAGE = 0)
 
+/obj/item/clothing/suit/armor/ego_gear/branch12/needing
+	name = "needing"
+	desc = "You're needed. And you can do better."
+	icon_state = "needing"
+	armor = list(RED_DAMAGE = 0, WHITE_DAMAGE = 0, BLACK_DAMAGE = 10, PALE_DAMAGE = 0)
+
 /obj/item/clothing/suit/armor/ego_gear/branch12/age
 	name = "age of man"
 	desc = "A suit that reminds you of the golden age of man."
@@ -60,7 +66,19 @@
 	name = "In Loving Memory"
 	desc = "A Memorandum, for that which you forgot."
 	icon_state = "loving_memory"
-	armor = list(RED_DAMAGE = -20, WHITE_DAMAGE = 20, BLACK_DAMAGE = 20, PALE_DAMAGE = 0)
+	armor = list(RED_DAMAGE = 20, WHITE_DAMAGE = 20, BLACK_DAMAGE = 00, PALE_DAMAGE = 0)
+
+/obj/item/clothing/suit/armor/ego_gear/branch12/white_lotus
+	name = "white lotus"
+	desc = "As delicate as they come."
+	icon_state = "white_lotus"
+	armor = list(RED_DAMAGE = -30, WHITE_DAMAGE = 30, BLACK_DAMAGE = 20, PALE_DAMAGE = 0)
+
+/obj/item/clothing/suit/armor/ego_gear/branch12/workshopping
+	name = "workshopping"
+	desc = "A prototype of something else."
+	icon_state = "workshopping"
+	armor = list(RED_DAMAGE = 10, WHITE_DAMAGE = 10, BLACK_DAMAGE = 10, PALE_DAMAGE = -10)
 
 // --------HE---------
 /obj/item/clothing/suit/armor/ego_gear/branch12/perfectionist
@@ -104,6 +122,19 @@
 	desc = "You have a job to do."
 	icon_state = "exterminator"
 	armor = list(RED_DAMAGE = 20, WHITE_DAMAGE = -10, BLACK_DAMAGE = 40, PALE_DAMAGE = 20)
+	attribute_requirements = list(
+							TEMPERANCE_ATTRIBUTE = 40
+							)
+
+
+/obj/item/clothing/suit/armor/ego_gear/branch12/needle
+	name = "golden needle"
+	desc = "They say the string connects you with the one you love so much."
+	icon_state = "medea"
+	armor = list(RED_DAMAGE = 50, WHITE_DAMAGE = -20, BLACK_DAMAGE = 20, PALE_DAMAGE = 20)
+	attribute_requirements = list(
+							FORTITUDE_ATTRIBUTE = 40
+							)
 
 // --------WAW---------
 /obj/item/clothing/suit/armor/ego_gear/branch12/joe

@@ -395,6 +395,15 @@
 		"O-02-12-40 would have to be constantly attacked during it breach, until death."
 	)
 
+// Beyond The Veil
+/obj/item/paper/fluff/info/branch12/veil
+	abno_type = /mob/living/simple_animal/hostile/abnormality/branch12/veil
+	abno_code = "M-01-12-991"
+	abno_info = list(
+		"When the work result was bad, the Qliphoth counter decreased.",
+		"When an employee worked on M-01-12-991 with less than 4 Fortitude, the qliphoth counter lowered by 1.",
+	)
+
 //	-------------ALEPH-------------
 // Old Man and The Pale
 /obj/item/paper/fluff/info/branch12/oldman_pale

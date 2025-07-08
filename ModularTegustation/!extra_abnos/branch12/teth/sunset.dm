@@ -18,7 +18,7 @@
 	ego_list = list(
 		/datum/ego_datum/weapon/branch12/white_lotus,
 		/datum/ego_datum/weapon/branch12/black_lotus,
-		//datum/ego_datum/armor/branch12/white_lotus,
+		/datum/ego_datum/armor/branch12/white_lotus,
 	)
 
 	var/list/lotus = list(ABNORMALITY_WORK_INSTINCT, ABNORMALITY_WORK_INSIGHT, ABNORMALITY_WORK_ATTACHMENT, ABNORMALITY_WORK_REPRESSION)

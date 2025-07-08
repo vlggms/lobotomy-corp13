@@ -185,3 +185,15 @@
 		return
 	else
 		return ..()
+
+//Lovine Memory
+/obj/item/ego_weapon/branch12/mini/loving_memory
+	name = "loving memory"
+	desc = "In Memory of that which you lost."
+	icon_state = "nostalgia"
+	force = 14
+	throwforce = 33
+	damtype = WHITE_DAMAGE
+	hitsound = 'sound/weapons/slashmiss.ogg'
+	attack_verb_continuous = list("pokes", "jabs", "tears", "lacerates", "gores")
+	attack_verb_simple = list("poke", "jab", "tear", "lacerate", "gore")

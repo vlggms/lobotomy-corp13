@@ -212,3 +212,14 @@
 	playsound(src, 'sound/effects/hokma_meltdown_short.ogg', 30, TRUE, 5)
 	addtimer(CALLBACK(becomer, PROC_REF(equip_self), user), 1, TIMER_UNIQUE | TIMER_OVERRIDE)
 	Destroy(src)
+
+//Needing
+/obj/item/ego_weapon/branch12/needing
+	name = "needing"
+	desc = "A hammer made with the desire to need everyone"
+	icon_state = "needing"
+	force = 14
+	damtype = BLACK_DAMAGE
+	attack_verb_continuous = list("slams", "strikes", "smashes")
+	attack_verb_simple = list("slam", "strike", "smash")
+
