@@ -1,0 +1,4659 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"aE" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/decal/cleanable/insectguts,
+/turf/open/floor/facility/halls,
+/area/villains/hallway)
+"bn" = (
+/obj/structure/bookcase/random,
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/decal/cleanable/cobweb/cobweb2,
+/turf/open/floor/facility/halls,
+/area/villains/hallway)
+"bs" = (
+/obj/structure/chair/sofa/right{
+	dir = 4
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/facility/halls,
+/area/villains/hallway)
+"co" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/turf_decal/siding/purple/corner,
+/turf/open/floor/facility/halls,
+/area/villains/trial_room)
+"cx" = (
+/obj/effect/turf_decal/siding/thinplating{
+	dir = 1
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/decal/cleanable/insectguts,
+/obj/effect/decal/cleanable/blood/gibs/old,
+/turf/open/floor/facility/dark,
+/area/villains/player_room)
+"cE" = (
+/obj/effect/turf_decal/siding/purple{
+	dir = 8
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/facility/halls,
+/area/villains/trial_room)
+"cJ" = (
+/obj/structure/chair/sofa/corner{
+	dir = 4
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/facility/halls,
+/area/villains/hallway)
+"cO" = (
+/turf/closed/indestructible/rock,
+/area/villains/hallway)
+"cY" = (
+/obj/structure/chair/sofa{
+	dir = 4
+	},
+/obj/machinery/light/broken{
+	dir = 8
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/facility/halls,
+/area/villains/hallway)
+"db" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/decal/cleanable/garbage,
+/turf/open/floor/facility/dark,
+/area/villains/player_room)
+"dl" = (
+/obj/effect/landmark/villains/room_door{
+	room_id = 3
+	},
+/turf/open/floor/facility/dark,
+/area/villains/player_room)
+"dt" = (
+/obj/effect/landmark/villains/room_door{
+	room_id = 7
+	},
+/turf/open/floor/facility/dark,
+/area/villains/player_room)
+"dD" = (
+/obj/effect/turf_decal/siding/purple{
+	dir = 4
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/decal/cleanable/blood/old,
+/obj/effect/decal/cleanable/blood/gibs/old,
+/turf/open/floor/carpet/purple,
+/area/villains/hallway)
+"ef" = (
+/obj/machinery/door/airlock/highsecurity{
+	name = "Information Department"
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/facility/halls,
+/area/villains/hallway)
+"eo" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/decal/cleanable/xenoblood/xsplatter,
+/turf/open/floor/facility/dark,
+/area/villains/player_room)
+"ew" = (
+/obj/machinery/light/broken{
+	dir = 4
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/decal/cleanable/cobweb/cobweb2,
+/turf/open/floor/facility/halls,
+/area/villains/hallway)
+"eO" = (
+/obj/structure/chair/sofa{
+	dir = 8
+	},
+/obj/machinery/light/broken{
+	dir = 4
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/facility/halls,
+/area/villains/hallway)
+"eX" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/turf_decal/siding/purple/corner{
+	dir = 4
+	},
+/turf/open/floor/facility/halls,
+/area/villains/trial_room)
+"fg" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/table/wood/fancy/purple,
+/turf/open/floor/carpet/purple,
+/area/villains/trial_room)
+"fn" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/decal/cleanable/oil/slippery,
+/turf/open/floor/facility/halls,
+/area/villains/hallway)
+"fx" = (
+/obj/effect/turf_decal/siding/purple{
+	dir = 5
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/carpet/purple,
+/area/villains/hallway)
+"fy" = (
+/obj/machinery/door/airlock/highsecurity{
+	name = "Information Department"
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/facility/halls,
+/area/villains/trial_room)
+"fC" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/decal/cleanable/cobweb,
+/obj/effect/decal/cleanable/garbage,
+/turf/open/floor/facility/dark,
+/area/villains/player_room)
+"gf" = (
+/obj/item/kirbyplants/photosynthetic{
+	anchored = 1
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/facility/halls,
+/area/villains/hallway)
+"gh" = (
+/obj/machinery/light/broken{
+	dir = 8
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/facility/halls,
+/area/villains/hallway)
+"gi" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/decal/cleanable/cobweb,
+/turf/open/floor/facility/halls,
+/area/villains/hallway)
+"gn" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/turf_decal/siding/purple{
+	dir = 10
+	},
+/turf/open/floor/facility/halls,
+/area/villains/trial_room)
+"gp" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/decal/cleanable/oil/slippery,
+/obj/effect/decal/cleanable/blood/old,
+/turf/open/floor/facility/halls,
+/area/villains/hallway)
+"gS" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/machinery/light/broken{
+	dir = 4
+	},
+/turf/open/floor/facility/dark,
+/area/villains/player_room)
+"hb" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/machinery/light/broken,
+/turf/open/floor/facility/dark,
+/area/villains/player_room)
+"hA" = (
+/obj/structure/chair/sofa/right{
+	dir = 1
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/facility/halls,
+/area/villains/hallway)
+"hI" = (
+/obj/structure/chair/sofa{
+	dir = 1
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/facility/halls,
+/area/villains/hallway)
+"hN" = (
+/obj/structure/toilet{
+	dir = 4
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/item/trash/can,
+/turf/open/floor/noslip,
+/area/villains/hallway)
+"hP" = (
+/obj/structure/bookcase/random,
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/decal/cleanable/cobweb,
+/turf/open/floor/facility/halls,
+/area/villains/hallway)
+"ii" = (
+/obj/structure/chair/sofa/left{
+	dir = 8
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/facility/halls,
+/area/villains/hallway)
+"io" = (
+/obj/effect/turf_decal/siding/purple{
+	dir = 8
+	},
+/obj/effect/turf_decal/siding/purple{
+	dir = 4
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/chair/comfy{
+	color = "#b734eb";
+	dir = 8
+	},
+/turf/open/floor/facility/halls,
+/area/villains/trial_room)
+"iv" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/item/trash/popcorn,
+/turf/open/floor/facility/halls,
+/area/villains/hallway)
+"ix" = (
+/obj/effect/turf_decal/siding/purple,
+/obj/machinery/light/broken{
+	dir = 1
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/table/glass,
+/turf/open/floor/facility/halls,
+/area/villains/trial_room)
+"jq" = (
+/obj/machinery/light/broken,
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/item/trash/waffles,
+/turf/open/floor/facility/halls,
+/area/villains/hallway)
+"jF" = (
+/turf/open/floor/plasteel/elevatorshaft,
+/area/villains/hallway)
+"jL" = (
+/obj/effect/turf_decal/siding/thinplating{
+	dir = 1
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/decal/cleanable/insectguts,
+/turf/open/floor/facility/dark,
+/area/villains/player_room)
+"kA" = (
+/obj/effect/landmark/villains/room_door{
+	room_id = 10
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/facility/dark,
+/area/villains/player_room)
+"kK" = (
+/obj/effect/landmark/villains/item_spawn,
+/turf/open/floor/plasteel/elevatorshaft,
+/area/villains/hallway)
+"kM" = (
+/obj/effect/turf_decal/siding/purple{
+	dir = 6
+	},
+/obj/effect/turf_decal/siding/purple/corner{
+	dir = 1
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/facility/halls,
+/area/villains/trial_room)
+"kS" = (
+/obj/structure/chair/sofa/corner{
+	dir = 8
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/facility/halls,
+/area/villains/hallway)
+"kV" = (
+/obj/machinery/light/broken{
+	dir = 4
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/machinery/jukebox{
+	req_access = list()
+	},
+/turf/open/floor/facility/halls,
+/area/villains/hallway)
+"lq" = (
+/obj/structure/chair/sofa/corner,
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/decal/cleanable/cobweb/cobweb2,
+/turf/open/floor/facility/halls,
+/area/villains/hallway)
+"lB" = (
+/obj/structure/chair/sofa/left,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/facility/halls,
+/area/villains/hallway)
+"lD" = (
+/obj/effect/turf_decal/siding/purple{
+	dir = 9
+	},
+/obj/effect/turf_decal/siding/purple/corner,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/facility/halls,
+/area/villains/trial_room)
+"lL" = (
+/obj/structure/filingcabinet{
+	pixel_x = 1
+	},
+/obj/structure/filingcabinet{
+	pixel_x = 11
+	},
+/obj/structure/filingcabinet{
+	pixel_x = -10
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/facility/halls,
+/area/villains/hallway)
+"lO" = (
+/obj/structure/chair/sofa/right{
+	dir = 8
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/facility/halls,
+/area/villains/hallway)
+"lV" = (
+/obj/effect/turf_decal/siding/purple{
+	dir = 1
+	},
+/obj/effect/turf_decal/siding/purple,
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/chair/comfy{
+	color = "#b734eb";
+	dir = 1
+	},
+/turf/open/floor/facility/halls,
+/area/villains/trial_room)
+"mm" = (
+/obj/structure/sign/departments/info,
+/turf/closed/indestructible/reinforced,
+/area/villains/hallway)
+"mt" = (
+/obj/structure/filingcabinet{
+	pixel_x = 10
+	},
+/obj/structure/filingcabinet{
+	pixel_x = 1
+	},
+/obj/structure/filingcabinet{
+	pixel_x = -10
+	},
+/obj/machinery/light/broken{
+	dir = 8
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/facility/halls,
+/area/villains/hallway)
+"mu" = (
+/obj/machinery/light/broken,
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/facility/halls,
+/area/villains/hallway)
+"mD" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/decal/cleanable/blood/old,
+/turf/open/floor/facility/dark,
+/area/villains/player_room)
+"mX" = (
+/obj/machinery/light/broken{
+	dir = 8
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/decal/cleanable/cobweb,
+/turf/open/floor/facility/halls,
+/area/villains/hallway)
+"nd" = (
+/obj/effect/turf_decal/siding/thinplating{
+	dir = 4
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/item/trash/raisins,
+/turf/open/floor/facility/dark,
+/area/villains/player_room)
+"ng" = (
+/obj/structure/chair/sofa{
+	dir = 8
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/facility/halls,
+/area/villains/hallway)
+"nB" = (
+/obj/machinery/shower{
+	dir = 4
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/landmark/villains/item_spawn,
+/turf/open/floor/noslip,
+/area/villains/hallway)
+"nV" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/decal/cleanable/oil/slippery,
+/obj/effect/decal/cleanable/blood/old,
+/turf/open/floor/facility/halls,
+/area/villains/hallway)
+"nY" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/decal/cleanable/blood/gibs/old,
+/turf/open/floor/facility/halls,
+/area/villains/hallway)
+"or" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/machinery/light/broken{
+	dir = 8
+	},
+/turf/open/floor/facility/dark,
+/area/villains/player_room)
+"oD" = (
+/obj/machinery/light/broken{
+	dir = 8
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/facility/dark,
+/area/villains/player_room)
+"oN" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/decal/cleanable/garbage,
+/turf/open/floor/facility/halls,
+/area/villains/hallway)
+"oO" = (
+/obj/effect/decal/cleanable/blood/old,
+/turf/open/floor/plasteel/elevatorshaft,
+/area/villains/hallway)
+"pk" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/landmark/villains/item_spawn,
+/turf/open/floor/plasteel/showroomfloor,
+/area/villains/hallway)
+"pq" = (
+/obj/effect/turf_decal/siding/purple{
+	dir = 10
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/carpet/purple,
+/area/villains/hallway)
+"pu" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/decal/cleanable/cobweb/cobweb2,
+/turf/open/floor/facility/halls,
+/area/villains/hallway)
+"pA" = (
+/obj/effect/turf_decal/siding/thinplating{
+	dir = 4
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/decal/cleanable/garbage,
+/turf/open/floor/facility/dark,
+/area/villains/player_room)
+"pE" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/machinery/light/broken{
+	dir = 1
+	},
+/turf/open/floor/facility/dark,
+/area/villains/player_room)
+"pR" = (
+/obj/effect/turf_decal/siding/purple{
+	dir = 1
+	},
+/obj/effect/turf_decal/siding/purple,
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/chair/comfy{
+	color = "#b734eb"
+	},
+/turf/open/floor/facility/halls,
+/area/villains/trial_room)
+"pW" = (
+/turf/closed/indestructible/reinforced,
+/area/villains/trial_room)
+"qe" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/turf_decal/siding/thinplating{
+	dir = 8
+	},
+/obj/effect/decal/cleanable/xenoblood/xsplatter,
+/turf/open/floor/facility/dark,
+/area/villains/player_room)
+"qu" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/decal/cleanable/blood/gibs/old,
+/turf/open/floor/facility/dark,
+/area/villains/player_room)
+"qw" = (
+/obj/effect/turf_decal/bot_red,
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/landmark/villains/player_room{
+	room_id = 1
+	},
+/turf/open/floor/facility/dark,
+/area/villains/player_room)
+"qJ" = (
+/obj/structure/filingcabinet{
+	pixel_x = 10
+	},
+/obj/structure/filingcabinet{
+	pixel_x = 1
+	},
+/obj/structure/filingcabinet{
+	pixel_x = -10
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/facility/halls,
+/area/villains/hallway)
+"qW" = (
+/obj/effect/turf_decal/siding/purple{
+	dir = 1
+	},
+/obj/effect/turf_decal/siding/purple,
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/chair/comfy{
+	color = "#b734eb"
+	},
+/turf/open/floor/facility/halls,
+/area/villains/trial_room)
+"rc" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/landmark/villains/item_spawn,
+/turf/open/floor/facility/halls,
+/area/villains/hallway)
+"rk" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/table/wood/fancy/purple,
+/turf/open/floor/carpet/purple,
+/area/villains/trial_room)
+"rB" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/gibspawner/human/bodypartless,
+/turf/open/floor/facility/halls,
+/area/villains/hallway)
+"rL" = (
+/obj/effect/turf_decal/bot_red,
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/decal/cleanable/blood/old,
+/obj/effect/landmark/villains/player_room{
+	room_id = 7
+	},
+/turf/open/floor/facility/dark,
+/area/villains/player_room)
+"rY" = (
+/obj/structure/sign/departments/info,
+/turf/closed/indestructible/reinforced,
+/area/villains/player_room)
+"se" = (
+/obj/effect/turf_decal/siding/purple,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/facility/halls,
+/area/villains/trial_room)
+"sh" = (
+/obj/effect/turf_decal/siding/thinplating{
+	dir = 4
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/facility/dark,
+/area/villains/player_room)
+"so" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/landmark/villains/item_spawn,
+/obj/effect/landmark/villains/item_spawn,
+/obj/effect/landmark/villains/item_spawn,
+/obj/effect/landmark/villains/item_spawn,
+/turf/open/floor/facility/halls,
+/area/villains/hallway)
+"sA" = (
+/obj/effect/turf_decal/siding/purple/corner{
+	dir = 4
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/table/glass,
+/turf/open/floor/facility/halls,
+/area/villains/trial_room)
+"sI" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/item/trash/waffles,
+/turf/open/floor/facility/halls,
+/area/villains/hallway)
+"sP" = (
+/obj/machinery/light/broken{
+	dir = 1
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/decal/cleanable/cobweb,
+/turf/open/floor/facility/halls,
+/area/villains/hallway)
+"tw" = (
+/obj/effect/turf_decal/siding/thinplating,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/facility/dark,
+/area/villains/player_room)
+"uq" = (
+/obj/machinery/light/broken{
+	dir = 4
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/facility/dark,
+/area/villains/player_room)
+"uw" = (
+/obj/structure/chair/sofa{
+	dir = 6
+	},
+/obj/machinery/light/broken{
+	dir = 1
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/facility/halls,
+/area/villains/hallway)
+"ux" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/decal/cleanable/oil/slippery,
+/turf/open/floor/facility/halls,
+/area/villains/hallway)
+"uz" = (
+/obj/effect/turf_decal/siding/purple{
+	dir = 8
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/carpet/purple,
+/area/villains/hallway)
+"uN" = (
+/obj/machinery/light/broken,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/facility/dark,
+/area/villains/player_room)
+"vd" = (
+/turf/closed/mineral/ash_rock,
+/area/villains/hallway)
+"vA" = (
+/obj/structure/chair/sofa/left{
+	dir = 1
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/facility/halls,
+/area/villains/hallway)
+"vU" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/decal/cleanable/insectguts,
+/turf/open/floor/facility/dark,
+/area/villains/player_room)
+"wl" = (
+/obj/effect/landmark/villains/room_door{
+	room_id = 9
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/facility/dark,
+/area/villains/player_room)
+"ww" = (
+/obj/machinery/light/broken{
+	dir = 8
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/facility/halls,
+/area/villains/hallway)
+"wS" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/landmark/villains/item_spawn,
+/turf/open/floor/facility/halls,
+/area/villains/hallway)
+"xf" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/item/trash/can,
+/turf/open/floor/facility/halls,
+/area/villains/hallway)
+"xj" = (
+/obj/effect/turf_decal/bot_red,
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/landmark/villains/player_room{
+	room_id = 10
+	},
+/turf/open/floor/facility/dark,
+/area/villains/player_room)
+"xq" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/plasteel/showroomfloor,
+/area/villains/hallway)
+"xD" = (
+/obj/effect/turf_decal/siding/purple{
+	dir = 1
+	},
+/obj/machinery/light/broken,
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/table/glass,
+/turf/open/floor/facility/halls,
+/area/villains/trial_room)
+"xE" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/turf_decal/siding/thinplating{
+	dir = 8
+	},
+/turf/open/floor/facility/dark,
+/area/villains/player_room)
+"xO" = (
+/obj/effect/turf_decal/siding/purple{
+	dir = 4
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/carpet/purple,
+/area/villains/hallway)
+"xV" = (
+/obj/machinery/light/broken,
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/decal/cleanable/blood/old,
+/turf/open/floor/facility/halls,
+/area/villains/hallway)
+"yj" = (
+/obj/effect/turf_decal/bot_red,
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/landmark/villains/player_room{
+	room_id = 12
+	},
+/turf/open/floor/facility/dark,
+/area/villains/player_room)
+"yo" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/turf_decal/siding/purple{
+	dir = 9
+	},
+/turf/open/floor/facility/halls,
+/area/villains/trial_room)
+"yE" = (
+/obj/item/kirbyplants/photosynthetic{
+	anchored = 1
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/decal/cleanable/cobweb/cobweb2,
+/turf/open/floor/facility/halls,
+/area/villains/hallway)
+"yJ" = (
+/obj/effect/landmark/villains/room_door{
+	room_id = 2
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/facility/dark,
+/area/villains/player_room)
+"yN" = (
+/obj/structure/filingcabinet{
+	pixel_x = 10
+	},
+/obj/structure/filingcabinet{
+	pixel_x = 1
+	},
+/obj/structure/filingcabinet{
+	pixel_x = -10
+	},
+/obj/machinery/light/broken{
+	dir = 4
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/decal/cleanable/cobweb/cobweb2,
+/turf/open/floor/facility/halls,
+/area/villains/hallway)
+"yO" = (
+/obj/structure/bookcase/random,
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/facility/halls,
+/area/villains/hallway)
+"yU" = (
+/obj/structure/sign/poster/lobotomycorp/random,
+/turf/closed/indestructible/reinforced,
+/area/villains/hallway)
+"yY" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/carpet/purple,
+/area/villains/hallway)
+"Ag" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/closed/indestructible/reinforced,
+/area/villains/hallway)
+"Ak" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/decal/cleanable/blood/old,
+/turf/open/floor/facility/halls,
+/area/villains/hallway)
+"Au" = (
+/obj/structure/chair/sofa{
+	dir = 4
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/facility/halls,
+/area/villains/hallway)
+"Az" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/carpet/purple,
+/area/villains/trial_room)
+"AI" = (
+/obj/effect/landmark/villains/room_door{
+	room_id = 4
+	},
+/turf/open/floor/facility/dark,
+/area/villains/player_room)
+"AN" = (
+/obj/effect/turf_decal/bot_red,
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/landmark/villains/player_room{
+	room_id = 11
+	},
+/turf/open/floor/facility/dark,
+/area/villains/player_room)
+"Bl" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/turf_decal/siding/purple/corner{
+	dir = 1
+	},
+/turf/open/floor/facility/halls,
+/area/villains/trial_room)
+"Bt" = (
+/obj/machinery/light/broken,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/facility/halls,
+/area/villains/hallway)
+"BF" = (
+/obj/structure/sign/poster/lobotomycorp/attributes,
+/turf/closed/indestructible/reinforced,
+/area/villains/hallway)
+"Ce" = (
+/obj/structure/sink{
+	dir = 8;
+	pixel_x = 14;
+	pixel_y = 2
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/decal/cleanable/blood/old,
+/turf/open/floor/plasteel/showroomfloor,
+/area/villains/hallway)
+"Ci" = (
+/obj/structure/chair/sofa{
+	dir = 6
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/facility/halls,
+/area/villains/hallway)
+"Cr" = (
+/obj/structure/filingcabinet{
+	pixel_x = 1
+	},
+/obj/structure/filingcabinet{
+	pixel_x = 11
+	},
+/obj/structure/filingcabinet{
+	pixel_x = -10
+	},
+/obj/machinery/light/broken{
+	dir = 8
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/facility/halls,
+/area/villains/hallway)
+"CA" = (
+/obj/machinery/light/broken{
+	dir = 1
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/decal/cleanable/cobweb/cobweb2,
+/turf/open/floor/facility/halls,
+/area/villains/hallway)
+"CX" = (
+/obj/effect/landmark/villains/room_door{
+	room_id = 1
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/facility/dark,
+/area/villains/player_room)
+"Dg" = (
+/obj/machinery/light/broken{
+	dir = 4
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/facility/dark,
+/area/villains/player_room)
+"DC" = (
+/obj/structure/bookcase/random,
+/obj/machinery/light/broken{
+	dir = 1
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/facility/halls,
+/area/villains/hallway)
+"DJ" = (
+/obj/effect/turf_decal/siding/thinplating,
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/decal/cleanable/garbage,
+/turf/open/floor/facility/dark,
+/area/villains/player_room)
+"DU" = (
+/obj/structure/chair/sofa/left{
+	dir = 4
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/facility/halls,
+/area/villains/hallway)
+"DV" = (
+/obj/effect/turf_decal/siding/purple{
+	dir = 4
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/table/glass,
+/turf/open/floor/facility/halls,
+/area/villains/trial_room)
+"Eg" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/turf_decal/siding/purple{
+	dir = 5
+	},
+/turf/open/floor/facility/halls,
+/area/villains/trial_room)
+"Es" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/table/wood/fancy/purple,
+/turf/open/floor/carpet/purple,
+/area/villains/trial_room)
+"EN" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/item/trash/waffles,
+/turf/open/floor/facility/halls,
+/area/villains/hallway)
+"EU" = (
+/obj/structure/chair/sofa/corner{
+	dir = 1
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/facility/halls,
+/area/villains/hallway)
+"Fl" = (
+/obj/effect/turf_decal/bot_red,
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/landmark/villains/player_room{
+	room_id = 6
+	},
+/turf/open/floor/facility/dark,
+/area/villains/player_room)
+"Fx" = (
+/obj/effect/turf_decal/siding/purple{
+	dir = 6
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/carpet/purple,
+/area/villains/hallway)
+"FI" = (
+/obj/effect/decal/cleanable/blood/old,
+/obj/effect/landmark/villains/item_spawn,
+/turf/open/floor/plasteel/elevatorshaft,
+/area/villains/hallway)
+"FK" = (
+/obj/machinery/light/broken{
+	dir = 4
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/facility/halls,
+/area/villains/hallway)
+"FR" = (
+/obj/structure/bookcase/random,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/facility/halls,
+/area/villains/hallway)
+"Gd" = (
+/obj/machinery/light/broken,
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/decal/cleanable/garbage,
+/turf/open/floor/facility/dark,
+/area/villains/player_room)
+"GA" = (
+/obj/effect/turf_decal/bot_red,
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/landmark/villains/player_room{
+	room_id = 2
+	},
+/turf/open/floor/facility/dark,
+/area/villains/player_room)
+"GB" = (
+/obj/effect/turf_decal/bot_red,
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/landmark/villains/player_room{
+	room_id = 9
+	},
+/turf/open/floor/facility/dark,
+/area/villains/player_room)
+"GJ" = (
+/obj/structure/toilet{
+	dir = 8
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/noslip,
+/area/villains/hallway)
+"GQ" = (
+/obj/structure/bookcase/random,
+/obj/machinery/light/broken,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/facility/halls,
+/area/villains/hallway)
+"Hk" = (
+/obj/effect/turf_decal/siding/thinplating,
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/item/trash/chips,
+/turf/open/floor/facility/dark,
+/area/villains/player_room)
+"HC" = (
+/obj/effect/turf_decal/siding/purple{
+	dir = 4
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/facility/halls,
+/area/villains/trial_room)
+"HQ" = (
+/turf/open/space/basic,
+/area/space)
+"In" = (
+/obj/effect/turf_decal/siding/thinplating{
+	dir = 1
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/item/trash/popcorn,
+/turf/open/floor/facility/dark,
+/area/villains/player_room)
+"Is" = (
+/turf/closed/indestructible/reinforced,
+/area/villains/player_room)
+"Ix" = (
+/obj/effect/turf_decal/siding/purple{
+	dir = 8
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/table/glass,
+/turf/open/floor/facility/halls,
+/area/villains/trial_room)
+"IL" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/facility/dark,
+/area/villains/player_room)
+"IM" = (
+/obj/machinery/door/airlock/highsecurity{
+	name = "Information Department"
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/facility/halls,
+/area/villains/hallway)
+"IV" = (
+/obj/effect/turf_decal/siding/thinplating{
+	dir = 1
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/facility/dark,
+/area/villains/player_room)
+"Jk" = (
+/obj/effect/turf_decal/bot_red,
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/landmark/villains/player_room{
+	room_id = 3
+	},
+/turf/open/floor/facility/dark,
+/area/villains/player_room)
+"JA" = (
+/obj/effect/turf_decal/siding/purple{
+	dir = 9
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/carpet/purple,
+/area/villains/hallway)
+"JE" = (
+/turf/closed/indestructible/rock,
+/area/space)
+"Kp" = (
+/obj/structure/filingcabinet{
+	pixel_x = 1
+	},
+/obj/structure/filingcabinet{
+	pixel_x = 11
+	},
+/obj/structure/filingcabinet{
+	pixel_x = -10
+	},
+/obj/machinery/light/broken{
+	dir = 4
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/facility/halls,
+/area/villains/hallway)
+"Kx" = (
+/obj/structure/sign/poster/lobotomycorp/random,
+/turf/closed/indestructible/reinforced,
+/area/villains/player_room)
+"KG" = (
+/obj/effect/landmark/villains/room_door{
+	room_id = 6
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/facility/dark,
+/area/villains/player_room)
+"KV" = (
+/obj/effect/turf_decal/siding/purple/corner,
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/decal/cleanable/cobweb,
+/obj/effect/decal/cleanable/garbage,
+/obj/structure/table/glass,
+/turf/open/floor/facility/halls,
+/area/villains/trial_room)
+"Ly" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/decal/cleanable/blood/old,
+/obj/item/trash/semki,
+/turf/open/floor/facility/halls,
+/area/villains/hallway)
+"LF" = (
+/obj/effect/turf_decal/siding/purple{
+	dir = 1
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/carpet/purple,
+/area/villains/hallway)
+"Ma" = (
+/turf/closed/indestructible/reinforced,
+/area/villains/hallway)
+"MB" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/item/trash/raisins,
+/turf/open/floor/plasteel/showroomfloor,
+/area/villains/hallway)
+"ML" = (
+/obj/effect/landmark/villains/room_door{
+	room_id = 8
+	},
+/turf/open/floor/facility/dark,
+/area/villains/player_room)
+"Nm" = (
+/obj/machinery/shower{
+	dir = 8
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/noslip,
+/area/villains/hallway)
+"NG" = (
+/obj/effect/turf_decal/siding/purple{
+	dir = 6
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/carpet/purple,
+/area/villains/hallway)
+"NX" = (
+/obj/structure/bookcase/random,
+/obj/machinery/light/broken,
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/decal/cleanable/garbage,
+/turf/open/floor/facility/halls,
+/area/villains/hallway)
+"Oq" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/sign/poster/lobotomycorp/random,
+/turf/closed/indestructible/reinforced,
+/area/villains/hallway)
+"Os" = (
+/obj/effect/turf_decal/siding/purple{
+	dir = 1
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/facility/halls,
+/area/villains/trial_room)
+"Ov" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/item/trash/raisins,
+/turf/open/floor/facility/dark,
+/area/villains/player_room)
+"Oy" = (
+/obj/effect/turf_decal/bot_red,
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/landmark/villains/player_room{
+	room_id = 4
+	},
+/turf/open/floor/facility/dark,
+/area/villains/player_room)
+"Pa" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/decal/cleanable/blood/gibs/old,
+/turf/open/floor/facility/halls,
+/area/villains/hallway)
+"Pe" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/decal/cleanable/blood/gibs/old,
+/obj/item/trash/popcorn,
+/turf/open/floor/facility/halls,
+/area/villains/hallway)
+"Po" = (
+/obj/effect/turf_decal/siding/thinplating{
+	dir = 1
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/facility/dark,
+/area/villains/player_room)
+"Qb" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/turf_decal/siding/purple{
+	dir = 6
+	},
+/turf/open/floor/facility/halls,
+/area/villains/trial_room)
+"QB" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/decal/cleanable/blood/old,
+/turf/open/floor/facility/halls,
+/area/villains/hallway)
+"Rb" = (
+/obj/structure/chair/sofa/right,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/facility/halls,
+/area/villains/hallway)
+"Rj" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/turf_decal/siding/purple/corner{
+	dir = 8
+	},
+/turf/open/floor/facility/halls,
+/area/villains/trial_room)
+"Rr" = (
+/obj/effect/turf_decal/bot_red,
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/landmark/villains/player_room{
+	room_id = 8
+	},
+/turf/open/floor/facility/dark,
+/area/villains/player_room)
+"RW" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/facility/dark,
+/area/villains/player_room)
+"RZ" = (
+/obj/machinery/shower{
+	dir = 4
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/noslip,
+/area/villains/hallway)
+"Sh" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/item/trash/sosjerky,
+/turf/open/floor/facility/dark,
+/area/villains/player_room)
+"Sj" = (
+/obj/effect/turf_decal/siding/purple{
+	dir = 8
+	},
+/obj/effect/turf_decal/siding/purple{
+	dir = 4
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/chair/comfy{
+	color = "#b734eb";
+	dir = 4
+	},
+/turf/open/floor/facility/halls,
+/area/villains/trial_room)
+"Sk" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/decal/cleanable/blood/old,
+/obj/item/trash/can,
+/turf/open/floor/facility/halls,
+/area/villains/hallway)
+"Sw" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/item/trash/semki,
+/turf/open/floor/facility/halls,
+/area/villains/hallway)
+"Ti" = (
+/obj/effect/turf_decal/siding/purple{
+	dir = 10
+	},
+/obj/effect/turf_decal/siding/purple/corner{
+	dir = 4
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/facility/halls,
+/area/villains/trial_room)
+"Tm" = (
+/obj/structure/sink{
+	dir = 4;
+	pixel_x = 14;
+	pixel_y = 2
+	},
+/turf/closed/indestructible/reinforced,
+/area/villains/hallway)
+"TG" = (
+/obj/machinery/light/broken{
+	dir = 1
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/facility/dark,
+/area/villains/player_room)
+"TI" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/closed/indestructible/reinforced,
+/area/villains/hallway)
+"TL" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/decal/cleanable/insectguts,
+/obj/effect/decal/cleanable/blood/gibs/old,
+/turf/open/floor/facility/halls,
+/area/villains/hallway)
+"TN" = (
+/obj/effect/turf_decal/siding/purple/corner{
+	dir = 8
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/table/glass,
+/turf/open/floor/facility/halls,
+/area/villains/trial_room)
+"Ul" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/decal/cleanable/oil/slippery,
+/obj/effect/decal/cleanable/insectguts,
+/turf/open/floor/facility/halls,
+/area/villains/hallway)
+"Uo" = (
+/obj/effect/turf_decal/siding/thinplating{
+	dir = 4
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/decal/cleanable/xenoblood/xsplatter,
+/turf/open/floor/facility/dark,
+/area/villains/player_room)
+"Uv" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/machinery/light/broken,
+/obj/effect/decal/cleanable/xenoblood/xsplatter,
+/turf/open/floor/facility/dark,
+/area/villains/player_room)
+"UB" = (
+/obj/machinery/light/broken{
+	dir = 1
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/facility/halls,
+/area/villains/hallway)
+"UG" = (
+/turf/closed/indestructible/reinforced,
+/area/space)
+"UH" = (
+/obj/machinery/door/airlock/highsecurity{
+	name = "Information Department"
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/facility/halls,
+/area/villains/trial_room)
+"UT" = (
+/obj/effect/landmark/villains/room_door{
+	room_id = 12
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/facility/dark,
+/area/villains/player_room)
+"UU" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/item/trash/raisins,
+/turf/open/floor/facility/halls,
+/area/villains/hallway)
+"Vi" = (
+/obj/effect/turf_decal/bot_red,
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/landmark/villains/player_room{
+	room_id = 5
+	},
+/turf/open/floor/facility/dark,
+/area/villains/player_room)
+"VE" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/turf_decal/siding/thinplating{
+	dir = 8
+	},
+/obj/effect/decal/cleanable/blood/old,
+/turf/open/floor/facility/dark,
+/area/villains/player_room)
+"VK" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/decal/cleanable/blood/gibs/old,
+/obj/item/trash/can,
+/turf/open/floor/facility/halls,
+/area/villains/hallway)
+"VP" = (
+/obj/structure/chair/sofa{
+	dir = 1
+	},
+/obj/machinery/light/broken,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/facility/halls,
+/area/villains/hallway)
+"VZ" = (
+/obj/effect/turf_decal/siding/purple{
+	dir = 1
+	},
+/obj/effect/turf_decal/siding/purple,
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/chair/comfy{
+	color = "#b734eb";
+	dir = 1
+	},
+/turf/open/floor/facility/halls,
+/area/villains/trial_room)
+"Wl" = (
+/obj/effect/decal/cleanable/cobweb/cobweb2,
+/turf/closed/mineral/ash_rock,
+/area/villains/hallway)
+"Wz" = (
+/obj/effect/turf_decal/siding/purple/corner{
+	dir = 1
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/table/glass,
+/turf/open/floor/facility/halls,
+/area/villains/trial_room)
+"WF" = (
+/obj/effect/turf_decal/siding/purple,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/carpet/purple,
+/area/villains/hallway)
+"WM" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/decal/cleanable/garbage,
+/turf/open/floor/facility/halls,
+/area/villains/hallway)
+"WX" = (
+/obj/structure/sign/departments/restroom,
+/turf/closed/indestructible/reinforced,
+/area/villains/hallway)
+"Xq" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/item/trash/chips,
+/turf/open/floor/facility/dark,
+/area/villains/player_room)
+"XB" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/machinery/light/broken{
+	dir = 1
+	},
+/obj/effect/decal/cleanable/garbage,
+/turf/open/floor/facility/dark,
+/area/villains/player_room)
+"XG" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/landmark/villains/main_room,
+/turf/open/floor/carpet/purple,
+/area/villains/trial_room)
+"XR" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/facility/halls,
+/area/villains/hallway)
+"YN" = (
+/obj/effect/turf_decal/siding/purple{
+	dir = 5
+	},
+/obj/effect/turf_decal/siding/purple/corner{
+	dir = 8
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/facility/halls,
+/area/villains/trial_room)
+"YP" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/facility/halls,
+/area/villains/hallway)
+"YU" = (
+/obj/effect/landmark/villains/room_door{
+	room_id = 11
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/facility/dark,
+/area/villains/player_room)
+"Zn" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/closed/indestructible/reinforced,
+/area/villains/trial_room)
+"ZQ" = (
+/obj/effect/landmark/villains/room_door{
+	room_id = 5
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/facility/dark,
+/area/villains/player_room)
+
+(1,1,1) = {"
+HQ
+HQ
+HQ
+HQ
+HQ
+HQ
+HQ
+HQ
+HQ
+HQ
+HQ
+HQ
+HQ
+Is
+Is
+Is
+rY
+Is
+Is
+Is
+HQ
+HQ
+HQ
+HQ
+HQ
+HQ
+HQ
+HQ
+HQ
+Is
+Is
+Is
+rY
+Is
+Is
+Is
+HQ
+HQ
+HQ
+HQ
+HQ
+HQ
+HQ
+HQ
+HQ
+HQ
+HQ
+HQ
+HQ
+"}
+(2,1,1) = {"
+HQ
+HQ
+JE
+JE
+JE
+JE
+JE
+JE
+JE
+JE
+JE
+JE
+JE
+Is
+IL
+IL
+or
+IL
+eo
+Is
+JE
+JE
+JE
+JE
+JE
+JE
+JE
+JE
+JE
+Is
+IL
+Sh
+or
+IL
+IL
+Is
+JE
+JE
+JE
+JE
+JE
+JE
+JE
+JE
+JE
+JE
+JE
+HQ
+HQ
+"}
+(3,1,1) = {"
+HQ
+HQ
+JE
+JE
+JE
+JE
+JE
+JE
+JE
+JE
+JE
+JE
+JE
+Is
+XB
+IL
+Rr
+IL
+hb
+Is
+JE
+JE
+Ma
+cO
+cO
+cO
+Ma
+JE
+JE
+Is
+pE
+IL
+rL
+db
+hb
+Is
+JE
+JE
+JE
+JE
+JE
+JE
+JE
+JE
+JE
+JE
+JE
+HQ
+HQ
+"}
+(4,1,1) = {"
+HQ
+HQ
+JE
+JE
+JE
+JE
+JE
+JE
+JE
+JE
+JE
+JE
+JE
+Is
+IL
+IL
+IL
+IL
+db
+Is
+JE
+JE
+Ma
+vd
+vd
+vd
+Ma
+JE
+JE
+Is
+IL
+IL
+IL
+IL
+IL
+Is
+JE
+JE
+JE
+JE
+JE
+JE
+JE
+JE
+JE
+JE
+JE
+HQ
+HQ
+"}
+(5,1,1) = {"
+HQ
+HQ
+JE
+JE
+JE
+JE
+JE
+JE
+JE
+JE
+JE
+JE
+JE
+Is
+xE
+VE
+xE
+xE
+xE
+Is
+JE
+JE
+Ma
+Wl
+jF
+FI
+Ma
+JE
+JE
+Is
+qe
+xE
+xE
+xE
+xE
+Is
+JE
+JE
+JE
+JE
+JE
+JE
+JE
+JE
+JE
+JE
+JE
+HQ
+HQ
+"}
+(6,1,1) = {"
+HQ
+HQ
+JE
+JE
+JE
+JE
+JE
+JE
+JE
+JE
+JE
+JE
+JE
+Is
+IL
+IL
+IL
+Xq
+IL
+Is
+JE
+JE
+Ma
+Ag
+IM
+Ag
+Ma
+JE
+JE
+Is
+db
+IL
+IL
+IL
+IL
+Is
+JE
+JE
+JE
+JE
+JE
+JE
+JE
+JE
+JE
+JE
+JE
+HQ
+HQ
+"}
+(7,1,1) = {"
+HQ
+HQ
+JE
+JE
+Ma
+Ma
+Ma
+Ma
+Ma
+Ma
+Ma
+Ma
+Ma
+Is
+Is
+Is
+ML
+Is
+Is
+Is
+Ma
+Ma
+Ma
+gf
+XR
+gf
+Ma
+Ma
+BF
+Is
+Is
+Is
+dt
+Is
+Is
+Is
+Ma
+Ma
+Ma
+Ma
+Ma
+Ma
+Ma
+Ma
+Ma
+JE
+JE
+HQ
+HQ
+"}
+(8,1,1) = {"
+HQ
+HQ
+JE
+JE
+Ma
+cJ
+Au
+cY
+bs
+XR
+Ma
+ww
+XR
+XR
+XR
+oN
+XR
+XR
+XR
+XR
+XR
+UU
+ww
+XR
+XR
+XR
+ww
+XR
+XR
+XR
+XR
+XR
+aE
+XR
+XR
+XR
+XR
+ww
+Ma
+gi
+DU
+cY
+Au
+EU
+Ma
+JE
+JE
+HQ
+HQ
+"}
+(9,1,1) = {"
+HQ
+HQ
+JE
+JE
+Ma
+Ci
+JA
+uz
+pq
+XR
+IM
+XR
+XR
+YP
+XR
+fn
+XR
+XR
+XR
+XR
+XR
+XR
+XR
+XR
+XR
+XR
+XR
+XR
+XR
+XR
+XR
+YP
+aE
+XR
+XR
+XR
+XR
+XR
+IM
+XR
+JA
+uz
+pq
+hI
+mm
+JE
+JE
+HQ
+HQ
+"}
+(10,1,1) = {"
+HQ
+HQ
+JE
+JE
+mm
+uw
+LF
+yY
+WF
+Bt
+Ma
+FK
+XR
+XR
+XR
+iv
+XR
+XR
+XR
+XR
+XR
+XR
+FK
+XR
+XR
+XR
+FK
+XR
+XR
+XR
+oN
+XR
+QB
+XR
+XR
+XR
+XR
+FK
+Ma
+XR
+LF
+yY
+WF
+VP
+Ma
+JE
+JE
+HQ
+HQ
+"}
+(11,1,1) = {"
+HQ
+HQ
+JE
+JE
+Ma
+lB
+fx
+xO
+NG
+XR
+Ma
+Ma
+Ma
+Ma
+Ma
+UB
+VK
+xV
+Ma
+Ma
+Ma
+Ma
+Ma
+UB
+XR
+Bt
+Ma
+Ma
+Ma
+Ma
+Ma
+UB
+XR
+Bt
+Ma
+Ma
+Ma
+Ma
+Ma
+rc
+fx
+xO
+NG
+hA
+Ma
+JE
+JE
+HQ
+HQ
+"}
+(12,1,1) = {"
+HQ
+HQ
+JE
+JE
+Ma
+pu
+XR
+XR
+XR
+rc
+Ma
+JE
+JE
+JE
+Ma
+XR
+XR
+XR
+Ma
+JE
+JE
+JE
+Ma
+XR
+fn
+XR
+Ma
+JE
+JE
+JE
+Ma
+XR
+XR
+XR
+Ma
+JE
+JE
+JE
+Ma
+XR
+XR
+XR
+XR
+XR
+Ma
+JE
+JE
+HQ
+HQ
+"}
+(13,1,1) = {"
+HQ
+HQ
+JE
+JE
+Ma
+Ma
+Ma
+Ma
+ef
+Ma
+Ma
+Ma
+JE
+JE
+Ma
+XR
+YP
+sI
+Ma
+JE
+JE
+Ma
+Ma
+Ag
+IM
+Ag
+Ma
+Ma
+JE
+JE
+Ma
+XR
+XR
+XR
+Ma
+JE
+JE
+Ma
+Ma
+Ag
+IM
+Oq
+Ma
+Ma
+Ma
+JE
+JE
+HQ
+HQ
+"}
+(14,1,1) = {"
+HQ
+HQ
+JE
+JE
+JE
+Ma
+hP
+XR
+XR
+XR
+Cr
+Ma
+Ma
+Ma
+Ma
+XR
+XR
+XR
+Ag
+Ag
+Ag
+Ma
+XR
+XR
+XR
+XR
+so
+Ma
+Ma
+Ma
+Ma
+XR
+XR
+XR
+Ma
+Ma
+Ma
+Ma
+mt
+oN
+XR
+XR
+FR
+Ma
+JE
+JE
+JE
+HQ
+HQ
+"}
+(15,1,1) = {"
+HQ
+HQ
+JE
+JE
+JE
+Ma
+FR
+JA
+uz
+pq
+lL
+Ma
+XR
+ww
+XR
+XR
+XR
+XR
+nY
+XR
+XR
+Ma
+XR
+JA
+uz
+pq
+XR
+Ma
+gi
+XR
+XR
+XR
+XR
+XR
+XR
+gh
+XR
+Ma
+qJ
+JA
+uz
+pq
+FR
+Ma
+JE
+JE
+JE
+HQ
+HQ
+"}
+(16,1,1) = {"
+HQ
+HQ
+JE
+JE
+JE
+mm
+DC
+LF
+yY
+WF
+XR
+ef
+XR
+XR
+XR
+XR
+aE
+XR
+XR
+XR
+XR
+ef
+XR
+LF
+yY
+WF
+XR
+IM
+XR
+XR
+XR
+XR
+XR
+XR
+aE
+XR
+XR
+IM
+XR
+LF
+yY
+WF
+GQ
+mm
+JE
+JE
+JE
+HQ
+HQ
+"}
+(17,1,1) = {"
+HQ
+HQ
+JE
+JE
+JE
+Ma
+FR
+fx
+xO
+NG
+lL
+Ma
+XR
+YP
+YP
+XR
+XR
+XR
+XR
+XR
+XR
+Ma
+XR
+fx
+dD
+Fx
+XR
+Ma
+XR
+XR
+XR
+XR
+Ak
+XR
+XR
+XR
+XR
+Ma
+qJ
+fx
+xO
+NG
+FR
+Ma
+JE
+JE
+JE
+HQ
+HQ
+"}
+(18,1,1) = {"
+HQ
+HQ
+JE
+JE
+JE
+Ma
+bn
+XR
+XR
+XR
+Kp
+Ma
+YP
+YP
+YP
+Ma
+Ma
+Ma
+Ma
+Ma
+Ma
+Ma
+XR
+XR
+XR
+gf
+kV
+Ma
+Ma
+Ma
+yU
+Ma
+Ma
+Ma
+XR
+XR
+XR
+Ma
+yN
+XR
+XR
+XR
+FR
+Ma
+JE
+JE
+JE
+HQ
+HQ
+"}
+(19,1,1) = {"
+Is
+Is
+Is
+rY
+Is
+Is
+Is
+Ma
+IM
+Ma
+Ma
+Ma
+XR
+XR
+XR
+Ma
+JE
+JE
+JE
+JE
+JE
+Ma
+Ma
+Ag
+IM
+Ag
+Ma
+UG
+JE
+JE
+JE
+JE
+JE
+Ma
+XR
+XR
+XR
+Ma
+Ma
+Ag
+IM
+Ag
+Is
+Is
+Is
+rY
+Is
+Is
+Is
+"}
+(20,1,1) = {"
+Is
+IL
+IL
+oD
+IV
+IL
+Is
+sP
+XR
+XR
+XR
+Ma
+XR
+XR
+XR
+Is
+Is
+Is
+Is
+Is
+Is
+Is
+XR
+XR
+XR
+XR
+XR
+Is
+Is
+Is
+Is
+Is
+Is
+Is
+XR
+XR
+Bt
+Ma
+gi
+XR
+YP
+mu
+Is
+IL
+tw
+oD
+IL
+IL
+Is
+"}
+(21,1,1) = {"
+Is
+IL
+RW
+IL
+Po
+IL
+Is
+XR
+XR
+XR
+XR
+Ma
+sI
+XR
+XR
+Is
+IL
+tw
+oD
+IL
+IL
+Is
+XR
+XR
+XR
+XR
+XR
+Is
+IL
+IL
+oD
+IV
+IL
+Is
+XR
+XR
+XR
+Ma
+oN
+XR
+YP
+YP
+Is
+IL
+Hk
+IL
+IL
+IL
+Is
+"}
+(22,1,1) = {"
+Is
+TG
+qw
+IL
+cx
+IL
+CX
+XR
+XR
+XR
+XR
+Ma
+XR
+XR
+XR
+Is
+IL
+tw
+IL
+IL
+IL
+Is
+XR
+XR
+Pe
+XR
+Ak
+Is
+IL
+RW
+IL
+Po
+IL
+Is
+XR
+XR
+XR
+Ma
+YP
+XR
+YP
+YP
+KG
+IL
+tw
+IL
+Fl
+Gd
+Is
+"}
+(23,1,1) = {"
+Is
+IL
+RW
+IL
+IV
+IL
+Is
+XR
+iv
+aE
+XR
+Ma
+XR
+XR
+XR
+wl
+IL
+tw
+IL
+GB
+Gd
+Is
+UB
+XR
+XR
+XR
+jq
+Is
+TG
+yj
+IL
+jL
+IL
+UT
+XR
+XR
+XR
+Ma
+xf
+XR
+QB
+YP
+Is
+IL
+tw
+vU
+IL
+IL
+Is
+"}
+(24,1,1) = {"
+Is
+db
+qu
+Dg
+IV
+IL
+Is
+XR
+XR
+XR
+XR
+XR
+Ak
+xf
+oN
+Is
+IL
+tw
+vU
+IL
+IL
+Is
+XR
+XR
+XR
+XR
+XR
+Is
+IL
+RW
+IL
+In
+IL
+Is
+XR
+XR
+XR
+ww
+XR
+XR
+XR
+aE
+Is
+IL
+tw
+uq
+IL
+db
+Is
+"}
+(25,1,1) = {"
+Is
+Is
+Is
+Is
+Is
+Is
+Is
+UB
+Ak
+YP
+XR
+XR
+Sw
+XR
+XR
+Is
+IL
+tw
+uq
+IL
+db
+Is
+pW
+Zn
+UH
+Zn
+pW
+Is
+db
+qu
+Dg
+IV
+db
+Is
+XR
+XR
+XR
+XR
+XR
+Ak
+nY
+Bt
+Is
+Is
+Is
+Is
+Is
+Is
+Is
+"}
+(26,1,1) = {"
+HQ
+HQ
+JE
+JE
+JE
+JE
+Ma
+XR
+XR
+nV
+XR
+XR
+XR
+XR
+XR
+Is
+Is
+Is
+rY
+Is
+Is
+Is
+co
+HC
+HC
+HC
+eX
+Is
+Is
+Is
+rY
+Is
+Is
+Is
+XR
+XR
+XR
+XR
+fn
+XR
+XR
+XR
+Ma
+JE
+JE
+JE
+JE
+HQ
+HQ
+"}
+(27,1,1) = {"
+HQ
+HQ
+JE
+JE
+JE
+JE
+Ma
+XR
+XR
+XR
+XR
+XR
+XR
+XR
+FK
+Ma
+JE
+JE
+JE
+pW
+KV
+DV
+Qb
+Az
+Az
+Az
+Eg
+DV
+sA
+pW
+JE
+JE
+JE
+Ma
+FK
+XR
+XR
+XR
+XR
+XR
+XR
+XR
+Ma
+JE
+JE
+JE
+JE
+HQ
+HQ
+"}
+(28,1,1) = {"
+HQ
+HQ
+JE
+JE
+JE
+JE
+Ma
+Ma
+IM
+Ma
+Ma
+Ma
+Ma
+Ma
+Ma
+Ma
+yU
+Ma
+pW
+pW
+ix
+Az
+Az
+Az
+Az
+Az
+Az
+Az
+xD
+pW
+pW
+Ma
+Ma
+Ma
+Ma
+Ma
+Ma
+Ma
+Ma
+Ag
+IM
+Ag
+Ma
+JE
+JE
+JE
+JE
+HQ
+HQ
+"}
+(29,1,1) = {"
+HQ
+HQ
+JE
+JE
+JE
+JE
+Ma
+gi
+YP
+XR
+XR
+XR
+Ma
+ww
+XR
+XR
+XR
+wS
+pW
+co
+Qb
+Az
+lD
+Sj
+Sj
+Sj
+Ti
+Az
+Eg
+eX
+pW
+XR
+XR
+XR
+XR
+ww
+Ma
+XR
+XR
+XR
+XR
+oN
+Ma
+Ma
+Ma
+Ma
+Ma
+HQ
+HQ
+"}
+(30,1,1) = {"
+HQ
+HQ
+Ma
+Ma
+Tm
+Ma
+Ma
+XR
+JA
+uz
+pq
+XR
+Ma
+XR
+XR
+XR
+XR
+XR
+pW
+se
+Az
+Az
+qW
+fg
+fg
+fg
+VZ
+Az
+Az
+Os
+pW
+XR
+XR
+XR
+XR
+XR
+Ma
+XR
+JA
+uz
+pq
+XR
+WX
+RZ
+hN
+nB
+Ma
+HQ
+HQ
+"}
+(31,1,1) = {"
+HQ
+HQ
+yU
+pk
+MB
+xq
+IM
+XR
+LF
+yY
+WF
+XR
+IM
+XR
+XR
+xf
+XR
+fn
+fy
+se
+Az
+XG
+pR
+rk
+fg
+Es
+lV
+Az
+Az
+Os
+fy
+XR
+xf
+YP
+XR
+XR
+IM
+XR
+LF
+yY
+WF
+XR
+IM
+xq
+Ce
+xq
+yU
+HQ
+HQ
+"}
+(32,1,1) = {"
+HQ
+HQ
+Ma
+Nm
+GJ
+Nm
+WX
+XR
+fx
+xO
+NG
+XR
+Ma
+XR
+XR
+XR
+XR
+XR
+pW
+se
+Az
+Az
+pR
+Es
+Es
+Es
+lV
+Az
+Az
+Os
+pW
+XR
+XR
+XR
+XR
+XR
+Ma
+XR
+fx
+xO
+NG
+XR
+Ma
+Ma
+Ma
+Ma
+Ma
+HQ
+HQ
+"}
+(33,1,1) = {"
+HQ
+HQ
+Ma
+Ma
+Ma
+Ma
+Ma
+XR
+XR
+XR
+XR
+XR
+Ma
+ew
+oN
+YP
+XR
+XR
+pW
+Rj
+gn
+Az
+YN
+io
+io
+io
+kM
+Az
+yo
+Bl
+pW
+rc
+XR
+XR
+sI
+FK
+Ma
+XR
+XR
+XR
+XR
+XR
+Ma
+JE
+JE
+JE
+JE
+HQ
+HQ
+"}
+(34,1,1) = {"
+HQ
+HQ
+JE
+JE
+JE
+JE
+Ma
+Ma
+IM
+Ma
+Ma
+Ma
+Ma
+Ma
+Ma
+Ma
+Ma
+Ma
+pW
+pW
+ix
+Az
+Az
+Az
+Az
+Az
+Az
+Az
+xD
+pW
+pW
+Ma
+Ma
+Ma
+Ma
+Ma
+Ma
+Ma
+Ma
+Ag
+IM
+Ag
+Ma
+JE
+JE
+JE
+JE
+HQ
+HQ
+"}
+(35,1,1) = {"
+HQ
+HQ
+JE
+JE
+JE
+JE
+Ma
+XR
+XR
+XR
+XR
+XR
+XR
+XR
+ww
+Ma
+JE
+JE
+JE
+pW
+TN
+Ix
+gn
+Az
+Az
+Az
+yo
+Ix
+Wz
+pW
+JE
+JE
+JE
+Ma
+mX
+XR
+XR
+XR
+XR
+XR
+XR
+XR
+Ma
+JE
+JE
+JE
+JE
+HQ
+HQ
+"}
+(36,1,1) = {"
+HQ
+HQ
+JE
+JE
+JE
+JE
+Ma
+XR
+XR
+XR
+XR
+XR
+XR
+XR
+XR
+Is
+Is
+Is
+rY
+Is
+Is
+Is
+Rj
+cE
+cE
+cE
+Bl
+Is
+Is
+Is
+rY
+Is
+Is
+Is
+XR
+XR
+XR
+YP
+YP
+XR
+YP
+XR
+Ma
+JE
+JE
+JE
+JE
+HQ
+HQ
+"}
+(37,1,1) = {"
+Is
+Is
+Is
+Is
+Is
+Is
+Is
+UB
+XR
+XR
+Ak
+XR
+XR
+Ak
+XR
+Is
+fC
+tw
+oD
+IL
+IL
+Is
+pW
+Zn
+UH
+Zn
+pW
+Is
+IL
+IL
+oD
+IV
+IL
+Is
+XR
+XR
+XR
+XR
+XR
+XR
+gp
+Bt
+Is
+Is
+Is
+Is
+Is
+Is
+Is
+"}
+(38,1,1) = {"
+Is
+IL
+IL
+oD
+IV
+IL
+Is
+XR
+aE
+XR
+XR
+XR
+iv
+XR
+XR
+Is
+IL
+tw
+IL
+db
+IL
+Is
+gi
+XR
+XR
+XR
+oN
+Is
+IL
+RW
+IL
+Po
+IL
+Is
+XR
+nY
+XR
+XR
+XR
+XR
+XR
+nY
+Is
+IL
+tw
+oD
+IL
+IL
+Is
+"}
+(39,1,1) = {"
+Is
+IL
+RW
+Sh
+Po
+IL
+Is
+XR
+XR
+XR
+XR
+Ma
+XR
+fn
+rB
+kA
+RW
+tw
+IL
+xj
+uN
+Is
+UB
+XR
+nY
+XR
+Bt
+Is
+TG
+AN
+IL
+cx
+IL
+YU
+XR
+XR
+XR
+Ma
+XR
+XR
+YP
+TL
+Is
+IL
+tw
+IL
+IL
+IL
+Is
+"}
+(40,1,1) = {"
+Is
+TG
+GA
+IL
+cx
+IL
+yJ
+XR
+XR
+XR
+XR
+Ma
+XR
+XR
+XR
+Is
+IL
+tw
+vU
+IL
+IL
+Is
+XR
+XR
+XR
+XR
+XR
+Is
+IL
+RW
+IL
+IV
+IL
+Is
+XR
+XR
+XR
+Ma
+XR
+XR
+YP
+YP
+ZQ
+IL
+tw
+IL
+Vi
+Gd
+Is
+"}
+(41,1,1) = {"
+Is
+IL
+RW
+IL
+IV
+IL
+Is
+XR
+fn
+WM
+XR
+Ma
+XR
+XR
+XR
+Kx
+IL
+DJ
+uq
+IL
+IL
+Is
+XR
+XR
+XR
+XR
+XR
+Is
+db
+qu
+Dg
+IV
+IL
+Is
+XR
+aE
+XR
+Ma
+XR
+XR
+EN
+QB
+Is
+IL
+tw
+vU
+IL
+IL
+Is
+"}
+(42,1,1) = {"
+Is
+db
+qu
+Dg
+IV
+IL
+Is
+CA
+XR
+XR
+XR
+Ma
+XR
+Sw
+XR
+Is
+Is
+Is
+Is
+Is
+Is
+Is
+XR
+XR
+XR
+XR
+XR
+Is
+Is
+Is
+Is
+Is
+Is
+Is
+XR
+aE
+mu
+Ma
+XR
+XR
+YP
+mu
+Is
+IL
+tw
+uq
+IL
+db
+Is
+"}
+(43,1,1) = {"
+Is
+Is
+Is
+rY
+Is
+Is
+Is
+Ma
+IM
+Ma
+Ma
+Ma
+XR
+XR
+XR
+Ma
+JE
+JE
+JE
+JE
+JE
+Ma
+Ma
+Ag
+IM
+Ag
+Ma
+Ma
+JE
+JE
+JE
+JE
+JE
+Ma
+XR
+nY
+WM
+Ma
+Ma
+Ag
+ef
+TI
+Is
+Is
+Is
+rY
+Is
+Is
+Is
+"}
+(44,1,1) = {"
+HQ
+HQ
+JE
+JE
+JE
+Ma
+FR
+XR
+XR
+XR
+Cr
+Ma
+XR
+XR
+XR
+Ma
+Ma
+Ma
+Ma
+Ma
+Ma
+Ma
+XR
+XR
+XR
+XR
+XR
+Ma
+Ma
+Ma
+Ma
+yU
+Ma
+Ma
+XR
+XR
+sI
+Ma
+Cr
+XR
+YP
+YP
+yO
+Ma
+JE
+JE
+JE
+HQ
+HQ
+"}
+(45,1,1) = {"
+HQ
+HQ
+JE
+JE
+JE
+Ma
+FR
+JA
+uz
+pq
+lL
+Ma
+XR
+XR
+XR
+XR
+XR
+XR
+XR
+XR
+XR
+Ag
+XR
+JA
+uz
+pq
+XR
+Ma
+XR
+XR
+XR
+XR
+XR
+XR
+XR
+XR
+XR
+Ma
+lL
+JA
+uz
+pq
+yO
+Ma
+JE
+JE
+JE
+HQ
+HQ
+"}
+(46,1,1) = {"
+HQ
+HQ
+JE
+JE
+JE
+mm
+DC
+LF
+yY
+WF
+XR
+IM
+XR
+YP
+XR
+XR
+XR
+XR
+aE
+XR
+XR
+ef
+XR
+LF
+yY
+WF
+XR
+IM
+XR
+YP
+YP
+Pa
+YP
+XR
+XR
+XR
+XR
+IM
+XR
+LF
+yY
+WF
+NX
+mm
+JE
+JE
+JE
+HQ
+HQ
+"}
+(47,1,1) = {"
+HQ
+HQ
+JE
+JE
+JE
+Ma
+FR
+fx
+xO
+NG
+lL
+Ma
+pu
+XR
+XR
+Ak
+XR
+XR
+XR
+XR
+XR
+Ag
+XR
+fx
+xO
+NG
+XR
+Ma
+pu
+XR
+XR
+XR
+XR
+ux
+YP
+XR
+XR
+Ma
+lL
+fx
+xO
+NG
+yO
+Ma
+JE
+JE
+JE
+HQ
+HQ
+"}
+(48,1,1) = {"
+HQ
+HQ
+JE
+JE
+JE
+Ma
+FR
+XR
+XR
+XR
+Kp
+Ma
+Ma
+Ma
+Ma
+XR
+XR
+XR
+Ma
+Ma
+Ma
+Ma
+rc
+XR
+XR
+XR
+XR
+Ma
+Ma
+Ma
+Ma
+XR
+XR
+XR
+Ma
+Ma
+Ma
+Ma
+Kp
+XR
+XR
+sI
+yO
+Ma
+JE
+JE
+JE
+HQ
+HQ
+"}
+(49,1,1) = {"
+HQ
+HQ
+JE
+JE
+Ma
+Ma
+Ma
+Ma
+IM
+Ma
+Ma
+Ma
+JE
+JE
+Ma
+XR
+YP
+XR
+Ma
+JE
+JE
+Ma
+Ma
+Ag
+IM
+Ag
+Ma
+Ma
+JE
+JE
+Ma
+XR
+XR
+XR
+Ma
+JE
+JE
+Ma
+Ma
+Ag
+IM
+Ag
+Ma
+Ma
+Ma
+JE
+JE
+HQ
+HQ
+"}
+(50,1,1) = {"
+HQ
+HQ
+JE
+JE
+Ma
+XR
+XR
+XR
+XR
+rc
+Ma
+JE
+JE
+JE
+Ma
+XR
+XR
+XR
+Ma
+JE
+JE
+JE
+Ma
+gi
+XR
+XR
+Ma
+JE
+JE
+JE
+Ma
+XR
+XR
+XR
+Ma
+JE
+JE
+JE
+Ma
+rc
+XR
+XR
+XR
+XR
+Ma
+JE
+JE
+HQ
+HQ
+"}
+(51,1,1) = {"
+HQ
+HQ
+JE
+JE
+Ma
+Rb
+JA
+uz
+pq
+XR
+Ma
+Ma
+Ma
+Ma
+Ma
+UB
+XR
+Bt
+Ma
+Ma
+Ma
+Ma
+Ma
+UB
+XR
+Bt
+Ma
+Ma
+Ma
+Ma
+Ma
+UB
+iv
+Bt
+Ma
+Ma
+Ma
+Ma
+Ma
+XR
+JA
+uz
+pq
+vA
+Ma
+JE
+JE
+HQ
+HQ
+"}
+(52,1,1) = {"
+HQ
+HQ
+JE
+JE
+mm
+uw
+LF
+yY
+WF
+Bt
+BF
+ww
+XR
+XR
+XR
+XR
+XR
+XR
+XR
+XR
+XR
+XR
+XR
+XR
+XR
+XR
+YP
+YP
+XR
+XR
+XR
+Sw
+XR
+XR
+XR
+XR
+XR
+ww
+Ag
+XR
+LF
+yY
+WF
+VP
+mm
+JE
+JE
+HQ
+HQ
+"}
+(53,1,1) = {"
+HQ
+HQ
+JE
+JE
+Ma
+Ci
+fx
+xO
+NG
+XR
+IM
+XR
+XR
+XR
+Ak
+XR
+Ul
+XR
+XR
+XR
+XR
+XR
+XR
+XR
+Ly
+XR
+XR
+XR
+XR
+XR
+XR
+XR
+Sk
+XR
+XR
+XR
+XR
+XR
+IM
+XR
+fx
+xO
+NG
+hI
+Ma
+JE
+JE
+HQ
+HQ
+"}
+(54,1,1) = {"
+HQ
+HQ
+JE
+JE
+Ma
+lq
+ng
+eO
+ii
+XR
+Ma
+FK
+XR
+XR
+YP
+YP
+XR
+XR
+XR
+XR
+oN
+XR
+XR
+XR
+XR
+XR
+XR
+XR
+XR
+XR
+aE
+YP
+XR
+XR
+XR
+oN
+XR
+FK
+Ag
+pu
+lO
+eO
+ng
+kS
+Ma
+JE
+JE
+HQ
+HQ
+"}
+(55,1,1) = {"
+HQ
+HQ
+JE
+JE
+Ma
+Ma
+Ma
+Ma
+Ma
+Ma
+Ma
+Ma
+Ma
+Is
+Is
+Is
+dl
+Is
+Is
+Is
+Ma
+Ma
+Ma
+yE
+XR
+gf
+Ma
+Ma
+Ma
+Is
+Is
+Is
+AI
+Is
+Is
+Is
+Ma
+Ma
+Ma
+Ma
+Ma
+Ma
+Ma
+Ma
+Ma
+JE
+JE
+HQ
+HQ
+"}
+(56,1,1) = {"
+HQ
+HQ
+JE
+JE
+JE
+JE
+JE
+JE
+JE
+JE
+JE
+JE
+JE
+Is
+vU
+IL
+IL
+mD
+IL
+Is
+JE
+JE
+Ma
+Ag
+IM
+Ag
+Ma
+JE
+JE
+Is
+IL
+IL
+IL
+IL
+IL
+Is
+JE
+JE
+JE
+JE
+JE
+JE
+JE
+JE
+JE
+JE
+JE
+HQ
+HQ
+"}
+(57,1,1) = {"
+HQ
+HQ
+JE
+JE
+JE
+JE
+JE
+JE
+JE
+JE
+JE
+JE
+JE
+Is
+nd
+sh
+sh
+sh
+pA
+Is
+JE
+JE
+Ma
+kK
+oO
+vd
+Ma
+JE
+JE
+Is
+Uo
+sh
+sh
+sh
+pA
+Is
+JE
+JE
+JE
+JE
+JE
+JE
+JE
+JE
+JE
+JE
+JE
+HQ
+HQ
+"}
+(58,1,1) = {"
+HQ
+HQ
+JE
+JE
+JE
+JE
+JE
+JE
+JE
+JE
+JE
+JE
+JE
+Is
+IL
+IL
+IL
+IL
+IL
+Is
+JE
+JE
+Ma
+vd
+vd
+vd
+Ma
+JE
+JE
+Is
+IL
+IL
+IL
+IL
+IL
+Is
+JE
+JE
+JE
+JE
+JE
+JE
+JE
+JE
+JE
+JE
+JE
+HQ
+HQ
+"}
+(59,1,1) = {"
+HQ
+HQ
+JE
+JE
+JE
+JE
+JE
+JE
+JE
+JE
+JE
+JE
+JE
+Is
+pE
+IL
+Jk
+IL
+hb
+Is
+JE
+JE
+Ma
+cO
+cO
+cO
+Ma
+JE
+JE
+Is
+pE
+db
+Oy
+Ov
+Uv
+Is
+JE
+JE
+JE
+JE
+JE
+JE
+JE
+JE
+JE
+JE
+JE
+HQ
+HQ
+"}
+(60,1,1) = {"
+HQ
+HQ
+JE
+JE
+JE
+JE
+JE
+JE
+JE
+JE
+JE
+JE
+JE
+Is
+db
+IL
+gS
+vU
+IL
+Is
+JE
+JE
+JE
+JE
+JE
+JE
+JE
+JE
+JE
+Is
+mD
+IL
+gS
+IL
+IL
+Is
+JE
+JE
+JE
+JE
+JE
+JE
+JE
+JE
+JE
+JE
+JE
+HQ
+HQ
+"}
+(61,1,1) = {"
+HQ
+HQ
+HQ
+HQ
+HQ
+HQ
+HQ
+HQ
+HQ
+HQ
+HQ
+HQ
+HQ
+Is
+Is
+Is
+rY
+Is
+Is
+Is
+HQ
+HQ
+HQ
+HQ
+HQ
+HQ
+HQ
+HQ
+HQ
+Is
+Is
+Is
+rY
+Is
+Is
+Is
+HQ
+HQ
+HQ
+HQ
+HQ
+HQ
+HQ
+HQ
+HQ
+HQ
+HQ
+HQ
+HQ
+"}

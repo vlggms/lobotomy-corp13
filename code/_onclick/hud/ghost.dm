@@ -52,6 +52,14 @@
 	var/mob/dead/observer/G = usr
 	G.mafia_signup()
 
+/atom/movable/screen/ghost/villains
+	name = "Villains Signup"
+	icon_state = "mafia"
+
+/atom/movable/screen/ghost/villains/Click()
+	var/mob/dead/observer/G = usr
+	G.villains_signup()
+
 /datum/hud/ghost/New(mob/owner)
 	..()
 	var/atom/movable/screen/using
@@ -83,6 +91,11 @@
 
 	using = new /atom/movable/screen/ghost/mafia()
 	using.screen_loc = ui_ghost_mafia
+	using.hud = src
+	static_inventory += using
+
+	using = new /atom/movable/screen/ghost/villains()
+	using.screen_loc = ui_ghost_villains
 	using.hud = src
 	static_inventory += using
 

@@ -964,6 +964,25 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 		game = create_mafia_game("mafia")
 	game.ui_interact(usr)
 
+/mob/dead/observer/verb/villains_game_signup()
+	set category = "Ghost"
+	set name = "Signup for Villains"
+	set desc = "Sign up for a game of Villains of the Night, a social deduction game where abnormalities hunt the villain among them."
+
+	villains_signup()
+
+/mob/dead/observer/proc/villains_signup()
+	if(!client)
+		return
+	if(!isobserver(src))
+		to_chat(usr, span_warning("You must be a ghost to join Villains of the Night!"))
+		return
+	var/datum/villains_controller/game = GLOB.villains_game
+	if(!game)
+		game = new /datum/villains_controller()
+		GLOB.villains_game = game
+	game.ui_interact(usr)
+
 /mob/dead/observer/CtrlShiftClick(mob/user)
 	if(isobserver(user) && check_rights(R_SPAWN))
 		change_mob_type( /mob/living/carbon/human , null, null, TRUE) //always delmob, ghosts shouldn't be left lingering
