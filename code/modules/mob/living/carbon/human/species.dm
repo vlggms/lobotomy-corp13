@@ -2046,10 +2046,15 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 
 		if(thermal_protection >= FIRE_IMMUNITY_MAX_TEMP_PROTECT && !no_protection)
 			return
+	////////////////////////////////////////
+	//Fire raising temperature is disabled//
+	////////////////////////////////////////
+/*
 		if(thermal_protection >= FIRE_SUIT_MAX_TEMP_PROTECT && !no_protection)
 			H.adjust_bodytemperature(11)
 		else
 			H.adjust_bodytemperature(BODYTEMP_HEATING_MAX + (H.fire_stacks * 12))
+*/
 
 /datum/species/proc/CanIgniteMob(mob/living/carbon/human/H)
 	if(HAS_TRAIT(H, TRAIT_NOFIRE))
