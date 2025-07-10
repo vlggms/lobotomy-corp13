@@ -1395,9 +1395,6 @@
 /obj/effect/decal/cleanable/dirt/dust,
 /turf/open/floor/facility/halls,
 /area/villains/hallway)
-"UG" = (
-/turf/closed/indestructible/reinforced,
-/area/space)
 "UH" = (
 /obj/machinery/door/airlock/highsecurity{
 	name = "Information Department"
@@ -2492,7 +2489,7 @@ Ag
 IM
 Ag
 Ma
-UG
+Ma
 JE
 JE
 JE

@@ -11,12 +11,14 @@
 	maxHealth = 100
 	melee_damage_lower = 0
 	melee_damage_upper = 0
+	obj_damage = 0
 	attack_verb_continuous = "touches"
 	attack_verb_simple = "touch"
 	speak_emote = list("says")
 	emote_hear = list("sighs")
 	emote_see = list("looks around")
 	turns_per_move = 5
+	see_in_dark = 8
 	move_to_delay = 3
 	response_help_continuous = "pats"
 	response_help_simple = "pat"
@@ -65,7 +67,7 @@
 	character_data = character
 	name = character.name
 	desc = character.desc
-	
+
 	// Use icon data from character if available
 	if(character.icon)
 		icon = character.icon
@@ -73,17 +75,17 @@
 		icon_state = character.icon_state
 	else
 		icon_state = character.character_id
-	
+
 	if(character.icon_living)
 		icon_living = character.icon_living
 	else
 		icon_living = icon_state
-		
+
 	if(character.icon_dead)
 		icon_dead = character.icon_dead
 	else
 		icon_dead = "[icon_state]_dead"
-	
+
 	// Apply pixel offsets if specified
 	if(character.base_pixel_x)
 		base_pixel_x = character.base_pixel_x
@@ -141,7 +143,7 @@
 	return ..()
 
 // Override for fresh item pickup
-/mob/living/simple_animal/hostile/villains_character/doMove(atom/destination)
+/mob/living/simple_animal/hostile/villains_character/Moved()
 	. = ..()
 	if(.)
 		// Check for items at new location
@@ -190,31 +192,31 @@
 /mob/living/simple_animal/hostile/villains_character/proc/lock_in_room()
 	if(!current_room || !GLOB.villains_game)
 		return
-	
+
 	// Teleport to room first
 	teleport_to_room()
-	
+
 	// Lock the door
 	var/obj/machinery/door/airlock/door = GLOB.villains_game.room_doors[current_room]
 	if(door && !door.locked)
 		door.lock()
-	
+
 	to_chat(src, span_notice("You are locked in your room for the evening."))
 
 /mob/living/simple_animal/hostile/villains_character/proc/unlock_room()
 	if(!current_room || !GLOB.villains_game)
 		return
-	
+
 	var/obj/machinery/door/airlock/door = GLOB.villains_game.room_doors[current_room]
 	if(door && door.locked)
 		door.unlock()
-	
+
 	to_chat(src, span_notice("Your room unlocks. You are free to explore."))
 
 /mob/living/simple_animal/hostile/villains_character/proc/teleport_to_room()
 	if(!assigned_room || !assigned_room.spawn_landmark)
 		return
-	
+
 	forceMove(get_turf(assigned_room.spawn_landmark))
 
 // Action effects
@@ -279,15 +281,13 @@
 		to_chat(src, span_warning("You can only select actions during the evening phase!"))
 		return
 
-	// TODO: Open action selection UI
-	to_chat(src, span_notice("Opening action selection..."))
+	var/datum/villains_action_selection/selection = new(src)
+	selection.ui_interact(src)
 
 // Verb for character sheet
 /mob/living/simple_animal/hostile/villains_character/verb/view_character_sheet()
 	set name = "View Character Sheet"
 	set category = "Villains"
 
-	// TODO: Open character sheet UI
-	to_chat(src, span_notice("Character: [name]"))
-	to_chat(src, span_notice("Inventory: [length(contents)] items"))
-	to_chat(src, span_notice("Victory Points: [victory_points]"))
+	var/datum/villains_character_sheet/sheet = new(src)
+	sheet.ui_interact(src)

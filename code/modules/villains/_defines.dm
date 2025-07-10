@@ -29,9 +29,15 @@
 #define VILLAIN_ACTION_ELIMINATION 5
 
 // Action costs
-#define VILLAIN_ACTION_MAIN "main"
-#define VILLAIN_ACTION_SECONDARY "secondary"
-#define VILLAIN_ACTION_FREE "free"
+#define VILLAIN_ACTION_MAIN "Main Action"
+#define VILLAIN_ACTION_SECONDARY "Secondary Action"
+#define VILLAIN_ACTION_FREE "Free Action"
+
+// Action types for submission
+#define VILLAIN_ACTION_TALK_TRADE "talk_trade"
+#define VILLAIN_ACTION_CHARACTER_ABILITY "character_ability"
+#define VILLAIN_ACTION_USE_ITEM "use_item"
+#define VILLAIN_ACTION_ELIMINATE "eliminate"
 
 // Teams
 #define VILLAIN_TEAM_INNOCENT "innocent"
@@ -52,7 +58,7 @@
 #define VILLAIN_PREVENT_ELIMINATION 1
 
 // Phase timers (in seconds)
-#define VILLAIN_TIMER_MORNING_MIN 300 // 5 minutes
+#define VILLAIN_TIMER_MORNING_MIN 30 // 5 minutes
 #define VILLAIN_TIMER_MORNING_MAX 600 // 10 minutes
 #define VILLAIN_TIMER_EVENING 60 // 1 minute
 #define VILLAIN_TIMER_NIGHTTIME 480 // 8 minutes
@@ -81,6 +87,14 @@
 #define VILLAIN_CHAR_DERFREISCHUTZ "der_freischutz"
 #define VILLAIN_CHAR_RUDOLTA "rudolta"
 #define VILLAIN_CHAR_JUDGEMENTBIRD "judgement_bird"
+#define VILLAIN_CHAR_SHRIMPEXEC "shrimp_executive"
+#define VILLAIN_CHAR_SUNSETTRAVELLER "sunset_traveller"
+#define VILLAIN_CHAR_FAIRYLONGLEGS "fairy_long_legs"
+#define VILLAIN_CHAR_REDBLOODEDAMERICAN "red_blooded_american"
+#define VILLAIN_CHAR_KIKIMORA "kikimora"
+#define VILLAIN_CHAR_REDHOOD "red_hood"
+#define VILLAIN_CHAR_WARDEN "the_warden"
+#define VILLAIN_CHAR_BLUESHEPHERD "blue_shepherd"
 
 // Global variables
 GLOBAL_LIST_EMPTY(villains_signup)
