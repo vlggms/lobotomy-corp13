@@ -76,6 +76,12 @@
 	mappath = "_maps/RandomRooms/backstreets/large_north/town_lna.dmm"
 	stock = 1
 
+/datum/map_template/random_room/backstreets/large_north/containment_lna
+	name = "Containment - Large North A"
+	room_id = "containment_lna"
+	mappath = "_maps/RandomRooms/backstreets/large_north/containment_lna.dmm"
+	stock = 1
+
 /datum/map_template/random_room/backstreets/large_north/apartment_lnb
 	name = "Apartments - Large North B"
 	room_id = "apartment_lnb"

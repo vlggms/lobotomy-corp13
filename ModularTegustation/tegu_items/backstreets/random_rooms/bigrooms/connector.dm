@@ -50,6 +50,12 @@
 	room_id = "apartments_ca"
 	mappath = "_maps/RandomRooms/backstreets/connector/apartments_ca.dmm"
 
+/datum/map_template/random_room/backstreets/connector/old_checkpoint
+	name = "Old Checkpoint - Connector"
+	room_id = "old_checkpoint"
+	mappath = "_maps/RandomRooms/backstreets/connector/old_checkpoint.dmm"
+	stock = 1
+
 /datum/map_template/random_room/backstreets/connector/toughshit
 	name = "Tough Shit - Connector"
 	room_id = "toughshit"
