@@ -4195,7 +4195,7 @@
 #include "ModularTegustation\moba_skills\skirmisher\blitz.dm"
 #include "ModularTegustation\moba_skills\skirmisher\dash.dm"
 #include "ModularTegustation\primitive_farming\farming_structures.dm"
-#include "ModularTegustation\sigsystem\activator_parts.dm"
+#include "ModularTegustation\sigsystem\activators.dm"
 #include "ModularTegustation\sigsystem\parts.dm"
 #include "ModularTegustation\sigsystem\towers.dm"
 #include "ModularTegustation\ssd_indicator\code\mob.dm"
