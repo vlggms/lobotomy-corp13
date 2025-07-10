@@ -89,6 +89,7 @@
 	var/transformed = FALSE
 	var/broken = FALSE
 	var/persistant = FALSE
+	var/angry = FALSE
 
 //Work/Misc
 /mob/living/simple_animal/hostile/abnormality/blubbering_toad/PostSpawn()
@@ -118,13 +119,13 @@
 //Attack or approach it directly and it attacks you!
 /mob/living/simple_animal/hostile/abnormality/blubbering_toad/BreachEffect(mob/living/user, breach_type = BREACH_NORMAL)
 	if(breach_type == BREACH_PINK || breach_type == BREACH_MINING)
-		persistant = TRUE
+		angry = TRUE
 	if(breach_type == BREACH_MINING)//nerfed to a ZAYIN statline since this is something you'll typically fight roundstart
 		name = "Weakened [name]"
 		maxHealth = 400
-		melee_damage_lower = 9
-		melee_damage_upper = 15
-		tongue_damage = 10
+		melee_damage_lower = 4
+		melee_damage_upper = 8
+		tongue_damage = 5
 		broken = TRUE
 	SetIdiot(user)
 	return ..()
@@ -176,7 +177,7 @@
 
 //Attacks
 /mob/living/simple_animal/hostile/abnormality/blubbering_toad/OpenFire()
-	if(target != idiot)
+	if(target != idiot && !angry)
 		return
 	var/dist = get_dist(target, src)
 	if((dist > 2) && (dist < 5))
@@ -238,6 +239,8 @@
 	..()
 
 /mob/living/simple_animal/hostile/abnormality/blubbering_toad/AttackingTarget(atom/attacked_target)
+	if(angry)
+		return ..()
 	if(!ishuman(attacked_target))
 		return
 	if(attacked_target != idiot)
