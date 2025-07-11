@@ -1,7 +1,7 @@
-//Curing
+//Soothing
 /datum/action/cooldown/agent_soothing
 	name = "Soothing"
-	desc = "Heal all humans in a 5 tile radius (except the user) by 15 SP."
+	desc = "Heal all humans in a 5 tile radius (except the user) by 10% of their max SP."
 	icon_icon = 'icons/hud/screen_skills.dmi'
 	button_icon_state = "soothing"
 	cooldown_time = 30 SECONDS
