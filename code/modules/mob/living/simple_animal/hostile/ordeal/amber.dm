@@ -204,9 +204,23 @@
 	var/count_per_kill = 1
 	var/size_per_kill = 1.1
 
+	var/spawn_on_max_feed = 15
+	var/mob/mob_spawned = "/mob/living/simple_animal/hostile/ordeal/amber_bug/spawned" //What the bug will spawn on both kills and upon reaching max feeding count.
+
 /mob/living/simple_animal/hostile/ordeal/amber_bug/hungriest_one/Initialize()
 	. = ..()
 	faction = list() //Removes all original allegiances of the bug on spawn. It's everyone's problem now.
+
+//Make the bugs spawn around the hungriest one if possible, on top of if they can't. Also makes sure they don't spawn into walls.
+/mob/living/simple_animal/hostile/ordeal/amber_bug/hungriest_one/proc/SpawnBug(turf/src_turf)
+	var/list/all_turfs = RANGE_TURFS(1, src_turf)
+	for(var/turf/T in all_turfs)
+		if(T.is_blocked_turf(exclude_mobs = TRUE) || T == src_turf)
+			all_turfs -= T
+	var/turf/T = pick(all_turfs)
+	if(!T || T == null)
+		T = src_turf
+	new mob_spawned(T)
 
 /mob/living/simple_animal/hostile/ordeal/amber_bug/hungriest_one/AttackingTarget(atom/attacked_target)
 	. = ..()
@@ -221,11 +235,10 @@
 	if(meal.stat != DEAD)
 		return
 
-	var/turf/T = get_turf(src)
+	var/turf/src_turf = get_turf(src)
 	if(ishuman(meal))
 		for(var/i = 0, i < spawn_on_kill, i++)
-			new /mob/living/simple_animal/hostile/ordeal/amber_bug/spawned(T) //Every corpse is worth as much feeding count, but human ones lets it spawn more bugs to eat.
-
+			SpawnBug(src_turf) //Every corpse is worth as much feeding count, but human ones lets it spawn more bugs to eat.
 			adjustBruteLoss(-maxHealth*0.5)
 	feeding_count += count_per_kill
 
@@ -239,7 +252,7 @@
 		for(var/i = 0, i < 15, i++)
 			if(length(bug_spawned) > max_spawn || length(amber_list) > 50)
 				return
-			new /mob/living/simple_animal/hostile/ordeal/amber_bug/spawned(T) //TODO: make it evolve into a unique dusk that spawns more or something. Right now it just makes a lot of small bugs.
+			SpawnBug(src_turf) //TODO: Maybe a more interesting transformation. Right now it just spawns more bugs/mobs.
 			bug_spawned++
 	else
 		setMaxHealth(maxHealth* (1 + scaling_max_health)) //Exponential growth. It should be stopped by the eventual feeding count cap.
