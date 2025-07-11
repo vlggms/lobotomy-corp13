@@ -115,24 +115,26 @@
 	damtype = RED_DAMAGE
 	attack_speed = 1.4
 	special = "This is a Thumb East weapon. Load it with propellant ammunition to unlock a powerful three-hit combo. Initiate the combo by attacking from range."
-	/// This list holds the force, tremor stacks and burn stacks that our next hit should deal.
+	/// This list holds the bonuses that our next hit should deal. The keys for them are ["tremor"], ["burn"], ["aoe_flat_force_bonus"] and ["aoe_radius_bonus"].
+	// I wanted to use a define like NEXTHIT_PROPELLANT_TREMOR_BONUS = next_hit_should_apply["tremor"] to simplify readability and maintainability...
+	// but it didn't work. Sorry.
 	var/next_hit_should_apply = list()
 	// Combo variables.
 	/// Description for the combo. Explain it to the user.
 	var/combo_description = "This weapon's combo consists of a long-range lunge, followed by a circular AoE sweep around the user, and ending on a powerful finisher on the target.\n"+\
-	"If you miss your lunge, you can still continue the combo by landing a regular hit on-target."
+	"If you trigger but miss your lunge, you can still continue the combo by landing a regular hit on-target."
 	/// Which step in the combo are we at? COMBO_NO_AMMO means we're either out of ammo, just ended a combo, or haven't started it.
 	var/combo_stage = COMBO_NO_AMMO
 	/// Variable that holds the reset timer for our combo.
 	var/combo_reset_timer
 	/// Distance in tiles which our initial lunge reaches.
-	var/lunge_range = 5
+	var/lunge_range = 3
 	/// Duration of the cooldown for our lunge (we don't want people spam-lunging exclusively in PVP, etc)
 	var/lunge_cooldown_duration = 12 SECONDS
 	/// Holds the actual world time when we can lunge again.
 	var/lunge_cooldown
 	/// List which holds the coefficients by which to multiply our damage on each hit depending on the state of the combo.
-	var/list/motion_values = list(COMBO_NO_AMMO = 1, COMBO_LUNGE = 1.1, COMBO_ATTACK2 = 1.3, COMBO_FINISHER = 1.5)
+	var/list/motion_values = list(COMBO_NO_AMMO = 1, COMBO_LUNGE = 1.1, COMBO_ATTACK2 = 1.2, COMBO_FINISHER = 1.4)
 	/// Coefficient for the second attack's AoE, by which damage towards secondary targets will be multiplied. Should always be less than 1.
 	var/attack2_secondarytarget_coefficient = 0.5
 	/// Base radius in tiles for the second attack's AoE range. Should be at least 1.
@@ -147,12 +149,13 @@
 	var/current_ammo_type = null
 	var/list/accepted_ammo_table = list(
 		/obj/item/stack/thumb_east_ammo,
-		/obj/item/stack/thumb_east_ammo/facility
+		/obj/item/stack/thumb_east_ammo/facility,
 	)
 
 ////////////////////////////////////////////////////////////
 // OVERRIDES SECTION.
 // This is all the code that overrides procs from parent types.
+// Includes code for examining, starting a reload, being destroyed, attacking, and starting a lunge.
 
 /// This Examine override just adds useful info for the player, including ammunition loaded and tips on how the combo system works.
 /obj/item/ego_weapon/city/thumb_east/examine(mob/user)
@@ -194,13 +197,14 @@
 	for(var/obj/leftover in current_ammo)
 		leftover.forceMove(src.loc)
 	current_ammo = null
+	if(combo_reset_timer)
+		deltimer(combo_reset_timer)
 	return ..()
 
 /// Attacking.
 /obj/item/ego_weapon/city/thumb_east/attack(mob/living/target, mob/living/user)
 	switch(combo_stage)
-		// Importantly: every time we want to fire a round, we should use SpendAmmo() to retrieve it.
-		// Once we've got it, pass it into HandleFiredAmmo() alongside the user.
+		// Importantly: every time we want to fire a round, we should use SpendAmmo(user).
 
 		// This case is for attacks that haven't consumed a round.
 		if(COMBO_NO_AMMO)
@@ -215,9 +219,8 @@
 			combo_stage = COMBO_ATTACK2
 			return
 		if(COMBO_ATTACK2)
-			var/obj/item/stack/thumb_east_ammo/fired_round = SpendAmmo()
+			var/obj/item/stack/thumb_east_ammo/fired_round = SpendAmmo(user)
 			if(fired_round)
-				HandleFiredAmmo(fired_round, user)
 				. = ..()
 				ComboAOE(target, user, COMBO_ATTACK2)
 				ApplyStatusEffects(target, COMBO_ATTACK2)
@@ -229,9 +232,8 @@
 				. = ..()
 				return
 		if(COMBO_FINISHER)
-			var/obj/item/stack/thumb_east_ammo/fired_round = SpendAmmo()
+			var/obj/item/stack/thumb_east_ammo/fired_round = SpendAmmo(user)
 			if(fired_round)
-				HandleFiredAmmo(fired_round, user)
 				. = ..()
 				ComboAOE(target, user, COMBO_FINISHER)
 				ApplyStatusEffects(target, COMBO_FINISHER)
@@ -260,16 +262,19 @@
 	// Only lunge if we haven't begun a combo.
 	if(combo_stage != COMBO_NO_AMMO)
 		return
-	if((get_dist(user, target) < 2) || (!(can_see(user, target, lunge_range))))
+	if((get_dist(user, target) < 2))
+		return
+	if(!(can_see(user, target, lunge_range)))
+		to_chat(user, span_warning("You can't reach your target!"))
 		return
 	. = ..()
 
+	combo_stage = COMBO_LUNGE
+
 	// Check to see if we've got a round to fire.
-	var/obj/item/stack/thumb_east_ammo/fired_round = SpendAmmo()
+	var/obj/item/stack/thumb_east_ammo/fired_round = SpendAmmo(user)
 	if(fired_round)
 		// We do have a round. So let's set ourselves to lunging and add the bonuses from the fired round to the weapon with HandleFiredAmmo().
-		combo_stage = COMBO_LUNGE
-		HandleFiredAmmo(fired_round, user)
 		lunge_cooldown = world.time + lunge_cooldown_duration
 		// Aesthetics.
 		to_chat(user, span_warning("You lunge at [target] using the propulsion from your [src.name]!"))
@@ -282,11 +287,13 @@
 		if((get_dist(user, target) < 2))
 			target.attackby(src,user)
 	else
-		to_chat(user, span_warning("You try to lunge at [target], but you have no ammo left."))
+		to_chat(user, span_warning("You pull the trigger to lunge at [target], but you have no ammo left."))
+		combo_stage = COMBO_NO_AMMO
 
 ////////////////////////////////////////////////////////////
 // AMMO MANAGEMENT PROCS SECTION.
 // These are the procs used to handle the loading and usage of ammunition.
+// Includes a check for ammo depletion, a proc to pick and return a round from our loaded rounds and a proc to store bonuses from a round and use it up.
 
 /// Returns TRUE if we're out of ammo.
 /obj/item/ego_weapon/city/thumb_east/proc/AmmoDepletedCheck()
@@ -297,19 +304,24 @@
 /// This proc tries to spend a round, and if it is able to, returns it to the caller. It will also play the round's detonation sound if successful.
 /// Important: This proc doesn't delete the fired round, but removes it from our reference list. If it is not deleted later, then it will remain in the weapon's contents.
 /// That being said it shouldn't cause any issues because of that.
-/obj/item/ego_weapon/city/thumb_east/proc/SpendAmmo()
+/obj/item/ego_weapon/city/thumb_east/proc/SpendAmmo(mob/living/user)
 	if(AmmoDepletedCheck())
 		return FALSE
 	// We need to delete this round that was fired later by the way.
 	var/obj/item/stack/thumb_east_ammo/fired_round = pick_n_take(current_ammo)
-	if(fired_round)
-		playsound(src, fired_round.detonation_sound, 75, FALSE, 8)
+
 	if(AmmoDepletedCheck())
 		current_ammo_type = null
-	return fired_round
+
+	if(fired_round)
+		playsound(src, fired_round.detonation_sound, 75, FALSE, 8)
+		shake_camera(user, 1.5, 3)
+		HandleFiredAmmo(fired_round, user)
+		return TRUE
+	return FALSE
 
 /// This proc is passed a round, stores the bonuses it should provide to the weapon according to the current combo stage and the round's properties, then deletes the round.
-/// It also applies screenshake to the user and sets a timer to reset the combo.
+/// It also sets a timer to reset the combo.
 /obj/item/ego_weapon/city/thumb_east/proc/HandleFiredAmmo(obj/item/stack/thumb_east_ammo/round, mob/living/user)
 	if(round)
 		force = (initial(force) * motion_values[combo_stage]) + round.flat_force_base * motion_values[combo_stage]
@@ -322,7 +334,6 @@
 			next_hit_should_apply["burn"] = round.burn_base * burn_coeff
 		if(round.aoe_radius_bonus > 0)
 			next_hit_should_apply["aoe_radius_bonus"] = round.aoe_radius_bonus
-		shake_camera(user, 1.5, 3)
 		deltimer(combo_reset_timer)
 		combo_reset_timer = addtimer(CALLBACK(src, PROC_REF(ReturnToNormal), user), 5 SECONDS, TIMER_STOPPABLE)
 		qdel(round)
@@ -330,6 +341,7 @@
 ////////////////////////////////////////////////////////////
 // SPECIAL ATTACKS SECTION.
 // These are the procs used to handle offensive actions like AoE attacks and applying status effects to the enemy.
+// Includes a proc to apply status effects, a proc to reset the weapon back to normal, and a proc for doing an AoE attack.
 
 /// This proc applies status effects to a target.
 /obj/item/ego_weapon/city/thumb_east/proc/ApplyStatusEffects(mob/living/target, hit_type)
@@ -480,7 +492,7 @@
 	merge_type = /obj/item/stack/thumb_east_ammo/facility
 	tremor_base = 0
 	burn_base = 0
-	flat_force_base = 15
+	flat_force_base = 10
 
 /obj/item/stack/thumb_east_ammo/tigermark
 	name = "tigermark rounds"
@@ -508,4 +520,6 @@
 #undef COMBO_NO_AMMO
 #undef COMBO_LUNGE
 #undef COMBO_ATTACK2
+#undef COMBO_ATTACK2_AOE
 #undef COMBO_FINISHER
+#undef COMBO_FINISHER_AOE
