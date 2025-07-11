@@ -3609,6 +3609,11 @@
 "Av" = (
 /turf/open/floor/facility/white,
 /area/city/house)
+"Ax" = (
+/obj/structure/rack,
+/obj/item/augment_remover,
+/turf/open/indestructible/white,
+/area/city)
 "Ay" = (
 /obj/effect/turf_decal/trimline/yellow/line,
 /obj/machinery/light,
@@ -3999,6 +4004,10 @@
 	},
 /turf/open/indestructible/white,
 /area/city/house)
+"Dt" = (
+/obj/machinery/augment_fabricator,
+/turf/open/floor/plasteel/white,
+/area/city)
 "Dv" = (
 /obj/structure/bed/maint,
 /obj/effect/decal/cleanable/dirt,
@@ -4085,6 +4094,7 @@
 /area/city)
 "Ef" = (
 /obj/structure/rack,
+/obj/item/augment_remover,
 /turf/open/indestructible/white,
 /area/city/house)
 "Ek" = (
@@ -4393,6 +4403,11 @@
 /obj/item/restraints/handcuffs,
 /obj/machinery/light,
 /turf/open/floor/facility/white,
+/area/city/house)
+"GC" = (
+/obj/structure/rack,
+/obj/item/augment_tester,
+/turf/open/indestructible/white,
 /area/city/house)
 "GE" = (
 /obj/machinery/door/airlock/medical{
@@ -5957,6 +5972,7 @@
 /obj/machinery/light{
 	dir = 1
 	},
+/obj/item/augment_tester,
 /turf/open/indestructible/white,
 /area/city)
 "Rz" = (
@@ -6423,15 +6439,9 @@
 /turf/open/indestructible/white,
 /area/city/shop)
 "Ur" = (
-/obj/structure/delivery_door{
-	density = 1;
-	desc = "A mailbox for this house.";
-	icon = 'icons/obj/votebox.dmi';
-	icon_state = "votebox_maint";
-	name = "mail box"
-	},
-/turf/closed/indestructible/reinforced,
-/area/space)
+/obj/machinery/augment_fabricator,
+/turf/open/floor/plasteel/white,
+/area/city/house)
 "Us" = (
 /obj/structure/chair/office/light,
 /turf/open/floor/plasteel/white,
@@ -31760,7 +31770,7 @@ lV
 lV
 lV
 OD
-Ru
+Ax
 lf
 Pf
 KP
@@ -32019,7 +32029,7 @@ lV
 OD
 Ry
 lf
-Pf
+Dt
 OD
 xC
 Pf
@@ -40627,7 +40637,7 @@ Gz
 wX
 zA
 It
-Ur
+xO
 Hz
 Hz
 lV
@@ -47746,7 +47756,7 @@ lT
 lT
 lT
 HC
-Ef
+GC
 my
 ZY
 IL
@@ -48005,7 +48015,7 @@ lT
 HC
 Oo
 my
-ZY
+Ur
 HC
 ZD
 ZY
@@ -49044,7 +49054,7 @@ lT
 lT
 lT
 OD
-lV
+OD
 lV
 lV
 lV
