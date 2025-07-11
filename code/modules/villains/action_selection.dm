@@ -28,11 +28,12 @@
 	data["character_name"] = owner.name
 	data["is_villain"] = owner.is_villain
 
-	// Combine all available actions into one list
-	var/list/available_actions = list()
+	// Separate main and secondary actions
+	var/list/main_actions = list()
+	var/list/secondary_actions = list()
 
-	// Talk/Trade is always available
-	available_actions += list(list(
+	// Talk/Trade is always available as main action
+	main_actions += list(list(
 		"id" = "talk_trade",
 		"name" = "Talk/Trade",
 		"type" = "typeless",
@@ -53,15 +54,35 @@
 			if(VILLAIN_ACTION_ELIMINATION)
 				ability_type = "elimination"
 		
-		available_actions += list(list(
-			"id" = "character_ability",
-			"name" = owner.character_data.active_ability_name,
-			"type" = ability_type,
-			"cost" = owner.character_data.active_ability_cost,
-			"desc" = owner.character_data.active_ability_desc
+		// Add to appropriate list based on cost
+		if(owner.character_data.active_ability_cost == VILLAIN_ACTION_MAIN)
+			main_actions += list(list(
+				"id" = "character_ability",
+				"name" = owner.character_data.active_ability_name,
+				"type" = ability_type,
+				"cost" = owner.character_data.active_ability_cost,
+				"desc" = owner.character_data.active_ability_desc
+			))
+		else if(owner.character_data.active_ability_cost == VILLAIN_ACTION_SECONDARY)
+			secondary_actions += list(list(
+				"id" = "character_ability",
+				"name" = owner.character_data.active_ability_name,
+				"type" = ability_type,
+				"cost" = owner.character_data.active_ability_cost,
+				"desc" = owner.character_data.active_ability_desc
+			))
+	
+	// Puss in Boots special - can Talk/Trade with blessed players as secondary
+	if(owner.character_data?.character_id == VILLAIN_CHAR_PUSSINBOOTS && owner.current_blessing)
+		secondary_actions += list(list(
+			"id" = "inheritance_trade",
+			"name" = "Inheritance (Talk/Trade with Blessed)",
+			"type" = "typeless",
+			"cost" = VILLAIN_ACTION_SECONDARY,
+			"desc" = "Talk and trade with your blessed player"
 		))
 
-	// Items
+	// Items - separate by cost
 	for(var/obj/item/villains/I in owner.contents)
 		var/item_type = "typeless"
 		switch(I.action_type)
@@ -74,17 +95,22 @@
 			if(VILLAIN_ACTION_ELIMINATION)
 				item_type = "elimination"
 		
-		available_actions += list(list(
+		var/action_data = list(
 			"id" = "item_[REF(I)]",
 			"name" = "Use [I.name]",
 			"type" = item_type,
 			"cost" = I.action_cost,
 			"desc" = I.desc
-		))
+		)
+		
+		if(I.action_cost == VILLAIN_ACTION_MAIN)
+			main_actions += list(action_data)
+		else if(I.action_cost == VILLAIN_ACTION_SECONDARY)
+			secondary_actions += list(action_data)
 
-	// Eliminate (villain only)
+	// Eliminate (villain only) - main action
 	if(owner.is_villain)
-		available_actions += list(list(
+		main_actions += list(list(
 			"id" = "eliminate",
 			"name" = "Eliminate",
 			"type" = "elimination",
@@ -92,7 +118,8 @@
 			"desc" = "Attempt to eliminate another player"
 		))
 
-	data["available_actions"] = available_actions
+	data["available_actions"] = main_actions
+	data["secondary_actions"] = secondary_actions
 
 	// Targets with better info
 	var/list/targets = list()
@@ -126,6 +153,8 @@
 	// Current selections
 	data["selected_action"] = selected_main_action
 	data["selected_target"] = selected_main_target
+	data["selected_secondary_action"] = selected_secondary_action
+	data["selected_secondary_target"] = selected_secondary_target
 	data["can_submit"] = (selected_main_action && selected_main_target)
 
 	return data
@@ -144,6 +173,16 @@
 
 		if("select_target")
 			selected_main_target = params["target_ref"]
+			return TRUE
+			
+		if("select_secondary_action")
+			selected_secondary_action = params["action_id"]
+			// Clear target if changing action
+			selected_secondary_target = null
+			return TRUE
+
+		if("select_secondary_target")
+			selected_secondary_target = params["target_ref"]
 			return TRUE
 
 		if("submit")
@@ -164,24 +203,54 @@
 				var/action_data
 
 				if(selected_main_action == "talk_trade")
-					action_type = VILLAIN_ACTION_TALK_TRADE
+					action_type = "talk_trade"
 				else if(selected_main_action == "character_ability")
-					action_type = VILLAIN_ACTION_CHARACTER_ABILITY
+					action_type = "character_ability"
 				else if(selected_main_action == "eliminate")
-					action_type = VILLAIN_ACTION_ELIMINATE
+					action_type = "eliminate"
 				else if(findtext(selected_main_action, "item_"))
-					action_type = VILLAIN_ACTION_USE_ITEM
+					action_type = "use_item"
 					action_data = copytext(selected_main_action, 6) // Remove "item_" prefix
 
-				// Store on the mob
+				// Store main action on the mob
 				owner.main_action = list(
 					"type" = action_type,
 					"target" = selected_main_target,
 					"data" = action_data
 				)
+				
+				// Handle secondary action if selected
+				if(selected_secondary_action && selected_secondary_target)
+					var/secondary_target = locate(selected_secondary_target)
+					if(secondary_target && (secondary_target in GLOB.villains_game.living_players))
+						var/secondary_type
+						var/secondary_data
+						
+						if(selected_secondary_action == "character_ability")
+							secondary_type = "character_ability"
+						else if(selected_secondary_action == "inheritance_trade")
+							secondary_type = "inheritance_trade"
+						else if(findtext(selected_secondary_action, "item_"))
+							secondary_type = "use_item"
+							secondary_data = copytext(selected_secondary_action, 6) // Remove "item_" prefix
+						
+						owner.secondary_action = list(
+							"type" = secondary_type,
+							"target" = selected_secondary_target,
+							"data" = secondary_data
+						)
 
 				to_chat(owner, span_notice("Your action has been submitted for tonight."))
-				to_chat(owner, span_notice("You will [selected_main_action] targeting [target.name]."))
+				
+				// Get display name for the action
+				var/action_display = get_action_display_name(selected_main_action)
+				to_chat(owner, span_notice("Main: You will [action_display] [target.name]."))
+				
+				if(selected_secondary_action && selected_secondary_target)
+					var/secondary_display = get_action_display_name(selected_secondary_action)
+					var/secondary_target = locate(selected_secondary_target)
+					if(secondary_target)
+						to_chat(owner, span_notice("Secondary: You will [secondary_display] [secondary_target]."))
 
 				// Close the UI
 				SStgui.close_uis(src)
@@ -191,4 +260,29 @@
 		if("clear")
 			selected_main_action = null
 			selected_main_target = null
+			selected_secondary_action = null
+			selected_secondary_target = null
 			return TRUE
+
+/datum/villains_action_selection/proc/get_action_display_name(action_id)
+	if(!action_id)
+		return "perform an unknown action on"
+	
+	switch(action_id)
+		if("talk_trade")
+			return "talk and trade with"
+		if("character_ability")
+			return "use your ability on"
+		if("eliminate")
+			return "eliminate"
+		else
+			// Check if it's an item action
+			if(findtext(action_id, "item_"))
+				var/item_ref = copytext(action_id, 6) // Remove "item_" prefix
+				var/obj/item/villains/I = locate(item_ref)
+				if(I)
+					return "use [I.name] on"
+				else
+					return "use an item on"
+			else
+				return "perform [action_id] on"

@@ -15,6 +15,11 @@
 	var/mob/living/simple_animal/hostile/villains_character/current_villain
 	var/last_eliminated
 
+	// Action queue
+	var/datum/villains_action_queue/action_queue
+	var/list/last_night_actions = list() // Track actions from the last nighttime phase
+	var/list/action_targets = list() // Track who was targeted by whom (target = list(performers))
+
 	// Voting system
 	var/list/current_votes = list()
 	var/voting_phase
@@ -49,12 +54,14 @@
 	// Don't start timer immediately - wait for first player
 	log_game("DEBUG: Villains controller created")
 	map_deleter = new
+	action_queue = new(src)
 
 /datum/villains_controller/Destroy()
 	if(phase_timer)
 		deltimer(phase_timer)
 	reset_game()
 	QDEL_NULL(map_deleter)
+	QDEL_NULL(action_queue)
 	return ..()
 
 /datum/villains_controller/proc/reset_game()
@@ -178,6 +185,12 @@
 	unlock_all_rooms()
 	// Spawn items around the map
 	spawn_morning_items()
+	
+	// Trigger character phase change callbacks
+	for(var/mob/living/simple_animal/hostile/villains_character/player in living_players)
+		if(player.character_data)
+			player.character_data.on_phase_change(VILLAIN_PHASE_MORNING, player, src)
+	
 	// Set timer for phase end
 	var/morning_time = last_eliminated ? 60 : VILLAIN_TIMER_MORNING_MIN
 	phase_timer = addtimer(CALLBACK(src, .proc/change_phase, VILLAIN_PHASE_EVENING), morning_time SECONDS, TIMER_STOPPABLE)
@@ -188,8 +201,22 @@
 	teleport_all_to_rooms()
 	// Lock players in rooms
 	lock_all_rooms()
+	// Remove unpicked items
+	remove_unpicked_items()
 	// Remove "fresh" status from items
 	remove_item_freshness()
+	// Reset action blocks from previous night
+	for(var/mob/living/simple_animal/hostile/villains_character/player in living_players)
+		player.main_action_blocked = FALSE  // Reset taser effect
+		player.secondary_action_blocked = FALSE  // Reset bola effect
+		player.action_blocked = FALSE  // Reset general action block (Sunset Traveller's passive)
+		player.main_action = null  // Clear previous action
+		player.secondary_action = null  // Clear previous secondary action
+		
+		// Stop Rudolta's observation if active
+		if(player.is_observing)
+			player.stop_observing()
+			UnregisterSignal(player.observing_target, COMSIG_MOVABLE_MOVED)
 	// Open action selection UI
 	phase_timer = addtimer(CALLBACK(src, .proc/change_phase, VILLAIN_PHASE_NIGHTTIME), VILLAIN_TIMER_EVENING SECONDS, TIMER_STOPPABLE)
 
@@ -396,16 +423,391 @@
 	spawned_items = spawn_villains_items(villains_area, 10)
 
 
-/datum/villains_controller/proc/remove_item_freshness()
+/datum/villains_controller/proc/remove_unpicked_items()
+	var/removed_count = 0
 	for(var/obj/item/villains/I in spawned_items)
+		// Check if the item is still on the ground (not picked up by a player)
+		if(!ismob(I.loc))
+			qdel(I)
+			removed_count++
+
+	// Clean up the spawned items list
+	spawned_items.Cut()
+
+	if(removed_count > 0)
+		to_chat(living_players, span_notice("[removed_count] unpicked items have been removed."))
+
+/datum/villains_controller/proc/remove_item_freshness()
+	// Only process items that are in player inventories
+	for(var/mob/living/simple_animal/hostile/villains_character/player in living_players)
+		for(var/obj/item/villains/I in player.contents)
+			I.freshness = VILLAIN_ITEM_USED
+			I.update_outline()
+
+/datum/villains_controller/proc/process_night_actions()
+	if(!action_queue)
+		return
+
+	to_chat(living_players, span_notice("Processing night actions..."))
+
+	// Clear last night's actions
+	last_night_actions.Cut()
+	action_targets.Cut()
+
+	// Pre-process Warden's Soul Gather to cancel item actions
+	for(var/mob/living/simple_animal/hostile/villains_character/player in living_players)
+		if(player.soul_gather_target)
+			var/mob/living/simple_animal/hostile/villains_character/soul_target = player.soul_gather_target
+			
+			// Cancel and block item-based actions
+			if(soul_target.main_action && soul_target.main_action["type"] == "use_item")
+				to_chat(soul_target, span_warning("Your soul is being gathered... your item action fails!"))
+				soul_target.main_action = null
+			
+			if(soul_target.secondary_action && soul_target.secondary_action["type"] == "use_item")
+				to_chat(soul_target, span_warning("Your soul is being gathered... your secondary item action fails!"))
+				soul_target.secondary_action = null
+	
+	// Collect all submitted actions
+	for(var/mob/living/simple_animal/hostile/villains_character/player in living_players)
+		if(player.main_action)
+			var/action_type = player.main_action["type"]
+			var/target_ref = player.main_action["target"]
+			var/action_data = player.main_action["data"]
+
+			var/mob/living/simple_animal/hostile/villains_character/target = locate(target_ref)
+			if(!target)
+				continue
+
+			var/datum/villains_action/new_action
+
+			switch(action_type)
+				if("talk_trade")
+					new_action = new /datum/villains_action/talk_trade(player, target, src)
+				if("eliminate")
+					new_action = new /datum/villains_action/eliminate(player, target, src)
+				if("use_item")
+					var/obj/item/villains/item = locate(action_data)
+					if(item)
+						new_action = new /datum/villains_action/use_item(player, target, src, item)
+				if("character_ability")
+					var/datum/villains_character/char = player.character_data
+					if(char)
+						new_action = new /datum/villains_action/character_ability(player, target, src, char)
+
+			if(new_action)
+				// Check if player used fairy wine with matching targets
+				if(player.used_fairy_wine && player.secondary_action)
+					var/sec_target_ref = player.secondary_action["target"]
+					if(sec_target_ref == target_ref && action_type != "talk_trade")
+						// Create a Talk/Trade session after the main action
+						var/datum/villains_action/fairy_trade = new /datum/villains_action/talk_trade(player, target, src)
+						fairy_trade.priority = VILLAIN_ACTION_PRIORITY_LOW // Process after main action
+						action_queue.add_action(fairy_trade)
+						to_chat(player, span_notice("The Fairy Wine's magic activates, creating a Talk/Trade session with your target!"))
+				
+				action_queue.add_action(new_action)
+				// Track this action
+				last_night_actions += new_action
+				// Track who targeted whom
+				if(target)
+					if(!action_targets[REF(target)])
+						action_targets[REF(target)] = list()
+					action_targets[REF(target)] += list(list(
+						"performer" = player,
+						"action" = new_action
+					))
+
+		// Also process secondary action if present
+		if(player.secondary_action && !player.secondary_action_blocked)
+			var/sec_action_type = player.secondary_action["type"]
+			var/sec_target_ref = player.secondary_action["target"]
+			var/sec_action_data = player.secondary_action["data"]
+
+			var/mob/living/simple_animal/hostile/villains_character/sec_target = locate(sec_target_ref)
+			if(sec_target)
+				var/datum/villains_action/secondary_action
+
+				switch(sec_action_type)
+					if("use_item")
+						var/obj/item/villains/item = locate(sec_action_data)
+						if(item && item.action_cost == VILLAIN_ACTION_SECONDARY)
+							secondary_action = new /datum/villains_action/use_item(player, sec_target, src, item)
+					if("character_ability")
+						var/datum/villains_character/char = player.character_data
+						if(char && char.active_ability_cost == VILLAIN_ACTION_SECONDARY)
+							secondary_action = new /datum/villains_action/character_ability(player, sec_target, src, char)
+					if("inheritance_trade")
+						// Puss in Boots special Talk/Trade
+						if(player.character_data?.character_id == VILLAIN_CHAR_PUSSINBOOTS && sec_target == player.current_blessing)
+							secondary_action = new /datum/villains_action/talk_trade(player, sec_target, src)
+
+				if(secondary_action)
+					// Secondary actions have lower priority than main actions
+					secondary_action.priority = VILLAIN_ACTION_PRIORITY_LOW
+					action_queue.add_action(secondary_action)
+					// Track this action
+					last_night_actions += secondary_action
+					// Track who targeted whom
+					if(sec_target)
+						if(!action_targets[REF(sec_target)])
+							action_targets[REF(sec_target)] = list()
+						action_targets[REF(sec_target)] += list(list(
+							"performer" = player,
+							"action" = secondary_action
+						))
+		else if(player.secondary_action && player.secondary_action_blocked)
+			to_chat(player, span_warning("Your secondary action failed to execute."))
+
+		// Clear action storage
+		player.main_action = null
+		player.secondary_action = null
+		player.used_fairy_wine = FALSE
+
+	// Process all actions in priority order
+	spawn(0)
+		action_queue.process_actions()
+
+		// After all actions are processed
+		sleep(5 SECONDS)
+		
+		// Process investigative results
+		process_investigative_results()
+
+		// Check if someone was eliminated
+		if(last_eliminated)
+			change_phase(VILLAIN_PHASE_INVESTIGATION)
+		else
+			change_phase(VILLAIN_PHASE_MORNING)
+
+/datum/villains_controller/proc/process_investigative_results()
+	// Process drain monitor and rangefinder results
+	for(var/mob/living/simple_animal/hostile/villains_character/player in living_players)
+		// Drain Monitor - show who targeted someone
+		if(player.drain_monitor_target)
+			var/mob/living/simple_animal/hostile/villains_character/monitored = player.drain_monitor_target
+			var/list/targeters = list()
+			
+			if(action_targets[REF(monitored)])
+				for(var/list/action_data in action_targets[REF(monitored)])
+					var/mob/living/simple_animal/hostile/villains_character/performer = action_data["performer"]
+					if(performer && !(performer.name in targeters))
+						targeters += performer.name
+			
+			if(length(targeters))
+				to_chat(player, span_notice("Drain Monitor Results: The following players targeted [monitored]: [targeters.Join(", ")]."))
+			else
+				to_chat(player, span_notice("Drain Monitor Results: Nobody targeted [monitored]."))
+			
+			player.drain_monitor_target = null
+		
+		// Rangefinder - show what actions targeted someone
+		if(player.rangefinder_target)
+			var/mob/living/simple_animal/hostile/villains_character/targeted = player.rangefinder_target
+			var/list/action_list = list()
+			
+			if(action_targets[REF(targeted)])
+				for(var/list/action_data in action_targets[REF(targeted)])
+					var/mob/living/simple_animal/hostile/villains_character/performer = action_data["performer"]
+					var/datum/villains_action/action = action_data["action"]
+					if(performer && action)
+						// Check if performer used fairy wine
+						if(performer.used_fairy_wine)
+							action_list += "[performer.name] used Talk/Trade"
+						else
+							action_list += "[performer.name] used [action.name]"
+			
+			if(length(action_list))
+				to_chat(player, span_notice("Rangefinder Results: The following actions targeted [targeted]: [action_list.Join(", ")]."))
+			else
+				to_chat(player, span_notice("Rangefinder Results: No actions targeted [targeted]."))
+			
+			player.rangefinder_target = null
+		
+		// Funeral Butterflies Guidance - show who visited someone (same as Drain Monitor)
+		if(player.guidance_target)
+			var/mob/living/simple_animal/hostile/villains_character/guided = player.guidance_target
+			var/list/visitors = list()
+			
+			if(action_targets[REF(guided)])
+				for(var/list/action_data in action_targets[REF(guided)])
+					var/mob/living/simple_animal/hostile/villains_character/performer = action_data["performer"]
+					if(performer && !(performer.name in visitors))
+						visitors += performer.name
+			
+			if(length(visitors))
+				to_chat(player, span_notice("Guidance Results: The following players visited [guided]: [visitors.Join(", ")]."))
+			else
+				to_chat(player, span_notice("Guidance Results: Nobody visited [guided]."))
+			
+			player.guidance_target = null
+		
+		// Hunter's Mark - notify if target used Suppressive/Elimination
+		if(player.marked_for_hunting)
+			var/mob/living/simple_animal/hostile/villains_character/hunted = player.marked_for_hunting
+			var/used_aggressive = FALSE
+			
+			for(var/datum/villains_action/action in last_night_actions)
+				if(action.performer == hunted)
+					var/action_category = VILLAIN_ACTION_TYPELESS
+					
+					if(action.action_type == "character_ability" && hunted.character_data)
+						action_category = hunted.character_data.active_ability_type
+					else if(action.action_type == "use_item")
+						var/datum/villains_action/use_item/UI = action
+						if(UI.used_item)
+							action_category = UI.used_item.action_type
+					else if(action.action_type == "eliminate")
+						action_category = VILLAIN_ACTION_ELIMINATION
+					
+					if(action_category == VILLAIN_ACTION_SUPPRESSIVE || action_category == VILLAIN_ACTION_ELIMINATION)
+						used_aggressive = TRUE
+						break
+			
+			if(used_aggressive)
+				to_chat(player, span_boldwarning("Hunter's Mark Alert: [hunted] used an aggressive action (Suppressive or Elimination)!"))
+			else
+				to_chat(player, span_notice("Hunter's Mark: [hunted] did not use any aggressive actions."))
+			
+			player.marked_for_hunting = null
+		
+		// Warden's Soul Gather - cancel item actions and steal items
+		if(player.soul_gather_target)
+			var/mob/living/simple_animal/hostile/villains_character/soul_target = player.soul_gather_target
+			var/list/stolen_items = list()
+			
+			// Check if target used any items
+			if(soul_target.main_action && soul_target.main_action["type"] == "use_item")
+				soul_target.main_action = null
+				to_chat(soul_target, span_warning("Your action was disrupted by dark forces!"))
+			
+			if(soul_target.secondary_action && soul_target.secondary_action["type"] == "use_item")
+				soul_target.secondary_action = null
+				to_chat(soul_target, span_warning("Your secondary action was disrupted by dark forces!"))
+			
+			// Steal all items they used
+			for(var/datum/villains_action/action in last_night_actions)
+				if(action.performer == soul_target && action.action_type == "use_item")
+					var/datum/villains_action/use_item/UI = action
+					if(UI.used_item && UI.used_item.loc == soul_target)
+						UI.used_item.forceMove(player)
+						stolen_items += UI.used_item.name
+						if(UI.used_item.freshness == VILLAIN_ITEM_FRESH && (UI.used_item in soul_target.fresh_items))
+							soul_target.fresh_items -= UI.used_item
+			
+			if(length(stolen_items))
+				to_chat(player, span_boldnotice("Soul Gather successful! You stole: [stolen_items.Join(", ")]"))
+				to_chat(soul_target, span_userdanger("Your items have been stolen by [player]!"))
+			else
+				to_chat(player, span_notice("Soul Gather: [soul_target] did not use any items."))
+			
+			player.soul_gather_target = null
+		
+		// Blue Shepherd's False Prophet
+		if(player.false_prophet_used)
+			var/revealed_action = null
+			
+			// 20% chance to show random player's action instead of villain's
+			if(prob(20))
+				// Show a random player's action
+				var/list/other_players = living_players - player - current_villain
+				if(length(other_players))
+					var/mob/living/simple_animal/hostile/villains_character/random_player = pick(other_players)
+					if(random_player.main_action)
+						revealed_action = "[random_player]'s action: [get_action_description(random_player.main_action, random_player)]"
+			else
+				// Show villain's action
+				if(current_villain && current_villain.main_action)
+					revealed_action = "[current_villain]'s action: [get_action_description(current_villain.main_action, current_villain)]"
+			
+			if(revealed_action)
+				to_chat(player, span_boldnotice("False Prophet Vision: [revealed_action]"))
+			else
+				to_chat(player, span_notice("False Prophet Vision: The villain took no action."))
+			
+			player.false_prophet_used = FALSE
+		
+		// Butterfly Guide - show who visited target (Sunset Traveller)
+		if(player.butterfly_guide_target)
+			var/mob/living/simple_animal/hostile/villains_character/butterfly_target = player.butterfly_guide_target
+			var/list/visitors = list()
+			
+			if(action_targets[REF(butterfly_target)])
+				for(var/list/action_data in action_targets[REF(butterfly_target)])
+					var/mob/living/simple_animal/hostile/villains_character/performer = action_data["performer"]
+					if(performer && !(performer.name in visitors))
+						visitors += performer.name
+			
+			if(length(visitors))
+				to_chat(player, span_notice("Butterfly Guide Results: The following players visited [butterfly_target]: [visitors.Join(", ")]."))
+			else
+				to_chat(player, span_notice("Butterfly Guide Results: Nobody visited [butterfly_target]."))
+			
+			player.butterfly_guide_target = null
+		
+		// Forsaken Murderer's Paranoid - count who targeted them
+		if(player.character_data?.character_id == VILLAIN_CHAR_FORSAKENMURDER)
+			var/targeters_count = 0
+			
+			if(action_targets[REF(player)])
+				for(var/list/action_data in action_targets[REF(player)])
+					targeters_count++
+			
+			if(targeters_count > 0)
+				to_chat(player, span_boldnotice("Paranoid: [targeters_count] player\s targeted you last night!"))
+			else
+				to_chat(player, span_notice("Paranoid: Nobody targeted you last night."))
+
+/datum/villains_controller/proc/get_action_description(list/action_data, mob/living/simple_animal/hostile/villains_character/performer)
+	if(!action_data)
+		return "no action"
+	
+	var/action_type = action_data["type"]
+	var/target_ref = action_data["target"]
+	var/mob/living/simple_animal/hostile/villains_character/target = locate(target_ref)
+	
+	switch(action_type)
+		if("talk_trade")
+			return "Talk/Trade with [target ? target.name : "unknown"]"
+		if("eliminate")
+			return "Eliminate [target ? target.name : "unknown"]"
+		if("character_ability")
+			if(performer?.character_data)
+				return "[performer.character_data.active_ability_name] on [target ? target.name : "unknown"]"
+			return "Character ability on [target ? target.name : "unknown"]"
+		if("use_item")
+			var/item_ref = action_data["data"]
+			var/obj/item/villains/I = locate(item_ref)
+			if(I)
+				return "Use [I.name] on [target ? target.name : "unknown"]"
+			return "Use item on [target ? target.name : "unknown"]"
+		if("inheritance_trade")
+			return "Inheritance (Talk/Trade) with [target ? target.name : "unknown"]"
+		else
+			return "[action_type] on [target ? target.name : "unknown"]"
+
+/datum/villains_controller/proc/scatter_evidence_items()
+	if(!villains_area)
+		return
+
+	// Get all turfs in the area
+	var/list/available_turfs = list()
+	for(var/turf/T in get_area_turfs(villains_area))
+		if(T.density)
+			continue
+		available_turfs += T
+
+	// Scatter all used items
+	for(var/obj/item/villains/I in used_items)
+		if(!length(available_turfs))
+			break
+
+		var/turf/spawn_turf = pick_n_take(available_turfs)
+		I.forceMove(spawn_turf)
 		I.freshness = VILLAIN_ITEM_USED
 		I.update_outline()
 
-/datum/villains_controller/proc/process_night_actions()
-	// TODO: Implement action processing
-
-/datum/villains_controller/proc/scatter_evidence_items()
-	// TODO: Scatter used items as evidence
+	to_chat(living_players, span_notice("Used items have been scattered around the facility as evidence."))
 
 /datum/villains_controller/proc/teleport_to_main_room()
 	if(!main_room_center)
@@ -873,6 +1275,19 @@
 			change_phase(new_phase)
 			return TRUE
 
+		if("admin_end_phase")
+			if(!log_action(user, admin_action = TRUE, message_override = "[user] has used admin powers to end the current phase"))
+				return
+
+			// Cancel current timer
+			if(phase_timer)
+				deltimer(phase_timer)
+				phase_timer = null
+
+			// Progress to the next phase naturally
+			handle_phase_timer()
+			return TRUE
+
 		if("admin_add_ghost")
 			var/ghost_ckey = params["ckey"]
 			if(!log_action(user, admin_action = TRUE, message_override = "[user] has used admin powers to add [ghost_ckey] to Villains game"))
@@ -899,6 +1314,13 @@
 
 			to_chat(world, span_boldwarning("The Villains game has been forcefully ended by an administrator."))
 			qdel(src)
+			return TRUE
+
+		if("admin_reveal_actions")
+			if(!log_action(user, admin_action = TRUE, message_override = "[user] revealed last night's actions in Villains game"))
+				return
+
+			reveal_last_night_actions(user)
 			return TRUE
 
 		if("admin_set_timer")
@@ -1029,6 +1451,18 @@
 			to_chat(user, span_adminnotice("=== VILLAINS GAME STATE ===\n[summary]"))
 			return TRUE
 
+		if("debug_give_items_to_fakes")
+			if(!log_action(user, admin_action = TRUE, message_override = "[user] gave items to all fake players in Villains game"))
+				return
+			give_items_to_fake_players()
+			return TRUE
+
+		if("debug_control_fake_action")
+			if(!log_action(user, admin_action = TRUE, message_override = "[user] is controlling a fake player's action in Villains game"))
+				return
+			control_fake_player_action(user)
+			return TRUE
+
 /datum/villains_controller/proc/start_signup_timer()
 	log_game("DEBUG: start_signup_timer called. phase_timer: [phase_timer], current_phase: [current_phase]")
 	if(!phase_timer && current_phase == VILLAIN_PHASE_SETUP)
@@ -1112,10 +1546,10 @@
 			return null
 		character_id = pick(unused_chars)
 
-	// Generate fake ckey
-	var/fake_ckey = "fakeplayer_[rand(1000,9999)]"
+	// Generate fake ckey (no underscores as BYOND removes them)
+	var/fake_ckey = "fakeplayer[rand(1000,9999)]"
 	while((fake_ckey in fake_players) || (fake_ckey in GLOB.villains_signup))
-		fake_ckey = "fakeplayer_[rand(1000,9999)]"
+		fake_ckey = "fakeplayer[rand(1000,9999)]"
 
 	// Add to signup and select character
 	GLOB.villains_signup += fake_ckey
@@ -1134,6 +1568,17 @@
 		all_players += new_mob
 		living_players += new_mob
 		player_role_lookup[new_mob] = character
+		
+		// Update fake_players list with actual ckey (in case BYOND modified it)
+		if(new_mob.ckey != fake_ckey)
+			fake_players -= fake_ckey
+			fake_players += new_mob.ckey
+			// Also update in signups
+			GLOB.villains_signup -= fake_ckey
+			GLOB.villains_signup += new_mob.ckey
+			selected_characters[character_id] = new_mob.ckey
+		
+		to_chat(world, span_adminnotice("DEBUG: Created fake player [new_mob.name] with ckey [new_mob.ckey]"))
 
 		// Assign room
 		var/datum/villains_room/room = assign_room_to_player(new_mob)
@@ -1151,13 +1596,6 @@
 			created++
 	to_chat(world, span_notice("Created [created] fake players for testing."))
 
-/datum/villains_controller/proc/force_player_action(mob/living/simple_animal/hostile/villains_character/player, action_type, mob/living/simple_animal/hostile/villains_character/target)
-	if(!player || !target)
-		return FALSE
-
-	submit_action(player, action_type, target)
-	to_chat(world, span_adminnotice("DEBUG: Forced [player] to perform [action_type] on [target]"))
-	return TRUE
 
 /datum/villains_controller/proc/spawn_all_items()
 	if(!villains_area)
@@ -1175,8 +1613,8 @@
 		for(var/turf/T in turfs)
 			spawn_points += T
 
-	// Get all item types
-	var/list/item_types = typesof(/obj/item/villains) - /obj/item/villains
+	// Get all item types except fairy wine
+	var/list/item_types = typesof(/obj/item/villains) - /obj/item/villains - /obj/item/villains/fairy_wine
 	var/spawned = 0
 
 	for(var/item_type in item_types)
@@ -1222,23 +1660,76 @@
 	return TRUE
 
 /datum/villains_controller/proc/simulate_fake_player_actions()
+	var/actions_submitted = 0
+	
 	for(var/mob/living/simple_animal/hostile/villains_character/player in living_players)
 		if(!(player.ckey in fake_players))
 			continue
 
 		// Pick random valid action
 		var/list/possible_actions = list("talk_trade")
+		var/action_type
+		var/action_data
+		
 		if(player.character_data?.active_ability_name)
 			possible_actions += "character_ability"
 		if(player.is_villain)
 			possible_actions += "eliminate"
+			
+		// Add item actions
+		for(var/obj/item/villains/I in player.contents)
+			if(I.action_cost == VILLAIN_ACTION_MAIN)
+				possible_actions += "use_[I.name]"
 
-		var/action = pick(possible_actions)
+		var/action_choice = pick(possible_actions)
 		var/mob/living/simple_animal/hostile/villains_character/target = pick(living_players - player)
+		
+		// Convert action choice to action type
+		if(action_choice == "talk_trade")
+			action_type = "talk_trade"
+		else if(action_choice == "character_ability")
+			action_type = "character_ability"
+		else if(action_choice == "eliminate")
+			action_type = "eliminate"
+		else if(findtext(action_choice, "use_"))
+			action_type = "use_item"
+			// Find the item
+			var/item_name = copytext(action_choice, 5) // Remove "use_"
+			for(var/obj/item/villains/I in player.contents)
+				if(I.name == item_name)
+					action_data = REF(I)
+					break
+		
+		// Set the action on the player mob (same format as UI)
+		player.main_action = list(
+			"type" = action_type,
+			"target" = REF(target),
+			"data" = action_data
+		)
+		
+		// Check for secondary action items
+		var/list/secondary_items = list()
+		for(var/obj/item/villains/I in player.contents)
+			if(I.action_cost == VILLAIN_ACTION_SECONDARY)
+				secondary_items += I
+		
+		// 50% chance to use a secondary action if available
+		if(length(secondary_items) && prob(50))
+			var/obj/item/villains/sec_item = pick(secondary_items)
+			var/mob/living/simple_animal/hostile/villains_character/sec_target = pick(living_players - player)
+			
+			player.secondary_action = list(
+				"type" = "use_item",
+				"target" = REF(sec_target),
+				"data" = REF(sec_item)
+			)
+			
+			to_chat(world, span_adminnotice("DEBUG: [player.name] will also use [sec_item.name] on [sec_target.name] (secondary)"))
+		
+		actions_submitted++
+		to_chat(world, span_adminnotice("DEBUG: [player.name] will [action_choice] targeting [target.name]"))
 
-		submit_action(player, action, target)
-
-	to_chat(world, span_notice("DEBUG: All fake players have submitted random actions."))
+	to_chat(world, span_notice("DEBUG: [actions_submitted] fake players have submitted random actions."))
 
 /datum/villains_controller/proc/instant_process_actions()
 	if(current_phase != VILLAIN_PHASE_NIGHTTIME)
@@ -1265,6 +1756,225 @@
 
 	return summary.Join("\n")
 
+/datum/villains_controller/proc/give_items_to_fake_players()
+	var/list/item_types = typesof(/obj/item/villains) - /obj/item/villains - /obj/item/villains/fairy_wine
+	var/items_given = 0
+	
+	to_chat(world, span_adminnotice("DEBUG: Starting give_items_to_fake_players"))
+	to_chat(world, span_adminnotice("DEBUG: fake_players list: [fake_players.Join(", ")]"))
+	to_chat(world, span_adminnotice("DEBUG: living_players count: [length(living_players)]"))
+
+	for(var/mob/living/simple_animal/hostile/villains_character/player in living_players)
+		to_chat(world, span_adminnotice("DEBUG: Checking player [player.name] (ckey: [player.ckey])"))
+		
+		if(!(player.ckey in fake_players))
+			to_chat(world, span_adminnotice("DEBUG: [player.name] is not a fake player, skipping"))
+			continue
+			
+		to_chat(world, span_adminnotice("DEBUG: [player.name] is a fake player, giving items"))
+
+		// Give 2-3 random items to each fake player
+		var/items_to_give = rand(2, 3)
+		for(var/i in 1 to items_to_give)
+			// Check if they're at the item limit
+			var/total_items = 0
+			for(var/obj/item/villains/I in player.contents)
+				total_items++
+
+			if(total_items >= 3)
+				to_chat(world, span_adminnotice("DEBUG: [player.name] already has [total_items] items, at limit"))
+				break
+
+			// Give a random item
+			var/item_type = pick(item_types)
+			var/obj/item/villains/new_item = new item_type(player)
+			new_item.freshness = VILLAIN_ITEM_USED // Give them as used items
+			items_given++
+			to_chat(world, span_adminnotice("DEBUG: Gave [new_item] to [player]"))
+
+	to_chat(world, span_adminnotice("DEBUG: Distributed [items_given] items to fake players."))
+
+/datum/villains_controller/proc/control_fake_player_action(mob/admin)
+	if(current_phase != VILLAIN_PHASE_EVENING)
+		to_chat(admin, span_warning("Can only control fake player actions during evening phase!"))
+		return
+
+	// Get list of fake players
+	var/list/fake_player_list = list()
+	for(var/mob/living/simple_animal/hostile/villains_character/player in living_players)
+		if(player.ckey in fake_players)
+			fake_player_list += player
+
+	if(!length(fake_player_list))
+		to_chat(admin, span_warning("No fake players available!"))
+		return
+
+	// Pick a random fake player
+	var/mob/living/simple_animal/hostile/villains_character/fake_player = pick(fake_player_list)
+
+	// Get available actions
+	var/list/action_choices = list("Talk/Trade", "Character Ability")
+	if(fake_player.is_villain)
+		action_choices += "Eliminate"
+
+	// Add items
+	for(var/obj/item/villains/I in fake_player.contents)
+		action_choices += "Use [I.name]"
+
+	var/chosen_action = input(admin, "Select action for [fake_player.name]", "Control Fake Player") as null|anything in action_choices
+	if(!chosen_action)
+		return
+
+	// Get possible targets
+	var/list/target_choices = list()
+	for(var/mob/living/simple_animal/hostile/villains_character/P in living_players)
+		target_choices += P
+
+	var/mob/living/simple_animal/hostile/villains_character/chosen_target = input(admin, "Select target for action", "Control Fake Player") as null|anything in target_choices
+	if(!chosen_target)
+		return
+
+	// Submit the action
+	var/action_type
+	var/action_data
+
+	if(chosen_action == "Talk/Trade")
+		action_type = "talk_trade"
+	else if(chosen_action == "Character Ability")
+		action_type = "character_ability"
+	else if(chosen_action == "Eliminate")
+		action_type = "eliminate"
+	else if(findtext(chosen_action, "Use "))
+		action_type = "use_item"
+		// Find the item
+		var/item_name = copytext(chosen_action, 5) // Remove "Use "
+		for(var/obj/item/villains/I in fake_player.contents)
+			if(I.name == item_name)
+				action_data = REF(I)
+				break
+
+	// Store the action
+	fake_player.main_action = list(
+		"type" = action_type,
+		"target" = REF(chosen_target),
+		"data" = action_data
+	)
+
+	to_chat(admin, span_adminnotice("Set [fake_player.name] to perform [chosen_action] on [chosen_target.name]"))
+	
+	// Ask about secondary action
+	var/list/secondary_choices = list("No Secondary Action")
+	
+	// Check for secondary action items
+	for(var/obj/item/villains/I in fake_player.contents)
+		if(I.action_cost == VILLAIN_ACTION_SECONDARY)
+			secondary_choices += "Use [I.name]"
+	
+	// Check for secondary ability
+	if(fake_player.character_data?.active_ability_cost == VILLAIN_ACTION_SECONDARY)
+		secondary_choices += "Character Ability"
+	
+	if(length(secondary_choices) > 1)
+		var/chosen_secondary = input(admin, "Select secondary action for [fake_player.name] (optional)", "Control Secondary Action") as null|anything in secondary_choices
+		
+		if(chosen_secondary && chosen_secondary != "No Secondary Action")
+			var/sec_action_type
+			var/sec_action_data
+			
+			if(chosen_secondary == "Character Ability")
+				sec_action_type = "character_ability"
+			else if(findtext(chosen_secondary, "Use "))
+				sec_action_type = "use_item"
+				// Find the item
+				var/item_name = copytext(chosen_secondary, 5) // Remove "Use "
+				for(var/obj/item/villains/I in fake_player.contents)
+					if(I.name == item_name && I.action_cost == VILLAIN_ACTION_SECONDARY)
+						sec_action_data = REF(I)
+						break
+			
+			if(sec_action_type)
+				// Get target for secondary action
+				var/mob/living/simple_animal/hostile/villains_character/sec_target = input(admin, "Select target for secondary action", "Control Secondary Target") as null|anything in target_choices
+				
+				if(sec_target)
+					fake_player.secondary_action = list(
+						"type" = sec_action_type,
+						"target" = REF(sec_target),
+						"data" = sec_action_data
+					)
+					
+					to_chat(admin, span_adminnotice("Also set [fake_player.name] to perform [chosen_secondary] on [sec_target.name] (secondary)"))
+	
+	to_chat(world, span_adminnotice("DEBUG: Admin [admin] controlled [fake_player.name] to [chosen_action] targeting [chosen_target.name]"))
+
+/datum/villains_controller/proc/reveal_last_night_actions(mob/admin)
+	if(!length(last_night_actions))
+		to_chat(admin, span_notice("No actions were performed during the last nighttime phase."))
+		return
+
+	var/list/action_summary = list()
+	action_summary += span_adminnotice("=== LAST NIGHT'S ACTIONS ===")
+	action_summary += span_notice("Actions are listed in the order they were processed:")
+	action_summary += ""
+
+	// Sort actions by priority for display
+	var/list/sorted_actions = list()
+	for(var/priority in 1 to 5)
+		for(var/datum/villains_action/A in last_night_actions)
+			if(A.get_priority() == priority)
+				sorted_actions += A
+
+	var/action_num = 1
+	for(var/datum/villains_action/A in sorted_actions)
+		var/priority_name = ""
+		switch(A.get_priority())
+			if(VILLAIN_ACTION_SUPPRESSIVE)
+				priority_name = "SUPPRESSIVE"
+			if(VILLAIN_ACTION_PROTECTIVE)
+				priority_name = "PROTECTIVE"
+			if(VILLAIN_ACTION_INVESTIGATIVE)
+				priority_name = "INVESTIGATIVE"
+			if(VILLAIN_ACTION_TYPELESS)
+				priority_name = "TYPELESS"
+			if(VILLAIN_ACTION_ELIMINATION)
+				priority_name = "ELIMINATION"
+
+		var/success_text = A.completed ? "SUCCESS" : "FAILED"
+		var/prevented_text = A.prevented ? " (PREVENTED)" : ""
+
+		action_summary += "[action_num]. [span_bold(A.name)] ([priority_name])"
+		action_summary += "   Performer: [A.performer ? A.performer.name : "Unknown"]"
+		action_summary += "   Target: [A.target ? A.target.name : "Self"]"
+		action_summary += "   Result: [success_text][prevented_text]"
+
+		// Add special details for specific action types
+		if(istype(A, /datum/villains_action/use_item))
+			var/datum/villains_action/use_item/UI = A
+			if(UI.used_item)
+				action_summary += "   Item Used: [UI.used_item.name]"
+
+		if(istype(A, /datum/villains_action/eliminate))
+			if(A.completed && !A.prevented)
+				action_summary += span_userdanger("   >>> ELIMINATION SUCCESSFUL <<<")
+
+		action_summary += ""
+		action_num++
+
+	// Show any eliminations
+	if(last_eliminated)
+		action_summary += span_userdanger("ELIMINATED: [last_eliminated]")
+	else
+		action_summary += span_boldnicegreen("No one was eliminated.")
+
+	// Output the summary
+	var/summary_text = action_summary.Join("\n")
+	to_chat(admin, summary_text)
+
+	// Also create a popup window for easier reading
+	var/datum/browser/popup = new(admin, "villains_actions", "Last Night's Actions", 600, 500)
+	popup.set_content("<pre>[summary_text]</pre>")
+	popup.open()
+
 // Item spawning function that uses landmarks
 /proc/spawn_villains_items(area/spawn_area, item_count = 10)
 	if(!spawn_area)
@@ -1281,8 +1991,8 @@
 	// 	for(var/i in 1 to min(item_count, length(turfs)))
 	// 		spawn_points += pick_n_take(turfs)
 
-	// Get all item types
-	var/list/item_types = typesof(/obj/item/villains) - /obj/item/villains
+	// Get all item types except fairy wine
+	var/list/item_types = typesof(/obj/item/villains) - /obj/item/villains - /obj/item/villains/fairy_wine
 	var/list/spawned = list()
 
 	// Spawn items at random landmarks

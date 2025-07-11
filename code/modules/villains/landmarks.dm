@@ -62,6 +62,9 @@
 /datum/villains_room/proc/lock_door()
 	if(!room_door)
 		return FALSE
+	// Close the door first if it's open
+	if(room_door.density == FALSE)
+		room_door.close()
 	room_door.lock()
 	locked = TRUE
 	return TRUE

@@ -23,7 +23,7 @@ export const VillainsCharacterSheet = (props, context) => {
     <Window title="Character Sheet" width={450} height={600}>
       <Window.Content scrollable>
         <Stack vertical fill>
-          {current_phase && (
+          {!!current_phase && (
             <Stack.Item>
               <GamePhaseStatus
                 phase={current_phase}
@@ -86,7 +86,7 @@ const GamePhaseStatus = (props) => {
             <strong>Current Phase:</strong> {getPhaseText(phase)}
           </Box>
         </Stack.Item>
-        {time_remaining && (
+        {!!time_remaining && (
           <Stack.Item>
             <Box>
               <strong>Time:</strong> {Math.floor(time_remaining / 60)}:{String(time_remaining % 60).padStart(2, '0')}
@@ -111,7 +111,7 @@ const CharacterInfo = (props) => {
             position="relative"
             mr={2}
           >
-            {portrait_base64 && (
+            {!!portrait_base64 && (
               <Box
                 as="img"
                 src={`data:image/png;base64,${portrait_base64}`}
@@ -130,7 +130,7 @@ const CharacterInfo = (props) => {
           <Box fontSize="1.5em" bold>
             {name}
           </Box>
-          {is_villain && (
+          {!!is_villain && (
             <Box color="red" mt={1}>
               <Icon name="skull" /> You are the Villain!
             </Box>
@@ -152,14 +152,14 @@ const AbilitiesSection = (props) => {
   return (
     <Section title="Abilities">
       <Stack vertical>
-        {active && (
+        {!!active && (
           <Stack.Item>
             <Box mb={2}>
               <Box bold color="yellow">
                 <Icon name="bolt" /> Active Ability: {active.name}
               </Box>
               <Box italic fontSize="0.9em" color={getActionTypeColor(active.type)}>
-                Type: {active.type} | Cost: {active.cost}
+                Type: {getActionTypeName(active.type)} | Cost: {active.cost}
               </Box>
               <Box mt={1}>
                 {active.description}
@@ -167,7 +167,7 @@ const AbilitiesSection = (props) => {
             </Box>
           </Stack.Item>
         )}
-        {passive && (
+        {!!passive && (
           <Stack.Item>
             <Box>
               <Box bold color="cyan">
@@ -227,14 +227,14 @@ const ItemCard = (props) => {
         <Stack.Item grow>
           <Box bold>
             {item.name}
-            {item.fresh && (
+            {!!item.fresh && (
               <Tooltip content="Fresh item - can be picked up">
                 <Icon name="leaf" color="green" ml={1} />
               </Tooltip>
             )}
           </Box>
           <Box fontSize="0.9em" italic color={getActionTypeColor(item.type)}>
-            Type: {item.type} | Cost: {item.cost}
+            Type: {getActionTypeName(item.type)} | Cost: {item.cost}
           </Box>
           <Box fontSize="0.9em" mt={1}>
             {item.description}
@@ -248,7 +248,21 @@ const ItemCard = (props) => {
   );
 };
 
+const getActionTypeName = (type) => {
+  const typeNames = {
+    1: 'Suppressive',
+    2: 'Protective',
+    3: 'Investigative',
+    4: 'Typeless',
+    5: 'Elimination',
+  };
+  return typeNames[type] || type;
+};
+
 const getActionTypeColor = (type) => {
+  // Convert numeric type to name if needed
+  const typeName = typeof type === 'number' ? getActionTypeName(type) : type;
+  
   const colors = {
     'Investigative': 'blue',
     'Protective': 'green',
@@ -256,5 +270,5 @@ const getActionTypeColor = (type) => {
     'Elimination': 'red',
     'Typeless': 'gray',
   };
-  return colors[type] || 'white';
+  return colors[typeName] || 'white';
 };

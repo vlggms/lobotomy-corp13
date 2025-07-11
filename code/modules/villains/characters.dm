@@ -57,8 +57,14 @@
 /datum/villains_character/queen_of_hatred/perform_active_ability(mob/living/user, mob/living/target, datum/villains_controller/game)
 	if(!target)
 		return FALSE
-	// TODO: Apply protection buff
+	
+	if(!istype(target, /mob/living/simple_animal/hostile/villains_character))
+		return FALSE
+	
+	var/mob/living/simple_animal/hostile/villains_character/T = target
+	T.apply_protection()
 	to_chat(user, span_notice("You protect [target] with your magical powers!"))
+	to_chat(target, span_notice("[user] protects you with magical powers! You are immune to elimination tonight."))
 	return TRUE
 
 // Forsaken Murderer
@@ -84,7 +90,12 @@
 	if(target != user)
 		to_chat(user, span_warning("You can only target yourself with this ability!"))
 		return FALSE
-	// TODO: Set up action counter
+	
+	if(!istype(user, /mob/living/simple_animal/hostile/villains_character))
+		return FALSE
+	
+	var/mob/living/simple_animal/hostile/villains_character/U = user
+	U.block_next_action()
 	to_chat(user, span_notice("You prepare to counter the first action against you."))
 	return TRUE
 
@@ -108,6 +119,88 @@
 	passive_ability_name = "Night Cleaner"
 	passive_ability_desc = "After the nighttime phase, you will gain one random item out of the list of items that were used tonight."
 
+/datum/villains_character/all_round_cleaner/perform_active_ability(mob/living/user, mob/living/target, datum/villains_controller/game)
+	if(!target || !istype(target, /mob/living/simple_animal/hostile/villains_character))
+		return FALSE
+	
+	var/mob/living/simple_animal/hostile/villains_character/U = user
+	var/mob/living/simple_animal/hostile/villains_character/T = target
+	
+	// Check if target is already trading
+	if(T.trading_with)
+		to_chat(U, span_notice("[T] is already trading with someone. Waiting for them to finish..."))
+		// Wait for their trade to finish
+		while(T.trading_with)
+			sleep(1 SECONDS)
+			if(!T || !U) // Safety check
+				return FALSE
+	
+	// Mark both as trading
+	U.trading_with = T
+	T.trading_with = U
+	
+	// Teleport cleaner to target's room
+	if(T.assigned_room?.spawn_landmark)
+		U.forceMove(get_turf(T.assigned_room.spawn_landmark))
+	else
+		U.forceMove(get_turf(T))
+	
+	to_chat(user, span_notice("You visit [target] to clean their room..."))
+	to_chat(target, span_notice("[user] visits you to clean your room..."))
+	
+	// Create trading session
+	var/datum/villains_trade_session/session = new(U, T)
+	
+	// Wait for 2 minutes
+	sleep(2 MINUTES)
+	
+	// End the trade and steal an item
+	if(session)
+		session.end_session()
+	
+	// Clear trading status
+	U.trading_with = null
+	T.trading_with = null
+	
+	// Steal a random item
+	var/list/stealable_items = list()
+	for(var/obj/item/villains/I in T.contents)
+		stealable_items += I
+	
+	if(length(stealable_items))
+		var/obj/item/villains/stolen_item = pick(stealable_items)
+		stolen_item.forceMove(U)
+		
+		// Update fresh item tracking
+		if(stolen_item.freshness == VILLAIN_ITEM_FRESH && (stolen_item in T.fresh_items))
+			T.fresh_items -= stolen_item
+		
+		to_chat(user, span_notice("While cleaning, you pocket [stolen_item]!"))
+		to_chat(target, span_warning("After [user] leaves, you notice your [stolen_item] is missing!"))
+	else
+		to_chat(user, span_notice("You couldn't find anything to take while cleaning."))
+	
+	// Return to own room
+	if(U.assigned_room)
+		U.assigned_room.teleport_owner_to_room()
+	
+	return TRUE
+
+/datum/villains_character/all_round_cleaner/on_phase_change(phase, mob/living/user, datum/villains_controller/game)
+	if(phase == VILLAIN_PHASE_INVESTIGATION && istype(user, /mob/living/simple_animal/hostile/villains_character))
+		// Night Cleaner passive - gain a random used item
+		if(length(game.used_items))
+			var/list/item_types = list()
+			for(var/obj/item/villains/I in game.used_items)
+				item_types |= I.type
+			
+			if(length(item_types))
+				var/item_type = pick(item_types)
+				var/obj/item/villains/new_item = new item_type(user)
+				new_item.freshness = VILLAIN_ITEM_USED
+				new_item.update_outline()
+				to_chat(user, span_notice("While cleaning up, you find [new_item]!"))
+
 // Funeral of the Dead Butterflies
 /datum/villains_character/funeral_butterflies
 	name = "Funeral of the Dead Butterflies"
@@ -127,6 +220,26 @@
 
 	passive_ability_name = "Mercy"
 	passive_ability_desc = "At the start of the investigation phase, you will learn the amount of people who visited the eliminated player."
+
+/datum/villains_character/funeral_butterflies/perform_active_ability(mob/living/user, mob/living/target, datum/villains_controller/game)
+	if(!target || !istype(target, /mob/living/simple_animal/hostile/villains_character))
+		return FALSE
+	
+	if(istype(user, /mob/living/simple_animal/hostile/villains_character))
+		var/mob/living/simple_animal/hostile/villains_character/U = user
+		U.guidance_target = target
+		to_chat(user, span_notice("Your butterflies follow [target], watching for visitors..."))
+	
+	return TRUE
+
+/datum/villains_character/funeral_butterflies/on_phase_change(phase, mob/living/user, datum/villains_controller/game)
+	if(phase == VILLAIN_PHASE_INVESTIGATION && game.last_eliminated && istype(user, /mob/living/simple_animal/hostile/villains_character))
+		// Mercy passive - count visitors to eliminated player
+		var/visitor_count = 0
+		if(game.action_targets[REF(game.last_eliminated)])
+			visitor_count = length(game.action_targets[REF(game.last_eliminated)])
+		
+		to_chat(user, span_notice("Your butterflies whisper: [visitor_count] player\s visited the eliminated player last night."))
 
 // Fairy Gentleman
 /datum/villains_character/fairy_gentleman
@@ -148,6 +261,31 @@
 	passive_ability_name = "Outstanding Charisma"
 	passive_ability_desc = "When someone uses Fairy Wine, you become alerted and your main action gains the effects of Fairy Wine."
 
+/datum/villains_character/fairy_gentleman/perform_active_ability(mob/living/user, mob/living/target, datum/villains_controller/game)
+	if(!istype(user, /mob/living/simple_animal/hostile/villains_character))
+		return FALSE
+	
+	var/mob/living/simple_animal/hostile/villains_character/U = user
+	
+	// Check if they already have 3 items
+	var/total_items = 0
+	for(var/obj/item/villains/I in U.contents)
+		total_items++
+	
+	if(total_items >= 3)
+		to_chat(user, span_warning("You can't carry any more items! You need space for the Fairy Wine."))
+		return FALSE
+	
+	// Create a Fairy Wine item
+	var/obj/item/villains/fairy_wine/wine = new(U)
+	wine.freshness = VILLAIN_ITEM_FRESH
+	wine.update_outline()
+	
+	to_chat(user, span_notice("You brew a bottle of enchanted Fairy Wine!"))
+	
+	// The passive ability (gaining fairy wine effects when someone uses it) is handled by the item itself
+	return TRUE
+
 // Puss in Boots
 /datum/villains_character/puss_in_boots
 	name = "Puss in Boots"
@@ -167,6 +305,32 @@
 	passive_ability_name = "Inheritance"
 	passive_ability_desc = "You are able to talk and trade with your blessed players as a Secondary Action."
 
+/datum/villains_character/puss_in_boots/perform_active_ability(mob/living/user, mob/living/target, datum/villains_controller/game)
+	if(!target || !istype(target, /mob/living/simple_animal/hostile/villains_character))
+		return FALSE
+	
+	if(!istype(user, /mob/living/simple_animal/hostile/villains_character))
+		return FALSE
+	
+	var/mob/living/simple_animal/hostile/villains_character/U = user
+	var/mob/living/simple_animal/hostile/villains_character/T = target
+	
+	// Remove blessing from previous target
+	if(U.current_blessing && U.current_blessing != T)
+		U.current_blessing.blessed_by = null
+		U.current_blessing.remove_protection()
+		to_chat(U.current_blessing, span_warning("You feel [user]'s blessing fade away..."))
+	
+	// Apply new blessing
+	U.current_blessing = T
+	T.blessed_by = U
+	T.apply_protection()
+	
+	to_chat(user, span_notice("You bestow your blessing upon [target], protecting them from elimination!"))
+	to_chat(target, span_boldnotice("[user] blesses you! You are now immune to direct eliminations."))
+	
+	return TRUE
+
 // Der Freischütz
 /datum/villains_character/der_freischutz
 	name = "Der Freischütz"
@@ -185,6 +349,49 @@
 
 	passive_ability_name = "Elimination Contract"
 	passive_ability_desc = "While trading, you can offer an Elimination Contract to gain the ability to use Magic Bullet."
+
+/datum/villains_character/der_freischutz/perform_active_ability(mob/living/user, mob/living/target, datum/villains_controller/game)
+	if(!target || !istype(target, /mob/living/simple_animal/hostile/villains_character))
+		return FALSE
+	
+	if(!istype(user, /mob/living/simple_animal/hostile/villains_character))
+		return FALSE
+	
+	var/mob/living/simple_animal/hostile/villains_character/U = user
+	var/mob/living/simple_animal/hostile/villains_character/T = target
+	
+	// Check if they have an elimination contract
+	if(!U.elimination_contract)
+		to_chat(user, span_warning("You need an Elimination Contract before you can use Magic Bullet!"))
+		return FALSE
+	
+	// Check if target matches the contract
+	if(U.elimination_contract != T)
+		to_chat(user, span_warning("Your Elimination Contract is for [U.elimination_contract], not [target]!"))
+		return FALSE
+	
+	// Check for protection
+	if(SEND_SIGNAL(T, COMSIG_VILLAIN_ELIMINATION) & VILLAIN_PREVENT_ELIMINATION)
+		to_chat(user, span_warning("Your magic bullet strikes true, but your target was protected!"))
+		return FALSE
+	
+	// Eliminate the target
+	to_chat(user, span_userdanger("Your magic bullet finds its mark! You eliminate [target]!"))
+	to_chat(target, span_userdanger("A magic bullet pierces through you! You have been eliminated by [user]!"))
+	
+	game.handle_death(T)
+	game.last_eliminated = T.name
+	
+	// Clear the contract after use
+	U.elimination_contract = null
+	
+	// Change win condition for Der Freischütz
+	U.win_condition = "survive"
+	U.is_villain = FALSE // No longer counts as villain for win purposes
+	to_chat(user, span_boldnotice("Your contract is fulfilled. Your new goal is to survive until the end."))
+	to_chat(user, span_warning("You are no longer the villain and cannot win by elimination."))
+	
+	return TRUE
 
 // Rudolta of the Sleigh
 /datum/villains_character/rudolta
@@ -206,6 +413,38 @@
 	passive_ability_name = "Watcher"
 	passive_ability_desc = "You are unable to speak, but can select a player to Observe each night. You can't observe the same person twice."
 
+/datum/villains_character/rudolta/perform_active_ability(mob/living/user, mob/living/target, datum/villains_controller/game)
+	if(!target || !istype(target, /mob/living/simple_animal/hostile/villains_character))
+		return FALSE
+	
+	if(!istype(user, /mob/living/simple_animal/hostile/villains_character))
+		return FALSE
+	
+	var/mob/living/simple_animal/hostile/villains_character/U = user
+	var/mob/living/simple_animal/hostile/villains_character/T = target
+	
+	// Check if already observed this player
+	if(T in U.observed_players)
+		to_chat(user, span_warning("You have already observed [target] before. Choose someone else."))
+		return FALSE
+	
+	// Mark target as observed
+	U.observed_players += T
+	U.is_observing = TRUE
+	U.observing_target = T
+	
+	// Follow the target
+	U.forceMove(get_turf(T))
+	to_chat(user, span_notice("You silently follow [target], observing their every move..."))
+	
+	// Register to follow their movements
+	U.RegisterSignal(T, COMSIG_MOVABLE_MOVED, TYPE_PROC_REF(/mob/living/simple_animal/hostile/villains_character, follow_target))
+	
+	// Note: The observation will continue through the night phase
+	// It will be cleaned up during phase changes
+	
+	return TRUE
+
 // Judgement Bird
 /datum/villains_character/judgement_bird
 	name = "Judgement Bird"
@@ -225,6 +464,58 @@
 
 	passive_ability_name = "Blind Eye"
 	passive_ability_desc = "You are immune to Investigative and Suppressive items while using Judge."
+
+/datum/villains_character/judgement_bird/perform_active_ability(mob/living/user, mob/living/target, datum/villains_controller/game)
+	if(!target || !istype(target, /mob/living/simple_animal/hostile/villains_character))
+		return FALSE
+	
+	if(!istype(user, /mob/living/simple_animal/hostile/villains_character))
+		return FALSE
+	
+	var/mob/living/simple_animal/hostile/villains_character/U = user
+	var/mob/living/simple_animal/hostile/villains_character/T = target
+	
+	// Mark target for judging
+	U.judge_target = T
+	
+	// Check target's main action
+	if(!T.main_action)
+		to_chat(user, span_notice("[target] has not selected a main action to judge."))
+		return TRUE
+	
+	var/action_type = T.main_action["type"]
+	var/judgement = "Innocent"
+	var/action_category = VILLAIN_ACTION_TYPELESS
+	
+	// Determine the action category based on action type
+	if(action_type == "character_ability" && T.character_data)
+		action_category = T.character_data.active_ability_type
+	else if(action_type == "use_item")
+		var/item_ref = T.main_action["data"]
+		var/obj/item/villains/I = locate(item_ref)
+		if(I)
+			action_category = I.action_type
+	else if(action_type == "eliminate")
+		action_category = VILLAIN_ACTION_ELIMINATION
+	
+	// Judge based on action category
+	switch(action_category)
+		if(VILLAIN_ACTION_SUPPRESSIVE, VILLAIN_ACTION_ELIMINATION)
+			judgement = "Guilty"
+		if(VILLAIN_ACTION_INVESTIGATIVE, VILLAIN_ACTION_PROTECTIVE, VILLAIN_ACTION_TYPELESS)
+			judgement = "Innocent"
+	
+	to_chat(user, span_boldnotice("You judge [target]'s action as: [judgement]!"))
+	
+	// Apply immunity during judging
+	U.action_blocked = TRUE
+	addtimer(CALLBACK(U, TYPE_PROC_REF(/mob/living/simple_animal/hostile/villains_character, remove_judge_immunity)), 1 SECONDS)
+	
+	return TRUE
+
+/datum/villains_character/judgement_bird/apply_passive_ability(mob/living/user, datum/villains_controller/game)
+	// Immunity is applied during the ability use
+	return
 
 // Shrimp Association Executive
 /datum/villains_character/shrimp_executive
@@ -246,11 +537,54 @@
 	passive_ability_desc = "If no one visits you during a night phase, you learn the identity of one random player who used an item."
 
 /datum/villains_character/shrimp_executive/perform_active_ability(mob/living/user, mob/living/target, datum/villains_controller/game)
-	if(!target)
+	if(!target || !istype(target, /mob/living/simple_animal/hostile/villains_character))
 		return FALSE
-	// TODO: Reveal target's inventory and last night's visit
-	to_chat(user, span_notice("You use your corporate connections to investigate [target]."))
+	
+	var/mob/living/simple_animal/hostile/villains_character/T = target
+	
+	// Reveal inventory
+	var/list/inventory_items = list()
+	for(var/obj/item/villains/I in T.contents)
+		inventory_items += I.name
+	
+	if(length(inventory_items))
+		to_chat(user, span_notice("[target]'s inventory: [inventory_items.Join(", ")]."))
+	else
+		to_chat(user, span_notice("[target] is not carrying any items."))
+	
+	// Reveal who they visited last night
+	if(T.main_action && game.last_night_actions.len)
+		var/target_ref = T.main_action["target"]
+		var/mob/living/simple_animal/hostile/villains_character/visited = locate(target_ref)
+		if(visited)
+			to_chat(user, span_notice("[target] visited [visited] last night."))
+		else
+			to_chat(user, span_notice("[target] targeted themselves last night."))
+	else
+		to_chat(user, span_notice("[target] did not visit anyone last night."))
+	
 	return TRUE
+
+/datum/villains_character/shrimp_executive/on_phase_change(phase, mob/living/user, datum/villains_controller/game)
+	if(phase == VILLAIN_PHASE_MORNING && istype(user, /mob/living/simple_animal/hostile/villains_character))
+		var/mob/living/simple_animal/hostile/villains_character/U = user
+		// Check if anyone visited during the night
+		var/was_visited = FALSE
+		for(var/datum/villains_action/action in game.last_night_actions)
+			if(action.target == U)
+				was_visited = TRUE
+				break
+		
+		if(!was_visited)
+			// Find a random item user
+			var/list/item_users = list()
+			for(var/datum/villains_action/action in game.last_night_actions)
+				if(action.action_type == "use_item" && action.performer != U)
+					item_users += action.performer
+			
+			if(length(item_users))
+				var/mob/living/simple_animal/hostile/villains_character/item_user = pick(item_users)
+				to_chat(user, span_boldnotice("Your impatience paid off! You learn that [item_user] used an item last night."))
 
 // Sunset Traveller
 /datum/villains_character/sunset_traveller
@@ -272,11 +606,24 @@
 	passive_ability_desc = "Players who talk/trade with you cannot be targeted by Suppressive actions for the rest of that night."
 
 /datum/villains_character/sunset_traveller/perform_active_ability(mob/living/user, mob/living/target, datum/villains_controller/game)
-	if(!target)
+	if(!target || !istype(target, /mob/living/simple_animal/hostile/villains_character))
 		return FALSE
-	// TODO: Track all visitors to target
-	to_chat(user, span_notice("Your butterflies follow [target] to observe their visitors."))
+	
+	if(!istype(user, /mob/living/simple_animal/hostile/villains_character))
+		return FALSE
+	
+	var/mob/living/simple_animal/hostile/villains_character/U = user
+	var/mob/living/simple_animal/hostile/villains_character/T = target
+	
+	// Mark target for butterfly tracking
+	U.butterfly_guide_target = T
+	to_chat(user, span_notice("Your butterflies follow [target] to observe their visitors. You'll learn who visits them after all actions are processed."))
+	
 	return TRUE
+
+/datum/villains_character/sunset_traveller/apply_passive_ability(mob/living/user, datum/villains_controller/game)
+	// Passive is applied during trading
+	return
 
 // Fairy-Long-Legs
 /datum/villains_character/fairy_longlegs
@@ -299,11 +646,43 @@
 	passive_ability_desc = "When someone is redirected to you, steal a random item from their inventory."
 
 /datum/villains_character/fairy_longlegs/perform_active_ability(mob/living/user, mob/living/target, datum/villains_controller/game)
-	if(!target)
+	if(!target || !istype(target, /mob/living/simple_animal/hostile/villains_character))
 		return FALSE
-	// TODO: Redirect target's action to user
-	to_chat(user, span_notice("You invite [target] to take shelter under your umbrella..."))
+	
+	if(!istype(user, /mob/living/simple_animal/hostile/villains_character))
+		return FALSE
+	
+	var/mob/living/simple_animal/hostile/villains_character/U = user
+	var/mob/living/simple_animal/hostile/villains_character/T = target
+	
+	// Check if they have a main action to redirect
+	if(!T.main_action)
+		to_chat(user, span_notice("[target] has no action to redirect."))
+		return TRUE
+	
+	// Redirect their main action to target us
+	T.main_action["target"] = REF(U)
+	to_chat(user, span_notice("You lure [target] under your umbrella, redirecting their action to you!"))
+	to_chat(target, span_warning("You feel compelled to approach [user]..."))
+	
+	// False Shelter passive - steal a random item
+	var/list/stealable_items = list()
+	for(var/obj/item/villains/I in T.contents)
+		stealable_items += I
+	
+	if(length(stealable_items))
+		var/obj/item/villains/stolen_item = pick(stealable_items)
+		stolen_item.forceMove(U)
+		if(stolen_item.freshness == VILLAIN_ITEM_FRESH && (stolen_item in T.fresh_items))
+			T.fresh_items -= stolen_item
+		to_chat(U, span_notice("Your false shelter steals [stolen_item] from [target]!"))
+		to_chat(T, span_warning("[stolen_item] mysteriously disappears under [user]'s umbrella!"))
+	
 	return TRUE
+
+/datum/villains_character/fairy_longlegs/on_phase_change(phase, mob/living/user, datum/villains_controller/game)
+	// Passive is handled during the redirection in perform_active_ability
+	return
 
 // Red Blooded American
 /datum/villains_character/red_blooded_american
@@ -325,11 +704,60 @@
 	passive_ability_desc = "During the investigation phase, you learn the amount of suppressive and elimination actions used last nighttime phase."
 
 /datum/villains_character/red_blooded_american/perform_active_ability(mob/living/user, mob/living/target, datum/villains_controller/game)
-	if(!target)
+	if(!target || !istype(target, /mob/living/simple_animal/hostile/villains_character))
 		return FALSE
-	// TODO: Force target to reveal action type
-	to_chat(user, span_notice("Your patriotic fervor makes you the center of attention!"))
+	
+	if(!istype(user, /mob/living/simple_animal/hostile/villains_character))
+		return FALSE
+	
+	var/mob/living/simple_animal/hostile/villains_character/U = user
+	var/mob/living/simple_animal/hostile/villains_character/T = target
+	
+	// Redirect all actions targeting T to U
+	for(var/mob/living/simple_animal/hostile/villains_character/player in game.living_players)
+		if(player == U)
+			continue
+		
+		if(player.main_action && player.main_action["target"] == REF(T))
+			player.main_action["target"] = REF(U)
+			to_chat(player, span_warning("Your attention is drawn to [U]'s patriotic fervor!"))
+		
+		if(player.secondary_action && player.secondary_action["target"] == REF(T))
+			player.secondary_action["target"] = REF(U)
+			to_chat(player, span_warning("Your secondary action is drawn to [U]'s patriotic fervor!"))
+	
+	to_chat(user, span_userdanger("Your patriotic fervor draws all attention to you! All actions targeting [target] will target you instead!"))
+	to_chat(target, span_notice("[user]'s patriotic fervor protects you, drawing all attention away."))
+	
 	return TRUE
+
+/datum/villains_character/red_blooded_american/on_phase_change(phase, mob/living/user, datum/villains_controller/game)
+	if(phase == VILLAIN_PHASE_MORNING)
+		// Count suppressive and elimination actions
+		var/suppressive_count = 0
+		var/elimination_count = 0
+		
+		for(var/datum/villains_action/action in game.last_night_actions)
+			var/action_category = VILLAIN_ACTION_TYPELESS
+			
+			if(action.action_type == "character_ability")
+				var/mob/living/simple_animal/hostile/villains_character/P = action.performer
+				if(P?.character_data)
+					action_category = P.character_data.active_ability_type
+			else if(action.action_type == "use_item")
+				var/datum/villains_action/use_item/UI = action
+				if(UI.used_item)
+					action_category = UI.used_item.action_type
+			else if(action.action_type == "eliminate")
+				action_category = VILLAIN_ACTION_ELIMINATION
+			
+			switch(action_category)
+				if(VILLAIN_ACTION_SUPPRESSIVE)
+					suppressive_count++
+				if(VILLAIN_ACTION_ELIMINATION)
+					elimination_count++
+		
+		to_chat(user, span_boldnotice("Your military instincts tell you: [suppressive_count] suppressive and [elimination_count] elimination actions were used last night."))
 
 // Kikimora
 /datum/villains_character/kikimora
@@ -351,11 +779,25 @@
 	passive_ability_desc = "Anyone who hears someone cursed by your 'Cursed Words' action, they will also become cursed. All curses are removed at the start of the morning/investigation phase."
 
 /datum/villains_character/kikimora/perform_active_ability(mob/living/user, mob/living/target, datum/villains_controller/game)
-	if(!target)
+	if(!target || !istype(target, /mob/living/simple_animal/hostile/villains_character))
 		return FALSE
-	// TODO: Apply speech curse
+	
+	var/mob/living/simple_animal/hostile/villains_character/T = target
+	
+	// Apply curse
+	T.cursed_speech = TRUE
 	to_chat(user, span_notice("You curse [target] with corrupted words!"))
+	to_chat(target, span_warning("Your speech feels strange... You can only say 'kiki' or 'mora'!"))
+	
 	return TRUE
+
+/datum/villains_character/kikimora/on_phase_change(phase, mob/living/user, datum/villains_controller/game)
+	if(phase == VILLAIN_PHASE_MORNING)
+		// Remove all curses
+		for(var/mob/living/simple_animal/hostile/villains_character/player in game.living_players)
+			if(player.cursed_speech)
+				player.cursed_speech = FALSE
+				to_chat(player, span_notice("The curse lifts, and you can speak normally again."))
 
 // Little Red Riding Hooded Mercenary
 /datum/villains_character/red_hood
@@ -378,11 +820,47 @@
 	passive_ability_desc = "If you have used 'Hunter's Mark', next morning phase you will steal a random item from another player."
 
 /datum/villains_character/red_hood/perform_active_ability(mob/living/user, mob/living/target, datum/villains_controller/game)
-	if(!target)
+	if(!target || !istype(target, /mob/living/simple_animal/hostile/villains_character))
 		return FALSE
-	// TODO: Mark target for tracking
-	to_chat(user, span_notice("You mark [target] as your prey, watching for aggressive movements."))
+	
+	if(!istype(user, /mob/living/simple_animal/hostile/villains_character))
+		return FALSE
+	
+	var/mob/living/simple_animal/hostile/villains_character/U = user
+	var/mob/living/simple_animal/hostile/villains_character/T = target
+	
+	// Mark the target
+	U.marked_for_hunting = T
+	U.used_hunters_mark = TRUE
+	to_chat(user, span_notice("You mark [target] as your prey, watching for aggressive movements. You'll be notified if they use Elimination or Suppressive actions."))
+	
 	return TRUE
+
+/datum/villains_character/red_hood/on_phase_change(phase, mob/living/user, datum/villains_controller/game)
+	if(phase == VILLAIN_PHASE_MORNING && istype(user, /mob/living/simple_animal/hostile/villains_character))
+		var/mob/living/simple_animal/hostile/villains_character/U = user
+		if(U.used_hunters_mark)
+			// Steal a random item from another player
+			var/list/valid_targets = list()
+			for(var/mob/living/simple_animal/hostile/villains_character/player in game.living_players)
+				if(player != U && length(player.contents))
+					valid_targets += player
+			
+			if(length(valid_targets))
+				var/mob/living/simple_animal/hostile/villains_character/victim = pick(valid_targets)
+				var/list/stealable_items = list()
+				for(var/obj/item/villains/I in victim.contents)
+					stealable_items += I
+				
+				if(length(stealable_items))
+					var/obj/item/villains/stolen_item = pick(stealable_items)
+					stolen_item.forceMove(U)
+					if(stolen_item.freshness == VILLAIN_ITEM_FRESH && (stolen_item in victim.fresh_items))
+						victim.fresh_items -= stolen_item
+					to_chat(U, span_boldnotice("Your mercenary's fee is collected! You steal [stolen_item] from [victim]."))
+					to_chat(victim, span_warning("[stolen_item] has been stolen from you!"))
+			
+			U.used_hunters_mark = FALSE
 
 // The Warden
 /datum/villains_character/warden
@@ -405,11 +883,24 @@
 	passive_ability_desc = "You are able to hold 5 items."
 
 /datum/villains_character/warden/perform_active_ability(mob/living/user, mob/living/target, datum/villains_controller/game)
-	if(!target)
+	if(!target || !istype(target, /mob/living/simple_animal/hostile/villains_character))
 		return FALSE
-	// TODO: Track visitors
-	to_chat(user, span_notice("You begin gathering [target]'s soul, gathering all that is connected to it."))
+	
+	if(!istype(user, /mob/living/simple_animal/hostile/villains_character))
+		return FALSE
+	
+	var/mob/living/simple_animal/hostile/villains_character/U = user
+	var/mob/living/simple_animal/hostile/villains_character/T = target
+	
+	// Mark target for soul gathering
+	U.soul_gather_target = T
+	to_chat(user, span_notice("You begin gathering [target]'s soul, preparing to steal all items they use."))
+	
 	return TRUE
+
+/datum/villains_character/warden/apply_passive_ability(mob/living/user, datum/villains_controller/game)
+	// Override item limit to 5
+	return
 
 // Blue Smocked Shepherd
 /datum/villains_character/blue_shepherd
@@ -432,11 +923,32 @@
 	passive_ability_desc = "During morning phase, you see one random false piece of information (you won't know it's false)."
 
 /datum/villains_character/blue_shepherd/perform_active_ability(mob/living/user, mob/living/target, datum/villains_controller/game)
-	if(!target)
+	if(target != user)
+		to_chat(user, span_warning("You can only target yourself with this ability!"))
 		return FALSE
-	// TODO: Force vote reveal
-	to_chat(user, span_notice("You learn the actions of the villain..."))
+	
+	if(!istype(user, /mob/living/simple_animal/hostile/villains_character))
+		return FALSE
+	
+	var/mob/living/simple_animal/hostile/villains_character/U = user
+	
+	// Mark that they used False Prophet
+	U.false_prophet_used = TRUE
+	to_chat(user, span_notice("You invoke your prophetic powers... You'll receive a vision after all actions are processed."))
+	
 	return TRUE
+
+/datum/villains_character/blue_shepherd/on_phase_change(phase, mob/living/user, datum/villains_controller/game)
+	if(phase == VILLAIN_PHASE_MORNING && istype(user, /mob/living/simple_animal/hostile/villains_character))
+		// Generate one false piece of information
+		var/list/false_messages = list(
+			"You sense that someone used a protective item last night...",
+			"Your intuition tells you that two players traded items...",
+			"You feel that someone was eliminated in the northern rooms...",
+			"Your shepherd's insight reveals unusual activity near your room...",
+			"You sense that an investigative action was blocked last night..."
+		)
+		to_chat(user, span_warning(pick(false_messages)))
 
 // Character list for selection
 /proc/get_villains_characters()

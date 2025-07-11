@@ -158,7 +158,7 @@ const GameStatus = (props) => {
             }}
           />
         </Stack.Item>
-        {time_remaining && (
+        {!!time_remaining && (
           <Stack.Item>
             <Box>
               <strong>Time Remaining:</strong> {Math.floor(time_remaining / 60)}:{String(time_remaining % 60).padStart(2, '0')}
@@ -220,7 +220,21 @@ const SignupSection = (props) => {
   );
 };
 
+const getActionTypeName = (type) => {
+  const typeNames = {
+    1: 'Suppressive',
+    2: 'Protective',
+    3: 'Investigative',
+    4: 'Typeless',
+    5: 'Elimination',
+  };
+  return typeNames[type] || type;
+};
+
 const getActionTypeColor = (type) => {
+  // Convert numeric type to name if needed
+  const typeName = typeof type === 'number' ? getActionTypeName(type) : type;
+  
   const colors = {
     'Investigative': 'blue',
     'Protective': 'green',
@@ -228,7 +242,7 @@ const getActionTypeColor = (type) => {
     'Elimination': 'red',
     'Typeless': 'gray',
   };
-  return colors[type] || 'white';
+  return colors[typeName] || 'white';
 };
 
 const CharacterSelection = (props) => {
@@ -256,14 +270,14 @@ const CharacterSelection = (props) => {
                   <Stack.Item grow>
                     {character.name}
                   </Stack.Item>
-                  {character.taken && (
+                  {!!character.taken && (
                     <Stack.Item>
                       <Box color="red">
                         <Icon name="lock" /> Taken
                       </Box>
                     </Stack.Item>
                   )}
-                  {selected_character === character.id && (
+                  {!!(selected_character === character.id) && (
                     <Stack.Item>
                       <Box color="good">
                         <Icon name="check" /> Selected
@@ -294,7 +308,7 @@ const CharacterSelection = (props) => {
                           </Stack.Item>
                           <Stack.Item>
                             <Box fontSize="0.9em" italic color={getActionTypeColor(character.active_ability.type)}>
-                              Type: {character.active_ability.type} | Cost: {character.active_ability.cost}
+                              Type: {getActionTypeName(character.active_ability.type)} | Cost: {character.active_ability.cost}
                             </Box>
                           </Stack.Item>
                           <Stack.Item>
@@ -348,14 +362,8 @@ const CharacterSelection = (props) => {
 
 const AdminControls = (props, context) => {
   const { phase, all_phases, act } = props;
-  const [selectedPhase, setSelectedPhase] = useLocalState(context, 'selectedPhase', phase || 'setup');
   const [timerMinutes, setTimerMinutes] = useLocalState(context, 'timerMinutes', 1);
   const [ghostCkey, setGhostCkey] = useLocalState(context, 'ghostCkey', '');
-
-  const phaseOptions = Array.isArray(all_phases) ? all_phases.map(p => ({
-    value: p,
-    displayText: p.charAt(0).toUpperCase() + p.slice(1).replace(/_/g, ' ')
-  })) : [];
 
   return (
     <Section title="Admin Controls" color="red">
@@ -404,31 +412,30 @@ const AdminControls = (props, context) => {
             fluid
           />
         </Stack.Item>
+        
+        <Stack.Item>
+          <Button
+            content="Reveal Last Night's Actions"
+            icon="eye"
+            color="yellow"
+            onClick={() => act('admin_reveal_actions')}
+            tooltip="Shows all actions performed during the last nighttime phase"
+            fluid
+          />
+        </Stack.Item>
 
         <Stack.Item>
           <Box mb={1}>
             <strong>Phase Control:</strong>
           </Box>
-          <Stack>
-            <Stack.Item grow>
-              <Dropdown
-                selected={selectedPhase}
-                options={phaseOptions}
-                onSelected={(value) => setSelectedPhase(value)}
-                width="100%"
-                disabled={!phaseOptions || phaseOptions.length === 0}
-                placeholder={phaseOptions && phaseOptions.length > 0 ? "Select a phase..." : "No phases available"}
-              />
-            </Stack.Item>
-            <Stack.Item>
-              <Button
-                content="Skip to Phase"
-                icon="forward"
-                onClick={() => act('admin_skip_phase', { phase: selectedPhase })}
-                disabled={!selectedPhase || !phaseOptions || phaseOptions.length === 0}
-              />
-            </Stack.Item>
-          </Stack>
+          <Button
+            content="End Current Phase"
+            icon="forward"
+            color="orange"
+            onClick={() => act('admin_end_phase')}
+            tooltip="Immediately ends the current phase and progresses to the next"
+            fluid
+          />
         </Stack.Item>
 
         <Stack.Item>
@@ -670,7 +677,7 @@ const ActionDescription = (props) => {
   return (
     <Box p={1} backgroundColor="#202020">
       <Box bold color={getActionTypeColor(type)}>
-        Action Type: {type}
+        Action Type: {getActionTypeName(type)}
       </Box>
       <Box mt={1} fontSize="0.9em">
         {description}
@@ -815,8 +822,8 @@ const DebugControls = (props, context) => {
                           <Stack.Item grow>
                             <Box>
                               {player.name} ({player.character})
-                              {player.is_fake && <Box as="span" color="cyan"> [AI]</Box>}
-                              {player.is_villain && <Box as="span" color="red"> [VILLAIN]</Box>}
+                              {!!player.is_fake && <Box as="span" color="cyan"> [AI]</Box>}
+                              {!!player.is_villain && <Box as="span" color="red"> [VILLAIN]</Box>}
                               {!player.alive && <Box as="span" color="gray"> [DEAD]</Box>}
                             </Box>
                           </Stack.Item>
@@ -866,6 +873,25 @@ const DebugControls = (props, context) => {
                   icon="box-open"
                   color="blue"
                   onClick={() => act('debug_spawn_items')}
+                  fluid
+                />
+              </Stack.Item>
+              <Stack.Item>
+                <Button
+                  content="Give Items to All Fake Players"
+                  icon="gift"
+                  color="purple"
+                  onClick={() => act('debug_give_items_to_fakes')}
+                  fluid
+                />
+              </Stack.Item>
+              <Stack.Item>
+                <Button
+                  content="Control Fake Player Action"
+                  icon="gamepad"
+                  color="cyan"
+                  onClick={() => act('debug_control_fake_action')}
+                  disabled={phase !== 'evening'}
                   fluid
                 />
               </Stack.Item>
