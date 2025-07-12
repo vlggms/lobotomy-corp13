@@ -103,6 +103,8 @@
 #define COMBO_ATTACK2_AOE "attack2_aoe"
 #define COMBO_FINISHER "finisher"
 #define COMBO_FINISHER_AOE "finisher_aoe"
+#define FINISHER_PIERCE "finisher_type_pierce"
+#define FINISHER_LEAP "finisher_type_leap"
 
 
 /obj/item/ego_weapon/city/thumb_east
@@ -114,12 +116,14 @@
 	force = 36
 	damtype = RED_DAMAGE
 	attack_speed = 1.4
-	special = "This is a Thumb East weapon. Load it with propellant ammunition to unlock a powerful three-hit combo. Initiate the combo by attacking from range."
+	special = "This is a Thumb East weapon. Load it with propellant ammunition to unlock a powerful combo. Initiate the combo by attacking from range. Each hit of the combo requires 1 propellant round to trigger."
 	/// This list holds the bonuses that our next hit should deal. The keys for them are ["tremor"], ["burn"], ["aoe_flat_force_bonus"] and ["aoe_radius_bonus"].
 	// I wanted to use a define like NEXTHIT_PROPELLANT_TREMOR_BONUS = next_hit_should_apply["tremor"] to simplify readability and maintainability...
 	// but it didn't work. Sorry.
 	var/next_hit_should_apply = list()
 	// Combo variables.
+	/// Should always be TRUE unless the user manually disables combos by using the weapon in-hand.
+	var/combo_enabled = TRUE
 	/// Description for the combo. Explain it to the user.
 	var/combo_description = "This weapon's combo consists of a long-range lunge, followed by a circular AoE sweep around the user, and ending on a powerful finisher on the target.\n"+\
 	"If you trigger but miss your lunge, you can still continue the combo by landing a regular hit on-target."
@@ -143,6 +147,8 @@
 	var/finisher_aoe_secondarytarget_coefficient = 0.5
 	/// Base radius in tiles for Finisher AoE range.
 	var/finisher_aoe_base_radius = 0
+	/// Type of finisher this weapon uses.
+	var/finisher_type = FINISHER_PIERCE
 	// Ammo variables.
 	var/max_ammo = 3
 	var/list/obj/item/stack/thumb_east_ammo/current_ammo = list()
@@ -160,9 +166,20 @@
 /// This Examine override just adds useful info for the player, including ammunition loaded and tips on how the combo system works.
 /obj/item/ego_weapon/city/thumb_east/examine(mob/user)
 	. = ..()
-	. += span_notice("There are [length(current_ammo)]/[max_ammo] shots of [length(current_ammo) > 0 ? pick(current_ammo).name : "propellant ammunition"] currently loaded.")
+	. += span_nicegreen("There are [length(current_ammo)]/[max_ammo] shots of [length(current_ammo) > 0 ? pick(current_ammo).name : "propellant ammunition"] currently loaded.")
 	. += span_notice(combo_description)
 	. += span_danger("This weapon's AoE is indiscriminate. Watch out for friendly fire.")
+
+/obj/item/ego_weapon/city/thumb_east/attack_self(mob/living/user)
+	. = ..()
+	if(combo_enabled)
+		combo_enabled = FALSE
+		to_chat(user, span_info("You are no longer spending ammunition to use combo attacks."))
+	else
+		combo_enabled = TRUE
+		to_chat(user, span_info("You are now spending ammunition to use combo attacks."))
+
+
 
 /// This override handles reloading.
 /obj/item/ego_weapon/city/thumb_east/attackby(obj/item/stack/thumb_east_ammo/I, mob/living/user, params)
@@ -203,6 +220,9 @@
 
 /// Attacking.
 /obj/item/ego_weapon/city/thumb_east/attack(mob/living/target, mob/living/user)
+	if(!combo_enabled)
+		ReturnToNormal()
+		return ..()
 	switch(combo_stage)
 		// Importantly: every time we want to fire a round, we should use SpendAmmo(user).
 
@@ -232,63 +252,54 @@
 				. = ..()
 				return
 		if(COMBO_FINISHER)
-			var/obj/item/stack/thumb_east_ammo/fired_round = SpendAmmo(user)
-			if(fired_round)
-				. = ..()
-				ComboAOE(target, user, COMBO_FINISHER)
-				ApplyStatusEffects(target, COMBO_FINISHER)
-				// We finished the combo! Reset it.
-				deltimer(combo_reset_timer)
-				ReturnToNormal(user)
-				return
-			// If we didn't spend a round, end the combo and attack regularly.
-			else
-				ReturnToNormal(user)
-				. = ..()
-				return
+			. = ..()
+			playsound(src, 'sound/effects/explosion3.ogg', 70, TRUE, 8)
+			// We finished the combo! Reset it.
+			deltimer(combo_reset_timer)
+			ReturnToNormal(user)
+			return
+
 		else
 			ReturnToNormal(user)
 			. = ..()
 
-/// This override is used to check for long-range attacks like our opening lunge. I mainly went off of what Dark Carnival and Limos do for their lunges.
-/obj/item/ego_weapon/city/thumb_east/afterattack(atom/target, mob/user, proximity_flag, click_parameters)
+/obj/item/ego_weapon/city/thumb_east/pre_attack(atom/A, mob/living/user, params)
+	var/mob/living/target = A
 	if(!CanUseEgo(user))
+		return TRUE
+
+	if(combo_stage == COMBO_FINISHER)
+		if(finisher_type == FINISHER_LEAP)
+			. = Leap(target, user)
+		if(finisher_type == FINISHER_PIERCE)
+			. = Pierce(target, user)
+
 		return
+
+	return . = ..()
+/obj/item/ego_weapon/city/thumb_east/afterattack(atom/target, mob/user, proximity_flag, click_parameters)
+
+	if(!CanUseEgo(user))
+		return TRUE
 	if(!isliving(target))
-		return
-	if(lunge_cooldown > world.time)
-		to_chat(user, span_warning("You're not ready to lunge yet!"))
-		return
-	// Only lunge if we haven't begun a combo.
-	if(combo_stage != COMBO_NO_AMMO)
-		return
-	if((get_dist(user, target) < 2))
-		return
-	if(!(can_see(user, target, lunge_range)))
-		to_chat(user, span_warning("You can't reach your target!"))
-		return
+		return TRUE
 	. = ..()
 
-	combo_stage = COMBO_LUNGE
+	switch(combo_stage)
+		if(COMBO_NO_AMMO)
+			if((get_dist(user, target) < 2))
+				return FALSE
+			else
+				. = Lunge(target, user)
+				return
+		if(COMBO_FINISHER)
+			if(finisher_type == FINISHER_LEAP)
+				if((get_dist(user, target) < 2))
+					return FALSE
+				. = Leap(target, user)
+			return
 
-	// Check to see if we've got a round to fire.
-	var/obj/item/stack/thumb_east_ammo/fired_round = SpendAmmo(user)
-	if(fired_round)
-		// We do have a round. So let's set ourselves to lunging and add the bonuses from the fired round to the weapon with HandleFiredAmmo().
-		lunge_cooldown = world.time + lunge_cooldown_duration
-		// Aesthetics.
-		to_chat(user, span_warning("You lunge at [target] using the propulsion from your [src.name]!"))
-		new /obj/effect/temp_visual/thumb_east_aoe_impact(get_turf(user))
-		// This code is stolen from Dark Carnival, aside from the sleep(). Why is it "for i in 2 to dist"? I think it's because it's excluding the user and target tiles.
-		for(var/i in 2 to get_dist(user, target))
-			step_towards(user, target)
-			sleep(0.5)
-		// If we managed to close the gap, hit the target automatically.
-		if((get_dist(user, target) < 2))
-			target.attackby(src,user)
-	else
-		to_chat(user, span_warning("You pull the trigger to lunge at [target], but you have no ammo left."))
-		combo_stage = COMBO_NO_AMMO
+	return
 
 ////////////////////////////////////////////////////////////
 // AMMO MANAGEMENT PROCS SECTION.
@@ -306,6 +317,7 @@
 /// That being said it shouldn't cause any issues because of that.
 /obj/item/ego_weapon/city/thumb_east/proc/SpendAmmo(mob/living/user)
 	if(AmmoDepletedCheck())
+		ReturnToNormal(user)
 		return FALSE
 	// We need to delete this round that was fired later by the way.
 	var/obj/item/stack/thumb_east_ammo/fired_round = pick_n_take(current_ammo)
@@ -313,9 +325,12 @@
 	if(AmmoDepletedCheck())
 		current_ammo_type = null
 
+	removeNullsFromList(current_ammo)
+
 	if(fired_round)
 		playsound(src, fired_round.detonation_sound, 75, FALSE, 8)
 		shake_camera(user, 1.5, 3)
+		PropulsionVisual(get_turf(user), fired_round.aesthetic_shockwave_distance)
 		HandleFiredAmmo(fired_round, user)
 		return TRUE
 	return FALSE
@@ -343,6 +358,105 @@
 // These are the procs used to handle offensive actions like AoE attacks and applying status effects to the enemy.
 // Includes a proc to apply status effects, a proc to reset the weapon back to normal, and a proc for doing an AoE attack.
 
+
+/// This proc is just for a visual effect that creates a "shockwave" or some smoke at the user's location.
+/obj/item/ego_weapon/city/thumb_east/proc/PropulsionVisual(turf/origin, radius)
+	var/list/already_rendered = list()
+	for(var/i in 1 to radius)
+		var/list/turfs_to_spawn_visual_at = list()
+		for(var/turf/T in orange(i, origin))
+			turfs_to_spawn_visual_at |= T
+		turfs_to_spawn_visual_at -= already_rendered
+		for(var/turf/T2 in turfs_to_spawn_visual_at)
+			new /obj/effect/temp_visual/small_smoke/halfsecond(T2)
+			already_rendered |= T2
+		sleep(1)
+
+/obj/item/ego_weapon/city/thumb_east/proc/Lunge(mob/living/target, mob/living/user)
+	if(!(can_see(user, target, lunge_range)))
+		to_chat(user, span_warning("You can't reach your target!"))
+		return FALSE
+	if(lunge_cooldown > world.time)
+		to_chat(user, span_warning("You're not ready to lunge yet!"))
+		return FALSE
+	combo_stage = COMBO_LUNGE
+
+	// Check to see if we've got a round to fire.
+	var/obj/item/stack/thumb_east_ammo/fired_round = SpendAmmo(user)
+	if(fired_round)
+		// We do have a round. So let's set ourselves to lunging and add the bonuses from the fired round to the weapon with HandleFiredAmmo().
+		lunge_cooldown = world.time + lunge_cooldown_duration
+		// Aesthetics.
+		to_chat(user, span_warning("You lunge at [target] using the propulsion from your [src.name]!"))
+		var/turf/takeoff_turf = get_turf(user)
+		new /obj/effect/temp_visual/thumb_east_aoe_impact(takeoff_turf)
+		// This code is stolen from Dark Carnival, aside from the sleep(). Why is it "for i in 2 to dist"? I think it's because it's excluding the user and target tiles.
+		for(var/i in 2 to get_dist(user, target))
+			step_towards(user, target)
+			sleep(0.5)
+		// If we managed to close the gap, hit the target automatically.
+		if((get_dist(user, target) < 2))
+			target.attackby(src,user)
+		else
+			to_chat(user, span_warning("Your lunge falls short of hitting your target!"))
+		return TRUE
+	else
+		to_chat(user, span_warning("You pull the trigger to lunge at [target], but you have no ammo left."))
+		combo_stage = COMBO_NO_AMMO
+		return FALSE
+
+/obj/item/ego_weapon/city/thumb_east/proc/Leap(mob/living/target, mob/living/user)
+	user.say("*grin")
+	to_chat(user, span_userdanger("You prepare to leap at your target by using the thrust from your [src.name]'s ammunition!"))
+	user.Immobilize(1.6 SECONDS)
+	if(do_after(user, 1.6 SECONDS, target, IGNORE_TARGET_LOC_CHANGE, TRUE, CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(can_see), user, target, 7)))
+		user.say("Firing all rounds...!")
+		if(SpendAmmo(user))
+			var/horizontal_difference = target.x - user.x
+			var/x_to_offset = 0
+			switch(horizontal_difference)
+				if(0)
+					x_to_offset = 0
+				if(1 to INFINITY)
+					x_to_offset = 16
+				if(-INFINITY to -1)
+					x_to_offset = -16
+			animate(user, 0.4 SECONDS, easing = QUAD_EASING, pixel_y = user.base_pixel_y + 32, pixel_x = user.base_pixel_x + x_to_offset, alpha = 0)
+			sleep(0.4 SECONDS)
+			user.forceMove(get_turf(target))
+			animate(user, 0.2 SECONDS, easing = QUAD_EASING, pixel_y = user.base_pixel_y, pixel_x = user.base_pixel_x, alpha = 255)
+			sleep(0.2 SECONDS)
+			target.attackby(src, user)
+			ComboAOE(target, user, COMBO_FINISHER)
+			ApplyStatusEffects(target, COMBO_FINISHER)
+			return TRUE
+		else
+			user.visible_message(span_userdanger("[user] pulls the trigger on their [src.name], but nothing happens!"), span_danger("You pull the trigger on your [src.name]. Nothing happens. Holy shit, you must look really dumb. Leave no witnesses standing."))
+	else
+		to_chat(user, span_warning("Your leap is interrupted!"))
+
+	return FALSE
+
+/obj/item/ego_weapon/city/thumb_east/proc/Pierce(mob/living/target, mob/living/user)
+	if(SpendAmmo(user))
+		var/turf/start_turf = get_turf(user)
+		var/turf/end_turf = get_ranged_target_turf_direct(user, target, 2)
+		var/list/vfx_turfs = null
+		if(start_turf && end_turf)
+			vfx_turfs = getline(start_turf, end_turf)
+		user.visible_message(span_userdanger("[user] pierces [target] with a devastating, explosive strike!"))
+		target.attackby(src, user)
+		if(!end_turf.is_blocked_turf(TRUE))
+			user.forceMove(end_turf)
+		if(vfx_turfs)
+			for(var/turf/T in vfx_turfs)
+				new /obj/effect/temp_visual/thumb_east_aoe_impact(T)
+		ApplyStatusEffects(target, COMBO_FINISHER)
+		return TRUE
+	else
+		user.visible_message(span_userdanger("[user] pulls the trigger on their [src.name], but nothing happens!"), span_danger("You pull the trigger on your [src.name]. Nothing happens."))
+		return FALSE
+
 /// This proc applies status effects to a target.
 /obj/item/ego_weapon/city/thumb_east/proc/ApplyStatusEffects(mob/living/target, hit_type)
 	// We don't want to tremor burst targets normally.
@@ -363,17 +477,17 @@
 	burn_to_apply = floor(burn_to_apply)
 
 	if(tremor_to_apply >= 1)
-		target.say("Receiving [tremor_to_apply] stacks of Tremor and will burst at [tremorburst_threshold].")
+		//target.say("Receiving [tremor_to_apply] stacks of Tremor and will burst at [tremorburst_threshold].")
 		target.apply_lc_tremor(tremor_to_apply, tremorburst_threshold)
 	if(burn_to_apply >= 1)
-		target.say("Receiving [burn_to_apply] stacks of Burn.")
+		//target.say("Receiving [burn_to_apply] stacks of Burn.")
 		target.apply_lc_burn(burn_to_apply)
 
 /// This proc is just cleanup on the weapon's state, and called whenever a combo ends, is cancelled or times out.
 /obj/item/ego_weapon/city/thumb_east/proc/ReturnToNormal(mob/user)
 	force = initial(force)
 	next_hit_should_apply = list()
-	if(combo_stage != COMBO_NO_AMMO)
+	if(combo_stage != COMBO_NO_AMMO && combo_stage != COMBO_LUNGE)
 		combo_stage = COMBO_NO_AMMO
 		to_chat(user, span_warning("Your combo resets!"))
 
@@ -432,13 +546,15 @@
 	attack_speed = 1.6
 	max_ammo = 6
 	finisher_aoe_base_radius = 1
+	finisher_type = FINISHER_LEAP
 	accepted_ammo_table = list(
 		/obj/item/stack/thumb_east_ammo,
 		/obj/item/stack/thumb_east_ammo/facility,
 		/obj/item/stack/thumb_east_ammo/tigermark,
+		/obj/item/stack/thumb_east_ammo/tigermark/facility,
 	)
 	combo_description = "This weapon's combo consists of a long-range AOE dash, a circular AoE sweep around the user, and ends with a devastating AoE leap on the target."
-
+	motion_values = list(COMBO_NO_AMMO = 1, COMBO_LUNGE = 1.2, COMBO_ATTACK2 = 1.2, COMBO_FINISHER = 1.5)
 
 ////////////////////////////////////////////////////////////
 // AMMUNITION SECTION.
@@ -454,6 +570,8 @@
 	merge_type = /obj/item/stack/thumb_east_ammo
 	/// This variable holds the path to the sound file played when this round is consumed.
 	var/detonation_sound = 'sound/weapons/gun/rifle/leveraction.ogg'
+	/// This variable holds the distance that the aesthetic "shockwave" will travel after this round is fired.
+	var/aesthetic_shockwave_distance = 2
 	// Varediting any of these variables on an ingame ammo stack won't actually work or change anything.
 	// You would have to actually go into the weapon, into its list of ammo, and change these values *there*. But this is an adminbus-only edge case anyhow.
 	/// Controls how much tremor is applied to a target hit with this ammo in an attack. Multiplied by a motion value coefficient depending on combo stage.
@@ -493,6 +611,7 @@
 	tremor_base = 0
 	burn_base = 0
 	flat_force_base = 10
+	aesthetic_shockwave_distance = 1
 
 /obj/item/stack/thumb_east_ammo/tigermark
 	name = "tigermark rounds"
@@ -501,9 +620,24 @@
 	singular_name = "tigermark round"
 	merge_type = /obj/item/stack/thumb_east_ammo/tigermark
 	detonation_sound = 'sound/abnormalities/fluchschutze/fell_bullet.ogg'
+	aesthetic_shockwave_distance = 3
 	tremor_base = 8
 	burn_base = 4
 	flat_force_base = 12
+	aoe_radius_bonus = 1
+
+/obj/item/stack/thumb_east_ammo/tigermark/examine(mob/user)
+	. = ..()
+	. += span_info("This ammunition is only compatible with thumb east podaos.")
+
+/obj/item/stack/thumb_east_ammo/tigermark/facility
+	name = "ligermark rounds"
+	desc = "Wait... this isn't a Tigermark round at all, is it? Well... it's about the same caliber, so it would probably fit into a Thumb East podao."
+	singular_name = "ligermark round"
+	merge_type = /obj/item/stack/thumb_east_ammo/tigermark/facility
+	tremor_base = 0
+	burn_base = 0
+	flat_force_base = 16
 	aoe_radius_bonus = 1
 
 ////////////////////////////////////////////////////////////
@@ -523,3 +657,5 @@
 #undef COMBO_ATTACK2_AOE
 #undef COMBO_FINISHER
 #undef COMBO_FINISHER_AOE
+#undef FINISHER_PIERCE
+#undef FINISHER_LEAP
