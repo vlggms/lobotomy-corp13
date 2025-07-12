@@ -18,6 +18,7 @@
 							)
 	var/installed_shard
 	var/equipped
+	custom_price = 100
 
 /obj/item/ego_weapon/city/lcorp/equipped(mob/user, slot, initial = FALSE)
 	..()
@@ -68,6 +69,8 @@
 	swingstyle = WEAPONSWING_LARGESWEEP
 	hitsound = 'sound/weapons/fixer/generic/baton1.ogg'
 	force = 22
+	custom_price = 100
+
 
 /obj/item/ego_weapon/city/lcorp/machete
 	name = "l-corp machete"
@@ -76,6 +79,8 @@
 	hitsound = 'sound/weapons/fixer/generic/sword2.ogg'
 	force = 13
 	attack_speed = 0.5
+	custom_price = 100
+
 
 /obj/item/ego_weapon/city/lcorp/machete/IncreaseAttributes(mob/living/user, obj/item/egoshard/egoshard)
 	..()
@@ -90,6 +95,8 @@
 	force = 35 //Still less DPS, replaces baseball bat
 	attack_speed = 1.6
 	knockback = KNOCKBACK_LIGHT
+	custom_price = 100
+
 
 /obj/item/ego_weapon/city/lcorp/club/IncreaseAttributes(mob/living/user, obj/item/egoshard/egoshard)
 	..()
@@ -113,6 +120,7 @@
 	block_duration = 3 SECONDS
 	block_cooldown = 3 SECONDS
 	block_sound_volume = 30
+	custom_price = 300
 	var/installed_shard
 	var/equipped
 	attribute_requirements = list( //They need to be listed for the attributes to increase

@@ -63,14 +63,23 @@
 /obj/effect/turf_decal/siding/yellow{
 	dir = 9
 	},
-/obj/machinery/computer/security{
+/obj/structure/frame/computer{
 	dir = 1
 	},
+/obj/item/circuitboard/computer/security,
+/obj/item/shard{
+	pixel_x = -6
+	},
+/obj/item/shard{
+	pixel_y = -4;
+	pixel_x = 4
+	},
+/obj/item/stack/cable_coil/cut,
 /turf/closed/mineral/random/facility,
 /area/department_main/control)
 "ar" = (
 /obj/structure/disposalpipe/segment,
-/turf/closed/mineral/random/facility,
+/turf/open/floor/plating,
 /area/department_main/control)
 "as" = (
 /turf/closed/mineral/random/facility,
@@ -365,7 +374,7 @@
 /obj/item/kirbyplants/photosynthetic{
 	anchored = 1
 	},
-/turf/closed/mineral/random/facility,
+/turf/open/floor/plating,
 /area/department_main/control)
 "by" = (
 /obj/effect/decal/cleanable/dirt,
@@ -575,6 +584,11 @@
 /area/facility_hallway/discipline)
 "ci" = (
 /obj/structure/rack,
+/obj/item/rawpe,
+/obj/item/rawpe,
+/obj/item/rawpe,
+/obj/item/rawpe,
+/obj/item/rawpe,
 /turf/closed/mineral/random/facility/briah,
 /area/department_main/extraction)
 "cj" = (
@@ -583,6 +597,13 @@
 	},
 /turf/open/floor/plating,
 /area/facility_hallway/command)
+"ck" = (
+/mob/living/simple_animal/hostile/bear{
+	desc = "Big & Scary";
+	name = "Big, Scary Bear"
+	},
+/turf/open/floor/plating/asteroid,
+/area/surface_ruins/underground)
 "cl" = (
 /obj/structure/rack,
 /obj/effect/decal/cleanable/dirt,
@@ -744,7 +765,7 @@
 "cK" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/item/shard,
-/turf/closed/mineral/random/facility,
+/turf/open/floor/plating,
 /area/department_main/control)
 "cL" = (
 /obj/machinery/defibrillator_mount/loaded,
@@ -863,6 +884,11 @@
 	},
 /turf/open/floor/plating/rust,
 /area/facility_hallway/training)
+"dm" = (
+/obj/structure/table_frame/wood,
+/obj/item/rawpe,
+/turf/open/floor/plating,
+/area/department_main/training)
 "do" = (
 /obj/effect/turf_decal/siding/red{
 	dir = 1
@@ -871,6 +897,11 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plating/rust,
 /area/facility_hallway/discipline)
+"dq" = (
+/obj/item/ego_weapon/city/fixerpen,
+/obj/effect/decal/cleanable/blood,
+/turf/open/floor/distortion/another_day,
+/area/city/backstreets_room)
 "dr" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/turf_decal/plaque{
@@ -918,7 +949,7 @@
 /area/city/shop)
 "dy" = (
 /obj/structure/chair/office,
-/turf/closed/mineral/random/facility,
+/turf/open/floor/plating,
 /area/department_main/control)
 "dz" = (
 /obj/structure/bodycontainer/crematorium{
@@ -999,7 +1030,7 @@
 /obj/machinery/camera/autoname{
 	dir = 1
 	},
-/turf/closed/mineral/random/facility,
+/turf/open/floor/plating,
 /area/department_main/control)
 "dO" = (
 /obj/effect/turf_decal/siding/green{
@@ -1172,7 +1203,7 @@
 /obj/machinery/light/broken{
 	dir = 4
 	},
-/turf/closed/mineral/random/facility,
+/turf/open/floor/plating,
 /area/department_main/control)
 "ew" = (
 /obj/effect/decal/cleanable/glass,
@@ -1368,7 +1399,7 @@
 /turf/open/floor/plasteel/dark,
 /area/city/shop)
 "fd" = (
-/obj/item/book/granter/action/skill/confusion,
+/obj/item/ego_weapon/city/fixerpen,
 /turf/open/floor/plasteel/grimy,
 /area/city/backstreets_room)
 "fe" = (
@@ -1536,6 +1567,13 @@
 /obj/effect/spawner/lootdrop/cigbutt,
 /turf/open/floor/plating/rust,
 /area/city/backstreets_alley)
+"fF" = (
+/obj/structure/plaque{
+	name = "Tie Office License";
+	desc = "An official fixer license assigned by the Hana Association."
+	},
+/turf/closed/indestructible/reinforced,
+/area/city/backstreets_room)
 "fG" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/door/airlock/highsecurity{
@@ -1610,6 +1648,12 @@
 /obj/item/rawpe,
 /turf/closed/mineral/random/facility/briah,
 /area/department_main/extraction)
+"fT" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/item/rawpe,
+/obj/item/rawpe,
+/turf/open/floor/carpet/red,
+/area/department_main/discipline)
 "fV" = (
 /obj/structure/sign/departments/l_corp,
 /turf/closed/indestructible/reinforced,
@@ -1719,7 +1763,7 @@
 /area/department_main/safety)
 "gv" = (
 /obj/structure/bookcase/random,
-/turf/closed/mineral/random/facility,
+/turf/open/floor/plating,
 /area/department_main/control)
 "gz" = (
 /turf/open/floor/carpet/green,
@@ -1899,6 +1943,11 @@
 	},
 /turf/open/floor/plating/rust,
 /area/facility_hallway/safety)
+"hk" = (
+/obj/item/rawpe,
+/obj/item/rawpe,
+/turf/open/floor/carpet/red,
+/area/department_main/discipline)
 "hm" = (
 /obj/effect/turf_decal/siding/yellow{
 	dir = 1
@@ -2095,6 +2144,17 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/city)
+"hS" = (
+/obj/structure/table/wood/fancy/blue,
+/obj/effect/decal/cleanable/dirt,
+/obj/item/rawpe,
+/obj/item/rawpe,
+/obj/item/rawpe,
+/obj/item/rawpe,
+/obj/item/rawpe,
+/obj/item/rawpe,
+/turf/open/floor/plating,
+/area/department_main/command)
 "hT" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 8
@@ -2503,6 +2563,13 @@
 /obj/item/storage/belt/ego,
 /turf/open/floor/carpet,
 /area/facility_hallway/control)
+"jB" = (
+/obj/structure/plaque{
+	desc = "A contract bearing the seal of the Oufi Association East division., claiming this office as a subsidiary.";
+	name = "Oufi Association Contract"
+	},
+/turf/closed/indestructible/reinforced,
+/area/city/backstreets_room)
 "jC" = (
 /obj/effect/turf_decal/siding/yellow{
 	dir = 8
@@ -2567,6 +2634,11 @@
 /obj/item/storage/belt/utility,
 /turf/open/floor/pod,
 /area/city/shop)
+"jM" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/item/rawpe,
+/turf/open/floor/plasteel/dark,
+/area/facility_hallway/welfare)
 "jN" = (
 /obj/machinery/camera/autoname{
 	dir = 9
@@ -2771,7 +2843,7 @@
 /obj/effect/turf_decal/siding/yellow{
 	dir = 6
 	},
-/turf/closed/mineral/random/facility,
+/turf/open/floor/plating,
 /area/department_main/control)
 "kw" = (
 /obj/effect/decal/cleanable/dirt,
@@ -2918,11 +2990,9 @@
 /obj/effect/decal/cleanable/dirt,
 /obj/item/trash/can/food/pcorp,
 /obj/item/trash/candy,
-/obj/effect/mob_spawn/human/agent{
-	suit = /obj/item/clothing/suit/armor/ego_gear/zayin/dragon_staff;
-	name = "dragon staff agent"
-	},
-/obj/item/ego_weapon/support/dragon_staff,
+/obj/effect/mob_spawn/human/agent,
+/obj/item/ego_weapon/ranged/wishing_cairn,
+/obj/item/clothing/suit/armor/ego_gear/teth/wishing_cairn,
 /turf/closed/mineral/random/facility/briah,
 /area/department_main/extraction)
 "kV" = (
@@ -2936,6 +3006,13 @@
 /obj/machinery/disposal/bin,
 /turf/open/floor/carpet/red,
 /area/department_main/discipline)
+"kY" = (
+/obj/structure/table_frame/wood,
+/obj/item/rawpe,
+/obj/item/rawpe,
+/obj/item/rawpe,
+/turf/open/floor/carpet/orange,
+/area/department_main/training)
 "kZ" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -3803,7 +3880,11 @@
 "op" = (
 /obj/structure/table/glass,
 /obj/effect/decal/cleanable/dirt,
-/turf/closed/mineral/random/facility,
+/obj/item/rawpe,
+/obj/item/rawpe,
+/obj/item/rawpe,
+/obj/item/rawpe,
+/turf/open/floor/plating,
 /area/department_main/control)
 "oq" = (
 /obj/item/reagent_containers/syringe,
@@ -4035,7 +4116,15 @@
 /obj/effect/turf_decal/siding/yellow{
 	dir = 10
 	},
-/obj/machinery/computer/security,
+/obj/structure/frame/computer,
+/obj/item/circuitboard/computer/security,
+/obj/item/shard{
+	pixel_y = 5
+	},
+/obj/item/shard{
+	pixel_x = 8
+	},
+/obj/item/stack/cable_coil/cut,
 /turf/closed/mineral/random/facility,
 /area/department_main/control)
 "oX" = (
@@ -4083,7 +4172,7 @@
 /obj/structure/filingcabinet{
 	pixel_x = -10
 	},
-/turf/closed/mineral/random/facility,
+/turf/open/floor/plating,
 /area/department_main/control)
 "pf" = (
 /obj/structure/table/glass,
@@ -4091,6 +4180,7 @@
 	dir = 4
 	},
 /obj/effect/decal/cleanable/dirt,
+/obj/item/rawpe,
 /turf/open/floor/carpet/purple,
 /area/department_main/information)
 "pg" = (
@@ -4267,13 +4357,6 @@
 /obj/effect/decal/cleanable/glass,
 /turf/closed/mineral/random/facility/briah,
 /area/facility_hallway/command)
-"pL" = (
-/obj/effect/turf_decal/siding/blue{
-	dir = 1
-	},
-/obj/item/ego_weapon/mining/furrows,
-/turf/closed/mineral/random/facility/atzliuth,
-/area/facility_hallway/welfare)
 "pM" = (
 /obj/structure/rack,
 /obj/item/stack/rods/fifty,
@@ -4362,7 +4445,7 @@
 /area/facility_hallway/safety)
 "qe" = (
 /obj/machinery/door/airlock/highsecurity{
-	name = "Information Department"
+	name = "Control Department"
 	},
 /turf/open/floor/plasteel,
 /area/department_main/control)
@@ -4374,6 +4457,7 @@
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/turf_decal/siding/blue,
 /obj/effect/mob_spawn/human/agent/loot/waw,
+/obj/item/ego_weapon/furrows,
 /turf/open/floor/plating,
 /area/facility_hallway/welfare)
 "qk" = (
@@ -4413,7 +4497,7 @@
 /obj/item/wirecutters,
 /obj/item/wrench,
 /obj/item/wrench,
-/turf/closed/mineral/random/facility,
+/turf/open/floor/plating,
 /area/department_main/control)
 "qq" = (
 /obj/effect/turf_decal/siding/green{
@@ -4534,11 +4618,6 @@
 "qP" = (
 /turf/open/space/basic,
 /area/space)
-"qQ" = (
-/obj/effect/decal/cleanable/dirt,
-/obj/item/ego_weapon/mining/furrows,
-/turf/closed/mineral/random/facility/atzliuth,
-/area/facility_hallway/welfare)
 "qR" = (
 /obj/machinery/vending/cola/shamblers,
 /obj/structure/sign/ordealmonitor{
@@ -4565,15 +4644,15 @@
 /turf/open/floor/plasteel,
 /area/city/shop)
 "qY" = (
-/obj/machinery/door/airlock/highsecurity{
-	name = "Information Department"
-	},
 /obj/effect/turf_decal/siding/purple{
 	dir = 1
 	},
 /obj/effect/turf_decal/siding/purple,
 /obj/structure/barricade/wooden,
 /obj/structure/disposalpipe/segment,
+/obj/machinery/door/airlock/highsecurity{
+	name = "Control Department"
+	},
 /turf/open/floor/plating,
 /area/department_main/control)
 "ra" = (
@@ -4766,7 +4845,7 @@
 	dir = 8
 	},
 /obj/machinery/disposal/bin,
-/turf/closed/mineral/random/facility,
+/turf/open/floor/plating,
 /area/department_main/control)
 "rR" = (
 /obj/effect/turf_decal/box/white,
@@ -4775,7 +4854,7 @@
 /area/department_main/records)
 "rS" = (
 /obj/machinery/camera/autoname,
-/turf/closed/mineral/random/facility,
+/turf/open/floor/plating,
 /area/department_main/control)
 "rU" = (
 /obj/effect/turf_decal/siding/yellow,
@@ -5778,7 +5857,7 @@
 "vM" = (
 /obj/structure/rack,
 /obj/machinery/light/broken,
-/turf/closed/mineral/random/facility,
+/turf/open/floor/plating,
 /area/department_main/control)
 "vN" = (
 /obj/machinery/computer/crew{
@@ -5896,6 +5975,7 @@
 	dir = 8
 	},
 /obj/effect/decal/cleanable/glass,
+/obj/item/ego_weapon/furrows,
 /turf/open/floor/carpet/royalblue,
 /area/department_main/command)
 "wi" = (
@@ -6119,7 +6199,7 @@
 /obj/effect/landmark/cityloot,
 /obj/structure/table_frame,
 /obj/effect/decal/cleanable/glass,
-/turf/closed/mineral/random/facility,
+/turf/open/floor/plating,
 /area/department_main/control)
 "wV" = (
 /obj/machinery/telecomms/broadcaster/preset_left,
@@ -6362,7 +6442,7 @@
 "xR" = (
 /obj/machinery/camera/autoname,
 /obj/item/shard,
-/turf/closed/mineral/random/facility,
+/turf/open/floor/plating,
 /area/department_main/control)
 "xS" = (
 /obj/effect/turf_decal/tile/brown{
@@ -7207,10 +7287,10 @@
 /turf/open/floor/wood,
 /area/city/shop)
 "AX" = (
-/obj/machinery/door/airlock/highsecurity{
-	name = "Information Department"
-	},
 /obj/structure/barricade/wooden,
+/obj/machinery/door/airlock/highsecurity{
+	name = "Control Department"
+	},
 /turf/open/floor/plating,
 /area/department_main/control)
 "AY" = (
@@ -7373,6 +7453,9 @@
 /obj/item/encryptionkey/headset_safety,
 /obj/item/encryptionkey/headset_safety,
 /obj/item/encryptionkey/headset_safety,
+/obj/item/rawpe,
+/obj/item/rawpe,
+/obj/item/rawpe,
 /turf/open/floor/plating,
 /area/department_main/safety)
 "BE" = (
@@ -7425,6 +7508,10 @@
 /obj/effect/decal/cleanable/glass,
 /turf/open/floor/carpet/orange,
 /area/department_main/training)
+"BP" = (
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plating,
+/area/department_main/control)
 "BR" = (
 /obj/effect/turf_decal/plaque{
 	alpha = 230;
@@ -7579,6 +7666,9 @@
 /obj/effect/spawner/randomsnackvend,
 /turf/open/floor/plating,
 /area/department_main/command)
+"Cv" = (
+/turf/open/floor/plating,
+/area/department_main/control)
 "Cx" = (
 /obj/structure/sign/poster/ripped,
 /obj/structure/disposalpipe/segment,
@@ -7627,6 +7717,11 @@
 	},
 /turf/open/floor/plating/rust,
 /area/department_main/command)
+"CE" = (
+/obj/structure/table_frame/wood,
+/obj/item/rawpe,
+/turf/open/floor/carpet/orange,
+/area/department_main/training)
 "CF" = (
 /obj/structure/disposalpipe/segment{
 	dir = 9
@@ -8204,7 +8299,7 @@
 /obj/structure/disposalpipe/segment{
 	dir = 6
 	},
-/turf/closed/mineral/random/facility,
+/turf/open/floor/plating,
 /area/department_main/control)
 "EM" = (
 /obj/machinery/cryopod,
@@ -8719,7 +8814,7 @@
 "GT" = (
 /obj/structure/bookcase/random,
 /obj/machinery/light/broken,
-/turf/closed/mineral/random/facility,
+/turf/open/floor/plating,
 /area/department_main/control)
 "GU" = (
 /obj/machinery/door/airlock/highsecurity{
@@ -8781,7 +8876,6 @@
 /obj/effect/turf_decal/siding/red{
 	dir = 1
 	},
-/obj/item/ego_weapon/mining/furrows,
 /obj/effect/mob_spawn/human/agent/loot/waw,
 /turf/closed/mineral/random/facility/abnormality{
 	risk_level = 5
@@ -8916,7 +9010,6 @@
 /obj/machinery/door/airlock/vault{
 	name = "Tie Office Notarization"
 	},
-/obj/structure/barrier_tape/police,
 /turf/open/floor/plasteel,
 /area/city/backstreets_room)
 "Hz" = (
@@ -8951,11 +9044,13 @@
 /turf/open/floor/plating/grass,
 /area/city)
 "HG" = (
-/obj/structure/closet/crate/freezer/blood,
 /obj/machinery/light/broken{
 	dir = 8
 	},
 /obj/effect/decal/cleanable/glass,
+/obj/effect/decal/cleanable/crayon{
+	icon_state = "arrow"
+	},
 /turf/open/floor/carpet/green,
 /area/department_main/safety)
 "HH" = (
@@ -9335,7 +9430,7 @@
 /obj/machinery/light/broken{
 	dir = 1
 	},
-/turf/closed/mineral/random/facility,
+/turf/open/floor/plating,
 /area/department_main/control)
 "Jg" = (
 /turf/closed/indestructible/wood,
@@ -9588,16 +9683,6 @@
 /obj/item/pipe_dispenser,
 /turf/open/floor/pod,
 /area/city/shop)
-"JZ" = (
-/obj/machinery/door/poddoor/ert{
-	id = "safetylockdown";
-	name = "site burial lockdown"
-	},
-/turf/closed/mineral/random/facility{
-	baseturfs = /turf/open/floor/plating/asteroid;
-	name = "rocky rubble"
-	},
-/area/facility_hallway/control)
 "Ka" = (
 /obj/item/reagent_containers/syringe,
 /obj/effect/spawner/lootdrop/cigbutt,
@@ -10198,7 +10283,7 @@
 /area/city)
 "Mf" = (
 /obj/item/statuebust,
-/turf/closed/mineral/random/facility,
+/turf/open/floor/plating,
 /area/department_main/control)
 "Mg" = (
 /obj/structure/chair{
@@ -10379,7 +10464,7 @@
 /turf/open/floor/plating,
 /area/department_main/command)
 "MR" = (
-/obj/item/book/granter/action/skill/assault,
+/obj/item/ego_weapon/city/rats/brick,
 /turf/open/floor/plating/rust,
 /area/city/backstreets_alley)
 "MS" = (
@@ -10585,8 +10670,14 @@
 /obj/machinery/light/broken{
 	dir = 8
 	},
-/turf/closed/mineral/random/facility,
+/turf/open/floor/plating,
 /area/department_main/control)
+"NJ" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/item/rawpe,
+/obj/item/rawpe,
+/turf/open/floor/carpet/royalblue,
+/area/department_main/welfare)
 "NL" = (
 /obj/structure/flora/ausbushes/sparsegrass,
 /obj/structure/fence{
@@ -10899,7 +10990,7 @@
 /obj/item/deepscanner,
 /obj/structure/table_frame,
 /obj/effect/decal/cleanable/glass,
-/turf/closed/mineral/random/facility,
+/turf/open/floor/plating,
 /area/department_main/control)
 "OY" = (
 /obj/effect/turf_decal/siding/blue,
@@ -11089,6 +11180,14 @@
 /obj/effect/decal/cleanable/glass,
 /turf/open/floor/plating/rust,
 /area/facility_hallway/discipline)
+"PK" = (
+/obj/effect/turf_decal/siding/green{
+	dir = 8
+	},
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/closet/crate/freezer/blood,
+/turf/open/floor/facility/white,
+/area/department_main/safety)
 "PM" = (
 /obj/machinery/newscaster{
 	pixel_y = 32
@@ -11241,7 +11340,7 @@
 /obj/effect/turf_decal/siding/yellow/corner{
 	dir = 8
 	},
-/turf/closed/mineral/random/facility,
+/turf/open/floor/plating,
 /area/department_main/control)
 "Qs" = (
 /obj/structure/table/wood/poker,
@@ -11275,6 +11374,10 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/closed/mineral/random/facility,
 /area/department_main/information)
+"Qz" = (
+/obj/effect/decal/cleanable/blood,
+/turf/closed/indestructible/rock,
+/area/space)
 "QA" = (
 /obj/structure/sign/poster/contraband/fun_police,
 /obj/structure/disposalpipe/segment{
@@ -11673,7 +11776,7 @@
 /area/facility_hallway/command)
 "Sg" = (
 /obj/machinery/facility_holomap,
-/turf/closed/mineral/random/facility,
+/turf/open/floor/plating,
 /area/department_main/control)
 "Si" = (
 /obj/effect/turf_decal/tile/brown,
@@ -11758,7 +11861,7 @@
 /area/department_main/welfare)
 "Sy" = (
 /obj/item/shard,
-/turf/closed/mineral/random/facility,
+/turf/open/floor/plating,
 /area/department_main/control)
 "Sz" = (
 /obj/effect/decal/cleanable/generic,
@@ -11774,7 +11877,7 @@
 /turf/closed/mineral/random/facility/atzliuth,
 /area/department_main/welfare)
 "SB" = (
-/obj/machinery/vending/fixer,
+/obj/machinery/vending/lobotomy_combat,
 /turf/open/floor/pod,
 /area/city/shop)
 "SC" = (
@@ -11786,7 +11889,7 @@
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/table_frame,
 /obj/effect/decal/cleanable/glass,
-/turf/closed/mineral/random/facility,
+/turf/open/floor/plating,
 /area/department_main/control)
 "SE" = (
 /obj/effect/decal/cleanable/dirt,
@@ -11914,6 +12017,8 @@
 "Tb" = (
 /obj/effect/spawner/lootdrop/maintenance,
 /obj/structure/table_frame/wood,
+/obj/item/rawpe,
+/obj/item/rawpe,
 /turf/open/floor/plating,
 /area/department_main/welfare)
 "Tc" = (
@@ -12347,7 +12452,7 @@
 /obj/structure/chair/office,
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/mob_spawn/human/clerk,
-/turf/closed/mineral/random/facility,
+/turf/open/floor/plating,
 /area/department_main/control)
 "UG" = (
 /obj/structure/sign/poster/official/cleanliness,
@@ -12408,7 +12513,6 @@
 	dir = 8
 	},
 /obj/structure/fluff/hedge,
-/obj/item/ego_weapon/mining/furrows,
 /turf/open/floor/plating,
 /area/department_main/command)
 "UV" = (
@@ -12478,11 +12582,11 @@
 /obj/machinery/status_display{
 	pixel_x = 32
 	},
-/turf/closed/mineral/random/facility,
+/turf/open/floor/plating,
 /area/department_main/control)
 "Vn" = (
 /obj/broken_regenerator,
-/turf/closed/mineral/random/facility,
+/turf/open/floor/plating,
 /area/department_main/control)
 "Vo" = (
 /obj/structure/table_frame/wood,
@@ -12710,6 +12814,14 @@
 /obj/structure/table_frame/wood,
 /turf/open/floor/carpet/orange,
 /area/department_main/training)
+"Wf" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/turf_decal/siding/red{
+	dir = 1
+	},
+/obj/item/ego_weapon/furrows,
+/turf/open/floor/plating,
+/area/facility_hallway/discipline)
 "Wh" = (
 /obj/machinery/light{
 	dir = 1
@@ -12732,6 +12844,7 @@
 /obj/item/clothing/accessory/armband/lobotomy/extraction,
 /obj/item/clothing/accessory/armband/lobotomy/extraction,
 /obj/effect/decal/cleanable/dirt,
+/obj/item/ego_weapon/ranged/fellbullet,
 /turf/closed/mineral/random/facility/briah,
 /area/department_main/extraction)
 "Wn" = (
@@ -13023,7 +13136,7 @@
 /obj/effect/turf_decal/siding/yellow{
 	dir = 10
 	},
-/turf/closed/mineral/random/facility,
+/turf/open/floor/plating,
 /area/department_main/control)
 "Xy" = (
 /obj/machinery/camera/autoname{
@@ -13169,7 +13282,7 @@
 	pixel_x = 10
 	},
 /obj/structure/filingcabinet,
-/turf/closed/mineral/random/facility,
+/turf/open/floor/plating,
 /area/department_main/control)
 "Yb" = (
 /obj/machinery/light,
@@ -13269,6 +13382,13 @@
 	risk_level = 5
 	},
 /area/department_main/discipline)
+"Yp" = (
+/obj/structure/table/wood/fancy/green,
+/obj/item/rawpe,
+/obj/item/rawpe,
+/obj/item/rawpe,
+/turf/open/floor/carpet/green,
+/area/department_main/safety)
 "Yq" = (
 /obj/effect/turf_decal/siding/yellow{
 	dir = 4
@@ -13300,9 +13420,18 @@
 	dir = 5
 	},
 /obj/effect/decal/cleanable/dirt,
-/obj/machinery/computer/security{
+/obj/structure/frame/computer{
 	dir = 1
 	},
+/obj/item/circuitboard/computer/security,
+/obj/item/shard{
+	pixel_x = -6
+	},
+/obj/item/shard{
+	pixel_x = 5;
+	pixel_y = 5
+	},
+/obj/item/stack/cable_coil/cut,
 /turf/closed/mineral/random/facility,
 /area/department_main/control)
 "Yw" = (
@@ -13362,7 +13491,7 @@
 "YG" = (
 /obj/effect/landmark/cityloot,
 /obj/structure/table_frame,
-/turf/closed/mineral/random/facility,
+/turf/open/floor/plating,
 /area/department_main/control)
 "YH" = (
 /obj/structure/sign/poster/lobotomycorp/wellcheers,
@@ -42853,7 +42982,7 @@ ZL
 ZL
 ZL
 ZL
-ZL
+Qz
 ZL
 ZL
 ZL
@@ -43882,7 +44011,7 @@ ix
 ix
 hY
 ix
-ix
+dq
 zg
 ZL
 ZL
@@ -44130,7 +44259,7 @@ zg
 My
 af
 Ax
-zg
+fF
 EX
 PF
 tX
@@ -44606,7 +44735,7 @@ CQ
 pC
 pC
 pC
-pC
+ck
 pC
 pC
 CQ
@@ -44644,7 +44773,7 @@ zg
 My
 af
 CW
-zg
+jB
 EX
 PF
 tX
@@ -47196,7 +47325,7 @@ Lh
 oG
 WE
 Fx
-Vo
+kY
 zW
 ZL
 ZL
@@ -47963,7 +48092,7 @@ IJ
 Cb
 vH
 up
-Vo
+CE
 mK
 uL
 qO
@@ -48477,7 +48606,7 @@ Vo
 cF
 uL
 jX
-eg
+dm
 mK
 uL
 qO
@@ -48747,7 +48876,7 @@ zW
 ZL
 CQ
 pC
-JZ
+sc
 no
 Qx
 SQ
@@ -50519,8 +50648,8 @@ cK
 KP
 wO
 lk
-wO
-Pi
+BP
+Cv
 rg
 rg
 Ms
@@ -50768,16 +50897,16 @@ ZL
 ZL
 Ms
 rg
-Pi
+Cv
 wU
 SC
-wO
+BP
 wO
 Bw
 Pi
 YY
 wO
-Pi
+Cv
 Mf
 UV
 NR
@@ -51283,7 +51412,7 @@ LX
 Ms
 CB
 Je
-wO
+BP
 wS
 Pi
 Pi
@@ -52824,7 +52953,7 @@ LX
 LX
 ZL
 rg
-wO
+BP
 Pi
 DX
 Pi
@@ -52834,7 +52963,7 @@ wO
 wO
 wO
 dK
-Pi
+Cv
 GT
 rg
 ZL
@@ -53091,7 +53220,7 @@ wO
 wO
 Pi
 Pi
-Pi
+Cv
 gv
 rg
 ZL
@@ -53346,7 +53475,7 @@ wO
 KP
 wO
 Pi
-Pi
+Cv
 EL
 ar
 TA
@@ -53603,7 +53732,7 @@ Pi
 yu
 Pi
 Vl
-Pi
+Cv
 rQ
 UV
 rg
@@ -54904,7 +55033,7 @@ dT
 LS
 nr
 ii
-ii
+PK
 ii
 Op
 Op
@@ -55931,7 +56060,7 @@ sv
 sv
 eb
 Gh
-gI
+Yp
 VI
 Bb
 pW
@@ -63896,7 +64025,7 @@ LL
 Dc
 LL
 cy
-nP
+jM
 jP
 LL
 ZL
@@ -64152,8 +64281,8 @@ ZL
 LL
 YO
 Yg
-nP
-nP
+jM
+jM
 AH
 LL
 ML
@@ -64685,7 +64814,7 @@ YO
 YO
 LL
 WI
-qQ
+oo
 gW
 LL
 ZL
@@ -66210,7 +66339,7 @@ bK
 bK
 Aa
 qz
-sp
+NJ
 zm
 vk
 qA
@@ -68025,7 +68154,7 @@ YO
 YO
 YO
 Gk
-pL
+MM
 oo
 gW
 LL
@@ -70029,7 +70158,7 @@ am
 kM
 gD
 mG
-re
+hS
 TZ
 Ip
 Fy
@@ -75200,10 +75329,10 @@ Se
 Vu
 nY
 Nn
-Nn
+fT
 jq
 pl
-Vu
+hk
 nY
 eG
 oQ
@@ -75478,7 +75607,7 @@ qF
 qF
 qF
 nt
-oN
+Wf
 aM
 GD
 nt
