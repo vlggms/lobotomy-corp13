@@ -158,28 +158,6 @@
 		/obj/item/book/granter/action/skill/meditation = 100,
 		/obj/item/book/granter/action/skill/mark = 100,
 		/obj/item/book/granter/action/skill/light = 100,
-		//Status Effect Skills - Level 1
-		//Bleed
-		/obj/item/book/granter/action/skill/bleed/lacerate = 100,
-		/obj/item/book/granter/action/skill/bleed/sanguinechain = 100,
-		/obj/item/book/granter/action/skill/bleed/bloodlettingstrike = 100,
-		/obj/item/book/granter/action/skill/bleed/sanguinefeast = 100,
-		/obj/item/book/granter/action/skill/bleed/bloodpool = 100,
-		/obj/item/book/granter/action/skill/bleed/crimsonrepulsion = 100,
-		//Overheat
-		/obj/item/book/granter/action/skill/overheat/heat_transfer = 100,
-		/obj/item/book/granter/action/skill/overheat/ignition_burst = 100,
-		/obj/item/book/granter/action/skill/overheat/flame_lance = 100,
-		/obj/item/book/granter/action/skill/overheat/cauterize = 100,
-		/obj/item/book/granter/action/skill/overheat/spreading_ashes = 100,
-		/obj/item/book/granter/action/skill/overheat/feeding_embers = 100,
-		//Tremor
-		/obj/item/book/granter/action/skill/tremor/aftershock = 100,
-		/obj/item/book/granter/action/skill/tremor/seismic_wave = 100,
-		/obj/item/book/granter/action/skill/tremor/shattered_resentment = 100,
-		/obj/item/book/granter/action/skill/tremor/stabilizing_stance = 100,
-		/obj/item/book/granter/action/skill/tremor/tectonic_shift = 100,
-		/obj/item/book/granter/action/skill/tremor/repelling_motion = 100,
 		//Level 2
 		/obj/item/book/granter/action/skill/butcher = 100,
 		/obj/item/book/granter/action/skill/confusion = 100,
@@ -188,19 +166,6 @@
 		/obj/item/book/granter/action/skill/lockpick = 100,
 		/obj/item/book/granter/action/skill/skulk = 100,
 		/obj/item/book/granter/action/skill/autoloader = 100,
-		//Status Effect Skills - Level 2
-		//Bleed
-		/obj/item/book/granter/action/skill/bleed/hemorrhage = 100,
-		/obj/item/book/granter/action/skill/bleed/crimson_cleave = 100,
-		/obj/item/book/granter/action/skill/bleed/blood_spike = 100,
-		//Overheat
-		/obj/item/book/granter/action/skill/overheat/overheat_detonation = 100,
-		/obj/item/book/granter/action/skill/overheat/molten_strike = 100,
-		/obj/item/book/granter/action/skill/overheat/inferno_dash = 100,
-		//Tremor
-		/obj/item/book/granter/action/skill/tremor/seismic_slam = 100,
-		/obj/item/book/granter/action/skill/tremor/resonant_strike = 100,
-		/obj/item/book/granter/action/skill/tremor/earthbound_hammer = 100,
 		//Level 3
 		/obj/item/book/granter/action/skill/healthhud = 100,
 		/obj/item/book/granter/action/skill/bulletproof = 100,

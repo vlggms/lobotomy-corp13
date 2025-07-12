@@ -26,6 +26,9 @@
 		/obj/item/workshop_mod/aoe/black = 99,
 		//GACHA BABY
 		/obj/structure/lootcrate/tres = 99,
+		//Skill System Items
+		/obj/item/attachment/workshop = 99,
+		/obj/item/clothing/neck/skill_necklace = 99,
 	)
 
 	premium = list(
@@ -56,6 +59,45 @@
 		/obj/item/workshop_mod/sharp/black = 5,
 		/obj/item/workshop_mod/split/redpale = 1,
 		/obj/item/workshop_mod/split/whiteblack = 1,
+
+		//Skill Cores - Level 1 Bleed
+		/obj/item/skill_core/bleed/lacerate = 5,
+		/obj/item/skill_core/bleed/sanguine_chain = 5,
+		/obj/item/skill_core/bleed/bloodletting_strike = 5,
+		/obj/item/skill_core/bleed/sanguine_feast = 5,
+		/obj/item/skill_core/bleed/blood_pool = 5,
+		/obj/item/skill_core/bleed/crimson_repulsion = 5,
+
+		//Skill Cores - Level 2 Bleed
+		/obj/item/skill_core/bleed/hemorrhage = 3,
+		/obj/item/skill_core/bleed/crimson_cleave = 3,
+		/obj/item/skill_core/bleed/blood_spike = 3,
+
+		//Skill Cores - Level 1 Overheat
+		/obj/item/skill_core/overheat/heat_transfer = 5,
+		/obj/item/skill_core/overheat/ignition_burst = 5,
+		/obj/item/skill_core/overheat/flame_lance = 5,
+		/obj/item/skill_core/overheat/cauterize = 5,
+		/obj/item/skill_core/overheat/spreading_ashes = 5,
+		/obj/item/skill_core/overheat/feeding_embers = 5,
+
+		//Skill Cores - Level 2 Overheat
+		/obj/item/skill_core/overheat/thermal_detonation = 3,
+		/obj/item/skill_core/overheat/molten_strike = 3,
+		/obj/item/skill_core/overheat/inferno_dash = 3,
+
+		//Skill Cores - Level 1 Tremor
+		/obj/item/skill_core/tremor/aftershock = 5,
+		/obj/item/skill_core/tremor/seismic_wave = 5,
+		/obj/item/skill_core/tremor/shattered_resentment = 5,
+		/obj/item/skill_core/tremor/stabilizing_stance = 5,
+		/obj/item/skill_core/tremor/tectonic_shift = 5,
+		/obj/item/skill_core/tremor/repelling_motion = 5,
+
+		//Skill Cores - Level 2 Tremor
+		/obj/item/skill_core/tremor/seismic_slam = 3,
+		/obj/item/skill_core/tremor/resonant_strike = 3,
+		/obj/item/skill_core/tremor/earthbound_hammer = 3,
 
 	)
 
