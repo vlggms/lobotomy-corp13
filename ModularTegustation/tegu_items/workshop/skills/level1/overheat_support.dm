@@ -169,7 +169,7 @@
 
 	// Apply overheat with visual feedback
 	var/targets_hit = 0
-	for(var/mob/living/simple_animal/hostile/M in range(range, owner))
+	for(var/mob/living/simple_animal/hostile/M in view(range, owner))
 		if(M.stat == DEAD)
 			continue
 		M.apply_lc_overheat(stack_amount)
