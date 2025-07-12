@@ -8,6 +8,7 @@
 	var/datum/action/granted_action = null
 	var/skill_type = null
 	var/skill_name = null
+	var/cooldown_time_left = 0
 
 /obj/item/clothing/neck/skill_necklace/Initialize()
 	. = ..()
@@ -82,12 +83,25 @@
 
 	granted_action = new skill_type()
 	granted_action.Grant(user)
+	
+	if(istype(granted_action, /datum/action/cooldown) && cooldown_time_left > 0)
+		var/datum/action/cooldown/cooldown_action = granted_action
+		cooldown_action.next_use_time = world.time + cooldown_time_left
+		cooldown_action.UpdateButtonIcon()
+		if(cooldown_time_left > 0)
+			START_PROCESSING(SSfastprocess, cooldown_action)
 
 	to_chat(user, span_nicegreen("You feel the power of [skill_name] flowing through the necklace!"))
 
 /obj/item/clothing/neck/skill_necklace/proc/remove_ability(mob/living/user)
 	if(!granted_action || !user)
 		return
+	
+	if(istype(granted_action, /datum/action/cooldown))
+		var/datum/action/cooldown/cooldown_action = granted_action
+		cooldown_time_left = max(0, cooldown_action.next_use_time - world.time)
+	else
+		cooldown_time_left = 0
 
 	granted_action.Remove(user)
 	QDEL_NULL(granted_action)
