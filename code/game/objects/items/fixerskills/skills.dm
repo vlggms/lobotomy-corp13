@@ -22,29 +22,6 @@
 		/datum/action/cooldown/mark = 1,
 		/datum/action/cooldown/light = 1,
 
-		//Status Effect Skills - Level 1
-		//Bleed Support/Control
-		/datum/action/cooldown/bleed/lacerate = 1,
-		/datum/action/cooldown/bleed/sanguine_chain = 1,
-		/datum/action/cooldown/bleed/bloodletting_strike = 1,
-		/datum/action/cooldown/bleed/sanguine_feast = 1,
-		/datum/action/cooldown/bleed/blood_pool = 1,
-		/datum/action/cooldown/bleed/crimson_repulsion = 1,
-		//Overheat Support/Control
-		/datum/action/cooldown/skill/heat_transfer = 1,
-		/datum/action/cooldown/skill/ignition_burst = 1,
-		/datum/action/cooldown/skill/flame_lance = 1,
-		/datum/action/cooldown/skill/cauterize = 1,
-		/datum/action/cooldown/skill/spreading_ashes = 1,
-		/datum/action/cooldown/skill/feeding_embers = 1,
-		//Tremor Support/Control
-		/datum/action/cooldown/skill/aftershock = 1,
-		/datum/action/cooldown/skill/seismic_wave = 1,
-		/datum/action/cooldown/skill/shattered_resentment = 1,
-		/datum/action/cooldown/skill/stabilizing_stance = 1,
-		/datum/action/cooldown/skill/tectonic_shift = 1,
-		/datum/action/cooldown/skill/repelling_motion = 1,
-
 		/datum/action/cooldown/butcher = 2,
 		/datum/action/cooldown/solarflare = 2,
 		/datum/action/cooldown/confusion = 2,
@@ -53,19 +30,6 @@
 		/datum/action/cooldown/skulk = 2,
 		/datum/action/cooldown/autoloader = 2,
 
-		//Status Effect Skills - Level 2
-		//Bleed Damage
-		/datum/action/cooldown/skill/hemorrhage = 2,
-		/datum/action/cooldown/skill/crimson_cleave = 2,
-		/datum/action/cooldown/skill/blood_spike = 2,
-		//Overheat Damage
-		/datum/action/cooldown/skill/overheat_detonation = 2,
-		/datum/action/cooldown/skill/molten_strike = 2,
-		/datum/action/cooldown/skill/inferno_dash = 2,
-		//Tremor Damage
-		/datum/action/cooldown/skill/seismic_slam = 2,
-		/datum/action/cooldown/skill/resonant_strike = 2,
-		/datum/action/cooldown/skill/earthbound_hammer = 2,
 
 		/datum/action/innate/healthhud = 3,
 		/datum/action/innate/bulletproof = 3,

@@ -8,15 +8,6 @@
 //=======================
 
 // Aftershock - AoE tremor on attacks
-/obj/item/book/granter/action/skill/tremor/aftershock
-	name = "Level 1 Tremor Skill: Aftershock"
-	desc = "Your next 3 melee attacks apply 5 Tremor stacks to all mobs in a 3x3 AoE centered on the target."
-	actionname = "Aftershock"
-	granted_action = /datum/action/cooldown/skill/aftershock
-	level = 1
-	remarks = list("The ground trembles with each strike...", "My attacks create ripples in the earth...", "Every blow echoes through the ground...")
-	custom_premium_price = 600
-
 /datum/action/cooldown/skill/aftershock
 	name = "Aftershock"
 	desc = "Your next 3 melee attacks apply 5 Tremor stacks to all mobs in a 3x3 AoE centered on the target."
@@ -84,15 +75,6 @@
 	UnregisterSignal(owner, COMSIG_MOB_ITEM_ATTACK)
 
 // Seismic Wave - Piercing projectile
-/obj/item/book/granter/action/skill/tremor/seismic_wave
-	name = "Level 1 Tremor Skill: Seismic Wave"
-	desc = "Send a piercing projectile that applies tiles traveled * 5 Tremor stacks to all it hits (max 10 tiles)."
-	actionname = "Seismic Wave"
-	granted_action = /datum/action/cooldown/skill/seismic_wave
-	level = 1
-	remarks = list("The earth ripples before me...", "I can send tremors through the ground...", "Waves of force travel through stone...")
-	custom_premium_price = 600
-
 /datum/action/cooldown/skill/seismic_wave
 	name = "Seismic Wave"
 	desc = "Send a piercing projectile that applies tiles traveled * 5 Tremor stacks to all it hits (max 10 tiles)."
@@ -151,15 +133,6 @@
 		to_chat(owner, span_notice("Seismic wave targeting cancelled."))
 
 // Shattered Resentment - Launch target with animation
-/obj/item/book/granter/action/skill/tremor/shattered_resentment
-	name = "Level 1 Tremor Skill: Shattered Resentment"
-	desc = "Trigger the target to gain 20 Tremor."
-	actionname = "Shattered Resentment"
-	granted_action = /datum/action/cooldown/skill/shattered_resentment
-	level = 1
-	remarks = list("The earth itself rejects them...", "I can shatter their stability...", "They will know the wrath of trembling ground...")
-	custom_premium_price = 600
-
 /datum/action/cooldown/skill/shattered_resentment
 	name = "Shattered Resentment"
 	desc = "Trigger the target to gain 20 Tremor."
@@ -234,15 +207,6 @@
 //=======================
 
 // Stabilizing Stance - Remove tremor and grant speed
-/obj/item/book/granter/action/skill/tremor/stabilizing_stance
-	name = "Level 1 Tremor Skill: Stabilizing Stance"
-	desc = "Remove all Tremor from yourself and allies in 3x3 area. Allies who had tremor gain 50% speed for 3 seconds."
-	actionname = "Stabilizing Stance"
-	granted_action = /datum/action/cooldown/skill/stabilizing_stance
-	level = 1
-	remarks = list("I find balance in chaos...", "The trembling earth becomes still...", "Stability flows through me...")
-	custom_premium_price = 600
-
 /datum/action/cooldown/skill/stabilizing_stance
 	name = "Stabilizing Stance"
 	desc = "Remove all Tremor from yourself and allies in 3x3 area. Allies who had tremor gain 50% speed for 3 seconds."
@@ -288,15 +252,6 @@
 	return TRUE
 
 // Tectonic Shift - Difficult terrain
-/obj/item/book/granter/action/skill/tremor/tectonic_shift
-	name = "Level 1 Tremor Skill: Tectonic Shift"
-	desc = "Create 3x3 terrain that applies 4 Tremor every 2 seconds to targets. MOBs only gain tremor if they have 15+ already."
-	actionname = "Tectonic Shift"
-	granted_action = /datum/action/cooldown/skill/tectonic_shift
-	level = 1
-	remarks = list("The plates move at my command...", "I can reshape the battlefield...", "The ground itself becomes my weapon...")
-	custom_premium_price = 600
-
 /datum/action/cooldown/skill/tectonic_shift
 	name = "Tectonic Shift"
 	desc = "Create 3x3 terrain that applies 4 Tremor every 2 seconds to targets. MOBs only gain tremor if they have 15+ already."
@@ -348,15 +303,6 @@
 		to_chat(owner, span_notice("Tectonic shift targeting cancelled."))
 
 // Repelling Motion - Knockback aura
-/obj/item/book/granter/action/skill/tremor/repelling_motion
-	name = "Level 1 Tremor Skill: Repelling Motion"
-	desc = "For 10 seconds, every second throw all mobs in 3x3 area 3 tiles away and inflict 3 Tremor if they have less than 15."
-	actionname = "Repelling Motion"
-	granted_action = /datum/action/cooldown/skill/repelling_motion
-	level = 1
-	remarks = list("The earth itself pushes them away...", "Tremors emanate from within...", "None shall approach through these vibrations...")
-	custom_premium_price = 600
-
 /datum/action/cooldown/skill/repelling_motion
 	name = "Repelling Motion"
 	desc = "For 10 seconds, every second throw all mobs in 3x3 area 3 tiles away and inflict 3 Tremor if they have less than 15."

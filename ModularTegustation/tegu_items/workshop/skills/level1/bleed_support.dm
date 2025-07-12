@@ -5,14 +5,6 @@
 //=======================
 
 // Lacerate - Next 3 attacks apply bleed
-/obj/item/book/granter/action/skill/bleed/lacerate
-	name = "Level 1 Skill: Lacerate"
-	desc = "Next 3 melee attacks within 5 seconds apply 8 Bleed stacks."
-	actionname = "Lacerate"
-	granted_action = /datum/action/cooldown/bleed/lacerate
-	level = 1
-	custom_premium_price = 600
-
 /datum/action/cooldown/bleed/lacerate
 	name = "Lacerate"
 	desc = "Next 3 melee attacks within 5 seconds apply 8 Bleed stacks."
@@ -69,14 +61,6 @@
 	UnregisterSignal(owner, COMSIG_MOB_ITEM_ATTACK)
 
 // Sanguine Chain - Link two targets to share bleed
-/obj/item/book/granter/action/skill/bleed/sanguinechain
-	name = "Level 1 Skill: Sanguine Chain"
-	desc = "Link selected target to nearest MOB; when one gains Bleed, other gains same stacks for 10 seconds."
-	actionname = "Sanguine Chain"
-	granted_action = /datum/action/cooldown/bleed/sanguine_chain
-	level = 1
-	custom_premium_price = 600
-
 /datum/action/cooldown/bleed/sanguine_chain
 	name = "Sanguine Chain"
 	desc = "Link selected target to nearest MOB; when one gains Bleed, other gains same stacks for 10 seconds."
@@ -143,14 +127,6 @@
 	UnregisterSignal(owner, COMSIG_MOB_CLICKON)
 
 // Bloodletting Strike - Transfer bleed from self to target
-/obj/item/book/granter/action/skill/bleed/bloodlettingstrike
-	name = "Level 1 Skill: Bloodletting Strike"
-	desc = "Next melee attack transfers up to 15 Bleed stacks from you to target."
-	actionname = "Bloodletting Strike"
-	granted_action = /datum/action/cooldown/bleed/bloodletting_strike
-	level = 1
-	custom_premium_price = 600
-
 /datum/action/cooldown/bleed/bloodletting_strike
 	name = "Bloodletting Strike"
 	desc = "Next melee attack transfers up to 15 Bleed stacks from you to target."
@@ -216,14 +192,6 @@
 //=======================
 
 // Sanguine Feast - Remove bleed from ally and heal them
-/obj/item/book/granter/action/skill/bleed/sanguinefeast
-	name = "Level 1 Skill: Sanguine Feast"
-	desc = "Remove all Bleed from selected ally and heal them stacks * 4 HP/SP."
-	actionname = "Sanguine Feast"
-	granted_action = /datum/action/cooldown/bleed/sanguine_feast
-	level = 1
-	custom_premium_price = 600
-
 /datum/action/cooldown/bleed/sanguine_feast
 	name = "Sanguine Feast"
 	desc = "Remove all Bleed from selected ally and heal them stacks * 4 HP/SP."
@@ -296,14 +264,6 @@
 	UnregisterSignal(owner, COMSIG_MOB_CLICKON)
 
 // Blood Pool - Create area that applies bleed
-/obj/item/book/granter/action/skill/bleed/bloodpool
-	name = "Level 1 Skill: Blood Pool"
-	desc = "Create 3x3 area centered around you that applies 5 Bleed stack/2 sec to all targets for 15 seconds."
-	actionname = "Blood Pool"
-	granted_action = /datum/action/cooldown/bleed/blood_pool
-	level = 1
-	custom_premium_price = 600
-
 /datum/action/cooldown/bleed/blood_pool
 	name = "Blood Pool"
 	desc = "Create 3x3 area centered around you that applies 5 Bleed stack/2 sec to all targets for 15 seconds."
@@ -334,14 +294,6 @@
 	return TRUE
 
 // Crimson Repulsion - Push away bleeding targets
-/obj/item/book/granter/action/skill/bleed/crimsonrepulsion
-	name = "Level 1 Skill: Crimson Repulsion"
-	desc = "If the selected target has 5+ Bleed, repel them away from you and slow them by 50% for 2.5 seconds."
-	actionname = "Crimson Repulsion"
-	granted_action = /datum/action/cooldown/bleed/crimson_repulsion
-	level = 1
-	custom_premium_price = 600
-
 /datum/action/cooldown/bleed/crimson_repulsion
 	name = "Crimson Repulsion"
 	desc = "If the selected target has 5+ Bleed, repel them away from you and slow them by 50% for 2.5 seconds."

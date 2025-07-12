@@ -8,14 +8,6 @@
 //=======================
 
 // Heat Transfer - Transfer stacks between enemies
-/obj/item/book/granter/action/skill/overheat/heat_transfer
-	name = "Level 1: Heat Transfer"
-	actionname = "Heat Transfer"
-	desc = "After activating this skill, for the next 5 seconds, the first target you hit, you gain up to 15 Overheat from the target, then the next target you hit, transfer up to 15 Overheat to them."
-	granted_action = /datum/action/cooldown/skill/heat_transfer
-	level = 1
-	custom_premium_price = 600
-
 /datum/action/cooldown/skill/heat_transfer
 	name = "Heat Transfer"
 	desc = "After activating this skill, for the next 5 seconds, the first target you hit, you gain up to 15 Overheat from the target, then the next target you hit, transfer up to 15 Overheat to them."
@@ -130,14 +122,6 @@
 	UnregisterSignal(owner, COMSIG_MOB_ITEM_ATTACK)
 
 // Ignition Burst - AoE stack application
-/obj/item/book/granter/action/skill/overheat/ignition_burst
-	name = "Level 1: Ignition Burst"
-	desc = "Apply 15 Overheat stacks to all enemies in a 3x3 area around you."
-	actionname = "Ignition Burst"
-	granted_action = /datum/action/cooldown/skill/ignition_burst
-	level = 1
-	custom_premium_price = 600
-
 /datum/action/cooldown/skill/ignition_burst
 	name = "Ignition Burst"
 	desc = "Apply 15 Overheat stacks to all enemies in a 3x3 area around you."
@@ -189,14 +173,6 @@
 		sleep(1)
 
 // Flame Lance - Targeted projectile
-/obj/item/book/granter/action/skill/overheat/flame_lance
-	name = "Level 1: Flame Lance"
-	desc = "Fire a piercing projectile toward a selected target that applies 20 Overheat stacks to all enemies hit."
-	actionname = "Flame Lance"
-	granted_action = /datum/action/cooldown/skill/flame_lance
-	level = 1
-	custom_premium_price = 600
-
 /datum/action/cooldown/skill/flame_lance
 	name = "Flame Lance"
 	desc = "Fire a piercing projectile toward a selected target that applies 20 Overheat stacks to all enemies hit."
@@ -308,14 +284,6 @@
 //=======================
 
 // Cauterize - Targeted healing
-/obj/item/book/granter/action/skill/overheat/cauterize
-	name = "Level 1: Cauterize"
-	desc = "Remove all Overheat from a selected target and heal them based on stacks removed."
-	actionname = "Cauterize"
-	granted_action = /datum/action/cooldown/skill/cauterize
-	level = 1
-	custom_premium_price = 600
-
 /datum/action/cooldown/skill/cauterize
 	name = "Cauterize"
 	desc = "Remove all Overheat from a selected target and heal them based on stacks removed."
@@ -360,7 +328,7 @@
 		to_chat(source, span_warning("[target] has no overheat to cauterize!"))
 		return
 
-	var/heal_amount = overheat.stacks * 5
+	var/heal_amount = overheat.stacks * 3
 
 	// Healing flame aura
 	new /obj/effect/temp_visual/healing_flame_aura(get_turf(target))
@@ -375,7 +343,7 @@
 		addtimer(CALLBACK(src, PROC_REF(create_steam), target), i * 3)
 
 	// Heal target
-	L.adjustBruteLoss(-heal_amount)
+	L.adjustBruteLoss(-heal_amount/3)
 	L.adjustFireLoss(-heal_amount)
 
 	// Golden glow overlay
@@ -408,14 +376,6 @@
 		to_chat(owner, span_notice("Cauterize targeting cancelled."))
 
 // Spreading Ashes - Area denial
-/obj/item/book/granter/action/skill/overheat/spreading_ashes
-	name = "Level 1: Spreading Ashes"
-	desc = "Create a 3x3 area that slows enemies and applies 5 Overheat to those with 15+ stacks for 10 seconds."
-	actionname = "Spreading Ashes"
-	granted_action = /datum/action/cooldown/skill/spreading_ashes
-	level = 1
-	custom_premium_price = 600
-
 /datum/action/cooldown/skill/spreading_ashes
 	name = "Spreading Ashes"
 	desc = "Create a 3x3 area that slows enemies and applies 5 Overheat to those with 15+ stacks for 10 seconds."
@@ -525,14 +485,6 @@
 	multiplicative_slowdown = 0.5
 
 // Feeding the Embers - Conditional stack application
-/obj/item/book/granter/action/skill/overheat/feeding_embers
-	name = "Level 1: Feeding the Embers"
-	desc = "Your next melee attack within 5 seconds inflicts 25 Overheat if the target has 15+ stacks. Otherwise, inflict only 5 Overheat"
-	actionname = "Feeding the Embers"
-	granted_action = /datum/action/cooldown/skill/feeding_embers
-	level = 1
-	custom_premium_price = 600
-
 /datum/action/cooldown/skill/feeding_embers
 	name = "Feeding the Embers"
 	desc = "Your next melee attack within 5 seconds inflicts 25 Overheat if the target has 15+ stacks. Otherwise, inflict only 5 Overheat"
