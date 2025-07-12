@@ -45,7 +45,7 @@
 		update_desc()
 
 		to_chat(user, span_notice("You imbue [src] with the power of [skill_name]."))
-		playsound(src, 'sound/magic/charge.ogg', 50, TRUE)
+		playsound(src, 'sound/magic/charge.ogg', 25, TRUE)
 		qdel(core)
 		return
 
@@ -60,7 +60,7 @@
 			return
 
 		to_chat(user, span_notice("You attach [src] to [weapon]."))
-		playsound(weapon, 'sound/items/sheath.ogg', 50, TRUE)
+		playsound(weapon, 'sound/items/sheath.ogg', 25, TRUE)
 		return
 
 	return ..()
@@ -176,7 +176,7 @@
 			return
 
 		to_chat(user, span_notice("You attach [attachment] to [src]."))
-		playsound(src, 'sound/items/sheath.ogg', 50, TRUE)
+		playsound(src, 'sound/items/sheath.ogg', 25, TRUE)
 		return
 
 	return ..()
