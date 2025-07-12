@@ -47,7 +47,7 @@
 		update_desc()
 
 		to_chat(user, span_notice("You imbue [src] with the power of [skill_name]."))
-		playsound(src, 'sound/magic/charge.ogg', 50, TRUE)
+		playsound(src, 'sound/magic/charge.ogg', 25, TRUE)
 		qdel(core)
 		return
 
