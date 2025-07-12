@@ -8,7 +8,7 @@
 	worn_icon = 'ModularTegustation/Teguicons/blood_fiend_gear_worn.dmi'
 	armor = list(RED_DAMAGE = 40, WHITE_DAMAGE = 20, BLACK_DAMAGE = 40, PALE_DAMAGE = 20)
 	hat = /obj/item/clothing/head/ego_hat/blood_fiend/bird_mask
-	neck = /obj/item/clothing/ego_neck/blood_fiend/coagulated_blood
+	neck = /obj/item/clothing/ego_neck/blood_fiend/masquerade_tie
 	var/bloodfeast = 0
 	var/bloodfeast_max = 200
 	attribute_requirements = list(
@@ -74,11 +74,21 @@
 			if (S.hardblood_state)
 				S.icon_state = S.hardblood_state
 			addtimer(CALLBACK(src, PROC_REF(ResetArmor), S), 600)
+		var/blood_weapon = wielder.is_holding_item_of_type(/obj/item/ego_weapon/blood)
+		if(blood_weapon)
+			var/obj/item/ego_weapon/blood/W = blood_weapon
+			if(W && istype(W))
+				if(S.bloodfeast >= W.hardblood_threshold)
+					W.activate_hardblood()
+					addtimer(CALLBACK(src, PROC_REF(ResetWeapon), W), 100)
 		S.bloodfeast = 0
 	return ..()
 
 /obj/effect/proc_holder/ability/bloodart/proc/ResetArmor(obj/item/clothing/suit/armor/ego_gear/city/masquerade_cloak/A)
 	A.icon_state = A.normal_state
+
+/obj/effect/proc_holder/ability/bloodart/proc/ResetWeapon(obj/item/ego_weapon/blood/A)
+	A.deactivate_hardblood()
 
 /obj/item/clothing/suit/armor/ego_gear/city/masquerade_cloak/masquerade_coat
 	name = "masquerade coat"
@@ -89,8 +99,94 @@
 	bloodfeast_max = 100
 	armor = list(RED_DAMAGE = 30, WHITE_DAMAGE = 20, BLACK_DAMAGE = 10, PALE_DAMAGE = 0)
 	hat = null
-	neck = null
 	attribute_requirements = list()
+
+/obj/item/clothing/suit/armor/ego_gear/city/masquerade_cloak/barber_dress
+	name = "barber's dress"
+	desc = "A dress worn by a powerful bloodfiend, or at least a replica..."
+	icon_state = "Barber"
+	normal_state = "Barber"
+	bloodfeast_max = 400
+	armor = list(RED_DAMAGE = 50, WHITE_DAMAGE = 30, BLACK_DAMAGE = 50, PALE_DAMAGE = 40)
+	hat = /obj/item/clothing/head/ego_hat/blood_fiend/barber_mask
+	neck = null
+	attribute_requirements = list(
+							FORTITUDE_ATTRIBUTE = 100,
+							PRUDENCE_ATTRIBUTE = 100,
+							TEMPERANCE_ATTRIBUTE = 100,
+							JUSTICE_ATTRIBUTE = 100
+							)
+	var/sound/boss_theme = sound('sound/weapons/ego/barber_theme.ogg', repeat = TRUE)
+	var/song_on = FALSE
+
+/obj/item/clothing/suit/armor/ego_gear/city/masquerade_cloak/barber_dress/Initialize()
+	. = ..()
+	var/obj/effect/proc_holder/ability/AS = new /obj/effect/proc_holder/ability/barber_theme
+	var/datum/action/spell_action/ability/item/A = AS.action
+	A.SetItem(src)
+
+/obj/item/clothing/suit/armor/ego_gear/city/masquerade_cloak/barber_dress/dropped(mob/user)
+	end_song()
+	. = ..()
+
+/obj/item/clothing/suit/armor/ego_gear/city/masquerade_cloak/barber_dress/proc/start_song(mob/user)
+	user.playsound_local(get_turf(user), boss_theme, 12.5, 0, channel = CHANNEL_HEARTBEAT, use_reverb = FALSE)
+	song_on = TRUE
+
+/obj/item/clothing/suit/armor/ego_gear/city/masquerade_cloak/barber_dress/proc/end_song(mob/user)
+	user.stop_sound_channel(CHANNEL_HEARTBEAT)
+	song_on = FALSE
+
+/obj/effect/proc_holder/ability/barber_theme
+	name = "Activate Aura"
+	desc = "An ability lets you to activate your aura, it is truly peak."
+	action_icon = 'ModularTegustation/Teguicons/blood_fiend_gear.dmi'
+	action_icon_state = "BarberMaskNew"
+	base_icon_state = "BarberMaskNew"
+	cooldown_time = 1 SECONDS
+
+/obj/effect/proc_holder/ability/barber_theme/Perform(target, mob/user)
+	if(ishuman(user))
+		var/mob/living/carbon/human/wielder = user
+		var/obj/item/clothing/suit/armor/ego_gear/city/masquerade_cloak/barber_dress/D = wielder.get_item_by_slot(ITEM_SLOT_OCLOTHING)
+		if(D.song_on)
+			D.end_song(wielder)
+		else
+			D.start_song(wielder)
+	return ..()
+
+/obj/item/clothing/suit/armor/ego_gear/city/masquerade_cloak/barber_dress/sleeves
+	desc = "A dress worn by a powerful bloodfiend, or at least a replica... Now with sleeves!"
+	icon_state = "BarberSleeves"
+	normal_state = "BarberSleeves"
+
+/obj/item/clothing/suit/armor/ego_gear/city/masquerade_cloak/cassetti
+	name = "prince's suit"
+	desc = "A suit worn by a powerful bloodfiend, or at least a replica..."
+	icon_state = "Cassetti"
+	normal_state = "Cassetti"
+	bloodfeast_max = 300
+	armor = list(RED_DAMAGE = 70, WHITE_DAMAGE = 20, BLACK_DAMAGE = 30, PALE_DAMAGE = 30)
+	hat = /obj/item/clothing/head/ego_hat/blood_fiend/cassetti_mask
+	attribute_requirements = list(
+							FORTITUDE_ATTRIBUTE = 80,
+							PRUDENCE_ATTRIBUTE = 80,
+							TEMPERANCE_ATTRIBUTE = 80,
+							JUSTICE_ATTRIBUTE = 80
+							)
+
+/obj/item/clothing/suit/armor/ego_gear/city/masquerade_cloak/cassetti/hardblood
+	name = "reinforced prince's suit"
+	icon_state = "CassettiReal"
+	normal_state = "CassettiReal"
+	armor = list(RED_DAMAGE = 80, WHITE_DAMAGE = 40, BLACK_DAMAGE = 50, PALE_DAMAGE = 50)
+	hat = /obj/item/clothing/head/ego_hat/blood_fiend/cassetti_mask/hardblood
+	attribute_requirements = list(
+							FORTITUDE_ATTRIBUTE = 100,
+							PRUDENCE_ATTRIBUTE = 100,
+							TEMPERANCE_ATTRIBUTE = 100,
+							JUSTICE_ATTRIBUTE = 100
+							)
 
 /obj/item/clothing/ego_neck/blood_fiend
 	icon = 'ModularTegustation/Teguicons/blood_fiend_gear.dmi'
@@ -104,7 +200,7 @@
 	icon = 'ModularTegustation/Teguicons/blood_fiend_gear.dmi'
 	worn_icon = 'ModularTegustation/Teguicons/blood_fiend_gear_worn.dmi'
 
-/obj/item/clothing/neck/blood_fiend/masquerade_tie
+/obj/item/clothing/ego_neck/blood_fiend/masquerade_tie
 	name = "masquerade tie"
 	desc = "A tie which fits the masquerade cloak."
 	icon_state = "masqtie"
@@ -114,7 +210,25 @@
 	desc = "A mask that the bloodfiends have worn during the masquerade..."
 	icon_state = "bird_mask"
 
-/obj/item/clothing/ego_neck/blood_fiend/coagulated_blood
+/obj/item/clothing/head/ego_hat/blood_fiend/barber_mask
+	name = "barber mask"
+	desc = "A mask that the bloodfiends have worn during the masquerade..."
+	icon_state = "BarberMaskNew"
+
+/obj/item/clothing/head/ego_hat/blood_fiend/barber_mask/old
+	icon_state = "BarberMask"
+
+/obj/item/clothing/head/ego_hat/blood_fiend/cassetti_mask
+	name = "prince mask"
+	desc = "A mask that the bloodfiends have worn during the masquerade..."
+	icon_state = "CassettiMask"
+
+/obj/item/clothing/head/ego_hat/blood_fiend/cassetti_mask/hardblood
+	name = "prince mask"
+	desc = "A mask that the bloodfiends have worn during the masquerade..."
+	icon_state = "CassettiRealHead"
+
+/obj/item/clothing/neck/blood_fiend/coagulated_blood
 	name = "coagulated blood"
 	desc = "The coagulated blood of a bloodfiend..."
 	icon_state = "coagulated_blood"
