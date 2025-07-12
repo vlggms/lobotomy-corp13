@@ -238,6 +238,7 @@
 // A book that links to the wiki
 /obj/item/book/manual/wiki
 	var/page_link = ""
+	var/lc13_wiki = FALSE
 	window_size = "970x710"
 
 /obj/item/book/manual/wiki/attack_self()
@@ -247,6 +248,8 @@
 
 /obj/item/book/manual/wiki/proc/initialize_wikibook()
 	var/wikiurl = CONFIG_GET(string/wikiurl)
+	if(lc13_wiki)
+		wikiurl = CONFIG_GET(string/lc13_wikiurl)
 	if(wikiurl)
 		dat = {"
 
@@ -456,3 +459,10 @@
 	author = "Kryson"
 	title = "Unethically Grown Organics"
 	page_link = "Guide_to_cytology"
+
+/obj/item/book/manual/wiki/custom_augments
+	name = "Custom Augments: Flesh is WEAK Edition"
+	icon_state ="book4"
+	author = "Insurgence Clan"
+	title = "Custom Augments: Flesh is WEAK Edition"
+	page_link = "Guide_to_Custom_Augments_(Work_in_Progress)"

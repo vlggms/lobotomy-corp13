@@ -37,6 +37,7 @@ GLOBAL_LIST_INIT(association_jobs, list(
 		/datum/job/sottocapo,
 		/datum/job/grandinquis,
 		/datum/job/kurocaptain,
+		/datum/job/nightwatch_agent,
 	)
 	var/antag_chosen
 
