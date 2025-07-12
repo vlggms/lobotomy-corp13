@@ -767,6 +767,15 @@
 	if(!Adjacent(user, src))
 		return ..()
 
+	// Allow ghosts to view the UI
+	if(isobserver(user))
+		if(ui_handler)
+			return ui_handler.ui_interact(user)
+		else
+			log_admin("Missing ui_handler on [src] during attack_hand by [user]")
+			to_chat(user, "<span class='warning'>Machine interface error. Please report this.</span>")
+			return TRUE
+
 	if(!istype(user, /mob/living/carbon/human))
 		to_chat(user, "<span class='warning'>You lack the dexterity to operate this machine.</span>")
 		return TRUE
@@ -1112,7 +1121,28 @@
 			if (istype(i, /obj/item/augment))
 				A = i
 		if(A)
-			to_chat(user, span_notice("The target current has the [A.name] augment."))
+			to_chat(user, span_notice("The target currently has the [A.name] augment."))
+			// List the augment effects
+			if(A.design_details && A.design_details.selected_effects_data && length(A.design_details.selected_effects_data))
+				to_chat(user, span_notice("Augment Effects:"))
+				var/list/effect_counts = list()
+				for(var/list/effect in A.design_details.selected_effects_data)
+					var/effect_id = effect["id"]
+					effect_counts[effect_id] = (effect_counts[effect_id] || 0) + 1
+				
+				var/list/shown_effects = list()
+				for(var/list/effect in A.design_details.selected_effects_data)
+					var/effect_id = effect["id"]
+					if(effect_id in shown_effects)
+						continue
+					shown_effects += effect_id
+					var/count = effect_counts[effect_id]
+					var/effect_name = effect["name"]
+					var/effect_desc = effect["desc"]
+					if(count > 1)
+						to_chat(user, span_notice("• [effect_name] (x[count]): [effect_desc]"))
+					else
+						to_chat(user, span_notice("• [effect_name]: [effect_desc]"))
 
 		var/stattotal
 		for(var/attribute in stats)
@@ -1143,7 +1173,7 @@
 		JUSTICE_ATTRIBUTE,
 	)
 
-/obj/item/augment_tester/afterattack(atom/target, mob/user, proximity_flag)
+/obj/item/insurgence_augment_tester/afterattack(atom/target, mob/user, proximity_flag)
 	. = ..()
 	if(ishuman(target))
 		playsound(get_turf(src), 'sound/machines/cryo_warning.ogg', 50, TRUE, -1)
@@ -1154,7 +1184,28 @@
 			if (istype(i, /obj/item/augment))
 				A = i
 		if(A)
-			to_chat(user, span_notice("The target current has the [A.name] augment."))
+			to_chat(user, span_notice("The target currently has the [A.name] augment."))
+			// List the augment effects
+			if(A.design_details && A.design_details.selected_effects_data && length(A.design_details.selected_effects_data))
+				to_chat(user, span_notice("Augment Effects:"))
+				var/list/effect_counts = list()
+				for(var/list/effect in A.design_details.selected_effects_data)
+					var/effect_id = effect["id"]
+					effect_counts[effect_id] = (effect_counts[effect_id] || 0) + 1
+				
+				var/list/shown_effects = list()
+				for(var/list/effect in A.design_details.selected_effects_data)
+					var/effect_id = effect["id"]
+					if(effect_id in shown_effects)
+						continue
+					shown_effects += effect_id
+					var/count = effect_counts[effect_id]
+					var/effect_name = effect["name"]
+					var/effect_desc = effect["desc"]
+					if(count > 1)
+						to_chat(user, span_notice("• [effect_name] (x[count]): [effect_desc]"))
+					else
+						to_chat(user, span_notice("• [effect_name]: [effect_desc]"))
 
 		var/stattotal
 		for(var/attribute in stats)

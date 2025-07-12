@@ -1,6 +1,9 @@
 //--------------------------------------
 // Augment Fabricator TGUI Handler Datum
 //--------------------------------------
+
+// Global UI state for augment fabricator
+GLOBAL_DATUM(augment_fabricator_state, /datum/ui_state/augment_fabricator)
 /datum/tgui_handler/augment_fabricator
 	/// The machine instance this handler is managing the UI for.
 	var/obj/machinery/augment_fabricator/machine = null
@@ -44,14 +47,19 @@
 
 /// Determines if the user can still interact with the UI.
 /datum/tgui_handler/augment_fabricator/ui_status(mob/user)
+	// Ghosts can always view the UI
+	if(isobserver(user))
+		return UI_UPDATE // View-only access
+	
 	if (machine && machine.Adjacent(user) && !user.incapacitated() ) // Add access check if needed: && machine.check_access(user.get_id_card()))
 		// Consider adding machine power check etc. here
 		return UI_INTERACTIVE // Or specific status if needed
 	return UI_CLOSE // Close UI if interaction is no longer valid
 
-/// Standard UI state.
+/// Standard UI state - allows ghosts to view but not interact.
 /datum/tgui_handler/augment_fabricator/ui_state(mob/user)
-	return GLOB.physical_state // Or a machine-specific state if applicable
+	// Create and return a custom state that allows ghosts to view
+	return GLOB.augment_fabricator_state || (GLOB.augment_fabricator_state = new /datum/ui_state/augment_fabricator())
 
 /datum/tgui_handler/augment_fabricator/proc/update_uis()
 	SStgui.update_uis(src)
@@ -300,3 +308,15 @@
 	// qdel(base_image) // qdel overlays is handled by GC when base_image is qdelled/GC'd
 
 	return flat_icon // Return the final flattened icon object
+
+// Custom UI state for augment fabricator - allows ghosts to view but not interact
+/datum/ui_state/augment_fabricator/can_use_topic(src_object, mob/user)
+	// Ghosts can view but not interact
+	if(isobserver(user))
+		return UI_UPDATE
+	
+	// Living users use standard physical interaction rules
+	if(!user.can_interact_with(src_object))
+		return UI_CLOSE
+	
+	return UI_INTERACTIVE

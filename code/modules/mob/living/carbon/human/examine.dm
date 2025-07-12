@@ -432,6 +432,35 @@
 					"<a href='byond://?src=[REF(src)];hud=s;add_comment=1'>\[Add comment\]</a>"), "")
 	else if(isobserver(user))
 		. += "<span class='info'><b>Traits:</b> [get_quirk_string(FALSE, CAT_QUIRK_ALL)]</span>"
+		// Check for augments
+		var/obj/item/augment/A = null
+		for(var/atom/movable/i in src.contents)
+			if(istype(i, /obj/item/augment))
+				A = i
+				if(A.active_augment)
+					break
+				else
+					A = null
+		if(A)
+			. += "<span class='info'><b>Augment:</b> [A.name]</span>"
+			if(A.design_details && A.design_details.selected_effects_data && length(A.design_details.selected_effects_data))
+				var/list/effect_counts = list()
+				for(var/list/effect in A.design_details.selected_effects_data)
+					var/effect_id = effect["id"]
+					effect_counts[effect_id] = (effect_counts[effect_id] || 0) + 1
+				
+				var/list/shown_effects = list()
+				for(var/list/effect in A.design_details.selected_effects_data)
+					var/effect_id = effect["id"]
+					if(effect_id in shown_effects)
+						continue
+					shown_effects += effect_id
+					var/count = effect_counts[effect_id]
+					var/effect_name = effect["name"]
+					if(count > 1)
+						. += "<span class='info'>• [effect_name] (x[count])</span>"
+					else
+						. += "<span class='info'>• [effect_name]</span>"
 	. += "*---------*</span>"
 
 	SEND_SIGNAL(src, COMSIG_PARENT_EXAMINE, user, .)
