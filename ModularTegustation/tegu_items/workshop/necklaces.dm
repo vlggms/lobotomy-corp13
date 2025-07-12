@@ -2,7 +2,7 @@
 	name = "skill necklace"
 	desc = "A blank necklace that can be imbued with skill cores to grant abilities."
 	icon = 'icons/obj/clothing/neck.dmi'
-	icon_state = "necklace"
+	icon_state = "beads"
 	w_class = WEIGHT_CLASS_SMALL
 	color = "#C0C0C0"
 	var/datum/action/granted_action = null
