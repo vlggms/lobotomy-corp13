@@ -391,25 +391,23 @@ is that they come. Use whatever methods necessary to fulfill your quota.<br>
 			last_warning = 25
 			to_chat(owner, span_warning("The feeling of being watched intensifies..."))
 			owner.emote("shiver")
+			if(paranoid_level < 50)
+				examine_text = null
 		else if(paranoid_level >= 50 && last_warning < 50)
 			last_warning = 50
 			to_chat(owner, span_danger("You can't shake the feeling that someone is stalking you!"))
 			owner.emote("shiver")
+			examine_text = span_notice("SUBJECTPRONOUN seems nervous and keeps looking over their shoulder.")
 		else if(paranoid_level >= 75 && last_warning < 75)
 			last_warning = 75
 			to_chat(owner, span_userdanger("You can't shake the feeling that someone is stalking you!"))
 			owner.emote("shiver")
+			examine_text = span_warning("SUBJECTPRONOUN looks extremely paranoid and jumpy.")
 		else if(paranoid_level >= 100 && last_warning < 100)
 			last_warning = 100
 			to_chat(owner, span_userdanger("Your mind is consumed by paranoia! You're completely vulnerable!"))
 			owner.emote("shiver")
 
-/datum/status_effect/insurgence_paranoid/get_examine_text()
-	if(paranoid_level >= 75)
-		return span_warning("[owner] looks extremely paranoid and jumpy.")
-	else if(paranoid_level >= 50)
-		return span_notice("[owner] seems nervous and keeps looking over their shoulder.")
-	return null
 
 // Paranoia Inducer Tool
 /obj/item/insurgence_paranoia_marker
@@ -417,7 +415,6 @@ is that they come. Use whatever methods necessary to fulfill your quota.<br>
 	desc = "A strange device that emits an unsettling psychic frequency. Used by Insurgence Nightwatch to mark targets."
 	icon = 'icons/obj/device.dmi'
 	icon_state = "signaler"
-	item_state = "signaler"
 	w_class = WEIGHT_CLASS_SMALL
 	var/list/marked_targets = list()
 

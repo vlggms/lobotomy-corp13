@@ -101,12 +101,16 @@
 
 /obj/machinery/computer/insurgence_tracker/ui_interact(mob/user)
 	. = ..()
-	if(!ishuman(user))
+	// Allow ghosts to view
+	if(isobserver(user))
+		// Ghosts can view without restrictions
+	else if(!ishuman(user))
 		return
-	var/mob/living/carbon/human/H = user
-	if(!H.mind || !(H.mind.assigned_role in list("Insurgence Transport Agent", "Insurgence Nightwatch Agent")))
-		to_chat(user, span_warning("Access denied. Insurgence credentials required."))
-		return
+	else
+		var/mob/living/carbon/human/H = user
+		if(!H.mind || !(H.mind.assigned_role in list("Insurgence Transport Agent", "Insurgence Nightwatch Agent")))
+			to_chat(user, span_warning("Access denied. Insurgence credentials required."))
+			return
 
 	var/dat = "<h3>Augment User Tracking</h3><hr>"
 	dat += "<table border='1' style='width:100%'>"

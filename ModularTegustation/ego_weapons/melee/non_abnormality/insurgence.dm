@@ -84,7 +84,7 @@
 		active = !active
 		force = on_force
 		w_class = WEIGHT_CLASS_BULKY
-		reductions = list(40, 30, 30, 20)
+		reductions = list(60, 20, 20, 20)
 		playsound(user, 'sound/weapons/saberon.ogg', 35, TRUE)
 		to_chat(user, span_notice("[src] is now active."))
 		icon_state = "[base_icon_state][active]"
@@ -153,7 +153,7 @@
 		var/mob/living/carbon/human/H = target
 		if(H.mind && H.mind.assigned_role == "Insurgence Transport Agent")
 			visible_message(span_userdanger("[user] executes [H] with [src]!"))
-			playsound(target, 'sound/effects/gore/heavysplat.ogg', 80, TRUE)
+			playsound(src, 'sound/abnormalities/thunderbird/tbird_bolt.ogg', 50, TRUE)
 			H.deal_damage(150, PALE_DAMAGE)
 			return TRUE // Skip normal attack
 

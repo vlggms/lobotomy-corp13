@@ -1570,7 +1570,6 @@
 
 	// Increase/decrease corrosion every 2 minutes
 	if(world.time >= next_corrosion_increase)
-		var/old_corrosion = corrosion_level
 		corrosion_level = clamp(corrosion_level + (6 * corrosion_rate), 0, 100)
 		next_corrosion_increase = world.time + 120 SECONDS
 
