@@ -11,6 +11,15 @@
 	var/list/allowed_players = list()
 	var/printing_interval = 0.5
 	var/printed_counter = 0
+	var/list/rewards = list(
+			/obj/item/tresmetal/steel,
+			/obj/item/tresmetal/cobalt,
+			/obj/item/tresmetal/copper,
+			/obj/item/tresmetal/bloodiron,
+			/obj/item/tresmetal/goldsteel,
+			/obj/item/tresmetal/silversteel,
+			/obj/item/tresmetal/electrum,
+			/obj/item/tresmetal/darksteel)
 
 /obj/structure/peacemachine/examine(mob/user)
 	. = ..()
@@ -41,6 +50,9 @@
 	say("Peacekeeping payment, delivered!")
 	playsound(get_turf(src), 'sound/machines/beep.ogg', 35, 3, 3)
 	addtimer(CALLBACK(src, PROC_REF(add_cash)), printing_interval MINUTES)
+	if(prob(5))
+		var/I = pick(rewards)
+		new I (get_turf(src))
 
 /obj/item/peacemachine_connector
 	name = "peacekeeper funds machine linker"
