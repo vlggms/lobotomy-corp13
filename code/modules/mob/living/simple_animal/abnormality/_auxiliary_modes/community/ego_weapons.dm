@@ -18,8 +18,8 @@
 	for(var/mob/living/carbon/human/L in livinginview(8, user))
 		if((!ishuman(L)) || L.stat == DEAD || L == user)
 			continue
-		to_chat(L, span_warning("[user] shields you from WHITE damage!"))
-		L.apply_status_effect(/datum/status_effect/interventionshield/white)
+		to_chat(L, span_warning("[user] casts BARKSKIN!"))
+		L.apply_status_effect(/datum/status_effect/interventionshield/perfect)
 
 // TETH
 

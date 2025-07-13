@@ -119,6 +119,8 @@
 	if(SSabnormality_queue.spawned_abnos) // dont divide by 0
 		facility_full_percentage = 100 * (SSabnormality_queue.spawned_abnos / SSabnormality_queue.rooms_start)
 	// how full the facility is, from 0 abnormalities out of 24 cells being 0% and 24/24 cells being 100%
+	if(GLOB.lobotomy_damages)//Enkephalin Rush baby!
+		facility_full_percentage = 100 * (GLOB.lobotomy_repairs / GLOB.lobotomy_damages)
 
 	if(SSmaptype.chosen_trait == FACILITY_TRAIT_ABNO_BLITZ)	//blitz needs you with higher stats
 		set_attribute *= 4

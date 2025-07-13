@@ -1,26 +1,64 @@
 /mob/living/simple_animal/hostile/ordeal/dragonskull_corrosion
 	name = "Dragon Wizard"
 	desc = "A clerk of Lobotomy Corporation that has somehow been corrupted by an abnormality."
-	icon = 'ModularTegustation/Teguicons/tegumobs.dmi'
+	icon = 'ModularTegustation/Teguicons/48x64.dmi'
 	icon_state = "dskull_corrosion"
 	icon_living = "dskull_corrosion"
 	icon_dead = "dskull_corrosion"
 	faction = list("gold_ordeal")
 	maxHealth = 200
 	health = 200
+	ranged = TRUE
+	ranged_cooldown_time = 5 SECONDS
+	projectilesound = 'sound/abnormalities/hatredqueen/gun.ogg'
+	projectiletype = /obj/projectile/magic/spell/magic_missile
 	melee_damage_type = WHITE_DAMAGE
 	melee_damage_lower = 7
 	melee_damage_upper = 14
-	attack_verb_continuous = "scratches"
-	attack_verb_simple = "scratch"
+	attack_verb_continuous = "thwacks"
+	attack_verb_simple = "thwack"
 	attack_sound = 'sound/abnormalities/doomsdaycalendar/Doomsday_Slash.ogg'
 	damage_coeff = list(RED_DAMAGE = 1.5, WHITE_DAMAGE = 1, BLACK_DAMAGE = 1.5, PALE_DAMAGE = 2)
 	butcher_results = list(/obj/item/stack/sheet/mineral/wood = 5)
+	var/chosen_spell
+	var/list/spells = list("Grease","Animation", "Summon", "Fear", "Death",)
+	var/list/cantrips = list(/obj/projectile/magic/spell/magic_missile, /obj/projectile/ego_bullet/ardor_star, /obj/projectile/ego_bullet/ego_harmony,)
+	var/spell_slots = 3
+	var/casting
+	var/spell_cooldown
+	var/spell_cooldown_time = 5 SECONDS
+	var/mob/living/minion
+
+/mob/living/simple_animal/hostile/ordeal/dragonskull_corrosion/Initialize()
+	..()
+	chosen_spell = pick(spells)
+	projectiletype = pick(cantrips)
+
+/mob/living/simple_animal/hostile/ordeal/dragonskull_corrosion/Move()
+	if(casting)
+		return
+	..()
+
+/mob/living/simple_animal/hostile/ordeal/dragonskull_corrosion/OpenFire()
+	if(casting)
+		return ..()
+	if(spell_cooldown < world.time && (spell_slots > 0))
+		spell_cooldown = world.time + spell_cooldown_time
+		ActivateSpell(chosen_spell, target)
+		spell_slots -= 1
+		return
+	else
+		ActivateSpell(projectiletype, target)
+	..()
+	if(casting)
+		casting = FALSE
 
 /mob/living/simple_animal/hostile/ordeal/dragonskull_corrosion/death()
 	playsound(src, 'sound/abnormalities/faelantern/faelantern_breach.ogg', 100)
 	color = rgb(145,116,60)
 	desc = "A wooden statue of a clerk corroded by [p_their()] E.G.O gear."
+	if(minion)
+		minion.death()
 	..()
 
 /mob/living/simple_animal/hostile/ordeal/dragonskull_corrosion/AttackingTarget(atom/attacked_target)
@@ -31,6 +69,154 @@
 	if(H.sanity_lost)
 		playsound(get_turf(H), 'sound/abnormalities/faelantern/faelantern_breach.ogg', 200, 1)
 		H.petrify(480, list(rgb(145,116,60)), "A distorted and screaming wooden statue.")
+
+/mob/living/simple_animal/hostile/ordeal/dragonskull_corrosion/proc/ActivateSpell(atom/spell, target)
+	playsound(src, 'sound/abnormalities/hatredqueen/attack.ogg', 100)
+	casting = TRUE
+	AdjustCircle(target)
+	sleep(20)
+	if(istext(spell))
+		casting = FALSE
+		ranged_cooldown = world.time + ranged_cooldown_time
+	switch(spell)
+		if("Animation")
+			say("ANIMATION!")
+			var/obj/item/J
+			for(J in view(5, src))
+				if(!spell_slots)
+					break
+				J.animate_atom_living(src)
+				spell_slots -= 1
+			return
+		if("Summon")
+			say("COME FORTH! DIRE TEGU!")
+			spell_slots -= 2
+			playsound(src, 'sound/weapons/black_silence/snap.ogg', 50, FALSE)
+			var/mob/living/simple_animal/hostile/dire_tegu/summon = new(get_step(src, dir))
+			new /obj/effect/temp_visual/beam_in(get_turf(summon))
+			minion = summon
+			summon.name = "Summoned " + summon.name
+			summon.del_on_death = TRUE
+		if("Grease")
+			say("GREASE!")
+			GreaseSpell(target)
+		if("Fear")
+			say("LEVEL III FEAR!")
+			new /obj/effect/temp_visual/deathfog(get_turf(src))
+			playsound(src, 'sound/abnormalities/thunderbird/tbird_zombify.ogg', 45, FALSE, 5)
+			FearEffect()
+		if("Death")
+			say("LEVEL III DEATH!")
+			new /obj/effect/temp_visual/distortedform_shift(get_turf(src))
+			spell_slots -= 2
+			for(var/mob/living/carbon/human/H in view(7, src))
+				var/userlevel = get_user_level(H)
+				new /obj/effect/temp_visual/markedfordeath(get_turf(H))
+				if((userlevel %= 3) == 0)
+					H.death()
+				else
+					to_chat(H, span_warning("The spell harmlessly fizzles around you."))
+	OpenFire(target)
+
+/mob/living/simple_animal/hostile/ordeal/dragonskull_corrosion/proc/GreaseSpell(target)
+	var/turf/T = get_turf(target)
+	var/datum/reagents/R = new/datum/reagents(1000)
+	R.my_atom = src
+	R.add_reagent(/datum/reagent/lube/grease, 50)
+
+	var/datum/effect_system/foam_spread/s = new
+	s.set_up(50, T, R)
+	s.start()
+	spell_slots -= 2
+
+/mob/living/simple_animal/hostile/ordeal/dragonskull_corrosion/proc/FearEffect()
+	for(var/mob/living/carbon/human/H in view(7, src))
+		if(HAS_TRAIT(H, TRAIT_COMBATFEAR_IMMUNE))
+			continue
+		if(H.sanity_lost)
+			continue
+		var/userprud = (get_modified_attribute_level(H, PRUDENCE_ATTRIBUTE))
+		var/randomsave = roll("1d20")
+		var/attribute_bonus = (userprud / 10)
+		var/outcome_string = "SUCCESS"
+		var/total = randomsave + attribute_bonus//we want to output this below
+		if(total < 12 || randomsave == 1)//yes we have critical failure
+			H.adjustSanityLoss(H.maxSanity*0.6)
+			H.apply_status_effect(/datum/status_effect/panicked_lvl_3)
+			outcome_string = "FAILURE"
+		to_chat(H, span_warning("Will save: *[outcome_string]* ([randomsave] + [attribute_bonus] = [total]) vs DC: 12"))
+	spell_slots -= 2//single-use
+
+/mob/living/simple_animal/hostile/ordeal/dragonskull_corrosion/proc/AdjustCircle(target)
+	var/obj/effect/dragon_circle/S = new(get_turf(src))
+	var/turf/T = get_turf(src)
+	QDEL_IN(S, 2 SECONDS)
+	var/matrix/M = matrix(S.transform)
+	M.Translate(0, 16)
+	var/rot_angle = Get_Angle(T, get_turf(target))
+	M.Turn(rot_angle)
+	switch(dir)
+		if(EAST)
+			M.Scale(0.5, 1)
+		if(WEST)
+			M.Scale(0.5, 1)
+		if(NORTH)
+			S.layer -= 0.2
+	S.transform = M
+
+/obj/effect/dragon_circle
+	name = "magic circle"
+	desc = "A magical circle with a strange poppet design."
+	icon = 'icons/effects/effects.dmi'
+	icon_state = "woodcircle"
+	pixel_x = 8
+	base_pixel_x = 8
+	pixel_y = 8
+	base_pixel_y = 8
+	layer = ABOVE_MOB_LAYER
+	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
+
+/obj/effect/temp_visual/deathfog
+	name = "deadly curse"
+	icon = 'icons/effects/64x64.dmi'
+	icon_state = "curse"
+	pixel_x = -16
+	base_pixel_x = -16
+	layer = LARGE_MOB_LAYER
+	duration = 5
+
+/mob/living/simple_animal/hostile/dire_tegu
+	name = "dire tegu"
+	desc = "The tegu is aggressive!"
+	icon = 'ModularTegustation/Teguicons/tegumobs.dmi'
+	icon_state = "tegu"
+	icon_living = "tegu"
+	icon_dead ="tegu_dead"
+	mob_biotypes = MOB_ORGANIC|MOB_BEAST
+	faction = list("gold_ordeal")
+	health = 150
+	maxHealth = 150
+	melee_damage_lower = 18
+	melee_damage_upper = 22
+	speed = 5
+	footstep_type = FOOTSTEP_MOB_CLAW
+	attack_verb_continuous = "bites"
+	attack_verb_simple = "bite"
+	attack_sound = 'sound/weapons/bite.ogg'
+	move_resist = MOVE_FORCE_STRONG
+	pull_force = MOVE_FORCE_STRONG
+	a_intent = INTENT_HARM
+
+/mob/living/simple_animal/hostile/dire_tegu/death()
+	playsound(src, 'sound/magic/dispel.ogg', 80)
+	new /obj/effect/temp_visual/beam_in(get_turf(src))
+	..()
+
+/datum/reagent/lube/grease//basically black lube
+	name = "Grease"
+	description = "A magical substance resembling tar. It is extremely slippery."
+	color = "#222222"
+	taste_description = "gasoline"
 
 /mob/living/simple_animal/hostile/ordeal/tsa_corrosion
 	name = "Creek Transporation Agent"
