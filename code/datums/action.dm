@@ -19,6 +19,7 @@
 	var/icon_icon = 'icons/hud/actions.dmi' //This is the file for the ACTION icon
 	var/button_icon_state = "default" //And this is the state for the action icon
 	var/mob/owner
+	var/full_key = null //The full key combination this action is bound to (e.g. "CtrlShiftE")
 
 /datum/action/New(Target)
 	link_to(Target)
@@ -91,6 +92,20 @@
 		return FALSE
 	return TRUE
 
+/datum/action/proc/keydown()
+	if(!owner || owner.next_click > world.time)
+		return FALSE
+	owner.next_click = world.time + 1
+	return Trigger()
+
+/datum/action/proc/bind_to_key(key)
+	full_key = key
+	button?.update_keybind_maptext()
+
+/datum/action/proc/unbind_from_key()
+	full_key = null
+	button?.update_keybind_maptext()
+
 
 /datum/action/proc/IsAvailable()
 	if(!owner)
@@ -127,6 +142,8 @@
 
 			ApplyIcon(button, force)
 
+		button.update_keybind_maptext()
+		
 		if(!IsAvailable())
 			button.color = transparent_when_unavailable ? rgb(128,0,0,128) : rgb(128,0,0)
 		else
