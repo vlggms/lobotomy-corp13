@@ -105,7 +105,8 @@
 #define COMBO_FINISHER_AOE "finisher_aoe"
 #define FINISHER_PIERCE "finisher_type_pierce"
 #define FINISHER_LEAP "finisher_type_leap"
-
+#define RELOAD_INSTANTEJECT "reload_instaeject"
+#define RELOAD_RELOADEJECT "reload_reloadeject"
 
 /obj/item/ego_weapon/city/thumb_east
 	name = "thumb east soldato rifle"
@@ -118,7 +119,8 @@
 	force = 36
 	damtype = RED_DAMAGE
 	attack_speed = 1.3
-	special = "This is a Thumb East weapon. Load it with propellant ammunition to unlock a powerful combo. Initiate the combo by attacking from range. Each hit of the combo requires 1 propellant round to trigger."
+	special = "This is a Thumb East weapon. Load it with propellant ammunition to unlock a powerful combo. Initiate the combo by attacking from range. Each hit of the combo requires 1 propellant round to trigger, and has varying attack speed.\n"+\
+	"Toggle your combo on or off by using this weapon in-hand. Your combo will cancel if you run out of ammo or hit without spending a round."
 	/// This list holds the bonuses that our next hit should deal. The keys for them are ["tremor"], ["burn"], ["aoe_flat_force_bonus"] and ["aoe_radius_bonus"].
 	// I wanted to use a define like NEXTHIT_PROPELLANT_TREMOR_BONUS = next_hit_should_apply["tremor"] to simplify readability and maintainability...
 	// but it didn't work. Sorry.
@@ -127,28 +129,24 @@
 	/// Should always be TRUE unless the user manually disables combos by using the weapon in-hand.
 	var/combo_enabled = TRUE
 	/// Description for the combo. Explain it to the user.
-	var/combo_description = "This weapon's combo consists of a long-range lunge, followed by a circular AoE sweep around the user, and ends with a powerful finisher on the target. Attack speed varies per hit.\n"+\
+	var/combo_description = "This weapon's combo consists of a long-range lunge, followed by a circular AoE sweep around the user, and ends with a powerful finisher on the target.\n"+\
 	"If you trigger but miss your lunge, you can still continue the combo by landing a regular hit on-target."
 	/// Which step in the combo are we at? COMBO_NO_AMMO means we're either out of ammo, just ended a combo, or haven't started it.
 	var/combo_stage = COMBO_NO_AMMO
 	/// Variable that holds the reset timer for our combo.
 	var/combo_reset_timer
 	/// List which holds the coefficients by which to multiply our damage on each hit depending on the state of the combo.
-	var/list/motion_values = list(COMBO_NO_AMMO = 1, COMBO_LUNGE = 1, COMBO_ATTACK2 = 1.2, COMBO_FINISHER = 1.4)
+	var/list/motion_values = list(COMBO_NO_AMMO = 1, COMBO_LUNGE = 1, COMBO_ATTACK2 = 1.2, COMBO_FINISHER = 1.4, COMBO_ATTACK2_AOE = 0.5, COMBO_FINISHER_AOE = 0.5)
 
 	///////////////////// Special attack variables.
 	/// Distance in tiles which our initial lunge reaches.
 	var/lunge_range = 3
-	/// Duration of the cooldown for our lunge (we don't want people spam-lunging exclusively in PVP, etc)
-	var/lunge_cooldown_duration = 12 SECONDS
+	/// Duration of the cooldown for our lunge (we don't want people spam-lunging exclusively in PVP, etc). This also limits how often you can start a combo.
+	var/lunge_cooldown_duration = 14 SECONDS
 	/// Holds the actual world time when we can lunge again.
 	var/lunge_cooldown
-	/// Coefficient for the second attack's AoE, by which damage towards secondary targets will be multiplied. Should always be less than 1.
-	var/attack2_secondarytarget_coefficient = 0.5
 	/// Base radius in tiles for the second attack's AoE range. Should be at least 1.
 	var/attack2_aoe_base_radius = 1
-	/// Coefficient for the Finisher AoE, by which damage towards secondary targets will be multiplied. Should probably be either 1 or a little under 1.
-	var/finisher_aoe_secondarytarget_coefficient = 0.5
 	/// Base radius in tiles for Finisher AoE range.
 	var/finisher_aoe_base_radius = 0
 	/// Type of finisher this weapon uses.
@@ -161,12 +159,16 @@
 	///////////////////// Ammo variables.
 	/// Maximum ammo capacity that this weapon can hold.
 	var/max_ammo = 3
+	/// Does our weapon eject spent cartridges as they're fired (RELOAD_INSTANTEJECT) or store them until you attempt to reload (RELOAD_RELOADEJECT)?
+	var/reload_type = RELOAD_INSTANTEJECT
 	/// This list holds a reference to every round of ammo in our storage.
 	var/list/obj/item/stack/thumb_east_ammo/current_ammo = list()
 	/// We use this variable to hold the type of the current ammo, so we can reject different types.
 	var/current_ammo_type = null
 	/// We use this variable to hold the plural name of the current ammo. We shouldn't need a var for this, but dreamchecker is giving me a warning so I have to do it.
 	var/current_ammo_name = ""
+	/// This list holds a reference to every spent cartridge in the weapon. Should only be used in weapons with RELOAD_RELOADEJECT.
+	var/list/obj/item/stack/thumb_east_ammo/spent/spent_cartridges = list()
 	/// This list holds the types of ammo this weapon can load.
 	var/list/accepted_ammo_table = list(
 		/obj/item/stack/thumb_east_ammo,
@@ -194,13 +196,14 @@
 
 /obj/item/ego_weapon/city/thumb_east/attack_self(mob/living/user)
 	. = ..()
-	playsound(src, usesound, 100, FALSE)
-	if(combo_enabled)
-		combo_enabled = FALSE
-		to_chat(user, span_info("You are no longer spending ammunition to use combo attacks."))
-	else
-		combo_enabled = TRUE
-		to_chat(user, span_info("You are now spending ammunition to use combo attacks."))
+	if(!busy)
+		playsound(src, usesound, 100, FALSE)
+		if(combo_enabled)
+			combo_enabled = FALSE
+			to_chat(user, span_info("You are no longer spending ammunition to use combo attacks."))
+		else
+			combo_enabled = TRUE
+			to_chat(user, span_info("You are now spending ammunition to use combo attacks."))
 
 
 
@@ -228,14 +231,21 @@
 	if(bullets_in_hand < 1)
 		return
 
-	var/bullets_in_gun = length(current_ammo)
-	// If we made it past those checks, we just have to check now if we can fit any more rounds into the gun.
-	if((bullets_in_gun + 1) <= max_ammo)
-		var/remaining_magazine_capacity = max_ammo - bullets_in_gun
-		var/bullet_amount_to_load = min(bullets_in_hand, remaining_magazine_capacity)
-		INVOKE_ASYNC(src, PROC_REF(Reload), bullet_amount_to_load, I, user)
+
+	// If our weapon ejects all cartridges, spent and unspent, on reload, then we just load as many bullets as we have in our hand into it.
+	if(reload_type == RELOAD_RELOADEJECT)
+		INVOKE_ASYNC(src, PROC_REF(Reload), bullets_in_hand, I, user)
+		return
+	// Otherwise we load the remaining capacity.
 	else
-		to_chat(user, span_warning("The [src.name] cannot fit any more ammunition - it is fully loaded."))
+		var/bullets_in_gun = length(current_ammo)
+		// If we made it past those checks, we just have to check now if we can fit any more rounds into the gun.
+		if((bullets_in_gun + 1) <= max_ammo)
+			var/remaining_magazine_capacity = max_ammo - bullets_in_gun
+			var/bullet_amount_to_load = min(bullets_in_hand, remaining_magazine_capacity)
+			INVOKE_ASYNC(src, PROC_REF(Reload), bullet_amount_to_load, I, user)
+		else
+			to_chat(user, span_warning("The [src.name] cannot fit any more ammunition - it is fully loaded."))
 
 /// This override just makes sure we drop all our ammo and null our ammo reference list if the weapon is destroyed.
 /obj/item/ego_weapon/city/thumb_east/Destroy(force)
@@ -266,7 +276,7 @@
 		if(COMBO_LUNGE)
 			// By this point we've actually already fired a round and its bonuses have been loaded already.
 			. = ..()
-			user.changeNext_move(CLICK_CD_MELEE * attack_speed * 0.8)
+			user.changeNext_move(CLICK_CD_MELEE * attack_speed * 1.2)
 			ApplyStatusEffects(target, COMBO_LUNGE)
 			combo_stage = COMBO_ATTACK2
 			return
@@ -292,7 +302,7 @@
 			. = ..()
 			playsound(src, finisher_sound, 100, FALSE, 10)
 			hitsound = initial(hitsound)
-			user.changeNext_move(CLICK_CD_MELEE + 0.7 SECONDS)
+			user.changeNext_move(CLICK_CD_MELEE * attack_speed * 1.3)
 			// We finished the combo! Reset it.
 			deltimer(combo_reset_timer)
 			ReturnToNormal(user)
@@ -358,8 +368,14 @@
 	to_chat(user, span_info("You begin loading your [src.name]..."))
 	busy = TRUE
 	if(do_after(user, 0.6 SECONDS, src, progress = TRUE, interaction_key = "thumb_east_reload", max_interact_count = 1))
+		if(reload_type == RELOAD_RELOADEJECT)
+			var/list/all_cartridges = list()
+			all_cartridges |= spent_cartridges
+			all_cartridges |= current_ammo
+			for(var/obj/item/stack/thumb_east_ammo/round in all_cartridges)
+				INVOKE_ASYNC(src, PROC_REF(EjectRound), round, user)
 		for(var/i in 1 to amount_to_load)
-			if(do_after(user, 0.4 SECONDS, src, progress = TRUE, interaction_key = "thumb_east_reload", max_interact_count = 1))
+			if(do_after(user, (1.5 SECONDS / amount_to_load), src, progress = TRUE, interaction_key = "thumb_east_reload", max_interact_count = 1))
 				var/obj/item/stack/thumb_east_ammo/new_bullet = ammo_item.split_stack(user, 1)
 				if(new_bullet)
 					// We actually store the round INSIDE the weapon. If the weapon is destroyed we'll drop them.
@@ -385,16 +401,13 @@
 /// This proc happens if your reloading gets interrupted after you've started loading rounds into the weapon. You spill the ammo you were trying to load on the floor.
 /obj/item/ego_weapon/city/thumb_east/proc/ReloadFailure(obj/item/stack/thumb_east_ammo/ammo_item, mob/living/carbon/user)
 	playsound(src, reload_fail_sound, 100, FALSE, 6)
-	to_chat(user, span_danger("You fumble while reloading, spilling your ammo on the floor!"))
+	user.visible_message(span_danger("[user] fumbles while reloading, spilling the ammo on the floor!"), span_danger("You fumble while reloading, spilling the ammo on the floor!"))
 	for(var/i in 1 to ammo_item.amount)
 		var/obj/item/stack/thumb_east_ammo/spilled_bullet = ammo_item.split_stack(user, 1)
 		if(spilled_bullet)
 			spilled_bullet.forceMove(user.drop_location())
-			spilled_bullet.throw_at(get_ranged_target_turf(user, pick(GLOB.cardinals), 1), 1, 5, spin = TRUE)
+			spilled_bullet.throw_at(get_ranged_target_turf(user, pick(GLOB.alldirs), 1), 1, 5, spin = TRUE)
 			sleep(1)
-			// There could be an incredibly rare case due to merging where, somehow, spilled_bullet is actually null by now. So we have to null check it.
-			if(spilled_bullet)
-				spilled_bullet.should_merge = TRUE
 
 /// Returns TRUE if we're out of ammo.
 /obj/item/ego_weapon/city/thumb_east/proc/AmmoDepletedCheck()
@@ -424,6 +437,7 @@
 		playsound(src, fired_round.detonation_sound, 100, FALSE, 10)
 		shake_camera(user, 1.5, 3)
 		INVOKE_ASYNC(src, PROC_REF(PropulsionVisual), get_turf(user), fired_round.aesthetic_shockwave_distance)
+		CreateSpentCartridge(fired_round, user)
 		// This proc is the one that actually adds the bonuses to our weapon from the round that we fired.
 		HandleFiredAmmo(fired_round, user)
 		return TRUE
@@ -452,6 +466,32 @@
 			combo_reset_timer_duration += 2 SECONDS
 		combo_reset_timer = addtimer(CALLBACK(src, PROC_REF(ReturnToNormal), user), combo_reset_timer_duration, TIMER_STOPPABLE)
 		qdel(round)
+
+/obj/item/ego_weapon/city/thumb_east/proc/CreateSpentCartridge(obj/item/stack/thumb_east_ammo/round, mob/living/user)
+	var/obj/item/stack/thumb_east_ammo/spent/new_spent_cartridge = null
+	new_spent_cartridge = new round.spent_type(src)
+	if(new_spent_cartridge)
+		if(reload_type == RELOAD_RELOADEJECT)
+			spent_cartridges |= new_spent_cartridge
+		else
+			INVOKE_ASYNC(src, PROC_REF(EjectRound), new_spent_cartridge, user)
+
+/obj/item/ego_weapon/city/thumb_east/proc/EjectRound(obj/item/stack/thumb_east_ammo/cartridge, mob/living/user)
+	if(cartridge in current_ammo)
+		current_ammo -= cartridge
+	else if(cartridge in spent_cartridges)
+		spent_cartridges -= cartridge
+
+	if(AmmoDepletedCheck())
+		current_ammo_type = null
+		current_ammo_name = ""
+
+	cartridge.forceMove(user.drop_location())
+	cartridge.pixel_x = cartridge.base_pixel_x + rand(-5, 5)
+	cartridge.pixel_y = cartridge.base_pixel_y + rand (-5, 5)
+	cartridge.setDir(pick(GLOB.alldirs))
+	var/turf/destination = get_ranged_target_turf(user, pick(GLOB.alldirs), 1)
+	cartridge.throw_at(destination, rand(1, 2), 6, spin = TRUE)
 
 ////////////////////////////////////////////////////////////
 // SPECIAL ATTACKS SECTION.
@@ -516,9 +556,9 @@
 	user.Immobilize(finisher_windup)
 	// Set this to make sure we can't do some goofy stuff while preparing to leap.
 	busy = TRUE
-	// This is a slightly modified do_after from the Deepscan Kit. It will mind if you get moved during the leap, so if someone knocks you back it will fail.
+	// This is a slightly modified do_after from the Deepscan Kit. This shouldn't fail unless you get disarmed or swap hands or do something weird.
 	// We also check here to ensure our combo didn't expire before it goes off.
-	if(do_after(user, finisher_windup, target, IGNORE_TARGET_LOC_CHANGE, TRUE, CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(can_see), user, target, 7), "thumb_finisher_leap", 1) && combo_stage == COMBO_FINISHER)
+	if(do_after(user, finisher_windup, target, IGNORE_USER_LOC_CHANGE | IGNORE_TARGET_LOC_CHANGE, TRUE, CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(can_see), user, target, 7), "thumb_finisher_leap", 1) && combo_stage == COMBO_FINISHER)
 		user.say("Firing all rounds...!")
 		// Spend a round.
 		if(SpendAmmo(user))
@@ -534,7 +574,7 @@
 					x_to_offset = 32
 				if(-INFINITY to -1)
 					x_to_offset = -32
-			animate(user, 0.4 SECONDS, easing = QUAD_EASING, pixel_y = user.base_pixel_y + 14, pixel_x = user.base_pixel_x + x_to_offset, alpha = 0)
+			animate(user, 0.4 SECONDS, easing = QUAD_EASING, pixel_y = user.base_pixel_y + 16, pixel_x = user.base_pixel_x + x_to_offset, alpha = 0)
 			sleep(0.4 SECONDS)
 			// Janky? Yes, I guess.
 			user.forceMove(get_turf(target))
@@ -546,16 +586,17 @@
 			sleep(0.2 SECONDS)
 			busy = FALSE
 			// Hit the target.
-			target.attackby(src, user)
 			ComboAOE(target, user, COMBO_FINISHER)
 			ApplyStatusEffects(target, COMBO_FINISHER)
+			target.attackby(src, user)
+
 			return TRUE
 		// Uh oh. We didn't have ammo.
 		else
 			user.visible_message(span_userdanger("[user] pulls the trigger on their [src.name], but nothing happens!"), span_danger("You pull the trigger on your [src.name]. Nothing happens. Holy shit, you must look really dumb. Leave no witnesses standing."))
 
 	// We only reach this block if the do_after fails or we're no longer in our COMBO_FINISHER stage.
-	// The do_after can fail if we get moved from our starting position, our target isn't in sight anymore, we swap hands, we get stunned or something of the sort.
+	// The do_after can fail if our target isn't in sight anymore, we swap hands, we get stunned or something of the sort.
 	else
 		to_chat(user, span_warning("Your leap is interrupted!"))
 		combo_stage = COMBO_NO_AMMO
@@ -574,8 +615,9 @@
 			vfx_turfs = getline(start_turf, end_turf)
 		// The following three lines are the only ones that actually matter for the attack.
 		user.visible_message(span_userdanger("[user] pierces [target] with a devastating, explosive strike!"), span_danger("You pierce [target] with a devastating, explosive strike!"))
-		target.attackby(src, user)
+		// Status has to be applied before hitting them, because hitting them will clear our bonuses.
 		ApplyStatusEffects(target, COMBO_FINISHER)
+		target.attackby(src, user)
 		if(vfx_turfs)
 			vfx_turfs -= start_turf
 			for(var/turf/T in vfx_turfs)
@@ -606,10 +648,8 @@
 	burn_to_apply = floor(burn_to_apply)
 
 	if(tremor_to_apply >= 1)
-		//target.say("Receiving [tremor_to_apply] stacks of Tremor and will burst at [tremorburst_threshold].")
 		target.apply_lc_tremor(tremor_to_apply, tremorburst_threshold)
 	if(burn_to_apply >= 1)
-		//target.say("Receiving [burn_to_apply] stacks of Burn.")
 		target.apply_lc_burn(burn_to_apply)
 
 /// This proc is just cleanup on the weapon's state, and called whenever a combo ends, is cancelled or times out.
@@ -630,8 +670,8 @@
 
 	// Calculate the AoE damage. We get the base damage from:
 	// (Initial force of the weapon + flat force bonus from the round fired) * Motion value of the AoE type * A special coefficient for secondary targets of the AoE type
-	// We later multiply this value by Justice.
-	var/aoe = (initial(force) + next_hit_should_apply["aoe_flat_force_bonus"]) * motion_values[hit_type] * (hit_type == COMBO_ATTACK2 ? attack2_secondarytarget_coefficient : finisher_aoe_secondarytarget_coefficient)
+	// We later apply Justice scaling, but we also save the non-Justice-scaling damage for PvP.
+	var/aoe = (initial(force) + next_hit_should_apply["aoe_flat_force_bonus"]) * motion_values[hit_type + "_aoe"]
 	var/userjust = (get_modified_attribute_level(user, JUSTICE_ATTRIBUTE))
 	var/justicemod = 1 + userjust/100
 	aoe*=force_multiplier
@@ -644,7 +684,7 @@
 	for(var/turf/T in (hit_type == COMBO_ATTACK2 ? orange(aoe_radius, user) : range(aoe_radius, target)))
 		affected_turfs |= T
 
-	// Visuals for the AoE attack.
+	// This is where the hit happens.
 	for(var/turf/T2 in affected_turfs)
 		new /obj/effect/temp_visual/thumb_east_aoe_impact(T2)
 		for(var/mob/living/L in T2)
@@ -678,6 +718,7 @@
 	force = 60
 	attack_speed = 1.1
 	max_ammo = 6
+	reload_type = RELOAD_RELOADEJECT
 	finisher_aoe_base_radius = 1
 	finisher_type = FINISHER_LEAP
 	accepted_ammo_table = list(
@@ -686,8 +727,9 @@
 		/obj/item/stack/thumb_east_ammo/tigermark,
 		/obj/item/stack/thumb_east_ammo/tigermark/facility,
 	)
-	combo_description = "This weapon's combo consists of a long-range lunge, a circular AoE sweep around the user, and ends with a devastating AoE leap on the target."
-	motion_values = list(COMBO_NO_AMMO = 1, COMBO_LUNGE = 0.9, COMBO_ATTACK2 = 1.2, COMBO_FINISHER = 1.7)
+	combo_description = "This weapon's combo consists of a long-range lunge, followed by a circular AoE sweep around the user, and ends with a devastating but telegraphed AoE leap on the target.\n"+\
+	"If you trigger but miss your lunge, you can still continue the combo by landing a regular hit on-target."
+	motion_values = list(COMBO_NO_AMMO = 1, COMBO_LUNGE = 0.9, COMBO_ATTACK2 = 1.2, COMBO_FINISHER = 2, COMBO_ATTACK2_AOE = 0.7, COMBO_FINISHER_AOE = 1)
 
 ////////////////////////////////////////////////////////////
 // AMMUNITION SECTION.
@@ -697,10 +739,12 @@
 	name = "scorch propellant ammunition"
 	desc = "Ammunition used by the Thumb in eastern parts of the City. These rounds aren't fired at targets, rather they provide additional propulsion to the swings and stabs of Thumb weaponry."
 	singular_name = "scorch propellant round"
-	max_amount = 3
+	max_amount = 6
 	icon_state = "thumb_east"
 	novariants = FALSE
 	merge_type = /obj/item/stack/thumb_east_ammo
+	/// What item does this turn into when it gets spent?
+	var/spent_type = /obj/item/stack/thumb_east_ammo/spent
 	/// We need this var for some stack item shenanigans, they will try to merge at very inconvenient times just to spite you.
 	var/should_merge = TRUE
 	/// This variable holds the path to the sound file played when this round is consumed.
@@ -726,6 +770,19 @@
 	. += span_notice("It [burn_base >= 1 ? "applies [burn_base]" : "does not apply"] burn stacks on target hit after firing.")
 	. += span_notice("It [aoe_radius_bonus >= 1 ? "adds [aoe_radius_bonus]" : "does not add any extra"] tiles of radius to AoE attacks on target hit after firing.")
 
+/// This override is so we can use 6 sprites instead of 3 to count the bullets individually. I basically just copy pasted the old code.
+/obj/item/stack/thumb_east_ammo/update_icon_state()
+	if(novariants)
+		return
+	if(amount == 1)
+		icon_state = initial(icon_state)
+		return
+	if(amount >= 6)
+		icon_state = "[initial(icon_state)]_6"
+		return
+	else
+		icon_state = "[initial(icon_state)]_[amount]"
+
 
 // I know this override looks weird, but there's a good reason for it. There's a certain behaviour stack objects have where subtypes can merge to their parent types,
 // which we really don't want for this specific item and its subtypes. As in, we don't want scorch propellant rounds to get mixed up with Tigermark rounds or surplus rounds.
@@ -738,6 +795,12 @@
 		return FALSE
 	. = ..()
 
+/obj/item/stack/thumb_east_ammo/attackby(obj/item/W, mob/user, params)
+	if(W.type == src.type)
+		var/obj/item/stack/thumb_east_ammo/we_hit = W
+		we_hit.should_merge = TRUE
+		src.should_merge = TRUE
+	. = ..()
 
 
 /obj/item/stack/thumb_east_ammo/facility
@@ -757,6 +820,7 @@
 	"One of these rounds might cost more than the life of some Fixers."
 	singular_name = "tigermark round"
 	merge_type = /obj/item/stack/thumb_east_ammo/tigermark
+	spent_type = /obj/item/stack/thumb_east_ammo/spent/tigermark
 	detonation_sound = 'sound/weapons/ego/thumb_east_podao_detonation.ogg'
 	aesthetic_shockwave_distance = 2
 	tremor_base = 8
@@ -778,6 +842,29 @@
 	flat_force_base = 16
 	aoe_radius_bonus = 1
 
+// Spent ammunition types. Please don't put this on any weapon's accepted ammunition table.
+// These spent cartridges can be brought back to the Thumb's ammo vendor to refund part of the cost, or they can be sold by Fixers or Rats.
+
+/obj/item/stack/thumb_east_ammo/spent
+	name = "spent propellant ammunition casings"
+	desc = "A spent cartridge of some propellant ammunition used by the Thumb. Smells like gunpowder. This might be worth something."
+	singular_name = "spent propellant ammunition casing"
+	icon_state = "thumb_east_spent"
+	merge_type = /obj/item/stack/thumb_east_ammo/spent
+	// Don't let them merge until someone picks them up.
+	should_merge = FALSE
+	tremor_base = 0
+	burn_base = 0
+	flat_force_base = 0
+	aoe_radius_bonus = 0
+
+/obj/item/stack/thumb_east_ammo/spent/tigermark
+	name = "spent tigermark cartridges"
+	desc = "Expensive-looking cartridges. Smells like gunpowder. This might be worth something."
+	singular_name = "spent tigermark cartridge"
+	merge_type = /obj/item/stack/thumb_east_ammo/spent/tigermark
+
+
 ////////////////////////////////////////////////////////////
 // VFX SECTION.
 // These are just the temporary visual effects created by Thumb East weaponry.
@@ -798,3 +885,5 @@
 #undef COMBO_FINISHER_AOE
 #undef FINISHER_PIERCE
 #undef FINISHER_LEAP
+#undef RELOAD_INSTANTEJECT
+#undef RELOAD_RELOADEJECT
