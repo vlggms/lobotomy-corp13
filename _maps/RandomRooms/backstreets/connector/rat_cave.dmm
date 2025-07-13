@@ -60,7 +60,6 @@
 /area/city/backstreets_room)
 "K" = (
 /obj/structure/bed/maint,
-/obj/item/reagent_containers/food/drinks/soda_cans/oceanwave/spacedrugs,
 /turf/open/floor/plating/asteroid/basalt,
 /area/city/backstreets_room)
 "Q" = (

@@ -37,7 +37,6 @@
 /area/city/backstreets_room)
 "u" = (
 /obj/structure/table/anvil,
-/obj/item/reagent_containers/food/drinks/soda_cans/oceanwave/spacedrugs,
 /turf/open/floor/wood,
 /area/city/backstreets_room)
 "w" = (
