@@ -433,7 +433,7 @@
 			
 			// Play victory sound
 			for(var/mob/living/simple_animal/hostile/villains_character/winner in living_players)
-				playsound(winner, 'sound/misc/achievement.ogg', 50, FALSE)
+				playsound(winner, 'sound/arcade/win.ogg', 50, FALSE)
 			
 			end_game("abnormalities")
 			return
@@ -2739,6 +2739,70 @@
 		spawned += I
 
 	return spawned
+
+/datum/villains_controller/proc/cleanup_game()
+	/**
+	 * Cleans up all game-related objects and resets the game area
+	 * Called after the post-game discussion period
+	 */
+	to_chat(world, span_boldnotice("Cleaning up the Villains game area..."))
+	
+	// Clean up all player mobs
+	for(var/mob/living/simple_animal/hostile/villains_character/M in all_players)
+		if(M.client)
+			// Return player to ghost form
+			var/mob/dead/observer/ghost = M.ghostize(TRUE)
+			if(ghost)
+				ghost.forceMove(pick(GLOB.observer_start_landmarks))
+		qdel(M)
+	
+	// Clean up spawned items
+	for(var/obj/item/villains/I in spawned_items)
+		qdel(I)
+	
+	// Clean up any items that might have been moved around
+	if(villains_area)
+		for(var/obj/item/villains/I in villains_area)
+			qdel(I)
+	
+	// Clean up room doors
+	for(var/room_id in room_doors)
+		var/obj/machinery/door/D = room_doors[room_id]
+		if(D && !QDELETED(D))
+			qdel(D)
+	
+	// Clean up any remaining evidence markers or other game objects
+	if(villains_area)
+		for(var/obj/O in villains_area)
+			if(istype(O, /obj/effect/decal/cleanable) || istype(O, /obj/effect/overlay))
+				qdel(O)
+	
+	// Clear all lists
+	all_players.Cut()
+	living_players.Cut()
+	dead_players.Cut()
+	spectators.Cut()
+	spawned_items.Cut()
+	used_items.Cut()
+	evidence_list.Cut()
+	player_rooms.Cut()
+	room_doors.Cut()
+	player_room_assignments.Cut()
+	room_landmarks.Cut()
+	trade_history.Cut()
+	contract_history.Cut()
+	
+	// Clear game area reference
+	villains_area = null
+	main_room_center = null
+	
+	// Final cleanup announcement
+	to_chat(world, span_notice("Villains game area has been cleaned up."))
+	log_game("VILLAINS: Game cleanup completed")
+	
+	// Delete the controller itself
+	GLOB.villains_game = null
+	qdel(src)
 
 // Trade and contract tracking
 /datum/villains_controller/proc/record_trade(mob/living/simple_animal/hostile/villains_character/trader1, mob/living/simple_animal/hostile/villains_character/trader2, list/items1, list/items2)
