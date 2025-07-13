@@ -31,6 +31,11 @@
 	if(SEND_SIGNAL(performer, COMSIG_VILLAIN_ACTION_PERFORMED, src) & VILLAIN_PREVENT_ACTION)
 		prevented = TRUE
 		return FALSE
+	// Also send signal to target for defensive abilities like Forsaken Murder
+	if(target && target != performer)
+		if(SEND_SIGNAL(target, COMSIG_VILLAIN_ACTION_PERFORMED, src) & VILLAIN_PREVENT_ACTION)
+			prevented = TRUE
+			return FALSE
 	return TRUE
 
 /datum/villains_action/proc/perform()
@@ -236,6 +241,34 @@
 			if(A.get_priority() == priority)
 				sorted_actions += A
 
+	// Check for elimination conflicts (villain vs Der Freischütz)
+	var/list/elimination_actions = list()
+	for(var/datum/villains_action/A in sorted_actions)
+		if(A.action_type == VILLAIN_ACTION_ELIMINATION)
+			elimination_actions += A
+	
+	// If both villain and Der Freischütz are trying to eliminate someone
+	if(length(elimination_actions) >= 2)
+		var/has_villain_elimination = FALSE
+		var/has_magic_bullet = FALSE
+		
+		for(var/datum/villains_action/A in elimination_actions)
+			if(istype(A, /datum/villains_action/eliminate))
+				has_villain_elimination = TRUE
+			else if(istype(A, /datum/villains_action/character_ability))
+				var/datum/villains_action/character_ability/CA = A
+				if(CA.character?.character_id == VILLAIN_CHAR_DERFREISCHUTZ)
+					has_magic_bullet = TRUE
+		
+		// If both exist, cancel the Magic Bullet
+		if(has_villain_elimination && has_magic_bullet)
+			for(var/datum/villains_action/A in elimination_actions)
+				if(istype(A, /datum/villains_action/character_ability))
+					var/datum/villains_action/character_ability/CA = A
+					if(CA.character?.character_id == VILLAIN_CHAR_DERFREISCHUTZ)
+						CA.prevented = TRUE
+						to_chat(CA.performer, span_warning("Your Magic Bullet fails - the villain's elimination takes priority!"))
+
 	// Process actions in order with delays
 	for(var/datum/villains_action/A in sorted_actions)
 		// Start the action
@@ -253,19 +286,404 @@
 	actions.Cut()
 
 
+// UI object for trade session
+/obj/villains_trade_ui_object
+	name = "Trade Session"
+	var/datum/villains_trade_session/parent_session
+
+/obj/villains_trade_ui_object/ui_interact(mob/user)
+	. = ..()
+
+/obj/villains_trade_ui_object/ui_data(mob/user)
+	if(parent_session)
+		return parent_session.get_ui_data(user)
+	return list()
+
+/obj/villains_trade_ui_object/ui_act(action, params)
+	. = ..()
+	if(.)
+		return
+	if(parent_session)
+		return parent_session.handle_ui_act(action, params, usr)
+
 // Trading session system
 /datum/villains_trade_session
 	var/mob/living/simple_animal/hostile/villains_character/trader1
 	var/mob/living/simple_animal/hostile/villains_character/trader2
 	var/active = TRUE
+	var/list/trader1_offer = list() // List of item refs being offered by trader1
+	var/list/trader2_offer = list() // List of item refs being offered by trader2
+	var/trader1_ready = FALSE
+	var/trader2_ready = FALSE
+	var/trade_complete = FALSE
+	var/start_time
+	var/list/obj/ui_objects = list()
 
 /datum/villains_trade_session/New(mob/living/simple_animal/hostile/villains_character/T1, mob/living/simple_animal/hostile/villains_character/T2)
 	trader1 = T1
 	trader2 = T2
-	to_chat(trader1, span_notice("You can now trade items with [trader2]. Use 'Give Item' verb to offer items."))
-	to_chat(trader2, span_notice("You can now trade items with [trader1]. Use 'Give Item' verb to offer items."))
+	start_time = world.time
+	
+	// Set the session reference on both traders
+	trader1.active_trade_session = src
+	trader2.active_trade_session = src
+	
+	// Open UI for both traders
+	open_ui_for_trader(trader1)
+	open_ui_for_trader(trader2)
 
 /datum/villains_trade_session/proc/end_session()
 	active = FALSE
+	
+	// Clear session references
+	if(trader1)
+		trader1.active_trade_session = null
+	if(trader2)
+		trader2.active_trade_session = null
+		
+	// Close UIs
+	for(var/obj/O in ui_objects)
+		SStgui.close_uis(O)
+		qdel(O)
+	ui_objects.Cut()
+	
 	to_chat(trader1, span_notice("Trading session ended."))
 	to_chat(trader2, span_notice("Trading session ended."))
+
+/datum/villains_trade_session/proc/open_ui_for_trader(mob/user)
+	var/obj/villains_trade_ui_object/ui_object = new()
+	ui_object.parent_session = src
+	ui_objects += ui_object
+	
+	var/datum/tgui/ui = SStgui.try_update_ui(user, ui_object, "VillainsTradeUI")
+	if(!ui)
+		ui = new(user, ui_object, "VillainsTradeUI", "Trade Session")
+		ui.open()
+
+/datum/villains_trade_session/proc/get_ui_data(mob/user)
+	var/list/data = list()
+	
+	var/is_trader1 = (user == trader1)
+	var/mob/living/simple_animal/hostile/villains_character/me = is_trader1 ? trader1 : trader2
+	var/mob/living/simple_animal/hostile/villains_character/partner = is_trader1 ? trader2 : trader1
+	
+	data["my_name"] = me.name
+	data["partner_name"] = partner.name
+	data["time_remaining"] = max(0, 120 - ((world.time - start_time) / 10))
+	data["trade_complete"] = trade_complete
+	
+	// My inventory
+	var/list/my_inv = list()
+	for(var/obj/item/villains/I in me.contents)
+		var/rarity_color = "white"
+		switch(I.rarity)
+			if(VILLAIN_ITEM_COMMON)
+				rarity_color = "gray"
+			if(VILLAIN_ITEM_UNCOMMON)
+				rarity_color = "yellow"
+			if(VILLAIN_ITEM_RARE)
+				rarity_color = "orange"
+		
+		my_inv += list(list(
+			"name" = I.name,
+			"desc" = I.desc,
+			"ref" = REF(I),
+			"rarity_color" = rarity_color
+		))
+	data["my_inventory"] = my_inv
+	
+	// Partner inventory
+	var/list/partner_inv = list()
+	for(var/obj/item/villains/I in partner.contents)
+		var/rarity_color = "white"
+		switch(I.rarity)
+			if(VILLAIN_ITEM_COMMON)
+				rarity_color = "gray"
+			if(VILLAIN_ITEM_UNCOMMON)
+				rarity_color = "yellow"
+			if(VILLAIN_ITEM_RARE)
+				rarity_color = "orange"
+				
+		partner_inv += list(list(
+			"name" = I.name,
+			"desc" = I.desc,
+			"ref" = REF(I),
+			"rarity_color" = rarity_color
+		))
+	data["partner_inventory"] = partner_inv
+	
+	// Offers
+	data["my_offer"] = is_trader1 ? trader1_offer : trader2_offer
+	data["partner_offer"] = is_trader1 ? trader2_offer : trader1_offer
+	data["my_ready"] = is_trader1 ? trader1_ready : trader2_ready
+	data["partner_ready"] = is_trader1 ? trader2_ready : trader1_ready
+	
+	return data
+
+/datum/villains_trade_session/proc/handle_ui_act(action, params, mob/user)
+	if(!active)
+		return FALSE
+		
+	var/is_trader1 = (user == trader1)
+	
+	switch(action)
+		if("offer_item")
+			var/item_ref = params["item_ref"]
+			var/obj/item/villains/I = locate(item_ref)
+			if(!I || I.loc != user)
+				return FALSE
+				
+			if(is_trader1)
+				if(!(item_ref in trader1_offer))
+					trader1_offer += item_ref
+					trader1_ready = FALSE
+					trader2_ready = FALSE
+			else
+				if(!(item_ref in trader2_offer))
+					trader2_offer += item_ref
+					trader1_ready = FALSE
+					trader2_ready = FALSE
+			return TRUE
+			
+		if("remove_offer")
+			var/item_ref = params["item_ref"]
+			if(is_trader1)
+				trader1_offer -= item_ref
+				trader1_ready = FALSE
+				trader2_ready = FALSE
+			else
+				trader2_offer -= item_ref
+				trader1_ready = FALSE
+				trader2_ready = FALSE
+			return TRUE
+			
+		if("toggle_ready")
+			if(is_trader1)
+				trader1_ready = !trader1_ready
+			else
+				trader2_ready = !trader2_ready
+			return TRUE
+			
+		if("confirm_trade")
+			if(trader1_ready && trader2_ready)
+				execute_trade()
+			return TRUE
+			
+		if("cancel_trade")
+			end_session()
+			return TRUE
+			
+	return FALSE
+
+/datum/villains_trade_session/proc/execute_trade()
+	if(!trader1_ready || !trader2_ready || trade_complete)
+		return
+		
+	trade_complete = TRUE
+	
+	// Record the trade before executing
+	if(GLOB.villains_game)
+		GLOB.villains_game.record_trade(trader1, trader2, trader1_offer, trader2_offer)
+	
+	// Transfer items from trader1 to trader2
+	for(var/item_ref in trader1_offer)
+		var/obj/item/villains/I = locate(item_ref)
+		if(I && I.loc == trader1)
+			// Handle fresh items
+			if(I.freshness == VILLAIN_ITEM_FRESH && (I in trader1.fresh_items))
+				trader1.fresh_items -= I
+			I.forceMove(trader2)
+			to_chat(trader2, span_notice("You receive [I] from [trader1]."))
+	
+	// Transfer items from trader2 to trader1
+	for(var/item_ref in trader2_offer)
+		var/obj/item/villains/I = locate(item_ref)
+		if(I && I.loc == trader2)
+			// Handle fresh items
+			if(I.freshness == VILLAIN_ITEM_FRESH && (I in trader2.fresh_items))
+				trader2.fresh_items -= I
+			I.forceMove(trader1)
+			to_chat(trader1, span_notice("You receive [I] from [trader2]."))
+	
+	to_chat(trader1, span_boldnotice("Trade complete!"))
+	to_chat(trader2, span_boldnotice("Trade complete!"))
+	
+	// End the session after a short delay
+	addtimer(CALLBACK(src, .proc/end_session), 3 SECONDS)
+
+// Contract UI system
+/datum/villains_contract_ui
+	var/mob/living/simple_animal/hostile/villains_character/owner
+
+/datum/villains_contract_ui/New(mob/living/simple_animal/hostile/villains_character/character)
+	owner = character
+
+/datum/villains_contract_ui/ui_interact(mob/user)
+	var/datum/tgui/ui = SStgui.try_update_ui(user, src, "VillainsContractUI")
+	if(!ui)
+		ui = new(user, src, "VillainsContractUI", "Contract Management")
+		ui.open()
+
+/datum/villains_contract_ui/ui_state(mob/user)
+	return GLOB.always_state
+
+/datum/villains_contract_ui/ui_status(mob/user, datum/ui_state/state)
+	return UI_INTERACTIVE
+
+/datum/villains_contract_ui/ui_data(mob/user)
+	var/list/data = list()
+	
+	data["character_name"] = owner.name
+	data["can_offer_contract"] = (owner.character_data?.character_id == VILLAIN_CHAR_DERFREISCHUTZ)
+	data["is_trading"] = (owner.trading_with != null)
+	data["trading_partner"] = owner.trading_with?.name
+	
+	// Pending contracts
+	var/list/pending = list()
+	for(var/mob/living/simple_animal/hostile/villains_character/offerer in owner.pending_contracts)
+		var/contract_type = owner.pending_contracts[offerer]
+		var/type_display = "Unknown Contract"
+		var/terms = "No terms specified"
+		
+		if(contract_type == "elimination")
+			type_display = "Elimination Contract"
+			terms = "You choose who [offerer] must eliminate with Magic Bullet"
+		
+		pending += list(list(
+			"id" = REF(offerer),
+			"offerer" = offerer.name,
+			"type" = contract_type,
+			"type_display" = type_display,
+			"terms" = terms
+		))
+	data["pending_contracts"] = pending
+	
+	// Active contracts
+	var/list/active = list()
+	
+	// Check if we have an elimination contract
+	if(owner.character_data?.character_id == VILLAIN_CHAR_DERFREISCHUTZ && owner.elimination_contract)
+		var/target_name = owner.contract_target ? owner.contract_target.name : "Unknown"
+		active += list(list(
+			"type" = "elimination",
+			"type_display" = "Elimination Contract",
+			"party1" = owner.name,
+			"party2" = owner.elimination_contract.name,
+			"terms" = "Must eliminate [target_name] with Magic Bullet",
+			"active" = TRUE
+		))
+	
+	// Check if someone has a contract on us
+	for(var/mob/living/simple_animal/hostile/villains_character/player in GLOB.villains_game?.living_players)
+		if(player.elimination_contract == owner)
+			var/target_name = player.contract_target ? player.contract_target.name : "Unknown"
+			active += list(list(
+				"type" = "elimination",
+				"type_display" = "Elimination Contract (Contract Holder)",
+				"party1" = player.name,
+				"party2" = owner.name,
+				"terms" = "[player.name] must eliminate [target_name] with Magic Bullet",
+				"active" = TRUE
+			))
+		// Check if we're the target of someone's contract
+		if(player.contract_target == owner)
+			active += list(list(
+				"type" = "elimination",
+				"type_display" = "Elimination Contract (Target)",
+				"party1" = player.name,
+				"party2" = player.elimination_contract ? player.elimination_contract.name : "Unknown",
+				"terms" = "[player.name] will eliminate you with Magic Bullet!",
+				"active" = TRUE
+			))
+	
+	data["active_contracts"] = active
+	
+	// Get living players for target selection (elimination contracts)
+	var/list/living = list()
+	if(GLOB.villains_game?.living_players)
+		for(var/mob/living/simple_animal/hostile/villains_character/player in GLOB.villains_game.living_players)
+			if(player != owner && player != owner.trading_with) // Can't target self or Der Freischütz
+				living += list(list(
+					"ref" = REF(player),
+					"name" = player.name
+				))
+	data["living_players"] = living
+	
+	return data
+
+/datum/villains_contract_ui/ui_act(action, params)
+	. = ..()
+	if(.)
+		return
+	
+	switch(action)
+		if("accept_contract")
+			var/offerer_ref = params["contract_id"]
+			var/mob/living/simple_animal/hostile/villains_character/offerer = locate(offerer_ref)
+			if(!offerer || !(offerer in owner.pending_contracts))
+				return FALSE
+			
+			var/contract_type = owner.pending_contracts[offerer]
+			if(contract_type == "elimination")
+				// Get the selected target
+				var/target_ref = params["target"]
+				if(!target_ref)
+					to_chat(owner, span_warning("You must select a target for the elimination!"))
+					return FALSE
+				
+				var/mob/living/simple_animal/hostile/villains_character/target = locate(target_ref)
+				if(!target || !istype(target) || target == owner || target == offerer)
+					to_chat(owner, span_warning("Invalid target selected!"))
+					return FALSE
+				
+				// Set up the contract
+				offerer.elimination_contract = owner
+				offerer.contract_target = target
+				
+				to_chat(offerer, span_boldnotice("[owner] accepts your Elimination Contract! You must eliminate [target.name] with Magic Bullet!"))
+				to_chat(owner, span_boldwarning("You accept [offerer]'s Elimination Contract. They must eliminate [target.name]!"))
+				
+				// Record contract acceptance
+				if(GLOB.villains_game)
+					GLOB.villains_game.record_contract(offerer, owner, "elimination", "accepted")
+			
+			owner.pending_contracts -= offerer
+			return TRUE
+			
+		if("decline_contract")
+			var/offerer_ref = params["contract_id"]
+			var/mob/living/simple_animal/hostile/villains_character/offerer = locate(offerer_ref)
+			if(!offerer || !(offerer in owner.pending_contracts))
+				return FALSE
+			
+			var/contract_type = owner.pending_contracts[offerer]
+			to_chat(offerer, span_warning("[owner] declines your [contract_type] contract."))
+			to_chat(owner, span_notice("You decline [offerer]'s [contract_type] contract."))
+			
+			// Record contract rejection
+			if(GLOB.villains_game)
+				GLOB.villains_game.record_contract(offerer, owner, contract_type, "declined")
+			
+			owner.pending_contracts -= offerer
+			return TRUE
+			
+		if("offer_elimination_contract")
+			if(owner.character_data?.character_id != VILLAIN_CHAR_DERFREISCHUTZ)
+				return FALSE
+			
+			if(!owner.trading_with)
+				to_chat(owner, span_warning("You must be trading with someone to offer a contract!"))
+				return FALSE
+			
+			if(owner.elimination_contract)
+				to_chat(owner, span_warning("You already have an active elimination contract with [owner.elimination_contract]!"))
+				return FALSE
+			
+			owner.trading_with.pending_contracts[owner] = "elimination"
+			to_chat(owner, span_notice("You offer an Elimination Contract to [owner.trading_with]."))
+			to_chat(owner.trading_with, span_boldwarning("[owner] offers you an Elimination Contract! Use the Contract Management to review."))
+			
+			// Update the UI for the trading partner if they have it open
+			SStgui.update_uis(src)
+			
+			return TRUE

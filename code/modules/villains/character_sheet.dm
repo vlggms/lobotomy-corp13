@@ -14,6 +14,9 @@
 /datum/villains_character_sheet/ui_state(mob/user)
 	return GLOB.always_state
 
+/datum/villains_character_sheet/ui_status(mob/user, datum/ui_state/state)
+	return UI_INTERACTIVE
+
 /datum/villains_character_sheet/ui_data(mob/user)
 	var/list/data = list()
 

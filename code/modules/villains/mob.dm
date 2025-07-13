@@ -37,6 +37,7 @@
 	// Villains gamemode specific variables
 	var/datum/villains_character/character_data
 	var/can_speak = TRUE
+	var/forced_to_whisper = FALSE // For alibi phase - forces all speech to whisper
 	var/list/fresh_items = list()
 	var/datum/villains_action/main_action
 	var/datum/villains_room/assigned_room
@@ -51,13 +52,16 @@
 	// Protection flags
 	var/elimination_immune = FALSE
 	var/action_blocked = FALSE
+	var/forsaken_counter_ready = FALSE // Forsaken Murder's counter ability
 	var/main_action_blocked = FALSE // Set by handheld taser
 	var/secondary_action_blocked = FALSE // Set by throwing bola
-	
+
 	// Trading status
 	var/mob/living/simple_animal/hostile/villains_character/trading_with = null
 	var/list/pending_contracts = list() // Contracts waiting for acceptance
-	
+	var/datum/villains_trade_session/active_trade_session = null // Current trade UI session
+	var/mob/living/simple_animal/hostile/villains_character/cleaning_target = null // All-Around Cleaner's target
+
 	// Investigation tracking
 	var/mob/living/simple_animal/hostile/villains_character/drain_monitor_target = null
 	var/mob/living/simple_animal/hostile/villains_character/rangefinder_target = null
@@ -66,20 +70,31 @@
 	// Victory tracking
 	var/victory_points = 0
 	var/win_condition = "default" // Can be "default", "survive", etc.
-	
+
+	// UI datums
+	var/datum/villains_contract_ui/contract_ui
+	var/datum/villains_character_sheet/character_sheet_ui
+
 	// Character-specific tracking
 	var/mob/living/simple_animal/hostile/villains_character/blessed_by = null // Who blessed this player (Puss in Boots)
 	var/mob/living/simple_animal/hostile/villains_character/current_blessing = null // Who this player has blessed
 	var/list/observed_players = list() // Players observed by Rudolta
 	var/mob/living/simple_animal/hostile/villains_character/marked_for_hunting = null // Red Hood's Hunter's Mark target
 	var/cursed_speech = FALSE // Kikimora's curse
-	var/mob/living/simple_animal/hostile/villains_character/elimination_contract = null // Der Freischütz's contract target
+	var/mob/living/simple_animal/hostile/villains_character/elimination_contract = null // Der Freischütz's contract holder (who accepted the contract)
+	var/mob/living/simple_animal/hostile/villains_character/contract_target = null // Der Freischütz's target (chosen by contract holder)
 	var/mob/living/simple_animal/hostile/villains_character/butterfly_guide_target = null // Sunset Traveller
 	var/mob/living/simple_animal/hostile/villains_character/guidance_target = null // Funeral Butterflies
 	var/used_hunters_mark = FALSE // Track if Red Hood used Hunter's Mark for passive
 	var/soul_gather_target = null // Warden's target
 	var/judge_target = null // Judgement Bird's target
 	var/false_prophet_used = FALSE // Blue Shepherd ability tracking
+
+	// Item-specific tracking
+	var/smoke_bombed = FALSE // Smoke Bomb effect
+	var/audio_recorded = FALSE // Audio Recorder planted on them
+	var/mob/living/simple_animal/hostile/villains_character/audio_recorder = null // Who is recording them
+	var/has_lucky_coin = FALSE // Lucky Coin protection
 
 /mob/living/simple_animal/hostile/villains_character/Initialize(mapload, datum/villains_character/character, mob/living/carbon/human/ghost_player)
 	. = ..()
@@ -88,6 +103,29 @@
 	if(ghost_player)
 		linked_ghost = ghost_player
 		key = ghost_player.key
+	var/obj/effect/proc_holder/spell/targeted/night_vision/bloodspell = new
+	AddSpell(bloodspell)
+
+/mob/living/simple_animal/hostile/villains_character/Destroy()
+	// Clean up UI datums
+	if(contract_ui)
+		qdel(contract_ui)
+		contract_ui = null
+	if(character_sheet_ui)
+		qdel(character_sheet_ui)
+		character_sheet_ui = null
+
+	// Clear trade session
+	if(active_trade_session)
+		active_trade_session.end_session()
+		active_trade_session = null
+
+	// Clear trading partner
+	if(trading_with)
+		trading_with.trading_with = null
+		trading_with = null
+
+	return ..()
 
 /mob/living/simple_animal/hostile/villains_character/proc/setup_character(datum/villains_character/character)
 	character_data = character
@@ -175,20 +213,42 @@
 		// Check for items at new location
 		var/turf/T = get_turf(src)
 		for(var/obj/item/villains/V in T)
+			// Handle evidence collection during investigation phase
+			if(V.is_evidence && GLOB.villains_game?.current_phase == VILLAIN_PHASE_INVESTIGATION)
+				// Mark as found
+				to_chat(src, span_notice("You find [V] and send it to the main room for analysis."))
+				
+				// Get a random open turf in main room
+				var/turf/target_turf = GLOB.villains_game.get_random_open_turf_in_main_room()
+				if(target_turf)
+					V.forceMove(target_turf)
+				
+				// Update the evidence list to show it was found
+				for(var/i in 1 to length(GLOB.villains_game.evidence_list))
+					if(findtext(GLOB.villains_game.evidence_list[i], V.name))
+						GLOB.villains_game.evidence_list[i] = "[GLOB.villains_game.evidence_list[i]] - <b>FOUND by [name]</b>"
+						break
+				
+				continue // Don't pick it up, just mark as found
+			
+			// Skip evidence items in other phases
+			if(V.is_evidence)
+				continue
+			
 			// Check total item limit (3 items max, or 5 for Warden)
 			var/total_items = 0
 			for(var/obj/item/villains/I in contents)
 				total_items++
-			
+
 			var/item_limit = (character_data?.character_id == VILLAIN_CHAR_WARDEN) ? 5 : 3
-			
+
 			if(total_items >= item_limit)
 				break  // Stop trying to pick up items if we're at the limit
-			
+
 			// Check fresh item limit
 			if(V.freshness == VILLAIN_ITEM_FRESH && !can_pickup_fresh())
 				continue
-			
+
 			pickup_item(V)
 
 /mob/living/simple_animal/hostile/villains_character/proc/can_pickup_fresh()
@@ -201,14 +261,14 @@
 	var/total_items = 0
 	for(var/obj/item/villains/I in contents)
 		total_items++
-	
+
 	// Warden can hold 5 items
 	var/item_limit = (character_data?.character_id == VILLAIN_CHAR_WARDEN) ? 5 : 3
-	
+
 	if(total_items >= item_limit)
 		to_chat(src, span_warning("You can only carry [item_limit] items total!"))
 		return FALSE
-	
+
 	// Then check fresh item limit
 	if(V.freshness == VILLAIN_ITEM_FRESH)
 		if(!can_pickup_fresh())
@@ -220,12 +280,17 @@
 	// The item's pickup() proc will handle adding to fresh_items
 	return TRUE
 
-// Speech override for Rudolta and Kikimora
+// Speech override for Rudolta, Kikimora, and alibi phase
 /mob/living/simple_animal/hostile/villains_character/say(message, bubble_type, list/spans = list(), sanitize = TRUE, datum/language/language = null, ignore_spam = FALSE, forced = null)
 	if(!can_speak)
 		to_chat(src, span_warning("You are unable to speak! Use emotes instead."))
 		return
 	
+	// Handle forced whisper during alibi phase
+	if(forced_to_whisper && !findtext(message, "#"))
+		// Add whisper prefix if not already whispering
+		message = "# " + message
+
 	// Handle Kikimora's curse
 	if(cursed_speech)
 		// Replace all words with kiki or mora
@@ -234,13 +299,13 @@
 		for(var/word in words)
 			cursed_words += pick("kiki", "mora")
 		message = cursed_words.Join(" ")
-		
+
 		// Spread the curse to nearby players
 		for(var/mob/living/simple_animal/hostile/villains_character/hearer in hearers(7, src))
 			if(hearer != src && !hearer.cursed_speech)
 				hearer.cursed_speech = TRUE
 				to_chat(hearer, span_warning("Hearing the cursed words, you feel your own speech becoming corrupted!"))
-	
+
 	return ..(message, bubble_type, spans, sanitize, language, ignore_spam, forced)
 
 // Trading system
@@ -303,18 +368,32 @@
 
 // These functions are kept for potential future use with items that block actions targeting the user
 /mob/living/simple_animal/hostile/villains_character/proc/block_next_action()
-	action_blocked = TRUE
+	forsaken_counter_ready = TRUE
 	to_chat(src, span_notice("You prepare to counter the next action against you."))
 	RegisterSignal(src, COMSIG_VILLAIN_ACTION_PERFORMED, PROC_REF(counter_action))
 
 /mob/living/simple_animal/hostile/villains_character/proc/counter_action(datum/source, datum/villains_action/action)
 	SIGNAL_HANDLER
-	if(action_blocked && action.target == src)
-		action_blocked = FALSE
+	// Debug logging
+	if(GLOB.villains_game)
+		log_game("VILLAINS DEBUG: counter_action called on [src], forsaken_counter_ready=[forsaken_counter_ready], action=[action], target=[action?.target]")
+	
+	// Check if we're blocking and if this action targets us
+	if(forsaken_counter_ready && action && action.target == src)
+		forsaken_counter_ready = FALSE
 		UnregisterSignal(src, COMSIG_VILLAIN_ACTION_PERFORMED)
-		to_chat(src, span_notice("You counter [action.performer]'s action!"))
-		to_chat(action.performer, span_warning("Your action failed to execute."))
+		to_chat(src, span_boldnotice("Restrained Violence activated! You successfully countered [action.performer]'s [action.name]!"))
+		if(action.performer)
+			to_chat(action.performer, span_boldwarning("Your action was violently countered by [src]!"))
+		// Log this for debugging
+		if(GLOB.villains_game)
+			log_game("VILLAINS: [src] (Forsaken Murder) countered [action.performer]'s [action.name] action")
 		return VILLAIN_PREVENT_ACTION
+	
+	// If we're blocking but this doesn't target us, stay ready
+	if(forsaken_counter_ready)
+		if(GLOB.villains_game)
+			log_game("VILLAINS DEBUG: Action doesn't target [src], staying ready to counter")
 
 // Rudolta's observe ability
 /mob/living/simple_animal/hostile/villains_character/proc/start_observing(mob/living/simple_animal/hostile/villains_character/target)
@@ -353,6 +432,8 @@
 		return character_data.portrait
 	return "UNKNOWN"
 
+// UI delegation is no longer needed - the UI object handles it directly
+
 // Death handling
 /mob/living/simple_animal/hostile/villains_character/death(gibbed)
 	// Clear any active trades
@@ -360,7 +441,17 @@
 		trading_with.trading_with = null
 		to_chat(trading_with, span_warning("Your trading partner has died!"))
 		trading_with = null
-	
+
+	// End active trade session
+	if(active_trade_session)
+		active_trade_session.end_session()
+
+	// Close any open UIs
+	if(contract_ui)
+		SStgui.close_uis(contract_ui)
+	if(character_sheet_ui)
+		SStgui.close_uis(character_sheet_ui)
+
 	if(GLOB.villains_game)
 		GLOB.villains_game.handle_death(src)
 	return ..()
@@ -389,56 +480,158 @@
 /mob/living/simple_animal/hostile/villains_character/verb/offer_elimination_contract()
 	set name = "Offer Elimination Contract"
 	set category = "Villains"
-	
+
 	if(character_data?.character_id != VILLAIN_CHAR_DERFREISCHUTZ)
 		return
-	
+
 	if(!trading_with)
 		to_chat(src, span_warning("You must be trading with someone to offer a contract!"))
 		return
-	
+
 	if(elimination_contract)
 		to_chat(src, span_warning("You already have an active elimination contract with [elimination_contract]!"))
 		return
-	
+
 	var/confirm = alert(src, "Offer an Elimination Contract to [trading_with]? If they accept, you will be able to eliminate them with Magic Bullet.", "Elimination Contract", "Yes", "No")
 	if(confirm != "Yes" || !trading_with)
 		return
-	
+
 	trading_with.pending_contracts[src] = "elimination"
 	to_chat(src, span_notice("You offer an Elimination Contract to [trading_with]."))
-	to_chat(trading_with, span_boldwarning("[src] offers you an Elimination Contract! If you accept, they will be able to eliminate you with Magic Bullet!"))
-	to_chat(trading_with, span_notice("Use 'Review Contracts' to accept or decline."))
-
-/mob/living/simple_animal/hostile/villains_character/verb/review_contracts()
-	set name = "Review Contracts"
-	set category = "Villains"
-	
-	if(!length(pending_contracts))
-		to_chat(src, span_notice("You have no pending contracts."))
-		return
-	
-	for(var/mob/living/simple_animal/hostile/villains_character/offerer in pending_contracts)
-		var/contract_type = pending_contracts[offerer]
-		if(contract_type == "elimination")
-			var/choice = alert(src, "[offerer] has offered you an Elimination Contract. If you accept, they will be able to eliminate you!", "Contract Offer", "Accept", "Decline")
-			if(choice == "Accept")
-				offerer.elimination_contract = src
-				to_chat(offerer, span_boldnotice("[src] accepts your Elimination Contract! You can now use Magic Bullet to eliminate them!"))
-				to_chat(src, span_boldwarning("You accept [offerer]'s Elimination Contract. They can now eliminate you!"))
-			else
-				to_chat(offerer, span_warning("[src] declines your Elimination Contract."))
-				to_chat(src, span_notice("You decline [offerer]'s Elimination Contract."))
-			
-			pending_contracts -= offerer
+	to_chat(trading_with, span_boldwarning("[src] offers you an Elimination Contract! You will choose who they must eliminate!"))
+	to_chat(trading_with, span_notice("Use 'Review Contracts' to see details, then 'Accept Elimination Contract' or 'Decline Contract' to respond."))
 
 // Verb for character sheet
 /mob/living/simple_animal/hostile/villains_character/verb/view_character_sheet()
 	set name = "View Character Sheet"
 	set category = "Villains"
 
-	var/datum/villains_character_sheet/sheet = new(src)
-	sheet.ui_interact(src)
+	if(!character_sheet_ui)
+		character_sheet_ui = new(src)
+	character_sheet_ui.ui_interact(src)
+
+// Verb to review pending contracts
+/mob/living/simple_animal/hostile/villains_character/verb/review_contracts()
+	set name = "Review Contracts"
+	set category = "Villains"
+
+	if(!length(pending_contracts))
+		to_chat(src, span_notice("You have no pending contracts."))
+		return
+
+	to_chat(src, span_notice("<b>===== PENDING CONTRACTS =====</b>"))
+	var/index = 1
+	for(var/mob/living/simple_animal/hostile/villains_character/offerer in pending_contracts)
+		var/contract_type = pending_contracts[offerer]
+		switch(contract_type)
+			if("elimination")
+				to_chat(src, span_warning("[index]. <b>Elimination Contract</b> from [offerer.name]"))
+				to_chat(src, span_warning("   - You will choose who they must eliminate"))
+				to_chat(src, span_warning("   - If successful, YOU become the villain!"))
+		index++
+	to_chat(src, span_notice("Use 'Accept Elimination Contract' or 'Decline Contract' to respond."))
+
+// Verb to accept elimination contracts
+/mob/living/simple_animal/hostile/villains_character/verb/accept_elimination_contract()
+	set name = "Accept Elimination Contract"
+	set category = "Villains"
+
+	// Filter for elimination contracts only
+	var/list/elimination_contracts = list()
+	for(var/mob/living/simple_animal/hostile/villains_character/offerer in pending_contracts)
+		if(pending_contracts[offerer] == "elimination")
+			elimination_contracts[offerer.name] = offerer
+
+	if(!length(elimination_contracts))
+		to_chat(src, span_warning("You have no pending elimination contracts."))
+		return
+
+	// Choose which contract if multiple
+	var/chosen_name
+	if(length(elimination_contracts) == 1)
+		// Get the first key from the associative list
+		for(var/name in elimination_contracts)
+			chosen_name = name
+			break
+	else
+		chosen_name = input(src, "Which elimination contract do you want to accept?", "Accept Contract") as null|anything in elimination_contracts
+
+	if(!chosen_name)
+		return
+
+	var/mob/living/simple_animal/hostile/villains_character/offerer = elimination_contracts[chosen_name]
+	if(!offerer || !(offerer in pending_contracts))
+		to_chat(src, span_warning("Contract no longer valid."))
+		return
+
+	// Get list of valid targets
+	var/list/valid_targets = list()
+	if(GLOB.villains_game?.living_players)
+		for(var/mob/living/simple_animal/hostile/villains_character/player in GLOB.villains_game.living_players)
+			if(player != src && player != offerer) // Can't target self or Der Freischütz
+				valid_targets[player.name] = player
+
+	if(!length(valid_targets))
+		to_chat(src, span_warning("No valid targets available!"))
+		return
+
+	// Choose target
+	var/target_name = input(src, "Who should [offerer.name] eliminate with Magic Bullet?", "Choose Target") as null|anything in valid_targets
+	if(!target_name)
+		return
+
+	var/mob/living/simple_animal/hostile/villains_character/target = valid_targets[target_name]
+	if(!target || !istype(target))
+		to_chat(src, span_warning("Invalid target selected!"))
+		return
+
+	// Confirm
+	var/confirm = alert(src, "Accept contract from [offerer.name] to eliminate [target.name]? If successful, you will become the villain!", "Confirm Contract", "Accept", "Cancel")
+	if(confirm != "Accept")
+		return
+
+	// Set up the contract
+	offerer.elimination_contract = src
+	offerer.contract_target = target
+
+	to_chat(offerer, span_boldnotice("[name] accepts your Elimination Contract! You must eliminate [target.name] with Magic Bullet!"))
+	to_chat(src, span_boldwarning("You accept [offerer.name]'s Elimination Contract. They must eliminate [target.name]!"))
+
+	// Record contract acceptance
+	if(GLOB.villains_game)
+		GLOB.villains_game.record_contract(offerer, src, "elimination", "accepted")
+
+	// Remove from pending
+	pending_contracts -= offerer
+
+// Verb to decline contracts
+/mob/living/simple_animal/hostile/villains_character/verb/decline_contract()
+	set name = "Decline Contract"
+	set category = "Villains"
+
+	if(!length(pending_contracts))
+		to_chat(src, span_notice("You have no pending contracts."))
+		return
+
+	// Build list of contracts
+	var/list/contract_list = list()
+	for(var/mob/living/simple_animal/hostile/villains_character/offerer in pending_contracts)
+		var/contract_type = pending_contracts[offerer]
+		contract_list["[contract_type] from [offerer.name]"] = offerer
+
+	var/chosen = input(src, "Which contract do you want to decline?", "Decline Contract") as null|anything in contract_list
+	if(!chosen)
+		return
+
+	var/mob/living/simple_animal/hostile/villains_character/offerer = contract_list[chosen]
+	if(!offerer || !(offerer in pending_contracts))
+		return
+
+	var/contract_type = pending_contracts[offerer]
+	pending_contracts -= offerer
+
+	to_chat(src, span_notice("You decline the [contract_type] contract from [offerer.name]."))
+	to_chat(offerer, span_warning("[name] has declined your [contract_type] contract."))
 
 // Item management
 /mob/living/simple_animal/hostile/villains_character/proc/update_fresh_items()
@@ -453,37 +646,37 @@
 /mob/living/simple_animal/hostile/villains_character/verb/give_item()
 	set name = "Give Item"
 	set category = "Villains"
-	
+
 	// Find nearby players
 	var/list/nearby_players = list()
 	for(var/mob/living/simple_animal/hostile/villains_character/P in oview(1, src))
 		nearby_players += P
-	
+
 	if(!length(nearby_players))
 		to_chat(src, span_warning("No one is close enough to trade with!"))
 		return
-	
+
 	var/mob/living/simple_animal/hostile/villains_character/target = input(src, "Who do you want to give an item to?", "Give Item") as null|anything in nearby_players
 	if(!target || !(target in oview(1, src)))
 		return
-	
+
 	// Get list of items
 	var/list/items = list()
 	for(var/obj/item/villains/I in contents)
 		items += I
-	
+
 	if(!length(items))
 		to_chat(src, span_warning("You have no items to give!"))
 		return
-	
+
 	var/obj/item/villains/chosen_item = input(src, "What item do you want to give?", "Give Item") as null|anything in items
 	if(!chosen_item || !(chosen_item in contents))
 		return
-	
+
 	// Remove from fresh items if applicable
 	if(chosen_item.freshness == VILLAIN_ITEM_FRESH && (chosen_item in fresh_items))
 		fresh_items -= chosen_item
-	
+
 	// Transfer the item
 	chosen_item.forceMove(target)
 	to_chat(src, span_notice("You give [chosen_item] to [target]."))

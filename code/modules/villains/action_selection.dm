@@ -18,6 +18,9 @@
 /datum/villains_action_selection/ui_state(mob/user)
 	return GLOB.always_state
 
+/datum/villains_action_selection/ui_status(mob/user, datum/ui_state/state)
+	return UI_INTERACTIVE
+
 /datum/villains_action_selection/ui_data(mob/user)
 	var/list/data = list()
 
@@ -129,7 +132,7 @@
 		var/is_self = (P == owner)
 		
 		// Check targeting restrictions based on selected action
-		if(selected_main_action)
+		if(selected_main_action == "character_ability")
 			switch(owner.character_data?.character_id)
 				if(VILLAIN_CHAR_FORSAKENMURDER, VILLAIN_CHAR_FAIRYGENTLEMAN, VILLAIN_CHAR_BLUESHEPHERD)
 					if(!is_self)

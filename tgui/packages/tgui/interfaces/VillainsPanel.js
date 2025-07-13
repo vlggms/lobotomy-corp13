@@ -25,6 +25,12 @@ export const VillainsPanel = (props, context) => {
     // Voting phase data
     voting_candidates,
     current_vote,
+    // Investigation phase data
+    evidence_list,
+    // Alibi phase data
+    current_speaker,
+    alibi_queue,
+    alibi_time_remaining,
     // Debug data
     debug_mode,
     debug_all_players,
@@ -81,6 +87,16 @@ export const VillainsPanel = (props, context) => {
                 </Section>
               </Stack.Item>
             )
+          ) : phase === 'investigation' || phase === 'alibi' ? (
+            <Stack.Item grow>
+              <InvestigationPhase
+                evidence_list={evidence_list}
+                phase={phase}
+                current_speaker={current_speaker}
+                alibi_queue={alibi_queue}
+                alibi_time_remaining={alibi_time_remaining}
+              />
+            </Stack.Item>
           ) : phase === 'voting' ? (
             <Stack.Item grow>
               <VotingPhase
@@ -683,6 +699,115 @@ const ActionDescription = (props) => {
         {description}
       </Box>
     </Box>
+  );
+};
+
+const InvestigationPhase = (props) => {
+  const { evidence_list, phase, current_speaker, alibi_queue, alibi_time_remaining } = props;
+
+  if (phase === 'alibi') {
+    return (
+      <Section title="Alibi Phase">
+        <Stack vertical>
+          {current_speaker ? (
+            <>
+              <Stack.Item>
+                <Box bold fontSize="1.2em" color="yellow">
+                  Current Speaker: {current_speaker.name}
+                </Box>
+                {alibi_time_remaining && (
+                  <Box>
+                    Time Remaining: {alibi_time_remaining} seconds
+                    {alibi_time_remaining <= 10 && (
+                      <Box as="span" color="red"> (Hurry up!)</Box>
+                    )}
+                  </Box>
+                )}
+              </Stack.Item>
+              
+              <Stack.Item>
+                <Box color="gray" italic>
+                  Only {current_speaker.name} may speak normally. All others must whisper.
+                </Box>
+              </Stack.Item>
+            </>
+          ) : (
+            <Stack.Item>
+              <Box color="gray">Waiting for next speaker...</Box>
+            </Stack.Item>
+          )}
+          
+          {alibi_queue && alibi_queue.length > 0 && (
+            <Stack.Item>
+              <Box bold mt={2}>Speaking Queue:</Box>
+              <Box backgroundColor="#1a1a1a" p={1}>
+                {alibi_queue.map((player, index) => (
+                  <Box key={index}>
+                    {player.position}. {player.name}
+                  </Box>
+                ))}
+              </Box>
+            </Stack.Item>
+          )}
+          
+          <Stack.Item>
+            <Box fontSize="0.9em" color="cyan" mt={2}>
+              <Icon name="info-circle" /> Each player has 30 seconds to present their alibi.
+            </Box>
+          </Stack.Item>
+        </Stack>
+      </Section>
+    );
+  }
+
+  return (
+    <Section title={phase === 'investigation' ? 'Investigation Phase' : 'Trial Briefing'}>
+      <Stack vertical>
+        <Stack.Item>
+          <Box mb={2} color="yellow">
+            {phase === 'investigation' 
+              ? "Search the facility for evidence! Items and action residues have been scattered throughout."
+              : "Review the evidence found during the investigation. You have 2 minutes to discuss before alibis begin."}
+          </Box>
+        </Stack.Item>
+        
+        {evidence_list && evidence_list.length > 0 ? (
+          <Stack.Item>
+            <Box bold mb={1}>Evidence Found:</Box>
+            <Box 
+              height="300px" 
+              overflowY="scroll" 
+              backgroundColor="#1a1a1a" 
+              p={2}
+              style={{ border: '1px solid #444' }}
+            >
+              {evidence_list.map((evidence, index) => (
+                <Box key={index} mb={1}>
+                  <Icon name="search" color="yellow" /> {evidence}
+                </Box>
+              ))}
+            </Box>
+          </Stack.Item>
+        ) : (
+          <Stack.Item>
+            <Box color="gray" italic>
+              No evidence has been found yet. Search the facility during the investigation phase!
+            </Box>
+          </Stack.Item>
+        )}
+        
+        {phase === 'investigation' && (
+          <Stack.Item>
+            <Box fontSize="0.9em" color="cyan">
+              <Icon name="info-circle" /> Tips:
+              <br />• Look for items with yellow outlines - these were used during the night
+              <br />• Used items are scattered as evidence throughout the facility
+              <br />• Check what items were found to piece together what happened
+            </Box>
+          </Stack.Item>
+        )}
+      </Stack>
+    </Section>
   );
 };
 

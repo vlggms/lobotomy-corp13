@@ -14,19 +14,31 @@
 	var/list/victory_points = list()
 	var/mob/living/simple_animal/hostile/villains_character/current_villain
 	var/last_eliminated
+	var/game_active = FALSE
 
 	// Action queue
 	var/datum/villains_action_queue/action_queue
 	var/list/last_night_actions = list() // Track actions from the last nighttime phase
 	var/list/action_targets = list() // Track who was targeted by whom (target = list(performers))
+	
+	// Trade and contract history
+	var/list/trade_history = list()
+	var/list/contract_history = list()
 
 	// Voting system
 	var/list/current_votes = list()
 	var/voting_phase
+	
+	// Alibi phase management
+	var/mob/living/simple_animal/hostile/villains_character/current_speaker
+	var/list/alibi_queue = list()
+	var/alibi_timer
+	var/alibi_index = 0
 
 	// Item tracking
 	var/list/spawned_items = list()
 	var/list/used_items = list()
+	var/list/evidence_list = list() // List of evidence descriptions for investigation phase
 
 	// Map references
 	var/area/villains_area
@@ -73,8 +85,15 @@
 	player_role_lookup.Cut()
 	victory_points.Cut()
 	current_votes.Cut()
+	alibi_queue.Cut()
+	current_speaker = null
+	if(alibi_timer)
+		deltimer(alibi_timer)
+		alibi_timer = null
+	alibi_index = 0
 	spawned_items.Cut()
 	used_items.Cut()
+	evidence_list.Cut()
 	player_rooms.Cut()
 	room_doors.Cut()
 	player_room_assignments.Cut()
@@ -181,16 +200,20 @@
 
 /datum/villains_controller/proc/start_morning_phase()
 	announce_phase("Morning")
+	// Clear evidence status from previous investigation
+	for(var/obj/item/villains/I in world)
+		if(I.is_evidence)
+			I.is_evidence = FALSE
 	// Unlock all rooms
 	unlock_all_rooms()
 	// Spawn items around the map
 	spawn_morning_items()
-	
+
 	// Trigger character phase change callbacks
 	for(var/mob/living/simple_animal/hostile/villains_character/player in living_players)
 		if(player.character_data)
 			player.character_data.on_phase_change(VILLAIN_PHASE_MORNING, player, src)
-	
+
 	// Set timer for phase end
 	var/morning_time = last_eliminated ? 60 : VILLAIN_TIMER_MORNING_MIN
 	phase_timer = addtimer(CALLBACK(src, .proc/change_phase, VILLAIN_PHASE_EVENING), morning_time SECONDS, TIMER_STOPPABLE)
@@ -210,9 +233,10 @@
 		player.main_action_blocked = FALSE  // Reset taser effect
 		player.secondary_action_blocked = FALSE  // Reset bola effect
 		player.action_blocked = FALSE  // Reset general action block (Sunset Traveller's passive)
+		player.forsaken_counter_ready = FALSE  // Reset Forsaken Murder's counter
 		player.main_action = null  // Clear previous action
 		player.secondary_action = null  // Clear previous secondary action
-		
+
 		// Stop Rudolta's observation if active
 		if(player.is_observing)
 			player.stop_observing()
@@ -222,6 +246,8 @@
 
 /datum/villains_controller/proc/start_nighttime_phase()
 	announce_phase("Nighttime")
+	// Clear used items from previous nights
+	used_items.Cut()
 	// Process all actions in order
 	process_night_actions()
 
@@ -230,23 +256,138 @@
 	// Announce who was eliminated
 	if(last_eliminated)
 		to_chat(world, span_userdanger("[last_eliminated] has been eliminated!"))
-	// Scatter used items with yellow outline
+		to_chat(living_players, span_boldwarning("A crime has been committed! Search for evidence to find the villain!"))
+	
+	// Unlock all rooms for investigation
+	unlock_all_rooms()
+	
+	// Scatter evidence items and create residue markers
 	scatter_evidence_items()
+	
+	// Give instructions
+	to_chat(living_players, span_notice("You have [VILLAIN_TIMER_INVESTIGATION / 60] minutes to search for evidence:"))
+	to_chat(living_players, span_notice("• Look for items with yellow outlines in the hallways"))
+	to_chat(living_players, span_notice("• Click on evidence items to mark them as found and send them to the main room"))
+	to_chat(living_players, span_notice("• Gather in the main room when the timer expires to review all found evidence"))
+	
 	phase_timer = addtimer(CALLBACK(src, .proc/start_trial_briefing), VILLAIN_TIMER_INVESTIGATION SECONDS, TIMER_STOPPABLE)
 
 /datum/villains_controller/proc/start_trial_briefing()
 	// Teleport everyone to main room
 	teleport_to_main_room()
-	// Lock the room
+	
+	// Announce the briefing phase
+	to_chat(living_players, span_boldannounce("=== TRIAL BRIEFING ==="))
+	to_chat(living_players, span_notice("All evidence has been gathered in the main room. You have 2 minutes to review the evidence and discuss before alibis begin."))
+	to_chat(living_players, span_notice("Check your game panel to see the list of evidence found!"))
+	
+	// Lock the main room doors to prevent people from leaving
+	for(var/obj/machinery/door/airlock/door in get_area(main_room_center))
+		door.lock()
+	
+	// Start the 2 minute timer
 	phase_timer = addtimer(CALLBACK(src, .proc/change_phase, VILLAIN_PHASE_ALIBI), 2 MINUTES, TIMER_STOPPABLE)
 
 /datum/villains_controller/proc/start_alibi_phase()
 	announce_phase("Alibi")
-	// Each player gets time to speak
-	// TODO: Implement alibi system
+	
+	// Set up alibi queue with randomized order
+	alibi_queue = shuffle(living_players.Copy())
+	alibi_index = 0
+	
+	// Announce the alibi phase rules
+	to_chat(living_players, span_boldannounce("=== ALIBI PHASE ==="))
+	to_chat(living_players, span_notice("Each player will have 30 seconds to present their alibi."))
+	to_chat(living_players, span_notice("Only the current speaker may talk normally. Others must whisper."))
+	to_chat(living_players, span_notice("Speaking order has been randomized."))
+	
+	// Start the first player's turn
+	if(length(alibi_queue))
+		process_alibi_queue()
+	else
+		// No players to give alibis, skip to discussion
+		change_phase(VILLAIN_PHASE_DISCUSSION)
+
+/datum/villains_controller/proc/process_alibi_queue()
+	// Check if we've gone through all players
+	if(alibi_index >= length(alibi_queue))
+		// All alibis complete, move to discussion
+		end_current_alibi()
+		change_phase(VILLAIN_PHASE_DISCUSSION)
+		return
+	
+	// Get the next speaker
+	alibi_index++
+	var/mob/living/simple_animal/hostile/villains_character/speaker = alibi_queue[alibi_index]
+	
+	// Make sure the speaker is still alive
+	if(!(speaker in living_players))
+		// Skip dead players
+		process_alibi_queue()
+		return
+	
+	// Start this player's alibi turn
+	start_player_alibi(speaker)
+
+/datum/villains_controller/proc/start_player_alibi(mob/living/simple_animal/hostile/villains_character/speaker)
+	// End previous speaker's turn if any
+	if(current_speaker)
+		end_current_alibi()
+	
+	// Set new speaker
+	current_speaker = speaker
+	
+	// Force all other players to whisper
+	for(var/mob/living/simple_animal/hostile/villains_character/player in living_players)
+		if(player != speaker)
+			player.forced_to_whisper = TRUE
+		else
+			player.forced_to_whisper = FALSE
+	
+	// Announce the new speaker
+	to_chat(living_players, span_boldannounce("[speaker.name] is now presenting their alibi!"))
+	to_chat(speaker, span_boldnotice("You have 30 seconds to present your alibi. You may speak normally."))
+	to_chat(living_players - speaker, span_notice("You must whisper while [speaker.name] presents their alibi."))
+	
+	// Set the timer for this player's turn
+	alibi_timer = addtimer(CALLBACK(src, .proc/end_alibi_turn), VILLAIN_TIMER_ALIBI_PER_PLAYER SECONDS, TIMER_STOPPABLE)
+	
+	// Add a 10-second warning
+	addtimer(CALLBACK(src, .proc/alibi_time_warning, speaker), (VILLAIN_TIMER_ALIBI_PER_PLAYER - 10) SECONDS)
+
+/datum/villains_controller/proc/alibi_time_warning(mob/living/simple_animal/hostile/villains_character/speaker)
+	if(current_speaker == speaker)
+		to_chat(speaker, span_warning("You have 10 seconds remaining for your alibi!"))
+
+/datum/villains_controller/proc/end_alibi_turn()
+	if(current_speaker)
+		to_chat(current_speaker, span_notice("Your alibi time has ended."))
+	
+	// Process the next player in queue
+	process_alibi_queue()
+
+/datum/villains_controller/proc/end_current_alibi()
+	// Clear the current speaker
+	current_speaker = null
+	
+	// Cancel the timer if it exists
+	if(alibi_timer)
+		deltimer(alibi_timer)
+		alibi_timer = null
+	
+	// Remove whisper restriction from all players
+	for(var/mob/living/simple_animal/hostile/villains_character/player in living_players)
+		player.forced_to_whisper = FALSE
 
 /datum/villains_controller/proc/start_discussion_phase()
 	announce_phase("Discussion")
+	
+	// Make sure alibi phase is fully cleaned up
+	end_current_alibi()
+	
+	to_chat(living_players, span_boldannounce("=== DISCUSSION PHASE ==="))
+	to_chat(living_players, span_notice("All players may now speak freely. Discuss the evidence and alibis!"))
+	
 	phase_timer = addtimer(CALLBACK(src, .proc/change_phase, VILLAIN_PHASE_VOTING), VILLAIN_TIMER_DISCUSSION_MIN SECONDS, TIMER_STOPPABLE)
 
 /datum/villains_controller/proc/start_voting_phase()
@@ -258,7 +399,173 @@
 /datum/villains_controller/proc/start_results_phase()
 	announce_phase("Results")
 	voting_phase = FALSE
-	tally_votes()
+	
+	// Tally the votes and determine who to eliminate
+	var/mob/living/simple_animal/hostile/villains_character/to_eliminate = tally_votes()
+	
+	if(to_eliminate)
+		// Build suspense before elimination
+		to_chat(world, span_userdanger("\n>>> [to_eliminate.name] has been eliminated by vote! <<<"))
+		
+		// Add dramatic pause
+		sleep(2 SECONDS)
+		
+		// Kill the player with visual effect
+		if(to_eliminate.stat != DEAD)
+			// Add a red overlay before death
+			to_eliminate.add_overlay(image('icons/effects/blood.dmi', "splatter"))
+			playsound(to_eliminate, 'sound/effects/splat.ogg', 50, TRUE)
+			to_eliminate.death()
+		
+		// Update game state
+		handle_death(to_eliminate)
+		
+		// Another dramatic pause before reveal
+		sleep(3 SECONDS)
+		
+		// Check win conditions and reveal
+		if(to_eliminate.is_villain)
+			// Villain was caught!
+			to_chat(world, span_boldannounce("\n=== VILLAIN REVEALED ==="))
+			to_chat(world, span_redtext("[to_eliminate.name] ([to_eliminate.character_data?.name]) was THE VILLAIN!"))
+			to_chat(world, span_greentext("\nThe abnormalities have successfully identified and eliminated the villain!"))
+			to_chat(world, span_greentext("ABNORMALITIES WIN!"))
+			
+			// Play victory sound
+			for(var/mob/living/simple_animal/hostile/villains_character/winner in living_players)
+				playsound(winner, 'sound/misc/achievement.ogg', 50, FALSE)
+			
+			end_game("abnormalities")
+			return
+		else
+			// Innocent was eliminated
+			to_chat(world, span_warning("\n[to_eliminate.name] was INNOCENT!"))
+			
+			// Check if game should end
+			if(living_players.len <= 2)
+				// Check if only villain remains
+				var/villain_alive = FALSE
+				var/mob/living/simple_animal/hostile/villains_character/the_villain
+				for(var/mob/living/simple_animal/hostile/villains_character/survivor in living_players)
+					if(survivor.is_villain)
+						villain_alive = TRUE
+						the_villain = survivor
+						break
+				
+				if(villain_alive)
+					// Villain wins!
+					sleep(2 SECONDS)
+					to_chat(world, span_boldannounce("\n=== VILLAIN REVEALED ==="))
+					to_chat(world, span_redtext("[the_villain.name] ([the_villain.character_data?.name]) was THE VILLAIN!"))
+					to_chat(world, span_redtext("\nThe villain has successfully eliminated enough abnormalities!"))
+					to_chat(world, span_redtext("VILLAIN WINS!"))
+					
+					// Evil laugh sound
+					playsound(the_villain, 'sound/voice/human/manlaugh1.ogg', 50, FALSE)
+					
+					end_game("villain")
+					return
+	else
+		to_chat(world, span_notice("\nNo one was eliminated this round."))
+	
+	// Clear votes for next round
+	current_votes.Cut()
+	
+	// Start post-elimination discussion
+	to_chat(world, span_boldnotice("\n=== POST-ROUND DISCUSSION ==="))
+	to_chat(world, span_notice("You have 3.5 minutes to discuss before the next morning phase begins."))
+	
+	// Continue to next morning phase after discussion period
+	phase_timer = addtimer(CALLBACK(src, .proc/change_phase, VILLAIN_PHASE_MORNING), VILLAIN_TIMER_RESULTS SECONDS, TIMER_STOPPABLE)
+
+/datum/villains_controller/proc/end_game(winner)
+	// Cancel any active timers
+	if(phase_timer)
+		deltimer(phase_timer)
+		phase_timer = null
+	
+	// Announce the winner
+	to_chat(world, span_boldannounce("\n=== GAME OVER ==="))
+	
+	// Find the villain for detailed stats
+	var/mob/living/simple_animal/hostile/villains_character/the_villain
+	for(var/mob/living/simple_animal/hostile/villains_character/player in all_players)
+		if(player.is_villain)
+			the_villain = player
+			break
+	
+	switch(winner)
+		if("villain")
+			to_chat(world, span_redtext("The villain has won the game!"))
+			if(the_villain)
+				to_chat(world, span_boldwarning("The villain was: [the_villain.name] playing as [the_villain.character_data?.name]"))
+		
+		if("abnormalities")
+			to_chat(world, span_greentext("The abnormalities have won the game!"))
+			if(the_villain)
+				to_chat(world, span_notice("The villain was: [the_villain.name] playing as [the_villain.character_data?.name]"))
+	
+	// Show game statistics
+	to_chat(world, span_boldnotice("\n=== GAME STATISTICS ==="))
+	
+	// Show final vote tallies
+	to_chat(world, span_notice("\nFinal Vote:"))
+	if(length(current_votes))
+		var/list/vote_summary = list()
+		for(var/mob/living/simple_animal/hostile/villains_character/voter in current_votes)
+			var/mob/living/simple_animal/hostile/villains_character/voted_for = current_votes[voter]
+			if(voter && voted_for)
+				vote_summary += "[voter.name] voted for [voted_for.name]"
+		for(var/vote in vote_summary)
+			to_chat(world, span_notice("• [vote]"))
+	else
+		to_chat(world, span_notice("No votes were cast in the final round."))
+	
+	// Show eliminations in order
+	to_chat(world, span_notice("\nElimination Order:"))
+	var/elim_count = 1
+	for(var/mob/living/simple_animal/hostile/villains_character/dead in dead_players)
+		var/death_type = dead.is_villain ? span_redtext(" (VILLAIN)") : ""
+		to_chat(world, span_notice("[elim_count]. [dead.name] ([dead.character_data?.name])[death_type]"))
+		elim_count++
+	
+	// Show final survivors
+	to_chat(world, span_notice("\nFinal Survivors:"))
+	for(var/mob/living/simple_animal/hostile/villains_character/survivor in living_players)
+		var/role = survivor.is_villain ? span_redtext(" (VILLAIN)") : span_greentext(" (INNOCENT)")
+		to_chat(world, span_notice("• [survivor.name] ([survivor.character_data?.name])[role]"))
+	
+	// Show villain's actions
+	if(the_villain && length(last_night_actions))
+		to_chat(world, span_notice("\nVillain's Night Actions:"))
+		var/night_num = 1
+		for(var/datum/villains_action/action in last_night_actions)
+			if(action.performer == the_villain)
+				to_chat(world, span_notice("• Night [night_num]: [action.name] on [action.target]"))
+				night_num++
+	
+	// Post-game discussion period
+	to_chat(world, span_boldnotice("\n=== POST-GAME DISCUSSION ==="))
+	to_chat(world, span_notice("The game has ended. Feel free to discuss!"))
+	to_chat(world, span_notice("The game area will be cleaned up in 3.5 minutes."))
+	
+	// Clean up after discussion period
+	addtimer(CALLBACK(src, .proc/cleanup_game), VILLAIN_TIMER_RESULTS SECONDS)
+	
+	// Reset game state immediately
+	current_phase = VILLAIN_PHASE_SETUP
+	game_active = FALSE
+	
+	// Reset all game state
+	GLOB.villains_signup.Cut()
+	selected_characters.Cut()
+	all_players.Cut()
+	living_players.Cut()
+	dead_players.Cut()
+	current_votes.Cut()
+	
+	// Announce that a new game can be started
+	to_chat(world, span_notice("\nA new game of Villains of the Night can now be started."))
 
 // Character selection procs
 /datum/villains_controller/proc/select_character(mob/user, character_id)
@@ -318,6 +625,9 @@
 
 	// Select villain
 	select_villain()
+
+	// Mark game as active
+	game_active = TRUE
 
 	// Start morning phase
 	change_phase(VILLAIN_PHASE_MORNING)
@@ -411,16 +721,269 @@
 		living_players -= victim
 		dead_players += victim
 		last_eliminated = victim.name
-
-		// Check if we need investigation phase
-		if(current_phase == VILLAIN_PHASE_NIGHTTIME)
-			change_phase(VILLAIN_PHASE_INVESTIGATION)
+		
+		// Don't change phase immediately - let process_night_actions handle it
+		// This ensures all actions are processed before moving to investigation
 
 // Helper procs
 /datum/villains_controller/proc/spawn_morning_items()
 	if(!villains_area)
 		return
-	spawned_items = spawn_villains_items(villains_area, 10)
+
+	// Categorize spawn locations for better distribution
+	var/list/main_room_spawns = list()
+	var/list/hallway_spawns = list()
+	var/list/room_spawns = list()
+	var/list/special_spawns = list()
+	
+	// Find all item spawn landmarks in the area
+	for(var/obj/effect/landmark/villains/item_spawn/L in GLOB.landmarks_list)
+		if(istype(get_area(L), villains_area))
+			special_spawns += L
+
+	// Get all valid turfs and categorize them
+	var/list/all_turfs = get_area_turfs(villains_area)
+	for(var/turf/T in all_turfs)
+		if(T.density || locate(/obj/structure) in T)
+			continue // Skip walls and structures
+			
+		var/area/A = get_area(T)
+		if(istype(A, /area/villains/main_room))
+			main_room_spawns += T
+		else if(istype(A, /area/villains/hallway))
+			hallway_spawns += T
+		else if(istype(A, /area/villains/player_room))
+			// Don't spawn items in player rooms during morning
+			continue
+		else
+			room_spawns += T
+
+	// Create distribution lists
+	var/list/common_spawns = list()
+	var/list/uncommon_spawns = list()
+	var/list/rare_spawns = list()
+	
+	// Distribute spawn points by rarity
+	// Commons go everywhere
+	common_spawns += main_room_spawns
+	common_spawns += hallway_spawns
+	common_spawns += room_spawns
+	
+	// Uncommons in hallways and special rooms
+	uncommon_spawns += hallway_spawns
+	uncommon_spawns += room_spawns
+	uncommon_spawns += special_spawns
+	
+	// Rares in special locations and far rooms
+	rare_spawns += special_spawns
+	rare_spawns += room_spawns
+	
+	// Spawn items based on rarity
+	spawned_items = list()
+	var/items_to_spawn = max(15, length(living_players) * 2) // Scale with player count
+	
+	// If it's a later morning phase (after first day), add more dangerous spawns
+	var/day_number = round(length(dead_players) / 2) + 1
+	if(day_number > 1)
+		// On later days, put some items in more dangerous locations
+		// This encourages risk-taking as the game progresses
+		var/list/dangerous_spawns = list()
+		
+		// Find spawns far from main room
+		if(main_room_center)
+			for(var/turf/T in all_turfs)
+				if(get_dist(T, main_room_center) > 15)
+					dangerous_spawns += T
+		
+		// Add dangerous spawns for uncommon and rare items
+		uncommon_spawns += dangerous_spawns
+		rare_spawns += dangerous_spawns
+		
+		// Increase item count on later days
+		items_to_spawn += (day_number - 1) * 3
+	
+	// Ensure minimum distance between spawns
+	var/list/used_spawns = list()
+	var/min_distance = 3 // Minimum 3 tiles between items
+	
+	// Determine item distribution
+	var/common_count = round(items_to_spawn * 0.5) // 50% common
+	var/uncommon_count = round(items_to_spawn * 0.35) // 35% uncommon
+	var/rare_count = items_to_spawn - common_count - uncommon_count // 15% rare
+	
+	// Spawn items by rarity
+	spawn_items_by_rarity(VILLAIN_ITEM_COMMON, common_count, common_spawns, used_spawns, min_distance)
+	spawn_items_by_rarity(VILLAIN_ITEM_UNCOMMON, uncommon_count, uncommon_spawns, used_spawns, min_distance)
+	spawn_items_by_rarity(VILLAIN_ITEM_RARE, rare_count, rare_spawns, used_spawns, min_distance)
+
+	// Announce spawn details
+	var/common_spawned = 0
+	var/uncommon_spawned = 0
+	var/rare_spawned = 0
+	
+	for(var/obj/item/villains/I in spawned_items)
+		switch(I.rarity)
+			if(VILLAIN_ITEM_COMMON)
+				common_spawned++
+			if(VILLAIN_ITEM_UNCOMMON)
+				uncommon_spawned++
+			if(VILLAIN_ITEM_RARE)
+				rare_spawned++
+	
+	to_chat(living_players, span_notice("<b>[length(spawned_items)] mysterious items have appeared!</b>"))
+	to_chat(living_players, span_notice("Common items: [common_spawned] | Uncommon items: [uncommon_spawned] | <b style='color:gold'>Rare items: [rare_spawned]</b>"))
+
+/datum/villains_controller/proc/spawn_items_by_rarity(rarity, count, list/possible_spawns, list/used_spawns, min_distance)
+	// Get all items of this rarity
+	var/list/items_of_rarity = list()
+	var/list/item_types = typesof(/obj/item/villains) - /obj/item/villains
+	
+	for(var/item_type in item_types)
+		var/obj/item/villains/I = item_type
+		if(initial(I.rarity) == rarity)
+			items_of_rarity += item_type
+	
+	if(!length(items_of_rarity) || !length(possible_spawns))
+		return
+	
+	// Track spawned item types to limit duplicates
+	var/list/spawned_types = list()
+	var/max_duplicates = 2 // Maximum 2 of the same item type
+	
+	// Spawn the items
+	for(var/i in 1 to count)
+		// Find a valid spawn location
+		var/turf/spawn_loc = find_valid_spawn(possible_spawns, used_spawns, min_distance)
+		if(!spawn_loc)
+			continue
+			
+		// Pick an item that hasn't reached duplicate limit
+		var/list/available_items = list()
+		for(var/item_type in items_of_rarity)
+			if(spawned_types[item_type] < max_duplicates)
+				available_items += item_type
+		
+		// If all items hit duplicate limit, reset
+		if(!length(available_items))
+			available_items = items_of_rarity
+			
+		var/item_type = pick(available_items)
+		var/obj/item/villains/new_item = new item_type(spawn_loc)
+		spawned_items += new_item
+		used_spawns += spawn_loc
+		spawned_types[item_type] = spawned_types[item_type] ? spawned_types[item_type] + 1 : 1
+		
+		// Add some visual feedback for rare items
+		if(rarity == VILLAIN_ITEM_RARE)
+			new_item.add_atom_colour("#FFD700", FIXED_COLOUR_PRIORITY) // Gold glow for rares
+			new_item.light_range = 2
+			new_item.light_power = 0.5
+			new_item.light_color = "#FFD700"
+
+/datum/villains_controller/proc/find_valid_spawn(list/possible_spawns, list/used_spawns, min_distance)
+	var/list/valid_spawns = list()
+	
+	for(var/turf/T in possible_spawns)
+		var/too_close = FALSE
+		for(var/turf/used in used_spawns)
+			if(get_dist(T, used) < min_distance)
+				too_close = TRUE
+				break
+		
+		if(!too_close)
+			valid_spawns += T
+	
+	if(!length(valid_spawns))
+		// If no valid spawns with distance, just use any available
+		valid_spawns = possible_spawns - used_spawns
+	
+	if(!length(valid_spawns))
+		return null
+		
+	return pick(valid_spawns)
+
+/datum/villains_controller/proc/pick_weighted_item()
+	// Build weighted list of all item types
+	var/list/weighted_items = list()
+	var/list/item_types = typesof(/obj/item/villains) - /obj/item/villains
+
+	for(var/item_type in item_types)
+		var/obj/item/villains/I = item_type
+		var/weight = initial(I.rarity)
+
+		switch(weight)
+			if(VILLAIN_ITEM_COMMON)
+				weight = 3
+			if(VILLAIN_ITEM_UNCOMMON)
+				weight = 2
+			if(VILLAIN_ITEM_RARE)
+				weight = 1
+			else
+				weight = 2 // Default to uncommon if not set
+
+		weighted_items[item_type] = weight
+
+	// Pick a random item based on weights
+	return pickweight(weighted_items)
+
+// Debug proc to visualize item spawn distribution
+/datum/villains_controller/proc/debug_show_spawn_distribution()
+	if(!check_rights(R_ADMIN))
+		return
+		
+	// Clear any existing markers
+	for(var/obj/effect/decal/cleanable/blood/gibs/G in villains_area)
+		if(G.name == "spawn marker")
+			qdel(G)
+	
+	// Show common spawn points in green
+	var/list/main_room_spawns = list()
+	var/list/hallway_spawns = list()
+	var/list/room_spawns = list()
+	var/list/special_spawns = list()
+	
+	// Find all item spawn landmarks
+	for(var/obj/effect/landmark/villains/item_spawn/L in GLOB.landmarks_list)
+		if(istype(get_area(L), villains_area))
+			special_spawns += get_turf(L)
+	
+	// Categorize turfs
+	var/list/all_turfs = get_area_turfs(villains_area)
+	for(var/turf/T in all_turfs)
+		if(T.density || locate(/obj/structure) in T)
+			continue
+			
+		var/area/A = get_area(T)
+		if(istype(A, /area/villains/main_room))
+			main_room_spawns += T
+		else if(istype(A, /area/villains/hallway))
+			hallway_spawns += T
+		else if(!istype(A, /area/villains/player_room))
+			room_spawns += T
+	
+	// Place colored markers
+	for(var/turf/T in main_room_spawns)
+		if(prob(10)) // Show 10% to avoid clutter
+			var/obj/effect/decal/cleanable/blood/gibs/marker = new(T)
+			marker.name = "spawn marker"
+			marker.desc = "Common spawn area (main room)"
+			marker.color = "#00FF00" // Green
+	
+	for(var/turf/T in hallway_spawns)
+		if(prob(20))
+			var/obj/effect/decal/cleanable/blood/gibs/marker = new(T)
+			marker.name = "spawn marker"
+			marker.desc = "Uncommon spawn area (hallway)"
+			marker.color = "#FFFF00" // Yellow
+	
+	for(var/turf/T in special_spawns)
+		var/obj/effect/decal/cleanable/blood/gibs/marker = new(T)
+		marker.name = "spawn marker"
+		marker.desc = "Rare spawn area (special)"
+		marker.color = "#FFD700" // Gold
+		marker.alpha = 200
+	
+	to_chat(usr, span_notice("Spawn distribution markers placed. Green=Common, Yellow=Uncommon, Gold=Rare"))
 
 
 /datum/villains_controller/proc/remove_unpicked_items()
@@ -458,16 +1021,16 @@
 	for(var/mob/living/simple_animal/hostile/villains_character/player in living_players)
 		if(player.soul_gather_target)
 			var/mob/living/simple_animal/hostile/villains_character/soul_target = player.soul_gather_target
-			
+
 			// Cancel and block item-based actions
 			if(soul_target.main_action && soul_target.main_action["type"] == "use_item")
 				to_chat(soul_target, span_warning("Your soul is being gathered... your item action fails!"))
 				soul_target.main_action = null
-			
+
 			if(soul_target.secondary_action && soul_target.secondary_action["type"] == "use_item")
 				to_chat(soul_target, span_warning("Your soul is being gathered... your secondary item action fails!"))
 				soul_target.secondary_action = null
-	
+
 	// Collect all submitted actions
 	for(var/mob/living/simple_animal/hostile/villains_character/player in living_players)
 		if(player.main_action)
@@ -505,7 +1068,7 @@
 						fairy_trade.priority = VILLAIN_ACTION_PRIORITY_LOW // Process after main action
 						action_queue.add_action(fairy_trade)
 						to_chat(player, span_notice("The Fairy Wine's magic activates, creating a Talk/Trade session with your target!"))
-				
+
 				action_queue.add_action(new_action)
 				// Track this action
 				last_night_actions += new_action
@@ -570,7 +1133,7 @@
 
 		// After all actions are processed
 		sleep(5 SECONDS)
-		
+
 		// Process investigative results
 		process_investigative_results()
 
@@ -587,25 +1150,25 @@
 		if(player.drain_monitor_target)
 			var/mob/living/simple_animal/hostile/villains_character/monitored = player.drain_monitor_target
 			var/list/targeters = list()
-			
+
 			if(action_targets[REF(monitored)])
 				for(var/list/action_data in action_targets[REF(monitored)])
 					var/mob/living/simple_animal/hostile/villains_character/performer = action_data["performer"]
 					if(performer && !(performer.name in targeters))
 						targeters += performer.name
-			
+
 			if(length(targeters))
 				to_chat(player, span_notice("Drain Monitor Results: The following players targeted [monitored]: [targeters.Join(", ")]."))
 			else
 				to_chat(player, span_notice("Drain Monitor Results: Nobody targeted [monitored]."))
-			
+
 			player.drain_monitor_target = null
-		
+
 		// Rangefinder - show what actions targeted someone
 		if(player.rangefinder_target)
 			var/mob/living/simple_animal/hostile/villains_character/targeted = player.rangefinder_target
 			var/list/action_list = list()
-			
+
 			if(action_targets[REF(targeted)])
 				for(var/list/action_data in action_targets[REF(targeted)])
 					var/mob/living/simple_animal/hostile/villains_character/performer = action_data["performer"]
@@ -616,41 +1179,41 @@
 							action_list += "[performer.name] used Talk/Trade"
 						else
 							action_list += "[performer.name] used [action.name]"
-			
+
 			if(length(action_list))
 				to_chat(player, span_notice("Rangefinder Results: The following actions targeted [targeted]: [action_list.Join(", ")]."))
 			else
 				to_chat(player, span_notice("Rangefinder Results: No actions targeted [targeted]."))
-			
+
 			player.rangefinder_target = null
-		
+
 		// Funeral Butterflies Guidance - show who visited someone (same as Drain Monitor)
 		if(player.guidance_target)
 			var/mob/living/simple_animal/hostile/villains_character/guided = player.guidance_target
 			var/list/visitors = list()
-			
+
 			if(action_targets[REF(guided)])
 				for(var/list/action_data in action_targets[REF(guided)])
 					var/mob/living/simple_animal/hostile/villains_character/performer = action_data["performer"]
 					if(performer && !(performer.name in visitors))
 						visitors += performer.name
-			
+
 			if(length(visitors))
 				to_chat(player, span_notice("Guidance Results: The following players visited [guided]: [visitors.Join(", ")]."))
 			else
 				to_chat(player, span_notice("Guidance Results: Nobody visited [guided]."))
-			
+
 			player.guidance_target = null
-		
+
 		// Hunter's Mark - notify if target used Suppressive/Elimination
 		if(player.marked_for_hunting)
 			var/mob/living/simple_animal/hostile/villains_character/hunted = player.marked_for_hunting
 			var/used_aggressive = FALSE
-			
+
 			for(var/datum/villains_action/action in last_night_actions)
 				if(action.performer == hunted)
 					var/action_category = VILLAIN_ACTION_TYPELESS
-					
+
 					if(action.action_type == "character_ability" && hunted.character_data)
 						action_category = hunted.character_data.active_ability_type
 					else if(action.action_type == "use_item")
@@ -659,32 +1222,32 @@
 							action_category = UI.used_item.action_type
 					else if(action.action_type == "eliminate")
 						action_category = VILLAIN_ACTION_ELIMINATION
-					
+
 					if(action_category == VILLAIN_ACTION_SUPPRESSIVE || action_category == VILLAIN_ACTION_ELIMINATION)
 						used_aggressive = TRUE
 						break
-			
+
 			if(used_aggressive)
 				to_chat(player, span_boldwarning("Hunter's Mark Alert: [hunted] used an aggressive action (Suppressive or Elimination)!"))
 			else
 				to_chat(player, span_notice("Hunter's Mark: [hunted] did not use any aggressive actions."))
-			
+
 			player.marked_for_hunting = null
-		
+
 		// Warden's Soul Gather - cancel item actions and steal items
 		if(player.soul_gather_target)
 			var/mob/living/simple_animal/hostile/villains_character/soul_target = player.soul_gather_target
 			var/list/stolen_items = list()
-			
+
 			// Check if target used any items
 			if(soul_target.main_action && soul_target.main_action["type"] == "use_item")
 				soul_target.main_action = null
 				to_chat(soul_target, span_warning("Your action was disrupted by dark forces!"))
-			
+
 			if(soul_target.secondary_action && soul_target.secondary_action["type"] == "use_item")
 				soul_target.secondary_action = null
 				to_chat(soul_target, span_warning("Your secondary action was disrupted by dark forces!"))
-			
+
 			// Steal all items they used
 			for(var/datum/villains_action/action in last_night_actions)
 				if(action.performer == soul_target && action.action_type == "use_item")
@@ -694,19 +1257,19 @@
 						stolen_items += UI.used_item.name
 						if(UI.used_item.freshness == VILLAIN_ITEM_FRESH && (UI.used_item in soul_target.fresh_items))
 							soul_target.fresh_items -= UI.used_item
-			
+
 			if(length(stolen_items))
 				to_chat(player, span_boldnotice("Soul Gather successful! You stole: [stolen_items.Join(", ")]"))
 				to_chat(soul_target, span_userdanger("Your items have been stolen by [player]!"))
 			else
 				to_chat(player, span_notice("Soul Gather: [soul_target] did not use any items."))
-			
+
 			player.soul_gather_target = null
-		
+
 		// Blue Shepherd's False Prophet
 		if(player.false_prophet_used)
 			var/revealed_action = null
-			
+
 			// 20% chance to show random player's action instead of villain's
 			if(prob(20))
 				// Show a random player's action
@@ -719,40 +1282,40 @@
 				// Show villain's action
 				if(current_villain && current_villain.main_action)
 					revealed_action = "[current_villain]'s action: [get_action_description(current_villain.main_action, current_villain)]"
-			
+
 			if(revealed_action)
 				to_chat(player, span_boldnotice("False Prophet Vision: [revealed_action]"))
 			else
 				to_chat(player, span_notice("False Prophet Vision: The villain took no action."))
-			
+
 			player.false_prophet_used = FALSE
-		
+
 		// Butterfly Guide - show who visited target (Sunset Traveller)
 		if(player.butterfly_guide_target)
 			var/mob/living/simple_animal/hostile/villains_character/butterfly_target = player.butterfly_guide_target
 			var/list/visitors = list()
-			
+
 			if(action_targets[REF(butterfly_target)])
 				for(var/list/action_data in action_targets[REF(butterfly_target)])
 					var/mob/living/simple_animal/hostile/villains_character/performer = action_data["performer"]
 					if(performer && !(performer.name in visitors))
 						visitors += performer.name
-			
+
 			if(length(visitors))
 				to_chat(player, span_notice("Butterfly Guide Results: The following players visited [butterfly_target]: [visitors.Join(", ")]."))
 			else
 				to_chat(player, span_notice("Butterfly Guide Results: Nobody visited [butterfly_target]."))
-			
+
 			player.butterfly_guide_target = null
-		
+
 		// Forsaken Murderer's Paranoid - count who targeted them
 		if(player.character_data?.character_id == VILLAIN_CHAR_FORSAKENMURDER)
 			var/targeters_count = 0
-			
+
 			if(action_targets[REF(player)])
 				for(var/list/action_data in action_targets[REF(player)])
 					targeters_count++
-			
+
 			if(targeters_count > 0)
 				to_chat(player, span_boldnotice("Paranoid: [targeters_count] player\s targeted you last night!"))
 			else
@@ -761,11 +1324,11 @@
 /datum/villains_controller/proc/get_action_description(list/action_data, mob/living/simple_animal/hostile/villains_character/performer)
 	if(!action_data)
 		return "no action"
-	
+
 	var/action_type = action_data["type"]
 	var/target_ref = action_data["target"]
 	var/mob/living/simple_animal/hostile/villains_character/target = locate(target_ref)
-	
+
 	switch(action_type)
 		if("talk_trade")
 			return "Talk/Trade with [target ? target.name : "unknown"]"
@@ -790,24 +1353,83 @@
 	if(!villains_area)
 		return
 
-	// Get all turfs in the area
-	var/list/available_turfs = list()
+	// Get only hallway turfs that are open and accessible
+	var/list/hallway_turfs = list()
+	var/list/used_turfs = list() // Track used turfs to prevent overlap
+	
 	for(var/turf/T in get_area_turfs(villains_area))
+		// Skip dense turfs (walls)
 		if(T.density)
 			continue
-		available_turfs += T
+		
+		// Skip turfs with blocking structures
+		var/has_blocking = FALSE
+		for(var/obj/O in T.contents)
+			if(O.density && !(istype(O, /obj/machinery/door))) // Allow doors
+				has_blocking = TRUE
+				break
+		if(has_blocking)
+			continue
+			
+		var/area/A = get_area(T)
+		if(istype(A, /area/villains/hallway))
+			hallway_turfs += T
 
-	// Scatter all used items
+	var/list/all_evidence_items = list()
+	var/list/evidence_info = list()
+	
+	// Collect all used items
 	for(var/obj/item/villains/I in used_items)
-		if(!length(available_turfs))
-			break
+		all_evidence_items += I
+		evidence_info += "[I.name] (used during night)"
+		
+	// Collect items from eliminated player
+	if(last_eliminated)
+		for(var/mob/living/simple_animal/hostile/villains_character/victim in dead_players)
+			if(victim.name == last_eliminated)
+				// Get all items from the victim
+				for(var/obj/item/villains/I in victim.contents)
+					I.forceMove(victim.loc) // Drop at death location first
+					all_evidence_items += I
+					evidence_info += "[I.name] (held by [victim.name])"
+				break
+				
+	// Track all items that were dropped or moved during the night
+	for(var/obj/item/villains/I in world)
+		if(!istype(get_area(I), villains_area))
+			continue
+		if(I in all_evidence_items)
+			continue
+		if(I.freshness == VILLAIN_ITEM_USED || !ismob(I.loc))
+			all_evidence_items += I
+			evidence_info += "[I.name] (found at scene)"
 
-		var/turf/spawn_turf = pick_n_take(available_turfs)
-		I.forceMove(spawn_turf)
+	// Scatter evidence items only in hallways, ensuring no overlap
+	for(var/obj/item/villains/I in all_evidence_items)
+		if(!length(hallway_turfs))
+			// If we run out of hallway space, send directly to main room
+			if(main_room_center)
+				I.forceMove(main_room_center)
+			else
+				break
+		else
+			// Find a turf that hasn't been used yet
+			var/turf/spawn_turf = pick(hallway_turfs)
+			hallway_turfs -= spawn_turf
+			used_turfs += spawn_turf
+			
+			I.forceMove(spawn_turf)
+		
+		// Mark as evidence
 		I.freshness = VILLAIN_ITEM_USED
 		I.update_outline()
-
-	to_chat(living_players, span_notice("Used items have been scattered around the facility as evidence."))
+		// Make items non-pickupable evidence
+		I.is_evidence = TRUE
+		
+	// Store evidence list for display
+	evidence_list = evidence_info
+	
+	to_chat(living_players, span_notice("Evidence has been scattered throughout the hallways. [length(all_evidence_items)] items found."))
 
 /datum/villains_controller/proc/teleport_to_main_room()
 	if(!main_room_center)
@@ -825,8 +1447,80 @@
 	for(var/mob/living/simple_animal/hostile/villains_character/player in living_players)
 		player.forceMove(main_room_center)
 
+/datum/villains_controller/proc/get_random_open_turf_in_main_room()
+	var/list/open_turfs = list()
+	
+	// Get all turfs in the main room area
+	for(var/turf/T in world)
+		var/area/A = get_area(T)
+		if(!istype(A, /area/villains/main_room))
+			continue
+			
+		// Skip dense turfs (walls)
+		if(T.density)
+			continue
+			
+		// Skip turfs with blocking structures
+		var/has_blocking = FALSE
+		for(var/obj/O in T.contents)
+			if(O.density && !istype(O, /obj/machinery/door))
+				has_blocking = TRUE
+				break
+		
+		if(!has_blocking)
+			open_turfs += T
+	
+	if(length(open_turfs))
+		return pick(open_turfs)
+	
+	// Fallback to main room center if no open turfs found
+	return main_room_center
+
 /datum/villains_controller/proc/tally_votes()
-	// TODO: Count votes and determine results
+	// Count votes for each player
+	var/list/vote_counts = list()
+	var/highest_votes = 0
+	var/list/tied_players = list()
+	
+	// Tally up the votes
+	for(var/mob/living/simple_animal/hostile/villains_character/voted_for in current_votes)
+		if(!(voted_for in vote_counts))
+			vote_counts[voted_for] = 0
+		vote_counts[voted_for]++
+		
+		if(vote_counts[voted_for] > highest_votes)
+			highest_votes = vote_counts[voted_for]
+			tied_players = list(voted_for)
+		else if(vote_counts[voted_for] == highest_votes)
+			tied_players += voted_for
+	
+	// Announce vote results
+	to_chat(world, span_boldnotice("\n=== VOTING RESULTS ==="))
+	
+	// Show each player's vote count
+	for(var/mob/living/simple_animal/hostile/villains_character/player in living_players)
+		var/votes = vote_counts[player] || 0
+		if(votes > 0)
+			to_chat(world, span_notice("[player.name]: [votes] vote[votes == 1 ? "" : "s"]"))
+	
+	// Handle the results
+	if(highest_votes == 0)
+		to_chat(world, span_notice("No votes were cast. No one will be eliminated."))
+		return null
+	
+	if(tied_players.len > 1)
+		// Handle ties - for now, no elimination on ties
+		to_chat(world, span_warning("There is a tie! No one will be eliminated."))
+		var/tie_text = "Tied players: "
+		for(var/mob/living/simple_animal/hostile/villains_character/tied in tied_players)
+			tie_text += "[tied.name] "
+		to_chat(world, span_notice(tie_text))
+		return null
+	
+	// Single player with most votes
+	var/mob/living/simple_animal/hostile/villains_character/eliminated = tied_players[1]
+	to_chat(world, span_userdanger("\n[eliminated.name] has received the most votes and will be eliminated!"))
+	return eliminated
 
 // Room management procs
 /datum/villains_controller/proc/setup_rooms()
@@ -1140,6 +1834,35 @@
 			"voting",
 			"results"
 		)
+	
+	// Investigation phase data
+	if(current_phase == VILLAIN_PHASE_INVESTIGATION || current_phase == VILLAIN_PHASE_ALIBI)
+		data["evidence_list"] = evidence_list
+	
+	// Alibi phase data
+	if(current_phase == VILLAIN_PHASE_ALIBI)
+		if(current_speaker)
+			data["current_speaker"] = list(
+				"name" = current_speaker.name,
+				"ref" = REF(current_speaker)
+			)
+		
+		// Build the speaking queue
+		var/list/speaking_queue = list()
+		for(var/i in alibi_index + 1 to length(alibi_queue))
+			var/mob/living/simple_animal/hostile/villains_character/queued = alibi_queue[i]
+			if(queued in living_players)
+				speaking_queue += list(list(
+					"name" = queued.name,
+					"position" = i - alibi_index
+				))
+		data["alibi_queue"] = speaking_queue
+		
+		// Time remaining for current speaker
+		if(alibi_timer)
+			var/time_left = timeleft(alibi_timer)
+			if(time_left > 0)
+				data["alibi_time_remaining"] = round(time_left / 10) // Convert to seconds
 
 	return data
 
@@ -1568,7 +2291,7 @@
 		all_players += new_mob
 		living_players += new_mob
 		player_role_lookup[new_mob] = character
-		
+
 		// Update fake_players list with actual ckey (in case BYOND modified it)
 		if(new_mob.ckey != fake_ckey)
 			fake_players -= fake_ckey
@@ -1577,7 +2300,7 @@
 			GLOB.villains_signup -= fake_ckey
 			GLOB.villains_signup += new_mob.ckey
 			selected_characters[character_id] = new_mob.ckey
-		
+
 		to_chat(world, span_adminnotice("DEBUG: Created fake player [new_mob.name] with ckey [new_mob.ckey]"))
 
 		// Assign room
@@ -1617,6 +2340,7 @@
 	var/list/item_types = typesof(/obj/item/villains) - /obj/item/villains - /obj/item/villains/fairy_wine
 	var/spawned = 0
 
+	// Spawn one of each item for testing
 	for(var/item_type in item_types)
 		if(!length(spawn_points))
 			break
@@ -1624,6 +2348,18 @@
 		var/obj/item/villains/I = new item_type(get_turf(spawn_loc))
 		spawned_items += I
 		spawned++
+
+		// Show rarity in debug message
+		var/rarity_text = "UNKNOWN"
+		switch(I.rarity)
+			if(VILLAIN_ITEM_COMMON)
+				rarity_text = "COMMON"
+			if(VILLAIN_ITEM_UNCOMMON)
+				rarity_text = "UNCOMMON"
+			if(VILLAIN_ITEM_RARE)
+				rarity_text = "RARE"
+
+		to_chat(world, span_notice("DEBUG: Spawned [I.name] ([rarity_text])"))
 
 	to_chat(world, span_notice("DEBUG: Spawned [spawned] different item types at landmark locations."))
 	return spawned
@@ -1661,7 +2397,7 @@
 
 /datum/villains_controller/proc/simulate_fake_player_actions()
 	var/actions_submitted = 0
-	
+
 	for(var/mob/living/simple_animal/hostile/villains_character/player in living_players)
 		if(!(player.ckey in fake_players))
 			continue
@@ -1670,12 +2406,12 @@
 		var/list/possible_actions = list("talk_trade")
 		var/action_type
 		var/action_data
-		
+
 		if(player.character_data?.active_ability_name)
 			possible_actions += "character_ability"
 		if(player.is_villain)
 			possible_actions += "eliminate"
-			
+
 		// Add item actions
 		for(var/obj/item/villains/I in player.contents)
 			if(I.action_cost == VILLAIN_ACTION_MAIN)
@@ -1683,7 +2419,7 @@
 
 		var/action_choice = pick(possible_actions)
 		var/mob/living/simple_animal/hostile/villains_character/target = pick(living_players - player)
-		
+
 		// Convert action choice to action type
 		if(action_choice == "talk_trade")
 			action_type = "talk_trade"
@@ -1699,33 +2435,33 @@
 				if(I.name == item_name)
 					action_data = REF(I)
 					break
-		
+
 		// Set the action on the player mob (same format as UI)
 		player.main_action = list(
 			"type" = action_type,
 			"target" = REF(target),
 			"data" = action_data
 		)
-		
+
 		// Check for secondary action items
 		var/list/secondary_items = list()
 		for(var/obj/item/villains/I in player.contents)
 			if(I.action_cost == VILLAIN_ACTION_SECONDARY)
 				secondary_items += I
-		
+
 		// 50% chance to use a secondary action if available
 		if(length(secondary_items) && prob(50))
 			var/obj/item/villains/sec_item = pick(secondary_items)
 			var/mob/living/simple_animal/hostile/villains_character/sec_target = pick(living_players - player)
-			
+
 			player.secondary_action = list(
 				"type" = "use_item",
 				"target" = REF(sec_target),
 				"data" = REF(sec_item)
 			)
-			
+
 			to_chat(world, span_adminnotice("DEBUG: [player.name] will also use [sec_item.name] on [sec_target.name] (secondary)"))
-		
+
 		actions_submitted++
 		to_chat(world, span_adminnotice("DEBUG: [player.name] will [action_choice] targeting [target.name]"))
 
@@ -1759,18 +2495,18 @@
 /datum/villains_controller/proc/give_items_to_fake_players()
 	var/list/item_types = typesof(/obj/item/villains) - /obj/item/villains - /obj/item/villains/fairy_wine
 	var/items_given = 0
-	
+
 	to_chat(world, span_adminnotice("DEBUG: Starting give_items_to_fake_players"))
 	to_chat(world, span_adminnotice("DEBUG: fake_players list: [fake_players.Join(", ")]"))
 	to_chat(world, span_adminnotice("DEBUG: living_players count: [length(living_players)]"))
 
 	for(var/mob/living/simple_animal/hostile/villains_character/player in living_players)
 		to_chat(world, span_adminnotice("DEBUG: Checking player [player.name] (ckey: [player.ckey])"))
-		
+
 		if(!(player.ckey in fake_players))
 			to_chat(world, span_adminnotice("DEBUG: [player.name] is not a fake player, skipping"))
 			continue
-			
+
 		to_chat(world, span_adminnotice("DEBUG: [player.name] is a fake player, giving items"))
 
 		// Give 2-3 random items to each fake player
@@ -1861,26 +2597,26 @@
 	)
 
 	to_chat(admin, span_adminnotice("Set [fake_player.name] to perform [chosen_action] on [chosen_target.name]"))
-	
+
 	// Ask about secondary action
 	var/list/secondary_choices = list("No Secondary Action")
-	
+
 	// Check for secondary action items
 	for(var/obj/item/villains/I in fake_player.contents)
 		if(I.action_cost == VILLAIN_ACTION_SECONDARY)
 			secondary_choices += "Use [I.name]"
-	
+
 	// Check for secondary ability
 	if(fake_player.character_data?.active_ability_cost == VILLAIN_ACTION_SECONDARY)
 		secondary_choices += "Character Ability"
-	
+
 	if(length(secondary_choices) > 1)
 		var/chosen_secondary = input(admin, "Select secondary action for [fake_player.name] (optional)", "Control Secondary Action") as null|anything in secondary_choices
-		
+
 		if(chosen_secondary && chosen_secondary != "No Secondary Action")
 			var/sec_action_type
 			var/sec_action_data
-			
+
 			if(chosen_secondary == "Character Ability")
 				sec_action_type = "character_ability"
 			else if(findtext(chosen_secondary, "Use "))
@@ -1891,20 +2627,20 @@
 					if(I.name == item_name && I.action_cost == VILLAIN_ACTION_SECONDARY)
 						sec_action_data = REF(I)
 						break
-			
+
 			if(sec_action_type)
 				// Get target for secondary action
 				var/mob/living/simple_animal/hostile/villains_character/sec_target = input(admin, "Select target for secondary action", "Control Secondary Target") as null|anything in target_choices
-				
+
 				if(sec_target)
 					fake_player.secondary_action = list(
 						"type" = sec_action_type,
 						"target" = REF(sec_target),
 						"data" = sec_action_data
 					)
-					
+
 					to_chat(admin, span_adminnotice("Also set [fake_player.name] to perform [chosen_secondary] on [sec_target.name] (secondary)"))
-	
+
 	to_chat(world, span_adminnotice("DEBUG: Admin [admin] controlled [fake_player.name] to [chosen_action] targeting [chosen_target.name]"))
 
 /datum/villains_controller/proc/reveal_last_night_actions(mob/admin)
@@ -2003,6 +2739,70 @@
 		spawned += I
 
 	return spawned
+
+// Trade and contract tracking
+/datum/villains_controller/proc/record_trade(mob/living/simple_animal/hostile/villains_character/trader1, mob/living/simple_animal/hostile/villains_character/trader2, list/items1, list/items2)
+	var/datum/villains_trade_record/record = new()
+	record.phase = current_phase
+	record.trader1 = trader1.name
+	record.trader2 = trader2.name
+	record.timestamp = world.time
+	
+	// Record items traded
+	for(var/item_ref in items1)
+		var/obj/item/villains/I = locate(item_ref)
+		if(I)
+			record.items_from_trader1 += I.name
+	
+	for(var/item_ref in items2)
+		var/obj/item/villains/I = locate(item_ref)
+		if(I)
+			record.items_from_trader2 += I.name
+	
+	trade_history += record
+	
+	// Log for admins
+	log_game("VILLAINS: Trade between [trader1] and [trader2]. [trader1] gave: [record.items_from_trader1.Join(", ")]. [trader2] gave: [record.items_from_trader2.Join(", ")]")
+
+/datum/villains_controller/proc/record_contract(mob/living/simple_animal/hostile/villains_character/offerer, mob/living/simple_animal/hostile/villains_character/target, contract_type, status)
+	var/datum/villains_contract_record/record = new()
+	record.phase = current_phase
+	record.offerer = offerer.name
+	record.target = target.name
+	record.contract_type = contract_type
+	record.status = status // "accepted", "declined", "completed"
+	record.timestamp = world.time
+	
+	contract_history += record
+	
+	// Log for admins
+	log_game("VILLAINS: Contract [contract_type] from [offerer] to [target] was [status]")
+
+// Trade record datum
+/datum/villains_trade_record
+	var/phase
+	var/trader1
+	var/trader2
+	var/list/items_from_trader1 = list()
+	var/list/items_from_trader2 = list()
+	var/timestamp
+
+/datum/villains_trade_record/proc/get_summary()
+	var/t1_items = length(items_from_trader1) ? items_from_trader1.Join(", ") : "nothing"
+	var/t2_items = length(items_from_trader2) ? items_from_trader2.Join(", ") : "nothing"
+	return "[trader1] traded [t1_items] with [trader2] for [t2_items]"
+
+// Contract record datum
+/datum/villains_contract_record
+	var/phase
+	var/offerer
+	var/target
+	var/contract_type
+	var/status
+	var/timestamp
+
+/datum/villains_contract_record/proc/get_summary()
+	return "[offerer] offered [contract_type] contract to [target] - [status]"
 
 // Global proc to create a new game
 /proc/create_villains_game()

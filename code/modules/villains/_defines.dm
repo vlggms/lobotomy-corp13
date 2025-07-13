@@ -51,6 +51,11 @@
 #define VILLAIN_ITEM_FRESH "fresh"
 #define VILLAIN_ITEM_USED "used"
 
+// Item rarity
+#define VILLAIN_ITEM_COMMON 1
+#define VILLAIN_ITEM_UNCOMMON 2
+#define VILLAIN_ITEM_RARE 3
+
 // Signals
 #define COMSIG_VILLAIN_PHASE_CHANGE "dangan_phase_change"
 #define COMSIG_VILLAIN_ACTION_PERFORMED "dangan_action_performed"
@@ -71,7 +76,7 @@
 #define VILLAIN_TIMER_DISCUSSION_MIN 480 // 8 minutes
 #define VILLAIN_TIMER_DISCUSSION_MAX 840 // 14 minutes
 #define VILLAIN_TIMER_VOTING 60 // 1 minute
-#define VILLAIN_TIMER_RESULTS 60 // 1 minute
+#define VILLAIN_TIMER_RESULTS 210 // 3.5 minutes for post-game discussion
 
 // Victory points
 #define VILLAIN_VICTORY_CORRECT_VOTE 1

@@ -87,3 +87,4 @@
 		return FALSE
 	var/area/A = get_area(owner)
 	return (A == room_area)
+

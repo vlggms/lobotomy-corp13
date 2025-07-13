@@ -151,44 +151,60 @@
 	// Create trading session
 	var/datum/villains_trade_session/session = new(U, T)
 	
+	// Store that this is a cleaning session for later
+	U.cleaning_target = T
+	
 	// Wait for 2 minutes
 	sleep(2 MINUTES)
 	
-	// End the trade and steal an item
-	if(session)
+	// End the trade session
+	if(session && session.active)
 		session.end_session()
 	
 	// Clear trading status
 	U.trading_with = null
 	T.trading_with = null
 	
-	// Steal a random item
-	var/list/stealable_items = list()
-	for(var/obj/item/villains/I in T.contents)
-		stealable_items += I
-	
-	if(length(stealable_items))
-		var/obj/item/villains/stolen_item = pick(stealable_items)
-		stolen_item.forceMove(U)
+	// Steal a random item after the trade
+	if(U.cleaning_target == T)
+		U.cleaning_target = null
 		
-		// Update fresh item tracking
-		if(stolen_item.freshness == VILLAIN_ITEM_FRESH && (stolen_item in T.fresh_items))
-			T.fresh_items -= stolen_item
+		// Get stealable items from target
+		var/list/stealable_items = list()
+		for(var/obj/item/villains/I in T.contents)
+			stealable_items += I
 		
-		to_chat(user, span_notice("While cleaning, you pocket [stolen_item]!"))
-		to_chat(target, span_warning("After [user] leaves, you notice your [stolen_item] is missing!"))
-	else
-		to_chat(user, span_notice("You couldn't find anything to take while cleaning."))
-	
-	// Return to own room
-	if(U.assigned_room)
-		U.assigned_room.teleport_owner_to_room()
+		if(length(stealable_items))
+			var/obj/item/villains/stolen = pick(stealable_items)
+			
+			// Handle fresh items tracking
+			if(stolen.freshness == VILLAIN_ITEM_FRESH && (stolen in T.fresh_items))
+				T.fresh_items -= stolen
+			
+			// Move the item
+			stolen.forceMove(U)
+			
+			// Notifications
+			to_chat(U, span_boldnotice("While cleaning, you secretly pocket [stolen]!"))
+			to_chat(T, span_warning("After [U] leaves, you notice your [stolen] is missing!"))
+			
+			// Return players to their rooms
+			if(U.assigned_room)
+				U.assigned_room.teleport_owner_to_room()
+		else
+			to_chat(U, span_notice("You finish cleaning but find nothing to take."))
+			to_chat(T, span_notice("[U] finishes cleaning your room."))
+			
+			// Return cleaner to their room
+			if(U.assigned_room)
+				U.assigned_room.teleport_owner_to_room()
 	
 	return TRUE
 
 /datum/villains_character/all_round_cleaner/on_phase_change(phase, mob/living/user, datum/villains_controller/game)
-	if(phase == VILLAIN_PHASE_INVESTIGATION && istype(user, /mob/living/simple_animal/hostile/villains_character))
-		// Night Cleaner passive - gain a random used item
+	// Night Cleaner passive triggers after nighttime phase ends (either investigation or morning)
+	if((phase == VILLAIN_PHASE_INVESTIGATION || phase == VILLAIN_PHASE_MORNING) && istype(user, /mob/living/simple_animal/hostile/villains_character))
+		// Only trigger if we're coming from nighttime (check if there are used items)
 		if(length(game.used_items))
 			var/list/item_types = list()
 			for(var/obj/item/villains/I in game.used_items)
@@ -361,13 +377,13 @@
 	var/mob/living/simple_animal/hostile/villains_character/T = target
 	
 	// Check if they have an elimination contract
-	if(!U.elimination_contract)
-		to_chat(user, span_warning("You need an Elimination Contract before you can use Magic Bullet!"))
+	if(!U.elimination_contract || !U.contract_target)
+		to_chat(user, span_warning("You need an active Elimination Contract before you can use Magic Bullet!"))
 		return FALSE
 	
-	// Check if target matches the contract
-	if(U.elimination_contract != T)
-		to_chat(user, span_warning("Your Elimination Contract is for [U.elimination_contract], not [target]!"))
+	// Check if target matches the contract target
+	if(U.contract_target != T)
+		to_chat(user, span_warning("Your target is [U.contract_target.name], not [target]!"))
 		return FALSE
 	
 	// Check for protection
@@ -379,17 +395,34 @@
 	to_chat(user, span_userdanger("Your magic bullet finds its mark! You eliminate [target]!"))
 	to_chat(target, span_userdanger("A magic bullet pierces through you! You have been eliminated by [user]!"))
 	
-	game.handle_death(T)
-	game.last_eliminated = T.name
+	// Public announcement
+	for(var/mob/living/simple_animal/hostile/villains_character/player in game.living_players)
+		if(player != user && player != target)
+			to_chat(player, span_boldannounce("[target] was eliminated by a Magic Bullet!"))
+	
+	// Handle death
+	T.death()
+	
+	// Transfer villain status to contract holder
+	var/mob/living/simple_animal/hostile/villains_character/contract_holder = U.elimination_contract
+	if(contract_holder && contract_holder.stat != DEAD)
+		// Remove villain status from current villain
+		if(game.current_villain)
+			game.current_villain.is_villain = FALSE
+		
+		// Give villain status to contract holder
+		contract_holder.is_villain = TRUE
+		game.current_villain = contract_holder
+		to_chat(contract_holder, span_userdanger("With the elimination complete, you have become the villain!"))
+		to_chat(contract_holder, span_boldnotice("You must eliminate all other players or remain hidden to win!"))
 	
 	// Clear the contract after use
 	U.elimination_contract = null
+	U.contract_target = null
 	
 	// Change win condition for Der Freischütz
 	U.win_condition = "survive"
-	U.is_villain = FALSE // No longer counts as villain for win purposes
-	to_chat(user, span_boldnotice("Your contract is fulfilled. Your new goal is to survive until the end."))
-	to_chat(user, span_warning("You are no longer the villain and cannot win by elimination."))
+	to_chat(user, span_boldnotice("Your contract is fulfilled. You must now help the new villain avoid detection."))
 	
 	return TRUE
 
