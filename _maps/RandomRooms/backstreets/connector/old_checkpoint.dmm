@@ -1,0 +1,672 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"ao" = (
+/obj/effect/wall_vent,
+/turf/closed/wall/mineral/iron{
+	opacity = 0
+	},
+/area/city/backstreets_room)
+"az" = (
+/obj/structure/chair{
+	dir = 8
+	},
+/obj/structure/sign/poster/official/random{
+	pixel_x = 32
+	},
+/turf/open/floor/stone,
+/area/city/backstreets_room)
+"cY" = (
+/obj/effect/decal/cleanable/blood/footprints,
+/obj/machinery/door/poddoor/shutters/indestructible{
+	id = "old_checkpoint1";
+	autoclose = 1;
+	name = "cargo room 1552"
+	},
+/obj/structure/sigsystem/activator,
+/turf/open/floor/stone,
+/area/city/backstreets_room)
+"dL" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/sign/poster/official/random{
+	pixel_x = 13;
+	pixel_y = 32
+	},
+/turf/open/floor/stone,
+/area/city/backstreets_room)
+"eD" = (
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/stone,
+/area/city/backstreets_room)
+"eI" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/closed/indestructible/reinforced,
+/area/city/backstreets_room)
+"fu" = (
+/obj/structure/chair{
+	dir = 8
+	},
+/turf/open/floor/stone,
+/area/city/backstreets_room)
+"gQ" = (
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/wood,
+/area/city/backstreets_room)
+"iJ" = (
+/obj/structure/closet/crate/sigsystem{
+	name = "contraband crate"
+	},
+/obj/effect/decal/cleanable/blood/footprints{
+	dir = 8
+	},
+/obj/effect/spawner/lootdrop/chaotic_random,
+/turf/open/floor/stone,
+/area/city/backstreets_room)
+"jJ" = (
+/obj/machinery/door/poddoor/shutters/indestructible{
+	id = "old_checkpoint2";
+	autoclose = 1;
+	name = "checkpoint entry 1234"
+	},
+/obj/structure/sigsystem/activator,
+/turf/open/floor/stone,
+/area/city/backstreets_room)
+"kl" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/stone,
+/area/city/backstreets_room)
+"lm" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/sigsystem/tower/button{
+	signal_range = 2;
+	signal_code = 11;
+	pixel_y = -27
+	},
+/turf/open/floor/stone,
+/area/city/backstreets_room)
+"oD" = (
+/turf/closed/wall/mineral/iron,
+/area/city/backstreets_room)
+"qq" = (
+/obj/structure/seed_grinder,
+/turf/open/floor/wood,
+/area/city/backstreets_room)
+"rp" = (
+/obj/effect/decal/cleanable/blood/footprints{
+	dir = 8
+	},
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/stone,
+/area/city/backstreets_room)
+"rL" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/item/reagent_containers/glass/rag,
+/turf/open/floor/stone,
+/area/city/backstreets_room)
+"sH" = (
+/obj/structure/sigsystem/tower/keypad{
+	pixel_y = 24;
+	signal_code = 11;
+	signal_range = 2
+	},
+/turf/open/floor/stone,
+/area/city/backstreets_room)
+"to" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/table/wood,
+/obj/structure/lootcrate/zwei{
+	pixel_y = 6
+	},
+/turf/open/floor/stone,
+/area/city/backstreets_room)
+"us" = (
+/obj/structure/table/wood,
+/obj/item/flashlight/lantern{
+	on = 1
+	},
+/turf/open/floor/stone,
+/area/city/backstreets_room)
+"xh" = (
+/obj/structure/sigsystem/tower/keypad{
+	dir = 1;
+	pixel_y = -23;
+	signal_code = 11;
+	signal_range = 2;
+	code_soln = "1552"
+	},
+/turf/open/floor/stone,
+/area/city/backstreets_room)
+"xx" = (
+/obj/machinery/door/airlock/public,
+/turf/open/floor/stone,
+/area/city/backstreets_room)
+"yk" = (
+/obj/item/paper/crumpled{
+	info = "Cargo Office: 1552<br>Remember to change south gate password from the door name.";
+	name = "Checkpoint Gaurd Note"
+	},
+/turf/open/floor/stone,
+/area/city/backstreets_room)
+"yp" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/chair{
+	dir = 8
+	},
+/turf/open/floor/stone,
+/area/city/backstreets_room)
+"zi" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/stone,
+/area/city/backstreets_room)
+"zw" = (
+/obj/structure/window,
+/obj/effect/decal/cleanable/dirt,
+/obj/item/kirbyplants/photosynthetic,
+/turf/open/floor/wood,
+/area/city/backstreets_room)
+"zI" = (
+/turf/open/floor/plating/asteroid/basalt,
+/area/city/backstreets_room)
+"Af" = (
+/turf/open/floor/stone,
+/area/city/backstreets_room)
+"AF" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/chair/stool/bar{
+	pixel_x = 5
+	},
+/obj/structure/sigsystem/tower/button{
+	signal_range = 2;
+	signal_code = 11;
+	pixel_y = 25
+	},
+/obj/structure/sigsystem/tower/button{
+	signal_range = 5;
+	signal_code = 22;
+	pixel_y = -32;
+	pixel_x = 32
+	},
+/turf/open/floor/stone,
+/area/city/backstreets_room)
+"AJ" = (
+/obj/effect/decal/cleanable/oil,
+/obj/item/paper/crumpled{
+	info = "Orders for today<br>Anyone arriving from the southern district need paper and stamps from Administration.<br>Those arriving from the north must pay a toll before entering.<br> ~Glory to the Checkpoint~";
+	name = "Checkpoint Checklist"
+	},
+/turf/open/floor/stone,
+/area/city/backstreets_room)
+"Co" = (
+/obj/effect/decal/cleanable/glass,
+/obj/effect/decal/cleanable/blood/old,
+/obj/effect/decal/cleanable/blood/gibs/down,
+/turf/open/floor/stone,
+/area/city/backstreets_room)
+"Cy" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/closed/wall/mineral/iron,
+/area/city/backstreets_room)
+"CJ" = (
+/obj/structure/sigsystem/deployer{
+	spawn_flavor_text = "emerges from the crate";
+	atom_rename = "checkpoint killer";
+	atom_path = /mob/living/simple_animal/hostile/humanoid/blood/fiend;
+	spawn_dist_x = 1;
+	name = "mechanism"
+	},
+/turf/closed/indestructible/reinforced,
+/area/city/backstreets_room)
+"DI" = (
+/obj/effect/decal/cleanable/blood/footprints,
+/obj/structure/sigsystem/tower{
+	signal_range = 2;
+	signal_code = 11
+	},
+/turf/open/floor/stone,
+/area/city/backstreets_room)
+"FM" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/decal/cleanable/blood/footprints,
+/turf/open/floor/stone,
+/area/city/backstreets_room)
+"GS" = (
+/obj/structure/filingcabinet/chestdrawer,
+/turf/open/floor/stone,
+/area/city/backstreets_room)
+"Hf" = (
+/obj/effect/decal/cleanable/glass,
+/turf/open/floor/stone,
+/area/city/backstreets_room)
+"Hg" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/decal/cleanable/glass,
+/obj/effect/spawner/structure/window,
+/turf/open/floor/plating/rust,
+/area/city/backstreets_room)
+"Hh" = (
+/obj/effect/decal/cleanable/blood/old,
+/obj/item/clothing/shoes/sneakers/black,
+/turf/open/floor/stone,
+/area/city/backstreets_room)
+"Hw" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/glass,
+/obj/effect/decal/cleanable/blood/old,
+/obj/item/clothing/under/suit/black,
+/turf/open/floor/stone,
+/area/city/backstreets_room)
+"HR" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/closet/crate/sigsystem{
+	name = "contraband crate"
+	},
+/obj/item/bedsheet/black,
+/obj/item/tresmetal/human,
+/obj/item/tresmetal/human,
+/obj/item/tresmetal/human,
+/obj/structure/sigsystem/signal_node{
+	dir = 8
+	},
+/turf/open/floor/stone,
+/area/city/backstreets_room)
+"Ih" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/oil,
+/turf/open/floor/stone,
+/area/city/backstreets_room)
+"Iv" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/item/kirbyplants/fullysynthetic,
+/turf/open/floor/stone,
+/area/city/backstreets_room)
+"Jg" = (
+/obj/effect/decal/cleanable/blood/footprints{
+	dir = 8
+	},
+/turf/open/floor/stone,
+/area/city/backstreets_room)
+"Jw" = (
+/obj/structure/sign/poster/official/random{
+	pixel_x = 32
+	},
+/obj/item/kirbyplants/dead,
+/turf/open/floor/stone,
+/area/city/backstreets_room)
+"KO" = (
+/obj/item/flashlight/lantern,
+/turf/open/floor/stone,
+/area/city/backstreets_room)
+"KU" = (
+/obj/effect/decal/cleanable/blood/footprints,
+/obj/effect/decal/cleanable/blood/footprints{
+	dir = 8
+	},
+/turf/open/floor/stone,
+/area/city/backstreets_room)
+"Lt" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/reagent_dispensers/compostbin,
+/turf/open/floor/wood,
+/area/city/backstreets_room)
+"Lu" = (
+/obj/effect/spawner/lootdrop/cigbutt,
+/turf/open/floor/stone,
+/area/city/backstreets_room)
+"Ma" = (
+/obj/structure/sign/departments/cargo{
+	pixel_y = -32;
+	name = "\improper Cargo room 1552"
+	},
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/stone,
+/area/city/backstreets_room)
+"Mo" = (
+/obj/item/trash/can/food/peaches,
+/obj/machinery/smartfridge/bottlerack/seedbin/preload{
+	pixel_y = 6
+	},
+/obj/structure/window,
+/turf/open/floor/wood,
+/area/city/backstreets_room)
+"Mu" = (
+/obj/structure/sigsystem/tower{
+	signal_code = 11;
+	signal_range = 2;
+	dir = 1
+	},
+/turf/open/floor/stone,
+/area/city/backstreets_room)
+"MT" = (
+/obj/effect/decal/cleanable/blood/footprints,
+/obj/effect/decal/cleanable/blood/gibs/old,
+/obj/effect/decal/cleanable/blood/splatter/over_window{
+	pixel_x = -32;
+	pixel_y = 32
+	},
+/turf/open/floor/stone,
+/area/city/backstreets_room)
+"NA" = (
+/obj/effect/decal/cleanable/blood/splatter/over_window,
+/turf/closed/wall/mineral/iron,
+/area/city/backstreets_room)
+"OG" = (
+/obj/effect/decal/cleanable/blood/old,
+/obj/effect/decal/cleanable/blood/gibs/old,
+/obj/item/chair,
+/turf/open/floor/stone,
+/area/city/backstreets_room)
+"PU" = (
+/obj/effect/spawner/mobspawner/rat{
+	max_spawns = 3
+	},
+/turf/open/floor/stone,
+/area/city/backstreets_room)
+"QO" = (
+/obj/item/trash/can/food/peaches,
+/turf/open/floor/stone,
+/area/city/backstreets_room)
+"RD" = (
+/obj/effect/decal/cleanable/glass,
+/turf/open/floor/wood,
+/area/city/backstreets_room)
+"SP" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/decal/cleanable/blood/footprints{
+	dir = 8
+	},
+/obj/effect/decal/cleanable/blood/footprints,
+/turf/open/floor/stone,
+/area/city/backstreets_room)
+"Uj" = (
+/obj/machinery/hydroponics,
+/obj/item/food/grown/harebell,
+/turf/open/floor/wood,
+/area/city/backstreets_room)
+"UI" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/item/shard,
+/obj/structure/grille/broken,
+/obj/effect/decal/cleanable/glass,
+/turf/open/floor/plating/rust,
+/area/city/backstreets_room)
+"Vd" = (
+/obj/structure/table_frame,
+/obj/effect/decal/cleanable/glass,
+/obj/item/shard,
+/obj/effect/decal/cleanable/blood/old,
+/obj/item/paper_bin,
+/obj/item/pen,
+/turf/open/floor/stone,
+/area/city/backstreets_room)
+"Vf" = (
+/obj/structure/table/wood,
+/obj/item/newspaper,
+/obj/item/newspaper{
+	pixel_y = 8;
+	pixel_x = -8
+	},
+/obj/item/newspaper{
+	pixel_x = -7;
+	pixel_y = -2
+	},
+/turf/open/floor/stone,
+/area/city/backstreets_room)
+"VI" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/item/trash/can/food/peaches,
+/obj/effect/decal/cleanable/blood/old,
+/obj/effect/decal/cleanable/blood/gibs/old,
+/obj/structure/table_frame,
+/obj/item/shard,
+/obj/item/ego_weapon/city/fixerblade,
+/turf/open/floor/stone,
+/area/city/backstreets_room)
+"WH" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/closed/wall/mineral/iron,
+/area/city/backstreets_room)
+"Xd" = (
+/obj/structure/sigsystem/tower{
+	signal_code = 22;
+	signal_range = 5
+	},
+/turf/open/floor/stone,
+/area/city/backstreets_room)
+"Xo" = (
+/obj/effect/decal/cleanable/blood/footprints,
+/turf/open/floor/stone,
+/area/city/backstreets_room)
+"XN" = (
+/turf/open/floor/wood,
+/area/city/backstreets_room)
+"ZO" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/spawner/lootdrop/medical_random,
+/obj/structure/table/wood,
+/turf/open/floor/stone,
+/area/city/backstreets_room)
+"ZV" = (
+/turf/closed/indestructible/reinforced,
+/area/city/backstreets_room)
+
+(1,1,1) = {"
+ZV
+ZV
+ZV
+ZV
+ZV
+ZV
+zI
+zI
+zI
+ZV
+ZV
+ZV
+ZV
+CJ
+ZV
+"}
+(2,1,1) = {"
+ZV
+WH
+Cy
+oD
+oD
+oD
+oD
+xx
+oD
+oD
+ZO
+to
+iJ
+HR
+ZV
+"}
+(3,1,1) = {"
+ZV
+Cy
+Lt
+gQ
+qq
+Mo
+Iv
+Jg
+DI
+cY
+FM
+Xo
+SP
+zi
+ZV
+"}
+(4,1,1) = {"
+ZV
+Cy
+Uj
+gQ
+XN
+RD
+Af
+rp
+xh
+oD
+AF
+zi
+zi
+rL
+ZV
+"}
+(5,1,1) = {"
+ZV
+Cy
+oD
+XN
+RD
+zw
+Af
+Jg
+Ma
+oD
+ao
+oD
+oD
+oD
+ZV
+"}
+(6,1,1) = {"
+zI
+zi
+oD
+Hg
+UI
+oD
+Hf
+rp
+AJ
+oD
+Af
+Af
+oD
+Af
+zI
+"}
+(7,1,1) = {"
+zI
+Af
+xx
+Af
+Af
+VI
+MT
+KU
+Xd
+jJ
+Mu
+eD
+xx
+eD
+zI
+"}
+(8,1,1) = {"
+zI
+zi
+oD
+Ih
+Hw
+Co
+OG
+yk
+lm
+oD
+sH
+Af
+oD
+Af
+zI
+"}
+(9,1,1) = {"
+ZV
+oD
+Cy
+Cy
+NA
+Vd
+Hh
+Af
+QO
+oD
+dL
+Lu
+oD
+oD
+ZV
+"}
+(10,1,1) = {"
+ZV
+eI
+ZV
+Cy
+GS
+KO
+Af
+kl
+Af
+oD
+Af
+Af
+Af
+Vf
+ZV
+"}
+(11,1,1) = {"
+ZV
+ZV
+ZV
+Cy
+GS
+kl
+Af
+Af
+Jw
+oD
+Af
+PU
+eD
+Af
+ZV
+"}
+(12,1,1) = {"
+ZV
+eI
+eI
+Cy
+oD
+oD
+oD
+xx
+oD
+oD
+us
+az
+fu
+yp
+ZV
+"}
+(13,1,1) = {"
+ZV
+ZV
+ZV
+ZV
+ZV
+ZV
+zI
+zI
+zI
+ZV
+ZV
+ZV
+ZV
+ZV
+ZV
+"}

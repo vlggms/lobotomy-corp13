@@ -1,0 +1,463 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"bv" = (
+/turf/open/floor/carpet/royalblack,
+/area/city/backstreets_room)
+"cm" = (
+/obj/structure/sigsystem/tower/button{
+	signal_code = 554;
+	pixel_y = 26;
+	pixel_x = -3;
+	name = "lock control 3";
+	signal_range = 5
+	},
+/obj/structure/sigsystem/tower/button{
+	signal_code = 776;
+	pixel_y = 34;
+	pixel_x = 7;
+	name = "lock control 1";
+	signal_range = 5
+	},
+/obj/structure/sigsystem/tower/button{
+	signal_code = 455;
+	pixel_y = 34;
+	pixel_x = -3;
+	name = "lock control 2";
+	signal_range = 5
+	},
+/obj/structure/sigsystem/tower/button{
+	signal_code = 167;
+	pixel_y = 26;
+	pixel_x = 7;
+	name = "lock control 4";
+	signal_range = 2;
+	signal_data = "two"
+	},
+/turf/open/floor/facility/dark,
+/area/city/backstreets_room)
+"cp" = (
+/obj/structure/sigsystem/tower{
+	dir = 4;
+	signal_code = 167;
+	signal_data = "two";
+	pixel_x = -6;
+	pixel_y = -5;
+	invisibility = 10;
+	name = "short-range system tower 162"
+	},
+/turf/open/floor/circuit/green/off,
+/area/city/backstreets_room)
+"df" = (
+/obj/structure/sigsystem/pressure_plate{
+	dir = 8;
+	happens_once = 1;
+	mobs_only = 1
+	},
+/turf/open/floor/facility/dark,
+/area/city/backstreets_room)
+"dV" = (
+/obj/machinery/door/poddoor,
+/obj/structure/sigsystem/activator,
+/turf/open/floor/facility/dark,
+/area/city/backstreets_room)
+"eF" = (
+/obj/effect/wall_vent,
+/turf/closed/indestructible/reinforced{
+	opacity = 0
+	},
+/area/city/backstreets_room)
+"eK" = (
+/turf/open/floor/facility/dark,
+/area/city/backstreets_room)
+"kC" = (
+/obj/item/tresmetal/human,
+/obj/effect/decal/cleanable/greenglow,
+/turf/open/floor/facility/dark,
+/area/city/backstreets_room)
+"og" = (
+/obj/structure/table/glass,
+/turf/open/floor/facility/dark,
+/area/city/backstreets_room)
+"si" = (
+/turf/open/floor/carpet/black,
+/area/city/backstreets_room)
+"vf" = (
+/obj/machinery/computer/camera_advanced{
+	dir = 4;
+	pixel_x = -11;
+	pixel_y = -16
+	},
+/obj/item/paper/crumpled/fluff{
+	name = "authorization note"
+	},
+/turf/open/floor/facility/dark,
+/area/city/backstreets_room)
+"vQ" = (
+/obj/structure/sigsystem/tower{
+	dir = 4;
+	invisibility = 10;
+	signal_code = 554;
+	signal_range = 4;
+	pixel_x = 4;
+	pixel_y = 5;
+	name = "short-range system tower 554"
+	},
+/turf/open/floor/circuit/green/off,
+/area/city/backstreets_room)
+"wo" = (
+/obj/structure/sigsystem/tower{
+	dir = 4;
+	invisibility = 10;
+	signal_range = 4;
+	signal_code = 455;
+	pixel_x = 4;
+	pixel_y = -5;
+	name = "short-range system tower 456"
+	},
+/turf/open/floor/circuit/green/off,
+/area/city/backstreets_room)
+"wH" = (
+/obj/structure/sigsystem/connector{
+	dir = 4;
+	invisibility = 10
+	},
+/obj/structure/sigsystem/tower{
+	invisibility = 10;
+	pixel_x = -6;
+	pixel_y = 5;
+	signal_code = 167;
+	signal_data = "three";
+	name = "short-range system tower 167"
+	},
+/turf/open/floor/circuit/green/off,
+/area/city/backstreets_room)
+"xQ" = (
+/turf/closed/indestructible/fakedoor,
+/area/city/backstreets_room)
+"xU" = (
+/obj/structure/sigsystem/connector,
+/turf/open/floor/carpet/black,
+/area/city/backstreets_room)
+"yN" = (
+/turf/closed/indestructible/reinforced,
+/area/city/backstreets_room)
+"BS" = (
+/obj/structure/sigsystem/tower/and_gate/three_input{
+	activation_code = 987;
+	switch_off = 1;
+	name = "containment lock monitor";
+	signal_code = 167
+	},
+/turf/closed/indestructible/reinforced,
+/area/city/backstreets_room)
+"CU" = (
+/obj/item/paper/crumpled/fluff{
+	name = "authorization note";
+	info = "HQ has gone radio silent, midway transportation of entity is to be kept in temporary containment until contact is reestablish and recovery team arrives. Temporary containment may suffer from crossed wires that deactivate locks, it is suggested standby team wait for recovery team for manual unlock."
+	},
+/obj/structure/sigsystem/tower/button{
+	signal_code = 888;
+	pixel_y = 22;
+	pixel_x = 23;
+	name = "containment release button";
+	signal_range = 3
+	},
+/turf/open/floor/facility/dark,
+/area/city/backstreets_room)
+"EH" = (
+/obj/structure/sigsystem/tower{
+	invisibility = 10;
+	pixel_x = -6;
+	pixel_y = 5;
+	signal_code = 167;
+	signal_data = "one";
+	name = "short-range system tower 167";
+	dir = 4
+	},
+/turf/open/floor/circuit/green/off,
+/area/city/backstreets_room)
+"EO" = (
+/obj/machinery/door/airlock/hatch,
+/turf/open/floor/facility/dark,
+/area/city/backstreets_room)
+"FZ" = (
+/obj/structure/sigsystem/connector{
+	dir = 8
+	},
+/turf/open/floor/carpet/black,
+/area/city/backstreets_room)
+"Ji" = (
+/obj/item/kirbyplants/dead,
+/turf/open/floor/facility/dark,
+/area/city/backstreets_room)
+"JK" = (
+/obj/structure/sigsystem/connector{
+	dir = 8;
+	happens_once = 1
+	},
+/turf/open/floor/carpet/black,
+/area/city/backstreets_room)
+"Kl" = (
+/obj/structure/sigsystem/tower{
+	signal_code = 167;
+	signal_data = "two"
+	},
+/turf/open/floor/facility/dark,
+/area/city/backstreets_room)
+"Kt" = (
+/obj/structure/sigsystem/connector{
+	dir = 1
+	},
+/turf/open/floor/facility/dark,
+/area/city/backstreets_room)
+"ND" = (
+/obj/effect/decal/cleanable/greenglow,
+/obj/structure/sigsystem/deployer{
+	spawn_flavor_text = "leaps down from the ceiling";
+	atom_path = /mob/living/simple_animal/hostile/ordeal/sin_gluttony/noon;
+	atom_rename = "strangling vinebeast";
+	deploy_sound = /sound/effects/bamf.ogg
+	},
+/turf/open/floor/carpet/black,
+/area/city/backstreets_room)
+"NF" = (
+/obj/structure/sigsystem/tower{
+	signal_range = 4;
+	signal_code = 776
+	},
+/turf/open/floor/facility/dark,
+/area/city/backstreets_room)
+"QN" = (
+/obj/structure/sigsystem/pressure_plate{
+	dir = 8;
+	happens_once = 1;
+	mobs_only = 1
+	},
+/turf/open/floor/carpet/black,
+/area/city/backstreets_room)
+"RN" = (
+/obj/structure/sigsystem/tower{
+	signal_code = 987;
+	signal_range = 4
+	},
+/turf/closed/indestructible/reinforced,
+/area/city/backstreets_room)
+"Su" = (
+/obj/item/paper/crumpled/muddy/fluff{
+	name = "Unfinished Debriefing";
+	info = "CAPTURE TEAM DEBRIEFING:<br>Initial capture was in the countryside after a herd of cattle went missing, upon arrival the entity emerged from a nearby barn and assaulted the team. One team member suffered major wounds from being grabbed and bitten by the entity. The creature was highly resistant to red bullets and sustained heavy damage from white bullets. When subdued the entity was loaded into a containment chamber and-"
+	},
+/obj/structure/sigsystem/tower{
+	signal_range = 4;
+	signal_code = 888;
+	dir = 1
+	},
+/turf/open/floor/facility/dark,
+/area/city/backstreets_room)
+"Va" = (
+/obj/structure/sigsystem/connector/split{
+	dir = 8
+	},
+/turf/open/floor/carpet/royalblack,
+/area/city/backstreets_room)
+"Vb" = (
+/obj/structure/sigsystem/tower{
+	signal_code = 167;
+	signal_data = "three"
+	},
+/turf/open/floor/carpet/royalblack,
+/area/city/backstreets_room)
+"VJ" = (
+/obj/structure/sigsystem/connector{
+	dir = 1
+	},
+/turf/open/floor/carpet/black,
+/area/city/backstreets_room)
+"Ws" = (
+/turf/open/floor/facility/white,
+/area/city/backstreets_room)
+"WI" = (
+/obj/structure/sigsystem/connector{
+	dir = 4;
+	invisibility = 10
+	},
+/obj/structure/sigsystem/tower{
+	dir = 1;
+	invisibility = 10;
+	pixel_x = -6;
+	pixel_y = -5;
+	signal_data = "one";
+	signal_code = 167
+	},
+/turf/open/floor/circuit/green/off,
+/area/city/backstreets_room)
+"XG" = (
+/obj/machinery/door/poddoor,
+/obj/structure/sigsystem/connector,
+/obj/structure/sigsystem/activator,
+/turf/open/floor/facility/dark,
+/area/city/backstreets_room)
+"YG" = (
+/obj/structure/sigsystem/connector,
+/turf/open/floor/facility/dark,
+/area/city/backstreets_room)
+
+(1,1,1) = {"
+yN
+yN
+yN
+yN
+yN
+yN
+yN
+yN
+"}
+(2,1,1) = {"
+yN
+wo
+vQ
+eF
+eK
+Kl
+og
+yN
+"}
+(3,1,1) = {"
+yN
+WI
+wH
+eF
+NF
+Va
+og
+yN
+"}
+(4,1,1) = {"
+yN
+cp
+EH
+yN
+cm
+Vb
+eK
+EO
+"}
+(5,1,1) = {"
+yN
+vf
+eK
+BS
+Su
+bv
+eK
+EO
+"}
+(6,1,1) = {"
+yN
+eK
+eK
+xQ
+CU
+eK
+Ji
+yN
+"}
+(7,1,1) = {"
+yN
+yN
+yN
+RN
+XG
+dV
+yN
+yN
+"}
+(8,1,1) = {"
+yN
+eK
+eK
+eK
+eK
+eK
+eK
+yN
+"}
+(9,1,1) = {"
+yN
+eK
+Ws
+si
+ND
+Ws
+eK
+yN
+"}
+(10,1,1) = {"
+yN
+eK
+Ws
+si
+FZ
+Ws
+eK
+yN
+"}
+(11,1,1) = {"
+yN
+YG
+xU
+xU
+JK
+VJ
+Kt
+yN
+"}
+(12,1,1) = {"
+yN
+df
+QN
+QN
+QN
+QN
+df
+yN
+"}
+(13,1,1) = {"
+yN
+eK
+Ws
+si
+si
+Ws
+eK
+yN
+"}
+(14,1,1) = {"
+yN
+kC
+Ws
+si
+si
+Ws
+eK
+yN
+"}
+(15,1,1) = {"
+yN
+eK
+eK
+kC
+eK
+eK
+eK
+yN
+"}
+(16,1,1) = {"
+yN
+yN
+yN
+yN
+yN
+yN
+yN
+yN
+"}

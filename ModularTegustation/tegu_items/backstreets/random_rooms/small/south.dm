@@ -46,6 +46,12 @@
 	room_id = "lcorp_tomb"
 	mappath = "_maps/RandomRooms/backstreets/small_south/lcorp_tomb.dmm"
 
+/datum/map_template/random_room/backstreets/small_south/locked_crate
+	name = "Locked Crate - Small South"
+	room_id = "locked_crate"
+	mappath = "_maps/RandomRooms/backstreets/small_south/locked_crate.dmm"
+	stock = 1
+
 /datum/map_template/random_room/backstreets/small_south/rat_ssa
 	name = "Rat - Small South A"
 	room_id = "rat_ssa"

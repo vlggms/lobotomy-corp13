@@ -2,10 +2,6 @@
 "a" = (
 /obj/effect/spawner/lootdrop/misc_random,
 /obj/structure/table,
-/obj/item/hot_tresmetal/human{
-	pixel_x = -11;
-	pixel_y = -2
-	},
 /turf/open/floor/plasteel/showroomfloor,
 /area/city/backstreets_room)
 "b" = (
@@ -32,22 +28,30 @@
 	name = "keycard table"
 	},
 /obj/effect/decal/cleanable/greenglow,
+/obj/structure/sigsystem/connector,
+/obj/structure/sigsystem/connector{
+	dir = 4
+	},
 /turf/open/floor/plastic,
 /area/city/backstreets_room)
 "f" = (
-/obj/effect/light_emitter{
-	light_power = 4;
-	light_range = 25;
-	set_cap = 3;
-	set_luminosity = 24
+/obj/structure/sigsystem/connector/split{
+	dir = 8
 	},
-/obj/item/pressure_plate/autohide{
-	roundstart_signaller_code = 125
+/obj/structure/sigsystem/connector{
+	dir = 1
 	},
 /turf/open/floor/plastic,
 /area/city/backstreets_room)
 "g" = (
 /obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/plastic,
+/area/city/backstreets_room)
+"h" = (
+/obj/structure/sigsystem/connector,
+/obj/structure/sigsystem/connector{
+	dir = 4
+	},
 /turf/open/floor/plastic,
 /area/city/backstreets_room)
 "i" = (
@@ -78,8 +82,7 @@
 /area/city/backstreets_room)
 "n" = (
 /obj/structure/sigsystem/projectile_launcher{
-	name = "punishment 125";
-	signaller_code = 125
+	name = "punishment 125"
 	},
 /turf/closed/indestructible/wood,
 /area/city/backstreets_room)
@@ -90,7 +93,6 @@
 /turf/open/floor/plasteel/grimy,
 /area/city/backstreets_room)
 "p" = (
-/obj/effect/light_emitter,
 /obj/item/mop,
 /obj/item/reagent_containers/glass/bucket,
 /turf/open/floor/plasteel/dark,
@@ -108,16 +110,18 @@
 /obj/item/paper/pamphlet/violent_video_games,
 /turf/open/floor/plasteel/showroomfloor,
 /area/city/backstreets_room)
+"s" = (
+/obj/structure/sigsystem/adaptor/signaller{
+	dir = 1;
+	input_signaller_code = 124
+	},
+/turf/open/floor/plastic,
+/area/city/backstreets_room)
 "t" = (
-/obj/effect/light_emitter{
-	light_power = 4;
-	light_range = 25;
-	set_cap = 3;
-	set_luminosity = 24
+/obj/structure/sigsystem/connector{
+	dir = 4
 	},
-/obj/item/pressure_plate/autohide{
-	roundstart_signaller_code = 127
-	},
+/obj/structure/sigsystem/connector,
 /turf/open/floor/plastic,
 /area/city/backstreets_room)
 "v" = (
@@ -128,8 +132,7 @@
 /area/city/backstreets_room)
 "w" = (
 /obj/structure/sigsystem/projectile_launcher{
-	name = "punishment 124";
-	signaller_code = 124
+	name = "punishment 124"
 	},
 /turf/closed/indestructible/wood,
 /area/city/backstreets_room)
@@ -140,12 +143,17 @@
 /obj/effect/wall_vent{
 	pixel_x = 32
 	},
+/obj/structure/sigsystem/adaptor/signaller{
+	input_signaller_code = 127
+	},
 /turf/open/floor/plastic,
 /area/city/backstreets_room)
 "y" = (
-/obj/structure/chair/comfy/teal,
-/obj/effect/light_emitter,
-/turf/open/floor/plasteel/grimy,
+/obj/structure/sigsystem/adaptor/signaller{
+	dir = 1;
+	input_signaller_code = 125
+	},
+/turf/open/floor/plastic,
 /area/city/backstreets_room)
 "z" = (
 /obj/structure/chair/comfy/teal,
@@ -170,14 +178,11 @@
 /area/city/backstreets_room)
 "E" = (
 /obj/item/workshop_mod/vile{
-	pixel_x = -5;
-	pixel_y = 4
+	pixel_x = 15;
+	pixel_y = 8
 	},
-/obj/effect/light_emitter,
 /obj/structure/table,
-/obj/item/hot_tresmetal/violet{
-	pixel_x = 14
-	},
+/obj/item/tresmetal/green,
 /turf/open/floor/plasteel/showroomfloor,
 /area/city/backstreets_room)
 "F" = (
@@ -186,7 +191,6 @@
 "H" = (
 /obj/structure/sigsystem/projectile_launcher{
 	name = "punishment 127";
-	signaller_code = 127;
 	dir = 8
 	},
 /turf/closed/indestructible/wood,
@@ -231,6 +235,12 @@
 "O" = (
 /turf/open/floor/plasteel/dark,
 /area/city/backstreets_room)
+"P" = (
+/obj/structure/sigsystem/connector{
+	dir = 1
+	},
+/turf/open/floor/plastic,
+/area/city/backstreets_room)
 "Q" = (
 /obj/structure/sign/departments/cargo{
 	sign_change_name = "Storage Room"
@@ -240,6 +250,12 @@
 "R" = (
 /obj/item/pressure_plate/autohide{
 	roundstart_signaller_code = 124
+	},
+/turf/open/floor/plastic,
+/area/city/backstreets_room)
+"T" = (
+/obj/structure/sigsystem/connector{
+	dir = 4
 	},
 /turf/open/floor/plastic,
 /area/city/backstreets_room)
@@ -279,7 +295,7 @@ L
 "}
 (2,1,1) = {"
 U
-y
+z
 D
 J
 Q
@@ -349,9 +365,9 @@ L
 "}
 (9,1,1) = {"
 n
+P
 X
 X
-M
 M
 m
 M
@@ -359,8 +375,8 @@ L
 "}
 (10,1,1) = {"
 n
-m
-m
+f
+y
 g
 m
 I
@@ -369,9 +385,9 @@ L
 "}
 (11,1,1) = {"
 n
-m
-f
-t
+P
+X
+X
 M
 M
 K
@@ -379,7 +395,7 @@ L
 "}
 (12,1,1) = {"
 w
-m
+P
 R
 m
 g
@@ -389,8 +405,8 @@ L
 "}
 (13,1,1) = {"
 w
-m
-m
+f
+s
 m
 R
 M
@@ -399,9 +415,9 @@ L
 "}
 (14,1,1) = {"
 w
-m
+P
 V
-M
+R
 M
 M
 g
@@ -411,10 +427,10 @@ L
 U
 m
 x
-M
+t
 e
-m
-m
+h
+T
 L
 "}
 (16,1,1) = {"
