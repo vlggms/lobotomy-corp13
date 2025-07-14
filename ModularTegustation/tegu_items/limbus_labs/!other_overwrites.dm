@@ -31,6 +31,12 @@
 		vision_range = 7
 		aggro_vision_range = 7
 
+/mob/living/simple_animal/hostile/abnormality/BreachEffect()
+	. = ..()
+	if(SSmaptype.maptype == "limbus_labs")
+		if(!client)
+			faction = list("hostile")
+
 /mob/living/simple_animal/hostile/abnormality/Login()
 	. = ..()
 	if(SSmaptype.maptype == "limbus_labs")
