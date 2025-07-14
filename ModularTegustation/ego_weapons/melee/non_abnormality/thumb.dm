@@ -108,6 +108,8 @@
 #define SPENT_INSTANTEJECT "spent_instanteject"
 #define SPENT_RELOADEJECT "spent_reloadeject"
 
+/// Basic weapon for Thumb East Soldatos. Stronger than the Thumb South Soldato rifle in terms of DPS, but not ranged. Requires better virtues.
+/// RED beatsticks are pretty bad nevertheless, so you'll need to use ammo to unlock its full potential.
 /obj/item/ego_weapon/city/thumb_east
 	name = "thumb east soldato rifle"
 	desc = "A rifle used by the rank and file of the Thumb in the eastern parts of the City. There is a sharp bayonet built into the front.\n"+\
@@ -116,7 +118,7 @@
 	inhand_icon_state = "thumb_soldato"
 	hitsound = 'sound/weapons/ego/thumb_east_rifle_attack.ogg'
 	usesound = 'sound/machines/click.ogg'
-	force = 36
+	force = 40
 	damtype = RED_DAMAGE
 	attack_speed = 1.3
 	special = "This is a Thumb East weapon. Load it with propellant ammunition to unlock a powerful combo. Initiate the combo by attacking from range. Each hit of the combo requires 1 propellant round to trigger, and has varying attack speed. Your combo will cancel if you run out of ammo or hit without spending a round.\n"+\
@@ -126,7 +128,8 @@
 	// I wanted to use a define like NEXTHIT_PROPELLANT_TREMOR_BONUS = next_hit_should_apply["tremor"] to simplify readability and maintainability...
 	// but it didn't work. Sorry.
 	var/next_hit_should_apply = list()
-	///////////////////// Combo variables.
+
+	// 	Combo variables.
 	/// Should always be TRUE unless the user manually disables combos by using the weapon in-hand.
 	var/combo_enabled = TRUE
 	/// Description for the combo. Explain it to the user.
@@ -136,11 +139,13 @@
 	var/combo_stage = COMBO_NO_AMMO
 	/// Variable that holds the reset timer for our combo.
 	var/combo_reset_timer
-	/// List which holds the coefficients by which to multiply our damage on each hit depending on the state of the combo.
-	var/list/motion_values = list(COMBO_NO_AMMO = 1, COMBO_LUNGE = 1, COMBO_ATTACK2 = 1.2, COMBO_FINISHER = 1.4, COMBO_ATTACK2_AOE = 0.5, COMBO_FINISHER_AOE = 0.5)
+	/// List which maps the coefficients by which to multiply our damage on each hit depending on the state of the combo.
+	var/list/motion_values = list(COMBO_NO_AMMO = 1, COMBO_LUNGE = 1, COMBO_ATTACK2 = 1.2, COMBO_FINISHER = 1.4, COMBO_ATTACK2_AOE = 0.5, COMBO_FINISHER_AOE = 0.5,)
 	/// This variable holds a flat force increase that is only applied on COMBO_NO_AMMO hits. It increases when ammo is spent, and gets reset on reload or unload.
+	/// It decays on each hit that isn't part of a combo.
 	var/overheat = 0
-	///////////////////// Special attack variables.
+
+	// Special attack variables.
 	/// Distance in tiles which our initial lunge reaches.
 	var/lunge_range = 3
 	/// Duration of the cooldown for our lunge (we don't want people spam-lunging exclusively in PVP, etc). This also limits how often you can start a combo.
@@ -158,7 +163,7 @@
 	/// Are we currently performing a channeled action like leaping or reloading?
 	var/busy = FALSE
 
-	///////////////////// Ammo variables.
+	// Ammo variables.
 	/// Maximum ammo capacity that this weapon can hold.
 	var/max_ammo = 3
 	/// Does our weapon eject spent cartridges as they're fired (SPENT_INSTANTEJECT) or store them until you attempt to reload (SPENT_RELOADEJECT)?
@@ -177,7 +182,8 @@
 		/obj/item/stack/thumb_east_ammo,
 		/obj/item/stack/thumb_east_ammo/facility,
 	)
-	///////////////////// Sound path variables.
+
+	// Sound path variables.
 	var/reload_start_sound = 'sound/weapons/ego/thumb_east_rifle_reload_start.ogg'
 	var/reload_load_sound = 'sound/weapons/ego/thumb_east_rifle_reload_load.ogg'
 	var/reload_end_sound = 'sound/weapons/ego/thumb_east_rifle_reload_end.ogg'
@@ -219,7 +225,7 @@
 	if(!busy)
 		UnloadRound(user)
 
-/// This override handles reloading.
+/// This override handles initiating a reload.
 /obj/item/ego_weapon/city/thumb_east/attackby(obj/item/stack/thumb_east_ammo/I, mob/living/user, params)
 	. = ..()
 	if(!istype(I))
@@ -278,10 +284,10 @@
 	switch(combo_stage)
 		// Importantly: every time we want to fire a round, we should use SpendAmmo(user).
 		// In the case of our Lunge and our Finisher, SpendAmmo has been called already before we get to the current proc.
+		// You may notice that the hitsound gets nulled here a couple times. This is so we can manually play the special's own hitsound without it varying, and with extra range.
 
 		// This case is for attacks that haven't consumed a round.
 		if(COMBO_NO_AMMO)
-			// Just in case...
 			ReturnToNormal(user)
 			// Decay our overheat bonus, but don't let it go negative...
 			overheat = max(0, overheat - 0.5)
@@ -291,15 +297,16 @@
 			hitsound = null
 			. = ..()
 			playsound(src, lunge_sound, 100, FALSE, 10)
-			user.changeNext_move(CLICK_CD_MELEE * attack_speed * 1.2)
+			hitsound = initial(hitsound)
+			// Your next hit after the lunge will actually come out faster than normal. This is a reward for being able to handle the abrupt movement and screenshake.
+			user.changeNext_move(CLICK_CD_MELEE * attack_speed * 0.9)
 			ApplyStatusEffects(target, COMBO_LUNGE)
 			combo_stage = COMBO_ATTACK2
 			return
 		// This case is for when we're going to perform the second hit in our combo. We haven't spent the ammo for it yet, so we have to do it on this proc.
 		if(COMBO_ATTACK2)
-			var/obj/item/stack/thumb_east_ammo/fired_round = SpendAmmo(user)
+			var/fired_round = SpendAmmo(user)
 			if(fired_round)
-				// I don't want the hitsound to vary, so we null it and play it manually. Also wanted to give it extra hearing range.
 				hitsound = null
 				. = ..()
 				playsound(src, sweep_sound, 100, FALSE, 10)
@@ -319,7 +326,7 @@
 			. = ..()
 			playsound(src, finisher_sound, 100, FALSE, 10)
 			hitsound = initial(hitsound)
-			user.changeNext_move(CLICK_CD_MELEE * attack_speed * 1.4)
+			user.changeNext_move(CLICK_CD_MELEE * attack_speed * 1.2)
 			// We finished the combo! Reset it.
 			deltimer(combo_reset_timer)
 			ReturnToNormal(user)
@@ -346,9 +353,7 @@
 			. = Leap(target, user)
 		if(finisher_type == FINISHER_PIERCE)
 			. = Pierce(target, user)
-
 		return
-
 	return . = ..()
 
 /// This overridden proc is called even at range. So we're gonna use it to attempt to lunge (combo starter) or leap (combo finisher for podao) as appropiate.
@@ -371,11 +376,11 @@
 					return
 			if(COMBO_FINISHER)
 				if(finisher_type == FINISHER_LEAP)
+					// pre_attack actually handles the Leap() call if we're next to our target.
 					if((get_dist(user, target) < 2))
 						return FALSE
 					. = Leap(target, user)
 				return
-
 	return
 
 ////////////////////////////////////////////////////////////
@@ -384,14 +389,13 @@
 
 /// Channeled process for reloading the weapon. Can be interrupted.
 /obj/item/ego_weapon/city/thumb_east/proc/Reload(amount_to_load, obj/item/stack/thumb_east_ammo/ammo_item, mob/living/carbon/user)
-	// This first section is the reload start. You can cancel it, with the only consequence being that you lose your overheat bonus.
+	// This first section is the reload start. You can cancel it, with the only consequence at this point being that you lose your overheat bonus.
 	playsound(src, reload_start_sound, 100, FALSE, 10)
 	to_chat(user, span_info("You begin loading your [src.name]..."))
 	overheat = 0
 	busy = TRUE
 	if(do_after(user, 0.6 SECONDS, src, progress = TRUE, interaction_key = "thumb_east_reload", max_interact_count = 1))
 		// If we reached this part, we've started the reload properly now. Being interrupted at this point causes a ReloadFailure(), you will spill the ammo you're loading.
-
 		// This first block will eject all our spent and unspent ammo if we're using a weapon with SPENT_RELOADEJECT behaviour (the podao).
 		if(spent_ammo_behaviour == SPENT_RELOADEJECT)
 			var/list/all_cartridges = list()
@@ -441,7 +445,7 @@
 			spilled_bullet.throw_at(get_ranged_target_turf(user, pick(GLOB.alldirs), 1), 1, 5, spin = TRUE)
 			sleep(1)
 
-/// Remove one round from the weapon.
+/// Remove one round from the weapon. Prioritizes live rounds when possible.
 /obj/item/ego_weapon/city/thumb_east/proc/UnloadRound(mob/living/user)
 	// If we're out of live rounds...
 	if(AmmoDepletedCheck())
@@ -477,7 +481,7 @@
 		return TRUE
 	return FALSE
 
-/// This proc tries to spend a round, and if it is able to, returns it to the caller. It will also play the round's detonation sound if successful.
+/// This proc tries to spend a round, and if it is able to, calls HandleFiredAmmo() and CreateSpentCartridge() with that round, then returns TRUE. If it can't, returns FALSE.
 /// Important: This proc doesn't delete the fired round, but removes it from our reference list. If it is not deleted later, then it will remain in the weapon's contents.
 /// That being said it shouldn't cause any issues because of that.
 /obj/item/ego_weapon/city/thumb_east/proc/SpendAmmo(mob/living/user)
@@ -534,12 +538,17 @@
 /obj/item/ego_weapon/city/thumb_east/proc/CreateSpentCartridge(obj/item/stack/thumb_east_ammo/round, mob/living/user)
 	var/obj/item/stack/thumb_east_ammo/spent/new_spent_cartridge = null
 	new_spent_cartridge = new round.spent_type(src)
+	// Do I really need to null check here? I'm not sure.
 	if(new_spent_cartridge)
+		// Store the spent cartridge if our behaviour is SPENT_RELOADEJECT. Otherwise, instantly eject it.
 		if(spent_ammo_behaviour == SPENT_RELOADEJECT)
 			spent_cartridges |= new_spent_cartridge
 		else
 			INVOKE_ASYNC(src, PROC_REF(EjectRound), new_spent_cartridge, user)
 
+/// This proc is used to eject both spent and unspent cartridges. It should be called by Reload() to eject all rounds when reloading on SPENT_RELOADEJECT weapons.
+/// It will also be called for each spent cartridge created if the weapon is SPENT_INSTANTEJECT.
+/// Don't mistake this for UnloadRound() - that proc puts the cartridge directly in your hands.
 /obj/item/ego_weapon/city/thumb_east/proc/EjectRound(obj/item/stack/thumb_east_ammo/cartridge, mob/living/user)
 	if(cartridge in current_ammo)
 		current_ammo -= cartridge
@@ -550,6 +559,8 @@
 		current_ammo_type = null
 		current_ammo_name = ""
 
+	// This block is adapted code from actual bullet casings for SS13 guns. We just slightly randomize its pixel offsets and throw it somewhere nearby.
+	// The cartridge's should_merge should be set to FALSE, so they won't automatically stack up with eachother until some overworked Soldato deigns to stack them manually.
 	cartridge.forceMove(user.drop_location())
 	cartridge.pixel_x = cartridge.base_pixel_x + rand(-5, 5)
 	cartridge.pixel_y = cartridge.base_pixel_y + rand (-5, 5)
@@ -559,11 +570,12 @@
 
 ////////////////////////////////////////////////////////////
 // SPECIAL ATTACKS SECTION.
-// These are the procs used to handle offensive actions like AoE attacks and applying status effects to the enemy.
+// These are the procs used to handle offensive actions like AoE attacks and applying status effects to the enemy, and all the auxiliary procs they use.
 
 /// This proc is just for a visual effect that creates a "shockwave" or some smoke at the user's location.
 /obj/item/ego_weapon/city/thumb_east/proc/PropulsionVisual(turf/origin, radius)
 	var/list/already_rendered = list()
+	// There may be a less expensive way to do this. I'm open to ideas.
 	for(var/i in 1 to radius)
 		var/list/turfs_to_spawn_visual_at = list()
 		for(var/turf/T in orange(i, origin))
@@ -577,6 +589,7 @@
 /// This proc is our opener attack. We try to lunge at people from range by spending a round. It is actual stepping, not teleporting.
 /// If we reach our target with it, we automatically hit them. If we don't, we can still benefit from the fired round's bonuses if we land a hit before the combo times out.
 /obj/item/ego_weapon/city/thumb_east/proc/Lunge(mob/living/target, mob/living/user)
+	// This will not stop you from trying to lunge through transparent objects, but if they are dense, you will not reach your target.
 	if(!(can_see(user, target, lunge_range)))
 		to_chat(user, span_warning("You can't reach your target!"))
 		return FALSE
@@ -586,9 +599,8 @@
 
 	combo_stage = COMBO_LUNGE
 	// Check to see if we've got a round to fire.
-	var/obj/item/stack/thumb_east_ammo/fired_round = SpendAmmo(user)
+	var/fired_round = SpendAmmo(user)
 	if(fired_round)
-		// We do have a round. So let's set ourselves to lunging and add the bonuses from the fired round to the weapon with HandleFiredAmmo().
 		lunge_cooldown = world.time + lunge_cooldown_duration
 		// Aesthetics.
 		to_chat(user, span_danger("You lunge at [target] using the propulsion from your [src.name]!"))
@@ -603,7 +615,7 @@
 			target.attackby(src,user)
 		else
 			to_chat(user, span_warning("Your lunge falls short of hitting your target!"))
-		// Yes we return TRUE regardless of whether we hit them with the lunge or not. What we care about is if we spent the round to lunge at the target.
+		// We return TRUE regardless of whether we hit them with the lunge or not. What we care about is if we spent the round to lunge at the target.
 		return TRUE
 	else
 		to_chat(user, span_warning("You pull the trigger to lunge at [target], but you have no ammo left."))
@@ -616,7 +628,7 @@
 	// Telegraph the beginning of the leap to give some chance for counterplay.
 	user.say("*grin")
 	user.visible_message(span_userdanger("[user] prepares to leap towards [target]...!"), span_danger("You prepare to leap towards [target]...!"))
-	playsound(src, 'sound/weapons/ego/thumb_east_podao_leap_prep.ogg', 100, FALSE, 7)
+	playsound(src, 'sound/weapons/ego/thumb_east_podao_leap_prep.ogg', 100, FALSE, 10)
 	// We root the user in place to prevent them from accidentally breaking their combo.
 	user.Immobilize(finisher_windup)
 	// Set this to make sure we can't do some goofy stuff while preparing to leap.
@@ -653,7 +665,7 @@
 			animate(user, 0.2 SECONDS, easing = QUAD_EASING, pixel_y = user.base_pixel_y, pixel_x = user.base_pixel_x, alpha = 255)
 			sleep(0.2 SECONDS)
 			busy = FALSE
-			// Hit the target.
+			// Hit the target. We do our AoE and statuses before the attackby() because hitting the target with a finisher clears our bonuses and resets our combo.
 			ComboAOE(target, user, COMBO_FINISHER)
 			ApplyStatusEffects(target, COMBO_FINISHER)
 			target.attackby(src, user)
@@ -683,24 +695,26 @@
 			vfx_turfs = getline(start_turf, end_turf)
 		// The following three lines are the only ones that actually matter for the attack.
 		user.visible_message(span_userdanger("[user] pierces [target] with a devastating, explosive strike!"), span_danger("You pierce [target] with a devastating, explosive strike!"))
-		// Status has to be applied before hitting them, because hitting them will clear our bonuses.
+		// Status has to be applied before hitting them, because hitting them will clear our bonuses since this is a finisher.
 		ApplyStatusEffects(target, COMBO_FINISHER)
 		target.attackby(src, user)
 		if(vfx_turfs)
 			vfx_turfs -= start_turf
 			INVOKE_ASYNC(src, PROC_REF(PierceVFX), vfx_turfs)
 		return TRUE
-	// We only reach this else block if we didn't manage to spend a bullet.
+	// We only reach this else block if we didn't manage to spend a bullet. We will just hit them normally in this case.
 	else
 		user.visible_message(span_userdanger("[user] pulls the trigger on their [src.name], but nothing happens!"), span_danger("You pull the trigger on your [src.name]. Nothing happens."))
 		return FALSE
 
+/// Creates visual effects in given turf list for Pierce finisher.
 /obj/item/ego_weapon/city/thumb_east/proc/PierceVFX(list/turf/vfx_turfs)
 	sleep(0.3 SECONDS)
 	for(var/turf/T in vfx_turfs)
 		new /obj/effect/temp_visual/thumb_east_aoe_impact(T)
 		sleep(0.1 SECONDS)
-/// This proc applies status effects to a target.
+
+/// This proc applies status effects to a target. Make sure to pass it the hit type that is causing the statuses: finishers can tremor-burst and AOEs apply half the stacks.
 /obj/item/ego_weapon/city/thumb_east/proc/ApplyStatusEffects(mob/living/target, hit_type)
 	// We don't want to tremor burst targets normally.
 	var/tremorburst_threshold = 999
@@ -725,6 +739,7 @@
 		target.apply_lc_burn(burn_to_apply)
 
 /// This proc is just cleanup on the weapon's state, and called whenever a combo ends, is cancelled or times out.
+/// Importantly, it will also apply our overheat bonus to our force, if we have any.
 /obj/item/ego_weapon/city/thumb_east/proc/ReturnToNormal(mob/user)
 	force = initial(force) + overheat
 	next_hit_should_apply = list()
@@ -732,7 +747,7 @@
 		combo_stage = COMBO_NO_AMMO
 		to_chat(user, span_warning("Your combo resets!"))
 
-/// This proc handles the AoE for our second attack and our finisher.
+/// This proc handles the AoE for our second attack and our finisher. It's indiscriminate - hopefully people don't FF too much with it? That could be changed if needed.
 /obj/item/ego_weapon/city/thumb_east/proc/ComboAOE(mob/target, mob/user, hit_type)
 	// First, determine how large the AOE should be.
 	var/aoe_radius = (hit_type == COMBO_ATTACK2 ? attack2_aoe_base_radius : finisher_aoe_base_radius)
@@ -776,6 +791,9 @@
 ////////////////////////////////////////////////////////////
 // WEAPON SUBTYPES.
 
+/// This is the Thumb East Capo's weapon. Obviously it's not as terrifying as the Sottocapo's shotgun since it isn't ranged, but it's stronger than the Sottocapo Cane.
+/// Using ammo makes it truly fearsome, especially in PvP since it has two guaranteed hits (if you can land the clicks, and if they don't break LoS) in its combo.
+/// It's a little under par in terms of DPS if you don't use ammo.
 /obj/item/ego_weapon/city/thumb_east/podao
 	name = "thumb east podao"
 	desc = "A traditional podao fitted with a system to load specialized propellant ammunition. Even Thumb Capos can struggle to handle the impressive thrust generated by this blade."
@@ -802,12 +820,16 @@
 	)
 	combo_description = "This weapon's combo consists of a long-range lunge, followed by a circular AoE sweep around the user, and ends with a devastating but telegraphed AoE leap on the target.\n"+\
 	"If you trigger but miss your lunge, you can still continue the combo by landing a regular hit on-target."
-	motion_values = list(COMBO_NO_AMMO = 1, COMBO_LUNGE = 0.9, COMBO_ATTACK2 = 1.2, COMBO_FINISHER = 2, COMBO_ATTACK2_AOE = 0.7, COMBO_FINISHER_AOE = 1)
+	motion_values = list(COMBO_NO_AMMO = 1, COMBO_LUNGE = 1, COMBO_ATTACK2 = 1.2, COMBO_FINISHER = 2, COMBO_ATTACK2_AOE = 0.7, COMBO_FINISHER_AOE = 1)
 
 ////////////////////////////////////////////////////////////
 // AMMUNITION SECTION.
 // These are stackable items. They don't really do much on their own. The Thumb East weapons handle the logic for loading and firing them.
 // Most of this code is just for holding the properties bullets should have when fired.
+
+/// This is the standard ammo type. Thumb East Soldatos will use it for their rifles, and the Capo may use it for their Podao as well.
+/// It's nothing crazy, but it adds force to their attacks, and of course, tremor and burn. These could combo in a really nasty way with Augments.
+/// NEVER PUT THESE IN FACILITY MODES.
 /obj/item/stack/thumb_east_ammo
 	name = "scorch propellant ammunition"
 	desc = "Ammunition used by the Thumb in eastern parts of the City. These rounds aren't fired at targets, rather they provide additional propulsion to the swings and stabs of Thumb weaponry."
@@ -820,6 +842,7 @@
 	/// What item does this turn into when it gets spent?
 	var/spent_type = /obj/item/stack/thumb_east_ammo/spent
 	/// We need this var for some stack item shenanigans, they will try to merge at very inconvenient times just to spite you.
+	/// Such as inside your weapon, filling your ammo list with nulls...
 	var/should_merge = TRUE
 	/// This variable holds the path to the sound file played when this round is consumed.
 	var/detonation_sound = 'sound/weapons/ego/thumb_east_rifle_detonation.ogg'
@@ -833,7 +856,7 @@
 	/// Controls how much burn is applied to a target hit with this ammo in an attack. Multiplied by a motion value coefficient depending on combo stage.
 	var/burn_base = 2
 	/// Adds flat force to an attack boosted with this ammo. Multiplied by a motion value coefficient depending on combo stage.
-	var/flat_force_base = 6
+	var/flat_force_base = 5
 	/// AOE radius bonus when spending this shell on an AOE attack. Please never let this be too high or it will cause funny incidents. This is never multiplied.
 	var/aoe_radius_bonus = 0
 
@@ -880,6 +903,7 @@
 	. = ..()
 
 
+/// Facility version of the basic ammunition. No status effects, but has a nice amount of force bonus to compensate.
 /obj/item/stack/thumb_east_ammo/facility
 	name = "surplus propellant ammunition"
 	desc = "Some strange ammunition used in certain weapons, though it isn't actually fired as a projectile. It looks to be in pretty bad shape.\n"+\
@@ -891,6 +915,8 @@
 	flat_force_base = 10
 	aesthetic_shockwave_distance = 1
 
+/// Tigermark rounds. These only fit in the Thumb East Podao, so only the Capo should be using them. Expensive, but devastating.
+/// The Capo shouldn't even need to use these, they can just use the default ammo. When these get pulled out it's because things got real.
 /obj/item/stack/thumb_east_ammo/tigermark
 	name = "tigermark rounds"
 	desc = "Powerful propellant ammunition used by the Eastern Thumb. It greatly enhances the power of slashes, and its detonation sounds like the roar of a tiger.\n"+\
@@ -910,6 +936,7 @@
 	. = ..()
 	. += span_info("This ammunition is only compatible with thumb east podaos.")
 
+/// Off-brand Tigermark rounds. For lucky Agents in Facility mode, basically. No status, but a really big chunk of force bonus on each hit, and it keeps it AoE bonus.
 /obj/item/stack/thumb_east_ammo/tigermark/facility
 	name = "ligermark rounds"
 	desc = "Wait... this isn't a Tigermark round at all, is it? Well... it's about the same caliber, so it would probably fit into a Thumb East podao."
