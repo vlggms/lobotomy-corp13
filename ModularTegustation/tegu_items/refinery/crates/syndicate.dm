@@ -7,32 +7,24 @@
 	veryrarechance = 5
 	lootlist =	list(
 		/obj/item/clothing/suit/armor/ego_gear/city/blade_lineage_salsu,
-		/obj/item/ego_weapon/ranged/city/thumb,
-		/obj/item/clothing/suit/armor/ego_gear/city/thumb,
 		/obj/item/clothing/suit/armor/ego_gear/city/index,
 	)
 
 	rareloot =	list(
 		/obj/item/clothing/suit/armor/ego_gear/city/blade_lineage_cutthroat,
-		/obj/item/clothing/suit/armor/ego_gear/city/thumb_capo,
 		/obj/item/clothing/suit/armor/ego_gear/adjustable/index_proxy,
 		/obj/item/ego_weapon/city/index,
 		/obj/item/ego_weapon/city/awl,
 		/obj/item/ego_weapon/city/kurokumo,
 		/obj/item/ego_weapon/city/bladelineage,
-		/obj/item/ego_weapon/ranged/city/thumb/capo,
-		/obj/item/ego_weapon/city/thumbmelee,
 	)
 
 	veryrareloot =	list(
 		/obj/item/clothing/suit/armor/ego_gear/city/blade_lineage_admin,
 		/obj/item/clothing/suit/armor/ego_gear/city/index_mess,
-		/obj/item/clothing/suit/armor/ego_gear/city/thumb_sottocapo,
 		/obj/item/ego_weapon/city/index/proxy,
 		/obj/item/ego_weapon/city/index/proxy/spear,
 		/obj/item/ego_weapon/city/index/yan,
-		/obj/item/ego_weapon/ranged/city/thumb/sottocapo,
-		/obj/item/ego_weapon/city/thumbcane,
 	)
 
 
@@ -95,4 +87,50 @@
 	veryrareloot =	list(
 		/obj/item/clothing/suit/armor/ego_gear/city/mariachi/aida/boss,
 		/obj/item/ego_weapon/city/mariachi/dual/boss,
+	)
+
+/// The Thumb's own lootcrate. RED damage, which is bad, but has some pretty decent gear in here. Also has ammo boxes for Thumb E weapons.
+/// The ammo can be sold on city mode if you don't need it, but is otherwise a wasted crate if you don't have the corresponding weapon to use it with.
+/// Reliable but not great armour, Thumb S weaponry includes rifles that reload on melee and have extra reach, and Thumb E weaponry use physical ammo to boost their melee.
+/obj/structure/lootcrate/thumb
+	name = "thumb crate"
+	desc = "A crate received from the Thumb finger syndicate. Open with a Crowbar."
+	icon_state = "crate_thumb"
+	rarechance = 33
+	veryrarechance = 7
+	lootlist = list(
+		// Thumb S Soldato Weapons
+		/obj/item/ego_weapon/ranged/city/thumb,
+		// Thumb S Soldato Armour
+		/obj/item/clothing/suit/armor/ego_gear/city/thumb,
+		// Thumb E Ammo Box (9x Surplus Propellant, 3x Ligermark)
+		/obj/item/storage/box/thumb_east_ammo,
+	)
+	rareloot = list(
+		// Thumb E Soldato Weapons
+		/obj/item/ego_weapon/city/thumb_east,
+		// Thumb S Capo Weapons
+		/obj/item/ego_weapon/ranged/city/thumb/capo,
+		/obj/item/ego_weapon/city/thumbmelee,
+		// Thumb E Soldato Armour
+
+		// Thumb S Capo Armour
+		/obj/item/clothing/suit/armor/ego_gear/city/thumb_capo,
+
+
+	)
+	veryrareloot = list(
+	// Thumb E Capo Weapons
+	/obj/item/ego_weapon/city/thumb_east/podao,
+	// Thumb S Sottocapo Weapons
+	/obj/item/ego_weapon/ranged/city/thumb/sottocapo,
+	/obj/item/ego_weapon/city/thumbcane,
+	// Thumb E Capo Armour
+
+	// Thumb S Sottocapo Armour
+	/obj/item/clothing/suit/armor/ego_gear/city/thumb_sottocapo,
+
+
+
+
 	)

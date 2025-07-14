@@ -95,7 +95,7 @@
 // These guys are special because they use weapons loaded with special ammunition. They don't fire it as projectiles, instead they use the ammo to boost their melee attacks.
 // The weapons will be beatsticks, but will unlock special combos if loaded with ammo.
 // These weapons will show up in City and Facility. In City, the Thumb will use them. Otherwise you'll be able to get them from the same sources as regular Thumb gear.
-// The ammunition they use comes with its own special properties. Ammunition available in Facility mode should NEVER have status effects on it.
+// The ammunition they use comes with its own "stats". Ammunition available in Facility mode should NEVER have status effects on it.
 
 #define COMBO_NO_AMMO "no_ammo"
 #define COMBO_LUNGE "lunge"
@@ -124,13 +124,13 @@
 	special = "This is a Thumb East weapon. Load it with propellant ammunition to unlock a powerful combo. Initiate the combo by attacking from range. Each hit of the combo requires 1 propellant round to trigger, and has varying attack speed. Your combo will cancel if you run out of ammo or hit without spending a round.\n"+\
 	"Hit the weapon with a handful of propellant ammunition to attempt to load as much of the handful as possible. Toggle your combo on or off by using this weapon in-hand. Alt-click the weapon to unload a round.\n"+\
 	"Spending ammo with this weapon generates heat. Heat increases the base damage of the weapon when not using combo attacks. It decays on each hit and is reset on reloading or unloading."
-	/// This list holds the bonuses that our next hit should deal. The keys for them are ["tremor"], ["burn"], ["aoe_flat_force_bonus"] and ["aoe_radius_bonus"].
+	/// This list holds the bonuses that our next hit should deal. The keys for them are ["tremor"], ["burn"], ["aoe_flat_force_bonus"] and ["aoe_size_bonus"].
 	// I wanted to use a define like NEXTHIT_PROPELLANT_TREMOR_BONUS = next_hit_should_apply["tremor"] to simplify readability and maintainability...
 	// but it didn't work. Sorry.
 	var/next_hit_should_apply = list()
 
 	// 	Combo variables.
-	/// Should always be TRUE unless the user manually disables combos by using the weapon in-hand.
+	/// Should always be TRUE unless the user manually disables combos by using the weapon in-hand. If it's FALSE, we won't try to combo when hitting.
 	var/combo_enabled = TRUE
 	/// Description for the combo. Explain it to the user.
 	var/combo_description = "This weapon's combo consists of a long-range lunge, followed by a circular AoE sweep around the user, and ends with a powerful finisher on the target.\n"+\
@@ -140,7 +140,7 @@
 	/// Variable that holds the reset timer for our combo.
 	var/combo_reset_timer
 	/// List which maps the coefficients by which to multiply our damage on each hit depending on the state of the combo.
-	var/list/motion_values = list(COMBO_NO_AMMO = 1, COMBO_LUNGE = 1, COMBO_ATTACK2 = 1.2, COMBO_FINISHER = 1.4, COMBO_ATTACK2_AOE = 0.5, COMBO_FINISHER_AOE = 0.5,)
+	var/list/motion_values = list(COMBO_NO_AMMO = 1, COMBO_LUNGE = 1, COMBO_ATTACK2 = 1.2, COMBO_FINISHER = 1.5, COMBO_ATTACK2_AOE = 0.8, COMBO_FINISHER_AOE = 1,)
 	/// This variable holds a flat force increase that is only applied on COMBO_NO_AMMO hits. It increases when ammo is spent, and gets reset on reload or unload.
 	/// It decays on each hit that isn't part of a combo.
 	var/overheat = 0
@@ -154,8 +154,8 @@
 	var/lunge_cooldown
 	/// Base radius in tiles for the second attack's AoE range. Should be at least 1.
 	var/attack2_aoe_base_radius = 1
-	/// Base radius in tiles for Finisher AoE range.
-	var/finisher_aoe_base_radius = 0
+	/// Value in tiles for the radius of the Leap Finisher AoE and the length of the Pierce Finisher AoE.
+	var/finisher_aoe_base_size = 2
 	/// Type of finisher this weapon uses.
 	var/finisher_type = FINISHER_PIERCE
 	/// The windup our finisher has, if it has any. FINISHER_PIERCE shouldn't use this, but FINISHER_LEAP will use it. That can change in the future though.
@@ -238,7 +238,7 @@
 		to_chat(user, span_warning("The [I.name] are incompatible with the [src.name]."))
 		return
 	// If we already have a type of ammunition loaded, and we try to load a different type, reject the round.
-	if(I.type != current_ammo_type && current_ammo_type)
+	if(spent_ammo_behaviour != SPENT_RELOADEJECT && I.type != current_ammo_type && current_ammo_type)
 		to_chat(user, span_warning("There is a different type of ammunition currently loaded. Spend or unload the ammunition first to load this round."))
 		return
 
@@ -279,7 +279,7 @@
 	if(!combo_enabled)
 		ReturnToNormal()
 		// Decay our overheat bonus, but don't let it go negative...
-		overheat = max(0, overheat - 0.5)
+		overheat = max(0, overheat - 0.2)
 		return ..()
 	switch(combo_stage)
 		// Importantly: every time we want to fire a round, we should use SpendAmmo(user).
@@ -290,7 +290,7 @@
 		if(COMBO_NO_AMMO)
 			ReturnToNormal(user)
 			// Decay our overheat bonus, but don't let it go negative...
-			overheat = max(0, overheat - 0.5)
+			overheat = max(0, overheat - 0.2)
 			return ..()
 		// This case is for an attack made out of a lunge.
 		if(COMBO_LUNGE)
@@ -312,7 +312,7 @@
 				playsound(src, sweep_sound, 100, FALSE, 10)
 				hitsound = initial(hitsound)
 				user.changeNext_move(CLICK_CD_MELEE * attack_speed * 1.3)
-				ComboAOE(target, user, COMBO_ATTACK2)
+				RadiusAOE(target, user, COMBO_ATTACK2)
 				ApplyStatusEffects(target, COMBO_ATTACK2)
 				combo_stage = COMBO_FINISHER
 				return
@@ -335,7 +335,7 @@
 		// We should never ever reach this else block, but here it is, just in case.
 		else
 			ReturnToNormal(user)
-			overheat = max(0, overheat - 0.5)
+			overheat = max(0, overheat - 0.2)
 			. = ..()
 
 /// This overridden proc is only called when attacking something next to us. Basically we want to intercept any possible melee attacks when we're at our finisher stage,
@@ -348,7 +348,7 @@
 	if(busy)
 		return TRUE
 
-	if(combo_stage == COMBO_FINISHER && combo_enabled)
+	if(combo_stage == COMBO_FINISHER && combo_enabled && isliving(target))
 		if(finisher_type == FINISHER_LEAP)
 			. = Leap(target, user)
 		if(finisher_type == FINISHER_PIERCE)
@@ -412,7 +412,6 @@
 				var/obj/item/stack/thumb_east_ammo/new_bullet = ammo_item.split_stack(user, 1)
 				if(new_bullet)
 					// We actually store the round INSIDE the weapon. If the weapon is destroyed we'll drop them.
-					new_bullet.should_merge = FALSE
 					new_bullet.forceMove(src)
 					current_ammo += new_bullet
 					current_ammo_type = ammo_item.type
@@ -470,6 +469,9 @@
 			playsound(src, 'sound/weapons/gun/pistol/drop_small.ogg', 100, FALSE)
 			user.put_in_hands(live_round)
 			overheat = 0
+			if(AmmoDepletedCheck())
+				current_ammo_type = null
+				current_ammo_name = ""
 			return TRUE
 	// We reach this part if we had no ammo but no spent rounds either.
 	to_chat(user, span_warning("There's no ammo left to unload."))
@@ -522,8 +524,8 @@
 		if(round.burn_base > 0)
 			var/burn_coeff = motion_values[combo_stage]
 			next_hit_should_apply["burn"] = round.burn_base * burn_coeff
-		if(round.aoe_radius_bonus > 0)
-			next_hit_should_apply["aoe_radius_bonus"] = round.aoe_radius_bonus
+		if(round.aoe_size_bonus > 0)
+			next_hit_should_apply["aoe_size_bonus"] = round.aoe_size_bonus
 
 		deltimer(combo_reset_timer)
 		var/combo_reset_timer_duration = 5 SECONDS
@@ -560,7 +562,6 @@
 		current_ammo_name = ""
 
 	// This block is adapted code from actual bullet casings for SS13 guns. We just slightly randomize its pixel offsets and throw it somewhere nearby.
-	// The cartridge's should_merge should be set to FALSE, so they won't automatically stack up with eachother until some overworked Soldato deigns to stack them manually.
 	cartridge.forceMove(user.drop_location())
 	cartridge.pixel_x = cartridge.base_pixel_x + rand(-5, 5)
 	cartridge.pixel_y = cartridge.base_pixel_y + rand (-5, 5)
@@ -666,7 +667,7 @@
 			sleep(0.2 SECONDS)
 			busy = FALSE
 			// Hit the target. We do our AoE and statuses before the attackby() because hitting the target with a finisher clears our bonuses and resets our combo.
-			ComboAOE(target, user, COMBO_FINISHER)
+			RadiusAOE(target, user, COMBO_FINISHER)
 			ApplyStatusEffects(target, COMBO_FINISHER)
 			target.attackby(src, user)
 
@@ -683,36 +684,33 @@
 	busy = FALSE
 	return FALSE
 
-/// This proc is the special finisher for FINISHER_PIERCE. It's just a single target hit with flavour. Thought about adding a line AOE to it, but I think it's fine as is.
+/// This proc is the special finisher for FINISHER_PIERCE. It's a single target hit with a line AOE for secondary targets.
 /obj/item/ego_weapon/city/thumb_east/proc/Pierce(mob/living/target, mob/living/user)
 	// Spend a bullet.
 	if(SpendAmmo(user))
-		// All this gathering of turfs is purely for VFX purposes. But if we ever want to add AoE to this, we'd use them for that purpose.
+		// First, determine how long the line AOE should be.
+		var/aoe_length = finisher_aoe_base_size
+		var/propellant_radius_bonus = next_hit_should_apply["aoe_size_bonus"]
+		if(propellant_radius_bonus)
+			aoe_length += floor(propellant_radius_bonus)
 		var/turf/start_turf = get_turf(user)
-		var/turf/end_turf = get_ranged_target_turf_direct(user, target, 2)
-		var/list/vfx_turfs = null
+		var/turf/end_turf = get_ranged_target_turf_direct(user, target, aoe_length)
+		var/list/aoe_turfs = list()
 		if(start_turf && end_turf)
-			vfx_turfs = getline(start_turf, end_turf)
-		// The following three lines are the only ones that actually matter for the attack.
-		user.visible_message(span_userdanger("[user] pierces [target] with a devastating, explosive strike!"), span_danger("You pierce [target] with a devastating, explosive strike!"))
+			aoe_turfs = getline(start_turf, end_turf)
+			aoe_turfs -= start_turf
 		// Status has to be applied before hitting them, because hitting them will clear our bonuses since this is a finisher.
 		ApplyStatusEffects(target, COMBO_FINISHER)
+		if(aoe_turfs)
+			AOEHit(aoe_turfs, target, user, COMBO_FINISHER)
 		target.attackby(src, user)
-		if(vfx_turfs)
-			vfx_turfs -= start_turf
-			INVOKE_ASYNC(src, PROC_REF(PierceVFX), vfx_turfs)
+
 		return TRUE
 	// We only reach this else block if we didn't manage to spend a bullet. We will just hit them normally in this case.
 	else
 		user.visible_message(span_userdanger("[user] pulls the trigger on their [src.name], but nothing happens!"), span_danger("You pull the trigger on your [src.name]. Nothing happens."))
 		return FALSE
 
-/// Creates visual effects in given turf list for Pierce finisher.
-/obj/item/ego_weapon/city/thumb_east/proc/PierceVFX(list/turf/vfx_turfs)
-	sleep(0.3 SECONDS)
-	for(var/turf/T in vfx_turfs)
-		new /obj/effect/temp_visual/thumb_east_aoe_impact(T)
-		sleep(0.1 SECONDS)
 
 /// This proc applies status effects to a target. Make sure to pass it the hit type that is causing the statuses: finishers can tremor-burst and AOEs apply half the stacks.
 /obj/item/ego_weapon/city/thumb_east/proc/ApplyStatusEffects(mob/living/target, hit_type)
@@ -747,14 +745,21 @@
 		combo_stage = COMBO_NO_AMMO
 		to_chat(user, span_warning("Your combo resets!"))
 
-/// This proc handles the AoE for our second attack and our finisher. It's indiscriminate - hopefully people don't FF too much with it? That could be changed if needed.
-/obj/item/ego_weapon/city/thumb_east/proc/ComboAOE(mob/target, mob/user, hit_type)
+/// This proc generates a radius-based AoE for our sweep and our leap finisher.
+/obj/item/ego_weapon/city/thumb_east/proc/RadiusAOE(mob/target, mob/user, hit_type)
 	// First, determine how large the AOE should be.
-	var/aoe_radius = (hit_type == COMBO_ATTACK2 ? attack2_aoe_base_radius : finisher_aoe_base_radius)
-	var/propellant_radius_bonus = next_hit_should_apply["aoe_radius_bonus"]
+	var/aoe_radius = (hit_type == COMBO_ATTACK2 ? attack2_aoe_base_radius : finisher_aoe_base_size)
+	var/propellant_radius_bonus = next_hit_should_apply["aoe_size_bonus"]
 	if(propellant_radius_bonus)
 		aoe_radius += floor(propellant_radius_bonus)
 
+	// We determine the tiles which should be hit.
+	var/list/affected_turfs = list()
+	for(var/turf/T in (hit_type == COMBO_ATTACK2 ? orange(aoe_radius, user) : range(aoe_radius, target)))
+		affected_turfs |= T
+	AOEHit(affected_turfs, target, user, hit_type)
+
+/obj/item/ego_weapon/city/thumb_east/proc/AOEHit(list/hit_turfs, mob/target, mob/user, hit_type)
 	// Calculate the AoE damage. We get the base damage from:
 	// (Initial force of the weapon + flat force bonus from the round fired) * Motion value of the AoE type * A special coefficient for secondary targets of the AoE type
 	// We later apply Justice scaling, but we also save the non-Justice-scaling damage for PvP.
@@ -765,16 +770,10 @@
 	// We recently disabled Justice scaling in PvP so we also need to store a non-justice modified value to apply damage to human mobs.
 	var/aoe_no_justice = aoe
 	aoe*=justicemod
-
-	// We determine the tiles which should be hit.
-	var/list/affected_turfs = list()
-	for(var/turf/T in (hit_type == COMBO_ATTACK2 ? orange(aoe_radius, user) : range(aoe_radius, target)))
-		affected_turfs |= T
-
 	// This is where the hit happens.
-	for(var/turf/T2 in affected_turfs)
-		new /obj/effect/temp_visual/thumb_east_aoe_impact(T2)
-		for(var/mob/living/L in T2)
+	for(var/turf/T in hit_turfs)
+		new /obj/effect/temp_visual/thumb_east_aoe_impact(T)
+		for(var/mob/living/L in T)
 			if(L == user)
 				continue
 			if(L == target)
@@ -786,7 +785,6 @@
 			else if(hit_type == COMBO_FINISHER)
 				ApplyStatusEffects(L, COMBO_FINISHER_AOE)
 				L.visible_message(span_danger("[L] is scorched by a powerful blast from [user]'s [src.name]!"))
-
 
 ////////////////////////////////////////////////////////////
 // WEAPON SUBTYPES.
@@ -810,7 +808,7 @@
 	attack_speed = 1.1
 	max_ammo = 6
 	spent_ammo_behaviour = SPENT_RELOADEJECT
-	finisher_aoe_base_radius = 1
+	finisher_aoe_base_size = 1
 	finisher_type = FINISHER_LEAP
 	accepted_ammo_table = list(
 		/obj/item/stack/thumb_east_ammo,
@@ -820,7 +818,7 @@
 	)
 	combo_description = "This weapon's combo consists of a long-range lunge, followed by a circular AoE sweep around the user, and ends with a devastating but telegraphed AoE leap on the target.\n"+\
 	"If you trigger but miss your lunge, you can still continue the combo by landing a regular hit on-target."
-	motion_values = list(COMBO_NO_AMMO = 1, COMBO_LUNGE = 1, COMBO_ATTACK2 = 1.2, COMBO_FINISHER = 2, COMBO_ATTACK2_AOE = 0.7, COMBO_FINISHER_AOE = 1)
+	motion_values = list(COMBO_NO_AMMO = 1, COMBO_LUNGE = 1, COMBO_ATTACK2 = 1.3, COMBO_FINISHER = 2, COMBO_ATTACK2_AOE = 1, COMBO_FINISHER_AOE = 1.2)
 
 ////////////////////////////////////////////////////////////
 // AMMUNITION SECTION.
@@ -838,19 +836,17 @@
 	icon_state = "thumb_east"
 	novariants = FALSE
 	merge_type = /obj/item/stack/thumb_east_ammo
-
+	w_class = WEIGHT_CLASS_NORMAL
+	full_w_class = WEIGHT_CLASS_BULKY
 	/// What item does this turn into when it gets spent?
 	var/spent_type = /obj/item/stack/thumb_east_ammo/spent
-	/// We need this var for some stack item shenanigans, they will try to merge at very inconvenient times just to spite you.
-	/// Such as inside your weapon, filling your ammo list with nulls...
-	var/should_merge = TRUE
 	/// This variable holds the path to the sound file played when this round is consumed.
 	var/detonation_sound = 'sound/weapons/ego/thumb_east_rifle_detonation.ogg'
 	/// This variable holds the distance that the aesthetic "shockwave" will travel after this round is fired.
 	var/aesthetic_shockwave_distance = 2
 	/// Controls how much overheat is generated when spending this round. It's a decaying flat force increase on non-combo hits that gets cleared on reload/unload.
 	/// Please never make this negative.
-	var/heat_generation = 1
+	var/heat_generation = 2
 	/// Controls how much tremor is applied to a target hit with this ammo in an attack. Multiplied by a motion value coefficient depending on combo stage.
 	var/tremor_base = 5
 	/// Controls how much burn is applied to a target hit with this ammo in an attack. Multiplied by a motion value coefficient depending on combo stage.
@@ -858,16 +854,17 @@
 	/// Adds flat force to an attack boosted with this ammo. Multiplied by a motion value coefficient depending on combo stage.
 	var/flat_force_base = 5
 	/// AOE radius bonus when spending this shell on an AOE attack. Please never let this be too high or it will cause funny incidents. This is never multiplied.
-	var/aoe_radius_bonus = 0
+	var/aoe_size_bonus = 0
 
 
 /obj/item/stack/thumb_east_ammo/examine(mob/user)
 	. = ..()
+	. += span_danger("This ammunition becomes bulky when the stack reaches an amount of [(max_amount / 3) * 2]. Split it to store it in your backpack.")
 	. += span_notice("This ammunition increases weapon base damage by [flat_force_base] when fired.")
 	. += span_notice("It generates [heat_generation] heat when fired.")
 	. += span_notice("It [tremor_base >= 1 ? "applies [tremor_base]" : "does not apply"] tremor stacks on target hit after firing.")
 	. += span_notice("It [burn_base >= 1 ? "applies [burn_base]" : "does not apply"] burn stacks on target hit after firing.")
-	. += span_notice("It [aoe_radius_bonus >= 1 ? "adds [aoe_radius_bonus]" : "does not add any extra"] tiles of radius to AoE attacks on target hit after firing.")
+	. += span_notice("It [aoe_size_bonus >= 1 ? "adds [aoe_size_bonus]" : "does not add any extra"] tiles of size to AoE attacks on target hit after firing.")
 
 /// This override is so we can use 6 sprites instead of 3 to count the bullets individually. I basically just copy pasted the old code.
 /obj/item/stack/thumb_east_ammo/update_icon_state()
@@ -882,6 +879,15 @@
 	else
 		icon_state = "[initial(icon_state)]_[amount]"
 
+/// I have to override this because I don't want them to auto-merge when crossing eachother. I'm not even sure if this is okay to do.
+/obj/item/stack/thumb_east_ammo/Crossed(atom/movable/crossing)
+	SEND_SIGNAL(src, COMSIG_MOVABLE_CROSSED, crossing)
+
+/obj/item/stack/thumb_east_ammo/update_weight()
+	if(amount >= (max_amount / 3) * 2)
+		w_class = full_w_class
+	else
+		w_class = initial(w_class)
 
 // I know this override looks weird, but there's a good reason for it. There's a certain behaviour stack objects have where subtypes can merge to their parent types,
 // which we really don't want for this specific item and its subtypes. As in, we don't want scorch propellant rounds to get mixed up with Tigermark rounds or surplus rounds.
@@ -890,16 +896,6 @@
 	if(istype(check, /obj/item/stack))
 		if(!istype(src, check.merge_type))
 			return FALSE
-	if(!should_merge)
-		return FALSE
-	. = ..()
-
-/// We set their should_merge to FALSE when loading them into a weapon or spilling them on the floor. This override lets players manually stack them despite this.
-/obj/item/stack/thumb_east_ammo/attackby(obj/item/W, mob/user, params)
-	if(W.type == src.type)
-		var/obj/item/stack/thumb_east_ammo/we_hit = W
-		we_hit.should_merge = TRUE
-		src.should_merge = TRUE
 	. = ..()
 
 
@@ -912,7 +908,7 @@
 	merge_type = /obj/item/stack/thumb_east_ammo/facility
 	tremor_base = 0
 	burn_base = 0
-	flat_force_base = 10
+	flat_force_base = 12
 	aesthetic_shockwave_distance = 1
 
 /// Tigermark rounds. These only fit in the Thumb East Podao, so only the Capo should be using them. Expensive, but devastating.
@@ -926,17 +922,17 @@
 	spent_type = /obj/item/stack/thumb_east_ammo/spent/tigermark
 	detonation_sound = 'sound/weapons/ego/thumb_east_podao_detonation.ogg'
 	aesthetic_shockwave_distance = 2
-	heat_generation = 2
+	heat_generation = 3
 	tremor_base = 8
 	burn_base = 4
 	flat_force_base = 12
-	aoe_radius_bonus = 1
+	aoe_size_bonus = 1
 
 /obj/item/stack/thumb_east_ammo/tigermark/examine(mob/user)
 	. = ..()
 	. += span_info("This ammunition is only compatible with thumb east podaos.")
 
-/// Off-brand Tigermark rounds. For lucky Agents in Facility mode, basically. No status, but a really big chunk of force bonus on each hit, and it keeps it AoE bonus.
+/// Off-brand Tigermark rounds. For lucky Agents in Facility mode, basically. No status, but a really big chunk of force bonus on each hit, and it keeps its AoE bonus.
 /obj/item/stack/thumb_east_ammo/tigermark/facility
 	name = "ligermark rounds"
 	desc = "Wait... this isn't a Tigermark round at all, is it? Well... it's about the same caliber, so it would probably fit into a Thumb East podao."
@@ -944,8 +940,8 @@
 	merge_type = /obj/item/stack/thumb_east_ammo/tigermark/facility
 	tremor_base = 0
 	burn_base = 0
-	flat_force_base = 16
-	aoe_radius_bonus = 1
+	flat_force_base = 20
+	aoe_size_bonus = 1
 
 // Spent ammunition types. Please don't put this on any weapon's accepted ammunition table.
 // These spent cartridges can be brought back to the Thumb's ammo vendor to refund part of the cost, or they can be sold by Fixers or Rats.
@@ -956,20 +952,21 @@
 	singular_name = "spent propellant ammunition casing"
 	icon_state = "thumb_east_spent"
 	merge_type = /obj/item/stack/thumb_east_ammo/spent
-	// Don't let them merge until someone picks them up.
-	should_merge = FALSE
 	heat_generation = 0
 	tremor_base = 0
 	burn_base = 0
 	flat_force_base = 0
-	aoe_radius_bonus = 0
+	aoe_size_bonus = 0
+
+/// The only thing this override does is prevent the spent cartridges from merging on initialize. This is so they don't merge when created inside a SPENT_RELOADEJECT weapon.
+/obj/item/stack/thumb_east_ammo/spent/Initialize(mapload, new_amount, merge = FALSE, list/mat_override=null, mat_amt=1)
+	. = ..()
 
 /obj/item/stack/thumb_east_ammo/spent/tigermark
 	name = "spent tigermark cartridges"
 	desc = "Expensive-looking cartridges. Smells like gunpowder. This might be worth something."
 	singular_name = "spent tigermark cartridge"
 	merge_type = /obj/item/stack/thumb_east_ammo/spent/tigermark
-
 
 ////////////////////////////////////////////////////////////
 // VFX SECTION.

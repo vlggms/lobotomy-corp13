@@ -74,3 +74,18 @@
 	var/loot = pick(loot_list)
 	new /obj/item/clothing/suit/armor/ego_gear/city/kcorp_l1(src)
 	new loot(src)
+
+/// Thumb East's propellant ammo boxes. 9x basic propellant and 6x tigermark. These should be the /facility versions so they don't get status effects.
+/obj/item/storage/box/thumb_east_ammo
+	name = "thumb east surplus ammo box"
+	desc = "A small box of propellant ammunition that can be loaded into Thumb East weaponry. It doesn't seem like the real deal - probably used for training."
+	/// You can't put these boxes in your backpack.
+	w_class = WEIGHT_CLASS_BULKY
+
+/obj/item/storage/box/thumb_east_ammo/PopulateContents()
+	// I could put these both in the same for loop but I want them to be in order.
+	for(var/i = 1 to 9)
+		new /obj/item/stack/thumb_east_ammo/facility(src)
+	for(var/i = 1 to 6)
+		new /obj/item/stack/thumb_east_ammo/tigermark/facility(src)
+
