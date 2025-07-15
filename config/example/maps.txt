@@ -59,7 +59,7 @@ endmap
 	minplayers 20
 endmap
 
-map elevator_hell
+map mucorp
 	votable
 	minplayers 20
 endmap
