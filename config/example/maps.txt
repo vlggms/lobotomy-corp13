@@ -59,9 +59,9 @@ endmap
 	minplayers 20
 endmap
 
-#map elevator_hell
+map elevator_hell
 	votable
-	minplayers 18
+	minplayers 20
 endmap
 
 map psicorp
