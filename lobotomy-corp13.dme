@@ -4084,6 +4084,8 @@
 #include "ModularTegustation\ego_weapons\ranged\ego_bullets\teth.dm"
 #include "ModularTegustation\ego_weapons\ranged\ego_bullets\waw.dm"
 #include "ModularTegustation\ego_weapons\ranged\ego_bullets\zayin.dm"
+#include "ModularTegustation\expedition\items.dm"
+#include "ModularTegustation\expedition\machinery.dm"
 #include "ModularTegustation\fishing\code\_debug_spawners.dm"
 #include "ModularTegustation\fishing\code\fish_market.dm"
 #include "ModularTegustation\fishing\code\fishing_skill.dm"
