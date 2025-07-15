@@ -103,7 +103,7 @@
 		/obj/item/ego_weapon/ranged/city/thumb,
 		// Thumb S Soldato Armour
 		/obj/item/clothing/suit/armor/ego_gear/city/thumb,
-		// Thumb E Ammo Box (9x Surplus Propellant, 3x Ligermark)
+		// Thumb E Ammo Box (9x Surplus Propellant, 6x Ligermark)
 		/obj/item/storage/box/thumb_east_ammo,
 	)
 	rareloot = list(
@@ -113,24 +113,18 @@
 		/obj/item/ego_weapon/ranged/city/thumb/capo,
 		/obj/item/ego_weapon/city/thumbmelee,
 		// Thumb E Soldato Armour
-
+		// TBA.
 		// Thumb S Capo Armour
 		/obj/item/clothing/suit/armor/ego_gear/city/thumb_capo,
-
-
 	)
 	veryrareloot = list(
-	// Thumb E Capo Weapons
-	/obj/item/ego_weapon/city/thumb_east/podao,
-	// Thumb S Sottocapo Weapons
-	/obj/item/ego_weapon/ranged/city/thumb/sottocapo,
-	/obj/item/ego_weapon/city/thumbcane,
-	// Thumb E Capo Armour
-
-	// Thumb S Sottocapo Armour
-	/obj/item/clothing/suit/armor/ego_gear/city/thumb_sottocapo,
-
-
-
-
+		// Thumb E Capo Weapons
+		/obj/item/ego_weapon/city/thumb_east/podao,
+		// Thumb S Sottocapo Weapons
+		/obj/item/ego_weapon/ranged/city/thumb/sottocapo,
+		/obj/item/ego_weapon/city/thumbcane,
+		// Thumb E Capo Armour
+		// TBA.
+		// Thumb S Sottocapo Armour
+		/obj/item/clothing/suit/armor/ego_gear/city/thumb_sottocapo,
 	)

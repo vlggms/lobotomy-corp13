@@ -218,6 +218,6 @@
 	desc = "A machine used to send PE to the Thumb"
 	icon_state = "machinethumb"
 	crate = /obj/structure/lootcrate/thumb
-	// Four minutes to get a crate. They have decent gear, BUT it's RED damage and they have ammo boxes showing up relatively frequently.
+	// Four minutes to get a crate. They have decent gear, BUT it's RED damage and they have ammo boxes showing up 20% of the time.
 	power_timer = 120
 	crate_timer = 240

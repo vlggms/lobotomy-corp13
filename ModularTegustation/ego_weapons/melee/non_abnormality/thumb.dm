@@ -94,8 +94,14 @@
 // Below code belongs to the Thumb East faction of the Thumb.
 // These guys are special because they use weapons loaded with special ammunition. They don't fire it as projectiles, instead they use the ammo to boost their melee attacks.
 // The weapons will be beatsticks, but will unlock special combos if loaded with ammo.
-// These weapons will show up in City and Facility. In City, the Thumb will use them. Otherwise you'll be able to get them from the same sources as regular Thumb gear.
+// These weapons will show up in City and Facility. City: Thumb East starting gear and Thumb crates. Facility: Thumb crates.
 // The ammunition they use comes with its own "stats". Ammunition available in Facility mode should NEVER have status effects on it.
+// Ammo can either be live or spent. Live ammo can be used for the weapons, spent ammo is useless garbage in Facility mode, and in City mode it can be sold or recycled.
+// The lifecycle of ammo is as follows:
+// 1. A live round is placed into a Thumb East weapon. It gets split from the stack it was part of and placed inside the weapon, and associated to its current_ammo list.
+// 2A. You can unload the live round and retrieve it from the weapon by alt clicking it. Any live rounds in the weapon will also be ejected if you attempt a reload on a weapon with spent_ammo_behaviour = SPENT_RELOADEJECT
+// 2B. If the round is used in a combo, it is removed from the current_ammo list, its spent_type is created and the original round is deleted.
+// 3. If the weapon's spent_ammo_behaviour is SPENT_INSTANTEJECT, the newly created spent round is ejected immediately. If it is SPENT_RELOADEJECT, it remains inside the weapon and the spent_cartridges list until reload/unload.
 
 #define COMBO_NO_AMMO "no_ammo"
 #define COMBO_LUNGE "lunge"
@@ -121,6 +127,12 @@
 	force = 40
 	damtype = RED_DAMAGE
 	attack_speed = 1.3
+	attribute_requirements = list(
+							FORTITUDE_ATTRIBUTE = 80,
+							PRUDENCE_ATTRIBUTE = 60,
+							TEMPERANCE_ATTRIBUTE = 60,
+							JUSTICE_ATTRIBUTE = 60
+							)
 	special = "This is a Thumb East weapon. Load it with propellant ammunition to unlock a powerful combo. Initiate the combo by attacking from range. Each hit of the combo requires 1 propellant round to trigger, and has varying attack speed. Your combo will cancel if you run out of ammo or hit without spending a round.\n"+\
 	"Hit the weapon with a handful of propellant ammunition to attempt to load as much of the handful as possible. Toggle your combo on or off by using this weapon in-hand. Alt-click the weapon to unload a round.\n"+\
 	"Spending ammo with this weapon generates heat. Heat increases the base damage of the weapon when not using combo attacks. It decays on each hit and is reset on reloading or unloading."
@@ -139,6 +151,8 @@
 	var/combo_stage = COMBO_NO_AMMO
 	/// Variable that holds the reset timer for our combo.
 	var/combo_reset_timer
+	/// Variable that determines the standard combo reset timer duration. Gets +2s added onto it after COMBO_ATTACK2, so you have more time to do a finisher.
+	var/combo_reset_timer_duration = 5 SECONDS
 	/// List which maps the coefficients by which to multiply our damage on each hit depending on the state of the combo.
 	var/list/motion_values = list(COMBO_NO_AMMO = 1, COMBO_LUNGE = 1, COMBO_ATTACK2 = 1.2, COMBO_FINISHER = 1.5, COMBO_ATTACK2_AOE = 0.8, COMBO_FINISHER_AOE = 1,)
 	/// This variable holds a flat force increase that is only applied on COMBO_NO_AMMO hits. It increases when ammo is spent, and gets reset on reload or unload.
@@ -294,9 +308,8 @@
 			return ..()
 		// This case is for an attack made out of a lunge.
 		if(COMBO_LUNGE)
-			hitsound = null
+			// We already set hitsound in Lunge().
 			. = ..()
-			playsound(src, lunge_sound, 100, FALSE, 10)
 			hitsound = initial(hitsound)
 			// Your next hit after the lunge will actually come out faster than normal. This is a reward for being able to handle the abrupt movement and screenshake.
 			user.changeNext_move(CLICK_CD_MELEE * attack_speed * 0.9)
@@ -407,6 +420,7 @@
 		// This is the actual reload. Each round takes 0.4 seconds to load, so this will at most last 2.4 seconds if you're fully reloading the Podao.
 		// I'm unsure if it's wise because it's pretty obvious when you're reloading, so people might just... shove you and cancel it. Needs some playtesting.
 		// An alternative would be to have a set reload duration and divide it by the amount we're going to load. But that feels weird.
+		// Was also considering giving you a defensive buff while reloading.
 		for(var/i in 1 to amount_to_load)
 			if(do_after(user, (0.4 SECONDS), src, progress = TRUE, interaction_key = "thumb_east_reload", max_interact_count = 1))
 				var/obj/item/stack/thumb_east_ammo/new_bullet = ammo_item.split_stack(user, 1)
@@ -469,17 +483,17 @@
 			playsound(src, 'sound/weapons/gun/pistol/drop_small.ogg', 100, FALSE)
 			user.put_in_hands(live_round)
 			overheat = 0
-			if(AmmoDepletedCheck())
-				current_ammo_type = null
-				current_ammo_name = ""
+			AmmoDepletedCheck()
 			return TRUE
 	// We reach this part if we had no ammo but no spent rounds either.
 	to_chat(user, span_warning("There's no ammo left to unload."))
 	return FALSE
 
-/// Returns TRUE if we're out of ammo.
+/// Returns TRUE if we're out of ammo. Also resets our current ammo type and name.
 /obj/item/ego_weapon/city/thumb_east/proc/AmmoDepletedCheck()
 	if(length(current_ammo) <= 0)
+		current_ammo_type = null
+		current_ammo_name = ""
 		return TRUE
 	return FALSE
 
@@ -493,11 +507,8 @@
 		return FALSE
 	// We need to delete this round that was fired later by the way.
 	var/obj/item/stack/thumb_east_ammo/fired_round = pick_n_take(current_ammo)
-	// Did we run out of ammo *after* firing that last round? Set the current type to null so we can load a different kind of ammo if we want.
-	if(AmmoDepletedCheck())
-		current_ammo_type = null
-		current_ammo_name = ""
-
+	// Did we run out of ammo *after* firing that last round? We just call this to clear our ammo type if we're dry.
+	AmmoDepletedCheck()
 	// Just in case some jank happens with our list.
 	removeNullsFromList(current_ammo)
 
@@ -528,7 +539,6 @@
 			next_hit_should_apply["aoe_size_bonus"] = round.aoe_size_bonus
 
 		deltimer(combo_reset_timer)
-		var/combo_reset_timer_duration = 5 SECONDS
 		// You get a tiny bit of extra time to land your finisher. This is mostly because leaping is a channeled action.
 		// Why are we checking for COMBO_ATTACK2? Because that'll be when the last timer started before we attempt to do our finisher.
 		if(combo_stage == COMBO_ATTACK2)
@@ -557,9 +567,7 @@
 	else if(cartridge in spent_cartridges)
 		spent_cartridges -= cartridge
 
-	if(AmmoDepletedCheck())
-		current_ammo_type = null
-		current_ammo_name = ""
+	AmmoDepletedCheck()
 
 	// This block is adapted code from actual bullet casings for SS13 guns. We just slightly randomize its pixel offsets and throw it somewhere nearby.
 	cartridge.forceMove(user.drop_location())
@@ -610,11 +618,13 @@
 		// This code is stolen from Dark Carnival, aside from the sleep(). Why is it "for i in 2 to dist"? I think it's because it's excluding the user and target tiles.
 		for(var/i in 2 to get_dist(user, target))
 			step_towards(user, target)
-			sleep(0.5)
 		// If we managed to close the gap, hit the target automatically.
 		if((get_dist(user, target) < 2))
+			hitsound = lunge_sound
 			target.attackby(src,user)
 		else
+			// Normally we play a boostedlunge.ogg sound when landing a lunge. If we activated lunge but didn't hit our target, play only the bullet detonation sound.
+			playsound(src, detonation_sound, 100, FALSE, 10)
 			to_chat(user, span_warning("Your lunge falls short of hitting your target!"))
 		// We return TRUE regardless of whether we hit them with the lunge or not. What we care about is if we spent the round to lunge at the target.
 		return TRUE
@@ -701,8 +711,7 @@
 			aoe_turfs -= start_turf
 		// Status has to be applied before hitting them, because hitting them will clear our bonuses since this is a finisher.
 		ApplyStatusEffects(target, COMBO_FINISHER)
-		if(aoe_turfs)
-			AOEHit(aoe_turfs, target, user, COMBO_FINISHER)
+		AOEHit(aoe_turfs, target, user, COMBO_FINISHER)
 		target.attackby(src, user)
 
 		return TRUE
@@ -745,7 +754,7 @@
 		combo_stage = COMBO_NO_AMMO
 		to_chat(user, span_warning("Your combo resets!"))
 
-/// This proc generates a radius-based AoE for our sweep and our leap finisher.
+/// This proc generates a range-based AoE for our sweep and our leap finisher.
 /obj/item/ego_weapon/city/thumb_east/proc/RadiusAOE(mob/target, mob/user, hit_type)
 	// First, determine how large the AOE should be.
 	var/aoe_radius = (hit_type == COMBO_ATTACK2 ? attack2_aoe_base_radius : finisher_aoe_base_size)
@@ -782,7 +791,7 @@
 			if(hit_type == COMBO_ATTACK2)
 				ApplyStatusEffects(L, COMBO_ATTACK2_AOE)
 				L.visible_message(span_danger("[user] cuts through [L] with a wide, explosive sweep!"))
-			else if(hit_type == COMBO_FINISHER)
+			else
 				ApplyStatusEffects(L, COMBO_FINISHER_AOE)
 				L.visible_message(span_danger("[L] is scorched by a powerful blast from [user]'s [src.name]!"))
 
@@ -806,6 +815,12 @@
 	finisher_sound = 'sound/weapons/ego/thumb_east_podao_leap_impact.ogg'
 	force = 60
 	attack_speed = 1.1
+	attribute_requirements = list(
+							FORTITUDE_ATTRIBUTE = 100,
+							PRUDENCE_ATTRIBUTE = 100,
+							TEMPERANCE_ATTRIBUTE = 80,
+							JUSTICE_ATTRIBUTE = 80
+							)
 	max_ammo = 6
 	spent_ammo_behaviour = SPENT_RELOADEJECT
 	finisher_aoe_base_size = 1
@@ -823,7 +838,7 @@
 ////////////////////////////////////////////////////////////
 // AMMUNITION SECTION.
 // These are stackable items. They don't really do much on their own. The Thumb East weapons handle the logic for loading and firing them.
-// Most of this code is just for holding the properties bullets should have when fired.
+// Ammo lifecycle is explained in a comment on line 100 of this file.
 
 /// This is the standard ammo type. Thumb East Soldatos will use it for their rifles, and the Capo may use it for their Podao as well.
 /// It's nothing crazy, but it adds force to their attacks, and of course, tremor and burn. These could combo in a really nasty way with Augments.
@@ -866,7 +881,7 @@
 	. += span_notice("It [burn_base >= 1 ? "applies [burn_base]" : "does not apply"] burn stacks on target hit after firing.")
 	. += span_notice("It [aoe_size_bonus >= 1 ? "adds [aoe_size_bonus]" : "does not add any extra"] tiles of size to AoE attacks on target hit after firing.")
 
-/// This override is so we can use 6 sprites instead of 3 to count the bullets individually. I basically just copy pasted the old code.
+/// This override is so we can use 6 sprites instead of 3 to count the bullets individually.
 /obj/item/stack/thumb_east_ammo/update_icon_state()
 	if(novariants)
 		return
@@ -881,16 +896,16 @@
 
 /// I have to override this because I don't want them to auto-merge when crossing eachother. I'm not even sure if this is okay to do.
 /obj/item/stack/thumb_east_ammo/Crossed(atom/movable/crossing)
-	SEND_SIGNAL(src, COMSIG_MOVABLE_CROSSED, crossing)
 
+/// This override is so the ammo becomes bulky and you can't store it in your bag if you're carrying too much.
 /obj/item/stack/thumb_east_ammo/update_weight()
 	if(amount >= (max_amount / 3) * 2)
 		w_class = full_w_class
 	else
 		w_class = initial(w_class)
 
-// I know this override looks weird, but there's a good reason for it. There's a certain behaviour stack objects have where subtypes can merge to their parent types,
-// which we really don't want for this specific item and its subtypes. As in, we don't want scorch propellant rounds to get mixed up with Tigermark rounds or surplus rounds.
+// There's a certain behaviour stack objects have where subtypes can merge to their parent types, which we really don't want for this specific item and its subtypes.
+// As in, we don't want scorch propellant rounds to get mixed up with Tigermark rounds or surplus rounds.
 /obj/item/stack/thumb_east_ammo/can_merge(obj/item/stack/check)
 	// We need to actually check we're going to access the merge_type of a stacking object, because this proc is called on absolutely everything these items cross...
 	if(istype(check, /obj/item/stack))
@@ -898,8 +913,12 @@
 			return FALSE
 	. = ..()
 
+/// Normally if you use a stack item inhand, it opens a crafting menu. We don't really want people opening the recipes menu here. You can't craft anything with this item.
+/obj/item/stack/thumb_east_ammo/ui_interact(mob/user, datum/tgui/ui)
+	return FALSE
 
-/// Facility version of the basic ammunition. No status effects, but has a nice amount of force bonus to compensate.
+
+/// Facility version of the basic ammunition. No status effects, but has a nice amount of force bonus to compensate. Shows up in Thumb lootcrates.
 /obj/item/stack/thumb_east_ammo/facility
 	name = "surplus propellant ammunition"
 	desc = "Some strange ammunition used in certain weapons, though it isn't actually fired as a projectile. It looks to be in pretty bad shape.\n"+\
@@ -932,8 +951,9 @@
 	. = ..()
 	. += span_info("This ammunition is only compatible with thumb east podaos.")
 
-/// Off-brand Tigermark rounds. For lucky Agents in Facility mode, basically. No status, but a really big chunk of force bonus on each hit, and it keeps its AoE bonus.
+/// Off-brand Tigermark rounds. No status, but a really big chunk of force bonus on each hit, and it keeps its AoE bonus. Shows up in Thumb lootcrates.
 /obj/item/stack/thumb_east_ammo/tigermark/facility
+	/// Open to better ideas for the name
 	name = "ligermark rounds"
 	desc = "Wait... this isn't a Tigermark round at all, is it? Well... it's about the same caliber, so it would probably fit into a Thumb East podao."
 	singular_name = "ligermark round"
