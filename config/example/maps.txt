@@ -59,6 +59,11 @@ endmap
 	minplayers 20
 endmap
 
+#map elevator_hell
+	votable
+	minplayers 18
+endmap
+
 map psicorp
 	votable
 	maxplayers 10
