@@ -1,5 +1,5 @@
 /**
- * ADVENTURE CONSOLE V2.2
+ * ADVENTURE CONSOLE V2.3
  * TEXT BASED ADVENTURES
  * Adventures that are mostly predefined paths.
  * This was difficult to finalize since i havent made a text based adventure before.
@@ -835,7 +835,7 @@
 		if(newhealth == 0)
 			return
 	//To make stat checkup only restore to 50 change the 100's to 50.
-	var/hp_overload_check = (virtual_integrity + newhealth)-100
+	var/hp_overload_check = (virtual_integrity + newhealth)-max_integrity
 	if(hp_overload_check > 0)
 		//Remove overflow from the health we are adding
 		newhealth -= hp_overload_check
