@@ -1,7 +1,7 @@
 {
 	"version": 1,
-	"map_name": "Facility M-098 Elevators",
-	"map_path": "map_files/ElevatorHell",
+	"map_name": "Facility M-098 ELEVATORS",
+	"map_path": "map_files/Mu",
 	"map_file": [
 		"elevator_hell.dmm"
 	],
