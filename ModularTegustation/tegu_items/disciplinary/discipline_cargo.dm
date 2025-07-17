@@ -39,9 +39,11 @@
 		new /datum/data/extraction_cargo("Mental-Stabilizer Medi-Pen ",	/obj/item/reagent_containers/hypospray/medipen/mental,				50, CAT_MEDICAL) = 1,
 
 		//Resources - This is for EGOshards
-		new /datum/data/extraction_cargo("L1 Combat Page ",				/obj/item/combat_page/level1,					200, CAT_RESOURCE) = 1,
-		new /datum/data/extraction_cargo("L2 Combat Page ",				/obj/item/combat_page/level2,					400, CAT_RESOURCE) = 1,
-		new /datum/data/extraction_cargo("L3 Combat Page ",				/obj/item/combat_page/level3,					800, CAT_RESOURCE) = 1,
+
+		//Combat pages are too evil rn. I'm working on a new system. - Kirie/Kitsunemitsu
+		//new /datum/data/extraction_cargo("L1 Combat Page ",				/obj/item/combat_page/level1,					200, CAT_RESOURCE) = 1,
+		//new /datum/data/extraction_cargo("L2 Combat Page ",				/obj/item/combat_page/level2,					400, CAT_RESOURCE) = 1,
+		//new /datum/data/extraction_cargo("L3 Combat Page ",				/obj/item/combat_page/level3,					800, CAT_RESOURCE) = 1,
 		new /datum/data/extraction_cargo("Tier 1 EGOSHARD (Red) ",		/obj/item/egoshard,								50, CAT_RESOURCE) = 1,
 		new /datum/data/extraction_cargo("Tier 1 EGOSHARD (White) ",	/obj/item/egoshard/white,						100, CAT_RESOURCE) = 1,
 		new /datum/data/extraction_cargo("Tier 1 EGOSHARD (Black) ",	/obj/item/egoshard/black,						100, CAT_RESOURCE) = 1,
