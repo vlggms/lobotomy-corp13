@@ -616,6 +616,21 @@
 	desc = "A plushie depicting a big bird with a lantern that burns forever. How does it even work..?"
 	icon_state = "bigbird"
 
+/obj/item/toy/plush/pbird
+	name = "small bird plushie"
+	desc = "A plushie depicting a tiny bird with a small beak and red splotch on its chest."
+	icon_state = "pbird"
+	attack_verb_continuous = list("pecks", "punishes")
+	attack_verb_simple = list("peck", "punish")
+	squeak_override = list('sound/weapons/pbird_bite.ogg' = 1)
+
+/obj/item/toy/plush/jbird
+	name = "tall bird plushie"
+	desc = "A plushie depicting a tall bird with a bandaged head. It's so thin!"
+	icon_state = "jbird"
+	attack_verb_continuous = list("judges")
+	attack_verb_simple = list("judge")
+
 /obj/item/toy/plush/mosb
 	name = "mountain of smiling bodies plushie"
 	desc = "A plushie depicting a mountain of corpses merged into one. Yuck!"
@@ -666,3 +681,8 @@
 	icon = 'icons/obj/plushes.dmi'
 	icon_state = "bongy"
 	squeak_override = list('sound/creatures/lc13/bongy/kweh.ogg'=1)
+
+/obj/item/toy/plush/apocbird
+	name = "apocalypse bird plushie"
+	desc = "A large plushie that resembles the beast of the black forest."
+	icon_state = "apocbird"
