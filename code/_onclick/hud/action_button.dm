@@ -43,6 +43,10 @@
 		return FALSE
 
 	var/list/modifiers = params2list(params)
+	if(LAZYACCESS(modifiers, ALT_CLICK))
+		if(linked_action)
+			begin_creating_bind()
+		return TRUE
 	if(LAZYACCESS(modifiers, SHIFT_CLICK))
 		if(locked)
 			to_chat(usr, span_warning("Action button \"[name]\" is locked, unlock it first."))
@@ -61,6 +65,36 @@
 	usr.next_click = world.time + 1
 	linked_action.Trigger()
 	return TRUE
+
+/atom/movable/screen/movable/action_button/proc/begin_creating_bind()
+	if(!linked_action || !can_use(usr))
+		return
+	
+	// If already bound, unbind it
+	if(linked_action.full_key)
+		linked_action.unbind_from_key()
+		to_chat(usr, span_notice("Action '[name]' unbound from key."))
+		return
+	
+	// Open the keybind modal
+	if(usr.client)
+		var/datum/tgui_keybind_modal/modal = new(usr.client, linked_action, src)
+		modal.ui_interact(usr)
+
+/atom/movable/screen/movable/action_button/proc/update_keybind_maptext()
+	if(!linked_action)
+		maptext = null
+		return
+	
+	if(linked_action.full_key)
+		// Display the keybind in the corner of the button
+		maptext = "<span style='font-size: 9px; font-weight: bold; color: white; -dm-text-outline: 1px black;'>[linked_action.full_key]</span>"
+		maptext_width = 32
+		maptext_height = 32
+		maptext_x = 2
+		maptext_y = 20
+	else
+		maptext = null
 
 //Hide/Show Action Buttons ... Button
 /atom/movable/screen/movable/action_button/hide_toggle

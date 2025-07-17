@@ -77,6 +77,13 @@
 	if(mob)
 		mob.focus?.key_down(_key, src)
 		mob.update_mouse_pointer()
+		
+		// Check action keybinds
+		SEND_SIGNAL(mob, COMSIG_MOB_KEYDOWN, full_key)
+		for(var/datum/action/action in mob.actions)
+			if(action.full_key == full_key)
+				action.keydown()
+				break
 
 
 /client/verb/keyUp(_key as text)
