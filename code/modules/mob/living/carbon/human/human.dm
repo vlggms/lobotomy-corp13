@@ -1318,6 +1318,12 @@
 	if(LAZYLEN(attributes))
 		maxHealth = max(1, DEFAULT_HUMAN_MAX_HEALTH + round(get_attribute_level(src, FORTITUDE_ATTRIBUTE) * FORTITUDE_MOD + get_stat_bonus(src, FORTITUDE_ATTRIBUTE, no_neg = FALSE)))
 		maxSanity = max(1, DEFAULT_HUMAN_MAX_SANITY + round(get_attribute_level(src, PRUDENCE_ATTRIBUTE) * PRUDENCE_MOD + get_stat_bonus(src, PRUDENCE_ATTRIBUTE, no_neg = FALSE)))
+
+		//Shit way of doing this.
+		if(SSmaptype.chosen_trait == FACILITY_TRAIT_XP_MOD)
+			maxHealth = max(1, 40 + round(get_attribute_level(src, FORTITUDE_ATTRIBUTE) * 1.7 + get_stat_bonus(src, FORTITUDE_ATTRIBUTE, no_neg = FALSE)))
+			maxSanity = max(1, 40 + round(get_attribute_level(src, PRUDENCE_ATTRIBUTE) * 1.7 + get_stat_bonus(src, PRUDENCE_ATTRIBUTE, no_neg = FALSE)))
+
 	. = ..()
 	dna?.species.spec_updatehealth(src)
 	sanityhealth = maxSanity - sanityloss

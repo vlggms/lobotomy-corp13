@@ -24,12 +24,17 @@
 		return ..()
 
 
-	var/list/classes = list(	//Classes that aren't standard or Random
+	var/list/classes = list(	//Classes that are JRPG Classes
 			"Defensive",
 			"Healing",
 			"Ranged",
 			"Skirmisher",
+			)
+
+	var/list/rare = list(	//Classes that are "Weird Shit"
 			"Artificer",
+			"Intelligence",
+			"Officer"
 			)
 
 	var/list/available_classes = list(
@@ -37,8 +42,9 @@
 			//"Random",			Currently bugged
 			)
 
-	for(var/i in 1 to 3)		//You should only get to pick 1-3 of these.
+	for(var/i in 1 to 2)		//You should only get to pick 1-3 of these.
 		available_classes += pick_n_take(classes)
+	available_classes += pick_n_take(rare)	//One rare class
 
 	qdel(src)//Delete it here so you can't re-roll your class.
 
@@ -52,6 +58,9 @@
 		choice = pick(classes)
 
 	switch(choice)
+
+
+	//Standard Classes
 		if("Defensive")
 			to_chat(user, span_greenannounce("You have chosen the Defensive Agent class. In exchange for -10 Work rate and speed, you get 2 Defensive skills."))
 			user.adjust_attribute_bonus(TEMPERANCE_ATTRIBUTE, -10)
@@ -81,9 +90,9 @@
 			G.Grant(user)
 
 		if("Skirmisher")
-			to_chat(user, span_greenannounce("You have chosen the Skirmisher Agent class. In exchange for 15 lower HP and SP, you get 3 skills to increase movement speed."))
-			user.adjust_attribute_bonus(FORTITUDE_ATTRIBUTE, -15)
-			user.adjust_attribute_bonus(PRUDENCE_ATTRIBUTE, -15)
+			to_chat(user, span_greenannounce("You have chosen the Skirmisher Agent class. In exchange for 25 lower HP and SP, you get 3 skills to increase movement speed."))
+			user.adjust_attribute_bonus(FORTITUDE_ATTRIBUTE, -25)
+			user.adjust_attribute_bonus(PRUDENCE_ATTRIBUTE, -25)
 
 			var/datum/action/G = new /datum/action/cooldown/dash/agent
 			G.Grant(user)
@@ -92,11 +101,33 @@
 			G = new /datum/action/cooldown/assault_agent
 			G.Grant(user)
 
+
+
+	//Weird shit
 		if("Artificer")
 			to_chat(user, span_greenannounce("You have chosen the Artificer Agent class. In exchange for -5 attack damage and movespeed, you get the ability to recharge all tools on your person."))
 			user.adjust_attribute_bonus(JUSTICE_ATTRIBUTE, -5)
 
 			var/datum/action/G = new /datum/action/cooldown/charge
 			G.Grant(user)
+
+		if("Intelligence")
+			to_chat(user, span_greenannounce("You have chosen the Intelligence Agent class. In exchange for -20 attack damage and movespeed, you get the ability to see all Health bars."))
+			user.adjust_attribute_bonus(JUSTICE_ATTRIBUTE, -20)
+			var/datum/atom_hud/medsensor = GLOB.huds[DATA_HUD_MEDICAL_ADVANCED]
+			medsensor.add_hud_to(user)
+
+
+		if("Officer")
+			to_chat(user, span_greenannounce("You have chosen the Officer Agent class. In exchange for -10 HP/SP, you get the ability to give agents around you major buffs."))
+			user.adjust_attribute_bonus(FORTITUDE_ATTRIBUTE, -10)
+			user.adjust_attribute_bonus(PRUDENCE_ATTRIBUTE, -10)
+
+			var/datum/action/G = new /datum/action/cooldown/warbanner/captain
+			G.Grant(user)
+
+			G = new /datum/action/cooldown/warcry/captain
+			G.Grant(user)
+
 
 	return ..()
