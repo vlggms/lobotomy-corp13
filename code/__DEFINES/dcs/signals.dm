@@ -404,6 +404,8 @@
 
 ///from base of /mob/living/proc/apply_damage(): (damage, damagetype, def_zone)
 #define COMSIG_MOB_APPLY_DAMGE	"mob_apply_damage"
+///from base of /mob/living/proc/apply_damage(), happens after the mob has taken damage: (damage, damagetype, def_zone)
+#define COMSIG_MOB_AFTER_APPLY_DAMGE "mob_after_apply_damage"
 /// Blocks the damage from being taken if this is returned in a signal handler
 #define COMPONENT_MOB_DENY_DAMAGE (1<<0)
 ///from base of /mob/throw_item(): (atom/target)
@@ -1072,6 +1074,9 @@
 #define COMSIG_AQUARIUM_SURFACE_CHANGED "aquarium_surface_changed"
 #define COMSIG_AQUARIUM_FLUID_CHANGED "aquarium_fluid_changed"
 */
+
+//Status signals
+#define COMSIG_STATUS_BLEED_DAMAGE "bleed_damage"
 
 /// generally called before temporary non-parallel animate()s on the atom (animation_duration)
 #define COMSIG_ATOM_TEMPORARY_ANIMATION_START "atom_temp_animate_start" // LC13 addition: MODULE ID: FISHING
