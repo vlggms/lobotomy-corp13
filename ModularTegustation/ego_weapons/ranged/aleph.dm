@@ -302,11 +302,10 @@
 	weapon_weight = WEAPON_MEDIUM	//Cannot be dual wielded
 	recoil = 2
 	fire_sound_volume = 30
-	fire_delay = 12
-
+	fire_delay = 3	//FAN THE HAMMER
 
 	shotsleft = 6	//Based off a colt Single Action Navy
-	reloadtime = 0.8 SECONDS
+	reloadtime = 1 SECONDS
 
 
 /obj/item/ego_weapon/ranged/havana

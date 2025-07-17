@@ -146,7 +146,7 @@
 	name = "hat trick"
 	desc = "Imagination is the only weapon in the war with reality."
 	icon_state = "trick"
-	force = 15
+	force = 17
 	swingstyle = WEAPONSWING_LARGESWEEP
 	crit_multiplier = 2
 	throwforce = 35		//You can only hold 4 so go nuts.
@@ -638,7 +638,7 @@
 
 
 /obj/item/ego_weapon/white_gossypium
-	name = "White Gossypium"
+	name = "white gossypium"
 	desc = "Like a straw, this vine seeks to suck the blood out of your veins."
 	icon_state = "white_gossypium"
 	force = 25

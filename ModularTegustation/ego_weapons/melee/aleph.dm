@@ -355,7 +355,7 @@
 			icon_state = "rosewhite"
 		if(WHITE_DAMAGE)
 			damtype = PALE_DAMAGE
-			force = 50	//I'm not making this more than 40.
+			force = 50
 			icon_state = "rosepale"
 		if(PALE_DAMAGE)
 			damtype = RED_DAMAGE
@@ -545,7 +545,7 @@
 
 /obj/projectile/ego_bullet/gunblade
 	name = "energy bullet"
-	damage = 40
+	damage = 60
 	damage_type = RED_DAMAGE
 	icon_state = "ice_1"
 

@@ -908,7 +908,7 @@
 	force = 60
 	reach = 2		//Has 2 Square Reach.
 	stuntime = 5	//Longer reach, gives you a short stun.
-	throwforce = 80		//It costs like 50 PE I guess you can go nuts
+	throwforce = 90		//It costs like 50 PE I guess you can go nuts
 	throw_speed = 5
 	throw_range = 7
 	damtype = RED_DAMAGE
@@ -949,7 +949,6 @@
 		if(!ishuman(M) && !M.has_status_effect(/datum/status_effect/rend_white))
 			new /obj/effect/temp_visual/cult/sparks(get_turf(M))
 			M.apply_status_effect(/datum/status_effect/rend_white)
-	user.Immobilize(5)
 
 // Reworked to use the bloodfeast component. Collect blood to improve your life leech ability.
 /obj/item/ego_weapon/dipsia
@@ -1160,9 +1159,9 @@
 /obj/item/ego_weapon/diffraction
 	name = "diffraction"
 	desc = "Many employees have sustained injuries from erroneous calculation."
-	special = "This weapon deals double damage to targets under 20% HP."
+	special = "This weapon deals double damage to targets under 40% HP."
 	icon_state = "diffraction"
-	force = 35
+	force = 38
 	swingstyle = WEAPONSWING_LARGESWEEP
 	damtype = WHITE_DAMAGE
 	attack_verb_continuous = list("slices", "cuts")
@@ -1171,7 +1170,7 @@
 	attribute_requirements = list(FORTITUDE_ATTRIBUTE = 80)
 
 /obj/item/ego_weapon/diffraction/attack(mob/living/target, mob/living/user)
-	if((target.health <= target.maxHealth * 0.2) && !(target.status_flags & GODMODE))
+	if((target.health <= target.maxHealth * 0.4) && !(target.status_flags & GODMODE))
 		force *= 2
 	..()
 	force = initial(force)
