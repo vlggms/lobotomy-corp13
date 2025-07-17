@@ -29,7 +29,11 @@ GLOBAL_VAR_INIT(wcorp_enemy_faction, "") //decides which faction WCorp will be u
 		var/obj/effect/proc_holder/spell/targeted/night_vision/bloodspell = new
 		A.AddSpell(bloodspell)
 		if(!(SSmaptype.maptype in SSmaptype.citymaps))
-			if(!A.client)
+			if(SSmaptype.maptype == "limbus_labs")
+				if(!A.client)
+					A.faction += "hostile"
+
+			else
 				A.faction += "hostile"
 
 	if(SSmaptype.maptype in SSmaptype.autoend)
