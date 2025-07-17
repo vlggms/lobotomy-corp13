@@ -156,6 +156,12 @@ GLOBAL_LIST_EMPTY(marked_players)
 				if (!(P.firer in glob_faction))
 					glob_faction += P.firer
 					say(attacked_line)
+	
+	// Track damage for nuke rats achievement
+	if(glob_faction == GLOB.nuke_rats_players && P.firer && isliving(P.firer))
+		var/mob/living/L = P.firer
+		if(L.client && !(L in GLOB.nuke_rats_killers))
+			GLOB.nuke_rats_killers += L
 
 /mob/living/simple_animal/hostile/attackby(obj/item/O, mob/user, params)
 	. = ..()
@@ -169,12 +175,36 @@ GLOBAL_LIST_EMPTY(marked_players)
 			if (!(user in glob_faction ))
 				glob_faction += user
 				say(attacked_line)
+	
+	// Track damage for nuke rats achievement
+	if(glob_faction == GLOB.nuke_rats_players && user && user.client && !(user in GLOB.nuke_rats_killers))
+		GLOB.nuke_rats_killers += user
 
 /mob/living/simple_animal/hostile/Destroy()
 	targets_from = null
 	if(mark_once_attacked)
 		UnregisterSignal(SSdcs, COMSIG_CRATE_LOOTING_STARTED)
 		UnregisterSignal(SSdcs, COMSIG_CRATE_LOOTING_ENDED)
+	return ..()
+
+/mob/living/simple_animal/hostile/death(gibbed)
+	// Check for nuke rats achievement
+	if(glob_faction == GLOB.nuke_rats_players)
+		// Check if all nuke rats are dead
+		var/all_dead = TRUE
+		for(var/mob/living/simple_animal/hostile/H in GLOB.mob_living_list)
+			if(H != src && H.stat != DEAD && H.glob_faction == GLOB.nuke_rats_players)
+				all_dead = FALSE
+				break
+		
+		if(all_dead && GLOB.nuke_rats_killers.len)
+			// Award achievement to all players who participated in killing nuke rats
+			for(var/mob/living/L in GLOB.nuke_rats_killers)
+				if(L.client)
+					L.client.give_award(/datum/award/achievement/lc13/city/nuke_rats_genocide, L)
+			// Clear the killers list after awarding
+			GLOB.nuke_rats_killers.Cut()
+	
 	return ..()
 
 /mob/living/simple_animal/hostile/Life()

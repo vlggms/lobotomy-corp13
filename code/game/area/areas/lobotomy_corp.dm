@@ -313,6 +313,10 @@
 	if(!L.ckey)
 		return
 
+	// Award achievement for discovering the village
+	if(ishuman(L) && L.client)
+		L.client.give_award(/datum/award/achievement/lc13/city/resurgence_village, L)
+
 	// Ambience goes down here -- make sure to list each area separately for ease of adding things in later, thanks! Note: areas adjacent to each other should have the same sounds to prevent cutoff when possible.- LastyScratch
 	if(L.client && !L.client.ambience_playing && L.client.prefs.toggles & SOUND_SHIP_AMBIENCE)
 		L.client.ambience_playing = 1
