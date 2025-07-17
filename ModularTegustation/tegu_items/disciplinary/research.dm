@@ -35,10 +35,10 @@ GLOBAL_LIST_EMPTY(geresearched_abnos)
 		return FALSE
 
 	//It's already been researched, tabernak
-	if(breacher in GLOB.geresearched_abnos)
+	if(breacher.type in GLOB.geresearched_abnos)
 		to_chat(user, span_warning("This abnormality has already been researched. A second capabilities report is not needed at this moment."))
 		return FALSE
-	GLOB.geresearched_abnos += breacher
+	GLOB.geresearched_abnos += breacher.type
 
 	//You get 0.2 Lob for each threat level
 	var/lob_amount = breacher.threat_level*0.2
