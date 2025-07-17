@@ -14,6 +14,9 @@
 	var/list/dialog_resolvers = list()
 
 	var/list/var_managers = list()
+	
+	// Reference to the parent NPC mob
+	var/mob/living/simple_animal/hostile/ui_npc/parent_npc
 
 /datum/ui_npc/scene_manager/New()
 	// Initialize global variables
@@ -270,6 +273,11 @@
 	// Process on_enter variable updates if they exist
 	if(new_scene && new_scene.on_enter && islist(new_scene.on_enter))
 		process_var_updates(user, new_scene.on_enter)
+
+	// Trigger scene speaking if enabled
+	if(parent_npc && new_scene && new_scene.text)
+		var/processed_text = process_text(user, new_scene.text)
+		parent_npc.speak_scene_text(processed_text)
 
 	return new_scene
 
