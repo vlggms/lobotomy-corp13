@@ -379,7 +379,6 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 	if( (world.address == address || !address) && !GLOB.host )
 		GLOB.host = key
 		world.update_status()
-
 	if(holder)
 		add_admin_verbs()
 		var/memo_message = get_message_output("memo")

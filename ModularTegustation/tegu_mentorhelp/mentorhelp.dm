@@ -41,6 +41,8 @@
 	var/key
 	var/ckey
 
+
+
 	if(!whom)	return "*null*"
 	if(istype(whom, /client))
 		C = whom
@@ -65,6 +67,9 @@
 
 	if(!ckey)
 		include_link = 0
+
+	if(IsGuestKey(ckey))
+		key = C.ckey_wrapper
 
 	if(key)
 		if(include_link)
