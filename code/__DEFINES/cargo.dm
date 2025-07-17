@@ -12,6 +12,7 @@
 #define STYLE_INVISIBLE 12
 #define STYLE_GONDOLA 13
 #define STYLE_SEETHROUGH 14
+#define STYLE_HELIX 15
 
 #define POD_SHAPE 1
 #define POD_BASE 2
@@ -56,5 +57,6 @@ GLOBAL_LIST_INIT(podstyles, list(\
 	list(POD_SHAPE_OTHER, "orange",      TRUE, FALSE,			FALSE,   RUBBLE_NONE,	    "\improper evil fruit", 					"An abnormal fruit with severe anger issues, this should worry you."),\
 	list(POD_SHAPE_OTHER, FALSE,         FALSE,    FALSE,            FALSE,   RUBBLE_NONE,	    "\improper stealth pod", 	"A supply pod that, under normal circumstances, is completely invisible to conventional methods of detection. How are you even seeing this?"),\
 	list(POD_SHAPE_OTHER, "gondola",     FALSE, FALSE,			FALSE,   RUBBLE_NONE,	    "mystery abnormal", 							    "An abnormal yet peaceful creature, it appears to be here with a package for you."),\
-	list(POD_SHAPE_OTHER, FALSE,         FALSE,    FALSE,            FALSE,   RUBBLE_NONE,	        FALSE,      FALSE,      "rl_click", "give_po")\
+	list(POD_SHAPE_OTHER, FALSE,         FALSE,    FALSE,            FALSE,   RUBBLE_NONE,	        FALSE,      FALSE,      "rl_click", "give_po"),\
+	list(POD_SHAPE_NORML, "helix",      FALSE, FALSE,		"green",     RUBBLE_NORMAL,	"\improper protocol of contemplation", 		"Things are about to get heated.")\
 ))
