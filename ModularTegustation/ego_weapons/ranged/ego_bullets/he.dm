@@ -105,20 +105,20 @@
 	damage = 10
 	damage_type = WHITE_DAMAGE
 
-/obj/projectile/ego_bullet/replica
+/obj/projectile/ego_bullet/regs
 	name = "sinewy claw"
 	damage = 10
 	damage_type = BLACK_DAMAGE
 	hitscan = TRUE
-	muzzle_type = /obj/effect/projectile/tracer/laser/replica
-	tracer_type = /obj/effect/projectile/tracer/laser/replica
-	impact_type = /obj/effect/projectile/impact/laser/replica
+	muzzle_type = /obj/effect/projectile/tracer/laser/regs
+	tracer_type = /obj/effect/projectile/tracer/laser/regs
+	impact_type = /obj/effect/projectile/impact/laser/regs
 
-/obj/effect/projectile/tracer/laser/replica
-	name = "replica claw"
+/obj/effect/projectile/tracer/laser/regs
+	name = "move-in claw"
 	icon_state = "replica"
-/obj/effect/projectile/impact/laser/replica
-	name = "replica impact"
+/obj/effect/projectile/impact/laser/regs
+	name = "move-in impact"
 	icon_state = "replica"
 
 /obj/projectile/ego_bullet/replica/on_hit(atom/target, blocked = FALSE)

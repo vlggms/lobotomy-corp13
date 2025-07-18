@@ -19,8 +19,8 @@
 	work_damage_type = WHITE_DAMAGE
 
 	ego_list = list(
-		/datum/ego_datum/weapon/visions,
-		/datum/ego_datum/armor/visions,
+		/datum/ego_datum/weapon/skinprophet,
+		/datum/ego_datum/armor/skinprophet,
 	)
 	gift_type = /datum/ego_gifts/visions
 	abnormality_origin = ABNORMALITY_ORIGIN_LIMBUS

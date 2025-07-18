@@ -322,10 +322,10 @@
 							JUSTICE_ATTRIBUTE = 40
 							)
 
-/obj/item/clothing/suit/armor/ego_gear/he/replica
-	name = "replica"
+/obj/item/clothing/suit/armor/ego_gear/he/regs
+	name = "move-in reg"
 	desc = "This coat is covered in glowing sensors. It appears to be incomplete, with exposed sinews underneath the plating."
-	icon_state = "replica"
+	icon_state = "regs"
 	armor = list(RED_DAMAGE = 20, WHITE_DAMAGE = 20, BLACK_DAMAGE = 30, PALE_DAMAGE = 0) // 70
 	attribute_requirements = list(
 							JUSTICE_ATTRIBUTE = 40
@@ -416,14 +416,18 @@
 							JUSTICE_ATTRIBUTE = 40
 							)
 
-/obj/item/clothing/suit/armor/ego_gear/he/voodoo
-	name = "voodoo doll"
+/obj/item/clothing/suit/armor/ego_gear/he/scissors
+	name = "scissors"
 	desc = "You look like a little doll."
 	icon_state = "voodoo"
 	armor = list(RED_DAMAGE = 30, WHITE_DAMAGE = 30, BLACK_DAMAGE = -10, PALE_DAMAGE = 20) // 70
 	attribute_requirements = list(
 							FORTITUDE_ATTRIBUTE = 40
 							)
+
+/obj/item/clothing/suit/armor/ego_gear/he/scissors/Initialize()
+	name = "I'll go fer scissors. How 'bout you?"
+	..()
 
 /obj/item/clothing/suit/armor/ego_gear/he/uturn
 	name = "u-turn"
@@ -434,10 +438,10 @@
 							FORTITUDE_ATTRIBUTE = 40
 							)
 
-/obj/item/clothing/suit/armor/ego_gear/he/nixie
-	name = "nixie divergence"
+/obj/item/clothing/suit/armor/ego_gear/he/crushbound
+	name = "crushbound past"
 	desc = "A purposeless machine is bound to lose the meaning of its existence, even if it is functional."
-	icon_state = "nixie"
+	icon_state = "crushbound"
 	armor = list(RED_DAMAGE = 40, WHITE_DAMAGE = 20, BLACK_DAMAGE = -20, PALE_DAMAGE = 30) // 70
 	attribute_requirements = list(
 							JUSTICE_ATTRIBUTE = 40

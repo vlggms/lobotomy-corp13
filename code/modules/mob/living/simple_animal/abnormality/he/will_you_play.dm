@@ -20,8 +20,8 @@
 	max_boxes = 15
 
 	ego_list = list(
-		/datum/ego_datum/weapon/voodoo,
-		/datum/ego_datum/armor/voodoo,
+		/datum/ego_datum/weapon/scissors,
+		/datum/ego_datum/armor/scissors,
 	)
 	gift_type = /datum/ego_gifts/voodoo
 	abnormality_origin = ABNORMALITY_ORIGIN_LIMBUS

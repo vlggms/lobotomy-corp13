@@ -1024,9 +1024,6 @@
 	},
 /turf/open/floor/wood,
 /area/city/backstreets_room)
-"dQ" = (
-/turf/closed/wall/r_wall,
-/area/city/backstreets_room)
 "dR" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/disposalpipe/segment{
@@ -1555,22 +1552,11 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plating,
 /area/facility_hallway/welfare)
-"fD" = (
-/obj/machinery/smartfridge/organ,
-/turf/closed/indestructible/riveted,
-/area/city)
 "fE" = (
 /obj/effect/decal/cleanable/vomit,
 /obj/effect/spawner/lootdrop/cigbutt,
 /turf/open/floor/plating/rust,
 /area/city/backstreets_alley)
-"fF" = (
-/obj/structure/plaque{
-	name = "Tie Office License";
-	desc = "An official fixer license assigned by the Hana Association."
-	},
-/turf/closed/wall/r_wall,
-/area/city/backstreets_room)
 "fG" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/door/airlock/highsecurity{
@@ -1664,6 +1650,24 @@
 	},
 /turf/open/floor/plating/rust,
 /area/facility_hallway/training)
+"ga" = (
+/obj/structure/table/glass,
+/obj/item/reagent_containers/syringe/antiviral{
+	pixel_y = 5
+	},
+/obj/item/reagent_containers/syringe/multiver{
+	pixel_y = 10
+	},
+/obj/item/reagent_containers/syringe/penacid,
+/obj/item/clothing/glasses/regular,
+/obj/item/clothing/glasses/regular,
+/obj/item/clothing/glasses/regular,
+/obj/effect/turf_decal/siding/blue{
+	dir = 10
+	},
+/obj/item/reagent_containers/hypospray/emais,
+/turf/open/floor/facility/white,
+/area/city)
 "gb" = (
 /obj/effect/turf_decal/siding/yellow{
 	dir = 1
@@ -2561,13 +2565,6 @@
 /obj/item/storage/belt/ego,
 /turf/open/floor/carpet,
 /area/facility_hallway/control)
-"jB" = (
-/obj/structure/plaque{
-	desc = "A contract bearing the seal of the Oufi Association East division., claiming this office as a subsidiary.";
-	name = "Oufi Association Contract"
-	},
-/turf/closed/wall/r_wall,
-/area/city/backstreets_room)
 "jC" = (
 /obj/effect/turf_decal/siding/yellow{
 	dir = 8
@@ -3504,6 +3501,13 @@
 	},
 /turf/closed/indestructible/reinforced/old,
 /area/department_main/training)
+"mP" = (
+/obj/structure/plaque{
+	name = "Tie Office License";
+	desc = "An official fixer license assigned by the Hana Association."
+	},
+/turf/closed/wall/r_wall,
+/area/city/backstreets_room)
 "mQ" = (
 /obj/machinery/camera/autoname{
 	dir = 1
@@ -4029,18 +4033,6 @@
 /obj/effect/spawner/lootdrop/maintenance,
 /turf/closed/mineral/random/facility,
 /area/facility_hallway/safety)
-"oM" = (
-/obj/structure/table/glass,
-/obj/item/storage/backpack/duffelbag/med/upgradedsurgery{
-	pixel_y = 10
-	},
-/obj/item/storage/backpack/duffelbag/med/upgradedsurgery,
-/obj/effect/turf_decal/siding/blue{
-	dir = 1
-	},
-/obj/item/ego_weapon/support/dragon_staff,
-/turf/open/floor/facility/white,
-/area/city)
 "oN" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/turf_decal/siding/red{
@@ -4290,6 +4282,15 @@
 /obj/item/clothing/accessory/armband/lobotomy,
 /turf/open/floor/carpet,
 /area/facility_hallway/control)
+"px" = (
+/obj/effect/turf_decal/siding/red{
+	dir = 8
+	},
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/mob_spawn/human/agent,
+/obj/item/ego_weapon/ranged/nightmares,
+/turf/open/floor/plating/rust,
+/area/facility_hallway/discipline)
 "pC" = (
 /turf/closed/mineral/random/facility{
 	baseturfs = /turf/open/floor/plating/asteroid;
@@ -5181,24 +5182,6 @@
 	},
 /turf/open/floor/carpet/red,
 /area/facility_hallway/control)
-"sY" = (
-/obj/structure/table/glass,
-/obj/item/reagent_containers/syringe/antiviral{
-	pixel_y = 5
-	},
-/obj/item/reagent_containers/syringe/multiver{
-	pixel_y = 10
-	},
-/obj/item/reagent_containers/syringe/penacid,
-/obj/item/clothing/glasses/regular,
-/obj/item/clothing/glasses/regular,
-/obj/item/clothing/glasses/regular,
-/obj/effect/turf_decal/siding/blue{
-	dir = 10
-	},
-/obj/item/reagent_containers/hypospray/emais,
-/turf/open/floor/facility/white,
-/area/city)
 "sZ" = (
 /obj/structure/sign/warning/nosmoking/circle,
 /turf/closed/indestructible/reinforced/old,
@@ -6832,6 +6815,18 @@
 	},
 /turf/closed/mineral/random/facility/atzliuth,
 /area/facility_hallway/discipline)
+"yU" = (
+/obj/structure/table/glass,
+/obj/item/storage/backpack/duffelbag/med/upgradedsurgery{
+	pixel_y = 10
+	},
+/obj/item/storage/backpack/duffelbag/med/upgradedsurgery,
+/obj/effect/turf_decal/siding/blue{
+	dir = 1
+	},
+/obj/item/ego_weapon/support/dragon_staff,
+/turf/open/floor/facility/white,
+/area/city)
 "yV" = (
 /obj/structure/fluff/bus/passable,
 /obj/effect/decal/cleanable/dirt,
@@ -9775,6 +9770,10 @@
 /obj/item/broken_bottle,
 /turf/open/floor/plating/rust,
 /area/department_main/command)
+"JO" = (
+/obj/machinery/smartfridge/organ,
+/turf/closed/indestructible/riveted,
+/area/city)
 "JP" = (
 /obj/effect/turf_decal/box/white,
 /obj/machinery/light/broken,
@@ -11359,6 +11358,23 @@
 /obj/effect/decal/cleanable/blood/tracks,
 /turf/open/floor/plasteel,
 /area/city/backstreets_room)
+"Pt" = (
+/obj/structure/table/glass,
+/obj/item/reagent_containers/medigel/sterilizine{
+	pixel_x = -5;
+	pixel_y = 6
+	},
+/obj/item/reagent_containers/spray/cleaner{
+	pixel_x = 5;
+	pixel_y = 5
+	},
+/obj/item/clothing/suit/apron/surgical,
+/obj/effect/turf_decal/siding/blue{
+	dir = 1
+	},
+/obj/item/ego_weapon/support/dragon_staff,
+/turf/open/floor/facility/white,
+/area/city)
 "Pv" = (
 /turf/closed/indestructible/syndicate,
 /area/city/outskirts)
@@ -11532,15 +11548,6 @@
 /obj/machinery/disposal/bin,
 /turf/open/floor/wood,
 /area/city/house)
-"Qa" = (
-/obj/effect/turf_decal/siding/red{
-	dir = 8
-	},
-/obj/effect/decal/cleanable/dirt,
-/obj/item/ego_weapon/nightmares,
-/obj/effect/mob_spawn/human/agent,
-/turf/open/floor/plating/rust,
-/area/facility_hallway/discipline)
 "Qb" = (
 /obj/structure/disposalpipe/segment{
 	dir = 9
@@ -11885,6 +11892,9 @@
 	dir = 6
 	},
 /turf/open/floor/grass,
+/area/city/backstreets_room)
+"Rr" = (
+/turf/closed/wall/r_wall,
 /area/city/backstreets_room)
 "Rs" = (
 /obj/structure/disposalpipe/segment,
@@ -13731,23 +13741,6 @@
 /obj/machinery/deepfryer,
 /turf/open/floor/plasteel/white,
 /area/city/shop)
-"Yd" = (
-/obj/structure/table/glass,
-/obj/item/reagent_containers/medigel/sterilizine{
-	pixel_x = -5;
-	pixel_y = 6
-	},
-/obj/item/reagent_containers/spray/cleaner{
-	pixel_x = 5;
-	pixel_y = 5
-	},
-/obj/item/clothing/suit/apron/surgical,
-/obj/effect/turf_decal/siding/blue{
-	dir = 1
-	},
-/obj/item/ego_weapon/support/dragon_staff,
-/turf/open/floor/facility/white,
-/area/city)
 "Yf" = (
 /obj/effect/turf_decal/plaque{
 	icon_state = "LC29"
@@ -14284,6 +14277,13 @@
 /obj/item/food/plumphelmetbiscuit,
 /turf/open/floor/plasteel/elevatorshaft,
 /area/city/shop)
+"ZR" = (
+/obj/structure/plaque{
+	desc = "A contract bearing the seal of the Oufi Association East division., claiming this office as a subsidiary.";
+	name = "Oufi Association Contract"
+	},
+/turf/closed/wall/r_wall,
+/area/city/backstreets_room)
 "ZS" = (
 /obj/effect/turf_decal/siding/brown{
 	dir = 1
@@ -43687,13 +43687,13 @@ ZL
 ZL
 ZL
 ZL
-dQ
-dQ
-dQ
-dQ
-dQ
-dQ
-dQ
+Rr
+Rr
+Rr
+Rr
+Rr
+Rr
+Rr
 ZL
 ZL
 ZL
@@ -43944,13 +43944,13 @@ ZL
 ZL
 ZL
 ZL
-dQ
+Rr
 pj
 sJ
 sJ
 sJ
 Ac
-dQ
+Rr
 ZL
 ZL
 ZL
@@ -44196,21 +44196,21 @@ ZL
 ZL
 ZL
 ZL
-dQ
-dQ
-dQ
-dQ
-dQ
-dQ
+Rr
+Rr
+Rr
+Rr
+Rr
+Rr
 Ay
-dQ
-dQ
+Rr
+Rr
 jV
 jV
-dQ
-dQ
-dQ
-dQ
+Rr
+Rr
+Rr
+Rr
 ZL
 ZL
 ZL
@@ -44453,11 +44453,11 @@ ZL
 ZL
 ZL
 ZL
-dQ
+Rr
 sJ
 ax
 fr
-dQ
+Rr
 tX
 Iy
 tX
@@ -44467,7 +44467,7 @@ ix
 hY
 ix
 dq
-dQ
+Rr
 ZL
 ZL
 ZL
@@ -44710,11 +44710,11 @@ ZL
 ZL
 ZL
 ZL
-dQ
+Rr
 My
 af
 Ax
-fF
+mP
 EX
 PF
 tX
@@ -44724,7 +44724,7 @@ ix
 ix
 ix
 ix
-dQ
+Rr
 ZL
 ZL
 ZL
@@ -44967,7 +44967,7 @@ ZL
 ZL
 ZL
 ZL
-dQ
+Rr
 HW
 Ps
 Ps
@@ -44981,7 +44981,7 @@ ix
 ix
 qC
 Kk
-dQ
+Rr
 ZL
 ZL
 ZL
@@ -45224,11 +45224,11 @@ ZL
 ZL
 ZL
 ZL
-dQ
+Rr
 My
 af
 CW
-jB
+ZR
 EX
 PF
 tX
@@ -45238,7 +45238,7 @@ ix
 ix
 ix
 ix
-dQ
+Rr
 ZL
 ZL
 ZL
@@ -45481,11 +45481,11 @@ ZL
 ZL
 ZL
 ZL
-dQ
+Rr
 Er
 sJ
 fr
-dQ
+Rr
 tX
 Iy
 tX
@@ -45495,7 +45495,7 @@ ix
 ix
 ix
 ix
-dQ
+Rr
 ZL
 ZL
 ZL
@@ -45738,21 +45738,21 @@ Jg
 Jg
 ZL
 ZL
-dQ
+Rr
 My
 af
 sJ
-dQ
-dQ
-dQ
-dQ
-dQ
-dQ
-dQ
-dQ
-dQ
-dQ
-dQ
+Rr
+Rr
+Rr
+Rr
+Rr
+Rr
+Rr
+Rr
+Rr
+Rr
+Rr
 fb
 fb
 fb
@@ -45995,7 +45995,7 @@ DK
 TJ
 Jg
 ZL
-dQ
+Rr
 sJ
 Ax
 ZN
@@ -46252,7 +46252,7 @@ nb
 DK
 Jg
 ZL
-dQ
+Rr
 My
 af
 sJ
@@ -46509,7 +46509,7 @@ Iy
 PS
 Jg
 ZL
-dQ
+Rr
 sJ
 sJ
 hd
@@ -46766,15 +46766,15 @@ Iy
 PS
 uh
 ZL
-dQ
-dQ
+Rr
+Rr
 Tr
-dQ
-dQ
-dQ
-dQ
-dQ
-dQ
+Rr
+Rr
+Rr
+Rr
+Rr
+Rr
 fb
 fb
 fb
@@ -47023,7 +47023,7 @@ Iy
 PS
 Jg
 ZL
-dQ
+Rr
 aN
 aN
 aN
@@ -47031,7 +47031,7 @@ aN
 oO
 pt
 jD
-dQ
+Rr
 ZL
 ZL
 ZL
@@ -47280,7 +47280,7 @@ ee
 KH
 vc
 ZL
-dQ
+Rr
 aN
 aN
 aN
@@ -47288,13 +47288,13 @@ aN
 aN
 aN
 xq
-dQ
-dQ
-dQ
-dQ
-dQ
-dQ
-dQ
+Rr
+Rr
+Rr
+Rr
+Rr
+Rr
+Rr
 ZL
 ZL
 ZL
@@ -47537,7 +47537,7 @@ KH
 vc
 vc
 ZL
-dQ
+Rr
 jZ
 dP
 aN
@@ -47545,13 +47545,13 @@ aN
 aN
 pt
 jD
-dQ
+Rr
 XB
 KC
 XB
 lx
 fd
-dQ
+Rr
 ZL
 ZL
 ZL
@@ -47794,7 +47794,7 @@ vc
 vc
 ZL
 ZL
-dQ
+Rr
 Wh
 vE
 QB
@@ -47808,7 +47808,7 @@ KC
 KC
 KC
 SI
-dQ
+Rr
 ZL
 ZL
 ZL
@@ -48051,7 +48051,7 @@ ZL
 ZL
 ZL
 ZL
-dQ
+Rr
 jZ
 dP
 it
@@ -48059,13 +48059,13 @@ aN
 it
 aN
 ra
-dQ
+Rr
 XB
 bn
 XB
 KC
 KC
-dQ
+Rr
 ZL
 ZL
 ZL
@@ -48308,21 +48308,21 @@ ZL
 ZL
 ZL
 ZL
-dQ
-dQ
-dQ
-dQ
-dQ
-dQ
-dQ
-dQ
-dQ
-dQ
-dQ
-dQ
-dQ
-dQ
-dQ
+Rr
+Rr
+Rr
+Rr
+Rr
+Rr
+Rr
+Rr
+Rr
+Rr
+Rr
+Rr
+Rr
+Rr
+Rr
 ZL
 ZL
 ZL
@@ -50387,9 +50387,9 @@ cb
 ol
 Kj
 Kj
-sY
+ga
 cL
-oM
+yU
 hR
 hR
 zh
@@ -50897,12 +50897,12 @@ ZL
 ZL
 ZL
 Rp
-Yd
+Pt
 yE
 yE
 yE
 CR
-fD
+JO
 el
 hR
 hR
@@ -73210,7 +73210,7 @@ aZ
 ZL
 nt
 XR
-Qa
+px
 mt
 nt
 qF
