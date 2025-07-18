@@ -1792,11 +1792,11 @@
 			target.attacked_by(Y, user)
 			log_combat(user, target, pick(attack_verb_continuous), Y.name, "(INTENT: [uppertext(user.a_intent)]) (DAMTYPE: [uppertext(Y.damtype)])")
 
-/obj/item/ego_weapon/nixie
-	name = "nixie divergence"
+/obj/item/ego_weapon/crushbound
+	name = "crushbound past"
 	desc = "It looks like a hammer with a steam exhaust port."
 	special = "Use in hand to unlock its full power."
-	icon_state = "nixie"
+	icon_state = "crushbound"
 	lefthand_file = 'icons/mob/inhands/64x64_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/64x64_righthand.dmi'
 	inhand_x_dimension = 64
@@ -1813,7 +1813,7 @@
 							)
 	var/charged = FALSE
 
-/obj/item/ego_weapon/nixie/attack(mob/living/M, mob/living/user)
+/obj/item/ego_weapon/crushbound/attack(mob/living/M, mob/living/user)
 	if(charged)
 		playsound(src, 'sound/machines/clockcult/steam_whoosh.ogg', 100)
 		set_light(0)
@@ -1821,7 +1821,7 @@
 	force = 44
 	charged = FALSE
 
-/obj/item/ego_weapon/nixie/attack_self(mob/user)
+/obj/item/ego_weapon/crushbound/attack_self(mob/user)
 	if(!CanUseEgo(user))
 		return
 	if(charged)
@@ -1834,14 +1834,14 @@
 		set_light(3, 6, "#D4FAF37")
 		PlayChargeSound()
 
-/obj/item/ego_weapon/nixie/proc/PlayChargeSound()
+/obj/item/ego_weapon/crushbound/proc/PlayChargeSound()
 	set waitfor = FALSE
 	sleep(10)
 	if(!charged) //We don't play the sound if the player has already attacked by now
 		return
 	playsound(src.loc, 'sound/abnormalities/clock/turn_on.ogg', 75, TRUE)
 
-/obj/item/ego_weapon/nixie/get_clamped_volume()
+/obj/item/ego_weapon/crushbound/get_clamped_volume()
 	return 50
 
 //Gimmicky weapon with a potentially high payout
