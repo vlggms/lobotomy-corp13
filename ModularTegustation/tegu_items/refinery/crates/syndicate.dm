@@ -95,6 +95,7 @@
 /obj/structure/lootcrate/thumb
 	name = "thumb crate"
 	desc = "A crate received from the Thumb finger syndicate. Open with a Crowbar."
+	// Placeholder sprite.
 	icon_state = "crate_thumb"
 	rarechance = 33
 	veryrarechance = 7

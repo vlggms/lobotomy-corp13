@@ -216,6 +216,7 @@
 /obj/structure/pe_sales/thumb
 	name = "The Thumb Power Input"
 	desc = "A machine used to send PE to the Thumb"
+	// Placeholder sprite.
 	icon_state = "machinethumb"
 	crate = /obj/structure/lootcrate/thumb
 	// Four minutes to get a crate. They have decent gear, BUT it's RED damage and they have ammo boxes showing up 20% of the time.

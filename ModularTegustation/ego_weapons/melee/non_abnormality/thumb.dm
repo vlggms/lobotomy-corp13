@@ -96,7 +96,7 @@
 // The weapons will be beatsticks, but will unlock special combos if loaded with ammo.
 // These weapons will show up in City and Facility. City: Thumb East starting gear and Thumb crates. Facility: Thumb crates.
 // The ammunition they use comes with its own "stats". Ammunition available in Facility mode should NEVER have status effects on it.
-// Ammo can either be live or spent. Live ammo can be used for the weapons, spent ammo is useless garbage in Facility mode, and in City mode it can be sold or recycled.
+// Ammo can either be live or spent. Live ammo can be used for the weapons, spent ammo is useless garbage in Facility mode, but in City mode it can be sold or recycled.
 // The lifecycle of ammo is as follows:
 // 1. A live round is placed into a Thumb East weapon. It gets split from the stack it was part of and placed inside the weapon, and associated to its current_ammo list.
 // 2A. You can unload the live round and retrieve it from the weapon by alt clicking it. Any live rounds in the weapon will also be ejected if you attempt a reload on a weapon with spent_ammo_behaviour = SPENT_RELOADEJECT
@@ -213,7 +213,7 @@
 // OVERRIDES SECTION.
 // This is all the code that overrides procs from parent types.
 
-/// This Examine override just adds useful info for the player, including ammunition loaded and tips on how the combo system works.
+/// Includes the most immediately important info for the weapon: ammo amount and type, heat (if any), a description of the combo and a reminder that it can FF.
 /obj/item/ego_weapon/city/thumb_east/examine(mob/user)
 	. = ..()
 	. += span_danger("There are [length(current_ammo)]/[max_ammo] shots of [length(current_ammo) > 0 ? current_ammo_name : "propellant ammunition"] currently loaded.")
@@ -222,7 +222,7 @@
 	. += span_info(combo_description)
 	. += span_danger("This weapon's AoE is indiscriminate. Watch out for friendly fire.")
 
-/// This override lets us toggle comboing on and off.
+/// Using the weapon in-hand toggles comboing on and off.
 /obj/item/ego_weapon/city/thumb_east/attack_self(mob/living/user)
 	. = ..()
 	if(!busy)
@@ -234,13 +234,13 @@
 			combo_enabled = TRUE
 			to_chat(user, span_info("You are now spending ammunition to use combo attacks."))
 
-/// Lets people manually unload the weapon, I guess? Maybe the Capo is ordering a Soldato to hand over all their ammo or something.
+/// Alt-click lets people manually unload. Should rarely if ever be used, but important for those RP moments where a Capo orders a Soldato to give them ammo, or Thumb surrenders and unloads their guns.
 /obj/item/ego_weapon/city/thumb_east/AltClick(mob/user)
 	. = ..()
 	if(!busy)
 		UnloadRound(user)
 
-/// This override handles initiating a reload.
+/// Initiate a reload if we hit the weapon with some ammo.
 /obj/item/ego_weapon/city/thumb_east/attackby(obj/item/stack/thumb_east_ammo/I, mob/living/user, params)
 	. = ..()
 	if(!istype(I))
@@ -276,7 +276,7 @@
 		else
 			to_chat(user, span_warning("The [src.name] cannot fit any more ammunition - it is fully loaded."))
 
-/// This override just makes sure we drop all our ammo and null our ammo reference list if the weapon is destroyed.
+/// Cleans up some stuff in case the weapon is destroyed, also drops any ammo inside it.
 /obj/item/ego_weapon/city/thumb_east/Destroy(force)
 	for(var/obj/item/stack/thumb_east_ammo/leftover in current_ammo)
 		leftover.forceMove(get_turf(src))
@@ -296,6 +296,7 @@
 		// Decay our overheat bonus, but don't let it go negative...
 		overheat = max(0, overheat - 0.2)
 		return ..()
+	// Here's the core of the weapon. We have to make sure the appropiate bonuses are applied to the weapon before we call ..(), which is the hit itself.
 	switch(combo_stage)
 		// Importantly: every time we want to fire a round, we should use SpendAmmo(user).
 		// In the case of our Lunge and our Finisher, SpendAmmo has been called already before we get to the current proc.
@@ -307,13 +308,13 @@
 			// Decay our overheat bonus, but don't let it go negative...
 			overheat = max(0, overheat - 0.2)
 			return ..()
-		// This case is for an attack made out of a lunge.
+		// This case is for an attack made out of a lunge. Lunge() is triggered in afterattack() from range, and the fired round bonuses are applied at that point.
 		if(COMBO_LUNGE)
 			// We already set hitsound in Lunge().
 			. = ..()
 			hitsound = initial(hitsound)
-			// Your next hit after the lunge will actually come out faster than normal. This is a reward for being able to handle the abrupt movement and screenshake.
-			user.changeNext_move(CLICK_CD_MELEE * attack_speed * 0.9)
+			// Tiny malus on attack speed after hitting a lunge, to avoid crazy burst damage and add a feeling of "weight" to the next attack..
+			user.changeNext_move(CLICK_CD_MELEE * attack_speed * 1.1)
 			ApplyStatusEffects(target, COMBO_LUNGE)
 			combo_stage = COMBO_ATTACK2
 			return
@@ -346,13 +347,13 @@
 			ReturnToNormal(user)
 			return
 
-		// We should never ever reach this else block, but here it is, just in case.
+		// We should never ever reach this else block, but here is a failsafe.
 		else
 			ReturnToNormal(user)
 			overheat = max(0, overheat - 0.2)
 			. = ..()
 
-/// This overridden proc is only called when attacking something next to us. Basically we want to intercept any possible melee attacks when we're at our finisher stage,
+/// This overridden proc is only called when attacking something next to us. Basically we want to intercept any possible melee attempts when we're at our finisher stage,
 /// so we can do our finisher instead.
 /obj/item/ego_weapon/city/thumb_east/pre_attack(atom/A, mob/living/user, params)
 	var/mob/living/target = A
@@ -370,7 +371,7 @@
 		return
 	return . = ..()
 
-/// This overridden proc is called even at range. So we're gonna use it to attempt to lunge (combo starter) or leap (combo finisher for podao) as appropiate.
+/// This proc is called after an attack, but more importantly for us, it does not care about proximity. Therefore this is what we use to attempt to call a Lunge() or Leap().
 /obj/item/ego_weapon/city/thumb_east/afterattack(atom/target, mob/user, proximity_flag, click_parameters)
 	// Returning "TRUE" here means we're halting the melee attack chain.
 	if(!CanUseEgo(user))
@@ -393,6 +394,7 @@
 					// pre_attack actually handles the Leap() call if we're next to our target.
 					if((get_dist(user, target) < 2))
 						return FALSE
+
 					. = Leap(target, user)
 				return
 	return
@@ -400,6 +402,64 @@
 ////////////////////////////////////////////////////////////
 // AMMO MANAGEMENT PROCS SECTION.
 // These are the procs used to handle the loading and usage of ammunition.
+
+/// Returns TRUE if we're out of ammo. Also resets our current ammo type and name.
+/obj/item/ego_weapon/city/thumb_east/proc/AmmoDepletedCheck()
+	if(length(current_ammo) <= 0)
+		current_ammo_type = null
+		current_ammo_name = ""
+		return TRUE
+	return FALSE
+
+/// Remove one round from the weapon. Prioritizes live rounds when possible.
+/obj/item/ego_weapon/city/thumb_east/proc/UnloadRound(mob/living/user)
+	// If we're out of live rounds...
+	if(AmmoDepletedCheck())
+		// A SPENT_INSTANTEJECT weapon wouldn't have any spent rounds that we can unload, they'd have been ejected when created. There's Nothing There inside the weapon.
+		if(spent_ammo_behaviour == SPENT_INSTANTEJECT)
+			to_chat(user, span_warning("There's no ammo left to unload."))
+			return FALSE
+		// If we reach this part, then we're unloading a SPENT_RELOADEJECT weapon that has no live rounds left. Try to unload a spent round.
+		var/obj/item/stack/spent_round = pick_n_take(spent_cartridges)
+		if(spent_round)
+			to_chat(user, span_notice("You unload a [spent_round.singular_name] from your [src.name]."))
+			playsound(src, 'sound/weapons/gun/pistol/drop_small.ogg', 100, FALSE)
+			user.put_in_hands(spent_round)
+			overheat = 0
+			return TRUE
+	else
+		// We do have ammo left in the weapon.
+		var/obj/item/stack/live_round = pick_n_take(current_ammo)
+		removeNullsFromList(current_ammo)
+		if(live_round)
+			to_chat(user, span_notice("You unload a [live_round.singular_name] from your [src.name]."))
+			playsound(src, 'sound/weapons/gun/pistol/drop_small.ogg', 100, FALSE)
+			user.put_in_hands(live_round)
+			overheat = 0
+			AmmoDepletedCheck()
+			return TRUE
+	// We reach this part if we had no ammo but no spent rounds either.
+	to_chat(user, span_warning("There's no ammo left to unload."))
+	return FALSE
+
+/// This proc is used to eject both spent and unspent cartridges. It should be called by Reload() to eject all rounds when reloading on SPENT_RELOADEJECT weapons.
+/// It will also be called for each spent cartridge created if the weapon is SPENT_INSTANTEJECT.
+/// Don't mistake this for UnloadRound() - that proc puts the cartridge directly in your hands.
+/obj/item/ego_weapon/city/thumb_east/proc/EjectRound(obj/item/stack/thumb_east_ammo/cartridge, mob/living/user)
+	if(cartridge in current_ammo)
+		current_ammo -= cartridge
+	else if(cartridge in spent_cartridges)
+		spent_cartridges -= cartridge
+
+	AmmoDepletedCheck()
+
+	// This block is adapted code from actual bullet casings for SS13 guns. We just slightly randomize its pixel offsets and throw it somewhere nearby.
+	cartridge.forceMove(user.drop_location())
+	cartridge.pixel_x = cartridge.base_pixel_x + rand(-4, 4)
+	cartridge.pixel_y = cartridge.base_pixel_y + rand (-4, 4)
+	var/turf/destination = get_ranged_target_turf(user, pick(GLOB.alldirs), 1)
+	cartridge.throw_at(destination, rand(1, 2), 6, spin = TRUE)
+	cartridge.setDir(pick(GLOB.alldirs))
 
 /// Channeled process for reloading the weapon. Can be interrupted.
 /obj/item/ego_weapon/city/thumb_east/proc/Reload(amount_to_load, obj/item/stack/thumb_east_ammo/ammo_item, mob/living/carbon/user)
@@ -409,7 +469,7 @@
 	overheat = 0
 	busy = TRUE
 	if(do_after(user, 0.6 SECONDS, src, progress = TRUE, interaction_key = "thumb_east_reload", max_interact_count = 1))
-		// If we reached this part, we've started the reload properly now. Being interrupted at this point causes a ReloadFailure(), you will spill the ammo you're loading.
+		// If we reached this line, we've started the reload properly now. Being interrupted at this point causes a ReloadFailure(), you will spill the ammo you're loading.
 		// This first block will eject all our spent and unspent ammo if we're using a weapon with SPENT_RELOADEJECT behaviour (the podao).
 		if(spent_ammo_behaviour == SPENT_RELOADEJECT)
 			var/list/all_cartridges = list()
@@ -444,7 +504,7 @@
 		to_chat(user, span_danger("You abort your reload!"))
 		return FALSE
 
-	// We only reach this part if we successfully loaded the rounds we wanted to load.
+	// We only reach this part if we successfully loaded the rounds we wanted to load. Play the reload_end_sound with a small delay so it sounds nicer.
 	addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(playsound), src, reload_end_sound, 100, FALSE, 10), 0.2 SECONDS)
 	return TRUE
 
@@ -459,46 +519,7 @@
 			spilled_bullet.throw_at(get_ranged_target_turf(user, pick(GLOB.alldirs), 1), 1, 5, spin = TRUE)
 			sleep(1)
 
-/// Remove one round from the weapon. Prioritizes live rounds when possible.
-/obj/item/ego_weapon/city/thumb_east/proc/UnloadRound(mob/living/user)
-	// If we're out of live rounds...
-	if(AmmoDepletedCheck())
-		// A SPENT_INSTANTEJECT weapon wouldn't have any spent rounds that we can unload. There's nothing left inside the weapon.
-		if(spent_ammo_behaviour == SPENT_INSTANTEJECT)
-			to_chat(user, span_warning("There's no ammo left to unload."))
-			return FALSE
-		// If we reach this part, then we're unloading a SPENT_RELOADEJECT weapon that has no live rounds left. Try to unload a spent round.
-		var/obj/item/stack/spent_round = pick_n_take(spent_cartridges)
-		if(spent_round)
-			to_chat(user, span_notice("You unload a [spent_round.singular_name] from your [src.name]."))
-			playsound(src, 'sound/weapons/gun/pistol/drop_small.ogg', 100, FALSE)
-			user.put_in_hands(spent_round)
-			overheat = 0
-			return TRUE
-	else
-		// We do have ammo left in the weapon.
-		var/obj/item/stack/live_round = pick_n_take(current_ammo)
-		removeNullsFromList(current_ammo)
-		if(live_round)
-			to_chat(user, span_notice("You unload a [live_round.singular_name] from your [src.name]."))
-			playsound(src, 'sound/weapons/gun/pistol/drop_small.ogg', 100, FALSE)
-			user.put_in_hands(live_round)
-			overheat = 0
-			AmmoDepletedCheck()
-			return TRUE
-	// We reach this part if we had no ammo but no spent rounds either.
-	to_chat(user, span_warning("There's no ammo left to unload."))
-	return FALSE
-
-/// Returns TRUE if we're out of ammo. Also resets our current ammo type and name.
-/obj/item/ego_weapon/city/thumb_east/proc/AmmoDepletedCheck()
-	if(length(current_ammo) <= 0)
-		current_ammo_type = null
-		current_ammo_name = ""
-		return TRUE
-	return FALSE
-
-/// This proc tries to spend a round, and if it is able to, calls HandleFiredAmmo() and CreateSpentCartridge() with that round, then returns TRUE. If it can't, returns FALSE.
+/// This proc tries to spend a round, and if it is able to, calls ApplyAmmoBonuses() and CreateSpentCartridge() with that round, then returns TRUE. If it can't, returns FALSE.
 /// Important: This proc doesn't delete the fired round, but removes it from our reference list. If it is not deleted later, then it will remain in the weapon's contents.
 /// That being said it shouldn't cause any issues because of that.
 /obj/item/ego_weapon/city/thumb_east/proc/SpendAmmo(mob/living/user)
@@ -518,13 +539,13 @@
 		INVOKE_ASYNC(src, PROC_REF(PropulsionVisual), get_turf(user), fired_round.aesthetic_shockwave_distance)
 		CreateSpentCartridge(fired_round, user)
 		// This proc is the one that actually adds the bonuses to our weapon from the round that we fired.
-		HandleFiredAmmo(fired_round, user)
+		ApplyAmmoBonuses(fired_round, user)
 		return TRUE
 	return FALSE
 
 /// This proc is passed a round, stores the bonuses it should provide to the weapon according to the current combo stage and the round's properties, then deletes the round.
 /// It also sets a timer to reset the combo.
-/obj/item/ego_weapon/city/thumb_east/proc/HandleFiredAmmo(obj/item/stack/thumb_east_ammo/round, mob/living/user)
+/obj/item/ego_weapon/city/thumb_east/proc/ApplyAmmoBonuses(obj/item/stack/thumb_east_ammo/round, mob/living/user)
 	if(round)
 		force = (initial(force) * motion_values[combo_stage]) + round.flat_force_base * motion_values[combo_stage]
 		overheat += round.heat_generation
@@ -559,28 +580,9 @@
 		else
 			INVOKE_ASYNC(src, PROC_REF(EjectRound), new_spent_cartridge, user)
 
-/// This proc is used to eject both spent and unspent cartridges. It should be called by Reload() to eject all rounds when reloading on SPENT_RELOADEJECT weapons.
-/// It will also be called for each spent cartridge created if the weapon is SPENT_INSTANTEJECT.
-/// Don't mistake this for UnloadRound() - that proc puts the cartridge directly in your hands.
-/obj/item/ego_weapon/city/thumb_east/proc/EjectRound(obj/item/stack/thumb_east_ammo/cartridge, mob/living/user)
-	if(cartridge in current_ammo)
-		current_ammo -= cartridge
-	else if(cartridge in spent_cartridges)
-		spent_cartridges -= cartridge
-
-	AmmoDepletedCheck()
-
-	// This block is adapted code from actual bullet casings for SS13 guns. We just slightly randomize its pixel offsets and throw it somewhere nearby.
-	cartridge.forceMove(user.drop_location())
-	cartridge.pixel_x = cartridge.base_pixel_x + rand(-5, 5)
-	cartridge.pixel_y = cartridge.base_pixel_y + rand (-5, 5)
-	cartridge.setDir(pick(GLOB.alldirs))
-	var/turf/destination = get_ranged_target_turf(user, pick(GLOB.alldirs), 1)
-	cartridge.throw_at(destination, rand(1, 2), 6, spin = TRUE)
-
 ////////////////////////////////////////////////////////////
 // SPECIAL ATTACKS SECTION.
-// These are the procs used to handle offensive actions like AoE attacks and applying status effects to the enemy, and all the auxiliary procs they use.
+// These are the procs used to handle offensive actions such as the special attacks in our combo, and all the auxiliary procs that they use.
 
 /// This proc is just for a visual effect that creates a "shockwave" or some smoke at the user's location.
 /obj/item/ego_weapon/city/thumb_east/proc/PropulsionVisual(turf/origin, radius)
@@ -595,6 +597,39 @@
 			new /obj/effect/temp_visual/small_smoke/halfsecond(T2)
 			already_rendered |= T2
 		sleep(1)
+
+/// This proc applies status effects to a target. Make sure to pass it the hit type that is causing the statuses: finishers can tremor-burst and AOEs apply half the stacks.
+/obj/item/ego_weapon/city/thumb_east/proc/ApplyStatusEffects(mob/living/target, hit_type)
+	// We don't want to tremor burst targets normally.
+	var/tremorburst_threshold = 999
+	// We do want to tremor burst if it's a finisher.
+	if(hit_type == COMBO_FINISHER || hit_type == COMBO_FINISHER_AOE)
+		tremorburst_threshold = 30
+
+	// Gather the tremor and burn stacks to apply according to the round we fired.
+	var/tremor_to_apply = next_hit_should_apply["tremor"]
+	var/burn_to_apply = next_hit_should_apply["burn"]
+	// Halve them if the statuses are being applied to an AoE's secondary target.
+	if(hit_type == COMBO_ATTACK2_AOE || hit_type == COMBO_FINISHER_AOE)
+		tremor_to_apply *= 0.5
+		burn_to_apply *= 0.5
+	// Round them down so we don't apply 11.3 tremor stacks or something weird like that.
+	tremor_to_apply = floor(tremor_to_apply)
+	burn_to_apply = floor(burn_to_apply)
+
+	if(tremor_to_apply >= 1)
+		target.apply_lc_tremor(tremor_to_apply, tremorburst_threshold)
+	if(burn_to_apply >= 1)
+		target.apply_lc_burn(burn_to_apply)
+
+/// This proc is just cleanup on the weapon's state, and called whenever a combo ends, is cancelled or times out.
+/// Importantly, it will also apply our overheat bonus to our force, if we have any.
+/obj/item/ego_weapon/city/thumb_east/proc/ReturnToNormal(mob/user)
+	force = initial(force) + overheat
+	next_hit_should_apply = list()
+	if(combo_stage != COMBO_NO_AMMO && combo_stage != COMBO_LUNGE)
+		combo_stage = COMBO_NO_AMMO
+		to_chat(user, span_warning("Your combo resets!"))
 
 /// This proc is our opener attack. We try to lunge at people from range by spending a round. It is actual stepping, not teleporting.
 /// If we reach our target with it, we automatically hit them. If we don't, we can still benefit from the fired round's bonuses if we land a hit before the combo times out.
@@ -721,40 +756,6 @@
 		user.visible_message(span_userdanger("[user] pulls the trigger on their [src.name], but nothing happens!"), span_danger("You pull the trigger on your [src.name]. Nothing happens."))
 		return FALSE
 
-
-/// This proc applies status effects to a target. Make sure to pass it the hit type that is causing the statuses: finishers can tremor-burst and AOEs apply half the stacks.
-/obj/item/ego_weapon/city/thumb_east/proc/ApplyStatusEffects(mob/living/target, hit_type)
-	// We don't want to tremor burst targets normally.
-	var/tremorburst_threshold = 999
-	// We do want to tremor burst if it's a finisher.
-	if(hit_type == COMBO_FINISHER || hit_type == COMBO_FINISHER_AOE)
-		tremorburst_threshold = 30
-
-	// Gather the tremor and burn stacks to apply according to the round we fired.
-	var/tremor_to_apply = next_hit_should_apply["tremor"]
-	var/burn_to_apply = next_hit_should_apply["burn"]
-	// Halve them if the statuses are being applied to an AoE's secondary target.
-	if(hit_type == COMBO_ATTACK2_AOE || hit_type == COMBO_FINISHER_AOE)
-		tremor_to_apply *= 0.5
-		burn_to_apply *= 0.5
-	// Round them down so we don't apply 11.3 tremor stacks or something weird like that.
-	tremor_to_apply = floor(tremor_to_apply)
-	burn_to_apply = floor(burn_to_apply)
-
-	if(tremor_to_apply >= 1)
-		target.apply_lc_tremor(tremor_to_apply, tremorburst_threshold)
-	if(burn_to_apply >= 1)
-		target.apply_lc_burn(burn_to_apply)
-
-/// This proc is just cleanup on the weapon's state, and called whenever a combo ends, is cancelled or times out.
-/// Importantly, it will also apply our overheat bonus to our force, if we have any.
-/obj/item/ego_weapon/city/thumb_east/proc/ReturnToNormal(mob/user)
-	force = initial(force) + overheat
-	next_hit_should_apply = list()
-	if(combo_stage != COMBO_NO_AMMO && combo_stage != COMBO_LUNGE)
-		combo_stage = COMBO_NO_AMMO
-		to_chat(user, span_warning("Your combo resets!"))
-
 /// This proc generates a range-based AoE for our sweep and our leap finisher.
 /obj/item/ego_weapon/city/thumb_east/proc/RadiusAOE(mob/target, mob/user, hit_type)
 	// First, determine how large the AOE should be.
@@ -763,12 +764,13 @@
 	if(propellant_radius_bonus)
 		aoe_radius += floor(propellant_radius_bonus)
 
-	// We determine the tiles which should be hit.
+	// We determine the tiles which should be hit. COMBO_ATTACK2 should be all tiles around the user minus the epicenter, otherwise it should
 	var/list/affected_turfs = list()
 	for(var/turf/T in (hit_type == COMBO_ATTACK2 ? orange(aoe_radius, user) : range(aoe_radius, target)))
 		affected_turfs |= T
 	AOEHit(affected_turfs, target, user, hit_type)
 
+/// This is the proc that handles actually hitting targets in a list of turfs given to it. It will not hit the main target or the user with the AoE.
 /obj/item/ego_weapon/city/thumb_east/proc/AOEHit(list/hit_turfs, mob/target, mob/user, hit_type)
 	// Calculate the AoE damage. We get the base damage from:
 	// (Initial force of the weapon + flat force bonus from the round fired) * Motion value of the AoE type
@@ -919,7 +921,6 @@
 /// Normally if you use a stack item inhand, it opens a crafting menu. We don't really want people opening the recipes menu here. You can't craft anything with this item.
 /obj/item/stack/thumb_east_ammo/ui_interact(mob/user, datum/tgui/ui)
 	return FALSE
-
 
 /// Facility version of the basic ammunition. No status effects, but has a nice amount of force bonus to compensate. Shows up in Thumb lootcrates.
 /obj/item/stack/thumb_east_ammo/facility
