@@ -427,75 +427,87 @@
 	desc = "A shimmering bow adorned with carved wooden panels. It crackes with arcing electricity."
 	icon_state = "warring"
 	inhand_icon_state = "warring"
-	special = "This weapon can unleash a special attack by loading a second arrow."
+	special = "This weapon can unleash a special attack when activated in your hand. \
+	You can manually reload this weapon by holding ALT + left mouse button."
 	force = 14
 	damtype = BLACK_DAMAGE
 	projectile_path = /obj/projectile/ego_bullet/ego_warring
 	weapon_weight = WEAPON_HEAVY
-	fire_delay = 0//it caused some jank, like failing to charge after the do-after
+	fire_delay = 3
+	shotsleft = 1
+	reloadtime = 0.5 SECONDS
 	spread = 0
-	//firing sound 1
 	fire_sound = 'sound/weapons/bowfire.ogg'
 	attribute_requirements = list(
 							FORTITUDE_ATTRIBUTE = 60,
 							JUSTICE_ATTRIBUTE = 60
 	)
-	var/drawn = 0
 	charge = TRUE
 	attack_charge_gain = FALSE
 	charge_cost = 3
-	charge_effect = "fire a beam of electricity."
+	charge_effect = "fire a bolt of lightning."
 	var/ammo_2 = /obj/projectile/ego_bullet/ego_warring2
+	var/special_ammo
+
+/obj/item/ego_weapon/ranged/warring/shoot_with_empty_chamber(mob/living/user as mob|obj)
+	//do nothing
 
 /obj/item/ego_weapon/ranged/warring/examine(mob/user)//attack speed isn't used, so it needs to be overridden
 	. = ..()
 	. -= span_notice("This weapon fires fast.")//it doesn't
-	. += span_notice("This weapon must be loaded manually by activating it in your hand.")
+	. += span_notice("This weapon fires arrows that must be drawn individually.")
 
-/obj/item/ego_weapon/ranged/warring/can_shoot()
-	if(drawn == 0)
-		icon_state = "[initial(icon_state)]"
-		return FALSE
-	return TRUE
+/obj/item/ego_weapon/ranged/warring/AltClick(mob/user)
+	..()
+	if(semicd)
+		return
+	return reload_ego(user)
 
-/obj/item/ego_weapon/ranged/warring/afterattack(atom/target, mob/user)
-	. = ..()
-	drawn = 0
-	projectile_path = initial(projectile_path)
+/obj/item/ego_weapon/ranged/warring/afterattack(atom/target, mob/living/user, flag, params)
+	if(!CanUseEgo(user))
+		return
+	if(semicd)//stops firing speed anomalies
+		return
+	if(!can_shoot())
+		reload_ego(user)
+	..()
 	icon_state = "[initial(icon_state)]"
+	special_ammo = FALSE
 
 /obj/item/ego_weapon/ranged/warring/attack_self(mob/user)
-	switch(drawn)
-		if(0)
-			if(!do_after(user, 1 SECONDS, src, IGNORE_USER_LOC_CHANGE))
-				return
+	if(special_ammo)
+		ChangeAmmo(user, special_ammo = TRUE)
+		return
+	if(charge_amount >= charge_cost)
+		ChangeAmmo(user, special_ammo = FALSE)
+		special_ammo = TRUE
+		to_chat(user,span_notice("You will now fire a bolt of lightning."))
 
-			drawn  = 1
-			to_chat(user, span_warning("You draw the [src] with all your might."))
-			projectile_path = initial(projectile_path)
-			fire_sound = 'sound/weapons/bowfire.ogg'
-			icon_state = "warring_drawn"
-		if(1)
-			if(!do_after(user, 1, src, IGNORE_USER_LOC_CHANGE))
-				return
-			if(drawn != 1 || charge_amount < charge_cost)
-				return
-			drawn = 2
-			charge_amount -= charge_cost
-			projectile_path = ammo_2
-			playsound(src, 'sound/magic/lightningshock.ogg', 50, TRUE)
-			to_chat(user, span_warning("An arrow of lightning appears."))
-			fire_sound = 'sound/abnormalities/thunderbird/tbird_beam.ogg'
-			icon_state = "warring_firey"
-		if(2)
-			if(!do_after(user, 1, src, IGNORE_USER_LOC_CHANGE))
-				return
-			drawn = 1
-			charge_amount += charge_cost
-			projectile_path = initial(projectile_path)
-			fire_sound = 'sound/weapons/bowfire.ogg'
-			icon_state = "warring_drawn"
-			to_chat(user, span_warning("The lightning fades."))
+/obj/item/ego_weapon/ranged/warring/reload_ego(mob/user)
+	if(shotsleft == initial(shotsleft))
+		return
+	if(do_after(user, reloadtime, src)) //gotta reload
+		to_chat(user,span_notice("You draw the [src] with all your might."))
+		icon_state = "warring_drawn"
+		shotsleft = initial(shotsleft)
+		projectile_path = initial(projectile_path)
+		fire_sound = initial(fire_sound)
+
+/obj/item/ego_weapon/ranged/warring/proc/ChangeAmmo(mob/living/user, special_ammo)
+	if(special_ammo)
+		charge_amount += charge_cost
+		fire_sound = initial(fire_sound)
+		projectile_path = initial(projectile_path)
+		icon_state = "warring_drawn"
+	else
+		if(!do_after(user, 1 SECONDS, src))
+			return
+		charge_amount -= charge_cost
+		fire_sound = 'sound/abnormalities/thunderbird/tbird_beam.ogg'
+		shotsleft = initial(shotsleft)
+		projectile_path = ammo_2
+		icon_state = "warring_firey"
+		playsound(src, 'sound/magic/lightningshock.ogg', 50, TRUE)
 
 /obj/item/ego_weapon/ranged/banquet
 	name = "banquet"
@@ -701,6 +713,7 @@
 	var/portal_cooldown
 	var/portal_cooldown_time = 15 SECONDS
 	var/obj/effect/portal/myportal
+	var/obj/effect/portal/targetportal
 
 	attribute_requirements = list(
 							JUSTICE_ATTRIBUTE = 80
@@ -727,15 +740,19 @@
 		playsound(src, 'sound/abnormalities/fluchschutze/fell_magic.ogg', 50, TRUE)
 		portal_cooldown = world.time + portal_cooldown_time
 		myportal = P1
+		targetportal = P2
+		AdjustCircle(user, P1, target)
+		AdjustCircle(user, P2, target)
 		return
 	if(semicd)//stops firing speed anomalies
 		return
 	if(!can_shoot())
-		reload_ego(user)
+		reload_ego(user, target)
 	..()
 	if(!myportal)//If myportal hasn't initialized yet, this prevents it from runtiming.
 		return
 	if(myportal.loc && !is_reloading)//hide the portal
+		AdjustCircle(user, targetportal, target)
 		myportal.forceMove(user)
 
 /obj/item/ego_weapon/ranged/fellbullet/shoot_with_empty_chamber(mob/living/user as mob|obj)
@@ -752,10 +769,11 @@
 	portaling = TRUE
 	to_chat(user,span_notice("You will now create a magic circle at your target."))
 
-/obj/item/ego_weapon/ranged/fellbullet/reload_ego(mob/user)
+/obj/item/ego_weapon/ranged/fellbullet/reload_ego(mob/user, atom/target)
 	if(is_reloading)
 		return
 	if(myportal in user)//is it not qdeleted?
+		AdjustCircle(user, myportal, target)
 		myportal.forceMove(get_turf(user))//move the portal to your turf, line 733 removes it later.
 		playsound(src, 'sound/abnormalities/fluchschutze/fell_portal.ogg', 50, FALSE)
 	is_reloading = TRUE
@@ -766,12 +784,32 @@
 		forced_melee = FALSE //no longer forced to resort to melee
 	is_reloading = FALSE
 
+/obj/item/ego_weapon/ranged/fellbullet/proc/AdjustCircle(mob/living/user, atom/theportal, atom/target)
+	theportal.transform = initial(theportal.transform)
+	theportal.layer = initial(theportal.layer)
+	var/matrix/M = matrix(theportal.transform)
+	var/turf/T = get_turf(user)
+	var/rot_angle = Get_Angle(T, get_turf(target))
+	M.Turn(rot_angle)
+	switch(user.dir)
+		if(EAST)
+			M.Scale(0.5, 1)
+			M.Translate(12, 0)
+		if(WEST)
+			M.Scale(0.5, 1)
+			M.Translate(-16, 0)
+		if(NORTH)
+			M.Translate(0, 8)
+			myportal.layer -= 0.2
+	theportal.transform = M
+
 /obj/effect/portal/fellbullet
 	name = "magic circle"
 	desc = "A circle of red magic featuring a six-pointed star "
 	icon = 'icons/effects/effects.dmi'
 	icon_state = "fellcircle"
 	teleport_channel = TELEPORT_CHANNEL_FREE
+	layer = ABOVE_MOB_LAYER
 
 /obj/effect/portal/fellbullet/teleport(atom/movable/M, force = FALSE)
 	if(!istype(M, /obj/projectile/ego_bullet/ego_fellbullet))
@@ -779,11 +817,9 @@
 	var/obj/projectile/ego_bullet/ego_fellbullet/B = M
 	if(B.damage > 40)
 		return
-	SpinAnimation(speed = 2, loops = 1, segments = 3, parallel = TRUE)//the abno version should always spin
 	B.damage *= 2
 	var/turf/real_target = get_link_target_turf()
 	for(var/obj/effect/portal/fellbullet/P in real_target)
-		P.SpinAnimation(speed = 5, loops = 1, segments = 3, parallel = TRUE)
 		playsound(P, 'sound/abnormalities/fluchschutze/fell_portal.ogg', 50, TRUE)
 		playsound(P, 'sound/abnormalities/fluchschutze/fell_bullet2.ogg', 50, TRUE)
 	..()
@@ -804,7 +840,7 @@
 	name = "fell scatter"
 	desc = "A bolt-action rifle fitted with a wider barrel. It fires cursed shells."
 	icon_state = "fell_scatter"
-	//TODO: inhands
+	inhand_icon_state = "fell_scatter"
 	special = "Activate in your hand to load a magical slug. \
 	The slug will penetrate most targets. Shooting a human will deal half damage and produce a special effect. \
 	You can manually reload this weapon by pressing ALT + left mouse button."

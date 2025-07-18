@@ -666,15 +666,26 @@
 		A.attackby(src,user)
 	playsound(src, 'sound/weapons/fixer/generic/dodge.ogg', 50, FALSE, 9)
 
-/obj/item/ego_weapon/nightmares
+/obj/item/ego_weapon/ranged/nightmares
 	name = "lucid nightmares"
 	desc = "The beast was a fabrication of the mind. When I worked the courage to visit the cabin myself, nothing remained but overgrown rubble."
 	icon_state = "nightmares"
+	inhand_icon_state = "nightmares"
 	icon = 'code/modules/mob/living/simple_animal/abnormality/_auxiliary_modes/community/!icons/ego_weapons.dmi'
 	lefthand_file = 'code/modules/mob/living/simple_animal/abnormality/_auxiliary_modes/community/!icons/ego_lefthand.dmi'
 	righthand_file = 'code/modules/mob/living/simple_animal/abnormality/_auxiliary_modes/community/!icons/ego_righthand.dmi'
 	force = 40
 	damtype = BLACK_DAMAGE
+	projectile_path = /obj/projectile/ego_bullet/nightmares
+	weapon_weight = WEAPON_HEAVY
+	shotsleft = 999
+	fire_delay = 1
+	burst_size = 5
+
+	fire_sound = 'sound/weapons/ego/ecstasy.ogg'
+	vary_fire_sound = TRUE
+	fire_sound_volume = 25
+
 	attack_verb_continuous = list("bashes", "jabs", "smacks")
 	attack_verb_simple = list("bash", "jab", "smack")
 	hitsound = 'sound/weapons/fixer/generic/gen1.ogg'
@@ -683,4 +694,158 @@
 							PRUDENCE_ATTRIBUTE = 100,
 							TEMPERANCE_ATTRIBUTE = 80,
 							JUSTICE_ATTRIBUTE = 80
-							)//TODO: protects you from the cabin beast's sleep maze mechanic. Give it an upgraded version of ebony stem's attack.
+							)
+	var/cursing
+	var/curse_cooldown
+	var/curse_cooldown_time = 1 SECONDS
+	var/list/curses = list("drowning", "chattering", "crashing")
+	var/curse_damage = 45
+
+/obj/item/ego_weapon/ranged/nightmares/afterattack(atom/target, mob/living/user, flag, params)
+	if(!CanUseEgo(user))
+		return
+	if(!cursing)
+		return ..()
+	var/turf/target_turf = get_turf(target)
+	if((get_dist(user, target_turf) < 2) || !(target_turf in view(10, user)))
+		return ..()
+	if(!istype(target_turf))
+		return
+	AdjustCircle(user)
+	if(!do_after(user, 12, src))
+		return
+	var/curse_type = pick(curses)
+	cursing = FALSE
+	curse_cooldown = world.time + curse_cooldown_time
+	playsound(target_turf, 'sound/weapons/ego/paradise_ranged.ogg', 50, TRUE)
+	var/curses_dealt = 0
+	var/modified_damage = (curse_damage)//add a prudence mod
+	switch(curse_type)
+		if("drowning")
+			new /obj/effect/curse_drown(target_turf)
+		if("chattering")
+			new /obj/effect/curse_chatter(target_turf)
+		if("crashing")
+			new /obj/effect/curse_crash(target_turf)
+	for(var/turf/open/T in range(target_turf, 1))
+		for(var/mob/living/L in user.HurtInTurf(T, list(), modified_damage, BLACK_DAMAGE, hurt_mechs = TRUE))
+			if((L.stat < DEAD) && !(L.status_flags & GODMODE))
+				++curses_dealt
+	if(curses_dealt)
+		curse_cooldown = curse_cooldown_time + curses_dealt
+
+/obj/item/ego_weapon/ranged/nightmares/attack_self(mob/user)
+	shotsleft = initial(shotsleft)
+	if(cursing)
+		cursing = FALSE
+		to_chat(user,span_notice("You will no longer attack your cursor."))
+		return
+	if(curse_cooldown > world.time)
+		to_chat(user,span_warning("You cannot prepare a curse yet!"))
+		return
+	cursing = TRUE
+	to_chat(user,span_notice("You will now create a 3x3 curse at your cursor."))
+
+/obj/item/ego_weapon/ranged/nightmares/proc/AdjustCircle(mob/living/carbon/human/user)
+	playsound(user, 'sound/abnormalities/fluchschutze/fell_magic.ogg', 100)
+	var/obj/effect/evil_circle/S = new(get_turf(src))
+	QDEL_IN(S, 1.2 SECONDS)
+	var/matrix/M = matrix(S.transform)
+	M.Translate(-8, 0)
+	if(user.dir != SOUTH)
+		S.layer -= 0.2
+	switch(user.dir)
+		if(EAST)
+			M.Scale(0.5, 1)
+			M.Translate(12, -8)
+		if(WEST)
+			M.Scale(0.5, 1)
+			M.Translate(-20, -8)
+		if(SOUTH)
+			M.Translate(0, -8)
+	S.transform = M
+
+/obj/projectile/ego_bullet/nightmares
+	name = "nightmarish tooth"
+	icon_state = "nightmare"
+	damage = 30
+	damage_type = BLACK_DAMAGE
+
+/obj/effect/evil_circle
+	name = "evil circle"
+	desc = "A magical circle with exotic patterns."
+	icon = 'ModularTegustation/Teguicons/tegu_effects.dmi'
+	icon_state = "evilcircle"
+	pixel_x = 8
+	base_pixel_x = 8
+	pixel_y = 8
+	base_pixel_y = 8
+	layer = ABOVE_MOB_LAYER
+	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
+
+/obj/effect/curse_drown
+	name = "drowning curse"
+	desc = "Hands arise from a dank pool."
+	icon = 'ModularTegustation/Teguicons/lc13_effects.dmi'
+	icon_state = "nightmare_drown"
+	pixel_x = -8
+	base_pixel_x = -8
+	layer = ABOVE_MOB_LAYER
+	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
+
+/obj/effect/curse_chatter
+	name = "chattering curse"
+	desc = "Clearly it must be English."
+	icon = 'ModularTegustation/Teguicons/lc13_effects.dmi'
+	icon_state = "nightmare_chatter"
+	pixel_x = -8
+	base_pixel_x = -8
+	layer = ABOVE_MOB_LAYER
+	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
+
+/obj/effect/curse_crash
+	name = "chattering curse"
+	desc = "A magical circle drawn on the ground."
+	icon = 'ModularTegustation/Teguicons/lc13_effects.dmi'
+	icon_state = "nightmare_crash"
+	pixel_x = -8
+	base_pixel_x = -8
+	layer = ABOVE_MOB_LAYER
+	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
+
+
+#define STATUS_EFFECT_CHATTERING /datum/status_effect/stacking/lc_bleed/chatter // Deals true damage every 5 sec, can't be applied to godmode (contained abos)
+/datum/status_effect/stacking/lc_bleed/chatter
+	duration = 60 SECONDS
+	max_stacks = 10
+	tick_interval = 5 SECONDS
+	consumed_on_threshold = FALSE
+	bleed_cooldown = 10
+
+/datum/status_effect/stacking/lc_bleed/chatter/Moved(mob/user, atom/new_location)
+	SIGNAL_HANDLER
+	if (world.time - bleed_time < bleed_cooldown)
+		return
+	bleed_time = world.time
+	if(!can_have_status())
+		qdel(src)
+	to_chat(owner, "<span class='warning'>Your organs bleed due to your movement!!</span>")
+	owner.playsound_local(owner, 'sound/effects/bleed.ogg', 25, TRUE)
+	owner.apply_damage(10, RED_DAMAGE, null, owner.run_armor_check(null, RED_DAMAGE), spread_damage = TRUE)
+	new /obj/effect/temp_visual/damage_effect/bleed(get_turf(owner))
+
+/datum/status_effect/rend_red
+	id = "rend red armor"
+	status_type = STATUS_EFFECT_UNIQUE
+	duration = 60 //6 seconds
+	alert_type = null
+
+/datum/status_effect/rend_red/on_apply()
+	. = ..()
+	if(!isanimal(owner))
+		qdel(src)
+		return
+	var/mob/living/simple_animal/M = owner
+	M.AddModifier(/datum/dc_change/rend/red)
+//20% damage increase. Hitting any abnormality that has a negative value will cause this
+//to be a buff to their healing.
