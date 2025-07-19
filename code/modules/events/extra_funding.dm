@@ -1,7 +1,7 @@
 /datum/round_event_control/lc13/extra_funding
 	name = "Extra Funding"
 	typepath = /datum/round_event/extra_funding
-	max_occurrences = 2
+	max_occurrences = 3
 	weight = 2	//Corporate thinks you're well funded.
 
 /datum/round_event/extra_funding
