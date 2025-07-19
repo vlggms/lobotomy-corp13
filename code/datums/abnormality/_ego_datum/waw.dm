@@ -87,12 +87,12 @@
 /datum/ego_datum/weapon/solemnvow
 	item_category = "Weapon (Black Pistol)"
 	item_path = /obj/item/ego_weapon/ranged/pistol/solemnvow
-	cost = 35
+	cost = 50
 
 /datum/ego_datum/weapon/solemnlament
 	item_category = "Weapon (White Pistol)"
 	item_path = /obj/item/ego_weapon/ranged/pistol/solemnlament
-	cost = 35
+	cost = 50
 
 // General Bee - Loyalty & Praetorian
 /datum/ego_datum/weapon/loyalty

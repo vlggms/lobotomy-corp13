@@ -140,7 +140,7 @@
 	var/obj/item/clothing/suit/armor/ego_gear/realization/eulogy/Z = myman.get_item_by_slot(ITEM_SLOT_OCLOTHING)
 	if(istype(Z))
 		cached_multiplier = projectile_damage_multiplier
-		projectile_damage_multiplier *= 2.5
+		projectile_damage_multiplier *= 1.25
 	return ..()
 
 /obj/item/ego_weapon/ranged/pistol/solemnlament/process_fire(atom/target, mob/living/user, message = TRUE, params = null, zone_override = "", bonus_spread = 0, temporary_damage_multiplier = 1)
@@ -177,7 +177,7 @@
 	var/obj/item/clothing/suit/armor/ego_gear/realization/eulogy/Z = myman.get_item_by_slot(ITEM_SLOT_OCLOTHING)
 	if(istype(Z))
 		cached_multiplier = projectile_damage_multiplier
-		projectile_damage_multiplier *= 2.5
+		projectile_damage_multiplier *= 1.25
 	return ..()
 
 /obj/item/ego_weapon/ranged/pistol/solemnvow/process_fire(atom/target, mob/living/user, message = TRUE, params = null, zone_override = "", bonus_spread = 0, temporary_damage_multiplier = 1)
