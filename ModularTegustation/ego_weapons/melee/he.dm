@@ -304,7 +304,7 @@
 		else
 			ramping -= 0.2
 	else
-		user.changeNext_move(CLICK_CD_MELEE * 1.0)
+		user.changeNext_move(CLICK_CD_MELEE * 1.1)
 
 
 /obj/item/ego_weapon/logging/proc/Smash(mob/user, atom/target)
