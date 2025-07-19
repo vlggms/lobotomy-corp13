@@ -772,6 +772,8 @@
 
         // TETH
 	/mob/living/simple_animal/hostile/abnormality/scorched_girl = /obj/item/toy/plush/scorched,
+	/mob/living/simple_animal/hostile/abnormality/punishing_bird = /obj/item/toy/plush/pbird,
+	/mob/living/simple_animal/hostile/abnormality/void_dream = /obj/item/toy/plush/voiddream,
 
 		// HE
 	/mob/living/simple_animal/hostile/abnormality/pinocchio = /obj/item/toy/plush/pinocchio,
@@ -783,11 +785,13 @@
 	/mob/living/simple_animal/hostile/abnormality/despair_knight = /obj/item/toy/plush/kod,
 	/mob/living/simple_animal/hostile/abnormality/big_wolf = /obj/item/toy/plush/big_bad_wolf,
 	/mob/living/simple_animal/hostile/abnormality/hatred_queen = /obj/item/toy/plush/qoh,
+	/mob/living/simple_animal/hostile/abnormality/judgement_bird = /obj/item/toy/plush/jbird,
 
 		// ALEPH
 	/mob/living/simple_animal/hostile/abnormality/melting_love = /obj/item/toy/plush/melt,
 	/mob/living/simple_animal/hostile/abnormality/mountain = /obj/item/toy/plush/mosb,
 	/mob/living/simple_animal/hostile/abnormality/nihil = /obj/item/toy/plush/nihil,
+	/mob/living/simple_animal/hostile/megafauna/apocalypse_bird = /obj/item/toy/plush/apocbird,
 
     )
 
