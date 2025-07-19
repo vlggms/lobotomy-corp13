@@ -54,10 +54,16 @@
 	range = 18 // Don't want people shooting it through the entire facility
 	hit_nondense_targets = TRUE
 
-/obj/projectile/ego_bullet/ego_magicbullet/on_hit(atom/target, blocked = FALSE, pierce_hit)
+/obj/projectile/ego_bullet/ego_magicbullet/abnormality
+	damage = 70 // Lower damage, inflicts a status effect.
+
+/obj/projectile/ego_bullet/ego_magicbullet/abnormality/on_hit(atom/target, blocked = FALSE, pierce_hit)
 	if(istype(target, /mob/living/simple_animal/hostile/der_freis_portal))
 		var/mob/living/simple_animal/hostile/der_freis_portal/P = target
 		P.death()
+	else if(istype(target, /mob/living))
+		var/mob/living/the_target = target
+		the_target.apply_dark_flame(7)
 	. = ..()
 
 
