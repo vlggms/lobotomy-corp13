@@ -35,6 +35,9 @@ export const VillainsPanel = (props, context) => {
     debug_mode,
     debug_all_players,
     fake_player_count,
+    // Victory points
+    victory_points,
+    results_players,
   } = data;
 
   return (
@@ -48,6 +51,7 @@ export const VillainsPanel = (props, context) => {
               min_players={min_players}
               max_players={max_players}
               time_remaining={time_remaining}
+              victory_points={victory_points}
             />
           </Stack.Item>
           {phase === 'setup' && !character_selection_phase ? (
@@ -105,6 +109,10 @@ export const VillainsPanel = (props, context) => {
                 act={act}
               />
             </Stack.Item>
+          ) : phase === 'results' ? (
+            <Stack.Item grow>
+              <ResultsPhase results_players={results_players} />
+            </Stack.Item>
           ) : null}
           {is_admin && Array.isArray(all_phases) && all_phases.length > 0 && (
             <>
@@ -134,7 +142,7 @@ export const VillainsPanel = (props, context) => {
 };
 
 const GameStatus = (props) => {
-  const { phase, signup_count, min_players, max_players, time_remaining } = props;
+  const { phase, signup_count, min_players, max_players, time_remaining, victory_points } = props;
 
   const getPhaseText = (phase) => {
     const phases = {
@@ -178,6 +186,16 @@ const GameStatus = (props) => {
           <Stack.Item>
             <Box>
               <strong>Time Remaining:</strong> {Math.floor(time_remaining / 60)}:{String(time_remaining % 60).padStart(2, '0')}
+            </Box>
+          </Stack.Item>
+        )}
+        {victory_points !== undefined && phase !== 'setup' && (
+          <Stack.Item>
+            <Box>
+              <strong>Your Victory Points:</strong>{' '}
+              <span style={{ color: victory_points > 0 ? 'green' : victory_points < 0 ? 'red' : 'gray' }}>
+                {victory_points}
+              </span>
             </Box>
           </Stack.Item>
         )}
@@ -1052,6 +1070,57 @@ const DebugControls = (props, context) => {
             </Stack>
           </Collapsible>
         </Stack.Item>
+      </Stack>
+    </Section>
+  );
+};
+
+const ResultsPhase = (props) => {
+  const { results_players } = props;
+
+  return (
+    <Section title="Results - Victory Points">
+      <Stack vertical>
+        <Stack.Item>
+          <Box bold fontSize="1.2em">
+            Current Standings:
+          </Box>
+        </Stack.Item>
+        {results_players && results_players.length > 0 ? (
+          results_players
+            .sort((a, b) => b.victory_points - a.victory_points)
+            .map((player) => (
+              <Stack.Item key={player.name}>
+                <Box>
+                  <Stack>
+                    <Stack.Item grow>
+                      <span>
+                        {player.name} ({player.character})
+                        {player.is_spectator && <span color="gray"> [OUT]</span>}
+                      </span>
+                    </Stack.Item>
+                    <Stack.Item>
+                      <Box
+                        bold
+                        color={
+                          player.victory_points > 0
+                            ? 'green'
+                            : player.victory_points < 0
+                            ? 'red'
+                            : 'gray'
+                        }>
+                        {player.victory_points} point{player.victory_points !== 1 && 's'}
+                      </Box>
+                    </Stack.Item>
+                  </Stack>
+                </Box>
+              </Stack.Item>
+            ))
+        ) : (
+          <Stack.Item>
+            <Box color="gray">Waiting for results...</Box>
+          </Stack.Item>
+        )}
       </Stack>
     </Section>
   );

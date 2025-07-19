@@ -1,5 +1,15 @@
 # Villains of the Night - Implementation Checklist
 
+## Major Update (Victory Point System) ✅
+The game now uses a **victory point system** instead of player elimination:
+- Players gain +1 point for correctly voting the villain
+- Players lose -1 point for incorrect votes  
+- **Only villains leave the round** (whether caught or not)
+- **Innocent players who are voted STAY in the game**
+- Game continues with a new villain if 5+ players remain
+- Game ends when <5 players remain
+- Winners are determined by having ≥1 victory points
+
 ## Core Systems
 
 ### Game Controller ✅
@@ -11,9 +21,9 @@
 - [x] Map loading and cleanup
 - [x] Debug/admin tools
 - [x] Phase timers and transitions
-- [ ] **Win condition checking system**
-- [ ] **Game end determination**
-- [ ] **Victory point calculation display**
+- [x] **Win condition checking system** ✅
+- [x] **Game end determination** ✅
+- [x] **Victory point calculation display** ✅
 - [ ] **Reconnection handling**
 - [ ] **Save/load game state**
 
@@ -136,8 +146,13 @@ All 17 characters implemented with abilities:
 - [x] **Villain reveal animation** ✅
 - [x] **Victory/defeat determination** ✅
 - [x] **3-4 minute post-game discussion** ✅
+- [x] **Victory point system** ✅
+  - Players gain/lose points based on voting correctly
+  - No one dies from voting
+  - Game continues with new villain if 5+ players remain
+  - Final winner based on victory points (≥1 = win)
 
-**⚠️ NEEDS TESTING: Final Results Phase implementation complete but requires thorough testing**
+**⚠️ NEEDS TESTING: Final Results Phase with new victory point system needs thorough testing**
 
 ## UI Components
 
@@ -147,6 +162,8 @@ All 17 characters implemented with abilities:
 - [x] Action selection (VillainsSimpleActionSelection.js)
 - [x] Basic voting interface
 - [x] Admin controls
+- [x] **Victory points display** ✅
+- [x] **Results phase UI** ✅
 
 ### Missing ❌
 - [ ] **Action log/history viewer**
@@ -177,17 +194,17 @@ All 17 characters implemented with abilities:
 
 ## Priority Implementation Order
 
-1. **Critical (Game Breaking)**
-   - [ ] Win condition checking
-   - [ ] Game end determination
-   - [ ] Vote tallying logic
-   - [ ] Villain reveal system
+1. **Critical (Game Breaking)** ✅
+   - [x] Win condition checking ✅
+   - [x] Game end determination ✅
+   - [x] Vote tallying logic ✅
+   - [x] Villain reveal system ✅
 
 2. **High Priority (Core Features)**
-   - [ ] Alibi phase turn-based speaking
-   - [ ] Trade UI for item exchanges
-   - [ ] Evidence scattering in investigation
-   - [ ] Spectator mode
+   - [x] Alibi phase turn-based speaking ✅
+   - [x] Trade UI for item exchanges ✅
+   - [x] Evidence scattering in investigation ✅
+   - [x] Spectator mode ✅
 
 3. **Medium Priority (Polish)**
    - [ ] Additional maps

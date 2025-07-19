@@ -11,7 +11,8 @@
 	var/list/player_role_lookup = list()
 
 	// Victory tracking
-	var/list/victory_points = list()
+	var/list/victory_points = list() // Tracks victory points for each player (ckey -> points)
+	var/list/past_villains = list() // Tracks who has been villain to prevent repeats
 	var/mob/living/simple_animal/hostile/villains_character/current_villain
 	var/last_eliminated
 	var/game_active = FALSE
@@ -84,6 +85,7 @@
 	spectators.Cut()
 	player_role_lookup.Cut()
 	victory_points.Cut()
+	past_villains.Cut()
 	current_votes.Cut()
 	alibi_queue.Cut()
 	current_speaker = null
@@ -400,83 +402,187 @@
 	announce_phase("Results")
 	voting_phase = FALSE
 	
-	// Tally the votes and determine who to eliminate
-	var/mob/living/simple_animal/hostile/villains_character/to_eliminate = tally_votes()
+	// Tally the votes and determine who was voted
+	var/mob/living/simple_animal/hostile/villains_character/voted_player = tally_votes()
 	
-	if(to_eliminate)
-		// Build suspense before elimination
-		to_chat(world, span_userdanger("\n>>> [to_eliminate.name] has been eliminated by vote! <<<"))
+	if(voted_player)
+		// Build suspense before reveal
+		to_chat(world, span_userdanger("\n>>> [voted_player.name] has been voted out! <<<"))
 		
 		// Add dramatic pause
 		sleep(2 SECONDS)
 		
-		// Kill the player with visual effect
-		if(to_eliminate.stat != DEAD)
-			// Add a red overlay before death
-			to_eliminate.add_overlay(image('icons/effects/blood.dmi', "splatter"))
-			playsound(to_eliminate, 'sound/effects/splat.ogg', 50, TRUE)
-			to_eliminate.death()
-		
-		// Update game state
-		handle_death(to_eliminate)
-		
-		// Another dramatic pause before reveal
-		sleep(3 SECONDS)
-		
-		// Check win conditions and reveal
-		if(to_eliminate.is_villain)
+		// Check if they were the villain
+		if(voted_player.is_villain)
 			// Villain was caught!
 			to_chat(world, span_boldannounce("\n=== VILLAIN REVEALED ==="))
-			to_chat(world, span_redtext("[to_eliminate.name] ([to_eliminate.character_data?.name]) was THE VILLAIN!"))
-			to_chat(world, span_greentext("\nThe abnormalities have successfully identified and eliminated the villain!"))
-			to_chat(world, span_greentext("ABNORMALITIES WIN!"))
+			to_chat(world, span_redtext("[voted_player.name] ([voted_player.character_data?.name]) was THE VILLAIN!"))
+			to_chat(world, span_greentext("\nThe abnormalities have successfully identified the villain!"))
+			
+			// Update victory points - everyone gets +1
+			update_victory_points(TRUE)
 			
 			// Play victory sound
-			for(var/mob/living/simple_animal/hostile/villains_character/winner in living_players)
-				playsound(winner, 'sound/arcade/win.ogg', 50, FALSE)
+			for(var/mob/living/simple_animal/hostile/villains_character/player in living_players)
+				playsound(player, 'sound/arcade/win.ogg', 50, FALSE)
 			
-			end_game("abnormalities")
-			return
+			// Remove villain from round
+			to_chat(voted_player, span_redtext("You have been caught as the villain and lose this round!"))
+			remove_player_from_round(voted_player)
+			
 		else
-			// Innocent was eliminated
-			to_chat(world, span_warning("\n[to_eliminate.name] was INNOCENT!"))
+			// Innocent was voted out
+			to_chat(world, span_warning("\n[voted_player.name] was INNOCENT!"))
+			to_chat(voted_player, span_greentext("You are innocent! You remain in the game."))
 			
-			// Check if game should end
-			if(living_players.len <= 2)
-				// Check if only villain remains
-				var/villain_alive = FALSE
-				var/mob/living/simple_animal/hostile/villains_character/the_villain
-				for(var/mob/living/simple_animal/hostile/villains_character/survivor in living_players)
-					if(survivor.is_villain)
-						villain_alive = TRUE
-						the_villain = survivor
-						break
-				
-				if(villain_alive)
-					// Villain wins!
-					sleep(2 SECONDS)
-					to_chat(world, span_boldannounce("\n=== VILLAIN REVEALED ==="))
-					to_chat(world, span_redtext("[the_villain.name] ([the_villain.character_data?.name]) was THE VILLAIN!"))
-					to_chat(world, span_redtext("\nThe villain has successfully eliminated enough abnormalities!"))
-					to_chat(world, span_redtext("VILLAIN WINS!"))
-					
-					// Evil laugh sound
-					playsound(the_villain, 'sound/voice/human/manlaugh1.ogg', 50, FALSE)
-					
-					end_game("villain")
-					return
+			// Reveal the actual villain
+			sleep(2 SECONDS)
+			to_chat(world, span_boldannounce("\n=== VILLAIN REVEALED ==="))
+			to_chat(world, span_redtext("[current_villain.name] ([current_villain.character_data?.name]) was THE VILLAIN!"))
+			to_chat(world, span_redtext("\nThe villain has successfully deceived the abnormalities!"))
+			
+			// Update victory points - everyone loses 1
+			update_victory_points(FALSE)
+			
+			// Evil laugh sound
+			playsound(current_villain, 'sound/voice/human/manlaugh1.ogg', 50, FALSE)
+			
+			// Remove villain from round (they won this round)
+			to_chat(current_villain, span_greentext("You have won this round as the villain!"))
+			remove_player_from_round(current_villain)
+			
 	else
-		to_chat(world, span_notice("\nNo one was eliminated this round."))
+		to_chat(world, span_notice("\nNo one was voted out this round (tie or no votes)."))
+		// In case of tie, villain wins
+		if(current_villain && (current_villain in living_players))
+			to_chat(world, span_redtext("\nDue to the tie, the villain wins by default!"))
+			
+			// Reveal villain
+			sleep(2 SECONDS)
+			to_chat(world, span_boldannounce("\n=== VILLAIN REVEALED ==="))
+			to_chat(world, span_redtext("[current_villain.name] ([current_villain.character_data?.name]) was THE VILLAIN!"))
+			
+			// Update victory points - everyone loses 1
+			update_victory_points(FALSE)
+			
+			// Remove villain from round
+			to_chat(current_villain, span_greentext("You have won this round as the villain!"))
+			remove_player_from_round(current_villain)
 	
 	// Clear votes for next round
 	current_votes.Cut()
 	
-	// Start post-elimination discussion
-	to_chat(world, span_boldnotice("\n=== POST-ROUND DISCUSSION ==="))
-	to_chat(world, span_notice("You have 3.5 minutes to discuss before the next morning phase begins."))
+	// Check if game should continue
+	if(length(living_players) >= 5)
+		// Continue with new villain
+		to_chat(world, span_boldnotice("\n=== ROUND CONTINUES ==="))
+		to_chat(world, span_notice("There are [length(living_players)] players remaining. A new villain will be selected!"))
+		to_chat(world, span_notice("The next round will begin in 3.5 minutes."))
+		
+		// Select new villain
+		if(!select_new_villain())
+			to_chat(world, span_warning("Failed to select new villain! Ending game."))
+			check_final_victory()
+			return
+			
+		// Continue to next morning phase after discussion period
+		phase_timer = addtimer(CALLBACK(src, .proc/change_phase, VILLAIN_PHASE_MORNING), VILLAIN_TIMER_RESULTS SECONDS, TIMER_STOPPABLE)
+		
+	else
+		// Game ends - check victory conditions
+		to_chat(world, span_boldannounce("\n=== GAME ENDING ==="))
+		to_chat(world, span_notice("Less than 5 players remain. Checking final scores..."))
+		sleep(2 SECONDS)
+		check_final_victory()
+
+// Check final victory conditions based on victory points
+/datum/villains_controller/proc/check_final_victory()
+	// Cancel any active timers
+	if(phase_timer)
+		deltimer(phase_timer)
+		phase_timer = null
 	
-	// Continue to next morning phase after discussion period
-	phase_timer = addtimer(CALLBACK(src, .proc/change_phase, VILLAIN_PHASE_MORNING), VILLAIN_TIMER_RESULTS SECONDS, TIMER_STOPPABLE)
+	to_chat(world, span_boldannounce("\n=== FINAL RESULTS ==="))
+	
+	// Calculate average victory points
+	var/total_points = 0
+	var/player_count = 0
+	
+	// Show all player scores
+	to_chat(world, span_notice("\nFinal Victory Points:"))
+	for(var/ckey in victory_points)
+		var/points = victory_points[ckey]
+		var/mob/living/simple_animal/hostile/villains_character/player = get_player_by_ckey(ckey)
+		if(player)
+			var/point_text = "[player.name] ([player.character_data?.name]): [points] point[points == 1 ? "" : "s"]"
+			if(points > 0)
+				to_chat(world, span_greentext("• [point_text]"))
+			else if(points < 0)
+				to_chat(world, span_redtext("• [point_text]"))
+			else
+				to_chat(world, span_notice("• [point_text]"))
+			
+			total_points += points
+			player_count++
+	
+	// Determine overall winner
+	sleep(2 SECONDS)
+	to_chat(world, span_boldannounce("\n=== GAME OVER ==="))
+	
+	if(player_count == 0)
+		to_chat(world, span_warning("No players to evaluate!"))
+		qdel(src)
+		return
+		
+	var/average_points = total_points / player_count
+	
+	if(average_points >= 1)
+		to_chat(world, span_greentext("THE ABNORMALITIES WIN!"))
+		to_chat(world, span_greentext("Average victory points: [round(average_points, 0.1)]"))
+		to_chat(world, span_notice("The abnormalities have successfully identified enough villains!"))
+		
+		// Victory sound for winners
+		for(var/ckey in victory_points)
+			if(victory_points[ckey] > 0)
+				var/mob/living/simple_animal/hostile/villains_character/winner = get_player_by_ckey(ckey)
+				if(winner)
+					playsound(winner, 'sound/arcade/win.ogg', 50, FALSE)
+					to_chat(winner, span_greentext("You win with [victory_points[ckey]] victory points!"))
+					
+	else
+		to_chat(world, span_redtext("THE VILLAINS WIN!"))
+		to_chat(world, span_redtext("Average victory points: [round(average_points, 0.1)]"))
+		to_chat(world, span_notice("The villains have successfully deceived the abnormalities!"))
+		
+		// Defeat sound
+		for(var/mob/M in world)
+			if(M.client)
+				playsound(M, 'sound/arcade/lose.ogg', 50, FALSE)
+	
+	// Show individual results
+	to_chat(world, span_notice("\nIndividual Results:"))
+	for(var/ckey in victory_points)
+		var/points = victory_points[ckey]
+		var/mob/living/simple_animal/hostile/villains_character/player = get_player_by_ckey(ckey)
+		if(player)
+			if(points > 0)
+				to_chat(world, span_greentext("• [player.name]: WINNER ([points] points)"))
+			else
+				to_chat(world, span_redtext("• [player.name]: LOSER ([points] points)"))
+	
+	// Post-game discussion
+	to_chat(world, span_boldnotice("\n=== POST-GAME DISCUSSION ==="))
+	to_chat(world, span_notice("The game has ended. Feel free to discuss!"))
+	
+	// Clean up after a delay
+	addtimer(CALLBACK(src, .proc/cleanup_game), 5 MINUTES)
+
+// Get player by ckey
+/datum/villains_controller/proc/get_player_by_ckey(ckey)
+	for(var/mob/living/simple_animal/hostile/villains_character/player in all_players)
+		if(player.ckey == ckey)
+			return player
+	return null
 
 /datum/villains_controller/proc/end_game(winner)
 	// Cancel any active timers
@@ -650,6 +756,10 @@
 		all_players += new_mob
 		living_players += new_mob
 		player_role_lookup[new_mob] = character
+		
+		// Initialize victory points for this player
+		victory_points[ckey] = 0
+		new_mob.victory_points = 0
 
 		// Assign a room to this player
 		var/datum/villains_room/room = assign_room_to_player(new_mob)
@@ -724,6 +834,80 @@
 		
 		// Don't change phase immediately - let process_night_actions handle it
 		// This ensures all actions are processed before moving to investigation
+
+// Remove player from round without killing them (for voting)
+/datum/villains_controller/proc/remove_player_from_round(mob/living/simple_animal/hostile/villains_character/player)
+	if(!(player in living_players))
+		return FALSE
+		
+	// Remove from living players
+	living_players -= player
+	spectators += player
+	
+	// Clear their room assignment
+	if(player.assigned_room)
+		player.assigned_room.owner = null
+		player.assigned_room = null
+	
+	// Move them to spectator area (main room for now)
+	if(main_room_center)
+		player.forceMove(main_room_center)
+	
+	// Make them a ghost-like observer
+	player.invisibility = INVISIBILITY_OBSERVER
+	player.density = FALSE
+	player.status_flags |= GODMODE
+	
+	to_chat(player, span_notice("You have been removed from the round and are now spectating."))
+	return TRUE
+
+// Update victory points for all players
+/datum/villains_controller/proc/update_victory_points(villain_caught)
+	for(var/mob/living/simple_animal/hostile/villains_character/player in living_players)
+		if(!player.ckey)
+			continue
+			
+		var/point_change = villain_caught ? 1 : -1
+		victory_points[player.ckey] += point_change
+		player.victory_points += point_change
+		
+		if(villain_caught)
+			to_chat(player, span_greentext("You gain 1 victory point for correctly identifying the villain! (Total: [player.victory_points])"))
+		else
+			to_chat(player, span_redtext("You lose 1 victory point for voting incorrectly. (Total: [player.victory_points])"))
+
+// Select a new villain from remaining players
+/datum/villains_controller/proc/select_new_villain()
+	// Clear old villain status
+	if(current_villain)
+		current_villain.is_villain = FALSE
+		past_villains += current_villain.ckey
+		
+	// Get eligible players (not past villains)
+	var/list/eligible_players = list()
+	for(var/mob/living/simple_animal/hostile/villains_character/player in living_players)
+		if(player.ckey && !(player.ckey in past_villains))
+			eligible_players += player
+			
+	// If everyone has been villain, reset the list
+	if(!length(eligible_players) && length(living_players))
+		past_villains.Cut()
+		eligible_players = living_players.Copy()
+		
+	if(!length(eligible_players))
+		return FALSE
+		
+	// Select new villain with character weights
+	var/list/weighted_players = list()
+	for(var/mob/living/simple_animal/hostile/villains_character/player in eligible_players)
+		var/weight = player.character_data?.villain_weight || 1
+		weighted_players[player] = weight
+		
+	current_villain = pickweight(weighted_players)
+	current_villain.is_villain = TRUE
+	to_chat(current_villain, span_boldwarning("You are the new villain! Eliminate another player to win!"))
+	
+	return TRUE
 
 // Helper procs
 /datum/villains_controller/proc/spawn_morning_items()
@@ -1682,6 +1866,12 @@
 	data["max_players"] = VILLAINS_MAX_PLAYERS
 	data["signed_up"] = (user.ckey in GLOB.villains_signup)
 	data["character_selection_phase"] = character_selection_phase
+	
+	// Add victory points if game is active
+	if(game_active && user.ckey && (user.ckey in victory_points))
+		data["victory_points"] = victory_points[user.ckey]
+	else
+		data["victory_points"] = 0
 
 	// Calculate time remaining if there's a timer
 	if(phase_timer)
@@ -1863,6 +2053,19 @@
 			var/time_left = timeleft(alibi_timer)
 			if(time_left > 0)
 				data["alibi_time_remaining"] = round(time_left / 10) // Convert to seconds
+				
+	// Results phase data - show all players with victory points
+	if(current_phase == VILLAIN_PHASE_RESULTS)
+		var/list/results_data = list()
+		for(var/mob/living/simple_animal/hostile/villains_character/P in all_players)
+			if(P.ckey && (P.ckey in victory_points))
+				results_data += list(list(
+					"name" = P.name,
+					"character" = P.character_data?.name || "Unknown",
+					"victory_points" = victory_points[P.ckey],
+					"is_spectator" = (P in spectators)
+				))
+		data["results_players"] = results_data
 
 	return data
 
@@ -2291,6 +2494,10 @@
 		all_players += new_mob
 		living_players += new_mob
 		player_role_lookup[new_mob] = character
+		
+		// Initialize victory points for fake player
+		victory_points[fake_ckey] = 0
+		new_mob.victory_points = 0
 
 		// Update fake_players list with actual ckey (in case BYOND modified it)
 		if(new_mob.ckey != fake_ckey)
@@ -2752,8 +2959,8 @@
 		if(M.client)
 			// Return player to ghost form
 			var/mob/dead/observer/ghost = M.ghostize(TRUE)
-			if(ghost)
-				ghost.forceMove(pick(GLOB.observer_start_landmarks))
+			if(ghost && main_room_center)
+				ghost.forceMove(main_room_center)
 		qdel(M)
 	
 	// Clean up spawned items

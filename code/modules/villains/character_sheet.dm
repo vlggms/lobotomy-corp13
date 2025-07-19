@@ -32,7 +32,8 @@
 	data["portrait_base64"] = icon2base64(character_icon)
 
 	data["is_villain"] = owner.is_villain
-	data["max_items"] = 2
+	// Warden can hold 5 items, everyone else 3
+	data["max_items"] = (owner.character_data?.character_id == VILLAIN_CHAR_WARDEN) ? 5 : 3
 
 	// Active ability
 	if(owner.character_data.active_ability_name)
