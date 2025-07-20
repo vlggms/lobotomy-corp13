@@ -4,14 +4,13 @@
 	overlay = "aoe"
 	aoemod = 1
 	attackspeedmod = 1.3
-	var/toggle
 
 /obj/item/workshop_mod/aoe/InstallationEffect(obj/item/ego_weapon/template/T)
 	aoemod += T.aoe_range
 	..()
 
 /obj/item/workshop_mod/aoe/ActivateEffect(obj/item/ego_weapon/template/T, special_count = 0, mob/living/target, mob/living/carbon/human/user)
-	if(toggle)
+	if (toggle)
 		for(var/mob/living/simple_animal/L in view(aoemod, get_turf(target)))
 			Aoe(L, user, T.force / 2)
 	else

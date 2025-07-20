@@ -51,6 +51,11 @@
 		InstallMod(I , user)
 		return
 
+/obj/item/ego_weapon/template/attack_self(mob/living/user)
+	. = ..()
+	if (specialmod)
+		specialmod.Toggle()
+
 //Mod Installation Proc: Seperated from attackby so its easier to read and override.
 /obj/item/ego_weapon/template/proc/InstallMod(obj/item/workshop_mod/mod, mob/living/carbon/human/user)
 	if(!istype(src, /obj/item/ego_weapon/template/fishing) && istype(mod, /obj/item/workshop_mod/fishing))
