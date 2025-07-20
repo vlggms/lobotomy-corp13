@@ -38,7 +38,6 @@ GLOBAL_LIST_EMPTY(geresearched_abnos)
 	if(breacher.type in GLOB.geresearched_abnos)
 		to_chat(user, span_warning("This abnormality has already been researched. A second capabilities report is not needed at this moment."))
 		return FALSE
-	GLOB.geresearched_abnos += breacher.type
 
 	//You get 0.2 Lob for each threat level
 	var/lob_amount = breacher.threat_level*0.2
@@ -58,6 +57,7 @@ GLOBAL_LIST_EMPTY(geresearched_abnos)
 		Radio.set_frequency(FREQ_DISCIPLINE)
 		Radio.talk_into(src, "PRIORITY ALERT: User [user.name] Has successfully breached [breacher.name]. Time to breach: 15 Seconds.", FREQ_DISCIPLINE)
 		addtimer(CALLBACK(src, PROC_REF(BreachBerry), breacher, lob_amount), 15 SECONDS)
+		GLOB.geresearched_abnos += breacher.type
 
 	return TRUE
 
