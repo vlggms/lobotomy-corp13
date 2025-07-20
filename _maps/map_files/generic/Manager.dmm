@@ -114,15 +114,18 @@
 	},
 /turf/open/floor/facility/dark,
 /area/facility_hallway/manager)
+"cE" = (
+/obj/machinery/door/airlock/wood{
+	name = "Discipline Auxiliary Office"
+	},
+/turf/open/floor/plasteel/dark,
+/area/facility_hallway/manager)
 "cH" = (
 /obj/effect/turf_decal/siding/white/corner,
 /turf/open/floor/carpet/black,
 /area/facility_hallway/manager)
 "cR" = (
 /obj/structure/table/glass,
-/obj/item/work_console_upgrade/chemical_extraction_attachment,
-/obj/item/work_console_upgrade/chemical_extraction_attachment,
-/obj/item/work_console_upgrade/chemical_extraction_attachment,
 /turf/open/floor/plasteel/white,
 /area/facility_hallway/manager)
 "cY" = (
@@ -315,22 +318,14 @@
 /area/department_main/manager)
 "fr" = (
 /obj/structure/table/glass,
-/obj/item/clothing/glasses/science{
-	pixel_y = 3
-	},
 /obj/machinery/light{
 	dir = 4
 	},
-/obj/item/clothing/glasses/science,
-/obj/item/clothing/glasses/science{
-	pixel_y = -3
-	},
+/obj/item/clothing/head/beret/tegu/chem,
 /turf/open/floor/plasteel/white,
 /area/facility_hallway/manager)
 "fx" = (
-/obj/structure/chair/office{
-	dir = 8
-	},
+/obj/structure/chair/office,
 /turf/open/floor/plasteel/white,
 /area/facility_hallway/manager)
 "fJ" = (
@@ -517,10 +512,6 @@
 /obj/effect/spawner/randomcolavend,
 /turf/open/floor/plasteel/dark,
 /area/facility_hallway/manager)
-"if" = (
-/obj/machinery/chem_master,
-/turf/open/floor/plasteel/white,
-/area/facility_hallway/manager)
 "ih" = (
 /obj/structure/rack,
 /obj/item/toy/plush/kod,
@@ -532,14 +523,6 @@
 	},
 /turf/open/floor/wood,
 /area/department_main/manager)
-"iv" = (
-/obj/structure/closet/crate/science/abnochem_startercrate,
-/obj/item/clothing/suit/armor/ego_gear/limbus_labs/chem{
-	name = "chemist labcoat"
-	},
-/obj/item/clothing/head/beret/tegu/chem,
-/turf/open/floor/plasteel/white,
-/area/facility_hallway/manager)
 "ix" = (
 /obj/structure/railing{
 	dir = 6
@@ -931,13 +914,6 @@
 	},
 /turf/open/floor/carpet/black,
 /area/facility_hallway/manager)
-"nY" = (
-/obj/structure/table/glass,
-/obj/item/hand_labeler,
-/obj/item/hand_labeler_refill,
-/obj/item/hand_labeler_refill,
-/turf/open/floor/plasteel/white,
-/area/facility_hallway/manager)
 "ob" = (
 /obj/machinery/vending/autodrobe{
 	pixel_y = -10
@@ -1197,9 +1173,6 @@
 /area/department_main/manager)
 "rD" = (
 /obj/structure/closet,
-/obj/item/storage/box/syringes,
-/obj/item/storage/box/syringes,
-/obj/item/storage/box/beakers,
 /turf/open/floor/plasteel/white,
 /area/facility_hallway/manager)
 "rF" = (
@@ -1738,12 +1711,6 @@
 	dir = 4
 	},
 /turf/open/floor/carpet/black,
-/area/facility_hallway/manager)
-"yO" = (
-/obj/machinery/computer/extraction_cargo/discipline{
-	dir = 4
-	},
-/turf/open/floor/carpet/red,
 /area/facility_hallway/manager)
 "yP" = (
 /obj/effect/turf_decal/siding/blue{
@@ -2517,11 +2484,6 @@
 /obj/item/pen/fourcolor,
 /turf/open/floor/carpet/red,
 /area/facility_hallway/manager)
-"Kh" = (
-/obj/structure/table/glass,
-/obj/item/storage/bag/chemistry,
-/turf/open/floor/plasteel/white,
-/area/facility_hallway/manager)
 "Kl" = (
 /obj/machinery/computer/camera_advanced/manager/representative{
 	dir = 4;
@@ -2956,10 +2918,6 @@
 /obj/machinery/light/floor,
 /turf/open/floor/carpet/black,
 /area/facility_hallway/manager)
-"Tu" = (
-/obj/machinery/computer/extraction_cargo/chemistry,
-/turf/open/floor/plasteel/white,
-/area/facility_hallway/manager)
 "Ty" = (
 /obj/effect/turf_decal/siding/white/corner{
 	dir = 8
@@ -3119,8 +3077,6 @@
 /obj/machinery/light{
 	dir = 8
 	},
-/obj/item/storage/box/pillbottles,
-/obj/item/storage/box/pillbottles,
 /turf/open/floor/plasteel/white,
 /area/facility_hallway/manager)
 "WI" = (
@@ -3147,10 +3103,6 @@
 	},
 /turf/open/floor/carpet/cyan,
 /area/department_main/manager)
-"WX" = (
-/obj/structure/closet/secure_closet/discipline,
-/turf/open/floor/carpet/red,
-/area/facility_hallway/manager)
 "Xl" = (
 /obj/effect/turf_decal/siding/wood{
 	dir = 7
@@ -3344,10 +3296,6 @@
 /area/facility_hallway/manager)
 "YQ" = (
 /turf/closed/indestructible/reinforced,
-/area/facility_hallway/manager)
-"YU" = (
-/obj/structure/filingcabinet/chestdrawer,
-/turf/open/floor/carpet/red,
 /area/facility_hallway/manager)
 "YW" = (
 /obj/effect/turf_decal/siding/wood{
@@ -6968,12 +6916,12 @@ XL
 XL
 XL
 XL
-YQ
+XL
 YQ
 Kl
 JY
 rO
-yO
+rO
 HZ
 GA
 JT
@@ -7070,8 +7018,8 @@ XL
 XL
 XL
 XL
+XL
 YQ
-WX
 iU
 Rn
 rO
@@ -7172,13 +7120,13 @@ XL
 XL
 XL
 XL
+XL
 YQ
-YU
 rO
 rO
 rO
 rO
-iG
+cE
 Zi
 JT
 Vb
@@ -8501,7 +8449,7 @@ Qf
 Qf
 Qf
 Qf
-if
+rD
 WB
 rD
 HZ
@@ -8602,9 +8550,9 @@ XL
 XL
 XL
 YQ
-Tu
+cR
 fx
-Kh
+cR
 Xy
 HZ
 Zi
@@ -8704,7 +8652,7 @@ XL
 XL
 XL
 YQ
-nY
+cR
 Xy
 Xy
 Xy
@@ -8806,7 +8754,7 @@ XL
 XL
 XL
 YQ
-iv
+Xy
 Xy
 fr
 cR
