@@ -20,6 +20,8 @@
 	work_damage_type = WHITE_DAMAGE
 	chem_type = /datum/reagent/abnormality/sin/sloth
 	start_qliphoth = 2
+	neutral_droprate = 40
+	bad_droprate = 70
 	var/scream_range = 10
 	var/scream_damage = 45
 	ego_list = list(
@@ -38,18 +40,6 @@
 		"Turn back" = list(TRUE, "You face the fear, and turn to face the woman."),
 		"Do not turn back" = list(FALSE, "Something terrible could happen if you turn back. You exit the room, without looking back."),
 	)
-
-/mob/living/simple_animal/hostile/abnormality/wall_gazer/NeutralEffect(mob/living/carbon/human/user, work_type, pe)
-	. = ..()
-	if(prob(40))
-		datum_reference.qliphoth_change(-1)
-	return
-
-/mob/living/simple_animal/hostile/abnormality/wall_gazer/FailureEffect(mob/living/carbon/human/user, work_type, pe)
-	. = ..()
-	if(prob(70))
-		datum_reference.qliphoth_change(-1)
-	return
 
 /mob/living/simple_animal/hostile/abnormality/wall_gazer/ZeroQliphoth(mob/living/carbon/human/user)
 	scream()

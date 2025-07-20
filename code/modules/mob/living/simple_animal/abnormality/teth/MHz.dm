@@ -13,6 +13,8 @@
 	health = 400
 	blood_volume = 0
 	start_qliphoth = 4
+	neutral_droprate = 40
+	bad_droprate = 80
 	threat_level = TETH_LEVEL
 	work_chances = list(
 		ABNORMALITY_WORK_INSTINCT = 40,
@@ -59,18 +61,6 @@
 	datum_reference.qliphoth_change(1)
 	if(pe >= datum_reference.max_boxes)
 		datum_reference.qliphoth_change(1)
-
-/mob/living/simple_animal/hostile/abnormality/mhz/NeutralEffect(mob/living/carbon/human/user, work_type, pe)
-	. = ..()
-	if(prob(40))
-		datum_reference.qliphoth_change(-1)
-	return
-
-/mob/living/simple_animal/hostile/abnormality/mhz/FailureEffect(mob/living/carbon/human/user, work_type, pe)
-	. = ..()
-	if(prob(80))
-		datum_reference.qliphoth_change(-1)
-	return
 
 /mob/living/simple_animal/hostile/abnormality/mhz/PostWorkEffect(mob/living/carbon/human/user, work_type, pe, work_time)
 	if(user.sanity_lost)

@@ -19,6 +19,7 @@
 		ABNORMALITY_WORK_REPRESSION = 20,
 	)
 	start_qliphoth = 3
+	good_droprate = 70
 	work_damage_amount = 5
 	work_damage_type = WHITE_DAMAGE
 	chem_type = /datum/reagent/abnormality/sin/lust
@@ -50,8 +51,6 @@
 
 /mob/living/simple_animal/hostile/abnormality/cherry_blossoms/SuccessEffect(mob/living/carbon/human/user, work_type, pe)
 	. = ..()
-	if(prob(70))
-		datum_reference.qliphoth_change(-1)
 	if(datum_reference.qliphoth_meter !=3)
 		icon_state = "graveofcherryblossoms_[datum_reference.qliphoth_meter]"
 

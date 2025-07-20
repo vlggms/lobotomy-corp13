@@ -16,6 +16,7 @@
 	health = 55
 	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 1, WHITE_DAMAGE = 1, BLACK_DAMAGE = 1, PALE_DAMAGE = 2) //goose stats
 	start_qliphoth = 1
+	bad_droprate = 100
 	work_chances = list(
 		ABNORMALITY_WORK_INSTINCT = 30,
 		ABNORMALITY_WORK_INSIGHT = 30,
@@ -58,11 +59,6 @@
 	var/list/repression = list("The things that they did to me, the things they did to her, all for the want of justice in the world.")
 
 // Work Mechanics
-/mob/living/simple_animal/hostile/abnormality/falada/FailureEffect(mob/living/carbon/human/user, work_type, pe)
-	. = ..()
-	datum_reference.qliphoth_change(-1)
-	return
-
 /mob/living/simple_animal/hostile/abnormality/falada/ZeroQliphoth(mob/living/carbon/human/user)
 	pissed()
 	if(user)

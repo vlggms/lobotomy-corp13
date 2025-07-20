@@ -27,6 +27,8 @@
 	faction = list("hostile")
 	can_breach = TRUE
 	start_qliphoth = 2
+	neutral_droprate = 40
+	bad_droprate = 80
 
 	ego_list = list(
 		/datum/ego_datum/weapon/match,
@@ -160,18 +162,6 @@
 		qdel(src)
 	else
 		exploding = FALSE
-	return
-
-/mob/living/simple_animal/hostile/abnormality/scorched_girl/NeutralEffect(mob/living/carbon/human/user, work_type, pe)
-	. = ..()
-	if(prob(40))
-		datum_reference.qliphoth_change(-1)
-	return
-
-/mob/living/simple_animal/hostile/abnormality/scorched_girl/FailureEffect(mob/living/carbon/human/user, work_type, pe)
-	. = ..()
-	if(prob(80))
-		datum_reference.qliphoth_change(-1)
 	return
 
 /mob/living/simple_animal/hostile/abnormality/scorched_girl/BreachEffect(mob/living/carbon/human/user, breach_type)

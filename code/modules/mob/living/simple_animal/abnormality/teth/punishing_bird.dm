@@ -37,6 +37,7 @@
 	can_breach = TRUE
 	threat_level = TETH_LEVEL
 	start_qliphoth = 3
+	bad_droprate = 100
 	work_chances = list(
 		ABNORMALITY_WORK_INSTINCT = list(40, 40, 40, 45, 45),
 		ABNORMALITY_WORK_INSIGHT = 60,
@@ -342,11 +343,6 @@
 	. = ..()
 	datum_reference.qliphoth_change(1)
 	manual_emote("chirps!")
-	return
-
-/mob/living/simple_animal/hostile/abnormality/punishing_bird/FailureEffect(mob/living/carbon/human/user, work_type, pe)
-	. = ..()
-	datum_reference.qliphoth_change(-1)
 	return
 
 //Punishing Bird Perch

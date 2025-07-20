@@ -23,6 +23,8 @@
 	can_breach = TRUE
 	threat_level = TETH_LEVEL
 	start_qliphoth = 2
+	neutral_droprate = 40
+	bad_droprate = 80
 	work_chances = list(
 		ABNORMALITY_WORK_INSTINCT = list(30, 30, 20, 20, 20),
 		ABNORMALITY_WORK_INSIGHT = list(40, 40, 30, 30, 30),
@@ -155,18 +157,6 @@
 		return
 	particle_note.fadeout()
 	particle_song.fadeout()
-
-/mob/living/simple_animal/hostile/abnormality/fragment/NeutralEffect(mob/living/carbon/human/user, work_type, pe)
-	. = ..()
-	if(prob(40))
-		datum_reference.qliphoth_change(-1)
-	return
-
-/mob/living/simple_animal/hostile/abnormality/fragment/FailureEffect(mob/living/carbon/human/user, work_type, pe)
-	. = ..()
-	if(prob(80))
-		datum_reference.qliphoth_change(-1)
-	return
 
 /mob/living/simple_animal/hostile/abnormality/fragment/PostWorkEffect(mob/living/carbon/human/user, work_type, pe, work_time)
 	if(user.sanity_lost)

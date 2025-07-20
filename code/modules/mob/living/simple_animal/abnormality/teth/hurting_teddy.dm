@@ -31,6 +31,8 @@
 	can_breach = TRUE
 	threat_level = TETH_LEVEL
 	start_qliphoth = 3
+	neutral_droprate = 70
+	bad_droprate = 100
 	max_boxes = 14
 	work_chances = list(
 		ABNORMALITY_WORK_INSTINCT = 55,
@@ -86,16 +88,6 @@
 		to_chat(user, span_warning("Hurting Teddy Bear isn't your friend anymore! You feel bad for betraying it..."))
 		user.apply_status_effect(STATUS_EFFECT_HEX)
 	return ..()
-
-/mob/living/simple_animal/hostile/abnormality/hurting_teddy/NeutralEffect(mob/living/carbon/human/user, work_type, pe)
-	. = ..()
-	if(prob(70)) // Non-friend Agents + lucky Repression works by bearfriends will have a high chance of lowering the counter.
-		datum_reference.qliphoth_change(-1)
-	return
-
-/mob/living/simple_animal/hostile/abnormality/hurting_teddy/FailureEffect(mob/living/carbon/human/user, work_type, pe)
-	. = ..()
-	datum_reference.qliphoth_change(-1)
 
 /mob/living/simple_animal/hostile/abnormality/hurting_teddy/WorkChance(mob/living/carbon/human/user, chance, work_type)
 	if (bearfriended == null)  //the first work should always have the high work rates. once a friend is made, anyone else who works on it suffers
