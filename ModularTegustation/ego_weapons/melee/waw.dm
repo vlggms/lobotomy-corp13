@@ -2218,7 +2218,7 @@
 	name = "holiday"
 	desc = "This bag is heavy, like the burden of bringing joy to the world every night on Christmas Eve."
 	icon_state = "ultimate_christmas"
-	icon = 'ModularTegustation/Teguicons/joke_abnos/ego_weapons.dmi' //Just stealing the ultimate christmas sprites
+	icon = 'ModularTegustation/Teguicons/joke_abnos/joke_weapons.dmi'
 	lefthand_file = 'icons/mob/inhands/64x64_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/64x64_righthand.dmi'
 	inhand_x_dimension = 64
