@@ -236,6 +236,18 @@
 	},
 /turf/open/floor/plasteel,
 /area/facility_hallway/information)
+"aJ" = (
+/obj/effect/turf_decal/siding{
+	color = "#440000"
+	},
+/obj/structure/chair/sofa/corp/right{
+	dir = 1
+	},
+/obj/effect/turf_decal/siding{
+	color = "#440000"
+	},
+/turf/open/floor/carpet/red,
+/area/department_main/discipline)
 "aK" = (
 /obj/structure/disposalpipe/segment{
 	color = "#0000ff";
@@ -358,6 +370,24 @@
 /obj/structure/bookcase/random,
 /turf/open/floor/wood,
 /area/department_main/information)
+"bf" = (
+/obj/effect/turf_decal/siding{
+	color = "#440000";
+	dir = 4
+	},
+/obj/structure/chair/sofa/corp{
+	dir = 8
+	},
+/obj/effect/turf_decal/siding{
+	color = "#440000";
+	dir = 4
+	},
+/obj/effect/turf_decal/siding{
+	color = "#440000";
+	dir = 4
+	},
+/turf/open/floor/carpet/red,
+/area/department_main/discipline)
 "bg" = (
 /obj/structure/table/wood/fancy/orange,
 /obj/item/toy/crayon/spraycan/infinite,
@@ -883,7 +913,7 @@
 /area/facility_hallway/command)
 "cV" = (
 /obj/structure/weightmachine/stacklifter,
-/turf/open/floor/plasteel/dark,
+/turf/open/floor/facility/dark,
 /area/department_main/discipline)
 "cW" = (
 /obj/structure/table/reinforced,
@@ -3267,6 +3297,18 @@
 /obj/effect/turf_decal/siding/brown,
 /turf/open/floor/plasteel/white,
 /area/department_main/training)
+"jD" = (
+/obj/effect/turf_decal/siding{
+	color = "#440000"
+	},
+/obj/structure/chair/sofa/corp{
+	dir = 1
+	},
+/obj/effect/turf_decal/siding{
+	color = "#440000"
+	},
+/turf/open/floor/carpet/red,
+/area/department_main/discipline)
 "jE" = (
 /obj/structure/rack,
 /obj/item/watertank/janitor,
@@ -3839,6 +3881,9 @@
 	},
 /turf/open/floor/facility/white,
 /area/department_main/command)
+"li" = (
+/turf/open/floor/facility/dark,
+/area/department_main/discipline)
 "lj" = (
 /obj/structure/table,
 /obj/item/rack_parts,
@@ -4953,6 +4998,20 @@
 "oz" = (
 /turf/open/floor/facility/dark,
 /area/facility_hallway/control)
+"oB" = (
+/obj/effect/turf_decal/tile/red,
+/obj/effect/turf_decal/tile/red{
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/red{
+	dir = 4
+	},
+/obj/effect/turf_decal/siding{
+	color = "#440000";
+	dir = 4
+	},
+/turf/open/floor/plasteel/dark,
+/area/department_main/discipline)
 "oD" = (
 /obj/effect/turf_decal/tile/yellow{
 	dir = 4
@@ -6281,6 +6340,15 @@
 "sN" = (
 /turf/closed/indestructible/reinforced,
 /area/department_main/control)
+"sR" = (
+/obj/effect/turf_decal/siding{
+	color = "#440000"
+	},
+/obj/effect/turf_decal/siding{
+	color = "#440000"
+	},
+/turf/open/floor/carpet/red,
+/area/department_main/discipline)
 "sS" = (
 /obj/effect/landmark/xeno_spawn,
 /obj/structure/disposalpipe/segment{
@@ -6800,6 +6868,13 @@
 /obj/machinery/light,
 /turf/open/floor/carpet/stellar,
 /area/department_main/command)
+"uk" = (
+/obj/effect/turf_decal/siding{
+	color = "#440000";
+	dir = 8
+	},
+/turf/open/floor/carpet/red,
+/area/department_main/discipline)
 "um" = (
 /obj/machinery/hydroponics/constructable,
 /turf/open/floor/wood,
@@ -7137,6 +7212,22 @@
 	},
 /turf/open/floor/facility/white,
 /area/department_main/command)
+"uZ" = (
+/obj/effect/turf_decal/tile/red,
+/obj/effect/turf_decal/tile/red{
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/red{
+	dir = 1
+	},
+/obj/structure/closet/secure_closet/discipline,
+/obj/machinery/light,
+/obj/effect/turf_decal/siding{
+	color = "#440000";
+	dir = 10
+	},
+/turf/open/floor/plasteel/dark,
+/area/department_main/discipline)
 "va" = (
 /obj/effect/turf_decal/siding/wood{
 	dir = 4
@@ -7152,6 +7243,22 @@
 	},
 /turf/closed/indestructible/reinforced,
 /area/facility_hallway/records)
+"vc" = (
+/obj/effect/turf_decal/tile/red{
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/red{
+	dir = 1
+	},
+/obj/effect/turf_decal/siding{
+	color = "#440000";
+	dir = 8
+	},
+/obj/machinery/computer/extraction_cargo/discipline{
+	dir = 4
+	},
+/turf/open/floor/plasteel/dark,
+/area/department_main/discipline)
 "vd" = (
 /obj/effect/turf_decal/tile/brown,
 /obj/effect/turf_decal/tile/brown{
@@ -7181,6 +7288,13 @@
 	},
 /turf/open/floor/plasteel,
 /area/department_main/information)
+"vh" = (
+/obj/effect/turf_decal/tile/red,
+/obj/effect/turf_decal/tile/red{
+	dir = 8
+	},
+/turf/open/floor/plasteel/dark,
+/area/department_main/discipline)
 "vj" = (
 /obj/effect/turf_decal/tile/brown,
 /obj/effect/turf_decal/tile/brown{
@@ -7361,6 +7475,20 @@
 /obj/item/encryptionkey/headset_safety,
 /turf/open/floor/facility/white,
 /area/department_main/safety)
+"vI" = (
+/obj/effect/turf_decal/tile/red,
+/obj/effect/turf_decal/tile/red{
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/red{
+	dir = 4
+	},
+/obj/structure/filingcabinet/chestdrawer,
+/obj/effect/turf_decal/siding{
+	color = "#440000"
+	},
+/turf/open/floor/plasteel/dark,
+/area/department_main/discipline)
 "vK" = (
 /obj/machinery/camera/autoname{
 	dir = 8
@@ -8778,7 +8906,7 @@
 /obj/structure/disposalpipe/segment{
 	resistance_flags = 115
 	},
-/turf/open/floor/plasteel/dark,
+/turf/open/floor/facility/dark,
 /area/department_main/discipline)
 "zx" = (
 /obj/machinery/door/airlock/highsecurity,
@@ -9023,6 +9151,26 @@
 	},
 /turf/open/floor/plasteel,
 /area/department_main/records)
+"Ax" = (
+/obj/machinery/camera/autoname{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/red{
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/red{
+	dir = 1
+	},
+/obj/effect/turf_decal/siding{
+	color = "#440000";
+	dir = 8
+	},
+/obj/machinery/computer/camera_advanced/manager/representative{
+	dir = 4;
+	name = "discipinary camera console"
+	},
+/turf/open/floor/plasteel/dark,
+/area/department_main/discipline)
 "Ay" = (
 /obj/effect/turf_decal/siding{
 	color = "#7D6521";
@@ -9246,6 +9394,17 @@
 	},
 /turf/open/floor/facility/white,
 /area/department_main/command)
+"Bp" = (
+/obj/effect/turf_decal/siding{
+	color = "#440000";
+	dir = 6
+	},
+/obj/structure/chair/sofa/corp/corner{
+	dir = 8
+	},
+/obj/machinery/light,
+/turf/open/floor/carpet/red,
+/area/department_main/discipline)
 "Bq" = (
 /obj/effect/turf_decal/tile/blue{
 	color = "#3234B9";
@@ -11138,6 +11297,20 @@
 /obj/structure/lootcrate/l_corp,
 /turf/open/floor/plasteel/dark/side,
 /area/department_main/control)
+"GT" = (
+/obj/effect/turf_decal/siding{
+	color = "#440000";
+	dir = 5
+	},
+/obj/structure/chair/sofa/corp/right{
+	dir = 8
+	},
+/obj/effect/turf_decal/siding{
+	color = "#440000";
+	dir = 4
+	},
+/turf/open/floor/carpet/red,
+/area/department_main/discipline)
 "GV" = (
 /obj/effect/turf_decal/tile/green{
 	dir = 8
@@ -11401,6 +11574,16 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/facility_hallway/control)
+"HO" = (
+/obj/effect/turf_decal/siding{
+	color = "#440000";
+	dir = 10
+	},
+/obj/effect/turf_decal/siding{
+	color = "#440000"
+	},
+/turf/open/floor/carpet/red,
+/area/department_main/discipline)
 "HP" = (
 /turf/open/floor/plating,
 /area/facility_hallway/records)
@@ -11649,6 +11832,16 @@
 	},
 /turf/open/floor/carpet/stellar,
 /area/department_main/command)
+"IE" = (
+/obj/effect/turf_decal/tile/red{
+	dir = 8
+	},
+/obj/effect/turf_decal/siding/white/corner{
+	color = "#440000";
+	dir = 8
+	},
+/turf/open/floor/plasteel/dark,
+/area/department_main/discipline)
 "IG" = (
 /obj/effect/turf_decal/siding/wood,
 /turf/open/floor/wood,
@@ -12262,6 +12455,13 @@
 /obj/structure/table/wood,
 /turf/open/floor/wood,
 /area/department_main/welfare)
+"Kt" = (
+/obj/effect/turf_decal/tile/red,
+/obj/effect/turf_decal/tile/red{
+	dir = 4
+	},
+/turf/open/floor/plasteel/dark,
+/area/department_main/discipline)
 "Ku" = (
 /obj/machinery/regenerator,
 /obj/effect/turf_decal/tile/red,
@@ -13617,16 +13817,13 @@
 /obj/effect/turf_decal/tile/red{
 	dir = 4
 	},
-/obj/effect/turf_decal/tile/red{
-	dir = 8
-	},
 /obj/item/kirbyplants/random,
-/obj/effect/turf_decal/siding{
-	color = "#440000";
-	dir = 6
-	},
 /obj/machinery/camera/autoname{
 	dir = 9
+	},
+/obj/effect/turf_decal/siding{
+	color = "#440000";
+	dir = 4
 	},
 /turf/open/floor/plasteel/dark,
 /area/department_main/discipline)
@@ -13844,12 +14041,19 @@
 	},
 /turf/open/floor/plasteel/elevatorshaft,
 /area/facility_hallway/training)
+"PJ" = (
+/obj/effect/turf_decal/tile/red,
+/obj/structure/chair/office{
+	dir = 8
+	},
+/turf/open/floor/plasteel/dark,
+/area/department_main/discipline)
 "PM" = (
 /obj/effect/turf_decal/siding/white/corner{
 	color = "#440000";
 	dir = 1
 	},
-/turf/open/floor/plasteel/dark,
+/turf/open/floor/facility/dark,
 /area/department_main/discipline)
 "PN" = (
 /obj/structure/chair,
@@ -13923,6 +14127,22 @@
 /obj/effect/spawner/structure/window/reinforced,
 /turf/open/floor/plating,
 /area/facility_hallway/control)
+"Qb" = (
+/obj/effect/turf_decal/tile/red{
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/red{
+	dir = 1
+	},
+/obj/effect/turf_decal/siding{
+	color = "#440000";
+	dir = 8
+	},
+/obj/structure/table,
+/obj/item/paper_bin,
+/obj/item/pen/fourcolor,
+/turf/open/floor/plasteel/dark,
+/area/department_main/discipline)
 "Qe" = (
 /obj/effect/turf_decal/tile/yellow,
 /obj/effect/turf_decal/tile/yellow{
@@ -15749,7 +15969,7 @@
 	color = "#440000";
 	dir = 4
 	},
-/turf/open/floor/plasteel/dark,
+/turf/open/floor/facility/dark,
 /area/department_main/discipline)
 "VS" = (
 /obj/structure/disposalpipe/segment{
@@ -30606,7 +30826,7 @@ jl
 jl
 Im
 lC
-Ke
+li
 dh
 wJ
 uA
@@ -31902,11 +32122,11 @@ wJ
 wJ
 wJ
 Im
-jl
-jl
-jl
-jl
-jl
+Im
+Im
+Im
+Im
+Im
 zg
 ii
 tp
@@ -32157,13 +32377,13 @@ ct
 MV
 Ke
 Ke
-Dc
+IE
+Ax
+Qb
+vc
+wc
+uZ
 Im
-jl
-jl
-jl
-jl
-jl
 zg
 ii
 rK
@@ -32414,13 +32634,13 @@ CE
 cc
 MV
 Ke
-Dc
+Ke
+Ke
+PJ
+Kt
+Kt
+vI
 Im
-jl
-jl
-jl
-jl
-jl
 zg
 ii
 rK
@@ -32671,13 +32891,13 @@ CE
 Cf
 cj
 Ke
-Dc
+Ke
+Ke
+vh
+uA
+uk
+HO
 Im
-jl
-jl
-jl
-jl
-jl
 zg
 ii
 rK
@@ -32928,13 +33148,13 @@ CE
 Cf
 cj
 Ke
-Dc
+Ke
+Ke
+vh
+KU
+CE
+sR
 Im
-jl
-jl
-jl
-jl
-jl
 zg
 ii
 rK
@@ -33185,13 +33405,13 @@ CE
 EP
 bE
 Ke
-af
+Ke
+Ke
+vh
+KU
+CE
+aJ
 Im
-jl
-jl
-jl
-jl
-jl
 zg
 ii
 rK
@@ -33442,13 +33662,13 @@ cq
 bE
 Ke
 Ke
-Dc
+Ke
+Ke
+vh
+KU
+CE
+jD
 Im
-jl
-jl
-jl
-jl
-jl
 zg
 ii
 Og
@@ -33700,12 +33920,12 @@ LV
 BZ
 LV
 OU
+LV
+oB
+GT
+bf
+Bp
 Im
-jl
-jl
-jl
-jl
-jl
 zg
 Uy
 zq
@@ -33958,11 +34178,11 @@ Im
 Im
 Im
 Im
-jl
-jl
-jl
-jl
-jl
+Im
+Im
+Im
+Im
+Im
 zg
 zg
 zg
