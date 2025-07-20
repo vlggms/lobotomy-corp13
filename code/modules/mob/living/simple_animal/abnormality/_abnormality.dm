@@ -411,7 +411,7 @@ The variable's key needs to be non-numerical.*/
 // Additional effects on good work result, if any
 /mob/living/simple_animal/hostile/abnormality/proc/SuccessEffect(mob/living/carbon/human/user, work_type, pe, work_time, canceled)
 	WorkCompleteEffect("good")
-	if(&& prob(good_droprate))
+	if(prob(good_droprate))
 		datum_reference.qliphoth_change(-1)
 	return
 
