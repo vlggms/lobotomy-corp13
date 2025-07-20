@@ -25,6 +25,7 @@
 	can_breach = TRUE
 	threat_level = TETH_LEVEL
 	start_qliphoth = 2
+	bad_droprate = 100
 	work_chances = list(
 		ABNORMALITY_WORK_INSTINCT = list(90, 60, 55, 50, 45),
 		ABNORMALITY_WORK_INSIGHT = 45,
@@ -122,12 +123,6 @@
 		ignored = TRUE
 		raining = FALSE
 		return TRUE
-
-
-/mob/living/simple_animal/hostile/abnormality/fairy_longlegs/FailureEffect(mob/living/carbon/human/user, work_type, pe)
-	. = ..()
-	datum_reference.qliphoth_change(-1)
-	return
 
 /mob/living/simple_animal/hostile/abnormality/fairy_longlegs/PostWorkEffect(mob/living/carbon/human/user, work_type, pe, work_time)
 	if(get_attribute_level(user, FORTITUDE_ATTRIBUTE) < 40)

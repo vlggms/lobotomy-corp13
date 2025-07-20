@@ -20,6 +20,7 @@
 	can_breach = TRUE
 	threat_level = TETH_LEVEL
 	start_qliphoth = 5
+	neutral_droprate = 100
 	del_on_death = FALSE
 	move_to_delay = 6
 
@@ -135,10 +136,6 @@
 /mob/living/simple_animal/hostile/abnormality/sirocco/SuccessEffect(mob/living/carbon/human/user, work_type, pe, canceled)
 	. = ..()
 	breached_time = lowered_breached_time // We don't breach as long
-
-/mob/living/simple_animal/hostile/abnormality/sirocco/NeutralEffect(mob/living/carbon/human/user, work_type, pe, work_time, canceled)
-	. = ..()
-	datum_reference.qliphoth_change(1)
 
 /mob/living/simple_animal/hostile/abnormality/sirocco/FailureEffect(mob/living/carbon/human/user, work_type, pe)
 	. = ..()

@@ -24,6 +24,7 @@
 	can_breach = TRUE
 	threat_level = TETH_LEVEL
 	start_qliphoth = 2
+	bad_droprate = 100
 
 	ranged = 1
 	retreat_distance = 3
@@ -89,11 +90,6 @@
 /mob/living/simple_animal/hostile/abnormality/smile/PostWorkEffect(mob/living/carbon/human/user, work_type, pe, work_time)
 	if(lucky_counter > 3)
 		datum_reference.qliphoth_change(-1)
-	return
-
-/mob/living/simple_animal/hostile/abnormality/smile/FailureEffect(mob/living/carbon/human/user, work_type, pe)
-	. = ..()
-	datum_reference.qliphoth_change(-1)
 	return
 
 /mob/living/simple_animal/hostile/abnormality/smile/WorkChance(mob/living/carbon/human/user, chance)

@@ -54,6 +54,12 @@
 	can_breach = TRUE
 	threat_level = TETH_LEVEL
 	start_qliphoth = 1
+	//Normally we would change this instead of manually coding it as below, but the information given below is important.
+	//This is the qliphoth drop rate for Good, Neutral and Bad
+	good_droprate = 0
+	neutral_droprate = 0
+	bad_droprate = 0
+
 	// Work chance fluctuates based on level. left to right as level increase.
 	work_chances = list(
 		ABNORMALITY_WORK_INSTINCT = list(60, 60, 50, 50, 50),

@@ -7,6 +7,7 @@
 
 	threat_level = TETH_LEVEL
 	start_qliphoth = 1
+	bad_droprate = 100
 	work_chances = list(
 		ABNORMALITY_WORK_INSTINCT = list(30, 20, 0, -80, -80),
 		ABNORMALITY_WORK_INSIGHT = list(50, 50, 40, 40, 40),
@@ -41,11 +42,6 @@
 		"Don't cut the ring" = list(FALSE, "Tang- Tang- Tang- The ramming at the door and the sloshing continue. <br>\
 			I keep watching and listening. A more attentive hearing reveals that the sounds have a rhythm. Perhaps there is delight to be found in it."),
 	)
-
-/mob/living/simple_animal/hostile/abnormality/forsaken_employee/FailureEffect(mob/living/carbon/human/user, work_type, pe, work_time, canceled)
-	. = ..()
-	datum_reference.qliphoth_change(-1)
-	return
 
 /mob/living/simple_animal/hostile/abnormality/forsaken_employee/ZeroQliphoth(mob/living/carbon/human/user)
 	. = ..()

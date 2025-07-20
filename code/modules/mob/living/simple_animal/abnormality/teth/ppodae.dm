@@ -26,6 +26,7 @@
 	damage_coeff = list(RED_DAMAGE = 1.5, WHITE_DAMAGE = 0.8, BLACK_DAMAGE = 1, PALE_DAMAGE = 2)
 	can_breach = TRUE
 	start_qliphoth = 2
+	bad_droprate = 100
 	vision_range = 14
 	aggro_vision_range = 20
 	stat_attack = HARD_CRIT

@@ -24,6 +24,8 @@
 	threat_level = TETH_LEVEL
 	faction = list("neutral", "hostile")
 	start_qliphoth = 2
+	neutral_droprate = 40
+	bad_droprate = 80
 	work_chances = list(
 		ABNORMALITY_WORK_INSTINCT = list(50, 55, 55, 50, 45),
 		ABNORMALITY_WORK_INSIGHT = list(35, 40, 40, 35, 35),
@@ -118,18 +120,6 @@
 		base_pixel_y = -8
 
 /* Work effects */
-/mob/living/simple_animal/hostile/abnormality/cleaner/NeutralEffect(mob/living/carbon/human/user, work_type, pe)
-	. = ..()
-	if(prob(40))
-		datum_reference.qliphoth_change(-1)
-	return
-
-/mob/living/simple_animal/hostile/abnormality/cleaner/FailureEffect(mob/living/carbon/human/user, work_type, pe)
-	. = ..()
-	if(prob(80))
-		datum_reference.qliphoth_change(-1)
-	return
-
 /mob/living/simple_animal/hostile/abnormality/cleaner/BreachEffect(mob/living/carbon/human/user, breach_type)
 	. = ..()
 	update_icon()

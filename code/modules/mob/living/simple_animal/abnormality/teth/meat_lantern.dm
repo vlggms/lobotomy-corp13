@@ -27,6 +27,7 @@
 	work_damage_type = WHITE_DAMAGE
 	chem_type = /datum/reagent/abnormality/sin/sloth
 	start_qliphoth = 1
+	bad_droprate = 100
 	max_boxes = 14
 	ego_list = list(
 		/datum/ego_datum/weapon/lantern,
@@ -139,11 +140,6 @@
 /mob/living/simple_animal/hostile/abnormality/meat_lantern/PostWorkEffect(mob/living/carbon/human/user, work_type, pe, work_time, canceled)
 	if (get_attribute_level(user, TEMPERANCE_ATTRIBUTE) >= 60)
 		datum_reference.qliphoth_change(-1)
-	return
-
-/mob/living/simple_animal/hostile/abnormality/meat_lantern/FailureEffect(mob/living/carbon/human/user, work_type, pe)
-	. = ..()
-	datum_reference.qliphoth_change(-1)
 	return
 
 /mob/living/simple_animal/hostile/abnormality/meat_lantern/BreachEffect(mob/living/carbon/human/user, breach_type)

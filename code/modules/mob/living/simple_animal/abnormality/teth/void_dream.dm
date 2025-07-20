@@ -20,6 +20,7 @@
 	can_breach = TRUE
 	threat_level = TETH_LEVEL
 	start_qliphoth = 2
+	bad_droprate = 100
 	work_chances = list(
 		ABNORMALITY_WORK_INSTINCT = 45,
 		ABNORMALITY_WORK_INSIGHT = 45,
@@ -145,11 +146,6 @@
 		SLEEP_CHECK_DEATH(1)
 
 // Work stuff
-/mob/living/simple_animal/hostile/abnormality/voiddream/FailureEffect(mob/living/carbon/human/user, work_type, pe)
-	. = ..()
-	datum_reference.qliphoth_change(-1)
-	return
-
 /mob/living/simple_animal/hostile/abnormality/voiddream/PostWorkEffect(mob/living/carbon/human/user, work_type, pe, work_time)
 	if(get_attribute_level(user, TEMPERANCE_ATTRIBUTE) < 40)
 		user.drowsyness += 30

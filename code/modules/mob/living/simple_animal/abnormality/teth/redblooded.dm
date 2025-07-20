@@ -27,9 +27,12 @@
 	melee_damage_upper = 15
 	faction = list("hostile")
 	speak_emote = list("snarls")
+
 	can_breach = TRUE
 	threat_level = TETH_LEVEL
 	start_qliphoth = 2
+	neutral_droprate = 50 //slightly higher than other TETHs, given that the counter can be raised
+	bad_droprate = 100
 	work_chances = list(
 		ABNORMALITY_WORK_INSTINCT = 45,
 		ABNORMALITY_WORK_INSIGHT = 35,
@@ -111,17 +114,6 @@
 	else
 		icon_state = "american_idle"
 	return ..()
-
-/mob/living/simple_animal/hostile/abnormality/redblooded/NeutralEffect(mob/living/carbon/human/user, work_type, pe)
-	. = ..()
-	if(prob(50)) //slightly higher than other TETHs, given that the counter can be raised
-		datum_reference.qliphoth_change(-1)
-	return
-
-/mob/living/simple_animal/hostile/abnormality/redblooded/FailureEffect(mob/living/carbon/human/user, work_type, pe)
-	. = ..()
-	datum_reference.qliphoth_change(-1)
-	return
 
 /mob/living/simple_animal/hostile/abnormality/redblooded/PostWorkEffect(mob/living/carbon/human/user, work_type, pe)
 	if(work_type == ABNORMALITY_WORK_REPRESSION)
