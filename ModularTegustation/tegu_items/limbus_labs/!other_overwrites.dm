@@ -28,7 +28,7 @@
 /mob/living/simple_animal/hostile/abnormality/Initialize()
 	. = ..()
 	if(SSmaptype.maptype == "limbus_labs")
-		vision_range = 7
+		vision_range = 3
 		aggro_vision_range = 7
 
 /mob/living/simple_animal/hostile/abnormality/Login()
