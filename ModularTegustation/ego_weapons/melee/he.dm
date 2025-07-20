@@ -413,7 +413,7 @@
 							FORTITUDE_ATTRIBUTE = 40
 							)
 
-/obj/item/ego_weapon/courage/attack(mob/living/M, mob/living/user)
+/obj/item/ego_weapon/mini/courage/attack(mob/living/M, mob/living/user)
 	if(!CanUseEgo(user))
 		return
 	var/friend_count = 0
