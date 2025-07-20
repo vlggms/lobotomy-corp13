@@ -6,9 +6,9 @@
 	desc = "A weapon that can be used to attack things. Unfortunately, it is missing textures because you failed to install Counter-Strike : Source."
 	special = "Use this weapon in hand to perform an ability."
 	icon_state = "an_ego"
-	icon = 'code/modules/mob/living/simple_animal/abnormality/_auxiliary_modes/joke/!icons/ego_weapons.dmi'
-	lefthand_file = 'code/modules/mob/living/simple_animal/abnormality/_auxiliary_modes/joke/!icons/ego_lefthand.dmi'
-	righthand_file = 'code/modules/mob/living/simple_animal/abnormality/_auxiliary_modes/joke/!icons/ego_righthand.dmi'
+	icon = 'ModularTegustation/Teguicons/joke_abnos/joke_weapons.dmi'
+	lefthand_file = 'ModularTegustation/Teguicons/joke_abnos/joke_lefthand.dmi'
+	righthand_file = 'ModularTegustation/Teguicons/joke_abnos/joke_righthand.dmi'
 	force = 22
 	damtype = WHITE_DAMAGE
 	attack_verb_continuous = list("attacks", "attacks", "attacks")
@@ -35,7 +35,7 @@
 /obj/item/ego_weapon/pro_skub
 	name = "pro-skub"
 	desc = "A battle-sign powered by ferverent love for one's skub."
-	icon = 'code/modules/mob/living/simple_animal/abnormality/_auxiliary_modes/joke/!icons/ego_weapons.dmi'
+	icon = 'ModularTegustation/Teguicons/joke_abnos/joke_weapons.dmi'
 	icon_state = "pro_skub"
 	force = 50
 	reach = 2
@@ -144,7 +144,7 @@
 	In the end we recived nothing but madness, there was no hope for understanding."
 	special = "This weapon can be used to perform an indiscriminate heavy red damage jump attack with enough charge. \
 	This weapon will also gib on kill."
-	icon = 'code/modules/mob/living/simple_animal/abnormality/_auxiliary_modes/joke/!icons/ego_weapons.dmi'
+	icon = 'ModularTegustation/Teguicons/joke_abnos/joke_weapons.dmi'
 	icon_state = "violet_curse"
 	lefthand_file = 'icons/mob/inhands/96x96_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/96x96_righthand.dmi'
@@ -245,7 +245,7 @@
 	name = "ultimate christmas"
 	desc = "The Santa's bag is very heavy, capable of carrying a gift for everyone in the world. This one is no exception."
 	icon_state = "ultimate_christmas"
-	icon = 'code/modules/mob/living/simple_animal/abnormality/_auxiliary_modes/joke/!icons/ego_weapons.dmi'
+	icon = 'ModularTegustation/Teguicons/joke_abnos/joke_weapons.dmi'
 	lefthand_file = 'icons/mob/inhands/64x64_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/64x64_righthand.dmi'
 	inhand_x_dimension = 64
