@@ -1902,7 +1902,6 @@
 /obj/effect/landmark/department_center,
 /obj/structure/disposalpipe/segment,
 /obj/machinery/navbeacon/wayfinding/controldepartment,
-/mob/living/simple_animal/bot/cleanbot,
 /obj/machinery/holopad,
 /turf/open/floor/carpet,
 /area/department_main/control)
@@ -1974,7 +1973,6 @@
 /obj/effect/turf_decal/siding/brown/corner{
 	dir = 1
 	},
-/mob/living/simple_animal/bot/cleanbot,
 /turf/open/floor/carpet/orange,
 /area/department_main/training)
 "ot" = (
@@ -2546,13 +2544,6 @@
 /obj/effect/landmark/xeno_spawn,
 /turf/open/floor/facility,
 /area/facility_hallway/east)
-"sl" = (
-/obj/effect/turf_decal/siding/green{
-	dir = 8
-	},
-/mob/living/simple_animal/bot/cleanbot,
-/turf/open/floor/facility/white,
-/area/department_main/safety)
 "sr" = (
 /obj/machinery/vending/coffee,
 /obj/machinery/status_display{
@@ -5195,7 +5186,6 @@
 "Nu" = (
 /obj/effect/landmark/department_center,
 /obj/machinery/navbeacon/wayfinding/centralcommanddepartment,
-/mob/living/simple_animal/bot/cleanbot,
 /obj/machinery/holopad,
 /turf/open/floor/wood,
 /area/department_main/command)
@@ -5808,7 +5798,6 @@
 /obj/structure/sign/ordealmonitor{
 	pixel_x = -32
 	},
-/mob/living/simple_animal/bot/cleanbot,
 /turf/open/floor/carpet/purple,
 /area/department_main/information)
 "Sp" = (
@@ -33064,7 +33053,7 @@ Op
 Op
 Op
 Op
-sl
+Op
 ww
 PU
 gz

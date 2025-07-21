@@ -1795,13 +1795,6 @@
 	},
 /turf/open/floor/plating,
 /area/space)
-"mh" = (
-/obj/effect/turf_decal/siding/yellow{
-	dir = 1
-	},
-/mob/living/simple_animal/bot/cleanbot,
-/turf/open/floor/carpet/stellar,
-/area/department_main/command)
 "mi" = (
 /obj/structure/disposalpipe/segment,
 /obj/structure/sign/departments/welfare,
@@ -2561,13 +2554,6 @@
 /obj/effect/spawner/abnormality_room,
 /turf/closed/indestructible/reinforced,
 /area/facility_hallway/information)
-"qL" = (
-/obj/effect/turf_decal/siding/green{
-	dir = 1
-	},
-/mob/living/simple_animal/bot/cleanbot/medbay,
-/turf/open/floor/plasteel,
-/area/department_main/safety)
 "qN" = (
 /obj/effect/turf_decal/siding/green,
 /turf/open/floor/plasteel,
@@ -3489,7 +3475,6 @@
 "wo" = (
 /obj/effect/landmark/department_center,
 /obj/structure/disposalpipe/junction/flip,
-/mob/living/simple_animal/bot/cleanbot,
 /turf/open/floor/plasteel,
 /area/department_main/information)
 "wp" = (
@@ -6506,7 +6491,6 @@
 /obj/structure/disposalpipe/junction{
 	dir = 4
 	},
-/mob/living/simple_animal/bot/cleanbot,
 /turf/open/floor/facility/dark,
 /area/department_main/discipline)
 "Oz" = (
@@ -6741,10 +6725,6 @@
 	},
 /turf/open/floor/wood,
 /area/facility_hallway/east)
-"Ql" = (
-/mob/living/simple_animal/bot/cleanbot,
-/turf/open/floor/carpet,
-/area/department_main/control)
 "Qn" = (
 /turf/closed/indestructible/reinforced,
 /area/department_main/information)
@@ -29273,7 +29253,7 @@ GI
 uI
 wP
 QH
-qL
+VM
 jn
 aT
 Oq
@@ -34159,7 +34139,7 @@ Rw
 WZ
 eH
 eH
-Ql
+eH
 lW
 iz
 fH
@@ -39799,7 +39779,7 @@ hK
 PD
 yp
 tb
-mh
+tS
 dK
 Hs
 eP
