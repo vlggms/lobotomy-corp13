@@ -97,9 +97,9 @@ Based on the design document in ThePianistDesignDoc.md
 
 /mob/living/simple_animal/hostile/distortion/pianist/update_sight()
 	. = ..()
-	// Increase view range to 10x10 due to large size
+	// Increase view range to 13x13 due to large size
 	if(client)
-		client.view_size.setTo(10, 10)
+		client.view_size.setTo(13, 13)
 
 /mob/living/simple_animal/hostile/distortion/pianist/Move()
 	return FALSE
