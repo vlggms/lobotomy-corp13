@@ -26,6 +26,9 @@
 	crit_multiplier = 1
 	var/crit_info
 
+	//Place for attachments
+	var/obj/item/attachment/workshop/attached_attachment = null
+
 /obj/item/ego_weapon/Initialize()
 	. = ..()
 	if(swingstyle == WEAPONSWING_SMALLSWEEP && reach > 1)
