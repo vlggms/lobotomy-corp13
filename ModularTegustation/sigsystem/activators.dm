@@ -103,6 +103,9 @@
 	PingLocation()
 
 /obj/structure/closet/crate/sigsystem/togglelock(mob/living/user, silent)
+	if(user)
+		return
+
 	if(locked)
 		locked = FALSE
 		playsound(src,'sound/machines/boltsup.ogg',30,FALSE,3)
