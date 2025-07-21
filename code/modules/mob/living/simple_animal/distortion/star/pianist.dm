@@ -50,7 +50,10 @@ Based on the design document in ThePianistDesignDoc.md
 	del_on_death = FALSE
 
 	// Ego equipment - to be implemented
-	ego_list = list()
+	ego_list = list(
+		/obj/item/ego_weapon/da_capo,
+		/obj/item/clothing/suit/armor/ego_gear/aleph/da_capo
+		)
 	egoist_outfit = /datum/outfit/job/civilian
 	egoist_attributes = 100
 	egoist_names = list("Virtuoso", "Maestro", "Composer")
@@ -69,6 +72,12 @@ Based on the design document in ThePianistDesignDoc.md
 	var/base_note_damage = 20
 	var/base_aoe_damage = 30
 	var/list/melody_visuals = list()
+	var/damage_threshold_tracker = 0 // Tracks damage for melody gain
+	var/column_attack_cooldown = 0
+	var/column_attack_cooldown_time = 8 SECONDS
+	var/list/recent_attackers = list()
+	var/column_width = 9 // 4 tiles up and down plus center
+	var/column_warning_time = 15 // 1.5 seconds
 
 	var/datum/looping_sound/pianist/soundloop
 
@@ -78,6 +87,19 @@ Based on the design document in ThePianistDesignDoc.md
 	addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(show_global_blurb), 20, "O sorrow, I have ended, you see, by respecting you.", 25))
 	soundloop = new(list(src), FALSE)
 	soundloop.start()
+
+	// Increase view range due to size
+	update_sight()
+
+	// Add the global message action
+	var/datum/action/cooldown/pianist_message/message_action = new
+	message_action.Grant(src)
+
+/mob/living/simple_animal/hostile/distortion/pianist/update_sight()
+	. = ..()
+	// Increase view range to 10x10 due to large size
+	if(client)
+		client.view_size.setTo(10, 10)
 
 /mob/living/simple_animal/hostile/distortion/pianist/Move()
 	return FALSE
@@ -98,14 +120,36 @@ Based on the design document in ThePianistDesignDoc.md
 	if(aoe_attack_cooldown < world.time)
 		PerformAoEAttack()
 
+	// Column attacks
+	if(column_attack_cooldown < world.time && recent_attackers.len)
+		PerformColumnAttack()
+
 /mob/living/simple_animal/hostile/distortion/pianist/adjustHealth(amount, updating_health = TRUE, forced = FALSE)
 	. = ..()
-	if(. > 0)
-		var/health_percent_lost = . / maxHealth * 100
-		if(health_percent_lost >= 15)
-			AddMelody(round(health_percent_lost / 15))
+	if(. > 0) // Only process if damage was actually dealt
+		damage_threshold_tracker += .
+
+		// Calculate how many 15% thresholds we've crossed
+		var/threshold_amount = maxHealth * 0.15 // 15% of max health
+		var/thresholds_crossed = round(damage_threshold_tracker / threshold_amount)
+
+		// Award melody stacks and reset tracker for each threshold crossed
+		if(thresholds_crossed > 0)
+			AddMelody(thresholds_crossed)
+			damage_threshold_tracker -= (thresholds_crossed * threshold_amount)
 
 /mob/living/simple_animal/hostile/distortion/pianist/attacked_by(obj/item/I, mob/living/user)
+	// Special case for Black Silence gloves - bypass all resistances
+	if(istype(I, /obj/item/ego_weapon/black_silence_gloves))
+		ChangeResistances(list(RED_DAMAGE = 10, WHITE_DAMAGE = 10, BLACK_DAMAGE = 10, PALE_DAMAGE = 10))
+		to_chat(user, span_boldwarning("The Black Silence cuts through the music with ease!"))
+		// Track attacker
+		if(!(user in recent_attackers))
+			recent_attackers += user
+			if(recent_attackers.len > 5)
+				recent_attackers.Cut(1, 2)
+		return ..()
+
 	// Check for reverting song immunity
 	var/datum/status_effect/reverting_song/song_effect = user?.has_status_effect(/datum/status_effect/reverting_song)
 	if(!song_effect || song_effect.stacks == 0)
@@ -116,6 +160,13 @@ Based on the design document in ThePianistDesignDoc.md
 	// Increase damage based on reverting song stacks
 	var/damage_mod = 0.2 * (1 + song_effect.stacks * 0.1)
 	ChangeResistances(list(RED_DAMAGE = damage_mod, WHITE_DAMAGE = damage_mod, BLACK_DAMAGE = damage_mod, PALE_DAMAGE = damage_mod))
+
+	// Track attacker
+	if(!(user in recent_attackers))
+		recent_attackers += user
+		if(recent_attackers.len > 5)
+			recent_attackers.Cut(1, 2)
+
 	return ..()
 
 /mob/living/simple_animal/hostile/distortion/pianist/bullet_act(obj/projectile/P)
@@ -133,6 +184,13 @@ Based on the design document in ThePianistDesignDoc.md
 
 	var/damage_mod = 0.2 * (1 + song_effect.stacks * 0.1)
 	ChangeResistances(list(RED_DAMAGE = damage_mod, WHITE_DAMAGE = damage_mod, BLACK_DAMAGE = damage_mod, PALE_DAMAGE = damage_mod))
+
+	// Track attacker
+	if(P.firer && !(P.firer in recent_attackers))
+		recent_attackers += P.firer
+		if(recent_attackers.len > 5)
+			recent_attackers.Cut(1, 2)
+
 	. = ..()
 
 /mob/living/simple_animal/hostile/distortion/pianist/death(gibbed)
@@ -148,11 +206,38 @@ Based on the design document in ThePianistDesignDoc.md
 		qdel(V)
 	melody_visuals.Cut()
 
+	// Clean up any stray melody visuals that might exist
+	for(var/obj/effect/pianist_melody_visual/V in world)
+		qdel(V)
+
+	// Remove all music notes
+	for(var/mob/living/simple_animal/hostile/pianist_music_note/note in GLOB.mob_list)
+		qdel(note)
+
+	// Cure all humans of musical fascination
+	for(var/mob/living/carbon/human/H in GLOB.player_list)
+		H.remove_status_effect(/datum/status_effect/musical_fascination)
+
+	// Fade out animation
+	density = FALSE
+	animate(src, alpha = 0, time = 5 SECONDS)
+	QDEL_IN(src, 5 SECONDS)
+
 	return ..()
 
 /mob/living/simple_animal/hostile/distortion/pianist/proc/AddMelody(amount = 1)
 	melody_stacks += amount
 	UpdateMelodyVisuals()
+
+/mob/living/simple_animal/hostile/distortion/pianist/proc/ApplyPianistDamage(mob/living/L, damage, damage_type = WHITE_DAMAGE)
+	var/final_damage = damage
+	// Check for Silence mask protection
+	if(ishuman(L))
+		var/mob/living/carbon/human/H = L
+		if(H.wear_mask && istype(H.wear_mask, /obj/item/clothing/mask/silence))
+			final_damage *= 0.2 // 80% damage reduction
+			to_chat(H, span_nicegreen("The Silence protects you from the music!"))
+	L.apply_damage(final_damage, damage_type, null, L.run_armor_check(null, damage_type), spread_damage = TRUE)
 
 /mob/living/simple_animal/hostile/distortion/pianist/proc/UpdateMelodyVisuals()
 	// Clear old visuals
@@ -163,7 +248,8 @@ Based on the design document in ThePianistDesignDoc.md
 	// Create new visuals based on stack count
 	for(var/i in 1 to min(melody_stacks, 10))
 		var/obj/effect/pianist_melody_visual/V = new(src)
-		V.orbit(src, 20 + (i * 5), pick(TRUE, FALSE), rand(10, 20))
+		// Orbit at 150-200 pixels away to account for 256x256 sprite size
+		V.orbit(src, 150 + (i * 5), pick(TRUE, FALSE), rand(10, 20))
 		melody_visuals += V
 
 /mob/living/simple_animal/hostile/distortion/pianist/proc/SummonMusicNotes()
@@ -209,7 +295,11 @@ Based on the design document in ThePianistDesignDoc.md
 		for(var/mob/living/L in T)
 			if(L.z != z)
 				continue
-			L.apply_damage(20, WHITE_DAMAGE, null, L.run_armor_check(null, WHITE_DAMAGE), spread_damage = TRUE)
+			var/damage = 20
+			// Reduce damage by 50% if target doesn't have Reverting Song
+			if(!L.has_status_effect(/datum/status_effect/reverting_song))
+				damage *= 0.5
+			ApplyPianistDamage(L, damage)
 			if(ishuman(L))
 				var/mob/living/carbon/human/H = L
 				if(H.sanity_lost)
@@ -268,11 +358,157 @@ Based on the design document in ThePianistDesignDoc.md
 		for(var/mob/living/L in T)
 			if(faction_check_mob(L))
 				continue
-			L.apply_damage(damage, WHITE_DAMAGE, null, L.run_armor_check(null, WHITE_DAMAGE), spread_damage = TRUE)
+			ApplyPianistDamage(L, damage)
 			if(ishuman(L))
 				var/mob/living/carbon/human/H = L
 				if(H.sanity_lost)
 					H.apply_status_effect(/datum/status_effect/musical_fascination, src)
+
+/mob/living/simple_animal/hostile/distortion/pianist/proc/PerformColumnAttack()
+	column_attack_cooldown = world.time + column_attack_cooldown_time
+
+	// Remove any dead/deleted attackers
+	for(var/mob/M in recent_attackers)
+		if(QDELETED(M) || M.stat == DEAD)
+			recent_attackers -= M
+
+	if(!recent_attackers.len)
+		return
+
+	// Pick a random recent attacker
+	var/mob/living/target = pick(recent_attackers)
+	if(!target || QDELETED(target) || target.z != z)
+		return
+
+	// Get direction to target and convert to cardinal
+	var/direction = get_dir(src, target)
+	// Convert to cardinal direction only
+	if(direction in list(NORTHEAST, NORTHWEST, SOUTHEAST, SOUTHWEST))
+		// Pick horizontal or vertical based on which is closer
+		var/dx = abs(target.x - x)
+		var/dy = abs(target.y - y)
+		if(dx > dy)
+			direction = direction & (EAST|WEST)
+		else
+			direction = direction & (NORTH|SOUTH)
+
+	// Create warning effects only on tiles that will be hit
+	var/turf/pianist_turf = get_turf(src)
+
+	// Show warnings for the alternating pattern across the entire path
+	for(var/distance in 0 to 14) // 15 tiles of distance
+		var/turf/wave_center = pianist_turf
+
+		// Get the center turf at this distance
+		for(var/i in 1 to distance + 1)
+			wave_center = get_step(wave_center, direction)
+			if(!wave_center)
+				break
+
+		if(!wave_center)
+			continue
+
+		// Create warnings on alternating tiles perpendicular to movement
+		if(direction in list(NORTH, SOUTH))
+			// Moving vertically, create horizontal line warnings
+			for(var/i in -7 to 7)
+				var/turf/T = locate(wave_center.x + i, wave_center.y, wave_center.z)
+				if(T && ((abs(i) + distance) % 2 == 1)) // Alternating pattern
+					new /obj/effect/temp_visual/column_warning(T)
+		else
+			// Moving horizontally, create vertical line warnings
+			for(var/i in -7 to 7)
+				var/turf/T = locate(wave_center.x, wave_center.y + i, wave_center.z)
+				if(T && ((abs(i) + distance) % 2 == 1)) // Alternating pattern
+					new /obj/effect/temp_visual/column_warning(T)
+
+	playsound(src, 'sound/abnormalities/crumbling/warning.ogg', 100, TRUE)
+	visible_message(span_danger("[src]'s piano keys emit a discordant crescendo!"))
+
+	// Start the moving wave after warning
+	addtimer(CALLBACK(src, PROC_REF(ExecuteMovingWave), direction, melody_stacks), column_warning_time)
+
+/mob/living/simple_animal/hostile/distortion/pianist/proc/ExecuteMovingWave(direction, melody_at_cast)
+	if(QDELETED(src) || stat == DEAD)
+		return
+
+	var/damage = base_aoe_damage + (melody_at_cast / 3 * 10)
+	var/turf/start_turf = get_turf(src)
+
+	// Start the wave 4 tiles away from the pianist to account for its size
+	for(var/i in 1 to 4)
+		start_turf = get_step(start_turf, direction)
+		if(!start_turf)
+			return
+
+	var/max_distance = 15
+	var/current_distance = 0
+	var/delay_between_moves = 1 // 0.1 seconds between each wave movement
+
+	// Start the wave movement
+	MoveSingleWave(start_turf, direction, damage, current_distance, max_distance, delay_between_moves)
+
+/mob/living/simple_animal/hostile/distortion/pianist/proc/MoveSingleWave(turf/current_center, direction, damage, current_distance, max_distance, delay)
+	if(QDELETED(src) || stat == DEAD || current_distance >= max_distance)
+		return
+
+	// Move the wave center
+	var/turf/new_center = get_step(current_center, direction)
+	if(!new_center)
+		visible_message(span_warning("Wave attack blocked at distance [current_distance]!"))
+		return
+
+	// Get all tiles in the line perpendicular to movement direction
+	var/list/wave_tiles = list()
+
+	if(direction in list(NORTH, SOUTH))
+		// Moving vertically, so create horizontal line
+		for(var/i in -7 to 7) // 15 tile wide wave
+			var/turf/T = locate(new_center.x + i, new_center.y, new_center.z)
+			if(T)
+				wave_tiles += T
+	else
+		// Moving horizontally, so create vertical line
+		for(var/i in -7 to 7) // 15 tile wide wave
+			var/turf/T = locate(new_center.x, new_center.y + i, new_center.z)
+			if(T)
+				wave_tiles += T
+
+	// Damage only alternating tiles (checkerboard pattern)
+	for(var/turf/T as anything in wave_tiles)
+		// Calculate if this tile should be hit based on its position
+		var/offset = 0
+		var/turf/src_turf = get_turf(src)
+		if(direction in list(NORTH, SOUTH))
+			offset = abs(T.x - src_turf.x)
+		else
+			offset = abs(T.y - src_turf.y)
+
+		// Skip tiles that aren't in the alternating pattern
+		if((offset + current_distance) % 2 == 0)
+			continue
+
+		new /obj/effect/temp_visual/small_smoke/halfsecond(T)
+		playsound(T, 'sound/abnormalities/mountain/slam.ogg', 20, TRUE)
+		new /obj/effect/temp_visual/dir_setting/bloodsplatter(T, pick(GLOB.alldirs)) // Visual confirmation of hit
+
+		for(var/mob/living/L in T.contents)
+			if(faction_check_mob(L))
+				continue
+			var/actual_damage = damage
+			// Reduce damage by 50% if target doesn't have Reverting Song
+			if(!L.has_status_effect(/datum/status_effect/reverting_song))
+				actual_damage *= 0.5
+			ApplyPianistDamage(L, actual_damage)
+			if(ishuman(L))
+				var/mob/living/carbon/human/H = L
+				if(H.sanity_lost)
+					H.apply_status_effect(/datum/status_effect/musical_fascination, src)
+
+	// Continue the wave
+	current_distance++
+	if(current_distance < max_distance)
+		addtimer(CALLBACK(src, PROC_REF(MoveSingleWave), new_center, direction, damage, current_distance, max_distance, delay), delay)
 
 /mob/living/simple_animal/hostile/distortion/pianist/proc/AbsorbVictim(mob/living/victim)
 	if(!victim || (victim in absorbed_bodies))
@@ -336,3 +572,45 @@ Based on the design document in ThePianistDesignDoc.md
 					H.apply_status_effect(/datum/status_effect/panicked_lvl_4)
 			H.adjustSanityLoss(sanity_damage)
 			SEND_SIGNAL(H, COMSIG_FEAR_EFFECT, fear_level, sanity_damage)
+
+// Action for sending global messages
+/datum/action/cooldown/pianist_message
+	name = "Send Global Message"
+	desc = "Send a custom message to all players on the server."
+	icon_icon = 'icons/mob/actions/actions_revenant.dmi'
+	button_icon_state = "discordant_whisper"
+	cooldown_time = 15 SECONDS
+
+/datum/action/cooldown/pianist_message/Trigger()
+	. = ..()
+	if(!.)
+		return FALSE
+
+	var/mob/living/simple_animal/hostile/distortion/pianist/P = owner
+	if(!istype(P))
+		return FALSE
+
+	// Get custom message from player
+	var/message = input(owner, "What message would you like to broadcast? (Max 150 characters)", "Global Message") as text|null
+
+	if(!message)
+		return FALSE
+
+	// Sanitize and limit message length
+	message = copytext(sanitize(message), 1, 150)
+
+	if(!message)
+		return FALSE
+
+	// Make it bold if high melody
+	if(P.melody_stacks > 20)
+		message = "<b>[message]</b>"
+
+	// Send the global message
+	addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(show_global_blurb), 20, message, 25))
+
+	// Feedback to the user
+	to_chat(owner, span_boldnotice("You broadcast your message to all minds..."))
+
+	StartCooldown()
+	return TRUE

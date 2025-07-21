@@ -2,8 +2,8 @@
 /mob/living/simple_animal/hostile/pianist_music_note
 	name = "resonating music note"
 	desc = "A physical manifestation of sound that pulses with malevolent energy."
-	icon = 'icons/effects/effects.dmi'
-	icon_state = "shield2"
+	icon = 'ModularTegustation/Teguicons/pianist_effects.dmi'
+	icon_state = "music_note_1"
 	layer = ABOVE_MOB_LAYER
 	density = TRUE
 	anchored = TRUE
@@ -13,6 +13,7 @@
 	maxHealth = 500
 	mob_biotypes = MOB_ROBOTIC
 	movement_type = FLYING
+	is_flying_animal = TRUE
 	status_flags = GODMODE // Prevent normal death, we handle it manually
 	AIStatus = AI_OFF
 
@@ -28,6 +29,7 @@
 
 /mob/living/simple_animal/hostile/pianist_music_note/Initialize()
 	. = ..()
+	icon_state = pick("music_note_1", "music_note_2")
 	QDEL_IN(src, duration)
 	playsound(src, 'sound/abnormalities/fateloom/garrote.ogg', 50, TRUE)
 
@@ -46,7 +48,15 @@
 	for(var/mob/living/carbon/human/H in view(ring_range, src))
 		if(H.z != z)
 			continue
-		H.apply_damage(damage_amount, WHITE_DAMAGE, null, H.run_armor_check(null, WHITE_DAMAGE), spread_damage = TRUE)
+		var/damage = damage_amount
+		// Reduce damage by 50% if target doesn't have Reverting Song
+		if(!H.has_status_effect(/datum/status_effect/reverting_song))
+			damage *= 0.5
+		// Check for Silence mask protection (80% reduction)
+		if(H.wear_mask && istype(H.wear_mask, /obj/item/clothing/mask/silence))
+			damage *= 0.2
+			to_chat(H, span_nicegreen("The Silence protects you from the music!"))
+		H.apply_damage(damage, WHITE_DAMAGE, null, H.run_armor_check(null, WHITE_DAMAGE), spread_damage = TRUE)
 		if(H.sanity_lost)
 			H.apply_status_effect(/datum/status_effect/musical_fascination, pianist_owner)
 
@@ -61,8 +71,13 @@
 	if(. && health <= 0 && ishuman(user))
 		// Mark the attacker before death
 		var/datum/status_effect/reverting_song/song = user.has_status_effect(/datum/status_effect/reverting_song)
+		var/mob/living/carbon/human/H = user
 		if(song)
 			song.refresh()
+			// Heal SP based on reverting song stacks (10% per stack, max 80%)
+			var/heal_amount = min(H.maxSanity * 0.1 * song.stacks, H.maxSanity * 0.8)
+			H.adjustSanityLoss(-heal_amount)
+			to_chat(H, span_nicegreen("The reverting song resonates within you, restoring [heal_amount] SP!"))
 		else
 			user.apply_status_effect(/datum/status_effect/reverting_song)
 			to_chat(user, span_warning("Breaking the note marks you with a reverting song!"))
@@ -74,6 +89,10 @@
 		var/datum/status_effect/reverting_song/song = H.has_status_effect(/datum/status_effect/reverting_song)
 		if(song)
 			song.refresh()
+			// Heal SP based on reverting song stacks (10% per stack, max 80%)
+			var/heal_amount = min(H.maxSanity * 0.1 * song.stacks, H.maxSanity * 0.8)
+			H.adjustSanityLoss(-heal_amount)
+			to_chat(H, span_nicegreen("The reverting song resonates within you, restoring [heal_amount] SP!"))
 		else
 			H.apply_status_effect(/datum/status_effect/reverting_song)
 			to_chat(H, span_warning("Breaking the note marks you with a reverting song!"))
@@ -85,22 +104,23 @@
 /obj/effect/pianist_melody_visual
 	name = "melody"
 	desc = "A red music note orbiting the Pianist."
-	icon = 'icons/obj/device.dmi'
-	icon_state = "syndballoon"
+	icon = 'ModularTegustation/Teguicons/pianist_effects.dmi'
+	icon_state = "music_note_1"
+	color = "#FF0000"
 	layer = ABOVE_MOB_LAYER
 	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 
 /obj/effect/temp_visual/music_note_warning
 	name = "falling note shadow"
-	icon = 'icons/turf/areas.dmi'
-	icon_state = "bluenew"
+	icon = 'icons/effects/effects.dmi'
+	icon_state = "spreadwarning"
 	layer = BELOW_MOB_LAYER
 	duration = 20
 
 /obj/effect/temp_visual/aoe_warning
 	name = "discordant aura"
 	icon = 'icons/effects/effects.dmi'
-	icon_state = "shield1"
+	icon_state = "spreadwarning"
 	layer = BELOW_MOB_LAYER
 	duration = 10
 	alpha = 128
@@ -109,78 +129,20 @@
 	icon = 'icons/effects/effects.dmi'
 	icon_state = "shieldsparkles"
 	duration = 10
+	color = "#FF0000"
 
 /obj/effect/temp_visual/resonance_ring/Initialize()
 	. = ..()
 	transform = matrix() * 0.5
 	animate(src, transform = matrix() * 2, alpha = 0, time = duration)
 
-// Projectiles
-/obj/projectile/pianist_warning
-	name = "harmonic echo"
-	icon = 'icons/obj/projectiles.dmi'
-	icon_state = "neurotoxin"
-	damage = 0
-	damage_type = WHITE_DAMAGE
-	pass_flags = PASSMOB | PASSMACHINE | PASSSTRUCTURE
-	projectile_phasing = ALL
-
-/obj/projectile/pianist_projectile
-	name = "discordant note"
-	icon = 'icons/obj/projectiles.dmi'
-	icon_state = "energy"
-	damage = 25
-	damage_type = WHITE_DAMAGE
-	speed = 2
-	ricochets_max = 5
-	ricochet_chance = 100
-	ricochet_auto_aim_angle = 30
-	ricochet_auto_aim_range = 3
-	ricochet_incidence_leeway = 80
-
-	var/mob/living/simple_animal/hostile/distortion/pianist/pianist_owner
-	var/deceleration_rate = 0.1
-	var/acceleration_point = 20 // When to start accelerating back
-	var/returning = FALSE
-	var/fired_time = 0
-
-/obj/projectile/pianist_projectile/Initialize()
-	. = ..()
-	fired_time = world.time
-	START_PROCESSING(SSprojectiles, src)
-
-/obj/projectile/pianist_projectile/Destroy()
-	STOP_PROCESSING(SSprojectiles, src)
-	return ..()
-
-/obj/projectile/pianist_projectile/process()
-	if(!pianist_owner || QDELETED(pianist_owner))
-		qdel(src)
-		return
-
-	// Slow down over 2 seconds
-	if(!returning && world.time > fired_time + acceleration_point)
-		speed = min(speed + deceleration_rate, 2)
-
-		// Once stopped, start returning
-		if(speed >= 2)
-			returning = TRUE
-			set_angle(Get_Angle(src, pianist_owner))
-
-	// Accelerate when returning
-	if(returning)
-		speed = max(speed - deceleration_rate, 0.5)
-		set_angle(Get_Angle(src, pianist_owner))
-
-		// Delete when reaching the pianist
-		if(get_dist(src, pianist_owner) <= 1)
-			qdel(src)
-
-/obj/projectile/pianist_projectile/on_hit(atom/target, blocked = FALSE, pierce_hit)
-	. = ..()
-	if(istype(target, /mob/living/simple_animal/hostile/distortion/pianist))
-		qdel(src)
-		return BULLET_ACT_HIT
+/obj/effect/temp_visual/column_warning
+	name = "harmonic distortion"
+	icon = 'icons/effects/cult_effects.dmi'
+	icon_state = "bloodsparkles"
+	layer = BELOW_MOB_LAYER
+	duration = 15
+	color = "#FF0000"
 
 // Status Effects
 /datum/status_effect/reverting_song
