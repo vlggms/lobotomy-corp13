@@ -342,7 +342,7 @@ If you make a derivative work from this code, you must include this notification
 		to_chat(A, span_danger("You headbutt [D]!"))
 		D.adjustBruteLoss(rand(10,20))
 		playsound(A.loc, "swing_hit", 50, TRUE)
-		D.Unconscious(20)
+		// D.Unconscious(20)
 	log_combat(A, D, "headbutted")
 
 /datum/martial_art/wrestling/proc/kick(mob/living/A, mob/living/D)
@@ -360,7 +360,7 @@ If you make a derivative work from this code, you must include this notification
 
 	var/turf/T = get_edge_target_turf(A, get_dir(A, get_step_away(D, A)))
 	if (T && isturf(T))
-		D.Paralyze(20)
+		// D.Paralyze(20)
 		D.throw_at(T, 3, 2)
 	log_combat(A, D, "roundhouse-kicked")
 
@@ -432,7 +432,7 @@ If you make a derivative work from this code, you must include this notification
 		else
 			D.adjustBruteLoss(rand(20,30))
 
-		D.Paralyze(40)
+		// D.Paralyze(40)
 
 		A.pixel_y = A.base_pixel_y
 
