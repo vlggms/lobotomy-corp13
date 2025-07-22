@@ -103,7 +103,7 @@
 	smoothing_flags = NONE
 	icon_state = "wateryrock"
 	base_icon_state = "wateryrock"
-	slowdown = 2
+	slowdown = 0.5
 	footstep = FOOTSTEP_FLOOR
 	barefootstep = FOOTSTEP_HARD_BAREFOOT
 	clawfootstep = FOOTSTEP_HARD_CLAW

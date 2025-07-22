@@ -1,18 +1,35 @@
 /*
 The Pianist Distortion
 
-A musical-themed distortion with the following mechanics:
+A two-phase musical-themed distortion:
+
+PHASE 1 - THE OVERTURE (2 minutes):
+- Complete damage immunity
+- Environmental attacks only (falling notes, resonance lines)
+- Transforms battlefield with watery rock and ash obstacles
+- No direct combat
+
+PHASE 2 - THE PERFORMANCE:
+- Standard combat with all abilities
+- Reduced environmental attacks
+- Thunderstorm weather effect
+- Fighting on transformed terrain
+
+Core mechanics:
 1. Summons falling music notes that deal damage over time
 2. Gains "Melody" stacks from absorbed victims and lost health
 3. Melody stacks enhance all abilities (more targets, longer duration, higher damage)
 4. Performs AoE attacks with varying ranges and warning telegraphs
-5. Fires bouncing projectiles that slow down then return
-6. Immune to damage from attackers without "Reverting Song" debuff
-7. Causes special "Musical Fascination" panic that draws victims to be absorbed
-8. Can inflict permanent "Musical Corruption" brain trauma
+5. Immune to damage from attackers without "Reverting Song" debuff
+6. Causes special "Musical Fascination" panic that draws victims to be absorbed
+7. Can inflict permanent "Musical Corruption" brain trauma
 
-Based on the design document in ThePianistDesignDoc.md
+Based on the design document in PIANIST_PHASE_DESIGN.md
 */
+
+// Phase constants
+#define PIANIST_PHASE_OVERTURE 1
+#define PIANIST_PHASE_PERFORMANCE 2
 /mob/living/simple_animal/hostile/distortion/pianist
 	name = "The Pianist"
 	desc = "A grotesque figure seated at a grand piano made of flesh and bone. Its fingers dance across keys that scream with each press."
@@ -69,7 +86,7 @@ Based on the design document in ThePianistDesignDoc.md
 	var/aoe_warning_time = 10 // 1 second in deciseconds
 	var/base_note_targets = 3
 	var/base_note_duration = 30 SECONDS
-	var/base_note_damage = 20
+	var/base_note_damage = 8
 	var/base_aoe_damage = 30
 	var/list/melody_visuals = list()
 	var/damage_threshold_tracker = 0 // Tracks damage for melody gain
@@ -81,10 +98,32 @@ Based on the design document in ThePianistDesignDoc.md
 
 	var/datum/looping_sound/pianist/soundloop
 
+	// Phase system
+	var/phase = PIANIST_PHASE_OVERTURE
+	var/phase_timer = 0
+	var/phase_duration = 120 SECONDS // 2 minutes for Phase 1
+	var/falling_note_spawn_range = 10 // Starting range, expands over time
+	var/falling_note_max_range = 60
+	var/falling_note_cooldown = 0
+	var/falling_note_cooldown_time = 20 SECONDS // Phase 1 frequency - reduced
+	var/resonance_line_charges = 8 // Total uses across the fight
+	var/resonance_line_cooldown = 0
+	var/resonance_line_cooldown_time = 15 SECONDS // More frequent line attacks
+	var/list/recent_resonance_targets = list()
+
+	// Tile conversion system (removed old circular conversion)
+	var/list/converted_tiles = list() // Stores original tile types for restoration
+
 /mob/living/simple_animal/hostile/distortion/pianist/Initialize()
 	. = ..()
 	current_aoe_pattern = shuffle(current_aoe_pattern)
-	addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(show_global_blurb), 20, "O sorrow, I have ended, you see, by respecting you.", 25))
+
+	// Start phase timer
+	phase_timer = world.time + phase_duration
+
+	// Perform entrance animation
+	INVOKE_ASYNC(src, PROC_REF(PerformEntranceSequence))
+
 	soundloop = new(list(src), FALSE)
 	soundloop.start()
 
@@ -112,17 +151,54 @@ Based on the design document in ThePianistDesignDoc.md
 	if(!.)
 		return FALSE
 
-	// Summon music notes
-	if(note_summon_cooldown < world.time)
-		SummonMusicNotes()
+	// Check for phase transition
+	if(phase == PIANIST_PHASE_OVERTURE && world.time >= phase_timer)
+		TransitionToPerformance()
+		return
 
-	// AoE attacks
-	if(aoe_attack_cooldown < world.time)
-		PerformAoEAttack()
+	// Phase-based attack patterns
+	switch(phase)
+		if(PIANIST_PHASE_OVERTURE)
+			// Environmental attacks only
+			if(falling_note_cooldown < world.time)
+				SpawnFallingNotes()
 
-	// Column attacks
-	if(column_attack_cooldown < world.time && recent_attackers.len)
-		PerformColumnAttack()
+			if(resonance_line_cooldown < world.time && resonance_line_charges > 0)
+				if(prob(60))
+					AttemptResonanceLine()
+				else
+					AttemptCrossMapResonance()
+
+			// Expand falling note range every 10 seconds
+			var/time_elapsed = phase_duration - (phase_timer - world.time)
+			var/expansions = round(time_elapsed / 10 SECONDS)
+			falling_note_spawn_range = min(10 + (expansions * 10), falling_note_max_range)
+
+		if(PIANIST_PHASE_PERFORMANCE)
+			// Regular combat with reduced environmental attacks
+
+			// Summon music notes (normal frequency)
+			if(note_summon_cooldown < world.time)
+				SummonMusicNotes()
+
+			// AoE attacks
+			if(aoe_attack_cooldown < world.time)
+				PerformAoEAttack()
+
+			// Column attacks
+			if(column_attack_cooldown < world.time && length(recent_attackers))
+				PerformColumnAttack()
+
+			// Occasional falling notes (reduced frequency)
+			if(falling_note_cooldown < world.time)
+				SpawnFallingNotes()
+
+			// Rare resonance line
+			if(resonance_line_cooldown < world.time && resonance_line_charges > 0)
+				if(prob(60))
+					AttemptResonanceLine()
+				else
+					AttemptCrossMapResonance()
 
 /mob/living/simple_animal/hostile/distortion/pianist/adjustHealth(amount, updating_health = TRUE, forced = FALSE)
 	. = ..()
@@ -139,6 +215,12 @@ Based on the design document in ThePianistDesignDoc.md
 			damage_threshold_tracker -= (thresholds_crossed * threshold_amount)
 
 /mob/living/simple_animal/hostile/distortion/pianist/attacked_by(obj/item/I, mob/living/user)
+	// Phase 1 - Complete immunity
+	if(phase == PIANIST_PHASE_OVERTURE)
+		to_chat(user, span_warning("The Pianist is completely invulnerable during the overture!"))
+		playsound(src, 'sound/magic/clockwork/fellowship_armory.ogg', 50, TRUE)
+		return FALSE
+
 	// Special case for Black Silence gloves - bypass all resistances
 	if(istype(I, /obj/item/ego_weapon/black_silence_gloves))
 		ChangeResistances(list(RED_DAMAGE = 10, WHITE_DAMAGE = 10, BLACK_DAMAGE = 10, PALE_DAMAGE = 10))
@@ -146,7 +228,7 @@ Based on the design document in ThePianistDesignDoc.md
 		// Track attacker
 		if(!(user in recent_attackers))
 			recent_attackers += user
-			if(recent_attackers.len > 5)
+			if(length(recent_attackers) > 5)
 				recent_attackers.Cut(1, 2)
 		return ..()
 
@@ -164,37 +246,26 @@ Based on the design document in ThePianistDesignDoc.md
 	// Track attacker
 	if(!(user in recent_attackers))
 		recent_attackers += user
-		if(recent_attackers.len > 5)
+		if(length(recent_attackers) > 5)
 			recent_attackers.Cut(1, 2)
 
 	return ..()
 
 /mob/living/simple_animal/hostile/distortion/pianist/bullet_act(obj/projectile/P)
-	if(!P.firer)
-		return ..()
-
-	var/datum/status_effect/reverting_song/song_effect
-	if(isliving(P.firer))
-		var/mob/living/L = P.firer
-		song_effect = L.has_status_effect(/datum/status_effect/reverting_song)
-	if(!song_effect || song_effect.stacks == 0)
-		visible_message(span_warning("[P] passes harmlessly through [src]!"))
-		playsound(src, 'sound/effects/attackblob.ogg', 50, TRUE)
-		return BULLET_ACT_BLOCK
-
-	var/damage_mod = 0.2 * (1 + song_effect.stacks * 0.1)
-	ChangeResistances(list(RED_DAMAGE = damage_mod, WHITE_DAMAGE = damage_mod, BLACK_DAMAGE = damage_mod, PALE_DAMAGE = damage_mod))
-
-	// Track attacker
-	if(P.firer && !(P.firer in recent_attackers))
-		recent_attackers += P.firer
-		if(recent_attackers.len > 5)
-			recent_attackers.Cut(1, 2)
-
-	. = ..()
+	// Pianist is immune to all ranged attacks
+	if(phase == PIANIST_PHASE_OVERTURE)
+		visible_message(span_warning("[P] dissipates harmlessly against [src]'s invulnerable form!"))
+	else
+		visible_message(span_warning("[P] dissipates harmlessly against [src]'s musical aura!"))
+	playsound(src, 'sound/effects/attackblob.ogg', 50, TRUE)
+	return BULLET_ACT_BLOCK
 
 /mob/living/simple_animal/hostile/distortion/pianist/death(gibbed)
 	QDEL_NULL(soundloop)
+
+	// End the thunderstorm if it exists
+	SSweather.end_weather(/datum/weather/pianist_storm)
+
 	addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(show_global_blurb), 20, "You will be there, lying in my sheets, O sorrow.", 25))
 	// Drop all absorbed bodies
 	for(var/mob/living/carbon/human/H in absorbed_bodies)
@@ -204,6 +275,7 @@ Based on the design document in ThePianistDesignDoc.md
 	// Clear melody visuals
 	for(var/obj/effect/pianist_melody_visual/V in melody_visuals)
 		qdel(V)
+	melody_stacks = 0
 	melody_visuals.Cut()
 
 	// Clean up any stray melody visuals that might exist
@@ -214,13 +286,18 @@ Based on the design document in ThePianistDesignDoc.md
 	for(var/mob/living/simple_animal/hostile/pianist_music_note/note in GLOB.mob_list)
 		qdel(note)
 
-	// Cure all humans of musical fascination
+	// Cure all humans of musical fascination and reverting song
 	for(var/mob/living/carbon/human/H in GLOB.player_list)
 		H.remove_status_effect(/datum/status_effect/musical_fascination)
+		H.remove_status_effect(/datum/status_effect/reverting_song)
 
 	// Fade out animation
 	density = FALSE
 	animate(src, alpha = 0, time = 5 SECONDS)
+
+	// Note: Tiles remain converted as permanent battlefield scars
+	// No restoration in the new phase system
+
 	QDEL_IN(src, 5 SECONDS)
 
 	return ..()
@@ -275,8 +352,8 @@ Based on the design document in ThePianistDesignDoc.md
 
 	var/turf/target_turf = get_turf(target)
 
-	// Warning indicator
-	new /obj/effect/temp_visual/music_note_warning(target_turf)
+	// Warning indicator - 3x3 red warning
+	new /obj/effect/temp_visual/music_note_landing(target_turf)
 	playsound(target_turf, 'sound/abnormalities/crumbling/warning.ogg', 50, TRUE)
 
 	sleep(20) // 2 second warning
@@ -295,7 +372,7 @@ Based on the design document in ThePianistDesignDoc.md
 		for(var/mob/living/L in T)
 			if(L.z != z)
 				continue
-			var/damage = 20
+			var/damage = base_note_damage
 			// Reduce damage by 50% if target doesn't have Reverting Song
 			if(!L.has_status_effect(/datum/status_effect/reverting_song))
 				damage *= 0.5
@@ -372,7 +449,7 @@ Based on the design document in ThePianistDesignDoc.md
 		if(QDELETED(M) || M.stat == DEAD)
 			recent_attackers -= M
 
-	if(!recent_attackers.len)
+	if(!length(recent_attackers))
 		return
 
 	// Pick a random recent attacker
@@ -614,3 +691,544 @@ Based on the design document in ThePianistDesignDoc.md
 
 	StartCooldown()
 	return TRUE
+
+// Phase 1: Entrance and Environmental Attacks
+
+/mob/living/simple_animal/hostile/distortion/pianist/proc/PerformEntranceSequence()
+	set waitfor = FALSE
+
+	// Initial global message
+	addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(show_global_blurb), 20, "O sorrow, I have ended, you see, by respecting you.", 25))
+
+	// Jump animation (similar to Baba Yaga)
+	var/turf/landing_turf = get_turf(src)
+	if(!landing_turf)
+		return
+
+	// Make invisible for jump
+	alpha = 0
+
+	// Warning at landing zone
+	for(var/turf/T in range(5, landing_turf))
+		new /obj/effect/temp_visual/aoe_warning(T)
+
+	playsound(landing_turf, 'sound/abnormalities/thunderbird/tbird_beam.ogg', 100, TRUE, 40)
+
+	sleep(15) // 1.5 second warning
+
+	// Land with impact
+	alpha = 255
+	playsound(landing_turf, 'sound/effects/meteorimpact.ogg', 150, TRUE, 40)
+
+	// Screen shake
+	for(var/mob/living/L in hearers(15, landing_turf))
+		if(L.client)
+			shake_camera(L, 4, 3)
+
+	// Convert landing zone to watery rock with natural pattern
+	var/list/impact_tiles = list()
+
+	// Create a natural circular pattern
+	for(var/turf/T in range(6, landing_turf))
+		if(istype(T, /turf/open/space))
+			continue
+
+		var/dist = get_dist(T, landing_turf)
+		var/include_chance = 0
+
+		// Natural falloff from center
+		switch(dist)
+			if(0)
+				include_chance = 100
+			if(1)
+				include_chance = 95
+			if(2)
+				include_chance = 85
+			if(3)
+				include_chance = 70
+			if(4)
+				include_chance = 50
+			if(5)
+				include_chance = 30
+			if(6)
+				include_chance = 15
+
+		if(prob(include_chance))
+			impact_tiles += T
+
+	// Apply effects to selected tiles
+	for(var/turf/T in impact_tiles)
+		// Deal damage based on distance
+		var/dist = get_dist(T, landing_turf)
+		var/damage = 150 - (dist * 20) // More damage at center
+
+		for(var/mob/living/L in T)
+			L.apply_damage(damage, RED_DAMAGE, null, L.run_armor_check(null, RED_DAMAGE), spread_damage = TRUE)
+			to_chat(L, span_userdanger("The Pianist's arrival [dist <= 2 ? "crushes" : "batters"] you!"))
+			if(dist <= 2)
+				L.Knockdown(30)
+
+		// Convert turf with staggered timing
+		spawn(dist * 2) // Ripple effect outward
+			if(!istype(T, /turf/open/floor/plating/ashplanet/wateryrock))
+				new /obj/effect/temp_visual/cult/turf/floor(T)
+				playsound(T, 'sound/effects/lc13_environment/day_50/Shake_End.ogg', 40 - (dist * 5), TRUE)
+				T.ChangeTurf(/turf/open/floor/plating/ashplanet/wateryrock)
+				converted_tiles += T
+
+	visible_message(span_colossus("THE PIANIST BEGINS THE OVERTURE!"))
+
+/mob/living/simple_animal/hostile/distortion/pianist/proc/SpawnFallingNotes()
+	falling_note_cooldown = world.time + (phase == PIANIST_PHASE_OVERTURE ? falling_note_cooldown_time : 30 SECONDS)
+
+	// Determine number of notes to spawn - reduced frequency
+	var/base_notes = 2
+	var/max_notes = 4
+	var/range_factor = falling_note_spawn_range / falling_note_max_range
+	var/notes_to_spawn = round(base_notes + (max_notes - base_notes) * range_factor)
+	notes_to_spawn = rand(notes_to_spawn - 1, notes_to_spawn) // Add some randomness
+
+	if(phase == PIANIST_PHASE_PERFORMANCE)
+		notes_to_spawn = rand(1, 2) // Even less in combat phase
+
+	var/list/valid_turfs = list()
+	var/list/spawn_turfs = list()
+
+	// Find valid spawn locations
+	for(var/turf/T in range(falling_note_spawn_range, src))
+		if(T.z != z)
+			continue
+		if(istype(T, /turf/open/floor/plating/ashplanet/wateryrock))
+			continue // Avoid already converted terrain
+		if(T in spawn_turfs)
+			continue
+
+		// Check spacing from other spawn points
+		var/too_close = FALSE
+		for(var/turf/spawn_point in spawn_turfs)
+			if(get_dist(T, spawn_point) < 5)
+				too_close = TRUE
+				break
+
+		if(!too_close)
+			valid_turfs += T
+
+	// Spawn the notes
+	for(var/i in 1 to min(notes_to_spawn, length(valid_turfs)))
+		var/turf/spawn_turf = pick_n_take(valid_turfs)
+		spawn_turfs += spawn_turf
+		INVOKE_ASYNC(src, PROC_REF(DropFallingNote), spawn_turf)
+
+/mob/living/simple_animal/hostile/distortion/pianist/proc/DropFallingNote(turf/target_turf)
+	if(!target_turf || QDELETED(src))
+		return
+
+	// Create falling effect
+	var/obj/effect/falling_music_note/note = new(target_turf)
+	note.pianist_owner = src
+
+/mob/living/simple_animal/hostile/distortion/pianist/proc/AttemptResonanceLine()
+	resonance_line_cooldown = world.time + resonance_line_cooldown_time
+
+	// Find valid targets
+	var/list/valid_targets = list()
+	for(var/mob/living/carbon/human/H in livinginrange(30, src))
+		if(H.stat == DEAD)
+			continue
+
+		var/dist = get_dist(src, H)
+		if(dist < 5) // Too close
+			continue
+
+		if(H in recent_resonance_targets)
+			continue
+
+		valid_targets += H
+
+	if(!length(valid_targets))
+		return
+
+	// Use a charge
+	resonance_line_charges--
+
+	// Pick target and create line
+	var/mob/living/target = pick(valid_targets)
+	recent_resonance_targets += target
+	if(length(recent_resonance_targets) > 3)
+		recent_resonance_targets.Cut(1, 2)
+
+	CreateResonanceLine(target)
+
+/mob/living/simple_animal/hostile/distortion/pianist/proc/CreateResonanceLine(mob/living/target)
+	if(!target || QDELETED(target) || QDELETED(src))
+		return
+
+	visible_message(span_danger("[src]'s piano RESONATES WITH TERRIBLE POWER!"))
+
+	// Screen shake for everyone who can see
+	for(var/mob/living/L in viewers(15, src))
+		if(L.client)
+			shake_camera(L, 2, 2)
+
+	// Calculate line path
+	var/list/line_tiles = getline(get_turf(src), get_turf(target))
+	if(!length(line_tiles))
+		return
+
+	// Extend past target
+	var/turf/last_tile = line_tiles[length(line_tiles)]
+	var/extension_dir = get_dir(line_tiles[length(line_tiles)-1], last_tile)
+
+	for(var/i in 1 to rand(5, 10))
+		var/turf/next = get_step(last_tile, extension_dir)
+		if(next && next.z == z)
+			line_tiles += next
+			last_tile = next
+
+	// Visual warning with enhanced effects - show wider area
+	for(var/turf/T in line_tiles)
+		new /obj/effect/temp_visual/resonance_line_warning(T)
+		// Add rumbling effect
+		for(var/mob/living/L in T)
+			to_chat(L, span_userdanger("The ground begins to resonate violently!"))
+
+		// Also warn adjacent tiles
+		for(var/turf/adj in orange(1, T))
+			if(adj.z == z)
+				var/obj/effect/temp_visual/resonance_line_warning/W = new(adj)
+				W.alpha = 120 // Side tiles are more transparent
+
+	playsound(src, 'sound/effects/lc13_environment/day_50/Shake_Start.ogg', 100, TRUE, 50)
+
+	// Start conversion after delay
+	addtimer(CALLBACK(src, PROC_REF(ConvertResonanceLine), line_tiles), 15)
+
+/mob/living/simple_animal/hostile/distortion/pianist/proc/ConvertResonanceLine(list/tiles)
+	if(QDELETED(src))
+		return
+
+	for(var/i in 1 to length(tiles))
+		if(QDELETED(src))
+			break
+
+		var/turf/T = tiles[i]
+		if(!T || T.z != z)
+			continue
+
+		// Convert main tile
+		ConvertToWateryRock(T)
+
+		// Heavy damage and effects on tile - always happens regardless of turf type
+		for(var/mob/living/L in T)
+			L.apply_damage(60, WHITE_DAMAGE, null, L.run_armor_check(null, WHITE_DAMAGE), spread_damage = TRUE)
+			if(ishuman(L))
+				var/mob/living/carbon/human/H = L
+				H.Knockdown(30) // 3 second knockdown
+				H.add_confusion(15)
+			to_chat(L, span_userdanger("The resonating earth tears through you!"))
+			if(L.client)
+				shake_camera(L, 4, 3)
+
+		// Damage structures on main line
+		for(var/obj/structure/S in T)
+			if(S.resistance_flags & INDESTRUCTIBLE)
+				continue
+			S.take_damage(100, WHITE_DAMAGE, "melee", 1)
+			playsound(S, 'sound/effects/lc13_environment/day_50/Shake_End.ogg', 60, TRUE)
+
+		// Make the line wider - affect adjacent tiles
+		for(var/turf/adj in orange(1, T))
+			if(adj.z != z)
+				continue
+
+			// Side tiles take less damage but still convert
+			for(var/mob/living/L in adj)
+				L.apply_damage(30, WHITE_DAMAGE, null, L.run_armor_check(null, WHITE_DAMAGE), spread_damage = TRUE)
+				to_chat(L, span_warning("The resonance catches you!"))
+				if(L.client)
+					shake_camera(L, 2, 2)
+
+			// Damage structures on side tiles too
+			for(var/obj/structure/S in adj)
+				if(S.resistance_flags & INDESTRUCTIBLE)
+					continue
+				S.take_damage(50, WHITE_DAMAGE, "melee", 1)
+
+			// Only convert if not already wateryrock
+			if(!istype(adj, /turf/open/floor/plating/ashplanet/wateryrock))
+				addtimer(CALLBACK(src, PROC_REF(ConvertToWateryRock), adj, TRUE), 0.5)
+
+		// Additional cascade effect - reduced to prevent overlapping conversions
+		if(prob(50)) // Only 50% chance for far cascade
+			var/cascade_count = 1 // Only 1 far cascade to reduce wall breaking
+			var/list/far_adjacent = list()
+			for(var/turf/adj in orange(2, T))
+				if(get_dist(adj, T) == 2 && adj.z == z)
+					// Include wateryrock tiles for damage cascade
+					far_adjacent += adj
+
+			for(var/j in 1 to min(cascade_count, length(far_adjacent)))
+				var/turf/cascade = pick_n_take(far_adjacent)
+				addtimer(CALLBACK(src, PROC_REF(ConvertToWateryRock), cascade, TRUE), j * 0.5 + 1)
+
+		sleep(2) // 0.2s between main line tiles
+
+/mob/living/simple_animal/hostile/distortion/pianist/proc/ConvertToWateryRock(turf/T, cascade = FALSE)
+	if(!T || QDELETED(src) || istype(T, /turf/open/space))
+		return
+
+	// Check if already converted - but still do damage
+	if(istype(T, /turf/open/floor/plating/ashplanet/wateryrock))
+		// Still damage mobs on wateryrock tiles
+		if(cascade)
+			for(var/mob/living/L in T)
+				L.apply_damage(20, WHITE_DAMAGE, null, L.run_armor_check(null, WHITE_DAMAGE), spread_damage = TRUE)
+				if(ishuman(L))
+					var/mob/living/carbon/human/H = L
+					H.add_confusion(10)
+		return
+
+	// Also skip if already ash rock to prevent overwriting
+	if(istype(T, /turf/closed/mineral/ash_rock))
+		return
+
+	// Visual effect
+	new /obj/effect/temp_visual/small_smoke/halfsecond(T)
+
+	// Use day_50 sounds for breaking with more impact
+	if(cascade)
+		playsound(T, 'sound/effects/lc13_environment/day_50/Shake_Down.ogg', 50, TRUE)
+	else
+		playsound(T, 'sound/effects/lc13_environment/day_50/Shake_End.ogg', 80, TRUE)
+
+	// Convert area if space
+	if(istype(T.loc, /area/space))
+		var/area/city/new_area
+		for(var/area/city/C in world)
+			if(C.z == T.z)
+				new_area = C
+				break
+
+		if(!new_area)
+			new_area = new /area/city()
+
+		var/area/old_area = T.loc
+		new_area.contents += T
+		T.change_area(old_area, new_area)
+
+	// Break through walls and dense objects
+	if(istype(T, /turf/closed))
+		// 80% chance to convert to ash rock instead of breaking through
+		if(prob(80))
+			T.ChangeTurf(/turf/closed/mineral/ash_rock)
+		else
+			T.ChangeTurf(/turf/open/floor/plating/ashplanet/wateryrock)
+	else
+		T.ChangeTurf(/turf/open/floor/plating/ashplanet/wateryrock)
+
+	// Damage mobs in cascade - even on wateryrock
+	if(cascade)
+		for(var/mob/living/L in T)
+			L.apply_damage(20, WHITE_DAMAGE, null, L.run_armor_check(null, WHITE_DAMAGE), spread_damage = TRUE)
+			if(ishuman(L))
+				var/mob/living/carbon/human/H = L
+				H.add_confusion(10) // Slowdown effect
+
+	// Track converted tiles
+	converted_tiles += T
+
+/mob/living/simple_animal/hostile/distortion/pianist/proc/TransitionToPerformance()
+	phase = PIANIST_PHASE_PERFORMANCE
+
+	// Stop all falling notes
+	for(var/obj/effect/falling_music_note/note in world)
+		qdel(note)
+
+	// Dramatic pause
+	visible_message(span_colossus("The Pianist pauses, fingers hovering over the keys..."))
+
+	sleep(20) // 2 second pause
+
+	// Global message
+	addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(show_global_blurb), 20, "The overture ends. Let the performance begin.", 25))
+
+	// Slam keys creating shockwave
+	visible_message(span_colossus("[src] SLAMS the keys with tremendous force!"))
+	playsound(src, 'sound/abnormalities/mountain/slam.ogg', 150, TRUE, 40)
+
+	// Shockwave effect
+	for(var/mob/living/L in hearers(10, src))
+		if(L.client)
+			shake_camera(L, 3, 2)
+
+	// Start thunderstorm
+	StartPianistStorm()
+
+	// Adjust cooldowns for Phase 2
+	falling_note_cooldown_time = 45 SECONDS
+
+	visible_message(span_boldannounce("The Pianist's true performance begins!"))
+
+/mob/living/simple_animal/hostile/distortion/pianist/proc/StartPianistStorm()
+	// Create aesthetic thunderstorm
+	var/area/A = get_area(src)
+	if(!A)
+		return
+
+	// Use SSweather to run the storm properly
+	SSweather.run_weather(/datum/weather/pianist_storm)
+
+/mob/living/simple_animal/hostile/distortion/pianist/proc/AttemptCrossMapResonance()
+	resonance_line_cooldown = world.time + resonance_line_cooldown_time
+
+	// Find two random points far apart
+	var/list/valid_turfs = list()
+	for(var/turf/T in range(40, src))
+		if(T.z != z)
+			continue
+		if(istype(T, /turf/closed))
+			continue
+		if(istype(T, /turf/open/space))
+			continue
+		valid_turfs += T
+
+	if(length(valid_turfs) < 20) // Not enough space
+		AttemptResonanceLine() // Fallback to regular line
+		return
+
+	// Pick first point
+	var/turf/point1 = pick(valid_turfs)
+
+	// Find second point at least 10 tiles away
+	var/list/far_turfs = list()
+	for(var/turf/T in valid_turfs)
+		if(get_dist(T, point1) >= 10)
+			far_turfs += T
+
+	if(!length(far_turfs))
+		AttemptResonanceLine() // Fallback to regular line
+		return
+
+	var/turf/point2 = pick(far_turfs)
+
+	// Use a charge
+	resonance_line_charges--
+
+	visible_message(span_colossus("[src]'s piano TEARS THROUGH THE FABRIC OF REALITY!"))
+	playsound(src, 'sound/effects/lc13_environment/day_50/Shake_Start.ogg', 125, TRUE, 75)
+
+	// Global screen shake for the power
+	for(var/mob/living/L in range(30, src))
+		if(L.client)
+			shake_camera(L, 3, 3)
+			to_chat(L, span_boldwarning("You feel space itself trembling!"))
+
+	// Create cross-map line
+	CreateCrossMapLine(point1, point2)
+
+/mob/living/simple_animal/hostile/distortion/pianist/proc/CreateCrossMapLine(turf/point1, turf/point2)
+	if(!point1 || !point2 || QDELETED(src))
+		return
+
+	// Get line between points
+	var/list/line_tiles = getline(point1, point2)
+	if(!length(line_tiles))
+		return
+
+	// Extend the line 5 tiles past each point
+	var/list/extended_tiles = list()
+
+	// Extend from point1 backwards
+	if(length(line_tiles) >= 2)
+		var/turf/T1 = line_tiles[1]
+		var/turf/T2 = line_tiles[2]
+		var/backwards_dir = get_dir(T2, T1)
+		var/turf/current = T1
+		for(var/i in 1 to 5)
+			current = get_step(current, backwards_dir)
+			if(!current || current.z != z)
+				break
+			extended_tiles += current
+
+	// Add main line
+	extended_tiles += line_tiles
+
+	// Extend from point2 forwards
+	if(length(line_tiles) >= 2)
+		var/turf/T1 = line_tiles[length(line_tiles)-1]
+		var/turf/T2 = line_tiles[length(line_tiles)]
+		var/forwards_dir = get_dir(T1, T2)
+		var/turf/current = T2
+		for(var/i in 1 to 5)
+			current = get_step(current, forwards_dir)
+			if(!current || current.z != z)
+				break
+			extended_tiles += current
+
+	// Visual warning for all tiles - show wider area
+	for(var/turf/T in extended_tiles)
+		new /obj/effect/temp_visual/resonance_line_warning(T)
+
+		// Also warn adjacent tiles for wider effect
+		for(var/turf/adj in orange(1, T))
+			if(adj.z == z)
+				new /obj/effect/temp_visual/resonance_line_warning(adj)
+				adj.alpha = 180 // Slightly transparent
+
+	// Convert after delay
+	addtimer(CALLBACK(src, PROC_REF(ConvertResonanceLine), extended_tiles), 15)
+
+// Combat-only variant - no Phase 1, starts directly in performance mode
+/mob/living/simple_animal/hostile/distortion/pianist/combat
+	name = "The Pianist - Finale"
+	desc = "The performance has already begun. There is no overture, only the crescendo."
+	phase = PIANIST_PHASE_PERFORMANCE // Start in Phase 2
+
+/mob/living/simple_animal/hostile/distortion/pianist/combat/Initialize()
+	. = ..()
+	// Skip phase timer setup
+	phase_timer = 0
+
+	// Start with some melody stacks for immediate threat
+	AddMelody(5)
+
+	// Immediate combat stats
+	damage_coeff = list(RED_DAMAGE = 0, WHITE_DAMAGE = 0, BLACK_DAMAGE = 0, PALE_DAMAGE = 0)
+
+	// Start the thunderstorm immediately
+	spawn(10) // Small delay for spawn-in
+		StartPianistStorm()
+		visible_message(span_colossus("THE PIANIST'S FINALE BEGINS!"))
+		addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(show_global_blurb), 20, "The performance reaches its peak from the very first note.", 25))
+
+/mob/living/simple_animal/hostile/distortion/pianist/combat/PerformEntranceSequence()
+	// Skip the elaborate entrance, just do a quick spawn
+	set waitfor = FALSE
+
+	var/turf/landing_turf = get_turf(src)
+	if(!landing_turf)
+		return
+
+	// Quick entrance effect
+	alpha = 0
+	animate(src, alpha = 255, time = 10)
+	playsound(landing_turf, 'sound/effects/ordeals/gold/weather_thunder_0.ogg', 100, TRUE, 40)
+
+	// Small impact area
+	for(var/turf/T in range(2, landing_turf))
+		if(prob(50))
+			new /obj/effect/temp_visual/small_smoke/halfsecond(T)
+
+	// Start attacking immediately
+	ranged = TRUE
+
+/mob/living/simple_animal/hostile/distortion/pianist/combat/Life()
+	. = ..()
+	if(!.)
+		return FALSE
+
+	// No phase transition needed - always in performance mode
+	return
+
+#undef PIANIST_PHASE_OVERTURE
+#undef PIANIST_PHASE_PERFORMANCE
