@@ -426,6 +426,7 @@
 			playsound(src, 'sound/weapons/gun/pistol/drop_small.ogg', 100, FALSE)
 			user.put_in_hands(spent_round)
 			overheat = 0
+			ReturnToNormal(user)
 			return TRUE
 	else
 		// We do have ammo left in the weapon.
@@ -436,6 +437,7 @@
 			playsound(src, 'sound/weapons/gun/pistol/drop_small.ogg', 100, FALSE)
 			user.put_in_hands(live_round)
 			overheat = 0
+			ReturnToNormal(user)
 			AmmoDepletedCheck()
 			return TRUE
 	// We reach this part if we had no ammo but no spent rounds either.
@@ -900,8 +902,11 @@
 	else
 		icon_state = "[initial(icon_state)]_[amount]"
 
-/// Dreamchecker hates this, but we need to override Crossed here to stop them from auto-merging in the same container or tile. They should only merge with player input.
+/// Override Crossed to stop them from automerging when in the same location. Should only merge with player input.
 /obj/item/stack/thumb_east_ammo/Crossed(atom/movable/crossing)
+	if(istype(crossing, /obj/item/stack/thumb_east_ammo))
+		return FALSE
+	. = ..()
 
 /// This override is so the ammo becomes bulky and you can't store it in your bag if you're carrying too much.
 /obj/item/stack/thumb_east_ammo/update_weight()
