@@ -375,10 +375,12 @@
 	var/public_use = FALSE
 	var/stored_money = 0
 	//var/preservation_fee = 500
-	var/revival_attribute_penalty = -6
+	var/revival_attribute_penalty = -4
 	var/list/stored_bodies = list()
 	var/clone_delay_seconds = 120
-	var/cost_multiplier = 5
+	var/cost_multiplier = 2
+	var/list/usable_roles = list("Civilian", "Office Director", "Office Fixer",
+		"Subsidary Office Director", "Fixer")
 	resistance_flags = INDESTRUCTIBLE
 	max_integrity = 1000000
 
@@ -387,7 +389,7 @@
 	if(SSmaptype.maptype == "office")
 		public_use = TRUE
 		clone_delay_seconds = 60
-		revival_attribute_penalty = -4
+		revival_attribute_penalty = 0
 		cost_multiplier = 2
 
 /obj/machinery/body_preservation_unit/attackby(obj/item/I, mob/user, params)
@@ -420,8 +422,8 @@
 	dat += "<b>Body Preservation Unit</b><br>"
 	dat += "<b>FUNDS: [stored_money]</b><br>----------------------<br>"
 
-	if (!public_use && !(user?.mind?.assigned_role in list("Civilian")))
-		dat += "<b>Only civilians can use this machine</b><br>"
+	if (!public_use && !(user?.mind?.assigned_role in usable_roles))
+		dat += "<b>You are unable to use this BPU!</b><br>"
 	else
 		if(ishuman(user))
 			var/mob/living/carbon/human/H = user
@@ -701,3 +703,47 @@
 		if(O.real_name == real_name)
 			return O
 	return null
+
+/obj/machinery/body_preservation_unit/clinic
+	name = "clinic body preservation unit"
+	desc = "A high-tech machine that can store a digital copy of your body and attributes. In case of death, it can revive you. This one can only be used by the clinic."
+	clone_delay_seconds = 60
+	revival_attribute_penalty = 0
+	cost_multiplier = 0
+	usable_roles = list("Doctor", "Surgeon", "Nurse", "Paramedic", "Medical Fixer Assistant", "Prosthetics Surgeon")
+
+/obj/machinery/body_preservation_unit/association
+	name = "association body preservation unit"
+	desc = "A high-tech machine that can store a digital copy of your body and attributes. In case of death, it can revive you. This one can only be used by the association."
+	clone_delay_seconds = 60
+	revival_attribute_penalty = 0
+	cost_multiplier = 10
+	usable_roles = list("Association Section Director", "Association Veteran", "Association Fixer")
+
+//Was planned to help out the clinic in CoL, now it is here for admin events.
+/obj/item/kquick_revive
+	name = "k-corp quickfix ampule"
+	desc = "A syringe of kcorp healing nanobots. This one fixes any fallen bodies."
+	icon = 'ModularTegustation/Teguicons/teguitems.dmi'
+	icon_state = "kcorp_syringe2"
+	slot_flags = ITEM_SLOT_POCKETS
+	w_class = WEIGHT_CLASS_SMALL
+	var/usable_roles = list("Doctor")
+	var/heal_cooldown
+	var/heal_cooldown_time = 5 SECONDS
+
+/obj/item/kquick_revive/attack(mob/living/M, mob/user)
+	if(!(user?.mind?.assigned_role in usable_roles))
+		to_chat(user, span_danger("You cannot use this item."))
+		return
+
+	if(M.stat != DEAD)
+		to_chat(user, span_notice("This syringe only works on dead humans!"))
+		return
+
+	if(heal_cooldown <= world.time)
+		heal_cooldown = world.time + heal_cooldown_time
+		to_chat(user, span_nicegreen("You inject the syringe."))
+		M.adjustBruteLoss(-400, FALSE)
+	else
+		to_chat(user, span_warning("This syringe has not recharged yet!"))
