@@ -358,15 +358,13 @@
 /obj/item/ego_weapon/city/thumb_east/pre_attack(atom/A, mob/living/user, params)
 	var/mob/living/target = A
 	// Returning "TRUE" here means we're halting the melee attack chain.
-	if(!CanUseEgo(user))
-		return TRUE
 	if(busy)
 		return TRUE
 
 	if(combo_stage == COMBO_FINISHER && combo_enabled && isliving(target))
-		if(finisher_type == FINISHER_LEAP)
+		if(finisher_type == FINISHER_LEAP && CanUseEgo(user))
 			. = Leap(target, user)
-		if(finisher_type == FINISHER_PIERCE)
+		if(finisher_type == FINISHER_PIERCE && CanUseEgo(user))
 			. = Pierce(target, user)
 		return
 	return . = ..()
@@ -397,6 +395,8 @@
 
 					. = Leap(target, user)
 				return
+	else
+		to_chat(user, span_danger("Combo attacks with this weapon are currently disabled, use it in-hand to re-enable them."))
 	return
 
 ////////////////////////////////////////////////////////////
