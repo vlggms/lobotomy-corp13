@@ -24,13 +24,6 @@
 /obj/item/toy/plush/malkuth,
 /turf/open/floor/carpet,
 /area/city/outskirts)
-"ds" = (
-/obj/effect/turf_decal/siding/purple{
-	dir = 1
-	},
-/obj/effect/landmark/abnospawn/easytank,
-/turf/open/floor/carpet/purple,
-/area/city/outskirts)
 "dt" = (
 /obj/effect/turf_decal/siding/purple{
 	dir = 4
@@ -64,10 +57,6 @@
 /obj/effect/turf_decal/siding/white/corner{
 	color = "#440000"
 	},
-/turf/open/floor/plasteel/dark,
-/area/city/outskirts)
-"gY" = (
-/obj/effect/landmark/abnospawn/easytank,
 /turf/open/floor/plasteel/dark,
 /area/city/outskirts)
 "hv" = (
@@ -192,10 +181,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/city/outskirts)
-"sC" = (
-/obj/effect/landmark/abnospawn/easycombat,
-/turf/open/floor/plasteel/dark,
-/area/city/outskirts)
 "sD" = (
 /obj/effect/turf_decal/siding/purple{
 	dir = 6
@@ -223,10 +208,6 @@
 "uM" = (
 /obj/structure/flora/rock/pile,
 /turf/open/floor/plating/ashplanet/ash,
-/area/city/outskirts)
-"ve" = (
-/obj/effect/landmark/abnospawn/easysupport,
-/turf/open/floor/plasteel/dark,
 /area/city/outskirts)
 "we" = (
 /obj/machinery/vending/custom/unbreakable,
@@ -5597,7 +5578,7 @@ IR
 NI
 NI
 NI
-gY
+NI
 NI
 NI
 NI
@@ -5842,7 +5823,7 @@ OY
 OY
 EA
 NI
-ve
+NI
 NI
 NI
 NI
@@ -6216,7 +6197,7 @@ iW
 hO
 NI
 NI
-sC
+NI
 NI
 NI
 we
@@ -6265,7 +6246,7 @@ EA
 EA
 UQ
 NI
-ds
+pm
 CM
 yy
 NI
