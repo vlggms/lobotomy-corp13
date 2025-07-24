@@ -861,6 +861,8 @@
 	merge_type = /obj/item/stack/thumb_east_ammo
 	w_class = WEIGHT_CLASS_NORMAL
 	full_w_class = WEIGHT_CLASS_BULKY
+	/// Should this ammo describe its effects when examined? Set to FALSE for spent rounds.
+	var/should_show_effects = TRUE
 	/// What item does this turn into when it gets spent?
 	var/spent_type = /obj/item/stack/thumb_east_ammo/spent
 	/// This variable holds the path to the sound file played when this round is consumed.
@@ -883,11 +885,12 @@
 /obj/item/stack/thumb_east_ammo/examine(mob/user)
 	. = ..()
 	. += span_danger("This ammunition becomes bulky when the stack reaches an amount of [(max_amount / 3) * 2]. Split it to store it in your backpack.")
-	. += span_notice("This ammunition increases weapon base damage by [flat_force_base] when fired.")
-	. += span_notice("It generates [heat_generation] heat when fired.")
-	. += span_notice("It [tremor_base >= 1 ? "applies [tremor_base]" : "does not apply"] tremor stacks on target hit after firing.")
-	. += span_notice("It [burn_base >= 1 ? "applies [burn_base]" : "does not apply"] burn stacks on target hit after firing.")
-	. += span_notice("It [aoe_size_bonus >= 1 ? "adds [aoe_size_bonus]" : "does not add any extra"] tiles of size to AoE attacks on target hit after firing.")
+	if(should_show_effects)
+		. += span_notice("This ammunition increases weapon base damage by [flat_force_base] when fired.")
+		. += span_notice("It generates [heat_generation] heat when fired.")
+		. += span_notice("It [tremor_base >= 1 ? "applies [tremor_base]" : "does not apply"] tremor stacks on target hit after firing.")
+		. += span_notice("It [burn_base >= 1 ? "applies [burn_base]" : "does not apply"] burn stacks on target hit after firing.")
+		. += span_notice("It [aoe_size_bonus >= 1 ? "adds [aoe_size_bonus]" : "does not add any extra"] tiles of size to AoE attacks on target hit after firing.")
 
 /// This override is so we can use 6 sprites instead of 3 to count the bullets individually.
 /obj/item/stack/thumb_east_ammo/update_icon_state()
@@ -983,6 +986,7 @@
 	singular_name = "spent propellant ammunition casing"
 	icon_state = "thumb_east_spent"
 	merge_type = /obj/item/stack/thumb_east_ammo/spent
+	should_show_effects = FALSE
 	heat_generation = 0
 	tremor_base = 0
 	burn_base = 0
