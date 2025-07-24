@@ -467,6 +467,7 @@
 	playsound(src, reload_start_sound, 100, FALSE, 10)
 	to_chat(user, span_info("You begin loading your [src.name]..."))
 	overheat = 0
+	ReturnToNormal(user)
 	busy = TRUE
 	if(do_after(user, 0.6 SECONDS, src, progress = TRUE, interaction_key = "thumb_east_reload", max_interact_count = 1))
 		// If we reached this line, we've started the reload properly now. Being interrupted at this point causes a ReloadFailure(), you will spill the ammo you're loading.

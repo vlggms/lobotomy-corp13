@@ -98,14 +98,13 @@
 	// Placeholder sprite.
 	icon_state = "crate_thumb"
 	rarechance = 33
-	veryrarechance = 7
+	veryrarechance = 10
+	cosmeticchance = 30
 	lootlist = list(
 		// Thumb S Soldato Weapons
 		/obj/item/ego_weapon/ranged/city/thumb,
 		// Thumb S Soldato Armour
 		/obj/item/clothing/suit/armor/ego_gear/city/thumb,
-		// Thumb E Ammo Box (9x Surplus Propellant, 6x Ligermark)
-		/obj/item/storage/box/thumb_east_ammo,
 	)
 	rareloot = list(
 		// Thumb E Soldato Weapons
@@ -128,4 +127,9 @@
 		// TBA.
 		// Thumb S Sottocapo Armour
 		/obj/item/clothing/suit/armor/ego_gear/city/thumb_sottocapo,
+	)
+	// We drop ammo in the cosmetic loot list so it doesn't block other loot from spawning, basically.
+	cosmeticloot = list(
+		// Thumb E Ammo Box (9x Surplus Propellant, 6x Ligermark)
+		/obj/item/storage/box/thumb_east_ammo,
 	)
