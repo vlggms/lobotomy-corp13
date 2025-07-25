@@ -3694,7 +3694,7 @@
 	name = "hydroponics";
 	req_access_txt = "28"
 	},
-/turf/open/floor/plasteel,
+/turf/open/floor/eighties,
 /area/city/shop)
 "rE" = (
 /turf/closed/indestructible/opshuttle{
@@ -6562,10 +6562,10 @@
 	},
 /area/city)
 "EU" = (
-/obj/structure/chair/sofa{
+/obj/structure/chair/sofa/left{
 	dir = 8
 	},
-/turf/open/floor/plasteel/vaporwave,
+/turf/open/floor/eighties,
 /area/city/shop)
 "EW" = (
 /obj/structure/closet/cabinet,
@@ -6595,11 +6595,10 @@
 	},
 /area/city/fixers)
 "Fc" = (
-/obj/machinery/door/airlock/grunge{
-	name = "employee access";
-	req_access_txt = "28"
+/obj/structure/chair/sofa/right{
+	dir = 8
 	},
-/turf/open/floor/plasteel,
+/turf/open/floor/eighties,
 /area/city/shop)
 "Fd" = (
 /obj/structure/table,
@@ -8189,9 +8188,7 @@
 /area/city/shop)
 "Md" = (
 /obj/machinery/door/airlock/glass_large,
-/turf/open/floor/facility{
-	color = #8f8f8f
-	},
+/turf/open/floor/eighties,
 /area/city/shop)
 "Mn" = (
 /obj/effect/light_emitter{
@@ -47464,7 +47461,7 @@ Ev
 Ev
 Ev
 LE
-LE
+Ev
 Md
 PP
 uT
@@ -47721,8 +47718,8 @@ IB
 af
 Ln
 Ev
+Ev
 LE
-gR
 PP
 PP
 PP
@@ -48234,7 +48231,7 @@ Bb
 Bb
 Ev
 HY
-HY
+Bb
 HY
 lN
 Xl
@@ -48490,9 +48487,9 @@ LP
 Wr
 iF
 Ev
-LP
+Fc
+Wr
 EU
-iF
 lN
 Mv
 BC
@@ -48745,11 +48742,11 @@ Qi
 LE
 Ev
 Ev
-LE
-LE
-LE
 Ev
-Ev
+LE
+LE
+LE
+LE
 lN
 rp
 ws
@@ -49001,12 +48998,12 @@ LE
 LE
 Ih
 Ev
-LE
-Bb
-LE
-Bb
-LE
 Ev
+HY
+LE
+Bb
+LE
+LE
 lN
 vC
 ta
@@ -49258,7 +49255,7 @@ af
 Pv
 af
 LE
-LE
+Ev
 Bb
 CE
 Bb
@@ -50794,7 +50791,7 @@ gz
 gz
 gz
 gz
-Fc
+TZ
 LE
 LE
 LE
