@@ -843,6 +843,25 @@
 	"If you trigger but miss your lunge, you can still continue the combo by landing a regular hit on-target."
 	motion_values = list(COMBO_NO_AMMO = 1, COMBO_LUNGE = 1, COMBO_ATTACK2 = 1.3, COMBO_FINISHER = 2, COMBO_ATTACK2_AOE = 1, COMBO_FINISHER_AOE = 1.2)
 
+/// Lei Heng's Podao. Players should never ever be given this, it's for staff. Couldn't let the really cool sprite by DWK go to waste.
+/// It will have a special ability that lets it fire off 6 bullets in a special attack like Furioso or Mirage Storm, but I haven't coded it yet.
+/obj/item/ego_weapon/city/thumb_east/podao/tiantui
+	name = "tiantui star's blade"
+	desc = "A traditional podao fitted with a system to load specialized propellant ammunition. It inspires awe - this isn't a normal blade, is it...?"
+	// Sprite by DWK
+	icon_state = "thumb_east_tiantuistarblade"
+	inhand_icon_state = "thumb_east_tiantuistarblade"
+	force = 85
+	attribute_requirements = list(
+							FORTITUDE_ATTRIBUTE = 120,
+							PRUDENCE_ATTRIBUTE = 120,
+							TEMPERANCE_ATTRIBUTE = 120,
+							JUSTICE_ATTRIBUTE = 120
+							)
+	max_ammo = 12
+	/// Okay so I kinda need to let you reload it twice since handful of ammo max size is 6 and this sword can fit up to 12 bullets. It's staff only, shouldn't matter too much.
+	spent_ammo_behaviour = SPENT_INSTANTEJECT
+
 ////////////////////////////////////////////////////////////
 // AMMUNITION SECTION.
 // These are stackable items. They don't really do much on their own. The Thumb East weapons handle the logic for loading and firing them.
