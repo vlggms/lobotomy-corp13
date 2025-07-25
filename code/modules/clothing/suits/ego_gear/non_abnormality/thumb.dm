@@ -44,8 +44,10 @@
 /obj/item/clothing/suit/armor/ego_gear/city/thumb_east
 	name = "thumb east soldato armor"
 	desc = "Armor worn by thumb grunts in eastern parts of the City."
+	icon = 'ModularTegustation/Teguicons/thumb_east_obj.dmi'
+	worn_icon = 'ModularTegustation/Teguicons/thumb_east_worn.dmi'
 	/// TEMPORARY. I don't have a East Soldato armour sprite yet.
-	icon_state = "thumb"
+	icon_state = "thumb_east_soldato"
 	armor = list(RED_DAMAGE = 40, WHITE_DAMAGE = 30, BLACK_DAMAGE = 40, PALE_DAMAGE = 30) // 140 points.
 	attribute_requirements = list(
 							FORTITUDE_ATTRIBUTE = 80,
@@ -57,7 +59,7 @@
 /obj/item/clothing/suit/armor/ego_gear/city/thumb_east/capo
 	name = "thumb east capo armor"
 	desc = "Armor worn by thumb capos in eastern parts of the City. This one looks like it belongs to a particularly high rank Capo."
-	/// Sprite by Potassium_19
+	/// East Capo armour sprites by Potassium_19
 	icon_state = "thumb_east_capo"
 	armor = list(RED_DAMAGE = 60, WHITE_DAMAGE = 50, BLACK_DAMAGE = 60, PALE_DAMAGE = 50) // 220 points.
 	attribute_requirements = list(

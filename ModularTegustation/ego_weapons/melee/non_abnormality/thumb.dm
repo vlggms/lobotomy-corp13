@@ -120,8 +120,12 @@
 	name = "thumb east soldato rifle"
 	desc = "A rifle used by the rank and file of the Thumb in the eastern parts of the City. There is a sharp bayonet built into the front.\n"+\
 	"Despite its name and appearance, it is used exclusively for melee combat. Soldatos load these rifles with a special type of propellant ammunition which enhances their strikes."
-	icon_state = "thumb_east_soldato"
-	inhand_icon_state = "thumb_east_soldato"
+	// Rifle sprites by Yumi
+	icon = 'ModularTegustation/Teguicons/thumb_east_obj.dmi'
+	lefthand_file = 'ModularTegustation/Teguicons/thumb_east_held_left.dmi'
+	righthand_file = 'ModularTegustation/Teguicons/thumb_east_held_right.dmi'
+	icon_state = "thumb_east_rifle"
+	inhand_icon_state = "thumb_east_rifle"
 	hitsound = 'sound/weapons/ego/thumb_east_rifle_attack.ogg'
 	usesound = 'sound/machines/click.ogg'
 	force = 40
@@ -848,7 +852,7 @@
 /obj/item/ego_weapon/city/thumb_east/podao/tiantui
 	name = "tiantui star's blade"
 	desc = "A traditional podao fitted with a system to load specialized propellant ammunition. It inspires awe - this isn't a normal blade, is it...?"
-	// Sprite by DWK
+	// Tiantui Star's Blade sprites by DWK
 	icon_state = "thumb_east_tiantuistarblade"
 	inhand_icon_state = "thumb_east_tiantuistarblade"
 	force = 92
