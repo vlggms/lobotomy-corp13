@@ -851,7 +851,7 @@
 	// Sprite by DWK
 	icon_state = "thumb_east_tiantuistarblade"
 	inhand_icon_state = "thumb_east_tiantuistarblade"
-	force = 85
+	force = 92
 	attribute_requirements = list(
 							FORTITUDE_ATTRIBUTE = 120,
 							PRUDENCE_ATTRIBUTE = 120,
