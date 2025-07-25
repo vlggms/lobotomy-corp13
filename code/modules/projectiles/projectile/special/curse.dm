@@ -7,7 +7,7 @@
 	icon_state = "cursehand0"
 	hitsound = 'sound/effects/curse4.ogg'
 	layer = LARGE_MOB_LAYER
-	damage_type = BURN
+	damage_type = FIRE
 	damage = 10
 	paralyze = 20
 	speed = 2

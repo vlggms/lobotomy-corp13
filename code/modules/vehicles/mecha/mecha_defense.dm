@@ -194,7 +194,7 @@
 
 /obj/vehicle/sealed/mecha/atmos_expose(datum/gas_mixture/air, exposed_temperature)
 	log_message("Exposed to dangerous temperature.", LOG_MECHA, color="red")
-	take_damage(5, BURN, 1)
+	take_damage(5, FIRE, 1)
 
 /obj/vehicle/sealed/mecha/attackby(obj/item/W, mob/user, params)
 
@@ -348,7 +348,7 @@
 	if(!has_charge(melee_energy_drain))
 		return NONE
 	use_power(melee_energy_drain)
-	if(M.damtype == BRUTE || M.damtype == BURN)
+	if(M.damtype == BRUTE || M.damtype == FIRE)
 		log_combat(user, src, "attacked", M, "(INTENT: [uppertext(user.a_intent)]) (DAMTYPE: [uppertext(M.damtype)])")
 		. = ..()
 
@@ -376,7 +376,7 @@
 			used_item = selected
 		else if(!visual_effect_icon)
 			visual_effect_icon = ATTACK_EFFECT_SMASH
-			if(damtype == BURN)
+			if(damtype == FIRE)
 				visual_effect_icon = ATTACK_EFFECT_MECHFIRE
 			else if(damtype == TOX)
 				visual_effect_icon = ATTACK_EFFECT_MECHTOXIN

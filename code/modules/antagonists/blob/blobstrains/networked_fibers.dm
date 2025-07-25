@@ -38,4 +38,4 @@
 	reac_volume = return_mob_expose_reac_volume(exposed_mob, methods, reac_volume, show_message, touch_protection, overmind)
 	exposed_mob.apply_damage(0.6*reac_volume, BRUTE, wound_bonus=CANT_WOUND)
 	if(!QDELETED(exposed_mob))
-		exposed_mob.apply_damage(0.6*reac_volume, BURN, wound_bonus=CANT_WOUND)
+		exposed_mob.apply_damage(0.6*reac_volume, FIRE, wound_bonus=CANT_WOUND)

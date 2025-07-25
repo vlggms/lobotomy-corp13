@@ -123,7 +123,7 @@
 	switch(damage_type)
 		if(BRUTE)
 			damage_amt = program.host_mob.getBruteLoss()
-		if(BURN)
+		if(FIRE)
 			damage_amt = program.host_mob.getFireLoss()
 		if(TOX)
 			damage_amt = program.host_mob.getToxLoss()

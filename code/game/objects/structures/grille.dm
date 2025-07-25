@@ -211,7 +211,7 @@
 				playsound(src, 'sound/effects/grillehit.ogg', 80, TRUE)
 			else
 				playsound(src, 'sound/weapons/tap.ogg', 50, TRUE)
-		if(BURN)
+		if(FIRE)
 			playsound(src, 'sound/items/welder.ogg', 80, TRUE)
 
 
@@ -258,7 +258,7 @@
 	return exposed_temperature > T0C + 1500 && !broken
 
 /obj/structure/grille/atmos_expose(datum/gas_mixture/air, exposed_temperature)
-	take_damage(1, BURN, 0)
+	take_damage(1, FIRE, 0)
 
 /obj/structure/grille/hitby(atom/movable/AM, skipcatch, hitpush, blocked, datum/thrownthing/throwingdatum)
 	if(isobj(AM))

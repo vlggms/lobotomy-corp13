@@ -232,7 +232,7 @@
 			playsound(user, BB.hitsound, 50, TRUE)
 			cell.use(E.e_cost)
 			. = ""
-		else if(BB.damage_type != BURN)
+		else if(BB.damage_type != FIRE)
 			user.visible_message("<span class='danger'>[user] tries to light [A.loc == user ? "[user.p_their()] [A.name]" : A] with [src], but only succeeds in utterly destroying it. Dumbass.</span>")
 			playsound(user, E.fire_sound, 50, TRUE)
 			playsound(user, BB.hitsound, 50, TRUE)

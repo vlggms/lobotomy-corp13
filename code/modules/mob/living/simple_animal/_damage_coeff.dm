@@ -6,10 +6,10 @@
 		. = new /datum/dam_coeff(red, white, black, pale, brute, fire, tox, clone, stamina, oxy)
 
 /proc/makeDamCoeff(list/dc = list())
-	var/list/coeffs = list(RED_DAMAGE = 1, WHITE_DAMAGE = 1, BLACK_DAMAGE = 1, PALE_DAMAGE = 1, BRUTE = 1, BURN = 1, TOX = 1, CLONE = 1, STAMINA = 1, OXY = 1)
+	var/list/coeffs = list(RED_DAMAGE = 1, WHITE_DAMAGE = 1, BLACK_DAMAGE = 1, PALE_DAMAGE = 1, BRUTE = 1, FIRE = 1, TOX = 1, CLONE = 1, STAMINA = 1, OXY = 1)
 	for(var/I in dc)
 		coeffs[I] = dc[I]
-	return getDamCoeff(coeffs[RED_DAMAGE], coeffs[WHITE_DAMAGE], coeffs[BLACK_DAMAGE], coeffs[PALE_DAMAGE], coeffs[BRUTE], coeffs[BURN], coeffs[TOX], coeffs[CLONE], coeffs[STAMINA], coeffs[OXY])
+	return getDamCoeff(coeffs[RED_DAMAGE], coeffs[WHITE_DAMAGE], coeffs[BLACK_DAMAGE], coeffs[PALE_DAMAGE], coeffs[BRUTE], coeffs[FIRE], coeffs[TOX], coeffs[CLONE], coeffs[STAMINA], coeffs[OXY])
 
 /datum/dam_coeff
 	datum_flags = DF_USE_TAG
@@ -56,7 +56,7 @@
 	return vars[coeff]
 
 /datum/dam_coeff/proc/getList()
-	return list(RED_DAMAGE = red, WHITE_DAMAGE = white, BLACK_DAMAGE = black, PALE_DAMAGE = pale, BRUTE = brute, BURN = fire, TOX = tox, CLONE = clone, STAMINA = stamina, OXY = oxy)
+	return list(RED_DAMAGE = red, WHITE_DAMAGE = white, BLACK_DAMAGE = black, PALE_DAMAGE = pale, BRUTE = brute, FIRE = fire, TOX = tox, CLONE = clone, STAMINA = stamina, OXY = oxy)
 
 /datum/dam_coeff/vv_edit_var(var_name, var_value)
 	if (var_name == NAMEOF(src, tag))

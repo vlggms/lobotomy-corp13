@@ -471,7 +471,7 @@
 			if(wounding_type == WOUND_SLASH)
 				C.take_damage_zone(body_zone, damage, BRUTE)
 			else if(wounding_type == WOUND_BURN && damage >= 10) // lazy way to block freezing from shredding clothes without adding another var onto apply_damage()
-				C.take_damage_zone(body_zone, damage, BURN)
+				C.take_damage_zone(body_zone, damage, FIRE)
 
 		if(!armor_ablation)
 			injury_mod += bare_wound_bonus

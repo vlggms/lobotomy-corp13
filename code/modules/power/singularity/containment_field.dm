@@ -43,7 +43,7 @@
 
 /obj/machinery/field/containment/play_attack_sound(damage_amount, damage_type = BRUTE)
 	switch(damage_type)
-		if(BURN)
+		if(FIRE)
 			playsound(loc, 'sound/effects/empulse.ogg', 75, TRUE)
 		if(BRUTE)
 			playsound(loc, 'sound/effects/empulse.ogg', 75, TRUE)

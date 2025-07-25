@@ -72,7 +72,7 @@
 				playsound(loc, 'sound/effects/hit_on_shattered_glass.ogg', 90, TRUE)
 			else
 				playsound(loc, 'sound/effects/glasshit.ogg', 90, TRUE)
-		if(BURN)
+		if(FIRE)
 			playsound(src.loc, 'sound/items/welder.ogg', 100, TRUE)
 
 /obj/structure/fireaxecabinet/take_damage(damage_amount, damage_type = BRUTE, sound_effect = TRUE, attack_dir)

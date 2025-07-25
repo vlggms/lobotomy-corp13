@@ -97,7 +97,7 @@
 
 /obj/structure/statue/plasma/bullet_act(obj/projectile/Proj)
 	var/burn = FALSE
-	if(!(Proj.nodamage) && Proj.damage_type == BURN && !QDELETED(src))
+	if(!(Proj.nodamage) && Proj.damage_type == FIRE && !QDELETED(src))
 		burn = TRUE
 	if(burn)
 		var/turf/T = get_turf(src)

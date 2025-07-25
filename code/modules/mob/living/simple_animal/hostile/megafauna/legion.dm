@@ -261,7 +261,7 @@
 	slot_flags = ITEM_SLOT_BACK
 	w_class = WEIGHT_CLASS_BULKY
 	force = 25
-	damtype = BURN
+	damtype = FIRE
 	hitsound = 'sound/weapons/sear.ogg'
 	wound_bonus = -40
 	bare_wound_bonus = 20

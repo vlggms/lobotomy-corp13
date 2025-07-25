@@ -190,7 +190,7 @@
 	switch(damage_type)
 		if(BRUTE)
 			playsound(src, 'sound/effects/glasshit.ogg', 90, TRUE)
-		if(BURN)
+		if(FIRE)
 			playsound(src, 'sound/items/welder.ogg', 100, TRUE)
 
 
@@ -209,7 +209,7 @@
 	return (exposed_temperature > T0C + (reinf ? 1600 : 800))
 
 /obj/machinery/door/window/atmos_expose(datum/gas_mixture/air, exposed_temperature)
-	take_damage(round(exposed_temperature / 200), BURN, 0)
+	take_damage(round(exposed_temperature / 200), FIRE, 0)
 
 
 /obj/machinery/door/window/emag_act(mob/user)

@@ -29,13 +29,13 @@ Slimecrossing Weapons
 
 /obj/item/kitchen/knife/rainbowknife/afterattack(atom/O, mob/user, proximity)
 	if(proximity && istype(O, /mob/living))
-		damtype = pick(BRUTE, BURN, TOX, OXY, CLONE)
+		damtype = pick(BRUTE, FIRE, TOX, OXY, CLONE)
 	switch(damtype)
 		if(BRUTE)
 			hitsound = 'sound/weapons/bladeslice.ogg'
 			attack_verb_continuous = string_list(list("slashes", "slices", "cuts"))
 			attack_verb_simple = string_list(list("slash", "slice", "cut"))
-		if(BURN)
+		if(FIRE)
 			hitsound = 'sound/weapons/sear.ogg'
 			attack_verb_continuous = string_list(list("burns", "sings", "heats"))
 			attack_verb_simple = string_list(list("burn", "sing", "heat"))

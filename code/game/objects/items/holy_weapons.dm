@@ -304,7 +304,7 @@
 	item_flags = ABSTRACT | DROPDEL
 	w_class = WEIGHT_CLASS_HUGE
 	hitsound = 'sound/weapons/sear.ogg'
-	damtype = BURN
+	damtype = FIRE
 	attack_verb_continuous = list("punches", "cross counters", "pummels")
 	attack_verb_simple = list("punch", "cross counter", "pummel")
 

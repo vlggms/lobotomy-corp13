@@ -39,7 +39,7 @@
 		switch(M.melee_damage_type)
 			if(BRUTE)
 				adjustBruteLoss(damage)
-			if(BURN)
+			if(FIRE)
 				adjustFireLoss(damage)
 
 /mob/living/silicon/attack_paw(mob/living/user)
@@ -110,7 +110,7 @@
 
 /mob/living/silicon/bullet_act(obj/projectile/Proj, def_zone, piercing_hit = FALSE)
 	SEND_SIGNAL(src, COMSIG_ATOM_BULLET_ACT, Proj, def_zone)
-	if((Proj.damage_type == BRUTE || Proj.damage_type == BURN))
+	if((Proj.damage_type == BRUTE || Proj.damage_type == FIRE))
 		adjustBruteLoss(Proj.damage)
 		if(prob(Proj.damage*1.5))
 			for(var/mob/living/M in buckled_mobs)
