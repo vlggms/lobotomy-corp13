@@ -123,8 +123,8 @@ GLOBAL_LIST_INIT(service_positions, list(
 
 
 	//R-Corp Sixth Pack
-	"Acquisitions Specialist",
-	"Production Specialist",
+	"R-Corp Acquisitions Specialist",
+	"R-Corp Production Specialist",
 	"R-Corp Raven MP",
 	"R-Corp Messenger Raven",
 	))
@@ -152,6 +152,14 @@ GLOBAL_LIST_INIT(security_positions, list(
 	"Damage Mitigation Officer",
 	"Damage Exasperation Officer",
 	"Internal Police",
+
+	//Sixth Pack
+	"Robin Section Leader",
+	"Robin Squad Sergeant",
+	"Section A Robin",
+	"Section B Robin",
+	"Section C Robin",
+	"R-Corp Rook",
 	))
 
 

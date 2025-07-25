@@ -36,7 +36,7 @@
 /mob/living/simple_animal/hostile/ordeal/indigo_dawn/proc/devour(mob/living/L)
 	if(!L)
 		return FALSE
-	if(SSmaptype.maptype in SSmaptype.citymaps)
+	if(SSmaptype.maptype in SSmaptype.citymaps || SSmaptype.maptype == "rcorp_factory")
 		return FALSE
 	visible_message(
 		span_danger("[src] devours [L]!"),
