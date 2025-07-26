@@ -1,0 +1,266 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"a" = (
+/turf/closed/indestructible/opshuttle{
+	color = "#6ced2f";
+	name = "shipping container";
+	atom_colours = list("#6ced2f")
+	},
+/area/shuttle)
+"e" = (
+/turf/closed/indestructible/opshuttle{
+	color = "#ed2f5f";
+	name = "shipping container";
+	atom_colours = list("#ed2f5f")
+	},
+/area/shuttle)
+"i" = (
+/obj/structure/chair/comfy/shuttle{
+	dir = 8
+	},
+/obj/effect/spawner/lootdrop/grille_or_trash,
+/turf/open/floor/facility{
+	color = "#b5b5b5";
+	atom_colours = list("#b5b5b5")
+	},
+/area/shuttle)
+"j" = (
+/turf/open/floor/carpet/red,
+/area/shuttle)
+"l" = (
+/obj/structure/chair/comfy/shuttle{
+	dir = 8
+	},
+/turf/open/floor/facility{
+	color = "#8f8f8f";
+	atom_colours = list("#8f8f8f")
+	},
+/area/shuttle)
+"o" = (
+/obj/structure/chair/comfy/shuttle{
+	dir = 8
+	},
+/obj/effect/spawner/lootdrop/grille_or_trash,
+/turf/open/floor/facility,
+/area/shuttle)
+"p" = (
+/obj/machinery/door/airlock/grunge{
+	name = "ucorp boat"
+	},
+/turf/open/floor/carpet/red,
+/area/shuttle)
+"u" = (
+/obj/structure/chair/comfy/shuttle{
+	dir = 4
+	},
+/turf/open/floor/facility{
+	color = "#8f8f8f";
+	atom_colours = list("#8f8f8f")
+	},
+/area/shuttle)
+"v" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/machinery/door/airlock/grunge{
+	name = "ucorp boat"
+	},
+/obj/docking_port/mobile{
+	name = "ucorp shuttle 2";
+	id = "boat2";
+	port_direction = 2;
+	dwidth = 4;
+	height = 7;
+	width = 9
+	},
+/turf/open/floor/carpet/green,
+/area/shuttle)
+"w" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/carpet/red,
+/area/shuttle)
+"z" = (
+/turf/open/floor/facility{
+	color = "#b5b5b5";
+	atom_colours = list("#b5b5b5")
+	},
+/area/shuttle)
+"A" = (
+/obj/structure/chair/comfy/shuttle{
+	dir = 4
+	},
+/turf/open/floor/facility{
+	color = "#b5b5b5";
+	atom_colours = list("#b5b5b5")
+	},
+/area/shuttle)
+"C" = (
+/turf/open/space/basic,
+/area/shuttle_arena)
+"D" = (
+/turf/open/floor/facility,
+/area/shuttle)
+"G" = (
+/obj/machinery/door/airlock/grunge{
+	name = "ucorp boat"
+	},
+/turf/open/floor/carpet/green,
+/area/shuttle)
+"H" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/machinery/door/airlock/grunge{
+	name = "ucorp boat"
+	},
+/turf/open/floor/carpet/red,
+/area/shuttle)
+"J" = (
+/obj/structure/chair/comfy/shuttle{
+	dir = 4
+	},
+/obj/effect/spawner/lootdrop/grille_or_trash,
+/turf/open/floor/facility{
+	color = "#8f8f8f";
+	atom_colours = list("#8f8f8f")
+	},
+/area/shuttle)
+"K" = (
+/turf/closed/indestructible/fakeglass,
+/area/shuttle)
+"L" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/facility,
+/area/shuttle)
+"N" = (
+/turf/open/floor/carpet/green,
+/area/shuttle)
+"O" = (
+/obj/structure/chair/comfy/shuttle{
+	dir = 8
+	},
+/turf/open/floor/facility{
+	color = "#b5b5b5";
+	atom_colours = list("#b5b5b5")
+	},
+/area/shuttle)
+"P" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/carpet/green,
+/area/shuttle)
+"Q" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/spawner/lootdrop/grille_or_trash,
+/turf/open/floor/facility,
+/area/shuttle)
+"R" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/chair/comfy/shuttle{
+	dir = 4
+	},
+/turf/open/floor/facility{
+	color = "#b5b5b5";
+	atom_colours = list("#b5b5b5")
+	},
+/area/shuttle)
+"T" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/chair/comfy/shuttle{
+	dir = 8
+	},
+/turf/open/floor/facility{
+	color = "#8f8f8f";
+	atom_colours = list("#8f8f8f")
+	},
+/area/shuttle)
+"X" = (
+/obj/machinery/computer/shuttle/mining{
+	name = "ship console";
+	shuttleId = "boat2";
+	possible_destinations = "synd_island;side_port3;side_port2;side_port1;silk_island";
+	dir = 4;
+	resistance_flags = 64
+	},
+/turf/open/floor/facility{
+	color = "#8f8f8f";
+	atom_colours = list("#8f8f8f")
+	},
+/area/shuttle)
+
+(1,1,1) = {"
+C
+a
+a
+K
+a
+a
+C
+"}
+(2,1,1) = {"
+e
+e
+A
+w
+A
+a
+a
+"}
+(3,1,1) = {"
+K
+u
+J
+j
+A
+R
+K
+"}
+(4,1,1) = {"
+H
+z
+P
+j
+Q
+z
+G
+"}
+(5,1,1) = {"
+p
+j
+j
+X
+N
+N
+v
+"}
+(6,1,1) = {"
+H
+D
+L
+N
+w
+D
+G
+"}
+(7,1,1) = {"
+K
+i
+O
+P
+T
+O
+K
+"}
+(8,1,1) = {"
+e
+e
+l
+P
+o
+a
+a
+"}
+(9,1,1) = {"
+C
+e
+e
+K
+e
+e
+C
+"}

@@ -86,6 +86,10 @@ SUBSYSTEM_DEF(vote)
 				choices["Continue Playing"] += non_voters.len
 				if(choices["Continue Playing"] >= greatest_votes)
 					greatest_votes = choices["Continue Playing"]
+			else if(mode == "submap")
+				// For submap votes, non-voters don't affect the result
+				// The first option will be selected if it's a tie
+				non_voters = list()
 
 	. = list()
 	if(greatest_votes)
@@ -140,6 +144,14 @@ SUBSYSTEM_DEF(vote)
 			if("map")
 				SSmapping.changemap(global.config.maplist[.])
 				SSmapping.map_voted = TRUE
+			if("submap")
+				var/selected_file = choice_tags[choices.Find(.)]
+				if(SSmapping.next_map_config && SSmapping.next_map_config.SetSelectedSubmap(selected_file))
+					to_chat(world, span_boldannounce("Map variant selected: [.]"))
+					// Save the updated config
+					SSmapping.next_map_config.MakeNextMap()
+				else
+					to_chat(world, span_warning("Failed to set map variant!"))
 			if("transfer")
 				if(. == "Initiate Crew Transfer")
 					SSshuttle.emergency.request(noannounce = TRUE)
@@ -245,6 +257,22 @@ SUBSYSTEM_DEF(vote)
 				if(SSshuttle.emergency.mode in ignore_vote)
 					return FALSE
 				choices.Add("Initiate Crew Transfer", "Continue Playing")
+			if("submap")
+				if(!SSmapping.next_map_config || !SSmapping.next_map_config.has_submaps)
+					return FALSE
+				question = "Select a variant for [SSmapping.next_map_config.map_name]:"
+				for(var/submap in SSmapping.next_map_config.available_submaps)
+					var/display_name
+					// Check if we have a custom display name
+					if(submap in SSmapping.next_map_config.submap_display_names)
+						display_name = SSmapping.next_map_config.submap_display_names[submap]
+					else
+						// Fall back to cleaned up filename
+						display_name = replacetext(submap, ".dmm", "")
+						display_name = replacetext(display_name, "_", " ")
+						display_name = capitalize(display_name)
+					choices.Add(display_name)
+					choice_tags.Add(submap) // Store actual filename
 			if("custom")
 				question = stripped_input(usr,"What is the vote for?")
 				if(!question)
