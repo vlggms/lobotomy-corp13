@@ -6,6 +6,7 @@ SUBSYSTEM_DEF(gamedirector)
 
 	var/list/obj/effect/landmark/available_landmarks = list()
 	var/datum/component/wave_announcer
+	var/first_announce = TRUE
 
 /datum/controller/subsystem/gamedirector/Initialize()
 	. = ..()
@@ -29,6 +30,9 @@ SUBSYSTEM_DEF(gamedirector)
 	return FALSE
 
 /datum/controller/subsystem/gamedirector/proc/AnnounceWave()
+	if(first_announce)
+		first_announce = FALSE
+		return
 	var/text = "A new X-Corp attack wave is inbound."
 	show_global_blurb(60 SECONDS, text, 1 SECONDS, "red", "black")
 
