@@ -745,3 +745,22 @@
 /datum/map_template/shuttle/quest/bus
 	suffix = "coolbus"
 	name = "quest bus"
+
+/datum/map_template/shuttle/ucorp_boat
+	can_be_bought = FALSE
+
+/datum/map_template/shuttle/ucorp_boat/boat1
+	port_id = "boat1"
+	suffix = "elevator"
+	name = "ucorp boat 1"
+
+/datum/map_template/shuttle/ucorp_boat/boat2
+	port_id = "boat2"
+	suffix = "elevator"
+	name = "ucorp boat 2"
+
+/datum/map_template/shuttle/ucorp_boat/boat3
+	port_id = "boat3"
+	suffix = "elevator"
+	name = "ucorp boat 3"
+

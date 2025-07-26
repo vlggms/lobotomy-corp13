@@ -1,0 +1,222 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"a" = (
+/obj/machinery/door/airlock/wood{
+	name = "ucorp boat"
+	},
+/turf/open/floor/wood{
+	icon_state = "wood-broken6"
+	},
+/area/shuttle)
+"c" = (
+/turf/closed/indestructible/fakeglass,
+/area/shuttle)
+"f" = (
+/obj/effect/spawner/lootdrop/garbage_spawner,
+/turf/open/floor/wood,
+/area/shuttle)
+"g" = (
+/obj/machinery/light,
+/turf/open/floor/wood,
+/area/shuttle)
+"h" = (
+/turf/open/floor/wood{
+	icon_state = "wood-broken"
+	},
+/area/shuttle)
+"i" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/wood{
+	icon_state = "wood-broken7"
+	},
+/area/shuttle)
+"k" = (
+/turf/closed/indestructible/wood,
+/area/shuttle)
+"m" = (
+/obj/machinery/light{
+	dir = 1
+	},
+/obj/structure/chair/pew/left{
+	dir = 1
+	},
+/turf/open/floor/wood{
+	icon_state = "wood-broken6"
+	},
+/area/shuttle)
+"p" = (
+/obj/structure/chair/pew/right{
+	dir = 1
+	},
+/obj/machinery/light/broken{
+	dir = 1
+	},
+/turf/open/floor/wood{
+	icon_state = "wood-broken"
+	},
+/area/shuttle)
+"r" = (
+/obj/structure/chair/pew,
+/turf/open/floor/wood{
+	icon_state = "wood-broken6"
+	},
+/area/shuttle)
+"t" = (
+/obj/structure/chair/pew/right{
+	dir = 1
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/wood,
+/area/shuttle)
+"v" = (
+/obj/machinery/computer/shuttle/mining{
+	name = "ship console";
+	shuttleId = "boat1";
+	possible_destinations = "main_port;backstreets_port";
+	dir = 1;
+	resistance_flags = 64
+	},
+/turf/open/floor/wood,
+/area/shuttle)
+"y" = (
+/obj/structure/chair/pew/left{
+	dir = 1
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/wood,
+/area/shuttle)
+"z" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/wood,
+/area/shuttle)
+"A" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/chair/pew,
+/turf/open/floor/wood,
+/area/shuttle)
+"B" = (
+/obj/docking_port/mobile{
+	name = "ucorp shuttle 1";
+	id = "boat1";
+	port_direction = 2;
+	dwidth = 3;
+	height = 9;
+	width = 7
+	},
+/turf/closed/indestructible/wood,
+/area/shuttle)
+"D" = (
+/turf/open/floor/wood,
+/area/shuttle)
+"H" = (
+/obj/machinery/door/airlock/wood{
+	name = "ucorp boat"
+	},
+/turf/open/floor/wood,
+/area/shuttle)
+"J" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/spawner/lootdrop/garbage_spawner,
+/turf/open/floor/wood{
+	icon_state = "wood-broken6"
+	},
+/area/shuttle)
+"M" = (
+/obj/machinery/door/airlock/wood{
+	name = "ucorp boat"
+	},
+/turf/open/floor/wood{
+	icon_state = "wood-broken7"
+	},
+/area/shuttle)
+"N" = (
+/obj/machinery/light,
+/obj/effect/spawner/lootdrop/garbage_spawner,
+/turf/open/floor/wood{
+	icon_state = "wood-broken"
+	},
+/area/shuttle)
+"P" = (
+/obj/structure/chair/pew,
+/turf/open/floor/wood,
+/area/shuttle)
+"X" = (
+/turf/open/space/basic,
+/area/shuttle_arena)
+
+(1,1,1) = {"
+X
+k
+c
+c
+c
+H
+H
+k
+X
+"}
+(2,1,1) = {"
+k
+k
+p
+D
+t
+h
+g
+k
+k
+"}
+(3,1,1) = {"
+c
+r
+z
+D
+D
+D
+z
+J
+H
+"}
+(4,1,1) = {"
+c
+P
+D
+D
+D
+D
+D
+v
+B
+"}
+(5,1,1) = {"
+c
+A
+f
+D
+i
+D
+z
+D
+a
+"}
+(6,1,1) = {"
+k
+k
+m
+D
+y
+D
+N
+k
+k
+"}
+(7,1,1) = {"
+X
+k
+c
+c
+c
+M
+H
+k
+X
+"}
