@@ -168,9 +168,11 @@
 	/// Distance in tiles which our initial lunge reaches.
 	var/lunge_range = 3
 	/// Duration of the cooldown for our lunge (we don't want people spam-lunging exclusively in PVP, etc). This also limits how often you can start a combo.
-	var/lunge_cooldown_duration = 16 SECONDS
-	/// Holds the actual world time when we can lunge again.
-	var/lunge_cooldown
+	var/lunge_cooldown_duration = 13 SECONDS
+	/// Holds the timer for our lunge so we can clean it up later.
+	var/lunge_cooldown_timer
+	/// Are we ready to lunge?
+	var/lunge_ready = TRUE
 	/// Base radius in tiles for the second attack's AoE range. Should be at least 1.
 	var/attack2_aoe_base_radius = 1
 	/// Value in tiles for the radius of the Leap Finisher AoE and the length of the Pierce Finisher AoE.
@@ -400,7 +402,7 @@
 					. = Leap(target, user)
 				return
 	else
-		to_chat(user, span_danger("Combo attacks with this weapon are currently disabled, use it in-hand to re-enable them."))
+		to_chat(user, span_userdanger("Combo attacks with this weapon are currently disabled, use it in-hand to re-enable them."))
 	return
 
 ////////////////////////////////////////////////////////////
@@ -524,6 +526,7 @@
 		if(spilled_bullet)
 			spilled_bullet.forceMove(user.drop_location())
 			spilled_bullet.throw_at(get_ranged_target_turf(user, pick(GLOB.alldirs), 1), 1, 5, spin = TRUE)
+			spilled_bullet.setDir(pick(GLOB.alldirs))
 			sleep(1)
 
 /// This proc tries to spend a round, and if it is able to, calls ApplyAmmoBonuses() and CreateSpentCartridge() with that round, then returns TRUE. If it can't, returns FALSE.
@@ -638,6 +641,15 @@
 		combo_stage = COMBO_NO_AMMO
 		to_chat(user, span_warning("Your combo resets!"))
 
+/// This proc allows us to start a new combo by lunging and alerts the user in chat.
+/obj/item/ego_weapon/city/thumb_east/proc/ReadyToLunge(mob/user)
+	lunge_ready = TRUE
+	lunge_cooldown_timer = null
+	if(combo_stage == COMBO_NO_AMMO)
+		to_chat(user, span_nicegreen("You're ready to lunge and begin a new combo again."))
+	else
+		to_chat(user, span_nicegreen("You're ready to lunge again, once your current combo is finished."))
+
 /// This proc is our opener attack. We try to lunge at people from range by spending a round. It is actual stepping, not teleporting.
 /// If we reach our target with it, we automatically hit them. If we don't, we can still benefit from the fired round's bonuses if we land a hit before the combo times out.
 /obj/item/ego_weapon/city/thumb_east/proc/Lunge(mob/living/target, mob/living/user)
@@ -645,7 +657,7 @@
 	if(!(can_see(user, target, lunge_range)))
 		to_chat(user, span_warning("You can't reach your target!"))
 		return FALSE
-	if(lunge_cooldown > world.time)
+	if(!lunge_ready)
 		to_chat(user, span_warning("You're not ready to lunge yet!"))
 		return FALSE
 
@@ -653,7 +665,8 @@
 	// Check to see if we've got a round to fire.
 	var/fired_round = SpendAmmo(user)
 	if(fired_round)
-		lunge_cooldown = world.time + lunge_cooldown_duration
+		lunge_ready = FALSE
+		lunge_cooldown_timer = addtimer(CALLBACK(src, PROC_REF(ReadyToLunge), user), lunge_cooldown_duration)
 		// Aesthetics.
 		to_chat(user, span_danger("You lunge at [target] using the propulsion from your [src.name]!"))
 		var/turf/takeoff_turf = get_turf(user)
@@ -723,7 +736,7 @@
 			RadiusAOE(target, user, COMBO_FINISHER)
 			ApplyStatusEffects(target, COMBO_FINISHER)
 			target.attackby(src, user)
-
+			shake_camera(target, 2, 4)
 			return TRUE
 		// Uh oh. We didn't have ammo.
 		else
@@ -756,6 +769,7 @@
 		ApplyStatusEffects(target, COMBO_FINISHER)
 		AOEHit(aoe_turfs, target, user, COMBO_FINISHER)
 		target.attackby(src, user)
+		shake_camera(target, 2, 2)
 
 		return TRUE
 	// We only reach this else block if we didn't manage to spend a bullet. We will just hit them normally in this case.
@@ -801,9 +815,11 @@
 			if(hit_type == COMBO_ATTACK2)
 				ApplyStatusEffects(L, COMBO_ATTACK2_AOE)
 				L.visible_message(span_danger("[user] cuts through [L] with a wide, explosive sweep!"))
+				shake_camera(L, 1.5, 2)
 			else
 				ApplyStatusEffects(L, COMBO_FINISHER_AOE)
 				L.visible_message(span_danger("[L] is scorched by a powerful blast from [user]'s [src.name]!"))
+				shake_camera(L, 2, 3.5)
 
 ////////////////////////////////////////////////////////////
 // WEAPON SUBTYPES.
@@ -863,8 +879,16 @@
 							JUSTICE_ATTRIBUTE = 120
 							)
 	max_ammo = 12
+	lunge_cooldown_duration = 7 SECONDS
 	/// Okay so I kinda need to let you reload it twice since handful of ammo max size is 6 and this sword can fit up to 12 bullets. It's staff only, shouldn't matter too much.
 	spent_ammo_behaviour = SPENT_INSTANTEJECT
+	accepted_ammo_table = list(
+		/obj/item/stack/thumb_east_ammo,
+		/obj/item/stack/thumb_east_ammo/facility,
+		/obj/item/stack/thumb_east_ammo/tigermark,
+		/obj/item/stack/thumb_east_ammo/tigermark/facility,
+		/obj/item/stack/thumb_east_ammo/tigermark/savage,
+	)
 
 ////////////////////////////////////////////////////////////
 // AMMUNITION SECTION.
@@ -900,7 +924,7 @@
 	/// Controls how much burn is applied to a target hit with this ammo in an attack. Multiplied by a motion value coefficient depending on combo stage.
 	var/burn_base = 2
 	/// Adds flat force to an attack boosted with this ammo. Multiplied by a motion value coefficient depending on combo stage.
-	var/flat_force_base = 5
+	var/flat_force_base = 8
 	/// AOE radius bonus when spending this shell on an AOE attack. Please never let this be too high or it will cause funny incidents. This is never multiplied.
 	var/aoe_size_bonus = 0
 
@@ -1000,6 +1024,23 @@
 	flat_force_base = 20
 	aoe_size_bonus = 1
 
+/// Staff only. Never ever give this to players.
+/obj/item/stack/thumb_east_ammo/tigermark/savage
+	name = "savage tigermark rounds"
+	desc = "Extremely powerful ammunition used by a certain high-ranking Capo of the Thumb. Its detonation sounds like the roar of a tiger.\n"+\
+	"You should be honoured if this is used to kill you."
+	singular_name = "savage tigermark round"
+	icon_state = "thumb_east_savage"
+	merge_type = /obj/item/stack/thumb_east_ammo/tigermark/savage
+	spent_type = /obj/item/stack/thumb_east_ammo/spent/tigermark/savage
+	detonation_sound = 'sound/weapons/ego/thumb_east_podao_detonation.ogg'
+	aesthetic_shockwave_distance = 3
+	heat_generation = 4
+	tremor_base = 14
+	burn_base = 7
+	flat_force_base = 20
+	aoe_size_bonus = 2
+
 // Spent ammunition types. Please don't put this on any weapon's accepted ammunition table.
 // These spent cartridges can be brought back to the Thumb's ammo vendor to refund part of the cost, or they can be sold by Fixers or Rats.
 
@@ -1026,6 +1067,13 @@
 	icon_state = "thumb_east_tigermark_spent"
 	singular_name = "spent tigermark cartridge"
 	merge_type = /obj/item/stack/thumb_east_ammo/spent/tigermark
+
+/obj/item/stack/thumb_east_ammo/spent/tigermark/savage
+	name = "spent savage tigermark cartridges"
+	desc = "Very expensive looking spent cartridges. Smells like gunpowder and expensive cigars. Someone must have had a terrible day if these were used on them, huh? Be glad it wasn't you."
+	icon_state = "thumb_east_savage_spent"
+	singular_name = "spent savage tigermark cartridge"
+	merge_type = /obj/item/stack/thumb_east_ammo/spent/tigermark/savage
 
 ////////////////////////////////////////////////////////////
 // VFX SECTION.
