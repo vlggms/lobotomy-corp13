@@ -4948,7 +4948,7 @@
 	dir = 8
 	},
 /obj/machinery/newscaster{
-	step_x = 32
+	pixel_x = 32
 	},
 /turf/open/floor/wood,
 /area/city/shop)
@@ -5730,7 +5730,7 @@
 /area/city)
 "Ku" = (
 /obj/machinery/newscaster{
-	step_x = -32
+	pixel_x = -32
 	},
 /turf/open/floor/carpet/red,
 /area/city/shop)

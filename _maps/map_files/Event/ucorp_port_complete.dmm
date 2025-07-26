@@ -6454,7 +6454,7 @@
 	dir = 4
 	},
 /obj/machinery/newscaster{
-	step_x = -32
+	pixel_x = -32
 	},
 /turf/open/floor/plasteel/vaporwave,
 /area/city/shop)
@@ -7216,7 +7216,7 @@
 /area/city)
 "Ih" = (
 /obj/machinery/newscaster{
-	step_x = 32
+	pixel_x = 32
 	},
 /turf/open/floor/plasteel/vaporwave,
 /area/city/shop)
@@ -9758,7 +9758,7 @@
 /area/city/shop)
 "TS" = (
 /obj/machinery/newscaster{
-	step_x = -32
+	pixel_x = -32
 	},
 /turf/open/floor/plasteel/vaporwave,
 /area/city/shop)
