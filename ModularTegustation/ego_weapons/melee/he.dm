@@ -302,7 +302,7 @@
 				to_chat(user, MESSAGE_TYPE_WARNING, "You smash the axe down repeatedly!")
 				Smash(user, target)
 		else
-			ramping -= 0.1
+			ramping -= 0.2
 	else
 		user.changeNext_move(CLICK_CD_MELEE * 1.1)
 
@@ -983,8 +983,8 @@
 			\nThe weapon is stronger when used by an employee with strong conviction."
 	special = "This weapon deals increased damage at a cost of sanity loss for every hit."
 	icon_state = "sanguine"
-	force = 40//about 1.3x the average dps
-	attack_speed = 1
+	force = 65 //You get Giga DPS
+	stuntime = 4	//but a short stun
 	swingstyle = WEAPONSWING_LARGESWEEP
 	damtype = RED_DAMAGE
 	attack_verb_continuous = list("hacks", "slashes", "attacks")
@@ -1067,7 +1067,7 @@
 	desc = "They should've died after bleeding so much. You usually don't quarantine a corpse...."
 	special = "This weapon builds charge every 10 steps you've taken."
 	icon_state = "warp2"
-	force = 34 		//Spears get reduced damage
+	force = 37 		//Spears get increased damage, but this one has an ability
 	lefthand_file = 'icons/mob/inhands/weapons/ego_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/weapons/ego_righthand.dmi'
 	inhand_x_dimension = 32
@@ -1868,7 +1868,8 @@
 /obj/item/ego_weapon/sunshower
 	name = "sunshower"
 	desc = "I cannot protect you from this rain, but I can guard you from false kindness."
-	special = "This weapon gains 1 poise for every attack. 1 poise gives you a 2% chance to crit and deal 3x damage, stacking linearly. Critical hits reduce poise to 0."
+	special = "This weapon gains 1 poise for every attack. 1 poise gives you a 2% chance to crit and deal 3x damage, stacking linearly. Critical hits reduce poise to 0. \
+		This weapon has a combo that increases damage and attack speed as you continue attacking."
 	icon_state = "sunshower"
 	force = 26
 	attack_speed = 1

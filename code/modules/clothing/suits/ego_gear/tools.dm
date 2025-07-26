@@ -120,7 +120,8 @@
 	name = "wind-up"
 	desc = "Humanity has conquered disease and nature. Now we have come far enough to harness time itself."
 	icon_state = "windup"
-	armor = list(RED_DAMAGE = 10, WHITE_DAMAGE = 50, BLACK_DAMAGE = 10, PALE_DAMAGE = 70) // 140
+	//This used to be 1/5/1/7 but it invalidated literally every other waw EGO for pale armor.
+	armor = list(RED_DAMAGE = 30, WHITE_DAMAGE = 40, BLACK_DAMAGE = 30, PALE_DAMAGE = 40) // 140
 	attribute_requirements = list(
 							JUSTICE_ATTRIBUTE = 80
 							)

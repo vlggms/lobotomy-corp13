@@ -49,7 +49,7 @@
 
 /obj/projectile/ego_bullet/ego_unrequited
 	name = "unrequited"
-	damage = 11
+	damage = 18
 	damage_type = WHITE_DAMAGE
 
 /obj/projectile/ego_bullet/ego_harmony
@@ -70,7 +70,25 @@
 /obj/projectile/ego_bullet/ego_harmony/check_ricochet_flag(atom/A)
 	if(istype(A, /turf/closed))
 		return TRUE
+	if(istype(A, /obj/structure/window))
+		return TRUE
+	if(istype(A, /obj/machinery/door))
+		return TRUE
+
 	return FALSE
+
+/obj/projectile/ego_bullet/ego_harmony/on_hit(atom/target, blocked = FALSE)
+	if(ishuman(target))
+		var/mob/living/carbon/human/H = target
+		if(H.sanity_lost)
+			damage *=4
+	. = ..()
+
+	if(ishuman(target))
+		var/mob/living/carbon/human/H = target
+		if(H.sanity_lost)
+			qdel(src)
+
 
 /obj/projectile/ego_bullet/ego_song
 	name = "song"
@@ -143,8 +161,10 @@
 	name = "ardor blossom star"
 	icon_state = "gaussstrong"
 	damage_type = RED_DAMAGE
-	damage = 65
+	damage = 85
+	projectile_piercing = PASSMOB
 
 /obj/projectile/ego_bullet/ego_squeak
 	name = "squeak"
 	damage = 7
+	damage_type = RED_DAMAGE

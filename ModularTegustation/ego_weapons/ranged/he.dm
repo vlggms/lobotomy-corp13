@@ -148,7 +148,7 @@
 	desc = "A massive blocky launcher with some suspicious stains on it."
 	icon_state = "harmony"
 	inhand_icon_state = "harmony"
-	special = "This weapon fires bouncing, piercing shots."
+	special = "This weapon fires bouncing, piercing shots. On hitting an insane person, deals 4x damage and stops bouncing."
 	force = 30
 	damtype = WHITE_DAMAGE
 	attack_speed = 1.8
