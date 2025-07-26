@@ -123,6 +123,7 @@
 	rank_title = "CPT"
 	job_important = "You take the role of support team captain."
 	job_notice = "Manage both the messengers and military police. This role has a lot of downtime."
+	req_admin_notify = 1
 
 /datum/job/rcorp_captain/raven_factorycap/after_spawn(mob/living/carbon/human/H, mob/M)
 	. = ..()
