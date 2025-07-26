@@ -30,7 +30,7 @@ SUBSYSTEM_DEF(gamedirector)
 
 /datum/controller/subsystem/gamedirector/proc/AnnounceWave()
 	var/text = "A new X-Corp attack wave is inbound."
-	show_global_blurb(60 SECONDS, text, 1 SECONDS, "red", "white")
+	show_global_blurb(60 SECONDS, text, 1 SECONDS, "red", "black")
 
 /datum/controller/subsystem/gamedirector/proc/AnnounceVictory()
 	var/text = "The X-Corp Heart has been destroyed! Victory achieved."
