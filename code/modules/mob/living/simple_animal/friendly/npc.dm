@@ -8,7 +8,7 @@
 	icon_state = "priest_wings_closed"
 	icon_living = "priest_wings_closed"
 	icon_dead = "none"
-	faction = list("city", "hostile")
+	faction = list("hostile")
 	turns_per_move = 1
 	maxHealth = 10000
 	health = 10000

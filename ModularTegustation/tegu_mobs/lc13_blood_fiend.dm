@@ -234,7 +234,7 @@
 	ChangeResistances(list(RED_DAMAGE = 0.3, WHITE_DAMAGE = 0.3, BLACK_DAMAGE = 0.3, PALE_DAMAGE = 0.3))
 	blood_target = target
 	blood_target.apply_status_effect(/datum/status_effect/bloodhold)
-	blood_target.faction += "city"
+	blood_target.faction += "hostile"
 	can_act = FALSE
 	var/list/dirs_to_land = shuffle(list(NORTH, SOUTH, EAST, WEST, NORTHEAST, NORTHWEST, SOUTHEAST, SOUTHWEST))
 	var/list/dir_overlays = list()
@@ -278,7 +278,7 @@
 	for (var/i in 1 to 3)
 		blood_target.cut_overlay(dir_overlays[i])
 		if (stat == DEAD)
-			blood_target.faction -= "city"
+			blood_target.faction -= "hostile"
 			continue
 		animate(src, alpha = 1,pixel_x = 16, pixel_z = 0, time = 0.1 SECONDS)
 		src.pixel_x = 16
@@ -295,7 +295,7 @@
 			say("ROT AWAY!!!")
 		Dash(blood_target)
 		sleep(0.25 SECONDS)
-	blood_target.faction -= "city"
+	blood_target.faction -= "hostile"
 	if (!cutter_hit)
 		var/mutable_appearance/colored_overlay = mutable_appearance(icon, "small_stagger", layer + 0.1)
 		add_overlay(colored_overlay)
