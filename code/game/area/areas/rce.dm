@@ -1,23 +1,23 @@
 /area/rce
-    name = "R-Corp AO"
-    icon_state = "red"
-    requires_power = FALSE
-    has_gravity = STANDARD_GRAVITY
-    sound_environment = SOUND_AREA_LAVALAND
-    dynamic_lighting = DYNAMIC_LIGHTING_FORCED
+	name = "R-Corp AO"
+	icon_state = "red"
+	requires_power = FALSE
+	has_gravity = STANDARD_GRAVITY
+	sound_environment = SOUND_AREA_LAVALAND
+	dynamic_lighting = DYNAMIC_LIGHTING_FORCED
 
 /area/rce/rcorp_base
-    name = "R-Corp FOB"
-    icon_state = "green"
-    mood_bonus = 20
-    mood_message = "<span class='nicegreen'>It feels good to be safe at base!</span>\n"
+	name = "R-Corp FOB"
+	icon_state = "green"
+	mood_bonus = 20
+	mood_message = "<span class='nicegreen'>It feels good to be safe at base!</span>\n"
 
 /area/rce/xcorp
-    name = "X-Corp Ruins"
-    icon_state = "red"
+	name = "X-Corp Ruins"
+	icon_state = "red"
 
 /area/rce/xcorp/rce_0_0
-    icon_state = "rce_0_0"
+	icon_state = "rce_0_0"
 
 /area/rce/xcorp/rce_1_0
 

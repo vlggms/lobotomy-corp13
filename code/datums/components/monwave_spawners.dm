@@ -35,7 +35,7 @@
 	var/is_wave_announcer = FALSE
 
 //Experimental So i dont have to use the procs all the time
-/datum/component/monwave_spawner/Initialize(attack_target, assault_type = SEND_TILL_MAX, max_mobs = 10, list/wave_faction = list("hostile", "enemy"), list/new_wave_order, var/try_for_announcer = FALSE)
+/datum/component/monwave_spawner/Initialize(attack_target, assault_type = SEND_TILL_MAX, max_mobs = 10, list/wave_faction = list("hostile", "enemy"), list/new_wave_order, try_for_announcer = FALSE)
 	if(!isstructure(parent) && !ishostile(parent))
 		return COMPONENT_INCOMPATIBLE
 
