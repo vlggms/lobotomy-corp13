@@ -39,7 +39,7 @@
 	resistance_flags = 115
 	},
 /turf/open/floor/facility{
-	color = #c4c4c4
+	color = "#c4c4c4"
 	},
 /area/city)
 "ak" = (
@@ -110,7 +110,7 @@
 	dir = 8
 	},
 /turf/open/floor/facility{
-	color = #8f8f8f
+	color = "#8f8f8f"
 	},
 /area/city/shop)
 "aF" = (
@@ -163,7 +163,7 @@
 	pixel_y = -8
 	},
 /turf/open/floor/facility{
-	color = #c4c4c4
+	color = "#c4c4c4"
 	},
 /area/city)
 "aV" = (
@@ -255,7 +255,7 @@
 	dir = 8
 	},
 /turf/open/floor/facility{
-	color = #8f8f8f
+	color = "#8f8f8f"
 	},
 /area/city/shop)
 "bv" = (
@@ -268,7 +268,7 @@
 	dir = 1
 	},
 /turf/open/floor/facility{
-	color = #8f8f8f
+	color = "#8f8f8f"
 	},
 /area/city/fixers)
 "by" = (
@@ -295,7 +295,7 @@
 	dir = 1
 	},
 /turf/open/floor/facility{
-	color = #8f8f8f
+	color = "#8f8f8f"
 	},
 /area/city/fixers)
 "bG" = (
@@ -352,7 +352,7 @@
 	pixel_x = 8
 	},
 /turf/open/floor/facility{
-	color = #c4c4c4
+	color = "#c4c4c4"
 	},
 /area/city)
 "bY" = (
@@ -482,7 +482,7 @@
 	resistance_flags = 115
 	},
 /turf/open/floor/facility{
-	color = #c4c4c4
+	color = "#c4c4c4"
 	},
 /area/city)
 "cH" = (
@@ -541,7 +541,7 @@
 /area/city/shop)
 "dg" = (
 /turf/open/floor/facility{
-	color = #c4c4c4
+	color = "#c4c4c4"
 	},
 /area/city/backstreets_checkpoint)
 "dk" = (
@@ -624,7 +624,7 @@
 "dL" = (
 /obj/structure/closet/secure_closet/freezer/fridge/open,
 /turf/open/floor/facility{
-	color = #8f8f8f
+	color = "#8f8f8f"
 	},
 /area/city/shop)
 "dM" = (
@@ -642,7 +642,7 @@
 "dN" = (
 /obj/machinery/light/small,
 /turf/open/floor/facility{
-	color = #8f8f8f
+	color = "#8f8f8f"
 	},
 /area/city/fixers)
 "dO" = (
@@ -658,7 +658,7 @@
 "dQ" = (
 /obj/structure/chair/comfy/black,
 /turf/open/floor/facility{
-	color = #8f8f8f
+	color = "#8f8f8f"
 	},
 /area/city/fixers)
 "dS" = (
@@ -971,7 +971,7 @@
 	resistance_flags = 115
 	},
 /turf/open/floor/facility{
-	color = #c4c4c4
+	color = "#c4c4c4"
 	},
 /area/city)
 "fj" = (
@@ -1033,7 +1033,7 @@
 "fp" = (
 /obj/structure/table/greyscale,
 /turf/open/floor/facility{
-	color = #8f8f8f
+	color = "#8f8f8f"
 	},
 /area/city/fixers)
 "fq" = (
@@ -1073,7 +1073,7 @@
 	},
 /obj/structure/table,
 /turf/open/floor/facility{
-	color = #8f8f8f
+	color = "#8f8f8f"
 	},
 /area/city/shop)
 "fB" = (
@@ -1107,7 +1107,7 @@
 	dir = 1
 	},
 /turf/open/floor/facility{
-	color = #8f8f8f
+	color = "#8f8f8f"
 	},
 /area/city/shop)
 "fJ" = (
@@ -1214,7 +1214,7 @@
 	desc = "A sign that shows where the backsteets are."
 	},
 /turf/open/floor/facility{
-	color = #c4c4c4
+	color = "#c4c4c4"
 	},
 /area/city/backstreets_checkpoint)
 "gv" = (
@@ -1269,7 +1269,7 @@
 /area/city/house)
 "gR" = (
 /turf/open/floor/facility{
-	color = #8f8f8f
+	color = "#8f8f8f"
 	},
 /area/city/shop)
 "gU" = (
@@ -1310,7 +1310,7 @@
 	dir = 1
 	},
 /turf/open/floor/facility{
-	color = #8f8f8f
+	color = "#8f8f8f"
 	},
 /area/city/fixers)
 "hg" = (
@@ -1389,13 +1389,13 @@
 	dir = 4
 	},
 /turf/open/floor/facility{
-	color = #c4c4c4
+	color = "#c4c4c4"
 	},
 /area/city)
 "hG" = (
 /obj/machinery/processor,
 /turf/open/floor/facility{
-	color = #8f8f8f
+	color = "#8f8f8f"
 	},
 /area/city/shop)
 "hH" = (
@@ -1427,7 +1427,7 @@
 "hJ" = (
 /obj/machinery/vending/cola,
 /turf/open/floor/facility{
-	color = #8f8f8f
+	color = "#8f8f8f"
 	},
 /area/city/fixers)
 "hN" = (
@@ -1438,7 +1438,7 @@
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/effect/decal/cleanable/dirt/dust,
 /turf/open/floor/facility{
-	color = #c4c4c4
+	color = "#c4c4c4"
 	},
 /area/city)
 "hS" = (
@@ -1617,7 +1617,7 @@
 	dir = 1
 	},
 /turf/open/floor/facility{
-	color = #8f8f8f
+	color = "#8f8f8f"
 	},
 /area/city/shop)
 "iz" = (
@@ -1851,7 +1851,7 @@
 	resistance_flags = 115
 	},
 /turf/open/floor/facility{
-	color = #c4c4c4
+	color = "#c4c4c4"
 	},
 /area/city)
 "jH" = (
@@ -2014,7 +2014,7 @@
 	dir = 4
 	},
 /turf/open/floor/facility{
-	color = #8f8f8f
+	color = "#8f8f8f"
 	},
 /area/city/fixers)
 "ki" = (
@@ -2097,7 +2097,7 @@
 	},
 /obj/effect/decal/cleanable/dirt/dust,
 /turf/open/floor/facility{
-	color = #c4c4c4
+	color = "#c4c4c4"
 	},
 /area/city)
 "kA" = (
@@ -2240,7 +2240,7 @@
 	dir = 1
 	},
 /turf/open/floor/facility{
-	color = #8f8f8f
+	color = "#8f8f8f"
 	},
 /area/city/shop)
 "kW" = (
@@ -2442,7 +2442,7 @@
 "lS" = (
 /obj/machinery/cryopod,
 /turf/open/floor/facility{
-	color = #8f8f8f
+	color = "#8f8f8f"
 	},
 /area/city/shop)
 "lT" = (
@@ -2635,7 +2635,7 @@
 /obj/structure/table/greyscale,
 /obj/structure/railing,
 /turf/open/floor/facility{
-	color = #8f8f8f
+	color = "#8f8f8f"
 	},
 /area/city/fixers)
 "mT" = (
@@ -2696,7 +2696,7 @@
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/effect/decal/cleanable/dirt/dust,
 /turf/open/floor/facility{
-	color = #c4c4c4
+	color = "#c4c4c4"
 	},
 /area/city)
 "ng" = (
@@ -2826,7 +2826,7 @@
 /area/city/house)
 "oc" = (
 /turf/open/floor/facility{
-	color = #8f8f8f
+	color = "#8f8f8f"
 	},
 /area/city/fixers)
 "od" = (
@@ -2926,7 +2926,7 @@
 /obj/structure/table/reinforced,
 /obj/machinery/microwave,
 /turf/open/floor/facility{
-	color = #8f8f8f
+	color = "#8f8f8f"
 	},
 /area/city/shop)
 "ox" = (
@@ -3026,7 +3026,7 @@
 	dir = 8
 	},
 /turf/open/floor/facility{
-	color = #8f8f8f
+	color = "#8f8f8f"
 	},
 /area/city/shop)
 "pc" = (
@@ -3082,7 +3082,7 @@
 	pixel_x = 5
 	},
 /turf/open/floor/facility{
-	color = #8f8f8f
+	color = "#8f8f8f"
 	},
 /area/city/shop)
 "pj" = (
@@ -3097,7 +3097,7 @@
 /obj/machinery/door/window/eastleft,
 /obj/machinery/door/window/westright,
 /turf/open/floor/facility{
-	color = #8f8f8f
+	color = "#8f8f8f"
 	},
 /area/city/fixers)
 "pl" = (
@@ -3125,7 +3125,7 @@
 	req_access_txt = "67"
 	},
 /turf/open/floor/facility{
-	color = #8f8f8f
+	color = "#8f8f8f"
 	},
 /area/city/fixers)
 "pq" = (
@@ -3138,7 +3138,7 @@
 /obj/item/kitchen/rollingpin,
 /obj/machinery/light/small,
 /turf/open/floor/facility{
-	color = #8f8f8f
+	color = "#8f8f8f"
 	},
 /area/city/shop)
 "ps" = (
@@ -3232,7 +3232,7 @@
 "pQ" = (
 /obj/machinery/vending/coffee,
 /turf/open/floor/facility{
-	color = #8f8f8f
+	color = "#8f8f8f"
 	},
 /area/city/fixers)
 "pS" = (
@@ -3262,7 +3262,7 @@
 	req_access_txt = "67"
 	},
 /turf/open/floor/facility{
-	color = #8f8f8f
+	color = "#8f8f8f"
 	},
 /area/city/fixers)
 "pV" = (
@@ -3307,7 +3307,7 @@
 	dir = 1
 	},
 /turf/open/floor/facility{
-	color = #8f8f8f
+	color = "#8f8f8f"
 	},
 /area/city/shop)
 "qc" = (
@@ -3635,7 +3635,7 @@
 	pixel_y = 16
 	},
 /turf/open/floor/facility{
-	color = #8f8f8f
+	color = "#8f8f8f"
 	},
 /area/city/shop)
 "rn" = (
@@ -3682,7 +3682,7 @@
 "rx" = (
 /obj/effect/decal/cleanable/dirt/dust,
 /turf/open/floor/facility{
-	color = #c4c4c4
+	color = "#c4c4c4"
 	},
 /area/city/backstreets_checkpoint)
 "rA" = (
@@ -3758,7 +3758,7 @@
 /obj/structure/table,
 /obj/item/food/breadslice/moldy,
 /turf/open/floor/facility{
-	color = #8f8f8f
+	color = "#8f8f8f"
 	},
 /area/city/shop)
 "rW" = (
@@ -3766,7 +3766,7 @@
 	dir = 1
 	},
 /turf/open/floor/facility{
-	color = #8f8f8f
+	color = "#8f8f8f"
 	},
 /area/city/fixers)
 "rX" = (
@@ -3774,7 +3774,7 @@
 	name = "Hana Office"
 	},
 /turf/open/floor/facility{
-	color = #8f8f8f
+	color = "#8f8f8f"
 	},
 /area/city/fixers)
 "rZ" = (
@@ -3899,7 +3899,7 @@
 "sD" = (
 /obj/structure/itemselling,
 /turf/open/floor/facility{
-	color = #8f8f8f
+	color = "#8f8f8f"
 	},
 /area/city/fixers)
 "sF" = (
@@ -4016,7 +4016,7 @@
 /obj/structure/table/greyscale,
 /obj/item/reagent_containers/food/drinks/drinkingglass/filled/cola,
 /turf/open/floor/facility{
-	color = #8f8f8f
+	color = "#8f8f8f"
 	},
 /area/city/fixers)
 "sY" = (
@@ -4098,7 +4098,7 @@
 	dir = 1
 	},
 /turf/open/floor/facility{
-	color = #c4c4c4
+	color = "#c4c4c4"
 	},
 /area/city)
 "tv" = (
@@ -4146,7 +4146,7 @@
 	},
 /obj/machinery/light/small,
 /turf/open/floor/facility{
-	color = #8f8f8f
+	color = "#8f8f8f"
 	},
 /area/city/shop)
 "tE" = (
@@ -4303,7 +4303,7 @@
 /obj/item/storage/firstaid/regular,
 /obj/item/storage/firstaid/regular,
 /turf/open/floor/facility{
-	color = #8f8f8f
+	color = "#8f8f8f"
 	},
 /area/city/fixers)
 "um" = (
@@ -4421,7 +4421,7 @@
 /area/city)
 "uT" = (
 /turf/open/floor/facility{
-	color = #c4c4c4
+	color = "#c4c4c4"
 	},
 /area/city)
 "uU" = (
@@ -4671,13 +4671,13 @@
 	req_access_txt = "67"
 	},
 /turf/open/floor/facility{
-	color = #8f8f8f
+	color = "#8f8f8f"
 	},
 /area/city/fixers)
 "wk" = (
 /obj/machinery/light,
 /turf/open/floor/facility{
-	color = #8f8f8f
+	color = "#8f8f8f"
 	},
 /area/city/fixers)
 "wm" = (
@@ -4744,7 +4744,7 @@
 /obj/machinery/light/small,
 /obj/effect/decal/cleanable/dirt/dust,
 /turf/open/floor/facility{
-	color = #8f8f8f
+	color = "#8f8f8f"
 	},
 /area/city/fixers)
 "wv" = (
@@ -4759,7 +4759,7 @@
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/effect/decal/cleanable/dirt/dust,
 /turf/open/floor/facility{
-	color = #8f8f8f
+	color = "#8f8f8f"
 	},
 /area/city/fixers)
 "wy" = (
@@ -4786,7 +4786,7 @@
 /obj/item/choice_beacon/ingredient,
 /obj/item/choice_beacon/ingredient,
 /turf/open/floor/facility{
-	color = #8f8f8f
+	color = "#8f8f8f"
 	},
 /area/city/shop)
 "wJ" = (
@@ -4823,7 +4823,7 @@
 	pixel_y = 10
 	},
 /turf/open/floor/facility{
-	color = #8f8f8f
+	color = "#8f8f8f"
 	},
 /area/city/fixers)
 "wV" = (
@@ -4845,7 +4845,7 @@
 	pixel_x = 8
 	},
 /turf/open/floor/facility{
-	color = #c4c4c4
+	color = "#c4c4c4"
 	},
 /area/city)
 "xb" = (
@@ -4895,7 +4895,7 @@
 	set_luminosity = 24
 	},
 /turf/open/floor/facility{
-	color = #c4c4c4
+	color = "#c4c4c4"
 	},
 /area/city)
 "xx" = (
@@ -4934,7 +4934,7 @@
 	dir = 8
 	},
 /turf/open/floor/facility{
-	color = #8f8f8f
+	color = "#8f8f8f"
 	},
 /area/city/shop)
 "xC" = (
@@ -4965,7 +4965,7 @@
 "xH" = (
 /obj/structure/closet/crate,
 /turf/open/floor/facility{
-	color = #8f8f8f
+	color = "#8f8f8f"
 	},
 /area/city/fixers)
 "xI" = (
@@ -5016,13 +5016,13 @@
 	dir = 1
 	},
 /turf/open/floor/facility{
-	color = #8f8f8f
+	color = "#8f8f8f"
 	},
 /area/city/fixers)
 "xU" = (
 /obj/effect/decal/cleanable/dirt/dust,
 /turf/open/floor/facility{
-	color = #c4c4c4
+	color = "#c4c4c4"
 	},
 /area/city)
 "xV" = (
@@ -5068,7 +5068,7 @@
 /obj/item/restraints/handcuffs,
 /obj/item/restraints/handcuffs,
 /turf/open/floor/facility{
-	color = #8f8f8f
+	color = "#8f8f8f"
 	},
 /area/city/fixers)
 "ye" = (
@@ -5097,7 +5097,7 @@
 "yl" = (
 /obj/structure/plasticflaps/opaque,
 /turf/open/floor/facility{
-	color = #8f8f8f
+	color = "#8f8f8f"
 	},
 /area/city/shop)
 "ym" = (
@@ -5183,7 +5183,7 @@
 "yC" = (
 /obj/structure/closet/crate/trashcart/filled,
 /turf/open/floor/facility{
-	color = #8f8f8f
+	color = "#8f8f8f"
 	},
 /area/city)
 "yE" = (
@@ -5245,7 +5245,7 @@
 "yS" = (
 /obj/structure/reagent_dispensers/water_cooler,
 /turf/open/floor/facility{
-	color = #8f8f8f
+	color = "#8f8f8f"
 	},
 /area/city/fixers)
 "yU" = (
@@ -5275,7 +5275,7 @@
 	dir = 1
 	},
 /turf/open/floor/facility{
-	color = #8f8f8f
+	color = "#8f8f8f"
 	},
 /area/city/shop)
 "ze" = (
@@ -5409,7 +5409,7 @@
 	dir = 4
 	},
 /turf/open/floor/facility{
-	color = #8f8f8f
+	color = "#8f8f8f"
 	},
 /area/city/fixers)
 "zy" = (
@@ -5442,7 +5442,7 @@
 	dir = 1
 	},
 /turf/open/floor/facility{
-	color = #8f8f8f
+	color = "#8f8f8f"
 	},
 /area/city/fixers)
 "zN" = (
@@ -5500,7 +5500,7 @@
 	resistance_flags = 115
 	},
 /turf/open/floor/facility{
-	color = #c4c4c4
+	color = "#c4c4c4"
 	},
 /area/city)
 "zX" = (
@@ -5606,7 +5606,7 @@
 	dir = 4
 	},
 /turf/open/floor/facility{
-	color = #c4c4c4
+	color = "#c4c4c4"
 	},
 /area/city)
 "Az" = (
@@ -5641,7 +5641,7 @@
 	name = "chapel"
 	},
 /turf/open/floor/facility{
-	color = #8f8f8f
+	color = "#8f8f8f"
 	},
 /area/city/fixers)
 "AE" = (
@@ -5683,7 +5683,7 @@
 	dir = 1
 	},
 /turf/open/floor/facility{
-	color = #8f8f8f
+	color = "#8f8f8f"
 	},
 /area/city/fixers)
 "AJ" = (
@@ -5740,7 +5740,7 @@
 	req_access_txt = "20"
 	},
 /turf/open/floor/facility{
-	color = #8f8f8f
+	color = "#8f8f8f"
 	},
 /area/city/fixers)
 "AY" = (
@@ -5773,7 +5773,7 @@
 	name = "Long-Term Sleep Centre"
 	},
 /turf/open/floor/facility{
-	color = #8f8f8f
+	color = "#8f8f8f"
 	},
 /area/city/shop)
 "Bf" = (
@@ -5884,7 +5884,7 @@
 	dir = 1
 	},
 /turf/open/floor/facility{
-	color = #8f8f8f
+	color = "#8f8f8f"
 	},
 /area/city/fixers)
 "Bv" = (
@@ -6022,13 +6022,13 @@
 /obj/item/paper_bin,
 /obj/item/pen,
 /turf/open/floor/facility{
-	color = #8f8f8f
+	color = "#8f8f8f"
 	},
 /area/city/fixers)
 "Cd" = (
 /obj/item/kirbyplants/random,
 /turf/open/floor/facility{
-	color = #8f8f8f
+	color = "#8f8f8f"
 	},
 /area/city/shop)
 "Cf" = (
@@ -6140,7 +6140,7 @@
 /obj/structure/table/greyscale,
 /obj/item/storage/box/cups,
 /turf/open/floor/facility{
-	color = #8f8f8f
+	color = "#8f8f8f"
 	},
 /area/city/fixers)
 "CN" = (
@@ -6190,7 +6190,7 @@
 "CW" = (
 /obj/machinery/vending/fixer,
 /turf/open/floor/facility{
-	color = #8f8f8f
+	color = "#8f8f8f"
 	},
 /area/city/fixers)
 "CZ" = (
@@ -6203,7 +6203,7 @@
 	resistance_flags = 115
 	},
 /turf/open/floor/facility{
-	color = #c4c4c4
+	color = "#c4c4c4"
 	},
 /area/city)
 "Dg" = (
@@ -6319,7 +6319,7 @@
 	pixel_y = 10
 	},
 /turf/open/floor/facility{
-	color = #8f8f8f
+	color = "#8f8f8f"
 	},
 /area/city/fixers)
 "DT" = (
@@ -6407,7 +6407,7 @@
 	dir = 1
 	},
 /turf/open/floor/facility{
-	color = #8f8f8f
+	color = "#8f8f8f"
 	},
 /area/city/fixers)
 "En" = (
@@ -6432,7 +6432,7 @@
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/effect/decal/cleanable/dirt/dust,
 /turf/open/floor/facility{
-	color = #c4c4c4
+	color = "#c4c4c4"
 	},
 /area/city/backstreets_checkpoint)
 "Es" = (
@@ -6544,7 +6544,7 @@
 /area/city/shop)
 "ET" = (
 /turf/open/floor/facility{
-	color = #8f8f8f
+	color = "#8f8f8f"
 	},
 /area/city)
 "EU" = (
@@ -6577,7 +6577,7 @@
 /obj/item/flashlight/flare,
 /obj/item/flashlight/flare,
 /turf/open/floor/facility{
-	color = #8f8f8f
+	color = "#8f8f8f"
 	},
 /area/city/fixers)
 "Fc" = (
@@ -6640,7 +6640,7 @@
 "Fo" = (
 /obj/structure/table,
 /turf/open/floor/facility{
-	color = #8f8f8f
+	color = "#8f8f8f"
 	},
 /area/city/shop)
 "Fq" = (
@@ -6730,7 +6730,7 @@
 	},
 /obj/effect/decal/cleanable/dirt/dust,
 /turf/open/floor/facility{
-	color = #c4c4c4
+	color = "#c4c4c4"
 	},
 /area/city)
 "FR" = (
@@ -6878,7 +6878,7 @@
 "Gt" = (
 /obj/structure/rack,
 /turf/open/floor/facility{
-	color = #8f8f8f
+	color = "#8f8f8f"
 	},
 /area/city/fixers)
 "Gv" = (
@@ -7015,7 +7015,7 @@
 	dir = 1
 	},
 /turf/open/floor/facility{
-	color = #c4c4c4
+	color = "#c4c4c4"
 	},
 /area/city)
 "Hn" = (
@@ -7101,7 +7101,7 @@
 /obj/effect/turf_decal/siding/thinplating/dark,
 /obj/structure/chair/plastic,
 /turf/open/floor/facility{
-	color = #c4c4c4
+	color = "#c4c4c4"
 	},
 /area/city)
 "HL" = (
@@ -7163,7 +7163,7 @@
 /obj/structure/table/reinforced,
 /obj/item/reagent_containers/food/condiment/enzyme,
 /turf/open/floor/facility{
-	color = #8f8f8f
+	color = "#8f8f8f"
 	},
 /area/city/shop)
 "HX" = (
@@ -7237,7 +7237,7 @@
 	dir = 4
 	},
 /turf/open/floor/facility{
-	color = #8f8f8f
+	color = "#8f8f8f"
 	},
 /area/city/fixers)
 "In" = (
@@ -7396,7 +7396,7 @@
 	},
 /obj/effect/mapping_helpers/airlock/unres,
 /turf/open/floor/facility{
-	color = #8f8f8f
+	color = "#8f8f8f"
 	},
 /area/city/shop)
 "IX" = (
@@ -7404,7 +7404,7 @@
 /obj/machinery/door/window/eastright,
 /obj/machinery/door/window/westleft,
 /turf/open/floor/facility{
-	color = #8f8f8f
+	color = "#8f8f8f"
 	},
 /area/city/fixers)
 "IY" = (
@@ -7465,7 +7465,7 @@
 	req_access_txt = "9"
 	},
 /turf/open/floor/facility{
-	color = #8f8f8f
+	color = "#8f8f8f"
 	},
 /area/city/shop)
 "Jl" = (
@@ -7666,7 +7666,7 @@
 /obj/item/flashlight/seclite,
 /obj/item/flashlight/seclite,
 /turf/open/floor/facility{
-	color = #8f8f8f
+	color = "#8f8f8f"
 	},
 /area/city/fixers)
 "Ki" = (
@@ -7678,7 +7678,7 @@
 /obj/effect/turf_decal/siding/thinplating/dark,
 /obj/effect/decal/cleanable/dirt/dust,
 /turf/open/floor/facility{
-	color = #c4c4c4
+	color = "#c4c4c4"
 	},
 /area/city)
 "Kl" = (
@@ -7773,7 +7773,7 @@
 	},
 /obj/effect/decal/cleanable/dirt/dust,
 /turf/open/floor/facility{
-	color = #c4c4c4
+	color = "#c4c4c4"
 	},
 /area/city/backstreets_checkpoint)
 "KH" = (
@@ -7813,7 +7813,7 @@
 	name = "Clinic Office"
 	},
 /turf/open/floor/facility{
-	color = #8f8f8f
+	color = "#8f8f8f"
 	},
 /area/city/fixers)
 "KM" = (
@@ -7928,7 +7928,7 @@
 	},
 /obj/effect/decal/cleanable/dirt/dust,
 /turf/open/floor/facility{
-	color = #c4c4c4
+	color = "#c4c4c4"
 	},
 /area/city)
 "KT" = (
@@ -7946,7 +7946,7 @@
 /obj/effect/spawner/randomsnackvend,
 /obj/machinery/light,
 /turf/open/floor/facility{
-	color = #8f8f8f
+	color = "#8f8f8f"
 	},
 /area/city/shop)
 "KV" = (
@@ -8105,7 +8105,7 @@
 /obj/structure/closet/crate/trashcart/filled,
 /obj/effect/decal/cleanable/dirt/dust,
 /turf/open/floor/facility{
-	color = #8f8f8f
+	color = "#8f8f8f"
 	},
 /area/city)
 "Lz" = (
@@ -8143,7 +8143,7 @@
 	req_access_txt = "9"
 	},
 /turf/open/floor/facility{
-	color = #c4c4c4
+	color = "#c4c4c4"
 	},
 /area/city)
 "LG" = (
@@ -8185,7 +8185,7 @@
 /obj/effect/turf_decal/box,
 /obj/effect/landmark/fixerbase,
 /turf/open/floor/facility{
-	color = #8f8f8f
+	color = "#8f8f8f"
 	},
 /area/city/fixers)
 "LN" = (
@@ -8194,7 +8194,7 @@
 	req_access_txt = "69"
 	},
 /turf/open/floor/facility{
-	color = #8f8f8f
+	color = "#8f8f8f"
 	},
 /area/city/fixers)
 "LO" = (
@@ -8223,7 +8223,7 @@
 "LY" = (
 /obj/structure/fireplace,
 /turf/open/floor/facility{
-	color = #8f8f8f
+	color = "#8f8f8f"
 	},
 /area/city/fixers)
 "Mb" = (
@@ -8283,7 +8283,7 @@
 	},
 /obj/structure/rack,
 /turf/open/floor/facility{
-	color = #8f8f8f
+	color = "#8f8f8f"
 	},
 /area/city/fixers)
 "Mt" = (
@@ -8335,7 +8335,7 @@
 	dir = 8
 	},
 /turf/open/floor/facility{
-	color = #8f8f8f
+	color = "#8f8f8f"
 	},
 /area/city/shop)
 "MC" = (
@@ -8451,7 +8451,7 @@
 /obj/structure/chair/wood,
 /mob/living/simple_animal/hostile/ui_npc/eric_t,
 /turf/open/floor/facility{
-	color = #8f8f8f
+	color = "#8f8f8f"
 	},
 /area/city/shop)
 "Nq" = (
@@ -8524,7 +8524,7 @@
 	dir = 8
 	},
 /turf/open/floor/facility{
-	color = #c4c4c4
+	color = "#c4c4c4"
 	},
 /area/city/backstreets_checkpoint)
 "NB" = (
@@ -8561,7 +8561,7 @@
 	pixel_y = 5
 	},
 /turf/open/floor/facility{
-	color = #8f8f8f
+	color = "#8f8f8f"
 	},
 /area/city/shop)
 "NH" = (
@@ -8579,7 +8579,7 @@
 /obj/item/clothing/gloves/color/black,
 /obj/item/clothing/gloves/color/black,
 /turf/open/floor/facility{
-	color = #8f8f8f
+	color = "#8f8f8f"
 	},
 /area/city/fixers)
 "NJ" = (
@@ -8629,7 +8629,7 @@
 "NT" = (
 /obj/structure/potential,
 /turf/open/floor/facility{
-	color = #8f8f8f
+	color = "#8f8f8f"
 	},
 /area/city/fixers)
 "NX" = (
@@ -8755,7 +8755,7 @@
 "OD" = (
 /obj/effect/decal/cleanable/dirt/dust,
 /turf/open/floor/facility{
-	color = #8f8f8f
+	color = "#8f8f8f"
 	},
 /area/city/fixers)
 "OE" = (
@@ -9046,7 +9046,7 @@
 "Qs" = (
 /obj/effect/decal/cleanable/dirt/dust,
 /turf/open/floor/facility{
-	color = #8f8f8f
+	color = "#8f8f8f"
 	},
 /area/city)
 "Qt" = (
@@ -9092,7 +9092,7 @@
 	dir = 8
 	},
 /turf/open/floor/facility{
-	color = #8f8f8f
+	color = "#8f8f8f"
 	},
 /area/city/fixers)
 "QH" = (
@@ -9275,7 +9275,7 @@
 	pixel_x = 8
 	},
 /turf/open/floor/facility{
-	color = #c4c4c4
+	color = "#c4c4c4"
 	},
 /area/city/backstreets_checkpoint)
 "Rz" = (
@@ -9301,7 +9301,7 @@
 	req_access_txt = "9"
 	},
 /turf/open/floor/facility{
-	color = #8f8f8f
+	color = "#8f8f8f"
 	},
 /area/city/shop)
 "RJ" = (
@@ -9312,7 +9312,7 @@
 /obj/item/storage/firstaid/regular,
 /obj/item/storage/firstaid/regular,
 /turf/open/floor/facility{
-	color = #8f8f8f
+	color = "#8f8f8f"
 	},
 /area/city/shop)
 "RK" = (
@@ -9454,7 +9454,7 @@
 	},
 /obj/effect/decal/cleanable/dirt/dust,
 /turf/open/floor/facility{
-	color = #c4c4c4
+	color = "#c4c4c4"
 	},
 /area/city)
 "So" = (
@@ -9589,7 +9589,7 @@
 	},
 /obj/effect/decal/cleanable/dirt/dust,
 /turf/open/floor/facility{
-	color = #c4c4c4
+	color = "#c4c4c4"
 	},
 /area/city)
 "Tf" = (
@@ -9712,7 +9712,7 @@
 	resistance_flags = 115
 	},
 /turf/open/floor/facility{
-	color = #c4c4c4
+	color = "#c4c4c4"
 	},
 /area/city)
 "TD" = (
@@ -9740,7 +9740,7 @@
 	resistance_flags = 115
 	},
 /turf/open/floor/facility{
-	color = #c4c4c4
+	color = "#c4c4c4"
 	},
 /area/city)
 "TQ" = (
@@ -9783,7 +9783,7 @@
 /obj/item/food/meat/slab,
 /obj/item/food/meat/slab,
 /turf/open/floor/facility{
-	color = #8f8f8f
+	color = "#8f8f8f"
 	},
 /area/city/shop)
 "TY" = (
@@ -9799,7 +9799,7 @@
 "Ua" = (
 /obj/machinery/vending/dinnerware,
 /turf/open/floor/facility{
-	color = #8f8f8f
+	color = "#8f8f8f"
 	},
 /area/city/shop)
 "Ub" = (
@@ -9823,7 +9823,7 @@
 	req_access_txt = "69"
 	},
 /turf/open/floor/facility{
-	color = #8f8f8f
+	color = "#8f8f8f"
 	},
 /area/city/fixers)
 "Uh" = (
@@ -9852,7 +9852,7 @@
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/effect/landmark/cityspawner,
 /turf/open/floor/facility{
-	color = #c4c4c4
+	color = "#c4c4c4"
 	},
 /area/city)
 "Un" = (
@@ -9956,7 +9956,7 @@
 	},
 /obj/effect/decal/cleanable/dirt/dust,
 /turf/open/floor/facility{
-	color = #c4c4c4
+	color = "#c4c4c4"
 	},
 /area/city)
 "UW" = (
@@ -10020,7 +10020,7 @@
 	resistance_flags = 115
 	},
 /turf/open/floor/facility{
-	color = #c4c4c4
+	color = "#c4c4c4"
 	},
 /area/city)
 "Vs" = (
@@ -10161,7 +10161,7 @@
 	pixel_y = 12
 	},
 /turf/open/floor/facility{
-	color = #8f8f8f
+	color = "#8f8f8f"
 	},
 /area/city/fixers)
 "VT" = (
@@ -10178,7 +10178,7 @@
 /obj/structure/bed/pod,
 /obj/item/bedsheet/random,
 /turf/open/floor/facility{
-	color = #8f8f8f
+	color = "#8f8f8f"
 	},
 /area/city/fixers)
 "VV" = (
@@ -10189,7 +10189,7 @@
 /obj/structure/table/greyscale,
 /obj/item/reagent_containers/spray/chemsprayer/janitor,
 /turf/open/floor/facility{
-	color = #8f8f8f
+	color = "#8f8f8f"
 	},
 /area/city/fixers)
 "VX" = (
@@ -10219,7 +10219,7 @@
 	dir = 1
 	},
 /turf/open/floor/facility{
-	color = #8f8f8f
+	color = "#8f8f8f"
 	},
 /area/city)
 "Wl" = (
@@ -10388,7 +10388,7 @@
 	dir = 4
 	},
 /turf/open/floor/facility{
-	color = #c4c4c4
+	color = "#c4c4c4"
 	},
 /area/city/backstreets_checkpoint)
 "WZ" = (
@@ -10608,7 +10608,7 @@
 	},
 /obj/item/reagent_containers/spray/chemsprayer/janitor,
 /turf/open/floor/facility{
-	color = #8f8f8f
+	color = "#8f8f8f"
 	},
 /area/city/shop)
 "XQ" = (
@@ -10676,7 +10676,7 @@
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/effect/decal/cleanable/dirt/dust,
 /turf/open/floor/facility{
-	color = #c4c4c4
+	color = "#c4c4c4"
 	},
 /area/city)
 "Yp" = (
@@ -10729,7 +10729,7 @@
 	resistance_flags = 115
 	},
 /turf/open/floor/facility{
-	color = #c4c4c4
+	color = "#c4c4c4"
 	},
 /area/city/backstreets_checkpoint)
 "YC" = (
@@ -10831,7 +10831,7 @@
 	dir = 14
 	},
 /turf/open/floor/facility{
-	color = #c4c4c4
+	color = "#c4c4c4"
 	},
 /area/city)
 "Zf" = (
@@ -10839,7 +10839,7 @@
 	dir = 1
 	},
 /turf/open/floor/facility{
-	color = #c4c4c4
+	color = "#c4c4c4"
 	},
 /area/city/backstreets_checkpoint)
 "Zg" = (
@@ -10884,7 +10884,7 @@
 	name = "association office"
 	},
 /turf/open/floor/facility{
-	color = #8f8f8f
+	color = "#8f8f8f"
 	},
 /area/city/fixers)
 "Zn" = (
@@ -10979,7 +10979,7 @@
 	dir = 8
 	},
 /turf/open/floor/facility{
-	color = #8f8f8f
+	color = "#8f8f8f"
 	},
 /area/city/shop)
 "ZG" = (
@@ -11026,7 +11026,7 @@
 	dir = 8
 	},
 /turf/open/floor/facility{
-	color = #8f8f8f
+	color = "#8f8f8f"
 	},
 /area/city/shop)
 "ZT" = (

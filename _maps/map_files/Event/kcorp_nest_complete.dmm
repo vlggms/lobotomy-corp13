@@ -140,7 +140,7 @@
 	},
 /obj/effect/turf_decal/bot_white,
 /turf/open/floor/stone{
-	color = #abf2ff
+	color = "#abf2ff"
 	},
 /area/city/shop)
 "bb" = (
@@ -200,7 +200,7 @@
 	dir = 1
 	},
 /turf/open/floor/stone{
-	color = #abf2ff
+	color = "#abf2ff"
 	},
 /area/city/shop)
 "bm" = (
@@ -252,7 +252,7 @@
 /obj/effect/turf_decal/trimline/blue/filled/line,
 /obj/structure/curtain,
 /turf/open/floor/stone{
-	color = #abf2ff
+	color = "#abf2ff"
 	},
 /area/city/shop)
 "bG" = (
@@ -974,7 +974,7 @@
 	},
 /obj/structure/curtain,
 /turf/open/floor/stone{
-	color = #abf2ff
+	color = "#abf2ff"
 	},
 /area/city/shop)
 "fS" = (
@@ -2351,7 +2351,7 @@
 	},
 /obj/structure/curtain,
 /turf/open/floor/stone{
-	color = #abf2ff
+	color = "#abf2ff"
 	},
 /area/city/shop)
 "oN" = (
@@ -2635,7 +2635,7 @@
 	},
 /obj/structure/curtain,
 /turf/open/floor/stone{
-	color = #abf2ff
+	color = "#abf2ff"
 	},
 /area/city/shop)
 "qJ" = (
@@ -3247,7 +3247,7 @@
 /obj/structure/table/greyscale,
 /obj/structure/curtain,
 /turf/open/floor/stone{
-	color = #abf2ff
+	color = "#abf2ff"
 	},
 /area/city/shop)
 "ur" = (
@@ -3895,7 +3895,7 @@
 /obj/machinery/light,
 /obj/effect/turf_decal/bot_white,
 /turf/open/floor/stone{
-	color = #abf2ff
+	color = "#abf2ff"
 	},
 /area/city/shop)
 "yU" = (
@@ -4257,7 +4257,7 @@
 /area/city/house)
 "Ba" = (
 /turf/open/floor/stone{
-	color = #abf2ff
+	color = "#abf2ff"
 	},
 /area/city/shop)
 "Bj" = (
@@ -4332,7 +4332,7 @@
 /obj/effect/turf_decal/trimline/blue/filled/line,
 /obj/structure/curtain,
 /turf/open/floor/stone{
-	color = #abf2ff
+	color = "#abf2ff"
 	},
 /area/city/shop)
 "Cc" = (
@@ -5015,7 +5015,7 @@
 /obj/machinery/light,
 /obj/effect/turf_decal/bot_white,
 /turf/open/floor/stone{
-	color = #abf2ff
+	color = "#abf2ff"
 	},
 /area/city/shop)
 "FQ" = (
@@ -5295,7 +5295,7 @@
 	},
 /obj/effect/turf_decal/bot_white,
 /turf/open/floor/stone{
-	color = #abf2ff
+	color = "#abf2ff"
 	},
 /area/city/shop)
 "HI" = (
@@ -6300,7 +6300,7 @@
 	dir = 8
 	},
 /turf/open/floor/stone{
-	color = #abf2ff
+	color = "#abf2ff"
 	},
 /area/city/shop)
 "Oq" = (
@@ -6435,7 +6435,7 @@
 "OH" = (
 /obj/machinery/computer/operating,
 /turf/open/floor/stone{
-	color = #abf2ff
+	color = "#abf2ff"
 	},
 /area/city/shop)
 "ON" = (
@@ -6750,7 +6750,7 @@
 	},
 /obj/structure/curtain,
 /turf/open/floor/stone{
-	color = #abf2ff
+	color = "#abf2ff"
 	},
 /area/city/shop)
 "QB" = (
@@ -7106,7 +7106,7 @@
 /obj/effect/turf_decal/trimline/blue/filled/line,
 /obj/structure/curtain,
 /turf/open/floor/stone{
-	color = #abf2ff
+	color = "#abf2ff"
 	},
 /area/city/shop)
 "RX" = (
@@ -7405,7 +7405,7 @@
 "TK" = (
 /obj/machinery/light,
 /turf/open/floor/stone{
-	color = #abf2ff
+	color = "#abf2ff"
 	},
 /area/city/shop)
 "TL" = (
@@ -7821,7 +7821,7 @@
 "WS" = (
 /obj/effect/turf_decal/box/red,
 /turf/open/floor/stone{
-	color = #abf2ff
+	color = "#abf2ff"
 	},
 /area/city/shop)
 "WT" = (
@@ -8290,7 +8290,7 @@
 "ZP" = (
 /obj/structure/closet/secure_closet/medical2,
 /turf/open/floor/stone{
-	color = #abf2ff
+	color = "#abf2ff"
 	},
 /area/city/shop)
 "ZS" = (
