@@ -53,6 +53,7 @@
 	rank_title = "CPT"
 	job_important = "You take the role of the captain of an engineering unit."
 	job_notice = ""
+	req_admin_notify = 1
 
 /datum/job/rook/after_spawn(mob/living/carbon/human/H, mob/M)
 	. = ..()

@@ -28,6 +28,7 @@ GLOBAL_LIST_INIT(robin_sergeants, list("Section A", "Section B", "Section C"))
 	rank_title = "CPT"
 	job_important = "You take the role of acquisitions team captain."
 	job_notice = "Manage both of your section leaders, and all 3 sections. You also directly manage Section A."
+	req_admin_notify = 1
 
 /datum/job/rcorp_captain/robin/after_spawn(mob/living/carbon/human/H, mob/M)
 	. = ..()

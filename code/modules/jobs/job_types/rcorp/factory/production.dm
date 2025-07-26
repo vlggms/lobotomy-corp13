@@ -54,8 +54,9 @@
 								JUSTICE_ATTRIBUTE = 20
 								)
 	rank_title = "LT"
-	job_important = "You are the head of the production team.."
+	job_important = "You are the head of the production team."
 	job_notice = "Make sure that the Acquisitions Specialists are sending materials to the base; and make sure that the production specialists are making the factory correctly."
+	req_admin_notify = 1
 
 /datum/job/production/acquisition
 	title = "R-Corp Acquisitions Specialist"

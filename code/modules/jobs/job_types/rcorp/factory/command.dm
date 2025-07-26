@@ -5,7 +5,8 @@
 	outfit = /datum/outfit/job/commander/operations
 	rank_title = "CDR"
 	job_important = "Lead the Rcorp 6th Pack to gather as many materials as you possibly can!"
-	job_notice = ""
+	job_notice = "Destroy the X-Corp Heart."
+	req_admin_notify = 1
 
 /datum/job/rcorp_captain/commander/operations/New()
 	..()
@@ -50,6 +51,7 @@
 	job_important = "Keep the base producing materials. You are in charge of the Raven, Rook and Production teams."
 	job_notice = ""
 	maptype = "rcorp_factory"
+	req_admin_notify = 1
 
 /datum/outfit/job/commander/factory
 	name = "Base Commander"
