@@ -60,23 +60,29 @@ GLOBAL_VAR_INIT(rcorp_factorymax, 70)
 	switch(difficulty)
 		if(1 to 4)
 			to_spawn = pick(
-				/mob/living/simple_animal/hostile/ordeal/indigo_dawn,
-				/mob/living/simple_animal/hostile/ordeal/indigo_dawn/invis,
-				/mob/living/simple_animal/hostile/ordeal/indigo_dawn/skirmisher,
+				/mob/living/simple_animal/hostile/ordeal/green_bot,
+				/mob/living/simple_animal/hostile/ordeal/steel_dawn,
 			)
 		if(5 to 8)
-			to_spawn = /mob/living/simple_animal/hostile/ordeal/indigo_noon
+			to_spawn = pick(
+				/mob/living/simple_animal/hostile/ordeal/green_bot_big,
+				/mob/living/simple_animal/hostile/ordeal/steel_dawn/steel_noon,
+			)
 
 		if(9 to INFINITY)
 			if(prob(50))
-				to_spawn = /mob/living/simple_animal/hostile/ordeal/indigo_noon
+				to_spawn = pick(
+					/mob/living/simple_animal/hostile/ordeal/green_bot_big,
+				)
 
 			else
 				to_spawn = pick(
+					/mob/living/simple_animal/hostile/ordeal/steel_dusk,
 					/mob/living/simple_animal/hostile/ordeal/indigo_dusk/red,
 					/mob/living/simple_animal/hostile/ordeal/indigo_dusk/white,
 					/mob/living/simple_animal/hostile/ordeal/indigo_dusk/black,
-					/mob/living/simple_animal/hostile/ordeal/indigo_dusk/pale,)
+					/mob/living/simple_animal/hostile/ordeal/indigo_dusk/pale,
+				)
 
 	if(prob(10))
 		difficulty++
