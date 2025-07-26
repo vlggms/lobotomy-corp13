@@ -163,3 +163,8 @@
 	damage_type = RED_DAMAGE
 	damage = 85
 	projectile_piercing = PASSMOB
+
+/obj/projectile/ego_bullet/ego_squeak
+	name = "squeak"
+	damage = 7
+	damage_type = RED_DAMAGE

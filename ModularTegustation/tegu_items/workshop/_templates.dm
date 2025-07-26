@@ -21,8 +21,14 @@
 	/// The true base force of the weapon including mods without modifiers
 	var/true_force = 0
 
+	//The force bonus made on creation. Adds a flat bonus to weapons.
+	var/forcebonus = 0
+
+	var/xp_per_level = 50
 	var/weapon_xp = 0
-	var/level_xp = 100
+	var/level_xp = 50
+	var/weapon_lv = 1
+	var/max_lv = 5
 
 /obj/item/ego_weapon/template/Initialize(mob/living/target, mob/living/carbon/human/user)
 	true_force = force
@@ -35,7 +41,7 @@
 	if(specialmod)
 		specialmod.ActivateEffect(src, special_count, target, user)
 	..()
-	if(target.stat != DEAD || !istype(target, /mob/living/simple_animal/hostile/debugdummy))
+	if(target.stat != DEAD && !istype(target, /mob/living/simple_animal/hostile/debugdummy))
 		weapon_xp++
 	force = true_force
 
@@ -67,6 +73,8 @@
 	force *= mod.forcemod
 	true_force *= mod.forcemod
 	attack_speed *= mod.attackspeedmod
+	force += forcebonus
+	forcebonus = 0
 
 	if(!type_overriden)
 		damtype = mod.damagetype
@@ -105,8 +113,11 @@
 
 /obj/item/ego_weapon/template/examine(mob/user)
 	. = ..()
+	if(forcebonus)
+		. += "This weapon will gain +[forcebonus] damage on creation."
 
-	if(level_xp == 600)
+	. += "Weapon LV : [weapon_lv]/[max_lv]."
+	if(weapon_lv == 5)
 		. += "This weapon is fully upgraded!"
 		return
 
@@ -124,7 +135,7 @@
 			to_chat(user, span_warning("You need this to be on an anvil to work it."))
 			return
 
-		if(level_xp == 600)
+		if(weapon_lv == max_lv)
 			to_chat(user, span_warning("This weapon cannot be upgraded."))
 			return
 
@@ -132,11 +143,9 @@
 			to_chat(user, span_warning("This weapon does not have enough XP to level up yet."))
 			return
 
-		if(!do_after(user, 10 SECONDS))
-			return
-
+		weapon_lv ++
 		weapon_xp = 0
-		level_xp += 100
+		level_xp = weapon_lv * xp_per_level
 		force *= 1.1
 		true_force *= 1.1
 

@@ -60,6 +60,7 @@ SUBSYSTEM_DEF(cityevents)
 	total_events += pick(neutral_events)
 	total_events += pick(neutral_events)
 	total_events += pick("money")			//Always get money
+	total_events += pick("tresmetal")		//Materials for the peacekeepers to upgrade
 
 	processing = subtypesof(/mob/living/simple_animal/hostile/distortion)
 	//Set available distortion
@@ -107,7 +108,15 @@ SUBSYSTEM_DEF(cityevents)
 		if("money")
 			spawnitem(/obj/item/stack/spacecash/c50, 50)
 		if("tresmetal")
-			spawnitem(/obj/item/tresmetal, 10)	//very rare, could fetch you a good price.
+			spawnitem(pick(
+			/obj/item/tresmetal/steel,
+			/obj/item/tresmetal/cobalt,
+			/obj/item/tresmetal/copper,
+			/obj/item/tresmetal/bloodiron,
+			/obj/item/tresmetal/goldsteel,
+			/obj/item/tresmetal/silversteel,
+			/obj/item/tresmetal/electrum,
+			/obj/item/tresmetal/darksteel), 5)	//Metal that can upgrade peacekeepers
 		if("hppens")
 			spawnitem(/obj/item/reagent_containers/hypospray/medipen/salacid, 50)
 		if("sppens")
@@ -145,23 +154,23 @@ SUBSYSTEM_DEF(cityevents)
 	for(var/datum/job/processing in SSjob.occupations)
 		if(jobpicked <= 2)
 			if(istype(processing, /datum/job/scavenger))
-				deadchat_broadcast("A Rat job slot has just opened, respawn to play as one.", message_type=DEADCHAT_ANNOUNCEMENT)
 				processing.total_positions +=1
+				deadchat_broadcast("A Rat job slot has just opened, respawn to play.", message_type=DEADCHAT_ANNOUNCEMENT)
 
 		if(jobpicked == 3)
 			if(istype(processing, /datum/job/associateroaming))
-				deadchat_broadcast("A Roaming association job slot has just opened, respawn to play as one.", message_type=DEADCHAT_ANNOUNCEMENT)
 				processing.total_positions +=1
+				deadchat_broadcast("An Association Roamer job slot has just opened, respawn to play.", message_type=DEADCHAT_ANNOUNCEMENT)
 
 		if(jobpicked == 4)
 			if(istype(processing, /datum/job/roamingsalsu))
-				deadchat_broadcast("A Blade Lineage Salsu job slot has just opened, respawn to play as one.", message_type=DEADCHAT_ANNOUNCEMENT)
 				processing.total_positions += 1
+				deadchat_broadcast("A Blade Lineage Salsu job slot has just opened, respawn to play.", message_type=DEADCHAT_ANNOUNCEMENT)
 
 		if(jobpicked == 5)
 			if(istype(processing, /datum/job/butcher))
-				deadchat_broadcast("A Backstreets Butcher job slot has just opened, respawn to play as one.", message_type=DEADCHAT_ANNOUNCEMENT)
 				processing.total_positions += 1
+				deadchat_broadcast("A Backstreet Butcher job slot has just opened, respawn to play.", message_type=DEADCHAT_ANNOUNCEMENT)
 
 /datum/controller/subsystem/cityevents/proc/Boss()
 	minor_announce("Warning, large hostile detected. Suppression required.", "Local Activity Alert:", TRUE)

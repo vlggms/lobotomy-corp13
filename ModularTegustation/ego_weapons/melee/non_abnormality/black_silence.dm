@@ -37,12 +37,12 @@
 /obj/item/ego_weapon/black_silence_gloves/examine(mob/user)
 	. = ..()
 	if(user.mind)
-		if(user.mind.assigned_role in list("Disciplinary Officer", "Emergency Response Agent")) //These guys get a bonus to equipping gacha.
+		if(user.mind.assigned_role in list("Disciplinary Officer", "Combat Research Agent")) //These guys get a bonus to equipping gacha.
 			. += span_notice("Due to your abilities, you get a -20 reduction to stat requirements when equipping this weapon.")
 
 /obj/item/ego_weapon/black_silence_gloves/CanUseEgo(mob/living/user)
 	if(user.mind)
-		if(user.mind.assigned_role in list("Disciplinary Officer", "Emergency Response Agent")) //These guys get a bonus to equipping gacha.
+		if(user.mind.assigned_role in list("Disciplinary Officer", "Combat Research Agent")) //These guys get a bonus to equipping gacha.
 			equip_bonus = 20
 		else
 			equip_bonus = 0
