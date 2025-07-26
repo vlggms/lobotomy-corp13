@@ -4,25 +4,24 @@
 */
 
 #define SEND_ON_SIGNAL 1
-#define SEND_ON_WAVE 2
-#define SEND_TILL_MAX 3
+#define SEND_TILL_MAX 2
 
 /datum/component/monwave_spawner
 	var/assault_pace
 	//Cooldowns for procs.
-	var/resume_cooldown = 0
 	var/generate_wave_cooldown = 0
-	var/generate_wave_cooldown_time = 5 SECONDS
+	var/generate_wave_cooldown_time = 30 SECONDS
 	//Our assault target
 	var/assault_target
 	//Leader of the assault
 	var/obj/effect/wave_commander/wave_leader
 	//Max amount of mobs we can spawn
-	var/max_existing_mobs = 30
+	var/max_existing_mobs = 10
+	var/current_existing_mobs = 0
 	//Who did we spawn and check if they dont exist anymore.
 	var/list/existing_mobs = list()
 	//Faction our spawned creatures belong to
-	var/list/faction = list("hostile")
+	var/list/faction = list("hostile", "enemy")
 	//Last wave of soldiers
 	var/list/last_wave = list()
 	//current wave of soldiers
@@ -32,9 +31,11 @@
 	var/list/wave_composition = list()
 	//Path to target
 	var/list/assult_path = list()
+	//Are we the wave announcer?
+	var/is_wave_announcer = FALSE
 
 //Experimental So i dont have to use the procs all the time
-/datum/component/monwave_spawner/Initialize(attack_target, assault_type = SEND_ON_WAVE, max_mobs = 30, list/wave_faction = list("hostile"), list/new_wave_order)
+/datum/component/monwave_spawner/Initialize(attack_target, assault_type = SEND_TILL_MAX, max_mobs = 10, list/wave_faction = list("hostile", "enemy"), list/new_wave_order, var/try_for_announcer = FALSE)
 	if(!isstructure(parent) && !ishostile(parent))
 		return COMPONENT_INCOMPATIBLE
 
@@ -47,6 +48,12 @@
 
 	if(!assault_target && assault_pace != SEND_ON_SIGNAL)
 		qdel(src)
+
+	is_wave_announcer = SSgamedirector.RegisterAsWaveAnnouncer(src)
+
+	addtimer(CALLBACK(src, PROC_REF(LateInitialize)))
+
+/datum/component/monwave_spawner/proc/LateInitialize()
 	GeneratePath()
 	BeginProcessing()
 
@@ -54,11 +61,7 @@
 	if(!parent || !assault_target)
 		qdel(src)
 		return
-	if(length(last_wave) && world.time >= resume_cooldown)
-		CleanupAssault()
-		resume_cooldown = world.time + (1 MINUTES)
-		return
-	if(world.time >= generate_wave_cooldown)
+	if(current_existing_mobs < max_existing_mobs && world.time >= generate_wave_cooldown)
 		GenerateWave()
 		generate_wave_cooldown = world.time + generate_wave_cooldown_time
 		return
@@ -90,6 +93,7 @@
 	if(!wave_leader && LeaderQualifications(spawned_mob))
 		wave_leader = spawned_mob
 	current_wave += spawned_mob
+	current_existing_mobs += 1
 	spawned_mob.faction = faction.Copy()
 	RegisterSignal(spawned_mob, COMSIG_LIVING_DEATH, PROC_REF(MinionSlain))
 	return spawned_mob
@@ -99,6 +103,7 @@
 
 	last_wave -= M
 	current_wave -= M
+	current_existing_mobs -= 1
 
 //Leader Modularization if you want to make only certain mobs leaders.
 /datum/component/monwave_spawner/proc/LeaderQualifications(mob/living/simple_animal/hostile/recruit)
@@ -126,6 +131,8 @@
 	wave_composition = LAZYCOPY(wave_order)
 	last_wave = LAZYCOPY(current_wave)
 	LAZYCLEARLIST(current_wave)
+	if(is_wave_announcer)
+		SSgamedirector.AnnounceWave()
 	return TRUE
 
 //Despawns any idle monsters who lost the wave.
