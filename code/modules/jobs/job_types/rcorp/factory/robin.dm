@@ -129,7 +129,7 @@ GLOBAL_LIST_INIT(robin_sergeants, list("Section A", "Section B", "Section C"))
 	exp_type_department = EXP_TYPE_SECURITY
 	maptype = "rcorp_factory"
 
-	outfit = /datum/outfit/job/robin_leader
+	outfit = /datum/outfit/job/robin_sergeant
 	display_order = 4
 
 
