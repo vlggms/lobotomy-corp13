@@ -24,7 +24,7 @@
 /obj/item/reagent_containers/hypospray/medipen/dual
 	name = "Double Healing Pen"
 	icon_state = "atropen"
-	list_reagents = list(/datum/reagent/medicine/mental_stabilizator = 15, /datum/reagent/medicine/sal_acid = 15)
+	list_reagents = list(/datum/reagent/medicine/mental_stabilizator = 5, /datum/reagent/medicine/sal_acid = 5)
 
 
 /obj/item/storage/First_aid_l2
