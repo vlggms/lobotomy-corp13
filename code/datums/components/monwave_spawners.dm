@@ -4,7 +4,8 @@
 */
 
 #define SEND_ON_SIGNAL 1
-#define SEND_TILL_MAX 2
+#define SEND_TILL_MAX 2 // Send mobs the moment the wave is assembled
+#define SEND_ONLY_DEFEATED 3 // Send mobs only if the previous wave is dead
 
 /datum/component/monwave_spawner
 	var/assault_pace
@@ -33,9 +34,11 @@
 	var/list/assult_path = list()
 	//Are we the wave announcer?
 	var/is_wave_announcer = FALSE
+	var/delete_on_death = TRUE
+	var/is_raider = FALSE
 
 //Experimental So i dont have to use the procs all the time
-/datum/component/monwave_spawner/Initialize(attack_target, assault_type = SEND_TILL_MAX, max_mobs = 10, list/wave_faction = list("hostile", "enemy"), list/new_wave_order, try_for_announcer = FALSE)
+/datum/component/monwave_spawner/Initialize(attack_target, assault_type = SEND_ONLY_DEFEATED, max_mobs = 10, list/wave_faction = list("hostile", "enemy"), list/new_wave_order, try_for_announcer = FALSE, new_wave_cooldown_time = NONE, raider = FALSE)
 	if(!isstructure(parent) && !ishostile(parent))
 		return COMPONENT_INCOMPATIBLE
 
@@ -46,10 +49,15 @@
 	if(new_wave_order)
 		wave_order = new_wave_order.Copy()
 
+	if(new_wave_cooldown_time)
+		generate_wave_cooldown_time = new_wave_cooldown_time
+
 	if(!assault_target && assault_pace != SEND_ON_SIGNAL)
 		qdel(src)
 
 	is_wave_announcer = SSgamedirector.RegisterAsWaveAnnouncer(src)
+
+	is_raider = raider
 
 	addtimer(CALLBACK(src, PROC_REF(LateInitialize)))
 
@@ -77,7 +85,7 @@
 /datum/component/monwave_spawner/proc/GenerateWave()
 	if(!length(wave_composition))
 		if(assault_target)
-			if(assault_pace != SEND_TILL_MAX && length(last_wave))
+			if(assault_pace == SEND_ONLY_DEFEATED && length(last_wave))
 				return FALSE
 			return StartAssault(assault_target)
 		return FALSE
@@ -104,6 +112,9 @@
 	last_wave -= M
 	current_wave -= M
 	current_existing_mobs -= 1
+
+	if(delete_on_death)
+		qdel(M)
 
 //Leader Modularization if you want to make only certain mobs leaders.
 /datum/component/monwave_spawner/proc/LeaderQualifications(mob/living/simple_animal/hostile/recruit)
@@ -133,6 +144,8 @@
 	LAZYCLEARLIST(current_wave)
 	if(is_wave_announcer)
 		SSgamedirector.AnnounceWave()
+	if(is_raider)
+		SwitchTarget(SSgamedirector.GetRandomTarget())
 	return TRUE
 
 //Despawns any idle monsters who lost the wave.
@@ -148,6 +161,10 @@
 	if(turf_to_go)
 		target_loc = get_turf(turf_to_go)
 	assult_path = get_path_to(parent, target_loc, /turf/proc/Distance_cardinal, 0, 200)
+
+/datum/component/monwave_spawner/proc/SwitchTarget(target)
+	assault_target = get_turf(target)
+	GeneratePath()
 
 //Invisible Effect only visible to ghosts. Uses a altered form of Hostile Patrol Code -IP
 /obj/effect/wave_commander

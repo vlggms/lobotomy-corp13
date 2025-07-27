@@ -428,7 +428,7 @@
 	base_icon_state = "rock_wall"
 	smoothing_flags = SMOOTH_BITMASK | SMOOTH_BORDER
 	canSmoothWith = list(SMOOTH_GROUP_CLOSED_TURFS)
-	baseturfs = /turf/open/floor/plating/ashplanet/wateryrock
+	baseturfs = /turf/open/floor/plating/ashplanet/rocky
 	initial_gas_mix = OPENTURF_LOW_PRESSURE
 	environment_type = "waste"
 	turf_type = /turf/open/floor/plating/ashplanet/rocky
