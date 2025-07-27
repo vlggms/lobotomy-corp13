@@ -37,7 +37,8 @@
 	var/demolish_obj_damage = 600
 	search_objects = 3
 	search_objects_regain_time = 5
-	wanted_objects = list(/obj/structure)
+	wanted_objects = list(/obj/structure/barricade, /obj/machinery/manned_turret/rcorp)
+	environment_smash = ENVIRONMENT_SMASH_STRUCTURES
 	teleport_away = TRUE
 	var/shield = FALSE
 	var/shield_counter = 0
@@ -55,16 +56,111 @@
 	if (!target)
 		FindTarget()
 
+// Override TryAttack to ensure objects are only attacked when adjacent
+/mob/living/simple_animal/hostile/clan/demolisher/TryAttack()
+	if(QDELETED(src))
+		return
+	if(client || stat != CONSCIOUS || AIStatus != AI_ON || incapacitated() || !targets_from || !isturf(targets_from.loc))
+		attack_is_on_cooldown = FALSE
+		return
+	
+	var/atom/attacked_target
+	var/should_gain_patience = FALSE
+	
+	// For objects, only attack if truly adjacent (distance 1)
+	if(!QDELETED(target))
+		if(isobj(target))
+			// Strict adjacency check for objects
+			if(get_dist(targets_from, target) == 1)
+				attacked_target = target
+				should_gain_patience = TRUE
+		else
+			// Normal check for living targets
+			if(target.Adjacent(targets_from))
+				attacked_target = target
+				should_gain_patience = TRUE
+	
+	if(!attacked_target)
+		// Look for other targets in melee range
+		in_melee = FALSE
+		var/list/targets_in_range = list()
+		for(var/atom/A in view(1, targets_from))
+			if(A == src || A == targets_from)
+				continue
+			if(CanAttack(A))
+				// Extra check for objects
+				if(isobj(A) && get_dist(targets_from, A) != 1)
+					continue
+				targets_in_range += A
+		
+		if(targets_in_range.len > 0)
+			attacked_target = pick(targets_in_range)
+	
+	if(attacked_target)
+		if(!AttackCondition(attacked_target))
+			face_atom(attacked_target)
+			attack_is_on_cooldown = FALSE
+			if(delayed_attack_instances < 1)
+				DelayedTryAttack(attack_cooldown)
+			return
+		attack_is_on_cooldown = TRUE
+		AttackingTarget(attacked_target)
+		if(QDELETED(src) || stat != CONSCIOUS)
+			return
+		ResetAttackCooldown(attack_cooldown)
+		if(should_gain_patience)
+			GainPatience()
+	else
+		attack_is_on_cooldown = FALSE
+		if(delayed_attack_instances < 1)
+			DelayedTryAttack(attack_cooldown)
+
+// Override to only destroy when path is actually blocked
+/mob/living/simple_animal/hostile/clan/demolisher/DestroyPathToTarget()
+	if(!environment_smash || !target)
+		return
+
+	// Check if we can actually move towards our target
+	var/turf/next_step = get_step_towards(src, target)
+	if(!next_step || next_step == loc)
+		return
+
+	// Check if the path is blocked
+	if(next_step.density)
+		return ..() // Call parent to destroy blocking wall
+
+	// Check for dense objects blocking our path
+	for(var/obj/O in next_step)
+		if(O.density && !O.CanPass(src, next_step))
+			return ..() // Call parent to destroy blocking object
+
+	// Path is clear, don't destroy anything
+	return
+
 /mob/living/simple_animal/hostile/clan/demolisher/DestroyObjectsInDirection(direction)
+	// Only run when we have environment smash enabled
+	if(!environment_smash)
+		return
+
 	var/turf/T = get_step(targets_from, direction)
 	if(QDELETED(T))
 		return
-	if(T.Adjacent(targets_from))
-		if(CanSmashTurfs(T))
-			T.attack_animal(src)
-			return
+
+	// Check if the turf is actually adjacent (not the same turf we're on)
+	if(T == get_turf(targets_from))
+		return
+
+	// Use Adjacent check instead of get_dist
+	if(!T.Adjacent(targets_from))
+		return
+
+	if(CanSmashTurfs(T))
+		T.attack_animal(src)
+		return
+
 	for(var/obj/O in T.contents)
-		if(!O.Adjacent(targets_from))
+		// Make sure the object is actually in the adjacent turf we're checking
+		if(O.loc != T)
 			continue
 		if(IsSmashable(O))
 			if (charge >= max_charge)
