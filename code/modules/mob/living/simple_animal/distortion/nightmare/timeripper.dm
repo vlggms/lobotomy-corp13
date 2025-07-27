@@ -53,7 +53,7 @@
 	var/lovewhip_damage = 100
 	var/damage_taken
 
-/mob/living/simple_animal/hostile/distortion/timeripper/proc/stagetransition()
+/mob/living/simple_animal/hostile/distortion/timeripper/proc/StageTransition()
 	icon_living = "lovetown_abomination2"
 	if(!countering && can_act)
 		icon_state = icon_living
@@ -64,7 +64,7 @@
 	counter_threshold = 300
 	playsound(get_turf(src), 'sound/creatures/lc13/lovetown/abomination_stagetransition.ogg', 75, 0, 3)
 
-/mob/living/simple_animal/hostile/distortion/timeripper/proc/dashcounter() //increases move speed and hits with a powerful attack that knocks back far away
+/mob/living/simple_animal/hostile/distortion/timeripper/proc/Dashcounter() //increases move speed and hits with a powerful attack that knocks back far away
 	playsound(get_turf(src), 'sound/creatures/lc13/lovetown/abomination_counter_start.ogg', 75, 0, 3)
 	switch(current_stage)
 		if(1)
@@ -173,7 +173,7 @@
 		addtimer(CALLBACK(H, TYPE_PROC_REF(/mob, remove_movespeed_modifier), /datum/movespeed_modifier/grab_slowdown/aggressive), 4 SECONDS, TIMER_UNIQUE | TIMER_OVERRIDE)
 
 //Freezing time.
-/mob/living/simple_animal/hostile/distortion/timeripper/proc/timestop()
+/mob/living/simple_animal/hostile/distortion/timeripper/proc/TimeStop()
 	say("Your time is mine!")
 	can_act = FALSE
 	SLEEP_CHECK_DEATH(12)
