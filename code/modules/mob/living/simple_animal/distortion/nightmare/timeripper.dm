@@ -1,4 +1,4 @@
-/mob/living/simple_animal/hostile/distortion/TimeRipper
+/mob/living/simple_animal/hostile/distortion/timeripper
 	name = "Kaukritya-Aniyata"
 	desc = "A full-body prosthetic looking guy, he feels eerie."
 	icon = 'ModularTegustation/Teguicons/DistortedKim.dmi'
@@ -53,7 +53,7 @@
 	var/lovewhip_damage = 100
 	var/damage_taken
 
-/mob/living/simple_animal/hostile/distortion/TimeRipper/proc/StageTransition()
+/mob/living/simple_animal/hostile/distortion/timeripper/proc/stagetransition()
 	icon_living = "lovetown_abomination2"
 	if(!countering && can_act)
 		icon_state = icon_living
@@ -64,7 +64,7 @@
 	counter_threshold = 300
 	playsound(get_turf(src), 'sound/creatures/lc13/lovetown/abomination_stagetransition.ogg', 75, 0, 3)
 
-/mob/living/simple_animal/hostile/distortion/TimeRipper/proc/DashCounter() //increases move speed and hits with a powerful attack that knocks back far away
+/mob/living/simple_animal/hostile/distortion/timeripper/proc/dashcounter() //increases move speed and hits with a powerful attack that knocks back far away
 	playsound(get_turf(src), 'sound/creatures/lc13/lovetown/abomination_counter_start.ogg', 75, 0, 3)
 	switch(current_stage)
 		if(1)
@@ -78,14 +78,14 @@
 	visible_message(span_warning("[src] sprints toward [target]!"), span_notice("You quickly dash!"), span_notice("You hear heavy footsteps speed up."))
 	addtimer(CALLBACK(src, PROC_REF(DisableCounter)), 4 SECONDS) //disables the counter after 4 seconds
 
-/mob/living/simple_animal/hostile/distortion/TimeRipper/proc/DisableCounter() //resets the counter
+/mob/living/simple_animal/hostile/distortion/timeripper/proc/DisableCounter() //resets the counter
 	if(countering)
 		countering = FALSE
 		playsound(get_turf(src), 'sound/creatures/lc13/lovetown/abomination_counter_end.ogg', 75, 0, 3)
 		SLEEP_CHECK_DEATH(10)
 		icon_state = icon_living
 
-/mob/living/simple_animal/hostile/distortion/TimeRipper/OpenFire(target)
+/mob/living/simple_animal/hostile/distortion/timeripper/openfire(target)
 	if(!can_act)
 		return
 
@@ -100,7 +100,7 @@
 				return DashCounter()
 		return
 
-/mob/living/simple_animal/hostile/distortion/TimeRipper/adjustHealth(amount, updating_health = TRUE, forced = FALSE)
+/mob/living/simple_animal/hostile/distortion/timeripper/adjustHealth(amount, updating_health = TRUE, forced = FALSE)
 	. = ..()
 	if(. > 0)
 		damage_taken += .
@@ -112,7 +112,7 @@
 
 //The warden parts.
 
-/mob/living/simple_animal/hostile/distortion/TimeRipper/AttackingTarget(atom/attacked_target)
+/mob/living/simple_animal/hostile/distortion/timeripper/attackingtarget(atom/attacked_target)
 	. = ..()
 	if(.)
 		if(finishing)
@@ -143,17 +143,17 @@
 			finishing = FALSE
 			icon_state = "warden"
 
-/mob/living/simple_animal/hostile/distortion/TimeRipper/CanAttack(atom/the_target)
+/mob/living/simple_animal/hostile/distortion/timeripper/CanAttack(atom/the_target)
 	if(finishing)
 		return FALSE
 	return ..()
 
-/mob/living/simple_animal/hostile/distortion/TimeRipper/warden/Move()
+/mob/living/simple_animal/hostile/distortion/timeripper/warden/move()
 	if(finishing)
 		return FALSE
 	return ..()
 
-/mob/living/simple_animal/hostile/distortion/TimeRipper/death(gibbed)
+/mob/living/simple_animal/hostile/distortion/timeripper/death(gibbed)
 	density = FALSE
 	animate(src, alpha = 0, time = 10 SECONDS)
 	QDEL_IN(src, 10 SECONDS)
@@ -161,7 +161,7 @@
 
 //Melee funnies.
 
-/mob/living/simple_animal/hostile/distortion/TimeRipper/AttackingTarget(atom/attacked_target)
+/mob/living/simple_animal/hostile/distortion/timeripper/attackingtarget(atom/attacked_target)
 	if(finishing)
 		return
 	. = ..()
@@ -173,7 +173,7 @@
 		addtimer(CALLBACK(H, TYPE_PROC_REF(/mob, remove_movespeed_modifier), /datum/movespeed_modifier/grab_slowdown/aggressive), 4 SECONDS, TIMER_UNIQUE | TIMER_OVERRIDE)
 
 //Freezing time.
-/mob/living/simple_animal/hostile/distortion/TimeRipper/proc/Timestop()
+/mob/living/simple_animal/hostile/distortion/timeripper/proc/timestop()
 	say("Your time is mine!")
 	can_act = FALSE
 	SLEEP_CHECK_DEATH(12)
